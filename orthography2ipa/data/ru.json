@@ -131,6 +131,9 @@
     ],
     "щь": [
       "ɕː"
+    ],
+    "́": [
+      ""
     ]
   },
   "allophones": {
@@ -285,7 +288,7 @@
     ]
   },
   "parent": "x-clade-east1426",
-  "notes": "Standard Moscow Russian. Key features: pervasive palatalisation contrast, Аканье (unstressed /o,a/ -> [ɐ] pretonic, [ə] elsewhere after hard consonants) and Иканье (unstressed /e,i/ (and /a/ after soft consonants) -> [ɪ]). г = [ɡ] plosive. FINAL DEVOICING: all obstruents (plain and palatalised) devoiced in coda/word-final position (б/бь->п/пь, в/вь->ф/фь, г->к, д/дь->т/тʲ, з/зь->с/сʲ, ж->ш); this positional devoicing only applies to the bare-consonant and soft-sign graphemes (б бь в вь г д дь з зь), never to the iotated-vowel CV digraphs (e.g. дя, зе), because those digraphs always resolve to a consonant immediately followed by a vowel and are therefore never actually in coda position, regardless of their position within the word string. Regressive voicing/palatalisation assimilation across consonant clusters (e.g. сделать [zʲdʲelətʲ]) is a known engine limitation, not modelled at the single-grapheme level used here. VOWEL REDUCTION: о/а reduce to [ɐ] in 1st pretonic syllable, [ə] elsewhere (unstressed); this positional rule only fires when the stressed syllable is known (see STRESS note below), otherwise the 'default' (unreduced) mapping is used. IOTATED VOWELS + и: е/я/ю/ё/и palatalise an immediately preceding consonant (soft-sign ь does the same); modelled as explicit two-grapheme tokens for the 15 consonants that contrast plain/palatalised (б в г д з к л м н п р с т ф х): 12 pre-existing soft-sign digraphs (бь вь дь зь ль мь нь пь рь сь ть фь) plus 75 new iotated-vowel digraphs (each of the 15 consonants x е/и/я/ё/ю, e.g. 'бе'->'bʲe', 'би'->'bʲi', 'дя'->'dʲa'); ц/ш/ж remain hard unconditionally and й/ч/щ remain soft unconditionally (their base grapheme entries already carry the sole realisation), so no digraphs are needed for those six letters. STRESS: Russian word stress is lexical and free (not derivable from spelling) and is not marked in standard orthography, so this spec intentionally carries no `stress` block (per the research-tier exemption for orthographically unpredictable stress) -- this also means the pretonic/posttonic/nucleus_unstressed positional rules below are only reachable when a caller supplies pre-stressed input (e.g. combining acute accent) through a future stress-marked variant; on ordinary unmarked spelling the engine cannot locate the stressed syllable and the 'default' (unstressed/unreduced) branch of each positional entry is used instead. This is the primary source of PER against unmarked gold sets and is why quality stays at 'research', not 'production'. Г IN GENITIVE: -ого/-его endings: г->[v] (его=[jɪvo]). Sources: Jones & Ward (1969), Timberlake (2004), Padgett & Tabain (2005), Avanesov (1956).",
+  "notes": "Codified standard literary Russian — the prescriptive norm described by Avanesov and Timberlake, historically based on Moscow usage but no longer identical to any regional variety. This spec is the STANDARD, not a dialect: the regional Moscow layer (старомосковское произношение and the Central-Russian features that the codification did not adopt) lives in `ru-x-moscow`, which pulls its tables from here and states only what it adds. Every ru-x-* dialect spec is a delta against this file. Key features: pervasive palatalisation contrast, Аканье (unstressed /o,a/ -> [ɐ] pretonic, [ə] elsewhere after hard consonants) and Иканье (unstressed /e,i/ (and /a/ after soft consonants) -> [ɪ]). г = [ɡ] plosive. FINAL DEVOICING: all obstruents (plain and palatalised) devoiced in coda/word-final position (б/бь->п/пь, в/вь->ф/фь, г->к, д/дь->т/тʲ, з/зь->с/сʲ, ж->ш); this positional devoicing only applies to the bare-consonant and soft-sign graphemes (б бь в вь г д дь з зь), never to the iotated-vowel CV digraphs (e.g. дя, зе), because those digraphs always resolve to a consonant immediately followed by a vowel and are therefore never actually in coda position, regardless of their position within the word string. Regressive voicing/palatalisation assimilation across consonant clusters (e.g. сделать [zʲdʲelətʲ]) is a known engine limitation, not modelled at the single-grapheme level used here. VOWEL REDUCTION: о/а reduce to [ɐ] in 1st pretonic syllable, [ə] elsewhere (unstressed); this positional rule only fires when the stressed syllable is known (see STRESS note below), otherwise the 'default' (unreduced) mapping is used. IOTATED VOWELS + и: е/я/ю/ё/и palatalise an immediately preceding consonant (soft-sign ь does the same); modelled as explicit two-grapheme tokens for the 15 consonants that contrast plain/palatalised (б в г д з к л м н п р с т ф х): 12 pre-existing soft-sign digraphs (бь вь дь зь ль мь нь пь рь сь ть фь) plus 75 new iotated-vowel digraphs (each of the 15 consonants x е/и/я/ё/ю, e.g. 'бе'->'bʲe', 'би'->'bʲi', 'дя'->'dʲa'); ц/ш/ж remain hard unconditionally and й/ч/щ remain soft unconditionally (their base grapheme entries already carry the sole realisation), so no digraphs are needed for those six letters. STRESS: Russian word stress is lexical and free (not derivable from spelling) and is not marked in standard orthography, so this spec intentionally carries no `stress` block (per the research-tier exemption for orthographically unpredictable stress) -- this also means the pretonic/posttonic/nucleus_unstressed positional rules below are only reachable when a caller supplies pre-stressed input (e.g. combining acute accent) through a future stress-marked variant; on ordinary unmarked spelling the engine cannot locate the stressed syllable and the 'default' (unstressed/unreduced) branch of each positional entry is used instead. This is the primary source of PER against unmarked gold sets and is why quality stays at 'research', not 'production'. Г IN GENITIVE: the adjectival/pronominal genitive-singular desinence -ого/-его is pronounced with [v], not [ɡ] (Timberlake (2004); Avanesov (1956); Jones & Ward (1969)): красного [krasnəvə], синего [sʲinʲɪvə], его [jɪvo]. This is now IMPLEMENTED (it was previously described here but absent from the tables): `grammatical_endings` carries -ого -> [əvə], the hard-sibilant set (жего/шего/цего -> ʐɨvə/ʂɨvə/tsɨvə, because ж ш ц are unconditionally hard and ⟨е⟩ after them is [ɨ]), него, сего, чего/щего, and the -Cьего set (possessive adjectives: лисьего, паучьего, третьего, божьего). The per-consonant shape is required, not cosmetic: ⟨е⟩ palatalises the preceding consonant, so a bare 'его' ending would rewrite the tail and silently drop that palatalisation (синего -> *[sʲinɪvə]). A mirror-image -Cего set for the 15 paired consonants was tried and REMOVED: soft-stem adjectives are essentially the -ний type only, so entries like \"бего\" or \"хего\" would assert a morphology Russian does not have, and none of them matched a single one of the 403,873 wikipron gold types.\n  GOLD COVERAGE OF THE -Cьего SET (stated plainly, because it is thin): of these entries only чьего and тьего match anything in the gold at all — 2 types each (чьего/паучьего, третьего/полтретьего). жьего matches ZERO gold types and is a zero-coverage entry exactly like сьего, ньего and the rest; it is kept because the possessive-adjective declension is productive (божьего, медвежьего, вражьего are ordinary Russian), not because any measurement supports it. The 75-of-75 [ʐj] count that justifies its VALUE is about the ⟨жь⟩+vowel sequence generally (ружьё, Запорожье), not about the genitive desinence, which the gold does not attest. Note also that the base grapheme tables still lose that glide outside this ending — ружьё -> [rʊʐɵ] against a gold of [rʊʐjɵ], Запорожье likewise — so this entry patches the desinence only and the general ⟨жь⟩ gap remains open as a separate defect.\n  COUNTER-CASES (why the ending is NOT applied blindly): word-final -ого is only a genitive desinence when it IS one. Adverbs and nouns that merely end in those letters keep [ɡ] — много [mnoɡə], немного, намного, дорого, недорого, строго, убого, лого, ого. These are a closed lexical class (adverbs in -о built on stems in -г, plus a few nouns/interjections), not derivable from spelling, and are listed in `word_exceptions`. On the WikiPron gold 656 of 669 word-final -ого/-его types take [v] and 13 keep [ɡ] (ничего counts as [v]: its primary reading is [nʲɪtɕɪvo], with one variant row also recording a colloquial [ɣ]). The `word_exceptions` list covers 9 of those 13 keepers — the productive adverb class. The other four are deliberately NOT listed: Того is a homograph of the pronoun того and a case-folded whole-word exception would break the far more frequent pronoun, while Хиого, болого and игого are a toponym pair and an interjection whose only motivation would be the gold rows themselves. They stay as known, disclosed misses rather than gold-fitted entries. A second `word_exceptions` group holds the closed pronoun set. Most of it (его, него, кого, того, всего, чего, ничего, ничьего, одного, никого, моего, твоего, своего, чьего) carries DESINENTIAL stress — [jɪˈvo], not [ˈjɪvə] — which the spec's statistical penultimate default cannot place. этого is the one member that is NOT desinentially stressed: it is a stem-stressed lexical patch ([ˈɛtəvə]), listed because word-initial ⟨э⟩ is [ɛ] and the default also mis-stresses it. It is NOT a general fix for the stem-stressed genitives: какого, большого, другого, никакого and the rest of the [ovə] class stay unpatched and are booked as stress-ceiling error, because patching them one word at a time would be fitting the spec to gold rows rather than to the grammar.\n  Sources: Jones & Ward (1969), Timberlake (2004), Padgett & Tabain (2005), Avanesov (1956).\n  PER-ENDING COVERAGE (the genitive desinence, one entry per orthographic shape because ⟨е⟩ palatalises the consonant to its left and a bare ending would delete that palatalisation): ENDING \"ого\" is the hard-stem adjectival/pronominal genitive singular, in which ⟨г⟩ is [v] and never the plosive, realised here as [əvə] — the unstressed reflex (красного [krasnəvə]) (Timberlake 2004; Avanesov 1956; Jones & Ward 1969). ENDING \"него\" is the soft-stem genitive singular after paired ⟨н⟩, realised [nʲɪvə] with the consonant palatalised by the desinential ⟨е⟩ and ⟨г⟩ = [v] (Timberlake 2004; Avanesov 1956). ENDING \"сего\" is the soft-stem genitive singular after paired ⟨с⟩, realised [sʲɪvə] with the consonant palatalised by the desinential ⟨е⟩ and ⟨г⟩ = [v] (Timberlake 2004; Avanesov 1956). ENDING \"жего\" is the genitive singular after the unpaired hard ⟨ж⟩, realised [ʐɨvə]: ⟨ж⟩ never softens, so the desinential ⟨е⟩ surfaces as [ɨ] rather than [ɪ], and ⟨г⟩ = [v] (Avanesov 1956; Timberlake 2004). ENDING \"жьего\" is the same desinence on a soft-stem possessive adjective (божий, медвежий, вражий), realised [ʐjɪvə] — the ⟨ь⟩ is the SEPARATING soft sign carrying a stem /j/, and ⟨ж⟩ being unpaired-hard governs only the consonant, which stays [ʐ] without deleting that glide (Avanesov 1956; Timberlake 2004). Contrast bare \"жего\", where there is no /j/ and the vowel is the hard-sibilant [ɨ]; after the glide it is [ɪ]. ENDING \"шего\" is the genitive singular after the unpaired hard ⟨ш⟩, realised [ʂɨvə]: ⟨ш⟩ never softens, so the desinential ⟨е⟩ surfaces as [ɨ] rather than [ɪ], and ⟨г⟩ = [v] (Avanesov 1956; Timberlake 2004). ENDING \"цего\" is the genitive singular after the unpaired hard ⟨ц⟩, realised [tsɨvə]: ⟨ц⟩ never softens, so the desinential ⟨е⟩ surfaces as [ɨ] rather than [ɪ], and ⟨г⟩ = [v] (Avanesov 1956; Timberlake 2004). ENDING \"чего\" is the genitive singular after the unpaired soft ⟨ч⟩, realised [tɕɪvə] with ⟨г⟩ = [v] (Timberlake 2004; Avanesov 1956). ENDING \"щего\" is the genitive singular after the unpaired soft ⟨щ⟩, realised [ɕːɪvə] with ⟨г⟩ = [v] (Timberlake 2004; Avanesov 1956). ENDING \"чьего\" is the possessive/soft-sign genitive singular after ⟨ч⟩, realised [tɕjɪvə]: the soft sign contributes the glide [j] before the desinence and ⟨г⟩ = [v] (Timberlake 2004; Jones & Ward 1969). ENDING \"тьего\" is the possessive/soft-sign genitive singular after ⟨т⟩, realised [tʲjɪvə]: the soft sign contributes the glide [j] before the desinence and ⟨г⟩ = [v] (Timberlake 2004; Jones & Ward 1969). ENDING \"сьего\" is the possessive/soft-sign genitive singular after ⟨с⟩, realised [sʲjɪvə]: the soft sign contributes the glide [j] before the desinence and ⟨г⟩ = [v] (Timberlake 2004; Jones & Ward 1969). ENDING \"зьего\" is the possessive/soft-sign genitive singular after ⟨з⟩, realised [zʲjɪvə]: the soft sign contributes the glide [j] before the desinence and ⟨г⟩ = [v] (Timberlake 2004; Jones & Ward 1969). ENDING \"льего\" is the possessive/soft-sign genitive singular after ⟨л⟩, realised [lʲjɪvə]: the soft sign contributes the glide [j] before the desinence and ⟨г⟩ = [v] (Timberlake 2004; Jones & Ward 1969). ENDING \"ньего\" is the possessive/soft-sign genitive singular after ⟨н⟩, realised [nʲjɪvə]: the soft sign contributes the glide [j] before the desinence and ⟨г⟩ = [v] (Timberlake 2004; Jones & Ward 1969). ENDING \"дьего\" is the possessive/soft-sign genitive singular after ⟨д⟩, realised [dʲjɪvə]: the soft sign contributes the glide [j] before the desinence and ⟨г⟩ = [v] (Timberlake 2004; Jones & Ward 1969). ENDING \"бьего\" is the possessive/soft-sign genitive singular after ⟨б⟩, realised [bʲjɪvə]: the soft sign contributes the glide [j] before the desinence and ⟨г⟩ = [v] (Timberlake 2004; Jones & Ward 1969). ENDING \"вьего\" is the possessive/soft-sign genitive singular after ⟨в⟩, realised [vʲjɪvə]: the soft sign contributes the glide [j] before the desinence and ⟨г⟩ = [v] (Timberlake 2004; Jones & Ward 1969). ENDING \"пьего\" is the possessive/soft-sign genitive singular after ⟨п⟩, realised [pʲjɪvə]: the soft sign contributes the glide [j] before the desinence and ⟨г⟩ = [v] (Timberlake 2004; Jones & Ward 1969). ENDING \"рьего\" is the possessive/soft-sign genitive singular after ⟨р⟩, realised [rʲjɪvə]: the soft sign contributes the glide [j] before the desinence and ⟨г⟩ = [v] (Timberlake 2004; Jones & Ward 1969). ENDING \"мьего\" is the possessive/soft-sign genitive singular after ⟨м⟩, realised [mʲjɪvə]: the soft sign contributes the glide [j] before the desinence and ⟨г⟩ = [v] (Timberlake 2004; Jones & Ward 1969). The \"ого\" entry is deliberately SINGLE-valued. The competing [ovə] realisation (большого [bɐlʲʂovə]) is real and attested — 76 of 527 WikiPron -ого types take it — but what selects it is STEM STRESS, not a lattice ambiguity: [əvə] and [ovə] are the unstressed and stressed reflexes of one desinence, and choosing between them requires the lexical stress this spec declares it cannot place (see the STRESS note above). Declaring it as a rank-2 alternative would dress a known stress limitation up as an ambiguous ending, so the spec takes the unstressed reflex unconditionally and books the [ovə] words as stress-ceiling error.",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -343,6 +346,17 @@
       "pages": null,
       "notes": "Source of the ru gold benchmark row (rus_cyrl_narrow.tsv). Upstream README (fetched directly) confirms Russian was scraped only in narrow transcription, not broad: 'some languages only have broad or narrow transcriptions, e.g. Russian only has the latter.'",
       "wikipedia_url": null
+    },
+    {
+      "id": "avanesov1956",
+      "author": "Avanesov, R. I.",
+      "year": 1956,
+      "title": "Russkoe literaturnoe proiznoshenie",
+      "publisher": "Prosveshchenie",
+      "url": null,
+      "pages": null,
+      "notes": "The standard prescriptive description of Moscow literary pronunciation. Cited for the genitive desinence -ого/-его realised with [v], and for ж/ш/ц being unpaired hard consonants so that ⟨е⟩ after them is [ɨ]. Both are textbook claims of this work; no page locator is given because the edition was not consulted directly. The year follows the citation this spec already carried — several editions of this title exist and none was verified here. Cited independently of any gold set.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Russian_phonology"
     }
   ],
   "wikipedia": [
@@ -497,9 +511,39 @@
   "stress": {
     "default_position": -2,
     "marked_vowels": [
-      "ё"
+      "ё",
+      "́"
     ],
-    "notes": "Russian stress is lexical and free (Timberlake 2004 §3.2); ё always carries stress (orthographic invariant). The penultimate default is a statistical approximation chosen empirically on the WikiPron gold — it exists to gate the akanje/ikanje reduction contexts, which are only defined relative to a stress position; wrong guesses swap which single vowel surfaces unreduced."
+    "cliticless_words": [
+      "в",
+      "во",
+      "на",
+      "за",
+      "под",
+      "над",
+      "из",
+      "изо",
+      "от",
+      "ото",
+      "до",
+      "у",
+      "к",
+      "ко",
+      "с",
+      "со",
+      "по",
+      "о",
+      "об",
+      "обо",
+      "не",
+      "ни",
+      "же",
+      "ль",
+      "ли",
+      "бы",
+      "б"
+    ],
+    "notes": "Russian stress is lexical and free (Timberlake 2004 §3.2); ё always carries stress (orthographic invariant). Dictionaries, textbooks and children's texts mark the free stress with a combining acute (U+0301) on the stressed vowel (Timberlake 2004; edition not consulted); when the input carries that mark it names the stressed syllable outright and the reduction contexts follow from it, so it transcribes to nothing and only places stress. The penultimate default is a statistical approximation chosen empirically on the WikiPron gold — it exists to gate the akanje/ikanje reduction contexts, which are only defined relative to a stress position; wrong guesses swap which single vowel surfaces unreduced. CLITICS: cliticless_words lists the closed class of Russian prosodic clitics — the simple (primary) prepositions \u0432/\u0432\u043e, \u043d\u0430, \u0437\u0430, \u043f\u043e\u0434, \u043d\u0430\u0434, \u0438\u0437/\u0438\u0437\u043e, \u043e\u0442/\u043e\u0442\u043e, \u0434\u043e, \u0443, \u043a/\u043a\u043e, \u0441/\u0441\u043e, \u043f\u043e, \u043e/\u043e\u0431/\u043e\u0431\u043e, the proclitic particles \u043d\u0435 and \u043d\u0438, and the enclitic particles \u0436\u0435, \u043b\u0438/\u043b\u044c, \u0431\u044b/\u0431. A simple preposition is proclitic and a particle of this class is enclitic: neither is an independent phonological word, both fall inside the host's stress domain and carry no word stress of their own (claim is standard, e.g. Timberlake 2004, A Reference Grammar of Russian, prosody; Comrie & Corbett 1993, The Slavonic Languages, Russian chapter; edition not consulted). The rule rests on those descriptions and not on the benchmark golds: the WikiPron Russian gold writes no stress mark on ANY word, so it cannot adjudicate stress either way, and for these forms it lists the full-vowel reading beside the reduced ones (\u0432\u043e = [vo], [v\u0250], [v\u0259]). LIMITATION: with no stress anywhere in the word the reduction cascade falls through to its weakest degree, so an isolated clitic surfaces with schwa \u2014 \u043d\u0430 = [n\u0259] where pretonic [n\u0250] is the better isolated guess, a proclitic being immediately pretonic to its host in the ordinary case. That is a property of the reduction cascade without a stress anchor, tracked separately. This is a purely orthographic class and cannot see syntax, so the stressed homographs are destressed too: the interjections \u043e! and \u043d\u0430!, the letter names \u0443 and \u0441, the musical note \u0434\u043e, and the phrase-level retraction of stress ONTO a preposition in fixed collocations (\u0437\u0430\u0301 \u0433\u043e\u0440\u043e\u0434\u043e\u043c, \u043d\u0430\u0301 \u043f\u043e\u043b) \u2014 that retraction is a property of the whole prepositional phrase, not of the isolated word this engine transcribes, and stays out of scope. Compound and derived prepositions (\u043f\u0435\u0440\u0435\u0434, \u0447\u0435\u0440\u0435\u0437, \u043e\u043a\u043e\u043b\u043e, \u043c\u0435\u0436\u0434\u0443) are full prosodic words, bear their own stress, and are deliberately excluded. Vocalized \u27e8\u043d\u0430\u0434\u043e\u27e9 is excluded as well, on evidence rather than omission: it is a homograph of the frequent stressed predicative \u043d\u0430\u0301\u0434\u043e 'it is necessary', and the WikiPron gold carries both readings ([nad\u0250] and [n\u0259d\u0250]) while the Alphacep gold has only the stressed one."
   },
   "allophone_rules": [
     {
@@ -1791,5 +1835,55 @@
       ],
       "notes": "Regressive palatalization assimilation: a dental consonant softens before a soft dental (Timberlake (2004) A Reference Grammar of Russian (CUP) §2.3.3, Moscow norm): гости [ɡosʲtʲɪ], снег [sʲnʲek]."
     }
-  ]
+  ],
+  "grammatical_endings": {
+    "ого": "əvə",
+    "него": "nʲɪvə",
+    "сего": "sʲɪvə",
+    "жего": "ʐɨvə",
+    "жьего": "ʐjɪvə",
+    "шего": "ʂɨvə",
+    "цего": "tsɨvə",
+    "чего": "tɕɪvə",
+    "щего": "ɕːɪvə",
+    "чьего": "tɕjɪvə",
+    "тьего": "tʲjɪvə",
+    "сьего": "sʲjɪvə",
+    "зьего": "zʲjɪvə",
+    "льего": "lʲjɪvə",
+    "ньего": "nʲjɪvə",
+    "дьего": "dʲjɪvə",
+    "бьего": "bʲjɪvə",
+    "вьего": "vʲjɪvə",
+    "пьего": "pʲjɪvə",
+    "рьего": "rʲjɪvə",
+    "мьего": "mʲjɪvə"
+  },
+  "word_exceptions": {
+    "много": "ˈmnoɡə",
+    "немного": "nʲɪˈmnoɡə",
+    "намного": "nɐˈmnoɡə",
+    "дорого": "ˈdorəɡə",
+    "недорого": "nʲɪˈdorəɡə",
+    "строго": "ˈstroɡə",
+    "убого": "ʊˈboɡə",
+    "лого": "ˈɫoɡə",
+    "ого": "ˈoɡo",
+    "его": "jɪˈvo",
+    "него": "nʲɪˈvo",
+    "кого": "kɐˈvo",
+    "того": "tɐˈvo",
+    "всего": "fsʲɪˈvo",
+    "сего": "sʲɪˈvo",
+    "чего": "tɕɪˈvo",
+    "ничего": "nʲɪtɕɪˈvo",
+    "одного": "ɐdnɐˈvo",
+    "никого": "nʲɪkɐˈvo",
+    "моего": "məjɪˈvo",
+    "твоего": "tvəjɪˈvo",
+    "своего": "svəjɪˈvo",
+    "чьего": "tɕjɪˈvo",
+    "этого": "ˈɛtəvə",
+    "ничьего": "nʲɪtɕjɪˈvo"
+  }
 }
