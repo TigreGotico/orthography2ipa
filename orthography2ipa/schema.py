@@ -374,6 +374,7 @@ class LanguageSpecModel(_Strict):
     allophone_passes: int = Field(default=1, ge=1, le=4)
     stress: Optional[StressRulesModel] = None
     tone_inventory: Optional[Dict[str, str]] = None
+    tone_marks_syllable_final: Optional[bool] = None
     sources: Optional[List[SourceModel]] = None
     wikipedia: Optional[List[str]] = None
     urls: Optional[List[str]] = None

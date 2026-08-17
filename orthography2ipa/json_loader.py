@@ -554,6 +554,8 @@ def load_json_spec(code: str) -> LanguageSpec:
         allophone_rules=allophone_rules,
         allophone_passes=int(raw.get("allophone_passes", 1)),
         tone_inventory=raw.get("tone_inventory"),
+        tone_marks_syllable_final=bool(
+            raw.get("tone_marks_syllable_final", False)),
         sources=sources,
         wikipedia=_parse_wikipedia(raw.get("wikipedia")),
         urls=tuple(raw.get("urls") or ()),
