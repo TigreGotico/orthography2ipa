@@ -1025,11 +1025,11 @@
     "lang": "en",
     "dataset": "wikipron",
     "n": 80995,
-    "o2i_per": 0.2917,
-    "o2i_n": 80987,
+    "o2i_per": 0.2656,
+    "o2i_n": 80985,
     "o2i_same_source": false,
-    "o2i_lex_per": 0.2849,
-    "o2i_lex_n": 80987,
+    "o2i_lex_per": 0.2594,
+    "o2i_lex_n": 80985,
     "espeak_per": 0.2081,
     "espeak_n": 80995,
     "espeak_voice": "en-gb",
@@ -1072,6 +1072,10 @@
     "mwl_phonemizer_n": 0,
     "mwl_phonemizer_same_source": false,
     "mwl_phonemizer_version": null,
+    "udarnik_per": null,
+    "udarnik_n": 0,
+    "udarnik_same_source": false,
+    "udarnik_version": null,
     "lexicon_tier": {
       "engines": [
         "o2i_lex",
@@ -1096,7 +1100,7 @@
         "o2i_lex": {
           "engine": "o2i + espeak-ng wordlist",
           "source": ".o2i_lex_cache/en.tsv",
-          "version": "7.70.1a2",
+          "version": "7.72.3a2",
           "count": 4716,
           "normalization": "o2i lexicon key (NFC + language-aware lower)"
         },
@@ -1116,7 +1120,7 @@
         }
       },
       "per": {
-        "o2i_lex": 0.3078,
+        "o2i_lex": 0.2833,
         "espeak": 0.2425,
         "gruut": 0.2529
       },
@@ -1135,8 +1139,8 @@
     "lang": "en-GB",
     "dataset": "ipa_childes",
     "n": 11447,
-    "o2i_per": 0.3321,
-    "o2i_n": 11446,
+    "o2i_per": 0.3001,
+    "o2i_n": 11445,
     "o2i_same_source": false,
     "o2i_lex_per": null,
     "o2i_lex_n": 0,
@@ -1163,6 +1167,30 @@
     "ahotts_same_source": false,
     "africa_g2p_per": null,
     "africa_g2p_n": 0,
+    "arbtok_per": null,
+    "arbtok_n": 0,
+    "arbtok_same_source": false,
+    "arbtok_stock_per": null,
+    "arbtok_stock_n": 0,
+    "arbtok_stock_same_source": false,
+    "arbtok_version": null,
+    "tugaphone_per": null,
+    "tugaphone_n": 0,
+    "tugaphone_same_source": false,
+    "tugaphone_version": null,
+    "barranquenho_per": null,
+    "barranquenho_n": 0,
+    "barranquenho_same_source": false,
+    "barranquenho_version": null,
+    "mwl_phonemizer_per": null,
+    "mwl_phonemizer_n": 0,
+    "mwl_phonemizer_same_source": false,
+    "mwl_phonemizer_version": null,
+    "udarnik_per": null,
+    "udarnik_n": 0,
+    "udarnik_same_source": false,
+    "udarnik_version": null,
+    "lexicon_tier": null,
     "provenance_tier": "espeak-derived",
     "harness_version": "1.0",
     "limit": "full",
@@ -1172,8 +1200,8 @@
     "lang": "en-GB",
     "dataset": "ipadict",
     "n": 65119,
-    "o2i_per": 0.2516,
-    "o2i_n": 65118,
+    "o2i_per": 0.2221,
+    "o2i_n": 65117,
     "o2i_same_source": false,
     "o2i_lex_per": null,
     "o2i_lex_n": 0,
@@ -1200,6 +1228,30 @@
     "ahotts_same_source": false,
     "africa_g2p_per": null,
     "africa_g2p_n": 0,
+    "arbtok_per": null,
+    "arbtok_n": 0,
+    "arbtok_same_source": false,
+    "arbtok_stock_per": null,
+    "arbtok_stock_n": 0,
+    "arbtok_stock_same_source": false,
+    "arbtok_version": null,
+    "tugaphone_per": null,
+    "tugaphone_n": 0,
+    "tugaphone_same_source": false,
+    "tugaphone_version": null,
+    "barranquenho_per": null,
+    "barranquenho_n": 0,
+    "barranquenho_same_source": false,
+    "barranquenho_version": null,
+    "mwl_phonemizer_per": null,
+    "mwl_phonemizer_n": 0,
+    "mwl_phonemizer_same_source": false,
+    "mwl_phonemizer_version": null,
+    "udarnik_per": null,
+    "udarnik_n": 0,
+    "udarnik_same_source": false,
+    "udarnik_version": null,
+    "lexicon_tier": null,
     "provenance_tier": "espeak-derived",
     "harness_version": "1.0",
     "limit": "full",
@@ -1209,8 +1261,8 @@
     "lang": "en-GB",
     "dataset": "wikipron",
     "n": 81545,
-    "o2i_per": 0.2605,
-    "o2i_n": 81537,
+    "o2i_per": 0.2327,
+    "o2i_n": 81535,
     "o2i_same_source": false,
     "o2i_lex_per": null,
     "o2i_lex_n": 0,
@@ -1237,6 +1289,71 @@
     "ahotts_same_source": false,
     "africa_g2p_per": null,
     "africa_g2p_n": 0,
+    "arbtok_per": null,
+    "arbtok_n": 0,
+    "arbtok_same_source": false,
+    "arbtok_stock_per": null,
+    "arbtok_stock_n": 0,
+    "arbtok_stock_same_source": false,
+    "arbtok_version": null,
+    "tugaphone_per": null,
+    "tugaphone_n": 0,
+    "tugaphone_same_source": false,
+    "tugaphone_version": null,
+    "barranquenho_per": null,
+    "barranquenho_n": 0,
+    "barranquenho_same_source": false,
+    "barranquenho_version": null,
+    "mwl_phonemizer_per": null,
+    "mwl_phonemizer_n": 0,
+    "mwl_phonemizer_same_source": false,
+    "mwl_phonemizer_version": null,
+    "udarnik_per": null,
+    "udarnik_n": 0,
+    "udarnik_same_source": false,
+    "udarnik_version": null,
+    "lexicon_tier": {
+      "engines": [
+        "espeak",
+        "gruut"
+      ],
+      "n": 81545,
+      "filtered_n": 45429,
+      "insufficient_residual_gold": false,
+      "min_gold": 50,
+      "lexicon_hits": {
+        "espeak": 3445,
+        "gruut": 35725
+      },
+      "lexicon_sizes": {
+        "espeak": 4716,
+        "gruut": 124392
+      },
+      "provenance": {
+        "espeak": {
+          "engine": "espeak-ng",
+          "source": "espeak-ng dictsource en_(list|listx|extra)",
+          "version": "1.52.0",
+          "count": 4716,
+          "normalization": "NFC + lowercase"
+        },
+        "gruut": {
+          "engine": "gruut",
+          "source": "gruut_lang_en/lexicon.db (word_phonemes.word)",
+          "version": "2.0.1",
+          "count": 124392,
+          "normalization": "NFC + lowercase"
+        }
+      },
+      "per": {
+        "espeak": 0.1914,
+        "gruut": 0.2802
+      },
+      "per_n": {
+        "espeak": 45429,
+        "gruut": 45423
+      }
+    },
     "provenance_tier": "crowd-scraped",
     "harness_version": "1.0",
     "limit": "full",
@@ -1246,11 +1363,11 @@
     "lang": "en-US",
     "dataset": "cmudict",
     "n": 126052,
-    "o2i_per": 0.3736,
-    "o2i_n": 126050,
+    "o2i_per": 0.3436,
+    "o2i_n": 126048,
     "o2i_same_source": false,
-    "o2i_lex_per": null,
-    "o2i_lex_n": 0,
+    "o2i_lex_per": 0.3408,
+    "o2i_lex_n": 126048,
     "espeak_per": 0.3048,
     "espeak_n": 126052,
     "espeak_voice": "en-us",
@@ -1293,6 +1410,52 @@
     "mwl_phonemizer_n": 0,
     "mwl_phonemizer_same_source": false,
     "mwl_phonemizer_version": null,
+    "udarnik_per": null,
+    "udarnik_n": 0,
+    "udarnik_same_source": false,
+    "udarnik_version": null,
+    "lexicon_tier": {
+      "engines": [
+        "o2i_lex",
+        "espeak"
+      ],
+      "n": 126052,
+      "filtered_n": 122491,
+      "insufficient_residual_gold": false,
+      "min_gold": 50,
+      "lexicon_hits": {
+        "o2i_lex": 3561,
+        "espeak": 3561
+      },
+      "lexicon_sizes": {
+        "o2i_lex": 4716,
+        "espeak": 4716
+      },
+      "provenance": {
+        "o2i_lex": {
+          "engine": "o2i + espeak-ng wordlist",
+          "source": ".o2i_lex_cache/en-US.tsv",
+          "version": "7.72.3a2",
+          "count": 4716,
+          "normalization": "o2i lexicon key (NFC + language-aware lower)"
+        },
+        "espeak": {
+          "engine": "espeak-ng",
+          "source": "espeak-ng dictsource en_(list|listx|extra)",
+          "version": "1.52.0",
+          "count": 4716,
+          "normalization": "NFC + lowercase"
+        }
+      },
+      "per": {
+        "o2i_lex": 0.3419,
+        "espeak": 0.3047
+      },
+      "per_n": {
+        "o2i_lex": 122487,
+        "espeak": 122491
+      }
+    },
     "provenance_tier": "lexicon-derived",
     "harness_version": "1.0",
     "limit": "full",
@@ -1302,11 +1465,11 @@
     "lang": "en-US",
     "dataset": "ipa_babylm",
     "n": 20344,
-    "o2i_per": 0.3954,
-    "o2i_n": 20107,
+    "o2i_per": 0.3666,
+    "o2i_n": 20103,
     "o2i_same_source": false,
-    "o2i_lex_per": null,
-    "o2i_lex_n": 0,
+    "o2i_lex_per": 0.3577,
+    "o2i_lex_n": 20103,
     "espeak_per": null,
     "espeak_n": 0,
     "espeak_voice": "en-us",
@@ -1349,6 +1512,52 @@
     "mwl_phonemizer_n": 0,
     "mwl_phonemizer_same_source": false,
     "mwl_phonemizer_version": null,
+    "udarnik_per": null,
+    "udarnik_n": 0,
+    "udarnik_same_source": false,
+    "udarnik_version": null,
+    "lexicon_tier": {
+      "engines": [
+        "o2i_lex",
+        "gruut"
+      ],
+      "n": 20344,
+      "filtered_n": 2749,
+      "insufficient_residual_gold": false,
+      "min_gold": 50,
+      "lexicon_hits": {
+        "o2i_lex": 2414,
+        "gruut": 17567
+      },
+      "lexicon_sizes": {
+        "o2i_lex": 4716,
+        "gruut": 124392
+      },
+      "provenance": {
+        "o2i_lex": {
+          "engine": "o2i + espeak-ng wordlist",
+          "source": ".o2i_lex_cache/en-US.tsv",
+          "version": "7.72.3a2",
+          "count": 4716,
+          "normalization": "o2i lexicon key (NFC + language-aware lower)"
+        },
+        "gruut": {
+          "engine": "gruut",
+          "source": "gruut_lang_en/lexicon.db (word_phonemes.word)",
+          "version": "2.0.1",
+          "count": 124392,
+          "normalization": "NFC + lowercase"
+        }
+      },
+      "per": {
+        "o2i_lex": 0.4799,
+        "gruut": 0.4887
+      },
+      "per_n": {
+        "o2i_lex": 2515,
+        "gruut": 2697
+      }
+    },
     "provenance_tier": "espeak-derived",
     "harness_version": "1.0",
     "limit": "full",
@@ -1358,11 +1567,11 @@
     "lang": "en-US",
     "dataset": "ipa_childes",
     "n": 18055,
-    "o2i_per": 0.3123,
-    "o2i_n": 18054,
+    "o2i_per": 0.2756,
+    "o2i_n": 18053,
     "o2i_same_source": false,
-    "o2i_lex_per": null,
-    "o2i_lex_n": 0,
+    "o2i_lex_per": 0.2596,
+    "o2i_lex_n": 18053,
     "espeak_per": null,
     "espeak_n": 0,
     "espeak_voice": "en-us",
@@ -1405,6 +1614,52 @@
     "mwl_phonemizer_n": 0,
     "mwl_phonemizer_same_source": false,
     "mwl_phonemizer_version": null,
+    "udarnik_per": null,
+    "udarnik_n": 0,
+    "udarnik_same_source": false,
+    "udarnik_version": null,
+    "lexicon_tier": {
+      "engines": [
+        "o2i_lex",
+        "gruut"
+      ],
+      "n": 18055,
+      "filtered_n": 5644,
+      "insufficient_residual_gold": false,
+      "min_gold": 50,
+      "lexicon_hits": {
+        "o2i_lex": 1141,
+        "gruut": 12371
+      },
+      "lexicon_sizes": {
+        "o2i_lex": 4716,
+        "gruut": 124392
+      },
+      "provenance": {
+        "o2i_lex": {
+          "engine": "o2i + espeak-ng wordlist",
+          "source": ".o2i_lex_cache/en-US.tsv",
+          "version": "7.72.3a2",
+          "count": 4716,
+          "normalization": "o2i lexicon key (NFC + language-aware lower)"
+        },
+        "gruut": {
+          "engine": "gruut",
+          "source": "gruut_lang_en/lexicon.db (word_phonemes.word)",
+          "version": "2.0.1",
+          "count": 124392,
+          "normalization": "NFC + lowercase"
+        }
+      },
+      "per": {
+        "o2i_lex": 0.3401,
+        "gruut": 0.2852
+      },
+      "per_n": {
+        "o2i_lex": 5644,
+        "gruut": 5644
+      }
+    },
     "provenance_tier": "espeak-derived",
     "harness_version": "1.0",
     "limit": "full",
@@ -1414,11 +1669,11 @@
     "lang": "en-US",
     "dataset": "ipadict",
     "n": 125927,
-    "o2i_per": 0.3285,
-    "o2i_n": 125925,
+    "o2i_per": 0.2973,
+    "o2i_n": 125923,
     "o2i_same_source": false,
-    "o2i_lex_per": null,
-    "o2i_lex_n": 0,
+    "o2i_lex_per": 0.2948,
+    "o2i_lex_n": 125923,
     "espeak_per": 0.2954,
     "espeak_n": 125927,
     "espeak_voice": "en-us",
@@ -1461,6 +1716,52 @@
     "mwl_phonemizer_n": 0,
     "mwl_phonemizer_same_source": false,
     "mwl_phonemizer_version": null,
+    "udarnik_per": null,
+    "udarnik_n": 0,
+    "udarnik_same_source": false,
+    "udarnik_version": null,
+    "lexicon_tier": {
+      "engines": [
+        "o2i_lex",
+        "espeak"
+      ],
+      "n": 125927,
+      "filtered_n": 122372,
+      "insufficient_residual_gold": false,
+      "min_gold": 50,
+      "lexicon_hits": {
+        "o2i_lex": 3555,
+        "espeak": 3555
+      },
+      "lexicon_sizes": {
+        "o2i_lex": 4716,
+        "espeak": 4716
+      },
+      "provenance": {
+        "o2i_lex": {
+          "engine": "o2i + espeak-ng wordlist",
+          "source": ".o2i_lex_cache/en-US.tsv",
+          "version": "7.72.3a2",
+          "count": 4716,
+          "normalization": "o2i lexicon key (NFC + language-aware lower)"
+        },
+        "espeak": {
+          "engine": "espeak-ng",
+          "source": "espeak-ng dictsource en_(list|listx|extra)",
+          "version": "1.52.0",
+          "count": 4716,
+          "normalization": "NFC + lowercase"
+        }
+      },
+      "per": {
+        "o2i_lex": 0.2954,
+        "espeak": 0.296
+      },
+      "per_n": {
+        "o2i_lex": 122368,
+        "espeak": 122372
+      }
+    },
     "provenance_tier": "lexicon-derived",
     "harness_version": "1.0",
     "limit": "full",

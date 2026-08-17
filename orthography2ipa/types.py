@@ -582,6 +582,27 @@ class GraphemePosition(str, Enum):
     following ⟨e⟩ is not the word's last (or last-but-silent) segment and
     must survive as the syllable's only nucleus (Tranel 1987 §5-6)."""
 
+    BEFORE_MUTE_E = "before_mute_e"
+    """Nucleus of the ⟨VCe⟩ pattern: this vowel grapheme is followed by
+    exactly one consonant grapheme and then a word-final mute ⟨e⟩, where a
+    single trailing inflectional ⟨-s⟩ or ⟨-d⟩ counts as transparent
+    (``hope``/``hopes``/``hoped`` all state the same fact about ⟨o⟩). This
+    is the discontinuous "split digraph" that no contiguous grapheme key
+    can express, and in English it is the single most productive
+    vowel-value correspondence there is: ⟨a⟩ eɪ (name), ⟨e⟩ iː (these),
+    ⟨i⟩ aɪ (time), ⟨o⟩ əʊ (hope), ⟨u⟩ juː (use), against the checked
+    values the same letters take in a closed syllable (Carney 1994 on the
+    ⟨VCe⟩ correspondences; Wells 1982 vol. 1 for the RP lexical-set
+    values). The single-consonant requirement is what keeps ⟨table⟩,
+    ⟨waste⟩ and ⟨dense⟩ out: with two consonant graphemes between the
+    nucleus and the ⟨e⟩ the pattern is no longer the split digraph.
+
+    The mute ⟨e⟩ itself is NOT silenced by this position — that stays a
+    spec's own business (a ``word_final`` entry, or the same
+    inflection-aware allophone rules that already handle ⟨-ed⟩), because
+    the ⟨e⟩ of ⟨hated⟩ is epenthetic rather than mute and only the spec
+    knows which of its own rules owns that slot."""
+
     AFTER_VOWEL = "after_vowel"
 
     BEFORE_CONSONANT = "before_consonant"
@@ -593,6 +614,12 @@ class GraphemePosition(str, Enum):
     BEFORE_I = "before_i"
     BEFORE_O = "before_o"
     BEFORE_U = "before_u"
+    BEFORE_Y = "before_y"
+    """Before the letter ⟨y⟩ — the third front-vowel spelling English
+    softening keys on, alongside ⟨e⟩ and ⟨i⟩ (⟨cycle⟩, ⟨cynic⟩, ⟨gym⟩,
+    ⟨gyrate⟩). ⟨y⟩ is a vowel letter in some scripts and a consonant in
+    others, so the position is emitted on the letter, not on a vowel
+    class, exactly like its four siblings."""
 
     BEFORE_FRONT_VOWEL = "before_front_vowel"
     """Before a *front* vowel letter (``e i y`` + accented/rounded variants,

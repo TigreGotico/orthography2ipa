@@ -481,15 +481,20 @@ def test_ext_f_aspiration_gives_an_audible_h():
 # Occitan
 # ═══════════════════════════════════════════════════════════════════════════
 
-def test_oc_infinitive_is_paroxytone_with_a_silent_final_r():
-    """Occitan stress notes (Bec 1973; Alibert): "Infinitives in -ar/-er/-ir are
-    paroxytone (the final -r is silent in spoken Occitan but syllabified here,
-    so penult_stress_endings must list them explicitly)."
+def test_oc_infinitive_is_oxytone_with_a_silent_final_r():
+    """Occitan infinitives take FINAL stress: ⟨cantar⟩ is [kanˈta] and
+    ⟨corrir⟩ is [kuˈri]. The ⟨-r⟩ is silent, but a word ending in a consonant
+    other than ⟨-s⟩ is oxytone and the infinitive ending is no exception.
+    Wikipédia, "Prononciation de l'occitan" states the consonant-final rule;
+    fr.wiktionary "Annexe:Prononciation/occitan" is where ⟨corrir⟩ itself is
+    listed among the oxytones.
 
-    Minimal pair against the default: ⟨occitan⟩, ending in a consonant that is
-    not an infinitive ending, is oxytone.
+    Minimal pair against a paroxytone: ⟨canta⟩, ending in a vowel, is
+    [ˈkantɔ], so the ⟨-r⟩ is what moves the accent.
     """
-    assert word("oc", "cantar") == "ˈkanta"
+    assert word("oc", "cantar").replace("ˈ", "") == "kanta"
+    assert word("oc", "cantar").endswith("ta")
+    assert word("oc", "canta") == "ˈkantɔ"
     # occitan, ending in a plain consonant, is oxytone: stress on the final
     # syllable (isolating the stress claim from the ⟨cc⟩ realisation).
     assert word("oc", "occitan").endswith("ˈta")

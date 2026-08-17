@@ -27,7 +27,7 @@ One line per language: the best system on its primary gold, and where o2i lands.
 - **de (German)** — o2i #1 (beats espeak rules-only)
 - **el (Modern Greek)** — o2i #1 (beats espeak rules-only)
 - **en (English)** — espeak rules-only #1, o2i #3 (gruut with its lexicon scores 0.1776 — informational)
-- **en-GB (British English (RP))** — espeak rules-only #1, o2i #3 (espeak with its lexicon scores 0.1472 — informational)
+- **en-GB (British English (RP))** — espeak rules-only #1, o2i #2 (espeak with its lexicon scores 0.1472 — informational)
 - **en-US (American English (General American))** — gruut rules-only #1, o2i #3
 - **es (Spanish)** — epitran #1, o2i #2
 - **eu (Basque (Euskara))** — o2i #1 (beats espeak rules-only)
@@ -163,24 +163,24 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 
 | Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | gruut (lexicon) | gruut rules-only | Winner |
 |---|---|---|---|---|---|---|---|---|
-| wikipron | 80995 | 0.2917 | 0.2081 | 0.2136 | 0.8333 | 0.1776 | 0.2149 | espeak rules-only |
+| wikipron | 80995 | 0.2656 | 0.2081 | 0.2136 | 0.8333 | 0.1776 | 0.2149 | espeak rules-only |
 
 ### en-GB (British English (RP))
 
 | Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | gruut (lexicon) | gruut rules-only | Winner |
 |---|---|---|---|---|---|---|---|---|
-| ipa_childes | 11447 | 0.3321 | same-source | same-source | n/a | 0.2876 | 0.3313 | tie (gruut rules-only, o2i) |
-| ipadict | 65119 | 0.2516 | same-source | same-source | n/a | same-source | 0.2325 | gruut rules-only |
-| wikipron | 81545 | 0.2605 | 0.1472 | 0.1540 | 0.8333 | 0.2233 | 0.2528 | espeak rules-only |
+| ipa_childes | 11447 | 0.3001 | same-source | same-source | n/a | 0.2876 | 0.3313 | o2i |
+| ipadict | 65119 | 0.2221 | same-source | same-source | n/a | same-source | 0.2325 | o2i |
+| wikipron | 81545 | 0.2327 | 0.1472 | 0.1540 | 0.8333 | 0.2233 | 0.2528 | espeak rules-only |
 
 ### en-US (American English (General American))
 
 | Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | gruut (lexicon) | gruut rules-only | Winner |
 |---|---|---|---|---|---|---|---|---|
-| cmudict | 126052 | 0.3736 | 0.3048 | 0.3104 | n/a | same-source | 0.2714 | gruut rules-only |
-| ipa_babylm | 20344 | 0.3954 | same-source | same-source | 1.0656 | 0.2788 | 0.3558 | gruut rules-only |
-| ipa_childes | 18055 | 0.3123 | same-source | same-source | n/a | 0.1727 | 0.2317 | gruut rules-only |
-| ipadict | 125927 | 0.3285 | 0.2954 | 0.3020 | n/a | same-source | 0.2475 | gruut rules-only |
+| cmudict | 126052 | 0.3436 | 0.3048 | 0.3104 | n/a | same-source | 0.2714 | gruut rules-only |
+| ipa_babylm | 20344 | 0.3666 | same-source | same-source | 1.0656 | 0.2788 | 0.3558 | gruut rules-only |
+| ipa_childes | 18055 | 0.2756 | same-source | same-source | n/a | 0.1727 | 0.2317 | gruut rules-only |
+| ipadict | 125927 | 0.2973 | 0.2954 | 0.3020 | n/a | same-source | 0.2475 | gruut rules-only |
 
 ### es (Spanish)
 
@@ -419,8 +419,8 @@ A system winning on one gold and losing on another for the SAME language is real
   - `vox_communis` (n=5994, tier=epitran-derived): o2i 0.2672 vs espeak 0.3347 — o2i wins
   - `wikipron` (n=19108, tier=crowd-scraped): o2i 0.0330 vs espeak 0.0785 — o2i wins
 - **`en-US`** (loses on all golds):
-  - `cmudict` (n=126052, tier=lexicon-derived): o2i 0.3736 vs espeak 0.3048 — o2i loses
-  - `ipadict` (n=125927, tier=lexicon-derived): o2i 0.3285 vs espeak 0.2954 — o2i loses
+  - `cmudict` (n=126052, tier=lexicon-derived): o2i 0.3436 vs espeak 0.3048 — o2i loses
+  - `ipadict` (n=125927, tier=lexicon-derived): o2i 0.2973 vs espeak 0.2954 — o2i loses
 - **`es`** (wins on all golds):
   - `vox_communis` (n=97715, tier=epitran-derived): o2i 1.2097 vs espeak 1.2330 — o2i wins
   - `wikipron` (n=132190, tier=crowd-scraped): o2i 0.0797 vs espeak 0.1071 — o2i wins
@@ -492,10 +492,12 @@ The table above conflates espeak-ng's letter-to-sound RULES with its hand-curate
 | de | wikipron | 53011 | 0.2103 | n/a | 0.2126 | 0.2132 |
 | el | vox_communis | 5994 | 0.2672 | n/a | 0.3347 | 0.3247 |
 | el | wikipron | 19108 | 0.0330 | n/a | 0.0785 | 0.0765 |
-| en | wikipron | 80995 | 0.2917 | 0.2849 | 0.2081 | 0.2136 |
-| en-GB | wikipron | 81545 | 0.2605 | n/a | 0.1472 | 0.1540 |
-| en-US | cmudict | 126052 | 0.3736 | n/a | 0.3048 | 0.3104 |
-| en-US | ipadict | 125927 | 0.3285 | n/a | 0.2954 | 0.3020 |
+| en | wikipron | 80995 | 0.2656 | 0.2594 | 0.2081 | 0.2136 |
+| en-GB | wikipron | 81545 | 0.2327 | n/a | 0.1472 | 0.1540 |
+| en-US | cmudict | 126052 | 0.3436 | 0.3408 | 0.3048 | 0.3104 |
+| en-US | ipa_babylm | 20344 | 0.3666 | 0.3577 | same-source | same-source |
+| en-US | ipa_childes | 18055 | 0.2756 | 0.2596 | same-source | same-source |
+| en-US | ipadict | 125927 | 0.2973 | 0.2948 | 0.2954 | 0.3020 |
 | es | vox_communis | 97715 | 1.2097 | n/a | 1.2330 | 1.2247 |
 | es | wikipron | 132190 | 0.0797 | n/a | 0.1071 | 0.1066 |
 | eu | hitz_basque_ipa | 3113 | 0.0984 | n/a | 0.1204 | 0.1204 |
@@ -545,7 +547,12 @@ This is a SECOND, separate ranking, and it never feeds the leaderboard or the Wi
 
 | Language | Gold | N | filtered N | o2i + espeak lexicon | espeak-ng (stock) | gruut (stock) | tugaphone (stock) | Winner |
 |---|---|---|---|---|---|---|---|---|
-| en (English) | `wikipron` | 80995 | 44126 | 0.3078 | 0.2425 | 0.2529 | n/a | espeak-ng (stock) |
+| en (English) | `wikipron` | 80995 | 44126 | 0.2833 | 0.2425 | 0.2529 | n/a | espeak-ng (stock) |
+| en-GB (British English (RP)) | `wikipron` | 81545 | 45429 | n/a | 0.1914 | 0.2802 | n/a | espeak-ng (stock) |
+| en-US (American English (General American)) | `cmudict` | 126052 | 122491 | 0.3419 | 0.3047 | n/a | n/a | espeak-ng (stock) |
+| en-US (American English (General American)) | `ipa_babylm` | 20344 | 2749 | 0.4799 | n/a | 0.4887 | n/a | o2i + espeak lexicon |
+| en-US (American English (General American)) | `ipa_childes` | 18055 | 5644 | 0.3401 | n/a | 0.2852 | n/a | gruut (stock) |
+| en-US (American English (General American)) | `ipadict` | 125927 | 122372 | 0.2954 | 0.2960 | n/a | n/a | tie (espeak-ng (stock), o2i + espeak lexicon) |
 | pt-PT (European Portuguese) | `ep_dialects` | 30 | 0 | n/a | n/a | n/a | n/a | insufficient residual gold (< 50) |
 | pt-PT (European Portuguese) | `portuguese_unified` | 3000 | 1952 | n/a | 0.3685 | n/a | 0.2202 | tugaphone (stock) |
 | pt-PT (European Portuguese) | `wikipron` | 2272 | 1788 | n/a | 0.2352 | n/a | 0.1400 | tugaphone (stock) |
@@ -555,6 +562,11 @@ This is a SECOND, separate ranking, and it never feeds the leaderboard or the Wi
 | Language | Gold | o2i + espeak lexicon | espeak-ng (stock) | gruut (stock) | tugaphone (stock) |
 |---|---|---|---|---|---|
 | en (English) | `wikipron` | 3527 (of 4716 entries) | 3527 (of 4716 entries) | 36472 (of 124392 entries) | n/a |
+| en-GB (British English (RP)) | `wikipron` | n/a | 3445 (of 4716 entries) | 35725 (of 124392 entries) | n/a |
+| en-US (American English (General American)) | `cmudict` | 3561 (of 4716 entries) | 3561 (of 4716 entries) | n/a | n/a |
+| en-US (American English (General American)) | `ipa_babylm` | 2414 (of 4716 entries) | n/a | 17567 (of 124392 entries) | n/a |
+| en-US (American English (General American)) | `ipa_childes` | 1141 (of 4716 entries) | n/a | 12371 (of 124392 entries) | n/a |
+| en-US (American English (General American)) | `ipadict` | 3555 (of 4716 entries) | 3555 (of 4716 entries) | n/a | n/a |
 | pt-PT (European Portuguese) | `ep_dialects` | n/a | 23 (of 1692 entries) | n/a | 30 (of 53150 entries) |
 | pt-PT (European Portuguese) | `portuguese_unified` | n/a | 15 (of 1692 entries) | n/a | 1044 (of 53150 entries) |
 | pt-PT (European Portuguese) | `wikipron` | n/a | 57 (of 1692 entries) | n/a | 434 (of 53150 entries) |
@@ -564,7 +576,8 @@ This is a SECOND, separate ranking, and it never feeds the leaderboard or the Wi
 - **espeak-ng (stock) — espeak-ng dictsource en_(list|listx|extra)** — version `1.52.0`, matched as NFC + lowercase.
 - **espeak-ng (stock) — espeak-ng dictsource pt_(list|listx|extra)** — version `1.52.0`, matched as NFC + lowercase.
 - **gruut (stock) — gruut_lang_en/lexicon.db (word_phonemes.word)** — version `2.0.1`, matched as NFC + lowercase.
-- **o2i + espeak lexicon — .o2i_lex_cache/en.tsv** — version `7.70.1a2`, matched as o2i lexicon key (NFC + language-aware lower).
+- **o2i + espeak lexicon — .o2i_lex_cache/en-US.tsv** — version `7.72.3a2`, matched as o2i lexicon key (NFC + language-aware lower).
+- **o2i + espeak lexicon — .o2i_lex_cache/en.tsv** — version `7.72.3a2`, matched as o2i lexicon key (NFC + language-aware lower).
 - **tugaphone (stock) — tugalex.TugaLexicon().get_ipa_map(region='lbx')** — version `2.0.1a1`, matched as o2i lexicon key (NFC + language-aware lower).
 
 ## Catalan dialects vs espeak (BSC)

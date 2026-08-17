@@ -335,6 +335,24 @@
       "syllable_position": "coda",
       "preceded_by": "vowel",
       "notes": "The coda nasal that triggered vowel nasalisation is itself deleted; keyed on the nasal vowel so it cannot bleed the rule that makes it."
+    },
+    {
+      "id": "EN_GB_OING_HIATUS",
+      "phonemes": [],
+      "surface": "əʊɪ",
+      "notes": "Disabled for Krio. The parent's rule breaks the English ⟨-oing⟩ spelling into hiatus, but Krio's CHOICE vowel is /ɔi/ and its GOAT vowel is the monophthong /o/, so neither the phoneme the rule targets nor the sequence it would produce exists in this inventory. Declared with no phonemes because id-keyed overlay replaces a parent rule but cannot delete it."
+    },
+    {
+      "id": "EN_GB_ES_VOICING_AFTER_MUTE_E",
+      "phonemes": [],
+      "surface": "z",
+      "notes": "Disabled for Krio. The parent's rule voices the ⟨s⟩ of the English ⟨-es⟩ ending, and whether Krio's ⟨-es⟩ spellings agree in voicing the way English's do is not something this spec has a source for. NEEDS NATIVE CHECK: until one exists, the inherited rule is switched off so Krio keeps its own [s], rather than acquiring an English alternation by inheritance. Declared with no phonemes because id-keyed overlay replaces a parent rule but cannot delete it."
+    },
+    {
+      "id": "EN_GB_ES_VOICING_AFTER_EPENTHESIS",
+      "phonemes": [],
+      "surface": "z",
+      "notes": "Disabled for Krio. The parent's rule voices the ⟨s⟩ of the English ⟨-es⟩ ending, and whether Krio's ⟨-es⟩ spellings agree in voicing the way English's do is not something this spec has a source for. NEEDS NATIVE CHECK: until one exists, the inherited rule is switched off so Krio keeps its own [s], rather than acquiring an English alternation by inheritance. Declared with no phonemes because id-keyed overlay replaces a parent rule but cannot delete it."
     }
   ],
   "location": {

@@ -43,7 +43,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | an | wikipron | 902 | 0.0643 | · | · | · | · | [0.0579, 0.0708] | 0.6563 | research | crowd-scraped |
 | ang | wikipron | 54696 | 0.2104 | · | · | · | · | [0.2092, 0.2117] | 0.1545 | research | crowd-scraped |
 | aot | wikipron | 181 | 0.1367 | · | · | · | · | [0.1160, 0.1588] | 0.4475 | skeleton | crowd-scraped |
-| apw | wikipron | 145 | 0.6191 | · | · | · | · | [0.5920, 0.6435] | 0.0138 | skeleton | crowd-scraped |
+| apw | wikipron | 147 | 0.3171 | 0.3101 | 0.3101 | 0.2449 | 0.2449 | [0.2740, 0.3623] | 0.2449 | research | crowd-scraped |
 | ar | arabic_tts | 20 | 0.0000 | · | · | · | · | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar | gold20_arabic | 20 | 0.0051 | · | · | · | · | [0.0010, 0.0102] | 0.8000 | research | llm-generated |
 | ar | ipadict | 857160 | 0.3768 | · | · | · | · | [0.3766, 0.3770] | 0.0030 | research | machine-generated |
@@ -214,14 +214,14 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | egy | wikipron | 2185 | 0.0183 | 0.0178 | 0.0178 | 0.8993 | 0.8993 | [0.0155, 0.0210] | 0.8989 | research | crowd-scraped |
 | el | vox_communis | 5993 | 0.2672 | · | · | · | · | [0.2629, 0.2713] | 0.1188 | research | epitran-derived |
 | el | wikipron | 19108 | 0.0343 | · | · | · | · | [0.0332, 0.0354] | 0.7773 | research | crowd-scraped |
-| en | wikipron | 80987 | 0.2917 | 0.2454 | 0.2221 | 0.2152 | 0.2460 | [0.2902, 0.2931] | 0.1696 | research | crowd-scraped |
-| en-GB | ipa_childes | 11446 | 0.3320 | 0.2744 | 0.2481 | 0.1716 | 0.1977 | [0.3280, 0.3358] | 0.1258 | research | espeak-derived |
-| en-GB | ipadict | 65118 | 0.2506 | 0.1957 | 0.1697 | 0.2996 | 0.3394 | [0.2490, 0.2522] | 0.2154 | research | espeak-derived |
-| en-GB | wikipron | 81537 | 0.2593 | 0.2032 | 0.1764 | 0.3023 | 0.3486 | [0.2579, 0.2608] | 0.2258 | research | crowd-scraped |
-| en-US | cmudict | 126050 | 0.3736 | 0.3138 | 0.2863 | 0.1533 | 0.1750 | [0.3723, 0.3749] | 0.1086 | research | lexicon-derived |
-| en-US | ipa_babylm | 20107 | 0.3954 | 0.3318 | 0.3035 | 0.2936 | 0.3337 | [0.3883, 0.4025] | 0.2205 | research | espeak-derived |
-| en-US | ipa_childes | 18054 | 0.3123 | 0.2446 | 0.2163 | 0.3002 | 0.3387 | [0.3085, 0.3158] | 0.2261 | research | espeak-derived |
-| en-US | ipadict | 125925 | 0.3285 | 0.2599 | 0.2297 | 0.2145 | 0.2499 | [0.3271, 0.3299] | 0.1474 | research | lexicon-derived |
+| en | wikipron | 80985 | 0.2656 | 0.2217 | 0.2015 | 0.2570 | 0.2842 | [0.2642, 0.2670] | 0.2078 | research | crowd-scraped |
+| en-GB | ipa_childes | 11445 | 0.3001 | 0.2479 | 0.2284 | 0.2015 | 0.2225 | [0.2963, 0.3035] | 0.1541 | research | espeak-derived |
+| en-GB | ipadict | 65117 | 0.2221 | 0.1706 | 0.1491 | 0.3551 | 0.3918 | [0.2206, 0.2236] | 0.2643 | research | espeak-derived |
+| en-GB | wikipron | 81535 | 0.2327 | 0.1799 | 0.1566 | 0.3548 | 0.3973 | [0.2313, 0.2341] | 0.2739 | research | crowd-scraped |
+| en-US | cmudict | 126048 | 0.3436 | 0.2887 | 0.2652 | 0.1824 | 0.2013 | [0.3424, 0.3448] | 0.1357 | research | lexicon-derived |
+| en-US | ipa_babylm | 20103 | 0.3666 | 0.3059 | 0.2848 | 0.3379 | 0.3648 | [0.3595, 0.3738] | 0.2680 | research | espeak-derived |
+| en-US | ipa_childes | 18053 | 0.2756 | 0.2137 | 0.1912 | 0.3487 | 0.3803 | [0.2724, 0.2790] | 0.2765 | research | espeak-derived |
+| en-US | ipadict | 125923 | 0.2973 | 0.2337 | 0.2076 | 0.2475 | 0.2807 | [0.2961, 0.2985] | 0.1778 | research | lexicon-derived |
 | enf | northeuralex | 838 | 0.1073 | · | · | · | · | [0.0996, 0.1146] | 0.4606 | research | lexicon-derived |
 | enm | wikipron | 6466 | 0.3035 | · | · | · | · | [0.2995, 0.3077] | 0.1032 | research | crowd-scraped |
 | eo | ipadict | 23245 | 0.0338 | · | · | · | · | [0.0330, 0.0346] | 0.7502 | production | machine-generated |
@@ -366,7 +366,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | lmy | wikipron | 129 | 0.1695 | · | · | · | · | [0.1484, 0.1915] | 0.2558 | skeleton | crowd-scraped |
 | lo | kaikki | 2302 | 0.5443 | · | · | · | · | - | - | skeleton | crowd-scraped |
 | lou | wikipron | 262 | 0.1953 | · | · | · | · | [0.1679, 0.2236] | 0.5115 | skeleton | crowd-scraped |
-| lsi | wikipron | 96 | 0.6245 | · | · | · | · | [0.5932, 0.6559] | 0.0000 | skeleton | crowd-scraped |
+| lsi | wikipron | 96 | 0.4727 | · | · | · | · | [0.4541, 0.4904] | 0.0000 | research | crowd-scraped |
 | lt | vox_communis | 28971 | 0.3907 | · | · | · | · | [0.3892, 0.3923] | 0.0103 | research | epitran-derived |
 | lt | wikipron | 440 | 0.3901 | · | · | · | · | [0.3730, 0.4068] | 0.0682 | research | crowd-scraped |
 | lut | wikipron | 135 | 0.2259 | · | · | · | · | [0.1918, 0.2598] | 0.2444 | research | crowd-scraped |
@@ -433,11 +433,11 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | nn | wikipron | 3829 | 0.4988 | · | · | · | · | [0.4916, 0.5061] | 0.0486 | skeleton | crowd-scraped |
 | no | wikipron | 1093 | 0.4105 | · | · | · | · | [0.3983, 0.4223] | 0.0823 | research | crowd-scraped |
 | non | wikipron | 270 | 0.2387 | · | · | · | · | [0.2173, 0.2638] | 0.2778 | research | crowd-scraped |
-| nrf | wikipron | 142 | 0.6380 | · | · | · | · | [0.5889, 0.6885] | 0.0282 | research | crowd-scraped |
+| nrf | wikipron | 143 | 0.2557 | 0.2097 | 0.2003 | 0.4336 | 0.4476 | [0.2087, 0.3017] | 0.3636 | research | crowd-scraped |
 | nup | wikipron | 393 | 0.3979 | 0.3979 | 0.3979 | 0.1501 | 0.1501 | [0.3787, 0.4165] | 0.1501 | research | crowd-scraped |
 | nv | wikipron | 989 | 0.3080 | · | · | · | · | [0.2969, 0.3180] | 0.0940 | research | crowd-scraped |
 | ny | wikipron | 1564 | 0.3431 | · | · | · | · | [0.3345, 0.3528] | 0.0774 | research | crowd-scraped |
-| oc | wikipron | 675 | 0.1620 | · | · | · | · | [0.1482, 0.1744] | 0.3970 | research | crowd-scraped |
+| oc | wikipron | 675 | 0.1283 | · | · | · | · | [0.1173, 0.1394] | 0.4800 | research | crowd-scraped |
 | oji | wikipron | 136 | 0.2201 | · | · | · | · | [0.1910, 0.2489] | 0.1544 | skeleton | crowd-scraped |
 | olo | wikipron | 278 | 0.1543 | · | · | · | · | [0.1410, 0.1681] | 0.2734 | research | crowd-scraped |
 | om | kaikki | 53 | 0.5228 | · | · | · | · | [0.4788, 0.5689] | 0.0000 | skeleton | crowd-scraped |

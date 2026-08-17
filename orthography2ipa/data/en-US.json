@@ -129,6 +129,9 @@
   ],
   "positional_graphemes": {
     "o": {
+      "before_mute_e": [
+        "oʊ"
+      ],
       "word_final": [
         "oʊ"
       ],
@@ -378,6 +381,21 @@
       ],
       "surface": "ɝ",
       "notes": "R-COLOURED VOWELS (see notes): any residual bare ɜː is ɝ — the parent's NURSE vowel does not occur without rhoticity in a rhotic accent (Wells 1982 vol.3 §6.1.2; Kenyon & Knott 1953)."
+    },
+    {
+      "id": "EN_GB_OING_HIATUS",
+      "phonemes": [
+        "ɔɪ"
+      ],
+      "surface": "oʊɪ",
+      "grapheme": [
+        "oi"
+      ],
+      "followed_by_grapheme": [
+        "ng"
+      ],
+      "followed_by_2": "word_boundary",
+      "notes": "Same ⟨-oing⟩ hiatus as the parent, on this spec's own GOAT vowel: the parent states the RP [əʊ], and General American has [oʊ] — the value this spec's ⟨o⟩ grapheme already declares. Re-declared rather than inherited because the surface of an allophone rule is a literal, so a diphthong written into a parent rule cannot follow a child's inventory on its own."
     }
   ],
   "vowel_graphemes": [
@@ -429,6 +447,9 @@
     "he": "hi",
     "me": "mi",
     "we": "wi",
-    "she": "ʃi"
+    "she": "ʃi",
+    "do": "du",
+    "does": "dʌz",
+    "doing": "ˈduɪŋ"
   }
 }
