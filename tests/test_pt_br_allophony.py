@@ -76,7 +76,7 @@ def test_affrication_not_before_non_high_vowel():
 
 @pytest.mark.parametrize("word,fragment", [
     ("Abundio", "d͡ʒi"),     # gold abũdʒiu — /d/ affricates before [i]
-    ("partido", "ɾt͡ʃidu"),   # /t/ affricates before [i]; final /o/ raises
+    ("partido", "ɾˈt͡ʃidu"),   # /t/ affricates before [i]; final /o/ raises
     ("gato", "ɡatu"),        # final raising
 ])
 def test_gold_derived_words(word, fragment):
