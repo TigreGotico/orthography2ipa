@@ -146,7 +146,7 @@ def test_coda_nt_rule_does_not_leak_to_varieties_that_opt_out(lang, word):
     ("amor", "əˈmo"),
     ("color", "kuˈlo"),
     ("colors", "kuˈlos"),
-    ("autor", "əˈwto"),
+    ("autor", "əwˈto"),
     ("menjador", "məɲʒəˈðo"),
 ])
 def test_suffix_or_takes_close_o(word, expected):
@@ -156,8 +156,8 @@ def test_suffix_or_takes_close_o(word, expected):
 
 
 @pytest.mark.parametrize("word,expected", [
-    ("tambor", "təˈmbo"),
-    ("ardor", "əˈrðo"),
+    ("tambor", "təmˈbo"),
+    ("ardor", "ərˈðo"),
 ])
 def test_suffix_or_reaches_past_a_complex_onset(word, expected):
     """The sister rule CA_O_CLOSE_SUFFIX_OR_CLUSTER: same ending, same claim,

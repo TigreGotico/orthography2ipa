@@ -36,7 +36,7 @@ ALL_CA = ["ca", "ca-x-nord", "ca-x-balear", "ca-x-occidental",
 @pytest.mark.parametrize("word,expect", [
     ("carn", "ˈkaɾn"),
     ("porta", "ˈpoɾtə"),
-    ("perquè", "pəˈɾkɛ"),
+    ("perquè", "pəɾˈkɛ"),
 ])
 def test_balearic_coda_r_is_a_tap(word, expect):
     """Wheeler 2005 §7.1/§2.4 and Recasens 1993 ch. 5: the /ɾ/~/r/ contrast
@@ -55,7 +55,7 @@ def test_balearic_coda_r_is_a_tap(word, expect):
     ("rosa", "ˈrozə"),        # word-initial: trill
     ("carrer", "kəˈre"),      # ⟨rr⟩: trill
     ("honra", "ˈonrə"),       # after heterosyllabic /n/: trill (and see
-    ("Enric", "əˈnrik"),      # test_trill_after_l_n_s_is_pan_catalan)
+    ("Enric", "ənˈrik"),      # test_trill_after_l_n_s_is_pan_catalan)
 ])
 def test_balearic_trill_contexts_survive(word, expect):
     """The counter-case to the tap default. The trill is not gone from
@@ -158,9 +158,9 @@ def test_the_real_stop_still_spirantises(lang):
     ("València", "ˈlɛnsi"),
     ("notícia", "ˈtisi"),
     ("memòria", "ˈmɔɾi"),
-    ("història", "ˈstɔɾi"),
+    ("història", "sˈtɔɾi"),
     ("família", "ˈmili"),
-    ("església", "ˈsɡlezi"),
+    ("església", "sˈɡlezi"),
     ("experiència", "ˈɛnsi"),
 ])
 def test_the_accented_ia_class_keeps_its_written_accent(lang, word,
@@ -260,7 +260,7 @@ def test_eastern_reduces_the_same_vowel_to_schwa(lang):
     # only that "l ˈrej" appears would pass against the UN-elided output too,
     # since "el ˈrej" contains it. Both halves verified by mutation — with
     # CA_ELIDE_EL removed, every `gone` reappears.
-    ("ningú el veu", "u el ", "ŋɡu l ˈ"),
+    ("ningú el veu", "u el ", "ŋˈɡu l "),
     ("i el rei", " el ", "i l ˈrej"),
     ("que el tap", "e el ", "ke l ˈtap"),
 ])

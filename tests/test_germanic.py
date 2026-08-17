@@ -2024,7 +2024,7 @@ class TestGermanStressSuffixesAndTion:
     def test_final_stress_suffixes(self):
         assert self._t("Nation").startswith("naˈ")
         assert "ˈtɛt" in self._t("Universität") or "ˈtɛːt" in self._t("Universität")
-        assert self._t("Partei").startswith("paˈ")
+        assert self._t("Partei").startswith("paʁˈ")
 
     def test_penult_stress_ieren(self):
         assert "ˈdiː" in self._t("studieren")

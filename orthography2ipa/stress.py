@@ -47,6 +47,7 @@ from orthography2ipa.vowels import (
 
 __all__ = [
     "syllabify",
+    "syllabify_for_mark",
     "syllabify_ipa",
     "syllable_weight",
     "detect_stress",
@@ -516,6 +517,93 @@ class _OnsetJudge:
         return self._two_member(rest[0], rest[1])
 
 
+class _IpaOnsetJudge(_OnsetJudge):
+    """The same onset judgement, read off IPA segments instead of graphemes.
+
+    :class:`_OnsetJudge` answers about SPELLING: it segments a run with the
+    spec's grapheme table and looks each grapheme's phonology up there. A
+    transcription needs no table — every unit already is its own phonology —
+    so segmentation is :func:`~orthography2ipa.allophony.segment_ipa` and a
+    unit's segment is itself. The licit shapes, and their citations, are
+    inherited unchanged.
+
+    Because nothing here comes from a grapheme table, this judge is safe for
+    a spec that does not set ``constrain_onsets``: that flag says the table
+    is trustworthy enough to reason over, which is a question about spelling.
+    """
+
+    def __init__(self, max_onset: Optional[int] = None,
+                 onset_clusters: Sequence[str] = (),
+                 atoms: Sequence[str] = ()):
+        self.spec = None
+        self.code = None
+        self.max_onset = max_onset
+        self._atoms = tuple(atoms) + _MARK_ATOMS
+        self._onsets = frozenset(onset_clusters)
+        self._cache = {}
+
+    def graphemes_of(self, run: str) -> List[str]:
+        return segment_ipa(run, self._atoms)
+
+    def ipa_of(self, grapheme: str) -> str:
+        return grapheme
+
+    def _segment(self, grapheme: str) -> Optional[str]:
+        return grapheme or None
+
+    def _two_member(self, first: str, second: str) -> bool:
+        """As the parent, plus every rise onto a GLIDE.
+
+        The parent refuses an obstruent + /j/ onset because the continental
+        Germanic evidence for it — Dutch ⟨kat·je⟩, German ⟨jäh·rig⟩ — is a
+        MORPHEME boundary, and a boundary is something the spelling shows.
+        A transcription shows none, and by sonority alone a glide is the
+        strongest possible second member of a rise: Romance /bje tja fja/ are
+        onsets (Spanish ⟨Oviedo⟩ o·vie·do, ⟨cambiar⟩ cam·biar), and so are
+        the liquid + glide sequences no shape above reaches (⟨mulher⟩
+        mu·lher) and the glottal ones (Spanish ⟨Alajuela⟩ a·la·jue·la, where
+        the dialects that read ⟨j⟩ as /h/ still open the syllable with it).
+        Refusing them put the mark inside the onset: oβ·ˈjeðo.
+        """
+        s1, s2 = self._segment(first), self._segment(second)
+        if s1 and s2:
+            t1, t2 = sonority_class(s1), sonority_class(s2)
+            if t2 == SONORITY_GLIDE and SONORITY_UNKNOWN < t1 < t2:
+                return True
+        return super()._two_member(first, second)
+
+    def _licit(self, run: str) -> bool:
+        """The parent's judgement, or the spec's own onset inventory.
+
+        The built-in shapes are calibrated on Germanic, Slavic and Romance,
+        and a language whose onsets fall outside them gets them wrong in both
+        directions: Greek ⟨κτίριο⟩ ⟨πτώση⟩ ⟨σμήνος⟩ open words with clusters
+        no shape licenses, while Spanish and Portuguese open none with /s/ +
+        stop, which the sibilant appendix licenses for everyone. Neither is
+        derivable from a transcription, so a spec that knows its own onset
+        inventory declares it in ``stress.onset_clusters``, and that list
+        then decides every complex onset. A simple onset, and a rise onto a
+        glide, stay licit under any inventory: no language forbids them, and
+        no declaration has to repeat them.
+        """
+        if not self._onsets:
+            return super()._licit(run)
+        units = self.graphemes_of(run)
+        if len(units) < 2:
+            return super()._licit(run)
+        if self.max_onset is not None and len(units) > self.max_onset:
+            return False
+        if self._opens_with_velar_nasal(units[0]):
+            return False
+        last = self._segment(units[-1])
+        if last is not None and sonority_class(last) == SONORITY_GLIDE:
+            # A glide rides on whatever onset precedes it — Spanish ⟨Adrián⟩
+            # is a-drián, not ad-rián — so it is stripped and the rest of the
+            # cluster judged on its own. One member left is a simple onset.
+            return len(units) == 2 or self.licit("".join(units[:-1]))
+        return run in self._onsets
+
+
 #: Judges are cached per (language code, cap): building one walks the spec's
 #: grapheme table, and syllabification is called once per word. Keyed by the
 #: spec's CODE and not by ``id(spec)`` — an id is reused the moment its object
@@ -585,6 +673,58 @@ def _rebalance_onsets(
         out[-1] += onset[:len(onset) - keep]
         out.append(syll[len(onset) - keep:])
     return out
+
+
+#: One IPA judge per (onset cap, declared inventory). There is no spec to key
+#: on — the judgement is made over segments — so the declarations are the
+#: whole key, and the space is tiny.
+_ipa_judges: dict = {}
+
+
+def _ipa_judge(max_onset: Optional[int],
+               onset_clusters: Sequence[str] = ()) -> "_IpaOnsetJudge":
+    key = (max_onset, tuple(onset_clusters))
+    judge = _ipa_judges.get(key)
+    if judge is None:
+        judge = _ipa_judges[key] = _IpaOnsetJudge(max_onset, onset_clusters)
+    return judge
+
+
+def syllabify_for_mark(ipa: str, rules: StressRules) -> List[str]:
+    """Divide a transcription into syllables for stress marking.
+
+    The mark is written before the stressed syllable, so where that syllable
+    BEGINS decides where the mark goes. A vowel-group split alone hands every
+    medial consonant forward to the following nucleus, which puts the mark
+    inside clusters no language opens a syllable with: ⟨cantar⟩ /kantaɾ/ came
+    out ka-ˈntaɾ, claiming an /nt/ onset. The division here keeps the longest
+    suffix of each medial run that is a licit onset and closes the preceding
+    syllable with the rest — maximal onset, constrained by what the language
+    licenses (Blevins, "The syllable in phonological theory", in Goldsmith
+    ed., *The Handbook of Phonological Theory*, Blackwell 1995, § 3.1;
+    Vennemann, *Preference Laws for Syllable Structure*, Mouton 1988, ch. 1,
+    for the sonority preferences the judgement rests on).
+
+    The spec's own declarations drive the split: ``diphthongs`` says which
+    vowel sequences are ONE nucleus (the rest of a run is hiatus and splits),
+    ``max_onset`` caps the onset where a spec declares one, and
+    ``onset_clusters`` replaces the built-in shapes with the language's own
+    onset inventory. ``constrain_mark_onsets`` turns the whole judgement off
+    for a language whose onsets the shapes get wrong and whose inventory is
+    not declared yet — the mark then falls where a plain vowel-group split
+    puts it, which is where it fell before any of this existed.
+    """
+    sylls = syllabify(ipa, diphthongs=rules.diphthongs)
+    if not rules.constrain_mark_onsets:
+        if rules.coda_liquid_capture:
+            sylls = _capture_coda_liquids(sylls, _is_vowel_char)
+        return sylls
+    judge = _ipa_judge(rules.max_onset if rules.max_onset_declared else None,
+                       rules.onset_clusters)
+    sylls = _rebalance_onsets(sylls, _is_vowel_char, judge)
+    if rules.coda_liquid_capture:
+        sylls = _capture_coda_liquids(sylls, _is_vowel_char)
+    return sylls
 
 
 def _split_nuclei(run: str, diphthongs: Sequence[str]) -> List[str]:
@@ -1011,8 +1151,7 @@ def apply_stress_mark(
     # whose diphthongs are written with glides (Portuguese /aj aw/) therefore
     # leaves only true hiatus as a two-vowel run, and it must split.
     ipa_sylls = (list(ipa_syllables) if ipa_syllables
-                 else syllabify(ipa, diphthongs=rules.diphthongs,
-                                coda_liquid_capture=rules.coda_liquid_capture))
+                 else syllabify_for_mark(ipa, rules))
     if not ipa_sylls:
         return ipa
 
@@ -1144,6 +1283,24 @@ _TIE = "\u0361"
 _AFFRICATES: Sequence[str] = tuple(
     a[0] + _TIE + a[1:] for a in _BARE_AFFRICATES
 ) + _BARE_AFFRICATES
+
+#: Affricates as they reach the stress marker, where a boundary drawn inside
+#: one would cut a phoneme in half. Two things the weight tables never see
+#: appear in a transcription: an affricate can be LENGTHENED on its stop
+#: (Italian ⟨Acceglio⟩ /atːʃeʎʎo/), and it carries the secondary articulations
+#: any consonant carries — ejective, aspirated, palatalized, labialized
+#: (Georgian ⟨წ⟩ /tsʼ/, ⟨ც⟩ /tsʰ/, Russian ⟨ць⟩ /tsʲ/). Each writes its mark
+#: inside the two-symbol sequence. The
+#: two remaining post-alveolar shapes are listed for the same reason: Polish
+#: ⟨dż⟩ is one affricate whether a spec writes it /ɖʐ/ or /dʐ/.
+_MARK_ATOMS: Sequence[str] = tuple(sorted(
+    {stop + length + tie + base[1:] + release
+     for base in tuple(_BARE_AFFRICATES) + ("dʐ", "tʂ")
+     for stop in (base[0],)
+     for length in ("", "ː")
+     for tie in ("", _TIE)
+     for release in ("", "ʼ", "ʰ", "ʲ", "ʷ")},
+    key=len, reverse=True))
 
 
 def _is_vowel_segment(seg: str) -> bool:
