@@ -274,9 +274,12 @@ class StressRulesModel(_Strict):
     accent2_mark: str = ""
     accent2_final_letters: Optional[List[str]] = None
     diphthongs: Optional[List[str]] = None
+    vowel_letters: Optional[List[str]] = None
     quantity_sensitive: bool = False
     superheavy_final_attracts: bool = True
     max_onset: int = Field(default=1, ge=1, le=3)
+    onset_clusters: Optional[List[str]] = None
+    constrain_mark_onsets: bool = True
     cliticless_words: Optional[List[str]] = None
     coda_liquid_capture: bool = False
     secondary_stress: Literal["", "alternating"] = ""

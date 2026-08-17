@@ -305,6 +305,21 @@ class StressRules:
         keeps ``ciu-tat`` and ``ai-gua`` intact while splitting ``te-ni-a``.
         Empty (the default) preserves the merge-the-whole-run behaviour, so
         every spec that does not declare it is unaffected.
+    vowel_letters : Tuple[str, ...]
+        The letters this orthography uses as syllable NUCLEI, for the bundled
+        syllabifier. Left empty (the default) the splitter falls back to a
+        cross-linguistic vowel test that reads a letter's shape, and that test
+        counts ⟨y⟩ and ⟨w⟩ as vowels because some orthographies use them so.
+        Where a language does not — Xhosa ⟨y⟩ is /j/ and ⟨w⟩ is /w/, both
+        onsets — the run ⟨oya⟩ collapses into a single nucleus, the syllable
+        count drops, and every position the count feeds (stress, and the
+        ``nucleus_stressed`` entries that hang off it) lands on the wrong
+        vowel or on two at once.
+
+        Declaring the set states the language's own answer and nothing else
+        changes: the letters listed are nuclei, every other letter is not.
+        A spec that does not declare it keeps the shape-based test exactly as
+        before.
     quantity_sensitive : bool
         Stress is placed by **syllable weight**, not by an orthographic
         ending. A quantity-sensitive system reads the *transcription* — a
@@ -348,6 +363,21 @@ class StressRules:
         The two must be told apart: the default 1 is a *placeholder* and
         applying it as a cap would force every language to a single-consonant
         onset, splitting ⟨tr⟩ and ⟨bl⟩. Set by the loader, never by hand.
+    onset_clusters : Tuple[str, ...]
+        The language's complex onsets, in IPA. Declared, they decide every
+        complex onset the stress marker judges, in place of the built-in
+        sonority shapes — which are calibrated on Germanic, Slavic and Romance
+        and are wrong in both directions elsewhere: Greek opens words with
+        ⟨κτ πτ σμ⟩, which no shape licenses, and Spanish opens none with /s/ +
+        stop, which the sibilant appendix licenses for everyone. A simple
+        onset and a rise onto a glide stay licit under any inventory and need
+        no entry here. Left empty, the built-in shapes decide.
+    constrain_mark_onsets : bool
+        Whether the stress mark's syllable division consults onset
+        phonotactics at all. Clear it for a language the built-in shapes get
+        wrong and whose own inventory is not written down yet — Khmer, whose
+        subscript consonants make onsets no sonority scale predicts. The mark
+        then falls where a plain vowel-group split puts it.
     cliticless_words : Tuple[str, ...]
         Orthographic forms that carry **no lexical stress** of their own —
         prosodic clitics. A clitic is not an independent phonological word: it
@@ -449,10 +479,13 @@ class StressRules:
     marked_vowels: Tuple[str, ...] = ()
     stress_mark: str = "ˈ"
     diphthongs: Tuple[str, ...] = ()
+    vowel_letters: Tuple[str, ...] = ()
     quantity_sensitive: bool = False
     superheavy_final_attracts: bool = True
     max_onset: int = 1
     max_onset_declared: bool = False
+    onset_clusters: Tuple[str, ...] = ()
+    constrain_mark_onsets: bool = True
     cliticless_words: Tuple[str, ...] = ()
     coda_liquid_capture: bool = False
     accent2_mark: str = ""

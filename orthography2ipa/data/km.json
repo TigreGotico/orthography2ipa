@@ -3497,6 +3497,7 @@
     "notes": "Glottolog's representative point for Central Khmer."
   },
   "stress": {
+    "constrain_mark_onsets": false,
     "default_position": -1,
     "final_stress_endings": [],
     "penult_stress_endings": [],

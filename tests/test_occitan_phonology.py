@@ -254,7 +254,9 @@ class TestTextRobustness:
     def test_punctuation_is_dropped_not_voiced(self):
         out = transcribe("Es un ostal, e tu?", lang="oc")
         assert "," not in out and "?" not in out
-        assert out.split() == ["ˈes", "ˈy", "uˈstal", "ˈe", "ˈty"]
+        # ⟨ostal⟩ is os-tal: Occitan opens no syllable with /s/ + stop, which
+        # is why it takes the prothetic vowel in ⟨estela⟩ ⟨escòla⟩
+        assert out.split() == ["ˈes", "ˈy", "usˈtal", "ˈe", "ˈty"]
 
     def test_hyphen_separates_the_members_of_a_compound(self):
         assert transcribe("Lenga-mair", lang="oc").split() == [

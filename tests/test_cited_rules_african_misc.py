@@ -261,14 +261,72 @@ def test_so_dh_is_retroflex_and_x_is_pharyngeal():
     assert G2P("so").transcribe_word("dhagax") == "ɖaɡaħ"
 
 
-def test_so_kh_is_the_velar_fricative():
-    """"KH = velar fricative /x/" (ibid.).  khudaar 'vegetables' → [xudaːr]."""
-    assert G2P("so").transcribe_word("khudaar") == "xudaːr"
+def test_so_kh_is_the_uvular_fricative():
+    """"The sound /χ/ is a voiceless uvular fricative and is represented as
+    <kh>" (Mohamed 2013).  khudaar 'vegetables' → [χudaːr]."""
+    assert G2P("so").transcribe_word("khudaar") == "χudaːr"
 
 
 def test_so_vowel_length_is_written_double():
     """"Vowel length is phonemic (doubled letters)."  Soomaali → [soːmaːli]."""
     assert G2P("so").transcribe_word("soomaali") == "soːmaːli"
+
+
+def test_so_apostrophe_is_the_glottal_stop():
+    """"The sound /ʔ/ is a glottal stop, written as <’>" (Mohamed 2013).
+    lo' 'cows' → [loʔ]."""
+    assert G2P("so").transcribe_word("lo'") == "loʔ"
+
+
+def test_so_vowel_initial_word_takes_a_prosthetic_glottal_stop():
+    """"When a Somali word begins with a vowel, a glottal is inserted before
+    the vowel, in order to provide onset to the syllable.  Therefore, a Somali
+    words like <ey> 'dog' is transcribed and pronounced as [ʔey]" (Mohamed
+    2013), the same source's word-list example."""
+    assert G2P("so").transcribe_word("ey") == "ʔej"
+
+
+def test_so_prosthetic_glottal_stop_precedes_a_long_initial_vowel():
+    """The prosthesis is an onset repair, so it applies to the doubled-letter
+    long vowels too: aar 'lion' → [ʔaːr], not *[aːr]."""
+    assert G2P("so").transcribe_word("aar") == "ʔaːr"
+
+
+def test_so_word_initial_glottal_stop_is_not_written():
+    """"the word initial glottal stop <'> - [ʔ] is also not shown" (Mohamed
+    2013, p.10): the prosthesis is supplied by the transcriber, so a word whose
+    spelling starts with a consonant never gains one — nin 'man' → [nin]."""
+    assert G2P("so").transcribe_word("nin") == "nin"
+
+
+def test_so_intervocalic_dh_is_a_retroflex_flap():
+    """⟨dh⟩ "is pronounced as a retroflex flap [ɽ] when it occurs
+    intervocalically" (Wikipedia, Somali language).  badhi 'buttocks' → [baɽi],
+    the example Mohamed 2013 gives for the same environment."""
+    assert G2P("so").transcribe_word("badhi") == "baɽi"
+
+
+def test_so_dh_stays_a_stop_outside_the_intervocalic_environment():
+    """The flap is environment-bound: word-initial and word-final ⟨dh⟩ keep the
+    retroflex stop.  dhagax 'stone' → [ɖaɡaħ] and gabadh 'girl' → [ɡabaɖ]."""
+    engine = G2P("so")
+    assert engine.transcribe_word("dhagax") == "ɖaɡaħ"
+    assert engine.transcribe_word("gabadh") == "ɡabaɖ"
+
+
+def test_so_tone_is_never_emitted():
+    """Declared limit: Somali pitch accent is grammatical and the 1972
+    orthography leaves it unmarked, so no tone mark can be recovered from
+    spelling.  inan 'boy' carries a high accent no spelling records."""
+    assert G2P("so").transcribe_word("inan") == "ʔinan"
+
+
+def test_so_harmonic_vowel_pairs_are_not_distinguished():
+    """Declared limit: the orthography "does not distinguish between the two
+    harmonic variants of each vowel" (Wikipedia, Somali language), so the
+    five plain qualities are emitted and no [±ATR] cardinal (ɑ ɪ ɔ ɛ ʊ)
+    appears.  cun 'eat' → [ʕun], never *[ʡʢʉn]."""
+    assert G2P("so").transcribe_word("cun") == "ʕun"
 
 
 # ---------------------------------------------------------------------------

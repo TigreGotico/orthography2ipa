@@ -176,9 +176,11 @@ def test_nasal_is_labiodental_before_v_where_v_survives():
     [ɱ] there. Central and North-Western have betacism (/v/ → [b]), so the
     nasal correctly sees a BILABIAL and stays [m] — the same rule, applied to
     a different surface consonant."""
-    assert "ɱv" in transcribe("convèncer", "ca-x-balear")
-    assert "ɱv" in transcribe("convèncer", "ca-x-valencia")
-    assert "mb" in transcribe("convèncer", "ca")
+    # the cluster straddles the syllable boundary the stress mark is written
+    # at, so the mark is stripped before looking for it
+    assert "ɱv" in transcribe("convèncer", "ca-x-balear").replace("ˈ", "")
+    assert "ɱv" in transcribe("convèncer", "ca-x-valencia").replace("ˈ", "")
+    assert "mb" in transcribe("convèncer", "ca").replace("ˈ", "")
 
 
 @pytest.mark.parametrize("phrase,expected_first", [

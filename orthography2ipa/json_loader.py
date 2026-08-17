@@ -472,11 +472,15 @@ def load_json_spec(code: str) -> LanguageSpec:
             accent2_mark=raw_stress.get("accent2_mark", ""),
             accent2_final_letters=tuple(raw_stress.get("accent2_final_letters", ())),
             diphthongs=tuple(raw_stress.get("diphthongs", ())),
+            vowel_letters=tuple(raw_stress.get("vowel_letters", ())),
             quantity_sensitive=bool(raw_stress.get("quantity_sensitive", False)),
             superheavy_final_attracts=bool(
                 raw_stress.get("superheavy_final_attracts", True)),
             max_onset=int(raw_stress.get("max_onset", 1)),
             max_onset_declared="max_onset" in raw_stress,
+            onset_clusters=tuple(raw_stress.get("onset_clusters", ())),
+            constrain_mark_onsets=bool(
+                raw_stress.get("constrain_mark_onsets", True)),
             cliticless_words=tuple(raw_stress.get("cliticless_words", ())),
             coda_liquid_capture=bool(
                 raw_stress.get("coda_liquid_capture", False)),

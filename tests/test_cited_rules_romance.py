@@ -330,7 +330,7 @@ def test_es_final_d_lenites():
 
     es-ES notes: "(8) Word-final /d/ → [ð] or [∅]: verdad [berˈdað]."
     """
-    assert _t("es-ES", "verdad") == "beˈɾdað"
+    assert _t("es-ES", "verdad") == "beɾˈdað"
 
 
 # ===========================================================================
