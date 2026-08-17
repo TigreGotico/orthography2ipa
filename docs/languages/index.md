@@ -137,6 +137,12 @@ phonology claimed (the `afa.json` pattern).
 |:---|:---|
 | [egy.md](egy.md) | Ancient Egyptian — Egyptological transliteration in, the conventional Egyptological reading out (weak consonants as vowels, the supplied ⟨e⟩); the reconstruction is deliberately out of scope |
 
+### Chadic
+
+| Doc | Languages covered |
+|:---|:---|
+| [ha.md](ha.md) | Hausa (Boko orthography) — hooked-letter glottalized series, ⟨ts⟩ as the ejective fricative /sʼ/, unit labialized/palatalized velars, and the ⟨r⟩ trill-vs-retroflex-flap contrast the spelling hides |
+
 ### Indo-Aryan
 
 | Doc | Languages covered |
