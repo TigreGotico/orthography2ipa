@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.75.8a1](https://github.com/TigreGotico/orthography2ipa/tree/7.75.8a1) (2026-08-17)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.75.7a1...7.75.8a1)
+
+**Merged pull requests:**
+
+- fix\(guw\): describe both Gun orthographies and condition the nasal rules [\#972](https://github.com/TigreGotico/orthography2ipa/pull/972) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.75.7a1](https://github.com/TigreGotico/orthography2ipa/tree/7.75.7a1) (2026-08-17)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.75.6a1...7.75.7a1)
@@ -1216,7 +1224,11 @@
 
 ## [7.15.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.15.0a1) (2026-07-16)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.12.0a1...7.15.0a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.13.0a1...7.15.0a1)
+
+## [7.13.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.13.0a1) (2026-07-16)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.12.0a1...7.13.0a1)
 
 ## [7.12.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.12.0a1) (2026-07-16)
 
@@ -1228,11 +1240,7 @@
 
 ## [7.14.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.14.0a1) (2026-07-16)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.13.0a1...7.14.0a1)
-
-## [7.13.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.13.0a1) (2026-07-16)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.11.0a2...7.13.0a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.11.0a2...7.14.0a1)
 
 ## [7.11.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.11.0a2) (2026-07-16)
 
