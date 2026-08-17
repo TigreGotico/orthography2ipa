@@ -8335,15 +8335,21 @@
  {
   "lang": "uby",
   "dataset": "wikipron",
-  "n": 1312,
-  "per": 0.595,
-  "per_ci_low": 0.5848,
-  "per_ci_high": 0.6042,
-  "exact_match": 0.0145,
-  "quality_tier": "skeleton",
+  "n": 1317,
+  "per": 0.0247,
+  "per_ci_low": 0.0201,
+  "per_ci_high": 0.03,
+  "exact_match": 0.8998,
+  "quality_tier": "research",
   "provenance": "crowd-scraped",
   "harness_version": "1.1",
-  "limit": null
+  "limit": null,
+  "oracle_per_top3": 0.0214,
+  "oracle_exact_top3": 0.9043,
+  "oracle_per_top5": 0.0209,
+  "oracle_exact_top5": 0.9043,
+  "oracle_fallback_words": 0,
+  "oracle_scored_words": 1317
  },
  {
   "lang": "udm",
