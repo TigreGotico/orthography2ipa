@@ -7790,15 +7790,21 @@
  {
   "lang": "so",
   "dataset": "kaikki",
-  "n": 200,
-  "per": 0.5937,
-  "per_ci_low": 0.5696,
-  "per_ci_high": 0.618,
-  "exact_match": 0.03,
+  "n": 230,
+  "per": 0.5816,
+  "per_ci_low": 0.5544,
+  "per_ci_high": 0.6099,
+  "exact_match": 0.0522,
   "quality_tier": "research",
   "provenance": "crowd-scraped",
   "harness_version": "1.1",
-  "limit": null
+  "limit": null,
+  "oracle_per_top3": 0.58,
+  "oracle_exact_top3": 0.0565,
+  "oracle_per_top5": 0.58,
+  "oracle_exact_top5": 0.0565,
+  "oracle_fallback_words": 0,
+  "oracle_scored_words": 230
  },
  {
   "lang": "sq",
