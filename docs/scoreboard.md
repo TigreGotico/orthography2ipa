@@ -413,8 +413,8 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | myv | vox_communis | 6442 | 0.0944 | 0.0944 | 0.0944 | 0.3890 | 0.3890 | [0.0923, 0.0965] | 0.3890 | research | epitran-derived |
 | nap | wikipron | 198 | 0.2792 | 0.2387 | 0.2307 | 0.1263 | 0.1263 | [0.2544, 0.3033] | 0.1162 | research | crowd-scraped |
 | nb | ipa_childes | 3176 | 0.4077 | 0.3092 | 0.2924 | 0.1568 | 0.1707 | [0.4000, 0.4157] | 0.0828 | research | espeak-derived |
-| nb | ipadict | 10169 | 0.3349 | 0.2598 | 0.2400 | 0.1688 | 0.1859 | [0.3310, 0.3388] | 0.1086 | research | machine-generated |
-| nb | wikipron | 2725 | 0.3506 | 0.2783 | 0.2618 | 0.2004 | 0.2180 | [0.3409, 0.3597] | 0.1428 | research | crowd-scraped |
+| nb | ipadict | 10169 | 0.3397 | 0.2647 | 0.2448 | 0.1623 | 0.1787 | [0.3357, 0.3435] | 0.1050 | research | machine-generated |
+| nb | wikipron | 2725 | 0.3475 | 0.2753 | 0.2588 | 0.2059 | 0.2228 | [0.3380, 0.3567] | 0.1490 | research | crowd-scraped |
 | nci | wikipron | 839 | 0.1198 | 0.1197 | 0.1197 | 0.2896 | 0.2896 | [0.1128, 0.1270] | 0.2896 | research | crowd-scraped |
 | nds | wikipron | 307 | 0.4165 | 0.3258 | 0.3058 | 0.1726 | 0.2052 | [0.3861, 0.4449] | 0.1303 | research | crowd-scraped |
 | ne | kaikki | 2052 | 0.1191 | 0.1178 | 0.1178 | 0.5210 | 0.5210 | [0.1121, 0.1256] | 0.5195 | research | crowd-scraped |
