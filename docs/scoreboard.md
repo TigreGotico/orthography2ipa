@@ -463,7 +463,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | pox | wikipron | 314 | 0.3410 | · | · | · | · | [0.3205, 0.3624] | 0.1306 | skeleton | crowd-scraped |
 | ppl | wikipron | 185 | 0.1322 | · | · | · | · | [0.1104, 0.1534] | 0.4486 | research | crowd-scraped |
 | pqm | wikipron | 151 | 0.1759 | · | · | · | · | [0.1596, 0.1937] | 0.1589 | skeleton | crowd-scraped |
-| ps | wikipron | 1075 | 0.4541 | · | · | · | · | [0.4402, 0.4671] | 0.0642 | research | crowd-scraped |
+| ps | wikipron | 1075 | 0.2453 | 0.1938 | 0.1840 | 0.3265 | 0.3433 | [0.2341, 0.2554] | 0.2558 | research | crowd-scraped |
 | pt-AO | portuguese_tts | 20 | 0.0000 | · | · | · | · | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | pt-AO | portuguese_unified | 53151 | 0.2627 | · | · | · | · | [0.2615, 0.2639] | 0.0789 | research | lexicon-derived |
 | pt-BR | ipa_childes | 2116 | 0.2353 | · | · | · | · | [0.2272, 0.2437] | 0.2798 | production | espeak-derived |
