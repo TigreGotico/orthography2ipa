@@ -3,7 +3,7 @@
   "name": "Zou",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "ch": [
       "c"
@@ -111,7 +111,7 @@
       "notes": "Descent per Glottolog classification of Zou (zouu1235)."
     }
   ],
-  "notes": "Skeleton. Zou (Zomi) is a Kuki-Chin (Sino-Tibetan) language of Manipur and Chin State, written in a Latin script developed by J.H. Cope. Base Latin consonants and vowels are mapped; per the orthography ch is the palatal stop [c], and ng/kh/ph/th are the expected digraphs and aspirates. Lexical tone is not recovered by the romanization and is left unencoded, so an elevated PER floor is expected.",
+  "notes": "Skeleton. Zou (Zomi) is a Kuki-Chin (Sino-Tibetan) language of Manipur and Chin State, written in a Latin script developed by J.H. Cope. Base Latin consonants and vowels are mapped; per the orthography ch is the palatal stop [c], and ng/kh/ph/th are the expected digraphs and aspirates. Lexical tone is not recovered by the romanization and is left unencoded, so an elevated PER floor is expected. Zou is tonal; tone is not marked in the J.H. Cope-derived Latin orthography modelled here and is left unencoded, and stress is not a separate contrastive category (documented exemption).",
   "iso639_3": "zom",
   "glottolog_code": null,
   "sources": [
@@ -136,6 +136,16 @@
       "pages": null,
       "notes": "Orthography/phonology reference for a skeleton-tier entry.",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Zou_language"
+    },
+    {
+      "id": "zom_tungdim2012",
+      "author": "Tungdim, Philip Thangliènmâng",
+      "year": 2012,
+      "title": "A Descriptive Grammar of the Zo Language",
+      "publisher": "PhD dissertation, Jawaharlal Nehru University",
+      "url": null,
+      "pages": null,
+      "notes": "Descriptive grammar of Zou/Zo (Kuki-Chin); consulted alongside the J.H. Cope (c. 1910) missionary romanization to check the Latin orthography's ch/ng/kh/ph/th conventions modelled here."
     }
   ],
   "wikipedia": [
