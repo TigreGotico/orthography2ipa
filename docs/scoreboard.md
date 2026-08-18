@@ -633,7 +633,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | uk | vox_communis | 53015 | 0.3548 | · | · | · | · | [0.3512, 0.3585] | 0.0823 | research | epitran-derived |
 | uk | wikipron | 51646 | 0.1006 | · | · | · | · | [0.0996, 0.1016] | 0.4413 | research | crowd-scraped |
 | ulw | wikipron | 102 | 0.0888 | · | · | · | · | [0.0595, 0.1207] | 0.7353 | skeleton | crowd-scraped |
-| ur | wikipron | 6296 | 0.5215 | 0.3749 | 0.3394 | 0.0392 | 0.0516 | [0.5179, 0.5254] | 0.0098 | research | crowd-scraped |
+| ur | wikipron | 6296 | 0.3076 | 0.2733 | 0.2620 | 0.0718 | 0.0821 | [0.3041, 0.3111] | 0.0384 | research | crowd-scraped |
 | uz | vox_communis | 78030 | 0.0825 | · | · | · | · | [0.0816, 0.0835] | 0.4697 | research | epitran-derived |
 | uz | wikipron | 330 | 0.2458 | · | · | · | · | [0.2258, 0.2667] | 0.2424 | research | crowd-scraped |
 | vep | northeuralex | 1004 | 0.2065 | · | · | · | · | [0.1960, 0.2170] | 0.2629 | research | lexicon-derived |
