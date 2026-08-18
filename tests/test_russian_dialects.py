@@ -318,7 +318,9 @@ def test_pskov_strong_jakanje_needs_no_lookahead():
     exactly — as a SINGLE value, not a ranked pair."""
     assert _first_pretonic("ru-x-pskov", "я") == ["ja"]
     assert bare("ru-x-pskov", "деревня") == "dʲarʲevnʲə"
-    assert bare("ru-x-pskov", "тяжело") == "tʲaʐɨɫə"
+    # ⟨тя⟩ is the claim; the ⟨е⟩ after unpaired-hard ⟨ж⟩ is [ɛ] because the
+    # unmarked spelling puts the engine's default stress on that syllable.
+    assert bare("ru-x-pskov", "тяжело") == "tʲaʐɛɫə"
 
 
 def test_pskov_akajet_and_stays_north_of_the_g_isogloss():

@@ -229,9 +229,18 @@ def test_registered_in_datasets_and_provenance():
 
 # ── against the real archive ────────────────────────────────────────────────
 
+def _real_rarfile_available() -> bool:
+    try:
+        import rarfile  # noqa: F401
+    except ImportError:
+        return False
+    return True
+
+
 _REAL = pytest.mark.skipif(
-    not os.path.exists(CACHED_ARCHIVE),
-    reason="CoRuSS archive not fetched into the benchmark cache")
+    not os.path.exists(CACHED_ARCHIVE) or not _real_rarfile_available(),
+    reason="CoRuSS archive not fetched into the benchmark cache, "
+           "or the real rarfile package is not installed")
 
 
 def _real_transcriptions():
