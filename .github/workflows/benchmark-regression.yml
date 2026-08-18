@@ -11,6 +11,7 @@ on:
       - "orthography2ipa/**"
       - "scripts/benchmark.py"
       - "scripts/check_benchmark_regression.py"
+      - "scripts/check_board_row_counts.py"
       - "benchmarks/results.json"
       - "benchmarks/results_ci_sample.json"
       - "tests/data/**"
@@ -63,3 +64,15 @@ jobs:
         # enough to absorb harness-level float noise between runs.
         run: |
           PYTHONPATH=$PWD .venv/bin/python scripts/check_benchmark_regression.py --epsilon 0.005
+
+      - name: Check board row counts (stale-row guard)
+        # Fails the build on a row scoring more words than its loader
+        # currently yields (see scripts/check_board_row_counts.py's
+        # docstring for the vox_communis spn incident this exists to
+        # catch). Rows whose gold could not be fetched here — a live
+        # snapshot needs network, or an optional package like `rarfile`
+        # is missing on this runner — are reported and skipped rather
+        # than failing the job, matching check_board_row_counts.py's own
+        # OSError/ImportError bucketing.
+        run: |
+          PYTHONPATH=$PWD .venv/bin/python scripts/check_board_row_counts.py
