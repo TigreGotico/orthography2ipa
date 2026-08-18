@@ -47,14 +47,14 @@
     "ڈ": [
       "ɖ"
     ],
-    "ڏ": [
+    "ݙ": [
       "ɗ"
     ],
     "ذ": [
       "z"
     ],
     "ر": [
-      "r"
+      "ɾ"
     ],
     "ڑ": [
       "ɽ"
@@ -113,15 +113,28 @@
     "ن": [
       "n"
     ],
+    "نگ": [
+      "ŋɡ"
+    ],
+    "ݨ": [
+      "ɳ"
+    ],
     "ں": [
       "̃"
     ],
     "و": [
-      "ʋ",
+      "v",
       "uː",
       "oː"
     ],
+    "وو": [
+      "oːv",
+      "uːv"
+    ],
     "ہ": [
+      "h"
+    ],
+    "ہہ": [
       "h"
     ],
     "ھ": [
@@ -130,16 +143,33 @@
     "ء": [
       "ʔ"
     ],
+    "ئ": [
+      "",
+      "j"
+    ],
+    "ؤ": [
+      "",
+      "v"
+    ],
     "ی": [
       "j",
       "iː",
       "eː"
     ],
+    "یو": [
+      "iːv",
+      "eːv"
+    ],
     "ے": [
       "eː"
     ],
     "ا": [
-      "aː"
+      "aː",
+      "ɑː"
+    ],
+    "آ": [
+      "aː",
+      "ɑː"
     ]
   },
   "allophones": {
@@ -188,9 +218,6 @@
     "z": [
       "z"
     ],
-    "r": [
-      "r"
-    ],
     "ɽ": [
       "ɽ"
     ],
@@ -230,9 +257,6 @@
     "f": [
       "f"
     ],
-    "ʋ": [
-      "ʋ"
-    ],
     "uː": [
       "uː"
     ],
@@ -256,9 +280,24 @@
     ],
     "̃": [
       "̃"
+    ],
+    "ɳ": [
+      "ɳ"
+    ],
+    "ɾ": [
+      "ɾ"
+    ],
+    "v": [
+      "v"
+    ],
+    "ɑː": [
+      "ɑː"
+    ],
+    "ŋ": [
+      "ŋ"
     ]
   },
-  "notes": "Saraiki (سرائیکی) Shahmukhi consonant inventory, extending the Urdu-style Perso-Arabic abjad with four implosive letters (ٻ ɓ, ڄ ʄ, ڏ ɗ, ڳ ɠ) that are the language's most distinctive typological feature (Shackle 1976). Each implosive letter earns its key by test 1: its IPA is not derivable by composing a base letter with a diacritic — it is a dedicated grapheme the Anjuman Taraqqi-e-Saraiki standard assigns no other role. Short vowels are not written (abjad); ا و ی carry long-vowel/glide values only, consistent with the input contract of every other abjad spec in this repository (vowelised or lexicon-backed input is a downstream concern). Saraiki word stress is not orthographically predictable and is exempt per quality_tiers.md. Registered against WikiPron's skr_arab_broad gold.",
+  "notes": "Saraiki (سرائیکی) written in the Saraiki Shahmukhi alphabet standardised by the Anjuman Taraqqi-e-Saraiki, an extension of the Urdu Perso-Arabic abjad. Its defining typological feature is the implosive series, and the standard assigns each implosive a dedicated letter: ٻ /ɓ/, ڄ /ʄ/, ݙ /ɗ/, ڳ /ɠ/ (Shackle 1976; Bashir & Conners 2019). The implosive dal is ݙ (U+0759, dal with two dots below and small tah), not the Sindhi ڏ (U+068F); the retroflex nasal /ɳ/ likewise has its own letter ݨ (U+0768, noon with small tah), which carries the productive infinitive suffix -ݨ and is one of the commonest letters in the language.\n\nThe rhotic ر is a tap /ɾ/, contrasting with the retroflex flap ڑ /ɽ/ (Bashir & Conners 2019); و is the labiodental /v/ named in the language's attested inventory (PHOIBLE, sera1259). Nasals assimilate in place before a following stop, so ن before گ surfaces as /ŋ/.\n\nو and ی are matres lectionis as well as glides, and position decides which. After a consonant they spell the long vowel (و = oː/uː, ی = eː/iː); word-initially, and in the second slot of a doubled mater (وو, یو), they are the glides /v/ and /j/. Word-finally ی is /iː/ and و is /uː/. Alef is the same distinction in reverse: word-initial ا is a bare carrier for an unwritten short vowel, while initial /aː/ is written with the madda, آ; elsewhere ا is /aː/. The hamza seats ئ and ؤ are orthographic supports and are normally silent.\n\nShort vowels are not written in this abjad and gemination is not marked, so both are unrecoverable from unvowelised input; they account for the bulk of the residual distance against the WikiPron skr_arab_broad gold, which transcribes them. That gold also splits ا between aː and ɑː and the mid front long vowel between eː and ɛː; these are notation choices, not competing analyses. Saraiki word stress is not orthographically predictable and is exempt per quality_tiers.md.",
   "sources": [
     {
       "id": "skr_wiki",
@@ -291,6 +330,17 @@
       "wikipedia_url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "bashir_conners2019",
+      "author": "Bashir, Elena & Conners, Thomas J.",
+      "year": 2019,
+      "title": "A Descriptive Grammar of Hindko, Panjabi, and Saraiki",
+      "publisher": "De Gruyter Mouton",
+      "url": "https://www.degruyter.com/document/doi/10.1515/9781614512257/html",
+      "wikipedia_url": null,
+      "pages": null,
+      "notes": "Mouton-CASL Grammar Series. Consonant inventory, implosive series, and the tap/flap rhotic contrast."
     }
   ],
   "wikipedia": [
@@ -301,7 +351,6 @@
     "a",
     "ae",
     "ai",
-    "ã",
     "b",
     "bʱ",
     "c",
@@ -310,13 +359,11 @@
     "d̪ʱ",
     "e",
     "ea",
-    "ẽ",
     "f",
     "h",
     "i",
     "ia",
     "iã",
-    "ĩ",
     "j",
     "k",
     "kʰ",
@@ -328,7 +375,6 @@
     "nʱ",
     "o",
     "oi",
-    "õ",
     "p",
     "pʰ",
     "s",
@@ -336,17 +382,20 @@
     "t̪ʰ",
     "u",
     "ua",
-    "uẽ",
     "ui",
-    "ũ",
+    "uẽ",
     "v",
     "vʱ",
     "x",
     "z",
+    "ã",
     "æ",
     "æe",
     "æ̃",
+    "õ",
+    "ĩ",
     "ŋ",
+    "ũ",
     "ɓ",
     "ɖ",
     "ɖʱ",
@@ -380,7 +429,8 @@
     "ʊ̃",
     "ʌ",
     "ʌi",
-    "ʌ̃"
+    "ʌ̃",
+    "ẽ"
   ],
   "parent": "x-clade-indo1321",
   "ancestors": [
@@ -402,5 +452,54 @@
     "authority": "Anjuman Taraqqi-e-Saraiki",
     "year": null,
     "url": null
+  },
+  "positional_graphemes": {
+    "ا": {
+      "word_initial": [
+        "ə",
+        "ʊ",
+        "ɪ"
+      ],
+      "default": [
+        "aː",
+        "ɑː"
+      ]
+    },
+    "ی": {
+      "word_final": [
+        "iː",
+        "eː"
+      ],
+      "word_initial": [
+        "j"
+      ],
+      "after_consonant": [
+        "eː",
+        "iː"
+      ],
+      "default": [
+        "j",
+        "iː",
+        "eː"
+      ]
+    },
+    "و": {
+      "word_final": [
+        "uː",
+        "oː"
+      ],
+      "word_initial": [
+        "v"
+      ],
+      "after_consonant": [
+        "oː",
+        "uː"
+      ],
+      "default": [
+        "v",
+        "uː",
+        "oː"
+      ]
+    }
   }
 }

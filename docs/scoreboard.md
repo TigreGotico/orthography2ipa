@@ -578,7 +578,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | sjs | wikipron | 845 | 0.0467 | · | · | · | · | [0.0405, 0.0529] | 0.7432 | skeleton | crowd-scraped |
 | sk | vox_communis | 15951 | 0.1083 | · | · | · | · | [0.1064, 0.1102] | 0.4093 | research | epitran-derived |
 | sk | wikipron | 15893 | 0.1415 | · | · | · | · | [0.1388, 0.1443] | 0.4442 | research | crowd-scraped |
-| skr | wikipron | 306 | 0.5113 | 0.4033 | 0.3975 | 0.0752 | 0.0784 | [0.4876, 0.5339] | 0.0458 | research | crowd-scraped |
+| skr | wikipron | 309 | 0.2863 | 0.2413 | 0.2360 | 0.2136 | 0.2201 | [0.2672, 0.3060] | 0.1553 | research | crowd-scraped |
 | sl | vox_communis | 6603 | 0.3555 | · | · | · | · | [0.3522, 0.3587] | 0.0009 | research | epitran-derived |
 | sl | wikipron | 5139 | 0.3286 | · | · | · | · | [0.3250, 0.3321] | 0.0169 | research | crowd-scraped |
 | slr | wikipron | 752 | 0.2850 | · | · | · | · | [0.2717, 0.2984] | 0.1250 | skeleton | crowd-scraped |
