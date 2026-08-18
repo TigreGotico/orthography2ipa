@@ -149,14 +149,15 @@ def test_lao_circumfix_vowel_is_one_orthographic_unit():
     # is declared as a genuine multigraph (real circumfix vowel, sanctioned
     # by the repo's three-test rule), not a C×V enumeration product — it
     # supplies the WHOLE nucleus, and the preposed ⟨ເ⟩ contributes nothing
-    # of its own so the vowel is not doubled (*/seːɯa/).
+    # of its own so the vowel is not doubled (*/seːɯːə/). The nucleus is
+    # the long ua-type diphthong /ɯːə/ (Enfield 2007): ⟨ເມືອງ⟩ is /mɯːəŋ/.
     tokens = PhonetokTokenizer(get("lo")).tokenize("ເສືອ")
     g_tokens = [t for t in tokens if t.grapheme]
     assert [t.grapheme for t in g_tokens] == ["ເ", "ສ", "ືອ"]
     assert g_tokens[0].ipa == (), "preposed half of a circumfix must be silent"
     assert g_tokens[1].ipa[0] == "s"
-    assert g_tokens[2].ipa[0] == "ɯa"
-    assert G2P("lo").transcribe("ເສືອ") == "sɯa"
+    assert g_tokens[2].ipa[0] == "ɯːə"
+    assert G2P("lo").transcribe("ເສືອ") == "sɯːə"
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -247,7 +248,7 @@ def test_preposed_vowel_words_unaffected_by_coda_rule():
     # preposed-vowel merge (there is no following bare consonant here to
     # even test it against, but the full transcription must stay intact).
     assert G2P("th").transcribe("เก") == "keː"
-    assert G2P("lo").transcribe("ເສືອ") == "sɯa"
+    assert G2P("lo").transcribe("ເສືອ") == "sɯːə"
 
 
 def test_ambiguous_bare_consonant_sequence_keeps_prior_behaviour():
@@ -285,4 +286,8 @@ class TestCodaRuleLatticeContract:
         tok = PhonetokTokenizer(get("lo"))
         lat = tok.ipa_lattice("ລາວ")
         assert all(s.candidates for s in lat)
-        assert "".join(s.top.ipa for s in lat) == "laːw"
+        # The lattice is the PHONEMIC level, before the allophone pass: Lao
+        # ⟨ວ⟩ is /ʋ/ and only surfaces as the glide [w] in the coda, so the
+        # lattice reads /laːʋ/ and the transcription [laːw].
+        assert "".join(s.top.ipa for s in lat) == "laːʋ"
+        assert G2P("lo").transcribe("ລາວ") == "laːw"

@@ -16,7 +16,7 @@ import orthography2ipa as o2i
 
 @pytest.mark.parametrize("lang,word,ipa", [
     # ⟨ພຸດທະ⟩ buddha: ⟨ທ⟩ opens the second syllable and keeps its vowel.
-    ("lo", "ພຸດທະ", "pʰudtʰo"),
+    ("lo", "ພຸດທະ", "pʰut̚tʰaʔ"),
     # ⟨เอกชน⟩ private sector: ⟨ช⟩ opens ⟨ชน⟩ and keeps its implicit vowel.
     ("th", "เอกชน", "ʔeːktɕʰon"),
 ])
