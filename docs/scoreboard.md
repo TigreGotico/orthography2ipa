@@ -341,7 +341,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | ko | ipadict | 62447 | 0.2319 | · | · | · | · | [0.2309, 0.2328] | 0.0830 | research | crowd-scraped |
 | ko | vox_communis | 6124 | 0.0963 | · | · | · | · | [0.0933, 0.0993] | 0.4853 | research | epitran-derived |
 | koi | wikipron | 229 | 0.0920 | · | · | · | · | [0.0738, 0.1103] | 0.6550 | research | crowd-scraped |
-| kok | kaikki | 830 | 0.4712 | 0.4552 | 0.4552 | 0.0229 | 0.0229 | [0.4539, 0.4886] | 0.0229 | research | crowd-scraped |
+| kok | kaikki | 830 | 0.2245 | 0.1457 | 0.1339 | 0.3723 | 0.4024 | [0.2112, 0.2379] | 0.2554 | research | crowd-scraped |
 | krl | wikipron | 641 | 0.0959 | · | · | · | · | [0.0876, 0.1040] | 0.4930 | research | crowd-scraped |
 | kru | wikipron | 187 | 0.1947 | 0.1947 | 0.1947 | 0.3155 | 0.3155 | [0.1697, 0.2205] | 0.3155 | research | crowd-scraped |
 | ktz | wikipron | 134 | 0.3464 | 0.3464 | 0.3464 | 0.3731 | 0.3731 | [0.2889, 0.4102] | 0.3731 | research | crowd-scraped |
