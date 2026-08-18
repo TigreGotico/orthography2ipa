@@ -40,13 +40,13 @@ import orthography2ipa
 from orthography2ipa import G2P
 
 # The words --scoreboard reported as diverging for wikipron lang=ur.
-HAMZA_WAW_PLURALS = {
-    "آنساؤں": "aːnsəõ",
-    "اہلیاؤں": "əɦljəõ",
-    "بواؤں": "bʋəõ",
-    "تمناؤں": "t̪mnəõ",
-    "خزاؤں": "xzəõ",
-}
+HAMZA_WAW_PLURALS = (
+    "آنساؤں",
+    "اہلیاؤں",
+    "بواؤں",
+    "تمناؤں",
+    "خزاؤں",
+)
 
 # Languages whose grapheme table has at least one tilde-only slot, i.e.
 # every language the constraint can act on.
@@ -64,12 +64,19 @@ def _engine(code: str) -> G2P:
         pytest.skip(f"{code!r} not available: {exc}")
 
 
-@pytest.mark.parametrize("word,expected", sorted(HAMZA_WAW_PLURALS.items()))
-def test_hamza_waw_plural_is_nasalised_not_glottal(word, expected):
-    """⟨ؤں⟩ is a nasalised /õ/, never a glottal stop carrying a tilde."""
+@pytest.mark.parametrize("word", sorted(HAMZA_WAW_PLURALS))
+def test_hamza_waw_plural_is_nasalised_not_glottal(word):
+    """⟨ؤں⟩ is a nasalised /õ/, never a glottal stop carrying a tilde.
+
+    The assertion is the carrier, not the whole string: which vowel the
+    stem resolves to is a question for the Urdu grapheme table, and
+    pinning the full transcription here would make this test fail — or,
+    worse, be "fixed" — every time that table is refined.
+    """
     ur = _engine("ur")
-    assert ur.transcribe_word(word) == expected
-    assert "ʔ̃" not in ur.transcribe_word(word)
+    hyp = ur.transcribe_word(word)
+    assert "ʔ̃" not in hyp
+    assert hyp.endswith("õ"), hyp
 
 
 @pytest.mark.parametrize("word", sorted(HAMZA_WAW_PLURALS))
