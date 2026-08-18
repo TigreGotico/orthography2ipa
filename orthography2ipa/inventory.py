@@ -282,8 +282,17 @@ def dead_allophone_rules(spec: LanguageSpec) -> Tuple[str, ...]:
     *and*, for segmental rules, against the segments within it. So a rule on
     ``a`` is live in a spec whose only source of ``a`` is the emission ``ja``,
     and a rule on ``dʒa`` is live only if some slot emits exactly that.
+
+    An abugida adds one more source the tables do not show. A consonant letter
+    carries its inherent vowel unless a matra or a virama cancels it, so a slot
+    can hold ``kə`` in a spec whose grapheme table only ever writes ``k`` — and
+    the inherent vowel is exactly what the schwa-deletion rules of every
+    Devanagari language target. Those rules are reachable, so the check adds
+    reading + inherent vowel to the producible set for an abugida.
     """
-    producible = phoneme_inventory(spec) | emission_inventory(spec)
+    producible = set(phoneme_inventory(spec) | emission_inventory(spec))
+    if spec.script_type == "abugida" and spec.inherent_vowel:
+        producible.update(p + spec.inherent_vowel for p in tuple(producible))
     dead: List[str] = []
     for rule in (spec.allophone_rules or ()):
         targets: Sequence[str] = rule.phonemes or ()

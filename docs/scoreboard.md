@@ -391,8 +391,8 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | mnc | northeuralex | 1205 | 0.1411 | 0.1411 | 0.1411 | 0.3560 | 0.3560 | [0.1334, 0.1492] | 0.3560 | research | lexicon-derived |
 | mns | northeuralex | 992 | 0.1024 | 0.0732 | 0.0725 | 0.4698 | 0.4698 | [0.0958, 0.1091] | 0.4597 | research | lexicon-derived |
 | mqs | wikipron | 790 | 0.0495 | 0.0495 | 0.0495 | 0.7823 | 0.7823 | [0.0424, 0.0561] | 0.7823 | research | crowd-scraped |
-| mr | vox_communis | 16938 | 0.2321 | 0.2321 | 0.2321 | 0.0983 | 0.0983 | [0.2298, 0.2344] | 0.0983 | research | epitran-derived |
-| mr | wikipron | 4267 | 0.4351 | 0.4263 | 0.4261 | 0.0307 | 0.0307 | [0.4291, 0.4413] | 0.0305 | research | crowd-scraped |
+| mr | vox_communis | 16938 | 0.3063 | 0.3057 | 0.3057 | 0.0436 | 0.0436 | [0.3041, 0.3084] | 0.0436 | research | epitran-derived |
+| mr | wikipron | 4267 | 0.0535 | 0.0456 | 0.0455 | 0.7157 | 0.7160 | [0.0508, 0.0561] | 0.6904 | research | crowd-scraped |
 | mrj | northeuralex | 1018 | 0.0075 | 0.0075 | 0.0075 | 0.9548 | 0.9548 | [0.0054, 0.0100] | 0.9548 | research | lexicon-derived |
 | ms | ipadict | 28215 | 0.1305 | 0.0558 | 0.0441 | 0.6437 | 0.7225 | [0.1292, 0.1317] | 0.2999 | research | machine-generated |
 | ms | wikipron | 4887 | 0.0967 | 0.0378 | 0.0303 | 0.8207 | 0.8709 | [0.0934, 0.1005] | 0.5267 | research | crowd-scraped |
