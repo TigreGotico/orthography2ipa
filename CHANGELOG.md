@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.76.18a1](https://github.com/TigreGotico/orthography2ipa/tree/7.76.18a1) (2026-08-18)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.76.17a1...7.76.18a1)
+
+**Merged pull requests:**
+
+- fix: ground the Marathi spec in Marathi phonology, not Sanskrit orthography [\#1035](https://github.com/TigreGotico/orthography2ipa/pull/1035) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.76.17a1](https://github.com/TigreGotico/orthography2ipa/tree/7.76.17a1) (2026-08-18)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.76.16a1...7.76.17a1)
@@ -733,10 +741,6 @@
 ## [7.64.3a1](https://github.com/TigreGotico/orthography2ipa/tree/7.64.3a1) (2026-08-10)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.64.2a1...7.64.3a1)
-
-**Merged pull requests:**
-
-- fix\(engine\): sandhi is bounded by the intonational phrase [\#835](https://github.com/TigreGotico/orthography2ipa/pull/835) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.64.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.64.2a1) (2026-08-10)
 
