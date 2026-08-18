@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.76.11a1](https://github.com/TigreGotico/orthography2ipa/tree/7.76.11a1) (2026-08-18)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.76.10a1...7.76.11a1)
+
+**Merged pull requests:**
+
+- fix\(ki\): low central vowel and post-consonantal glide in Kikuyu [\#1012](https://github.com/TigreGotico/orthography2ipa/pull/1012) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.76.10a1](https://github.com/TigreGotico/orthography2ipa/tree/7.76.10a1) (2026-08-18)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.76.9a1...7.76.10a1)
@@ -708,10 +716,6 @@
 ## [7.62.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.62.0a1) (2026-08-10)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.61.0a1...7.62.0a1)
-
-**Merged pull requests:**
-
-- feat\(benchmarks\): system×gold comparison matrix with same-source exclusions [\#818](https://github.com/TigreGotico/orthography2ipa/pull/818) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.61.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.61.0a1) (2026-08-10)
 
