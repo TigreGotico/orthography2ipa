@@ -20,7 +20,7 @@ subjective label.
 ## `skeleton`
 
 - Non-empty `graphemes` inventory (and therefore a non-empty derived or
-  explicit `allophones` map — see `LanguageSpec.__post_init__`).
+  explicit `allophones` map: see `LanguageSpec.__post_init__`).
 - Passes every guard in `tests/test_data_quality.py`, in particular
   `test_non_stub_resolves_to_content` (non-extinct languages above stub
   must resolve to usable grapheme and allophone data).
@@ -34,8 +34,7 @@ All `skeleton` criteria, plus:
 - At least one entry in `sources` (cited phonological reference).
 - A `stress` block when the language has lexical/predictable word
   stress (languages without lexical stress, or whose stress is
-  unencoded because it is not orthography-predictable, are exempt —
-  document the exemption in the spec's `notes`).
+  unencoded because it is not orthography-predictable, are exempt: document the exemption in the spec's `notes`).
 - A gold benchmark registered for at least one of the spec's language
   tags in `scripts/benchmark.py`'s `DATASETS` registry, with a PER
   recorded for it in [`benchmarks/results.json`](../benchmarks/results.json).
@@ -46,7 +45,7 @@ All `research` criteria, plus:
 
 - The registered gold has **at least 500 evaluated entries** (`n` in
   `benchmarks/results.json`) for at least one dataset/language row.
-- That row's provenance tier **can gate a promotion** — i.e. it is not
+- That row's provenance tier **can gate a promotion**: i.e. it is not
   `espeak-derived`, `epitran-derived` or `llm-generated`
   (`can_gate_promotion()` in `scripts/benchmark.py` is the single source of
   truth, and a test enforces this rule):
@@ -60,16 +59,15 @@ All `research` criteria, plus:
     diagnostic, so it can certify nothing.
   A language whose only ≥500-entry gold sits in one of these tiers has no
   usable gold and stays at `research`; a language that clears the bar on a
-  trustworthy gold is **not** disqualified by a poor score on one of them —
-  diverging from espeak (or epitran, or an LLM) may be exactly what a cited
-  source demands. See [benchmarks — provenance](benchmarks.md).
+  trustworthy gold is **not** disqualified by a poor score on one of them: diverging from espeak (or epitran, or an LLM) may be exactly what a cited
+  source demands. See [benchmarks: provenance](benchmarks.md).
 - PER at or below a documented per-language threshold:
-  - **≤ 0.15** for shallow/phonemic orthographies — orthographies where
+  - **≤ 0.15** for shallow/phonemic orthographies: orthographies where
     grapheme-to-phoneme correspondence is largely regular (e.g.
     Spanish, Finnish, Esperanto). A rule-driven engine should approach
     near-perfect accuracy on these; a higher PER signals a spec gap,
     not an inherent orthographic limit.
-  - **≤ 0.25** for deep orthographies — orthographies with significant
+  - **≤ 0.25** for deep orthographies: orthographies with significant
     historical, morphophonemic, or dialectal irregularity (e.g.
     English, French, Portuguese, Danish). The threshold is looser
     because even human-curated gold sets disagree on regional/optional
@@ -84,7 +82,7 @@ All `research` criteria, plus:
     cannot look up a per-language threshold and applies the `≤ 0.25`
     deep-orthography ceiling uniformly. A promotion PR for a
     shallow-orthography language must be reviewed against the `0.15`
-    target by hand before merge — the guard test alone is not
+    target by hand before merge: the guard test alone is not
     sufficient proof for those languages.
 - A per-language documentation page exists under
   [`docs/languages/`](languages/) covering the spec's phonology,
@@ -106,10 +104,10 @@ orthographic-depth signal to key off. Shallow-orthography languages
 tighter `≤ 0.15` target documented above, but that expectation is
 enforced by reviewers reading the spec's `docs/languages/` page during
 promotion review, not by this test. No spec is currently at
-`production` tier, so the guard is presently vacuous — promoting a spec
+`production` tier, so the guard is presently vacuous: promoting a spec
 to `production` is a test-gated act: the benchmark row must exist and
 pass the `0.25` guard, and for shallow-orthography languages the `0.15`
-target must additionally be confirmed by the reviewer before the tier
+target must also be confirmed by the reviewer before the tier
 claim is legitimate.
 
 ---
