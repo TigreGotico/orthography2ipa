@@ -797,11 +797,29 @@ def grapheme_positions(
 
     # 5. after/before vowel / consonant context
     if prev_is_v:
-        pc = base_vowel_letter(prev_ctx.grapheme[0])
+        # A multi-letter vowel grapheme is read off its LAST letter here:
+        # the sound a following consonant actually abuts is the digraph's
+        # closing letter, not its opening one (Old Irish ⟨ía úa⟩ spell a
+        # long-vowel-plus-offglide where the *trailing* ⟨a⟩ sets quality
+        # under leathan le leathan, so ⟨n⟩ in ⟨cían⟩ is broad, not slender
+        # off the digraph's opening ⟨í⟩). BEFORE_* (line ~681) mirrors this
+        # with the opening letter of the FOLLOWING grapheme, which is the
+        # sound a preceding consonant abuts, so it is deliberately left
+        # reading ``grapheme[0]``. Single-letter graphemes are unaffected
+        # (first and last letter coincide); non-Latin/unclassifiable
+        # trailing letters fall back to the whole-grapheme axis so scripts
+        # that decide axis from IPA rather than the letter itself keep
+        # their prior behaviour.
+        prev_trailing = prev_ctx.grapheme[-1] if len(prev_ctx.grapheme) > 1 else prev_ctx.grapheme[0]
+        pc = base_vowel_letter(prev_trailing)
         exact = _AFTER_EXACT.get(pc)
         if exact is not None:
             pos.append(exact)
-        if prev_ctx.is_front:
+        if len(prev_ctx.grapheme) > 1 and is_front_vowel(prev_trailing):
+            pos.append(GraphemePosition.AFTER_FRONT_VOWEL)
+        elif len(prev_ctx.grapheme) > 1 and is_back_vowel(prev_trailing):
+            pos.append(GraphemePosition.AFTER_BACK_VOWEL)
+        elif prev_ctx.is_front:
             pos.append(GraphemePosition.AFTER_FRONT_VOWEL)
         elif prev_ctx.is_back:
             pos.append(GraphemePosition.AFTER_BACK_VOWEL)

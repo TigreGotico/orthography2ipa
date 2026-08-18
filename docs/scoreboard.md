@@ -568,7 +568,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | sdc | wikipron | 321 | 0.1865 | 0.1865 | 0.1865 | 0.3738 | 0.3738 | [0.1653, 0.2072] | 0.3738 | research | crowd-scraped |
 | se | wikipron | 4125 | 0.2749 | 0.2749 | 0.2749 | 0.0742 | 0.0742 | [0.2702, 0.2794] | 0.0742 | research | crowd-scraped |
 | sel | northeuralex | 886 | 0.0342 | 0.0292 | 0.0291 | 0.8149 | 0.8160 | [0.0294, 0.0393] | 0.7935 | research | lexicon-derived |
-| sga | wikipron | 3700 | 0.4192 | 0.4192 | 0.4192 | 0.0849 | 0.0849 | [0.4119, 0.4256] | 0.0849 | research | crowd-scraped |
+| sga | wikipron | 3700 | 0.0889 | 0.0626 | 0.0598 | 0.6859 | 0.6905 | [0.0843, 0.0936] | 0.6089 | research | crowd-scraped |
 | shn | wikipron | 2604 | 0.3348 | 0.3348 | 0.3348 | 0.0434 | 0.0434 | [0.3280, 0.3426] | 0.0434 | research | crowd-scraped |
 | si | wikipron | 386 | 0.1394 | 0.1269 | 0.1269 | 0.5570 | 0.5570 | [0.1209, 0.1586] | 0.5207 | research | crowd-scraped |
 | sia | wikipron | 179 | 0.3681 | 0.3681 | 0.3681 | 0.1620 | 0.1620 | [0.3304, 0.4035] | 0.1620 | research | crowd-scraped |
