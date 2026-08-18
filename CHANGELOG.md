@@ -1,5 +1,9 @@
 # Changelog
 
+## [7.75.15a1](https://github.com/TigreGotico/orthography2ipa/tree/7.75.15a1) (2026-08-18)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.75.14a1...7.75.15a1)
+
 ## [7.75.14a1](https://github.com/TigreGotico/orthography2ipa/tree/7.75.14a1) (2026-08-18)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.75.13a1...7.75.14a1)
@@ -746,10 +750,6 @@
 ## [7.54.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.54.0a2) (2026-08-04)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.54.0a1...7.54.0a2)
-
-**Merged pull requests:**
-
-- data: beat-espeak campaign — Germanic \(nl/de/sv\) [\#791](https://github.com/TigreGotico/orthography2ipa/pull/791) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.54.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.54.0a1) (2026-08-04)
 
