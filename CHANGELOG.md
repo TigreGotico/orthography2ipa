@@ -1,5 +1,14 @@
 # Changelog
 
+## [7.76.16a1](https://github.com/TigreGotico/orthography2ipa/tree/7.76.16a1) (2026-08-18)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.76.15a1...7.76.16a1)
+
+**Merged pull requests:**
+
+- fix\(zu\): read the Zulu clicks, implosives, penultimate length and the syllabic um- nasal [\#1032](https://github.com/TigreGotico/orthography2ipa/pull/1032) ([JarbasAl](https://github.com/JarbasAl))
+- fix\(ja\): realise the moraic nasal and obstruent, and add the missing kana rows [\#1025](https://github.com/TigreGotico/orthography2ipa/pull/1025) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.76.15a1](https://github.com/TigreGotico/orthography2ipa/tree/7.76.15a1) (2026-08-18)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.76.14a1...7.76.15a1)
@@ -744,10 +753,6 @@
 ## [7.63.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.63.0a1) (2026-08-10)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.62.0a1...7.63.0a1)
-
-**Merged pull requests:**
-
-- feat\(benchmarks\): top-k oracle PER — lattice quality vs ranking error [\#830](https://github.com/TigreGotico/orthography2ipa/pull/830) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.62.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.62.0a1) (2026-08-10)
 
