@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.76.12a2](https://github.com/TigreGotico/orthography2ipa/tree/7.76.12a2) (2026-08-18)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.76.12a1...7.76.12a2)
+
+**Merged pull requests:**
+
+- ci: regenerate ru/vox\_communis board row, make stale-row gate blocking [\#1020](https://github.com/TigreGotico/orthography2ipa/pull/1020) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.76.12a1](https://github.com/TigreGotico/orthography2ipa/tree/7.76.12a1) (2026-08-18)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.76.11a1...7.76.12a1)
@@ -744,10 +752,6 @@
 ## [7.59.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.59.1a1) (2026-08-10)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.59.0a1...7.59.1a1)
-
-**Merged pull requests:**
-
-- fix\(nl\): heteromorphemic ⟨tj⟩ is two segments, not a palatalized affricate [\#820](https://github.com/TigreGotico/orthography2ipa/pull/820) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.59.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.59.0a1) (2026-08-10)
 
