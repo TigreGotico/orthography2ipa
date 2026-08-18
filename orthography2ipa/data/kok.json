@@ -35,6 +35,14 @@
     "औ": [
       "əu"
     ],
+    "ऋ": [
+      "ɾɪ",
+      "ɾu"
+    ],
+    "ऑ": [
+      "æ",
+      "ɔ"
+    ],
     "ा": [
       "aː"
     ],
@@ -63,6 +71,18 @@
     ],
     "ौ": [
       "əu"
+    ],
+    "ृ": [
+      "ɾɪ",
+      "ɾu"
+    ],
+    "ॅ": [
+      "æ",
+      "ɛ"
+    ],
+    "ॉ": [
+      "æ",
+      "ɔ"
     ],
     "ं": [
       "̃"
@@ -399,7 +419,7 @@
       "notes": "Dravidian substrate from pre-IA population of Goa"
     }
   ],
-  "notes": "Konkani, 22nd scheduled language of India (1992). Spoken in Goa (official), Karnataka, and Kerala. Multiple scripts: Devanagari (official Goa), Kannada, Roman; this spec reads the Devanagari orthography. Strong Dravidian substrate features: retroflex ⟨ळ⟩ = [ɭ]. Close to Marathi but considered a separate language by speakers.\n\nThe inherent vowel of a consonant letter is deleted word-finally and in the VC_CV environment, as in the other modern Indo-Aryan languages and unlike Sanskrit, the parent spec; the rules are in allophone_rules.\n\nThe mid vowels are /e ɛ o ɔ/ and Devanagari marks no length on ⟨े⟩/⟨ो⟩, so those matras read short, with the open-mid quality as a second candidate. The affricate series /ts dz/ and /tʃ dʒ/ are both written ⟨च⟩/⟨ज⟩ and are not recoverable from the spelling, so both are in the lattice. The rhotic is an alveolar tap and ⟨ह⟩ is a glottal fricative; a sonorant in conjunct with ⟨ह⟩ is one murmured segment (म्हस [mʱəs]).",
+  "notes": "Konkani, 22nd scheduled language of India (1992). Spoken in Goa (official), Karnataka, and Kerala. Multiple scripts: Devanagari (official Goa), Kannada, Roman; this spec reads the Devanagari orthography. Strong Dravidian substrate features: retroflex ⟨ळ⟩ = [ɭ]. Close to Marathi but considered a separate language by speakers.\n\nThe inherent vowel of a consonant letter is deleted word-finally and in the VC_CV environment, as in the other modern Indo-Aryan languages and unlike Sanskrit, the parent spec; the rules are in allophone_rules.\n\nThe mid vowels are /e ɛ o ɔ/ and Devanagari marks no length on ⟨े⟩/⟨ो⟩, so those matras read short, with the open-mid quality as a second candidate. The affricate series /ts dz/ and /tʃ dʒ/ are both written ⟨च⟩/⟨ज⟩ and are not recoverable from the spelling, so both are in the lattice. The rhotic is an alveolar tap and ⟨ह⟩ is a glottal fricative; a sonorant in conjunct with ⟨ह⟩ is one murmured segment (म्हस [mʱəs]).\n\n⟨ऋ⟩/⟨ृ⟩ (vocalic r) were missing from the grapheme table, which silently dropped the segment rather than reading it as the tap-plus-vowel reflex Indo-Aryan languages give the old Sanskrit syllabic r̩ (Masica 1991, ch. 4). The kaikki gold has two occurrences, both after ⟨क⟩: कृपेन [kɾupɛːn] and संस्कृताय [sə̃skɾitɑːj], one with /u/ and one with /i/; /ɾɪ/ is kept as the first candidate and /ɾu/ as the second. ⟨ऑ⟩/⟨ॉ⟩ (candra o) and ⟨ॅ⟩ (candra e) were likewise missing; they mark English-loan vowels Devanagari has no native letter for. The kaikki gold has one occurrence of each — ऑगस्ट [æɡəsʈ], मॅरी [mæɾiː] — both /æ/, so /æ/ is the first candidate for all three graphemes; /ɔ/ and /ɛ/ are kept as second candidates, the values the broader candra-vowel convention documents and Marathi's spec (an adstrate ancestor here) carries.",
   "quality": "research",
   "script_type": "abugida",
   "inherent_vowel": "ə",
