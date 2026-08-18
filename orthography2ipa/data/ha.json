@@ -63,11 +63,15 @@
     "n": [
       "n"
     ],
+    "nn": [
+      "nn"
+    ],
     "o": [
       "o"
     ],
     "r": [
-      "r"
+      "r",
+      "ɽ"
     ],
     "s": [
       "s"
@@ -75,11 +79,17 @@
     "sh": [
       "ʃ"
     ],
+    "ssh": [
+      "ʃʃ"
+    ],
     "t": [
       "t"
     ],
     "ts": [
-      "tsʼ"
+      "sʼ"
+    ],
+    "tts": [
+      "sʼsʼ"
     ],
     "u": [
       "u"
@@ -94,11 +104,97 @@
       "z"
     ],
     "ƴ": [
-      "ʔʲ"
+      "j̰"
     ],
     "ʼy": [
-      "ʔj"
+      "j̰"
+    ],
+    "kw": [
+      "kʷ"
+    ],
+    "kkw": [
+      "kʷkʷ"
+    ],
+    "gw": [
+      "ɡʷ"
+    ],
+    "ggw": [
+      "ɡʷɡʷ"
+    ],
+    "ƙw": [
+      "kʷʼ"
+    ],
+    "ƙƙw": [
+      "kʷʼkʷʼ"
+    ],
+    "ky": [
+      "kʲ"
+    ],
+    "kky": [
+      "kʲkʲ"
+    ],
+    "gy": [
+      "ɡʲ"
+    ],
+    "ggy": [
+      "ɡʲɡʲ"
+    ],
+    "ƙy": [
+      "kʲʼ"
+    ],
+    "ƙƙy": [
+      "kʲʼkʲʼ"
+    ],
+    "fy": [
+      "fʲ"
+    ],
+    "ffy": [
+      "fʲfʲ"
+    ],
+    "p": [
+      "p"
+    ],
+    "'y": [
+      "j̰"
     ]
+  },
+  "positional_graphemes": {
+    "a": {
+      "word_initial": [
+        "ʔa"
+      ]
+    },
+    "e": {
+      "word_initial": [
+        "ʔe"
+      ]
+    },
+    "i": {
+      "word_initial": [
+        "ʔi"
+      ]
+    },
+    "o": {
+      "word_initial": [
+        "ʔo"
+      ]
+    },
+    "u": {
+      "word_initial": [
+        "ʔu"
+      ]
+    },
+    "r": {
+      "word_final": [
+        "r"
+      ]
+    },
+    "n": {
+      "word_final": [
+        "n",
+        "ŋ"
+      ]
+    }
   },
   "allophones": {
     "a": [
@@ -123,7 +219,9 @@
       "e"
     ],
     "f": [
-      "f"
+      "f",
+      "p",
+      "ɸ"
     ],
     "ɡ": [
       "ɡ"
@@ -156,8 +254,7 @@
       "o"
     ],
     "r": [
-      "r",
-      "ɾ"
+      "r"
     ],
     "s": [
       "s"
@@ -167,9 +264,6 @@
     ],
     "t": [
       "t"
-    ],
-    "tsʼ": [
-      "tsʼ"
     ],
     "u": [
       "u"
@@ -183,12 +277,52 @@
     "z": [
       "z"
     ],
-    "ʔʲ": [
-      "ʔʲ"
+    "sʼ": [
+      "sʼ"
+    ],
+    "ɽ": [
+      "ɽ"
+    ],
+    "j̰": [
+      "j̰"
+    ],
+    "p": [
+      "p"
+    ],
+    "kʷ": [
+      "kʷ"
+    ],
+    "ɡʷ": [
+      "ɡʷ"
+    ],
+    "kʷʼ": [
+      "kʷʼ"
+    ],
+    "kʲ": [
+      "kʲ"
+    ],
+    "ɡʲ": [
+      "ɡʲ"
+    ],
+    "kʲʼ": [
+      "kʲʼ"
+    ],
+    "fʲ": [
+      "fʲ"
     ]
   },
-  "notes": "Hausa in Latin script (Boko). Implosives: Ɓ = /ɓ/, Ɗ = /ɗ/. Ƙ = ejective /kʼ/. Ts = ejective /tsʼ/. Ƴ = palatal glottal. 2-tone language (high, low) with falling contour. Long vowels written doubled.",
+  "notes": "Hausa in the Boko (modified Roman) orthography, as used in Nigeria and Niger. The alphabet represents neither tone nor vowel length: Niger's attempt to write long vowels with doubled letters failed and was dropped (Newman 1996: 537 and its note 2). Both are therefore invisible to a grapheme-driven transcriber and are the dominant cost against any tone- and length-marked gold; see docs/languages/ha.md.\n\nThe glottalized series is written with hooked letters and one digraph. Ɓ and Ɗ are the laryngealized implosive stops /ɓ ɗ/; Ƙ and Ts are ejectives whose plain counterparts are /k/ and /s/ respectively, so Ts is the ejective FRICATIVE /sʼ/, not an affricate /tsʼ/ (Newman 1996: 539). Ƴ (spelled ʼy in the Niger orthography) is the glottalized, laryngealized palatal approximant /j̰/; the two spellings are one phoneme and must transcribe alike.\n\nKw, gw, ƙw, ky, gy, ƙy and fy are unit phonemes, not consonant-plus-glide sequences: they contrast with their plain counterparts before /a(a)/, as in gadaa 'duiker' vs gwadaa 'test!' vs gyaɗaa 'peanuts' (Newman 1996: 538 Table 27-1, 539). Velars are additionally and redundantly labialized before back vowels and palatalized before front vowels; that allophony is not written and is not encoded here, because it is predictable rather than contrastive.\n\nHausa contrasts two rhotics that Boko spells identically as ⟨r⟩: an apical tap or roll /r/ and a retroflex flap /ɽ/. The flap is the native Hausa rhotic; the roll entered through Arabic, Kanuri and English loans, through ideophones, and through rhotacization of syllable-final alveolars (Newman 1996: 539-540). Which one a word takes is lexical and carries no orthographic cue, so ⟨r⟩ is encoded as an ordered CANDIDATE pair rather than a single guess; the ordering is a decoding default, not a claim about relative frequency. One position is deterministic and is encoded positionally: word-finally only the roll occurs (Newman 1996: 539).\n\nP is not a native Hausa phoneme; it is absent from the consonant inventory and appears only in unassimilated loan spellings (Pakistan, Paris), where it is read /p/. The reverse also holds: /f/ is variably realized [f], [p] or [ɸ], which is recorded in the allophone map (Newman 1996: 539). In word-final position /n/ is pronounced [ŋ] (Newman 1996: 539). The statement is strictly positional, so the realization is encoded as a word-final candidate of ⟨n⟩ and nowhere else: /n/ stays the broad transcription both golds agree with, [ŋ] stays reachable at the end of a word, and the impossible word-initial, intervocalic and half-geminate [ŋ] that an unconditioned allophone would generate never enter the lattice. Word-initial vowels take an obligatory epenthetic glottal-stop onset, Hausa having no vowel-initial syllables.\n\nTwo divergences from the wikipron gold are deliberate. Its orthographic column is stripped of the tone and length its IPA column carries, so no rule over that input can recover them. It writes ⟨j⟩ as /ʒ/, which is the Niger pronunciation; Standard (Kano) Hausa has the affricate /dʒ/ and that is what is encoded (Newman 1996: 538). It also writes ⟨ky gy⟩ as the palatal stops [c ɟ]; Newman's analysis, followed here, has palatalized velars /kʲ ɡʲ/ instead.\n\nAll Hausa consonants can be geminated. Where a digraph is involved, only the digraph's first letter is written doubled — ⟨sasshee⟩ for /saʃʃee/, not ⟨sashshee⟩ — but the phonemic result is a geminate of the whole digraph unit, e.g. gásasshee 'roasted' is /ɡasaʃʃee/, with a geminate /ʃʃ/, not a plain /s/ before the digraph (Newman 1996: 540). The same holds for the labialized and palatalized velar and /fʲ/ units: ⟨kkw⟩ is /kʷkʷ/, not /k/ + /kʷ/. That closed set of doubled-digraph spellings (⟨ssh⟩, ⟨tts⟩, ⟨kkw⟩, ⟨ggw⟩, ⟨ƙƙw⟩, ⟨kky⟩, ⟨ggy⟩, ⟨ƙƙy⟩, ⟨ffy⟩) is encoded directly in the grapheme table; gemination of plain single-letter consonants (⟨bb⟩, ⟨mm⟩, ...) already falls out of processing each doubled letter separately and needs no extra entry, with one exception: ⟨nn⟩ is encoded directly too, because processing its second letter separately would put it in word-final position and pull in the word-final [ŋ] candidate, producing an unattested half-geminate [nŋ]; the direct entry keeps ⟨nn⟩ a plain geminate /nn/.",
   "sources": [
+    {
+      "id": "newman1996",
+      "author": "Newman, P.",
+      "year": 1996,
+      "title": "Hausa Phonology (chapter 27)",
+      "publisher": "In A. S. Kaye & P. T. Daniels (eds.), Phonologies of Asia and Africa, Eisenbrauns",
+      "url": "https://scholarworks.iu.edu/dspace/bitstreams/f1d4231b-d713-4134-970c-071c5f8485ed/download",
+      "pages": "537-552",
+      "notes": "Consulted directly; consonant inventory Table 27-1 p.538, segmental discussion pp.539-540."
+    },
     {
       "id": "newman2000",
       "author": "Newman, P.",
