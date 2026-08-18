@@ -430,7 +430,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | nl | vox_communis | 26136 | 0.2925 | 0.2503 | 0.2283 | 0.1611 | 0.1900 | [0.2886, 0.2965] | 0.0989 | research | epitran-derived |
 | nl | wikipron | 45872 | 0.0902 | 0.0701 | 0.0587 | 0.6416 | 0.6836 | [0.0891, 0.0914] | 0.5554 | research | crowd-scraped |
 | nmy | wikipron | 354 | 0.1087 | 0.1084 | 0.1084 | 0.5989 | 0.5989 | [0.0913, 0.1288] | 0.5989 | research | crowd-scraped |
-| nn | wikipron | 3829 | 0.4988 | · | · | · | · | [0.4916, 0.5061] | 0.0486 | skeleton | crowd-scraped |
+| nn | wikipron | 3829 | 0.2649 | 0.2120 | 0.2044 | 0.3839 | 0.3962 | [0.2570, 0.2730] | 0.3152 | research | crowd-scraped |
 | no | wikipron | 1093 | 0.4105 | · | · | · | · | [0.3983, 0.4223] | 0.0823 | research | crowd-scraped |
 | non | wikipron | 270 | 0.2387 | · | · | · | · | [0.2173, 0.2638] | 0.2778 | research | crowd-scraped |
 | nrf | wikipron | 143 | 0.2557 | 0.2097 | 0.2003 | 0.4336 | 0.4476 | [0.2087, 0.3017] | 0.3636 | research | crowd-scraped |
