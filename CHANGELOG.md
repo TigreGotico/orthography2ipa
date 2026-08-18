@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.76.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.76.1a1) (2026-08-18)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.76.0a1...7.76.1a1)
+
+**Merged pull requests:**
+
+- fix\(da\): silent h, a-retraction next to /r/, g-elision, soft dd, c before front vowels [\#997](https://github.com/TigreGotico/orthography2ipa/pull/997) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.76.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.76.0a1) (2026-08-18)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.75.15a1...7.76.0a1)
@@ -742,10 +750,6 @@
 ## [7.56.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.56.0a1) (2026-08-05)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.55.0a1...7.56.0a1)
-
-**Merged pull requests:**
-
-- feat: German beats espeak — Dehnungs-h, pretonic tenseness, suffix stress [\#797](https://github.com/TigreGotico/orthography2ipa/pull/797) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.55.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.55.0a1) (2026-08-04)
 
