@@ -5,55 +5,153 @@
   "script_type": "alphabet",
   "quality": "skeleton",
   "graphemes": {
-    "gǀ": ["ᶢǀ"],
-    "gǁ": ["ᶢǁ"],
-    "gǃ": ["ᶢǃ"],
-    "gǂ": ["ᶢǂ"],
-    "nǀ": ["ᵑǀ"],
-    "nǁ": ["ᵑǁ"],
-    "nǃ": ["ᵑǃ"],
-    "nǂ": ["ᵑǂ"],
-    "ǀh": ["ǀʰ"],
-    "ǁh": ["ǁʰ"],
-    "ǃh": ["ǃʰ"],
-    "ǂh": ["ǂʰ"],
-    "ǀʼ": ["ǀˀ"],
-    "ǁʼ": ["ǁˀ"],
-    "ǃʼ": ["ǃˀ"],
-    "ǂʼ": ["ǂˀ"],
-    "ǀx": ["ǀ͡χ"],
-    "ǁx": ["ǁ͡χ"],
-    "ǃx": ["ǃ͡χ"],
-    "ǂx": ["ǂ͡χ"],
-    "ny": ["ɲ"],
-    "ǀ": ["ǀ"],
-    "ǁ": ["ǁ"],
-    "ǃ": ["ǃ"],
-    "ǂ": ["ǂ"],
-    "ʘ": ["ʘ"],
-    "ĩ": ["ĩ"],
-    "ẽ": ["ẽ"],
-    "ã": ["ã"],
-    "õ": ["õ"],
-    "ũ": ["ũ"],
-    "i": ["i"],
-    "e": ["e"],
-    "a": ["a"],
-    "o": ["o"],
-    "u": ["u"],
-    "p": ["p"],
-    "k": ["k"],
-    "b": ["b"],
-    "g": ["ɡ"],
-    "s": ["s"],
-    "z": ["z"],
-    "x": ["χ"],
-    "h": ["h"],
-    "m": ["m"],
-    "n": ["n"],
-    "r": ["ɾ"],
-    "l": ["l"],
-    "v": ["β"]
+    "gǀ": [
+      "ᶢǀ"
+    ],
+    "gǁ": [
+      "ᶢǁ"
+    ],
+    "gǃ": [
+      "ᶢǃ"
+    ],
+    "gǂ": [
+      "ᶢǂ"
+    ],
+    "nǀ": [
+      "ᵑǀ"
+    ],
+    "nǁ": [
+      "ᵑǁ"
+    ],
+    "nǃ": [
+      "ᵑǃ"
+    ],
+    "nǂ": [
+      "ᵑǂ"
+    ],
+    "ǀh": [
+      "ǀʰ"
+    ],
+    "ǁh": [
+      "ǁʰ"
+    ],
+    "ǃh": [
+      "ǃʰ"
+    ],
+    "ǂh": [
+      "ǂʰ"
+    ],
+    "ǀʼ": [
+      "ǀˀ"
+    ],
+    "ǁʼ": [
+      "ǁˀ"
+    ],
+    "ǃʼ": [
+      "ǃˀ"
+    ],
+    "ǂʼ": [
+      "ǂˀ"
+    ],
+    "ǀx": [
+      "ǀ͡χ"
+    ],
+    "ǁx": [
+      "ǁ͡χ"
+    ],
+    "ǃx": [
+      "ǃ͡χ"
+    ],
+    "ǂx": [
+      "ǂ͡χ"
+    ],
+    "ny": [
+      "ɲ"
+    ],
+    "ǀ": [
+      "ǀ"
+    ],
+    "ǁ": [
+      "ǁ"
+    ],
+    "ǃ": [
+      "ǃ"
+    ],
+    "ǂ": [
+      "ǂ"
+    ],
+    "ʘ": [
+      "ʘ"
+    ],
+    "ĩ": [
+      "ĩ"
+    ],
+    "ẽ": [
+      "ẽ"
+    ],
+    "ã": [
+      "ã"
+    ],
+    "õ": [
+      "õ"
+    ],
+    "ũ": [
+      "ũ"
+    ],
+    "i": [
+      "i"
+    ],
+    "e": [
+      "e"
+    ],
+    "a": [
+      "a"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "p": [
+      "p"
+    ],
+    "k": [
+      "k"
+    ],
+    "b": [
+      "b"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "s": [
+      "s"
+    ],
+    "z": [
+      "z"
+    ],
+    "x": [
+      "χ"
+    ],
+    "h": [
+      "h"
+    ],
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "r": [
+      "ɾ"
+    ],
+    "l": [
+      "l"
+    ],
+    "v": [
+      "β"
+    ]
   },
   "parent": "x-clade-tuuu1241",
   "ancestors": [
@@ -64,7 +162,7 @@
       "notes": "Descent per Glottolog classification of Nǁng (nngg1234)."
     }
   ],
-  "notes": "Tuu (!Ui branch) click language of South Africa (Nǁng/Nǀuu), critically endangered. This is an honest PARTIAL skeleton: there is no single standardized community orthography, and the descriptive literature presents the inventory in phonetic transcription rather than a settled spelling. The five click places and the g-/n-/h-/x-/glottal accompaniment digraphs above follow general Khoisanist transcription convention and are plausible but not confirmed as official. Tone, the strident/pharyngealized vowel phonation, and many finer click airstream and phonation contrasts are not represented, so a substantial PER floor is expected.",
+  "notes": "Tuu (!Ui branch) click language of South Africa (Nǁng/Nǀuu), critically endangered. This is an honest PARTIAL skeleton: there is no single standardized community orthography, and the descriptive literature presents the inventory in phonetic transcription rather than a settled spelling. The five click places and the g-/n-/h-/x-/glottal accompaniment digraphs above follow general Khoisanist transcription convention and are plausible but not confirmed as official. Tone, the strident/pharyngealized vowel phonation, and many finer click airstream and phonation contrasts are not represented, so a substantial PER floor is expected. Nǁng/Nǀuu tone is not consistently recoverable from the partial community orthography and is left unencoded; stress is not a separate contrastive category (documented exemption). Tier stays at skeleton (not research) despite the cited Namaseb 2022 dictionary/sketch: the grapheme table itself remains an unconfirmed plausible transcription convention, not the settled community spelling the research tier presumes.",
   "iso639_3": "ngh",
   "glottolog_code": null,
   "sources": [
@@ -89,6 +187,16 @@
       "pages": null,
       "notes": "Phonology reference; orthography inferred, partial coverage.",
       "wikipedia_url": "https://en.wikipedia.org/wiki/N%C7%81ng_language"
+    },
+    {
+      "id": "ngh_namaseb2022",
+      "author": "Namaseb, Levi; et al.",
+      "year": 2022,
+      "title": "Nǀuuki Namagowab Afrikaans English ǂXoakiǂxanisi/Mîdi di ǂKhanis/Woordeboek/Dictionary",
+      "publisher": "Nǀuu community language project",
+      "url": null,
+      "pages": null,
+      "notes": "Community-developed dictionary and grammatical sketch of Nǀuu/Nǁng, the source of the practical orthography Namaseb has led development of since the late 1990s; consulted to check the honest partial-skeleton grapheme table, which remains partial because there is no single standardized community spelling."
     }
   ],
   "wikipedia": [

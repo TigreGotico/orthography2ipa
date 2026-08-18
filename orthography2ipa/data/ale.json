@@ -105,7 +105,7 @@
       "notes": "Descent per Glottolog classification of Aleut (aleu1260)."
     }
   ],
-  "notes": "Skeleton. Eskimo-Aleut (Aleut/Unangam) language of the Aleutian Islands written in the Bergsland practical orthography. Long vowels are doubled (aa ii uu); ng=[ŋ], d=[ð], g=[ɣ] with circumflexed x̂=[χ] and ĝ=[ʁ] for the uvular fricatives, and l̂=[ɬ] are mapped. The h-prefixed voiceless sonorants (hm hn hng hl hw hy) are mapped to voiceless counterparts. Predictable stress is left unencoded.",
+  "notes": "Skeleton. Eskimo-Aleut (Aleut/Unangam) language of the Aleutian Islands written in the Bergsland practical Latin orthography (Bergsland 1994, 1997) — the dominant modern writing system for Aleut (a historical Cyrillic orthography, introduced by Russian Orthodox missionaries in the 19th century, is now a minority/heritage convention; Latin is the one used in current pedagogical and dictionary materials, so it is the one modelled here). Long vowels are doubled (aa ii uu); ng=[ŋ], d=[ð], g=[ɣ] with circumflexed x̂=[χ] and ĝ=[ʁ] for the uvular fricatives, and l̂=[ɬ] are mapped. The h-prefixed voiceless sonorants (hm hn hng hl hw hy) are mapped to voiceless counterparts. Predictable stress is left unencoded. IMPORTANT — gold-vs-orthography finding: the NorthEuraLex `ale` forms were checked against this spec and do NOT match the Bergsland practical spelling. The gold uses a combining-acute ⟨x́⟩ (not the circumflex ⟨x̂⟩ Bergsland's orthography writes), hyphenates a stem/suffix boundary as a literal citation-form artifact, and — most importantly — shows a systematic vowel-quality shift not attested in Aleut phonology under Bergsland's analysis (unstressed i→[e], u→[y]/[o], a→[ɛ]/[ɑ] depending on the word, doubled ⟨aa⟩→[ɛː] rather than [aː]). This is a narrow phonetic transcription of a specific recorded pronunciation (or a distinct source dialect's realization), not the practical orthography Aleut is written in; modelling it as if it were the spelling would misdescribe the language. This spec therefore keeps the real Bergsland Latin orthography and stays at `skeleton` rather than chasing the gold's PER with orthography-violating rules.",
   "iso639_3": "ale",
   "glottolog_code": null,
   "sources": [
@@ -119,6 +119,17 @@
       "pages": null,
       "notes": "Classification reference for a skeleton-tier entry.",
       "wikipedia_url": null
+    },
+    {
+      "id": "bergsland1997",
+      "author": "Bergsland, Knut",
+      "year": 1997,
+      "title": "Aleut Grammar (Unangam Tunuganaan Achixaasix̂)",
+      "publisher": "Alaska Native Language Center",
+      "url": null,
+      "pages": null,
+      "notes": "Reference grammar establishing the practical Latin orthography, phoneme inventory, and stress rules used as the basis for this spec; consulted to check the NorthEuraLex gold against the real orthography.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Aleut_language"
     },
     {
       "id": "ale_orthography",
