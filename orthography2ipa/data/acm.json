@@ -3,7 +3,7 @@
   "name": "Mesopotamian Arabic",
   "script": "Arabic",
   "script_type": "abjad",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "ب": [
       "b"

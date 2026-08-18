@@ -26,7 +26,7 @@ not to certify a language on its own.
 | `source_variety` | the variety label the source itself uses |
 | `orthography` | the word as printed by the source, if it printed one |
 | `orthography_vocalized` | Arabic only: the same word with ḥarakāt (see below) |
-| `orthography_provenance` | `as-printed` or `editor-supplied` |
+| `orthography_provenance` | `as-printed` or `editor-supplied`. A source that prints only a transcription gives `editor-supplied`, whatever the spelling costs to derive — the Tetun stress inventory is the clearest case: `kabás` needs the grammar's acute-accent rule and `hakarak` needs nothing at all, and both are `editor-supplied` because neither word is printed on the page |
 | `source_notation` | the source's transcription **verbatim**, brackets and all |
 | `notation_system` | `ipa` or `arabicist-transliteration` |
 | `ipa` | the normalized IPA actually scored |
@@ -58,6 +58,7 @@ not to certify a language on its own.
 | Guerrero (2019), *Arabica* 66(1-2) | Maghrebi *ǧīm* reflexes (Tangiers / Fez / Tunis / Tripoli / Tlemcen) | `ar-MA` / `ar-TN` / `ar-LY` / `ar-DZ` | 4 / 2 / 3 / 1 |
 | Benkato (2020), *Maghrebi Arabic* (Lucas & Manfredi, eds.) | Libyan Arabic (Tripoli / Benghazi) | `ar-LY` | 3 |
 | Taine-Cheikh (2007), EALL *Ḥassāniyya Arabic* | Ḥassāniyya (Mauritania, Gǝbla) | `ar-MR` | 18 |
+| Williams-van Klinken, Hajek & Nordlinger (2002), Pacific Linguistics 528 | Tetun Dili | `tet` | 55 |
 | La Rosa (2021), Languages 6:145 | Tunisian Sahel (Mahdia/Msaken) | `ar-TN` | 7 |
 | Watson (2002), The Phonology and Morphology of Arabic | Cairene / Moroccan (Lmnabha, as quoted from Elmedlaoui) / Ṣanʿānī | `ar-EG` / `ar-MA` / `ar-YE` | 18 / 1 / 15 |
 | Alhoody (2019), Newcastle PhD | Qassimi (Qaṣīm) | `ar-SA-x-qassim` | 12 |
