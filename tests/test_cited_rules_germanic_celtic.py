@@ -1988,3 +1988,90 @@ def test_grc_pitch_accent_is_ignored_not_destructive():
     ⟨ό⟩ must still be the vowel [o].
     """
     assert _t("grc", "λόγος") == _t("grc", "λογος")
+
+
+# ===========================================================================
+# de-x-alemannic — Alemannic German (Schwyzerdütsch), ISO 639-3 gsw
+# ===========================================================================
+
+
+def test_alemannic_ch_is_always_ach_laut():
+    """⟨ch⟩ is the Ach-Laut in every position; the Ich-Laut [ç] is absent.
+
+    de-x-alemannic notes cite Wikipedia "Swiss German" ("Swiss German /x/
+    does not have the allophone [ç] but is typically [x], with allophones
+    [ʁ̥ – χ]") and "Alemannic German" ("High Alemannic, Lake Constance
+    Alemannic and Highest Alemannic dialects exclusively use the
+    Ach-Laut"). de-DE splits ⟨ch⟩ into [ç] after front vowels and [x]
+    after back vowels; Alemannic does not.
+    """
+    assert "ç" not in _t("de-x-alemannic", "Chilbi")
+    assert "ç" not in _t("de-x-alemannic", "Chueche")
+    # the de-DE parent is the contrast case
+    assert "ç" in _t("de-DE", "ich")
+
+
+def test_alemannic_initial_ch_is_fricative_not_stop():
+    """Word-initial ⟨Ch⟩ is [x], the completed High German shift of /k/.
+
+    Wikipedia "Alemannic German": "High Alemannic and Highest Alemannic
+    completely fricativize initial /k/ to [x]." de-DE maps word-initial
+    ⟨ch⟩ to [k] (the Greek-loan value, Chor), which is wrong for the
+    Alemannic lexicon (Chatz, Chilbi, Chueche).
+    """
+    assert _t("de-x-alemannic", "Chatz").lstrip("ˈ").startswith("x")
+
+
+def test_alemannic_k_is_affricated():
+    """⟨k⟩ and ⟨ck⟩ spell the affricate /kx/.
+
+    Wikipedia "Swiss German": "⟨k⟩ (and ⟨ck⟩) are used for the affricate
+    /kx/."
+    """
+    assert "kx" in _t("de-x-alemannic", "Brocki")
+
+
+def test_alemannic_has_no_voiced_s():
+    """No voiced obstruents: ⟨s⟩ is [s] in every position.
+
+    Wikipedia "Swiss German": "Like most other Southern German dialects,
+    Swiss German dialects have no voiced obstruents." de-DE voices
+    word-initial and intervocalic ⟨s⟩ to [z].
+    """
+    assert "z" not in _t("de-x-alemannic", "sii")
+    assert "z" in _t("de-DE", "Sie")
+
+
+def test_alemannic_doubled_vowel_is_long():
+    """A doubled vowel letter spells the long vowel (Dieth-Schreibung).
+
+    de.wikipedia "Dieth-Schreibung": "Kurze Vokale werden einfach
+    geschrieben, lange Vokale doppelt."
+    """
+    assert "uː" in _t("de-x-alemannic", "Huus")
+    assert "iː" in _t("de-x-alemannic", "Wii")
+    assert "yː" in _t("de-x-alemannic", "Füür")
+
+
+def test_alemannic_r_is_alveolar_trill():
+    """/r/ is an alveolar trill [r], and ⟨-er⟩ does not vocalise to [ɐ].
+
+    Wikipedia "Swiss German": "The phoneme /r/ is pronounced as an
+    alveolar trill [r] in many dialects." Standard German ⟨-er⟩ → [ɐ]
+    has no Alemannic counterpart.
+    """
+    out = _t("de-x-alemannic", "Mueter")
+    assert "ɐ" not in out and "ʁ" not in out
+    assert out.endswith("r")
+
+
+def test_alemannic_isolated_from_its_german_siblings():
+    """The Alemannic table must not leak into de / de-DE / de-AT / de-CH.
+
+    de-CH is Schweizerhochdeutsch (Standard German with Swiss features);
+    de-x-alemannic is the dialect. They are different targets and only the
+    dialect spec carries the dialect rules.
+    """
+    for code in ("de", "de-DE", "de-AT", "de-CH"):
+        assert "kx" not in _t(code, "Brocki")
+        assert _t(code, "Chatz").lstrip("ˈ").startswith("k")

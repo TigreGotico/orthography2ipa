@@ -3306,25 +3306,6 @@
   "oracle_scored_words": 53010
  },
  {
-  "lang": "de-CH",
-  "dataset": "wikipron",
-  "n": 448,
-  "per": 0.4471,
-  "per_ci_low": 0.4265,
-  "per_ci_high": 0.4673,
-  "exact_match": 0.0402,
-  "quality_tier": "research",
-  "provenance": "crowd-scraped",
-  "harness_version": "1.1",
-  "limit": null,
-  "oracle_per_top3": 0.39,
-  "oracle_exact_top3": 0.0625,
-  "oracle_per_top5": 0.3785,
-  "oracle_exact_top5": 0.067,
-  "oracle_fallback_words": 0,
-  "oracle_scored_words": 448
- },
- {
   "lang": "de-DE",
   "dataset": "ipa_childes",
   "n": 24857,
@@ -3361,6 +3342,25 @@
   "oracle_exact_top5": 0.2104,
   "oracle_fallback_words": 81722,
   "oracle_scored_words": 696063
+ },
+ {
+  "lang": "de-x-alemannic",
+  "dataset": "wikipron",
+  "n": 448,
+  "per": 0.1734,
+  "per_ci_low": 0.1559,
+  "per_ci_high": 0.1938,
+  "exact_match": 0.4554,
+  "quality_tier": "research",
+  "provenance": "crowd-scraped",
+  "harness_version": "1.1",
+  "limit": null,
+  "oracle_per_top3": 0.1314,
+  "oracle_exact_top3": 0.558,
+  "oracle_per_top5": 0.1215,
+  "oracle_exact_top5": 0.5804,
+  "oracle_fallback_words": 0,
+  "oracle_scored_words": 448
  },
  {
   "lang": "dlm",

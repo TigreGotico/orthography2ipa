@@ -200,9 +200,9 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | dar | northeuralex | 1056 | 0.0691 | 0.0670 | 0.0670 | 0.6449 | 0.6449 | [0.0632, 0.0757] | 0.6439 | research | lexicon-derived |
 | ddo | northeuralex | 871 | 0.1090 | 0.1090 | 0.1090 | 0.5649 | 0.5649 | [0.0978, 0.1201] | 0.5649 | research | lexicon-derived |
 | de | wikipron | 53010 | 0.2103 | 0.1567 | 0.1414 | 0.3150 | 0.3453 | [0.2089, 0.2118] | 0.2343 | research | crowd-scraped |
-| de-CH | wikipron | 448 | 0.4471 | 0.3900 | 0.3785 | 0.0625 | 0.0670 | [0.4265, 0.4673] | 0.0402 | research | crowd-scraped |
 | de-DE | ipa_childes | 24857 | 0.3948 | 0.2845 | 0.2632 | 0.1080 | 0.1251 | [0.3926, 0.3971] | 0.0513 | research | epitran-derived |
 | de-DE | ipadict | 777785 | 0.2303 | 0.1862 | 0.1724 | 0.1886 | 0.2104 | [0.2300, 0.2307] | 0.1390 | research | crowd-scraped |
+| de-x-alemannic | wikipron | 448 | 0.1734 | 0.1314 | 0.1215 | 0.5580 | 0.5804 | [0.1559, 0.1938] | 0.4554 | research | crowd-scraped |
 | dlm | wikipron | 180 | 0.2476 | 0.2476 | 0.2476 | 0.2000 | 0.2000 | [0.2193, 0.2770] | 0.2000 | research | crowd-scraped |
 | dng | wikipron | 269 | 0.4087 | 0.4087 | 0.4087 | 0.0000 | 0.0000 | [0.4003, 0.4181] | 0.0000 | research | crowd-scraped |
 | dsb | wikipron | 2010 | 0.1487 | 0.1487 | 0.1487 | 0.4522 | 0.4522 | [0.1408, 0.1564] | 0.4522 | research | crowd-scraped |
