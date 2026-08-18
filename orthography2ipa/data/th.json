@@ -129,7 +129,7 @@
       "l"
     ],
     "อ": [
-      "ʔ"
+      "ɔː"
     ],
     "ฮ": [
       "h"
@@ -171,14 +171,360 @@
       "aj"
     ],
     "็": [
-      "short_vowel"
+      ""
     ],
     "ั": [
       "a"
+    ],
+    "ฃ": [
+      "kʰ"
+    ],
+    "ฅ": [
+      "kʰ"
+    ],
+    "ฆ": [
+      "kʰ"
+    ],
+    "ฉ": [
+      "tɕʰ"
+    ],
+    "ฌ": [
+      "tɕʰ"
+    ],
+    "ฒ": [
+      "tʰ"
+    ],
+    "ธ": [
+      "tʰ"
+    ],
+    "ฤ": [
+      "rɯ"
+    ],
+    "ฦ": [
+      "lɯ"
+    ],
+    "ะ": [
+      "a"
+    ],
+    "ำ": [
+      "am"
+    ],
+    "่": [
+      ""
+    ],
+    "้": [
+      ""
+    ],
+    "๊": [
+      ""
+    ],
+    "๋": [
+      ""
+    ],
+    "์": [
+      ""
+    ],
+    "ฺ": [
+      ""
+    ],
+    "ๆ": [
+      ""
+    ],
+    "ฯ": [
+      ""
+    ],
+    "ๅ": [
+      ""
+    ],
+    "หง": [
+      "ŋ"
+    ],
+    "หญ": [
+      "j"
+    ],
+    "หณ": [
+      "n"
+    ],
+    "หน": [
+      "n"
+    ],
+    "หม": [
+      "m"
+    ],
+    "หย": [
+      "j"
+    ],
+    "หร": [
+      "r"
+    ],
+    "หล": [
+      "l"
+    ],
+    "หฬ": [
+      "l"
+    ],
+    "หว": [
+      "w"
+    ],
+    "อย": [
+      "j"
+    ],
+    "กร": [
+      "kr"
+    ],
+    "กล": [
+      "kl"
+    ],
+    "กว": [
+      "kw"
+    ],
+    "ขร": [
+      "kʰr"
+    ],
+    "ขล": [
+      "kʰl"
+    ],
+    "ขว": [
+      "kʰw"
+    ],
+    "คร": [
+      "kʰr"
+    ],
+    "คล": [
+      "kʰl"
+    ],
+    "คว": [
+      "kʰw"
+    ],
+    "ปร": [
+      "pr"
+    ],
+    "ปล": [
+      "pl"
+    ],
+    "ผล": [
+      "pʰl"
+    ],
+    "พร": [
+      "pʰr"
+    ],
+    "พล": [
+      "pʰl"
+    ],
+    "ตร": [
+      "tr"
+    ],
+    "ทร": [
+      "s"
+    ],
+    "เอ": [
+      "ʔeː"
+    ],
+    "แอ": [
+      "ʔɛː"
+    ],
+    "โอ": [
+      "ʔoː"
+    ],
+    "ไอ": [
+      "ʔaj"
+    ],
+    "ใอ": [
+      "ʔaj"
+    ],
+    "ก์": [
+      ""
+    ],
+    "ข์": [
+      ""
+    ],
+    "ค์": [
+      ""
+    ],
+    "ง์": [
+      ""
+    ],
+    "จ์": [
+      ""
+    ],
+    "ช์": [
+      ""
+    ],
+    "ซ์": [
+      ""
+    ],
+    "ญ์": [
+      ""
+    ],
+    "ฎ์": [
+      ""
+    ],
+    "ฏ์": [
+      ""
+    ],
+    "ฐ์": [
+      ""
+    ],
+    "ฑ์": [
+      ""
+    ],
+    "ณ์": [
+      ""
+    ],
+    "ด์": [
+      ""
+    ],
+    "ต์": [
+      ""
+    ],
+    "ถ์": [
+      ""
+    ],
+    "ท์": [
+      ""
+    ],
+    "น์": [
+      ""
+    ],
+    "บ์": [
+      ""
+    ],
+    "ป์": [
+      ""
+    ],
+    "ผ์": [
+      ""
+    ],
+    "พ์": [
+      ""
+    ],
+    "ฝ์": [
+      ""
+    ],
+    "ฟ์": [
+      ""
+    ],
+    "ภ์": [
+      ""
+    ],
+    "ม์": [
+      ""
+    ],
+    "ย์": [
+      ""
+    ],
+    "ร์": [
+      ""
+    ],
+    "ล์": [
+      ""
+    ],
+    "ว์": [
+      ""
+    ],
+    "ศ์": [
+      ""
+    ],
+    "ษ์": [
+      ""
+    ],
+    "ส์": [
+      ""
+    ],
+    "ห์": [
+      ""
+    ],
+    "ฬ์": [
+      ""
+    ],
+    "อ์": [
+      ""
+    ],
+    "ฮ์": [
+      ""
+    ],
+    "ฃ์": [
+      ""
+    ],
+    "ฅ์": [
+      ""
+    ],
+    "ฆ์": [
+      ""
+    ],
+    "ฉ์": [
+      ""
+    ],
+    "ฌ์": [
+      ""
+    ],
+    "ฒ์": [
+      ""
+    ],
+    "ธ์": [
+      ""
+    ],
+    "ฤ์": [
+      ""
+    ],
+    "ฦ์": [
+      ""
+    ],
+    "กร์": [
+      ""
+    ],
+    "กล์": [
+      ""
+    ],
+    "กว์": [
+      ""
+    ],
+    "ขร์": [
+      ""
+    ],
+    "ขล์": [
+      ""
+    ],
+    "ขว์": [
+      ""
+    ],
+    "คร์": [
+      ""
+    ],
+    "คล์": [
+      ""
+    ],
+    "คว์": [
+      ""
+    ],
+    "ปร์": [
+      ""
+    ],
+    "ปล์": [
+      ""
+    ],
+    "ผล์": [
+      ""
+    ],
+    "พร์": [
+      ""
+    ],
+    "พล์": [
+      ""
+    ],
+    "ตร์": [
+      ""
+    ],
+    "ทร์": [
+      ""
     ]
   },
   "dependent_vowels": [
-    "า"
+    "า",
+    "ะ",
+    "ำ",
+    "อ",
+    "ๅ"
   ],
   "preposed_vowels": [
     "เ",
@@ -191,21 +537,27 @@
   "allophone_rules": [
     {
       "id": "TH_UNRELEASED_K_CODA",
-      "phonemes": ["k"],
+      "phonemes": [
+        "k"
+      ],
       "surface": "k̚",
       "word_final": true,
       "notes": "Thai final stops are unreleased (Iwasaki & Ingkaphirom 2005, A Reference Grammar of Thai, §1.3.2): a word-final /k/ coda surfaces [k̚], not a released [k]. Fires only word_final so onset /k/ (กา [kā]) is unaffected."
     },
     {
       "id": "TH_UNRELEASED_T_CODA",
-      "phonemes": ["t"],
+      "phonemes": [
+        "t"
+      ],
       "surface": "t̚",
       "word_final": true,
       "notes": "Thai final stops are unreleased (Iwasaki & Ingkaphirom 2005, §1.3.2): a word-final /t/ coda surfaces [t̚]. Fires only when the grapheme's phoneme is already plain /t/ (ต/ด via their base mapping); the many other letters Thai orthography neutralises to a /t/ coda (ท ธ ถ จ ช ซ ศ ษ ส ...) keep their onset value word-finally — coda neutralisation is a separate, not-yet-implemented mechanism."
     },
     {
       "id": "TH_UNRELEASED_P_CODA",
-      "phonemes": ["p"],
+      "phonemes": [
+        "p"
+      ],
       "surface": "p̚",
       "word_final": true,
       "notes": "Thai final stops are unreleased (Iwasaki & Ingkaphirom 2005, §1.3.2): a word-final /p/ coda surfaces [p̚]."
@@ -306,7 +658,7 @@
       "oː"
     ]
   },
-  "notes": "Standard Thai. Abugida with 44 consonant letters in three tone classes (low/mid/high) that interact with 4 tone marks to produce 5 tones: mid, low, falling, high, rising. Inherent vowel is /o/ (short). Vowels written around consonants (above, below, before, after). This spec covers consonant letters and common vowel diacritics; full tone calculation requires syllable analysis. Stress exemption: Standard Thai is a tone language (5 tones marked by tone class + tone marks); it has no independent, orthography-predictable lexical stress accent distinct from its tone system, so no stress block is declared. Dependent vowel sign ⟨า⟩ is spacing (Unicode category Lo, not a combining mark); ⟨เ แ โ ใ ไ⟩ are preposed — written before the consonant, pronounced after (⟨เก⟩ = /keː/). Source: Haas, Thai-English Student's Dictionary (1964); Iwasaki, S. & Ingkaphirom, P. (2005), A Reference Grammar of Thai, Cambridge University Press; Thai phonology, Wikipedia.",
+  "notes": "Standard Thai. Abugida with 44 consonant letters in three tone classes (low/mid/high) that interact with 4 tone marks to produce 5 tones: mid, low, falling, high, rising. The inherent vowel is /o/ (short). Vowels are written around the consonant — above, below, before, after — and the dependent signs ⟨า ะ ำ อ ๅ⟩ are spacing letters (Unicode category Lo), which is why they are named in `dependent_vowels` rather than detected by category. ⟨เ แ โ ใ ไ⟩ are preposed: written before the consonant, pronounced after it (⟨เก⟩ = /keː/); when such a vowel is the last thing written, the letter carrying it is a syllable ONSET, so a coda entry must not reach it (⟨เทพ⟩ is /tʰeːp̚/, ⟨เก⟩ is /keː/ and not */k̚/).\n\nCoda neutralisation is stated as `word_final` positional entries: only /p t k m n ŋ w j/ close a Thai syllable, so every letter that would otherwise spell another obstruent surfaces as the unreleased stop of its own place (⟨กฎ⟩ /kot̚/, ⟨เทพ⟩ /tʰeːp̚/, ⟨ครับ⟩ /kʰrap̚/) and ⟨ร ล ฬ ญ ณ⟩ join ⟨น⟩ as final /n/ (⟨กงศุล⟩ /koŋsun/, ⟨กงการ⟩ /koŋkaːn/). The eleven true onset clusters (C + ⟨ร ล ว⟩) are declared as digraph graphemes so that no implicit vowel is read between their members (⟨กรุง⟩ /kruŋ/, ⟨กลาง⟩ /klaːŋ/, ⟨ควาย⟩ /kʰwaːj/); ⟨ทร⟩ is the lexicalised /s/ digraph (⟨ทราบ⟩ /saːp̚/). Leading ⟨ห⟩ before one of the sonorants ⟨ง ญ ณ น ม ย ร ล ฬ ว⟩ (ho nam) and leading ⟨อ⟩ before ⟨ย⟩ (o nam) are unpronounced tone-class markers and are declared as digraphs reading the sonorant alone (⟨หมา⟩ /maː/, ⟨ใหญ่⟩ /jaj/, ⟨อยาก⟩ /jaːk̚/). That reading holds only where the sonorant OPENS the syllable. A preposed vowel written before ⟨ห⟩ takes ⟨ห⟩ as its own consonant, and when the vowel ends open, nothing follows the sonorant and no tone mark rides it, the sonorant is the syllable's coda and ⟨ห⟩ its onset: ⟨โหม⟩ is /hoːm/ and ⟨กลาโหม⟩ /klaːhoːm/, not */moː/ and */klaːmoː/. ⟨ไหม⟩ /maj/, ⟨แหวน⟩ /wɛːn/, ⟨โหมด⟩ /moːt̚/ and ⟨แหล่⟩ /lɛː/ keep the digraph, because the vowel closes the syllable itself, another letter takes the coda slot, or a tone mark marks the sonorant as the initial. What is left is lexical: ⟨โหล⟩ /loː/, ⟨แหม⟩ /mɛː/, ⟨แหล⟩ /lɛː/ (⟨ตอแหล⟩, ⟨ฮัลโหล⟩) and ⟨แหง⟩ /ŋɛː/ carry the same shape as ⟨โหม⟩ with the opposite reading. The preposed-vowel reading is also reached only syllable-finally: the guard that asks whether anything follows the sonorant is scoped to the WORD, so ⟨โหมโรง⟩ /hoːmroːŋ/ reads /moːroːŋ/ — ⟨ร⟩ does follow and preserves the digraph, but it opens the next syllable instead of taking ⟨ม⟩'s coda slot. Narrowed to a following consonant letter, the 18,416-row gold holds 62 rows (58 headwords) of the shape ⟨preposed vowel + ห + sonorant + consonant⟩ and keeps ho nam in every one. Widened to any following character, the same shape is 343 rows (335 headwords), of which 9 are ⟨โหมโรง⟩-type words the reading gets wrong, because a dependent vowel sign after the sonorant means the same thing ⟨ร⟩ does in ⟨โหมโรง⟩ — the sonorant opens the next syllable instead of closing its own: ⟨มโหรี⟩ /moriː/ for gold /m a˦˥ h oː˩˩˦ r iː˧/, ⟨เหมันต์⟩ /man/ for /h eː˩˩˦ m a n˧/, ⟨เหมายัน⟩ /maːjan/ for /h eː˩˩˦ m aː˧ j a n˧/, ⟨เหรัญญิก⟩ /rajjik̚/ for /h eː˩˩˦ r a n˧ j i k̚˦˥/, ⟨เหรา⟩ /raː/ for /h eː˩˩˦ r aː˧/, ⟨โหระพา⟩ /rapʰaː/ for /h oː˩˩˦ r a˦˥ pʰ aː˧/, ⟨โหรา⟩ /raː/ for /h oː˩˩˦ r aː˧/, ⟨โหราธิบดี⟩ /raːtʰibdiː/ for /h oː˩˩˦ r aː˧ tʰ i p̚˦˥ b ɔː˧ d iː˧/, and ⟨โหราศาสตร์⟩ /raːsaːs/ for /h oː˩˩˦ r aː˧ s aː t̚˨˩/. Ho nam standing mid-word with no preposed vowel is not reached either (⟨พหล⟩ reads /pʰol/, not /pʰahon/). Thanthakhat ⟨์⟩ cancels the letter — or the final cluster — it stands on, and those letter+mark sequences read as nothing (⟨สัตว์⟩ /sat̚/, ⟨จันทร์⟩ /tɕan/). ⟨ทร⟩ is declared as an unconditional /s/ digraph for the lexicalised set it describes (⟨ทราบ⟩ /saːp̚/, ⟨ทราย⟩ /saːj/), but the digraph over-applies: of 229 WikiPron gold rows (212 headwords) containing ⟨ทร⟩, 87 rows (75 headwords) have no /s/ at all because ⟨ท⟩ and ⟨ร⟩ are a plain cluster or belong to different morphemes there, mostly in Indic loans built on ⟨จันทร⟩ moon and ⟨ทร⟩ bear/carry (⟨การทรมาน⟩ /kaːntʰɔːramaːn/, ⟨จันทร์⟩ /tɕan/, ⟨นิทรา⟩ /nittʰraː/). DECLARED GAP, not fixed here: the digraph is the wrong shape for a per-word lexicalised reading and needs conditioning to its actual word set (a lexicon overlay, or a scoped grapheme exception list) rather than the coarse unconditional table entry; the token count above is the size of that gap. ⟨อย⟩ is the same shape (declared as a digraph reading /j/ alone) with only 2 counterexamples in 290 headwords (⟨อยุธยา⟩, ⟨อยุติธรรม⟩), so it is left unconditional pending the same mechanism.\n\nThe four tone marks ⟨่ ้ ๊ ๋⟩, thanthakhat, phinthu ⟨ฺ⟩, maiyamok ⟨ๆ⟩ and paiyannoi ⟨ฯ⟩ spell no segment of their own. They are declared explicitly rather than left unmapped so that a tone mark standing between a consonant and its vowel sign stays transparent: ⟨ก่อน⟩ is /kɔːn/ and ⟨ยิ้ม⟩ is /jim/, not */ko.ʔɔːn/ and */ji.mo/.\n\nDECLARED GAPS. Thai tone is fully recoverable from the spelling — consonant class × syllable type (live/dead) × vowel length × tone mark — but that computation needs a syllable analysis of the written word, and this library has no mechanism for it: `tone_inventory` is descriptive, and `tone_marks_syllable_final` only relocates tone symbols a grapheme table already produced. No tone is emitted, and against a tone-marked gold that is a floor, not a rule error: tone letters are 32% of every character in the WikiPron Thai gold (79,041 of 246,222 across all 18,416 rows, after the benchmark normalizer runs). Two further gaps: mai taikhu ⟨็⟩ shortens the vowel of its syllable (⟨เก็บ⟩ is /kep̚/, not /keːp̚/), but the vowel it shortens is written BEFORE the consonant the mark sits on, so no contiguous grapheme key and no phoneme-level rule can reach it — the mark is silent instead. And a consonant with no written vowel takes the inherent vowel unconditionally, where Thai reads /o/ only in a closed syllable and /a/ in an open one (⟨กกุท⟩ is /ka.kut̚/, not */ko.kut̚/); the spec can declare one inherent vowel, not a syllable-conditioned pair.\n\nStress exemption: Standard Thai is a tone language and has no independent, orthography-predictable lexical stress accent distinct from its tone system, so no stress block is declared.",
   "sources": [
     {
       "id": "iwasaki2005",
@@ -316,7 +668,7 @@
       "publisher": "Cambridge University Press",
       "url": null,
       "pages": null,
-      "notes": "Source for the preposed-vowel analysis (⟨เ แ โ ใ ไ⟩)."
+      "notes": "Source for the consonant classes, the preposed vowels ⟨เ แ โ ใ ไ⟩, the coda inventory and its neutralisation, the true onset clusters, the ho nam / o nam leading consonants and thanthakhat."
     },
     {
       "id": "haas1964",
@@ -386,5 +738,197 @@
     "longitude": 100.671,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Thai."
+  },
+  "positional_graphemes": {
+    "อ": {
+      "word_initial": [
+        "ʔ"
+      ]
+    },
+    "ก": {
+      "word_final": [
+        "k̚"
+      ]
+    },
+    "ข": {
+      "word_final": [
+        "k̚"
+      ]
+    },
+    "ฃ": {
+      "word_final": [
+        "k̚"
+      ]
+    },
+    "ค": {
+      "word_final": [
+        "k̚"
+      ]
+    },
+    "ฅ": {
+      "word_final": [
+        "k̚"
+      ]
+    },
+    "ฆ": {
+      "word_final": [
+        "k̚"
+      ]
+    },
+    "ด": {
+      "word_final": [
+        "t̚"
+      ]
+    },
+    "ต": {
+      "word_final": [
+        "t̚"
+      ]
+    },
+    "ฎ": {
+      "word_final": [
+        "t̚"
+      ]
+    },
+    "ฏ": {
+      "word_final": [
+        "t̚"
+      ]
+    },
+    "ถ": {
+      "word_final": [
+        "t̚"
+      ]
+    },
+    "ท": {
+      "word_final": [
+        "t̚"
+      ]
+    },
+    "ธ": {
+      "word_final": [
+        "t̚"
+      ]
+    },
+    "ฐ": {
+      "word_final": [
+        "t̚"
+      ]
+    },
+    "ฑ": {
+      "word_final": [
+        "t̚"
+      ]
+    },
+    "ฒ": {
+      "word_final": [
+        "t̚"
+      ]
+    },
+    "จ": {
+      "word_final": [
+        "t̚"
+      ]
+    },
+    "ช": {
+      "word_final": [
+        "t̚"
+      ]
+    },
+    "ซ": {
+      "word_final": [
+        "t̚"
+      ]
+    },
+    "ศ": {
+      "word_final": [
+        "t̚"
+      ]
+    },
+    "ษ": {
+      "word_final": [
+        "t̚"
+      ]
+    },
+    "ส": {
+      "word_final": [
+        "t̚"
+      ]
+    },
+    "ฉ": {
+      "word_final": [
+        "t̚"
+      ]
+    },
+    "ฌ": {
+      "word_final": [
+        "t̚"
+      ]
+    },
+    "บ": {
+      "word_final": [
+        "p̚"
+      ]
+    },
+    "ป": {
+      "word_final": [
+        "p̚"
+      ]
+    },
+    "พ": {
+      "word_final": [
+        "p̚"
+      ]
+    },
+    "ฟ": {
+      "word_final": [
+        "p̚"
+      ]
+    },
+    "ภ": {
+      "word_final": [
+        "p̚"
+      ]
+    },
+    "ผ": {
+      "word_final": [
+        "p̚"
+      ]
+    },
+    "ฝ": {
+      "word_final": [
+        "p̚"
+      ]
+    },
+    "น": {
+      "word_final": [
+        "n"
+      ]
+    },
+    "ณ": {
+      "word_final": [
+        "n"
+      ]
+    },
+    "ร": {
+      "word_final": [
+        "n"
+      ]
+    },
+    "ล": {
+      "word_final": [
+        "n"
+      ]
+    },
+    "ฬ": {
+      "word_final": [
+        "n"
+      ]
+    },
+    "ญ": {
+      "word_final": [
+        "n"
+      ]
+    }
   }
 }

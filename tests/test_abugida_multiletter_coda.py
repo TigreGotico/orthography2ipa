@@ -16,7 +16,7 @@ import orthography2ipa as o2i
 
 @pytest.mark.parametrize("lang,word,ipa", [
     # ⟨ພຸດທະ⟩ buddha: ⟨ທ⟩ opens the second syllable and keeps its vowel.
-    ("lo", "ພຸດທະ", "pʰudtʰo"),
+    ("lo", "ພຸດທະ", "pʰut̚tʰaʔ"),
     # ⟨เอกชน⟩ private sector: ⟨ช⟩ opens ⟨ชน⟩ and keeps its implicit vowel.
     ("th", "เอกชน", "ʔeːktɕʰon"),
 ])
@@ -44,7 +44,10 @@ def test_no_syllable_loses_its_nucleus_wholesale(lang, words):
         ipa = g.transcribe_word(word)
         run = best = 0
         for seg in segment_ipa(ipa, atoms):
-            if seg and seg[0] in vowels:
+            # A CV atom (Thai ⟨เอ⟩ /ʔeː/) carries the syllable's nucleus even
+            # though it opens with a consonant, so the run ends at it: the
+            # thing this test hunts is a DELETED nucleus.
+            if seg and any(ch in vowels for ch in seg):
                 run = 0
             else:
                 run += 1
@@ -66,3 +69,17 @@ def test_dzongkha_post_suffix_surfaces_its_coda():
     dz = o2i.G2P("dz")
     assert dz.transcribe_word("མཚམས") == "t͡sʰɑ˥m"
     assert dz.transcribe_word("ཞབས") == "ʑɑ˩p"
+
+
+def test_tsheg_is_a_syllable_boundary_not_a_transparent_mark():
+    """⟨་⟩ (tsheg) SEPARATES Tibetan/Dzongkha syllables; the spec maps it to
+    ``[""]`` because it spells no segment of its own, but that is not the
+    same thing as being transparent to a look-back the way a combining tone
+    mark is. A look-back that walks across the tsheg reaches into the
+    PREVIOUS syllable and deletes the next syllable's own inherent vowel:
+    ⟨ཀ་ཀ་ནི⟩ (k a k a n i) collapses ⟨ཀ⟩+⟨ནི⟩ into one syllable and drops the
+    second ⟨ཀ⟩'s vowel, and ⟨ཀ་ཀོ་ལ⟩ (k a k o l a) drops the final ⟨ལ⟩'s
+    vowel outright."""
+    bo = o2i.G2P("bo")
+    assert bo.transcribe_word("ཀ་ཀ་ནི") == "ka˥˥ka˥˥ni˩˨"
+    assert bo.transcribe_word("ཀ་ཀོ་ལ") == "ka˥˥ko˥˥la˩˨"

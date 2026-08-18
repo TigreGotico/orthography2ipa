@@ -45,7 +45,7 @@ import re
 import unicodedata
 from dataclasses import dataclass
 from enum import Enum, auto
-from typing import Dict, FrozenSet, List, Optional, Sequence, Tuple
+from typing import Callable, Dict, FrozenSet, List, Optional, Sequence, Tuple
 
 from orthography2ipa.types import GraphemePosition, LanguageSpec
 from orthography2ipa.vowels import (
@@ -355,6 +355,24 @@ def _is_nucleus(ipa: str) -> bool:
     """
     return (any(is_ipa_vowel(c) for c in ipa)
             or any(m in ipa for m in _SYLLABIC_MARKS))
+
+
+def _ends_in_a_vowel(ipa: str) -> bool:
+    """True if *ipa* ends on a vowel, ignoring length and tone diacritics.
+
+    A reading that ends open still needs a coda; one that ends on a consonant
+    or glide — Thai ⟨ไ⟩ /aj/ — has closed its syllable itself.
+    """
+    for ch in reversed(ipa):
+        if unicodedata.category(ch) in ("Mn", "Lm") or ch in ("ː", "ˑ"):
+            continue
+        return is_ipa_vowel(ch)
+    return False
+
+
+def _is_a_mark(ch: str) -> bool:
+    """True if *ch* is a combining mark, which rides the letter it is on."""
+    return unicodedata.combining(ch) != 0 or unicodedata.category(ch) == "Mn"
 
 
 def _is_turkish(lang: str) -> bool:
@@ -1288,7 +1306,17 @@ class PhonetokTokenizer:
         :attr:`LanguageSpec.dependent_vowels` name such units, and the longest
         one matching at *pos* decides. Specs that declare only
         single-character dependent vowels reach the fallback unchanged.
+
+        A mark the spec maps to NOTHING is transparent here. Such a mark
+        spells no segment, so it cannot stand between a consonant and the
+        vowel sign that is its nucleus: the Thai tone marks ⟨่ ้ ๊ ๋⟩ are
+        written on the initial consonant while the vowel sign that follows
+        them is the syllable's nucleus (⟨ก่อน⟩ is /kɔːn/, not *[ko.ʔɔːn]),
+        and reading the mark itself as "no vowel here" surfaced the
+        inherent vowel on a consonant that has one written for it.
         """
+        while pos < len(text) and self._spells_nothing(text[pos]):
+            pos += 1
         if pos >= len(text):
             return False
         for span in self._dependent_vowel_spans:
@@ -1297,6 +1325,131 @@ class PhonetokTokenizer:
                 ipa_vals = self._grapheme_ipa.get(key)
                 return bool(ipa_vals and ipa_vals[0] and _is_nucleus(ipa_vals[0]))
         return self._supplies_vowel(text[pos])
+
+    def _spells_nothing(self, ch: str) -> bool:
+        """True when *ch* is a combining mark the spec maps to nothing.
+
+        Only an unconditional single empty candidate counts, the same test
+        :meth:`_silenced_before_consonant` applies: a grapheme that also
+        lists a real reading has not been declared segmentally empty. The
+        transparency further requires *ch* to be a combining mark
+        (:func:`unicodedata.combining` or category ``Mn``): a mark rides on
+        the letter it attaches to and cannot itself divide a syllable.
+        A syllable *separator* spelling nothing — Tibetan/Dzongkha's tsheg
+        ⟨་⟩, category ``Po`` — is not a mark, and letting it stand as
+        transparent here walks a look-back across the syllable boundary it
+        marks and deletes the next syllable's inherent vowel.
+
+        A multi-character key passes the same test on its parts: a letter (or
+        mark) carrying only marks is still one letter with its marks, and a
+        spec that maps the whole sequence to nothing has cancelled that
+        letter. Thai thanthakhat does exactly this — ⟨ม์⟩ is silent in
+        ⟨คลอโรฟอร์ม⟩ /kʰlɔːroːfɔːm/ — and leaving the killed cluster opaque
+        surfaced an inherent vowel on the consonant in front of it.
+        """
+        ipa_vals = self._grapheme_ipa.get(ch)
+        if ipa_vals is None or list(ipa_vals) != [""]:
+            return False
+        if len(ch) == 1:
+            return _is_a_mark(ch)
+        return (unicodedata.category(ch[0]).startswith("L") or _is_a_mark(ch[0])) \
+            and all(_is_a_mark(c) for c in ch[1:])
+
+    def _match_transparent(
+            self, text: str, start: int,
+            is_transparent: Callable[[str], bool],
+    ) -> Tuple[Optional[str], int]:
+        """Longest trie match at *start*, skipping transparent marks.
+
+        Like :meth:`_GraphemeTrie.longest_match`, but once a character has
+        advanced the trie, a run of characters *is_transparent* accepts is
+        stepped over without moving the trie node — so a multi-character
+        key such as Lao ⟨ົາ⟩ still matches ⟨ົ⟩ + tone mark + ⟨າ⟩. Returns
+        the matched key (or ``None``) and the text offset just past it, so
+        the caller can consume the mark it swallowed along with the key.
+        """
+        node = self._trie.root
+        i = start
+        n = len(text)
+        best: Optional[str] = None
+        best_end = start
+        started = False
+        while i < n:
+            ch = _lower(text[i], self._trie.lang)
+            if ch in node.children:
+                node = node.children[ch]
+                i += 1
+                started = True
+                if node.grapheme_key is not None:
+                    best = node.grapheme_key
+                    best_end = i
+            elif started and is_transparent(text[i]):
+                i += 1
+            else:
+                break
+        return best, best_end
+
+    def _silent_marker_head(self, gkey: str) -> Optional[str]:
+        """The leading letter *gkey* declares silent, or None.
+
+        A digraph whose reading is exactly the reading of its tail declares
+        its first letter to spell nothing of its own: Thai ho nam ⟨หม⟩ reads
+        /m/, the same as ⟨ม⟩ alone, because ⟨ห⟩ there is a tone-class marker
+        written on the sonorant that OPENS the syllable (⟨หมา⟩ /maː/). A
+        digraph that adds or changes a segment (⟨ทร⟩ /s/, ⟨กร⟩ /kr/) does not
+        match this test.
+        """
+        if len(gkey) < 2:
+            return None
+        head, tail = gkey[0], gkey[1:]
+        head_ipa = self._grapheme_ipa.get(head)
+        if not head_ipa or not head_ipa[0]:
+            return None
+        if list(self._grapheme_ipa.get(gkey) or ()) != list(
+                self._grapheme_ipa.get(tail) or (None,)):
+            return None
+        return head
+
+    def _marker_head_is_the_onset(
+        self, gkey: str, ckey: str, text: str, after: int,
+    ) -> bool:
+        """True when a preposed vowel makes a digraph's silent head the onset.
+
+        A silent-head digraph (see :meth:`_silent_marker_head`) asserts that
+        its tail opens the syllable. A preposed vowel written in front of the
+        head can contradict that: the vowel belongs to the letter it precedes,
+        so the head can be the onset and the tail the coda. Which reading
+        holds is decided by whether the syllable still has a coda slot for the
+        tail to leave empty. Thai ⟨ไหม⟩ is /maj/ and ⟨เหลือ⟩ is /lɯːɔː/ —
+        ⟨ไ⟩ spells its own final glide and ⟨เ◌ือ⟩ writes the rest of its
+        nucleus after the cluster, so the syllable is already closed or still
+        unfinished and ho nam stands. ⟨โหมด⟩ is /moːt̚/, where ⟨ด⟩ takes the
+        coda slot. Only when the vowel ends open AND nothing follows the tail
+        is the tail the one available coda, and then the head is the onset:
+        ⟨โหม⟩ is /hoːm/, not */moː/.
+        """
+        v_ipa = self._grapheme_ipa.get(gkey) or ()
+        if not v_ipa or not _ends_in_a_vowel(v_ipa[0]):
+            return False
+        pos = after + len(ckey)
+        first = True
+        while pos < len(text):
+            nkey = self._trie.longest_match(text, pos)
+            if nkey is None:
+                return not text[pos].isalpha()
+            n_ipa = self._grapheme_ipa.get(nkey) or ()
+            if any(n_ipa):
+                return False
+            if first and self._spells_nothing(nkey):
+                # A mark rides the letter it is written on, and a tone mark
+                # is written on the SYLLABLE INITIAL (⟨ก่อน⟩ /kɔːn/ marks
+                # ⟨ก⟩). A mark standing on the tail therefore confirms the
+                # tail is the initial and the digraph's reading stands:
+                # ⟨แหล่⟩ is /lɛː/, not */hɛːl/.
+                return False
+            first = False
+            pos += len(nkey)
+        return True
 
     def _supplies_vowel(self, ch: str) -> bool:
         """True if *ch* is a combining mark that supplies a vowel of its own.
@@ -1384,8 +1537,20 @@ class PhonetokTokenizer:
         phonotactics forbid. Neither spec declares any post-vocalic
         reading, so for them the search stops at the first letter and the
         pre-existing one-token behaviour stands.
+
+        A mark the spec maps to nothing is transparent for the same reason
+        it is transparent to :meth:`_supplies_vowel_at`: it spells no
+        segment, so it is not the letter that stops the walk. Thai writes
+        its tone mark on the initial consonant, between that consonant's
+        vowel sign and the coda letter (⟨ยิ้ม⟩ = ⟨ย⟩+⟨ิ⟩+⟨้⟩+⟨ม⟩, /jim/),
+        and treating the mark as an opaque letter made the coda ⟨ม⟩ open a
+        syllable of its own.
         """
         for tok in reversed(tokens):
+            if (tok.kind == TokenKind.GRAPHEME
+                    and list(tok.ipa or ()) == [""]
+                    and self._spells_nothing(tok.grapheme)):
+                continue
             if self._prev_gives_nucleus(tok):
                 return True
             if tok.kind != TokenKind.GRAPHEME:
@@ -1572,11 +1737,51 @@ class PhonetokTokenizer:
                 consumed_v = len(gkey)
                 after = pos + consumed_v
                 ckey = self._trie.longest_match(text, after)
+                if ckey is not None:
+                    head = self._silent_marker_head(ckey)
+                    if head is not None and self._marker_head_is_the_onset(
+                            gkey, ckey, text, after):
+                        # The digraph's silent head carries this vowel and is
+                        # the onset; its tail tokenises next pass as the coda.
+                        ckey = head
                 c_ipa_vals = (
                     self._grapheme_ipa.get(ckey) if ckey else None
                 )
-                is_c_dependent_vowel = bool(ckey) and (
-                    unicodedata.category(ckey[-1]) in ("Mn", "Mc")
+                # A preposed sign IS the syllable's nucleus, so the grapheme
+                # it attaches to fills the syllable-INITIAL slot. A spec that
+                # states a syllable-initial reading for that grapheme — its
+                # ``word_initial`` entry — states exactly that fact, and it
+                # outranks the flat reading here even though the position is
+                # not word-initial in the written string, because the
+                # preposed sign standing in front of it is not a segment of
+                # its own. Lao ⟨ອ⟩ is the vowel /ɔː/ after an onset
+                # (⟨ດອກ⟩ /dɔːk̚/) and the zero-consonant carrier /ʔ/ when it
+                # opens a syllable, so ⟨ເອກ⟩ is /ʔeːk̚/ and not */eːɔːk̚/.
+                initial_vals = (
+                    (self.spec.positional_graphemes or {}).get(ckey) or {}
+                ).get(GraphemePosition.WORD_INITIAL) if ckey else None
+                onset_reading = bool(
+                    initial_vals
+                    and c_ipa_vals
+                    and _is_nucleus(c_ipa_vals[0])
+                    and not _is_nucleus(initial_vals[0])
+                )
+                if onset_reading:
+                    c_ipa_vals = tuple(initial_vals)
+                # A grapheme written with a combining mark is a dependent
+                # vowel sign only when it READS as one. Some scripts write a
+                # consonant with a combining mark too — Lao subscript lo
+                # ⟨ຼ⟩ (U+0EBC, category Mn) spells the /l/ of ⟨ຫຼ⟩ — and the
+                # bare category test called those vowels, which left the
+                # preposed sign unsilenced (⟨ເຫຼົ້າ⟩ came out */eːlo.../
+                # instead of /law/). A mark with no reading of its own, such
+                # as a tone mark, stays on the dependent side.
+                is_c_dependent_vowel = bool(ckey) and not onset_reading and (
+                    (
+                        unicodedata.category(ckey[-1]) in ("Mn", "Mc")
+                        and not (c_ipa_vals and c_ipa_vals[0]
+                                 and not _is_nucleus(c_ipa_vals[0]))
+                    )
                     or ckey in self._dependent_vowels
                     or ckey in self._preposed_vowels
                 )
@@ -1602,7 +1807,22 @@ class PhonetokTokenizer:
                     # loop iteration to tokenise normally (ordinary
                     # maximal-munch multigraph match), which is also what
                     # keeps its own span/position correct.
-                    pkey = self._trie.longest_match(text, post_pos)
+                    # A tone mark can sit INSIDE the postposed half of a
+                    # circumfix vowel (Lao ⟨ເ◌ົ້າ⟩ = ⟨ເ⟩ + C + ⟨ົ⟩ + tone
+                    # mark + ⟨າ⟩, spelling the same /aw/ as mark-free
+                    # ⟨ເ◌ົາ⟩): the mark rides the vowel sign it is written
+                    # on and is not a segment of its own, so it must not
+                    # split the two-part vowel key ⟨ົາ⟩ the grapheme table
+                    # declares. ``_match_transparent`` walks the trie the
+                    # same way ``longest_match`` does but is allowed to
+                    # step over a run of marks the spec reads as nothing
+                    # between two matched characters — the same
+                    # transparency the syllable-position test already
+                    # applies, scoped to this lookup only so no other
+                    # script's tokenization changes.
+                    pkey, pkey_end = self._match_transparent(
+                        text, post_pos, self._spells_nothing,
+                    )
                     p_ipa_vals = self._grapheme_ipa.get(pkey) if pkey else None
                     is_circumfix_tail = bool(pkey) and p_ipa_vals and (
                         unicodedata.category(pkey[0]) in ("Mn", "Mc")
@@ -1622,7 +1842,24 @@ class PhonetokTokenizer:
                         kind=TokenKind.GRAPHEME, grapheme=ckey,
                         ipa=c_combined, position=after, length=consumed_c,
                     ))
-                    pos = post_pos
+                    if is_circumfix_tail and pkey_end > post_pos:
+                        # ``grapheme`` is the actual raw span, not the trie
+                        # key: the key ``pkey`` skipped a mark that sits
+                        # BETWEEN its characters, so it is not a prefix of
+                        # the span the way an abugida virama's key is —
+                        # slicing surface reconstruction on
+                        # ``len(token.grapheme)`` (``_group_words``) would
+                        # otherwise re-append the swallowed mark's tail as
+                        # spurious extra text.
+                        tokens.append(Token(
+                            kind=TokenKind.GRAPHEME,
+                            grapheme=text[post_pos:pkey_end],
+                            ipa=tuple(p_ipa_vals), position=post_pos,
+                            length=pkey_end - post_pos,
+                        ))
+                        pos = pkey_end
+                    else:
+                        pos = post_pos
                     continue
                 # No consonant follows (word-final preposed vowel, or two
                 # preposed vowels in a row): fall through to ordinary

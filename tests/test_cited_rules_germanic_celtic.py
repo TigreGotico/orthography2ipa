@@ -413,35 +413,168 @@ def test_da_cph_r_vocalisation_before_consonant():
 # ===========================================================================
 
 
-def test_nn_old_norse_diphthongs_preserved():
-    """More diphthongs preserved from Old Norse: ei, au, øy.
+def test_nn_old_norse_diphthongs_have_their_western_values():
+    """The Old Norse diphthongs, in the western values Nynorsk is built on.
 
-    nn notes: "More diphthongs preserved from Old Norse: ei, au, øy."
-    Source: Kristoffersen (2000).
+    nn notes: "⟨ei⟩ is [ɛɪ], not the Urban East [æɪ] ...; ⟨au⟩ has the rounded
+    western onset [œʊ], not [æʉ]; ⟨øy⟩ is [œʏ]."
+    Sources: Kristoffersen (2000) — [æɪ] is the substitute used by speakers
+    whose inventory lacks [ɛɪ]; Skjekkeland (1997), Sandøy (1985) for the
+    western realisations.
 
-    Each of the three digraphs must surface as a two-target nucleus, not a
-    monophthong.
+    Values are pinned in full, and the same words under nb are pinned beside
+    them so the test fails if the two standards ever collapse onto one reading.
     """
-    assert "æi" in _t("nn", "stein")
-    assert "æʉ" in _t("nn", "auge")
-    assert "øy" in _t("nn", "øy")
+    assert _t("nn", "stein") == "ˈstɛɪːn"
+    assert _t("nn", "auge") == "²œʊːɡə"
+    assert _t("nn", "øy") == "ˈœʏː"
+    assert _t("nb", "stein") == "ˈstæin"
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="Kristoffersen (2000) claims Nynorsk/western /r/ is the alveolar trill "
-    "[r]; nn produces [ɾɔt] for rot — the tap inherited from the nb-type spec",
-)
 def test_nn_alveolar_trill_r():
-    """Alveolar /r/ [r].
+    """Alveolar /r/ [r], not the Urban East tap [ɾ].
 
-    nn notes: "Alveolar /r/ [r]; less retroflexion than Bokmål/Eastern."
+    nn notes: "⟨r⟩ is the apical trill [r], not the Urban East tap [ɾ]."
+    Sources: Kristoffersen (2000), Vanvik (1979).
+
+    Pinned in full against the nb reading of the same word, which is the tap.
+    """
+    assert _t("nn", "rot") == "ˈruːt"
+    assert _t("nb", "rot") == "ˈɾuːt"
+
+
+def test_nn_r_plus_coronal_does_not_retroflex():
+    """⟨rd rl rn rs rt⟩ stay as sequences; they do not become [ɖ ɭ ɳ ʂ ʈ].
+
+    nn notes: "NO retroflexion of ⟨rd rl rn rs rt⟩ — the retroflex assimilation
+    is an Eastern, Central and Northern feature and is absent from the southern
+    and western dialects Nynorsk is codified on."
+    Sources: Skjekkeland (1997), Sandøy (1985).
+
+    Each word is pinned in full under nn and under nb, so the test states the
+    divergence rather than asserting an absence.
+    """
+    assert _t("nn", "norsk") == "ˈnɔrsk"
+    assert _t("nn", "karl") == "ˈkɑrl"
+    assert _t("nn", "barn") == "ˈbɑrn"
+    assert _t("nn", "kart") == "ˈkɑrt"
+    assert _t("nb", "norsk") == "ˈnɔʂk"
+    assert _t("nb", "barn") == "ˈbɑːɳ"
+
+
+def test_nn_kv_onset_is_a_plain_cluster():
+    """Nynorsk writes ⟨kv-⟩ where Bokmål writes ⟨hv-⟩, and it is /kʋ/.
+
+    nn notes: "⟨hv-⟩ is kept as [ʋ] for the Bokmål-spelt proper names ...,
+    but the productive Nynorsk spelling of that class is ⟨kv-⟩ (kva, kvit,
+    kvifor), which is a plain /kʋ/ onset and is NOT given the ⟨hv⟩ treatment."
+    Source: Beito (1986).
+
+    The guard is the class the rule must not touch: an actual ⟨hv-⟩ word still
+    loses its ⟨h⟩.
+    """
+    assert _t("nn", "kva") == "ˈkʋɑː"
+    assert _t("nn", "kvit") == "ˈkʋiːt"
+    assert _t("nn", "kvifor") == "ˈkʋiːfɔr"
+    assert _t("nn", "Hvaler") == "ˈʋɑːlər"
+
+
+def test_nn_complementary_quantity():
+    """A stressed vowel is long before a single consonant, short before a
+    geminate or a cluster.
+
+    nn notes: "complementary quantity (a stressed vowel is long before a single
+    consonant and short before a geminate or cluster ...)".
     Source: Kristoffersen (2000).
 
-    Isolated on the onset ⟨r⟩; nb explicitly calls the tap [ɾ] one realisation of
-    its /r/, so a distinct trill is the declared Nynorsk delta.
+    A minimal pair on the same vowel isolates the length alternation, and a
+    diphthong pair shows it reaching the long nuclei too.
     """
-    assert _t("nn", "rot").startswith("r")
+    assert _t("nn", "tak") == "ˈtɑːk"
+    assert _t("nn", "takk") == "ˈtɑkː"
+    assert _t("nn", "hus") == "ˈhʉːs"
+    assert _t("nn", "heim") == "ˈhɛɪːm"
+    assert _t("nn", "heilt") == "ˈhɛɪlt"
+    assert _t("nn", "draum") == "ˈdrœʊːm"
+    assert _t("nn", "aust") == "ˈœʊst"
+
+
+def test_nn_final_a_ending_is_a_full_vowel():
+    """The productive Nynorsk ⟨-a⟩ ending is a full [ɑ], never a schwa.
+
+    nn notes: "final ⟨-a⟩ — the Nynorsk infinitive, weak-feminine definite and
+    weak-past ending where Bokmål writes ⟨-e/-en/-et⟩ — is a full [a], never a
+    schwa, so ⟨a⟩ carries no reduction entry while ⟨e⟩ does."
+    Source: Beito (1986).
+
+    The guard is the class the reduction rule MUST still touch: an unstressed
+    final ⟨-e⟩ on the otherwise identical stem does reduce.
+    """
+    assert _t("nn", "kasta") == "²kɑstɑ"
+    assert _t("nn", "kaste") == "²kɑstə"
+
+
+def test_nn_velars_soften_before_i_and_y_but_not_before_e():
+    """⟨k g sk⟩ are [ç j ʃ] before ⟨i y⟩ and stay hard before ⟨e⟩.
+
+    nn notes: "⟨k g sk⟩ → [ç j ʃ] before a front vowel"; the historically soft
+    ⟨e⟩ cases are spelt ⟨kj gj skj⟩ (kjenne, gjere, skje), so plain ⟨ke ge ske⟩
+    is hard.
+    Sources: Kristoffersen (2000), Beito (1986).
+
+    The guard words are the hard class, which the softening rule must not
+    reach.
+    """
+    assert _t("nn", "kino") == "ˈçiːnɔ"
+    assert _t("nn", "skip") == "ˈʃiːp"
+    assert _t("nn", "kelner") == "ˈkɛlnər"
+    assert _t("nn", "gele") == "²ɡeːlə"
+    assert _t("nn", "ske") == "ˈskeː"
+
+
+def test_nn_word_final_rd_loses_its_stop():
+    """Word-final ⟨rd⟩ is [r]; medial ⟨rd⟩ keeps the stop.
+
+    nn rule NN_SILENT_D_AFTER_R: "word-final ⟨rd⟩ is [r]: gard, ferd, Bård.
+    Medial ⟨rd⟩ keeps /rd/."
+    Sources: Beito (1986), Kristoffersen (2000).
+
+    The guard is a word of the same shape whose ⟨rd⟩ is not word-final.
+    """
+    assert _t("nn", "gard") == "ˈɡɑr"
+    assert _t("nn", "ferd") == "ˈfɛr"
+    assert _t("nn", "ferdig") == "ˈfɛrdɪɡ"
+
+
+def test_nn_silent_d_is_word_final_only():
+    """⟨d⟩ after ⟨n l⟩ is silent word-finally; medial ⟨nd⟩ keeps the stop.
+
+    nn rule NN_SILENT_D: "⟨d⟩ is silent after ⟨n l⟩ (land, kald); the cluster
+    still shortens the preceding nucleus."
+    Source: Beito (1986).
+
+    The guard is a word of the same shape whose ⟨nd⟩ is not word-final.
+    """
+    assert _t("nn", "land") == "ˈlɑn"
+    assert _t("nn", "kald") == "ˈkɑl"
+    assert _t("nn", "andre") == "²ɑndrə"
+
+
+def test_nn_lj_onset_is_j():
+    """Initial ⟨lj⟩ is [j], as ⟨gj hj⟩ are.
+
+    nn graphemes: ⟨lj⟩ → [j] (ljos, ljod), beside ⟨gj⟩ and ⟨hj⟩.
+    Source: Beito (1986).
+
+    The guard is plain ⟨l⟩ before a vowel, which the rule must not reach.
+    """
+    assert _t("nn", "ljos") == "ˈjuːs"
+    assert _t("nn", "los") == "ˈluːs"
+
+    # Medial ⟨lj⟩ (olje, vilje) is not word-initial, so it keeps its /l/;
+    # only the initial cluster reduces to [j].
+    assert _t("nn", "olje") == "²ɔljə"
+    assert _t("nn", "vilje") == "²ʋɪljə"
 
 
 # ===========================================================================
