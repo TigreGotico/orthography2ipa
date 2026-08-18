@@ -92,6 +92,18 @@
     ],
     "y": [
       "j"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "g": [
+      "ɡ"
+    ],
+    "f": [
+      "f"
     ]
   },
   "allophone_rules": [
@@ -174,7 +186,7 @@
       "notes": "Same lowering when the uvular precedes."
     }
   ],
-  "notes": "Cusco Quechua (Qusqu-Qullaw), the Southern Quechua variety of the Cusco region, Peru. Written in the official trivocalic alphabet (a, i, u): the five-vowel Spanish-influenced spelling with ⟨e o⟩ is explicitly NOT modelled here, since ⟨e o⟩ spell the uvular-conditioned allophones of /i u/ that this spec derives by rule instead (Wikipedia, Cusco Quechua). Cusco has the full three-way laryngeal contrast in stops and affricates — plain, aspirated ⟨Ch⟩ and ejective ⟨C'⟩ — which the orthography writes with the digraph/apostrophe series ⟨ph th chh kh qh⟩ and ⟨p' t' ch' k' q'⟩; each spells ONE segment, so each earns its grapheme key (AGENTS.md §2 test 2). ⟨ll⟩ /ʎ/ and ⟨ñ⟩ /ɲ/ are likewise single palatal segments. The uvular vowel-lowering (/a i u/ → [ɑ ɛ ɔ] next to /q qʰ qʼ/) is expressed in the rule layer, never by enumerating vowel+uvular keys. Contrast quy (Ayacucho), which lacks both marked stop series and has /χ/ rather than /q/.",
+  "notes": "Cusco Quechua (Qusqu-Qullaw), the Southern Quechua variety of the Cusco region, Peru. Written in the official trivocalic alphabet (a, i, u): the five-vowel Spanish-influenced spelling with ⟨e o⟩ is explicitly NOT modelled here, since ⟨e o⟩ spell the uvular-conditioned allophones of /i u/ that this spec derives by rule instead (Wikipedia, Cusco Quechua). Cusco has the full three-way laryngeal contrast in stops and affricates — plain, aspirated ⟨Ch⟩ and ejective ⟨C'⟩ — which the orthography writes with the digraph/apostrophe series ⟨ph th chh kh qh⟩ and ⟨p' t' ch' k' q'⟩; each spells ONE segment, so each earns its grapheme key (AGENTS.md §2 test 2). ⟨ll⟩ /ʎ/ and ⟨ñ⟩ /ɲ/ are likewise single palatal segments. The uvular vowel-lowering (/a i u/ → [ɑ ɛ ɔ] next to /q qʰ qʼ/) is expressed in the rule layer, never by enumerating vowel+uvular keys. Contrast quy (Ayacucho), which lacks both marked stop series and has /χ/ rather than /q/. ⟨b d g f⟩ are carried because running text — child-directed speech above all — is full of Spanish loans that spell them (sunbiru, banka, profesor), and without the keys the engine silently drops the letter and returns a shorter word; this holds regardless of the loan consonants' phonemic status. Sustained borrowing from Spanish may have made /b d ɡ f/ phonemic for Cusco speakers, monolinguals included (Cusihuamán 1976, cited via Wikipedia, Cusco Quechua). ⟨e o⟩ stay out: in this alphabet they are the lowered allophones the rule layer already derives, so admitting them as vowel keys would let a loan spelling override the rule that the trivocalic orthography exists to encode.",
   "iso639_3": "quz",
   "glottolog_code": "cusc1236",
   "wikidata_qid": "Q35147",
@@ -207,6 +219,17 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Southern_Quechua",
       "pages": null,
       "notes": "Standard Cusco-Collao alphabet letter list (a ch chh ch' h i k kh k' l ll m n ñ p ph p' q qh q' r s t th t' u w y)."
+    },
+    {
+      "id": "cusihuaman_1976",
+      "author": "Cusihuamán, Antonio",
+      "year": 1976,
+      "title": "Gramática Quechua Cuzco-Collao",
+      "publisher": "Ministerio de Educación / Instituto de Estudios Peruanos",
+      "url": null,
+      "wikipedia_url": null,
+      "pages": null,
+      "notes": "Primary source for the /b d ɡ f/ loan-consonant claim, cited via Wikipedia (Cusco Quechua); edition not consulted."
     }
   ],
   "ancestors": [

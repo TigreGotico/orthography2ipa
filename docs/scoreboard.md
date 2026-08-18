@@ -545,7 +545,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | pt-TL | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | pt-TL | portuguese_unified | 53147 | 0.3643 | 0.3378 | 0.3194 | 0.0191 | 0.0240 | [0.3631, 0.3655] | 0.0151 | research | lexicon-derived |
 | pt-UY | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| qu | ipa_childes | 1850 | 0.4421 | 0.4421 | 0.4421 | 0.0676 | 0.0676 | [0.4322, 0.4519] | 0.0676 | stub | espeak-derived |
+| quz | ipa_childes | 1853 | 0.3549 | 0.3549 | 0.3549 | 0.0621 | 0.0621 | [0.3463, 0.3623] | 0.0621 | research | espeak-derived |
 | rgn | wikipron | 261 | 0.3270 | 0.3270 | 0.3270 | 0.1226 | 0.1226 | [0.2970, 0.3597] | 0.1226 | research | crowd-scraped |
 | rif | wold | 1506 | 0.4027 | 0.4027 | 0.4027 | 0.0950 | 0.0950 | [0.3918, 0.4141] | 0.0950 | research | lexicon-derived |
 | ro | vox_communis | 10679 | 0.0693 | 0.0687 | 0.0684 | 0.5626 | 0.5636 | [0.0674, 0.0710] | 0.5608 | production | epitran-derived |
