@@ -1186,6 +1186,23 @@ class AllophoneRule:
         indistinguishable at the phoneme layer from the plain letters that
         permit a long vowel — so this is the only layer that can veto such a
         rule. Empty = don't care.
+    word_contains_grapheme : Tuple[str, ...]
+        At least one of these letters must occur ANYWHERE in the current
+        source word (matched case-insensitively). Word-scope rather than
+        neighbour-scope: some orthographies mark a property of the whole
+        word on a single consonant letter that may stand any distance from
+        the segment it conditions. Ottoman Turkish is the case that
+        motivated it — the abjad leaves most vowels unwritten, and the
+        choice between the back and front member of a vowel-harmony pair is
+        signalled by whether the word is spelt with a "hard" letter
+        ⟨ح خ ص ض ط ظ ع غ ق⟩ or a "soft" one ⟨ت س ك گ ه⟩, which the
+        neighbour conditions cannot see across intervening letters. Empty =
+        don't care.
+    word_contains_grapheme_not : Tuple[str, ...]
+        None of these letters may occur anywhere in the current source word.
+        The negative counterpart of :attr:`word_contains_grapheme`, needed
+        so a default (unmarked-harmony) reading can be stated as "no hard
+        letter anywhere" rather than enumerated. Empty = don't care.
     grapheme : Optional[Tuple[str, ...]]
         Require the slot's own *source grapheme* to be one of these (matched
         case-insensitively). This lets a rule target a surface shift that
@@ -1264,6 +1281,8 @@ class AllophoneRule:
     preceded_by_grapheme: Tuple[str, ...] = ()
     followed_by_grapheme: Tuple[str, ...] = ()
     followed_by_grapheme_not: Tuple[str, ...] = ()
+    word_contains_grapheme: Tuple[str, ...] = ()
+    word_contains_grapheme_not: Tuple[str, ...] = ()
     grapheme: Optional[Tuple[str, ...]] = None
     word: Optional[Tuple[str, ...]] = None
     notes: str = ""
@@ -1295,6 +1314,12 @@ class AllophoneRule:
         object.__setattr__(
             self, "followed_by_grapheme_not",
             tuple(g.lower() for g in self.followed_by_grapheme_not))
+        object.__setattr__(
+            self, "word_contains_grapheme",
+            tuple(g.lower() for g in self.word_contains_grapheme))
+        object.__setattr__(
+            self, "word_contains_grapheme_not",
+            tuple(g.lower() for g in self.word_contains_grapheme_not))
         if self.grapheme is not None:
             object.__setattr__(
                 self, "grapheme",
