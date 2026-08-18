@@ -378,7 +378,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | mdf | wikipron | 330 | 0.2212 | · | · | · | · | [0.2024, 0.2383] | 0.2485 | research | crowd-scraped |
 | mdh | wikipron | 205 | 0.0793 | · | · | · | · | [0.0643, 0.0948] | 0.6146 | skeleton | crowd-scraped |
 | mfe | wikipron | 206 | 0.1238 | 0.1238 | 0.1238 | 0.5485 | 0.5485 | [0.0992, 0.1487] | 0.5485 | research | crowd-scraped |
-| mga | wikipron | 328 | 0.5030 | · | · | · | · | [0.4807, 0.5244] | 0.0457 | research | crowd-scraped |
+| mga | wikipron | 328 | 0.0594 | 0.0482 | 0.0458 | 0.7104 | 0.7195 | [0.0494, 0.0700] | 0.6738 | research | crowd-scraped |
 | mh | wikipron | 947 | 0.4410 | · | · | · | · | [0.4272, 0.4554] | 0.0285 | research | crowd-scraped |
 | mhr | northeuralex | 992 | 0.1869 | · | · | · | · | [0.1798, 0.1942] | 0.1250 | research | lexicon-derived |
 | mi | wikipron | 1003 | 0.0719 | · | · | · | · | [0.0650, 0.0784] | 0.6401 | research | crowd-scraped |
