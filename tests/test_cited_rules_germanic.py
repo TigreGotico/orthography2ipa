@@ -14,7 +14,22 @@ from orthography2ipa.g2p import G2P
 
 
 def _t(code, word):
-    return G2P(code).transcribe_word(word)
+    """Transcribe *word*, without the leading word-stress mark.
+
+    These tests pin SEGMENTAL claims — which phoneme a grapheme yields in a
+    given environment. Where the stress mark falls is a separate claim, pinned
+    by ``tests/test_stress.py`` and by
+    ``tests/test_english_stress_reduction.py``, so it is stripped here rather
+    than repeated in every expected string.
+
+    The strip is unconditional rather than scoped to one language because
+    EVERY assertion in this file is segmental: the German half already
+    stripped the mark call-by-call, and a per-language strip would just be
+    the same rule written twice. Nothing here asserts the presence, absence
+    or position of a stress mark, so nothing here can be weakened by
+    removing it — a test that needs the mark belongs in the stress files.
+    """
+    return G2P(code).transcribe_word(word).lstrip("ˈ")
 
 
 # ===========================================================================
@@ -126,12 +141,6 @@ def test_en_gb_final_e_function_word_exceptions():
     assert _t("en-GB", "she") == "ʃiː"
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="Wells (1982): RP is non-rhotic, /r/ deleted word-finally; engine now "
-    "produces [kɑːɹ] for car and [kɑːɹt] for cart — the coda /r/ is retained, so "
-    "RP has regressed to rhotic",
-)
 def test_en_gb_non_rhotic():
     """NON-RHOTIC: /r/ is deleted before a consonant and word-finally.
 
@@ -146,19 +155,13 @@ def test_en_gb_non_rhotic():
     assert _t("en-GB", "rose").startswith("ɹ")
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="Cruttenden (2014): -tion → [ʃən]; engine now produces [nætɪɒn] for "
-    "nation — the ⟨tion⟩ n-gram is gone, so the ending is spelled out t-i-o-n "
-    "(regression from dropping the enumerated n-grams)",
-)
 def test_en_gb_tion_family_sh():
     """TION/SION FAMILY: -tion and -ssion → [ʃən].
 
-    en-GB notes: "TION/SION FAMILY: -tion/-cian -> [ʃən], -ssion -> [ʃən]
-    (mission, passion; matched via the dedicated `ssion` grapheme so
-    maximal-munch tokenization picks it over `sion`)" (Cruttenden 2014
-    spelling-to-sound correspondence rules).
+    Carried by `grammatical_endings` — suffix morphology, matched at the
+    effective word end, not a grapheme n-gram (Cruttenden 2014
+    spelling-to-sound correspondence rules; Chomsky & Halle 1968 on the
+    palatalization before `-ion`).
     """
     assert _t("en-GB", "nation").endswith("ʃən")
     assert _t("en-GB", "mission").endswith("ʃən")
@@ -166,17 +169,17 @@ def test_en_gb_tion_family_sh():
 
 @pytest.mark.xfail(
     strict=True,
-    reason="Cruttenden (2014): -sion → [ʒən]/[ʃən]; engine now produces [vɪzɪɒn] "
-    "for vision and [tɛnsɪɒn] for tension — the ⟨sion⟩ n-gram is gone, so the "
-    "ending is spelled out s-i-o-n (regression from dropping the enumerated n-grams)",
+    reason="Cruttenden (2014): -sion → [ʒən]/[ʃən]; the engine produces "
+    "[vɪzɪɒn] for vision and [tɛnsɪɒn] for tension. The split is conditioned on "
+    "the segment BEFORE the ending, and `grammatical_endings` carries no "
+    "preceding-segment condition, so the ending is spelled out s-i-o-n",
 )
 def test_en_gb_sion_voiced_after_vowel():
     """-sion → [ʒən] after a vowel, [ʃən] after a consonant.
 
-    en-GB notes: "-sion -> [ʒən] after a vowel (vision, division, decision) or
-    [ʃən] after a consonant (tension, pension, mansion), modelled with the `sion`
-    entry in `positional_graphemes` using AFTER_VOWEL/AFTER_CONSONANT context"
-    (Cruttenden 2014).
+    en-GB notes: "the ⟨-sion⟩ split ([ʒən] after a vowel, [ʃən] after a
+    consonant) needs a preceding-segment condition on `grammatical_endings`,
+    which the ending table does not carry" (Cruttenden 2014).
 
     A true minimal pair on the context, not the grapheme: vision vs tension.
     """
@@ -186,17 +189,12 @@ def test_en_gb_sion_voiced_after_vowel():
     assert _t("en-GB", "pension").endswith("ʃən")
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="Cruttenden (2014): -cial → [ʃəl], -cious → [ʃəs]; engine now produces "
-    "[spɛsɪæl] for special and [dɛlɪsɪaʊs] for delicious — the n-grams are gone, "
-    "so the endings are spelled out (regression from dropping the enumerated n-grams)",
-)
 def test_en_gb_tial_cial_and_cious_tious():
     """-tial/-cial → [ʃəl]; -cious/-tious → [ʃəs].
 
-    en-GB notes: "-tial/-cial -> [ʃəl], -cious/-tious -> [ʃəs] (Cruttenden 2014
-    spelling-to-sound correspondence rules)."
+    Same mechanism as -tion: `grammatical_endings` entries matched at the
+    effective word end (Cruttenden 2014 spelling-to-sound correspondence
+    rules; Wells 2008 LPD for the surface values).
     """
     assert _t("en-GB", "special").endswith("ʃəl")
     assert _t("en-GB", "delicious").endswith("ʃəs")
@@ -250,6 +248,329 @@ def test_en_gb_lot_vowel_is_rounded():
     assert _t("en-GB", "lot") == "lɒt"
 
 
+@pytest.mark.parametrize("word,expected", [
+    ("car", "kɑː"),        # ɑːɹ, word-final
+    ("park", "pɑːk"),      # ɑːɹ, pre-consonantal
+    ("father", "fæðə"),    # əɹ
+    ("bird", "bɜːd"),      # ɜːɹ
+    ("north", "nɔːθ"),     # ɔːɹ
+    ("care", "kɛə"),       # ɛəɹ
+    ("beer", "bɪə"),       # ɪəɹ
+    ("fire", "faɪə"),      # aɪəɹ, word-final
+    ("flour", "flaʊə"),    # aʊəɹ
+    ("turn", "tɜːn"),      # ɜːɹ from ⟨ur⟩
+    ("tired", "taɪəd"),    # aɪəɹ, pre-consonantal
+])
+def test_en_gb_non_rhotic_covers_every_rhotic_nucleus(word, expected):
+    """NON-RHOTIC CODA /r/ applies to every rhotic nucleus, not just ⟨ar⟩.
+
+    en-GB notes: "RP keeps /r/ only before a vowel, so every rhotic nucleus
+    (ɑːɹ, ɜːɹ, ɔːɹ, əɹ, ɛəɹ, ɪəɹ, ʊəɹ, aɪəɹ, aʊəɹ, and bare ɹ) loses its [ɹ]
+    before a consonant and word-finally."
+    Wells (1982) vol. 1 §3.2.2; Cruttenden (2014) §8.7.
+    """
+    assert _t("en-GB", word) == expected
+
+
+def test_en_gb_linking_r_survives_before_a_vowel():
+    """The same spelling keeps [ɹ] when the ⟨r⟩ is prevocalic.
+
+    The complementary environment of the deletion rule above: RP is non-rhotic,
+    not r-less — /r/ survives before a vowel (Wells 1982 vol. 1 §3.2.2).
+    """
+    assert "ɹ" in _t("en-GB", "caring")
+    assert "ɹ" in _t("en-GB", "carry")
+    assert _t("en-GB", "rose").startswith("ɹ")
+
+
+@pytest.mark.parametrize("word,expected", [
+    ("marry", "mæɹi"),
+    ("merry", "mɛɹi"),
+    # unstressed second syllable: the ⟨or⟩ nucleus reduces to /ə/ and RP's
+    # non-rhotic rule then deletes the coda [ɹ] — Wells 2008 LPD gives
+    # ˈmɪɹə (Cruttenden 2014 §9.4 on the weak vowel of an unstressed syllable)
+    ("mirror", "mɪɹə"),
+    ("hurry", "hʌɹi"),
+    ("sorry", "sɒɹi"),
+    ("spirit", "spɪɹɪt"),
+])
+def test_en_gb_prevocalic_r_takes_the_checked_vowel(word, expected):
+    """PREVOCALIC ⟨r⟩: the nucleus is the CHECKED vowel, not the long one.
+
+    en-GB notes: "where the ⟨r⟩ is the onset of the next syllable the nucleus
+    is the CHECKED vowel, not the long r-coloured one — marry [ˈmæɹi], merry
+    [ˈmɛɹi], mirror [ˈmɪɹə], hurry [ˈhʌɹi], sorry [ˈsɒɹi]."
+    Wells (1982) vol. 1 §2.2.6; Carney (1994).
+    """
+    assert _t("en-GB", word) == expected
+
+
+def test_en_gb_prevocalic_r_shortening_needs_a_following_vowel():
+    """The complementary environment: word-final ⟨rr⟩ keeps the long nucleus.
+
+    ⟨Carr⟩ has no following vowel for the ⟨r⟩ to be an onset of, so the
+    checked-vowel rule must not fire and the nucleus stays [ɑː].
+    """
+    assert _t("en-GB", "carr") == "kɑː"
+
+
+def test_en_gb_goat_is_schwa_initial():
+    """GOAT = /əʊ/ in RP.
+
+    en-GB notes: "LOT = /ɒ/ (rounded); GOAT = /əʊ/."
+    Wells (1982) vol. 1–2; Roach (2004) JIPA.
+    """
+    assert _t("en-GB", "boat") == "bəʊt"
+    assert _t("en-GB", "toe") == "təʊ"
+
+
+def test_en_gb_word_final_vowel_letters():
+    """WORD-FINAL VOWEL LETTERS: ⟨a⟩ → [ə], ⟨o⟩ → [əʊ].
+
+    en-GB notes: "unstressed word-final ⟨a⟩ is /ə/ (sofa, America, data) and
+    word-final ⟨o⟩ is /əʊ/ (photo, piano, go)." Carney (1994).
+
+    Complementary environment: the same letters keep their non-final values in
+    ⟨cat⟩ and ⟨lot⟩ (pinned by test_en_gb_lot_vowel_is_rounded above).
+    """
+    assert _t("en-GB", "sofa") == "səʊfə" or _t("en-GB", "sofa").endswith("ə")
+    assert _t("en-GB", "data").endswith("ə")
+    assert _t("en-GB", "photo").endswith("əʊ")
+    assert _t("en-GB", "go") == "ɡəʊ"
+    assert _t("en-GB", "cat") == "kæt"
+
+
+def test_en_gb_y_is_a_vowel_letter():
+    """⟨y⟩ is declared a vowel letter (`vowel_graphemes`).
+
+    en-GB notes: "⟨y⟩ is declared a vowel letter (`vowel_graphemes`): it is the
+    nucleus of very, myth, happy." Carney (1994) treats ⟨y⟩ as a vowel letter
+    of the English writing system.
+
+    Falsifiable on the neighbour context it feeds: the ⟨r⟩ of ⟨very⟩ is
+    prevocalic, so it is not deleted by the non-rhotic rule.
+    """
+    assert _t("en-GB", "very") == "vɛɹi"
+    assert G2P("en-GB").spec.vowel_graphemes == ("y",)
+
+
+@pytest.mark.parametrize("word,expected", [
+    ("nature", "nætʃə"),
+    ("picture", "pɪktʃə"),
+    ("measure", "miːʒə"),
+    ("pressure", "pɹɛʃə"),
+    ("famous", "fæməs"),
+])
+def test_en_gb_ture_sure_ous_endings(word, expected):
+    """SUFFIX PALATALIZATION: ⟨-ture⟩ [tʃə], ⟨-sure⟩ [ʒə], ⟨-ssure⟩ [ʃə];
+    ⟨-ous⟩ [əs].
+
+    Yod coalescence in the ⟨-ture⟩/⟨-sure⟩ suffixes and the reduced ⟨-ous⟩
+    suffix vowel: Wells (2008) LPD; Cruttenden (2014) §9.7. Carried by
+    `grammatical_endings`, so ⟨-ssure⟩ wins over ⟨-sure⟩ by longest match, the
+    same way ⟨-ssion⟩ wins over ⟨-sion⟩.
+    """
+    assert _t("en-GB", word) == expected
+
+
+# ── ⟨-ed⟩ / ⟨-s⟩ allomorphy and velar nasal assimilation ─────────────
+
+
+@pytest.mark.parametrize("word,ending", [
+    # [ɪd] after an alveolar plosive
+    ("wanted", "tɪd"),
+    ("ended", "dɪd"),
+    # [t] after any other voiceless consonant
+    ("walked", "kt"),
+    ("missed", "st"),
+    ("packed", "kt"),
+    # [d] elsewhere
+    ("played", "eɪd"),
+    ("loved", "vd"),
+])
+def test_en_gb_ed_allomorphy(word, ending):
+    """⟨-ed⟩ is [ɪd] after /t d/, [t] after other voiceless, [d] elsewhere.
+
+    en-GB EN_GB_ED_EPENTHESIS / EN_GB_ED_SYNCOPE / EN_GB_ED_DEVOICING notes:
+    "English past-tense / past-participle ⟨-ed⟩ has three regular allomorphs
+    conditioned by the final segment of the stem: [ɪd] after an alveolar
+    plosive (wanted, ended), [t] after any other voiceless consonant (walked,
+    missed), and [d] elsewhere (played, loved). Cruttenden 2014, § 4.3;
+    Wells 2008 LPD gives the same three surface values."
+
+    All three branches are pinned together: the ending is the only thing that
+    differs between them, so a rule that swallowed one branch into another
+    would break at least one row.
+    """
+    assert _t("en-GB", word).endswith(ending)
+
+
+@pytest.mark.parametrize("word,ending", [
+    ("dogs", "ɡz"),
+    ("beds", "dz"),
+    ("films", "mz"),
+])
+def test_en_gb_final_s_voices_after_voiced_consonant(word, ending):
+    """Word-final ⟨-s⟩ after a voiced consonant is [z].
+
+    en-GB EN_GB_FINAL_S_VOICING notes: "Word-final ⟨-s⟩ after a voiced
+    consonant is [z], not [s]: dogs, beds, films (Cruttenden 2014,
+    § 4.3 on the voicing agreement of the ⟨-s⟩ ending; Wells 2008 LPD)."
+    """
+    assert _t("en-GB", word).endswith(ending)
+
+
+@pytest.mark.parametrize("word", ["cats", "bus", "this"])
+def test_en_gb_final_s_stays_voiceless(word):
+    """The complementary environment of EN_GB_FINAL_S_VOICING.
+
+    ⟨cats⟩ pins the voiceless-consonant environment; ⟨bus⟩ and ⟨this⟩ pin the
+    deliberate restriction the same note states — "after a vowel the spelling
+    is ambiguous between the ending (sees, boys) and a stem-final ⟨s⟩ (bus,
+    gas, this, us), and telling them apart needs morphology this engine
+    deliberately does not have" — so a later widening of the rule to all
+    vowels would fail here rather than silently voice ⟨bus⟩.
+    """
+    assert _t("en-GB", word).endswith("s")
+
+
+def test_en_gb_velar_nasal_assimilation_is_not_shipped():
+    """EN_GB_VELAR_NASAL_ASSIMILATION was dropped in PR #856's fix round.
+
+    The rule was unconditioned and fired across morpheme boundaries where
+    broad transcription conventions keep [n] (``unkind``, ``increase``,
+    ``pancake`` — the negative prefix ``un-`` and the ``in-``/``pan-``
+    boundary are not the tautosyllabic, single-morpheme environment
+    Cruttenden 2014, § 9.4 describes for ``think``/``bank``/``uncle``).
+    Cruttenden treats the cross-boundary case as optional/casual-speech
+    assimilation, not obligatory broad-transcription fact, and the rule's
+    measured benchmark contribution was marginal (LOO -0.0007) — not worth
+    the false positives without a citable boundary-aware condition.
+    """
+    assert "ŋ" not in _t("en-GB", "unkind")
+    assert "ŋ" not in _t("en-GB", "increase")
+    assert "ŋ" not in _t("en-GB", "pancake")
+
+
+@pytest.mark.parametrize("word,expected", [
+    ("fed", "fɛd"), ("ted", "tɛd"), ("bed", "bɛd"), ("led", "lɛd"),
+    ("red", "ɹɛd"), ("wed", "wɛd"), ("zed", "zɛd"), ("ped", "pɛd"),
+    ("sed", "sɛd"), ("shed", "ʃɛd"),
+])
+def test_en_gb_stem_ed_monosyllables_are_not_past_tense(word, expected):
+    """The ⟨ed⟩ of a monosyllabic STEM is not the past-tense ending.
+
+    en-GB notes: "Whether a given ⟨ed⟩ IS that ending is a lexical fact, not
+    an orthographic one — Carney 1994, ch. 3 treats the ⟨ed⟩ spelling as
+    ambiguous between the ending and a stem the letters simply spell — and
+    this engine has no morphology to decide it." The three ⟨-ed⟩ rules
+    (EPENTHESIS, SYNCOPE, DEVOICING) each require ``preceded_by_2``/
+    ``preceded_by_3="any"`` — a real stem grapheme standing before the
+    stem-final consonant — which is what now keeps these three-letter
+    /Cɛd/ monosyllables out WITHOUT a ``word_exceptions`` carve-out: there
+    is nothing before the single stem consonant to satisfy the gate.
+
+    The complementary environment of the ⟨-ed⟩ allomorphy tests above: same
+    final four letters, no syncope and no devoicing.
+    """
+    assert _t("en-GB", word) == expected
+
+
+@pytest.mark.xfail(
+    reason=(
+        "Known residual, PR #856 fix round: obstruent+liquid cluster-onset "
+        "monosyllables whose /Cɛd/ IS the stem (bled, bred, cred, fled, "
+        "pled, shred, sled, sped) still mis-syncope, because the stem "
+        "grapheme immediately before the mute <e> (a consonant) is "
+        "indistinguishable, at the grapheme-class level, from a genuine "
+        "polysyllabic stem's final consonant before the same ending — both "
+        "read as 'consonant' two graphemes back. Unlike the plain /Cɛd/ "
+        "monosyllables above, this class has no citable phonological "
+        "condition to close it (deliberately not enumerated in "
+        "word_exceptions — see PR body residual list)."
+    ),
+    strict=True,
+)
+@pytest.mark.parametrize("word,expected", [
+    ("bled", "blɛd"), ("bred", "bɹɛd"), ("cred", "kɹɛd"),
+    ("fled", "flɛd"), ("pled", "plɛd"), ("shred", "ʃɹɛd"),
+    ("sled", "slɛd"), ("sped", "spɛd"),
+])
+def test_en_gb_cluster_onset_ed_monosyllables_are_a_known_residual(
+        word, expected):
+    """Documented hole, not a regression to chase: see docstring above."""
+    assert _t("en-GB", word) == expected
+
+
+@pytest.mark.parametrize("word,ending", [
+    ("pleased", "zd"), ("breathed", "ðd"),
+])
+def test_en_gb_ed_devoicing_reads_the_surface_stem_not_the_declared_candidate(
+        word, ending):
+    """A voiced-resolving stem consonant must NOT trigger devoicing.
+
+    en-GB EN_GB_ED_DEVOICING notes: the voicing trigger is read as the
+    resolved SURFACE phoneme of the stem-final slot (``preceded_by_surface_
+    phoneme_2``), not that grapheme's first declared candidate — ⟨s⟩'s and
+    ⟨th⟩'s first declared candidate is voiceless ([s], [θ]), but both
+    resolve voiced ([z], [ð]) intervocalically in ``pleased``/``breathed``
+    before this rule ever runs (Cruttenden 2014, § 4.3).
+    """
+    assert _t("en-GB", word).endswith(ending)
+
+
+def test_en_gb_ed_devoicing_fires_after_an_affricate_stem():
+    """⟨watch⟩ ends in the affricate [tʃ] — devoicing must see it as ONE
+    segment two graphemes back, not split it into [t] + [ʃ] and miss the
+    match (Cruttenden 2014, § 4.3, [t] after any voiceless consonant)."""
+    assert _t("en-GB", "watched").endswith("tʃt")
+
+
+# ===========================================================================
+# en-US / rhotic descendants — General American and friends
+# ===========================================================================
+
+
+@pytest.mark.parametrize("code", ["en-US", "en-CA", "en-IE",
+                                  "en-GB-x-scotland"])
+def test_rhotic_descendants_keep_coda_r(code):
+    """A rhotic descendant re-declares the RP deletion ids with no phonemes.
+
+    Each spec's notes state it is rhotic (Wells 1982 vol. 3 §6.1 for GA), and
+    an inherited `allophone_rules` entry can only be disabled by id, so the
+    claim is falsifiable exactly here: coda /r/ must survive.
+    """
+    assert _t(code, "car").endswith("ɹ")
+    assert "ɹ" in _t(code, "park")
+
+
+@pytest.mark.parametrize("code", ["en-AU", "en-ZA"])
+def test_non_rhotic_descendants_inherit_the_deletion(code):
+    """The complementary case: en-AU and en-ZA declare themselves non-rhotic
+    and inherit RP's coda-/r/ deletion unchanged (Wells 1982 vol. 3)."""
+    assert _t(code, "car") == "kɑː"
+
+
+def test_en_us_lot_palm_merger():
+    """LOT-PALM merger: GA has no /ɒ/.
+
+    en-US notes: "LOT-PALM merger: /ɑː/ for both."
+    Wells (1982) vol. 3 §6.1.3; Ladefoged & Johnson (2011).
+    """
+    assert "ɒ" not in _t("en-US", "lot")
+    assert "ɒ" not in _t("en-US", "sofa")
+
+
+def test_en_us_goat_is_o_initial():
+    """GA GOAT is /oʊ/, not the RP /əʊ/ its parent declares.
+
+    en-US notes: "GA GOAT is /oʊ/, not the RP /əʊ/ this spec's parent
+    declares." Wells (1982) vol. 3 §6.1.4.
+    """
+    assert _t("en-US", "boat") == "boʊt"
+    assert _t("en-US", "go") == "ɡoʊ"
+
+
 # ===========================================================================
 # de-DE — Standard German
 # ===========================================================================
@@ -271,10 +592,15 @@ def test_de_auslautverhaertung_d_minimal_pair():
     Wiese (1996).
 
     The minimal pair that isolates the rule to its position: Bad → [bat] (final
-    ⟨d⟩ devoiced) vs Baden → [badɛn] (the same ⟨d⟩, now medial, stays voiced).
+    ⟨d⟩ devoiced; the vowel here stays short -- a closed monosyllable has no
+    following vowel to trigger open-syllable lengthening, and free vowel length
+    in a closed German monosyllable is not recoverable from spelling alone, a
+    known engine-limit exception) vs Baden → [ˈbaːdən] (the same ⟨d⟩, now medial
+    and in an open syllable, stays voiced; the vowel is long by the
+    open-syllable lengthening rule -- Wiese 1996).
     """
     assert _t("de-DE", "Bad") == "bat"
-    assert _t("de-DE", "Baden").startswith("bad")
+    assert _t("de-DE", "Baden").startswith("baː")
 
 
 def test_de_auslautverhaertung_g():
@@ -349,3 +675,119 @@ def test_de_no_glottal_stop_insertion():
     A declared omission, pinned so it cannot appear by accident.
     """
     assert "ʔ" not in _t("de-DE", "Abend")
+
+
+# ---------------------------------------------------------------------------
+# en-US — the General American transcription conventions
+# ---------------------------------------------------------------------------
+
+
+@pytest.mark.parametrize("word,expected", [
+    ("bird", "bɝd"), ("nurse", "nɝz"), ("herd", "hɝd"),
+])
+def test_en_us_nurse_is_r_coloured(word, expected):
+    """Stressed NURSE is the r-coloured vowel ɝ, not vowel + rhotic.
+
+    en-US rule EN_US_NURSE_RCOLOURED: "General American has TRUE r-coloured
+    vowels, written with the rhotacised symbols ɝ (stressed NURSE) and ɚ
+    (unstressed lettER)". Wells (1982) vol. 3 §6.1.2; Kenyon & Knott (1953);
+    Ladefoged & Johnson (2011) ch. 4; Kretzschmar (2004) §2.
+    """
+    assert _t("en-US", word) == expected
+
+
+@pytest.mark.parametrize("word,expected", [
+    ("doctor", "dɑktɚ"), ("dollar", "dɑlɚ"), ("standard", "stændɚd"),
+    ("aardvark", "ɑɹdvɚk"),
+])
+def test_en_us_letter_is_r_coloured_schwa(word, expected):
+    """Unstressed lettER is ɚ — the same vowel as ɝ without the accent.
+
+    en-US rule EN_US_LETTER_RCOLOURED. Wells (1982) vol. 3 §6.1.2;
+    Kenyon & Knott (1953).
+
+    KNOWN LIMIT, stated rather than hidden: the rule keys on the parent's
+    ə + rhotic reading, so ⟨-er⟩ words whose ⟨er⟩ the weights resolve to
+    the NURSE reading instead (``letter`` → lɛtɝ) come out with the
+    STRESSED symbol. Conditioning the rule on ``stress="unstressed"``
+    fixes those words and is the correct phonology, but was measured
+    PER-NEGATIVE on the gold that has the distinction at all (ipadict
+    en-US 0.3549 → 0.3652 at the 1000-word sample), because that gold
+    writes ɝ in unstressed position too. The orthographic proxy is kept
+    as the better-measuring of two imperfect statements.
+    """
+    assert _t("en-US", word) == expected
+
+
+@pytest.mark.parametrize("word", ["car", "park", "see", "food", "feel",
+                                  "more", "lot", "coffee", "bird",
+                                  # the yod-plus-GOOSE compound and the frozen
+                                  # function words: both reach the output by a
+                                  # route the plain per-vowel rules cannot see,
+                                  # so the invariant only has teeth with them
+                                  "cue", "value", "accrue", "beauty",
+                                  "be", "he", "me", "we", "she"])
+def test_en_us_carries_no_length_marks(word):
+    """GA is transcribed WITHOUT length marks; its RP parent keeps them.
+
+    en-US notes: "General American is conventionally transcribed WITHOUT
+    length marks: the RP length contrast this spec's parent declares is not
+    part of the GA system". Wells (1982) vol. 3 §6.1.1; Kenyon & Knott
+    (1953); Labov, Ash & Boberg (2006) §2.1; Kretzschmar (2004) §2.
+
+    The complementary half is the point: en-GB must still HAVE the mark on
+    the words where RP is long, so this is a dialect difference and not the
+    engine having lost the ability to emit it.
+    """
+    assert "ː" not in _t("en-US", word)
+
+
+def test_en_gb_keeps_the_length_marks_en_us_drops():
+    """Minimal pair for the rule above: RP long vowels stay long."""
+    assert "ː" in _t("en-GB", "car")
+    assert "ː" in _t("en-GB", "see")
+    assert "ː" in _t("en-GB", "food")
+
+
+@pytest.mark.parametrize("word", ["water", "butter", "city", "ladder"])
+def test_en_us_default_transcription_is_phonemic_not_flapped(word):
+    """Flapping is allophonic, so it is NOT in the default (broad) output.
+
+    en-US notes: "BROAD BY DECLARATION: the default transcription is
+    PHONEMIC. T/D-FLAPPING and word-initial aspiration are sub-phonemic
+    realisations of /t/ and /d/ ... so they are declared in `allophones` ...
+    and NOT forced into the default output by `positional_graphemes`."
+    Wells (1982) vol. 3 §6.1.5; Kretzschmar (2004) §2; Kenyon & Knott (1953).
+    """
+    assert "ɾ" not in _t("en-US", word)
+
+
+def test_en_us_still_declares_the_flap_and_the_aspirate_as_allophones():
+    """The complementary half: dropping them from the DEFAULT output must not
+    drop the claim that GA has them. They stay in `allophones`, the field
+    that states a phoneme's surface variants.
+
+    BOTH stops are guarded. /d/ has no explicit key in en-US.json — it
+    arrives through `allophones_base: en-GB` — so without this assertion the
+    d-flap claim rests on an inherited table nothing in this file pins, and a
+    parent edit could silently drop it while the /t/ test stayed green.
+    """
+    from orthography2ipa import get
+    allo = get("en-US").allophones
+    assert set(allo["t"]) >= {"t", "tʰ", "ɾ"}
+    assert set(allo["d"]) >= {"d", "ɾ"}
+
+
+@pytest.mark.parametrize("word", ["tuna", "ten", "top"])
+def test_en_us_default_transcription_is_not_aspirated(word):
+    """Same claim, aspiration half. Ladefoged & Johnson (2011) ch. 3 treat
+    aspiration as an allophone of the voiceless stop series."""
+    assert "ʰ" not in _t("en-US", word)
+
+
+def test_en_us_aa_digraph_is_one_vowel():
+    """⟨aa⟩ occurs in English only in loans and names, where GA reads it as
+    the single low back vowel ɑ (Wells 2008 LPD) — not as two ⟨a⟩s, which
+    would give the word a spurious extra syllable."""
+    assert _t("en-US", "aardvark") == "ɑɹdvɚk"
+    assert _t("en-US", "aachen").startswith("ɑ")
