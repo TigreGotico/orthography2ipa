@@ -32,6 +32,12 @@
     "ӷ": [
       "ʁ"
     ],
+    "ҕь": [
+      "ʁʲ"
+    ],
+    "ҕ": [
+      "ʁ"
+    ],
     "дә": [
       "dʷ"
     ],
@@ -74,13 +80,16 @@
       "kʼ"
     ],
     "қь": [
-      "kʲ"
+      "kʲʰ"
     ],
     "қә": [
-      "kʷ"
+      "kʷʰ"
     ],
     "қ": [
-      "k"
+      "kʰ"
+    ],
+    "ӄ": [
+      "kʰ"
     ],
     "ҟь": [
       "qʲʼ"
@@ -107,6 +116,9 @@
       "pʼ"
     ],
     "ԥ": [
+      "pʰ"
+    ],
+    "ҧ": [
       "pʰ"
     ],
     "р": [
@@ -266,14 +278,14 @@
     "kʼ": [
       "kʼ"
     ],
-    "kʲ": [
-      "kʲ"
+    "kʲʰ": [
+      "kʲʰ"
     ],
-    "kʷ": [
-      "kʷ"
+    "kʷʰ": [
+      "kʷʰ"
     ],
-    "k": [
-      "k"
+    "kʰ": [
+      "kʰ"
     ],
     "qʲʼ": [
       "qʲʼ"
@@ -431,7 +443,7 @@
       "notes": "Letter-by-letter table of the modern Abkhaz Cyrillic alphabet with IPA values, including the ⟨ь⟩/⟨ә⟩ palatalised and labialised digraphs; source of the grapheme map."
     }
   ],
-  "notes": "Abkhaz (аԥсшәа) — Northwest Caucasian, written since 1954 in an extended Cyrillic alphabet. INPUT CONTRACT: Cyrillic text in the modern (1954) Abkhaz orthography, Unicode NFC, lowercase folding applied by the engine. The orthography is heavily DIGRAPHIC: the modifier letters ⟨ь⟩ (palatalisation) and ⟨ә⟩ U+04D9 (labialisation) combine with a base consonant to spell a distinct phoneme (гь /ɡʲ/, гә /ɡʷ/, шь /ʃ/, шә /ʃʷ/, ҟә /qʷʼ/ …), so every such digraph is listed as its own grapheme key and is matched by maximal munch ahead of the bare letter. Only two vowels are phonemic, /ɑ/ and /ɨ/; ⟨е о и у⟩ historically represent /ɑj ɑw jɨ wɨ/ sequences and are mapped to their surface values /e o i(j) u(w)/ as given in the alphabet table. ⟨ь⟩ and ⟨ә⟩ never occur alone as phonemes and are therefore not given standalone entries.",
+  "notes": "Abkhaz (аԥсшәа) — Northwest Caucasian, written since 1954 in an extended Cyrillic alphabet. INPUT CONTRACT: Cyrillic text in the modern (1954) Abkhaz orthography, Unicode NFC, lowercase folding applied by the engine. The orthography is heavily DIGRAPHIC: the modifier letters ⟨ь⟩ (palatalisation) and ⟨ә⟩ U+04D9 (labialisation) combine with a base consonant to spell a distinct phoneme (гь /ɡʲ/, гә /ɡʷ/, шь /ʃ/, шә /ʃʷ/, ҟә /qʷʼ/ …), so every such digraph is listed as its own grapheme key and is matched by maximal munch ahead of the bare letter. Only two vowels are phonemic, /ɑ/ and /ɨ/; ⟨е о и у⟩ historically represent /ɑj ɑw jɨ wɨ/ sequences and are mapped to their surface values /e o i(j) u(w)/ as given in the alphabet table. ⟨ь⟩ and ⟨ә⟩ never occur alone as phonemes and are therefore not given standalone entries. The stops and affricates are a three-way voiced ~ aspirated ~ ejective series; the aspirated member carries ⟨ʰ⟩ throughout — ⟨ԥ⟩ /pʰ/, ⟨ҭ⟩ /tʰ/, ⟨ц⟩ /t͡sʰ/, ⟨ч⟩ /t͡ʃʰ/, ⟨ҽ⟩ /ʈ͡ʂʰ/ and ⟨қ⟩ /kʰ/, against ejective ⟨к⟩ /kʼ/ and voiced ⟨г⟩ /ɡ/. The 1996 orthographic reform replaced the hooked ⟨ҧ⟩ U+04A7, ⟨ҕ⟩ U+0495 and ⟨ӄ⟩ U+04C4 with the descender forms ⟨ԥ⟩ U+0525, ⟨ӷ⟩ U+04F7 and ⟨қ⟩ U+049A (⟨ҕь⟩ parallels modern ⟨ӷь⟩ /ʁʲ/); the hooked shapes are mapped so pre-reform text is not silently dropped. CONVENTION: the two vowels are written /ɑ/ and /ɨ/ after the alphabet table this spec follows; /a/ and /ə/ are equally standard notations for the same two phonemes, and the epitran-derived vox_communis gold uses the latter, so most of the distance measured against that gold is notation rather than mapping. That gold also drops aspiration, tie bars and the retroflex ⟨ш ж ҽ ҿ џ⟩ series, and it has no transcription at all for any word spelled with ⟨ә ԥ қ ӡ ҩ⟩, so it cannot score labialisation, the aspirated labial or velar stop, or /ɥ/.",
   "timespan": {
     "start_year": 1862,
     "end_year": null

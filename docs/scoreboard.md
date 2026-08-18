@@ -28,7 +28,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 |---|---|---:|---:|---:|---:|---:|---:|---:|---|---|---|
 | aa | wikipron | 1713 | 0.2151 | · | · | · | · | [0.2071, 0.2228] | 0.2685 | research | crowd-scraped |
 | ab | vox_communis | 32180 | 0.4563 | 0.4563 | 0.4563 | 0.0023 | 0.0023 | [0.4549, 0.4577] | 0.0023 | research | epitran-derived |
-| ab | wikipron | 159 | 0.3963 | · | · | · | · | [0.3363, 0.4585] | 0.2956 | research | crowd-scraped |
+| ab | wikipron | 165 | 0.3718 | 0.3702 | 0.3702 | 0.3455 | 0.3455 | [0.3135, 0.4294] | 0.3455 | research | crowd-scraped |
 | ace | wikipron | 267 | 0.1433 | · | · | · | · | [0.1236, 0.1647] | 0.5056 | research | crowd-scraped |
 | acm | wikipron | 97 | 0.4249 | · | · | · | · | [0.3792, 0.4681] | 0.1031 | skeleton | crowd-scraped |
 | ady | northeuralex | 928 | 0.1684 | · | · | · | · | [0.1558, 0.1813] | 0.4224 | research | lexicon-derived |
