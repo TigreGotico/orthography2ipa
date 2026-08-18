@@ -1473,6 +1473,17 @@ spec produces no hypothesis for a kanji-only word. A row whose loader
 refuses the language outright is reported too, which catches a board row
 fossilised by a de-registration. Run it after every board regeneration:
 
+Read the Japanese rows with that partial coverage in mind, because dropping
+the kanji-only words removes far less of the problem than it looks. A word
+is scored the moment it contains one kana, and most Japanese words are a
+kanji stem with a kana ending, so the majority of scored words hand the
+engine an okurigana and ask it for the whole reading. Those words carry
+roughly six times the error rate of the words written in kana throughout,
+and they outnumber them, so the published Japanese PER is mostly a
+measurement of the missing kanji front-end. The kana→IPA quality the spec
+actually controls is visible only in the all-kana subset, which has to be
+split out by hand — no board column reports it.
+
 ```bash
 PYTHONPATH=$PWD python scripts/check_board_row_counts.py
 ```
