@@ -547,7 +547,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | pt-UY | portuguese_tts | 20 | 0.0000 | · | · | · | · | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | qu | ipa_childes | 1850 | 0.4421 | · | · | · | · | [0.4322, 0.4519] | 0.0676 | stub | espeak-derived |
 | rgn | wikipron | 261 | 0.3369 | · | · | · | · | [0.3079, 0.3689] | 0.0996 | skeleton | crowd-scraped |
-| rif | wold | 1506 | 0.4095 | · | · | · | · | [0.3980, 0.4209] | 0.0930 | research | lexicon-derived |
+| rif | wold | 1506 | 0.4027 | 0.4027 | 0.4027 | 0.0950 | 0.0950 | [0.3918, 0.4141] | 0.0950 | research | lexicon-derived |
 | ro | vox_communis | 10679 | 0.0693 | 0.0687 | 0.0684 | 0.5626 | 0.5636 | [0.0674, 0.0710] | 0.5608 | production | epitran-derived |
 | ro | wikipron | 8977 | 0.0198 | 0.0192 | 0.0189 | 0.8852 | 0.8865 | [0.0186, 0.0212] | 0.8830 | production | crowd-scraped |
 | ro-RO | ipa_childes | 2311 | 0.2644 | 0.2617 | 0.2616 | 0.1939 | 0.1943 | [0.2562, 0.2721] | 0.1900 | production | espeak-derived |
@@ -661,7 +661,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | yrk | wikipron | 295 | 0.4584 | · | · | · | · | [0.4374, 0.4797] | 0.0407 | skeleton | crowd-scraped |
 | yux | wikipron | 242 | 0.3246 | · | · | · | · | [0.3000, 0.3484] | 0.1322 | skeleton | crowd-scraped |
 | za | wikipron | 1682 | 0.2124 | · | · | · | · | [0.2048, 0.2203] | 0.2426 | research | crowd-scraped |
-| zh | ipa_childes | 4717 | 0.5167 | · | · | · | · | [0.5125, 0.5209] | 0.0087 | research | machine-generated |
+| zh | ipa_childes | 4718 | 0.2882 | 0.2670 | 0.2665 | 0.2338 | 0.2342 | [0.2819, 0.2943] | 0.2126 | research | machine-generated |
 | zom | wikipron | 134 | 0.5448 | · | · | · | · | [0.5159, 0.5731] | 0.0000 | skeleton | crowd-scraped |
 | zu | wikipron | 1754 | 0.4287 | 0.4287 | 0.4287 | 0.0063 | 0.0063 | [0.4215, 0.4352] | 0.0063 | research | crowd-scraped |
 | zza | wikipron | 196 | 0.3606 | · | · | · | · | [0.3278, 0.3924] | 0.1122 | skeleton | crowd-scraped |

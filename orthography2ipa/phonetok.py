@@ -1705,16 +1705,26 @@ class PhonetokTokenizer:
                     pos = m.end()
                     continue
 
-            # (c) Digits
+            # (c) Digits — unless a grapheme claims them, the same escape
+            # maximal munch already grants punctuation. An orthography may
+            # spell a segment with a digit: numbered Pinyin writes the four
+            # lexical tones ⟨1 2 3 4⟩, and the Arabic chat alphabet writes
+            # ⟨3⟩ for /ʕ/. Matching the digit run first made those graphemes
+            # unreachable, so the tone or the consonant was dropped.
             m = _DIGIT_RE.match(text, pos)
             if m:
                 span = m.group()
-                tokens.append(Token(
-                    kind=TokenKind.DIGIT, grapheme=span,
-                    ipa=(), position=pos, length=len(span),
-                ))
-                pos = m.end()
-                continue
+                claimed_by_grapheme = (
+                    span in self._grapheme_ipa
+                    or self._trie.longest_match(text, pos) is not None
+                )
+                if not claimed_by_grapheme:
+                    tokens.append(Token(
+                        kind=TokenKind.DIGIT, grapheme=span,
+                        ipa=(), position=pos, length=len(span),
+                    ))
+                    pos = m.end()
+                    continue
 
             # (d) Longest grapheme match (trie)
             gkey = self._trie.longest_match(text, pos)
