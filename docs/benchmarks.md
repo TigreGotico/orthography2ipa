@@ -783,6 +783,19 @@ distinguish it from a real word-initial /z/ without guessing — and it
 inflates the `sr` row by roughly 0.04 PER (0.3298 → 0.2949 with the artifact
 removed by hand). Read the `sr` vox_communis row with that offset in mind.
 
+**Known coverage hole, `ba`.** The Bashkir gold cannot see the two letters
+that define Bashkir. `ba.tsv` holds 209,210 sentence rows, and 188,980 of
+its word tokens are spelled with ⟨ҙ⟩ or ⟨ҫ⟩ — the interdentals /ð/ and /θ/
+that separate Bashkir from Tatar. Every one of those 188,980 tokens is
+emitted as `spn` by the upstream phonemizer, which has no mapping for
+either letter, so every one of them is dropped by the `spn` filter above.
+What survives is 70,528 unique words with zero ⟨ҙ⟩ and zero ⟨ҫ⟩ in them.
+The row is therefore not a sample of Bashkir but a sample of the Bashkir
+that Epitran happens to cover, and no score on it can reward or punish the
+spec's /ð/ and /θ/ rules. The row is kept because it still measures the
+rest of the alphabet across a large vocabulary; it is read as breadth
+only, and the interdentals are defended by `wikipron` and by unit tests.
+
 **Tier: `epitran-derived`**: Epitran is a scored competitor in
 [comparison.md](comparison.md), so a disagreement here measures divergence
 from a competitor's output. Directional breadth signal only. Can never gate

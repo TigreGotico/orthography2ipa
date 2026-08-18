@@ -37,8 +37,8 @@
     "а": [
       "a"
     ],
-    "ə": [
-      "æ"
+    "ае": [
+      "aje"
     ],
     "б": [
       "b"
@@ -61,6 +61,12 @@
     "е": [
       "je"
     ],
+    "ее": [
+      "eje"
+    ],
+    "ё": [
+      "jo"
+    ],
     "ж": [
       "ʒ"
     ],
@@ -69,6 +75,9 @@
     ],
     "и": [
       "i"
+    ],
+    "ие": [
+      "ije"
     ],
     "й": [
       "j"
@@ -94,8 +103,14 @@
     "о": [
       "o"
     ],
-    "ö": [
+    "ое": [
+      "oje"
+    ],
+    "ө": [
       "ø"
+    ],
+    "өе": [
+      "øje"
     ],
     "п": [
       "p"
@@ -115,7 +130,7 @@
     "у": [
       "u"
     ],
-    "ü": [
+    "ү": [
       "y"
     ],
     "ф": [
@@ -139,17 +154,65 @@
     "щ": [
       "ʃtʃ"
     ],
+    "ъ": [
+      ""
+    ],
+    "ъе": [
+      "je"
+    ],
     "ы": [
       "ɯ"
     ],
+    "ые": [
+      "ɯje"
+    ],
+    "ь": [
+      ""
+    ],
+    "ье": [
+      "je"
+    ],
     "э": [
       "e"
+    ],
+    "ә": [
+      "æ"
+    ],
+    "әе": [
+      "æje"
     ],
     "ю": [
       "ju"
     ],
     "я": [
       "ja"
+    ],
+    "ау": [
+      "aw"
+    ],
+    "оу": [
+      "ow"
+    ],
+    "ыу": [
+      "ɯw"
+    ],
+    "уу": [
+      "uw"
+    ],
+    "әү": [
+      "æw"
+    ],
+    "өү": [
+      "øw"
+    ],
+    "үү": [
+      "yw"
+    ],
+    "еү": [
+      "ew"
+    ],
+    "иү": [
+      "iw"
     ]
   },
   "allophones": {
@@ -259,7 +322,7 @@
       "ɯ"
     ]
   },
-  "notes": "Bashkir in Cyrillic script (Russia). Distinctive interdentals: Ҙ = /ð/, Ҫ = /θ/ — unusual among Turkic. Ҡ = /q/ (uvular stop); Ғ = /ʁ/; Ң = /ŋ/; Һ = /h/. 9-vowel system with harmony.",
+  "notes": "Bashkir in Cyrillic script (Russia). Distinctive interdentals: Ҙ = /ð/, Ҫ = /θ/ — unusual among Turkic and a defining contrast against Tatar. Ҡ = /q/ (uvular stop); Ғ = /ʁ/; Ң = /ŋ/; Һ = /h/. Nine vowels with front/back harmony: а /a/, ә /æ/, о /o/, ө /ø/, у /u/, ү /y/, ы /ɯ/, и /i/, е /e/.\n\n⟨е⟩ is iotated /je/ word-initially, after another vowel, and after a soft or hard sign (Wikipedia, \"Bashkir language\", alphabet table); it is the plain vowel /e/ after a consonant. Word-initial iotation is keyed on position (⟨е⟩ → /je/ word-initially, /e/ by default). After-vowel iotation is written as the harmonic digraphs ае, ое, ые, ие, ее, әе and өе, because the shared orthographic-vowel table does not classify the Turkic Cyrillic letters ә and ө, so an after-vowel position could not see them; ⟨ье⟩ and ⟨ъе⟩ are keyed directly as digraphs for the same reason.\n\n⟨у⟩ and ⟨ү⟩ spell the glide /w/ when they follow a back and a front vowel respectively; as vowels they occur only in the first syllable (Wikipedia, \"Bashkir language\", alphabet table). The harmonic sequences are written as digraphs — ау оу ыу уу and әү өү үү еү иү — for the same reason: the shared orthographic-vowel table does not classify ә ө ү at all.\n\n⟨ъ⟩ and ⟨ь⟩ represent a glottal stop or syllable break rather than a full consonant (Wikipedia, \"Bashkir language\"); this spec maps them to the empty string on their own, since the engine has no glottal-stop segment to assign them, while still keying the ⟨ъе⟩/⟨ье⟩ sequences to /je/ so the following vowel is not silently dropped. ⟨ё⟩ /jo/, ⟨ц⟩ /ts/, ⟨щ⟩ /ʃtʃ/ and ⟨в⟩ /v/ carry Russian loanwords.\n\nKnown residual: ⟨и⟩ is /i/ in the first syllable and an underlying /ij/ elsewhere, especially in open syllables (Wikipedia, \"Bashkir language\"). The second reading is not declared because the positional vocabulary has no first-syllable position, and approximating it with word-initial would mis-fire on every polysyllable.",
   "sources": [
     {
       "id": "bashkir_wiki",
@@ -271,6 +334,17 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Bashkir_language",
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "poppe_1964",
+      "author": "Poppe, Nicholas",
+      "year": 1964,
+      "title": "Bashkir Manual",
+      "publisher": "Indiana University, Uralic and Altaic Series",
+      "url": null,
+      "wikipedia_url": null,
+      "pages": null,
+      "notes": "Edition not consulted; claim is the standard Turkological description of Bashkir vowel values and the у/ү glide rule."
     }
   ],
   "wikipedia": [
@@ -297,5 +371,23 @@
     "longitude": 56.55937,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Bashkir."
+  },
+  "positional_graphemes": {
+    "е": {
+      "word_initial": [
+        "je"
+      ],
+      "default": [
+        "e"
+      ]
+    },
+    "еү": {
+      "word_initial": [
+        "jew"
+      ],
+      "default": [
+        "ew"
+      ]
+    }
   }
 }
