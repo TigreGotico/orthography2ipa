@@ -40,7 +40,7 @@ import unicodedata
 from dataclasses import dataclass
 from typing import List, Optional, Sequence, Tuple
 
-from orthography2ipa.phonetok import Candidate, GraphemeContext, SegmentSlot
+from orthography2ipa.phonetok import Candidate, GraphemeContext, SegmentSlot, _is_a_mark
 from orthography2ipa.rescorer import LatticeRescorer, RescoreContext
 from orthography2ipa.types import AllophoneRule
 from orthography2ipa.vowels import is_ipa_vowel, SYLLABIC_MARKS
@@ -117,6 +117,28 @@ class SegmentContext:
     is_word_final: bool
 
 
+def _spells_nothing(gctx: GraphemeContext) -> bool:
+    """True when *gctx* is a combining mark the spec maps to nothing.
+
+    Mirrors :meth:`~orthography2ipa.phonetok.PhonetokTokenizer._spells_nothing`:
+    only an unconditional single empty candidate counts, and the grapheme
+    must be a combining mark (:func:`~orthography2ipa.phonetok._is_a_mark`,
+    or its first character for a multi-character key whose tail is marks
+    too) — a mark rides on the letter it attaches to and cannot itself
+    divide a syllable. A silent BASE letter (not a mark) is opaque here:
+    letting it stand as transparent would walk the look-ahead across a
+    syllable it does not belong to.
+    """
+    ipa_vals = gctx.ipa
+    if not ipa_vals or list(ipa_vals) != [""]:
+        return False
+    grapheme = gctx.grapheme
+    if len(grapheme) == 1:
+        return _is_a_mark(grapheme)
+    return (unicodedata.category(grapheme[0]).startswith("L") or _is_a_mark(grapheme[0])) \
+        and all(_is_a_mark(c) for c in grapheme[1:])
+
+
 def _syllable_position(ctx: GraphemeContext) -> str:
     """Classify the grapheme's syllable position by a maximal-onset rule.
 
@@ -128,6 +150,15 @@ def _syllable_position(ctx: GraphemeContext) -> str:
     if ctx.is_vowel:
         return "nucleus"
     nxt = ctx.next
+    # A grapheme the spec reads as nothing IS NOT NECESSARILY transparent —
+    # only a combining MARK it reads as nothing is: a Lao tone mark is
+    # written on the consonant, so ⟨ຟ້າ⟩ has the onset /f/ the bare ⟨ຟາ⟩
+    # has, not a coda. A silent BASE letter (e.g. a spec that maps some
+    # consonant to "" outright) is a real grapheme occupying a real slot
+    # and must not be skipped, or an unrelated following vowel could be
+    # mistaken for this grapheme's own nucleus.
+    while nxt is not None and _spells_nothing(nxt):
+        nxt = nxt.next
     if nxt is not None and nxt.is_vowel:
         return "onset"
     return "coda"

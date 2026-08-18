@@ -4396,12 +4396,12 @@
   {
     "lang": "lo",
     "dataset": "kaikki",
-    "n": 998,
-    "per": 0.542,
-    "per_ci_low": 0.5315,
-    "per_ci_high": 0.5526,
+    "n": 999,
+    "per": 0.3614,
+    "per_ci_low": 0.3544,
+    "per_ci_high": 0.3683,
     "exact_match": 0.0,
-    "quality_tier": "skeleton",
+    "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
     "limit": 1000
