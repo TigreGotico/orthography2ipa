@@ -781,7 +781,8 @@ class TestMandarin:
     - Palatal series: j=[tɕ], q=[tɕʰ], x=[ɕ]
     - Retroflex series: zh=[ʈʂ], ch=[ʈʂʰ], sh=[ʂ], r=[ɻ/ʐ]
     - h → [x] (velar, not glottal)
-    - Tonal (not modeled in grapheme table)
+    - Tone is written, in both the diacritic and the tone-digit
+      conventions; see tests/test_mandarin_pinyin.py
     """
 
     LANGUAGE_CODE = "zh"
