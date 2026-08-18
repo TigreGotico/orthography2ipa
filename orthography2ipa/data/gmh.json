@@ -3,7 +3,7 @@
   "name": "Middle High German",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "sch": [
       "ʃ"
@@ -164,5 +164,13 @@
   "timespan": {
     "start_year": 1050,
     "end_year": 1500
+  },
+  "stress": {
+    "default_position": 1,
+    "final_stress_endings": [],
+    "penult_stress_endings": [],
+    "marked_vowels": [],
+    "stress_mark": "ˈ",
+    "notes": "Middle High German inherits the Germanic root-initial stress rule: primary stress falls on the first syllable of the root, before any inflectional or (most) derivational affixes; unstressed prefixes (ge-, be-, ent- etc.) and borrowed words are not modeled here. Source: Paul, Mittelhochdeutsche Grammatik (rev. Klein, Solms & Wegera, 2007), stress chapter."
   }
 }
