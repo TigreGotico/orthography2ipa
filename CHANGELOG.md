@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.76.3a1](https://github.com/TigreGotico/orthography2ipa/tree/7.76.3a1) (2026-08-18)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.76.2a1...7.76.3a1)
+
+**Merged pull requests:**
+
+- fix\(benchmark\): regenerate the vox\_communis board rows the spn filter left stale [\#994](https://github.com/TigreGotico/orthography2ipa/pull/994) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.76.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.76.2a1) (2026-08-18)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.76.1a1...7.76.2a1)
@@ -742,10 +750,6 @@
 ## [7.56.0a3](https://github.com/TigreGotico/orthography2ipa/tree/7.56.0a3) (2026-08-05)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.56.0a2...7.56.0a3)
-
-**Merged pull requests:**
-
-- data: Basque beats espeak — Hualde allophony wave [\#801](https://github.com/TigreGotico/orthography2ipa/pull/801) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.56.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.56.0a2) (2026-08-05)
 
