@@ -663,5 +663,5 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | za | wikipron | 1682 | 0.2124 | 0.2124 | 0.2124 | 0.2426 | 0.2426 | [0.2048, 0.2203] | 0.2426 | research | crowd-scraped |
 | zh | ipa_childes | 4718 | 0.2882 | 0.2670 | 0.2665 | 0.2338 | 0.2342 | [0.2819, 0.2943] | 0.2126 | research | machine-generated |
 | zom | wikipron | 134 | 0.5280 | 0.5280 | 0.5280 | 0.0000 | 0.0000 | [0.4986, 0.5586] | 0.0000 | research | crowd-scraped |
-| zu | wikipron | 1754 | 0.4287 | 0.4287 | 0.4287 | 0.0063 | 0.0063 | [0.4215, 0.4352] | 0.0063 | research | crowd-scraped |
+| zu | wikipron | 1754 | 0.2312 | 0.2270 | 0.2268 | 0.0593 | 0.0593 | [0.2253, 0.2366] | 0.0576 | research | crowd-scraped |
 | zza | wikipron | 196 | 0.3606 | 0.3606 | 0.3606 | 0.1122 | 0.1122 | [0.3278, 0.3924] | 0.1122 | research | crowd-scraped |
