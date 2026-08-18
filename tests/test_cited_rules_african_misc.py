@@ -399,21 +399,64 @@ def test_so_harmonic_vowel_pairs_are_not_distinguished():
 # om — Oromo (Qubee, official since 1991)
 # ---------------------------------------------------------------------------
 
-def test_om_dh_is_an_implosive():
-    """"DH = implosive /ɗ/" (Qubee orthography).  dhugaa 'truth' → [ɗuɡaː]."""
-    assert G2P("om").transcribe_word("dhugaa") == "ɗuɡaː"
+def test_om_dh_is_a_retroflex_implosive():
+    """<dh> is the voiced retroflex implosive /ᶑ/, not a bilabial one
+    (Griefenow-Mewis 2001, tabulated by Abu et al. 2025 Table II).
+    dhugaa 'truth' → [ᶑʊɡɑː]."""
+    assert G2P("om").transcribe_word("dhugaa") == "ᶑʊɡɑː"
 
 
-def test_om_q_is_an_ejective():
-    """"Q = ejective /qʼ/" (ibid.).  Qubee, the name of the alphabet itself,
-    opens with the ejective."""
-    assert G2P("om").transcribe_word("qubee").startswith("qʼ")
+def test_om_glottalised_stop_series():
+    """Qubee writes the glottalised stops <ph x c q> for /pʼ tʼ tʃʼ kʼ/
+    (Griefenow-Mewis 2001, tabulated by Abu et al. 2025 Table II).  <q> is
+    velar, not uvular, in written Oromo; <x> is an alveolar ejective and not
+    the velar fricative its Latin shape suggests."""
+    t = G2P("om").transcribe_word
+    assert t("qubee") == "kʼʊbeː"
+    assert t("xiqqaa") == "tʼɪkʼkʼɑː"
+    assert t("caalaa") == "tʃʼɑːlɑː"
+    assert t("phaawulos").startswith("pʼ")
+
+
+def test_om_apostrophe_is_a_glottal_stop():
+    """<'> writes the glottal stop /ʔ/ (Abu et al. 2025 Table II), which the
+    engine must emit rather than drop.  ka'e 'he rose' → [kɐʔɛ]."""
+    assert G2P("om").transcribe_word("ka'e") == "kɐʔɛ"
+
+
+def test_om_short_vowels_are_lax():
+    """Short <a e i o u> are laxer and more centralised than the long
+    vowels: /ɐ ɛ ɪ ɔ ʊ/ against /ɑː eː iː oː uː/ (Abu et al. 2025, Table I).
+    The minimal pair lafa 'land' vs laafaa 'soft' is theirs, and it shows the
+    quality shift riding along with the length contrast."""
+    t = G2P("om").transcribe_word
+    assert t("lafa") == "lɐfɐ"
+    assert t("laafaa") == "lɑːfɑː"
+    assert t("tokko") == "tɔkkɔ"
+    assert t("biyya") == "bɪjjɐ"
+
+
+def test_om_gemination_is_written_and_phonemic():
+    """Doubled consonants are geminates and doubled vowels are long; both are
+    written in Qubee, so the doubled graphemes carry straight through.
+    obboleessa 'brother' shows a geminate and a long vowel in one word."""
+    assert G2P("om").transcribe_word("obboleessa") == "ɔbbɔleːssɐ"
 
 
 def test_om_ny_is_a_palatal_nasal():
-    """"NY = /ɲ/" (ibid.).  nyaata 'food' → [ɲaːta], which also shows that
-    "vowel length is phonemic (doubled letters)"."""
-    assert G2P("om").transcribe_word("nyaata") == "ɲaːta"
+    """<ny> = /ɲ/ (Abu et al. 2025, Table II).  nyaata 'food' → [ɲɑːtɐ]."""
+    assert G2P("om").transcribe_word("nyaata") == "ɲɑːtɐ"
+
+
+def test_om_p_and_v_are_not_dropped():
+    """<p> and <v> occur only in loanwords/proper names and were silently
+    deleted by having no grapheme entry at all; Table II of Abu et al. 2025
+    marks (p) (v) (z) as loanword-only segments, but they still need plain
+    /p v/ values rather than being dropped. poolisii 'police' → [poːlɪsiː],
+    viidiyoo 'video' → [viːdɪjoː]."""
+    t = G2P("om").transcribe_word
+    assert t("poolisii") == "poːlɪsiː"
+    assert t("viidiyoo") == "viːdɪjoː"
 
 
 # ---------------------------------------------------------------------------

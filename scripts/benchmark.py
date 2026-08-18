@@ -1266,7 +1266,7 @@ _KAIKKI_LANGS: Dict[str, str] = {
     "lo": "Lao",        # Lao (skeleton)
     "xh": "Xhosa",      # Xhosa (skeleton)
     "so": "Somali",     # Somali (research)
-    "om": "Oromo",      # Oromo (skeleton)
+    "om": "Oromo",      # Oromo (research)
     "ne": "Nepali",     # Nepali (research)
     "kok": "Konkani",   # Konkani (research)
 }
