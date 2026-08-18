@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.76.9a1](https://github.com/TigreGotico/orthography2ipa/tree/7.76.9a1) (2026-08-18)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.76.8a1...7.76.9a1)
+
+**Merged pull requests:**
+
+- fix\(ru\): treat ж ш ц as hard for the consonant, not for the vowel; read the separative ⟨ь⟩ after them [\#983](https://github.com/TigreGotico/orthography2ipa/pull/983) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.76.8a1](https://github.com/TigreGotico/orthography2ipa/tree/7.76.8a1) (2026-08-18)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.76.7a1...7.76.8a1)
@@ -748,10 +756,6 @@
 ## [7.58.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.58.0a2) (2026-08-10)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.58.0a1...7.58.0a2)
-
-**Merged pull requests:**
-
-- refactor\(positional\): consolidate effective-word-end predicates [\#814](https://github.com/TigreGotico/orthography2ipa/pull/814) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.58.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.58.0a1) (2026-08-10)
 
