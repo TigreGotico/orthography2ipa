@@ -328,7 +328,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | kca | northeuralex | 863 | 0.0232 | · | · | · | · | [0.0194, 0.0274] | 0.8517 | research | lexicon-derived |
 | ket | northeuralex | 499 | 0.3766 | · | · | · | · | [0.3504, 0.4011] | 0.1884 | research | lexicon-derived |
 | kgp | wikipron | 106 | 0.2351 | · | · | · | · | [0.1922, 0.2773] | 0.3396 | skeleton | crowd-scraped |
-| ki | wikipron | 1025 | 0.4558 | · | · | · | · | [0.4448, 0.4654] | 0.0410 | research | crowd-scraped |
+| ki | wikipron | 1025 | 0.3972 | 0.3955 | 0.3955 | 0.1922 | 0.1922 | [0.3841, 0.4116] | 0.1883 | research | crowd-scraped |
 | kix | wikipron | 4240 | 0.0788 | 0.0788 | 0.0788 | 0.5116 | 0.5116 | [0.0751, 0.0823] | 0.5116 | research | crowd-scraped |
 | kk | vox_communis | 4288 | 1.5019 | · | · | · | · | [1.4746, 1.5285] | 0.0044 | skeleton | epitran-derived |
 | kk | wikipron | 714 | 0.3393 | · | · | · | · | [0.3213, 0.3588] | 0.1737 | skeleton | crowd-scraped |
