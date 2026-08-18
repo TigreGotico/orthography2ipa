@@ -3,10 +3,13 @@
   "name": "Galibi Carib",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "ï": ["ɨ"],
+    "ɨ": ["ɨ"],
     "ʼ": ["ʔ"],
+    "’": ["ʔ"],
+    "'": ["ʔ"],
     "p": ["p"],
     "t": ["t"],
     "k": ["k"],
@@ -35,7 +38,11 @@
       "notes": "Descent per Glottolog classification of Galibi Carib (gali1262)."
     }
   ],
-  "notes": "Cariban language (Kariña/Galibi) of Venezuela and the Guianas, Latin orthography. The grapheme ï denotes the high central vowel /ɨ/. The voiced stops b/d/g overlap with post-nasal allophones of the voiceless stops p/t/k and are treated by some descriptions as conditioned rather than independent; they are mapped here at face value. Stress, palatalization allophones ([tʃ ʃ ɲ]) and fricative allophones ([β]) that the spelling does not distinguish are left unencoded; there is no tone.",
+  "stress": {
+    "default_position": -1,
+    "stress_mark": "ˈ"
+  },
+  "notes": "Research. Cariban language (Kariña/Kali'na, a.k.a. Galibi Carib) of Venezuela and the Guianas, Latin orthography (Hoff 1968). The grapheme ï (also seen written ɨ in some sources/dictionaries, mapped equivalently) denotes the high central vowel /ɨ/. The glottal stop is written with an apostrophe, whose exact codepoint varies by source text (modifier letter apostrophe ʼ, right single quotation mark ’, or plain ASCII '); all three are mapped to /ʔ/. The voiced stops b/d/g overlap with post-nasal allophones of the voiceless stops p/t/k and are treated by some descriptions as conditioned rather than independent; they are mapped here at face value. Word stress falls on the final syllable in the disyllabic-dominant WOLD gold sample (Hoff 1968); marked here as final by default. Palatalization allophones ([tʃ ʃ ɲ]) and fricative allophones ([β]) that the spelling does not distinguish are left unencoded; there is no tone. The WOLD gold sample also contains a minority of French-loanword entries spelled in French orthography (e.g. ⟨fromage⟩, ⟨mercredi⟩) rather than adapted Kali'na spelling; these are outside this spec's Kali'na grapheme map and are not modelled.",
   "iso639_3": "car",
   "glottolog_code": null,
   "sources": [
@@ -49,6 +56,17 @@
       "pages": null,
       "notes": "Classification reference for a skeleton-tier entry.",
       "wikipedia_url": null
+    },
+    {
+      "id": "hoff1968",
+      "author": "Hoff, Berend J.",
+      "year": 1968,
+      "title": "The Carib Language",
+      "publisher": "Martinus Nijhoff",
+      "url": null,
+      "pages": null,
+      "notes": "Grammar of Carib/Kali'na: Latin orthography, the apostrophe glottal stop, ï=/ɨ/, and final word stress.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Carib_language"
     },
     {
       "id": "car_wikipedia",
