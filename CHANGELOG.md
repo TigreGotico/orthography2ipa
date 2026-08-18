@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.76.5a1](https://github.com/TigreGotico/orthography2ipa/tree/7.76.5a1) (2026-08-18)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.76.4a1...7.76.5a1)
+
+**Merged pull requests:**
+
+- fix\(skr\): Saraiki Shahmukhi letters, matres lectionis, and tap rhotic [\#998](https://github.com/TigreGotico/orthography2ipa/pull/998) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.76.4a1](https://github.com/TigreGotico/orthography2ipa/tree/7.76.4a1) (2026-08-18)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.76.3a1...7.76.4a1)
@@ -727,10 +735,6 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.57.0a3...7.58.0a1)
 
-**Merged pull requests:**
-
-- feat\(fr-FR\): y as vowel letter, c/g softening via before\_front\_vowel [\#807](https://github.com/TigreGotico/orthography2ipa/pull/807) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [7.57.0a3](https://github.com/TigreGotico/orthography2ipa/tree/7.57.0a3) (2026-08-10)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.57.0a2...7.57.0a3)
@@ -742,10 +746,6 @@
 ## [7.57.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.57.0a2) (2026-08-05)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.57.0a1...7.57.0a2)
-
-**Merged pull requests:**
-
-- data: beat-espeak Dutch wave — compound secondary stress, coda devoicing, unstressed tense i [\#803](https://github.com/TigreGotico/orthography2ipa/pull/803) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.57.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.57.0a1) (2026-08-05)
 
