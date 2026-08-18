@@ -316,8 +316,8 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | it-IT | ipa_childes | 4583 | 0.2341 | 0.2056 | 0.2012 | 0.2638 | 0.2784 | [0.2289, 0.2395] | 0.1942 | research | espeak-derived |
 | itl | northeuralex | 603 | 0.0540 | 0.0540 | 0.0540 | 0.7894 | 0.7894 | [0.0443, 0.0645] | 0.7894 | research | lexicon-derived |
 | izh | wikipron | 7886 | 0.0092 | 0.0092 | 0.0092 | 0.9369 | 0.9369 | [0.0083, 0.0103] | 0.9369 | research | crowd-scraped |
-| ja | ipadict | 115495 | 0.3536 | 0.3536 | 0.3536 | 0.1673 | 0.1673 | [0.3520, 0.3552] | 0.1673 | research | lexicon-derived |
-| ja | vox_communis | 42549 | 0.4504 | 0.4504 | 0.4504 | 0.1304 | 0.1304 | [0.4476, 0.4535] | 0.1304 | research | epitran-derived |
+| ja | ipadict | 115500 | 0.3276 | 0.3276 | 0.3276 | 0.2845 | 0.2845 | [0.3259, 0.3293] | 0.2845 | research | lexicon-derived |
+| ja | vox_communis | 42550 | 0.4273 | 0.4273 | 0.4273 | 0.2000 | 0.2000 | [0.4243, 0.4304] | 0.2000 | research | epitran-derived |
 | jam | ipadict | 1869 | 0.1656 | 0.1656 | 0.1656 | 0.4131 | 0.4131 | [0.1554, 0.1747] | 0.4131 | research | lexicon-derived |
 | jam | wikipron | 382 | 0.2764 | 0.2764 | 0.2764 | 0.4005 | 0.4005 | [0.2462, 0.3060] | 0.4005 | research | crowd-scraped |
 | jv | kaikki | 96 | 0.2180 | 0.0915 | 0.0723 | 0.6667 | 0.7500 | [0.1843, 0.2542] | 0.2500 | skeleton | crowd-scraped |
