@@ -51,24 +51,25 @@ class TestEnglishDoublingIsNotGemination:
 
     def test_doubled_consonants_collapse(self):
         g = G2P("en-GB")
-        assert g.transcribe_word("summer") == "sʌməɹ"
-        assert g.transcribe_word("running") == "ɹʌnɪŋ"
-        assert g.transcribe_word("happy") == "hæpi"
+        # RP is non-rhotic, so the ⟨er⟩ nucleus is a bare [ə]
+        assert g.transcribe_word("summer") == "ˈsʌmə"
+        assert g.transcribe_word("running") == "ˈɹʌnɪŋ"
+        assert g.transcribe_word("happy") == "ˈhæpi"
 
     def test_a_real_long_vowel_is_kept(self):
         # ⟨ee⟩/⟨oo⟩ are long vowels, not doubled letters — must not collapse.
-        assert G2P("en-GB").transcribe_word("see") == "siː"
-        assert G2P("en-GB").transcribe_word("food") == "fuːd"
+        assert G2P("en-GB").transcribe_word("see") == "ˈsiː"
+        assert G2P("en-GB").transcribe_word("food") == "ˈfuːd"
 
 
 class TestEnglishFinalYIsAVowel:
     """Word-final ⟨y⟩ is /i/ (happy, city), not the consonant /j/ (happy → hæppj)."""
 
     def test_final_y(self):
-        assert G2P("en-GB").transcribe_word("city") == "sɪti"
+        assert G2P("en-GB").transcribe_word("city") == "ˈsɪti"
 
     def test_initial_y_is_still_the_glide(self):
-        assert G2P("en-GB").transcribe_word("yes") == "jɛs"
+        assert G2P("en-GB").transcribe_word("yes") == "ˈjɛs"
 
 
 class TestWordFinalSeesThroughSilentLetters:
