@@ -590,6 +590,25 @@ def _is_open_syllable(
     return is_orthographic_vowel(syllable[-1])
 
 
+def _took_a_preposed_vowel(ctx, spec: Optional[LanguageSpec]) -> bool:
+    """True when this grapheme absorbed a preposed vowel written before it.
+
+    The Tai preposed vowels ⟨เ แ โ ใ ไ⟩ are written before their consonant
+    and pronounced after it, and the tokenizer merges the vowel onto the
+    consonant token, leaving the vowel token silent. The consonant is then
+    a syllable ONSET however late it stands in the spelling — the last
+    LETTER of Thai ⟨เก⟩ /keː/ is the syllable's initial, not its coda — so
+    a spec's ``word_final`` entry, which states a coda fact, must not
+    reach it.
+    """
+    prev_ctx = ctx.prev
+    if prev_ctx is None or spec is None or not spec.preposed_vowels:
+        return False
+    if prev_ctx.grapheme.lower() not in {v.lower() for v in spec.preposed_vowels}:
+        return False
+    return not (prev_ctx.token and prev_ctx.token.ipa)
+
+
 def grapheme_positions(
     ctx,
     *,
@@ -676,7 +695,7 @@ def grapheme_positions(
     # 2. word boundary
     if prev_ctx is None:
         pos.append(GraphemePosition.WORD_INITIAL)
-    if word_end.final_slot:
+    if word_end.final_slot and not _took_a_preposed_vowel(ctx, spec):
         pos.append(GraphemePosition.WORD_FINAL)
     # The word must keep a segment. A spec's word_final entry is usually a
     # SILENCING one, so promoting the slot in front of a transparent suffix

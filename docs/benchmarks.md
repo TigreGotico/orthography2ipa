@@ -268,6 +268,7 @@ Four rows are known to be affected, three of them wired by the small-wikipron sw
 | `nmy` (Namuyi, `N=354`) | a **mix** of hand-typed IPA and `Module:nmy-IPA` output | Weaker form of the same caveat: part of the row is a reproduction test. The residual error is dominated by unwritten vowel nasalisation, which is a real gap either way. |
 | `mn` (Khalkha Mongolian, `N=3528`) | a **mix** of hand-typed IPA and `Module:mn-IPA` output — a 40-headword sample of the raw en.wiktionary source drew roughly three module-generated entries for every hand-typed one | Same weaker caveat as `nmy`: part of the row is a reproduction test rather than an accuracy test. See [languages/mn.md](languages/mn.md). |
 | `egy` (Ancient Egyptian, `N=2185`) | mostly `Module:egy-pron` output, invoked through `{{egy-pr}}`, plus hand-typed reconstructions on the same headwords | **`PER 0.0183` certifies reproduction of the codified Egyptological reading convention on 2185 words, not accuracy** — the convention is a way of saying the words aloud, not a reconstruction of how Egyptian sounded, and the spec encodes it from the same published guidelines the module implements. Not comparison-eligible. See [languages/egy.md](languages/egy.md). |
+| `th` (Standard Thai, `N≈17k`) | **entirely** `Module:th-pron` output, invoked through a bare `{{th-pron}}` or `{{th-pron\|<respelling>}}` — an 11-word raw-wikitext sample (`เก็บ`, `ก่อน`, `ยิ้ม`, `สัตว์`, `จันทร์`, `รัก`, `บ้าน`, `น้ำ`, `หมา`, `โรงเรียน`, `ประเทศ`) found the template on every headword and no hand-typed IPA anywhere | The module computes tone and vowel length from the spelling (plus the optional respelling argument) the same way the spec's own tone-class/syllable-type analysis would, so a low PER on the tone-bearing part of the row would certify reproduction of that module, not accuracy. The spec does not compute tone (see below), so this does not currently inflate the published number, but it bounds what a future tone mechanism could claim credit for: agreement with `Module:th-pron`'s tone computation is not independent confirmation of it. |
 
 No such row may be used to certify a language's accuracy, and none
 belongs in a cross-system comparison. What they do certify is that the
@@ -339,6 +340,41 @@ Wiktionary plus PersPred "and a great deal of guesswork", and its own README
 calls it "extremely experimental". A PER improvement against that row is a
 comparison against an experimental machine-generated file, not a
 gold-standard one.
+
+#### Tone-marked golds put a floor under a spec that emits no tone (`th`)
+
+WikiPron transcribes Standard Thai with Chao tone letters, and they are
+not a garnish: **32% of every character in the `tha_thai_broad` gold** is
+a tone letter (79,041 of 246,222 characters across all 18,416 gold rows,
+counted after the benchmark normalizer runs; deduplicated to the 17,221
+scored headwords it is 73,093 of 228,584, the same 32%), a
+count PER charges in full because the letters are ordinary characters to
+an edit distance. A spec that emits no tone therefore cannot score below
+about 0.32 on this row whatever its segments do, and the published number
+splits into a segmental part it can move and a tonal part it cannot.
+
+Thai tone is not unwritten prosody — it is recoverable from the spelling,
+from the initial consonant's class crossed with the syllable's type, its
+vowel length and any tone mark. What is missing is the mechanism: a spec
+can declare a `tone_inventory` (descriptive) and ask for tone symbols to
+be docked syllable-finally (`tone_marks_syllable_final`, which only moves
+symbols a grapheme table already produced), and neither computes a tone.
+Doing so needs a syllable analysis of the WRITTEN word, and the same gap
+covers Lao and every other Tai spec scored against a tone-marked gold.
+
+That the gold's tone letters follow the same consonant-class × syllable-type
+rule this section describes is not independent confirmation of the rule:
+the gold IS that computation (`Module:th-pron`, see [Module-generated
+WikiPron rows](#module-generated-wikipron-rows)), so agreement between the
+two states the rule twice rather than checking it against a second source.
+The rule's citation is Iwasaki & Ingkaphirom (2005) and Haas (1964), not
+the gold.
+
+Read `th`'s wikipron row accordingly, and quote the tone-blind figure
+alongside it when the question is about segments. This is a spec-side
+gap, not a gold defect: the gold is right to write the tone, and the
+harness is right to score it. Stripping tone from tonal golds harness-wide
+would hide a real deficiency behind a kinder number.
 
 ### Arabic with tashkeel restored (`wikipron_ar_diacritized`)
 

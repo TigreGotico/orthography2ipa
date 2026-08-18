@@ -335,8 +335,8 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | kl | wikipron | 1580 | 0.1765 | · | · | · | · | [0.1695, 0.1842] | 0.2753 | research | crowd-scraped |
 | kld | wikipron | 515 | 0.0552 | · | · | · | · | [0.0459, 0.0647] | 0.7398 | research | crowd-scraped |
 | klj | wikipron | 155 | 0.3031 | · | · | · | · | [0.2651, 0.3396] | 0.2774 | research | crowd-scraped |
-| km | ipadict | 3261 | 0.3338 | 0.3242 | 0.3240 | 0.1518 | 0.1521 | [0.3263, 0.3421] | 0.1389 | research | lexicon-derived |
-| km | wikipron | 6628 | 0.1922 | 0.1817 | 0.1811 | 0.5083 | 0.5122 | [0.1863, 0.1983] | 0.4664 | research | crowd-scraped |
+| km | ipadict | 3261 | 0.3335 | 0.3240 | 0.3238 | 0.1518 | 0.1521 | [0.3260, 0.3417] | 0.1389 | research | lexicon-derived |
+| km | wikipron | 6628 | 0.1922 | 0.1816 | 0.1810 | 0.5084 | 0.5124 | [0.1863, 0.1983] | 0.4665 | research | crowd-scraped |
 | kn | wikipron | 1706 | 0.2709 | · | · | · | · | [0.2612, 0.2790] | 0.1782 | research | crowd-scraped |
 | ko | ipadict | 62447 | 0.2319 | · | · | · | · | [0.2309, 0.2328] | 0.0830 | research | crowd-scraped |
 | ko | vox_communis | 6124 | 0.0963 | · | · | · | · | [0.0933, 0.0993] | 0.4853 | research | epitran-derived |
@@ -610,8 +610,8 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | tew | wikipron | 106 | 0.0000 | 0.0000 | 0.0000 | 1.0000 | 1.0000 | [0.0000, 0.0000] | 1.0000 | research | crowd-scraped |
 | tft | wikipron | 293 | 0.1041 | · | · | · | · | [0.0827, 0.1265] | 0.6792 | skeleton | crowd-scraped |
 | tg | wikipron | 3245 | 0.0296 | · | · | · | · | [0.0271, 0.0323] | 0.8354 | research | crowd-scraped |
-| th | vox_communis | 23712 | 0.7387 | · | · | · | · | [0.7357, 0.7419] | 0.0000 | skeleton | epitran-derived |
-| th | wikipron | 17208 | 0.5353 | · | · | · | · | - | - | skeleton | crowd-scraped |
+| th | vox_communis | 23704 | 0.4459 | 0.4443 | 0.4442 | 0.0003 | 0.0003 | [0.4440, 0.4477] | 0.0003 | research | epitran-derived |
+| th | wikipron | 17221 | 0.4209 | 0.4199 | 0.4199 | 0.0000 | 0.0000 | [0.4190, 0.4228] | 0.0000 | research | crowd-scraped |
 | tk | vox_communis | 5883 | 0.0879 | · | · | · | · | [0.0850, 0.0911] | 0.5620 | research | epitran-derived |
 | tk | wikipron | 424 | 0.3580 | · | · | · | · | [0.3339, 0.3817] | 0.2005 | research | crowd-scraped |
 | tkl | wikipron | 340 | 0.0497 | · | · | · | · | [0.0390, 0.0601] | 0.7824 | skeleton | crowd-scraped |
