@@ -37,7 +37,7 @@ def test_post_consonantal_w_is_the_close_mid_back_vowel():
     """⟨Cw⟩ is a consonant plus the diphthong-initial vowel /o/."""
     assert _ipa("mwaka") == "moaka"
     assert _ipa("mwana") == "moana"
-    assert _ipa("gwata") == "ɣoata"
+    assert _ipa("mwarimũ") == "moaɾimo"
 
 
 def test_initial_and_intervocalic_w_stay_approximant():
