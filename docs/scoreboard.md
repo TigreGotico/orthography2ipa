@@ -149,8 +149,8 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | av | northeuralex | 954 | 0.0990 | · | · | · | · | [0.0927, 0.1054] | 0.4591 | research | lexicon-derived |
 | ayl | wikipron | 156 | 0.3799 | · | · | · | · | [0.3544, 0.4062] | 0.0449 | skeleton | crowd-scraped |
 | az | wikipron | 434 | 0.2443 | · | · | · | · | [0.2241, 0.2658] | 0.3111 | research | crowd-scraped |
-| ba | vox_communis | 70522 | 0.4540 | 0.4540 | 0.4540 | 0.0191 | 0.0191 | [0.4529, 0.4551] | 0.0191 | research | epitran-derived |
-| ba | wikipron | 165 | 0.3119 | · | · | · | · | [0.2654, 0.3596] | 0.3939 | skeleton | crowd-scraped |
+| ba | vox_communis | 70528 | 0.4047 | 0.4047 | 0.4047 | 0.0191 | 0.0191 | [0.4038, 0.4056] | 0.0191 | research | epitran-derived |
+| ba | wikipron | 171 | 0.2685 | 0.2685 | 0.2685 | 0.4211 | 0.4211 | [0.2233, 0.3172] | 0.4211 | research | crowd-scraped |
 | ban | wikipron | 299 | 0.1630 | · | · | · | · | [0.1482, 0.1789] | 0.3378 | research | crowd-scraped |
 | bbl | wikipron | 414 | 0.3269 | · | · | · | · | [0.2996, 0.3539] | 0.2005 | research | crowd-scraped |
 | bbn | wikipron | 194 | 0.0689 | · | · | · | · | [0.0556, 0.0836] | 0.6495 | skeleton | crowd-scraped |
