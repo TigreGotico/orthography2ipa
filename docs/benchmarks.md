@@ -1156,12 +1156,17 @@ transcription, word/IPA pairing spot-checked against the spec's own
   gains tone/length rules; flagged, not fixed here.
 - **`om` (Oromo):** clean, single-script (Latin) dump after the
   `_KAIKKI_WORD_FILTER["om"]` restriction. Word/IPA pairing checks out
-  (`tokko` → `/ˈtɔ́kkɔ/`, `Waaqa` → `/ˈwɑ́ːkʼɐ/`). Only 53 usable entries
-  (thin, like `jv`'s 93 in wave 2) but every one is scorable. PER is high
-  (0.5228) mostly from tone/stress marks and a few vowel-quality choices
-  (gold's ATR-influenced `ɐ`/`ɔ`/`ɛ` vs. the spec's plain five-vowel
-  output) the current spec doesn't encode. **FINDING for a future wave:**
-  same tone/vowel-quality gap as `so`.
+  (`tokko` → `/ˈtɔ́kkɔ/`, `Waaqa` → `/ˈwɑ́ːkʼɐ/`). The gold's segmental
+  notation is the standard descriptive one for Oromo and the spec matches
+  it: short `a e i o u` are lax `ɐ ɛ ɪ ɔ ʊ` against long `ɑː eː iː oː uː`,
+  the glottalised stops `ph x c q` are `pʼ tʼ tʃʼ kʼ`, and `dh` is the
+  retroflex implosive `ᶑ`. What remains of the PER is almost entirely the
+  pitch accent: kaikki marks a high tone with an acute on the vowel of
+  nearly every entry, and Qubee does not write tone, so an
+  orthography-driven spec cannot predict it. Those accent marks account
+  for about 95% of the residual edit distance; the segmental transcription
+  is otherwise near-exact. Tone is a notation gap of the same family as
+  `so`'s, and it is the ceiling on this row rather than a spec defect.
 - **`ne` (Nepali):** by far the largest haul of the wave (2051 scorable
   entries after de-duplication), Devanagari script matching the spec
   directly — no script filter needed. Sampled pairs check out
