@@ -759,6 +759,21 @@ well, because the identity test is not safe either — Turkish `sil`
 ("wipe") is a real word genuinely pronounced [sil]. 61 rows out of ~2.6M
 is far below the noise floor of an `epitran-derived` row.
 
+**The remaining high rows are notation, not phonology.** With `spn` gone,
+`vi`, `pa` and `as` still sit above PER 0.5 (board values 0.5597, 0.6607
+and 0.6445 — see [languages/vi.md](languages/vi.md)), and in all three the
+distance is a transcription convention rather than a phonological
+disagreement: `vi` differs by tone-letter placement, vowel-length marking
+and a handful of symbol variants; `pa` by length marking and a small set
+of vowel/rhotic symbol choices, plus final-schwa deletion; `as` by length
+marking, a similar symbol-choice set, and final-ɔ deletion. Folding those
+conventions out by hand brings each row down substantially, but the exact
+intermediate figures are not reproduced by any committed script, so they
+are not stated here as precise numbers. None of these foldings belong in
+`normalize()` — it is the single scorer for every row, and tone-letter
+placement in particular is language-specific — so the rows stay as scored
+and are read with this offset in mind.
+
 **Known upstream contamination, `sr`.** 35.8% of Serbian tokens carry a
 spurious word-initial `z` in the Charsiu-derived phone tier (`не` →
 `znɛ`, `и` → `zi`, `а` → `za`). It is never doubled on words that
@@ -1237,7 +1252,7 @@ provenance:
 | **ipa-dict `fr_QC.txt`** | EXCLUDED: no spec | No Québécois French spec is registered. The file is also qc-ipa script output over `fr_FR` ("highly experimental"). |
 | **ipa-dict `tts.txt`** | EXCLUDED: no spec | Isan / Northeastern Thai. No `tts` spec, and the `th` spec is a different language. |
 | **ipa-dict `zh_*`, `yue`** | EXCLUDED: untranscribable | Well-sourced golds (Unihan/KFCD, KFCD Pingyam), but Han script is lexical: no G2P without a dictionary: and the `zh` spec is a pinyin/romanization spec. An engine gap, not a gold problem. The former third member of this row, `ko` (Korean Wiktionary), is WIRED now: Hangul syllable blocks canonically decompose to the `ko` spec's conjoining-jamo graphemes. |
-| **vox_communis `zh-cn.tsv`** | **DE-REGISTERED: untranscribable** | Same disposition as the ipa-dict `zh_*`/`yue` row above, and as this dataset's own `yue.tsv`. The o2i `zh` spec is a **pinyin** spec; `zh-cn.tsv`'s `aligned_sentence` column is Han characters (`盘固 草 为 禾 本科 …`). Every row transcribed to the empty string, so the board carried a `vox_communis` `zh` row of exactly `per: 1.0` composed entirely of "hypothesis empty, whole gold is a deletion". That is not a Mandarin score — it is the absence of a hanzi→pinyin front-end, reported in the units of a phone error rate. An engine gap, not a gold problem; the registration returns when such a front-end exists. (`ja` is deliberately kept: kana rows transcribe, only the kanji minority go empty, so its row still carries signal.) |
+| **vox_communis `zh-cn.tsv`** | **DE-REGISTERED: untranscribable** | Same disposition as the ipa-dict `zh_*`/`yue` row above, and as this dataset's own `yue.tsv`. The o2i `zh` spec is a **pinyin** spec; `zh-cn.tsv`'s `aligned_sentence` column is Han characters (`盘固 草 为 禾 本科 …`). Every row transcribed to the empty string, so the board carried a `vox_communis` `zh` row composed entirely of "hypothesis empty, whole gold is a deletion" — a PER above 2 once the `spn` markers in that gold were counted as well. That is not a Mandarin score — it is the absence of a hanzi→pinyin front-end, reported in the units of a phone error rate. An engine gap, not a gold problem; the registration returns when such a front-end exists. (`ja` is deliberately kept: kana rows transcribe, only the kanji minority go empty, so its row still carries signal.) |
 | **kaikki.org Occitan / a second `oc` gold** | **NOT WIRED: same source as the existing row** | The `oc` row already scores against WikiPron `oci_latn_broad.tsv`, which is a scrape of Wiktionary. kaikki.org is Wiktextract over that same Wiktionary, so a kaikki `oc` row would measure the engine twice against one body of transcription and read as corroboration it is not. The kaikki wiring rule is also explicit that the set exists for specs with no gold anywhere else. VoxCommunis, the one registered source that would be independent (Common Voice audio, force-aligned), has no Occitan file: `oc.tsv` and `oc-fr.tsv` both 404 on the `fdemelo/vox-communis-parallel-g2p` repo. Until an Occitan pronouncing dictionary or an aligned corpus turns up, Occitan has one gold, and it is a mixed-dialect one — see the `oc` spec notes for what it does and does not transcribe. |
 | **kaikki.org Tetum** | **REJECTED: too thin** | 3 of 686 entries in the Tetum dump carry a `sounds[].ipa` value, thinner still than the already-rejected Tigrinya set. WikiPron has no Tetum scrape either, so `tet` is scored on the primary-source rows mined from its own reference grammar. |
 | **Lexique 3.82 (French)** | EXCLUDED: complex notation | Data is human-curated (Boris New / Christophe Pallier, CNRS) and CC BY-SA 4.0, but uses a custom phonemic notation (not X-SAMPA, not IPA): `§`=ɔ̃, `°`=schwa-variant, `5`=ɛ̃, `8`=œ̃ etc.: not covered by `scriptconv.notation.xsampa_to_ipa`. A dedicated Lexique converter would be a clean follow-up. WikiPron `fra` is used in the interim. |
@@ -1269,14 +1284,14 @@ The nukta half looks like the same bug and is not the same fix: giving
 those keys the inherent vowel moves the fleet in both directions, and on a
 same-session, same-cache differential against the current engine the
 row-weighted net is NEGATIVE — `hi`/`wikipron` gains while `bn`/`vox_communis`
-(32 651 rows) and `as` lose more. Whether the added vowel is right depends
+(30 261 rows) and `as` lose more. Whether the added vowel is right depends
 on each Brahmic spec's own schwa-deletion coverage, which is a per-spec data
 question, not a tokenizer question. It needs its own PR, with per-spec
 schwa rules landing alongside the engine change rather than after it.
 
-Beware, when measuring it, that several committed board rows for these
-languages predate a gold-cache refresh: `bn`/`vox_communis`, `or`/`ipadict`
-and `ne`/`kaikki` all move on an UNMODIFIED tree. Any differential must
+Beware, when measuring it, that committed board rows can predate a
+gold-cache refresh and move on an UNMODIFIED tree: `or`/`ipadict` and
+`ne`/`kaikki` both do. Any differential must
 re-run both sides in one session against one cache, or it will read that
 drift as a result.
 
@@ -1384,6 +1399,23 @@ scoreboard stays full regardless. A minimum-scored-row floor still fails the
 gate closed if a wholesale dataset-loading outage would otherwise produce a
 false green. Refresh `results_ci_sample.json` whenever the full scoreboard is
 regenerated.
+
+**Board staleness is a separate failure the regression gate cannot see.**
+That gate is one-sided: it fires when a row gets WORSE, so a row left
+behind by a change to its own gold loader publishes a stale number
+indefinitely and CI stays green. `scripts/check_board_row_counts.py` is
+the tripwire for that. It reloads each committed row's gold and fails when
+the row's `n` exceeds the pair count the loader now yields, which is an
+impossibility — scoring consumes the loader's output, so `n` sits at or
+below it. The check is deliberately one-directional, because an `n` BELOW
+the pair count is normal: `ja` scores 42.5k of 48.6k pairs, since the kana
+spec produces no hypothesis for a kanji-only word. A row whose loader
+refuses the language outright is reported too, which catches a board row
+fossilised by a de-registration. Run it after every board regeneration:
+
+```bash
+PYTHONPATH=$PWD python scripts/check_board_row_counts.py
+```
 
 ### Confidence intervals
 
