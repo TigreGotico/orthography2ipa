@@ -96,9 +96,16 @@ diphthongs, and Chao letters at the end of the syllable.
 and writes a pan-dialectal literary transcription instead: /c ɲ/ for
 final ⟨ch nh⟩, a phonemic length mark the Illustration does not use,
 ˨˨ rather than ˧˧ for ngang, and the tone letters against the nucleus
-rather than the syllable. Scoring the same output blind to tone drops
-that row to about 0.33 and blind to tone and length to about 0.20,
-which is where the real segmental disagreement sits.
+rather than the syllable. That row is therefore notation-dominated rather
+than phonological — folding tone-letter placement, vowel length and the
+ɨ/ɯ, ɤ̆/ə and ă/a symbol variants out of both sides by hand brings the
+0.5597 board PER down substantially, closer to the `ipadict` row's
+0.0773 than the raw number suggests, but the exact intermediate figures
+are not reproduced by any committed script and are not stated here as
+precise numbers. Both golds do write tone — about a third of
+`vox_communis`'s gold characters carry a tone mark, and about 37% of
+`ipadict`'s — so what separates them is placement and scale, not
+omission.
 
 Neither row can qualify the language. `machine-generated` and
 `epitran-derived` are both below the gate (see

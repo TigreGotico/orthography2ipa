@@ -111,7 +111,7 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 |---|---|---|---|---|---|---|
 | 4catac | 160 | 0.0642 | 0.0403 | 0.1206 | 0.4641 | o2i |
 | ipa_childes | 3814 | 0.2576 | same-source | same-source | 0.3447 | o2i |
-| vox_communis | 218451 | 0.8053 | 0.8195 | 0.8168 | same-source | no system is usable on this gold |
+| vox_communis | 141624 | 0.1321 | 0.1231 | 0.1217 | same-source | espeak rules-only |
 | wikipron | 106 | 0.2565 | 0.2221 | 0.2798 | 0.3518 | o2i |
 
 ### ca-x-balear (Balearic Catalan)
@@ -186,7 +186,7 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 
 | Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | pycotovia | ahotts-g2p | Winner |
 |---|---|---|---|---|---|---|---|---|
-| vox_communis | 97715 | 1.2097 | 1.2330 | 1.2247 | same-source | 1.2139 | 1.2117 | no system is usable on this gold |
+| vox_communis | 48068 | 0.0758 | 0.0755 | 0.0737 | same-source | 0.0675 | 0.0678 | tie (ahotts-g2p, pycotovia) |
 | wikipron | 132190 | 0.0797 | 0.1071 | 0.1066 | 0.0277 | 0.1108 | 0.1041 | epitran |
 
 ### eu (Basque (Euskara))
@@ -195,7 +195,7 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 |---|---|---|---|---|---|---|---|
 | hitz_basque_ipa | 3113 | 0.0984 | 0.1204 | 0.1204 | n/a | same-source | o2i |
 | ipa_childes | 3969 | 0.0821 | same-source | same-source | n/a | 0.1396 | o2i |
-| vox_communis | 64077 | 0.0644 | 0.1194 | 0.1190 | same-source | 0.1280 | o2i |
+| vox_communis | 63415 | 0.0429 | 0.0948 | 0.0945 | same-source | 0.1039 | o2i |
 | wikipron | 12022 | 0.0546 | 0.1019 | 0.0986 | n/a | 0.1507 | o2i |
 
 ### eu-wikipron (Basque (Euskara), wikipron-primary variant)
@@ -204,7 +204,7 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 |---|---|---|---|---|---|---|---|
 | hitz_basque_ipa | 3113 | 0.0984 | 0.1204 | 0.1204 | n/a | same-source | o2i |
 | ipa_childes | 3969 | 0.0821 | same-source | same-source | n/a | 0.1396 | o2i |
-| vox_communis | 64077 | 0.0644 | 0.1194 | 0.1190 | same-source | 0.1280 | o2i |
+| vox_communis | 63415 | 0.0429 | 0.0948 | 0.0945 | same-source | 0.1039 | o2i |
 | wikipron | 12022 | 0.0546 | 0.1019 | 0.0986 | n/a | 0.1507 | o2i |
 
 ### ext-PT-x-barrancos
@@ -247,7 +247,7 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 
 | Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | Winner |
 |---|---|---|---|---|---|---|
-| vox_communis | 13154 | 0.3684 | 0.5184 | 0.5178 | same-source | o2i |
+| vox_communis | 12478 | 0.2765 | 0.3877 | 0.3880 | same-source | o2i |
 | wikipron | 30379 | 0.1277 | 0.2815 | 0.2819 | 0.3322 | o2i |
 
 ### hts (Hadza)
@@ -260,7 +260,7 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 
 | Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | Winner |
 |---|---|---|---|---|---|---|
-| vox_communis | 90366 | 1.1378 | 1.1830 | 1.1739 | same-source | no system is usable on this gold |
+| vox_communis | 48570 | 0.1031 | 0.1368 | 0.1445 | same-source | o2i |
 | wikipron | 82280 | 0.0441 | 0.0722 | 0.0767 | 0.0852 | o2i |
 
 ### kab (Kabyle)
@@ -338,7 +338,7 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 
 | Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | Winner |
 |---|---|---|---|---|---|---|
-| vox_communis | 12097 | 0.3332 | 0.4480 | 0.4477 | same-source | o2i |
+| vox_communis | 10679 | 0.0693 | 0.1250 | 0.1246 | same-source | o2i |
 | wikipron | 8978 | 0.0198 | 0.0825 | 0.0761 | 0.0302 | o2i |
 
 ### ru (Russian)
@@ -365,7 +365,7 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 | Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | Winner |
 |---|---|---|---|---|---|---|
 | ipa_childes | 2748 | 0.1372 | same-source | same-source | 0.1194 | epitran |
-| vox_communis | 49476 | 0.1614 | 0.3443 | 0.3438 | same-source | o2i |
+| vox_communis | 47013 | 0.0399 | 0.2299 | 0.2295 | same-source | o2i |
 | wikipron | 11582 | 0.1230 | 0.2739 | 0.2735 | 0.1352 | o2i |
 
 ### tzm (Central Atlas Tamazight)
@@ -408,9 +408,9 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 
 A system winning on one gold and losing on another for the SAME language is real signal, not noise to average away. Every language with 2+ espeak-comparable gold datasets is listed below with its exact win/loss split (same-source cells excluded — they are never comparable, see above).
 
-- **`ca`** (MIXED — wins on some golds, loses on others):
+- **`ca`** (loses on all golds):
   - `4catac` (n=160, tier=expert-human): o2i 0.0642 vs espeak 0.0403 — o2i loses
-  - `vox_communis` (n=218451, tier=epitran-derived): o2i 0.8053 vs espeak 0.8195 — o2i wins
+  - `vox_communis` (n=141624, tier=epitran-derived): o2i 0.1321 vs espeak 0.1231 — o2i loses
   - `wikipron` (n=106, tier=crowd-scraped): o2i 0.2565 vs espeak 0.2221 — o2i loses
 - **`cy`** (wins on all golds):
   - `vox_communis` (n=18701, tier=epitran-derived): o2i 0.1172 vs espeak 0.3005 — o2i wins
@@ -421,26 +421,26 @@ A system winning on one gold and losing on another for the SAME language is real
 - **`en-US`** (loses on all golds):
   - `cmudict` (n=126052, tier=lexicon-derived): o2i 0.3436 vs espeak 0.3048 — o2i loses
   - `ipadict` (n=125927, tier=lexicon-derived): o2i 0.2973 vs espeak 0.2954 — o2i loses
-- **`es`** (wins on all golds):
-  - `vox_communis` (n=97715, tier=epitran-derived): o2i 1.2097 vs espeak 1.2330 — o2i wins
+- **`es`** (MIXED — wins on some golds, loses on others):
+  - `vox_communis` (n=48068, tier=epitran-derived): o2i 0.0758 vs espeak 0.0755 — o2i loses
   - `wikipron` (n=132190, tier=crowd-scraped): o2i 0.0797 vs espeak 0.1071 — o2i wins
 - **`eu`** (wins on all golds):
   - `hitz_basque_ipa` (n=3113, tier=machine-generated): o2i 0.0984 vs espeak 0.1204 — o2i wins
-  - `vox_communis` (n=64077, tier=epitran-derived): o2i 0.0644 vs espeak 0.1194 — o2i wins
+  - `vox_communis` (n=63415, tier=epitran-derived): o2i 0.0429 vs espeak 0.0948 — o2i wins
   - `wikipron` (n=12022, tier=crowd-scraped): o2i 0.0546 vs espeak 0.1019 — o2i wins
 - **`eu-wikipron`** (wins on all golds):
   - `hitz_basque_ipa` (n=3113, tier=machine-generated): o2i 0.0984 vs espeak 0.1204 — o2i wins
-  - `vox_communis` (n=64077, tier=epitran-derived): o2i 0.0644 vs espeak 0.1194 — o2i wins
+  - `vox_communis` (n=63415, tier=epitran-derived): o2i 0.0429 vs espeak 0.0948 — o2i wins
   - `wikipron` (n=12022, tier=crowd-scraped): o2i 0.0546 vs espeak 0.1019 — o2i wins
 - **`fi`** (wins on all golds):
   - `ipadict` (n=92836, tier=machine-generated): o2i 0.0609 vs espeak 0.1995 — o2i wins
   - `vox_communis` (n=13324, tier=epitran-derived): o2i 0.0037 vs espeak 0.1843 — o2i wins
   - `wikipron` (n=168814, tier=crowd-scraped): o2i 0.0184 vs espeak 0.2062 — o2i wins
 - **`hi`** (wins on all golds):
-  - `vox_communis` (n=13154, tier=epitran-derived): o2i 0.3684 vs espeak 0.5184 — o2i wins
+  - `vox_communis` (n=12478, tier=epitran-derived): o2i 0.2765 vs espeak 0.3877 — o2i wins
   - `wikipron` (n=30379, tier=crowd-scraped): o2i 0.1277 vs espeak 0.2815 — o2i wins
 - **`it`** (wins on all golds):
-  - `vox_communis` (n=90366, tier=epitran-derived): o2i 1.1378 vs espeak 1.1830 — o2i wins
+  - `vox_communis` (n=48570, tier=epitran-derived): o2i 0.1031 vs espeak 0.1368 — o2i wins
   - `wikipron` (n=82280, tier=crowd-scraped): o2i 0.0441 vs espeak 0.0722 — o2i wins
 - **`nl`** (MIXED — wins on some golds, loses on others):
   - `ipadict` (n=117869, tier=machine-generated): o2i 0.1767 vs espeak 0.1607 — o2i loses
@@ -454,7 +454,7 @@ A system winning on one gold and losing on another for the SAME language is real
   - `portuguese_unified` (n=3000, tier=lexicon-derived): o2i 0.2245 vs espeak 0.3669 — o2i wins
   - `wikipron` (n=2272, tier=crowd-scraped): o2i 0.1346 vs espeak 0.2374 — o2i wins
 - **`ro`** (wins on all golds):
-  - `vox_communis` (n=12097, tier=epitran-derived): o2i 0.3332 vs espeak 0.4480 — o2i wins
+  - `vox_communis` (n=10679, tier=epitran-derived): o2i 0.0693 vs espeak 0.1250 — o2i wins
   - `wikipron` (n=8978, tier=crowd-scraped): o2i 0.0198 vs espeak 0.0825 — o2i wins
 - **`ru`** (wins on all golds):
   - `alphacep_ru_book` (n=6175, tier=machine-generated): o2i 0.2395 vs espeak 0.3249 — o2i wins
@@ -467,12 +467,12 @@ A system winning on one gold and losing on another for the SAME language is real
   - `vox_communis` (n=19516, tier=epitran-derived): o2i 0.3428 vs espeak 0.3214 — o2i loses
   - `wikipron` (n=5082, tier=crowd-scraped): o2i 0.2317 vs espeak 0.2337 — o2i wins
 - **`tr`** (wins on all golds):
-  - `vox_communis` (n=49476, tier=epitran-derived): o2i 0.1614 vs espeak 0.3443 — o2i wins
+  - `vox_communis` (n=47013, tier=epitran-derived): o2i 0.0399 vs espeak 0.2299 — o2i wins
   - `wikipron` (n=11582, tier=crowd-scraped): o2i 0.1230 vs espeak 0.2739 — o2i wins
 
 ## Fair-comparison 2x2 (dictionary vs. rules)
 
-The table above conflates espeak-ng's letter-to-sound RULES with its hand-curated word-EXCEPTION list (o2i, by hard rule, ships no such list). This 2x2 isolates the dictionary's contribution on the same gold rows, for the languages where both extra columns are wired up (the `DICTSOURCE_LANG`-mapped subset — see the script's module docstring for how to enable `espeak_rules` via `scripts/build_espeak_rules_only.sh` and `o2i_lex` via `$ESPEAK_DICTSOURCE_PATH`). The dictionary is not a one-way upgrade: across every row with both numbers, espeak-ng's rules-only column actually BEATS stock (dictionary-included) espeak-ng on 29 of 53 rows — the word-exception list sometimes makes espeak-ng WORSE (e.g. letter-spelling acronyms getting a dictionary hit that is wrong for the gold's convention), not always better.
+The table above conflates espeak-ng's letter-to-sound RULES with its hand-curated word-EXCEPTION list (o2i, by hard rule, ships no such list). This 2x2 isolates the dictionary's contribution on the same gold rows, for the languages where both extra columns are wired up (the `DICTSOURCE_LANG`-mapped subset — see the script's module docstring for how to enable `espeak_rules` via `scripts/build_espeak_rules_only.sh` and `o2i_lex` via `$ESPEAK_DICTSOURCE_PATH`). The dictionary is not a one-way upgrade: across every row with both numbers, espeak-ng's rules-only column actually BEATS stock (dictionary-included) espeak-ng on 27 of 53 rows — the word-exception list sometimes makes espeak-ng WORSE (e.g. letter-spelling acronyms getting a dictionary hit that is wrong for the gold's convention), not always better.
 
 - `o2i` — orthography2ipa, rules only (unchanged from the main table).
 - `o2i_lex` — orthography2ipa + a runtime lexicon built from espeak-ng's OWN word-exception list, each word's IPA obtained from espeak-ng itself (o2i rules + espeak's dictionary).
@@ -482,7 +482,7 @@ The table above conflates espeak-ng's letter-to-sound RULES with its hand-curate
 | Lang | Dataset | N | o2i | o2i_lex | espeak | espeak_rules |
 |---|---|---:|---:|---:|---:|---:|
 | ca | 4catac | 160 | 0.0642 | n/a | 0.0403 | 0.1206 |
-| ca | vox_communis | 218451 | 0.8053 | n/a | 0.8195 | 0.8168 |
+| ca | vox_communis | 141624 | 0.1321 | n/a | 0.1231 | 0.1217 |
 | ca | wikipron | 106 | 0.2565 | n/a | 0.2221 | 0.2798 |
 | ca-x-balear | 4catac | 160 | 0.1360 | n/a | 0.0797 | 0.1419 |
 | ca-x-occidental | 4catac | 160 | 0.0822 | n/a | 0.0497 | 0.0832 |
@@ -498,22 +498,22 @@ The table above conflates espeak-ng's letter-to-sound RULES with its hand-curate
 | en-US | ipa_babylm | 20344 | 0.3666 | 0.3577 | same-source | same-source |
 | en-US | ipa_childes | 18055 | 0.2756 | 0.2596 | same-source | same-source |
 | en-US | ipadict | 125927 | 0.2973 | 0.2948 | 0.2954 | 0.3020 |
-| es | vox_communis | 97715 | 1.2097 | n/a | 1.2330 | 1.2247 |
+| es | vox_communis | 48068 | 0.0758 | n/a | 0.0755 | 0.0737 |
 | es | wikipron | 132190 | 0.0797 | n/a | 0.1071 | 0.1066 |
 | eu | hitz_basque_ipa | 3113 | 0.0984 | n/a | 0.1204 | 0.1204 |
-| eu | vox_communis | 64077 | 0.0644 | n/a | 0.1194 | 0.1190 |
+| eu | vox_communis | 63415 | 0.0429 | n/a | 0.0948 | 0.0945 |
 | eu | wikipron | 12022 | 0.0546 | n/a | 0.1019 | 0.0986 |
 | eu-wikipron | hitz_basque_ipa | 3113 | 0.0984 | n/a | 0.1204 | 0.1204 |
-| eu-wikipron | vox_communis | 64077 | 0.0644 | n/a | 0.1194 | 0.1190 |
+| eu-wikipron | vox_communis | 63415 | 0.0429 | n/a | 0.0948 | 0.0945 |
 | eu-wikipron | wikipron | 12022 | 0.0546 | n/a | 0.1019 | 0.0986 |
 | fi | ipadict | 92836 | 0.0609 | n/a | 0.1995 | 0.1991 |
 | fi | vox_communis | 13324 | 0.0037 | n/a | 0.1843 | 0.1838 |
 | fi | wikipron | 168814 | 0.0184 | n/a | 0.2062 | 0.2059 |
 | fr | wikipron | 85516 | 0.0673 | n/a | 0.0740 | 0.0749 |
 | ga | wikipron | 9621 | 0.1834 | n/a | 0.5223 | 0.5100 |
-| hi | vox_communis | 13154 | 0.3684 | n/a | 0.5184 | 0.5178 |
+| hi | vox_communis | 12478 | 0.2765 | n/a | 0.3877 | 0.3880 |
 | hi | wikipron | 30379 | 0.1277 | n/a | 0.2815 | 0.2819 |
-| it | vox_communis | 90366 | 1.1378 | n/a | 1.1830 | 1.1739 |
+| it | vox_communis | 48570 | 0.1031 | n/a | 0.1368 | 0.1445 |
 | it | wikipron | 82280 | 0.0441 | n/a | 0.0722 | 0.0767 |
 | nl | ipadict | 117869 | 0.1767 | n/a | 0.1607 | 0.1653 |
 | nl | vox_communis | 26137 | 0.2925 | n/a | 0.3054 | 0.2986 |
@@ -524,7 +524,7 @@ The table above conflates espeak-ng's letter-to-sound RULES with its hand-curate
 | pt-PT | portuguese_tts | 20 | same-source | n/a | 0.3336 | 0.3331 |
 | pt-PT | portuguese_unified | 3000 | 0.2245 | n/a | 0.3669 | 0.3631 |
 | pt-PT | wikipron | 2272 | 0.1346 | n/a | 0.2374 | 0.2373 |
-| ro | vox_communis | 12097 | 0.3332 | n/a | 0.4480 | 0.4477 |
+| ro | vox_communis | 10679 | 0.0693 | n/a | 0.1250 | 0.1246 |
 | ro | wikipron | 8978 | 0.0198 | n/a | 0.0825 | 0.0761 |
 | ru | alphacep_ru_book | 6175 | 0.2395 | n/a | 0.3249 | 0.3133 |
 | ru | coruss_ru | 9527 | 0.3584 | n/a | 0.4206 | 0.4311 |
@@ -534,7 +534,7 @@ The table above conflates espeak-ng's letter-to-sound RULES with its hand-curate
 | sv | ipadict | 21095 | 0.2583 | n/a | 0.2611 | 0.2653 |
 | sv | vox_communis | 19516 | 0.3428 | n/a | 0.3214 | 0.3195 |
 | sv | wikipron | 5082 | 0.2317 | n/a | 0.2337 | 0.2364 |
-| tr | vox_communis | 49476 | 0.1614 | n/a | 0.3443 | 0.3438 |
+| tr | vox_communis | 47013 | 0.0399 | n/a | 0.2299 | 0.2295 |
 | tr | wikipron | 11582 | 0.1230 | n/a | 0.2739 | 0.2735 |
 
 Reading the four numbers together: `espeak - espeak_rules` is espeak-ng's dictionary contribution; `o2i_lex - o2i` is what the SAME dictionary is worth bolted onto o2i's rules. `o2i` vs `espeak_rules` is the fairest rules-only comparison; `o2i_lex` vs `espeak` is the fairest dictionary-included comparison.
