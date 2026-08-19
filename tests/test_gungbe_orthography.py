@@ -152,3 +152,75 @@ def test_r_is_the_trilled_realisation_of_l():
     and palatals, which is the only environment ⟨r⟩ is written in — the gold
     gives ⟨jrɛ⟩ as both [dʒɾɛ] and [dʒlɛ], so both stay reachable."""
     assert set(candidates("jrɛ")) >= {"dʒɾɛ", "dʒlɛ"}
+
+
+# ---------------------------------------------------------------------------
+# /j/ before a nasal vowel
+# ---------------------------------------------------------------------------
+
+def test_y_before_a_nasal_vowel_is_the_palatal_nasal():
+    """Capo (1991) states that a [+nasal] vowel nasalises a preceding
+    [-paired] consonant, "thereby creating the systematic phonetic nasal
+    consonants [m n ɲ ...] from non-nasal [b ɖ l y w]".  ⟨y⟩ spells /j/, so
+    ⟨yẹn⟩ — a nasal vowel written ⟨ẹ⟩ + coda ⟨n⟩ — is [ɲɛ̃], not [jɛ̃]."""
+    assert guw("yẹn") == "ɲɛ̃"
+    assert guw("yọn") == "ɲɔ̃"
+
+
+def test_y_before_a_nasal_vowel_is_the_palatal_nasal_word_internally():
+    """The same nasalisation applies to a non-initial /j/: ⟨oyin⟩ [oɲĩ],
+    ⟨yinkọ⟩ [ɲĩkɔ]."""
+    assert guw("oyin") == "oɲĩ"
+    assert guw("yinkọ") == "ɲĩkɔ"
+
+
+def test_y_before_an_oral_vowel_stays_a_glide():
+    """The rule is conditioned by nasality and must not bleed elsewhere:
+    ⟨y⟩ before an oral vowel is plain /j/."""
+    assert guw("yovo").startswith("j")
+
+
+def test_the_free_variant_of_the_palatal_nasal_is_not_modelled():
+    """The Gun source records [ɲ] and [j̃] — a NASALISED glide, not a plain
+    one — as free variants before a nasal vowel.  The spec emits the [ɲ]
+    variant only; no reading of ⟨yẹn⟩ keeps an oral /j/."""
+    assert all(not c.startswith("j") for c in candidates("yẹn"))
+
+
+def test_y_before_e_or_o_plus_coda_n_does_not_nasalise():
+    """/e o/ have no nasal counterpart in Gbe, so a coda ⟨n⟩ after them does
+    not create the nasal-vowel environment the /j/-nasalisation rule keys
+    on: ⟨yen⟩ and ⟨yon⟩ keep a plain glide, unlike ⟨yẹn⟩/⟨yọn⟩ above."""
+    assert guw("yen").startswith("j")
+    assert guw("yon").startswith("j")
+
+
+# ---------------------------------------------------------------------------
+# Labialised consonants
+# ---------------------------------------------------------------------------
+
+def test_kw_is_a_labialised_velar_stop():
+    """Gbe writes a labialised consonant ⟨Cw⟩ — the spec already reads ⟨xw⟩
+    and ⟨hw⟩ that way, and ⟨kw⟩ is the same convention: ⟨akwẹ⟩ [akʷɛ]."""
+    assert guw("akwẹ") == "akʷɛ"
+    assert guw("akwekwe") == "akʷekʷe"
+
+
+def test_u_before_a_vowel_spells_the_same_labialisation():
+    """⟨u⟩ before a vowel is the same labialisation spelt with a vowel
+    letter — the gold's doublet ⟨akuẹ⟩ / ⟨akwẹ⟩ is one word, [akʷɛ]."""
+    assert guw("akuẹ") == guw("akwẹ") == "akʷɛ"
+    assert guw("azui") == "azʷi"
+
+
+def test_u_not_before_a_vowel_is_an_ordinary_vowel():
+    """The labialisation reading is conditioned on a following vowel: ⟨u⟩
+    elsewhere is the vowel /u/."""
+    assert guw("adu") == "adu"
+
+
+def test_w_after_a_coda_nasal_stays_a_glide():
+    """A ⟨w⟩ that opens a new morpheme after a coda ⟨n⟩ is not part of a
+    labialised consonant: ⟨azọnwatọ⟩ keeps [w]."""
+    assert "w" in guw("azọnwatọ")
+    assert "ʷ" not in guw("azọnwatọ")
