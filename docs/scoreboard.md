@@ -649,7 +649,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | wlm | wikipron | 403 | 0.2498 | 0.2498 | 0.2498 | 0.2357 | 0.2357 | [0.2309, 0.2702] | 0.2357 | research | crowd-scraped |
 | xaa | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | xal | wikipron | 318 | 0.2813 | 0.2813 | 0.2813 | 0.1478 | 0.1478 | [0.2619, 0.3014] | 0.1478 | research | crowd-scraped |
-| xh | kaikki | 887 | 0.4185 | 0.4142 | 0.4142 | 0.0293 | 0.0293 | [0.4071, 0.4293] | 0.0271 | research | crowd-scraped |
+| xh | kaikki | 887 | 0.3989 | 0.3946 | 0.3946 | 0.0304 | 0.0304 | [0.3880, 0.4092] | 0.0282 | research | crowd-scraped |
 | xsl | wikipron | 146 | 0.0321 | 0.0282 | 0.0282 | 0.8836 | 0.8836 | [0.0183, 0.0475] | 0.8699 | research | crowd-scraped |
 | ycl | wikipron | 111 | 0.0108 | 0.0108 | 0.0108 | 0.9369 | 0.9369 | [0.0030, 0.0201] | 0.9369 | research | crowd-scraped |
 | yi | wikipron | 4051 | 0.3928 | 0.3883 | 0.3882 | 0.0491 | 0.0491 | [0.3871, 0.3985] | 0.0442 | research | crowd-scraped |
