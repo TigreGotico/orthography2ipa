@@ -70,3 +70,40 @@ def test_the_rhotic_differs_between_the_two_varieties():
     """Cusco's consonant table gives a tap, Ayacucho's a trill."""
     assert o2i.get("quz").graphemes["r"] == ["ɾ"]
     assert o2i.get("quy").graphemes["r"] == ["r"]
+
+
+def test_cusco_carries_the_spanish_loan_consonants():
+    """Running text is full of Spanish loans that spell ⟨b d g f⟩; without
+    the keys the engine drops the letter and returns a short word, so
+    ⟨sunbiru⟩ 'hat' (< sombrero) must keep its ⟨b⟩ regardless of the loan
+    consonants' phonemic status. Cusihuamán (1976), cited via Wikipedia
+    (Cusco Quechua), says sustained borrowing from Spanish may have made
+    /b d ɡ f/ phonemic for Cusco speakers, monolinguals included."""
+    g = o2i.get("quz").graphemes
+    assert g["b"] == ["b"] and g["d"] == ["d"]
+    assert g["g"] == ["ɡ"] and g["f"] == ["f"]
+    assert o2i.G2P("quz").transcribe_word("sunbiru") == "sunbiɾu"
+
+
+def test_ayacucho_does_not_carry_the_loan_consonants():
+    """The loan series is claimed for Cusco on a Cusco source; quy is left
+    as its own source describes it."""
+    g = o2i.get("quy").graphemes
+    for absent in ("b", "d", "g", "f"):
+        assert absent not in g
+
+
+def test_the_quechua_childes_gold_is_scored_against_cusco():
+    """IPA-CHILDES qu-PE is a Cusco-Collao corpus — its official-alphabet
+    words spell aspirates and ejectives, which Ayacucho has neither of — and
+    `qu` is a declared structural stub with no phonology, so the row must
+    resolve to `quz`."""
+    import importlib.util
+    import pathlib
+    path = pathlib.Path(__file__).resolve().parent.parent / "scripts" / "benchmark.py"
+    spec = importlib.util.spec_from_file_location("_bench_qu", path)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    assert mod._IPA_CHILDES_FOLDERS["quz"] == "qu-PE"
+    assert "qu" not in mod._IPA_CHILDES_FOLDERS
+    assert o2i.get("qu").quality == "stub"

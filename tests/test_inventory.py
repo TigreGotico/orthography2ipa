@@ -304,15 +304,27 @@ KNOWN_DEAD_RULES = {
 }
 
 #: The Dravidian gemination families target whole CV emissions (``dʒa``, ``kʂa``)
-#: that no slot carries, so the whole family is unreachable. A systematic bug in
-#: one rule generator rather than 45 independent ones — allowed by prefix so the
+#: that no slot carries directly. Since the mr abugida fix taught this check to
+#: add reading + inherent vowel to the producible set for any abugida spec, ta
+#: and ml pick up the same treatment and most of these targets turn out to be
+#: reachable after all: 18 of ta's TA_GEM rules and 15 of ml's are no longer
+#: dead. What is left (0 for ta, 12 for ml) is a systematic bug in one rule
+#: generator rather than many independent ones — allowed by prefix so the
 #: group is visible and so a *new* dead rule outside it still fails.
 #: Krio inherits en-GB's rules through its lexifier link but declares its own
 #: graphemes, and the creole's vowel system has none of RP's rhotic nuclei
 #: (ɑːɹ, ɜːɹ, ɔːɹ, əɹ …) the coda-/r/ and prevocalic-/r/ rules target, so the
 #: whole English rhoticity family is unreachable here.
+#: Andh and Deccan are registry stubs under Marathi, declared as pure genealogy
+#: ("graphemes": {}, "allophones": {}, script Zyyy, no script_type and no
+#: inherent vowel) so the ancestry graph covers every living ISO 639-3 code.
+#: Marathi's rules travel down that link but its inventory does not, so the
+#: whole MR_ family arrives with no slot to match — the same shape as the
+#: Chabacano stubs above. These entries go away when either stub gains a cited
+#: orthography.
 KNOWN_DEAD_PREFIXES = {"ta": ("TA_GEM",), "ml": ("TA_GEM",),
-                       "kri": ("EN_GB_NONRHOTIC", "EN_GB_PREVOCALIC_R")}
+                       "kri": ("EN_GB_NONRHOTIC", "EN_GB_PREVOCALIC_R"),
+                       "anr": ("MR_",), "dcc": ("MR_",)}
 
 
 @pytest.mark.parametrize("code", ALL_CODES)

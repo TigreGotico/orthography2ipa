@@ -345,11 +345,11 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 
 | Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | Winner |
 |---|---|---|---|---|---|---|
-| alphacep_ru_book | 6175 | 0.2395 | 0.3249 | 0.3133 | 0.1008 | epitran |
-| coruss_ru | 9527 | 0.3584 | 0.4206 | 0.4311 | 0.2939 | epitran |
+| alphacep_ru_book | 6175 | 0.2391 | 0.3249 | 0.3133 | 0.1008 | epitran |
+| coruss_ru | 9527 | 0.3572 | 0.4206 | 0.4311 | 0.2939 | epitran |
 | primary_sources | 36 | 0.1867 | 0.3119 | 0.3033 | 0.0744 | epitran |
 | vox_communis | 50517 | 0.3481 | 0.3578 | 0.3487 | same-source | tie (espeak rules-only, o2i) |
-| wikipron | 403873 | 0.1449 | 0.3953 | 0.3976 | 0.3202 | o2i |
+| wikipron | 403873 | 0.1443 | 0.3953 | 0.3976 | 0.3202 | o2i |
 
 ### sv (Swedish)
 
@@ -457,11 +457,11 @@ A system winning on one gold and losing on another for the SAME language is real
   - `vox_communis` (n=10679, tier=epitran-derived): o2i 0.0693 vs espeak 0.1250 — o2i wins
   - `wikipron` (n=8978, tier=crowd-scraped): o2i 0.0198 vs espeak 0.0825 — o2i wins
 - **`ru`** (wins on all golds):
-  - `alphacep_ru_book` (n=6175, tier=machine-generated): o2i 0.2395 vs espeak 0.3249 — o2i wins
-  - `coruss_ru` (n=9527, tier=expert-human): o2i 0.3584 vs espeak 0.4206 — o2i wins
+  - `alphacep_ru_book` (n=6175, tier=machine-generated): o2i 0.2391 vs espeak 0.3249 — o2i wins
+  - `coruss_ru` (n=9527, tier=expert-human): o2i 0.3572 vs espeak 0.4206 — o2i wins
   - `primary_sources` (n=36, tier=expert-human): o2i 0.1867 vs espeak 0.3119 — o2i wins
   - `vox_communis` (n=50517, tier=epitran-derived): o2i 0.3481 vs espeak 0.3578 — o2i wins
-  - `wikipron` (n=403873, tier=crowd-scraped): o2i 0.1449 vs espeak 0.3953 — o2i wins
+  - `wikipron` (n=403873, tier=crowd-scraped): o2i 0.1443 vs espeak 0.3953 — o2i wins
 - **`sv`** (MIXED — wins on some golds, loses on others):
   - `ipadict` (n=21095, tier=lexicon-derived): o2i 0.2583 vs espeak 0.2611 — o2i wins
   - `vox_communis` (n=19516, tier=epitran-derived): o2i 0.3428 vs espeak 0.3214 — o2i loses
@@ -526,11 +526,11 @@ The table above conflates espeak-ng's letter-to-sound RULES with its hand-curate
 | pt-PT | wikipron | 2272 | 0.1346 | n/a | 0.2374 | 0.2373 |
 | ro | vox_communis | 10679 | 0.0693 | n/a | 0.1250 | 0.1246 |
 | ro | wikipron | 8978 | 0.0198 | n/a | 0.0825 | 0.0761 |
-| ru | alphacep_ru_book | 6175 | 0.2395 | n/a | 0.3249 | 0.3133 |
-| ru | coruss_ru | 9527 | 0.3584 | n/a | 0.4206 | 0.4311 |
+| ru | alphacep_ru_book | 6175 | 0.2391 | n/a | 0.3249 | 0.3133 |
+| ru | coruss_ru | 9527 | 0.3572 | n/a | 0.4206 | 0.4311 |
 | ru | primary_sources | 36 | 0.1867 | n/a | 0.3119 | 0.3033 |
 | ru | vox_communis | 50517 | 0.3481 | n/a | 0.3578 | 0.3487 |
-| ru | wikipron | 403873 | 0.1449 | n/a | 0.3953 | 0.3976 |
+| ru | wikipron | 403873 | 0.1443 | n/a | 0.3953 | 0.3976 |
 | sv | ipadict | 21095 | 0.2583 | n/a | 0.2611 | 0.2653 |
 | sv | vox_communis | 19516 | 0.3428 | n/a | 0.3214 | 0.3195 |
 | sv | wikipron | 5082 | 0.2317 | n/a | 0.2337 | 0.2364 |
@@ -608,7 +608,7 @@ Not every gold language has a mapping for every competitor system: espeak-ng, ep
 
 ### Staleness
 
-The `o2i PER` column here matches [`benchmarks/results.json`](../benchmarks/results.json)'s `per` for most shared language/dataset pairs, EXCEPT the 7 listed below — those `benchmarks/results.json` rows are stale (a prior PR changed the engine but did not regenerate every affected row there; see e.g. PR #802's `ca`/`4catac`-only regeneration). The numbers in THIS table reflect the current engine via a live run; `benchmarks/results.json` needs a matching regeneration for: `ext-PT-x-barrancos`/`barranquenho_dict` (here 0.0045, results.json 0.1053); `mwl`/`mirandese_dict` (here 0.0401, results.json 0.2665); `mwl`/`mirandese_g2p` (here 0.1317, results.json 0.1404); `sv`/`ipa_childes` (here 0.3449, results.json 0.3476); `sv`/`ipadict` (here 0.2583, results.json 0.2427); `sv`/`vox_communis` (here 0.3428, results.json 0.3735); `sv`/`wikipron` (here 0.2317, results.json 0.2414). 5 more row(s) differ for a DIFFERENT reason — not staleness: this board's `sample_n` config scores a fixed-seed SUBSET of the gold, while `benchmarks/results.json` scores the FULL gold. Same seed, different sample size, so a different PER is expected and regenerating either side will not reconcile them: `ar`/`ipadict` (here 0.3073 on 2319 sampled words, results.json 0.3768 on the full 857160); `ar`/`wikipron` (here 0.2514 on 2735 sampled words, results.json 0.3136 on the full 14268); `ar`/`wikipron_ar_diacritized` (here 0.1788 on 2717 sampled words, results.json 0.1666 on the full 14240); `pt-PT`/`ipa_childes` (here 0.2498 on 3000 sampled words, results.json 0.2477 on the full 3846); `pt-PT`/`wikipron` (here 0.1346 on 2272 sampled words, results.json 0.0903 on the full 56891).
+The `o2i PER` column here matches [`benchmarks/results.json`](../benchmarks/results.json)'s `per` for most shared language/dataset pairs, EXCEPT the 5 listed below — those `benchmarks/results.json` rows are stale (a prior PR changed the engine but did not regenerate every affected row there; see e.g. PR #802's `ca`/`4catac`-only regeneration). The numbers in THIS table reflect the current engine via a live run; `benchmarks/results.json` needs a matching regeneration for: `nl`/`vox_communis` (here 0.2925, results.json 0.2706); `sv`/`ipa_childes` (here 0.3449, results.json 0.3476); `sv`/`ipadict` (here 0.2583, results.json 0.2427); `sv`/`vox_communis` (here 0.3428, results.json 0.3717); `sv`/`wikipron` (here 0.2317, results.json 0.2412). 5 more row(s) differ for a DIFFERENT reason — not staleness: this board's `sample_n` config scores a fixed-seed SUBSET of the gold, while `benchmarks/results.json` scores the FULL gold. Same seed, different sample size, so a different PER is expected and regenerating either side will not reconcile them: `ar`/`ipadict` (here 0.3073 on 2319 sampled words, results.json 0.3774 on the full 857160); `ar`/`wikipron` (here 0.2514 on 2735 sampled words, results.json 0.3139 on the full 14268); `ar`/`wikipron_ar_diacritized` (here 0.1788 on 2717 sampled words, results.json 0.1721 on the full 14240); `pt-PT`/`ipa_childes` (here 0.2498 on 3000 sampled words, results.json 0.2477 on the full 3846); `pt-PT`/`wikipron` (here 0.1346 on 2272 sampled words, results.json 0.0902 on the full 56978).
 
 **espeak-rules-only coverage.** `espeak-rules-only` (the `espeak_rules_per` field) is a permanent column on this board: espeak-ng compiled from its own letter-to-sound rules with every per-language word-exception list (`_list`/`_listx`/`_extra`) emptied first — see `scripts/build_espeak_rules_only.sh`. Every row with a stock `espeak` number also carries an `espeak-rules-only` one in this run.
 

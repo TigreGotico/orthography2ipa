@@ -166,6 +166,26 @@ class TestNorwegianScandinavian:
         assert _ipa("nb", "land") == "lan"      # final ⟨d⟩ silent after ⟨n⟩
         assert _ipa("nb", "kveld") == "kʋɛl"
 
+    def test_silent_d_after_n_l_is_word_final_only(self):
+        # word-final ⟨nd ld⟩ still drops the ⟨d⟩
+        assert _ipa("nb", "land") == "lan"
+        assert _ipa("nb", "kveld") == "kʋɛl"
+        # medial ⟨nd ld⟩ keeps the stop: andre, hundre, vindu
+        assert _ipa("nb", "andre") == "andrə"
+        assert _ipa("nb", "hundre") == "hʉndrə"
+        assert _ipa("nb", "vindu") == "ʋɪndʉ"
+
+    def test_silent_d_after_n_l_before_t(self):
+        # ⟨nd ld⟩ + ⟨t⟩ simplifies the same way as word-final, whether the
+        # cluster ends the word (endt, avholdt) or not (endte, håndtak) and
+        # whether the ⟨t⟩ is its own grapheme or the head of a digraph like
+        # ⟨tr⟩ (abildtre)
+        assert _ipa("nb", "endt") == "ɛnt"
+        assert _ipa("nb", "endte") == "ɛntə"
+        assert _ipa("nb", "avholdt") == "aʋhɔlt"
+        assert _ipa("nb", "håndtak") == "hɔntak"
+        assert _ipa("nb", "abildtre") == "ɑːbɪltrə"
+
     def test_v_is_approximant(self):
         assert _ipa("nb", "vann") == "ʋanː"
 

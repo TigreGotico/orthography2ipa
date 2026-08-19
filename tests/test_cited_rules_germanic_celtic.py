@@ -664,10 +664,10 @@ def test_is_initial_stress():
 
 
 def test_fo_a_acute_differs_from_icelandic():
-    """⟨á⟩ = [ɔa] (cf. Icelandic á = [au]).
+    """⟨á⟩ = [ɔaː] (cf. Icelandic á = [au]).
 
-    fo notes: "⟨á⟩ = [ɔa] (cf. Icelandic á = [au])."
-    Source: Árnason (2011), Hanssen (2010).
+    fo notes: "⟨á⟩ [ɔaː]/[ɔ]."
+    Source: Árnason (2011).
 
     The citation states the contrast itself, so the minimal pair is the same
     letter under fo and under is.
@@ -679,8 +679,9 @@ def test_fo_a_acute_differs_from_icelandic():
 def test_fo_eth_weakens_between_vowels():
     """⟨ð⟩ → [j] or [∅] between vowels (weakening).
 
-    fo notes: "⟨ð⟩ → [j] or [∅] between vowels (weakening)."
-    Source: Árnason (2011).
+    fo notes: "⟨ð⟩ is silent by default and surfaces as the glide [j] between
+    vowels, with [v] and [w] as further allophones."
+    Source: Lockwood (1955).
 
     Minimal pair against Icelandic, which preserves the interdental: fo hlaða has
     no [ð] at all where Icelandic ⟨ð⟩ is [ð].
@@ -689,9 +690,9 @@ def test_fo_eth_weakens_between_vowels():
 
 
 def test_fo_preaspiration():
-    """Preaspiration present (⟨pp tt kk⟩ = [ʰp ʰt ʰk]).
+    """Preaspiration present: ⟨pp tt kk⟩ = [ʰpp ʰtt ʰkk].
 
-    fo notes: "Preaspiration present (⟨pp tt kk⟩ = [ʰp ʰt ʰk])."
+    fo notes: "⟨pp tt kk⟩ are preaspirated [ʰpp ʰtt ʰkk]."
     Source: Árnason (2011).
     """
     assert "ʰp" in _t("fo", "uppi")
@@ -708,20 +709,22 @@ def test_fo_no_voiceless_sonorants():
     [hl], where Icelandic ⟨hl⟩ is [l̥].
     """
     assert "l̥" not in _t("fo", "hlaða")
-    assert _t("fo", "hlaða").startswith("hl")
+    assert _bare("fo", "hlaða").startswith("hl")
 
 
 @pytest.mark.xfail(
     strict=True,
-    reason="Árnason (2011), Hanssen (2010) claim ⟨g⟩ → [w] before back vowels and "
-    "[j] elsewhere; fo produces [ɡʊlʊr] for gulur and [ɡera] for gera — the plain "
-    "stop in both environments",
+    reason="Árnason (2011), Hanssen (2010) claim ⟨g⟩ → [w] before back vowels "
+    "and [j] elsewhere; fo produces [kuːlʊɹ] for gulur — the plain stop — and "
+    "[tʃeːɹa] for gera, where the front vowel gives the affricate rather than "
+    "the glide",
 )
 def test_fo_g_glides():
     """⟨g⟩ → [w] before back vowels, [j] elsewhere.
 
-    fo notes: "⟨g⟩ → [w] before back vowels, [j] elsewhere."
-    Source: Árnason (2011), Hanssen (2010).
+    Source: Árnason (2011), Hanssen (2010). The fo spec does not state this
+    rule; it gives ⟨g⟩ the plain stop outside the palatalising and
+    intervocalic environments.
 
     Minimal pair on the same ⟨g⟩: before back ⟨u⟩ vs before front ⟨e⟩.
     """
