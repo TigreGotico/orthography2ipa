@@ -1,5 +1,9 @@
 # Changelog
 
+## [7.77.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.77.0a1) (2026-08-23)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.76.25a1...7.77.0a1)
+
 ## [7.76.25a1](https://github.com/TigreGotico/orthography2ipa/tree/7.76.25a1) (2026-08-23)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.76.24a1...7.76.25a1)
@@ -725,10 +729,6 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.65.2a3...7.65.2a4)
 
-**Merged pull requests:**
-
-- data: beat-espeak English wave — ⟨-ed⟩/⟨-s⟩ allomorphy, velar nasal assimilation [\#856](https://github.com/TigreGotico/orthography2ipa/pull/856) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [7.65.2a3](https://github.com/TigreGotico/orthography2ipa/tree/7.65.2a3) (2026-08-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.65.2a2...7.65.2a3)
@@ -1079,15 +1079,15 @@
 
 ## [7.35.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.35.1a1) (2026-08-02)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.35.0a2...7.35.1a1)
-
-## [7.35.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.35.0a2) (2026-08-02)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.35.0a1...7.35.0a2)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.35.0a1...7.35.1a1)
 
 ## [7.35.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.35.0a1) (2026-08-02)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.34.1a1...7.35.0a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.35.0a2...7.35.0a1)
+
+## [7.35.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.35.0a2) (2026-08-02)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.34.1a1...7.35.0a2)
 
 ## [7.34.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.34.1a1) (2026-08-02)
 
