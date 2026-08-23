@@ -615,6 +615,13 @@ class AllophoneRescorer(LatticeRescorer):
             g = ctx.grapheme.grapheme
             if not g or g.lower() not in rule.grapheme:
                 return False
+        if rule.word_contains_grapheme or rule.word_contains_grapheme_not:
+            word = _source_word(ctx).lower()
+            if rule.word_contains_grapheme and \
+                    not any(g in word for g in rule.word_contains_grapheme):
+                return False
+            if any(g in word for g in rule.word_contains_grapheme_not):
+                return False
         if rule.word is not None:
             if _source_word(ctx).lower() not in rule.word:
                 return False

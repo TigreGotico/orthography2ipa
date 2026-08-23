@@ -834,7 +834,36 @@ _IPA_CHILDES_FOLDERS: Dict[str, str] = {
     "pl": "pl-PL",
     "pt-BR": "pt-BR",
     "pt-PT": "pt-PT",
-    "qu": "qu-PE",
+    # Cusco, not the `qu` macrolanguage. `qu.json` is a declared structural
+    # adstrate STUB with no phonology (no ⟨q⟩, no ⟨ch⟩, no ⟨ll⟩, no laryngeal
+    # series), so scoring this corpus against it measured the stub, not a
+    # Quechua spec. The corpus itself names its variety: 220 of its 1572
+    # official-alphabet word types spell an aspirate or an ejective (⟨qhawariy⟩
+    # ⟨q'illu⟩ ⟨sach'a⟩ ⟨mikhun⟩) and ⟨q⟩ is transcribed as a stop throughout —
+    # both are Cusco-Collao, and both are exactly what Ayacucho (`quy`) lacks.
+    # `quy` happens to score a little lower on this gold; taking that score
+    # would be fitting the row to the gold against the corpus's own evidence.
+    #
+    # The row keeps a high PER floor that is notation, not error. espeak-ng's
+    # `qu` voice (dictsource/qu_rules) is a plain letter-to-phoneme table: it
+    # writes /i u/ as lax [ɪ ʊ] (2391 substitutions), ⟨ch⟩ with a retraction
+    # diacritic as t̠ʃ (735), the tap as a trill r (536), and an ejective as the
+    # ejective plus a spurious glottal stop, ⟨k'⟩ → kʼʔ (133, from the rule file's
+    # own "q' → q`?"). It applies no uvular lowering at all, so every [ɑ ɛ ɔ]
+    # this spec derives by rule is scored as an error (538). Where the two
+    # disagree on a segment the cited source settles it: ⟨sh⟩ is /ʃ/ in Cusco,
+    # which espeak renders as s+h. The corpus also mixes varieties, not just
+    # orthographies — a 296-type subcorpus (corpus_id 358) is Ecuadorian
+    # Highland Kichwa, a different Quechuan language mislabelled qu-PE
+    # upstream: it has the perfect/gerund endings -shca/-shpa where Cusco has
+    # -sqa/-spa, ñuca for Cusco ñuqa, ashcu for Cusco allqu, micuna where
+    # Cusco has mikhuna. Neither `quz` nor `quy` can read Kichwa, which no
+    # trivocalic Southern Quechua spec is meant to; it scores ~0.17 worse
+    # than the official-alphabet Cusco-Collao corpus (1572 word types,
+    # corpus_id 146) for every Southern Quechua spec. Splitting Kichwa out of
+    # this IPA-CHILDES folder into its own row is future work (o2i #91), not
+    # something this loader can decide.
+    "quz": "qu-PE",
     "ro-RO": "ro-RO",
     "sr": "sr-RS",
     "sv": "sv-SE",
@@ -875,7 +904,7 @@ _IPA_CHILDES_TOOL: Dict[str, str] = {
     "pl": "phonemizer (espeak-ng), pl",
     "pt-BR": "phonemizer (espeak-ng), pt-br",
     "pt-PT": "phonemizer (espeak-ng), pt",
-    "qu": "phonemizer (espeak-ng), qu",
+    "quz": "phonemizer (espeak-ng), qu",
     "ro-RO": "phonemizer (espeak-ng), ro",
     "sr": "epitran, srp-Latn",
     "sv": "phonemizer (espeak-ng), sv",

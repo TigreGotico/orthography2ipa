@@ -160,3 +160,41 @@ def test_both_affricate_series_are_reachable(kok):
     readings = kok.word_candidates("चूक")
     assert "tʃuːk" in readings
     assert "tsuːk" in readings
+
+
+# ── vocalic r and candra vowels ─────────────────────────────────────────────
+
+@pytest.mark.parametrize("word,ipa", [
+    ("कृपेन", "kɾɪpen"),
+    ("संस्कृताय", "sə̃skɾɪt̪aːj"),
+])
+def test_vocalic_r_is_a_tap_plus_vowel(kok, word, ipa):
+    """⟨ृ⟩/⟨ऋ⟩ (vocalic r) are not in the grapheme table, so the segment is
+    silently dropped instead of read as the Indo-Aryan tap-plus-vowel reflex
+    (Masica 1991, ch. 6)."""
+    assert kok.transcribe_word(word) == ipa
+
+
+def test_vocalic_r_word_still_has_a_final_consonant(kok):
+    """Regression guard for the reported symptom: dropping ⟨ृ⟩ left no vowel
+    between the tap and the following coda, so schwa deletion misfired and
+    kept a schwa word-finally instead (संस्कृत -> sə̃skt̪ə)."""
+    assert kok.transcribe_word("संस्कृत") == "sə̃skɾɪt̪"
+
+
+@pytest.mark.parametrize("word,ipa", [
+    ("ऑगस्ट", "æɡsʈ"),
+    ("मॅरी", "mæɾiː"),
+])
+def test_candra_vowels_are_the_english_loan_class(kok, word, ipa):
+    """⟨ऑ⟩/⟨ॉ⟩ (candra o) and ⟨ॅ⟩ (candra e) mark the loan vowels Devanagari
+    has no native letter for; the kaikki gold reads both as /æ/ in these
+    words."""
+    assert kok.transcribe_word(word) == ipa
+
+
+def test_candra_o_offers_the_documented_open_mid_reading(kok):
+    """/ɔ/ is the value the broader Indo-Aryan candra-o convention documents
+    (and the one Marathi's spec carries); it is kept as a second candidate
+    alongside the gold-attested /æ/."""
+    assert "ɔɡsʈ" in kok.word_candidates("ऑगस्ट")
