@@ -11,6 +11,7 @@ on:
       - "orthography2ipa/**"
       - "scripts/benchmark.py"
       - "scripts/check_benchmark_regression.py"
+      - "scripts/check_board_not_reverting.py"
       - "scripts/check_board_row_counts.py"
       - "benchmarks/results.json"
       - "benchmarks/results_ci_sample.json"
@@ -76,3 +77,28 @@ jobs:
         # OSError/ImportError bucketing.
         run: |
           PYTHONPATH=$PWD .venv/bin/python scripts/check_board_row_counts.py
+
+  board-not-reverting:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      # The PR HEAD, not the merge ref: the merge ref has already taken
+      # dev's side for every row the branch left alone, which is exactly
+      # the evidence this check reads. fetch-depth 0 because the check is
+      # a three-way comparison and needs the merge base.
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+
+      - name: Check the board does not revert dev
+        # Squash-merging a branch whose board was generated before other
+        # waves landed writes their pre-merge values back over dev, with
+        # both sides green throughout — see the script's docstring and
+        # AGENTS.md ("Never carry the board backwards"). Stdlib only, so
+        # no environment to build.
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          git fetch --no-tags origin ${{ github.base_ref }}
+          python3 scripts/check_board_not_reverting.py --base origin/${{ github.base_ref }}

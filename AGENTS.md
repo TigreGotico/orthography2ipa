@@ -308,6 +308,37 @@ spec may declare. Raising that cap is an **amendment to this file**, argued
 here first — the cap exists so paradigm enumeration hits a tripwire instead of
 accreting one plausible entry at a time.
 
+## Never carry the board backwards
+
+The benchmark board — `benchmarks/results.json`, `benchmarks/results_ci_sample.json`
+and `docs/scoreboard.md` — is regenerated whole, but a branch only rescores the
+rows it worked on. Every other row is copied from whatever `dev` looked like
+when the branch was cut. Since merges here are squashes, a branch that sat while
+other waves landed writes those copies back over the merged results, silently
+undoing them. Both sides stay internally consistent, so the regression gate is
+green on the branch and green on `dev`, and the loss is visible only in the
+interaction. This is not a small effect: a single stale branch has carried five
+merged waves backwards at once, including a row that had moved from 0.4351 to
+0.0535, and the diff reads exactly like harmless pre-existing drift.
+
+`scripts/check_board_not_reverting.py` blocks it in CI. It compares each row
+across three points — the merge target, the branch head, and the merge base —
+and fails when the branch's value is the merge base's while the target has moved
+on, because a value the branch inherited verbatim cannot be something the branch
+measured. Rows whose language spec the branch edits (directly or through
+inheritance) are its own to move; rows that are new on both sides displace
+nothing.
+
+A change that legitimately moves rows it does not own, such as a harness or
+engine rework, declares them: a `Board-Rows: mr/wikipron, xh/kaikki` line, or
+`Board-Rows: all - <reason>` when the whole board was rescored, in the pull
+request body or a commit message. A declaration never licenses carrying an
+inherited value backwards.
+
+When the guard fires, merge `dev` into the branch, resolve the board files
+keeping `dev`'s value for every row you did not rescore yourself, and regenerate
+`docs/scoreboard.md`.
+
 ## Conventions (Org hard rules)
 
 - Branches: `dev` for work, `master` for stable. NEVER `main`.
