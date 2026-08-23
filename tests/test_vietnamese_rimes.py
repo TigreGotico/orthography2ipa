@@ -106,8 +106,35 @@ def test_labial_velar_rule_needs_a_rounded_monophthong(vi):
 
 def test_oo_is_kirbys_named_exception(vi):
     """⟨boong⟩ (< French *pont*) is one of the rare plain-velar finals
-    after a rounded vowel that Kirby names."""
-    assert segments(vi.transcribe_word("boong")) == "ɓɔŋ"
+    after a rounded vowel that Kirby names, and his transcription of it,
+    [ɓɔːŋ], is also where the long vowel is written."""
+    assert segments(vi.transcribe_word("boong")) == "ɓɔːŋ"
+
+
+# ── Long /ɛː ɔː/ before a true velar ──────────────────────────────────
+# Kirby (p. 384) gives the length distinction its own minimal pairs:
+# "[sɛːŋ] xẻng 'shovel'" against "[sɛŋ̟] xanh 'green'", and "[sɔːŋ] xoong
+# 'saucepan'" against "[sɔŋ͡m] xong 'to finish'". ⟨eng ec⟩ and ⟨oong ooc⟩
+# are the spellings quốc ngữ leaves for those long vowels, ⟨anh ach⟩ and
+# ⟨ong oc⟩ being taken by the fronted and labial-velar rimes.
+@pytest.mark.parametrize("word,expected", [
+    ("xẻng", "sɛːŋ"), ("rẻng", "zɛːŋ"), ("méc", "mɛːk"),
+    ("khẹc", "xɛːk"),
+    ("xoong", "sɔːŋ"), ("boong", "ɓɔːŋ"), ("coóc", "kɔːk"),
+    ("voọc", "vɔːk"),
+])
+def test_long_vowel_before_a_true_velar(vi, word, expected):
+    assert segments(vi.transcribe_word(word)) == expected
+
+
+@pytest.mark.parametrize("long_word,short_word", [
+    ("xẻng", "xanh"), ("éc", "ách"), ("xoong", "xong"), ("coóc", "cóc"),
+])
+def test_the_length_pairs_are_two_readings(vi, long_word, short_word):
+    """Kirby's pairs must not collapse: without the length mark ⟨xẻng⟩
+    and ⟨xanh⟩ come out identical."""
+    assert segments(vi.transcribe_word(long_word)) != \
+        segments(vi.transcribe_word(short_word))
 
 
 # ── Diphthongs and their coda-conditioned spellings ───────────────────

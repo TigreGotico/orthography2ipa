@@ -102,7 +102,8 @@ NUCLEI = {
     # (⟨mía⟩, ⟨múa⟩, ⟨mứa⟩).
     "iê": ("iə", 1), "yê": ("iə", 1), "uô": ("uə", 1), "ươ": ("ɯə", 1),
     "ia": ("iə", 0), "ya": ("iə", 0), "ua": ("uə", 0), "ưa": ("ɯə", 0),
-    "oo": ("ɔ", 1),
+    # ⟨oo⟩ is the long /ɔː/ of Kirby's [sɔːŋ] xoong (p. 384).
+    "oo": ("ɔː", 1),
 }
 
 #: coda spelling → (IPA, closes the syllable with an oral stop)
@@ -132,9 +133,9 @@ RIMES = {
     "ô": ["", "p", "t", "c", "m", "n", "ng", "i"],
     "ơ": ["", "p", "t", "m", "n", "i"],
     "u": ["", "p", "t", "c", "m", "n", "ng", "i"],
-    # ⟨oo⟩ spells a long /ɔ/ in a handful of French loans and is Kirby's
-    # named exception to the labial-velar rule: ⟨boong⟩ is [ɓɔŋ], not
-    # *[ɓɔŋ͡m].
+    # ⟨oo⟩ spells the long /ɔː/ of a handful of French loans and is
+    # Kirby's named exception to the labial-velar rule: ⟨boong⟩ is
+    # [ɓɔːŋ], not *[ɓɔŋ͡m].
     "oo": ["ng", "c"],
     "ư": ["", "t", "c", "m", "n", "ng", "i", "u"],
     "iê": ["p", "t", "c", "m", "n", "ng", "u"],
@@ -191,8 +192,12 @@ def rime_ipa(nucleus_ipa: str, coda_spelling: str, medial: bool,
         v = "ɛ"          # ⟨anh ach⟩ are [ɛŋ ɛk]
     if coda_spelling in ("y", "u") and v == "a":
         v = "ă"          # ⟨ay au⟩ spell the short vowel
-    if coda in ("ŋ", "k") and v in ROUNDED_MONOPHTHONGS \
-            and nucleus_spelling != "oo":
+    if coda_spelling in ("ng", "c") and v == "ɛ":
+        # ⟨eng ec⟩ are the long [ɛː] of Kirby's xẻng. The fronted ⟨anh
+        # ach⟩ reach this point with the same /ɛ/ but a ⟨nh ch⟩ spelling,
+        # and they are the SHORT member of his pair, so they stay out.
+        v = "ɛː"
+    if coda in ("ŋ", "k") and v in ROUNDED_MONOPHTHONGS:
         coda = "ŋ͡m" if coda == "ŋ" else "k͡p"
     if coda == "j" and v in FRONT_UNROUNDED:
         return None
@@ -273,7 +278,8 @@ ALLOPHONES = {
     "w": ["w"], "j": ["j"],
     "i": ["i"], "e": ["e"], "ɛ": ["ɛ"], "ɯ": ["ɯ"], "ɤ": ["ɤ"],
     "ɤ̆": ["ɤ̆"], "a": ["a"], "ă": ["ă"], "u": ["u"], "o": ["o"],
-    "ɔ": ["ɔ"], "iə": ["iə"], "uə": ["uə"], "ɯə": ["ɯə"],
+    "ɔ": ["ɔ"], "ɛː": ["ɛː"], "ɔː": ["ɔː"],
+    "iə": ["iə"], "uə": ["uə"], "ɯə": ["ɯə"],
 }
 
 
