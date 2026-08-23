@@ -1191,21 +1191,22 @@ def test_fj_v_is_a_bilabial_fricative():
 def test_mh_every_consonant_carries_a_secondary_articulation():
     """"Every consonant carries a secondary articulation: ... ⟨m ṃ⟩ = /mʲ mˠ/,
     ⟨l ḷ⟩ = /lʲ lˠ/, ⟨j t⟩ = /tʲ tˠ/" (Abo, Bender, Capelle & DeBrum 1976).
-    Ṃajeḷ 'Marshall (Islands)' → [mˠɑtʲɛlˠ]."""
-    assert G2P("mh").transcribe_word("ṃajeḷ") == "mˠɑtʲɛlˠ"
+    Ṃajeḷ 'Marshall (Islands)' → /mˠætʲɛlˠ/."""
+    assert G2P("mh").transcribe_word("ṃajeḷ") == "mˠætʲɛlˠ"
 
 
 def test_mh_j_is_a_palatalised_coronal_stop():
     """Same cited series: ⟨j⟩ = /tʲ/, not an affricate or fricative.  Kajin
-    'language (of)' → [kɑtʲinʲ], with ⟨n⟩ = /nʲ/."""
-    assert G2P("mh").transcribe_word("kajin") == "kɑtʲinʲ"
+    'language (of)' → /kætʲinʲ/, with ⟨n⟩ = /nʲ/."""
+    assert G2P("mh").transcribe_word("kajin") == "kætʲinʲ"
 
 
 def test_mh_bw_is_merely_the_velarised_bilabial():
     """"after ⟨b ṃ⟩ [⟨w⟩] merely marks the already-velarised bilabial (⟨bw ṃw⟩
     = /pˠ mˠ/)" — so ⟨bw⟩ is one segment, not /pˠ/ + /w/.  bwebwenato 'story'
-    → [pˠɛpˠɛnʲɑtˠo]."""
-    assert G2P("mh").transcribe_word("bwebwenato") == "pˠɛpˠɛnʲɑtˠo"
+    → /pˠɛpˠɛnʲætˠɛw/, the final ⟨o⟩ closed by the rounded glide its
+    column names."""
+    assert G2P("mh").transcribe_word("bwebwenato") == "pˠɛpˠɛnʲætˠɛw"
 
 
 # ---------------------------------------------------------------------------

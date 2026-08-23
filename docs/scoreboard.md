@@ -379,7 +379,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | mdh | wikipron | 205 | 0.0793 | 0.0793 | 0.0793 | 0.6146 | 0.6146 | [0.0643, 0.0948] | 0.6146 | research | crowd-scraped |
 | mfe | wikipron | 206 | 0.1238 | 0.1238 | 0.1238 | 0.5485 | 0.5485 | [0.0992, 0.1487] | 0.5485 | research | crowd-scraped |
 | mga | wikipron | 328 | 0.0594 | 0.0482 | 0.0458 | 0.7104 | 0.7195 | [0.0494, 0.0700] | 0.6738 | research | crowd-scraped |
-| mh | wikipron | 947 | 0.4404 | 0.4256 | 0.4246 | 0.0317 | 0.0327 | [0.4265, 0.4546] | 0.0285 | research | crowd-scraped |
+| mh | wikipron | 947 | 0.1182 | 0.0865 | 0.0796 | 0.4762 | 0.5026 | [0.1081, 0.1293] | 0.4002 | research | crowd-scraped |
 | mhr | northeuralex | 992 | 0.1736 | 0.1536 | 0.1509 | 0.1391 | 0.1391 | [0.1670, 0.1804] | 0.1280 | research | lexicon-derived |
 | mi | wikipron | 1003 | 0.0719 | 0.0719 | 0.0719 | 0.6401 | 0.6401 | [0.0650, 0.0784] | 0.6401 | research | crowd-scraped |
 | mic | wikipron | 203 | 0.2922 | 0.2922 | 0.2922 | 0.0887 | 0.0887 | [0.2677, 0.3154] | 0.0887 | research | crowd-scraped |
