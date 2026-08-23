@@ -1196,8 +1196,11 @@ class AllophoneRule:
         choice between the back and front member of a vowel-harmony pair is
         signalled by whether the word is spelt with a "hard" letter
         ⟨ح خ ص ض ط ظ ع غ ق⟩ or a "soft" one ⟨ت س ك گ ه⟩, which the
-        neighbour conditions cannot see across intervening letters. Empty =
-        don't care.
+        neighbour conditions cannot see across intervening letters. The check
+        is a raw substring test over the joined source word, so a multi-
+        character grapheme key matches wherever that sequence occurs as a
+        substring rather than by slot-grapheme membership. Empty = don't
+        care.
     word_contains_grapheme_not : Tuple[str, ...]
         None of these letters may occur anywhere in the current source word.
         The negative counterpart of :attr:`word_contains_grapheme`, needed
