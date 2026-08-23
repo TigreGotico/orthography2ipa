@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.78.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.78.1a1) (2026-08-23)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.78.0a1...7.78.1a1)
+
+**Merged pull requests:**
+
+- fix\(benchmark\): atomic cache downloads + NFD-scan consonant length expansion [\#1036](https://github.com/TigreGotico/orthography2ipa/pull/1036) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.78.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.78.0a1) (2026-08-23)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.77.0a1...7.78.0a1)
@@ -720,10 +728,6 @@
 ## [7.66.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.66.0a1) (2026-08-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.65.2a5...7.66.0a1)
-
-**Merged pull requests:**
-
-- feat\(compare\): make espeak-rules-only a permanent board column [\#859](https://github.com/TigreGotico/orthography2ipa/pull/859) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.65.2a5](https://github.com/TigreGotico/orthography2ipa/tree/7.65.2a5) (2026-08-11)
 
