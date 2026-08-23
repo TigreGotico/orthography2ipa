@@ -140,8 +140,8 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | arb | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | arb | gold20_arabic | 20 | 0.0190 | - | - | - | - | [0.0114, 0.0272] | 0.3500 | research | llm-generated |
 | arn | wold | 1269 | 0.0112 | 0.0112 | 0.0112 | 0.9511 | 0.9511 | [0.0084, 0.0143] | 0.9511 | research | lexicon-derived |
-| as | vox_communis | 5328 | 0.6445 | 0.6357 | 0.6348 | 0.0343 | 0.0343 | [0.6342, 0.6545] | 0.0343 | research | epitran-derived |
-| as | wikipron | 2981 | 0.4281 | 0.4233 | 0.4232 | 0.1214 | 0.1214 | [0.4175, 0.4386] | 0.1208 | research | crowd-scraped |
+| as | vox_communis | 5328 | 0.2436 | 0.2432 | 0.2432 | 0.3009 | 0.3009 | [0.2371, 0.2502] | 0.3005 | production | epitran-derived |
+| as | wikipron | 2981 | 0.0918 | 0.0861 | 0.0861 | 0.6437 | 0.6441 | [0.0865, 0.0969] | 0.6307 | production | crowd-scraped |
 | ast | wikipron | 4167 | 0.0505 | 0.0253 | 0.0244 | 0.8591 | 0.8651 | [0.0475, 0.0533] | 0.7106 | research | crowd-scraped |
 | ast-PT-x-guadramil | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ast-PT-x-medieval | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |

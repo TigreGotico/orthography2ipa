@@ -1522,6 +1522,7 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "dependent_vowels": InheritanceMode.OWN_ONLY,
     "preposed_vowels": InheritanceMode.OWN_ONLY,
     "coda_no_inherent_vowel": InheritanceMode.OWN_ONLY,
+    "inherent_vowel_final": InheritanceMode.OWN_ONLY,
     "collapse_geminates": InheritanceMode.OWN_ONLY,
     "doubled_letters_geminate": InheritanceMode.OWN_ONLY,
     "constrain_onsets": InheritanceMode.BASE_SCALAR,
@@ -1688,6 +1689,25 @@ class LanguageSpec:
     inherent_vowel: Optional[str] = None
     """For abugidas — the vowel assumed when no vowel mark is present
     (e.g. ``"ə"`` for Hindi, ``"a"`` for Sanskrit)."""
+
+    inherent_vowel_final: Optional[str] = None
+    """What :attr:`inherent_vowel` becomes on a word-final consonant letter.
+
+    Several Indo-Aryan orthographies write the inherent vowel on every
+    consonant letter but do not pronounce it at the end of a word: Assamese
+    ⟨বছৰ⟩ is /bɔsɔɹ/, not */bɔsɔɹɔ/ (Roy & Mahanta 2018).
+    Declaring ``""`` deletes it there; any other string substitutes that
+    vowel instead. Unset (the default) leaves the inherent vowel standing.
+
+    The substitution is skipped unless the syllable being closed already has
+    a nucleus, which puts two floors under it at once. A prosodic word keeps
+    a syllable (Hayes 2009; Blevins 1995) — Assamese ⟨ক⟩ stays /kɔ/ rather
+    than becoming a bare */k/ — and a deletion never manufactures a complex
+    coda the language does not allow, so ⟨অংক⟩ keeps its final vowel as
+    /ɔŋkɔ/ instead of closing on */ŋk/. This is the floor
+    :attr:`AllophoneRule.requires_other_nucleus` puts under a vowel-deleting
+    allophone rule, applied where the vowel is unwritten and so has no slot
+    of its own for a rule to target."""
 
     plugins: Dict[str, Tuple[str, ...]] = field(default_factory=dict)
     """Which plugin this language wants, per stage — keyed by entry-point name.
