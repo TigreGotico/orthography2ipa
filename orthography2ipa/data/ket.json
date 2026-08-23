@@ -1,0 +1,323 @@
+{
+ "code": "ket",
+ "name": "Ket",
+ "script": "Cyrl",
+ "quality": "research",
+ "graphemes": {
+  "а": [
+   "a"
+  ],
+  "аа": [
+   "aː"
+  ],
+  "и": [
+   "i"
+  ],
+  "ии": [
+   "iː"
+  ],
+  "у": [
+   "ʊ"
+  ],
+  "уу": [
+   "uː"
+  ],
+  "э": [
+   "ɛ"
+  ],
+  "ээ": [
+   "ɛː"
+  ],
+  "о": [
+   "ɔ"
+  ],
+  "оо": [
+   "ɔː"
+  ],
+  "ы": [
+   "ɨ"
+  ],
+  "ыы": [
+   "ɨː"
+  ],
+  "ө": [
+   "ɵ̞"
+  ],
+  "өө": [
+   "ɵ̞ː"
+  ],
+  "б": [
+   "b"
+  ],
+  "д": [
+   "d"
+  ],
+  "г": [
+   "ɡ"
+  ],
+  "л": [
+   "l"
+  ],
+  "ль": [
+   "ʎ"
+  ],
+  "в": [
+   "v"
+  ],
+  "х": [
+   "x"
+  ],
+  "е": [
+   "je"
+  ],
+  "м": [
+   "m"
+  ],
+  "н": [
+   "n"
+  ],
+  "ӄ": [
+   "q"
+  ],
+  "к": [
+   "k"
+  ],
+  "с": [
+   "s"
+  ],
+  "т": [
+   "t"
+  ],
+  "ӈ": [
+   "ŋ"
+  ],
+  "һ": [
+   "h"
+  ],
+  "й": [
+   "ʝ"
+  ],
+  "ь": [
+   ""
+  ],
+  "ъ": [
+   ""
+  ],
+  "ч": [
+   "tʃ"
+  ],
+  "ё": [
+   "jo"
+  ],
+  "ю": [
+   "ju"
+  ],
+  "я": [
+   "ja"
+  ],
+  "ә": [
+   "ə"
+  ],
+  "ӷ": [
+   "ɣ"
+  ],
+  "’": [
+   "ʔ"
+  ]
+ },
+ "allophones": {
+  "b": [
+   "pʲ",
+   "β",
+   "p",
+   "b"
+  ],
+  "d": [
+   "d",
+   "d",
+   "r"
+  ],
+  "k̟": [
+   "ɡ",
+   "k",
+   "ɡ̟",
+   "k̟"
+  ],
+  "lʲ": [
+   "lʲ",
+   "l̥ʲ"
+  ],
+  "lˠ": [
+   "lˠ",
+   "l̥ˠ"
+  ],
+  "m": [
+   "m",
+   "m̥"
+  ],
+  "n": [
+   "n",
+   "n̥"
+  ],
+  "nʲ": [
+   "n̥ʲ",
+   "nʲ"
+  ],
+  "q": [
+   "ɣ",
+   "qχ",
+   "ɢ",
+   "ʁ",
+   "q",
+   "ʀ",
+   "χ"
+  ],
+  "sʲ": [
+   "sʲ",
+   "sʲ",
+   "ʃʲ"
+  ],
+  "t": [
+   "t",
+   "t"
+  ],
+  "tʲ": [
+   "tʲ",
+   "t̠ʃʲ",
+   "tʲ"
+  ],
+  "ŋ": [
+   "ŋ",
+   "ŋ̥"
+  ],
+  "a": [
+   "a̟",
+   "a"
+  ],
+  "aː": [
+   "aː",
+   "a̟ː",
+   "aː",
+   "a̟ː"
+  ],
+  "i": [
+   "i",
+   "ɪ",
+   "i"
+  ],
+  "iː": [
+   "iː",
+   "iː"
+  ],
+  "uː": [
+   "uː",
+   "uː"
+  ],
+  "æ": [
+   "ɛ",
+   "æ",
+   "æ",
+   "e"
+  ],
+  "æː": [
+   "æː",
+   "ɛː",
+   "æː",
+   "ɛː"
+  ],
+  "ɔ": [
+   "o",
+   "ɔ",
+   "ø"
+  ],
+  "ɔː": [
+   "ɔː",
+   "ɔː"
+  ],
+  "ɨː": [
+   "ɨː",
+   "ɨː"
+  ],
+  "ɵ̞ː": [
+   "ɵ̞ː",
+   "ɵ̞ː"
+  ]
+ },
+ "notes": "Cyrillic-based practical orthography for Ket following Vajda (2004), Ket, and Vajda & Zinn's teaching materials. Ket has phonemic vowel length (doubled-vowel digraphs aa/ii/ee/oo/yy/oeoe mark long vowels, each earning its key by NOT being the concatenation of two short-vowel candidates) and lexical tone, which the orthography does not mark at all (Vajda 2004) -- the `stress` field is left unset and this is a documented exemption, not an oversight: Ket 'stress' is realised through the (unwritten) tonal system rather than a predictable stress rule. Ket also has a productive palatalised consonant series (dʲ lʲ nʲ sʲ tʲ), spelled with a following Cyrillic soft sign the same way Russian marks softness; per the ru ⟨бь⟩ precedent (AGENTS.md) this is a diacritic the soft-sign grapheme (mapped here to a silent empty candidate) already exists to compose, not a fact that earns Cyrillic+ь its own multigraph key, so the palatalised series is left as a documented, unencoded gap (as evn/Evenki documents the analogous native-only palatalization pattern) rather than enumerated as five extra keys. g is used for the velar stop /k̟/ (Ket has no phonemic voiced velar stop, per Vajda 2004); the plain non-palatalised lateral is velarised /lˠ/; short /u/ is realised [ʊ] (Vajda 2004), contrasting with long /uː/ spelled уу.",
+ "iso639_3": "ket",
+ "glottolog_code": "kett1243",
+ "sources": [
+  {
+   "id": "glottolog2024",
+   "author": "Hammarström, Harald; Forkel, Robert; Haspelmath, Martin; Bank, Sebastian",
+   "year": 2024,
+   "title": "Glottolog 5.0",
+   "publisher": "Max Planck Institute for Evolutionary Anthropology",
+   "url": "https://glottolog.org/"
+  },
+  {
+   "id": "phoible2019",
+   "author": "Moran, Steven; McCloy, Daniel (eds.)",
+   "year": 2019,
+   "title": "PHOIBLE 2.0 (doi:10.5281/zenodo.2562766)",
+   "publisher": "Max Planck Institute for the Science of Human History",
+   "url": "https://phoible.org/inventories/view/2",
+   "notes": "Inventory 2 (spa), 32 non-marginal segments."
+  },
+  {
+   "id": "vajda2004",
+   "author": "Vajda, Edward J.",
+   "year": 2004,
+   "title": "Ket",
+   "publisher": "Lincom Europa (Languages of the World/Materials 204)"
+  }
+ ],
+ "urls": [
+  "https://glottolog.org/resource/languoid/id/kett1243"
+ ],
+ "location": {
+  "latitude": 63.7551,
+  "longitude": 87.5466,
+  "source": "glottolog",
+  "notes": "Glottolog's representative point."
+ },
+ "parent": "x-clade-yeni1252",
+ "phonemes": [
+  "b",
+  "d",
+  "dʲ",
+  "h",
+  "k̟",
+  "lʲ",
+  "lˠ",
+  "m",
+  "n",
+  "nʲ",
+  "q",
+  "s",
+  "sʲ",
+  "t",
+  "tʲ",
+  "ŋ",
+  "ʔ",
+  "ʝ",
+  "a",
+  "aː",
+  "i",
+  "iː",
+  "uː",
+  "æ",
+  "æː",
+  "ɔ",
+  "ɔː",
+  "ɨ",
+  "ɨː",
+  "ɵ̞",
+  "ɵ̞ː",
+  "ʊ"
+ ],
+ "phoible_id": "2",
+ "wikipedia": [
+  "https://en.wikipedia.org/wiki/Ket_language"
+ ]
+}

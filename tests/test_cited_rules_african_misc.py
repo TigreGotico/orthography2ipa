@@ -261,9 +261,10 @@ def test_so_dh_is_retroflex_and_x_is_pharyngeal():
     assert G2P("so").transcribe_word("dhagax") == "ɖaɡaħ"
 
 
-def test_so_kh_is_the_velar_fricative():
-    """"KH = velar fricative /x/" (ibid.).  khudaar 'vegetables' → [xudaːr]."""
-    assert G2P("so").transcribe_word("khudaar") == "xudaːr"
+def test_so_kh_is_the_uvular_fricative():
+    """"The sound /χ/ is a voiceless uvular fricative and is represented as
+    <kh>" (Mohamed 2013).  khudaar 'vegetables' → [χudaːr]."""
+    assert G2P("so").transcribe_word("khudaar") == "χudaːr"
 
 
 def test_so_vowel_length_is_written_double():
@@ -271,25 +272,191 @@ def test_so_vowel_length_is_written_double():
     assert G2P("so").transcribe_word("soomaali") == "soːmaːli"
 
 
+def test_so_apostrophe_is_the_glottal_stop():
+    """"The sound /ʔ/ is a glottal stop, written as <’>" (Mohamed 2013).
+    lo' 'cows' → [loʔ]."""
+    assert G2P("so").transcribe_word("lo'") == "loʔ"
+
+
+def test_so_vowel_initial_word_takes_a_prosthetic_glottal_stop():
+    """"When a Somali word begins with a vowel, a glottal is inserted before
+    the vowel, in order to provide onset to the syllable.  Therefore, a Somali
+    words like <ey> 'dog' is transcribed and pronounced as [ʔey]" (Mohamed
+    2013), the same source's word-list example.  The same source's diphthong
+    section gives ⟨ey⟩ the value [ei], so the prosthesis lands on [ʔei]."""
+    assert G2P("so").transcribe_word("ey") == "ʔei"
+
+
+def test_so_prosthetic_glottal_stop_precedes_a_long_initial_vowel():
+    """The prosthesis is an onset repair, so it applies to the doubled-letter
+    long vowels too: aar 'lion' → [ʔaːr], not *[aːr]."""
+    assert G2P("so").transcribe_word("aar") == "ʔaːr"
+
+
+def test_so_word_initial_glottal_stop_is_not_written():
+    """"the word initial glottal stop <'> - [ʔ] is also not shown" (Mohamed
+    2013, p.10): the prosthesis is supplied by the transcriber, so a word whose
+    spelling starts with a consonant never gains one — nin 'man' → [nin]."""
+    assert G2P("so").transcribe_word("nin") == "nin"
+
+
+def test_so_intervocalic_dh_is_a_retroflex_flap():
+    """⟨dh⟩ "is pronounced as a retroflex flap [ɽ] when it occurs
+    intervocalically" (Wikipedia, Somali language).  badhi 'buttocks' → [baɽi],
+    the example Mohamed 2013 gives for the same environment."""
+    assert G2P("so").transcribe_word("badhi") == "baɽi"
+
+
+def test_so_dh_stays_a_stop_outside_the_intervocalic_environment():
+    """The flap is environment-bound: word-initial and word-final ⟨dh⟩ keep the
+    retroflex stop.  dhagax 'stone' → [ɖaɡaħ] and gabadh 'girl' → [ɡabaɖ]."""
+    engine = G2P("so")
+    assert engine.transcribe_word("dhagax") == "ɖaɡaħ"
+    assert engine.transcribe_word("gabadh") == "ɡabaɖ"
+
+
+def test_so_tone_is_never_emitted():
+    """Declared limit: Somali pitch accent is grammatical and the 1972
+    orthography leaves it unmarked, so no tone mark can be recovered from
+    spelling.  inan 'boy' carries a high accent no spelling records."""
+    assert G2P("so").transcribe_word("inan") == "ʔinan"
+
+
+def test_so_short_diphthongs_end_in_a_vocalic_offglide():
+    """"Somali has five short and five long diphthongs", written ⟨ay aw ey oy
+    ow⟩, with ⟨aw⟩ "pronounced like the English diphthong [au]" and ⟨ey⟩ "like
+    the English [ei]" (Mohamed 2013, "Diphthongs").  The second element is a
+    vowel, not the consonant /j w/: caws 'grass' and awr 'camel' are Mohamed's
+    own ⟨aw⟩ examples, gurey 'left handed' his ⟨ey⟩ example."""
+    engine = G2P("so")
+    assert engine.transcribe_word("caws") == "\u0295aus"
+    assert engine.transcribe_word("awr") == "\u0294aur"
+    assert engine.transcribe_word("gurey") == "\u0261urei"
+    assert engine.transcribe_word("cayn") == "\u0295ain"
+    assert engine.transcribe_word("kow") == "kou"
+
+
+def test_so_long_diphthongs_keep_the_offglide_after_a_long_vowel():
+    """"The long Somali diphthongs, then, are ⟨aay⟩, ⟨eey⟩, ⟨ooy⟩, ⟨aaw⟩, and
+    ⟨oow⟩" (Mohamed 2013).  The doubled vowel letter is the nucleus and the
+    glide letter is still the offglide: Xasanoow → [...noːu], hooyooy → [hoːjoːi]."""
+    engine = G2P("so")
+    assert engine.transcribe_word("hooyooy") == "ho\u02d0jo\u02d0i"
+    assert engine.transcribe_word("canabeey") == "\u0295anabe\u02d0i"
+
+
+def test_so_intervocalic_y_and_w_stay_consonants():
+    """The offglide reading is coda-bound.  Between two vowels ⟨y⟩ and ⟨w⟩ are
+    the onset of the following syllable, not the tail of a diphthong: hooyo
+    'mother' → [ho\u02d0jo] and iyo 'and' → [\u0294ijo], never *[ho\u02d0oijo]."""
+    engine = G2P("so")
+    assert engine.transcribe_word("hooyo") == "ho\u02d0jo"
+    assert engine.transcribe_word("iyo") == "\u0294ijo"
+    assert engine.transcribe_word("aayo") == "\u0294a\u02d0jo"
+
+
+def test_so_intervocalic_voiced_stops_offer_a_spirantized_second_candidate():
+    """Armstrong 1964, as reported by Bruhn: "Somali /g/ sometimes appears as
+    [\u0263] between vowels" and "/d/ often lenites to [\u00f0] between vowels".  The
+    process is variable, so the stop stays the primary reading and the
+    fricative is offered as an alternative, never the other way round."""
+    engine = G2P("so")
+    assert engine.transcribe_word("magan") == "ma\u0261an"
+    alts = engine.word_candidates("magan", k=3)
+    assert any("\u0263" in a for a in alts), alts
+    assert alts[0] == "ma\u0261an"
+
+
+def test_so_spirantization_does_not_leak_out_of_the_intervocalic_slot():
+    """Lenition is environment-bound: a word-initial or post-consonantal voiced
+    stop keeps its stop value.  gabadh 'girl' → [\u0261aba\u0256] with a plosive onset."""
+    engine = G2P("so")
+    assert engine.transcribe_word("gabadh").startswith("\u0261")
+    assert "\u03b2" not in engine.transcribe_word("bir")
+    assert "\u00f0" not in engine.transcribe_word("dad")
+    # And where it does apply, the variable fricative never outranks the stop.
+    assert engine.word_candidates("toban", k=3)[0] == "toban"
+    assert engine.word_candidates("badan", k=3)[0] == "badan"
+    # /b/ is word-final, never intervocalic, in dab 'fire' and kab 'shoe'
+    # (Gabbard's own bare-form datum for the [b]/[\u03b2] alternation):
+    # neither word may offer a spirantized [\u03b2] candidate. This is what
+    # the ``intervocalic`` key exists to prevent; a mutation that widens the
+    # /b d \u0261/ rules from ``intervocalic`` to ``after_vowel`` makes both
+    # leak a word-final [\u03b2] candidate and must fail this assertion.
+    assert not any("\u03b2" in c for c in engine.word_candidates("dab", k=3))
+    assert not any("\u03b2" in c for c in engine.word_candidates("kab", k=3))
+
+
+def test_so_harmonic_vowel_pairs_are_not_distinguished():
+    """Declared limit: the orthography "does not distinguish between the two
+    harmonic variants of each vowel" (Wikipedia, Somali language), so the
+    five plain qualities are emitted and no [±ATR] cardinal (ɑ ɪ ɔ ɛ ʊ)
+    appears.  cun 'eat' → [ʕun], never *[ʡʢʉn]."""
+    assert G2P("so").transcribe_word("cun") == "ʕun"
+
+
 # ---------------------------------------------------------------------------
 # om — Oromo (Qubee, official since 1991)
 # ---------------------------------------------------------------------------
 
-def test_om_dh_is_an_implosive():
-    """"DH = implosive /ɗ/" (Qubee orthography).  dhugaa 'truth' → [ɗuɡaː]."""
-    assert G2P("om").transcribe_word("dhugaa") == "ɗuɡaː"
+def test_om_dh_is_a_retroflex_implosive():
+    """<dh> is the voiced retroflex implosive /ᶑ/, not a bilabial one
+    (Griefenow-Mewis 2001, tabulated by Abu et al. 2025 Table II).
+    dhugaa 'truth' → [ᶑʊɡɑː]."""
+    assert G2P("om").transcribe_word("dhugaa") == "ᶑʊɡɑː"
 
 
-def test_om_q_is_an_ejective():
-    """"Q = ejective /qʼ/" (ibid.).  Qubee, the name of the alphabet itself,
-    opens with the ejective."""
-    assert G2P("om").transcribe_word("qubee").startswith("qʼ")
+def test_om_glottalised_stop_series():
+    """Qubee writes the glottalised stops <ph x c q> for /pʼ tʼ tʃʼ kʼ/
+    (Griefenow-Mewis 2001, tabulated by Abu et al. 2025 Table II).  <q> is
+    velar, not uvular, in written Oromo; <x> is an alveolar ejective and not
+    the velar fricative its Latin shape suggests."""
+    t = G2P("om").transcribe_word
+    assert t("qubee") == "kʼʊbeː"
+    assert t("xiqqaa") == "tʼɪkʼkʼɑː"
+    assert t("caalaa") == "tʃʼɑːlɑː"
+    assert t("phaawulos").startswith("pʼ")
+
+
+def test_om_apostrophe_is_a_glottal_stop():
+    """<'> writes the glottal stop /ʔ/ (Abu et al. 2025 Table II), which the
+    engine must emit rather than drop.  ka'e 'he rose' → [kɐʔɛ]."""
+    assert G2P("om").transcribe_word("ka'e") == "kɐʔɛ"
+
+
+def test_om_short_vowels_are_lax():
+    """Short <a e i o u> are laxer and more centralised than the long
+    vowels: /ɐ ɛ ɪ ɔ ʊ/ against /ɑː eː iː oː uː/ (Abu et al. 2025, Table I).
+    The minimal pair lafa 'land' vs laafaa 'soft' is theirs, and it shows the
+    quality shift riding along with the length contrast."""
+    t = G2P("om").transcribe_word
+    assert t("lafa") == "lɐfɐ"
+    assert t("laafaa") == "lɑːfɑː"
+    assert t("tokko") == "tɔkkɔ"
+    assert t("biyya") == "bɪjjɐ"
+
+
+def test_om_gemination_is_written_and_phonemic():
+    """Doubled consonants are geminates and doubled vowels are long; both are
+    written in Qubee, so the doubled graphemes carry straight through.
+    obboleessa 'brother' shows a geminate and a long vowel in one word."""
+    assert G2P("om").transcribe_word("obboleessa") == "ɔbbɔleːssɐ"
 
 
 def test_om_ny_is_a_palatal_nasal():
-    """"NY = /ɲ/" (ibid.).  nyaata 'food' → [ɲaːta], which also shows that
-    "vowel length is phonemic (doubled letters)"."""
-    assert G2P("om").transcribe_word("nyaata") == "ɲaːta"
+    """<ny> = /ɲ/ (Abu et al. 2025, Table II).  nyaata 'food' → [ɲɑːtɐ]."""
+    assert G2P("om").transcribe_word("nyaata") == "ɲɑːtɐ"
+
+
+def test_om_p_and_v_are_not_dropped():
+    """<p> and <v> occur only in loanwords/proper names and were silently
+    deleted by having no grapheme entry at all; Table II of Abu et al. 2025
+    marks (p) (v) (z) as loanword-only segments, but they still need plain
+    /p v/ values rather than being dropped. poolisii 'police' → [poːlɪsiː],
+    viidiyoo 'video' → [viːdɪjoː]."""
+    t = G2P("om").transcribe_word
+    assert t("poolisii") == "poːlɪsiː"
+    assert t("viidiyoo") == "viːdɪjoː"
 
 
 # ---------------------------------------------------------------------------
@@ -492,6 +659,158 @@ def test_ak_tone_is_not_emitted():
     NOT RECOVERABLE from orthographic input and is not modelled here"."""
     out = G2P("ak").transcribe_word("akan")
     assert not any(c in out for c in "˥˦˧˨˩")
+
+
+# ---------------------------------------------------------------------------
+# tw — Twi (inherits the `ak` Asante Twi mapping; Akan Orthography Committee)
+# ---------------------------------------------------------------------------
+
+def test_tw_inherits_the_ak_labialised_velar_reading():
+    """`tw` inherits `ak`'s grapheme table wholesale (Twi is the individual
+    ISO 639-3 code for the same Asante-based unified orthography `ak`
+    describes).  Twi, the language's own name, is therefore [kʷi], exactly as
+    in `ak`."""
+    assert G2P("tw").transcribe_word("twi") == "kʷi"
+
+
+def test_tw_ky_is_a_palatal_affricate():
+    """Inherited from `ak`: "⟨ky gy hy⟩ are the palatal(ised) realisations of
+    underlying /k ɡ h/ before front vowels" (Akan Orthography Committee).
+    kyerɛ 'to show' → [tɕerɛ]."""
+    assert G2P("tw").transcribe_word("kyerɛ") == "tɕerɛ"
+
+
+# ---------------------------------------------------------------------------
+# fat — Fante (Wikipedia, "Fante dialect"; Dolphyne 1988)
+# ---------------------------------------------------------------------------
+
+def test_fat_ts_is_an_alveolar_affricate_distinct_from_t():
+    """"Fante is the only dialect of Twi-Fante to distinguish /ts/ and /dz/
+    from /t/ and /d/" (Wikipedia, Fante dialect).  tsir 'head' opens with the
+    affricate, not a plain /t/."""
+    assert G2P("fat").transcribe_word("tsir").startswith("t͡s")
+
+
+def test_fat_z_letter_spells_the_voiced_affricate():
+    """"the only dialect whose alphabet contains the letter ⟨z⟩" (ibid.),
+    used for the same voiced affricate as ⟨dz⟩."""
+    assert G2P("fat").transcribe_word("ze") == "d͡ze"
+
+
+def test_fat_tw_is_a_palatalised_labialised_affricate_not_kw():
+    """In Fante the ⟨tw dw hw⟩ digraphs spell the labial-palatalised
+    affricates/fricative /tɕʷ dʑʷ ɕʷ/ — unlike `ak`, where the same digraphs
+    spell the labialised velars /kʷ ɡʷ hʷ/ (Wikipedia, Fante dialect)."""
+    assert G2P("fat").transcribe_word("twa") == "tɕʷa"
+
+
+def test_fat_ky_is_shared_unchanged_with_ak():
+    """Fante keeps the Asante ⟨ky⟩ = [tɕ] reading unchanged (inherited via
+    `graphemes_base: ak`)."""
+    assert G2P("fat").transcribe_word("kyerɛ") == "tɕerɛ"
+
+
+# ---------------------------------------------------------------------------
+# gaa — Ga (Kropp Dakubu 1999; Wikipedia "Ga language")
+# ---------------------------------------------------------------------------
+
+def test_gaa_gb_is_a_labial_velar_stop():
+    """"doubly-articulated plosives (/k͡p, ɡ͡b/)" (Wikipedia, Ga language).
+    Gã, the language's own name written ⟨gaa⟩, is not directly testable, but
+    a ⟨gb⟩-initial word is: gbɛ 'road/way' opens with the single
+    doubly-articulated stop, not /ɡ/ + /b/."""
+    assert G2P("gaa").transcribe_word("gbɛ") == "ɡ͡bɛ"
+
+
+def test_gaa_kp_is_a_labial_velar_stop():
+    """Same source: ⟨kp⟩ = /k͡p/.  kpa 'to tie' opens with the doubly
+    articulated voiceless stop."""
+    assert G2P("gaa").transcribe_word("kpa") == "k͡pa"
+
+
+def test_gaa_ny_is_a_palatal_nasal():
+    """"⟨ny⟩ = /ɲ/" digraph correspondence (Wikipedia, Ga language)."""
+    assert G2P("gaa").transcribe_word("nyɛ") == "ɲɛ"
+
+
+def test_gaa_j_is_a_voiced_postalveolar_affricate():
+    """"j = /dʒ/" (Wikipedia, Ga language)."""
+    assert G2P("gaa").transcribe_word("je") == "dʒe"
+
+
+def test_gaa_tone_is_not_emitted():
+    """"Ga has two tones, high and low" but the standard orthography does not
+    mark them, so tone is not modelled here."""
+    out = G2P("gaa").transcribe_word("gaa")
+    assert not any(c in out for c in "˥˦˧˨˩")
+
+
+# ---------------------------------------------------------------------------
+# ada — Dangme/Adangme (Wikipedia "Dangme language"; Apronti 1967)
+# ---------------------------------------------------------------------------
+
+def test_ada_gb_is_a_labial_velar_stop():
+    """"doubly articulated plosives (/k͡p, ɡ͡b/)" (Wikipedia, Dangme
+    language).  gbi 'day' opens with the single doubly-articulated stop."""
+    assert G2P("ada").transcribe_word("gbi") == "ɡ͡bi"
+
+
+def test_ada_ts_is_a_postalveolar_affricate():
+    """"ts = /tʃ/" (ibid.).  tsu 'house' opens with the affricate, not a
+    plain /t/."""
+    assert G2P("ada").transcribe_word("tsu") == "tʃu"
+
+
+def test_ada_j_is_a_voiced_postalveolar_affricate():
+    """"j = /dʒ/" (ibid.)."""
+    assert G2P("ada").transcribe_word("je") == "dʒe"
+
+
+def test_ada_ny_is_a_palatal_nasal():
+    """"ny = /ɲ/" (ibid.)."""
+    assert G2P("ada").transcribe_word("nyɛ") == "ɲɛ"
+
+
+# ---------------------------------------------------------------------------
+# gen — Gen/Mina (Wikipedia "Gen language"; Omniglot)
+# ---------------------------------------------------------------------------
+
+def test_gen_gb_is_a_labial_velar_stop():
+    """Gbe orthographic convention shared with Ewe/Fon: ⟨gb⟩ = /ɡ͡b/.
+    gbe 'language' opens with the single doubly-articulated stop, matching
+    the Gbe-family name itself (Ewegbe, Genɛgbe, Fongbe)."""
+    assert G2P("gen").transcribe_word("gbe") == "ɡ͡be"
+
+
+def test_gen_ny_is_a_palatal_nasal():
+    """Africa-Alphabet convention shared with `ee`: ⟨ny⟩ = /ɲ/."""
+    assert G2P("gen").transcribe_word("nya") == "ɲa"
+
+
+def test_gen_ƒ_is_a_bilabial_fricative_distinct_from_f():
+    """Gen keeps the Ewe/Gbe contrast between ⟨ƒ⟩ /ɸ/ (bilabial) and ⟨f⟩ /f/
+    (labiodental), inherited from the shared Africa-Alphabet orthography."""
+    assert G2P("gen").transcribe_word("ƒe") == "ɸe"
+
+
+# ---------------------------------------------------------------------------
+# aja — Aja/Adja (Wikipedia "Aja language (Benin)")
+# ---------------------------------------------------------------------------
+
+def test_aja_gb_is_a_labial_velar_stop():
+    """Gbe orthographic convention shared with Ewe/Gen/Fon: ⟨gb⟩ = /ɡ͡b/."""
+    assert G2P("aja").transcribe_word("gbe") == "ɡ͡be"
+
+
+def test_aja_ɖ_is_a_retroflex_implosive_stop():
+    """Africa-Alphabet convention shared with `ee`: ⟨ɖ⟩ is its own letter,
+    distinct from plain ⟨d⟩."""
+    assert G2P("aja").transcribe_word("ɖo") == "ɖo"
+
+
+def test_aja_ny_is_a_palatal_nasal():
+    """Africa-Alphabet convention shared with `ee`/`gen`: ⟨ny⟩ = /ɲ/."""
+    assert G2P("aja").transcribe_word("nya") == "ɲa"
 
 
 # ---------------------------------------------------------------------------
@@ -872,21 +1191,22 @@ def test_fj_v_is_a_bilabial_fricative():
 def test_mh_every_consonant_carries_a_secondary_articulation():
     """"Every consonant carries a secondary articulation: ... ⟨m ṃ⟩ = /mʲ mˠ/,
     ⟨l ḷ⟩ = /lʲ lˠ/, ⟨j t⟩ = /tʲ tˠ/" (Abo, Bender, Capelle & DeBrum 1976).
-    Ṃajeḷ 'Marshall (Islands)' → [mˠɑtʲɛlˠ]."""
-    assert G2P("mh").transcribe_word("ṃajeḷ") == "mˠɑtʲɛlˠ"
+    Ṃajeḷ 'Marshall (Islands)' → /mˠætʲɛlˠ/."""
+    assert G2P("mh").transcribe_word("ṃajeḷ") == "mˠætʲɛlˠ"
 
 
 def test_mh_j_is_a_palatalised_coronal_stop():
     """Same cited series: ⟨j⟩ = /tʲ/, not an affricate or fricative.  Kajin
-    'language (of)' → [kɑtʲinʲ], with ⟨n⟩ = /nʲ/."""
-    assert G2P("mh").transcribe_word("kajin") == "kɑtʲinʲ"
+    'language (of)' → /kætʲinʲ/, with ⟨n⟩ = /nʲ/."""
+    assert G2P("mh").transcribe_word("kajin") == "kætʲinʲ"
 
 
 def test_mh_bw_is_merely_the_velarised_bilabial():
     """"after ⟨b ṃ⟩ [⟨w⟩] merely marks the already-velarised bilabial (⟨bw ṃw⟩
     = /pˠ mˠ/)" — so ⟨bw⟩ is one segment, not /pˠ/ + /w/.  bwebwenato 'story'
-    → [pˠɛpˠɛnʲɑtˠo]."""
-    assert G2P("mh").transcribe_word("bwebwenato") == "pˠɛpˠɛnʲɑtˠo"
+    → /pˠɛpˠɛnʲætˠɛw/, the final ⟨o⟩ closed by the rounded glide its
+    column names."""
+    assert G2P("mh").transcribe_word("bwebwenato") == "pˠɛpˠɛnʲætˠɛw"
 
 
 # ---------------------------------------------------------------------------
@@ -1244,9 +1564,10 @@ def test_nqo_tone_marks_become_tone_letters_not_segments():
 
 def test_nqo_nasalisation_mark_becomes_a_tilde():
     """"U+07F2 (nasalisation) maps to a combining tilde."  ߞߊߣߊ߲ ends in a
-    nasalised vowel, not in a consonant.  The tilde is the COMBINING mark
-    U+0303, not a precomposed character."""
-    assert G2P("nqo").transcribe_word("ߞߊߣߊ߲") == "kanã"
+    nasalised vowel, not in a consonant.  The rule's own IPA is the combining
+    mark U+0303, but the engine's NFC output contract (G2P._transcribe_word)
+    composes it onto the preceding "a" into precomposed "ã"."""
+    assert G2P("nqo").transcribe_word("ߞߊߣߊ߲") == "kanã"
 
 
 # ---------------------------------------------------------------------------
@@ -1292,3 +1613,79 @@ def test_iir_satem_shift_gives_a_palatal_sibilant():
     """"Satem shift: PIE palatovelars *ḱ, *ĝ → PII palatal sibilants *ś, *ź."
     The reconstruction *śatam 'hundred' has a palatal sibilant, not a velar."""
     assert G2P("iir").transcribe_word("śatam") == "ɕatam"
+
+
+# ---------------------------------------------------------------------------
+# srr / snk / sus / men / tem / fuf / fuv — West Atlantic and Mande
+# (Senegambia / Guinea / Sierra Leone)
+# ---------------------------------------------------------------------------
+
+def test_srr_double_vowel_is_phonemic_length():
+    """"Five vowels /i e a o u/ contrast length, written by doubling the
+    vowel letter" (Serer Wikipedia orthography table).  The autonym
+    'Seereer' has two doubled vowels, both realised long."""
+    assert G2P("srr").transcribe_word("seereer") == "seːreːr"
+
+
+def test_srr_voiced_implosives_are_distinct_letters():
+    """"Ɓ /ɓ/ (voiced bilabial implosive)" and "Ɗ /ɗ/ (voiced alveolar
+    implosive)" (Serer Wikipedia orthography table).  ɓɗ juxtaposed keeps
+    each implosive distinct from a plain stop."""
+    assert G2P("srr").transcribe_word("ɓɗ") == "ɓɗ"
+
+
+def test_snk_double_vowel_is_phonemic_length():
+    """"Five vowels (i, e, a, o, u) with long variants marked by doubling"
+    (Soninke Wikipedia phonology summary).  The autonym 'Sooninke' has a
+    doubled ⟨oo⟩ realised long."""
+    assert G2P("snk").transcribe_word("sooninke") == "soːninke"
+
+
+def test_snk_c_is_a_palato_alveolar_affricate():
+    """"⟨c⟩ = [tʃ]" (Soninke Wikipedia consonant table), the same
+    West-African convention as Bambara (bm) and Fula (ff)."""
+    assert G2P("snk").transcribe_word("c") == "tʃ"
+
+
+def test_sus_gb_is_a_single_labial_velar_stop():
+    """Attested phoneme /ɡb/ (Susu Wikipedia consonant table) written
+    ⟨gb⟩, following the Guinean national-languages convention shared with
+    Mende (men). Not the sum of g /ɡ/ + b /b/, but one double-articulated
+    segment."""
+    assert G2P("sus").transcribe_word("gb") == "ɡb"
+
+
+def test_men_j_is_a_voiced_affricate_not_a_glide():
+    """"⟨j⟩ = /dʒ/" (Mende Wikipedia alphabet table) — unlike the
+    unrelated Susu (sus), where ⟨j⟩ instead denotes the glide /j/."""
+    assert G2P("men").transcribe_word("j") == "dʒ"
+
+
+def test_men_kp_and_gb_are_labiovelar_stops():
+    """"The digraphs gb and kp represent labiovelar plosives" (Mende
+    Wikipedia). 'kpa' keeps the labiovelar onset as one segment."""
+    assert G2P("men").transcribe_word("kpa") == "kpa"
+
+
+def test_tem_th_is_dental_distinct_from_alveolar_t():
+    """"Temne distinguishes dental and alveolar" stops (Temne Wikipedia
+    phonology summary): ⟨th⟩ = /t̪/ is a distinct grapheme from plain
+    ⟨t⟩ = /t/."""
+    g = G2P("tem")
+    assert g.transcribe_word("th") == "t̪"
+    assert g.transcribe_word("th") != g.transcribe_word("t")
+
+
+def test_fuf_inherits_the_ff_grapheme_table():
+    """Pular (fuf) is the Fouta Djallon variety of Fula and is wired with
+    graphemes_base: "ff" since no source documents a Pular-specific
+    grapheme divergence; 'Pular' transcribes exactly as the shared ff
+    letters predict."""
+    assert G2P("fuf").transcribe_word("pular") == "pular"
+
+
+def test_fuv_inherits_the_ff_grapheme_table():
+    """Nigerian Fulfulde (fuv) is wired with graphemes_base: "ff"; the
+    autonym 'Fulfulde' transcribes exactly as the shared ff letters
+    predict."""
+    assert G2P("fuv").transcribe_word("fulfulde") == "fulfulde"
