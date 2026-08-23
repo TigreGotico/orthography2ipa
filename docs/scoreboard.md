@@ -379,7 +379,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | mdh | wikipron | 205 | 0.0793 | 0.0793 | 0.0793 | 0.6146 | 0.6146 | [0.0643, 0.0948] | 0.6146 | research | crowd-scraped |
 | mfe | wikipron | 206 | 0.1238 | 0.1238 | 0.1238 | 0.5485 | 0.5485 | [0.0992, 0.1487] | 0.5485 | research | crowd-scraped |
 | mga | wikipron | 328 | 0.0594 | 0.0482 | 0.0458 | 0.7104 | 0.7195 | [0.0494, 0.0700] | 0.6738 | research | crowd-scraped |
-| mh | wikipron | 947 | 0.4404 | 0.4256 | 0.4246 | 0.0317 | 0.0327 | [0.4265, 0.4546] | 0.0285 | research | crowd-scraped |
+| mh | wikipron | 947 | 0.1182 | 0.0865 | 0.0796 | 0.4762 | 0.5026 | [0.1081, 0.1293] | 0.4002 | research | crowd-scraped |
 | mhr | northeuralex | 992 | 0.1736 | 0.1536 | 0.1509 | 0.1391 | 0.1391 | [0.1670, 0.1804] | 0.1280 | research | lexicon-derived |
 | mi | wikipron | 1003 | 0.0719 | 0.0719 | 0.0719 | 0.6401 | 0.6401 | [0.0650, 0.0784] | 0.6401 | research | crowd-scraped |
 | mic | wikipron | 203 | 0.2922 | 0.2922 | 0.2922 | 0.0887 | 0.0887 | [0.2677, 0.3154] | 0.0887 | research | crowd-scraped |
@@ -446,7 +446,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | orv | wikipron | 609 | 0.2203 | 0.2203 | 0.2203 | 0.2660 | 0.2660 | [0.2058, 0.2343] | 0.2660 | research | crowd-scraped |
 | osp | wikipron | 667 | 0.1605 | 0.1605 | 0.1605 | 0.2894 | 0.2894 | [0.1497, 0.1709] | 0.2894 | research | crowd-scraped |
 | osx | wikipron | 243 | 0.3918 | 0.3767 | 0.3767 | 0.0617 | 0.0617 | [0.3664, 0.4193] | 0.0535 | research | crowd-scraped |
-| ota | wikipron | 161 | 0.5165 | 0.5165 | 0.5165 | 0.0248 | 0.0248 | [0.4842, 0.5489] | 0.0248 | research | crowd-scraped |
+| ota | wikipron | 161 | 0.3536 | 0.3100 | 0.3072 | 0.1180 | 0.1180 | [0.3260, 0.3798] | 0.0807 | research | crowd-scraped |
 | pa | vox_communis | 4003 | 0.6607 | 0.6607 | 0.6607 | 0.0010 | 0.0010 | [0.6516, 0.6690] | 0.0010 | research | epitran-derived |
 | pa | wikipron | 1360 | 0.3660 | 0.3660 | 0.3660 | 0.0890 | 0.0890 | [0.3545, 0.3769] | 0.0890 | research | crowd-scraped |
 | pag | wikipron | 227 | 0.1277 | 0.0998 | 0.0969 | 0.5991 | 0.6123 | [0.1076, 0.1488] | 0.5286 | research | crowd-scraped |
