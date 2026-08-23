@@ -34,11 +34,11 @@
       "id": "haas2000",
       "author": "Haas, W.",
       "year": 2000,
-      "title": "Schweizerdeutsch",
-      "publisher": "de Gruyter",
+      "title": "Die deutschsprachige Schweiz",
+      "publisher": "Sauerländer",
       "url": null,
       "pages": null,
-      "notes": "In H. Goebl et al. (eds.), Dialektologie."
+      "notes": "In H. Bickel & R. Schläpfer (eds.), Die viersprachige Schweiz, Aarau; edition not consulted."
     },
     {
       "id": "dieth1938",
@@ -255,6 +255,5 @@
         "ɛ"
       ]
     }
-  },
-  "collapse_geminates": false
+  }
 }
