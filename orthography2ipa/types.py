@@ -1531,6 +1531,7 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "wikidata_qid": InheritanceMode.OWN_ONLY,
     "phoible_id": InheritanceMode.OWN_ONLY,
     "wals_code": InheritanceMode.OWN_ONLY,
+    "trailing_vowel_axis_digraphs": InheritanceMode.OWN_ONLY,
     "sandhi_rules": InheritanceMode.OVERLAY_BY_ID,
     "allophone_rules": InheritanceMode.OVERLAY_BY_ID,
     "allophone_passes": InheritanceMode.NOT_INHERITED,
@@ -1934,6 +1935,27 @@ class LanguageSpec:
 
     sandhi_rules: Tuple[SandhiRule, ...] = ()
     """Cross-word-boundary phonological rules (liaison, sandhi)."""
+
+    trailing_vowel_axis_digraphs: Tuple[str, ...] = ()
+    """Multi-letter vowel graphemes (matched case-insensitively) for which the
+    AFTER_FRONT_VOWEL/AFTER_BACK_VOWEL axis is read off the digraph's TRAILING
+    letter rather than its opening one, for a grapheme immediately following.
+
+    The engine's default assumption is that a following consonant abuts the
+    grapheme's opening letter — true for the common case where a digraph is a
+    single sound written two ways. Old Irish ⟨ía úa⟩ are the opposite: they
+    spell a long vowel plus an offglide, and *caol le caol* / *leathan le
+    leathan* reads the quality that reaches the next consonant off the
+    digraph's CLOSING letter, so ⟨n⟩ in ⟨cían⟩ is broad (the digraph ends in
+    ⟨a⟩), not slender off the opening ⟨í⟩ (Thurneysen 1946; McCone 2005).
+
+    This is an opt-in per spec, not a global engine behaviour: naming a
+    digraph here changes only that grapheme, only in this language. Every
+    other spec's multi-letter vowel graphemes keep the opening-letter
+    (``grapheme[0]``) reading — German ⟨eu äu⟩ before ⟨ch⟩ still take the
+    ach-Laut off the back vowel ⟨u⟩, and Modern Irish ⟨ae⟩ still leaves the
+    following consonant broad, both flanked by their opening letter's axis.
+    Default empty leaves every spec byte-for-byte unaffected."""
 
     allophone_rules: Tuple["AllophoneRule", ...] = ()
     """Post-lexical, context-conditioned ``phoneme → surface`` rewrites.

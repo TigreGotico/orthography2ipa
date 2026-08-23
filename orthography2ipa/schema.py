@@ -363,6 +363,7 @@ class LanguageSpecModel(_Strict):
     vowel_graphemes: Optional[List[str]] = None
     dependent_vowels: Optional[List[str]] = None
     preposed_vowels: Optional[List[str]] = None
+    trailing_vowel_axis_digraphs: Optional[List[str]] = None
     coda_no_inherent_vowel: Optional[bool] = None
     collapse_geminates: Optional[bool] = None
     doubled_letters_geminate: Optional[bool] = None

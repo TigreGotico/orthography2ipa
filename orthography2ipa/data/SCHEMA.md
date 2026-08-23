@@ -77,6 +77,7 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
 | `script_type`               | string | no       | Script typology: `"alphabet"`, `"abjad"`, `"abugida"`, `"syllabary"`, `"logographic"`, `"featural"`, `"mixed"`, `"reconstruction"` (default: `"alphabet"`) |
 | `inherent_vowel`            | string | no       | For abugidas: vowel assumed when no vowel mark (e.g. `"ə"`) |
 | `vowel_graphemes`           | array  | no       | Whole grapheme strings this spec declares vowel letters, overriding the closed Latin/Greek/harakat inventory (e.g. `["w"]` for Hmong RPA ⟨w⟩ = /ɨ/). Empty (default) keeps the closed-inventory answer. See [data_model.md](../../docs/data_model.md#vowel_graphemes-overriding-a-closed-inventory-consonant-letter). |
+| `trailing_vowel_axis_digraphs` | array | no    | Multi-letter vowel graphemes (matched case-insensitively) for which the AFTER_FRONT_VOWEL/AFTER_BACK_VOWEL axis for a FOLLOWING grapheme is read off the digraph's trailing letter rather than its opening one, e.g. `["ía", "úa"]` for Old Irish, where quality under *caol le caol* is set by the digraph's closing letter. Empty (default) keeps the opening-letter (`grapheme[0]`) reading every other spec uses. |
 | `iso639_3`                  | string | no       | ISO 639-3 three-letter code for cross-referencing |
 | `sandhi_rules`              | array  | no       | Cross-word-boundary phonological rules       |
 | `stress`                    | object | no       | Declarative stress placement (see [Stress Schema](#stress-schema)) |

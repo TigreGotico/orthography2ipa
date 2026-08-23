@@ -482,6 +482,15 @@ class TestIrish:
         ("gorm", "ɡɔɾˠəmˠ"),
         # All-broad word, unstressed vowel reduced. Ref. /ˈmˠad̪ˠɾˠə/.
         ("madra", "mˠad̪ˠɾˠə"),
+        # ⟨ae⟩ (no fada) is flanked by BROAD consonants on both sides — it is
+        # a plain long [eː], not a digraph whose opening ⟨a⟩ slenderises the
+        # PRECEDING consonant or whose trailing ⟨e⟩ slenderises the
+        # FOLLOWING one; Modern Irish ⟨ae⟩ carries no such offglide reading
+        # (contrast Old Irish ⟨ía úa⟩, which does). ⟨l⟩/⟨r⟩ after ⟨ae⟩ stay
+        # broad, off the spec's own dental/velarised realisation of ⟨l⟩.
+        # Ref. Gael /ɡeːl̪ˠ/, aer /eːɾˠ/.
+        ("Gael", "ɡeːl̪ˠ"),
+        ("aer", "eːɾˠ"),
     ])
     def test_broad_slender_words(self, word, expected):
         """Cited word→IPA pairs exercising the quality system end to end.
