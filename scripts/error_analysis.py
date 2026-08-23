@@ -37,7 +37,8 @@ from typing import Dict, List, Optional, Tuple
 sys.path.insert(0, os.path.dirname(__file__))
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from benchmark import DATASETS, align, normalize, levenshtein  # noqa: E402
+from benchmark import (  # noqa: E402
+    DATASETS, align, normalize, levenshtein, _is_multiword)
 
 TOP_N = 20
 MIN_GRAPHEME_OCCURRENCES = 3
@@ -94,7 +95,14 @@ def analyze(lang: str, dataset: str, limit: int) -> dict:
 
     for word, golds in refs.items():
         try:
-            raw_hyp = engine.transcribe_word(word)
+            # Pick the API that matches the entry's granularity -- same
+            # rule benchmark.py's evaluate_words() applies. Several gold
+            # sets are sentence-level (4catac, vox_communis), and
+            # transcribe_word() treats a whole sentence as ONE word: word
+            # boundaries vanish and the alignment/blame below is garbage.
+            transcribe = (engine.transcribe if _is_multiword(word)
+                          else engine.transcribe_word)
+            raw_hyp = transcribe(word)
         except Exception:
             continue
         hyp = normalize(raw_hyp, strip_stress=True, broad=True)
