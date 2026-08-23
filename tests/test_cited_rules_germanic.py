@@ -663,6 +663,23 @@ def test_de_ich_laut_after_front_vowel():
     assert _t("de-DE", "ich").endswith("ç")
 
 
+@pytest.mark.parametrize("word", [
+    "euch", "feucht", "Seuche", "Leuchte", "Bäuche", "Schläuche",
+    "Sträucher", "Gesträuch", "Räucherlachs",
+])
+def test_de_ich_laut_after_eu_aeu_diphthong(word):
+    """CH after ⟨eu⟩/⟨äu⟩ is the ich-Laut [ç], not the ach-Laut [x].
+
+    ⟨eu äu⟩ are the front-closing diphthong /ɔʏ/ (Wiese 1996; Hall 2003), so
+    a following ⟨ch⟩ sits in the ich-Laut environment the same as after any
+    other front vowel/diphthong, regardless of ⟨eu äu⟩ being spelled with a
+    trailing back-vowel letter (⟨u⟩). A rule that read the AFTER_VOWEL axis
+    off a multi-letter vowel grapheme's trailing letter rather than its
+    IPA/opening-letter axis would wrongly take these into the ach-Laut.
+    """
+    assert "ɔʏç" in _t("de-DE", word)
+
+
 def test_de_no_glottal_stop_insertion():
     """Glottal-stop insertion before vowel-initial syllables is deliberately not encoded.
 

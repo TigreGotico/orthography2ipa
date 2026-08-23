@@ -154,6 +154,10 @@
     ]
   },
   "parent": "cel",
+  "trailing_vowel_axis_digraphs": [
+    "ía",
+    "úa"
+  ],
   "ancestors": [
     {
       "code": "cel",
