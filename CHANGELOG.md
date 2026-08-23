@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.78.3a1](https://github.com/TigreGotico/orthography2ipa/tree/7.78.3a1) (2026-08-23)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.78.2a1...7.78.3a1)
+
+**Merged pull requests:**
+
+- fix\(as\): describe Assamese instead of Bengali — alveolars, fricatives, /ɹ/, /ʊ/, and final schwa [\#1058](https://github.com/TigreGotico/orthography2ipa/pull/1058) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.78.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.78.2a1) (2026-08-23)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.78.1a1...7.78.2a1)
@@ -713,17 +721,9 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.66.0a3...7.66.0a4)
 
-**Merged pull requests:**
-
-- data: beat-espeak French wave 2 — transparent-plural final-consonant deletion, accented digraphs, intervocalic y, -ai aperture [\#865](https://github.com/TigreGotico/orthography2ipa/pull/865) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [7.66.0a3](https://github.com/TigreGotico/orthography2ipa/tree/7.66.0a3) (2026-08-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.66.0a2...7.66.0a3)
-
-**Merged pull requests:**
-
-- data: beat-transphone Italian wave — geminate softening, preconsonantal s-voicing, gu [\#864](https://github.com/TigreGotico/orthography2ipa/pull/864) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.66.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.66.0a2) (2026-08-12)
 
