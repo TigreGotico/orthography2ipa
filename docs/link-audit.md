@@ -2,7 +2,7 @@
 
 Audit of every URL in `orthography2ipa/data/*.json` (`sources[].url`, `sources[].wikipedia_url`, top-level `wikipedia`, top-level `urls`).
 
-Wikipedia URLs are checked for article existence via the MediaWiki API; other URLs via an HTTP GET with a browser User-Agent. `403`/`429`/timeout/`5xx` responses are treated as inconclusive, never dead.
+Wikipedia URLs are checked for article existence via the MediaWiki API. Other URLs are checked via an HTTP GET with a browser User-Agent. `403`/`429`/timeout/`5xx` responses are treated as inconclusive, never dead.
 
 ## Summary
 
@@ -149,7 +149,7 @@ These dead URLs appear only inside free-text `notes` fields, so they are left un
 ## Inconclusive (for human review)
 
 Reachability could not be confirmed either way (403/429/timeout/5xx). **Not** removed.
-The majority of 429 responses are from Wikipedia's API rate limiter — the URLs are expected to be valid.
+Most 429 responses come from Wikipedia's API rate limiter. The URLs are expected to be valid.
 
 | File | Field | URL | Reason |
 | --- | --- | --- | --- |

@@ -110,8 +110,17 @@ def test_multi_character_segments_stay_whole():
 #: the spec does not use — and each needs a language owner to say what the rule
 #: *should* target, which is not a mechanical fix. Listed rather than skipped so
 #: they stay visible, and so no NEW dead rule can be added without failing here.
-_RU_REDUCED_DEAD = {
-    "RU_DEIOTA_jə", "RU_DEIOTA_jɪ", "RU_DEIOTA_jʊ", "RU_HARD_BACK_jɪ",
+#: Оканье and its after-soft-consonant counterpart еканье keep unstressed
+#: /o e a/ distinct, so the Northern lects never emit the standard's reduced
+#: [ɪ] or [ə] in the iotated slots — ⟨я⟩ is [ja] and ⟨е⟩ is [(j)e] there, not
+#: [jɪ]/[jə]. The de-iotation and hard-backing rules that target those two
+#: candidates therefore have nothing to fire on. This is the okanje system
+#: doing what it is defined to do, not a gap: the rule set is the standard
+#: language's, inherited whole, and it is live in every akanje lect.
+#: ``RU_DEIOTA_jʊ`` is NOT dead here — okanje is about the non-high vowels,
+#: so ⟨ю⟩/⟨у⟩ keep the base [jʊ]/[ʊ] readings.
+_RU_OKANJE_DEAD = {
+    "RU_DEIOTA_jə", "RU_DEIOTA_jɪ", "RU_HARD_BACK_jɪ",
 }
 
 KNOWN_DEAD_RULES = {
@@ -122,6 +131,14 @@ KNOWN_DEAD_RULES = {
         "AR_EMPH_BACK_AA_AFTER", "AR_EMPH_BACK_AA_BEFORE",
         "AR_GLIDE_YA_BEFORE_GEMINATE", "AR_GLIDE_YA_GEMINATE_COPY",
         "AR_GLIDE_YA_CONSONANTAL", "AR_GLIDE_WAW_CONSONANTAL",
+        # Same reason, for the generic arb-level emphasis-spread family
+        # (AR_EMPHASIS_SPREAD_*, engine-generic "emphatic" neighbour class,
+        # Watson 2002; Davis 1995): Maltese emits neither the long vowels
+        # (/aː iː uː/) nor the short /i u/ these target.
+        "AR_EMPHASIS_SPREAD_AA_AFTER", "AR_EMPHASIS_SPREAD_AA_BEFORE",
+        "AR_EMPHASIS_SPREAD_I_AFTER", "AR_EMPHASIS_SPREAD_I_BEFORE",
+        "AR_EMPHASIS_SPREAD_II_AFTER", "AR_EMPHASIS_SPREAD_II_BEFORE",
+        "AR_EMPHASIS_SPREAD_UU_AFTER", "AR_EMPHASIS_SPREAD_UU_BEFORE",
     },
     # Targets /ɪ/, which these specs never emit.
     "pt-BR-x-pr": {"BR_RAISE_FINAL_E"},
@@ -147,13 +164,15 @@ KNOWN_DEAD_RULES = {
     # positional readings, so the vowel the rule targets is never emitted.
     # Fixed by the positional-inheritance default in #348, which revives it.
     "da-x-copenhagen": {"DA_SHORTEN_A"},
-    # The southern Russian lects have their own unstressed-vowel system and
-    # never emit the standard reduced /ɪ ə ʊ/, so the de-iotation rules that
-    # target them are inert here. They inherit correctly for every lect that
-    # does reduce; the rule set is the standard language's, not theirs.
-    "ru-x-don": _RU_REDUCED_DEAD,
-    "ru-x-kursk-orel": _RU_REDUCED_DEAD,
-    "ru-x-southern": _RU_REDUCED_DEAD,
+    # The southern Russian lects used to be listed here, on the reading that
+    # they had "their own unstressed-vowel system". They did not: they had no
+    # positional table at all, because the spec carried a standalone grapheme
+    # table with no `graphemes_base` and so inherited nothing positional. They
+    # reduce now — akanje IS reduction — and all four rules are live there
+    # again. The okanje North is the real case of this shape.
+    "ru-x-northern": _RU_OKANJE_DEAD,
+    "ru-x-vologda": _RU_OKANJE_DEAD,
+    "ru-x-arkhangelsk": _RU_OKANJE_DEAD,
     # Sendinês monophthongises the Leonese rising diphthongs (⟨ie⟩→[i],
     # ⟨uo⟩→[u]), so the [jɛ]/[wo] nuclei the inherited Mirandese diphthong-
     # nasalisation rules target never surface here. The rules are live in the
@@ -164,13 +183,148 @@ KNOWN_DEAD_RULES = {
     # targets /ʔ/ — can never fire here. It is live in every Arabic lect that
     # keeps /ʔ/; the rule set is Classical Arabic's, inherited unchanged.
     "acy": {"AR_WASL_EPENTHESIS"},
+    # Seychellois Creole levelled French /y/ to /i/ and /ə/ to /e/~/ɛ/ in its
+    # own vowel merger (Michaelis & Rosalie, APiCS ch. 56; Bollée 1977), so
+    # the inherited French front-rounded/schwa nasalisation rules can never
+    # fire here. They are live in fr-FR, which keeps both phonemes. The same
+    # merger took the front-rounded mid vowels: crs has no /œ/ PHONEME target
+    # (⟨eu⟩ is [e]~[ɛ] here), so the inherited loi-de-position rule on /œ/
+    # can never fire. (emission_inventory still lists the rule's /ø/ surface —
+    # it unions dead-rule surfaces — so the claim is about targets, not the
+    # derived inventory.) FR_AU_BEFORE_R is NOT dead here — crs keeps /o/.
+    # crs replaces fr-FR's grapheme table with its own 28-grapheme Kreol
+    # orthography, which has no ⟨ien⟩/⟨oin⟩ multigraph and no ⟨x⟩: the
+    # nasal-blocking rules for those two spellings have no /jɛ̃/ or /wɛ̃/
+    # to rewrite, and FR_E_CLOSED_MULTIGRAPH has neither a /ə/ target (see
+    # above) nor a single letter spelling a consonant cluster to close a
+    # syllable with. All four are live in fr-FR.
+    "crs": {"FR_NASAL_y", "FR_NASAL_ə", "FR_EU_BEFORE_Z",
+            "FR_NASAL_BLOCK_PREVOCALIC_IEN", "FR_NASAL_BLOCK_GEMINATE_IEN",
+            "FR_NASAL_BLOCK_PREVOCALIC_OIN", "FR_NASAL_BLOCK_GEMINATE_OIN",
+            "FR_E_CLOSED_MULTIGRAPH"},
+    # jrb (Judeo-Arabic macrolanguage node) is metadata-only: graphemes is
+    # intentionally empty pending a sourced Hebrew-script grapheme table (see
+    # its `notes`), so no phoneme -- including /ʔ/ -- is in the inventory yet
+    # and the inherited Classical-Arabic hamzat-al-waṣl rule can never fire.
+    # Same class of dead rule as "acy" above; will resolve itself once a real
+    # grapheme table is added for jrb.
+    "jrb": {"AR_WASL_EPENTHESIS",
+            "AR_EMPHASIS_SPREAD_A_AFTER", "AR_EMPHASIS_SPREAD_A_BEFORE",
+            "AR_EMPHASIS_SPREAD_AA_AFTER", "AR_EMPHASIS_SPREAD_AA_BEFORE",
+            "AR_EMPHASIS_SPREAD_I_AFTER", "AR_EMPHASIS_SPREAD_I_BEFORE",
+            "AR_EMPHASIS_SPREAD_II_AFTER", "AR_EMPHASIS_SPREAD_II_BEFORE",
+            "AR_EMPHASIS_SPREAD_U_AFTER", "AR_EMPHASIS_SPREAD_U_BEFORE",
+            "AR_EMPHASIS_SPREAD_UU_AFTER", "AR_EMPHASIS_SPREAD_UU_BEFORE"},
+    # ajt/aju/yhd (Judeo-Tunisian/Moroccan/Iraqi Arabic) are likewise
+    # metadata-only stubs (graphemes: {}) whose single genetic PARENT is
+    # their regional Arabic dialect spec (ar-TN/ar-MA/ar-IQ respectively --
+    # jrb is wired as RELATED, not PARENT, since it is a sociolinguistic
+    # macrolanguage collective, not genetic descent). They inherit that
+    # dialect's full allophone rule set, none of which can fire against an
+    # empty own inventory. Will resolve once a real Hebrew-script grapheme
+    # table is sourced for each code.
+    # ajt/aju/yhd additionally inherit the arb-level, engine-generic
+    # AR_EMPHASIS_SPREAD_* family (the "emphatic" neighbour class, Watson
+    # 2002; Davis 1995) — dead here for the same reason as the rest of the
+    # inherited rule set: empty own inventory, nothing can ever fire.
+    "ajt": {"AR_EMPH_BACK_A_AFTER", "AR_EMPH_BACK_A_BEFORE",
+            "AR_TN_MONO_AJ", "AR_TN_MONO_AW", "AR_WASL_EPENTHESIS",
+            "AR_EMPHASIS_SPREAD_A_AFTER", "AR_EMPHASIS_SPREAD_A_BEFORE",
+            "AR_EMPHASIS_SPREAD_AA_AFTER", "AR_EMPHASIS_SPREAD_AA_BEFORE",
+            "AR_EMPHASIS_SPREAD_I_AFTER", "AR_EMPHASIS_SPREAD_I_BEFORE",
+            "AR_EMPHASIS_SPREAD_II_AFTER", "AR_EMPHASIS_SPREAD_II_BEFORE",
+            "AR_EMPHASIS_SPREAD_U_AFTER", "AR_EMPHASIS_SPREAD_U_BEFORE",
+            "AR_EMPHASIS_SPREAD_UU_AFTER", "AR_EMPHASIS_SPREAD_UU_BEFORE"},
+    "aju": {"AR_EMPH_BACK_AA_AFTER", "AR_EMPH_BACK_AA_BEFORE",
+            "AR_EMPH_BACK_A_AFTER", "AR_EMPH_BACK_A_BEFORE",
+            "AR_GLIDE_WAW_CONSONANTAL", "AR_GLIDE_YA_BEFORE_GEMINATE",
+            "AR_GLIDE_YA_CONSONANTAL", "AR_GLIDE_YA_GEMINATE_COPY",
+            "MA_SHORT_REDUCE", "AR_WASL_EPENTHESIS",
+            "AR_EMPHASIS_SPREAD_A_AFTER", "AR_EMPHASIS_SPREAD_A_BEFORE",
+            "AR_EMPHASIS_SPREAD_AA_AFTER", "AR_EMPHASIS_SPREAD_AA_BEFORE",
+            "AR_EMPHASIS_SPREAD_I_AFTER", "AR_EMPHASIS_SPREAD_I_BEFORE",
+            "AR_EMPHASIS_SPREAD_II_AFTER", "AR_EMPHASIS_SPREAD_II_BEFORE",
+            "AR_EMPHASIS_SPREAD_U_AFTER", "AR_EMPHASIS_SPREAD_U_BEFORE",
+            "AR_EMPHASIS_SPREAD_UU_AFTER", "AR_EMPHASIS_SPREAD_UU_BEFORE"},
+    "yhd": {"AR_EMPH_BACK_AA_AFTER", "AR_EMPH_BACK_AA_BEFORE",
+            "AR_EMPH_BACK_A_AFTER", "AR_EMPH_BACK_A_BEFORE",
+            "AR_GLIDE_WAW_CONSONANTAL", "AR_GLIDE_YA_BEFORE_GEMINATE",
+            "AR_GLIDE_YA_CONSONANTAL", "AR_GLIDE_YA_GEMINATE_COPY",
+            "IQ_EMPH_AA_AFTER", "IQ_EMPH_AA_BEFORE", "IQ_EMPH_A_AFTER",
+            "IQ_EMPH_A_BEFORE", "IQ_GILIT_AFFRIC_G_AFTER",
+            "IQ_GILIT_AFFRIC_G_BEFORE", "IQ_GILIT_AFFRIC_K_AFTER",
+            "IQ_GILIT_AFFRIC_K_BEFORE", "AR_WASL_EPENTHESIS",
+            "AR_EMPHASIS_SPREAD_A_AFTER", "AR_EMPHASIS_SPREAD_A_BEFORE",
+            "AR_EMPHASIS_SPREAD_AA_AFTER", "AR_EMPHASIS_SPREAD_AA_BEFORE",
+            "AR_EMPHASIS_SPREAD_I_AFTER", "AR_EMPHASIS_SPREAD_I_BEFORE",
+            "AR_EMPHASIS_SPREAD_II_AFTER", "AR_EMPHASIS_SPREAD_II_BEFORE",
+            "AR_EMPHASIS_SPREAD_U_AFTER", "AR_EMPHASIS_SPREAD_U_BEFORE",
+            "AR_EMPHASIS_SPREAD_UU_AFTER", "AR_EMPHASIS_SPREAD_UU_BEFORE"},
+    # Yevanic (yej) is a stub: its Hebrew-script grapheme table is intentionally
+    # left empty because no sourced letter-by-letter correspondence could be
+    # located (see the spec's notes), so it emits nothing of its own at all.
+    # It still inherits el's allophone rule *set* (parent_dialect), but with
+    # zero graphemes there is no /s/ or /ɣ/ slot for EL_S_VOICING / EL_
+    # GAMMA_FRONTING to match against. Both are live in el, which has the
+    # grapheme table this spec is deliberately missing; revisit once yej gains
+    # a sourced Hebrew-abjad grapheme table.
+    "yej": {"EL_S_VOICING", "EL_GAMMA_FRONTING"},
+    # vls (West Flemish) declares parent="nl" with its own "graphemes": {} to
+    # inherit nl's table wholesale, but (pre-existing, unrelated to the
+    # Germanic beat-espeak campaign that added these rules) that inheritance
+    # does not actually populate the plain vowel letters a/e/i/o/u for this
+    # spec -- G2P('vls').transcribe(...) already returns empty output for
+    # ordinary words before and after this change. With no 'a'/'e'/'i'/'o'/'u'
+    # slot at all, the open-syllable-lengthening rules inherited from nl can
+    # never fire here.
+    # Same pre-existing "graphemes": {} inheritance gap accounts for the
+    # three rules the beat-espeak Dutch wave added: no 'g' slot means
+    # NL_CODA_DEVOICE_G's /ɣ/ target can't fire, and no 'i' slot means
+    # NL_UNSTRESSED_TENSE_I_FINAL / NL_UNSTRESSED_TENSE_I_HIATUS's /ɪ/
+    # target can't either.
+    "vls": {"NL_CODA_DEVOICE_B", "NL_CODA_DEVOICE_D", "NL_CODA_DEVOICE_G",
+            "NL_CODA_DEVOICE_V", "NL_CODA_DEVOICE_Z",
+            "NL_UNSTRESSED_TENSE_I_FINAL", "NL_UNSTRESSED_TENSE_I_HIATUS",
+            "NL_HIGH_TENSE_LENGTHENING_BEFORE_R_U",
+            "NL_HIGH_TENSE_LENGTHENING_BEFORE_R_Y"},
+    # Afrikaans has no /z/ (Donaldson, *A Grammar of Afrikaans*, Mouton de
+    # Gruyter 1993, ch. 1: ⟨z⟩ is not part of the inventory, and ⟨s⟩ is
+    # voiceless everywhere), so the /z/ member of nl's coda-devoicing series
+    # has no target here. The other members are live.
+    "af": {"NL_CODA_DEVOICE_Z"},
+    # The two Manila-Bay Chabacano stubs are declared as pure genealogy:
+    # "graphemes": {} and "allophones": {}, with es-ES as the lexifier
+    # ancestor. Rules travel down that lexifier link but the inventory does
+    # not, so EVERY rule es-ES declares arrives here with no slot to match
+    # (the same shape as the "kri" case above). Both stubs say in their own
+    # notes that a variety-specific grapheme map is still to be derived from
+    # Sippola (2013); these entries go away when it is.
+    "cbk-x-cavite": {"ES_TRILL_AFTER_CORONAL", "ES_NASAL_LABIAL"},
+    "cbk-x-ternate": {"ES_TRILL_AFTER_CORONAL", "ES_NASAL_LABIAL"},
 }
 
 #: The Dravidian gemination families target whole CV emissions (``dʒa``, ``kʂa``)
-#: that no slot carries, so the whole family is unreachable. A systematic bug in
-#: one rule generator rather than 45 independent ones — allowed by prefix so the
+#: that no slot carries directly. Since the mr abugida fix taught this check to
+#: add reading + inherent vowel to the producible set for any abugida spec, ta
+#: and ml pick up the same treatment and most of these targets turn out to be
+#: reachable after all: 18 of ta's TA_GEM rules and 15 of ml's are no longer
+#: dead. What is left (0 for ta, 12 for ml) is a systematic bug in one rule
+#: generator rather than many independent ones — allowed by prefix so the
 #: group is visible and so a *new* dead rule outside it still fails.
-KNOWN_DEAD_PREFIXES = {"ta": ("TA_GEM",), "ml": ("TA_GEM",)}
+#: Krio inherits en-GB's rules through its lexifier link but declares its own
+#: graphemes, and the creole's vowel system has none of RP's rhotic nuclei
+#: (ɑːɹ, ɜːɹ, ɔːɹ, əɹ …) the coda-/r/ and prevocalic-/r/ rules target, so the
+#: whole English rhoticity family is unreachable here.
+#: Andh and Deccan are registry stubs under Marathi, declared as pure genealogy
+#: ("graphemes": {}, "allophones": {}, script Zyyy, no script_type and no
+#: inherent vowel) so the ancestry graph covers every living ISO 639-3 code.
+#: Marathi's rules travel down that link but its inventory does not, so the
+#: whole MR_ family arrives with no slot to match — the same shape as the
+#: Chabacano stubs above. These entries go away when either stub gains a cited
+#: orthography.
+KNOWN_DEAD_PREFIXES = {"ta": ("TA_GEM",), "ml": ("TA_GEM",),
+                       "kri": ("EN_GB_NONRHOTIC", "EN_GB_PREVOCALIC_R"),
+                       "anr": ("MR_",), "dcc": ("MR_",)}
 
 
 @pytest.mark.parametrize("code", ALL_CODES)
