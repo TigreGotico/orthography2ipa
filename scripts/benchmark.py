@@ -1491,14 +1491,24 @@ def _fetch_file(url: str, name: str) -> str:
     os.makedirs(CACHE_DIR, exist_ok=True)
     dest = os.path.join(CACHE_DIR, name)
     if not os.path.exists(dest):
+        # Download to a sibling temp path and atomically rename into place
+        # on success. urlretrieve writing straight to `dest` leaves a
+        # truncated file behind on an interrupted download (killed
+        # process, network drop, disk full) — the next run's
+        # os.path.exists check then treats that truncated file as a valid
+        # cache hit forever, silently poisoning every downstream read.
+        tmp_dest = dest + f".part-{os.getpid()}"
         last_exc: Optional[Exception] = None
         for attempt in range(1, _FETCH_ATTEMPTS + 1):
             try:
-                urllib.request.urlretrieve(url, dest)
+                urllib.request.urlretrieve(url, tmp_dest)
+                os.replace(tmp_dest, dest)
                 last_exc = None
                 break
             except Exception as exc:  # transient network hiccups
                 last_exc = exc
+                with contextlib.suppress(OSError):
+                    os.remove(tmp_dest)
                 if attempt < _FETCH_ATTEMPTS:
                     time.sleep(_FETCH_BACKOFF_SECONDS * attempt)
         if last_exc is not None:
@@ -1566,8 +1576,15 @@ def load_wikipron_ar_diacritized(lang: str, limit: int) -> List[Tuple[str, str]]
         rows = [(_strip_final_harakat(dia.diacritize(w)), ipa)
                 for w, ipa in raw]
         os.makedirs(CACHE_DIR, exist_ok=True)
-        with open(dest, "w", encoding="utf-8") as fh:
+        # Write to a sibling temp path and atomically rename into place —
+        # writing straight to `dest` over the slow diacritization pass
+        # leaves a truncated file behind on an interrupted run (killed
+        # process, disk full), and the next run's os.path.exists check
+        # then treats that truncated file as a valid cache hit forever.
+        tmp_dest = dest + f".part-{os.getpid()}"
+        with open(tmp_dest, "w", encoding="utf-8") as fh:
             fh.writelines(f"{w}\t{ipa}\n" for w, ipa in rows)
+        os.replace(tmp_dest, dest)
     pairs = []
     for line in open(dest, encoding="utf-8").read().strip().splitlines():
         parts = line.split("\t")
@@ -2959,16 +2976,43 @@ def _expand_consonant_length(s: str) -> str:
     notation. Affricates double their first element ([tʃː] → [ttʃ]).
     VOWEL length is untouched: it is phonemic and single-notation
     (Finnish [aː] never appears as [aa] in the wired gold sets).
+
+    The consonant preceding [ː] is not always a single codepoint: a
+    diacritic-marked letter may be a precomposed NFC codepoint (retroflex
+    [ṇ]) or an already-decomposed base+combining-mark sequence (dental
+    [n̪], base + U+032A with no precomposed form) — the same sound written
+    two ways. Scanning the NFC string one codepoint at a time only doubles
+    the LAST codepoint before [ː], which for a decomposed sequence is the
+    combining mark, not the base letter ([n̪ː] → [n̪̪], losing the [n]).
+    NFD-normalizing first makes every case a base-plus-marks sequence
+    scanned the same way, so the whole cluster is what gets duplicated.
+
+    The same walk-back also fixes a marked-VOWEL guard the old codepoint-
+    at-a-time scan got wrong: for [ɛ̌ː] (ɛ + combining caron U+030C, then
+    [ː]) the old scan checked only the combining caron against
+    ``is_ipa_vowel`` — a diacritic is never a vowel letter — so it treated
+    the cluster as a consonant and doubled the diacritic onto itself
+    ([ɛ̌ː] → [ɛ̌̌], destroying the vowel entirely). The walk-back now checks
+    the base letter of the whole cluster, sees a vowel, and correctly
+    leaves marked vowel length untouched. A length mark that is itself
+    already doubled is not deduplicated: [lːː] doubles the consonant once
+    per [ː] seen, so it expands to [lll], not [ll].
     """
     for long, doubled in _AFFRICATE_LENGTH.items():
         s = s.replace(long, doubled)
-    out = []
-    for i, ch in enumerate(s):
-        if ch == "ː" and i > 0 and not is_ipa_vowel(s[i - 1]):
-            out.append(s[i - 1])
-        else:
-            out.append(ch)
-    return "".join(out)
+    s = unicodedata.normalize("NFD", s)
+    out: List[str] = []
+    for ch in s:
+        if ch == "ː" and out:
+            j = len(out) - 1
+            while j > 0 and unicodedata.combining(out[j]):
+                j -= 1
+            cluster = out[j:]
+            if not is_ipa_vowel(cluster[0]):
+                out.extend(cluster)
+                continue
+        out.append(ch)
+    return unicodedata.normalize("NFC", "".join(out))
 
 
 def _prosody_marks(lang: str) -> str:
