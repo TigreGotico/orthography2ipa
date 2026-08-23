@@ -174,3 +174,49 @@ def test_engine_emits_no_tone_or_length_marks():
     out = transcribe("Abdulhamid", lang="ha")
     assert "ː" not in out
     assert not any(m in out for m in ("́", "̀", "̂"))
+
+
+# ─── The apostrophe and the rhotic diacritic ───────────────────────────────
+
+def test_apostrophe_spells_a_glottal_stop():
+    """⟨'⟩ writes /ʔ/, mostly in Arabic loans, and must not vanish.
+
+    Newman 1996: 540 gives the glottal stop as a recent phoneme whose
+    medial and initial occurrences came in with Arabic loanwords, citing
+    *ʼaddu'aa* 'prayer' and *saba'in* 'seventy'.
+    """
+    assert transcribe("addu'a", lang="ha") == "ʔadduʔa"
+    assert transcribe("arba'in", lang="ha") == "ʔarbaʔin"
+    assert transcribe("al'ada", lang="ha") == "ʔalʔada"
+
+
+def test_modifier_apostrophe_spells_the_same_glottal_stop():
+    """U+02BC and U+0027 are the same orthographic mark."""
+    assert transcribe("adduʼa", lang="ha") == transcribe("addu'a", lang="ha")
+
+
+def test_curly_apostrophe_spells_the_same_glottal_stop():
+    """U+2019, the mark Newman's own citation forms use (’addu’aa, saba’in,
+    Newman 1996: 540), is the same orthographic mark as U+0027 and U+02BC."""
+    assert transcribe("addu’a", lang="ha") == transcribe("addu'a", lang="ha")
+    assert transcribe("saba’in", lang="ha") == "sabaʔin"
+
+
+def test_glottalised_y_still_wins_over_the_bare_apostrophe():
+    """⟨'y⟩ is one phoneme /j̰/; the glottal-stop reading of ⟨'⟩ must not
+    split it into /ʔ/ + /j/ (Newman 1996: 539)."""
+    assert transcribe("'ya", lang="ha") == "j̰a"
+    assert "ʔj" not in transcribe("'yar", lang="ha")
+    assert transcribe("’yaa", lang="ha") == transcribe("'yaa", lang="ha")
+
+
+def test_r_with_tilde_is_only_the_tap_or_roll():
+    """⟨r̃⟩ is the spelling used to separate the apical tap or roll from the
+    retroflex flap that plain ⟨r⟩ also spells (Newman 1996: 539). Where the
+    diacritic is written the flap is excluded, so ⟨r̃⟩ carries a single
+    candidate while plain ⟨r⟩ keeps both.
+    """
+    assert transcribe("bishar̃a", lang="ha") == "biʃara"
+    spec = get("ha")
+    assert spec.graphemes["r̃"] == ["r"]
+    assert set(spec.graphemes["r"]) == {"r", "ɽ"}
