@@ -12,11 +12,22 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field, fields
 from enum import Enum
-from typing import Dict, FrozenSet, List, Optional, Tuple
+from typing import Dict, FrozenSet, List, Optional, Tuple, Union
 
 # ═══════════════════════════════════════════════════════════════════════════
 # Type aliases
 # ═══════════════════════════════════════════════════════════════════════════
+
+EndingValue = Union[str, List[Optional[str]]]
+"""One :attr:`LanguageSpec.grammatical_endings` value.
+
+A plain string is one realisation that rewrites the matched tail. A list
+is an ORDERED candidate list: element 0 holds rank 1 (``None`` = defer
+rank 1 to the grapheme tables), and later elements are lower-ranked licit
+readings of the same ending, exposed in the lattice for a downstream
+rescorer to choose. Normalised by
+:func:`~orthography2ipa.positional.normalize_ending_value`.
+"""
 
 import copy as _copy
 
@@ -243,7 +254,9 @@ class StressRules:
     1. A syllable containing a ``marked_vowels`` character is stressed.
     2. A word ending in one of ``final_stress_endings`` is oxytone.
     3. A word ending in one of ``penult_stress_endings`` is paroxytone.
-    4. Otherwise ``default_position`` applies.
+    4. A word ending in one of ``antepenult_stress_endings`` is
+       proparoxytone.
+    5. Otherwise ``default_position`` applies.
 
     Parameters
     ----------
@@ -258,6 +271,19 @@ class StressRules:
         (Portuguese ``-r``, ``-l``, ``-z``, ``-im``, ``-ão`` …).
     penult_stress_endings : Tuple[str, ...]
         Endings that force penultimate stress when the default differs.
+    antepenult_stress_endings : Tuple[str, ...]
+        Endings that force ANTEPENULTIMATE stress — the third syllable from
+        the end. The end-anchored twin of :attr:`penult_stress_endings`, for
+        the suffix classes whose stress lands two syllables before the word
+        edge rather than one: English ``-ity`` (aˈbility), ``-ify``
+        (ˈclassify), ``-ography`` (phoˈtography), ``-ology`` (biˈology).
+        These are two-syllable suffixes whose stress-attracting behaviour is
+        the SAME "one syllable before the suffix" relation the one-syllable
+        suffixes in :attr:`penult_stress_endings` express — the position
+        differs only because the suffix is longer (Fudge 1984, *English
+        Word-Stress*, ch. 3-4, on pre-stressed suffix classes). Clamped into
+        the word, so a disyllable that matches falls back to its first
+        syllable.
     marked_vowels : Tuple[str, ...]
         Vowel characters whose written accent marks the stressed
         syllable (``á é í ó ú â ê ô ã õ``).
@@ -279,6 +305,21 @@ class StressRules:
         keeps ``ciu-tat`` and ``ai-gua`` intact while splitting ``te-ni-a``.
         Empty (the default) preserves the merge-the-whole-run behaviour, so
         every spec that does not declare it is unaffected.
+    vowel_letters : Tuple[str, ...]
+        The letters this orthography uses as syllable NUCLEI, for the bundled
+        syllabifier. Left empty (the default) the splitter falls back to a
+        cross-linguistic vowel test that reads a letter's shape, and that test
+        counts ⟨y⟩ and ⟨w⟩ as vowels because some orthographies use them so.
+        Where a language does not — Xhosa ⟨y⟩ is /j/ and ⟨w⟩ is /w/, both
+        onsets — the run ⟨oya⟩ collapses into a single nucleus, the syllable
+        count drops, and every position the count feeds (stress, and the
+        ``nucleus_stressed`` entries that hang off it) lands on the wrong
+        vowel or on two at once.
+
+        Declaring the set states the language's own answer and nothing else
+        changes: the letters listed are nuclei, every other letter is not.
+        A spec that does not declare it keeps the shape-based test exactly as
+        before.
     quantity_sensitive : bool
         Stress is placed by **syllable weight**, not by an orthographic
         ending. A quantity-sensitive system reads the *transcription* — a
@@ -309,7 +350,34 @@ class StressRules:
         onset-maximising split, ``mudarris`` is ``mu-da-rris`` and its penult is
         light; with Arabic's obligatory single onset it is ``mu-dar-ris``, the
         penult is heavy, and the stress lands there — ``muˈdarris``, which is
-        the correct form. Only read when :attr:`quantity_sensitive` is set.
+        the correct form.
+
+        Read by the quantity-sensitive cascade, and — when the spec actually
+        declares it (:attr:`max_onset_declared`) — as a hard cap on the
+        orthographic syllabifier's onsets too. The cap outranks the sonority
+        reasoning that otherwise derives the licit onsets: a language owner who
+        writes ``max_onset`` has stated the language's onset size, and that is
+        not something to second-guess.
+    max_onset_declared : bool
+        Whether :attr:`max_onset` came from the spec or is merely the default.
+        The two must be told apart: the default 1 is a *placeholder* and
+        applying it as a cap would force every language to a single-consonant
+        onset, splitting ⟨tr⟩ and ⟨bl⟩. Set by the loader, never by hand.
+    onset_clusters : Tuple[str, ...]
+        The language's complex onsets, in IPA. Declared, they decide every
+        complex onset the stress marker judges, in place of the built-in
+        sonority shapes — which are calibrated on Germanic, Slavic and Romance
+        and are wrong in both directions elsewhere: Greek opens words with
+        ⟨κτ πτ σμ⟩, which no shape licenses, and Spanish opens none with /s/ +
+        stop, which the sibilant appendix licenses for everyone. A simple
+        onset and a rise onto a glide stay licit under any inventory and need
+        no entry here. Left empty, the built-in shapes decide.
+    constrain_mark_onsets : bool
+        Whether the stress mark's syllable division consults onset
+        phonotactics at all. Clear it for a language the built-in shapes get
+        wrong and whose own inventory is not written down yet — Khmer, whose
+        subscript consonants make onsets no sonority scale predicts. The mark
+        then falls where a plain vowel-group split puts it.
     cliticless_words : Tuple[str, ...]
         Orthographic forms that carry **no lexical stress** of their own —
         prosodic clitics. A clitic is not an independent phonological word: it
@@ -329,6 +397,13 @@ class StressRules:
         orthographic rule and cannot see syntax, so a homograph that is a clitic
         in one reading and a full word in another (Gulf ``يَا`` — vocative
         particle vs. the verb *yā* 'came') is destressed in every occurrence.
+
+        A written stress mark outranks the class: where the spec declares a
+        silent stress mark and the input carries it, the caller has named the
+        stressed syllable outright and the form keeps that stress (Russian во́
+        against clitic во). This is the one whole-word lookup matched on the
+        raw word rather than the mark-stripped key, because it is the one that
+        answers the same question the mark does.
     coda_liquid_capture : bool
         Opt-in sonority-based syllabification for the stress-mark splitter. The
         bundled splitter is onset-maximising and hands a whole medial consonant
@@ -339,6 +414,49 @@ class StressRules:
         coda, so the mark lands on the true onset. Default off: it changes only
         where an existing stress mark is *drawn* (never which nucleus is
         stressed, nor the segments), and only for specs that opt in.
+    accent2_mark : str
+        Pitch-accent 2 marker for the Scandinavian tonal word accents
+        (Swedish/Norwegian). When non-empty, a word whose stress falls on
+        the penult and whose final orthographic letter is in
+        :attr:`accent2_final_letters` is marked with this character instead
+        of :attr:`stress_mark` — the citable first approximation of the
+        accent-2 distribution (Riad 2014: accent 2 needs a post-stress
+        syllable; disyllabic trochees in ⟨-a⟩/⟨-e⟩ are its core class,
+        while antepenult-stressed words keep accent 1). Empty (the
+        default) = no pitch accent, plain stress marking.
+    accent2_final_letters : Tuple[str, ...]
+        The final orthographic letters that select :attr:`accent2_mark`.
+    secondary_stress : str
+        Whether the language has a SECOND degree of prominence below the main
+        word stress, and by which rule it is placed. Word stress is not a
+        binary stressed/unstressed switch: a metrical grid has levels, and a
+        syllable can be metrically strong (a foot head) without carrying the
+        word's main accent (Liberman & Prince 1977, *On Stress and Linguistic
+        Rhythm*, LI 8; Hayes 1995, *Metrical Stress Theory*, ch. 2-3).
+
+        Values:
+
+        ``""``
+            (default) no second level. The engine's prominence stays binary
+            and nothing changes for the spec.
+        ``"alternating"``
+            binary feet built LEFTWARD from the main stress: the second
+            syllable before it, the fourth, and so on, are foot heads and
+            carry secondary stress (Hayes 1995 ch. 3 on binary, quantity-
+            insensitive foot construction; ˌcombiˈnation, ˌrepreˈsentative).
+            A main stress on the first or second syllable leaves nothing to
+            build, so nothing is marked.
+
+        What the level *does* is not cosmetic. A secondary-stressed syllable
+        is **not unstressed**, so it stops matching the spec's
+        ``nucleus_unstressed`` (and ``nucleus_unstressed_open`` /
+        ``nucleus_unstressed_closed``) entries and matches
+        ``nucleus_secondary`` instead; a reduction rule written for weak
+        syllables therefore no longer reduces it. Position relative to the
+        main stress (``pretonic`` / ``posttonic``) is a different fact and is
+        still emitted. When a spec declares this,
+        :func:`~orthography2ipa.stress.apply_stress_mark` also writes the
+        secondary mark ``ˌ`` before those syllables.
     source : str
         Where the stress comes from. ``"rules"`` (the default) means this block —
         declarative data a language owner wrote, that anyone can read, cite and
@@ -357,14 +475,22 @@ class StressRules:
     default_position: int = -2
     final_stress_endings: Tuple[str, ...] = ()
     penult_stress_endings: Tuple[str, ...] = ()
+    antepenult_stress_endings: Tuple[str, ...] = ()
     marked_vowels: Tuple[str, ...] = ()
     stress_mark: str = "ˈ"
     diphthongs: Tuple[str, ...] = ()
+    vowel_letters: Tuple[str, ...] = ()
     quantity_sensitive: bool = False
     superheavy_final_attracts: bool = True
     max_onset: int = 1
+    max_onset_declared: bool = False
+    onset_clusters: Tuple[str, ...] = ()
+    constrain_mark_onsets: bool = True
     cliticless_words: Tuple[str, ...] = ()
     coda_liquid_capture: bool = False
+    accent2_mark: str = ""
+    accent2_final_letters: Tuple[str, ...] = ()
+    secondary_stress: str = ""
     source: str = "rules"
     notes: str = ""
 
@@ -441,6 +567,17 @@ class GraphemePosition(str, Enum):
     E.g., reduced vowels in unstressed nuclei — Portuguese ⟨e⟩ → [ɨ]
     vs. [ɛ] in stressed nucleus; English ⟨a⟩ → [ə] in unstressed."""
 
+    NUCLEUS_SECONDARY = "nucleus_secondary"
+    """Nucleus of a syllable carrying SECONDARY stress — a foot head that is
+    not the main word accent (Liberman & Prince 1977; Hayes 1995 ch. 3).
+    Emitted only for a spec that declares
+    :attr:`~orthography2ipa.types.StressRules.secondary_stress`, and emitted
+    INSTEAD OF :attr:`NUCLEUS_UNSTRESSED` (and instead of the unstressed
+    aperture pair), because such a syllable is not weak: English keeps its
+    vowel full under secondary stress — ˌcombiˈnation, not *ˌkəmbiˈnation.
+    A spec that declares nothing for it falls through to the grapheme's
+    default mapping, which is the full-quality vowel."""
+
     CODA = "coda"
     """Syllable coda position (end of syllable).
     E.g., English ⟨l⟩ → [ɫ] (dark l) in coda;
@@ -463,6 +600,42 @@ class GraphemePosition(str, Enum):
 
     BEFORE_VOWEL = "before_vowel"
 
+    BEFORE_FINAL_VOWEL = "before_final_vowel"
+    """Before a vowel letter that is ITSELF the word-final grapheme (or is
+    followed only by a single further grapheme the spec's own
+    ``positional_graphemes`` already silences at ``word_final``, e.g. a
+    silent inflectional ``-s``) — a hiatus with an apocopated/mute tail
+    vowel, as opposed to one that survives as a syllable nucleus. Checked
+    BEFORE the generic per-letter ``BEFORE_E``/``BEFORE_VOWEL`` positions,
+    so a spec that defines it can block glide formation specifically when
+    there is nothing left afterward to carry the syllable — e.g. French
+    word-final unmarked ⟨ie⟩ stays [i] (vie [vi], envie [ɑ̃vi], vies [vi])
+    while the SAME ⟨i⟩-before-⟨e⟩ context mid-word still glides when a
+    real coda follows (pied [pje], fiacre [fjakʁ]), because there the
+    following ⟨e⟩ is not the word's last (or last-but-silent) segment and
+    must survive as the syllable's only nucleus (Tranel 1987 §5-6)."""
+
+    BEFORE_MUTE_E = "before_mute_e"
+    """Nucleus of the ⟨VCe⟩ pattern: this vowel grapheme is followed by
+    exactly one consonant grapheme and then a word-final mute ⟨e⟩, where a
+    single trailing inflectional ⟨-s⟩ or ⟨-d⟩ counts as transparent
+    (``hope``/``hopes``/``hoped`` all state the same fact about ⟨o⟩). This
+    is the discontinuous "split digraph" that no contiguous grapheme key
+    can express, and in English it is the single most productive
+    vowel-value correspondence there is: ⟨a⟩ eɪ (name), ⟨e⟩ iː (these),
+    ⟨i⟩ aɪ (time), ⟨o⟩ əʊ (hope), ⟨u⟩ juː (use), against the checked
+    values the same letters take in a closed syllable (Carney 1994 on the
+    ⟨VCe⟩ correspondences; Wells 1982 vol. 1 for the RP lexical-set
+    values). The single-consonant requirement is what keeps ⟨table⟩,
+    ⟨waste⟩ and ⟨dense⟩ out: with two consonant graphemes between the
+    nucleus and the ⟨e⟩ the pattern is no longer the split digraph.
+
+    The mute ⟨e⟩ itself is NOT silenced by this position — that stays a
+    spec's own business (a ``word_final`` entry, or the same
+    inflection-aware allophone rules that already handle ⟨-ed⟩), because
+    the ⟨e⟩ of ⟨hated⟩ is epenthetic rather than mute and only the spec
+    knows which of its own rules owns that slot."""
+
     AFTER_VOWEL = "after_vowel"
 
     BEFORE_CONSONANT = "before_consonant"
@@ -474,6 +647,12 @@ class GraphemePosition(str, Enum):
     BEFORE_I = "before_i"
     BEFORE_O = "before_o"
     BEFORE_U = "before_u"
+    BEFORE_Y = "before_y"
+    """Before the letter ⟨y⟩ — the third front-vowel spelling English
+    softening keys on, alongside ⟨e⟩ and ⟨i⟩ (⟨cycle⟩, ⟨cynic⟩, ⟨gym⟩,
+    ⟨gyrate⟩). ⟨y⟩ is a vowel letter in some scripts and a consonant in
+    others, so the position is emitted on the letter, not on a vowel
+    class, exactly like its four siblings."""
 
     BEFORE_FRONT_VOWEL = "before_front_vowel"
     """Before a *front* vowel letter (``e i y`` + accented/rounded variants,
@@ -542,6 +721,46 @@ class GraphemePosition(str, Enum):
 
     NUCLEUS = "nucleus"
     """Generic syllable nucleus (when stress is not distinguished)."""
+
+    OPEN_SYLLABLE = "open_syllable"
+    """Nucleus of a syllable with no coda (CV): the *libre* environment of
+    the Romance *loi de position* and of the Germanic open/closed vowel
+    alternation. E.g. French ⟨eu⟩ → [ø] in *heu·reux* but [œ] in *fleur*;
+    Dutch ⟨e⟩ → [eː] in *le·zen* but [ɛ] in *lek*. Aperture is decided on
+    the spec's own syllabification of the ORTHOGRAPHIC word (a syllable is
+    open when its last character is a vowel letter, after the trailing
+    graphemes the spec itself emits nothing for have been stripped), so
+    it is available only where a syllabification is; a spec that declares
+    none of these keys is never syllabified for their sake and these
+    positions are simply not emitted.
+
+    References: Fougeron & Smith (1993) *Illustrations of the IPA:
+    French* (``fougeron_smith1993``, cited in ``fr-FR``'s ``sources``),
+    which states the loi de position as close-mid e/ø/o in open
+    syllables against open-mid ɛ/œ/ɔ in closed ones; Tranel (1987) *The
+    Sounds of French* ch. 4 (``tranel1987``, same ``sources`` array).
+    The environment is not French-specific — it is where the Germanic
+    open-syllable length alternations are stated too — but those are the
+    two sources this repository actually carries for it."""
+
+    CLOSED_SYLLABLE = "closed_syllable"
+    """Nucleus of a syllable that has a coda (CVC): the *entravé*
+    counterpart of :attr:`OPEN_SYLLABLE`."""
+
+    NUCLEUS_STRESSED_OPEN = "nucleus_stressed_open"
+    """Stressed nucleus in an open syllable — the two conditions the
+    mid-vowel alternations actually key on, jointly. Emitted BEFORE the
+    aperture-only and stress-only positions, so a spec that declares it
+    wins over both."""
+
+    NUCLEUS_STRESSED_CLOSED = "nucleus_stressed_closed"
+    """Stressed nucleus in a closed syllable."""
+
+    NUCLEUS_UNSTRESSED_OPEN = "nucleus_unstressed_open"
+    """Unstressed nucleus in an open syllable."""
+
+    NUCLEUS_UNSTRESSED_CLOSED = "nucleus_unstressed_closed"
+    """Unstressed nucleus in a closed syllable."""
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -648,7 +867,7 @@ class ScriptType(str, Enum):
 
 
 # ═══════════════════════════════════════════════════════════════════════════
-# LinguisticSource — bibliographic reference for phonological decisions
+# WeightedDistance — result of a weighted inter-language distance calculation
 # ═══════════════════════════════════════════════════════════════════════════
 
 @dataclass(frozen=True)
@@ -857,9 +1076,13 @@ class AllophoneRule:
         see to nasalise before a coda nasal, while leaving an onset nasal
         alone), ``"front_vowel"``, ``"back_vowel"``, ``"palatal"`` (a palatal /
         palato-alveolar consonant, decided by the neighbour's IPA — the
-        mirror of the ``BEFORE_PALATAL`` position) or ``"word_boundary"``
-        (no neighbour). Predicates delegate to
-        :mod:`orthography2ipa.vowels`.
+        mirror of the ``BEFORE_PALATAL`` position), ``"emphatic"`` (a
+        pharyngealized / "emphatic" consonant, decided by the neighbour's IPA
+        carrying the ``ˤ`` diacritic — a generic feature class, not
+        Arabic-specific, though Arabic's ``sˤ dˤ tˤ ðˤ`` triggering
+        emphasis-spread/tafkhim vowel backing is its best-known instance:
+        Watson 2002; Davis 1995) or ``"word_boundary"`` (no neighbour).
+        Predicates delegate to :mod:`orthography2ipa.vowels`.
     preceded_by_2, followed_by_2 : Optional[str]
         The same neighbour-class vocabulary, tested TWO graphemes away. A
         phonological process often looks past a mute letter: Russian
@@ -867,12 +1090,122 @@ class AllophoneRule:
         ⟨ь⟩ that follows it is word-final, and the ⟨ь⟩ itself is silent
         (``followed_by_phoneme=["ʲ"]`` + ``followed_by_2="word_boundary"``).
         Without it a spec has to enumerate the consonant × soft-vowel product
-        as spellings, which is a design violation.
+        as spellings, which is a design violation. The vocabulary includes
+        ``"any"`` — matches any existing neighbour grapheme regardless of
+        class, the "there IS a grapheme here" test (as opposed to
+        ``"word_boundary"``, which tests the opposite). Before ``"any"``
+        existed, a rule that only cared *whether* a grapheme stood two away
+        (not what class it was) had to be declared as a redundant
+        vowel/consonant PAIR — see ``EN_GB_ED_SYNCOPE_AFTER_V`` /
+        ``_AFTER_C`` in ``en-GB.json``, kept as two rules for that historical
+        reason even though ``"any"`` would now collapse them to one.
+    preceded_by_3 : Optional[str]
+        The same neighbour-class vocabulary (including ``"any"``), tested
+        THREE graphemes away. English past-tense ⟨-ed⟩ needs this for its
+        "is there a stem in front of the ending" gate: ``fed``/``ted`` are
+        monosyllables whose ⟨ed⟩ IS the stem, not the suffix, and the
+        stem-final consonant sits only ONE grapheme before the mute ⟨e⟩
+        (⟨preceded_by_2⟩ from the ⟨d⟩) — always present, so it cannot tell
+        a real stem from none. The grapheme BEFORE that stem consonant
+        (⟨preceded_by_3⟩ from the ⟨d⟩) exists only when there is an actual
+        stem (``used``, ``watched``) and not in the three-letter monosyllables
+        (Cruttenden 2014, § 4.3 treats ⟨-ed⟩ as the past/participial suffix,
+        which by definition attaches to something).
     preceded_by_phoneme, followed_by_phoneme : Tuple[str, ...]
         The chosen phoneme of the previous / next lattice slot must be one of
         these — the *phoneme*-level neighbour condition (for e.g. nasal place
         assimilation, which conditions on the following consonant's place).
         Empty = don't care.
+    preceded_by_phoneme_2, followed_by_phoneme_2 : Tuple[str, ...]
+        Like :attr:`preceded_by_phoneme`/:attr:`followed_by_phoneme` but two
+        graphemes away, read from the GRAPHEME layer's first declared
+        candidate — the UNDERLYING phoneme, known before any rule has run
+        (Russian ⟨с⟩ of ⟨гости⟩ palatalises because the ⟨т⟩ after it stands
+        before a soft vowel; that is a fact about the ⟨т⟩'s underlying
+        identity, not about what it surfaces as). Empty = don't care.
+    requires_other_nucleus : Optional[bool]
+        Require (``True``) — or forbid (``False``) — that some OTHER slot
+        in the word carries a syllable nucleus. A rule that DELETES a
+        vowel (``surface: ""``) must not empty the word of its only
+        nucleus: every prosodic word contains at least one syllable
+        (Hayes 2009, ch. 13; Blevins 1995, "The syllable in phonological
+        theory"). Romanian's asyllabic word-final ⟨i⟩ is the motivating
+        case — a desinence, so ⟨lupi⟩ is [lupʲ] but the monosyllables
+        ⟨și⟩ [ʃi], ⟨fi⟩ [fi], ⟨zi⟩ [zi] keep a full vowel because they
+        have no other nucleus (Chitoran 2002, ch. 5). ``None`` = don't
+        care.
+    followed_by_nucleus : Optional[bool]
+        Require (``True``) — or forbid (``False``) — that a syllable
+        nucleus occurs LATER in the word than this slot. This is the
+        final-syllable predicate: ``False`` selects the last nucleus of
+        the word, ``True`` every earlier one. Distinct from
+        :attr:`requires_other_nucleus`, which is direction-blind and asks
+        only whether some other slot anywhere in the word is a nucleus.
+        Non-final reduction and final-syllable strengthening both need
+        the direction. ``None`` = don't care.
+    preceded_by_surface_phoneme_2 : Tuple[str, ...]
+        Like :attr:`preceded_by_phoneme_2` but reads the LATTICE SLOT two
+        positions back — the resolved, pre-this-rescorer SURFACE candidate
+        (:attr:`~orthography2ipa.rescorer.RescoreContext.slots`\\
+        ``[index - 2].top``), not the grapheme's first declared candidate.
+        Needed whenever the underlying/declared candidate order disagrees
+        with the actually-selected surface: English ⟨-ed⟩ devoicing must
+        see whether the STEM ends in a voiced or voiceless consonant as
+        actually pronounced — ``used``/``closed``/``pleased``/``breathed``
+        already resolve their stem-final ⟨s⟩/⟨th⟩ to voiced [z]/[ð] by
+        ordinary intervocalic weighting before this rule ever runs, but
+        ⟨s⟩'s and ⟨th⟩'s first DECLARED candidate is the voiceless member
+        ([s], [θ]), which is a lie about this word (Cruttenden 2014, § 4.3:
+        the devoicing trigger is the stem's actual final segment). Empty =
+        don't care.
+    preceded_by_grapheme : Tuple[str, ...]
+        The previous slot's *source grapheme* (matched case-insensitively)
+        must be one of these — the backward counterpart of
+        :attr:`followed_by_grapheme`. A rule often needs to know which
+        LETTER stands before it even though that letter spells nothing, and
+        the phoneme layer cannot report a silent neighbour: English
+        ⟨-ed⟩ devoices to [t] after a voiceless stem (*walked*) but the
+        trigger is only the past-tense ending, so the ⟨d⟩ must see the
+        mute ⟨e⟩ before it and not fire in *food* (Cruttenden 2014,
+        § 4.3). Empty = don't care.
+    followed_by_grapheme : Tuple[str, ...]
+        The next slot's *source grapheme* (matched case-insensitively) must
+        be one of these. The positive counterpart of
+        :attr:`followed_by_grapheme_not`, for processes triggered by a
+        letter group whose phoneme hides its cluster nature — Swedish
+        stressed vowels are short before ⟨ng⟩ ⟨nk⟩ ⟨sk⟩ (historically /ŋɡ
+        ŋk sk/ clusters, Riad 2014), but ⟨ng⟩'s phoneme is the single [ŋ]
+        and ⟨sk⟩'s first candidate the single [ɧ], so the generic
+        consonant-cluster neighbour class cannot see them. Empty = don't
+        care.
+    followed_by_grapheme_not : Tuple[str, ...]
+        The next slot's *source grapheme* (matched case-insensitively) must
+        NOT be one of these. Orthographies mark phonological facts in the
+        spelling of the following letter group — German writes a short vowel
+        before ⟨ss⟩/⟨ck⟩/⟨tz⟩, whose single-consonant phonemes are
+        indistinguishable at the phoneme layer from the plain letters that
+        permit a long vowel — so this is the only layer that can veto such a
+        rule. Empty = don't care.
+    word_contains_grapheme : Tuple[str, ...]
+        At least one of these letters must occur ANYWHERE in the current
+        source word (matched case-insensitively). Word-scope rather than
+        neighbour-scope: some orthographies mark a property of the whole
+        word on a single consonant letter that may stand any distance from
+        the segment it conditions. Ottoman Turkish is the case that
+        motivated it — the abjad leaves most vowels unwritten, and the
+        choice between the back and front member of a vowel-harmony pair is
+        signalled by whether the word is spelt with a "hard" letter
+        ⟨ح خ ص ض ط ظ ع غ ق⟩ or a "soft" one ⟨ت س ك گ ه⟩, which the
+        neighbour conditions cannot see across intervening letters. The check
+        is a raw substring test over the joined source word, so a multi-
+        character grapheme key matches wherever that sequence occurs as a
+        substring rather than by slot-grapheme membership. Empty = don't
+        care.
+    word_contains_grapheme_not : Tuple[str, ...]
+        None of these letters may occur anywhere in the current source word.
+        The negative counterpart of :attr:`word_contains_grapheme`, needed
+        so a default (unmarked-harmony) reading can be stated as "no hard
+        letter anywhere" rather than enumerated. Empty = don't care.
     grapheme : Optional[Tuple[str, ...]]
         Require the slot's own *source grapheme* to be one of these (matched
         case-insensitively). This lets a rule target a surface shift that
@@ -895,12 +1228,43 @@ class AllophoneRule:
         surface it rewrites and lets every other process (reduction, sandhi,
         rhotic choice, affrication) run normally, so it inherits cleanly to
         child dialects. ``None`` / empty = don't care.
+    append : str
+        IPA appended to the matched phoneme instead of replacing it, so the
+        realisation is ``phoneme + append`` and one rule can state an
+        insertion for a whole class of targets at once. Epenthesis is the
+        motivating process: the inserted vowel is the same wherever it goes,
+        while the segment it attaches to is any member of a class, and a
+        fixed :attr:`surface` string can only name one of them. Mutually
+        exclusive with :attr:`surface`; empty (the default) = this rule
+        rewrites rather than inserts.
     notes : str
         Free-form provenance / convention notes.
+    mutates_neighbor : Optional[str]
+        An IPA modifier/diacritic (e.g. ``"ʲ"``) this rule adds to an
+        ADJACENT slot's candidate when this rule fires — combined with
+        ``surface=""`` this is the "marker grapheme" pattern: a written
+        letter that palatalizes (or otherwise mutates) its neighbour and
+        contributes no segment of its own. Goidelic slender/broad marking
+        (Manx ``giare`` → [ɡʲɛːr]: the ⟨i⟩ of ⟨gia-⟩ palatalizes ⟨g⟩ and does
+        not itself surface) is the motivating case; the mechanism is
+        generic — Slavic/Cyrillic soft-sign palatalization and similar
+        marker-grapheme phenomena in other orthographies fit the same
+        shape. ``None`` (the default) = this rule does not mutate a
+        neighbour. Requires :attr:`mutates_neighbor_side`. See
+        [`docs/allophony.md`](../docs/allophony.md#marker-graphemes)
+        for the worked example and the honest gv WikiPron delta.
+    mutates_neighbor_side : Optional[str]
+        Which adjacent slot receives :attr:`mutates_neighbor`'s feature,
+        relative to THIS rule's own anchor grapheme: ``"preceding"`` (the
+        grapheme before it — the Goidelic case, a trailing slender vowel
+        palatalizing the consonant onset before it) or ``"following"``
+        (the grapheme after it). Required together with
+        :attr:`mutates_neighbor`.
     """
     id: str
     phonemes: Tuple[str, ...]
-    surface: str
+    surface: str = ""
+    append: str = ""
     word_initial: Optional[bool] = None
     word_final: Optional[bool] = None
     stress: Optional[str] = None
@@ -909,13 +1273,24 @@ class AllophoneRule:
     followed_by: Optional[str] = None
     preceded_by_2: Optional[str] = None
     followed_by_2: Optional[str] = None
+    preceded_by_3: Optional[str] = None
     preceded_by_phoneme_2: Tuple[str, ...] = ()
     followed_by_phoneme_2: Tuple[str, ...] = ()
+    preceded_by_surface_phoneme_2: Tuple[str, ...] = ()
+    requires_other_nucleus: Optional[bool] = None
+    followed_by_nucleus: Optional[bool] = None
     preceded_by_phoneme: Tuple[str, ...] = ()
     followed_by_phoneme: Tuple[str, ...] = ()
+    preceded_by_grapheme: Tuple[str, ...] = ()
+    followed_by_grapheme: Tuple[str, ...] = ()
+    followed_by_grapheme_not: Tuple[str, ...] = ()
+    word_contains_grapheme: Tuple[str, ...] = ()
+    word_contains_grapheme_not: Tuple[str, ...] = ()
     grapheme: Optional[Tuple[str, ...]] = None
     word: Optional[Tuple[str, ...]] = None
     notes: str = ""
+    mutates_neighbor: Optional[str] = None
+    mutates_neighbor_side: Optional[str] = None
 
     def __post_init__(self) -> None:
         if isinstance(self.phonemes, str):
@@ -930,6 +1305,24 @@ class AllophoneRule:
             self, "preceded_by_phoneme_2", tuple(self.preceded_by_phoneme_2))
         object.__setattr__(
             self, "followed_by_phoneme_2", tuple(self.followed_by_phoneme_2))
+        object.__setattr__(
+            self, "preceded_by_surface_phoneme_2",
+            tuple(self.preceded_by_surface_phoneme_2))
+        object.__setattr__(
+            self, "preceded_by_grapheme",
+            tuple(g.lower() for g in self.preceded_by_grapheme))
+        object.__setattr__(
+            self, "followed_by_grapheme",
+            tuple(g.lower() for g in self.followed_by_grapheme))
+        object.__setattr__(
+            self, "followed_by_grapheme_not",
+            tuple(g.lower() for g in self.followed_by_grapheme_not))
+        object.__setattr__(
+            self, "word_contains_grapheme",
+            tuple(g.lower() for g in self.word_contains_grapheme))
+        object.__setattr__(
+            self, "word_contains_grapheme_not",
+            tuple(g.lower() for g in self.word_contains_grapheme_not))
         if self.grapheme is not None:
             object.__setattr__(
                 self, "grapheme",
@@ -938,11 +1331,17 @@ class AllophoneRule:
             object.__setattr__(
                 self, "word",
                 tuple(w.lower() for w in self.word))
+        if self.surface and self.append:
+            raise ValueError(
+                f"AllophoneRule {self.id!r}: surface and append are "
+                f"mutually exclusive — a rule either rewrites the phoneme "
+                f"or inserts material next to it")
         if self.stress is not None and self.stress not in (
-                "stressed", "unstressed"):
+                "stressed", "unstressed", "pretonic", "posttonic"):
             raise ValueError(
                 f"AllophoneRule {self.id!r}: stress must be 'stressed', "
-                f"'unstressed' or None, got {self.stress!r}")
+                f"'unstressed', 'pretonic', 'posttonic' or None, "
+                f"got {self.stress!r}")
         if self.syllable_position is not None and self.syllable_position not in (
                 "onset", "coda", "nucleus"):
             raise ValueError(
@@ -950,14 +1349,26 @@ class AllophoneRule:
                 f"'onset', 'coda', 'nucleus' or None, "
                 f"got {self.syllable_position!r}")
         _classes = ("vowel", "consonant", "consonant_cluster", "coda",
-                    "coda_nasal", "front_vowel", "back_vowel", "palatal", "word_boundary")
+                    "coda_nasal", "front_vowel", "back_vowel", "palatal",
+                    "emphatic", "word_boundary", "any")
         for attr in ("preceded_by", "followed_by",
-                     "preceded_by_2", "followed_by_2"):
+                     "preceded_by_2", "followed_by_2", "preceded_by_3"):
             val = getattr(self, attr)
             if val is not None and val not in _classes:
                 raise ValueError(
                     f"AllophoneRule {self.id!r}: {attr} must be one of "
                     f"{_classes} or None, got {val!r}")
+        if self.mutates_neighbor_side is not None and \
+                self.mutates_neighbor_side not in ("preceding", "following"):
+            raise ValueError(
+                f"AllophoneRule {self.id!r}: mutates_neighbor_side must be "
+                f"'preceding', 'following' or None, "
+                f"got {self.mutates_neighbor_side!r}")
+        if (self.mutates_neighbor is None) != (self.mutates_neighbor_side is None):
+            raise ValueError(
+                f"AllophoneRule {self.id!r}: mutates_neighbor and "
+                f"mutates_neighbor_side must be set together (both or "
+                f"neither)")
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -1065,6 +1476,18 @@ class InheritanceMode(str, Enum):
     representation that keeps ``spec.graphemes`` a plain ``list[str]``
     map for every existing consumer."""
 
+    BASE_SCALAR = "base_scalar"
+    """Scalar field that follows the ``graphemes_base`` edge. A spec that does
+    not state the field takes the value of the spec it pulls its grapheme table
+    from; stating it (either way) wins.
+
+    Used by ``constrain_onsets``. Whether a grapheme table's onsets are
+    constrained is a property OF that table, so a variety that inherits the
+    table inherits the judgement with it — otherwise ``de-AT`` and ``de-CH``
+    read ``de-DE``'s graphemes while silently syllabifying them by a different
+    rule than ``de-DE`` does, and that split is a language-feature parity gap,
+    which this project treats as a bug."""
+
     OWN_ONLY = "own_only"
     """Identity / bibliographic / classification field that never
     participates in inheritance resolution at all (e.g. ``code``, ``name``,
@@ -1095,17 +1518,25 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "plugins": InheritanceMode.OWN_ONLY,
     "optional_marks": InheritanceMode.OWN_ONLY,
     "fold_diacritics": InheritanceMode.OWN_ONLY,
+    "vowel_graphemes": InheritanceMode.OWN_ONLY,
+    "dependent_vowels": InheritanceMode.OWN_ONLY,
+    "preposed_vowels": InheritanceMode.OWN_ONLY,
+    "coda_no_inherent_vowel": InheritanceMode.OWN_ONLY,
     "collapse_geminates": InheritanceMode.OWN_ONLY,
+    "doubled_letters_geminate": InheritanceMode.OWN_ONLY,
+    "constrain_onsets": InheritanceMode.BASE_SCALAR,
     "phonemes": InheritanceMode.OWN_ONLY,
     "orthography_kind": InheritanceMode.OWN_ONLY,
     "iso639_3": InheritanceMode.OWN_ONLY,
     "wikidata_qid": InheritanceMode.OWN_ONLY,
     "phoible_id": InheritanceMode.OWN_ONLY,
     "wals_code": InheritanceMode.OWN_ONLY,
+    "trailing_vowel_axis_digraphs": InheritanceMode.OWN_ONLY,
     "sandhi_rules": InheritanceMode.OVERLAY_BY_ID,
     "allophone_rules": InheritanceMode.OVERLAY_BY_ID,
     "allophone_passes": InheritanceMode.NOT_INHERITED,
     "tone_inventory": InheritanceMode.OWN_ONLY,
+    "tone_marks_syllable_final": InheritanceMode.OWN_ONLY,
     "sources": InheritanceMode.OWN_ONLY,
     "wikipedia": InheritanceMode.OWN_ONLY,
     "urls": InheritanceMode.OWN_ONLY,
@@ -1114,6 +1545,11 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "timespan": InheritanceMode.OWN_ONLY,
     "stress": InheritanceMode.NOT_INHERITED,
     "word_exceptions": InheritanceMode.BASE_MERGE,
+    # Suffix morphology is shared by a dialect that shares its graphemes —
+    # en-US palatalizes ⟨-tion⟩ exactly as en-GB does — so a child opts in
+    # with grammatical_endings_base and overrides per ending, the same
+    # overlay shape word_exceptions uses.
+    "grammatical_endings": InheritanceMode.BASE_MERGE,
     "grapheme_weights": InheritanceMode.NOT_INHERITED,
     "clade": InheritanceMode.OWN_ONLY,
     "family_path": InheritanceMode.OWN_ONLY,
@@ -1211,7 +1647,7 @@ class LanguageSpec:
     substrates, superstrates, contact languages, creole origins.
     If empty but parent is set, a default PARENT ancestor is inferred."""
 
-    positional_graphemes: PositionalGrapheme2IPA = None  # type: ignore[assignment]
+    positional_graphemes: Optional[PositionalGrapheme2IPA] = None
     """Optional positional grapheme→IPA overrides.
 
     Maps grapheme keys to dicts of ``{GraphemePosition: [IPA candidates]}``.
@@ -1271,6 +1707,57 @@ class LanguageSpec:
     the conformance kit fails it if it does not. See
     :mod:`orthography2ipa.plugins`."""
 
+    constrain_onsets: bool = False
+    """Opt in to phonotactically constrained syllabification. Off by default,
+    and deliberately so.
+
+    The bundled splitter maximises the onset. With this set it maximises it
+    only as far as the language licenses — the shapes documented on
+    ``orthography2ipa.stress._OnsetJudge``, which are calibrated on the
+    Germanic and Romance onset inventories: an obstruent head with a
+    liquid, glide or labial approximant after it, a voiceless sibilant
+    appendix, ⟨kn gn pn⟩, ⟨Cj⟩.
+
+    A language whose onsets exceed that core must NOT set it until it can
+    declare its own inventory. Modern Greek is the clear case: ⟨σμ κτ πτ
+    φτ χτ φθ γν μν βγ βδ⟩ all begin Greek words and are therefore
+    tautosyllabic (a cluster that can begin a word does not split —
+    Malikouti-Drachman, "Greek Phonology", in *Journal of Greek
+    Linguistics* 2001; Holton, Mackridge & Philippaki-Warburton, *Greek: A
+    Comprehensive Grammar*, Routledge 2012, § 1.4), and none of them is
+    reachable from the shapes above. Turning this on for Greek would split
+    every one of them. The same holds for the Slavic and Uralic
+    inventories, which have not been checked.
+
+    Its purpose is the aperture positions: open/closed syllable is only as
+    good as the boundary, so the languages that read aperture need the
+    boundary to be right. Those are the languages that set it.
+
+    It is inherited along the ``graphemes_base`` edge
+    (:attr:`InheritanceMode.BASE_SCALAR`): whether a grapheme table's onsets
+    are constrained is a property of that table, so a variety that pulls the
+    table in gets the judgement with it — ``nl-BE`` from ``nl``, ``de-AT`` and
+    ``de-CH`` from ``de-DE``, ``de-x-bavarian`` from ``de-AT`` in turn. A
+    variety that must NOT inherit says so with an explicit ``false``.
+    ``nl-NL`` is a standalone spec with no ``graphemes_base``, so it declares
+    the flag itself.
+    """
+
+    doubled_letters_geminate: bool = True
+    """Whether two adjacent identical consonant letters spell ONE long segment.
+
+    The allophony pass protects a geminate from being split: a rule fired by
+    material outside it may not rewrite a single half. That protection assumes
+    the orthography writes gemination by doubling, which most do. A
+    consonantal-skeleton transliteration does not: Egyptological ⟨bbr⟩ is a
+    three-radical root b-b-r whose two ⟨b⟩ are separate consonant slots, and the
+    reading convention puts a vowel between them. Declaring ``false`` says the
+    doubling is two segments, so a rule may act on either.
+
+    Distinct from :attr:`collapse_geminates`, which is about English-style
+    doubling that spells a single SHORT consonant and merges the two phonemes
+    after transcription."""
+
     collapse_geminates: bool = False
     """Collapse a doubled consonant letter's phonemes to one.
 
@@ -1319,6 +1806,114 @@ class LanguageSpec:
     Empty for every orthography that writes its vowels (the default), which is
     most of them."""
 
+    vowel_graphemes: Tuple[str, ...] = ()
+    """Explicit orthographic vowel-letter declarations that OVERRIDE the
+    closed-inventory answer for Latin/Greek/harakat (see
+    :mod:`orthography2ipa.vowels`).
+
+    The Latin, Greek and Arabic-harakat letter sets are closed inventories:
+    a Latin letter absent from them (⟨w⟩, ⟨y⟩, ⟨r⟩) is a consonant letter by
+    construction, and that is deliberate — Czech syllabic ⟨r⟩ and English
+    ⟨y⟩ must not flip into vowels just because some *other* language's IPA
+    for the same letter happens to be a vowel. But some orthographies really
+    do use a closed-inventory consonant LETTER to spell a vowel — Hmong RPA
+    ⟨w⟩ = /ɨ/, Welsh ⟨w⟩ = /ʊ, w/ — and no per-script hand-list can capture
+    that without breaking the guarantee above.
+
+    ``vowel_graphemes`` is the escape hatch: each entry is a whole grapheme
+    string (matched in full, not by its first character) that this spec
+    declares a vowel letter regardless of what the closed inventory says.
+    Declaring it here is a per-language fact, exactly like ``script_type``
+    or ``optional_marks`` — it changes nothing for any other spec. Empty
+    (the default) is the previous behaviour exactly."""
+
+    dependent_vowels: Tuple[str, ...] = ()
+    """Escape hatch for :meth:`PhonetokTokenizer._supplies_vowel` — dependent
+    (matra) vowel signs the inherent-vowel test must recognise even though
+    Unicode does not mark them as combining.
+
+    The inherent-vowel cancellation test that makes ⟨क⟩ read /kə/ but ⟨कि⟩
+    read /ki/ decides "does a dependent vowel sign follow?" from the
+    following character's Unicode general category (``Mn``/``Mc``,
+    combining marks). That works for Devanagari and most Brahmic scripts,
+    where a matra genuinely is a combining mark. It fails for the Tai
+    scripts (Thai, Lao): their spacing dependent vowel signs — Thai ⟨า ะ⟩,
+    Lao ⟨າ ະ⟩ and kin — are Unicode general category ``Lo`` (spacing
+    letter), identical to a base consonant, because Thai/Lao script
+    encoding never gave them combining-mark status. Unicode category is
+    therefore not a reliable script-agnostic signal for "dependent vowel"
+    in every abugida; it is a good default, not a law of nature.
+
+    ``dependent_vowels`` is the same kind of escape hatch as
+    ``vowel_graphemes``: each entry is a whole grapheme string that this
+    spec declares supplies a syllable nucleus for the purpose of inherent-
+    vowel cancellation, regardless of its Unicode category. It changes
+    nothing for a spec that leaves it empty (the default) — Devanagari and
+    every other Mn/Mc-based abugida are unaffected byte-for-byte.
+
+    An entry may be longer than one character, which is what the Myanmar
+    script needs: a Burmese RHYME is written as a unit (an optional vowel
+    sign, an optional final consonant letter carrying the asat ⟨်⟩, and an
+    optional tone mark) and it is the whole unit that supplies the nucleus —
+    ⟨ကန်⟩ is [kàɴ], while its first character alone is the ordinary letter
+    ⟨န⟩ /n/. The longest entry matching at the position decides."""
+
+    preposed_vowels: Tuple[str, ...] = ()
+    """Dependent vowel signs written BEFORE the consonant they attach to but
+    pronounced AFTER it — Thai ⟨เ แ โ ใ ไ⟩, Lao ⟨ເ ແ ໂ ໃ ໄ⟩ (Enfield 2007;
+    Iwasaki & Ingkaphirom, *A Reference Grammar of Thai*, 2005).
+
+    Every other mechanism in this engine (inherent-vowel cancellation,
+    positional graphemes, the beam) assumes a grapheme's reading position
+    in the IPA output matches its position in the text. Preposed vowels
+    break that assumption by construction: ⟨เก⟩ orders the vowel letter
+    first but reads /keː/, consonant first. ``preposed_vowels`` names the
+    graphemes for which :class:`~orthography2ipa.phonetok.PhonetokTokenizer`
+    swaps emission order — it still consumes the vowel grapheme from its
+    written (pre-consonant) position, but appends the consonant's IPA
+    before the vowel's. Empty (the default) leaves every other script
+    untouched."""
+
+    coda_no_inherent_vowel: bool = False
+    """The third Tai abugida mechanism (Iwasaki & Ingkaphirom 2005; Enfield
+    2007), scoped out of ``dependent_vowels``/``preposed_vowels`` (#781) as a
+    follow-up: a bare consonant that CLOSES a syllable already given its
+    nucleus by a preceding dependent vowel sign takes no inherent vowel of
+    its own. Thai/Lao write no vowel sign for a syllable coda — ⟨ลาว⟩ (Lao,
+    the country) is ⟨ล⟩+⟨า⟩+⟨ว⟩ = /l/ + /aː/ + /w/-as-coda = /laːw/, not
+    */laːwo/. Without this flag the engine's generic inherent-vowel rule
+    (a bare consonant with nothing supplying a vowel after it gets
+    ``inherent_vowel`` appended) cannot tell that ⟨ว⟩ is a coda rather than
+    a fresh syllable onset, and appends the Lao/Thai inherent vowel to it.
+
+    What makes this decidable without a real syllabifier: when the
+    consonant immediately preceding the current one was itself a dependent
+    vowel sign (``dependent_vowels``, or a preposed vowel's merged nucleus),
+    the current syllable already HAS a nucleus, so a following bare
+    consonant with nothing supplying a vowel of its own cannot be a new
+    onset needing its own inherent vowel — it can only be closing the
+    syllable that already has one. That is exactly the case this flag
+    covers, no more. A written coda may be more than one letter, so the
+    search looks back across bare consonants: the Tibetan post-suffix
+    ⟨ས⟩ stands after the suffix ⟨ག ང བ མ⟩, and in ⟨ཁམས⟩ the nucleus is
+    two letters behind it.
+
+    What it deliberately does NOT cover: a bare-consonant sequence with NO
+    vowel sign anywhere before it (e.g. Thai ⟨คน⟩ /kʰon/, two consonant
+    letters and no written vowel at all). Telling "coda of an implicit-o
+    dead syllable" from "onset of a fresh syllable" there needs real
+    syllable-boundary knowledge — a dictionary or a statistical
+    syllabifier — that this engine does not have; #781 named this the same
+    honest limit and it still applies. Such sequences keep their PRE-#781/
+    #TAI-CODA behaviour (inherent vowel surfaces on the first consonant)
+    unchanged.
+
+    Word-final unreleased stops (Thai/Lao dead syllables surfacing [k̚ t̚
+    p̚]) are a separate, orthogonal fact handled by ``allophone_rules``
+    (``word_final=True`` rewrites) — this flag only suppresses the spurious
+    VOWEL; it emits no allophone of its own. Default ``False`` — every
+    other spec is byte-for-byte unaffected."""
+
     iso639_3: Optional[str] = None
     """ISO 639-3 three-letter code for PHOIBLE/Glottolog cross-referencing."""
 
@@ -1340,6 +1935,27 @@ class LanguageSpec:
 
     sandhi_rules: Tuple[SandhiRule, ...] = ()
     """Cross-word-boundary phonological rules (liaison, sandhi)."""
+
+    trailing_vowel_axis_digraphs: Tuple[str, ...] = ()
+    """Multi-letter vowel graphemes (matched case-insensitively) for which the
+    AFTER_FRONT_VOWEL/AFTER_BACK_VOWEL axis is read off the digraph's TRAILING
+    letter rather than its opening one, for a grapheme immediately following.
+
+    The engine's default assumption is that a following consonant abuts the
+    grapheme's opening letter — true for the common case where a digraph is a
+    single sound written two ways. Old Irish ⟨ía úa⟩ are the opposite: they
+    spell a long vowel plus an offglide, and *caol le caol* / *leathan le
+    leathan* reads the quality that reaches the next consonant off the
+    digraph's CLOSING letter, so ⟨n⟩ in ⟨cían⟩ is broad (the digraph ends in
+    ⟨a⟩), not slender off the opening ⟨í⟩ (Thurneysen 1946; McCone 2005).
+
+    This is an opt-in per spec, not a global engine behaviour: naming a
+    digraph here changes only that grapheme, only in this language. Every
+    other spec's multi-letter vowel graphemes keep the opening-letter
+    (``grapheme[0]``) reading — German ⟨eu äu⟩ before ⟨ch⟩ still take the
+    ach-Laut off the back vowel ⟨u⟩, and Modern Irish ⟨ae⟩ still leaves the
+    following consonant broad, both flanked by their opening letter's axis.
+    Default empty leaves every spec byte-for-byte unaffected."""
 
     allophone_rules: Tuple["AllophoneRule", ...] = ()
     """Post-lexical, context-conditioned ``phoneme → surface`` rewrites.
@@ -1383,6 +1999,15 @@ class LanguageSpec:
     tone_inventory: Optional[Dict[str, str]] = None
     """Optional tone inventory: IPA tone mark → label
     (e.g. ``{"˥": "high", "˧˥": "rising"}``)."""
+
+    tone_marks_syllable_final: bool = False
+    """Whether tone marks dock at the end of their syllable.
+
+    Set it when the orthography writes tone as a diacritic on the nucleus
+    letter: the grapheme table then yields the mark inside the rime
+    (⟨ōng⟩ → ``o³³ŋ``) where IPA writes it after the rime (``oŋ³³``).
+    See :func:`~orthography2ipa.tone.dock_tone_marks`. Orthographies that
+    spell tone in the slot it is transcribed in leave it off."""
 
     sources: Tuple["LinguisticSource", ...] = field(default_factory=tuple)
     """Bibliographic references supporting the phonological decisions in this spec."""
@@ -1471,6 +2096,85 @@ class LanguageSpec:
     polysyllables. Keys are lowercase orthographic word forms; matched
     case-insensitively before positional-beam search. Not inherited
     through ancestry — each spec declares its own block."""
+
+    grammatical_endings: Optional[Dict[str, EndingValue]] = None
+    """Word-ending → IPA, for **suffix morphology**: an orthographic
+    ending whose realisation belongs to the grammatical ending rather
+    than to the letter sequence that spells it.
+
+    Three phenomena this exists for:
+
+    * **French mute ⟨-er⟩/⟨-ez⟩.** The infinitive and agent-noun ⟨-er⟩ is
+      [e] (``parler``, ``boulanger``) and the 2pl ⟨-ez⟩ is [e]
+      (``mangez``, ``nez``, ``chez``) — final-consonant elision in the
+      grammatical ending (Fouché 1959; Tranel 1987 §3). The same letters
+      inside a word (``personne``, ``version``, ``terre``) are ordinary
+      graphemes and are untouched; the closed set of nouns that keep
+      /ɛʁ/ (``mer``, ``hiver``) lives in :attr:`word_exceptions`.
+    * **English suffix palatalization.** ⟨-tion⟩ → /ʃən/, ⟨-cious⟩ →
+      /ʃəs/, ⟨-tial⟩ → /ʃəl/ — palatalization of the stem-final coronal
+      before the ``-ion`` suffix (Chomsky & Halle 1968 §4 *The Sound
+      Pattern of English*; surface values per Wells 2008 LPD).
+    * **Morphologically ambiguous ending realisations, exposed for
+      downstream rescoring.** The reference case is French verbal
+      ⟨-ent⟩: the 3PL inflection is mute (*ils parlent* [paʁl]) while
+      the noun/adjective ⟨-ent⟩ is [ɑ̃] (*vent*, *cent*, *moment*)
+      (Fouché 1959, *Traité de prononciation française*; Tranel 1987 §3;
+      Divay & Vitale 1997 for the same ending as the standard worked
+      example of a G2P rule that needs part of speech). The two readings
+      are told apart by part of speech and by nothing orthographic.
+
+      **o2i does not resolve it, and does not accept a POS tag as an
+      input** (owner ruling; ``AGENTS.md`` §4 and §6). Part of speech
+      belongs to the downstream rescorer. What this layer owes instead
+      is that the unchosen reading still EXISTS in the lattice, because
+      a ranking error is downstream-fixable and a coverage hole is not.
+      Before this field accepted candidate lists, [paʁl] was absent from
+      ``word_candidates("parlent")`` at every *k* and every beam width —
+      no rescorer, however good, could recover it.
+
+      An ambiguous ending is declared as an **ordered candidate list** —
+      the discipline :attr:`graphemes` and :attr:`positional_graphemes`
+      already follow, and of which a single-valued ending was the
+      outlier::
+
+          "grammatical_endings": {"ent": [null, ""], "ment": [null]}
+
+      Element 0 is the rank-1 realisation; ``null`` there means "rank 1
+      is whatever the grapheme tables already produce". That is the
+      shape French uses, because ⟨-ent⟩'s nasal reading is ALREADY what
+      nasal ⟨en⟩ + silent ⟨t⟩ yields, so deferring keeps every current
+      1-best AND every current candidate ordering byte-identical while
+      the ending contributes only the missing mute reading. Elements
+      1..n are lower-ranked licit readings, costed by rank exactly as an
+      ordered grapheme list is (:mod:`orthography2ipa.weights`), and
+      they reach :meth:`~orthography2ipa.g2p.G2P.word_candidates`,
+      oracle@k and any ``RescorerPlugin``. A one-element list of a
+      string is exactly equivalent to that string, and ``[null]``
+      declares an ending that is NOT ambiguous — its only effect is
+      longest-match shielding, which is how French ⟨-ment⟩ keeps the
+      adverb class off ⟨-ent⟩.
+
+      Ordering the list is itself a claim. For ⟨-ent⟩ the
+      frequency-honest order (nasal first) is the type-count-dishonest
+      one — 3873 gold-mute types against 287 nasal — and the nasal
+      reading keeps rank 1 because this library feeds TTS, where type
+      counts do not price a mispronounced *vent*. Oracle@k rises; 1-best
+      does not move, by construction. That asymmetry is the intended
+      shape and must not be read as a win on a 1-best number.
+
+    Keys are lowercase orthographic endings, matched only at the word's
+    *effective* end — the last grapheme tokens, or the last tokens before
+    a transparent grammatical suffix the spec silences (French plural
+    ⟨-s⟩/⟨-x⟩), which is
+    :func:`~orthography2ipa.positional.effective_word_end`'s question.
+    Longest match wins, so ⟨-stion⟩ overrides ⟨-tion⟩. A match replaces
+    the emitted IPA of those trailing tokens only; tokenization of the
+    word's interior is unchanged, which is what separates this from
+    spelling a morpheme as a grapheme key (forbidden — see AGENTS.md).
+
+    Precedence: :attr:`word_exceptions` **>** ``grammatical_endings``
+    **>** :attr:`graphemes` / :attr:`positional_graphemes`."""
 
     def __post_init__(self) -> None:
         # Normalise None to empty dict
