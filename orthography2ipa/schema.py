@@ -202,6 +202,8 @@ class AllophoneRuleModel(_Strict):
     preceded_by_grapheme: Optional[List[str]] = None
     followed_by_grapheme: Optional[List[str]] = None
     followed_by_grapheme_not: Optional[List[str]] = None
+    word_contains_grapheme: Optional[List[str]] = None
+    word_contains_grapheme_not: Optional[List[str]] = None
     grapheme: Optional[List[str]] = None
     word: Optional[List[str]] = None
     notes: str = ""
