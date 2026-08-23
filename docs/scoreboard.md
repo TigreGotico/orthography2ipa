@@ -654,8 +654,8 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | ycl | wikipron | 111 | 0.0108 | 0.0108 | 0.0108 | 0.9369 | 0.9369 | [0.0030, 0.0201] | 0.9369 | research | crowd-scraped |
 | yi | wikipron | 4051 | 0.3928 | 0.3883 | 0.3882 | 0.0491 | 0.0491 | [0.3871, 0.3985] | 0.0442 | research | crowd-scraped |
 | ykg | northeuralex | 813 | 0.3616 | 0.3616 | 0.3616 | 0.0418 | 0.0418 | [0.3507, 0.3730] | 0.0418 | research | lexicon-derived |
-| yo | vox_communis | 5263 | 0.6011 | 0.5984 | 0.5984 | 0.0004 | 0.0004 | [0.5971, 0.6049] | 0.0004 | research | epitran-derived |
-| yo | wikipron | 4065 | 0.3944 | 0.3941 | 0.3941 | 0.0959 | 0.0959 | [0.3883, 0.4007] | 0.0959 | research | crowd-scraped |
+| yo | vox_communis | 5263 | 0.6341 | 0.6315 | 0.6315 | 0.0004 | 0.0004 | [0.6298, 0.6386] | 0.0004 | research | epitran-derived |
+| yo | wikipron | 4065 | 0.3832 | 0.3830 | 0.3830 | 0.1065 | 0.1065 | [0.3769, 0.3896] | 0.1063 | research | crowd-scraped |
 | yol | wikipron | 1972 | 0.3876 | 0.3876 | 0.3876 | 0.1344 | 0.1344 | [0.3761, 0.3987] | 0.1344 | research | crowd-scraped |
 | yrk | northeuralex | 1016 | 0.2349 | 0.2344 | 0.2344 | 0.1348 | 0.1348 | [0.2247, 0.2449] | 0.1348 | research | lexicon-derived |
 | yrk | wikipron | 295 | 0.3852 | 0.3844 | 0.3844 | 0.0678 | 0.0678 | [0.3639, 0.4072] | 0.0678 | research | crowd-scraped |
