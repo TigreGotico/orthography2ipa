@@ -14,8 +14,10 @@ def segments(word):
 
     ⟨ng⟩ and the prenasalised stops are licit onsets in Old Tupi, but the
     shared syllabifier treats a velar nasal as coda-only (a calibration
-    taken from Germanic), so the mark lands one segment early in words like
-    ⟨atatinga⟩. The claims below are about segments, not about that.
+    taken from Germanic), so the mark lands one segment early in every word
+    whose final onset is ⟨ng⟩ or a prenasalised stop — 35 of the 375 gold
+    headwords, not just ⟨atatinga⟩. The claims below are about segments,
+    not about that.
     """
     return o2i.G2P("tpw").transcribe_word(word).replace("\u02c8", "")
 

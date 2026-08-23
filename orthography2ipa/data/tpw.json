@@ -119,6 +119,13 @@
   "r": [
    "ɾ"
   ],
+  "g": [
+   "ɣ",
+   "ɡ"
+  ],
+  "h": [
+   "h"
+  ],
   "'": [
    "ʔ"
   ]
@@ -213,9 +220,15 @@
   ],
   "ɡw": [
    "ɡw"
+  ],
+  "ɣ": [
+   "ɣ"
+  ],
+  "h": [
+   "h"
   ]
  },
- "notes": "Old Tupi (Tupinambá), the língua geral of colonial Brazil, written in the normalised orthography of modern editions. Six oral vowels /a ɛ i ɔ u ɨ/ and their nasal counterparts; stops /p t k ʔ/, fricatives /β s ʃ/, nasals /m n ŋ ɲ/, tap /ɾ/ and the semivowels /j w ɨ̯/. ⟨b⟩ is the bilabial fricative [β], ⟨x⟩ is [ʃ], ⟨ng⟩ is [ŋ], ⟨nh⟩ is [ɲ], ⟨gû⟩ is [ɡw] and ⟨'⟩ is the glottal stop. ⟨mb⟩ and ⟨nd⟩ are /m/ and /n/ before an oral vowel, realised as the prenasalised stops [ᵐb ⁿd]. The language is also the indigenous substrate node that Brazilian Portuguese resolves to for toponyms and loans (abacaxi, mandioca, capim, jacaré).",
+ "notes": "Old Tupi (Tupinambá), the língua geral of colonial Brazil, written in the normalised orthography of modern editions. Six oral vowels /a ɛ i ɔ u ɨ/ and their nasal counterparts; stops /p t k ʔ/, fricatives /β s ʃ h/, nasals /m n ŋ ɲ/, tap /ɾ/, the velar fricative /ɣ/ and the semivowels /j w ɨ̯/. ⟨b⟩ is the bilabial fricative [β], ⟨x⟩ is [ʃ], ⟨g⟩ is the velar fricative [ɣ], ⟨h⟩ is [h], ⟨ng⟩ is [ŋ], ⟨nh⟩ is [ɲ], ⟨gû⟩ is [ɡw] and ⟨'⟩ is the glottal stop. ⟨mb⟩ and ⟨nd⟩ are /m/ and /n/ before an oral vowel, realised as the prenasalised stops [ᵐb ⁿd]. Bare ⟨d⟩ is not a letter of this orthography — ⁿd is only ever spelled ⟨nd⟩ — but bare ⟨g⟩ and ⟨h⟩ are, distinct from the digraphs ⟨gû⟩ and ⟨ng⟩. The language is also the indigenous substrate node that Brazilian Portuguese resolves to for toponyms and loans (abacaxi, mandioca, capim, jacaré).",
  "quality": "research",
  "script_type": "alphabet",
  "iso639_3": "tpw",
@@ -251,11 +264,11 @@
    "id": "rodrigues1985",
    "author": "Rodrigues, A. D.",
    "year": 1985,
-   "title": "Evidence for Tupi-Guarani Genetic Relationship",
+   "title": "Evidence for Tupi-Carib Relationships",
    "publisher": "University of Texas Press",
    "url": null,
    "pages": null,
-   "notes": "Classification of Old Tupi within Tupí-Guaraní. Claim is standard; edition not consulted."
+   "notes": "A chapter in South American Indian Languages: Retrospect and Prospect (Klein, H. E. M. & Stark, L. R., eds.), not a Tupí-Guaraní-internal classification: it argues for a macro-family link between Tupí and Cariban, not for the position of Old Tupi within Tupí-Guaraní. Retained for background on the author's broader genetic work on the Tupí family; edition not consulted."
   },
   {
    "id": "wikipedia_tpw_phonology",
@@ -302,7 +315,7 @@
     "ŋ",
     "ɲ"
    ],
-   "notes": "Regressive nasal harmony: a vowel nasalises before a following nasal consonant. /m n/ surface as the prenasalised stops [ᵐb ⁿd] before an oral vowel, and the vowel to their left is nasal in 17 of the 18 gold tokens that write the prenasalisation; before plain [m n ŋ ɲ] the gold splits 54 nasal to 57 oral, so the rule follows the standard leftward-spreading Tupí-Guaraní analysis rather than the gold's mixed practice."
+   "notes": "Regressive nasal harmony: a vowel nasalises before a following nasal consonant. /m n/ surface as the prenasalised stops [ᵐb ⁿd] before an oral vowel, and the vowel to their left is nasal in 17 of the 18 gold tokens that write the prenasalisation; before plain [m n ŋ ɲ] the gold splits 54 nasal to 57 oral, so the rule follows the standard leftward-spreading Tupí-Guaraní analysis rather than the gold's mixed practice. The rank-2 close-mid readings [e] and [o] are deliberately left out of this harmony and are never nasalised, even before the same nasal contexts: adding /e/→[ẽ] and /o/→[õ] rules leaves the 1-best transcription unchanged (PER 0.0944, WER 0.2957) but widens oracle@5 from 0.0473 to 0.0520 by adding candidates that are never the gold choice, so the rank-2 vowels are held oral to keep the n-best list tight."
   },
   {
    "id": "nasal-harmony-ɛ",
