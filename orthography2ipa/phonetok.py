@@ -1293,6 +1293,7 @@ class PhonetokTokenizer:
             v.lower() for v in spec.preposed_vowels
         )
         self._coda_no_inherent_vowel: bool = spec.coda_no_inherent_vowel
+        self._inherent_vowel_final: Optional[str] = spec.inherent_vowel_final
 
     def _supplies_vowel_at(self, text: str, pos: int) -> bool:
         """True if the grapheme starting at *pos* supplies a syllable nucleus.
@@ -2025,9 +2026,16 @@ class PhonetokTokenizer:
                                     and self._silenced_before_consonant(gkey)
                                 )
                             ):
-                                ipa_vals = tuple(
-                                    v + self.spec.inherent_vowel for v in ipa_vals
-                                )
+                                # Word-finally the spec may realise the
+                                # inherent vowel differently (or not at all),
+                                # but never at the cost of the word's last
+                                # nucleus — see inherent_vowel_final.
+                                vowel = self.spec.inherent_vowel
+                                if (not next_ch
+                                        and self._inherent_vowel_final is not None
+                                        and self._syllable_has_nucleus(tokens)):
+                                    vowel = self._inherent_vowel_final
+                                ipa_vals = tuple(v + vowel for v in ipa_vals)
                         # else: a dependent vowel sign follows and is tokenised on
                         # the next pass, supplying this syllable's vowel instead.
                 tokens.append(Token(
