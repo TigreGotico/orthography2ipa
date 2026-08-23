@@ -18,6 +18,31 @@ Boko uses the ordinary Latin letters plus four hooked letters, ⟨ɓ ɗ ƙ ƴ⟩
 digraphs ⟨sh ts kw gw ƙw ky gy ƙy fy⟩. Niger spells ⟨ƴ⟩ as ⟨ʼy⟩; both spellings are
 accepted and both transcribe alike, because they are one phoneme.
 
+The apostrophe is a letter of the alphabet, not punctuation: it spells the
+glottal stop, which reaches Hausa mostly through Arabic loans and is written
+medially in words like *’addu’aa* 'prayer' and *saba’in* 'seventy' (p. 540).
+The typewriter apostrophe U+0027, the modifier letter U+02BC and the curly
+quotation-mark apostrophe U+2019 — the mark Newman's own citation forms use —
+are all accepted and map alike. The two-letter ⟨'y⟩/⟨’y⟩ still wins the
+tokenizer, so the glottalized approximant is never split into a glottal stop
+plus /j/.
+
+Mapping the quotation-mark apostrophe has a cost: nothing in the alphabet
+reading distinguishes it from an actual quotation mark, so a quoted word now
+picks up a spurious glottal stop at both ends — `'sannu'` comes out
+`ʔsannuʔ`, and `don't` comes out `donʔt`. Word-initial ⟨ʔs⟩ is not a possible
+Hausa onset, which is the tell that the source was punctuation rather than
+the letter, but the spec has no way to act on that tell. The trade is kept
+because leaving U+2019 unmapped drops the letter silently on every genuine
+occurrence, which is the more common case and the one the spec exists to get
+right.
+
+Writing that marks the rhotic contrast — Newman's own citation forms — uses
+⟨r̃⟩ for the tap or roll and leaves plain ⟨r⟩ for the flap (p. 539); the
+gold's eight ⟨r̃⟩ headwords are the only evidence here for how widely that
+convention is followed beyond Newman himself. The spec reads it: where the
+diacritic is written, the flap candidate is excluded.
+
 ## What Boko does not write
 
 Three things are contrastive in Hausa and absent from the spelling. Two of them
@@ -65,6 +90,8 @@ work.
 | ky, gy, ƙy | kʲ, ɡʲ, kʲʼ | unit palatalized velars |
 | fy | fʲ | palatalized labial; lexically infrequent |
 | r | r / ɽ | see above; word-finally the roll is declared but not enforced |
+| r̃ | r | tap or roll only; the diacritic excludes the flap |
+| ' , ʼ , ’ | ʔ | glottal stop; a letter, not punctuation |
 | p | p | loan spellings only; not a native phoneme |
 
 Kw, gw, ky and gy are phonemes rather than consonant-plus-glide sequences
@@ -89,12 +116,27 @@ The `ha` wikipron row scores against a gold whose IPA column is fully marked for
 tone and length while its orthographic column is stripped of both. Almost all of
 the reported error is that mismatch rather than rule error, and the split is
 worth stating precisely. Measured over the 1857 scored items, ignoring tone
-marks alone leaves about a third of the error (PER 0.5397 to 0.1747); ignoring
-tone and length together leaves roughly a twentieth of it (PER 0.0292, with
-84.7% of words then matching exactly). What remains after both is the
+marks alone leaves about a third of the error (PER 0.5340 to 0.1690); ignoring
+tone and length together leaves about a twenty-fourth of it (PER 0.0223, with
+89.1% of words then matching exactly). Counted as aligned edits — total
+Levenshtein edits between the transcription and the closer gold, summed
+across the gold, before and after folding each mark out of both sides —
+unwritten tone is 67.7% of the total edit count and unwritten length a further
+29.0%, so the two together are 96.7% of it. What remains after both is the
 genuinely segmental error, and the largest single share of *that* is
 the ⟨r⟩ ambiguity described above — also unrecoverable, but lexically rather
-than notationally so.
+than notationally so: 102 of the remaining aligned edits are a gold /ɽ/ against
+a transcribed /r/.
+
+Reordering the ⟨r⟩ candidates to put the flap first was measured, on the
+shipped spec, and refused. It would take the epitran-derived vox_communis row
+from PER 0.1130 to 0.0692 and its exact match from 0.4937 to 0.6763, but that
+gold writes `ɽ` 1380 times and a bare `r` not once — it cannot represent the
+contrast, so the gain is agreement with epitran rather than accuracy. On
+wikipron, the only `ha` gold whose IPA column is human notation, the same
+reordering *costs* PER, 0.5340 to 0.5378; that gold writes `r` 366 times
+against `ɽ` 236. The shipped ordering stays, and Newman's remark that the flap
+is the native rhotic is a statement about origin, not about text frequency.
 
 Two further divergences from that gold are deliberate. It writes ⟨j⟩ as /ʒ/,
 which Newman gives as the Niger pronunciation, where Standard Kano Hausa has the
