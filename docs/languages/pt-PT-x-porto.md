@@ -1,4 +1,4 @@
-# Portuense / Northern European Portuguese (pt-PT-x-porto) — Phonology Reference
+# Portuense / Northern European Portuguese (pt-PT-x-porto): Phonology Reference
 
 **Code**: `pt-PT-x-porto` | **Family**: Indo-European > Romance > Ibero-Romance | **Script**: Latin (alphabet)
 **Parent**: `pt-PT` (standard, Lisbon-type EP) | **Quality tier**: research
@@ -6,7 +6,7 @@
 *Gramática do Português* vol. I), Mateus & d'Andrade (2000)
 
 `pt-PT-x-porto` models the European Portuguese of **Porto, Greater Porto and
-the Baixo-Minho / Douro-Litoral zone** — Cintra's *Baixo-Minho e
+the Baixo-Minho / Douro-Litoral zone**, Cintra's *Baixo-Minho e
 Douro-Litoral* variety, one of the most idiosyncratic (Cintra's "forte
 personalidade linguística") sub-varieties of Northern EP. It is a **delta**
 spec: it inherits the whole standard pt-PT system (unstressed vowel reduction,
@@ -19,9 +19,9 @@ Porto-specific diagnostic features.
 The three features are drawn from Cintra's (1971) list of maximally diagnostic
 phonetic traits for the Galician-Portuguese dialect space.
 
-### 1. Betacism — /v/ ~ /b/ merger (Cintra feature 1)
+### 1. Betacism: /v/ ~ /b/ merger (Cintra feature 1)
 
-The phonological opposition between /v/ and /b/ is lost; both collapse into a
+The phonological opposition between /v/ and /b/ is lost. Both collapse into a
 single phoneme /b/, realised **[b] in all positions**. Cintra (1971):
 *"o desaparecimento da oposição fonológica entre os fonemas /v/ e /b/ e a sua
 fusão num fonema único /b/"*. This is the primary trait separating Northern
@@ -42,7 +42,7 @@ grapheme map.
 
 Cintra (1971) isolates this as *the* defining feature of the region:
 *"a ditongação, tão caracterizadora, das vogais tónicas fechadas [e] em [je],
-[o] em [wo] (por vezes [wɔ])"* — a **stressed close-mid vowel** becomes a
+[o] em [wo] (por vezes [wɔ])"*, a **stressed close-mid vowel** becomes a
 rising diphthong. Segura (2013) independently names diphthongisation of
 stressed vowels the characteristic trait of the north-western variety.
 
@@ -77,8 +77,8 @@ feature, not a Northern one (see [pt-PT](pt-PT.md), [pt-PT-x-algarve](pt-PT-x-al
 
 ## Known limits (documented, not faked)
 
-**Apico-alveolar sibilant.** Cintra's *primary* North/South isogloss — the
-Northern apico-alveolar [s̺ z̺] vs the standard predorsodental [s̪ z̪] — is an
+**Apico-alveolar sibilant.** Cintra's *primary* North/South isogloss, the
+Northern apico-alveolar [s̺ z̺] vs the standard predorsodental [s̪ z̪], is an
 **articulatory place distinction invisible to a phoneme-level,
 orthography-blind engine**. It is his single most diagnostic feature yet the
 least simulable at this level. It is left only as a documentary surface variant
@@ -89,8 +89,8 @@ realisation.
 to the close vowels [e]/[o]. Whether a spelling-unmarked stressed ⟨e⟩/⟨o⟩ is
 open or close is **lexical, not predictable from orthography**, and the
 inherited pt-PT map defaults to the *open* allophone. So words whose underlying
-vowel is close but which the base engine transcribes open — including the
-emblematic `Porto` (→ ˈpɔɾtu, dialectally [ˈpwoɾtu]) and `cedo` (→ ˈsɛdu) — are
+vowel is close but which the base engine transcribes open, including the
+emblematic `Porto` (→ ˈpɔɾtu, dialectally [ˈpwoɾtu]) and `cedo` (→ ˈsɛdu), are
 **not reached** by the diphthongisation rule. Widening the rule to the open
 vowels is rejected because it would wrongly diphthongise genuinely open tonic
 vowels (café, avó, só). Reaching these lexically-close words would require a
@@ -106,7 +106,7 @@ diphthong preservation but **not** for tonic-vowel diphthongisation. Because
 that gold is scored at sentence level (only the utterance-final word carries
 stress), the stress-gated diphthongisation rules almost never fire on it, so
 they leave both the `ep_dialects` (PER 0.2342) and `clup_dialect` (PER 0.4895)
-rows unchanged — a source-correct rule that neither helps nor harms the
+rows unchanged, a source-correct rule that neither helps nor harms the
 available golds. Per the honesty gate (B8 precedent) the rules ship on their
 published grounding regardless of gold reward.
 
