@@ -2262,19 +2262,6 @@
     "limit": 1000
   },
   {
-    "lang": "de-CH",
-    "dataset": "wikipron",
-    "n": 448,
-    "per": 0.4471,
-    "per_ci_low": 0.4265,
-    "per_ci_high": 0.4673,
-    "exact_match": 0.0402,
-    "quality_tier": "research",
-    "provenance": "crowd-scraped",
-    "harness_version": "1.1",
-    "limit": 1000
-  },
-  {
     "lang": "de-DE",
     "dataset": "ipa_childes",
     "n": 999,
@@ -2295,6 +2282,19 @@
     "per_ci_low": 0.5367,
     "per_ci_high": 0.5537,
     "exact_match": 0.0,
+    "quality_tier": "research",
+    "provenance": "crowd-scraped",
+    "harness_version": "1.1",
+    "limit": 1000
+  },
+  {
+    "lang": "de-x-alemannic",
+    "dataset": "wikipron",
+    "n": 448,
+    "per": 0.1734,
+    "per_ci_low": 0.1559,
+    "per_ci_high": 0.1938,
+    "exact_match": 0.4554,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",

@@ -394,7 +394,10 @@ _WIKIPRON_FILES = {
     "lmo":       "lmo_latn_broad.tsv",              # Lombard, ~595 rows
     "iba":       "iba_latn_broad.tsv",              # Iban, ~584 rows
     "az":        "aze_latn_broad.tsv",              # Azerbaijani, ~513 rows
-    "de-CH":     "gsw_latn_broad.tsv",              # Swiss German, ~511 rows
+    # ISO 639-3 gsw. The words are Alemannic DIALECT (Chatz, Angscht, Bueb,
+    # Chilbi) in Dieth-style spelling, not Schweizerhochdeutsch, so the row
+    # belongs to the spec that declares iso639_3 "gsw" — de-x-alemannic.
+    "de-x-alemannic": "gsw_latn_broad.tsv",        # Alemannic German, ~511 rows
     "pdc":       "pdc_latn_broad.tsv",              # Pennsylvania German, ~510 rows
     "lt":        "lit_latn_broad.tsv",              # Lithuanian, ~507 rows
     "co":        "cos_latn_broad.tsv",              # Corsican, ~492 rows
