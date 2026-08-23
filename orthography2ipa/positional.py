@@ -805,7 +805,7 @@ def grapheme_positions(
         # Old Irish ⟨ía úa⟩ spell a long-vowel-plus-offglide where the
         # *trailing* ⟨a⟩ sets quality under leathan le leathan, so ⟨n⟩ in
         # ⟨cían⟩ is broad, not slender off the digraph's opening ⟨í⟩
-        # (Thurneysen 1946 §69; McCone 2005). This is per-spec, per-grapheme
+        # (Thurneysen 1946; McCone 2005). This is per-spec, per-grapheme
         # opt-in: every other spec's multi-letter vowel graphemes — German
         # ⟨eu äu⟩ before ⟨ch⟩, Modern Irish ⟨ae⟩ — keep the opening-letter
         # reading unchanged. BEFORE_* (line ~681) already reads the opening

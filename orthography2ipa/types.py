@@ -1947,7 +1947,7 @@ class LanguageSpec:
     spell a long vowel plus an offglide, and *caol le caol* / *leathan le
     leathan* reads the quality that reaches the next consonant off the
     digraph's CLOSING letter, so ⟨n⟩ in ⟨cían⟩ is broad (the digraph ends in
-    ⟨a⟩), not slender off the opening ⟨í⟩ (Thurneysen 1946 §69; McCone 2005).
+    ⟨a⟩), not slender off the opening ⟨í⟩ (Thurneysen 1946; McCone 2005).
 
     This is an opt-in per spec, not a global engine behaviour: naming a
     digraph here changes only that grapheme, only in this language. Every
