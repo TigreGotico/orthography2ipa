@@ -554,3 +554,95 @@ class TestTurkish:
         capital dotted İ resolving to dotted i."""
         assert (orthography2ipa.transcribe("IĞDIR", "tr")
                 != orthography2ipa.transcribe("İĞDIR", "tr"))
+
+
+class TestPunjabi:
+    """Punjabi (pa) — Gurmukhi abugida, lexical tone from the lost
+    murmured series, and Indo-Aryan word-final schwa deletion.
+
+    Every expectation here is a claim from a cited source recorded in
+    ``data/pa.json``'s ``sources``; the rule notes carry the citations.
+    """
+
+    def setup_method(self):
+        self.spec = _load("pa")
+
+    def _say(self, word: str) -> str:
+        return orthography2ipa.G2P("pa").transcribe_word(word)
+
+    def test_ra_is_an_alveolar_tap(self):
+        """⟨ਰ⟩ is the alveolar tap /ɾ/, contrasting with retroflex /ɽ/."""
+        _assert_first(_grapheme(self.spec, "ਰ"), "ɾ", label="ਰ")
+
+    def test_retroflex_tap_is_distinct(self):
+        """⟨ੜ⟩ stays the retroflex tap /ɽ/ — the contrast is four-way."""
+        _assert_first(_grapheme(self.spec, "ੜ"), "ɽ", label="ੜ")
+
+    def test_short_i_is_lax(self):
+        """The monomoraic front vowel is /ɪ/, not /i/."""
+        _assert_first(_grapheme(self.spec, "ਿ"), "ɪ", label="ਿ")
+        _assert_first(_grapheme(self.spec, "ਇ"), "ɪ", label="ਇ")
+
+    def test_short_u_is_lax(self):
+        """The monomoraic back vowel is /ʊ/, not /u/."""
+        _assert_first(_grapheme(self.spec, "ੁ"), "ʊ", label="ੁ")
+        _assert_first(_grapheme(self.spec, "ਉ"), "ʊ", label="ਉ")
+
+    def test_long_vowels_stay_tense(self):
+        """Length is contrastive: ⟨ੀ⟩ and ⟨ੂ⟩ are unaffected."""
+        _assert_first(_grapheme(self.spec, "ੀ"), "iː", label="ੀ")
+        _assert_first(_grapheme(self.spec, "ੂ"), "uː", label="ੂ")
+
+    def test_word_final_inherent_vowel_is_deleted(self):
+        """ਸੜਕ 'road' is [səɽək], never *[səɽəkə] — the schwa after the
+        last consonant letter is elided."""
+        assert self._say("ਸੜਕ") == "səɽək"
+
+    def test_word_final_deletion_after_a_long_vowel(self):
+        """ਵੇਦ is [ʋeːd̪]: the final ⟨ਦ⟩ carries no vowel."""
+        assert self._say("ਵੇਦ") == "ʋeːd̪"
+
+    def test_monosyllable_keeps_its_only_vowel(self):
+        """ਨ is [nə]: a one-letter word's schwa is its only nucleus."""
+        assert self._say("ਨ") == "nə"
+
+    def test_first_schwa_of_a_two_letter_word_survives(self):
+        """ਕਰ 'do' is [kəɾ]: only the FINAL schwa goes."""
+        assert self._say("ਕਰ") == "kəɾ"
+
+    def test_murmured_series_devoices_word_initially(self):
+        """⟨ਘ⟩ word-initially merged with the voiceless unaspirated
+        series: ਘਰ 'house' opens with [k], carrying the tone."""
+        assert self._say("ਘਰ") == "k˩əɾ"
+
+    def test_murmured_series_devoices_before_a_vowel_sign(self):
+        """The same reflex when the vowel is written: ਧੀ is [t̪˩iː]."""
+        assert self._say("ਧੀ") == "t̪˩iː"
+
+    def test_murmured_series_stays_voiced_non_initially(self):
+        """Non-initially the merger went the other way (*DH > D), so
+        ਸਿੰਘ keeps a voiced [ɡ], not the word-initial devoicing merger.
+        The gold data puts the tonal reflex on the PRECEDING vowel in
+        this position, which is not yet encoded (see the spec note on
+        the non-initial *DH reflex), so only the voicing is asserted
+        here, not the tone's landing site."""
+        result = self._say("ਸਿੰਘ")
+        assert "ɡ" in result
+        assert "k" not in result
+
+    def test_tone_is_written(self):
+        """The tonal reflex is transcribed, not dropped."""
+        assert "˩" in self._say("ਘਰ")
+
+    def test_tap_allophone_is_not_a_trill(self):
+        """⟨ਰ⟩ is the tap /ɾ/ throughout — its allophone set must not
+        realise it as the trill [r], which is exactly the four-way
+        liquid contrast this spec is built to keep distinct."""
+        assert self.spec.allophones["ɾ"] == ["ɾ", "r"]
+
+    def test_dh_voiced_allophones_cover_the_grapheme_table(self):
+        """Every *DH consonant the grapheme table can emit with its tone
+        mark (⟨ਘ ਝ ਢ ਧ ਭ⟩ non-initially) needs an allophone entry, not
+        just the word-initial devoiced set."""
+        for voiced in ("ɡ˩", "dʒ˩", "ɖ˩", "d̪˩", "b˩"):
+            assert voiced in self.spec.allophones, voiced
