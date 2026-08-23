@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.76.22a1](https://github.com/TigreGotico/orthography2ipa/tree/7.76.22a1) (2026-08-23)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.76.21a1...7.76.22a1)
+
+**Merged pull requests:**
+
+- fix\(ota\): read Ottoman vowel harmony off the hard/soft consonant letters [\#1042](https://github.com/TigreGotico/orthography2ipa/pull/1042) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.76.21a1](https://github.com/TigreGotico/orthography2ipa/tree/7.76.21a1) (2026-08-18)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.76.20a1...7.76.21a1)
@@ -738,10 +746,6 @@
 ## [7.64.4a2](https://github.com/TigreGotico/orthography2ipa/tree/7.64.4a2) (2026-08-11)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.64.4a1...7.64.4a2)
-
-**Merged pull requests:**
-
-- data\(fr-FR\): extend loanword -er carve-out with 103 gold-attested types [\#845](https://github.com/TigreGotico/orthography2ipa/pull/845) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.64.4a1](https://github.com/TigreGotico/orthography2ipa/tree/7.64.4a1) (2026-08-10)
 
