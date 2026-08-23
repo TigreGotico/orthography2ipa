@@ -275,7 +275,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | grc | wikipron | 58095 | 0.1647 | 0.1647 | 0.1647 | 0.2560 | 0.2560 | [0.1637, 0.1659] | 0.2560 | research | crowd-scraped |
 | gu | wikipron | 4082 | 0.1842 | 0.1840 | 0.1839 | 0.3025 | 0.3028 | [0.1793, 0.1892] | 0.3025 | research | crowd-scraped |
 | gul | wikipron | 207 | 0.4674 | 0.4674 | 0.4674 | 0.0580 | 0.0580 | [0.4374, 0.4977] | 0.0580 | research | crowd-scraped |
-| guw | wikipron | 595 | 0.4359 | 0.4196 | 0.4168 | 0.0034 | 0.0034 | [0.4241, 0.4473] | 0.0034 | research | crowd-scraped |
+| guw | wikipron | 595 | 0.4311 | 0.4148 | 0.4120 | 0.0034 | 0.0034 | [0.4196, 0.4423] | 0.0034 | research | crowd-scraped |
 | gv | wikipron | 690 | 0.3631 | 0.3553 | 0.3505 | 0.1594 | 0.1623 | [0.3460, 0.3792] | 0.1565 | research | crowd-scraped |
 | gwc | wikipron | 165 | 0.4282 | 0.4049 | 0.3916 | 0.0242 | 0.0242 | [0.3992, 0.4568] | 0.0242 | research | crowd-scraped |
 | gwd | wold | 976 | 0.0481 | 0.0481 | 0.0481 | 0.7602 | 0.7602 | [0.0419, 0.0552] | 0.7602 | research | lexicon-derived |
