@@ -826,6 +826,31 @@ only, and the interdentals are defended by `wikipron` and by unit tests.
 from a competitor's output. Directional breadth signal only. Can never gate
 a regression or qualify a spec for the production tier.
 
+**Known coverage hole, `gn` (Guaraní): the gold cannot write two of the
+phonemes it is scored on.** Of the 4,264 `vox_communis` `gn` words, 1,353
+contain the letter ⟨m⟩, and not one of them has a plain [m] in the gold:
+Guaraní prenasalizes ⟨m⟩ and ⟨n⟩ before an oral vowel (`retãme` →
+`ɾetãᵐbe`, `mba'épiko` → `ᵐbaʔepiko`), and the upstream phonemizer only
+ever emits the prenasalized cluster, never the plain nasal. Separately, of
+503 words containing ⟨ñ⟩, the gold writes [ɲ] in zero of them — it writes
+[dʒ] in all 503, the same value it assigns to plain ⟨j⟩ (also [dʒ] in all
+740 of the words that contain that letter), so the gold cannot
+distinguish ⟨ñ⟩ from ⟨j⟩ at all. `wikipron`'s much smaller `gn` row does
+not share either gap (69 of 85 ⟨m⟩-words keep [m], 32 of 34 ⟨ñ⟩-words
+keep [ɲ]), so this is a property of this specific gold's phonemizer, not
+of Guaraní. A spec that writes plain [m] and [ɲ] where the orthography
+calls for them will never match this gold on those words, no matter how
+the rest of the spec is written.
+
+The German and Guaraní cases are the same failure mode at different
+scales: before treating a `machine-generated`, `espeak-derived` or
+`epitran-derived` row as something to close the gap on, count how often
+the gold ever writes the phoneme a spec is emitting. A segment the gold
+writes in a nontrivial share of the words where it belongs is a real
+target. A segment the gold never writes at all, no matter how often the
+orthography calls for it, is a ceiling contributed by the tool that
+produced the gold, and no amount of tuning the spec will close it.
+
 ### IPA-CHILDES split (`ipa_childes`)
 
 [fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split)
@@ -861,7 +886,7 @@ and none of the espeak/epitran rows can qualify or block a language for
 | `ca` | `ca-ES` | `phonemizer` (espeak-ng), `ca` | espeak-derived | 3814 | 0.3223 |
 | `cy` | `cy-GB` | `phonemizer` (espeak-ng), `cy` | espeak-derived | 4666 | 0.3009 |
 | `da` | `da-DK` | `phonemizer` (espeak-ng), `da` | espeak-derived | 2233 | 0.5170 |
-| `de-DE` | `de-DE` | `epitran`, `deu-Latn` | epitran-derived | 24859 | 0.3881 |
+| `de-DE` | `de-DE` | `epitran`, `deu-Latn` | epitran-derived | 24857 | 0.3948 |
 | `en-GB` | `en-GB` | `phonemizer` (espeak-ng), `en-gb` | espeak-derived | 11447 | 0.3864 |
 | `en-US` | `en-US` | `phonemizer` (espeak-ng), `en-us` | espeak-derived | 18055 | 0.4296 |
 | `es-ES` | `es-ES` | `epitran`, `spa-Latn` | epitran-derived | 13155 | 0.0945 |
@@ -940,6 +965,49 @@ Present in the dataset but **not** wired in:
   column is Jyutping-with-tone-numbers, which the stub does not model
   either, so `G2P('yue').transcribe_word(...)` returns `""` for every row.
   A spec gap, not a gold problem.
+
+#### German (`de-DE`): the epitran row measures a ceiling, not a defect
+
+`de-DE`'s three `ipa_childes`-adjacent word-level golds disagree with each
+other far more than a "German is mediocre" reading would suggest. Taking
+the words that appear in all three of `wikipron`, `ipadict` and
+`ipa_childes` (6,594 words, same engine, same broad/stress-stripped
+normalization), the spec scores 0.1650 against `wikipron` and 0.1926
+against `ipadict` — the two human/lexicographic golds — and 0.3993
+against `ipa_childes`'s epitran output. German is not scoring worse than
+its peers on this intersection; it is scoring specifically worse against
+epitran, by more than double.
+
+The reason is systematic, not diffuse. Across the 24,857 `de-DE`
+`ipa_childes` words the engine covers, the epitran gold contains 588
+occurrences of ə and 25 of ɐ (counting every ə/ɐ segment in the
+normalized transcription, not the count of distinct words containing
+one — by distinct word, ə appears in 448 of the golds), against 13,822
+and 1,376 occurrences in the engine's own output — epitran's German gold
+almost never writes either of German's two most common reduced-vowel
+segments. Looking at where those segments belong:
+of 3,755 words ending in orthographic ⟨-e⟩, the gold ends in ə exactly
+twice and in ɛː or ɛ about 3,572 times — it spells the word-final schwa
+as a full, often long, mid vowel instead. Of 1,437 words ending in
+⟨-er⟩, it ends in ɐ zero times. Of 1,483 words ending in ⟨b⟩, ⟨d⟩ or
+⟨g⟩, 1,151 keep a voiced final stop in the gold, so Auslautverhärtung
+(German's word-final devoicing of obstruents) is not represented. Of 721
+words with an initial ⟨Sp⟩ or ⟨St⟩, 640 are transcribed with a plain
+/s/ rather than the /ʃp/, /ʃt/ that Standard German spelling pronunciation
+requires. And the gold carries a length mark (ː) 37,082 times over the
+same word set against the engine's 9,947. Every one of these is a
+correct, standard, textbook description of German; every one of them
+reads as an error against this gold, because epitran's `deu-Latn` table
+does not model final-schwa reduction, the vocalized /r/, final-obstruent
+devoicing, initial /ʃ/ before /p, t/, or German's own vowel-length
+contrasts. Substituting just the ɛː-for-final-schwa convention into the
+engine's own output (nothing else changed) drops the full-set PER from
+0.3948 to 0.3618 by itself; the other four conventions each account for a
+further slice of the gap. Scoring meaningfully below that residual would
+mean reproducing epitran's specific omissions rather than describing
+German, which is exactly what the `epitran-derived` tier
+([Reliability tiers](#reliability-tiers)) already warns this row can never
+certify.
 
 ### IPA-BabyLM (`ipa_babylm`)
 
