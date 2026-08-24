@@ -23,6 +23,9 @@
     "ou": [
       "u"
     ],
+    "où": [
+      "u"
+    ],
     "â": [
       "aː"
     ],
@@ -69,6 +72,14 @@
       "ʒ"
     ],
     "c'h": [
+      "x",
+      "h"
+    ],
+    "c’h": [
+      "x",
+      "h"
+    ],
+    "cʼh": [
       "x",
       "h"
     ],
@@ -281,7 +292,7 @@
       "notes": "Gaulish substrate traces in Armorican territory"
     }
   ],
-  "notes": "Breton (Brezhoneg). ~200,000 speakers (est. 2020). Brittany, France. Brought from Britain by insular Brythonic speakers (~5th–6th c. CE). Four main dialects: Léonard (KLT basis), Trégorrois, Cornouaillais, Vannetais (most divergent). ⟨c'h⟩ = /x/; ⟨zh⟩ = /z/ (KLT) or /h/ (Vannetais). French strongly influenced phonology (uvular /ʁ/, nasal vowels in loans). Refs: Hemon (1975), Press (1986).",
+  "notes": "Breton (Brezhoneg). ~200,000 speakers (est. 2020). Brittany, France. Brought from Britain by insular Brythonic speakers (~5th–6th c. CE). Four main dialects: Léonard (KLT basis), Trégorrois, Cornouaillais, Vannetais (most divergent). INPUT CONTRACT: peurunvan (the 1941 \"wholly unified\" orthography), which is what ⟨zh⟩, ⟨c'h⟩ and the plural digraph ⟨où⟩ identify; the interdialectal and skolveurieg systems spell the same words differently and are not this spec's input. The pronunciation described is the KLT-based standard: ⟨zh⟩ = /z/ (it is /h/ in Vannetais), ⟨c'h⟩ = /x/, penultimate stress. ⟨c'h⟩ is also written with U+2019 and U+02BC in running text, so all three apostrophes are mapped — an unmapped one silently deletes the ⟨c⟩ and leaves ⟨h⟩. French strongly influenced phonology (uvular /ʁ/, nasal vowels in loans). Refs: Hemon (1975), Press (1986), Hewitt (1978).",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -315,6 +326,26 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "hewitt1978",
+      "author": "Hewitt, S.",
+      "year": 1978,
+      "title": "Breton (Treger dialect)",
+      "publisher": "Journal of the International Phonetic Association 8(1-2)",
+      "url": "https://doi.org/10.1017/S0025100300001766",
+      "pages": "p. 80",
+      "notes": "Illustration of the IPA. Source of the stressed-vowel length rule and of final lenis-obstruent devoicing."
+    },
+    {
+      "id": "arbres_accentuation",
+      "author": "Jouitteau, M. (ed.)",
+      "year": 2026,
+      "title": "ARBRES: wikigrammaire des dialectes du breton — Accentuation",
+      "publisher": "IKER, CNRS",
+      "url": "https://arbres.iker.cnrs.fr/index.php/Accentuation",
+      "pages": null,
+      "notes": "Penultimate (paroxytone) word stress in KLT and the standard against final stress in Vannetais, after ALBB map 506 and Falc'hun (1947)."
     }
   ],
   "wikipedia": [
@@ -336,5 +367,149 @@
     "longitude": -3.78934,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Breton."
-  }
+  },
+  "stress": {
+    "default_position": -2,
+    "stress_mark": "ˈ",
+    "vowel_letters": [
+      "a",
+      "e",
+      "i",
+      "o",
+      "u",
+      "â",
+      "ê",
+      "ô",
+      "ù"
+    ],
+    "diphthongs": [
+      "où",
+      "ou",
+      "eu",
+      "oa",
+      "oe",
+      "ae",
+      "ei",
+      "eo",
+      "ui",
+      "aou",
+      "eeu",
+      "eü",
+      "oü",
+      "añ",
+      "eñ",
+      "iñ",
+      "oñ",
+      "uñ"
+    ],
+    "notes": "KLT and the standard are paroxytone; Vannetais is oxytone. ARBRES (Jouitteau, ed.), 'Accentuation', 'Mots simples': \"Le KLT accentue sur l'avant-dernière syllabe (paroxyton ...), quand le vannetais accentue sur la dernière (oxyton)\", after ALBB map 506. This spec describes the KLT-based standard, so -2; a Gwenedeg spec would set -1. ⟨y⟩ and ⟨w⟩ spell /j/ and /w/ and are never nuclei, so vowel_letters is declared rather than left to the cross-linguistic letter-shape test."
+  },
+  "allophone_rules": [
+    {
+      "id": "BR_STRESSED_LONG_BEFORE_LENIS",
+      "phonemes": [
+        "a",
+        "e",
+        "ɛ",
+        "i",
+        "o",
+        "ɔ",
+        "u",
+        "y",
+        "œ",
+        "ø",
+        "ɑ̃",
+        "ẽ",
+        "ĩ",
+        "ɔ̃",
+        "ỹ"
+      ],
+      "append": "ː",
+      "stress": "stressed",
+      "followed_by_phoneme": [
+        "b",
+        "d",
+        "ɡ",
+        "v",
+        "z",
+        "ʒ",
+        "ɣ",
+        "l",
+        "n",
+        "r",
+        "ʁ"
+      ],
+      "followed_by_2": "vowel",
+      "notes": "Hewitt (1978), Journal of the International Phonetic Association 8(1-2):80, doi:10.1017/S0025100300001766: \"Stress is strong. Unstressed vowels are short, stressed vowels are half long unless before fortis (voiceless, double) consonants or consonant clusters, where they are short.\" Stated positively: the lengthening context is a single lenis consonant, so followed_by_phoneme names the lenis series and followed_by_2 requires a vowel two slots on — which is what makes the consonant single rather than the first member of a cluster. The condition is stated on the UNDERLYING phoneme, so ⟨Gwened⟩ lengthens before the /d/ that BR_FINAL_DEVOICE_D later realises as [t]. A monosyllable closed by a single lenis consonant (⟨bazh⟩, ⟨chug⟩) has no vowel two slots on and so is left short here; that context is not described by this rule."
+    },
+    {
+      "id": "BR_STRESSED_LONG_OPEN_FINAL",
+      "phonemes": [
+        "a",
+        "e",
+        "ɛ",
+        "i",
+        "o",
+        "ɔ",
+        "u",
+        "y",
+        "œ",
+        "ø",
+        "ɑ̃",
+        "ẽ",
+        "ĩ",
+        "ɔ̃",
+        "ỹ"
+      ],
+      "append": "ː",
+      "stress": "stressed",
+      "word_final": true,
+      "notes": "Hewitt (1978), Journal of the International Phonetic Association 8(1-2):80, doi:10.1017/S0025100300001766: \"Stress is strong. Unstressed vowels are short, stressed vowels are half long unless before fortis (voiceless, double) consonants or consonant clusters, where they are short.\" A word-final stressed vowel stands before no consonant at all, so it is inside the lengthening context: ⟨du⟩ [dyː], ⟨re⟩ [ʁeː], ⟨bro⟩ [bʁoː]."
+    },
+    {
+      "id": "BR_FINAL_DEVOICE_Z",
+      "phonemes": [
+        "z"
+      ],
+      "surface": "s",
+      "word_final": true,
+      "notes": "Hewitt (1978), JIPA 8(1-2):80, doi:10.1017/S0025100300001766, records \"lenis obstruent devoicing in final pausal position and in sandhi\". Peurunvan writes the lenis member (⟨z zh d g b j⟩) and leaves the alternation unwritten, so it is stated here and not in the grapheme table. ⟨Breizh⟩ [bʁɛjs], ⟨Pariz⟩ [paːʁis]."
+    },
+    {
+      "id": "BR_FINAL_DEVOICE_D",
+      "phonemes": [
+        "d"
+      ],
+      "surface": "t",
+      "word_final": true,
+      "notes": "Hewitt (1978), JIPA 8(1-2):80, doi:10.1017/S0025100300001766, records \"lenis obstruent devoicing in final pausal position and in sandhi\". Peurunvan writes the lenis member (⟨z zh d g b j⟩) and leaves the alternation unwritten, so it is stated here and not in the grapheme table. ⟨Gwened⟩ [ɡweːnet]."
+    },
+    {
+      "id": "BR_FINAL_DEVOICE_G",
+      "phonemes": [
+        "ɡ"
+      ],
+      "surface": "k",
+      "word_final": true,
+      "notes": "Hewitt (1978), JIPA 8(1-2):80, doi:10.1017/S0025100300001766, records \"lenis obstruent devoicing in final pausal position and in sandhi\". Peurunvan writes the lenis member (⟨z zh d g b j⟩) and leaves the alternation unwritten, so it is stated here and not in the grapheme table. ⟨chug⟩ [ʃyːk]."
+    },
+    {
+      "id": "BR_FINAL_DEVOICE_B",
+      "phonemes": [
+        "b"
+      ],
+      "surface": "p",
+      "word_final": true,
+      "notes": "Hewitt (1978), JIPA 8(1-2):80, doi:10.1017/S0025100300001766, records \"lenis obstruent devoicing in final pausal position and in sandhi\". Peurunvan writes the lenis member (⟨z zh d g b j⟩) and leaves the alternation unwritten, so it is stated here and not in the grapheme table. ⟨verb⟩ [veʁp]."
+    },
+    {
+      "id": "BR_FINAL_DEVOICE_J",
+      "phonemes": [
+        "ʒ"
+      ],
+      "surface": "ʃ",
+      "word_final": true,
+      "notes": "Hewitt (1978), JIPA 8(1-2):80, doi:10.1017/S0025100300001766, records \"lenis obstruent devoicing in final pausal position and in sandhi\". Peurunvan writes the lenis member (⟨z zh d g b j⟩) and leaves the alternation unwritten, so it is stated here and not in the grapheme table. the ⟨j⟩ series, by the same rule."
+    }
+  ]
 }
