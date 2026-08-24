@@ -305,7 +305,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | id | vox_communis | 13518 | 0.1312 | 0.0557 | 0.0413 | 0.6572 | 0.7354 | [0.1291, 0.1331] | 0.3449 | research | epitran-derived |
 | id | wikipron | 17965 | 0.1114 | 0.0630 | 0.0561 | 0.6921 | 0.7362 | [0.1094, 0.1133] | 0.4582 | research | crowd-scraped |
 | ilo | wikipron | 931 | 0.1272 | 0.1155 | 0.1152 | 0.4834 | 0.4834 | [0.1175, 0.1357] | 0.4501 | research | crowd-scraped |
-| inh | wikipron | 284 | 0.4383 | 0.4356 | 0.4356 | 0.1479 | 0.1479 | [0.4077, 0.4699] | 0.1408 | research | crowd-scraped |
+| inh | wikipron | 284 | 0.1632 | 0.1582 | 0.1582 | 0.4331 | 0.4331 | [0.1448, 0.1819] | 0.4261 | research | crowd-scraped |
 | io | wikipron | 6815 | 0.0974 | 0.0974 | 0.0974 | 0.4336 | 0.4336 | [0.0949, 0.0999] | 0.4336 | research | crowd-scraped |
 | irk | wold | 1117 | 0.2010 | 0.2010 | 0.2010 | 0.3563 | 0.3563 | [0.1900, 0.2123] | 0.3563 | research | lexicon-derived |
 | is | ipa_childes | 4106 | 0.3582 | 0.3407 | 0.3388 | 0.0648 | 0.0660 | [0.3521, 0.3639] | 0.0599 | research | espeak-derived |

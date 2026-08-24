@@ -1024,21 +1024,22 @@ def test_inh_gh_digraph_is_a_uvular_fricative():
     """"uvular fricative гӏ /ʁ/ ... the engine matches these by maximal munch,
     so multigraphs win over their component letters."  гӏалгӏай, the Ingush
     people's own name, has ⟨гӏ⟩ twice."""
-    assert G2P("inh").transcribe_word("гӏалгӏай") == "ʁɑːlʁɑːj"
+    assert G2P("inh").transcribe_word("гӏалгӏай") == "ʁalʁaj"
 
 
 def test_inh_latin_i_is_not_accepted_as_a_palochka():
     """Input contract: "the palochka must be U+04CF ⟨ӏ⟩ (lowercase) / U+04C0
-    ⟨Ӏ⟩ — Latin 'I', 'l' and the digit '1' are NOT accepted, since no consulted
-    source documents them for Ingush."  A Latin-I spelling therefore does NOT
-    produce the uvular fricative of ⟨гӏ⟩."""
+    ⟨Ӏ⟩ — Latin 'I', 'l' and the digit '1' are NOT accepted, because the
+    input contract is Cyrillic-only" — not because no source uses Latin I
+    for it (the Berkeley Ingush project page does).  A Latin-I spelling
+    therefore does NOT produce the uvular fricative of ⟨гӏ⟩."""
     assert "ʁ" not in G2P("inh").transcribe_word("гIалгIай")
 
 
 def test_inh_kh_digraph_is_a_uvular_stop():
     """"uvular кх /q/ and къ /qʼ/" (Nichols).  къам 'people' takes the ejective
     uvular, къ winning over the bare ⟨к⟩."""
-    assert G2P("inh").transcribe_word("къам") == "qʼɑːm"
+    assert G2P("inh").transcribe_word("къам") == "qʼam"
 
 
 # ---------------------------------------------------------------------------
