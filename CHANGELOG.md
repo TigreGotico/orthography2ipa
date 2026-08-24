@@ -1,5 +1,14 @@
 # Changelog
 
+## [7.79.11a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.11a1) (2026-08-24)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.10a2...7.79.11a1)
+
+**Merged pull requests:**
+
+- docs\(ha\): complete the tone/length ceiling measurement [\#1109](https://github.com/TigreGotico/orthography2ipa/pull/1109) ([JarbasAl](https://github.com/JarbasAl))
+- fix\(wiy\): map the 14 unmapped Teeter graphemes and correct mis-valued letters [\#1099](https://github.com/TigreGotico/orthography2ipa/pull/1099) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.79.10a2](https://github.com/TigreGotico/orthography2ipa/tree/7.79.10a2) (2026-08-24)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.10a1...7.79.10a2)
@@ -669,10 +678,6 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.71.6a2...7.71.6a3)
 
-**Merged pull requests:**
-
-- Register alphacep biggest-ru-book gold \(Russian\) [\#914](https://github.com/TigreGotico/orthography2ipa/pull/914) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [7.71.6a2](https://github.com/TigreGotico/orthography2ipa/tree/7.71.6a2) (2026-08-15)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.71.6a1...7.71.6a2)
@@ -697,10 +702,6 @@
 ## [7.71.4a1](https://github.com/TigreGotico/orthography2ipa/tree/7.71.4a1) (2026-08-14)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.71.3a1...7.71.4a1)
-
-**Merged pull requests:**
-
-- fix\(engine\): make the nasal-carrier constraint search-width independent \(ur oracle divergence\) + full board regen [\#911](https://github.com/TigreGotico/orthography2ipa/pull/911) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.71.3a1](https://github.com/TigreGotico/orthography2ipa/tree/7.71.3a1) (2026-08-14)
 
