@@ -88,12 +88,12 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
 | `tone_rules`                | object | no       | Tone the orthography spells with the SHAPE of the syllable rather than with a tone letter (see [Tone Rules Schema](#tone-rules-schema)) |
 | `tone_inventory`            | object | no       | IPA tone mark → label (e.g. `{"˥": "high"}`) |
 | `tone_marks_syllable_final` | bool   | no       | Dock every tone mark at the end of its syllable. Set it when the orthography writes tone on the nucleus letter, so that ⟨ōng⟩ comes out `oŋ³³` and not `o³³ŋ` |
-| `sources`                   | array  | no       | Bibliographic references (see Sources Schema below) |
+| `sources`                   | array  | no       | Works consulted for the phonological claims in this spec (see Sources Schema below). A Wikipedia article is not a source; see `wikipedia` below |
 | `glottolog_code`            | string | no       | Glottolog languoid code (e.g. `"cast1244"`) — genealogical classification |
 | `wikidata_qid`              | string | no       | Wikidata item id (e.g. `"Q1321"`) — the linked-data hub; one QID resolves this language's Glottolog, ISO 639-3, PHOIBLE, WALS and Wikipedia articles in every edition |
 | `phoible_id`                | string | no       | PHOIBLE identifier — attested phoneme inventories, the reference a spec's emitted phoneme set can be validated against |
 | `wals_code`                 | string | no       | WALS (World Atlas of Language Structures) code — typological cross-reference |
-| `wikipedia`                 | array  | no       | Wikipedia article URLs (`https://<lang>.wikipedia.org/wiki/…`) |
+| `wikipedia`                 | array  | no       | Wikipedia article URLs (`https://<lang>.wikipedia.org/wiki/…`) — a reading path into the literature, not itself a citation; see Sources Schema below |
 | `urls`                      | array  | no       | Other reference URLs (Glottolog, Ethnologue, dialect articles, …) |
 | `orthography_standard`      | object | no       | The official published spelling norm, when the language has one (see [Orthography Standard Schema](#orthography-standard-schema)) |
 | `location`                  | object | no       | Representative point for where the variety is spoken (see [Location Schema](#location-schema)) |
@@ -418,6 +418,20 @@ it back with `tone_marks_syllable_final`.
 ## Sources Schema
 
 The `sources` array contains bibliographic references for the phonological data in the spec.
+Each entry names a real author and a real title of a work someone actually
+consulted — a reference grammar, a peer-reviewed paper, a university dataset,
+or (for a language with an active community orthography) the publication of
+the body that publishes the standard. `sources` is not satisfied by pointing
+at Wikipedia: an encyclopedia article is not the authority for a phonemic
+claim, and an entry whose only content is a `wikipedia_url` is not a
+citation, however it is dressed up. The top-level `wikipedia` field is the
+correct place for Wikipedia — it is a reading path that helps a future
+contributor find the descriptive literature, not itself part of the evidence
+for any specific rule. `wikipedia_url` on an individual source entry exists
+only to note that a specific already-cited work happens to also be
+mentioned or linked from a Wikipedia article; it does not turn that entry
+into a citation on its own, and a `sources` array containing only such
+entries is treated as unsourced by `tests/test_sources.py`.
 
 ```json
 {
