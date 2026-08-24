@@ -108,9 +108,14 @@ jobs:
         # keeping its own copy puts back the numbers dev measured after the
         # branch was cut, with both sides green throughout — see the script's
         # docstring and AGENTS.md ("Never carry the board backwards").
+        # Run the BASE branch's copy of the script, not the head's: the head
+        # was checked out above so the merge has both sides, but a branch
+        # cut before this script existed (or one that edited it) must not
+        # get to supply, weaken, or omit the guard that judges it.
         env:
           PR_BODY: ${{ github.event.pull_request.body }}
         run: |
           git fetch --no-tags origin ${{ github.base_ref }}
-          PYTHONPATH=$PWD .venv/bin/python scripts/check_board_not_reverting.py \
+          git show origin/${{ github.base_ref }}:scripts/check_board_not_reverting.py > "${RUNNER_TEMP}/check_board_not_reverting.py"
+          PYTHONPATH=$PWD .venv/bin/python "${RUNNER_TEMP}/check_board_not_reverting.py" \
             --base origin/${{ github.base_ref }}
