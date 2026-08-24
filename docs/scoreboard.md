@@ -348,7 +348,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | ku | wikipron | 2147 | 0.1440 | 0.1440 | 0.1440 | 0.2795 | 0.2795 | [0.1391, 0.1488] | 0.2795 | research | crowd-scraped |
 | kv | wikipron | 906 | 0.1570 | 0.1437 | 0.1435 | 0.5342 | 0.5364 | [0.1457, 0.1698] | 0.4912 | research | crowd-scraped |
 | kw | wikipron | 602 | 0.2521 | 0.2444 | 0.2441 | 0.2326 | 0.2326 | [0.2360, 0.2686] | 0.2226 | research | crowd-scraped |
-| kwk | wikipron | 94 | 0.4911 | 0.4911 | 0.4911 | 0.2021 | 0.2021 | [0.4303, 0.5539] | 0.2021 | research | crowd-scraped |
+| kwk | wikipron | 116 | 0.0070 | 0.0070 | 0.0070 | 0.9655 | 0.9655 | [0.0010, 0.0175] | 0.9655 | research | crowd-scraped |
 | kxd | wikipron | 318 | 0.0235 | 0.0235 | 0.0235 | 0.8962 | 0.8962 | [0.0153, 0.0329] | 0.8962 | research | crowd-scraped |
 | ky | vox_communis | 10611 | 0.1915 | 0.1654 | 0.1565 | 0.2474 | 0.3057 | [0.1890, 0.1939] | 0.1642 | research | epitran-derived |
 | ky | wikipron | 867 | 0.2217 | 0.2211 | 0.2211 | 0.3230 | 0.3230 | [0.2081, 0.2357] | 0.3195 | research | crowd-scraped |
