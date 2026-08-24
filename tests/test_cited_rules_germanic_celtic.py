@@ -826,15 +826,16 @@ def test_nds_no_high_german_consonant_shift():
 
 
 def test_nds_g_allophony():
-    """G ALLOPHONY: word-initial [ɡ], intervocalic [ɣ], coda/word-final [x].
+    """G ALLOPHONY: word-initial [ɡ], intervocalic [ɡ], word-final [ç/x].
 
-    nds notes: "G ALLOPHONY: word-initial [ɡ], intervocalic [ɣ], coda/word-final
-    [x] or [ç] (front vowel context)." Source: Gallée (1993).
+    nds notes: word-initial ⟨g⟩ is [ɡ] (SASS §16 I); word-final ⟨g⟩ is [ç/x]
+    (§16 II: Dag, Tog, weg); intervocalic ⟨g⟩ is [ɡ] (§16 III: negen, stiegen,
+    hoge).
 
     A three-way isolation of the same letter, conditioned solely on position.
     """
-    assert _t("nds", "gaan").startswith("ɡ")
-    assert "ɣ" in _t("nds", "regen")
+    assert _bare("nds", "gaan").startswith("ɡ")
+    assert "ɡ" in _t("nds", "regen")
     assert _t("nds", "weg").endswith("x")
 
 
