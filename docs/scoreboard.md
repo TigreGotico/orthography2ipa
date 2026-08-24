@@ -416,7 +416,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | nb | ipadict | 10169 | 0.3397 | 0.2647 | 0.2448 | 0.1623 | 0.1787 | [0.3357, 0.3435] | 0.1050 | research | machine-generated |
 | nb | wikipron | 2725 | 0.3471 | 0.2748 | 0.2583 | 0.2059 | 0.2228 | [0.3376, 0.3562] | 0.1490 | research | crowd-scraped |
 | nci | wikipron | 839 | 0.1198 | 0.1197 | 0.1197 | 0.2896 | 0.2896 | [0.1128, 0.1270] | 0.2896 | research | crowd-scraped |
-| nds | wikipron | 307 | 0.4165 | 0.3258 | 0.3058 | 0.1726 | 0.2052 | [0.3861, 0.4449] | 0.1303 | research | crowd-scraped |
+| nds | wikipron | 308 | 0.2231 | 0.1674 | 0.1503 | 0.5065 | 0.5292 | [0.1969, 0.2487] | 0.4091 | research | crowd-scraped |
 | ne | kaikki | 2052 | 0.1191 | 0.1178 | 0.1178 | 0.5210 | 0.5210 | [0.1121, 0.1256] | 0.5195 | research | crowd-scraped |
 | new | wikipron | 416 | 0.4077 | 0.4077 | 0.4077 | 0.0865 | 0.0865 | [0.3855, 0.4280] | 0.0865 | research | crowd-scraped |
 | ngh | wikipron | 263 | 0.3655 | 0.3655 | 0.3655 | 0.1521 | 0.1521 | [0.3374, 0.3958] | 0.1521 | skeleton | crowd-scraped |

@@ -7421,21 +7421,25 @@
  {
   "lang": "nds",
   "dataset": "wikipron",
-  "n": 307,
-  "per": 0.4165,
-  "per_ci_low": 0.3861,
-  "per_ci_high": 0.4449,
-  "exact_match": 0.1303,
+  "n": 308,
+  "per": 0.2231,
+  "per_ci_low": 0.1969,
+  "per_ci_high": 0.2487,
+  "exact_match": 0.4091,
   "quality_tier": "research",
   "provenance": "crowd-scraped",
   "harness_version": "1.1",
   "limit": null,
-  "oracle_per_top3": 0.3258,
-  "oracle_exact_top3": 0.1726,
-  "oracle_per_top5": 0.3058,
-  "oracle_exact_top5": 0.2052,
+  "oracle_per_top3": 0.1674,
+  "oracle_exact_top3": 0.5065,
+  "oracle_per_top5": 0.1503,
+  "oracle_exact_top5": 0.5292,
   "oracle_fallback_words": 0,
-  "oracle_scored_words": 307
+  "oracle_scored_words": 308,
+  "oracle_injected_alternatives": [
+   "nds en",
+   "nds er"
+  ]
  },
  {
   "lang": "ne",
