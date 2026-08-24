@@ -54,7 +54,7 @@ def test_nl_g_onset_voiced_coda_voiceless():
 
     Minimal pair on ⟨g⟩ alone: gaan (onset) vs dag (coda).
     """
-    assert _t("nl", "gaan").startswith("ɣ")
+    assert _bare("nl", "gaan").startswith("ɣ")
     assert _t("nl", "dag").endswith("x")
 
 
@@ -64,7 +64,7 @@ def test_nl_h_is_breathy():
     nl notes: "H: breathy [ɦ]; fully silent in southern dialects."
     van Oostendorp (2000).
     """
-    assert _t("nl", "huis").startswith("ɦ")
+    assert _bare("nl", "huis").startswith("ɦ")
 
 
 def test_nl_nl_northern_g_is_voiced_fricative():
@@ -108,7 +108,7 @@ def test_nl_be_alveolar_r():
     nl-BE notes: "Alveolar /r/ [r] in most varieties (vs. NL uvular [ʀ])."
     Source: König & van der Auwera (1994).
     """
-    assert _t("nl-BE", "rood").startswith("r")
+    assert _bare("nl-BE", "rood").startswith("r")
 
 
 # ===========================================================================
@@ -226,7 +226,7 @@ def test_de_bavarian_pf_cluster_preserved():
     de-x-bavarian notes: "pf- cluster fully preserved."
     Source: König & van der Auwera (1994).
     """
-    assert _t("de-x-bavarian", "Pfand").startswith("pf")
+    assert _bare("de-x-bavarian", "Pfand").startswith("pf")
 
 
 @pytest.mark.xfail(
@@ -413,35 +413,168 @@ def test_da_cph_r_vocalisation_before_consonant():
 # ===========================================================================
 
 
-def test_nn_old_norse_diphthongs_preserved():
-    """More diphthongs preserved from Old Norse: ei, au, øy.
+def test_nn_old_norse_diphthongs_have_their_western_values():
+    """The Old Norse diphthongs, in the western values Nynorsk is built on.
 
-    nn notes: "More diphthongs preserved from Old Norse: ei, au, øy."
-    Source: Kristoffersen (2000).
+    nn notes: "⟨ei⟩ is [ɛɪ], not the Urban East [æɪ] ...; ⟨au⟩ has the rounded
+    western onset [œʊ], not [æʉ]; ⟨øy⟩ is [œʏ]."
+    Sources: Kristoffersen (2000) — [æɪ] is the substitute used by speakers
+    whose inventory lacks [ɛɪ]; Skjekkeland (1997), Sandøy (1985) for the
+    western realisations.
 
-    Each of the three digraphs must surface as a two-target nucleus, not a
-    monophthong.
+    Values are pinned in full, and the same words under nb are pinned beside
+    them so the test fails if the two standards ever collapse onto one reading.
     """
-    assert "æi" in _t("nn", "stein")
-    assert "æʉ" in _t("nn", "auge")
-    assert "øy" in _t("nn", "øy")
+    assert _t("nn", "stein") == "ˈstɛɪːn"
+    assert _t("nn", "auge") == "²œʊːɡə"
+    assert _t("nn", "øy") == "ˈœʏː"
+    assert _t("nb", "stein") == "ˈstæin"
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="Kristoffersen (2000) claims Nynorsk/western /r/ is the alveolar trill "
-    "[r]; nn produces [ɾɔt] for rot — the tap inherited from the nb-type spec",
-)
 def test_nn_alveolar_trill_r():
-    """Alveolar /r/ [r].
+    """Alveolar /r/ [r], not the Urban East tap [ɾ].
 
-    nn notes: "Alveolar /r/ [r]; less retroflexion than Bokmål/Eastern."
+    nn notes: "⟨r⟩ is the apical trill [r], not the Urban East tap [ɾ]."
+    Sources: Kristoffersen (2000), Vanvik (1979).
+
+    Pinned in full against the nb reading of the same word, which is the tap.
+    """
+    assert _t("nn", "rot") == "ˈruːt"
+    assert _t("nb", "rot") == "ˈɾuːt"
+
+
+def test_nn_r_plus_coronal_does_not_retroflex():
+    """⟨rd rl rn rs rt⟩ stay as sequences; they do not become [ɖ ɭ ɳ ʂ ʈ].
+
+    nn notes: "NO retroflexion of ⟨rd rl rn rs rt⟩ — the retroflex assimilation
+    is an Eastern, Central and Northern feature and is absent from the southern
+    and western dialects Nynorsk is codified on."
+    Sources: Skjekkeland (1997), Sandøy (1985).
+
+    Each word is pinned in full under nn and under nb, so the test states the
+    divergence rather than asserting an absence.
+    """
+    assert _t("nn", "norsk") == "ˈnɔrsk"
+    assert _t("nn", "karl") == "ˈkɑrl"
+    assert _t("nn", "barn") == "ˈbɑrn"
+    assert _t("nn", "kart") == "ˈkɑrt"
+    assert _t("nb", "norsk") == "ˈnɔʂk"
+    assert _t("nb", "barn") == "ˈbɑːɳ"
+
+
+def test_nn_kv_onset_is_a_plain_cluster():
+    """Nynorsk writes ⟨kv-⟩ where Bokmål writes ⟨hv-⟩, and it is /kʋ/.
+
+    nn notes: "⟨hv-⟩ is kept as [ʋ] for the Bokmål-spelt proper names ...,
+    but the productive Nynorsk spelling of that class is ⟨kv-⟩ (kva, kvit,
+    kvifor), which is a plain /kʋ/ onset and is NOT given the ⟨hv⟩ treatment."
+    Source: Beito (1986).
+
+    The guard is the class the rule must not touch: an actual ⟨hv-⟩ word still
+    loses its ⟨h⟩.
+    """
+    assert _t("nn", "kva") == "ˈkʋɑː"
+    assert _t("nn", "kvit") == "ˈkʋiːt"
+    assert _t("nn", "kvifor") == "ˈkʋiːfɔr"
+    assert _t("nn", "Hvaler") == "ˈʋɑːlər"
+
+
+def test_nn_complementary_quantity():
+    """A stressed vowel is long before a single consonant, short before a
+    geminate or a cluster.
+
+    nn notes: "complementary quantity (a stressed vowel is long before a single
+    consonant and short before a geminate or cluster ...)".
     Source: Kristoffersen (2000).
 
-    Isolated on the onset ⟨r⟩; nb explicitly calls the tap [ɾ] one realisation of
-    its /r/, so a distinct trill is the declared Nynorsk delta.
+    A minimal pair on the same vowel isolates the length alternation, and a
+    diphthong pair shows it reaching the long nuclei too.
     """
-    assert _t("nn", "rot").startswith("r")
+    assert _t("nn", "tak") == "ˈtɑːk"
+    assert _t("nn", "takk") == "ˈtɑkː"
+    assert _t("nn", "hus") == "ˈhʉːs"
+    assert _t("nn", "heim") == "ˈhɛɪːm"
+    assert _t("nn", "heilt") == "ˈhɛɪlt"
+    assert _t("nn", "draum") == "ˈdrœʊːm"
+    assert _t("nn", "aust") == "ˈœʊst"
+
+
+def test_nn_final_a_ending_is_a_full_vowel():
+    """The productive Nynorsk ⟨-a⟩ ending is a full [ɑ], never a schwa.
+
+    nn notes: "final ⟨-a⟩ — the Nynorsk infinitive, weak-feminine definite and
+    weak-past ending where Bokmål writes ⟨-e/-en/-et⟩ — is a full [a], never a
+    schwa, so ⟨a⟩ carries no reduction entry while ⟨e⟩ does."
+    Source: Beito (1986).
+
+    The guard is the class the reduction rule MUST still touch: an unstressed
+    final ⟨-e⟩ on the otherwise identical stem does reduce.
+    """
+    assert _t("nn", "kasta") == "²kɑstɑ"
+    assert _t("nn", "kaste") == "²kɑstə"
+
+
+def test_nn_velars_soften_before_i_and_y_but_not_before_e():
+    """⟨k g sk⟩ are [ç j ʃ] before ⟨i y⟩ and stay hard before ⟨e⟩.
+
+    nn notes: "⟨k g sk⟩ → [ç j ʃ] before a front vowel"; the historically soft
+    ⟨e⟩ cases are spelt ⟨kj gj skj⟩ (kjenne, gjere, skje), so plain ⟨ke ge ske⟩
+    is hard.
+    Sources: Kristoffersen (2000), Beito (1986).
+
+    The guard words are the hard class, which the softening rule must not
+    reach.
+    """
+    assert _t("nn", "kino") == "ˈçiːnɔ"
+    assert _t("nn", "skip") == "ˈʃiːp"
+    assert _t("nn", "kelner") == "ˈkɛlnər"
+    assert _t("nn", "gele") == "²ɡeːlə"
+    assert _t("nn", "ske") == "ˈskeː"
+
+
+def test_nn_word_final_rd_loses_its_stop():
+    """Word-final ⟨rd⟩ is [r]; medial ⟨rd⟩ keeps the stop.
+
+    nn rule NN_SILENT_D_AFTER_R: "word-final ⟨rd⟩ is [r]: gard, ferd, Bård.
+    Medial ⟨rd⟩ keeps /rd/."
+    Sources: Beito (1986), Kristoffersen (2000).
+
+    The guard is a word of the same shape whose ⟨rd⟩ is not word-final.
+    """
+    assert _t("nn", "gard") == "ˈɡɑr"
+    assert _t("nn", "ferd") == "ˈfɛr"
+    assert _t("nn", "ferdig") == "ˈfɛrdɪɡ"
+
+
+def test_nn_silent_d_is_word_final_only():
+    """⟨d⟩ after ⟨n l⟩ is silent word-finally; medial ⟨nd⟩ keeps the stop.
+
+    nn rule NN_SILENT_D: "⟨d⟩ is silent after ⟨n l⟩ (land, kald); the cluster
+    still shortens the preceding nucleus."
+    Source: Beito (1986).
+
+    The guard is a word of the same shape whose ⟨nd⟩ is not word-final.
+    """
+    assert _t("nn", "land") == "ˈlɑn"
+    assert _t("nn", "kald") == "ˈkɑl"
+    assert _t("nn", "andre") == "²ɑndrə"
+
+
+def test_nn_lj_onset_is_j():
+    """Initial ⟨lj⟩ is [j], as ⟨gj hj⟩ are.
+
+    nn graphemes: ⟨lj⟩ → [j] (ljos, ljod), beside ⟨gj⟩ and ⟨hj⟩.
+    Source: Beito (1986).
+
+    The guard is plain ⟨l⟩ before a vowel, which the rule must not reach.
+    """
+    assert _t("nn", "ljos") == "ˈjuːs"
+    assert _t("nn", "los") == "ˈluːs"
+
+    # Medial ⟨lj⟩ (olje, vilje) is not word-initial, so it keeps its /l/;
+    # only the initial cluster reduces to [j].
+    assert _t("nn", "olje") == "²ɔljə"
+    assert _t("nn", "vilje") == "²ʋɪljə"
 
 
 # ===========================================================================
@@ -531,10 +664,10 @@ def test_is_initial_stress():
 
 
 def test_fo_a_acute_differs_from_icelandic():
-    """⟨á⟩ = [ɔa] (cf. Icelandic á = [au]).
+    """⟨á⟩ = [ɔaː] (cf. Icelandic á = [au]).
 
-    fo notes: "⟨á⟩ = [ɔa] (cf. Icelandic á = [au])."
-    Source: Árnason (2011), Hanssen (2010).
+    fo notes: "⟨á⟩ [ɔaː]/[ɔ]."
+    Source: Árnason (2011).
 
     The citation states the contrast itself, so the minimal pair is the same
     letter under fo and under is.
@@ -546,8 +679,9 @@ def test_fo_a_acute_differs_from_icelandic():
 def test_fo_eth_weakens_between_vowels():
     """⟨ð⟩ → [j] or [∅] between vowels (weakening).
 
-    fo notes: "⟨ð⟩ → [j] or [∅] between vowels (weakening)."
-    Source: Árnason (2011).
+    fo notes: "⟨ð⟩ is silent by default and surfaces as the glide [j] between
+    vowels, with [v] and [w] as further allophones."
+    Source: Lockwood (1955).
 
     Minimal pair against Icelandic, which preserves the interdental: fo hlaða has
     no [ð] at all where Icelandic ⟨ð⟩ is [ð].
@@ -556,9 +690,9 @@ def test_fo_eth_weakens_between_vowels():
 
 
 def test_fo_preaspiration():
-    """Preaspiration present (⟨pp tt kk⟩ = [ʰp ʰt ʰk]).
+    """Preaspiration present: ⟨pp tt kk⟩ = [ʰpp ʰtt ʰkk].
 
-    fo notes: "Preaspiration present (⟨pp tt kk⟩ = [ʰp ʰt ʰk])."
+    fo notes: "⟨pp tt kk⟩ are preaspirated [ʰpp ʰtt ʰkk]."
     Source: Árnason (2011).
     """
     assert "ʰp" in _t("fo", "uppi")
@@ -575,20 +709,22 @@ def test_fo_no_voiceless_sonorants():
     [hl], where Icelandic ⟨hl⟩ is [l̥].
     """
     assert "l̥" not in _t("fo", "hlaða")
-    assert _t("fo", "hlaða").startswith("hl")
+    assert _bare("fo", "hlaða").startswith("hl")
 
 
 @pytest.mark.xfail(
     strict=True,
-    reason="Árnason (2011), Hanssen (2010) claim ⟨g⟩ → [w] before back vowels and "
-    "[j] elsewhere; fo produces [ɡʊlʊr] for gulur and [ɡera] for gera — the plain "
-    "stop in both environments",
+    reason="Árnason (2011), Hanssen (2010) claim ⟨g⟩ → [w] before back vowels "
+    "and [j] elsewhere; fo produces [kuːlʊɹ] for gulur — the plain stop — and "
+    "[tʃeːɹa] for gera, where the front vowel gives the affricate rather than "
+    "the glide",
 )
 def test_fo_g_glides():
     """⟨g⟩ → [w] before back vowels, [j] elsewhere.
 
-    fo notes: "⟨g⟩ → [w] before back vowels, [j] elsewhere."
-    Source: Árnason (2011), Hanssen (2010).
+    Source: Árnason (2011), Hanssen (2010). The fo spec does not state this
+    rule; it gives ⟨g⟩ the plain stop outside the palatalising and
+    intervocalic environments.
 
     Minimal pair on the same ⟨g⟩: before back ⟨u⟩ vs before front ⟨e⟩.
     """
@@ -690,15 +826,16 @@ def test_nds_no_high_german_consonant_shift():
 
 
 def test_nds_g_allophony():
-    """G ALLOPHONY: word-initial [ɡ], intervocalic [ɣ], coda/word-final [x].
+    """G ALLOPHONY: word-initial [ɡ], intervocalic [ɡ], word-final [ç/x].
 
-    nds notes: "G ALLOPHONY: word-initial [ɡ], intervocalic [ɣ], coda/word-final
-    [x] or [ç] (front vowel context)." Source: Gallée (1993).
+    nds notes: word-initial ⟨g⟩ is [ɡ] (SASS §16 I); word-final ⟨g⟩ is [ç/x]
+    (§16 II: Dag, Tog, weg); intervocalic ⟨g⟩ is [ɡ] (§16 III: negen, stiegen,
+    hoge).
 
     A three-way isolation of the same letter, conditioned solely on position.
     """
-    assert _t("nds", "gaan").startswith("ɡ")
-    assert "ɣ" in _t("nds", "regen")
+    assert _bare("nds", "gaan").startswith("ɡ")
+    assert "ɡ" in _t("nds", "regen")
     assert _t("nds", "weg").endswith("x")
 
 
@@ -1118,12 +1255,6 @@ def test_en_us_caught_cot_merger():
     assert thought[1:-1] == lot[1:-1]
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="Wells (1982) vol. 3 claims Australian English is non-rhotic; en-AU "
-    "produces [kɑːɹ] for car — the en-GB parent is non-rhotic ([kɑː]), so the "
-    "dialect spec has actively introduced a rhotic ⟨r⟩",
-)
 def test_en_au_non_rhotic():
     """Australian English is non-rhotic.
 
@@ -1132,7 +1263,7 @@ def test_en_au_non_rhotic():
 
     Isolated on the word-final ⟨r⟩, against the non-rhotic en-GB parent.
     """
-    assert _t("en-AU", "car") == "kɑː"
+    assert _bare("en-AU", "car") == "kɑː"
 
 
 @pytest.mark.xfail(
@@ -1250,18 +1381,13 @@ def test_en_ie_th_stopping():
     assert _t("en-IE", "think").startswith("t̪")
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="Wells (1982) vol. 3 claims South African English is non-rhotic; en-ZA "
-    "produces [kɑːɹ] for car, where the en-GB parent gives the non-rhotic [kɑː]",
-)
 def test_en_za_non_rhotic():
     """South African English is non-rhotic.
 
     en-ZA notes: "South African English. Non-rhotic."
     Source: Wells (1982) vol. 3.
     """
-    assert _t("en-ZA", "car") == "kɑː"
+    assert _bare("en-ZA", "car") == "kɑː"
 
 
 def test_en_scotland_rhotic():
@@ -1603,7 +1729,7 @@ def test_br_ch_and_zh():
     br notes: "⟨c'h⟩ = /x/; ⟨zh⟩ = /z/ (KLT) or /h/ (Vannetais)."
     Refs: Hemon (1975), Press (1986).
     """
-    assert _t("br", "c'hoar").startswith("x")
+    assert _bare("br", "c'hoar").startswith("x")
     assert "z" in _t("br", "brezhoneg")
 
 
@@ -1863,3 +1989,90 @@ def test_grc_pitch_accent_is_ignored_not_destructive():
     ⟨ό⟩ must still be the vowel [o].
     """
     assert _t("grc", "λόγος") == _t("grc", "λογος")
+
+
+# ===========================================================================
+# de-x-alemannic — Alemannic German (Schwyzerdütsch), ISO 639-3 gsw
+# ===========================================================================
+
+
+def test_alemannic_ch_is_always_ach_laut():
+    """⟨ch⟩ is the Ach-Laut in every position; the Ich-Laut [ç] is absent.
+
+    de-x-alemannic notes cite Wikipedia "Swiss German" ("Swiss German /x/
+    does not have the allophone [ç] but is typically [x], with allophones
+    [ʁ̥ – χ]") and "Alemannic German" ("High Alemannic, Lake Constance
+    Alemannic and Highest Alemannic dialects exclusively use the
+    Ach-Laut"). de-DE splits ⟨ch⟩ into [ç] after front vowels and [x]
+    after back vowels; Alemannic does not.
+    """
+    assert "ç" not in _t("de-x-alemannic", "Chilbi")
+    assert "ç" not in _t("de-x-alemannic", "Chueche")
+    # the de-DE parent is the contrast case
+    assert "ç" in _t("de-DE", "ich")
+
+
+def test_alemannic_initial_ch_is_fricative_not_stop():
+    """Word-initial ⟨Ch⟩ is [x], the completed High German shift of /k/.
+
+    Wikipedia "Alemannic German": "High Alemannic and Highest Alemannic
+    completely fricativize initial /k/ to [x]." de-DE maps word-initial
+    ⟨ch⟩ to [k] (the Greek-loan value, Chor), which is wrong for the
+    Alemannic lexicon (Chatz, Chilbi, Chueche).
+    """
+    assert _t("de-x-alemannic", "Chatz").lstrip("ˈ").startswith("x")
+
+
+def test_alemannic_k_is_affricated():
+    """⟨k⟩ and ⟨ck⟩ spell the affricate /kx/.
+
+    Wikipedia "Swiss German": "⟨k⟩ (and ⟨ck⟩) are used for the affricate
+    /kx/."
+    """
+    assert "kx" in _t("de-x-alemannic", "Brocki")
+
+
+def test_alemannic_has_no_voiced_s():
+    """No voiced obstruents: ⟨s⟩ is [s] in every position.
+
+    Wikipedia "Swiss German": "Like most other Southern German dialects,
+    Swiss German dialects have no voiced obstruents." de-DE voices
+    word-initial and intervocalic ⟨s⟩ to [z].
+    """
+    assert "z" not in _t("de-x-alemannic", "sii")
+    assert "z" in _t("de-DE", "Sie")
+
+
+def test_alemannic_doubled_vowel_is_long():
+    """A doubled vowel letter spells the long vowel (Dieth-Schreibung).
+
+    de.wikipedia "Dieth-Schreibung": "Kurze Vokale werden einfach
+    geschrieben, lange Vokale doppelt."
+    """
+    assert "uː" in _t("de-x-alemannic", "Huus")
+    assert "iː" in _t("de-x-alemannic", "Wii")
+    assert "yː" in _t("de-x-alemannic", "Füür")
+
+
+def test_alemannic_r_is_alveolar_trill():
+    """/r/ is an alveolar trill [r], and ⟨-er⟩ does not vocalise to [ɐ].
+
+    Wikipedia "Swiss German": "The phoneme /r/ is pronounced as an
+    alveolar trill [r] in many dialects." Standard German ⟨-er⟩ → [ɐ]
+    has no Alemannic counterpart.
+    """
+    out = _t("de-x-alemannic", "Mueter")
+    assert "ɐ" not in out and "ʁ" not in out
+    assert out.endswith("r")
+
+
+def test_alemannic_isolated_from_its_german_siblings():
+    """The Alemannic table must not leak into de / de-DE / de-AT / de-CH.
+
+    de-CH is Schweizerhochdeutsch (Standard German with Swiss features);
+    de-x-alemannic is the dialect. They are different targets and only the
+    dialect spec carries the dialect rules.
+    """
+    for code in ("de", "de-DE", "de-AT", "de-CH"):
+        assert "kx" not in _t(code, "Brocki")
+        assert _t(code, "Chatz").lstrip("ˈ").startswith("k")
