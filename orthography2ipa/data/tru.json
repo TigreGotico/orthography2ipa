@@ -17,6 +17,9 @@
     "ܕ": [
       "d"
     ],
+    "ܔ": [
+      "d͡ʒ"
+    ],
     "ܗ": [
       "h"
     ],
@@ -81,7 +84,7 @@
       "notes": "Descent per Glottolog classification of Turoyo (turo1239)."
     }
   ],
-  "notes": "Skeleton. Turoyo (Ṣurayt), a modern Semitic (Afroasiatic, Central Neo-Aramaic) language written in the Syriac abjad. Consonant letters are mapped to their base IPA values. Vowels are written only with optional pointing and the matres lectionis ⟨ܐ ܘ ܝ⟩, so unpointed text leaves most vowels unrecovered and a high PER floor is expected. Spirantized reflexes of the begadkepat letters, extra phonemes marked by diacritic dots, gemination and stress are left unencoded.",
+  "notes": "Skeleton. Turoyo (Ṣurayt), a modern Semitic (Afroasiatic, Central Neo-Aramaic) language written in the Syriac abjad. Consonant letters are mapped to their base IPA values. Vowels are written only with optional pointing and the matres lectionis ⟨ܐ ܘ ܝ⟩, so unpointed text leaves most vowels unrecovered and a high PER floor is expected. Spirantized reflexes of the begadkepat letters (attested in Jastrow 1987, and directly present in the tru_syrc_broad gold as θ/ð/x/ɣ/f) are conditioned by position and cannot be recovered from unpointed consonantal text, so they are left unencoded rather than guessed. The letter ⟨ܔ⟩ (Gamal Garshuni, U+0714) is mapped to /d͡ʒ/: the Unicode Syriac block reserves it for representing sounds outside the native Syriac inventory in Garshuni text, and every one of its 3 occurrences in the tru_syrc_broad gold realizes as [d͡ʒ] with no counterexample, so this rests on a distributional argument from the gold plus the Unicode character identity, not on a fetched Turoyo-specific phonology source. Other diacritic-dot-marked extra phonemes (t͡ʃ, ʒ) never occur written with their marking diacritics in the wikipron gold (no combining marks in the 0x730-0x74A range appear at all), so the base letters they would otherwise sit on stay ambiguous and are left unencoded, same as the begadkefat alternation. Gemination and stress are also left unencoded. A manual audit of the 168-entry tru_syrc_broad gold found only 3 bound/affix forms (words beginning with U+0640 TATWEEL, i.e. suffix paradigm entries such as ـܢܐ/ـܢܝ/ـܬܐ scraped from Wiktionary inflection tables): the row is overwhelmingly free-standing words, not a bound-morpheme paradigm dump, and PER on the 165 free words (0.4814) is close to the row's headline PER (0.4867), so the bound forms are not a material inflator. MEASURED VOWEL-FOLDING FLOOR: stripping every IPA vowel symbol out of both the hypothesis and the gold (same convention as the fa/ha unwritten-segment measurements) and rescoring gives PER 0.5208 on this gold, HIGHER than the unfolded row PER of 0.4799 — folding does not lower the number here. The mechanism is visible on individual words: engine output for word-initial ⟨ܐ⟩ always includes the /ʔ/ this spec's grapheme table assigns it, but several gold entries treat a word-initial mater as a bare vowel carrier with no onset consonant at all (e.g. ܐܒ hyp ʔb vs gold ob, ܐܘܪܗܝ hyp ʔwrhj vs gold ʔurhoj), so folding out the vowels removes error mass from BOTH sides on words where they agreed but leaves the spurious /ʔ/ standing uncancelled, shrinking the denominator faster than the numerator. The unwritten-vowel ceiling is real (see the tatweel/vowel-point audit above) but it is not the dominant source of this row's residual PER; a word-initial-mater onset rule and the begadkefat alternation are both live suspects for the gap, but neither is added here because neither can be conditioned on anything present in the unpointed input — this row stays diagnosed, not further ruled. DECISIVE HOMOGRAPH COUNT: of the 168 unique word spellings, 56 (33%) occur in the gold with more than one distinct full transcription (expected under an unwritten-vowel account, since two paradigm forms can share a spelling and differ only in the missing vowel); of those, 19 (11%) remain distinct even after vowel-folding — the SAME consonant skeleton maps to two or more DIFFERENT consonant sequences in gold (e.g. ܟܬܦܐ -> katfo/katfoθe/kaθpo/kaθpoθe, mixing /t/~/θ/ and /f/~/p/ reflexes on the identical spelling). No rule keyed on the input string can reproduce more than one of these outputs, so unrecoverability is proven for at least 11% of this gold's words, not merely estimated from the vowel-point count.",
   "iso639_3": "tru",
   "glottolog_code": null,
   "sources": [
@@ -106,6 +109,28 @@
       "pages": null,
       "notes": "Alphabet/phonology reference for a skeleton-tier consonant map.",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Turoyo_language"
+    },
+    {
+      "id": "tru_jastrow_1987",
+      "author": "Jastrow, Otto",
+      "year": 1987,
+      "title": "The Turoyo Language Today",
+      "publisher": "Journal of Assyrian Academic Studies, vol. 1",
+      "url": "https://web.archive.org/web/20200715114314/http://www.jaas.org/edocs/v1/jastrow.pdf",
+      "pages": "10",
+      "notes": "Documents retention of the begadkefat fricative reflexes /f/, /w/, /θ/, /ð/, /x/, /ɣ/ in Turoyo (section II.a.2), confirming the spirantized phonemes seen in the tru_syrc_broad gold. These reflexes are positionally conditioned and unrecoverable from unpointed Serto text, so the spec does not encode them.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "tru_unicode_syriac_block",
+      "author": "Unicode Consortium",
+      "year": 2025,
+      "title": "The Unicode Standard, Version 17.0: Syriac (Range 0700-074F)",
+      "publisher": "Unicode, Inc.",
+      "url": "https://www.unicode.org/charts/PDF/U0700.pdf",
+      "pages": "64",
+      "notes": "Names U+0714 SYRIAC LETTER GAMAL GARSHUNI as a Garshuni-specific letter used to write sounds outside the native Syriac inventory, and U+0745/U+0746 THREE DOTS ABOVE/BELOW as \"diacritic used in Turoyo for letters not found in Syriac\" — the marking that would normally disambiguate the affricate/sibilant series but never appears in this gold. The /d͡ʒ/ value assigned to Gamal Garshuni here is a distributional finding from the tru_syrc_broad gold (3/3 occurrences), not an assertion from a Turoyo-specific grammar.",
+      "wikipedia_url": null
     }
   ],
   "wikipedia": [
