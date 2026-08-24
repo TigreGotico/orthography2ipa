@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.78.7a1](https://github.com/TigreGotico/orthography2ipa/tree/7.78.7a1) (2026-08-24)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.78.6a1...7.78.7a1)
+
+**Merged pull requests:**
+
+- fix\(sms\): map the palatalisation mark and correct the Skolt Sami letter values [\#1073](https://github.com/TigreGotico/orthography2ipa/pull/1073) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.78.6a1](https://github.com/TigreGotico/orthography2ipa/tree/7.78.6a1) (2026-08-24)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.78.5a1...7.78.6a1)
@@ -709,10 +717,6 @@
 ## [7.67.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.67.0a1) (2026-08-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.66.1a2...7.67.0a1)
-
-**Merged pull requests:**
-
-- feat: English word stress and unstressed-vowel reduction [\#877](https://github.com/TigreGotico/orthography2ipa/pull/877) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.66.1a2](https://github.com/TigreGotico/orthography2ipa/tree/7.66.1a2) (2026-08-12)
 
