@@ -178,7 +178,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | ce | wikipron | 461 | 0.2541 | 0.2319 | 0.2319 | 0.2842 | 0.2842 | [0.2360, 0.2727] | 0.2364 | research | crowd-scraped |
 | ceb | wikipron | 3895 | 0.1058 | 0.1058 | 0.1058 | 0.5214 | 0.5214 | [0.1017, 0.1095] | 0.5214 | research | crowd-scraped |
 | chb | wikipron | 99 | 0.1313 | 0.1313 | 0.1313 | 0.4545 | 0.4545 | [0.1001, 0.1636] | 0.4545 | research | crowd-scraped |
-| cho | wikipron | 138 | 0.4167 | 0.3570 | 0.3517 | 0.0507 | 0.0580 | [0.3767, 0.4607] | 0.0145 | research | crowd-scraped |
+| cho | wikipron | 140 | 0.3381 | 0.2795 | 0.2743 | 0.1143 | 0.1214 | [0.3053, 0.3797] | 0.0714 | research | crowd-scraped |
 | cic | wikipron | 394 | 0.1028 | 0.1028 | 0.1028 | 0.4442 | 0.4442 | [0.0912, 0.1140] | 0.4442 | research | crowd-scraped |
 | ckb | vox_communis | 26140 | 0.2607 | 0.2337 | 0.2318 | 0.1511 | 0.1511 | [0.2584, 0.2629] | 0.1436 | research | epitran-derived |
 | ckb | wikipron | 972 | 0.2107 | 0.1789 | 0.1769 | 0.3066 | 0.3086 | [0.1991, 0.2222] | 0.2726 | research | crowd-scraped |
