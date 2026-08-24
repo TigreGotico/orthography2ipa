@@ -431,7 +431,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | nl | wikipron | 45872 | 0.0902 | 0.0701 | 0.0587 | 0.6416 | 0.6836 | [0.0891, 0.0914] | 0.5554 | research | crowd-scraped |
 | nmy | wikipron | 354 | 0.1091 | 0.1088 | 0.1088 | 0.5989 | 0.5989 | [0.0921, 0.1291] | 0.5989 | research | crowd-scraped |
 | nn | wikipron | 3829 | 0.2648 | 0.2118 | 0.2043 | 0.3842 | 0.3964 | [0.2569, 0.2729] | 0.3155 | research | crowd-scraped |
-| no | wikipron | 1093 | 0.4099 | 0.2934 | 0.2708 | 0.1528 | 0.1619 | [0.3977, 0.4215] | 0.0823 | research | crowd-scraped |
+| nn | wikipron_nor | 1093 | 0.1826 | 0.1519 | 0.1466 | 0.5261 | 0.5380 | [0.1699, 0.1949] | 0.4657 | research | crowd-scraped |
 | non | wikipron | 270 | 0.2365 | 0.2213 | 0.2213 | 0.3111 | 0.3111 | [0.2148, 0.2616] | 0.2815 | research | crowd-scraped |
 | nrf | wikipron | 143 | 0.2557 | 0.2120 | 0.2026 | 0.4266 | 0.4406 | [0.2087, 0.3017] | 0.3636 | research | crowd-scraped |
 | nup | wikipron | 393 | 0.3979 | 0.3979 | 0.3979 | 0.1501 | 0.1501 | [0.3787, 0.4165] | 0.1501 | research | crowd-scraped |
