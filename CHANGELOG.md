@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.78.9a1](https://github.com/TigreGotico/orthography2ipa/tree/7.78.9a1) (2026-08-24)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.78.8a1...7.78.9a1)
+
+**Merged pull requests:**
+
+- fix\(br\): peurunvan input contract, penultimate stress, vowel length and final devoicing [\#1075](https://github.com/TigreGotico/orthography2ipa/pull/1075) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.78.8a1](https://github.com/TigreGotico/orthography2ipa/tree/7.78.8a1) (2026-08-24)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.78.7a1...7.78.8a1)
@@ -705,10 +713,6 @@
 ## [7.68.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.68.0a1) (2026-08-13)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.67.0a3...7.68.0a1)
-
-**Merged pull requests:**
-
-- feat: Romanian glide formation, asyllabic final ⟨i⟩, and initial ⟨je⟩ [\#880](https://github.com/TigreGotico/orthography2ipa/pull/880) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.67.0a3](https://github.com/TigreGotico/orthography2ipa/tree/7.67.0a3) (2026-08-13)
 
