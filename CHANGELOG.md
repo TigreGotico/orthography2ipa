@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.79.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.2a1) (2026-08-24)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.1a1...7.79.2a1)
+
+**Merged pull requests:**
+
+- fix: score the Norwegian macrolanguage gold against Nynorsk [\#1084](https://github.com/TigreGotico/orthography2ipa/pull/1084) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.79.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.1a1) (2026-08-24)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.0a1...7.79.1a1)
@@ -701,10 +709,6 @@
 ## [7.70.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.70.0a1) (2026-08-13)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.69.0a2...7.70.0a1)
-
-**Merged pull requests:**
-
-- feat: secondary stress as a prominence level, and the English rules it unblocks [\#888](https://github.com/TigreGotico/orthography2ipa/pull/888) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.69.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.69.0a2) (2026-08-13)
 
