@@ -33,9 +33,10 @@ SKELETON_ADSTRATES = ["quc"]
 # Adstrate nodes promoted all the way to `research` tier: a cited grapheme
 # inventory, sources and a registered gold benchmark now exist (arn:
 # Mapudungun's Alfabeto Mapuche Unificado orthography, checked against the
-# WOLD gold sample), so these are modelled languages, not only placeholders
+# WOLD gold sample; gn: Guaraní's achegety, checked against the wikipron and
+# vox_communis golds), so these are modelled languages, not only placeholders
 # for Spanish contact studies.
-RESEARCH_ADSTRATES = ["arn"]
+RESEARCH_ADSTRATES = ["arn", "gn"]
 
 REGIONAL_STUBS = [
     "es-AR-x-cordoba", "es-AR-x-cuyo", "es-AR-x-norte", "es-AR-x-patagonia",
