@@ -1689,3 +1689,19 @@ def test_fuv_inherits_the_ff_grapheme_table():
     autonym 'Fulfulde' transcribes exactly as the shared ff letters
     predict."""
     assert G2P("fuv").transcribe_word("fulfulde") == "fulfulde"
+
+
+def test_so_j_carries_both_affricate_values():
+    """⟨j⟩ is the language's only affricate and is attested with BOTH voicing
+    values: "The sound /ʧ/ or /ʤ/ is the only affricative, and it is the
+    palato-alveolar affricative, orthographically represented as <j>.  It can
+    be pronounced like <ch> as in the English word <church>.  It also can be
+    pronounced like <j> as in the English word like <jingle>.  Both
+    pronunciations are correct" (Mohamed 2013, consonant-inventory section).
+    The voiced value stays first — that is the value the consonant charts in
+    Saeed (1999) and Gabbard (2010) give, as tabulated by Wikipedia's Somali
+    language article — and the voiceless one is the second candidate, on
+    Mohamed's own word-list example jid 'road'."""
+    engine = G2P("so")
+    assert engine.transcribe_word("jid") == "dʒid"
+    assert [c.ipa for c in engine.candidates("jid")[:2]] == ["dʒid", "tʃid"]

@@ -585,7 +585,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | smn | northeuralex | 1055 | 0.1600 | 0.1600 | 0.1600 | 0.3137 | 0.3137 | [0.1518, 0.1694] | 0.3137 | research | lexicon-derived |
 | sms | northeuralex | 1063 | 0.4133 | 0.4133 | 0.4133 | 0.0226 | 0.0226 | [0.4018, 0.4246] | 0.0226 | research | lexicon-derived |
 | sms | wikipron | 111 | 0.1793 | 0.1793 | 0.1793 | 0.6216 | 0.6216 | [0.1280, 0.2355] | 0.6216 | research | crowd-scraped |
-| so | kaikki | 230 | 0.5567 | 0.5464 | 0.5464 | 0.0565 | 0.0565 | [0.5304, 0.5838] | 0.0435 | research | crowd-scraped |
+| so | kaikki | 230 | 0.5567 | 0.5403 | 0.5403 | 0.0565 | 0.0565 | [0.5304, 0.5838] | 0.0435 | research | crowd-scraped |
 | sq | vox_communis | 11713 | 0.1432 | 0.1432 | 0.1432 | 0.3056 | 0.3056 | [0.1411, 0.1453] | 0.3056 | research | epitran-derived |
 | sq | wikipron | 4900 | 0.0964 | 0.0964 | 0.0964 | 0.5606 | 0.5606 | [0.0928, 0.1003] | 0.5606 | research | crowd-scraped |
 | sr | ipa_childes | 9838 | 0.3232 | 0.3232 | 0.3232 | 0.0811 | 0.0811 | [0.3198, 0.3267] | 0.0811 | research | epitran-derived |
