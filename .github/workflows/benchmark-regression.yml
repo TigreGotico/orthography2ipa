@@ -11,8 +11,11 @@ on:
       - "orthography2ipa/**"
       - "scripts/benchmark.py"
       - "scripts/check_benchmark_regression.py"
+      - "scripts/check_board_not_reverting.py"
+      - "scripts/check_board_row_counts.py"
       - "benchmarks/results.json"
       - "benchmarks/results_ci_sample.json"
+      - "docs/scoreboard.md"
       - "tests/data/**"
       - ".github/workflows/benchmark-regression.yml"
   workflow_dispatch: {}
@@ -63,3 +66,51 @@ jobs:
         # enough to absorb harness-level float noise between runs.
         run: |
           PYTHONPATH=$PWD .venv/bin/python scripts/check_benchmark_regression.py --epsilon 0.005
+
+      - name: Check board row counts (stale-row guard)
+        # Fails the build on a row scoring more words than its loader
+        # currently yields (see scripts/check_board_row_counts.py's
+        # docstring for the vox_communis spn incident this exists to
+        # catch). Rows whose gold could not be fetched here — a live
+        # snapshot needs network, or an optional package like `rarfile`
+        # is missing on this runner — are reported and skipped rather
+        # than failing the job, matching check_board_row_counts.py's own
+        # OSError/ImportError bucketing.
+        run: |
+          PYTHONPATH=$PWD .venv/bin/python scripts/check_board_row_counts.py
+
+  board-not-reverting:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      # The PR HEAD, not the merge ref: the check performs the merge itself
+      # and reads the result, and doing so needs both sides plus enough of
+      # the base branch's history to recognise a value it already moved past.
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v8.3.2
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        # Only so the check can resolve a board language tag to its spec
+        # the way the harness does — `de` is scored against `de-DE.json`.
+        run: |
+          uv venv .venv
+          uv pip install --python .venv/bin/python -e "."
+
+      - name: Check the board does not carry dev backwards
+        # A branch that merges dev and resolves the conflicted board file by
+        # keeping its own copy puts back the numbers dev measured after the
+        # branch was cut, with both sides green throughout — see the script's
+        # docstring and AGENTS.md ("Never carry the board backwards").
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          git fetch --no-tags origin ${{ github.base_ref }}
+          PYTHONPATH=$PWD .venv/bin/python scripts/check_board_not_reverting.py \
+            --base origin/${{ github.base_ref }}
