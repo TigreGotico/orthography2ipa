@@ -857,3 +857,28 @@ class TestMandarin:
     def test_family(self):
         """Mandarin is Sino-Tibetan."""
         assert {"Sino-Tibetan", "Sinitic"} <= set(self.spec.family_path)
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Yola
+# ═══════════════════════════════════════════════════════════════════════════
+
+
+@pytest.mark.linguistic
+class TestYola:
+    """Accuracy tests for Yola (yol), the extinct English variety of Forth
+    and Bargy, County Wexford, descended from Middle English.
+    """
+
+    LANGUAGE_CODE = "yol"
+
+    @pytest.fixture(autouse=True)
+    def _setup(self):
+        self.spec = _load(self.LANGUAGE_CODE)
+
+    def test_ck_digraph_single_stop(self):
+        """⟨ck⟩ spells a single /k/, as in English orthography (e.g. Poole's
+        ``crock``, ``brocke``, ``Carrick``), not the concatenation of the two
+        letters c+k, which would double the stop.
+        """
+        _assert_first(_grapheme(self.spec, "ck"), "k", label="ck")
