@@ -583,8 +583,8 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | sl | wikipron | 5139 | 0.3284 | 0.3085 | 0.2976 | 0.0179 | 0.0181 | [0.3248, 0.3319] | 0.0169 | research | crowd-scraped |
 | slr | wikipron | 752 | 0.2850 | 0.2847 | 0.2847 | 0.1250 | 0.1250 | [0.2717, 0.2984] | 0.1250 | research | crowd-scraped |
 | smn | northeuralex | 1055 | 0.1600 | 0.1600 | 0.1600 | 0.3137 | 0.3137 | [0.1518, 0.1694] | 0.3137 | research | lexicon-derived |
-| sms | northeuralex | 1063 | 0.4133 | 0.4133 | 0.4133 | 0.0226 | 0.0226 | [0.4018, 0.4246] | 0.0226 | research | lexicon-derived |
-| sms | wikipron | 111 | 0.1793 | 0.1793 | 0.1793 | 0.6216 | 0.6216 | [0.1280, 0.2355] | 0.6216 | research | crowd-scraped |
+| sms | northeuralex | 1063 | 0.2200 | 0.1758 | 0.1700 | 0.1543 | 0.1712 | [0.2128, 0.2266] | 0.0809 | research | lexicon-derived |
+| sms | wikipron | 111 | 0.0045 | 0.0045 | 0.0045 | 0.9820 | 0.9820 | [0.0000, 0.0120] | 0.9820 | research | crowd-scraped |
 | so | kaikki | 230 | 0.5567 | 0.5403 | 0.5403 | 0.0565 | 0.0565 | [0.5304, 0.5838] | 0.0435 | research | crowd-scraped |
 | sq | vox_communis | 11713 | 0.1432 | 0.1432 | 0.1432 | 0.3056 | 0.3056 | [0.1411, 0.1453] | 0.3056 | research | epitran-derived |
 | sq | wikipron | 4900 | 0.0964 | 0.0964 | 0.0964 | 0.5606 | 0.5606 | [0.0928, 0.1003] | 0.5606 | research | crowd-scraped |
