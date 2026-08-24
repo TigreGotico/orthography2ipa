@@ -99,6 +99,19 @@
       "s"
     ]
   },
+  "positional_graphemes": {
+    "e": {
+      "nucleus_unstressed": [
+        "ə"
+      ],
+      "nucleus_stressed": [
+        "e"
+      ],
+      "default": [
+        "e"
+      ]
+    }
+  },
   "parent": "gem-x-ingvaeonic",
   "ancestors": [
     {
@@ -108,7 +121,7 @@
       "notes": "Descent per Glottolog classification of Middle Low German (midd1318)."
     }
   ],
-  "notes": "Research. West Germanic (Ingvaeonic/Low Saxon) medieval stage written in the Latin alphabet. Grapheme map covers the basic vowels, doubled long vowels, the digraphs sch [ʃ], ch [x], ng and ck, and the plain consonants with v and w both mapped to [v]. Middle Low German spelling was not standardised across the Hanseatic writing tradition; vowel length and quality were marked inconsistently and are largely left unencoded, so a notable PER floor is expected. Grapheme table checked against Lasch (1914): no discrepancy found.",
+  "notes": "Research. West Germanic (Ingvaeonic/Low Saxon) medieval stage written in the Latin alphabet. Grapheme map covers the basic vowels, doubled long vowels, the digraphs sch [ʃ], ch [x], ng and ck, and the plain consonants with v and w both mapped to [v]. Middle Low German spelling was not standardised across the Hanseatic writing tradition; vowel length and quality were marked inconsistently and are largely left unencoded, so a notable PER floor is expected. Grapheme table checked against Lasch (1914): no discrepancy found. `positional_graphemes.e` encodes the reduction of unstressed non-initial-syllable vowels (mostly historical short a/i/o/u of medial and final syllables) to a single schwa-like sound, normally spelled <e>, that Lasch (1914) describes for the medial/final-syllable vowel system (§§211-212: 'Die im as. noch vorhandene Mannigfaltigkeit der kurzen Vokale in den unbetonten Silben hat sich mnd. auf einen meist durch e wiedergegebenen Laut reduziert', p. 116-117); the gold cache confirms this is realised as [ə] in practice (e.g. all 58 -en-final polysyllables and the large majority of -e-final polysyllables in the wikipron sample). Word-final obstruent devoicing was checked against the gold and could not be evaluated: the 143-word sample contains no orthographically b- or d-final word and only one g-final word, too little evidence to source a rule either way.",
   "iso639_3": "gml",
   "glottolog_code": null,
   "sources": [
@@ -130,8 +143,8 @@
       "title": "Mittelniederdeutsche Grammatik",
       "publisher": "Niemeyer, Halle",
       "url": "https://archive.org/details/mittelniederdeut00lasc",
-      "pages": null,
-      "notes": "Standard reference grammar of Middle Low German; used to verify the grapheme table and to source the root-initial stress rule (the ordinary West Germanic pattern) encoded in this spec's `stress` block.",
+      "pages": "116-117 (§§211-212)",
+      "notes": "Standard reference grammar of Middle Low German; used to verify the grapheme table, to source the root-initial stress rule (the ordinary West Germanic pattern) encoded in this spec's `stress` block, and to source the unstressed-syllable vowel reduction to a schwa-like sound spelled <e> (§§211-212) encoded in `positional_graphemes.e.nucleus_unstressed`.",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Middle_Low_German"
     },
     {
