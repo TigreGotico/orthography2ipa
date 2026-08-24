@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.79.6a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.6a1) (2026-08-24)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.5a1...7.79.6a1)
+
+**Merged pull requests:**
+
+- fix\(new\): read Newar's own Devanagari orthography instead of Hindi's [\#1083](https://github.com/TigreGotico/orthography2ipa/pull/1083) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.79.5a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.5a1) (2026-08-24)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.4a1...7.79.5a1)
@@ -689,10 +697,6 @@
 ## [7.70.3a2](https://github.com/TigreGotico/orthography2ipa/tree/7.70.3a2) (2026-08-14)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.70.3a1...7.70.3a2)
-
-**Merged pull requests:**
-
-- data\(dz\): read the Tibetan syllable, not the letter — PER 0.8142 → 0.3470 [\#898](https://github.com/TigreGotico/orthography2ipa/pull/898) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.70.3a1](https://github.com/TigreGotico/orthography2ipa/tree/7.70.3a1) (2026-08-14)
 
