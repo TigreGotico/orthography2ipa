@@ -888,6 +888,86 @@ class TestBreton:
         vals = _allophone(self.spec, "ʁ")
         _assert_contains(vals, "ʁ", "r", label="br:ʁ allophones")
 
+    # ── Peurunvan orthography: every letter is mapped ───────────────────────
+
+    def test_plural_digraph_ou_grave_maps_to_u(self):
+        """The peurunvan plural digraph ⟨où⟩ spells /u/ in KLT.
+
+        ARBRES, 'Accentuation', quotes Goyat (2012:128-9) transcribing
+        ⟨an avalou-se⟩ as [ãn a'vaːlu se]. Unmapped, ⟨ù⟩ is not a grapheme
+        at all and the tokenizer drops it silently.
+        """
+        _assert_first(_grapheme(self.spec, "où"), "u", label="br:où→u")
+
+    def test_plural_ending_is_not_silently_deleted(self):
+        """⟨avaloù⟩ keeps its plural vowel: the word ends in /u/, not /o/."""
+        ipa = _segments(orthography2ipa.G2P("br").transcribe_word("avaloù"))
+        assert ipa.endswith("u"), f"br:avaloù lost its plural vowel: {ipa!r}"
+
+    @pytest.mark.parametrize("apostrophe", ["'", "’", "ʼ"])
+    def test_c_h_digraph_accepts_every_apostrophe(self, apostrophe):
+        """⟨c'h⟩ is written with U+0027, U+2019 or U+02BC and is /x/ in all three.
+
+        An unmapped apostrophe does not merely lose the apostrophe: the ⟨c⟩
+        goes with it and the word is read as if spelt with a bare ⟨h⟩.
+        """
+        word = "c" + apostrophe + "hoari"
+        ipa = _segments(orthography2ipa.G2P("br").transcribe_word(word))
+        assert ipa.startswith("x"), f"br:{word!r} → {ipa!r}, expected /x/ onset"
+
+    # ── Stress and stressed-vowel length ────────────────────────────────────
+
+    def test_stress_is_penultimate(self):
+        """KLT and the standard are paroxytone.
+
+        ARBRES, 'Accentuation', 'Mots simples': "Le KLT accentue sur
+        l'avant-dernière syllabe (paroxyton ...), quand le vannetais accentue
+        sur la dernière (oxyton)."
+        """
+        assert self.spec.stress is not None, "br: no stress block"
+        assert self.spec.stress.default_position == -2
+
+    def test_stressed_vowel_lengthens_before_single_lenis(self):
+        """⟨avaloù⟩ is [aˈvaːlu]: stressed /a/ before a single lenis /l/.
+
+        Hewitt (1978), JIPA 8(1-2):80: stressed vowels are half long unless
+        before fortis consonants or consonant clusters.
+        """
+        ipa = orthography2ipa.G2P("br").transcribe_word("avaloù")
+        assert ipa == "aˈvaːlu", f"br:avaloù → {ipa!r}"
+
+    def test_stressed_vowel_stays_short_before_a_cluster(self):
+        """⟨dorn⟩ 'hand' keeps a short vowel: /rn/ is a cluster."""
+        ipa = _segments(orthography2ipa.G2P("br").transcribe_word("dorn"))
+        assert "ː" not in ipa, f"br:dorn lengthened before a cluster: {ipa!r}"
+
+    def test_word_final_stressed_vowel_is_long(self):
+        """⟨du⟩ 'black' is [dyː] — a final stressed vowel has no coda at all."""
+        ipa = _segments(orthography2ipa.G2P("br").transcribe_word("du"))
+        assert ipa == "dyː", f"br:du → {ipa!r}"
+
+    def test_unstressed_vowel_does_not_lengthen(self):
+        """Only the stressed syllable lengthens: ⟨Gwened⟩ is [ˈɡweːnet]."""
+        ipa = orthography2ipa.G2P("br").transcribe_word("Gwened")
+        assert ipa == "ˈɡweːnet", f"br:Gwened → {ipa!r}"
+
+    # ── Final lenis-obstruent devoicing ─────────────────────────────────────
+
+    @pytest.mark.parametrize("word,tail", [
+        ("Breizh", "s"),    # <zh> = /z/ in KLT, devoiced word-finally
+        ("Pariz", "s"),
+        ("Gwened", "t"),
+        ("chug", "k"),
+    ])
+    def test_final_lenis_obstruent_devoices(self, word, tail):
+        """Peurunvan writes the lenis member; the pausal form is voiceless.
+
+        Hewitt (1978), JIPA 8(1-2):80, records "lenis obstruent devoicing in
+        final pausal position and in sandhi".
+        """
+        ipa = _segments(orthography2ipa.G2P("br").transcribe_word(word))
+        assert ipa.endswith(tail), f"br:{word} → {ipa!r}, expected …{tail}"
+
 
 # ═══════════════════════════════════════════════════════════════════════════
 # Manx (gv)

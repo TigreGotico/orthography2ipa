@@ -1728,7 +1728,7 @@ def test_br_ch_and_zh():
     br notes: "⟨c'h⟩ = /x/; ⟨zh⟩ = /z/ (KLT) or /h/ (Vannetais)."
     Refs: Hemon (1975), Press (1986).
     """
-    assert _t("br", "c'hoar").startswith("x")
+    assert _bare("br", "c'hoar").startswith("x")
     assert "z" in _t("br", "brezhoneg")
 
 

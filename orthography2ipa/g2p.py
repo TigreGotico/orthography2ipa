@@ -527,6 +527,17 @@ class G2P:
             not _APERTURE_POSITIONS.isdisjoint(entry)
             for entry in (self.spec.positional_graphemes or {}).values()
             if entry)
+        #: Which beam the word path takes. The plain tokenizer beam carries no
+        #: stress context, so a ``RescoreContext`` built on it has
+        #: ``is_stressed is None`` and every ``stress`` allophone rule
+        #: declines to fire. A spec that declares such a rule therefore needs
+        #: the context-carrying beam just as a spec with positional overrides
+        #: does — otherwise the rule is loaded, validated, documented, and
+        #: silently dead. ``syllable_position`` rules read grapheme context,
+        #: which is present on both beams, so they do not force the switch.
+        self._needs_context_beam: bool = (
+            self.spec.has_positional_data()
+            or any(r.stress for r in self.spec.allophone_rules))
         #: Declared prosodic-clitic keys (see :meth:`_is_cliticless`), computed
         #: once per engine on first use; ``None`` until then.
         self._cliticless_cache: Optional[frozenset] = None
@@ -1148,7 +1159,7 @@ class G2P:
         if override is not None:
             ipa = override
         else:
-            if self.spec.has_positional_data():
+            if self._needs_context_beam:
                 paths = self._positional_beam(word, width)
             else:
                 paths = self._tokenizer.ipa_beam(
@@ -1294,7 +1305,7 @@ class G2P:
             return [unicodedata.normalize(
                 "NFC", self._finalize_word_ipa(word, override,
                                                collapse_geminates=False))]
-        if self.spec.has_positional_data():
+        if self._needs_context_beam:
             paths = self._positional_beam(word, width)
         else:
             paths = self._tokenizer.ipa_beam(
