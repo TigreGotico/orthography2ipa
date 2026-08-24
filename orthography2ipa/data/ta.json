@@ -120,7 +120,7 @@
       "j"
     ],
     "ர": [
-      "r"
+      "ɾ"
     ],
     "ல": [
       "l"
@@ -223,6 +223,9 @@
       "r",
       "ɾ"
     ],
+    "ɾ": [
+      "ɾ"
+    ],
     "l": [
       "l"
     ],
@@ -300,7 +303,7 @@
       "notes": "Sanskrit adstrate: Grantha letters, Sanskrit loanwords in formal register"
     }
   ],
-  "notes": "Standard Tamil (Tamil Nadu, India + Sri Lanka). Dravidian language, not related to Indo-Aryan. Key features: no aspirated stop phonemes (aspiration is allophonic); voiced/voiceless distinction positional (not phonemic for native words); unique retroflex approximant ⟨ழ⟩ = [ɻ]; retroflex lateral ⟨ள⟩ = [ɭ]; alveolar ⟨ன⟩ vs dental ⟨ந⟩. Strong diglossia: literary (centamiḻ) vs spoken (kōccai tamiḻ). Oldest attested Dravidian language (inscriptions from 3rd c. BCE).",
+  "notes": "Standard Tamil (Tamil Nadu, India + Sri Lanka). Dravidian language, not related to Indo-Aryan. Key features: no aspirated stop phonemes (aspiration is allophonic); voiced/voiceless distinction positional (not phonemic for native words); two distinct non-retroflex rhotic letters — ⟨ர⟩ is the alveolar tap [ɾ] and never geminates, ⟨ற⟩ the trill [r] whose orthographic geminate ⟨ற்ற⟩ is long (Keane 2004: 113; Schiffman 1999: 7); unique retroflex approximant ⟨ழ⟩ = [ɻ]; retroflex lateral ⟨ள⟩ = [ɭ]; alveolar ⟨ன⟩ vs dental ⟨ந⟩. Strong diglossia: literary (centamiḻ) vs spoken (kōccai tamiḻ). Oldest attested Dravidian language (inscriptions from 3rd c. BCE).",
   "quality": "research",
   "script_type": "abugida",
   "inherent_vowel": "a",
@@ -323,8 +326,8 @@
       "title": "A Reference Grammar of Spoken Tamil",
       "publisher": "Cambridge University Press",
       "url": null,
-      "pages": null,
-      "notes": null
+      "pages": "7",
+      "notes": "Section 1.2.1.6 'Rhotics, Final and Otherwise' (p. 7): ⟨ர⟩ is 'a phonetically flapped or tapped r, more or less alveolar' and 'does not undergo gemination (doubling)'; ⟨ற⟩ 'was originally an alveolar stop', is trilled intervocalically, and geminates. Section 1.2, item 4 (p. 14) describes medial single stops as 'laxed and fricativized', with the palatal and velar 'only laxed but not usually voiced'."
     },
     {
       "id": "ladefoged_maddieson1996",
@@ -344,7 +347,7 @@
       "publisher": "Illustrations of the IPA, Journal of the International Phonetic Association 34(1)",
       "url": null,
       "pages": "111-116",
-      "notes": "The stop series has no voicing contrast: plosives are voiceless word-initially and when geminated, voiced intervocalically and after a nasal. Source for TA_GEM*, TA_NOVOICE_* and TA_VOICE_*.",
+      "notes": "The stop series has no voicing contrast: plosives are voiceless word-initially and when geminated, voiced intervocalically and after a nasal. Source for TA_GEM*, TA_NOVOICE_* and TA_VOICE_*. Page 113 ('Liquids') is the source for the two rhotic letters: ⟨ர⟩ is listed under Tap in the consonant chart and glossed கரி [kaɾi] 'charcoal', and Balasubramanian (1982a) is cited there as arguing that ⟨ர⟩ 'always corresponds phonetically to a tap, whilst [ɾ] and [r] are both possible realizations of' ⟨ற⟩; the same page states that rhotic liquids 'are the only category of sounds in Tamil that do not undergo gemination'. Page 112 is the source for the intervocalic realization of ⟨ச⟩ as [s] ('The most common realization of a single intervocalic segment is the alveolar fricative [s]').",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Tamil_phonology"
     }
   ],
@@ -1541,6 +1544,7 @@
         "l",
         "p",
         "r",
+        "ɾ",
         "s",
         "tɕ",
         "tɾ",
@@ -1558,7 +1562,7 @@
         "ʈ",
         "ʋ"
       ],
-      "notes": "Voicing guard. Tamil has NO phonemic voicing contrast in stops: voicing is positional (Keane 2004: 111-116; Krishnamurti 2003: 4.2; Wikipedia, 'Tamil phonology'). A stop is VOICELESS word-initially and when it follows another vowel-less obstruent or liquid (i.e. inside a cluster that is not nasal+stop): பார்ப்பு, கற்க. This identity rewrite fires first in exactly that context and — first match wins — blocks TA_VOICE_*. Nasals are deliberately absent from the list: a stop AFTER a nasal is voiced (TA_VOICE_*), தங்கம் [t̪aŋɡam]."
+      "notes": "Voicing guard. Tamil has NO phonemic voicing contrast in stops: voicing is positional (Keane 2004: 111-116; Keane 2004: 112, 'Obstruents': 'voicing is not contrastive in the native Dravidian vocabulary ... In word-initial position voiceless plosives are found ... Voiced obstruents occur word-internally after nasal segments'). A stop is VOICELESS word-initially and when it follows another vowel-less obstruent or liquid (i.e. inside a cluster that is not nasal+stop): பார்ப்பு, கற்க. This identity rewrite fires first in exactly that context and — first match wins — blocks TA_VOICE_*. Both rhotic letters are in the list — the tap ⟨ர⟩ [ɾ] and the trill ⟨ற⟩ [r] behave alike as the first member of a cluster: சார்பு [tɕaːɾpu], கற்க [karka]. Nasals are deliberately absent from the list: a stop AFTER a nasal is voiced (TA_VOICE_*), தங்கம் [t̪aŋɡam]."
     },
     {
       "id": "TA_NOVOICE_k",
@@ -1578,6 +1582,7 @@
         "l",
         "p",
         "r",
+        "ɾ",
         "s",
         "tɕ",
         "tɾ",
@@ -1615,6 +1620,7 @@
         "l",
         "p",
         "r",
+        "ɾ",
         "s",
         "tɕ",
         "tɾ",
@@ -1652,6 +1658,7 @@
         "l",
         "p",
         "r",
+        "ɾ",
         "s",
         "tɕ",
         "tɾ",
@@ -1689,6 +1696,7 @@
         "l",
         "p",
         "r",
+        "ɾ",
         "s",
         "tɕ",
         "tɾ",
@@ -1726,6 +1734,7 @@
         "l",
         "p",
         "r",
+        "ɾ",
         "s",
         "tɕ",
         "tɾ",
@@ -1763,6 +1772,7 @@
         "l",
         "p",
         "r",
+        "ɾ",
         "s",
         "tɕ",
         "tɾ",
@@ -1800,6 +1810,7 @@
         "l",
         "p",
         "r",
+        "ɾ",
         "s",
         "tɕ",
         "tɾ",
@@ -1837,6 +1848,7 @@
         "l",
         "p",
         "r",
+        "ɾ",
         "s",
         "tɕ",
         "tɾ",
@@ -1874,6 +1886,7 @@
         "l",
         "p",
         "r",
+        "ɾ",
         "s",
         "tɕ",
         "tɾ",
