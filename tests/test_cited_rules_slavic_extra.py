@@ -1090,20 +1090,21 @@ def test_bxr_h_letter_and_unmapped_russian_letters():
 
 
 def test_inh_multigraph_consonants():
-    """Ingush digraphs/trigraph: кх=/q/, къ=/qʼ/, хь=/ħ/, хӏ=/h/, гӏ=/ʁ/, ӏ=/ʡ/, рхӏ=/r̥/.
+    """Ingush digraphs/trigraph: кх=/q/, къ=/qʼ/, хь=/ħ/, хӏ=/h/, гӏ=/ʁ/, ӏ=/ʕ/, рхӏ=/r̥/.
 
     inh notes: "The orthography uses digraphs and one trigraph for the Nakh
     consonant inventory: ejectives пӏ тӏ кӏ цӏ чӏ, uvular кх /q/ and къ /qʼ/,
-    pharyngeal хь /ħ/, laryngeal хӏ /h/, uvular fricative гӏ /ʁ/, the epiglottal
-    stop ӏ /ʡ/, and рхӏ for the voiceless trill /r̥/; the engine matches these by
-    maximal munch, so multigraphs win over their component letters."
+    pharyngeal хь /ħ/, laryngeal хӏ /h/, uvular fricative гӏ /ʁ/ ... and рхӏ for
+    the voiceless trill /r̥/; the engine matches these by maximal munch, so
+    multigraphs win over their component letters." The bare ⟨ӏ⟩ is the voiced
+    pharyngeal /ʕ/ (Berkeley Ingush project, "Ingush Phonology and Orthography").
     """
     assert _bare("inh", "кхы") == "q"
     assert _bare("inh", "къа").startswith("qʼ")
     assert _bare("inh", "хьа").startswith("ħ")
     assert _bare("inh", "хӏа").startswith("h")
     assert _bare("inh", "гӏалгӏай").startswith("ʁ")
-    assert _bare("inh", "ӏа").startswith("ʡ")
+    assert _bare("inh", "ӏа").startswith("ʕ")
     assert _bare("inh", "рхӏ") == "r̥"
 
 
