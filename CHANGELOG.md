@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.79.4a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.4a1) (2026-08-24)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.3a1...7.79.4a1)
+
+**Merged pull requests:**
+
+- fix: run board-not-reverting guard from the base branch's copy [\#1089](https://github.com/TigreGotico/orthography2ipa/pull/1089) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.79.3a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.3a1) (2026-08-24)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.2a1...7.79.3a1)
@@ -705,10 +713,6 @@
 ## [7.70.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.70.1a1) (2026-08-14)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.70.0a2...7.70.1a1)
-
-**Merged pull requests:**
-
-- fix\(bench\): fold click-accompaniment notation variants in normalize [\#894](https://github.com/TigreGotico/orthography2ipa/pull/894) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.70.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.70.0a2) (2026-08-13)
 
