@@ -408,7 +408,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | mwl-x-sendim | mirandese_dict | 79 | 0.0937 | 0.0916 | 0.0916 | 0.6203 | 0.6203 | [0.0673, 0.1265] | 0.6203 | research | llm-generated |
 | mwl-x-sendim | mirandese_g2p | 11 | 0.3258 | 0.3258 | 0.3258 | 0.3636 | 0.3636 | [0.1641, 0.4824] | 0.3636 | research | expert-human |
 | mwl-x-sendim | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| mww | wikipron | 489 | 0.3644 | 0.3644 | 0.3644 | 0.0000 | 0.0000 | [0.3539, 0.3753] | 0.0000 | research | crowd-scraped |
+| mww | wikipron | 489 | 0.0107 | 0.0107 | 0.0107 | 0.9611 | 0.9611 | [0.0060, 0.0161] | 0.9611 | research | crowd-scraped |
 | my | wikipron | 7941 | 0.1926 | 0.1899 | 0.1898 | 0.4440 | 0.4440 | [0.1878, 0.1974] | 0.4381 | research | crowd-scraped |
 | myv | vox_communis | 6442 | 0.0944 | 0.0944 | 0.0944 | 0.3890 | 0.3890 | [0.0923, 0.0965] | 0.3890 | research | epitran-derived |
 | nap | wikipron | 198 | 0.2792 | 0.2387 | 0.2307 | 0.1263 | 0.1263 | [0.2544, 0.3033] | 0.1162 | research | crowd-scraped |

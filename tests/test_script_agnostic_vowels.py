@@ -19,6 +19,7 @@ import dataclasses
 import pytest
 
 from orthography2ipa import G2P, get
+from orthography2ipa.allophony import compile_allophone_rescorer
 from orthography2ipa.phonetok import PhonetokTokenizer
 from orthography2ipa.positional import grapheme_positions
 from orthography2ipa.types import GraphemePosition, LanguageSpec
@@ -258,24 +259,77 @@ def test_vowel_graphemes_override_silences_tone_letter_after_w():
 def test_mww_vowel_graphemes_override_silences_tone_letter_after_w():
     """The real White Hmong (RPA) spec, not a synthetic stand-in: ⟨w⟩=/ɨ/ is
     a bare rhyme, and the tone letter that follows it (⟨v⟩ in ``tswv``, ⟨s⟩
-    in ``kws``) is declared silent ``after_vowel`` in mww's own
-    ``positional_graphemes`` (see mww.json's notes). Without
-    ``vowel_graphemes``, ⟨w⟩ never counts as a vowel, so ``after_vowel``
-    never fires and the tone letter surfaces as a spurious consonant."""
+    in ``kws``) is a real tone letter in mww's own ``positional_graphemes``
+    (see mww.json's notes) — ``after_vowel`` spells its Chao pitch mark
+    rather than a coda consonant. Without ``vowel_graphemes``, ⟨w⟩ never
+    counts as a vowel, so ``after_vowel`` never fires and the tone letter
+    surfaces as a spurious consonant instead.
+
+    The allophone-rescorer pass (``MWW_MID_UNSPELLED_*``, which strips the
+    default mid tone ˧ baked onto the nucleus once a real tone letter
+    supplies the actual tone) only runs through the compiled rescorer, not
+    on a bare :meth:`PhonetokTokenizer.ipa_best` call — see
+    ``test_allophone_rules.py``'s ``_apply`` helper for the same pattern —
+    so it must be passed explicitly here, exactly as every other allophone-
+    rule test in this repo does."""
     spec = get("mww")
     assert spec.vowel_graphemes == ("w",)
 
+    allo = compile_allophone_rescorer(spec.allophone_rules)
     tok_with = PhonetokTokenizer(spec)
     tok_without = PhonetokTokenizer(dataclasses.replace(spec, vowel_graphemes=()))
 
-    tswv_with = tok_with.ipa_best("tswv")
-    tswv_without = tok_without.ipa_best("tswv")
+    tswv_with = tok_with.ipa_best("tswv", rescorer=allo)
+    tswv_without = tok_without.ipa_best("tswv", rescorer=allo)
     assert not tswv_with.endswith("v")
     assert tswv_without.endswith("v")
-    assert tswv_with == tswv_without[:-1]
+    # ⟨v⟩ is not silent after a vowel: it spells the mid-rising tone ˧˦,
+    # replacing (not appending to) the default mid tone ˧ the nucleus
+    # would otherwise carry. Exactly one tone mark survives either way.
+    assert tswv_with == "t͡ʂɨ˧˦"
+    assert tswv_without == "t͡ʂɨ˧v"
 
-    kws_with = tok_with.ipa_best("kws")
-    kws_without = tok_without.ipa_best("kws")
+    kws_with = tok_with.ipa_best("kws", rescorer=allo)
+    kws_without = tok_without.ipa_best("kws", rescorer=allo)
     assert not kws_with.endswith("ʂ")
     assert kws_without.endswith("ʂ")
-    assert kws_with == kws_without[:-1]
+    # ⟨s⟩ after a vowel spells the low tone ˩, likewise replacing ˧.
+    assert kws_with == "kɨ˩"
+    assert kws_without == "kɨ˧ʂ"
+
+
+def test_mww_nucleus_by_tone_letter_matrix_has_exactly_one_tone_each():
+    """Every declared vowel nucleus mww can produce, crossed with all seven
+    marked tone letters, must resolve through the allophone rescorer to
+    the onset plus the bare nucleus plus EXACTLY the tone letter's own
+    tone mark — never the default mid tone ˧ left un-stripped underneath
+    it (the bake-then-strip mechanism documented on
+    ``MWW_MID_UNSPELLED_*``). Expected forms are built directly from the
+    spec's own grapheme/positional-grapheme tables, not read back from the
+    allophone rules under test."""
+    spec = get("mww")
+    allo = compile_allophone_rescorer(spec.allophone_rules)
+    tok = PhonetokTokenizer(spec)
+
+    # nucleus grapheme -> bare (tone-stripped) surface, from the allophone
+    # rules' own `surface` field, which is independent of the `phonemes`
+    # (tone-baked) side under test.
+    nucleus_surface = {r.phonemes[0].rstrip("˧"): r.surface
+                        for r in spec.allophone_rules}
+    nuclei = ("a", "e", "i", "o", "u", "ee", "oo", "ia", "ua", "ai", "au", "aw", "w")
+    assert len(nucleus_surface) == len(nuclei)
+
+    # tone letter -> its Chao pitch mark: unconditional for b/j/g, the
+    # `after_vowel` positional candidate for s/m/v/d.
+    tone_of_letter = {"b": "˥", "j": "˥˧", "g": "˧˩̤"}
+    for letter in ("s", "m", "v", "d"):
+        tone_of_letter[letter] = \
+            spec.positional_graphemes[letter][GraphemePosition.AFTER_VOWEL][0]
+
+    for nucleus_grapheme in nuclei:
+        bare = nucleus_surface[spec.graphemes[nucleus_grapheme][0].rstrip("˧")]
+        for letter, tone in tone_of_letter.items():
+            word = "ts" + nucleus_grapheme + letter
+            expected = "t͡ʂ" + bare + tone
+            out = tok.ipa_best(word, rescorer=allo)
+            assert out == expected, f"{word} -> {out!r}, want {expected!r}"
