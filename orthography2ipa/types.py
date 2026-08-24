@@ -12,7 +12,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field, fields
 from enum import Enum
-from typing import Dict, FrozenSet, List, Optional, Tuple, Union
+from typing import (Dict, FrozenSet, List, Mapping, Optional, Tuple,
+                    Union)
 
 # ═══════════════════════════════════════════════════════════════════════════
 # Type aliases
@@ -234,6 +235,44 @@ class TimeSpan:
     """
     start_year: int
     end_year: Optional[int]  # None = living / ongoing
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# ToneRules — tone computed from the shape of the syllable
+# ═══════════════════════════════════════════════════════════════════════════
+
+@dataclass(frozen=True)
+class ToneRules:
+    """How an orthography that does not spell tone directly encodes it.
+
+    In a Tai-style writing system the tone of a syllable is not written by
+    any one grapheme. It follows from four things the spelling states
+    jointly: the CLASS its initial consonant belongs to, whether the rime
+    is checked (dead) or not (live), the length of the vowel, and which
+    of the tone marks — if any — rides the initial. Every one of those is
+    recoverable from the written word, so the tone is too, but only once
+    the syllable has been assembled: a grapheme table cannot hold it.
+
+    This block states the system as data. :func:`orthography2ipa.tone.
+    assign_computed_tones` reads it and names no language.
+
+    ``classes`` maps a consonant letter to its class name, ``marks`` maps
+    a tone mark to its name, and ``tones`` maps a tone's name to the IPA
+    it is transcribed with. ``table`` is the system itself, read
+    ``table[class][shape][mark]`` where *shape* is ``live``,
+    ``dead_short`` or ``dead_long`` — plus the pseudo-shape ``any`` for
+    the marks whose reading does not depend on the shape of the rime.
+    ``dead_codas`` are the coda phonemes that check a syllable.
+    """
+
+    classes: Mapping[str, str] = field(default_factory=dict)
+    marks: Mapping[str, str] = field(default_factory=dict)
+    tones: Mapping[str, str] = field(default_factory=dict)
+    table: Mapping[str, Mapping[str, Mapping[str, str]]] = \
+        field(default_factory=dict)
+    dead_codas: Tuple[str, ...] = ()
+    no_mark: str = "none"
+    notes: Optional[str] = None
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -1536,6 +1575,7 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "sandhi_rules": InheritanceMode.OVERLAY_BY_ID,
     "allophone_rules": InheritanceMode.OVERLAY_BY_ID,
     "allophone_passes": InheritanceMode.NOT_INHERITED,
+    "tone_rules": InheritanceMode.OWN_ONLY,
     "tone_inventory": InheritanceMode.OWN_ONLY,
     "tone_marks_syllable_final": InheritanceMode.OWN_ONLY,
     "sources": InheritanceMode.OWN_ONLY,
@@ -2015,6 +2055,13 @@ class LanguageSpec:
     conservative-dental dialect that disables the affrication leaves the
     default ``1`` (its raising needs no second pass). Bounded (no unbounded
     fixpoint) so a pathological rule set cannot loop."""
+
+    tone_rules: Optional[ToneRules] = None
+    """Optional computed-tone system: see :class:`ToneRules`.
+
+    Declared by an orthography that spells tone with the shape of the
+    syllable rather than with a tone letter, so that no grapheme carries
+    it. Absent for every orthography whose graphemes already do."""
 
     tone_inventory: Optional[Dict[str, str]] = None
     """Optional tone inventory: IPA tone mark → label

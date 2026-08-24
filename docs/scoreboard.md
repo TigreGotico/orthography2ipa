@@ -610,8 +610,8 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | tew | wikipron | 106 | 0.0000 | 0.0000 | 0.0000 | 1.0000 | 1.0000 | [0.0000, 0.0000] | 1.0000 | research | crowd-scraped |
 | tft | wikipron | 293 | 0.1041 | 0.1041 | 0.1041 | 0.6792 | 0.6792 | [0.0827, 0.1265] | 0.6792 | research | crowd-scraped |
 | tg | wikipron | 3245 | 0.0296 | 0.0296 | 0.0296 | 0.8354 | 0.8354 | [0.0271, 0.0323] | 0.8354 | research | crowd-scraped |
-| th | vox_communis | 23704 | 0.4459 | 0.4443 | 0.4442 | 0.0003 | 0.0003 | [0.4440, 0.4477] | 0.0003 | research | epitran-derived |
-| th | wikipron | 16937 | 0.4204 | 0.4193 | 0.4193 | 0.0011 | 0.0011 | [0.4185, 0.4224] | 0.0011 | research | crowd-scraped |
+| th | vox_communis | 23704 | 0.4581 | 0.4538 | 0.4538 | 0.0376 | 0.0376 | [0.4556, 0.4606] | 0.0366 | research | epitran-derived |
+| th | wikipron | 16937 | 0.2300 | 0.2276 | 0.2276 | 0.3097 | 0.3097 | [0.2266, 0.2334] | 0.3090 | research | crowd-scraped |
 | tk | vox_communis | 5881 | 0.0874 | 0.0874 | 0.0874 | 0.5621 | 0.5621 | [0.0844, 0.0903] | 0.5621 | research | epitran-derived |
 | tk | wikipron | 424 | 0.3580 | 0.3580 | 0.3580 | 0.2005 | 0.2005 | [0.3339, 0.3817] | 0.2005 | research | crowd-scraped |
 | tkl | wikipron | 340 | 0.0497 | 0.0497 | 0.0497 | 0.7824 | 0.7824 | [0.0390, 0.0601] | 0.7824 | research | crowd-scraped |

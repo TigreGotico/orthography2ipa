@@ -70,7 +70,7 @@ def test_postposed_dependent_vowel_cancels_the_inherent_vowel_thai():
     # กา = ก + า. Without the fix ก keeps its inherent /o/: *[kao].
     tokens = PhonetokTokenizer(get("th")).grapheme_tokens("กา")
     assert tokens[0].ipa[0] == "k", "inherent vowel not cancelled by ⟨า⟩"
-    assert G2P("th").transcribe("กา") == "kaː"
+    assert G2P("th").transcribe("กา") == "kaː˧"
 
 
 def test_postposed_dependent_vowel_cancels_the_inherent_vowel_lao():
@@ -84,7 +84,7 @@ def test_mn_category_thai_lao_vowel_signs_already_worked_without_the_list():
     # ⟨ิ⟩/⟨ິ⟩ etc. are Mn already — the pre-existing category gate handles
     # them. dependent_vowels only needed to cover the Lo-category signs.
     assert unicodedata.category("ิ") == "Mn"
-    assert G2P("th").transcribe("กิ") == "ki"
+    assert G2P("th").transcribe("กิ") == "ki˨˩"
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -113,8 +113,8 @@ def test_preposed_vowel_token_is_silent_and_stays_in_text_order():
 
 
 @pytest.mark.parametrize("lang,word,expected", [
-    ("th", "เก", "keː"),
-    ("th", "เด", "deː"),
+    ("th", "เก", "keː˧"),
+    ("th", "เด", "deː˧"),
     ("lo", "ເມ", "meː"),
 ])
 def test_preposed_vowel_reads_consonant_before_vowel(lang, word, expected):
@@ -232,13 +232,13 @@ def test_lo_laos_word_has_no_spurious_final_vowel():
 
 
 def test_th_laos_loanword_has_no_spurious_final_vowel():
-    assert G2P("th").transcribe("ลาว") == "laːw"
+    assert G2P("th").transcribe("ลาว") == "laːw˧"
 
 
 def test_th_maak_coda_after_vowel_sign_stays_bare_and_unreleased():
     # มาก /mâːk/ 'a lot': า supplies the nucleus, ก closes it — no schwa,
     # and the word-final stop is unreleased per the new allophone rule.
-    assert G2P("th").transcribe("มาก") == "maːk̚"
+    assert G2P("th").transcribe("มาก") == "maːk̚˥˩"
 
 
 def test_preposed_vowel_words_unaffected_by_coda_rule():
@@ -247,7 +247,7 @@ def test_preposed_vowel_words_unaffected_by_coda_rule():
     # must not misfire on a consonant that received its OWN vowel via the
     # preposed-vowel merge (there is no following bare consonant here to
     # even test it against, but the full transcription must stay intact).
-    assert G2P("th").transcribe("เก") == "keː"
+    assert G2P("th").transcribe("เก") == "keː˧"
     assert G2P("lo").transcribe("ເສືອ") == "sɯːə"
 
 
@@ -257,7 +257,7 @@ def test_ambiguous_bare_consonant_sequence_keeps_prior_behaviour():
     # not apply — the first consonant still gets its inherent vowel exactly
     # as before #TAI-CODA. The final stop is still unreleased (independent
     # allophone rule, word_final-gated only).
-    assert G2P("th").transcribe("นก") == "nok̚"
+    assert G2P("th").transcribe("นก") == "nok̚˦˥"
 
 
 def test_devanagari_and_other_abugidas_unaffected_by_coda_flag():

@@ -18,7 +18,8 @@ import orthography2ipa as o2i
     # ⟨ພຸດທະ⟩ buddha: ⟨ທ⟩ opens the second syllable and keeps its vowel.
     ("lo", "ພຸດທະ", "pʰut̚tʰaʔ"),
     # ⟨เอกชน⟩ private sector: ⟨ช⟩ opens ⟨ชน⟩ and keeps its implicit vowel.
-    ("th", "เอกชน", "ʔeːktɕʰon"),
+    # (Thai writes its tone: /ʔèːk/ is a dead-long mid-class syllable.)
+    ("th", "เอกชน", "ʔeːk˨˩tɕʰon˧"),
 ])
 def test_an_onset_consonant_keeps_its_implicit_vowel(lang, word, ipa):
     assert o2i.G2P(lang).transcribe_word(word) == ipa

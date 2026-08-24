@@ -264,6 +264,35 @@ class TimeSpanModel(_Strict):
         return v
 
 
+class ToneRulesModel(_Strict):
+    """Computed-tone system (``tone_rules``). Mirrors ``ToneRules``."""
+
+    classes: Dict[str, str] = Field(default_factory=dict)
+    marks: Dict[str, str] = Field(default_factory=dict)
+    tones: Dict[str, str] = Field(default_factory=dict)
+    table: Dict[str, Dict[str, Dict[str, str]]] = Field(default_factory=dict)
+    dead_codas: List[str] = Field(default_factory=list)
+    no_mark: str = "none"
+    notes: Optional[str] = None
+
+    @field_validator("table")
+    @classmethod
+    def _tones_are_named(cls, v, info):
+        names = set(info.data.get("tones") or ())
+        for klass, shapes in v.items():
+            for shape, marks in shapes.items():
+                if shape not in ("live", "dead_short", "dead_long", "any"):
+                    raise ValueError(
+                        f"table[{klass!r}]: {shape!r} is not a syllable shape "
+                        f"(live, dead_short, dead_long, any)")
+                for mark, tone in marks.items():
+                    if tone not in names:
+                        raise ValueError(
+                            f"table[{klass!r}][{shape!r}][{mark!r}]: {tone!r} "
+                            f"is not one of the declared tones {sorted(names)}")
+        return v
+
+
 class StressRulesModel(_Strict):
     """Declarative stress placement (``stress``). Mirrors ``StressRules``."""
 
@@ -380,6 +409,7 @@ class LanguageSpecModel(_Strict):
     allophone_rules: Optional[List[AllophoneRuleModel]] = None
     allophone_passes: int = Field(default=1, ge=1, le=4)
     stress: Optional[StressRulesModel] = None
+    tone_rules: Optional[ToneRulesModel] = None
     tone_inventory: Optional[Dict[str, str]] = None
     tone_marks_syllable_final: Optional[bool] = None
     sources: Optional[List[SourceModel]] = None

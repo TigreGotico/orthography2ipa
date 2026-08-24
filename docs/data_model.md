@@ -206,6 +206,7 @@ class LanguageSpec:
     sandhi_rules: Tuple[SandhiRule, ...] = ()          # Cross-word phonological rules
     allophone_rules: Tuple[AllophoneRule, ...] = ()    # Post-lexical phoneme → surface rewrites
     stress: Optional[StressRules] = None               # Stress placement rules
+    tone_rules: Optional[ToneRules] = None             # tone computed from the syllable's shape
     tone_inventory: Optional[Dict[str, str]] = None    # IPA tone mark → label
     tone_marks_syllable_final: bool = False            # dock tone at the syllable end
     word_exceptions: Optional[Dict[str, str]] = None   # Whole-word overrides for an irregular set

@@ -37,6 +37,7 @@ from orthography2ipa.types import (
     SandhiRule,
     ScriptType,
     StressRules,
+    ToneRules,
     TimeSpan,
 )
 from orthography2ipa.positional import normalize_ending_value
@@ -463,6 +464,20 @@ def load_json_spec(code: str) -> LanguageSpec:
     # own orthography (``graphemes_base`` unset, e.g. Angolar ``aoa`` under
     # ``pt-PT``) does not inherit stress — it declares its own or has none.
     stress: Optional[StressRules] = None
+    raw_tone = raw.get("tone_rules")
+    tone_rules = None
+    if raw_tone and isinstance(raw_tone, dict):
+        tone_rules = ToneRules(
+            classes=dict(raw_tone.get("classes") or {}),
+            marks=dict(raw_tone.get("marks") or {}),
+            tones=dict(raw_tone.get("tones") or {}),
+            table={k: {s: dict(m) for s, m in v.items()}
+                   for k, v in (raw_tone.get("table") or {}).items()},
+            dead_codas=tuple(raw_tone.get("dead_codas") or ()),
+            no_mark=raw_tone.get("no_mark", "none"),
+            notes=raw_tone.get("notes"),
+        )
+
     raw_stress = raw.get("stress")
     if raw_stress and isinstance(raw_stress, dict):
         stress = StressRules(
@@ -564,6 +579,7 @@ def load_json_spec(code: str) -> LanguageSpec:
         sandhi_rules=sandhi_rules,
         allophone_rules=allophone_rules,
         allophone_passes=int(raw.get("allophone_passes", 1)),
+        tone_rules=tone_rules,
         tone_inventory=raw.get("tone_inventory"),
         tone_marks_syllable_final=bool(
             raw.get("tone_marks_syllable_final", False)),
