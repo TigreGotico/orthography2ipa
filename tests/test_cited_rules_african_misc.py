@@ -1024,21 +1024,22 @@ def test_inh_gh_digraph_is_a_uvular_fricative():
     """"uvular fricative гӏ /ʁ/ ... the engine matches these by maximal munch,
     so multigraphs win over their component letters."  гӏалгӏай, the Ingush
     people's own name, has ⟨гӏ⟩ twice."""
-    assert G2P("inh").transcribe_word("гӏалгӏай") == "ʁɑːlʁɑːj"
+    assert G2P("inh").transcribe_word("гӏалгӏай") == "ʁalʁaj"
 
 
 def test_inh_latin_i_is_not_accepted_as_a_palochka():
     """Input contract: "the palochka must be U+04CF ⟨ӏ⟩ (lowercase) / U+04C0
-    ⟨Ӏ⟩ — Latin 'I', 'l' and the digit '1' are NOT accepted, since no consulted
-    source documents them for Ingush."  A Latin-I spelling therefore does NOT
-    produce the uvular fricative of ⟨гӏ⟩."""
+    ⟨Ӏ⟩ — Latin 'I', 'l' and the digit '1' are NOT accepted, because the
+    input contract is Cyrillic-only" — not because no source uses Latin I
+    for it (the Berkeley Ingush project page does).  A Latin-I spelling
+    therefore does NOT produce the uvular fricative of ⟨гӏ⟩."""
     assert "ʁ" not in G2P("inh").transcribe_word("гIалгIай")
 
 
 def test_inh_kh_digraph_is_a_uvular_stop():
     """"uvular кх /q/ and къ /qʼ/" (Nichols).  къам 'people' takes the ejective
     uvular, къ winning over the bare ⟨к⟩."""
-    assert G2P("inh").transcribe_word("къам") == "qʼɑːm"
+    assert G2P("inh").transcribe_word("къам") == "qʼam"
 
 
 # ---------------------------------------------------------------------------
@@ -1191,21 +1192,22 @@ def test_fj_v_is_a_bilabial_fricative():
 def test_mh_every_consonant_carries_a_secondary_articulation():
     """"Every consonant carries a secondary articulation: ... ⟨m ṃ⟩ = /mʲ mˠ/,
     ⟨l ḷ⟩ = /lʲ lˠ/, ⟨j t⟩ = /tʲ tˠ/" (Abo, Bender, Capelle & DeBrum 1976).
-    Ṃajeḷ 'Marshall (Islands)' → [mˠɑtʲɛlˠ]."""
-    assert G2P("mh").transcribe_word("ṃajeḷ") == "mˠɑtʲɛlˠ"
+    Ṃajeḷ 'Marshall (Islands)' → /mˠætʲɛlˠ/."""
+    assert G2P("mh").transcribe_word("ṃajeḷ") == "mˠætʲɛlˠ"
 
 
 def test_mh_j_is_a_palatalised_coronal_stop():
     """Same cited series: ⟨j⟩ = /tʲ/, not an affricate or fricative.  Kajin
-    'language (of)' → [kɑtʲinʲ], with ⟨n⟩ = /nʲ/."""
-    assert G2P("mh").transcribe_word("kajin") == "kɑtʲinʲ"
+    'language (of)' → /kætʲinʲ/, with ⟨n⟩ = /nʲ/."""
+    assert G2P("mh").transcribe_word("kajin") == "kætʲinʲ"
 
 
 def test_mh_bw_is_merely_the_velarised_bilabial():
     """"after ⟨b ṃ⟩ [⟨w⟩] merely marks the already-velarised bilabial (⟨bw ṃw⟩
     = /pˠ mˠ/)" — so ⟨bw⟩ is one segment, not /pˠ/ + /w/.  bwebwenato 'story'
-    → [pˠɛpˠɛnʲɑtˠo]."""
-    assert G2P("mh").transcribe_word("bwebwenato") == "pˠɛpˠɛnʲɑtˠo"
+    → /pˠɛpˠɛnʲætˠɛw/, the final ⟨o⟩ closed by the rounded glide its
+    column names."""
+    assert G2P("mh").transcribe_word("bwebwenato") == "pˠɛpˠɛnʲætˠɛw"
 
 
 # ---------------------------------------------------------------------------
@@ -1688,3 +1690,19 @@ def test_fuv_inherits_the_ff_grapheme_table():
     autonym 'Fulfulde' transcribes exactly as the shared ff letters
     predict."""
     assert G2P("fuv").transcribe_word("fulfulde") == "fulfulde"
+
+
+def test_so_j_carries_both_affricate_values():
+    """⟨j⟩ is the language's only affricate and is attested with BOTH voicing
+    values: "The sound /ʧ/ or /ʤ/ is the only affricative, and it is the
+    palato-alveolar affricative, orthographically represented as <j>.  It can
+    be pronounced like <ch> as in the English word <church>.  It also can be
+    pronounced like <j> as in the English word like <jingle>.  Both
+    pronunciations are correct" (Mohamed 2013, consonant-inventory section).
+    The voiced value stays first — that is the value the consonant charts in
+    Saeed (1999) and Gabbard (2010) give, as tabulated by Wikipedia's Somali
+    language article — and the voiceless one is the second candidate, on
+    Mohamed's own word-list example jid 'road'."""
+    engine = G2P("so")
+    assert engine.transcribe_word("jid") == "dʒid"
+    assert [c.ipa for c in engine.candidates("jid")[:2]] == ["dʒid", "tʃid"]

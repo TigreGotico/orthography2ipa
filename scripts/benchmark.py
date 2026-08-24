@@ -364,7 +364,8 @@ _WIKIPRON_FILES = {
     "dv":        "div_thaa_broad.tsv",              # Dhivehi, ~1551 rows
     "ki":        "kik_latn_broad.tsv",              # Kikuyu, ~1420 rows
     "ps":        "pus_arab_broad.tsv",              # Pushto, ~1414 rows
-    "no":        "nor_latn_broad.tsv",              # Norwegian, ~1331 rows
+    # nor_latn_broad.tsv is NOT scored here — see load_wikipron_nor and the
+    # ``wikipron_nor`` dataset, which scores it against the Nynorsk spec.
     "fy":        "fry_latn_broad.tsv",              # Western Frisian, ~1246 rows
     "hsb":       "hsb_latn_broad.tsv",              # Upper Sorbian, ~1130 rows
     "li":        "lim_latn_broad.tsv",              # Limburgan, ~1128 rows
@@ -394,7 +395,10 @@ _WIKIPRON_FILES = {
     "lmo":       "lmo_latn_broad.tsv",              # Lombard, ~595 rows
     "iba":       "iba_latn_broad.tsv",              # Iban, ~584 rows
     "az":        "aze_latn_broad.tsv",              # Azerbaijani, ~513 rows
-    "de-CH":     "gsw_latn_broad.tsv",              # Swiss German, ~511 rows
+    # ISO 639-3 gsw. The words are Alemannic DIALECT (Chatz, Angscht, Bueb,
+    # Chilbi) in Dieth-style spelling, not Schweizerhochdeutsch, so the row
+    # belongs to the spec that declares iso639_3 "gsw" — de-x-alemannic.
+    "de-x-alemannic": "gsw_latn_broad.tsv",        # Alemannic German, ~511 rows
     "pdc":       "pdc_latn_broad.tsv",              # Pennsylvania German, ~510 rows
     "lt":        "lit_latn_broad.tsv",              # Lithuanian, ~507 rows
     "co":        "cos_latn_broad.tsv",              # Corsican, ~492 rows
@@ -1488,14 +1492,24 @@ def _fetch_file(url: str, name: str) -> str:
     os.makedirs(CACHE_DIR, exist_ok=True)
     dest = os.path.join(CACHE_DIR, name)
     if not os.path.exists(dest):
+        # Download to a sibling temp path and atomically rename into place
+        # on success. urlretrieve writing straight to `dest` leaves a
+        # truncated file behind on an interrupted download (killed
+        # process, network drop, disk full) — the next run's
+        # os.path.exists check then treats that truncated file as a valid
+        # cache hit forever, silently poisoning every downstream read.
+        tmp_dest = dest + f".part-{os.getpid()}"
         last_exc: Optional[Exception] = None
         for attempt in range(1, _FETCH_ATTEMPTS + 1):
             try:
-                urllib.request.urlretrieve(url, dest)
+                urllib.request.urlretrieve(url, tmp_dest)
+                os.replace(tmp_dest, dest)
                 last_exc = None
                 break
             except Exception as exc:  # transient network hiccups
                 last_exc = exc
+                with contextlib.suppress(OSError):
+                    os.remove(tmp_dest)
                 if attempt < _FETCH_ATTEMPTS:
                     time.sleep(_FETCH_BACKOFF_SECONDS * attempt)
         if last_exc is not None:
@@ -1534,6 +1548,43 @@ def _strip_final_harakat(word: str) -> str:
     return word.rstrip(_ARABIC_HARAKAT)
 
 
+def load_wikipron_nor(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """WikiPron scrape of Wiktionary IPA tagged with the MACROLANGUAGE code.
+
+    WikiPron files an entry by the language code inside its ``{{IPA|…}}``
+    template, not by the L2 section heading it sits under. Wiktionary
+    editors have tagged a large body of Nynorsk entries with the
+    macrolanguage code ``no`` instead of ``nn``, so those pronunciations
+    land in ``nor_latn_broad.tsv`` rather than ``nno_latn_broad.tsv``.
+
+    In a 200-word random sample of the file's headwords, 166 carry their
+    ``{{IPA|no|…}}`` line under a ``==Norwegian Nynorsk==`` section, 24
+    under ``==Norwegian Bokmål==``, 2 under both and 2 under the legacy
+    ``==Norwegian==`` heading. The gold is therefore Nynorsk with a
+    Bokmål minority, and it is scored against ``nn``. It stays a separate
+    row from ``wikipron``/``nn`` because it is a separate file with its
+    own annotator pool and its own ~13% Bokmål contamination — folding
+    the two would hide both.
+    """
+    fname = _WIKIPRON_FILES_MACRO[lang]
+    text = _fetch(_WIKIPRON_BASE + fname, fname)
+    pairs = []
+    for line in text.strip().splitlines():
+        parts = line.split("\t")
+        if len(parts) == 2:
+            pairs.append((parts[0], parts[1]))
+        if len(pairs) >= limit:
+            break
+    return pairs
+
+
+#: WikiPron files scraped under an ISO 639-3 MACROLANGUAGE code, mapped to
+#: the individual-language spec the words actually belong to.
+_WIKIPRON_FILES_MACRO = {
+    "nn": "nor_latn_broad.tsv",          # ISO 639-3 nor, ~1331 rows
+}
+
+
 def load_wikipron_ar_diacritized(lang: str, limit: int) -> List[Tuple[str, str]]:
     """The WikiPron Arabic gold with tashkeel RESTORED on the input side.
 
@@ -1563,8 +1614,15 @@ def load_wikipron_ar_diacritized(lang: str, limit: int) -> List[Tuple[str, str]]
         rows = [(_strip_final_harakat(dia.diacritize(w)), ipa)
                 for w, ipa in raw]
         os.makedirs(CACHE_DIR, exist_ok=True)
-        with open(dest, "w", encoding="utf-8") as fh:
+        # Write to a sibling temp path and atomically rename into place —
+        # writing straight to `dest` over the slow diacritization pass
+        # leaves a truncated file behind on an interrupted run (killed
+        # process, disk full), and the next run's os.path.exists check
+        # then treats that truncated file as a valid cache hit forever.
+        tmp_dest = dest + f".part-{os.getpid()}"
+        with open(tmp_dest, "w", encoding="utf-8") as fh:
             fh.writelines(f"{w}\t{ipa}\n" for w, ipa in rows)
+        os.replace(tmp_dest, dest)
     pairs = []
     for line in open(dest, encoding="utf-8").read().strip().splitlines():
         parts = line.split("\t")
@@ -2703,6 +2761,7 @@ DATASETS: Dict[str, Tuple[DatasetLoader, List[str]]] = {
     "ep_dialects": (load_ep_dialects, _EP_DIALECT_LANGS),
     "wikipron": (load_wikipron, sorted(_WIKIPRON_FILES)),
     "wikipron_ar_diacritized": (load_wikipron_ar_diacritized, ["ar"]),
+    "wikipron_nor": (load_wikipron_nor, sorted(_WIKIPRON_FILES_MACRO)),
     "mirandese_g2p": (load_mirandese, sorted(_MIRANDESE_DIALECTS)),
     "barranquenho_dict": (load_barranquenho_dict, ["ext-PT-x-barrancos"]),
     "mirandese_dict": (load_mirandese_dict, sorted(_MIRANDESE_DICT_DIALECTS)),
@@ -2859,6 +2918,9 @@ PROVENANCE: Dict[str, str] = {
     # machine noise floor on top of the gold's own tier. Diagnostic for
     # the vowelized-Arabic rules; certifies nothing beyond the raw row.
     "wikipron_ar_diacritized": "crowd-scraped",
+    # Same crowd-scraped WikiPron tier as ``wikipron``; a different file,
+    # scraped under the Norwegian MACROLANGUAGE code (see load_wikipron_nor).
+    "wikipron_nor": "crowd-scraped",
     # Portal da Língua Portuguesa scrape; semi-automated IPA, not hand-verified
     # A COMPETITOR'S OUTPUT reused as a reference. These phonemes come from the
     # espeak-ng-backed phonemizer, so this row measures AGREEMENT WITH ESPEAK,
@@ -2956,16 +3018,43 @@ def _expand_consonant_length(s: str) -> str:
     notation. Affricates double their first element ([tʃː] → [ttʃ]).
     VOWEL length is untouched: it is phonemic and single-notation
     (Finnish [aː] never appears as [aa] in the wired gold sets).
+
+    The consonant preceding [ː] is not always a single codepoint: a
+    diacritic-marked letter may be a precomposed NFC codepoint (retroflex
+    [ṇ]) or an already-decomposed base+combining-mark sequence (dental
+    [n̪], base + U+032A with no precomposed form) — the same sound written
+    two ways. Scanning the NFC string one codepoint at a time only doubles
+    the LAST codepoint before [ː], which for a decomposed sequence is the
+    combining mark, not the base letter ([n̪ː] → [n̪̪], losing the [n]).
+    NFD-normalizing first makes every case a base-plus-marks sequence
+    scanned the same way, so the whole cluster is what gets duplicated.
+
+    The same walk-back also fixes a marked-VOWEL guard the old codepoint-
+    at-a-time scan got wrong: for [ɛ̌ː] (ɛ + combining caron U+030C, then
+    [ː]) the old scan checked only the combining caron against
+    ``is_ipa_vowel`` — a diacritic is never a vowel letter — so it treated
+    the cluster as a consonant and doubled the diacritic onto itself
+    ([ɛ̌ː] → [ɛ̌̌], destroying the vowel entirely). The walk-back now checks
+    the base letter of the whole cluster, sees a vowel, and correctly
+    leaves marked vowel length untouched. A length mark that is itself
+    already doubled is not deduplicated: [lːː] doubles the consonant once
+    per [ː] seen, so it expands to [lll], not [ll].
     """
     for long, doubled in _AFFRICATE_LENGTH.items():
         s = s.replace(long, doubled)
-    out = []
-    for i, ch in enumerate(s):
-        if ch == "ː" and i > 0 and not is_ipa_vowel(s[i - 1]):
-            out.append(s[i - 1])
-        else:
-            out.append(ch)
-    return "".join(out)
+    s = unicodedata.normalize("NFD", s)
+    out: List[str] = []
+    for ch in s:
+        if ch == "ː" and out:
+            j = len(out) - 1
+            while j > 0 and unicodedata.combining(out[j]):
+                j -= 1
+            cluster = out[j:]
+            if not is_ipa_vowel(cluster[0]):
+                out.extend(cluster)
+                continue
+        out.append(ch)
+    return unicodedata.normalize("NFC", "".join(out))
 
 
 def _prosody_marks(lang: str) -> str:

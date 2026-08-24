@@ -12,7 +12,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field, fields
 from enum import Enum
-from typing import Dict, FrozenSet, List, Optional, Tuple, Union
+from typing import (Dict, FrozenSet, List, Mapping, Optional, Tuple,
+                    Union)
 
 # ═══════════════════════════════════════════════════════════════════════════
 # Type aliases
@@ -234,6 +235,44 @@ class TimeSpan:
     """
     start_year: int
     end_year: Optional[int]  # None = living / ongoing
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# ToneRules — tone computed from the shape of the syllable
+# ═══════════════════════════════════════════════════════════════════════════
+
+@dataclass(frozen=True)
+class ToneRules:
+    """How an orthography that does not spell tone directly encodes it.
+
+    In a Tai-style writing system the tone of a syllable is not written by
+    any one grapheme. It follows from four things the spelling states
+    jointly: the CLASS its initial consonant belongs to, whether the rime
+    is checked (dead) or not (live), the length of the vowel, and which
+    of the tone marks — if any — rides the initial. Every one of those is
+    recoverable from the written word, so the tone is too, but only once
+    the syllable has been assembled: a grapheme table cannot hold it.
+
+    This block states the system as data. :func:`orthography2ipa.tone.
+    assign_computed_tones` reads it and names no language.
+
+    ``classes`` maps a consonant letter to its class name, ``marks`` maps
+    a tone mark to its name, and ``tones`` maps a tone's name to the IPA
+    it is transcribed with. ``table`` is the system itself, read
+    ``table[class][shape][mark]`` where *shape* is ``live``,
+    ``dead_short`` or ``dead_long`` — plus the pseudo-shape ``any`` for
+    the marks whose reading does not depend on the shape of the rime.
+    ``dead_codas`` are the coda phonemes that check a syllable.
+    """
+
+    classes: Mapping[str, str] = field(default_factory=dict)
+    marks: Mapping[str, str] = field(default_factory=dict)
+    tones: Mapping[str, str] = field(default_factory=dict)
+    table: Mapping[str, Mapping[str, Mapping[str, str]]] = \
+        field(default_factory=dict)
+    dead_codas: Tuple[str, ...] = ()
+    no_mark: str = "none"
+    notes: Optional[str] = None
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -1186,6 +1225,26 @@ class AllophoneRule:
         indistinguishable at the phoneme layer from the plain letters that
         permit a long vowel — so this is the only layer that can veto such a
         rule. Empty = don't care.
+    word_contains_grapheme : Tuple[str, ...]
+        At least one of these letters must occur ANYWHERE in the current
+        source word (matched case-insensitively). Word-scope rather than
+        neighbour-scope: some orthographies mark a property of the whole
+        word on a single consonant letter that may stand any distance from
+        the segment it conditions. Ottoman Turkish is the case that
+        motivated it — the abjad leaves most vowels unwritten, and the
+        choice between the back and front member of a vowel-harmony pair is
+        signalled by whether the word is spelt with a "hard" letter
+        ⟨ح خ ص ض ط ظ ع غ ق⟩ or a "soft" one ⟨ت س ك گ ه⟩, which the
+        neighbour conditions cannot see across intervening letters. The check
+        is a raw substring test over the joined source word, so a multi-
+        character grapheme key matches wherever that sequence occurs as a
+        substring rather than by slot-grapheme membership. Empty = don't
+        care.
+    word_contains_grapheme_not : Tuple[str, ...]
+        None of these letters may occur anywhere in the current source word.
+        The negative counterpart of :attr:`word_contains_grapheme`, needed
+        so a default (unmarked-harmony) reading can be stated as "no hard
+        letter anywhere" rather than enumerated. Empty = don't care.
     grapheme : Optional[Tuple[str, ...]]
         Require the slot's own *source grapheme* to be one of these (matched
         case-insensitively). This lets a rule target a surface shift that
@@ -1264,6 +1323,8 @@ class AllophoneRule:
     preceded_by_grapheme: Tuple[str, ...] = ()
     followed_by_grapheme: Tuple[str, ...] = ()
     followed_by_grapheme_not: Tuple[str, ...] = ()
+    word_contains_grapheme: Tuple[str, ...] = ()
+    word_contains_grapheme_not: Tuple[str, ...] = ()
     grapheme: Optional[Tuple[str, ...]] = None
     word: Optional[Tuple[str, ...]] = None
     notes: str = ""
@@ -1295,6 +1356,12 @@ class AllophoneRule:
         object.__setattr__(
             self, "followed_by_grapheme_not",
             tuple(g.lower() for g in self.followed_by_grapheme_not))
+        object.__setattr__(
+            self, "word_contains_grapheme",
+            tuple(g.lower() for g in self.word_contains_grapheme))
+        object.__setattr__(
+            self, "word_contains_grapheme_not",
+            tuple(g.lower() for g in self.word_contains_grapheme_not))
         if self.grapheme is not None:
             object.__setattr__(
                 self, "grapheme",
@@ -1494,6 +1561,7 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "dependent_vowels": InheritanceMode.OWN_ONLY,
     "preposed_vowels": InheritanceMode.OWN_ONLY,
     "coda_no_inherent_vowel": InheritanceMode.OWN_ONLY,
+    "inherent_vowel_final": InheritanceMode.OWN_ONLY,
     "collapse_geminates": InheritanceMode.OWN_ONLY,
     "doubled_letters_geminate": InheritanceMode.OWN_ONLY,
     "constrain_onsets": InheritanceMode.BASE_SCALAR,
@@ -1503,9 +1571,11 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "wikidata_qid": InheritanceMode.OWN_ONLY,
     "phoible_id": InheritanceMode.OWN_ONLY,
     "wals_code": InheritanceMode.OWN_ONLY,
+    "trailing_vowel_axis_digraphs": InheritanceMode.OWN_ONLY,
     "sandhi_rules": InheritanceMode.OVERLAY_BY_ID,
     "allophone_rules": InheritanceMode.OVERLAY_BY_ID,
     "allophone_passes": InheritanceMode.NOT_INHERITED,
+    "tone_rules": InheritanceMode.OWN_ONLY,
     "tone_inventory": InheritanceMode.OWN_ONLY,
     "tone_marks_syllable_final": InheritanceMode.OWN_ONLY,
     "sources": InheritanceMode.OWN_ONLY,
@@ -1659,6 +1729,25 @@ class LanguageSpec:
     inherent_vowel: Optional[str] = None
     """For abugidas — the vowel assumed when no vowel mark is present
     (e.g. ``"ə"`` for Hindi, ``"a"`` for Sanskrit)."""
+
+    inherent_vowel_final: Optional[str] = None
+    """What :attr:`inherent_vowel` becomes on a word-final consonant letter.
+
+    Several Indo-Aryan orthographies write the inherent vowel on every
+    consonant letter but do not pronounce it at the end of a word: Assamese
+    ⟨বছৰ⟩ is /bɔsɔɹ/, not */bɔsɔɹɔ/ (Roy & Mahanta 2018).
+    Declaring ``""`` deletes it there; any other string substitutes that
+    vowel instead. Unset (the default) leaves the inherent vowel standing.
+
+    The substitution is skipped unless the syllable being closed already has
+    a nucleus, which puts two floors under it at once. A prosodic word keeps
+    a syllable (Hayes 2009; Blevins 1995) — Assamese ⟨ক⟩ stays /kɔ/ rather
+    than becoming a bare */k/ — and a deletion never manufactures a complex
+    coda the language does not allow, so ⟨অংক⟩ keeps its final vowel as
+    /ɔŋkɔ/ instead of closing on */ŋk/. This is the floor
+    :attr:`AllophoneRule.requires_other_nucleus` puts under a vowel-deleting
+    allophone rule, applied where the vowel is unwritten and so has no slot
+    of its own for a rule to target."""
 
     plugins: Dict[str, Tuple[str, ...]] = field(default_factory=dict)
     """Which plugin this language wants, per stage — keyed by entry-point name.
@@ -1907,6 +1996,27 @@ class LanguageSpec:
     sandhi_rules: Tuple[SandhiRule, ...] = ()
     """Cross-word-boundary phonological rules (liaison, sandhi)."""
 
+    trailing_vowel_axis_digraphs: Tuple[str, ...] = ()
+    """Multi-letter vowel graphemes (matched case-insensitively) for which the
+    AFTER_FRONT_VOWEL/AFTER_BACK_VOWEL axis is read off the digraph's TRAILING
+    letter rather than its opening one, for a grapheme immediately following.
+
+    The engine's default assumption is that a following consonant abuts the
+    grapheme's opening letter — true for the common case where a digraph is a
+    single sound written two ways. Old Irish ⟨ía úa⟩ are the opposite: they
+    spell a long vowel plus an offglide, and *caol le caol* / *leathan le
+    leathan* reads the quality that reaches the next consonant off the
+    digraph's CLOSING letter, so ⟨n⟩ in ⟨cían⟩ is broad (the digraph ends in
+    ⟨a⟩), not slender off the opening ⟨í⟩ (Thurneysen 1946; McCone 2005).
+
+    This is an opt-in per spec, not a global engine behaviour: naming a
+    digraph here changes only that grapheme, only in this language. Every
+    other spec's multi-letter vowel graphemes keep the opening-letter
+    (``grapheme[0]``) reading — German ⟨eu äu⟩ before ⟨ch⟩ still take the
+    ach-Laut off the back vowel ⟨u⟩, and Modern Irish ⟨ae⟩ still leaves the
+    following consonant broad, both flanked by their opening letter's axis.
+    Default empty leaves every spec byte-for-byte unaffected."""
+
     allophone_rules: Tuple["AllophoneRule", ...] = ()
     """Post-lexical, context-conditioned ``phoneme → surface`` rewrites.
 
@@ -1945,6 +2055,13 @@ class LanguageSpec:
     conservative-dental dialect that disables the affrication leaves the
     default ``1`` (its raising needs no second pass). Bounded (no unbounded
     fixpoint) so a pathological rule set cannot loop."""
+
+    tone_rules: Optional[ToneRules] = None
+    """Optional computed-tone system: see :class:`ToneRules`.
+
+    Declared by an orthography that spells tone with the shape of the
+    syllable rather than with a tone letter, so that no grapheme carries
+    it. Absent for every orthography whose graphemes already do."""
 
     tone_inventory: Optional[Dict[str, str]] = None
     """Optional tone inventory: IPA tone mark → label

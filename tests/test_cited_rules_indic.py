@@ -618,9 +618,15 @@ def test_inh_uvular_fricative():
     assert G2P("inh").transcribe_word("гӏ") == "ʁ"
 
 
-def test_inh_epiglottal_stop():
-    """'the epiglottal stop ӏ /ʡ/.' (inh notes; Nichols)"""
-    assert G2P("inh").transcribe_word("ӏ") == "ʡ"
+def test_inh_bare_palochka_is_a_pharyngeal():
+    """'The bare palochka ⟨ӏ⟩ is the voiced pharyngeal /ʕ/.' (inh notes)
+
+    The Berkeley Ingush project ("Ingush Phonology and Orthography") states
+    the letter writes ejectives after a voiceless consonant — the digraphs
+    пӏ тӏ кӏ цӏ чӏ — and pharyngeals word-initially, after a vowel, and
+    after a voiced consonant, which is where the bare key applies.
+    """
+    assert G2P("inh").transcribe_word("ӏ") == "ʕ"
 
 
 def test_inh_voiceless_trill_trigraph_wins_by_maximal_munch():

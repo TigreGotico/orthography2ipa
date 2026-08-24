@@ -71,7 +71,7 @@ def test_an_unmarked_vowel_is_mid_not_toneless(yo):
     ("Abiọdun", "ābīɔ̄dũ̄"),
     ("Agbaakin", "āɡ͡bāākĩ̄"),
     ("Adediran", "ādēdīɾã̄"),
-    ("Agbọnmiregun", "āɡ͡bɔ̃̄mīɾēɡũ̄"),
+    ("Agbọnmiregun", "āɡ͡bɔ̃̄mĩ̄ɾēɡũ̄"),
 ])
 def test_final_n_nasalises_the_vowel(yo, word, expected):
     assert say(yo, word) == nfc(expected)
@@ -83,15 +83,20 @@ def test_the_nasalising_n_is_not_a_separate_consonant(yo, word):
 
 
 @pytest.mark.parametrize("word,expected", [
-    ("ana", "ānā"),
-    ("ẹni", "ɛ̄nī"),
-    ("Aarinọla", "āāɾīnɔ̄lā"),
+    ("ana", "ānã̄"),
+    ("ẹni", "ɛ̄nĩ̄"),
+    ("Aarinọla", "āāɾīnɔ̃̄lā"),
 ])
 def test_n_before_a_vowel_stays_an_onset(yo, word, expected):
-    """The before_vowel positional override: ⟨ana⟩ is /ānā/, not */ãā/."""
+    """The before_vowel positional override: the ⟨n⟩ of ⟨ana⟩ is an onset
+    consonant, so the vowel BEFORE it stays oral — /ānã̄/, not */ãnã̄/ and
+    not the coda reading */ãā/. The vowel after it is nasal because a
+    nasal onset nasalises what follows it."""
     out = say(yo, word)
     assert out == nfc(expected)
-    assert "̃" not in unicodedata.normalize("NFD", out)
+    decomposed = unicodedata.normalize("NFD", out)
+    assert "n" in out
+    assert decomposed.count("̃") == 1
 
 
 @pytest.mark.parametrize("word", ["kenbu", "onta"])
@@ -119,3 +124,59 @@ def test_tilde_precedes_the_tone_mark(yo):
     """u + tilde + acute composes to ṹ; the reverse order does not."""
     decomposed = unicodedata.normalize("NFD", say(yo, "ún"))
     assert decomposed.index("̃") < decomposed.index("́")
+
+
+# ── A vowel after a nasal onset is nasal, and no ⟨n⟩ is written ────────
+# Nasality is predictable after ⟨m⟩ and ⟨n⟩, so the orthography leaves it
+# unwritten: ⟨mi⟩ ⟨mu⟩ ⟨mọ⟩ are /mĩ mũ mɔ̃/, and the ⟨n⟩ of ⟨inú⟩ is the
+# nasal allophone of /l/, which occurs only before a nasal vowel —
+# /īlṹ/ → [īnṹ] (Bamgboṣe 1969; Abraham 1958, whose dictionary writes the
+# nasality out as ⟨inún⟩; editions not consulted, read via
+# https://en.wikipedia.org/wiki/Yoruba_language).
+@pytest.mark.parametrize("word,expected", [
+    ("mi", "mĩ̄"),
+    ("mu", "mũ̄"),
+    ("mọ", "mɔ̃̄"),
+    ("inú", "īnṹ"),
+    ("ẹni", "ɛ̄nĩ̄"),
+    ("ọmọ", "ɔ̄mɔ̃̄"),
+])
+def test_vowel_after_a_nasal_onset_is_nasalised(yo, word, expected):
+    assert say(yo, word) == nfc(expected)
+
+
+@pytest.mark.parametrize("word", ["mo", "me", "no", "ne"])
+def test_e_and_o_stay_oral_after_a_nasal_onset(yo, word):
+    """The nasalisation is bounded by the inventory: Yoruba has no
+    /ẽ õ/, so ⟨mo⟩ ⟨me⟩ ⟨no⟩ ⟨ne⟩ keep an oral vowel."""
+    assert "̃" not in unicodedata.normalize("NFD", say(yo, word))
+
+
+@pytest.mark.parametrize("word,expected", [
+    ("mí", "mĩ́"),
+    ("mì", "mĩ̀"),
+])
+def test_nasalisation_after_a_nasal_onset_keeps_the_tone(yo, word, expected):
+    """Nasalising the vowel must not lose or reorder its tone mark: the
+    tilde still precedes the tone diacritic."""
+    out = say(yo, word)
+    assert out == nfc(expected)
+    decomposed = unicodedata.normalize("NFD", out)
+    assert decomposed.index("̃") < decomposed.index("́" if "í" in word else "̀")
+
+
+# ── /ɛ/ stays oral after a nasal onset ─────────────────────────────────
+# Phonemic /ɛ̃/ is confined to a single word in the source (ìyẹn~yẹn
+# "that"), and the gold agrees: /ɛ/ after a nasal onset is nasal in only
+# 3 of 55 contexts. The rule set is therefore restricted to /i a ɔ u/ and
+# ⟨mẹ⟩/⟨nẹ⟩ keep an oral vowel, matching the core native numeral class
+# (mẹfa, mẹta, mẹrin...).
+@pytest.mark.parametrize("word,expected_first_vowel", [
+    ("mẹfa", "ɛ̄"),
+    ("mẹta", "ɛ̄"),
+    ("mẹrin", "ɛ̄"),
+])
+def test_epsilon_stays_oral_after_a_nasal_onset(yo, word, expected_first_vowel):
+    out = say(yo, word)
+    assert expected_first_vowel in out
+    assert "ɛ̃" not in out

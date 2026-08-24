@@ -113,9 +113,9 @@ def test_hindi_nukta_letters_are_mapped():
 @pytest.mark.parametrize("word,expected", [
     # Intervocalic voicing: க → [ɡ], த → [d̪], ட → [ɖ], ப → [b].
     ("புத்தகம்", "put̪ːaɡam"),   # puttakam: geminate த stays voiceless, க voices
-    ("எதிரி", "ed̪iri"),
+    ("எதிரி", "ed̪iɾi"),
     ("மகன்", "maɡan"),
-    ("பெயர்ப்படு", "pejarpːaɖu"),
+    ("பெயர்ப்படு", "pejaɾpːaɖu"),
     # Post-nasal voicing.
     ("தங்கம்", "t̪aŋɡam"),
     ("நன்கொடை", "nanɡoɖai"),
@@ -127,7 +127,7 @@ def test_hindi_nukta_letters_are_mapped():
     ("பழம்", "paɻam"),
     ("குறுகுறுக்கும்", "kuruɡurukːum"),
     # A stop after a non-nasal vowel-less consonant is NOT voiced.
-    ("பார்வை", "paːrʋai"),
+    ("பார்வை", "paːɾʋai"),
 ])
 def test_tamil_stop_allophony(word, expected):
     assert G2P("ta").transcribe(word) == expected

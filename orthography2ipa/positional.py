@@ -797,11 +797,36 @@ def grapheme_positions(
 
     # 5. after/before vowel / consonant context
     if prev_is_v:
-        pc = base_vowel_letter(prev_ctx.grapheme[0])
+        # DEFAULT: a multi-letter vowel grapheme is read off its FIRST
+        # letter here — the sound a following consonant abuts is normally
+        # the digraph's opening letter (that is the whole-grapheme axis
+        # below). A spec may opt a specific digraph INTO reading its
+        # TRAILING letter instead via ``trailing_vowel_axis_digraphs``:
+        # Old Irish ⟨ía úa⟩ spell a long-vowel-plus-offglide where the
+        # *trailing* ⟨a⟩ sets quality under leathan le leathan, so ⟨n⟩ in
+        # ⟨cían⟩ is broad, not slender off the digraph's opening ⟨í⟩
+        # (Thurneysen 1946; McCone 2005). This is per-spec, per-grapheme
+        # opt-in: every other spec's multi-letter vowel graphemes — German
+        # ⟨eu äu⟩ before ⟨ch⟩, Modern Irish ⟨ae⟩ — keep the opening-letter
+        # reading unchanged. BEFORE_* (line ~681) already reads the opening
+        # letter of the FOLLOWING grapheme unconditionally, which is
+        # correct: the sound a PRECEDING consonant abuts is always that
+        # digraph's opening letter, regardless of this flag.
+        trailing_axis = (
+            spec is not None
+            and len(prev_ctx.grapheme) > 1
+            and prev_ctx.grapheme.lower() in {
+                d.lower() for d in spec.trailing_vowel_axis_digraphs})
+        prev_trailing = prev_ctx.grapheme[-1] if trailing_axis else prev_ctx.grapheme[0]
+        pc = base_vowel_letter(prev_trailing)
         exact = _AFTER_EXACT.get(pc)
         if exact is not None:
             pos.append(exact)
-        if prev_ctx.is_front:
+        if trailing_axis and is_front_vowel(prev_trailing):
+            pos.append(GraphemePosition.AFTER_FRONT_VOWEL)
+        elif trailing_axis and is_back_vowel(prev_trailing):
+            pos.append(GraphemePosition.AFTER_BACK_VOWEL)
+        elif prev_ctx.is_front:
             pos.append(GraphemePosition.AFTER_FRONT_VOWEL)
         elif prev_ctx.is_back:
             pos.append(GraphemePosition.AFTER_BACK_VOWEL)

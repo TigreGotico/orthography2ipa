@@ -751,9 +751,11 @@ def _split_nuclei(run: str, diphthongs: Sequence[str]) -> List[str]:
         else:
             nuclei.append(run[i])
             i += 1
-        # a combining mark is not a nucleus of its own: it rides on the vowel
-        # it was written over (⟨ão⟩ /ɐ̃w̃/ — the tilde belongs to the ɐ)
-        while i < len(run) and unicodedata.combining(run[i]):
+        # a combining mark, or the length mark, is not a nucleus of its own:
+        # it rides on the vowel it was written over (⟨ão⟩ /ɐ̃w̃/ — the tilde
+        # belongs to the ɐ; ``aː`` — the length mark belongs to the ``a``)
+        while i < len(run) and (unicodedata.combining(run[i])
+                                 or run[i] == _LENGTH):
             if nuclei:
                 nuclei[-1] += run[i]
             else:                       # a run cannot start with a mark today
@@ -809,9 +811,14 @@ def syllabify(
     current = ""
     in_nucleus = False
     for ch in word:
-        if unicodedata.combining(ch):
-            # a combining mark belongs to the character it sits on: it never
-            # opens or closes a syllable, and never counts as a nucleus
+        if unicodedata.combining(ch) or ch == _LENGTH:
+            # A combining mark, or the IPA length mark ``ː``, belongs to the
+            # character it sits on: neither opens or closes a syllable, and
+            # neither counts as a nucleus of its own. Without this a long
+            # vowel splits from itself (``aːta`` → a-ːta instead of aː-ta),
+            # stranding the length mark as if it were a coda consonant and
+            # shifting every later syllable boundary — which is where the
+            # stress mark then lands.
             current += ch
             continue
         is_vowel = is_vowel_char(ch)
@@ -867,7 +874,8 @@ def _syllabify_with_diphthongs(
             continue
         j = i
         while j < len(word) and (
-                is_vowel_char(word[j]) or unicodedata.combining(word[j])):
+                is_vowel_char(word[j]) or unicodedata.combining(word[j])
+                or word[j] == _LENGTH):
             j += 1
         for k, nucleus in enumerate(_split_nuclei(word[i:j], diphthongs)):
             syllables.append((onset if k == 0 else "") + nucleus)

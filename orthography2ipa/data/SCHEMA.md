@@ -76,13 +76,16 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
 | `quality`                   | string | no       | Data maturity: `"stub"`, `"skeleton"`, `"research"`, `"production"` (default: `"research"`) |
 | `script_type`               | string | no       | Script typology: `"alphabet"`, `"abjad"`, `"abugida"`, `"syllabary"`, `"logographic"`, `"featural"`, `"mixed"`, `"reconstruction"` (default: `"alphabet"`) |
 | `inherent_vowel`            | string | no       | For abugidas: vowel assumed when no vowel mark (e.g. `"ə"`) |
+| `inherent_vowel_final`      | string | no       | What `inherent_vowel` becomes on a word-final consonant letter. Several Indo-Aryan orthographies write the inherent vowel on every consonant letter but do not pronounce it at the end of a word — Assamese ⟨বছৰ⟩ is /bɔsɔɹ/, not \*/bɔsɔɹɔ/ (Roy & Mahanta 2018). `""` deletes it; any other string substitutes that vowel. Unset (default) leaves it standing. The substitution is skipped unless the syllable being closed already has a nucleus, so it neither empties a word of its only syllable (⟨ক⟩ stays /kɔ/) nor manufactures a complex coda (⟨অংক⟩ stays /ɔŋkɔ/) — the floor `requires_other_nucleus` puts under a vowel-deleting rule, applied where the vowel is unwritten and so has no slot to target |
 | `vowel_graphemes`           | array  | no       | Whole grapheme strings this spec declares vowel letters, overriding the closed Latin/Greek/harakat inventory (e.g. `["w"]` for Hmong RPA ⟨w⟩ = /ɨ/). Empty (default) keeps the closed-inventory answer. See [data_model.md](../../docs/data_model.md#vowel_graphemes-overriding-a-closed-inventory-consonant-letter). |
+| `trailing_vowel_axis_digraphs` | array | no    | Multi-letter vowel graphemes (matched case-insensitively) for which the AFTER_FRONT_VOWEL/AFTER_BACK_VOWEL axis for a FOLLOWING grapheme is read off the digraph's trailing letter rather than its opening one, e.g. `["ía", "úa"]` for Old Irish, where quality under *caol le caol* is set by the digraph's closing letter. Empty (default) keeps the opening-letter (`grapheme[0]`) reading every other spec uses. |
 | `iso639_3`                  | string | no       | ISO 639-3 three-letter code for cross-referencing |
 | `sandhi_rules`              | array  | no       | Cross-word-boundary phonological rules       |
 | `stress`                    | object | no       | Declarative stress placement (see [Stress Schema](#stress-schema)) |
 | `word_exceptions`           | object | no       | Whole-word overrides for a closed irregular set (`{"one": "wʌn"}`); beats rules, beats a bundled lexicon |
 | `grammatical_endings`       | object | no       | Suffix morphology: orthographic ending → IPA at the effective word end (`{"tion": "ʃən"}`), or an ordered candidate list for an ending that is genuinely ambiguous (`{"ent": [null, ""]}`); see [Grammatical endings](#grammatical-endings) |
 | `allophone_rules`          | array  | no       | Post-lexical `phoneme → surface` rewrites (see [Allophone Rule Schema](#allophone-rule-schema) and [allophony](../../docs/allophony.md)) |
+| `tone_rules`                | object | no       | Tone the orthography spells with the SHAPE of the syllable rather than with a tone letter (see [Tone Rules Schema](#tone-rules-schema)) |
 | `tone_inventory`            | object | no       | IPA tone mark → label (e.g. `{"˥": "high"}`) |
 | `tone_marks_syllable_final` | bool   | no       | Dock every tone mark at the end of its syllable. Set it when the orthography writes tone on the nucleus letter, so that ⟨ōng⟩ comes out `oŋ³³` and not `o³³ŋ` |
 | `sources`                   | array  | no       | Bibliographic references (see Sources Schema below) |
@@ -313,6 +316,8 @@ stress/sandhi. Empty by default → no-op: the rules alone decide the output. Se
 | `followed_by_phoneme` | array | no | Next slot's chosen phoneme must be one of these |
 | `followed_by_grapheme` | array | no | Next slot's source grapheme must be one of these (case-insensitive). For processes a letter group triggers while its phoneme hides the cluster (Swedish short vowel before ⟨ng⟩ ⟨nk⟩ ⟨sk⟩) |
 | `followed_by_grapheme_not` | array | no | Next slot's source grapheme must NOT be one of these. For shortness-marking letter groups whose phonemes look like plain single consonants (German ⟨ss⟩ ⟨ck⟩ ⟨tz⟩ ⟨ng⟩) |
+| `word_contains_grapheme` | array | no | At least one of these letters occurs ANYWHERE in the source word (case-insensitive). Word scope, not neighbour scope: some orthographies mark a property of the whole word on a single consonant letter standing any distance from the segment it conditions. Ottoman Turkish (`ota`) is the motivating case — the abjad leaves most vowels unwritten and signals which member of a vowel-harmony pair is meant by whether the word is spelt with a hard letter ⟨ح خ ص ض ط ظ ع غ ق⟩ or a soft one ⟨ت س ك گ ه⟩. The check is a raw substring test over the joined source word, so a multi-character grapheme key matches wherever that sequence occurs as a substring, not by slot-grapheme membership |
+| `word_contains_grapheme_not` | array | no | None of these letters occurs anywhere in the source word. The negative twin of `word_contains_grapheme`, so an unmarked-harmony default can be stated as "no hard letter anywhere" instead of enumerated |
 | `requires_other_nucleus` | bool | no | Require (or, if `false`, forbid) that some OTHER slot in the word carries a syllable nucleus. A vowel-deleting rule (`surface: ""`) must not empty the word of its only nucleus — every prosodic word contains at least one syllable (Hayes 2009; Blevins 1995). Romanian's asyllabic word-final ⟨i⟩ is the motivating case: ⟨lupi⟩ is [lupʲ], but the monosyllables ⟨și⟩ [ʃi], ⟨fi⟩ [fi], ⟨zi⟩ [zi] keep a full vowel (Chitoran 2002) |
 | `followed_by_nucleus` | bool | no | Require (or, if `false`, forbid) that a syllable nucleus occurs LATER in the word than this slot — the final-syllable predicate. `false` selects the last nucleus of the word, `true` every earlier one. Unlike `requires_other_nucleus`, which is direction-blind, this one carries the direction that non-final reduction and final-syllable strengthening both need |
 | `mutates_neighbor` | string | no | An IPA modifier (e.g. `"ʲ"`) this rule ADDS to an adjacent slot's candidate when it fires — paired with `surface: ""` this is the "marker grapheme" pattern: a letter that deletes itself while palatalising (or otherwise mutating) a neighbour, atomically. Requires `mutates_neighbor_side`. See [allophony](../../docs/allophony.md#marker-graphemes-delete-a-vowel-while-mutating-a-neighbour) and the Manx (`gv`) slender-marking rules. |
@@ -382,6 +387,33 @@ a point that describes *this* variety (the centre of the norm, the heart of the
 dialect region) over a generic national point, and say so in `notes`. Omit the
 field entirely rather than guess: `geographic_distance` returns `None` for a spec
 without a location, which is honest, whereas a made-up point is not.
+
+## Tone Rules Schema
+
+`tone_rules` describes an orthography whose tone is not written by any one
+grapheme. In a Tai-style writing system the tone of a syllable follows from
+four things the spelling states jointly: the class its initial consonant
+belongs to, whether the rime is checked, how long the vowel is, and which
+tone mark — if any — rides the initial. All four are recoverable from the
+written word, but only once the syllable has been assembled, so no grapheme
+table can hold the answer.
+
+| Field         | Type   | Description |
+|---------------|--------|-------------|
+| `classes`     | object | Consonant letter → class name (`{"ก": "mid", "ข": "high"}`) |
+| `marks`       | object | Tone mark → mark name (`{"่": "mai_ek"}`) |
+| `tones`       | object | Tone name → the IPA it is transcribed with (`{"rising": "˩˩˦"}`) |
+| `table`       | object | The system: `table[class][shape][mark]` → tone name, where *shape* is `live`, `dead_short`, `dead_long`, or `any` for a mark whose reading does not depend on the rime |
+| `dead_codas`  | array  | Coda phonemes that check a syllable (`["p", "t", "k", "ʔ"]`); a syllable with no coda is dead when its vowel is short |
+| `no_mark`     | string | The name the table uses for "no tone mark" (default `none`) |
+| `notes`       | string | What the block asserts, and its sources |
+
+The class of a syllable is read off the first letter of its onset grapheme
+that `classes` names, so a cluster or a digraph takes the class of the letter
+that opens it, and a silent tone-class marker (Thai ho nam ⟨ห⟩) lends its own.
+The tone letter is written at the end of its syllable, which is where IPA
+writes it; a spec whose transcription convention puts it on the nucleus reads
+it back with `tone_marks_syllable_final`.
 
 ## Sources Schema
 

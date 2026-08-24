@@ -485,3 +485,32 @@ class TestFollowedByNucleus:
         """⟨dihcho⟩ reduces across ⟨hch⟩: the predicate looks for the next
         NUCLEUS, not the next segment."""
         assert _ipa("xsl", "dihcho") == "tɪ̀ʰtʃʰò"
+
+
+class TestStressConditionedRulesReachTheEngine:
+    """A ``stress`` rule needs the beam that carries stress context.
+
+    The plain tokenizer beam has no syllabification, so a ``RescoreContext``
+    built on it answers ``is_stressed is None`` and a stress-conditioned rule
+    declines to fire. The engine used to take that beam for any spec without
+    ``positional_graphemes``, which left such a rule loaded, schema-validated,
+    documented in ``notes`` — and dead. ``br`` is the first spec to declare a
+    stress-conditioned rule without positional data, so it is the first to
+    need the switch.
+    """
+
+    def test_the_spec_has_no_positional_data(self):
+        """The precondition: br is one of the specs that used to lose them."""
+        spec = get("br")
+        assert not spec.has_positional_data()
+        assert any(r.stress for r in spec.allophone_rules)
+
+    def test_the_stress_conditioned_rule_fires(self):
+        """⟨avaloù⟩ [aˈvaːlu]: only the stressed penult lengthens."""
+        assert G2P("br").transcribe_word("avaloù") == "aˈvaːlu"
+
+    def test_it_fires_on_the_candidate_lattice_too(self):
+        """``word_candidates`` reads the same beam, so its top agrees."""
+        engine = G2P("br")
+        assert engine.word_candidates("avaloù", k=1)[0] == \
+            engine.transcribe_word("avaloù")

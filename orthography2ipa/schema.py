@@ -202,6 +202,8 @@ class AllophoneRuleModel(_Strict):
     preceded_by_grapheme: Optional[List[str]] = None
     followed_by_grapheme: Optional[List[str]] = None
     followed_by_grapheme_not: Optional[List[str]] = None
+    word_contains_grapheme: Optional[List[str]] = None
+    word_contains_grapheme_not: Optional[List[str]] = None
     grapheme: Optional[List[str]] = None
     word: Optional[List[str]] = None
     notes: str = ""
@@ -259,6 +261,35 @@ class TimeSpanModel(_Strict):
         start = info.data.get("start_year")
         if v is not None and start is not None and v < start:
             raise ValueError(f"end_year {v} precedes start_year {start}")
+        return v
+
+
+class ToneRulesModel(_Strict):
+    """Computed-tone system (``tone_rules``). Mirrors ``ToneRules``."""
+
+    classes: Dict[str, str] = Field(default_factory=dict)
+    marks: Dict[str, str] = Field(default_factory=dict)
+    tones: Dict[str, str] = Field(default_factory=dict)
+    table: Dict[str, Dict[str, Dict[str, str]]] = Field(default_factory=dict)
+    dead_codas: List[str] = Field(default_factory=list)
+    no_mark: str = "none"
+    notes: Optional[str] = None
+
+    @field_validator("table")
+    @classmethod
+    def _tones_are_named(cls, v, info):
+        names = set(info.data.get("tones") or ())
+        for klass, shapes in v.items():
+            for shape, marks in shapes.items():
+                if shape not in ("live", "dead_short", "dead_long", "any"):
+                    raise ValueError(
+                        f"table[{klass!r}]: {shape!r} is not a syllable shape "
+                        f"(live, dead_short, dead_long, any)")
+                for mark, tone in marks.items():
+                    if tone not in names:
+                        raise ValueError(
+                            f"table[{klass!r}][{shape!r}][{mark!r}]: {tone!r} "
+                            f"is not one of the declared tones {sorted(names)}")
         return v
 
 
@@ -361,7 +392,9 @@ class LanguageSpecModel(_Strict):
     vowel_graphemes: Optional[List[str]] = None
     dependent_vowels: Optional[List[str]] = None
     preposed_vowels: Optional[List[str]] = None
+    trailing_vowel_axis_digraphs: Optional[List[str]] = None
     coda_no_inherent_vowel: Optional[bool] = None
+    inherent_vowel_final: Optional[str] = None
     collapse_geminates: Optional[bool] = None
     doubled_letters_geminate: Optional[bool] = None
     constrain_onsets: Optional[bool] = None
@@ -376,6 +409,7 @@ class LanguageSpecModel(_Strict):
     allophone_rules: Optional[List[AllophoneRuleModel]] = None
     allophone_passes: int = Field(default=1, ge=1, le=4)
     stress: Optional[StressRulesModel] = None
+    tone_rules: Optional[ToneRulesModel] = None
     tone_inventory: Optional[Dict[str, str]] = None
     tone_marks_syllable_final: Optional[bool] = None
     sources: Optional[List[SourceModel]] = None

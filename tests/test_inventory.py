@@ -301,6 +301,9 @@ KNOWN_DEAD_RULES = {
     # Sippola (2013); these entries go away when it is.
     "cbk-x-cavite": {"ES_TRILL_AFTER_CORONAL", "ES_NASAL_LABIAL"},
     "cbk-x-ternate": {"ES_TRILL_AFTER_CORONAL", "ES_NASAL_LABIAL"},
+    # pa-PK (Shahmukhi abjad, no inherent vowel): the inherent-vowel half
+    # of each word-initial *DH rule pair has no ``Cə`` slot to match.
+    "pa-PK": {"PA_DH_INITIAL_ɡ˩_0", "PA_DH_INITIAL_dʒ˩_0", "PA_DH_INITIAL_ɖ˩_0", "PA_DH_INITIAL_d̪˩_0", "PA_DH_INITIAL_b˩_0"},
 }
 
 #: The Dravidian gemination families target whole CV emissions (``dʒa``, ``kʂa``)
@@ -322,7 +325,14 @@ KNOWN_DEAD_RULES = {
 #: whole MR_ family arrives with no slot to match — the same shape as the
 #: Chabacano stubs above. These entries go away when either stub gains a cited
 #: orthography.
+#: pa-PK is Shahmukhi, an ABJAD: it declares its own Perso-Arabic grapheme
+#: table and no ``inherent_vowel``, so no letter ever emits a bare consonant
+#: plus schwa. Every Punjabi rule whose target is such a ``Cə`` reading —
+#: the whole word-final schwa-deletion family, and the inherent-vowel half of
+#: each word-initial *DH pair — has no slot to match here. The bare half of
+#: each *DH pair (``PA_DH_INITIAL_*_1``) is live and still checked.
 KNOWN_DEAD_PREFIXES = {"ta": ("TA_GEM",), "ml": ("TA_GEM",),
+                       "pa-PK": ("PA_SCHWA_FINAL",),
                        "kri": ("EN_GB_NONRHOTIC", "EN_GB_PREVOCALIC_R"),
                        "anr": ("MR_",), "dcc": ("MR_",)}
 
