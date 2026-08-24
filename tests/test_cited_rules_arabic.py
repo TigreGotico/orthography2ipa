@@ -85,9 +85,11 @@ def test_ar_glide_ya_consonantal_in_nisba():
 
     Rule notes: "A shadda doubles the yāʾ (Wright I §14) ... the pair is a
     geminate consonant, not two long vowels ... so ـِيّ ends /ijj/, never
-    /ijiː/ — مِصْرِيّ /misˤrijj/ (Ryding 2005 §5.4.1)."
+    /ijiː/ — مِصْرِيّ /misˤrijj/ (Ryding 2005 §5.4.1)." The /i/ additionally
+    backs to [ɪ] before the emphatic sˤ (AR_EMPHASIS_SPREAD_I_BEFORE, Watson
+    2002 emphasis spread; Davis 1995).
     """
-    assert _bare("ar", "مِصْرِيّ") == "misˤrijj"
+    assert _bare("ar", "مِصْرِيّ") == "mɪsˤrijj"
 
 
 def test_ar_glide_ya_stays_long_when_quiescent():
@@ -240,7 +242,12 @@ def test_ar_wasl_epenthesis_word_initial():
     """
     assert _bare("ar", "اسْأَل") == "ʔisʔal"       # imperative 'ask!'
     assert _bare("ar", "اشْتَرَيْت") == "ʔiʃtarajt"  # form VIII perfect
-    assert _bare("ar", "اتَّصِل") == "ʔittɑsˤil"     # form VIII imperative (ɑ: emphatic backing)
+    # form VIII imperative: the epenthetic /i/ is followed by the emphatic
+    # /tˤ/ and backs to [ɑ] (AR_EMPHASIS_SPREAD_A_BEFORE fires on the
+    # following /a/ of -taṣṣil, not here); the /i/ of the -sˤil ending backs
+    # to [ɪ] after the emphatic /sˤ/ (AR_EMPHASIS_SPREAD_I_AFTER, Watson
+    # 2002; Davis 1995).
+    assert _bare("ar", "اتَّصِل") == "ʔittɑsˤɪl"
     # the /u/ of a u-stem imperative is WRITTEN on the ʼalif (ḍamma) and read
     # directly — the rule supplies only the unmarked default.
     assert _bare("ar", "اُكْتُب") == "ʔuktub"

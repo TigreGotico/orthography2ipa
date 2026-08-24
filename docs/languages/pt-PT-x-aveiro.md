@@ -1,11 +1,11 @@
-# Beira-Litoral (Aveiro) European Portuguese (`pt-PT-x-aveiro`) — Phonology Reference
+# Beira-Litoral (Aveiro) European Portuguese (`pt-PT-x-aveiro`): Phonology Reference
 
 **Code**: `pt-PT-x-aveiro` | **Family**: Indo-European > Romance > Ibero-Romance | **Script**: Latin (alphabet)
 **Parent**: `pt-PT` (standard, Lisbon-type EP) | **Quality tier**: research
 **Sources**: Cintra (1971, *Boletim de Filologia* 22:81–116), Álvarez Pérez
 (2014, *Journal of Portuguese Linguistics* 13-1), Mateus & d'Andrade (2000)
 
-**Aveiro, Vagos — Beira Litoral coast**. In Cintra's Baixo-Minhoto-Duriense-Beirão group; Pérez (2014, pp.35-37) shows the bilabial /b/–/v/ merger extending along the coast **north of Coimbra**, i.e. the Aveiro littoral. A local retroflex-lateral [ɭ] realisation of /l/ is reported in regional-dialect literature (not in Cintra/Pérez) and is enumerated as a secondary allophonic variant only.
+**Aveiro, Vagos, Beira Litoral coast**. In Cintra's Baixo-Minhoto-Duriense-Beirão group. Pérez (2014, pp.35-37) shows the bilabial /b/–/v/ merger extending along the coast **north of Coimbra**, i.e. the Aveiro littoral. A local retroflex-lateral [ɭ] realisation of /l/ is reported in regional-dialect literature (not in Cintra/Pérez) and is enumerated as a secondary allophonic variant only.
 
 ## Diagnostic features modelled
 
@@ -21,20 +21,20 @@ Archaic Portuguese distinguished **four sibilants**: apico-alveolar [s̺ z̺]
 (from ⟨s⟩, ⟨ss⟩) opposed to laminal/predorsodental [s z] (from ⟨c⟩ before
 e/i, ⟨ç⟩, ⟨z⟩). Cintra (1971, p.93):
 
-> *"a existência de um sistema de quatro sibilantes — [s̺] e [z̺]
+> *"a existência de um sistema de quatro sibilantes, [s̺] e [z̺]
 > ápicoalveolares (correspondentes aos grafemas s e ss)… opondo-se a e
 > convivendo com o [s] e o [z] predorsodentais (correspondentes aos grafemas
 > ce,i, ç e z)."*
 
 The far-northern **Transmontano/Alto-Minhoto** dialects keep this four-way
 opposition intact. This group does **not**: it neutralises the opposition
-**in favour of the apical branch** — both ⟨s/ss⟩ **and** ⟨c/ç/z⟩ collapse to
+**in favour of the apical branch**, both ⟨s/ss⟩ **and** ⟨c/ç/z⟩ collapse to
 a single apico-alveolar [s̺] (voiceless) / [z̺] (voiced). Álvarez Pérez
 (2014, pp.37-38):
 
 > *"the other groups of northern dialects, denoted by Cintra as
 > Baixo-Minhotos, Durienses and Beirões, kept only the apico-alveolar
-> branch; on the other hand, the rest of Portugal (as well as standard
+> branch. On the other hand, the rest of Portugal (as well as standard
 > Portuguese) neutralised the opposition in favour of laminal sibilants."*
 
 Modelled as a grapheme + positional delta: ⟨s⟩ onset → [s̺], intervocalic
@@ -47,7 +47,7 @@ The apico-alveolar segment is a real, distinct IPA symbol ([s̺] = s + U+033A
 COMBINING INVERTED BRIDGE BELOW) and is modelled **actively**, not deleted or
 declared unmodellable.
 
-### 2. Northern betacism — /v/ ~ /b/ merger
+### 2. Northern betacism: /v/ ~ /b/ merger
 
 Cintra's (1971, p.88) first diagnostic northern feature:
 
@@ -57,9 +57,9 @@ Cintra's (1971, p.88) first diagnostic northern feature:
 
 Modelled as the grapheme delta ⟨v⟩ → [b] (~[β]). Álvarez Pérez (2014,
 pp.35-37) reassessed the extent with the ALEPG corpus and found the bilabial
-merger covers roughly twice Cintra's mapped area — categorical in the far
+merger covers roughly twice Cintra's mapped area, categorical in the far
 north and extending **along the coast beyond the district of Coimbra** and
-through the **eastern districts of Guarda and Castelo Branco** — which is why
+through the **eastern districts of Guarda and Castelo Branco**, which is why
 betacism is applied to all four zones below.
 
 ### Worked examples
@@ -81,9 +81,9 @@ betacism is applied to all four zones below.
 
 * Porto's tonic-close-vowel diphthongisation ([e]>[je], [o]>[wo]) is a
   Porto/Baixo-Minho-Douro **subdivision marker** (Cintra 1971, p.93) kept in
-  `pt-PT-x-porto`; it is **not** applied here.
+  `pt-PT-x-porto`. It is **not** applied here.
 * Retroflex sibilants [ʂ ʐ] and retroflex lateral/flap [ɭ ɽ] are **not** in
-  Cintra (1971) or Álvarez Pérez (2014) — the northern reverso/apico-alveolar
+  Cintra (1971) or Álvarez Pérez (2014), the northern reverso/apico-alveolar
   sibilant belongs to /s z/ (modelled above as [s̺ z̺]), not to /ʃ ʒ/.
 
 ## Sources
