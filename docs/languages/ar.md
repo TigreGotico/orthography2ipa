@@ -284,6 +284,45 @@ The two diacritized fixes in this round (alif-maksūra merge, coda-glide guard) 
 leave the gold PER **byte-identical at 0.1868**, they correct diacritized transcription,
 which this undiacritized gold cannot reward or penalize.
 
+### Measured ceiling for the dialect WikiPron rows (`ar-EG`, `ar-SA-x-hejaz`, `ar-x-gulf`, `ar-IQ-x-qeltu`)
+
+Several dialect scoreboard rows (`arz`/`ar-EG`, `acw`/`ar-SA-x-hejaz`, `afb`/`ar-x-gulf`,
+`acm`/`ar-IQ-x-qeltu`) draw on the same undiacritized WikiPron tier as the `ar` gold
+above, so the same measurement was repeated per dialect: short-vowel segments (`a i u`
+plus the reduced/allophonic qualities `ə ɪ ʊ ɛ ɔ e o` these dialects also realize the
+unwritten short-vowel phonemes as) counted in the gold, then folded out of both
+hypothesis and gold before rescoring.
+
+| Row | n (scored) | short-vowel share | baseline PER | folded PER | distinct homographs |
+|---|---|---|---|---|---|
+| `ar-EG` (`arz`) | 590 | 1154/4053 = 28.5 % | 0.3692 | 0.3317 | 140 |
+| `ar-SA-x-hejaz` (`acw`) | 1889 | 4164/14491 = 28.7 % | 0.3412 | 0.2399 | 520 |
+| `ar-x-gulf` (`afb`) | 614 | 1079/3837 = 28.1 % | 0.4273 | 0.3252 | 123 |
+| `ar-IQ-x-qeltu` (`acm`) | 97 | 136/487 = 27.9 % | 0.3666 | 0.3521 | 9 (small n) |
+
+`ar-SA-x-hejaz` lands at the 0.25 target once short vowels are folded out; the other
+three stay above it, so the vowel fold explains a large share of the remaining PER but
+not all of it. Every row also carries a substantial homograph count — distinct
+undiacritized input skeletons that the same gold file transcribes two or more
+different ways (e.g. `arz` أجر → `ʔaɡr`/`ʔadʒdʒar`/`ʔadʒr`/`ʔaɡɡar`; `afb` ال →
+`ʔɪl`/`ɪl`/`ɪ`) — which is a provable, orthography-independent ceiling on top of the
+vowel fold: no rule can reproduce two different transcriptions of one skeleton.
+
+These figures are **measured** from the shipped gold (`scripts/benchmark.py`
+`load_wikipron`), not sourced from a grammar, and are reported as a distributional
+argument per the wave's citation rules. No fold or vocalization the undiacritized
+orthography does not itself supply was added to any of these specs; PER on these rows
+is left where it is, following the same precedent as the MSA (`ar`) and `fa` gold
+ceilings.
+
+A shipped-tokenizer sweep over these same gold sets (`PhonetokTokenizer`) found only a
+handful of `UNKNOWN` codepoints per dialect — 1–13 occurrences each of Persian-tier
+Perso-Arabic loan letters (پ ڤ ک گ ی ڭ ڨ) that some contributors used when typing dialect
+words — far too few to move any row's PER meaningfully, unlike the systematic
+KAF/YEH drop found in the Persian gold. This is a candidate follow-up (adding the
+loan letters as recognized graphemes with their standard values) but was not pursued
+here because it does not touch the vowel-ceiling question this diagnosis was scoped to.
+
 ## Egyptian Arabic: Cairene (`ar-EG`)
 
 Cairene (research tier) inherits the Eastern/Mashriqi base (`ar-x-mashriqi`) and expresses
