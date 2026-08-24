@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.79.8a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.8a1) (2026-08-24)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.7a1...7.79.8a1)
+
+**Merged pull requests:**
+
+- fix\(fa\): read the Arabic encodings of ⟨ک⟩ and ⟨ی⟩ and the ⟨ه⟩ after every long ā [\#1093](https://github.com/TigreGotico/orthography2ipa/pull/1093) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.79.7a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.7a1) (2026-08-24)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.6a1...7.79.7a1)
@@ -689,10 +697,6 @@
 ## [7.71.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.71.1a1) (2026-08-14)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.71.0a1...7.71.1a1)
-
-**Merged pull requests:**
-
-- fix\(sv\): restore Swedish retroflex assimilation in the base spec [\#900](https://github.com/TigreGotico/orthography2ipa/pull/900) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.71.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.71.0a1) (2026-08-14)
 
