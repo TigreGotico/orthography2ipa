@@ -228,6 +228,52 @@ class TestAncientGreek:
 
 
 # ═══════════════════════════════════════════════════════════════════════════
+# Tsakonian
+# ═══════════════════════════════════════════════════════════════════════════
+
+
+@pytest.mark.linguistic
+class TestTsakonian:
+    """Accuracy tests for Tsakonian (tsd).
+
+    Sole living descendant of Doric Greek; uses the standard Greek alphabet
+    plus digraphs for sounds not covered by the plain letters
+    (Wikipedia: Tsakonian language).
+    """
+
+    LANGUAGE_CODE = "tsd"
+
+    @pytest.fixture(autouse=True)
+    def _setup(self):
+        self.spec = _load(self.LANGUAGE_CODE)
+
+    def test_sch_digraph(self):
+        """σχ is [ʃ], like German ⟨sch⟩ -- not the concatenation of σ+χ."""
+        _assert_first(_grapheme(self.spec, "σχ"), "ʃ", label="σχ")
+
+    def test_tsch_digraph(self):
+        """τσχ is [tʃ]."""
+        _assert_first(_grapheme(self.spec, "τσχ"), "tʃ", label="τσχ")
+
+    def test_aspirate_digraphs(self):
+        """⟨τθ κχ πφ⟩ spell the aspirated stops [tʰ kʰ pʰ]."""
+        _assert_first(_grapheme(self.spec, "τθ"), "tʰ", label="τθ")
+        _assert_first(_grapheme(self.spec, "κχ"), "kʰ", label="κχ")
+        _assert_first(_grapheme(self.spec, "πφ"), "pʰ", label="πφ")
+
+    def test_rz_digraph(self):
+        """ρζ is the voiced postalveolar fricative [ʒ], not a cluster [rʒ]."""
+        _assert_first(_grapheme(self.spec, "ρζ"), "ʒ", label="ρζ")
+
+    def test_not_descended_from_attic_ionic(self):
+        """Tsakonian's ancestry routes through Doric, not grc/el's Attic-Ionic chain."""
+        ancestor_codes = {a.code for a in self.spec.ancestors}
+        assert "x-clade-doric-greek" in ancestor_codes
+        assert "grc" not in ancestor_codes
+        assert "el" not in ancestor_codes
+
+
+# ═══════════════════════════════════════════════════════════════════════════
 # Archaic Latin
 # ═══════════════════════════════════════════════════════════════════════════
 
@@ -735,7 +781,8 @@ class TestMandarin:
     - Palatal series: j=[tɕ], q=[tɕʰ], x=[ɕ]
     - Retroflex series: zh=[ʈʂ], ch=[ʈʂʰ], sh=[ʂ], r=[ɻ/ʐ]
     - h → [x] (velar, not glottal)
-    - Tonal (not modeled in grapheme table)
+    - Tone is written, in both the diacritic and the tone-digit
+      conventions; see tests/test_mandarin_pinyin.py
     """
 
     LANGUAGE_CODE = "zh"

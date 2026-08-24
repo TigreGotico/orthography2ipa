@@ -1,4 +1,4 @@
-# Hindi (hi) — Phonology Reference
+# Hindi (hi): Phonology Reference
 
 **Code**: `hi` | **Family**: Indo-European > Indo-Aryan | **Script**: Devanagari (abugida)
 **Quality tier**: research | **Sources**: Masica (1991), Ohala (1983), Pandey (2014)
@@ -7,7 +7,7 @@
 
 ## Devanagari Script Overview
 
-Devanagari is an **abugida** — consonant letters carry an inherent vowel /ə/ (schwa), which is overridden by explicit vowel marks (mātrā). The inherent vowel is deleted in certain phonological environments (see Schwa Deletion below).
+Devanagari is an **abugida**, consonant letters carry an inherent vowel /ə/ (schwa), which is overridden by explicit vowel marks (mātrā). The inherent vowel is deleted in certain phonological environments (see Schwa Deletion below).
 
 | Component | Description | Example |
 |:---|:---|:---|
