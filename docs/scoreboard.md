@@ -36,8 +36,8 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | aii | wikipron | 4836 | 0.3765 | 0.3287 | 0.3063 | 0.0463 | 0.0567 | [0.3720, 0.3811] | 0.0209 | research | crowd-scraped |
 | ain | northeuralex | 858 | 0.0200 | 0.0200 | 0.0200 | 0.8811 | 0.8811 | [0.0160, 0.0238] | 0.8811 | research | lexicon-derived |
 | akk | wikipron | 671 | 0.0144 | 0.0144 | 0.0144 | 0.9046 | 0.9046 | [0.0109, 0.0178] | 0.9046 | research | crowd-scraped |
-| ale | northeuralex | 896 | 0.3993 | 0.3993 | 0.3993 | 0.0826 | 0.0826 | [0.3858, 0.4144] | 0.0826 | skeleton | lexicon-derived |
-| ale | wikipron | 118 | 0.1468 | 0.1468 | 0.1468 | 0.6610 | 0.6610 | [0.0966, 0.2019] | 0.6610 | skeleton | crowd-scraped |
+| ale | northeuralex | 896 | 0.2634 | 0.2634 | 0.2634 | 0.0926 | 0.0926 | [0.2542, 0.2731] | 0.0926 | skeleton | lexicon-derived |
+| ale | wikipron | 118 | 0.1100 | 0.1100 | 0.1100 | 0.7458 | 0.7458 | [0.0650, 0.1652] | 0.7458 | skeleton | crowd-scraped |
 | am | vox_communis | 5453 | 0.2466 | 0.2466 | 0.2466 | 0.1212 | 0.1212 | [0.2422, 0.2514] | 0.1212 | research | epitran-derived |
 | am | wikipron | 388 | 0.3813 | 0.3813 | 0.3813 | 0.1005 | 0.1005 | [0.3596, 0.4036] | 0.1005 | research | crowd-scraped |
 | an | wikipron | 902 | 0.0580 | 0.0229 | 0.0207 | 0.8570 | 0.8703 | [0.0523, 0.0637] | 0.6630 | research | crowd-scraped |
