@@ -289,7 +289,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | hil | wikipron | 466 | 0.0966 | 0.0966 | 0.0966 | 0.5343 | 0.5343 | [0.0857, 0.1078] | 0.5343 | research | crowd-scraped |
 | hr | ipa_childes | 4769 | 0.2066 | 0.2066 | 0.2066 | 0.2772 | 0.2772 | [0.2016, 0.2117] | 0.2772 | research | epitran-derived |
 | hr | wikipron | 26469 | 0.3000 | 0.2979 | 0.2979 | 0.0055 | 0.0055 | [0.2985, 0.3016] | 0.0050 | research | crowd-scraped |
-| hrx | wikipron | 2002 | 0.4090 | 0.4090 | 0.4090 | 0.0759 | 0.0759 | [0.3979, 0.4206] | 0.0759 | research | crowd-scraped |
+| hrx | wikipron | 2002 | 0.0821 | 0.0700 | 0.0643 | 0.6913 | 0.7148 | [0.0766, 0.0877] | 0.6429 | research | crowd-scraped |
 | hsb | vox_communis | 5802 | 0.3177 | 0.3102 | 0.3102 | 0.1015 | 0.1015 | [0.3130, 0.3220] | 0.0907 | research | epitran-derived |
 | hsb | wikipron | 1126 | 0.2186 | 0.2034 | 0.2034 | 0.2806 | 0.2806 | [0.2073, 0.2303] | 0.2629 | research | crowd-scraped |
 | ht | wikipron | 1691 | 0.0302 | 0.0302 | 0.0302 | 0.8669 | 0.8669 | [0.0262, 0.0346] | 0.8669 | research | crowd-scraped |
