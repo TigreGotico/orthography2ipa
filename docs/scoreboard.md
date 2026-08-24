@@ -419,7 +419,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | nds | wikipron | 308 | 0.2231 | 0.1674 | 0.1503 | 0.5065 | 0.5292 | [0.1969, 0.2487] | 0.4091 | research | crowd-scraped |
 | ne | kaikki | 2052 | 0.1191 | 0.1178 | 0.1178 | 0.5210 | 0.5210 | [0.1121, 0.1256] | 0.5195 | research | crowd-scraped |
 | new | wikipron | 416 | 0.0282 | 0.0282 | 0.0282 | 0.8558 | 0.8558 | [0.0181, 0.0391] | 0.8558 | research | crowd-scraped |
-| ngh | wikipron | 263 | 0.3655 | 0.3655 | 0.3655 | 0.1521 | 0.1521 | [0.3374, 0.3958] | 0.1521 | skeleton | crowd-scraped |
+| ngh | wikipron | 263 | 0.2616 | 0.2616 | 0.2616 | 0.2966 | 0.2966 | [0.2360, 0.2898] | 0.2966 | skeleton | crowd-scraped |
 | nhg | wikipron | 295 | 0.2367 | 0.2367 | 0.2367 | 0.1898 | 0.1898 | [0.2157, 0.2573] | 0.1898 | research | crowd-scraped |
 | nhx | wikipron | 145 | 0.1913 | 0.1913 | 0.1913 | 0.2207 | 0.2207 | [0.1686, 0.2141] | 0.2207 | research | crowd-scraped |
 | nio | northeuralex | 1024 | 0.0972 | 0.0887 | 0.0886 | 0.4834 | 0.4834 | [0.0900, 0.1045] | 0.4678 | research | lexicon-derived |
