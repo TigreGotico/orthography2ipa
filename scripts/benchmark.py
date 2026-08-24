@@ -364,7 +364,8 @@ _WIKIPRON_FILES = {
     "dv":        "div_thaa_broad.tsv",              # Dhivehi, ~1551 rows
     "ki":        "kik_latn_broad.tsv",              # Kikuyu, ~1420 rows
     "ps":        "pus_arab_broad.tsv",              # Pushto, ~1414 rows
-    "no":        "nor_latn_broad.tsv",              # Norwegian, ~1331 rows
+    # nor_latn_broad.tsv is NOT scored here — see load_wikipron_nor and the
+    # ``wikipron_nor`` dataset, which scores it against the Nynorsk spec.
     "fy":        "fry_latn_broad.tsv",              # Western Frisian, ~1246 rows
     "hsb":       "hsb_latn_broad.tsv",              # Upper Sorbian, ~1130 rows
     "li":        "lim_latn_broad.tsv",              # Limburgan, ~1128 rows
@@ -1547,6 +1548,43 @@ def _strip_final_harakat(word: str) -> str:
     return word.rstrip(_ARABIC_HARAKAT)
 
 
+def load_wikipron_nor(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """WikiPron scrape of Wiktionary IPA tagged with the MACROLANGUAGE code.
+
+    WikiPron files an entry by the language code inside its ``{{IPA|…}}``
+    template, not by the L2 section heading it sits under. Wiktionary
+    editors have tagged a large body of Nynorsk entries with the
+    macrolanguage code ``no`` instead of ``nn``, so those pronunciations
+    land in ``nor_latn_broad.tsv`` rather than ``nno_latn_broad.tsv``.
+
+    In a 200-word random sample of the file's headwords, 166 carry their
+    ``{{IPA|no|…}}`` line under a ``==Norwegian Nynorsk==`` section, 24
+    under ``==Norwegian Bokmål==``, 2 under both and 2 under the legacy
+    ``==Norwegian==`` heading. The gold is therefore Nynorsk with a
+    Bokmål minority, and it is scored against ``nn``. It stays a separate
+    row from ``wikipron``/``nn`` because it is a separate file with its
+    own annotator pool and its own ~13% Bokmål contamination — folding
+    the two would hide both.
+    """
+    fname = _WIKIPRON_FILES_MACRO[lang]
+    text = _fetch(_WIKIPRON_BASE + fname, fname)
+    pairs = []
+    for line in text.strip().splitlines():
+        parts = line.split("\t")
+        if len(parts) == 2:
+            pairs.append((parts[0], parts[1]))
+        if len(pairs) >= limit:
+            break
+    return pairs
+
+
+#: WikiPron files scraped under an ISO 639-3 MACROLANGUAGE code, mapped to
+#: the individual-language spec the words actually belong to.
+_WIKIPRON_FILES_MACRO = {
+    "nn": "nor_latn_broad.tsv",          # ISO 639-3 nor, ~1331 rows
+}
+
+
 def load_wikipron_ar_diacritized(lang: str, limit: int) -> List[Tuple[str, str]]:
     """The WikiPron Arabic gold with tashkeel RESTORED on the input side.
 
@@ -2723,6 +2761,7 @@ DATASETS: Dict[str, Tuple[DatasetLoader, List[str]]] = {
     "ep_dialects": (load_ep_dialects, _EP_DIALECT_LANGS),
     "wikipron": (load_wikipron, sorted(_WIKIPRON_FILES)),
     "wikipron_ar_diacritized": (load_wikipron_ar_diacritized, ["ar"]),
+    "wikipron_nor": (load_wikipron_nor, sorted(_WIKIPRON_FILES_MACRO)),
     "mirandese_g2p": (load_mirandese, sorted(_MIRANDESE_DIALECTS)),
     "barranquenho_dict": (load_barranquenho_dict, ["ext-PT-x-barrancos"]),
     "mirandese_dict": (load_mirandese_dict, sorted(_MIRANDESE_DICT_DIALECTS)),
@@ -2879,6 +2918,9 @@ PROVENANCE: Dict[str, str] = {
     # machine noise floor on top of the gold's own tier. Diagnostic for
     # the vowelized-Arabic rules; certifies nothing beyond the raw row.
     "wikipron_ar_diacritized": "crowd-scraped",
+    # Same crowd-scraped WikiPron tier as ``wikipron``; a different file,
+    # scraped under the Norwegian MACROLANGUAGE code (see load_wikipron_nor).
+    "wikipron_nor": "crowd-scraped",
     # Portal da Língua Portuguesa scrape; semi-automated IPA, not hand-verified
     # A COMPETITOR'S OUTPUT reused as a reference. These phonemes come from the
     # espeak-ng-backed phonemizer, so this row measures AGREEMENT WITH ESPEAK,
