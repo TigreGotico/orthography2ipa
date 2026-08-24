@@ -79,6 +79,14 @@ SCORED_FIELDS = ("n", "per", "per_ci_low", "per_ci_high", "exact_match",
                  "oracle_exact_top5", "oracle_scored_words",
                  "oracle_fallback_words")
 
+#: The thin-row marker appended to the N column when a row falls below
+#: THIN_ROW_N scored words. This is a RENDERING ANNOTATION, not a value
+#: change: the underlying N value is unchanged, and a row gaining this marker
+#: should not be flagged as movement. This constant MUST be kept in sync with
+#: the one in scripts/benchmark.py; when benchmark.py is updated to define or
+#: import THIN_ROW_MARK, ensure it uses the same symbol to prevent drift.
+THIN_ROW_MARK = "†"
+
 # A change anywhere in the package that is not a language spec, or to the
 # harness itself, can move every row at once — that is the movement a
 # `Board-Rows: all` declaration is allowed to cover.
@@ -137,6 +145,11 @@ def _read_markdown(text):
     The markdown is generated from the JSON, so a cell moving is the same
     event as the JSON row moving; keeping the cells under their column
     headers lets a difference be named rather than just shown.
+
+    The thin-row marker (†) is stripped from the N cell before storing,
+    since it is a rendering annotation, not a value change: a row that
+    gains the marker due to having fewer than THIN_ROW_N scored words still
+    has the same underlying N value.
     """
     rows, headers = {}, []
     for line in text.splitlines():
@@ -150,7 +163,12 @@ def _read_markdown(text):
             continue
         if len(cells) < 2:
             continue
-        rows[(cells[0], cells[1])] = dict(zip(headers, cells))
+        row = dict(zip(headers, cells))
+        # Strip the thin-row marker from the N cell if present, since it is
+        # a rendering-only annotation and not a value change.
+        if "N" in row and row["N"].endswith(THIN_ROW_MARK):
+            row["N"] = row["N"][:-len(THIN_ROW_MARK)]
+        rows[(cells[0], cells[1])] = row
     return rows
 
 
