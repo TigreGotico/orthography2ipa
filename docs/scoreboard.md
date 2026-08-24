@@ -658,7 +658,7 @@ A row's `N` is its sample size in scored words, and it is not cosmetic: below ro
 | ykg | northeuralex | 813 | 0.3616 | 0.3616 | 0.3616 | 0.0418 | 0.0418 | [0.3507, 0.3730] | 0.0418 | research | lexicon-derived |
 | yo | vox_communis | 5263 | 0.6341 | 0.6315 | 0.6315 | 0.0004 | 0.0004 | [0.6298, 0.6386] | 0.0004 | research | epitran-derived |
 | yo | wikipron | 4065 | 0.3832 | 0.3830 | 0.3830 | 0.1065 | 0.1065 | [0.3769, 0.3896] | 0.1063 | research | crowd-scraped |
-| yol | wikipron | 1972 | 0.3876 | 0.3876 | 0.3876 | 0.1344 | 0.1344 | [0.3761, 0.3987] | 0.1344 | research | crowd-scraped |
+| yol | wikipron | 1972 | 0.3809 | 0.3809 | 0.3809 | 0.1435 | 0.1435 | [0.3696, 0.3919] | 0.1435 | research | crowd-scraped |
 | yrk | northeuralex | 1016 | 0.2349 | 0.2344 | 0.2344 | 0.1348 | 0.1348 | [0.2247, 0.2449] | 0.1348 | research | lexicon-derived |
 | yrk | wikipron | 295 | 0.3852 | 0.3844 | 0.3844 | 0.0678 | 0.0678 | [0.3639, 0.4072] | 0.0678 | research | crowd-scraped |
 | yux | wikipron | 242 | 0.2975 | 0.2975 | 0.2975 | 0.1694 | 0.1694 | [0.2738, 0.3220] | 0.1694 | research | crowd-scraped |
