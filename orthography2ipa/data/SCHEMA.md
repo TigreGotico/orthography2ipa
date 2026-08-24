@@ -85,6 +85,7 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
 | `word_exceptions`           | object | no       | Whole-word overrides for a closed irregular set (`{"one": "wʌn"}`); beats rules, beats a bundled lexicon |
 | `grammatical_endings`       | object | no       | Suffix morphology: orthographic ending → IPA at the effective word end (`{"tion": "ʃən"}`), or an ordered candidate list for an ending that is genuinely ambiguous (`{"ent": [null, ""]}`); see [Grammatical endings](#grammatical-endings) |
 | `allophone_rules`          | array  | no       | Post-lexical `phoneme → surface` rewrites (see [Allophone Rule Schema](#allophone-rule-schema) and [allophony](../../docs/allophony.md)) |
+| `tone_rules`                | object | no       | Tone the orthography spells with the SHAPE of the syllable rather than with a tone letter (see [Tone Rules Schema](#tone-rules-schema)) |
 | `tone_inventory`            | object | no       | IPA tone mark → label (e.g. `{"˥": "high"}`) |
 | `tone_marks_syllable_final` | bool   | no       | Dock every tone mark at the end of its syllable. Set it when the orthography writes tone on the nucleus letter, so that ⟨ōng⟩ comes out `oŋ³³` and not `o³³ŋ` |
 | `sources`                   | array  | no       | Bibliographic references (see Sources Schema below) |
@@ -386,6 +387,33 @@ a point that describes *this* variety (the centre of the norm, the heart of the
 dialect region) over a generic national point, and say so in `notes`. Omit the
 field entirely rather than guess: `geographic_distance` returns `None` for a spec
 without a location, which is honest, whereas a made-up point is not.
+
+## Tone Rules Schema
+
+`tone_rules` describes an orthography whose tone is not written by any one
+grapheme. In a Tai-style writing system the tone of a syllable follows from
+four things the spelling states jointly: the class its initial consonant
+belongs to, whether the rime is checked, how long the vowel is, and which
+tone mark — if any — rides the initial. All four are recoverable from the
+written word, but only once the syllable has been assembled, so no grapheme
+table can hold the answer.
+
+| Field         | Type   | Description |
+|---------------|--------|-------------|
+| `classes`     | object | Consonant letter → class name (`{"ก": "mid", "ข": "high"}`) |
+| `marks`       | object | Tone mark → mark name (`{"่": "mai_ek"}`) |
+| `tones`       | object | Tone name → the IPA it is transcribed with (`{"rising": "˩˩˦"}`) |
+| `table`       | object | The system: `table[class][shape][mark]` → tone name, where *shape* is `live`, `dead_short`, `dead_long`, or `any` for a mark whose reading does not depend on the rime |
+| `dead_codas`  | array  | Coda phonemes that check a syllable (`["p", "t", "k", "ʔ"]`); a syllable with no coda is dead when its vowel is short |
+| `no_mark`     | string | The name the table uses for "no tone mark" (default `none`) |
+| `notes`       | string | What the block asserts, and its sources |
+
+The class of a syllable is read off the first letter of its onset grapheme
+that `classes` names, so a cluster or a digraph takes the class of the letter
+that opens it, and a silent tone-class marker (Thai ho nam ⟨ห⟩) lends its own.
+The tone letter is written at the end of its syllable, which is where IPA
+writes it; a spec whose transcription convention puts it on the nucleus reads
+it back with `tone_marks_syllable_final`.
 
 ## Sources Schema
 

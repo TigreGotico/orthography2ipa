@@ -86,7 +86,7 @@ from orthography2ipa.stress import (
     detect_stress_by_weight, secondary_stress_positions, syllabify,
     syllabify_ipa,
 )
-from orthography2ipa.tone import dock_tone_marks
+from orthography2ipa.tone import assign_computed_tones, dock_tone_marks
 from orthography2ipa.transforms import apply_transform
 from orthography2ipa.types import GraphemePosition, LanguageSpec
 
@@ -1157,7 +1157,9 @@ class G2P:
                     rescorer=self._rescorers or None)
             paths = self._apply_grammatical_ending(word, paths)
             ipa = paths[0].ipa if paths else word
-            ipa = self._finalize_word_ipa(word, ipa, forced_ipa=forced_ipa)
+            ipa = self._finalize_word_ipa(
+                word, ipa, forced_ipa=forced_ipa,
+                path=paths[0] if paths else None)
         if override is not None:
             ipa = self._finalize_word_ipa(word, ipa, forced_ipa=forced_ipa,
                                           collapse_geminates=False)
@@ -1191,6 +1193,7 @@ class G2P:
 
     def _finalize_word_ipa(self, word: str, ipa: str, *,
                            forced_ipa: Optional[str] = None,
+                           path: Optional[IPAPath] = None,
                            collapse_geminates: bool = True) -> str:
         """Apply the per-path word-final stages to one beam path's *ipa*.
 
@@ -1205,6 +1208,14 @@ class G2P:
         Cross-word stages (sandhi, dialect transform) are NOT applied
         here: they act on the whole utterance, not on a word.
         """
+        # Computed tone runs first, on the path's own slots: it is the
+        # only stage that needs to see which grapheme produced which
+        # segment, and every stage after it works on the string.
+        if (self.spec.tone_rules is not None and path is not None
+                and path.graphemes and ipa == path.ipa):
+            ipa = assign_computed_tones(path.graphemes, path.segments,
+                                        self.spec.tone_rules,
+                                        self.spec.phonemes or ())
         if collapse_geminates and self.spec.collapse_geminates and ipa:
             ipa = _collapse_geminates(ipa)
         if self.spec.tone_marks_syllable_final and ipa:
@@ -1302,11 +1313,12 @@ class G2P:
                 expand_allophones=self.expand_allophones,
                 rescorer=self._rescorers or None)
         paths = self._apply_grammatical_ending(word, paths)
-        raw = [p.ipa for p in paths[:k]] or [word]
+        raw = list(paths[:k]) or [IPAPath(segments=(word,), score=0.0)]
         out: List[str] = []
-        for ipa in raw:
+        for candidate in raw:
             final = unicodedata.normalize(
-                "NFC", self._finalize_word_ipa(word, ipa))
+                "NFC", self._finalize_word_ipa(word, candidate.ipa,
+                                               path=candidate))
             if final and final not in out:
                 out.append(final)
         return out
@@ -1373,8 +1385,12 @@ class G2P:
             left alone rather than mis-spliced."""
             if len(path.segments) <= match.tokens:
                 return path
-            return IPAPath(segments=path.segments[:-match.tokens] + (ipa,),
-                           score=path.score + extra_cost)
+            return IPAPath(
+                segments=path.segments[:-match.tokens] + (ipa,),
+                score=path.score + extra_cost,
+                graphemes=(path.graphemes[:-match.tokens]
+                           + ("".join(path.graphemes[-match.tokens:]),)
+                           if path.graphemes else ()))
 
         for path in paths:
             new = path if match.ipa is None else _rewrite(path, match.ipa, 0.0)
@@ -1542,14 +1558,17 @@ class G2P:
 
         constrain_nasal_carriers(per_token_branches)
 
-        for branches in per_token_branches:
+        spelled: List[str] = []
+        for i, branches in enumerate(per_token_branches):
             if not branches:
                 # Rescorer deleted this slot: it contributes no segment.
                 continue
+            spelled.append(g_tokens[i].grapheme)
             beam = PhonetokTokenizer._expand_beam(beam, branches, width)
 
+        graphemes = tuple(spelled)
         paths = [
-            IPAPath(segments=tuple(segs), score=sc)
+            IPAPath(segments=tuple(segs), score=sc, graphemes=graphemes)
             for segs, sc in beam
         ]
         paths.sort(key=lambda p: (p.score, p.ipa))

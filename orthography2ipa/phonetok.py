@@ -492,6 +492,15 @@ class IPAPath:
     weights the per-grapheme cost is ``-log(p)`` instead — see
     :mod:`orthography2ipa.weights` and ``docs/candidate_scoring.md``."""
 
+    graphemes: Tuple[str, ...] = ()
+    """The grapheme key each segment came from, parallel to
+    :attr:`segments` and empty when the producer did not record it. A
+    reading whose tone is computed from the syllable's shape (see
+    :func:`orthography2ipa.tone.assign_computed_tones`) needs to know
+    which letter opened each syllable, and the segment alone no longer
+    says: a slot can spell nothing, and a preposed vowel is read by the
+    consonant that follows it."""
+
     @property
     def ipa(self) -> str:
         """Concatenated IPA string."""
@@ -2282,6 +2291,7 @@ class PhonetokTokenizer:
         constrain_nasal_carriers(slot_branches)
 
         g_idx = 0
+        spelled: List[str] = []
         for token in tokens:
             if token.kind == TokenKind.GRAPHEME:
                 # Stress/sandhi are engine-only (no sentence context here),
@@ -2297,16 +2307,19 @@ class PhonetokTokenizer:
                     # branch in `tokenize`). Either way it contributes no
                     # segment and leaves the hypotheses untouched.
                     continue
+                spelled.append(token.grapheme)
                 beam = self._expand_beam(beam, branches, beam_width)
 
             elif include_special:
                 if token.kind == TokenKind.WHITESPACE:
+                    spelled.append(token.grapheme)
                     beam = self._expand_beam(
                         beam, [(word_separator, 0.0)], beam_width,
                     )
                 elif token.kind in (
                         TokenKind.PUNCTUATION, TokenKind.DIGIT, TokenKind.UNKNOWN,
                 ):
+                    spelled.append(token.grapheme)
                     beam = self._expand_beam(
                         beam, [(token.grapheme, 0.0)], beam_width,
                     )
@@ -2314,8 +2327,9 @@ class PhonetokTokenizer:
         # Convert to IPAPath objects. The raw cumulative cost is the
         # canonical ranking key (byte-identical to historical behaviour);
         # length_norm/diversity are opt-in refinements applied afterwards.
+        graphemes = tuple(spelled)
         paths = [
-            IPAPath(segments=tuple(segs), score=sc)
+            IPAPath(segments=tuple(segs), score=sc, graphemes=graphemes)
             for segs, sc in beam
         ]
         paths.sort(key=lambda p: (p.score, p.ipa))
@@ -2324,7 +2338,8 @@ class PhonetokTokenizer:
             paths = [
                 IPAPath(segments=p.segments,
                         score=(p.score / len(p.segments)) if p.segments
-                        else p.score)
+                        else p.score,
+                        graphemes=p.graphemes)
                 for p in paths
             ]
             paths.sort(key=lambda p: (p.score, p.ipa))

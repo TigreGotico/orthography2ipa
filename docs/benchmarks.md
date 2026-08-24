@@ -271,7 +271,7 @@ Six rows are known to be affected, three of them wired by the small-wikipron swe
 | `mn` (Khalkha Mongolian, `N=3528`) | a **mix** of hand-typed IPA and `Module:mn-IPA` output — a 40-headword sample of the raw en.wiktionary source drew roughly three module-generated entries for every hand-typed one | Same weaker caveat as `nmy`: part of the row is a reproduction test rather than an accuracy test. See [languages/mn.md](languages/mn.md). |
 | `egy` (Ancient Egyptian, `N=2185`) | mostly `Module:egy-pron` output, invoked through `{{egy-pr}}`, plus hand-typed reconstructions on the same headwords | **`PER 0.0183` certifies reproduction of the codified Egyptological reading convention on 2185 words, not accuracy** — the convention is a way of saying the words aloud, not a reconstruction of how Egyptian sounded, and the spec encodes it from the same published guidelines the module implements. Not comparison-eligible. See [languages/egy.md](languages/egy.md). |
 | `lo` (Lao, `kaikki`, `N=2308`) | `Module:lo-pron` output: 2674 of the 2682 entries carrying IPA give exactly two transcriptions noted Vientiane and Luang Prabang, the mechanical signature of the module generating both registers from the spelling, and the loader keeps the first (Vientiane) | The row measures agreement with `Module:lo-pron`, not accuracy. It is also floored: tone contour letters are 32.4% of the normalized gold characters and appear in every one of the 2308 words, while the engine writes no tone, so roughly a third of the PER is unreachable by any segmental rule. Read the segmental slice — PER over the gold with the tone letters removed — for what the spec actually changed. |
-| `th` (Standard Thai, `N≈17k`) | **entirely** `Module:th-pron` output, invoked through a bare `{{th-pron}}` or `{{th-pron\|<respelling>}}` — an 11-word raw-wikitext sample (`เก็บ`, `ก่อน`, `ยิ้ม`, `สัตว์`, `จันทร์`, `รัก`, `บ้าน`, `น้ำ`, `หมา`, `โรงเรียน`, `ประเทศ`) found the template on every headword and no hand-typed IPA anywhere | The module computes tone and vowel length from the spelling (plus the optional respelling argument) the same way the spec's own tone-class/syllable-type analysis would, so a low PER on the tone-bearing part of the row would certify reproduction of that module, not accuracy. The spec does not compute tone (see below), so this does not currently inflate the published number, but it bounds what a future tone mechanism could claim credit for: agreement with `Module:th-pron`'s tone computation is not independent confirmation of it. |
+| `th` (Standard Thai, `N≈17k`) | **entirely** `Module:th-pron` output, invoked through a bare `{{th-pron}}` or `{{th-pron\|<respelling>}}` — an 11-word raw-wikitext sample (`เก็บ`, `ก่อน`, `ยิ้ม`, `สัตว์`, `จันทร์`, `รัก`, `บ้าน`, `น้ำ`, `หมา`, `โรงเรียน`, `ประเทศ`) found the template on every headword and no hand-typed IPA anywhere | The module computes tone and vowel length from the spelling (plus the optional respelling argument) the same way the spec's own tone-class/syllable-type analysis would, so a low PER on the tone-bearing part of the row would certify reproduction of that module, not accuracy. The spec now computes tone the same way, so the tone-bearing part of this row measures agreement with `Module:th-pron`'s computation rather than accuracy, and the rule's warrant has to come from its sources instead (see below). |
 
 No such row may be used to certify a language's accuracy, and none
 belongs in a cross-system comparison. What they do certify is that the
@@ -344,29 +344,29 @@ calls it "extremely experimental". A PER improvement against that row is a
 comparison against an experimental machine-generated file, not a
 gold-standard one.
 
-#### Tone-marked golds put a floor under a spec that emits no tone (`th`)
+#### A tone-marked gold measures the tone computation too (`th`)
 
 WikiPron transcribes Standard Thai with Chao tone letters, and they are
 not a garnish: **32% of every character in the `tha_thai_broad` gold** is
 a tone letter (79,041 of 246,222 characters across all 18,416 gold rows,
 counted after the benchmark normalizer runs; deduplicated to the 17,221
-scored headwords it is 73,093 of 228,584, the same 32%), a
-count PER charges in full because the letters are ordinary characters to
-an edit distance. A spec that emits no tone therefore cannot score below
-about 0.32 on this row whatever its segments do, and the published number
-splits into a segmental part it can move and a tonal part it cannot.
+scored headwords it is 73,093 of 228,584, the same 32%), a count PER
+charges in full because the letters are ordinary characters to an edit
+distance. Read the `th` rows as two numbers: the segmental part, and the
+tone the spec's `tone_rules` block computes from consonant class,
+syllable shape, vowel length and tone mark. Scoring the same rows with
+the tone letters removed from both sides gives the segmental part alone —
+0.1886 against `wikipron` and 0.2448 against `vox_communis`.
 
-Thai tone is not unwritten prosody — it is recoverable from the spelling,
-from the initial consonant's class crossed with the syllable's type, its
-vowel length and any tone mark. What is missing is the mechanism: a spec
-can declare a `tone_inventory` (descriptive) and ask for tone symbols to
-be docked syllable-finally (`tone_marks_syllable_final`, which only moves
-symbols a grapheme table already produced), and neither computes a tone.
-Doing so needs a syllable analysis of the WRITTEN word, and the same gap
-covers Lao and every other Tai spec scored against a tone-marked gold.
+The two Thai golds do not write the tone letter in the same slot. WikiPron
+writes it after the rime, where IPA writes it (`k ɔː n ˨˩`); the
+Epitran-derived `vox_communis` rows write it on the nucleus
+(`k ɔː˨˩ n`). The spec follows WikiPron and IPA, so the `vox_communis`
+row pays for the mismatch, and the reverse choice would cost more on the
+row that is not machine-generated.
 
 That the gold's tone letters follow the same consonant-class × syllable-type
-rule this section describes is not independent confirmation of the rule:
+rule the spec states is not independent confirmation of the rule:
 the gold IS that computation (`Module:th-pron`, see [Module-generated
 WikiPron rows](#module-generated-wikipron-rows)), so agreement between the
 two states the rule twice rather than checking it against a second source.
