@@ -115,18 +115,42 @@ see [Module-generated WikiPron rows](benchmarks.md#module-generated-wikipron-row
 The `ha` wikipron row scores against a gold whose IPA column is fully marked for
 tone and length while its orthographic column is stripped of both. Almost all of
 the reported error is that mismatch rather than rule error, and the split is
-worth stating precisely. Measured over the 1857 scored items, ignoring tone
-marks alone leaves about a third of the error (PER 0.5340 to 0.1690); ignoring
-tone and length together leaves about a twenty-fourth of it (PER 0.0223, with
-89.1% of words then matching exactly). Counted as aligned edits — total
-Levenshtein edits between the transcription and the closer gold, summed
-across the gold, before and after folding each mark out of both sides —
-unwritten tone is 67.7% of the total edit count and unwritten length a further
-29.0%, so the two together are 96.7% of it. What remains after both is the
-genuinely segmental error, and the largest single share of *that* is
-the ⟨r⟩ ambiguity described above — also unrecoverable, but lexically rather
-than notationally so: 102 of the remaining aligned edits are a gold /ɽ/ against
-a transcribed /r/.
+worth stating precisely, with all four combinations measured rather than just
+the two that move the most. Measured over the 1857 scored items: baseline PER
+is 0.5340 (exact match 0.0022); folding tone marks out of both sides alone
+leaves about a third of the error (PER 0.1690, exact match jumps to 0.2186,
+since tone is the more frequent mark — 5477 combining tone diacritics against
+2395 length marks in the gold IPA); folding length alone, leaving tone in,
+barely moves it (PER 0.4565, exact match still 0.0022, because almost every
+word that survives length-folding still carries at least one tone mark);
+folding both together leaves about a twenty-fourth of the original error (PER
+0.0223, with 89.1% of words then matching exactly). Tone is doing most of the
+work in the combined number and length is doing almost none of it alone,
+which is expected: length folds a single character class out of syllables
+that mostly also carry a tone diacritic, so on its own it rarely turns a wrong
+word into a right one. Counted as aligned edits — total Levenshtein edits
+between the transcription and the closer gold, summed across the gold, before
+and after folding each mark out of both sides — unwritten tone is 67.7% of the
+total edit count and unwritten length a further 29.0%, so the two together are
+96.7% of it. What remains after both is the genuinely segmental error, and the
+largest single share of *that* is the ⟨r⟩ ambiguity described above — also
+unrecoverable, but lexically rather than notationally so: 102 of the remaining
+aligned edits are a gold /ɽ/ against a transcribed /r/.
+
+The orthographic column itself was checked directly rather than assumed blank:
+of the 1857 headwords, exactly 8 carry any diacritic at all, and all 8 are the
+⟨r̃⟩ rhotic marking already described above (*bishar̃a*, *fetur̃*, *iƙir̃ar̃i*,
+*mashar̃ci*, *mashawar̃ta*, *matukar̃*, *sanar̃wa*, *shawar̃a*) — the spec already
+reads that mark. Zero headwords carry a macron, an accent, a doubled vowel, or
+any other length or tone cue, so there is no marked-orthography convention
+being left unread here: the ceiling is real, not a missed rule. The full
+character inventory of the 1857 headwords was also checked against the
+grapheme table and every letter is mapped; there is no silently-dropped
+character behind the PER either. Gold composition was checked for the
+padding pattern (alphabet-chart entries, bound morphemes) that turned up
+elsewhere in this wave: two of the 1857 headwords, ⟨Ƴ⟩ and ⟨ƴ⟩, are the
+letter itself rather than a word, at 0.1% of the set — negligible on its own
+but recorded here rather than silently absorbed into the ceiling.
 
 Reordering the ⟨r⟩ candidates to put the flap first was measured, on the
 shipped spec, and refused. It would take the epitran-derived vox_communis row
