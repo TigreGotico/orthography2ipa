@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.79.10a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.10a1) (2026-08-24)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.9a1...7.79.10a1)
+
+**Merged pull requests:**
+
+- fix\(car\): map the six grave-accent vowels and loan /f/ [\#1103](https://github.com/TigreGotico/orthography2ipa/pull/1103) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.79.9a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.9a1) (2026-08-24)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.8a1...7.79.9a1)
@@ -717,10 +725,6 @@
 ## [7.70.3a1](https://github.com/TigreGotico/orthography2ipa/tree/7.70.3a1) (2026-08-14)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.70.2a1...7.70.3a1)
-
-**Merged pull requests:**
-
-- fix\(benchmark\): stop scoring the aligner's spn coverage-hole marker as vox\_communis gold [\#902](https://github.com/TigreGotico/orthography2ipa/pull/902) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.70.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.70.2a1) (2026-08-14)
 
