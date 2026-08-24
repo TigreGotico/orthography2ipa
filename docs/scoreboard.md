@@ -173,8 +173,8 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | ca-x-balear | 4catac | 160 | 0.1360 | - | - | - | - | [0.1283, 0.1446] | 0.0062 | research | expert-human |
 | ca-x-occidental | 4catac | 160 | 0.0822 | - | - | - | - | [0.0761, 0.0886] | 0.0125 | research | expert-human |
 | ca-x-valencia | 4catac | 160 | 0.0677 | - | - | - | - | [0.0620, 0.0733] | 0.0312 | research | expert-human |
-| car | wikipron | 232 | 0.3986 | 0.3986 | 0.3986 | 0.0172 | 0.0172 | [0.3740, 0.4222] | 0.0172 | research | crowd-scraped |
-| car | wold | 1191 | 0.0854 | 0.0854 | 0.0854 | 0.5584 | 0.5584 | [0.0786, 0.0932] | 0.5584 | research | lexicon-derived |
+| car | wikipron | 232 | 0.3500 | 0.3500 | 0.3500 | 0.0517 | 0.0517 | [0.3259, 0.3749] | 0.0517 | research | crowd-scraped |
+| car | wold | 1191 | 0.0846 | 0.0846 | 0.0846 | 0.5600 | 0.5600 | [0.0779, 0.0923] | 0.5600 | research | lexicon-derived |
 | ce | wikipron | 461 | 0.2541 | 0.2319 | 0.2319 | 0.2842 | 0.2842 | [0.2360, 0.2727] | 0.2364 | research | crowd-scraped |
 | ceb | wikipron | 3895 | 0.1058 | 0.1058 | 0.1058 | 0.5214 | 0.5214 | [0.1017, 0.1095] | 0.5214 | research | crowd-scraped |
 | chb | wikipron | 99 | 0.1313 | 0.1313 | 0.1313 | 0.4545 | 0.4545 | [0.1001, 0.1636] | 0.4545 | research | crowd-scraped |
