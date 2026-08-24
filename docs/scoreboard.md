@@ -35,7 +35,7 @@ A row's `N` is its sample size in scored words, and it is not cosmetic: below ro
 | acm | wikipron | 97 | 0.4249 | 0.4249 | 0.4249 | 0.1031 | 0.1031 | [0.3792, 0.4681] | 0.1031 | research | crowd-scraped |
 | ady | northeuralex | 928 | 0.1684 | 0.1587 | 0.1586 | 0.4483 | 0.4494 | [0.1558, 0.1813] | 0.4224 | research | lexicon-derived |
 | af | wikipron | 2076 | 0.3615 | 0.3155 | 0.3114 | 0.1301 | 0.1325 | [0.3520, 0.3711] | 0.1045 | research | crowd-scraped |
-| aii | wikipron | 4836 | 0.3765 | 0.3287 | 0.3063 | 0.0463 | 0.0567 | [0.3720, 0.3811] | 0.0209 | research | crowd-scraped |
+| aii | wikipron | 4836 | 0.3758 | 0.3280 | 0.3056 | 0.0463 | 0.0567 | [0.3714, 0.3803] | 0.0209 | research | crowd-scraped |
 | ain | northeuralex | 858 | 0.0200 | 0.0200 | 0.0200 | 0.8811 | 0.8811 | [0.0160, 0.0238] | 0.8811 | research | lexicon-derived |
 | akk | wikipron | 671 | 0.0144 | 0.0144 | 0.0144 | 0.9046 | 0.9046 | [0.0109, 0.0178] | 0.9046 | research | crowd-scraped |
 | ale | northeuralex | 896 | 0.2634 | 0.2634 | 0.2634 | 0.0926 | 0.0926 | [0.2542, 0.2731] | 0.0926 | skeleton | lexicon-derived |
