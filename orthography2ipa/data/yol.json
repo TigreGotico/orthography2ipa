@@ -3,7 +3,7 @@
   "name": "Yola",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "ch": [
       "tʃ"
@@ -117,7 +117,7 @@
       "notes": "Descent from Middle English (South-West Midland input); Dolan & Ó Muirithe (1996)"
     }
   ],
-  "notes": "Skeleton. Yola (extinct English variety of Forth and Bargy, County Wexford), descended from Middle English. Idiosyncratic 18th-19th c. orthography; a broad English-like grapheme map is used and the elided leading apostrophe (e.g. 'cha) is unencoded. High PER expected.",
+  "notes": "Skeleton. Yola (extinct English variety of Forth and Bargy, County Wexford), descended from Middle English. Idiosyncratic 18th-19th c. orthography; a broad English-like grapheme map is used and the elided leading apostrophe (e.g. 'cha) is unencoded. High PER expected. Stress exemption: Yola (the Forth and Bargy dialect of English) inherits English's lexical, non-orthography-predictable stress; the 18th-19th century antiquarian spellings recorded by Jacob Poole and analyzed by Dolan & Ó Muirithe do not mark it. Source: Dolan, T. P. & Ó Muirithe, Diarmaid (1996), The Dialect of Forth and Bargy.",
   "iso639_3": "yol",
   "glottolog_code": null,
   "sources": [
