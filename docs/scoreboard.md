@@ -445,7 +445,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | or | vox_communis | 7918 | 0.2689 | 0.2689 | 0.2689 | 0.1274 | 0.1274 | [0.2651, 0.2728] | 0.1274 | research | epitran-derived |
 | orv | wikipron | 609 | 0.2203 | 0.2203 | 0.2203 | 0.2660 | 0.2660 | [0.2058, 0.2343] | 0.2660 | research | crowd-scraped |
 | osp | wikipron | 667 | 0.1605 | 0.1605 | 0.1605 | 0.2894 | 0.2894 | [0.1497, 0.1709] | 0.2894 | research | crowd-scraped |
-| osx | wikipron | 243 | 0.3918 | 0.3767 | 0.3767 | 0.0617 | 0.0617 | [0.3664, 0.4193] | 0.0535 | research | crowd-scraped |
+| osx | wikipron | 243 | 0.3816 | 0.3665 | 0.3665 | 0.0658 | 0.0658 | [0.3565, 0.4077] | 0.0576 | research | crowd-scraped |
 | ota | wikipron | 161 | 0.3536 | 0.3100 | 0.3072 | 0.1180 | 0.1180 | [0.3260, 0.3798] | 0.0807 | research | crowd-scraped |
 | pa | vox_communis | 4003 | 0.4454 | 0.4454 | 0.4454 | 0.0824 | 0.0824 | [0.4362, 0.4537] | 0.0824 | research | epitran-derived |
 | pa | wikipron | 1360 | 0.2553 | 0.2553 | 0.2553 | 0.1779 | 0.1779 | [0.2453, 0.2646] | 0.1779 | research | crowd-scraped |
