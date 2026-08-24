@@ -2090,3 +2090,153 @@ class TestSuffixStressClosedExceptions:
     def test_loanwords_keep_final_stress(self):
         assert self._t("Motiv").startswith("moˈ")
         assert self._t("Kanal").startswith("kaˈ")
+
+
+class TestHunsrikFortisLenis:
+    """Hunsrik's plosive contrast is articulatory force, not voice.
+
+    ⟨b d g⟩ are voiceless lenis [p t k] in every position; ⟨p t k⟩ are the
+    aspirated fortis partners. Reading them as German /b d ɡ/ produces
+    voiced stops the language does not have.
+    """
+
+    def _t(self, word):
+        from orthography2ipa import G2P
+        return G2P("hrx").transcribe(word).replace("ˈ", "")
+
+    def test_lenis_letters_are_voiceless(self):
+        assert self._t("Aadem") == "ɔːtəm"
+        assert self._t("Aagust") == "ɔːkuʃt"
+        assert self._t("Abbau") == "apaʊ̯"
+
+    def test_no_voiced_plosive_anywhere(self):
+        for word in ("Aadem", "Daagh", "Aagust", "Gedrenk", "Abbau"):
+            out = self._t(word)
+            assert not any(ch in out for ch in "bdɡg"), (word, out)
+
+    def test_fortis_letters_aspirate_before_a_vowel(self):
+        assert self._t("Katz").startswith("kʰ")
+        assert self._t("Taxi").startswith("tʰ")
+        assert self._t("Putsch").startswith("pʰ")
+
+    def test_fortis_does_not_aspirate_before_a_consonant(self):
+        assert self._t("Kravatt").startswith("kr")
+        assert self._t("Kriegh").startswith("kr")
+        assert self._t("Brust").startswith("pr")
+
+
+class TestHunsrikGraphemeCoverage:
+    """Every letter the orthography writes must map to something.
+
+    ⟨x⟩, ⟨q⟩, ⟨y⟩, ⟨á⟩ and the ⟨c⟩ of ⟨ck⟩ all occur in the written norm;
+    an unmapped letter is dropped silently by the tokenizer, which turns
+    ⟨Hex⟩ into [hə] and ⟨Quelle⟩ into [uəllə].
+    """
+
+    def _t(self, word):
+        from orthography2ipa import G2P
+        return G2P("hrx").transcribe(word).replace("ˈ", "")
+
+    def test_x_is_ks(self):
+        assert self._t("Hex") == "heks"
+        assert self._t("Text").startswith("tʰeks")
+
+    def test_qu_is_kw(self):
+        assert self._t("Quelle").startswith("kw")
+        assert self._t("Quarz").startswith("kw")
+
+    def test_y_is_a_glide(self):
+        assert "j" in self._t("toych")
+
+    def test_marked_a_survives(self):
+        assert self._t("Sofá").endswith("aː")
+
+    def test_ck_is_a_single_k(self):
+        assert self._t("Aarschback") == "ɔːʃpak"
+
+
+class TestHunsrikChSplitAndSibilants:
+    """⟨ch⟩ is palatal after a front vowel or consonant, velar after a back
+    vowel; ⟨sp⟩ ⟨st⟩ are written for /ʃp ʃt/; ⟨sch⟩ is /ʃ/.
+    """
+
+    def _t(self, word):
+        from orthography2ipa import G2P
+        return G2P("hrx").transcribe(word).replace("ˈ", "")
+
+    def test_ch_palatal_after_front_vowel(self):
+        assert self._t("Eich") == "aɪ̯ç"
+        assert self._t("Bicher").endswith("ça")
+
+    def test_ch_velar_after_back_vowel(self):
+        assert self._t("Aarschloch") == "ɔːʃlox"
+        assert self._t("Achteck").startswith("axt")
+        assert self._t("Aarschloch").endswith("x")
+
+    def test_gh_is_the_same_fricative(self):
+        assert self._t("Daagh") == "tɔːx"
+        assert self._t("Kriegh") == "kriːç"
+
+    def test_s_retracts_before_p_and_t(self):
+        assert self._t("Spass") == "ʃpas"
+        assert self._t("Brust") == "pruʃt"
+
+
+class TestHunsrikRhoticAndVowels:
+    """/r/ is a tap that vocalises in the coda — never the uvular [ʁ] of
+    standard German — and the German front rounded vowels are absent.
+    """
+
+    def _t(self, word):
+        from orthography2ipa import G2P
+        return G2P("hrx").transcribe(word).replace("ˈ", "")
+
+    def test_no_uvular_rhotic(self):
+        for word in ("Aarem", "Aarsch", "Bicher", "Diere"):
+            assert "ʁ" not in self._t(word)
+
+    def test_coda_r_vocalises(self):
+        assert self._t("Aarsch") == "ɔːʃ"
+        assert self._t("Aart") == "ɔːt"
+
+    def test_post_tonic_er_is_a_vowel(self):
+        assert self._t("Acker") == "aka"
+        assert self._t("Ecker") == "eka"
+
+    def test_front_rounded_vowels_are_unrounded(self):
+        spec = orthography2ipa.get("hrx")
+        assert spec.graphemes["ö"] == ["e"]
+        assert spec.graphemes["ü"] == ["i"]
+
+    def test_written_diphthongs(self):
+        assert self._t("Beil") == "paɪ̯l"
+        assert self._t("Blau") == "plaʊ̯"
+        assert self._t("Meu") == "mɔɪ̯"
+        assert self._t("Brief") == "priːf"
+
+    def test_open_syllable_length_only_applies_word_finally(self):
+        # Word-medial open-syllable lengthening (a stressed short vowel
+        # before a single consonant then another vowel) is NOT declared:
+        # native words the norm itself keeps short in that position
+        # (Altenhofen et al. 2007:78) outnumber the unassimilated loans
+        # the rule would fix.
+        assert "aː" not in self._t("awer")
+
+
+class TestHunsrikPortugueseContactSpellings:
+    """Unassimilated Portuguese-contact spellings, including the printed
+    norm's own example words for foreign spellings kept as in the source
+    language (Altenhofen et al. 2007:82), must not be silently dropped.
+    """
+
+    def _t(self, word):
+        from orthography2ipa import G2P
+        return G2P("hrx").transcribe(word).replace("ˈ", "")
+
+    def test_portuguese_diacritics_are_not_dropped(self):
+        assert self._t("Calçada") == "kalsata"
+        assert "s" in self._t("Corrupção")
+
+    def test_initial_ch_and_c_read_as_in_the_source_language(self):
+        assert self._t("China").startswith("ʃ")
+        assert self._t("Cinema").startswith("s")
