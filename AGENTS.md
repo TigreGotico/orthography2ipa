@@ -308,6 +308,42 @@ spec may declare. Raising that cap is an **amendment to this file**, argued
 here first — the cap exists so paradigm enumeration hits a tripwire instead of
 accreting one plausible entry at a time.
 
+## Never carry the board backwards
+
+The benchmark board — `benchmarks/results.json`, `benchmarks/results_ci_sample.json`
+and `docs/scoreboard.md` — is regenerated whole, but a branch only rescores the
+rows it worked on. Every other row is a copy of `dev` as it stood when the branch
+was cut. That staleness on its own is harmless: the merge is a three-way merge,
+so rows the branch never edited keep `dev`'s newer values and the copy never
+lands.
+
+What does land is a branch that edited the board and then took its own side for
+rows it never measured — almost always by merging `dev` in and resolving the
+conflicted board file by keeping its own file wholesale. Then `dev`'s newer
+numbers really are written away, and nothing notices: both sides stay internally
+consistent, so the regression gate is green on the branch and green on `dev`,
+and the loss is visible only in the interaction. When you merge `dev` into a
+branch, resolve the board files row by row, keeping `dev`'s value for every row
+you did not rescore yourself, and regenerate `docs/scoreboard.md` afterwards.
+
+`scripts/check_board_not_reverting.py` blocks the bad resolution in CI. It
+performs the merge with `git merge-tree` and compares the resulting board
+against `dev`'s. A row the merge would set to a value `dev` already carried and
+moved past fails the check, unless the branch edits that language's spec —
+re-measuring after a spec change can legitimately reproduce an old number, and a
+spec edit is the one piece of evidence a stale copy cannot produce. Prose cannot
+buy that row off. Board tags are resolved to a spec the way the harness resolves
+them, so an edit to `de-DE.json` owns the `de` rows. Ownership follows the
+inheritance chain: editing a proto or clade spec that a language's spec
+descends from — through `parent` or a `*_base` table reference — owns that
+language's rows too, so an edit to `ine.json` owns every Indo-European
+dialect's row, not just the language it names directly.
+
+A change that moves rows it does not own, such as a harness or engine rework,
+declares them: a `Board-Rows: mr/wikipron, xh/kaikki` line, or
+`Board-Rows: all - <reason>` when the whole board was rescored, in the pull
+request body or a commit message.
+
 ## Conventions (Org hard rules)
 
 - Branches: `dev` for work, `master` for stable. NEVER `main`.
