@@ -13,20 +13,11 @@
     "unmarked": "mid"
   },
   "graphemes": {
-    "a": [
-      "a"
-    ],
     "b": [
       "b"
     ],
     "d": [
       "d"
-    ],
-    "e": [
-      "e"
-    ],
-    "ẹ": [
-      "ɛ"
     ],
     "f": [
       "f"
@@ -40,9 +31,6 @@
     "h": [
       "h"
     ],
-    "i": [
-      "i"
-    ],
     "j": [
       "dʒ"
     ],
@@ -58,17 +46,11 @@
     "n": [
       "n"
     ],
-    "o": [
-      "o"
-    ],
-    "ọ": [
-      "ɔ"
-    ],
     "p": [
       "kp"
     ],
     "r": [
-      "r"
+      "ɾ"
     ],
     "s": [
       "s"
@@ -79,79 +61,133 @@
     "t": [
       "t"
     ],
-    "u": [
-      "u"
-    ],
     "w": [
       "w"
     ],
     "y": [
       "j"
     ],
+    "a": [
+      "ā"
+    ],
     "á": [
-      "a"
+      "á"
     ],
     "à": [
-      "a"
+      "à"
+    ],
+    "e": [
+      "ē"
     ],
     "é": [
-      "e"
+      "é"
     ],
     "è": [
-      "e"
+      "è"
     ],
-    "í": [
-      "i"
-    ],
-    "ì": [
-      "i"
-    ],
-    "ó": [
-      "o"
-    ],
-    "ò": [
-      "o"
-    ],
-    "ú": [
-      "u"
-    ],
-    "ù": [
-      "u"
+    "ẹ": [
+      "ɛ̄"
     ],
     "ẹ́": [
-      "ɛ"
+      "ɛ́"
     ],
     "ẹ̀": [
-      "ɛ"
+      "ɛ̀"
+    ],
+    "i": [
+      "ī"
+    ],
+    "í": [
+      "í"
+    ],
+    "ì": [
+      "ì"
+    ],
+    "o": [
+      "ō"
+    ],
+    "ó": [
+      "ó"
+    ],
+    "ò": [
+      "ò"
+    ],
+    "ọ": [
+      "ɔ̄"
     ],
     "ọ́": [
-      "ɔ"
+      "ɔ́"
     ],
     "ọ̀": [
-      "ɔ"
+      "ɔ̀"
+    ],
+    "u": [
+      "ū"
+    ],
+    "ú": [
+      "ú"
+    ],
+    "ù": [
+      "ù"
+    ],
+    "an": [
+      "ã̄"
+    ],
+    "án": [
+      "ã́"
+    ],
+    "àn": [
+      "ã̀"
+    ],
+    "ẹn": [
+      "ɛ̃̄"
+    ],
+    "ẹ́n": [
+      "ɛ̃́"
+    ],
+    "ẹ̀n": [
+      "ɛ̃̀"
+    ],
+    "in": [
+      "ĩ̄"
+    ],
+    "ín": [
+      "ĩ́"
+    ],
+    "ìn": [
+      "ĩ̀"
+    ],
+    "ọn": [
+      "ɔ̃̄"
+    ],
+    "ọ́n": [
+      "ɔ̃́"
+    ],
+    "ọ̀n": [
+      "ɔ̃̀"
+    ],
+    "un": [
+      "ũ̄"
+    ],
+    "ún": [
+      "ṹ"
+    ],
+    "ùn": [
+      "ũ̀"
     ],
     "ń": [
-      "n̩"
+      "ń̩"
     ],
     "ǹ": [
-      "n̩"
+      "ǹ̩"
     ]
   },
   "allophones": {
-    "a": [
-      "a"
-    ],
     "b": [
       "b"
     ],
     "d": [
       "d"
-    ],
-    "e": [
-      "e"
-    ],
-    "ɛ": [
-      "ɛ"
     ],
     "f": [
       "f"
@@ -165,17 +201,11 @@
     "h": [
       "h"
     ],
-    "i": [
-      "i"
-    ],
     "dʒ": [
       "dʒ"
     ],
     "k": [
       "k"
-    ],
-    "kp": [
-      "k͡p"
     ],
     "l": [
       "l"
@@ -186,14 +216,8 @@
     "n": [
       "n"
     ],
-    "o": [
-      "o"
-    ],
-    "ɔ": [
-      "ɔ"
-    ],
-    "r": [
-      "r"
+    "ɾ": [
+      "ɾ"
     ],
     "s": [
       "s"
@@ -204,17 +228,17 @@
     "t": [
       "t"
     ],
-    "u": [
-      "u"
-    ],
     "w": [
       "w"
     ],
     "j": [
       "j"
+    ],
+    "kp": [
+      "k͡p"
     ]
   },
-  "notes": "Standard Yoruba. 3-tone language: high (acute), low (grave), mid (unmarked or macron). P = /kp/ (labial-velar stop); GB = /ɡb/ (labial-velar). Ẹ = /ɛ/; Ọ = /ɔ/; Ṣ = /ʃ/. Nasal vowels marked with 'n' following vowel.",
+  "notes": "Standard Yoruba. Seven oral vowels /i e ɛ a ɔ o u/ (⟨i e ẹ a ọ o u⟩) and five nasal vowels /ĩ ɛ̃ ã ɔ̃ ũ/; there are no nasal counterparts of /e/ and /o/, which is why ⟨en⟩ and ⟨on⟩ are NOT nasal-vowel spellings. ⟨p⟩ = the labial-velar stop /k͡p/, ⟨gb⟩ = /ɡ͡b/, ⟨ẹ⟩ = /ɛ/, ⟨ọ⟩ = /ɔ/, ⟨ṣ⟩ = /ʃ/, ⟨j⟩ = /dʒ/ (also analysed as the palatal stop /ɟ/). /r/ is phonetically an alveolar tap [ɾ], not a trill (Akinlabi 2004; also Bamgboṣe, A. (1966) 'A Grammar of Yoruba', p.7). TONE: Yoruba has three level tones — high, mid, low — and the orthography writes them on the vowel with an acute, nothing, and a grave respectively, so tone is recoverable from spelling and the spec emits it. High is ◌́, low is ◌̀, and an orthographically unmarked vowel is MID, emitted with the IPA mid-tone diacritic ◌̄ rather than left bare: mid is a specified tone in Yoruba, not the absence of one (Bamgboṣe 1966; Akinlabi 2004). NASALISATION AFTER A NASAL ONSET: allophone_rules nasalise /i a ɔ u/ after ⟨m⟩ or ⟨n⟩; see YO_NASAL_AFTER_NASAL_ONSET_I_MID for the statement and its sources. /ɛ/ is excluded: phonemic /ɛ̃/ is confined to a single word in the source, and the gold agrees at 5.45% (3 of 55 contexts). The counter-examples that stay oral are not a loanword stratum — they are core native vocabulary: the numerals mẹfa/mẹta/mẹrin/mẹjọ/mẹwaa and their derivatives account for the oral-/ɛ/ exceptions, and 82 distinct words carry oral /a/ after a nasal onset, native items like Olodumare, Eledumare, Oṣumare, amala, awọsanma, majele, magun, mariwo, imale and nama among them. That is lexical knowledge a grapheme spec does not have, and it belongs to a caller-supplied lexicon. NASAL VOWELS: ⟨n⟩ that follows one of the five nasalisable vowels and is not itself followed by a vowel spells nasalisation of that vowel and is not a consonant of its own — ⟨un⟩ /ũ/, ⟨in⟩ /ĩ/, ⟨an⟩ /ã/, ⟨ọn⟩ /ɔ̃/, ⟨ẹn⟩ /ɛ̃/. Before a vowel the same ⟨n⟩ is an ordinary onset /n/, which the positional_graphemes before_vowel overrides restore (⟨ana⟩ /ānā/, not */ãā/). The tone diacritic is written AFTER the nasalisation tilde so the result composes to the same NFC string as the standard notation (ũ + ́ = ṹ). KNOWN GAPS, not modelled: (1) the syllabic nasal written ⟨n⟩ before a consonant (⟨nkọ⟩, ⟨njẹ⟩) is left as /n/ — its place assimilation is analysis-dependent and the wikipron gold itself splits between a nasal vowel and a syllabic [ŋ] for medial ⟨Vn⟩+C (367 vs 148 tokens), so the majority reading is kept; (2) downstep, which the wikipron gold marks and the orthography does not record, so it is not recoverable from spelling; (3) the ⟨ị⟩ and ⟨ụ⟩ of the extended orthography some gold entries use are unmapped and therefore dropped. GOLD CONVENTION: the vox_communis 'yo' row is epitran-derived — a machine gold with no tone and inconsistent nasal-vowel handling — so it scores AGREEMENT with epitran, not accuracy, and emitting tone necessarily moves that row a long way. Rank Yoruba on the wikipron row. See docs/languages/yo.md. KNOWN GAP, NOT MODELLED: a written geminate vowel after a nasal onset (⟨maapu⟩, ⟨ibomii⟩) does not reliably nasalise both vowel slots. A prior round added rules propagating the first vowel's nasality onto an identical second vowel, but that does not hold up: scoped to the four nasalisable target vowels /i a ɔ u/ the gold splits (nasal,nasal) 9 against (oral,oral) 8 — a coin flip, not a majority — and the wikipron gold for the flagship example, maapu, is itself oral in both vowels ('m á à k͡p ù'). The rules also only ever fired because wikipron headwords carry no tone diacritics, so the tone-default rule assigned both vowel slots the same mid tone and manufactured a same-tone match; on tone-marked input, where the two vowels of such a pair almost always carry different tones, the rules would be structurally inert. Any future rule here must be tone-agnostic and needs a lexicon, not a grapheme-only condition.",
   "sources": [
     {
       "id": "akinlabi2004",
@@ -225,6 +249,36 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "bamgbose1969",
+      "author": "Bamgboṣe, Ayọ",
+      "year": 1969,
+      "title": "Yoruba. In Elizabeth Dunstan (ed.), Twelve Nigerian Languages",
+      "publisher": "Africana Publishing Corp.",
+      "url": null,
+      "pages": "p. 166",
+      "notes": "Edition not consulted; cited via the Yoruba language Wikipedia article, which attaches this footnote to the vowel-quality chart and the statement that /e o/ have no nasal counterparts — NOT to the nasalisation-after-/m,n/ sentence, which the same article carries as its own unfooted text (or, per its footnoting pattern elsewhere, Sachnine 1997)."
+    },
+    {
+      "id": "abraham1958",
+      "author": "Abraham, Roy Clive",
+      "year": 1958,
+      "title": "Dictionary of Modern Yoruba",
+      "publisher": "University of London Press",
+      "url": null,
+      "pages": null,
+      "notes": "Edition not consulted; cited via Wikipedia as the dictionary that departs from standard orthography by writing vowel nasality explicitly (⟨inún⟩ for ⟨inú⟩)."
+    },
+    {
+      "id": "sachnine1997",
+      "author": "Sachnine, Michka",
+      "year": 1997,
+      "title": "Dictionnaire yorùbá-français, suivi d'un index français-yorùbá",
+      "publisher": "Karthala/IFRA",
+      "url": null,
+      "pages": null,
+      "notes": "Not consulted directly; the Yoruba language Wikipedia article's nasalisation-after-/m,n/ sentence is unfooted, but the article cites this work elsewhere for related vowel-nasality claims, so it is named here as the likely source rather than invented as a locator."
     },
     {
       "id": "yoruba_wiki",
@@ -278,5 +332,228 @@
     "longitude": 3.67225,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Yoruba."
-  }
+  },
+  "positional_graphemes": {
+    "an": {
+      "before_vowel": [
+        "ān"
+      ]
+    },
+    "án": {
+      "before_vowel": [
+        "án"
+      ]
+    },
+    "àn": {
+      "before_vowel": [
+        "àn"
+      ]
+    },
+    "ẹn": {
+      "before_vowel": [
+        "ɛ̄n"
+      ]
+    },
+    "ẹ́n": {
+      "before_vowel": [
+        "ɛ́n"
+      ]
+    },
+    "ẹ̀n": {
+      "before_vowel": [
+        "ɛ̀n"
+      ]
+    },
+    "in": {
+      "before_vowel": [
+        "īn"
+      ]
+    },
+    "ín": {
+      "before_vowel": [
+        "ín"
+      ]
+    },
+    "ìn": {
+      "before_vowel": [
+        "ìn"
+      ]
+    },
+    "ọn": {
+      "before_vowel": [
+        "ɔ̄n"
+      ]
+    },
+    "ọ́n": {
+      "before_vowel": [
+        "ɔ́n"
+      ]
+    },
+    "ọ̀n": {
+      "before_vowel": [
+        "ɔ̀n"
+      ]
+    },
+    "un": {
+      "before_vowel": [
+        "ūn"
+      ]
+    },
+    "ún": {
+      "before_vowel": [
+        "ún"
+      ]
+    },
+    "ùn": {
+      "before_vowel": [
+        "ùn"
+      ]
+    }
+  },
+  "allophone_rules": [
+    {
+      "id": "YO_NASAL_AFTER_NASAL_ONSET_I_MID",
+      "phonemes": [
+        "ī"
+      ],
+      "surface": "ĩ̄",
+      "preceded_by_phoneme": [
+        "m",
+        "n"
+      ],
+      "notes": "A vowel in the syllable an ⟨m⟩ or ⟨n⟩ onsets is nasal, and the orthography writes no ⟨n⟩ for it because nasality is predictable there: ⟨mi⟩ ⟨mu⟩ ⟨mọ⟩ are /mĩ mũ mɔ̃/, and ⟨n⟩ before a vowel is itself the nasal allophone of /l/, which only occurs before a nasal vowel — ⟨inú⟩ /īlṹ/ → [īnṹ] (this sentence is the article's own text, not footed to a page; Sachnine 1997 is the source the same article cites for it, and its page is not consulted. Abraham 1958's dictionary writes the nasality out as ⟨inún⟩; editions not consulted, read via https://en.wikipedia.org/wiki/Yoruba_language). Restricted to /i a ɔ u/: the same article confines phonemic /ɛ̃/ to the single SEY word ìyẹn~yẹn 'that', and the gold agrees — /ɛ/ after a nasal onset is nasal in only 3 of 55 contexts (5.45%) — so no EPSILON rule is added. Yoruba has no /ẽ õ/ either, so ⟨me⟩ ⟨mo⟩ ⟨ne⟩ ⟨no⟩ stay oral."
+    },
+    {
+      "id": "YO_NASAL_AFTER_NASAL_ONSET_I_HIGH",
+      "phonemes": [
+        "í"
+      ],
+      "surface": "ĩ́",
+      "preceded_by_phoneme": [
+        "m",
+        "n"
+      ],
+      "notes": "See YO_NASAL_AFTER_NASAL_ONSET_I_MID."
+    },
+    {
+      "id": "YO_NASAL_AFTER_NASAL_ONSET_I_LOW",
+      "phonemes": [
+        "ì"
+      ],
+      "surface": "ĩ̀",
+      "preceded_by_phoneme": [
+        "m",
+        "n"
+      ],
+      "notes": "See YO_NASAL_AFTER_NASAL_ONSET_I_MID."
+    },
+    {
+      "id": "YO_NASAL_AFTER_NASAL_ONSET_A_MID",
+      "phonemes": [
+        "ā"
+      ],
+      "surface": "ã̄",
+      "preceded_by_phoneme": [
+        "m",
+        "n"
+      ],
+      "notes": "See YO_NASAL_AFTER_NASAL_ONSET_I_MID."
+    },
+    {
+      "id": "YO_NASAL_AFTER_NASAL_ONSET_A_HIGH",
+      "phonemes": [
+        "á"
+      ],
+      "surface": "ã́",
+      "preceded_by_phoneme": [
+        "m",
+        "n"
+      ],
+      "notes": "See YO_NASAL_AFTER_NASAL_ONSET_I_MID."
+    },
+    {
+      "id": "YO_NASAL_AFTER_NASAL_ONSET_A_LOW",
+      "phonemes": [
+        "à"
+      ],
+      "surface": "ã̀",
+      "preceded_by_phoneme": [
+        "m",
+        "n"
+      ],
+      "notes": "See YO_NASAL_AFTER_NASAL_ONSET_I_MID."
+    },
+    {
+      "id": "YO_NASAL_AFTER_NASAL_ONSET_OPEN_O_MID",
+      "phonemes": [
+        "ɔ̄"
+      ],
+      "surface": "ɔ̃̄",
+      "preceded_by_phoneme": [
+        "m",
+        "n"
+      ],
+      "notes": "See YO_NASAL_AFTER_NASAL_ONSET_I_MID."
+    },
+    {
+      "id": "YO_NASAL_AFTER_NASAL_ONSET_OPEN_O_HIGH",
+      "phonemes": [
+        "ɔ́"
+      ],
+      "surface": "ɔ̃́",
+      "preceded_by_phoneme": [
+        "m",
+        "n"
+      ],
+      "notes": "See YO_NASAL_AFTER_NASAL_ONSET_I_MID."
+    },
+    {
+      "id": "YO_NASAL_AFTER_NASAL_ONSET_OPEN_O_LOW",
+      "phonemes": [
+        "ɔ̀"
+      ],
+      "surface": "ɔ̃̀",
+      "preceded_by_phoneme": [
+        "m",
+        "n"
+      ],
+      "notes": "See YO_NASAL_AFTER_NASAL_ONSET_I_MID."
+    },
+    {
+      "id": "YO_NASAL_AFTER_NASAL_ONSET_U_MID",
+      "phonemes": [
+        "ū"
+      ],
+      "surface": "ũ̄",
+      "preceded_by_phoneme": [
+        "m",
+        "n"
+      ],
+      "notes": "See YO_NASAL_AFTER_NASAL_ONSET_I_MID."
+    },
+    {
+      "id": "YO_NASAL_AFTER_NASAL_ONSET_U_HIGH",
+      "phonemes": [
+        "ú"
+      ],
+      "surface": "ṹ",
+      "preceded_by_phoneme": [
+        "m",
+        "n"
+      ],
+      "notes": "See YO_NASAL_AFTER_NASAL_ONSET_I_MID."
+    },
+    {
+      "id": "YO_NASAL_AFTER_NASAL_ONSET_U_LOW",
+      "phonemes": [
+        "ù"
+      ],
+      "surface": "ũ̀",
+      "preceded_by_phoneme": [
+        "m",
+        "n"
+      ],
+      "notes": "See YO_NASAL_AFTER_NASAL_ONSET_I_MID."
+    }
+  ]
 }
