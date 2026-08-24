@@ -1,5 +1,14 @@
 # Changelog
 
+## [7.78.5a1](https://github.com/TigreGotico/orthography2ipa/tree/7.78.5a1) (2026-08-23)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.78.4a1...7.78.5a1)
+
+**Merged pull requests:**
+
+- fix\(ha\): map the Boko apostrophe and r-tilde, and measure the tone/length ceiling [\#1063](https://github.com/TigreGotico/orthography2ipa/pull/1063) ([JarbasAl](https://github.com/JarbasAl))
+- fix\(yo\): nasalise the vowel a nasal onset carries in Yoruba [\#1059](https://github.com/TigreGotico/orthography2ipa/pull/1059) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.78.4a1](https://github.com/TigreGotico/orthography2ipa/tree/7.78.4a1) (2026-08-23)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.78.3a1...7.78.4a1)
@@ -680,10 +689,6 @@
 ## [7.67.0a3](https://github.com/TigreGotico/orthography2ipa/tree/7.67.0a3) (2026-08-13)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.67.0a2...7.67.0a3)
-
-**Merged pull requests:**
-
-- docs\(compare\): human-readable comparison.md + full board regen [\#871](https://github.com/TigreGotico/orthography2ipa/pull/871) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.67.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.67.0a2) (2026-08-13)
 
