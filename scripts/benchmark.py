@@ -130,6 +130,16 @@ BOOTSTRAP_REPS = 1000
 # head. Never randomized, so the same ``limit`` always selects the same
 # words across runs/machines — an unbiased but fully reproducible slice.
 SAMPLE_SEED = 20260711
+# A row's bootstrap CI is computed by resampling its per-word PER list
+# with replacement; below this many scored words the resample can only
+# ever reproduce the handful of values it started with, so the interval
+# collapses toward the point estimate instead of widening the way it
+# would on a real sample. Rows this thin get an explicit marker in the
+# rendered `N` column rather than being left to look as trustworthy as a
+# row scored on thousands of words just because their CI happens to be
+# narrow.
+THIN_ROW_N = 20
+THIN_ROW_MARK = "†"
 SCOREBOARD_MD = os.path.join(REPO_ROOT, "docs", "scoreboard.md")
 SCOREBOARD_JSON = os.path.join(REPO_ROOT, "benchmarks", "results.json")
 LEXICON_SCOREBOARD_MD = os.path.join(REPO_ROOT, "docs", "lexicon_scoreboard.md")
@@ -3785,6 +3795,20 @@ def write_scoreboard(rows: List[dict]) -> None:
         "beams would invent a ranking the engine never produces. The two "
         "are different states and are never merged into one blank.",
         "",
+        "A row's `N` is its sample size in scored words, and it is not "
+        "cosmetic: below roughly 20 words the bootstrap `95% CI` above "
+        "stops being informative — resampling one or two words with "
+        "replacement can only ever reproduce the same one or two values, "
+        f"so the interval collapses toward a single point (see {THIN_ROW_N} "
+        "and below) instead of widening the way it would on a real "
+        "sample. A degenerate `[x, x]` interval on a thin row is NOT "
+        "evidence of precision; it is an artifact of having too little "
+        "data to resample. Rows with fewer than "
+        f"{THIN_ROW_N} scored words carry a "
+        f"`{THIN_ROW_MARK}` after `N` for exactly this reason, and must "
+        "never be read as comparable to a row scored on thousands of "
+        "words, no matter how narrow their CI looks.",
+        "",
         "| Lang | Dataset | N | PER | Oracle@3 | Oracle@5 | OracleX@3 "
         "| OracleX@5 | 95% CI | Exact match | Quality tier | Provenance |",
         "|---|---|---:|---:|---:|---:|---:|---:|---:|---|---|---|",
@@ -3792,6 +3816,7 @@ def write_scoreboard(rows: List[dict]) -> None:
     for row in rows:
         tier = row["quality_tier"] or "-"
         prov = row.get("provenance") or "-"
+        n_cell = f"{row['n']}{THIN_ROW_MARK}" if row["n"] < THIN_ROW_N else str(row["n"])
         # A row scored before the CI column existed carries nulls; a
         # merged board can hold both generations.
         lo, hi = row.get("per_ci_low"), row.get("per_ci_high")
@@ -3817,7 +3842,7 @@ def write_scoreboard(rows: List[dict]) -> None:
 
         em = row.get("exact_match")
         lines.append(
-            f"| {row['lang']} | {row['dataset']} | {row['n']} | "
+            f"| {row['lang']} | {row['dataset']} | {n_cell} | "
             f"{row['per']:.4f} | {_oracle('oracle_per_top3')} "
             f"| {_oracle('oracle_per_top5')} "
             f"| {_oracle('oracle_exact_top3')} "
