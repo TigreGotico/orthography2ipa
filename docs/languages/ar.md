@@ -305,8 +305,10 @@ three stay above it, so the vowel fold explains a large share of the remaining P
 not all of it. Every row also carries a substantial homograph count — distinct
 undiacritized input skeletons that the same gold file transcribes two or more
 different ways (e.g. `arz` أجر → `ʔaɡr`/`ʔadʒdʒar`/`ʔadʒr`/`ʔaɡɡar`; `afb` ال →
-`ʔɪl`/`ɪl`/`ɪ`) — which is a provable, orthography-independent ceiling on top of the
-vowel fold: no rule can reproduce two different transcriptions of one skeleton.
+`ʔɪl`/`ɪl`/`ɪ`) — evidence that the undiacritized orthography underdetermines these
+words independently of the missing short vowels. That is not itself an additional
+score floor: the harness scores each skeleton against the best-matching of its gold
+transcriptions, so a homograph is scored leniently rather than penalized.
 
 These figures are **measured** from the shipped gold (`scripts/benchmark.py`
 `load_wikipron`), not sourced from a grammar, and are reported as a distributional

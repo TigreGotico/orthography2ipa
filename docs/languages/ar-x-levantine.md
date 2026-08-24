@@ -31,12 +31,13 @@ for the unwritten short-vowel phonemes) in the gold IPA:
 Both rows also carry a large **homograph** count: 154 distinct `ar-SY` input
 skeletons and 560 distinct `ar-JO` skeletons map to two or more different gold
 vocalizations in the same file (e.g. آذار → `ʔaz aːr`/`ʔaðaːr`/`ʔaːzaːr`/`ʔaːðaːr` in
-`apc`; أزرق → `ʔazraɡ`/`ʔazraʔ` in `ajp`). No rule can reproduce two different outputs
-for one undiacritized input, so this share of the remaining error is provably
-unrecoverable from the orthography, independent of the vowel fold. These numbers are
-**measured** from the shipped gold, not sourced from a grammar; no fold or
-vocalization rule that the undiacritized input does not itself supply has been added
-to the specs, consistent with the `ar` precedent.
+`apc`; أزرق → `ʔazraɡ`/`ʔazraʔ` in `ajp`), evidence that the undiacritized orthography
+underdetermines these words independently of the missing short vowels. That is not
+itself an additional score floor — the harness scores each skeleton against the
+best-matching of its gold transcriptions, so a homograph is scored leniently rather
+than penalized. These numbers are **measured** from the shipped gold, not sourced
+from a grammar; no fold or vocalization rule that the undiacritized input does not
+itself supply has been added to the specs, consistent with the `ar` precedent.
 
 ## Inheritance structure
 

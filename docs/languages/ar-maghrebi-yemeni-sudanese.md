@@ -28,8 +28,10 @@ consonantal skeleton like the `ar` gold in [`ar.md`](ar.md#gold-benchmark): 2587
 corresponding written diacritic. Baseline PER is 0.3026; folding those segments out
 of both hypothesis and gold before rescoring gives 0.2397, at the 0.25 target. 280
 distinct input skeletons carry two or more different gold vocalizations (e.g. آخر →
-`ʔaːxur`/`ʔaːxir`), a measured, orthography-independent ceiling on top of the vowel
-fold.
+`ʔaːxur`/`ʔaːxir`), evidence that the undiacritized orthography underdetermines these
+words independently of the missing short vowels; it is not itself an additional
+score floor, since the harness scores each skeleton against the best-matching of its
+gold transcriptions.
 
 `ar-LY`'s gold (`ayl_arab_broad.tsv`, 166 pairs) shows the same shape at smaller
 scale: 175 of 866 segments (20.2 %) short vowels, baseline PER 0.3860, folded PER
