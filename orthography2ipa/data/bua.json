@@ -3,7 +3,7 @@
   "name": "Buriat",
   "script": "Cyrillic",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "ъ": [
       ""
@@ -15,7 +15,7 @@
       "aː"
     ],
     "ээ": [
-      "eː"
+      "ɛː"
     ],
     "оо": [
       "ɔː"
@@ -27,7 +27,7 @@
       "uː"
     ],
     "үү": [
-      "ʊː"
+      "yː"
     ],
     "ии": [
       "iː"
@@ -81,7 +81,7 @@
       "n"
     ],
     "о": [
-      "o"
+      "ɔ"
     ],
     "ө": [
       "ø"
@@ -102,7 +102,7 @@
       "u"
     ],
     "ү": [
-      "ʊ"
+      "y"
     ],
     "ф": [
       "f"
@@ -129,7 +129,7 @@
       "ɨ"
     ],
     "э": [
-      "e"
+      "ɛ"
     ],
     "ю": [
       "ju"
@@ -138,6 +138,22 @@
       "ja"
     ]
   },
+  "positional_graphemes": {
+    "н": {
+      "word_final": [
+        "ŋ"
+      ]
+    }
+  },
+  "allophone_rules": [
+    {
+      "id": "BUA_DEVOICE_B",
+      "phonemes": ["b"],
+      "surface": "p",
+      "followed_by_phoneme": ["s", "ʃ", "t", "k", "x"],
+      "notes": "Obstruent devoicing: /b/ devoices to [p] before a voiceless consonant (e.g. үбсүүн [ypsyːŋ])."
+    }
+  ],
   "parent": "xgn",
   "ancestors": [
     {
@@ -147,7 +163,11 @@
       "notes": "Descent per Glottolog classification of Buriat (buri1258)."
     }
   ],
-  "notes": "Skeleton. Buriat (Buryat) is a Mongolic language written in a Cyrillic alphabet that extends Russian with three letters: Ү (near-close back rounded), Ө (close-mid front rounded) and Һ (h). The map covers the base Cyrillic inventory plus these and encodes phonemic long vowels, which Buriat writes as doubled vowel letters (аа, өө, үү …), via longest-match digraph entries. Vowel harmony and the reduced quality of unstressed vowels are conditioned rather than spelled and are left unencoded; Russian loanword letters (в ф ц щ) keep their Russian values.",
+  "stress": {
+    "default_position": -1,
+    "stress_mark": "ˈ"
+  },
+  "notes": "Research. Buriat (Buryat) is a Mongolic language written in a Cyrillic alphabet (Poppe 1960) that extends Russian with three letters: Ү (close front rounded /y/), Ө (close-mid front rounded /ø/) and Һ (/h/). The map covers the base Cyrillic inventory plus these and encodes phonemic long vowels, which Buriat writes as doubled vowel letters (аа, ээ, оо, өө, уу, үү …), via longest-match digraph entries. The short-vowel qualities are corrected against gold pronunciations: ⟨э⟩/⟨ээ⟩ are open-mid [ɛ(ː)] (not close-mid [e(ː)]), ⟨о⟩ is open-mid back [ɔ] (not [o]), and ⟨ү⟩/⟨үү⟩ are front rounded [y(ː)] (not [ʊ(ː)]) — matching the Khalkha-type Mongolic vowel space Poppe (1960) describes. Word-final ⟨н⟩ realises as the velar nasal [ŋ] (Poppe 1960; e.g. шэхэн [ʃɛxɛŋ]), modelled as a `word_final` positional override; ⟨б⟩ devoices to [p] before a voiceless consonant, modelled as an allophone rule. Word stress is non-contrastive and generally falls on the last syllable of the (mostly disyllabic) stem in the sampled forms; marked here as final by default. Vowel harmony and the reduced quality of unstressed vowels are conditioned rather than spelled and are left unencoded; Russian loanword letters (в ф ц щ) keep their Russian values.",
   "iso639_3": "bua",
   "glottolog_code": null,
   "sources": [
@@ -161,6 +181,17 @@
       "pages": null,
       "notes": "Classification reference for a skeleton-tier entry.",
       "wikipedia_url": null
+    },
+    {
+      "id": "poppe1960",
+      "author": "Poppe, Nicholas",
+      "year": 1960,
+      "title": "Buriat Grammar (Uralic and Altaic Series 2)",
+      "publisher": "Indiana University Publications",
+      "url": null,
+      "pages": null,
+      "notes": "Reference grammar of Buriat: Cyrillic orthography, vowel inventory and qualities, word-final /n/→[ŋ], and consonant devoicing.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Buryat_language"
     },
     {
       "id": "bua_orthography",
