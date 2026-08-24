@@ -1,4 +1,4 @@
-# Caipira Portuguese (pt-BR-x-caipira) — Phonology Reference
+# Caipira Portuguese (pt-BR-x-caipira): Phonology Reference
 
 **Code**: `pt-BR-x-caipira` | **Family**: Indo-European > Romance > Ibero-Romance | **Script**: Latin (alphabet)
 **Parent**: `pt-BR` (Brazilian standard) | **Quality tier**: research
@@ -11,14 +11,14 @@ hinterland. It is a **delta** spec: it inherits the whole pt-BR base
 (`graphemes_base` / `allophones_base` / `positional_graphemes_base` = `pt-BR`)
 and overrides only the diagnostic Caipira features.
 
-The foundational description is Amadeu Amaral's *O Dialeto Caipira* (1920) —
+The foundational description is Amadeu Amaral's *O Dialeto Caipira* (1920),
 the first systematic dialectological monograph on a Brazilian variety. The
 features below are page-cited (by Amaral's numbered sections) to the full
 text, read directly.
 
 ## Diagnostic features modelled
 
-### 1. The retroflex "r caipira" — coda /r/ → [ɻ] (Amaral §6b)
+### 1. The retroflex "r caipira": coda /r/ → [ɻ] (Amaral §6b)
 
 The hallmark of the dialect. Amaral (1920) §6b:
 
@@ -28,8 +28,8 @@ The hallmark of the dialect. Amaral (1920) §6b:
 > vibração tremulante. Para o ouvido, este r caipira assemelha-se bastante ao
 > r inglês post-vocálico."*
 
-That is a **non-trilled retroflex approximant** — a tongue-tip curled up
-without contact, acoustically like English post-vocalic /r/ — modelled as
+That is a **non-trilled retroflex approximant**, a tongue-tip curled up
+without contact, acoustically like English post-vocalic /r/, modelled as
 [ɻ]. It is declared in `positional_graphemes.r` at `before_consonant`, `coda`
 and `word_final`.
 
@@ -39,18 +39,18 @@ and `word_final`.
 | carta | ˈkaɾtɐ | **ˈkaɻtɐ** |
 | mar | ˈmaɾ | **ˈmaɻ** |
 
-Intervocalic weak /r/ stays a **tap** ([ˈkaɾu] *caro*); the strong onset
+Intervocalic weak /r/ stays a **tap** ([ˈkaɾu] *caro*). The strong onset
 rhotic stays dorsal/glottal ([ˈhatu] *rato*). Word-final /r/ optionally
-elides — Amaral §23a: *"Cai, quando final de palavra: andá, muié, esquecê,
-subi, vapô"* — declared as `word_final: [ɻ, ""]`.
+elides, Amaral §23a: *"Cai, quando final de palavra: andá, muié, esquecê,
+subi, vapô"*, declared as `word_final: [ɻ, ""]`.
 
 > **Note on vowel quality.** Amaral cites *porta* with an open [ɔ]. Open-mid
 > tonic vowels of unmarked ⟨o⟩/⟨e⟩ are **lexical and not predictable from
 > spelling**, so the engine derives the close [o] (→ [ˈpoɻtɐ]). The retroflex
-> — the Caipira feature — is derived correctly; the vowel is a documented
+>, the Caipira feature, is derived correctly. The vowel is a documented
 > engine limit, not a Caipira claim.
 
-### 2. Coda /l/ rhotacism (Amaral §22a) — traditional [ɻ] variant
+### 2. Coda /l/ rhotacism (Amaral §22a): traditional [ɻ] variant
 
 Amaral §22a: *"l - Em final de sílaba, muda-se em r: quarquér, papér, mér,
 arma."* Traditional rural Caipira turns coda /l/ into the same rhotic and
@@ -60,15 +60,15 @@ the primary coda-/l/ realisation** and declares **[ɻ] as the traditional
 Amaral variant** in `positional_graphemes.l`, so no false modern claim is made
 while the documented historical form is retained.
 
-### 3. Laminodental coda /s/ — no *chiado* (Amaral §6a)
+### 3. Laminodental coda /s/: no *chiado* (Amaral §6a)
 
 Amaral §6a: *"s propriamente sibilante, assobiado, e bem assim chiante, são
 aqui desconhecidos."* Coda /s/ is a plain alveolar [s] (*mesmo* → [ˈmesmu],
-*costas* → [ˈkostas]) — never the Carioca palatal [ʃ]/[ʒ].
+*costas* → [ˈkostas]), never the Carioca palatal [ʃ]/[ʒ].
 
 ### 4. /ʎ/ vocalisation (Amaral §25, §6e)
 
-Amaral §25: *"lh - Vocaliza-se em i: espaiado, maio, muié"*; §6e: the palatal
+Amaral §25: *"lh - Vocaliza-se em i: espaiado, maio, muié"*. §6e: the palatal
 lateral *"não existe no dialeto"*. Modelled as the allophone ʎ → [j].
 
 ## Inherited from pt-BR (unchanged)
@@ -82,10 +82,10 @@ not restated.
 **Historical vowel retention.** Amaral §8 records that early-20c rural Caipira
 did **not** raise final unstressed /e/→[i] or /o/→[u]: *"Não se operou aqui a
 permuta de e final por i … como não se operou a de o por u."* Modern Caipira
-has since aligned with general pt-BR raising, which the spec inherits; the
+has since aligned with general pt-BR raising, which the spec inherits. The
 1920 divergence is documented here rather than modelled.
 
-**Lexical open-mid vowels** (the [ɔ] of *porta*) are not derivable — see the
+**Lexical open-mid vowels** (the [ɔ] of *porta*) are not derivable, see the
 note above.
 
 ```python
@@ -101,7 +101,7 @@ eng.transcribe_word("mesmo")   # ˈmesmu  — coda /s/ alveolar, no chiado
 
 - **Amaral, Amadeu (1920).** *O Dialeto Caipira.* Casa Editora "O Livro", São
   Paulo. (§6a–b retroflex /r/ and laminodental /s/; §8 vowel retention; §22a
-  coda /l/ rhotacism; §23a final-/r/ elision; §25 /ʎ/ vocalisation.)
+  coda /l/ rhotacism. §23a final-/r/ elision. §25 /ʎ/ vocalisation.)
 - **Castilho, Ataliba T. (2010).** *Nova Gramática do Português Brasileiro.*
   Contexto.
 - **Mateus, M. H. M. & d'Andrade, E. (2000).** *The Phonology of Portuguese.*
