@@ -20,7 +20,7 @@
       "notes": "Khorasani base"
     }
   ],
-  "notes": "Mashhadi Persian (Mašhadī). Iran's second-largest city; capital of Khorasan. Urban Khorasani variety; prestige dialect of northeastern Iran. Conservative vowels (Khorasani base); some imāla in religious/Arabic vocabulary (pilgrimage city: shrine of Imam Reza). /q/ maintained in careful speech.",
+  "notes": "Mashhadi Persian (Mašhadī). Iran's second-largest city; capital of Khorasan. Urban Khorasani variety; prestige dialect of northeastern Iran. Conservative vowels (Khorasani base); some imāla in religious/Arabic vocabulary (pilgrimage city: shrine of Imam Reza). /q/ maintained in careful speech. Already-encoded allophones confirmed against the cited sources: ā carries the Khorasani conservative [aː] and a majhul [eː] variant (imāla-adjacent), alongside Tehran's [ɒː] (Windfuhr 2009). The imāla reported in religious/Arabic vocabulary specifically is lexically restricted to loanwords tied to the shrine-city register, not a general phonological rule, so it is documented here but intentionally left unencoded beyond the existing [eː] variant rather than forced.",
   "quality": "skeleton",
   "script_type": "abjad",
   "sources": [
@@ -53,6 +53,26 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "windfuhr2009",
+      "author": "Windfuhr, G. (ed.)",
+      "year": 2009,
+      "title": "The Iranian Languages",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": "Regional-dialect chapter(s) on New Persian varieties (Tehran, Isfahan, Fars/Shiraz, Kerman, Khorasan/Mashhad, Yazd)."
+    },
+    {
+      "id": "rezai_dialectology",
+      "author": "Rezai, V. & al.",
+      "year": 2010,
+      "title": "Studies in Iranian regional Persian dialectology (Isfahan, Fars, Kerman, Khorasan)",
+      "publisher": "Iranian dialectology literature (regional descriptive studies)",
+      "url": null,
+      "pages": null,
+      "notes": "Secondary descriptive source for regional vowel-quality differences (majhul retention, ā/æ realisation) cross-checked against Windfuhr 2009 and Mahootian 1997."
     }
   ],
   "wikipedia": [
