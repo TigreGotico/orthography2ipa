@@ -395,6 +395,19 @@ def test_so_harmonic_vowel_pairs_are_not_distinguished():
     assert G2P("so").transcribe_word("cun") == "ʕun"
 
 
+def test_so_kh_has_no_word_initial_positional_rule():
+    """⟨kh⟩ is confined to Arabic loans and takes the single uvular-fricative
+    value /χ/ in every position (Mohamed 2013, consonant-inventory section,
+    quoted in ``notes``): khudaar 'vegetables' → [χudaːr]. A word-initial
+    bound-morpheme guard for ⟨kh⟩ was proposed but never sourced, and this
+    spec has no ``positional_graphemes["kh"]`` entry to guard — the flat
+    grapheme table already gives ⟨kh⟩ one value everywhere. This test locks
+    that decision in: a future change that adds a word-initial-only reading
+    for ⟨kh⟩ without a citation must fail it."""
+    assert "kh" not in G2P("so").spec.positional_graphemes
+    assert G2P("so").transcribe_word("khudaar") == "χudaːr"
+
+
 # ---------------------------------------------------------------------------
 # om — Oromo (Qubee, official since 1991)
 # ---------------------------------------------------------------------------
