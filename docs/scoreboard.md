@@ -173,8 +173,8 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | ca-x-balear | 4catac | 160 | 0.1360 | - | - | - | - | [0.1283, 0.1446] | 0.0062 | research | expert-human |
 | ca-x-occidental | 4catac | 160 | 0.0822 | - | - | - | - | [0.0761, 0.0886] | 0.0125 | research | expert-human |
 | ca-x-valencia | 4catac | 160 | 0.0677 | - | - | - | - | [0.0620, 0.0733] | 0.0312 | research | expert-human |
-| car | wikipron | 232 | 0.3986 | 0.3986 | 0.3986 | 0.0172 | 0.0172 | [0.3740, 0.4222] | 0.0172 | research | crowd-scraped |
-| car | wold | 1191 | 0.0854 | 0.0854 | 0.0854 | 0.5584 | 0.5584 | [0.0786, 0.0932] | 0.5584 | research | lexicon-derived |
+| car | wikipron | 232 | 0.3500 | 0.3500 | 0.3500 | 0.0517 | 0.0517 | [0.3259, 0.3749] | 0.0517 | research | crowd-scraped |
+| car | wold | 1191 | 0.0846 | 0.0846 | 0.0846 | 0.5600 | 0.5600 | [0.0779, 0.0923] | 0.5600 | research | lexicon-derived |
 | ce | wikipron | 461 | 0.2541 | 0.2319 | 0.2319 | 0.2842 | 0.2842 | [0.2360, 0.2727] | 0.2364 | research | crowd-scraped |
 | ceb | wikipron | 3895 | 0.1058 | 0.1058 | 0.1058 | 0.5214 | 0.5214 | [0.1017, 0.1095] | 0.5214 | research | crowd-scraped |
 | chb | wikipron | 99 | 0.1313 | 0.1313 | 0.1313 | 0.4545 | 0.4545 | [0.1001, 0.1636] | 0.4545 | research | crowd-scraped |
@@ -247,8 +247,8 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | ext-PT-x-barrancos | barranquenho_dict | 1508 | 0.0045 | 0.0021 | 0.0013 | 0.9881 | 0.9927 | [0.0029, 0.0061] | 0.9775 | research | llm-generated |
 | ext-PT-x-barrancos | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ext-PT-x-barrancos | primary_sources | 10 | 0.2801 | 0.2241 | 0.2241 | 0.4000 | 0.4000 | [0.1363, 0.4286] | 0.3000 | research | expert-human |
-| fa | ipadict | 7695 | 0.2566 | 0.2334 | 0.2278 | 0.1173 | 0.1201 | [0.2534, 0.2600] | 0.1059 | research | machine-generated |
-| fa | wikipron | 9279 | 0.3946 | 0.3744 | 0.3704 | 0.0177 | 0.0178 | [0.3914, 0.3975] | 0.0170 | research | crowd-scraped |
+| fa | ipadict | 7695 | 0.2540 | 0.2309 | 0.2253 | 0.1193 | 0.1220 | [0.2507, 0.2574] | 0.1077 | research | machine-generated |
+| fa | wikipron | 9279 | 0.3943 | 0.3742 | 0.3702 | 0.0177 | 0.0178 | [0.3911, 0.3971] | 0.0170 | research | crowd-scraped |
 | fax | wikipron | 655 | 0.1044 | 0.0685 | 0.0683 | 0.6550 | 0.6565 | [0.0950, 0.1140] | 0.5053 | research | crowd-scraped |
 | fi | ipadict | 92836 | 0.0609 | 0.0609 | 0.0609 | 0.5012 | 0.5012 | [0.0604, 0.0613] | 0.5012 | production | machine-generated |
 | fi | vox_communis | 13324 | 0.0037 | 0.0037 | 0.0037 | 0.9678 | 0.9678 | [0.0033, 0.0041] | 0.9678 | production | epitran-derived |
@@ -269,8 +269,8 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | gld | northeuralex | 887 | 0.1532 | 0.1532 | 0.1532 | 0.3574 | 0.3574 | [0.1431, 0.1624] | 0.3574 | research | lexicon-derived |
 | gmh | wikipron | 1516 | 0.2938 | 0.2938 | 0.2938 | 0.0778 | 0.0778 | [0.2863, 0.3012] | 0.0778 | research | crowd-scraped |
 | gml | wikipron | 143 | 0.4547 | 0.4547 | 0.4547 | 0.0350 | 0.0350 | [0.4211, 0.4857] | 0.0350 | research | crowd-scraped |
-| gn | vox_communis | 4263 | 0.4088 | 0.4088 | 0.4088 | 0.0408 | 0.0408 | [0.4033, 0.4143] | 0.0408 | stub | epitran-derived |
-| gn | wikipron | 344 | 0.3452 | 0.3452 | 0.3452 | 0.1424 | 0.1424 | [0.3233, 0.3673] | 0.1424 | stub | crowd-scraped |
+| gn | vox_communis | 4264 | 0.1675 | 0.1393 | 0.1372 | 0.4294 | 0.4379 | [0.1630, 0.1724] | 0.3208 | research | epitran-derived |
+| gn | wikipron | 347 | 0.1458 | 0.0819 | 0.0819 | 0.6254 | 0.6254 | [0.1275, 0.1652] | 0.4986 | research | crowd-scraped |
 | got | wikipron | 1816 | 0.0667 | 0.0221 | 0.0143 | 0.8409 | 0.9009 | [0.0622, 0.0709] | 0.5677 | research | crowd-scraped |
 | grc | wikipron | 58095 | 0.1480 | 0.1480 | 0.1480 | 0.2560 | 0.2560 | [0.1470, 0.1491] | 0.2560 | research | crowd-scraped |
 | gu | wikipron | 4082 | 0.1842 | 0.1840 | 0.1839 | 0.3025 | 0.3028 | [0.1793, 0.1892] | 0.3025 | research | crowd-scraped |
@@ -289,7 +289,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | hil | wikipron | 466 | 0.0966 | 0.0966 | 0.0966 | 0.5343 | 0.5343 | [0.0857, 0.1078] | 0.5343 | research | crowd-scraped |
 | hr | ipa_childes | 4769 | 0.2066 | 0.2066 | 0.2066 | 0.2772 | 0.2772 | [0.2016, 0.2117] | 0.2772 | research | epitran-derived |
 | hr | wikipron | 26469 | 0.3000 | 0.2979 | 0.2979 | 0.0055 | 0.0055 | [0.2985, 0.3016] | 0.0050 | research | crowd-scraped |
-| hrx | wikipron | 2002 | 0.4090 | 0.4090 | 0.4090 | 0.0759 | 0.0759 | [0.3979, 0.4206] | 0.0759 | research | crowd-scraped |
+| hrx | wikipron | 2002 | 0.0821 | 0.0700 | 0.0643 | 0.6913 | 0.7148 | [0.0766, 0.0877] | 0.6429 | research | crowd-scraped |
 | hsb | vox_communis | 5802 | 0.3177 | 0.3102 | 0.3102 | 0.1015 | 0.1015 | [0.3130, 0.3220] | 0.0907 | research | epitran-derived |
 | hsb | wikipron | 1126 | 0.2186 | 0.2034 | 0.2034 | 0.2806 | 0.2806 | [0.2073, 0.2303] | 0.2629 | research | crowd-scraped |
 | ht | wikipron | 1691 | 0.0302 | 0.0302 | 0.0302 | 0.8669 | 0.8669 | [0.0262, 0.0346] | 0.8669 | research | crowd-scraped |
@@ -418,7 +418,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | nci | wikipron | 839 | 0.1198 | 0.1197 | 0.1197 | 0.2896 | 0.2896 | [0.1128, 0.1270] | 0.2896 | research | crowd-scraped |
 | nds | wikipron | 308 | 0.2231 | 0.1674 | 0.1503 | 0.5065 | 0.5292 | [0.1969, 0.2487] | 0.4091 | research | crowd-scraped |
 | ne | kaikki | 2052 | 0.1191 | 0.1178 | 0.1178 | 0.5210 | 0.5210 | [0.1121, 0.1256] | 0.5195 | research | crowd-scraped |
-| new | wikipron | 416 | 0.4077 | 0.4077 | 0.4077 | 0.0865 | 0.0865 | [0.3855, 0.4280] | 0.0865 | research | crowd-scraped |
+| new | wikipron | 416 | 0.0282 | 0.0282 | 0.0282 | 0.8558 | 0.8558 | [0.0181, 0.0391] | 0.8558 | research | crowd-scraped |
 | ngh | wikipron | 263 | 0.3655 | 0.3655 | 0.3655 | 0.1521 | 0.1521 | [0.3374, 0.3958] | 0.1521 | skeleton | crowd-scraped |
 | nhg | wikipron | 295 | 0.2367 | 0.2367 | 0.2367 | 0.1898 | 0.1898 | [0.2157, 0.2573] | 0.1898 | research | crowd-scraped |
 | nhx | wikipron | 145 | 0.1913 | 0.1913 | 0.1913 | 0.2207 | 0.2207 | [0.1686, 0.2141] | 0.2207 | research | crowd-scraped |
@@ -652,7 +652,7 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 | xh | kaikki | 887 | 0.3781 | 0.3763 | 0.3763 | 0.0304 | 0.0304 | [0.3683, 0.3871] | 0.0282 | research | crowd-scraped |
 | xsl | wikipron | 146 | 0.0273 | 0.0234 | 0.0234 | 0.9041 | 0.9041 | [0.0145, 0.0421] | 0.8904 | research | crowd-scraped |
 | ycl | wikipron | 111 | 0.0108 | 0.0108 | 0.0108 | 0.9369 | 0.9369 | [0.0030, 0.0201] | 0.9369 | research | crowd-scraped |
-| yi | wikipron | 4051 | 0.3928 | 0.3883 | 0.3882 | 0.0491 | 0.0491 | [0.3871, 0.3985] | 0.0442 | research | crowd-scraped |
+| yi | wikipron | 4051 | 0.2042 | 0.1818 | 0.1745 | 0.3261 | 0.3453 | [0.1983, 0.2098] | 0.2735 | research | crowd-scraped |
 | ykg | northeuralex | 813 | 0.3616 | 0.3616 | 0.3616 | 0.0418 | 0.0418 | [0.3507, 0.3730] | 0.0418 | research | lexicon-derived |
 | yo | vox_communis | 5263 | 0.6341 | 0.6315 | 0.6315 | 0.0004 | 0.0004 | [0.6298, 0.6386] | 0.0004 | research | epitran-derived |
 | yo | wikipron | 4065 | 0.3832 | 0.3830 | 0.3830 | 0.1065 | 0.1065 | [0.3769, 0.3896] | 0.1063 | research | crowd-scraped |

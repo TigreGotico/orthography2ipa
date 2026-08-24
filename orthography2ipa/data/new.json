@@ -10,7 +10,7 @@
   "graphemes_base": "hi",
   "graphemes": {
     "ः": [
-      "əː"
+      "ː"
     ],
     "त": [
       "t"
@@ -43,12 +43,254 @@
       "lʱ"
     ],
     "र्ह": [
-      "rʱ"
+      "ɾʱ"
+    ],
+    "ा": [
+      "a"
+    ],
+    "आ": [
+      "a"
+    ],
+    "े": [
+      "e"
+    ],
+    "ए": [
+      "e"
+    ],
+    "ो": [
+      "o"
+    ],
+    "ओ": [
+      "o"
+    ],
+    "ि": [
+      "i"
+    ],
+    "इ": [
+      "i"
+    ],
+    "ु": [
+      "u"
+    ],
+    "उ": [
+      "u"
+    ],
+    "ै": [
+      "əi"
+    ],
+    "ऐ": [
+      "əi"
+    ],
+    "ौ": [
+      "əu"
+    ],
+    "औ": [
+      "əu"
+    ],
+    "ं": [
+      "̃ː"
+    ],
+    "ँ": [
+      "̃"
+    ],
+    "य्": [
+      "ɛː"
+    ],
+    "ाय्": [
+      "æː"
+    ],
+    "ँय्": [
+      "ɛ̃ː"
+    ],
+    "ाँय्": [
+      "æ̃ː"
+    ],
+    "अय्": [
+      "ɛː"
+    ],
+    "आय्": [
+      "æː"
+    ],
+    "च": [
+      "t͡ɕ"
+    ],
+    "छ": [
+      "t͡ɕʰ"
+    ],
+    "ज": [
+      "d͡ʑ"
+    ],
+    "झ": [
+      "d͡ʑʱ"
+    ],
+    "व": [
+      "w"
+    ],
+    "ह": [
+      "h"
+    ],
+    "‌": [
+      ""
+    ],
+    "त्र": [
+      "tɾ"
     ]
   },
-  "allophones_base": "hi",
-  "allophones": {},
-  "notes": "Newar (Nepal Bhasa, नेपाल भाषा) of the Kathmandu Valley, ~850,000-1 million speakers, official language of the Kathmandu Metropolitan City and a recognised national language of Nepal; written today in Devanagari (historically also in the Ranjana and other Nepalese scripts). DEEP FIX (2026-08): the earlier `graphemes_base: hi` reading was Hindi's reading applied uncritically; error analysis against `new_deva_narrow.tsv` (WikiPron narrow gold, 416 rows) found FOUR real, systematic mismatches with Genetti's (2007) and Hale & Shrestha's (2006) description of Newar phonology, now fixed as own overrides on top of `graphemes_base: hi`: (1) `inherent_vowel` was never declared on this spec (an OWN_ONLY field -- `graphemes_base` does not inherit it), so NO schwa was being inserted after bare consonants at all (कथु -> *ktʰu instead of gold 'k ə tʰ u'); declaring `inherent_vowel: 'ə'` fixes this, by far the single largest source of error. (2) Newar does not delete the written inherent vowel word-finally or medially in clusters the way Hindi's schwa-deletion/schwa-syncope rules do (no such process is described for Newar in Genetti 2007 or Hale & Shrestha 2006, unlike the well-documented Hindi/Nepali rule -- Narasimhan, Sproat & Kiraz 2004): all inherited `HI_SCHWA_FINAL_*`/`HI_SCHWA_MEDIAL_*`/`HI_SCHWA_KEEP_*` allophone rules are neutralised here by identity-mapping overrides of the same ids, e.g. अउल -> gold 'ə u l ə' (not Hindi-style *'əʊl'). (3) ः (visarga) is not read as /h/ in Newar practical orthography; it marks a lengthened final vowel (Hale & Shrestha 2006's romanization notes) -- overridden from Hindi's `h` to `əː`, e.g. अंगः -> gold 'ə̃ː ɡ əː', कःनि -> gold 'k əː n i'. (4) the sibilant/retroflex-nasal letters श, ष, ण are read the same as स, न in Newar (a 3-way Indo-Aryan sibilant contrast and retroflex nasal that Newar's own phonemic inventory does not have -- PHOIBLE lists only one sibilant, `s̪|s`, and no `ɳ` for newa1246), overridden to `s`/`s`/`n` respectively (भाषा -> gold 'bʱ a s a', अर्थपूर्ण -> gold '... ɾ n ə'). The dental stop series त/थ/द is also read WITHOUT the dental diacritic in this gold's convention (कथु -> 'tʰ' not 't̪ʰ'), matching the plain-alternative already declared in `phonemes` (`t̪|t`, `d̪|d`); ध keeps Hindi's `dʱ` (breathy but NOT dental-marked in the gold either -- धर्म -> 'dʱ ə ɾ m ə'). The murmured/breathy SONORANT series (m̤, n̤, l̤, r̤ per Genetti 2007's phonation contrast), written with ह-conjuncts (न्ह, म्ह, ल्ह, र्ह) in Devanagari, is now mapped directly to those phonemes, spelled with the gold's own `ʱ` notation (न्ह -> gold 'nʱ', म्हुतु -> gold 'mʱ u t u'); previously these conjuncts fell through to Hindi's literal न+ह = 'nɦ' reading. RESULT: PER on `new_deva_narrow.tsv` dropped from 0.5525 to 0.4371 (see `benchmarks/results.json`), a ~21% relative reduction, all four fixes cited above. RESIDUAL (not fixed, left as documented narrow-transcription convention, per the pre-existing KNOWN GAP): (a) vowel QUALITY/LENGTH -- the gold's actual pronunciation is not fully predictable from which vowel matra is written (आलु -> gold 'a l u', not the Hindi-style laxed/lengthened *'aːlʊ'; कि -> gold 'k i' not *'kɪ'); Newar's vowel length is phonemic and independent of the (historically Sanskrit/Hindi-derived) short/long matra distinction, so no purely grapheme-level rule can close this without a lexical length dictionary outside this task's scope. (b) the narrow affricate symbol: ज is generalised narrowly to d͡ʑ in the gold's palatal-affricate convention vs the inherited dʒ (postalveolar) -- a transcription-convention choice, not a phonemic difference Genetti (2007) or PHOIBLE describe. (c) word-final ⟨य्⟩ (y + virama) surfaces in the gold as a monophthongised front vowel (अय् -> gold 'ɛː', आय् -> gold 'æː') rather than the grapheme-compositional vowel+glide (*'əj'/*'aːj') -- a lexicalised sandhi/diphthong-reduction pattern that would need per-word or positional-glide rules beyond this pass. STRESS: no lexical stress contrast is described for Newar in Genetti (2007) (word-level prominence is not phonemically distinctive); left unencoded, a documented exemption. TIER: `research` -- sourced (Genetti 2007; Hale & Shrestha 2006; PHOIBLE), stress exemption documented, and `new_deva_narrow.tsv` (416 rows, WikiPron/Wiktionary scrape, `crowd-scraped` provenance, registered below) is scored in `scripts/benchmark.py` with a PER recorded in `benchmarks/results.json`.",
+  "allophones": {
+    "m": [
+      "m"
+    ],
+    "n": [
+      "n"
+    ],
+    "ŋ": [
+      "ŋ"
+    ],
+    "mʱ": [
+      "mʱ"
+    ],
+    "nʱ": [
+      "nʱ"
+    ],
+    "p": [
+      "p"
+    ],
+    "t": [
+      "t"
+    ],
+    "ʈ": [
+      "ʈ"
+    ],
+    "t͡ɕ": [
+      "t͡ɕ",
+      "t̠s̠"
+    ],
+    "k": [
+      "k"
+    ],
+    "pʰ": [
+      "pʰ"
+    ],
+    "tʰ": [
+      "tʰ"
+    ],
+    "ʈʰ": [
+      "ʈʰ"
+    ],
+    "t͡ɕʰ": [
+      "t͡ɕʰ"
+    ],
+    "kʰ": [
+      "kʰ"
+    ],
+    "b": [
+      "b"
+    ],
+    "d": [
+      "d"
+    ],
+    "ɖ": [
+      "ɖ"
+    ],
+    "d͡ʑ": [
+      "d͡ʑ",
+      "d̠z̠"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "bʱ": [
+      "bʱ"
+    ],
+    "dʱ": [
+      "dʱ"
+    ],
+    "ɖʱ": [
+      "ɖʱ"
+    ],
+    "d͡ʑʱ": [
+      "d͡ʑʱ"
+    ],
+    "ɡʱ": [
+      "ɡʱ"
+    ],
+    "s": [
+      "s",
+      "ɕ"
+    ],
+    "h": [
+      "h"
+    ],
+    "ɾ": [
+      "ɾ"
+    ],
+    "w": [
+      "w"
+    ],
+    "l": [
+      "l"
+    ],
+    "j": [
+      "j"
+    ],
+    "wʱ": [
+      "wʱ"
+    ],
+    "lʱ": [
+      "lʱ"
+    ],
+    "jʱ": [
+      "jʱ"
+    ],
+    "i": [
+      "i"
+    ],
+    "iː": [
+      "iː"
+    ],
+    "u": [
+      "u",
+      "ʊ"
+    ],
+    "uː": [
+      "uː"
+    ],
+    "e": [
+      "e"
+    ],
+    "eː": [
+      "eː"
+    ],
+    "o": [
+      "o",
+      "ɔ"
+    ],
+    "oː": [
+      "oː",
+      "ɔː"
+    ],
+    "ə": [
+      "ə",
+      "ɔ"
+    ],
+    "əː": [
+      "əː",
+      "ɔː"
+    ],
+    "a": [
+      "a"
+    ],
+    "aː": [
+      "aː"
+    ],
+    "ɛː": [
+      "ɛː"
+    ],
+    "æː": [
+      "æː"
+    ]
+  },
+  "notes": "Newar (Nepal Bhasa) of the Kathmandu Valley, a Sino-Tibetan language written today in Devanagari and historically in the Newar, Ranjana and other Nepalese scripts. The Devanagari orthography is borrowed from Indo-Aryan practice but does not carry Indo-Aryan values, so the spec states Newar's own readings on top of `graphemes_base: hi` and declares its own phoneme inventory and allophone map.\n\nVOWEL LENGTH. Length is phonemic and is written in two different ways. The letters and matras for i and u carry it themselves (ि i, ी iː, ु u, ू uː). Every other vowel is written short and lengthened by the visarga: ⟨ा⟩ is a, ⟨ाः⟩ is aː; ⟨े⟩ is e, ⟨ो⟩ is o; on a bare consonant letter the visarga lengthens the inherent vowel, so ⟨कः⟩ is kəː (Ishida, Newa orthography notes, 'Vowel length and nasalisation'; the same three marks are used in the Devanagari orthography). ⟨ः⟩ therefore maps to the length mark itself rather than to a segment. Ishida documents the Newa script, not Devanagari, but the same three marks (visarga, candrabindu, anusvara) carry over unchanged in Devanagari practice; each claim below was checked against the 416-row gold rather than assumed from the transfer alone: 150 words spell ⟨ा⟩ without a following visarga and none of them reads long aː, all 30 gold instances of aː come from ⟨ाः⟩, the anusvara ⟨ं⟩ reads as a long nasal vowel in 73 rows against 3 short against the pattern, the candrabindu ⟨ँ⟩ reads short in 41 rows against 9 long against the pattern, and ⟨य्⟩ holds its vowel reading (never a glide) in all 36 rows that contain it. This is the point at which the Hindi reading is furthest off: Hindi's ⟨ा े ो⟩ are long aː eː oː and its ⟨ः⟩ is h.\n\nNASALISATION. Nasalisation is contrastive and its two marks differ in length, not in place: the candrabindu ⟨ँ⟩ writes a short nasal vowel and the anusvara ⟨ं⟩ a long one (Ishida, same section). ⟨ं⟩ is restated in `positional_graphemes` as well, because the inherited Hindi entry conditions it by position and would otherwise win.\n\nYA WITH VIRAMA IS A VOWEL. ⟨य्⟩ keeps its visible virama and spells a long front vowel rather than a glide: ⟨य्⟩ is ɛː, ⟨ाय्⟩ is æː, ⟨ँय्⟩ is ɛ̃ː and ⟨ाँय्⟩ is æ̃ː, with ⟨अय्⟩ and ⟨आय्⟩ as the standalone spellings of the first two (Ishida, 'Vowel letters using YA+virama'). ɛː and æː are Kathmandu Newar vowels, absent from the Dolakha dialect. The four keys are declared in `dependent_vowels` so a preceding consonant letter takes them as its nucleus and does not surface the inherent vowel. Where such a spelling is written word-medially the orthography inserts U+200C after the virama to keep it visible; the spec maps that character to nothing.\n\nCONSONANTS. The affricate series is (alveolo-)palatal: ⟨च छ ज झ⟩ are t͡ɕ t͡ɕʰ d͡ʑ d͡ʑʱ, not the postalveolar affricates Hindi reads. ⟨व⟩ is the approximant w, and ⟨ह⟩ is plain h rather than Hindi's breathy ɦ. Newar has one sibilant and no retroflex nasal, so ⟨श ष⟩ read as s and ⟨ण⟩ as n. The murmured sonorants, written with ह-conjuncts, are mapped from ⟨म्ह न्ह ल्ह र्ह⟩ directly as mʱ nʱ lʱ ɾʱ; the murmured tap is described for the Dolakha dialect only. ⟨त्र⟩ reads tɾ, matching the plain ⟨त⟩ this spec declares rather than the dental-marked Hindi conjunct. Consonant and vowel inventories follow the tables in `new_wiki`, which cites Hargreaves 2003 for Kathmandu Newar and Genetti 2003 for Dolakha.\n\nINHERENT VOWEL. The inherent vowel is ə and it is not deleted. `inherent_vowel` is declared here because the field is not inherited through `graphemes_base`, and the inherited Hindi schwa-deletion and schwa-syncope rules are neutralised by identity-mapping overrides of the same rule ids, so ⟨अउल⟩ is ə u l ə and ⟨धर्म⟩ is dʱ ə ɾ m ə.\n\nTHE INHERENT VOWEL AFTER w IS NOT ENCODED. Kathmandu Newar's back vowel is a single phoneme realised as ɔ, ə or ɑ (`new_wiki`, vowel table), and the inherent vowel after ⟨व⟩ is often transcribed ɔ. The only attestation of that conditioning is the Wiktionary transcriptions that the benchmark gold is scraped from, so encoding it would score agreement with the gold rather than accuracy; the alternation is recorded in `allophones` as free variation instead. The phoneme is one phoneme either way, so the spec reads it ə everywhere.\n\nSTRESS. No orthography-predictable lexical stress contrast is described for Newar, so no `stress` block is declared. This is a documented exemption, not an omission.\n\nKNOWN DIVERGENCES from `new_deva_narrow.tsv` (416 rows, WikiPron scrape of Wiktionary, `crowd-scraped` provenance). ⟨ें⟩ is read ẽː by the length rule above but the gold writes ẽ in all three rows that spell it, and writes no long nasal ẽː anywhere. ⟨क्ष⟩ keeps the inherited Hindi cluster reading kʃ against one gold row reading t͡ɕʰ. ⟨ञ⟩ keeps the inherited ɲ against one gold row reading n before ⟨ज⟩. ⟨ीं⟩ and ⟨ईं⟩ are outside the spelling system described above, which writes a long nasal i with the SHORT i sign, and are read compositionally. The Perso-Arabic nukta letters ⟨क़ ख़ ग़ ज़ ड़ ढ़ फ़⟩, the vocalic ⟨ऋ ृ⟩ and the conjuncts ⟨ज्ञ श्र⟩ keep their inherited Hindi readings and are not re-derived here; none of them is written in Newar and none occurs in the gold.",
   "sources": [
     {
       "id": "genetti2007",
@@ -58,7 +300,7 @@
       "publisher": "Mouton de Gruyter",
       "url": null,
       "pages": null,
-      "notes": "Reference grammar of a Newar dialect: phonology, tone/phonation contrasts, stress."
+      "notes": "Reference grammar of the Dolakha dialect."
     },
     {
       "id": "hale2006",
@@ -68,7 +310,7 @@
       "publisher": "LINCOM Europa",
       "url": null,
       "pages": null,
-      "notes": "Descriptive grammar with orthographic-convention notes (visarga as vowel-length marker; ह-conjunct murmured sonorants; sibilant/retroflex-nasal neutralisation in practical Devanagari usage), used for the grapheme-level fixes here."
+      "notes": "Descriptive grammar of Newar. Cited by new_wiki for the notes accompanying its consonant table."
     },
     {
       "id": "new_wiki",
@@ -79,7 +321,7 @@
       "url": "https://en.wikipedia.org/wiki/Newar_language",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Newar_language",
       "pages": null,
-      "notes": null
+      "notes": "Consonant, vowel and diphthong inventory tables for Kathmandu and Dolakha Newar, and the Ranjana alphabet table giving the Devanagari letter to IPA correspondences."
     },
     {
       "id": "phoible",
@@ -90,6 +332,26 @@
       "url": "https://phoible.org/",
       "pages": null,
       "notes": "Attested phoneme inventory for glottocode newa1246."
+    },
+    {
+      "id": "hargreaves2003",
+      "author": "Hargreaves, David",
+      "year": 2003,
+      "title": "Kathmandu Newar (Nepal Bhasa)",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": "371-384",
+      "notes": "Chapter in The Sino-Tibetan Languages. The Kathmandu inventory tables are reproduced in new_wiki, which cites this chapter and these pages; the chapter itself is not consulted here."
+    },
+    {
+      "id": "ishida_newa",
+      "author": "Ishida, Richard",
+      "year": 2024,
+      "title": "Newa (Newar) orthography notes",
+      "publisher": "r12a.github.io",
+      "url": "https://r12a.github.io/scripts/newa/new.html",
+      "pages": null,
+      "notes": "Character-by-character description of the Newa script: visarga as the vowel-length mark, candrabindu and anusvara as the short and long nasalisation marks, and YA+virama as a vowel letter spelling the Kathmandu vowels. The gold this spec is scored against is written in Devanagari, not Newa; the transfer of these three marks was verified against the gold rather than assumed."
     }
   ],
   "wikipedia": [
@@ -97,41 +359,75 @@
     "https://new.wikipedia.org/wiki/%E0%A4%A8%E0%A5%87%E0%A4%AA%E0%A4%BE%E0%A4%B2%E0%A4%AD%E0%A4%BE%E0%A4%B7%E0%A4%BE"
   ],
   "phonemes": [
-    "a̟",
-    "b",
-    "b̤",
-    "d̪z̪|dz",
-    "d̪z̪̤|dz̤",
-    "d̪|d",
-    "d̪̤|d̤",
-    "i",
-    "k",
-    "kʰ",
-    "l̪|l",
-    "l̪̤|l̤|lʱ",
     "m",
-    "m̤|mʱ",
-    "n̪|n",
-    "n̪̤|n̤|nʱ",
+    "n",
+    "ŋ",
+    "mʱ",
+    "nʱ",
     "p",
+    "t",
+    "ʈ",
+    "t͡ɕ",
+    "k",
     "pʰ",
-    "r̤|rʱ",
-    "s̪|s",
-    "t̪s̪|ts",
-    "t̪s̪ʰ|tsʰ",
-    "t̪|t",
-    "t̪ʰ|tʰ",
-    "u",
-    "ã̟",
-    "ĩ",
-    "ũ",
+    "tʰ",
+    "ʈʰ",
+    "t͡ɕʰ",
+    "kʰ",
+    "b",
+    "d",
     "ɖ",
+    "d͡ʑ",
     "ɡ",
-    "ɡ̤",
-    "ɤ̞",
-    "ɤ̞̃",
-    "ɦ",
-    "ʈ"
+    "bʱ",
+    "dʱ",
+    "ɖʱ",
+    "d͡ʑʱ",
+    "ɡʱ",
+    "s",
+    "h",
+    "ɾ",
+    "ɾʱ",
+    "w",
+    "l",
+    "j",
+    "wʱ",
+    "lʱ",
+    "jʱ",
+    "i",
+    "iː",
+    "ĩ",
+    "ĩː",
+    "u",
+    "uː",
+    "ũ",
+    "ũː",
+    "e",
+    "eː",
+    "ẽ",
+    "ẽː",
+    "o",
+    "oː",
+    "õ",
+    "õː",
+    "ɔ|ə",
+    "ɔː|əː",
+    "ɔ̃|ə̃",
+    "ɔ̃ː|ə̃ː",
+    "ɛː",
+    "ɛ̃ː",
+    "æː",
+    "æ̃ː",
+    "a",
+    "aː",
+    "ã",
+    "ãː",
+    "ɔi|əi",
+    "ɔu|əu",
+    "ai",
+    "au",
+    "ui",
+    "ei"
   ],
   "parent": "x-clade-sino1245",
   "ancestors": [
@@ -5762,5 +6058,24 @@
       ]
     }
   ],
-  "inherent_vowel": "ə"
+  "inherent_vowel": "ə",
+  "dependent_vowels": [
+    "य्",
+    "ाय्",
+    "ँय्",
+    "ाँय्"
+  ],
+  "positional_graphemes": {
+    "ं": {
+      "before_consonant": [
+        "̃ː"
+      ],
+      "word_final": [
+        "̃ː"
+      ],
+      "default": [
+        "̃ː"
+      ]
+    }
+  }
 }
