@@ -1,4 +1,4 @@
-# Nortista / Amazônico Portuguese (pt-BR-x-norte) — Phonology Reference
+# Nortista / Amazônico Portuguese (pt-BR-x-norte): Phonology Reference
 
 **Code**: `pt-BR-x-norte` | **Family**: Indo-European > Romance > Ibero-Romance | **Script**: Latin (alphabet)
 **Parent**: `pt-BR` (Brazilian standard) | **Quality tier**: research
@@ -6,15 +6,15 @@
 XVII), Noll (2008), Cardoso et al. (2014, *ALiB*), Mateus & d'Andrade (2000),
 Callou & Leite (2001), Silva (2002)
 
-`pt-BR-x-norte` models **Nortista / Amazônico** Portuguese — Belém and
-Manaus — under Tupí/Nheengatu contact in prosody and lexicon. It is a
+`pt-BR-x-norte` models **Nortista / Amazônico** Portuguese, Belém and
+Manaus, under Tupí/Nheengatu contact in prosody and lexicon. It is a
 **delta** spec inheriting the pt-BR base. Nascentes (1953:25) grounds the
 Brazil-wide North/South macro-division on pretonic-vowel openness and places
 this area among the *falares do Norte*.
 
 ## Diagnostic features modelled
 
-### 1. Coda /S/ palatalisation — the Belém *chiado*
+### 1. Coda /S/ palatalisation: the Belém *chiado*
 
 Coda /s,z/ palatalise to [ʃ,ʒ] (*mesmo* → [ˈmeʒmʊ]), matching the Carioca
 chiado rather than the plain-alveolar Northeast-proper norm. This is the
@@ -22,14 +22,14 @@ strongest diagnostic modelled here, sourced directly (not by inference):
 
 > "[C]erto espraiamento dessas realizações para outras áreas do Brasil, a
 > exemplo de Belém e Macapá, no Norte, onde haveria um grau de palatalização
-> similar ao do Rio de Janeiro." — Silva (2014:2, ALFAL XVII, printed page
+> similar ao do Rio de Janeiro.", Silva (2014:2, ALFAL XVII, printed page
 > header #4814), citing Noll (2008)
 
 Silva (2014:2) further reports that Mota, Jesus & Evangelista's (2010)
 ALiB-based grouping of Brazilian capitals by coda-/S/ realisation places
 **Belém and Macapá together with Rio de Janeiro** (plus Florianópolis,
 Recife, Manaus, Cuiabá, Salvador) among the cities where the **palatal**
-variant predominates in *both* medial and absolute word-final position — the
+variant predominates in *both* medial and absolute word-final position, the
 strongest palatalising tier in the ALiB capital sample. Modelled via
 `positional_graphemes` `s`/`z` → [ʃ] at `before_consonant`/`coda`/`word_final`,
 with `s` `intervocalic` → [z] retained from the base.
@@ -38,7 +38,7 @@ with `s` `intervocalic` → [z] retained from the base.
 
 Unlike Recife/Fortaleza-type Northeastern varieties, the North retains
 southeastern-style palatalisation of /t,d/ before /i/: *tia* → [ˈt͡ʃiɐ], *dia*
-→ [ˈd͡ʒiɐ]. This is the base pt-BR default, left un-overridden here — ALiB
+→ [ˈd͡ʒiɐ]. This is the base pt-BR default, left un-overridden here, ALiB
 data identifies the North as the region of most expressive /t,d/
 palatalisation nationally (Cardoso et al. 2014), so this is a deliberate
 non-override, not an oversight.
@@ -62,7 +62,7 @@ inherited and not restated.
 ## Known limits (documented, not faked)
 
 **Heterogeneity.** "Nortista/Amazônico" spans a vast, sparsely-atlassed
-region; Belém (the source of the chiado citation) and Manaus are not
+region. Belém (the source of the chiado citation) and Manaus are not
 guaranteed to pattern identically, and interior Amazonian varieties are not
 separately modelled. Lexical open-mid vowel quality outside the pretonic
 position is not derivable (a pt-BR-wide engine limit). No feature is modelled
