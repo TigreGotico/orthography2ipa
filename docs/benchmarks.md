@@ -422,7 +422,7 @@ distance. Read the `th` rows as two numbers: the segmental part, and the
 tone the spec's `tone_rules` block computes from consonant class,
 syllable shape, vowel length and tone mark. Scoring the same rows with
 the tone letters removed from both sides gives the segmental part alone —
-0.1886 against `wikipron` and 0.2448 against `vox_communis`.
+0.1651 against `wikipron` and 0.2218 against `vox_communis`.
 
 The two Thai golds do not write the tone letter in the same slot. WikiPron
 writes it after the rime, where IPA writes it (`k ɔː n ˨˩`); the
@@ -430,6 +430,15 @@ Epitran-derived `vox_communis` rows write it on the nucleus
 (`k ɔː˨˩ n`). The spec follows WikiPron and IPA, so the `vox_communis`
 row pays for the mismatch, and the reverse choice would cost more on the
 row that is not machine-generated.
+
+Placement, not tone identity, is what that mismatch costs. Scoring both
+rows with every tone letter moved to the end of the string on both sides
+— which neutralises where the letter is printed while keeping which tone
+it is and in what order — gives 0.1713 against `wikipron` and 0.2295
+against `vox_communis`. Against the unfolded 0.1881 and 0.4318, placement
+alone accounts for 1.7 PER points on the `wikipron` row and 20.2 on the
+`vox_communis` row, and the tone the spec computes differs from the tone
+either gold carries by under a point on both.
 
 That the gold's tone letters follow the same consonant-class × syllable-type
 rule the spec states is not independent confirmation of the rule:
