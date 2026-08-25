@@ -648,7 +648,7 @@ A row's `N` is its sample size in scored words, and it is not cosmetic: below ro
 | war | wikipron | 380 | 0.1478 | 0.1478 | 0.1478 | 0.3658 | 0.3658 | [0.1345, 0.1622] | 0.3658 | research | crowd-scraped |
 | wau | wikipron | 146 | 0.2968 | 0.2968 | 0.2968 | 0.1438 | 0.1438 | [0.2647, 0.3301] | 0.1438 | research | crowd-scraped |
 | wbk | wikipron | 153 | 0.2022 | 0.2022 | 0.2022 | 0.3922 | 0.3922 | [0.1710, 0.2366] | 0.3922 | research | crowd-scraped |
-| wiy | wikipron | 151 | 0.0662 | 0.0662 | 0.0662 | 0.6358 | 0.6358 | [0.0496, 0.0835] | 0.6358 | research | crowd-scraped |
+| wiy | wikipron | 151 | 0.0164 | 0.0164 | 0.0164 | 0.9338 | 0.9338 | [0.0061, 0.0284] | 0.9338 | research | crowd-scraped |
 | wlm | wikipron | 403 | 0.2498 | 0.2498 | 0.2498 | 0.2357 | 0.2357 | [0.2309, 0.2702] | 0.2357 | research | crowd-scraped |
 | xaa | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | xal | wikipron | 318 | 0.2813 | 0.2813 | 0.2813 | 0.1478 | 0.1478 | [0.2619, 0.3014] | 0.1478 | research | crowd-scraped |
