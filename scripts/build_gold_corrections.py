@@ -13,7 +13,12 @@ THE RULE THAT MAKES AN OVERLAY HONEST: a correction may be derived ONLY from
 the orthography of the word or from a fetched citation. It may NEVER be derived
 from what orthography2ipa itself outputs. A gold repaired with this project's
 own answers would score beautifully and measure nothing. Nothing in this file
-imports orthography2ipa, and nothing in it may start.
+names an orthography2ipa module, and nothing in it may start. A test parses the
+source for every way of naming one, but note what that can and cannot promise:
+``main`` imports ``benchmark`` for the base gold loader, so the engine IS in
+``sys.modules`` while the build runs. The derivation stays honest because
+``build_vi_tone_rows`` takes only ``(spelling, reading)`` pairs and reads the
+spelling's combining marks — not because the engine is out of reach.
 
 Currently one overlay:
 

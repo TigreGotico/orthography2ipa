@@ -28,6 +28,7 @@ from benchmark import (  # noqa: E402
     PROVENANCE,
     apply_gold_corrections,
     can_gate_promotion,
+    provenance_for,
     read_gold_corrections,
 )
 from build_gold_corrections import (  # noqa: E402
@@ -76,10 +77,13 @@ def test_no_overlay_can_gate_a_promotion(dataset, lang):
     A corrected gold is derived twice over — from a base gold and then from an
     automated correction pass — so it can diagnose, never certify.
     """
-    tier = PROVENANCE[f"{dataset}_corrected"]
+    # Through provenance_for, not PROVENANCE: scoring resolves a row's tier
+    # that way, and a PROVENANCE_BY_LANG entry for the corrected dataset would
+    # override the dataset-wide tier this test used to read.
+    tier = provenance_for(f"{dataset}_corrected", lang)
     assert can_gate_promotion(tier) is False
     # and never more trustworthy than the base it was built from
-    assert tier == PROVENANCE[dataset]
+    assert tier == provenance_for(dataset, lang)
 
 
 def test_vi_tone_read_from_combining_marks_only():
@@ -162,22 +166,53 @@ def test_corrections_apply_only_on_an_exact_upstream_match():
     assert unmatched == len(read_gold_corrections("vox_communis", "vi")) - 1
 
 
-def test_overlay_never_imports_the_engine():
-    """The derivation path must not be able to consult orthography2ipa. A gold
-    repaired with this project's own answers would score beautifully and
-    measure nothing.
+def _engine_module_references(tree):
+    """Module names the source NAMES, by any of the routes that can reach one.
+
+    Plain imports are only the obvious route. ``main()`` does ``import
+    benchmark``, and scripts/benchmark.py imports the engine, so
+    ``orthography2ipa`` is already live in ``sys.modules`` while the overlay
+    builds: ``sys.modules[...]``, ``importlib.import_module(...)`` and
+    ``__import__(...)`` all reach it without an import statement. Those three
+    are read here as well.
+    """
+    named = set()
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Import):
+            named.update(alias.name for alias in node.names)
+        elif isinstance(node, ast.ImportFrom):
+            named.add(node.module or "")
+        elif isinstance(node, ast.Subscript):
+            target = ast.unparse(node.value)
+            if target.endswith("modules") and isinstance(node.slice, ast.Constant):
+                named.add(str(node.slice.value))
+        elif isinstance(node, ast.Call):
+            callee = ast.unparse(node.func)
+            if callee.endswith("import_module") or callee == "__import__":
+                for arg in node.args[:1]:
+                    if isinstance(arg, ast.Constant):
+                        named.add(str(arg.value))
+    return named
+
+
+def test_overlay_never_names_the_engine():
+    """The derivation path must not consult orthography2ipa. A gold repaired
+    with this project's own answers would score beautifully and measure
+    nothing.
+
+    This is a SPELLING check over the source, not a proof of unreachability:
+    the engine is live in ``sys.modules`` during the build (see
+    :func:`_engine_module_references`), so nothing can stop a determined
+    caller from getting at it. What the check does guarantee is that no route
+    to the engine is written down in the file, across all four ways of naming
+    a module.
     """
     path = os.path.join(os.path.dirname(__file__), "..", "scripts",
                         "build_gold_corrections.py")
     with open(path, encoding="utf-8") as fh:
         tree = ast.parse(fh.read())
-    imported = set()
-    for node in ast.walk(tree):
-        if isinstance(node, ast.Import):
-            imported.update(alias.name for alias in node.names)
-        elif isinstance(node, ast.ImportFrom):
-            imported.add(node.module or "")
-    assert not [m for m in imported if m.split(".")[0] == "orthography2ipa"]
+    named = _engine_module_references(tree)
+    assert not [m for m in named if m.split(".")[0] == "orthography2ipa"]
 
 
 def test_upstream_gold_file_is_not_shipped_alongside_the_overlay():
