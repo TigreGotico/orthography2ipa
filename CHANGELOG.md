@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.81.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.81.2a1) (2026-08-25)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.81.1a1...7.81.2a1)
+
+**Merged pull requests:**
+
+- fix\(fpe\): mark Pichi H-tone acute-vowel graphemes \(Yakpo 2019\) [\#1179](https://github.com/TigreGotico/orthography2ipa/pull/1179) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.81.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.81.1a1) (2026-08-25)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.81.0a4...7.81.1a1)
@@ -183,33 +191,33 @@
 
 ## [7.80.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.80.1a1) (2026-08-24)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.80.0a1...7.80.1a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.16a1...7.80.1a1)
 
 **Merged pull requests:**
 
 - fix\(mww\): emit RPA tone letters instead of silencing them [\#1113](https://github.com/TigreGotico/orthography2ipa/pull/1113) ([JarbasAl](https://github.com/JarbasAl))
 - fix\(kwk\): map the U'mista ejective/uvular/lateral-affricate series [\#1106](https://github.com/TigreGotico/orthography2ipa/pull/1106) ([JarbasAl](https://github.com/JarbasAl))
 
-## [7.80.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.80.0a1) (2026-08-24)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.16a1...7.80.0a1)
-
 ## [7.79.16a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.16a1) (2026-08-24)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.15a1...7.79.16a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.80.0a1...7.79.16a1)
+
+## [7.80.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.80.0a1) (2026-08-24)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.14a3...7.80.0a1)
 
 **Merged pull requests:**
 
 - feat: measure how much of a board row's gold is alphabet-chart noise [\#1118](https://github.com/TigreGotico/orthography2ipa/pull/1118) ([JarbasAl](https://github.com/JarbasAl))
 - fix\(tru\): map Gamal Garshuni, diagnose gold as mostly real words [\#1117](https://github.com/TigreGotico/orthography2ipa/pull/1117) ([JarbasAl](https://github.com/JarbasAl))
 
-## [7.79.15a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.15a1) (2026-08-24)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.14a3...7.79.15a1)
-
 ## [7.79.14a3](https://github.com/TigreGotico/orthography2ipa/tree/7.79.14a3) (2026-08-24)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.14a2...7.79.14a3)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.15a1...7.79.14a3)
+
+## [7.79.15a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.15a1) (2026-08-24)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.14a2...7.79.15a1)
 
 ## [7.79.14a2](https://github.com/TigreGotico/orthography2ipa/tree/7.79.14a2) (2026-08-24)
 
@@ -580,10 +588,6 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.76.8a1...7.76.9a1)
 
-**Merged pull requests:**
-
-- fix\(ru\): treat ж ш ц as hard for the consonant, not for the vowel; read the separative ⟨ь⟩ after them [\#983](https://github.com/TigreGotico/orthography2ipa/pull/983) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [7.76.8a1](https://github.com/TigreGotico/orthography2ipa/tree/7.76.8a1) (2026-08-18)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.76.7a1...7.76.8a1)
@@ -678,10 +682,6 @@
 ## [7.75.11a1](https://github.com/TigreGotico/orthography2ipa/tree/7.75.11a1) (2026-08-17)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.75.10a1...7.75.11a1)
-
-**Merged pull requests:**
-
-- fix\(es\): strengthen word-initial hi-, map the tx digraph and cover accented y [\#985](https://github.com/TigreGotico/orthography2ipa/pull/985) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.75.10a1](https://github.com/TigreGotico/orthography2ipa/tree/7.75.10a1) (2026-08-17)
 
