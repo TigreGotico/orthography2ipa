@@ -240,6 +240,7 @@ below.
 | [positional_graphemes.md](positional_graphemes.md) | Context-sensitive grapheme overrides |
 | [adding_a_language.md](adding_a_language.md) | How to add a new language spec |
 | [linguistic_accuracy.md](linguistic_accuracy.md) | Data quality standards and sourcing rules |
+| [known_limitations.md](known_limitations.md) | What the specs say they do not do, classified and sized |
 | [ipa_reference.md](ipa_reference.md) | IPA symbol reference with Unicode code points |
 | [bibliography.md](bibliography.md) | Citation management, `LinguisticSource` |
 | [quality_tiers.md](quality_tiers.md) | What `stub`/`skeleton`/`research`/`production` require |
