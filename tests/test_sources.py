@@ -22,6 +22,19 @@ _WIKIPEDIA_RE = re.compile(
     r"^https://[a-z]{2,}\.wikipedia\.org/wiki/.+$"
 )
 _URL_RE = re.compile(r"^https?://")
+_WIKIPEDIA_AUTHOR_RE = re.compile(r"^\s*wikipedia", re.IGNORECASE)
+
+
+def _is_bare_wikipedia_pointer(source: dict) -> bool:
+    """A source entry is a bare Wikipedia pointer when it names no real
+    author -- i.e. its ``author`` is absent or is itself "Wikipedia" /
+    "Wikipedia contributors" -- regardless of whether a ``wikipedia_url``
+    key happens to be present (even as ``null``). An entry with a real
+    author and title is a citation even if it also carries a
+    ``wikipedia_url`` cross-reference.
+    """
+    author = source.get("author")
+    return not author or bool(_WIKIPEDIA_AUTHOR_RE.match(author))
 
 
 def _all_codes():
@@ -141,6 +154,120 @@ def test_source_wikipedia_urls_point_to_wikipedia(code: str, path: str) -> None:
             )
 
 
+# ── Ratchet: sources[] must not be all-Wikipedia ─────────────────────────
+#
+# A `sources` entry whose only content is a `wikipedia_url` is not a
+# citation for a phonological claim -- it ships an encyclopedia article as
+# the authority for a phoneme, when the top-level `wikipedia` field already
+# exists for that purpose (see the Sources Schema section of SCHEMA.md).
+# Carrying a `wikipedia_url` key (even a null one, e.g. for schema
+# uniformity across a spec's entries) does not by itself make an entry a
+# bare pointer: an entry with a real author and title is a citation
+# regardless.
+#
+# The codes below predate this test and are grandfathered in. This list may
+# only SHRINK: fixing a code means replacing its bare-Wikipedia-pointer
+# `sources` entries with the real work the Wikipedia article cites (a
+# reference grammar, a paper, a university dataset, or -- for a language
+# with an active community orthography -- the publication of the body that
+# publishes it), then deleting the code from this set. No code may be added
+# to it; a new or edited spec must satisfy test_sources_not_all_wikipedia
+# directly.
+_WIKIPEDIA_ONLY_SOURCES_BURNDOWN = frozenset({
+    'aae', 'ace', 'aja', 'aju', 'aln', 'als', 'ami', 'anp',
+    'av', 'ban', 'bar', 'bpy', 'btm', 'cay', 'ce', 'chm',
+    'cnr', 'cpg', 'crh', 'csb', 'dsb', 'dtp', 'dty', 'el-CY',
+    'fj', 'gmy', 'gnc', 'hif', 'hsb', 'iba', 'ig', 'ik',
+    'jv', 'kaa', 'kbp', 'kk', 'koi', 'ku', 'kv', 'ky',
+    'lah', 'lb', 'ln', 'lt', 'lua', 'lv', 'mad', 'mnw',
+    'mt', 'myv', 'na', 'nd', 'nr', 'one', 'pag', 'pcd',
+    'pfl', 'pnt', 'pwn', 'quy', 'rki', 'rom', 'rue', 'rup',
+    'sah', 'se', 'sgs', 'sq', 'ss', 'su', 'szl', 'ti',
+    'tly', 'tsd', 'ty', 'udm', 'uga', 've', 'vls', 'vro',
+    'x-clade-doric-greek', 'xal', 'xls', 'xmf', 'yue', 'za',
+})
+
+
+@pytest.mark.linguistic
+@pytest.mark.parametrize("code,path", _ALL, ids=[c for c, _ in _ALL])
+def test_sources_not_all_wikipedia(code: str, path: str) -> None:
+    """A non-empty sources[] must not consist entirely of bare Wikipedia pointers.
+
+    Wikipedia is a reading path into the literature, not itself a citable
+    source for a phonological claim -- that's what the top-level `wikipedia`
+    field is for. An entry is a bare Wikipedia pointer when its `author` is
+    absent or is itself "Wikipedia" / "Wikipedia contributors"; a
+    `wikipedia_url` key present on an otherwise-real citation (even as
+    `null`, or as a cross-reference alongside a real author and title) does
+    not make it one. If every entry in `sources` is a bare pointer, the spec
+    has no actual citation. To fix: find the work the Wikipedia article
+    cites (Glottolog's reference list for the language code is the fastest
+    route) and replace the entry with that work's real author, year, and
+    title.
+    """
+    if code in _WIKIPEDIA_ONLY_SOURCES_BURNDOWN:
+        pytest.skip(
+            f"{code}: pre-existing all-bare-Wikipedia-pointer sources[], "
+            f"tracked in the burn-down list (_WIKIPEDIA_ONLY_SOURCES_BURNDOWN)"
+        )
+    with open(path) as f:
+        data = json.load(f)
+    sources = data.get("sources", [])
+    if not sources:
+        return
+    assert not all(_is_bare_wikipedia_pointer(s) for s in sources), (
+        f"{code}: sources[] consists entirely of bare Wikipedia pointers "
+        f"(no real author). Wikipedia is a reading path, not a citation -- "
+        f"cite the work the article itself cites instead (real author, "
+        f"year, title). Wikipedia URLs belong in the top-level 'wikipedia' "
+        f"field, or as a 'wikipedia_url' cross-reference on a real citation."
+    )
+
+
+# ── Predicate unit tests: _is_bare_wikipedia_pointer / all-Wikipedia check ──
+
+
+def test_predicate_all_bare_wikipedia_pointers_fails():
+    """A sources[] of only bare Wikipedia pointers must be flagged."""
+    sources = [
+        {"id": "w1", "author": "Wikipedia contributors", "year": 2024,
+         "title": "Some Language", "wikipedia_url": "https://en.wikipedia.org/wiki/Some_Language"},
+        {"id": "w2", "author": "Wikipedia contributors", "year": 2024,
+         "title": "Some Language phonology", "wikipedia_url": "https://en.wikipedia.org/wiki/Some_Language_phonology"},
+    ]
+    assert all(_is_bare_wikipedia_pointer(s) for s in sources)
+
+
+def test_predicate_real_citation_with_null_wikipedia_url_key_passes():
+    """A real citation that merely carries a null 'wikipedia_url' key for
+    schema uniformity is not a bare pointer -- this is the false-positive
+    case the old key-presence check got wrong."""
+    sources = [
+        {"id": "khan2016", "author": "Khan, G.", "year": 2016,
+         "title": "The Neo-Aramaic Dialect of the Assyrian Christians of Urmi",
+         "wikipedia_url": None},
+    ]
+    assert not all(_is_bare_wikipedia_pointer(s) for s in sources)
+
+
+def test_predicate_real_citation_with_genuine_wikipedia_cross_reference_passes():
+    """A real citation that also carries a genuine wikipedia_url
+    cross-reference is still a real citation, not a bare pointer."""
+    sources = [
+        {"id": "odisho1988", "author": "Odisho, E. Y.", "year": 1988,
+         "title": "The Sound System of Modern Assyrian",
+         "wikipedia_url": "https://en.wikipedia.org/wiki/Assyrian_Neo-Aramaic"},
+    ]
+    assert not all(_is_bare_wikipedia_pointer(s) for s in sources)
+
+
+def test_predicate_empty_sources_passes():
+    """An empty sources[] is not flagged by this ratchet (a separate test
+    requires non-stub languages to have sources at all)."""
+    sources = []
+    assert not sources or not all(_is_bare_wikipedia_pointer(s) for s in sources)
+
+
 # ── Top-level wikipedia field tests ──────────────────────────────────────
 
 
@@ -216,6 +343,68 @@ def test_linguistic_source_wikipedia_url_defaults_none() -> None:
     from orthography2ipa.types import LinguisticSource
     src = LinguisticSource(id="x", author="A.", year=2000, title="T")
     assert src.wikipedia_url is None
+
+
+def test_linguistic_source_has_doi_field() -> None:
+    """LinguisticSource dataclass exposes doi field."""
+    from orthography2ipa.types import LinguisticSource
+    src = LinguisticSource(
+        id="test2024",
+        author="Test, A.",
+        year=2024,
+        title="Test Title",
+        doi="10.1017/S0025100323000105",
+    )
+    assert src.doi == "10.1017/S0025100323000105"
+
+
+def test_linguistic_source_doi_defaults_none() -> None:
+    """LinguisticSource.doi defaults to None."""
+    from orthography2ipa.types import LinguisticSource
+    src = LinguisticSource(id="x", author="A.", year=2000, title="T")
+    assert src.doi is None
+
+
+def test_doi_round_trips_through_loader() -> None:
+    """A doi in a source's JSON entry survives loading onto LinguisticSource."""
+    import json
+    import tempfile
+    import os
+    from orthography2ipa import json_loader
+    from orthography2ipa.json_loader import load_json_spec
+
+    stub = {
+        "code": "xx-test-doi",
+        "name": "Test Language",
+        "family": "Test",
+        "script": "Latin",
+        "graphemes": {"a": ["a"]},
+        "allophones": {},
+        "sources": [
+            {
+                "id": "test2024",
+                "author": "Test, A.",
+                "year": 2024,
+                "title": "A Test Grammar",
+                "doi": "10.1017/S0025100323000105",
+            }
+        ],
+    }
+    with tempfile.NamedTemporaryFile(
+        mode="w", suffix=".json", delete=False, dir=_DATA_DIR
+    ) as fh:
+        json.dump(stub, fh)
+        tmp_path = fh.name
+
+    try:
+        from pathlib import Path
+        json_loader._index["xx-test-doi"] = Path(tmp_path)
+        spec = load_json_spec("xx-test-doi")
+        assert spec.sources[0].doi == "10.1017/S0025100323000105"
+    finally:
+        os.unlink(tmp_path)
+        json_loader._index.pop("xx-test-doi", None)
+        json_loader._specs.pop("xx-test-doi", None)
 
 
 def test_language_spec_wikipedia_is_tuple() -> None:
