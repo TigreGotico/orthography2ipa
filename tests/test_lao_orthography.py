@@ -219,3 +219,38 @@ def test_the_e_o_circumfix_keeps_its_preposed_nucleus(lo):
 )
 def test_bare_wa_between_consonants_is_the_nucleus(lo):
     assert lo.transcribe("ຫຼວງ") == "luːə̯ŋ"
+
+
+@pytest.mark.parametrize("word,ipa", [
+    ("ກິໂລ", "kiloː"),   # ⟨ໂ⟩ + ⟨ລ⟩: the liquid opens the final syllable
+    ("ທະເລ", "tʰaʔleː"),  # ⟨ເ⟩ + ⟨ລ⟩: likewise
+    ("ໄຫລ", "laj"),      # word-final ho-nam ⟨ຫລ⟩: the liquid is the onset
+])
+def test_a_word_final_liquid_letter_may_still_be_an_onset(lo, word, ipa):
+    """Word-final ⟨ລ ຣ⟩ is not a coda environment.
+
+    Lao admits no liquid coda (Enfield 2007, *A Grammar of Lao*), but the
+    letter's position in the string does not tell you it is in one. Six of
+    the nine kaikki gold words ending in ⟨ລ⟩ or ⟨ຣ⟩ have it as an onset:
+    four because the syllable's vowel is a preposed sign written before it,
+    two because it is the subscript of a word-final ho-nam ⟨ຫຼ⟩. A rule
+    conditioned on word-final position alone would neutralise all six.
+    """
+    assert lo.transcribe(word) == ipa
+
+
+@pytest.mark.xfail(
+    reason="The three kaikki gold words whose word-final ⟨ລ ຣ⟩ really is a "
+           "coda are not one phenomenon. ⟨ນຄຣ⟩ and ⟨ທຫາຣ⟩ are abbreviated "
+           "etymological Indic spellings of ⟨ນະຄອນ⟩ and ⟨ທະຫານ⟩, both of "
+           "which are in the same gold with the same pronunciation and are "
+           "read correctly here; recovering them needs the unwritten ⟨ະ⟩ "
+           "and ⟨ອ⟩ supplied, not a liquid neutralised. ⟨ອີແມລ⟩ is the "
+           "English loan 'email', one word whose final /l/ is nativised to "
+           "/n/. Two unrelated causes over three words do not establish a "
+           "rule, and the only rule they motivate breaks the six onset "
+           "spellings above.",
+    strict=True,
+)
+def test_an_abbreviated_indic_spelling_is_read_as_its_full_spelling(lo):
+    assert lo.transcribe("ນຄຣ") == lo.transcribe("ນະຄອນ")
