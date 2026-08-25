@@ -2989,6 +2989,29 @@ PROVENANCE: Dict[str, str] = {
     "coruss_ru": "expert-human",
 }
 
+# The dataset-wide "lexicon-derived" tier for portuguese_unified is earned by
+# its Infopedia/Portal/Wiktionary majority, but the ``pt-TL-x-dili`` region
+# (the ONLY gold this row draws on, per `_PT_UNIFIED_REGIONS`) is not
+# independent Timorese lexicography: diffed word-for-word against
+# ``pt-PT-x-lisboa`` (measured 2026-08, cached
+# portuguese_pronunciation_lexicon.jsonl, 53,147 shared words), the two
+# columns are near-total 1:1 CHARACTER substitutions — ɐ→ə (28,713
+# occurrences), u→ʊ (11,653), ʀ→r (3,994), ɫ→w (1,681), d→ð (212), g→ɣ
+# (146) — not independently collected phonetic fieldwork. Substituting a
+# symbol for European Portuguese's centralised unstressed vowel does not
+# remove it: 60% of ``pt-TL-x-dili`` rows still contain a reduced [ə] and
+# 31% a reduced final [ʊ], and coda /s/ still surfaces as the Lisbon
+# "chiado" [ʃ] (e.g. gold ``instrumentista`` → [ĩʃtɾumẽntˈiʃtə]). Albuquerque
+# (2010:275, fn.7; 277), the spec's primary source, documents the opposite
+# for this variety — no unstressed-vowel reduction and an alveolar (non-hush)
+# coda /s/ — so this gold measures conformity to a re-symbolized European
+# Portuguese, not to the acrolectal East Timorese Portuguese the spec
+# models. Downgraded from the dataset default so a low PER here can never be
+# read as "the spec is wrong" and a high PER never gates a promotion.
+_PT_UNIFIED_PROVENANCE: Dict[str, str] = {
+    "pt-TL": "machine-generated",
+}
+
 # Per-LANGUAGE provenance overrides, for datasets that are not one source but a
 # COLLECTION of independently-sourced files. A single dataset-wide tier lies
 # about such a dataset: ipa-dict ships a human Icelandic dictionary, a
@@ -2999,6 +3022,7 @@ PROVENANCE: Dict[str, str] = {
 PROVENANCE_BY_LANG: Dict[str, Dict[str, str]] = {
     "ipadict": _IPADICT_PROVENANCE,
     "ipa_childes": _IPA_CHILDES_PROVENANCE,
+    "portuguese_unified": _PT_UNIFIED_PROVENANCE,
 }
 
 

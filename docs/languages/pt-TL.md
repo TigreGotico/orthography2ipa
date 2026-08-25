@@ -67,9 +67,25 @@ end or exceed the base engine's capabilities, so they are recorded in the spec
 
 `research`, not `production`: grounded in one fully-read primary
 phonological/prosodic source (Albuquerque 2010) plus the EP inventory baseline
-(Mateus & d'Andrade 2000, quoted via Albuquerque 2010:276). **No gold
-benchmark** exists for this small L2 variety, so PER cannot be measured, the
-production bar (gold n≥500) is unreachable at present.
+(Mateus & d'Andrade 2000, quoted via Albuquerque 2010:276).
+
+A 53,147-word gold is scored against this spec (`portuguese_unified`'s
+`pt-TL-x-dili` region), but it is classified `machine-generated`, not
+`lexicon-derived`. Diffed word-for-word against `pt-PT-x-lisboa` over the same
+53,147 shared words, `pt-TL-x-dili` is a near-total 1:1 character
+substitution of the Lisbon entries — ɐ→ə (28,713 occurrences), u→ʊ (11,653),
+ʀ→r (3,994), ɫ→w (1,681), d→ð (212), g→ɣ (146), measured 2026-08 against the
+cached `portuguese_pronunciation_lexicon.jsonl` — not independently collected
+Timorese lexicography. Swapping the symbol for the reduced vowel does not
+remove the reduction: 60% of `pt-TL-x-dili` rows still contain a reduced [ə]
+and 31% a reduced final [ʊ], and coda /s/ still surfaces as the Lisbon
+"chiado" [ʃ] (e.g. `instrumentista` → [ĩʃtɾumẽntˈiʃtə]). Albuquerque
+(2010:275 fn.7, 277) — this spec's own primary source — documents the
+opposite for East Timorese Portuguese: no unstressed-vowel reduction and an
+alveolar, non-hush coda /s/. The gold therefore measures agreement with a
+re-symbolized European Portuguese, not the acrolectal variety this spec
+models, and a low or high PER on this row cannot certify or block the spec
+(production bar gold n≥500 is met in row-count only, not in reliability).
 
 ## Sources
 

@@ -121,7 +121,7 @@ stated rather than papered over.
 | `4catac` | expert-human | Expert annotators (Projecte AINA/BSC) | IEC guidelines, multi-annotator consensus review. Sentence-level, `N=160`, `0.00` exact-match reflects notation/connected-speech mismatch, not total failure. |
 | `clup_dialect` | expert-human | U.Porto CLUP dialect archive | Interview corpus is expert university dialectology, **but who/what produced the IPA column (`ArquivoDialetalCLUP_ipa`) is not documented in the loader or dataset card: treat the tier as "best case".** Many rows `N=1-17`: read the CI, not the point PER. |
 | `coruss_ru` | expert-human | SPbU phonetics lab, transcribed from audio | The CoRuSS phonetic dictionaries (Kachkovskaia et al. 2016, LREC), published by the Saint Petersburg State University phonetics lab as a RAR archive of `word [transcription] count` rows over read speech, monologues and dialogue. Expert human transcription with no engine in the loop, in the lab's own ASCII notation (documented at [russpeech.spbu.ru/transkrip.htm](https://russpeech.spbu.ru/transkrip.htm)) mapped to IPA by the loader. **Surface-phonetic and colloquial**: it records what a speaker actually said in unscripted conversation, syllable deletions and all (⟨Александровна⟩ [lʲiksanə], ⟨Волгоград⟩ [vodɡrat]), so a G2P cannot reach a low PER here and is not meant to. Read the number as the distance to spontaneous-speech surface forms and compare it only against other runs on this dataset, never against a lexicon gold's PER. Every attested realization of a wordform is kept, so the row is multi-reference. |
-| `portuguese_unified` | lexicon-derived | Infopédia + Portal da Língua Portuguesa + pt.wiktionary.org (convention-normalized merge) | Single Portuguese gold (`TigreGotico/portuguese-unified-pronunciation-lexicon`, ~598k rows / 122k words, CC BY-SA 4.0), replacing the three separate golds it merges. One region per registered tag (see `_PT_UNIFIED_REGIONS`). `ipa_narrow` is scored. Untagged plain-`pt` rows are excluded. The Infopédia/Portal majority is dictionary/semi-automated lexicography and the Wiktionary minority is crowd-scraped: directional, not peer-validated ground truth. |
+| `portuguese_unified` | lexicon-derived, **`pt-TL` overridden to `machine-generated`** (see below) | Infopédia + Portal da Língua Portuguesa + pt.wiktionary.org (convention-normalized merge) | Single Portuguese gold (`TigreGotico/portuguese-unified-pronunciation-lexicon`, ~598k rows / 122k words, CC BY-SA 4.0), replacing the three separate golds it merges. One region per registered tag (see `_PT_UNIFIED_REGIONS`). `ipa_narrow` is scored. Untagged plain-`pt` rows are excluded. The Infopédia/Portal majority is dictionary/semi-automated lexicography and the Wiktionary minority is crowd-scraped: directional, not peer-validated ground truth. |
 | `cmudict` | lexicon-derived | CMU Speech Group (hand-curated ARPABET) | Human labels, but **mechanically mapped ARPABET→IPA** via `scriptconv`. The transform adds artifacts. |
 | `ipadict` | **per-language** (see below) | Depends on the file: human dictionaries, Wiktionary scrapes, rule scripts, **espeak** | The only mixed-provenance dataset here: ipa-dict is a *collection* of independently sourced files, so each row carries the tier of the file it was scored against, not a dataset-wide tier. Full per-language table in [ipa-dict pronunciation dictionaries](#ipa-dict-pronunciation-dictionaries-ipadict). |
 | `wikipron` | crowd-scraped | Wiktionary editors | Quality tracks community size. Some entries are editor-rule output, not attested. Multiple valid variants per word. **On a few small-community tags the IPA column is not editor-typed at all but the output of a Wiktionary Lua module, which makes those rows a reproduction test rather than an accuracy test: see [Module-generated WikiPron rows](#module-generated-wikipron-rows).** |
@@ -236,6 +236,21 @@ One region is scored per registered language tag (`_PT_UNIFIED_REGIONS`):
 plain-`pt` rows (pan-Portuguese, 944) are excluded from every regional row.
 The whole file is read and a fixed-seed random sample of up to `limit`
 words is drawn per region (alphabetical heads would be biased).
+
+**`pt-TL` carries a per-language override, `machine-generated`** (see
+`PROVENANCE_BY_LANG["portuguese_unified"]`), not the dataset-wide
+`lexicon-derived`. Diffed word-for-word against `pt-PT-x-lisboa` over the
+53,147 words the two regions share, `pt-TL-x-dili` is a near-total 1:1
+character correspondence with the Lisbon entries (ɐ→ə in 28,713 words, u→ʊ
+in 11,653, ʀ→r in 3,994, ɫ→w in 1,681, d→ð in 212, g→ɣ in 146 — measured
+2026-08), and it still keeps Lisbon-style unstressed-vowel reduction (60%
+of rows keep a reduced [ə], 31% a reduced final [ʊ]) and the Lisbon "chiado"
+coda /s/→[ʃ]. The `pt-TL` spec's primary source (Albuquerque 2010:275 fn.7,
+277) documents the opposite for East Timorese Portuguese — no
+unstressed-vowel reduction, alveolar (non-hush) coda /s/ — so this row
+measures agreement with a re-symbolized European Portuguese, not the
+acrolectal variety the spec models. It can never gate a quality decision
+on `pt-TL` (see `docs/languages/pt-TL.md`).
 
 ### WikiPron
 

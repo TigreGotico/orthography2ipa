@@ -545,7 +545,7 @@ A row's `N` is its sample size in scored words, and it is not cosmetic: below ro
 | pt-PT-x-viana | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | pt-ST | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | pt-TL | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-TL | portuguese_unified | 53147 | 0.3643 | 0.3378 | 0.3194 | 0.0191 | 0.0240 | [0.3631, 0.3655] | 0.0151 | research | lexicon-derived |
+| pt-TL | portuguese_unified | 53147 | 0.3643 | 0.3378 | 0.3194 | 0.0191 | 0.0240 | [0.3631, 0.3655] | 0.0151 | research | machine-generated |
 | pt-UY | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | quz | ipa_childes | 1853 | 0.3549 | 0.3549 | 0.3549 | 0.0621 | 0.0621 | [0.3463, 0.3623] | 0.0621 | research | espeak-derived |
 | rgn | wikipron | 261 | 0.3270 | 0.3270 | 0.3270 | 0.1226 | 0.1226 | [0.2970, 0.3597] | 0.1226 | research | crowd-scraped |
