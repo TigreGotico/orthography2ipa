@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.82.15a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.15a1) (2026-08-25)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.14a1...7.82.15a1)
+
+**Merged pull requests:**
+
+- fix\(ota\): accept both codepoints of every confusable Ottoman letter [\#1243](https://github.com/TigreGotico/orthography2ipa/pull/1243) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.82.14a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.14a1) (2026-08-25)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.13a1...7.82.14a1)
@@ -367,20 +375,20 @@
 
 ## [7.80.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.80.1a1) (2026-08-24)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.16a1...7.80.1a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.80.0a1...7.80.1a1)
 
 **Merged pull requests:**
 
 - fix\(mww\): emit RPA tone letters instead of silencing them [\#1113](https://github.com/TigreGotico/orthography2ipa/pull/1113) ([JarbasAl](https://github.com/JarbasAl))
 - fix\(kwk\): map the U'mista ejective/uvular/lateral-affricate series [\#1106](https://github.com/TigreGotico/orthography2ipa/pull/1106) ([JarbasAl](https://github.com/JarbasAl))
 
-## [7.79.16a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.16a1) (2026-08-24)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.80.0a1...7.79.16a1)
-
 ## [7.80.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.80.0a1) (2026-08-24)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.15a1...7.80.0a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.16a1...7.80.0a1)
+
+## [7.79.16a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.16a1) (2026-08-24)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.15a1...7.79.16a1)
 
 **Merged pull requests:**
 
@@ -615,10 +623,6 @@
 ## [7.78.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.78.0a1) (2026-08-23)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.77.0a1...7.78.0a1)
-
-**Merged pull requests:**
-
-- feat: fill in the Old Irish spec \(sga 0.4192 -\> 0.0889\) [\#1033](https://github.com/TigreGotico/orthography2ipa/pull/1033) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.77.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.77.0a1) (2026-08-23)
 
