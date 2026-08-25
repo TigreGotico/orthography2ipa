@@ -6,7 +6,9 @@ reading would get wrong: b/d/g/r are approximants or flaps, not the stops or
 trill an English reader expects, e is a true mid vowel rather than [ɛ], and o
 is a low back vowel [ɑ]. The digraph series ph/th/kh/kwh/čh (and ch, which is
 itself the aspirated affricate) mark aspiration and must win over decomposing
-into the plain consonant plus a bare h.
+into the plain consonant plus a bare h. A standalone ⟨h⟩ is [h] word-initially
+and [ʔ] everywhere else, so the same letter is a fricative at the front of a
+word and a glottal stop inside one.
 
 Every pair below is drawn verbatim from the upstream WikiPron gold
 (CUNY-CL/wikipron, data/scrape/tsv/wiy_latn_broad.tsv) and cross-checked
@@ -25,7 +27,7 @@ def test_d_is_an_alveolar_flap():
 
 
 def test_g_is_a_velar_fricative():
-    assert transcribe("toyagáhla", "wiy") == "tɑjaɣáhla"
+    assert transcribe("toyagáhla", "wiy") == "tɑjaɣáʔla"
 
 
 def test_r_is_an_alveolar_approximant():
@@ -34,7 +36,7 @@ def test_r_is_an_alveolar_approximant():
 
 def test_e_is_a_true_mid_vowel_not_open_mid():
     out = transcribe("dihrétoruy", "wiy")
-    assert out == "ɾihɹétɑɹuj"
+    assert out == "ɾiʔɹétɑɹuj"
     assert "ɛ" not in out
 
 
@@ -48,7 +50,7 @@ def test_o_is_a_low_back_vowel():
 def test_aspirated_ph_th_kh_digraphs_win_over_plain_consonant_plus_h():
     assert transcribe("khápt", "wiy") == "kʰápt"
     assert transcribe("thígadił", "wiy") == "tʰíɣaɾiɬ"
-    assert transcribe("phicúhlokš", "wiy") == "pʰitsúhlɑkʃ"
+    assert transcribe("phicúhlokš", "wiy") == "pʰitsúʔlɑkʃ"
 
 
 def test_kwh_and_ch_digraphs_are_aspirated():
@@ -61,3 +63,26 @@ def test_ch_is_aspirated_tsh_not_tsh_unaspirated_or_tsh_palatal():
     out = transcribe("bacadàk", "wiy")
     assert "ts" in out
     assert "tʃ" not in out
+
+
+def test_standalone_h_is_a_glottal_stop_inside_a_word():
+    assert transcribe("báhlawal", "wiy") == "βáʔlawal"
+    assert transcribe("bóhn", "wiy") == "βɑ́ʔn"
+    assert transcribe("bíwih", "wiy") == "βíwiʔ"
+
+
+def test_word_initial_h_stays_a_fricative():
+    assert transcribe("hałkàn", "wiy") == "haɬkàn"
+    assert transcribe("hutwùy", "wiy") == "hutwùj"
+    # both values of the letter in one word: [h] at the front, [ʔ] inside
+    assert transcribe("híh", "wiy") == "híʔ"
+    assert transcribe("hihłòkw", "wiy") == "hiʔɬɑ̀kʷ"
+
+
+def test_aspiration_digraphs_are_not_touched_by_the_positional_h():
+    assert transcribe("bakhàs", "wiy") == "βakʰàs"
+    assert transcribe("bíkwhal", "wiy") == "βíkʷʰal"
+
+
+def test_the_apostrophe_still_spells_a_glottal_stop():
+    assert transcribe("ba'", "wiy") == "βaʔ"
