@@ -24,9 +24,21 @@ A vowel that an ⟨m⟩ or ⟨n⟩ onsets is itself nasal for /i a ɔ u/, and th
 
 Notation order matters here. The nasalisation tilde is written before the tone mark, so that u + tilde + acute composes to the standard ṹ rather than to a string that merely looks the same.
 
+## The syllabic nasal
+
+Yoruba permits only open syllables, so an ⟨n⟩ that is followed by a consonant is never a coda. It is one of two things: the nasalisation mark of the vowel before it, or a syllable nucleus in its own right — a syllabic nasal that carries its own tone.
+
+Which of the two applies is decided by the vowel. The nasal-vowel reading needs a vowel that has a nasal counterpart, and Yoruba has only /ĩ ɛ̃ ã ɔ̃ ũ/. Where no such vowel is available the syllabic reading is the only one left, and that is where the spec applies it: ⟨n⟩ before a consonant with nothing or another consonant in front of it — ⟨nkọ⟩ /ŋ̩̄kɔ̄/, ⟨njẹ⟩, ⟨nnkan⟩ — and ⟨n⟩ after ⟨e⟩ or ⟨o⟩, neither of which has a nasal counterpart: ⟨Aderonkẹ⟩ /ādēɾōŋ̩̄kɛ̄/, ⟨otente⟩. Longest-match tokenisation performs the selection unaided, because ⟨an in ọn un ẹn⟩ are longer graphemes and take precedence, so a single `before_consonant` override on ⟨n⟩ reaches exactly the residue and nothing else. The gold agrees in that residue without exception: a velar nasal in 11 of 11 word-initial words, 5 of 5 after a consonant, 28 of 28 after ⟨o⟩ and 5 of 5 after ⟨e⟩.
+
+Adding the nucleus adds a tone slot, which is the point. On the 536 gold words with an ⟨n⟩ before a consonant, the share whose output has the same number of tone-bearing units as the gold rises from 369 to 419.
+
+The spec emits one velar and does not guess a place of articulation from the spelling, although the reference grammars describe the syllabic nasal as homorganic with what follows. Standard Yoruba already spells the labial variant ⟨m⟩ — ⟨òrombó⟩ "orange" — so an orthographic ⟨n⟩ before a labial is not evidence of a labial nasal. The gold takes the same view and transcribes a velar in every nasal-before-consonant environment it contains, including 23 words spelt ⟨n⟩ before ⟨b p f⟩ (⟨Ganbia⟩ ɡáŋ́bíà, ⟨danpara⟩ dáŋ̀k͡pá) and 19 spelt ⟨m⟩ before a consonant (⟨Abimbọla⟩ ābíŋ̄bɔ́lá). No word in it transcribes a labial or alveolar nasal there. Emitting [m̩] before a labial would be a phonetic refinement the gold cannot confirm and would contradict in 42 words.
+
+Syllabicity is written with ◌̩, matching the ⟨ń⟩ and ⟨ǹ⟩ entries the spec already carried. The gold writes a bare ŋ with a tone mark instead. That notation difference costs 0.0017 PER on the wikipron row and is a convention, not an error.
+
 ## What is deliberately not modelled
 
-The syllabic nasal written ⟨n⟩ before a consonant (⟨nkọ⟩, ⟨njẹ⟩) is left as /n/. Its place of articulation is analysis-dependent — homorganic assimilation in the reference grammars, a flat [ŋ] in the transcription tradition the benchmark gold follows — and the gold itself is split for medial ⟨Vn⟩ + consonant, reading it as a nasal vowel in 367 tokens and as a syllabic [ŋ] in 148. The majority reading is what the nasal-vowel rule already produces, so the spec keeps it and does not add a rule it cannot source cleanly.
+⟨n⟩ before a consonant after ⟨a i ọ u ẹ⟩ stays a nasal vowel. Both readings are available there, the gold genuinely splits — 109 words take the syllabic nasal against 375 that take the nasal vowel — and no orthographic condition separates them. That residue holds most of the gold's remaining ŋ.
 
 Downstep is not modelled. The wikipron gold marks it, but the orthography does not record it, so it is not recoverable from spelling. Neither are the ⟨ị⟩ and ⟨ụ⟩ of the extended orthography a minority of gold entries use: they are unmapped, and therefore dropped.
 
