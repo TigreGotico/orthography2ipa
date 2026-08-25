@@ -185,7 +185,7 @@ A row's `N` is its sample size in scored words, and it is not cosmetic: below ro
 | ckb | vox_communis | 26140 | 0.2607 | 0.2337 | 0.2318 | 0.1511 | 0.1511 | [0.2584, 0.2629] | 0.1436 | research | epitran-derived |
 | ckb | wikipron | 972 | 0.2107 | 0.1789 | 0.1769 | 0.3066 | 0.3086 | [0.1991, 0.2222] | 0.2726 | research | crowd-scraped |
 | ckt | northeuralex | 993 | 0.0972 | 0.0972 | 0.0972 | 0.5801 | 0.5801 | [0.0887, 0.1055] | 0.5801 | research | lexicon-derived |
-| cnk | wikipron | 342 | 0.5020 | 0.5020 | 0.5020 | 0.0000 | 0.0000 | [0.4846, 0.5199] | 0.0000 | research | crowd-scraped |
+| cnk | wikipron | 342 | 0.2608 | 0.2592 | 0.2592 | 0.0000 | 0.0000 | [0.2540, 0.2680] | 0.0000 | research | crowd-scraped |
 | co | wikipron | 459 | 0.1955 | 0.1171 | 0.1055 | 0.5708 | 0.5991 | [0.1782, 0.2132] | 0.3834 | research | crowd-scraped |
 | cop | wikipron | 591 | 0.3667 | 0.3667 | 0.3667 | 0.1032 | 0.1032 | [0.3470, 0.3863] | 0.1032 | research | crowd-scraped |
 | cri | primary_sources | 13† | 0.2147 | 0.2019 | 0.2019 | 0.3077 | 0.3077 | [0.1243, 0.3116] | 0.2308 | research | expert-human |
