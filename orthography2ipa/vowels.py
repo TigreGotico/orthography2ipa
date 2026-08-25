@@ -132,7 +132,44 @@ _ORTHOGRAPHIC_VOWELS = frozenset(
     # and й (/j/) are deliberately excluded, as are the vowel-less signs
     # ь and ъ.
     "аеёиоуыэюяіїєѐѝ"
+    # Cyrillic vowel letters with no canonical decomposition. Unicode gives
+    # each of them a name built on a vowel — SCHWA, BARRED O, STRAIGHT U,
+    # STRAIGHT U WITH STROKE, LIGATURE A IE — and each is a vowel letter of a
+    # living alphabet: ә ө ү ұ across Turkic and Mongolic (Kazakh writes all
+    # four), ӕ in Ossetian. Because they decompose to nothing, no base-letter
+    # rule can reach them; they have to be named here.
+    #
+    # The letters whose Unicode name is not built on a vowel are DEFERRED, not
+    # handled: the Bulgarian yer ⟨ъ⟩ (⟨ɤ⟩ in bg.json), the yat ⟨ѣ⟩ and the
+    # yuses ⟨ѫ ѧ⟩ in cu/orv, and ⟨ԑ⟩ in enf are all written vowels their specs
+    # map to a single vowel, yet grapheme_is_vowel still calls them consonants
+    # and no spec can override that — none of those specs declares
+    # vowel_graphemes, and the closed-inventory rule ignores the grapheme table
+    # for Cyrillic anyway. Naming them by Unicode name would be wrong (their
+    # names are not built on a vowel) and naming them by hand would need a
+    # criterion this set does not have, so they wait for a spec-level channel.
+    "әөүұӕ"
 )
+
+#: Cyrillic letters that decompose to a vowel base but are glides, not vowels.
+#: ⟨й⟩ is ⟨и⟩ under a breve and ⟨ў⟩ is ⟨у⟩ under a breve, yet both write a
+#: glide, so the base-letter fallback in :func:`is_orthographic_vowel` must
+#: refuse them by name. The breve is the shared cross-linguistic device: every
+#: Cyrillic orthography that uses these letters uses them for the same two
+#: glides, which is why this is one engine-level set and not a per-spec
+#: declaration.
+#:
+#: ⟨й⟩ = /j/: "The phoneme /j/ corresponds to <й> only in syllable-final
+#: position or before <o>" — Pompino-Marschall, Steriopolo & Żygis (2017),
+#: "Ukrainian", Journal of the International Phonetic Association 47(3),
+#: 349–357, p. 352. doi:10.1017/S0025100316000372
+#:
+#: ⟨ў⟩ = /w/: Bird & Litvin (2021), "Belarusian", Journal of the International
+#: Phonetic Association 51(3), 450–467, doi:10.1017/S0025100319000288, places
+#: /w/ after vowels in coda position only, and spells every example of it with
+#: ⟨ў⟩ — браў, праўда, шоўк, поўны — with толк 'sense' vs. тоўк 'he ground' as
+#: the contrast that makes it a phoneme.
+_GLIDES_WITH_VOWEL_BASE = frozenset("йў")
 
 # ═══════════════════════════════════════════════════════════════════════════
 # IPA vowels (vocoids)
@@ -193,6 +230,8 @@ _AXIS_PRESERVING_MARKS = frozenset(
     "̇"  # combining dot above   (ė ; İ → i̇ under lowercasing)
     "̣"  # combining dot below
     "̃"  # combining tilde       (ã ẽ ĩ õ ũ)
+    "͂"  # combining perispomeni (Greek ᾶ ῆ ῖ ῦ ῶ) — a pitch/length
+            # mark, never a quality mark, so the base keeps its axis
 )
 
 # Characters whose class does NOT come from stripping an axis-preserving mark —
@@ -206,8 +245,8 @@ _FRONT_EXPLICIT = frozenset(
     # non-decomposing front / front-rounded letters
     "ø" "œ" "æ"
     # Greek dialytika forms: ι/υ are already front, the mark only breaks
-    # a digraph, never changes the axis
-    "ϊ" "ϋ" "ΐ" "ΰ"
+    # a digraph, never changes the axis. ῗ ῧ add a perispomeni on top of it.
+    "ϊ" "ϋ" "ΐ" "ΰ" "ῗ" "ῧ"
 )
 
 # Ring vowels (å, ẙ) genuinely straddle the axis — Scandinavian ⟨å⟩ ≈ /ɔ o/ is
@@ -280,18 +319,32 @@ def is_orthographic_vowel(ch: str) -> bool:
     so a character outside it is canonically decomposed and its base
     retried, the same fallback :func:`is_ipa_vowel` already applies.
 
-    The retry is deliberately restricted to a Latin ``a e i o u`` base.
-    Cyrillic ⟨й⟩ decomposes to ⟨и⟩ plus a breve but is a glide, and is
-    excluded from the table on purpose; an unrestricted fallback would
-    silently readmit it.
+    The retry runs on any base the table already names, in any script, so
+    Cyrillic ⟨ӧ⟩ (⟨о⟩ under a diaeresis) and Greek ⟨ᾱ⟩ (⟨α⟩ under a macron)
+    resolve by the same rule that resolves ⟨ế⟩. This matters most for
+    Cyrillic and Greek, whose letters :func:`grapheme_is_vowel` treats as a
+    closed inventory: a vowel letter the table misses there is not left
+    undecided but positively called a consonant, and the spec's own IPA is
+    never consulted.
+
+    Two guards keep the retry honest. Every mark stripped must be a combining
+    mark, so a letter is only ever reduced to its own base. And the glides
+    ⟨й⟩ and ⟨ў⟩, which decompose to ⟨и⟩ and ⟨у⟩ under a breve but write /j/
+    and /w/, are refused outright.
     """
     if not ch:
         return False
     lowered = ch.lower()
     if lowered in _ORTHOGRAPHIC_VOWELS:
         return True
-    base = unicodedata.normalize("NFD", lowered)
-    return base != lowered and base[0] in "aeiou"
+    if lowered in _GLIDES_WITH_VOWEL_BASE:
+        return False
+    decomposed = unicodedata.normalize("NFD", lowered)
+    if decomposed == lowered:
+        return False
+    return decomposed[0] in _ORTHOGRAPHIC_VOWELS and all(
+        unicodedata.combining(m) for m in decomposed[1:]
+    )
 
 
 def is_ipa_vowel(ch: str) -> bool:
