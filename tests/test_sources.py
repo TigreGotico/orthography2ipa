@@ -179,7 +179,7 @@ _WIKIPEDIA_ONLY_SOURCES_BURNDOWN = frozenset({
     'cnr', 'cpg', 'crh', 'csb', 'dsb', 'dtp', 'dty', 'el-CY',
     'fj', 'gmy', 'gnc', 'hif', 'hsb', 'iba', 'ig', 'ik',
     'jv', 'kaa', 'kbp', 'kk', 'koi', 'ku', 'kv', 'ky',
-    'lah', 'lb', 'ln', 'lt', 'lua', 'lv', 'mad', 'mnw',
+    'lah', 'lb', 'ln', 'lua', 'lv', 'mad', 'mnw',
     'mt', 'myv', 'na', 'nd', 'nr', 'one', 'pag', 'pcd',
     'pfl', 'pnt', 'pwn', 'quy', 'rki', 'rom', 'rue', 'rup',
     'sah', 'se', 'sgs', 'sq', 'ss', 'su', 'szl', 'ti',
