@@ -449,5 +449,17 @@
     "pagination": "`page` is the printed OBP folio (chapter runs 137-171). The pdftotext page index is the printed page minus 134 (printed 138 = PDF page 4); verified on the running heads.",
     "notation": "arabicist-transliteration",
     "describes": "Several Saudi varieties; §3 a Southwestern Saudi (Northern Tihāmah) variety after Alahmari (2018) — voiced qāf, retained long uː, imāla eː<*ay"
+  },
+  "wvk2002": {
+    "authors": "Williams-van Klinken, C., Hajek, J. & Nordlinger, R.",
+    "year": 2002,
+    "title": "Tetun Dili: A grammar of an East Timorese language",
+    "venue": "Pacific Linguistics 528, The Australian National University",
+    "url": "https://doi.org/10.15144/PL-528",
+    "access": "open",
+    "pagination": "Printed folio is in the running head, alternating with the chapter title. In the PDF the DOI resolves to, the printed page runs 14 behind the PDF page index — PDF page 23 is printed page 9 — verified on the headers for printed pages 9, 10, 11, 12 and 13.",
+    "notation": "ipa",
+    "describes": "Tetun Dili (Tetun Prasa), the Portuguese-influenced urban variety that is the basis of Official Tetun",
+    "notes": "The PDF's extracted text layer mangles the IPA (⟨ʒ⟩ arrives as ⟨3⟩, ⟨ʃ⟩ as ⟨S⟩, and the trill/tap distinction is lost), so every row here was transcribed from a 170-dpi RENDER of the printed page rather than decoded from those bytes. That is what settles the rhotics the text layer flattens: the grammar does distinguish /r/ from /ɾ/ in transcription even though its orthography does not (§2.1.4, printed p. 10)."
   }
 }
