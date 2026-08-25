@@ -397,8 +397,13 @@ class AllophoneRescorer(LatticeRescorer):
                     return rule.mutates_neighbor
         return None
 
-    def _is_geminate_half(self, ipa: str, context: RescoreContext) -> bool:
-        """Whether this slot is one half of a written (doubled) geminate.
+    def _geminate_twin_side(
+            self, ipa: str, context: RescoreContext,
+    ) -> Optional[int]:
+        """Which side this slot's written-geminate twin lies on, or ``None``.
+
+        ``+1`` when the twin follows (this slot is the first half of the
+        doubled unit), ``-1`` when it precedes.
 
         A geminate is a single long consonant that the input spells — and the
         tokenizer's shadda expansion realises — as two identical, contiguous,
@@ -417,9 +422,9 @@ class AllophoneRescorer(LatticeRescorer):
         never a geminate half.
         """
         if not self._doubling_is_geminate:
-            return False
+            return None
         if not ipa or any(is_ipa_vowel(seg[0]) for seg in segment_ipa(ipa)):
-            return False
+            return None
         own_g = (context.grapheme.grapheme or "").lower()
         for step in (1, -1):
             j = context.index + step
@@ -433,8 +438,8 @@ class AllophoneRescorer(LatticeRescorer):
                 continue
             near, far = context.slot.span, neighbour.span
             if near[1] == far[0] or far[1] == near[0]:  # contiguous
-                return True
-        return False
+                return step
+        return None
 
     def _realize(self, ipa: str, context: RescoreContext) -> Optional[str]:
         """The surface form of *ipa* in *context*, or ``None`` if no rule fires.
@@ -447,16 +452,23 @@ class AllophoneRescorer(LatticeRescorer):
         inherent vowel): each segment is matched and rewritten in place,
         with neighbour context read across slot boundaries.
         """
-        is_geminate = self._is_geminate_half(ipa, context)
+        twin_side = self._geminate_twin_side(ipa, context)
         for rule in self.rules:
             if ipa in rule.phonemes and self._matches(rule, context):
-                if is_geminate and not _is_geminate_aware(rule, ipa):
-                    # A geminate is one long segment: a rule triggered purely
-                    # by material OUTSIDE it must not rewrite a single half and
-                    # split the unit into a heterorganic cluster (Najdi
-                    # affrication does not apply to geminates — Ingham 1994,
-                    # Alhoody 2020). Only a rule conditioned on the twin itself
-                    # (a genuine gemination process, e.g. Tamil ⟨க்க⟩→[kː]) may.
+                if twin_side is not None and not _is_geminate_aware(rule, ipa) \
+                        and not (_triggers_on(rule, twin_side)
+                                 and _is_heterosyllabic(context.grapheme,
+                                                        twin_side)):
+                    # Geminate atomicity: a geminate is one long segment, and
+                    # a rule fired by material OUTSIDE it must not rewrite a
+                    # single half and split the unit into a heterorganic
+                    # cluster (Najdi affrication does not apply to geminates —
+                    # Ingham 1994, Alhoody 2020). Three ways past it: the rule
+                    # is a gemination process naming the twin phoneme
+                    # (:func:`_is_geminate_aware`), or the pair is divided by a
+                    # syllable boundary (:func:`_is_heterosyllabic`) and the
+                    # rule is triggered at that boundary
+                    # (:func:`_triggers_on`).
                     continue
                 return _applied(rule, ipa)
         segments = segment_ipa(ipa, self._atoms)
@@ -663,6 +675,49 @@ def _is_geminate_aware(rule: AllophoneRule, ipa: str) -> bool:
         if any(n == ipa or n.startswith(ipa) for n in ctx):
             return True
     return False
+
+
+def _is_heterosyllabic(gctx: GraphemeContext, step: int) -> bool:
+    """Whether the doubled pair around *gctx* spans a syllable boundary.
+
+    *step* points at the twin. A doubled consonant divides into a coda plus an
+    onset only when a nucleus stands on each side of the pair: the second half
+    needs a following nucleus to be an onset at all, and the first half needs a
+    preceding one to close a syllable. Intervocalically that division is what
+    geminate syllabification gives (Hayes 1989 on geminate integrity;
+    Ladefoged & Maddieson 1996:92 — a geminate spans the boundary between two
+    syllables), and it is why Lashi ⟨yuggi⟩ is [juk̚ɡi].
+
+    Word-finally, or against another consonant, there is no following nucleus
+    to license an onset, so the pair is one long coda that nothing may divide:
+    Najdi ⟨بخّ⟩ /baxx/ stays [baxx] and does not take the gahawa epenthesis
+    between its halves (Ingham 1994:15-16).
+    """
+    before, after = gctx.at(-step), gctx.at(2 * step)
+    return before is not None and before.is_vowel \
+        and after is not None and after.is_vowel
+
+
+def _triggers_on(rule: AllophoneRule, step: int) -> bool:
+    """Whether *rule*'s trigger is the adjacent grapheme in direction *step*.
+
+    A rule whose neighbour condition points AT the twin was fired by the
+    boundary between the two halves, not by material outside the doubled unit.
+    Where that boundary is a syllable boundary (:func:`_is_heterosyllabic`)
+    the two halves are in different syllable positions and may be realised
+    differently, so such a rule is allowed to reach the half it applies to.
+
+    Only POSITIVE, one-step conditions count. A negative condition
+    (``followed_by_grapheme_not``) excludes, it does not trigger; a two-step
+    condition (``followed_by_2``) reads past the twin, so its trigger is again
+    outside the unit; and ``word_final`` on the second half is the word edge,
+    not the twin.
+    """
+    if step > 0:
+        return bool(rule.followed_by or rule.followed_by_grapheme
+                    or rule.followed_by_phoneme)
+    return bool(rule.preceded_by or rule.preceded_by_grapheme
+                or rule.preceded_by_phoneme)
 
 
 def _is_segmental(rule: AllophoneRule) -> bool:

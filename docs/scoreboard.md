@@ -368,7 +368,7 @@ A row's `N` is its sample size in scored words, and it is not cosmetic: below ro
 | lmy | wikipron | 129 | 0.1695 | 0.1695 | 0.1695 | 0.2558 | 0.2558 | [0.1484, 0.1915] | 0.2558 | research | crowd-scraped |
 | lo | kaikki | 2308 | 0.3632 | 0.3632 | 0.3632 | 0.0000 | 0.0000 | [0.3590, 0.3674] | 0.0000 | research | crowd-scraped |
 | lou | wikipron | 262 | 0.1953 | 0.1953 | 0.1953 | 0.5115 | 0.5115 | [0.1679, 0.2236] | 0.5115 | research | crowd-scraped |
-| lsi | wikipron | 96 | 0.4243 | 0.4212 | 0.4212 | 0.0000 | 0.0000 | [0.4041, 0.4436] | 0.0000 | research | crowd-scraped |
+| lsi | wikipron | 96 | 0.4222 | 0.4212 | 0.4212 | 0.0000 | 0.0000 | [0.4022, 0.4413] | 0.0000 | research | crowd-scraped |
 | lt | vox_communis | 28971 | 0.2750 | 0.2749 | 0.2749 | 0.0486 | 0.0486 | [0.2733, 0.2769] | 0.0486 | research | epitran-derived |
 | lt | wikipron | 440 | 0.2646 | 0.2646 | 0.2646 | 0.1477 | 0.1477 | [0.2480, 0.2806] | 0.1477 | research | crowd-scraped |
 | lut | wikipron | 135 | 0.2259 | 0.2259 | 0.2259 | 0.2444 | 0.2444 | [0.1918, 0.2598] | 0.2444 | research | crowd-scraped |
@@ -652,7 +652,7 @@ A row's `N` is its sample size in scored words, and it is not cosmetic: below ro
 | wlm | wikipron | 403 | 0.2498 | 0.2498 | 0.2498 | 0.2357 | 0.2357 | [0.2309, 0.2702] | 0.2357 | research | crowd-scraped |
 | xaa | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | xal | wikipron | 318 | 0.2813 | 0.2813 | 0.2813 | 0.1478 | 0.1478 | [0.2619, 0.3014] | 0.1478 | research | crowd-scraped |
-| xh | kaikki | 887 | 0.3781 | 0.3763 | 0.3763 | 0.0304 | 0.0304 | [0.3683, 0.3871] | 0.0282 | research | crowd-scraped |
+| xh | kaikki | 887 | 0.3779 | 0.3761 | 0.3761 | 0.0304 | 0.0304 | [0.3681, 0.3868] | 0.0282 | research | crowd-scraped |
 | xsl | wikipron | 146 | 0.0273 | 0.0234 | 0.0234 | 0.9041 | 0.9041 | [0.0145, 0.0421] | 0.8904 | research | crowd-scraped |
 | ycl | wikipron | 111 | 0.0108 | 0.0108 | 0.0108 | 0.9369 | 0.9369 | [0.0030, 0.0201] | 0.9369 | research | crowd-scraped |
 | yi | wikipron | 4051 | 0.2042 | 0.1818 | 0.1745 | 0.3261 | 0.3453 | [0.1983, 0.2098] | 0.2735 | research | crowd-scraped |
@@ -666,7 +666,7 @@ A row's `N` is its sample size in scored words, and it is not cosmetic: below ro
 | za | wikipron | 1682 | 0.2124 | 0.2124 | 0.2124 | 0.2426 | 0.2426 | [0.2048, 0.2203] | 0.2426 | research | crowd-scraped |
 | zh | ipa_childes | 4718 | 0.2879 | 0.2668 | 0.2662 | 0.2338 | 0.2342 | [0.2816, 0.2941] | 0.2126 | research | machine-generated |
 | zom | wikipron | 134 | 0.4399 | 0.4399 | 0.4399 | 0.0000 | 0.0000 | [0.4190, 0.4602] | 0.0000 | research | crowd-scraped |
-| zu | wikipron | 1754 | 0.2311 | 0.2269 | 0.2268 | 0.0593 | 0.0593 | [0.2252, 0.2366] | 0.0576 | research | crowd-scraped |
+| zu | wikipron | 1754 | 0.2311 | 0.2269 | 0.2267 | 0.0593 | 0.0593 | [0.2252, 0.2365] | 0.0576 | research | crowd-scraped |
 | zza | wikipron | 196 | 0.3606 | 0.3606 | 0.3606 | 0.1122 | 0.1122 | [0.3278, 0.3924] | 0.1122 | research | crowd-scraped |
 
 ---
