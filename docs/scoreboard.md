@@ -575,8 +575,8 @@ A row's `N` is its sample size in scored words, and it is not cosmetic: below ro
 | si | wikipron | 386 | 0.1394 | 0.1269 | 0.1269 | 0.5570 | 0.5570 | [0.1209, 0.1586] | 0.5207 | research | crowd-scraped |
 | sia | wikipron | 179 | 0.3686 | 0.3686 | 0.3686 | 0.1620 | 0.1620 | [0.3309, 0.4042] | 0.1620 | research | crowd-scraped |
 | sid | wikipron | 297 | 0.0731 | 0.0731 | 0.0731 | 0.6397 | 0.6397 | [0.0597, 0.0875] | 0.6397 | research | crowd-scraped |
-| sjd | northeuralex | 1011 | 0.1439 | 0.1439 | 0.1439 | 0.5163 | 0.5163 | [0.1330, 0.1544] | 0.5163 | research | lexicon-derived |
-| sjd | wikipron | 754 | 0.2590 | 0.2590 | 0.2590 | 0.2440 | 0.2440 | [0.2435, 0.2740] | 0.2440 | research | crowd-scraped |
+| sjd | northeuralex | 1011 | 0.1368 | 0.1368 | 0.1368 | 0.4807 | 0.4807 | [0.1264, 0.1463] | 0.4807 | research | lexicon-derived |
+| sjd | wikipron | 756 | 0.2298 | 0.2298 | 0.2298 | 0.2553 | 0.2553 | [0.2159, 0.2430] | 0.2553 | research | crowd-scraped |
 | sjs | wikipron | 845 | 0.0467 | 0.0467 | 0.0467 | 0.7432 | 0.7432 | [0.0405, 0.0529] | 0.7432 | research | crowd-scraped |
 | sk | vox_communis | 15944 | 0.0902 | 0.0659 | 0.0637 | 0.6066 | 0.6237 | [0.0884, 0.0918] | 0.4752 | research | epitran-derived |
 | sk | wikipron | 15893 | 0.1346 | 0.1174 | 0.1164 | 0.4797 | 0.4832 | [0.1319, 0.1373] | 0.4556 | research | crowd-scraped |
