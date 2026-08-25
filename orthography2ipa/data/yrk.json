@@ -121,6 +121,9 @@
     ],
     "”": [
       "ʔ"
+    ],
+    "’": [
+      "ʔ"
     ]
   },
   "positional_graphemes": {
@@ -232,7 +235,7 @@
     "default_position": -1,
     "stress_mark": "ˈ"
   },
-  "notes": "Research. Tundra Nenets is a Samoyedic language of the Uralic family, written in an extended Russian Cyrillic alphabet (Salminen 1993, 1997). Beyond the base letters the map covers Ӈ (velar nasal) and the two apostrophe letters that write the glottal-stop phonemes — the single ʼ (voiceless/nasalizable glottal stop) and the double ˮ — both rendered as ʔ; the voiced/nasalized versus voiceless glottal distinction is not separated. ⟨а⟩ is phonetically back [ɑ], ⟨э⟩ is [æ], and the reduced vowel ⟨ӑ⟩ is [ə] (Salminen 1997) — the pre-upgrade map used [a]/[e] and omitted ⟨ӑ⟩ entirely, its single largest source of error. As in Russian, the iotated letters е/ё/ю/я spell a glide+vowel word-initially or after a vowel, but after a consonant they instead spell that consonant's palatalization plus the plain vowel (тибя [tʲibʲɑ], нямю [ɲɑmʲu]); this is modelled with an `after_consonant` positional override on the vowels plus `followed_by: palatal` allophone rules palatalising the preceding consonant. Word stress falls on the last syllable of the (disyllabic-dominant) stem in the sampled forms (Salminen 1997); marked here as final by default. NorthEuraLex's Value field also wraps a lexically-conditioned but currently-unpronounced final consonant in parentheses for some citation forms (e.g. ⟨няʼ(н)⟩) — this is a dictionary citation convention, not part of Nenets orthography, and the bracketed letters are left unmapped rather than modelled as if they were spelling.",
+  "notes": "Research. Tundra Nenets is a Samoyedic language of the Uralic family, written in an extended Russian Cyrillic alphabet (Salminen 1993, 1997). Beyond the base letters the map covers Ӈ (velar nasal) and the two apostrophe letters that write the glottal-stop phonemes — the single ʼ (voiceless/nasalizable glottal stop) and the double ˮ — both rendered as ʔ; the voiced/nasalized versus voiceless glottal distinction is not separated. The WikiPron gold source also renders the single glottal-stop letter with the typographic right single quotation mark ’ (U+2019) rather than the modifier letter apostrophe ʼ (U+02BC) in a minority of entries (e.g. пыдари’); both codepoints are mapped to the same phoneme since they write the same letter. ⟨а⟩ is phonetically back [ɑ], ⟨э⟩ is [æ], and the reduced vowel ⟨ӑ⟩ is [ə] (Salminen 1997) — the pre-upgrade map used [a]/[e] and omitted ⟨ӑ⟩ entirely, its single largest source of error. As in Russian, the iotated letters е/ё/ю/я spell a glide+vowel word-initially or after a vowel, but after a consonant they instead spell that consonant's palatalization plus the plain vowel (тибя [tʲibʲɑ], нямю [ɲɑmʲu]); this is modelled with an `after_consonant` positional override on the vowels plus `followed_by: palatal` allophone rules palatalising the preceding consonant. Word stress falls on the last syllable of the (disyllabic-dominant) stem in the sampled forms (Salminen 1997); marked here as final by default. NorthEuraLex's Value field also wraps a lexically-conditioned but currently-unpronounced final consonant in parentheses for some citation forms (e.g. ⟨няʼ(н)⟩) — this is a dictionary citation convention, not part of Nenets orthography, and the bracketed letters are left unmapped rather than modelled as if they were spelling.",
   "iso639_3": "yrk",
   "glottolog_code": null,
   "sources": [
