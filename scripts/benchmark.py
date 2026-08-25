@@ -1882,6 +1882,20 @@ def load_vox_communis(lang: str, limit: int) -> List[Tuple[str, str]]:
     dataset-wide tier in place keeps the row non-qualifying, which is the
     outcome the measurements argue for; the inaccurate half of the label is
     corrected here in prose instead.
+
+    The Vietnamese file shows what that tier is protecting against, and is
+    worked out in full in docs/languages/vi.md. Its PER of 0.5596 is almost
+    entirely transcription convention — ``scripts/fold_vi_notation.py``
+    folds the conventions out of both sides one at a time and lands at
+    0.0246 — and its tone tier writes one letter, [˨˨], for both ngang and
+    huyền, which are contrastive (Kirby 2011: 386, ma 'ghost' / mà 'but'),
+    on 967 of the row's 2,475 words. Read that row as notation drift, never
+    as evidence about the Vietnamese spec. The tier is deliberately left at
+    the dataset-wide ``epitran-derived``: it already returns False from
+    :func:`can_gate_promotion`, whereas ``machine-generated`` does NOT (see
+    :data:`NON_QUALIFYING_TIERS` — gating is set membership, not position in
+    :data:`RELIABILITY_TIERS`), so "downgrading" this row would hand it a
+    gating vote it must not have.
     """
     fname = _VOX_COMMUNIS_FILES[lang] + ".tsv"
     text = _fetch(_VOX_COMMUNIS_BASE + fname, f"vox_communis_{fname}")

@@ -84,8 +84,8 @@ express the temporal alignment of glottalisation against pitch.
 
 | dataset | provenance | n | PER |
 |---|---|---:|---:|
-| `ipadict` | machine-generated | 70 899 | **0.0773** |
-| `vox_communis` | epitran-derived | 2 475 | 0.5597 |
+| `ipadict` | machine-generated | 70 899 | **0.0777** |
+| `vox_communis` | epitran-derived | 2 475 | 0.5596 |
 
 The two golds transcribe the same variety in incompatible notations,
 and the gap between the rows is almost entirely that. `ipadict`'s
@@ -97,20 +97,68 @@ and writes a pan-dialectal literary transcription instead: /c ɲ/ for
 final ⟨ch nh⟩, a phonemic length mark the Illustration does not use,
 ˨˨ rather than ˧˧ for ngang, and the tone letters against the nucleus
 rather than the syllable. That row is therefore notation-dominated rather
-than phonological — folding tone-letter placement, vowel length and the
-ɨ/ɯ, ɤ̆/ə and ă/a symbol variants out of both sides by hand brings the
-0.5597 board PER down substantially, closer to the `ipadict` row's
-0.0773 than the raw number suggests, but the exact intermediate figures
-are not reproduced by any committed script and are not stated here as
-precise numbers. Both golds do write tone — about a third of
-`vox_communis`'s gold characters carry a tone mark, and about 37% of
-`ipadict`'s — so what separates them is placement and scale, not
-omission.
+than phonological, and `scripts/fold_vi_notation.py` puts a number on
+each convention by folding it out of both sides and re-scoring:
 
-Neither row can qualify the language. `machine-generated` and
-`epitran-derived` are both below the gate (see
-[../quality_tiers.md](../quality_tiers.md)); `epitran-derived` in
-particular measures agreement with a competitor.
+| fold applied (cumulative, both sides) | PER |
+|---|---:|
+| as scored | 0.5596 |
+| tone letters | 0.3277 |
+| + vowel length ⟨ː⟩ | 0.1994 |
+| + unreleased-stop mark ⟨◌̚⟩ | 0.1715 |
+| + tie bar ⟨ŋ͡m k͡p⟩ | 0.1715 |
+| + ⟨ɨ⟩ ~ ⟨ɯ⟩ for ⟨ư⟩ | 0.1449 |
+| + short vowels ⟨ă ɤ̆⟩ ~ ⟨a ə⟩ | 0.0398 |
+| + palatal ⟨ɲ c⟩ ~ pre-velar ⟨ŋ k⟩ finals | 0.0246 |
+| + vowel height ⟨ɛ ɔ⟩ ~ ⟨e o⟩ | 0.0246 |
+
+Under 3 of the 56 PER points are a disagreement about Vietnamese; the
+rest is how the two sides spell the same analysis. Two of those folds
+move nothing at all, which is itself informative: the harness's
+`normalize()` already strips the tie bar, so none survives to the scorer
+on either side, and the ⟨ɛ ɔ e o⟩ heights differ on only 71 of the 2 475
+words — too few to move the fourth decimal. Neither is a real source of
+distance, and both are listed so a later reader does not look for them
+again.
+
+Both golds do write tone — about a third of `vox_communis`'s gold
+characters carry a tone mark, and about 37% of `ipadict`'s — so what
+separates them is placement and scale, not omission. Placement is the
+larger half: 1 905 of the 2 468 toned gold words (77.2%) put the tone
+letters inside the rime, before the coda (⟨tôi⟩ `toː˨˨j`), where this
+spec writes them after the syllable.
+
+**The `vox_communis` tone tier also merges two contrastive tones**, which
+is a defect rather than a convention. It writes the same letter ˨˨ for
+ngang (566 of 590 words) and for huyền (401 of 406) — 967 words, 39.1% of
+the row. Kirby (2011: 386) tabulates them as separate categories, A1
+(level) and A2 (mid falling), on the minimal pair *ma* 'ghost' / *mà*
+'but, yet'. This spec distinguishes them and is charged edit distance for
+doing so. The gold's other tone splits are principled and match the spec's
+analysis: sắc and nặng each split by coda (˨˦/˦˥ and ˨˩ˀ/˨˩), which is
+Kirby's D1/D2 coda-tone restriction.
+
+The finals are the one genuine analytical disagreement, and the cited
+source settles it against the gold. Kirby (2011: 383), under "Velar
+fronting", names the palatal reading and rejects it: the stops after
+/i e ɛ/ "are actually pre-velar [ŋ̟] and [k̟], with no point of alveolar
+contact (Henderson 1965)", transcribing ⟨canh⟩ [kɛŋ] and ⟨sách⟩ [sɛk].
+
+Neither row can qualify the language, and the `vox_communis` row cannot
+block it either. `epitran-derived` is in `NON_QUALIFYING_TIERS`, so
+`can_gate_promotion` returns False for it and the row has no vote in
+either direction — which is the right outcome for a gold that merges two
+phonemic tones, and is already what the dataset-wide tier delivers.
+
+It is worth being explicit about why this row is **not** reclassified,
+because the tier names invite the mistake. `RELIABILITY_TIERS` is an
+ordered tuple and `machine-generated` sits above `epitran-derived` in it,
+so moving this row to `machine-generated` reads like a downgrade. It is
+the opposite: gating is decided by membership of `NON_QUALIFYING_TIERS`,
+not by position in the tuple, and `machine-generated` is not a member. A
+row moved there would gain a gating vote. The row stays `epitran-derived`
+and the finding lives in prose, here. Nothing about the Vietnamese spec
+should be read off it in either direction.
 
 ## Where this disagrees with the gold
 

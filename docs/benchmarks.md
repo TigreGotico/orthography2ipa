@@ -859,19 +859,36 @@ well, because the identity test is not safe either — Turkish `sil`
 is far below the noise floor of an `epitran-derived` row.
 
 **The remaining high rows are notation, not phonology.** With `spn` gone,
-`vi`, `pa` and `as` still sit above PER 0.5 (board values 0.5597, 0.6607
+`vi`, `pa` and `as` still sit above PER 0.5 (board values 0.5596, 0.6607
 and 0.6445 — see [languages/vi.md](languages/vi.md)), and in all three the
 distance is a transcription convention rather than a phonological
 disagreement: `vi` differs by tone-letter placement, vowel-length marking
 and a handful of symbol variants; `pa` by length marking and a small set
 of vowel/rhotic symbol choices, plus final-schwa deletion; `as` by length
-marking, a similar symbol-choice set, and final-ɔ deletion. Folding those
-conventions out by hand brings each row down substantially, but the exact
-intermediate figures are not reproduced by any committed script, so they
-are not stated here as precise numbers. None of these foldings belong in
-`normalize()` — it is the single scorer for every row, and tone-letter
-placement in particular is language-specific — so the rows stay as scored
-and are read with this offset in mind.
+marking, a similar symbol-choice set, and final-ɔ deletion. For `vi` the
+folding is reproduced by `scripts/fold_vi_notation.py`, which removes one
+convention at a time from both sides and re-scores with the harness's own
+`normalize()`: 0.5596 as scored, 0.3277 without tone letters, 0.0398 once
+vowel length, the unreleased-stop mark, ⟨ɨ⟩~⟨ɯ⟩ and the ⟨ă ɤ̆⟩ short-vowel
+notation are folded too, and 0.0246 once the palatal/pre-velar reading of
+the ⟨nh ch⟩ finals is folded as well. The `pa` and `as` foldings have no
+committed script and are not stated as numbers. None of these foldings
+belong in `normalize()` — it is the single scorer for every row, and
+tone-letter placement in particular is language-specific — so the rows
+stay as scored and are read with this offset in mind.
+
+The `vi` gold is also wrong in one respect rather than merely different:
+its tone tier writes one letter, ˨˨, for both ngang and huyền —
+contrastive tones, tabulated separately by Kirby (2011: 386) on the
+minimal pair *ma* 'ghost' / *mà* 'but' — on 967 of the row's 2 475 words
+(39.1%). The dataset-wide `epitran-derived` tier already keeps that out of
+every gating decision, so the finding is recorded in prose (here and in
+[languages/vi.md](languages/vi.md)) rather than as a per-language
+override. Reclassifying the row would in fact be counterproductive:
+`NON_QUALIFYING_TIERS` contains `epitran-derived` but not
+`machine-generated`, so moving the row to the tier that sits *higher* in
+the ordered `RELIABILITY_TIERS` tuple would hand it a gating vote. Gating
+is set membership, not tuple position.
 
 **Known upstream contamination, `sr`.** 35.8% of Serbian tokens carry a
 spurious word-initial `z` in the Charsiu-derived phone tier (`не` →
