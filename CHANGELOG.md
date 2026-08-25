@@ -1,5 +1,9 @@
 # Changelog
 
+## [7.82.3a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.3a1) (2026-08-25)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.2a1...7.82.3a1)
+
 ## [7.82.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.2a1) (2026-08-25)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.1a1...7.82.2a1)
@@ -230,20 +234,20 @@
 
 ## [7.80.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.80.1a1) (2026-08-24)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.16a1...7.80.1a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.80.0a1...7.80.1a1)
 
 **Merged pull requests:**
 
 - fix\(mww\): emit RPA tone letters instead of silencing them [\#1113](https://github.com/TigreGotico/orthography2ipa/pull/1113) ([JarbasAl](https://github.com/JarbasAl))
 - fix\(kwk\): map the U'mista ejective/uvular/lateral-affricate series [\#1106](https://github.com/TigreGotico/orthography2ipa/pull/1106) ([JarbasAl](https://github.com/JarbasAl))
 
-## [7.79.16a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.16a1) (2026-08-24)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.80.0a1...7.79.16a1)
-
 ## [7.80.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.80.0a1) (2026-08-24)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.15a1...7.80.0a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.16a1...7.80.0a1)
+
+## [7.79.16a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.16a1) (2026-08-24)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.15a1...7.79.16a1)
 
 **Merged pull requests:**
 
@@ -683,10 +687,6 @@
 ## [7.76.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.76.0a1) (2026-08-18)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.75.15a1...7.76.0a1)
-
-**Merged pull requests:**
-
-- feat\(ee\): nasal-vowel, written-tone and liquid rules for Ewe [\#996](https://github.com/TigreGotico/orthography2ipa/pull/996) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.75.15a1](https://github.com/TigreGotico/orthography2ipa/tree/7.75.15a1) (2026-08-18)
 
