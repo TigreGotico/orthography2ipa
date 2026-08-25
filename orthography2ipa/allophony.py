@@ -40,10 +40,10 @@ import unicodedata
 from dataclasses import dataclass
 from typing import List, Optional, Sequence, Tuple
 
-from orthography2ipa.phonetok import Candidate, GraphemeContext, SegmentSlot
+from orthography2ipa.phonetok import Candidate, GraphemeContext, SegmentSlot, _is_a_mark
 from orthography2ipa.rescorer import LatticeRescorer, RescoreContext
 from orthography2ipa.types import AllophoneRule
-from orthography2ipa.vowels import is_ipa_vowel
+from orthography2ipa.vowels import is_ipa_vowel, SYLLABIC_MARKS
 
 __all__ = [
     "AllophoneRescorer",
@@ -117,6 +117,28 @@ class SegmentContext:
     is_word_final: bool
 
 
+def _spells_nothing(gctx: GraphemeContext) -> bool:
+    """True when *gctx* is a combining mark the spec maps to nothing.
+
+    Mirrors :meth:`~orthography2ipa.phonetok.PhonetokTokenizer._spells_nothing`:
+    only an unconditional single empty candidate counts, and the grapheme
+    must be a combining mark (:func:`~orthography2ipa.phonetok._is_a_mark`,
+    or its first character for a multi-character key whose tail is marks
+    too) — a mark rides on the letter it attaches to and cannot itself
+    divide a syllable. A silent BASE letter (not a mark) is opaque here:
+    letting it stand as transparent would walk the look-ahead across a
+    syllable it does not belong to.
+    """
+    ipa_vals = gctx.ipa
+    if not ipa_vals or list(ipa_vals) != [""]:
+        return False
+    grapheme = gctx.grapheme
+    if len(grapheme) == 1:
+        return _is_a_mark(grapheme)
+    return (unicodedata.category(grapheme[0]).startswith("L") or _is_a_mark(grapheme[0])) \
+        and all(_is_a_mark(c) for c in grapheme[1:])
+
+
 def _syllable_position(ctx: GraphemeContext) -> str:
     """Classify the grapheme's syllable position by a maximal-onset rule.
 
@@ -128,6 +150,15 @@ def _syllable_position(ctx: GraphemeContext) -> str:
     if ctx.is_vowel:
         return "nucleus"
     nxt = ctx.next
+    # A grapheme the spec reads as nothing IS NOT NECESSARILY transparent —
+    # only a combining MARK it reads as nothing is: a Lao tone mark is
+    # written on the consonant, so ⟨ຟ້າ⟩ has the onset /f/ the bare ⟨ຟາ⟩
+    # has, not a coda. A silent BASE letter (e.g. a spec that maps some
+    # consonant to "" outright) is a real grapheme occupying a real slot
+    # and must not be skipped, or an unrelated following vowel could be
+    # mistaken for this grapheme's own nucleus.
+    while nxt is not None and _spells_nothing(nxt):
+        nxt = nxt.next
     if nxt is not None and nxt.is_vowel:
         return "onset"
     return "coda"
@@ -181,6 +212,8 @@ def _neighbor_is(
         return gctx is None
     if gctx is None:
         return False
+    if cls == "any":
+        return True
     if cls == "vowel":
         return gctx.is_vowel
     if cls == "consonant":
@@ -200,7 +233,77 @@ def _neighbor_is(
         return gctx.is_back
     if cls == "palatal":
         return gctx.is_palatal
+    if cls == "emphatic":
+        return gctx.is_emphatic
     return False  # unreachable — AllophoneRule validates the vocabulary
+
+
+def _has_other_nucleus(ctx: RescoreContext) -> bool:
+    """Whether some slot OTHER than this one carries a syllable nucleus.
+
+    A vowel-deleting rule (``surface: ""``) must not leave the word without
+    a nucleus: every prosodic word contains at least one syllable (Hayes
+    2009, ch. 13; Blevins 1995). Read from the lattice slots' top
+    candidates, like every other neighbour lookup in this module.
+
+    A nucleus is a vowel **or a syllabic consonant** — Czech ⟨vlk⟩ [vl̩k],
+    ⟨krk⟩ [kr̩k] and Serbian ⟨prst⟩ [pr̩st] are words with no vowel at all,
+    and calling them nucleus-less would let a vowel-deleting rule empty
+    them. This is the same reading
+    :func:`~orthography2ipa.vowels.is_nucleus_only` takes of
+    :data:`~orthography2ipa.vowels.SYLLABIC_MARKS`.
+    """
+    for j, slot in enumerate(ctx.slots):
+        if j == ctx.index or not slot.candidates:
+            continue
+        ipa = slot.top.ipa
+        if not ipa:
+            continue
+        if any(is_ipa_vowel(seg[0]) or any(m in seg for m in SYLLABIC_MARKS)
+               for seg in segment_ipa(ipa)):
+            return True
+    return False
+
+
+def _has_later_nucleus(ctx: RescoreContext) -> bool:
+    """Whether a syllable nucleus occurs LATER in the word than this slot.
+
+    The final-syllable predicate. Reduction of non-final vowels and
+    strengthening of the final one are both extremely common and both need
+    the DIRECTION that :func:`_has_other_nucleus` deliberately throws away:
+    the last nucleus of a word is exactly the one with no nucleus after it.
+    Reads the lattice slots' top candidates and counts a syllabic consonant
+    as a nucleus, like every other neighbour lookup in this module.
+    """
+    for slot in ctx.slots[ctx.index + 1:]:
+        if not slot.candidates:
+            continue
+        ipa = slot.top.ipa
+        if not ipa:
+            continue
+        if any(_is_nucleus_segment(seg) for seg in segment_ipa(ipa)):
+            return True
+    return False
+
+
+def _is_nucleus_segment(seg: str) -> bool:
+    """Whether one segmented IPA symbol is a syllable nucleus.
+
+    The base letter is read from the DECOMPOSED form, because a segment
+    can arrive precomposed: a tone language writes its vowels with the
+    accent baked in, so ``í`` is the single codepoint U+00ED and its
+    first character is not the vowel letter ``i`` at all. Testing the
+    composed first character silently answers "not a vowel" for every
+    accented nucleus.
+    """
+    base = unicodedata.normalize("NFD", seg)
+    return bool(base) and (is_ipa_vowel(base[0])
+                           or any(m in seg for m in SYLLABIC_MARKS))
+
+
+def _applied(rule: AllophoneRule, ipa: str) -> str:
+    """What *ipa* becomes when *rule* fires: a rewrite or an insertion."""
+    return ipa + rule.append if rule.append else rule.surface
 
 
 class AllophoneRescorer(LatticeRescorer):
@@ -215,11 +318,13 @@ class AllophoneRescorer(LatticeRescorer):
     can skip it cheaply.
     """
 
-    __slots__ = ("rules", "_atoms")
+    __slots__ = ("rules", "_atoms", "_doubling_is_geminate")
 
-    def __init__(self, rules: Sequence[AllophoneRule]) -> None:
+    def __init__(self, rules: Sequence[AllophoneRule],
+                 doubled_letters_geminate: bool = True) -> None:
         self.rules = tuple(rules)
         self._atoms = _rule_atoms(self.rules)
+        self._doubling_is_geminate = doubled_letters_geminate
 
     def rescore(
         self, slot: "SegmentSlot", context: RescoreContext,
@@ -231,7 +336,66 @@ class AllophoneRescorer(LatticeRescorer):
                 if new is None:
                     new = list(slot.candidates)
                 new[idx] = Candidate(ipa=surface, cost=cand.cost)
+        feature = self._neighbor_mutation(context)
+        if feature:
+            base = new if new is not None else list(slot.candidates)
+            mutated: List[Candidate] = []
+            changed = False
+            for cand in base:
+                if cand.ipa and feature not in cand.ipa:
+                    mutated.append(Candidate(ipa=cand.ipa + feature, cost=cand.cost))
+                    changed = True
+                else:
+                    mutated.append(cand)
+            if changed:
+                new = mutated
         return new if new is not None else slot.candidates
+
+    def _neighbor_mutation(self, context: RescoreContext) -> Optional[str]:
+        """The IPA feature (e.g. ``"ʲ"``) THIS slot gains from an adjacent
+        marker grapheme that deletes itself while mutating its neighbour —
+        the ``mutates_neighbor`` / ``mutates_neighbor_side`` rule pair (see
+        :class:`~orthography2ipa.types.AllophoneRule`).
+
+        Evaluated from the AFFECTED slot's own ``rescore()`` call by
+        re-running the *marker's* rule-matching logic against a
+        reconstruction of the marker's own context. This is safe and
+        order-independent: every rescorer sees pre-pass slot state (the
+        module docstring, "Neighbour lookups read the original slots"), so
+        it does not matter whether this slot or the marker's slot is
+        processed first — both read the same unmutated ``context.slots``.
+
+        Stress is approximated from THIS slot's own stress context (not the
+        marker's), since a per-grapheme stress array is not available at
+        this layer — an acceptable approximation for an adjacent grapheme,
+        almost always in the same syllable, and irrelevant to the motivating
+        Goidelic/Slavic marker-grapheme cases, none of which condition on
+        stress.
+        """
+        for step, wanted_side in ((1, "preceding"), (-1, "following")):
+            j = context.index + step
+            if not (0 <= j < len(context.slots)):
+                continue
+            marker_slot = context.slots[j]
+            marker_g = context.grapheme.at(step)
+            if marker_g is None or not marker_slot.candidates:
+                continue
+            marker_ctx = RescoreContext(
+                slot=marker_slot,
+                index=j,
+                slots=context.slots,
+                grapheme=marker_g,
+                syll_idx=context.syll_idx,
+                stressed_syll_idx=context.stressed_syll_idx,
+            )
+            ipa = marker_slot.top.ipa
+            for rule in self.rules:
+                if rule.mutates_neighbor and \
+                        rule.mutates_neighbor_side == wanted_side and \
+                        ipa in rule.phonemes and \
+                        self._matches(rule, marker_ctx):
+                    return rule.mutates_neighbor
+        return None
 
     def _is_geminate_half(self, ipa: str, context: RescoreContext) -> bool:
         """Whether this slot is one half of a written (doubled) geminate.
@@ -252,6 +416,8 @@ class AllophoneRescorer(LatticeRescorer):
         must not be swept up — so a slot whose phoneme contains a vowel is
         never a geminate half.
         """
+        if not self._doubling_is_geminate:
+            return False
         if not ipa or any(is_ipa_vowel(seg[0]) for seg in segment_ipa(ipa)):
             return False
         own_g = (context.grapheme.grapheme or "").lower()
@@ -292,7 +458,7 @@ class AllophoneRescorer(LatticeRescorer):
                     # Alhoody 2020). Only a rule conditioned on the twin itself
                     # (a genuine gemination process, e.g. Tamil ⟨க்க⟩→[kː]) may.
                     continue
-                return rule.surface
+                return _applied(rule, ipa)
         segments = segment_ipa(ipa, self._atoms)
         if len(segments) <= 1:
             return None
@@ -322,7 +488,7 @@ class AllophoneRescorer(LatticeRescorer):
                     and seg in rule.phonemes \
                     and _matches_segment(rule, seg_ctx) \
                     and self._matches_slot(rule, context):
-                return rule.surface
+                return _applied(rule, seg)
         return None
 
     def _matches(self, rule: AllophoneRule, ctx: RescoreContext) -> bool:
@@ -366,7 +532,22 @@ class AllophoneRescorer(LatticeRescorer):
             stressed = ctx.is_stressed
             if stressed is None:  # no stress context (tokenizer path)
                 return False
-            if (rule.stress == "stressed") != bool(stressed):
+            if rule.stress in ("pretonic", "posttonic"):
+                # Position relative to the stressed syllable, for the many
+                # languages whose reduction differs before vs after the
+                # stress (German unstressed tense vowels are pretonic —
+                # Politik [poli-] — while post-tonic syllables stay lax:
+                # Königin [-nɪɡɪn]).
+                if bool(stressed):
+                    return False
+                if ctx.syll_idx is None or ctx.stressed_syll_idx is None:
+                    return False
+                if rule.stress == "pretonic":
+                    if not ctx.syll_idx < ctx.stressed_syll_idx:
+                        return False
+                elif not ctx.syll_idx > ctx.stressed_syll_idx:
+                    return False
+            elif (rule.stress == "stressed") != bool(stressed):
                 return False
         if rule.syllable_position is not None:
             if _syllable_position(ctx.grapheme) != rule.syllable_position:
@@ -376,6 +557,21 @@ class AllophoneRescorer(LatticeRescorer):
                 return False
         if rule.followed_by is not None:
             if not _neighbor_is(rule.followed_by, ctx.grapheme.next, 1):
+                return False
+        if rule.preceded_by_grapheme:
+            prv = ctx.grapheme.prev
+            if prv is None or not prv.grapheme or \
+                    prv.grapheme.lower() not in rule.preceded_by_grapheme:
+                return False
+        if rule.followed_by_grapheme:
+            nxt = ctx.grapheme.next
+            if nxt is None or not nxt.grapheme or \
+                    nxt.grapheme.lower() not in rule.followed_by_grapheme:
+                return False
+        if rule.followed_by_grapheme_not:
+            nxt = ctx.grapheme.next
+            if nxt is not None and nxt.grapheme and \
+                    nxt.grapheme.lower() in rule.followed_by_grapheme_not:
                 return False
         if rule.preceded_by_phoneme_2 or rule.followed_by_phoneme_2:
             # The grapheme TWO away, by its first IPA candidate. Read from the
@@ -402,12 +598,38 @@ class AllophoneRescorer(LatticeRescorer):
         if rule.followed_by_2 is not None:
             if not _neighbor_is(rule.followed_by_2, ctx.grapheme.at(2), 1):
                 return False
+        if rule.preceded_by_3 is not None:
+            if not _neighbor_is(rule.preceded_by_3, ctx.grapheme.at(-3), -1):
+                return False
+        if rule.preceded_by_surface_phoneme_2:
+            j = ctx.index - 2
+            if j < 0:
+                return False
+            two_back = ctx.slots[j]
+            if not two_back.candidates or not two_back.top.ipa:
+                return False
+            boundary = segment_ipa(two_back.top.ipa, self._atoms)[-1]
+            if boundary not in rule.preceded_by_surface_phoneme_2:
+                return False
         if rule.grapheme is not None:
             g = ctx.grapheme.grapheme
             if not g or g.lower() not in rule.grapheme:
                 return False
+        if rule.word_contains_grapheme or rule.word_contains_grapheme_not:
+            word = _source_word(ctx).lower()
+            if rule.word_contains_grapheme and \
+                    not any(g in word for g in rule.word_contains_grapheme):
+                return False
+            if any(g in word for g in rule.word_contains_grapheme_not):
+                return False
         if rule.word is not None:
             if _source_word(ctx).lower() not in rule.word:
+                return False
+        if rule.requires_other_nucleus is not None:
+            if rule.requires_other_nucleus != _has_other_nucleus(ctx):
+                return False
+        if rule.followed_by_nucleus is not None:
+            if rule.followed_by_nucleus != _has_later_nucleus(ctx):
                 return False
         return True
 
@@ -420,7 +642,7 @@ def _source_word(ctx: RescoreContext) -> str:
     source ``grapheme``; joined in order they give back the orthographic word
     a ``word``-keyed :class:`AllophoneRule` matches against.
     """
-    return "".join((getattr(s, "grapheme", "") or "") for s in ctx.slots)
+    return "".join(s.grapheme or "" for s in ctx.slots)
 
 
 def _is_geminate_aware(rule: AllophoneRule, ipa: str) -> bool:
@@ -523,14 +745,20 @@ def _rule_atoms(rules: Sequence[AllophoneRule]) -> Tuple[str, ...]:
         atoms.update(rule.phonemes or ())
         atoms.update(rule.preceded_by_phoneme or ())
         atoms.update(rule.followed_by_phoneme or ())
+        atoms.update(rule.preceded_by_phoneme_2 or ())
+        atoms.update(rule.followed_by_phoneme_2 or ())
+        atoms.update(rule.preceded_by_surface_phoneme_2 or ())
         if rule.surface:
             atoms.add(rule.surface)
+        if rule.append:
+            atoms.add(rule.append)
     return tuple(sorted((a for a in atoms if len(a) > 1),
                         key=len, reverse=True))
 
 
 def compile_allophone_rescorer(
     rules: Sequence[AllophoneRule],
+    doubled_letters_geminate: bool = True,
 ) -> Optional[AllophoneRescorer]:
     """Compile ``allophone_rules`` into a rescorer, or ``None`` if empty.
 
@@ -540,4 +768,4 @@ def compile_allophone_rescorer(
     rules = tuple(rules or ())
     if not rules:
         return None
-    return AllophoneRescorer(rules)
+    return AllophoneRescorer(rules, doubled_letters_geminate)
