@@ -2,7 +2,7 @@
 
 ## Overview
 
-The registry (`registry.py:68-82`) resolves language codes and lazily loads `LanguageSpec` objects from JSON data files under `orthography2ipa/data/`. Languages are loaded **lazily** — only when first requested via `get()`.
+The registry (`registry.py:68-82`) resolves language codes and lazily loads `LanguageSpec` objects from JSON data files under `orthography2ipa/data/`. Languages are loaded **lazily**: only when first requested via `get()`.
 
 ---
 
@@ -14,11 +14,13 @@ import orthography2ipa
 # Fetch a spec by code
 spec = orthography2ipa.get("pt-BR")
 
-# List all registered language codes — 676 of them
+# List all registered language codes
 codes = orthography2ipa.available_codes()
+len(codes)
 
-# ...plus the 73 classification-only clade nodes (749 total)
+# ...plus the classification-only clade nodes
 all_codes = orthography2ipa.available_codes(include_clades=True)
+len(all_codes)
 
 # Group codes by their derived family path
 families = orthography2ipa.available_families()
@@ -32,7 +34,7 @@ orthography2ipa.ancestry_chain("pt-BR")
 
 Clade nodes are classification-only: they carry no phoneme data, are never
 inherited from, and are excluded from `available_codes()` by default. `family` is
-derived from them — see [ancestry.md](ancestry.md#clade-nodes-and-the-derived-family).
+derived from them: see [ancestry.md](ancestry.md#clade-nodes-and-the-derived-family).
 
 ---
 
