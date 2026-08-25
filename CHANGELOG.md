@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.82.12a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.12a1) (2026-08-25)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.11a3...7.82.12a1)
+
+**Merged pull requests:**
+
+- fix\(wiy\): read standalone non-initial h as a glottal stop [\#1235](https://github.com/TigreGotico/orthography2ipa/pull/1235) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.82.11a3](https://github.com/TigreGotico/orthography2ipa/tree/7.82.11a3) (2026-08-25)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.11a2...7.82.11a3)
@@ -677,10 +685,6 @@
 ## [7.76.15a1](https://github.com/TigreGotico/orthography2ipa/tree/7.76.15a1) (2026-08-18)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.76.14a1...7.76.15a1)
-
-**Merged pull requests:**
-
-- fix: refresh stale board rows to match the current engine [\#1028](https://github.com/TigreGotico/orthography2ipa/pull/1028) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.76.14a1](https://github.com/TigreGotico/orthography2ipa/tree/7.76.14a1) (2026-08-18)
 
