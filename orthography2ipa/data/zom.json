@@ -3,7 +3,7 @@
   "name": "Zou",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "ch": [
       "c"
@@ -111,7 +111,7 @@
       "notes": "Descent per Glottolog classification of Zou (zouu1235)."
     }
   ],
-  "notes": "Skeleton. Zou (Zomi) is a Kuki-Chin (Sino-Tibetan) language of Manipur and Chin State, written in a Latin script developed by J.H. Cope. Base Latin consonants and vowels are mapped; per the orthography ch is the palatal stop [c], and ng/kh/ph/th are the expected digraphs and aspirates. Lexical tone is not recovered by the romanization and is left unencoded, so an elevated PER floor is expected.",
+  "notes": "Skeleton. Zou (Zomi) is a Kuki-Chin (Sino-Tibetan) language of Manipur and Chin State, written in a Latin script developed by J.H. Cope. Base Latin consonants and vowels are mapped; per the orthography ch is the palatal stop [c], and ng/kh/ph/th are the expected digraphs and aspirates. Zou is tonal: Singh & Himmat (2013), 'Zou Phonology', establish three contrastive tones (level, unmarked; low-rising, acute; falling, grave). The plain J.H. Cope-derived Latin orthography modelled here does not spell any of the three, and this is not a gap this engine could close by rule: the wikipron/zom.wikipron gold itself contains 24 identical Latin spellings (e.g. 'hai', 'chi', 'kal', 'za') each attested with two or more different gold tone diacritics, i.e. the same input string is genuinely ambiguous between distinct lexical tones with no orthographic cue to disambiguate -- confirming Singh & Himmat's own minimal-pair example (hai 'mango' level vs ha´i 'chew' low-rising vs ha`i 'cup/forget' falling, all spelled identically in running text). Tone is therefore left unencoded by design, not by omission; stripping tone diacritics from both the gold and this spec's output (measured, not shipped as a rule) drops PER from 0.528 to 0.251 on the zom/wikipron slice. That residual 0.251 is NOT all tone-blindness, and the earlier reading of it as the honest ceiling was wrong. Folding vowel length out as well -- this gold marks length with ː and the Cope orthography never writes it -- takes the number to 0.178, and folding the gold's ʌ onto ⟨a⟩ takes it to 0.121. What is left after that is recoverable from the spelling and is unencoded here rather than unrecoverable: every one of the 33 vowel-initial headwords in the gold takes a prosthetic [ʔ] onset the spec does not emit; all 12 headwords ending in ⟨h⟩ have gold [ʔ], not [h], so coda ⟨h⟩ spells the glottal stop; and all 6 ⟨ch⟩ headwords have gold [t͡ʃ], contradicting this entry's own claim that ⟨ch⟩ is the palatal stop [c]. Those three are live defects awaiting sourced rules, not ceiling. Stress is not a separate contrastive category (documented exemption).",
   "iso639_3": "zom",
   "glottolog_code": null,
   "sources": [
@@ -136,6 +136,27 @@
       "pages": null,
       "notes": "Orthography/phonology reference for a skeleton-tier entry.",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Zou_language"
+    },
+    {
+      "id": "zom_tungdim2012",
+      "author": "Tungdim, Philip Thangliènmâng",
+      "year": 2012,
+      "title": "A Descriptive Grammar of the Zo Language",
+      "publisher": "PhD dissertation, Jawaharlal Nehru University",
+      "url": null,
+      "pages": null,
+      "notes": "Descriptive grammar of Zou/Zo (Kuki-Chin); consulted alongside the J.H. Cope (c. 1910) missionary romanization to check the Latin orthography's ch/ng/kh/ph/th conventions modelled here."
+    },
+    {
+      "id": "zom_singh_himmat2013",
+      "author": "Singh, Yashawanta and Himmat, Lukram",
+      "year": 2013,
+      "title": "Zou Phonology",
+      "publisher": "Language in India",
+      "url": "http://www.languageinindia.com/feb2013/zouphonologyfinal.pdf",
+      "pages": "683-701",
+      "notes": "Primary phonological description establishing three contrastive Zou tones (level/unmarked, low-rising ´, falling `) and giving the minimal triplet hai/ha´i/ha`i, which is identically spelled without the diacritics in running Latin orthography. Basis for documenting tone as unrecoverable-by-rule rather than shipping a gold-fitted tone rule.",
+      "wikipedia_url": null
     }
   ],
   "wikipedia": [
