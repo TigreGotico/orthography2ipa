@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.82.6a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.6a1) (2026-08-25)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.5a1...7.82.6a1)
+
+**Merged pull requests:**
+
+- fix\(lsi\): emit unreleased coda plosives and the creaky nucleus of the glottalised sonorant series [\#1180](https://github.com/TigreGotico/orthography2ipa/pull/1180) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.82.5a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.5a1) (2026-08-25)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.4a2...7.82.5a1)
@@ -258,20 +266,20 @@
 
 ## [7.80.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.80.1a1) (2026-08-24)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.16a1...7.80.1a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.80.0a1...7.80.1a1)
 
 **Merged pull requests:**
 
 - fix\(mww\): emit RPA tone letters instead of silencing them [\#1113](https://github.com/TigreGotico/orthography2ipa/pull/1113) ([JarbasAl](https://github.com/JarbasAl))
 - fix\(kwk\): map the U'mista ejective/uvular/lateral-affricate series [\#1106](https://github.com/TigreGotico/orthography2ipa/pull/1106) ([JarbasAl](https://github.com/JarbasAl))
 
-## [7.79.16a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.16a1) (2026-08-24)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.80.0a1...7.79.16a1)
-
 ## [7.80.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.80.0a1) (2026-08-24)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.15a1...7.80.0a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.16a1...7.80.0a1)
+
+## [7.79.16a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.16a1) (2026-08-24)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.15a1...7.79.16a1)
 
 **Merged pull requests:**
 
@@ -658,10 +666,6 @@
 ## [7.76.8a1](https://github.com/TigreGotico/orthography2ipa/tree/7.76.8a1) (2026-08-18)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.76.7a1...7.76.8a1)
-
-**Merged pull requests:**
-
-- fix\(ab\): Abkhaz velar aspirates and the pre-1996 letter forms [\#1006](https://github.com/TigreGotico/orthography2ipa/pull/1006) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.76.7a1](https://github.com/TigreGotico/orthography2ipa/tree/7.76.7a1) (2026-08-18)
 
