@@ -320,8 +320,8 @@ A row's `N` is its sample size in scored words, and it is not cosmetic: below ro
 | izh | wikipron | 7886 | 0.0092 | 0.0092 | 0.0092 | 0.9369 | 0.9369 | [0.0083, 0.0103] | 0.9369 | research | crowd-scraped |
 | ja | ipadict | 115500 | 0.3276 | 0.3276 | 0.3276 | 0.2845 | 0.2845 | [0.3259, 0.3293] | 0.2845 | research | lexicon-derived |
 | ja | vox_communis | 42550 | 0.4273 | 0.4273 | 0.4273 | 0.2000 | 0.2000 | [0.4243, 0.4304] | 0.2000 | research | epitran-derived |
-| jam | ipadict | 1869 | 0.1656 | 0.1656 | 0.1656 | 0.4131 | 0.4131 | [0.1554, 0.1747] | 0.4131 | research | lexicon-derived |
-| jam | wikipron | 382 | 0.2764 | 0.2764 | 0.2764 | 0.4005 | 0.4005 | [0.2462, 0.3060] | 0.4005 | research | crowd-scraped |
+| jam | ipadict | 1869 | 0.1684 | 0.1684 | 0.1684 | 0.4034 | 0.4034 | [0.1582, 0.1777] | 0.4034 | research | lexicon-derived |
+| jam | wikipron | 382 | 0.2762 | 0.2762 | 0.2762 | 0.4031 | 0.4031 | [0.2462, 0.3061] | 0.4031 | research | crowd-scraped |
 | jv | kaikki | 96 | 0.2180 | 0.0915 | 0.0723 | 0.6667 | 0.7500 | [0.1843, 0.2542] | 0.2500 | skeleton | crowd-scraped |
 | ka | vox_communis | 79887 | 0.2337 | 0.2337 | 0.2337 | 0.0725 | 0.0725 | [0.2329, 0.2345] | 0.0725 | research | epitran-derived |
 | kab | vox_communis | 54545 | 0.2071 | 0.2071 | 0.2071 | 0.1829 | 0.1829 | [0.2057, 0.2083] | 0.1829 | research | epitran-derived |

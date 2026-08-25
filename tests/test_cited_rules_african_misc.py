@@ -1303,10 +1303,14 @@ def test_jam_zh_is_a_voiced_postalveolar_fricative():
     assert G2P("jam").transcribe_word("zhaan") == "ʒaːn"
 
 
-def test_jam_palatalised_onsets_are_not_modelled():
-    """Declared limit: "the palatalised <ky>/<gy> onsets are not modelled here."
-    kyaan 'can't' therefore yields a plain /k/ + /j/ sequence, not [kʲ]."""
-    assert G2P("jam").transcribe_word("kyaan") == "kjaːn"
+def test_jam_ky_and_gy_are_palatalised_velar_onsets():
+    """Harry 2006 (JIPA 36/1, doi:10.1017/S002510030600243X, p.127,
+    "Palatalisation") derives /giaad/ 'guard' → [ɡʲiaːd] → [ɡʲaːd] and
+    /kiuu/ → [kʲiuː] → [kʲuː], and his 21-consonant inventory (p.126) has
+    no palatal stop.  The Cassidy/JLU ⟨ky⟩ ⟨gy⟩ spell that single
+    palatalised velar, not a /k/ + /j/ cluster."""
+    assert G2P("jam").transcribe_word("kyaan") == "kʲaːn"
+    assert G2P("jam").transcribe_word("gyaad") == "ɡʲaːd"
 
 
 # ---------------------------------------------------------------------------
