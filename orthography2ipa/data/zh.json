@@ -1079,6 +1079,45 @@
     "rì": [
       "ɻɨ˥˩",
       "ɻɻ̩˥˩"
+    ],
+    "ê": [
+      "ɛ"
+    ],
+    "ê̄": [
+      "ɛ˥"
+    ],
+    "ế": [
+      "ɛ˧˥"
+    ],
+    "ê̌": [
+      "ɛ˨˩˦"
+    ],
+    "ề": [
+      "ɛ˥˩"
+    ],
+    "ng": [
+      "ŋ"
+    ],
+    "ńg": [
+      "ŋ˧˥"
+    ],
+    "ňg": [
+      "ŋ˨˩˦"
+    ],
+    "ǹg": [
+      "ŋ˥˩"
+    ],
+    "hng": [
+      "xŋ"
+    ],
+    "hm": [
+      "xm"
+    ],
+    "ḿ": [
+      "m˧˥"
+    ],
+    "m̀": [
+      "m˥˩"
     ]
   },
   "allophones": {
@@ -1187,7 +1226,7 @@
     "˥˩": "falling (4th)",
     "": "neutral (5th)"
   },
-  "notes": "Standard Mandarin (Pǔtōnghuà), Beijing-based. THIS SPEC READS PINYIN, NOT HANZI — its graphemes are Pinyin units and the input contract is Pinyin. Nothing here reads a Han character, and nothing could: a Han character does not encode sound, so no rule engine can pronounce one. That limit is stated by `zh-Hani`. Pinyin, being an alphabet, is fully transcribable — which is why the romanization is the tractable orthography and the native script is not. Going from Hanzi to this spec needs a dictionary (CC-CEDICT), not rules.\n\nBoth ways of writing tone are read: the diacritics of the official orthography (⟨mā má mǎ mà⟩) and the ASCII tone digits ⟨1 2 3 4⟩, with ⟨0⟩ and ⟨5⟩ for the neutral tone. The diacritic forms are listed as whole rimes rather than as marked letters, because the mark sits inside the rime — on ⟨a⟩ where the rime has one, otherwise on ⟨o⟩ or ⟨e⟩, otherwise on the last vowel letter — so reading a marked letter on its own would break the rime it belongs to. The Chao values are Chao's (1968): 55, 35, 214, 51, and nothing for the neutral tone. ⟨v⟩ is the usual ASCII stand-in for ⟨ü⟩.\n\nFour Pinyin spelling conventions hide a segment and are stated here rather than left to a letter-by-letter reading. Pinyin drops the umlaut of ⟨ü⟩ after ⟨j q x y⟩, where /u/ and /y/ do not contrast, so ⟨u un uan ue⟩ read /y yn ɥɛn ɥe/ in that environment and /u wən wan/ elsewhere. ⟨y⟩ and ⟨w⟩ are not consonants but the zero-onset spellings of the medials, so ⟨yi wu yu⟩ are the bare vowels /i u y/ and ⟨ye yan yin ying yun yue yuan⟩ spell the same rimes as ⟨ie ian in ing ün üe üan⟩. ⟨o⟩ after ⟨b p m f⟩ spells the rime /uo/ with the medial unwritten, while ⟨o⟩ standing alone is the interjection [ɔ]. And ⟨i⟩ after ⟨z c s⟩ and after ⟨zh ch sh r⟩ is not /i/ at all but the apical vowel — dental [ɹ̩] in the first series, retroflex [ɻ̩] in the second — which this spec writes /ɨ/ and gives both apical realizations as its allophones (Duanmu 2007; Lin 2007). Prenuclear high vowels are read as the glides /j w ɥ/ rather than as vowel medials (Duanmu 2007).\n\nThe retroflex suffix ⟨-r⟩ of erhua is a stated gap: it is read as a plain /ɻ/ coda, and the rime reshaping it triggers is not modelled. The syllable ⟨er⟩ itself is /ɚ/.\n\nAgainst the ipa_childes Mandarin gold, four transcription conventions account for most of the remaining distance and are not defects on either side. That gold is produced by the pinyin_to_ipa table, so the row measures agreement with another Pinyin→IPA convention rather than accuracy. It writes the retroflex series ⟨t̠ʃ̺ ʃ̺⟩ where this spec writes ⟨ʈʂ ʂ⟩; it gives the third tone as 313 where Chao's value is 214; it places the tone letter after the nucleus and before a nasal coda, where IPA writes it at the syllable edge; and it writes ⟨aŋ⟩ where this spec writes the backed [ɑŋ].",
+  "notes": "Standard Mandarin (Pǔtōnghuà), Beijing-based. THIS SPEC READS PINYIN, NOT HANZI — its graphemes are Pinyin units and the input contract is Pinyin. Nothing here reads a Han character, and nothing could: a Han character does not encode sound, so no rule engine can pronounce one. That limit is stated by `zh-Hani`. Pinyin, being an alphabet, is fully transcribable — which is why the romanization is the tractable orthography and the native script is not. Going from Hanzi to this spec needs a dictionary (CC-CEDICT), not rules.\n\nBoth ways of writing tone are read: the diacritics of the official orthography (⟨mā má mǎ mà⟩) and the ASCII tone digits ⟨1 2 3 4⟩, with ⟨0⟩ and ⟨5⟩ for the neutral tone. The diacritic forms are listed as whole rimes rather than as marked letters, because the mark sits inside the rime — on ⟨a⟩ where the rime has one, otherwise on ⟨o⟩ or ⟨e⟩, otherwise on the last vowel letter — so reading a marked letter on its own would break the rime it belongs to. The Chao values are Chao's (1968): 55, 35, 214, 51, and nothing for the neutral tone. ⟨v⟩ is the usual ASCII stand-in for ⟨ü⟩.\n\nFour Pinyin spelling conventions hide a segment and are stated here rather than left to a letter-by-letter reading. Pinyin drops the umlaut of ⟨ü⟩ after ⟨j q x y⟩, where /u/ and /y/ do not contrast, so ⟨u un uan ue⟩ read /y yn ɥɛn ɥe/ in that environment and /u wən wan/ elsewhere. ⟨y⟩ and ⟨w⟩ are not consonants but the zero-onset spellings of the medials, so ⟨yi wu yu⟩ are the bare vowels /i u y/ and ⟨ye yan yin ying yun yue yuan⟩ spell the same rimes as ⟨ie ian in ing ün üe üan⟩. ⟨o⟩ after ⟨b p m f⟩ spells the rime /uo/ with the medial unwritten, while ⟨o⟩ standing alone is the interjection [ɔ]. And ⟨i⟩ after ⟨z c s⟩ and after ⟨zh ch sh r⟩ is not /i/ at all but the apical vowel — dental [ɹ̩] in the first series, retroflex [ɻ̩] in the second — which this spec writes /ɨ/ and gives both apical realizations as its allophones (Duanmu 2007; Lin 2007). Prenuclear high vowels are read as the glides /j w ɥ/ rather than as vowel medials (Duanmu 2007).\n\nTwo kinds of syllable that no other Pinyin spelling reaches are listed on their own. ⟨ê⟩ is the final ㄝ /ɛ/ written alone — the third note to the Scheme's table of finals says to spell it that way — so the letter turns up only in the interjection 欸, the same final being written plain ⟨e⟩ inside ⟨ie üe⟩. And the interjections 嗯 ⟨ng⟩, 哼 ⟨hng⟩ and 噷 ⟨hm⟩ have no vowel letter at all; they read /ŋ xŋ xm/, with ⟨hng⟩ and ⟨hm⟩ carrying no tone and ⟨ng⟩ and ⟨m⟩ taking one on the nasal letter itself (Lee 2023, from the seventh edition of the 现代汉语词典). Without these entries a letter-by-letter reading drops ⟨ê⟩ and reads ⟨ng⟩ as /nk/.\n\nThe retroflex suffix ⟨-r⟩ of erhua is a stated gap: it is read as a plain /ɻ/ coda, and the rime reshaping it triggers is not modelled. The syllable ⟨er⟩ itself is /ɚ/.\n\nAgainst the ipa_childes Mandarin gold, four transcription conventions account for most of the remaining distance and are not defects on either side. That gold is produced by the pinyin_to_ipa table, so the row measures agreement with another Pinyin→IPA convention rather than accuracy. It writes the retroflex series ⟨t̠ʃ̺ ʃ̺⟩ where this spec writes ⟨ʈʂ ʂ⟩; it gives the third tone as 313 where Chao's value is 214; it places the tone letter after the nucleus and before a nasal coda, where IPA writes it at the syllable edge; and it writes ⟨aŋ⟩ where this spec writes the backed [ɑŋ].",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -1230,6 +1269,26 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "pinyin_scheme1958",
+      "author": "中国文字改革委员会 (Committee for Reform of the Chinese Written Language)",
+      "year": 1958,
+      "title": "汉语拼音方案 [Scheme for the Chinese Phonetic Alphabet]",
+      "publisher": "First National People's Congress; text published by the Ministry of Education of the PRC",
+      "url": "http://www.moe.gov.cn/jyb_sjzl/ziliao/A19/195802/t19580201_186000.html",
+      "pages": null,
+      "notes": "Third note to the table of finals: 韵母ㄝ单用的时候写成ê — the final ㄝ is written ê when it stands alone."
+    },
+    {
+      "id": "lee2023",
+      "author": "이미경 (Lee, Mi-kyoung)",
+      "year": 2023,
+      "title": "중국어 감탄사의 유형과 특징 고찰 — 《现代汉语词典》중심으로 [Types and characteristics of Chinese interjections, based on the Xiandai Hanyu Cidian]",
+      "publisher": "中國語文學 (Journal of Chinese Language and Literature) 94",
+      "url": "https://journal.kci.go.kr/clsyn/archive/articlePdf?artiId=ART003036565",
+      "pages": "287-315",
+      "notes": "Table 8 lists the vowelless interjection syllables of the seventh-edition dictionary — 呣 m [m], 唔/嗯 ng [ŋ], 哼 hng [xŋ], 噷 hm [xm], the last two toneless — and 欸 ê with all four tones, ê = /ɛ/ (citing 张伟力 2007)."
     }
   ],
   "wikipedia": [
