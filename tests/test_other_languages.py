@@ -882,3 +882,50 @@ class TestYola:
         letters c+k, which would double the stop.
         """
         _assert_first(_grapheme(self.spec, "ck"), "k", label="ck")
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Coptic
+# ═══════════════════════════════════════════════════════════════════════════
+
+
+@pytest.mark.linguistic
+class TestCoptic:
+    """Accuracy tests for Coptic (cop), the final stage of the Egyptian
+    language. The spec targets the Sahidic dialect and its cop/wikipron
+    benchmark row is an agreement row against a mixture of reconstruction
+    traditions, not attested speech; see the spec's ``notes`` field for the
+    evidence (Wiktionary key-derived IPA, homograph rate, Greco-Bohairic
+    markers, and dialect-exclusive letters found in the gold).
+    """
+
+    LANGUAGE_CODE = "cop"
+
+    @pytest.fixture(autouse=True)
+    def _setup(self):
+        self.spec = _load(self.LANGUAGE_CODE)
+
+    def test_beta_is_stop_not_greco_bohairic_fricative(self):
+        """⟨ⲃ⟩ spells the stop /b/ under this spec's Sahidic analysis, not
+        the [β]/[v] fricative introduced by the 19th-century Greco-Bohairic
+        liturgical pronunciation reform (Ishaq 1975, discussed in the
+        English Wikipedia 'Coptic pronunciation reform' article).
+        """
+        _assert_first(_grapheme(self.spec, "ⲃ"), "b", label="ⲃ")
+
+    def test_theta_is_aspirated_stop_not_fricative(self):
+        """⟨ⲑ⟩ spells the aspirated stop /tʰ/, the Sahidic/Old Bohairic
+        reconstruction value, not the /θ/ fricative that the Greco-Bohairic
+        reform introduced by imitating Greek theta.
+        """
+        _assert_first(_grapheme(self.spec, "ⲑ"), "tʰ", label="ⲑ")
+
+    def test_notes_document_gold_reconstruction_mixing(self):
+        """The spec notes must document, with counts, that the cop/wikipron
+        gold mixes reconstruction traditions rather than reflecting attested
+        Sahidic speech -- the same category of finding as yol/wikipron.
+        """
+        notes = self.spec.notes or ""
+        assert "agreement row" in notes
+        assert "Greco-Bohairic" in notes
+        assert "49.1%" in notes or "homograph" in notes.lower()
