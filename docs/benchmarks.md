@@ -198,8 +198,14 @@ fetched citation.** It may never be derived from what orthography2ipa outputs.
 This is the whole rule. A gold repaired with this project's own answers is a
 circular gold: the board row it produces looks excellent and measures nothing,
 because the engine is being scored against a copy of itself. The derivation
-script imports no orthography2ipa, and a test enforces that by parsing its
-imports.
+script names no orthography2ipa module, and a test enforces that by parsing the
+source for all four ways of naming one: `import`, `from ... import`,
+`sys.modules[...]`, and `importlib.import_module` / `__import__`. That is a
+check on what the source says, not a sandbox — the build imports
+`scripts/benchmark.py` for the base gold loader, which puts the engine in
+`sys.modules` regardless. What keeps the derivation honest underneath the check
+is its shape: the correction is computed from `(spelling, reading)` pairs and
+the Unicode combining marks of the spelling, with nothing else in scope.
 
 **Overlays are separate datasets, never rewrites.** A corrected gold is
 registered under its own name — `vox_communis_corrected` beside

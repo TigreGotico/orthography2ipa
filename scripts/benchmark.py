@@ -1894,10 +1894,12 @@ def load_vox_communis(lang: str, limit: int) -> List[Tuple[str, str]]:
     on 967 of the row's 2,475 words. Read that row as notation drift, never
     as evidence about the Vietnamese spec. The tier is deliberately left at
     the dataset-wide ``epitran-derived``: it already returns False from
-    :func:`can_gate_promotion`, whereas ``machine-generated`` does NOT (see
-    :data:`NON_QUALIFYING_TIERS` — gating is set membership, not position in
-    :data:`RELIABILITY_TIERS`), so "downgrading" this row would hand it a
-    gating vote it must not have.
+    :func:`can_gate_promotion`, whereas ``machine-generated`` does NOT.
+    Gating power follows position in :data:`RELIABILITY_TIERS` — everything
+    after :data:`GATING_CUTOFF_TIER` is non-qualifying — and
+    ``machine-generated`` sits EARLIER in that tuple than ``epitran-derived``,
+    so relabelling the row that way moves it UP the lattice and would hand it
+    a gating vote it must not have.
     """
     fname = _VOX_COMMUNIS_FILES[lang] + ".tsv"
     text = _fetch(_VOX_COMMUNIS_BASE + fname, f"vox_communis_{fname}")
