@@ -603,7 +603,7 @@ A row's `N` is its sample size in scored words, and it is not cosmetic: below ro
 | sw | ipadict | 48308 | 0.2095 | 0.2095 | 0.2095 | 0.2363 | 0.2363 | [0.2079, 0.2112] | 0.2363 | research | machine-generated |
 | sw | vox_communis | 48334 | 0.1863 | 0.1863 | 0.1863 | 0.2629 | 0.2629 | [0.1847, 0.1876] | 0.2629 | research | epitran-derived |
 | sw | wikipron | 307 | 0.3494 | 0.3398 | 0.3398 | 0.1596 | 0.1596 | [0.3230, 0.3750] | 0.1433 | research | crowd-scraped |
-| syc | wikipron | 96 | 0.4353 | 0.4353 | 0.4353 | 0.0000 | 0.0000 | [0.4147, 0.4572] | 0.0000 | research | crowd-scraped |
+| syc | wikipron | 96 | 0.3707 | 0.3576 | 0.3576 | 0.0208 | 0.0208 | [0.3425, 0.3959] | 0.0208 | research | crowd-scraped |
 | szl | wikipron | 2377 | 0.2148 | 0.2148 | 0.2148 | 0.2869 | 0.2869 | [0.2072, 0.2227] | 0.2869 | research | crowd-scraped |
 | ta | vox_communis | 135937 | 0.1214 | 0.1213 | 0.1212 | 0.2368 | 0.2368 | [0.1209, 0.1219] | 0.2368 | research | epitran-derived |
 | ta | wikipron | 10093 | 0.3757 | 0.3726 | 0.3722 | 0.0240 | 0.0240 | [0.3728, 0.3787] | 0.0238 | research | crowd-scraped |
