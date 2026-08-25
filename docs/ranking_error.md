@@ -68,7 +68,7 @@ report that movement and is labelled precisely so it cannot be read as
 one of these numbers. That is what makes `PER − Oracle@k` readable as ranking error at
 all: an injected alternative lowers an oracle by construction, so
 folding it in would mark our own diagnostic to our own edit. See
-[`benchmarks.md`](benchmarks.md#injected-alternatives-do-not-count-as-ranking-error);
+[`benchmark_methodology.md`](benchmark_methodology.md#injected-alternatives-do-not-count-as-ranking-error);
 the movement ⟨-ent⟩ does cause is reported there, separately, as
 reachability.
 
@@ -197,7 +197,7 @@ the layer that decides.
 > Oracle@3 does not move at all (`0.0723`), because the mute reading
 > lands at rank 4-5. The scoreboard publishes only the without-injection
 > numbers. See
-> [`benchmarks.md`](benchmarks.md#injected-alternatives-do-not-count-as-ranking-error).
+> [`benchmark_methodology.md`](benchmark_methodology.md#injected-alternatives-do-not-count-as-ranking-error).
 
 See [SCHEMA.md](../orthography2ipa/data/SCHEMA.md#ambiguous-endings).
 
@@ -281,7 +281,4 @@ python scripts/benchmark.py --dataset wikipron --lang fr   # full corpus
 ```
 
 ---
-
-**Navigation:** [Docs home](index.md) · [Scoreboard](scoreboard.md) · [Benchmarks](benchmarks.md) · [Lattice](lattice.md)
-
-*Related: [Candidate scoring](candidate_scoring.md) · [Positional graphemes](positional_graphemes.md) · [Adding a language](adding_a_language.md)*
+[← Known limitations](known_limitations.md) · [Home](index.md) · [Spec diagnostics →](spec_diagnostics.md)

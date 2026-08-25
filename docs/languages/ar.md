@@ -472,7 +472,4 @@ therefore *not* cited as primary reads, only as works reported within the source
 - Wikipedia: [Standard Arabic phonology](https://en.wikipedia.org/wiki/Standard_Arabic_phonology)
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
-
-*Related: [ar-IQ](ar-IQ.md), [ar-x-levantine](ar-x-levantine.md)*
+[← Russian](ru.md) · [Home](../index.md) · [Levantine Arabic →](ar-x-levantine.md)

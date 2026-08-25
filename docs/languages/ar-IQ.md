@@ -92,7 +92,4 @@ predictable from the orthography and is a documented **engine limit**, not captu
 descriptive grammar of gilit Baghdadi, library/paywall only for this pass.
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
-
-*Related: [ar](ar.md), [ar-x-levantine](ar-x-levantine.md)*
+[← Levantine Arabic](ar-x-levantine.md) · [Home](../index.md) · [Peripheral Arabic →](ar-maghrebi-yemeni-sudanese.md)

@@ -103,4 +103,5 @@ The qualifying row is `wikipron`, far below the shallow threshold. The `hitz_bas
 
 Known engine-limit notes: Basque accent is dialect-variable and never written (see the spec's documented stress exemption). No stress marks are emitted.
 
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
+---
+[← Mongolian](mn.md) · [Home](../index.md) · [Finnish →](fi.md)

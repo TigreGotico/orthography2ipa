@@ -51,7 +51,4 @@ directional, not a certification. See [benchmarks.md](benchmarks.md) and
 [scoreboard.md](scoreboard.md).
 
 ---
-
-**Navigation:** [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md) · [Benchmarks](benchmarks.md)
-
-*Related: [Data model](data_model.md) · [Registry](registry.md) · [Bibliography](bibliography.md) · [Quality tiers](quality_tiers.md)*
+[← Esperanto](languages/eo.md) · [Home](index.md)

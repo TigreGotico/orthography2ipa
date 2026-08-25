@@ -41,7 +41,7 @@ over the engine's top-k readings — which splits ranking error (right
 answer in the beam, ranked wrong) from model error (right answer absent
 at any k). It is a lattice-quality diagnostic for THIS engine only and
 is never valid input to a cross-system comparison: see
-:class:`OracleResult` and ``docs/benchmarks.md``.
+:class:`OracleResult` and ``docs/benchmark_methodology.md``.
 
 The committed ``--scoreboard`` scores the FULL gold set of every language
 with NO cap (uniformly — no per-language limit juggling); the published
@@ -112,6 +112,8 @@ GoldPair = Tuple[str, str]
 # script from a checkout measures THAT checkout
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from docs_nav import footer  # noqa: E402
 from orthography2ipa.vowels import is_ipa_vowel  # noqa: E402
 
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -713,7 +715,7 @@ _VOX_COMMUNIS_FILES.update({
 _VOX_COMMUNIS_NON_SPEECH = frozenset({"spn"})
 # ``zh`` (Mandarin) is DELIBERATELY not registered here either, for exactly
 # the reason spelled out for ``yue`` below and already recorded for the
-# ipa-dict ``zh_*``/``yue`` files in docs/benchmarks.md ("Rejected
+# ipa-dict ``zh_*``/``yue`` files in docs/benchmark_datasets.md ("Rejected
 # candidates"): the o2i ``zh`` spec is a PINYIN spec, while
 # ``zh-cn.tsv``'s ``aligned_sentence`` column is Han characters
 # (``盘固 草 为 禾 本科 …``). Every single row therefore transcribes to the
@@ -1084,7 +1086,7 @@ def load_ipa_babylm(lang: str, limit: int) -> List[Tuple[str, str]]:
 #   ``Segments`` empty on all 346k rows.
 #
 # 2026-08 audit wave — 21 more candidates inspected, NONE wired. Full verdicts
-# and evidence in docs/benchmarks.md "Rejected candidates". Summary:
+# and evidence in docs/benchmark_datasets.md "Rejected candidates". Summary:
 #
 # - `uralex`: ``Segments`` empty on all sampled rows (same as ids/abvd).
 # - `tuled`, `dravlex`, `chaconarawakan`, `felekesemitic`, `hantganbangime`,
@@ -1306,7 +1308,7 @@ def load_wold(lang: str, limit: int) -> List[Tuple[str, str]]:
 # zero-gold languages. Added: `so` (Somali), `om` (Oromo), `ne` (Nepali),
 # `kok` (Konkani). Re-checked: Tigrinya is UNCHANGED (still 28/933 -- stays
 # rejected), and Sindhi (`sd`) / Santali (`sat`) were investigated and
-# rejected -- see docs/benchmarks.md for both.
+# rejected -- see docs/benchmark_datasets.md for both.
 _KAIKKI_BASE = "https://kaikki.org/dictionary/{name}/kaikki.org-dictionary-{name}.jsonl"
 
 # orthography2ipa language tag -> kaikki.org per-language dump directory name.
@@ -3938,13 +3940,14 @@ def write_scoreboard(rows: List[dict]) -> None:
         "```",
         "",
         "Machine-readable form: [`benchmarks/results.json`]"
-        "(../benchmarks/results.json). Methodology and dataset provenance: "
-        "[`docs/benchmarks.md`](benchmarks.md).",
+        "(../benchmarks/results.json). Methodology: "
+        "[`docs/benchmark_methodology.md`](benchmark_methodology.md). Dataset "
+        "provenance: [`docs/benchmarks.md`](benchmarks.md).",
         "",
         "The `95% CI` column is a bootstrap confidence interval on the "
         "mean PER (per-word PERs resampled with replacement, "
         f"{BOOTSTRAP_REPS} reps, fixed seed {BOOTSTRAP_SEED}) — see "
-        "[`docs/benchmarks.md`](benchmarks.md).",
+        "[`docs/benchmark_methodology.md`](benchmark_methodology.md).",
         "",
         "The `Oracle@3` / `Oracle@5` columns are the per-word MINIMUM PER "
         "over the engine's top-3 / top-5 readings, averaged like `PER`. "
@@ -3989,7 +3992,7 @@ def write_scoreboard(rows: List[dict]) -> None:
         "`Exact match` are unaffected either way: an injected alternative can "
         "never reach rank 1. The movement they do cause is reported "
         "separately, as reachability, in "
-        "[`docs/benchmarks.md`](benchmarks.md).",
+        "[`docs/benchmark_methodology.md`](benchmark_methodology.md).",
         "",
         "Oracle cells read `·` when the row has **not been rescored** since "
         "the oracle columns were added (most rows: a full scoreboard is "
@@ -4056,7 +4059,7 @@ def write_scoreboard(rows: List[dict]) -> None:
     lines.append("")
     os.makedirs(os.path.dirname(SCOREBOARD_MD), exist_ok=True)
     with open(SCOREBOARD_MD, "w", encoding="utf-8") as fh:
-        fh.write("\n".join(lines))
+        fh.write("\n".join(lines).rstrip() + footer("scoreboard.md"))
 
 
 # ─── lexicon-overlay report (E3) ────────────────────────────────────────────
@@ -4203,7 +4206,7 @@ def write_lexicon_report(rows: List[dict]) -> None:
     lines.append("")
     os.makedirs(os.path.dirname(LEXICON_SCOREBOARD_MD), exist_ok=True)
     with open(LEXICON_SCOREBOARD_MD, "w", encoding="utf-8") as fh:
-        fh.write("\n".join(lines))
+        fh.write("\n".join(lines).rstrip() + footer("lexicon_scoreboard.md"))
 
 
 def main() -> None:

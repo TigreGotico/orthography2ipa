@@ -664,7 +664,7 @@ not price a mispronounced *vent*. The consequence is deliberate: oracle@k
 improves and 1-best does not move. That is the intended shape of the change,
 not a disappointing result — and the oracle movement it causes is kept OUT of
 the published scoreboard entirely, because that board defines `PER − Oracle@k`
-as ranking error. See [benchmarks.md](../../docs/benchmarks.md#injected-alternatives-do-not-count-as-ranking-error).
+as ranking error. See [benchmark_methodology.md](../../docs/benchmark_methodology.md#injected-alternatives-do-not-count-as-ranking-error).
 
 #### Admissibility: a proven lattice hole, never a guess
 
@@ -681,7 +681,7 @@ top 10.
 Declaring a list because a reading "also exists", or "might help", or to raise
 an oracle column, is **forbidden**. An unproven alternative costs beam width and
 inflates our own diagnostic while fixing nothing (see
-[benchmarks.md](../../docs/benchmarks.md#injected-alternatives-do-not-count-as-ranking-error)). If the reading is already
+[benchmark_methodology.md](../../docs/benchmark_methodology.md#injected-alternatives-do-not-count-as-ranking-error)). If the reading is already
 reachable at any *k*, the fix belongs in weights or in a downstream rescorer,
 not here.
 

@@ -503,7 +503,4 @@ The distance calculation functions in `distance.py` continue to use the base `gr
 However, consumers building on this package can use positional data to compute **positional divergence** between related languages: for example, comparing how Portuguese and Spanish handle intervocalic stops differently.
 
 ---
-
-**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
-
-*Related: [Allophony](allophony.md) · [Tokenizer](tokenizer.md) · [Data model](data_model.md)*
+[← Allophony](allophony.md) · [Home](index.md) · [Adding a new Language →](adding_a_language.md)

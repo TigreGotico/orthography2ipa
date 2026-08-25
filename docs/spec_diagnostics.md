@@ -584,3 +584,6 @@ ycl | Sino-Tibetan | 44 | 24 | 0 |  | no | 0 | sce 0.341 | 1 | 111 | 0.0108
 zh | Sino-Tibetan > Sinitic | 347 | 27 | 0 |  | no | 0 | kdx 0.072 | 1 | 4718 | 0.2882
 zom | Sino-Tibetan | 32 | 20 | 0 |  | no | 0 | cnk 0.912 | 1 | 134 | 0.528
 zu | Atlantic-Congo > Bantu | 66 | 26 | 0 |  | yes | 0 | nd 0.682 | 1 | 1754 | 0.2311
+
+---
+[← Ranking error](ranking_error.md) · [Home](index.md) · [Finding a language's phonology documentation →](languages/index.md)

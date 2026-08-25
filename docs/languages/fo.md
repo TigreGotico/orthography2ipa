@@ -84,3 +84,6 @@ The qualifying row is `wikipron` (crowd-scraped, gate-eligible), below the
 - Árnason, K. *The Phonology of Icelandic and Faroese*. Oxford University Press, 2011.
 - Þráinsson, H., Petersen, H. P., Jacobsen, J. í L. & Hansen, Z. S. *Faroese: An Overview and Reference Grammar*. Føroya Fróðskaparfelag, 2004.
 - Lockwood, W. B. *An Introduction to Modern Faroese*. Munksgaard, 1955.
+
+---
+[← German](de-DE.md) · [Home](../index.md) · [Romance Languages →](romance.md)

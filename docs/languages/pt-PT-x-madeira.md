@@ -97,7 +97,4 @@ eng.transcribe("levada")      # lɨˈvadɐ  — /v/ preserved, no betacism
   Oxford University Press.
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
-
-*Related: [pt-PT](pt-PT.md), [pt-PT-x-acores](pt-PT-x-acores.md), [pt-PT-x-lisbon](pt-PT-x-lisbon.md)*
+[← Micaelense European Portuguese](pt-PT-x-sao-miguel.md) · [Home](../index.md) · [Mirandese →](mwl.md)

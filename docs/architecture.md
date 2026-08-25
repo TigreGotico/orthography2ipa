@@ -324,7 +324,4 @@ See [Adding a Language](adding_a_language.md) for the full guide. The short vers
 3. Run the test suite to verify the spec validates correctly.
 
 ---
-
-**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
-
-*Related: [Tokenizer](tokenizer.md) · [Lattice](lattice.md) · [Allophony](allophony.md) · [Data model](data_model.md)*
+[← Getting Started](getting_started.md) · [Home](index.md) · [Data Model →](data_model.md)

@@ -73,7 +73,7 @@ hand-typed Wiktionary IPA and `Module:mn-IPA` output rather than purely
 crowd-scraped: a 40-headword sample of the raw en.wiktionary source drew
 roughly three module-generated entries for every hand-typed one, so part
 of this row is a reproduction test rather than an accuracy test (see
-[Module-generated WikiPron rows](../benchmarks.md#module-generated-wikipron-rows)).
+[Module-generated WikiPron rows](../benchmark_datasets.md#module-generated-wikipron-rows)).
 Mongolian Cyrillic is also a deep orthography for this purpose: the
 letters record a historical, pre-reduction shape of the word rather than
 its surface form, so the 0.25 deep-orthography threshold applies.
@@ -87,3 +87,6 @@ this spec never emits for that reason, which is a floor on the achievable
 PER that no rule change can recover. Adopting its word-initial [k] alone
 would lower the measured PER by roughly two points, and the spec declines
 to do so because the source states the opposite.
+
+---
+[← Assamese](as.md) · [Home](../index.md) · [Basque (Euskara) and its dialects →](eu.md)

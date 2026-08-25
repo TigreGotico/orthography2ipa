@@ -93,7 +93,4 @@ of its writing system, and `zh-Hani` is the proof: no orthography the rules can
 read, and a complete phonology regardless.
 
 ---
-
-**Navigation:** [Docs home](index.md) · [Data model](data_model.md) · [Registry](registry.md) · [Adding a language](adding_a_language.md)
-
-*Related: [Data model](data_model.md) · [Registry](registry.md) · [Adding a language](adding_a_language.md)*
+[← Data Model](data_model.md) · [Home](index.md) · [Language Registry →](registry.md)

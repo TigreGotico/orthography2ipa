@@ -46,3 +46,6 @@ not proof. Both sit far below the 0.15 shallow threshold.
 - [Esperanto phonology](https://en.wikipedia.org/wiki/Esperanto_phonology)
   (Wikipedia, accessible overview; retained deliberately alongside the
   primary source).
+
+---
+[← Yoruba](yo.md) · [Home](../index.md) · [Language data explorer →](../explorer.md)

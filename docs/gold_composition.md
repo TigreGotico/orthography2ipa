@@ -179,3 +179,6 @@ every number on the scoreboard, a `trivial_per` or `real_per` computed
 from a `crowd-scraped` or lower provenance tier inherits that tier's
 caveats in full — see
 [`docs/benchmarks.md`](benchmarks.md#provenance-and-reliability-read-this-before-trusting-any-number).
+
+---
+[← Lexicon-overlay scoreboard](lexicon_scoreboard.md) · [Home](index.md) · [Gold defects →](gold_defects.md)

@@ -73,7 +73,4 @@ unregistered and implicitly conflated with the SE standard.
 - **Silva, T. C. (2002).** *Fonética e fonologia do português.* Contexto.
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
-
-*Related: [pt-BR](pt-BR.md), [pt-BR-x-sp](pt-BR-x-sp.md), [pt-BR-x-mg](pt-BR-x-mg.md)*
+[← Nortista / Amazônico Portuguese](pt-BR-x-norte.md) · [Home](../index.md) · [Uruguayan Portuguese →](pt-UY.md)

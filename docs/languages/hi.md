@@ -128,5 +128,4 @@ Many speakers, especially in colloquial speech, replace these with native equiva
 - Wikipedia: [Hindi phonology](https://en.wikipedia.org/wiki/Hindi_phonology)
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
+[← Hausa](ha.md) · [Home](../index.md) · [Assamese →](as.md)

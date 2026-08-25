@@ -114,7 +114,4 @@ Three-way distinction in each position is unique among European languages.
 - Short, D. (1993). Czech. In: *The Slavonic Languages*, Routledge.
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
-
-*Related: [ru](ru.md)*
+[← Mirandese](mwl.md) · [Home](../index.md) · [Russian →](ru.md)

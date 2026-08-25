@@ -97,7 +97,4 @@ eng.transcribe_word("menino")  # mɛˈninʊ — open pretonic /e/
 - **Silva, T. C. (2002).** *Fonética e fonologia do português.* Contexto.
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
-
-*Related: [pt-BR](pt-BR.md), [pt-BR-x-rj](pt-BR-x-rj.md), [pt-BR-x-fluminense](pt-BR-x-fluminense.md)*
+[← Sulista / Gaúcho Portuguese](pt-BR-x-sul.md) · [Home](../index.md) · [Brasiliense Portuguese →](pt-BR-x-brasilia.md)

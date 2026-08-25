@@ -124,7 +124,4 @@ colloquial article spelling their literature uses (Cairene/Baghdadi
 - The IPA is broad and pre-pausal tanwīn is kept (full style).
 
 ---
-
-**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
-
-*Related: [Bibliography](bibliography.md) · [Linguistic accuracy](linguistic_accuracy.md) · [Benchmarks](benchmarks.md)*
+[← Benchmark methodology](benchmark_methodology.md) · [Home](index.md) · [Kabyle TTS gold set →](kabyle-tts-gold.md)

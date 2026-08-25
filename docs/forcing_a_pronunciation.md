@@ -98,7 +98,4 @@ is supplied by the caller: nothing is bundled. See
 [`data_model.md`](data_model.md).
 
 ---
-
-**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
-
-*Related: [Data model](data_model.md) · [Getting started](getting_started.md) · [Tokenizer](tokenizer.md)*
+[← Features](features.md) · [Home](index.md) · [Distance Metrics →](distance.md)

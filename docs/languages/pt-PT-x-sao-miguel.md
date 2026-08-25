@@ -61,7 +61,4 @@ eng.transcribe("azul")        # ɐˈzuɫ    — fronting blocked before coda
 - **Segura, Luísa (2013).** *Variedades dialetais do português europeu.* In *Gramática do Português*, vol. I, 85–142.
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
-
-*Related: [pt-PT](pt-PT.md), [pt-PT-x-acores](pt-PT-x-acores.md), [pt-PT-x-madeira](pt-PT-x-madeira.md), [pt-PT-x-algarve](pt-PT-x-algarve.md)*
+[← Azorean European Portuguese](pt-PT-x-acores.md) · [Home](../index.md) · [Madeiran European Portuguese →](pt-PT-x-madeira.md)

@@ -83,5 +83,4 @@ phonology and Assamese's diverge.
   grapheme-to-phoneme conversion. *Interspeech 2018*.
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
+[← Hindi](hi.md) · [Home](../index.md) · [Mongolian →](mn.md)

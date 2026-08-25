@@ -151,7 +151,4 @@ Russian has two sets of sibilants:
 - [CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron) README, confirms Russian was scraped only in narrow transcription, which is why the `ru` gold benchmark row uses `rus_cyrl_narrow.tsv`.
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
-
-*Related: [slavic](slavic.md)*
+[← Slavic Languages](slavic.md) · [Home](../index.md) · [Modern Standard Arabic →](ar.md)

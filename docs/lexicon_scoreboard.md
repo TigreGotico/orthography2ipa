@@ -12,3 +12,6 @@ PYTHONPATH=$PWD python scripts/benchmark.py --lexicon-report
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|
 | en-GB | en | wikipron | 5000 | 2280 | 0.4416 | 0.4329 | 82 | 0.4165 | 0.1761 |
 | en-GB | en-GB | wikipron | 5000 | 2378 | 0.4242 | 0.4156 | 80 | 0.3902 | 0.1344 |
+
+---
+[← espeak-ng agreement](espeak_agreement.md) · [Home](index.md) · [Gold composition →](gold_composition.md)

@@ -37,3 +37,6 @@ Yoruba carries two gold rows and they disagree about what a Yoruba transcription
 The **wikipron** row (`yor_latn_broad`) is crowd-scraped from Wiktionary and is fully tone-marked and fully nasal-marked, which is why it rewards a spec that emits both. Its orthographic column, however, is almost entirely *untoned*: of 4088 unique headwords, 22 carry an acute or grave tone diacritic, and 32 carry one of those or a macron (0.78%). Tone is therefore recoverable in Yoruba but not recoverable *from this gold's input*, and every high or low vowel in it is a floor the spec cannot reach — it reads an unmarked vowel as mid, correctly, and the gold says high or low. That floor is most of the row's remaining error.
 
 The **vox_communis** row is epitran-derived. Its orthography is real, fully accented Yoruba, but its phone column has no tone at all and handles nasal vowels inconsistently, because that is what epitran produces. It measures agreement with epitran, not accuracy, so emitting tone necessarily moves it a long way. Rank Yoruba on the wikipron row.
+
+---
+[← Standard Thai](th.md) · [Home](../index.md) · [Esperanto →](eo.md)

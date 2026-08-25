@@ -252,7 +252,4 @@ and stability commitment, and does not rename, deprecate, or otherwise
 modify any code in `orthography2ipa`.
 
 ---
-
-**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
-
-*Related: [Architecture](architecture.md) · [Lattice](lattice.md) · [Data model](data_model.md)*
+[← Language Registry](registry.md) · [Home](index.md) · [Tokenizer →](tokenizer.md)

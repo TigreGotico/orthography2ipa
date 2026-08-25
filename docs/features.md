@@ -162,7 +162,4 @@ CRF only re-costs candidates the lattice already offers, and the confidence
 signal tells you where that re-costing is worth doing.
 
 ---
-
-**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
-
-*Related: [Lattice](lattice.md) · [Tokenizer](tokenizer.md) · [Candidate scoring](candidate_scoring.md) · [Sentence context](sentence_context.md) · [API stability](api_stability.md)*
+[← Candidate scoring](candidate_scoring.md) · [Home](index.md) · [Forcing a pronunciation →](forcing_a_pronunciation.md)

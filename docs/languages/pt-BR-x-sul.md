@@ -55,7 +55,4 @@ eng.transcribe_word("verde") # ˈveɾde  — final /e/ retained
 - **Silva, T. C. (2002).** *Fonética e fonologia do português.* Contexto.
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
-
-*Related: [pt-BR](pt-BR.md), [pt-BR-x-pr](pt-BR-x-pr.md), [pt-BR-x-caipira](pt-BR-x-caipira.md)*
+[← Mineiro Portuguese](pt-BR-x-mg.md) · [Home](../index.md) · [Nortista / Amazônico Portuguese →](pt-BR-x-norte.md)

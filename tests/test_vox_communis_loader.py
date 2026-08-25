@@ -82,5 +82,5 @@ def test_zh_is_not_registered_han_script_cannot_be_scored():
 
 
 def test_wired_tag_count_matches_the_documented_figure():
-    """docs/benchmarks.md states the wired tag count; keep them in step."""
+    """docs/benchmark_datasets.md states the wired tag count; keep them in step."""
     assert len(benchmark._VOX_COMMUNIS_FILES) == 69

@@ -366,12 +366,13 @@ column, and one of those tiers deserves naming here:
 > disagreement cannot be attributed to anything. It certifies nothing and
 > diagnoses nothing.
 
-Contextual (positional) scoring is still limited, no language currently sits at the
+Contextual (positional) scoring is still limited, no language sits at the
 `production` quality tier, and PER is genuinely mediocre for several languages: see
 [Honest limitations](docs/index.md#honest-limitations-read-this-before-you-trust-a-tier)
-before depending on this for anything accuracy-sensitive. Methodology, per-dataset
-evidence and the full reliability taxonomy are in
-[docs/benchmarks.md](docs/benchmarks.md).
+before depending on this for anything accuracy-sensitive. The reliability taxonomy is
+in [docs/benchmarks.md](docs/benchmarks.md), the per-dataset evidence in
+[docs/benchmark_datasets.md](docs/benchmark_datasets.md), and the methodology in
+[docs/benchmark_methodology.md](docs/benchmark_methodology.md).
 
 Candidate ordering defaults to rank order (most common pronunciation first). A spec
 can attach per-candidate **weights** (candidate frequencies from cited corpora), so

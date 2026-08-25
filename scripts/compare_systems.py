@@ -246,6 +246,7 @@ from typing import Any, Dict, List, NamedTuple, Optional, Sequence, Tuple
 
 sys.path.insert(0, os.path.dirname(__file__))
 import benchmark  # noqa: E402  — shared dataset loaders, normalize(), levenshtein()
+from docs_nav import footer  # noqa: E402
 
 # epitran logs a WARNING (e.g. "lex_lookup (from flite) is not installed")
 # on every per-word transliterate() call for some backends — harmless (it
@@ -4286,7 +4287,7 @@ def write_comparison(
                                        agreement_comparable, agreement_wins))
     os.makedirs(os.path.dirname(COMPARISON_MD), exist_ok=True)
     with open(COMPARISON_MD, "w", encoding="utf-8") as fh:
-        fh.write("\n".join(lines))
+        fh.write("\n".join(lines).rstrip() + footer("comparison.md"))
 
 
 def main() -> None:

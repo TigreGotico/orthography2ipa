@@ -151,16 +151,17 @@ per-word confidence says where to spend its learned capacity.
 **I want to understand the benchmark and quality-tier system.**
 [quality_tiers.md](quality_tiers.md) defines what `stub` → `skeleton` →
 `research` → `production` actually require, and
-[benchmarks.md](benchmarks.md) plus [scoreboard.md](scoreboard.md) show
-the measured PER (phoneme error rate) per language against
-human-curated gold data: including the honest, currently mediocre
-numbers for several languages.
+[scoreboard.md](scoreboard.md) shows the measured PER (phoneme error
+rate) per language against human-curated gold data, including the
+honest, mediocre numbers for several languages.
+[benchmarks.md](benchmarks.md) says how far each of those numbers can be
+trusted.
 
 **I'm doing production-readiness due diligence.**
 [api_stability.md](api_stability.md) covers what is a public,
 version-guarded surface; [scoreboard.md](scoreboard.md) is the
 unfiltered accuracy table; [link-audit.md](link-audit.md) covers
-citation URL liveness; the license is Apache 2.0. No language currently
+citation URL liveness; the license is Apache 2.0. No language
 carries the `production` quality tier: see [Honest
 limitations](#honest-limitations-read-this-before-you-trust-a-tier)
 below.
@@ -219,45 +220,83 @@ below.
   `orthography2ipa.get(code).quality` before depending on a language for
   anything where accuracy matters.
 
-## Reference index
+## Reading order
+
+The pages below are in order. Every page carries a footer that links its
+neighbours, so you can read the set start to finish or jump in anywhere.
+
+### Using the library
 
 | Doc | Covers |
 | :--- | :--- |
-| [getting_started.md](getting_started.md) | Narrative on-ramp: install → first call → what happened → where next |
+| [getting_started.md](getting_started.md) | Narrative on-ramp: install, first call, what happened, where next |
 | [architecture.md](architecture.md) | Module layout, pipeline stages, design decisions |
-| [data_model.md](data_model.md) | `LanguageSpec` and every field it carries: including `phonemes`, the inventory stated directly |
-| [orthography_kind.md](orthography_kind.md) | Native scripts, romanizations and transliterations: and why Pinyin is transcribable where Hanzi is not |
+| [data_model.md](data_model.md) | `LanguageSpec` and every field it carries, including `phonemes`, the inventory stated directly |
+| [orthography_kind.md](orthography_kind.md) | Native scripts, romanizations and transliterations, and why Pinyin is transcribable where Hanzi is not |
 | [registry.md](registry.md) | Full language registry, code resolution, step plugins |
+| [api_stability.md](api_stability.md) | What is public and version-guarded |
+
+### The engine
+
+| Doc | Covers |
+| :--- | :--- |
 | [tokenizer.md](tokenizer.md) | `PhonetokTokenizer`, maximal-munch tokenization, beam search |
 | [lattice.md](lattice.md) | The structured pronunciation lattice: ranked per-position candidates and `-log P` costs |
-| [sentence_context.md](sentence_context.md) | The cross-word seam: `SentenceLattice`, `SentenceRescorer`, phrase / utterance position |
+| [sentence_context.md](sentence_context.md) | The cross-word seam: `SentenceLattice`, `SentenceRescorer`, phrase and utterance position |
 | [lattice_per.md](lattice_per.md) | Pronunciation-fair phone error rate for ASR: oracle edit distance against the lattice |
-| [features.md](features.md) | Feature export for ML / CRF G2P: `G2P.features`, `WordFeatures`, `GraphemeFeatures`, the CRF-as-rescorer pattern |
 | [candidate_scoring.md](candidate_scoring.md) | Per-candidate weights and how they become beam costs |
+| [features.md](features.md) | Feature export for ML and CRF G2P: `G2P.features`, `WordFeatures`, `GraphemeFeatures`, the CRF-as-rescorer pattern |
+| [forcing_a_pronunciation.md](forcing_a_pronunciation.md) | Overriding the rules for words no orthography predicts: lexicon sidecars and caller overrides |
+
+### Comparing languages
+
+| Doc | Covers |
+| :--- | :--- |
 | [distance.md](distance.md) | Every relational axis: phonological, reading, spelling, script, ancestry, temporal, geographic |
-| [architecture.md](architecture.md#script_distancepy) | Typological distance between writing systems (`script_distance.py`) |
 | [ancestry.md](ancestry.md) | Dialect lineage: roles, weights, phylogenetic distance |
+| [glottolog_audit.md](glottolog_audit.md) | Where the ancestry graph agrees and disagrees with Glottolog |
+
+### Writing a language spec
+
+| Doc | Covers |
+| :--- | :--- |
+| [allophony.md](allophony.md) | Post-lexical `allophone_rules` |
 | [positional_graphemes.md](positional_graphemes.md) | Context-sensitive grapheme overrides |
 | [adding_a_language.md](adding_a_language.md) | How to add a new language spec |
 | [linguistic_accuracy.md](linguistic_accuracy.md) | Data quality standards and sourcing rules |
-| [known_limitations.md](known_limitations.md) | What the specs say they do not do, classified and sized |
+| [quality_tiers.md](quality_tiers.md) | What `stub`, `skeleton`, `research` and `production` require |
 | [ipa_reference.md](ipa_reference.md) | IPA symbol reference with Unicode code points |
 | [bibliography.md](bibliography.md) | Citation management, `LinguisticSource` |
-| [quality_tiers.md](quality_tiers.md) | What `stub`/`skeleton`/`research`/`production` require |
-| [benchmarks.md](benchmarks.md) | Gold datasets, methodology, how to reproduce a score |
-| [scoreboard.md](scoreboard.md) | Every measured PER/exact-match result |
-| [gold_composition.md](gold_composition.md) | How much of a row's gold is alphabet-chart entries vs running text, and how that flatters the headline PER |
-| [gold_defects.md](gold_defects.md) | Registry of measured defects in individual gold rows: merged contrasts, wrong varieties, mixed conventions, circular gold |
-| [ranking_error.md](ranking_error.md) | Where the beam holds a better reading and ranks it wrong: per-language cluster tables |
-| [espeak_agreement.md](espeak_agreement.md) | Agreement analysis against espeak-ng |
-| [comparison.md](comparison.md) | Cross-system PER comparison vs espeak-ng, epitran, gruut |
-| [api_stability.md](api_stability.md) | What is public and version-guarded |
 | [link-audit.md](link-audit.md) | Citation URL liveness audit |
-| [languages/index.md](languages/index.md) | Per-language phonology deep-dives |
-| [explorer.md](explorer.md) | Interactive, self-contained language-data explorer (gh-pages) |
 
----
+### Measuring accuracy
 
-**Navigation:** [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md) · [Benchmarks](benchmarks.md)
+| Doc | Covers |
+| :--- | :--- |
+| [benchmarks.md](benchmarks.md) | What a provenance tier means and how far a number can be trusted |
+| [benchmark_datasets.md](benchmark_datasets.md) | Every gold dataset, where it came from, and the caveats on its rows |
+| [benchmark_methodology.md](benchmark_methodology.md) | How a score is computed and reproduced, and how to diagnose a bad one |
+| [arabic-tts-gold.md](arabic-tts-gold.md) | The hand-built Arabic sentence gold set |
+| [kabyle-tts-gold.md](kabyle-tts-gold.md) | The hand-built Kabyle sentence gold set |
+| [portuguese-tts-gold.md](portuguese-tts-gold.md) | The hand-built Portuguese-dialects sentence gold set |
+| [iberian-creole-tts-gold.md](iberian-creole-tts-gold.md) | The hand-built Iberian-creole sentence gold set |
+| [spain-romance-tts-gold.md](spain-romance-tts-gold.md) | The hand-built Spain-Romance sentence gold set |
+| [scoreboard.md](scoreboard.md) | Every measured PER and exact-match result |
+| [comparison.md](comparison.md) | Cross-system PER against espeak-ng, epitran, gruut |
+| [espeak_agreement.md](espeak_agreement.md) | Symbol-level agreement with espeak-ng |
+| [lexicon_scoreboard.md](lexicon_scoreboard.md) | Rules-only against with-lexicon PER, per language |
+| [gold_composition.md](gold_composition.md) | How much of a row's gold is alphabet-chart entries rather than running text |
+| [gold_defects.md](gold_defects.md) | Registry of measured defects in individual gold rows |
+| [known_limitations.md](known_limitations.md) | What the specs say they do not do, classified and sized |
+| [ranking_error.md](ranking_error.md) | Where the beam holds a better reading and ranks it wrong |
+| [spec_diagnostics.md](spec_diagnostics.md) | Mechanical hunt for specs that are wrong rather than imprecise |
 
-*Related: [Architecture](architecture.md) · [Lattice](lattice.md) · [Allophony](allophony.md) · [Quality tiers](quality_tiers.md)*
+### Per language
+
+| Doc | Covers |
+| :--- | :--- |
+| [languages/index.md](languages/index.md) | Per-language phonology deep-dives, by family |
+| [explorer.md](explorer.md) | Interactive, self-contained language-data explorer |
+
+The authoring reference for a spec JSON file is
+[`orthography2ipa/data/SCHEMA.md`](../orthography2ipa/data/SCHEMA.md).

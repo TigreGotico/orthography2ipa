@@ -250,7 +250,4 @@ When computing ancestry similarity, the system follows the full tree recursively
 - Unrelated language families will converge to 0.0 because their ancestry trees never intersect.
 
 ---
-
-**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
-
-*Related: [Registry](registry.md) · [Distance](distance.md) · [Data model](data_model.md)*
+[← Distance Metrics](distance.md) · [Home](index.md) · [Glottolog alignment →](glottolog_audit.md)

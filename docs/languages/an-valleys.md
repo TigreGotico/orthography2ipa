@@ -61,3 +61,6 @@ G2P("an-x-tensino").transcribe_word("ro")       # ɾo       — weak-tap article
 - **Barcos, M. A. (2007).** *El aragonés ansotano: estudio lingüístico de Ansó y Fago.* Gara d'Edizions. (Ansó vs Fago final-r contrast.)
 - **Vázquez Obrador, J. (2021).** *En torno al origen de los alomorfos (e)ro, (e)ra, (e)ros, (e)ras del artículo determinado aragonés.* Revista de Filología Románica 38: 121-132. [Read directly.]
 - **Várvaro, A. (1991).** *De la escritura al habla: la diptongación de O breve tónica en el Alto Aragón.* Archivo de Filología Aragonesa XLVI-XLVII: 245-268 (valley content on printed pp. 250-251). [Read directly.]
+
+---
+[← Ligurian / Genoese](lij.md) · [Home](../index.md) · [Lisbon / Estremenho European Portuguese →](pt-PT-x-lisbon.md)

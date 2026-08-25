@@ -56,7 +56,4 @@ Input is standard Portuguese orthography (as used for the variety in the literat
 - Sturza, Eliana Rosa (2021). "Português do Uruguai e Português de Missões: língua, território e fronteira". *Línguas e Instrumentos Linguísticos* 24(48), 177–198. <https://doi.org/10.20396/lil.v24i48.8667912>
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
-
-*Related: [pt-BR](pt-BR.md), [pt-PT](pt-PT.md), [romance](romance.md)*
+[← Brasiliense Portuguese](pt-BR-x-brasilia.md) · [Home](../index.md) · [East Timorese Portuguese →](pt-TL.md)

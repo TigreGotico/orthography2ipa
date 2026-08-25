@@ -46,3 +46,6 @@ shallow threshold.
 - Abondolo, D. (ed.). *The Uralic Languages*. Routledge.
 - Hakulinen, L. *The Structure and Development of the Finnish Language*.
 - Ladefoged, P. & Maddieson, I. *The Sounds of the World's Languages*.
+
+---
+[← Basque (Euskara) and its dialects](eu.md) · [Home](../index.md) · [Vietnamese →](vi.md)

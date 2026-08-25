@@ -110,7 +110,4 @@ behaviours where the gold uses a clear [l] / retained [d].
 - Boléo, M. P. (1974). *Estudos de linguística portuguesa e românica*. U. Coimbra.
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
-
-*Related: [pt-PT](pt-PT.md), [pt-PT-x-algarve](pt-PT-x-algarve.md), [pt-PT-x-lisbon](pt-PT-x-lisbon.md)*
+[← Transmontano European Portuguese](pt-PT-x-trasosmontes.md) · [Home](../index.md) · [Algarvio Portuguese →](pt-PT-x-algarve.md)

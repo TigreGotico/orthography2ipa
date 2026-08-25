@@ -57,7 +57,4 @@ eng.transcribe("pouco")       # ˈpowku  — ⟨ou⟩ → [ow] preserved
 - **Segura, Luísa (2013).** *Variedades dialetais do português europeu.* In *Gramática do Português*, vol. I, 85–142.
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
-
-*Related: [pt-PT](pt-PT.md), [pt-PT-x-porto](pt-PT-x-porto.md), [pt-PT-x-trasosmontes](pt-PT-x-trasosmontes.md), [pt-PT-x-minho](pt-PT-x-minho.md)*
+[← Portuense / Northern European Portuguese](pt-PT-x-porto.md) · [Home](../index.md) · [Minhoto / Baixo-Minho European Portuguese →](pt-PT-x-minho.md)

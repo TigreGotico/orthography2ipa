@@ -60,7 +60,4 @@ The `<ei>` → [ɐj] realisation is the diagnostic grapheme-level Estremenho fea
 - **Cunha, C. & Cintra, L. F. L. (1984)**. *Nova Gramática do Português Contemporâneo*. Sá da Costa.
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
-
-*Related: [pt-PT](pt-PT.md), [pt-PT-x-alentejo](pt-PT-x-alentejo.md), [pt-PT-x-porto](pt-PT-x-porto.md)*
+[← Pyrenean-valley Aragonese subdialects](an-valleys.md) · [Home](../index.md) · [Portuense / Northern European Portuguese →](pt-PT-x-porto.md)

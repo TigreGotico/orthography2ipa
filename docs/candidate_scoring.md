@@ -102,7 +102,4 @@ British English*, and Berndt, Reggia & Mitchum (1987), *Empirically
 derived probabilities for grapheme-to-phoneme correspondences in English*.
 
 ---
-
-**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
-
-*Related: [Tokenizer](tokenizer.md) · [Lattice](lattice.md) · [Data model](data_model.md)*
+[← Lattice PER](lattice_per.md) · [Home](index.md) · [Features →](features.md)

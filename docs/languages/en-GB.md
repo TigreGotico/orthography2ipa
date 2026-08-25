@@ -242,7 +242,4 @@ Encoded as:
 - Wikipedia: [English phonology](https://en.wikipedia.org/wiki/English_phonology), [General American](https://en.wikipedia.org/wiki/General_American_English)
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
-
-*Related: [germanic](germanic.md), [de-DE](de-DE.md)*
+[← Germanic Languages](germanic.md) · [Home](../index.md) · [German →](de-DE.md)

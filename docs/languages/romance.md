@@ -137,7 +137,4 @@ Catalan occupies a phonological position between French and Iberian Romance:
 - Maiden, M. & Parry, M. (1997). *The Dialects of Italy*. Routledge.
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
-
-*Related: [fr-FR](fr-FR.md), [it-IT](it-IT.md), [pt-PT](pt-PT.md), [mwl](mwl.md)*
+[← Faroese](fo.md) · [Home](../index.md) · [Spanish →](es-ES.md)

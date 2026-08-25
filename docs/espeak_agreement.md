@@ -51,3 +51,6 @@ Machine-readable form: [`benchmarks/espeak_agreement.json`](../benchmarks/espeak
 | sv | sv | 300 | 0.0433 | 0.2100 | 0.7250 | 0.1367 |
 | ta | ta | 300 | 0.0000 | 0.0433 | 0.6579 | 0.4733 |
 | tr | tr | 300 | 0.0000 | 0.2033 | 0.8003 | 0.0000 |
+
+---
+[← Comparison to other G2P systems](comparison.md) · [Home](index.md) · [Lexicon-overlay scoreboard →](lexicon_scoreboard.md)

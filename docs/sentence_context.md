@@ -205,7 +205,4 @@ draws: route a word that needs context it cannot see to the layer that has it,
 never silently through a layer that does not.
 
 ---
-
-**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
-
-*Related: [Lattice](lattice.md) · [Architecture](architecture.md) · [Registry](registry.md) · [API stability](api_stability.md)*
+[← The pronunciation lattice](lattice.md) · [Home](index.md) · [Lattice PER →](lattice_per.md)

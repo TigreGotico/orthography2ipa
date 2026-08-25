@@ -143,7 +143,4 @@ eng.transcribe("touradas") # toˈwɾadɐʃ — /ow/ preserved
   Oxford University Press.
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
-
-*Related: [pt-PT](pt-PT.md), [pt-PT-x-madeira](pt-PT-x-madeira.md), [pt-PT-x-lisbon](pt-PT-x-lisbon.md)*
+[← Algarvio Portuguese](pt-PT-x-algarve.md) · [Home](../index.md) · [Micaelense European Portuguese →](pt-PT-x-sao-miguel.md)

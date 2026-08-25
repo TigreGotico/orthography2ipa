@@ -111,7 +111,4 @@ target must also be confirmed by the reviewer before the tier
 claim is legitimate.
 
 ---
-
-**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
-
-*Related: [Benchmarks](benchmarks.md) · [Scoreboard](scoreboard.md) · [Linguistic accuracy](linguistic_accuracy.md)*
+[← Linguistic Accuracy Guide](linguistic_accuracy.md) · [Home](index.md) · [IPA Reference →](ipa_reference.md)

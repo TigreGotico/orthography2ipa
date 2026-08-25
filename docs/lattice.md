@@ -450,7 +450,4 @@ The OOV character pulls the word well below any fully-mapped word: the
 strongest signal of all that a downstream engine (or a human) must handle it.
 
 ---
-
-**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
-
-*Related: [Tokenizer](tokenizer.md) · [Candidate scoring](candidate_scoring.md) · [Sentence context](sentence_context.md) · [Architecture](architecture.md) · [Allophony](allophony.md)*
+[← Tokenizer](tokenizer.md) · [Home](index.md) · [The sentence-context seam →](sentence_context.md)
