@@ -247,3 +247,26 @@ def test_the_um_prefix_blocks_affrication(word, ipa):
     length; the class 1/3 rule must still see through it to the ⟨u⟩
     grapheme and block the class 9/10 affrication."""
     assert tr(word) == ipa
+
+
+# --- prenasalised series stays digraphs, never superscript modifiers --------
+# The Kaikki gold writes prenasalisation with a non-syllabic superscript
+# nasal (e.g. ⟨impala⟩ [íᵐpaːlá]); this spec instead writes the class 9/10
+# prenasalised series as plain digraphs (⟨mp⟩ → "mp", ⟨nt⟩ → "nt"...). That
+# matters beyond notation: ``allophony._is_modifier`` treats any Lm-category
+# character — which the superscript nasals ᵐⁿᵑᶮ are — as attaching to the
+# PRECEDING base rather than starting its own segment, so a spec that ever
+# emitted them would have its prenasalised stops silently absorbed into the
+# vowel before them by ``segment_ipa``. Locking the digraph convention here
+# keeps the spec on the side of that engine limitation that does not bite.
+@pytest.mark.parametrize("word", [
+    "impala", "into", "indaba", "ubuntu", "intaba", "impi", "impilo",
+    "intloko", "indlovu", "indlu", "umntwana", "umlungu", "umlenze",
+])
+def test_prenasalised_series_never_emits_a_superscript_modifier(word):
+    ipa = tr(word)
+    for ch in "ᵐⁿᵑᶬᶮ":
+        assert ch not in ipa, (
+            f"{word!r} -> {ipa!r} contains the superscript prenasal "
+            f"{ch!r}; prenasalisation must stay a plain digraph, see the "
+            "module docstring above")
