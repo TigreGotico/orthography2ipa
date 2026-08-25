@@ -468,7 +468,7 @@ wlm | Indo-European > Celtic > Brythonic | 30 | 23 | 1 | 0.2% | yes | 0 | gml 0.
 xaa | Afro-Asiatic > Semitic > Central Semitic | 0 | 39 | 1 | 10.0% | yes | 0 |  | 1 | 20 | 0.0
 xal | Mongolic | 45 | 34 | 1 | 4.4% | no | 0 | sah 0.68 | 1 | 318 | 0.2813
 ykg | Yukaghir | 45 | 28 | 1 | 0.4% | no | 0 | bua 0.556 | 1 | 813 | 0.3616
-za | Tai-Kadai | 37 | 27 | 1 | 0.7% | no | 0 | pcc 0.385 | 1 | 1682 | 0.2124
+za | Tai-Kadai | 37 | 27 | 1 | 0.7% | no | 0 | zom 0.378 | 1 | 1682 | 0.2124
 aii | Afro-Asiatic > Semitic > Central Semitic | 22 | 22 | 0 |  | no | 0 | syc 0.864 | 1 | 4836 | 0.3765
 aot | Sino-Tibetan | 33 | 21 | 0 |  | no | 0 | cnk 0.912 | 1 | 181 | 0.1367
 ar-SA-x-dawasir | Afro-Asiatic > Semitic > Central Semitic | 1 | 16 | 0 |  | yes | 0 |  | 1 | 5 | 0.08
@@ -529,7 +529,7 @@ nup | Atlantic-Congo | 30 | 24 | 0 |  | no | 0 | bom 0.844 | 1 | 393 | 0.3979
 oc | Indo-European > Italic > Romance > Gallo-Romance | 68 | 34 | 0 |  | yes | 0 | ca-x-medieval 0.529 | 1 | 675 | 0.1283
 olo | Uralic | 28 | 27 | 0 |  | no | 0 | vro 0.857 | 1 | 278 | 0.0801
 om | Afro-Asiatic > Cushitic | 37 | 26 | 0 |  | no | 0 | sid 0.784 | 1 | 13380 | 0.1001
-pcc | Tai-Kadai | 39 | 26 | 0 |  | no | 0 | sce 0.538 | 1 | 153 | 0.5101
+pcc | Tai-Kadai | 114 | 26 | 0 |  | no | 0 | kdx 0.228 | 1 | 153 | 0.0038
 pjt | Pama-Nyungan | 26 | 18 | 0 |  | no | 0 | dec 0.462 | 1 | 125 | 0.0027
 pqm | Algic | 18 | 18 | 0 |  | no | 0 | yua 0.778 | 1 | 151 | 0.1759
 pt-BR-x-bahia | Indo-European > Italic > Romance > Ibero-Romance | 57 | 29 | 0 |  | yes | 0 | fax 0.793 | 1 | 20 | 0.0

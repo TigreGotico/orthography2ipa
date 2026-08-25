@@ -454,7 +454,7 @@ A row's `N` is its sample size in scored words, and it is not cosmetic: below ro
 | pag | wikipron | 227 | 0.1277 | 0.0998 | 0.0969 | 0.5991 | 0.6123 | [0.1076, 0.1488] | 0.5286 | research | crowd-scraped |
 | pam | wikipron | 860 | 0.2861 | 0.1802 | 0.1697 | 0.3395 | 0.3663 | [0.2630, 0.3193] | 0.1186 | research | crowd-scraped |
 | pbv | wikipron | 101 | 0.3358 | 0.3358 | 0.3358 | 0.2475 | 0.2475 | [0.2875, 0.3859] | 0.2475 | research | crowd-scraped |
-| pcc | wikipron | 153 | 0.5101 | 0.5101 | 0.5101 | 0.0000 | 0.0000 | [0.4896, 0.5303] | 0.0000 | research | crowd-scraped |
+| pcc | wikipron | 153 | 0.0038 | 0.0038 | 0.0038 | 0.9869 | 0.9869 | [0.0000, 0.0102] | 0.9869 | research | crowd-scraped |
 | pdc | wikipron | 405 | 0.3350 | 0.2798 | 0.2444 | 0.1605 | 0.2025 | [0.3160, 0.3548] | 0.1062 | research | crowd-scraped |
 | phl | wikipron | 2173 | 0.3287 | 0.3287 | 0.3287 | 0.0318 | 0.0318 | [0.3222, 0.3355] | 0.0318 | research | crowd-scraped |
 | pjt | wikipron | 125 | 0.0027 | 0.0027 | 0.0027 | 0.9920 | 0.9920 | [0.0000, 0.0080] | 0.9920 | research | crowd-scraped |
