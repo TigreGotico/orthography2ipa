@@ -457,7 +457,8 @@ entries is treated as unsourced by `tests/test_sources.py`.
 | `year`        | integer | yes      | Publication year                                    |
 | `title`       | string  | yes      | Full title of the work                              |
 | `publisher`   | string  | no       | Publisher name                                      |
-| `url`         | string  | no       | URL or DOI; use `null` for print-only works         |
+| `url`         | string  | no       | URL for online resources; use `null` for print-only works |
+| `doi`         | string  | no       | DOI (e.g. `"10.1017/S0025100323000105"`), the preferred stable identifier for a citation — it resolves for as long as the publisher exists, where a `url` can rot |
 | `wikipedia_url` | string | no       | Wikipedia article URL for quick human reference     |
 | `pages`       | string  | no       | Specific page range, e.g. `"pp. 45-72"`            |
 | `notes`       | string  | no       | Annotation about what this source supports          |

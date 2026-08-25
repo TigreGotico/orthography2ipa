@@ -103,6 +103,7 @@ class SourceModel(_Strict):
     title: str = Field(min_length=1)
     publisher: Optional[str] = None
     url: Optional[str] = None
+    doi: Optional[str] = None
     wikipedia_url: Optional[str] = None
     pages: Optional[str] = None
     notes: Optional[str] = None
@@ -113,6 +114,13 @@ class SourceModel(_Strict):
         # Earliest modern descriptive phonologies + a generous future margin.
         if not (1500 <= v <= 2100):
             raise ValueError(f"implausible publication year: {v!r}")
+        return v
+
+    @field_validator("doi")
+    @classmethod
+    def _doi_shape(cls, v: Optional[str]) -> Optional[str]:
+        if v is not None and not (v.startswith("10.") and "/" in v):
+            raise ValueError(f"doi does not look like a DOI: {v!r}")
         return v
 
 

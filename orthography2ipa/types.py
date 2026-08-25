@@ -958,6 +958,10 @@ class LinguisticSource:
         Publisher name, if applicable.
     url : Optional[str]
         URL or DOI for online resources; ``None`` for print-only works.
+    doi : Optional[str]
+        Digital Object Identifier, e.g. ``"10.1017/S0025100323000105"``. The
+        preferred stable identifier for a citation: it resolves for as long
+        as the publisher exists, unlike a `url`, which rots.
     wikipedia_url : Optional[str]
         Wikipedia article URL for this source or the phenomenon it describes;
         intended as a quick human reference, not a citable source.
@@ -973,6 +977,7 @@ class LinguisticSource:
     title: str
     publisher: Optional[str] = None
     url: Optional[str] = None
+    doi: Optional[str] = None
     wikipedia_url: Optional[str] = None
     pages: Optional[str] = None
     notes: Optional[str] = None

@@ -411,6 +411,7 @@ def load_json_spec(code: str) -> LanguageSpec:
             title=s["title"],
             publisher=s.get("publisher"),
             url=s.get("url"),
+            doi=s.get("doi"),
             wikipedia_url=s.get("wikipedia_url"),
             pages=s.get("pages"),
             notes=s.get("notes"),

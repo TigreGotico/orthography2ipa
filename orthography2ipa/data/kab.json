@@ -872,6 +872,7 @@
    "title": "Acoustic Characterization of the Noise Sources for the Kabyle Fricatives Consonants",
    "publisher": "AIJR (ICAECE'2023 abstracts), DOI 10.21467/abstracts.163",
    "url": "https://books.aijr.org/index.php/press/catalog/download/163/81/3171-1",
+   "doi": "10.21467/abstracts.163",
    "pages": "pp. 123-125",
    "notes": "Confirms the Kabyle fricative inventory [s, f, ʃ, v, ʒ, z, ħ, h, ʕ, ç, ʝ] — the spirantized velars [ç ʝ] are phonemic surface fricatives — and lists spirantization, labio-velarization, palatalization and affrication as Kabyle-specific features."
   },
@@ -943,6 +944,7 @@
    "title": "Kabyle in Arabic Script: A History without Standardisation",
    "publisher": "In: Creating Standards, De Gruyter, pp. 273-296. DOI 10.1515/9783110639063-011",
    "url": "https://shs.hal.science/halshs-02945641",
+   "doi": "10.1515/9783110639063-011",
    "pages": "273-296",
    "notes": "Secondary (orthography history). Documents that the Latin orthography became dominant for Kabyle only in the second half of the 20th century, supporting the script assumptions of the INPUT CONTRACT."
   },
