@@ -246,6 +246,7 @@ below.
 | [benchmarks.md](benchmarks.md) | Gold datasets, methodology, how to reproduce a score |
 | [scoreboard.md](scoreboard.md) | Every measured PER/exact-match result |
 | [gold_composition.md](gold_composition.md) | How much of a row's gold is alphabet-chart entries vs running text, and how that flatters the headline PER |
+| [gold_defects.md](gold_defects.md) | Registry of measured defects in individual gold rows: merged contrasts, wrong varieties, mixed conventions, circular gold |
 | [ranking_error.md](ranking_error.md) | Where the beam holds a better reading and ranks it wrong: per-language cluster tables |
 | [espeak_agreement.md](espeak_agreement.md) | Agreement analysis against espeak-ng |
 | [comparison.md](comparison.md) | Cross-system PER comparison vs espeak-ng, epitran, gruut |

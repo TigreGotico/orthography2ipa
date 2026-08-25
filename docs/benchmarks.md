@@ -11,6 +11,12 @@ python scripts/benchmark.py --dataset wikipron --lang fi
 python scripts/benchmark.py --list
 ```
 
+A provenance tier says where a transcription came from, not whether it is right
+about the language. [gold_defects.md](gold_defects.md) is the registry of
+individual rows whose gold was measured to merge a contrast, mark something the
+language forbids, describe the wrong variety, mix transcription traditions, or
+derive from the system it scores.
+
 ## Provenance and reliability (read this before trusting any number)
 
 Reliable G2P "gold" barely exists. There is no large, human-verified,
