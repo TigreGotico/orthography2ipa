@@ -1090,20 +1090,21 @@ def test_bxr_h_letter_and_unmapped_russian_letters():
 
 
 def test_inh_multigraph_consonants():
-    """Ingush digraphs/trigraph: кх=/q/, къ=/qʼ/, хь=/ħ/, хӏ=/h/, гӏ=/ʁ/, ӏ=/ʡ/, рхӏ=/r̥/.
+    """Ingush digraphs/trigraph: кх=/q/, къ=/qʼ/, хь=/ħ/, хӏ=/h/, гӏ=/ʁ/, ӏ=/ʕ/, рхӏ=/r̥/.
 
     inh notes: "The orthography uses digraphs and one trigraph for the Nakh
     consonant inventory: ejectives пӏ тӏ кӏ цӏ чӏ, uvular кх /q/ and къ /qʼ/,
-    pharyngeal хь /ħ/, laryngeal хӏ /h/, uvular fricative гӏ /ʁ/, the epiglottal
-    stop ӏ /ʡ/, and рхӏ for the voiceless trill /r̥/; the engine matches these by
-    maximal munch, so multigraphs win over their component letters."
+    pharyngeal хь /ħ/, laryngeal хӏ /h/, uvular fricative гӏ /ʁ/ ... and рхӏ for
+    the voiceless trill /r̥/; the engine matches these by maximal munch, so
+    multigraphs win over their component letters." The bare ⟨ӏ⟩ is the voiced
+    pharyngeal /ʕ/ (Berkeley Ingush project, "Ingush Phonology and Orthography").
     """
     assert _bare("inh", "кхы") == "q"
     assert _bare("inh", "къа").startswith("qʼ")
     assert _bare("inh", "хьа").startswith("ħ")
     assert _bare("inh", "хӏа").startswith("h")
     assert _bare("inh", "гӏалгӏай").startswith("ʁ")
-    assert _bare("inh", "ӏа").startswith("ʡ")
+    assert _bare("inh", "ӏа").startswith("ʕ")
     assert _bare("inh", "рхӏ") == "r̥"
 
 
@@ -1256,6 +1257,59 @@ def test_ab_two_phonemic_vowels():
     """
     out = _bare("ab", "аԥсшәа")
     assert out.startswith("ɑ") and out.endswith("ɑ")
+
+
+def test_ab_velar_stops_are_a_three_way_series():
+    """⟨г қ к⟩ are voiced ~ ASPIRATED ~ ejective, so ⟨қ⟩ carries /ʰ/.
+
+    ab notes: "The stops and affricates are a three-way voiced ~ aspirated ~
+    ejective series; the aspirated member carries ⟨ʰ⟩ throughout — ⟨ԥ⟩ /pʰ/,
+    ⟨ҭ⟩ /tʰ/, ⟨ц⟩ /t͡sʰ/, ⟨ч⟩ /t͡ʃʰ/, ⟨ҽ⟩ /ʈ͡ʂʰ/ and ⟨қ⟩ /kʰ/."
+
+    The velar triple is the minimal set: the same place, three laryngeal values.
+    """
+    assert _bare("ab", "гы") == "ɡɨ"
+    assert _bare("ab", "қы") == "kʰɨ"
+    assert _bare("ab", "кы") == "kʼɨ"
+    assert _bare("ab", "қьы") == "kʲʰɨ"
+    assert _bare("ab", "қәы") == "kʷʰɨ"
+
+
+def test_ab_velar_aspirate_values_are_declared_phonemes():
+    """The velar aspirates the grapheme table emits are in the spec's own
+    ``phonemes`` inventory — a grapheme may not introduce an undeclared
+    segment.
+
+    Scoped to the velar aspirate series only: the ``phonemes`` list uses a
+    different IPA notation from the grapheme table for roughly two dozen
+    other segments (e.g. ``ä``/``ʓ``/``t̠ʆ`` vs. the table's ``ɑ``/``d͡ʑ``/
+    ``t͡ɕ``), a known inventory-notation split that is follow-up work, not
+    something this test can enforce generically.
+    """
+    from orthography2ipa import get
+
+    spec = get("ab")
+    declared = set(spec.phonemes)
+    for letter in ("қ", "қь", "қә", "ӄ"):
+        for value in spec.graphemes[letter]:
+            assert value in declared, (letter, value)
+
+
+def test_ab_pre_1996_letter_forms_read_as_their_modern_equivalents():
+    """⟨ҧ⟩ U+04A7, ⟨ҕ⟩ U+0495 and ⟨ӄ⟩ U+04C4 are the pre-1996 shapes of
+    ⟨ԥ⟩ U+0525, ⟨ӷ⟩ U+04F7 and ⟨қ⟩ U+049A.
+
+    ab notes: "The 1996 orthographic reform replaced the hooked ⟨ҧ⟩, ⟨ҕ⟩ and
+    ⟨ӄ⟩ with the descender forms ⟨ԥ⟩, ⟨ӷ⟩ and ⟨қ⟩ ... the hooked shapes are
+    mapped so pre-reform text is not silently dropped."
+
+    аҧсуа/аԥсуа 'Abkhaz (person)' is the same word in the two spellings.
+    ⟨ҕь⟩ parallels the modern palatalised ⟨ӷь⟩ /ʁʲ/.
+    """
+    assert _bare("ab", "аҧсуа") == _bare("ab", "аԥсуа") == "ɑpʰswɑ"
+    assert _bare("ab", "ҕы") == _bare("ab", "ӷы") == "ʁɨ"
+    assert _bare("ab", "ӄы") == _bare("ab", "қы") == "kʰɨ"
+    assert _bare("ab", "ҕьы") == _bare("ab", "ӷьы") == "ʁʲɨ"
 
 
 # ===========================================================================
