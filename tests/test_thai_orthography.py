@@ -252,3 +252,44 @@ def test_a_bare_consonant_letter_is_left_alone(th):
     """A spelling with no nucleus has no syllable to carry a tone, and
     must come back as it was rather than as nothing."""
     assert th.transcribe_word("ก") == "k̚"
+
+
+@pytest.mark.parametrize("word,ipa", [
+    # ⟨ต้อง⟩ carries mai tho on its OWN initial, and the mark is written
+    # before the vowel sign, so it lands between the two syllables.
+    ("เป็นต้อง", "peːn˧tɔːŋ˥˩"),
+    ("จำเป็นต้อง", "tɕam˧peːn˧tɔːŋ˥˩"),
+])
+def test_a_tone_mark_names_the_syllable_it_is_written_in(th, word, ipa):
+    """A tone mark rides the initial consonant of its own syllable, not
+    the coda of the one before it. Giving it to the preceding syllable
+    read this pair with its two tones swapped."""
+    assert th.transcribe_word(word) == ipa
+
+
+@pytest.mark.parametrize("word,ipa", [
+    # Slayden (2009) §4.3 and wordlist sets 18-19: the three opening
+    # diphthongs, each written as a circumfix around the consonant.
+    ("เรือ", "rɯːa˧"),
+    ("เรือน", "rɯːan˧"),
+    ("เรียน", "riːan˧"),
+    ("เมือง", "mɯːaŋ˧"),
+    ("เขียน", "kʰiːan˩˩˦"),
+    ("ตัว", "tuːa˧"),
+    ("กลัว", "kluːa˧"),
+])
+def test_an_opening_diphthong_is_one_nucleus_not_two(th, word, ipa):
+    """⟨เ⟩ plus a postposed half spells ONE vowel. Reading the two signs
+    as two nuclei split ⟨เมือง⟩ into two syllables."""
+    assert th.transcribe_word(word) == ipa
+
+
+@pytest.mark.parametrize("word,ipa", [
+    # Slayden (2009) Appendix C sets 11-12: ⟨เ–าะ⟩ is short /ɔ/, which
+    # also makes the syllable dead-short for the tone table.
+    ("เกาะ", "kɔ˨˩"),
+    ("เลาะ", "lɔ˦˥"),
+    ("เจาะ", "tɕɔ˨˩"),
+])
+def test_sara_o_is_short_and_the_syllable_is_dead(th, word, ipa):
+    assert th.transcribe_word(word) == ipa

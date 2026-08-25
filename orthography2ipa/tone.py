@@ -123,9 +123,18 @@ def _syllable_slots(segments: Sequence[str]) -> List[List[int]]:
             sylls[n] = [idx]
         else:
             spelling = [i for i in between if segments[i]]
-            onset = spelling[-1:] if spelling else []
-            sylls[n - 1] += [i for i in between if i not in onset]
-            sylls[n] = onset + [idx]
+            # The onset is the last slot before the nucleus that spells
+            # something. Everything from the onset onward opens this
+            # syllable, INCLUDING the slots after it that spell nothing:
+            # a tone mark is written on the initial consonant, so it sits
+            # between that consonant and the vowel sign that follows it,
+            # and it names the tone of the syllable that consonant opens.
+            # Handing it to the syllable before instead put ⟨เป็นต้อง⟩'s
+            # mai tho on ⟨เป็น⟩ and read the pair /peːn˥˩tɔːŋ˧/ with the
+            # two tones swapped.
+            cut = spelling[-1] if spelling else idx
+            sylls[n - 1] += [i for i in between if i < cut]
+            sylls[n] = [i for i in between if i >= cut] + [idx]
         prev = idx + 1
     sylls[-1] += list(range(prev, len(segments)))
     return sylls
