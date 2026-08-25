@@ -134,8 +134,13 @@ and after folding each mark out of both sides — unwritten tone is 67.7% of the
 total edit count and unwritten length a further 29.0%, so the two together are
 96.7% of it. What remains after both is the genuinely segmental error, and the
 largest single share of *that* is the ⟨r⟩ ambiguity described above — also
-unrecoverable, but lexically rather than notationally so: 102 of the remaining
-aligned edits are a gold /ɽ/ against a transcribed /r/.
+unrecoverable, but lexically rather than notationally so: of the 226 aligned
+edits that survive both folds, 195 are a gold /ɽ/ against a transcribed /r/.
+The rhotic ambiguity is 86% of the residual, so almost nothing is left over
+once tone, length and the rhotic are accounted for. The remainder is the
+deliberate ⟨ky gy⟩ divergence (14 edits, the palatalized velars this spec
+prefers to the gold's palatal stops), six word-final ⟨f⟩ realized [p], three
+dropped ⟨h⟩ in Arabic names, and a scatter of single cases.
 
 The orthographic column itself was checked directly rather than assumed blank:
 of the 1857 headwords, exactly 8 carry any diacritic at all, and all 8 are the
