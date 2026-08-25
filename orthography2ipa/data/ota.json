@@ -140,6 +140,36 @@
   ],
   "ْ": [
    ""
+  ],
+  "ک": [
+   "k",
+   "c",
+   "ɡ",
+   "ɟ",
+   "ŋ"
+  ],
+  "ي": [
+   "j",
+   "i"
+  ],
+  "ى": [
+   "j",
+   "i"
+  ],
+  "أ": [
+   "ʔ"
+  ],
+  "إ": [
+   "ʔ"
+  ],
+  "ؤ": [
+   "ʔ"
+  ],
+  "ـ": [
+   ""
+  ],
+  "‌": [
+   ""
   ]
  },
  "parent": "tr",
@@ -151,7 +181,7 @@
    "notes": "Descent per Glottolog classification of Ottoman Turkish (otto1234)."
   }
  ],
- "notes": "Ottoman Turkish, the Perso-Arabic-script form of Turkish written until the 1928 alphabet reform. Consonants map onto the parent Turkish inventory: the Perso-Turkish additions پ [p], چ [tʃ], ژ [ʒ], گ [ɡ] and sağır kef ڭ [ŋ] are carried directly, the rhotic is the tap [ɾ], and the Arabic emphatics and pharyngeals ث ص ض ط ظ ح ع fold into plain Turkish consonants — ⟨خ⟩ reads as /h/ in the Turkish stratum and keeps /x/ only as a secondary candidate.\n\nThe script is an abjad for Turkish vowels. Four letters carry them: ⟨ا⟩ writes /a/ and word-initially any short vowel, ⟨و⟩ writes all of /o ø u y/, ⟨ی⟩ writes /i/ and /ɯ/, and word-final ⟨ه⟩ writes the /e ~ a/ suffix vowel. Which member of a harmony pair a letter stands for is not written on the vowel at all; it is signalled by the consonant letters, the hard set ⟨ح خ ص ض ط ظ ع غ ق⟩ appearing in back-vowel words and the soft set ⟨ت س ك گ ه⟩ in front-vowel words. This spec reads that signal with word-scope allophone rules — the layer the other abjad specs do not need — which is also what recovers the palatal [c] of a kef whose conditioning vowel is unwritten.\n\nA hard floor remains. Across the 161-word WikiPron gold, 113 of 918 gold segments (12.3%) are vowels for which the spelling provides no vowel-bearing letter at all, affecting 81 of the 161 words; no rule can supply them, and that deficit alone puts a floor of about 0.12 PER under any purely graphemic transcription. On top of it, the harmony signal is absent in the Arabic and Persian loan strata, which do not harmonize, and the ⟨و⟩ height contrast (/u ~ o/, /y ~ ø/) and vowel length in loans stay unrecoverable.\n\nConvention mismatches against the WikiPron gold, kept rather than fitted: the gold's annotators vary freely between ⟨a⟩ (83 tokens) and ⟨ɑ⟩ (55) for Turkish's single low unrounded vowel, between ⟨e⟩ (38) and ⟨ɛ⟩ (66), between ⟨r⟩ (15) and ⟨ɾ⟩ (74), and between ⟨l⟩ (44) and ⟨ɫ⟩ (22), none of which is a Turkish contrast; ⟨ö⟩ is written /œ/ here to match the parent ⟨tr⟩ spec where the gold mostly writes ⟨ø⟩. Stress is left unencoded.",
+ "notes": "Ottoman Turkish, the Perso-Arabic-script form of Turkish written until the 1928 alphabet reform. Consonants map onto the parent Turkish inventory: the Perso-Turkish additions پ [p], چ [tʃ], ژ [ʒ], گ [ɡ] and sağır kef ڭ [ŋ] are carried directly, the rhotic is the tap [ɾ], and the Arabic emphatics and pharyngeals ث ص ض ط ظ ح ع fold into plain Turkish consonants — ⟨خ⟩ reads as /h/ in the Turkish stratum and keeps /x/ only as a secondary candidate.\n\nThe script is an abjad for Turkish vowels. Four letters carry them: ⟨ا⟩ writes /a/ and word-initially any short vowel, ⟨و⟩ writes all of /o ø u y/, ⟨ی⟩ writes /i/ and /ɯ/, and word-final ⟨ه⟩ writes the /e ~ a/ suffix vowel. Which member of a harmony pair a letter stands for is not written on the vowel at all; it is signalled by the consonant letters, the hard set ⟨ح خ ص ض ط ظ ع غ ق⟩ appearing in back-vowel words and the soft set ⟨ت س ك گ ه⟩ in front-vowel words. This spec reads that signal with word-scope allophone rules — the layer the other abjad specs do not need — which is also what recovers the palatal [c] of a kef whose conditioning vowel is unwritten.\n\nA hard floor remains. Across the 161-word WikiPron gold, 113 of 918 gold segments (12.3%) are vowels for which the spelling provides no vowel-bearing letter at all, affecting 81 of the 161 words; no rule can supply them, and that deficit alone puts a floor of about 0.12 PER under any purely graphemic transcription. On top of it, the harmony signal is absent in the Arabic and Persian loan strata, which do not harmonize, and the ⟨و⟩ height contrast (/u ~ o/, /y ~ ø/) and vowel length in loans stay unrecoverable.\n\nOne Ottoman letter reaches this spec under more than one codepoint, so both members of each pair are listed. Kef is ⟨ك⟩ U+0643 in the Arabic tradition and ⟨ک⟩ U+06A9 — the keheh, which the Unicode charts name kaf mashkula and assign to Persian, Urdu and Sindhi — in the Persian one; ye is ⟨ی⟩ U+06CC in the Persian tradition and ⟨ي⟩ U+064A or the dotless ⟨ى⟩ U+0649 in the Arabic one. Ottoman was set in both traditions, and a letter with no entry is dropped without an error, so honouring only one member of a pair deletes every occurrence of the other in silence. The word-scope harmony rules name their trigger letters by codepoint, so they name the alternates too. Hemze on a carrier ⟨أ إ ؤ⟩ reads /ʔ/, as ⟨ئ⟩ already does. The kashida ⟨ـ⟩ and the zero-width non-joiner shape a line rather than a word and are listed as empty, so that deletion is stated instead of accidental. Three lookalikes are deliberately absent: the he shapes ⟨ہ⟩ and ⟨ھ⟩ belong to Urdu and to Uyghur, the elif wasla ⟨ٱ⟩ to Quranic Arabic, and the swash kaf ⟨ڪ⟩ is a letter of Sindhi distinct from kef. None of the alternates occur in the WikiPron gold behind this row, which is written with U+0643 and U+06CC throughout; they are here for Ottoman text this spec did not gather.\n\nConvention mismatches against the WikiPron gold, kept rather than fitted: the gold's annotators vary freely between ⟨a⟩ (83 tokens) and ⟨ɑ⟩ (55) for Turkish's single low unrounded vowel, between ⟨e⟩ (38) and ⟨ɛ⟩ (66), between ⟨r⟩ (15) and ⟨ɾ⟩ (74), and between ⟨l⟩ (44) and ⟨ɫ⟩ (22), none of which is a Turkish contrast; ⟨ö⟩ is written /œ/ here to match the parent ⟨tr⟩ spec where the gold mostly writes ⟨ø⟩. Stress is left unencoded.",
  "iso639_3": "ota",
  "glottolog_code": null,
  "sources": [
@@ -197,6 +227,28 @@
    "url": null,
    "pages": null,
    "notes": "Vowel harmony and the eight-vowel system inherited from the parent Turkish spec. Author-year claim; edition not consulted this session.",
+   "wikipedia_url": null
+  },
+  {
+   "id": "ota_unicode_arabic_chart",
+   "author": "The Unicode Consortium",
+   "year": 2025,
+   "title": "The Unicode Standard 17.0, code chart: Arabic (Range 0600-06FF)",
+   "publisher": "Unicode, Inc.",
+   "url": "https://www.unicode.org/charts/PDF/U0600.pdf",
+   "pages": null,
+   "notes": "Codepoint identities for the confusable letters: U+06A9 KEHEH is annotated '= kaf mashkula' and assigned to Persian, Urdu and Sindhi; U+06CC FARSI YEH cross-references U+0649 ALEF MAKSURA and U+064A YEH; U+0640 TATWEEL is '= kashida', inserted to stretch characters; U+06C1 HEH GOAL is Urdu, U+0671 ALEF WASLA is Quranic Arabic, and U+06AA SWASH KAF 'represents a letter distinct from Arabic KAF in Sindhi'.",
+   "wikipedia_url": null
+  },
+  {
+   "id": "ota_jaf_kayhan2021",
+   "author": "Jaf, A. A. & Koc Kayhan, S.",
+   "year": 2021,
+   "title": "Machine-Based Transliterate of Ottoman to Latin-Based Script",
+   "publisher": "Scientific Programming 2021: 7152935",
+   "url": "https://doi.org/10.1155/2021/7152935",
+   "pages": null,
+   "notes": "An Ottoman-to-Latin transliteration system with the Ottoman alphabet tabulated by positional form. Its normalization step treats the hamza carriers as a set - 'the hamza in cases (ؤ، ئ، أ) is neglected to be replaced by Unicode base letters' - which is why all three carriers are read here rather than only ⟨ئ⟩.",
    "wikipedia_url": null
   }
  ],
@@ -268,6 +320,38 @@
     "œ",
     "v"
    ]
+  },
+  "ي": {
+   "word_initial": [
+    "j"
+   ],
+   "after_vowel": [
+    "j"
+   ],
+   "before_vowel": [
+    "j"
+   ],
+   "default": [
+    "i",
+    "ɯ",
+    "j"
+   ]
+  },
+  "ى": {
+   "word_initial": [
+    "j"
+   ],
+   "after_vowel": [
+    "j"
+   ],
+   "before_vowel": [
+    "j"
+   ],
+   "default": [
+    "i",
+    "ɯ",
+    "j"
+   ]
   }
  },
  "allophone_rules": [
@@ -284,7 +368,9 @@
    "word_initial": true,
    "followed_by_grapheme": [
     "و",
-    "ی"
+    "ی",
+    "ي",
+    "ى"
    ],
    "notes": "A word-initial ⟨ا⟩ standing immediately before ⟨و⟩ or ⟨ی⟩ is a bare orthographic carrier for the following mater lectionis, not a vowel of its own: ‹اوچ› is /ytʃ/ and ‹ایكیشر› /iciʃeɾ/, not /avtʃ/ and /ajkiʃeɾ/. Paired with OTA_VAV_NUCLEUS_AFTER_DROPPED_CARRIER and OTA_YE_NUCLEUS_AFTER_DROPPED_CARRIER, which restore the nucleus for each of the two matres this rule licenses — a drop without both restores leaves the mater as a bare onset glide."
   },
@@ -295,7 +381,9 @@
    ],
    "surface": "i",
    "grapheme": [
-    "ی"
+    "ی",
+    "ي",
+    "ى"
    ],
    "preceded_by_grapheme": [
     "ا"
@@ -325,7 +413,9 @@
    ],
    "surface": "ɯ",
    "grapheme": [
-    "ی"
+    "ی",
+    "ي",
+    "ى"
    ],
    "word_contains_grapheme": [
     "ح",
@@ -407,7 +497,8 @@
    ],
    "word_contains_grapheme": [
     "ك",
-    "گ"
+    "گ",
+    "ک"
    ],
    "notes": "Ottoman spelling marks vowel harmony on the consonant letters, not on the (mostly unwritten) vowels: the hard letters ⟨ح خ ص ض ط ظ ع غ ق⟩ stand in back-vowel words and the soft letters ⟨ت س ك گ ه⟩ in front-vowel words (Ottoman Turkish alphabet, Wikipedia). ⟨و⟩ writes all of /o ø u y/ (Ottoman Turkish alphabet, Wikipedia: vav ⟨و⟩ for /o/, /œ/, /u/, /y/). A soft ⟨ك⟩/⟨گ⟩ with no hard letter anywhere selects the front rounded member: ‹یورك› /jyɾec/, ‹كوپوك› /køpyc/ (the height contrast /y ~ ø/ stays unrecoverable)."
   },
@@ -432,7 +523,8 @@
    ],
    "surface": "ŋ",
    "grapheme": [
-    "ك"
+    "ك",
+    "ک"
    ],
    "word_final": true,
    "notes": "Sağır kef: word-final ⟨ك⟩ after a written back vowel spells the velar nasal /ŋ/ rather than /k/ (Ottoman Turkish alphabet, Wikipedia: kef ⟨ك⟩ 'may be /k/, /ɡ/, /n/, /j/, or /ː/'). Plain kef is ambiguous between the stop and the nasal, so the rule is scoped to words that also carry a hard letter — ‹طوك› /doŋ/ — and ‹آلاك› /aɫaŋ/, which has no hard letter, is a known gap; without the restriction the rule also nasalizes the final kef of front words like ‹كوپوك› /køpyc/. Ottoman has the dedicated ⟨ڭ⟩ for the same sound, which this spec maps directly.",
@@ -459,7 +551,8 @@
    ],
    "surface": "c",
    "grapheme": [
-    "ك"
+    "ك",
+    "ک"
    ],
    "word_contains_grapheme_not": [
     "ح",
