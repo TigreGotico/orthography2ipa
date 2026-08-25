@@ -594,7 +594,7 @@ A row's `N` is its sample size in scored words, and it is not cosmetic: below ro
 | sr | vox_communis | 3624 | 0.3298 | 0.3298 | 0.3298 | 0.0571 | 0.0571 | [0.3243, 0.3351] | 0.0571 | research | epitran-derived |
 | srn | wikipron | 702 | 0.0450 | 0.0450 | 0.0450 | 0.8376 | 0.8376 | [0.0360, 0.0547] | 0.8376 | research | crowd-scraped |
 | srs | wikipron | 137 | 0.1773 | 0.1773 | 0.1773 | 0.2847 | 0.2847 | [0.1521, 0.2039] | 0.2847 | research | crowd-scraped |
-| stq | wikipron | 818 | 0.3730 | 0.2593 | 0.2412 | 0.2408 | 0.2677 | [0.3581, 0.3878] | 0.1345 | research | crowd-scraped |
+| stq | wikipron | 818 | 0.3123 | 0.1880 | 0.1631 | 0.3509 | 0.4083 | [0.2976, 0.3274] | 0.1687 | research | crowd-scraped |
 | su | kaikki | 396 | 0.0969 | 0.0969 | 0.0969 | 0.6389 | 0.6389 | [0.0828, 0.1128] | 0.6389 | skeleton | crowd-scraped |
 | sv | ipa_childes | 5202 | 0.3476 | 0.2555 | 0.2470 | 0.2614 | 0.2762 | [0.3415, 0.3544] | 0.1728 | research | espeak-derived |
 | sv | ipadict | 21094 | 0.2427 | 0.1752 | 0.1637 | 0.2900 | 0.3069 | [0.2401, 0.2452] | 0.2103 | research | lexicon-derived |

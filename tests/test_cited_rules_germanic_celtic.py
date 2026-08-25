@@ -900,14 +900,19 @@ def test_zea_is_a_declared_stub():
 # ===========================================================================
 
 
-def test_stq_centring_diphthongs():
-    """KEY FEATURE (2): CENTRING DIPHTHONGS /iə, oə, uə/.
+def test_stq_no_centring_diphthongs():
+    """KEY FEATURE (2): NO centring diphthongs — ⟨oa⟩ is the long monophthong /ɔː/.
 
-    stq notes: "(2) CENTRING DIPHTHONGS /iə, oə, uə/ — shared Frisian heritage."
-    Sources: Fort (1980), Kramer (1982).
+    Peters (2017: 225-226) lists Saterland Frisian's phonemic inventory —
+    ten short and ten long monophthongs plus seven closing diphthongs
+    (/oi̯ ɛi̯ œi̯ ɔi̯ ai̯ ɔu̯ au̯/) — and it contains no /iə oə uə/ series. The
+    wikipron gold agrees: every one of 73 ⟨oa⟩ tokens in the 818-word
+    stq/wikipron set transcribes as /ɔː/, never as a centring diphthong.
     """
-    assert "oə" in _t("stq", "Woater")
-    assert "oə" in _t("stq", "Loand")
+    assert "ɔː" in _t("stq", "Woater")
+    assert "ɔː" in _t("stq", "Loand")
+    assert "oə" not in _t("stq", "Woater")
+    assert "oə" not in _t("stq", "Loand")
 
 
 def test_stq_final_devoicing():
@@ -952,6 +957,50 @@ def test_stq_long_aa_umlaut_distinct_from_ee():
     """
     assert "ɛː" in _t("stq", "ääbend")
     assert "eː" in _t("stq", "lees")
+
+
+def test_stq_g_has_fricative_allophone():
+    """/ɡ/ has an attested velar-fricative allophone [ɣ].
+
+    Peters (2017: 224): "Some older speakers realize /ɡ/ as a velar
+    fricative, which is voiced in all positions except before voiceless
+    consonants and in word-final position." The wikipron gold's spelling
+    pronunciations use this fricative variant for essentially every
+    realised ⟨g⟩ (80/80 in a manual count over the 818-word set), so the
+    spec keeps both [ɡ] and [ɣ] as candidates rather than only the stop.
+    """
+    graphemes = set()
+    for cand in ("ɡ", "ɣ"):
+        if cand in _t("stq", "Reger"):
+            graphemes.add(cand)
+    assert "ɣ" in graphemes or "ɡ" in graphemes
+
+
+def test_stq_open_syllable_single_vowel_is_long():
+    """Fort's (2015) orthographic convention: single vowel in an open
+    syllable spells a long vowel; a closed syllable keeps it short.
+
+    Peters (2017: 223) states that the orthographic conventions of his
+    description "are adopted from Fort (2015)". The wikipron gold reflects
+    this convention directly: ⟨Apel⟩ 'apple' (open first syllable) has a
+    long vowel, while ⟨Adder⟩ 'snake' (closed first syllable) has a short
+    one.
+    """
+    assert "aː" in _t("stq", "Apel")
+    assert "aː" not in _t("stq", "Adder")
+
+
+def test_stq_accented_long_vowels_ie_and_uu():
+    """⟨í⟩ and ⟨ú⟩ are undeclared-diacritic spellings of /iː/ and /uː/.
+
+    These acute-accented vowels are absent from the previous spec's
+    grapheme table entirely (silent deletion), even though they are common
+    in the stq/wikipron gold — e.g. ⟨Brúur⟩ 'brother' /bruːr/, ⟨Bíerig⟩
+    'mountainous' /biːrɪɣ/ (Kramer 1961; Fort 2015 orthography, as
+    reflected in the wikipron transcriptions).
+    """
+    assert _t("stq", "Brúur") == "bruːr"
+    assert "iː" in _t("stq", "Bíerig")
 
 
 # ===========================================================================

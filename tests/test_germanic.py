@@ -1742,21 +1742,26 @@ class TestSaterlandFrisian:
     def test_ueue_long(self):
         _assert_first(_grapheme(self._spec, "üü"), "yː", label="stq üü")
 
-    # --- Centring diphthongs ---
+    # --- <oa> is a long monophthong, not a centring diphthong ---
+    # Peters (2017: 225-226) lists Saterland Frisian's seven phonemic
+    # diphthongs (all falling/closing: /oi̯ ɛi̯ œi̯ ɔi̯ ai̯ ɔu̯ au̯/) and its ten
+    # short and ten long monophthongs; there is no /iə oə uə/ series. The
+    # stq/wikipron gold agrees: 73/73 <oa> tokens transcribe as /ɔː/.
 
-    def test_ia_centring(self):
-        _assert_first(_grapheme(self._spec, "ia"), "iə", label="stq ia")
-
-    def test_oa_centring(self):
-        _assert_first(_grapheme(self._spec, "oa"), "oə", label="stq oa")
-
-    def test_ua_centring(self):
-        _assert_first(_grapheme(self._spec, "ua"), "uə", label="stq ua")
+    def test_oa_long_monophthong(self):
+        _assert_first(_grapheme(self._spec, "oa"), "ɔː", label="stq oa")
 
     # --- Consonants ---
 
-    def test_g_voiced_stop(self):
-        _assert_first(_grapheme(self._spec, "g"), "ɡ", label="stq g")
+    def test_g_stop_with_fricative_allophone(self):
+        """/ɡ/ is phonemically a stop, with an attested [ɣ] allophone.
+
+        Peters (2017: 224): "Some older speakers realize /ɡ/ as a velar
+        fricative." The wikipron gold's spelling pronunciations realise
+        <g> as [ɣ] almost throughout, so both candidates are kept.
+        """
+        graphemes = _grapheme(self._spec, "g")
+        assert "ɡ" in graphemes and "ɣ" in graphemes, "stq g"
 
     def test_ch_voiceless_velar(self):
         _assert_first(_grapheme(self._spec, "ch"), "x", label="stq ch")
