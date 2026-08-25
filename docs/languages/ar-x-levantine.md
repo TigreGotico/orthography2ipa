@@ -13,6 +13,32 @@ Arabic**. Short vowels, gemination (shadda) and sukūn surface only where they a
 Undiacritized text is not disambiguated, there is no diacritic-restoration step, so a bare
 consonant skeleton transcribes incompletely. This is a documented contract, not a bug.
 
+### Measured gold ceiling: WikiPron `apc`/`ajp` (undiacritized skeletons)
+
+The board's `ar-SY` (`apc`, North Levantine, 618 pairs) and `ar-JO` (`ajp`, South
+Levantine, 3182 pairs) WikiPron rows carry no harakat at all, exactly like the `ar`
+gold analysed in [`ar.md`](ar.md#gold-benchmark). Counting short-vowel segments
+(`a i u` plus the reduced/allophonic qualities `ə ɪ ʊ ɛ ɔ e o` these dialects also use
+for the unwritten short-vowel phonemes) in the gold IPA:
+
+- `ar-SY`: 845 of 3354 gold segments are unwritten short vowels (25.2 %). Baseline
+  PER 0.3895; folding those segments out of both the hypothesis and the gold before
+  rescoring gives 0.2875 — still above the 0.25 target, so short-vowel unwriting is a
+  large but not sole contributor.
+- `ar-JO`: 5311 of 17351 gold segments (30.6 %). Baseline PER 0.3718, folded PER
+  0.2736 — same pattern.
+
+Both rows also carry a large **homograph** count: 154 distinct `ar-SY` input
+skeletons and 560 distinct `ar-JO` skeletons map to two or more different gold
+vocalizations in the same file (e.g. آذار → `ʔaz aːr`/`ʔaðaːr`/`ʔaːzaːr`/`ʔaːðaːr` in
+`apc`; أزرق → `ʔazraɡ`/`ʔazraʔ` in `ajp`), evidence that the undiacritized orthography
+underdetermines these words independently of the missing short vowels. That is not
+itself an additional score floor — the harness scores each skeleton against the
+best-matching of its gold transcriptions, so a homograph is scored leniently rather
+than penalized. These numbers are **measured** from the shipped gold, not sourced
+from a grammar; no fold or vocalization rule that the undiacritized input does not
+itself supply has been added to the specs, consistent with the `ar` precedent.
+
 ## Inheritance structure
 
 ```

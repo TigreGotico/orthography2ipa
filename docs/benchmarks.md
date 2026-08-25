@@ -60,7 +60,10 @@ be read:
   and several `ep_dialects`/`mirandese` rows are `N<30`. Always
   cross-reference the row's bootstrap `95% CI` on the scoreboard: a wide
   or degenerate interval (e.g. `N=1` gives `[x, x]`) means the row cannot
-  support a conclusion, only a hint.
+  support a conclusion, only a hint. The scoreboard marks these rows
+  with a `†` after `N` (see "Confidence intervals" below) so they cannot
+  be mistaken for a measurement of the same weight as a row scored on
+  thousands of words.
 
 Even the `expert-human` tier is not "truth": it is bound by the
 annotating team's transcription conventions (broad vs narrow choices,
@@ -1607,6 +1610,19 @@ uncertainty rather than as a false-precision leaderboard entry:
   noisy given its sample size (small `N`, or high per-word variance),
   and is a signal to grow the gold set before trusting a narrow slice
   of PER movement as a real regression or improvement.
+- A narrow interval is only informative when `N` backs it up. Bootstrap
+  resampling draws its samples from the row's own per-word PER list, so
+  on a handful of words it can only ever reshuffle the same handful of
+  values back at itself: a row scored on one word gets a `[x, x]`
+  interval that looks perfectly precise, and a row scored on two or
+  three words gets one nearly as tight, purely because there was
+  nothing to resample. That is an artifact of the sample size, not
+  evidence the PER is well measured. `docs/scoreboard.md` marks any row
+  under 20 scored words with a `†` after its `N` for exactly this
+  reason: read a marked row's PER as a single anecdote, never rank it
+  against, or average it with, an unmarked row scored on hundreds or
+  thousands of words. A row's weight on the board is its `N`, not its
+  position in a PER sort.
 
 ### Top-k oracle PER (lattice quality vs ranking error)
 

@@ -20,6 +20,25 @@ short-vowel *deletion*: the engine transcribes the vowels that are written and
 lists reduction alternates in the allophone layer rather than deleting from
 orthography.
 
+### Measured gold ceiling: WikiPron `ary` (`ar-MA`) and `ayl` (`ar-LY`)
+
+`ar-MA`'s WikiPron gold (`ary_arab_broad.tsv`, 2168 pairs) is an undiacritized
+consonantal skeleton like the `ar` gold in [`ar.md`](ar.md#gold-benchmark): 2587 of
+11219 gold segments (23.1 %) are short-vowel qualities (`a i u ə ɪ ʊ ɛ ɔ e o`) with no
+corresponding written diacritic. Baseline PER is 0.3026; folding those segments out
+of both hypothesis and gold before rescoring gives 0.2397, at the 0.25 target. 280
+distinct input skeletons carry two or more different gold vocalizations (e.g. آخر →
+`ʔaːxur`/`ʔaːxir`), evidence that the undiacritized orthography underdetermines these
+words independently of the missing short vowels; it is not itself an additional
+score floor, since the harness scores each skeleton against the best-matching of its
+gold transcriptions.
+
+`ar-LY`'s gold (`ayl_arab_broad.tsv`, 166 pairs) shows the same shape at smaller
+scale: 175 of 866 segments (20.2 %) short vowels, baseline PER 0.3860, folded PER
+0.3525 — still well above target, with only 9 homographs (small n). These are
+**measured** distributional numbers, not a sourced claim, and no fold or
+vocalization has been added to the specs to chase them.
+
 ## Inheritance structure
 
 ```

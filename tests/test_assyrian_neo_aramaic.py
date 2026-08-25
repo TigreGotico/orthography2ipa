@@ -92,6 +92,23 @@ class TestConsonantValues:
         assert "ʒ" in _g("ܙ")
 
 
+class TestDoubledWaw:
+    """A written ⟨ܘܘ⟩ digraph is not a doubled vowel letter.
+
+    Measured on the shipped gold: all 18 word-medial sites read the second
+    waw as consonantal /w/, never as a second [uː].
+    """
+
+    def test_doubled_waw_is_not_a_double_long_vowel(self):
+        out = G2P("aii").transcribe_word("ܙܘܘܓܐ")  # gold: zuwwɑːɣɑː
+        assert "uːuː" not in out
+        assert "w" in out
+
+    def test_doubled_waw_general_grapheme_leads_with_a_short_vowel(self):
+        ipa = _g("ܘܘ")
+        assert ipa[0] == "uw"
+
+
 class TestSpecIntegrity:
     def test_every_source_is_cited_without_an_unverified_locator(self):
         for src in _spec().sources:

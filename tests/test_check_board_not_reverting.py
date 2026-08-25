@@ -219,6 +219,58 @@ class TestMarkdownBoard:
         after = dict(before, **{"PER CI low": "0.0801"})
         assert guard._delta(before, after, "dev") == "PER CI low 0.0790 -> 0.0801"
 
+    def test_thin_row_marker_is_stripped_from_n_cell(self):
+        """The thin-row marker (†) is a rendering annotation, not a value change.
+        When a row gains the marker because it falls below THIN_ROW_N, its N value
+        is unchanged and should not be reported as movement.
+        """
+        rows = guard._read_markdown(
+            "# Scoreboard\n\n| Lang | Dataset | N | PER |\n|---|---|---:|---:|\n"
+            "| mr | wikipron | 15† | 0.0535 |\n")
+        # The N cell should have the marker stripped, so the value is the plain int.
+        assert rows == {("mr", "wikipron"): {"Lang": "mr", "Dataset": "wikipron",
+                                             "N": "15", "PER": "0.0535"}}
+
+    def test_a_row_gaining_the_marker_is_not_undeclared_movement(self):
+        """A row whose N value stays the same but gains a thin-row marker (†)
+        should not be flagged as undeclared movement, since the marker is
+        a rendering annotation, not a value change.
+        """
+        # Base has N=15 without marker, merged has N=15† (same value, just marked).
+        base_row = {"Lang": "mr", "Dataset": "wikipron", "N": "15", "PER": "0.0535"}
+        merged_row = {"Lang": "mr", "Dataset": "wikipron", "N": "15†", "PER": "0.0535"}
+
+        # Parse them as if they came from markdown, which strips the marker.
+        base = {("mr", "wikipron"): base_row}
+        merged_raw = guard._read_markdown(
+            "# Scoreboard\n| Lang | Dataset | N | PER |\n|---|---:|---:|\n"
+            "| mr | wikipron | 15† | 0.0535 |\n")
+
+        # They should be identical after the guard parses them.
+        reverts, undeclared, allowed = guard.classify(
+            base, merged_raw, NOTHING_OWNED, NEVER_SUPERSEDED,
+            NO_DECLARATION, False)
+        assert not reverts and not undeclared and not allowed
+
+    def test_a_row_losing_value_despite_gaining_marker_is_still_caught(self):
+        """A row can gain the marker AND have its PER decrease (e.g., resampling
+        creates a narrower CI at the same N if more per-word PERs are available).
+        The value change should be caught even if the marker changes.
+        """
+        base_row = {"Lang": "mr", "Dataset": "wikipron", "N": "15", "PER": "0.0535"}
+        # Merged has N=15†, but also a lower PER (0.0400).
+        merged_raw = guard._read_markdown(
+            "# Scoreboard\n| Lang | Dataset | N | PER |\n|---|---:|---:|\n"
+            "| mr | wikipron | 15† | 0.0400 |\n")
+
+        base = {("mr", "wikipron"): base_row}
+        _, undeclared, allowed = guard.classify(
+            base, merged_raw, NOTHING_OWNED, NEVER_SUPERSEDED,
+            NO_DECLARATION, False)
+        # The move should be flagged as undeclared since no spec was touched.
+        assert [k for k, _, _ in undeclared] == [("mr", "wikipron")]
+        assert not allowed
+
 
 class TestSpecResolution:
     """Board tags without a spec file of their own resolve like the harness."""

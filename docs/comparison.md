@@ -299,7 +299,7 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 
 | Dataset | N | o2i | africa-g2p | Winner |
 |---|---|---|---|---|
-| wikipron | 263 | 0.3655 | 0.3958 | o2i |
+| wikipron | 263 | 0.2616 | 0.3958 | o2i |
 
 ### nl (Dutch)
 

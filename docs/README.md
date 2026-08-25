@@ -47,6 +47,8 @@ spelling_divergence(gl, glr).mean_distance       # 0.0659: they are written diff
 | [Quality tiers](quality_tiers.md) | What `stub` / `skeleton` / `research` / `production` require |
 | [Benchmarks](benchmarks.md) | Gold datasets, provenance tiers, methodology |
 | [Scoreboard](scoreboard.md) | Every measured PER / exact-match result |
+| [Gold composition](gold_composition.md) | How much of a row's gold is alphabet-chart noise vs running text |
+| [Spec diagnostics](spec_diagnostics.md) | Mechanical hunt for specs that are wrong, not imprecise |
 | [Comparison](comparison.md) | Cross-system PER vs espeak-ng, epitran, gruut |
 | [IPA Reference](ipa_reference.md) | IPA symbols and their feature values |
 | [Bibliography](bibliography.md) | Citation management, `LinguisticSource` |
