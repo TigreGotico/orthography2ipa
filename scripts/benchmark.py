@@ -2986,12 +2986,40 @@ RELIABILITY_TIERS = (
 # each points at a different column of docs/comparison.md.
 COMPETITOR_DERIVED_TIERS = frozenset({"espeak-derived", "epitran-derived"})
 
+# The last tier in RELIABILITY_TIERS that may gate a quality decision. Gating
+# power is DERIVED from tuple position rather than listed separately, so the
+# order above is the contract: a tier earlier in the tuple can never have less
+# gating power than a later one, and moving a row's tier up the tuple is always
+# an upgrade. The two are stated once because stating them twice is how they
+# drift — and a reader who mistook the tuple for a ladder that the gating sets
+# did not follow would reach exactly the wrong conclusion about which way a
+# reclassification moves a row.
+#
+# The cutoff sits AFTER `machine-generated`, which therefore gates. That is
+# deliberate and it is the one place where this lattice and the narrower
+# `_GOLD_TIERS` in scripts/compare_systems.py disagree, so it is worth being
+# explicit about why. The two answer different questions. compare_systems asks
+# whether a row may support a "we beat espeak" claim, and there an automatic
+# phonemizer's output is agreement rather than accuracy, so it does not
+# qualify. This lattice asks whether a PER movement on a row may block a merge
+# or qualify a language, and there the relevant property is whether the
+# reference has an error model a disagreement can be attributed to. A
+# phonemizer's output does: it is a rule or model system whose divergences can
+# be traced and adjudicated, exactly as espeak's can. What disqualifies the
+# competitor tiers is not that they are machine-made but that they are the
+# specific systems this project scores itself against, which makes a
+# disagreement with them a measure of our distance from a benchmark rival.
+# `machine-generated` gold is nobody's scoreline.
+GATING_CUTOFF_TIER = "machine-generated"
+
 # Tiers that can never gate a quality decision: a competitor's output (measures
 # agreement, not correctness) or an LLM's (no error model at all). A language
 # whose only >=500-entry gold sits in one of these has NO usable gold and stays
 # at `research`, and a poor score on one of these rows can equally never BLOCK a
 # language that clears the bar on a trustworthy gold. See docs/quality_tiers.md.
-NON_QUALIFYING_TIERS = COMPETITOR_DERIVED_TIERS | {"llm-generated"}
+NON_QUALIFYING_TIERS = frozenset(
+    RELIABILITY_TIERS[RELIABILITY_TIERS.index(GATING_CUTOFF_TIER) + 1:]
+)
 
 
 def can_gate_promotion(tier: str) -> bool:
@@ -3133,7 +3161,12 @@ PROVENANCE: Dict[str, str] = {
 # coda /s/ — so this gold measures conformity to a re-symbolized European
 # Portuguese, not to the acrolectal East Timorese Portuguese the spec
 # models. Downgraded from the dataset default so a low PER here can never be
-# read as "the spec is wrong" and a high PER never gates a promotion.
+# read as "the spec is wrong". Note that `machine-generated` still gates
+# (GATING_CUTOFF_TIER): the downgrade records that the reference is a
+# re-symbolized European Portuguese rather than independent Timorese
+# lexicography, it does not exempt the row from the promotion and regression
+# gates. Exempting it would need a tier below the cutoff, and none of those
+# describe this gold honestly.
 _PT_UNIFIED_PROVENANCE: Dict[str, str] = {
     "pt-TL": "machine-generated",
 }

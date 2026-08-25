@@ -17,6 +17,9 @@ on:
       - "benchmarks/results_ci_sample.json"
       - "docs/scoreboard.md"
       - "tests/data/**"
+      # The burn-down list the same guard ratchets; without it here, a pull
+      # request that only edits that file never reaches the check.
+      - "tests/test_sources.py"
       - ".github/workflows/benchmark-regression.yml"
   workflow_dispatch: {}
 
@@ -103,7 +106,7 @@ jobs:
           uv venv .venv
           uv pip install --python .venv/bin/python -e "."
 
-      - name: Check the board does not carry dev backwards
+      - name: Check the board and the burn-down lists do not carry dev backwards
         # A branch that merges dev and resolves the conflicted board file by
         # keeping its own copy puts back the numbers dev measured after the
         # branch was cut, with both sides green throughout — see the script's

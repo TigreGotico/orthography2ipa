@@ -46,6 +46,16 @@ request body or in a commit message on the branch names the rows, or says
 Declaring ``all`` requires the diff to actually touch harness or engine code, so
 it is not a free bypass.
 
+The same "green on both sides, broken only in the merge" shape reaches the
+burn-down lists in the test suite, so they are checked here too. A burn-down is
+a set of codes a test skips because they predate it, documented as only ever
+shrinking, and nothing but that documentation holds it down. A branch cut when
+the set held 258 codes and rebased onto a target where it holds 85 resolves the
+conflict toward itself and resurrects 173 skips — and the suite stays GREEN,
+because the set is an allowlist of known-bad specs, so every entry it restores
+turns a test back off. Read on the merge result, the rule is simply that the
+merged set must be a subset of the target's.
+
 Usage::
 
     python scripts/check_board_not_reverting.py --base origin/dev
@@ -54,6 +64,7 @@ Usage::
 from __future__ import annotations
 
 import argparse
+import ast
 import json
 import os
 import re
@@ -63,6 +74,14 @@ import sys
 BOARD_JSON = ("benchmarks/results.json", "benchmarks/results_ci_sample.json")
 SCOREBOARD_MD = "docs/scoreboard.md"
 SPEC_DIR = "orthography2ipa/data"
+
+#: Burn-down sets: ``(path, module-level name)`` pairs naming a collection of
+#: codes a test skips, documented as only ever shrinking. Each is read out of
+#: the file's source rather than imported, so the target's copy and the merged
+#: copy can both be read without executing either.
+RATCHETS = (
+    ("tests/test_sources.py", "_WIKIPEDIA_ONLY_SOURCES_BURNDOWN"),
+)
 
 #: How far back down the target's history a board value is still recognised as
 #: one the target already moved past. This is the last sixty board-touching
@@ -170,6 +189,70 @@ def _read_markdown(text):
             row["N"] = row["N"][:-len(THIN_ROW_MARK)]
         rows[(cells[0], cells[1])] = row
     return rows
+
+
+def read_ratchet(rev, path, name, repo="."):
+    """The burn-down set *name* holds in *path* at *rev*, or None.
+
+    The file is parsed, not imported: the merged tree is not a checkout, and
+    a test module pulled from an arbitrary revision must not be executed to
+    read one constant out of it. None means the set could not be read — the
+    file is missing, did not merge, or the name is no longer a plain literal
+    — which the caller reports rather than silently treating as empty.
+    """
+    blob = git("show", f"{rev}:{path}", repo=repo)
+    if blob is None or "<<<<<<<" in blob:
+        return None
+    try:
+        tree = ast.parse(blob)
+    except SyntaxError:
+        return None
+    for node in tree.body:
+        targets = node.targets if isinstance(node, ast.Assign) else (
+            [node.target] if isinstance(node, ast.AnnAssign) and node.value else [])
+        if not any(isinstance(t, ast.Name) and t.id == name for t in targets):
+            continue
+        value = node.value
+        # `frozenset({...})` and `set([...])` as well as a bare literal.
+        if (isinstance(value, ast.Call) and isinstance(value.func, ast.Name)
+                and value.func.id in ("frozenset", "set") and value.args):
+            value = value.args[0]
+        try:
+            return frozenset(ast.literal_eval(value))
+        except (ValueError, TypeError):
+            return None
+    return None
+
+
+def check_ratchets(base, merged, repo="."):
+    """Report burn-down sets the merge would grow. Returns True when any did.
+
+    A set that grew is a resolution that took the branch's older, longer copy:
+    every restored entry silences a test again, so the suite cannot notice.
+    """
+    failed = False
+    for path, name in RATCHETS:
+        base_set = read_ratchet(base, path, name, repo=repo)
+        merged_set = read_ratchet(merged, path, name, repo=repo)
+        if base_set is None or merged_set is None:
+            print(f"{path}: cannot read {name} on "
+                  f"{'the merge result' if merged_set is None else base}; "
+                  f"the burn-down guard cannot judge this merge")
+            continue
+        added = sorted(merged_set - base_set)
+        if not added:
+            print(f"{path}: {name} does not grow "
+                  f"({len(base_set)} on {base}, {len(merged_set)} merged)")
+            continue
+        failed = True
+        print(f"\n{path}: merging would add {len(added)} entr(y/ies) back to "
+              f"{name}, which may only shrink.")
+        print(f"  {', '.join(added)}")
+        print(f"  Each of these turns a test back off, so the suite stays "
+              f"green either way. Fix: resolve {path} keeping {base}'s "
+              f"shorter set, then re-add only what your own work genuinely "
+              f"needs — which for a burn-down is nothing.")
+    return failed
 
 
 class PackageUnavailable(RuntimeError):
@@ -338,8 +421,10 @@ def check(base, head, repo=".", body=""):
 
     changed = set((git("diff", "--name-only", merge_base, head, repo=repo) or "").split())
     boards = [p for p in (*BOARD_JSON, SCOREBOARD_MD) if p in changed]
-    if not boards:
-        print("the branch does not touch the board; the merge cannot move a row")
+    ratchets_touched = any(path in changed for path, _ in RATCHETS)
+    if not boards and not ratchets_touched:
+        print("the branch touches neither the board nor a burn-down list; "
+              "the merge cannot carry either backwards")
         return 0
 
     merged = merge_tree(base, head, repo=repo)
@@ -347,6 +432,10 @@ def check(base, head, repo=".", body=""):
         print(f"{head} and {base} cannot be merged automatically; "
               f"resolve the merge first")
         return 0
+
+    ratchets_failed = check_ratchets(base, merged, repo=repo) if ratchets_touched else False
+    if not boards:
+        return 1 if ratchets_failed else 0
 
     touched_specs = {os.path.basename(p)[:-5] for p in changed
                      if p.startswith(SPEC_DIR + "/") and p.endswith(".json")}
@@ -362,7 +451,8 @@ def check(base, head, repo=".", body=""):
         return owned_cache[lang]
 
     try:
-        return _run(boards, base, merged, owns_lang, declared, engine_touched, repo=repo)
+        rc = _run(boards, base, merged, owns_lang, declared, engine_touched, repo=repo)
+        return rc or (1 if ratchets_failed else 0)
     except PackageUnavailable as exc:
         print(f"cannot import orthography2ipa: {exc}\n"
               f"the guard cannot resolve board tags to specs without the "

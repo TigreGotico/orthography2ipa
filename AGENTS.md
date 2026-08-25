@@ -344,6 +344,15 @@ declares them: a `Board-Rows: mr/wikipron, xh/kaikki` line, or
 `Board-Rows: all - <reason>` when the whole board was rescored, in the pull
 request body or a commit message.
 
+The burn-down lists in the test suite fail the same way and are checked by the
+same script. `_WIKIPEDIA_ONLY_SOURCES_BURNDOWN` in `tests/test_sources.py` is a
+set of codes whose bare-Wikipedia `sources[]` predate the test that forbids
+them; it may only shrink. Because it is an allowlist, restoring an entry makes
+the suite *more* green, so a branch that resolves a rebase toward its own longer
+copy resurrects the skips with nothing to show for it. The guard reads the set
+off the merge result and fails if it grew. Resolve that file keeping `dev`'s
+shorter set.
+
 ## Conventions (Org hard rules)
 
 - Branches: `dev` for work, `master` for stable. NEVER `main`.
