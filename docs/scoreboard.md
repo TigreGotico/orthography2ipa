@@ -29,8 +29,8 @@ A row's `N` is its sample size in scored words, and it is not cosmetic: below ro
 | Lang | Dataset | N | PER | Oracle@3 | Oracle@5 | OracleX@3 | OracleX@5 | 95% CI | Exact match | Quality tier | Provenance |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---|---|---|
 | aa | wikipron | 1713 | 0.2151 | 0.2151 | 0.2151 | 0.2685 | 0.2685 | [0.2071, 0.2228] | 0.2685 | research | crowd-scraped |
-| ab | vox_communis | 32180 | 0.4563 | 0.4563 | 0.4563 | 0.0023 | 0.0023 | [0.4549, 0.4577] | 0.0023 | research | epitran-derived |
-| ab | wikipron | 165 | 0.3718 | 0.3702 | 0.3702 | 0.3455 | 0.3455 | [0.3135, 0.4294] | 0.3455 | research | crowd-scraped |
+| ab | vox_communis | 32180 | 0.1964 | 0.1964 | 0.1964 | 0.1921 | 0.1921 | [0.1947, 0.1980] | 0.1921 | research | epitran-derived |
+| ab | wikipron | 165 | 0.2311 | 0.2296 | 0.2296 | 0.5636 | 0.5636 | [0.1725, 0.2915] | 0.5636 | research | crowd-scraped |
 | ace | wikipron | 267 | 0.1102 | 0.0864 | 0.0864 | 0.6404 | 0.6404 | [0.0928, 0.1293] | 0.5693 | research | crowd-scraped |
 | acm | wikipron | 97 | 0.4249 | 0.4249 | 0.4249 | 0.1031 | 0.1031 | [0.3792, 0.4681] | 0.1031 | research | crowd-scraped |
 | ady | northeuralex | 928 | 0.1684 | 0.1587 | 0.1586 | 0.4483 | 0.4494 | [0.1558, 0.1813] | 0.4224 | research | lexicon-derived |

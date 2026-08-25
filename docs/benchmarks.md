@@ -839,6 +839,41 @@ spec's /ð/ and /θ/ rules. The row is kept because it still measures the
 rest of the alphabet across a large vocabulary; it is read as breadth
 only, and the interdentals are defended by `wikipron` and by unit tests.
 
+**Known coverage hole, `ab` (Abkhaz): the gold has no symbol for
+labialization, and Abkhaz is built on it.** Abkhaz contrasts roughly 58
+consonants against two vowels, largely by palatalizing and labializing
+almost every place of articulation (Beguš 2021,
+[doi:10.1093/oxfordhb/9780190690694.013.18](https://doi.org/10.1093/oxfordhb/9780190690694.013.18),
+§2.2.1). The orthography writes labialization with the modifier letter
+⟨ә⟩ U+04D9. In `ab.tsv`, 44,279 of 76,464 word types (57.9%) are `spn`
+rather than a transcription, and eight letters are at **100%** `spn` — ⟨ә⟩
+(30,743 types), ⟨ԥ⟩ (7,984), ⟨қ⟩ (7,058), ⟨ӡ⟩ (5,024), ⟨ҩ⟩ (4,035), ⟨ҿ⟩
+(2,678), ⟨ӷ⟩ (1,741), ⟨џ⟩ (811). So every labialized spelling is a coverage
+hole, and the 32,185 scoreable types between them use only 35 distinct
+phone symbols, not one of which carries /ʷ/. What survives is a sample of
+the labialization-free residue of Abkhaz.
+
+Most of the remaining distance is transcription convention, not mapping.
+Folding the gold's undotted ⟨ш ж ҽ ҿ⟩ series onto the spec's retroflex
+symbols removes 1.7 PER points, dropping the aspiration the gold never
+writes removes 3.0, and reading ⟨е о и у⟩ as the gold's underlying
+/aj aw j w/ instead of surface /e o i u/ removes a further 8.3 — leaving
+about 6.5 points of real disagreement out of a raw 45.2. The spec keeps
+aspiration and the retroflex series: the JIPA Illustration of Abkhaz
+transcribes the language's own name /apʰsaʃʷa/
+([doi:10.1017/S0025100320000390](https://doi.org/10.1017/S0025100320000390)),
+and the independent `wikipron` `ab` row marks aspiration too.
+
+This row is **not** given a `PROVENANCE_BY_LANG` override, deliberately.
+The tier lattice has no rung below a competitor's output:
+`machine-generated` reads as the weakest tier in the table above but is a
+*qualifying* one, while `epitran-derived` is not, so overriding `ab` down
+to `machine-generated` would hand a gating vote to the least trustworthy
+row on the board. The dataset-wide tier stays, and the row stays
+non-qualifying. (The `epitran` half of the label is also not literally true
+here — Epitran ships no Abkhaz map — so the ab phone tier came from XPF,
+Charsiu or a custom lexicon, unattributed.)
+
 **Tier: `epitran-derived`**: Epitran is a scored competitor in
 [comparison.md](comparison.md), so a disagreement here measures divergence
 from a competitor's output. Directional breadth signal only. Can never gate
