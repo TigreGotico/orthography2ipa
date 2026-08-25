@@ -145,6 +145,70 @@ class TestModernGreek:
         vals = _grapheme(self.spec, "ευ")
         _assert_contains(vals, "ev", "ef", label="ευ")
 
+    # Polytonic spellings in Modern Greek text
+    #
+    # Monotonic orthography has been standard since 1982, but polytonic
+    # spellings stay in circulation — proper names, learned vocabulary,
+    # ecclesiastical and pre-reform text — and the wikipron gold reads them as
+    # plain Modern Greek: ⟨Κωνσταντῖνος⟩ is transcribed [k o n s t a n d i n o
+    # s], with the breathings and the iota subscript contributing nothing and
+    # the circumflex marking only the stressed syllable.
+    #
+    # The breathings (psili, dasia), the iota subscript and the length marks
+    # are folded away through ``fold_diacritics``; the circumflex (perispomeni)
+    # and the grave (varia) are stress marks and stay, so their letters are
+    # graphemes in their own right and members of ``marked_vowels``.
+
+    def test_breathings_are_segmentless(self):
+        """Psili and dasia write nothing: ⟨ἀ ἁ⟩ read as ⟨α⟩."""
+        assert "̓" in self.spec.fold_diacritics
+        assert "̔" in self.spec.fold_diacritics
+
+    def test_iota_subscript_is_segmentless(self):
+        """Ypogegrammeni writes nothing in Modern Greek: ⟨ᾳ⟩ reads as ⟨α⟩."""
+        assert "ͅ" in self.spec.fold_diacritics
+
+    def test_perispomeni_letters_are_graphemes(self):
+        """⟨ᾶ ῆ ῖ ῦ ῶ⟩ map to the plain vowel, not to nothing."""
+        for grapheme, expected in (("ᾶ", "a"), ("ῆ", "i"), ("ῖ", "i"),
+                                   ("ῦ", "i"), ("ῶ", "o")):
+            _assert_first(_grapheme(self.spec, grapheme), expected,
+                          label=grapheme)
+
+    def test_perispomeni_letters_mark_stress(self):
+        """The circumflex marks the stressed syllable in polytonic text."""
+        for grapheme in "ᾶῆῖῦῶ":
+            assert grapheme in self.spec.stress.marked_vowels, grapheme
+
+    def test_varia_letters_mark_stress(self):
+        """The grave is the final-syllable variant of the acute."""
+        for grapheme in "ὰὲὴὶὸὺὼ":
+            assert _grapheme(self.spec, grapheme) is not None, grapheme
+            assert grapheme in self.spec.stress.marked_vowels, grapheme
+
+    def test_polytonic_digraphs_survive_the_accent(self):
+        """⟨εῖ οῦ αῖ⟩ are the digraphs ⟨ει ου αι⟩ under a circumflex."""
+        _assert_first(_grapheme(self.spec, "εῖ"), "i", label="εῖ")
+        _assert_first(_grapheme(self.spec, "οῦ"), "u", label="οῦ")
+        _assert_first(_grapheme(self.spec, "αῖ"), "e", label="αῖ")
+
+    @pytest.mark.parametrize("word,expected", [
+        # Written accent on ί; the breathing on ἀ must not shift it.
+        ("ἀναγνωρίσεις", "anaɣnoˈɾisis"),
+        ("ἐτάφην", "eˈtafin"),
+        # Stress sits on the circumflex, and the ι it carries is a nucleus.
+        ("Κωνσταντῖνος", "konstaˈndinos"),
+        ("Ναυσικᾶ", "nafsiˈka"),
+        # Iota subscript is silent.
+        ("σοφίᾳ", "soˈfia"),
+        # Circumflex on the second half of a digraph keeps the digraph.
+        ("πλατεῖα", "plaˈtia"),
+        ("φυτικοῦ", "fitiˈku"),
+    ])
+    def test_polytonic_words_transcribe_as_modern_greek(self, word, expected):
+        """Polytonic spellings read as their monotonic equivalents."""
+        assert orthography2ipa.G2P("el").transcribe(word) == expected
+
     def test_parent_is_grc(self):
         """Modern Greek inherits from Ancient Greek."""
         assert self.spec.parent == "grc"

@@ -205,6 +205,88 @@
     ],
     "ββ": [
       "v"
+    ],
+    "ᾶ": [
+      "a"
+    ],
+    "ῆ": [
+      "i"
+    ],
+    "ῖ": [
+      "i"
+    ],
+    "ῦ": [
+      "i"
+    ],
+    "ῶ": [
+      "o"
+    ],
+    "ῗ": [
+      "i"
+    ],
+    "ῧ": [
+      "i"
+    ],
+    "ὰ": [
+      "a"
+    ],
+    "ὲ": [
+      "e"
+    ],
+    "ὴ": [
+      "i"
+    ],
+    "ὶ": [
+      "i"
+    ],
+    "ὸ": [
+      "o"
+    ],
+    "ὺ": [
+      "i"
+    ],
+    "ὼ": [
+      "o"
+    ],
+    "αῖ": [
+      "e"
+    ],
+    "εῖ": [
+      "i"
+    ],
+    "οῖ": [
+      "i"
+    ],
+    "οῦ": [
+      "u"
+    ],
+    "αῦ": [
+      "av",
+      "af"
+    ],
+    "εῦ": [
+      "ev",
+      "ef"
+    ],
+    "αὶ": [
+      "e"
+    ],
+    "εὶ": [
+      "i"
+    ],
+    "οὶ": [
+      "i"
+    ],
+    "οὺ": [
+      "u"
+    ],
+    "αὺ": [
+      "av",
+      "af"
+    ],
+    "εὺ": [
+      "ev",
+      "ef"
     ]
   },
   "allophones": {
@@ -505,10 +587,24 @@
       "ύ",
       "ώ",
       "ΐ",
-      "ΰ"
+      "ΰ",
+      "ᾶ",
+      "ῆ",
+      "ῖ",
+      "ῦ",
+      "ῶ",
+      "ῗ",
+      "ῧ",
+      "ὰ",
+      "ὲ",
+      "ὴ",
+      "ὶ",
+      "ὸ",
+      "ὺ",
+      "ὼ"
     ],
     "stress_mark": "ˈ",
-    "notes": "Modern Greek (Standard) uses a single written acute accent (monotonic system since 1982) to mark the stressed syllable on every polysyllable. Marked vowels listed here are the nine accented forms. The dialytika-tonos letters ΐ (U+0390) and ΰ (U+03B0) carry both diaeresis and stress. Monosyllables are unaccented. Source: Arvaniti (2007), Greek Phonetics; Wikipedia: https://en.wikipedia.org/wiki/Modern_Greek_phonology"
+    "notes": "Modern Greek (Standard) uses a single written acute accent (monotonic system since 1982) to mark the stressed syllable on every polysyllable. Marked vowels listed here are the nine accented forms of the monotonic system, plus the polytonic circumflex (perispomeni) and grave (varia) forms, which mark the same stressed syllable in pre-1982 text and in the many proper names and learned words still printed polytonically. The dialytika-tonos letters ΐ (U+0390) and ΰ (U+03B0) carry both diaeresis and stress. Monosyllables are unaccented. Source: Arvaniti (2007), Greek Phonetics; Holton, Mackridge & Philippaki-Warburton (2012), Greek: A Comprehensive Grammar, ch. 1."
   },
   "wikidata_qid": "Q36510",
   "phoible_id": "mode1248",
@@ -555,5 +651,12 @@
       "followed_by": "front_vowel",
       "notes": "⟨γ⟩ is [ʝ] before a front vowel"
     }
+  ],
+  "fold_diacritics": [
+    "̓",
+    "̔",
+    "ͅ",
+    "̄",
+    "̆"
   ]
 }
