@@ -32,6 +32,18 @@
     "ü": [
       "ʏ"
     ],
+    "í": [
+      "iː"
+    ],
+    "ú": [
+      "uː"
+    ],
+    "ë": [
+      "ə"
+    ],
+    "úu": [
+      "uː"
+    ],
     "aa": [
       "aː"
     ],
@@ -57,13 +69,7 @@
       "yː"
     ],
     "oa": [
-      "oə"
-    ],
-    "ua": [
-      "uə"
-    ],
-    "ia": [
-      "iə"
+      "ɔː"
     ],
     "ai": [
       "ai"
@@ -102,7 +108,8 @@
       "f"
     ],
     "g": [
-      "ɡ"
+      "ɡ",
+      "ɣ"
     ],
     "h": [
       "h"
@@ -188,6 +195,10 @@
     "ɡ": [
       "ɡ",
       "k"
+    ],
+    "ɣ": [
+      "ɣ",
+      "x"
     ],
     "f": [
       "f"
@@ -333,7 +344,8 @@
         "k"
       ],
       "default": [
-        "ɡ"
+        "ɡ",
+        "ɣ"
       ]
     },
     "v": {
@@ -366,6 +378,38 @@
         "ɛ",
         "ə"
       ]
+    },
+    "a": {
+      "open_syllable": [
+        "aː"
+      ],
+      "default": [
+        "a"
+      ]
+    },
+    "i": {
+      "open_syllable": [
+        "iː"
+      ],
+      "default": [
+        "ɪ"
+      ]
+    },
+    "o": {
+      "open_syllable": [
+        "oː"
+      ],
+      "default": [
+        "ɔ"
+      ]
+    },
+    "u": {
+      "open_syllable": [
+        "uː"
+      ],
+      "default": [
+        "ʊ"
+      ]
     }
   },
   "ancestors": [
@@ -394,8 +438,18 @@
       "notes": "Dutch adstrate: historical trade contacts with the Netherlands; some Dutch-influenced lexical items, particularly in older vocabulary."
     }
   ],
-  "notes": "Saterland Frisian (Seeltersk) — the last surviving variety of East Frisian, spoken by ~1,000–2,500 people in the four Saterland municipalities (Ramsloh, Strücklingen, Scharrel, Sedelsberg) in the Cloppenburg district of Lower Saxony, Germany. Severely endangered; recognised as a minority language under the European Charter. KEY FEATURES: (1) MOST CONSERVATIVE FRISIAN: preserves features lost in West and North Frisian, including some Old Frisian vowel distinctions and diphthong patterns. (2) CENTRING DIPHTHONGS /iə, oə, uə/ — shared Frisian heritage. (3) FINAL DEVOICING as in all Frisian and continental West Germanic. (4) VOICED STOP /ɡ/ — retained from Old Frisian. (5) /sp, st/ → [ʃp, ʃt] word-initially (shared with Low German). (6) /s/ → [z] intervocalically and word-initially before vowels. (7) RICH FRONT ROUNDED VOWELS: ö/öö, ü/üü from i-umlaut. (8) Long ää /ɛː/ preserved as distinct from ee /eː/. (9) THREE-LANGUAGE ecology: all speakers also speak Low German and Standard German. Sources: Fort (1980), Markey (1981), Kramer (1982).",
+  "notes": "Saterland Frisian (Seeltersk) — the last surviving variety of East Frisian, spoken by ~1,000–2,500 people in the four Saterland municipalities (Ramsloh, Strücklingen, Scharrel, Sedelsberg) in the Cloppenburg district of Lower Saxony, Germany. Severely endangered; recognised as a minority language under the European Charter. KEY FEATURES, per Peters (2017), the JIPA illustration: (1) MOST CONSERVATIVE FRISIAN: preserves features lost in West and North Frisian. (2) NO CENTRING DIPHTHONGS. Peters (2017) lists exactly seven phonemic diphthongs, /oi̯ ɛi̯ œi̯ ɔi̯ ai̯ ɔu̯ au̯/, all falling and closing; there is no /iə oə uə/ series. An earlier revision of this spec carried centring diphthongs for the ⟨oa/ia/ua⟩ digraphs, apparently copied from West Frisian's ⟨ea/oa⟩ pattern (`fy.json`) — that is contradicted both by Peters and by the wikipron gold, where every one of 73 ⟨oa⟩ tokens transcribes as the long monophthong /ɔː/ and ⟨ia/ua⟩ are effectively unattested. (3) FINAL DEVOICING of lenis obstruents, as in continental West Germanic generally. (4) /ɡ/ IS PHONEMICALLY A VOICED VELAR STOP for Peters's consultants, but 'some older speakers realize /ɡ/ as a velar fricative [ɣ], which is voiced in all positions except before voiceless consonants and word-finally' (Peters 2017: 224); the wikipron gold's spelling pronunciations use the fricative variant essentially throughout (80/80 realised /ɡ/ tokens are [ɣ]), so both values are kept as candidates. (5) /sp, st/ → [ʃp, ʃt] word-initially (shared with Low German). (6) /s/ becomes voiced word-medially before /j/, after /l, r/, and intervocalically after a long vowel (Peters 2017: 224). (7) RICH FRONT ROUNDED VOWELS: ö/öö, ü/üü from i-umlaut; /yː/ is largely restricted to Low German loans. (8) Long ää /ɛː/ preserved as distinct from ee /eː/, matching Peters's long lax vs. long tense mid-vowel contrast. (9) OPEN-SYLLABLE VOWEL LENGTH: the gold follows Fort's (2015) orthographic convention (also adopted by Peters 2017), under which a long vowel in an open syllable is spelled with a SINGLE vowel letter, not a doubled one (Kramer's 1961/1982 dictionary convention instead doubles every long vowel). ⟨Apel⟩ 'apple' /aːpəl/ vs. ⟨Adder⟩ 'snake' /adər/ is the minimal contrast this reflects; it is why the spec keys plain a/i/o/u to `open_syllable` rather than trying to fold length onto the letters themselves. (10) THREE-LANGUAGE ecology: all speakers also speak Low German and Standard German.",
   "sources": [
+    {
+      "id": "peters2017",
+      "author": "Peters, Jörg",
+      "year": 2017,
+      "title": "Saterland Frisian",
+      "publisher": "Journal of the International Phonetic Association 49(2), 223-230",
+      "url": "https://doi.org/10.1017/S0025100317000226",
+      "pages": "223-230",
+      "notes": "Illustrations of the IPA. Primary source for the consonant/vowel/diphthong inventories, the /ɡ/~[ɣ] allophony, and the statement that its orthography follows Fort (2015)."
+    },
     {
       "id": "fort1980",
       "author": "Fort, M.C.",
@@ -454,5 +508,6 @@
     "longitude": 7.721,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Ems-Weser Frisian."
-  }
+  },
+  "constrain_onsets": true
 }

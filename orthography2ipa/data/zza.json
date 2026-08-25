@@ -3,7 +3,7 @@
   "name": "Zaza",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "a": [
       "a"
