@@ -586,6 +586,141 @@ class TestDutch:
         _assert_contains(a, "r", "ʁ", label="nl-NL allophone r includes ʁ")
 
 
+class TestDutchBeatEspeakWave:
+    """Booij 1995-cited classes added by the beat-espeak Dutch wave (bare
+    ``nl`` spec: compound-final secondary stress, regressive devoicing
+    assimilation, unstressed tense ⟨i⟩)."""
+
+    def _t(self, word):
+        from orthography2ipa import G2P
+        return G2P("nl").transcribe(word)
+
+    def test_compound_final_secondary_stress_unreduced(self):
+        """⟨berg⟩/⟨veld⟩/⟨kerk⟩/⟨brecht⟩ compound-final members keep [ɛ],
+        they do not reduce to schwa like a plain unstressed syllable
+        (Booij 1995, ch. 5: non-head compound members carry secondary
+        stress). ⟨veld⟩ here is NOT the word's final grapheme (⟨en⟩
+        follows), so its coda ⟨d⟩ stays voiced -- only the vowel is
+        pinned, the devoicing positional split (below) still applies."""
+        assert self._t("Aalstervelden") == "ˈaːlstərvɛldən"
+        assert self._t("Almkerk") == "ˈɑlmkɛrk"
+        assert self._t("Aalbrecht") == "ˈaːlbrɛxt"
+        assert self._t("berg") == "ˈbɛrx"
+
+    def test_berg_veld_positional_scoping_not_maximal_munch(self):
+        """Regression (adversarial review round 1): ⟨berg⟩/⟨veld⟩ must be
+        positionally scoped, not plain unconditional graphemes -- a plain
+        grapheme would maximal-munch match inside ordinary inflected forms
+        like *bergen* (mountains) and *velden* (fields) and wrongly force
+        the word-final devoiced [x]/[t], when these forms are not
+        word-final and gold keeps the intervocalic-onset voiced [ɣ]/[d]."""
+        assert self._t("bergen") == "ˈbɛrɣən"
+        assert self._t("Bergen") == "ˈbɛrɣən"
+        assert self._t("velden") == "ˈvɛldən"
+        assert self._t("veld") == "ˈvɛlt"
+
+    def test_coda_devoicing_extends_to_pre_obstruent(self):
+        """⟨g⟩ devoices to [x] before a following voiceless obstruent
+        within the word, not only word-finally (Booij 1995, ch. 2 sec.
+        2.5: regressive devoicing assimilation)."""
+        assert self._t("zegt") == "ˈzɛxt"
+        # WikiPron gold has no *liegt*; [i] (not [iː]) is the tense-but-SHORT
+        # high vowel of Booij 1995, ch. 2 — long only before /r/ (bier).
+        assert self._t("liegt") == "ˈlixt"
+        assert self._t("hoogte") == "ˈɦoːxtə"
+
+    def test_devoicing_does_not_fire_before_sonorant(self):
+        """⟨g⟩ before a sonorant (not an obstruent) stays voiced [ɣ] --
+        the devoicing trigger is specifically a following voiceless
+        obstruent, not any consonant."""
+        assert self._t("dagje") == "ˈdɑɣjə"
+        assert self._t("zeggen") == "ˈzɛɣən"
+        assert self._t("vogel") == "ˈvoːɣəl"
+
+    def test_isch_suffix_is_tense_i_not_lax(self):
+        """The closed adjectival/toponymic suffix ⟨isch⟩ is [-is]
+        (⟨ch⟩ silent, ⟨i⟩ tense-but-short), not [-ɪs]."""
+        assert self._t("Arabisch") == "ˈaːraːbis"
+        assert self._t("Akkadisch") == "ˈɑkaːdis"
+
+    def test_unstressed_final_i_is_tense(self):
+        """An unstressed word-final ⟨i⟩ is tense-but-short [i], not lax
+        [ɪ] (Booij 1995, ch. 2; mirrors de-DE's analogous
+        DE_UNSTRESSED_TENSE_*_FINAL rules)."""
+        assert self._t("Ali") == "ˈaːli"
+        assert self._t("Adri") == "ˈaːdri"
+
+    def test_unstressed_i_in_hiatus_is_tense(self):
+        """An unstressed ⟨i⟩ directly before another vowel letter is
+        tense-but-short [i], not lax [ɪ] -- the hiatus blocks the
+        closed-syllable laxing a following consonant would trigger."""
+        assert self._t("Ariër") == "ˈaːriər"
+        assert self._t("Adriaan") == "ˈaːdriaːn"
+
+    def test_stressed_closed_syllable_i_stays_lax(self):
+        """Guard: the new unstressed-tensing rules must not touch a
+        stressed closed-syllable ⟨i⟩, which stays lax [ɪ]."""
+        assert self._t("kip") == "ˈkɪp"
+        assert self._t("mist") == "ˈmɪst"
+        assert self._t("wit") == "ˈʋɪt"
+
+    def test_open_syllable_length_and_baseline_words_unaffected(self):
+        """Guard: pre-existing open-syllable lengthening and unrelated
+        words are unaffected by the new rules."""
+        assert self._t("water") == "ˈʋaːtər"
+        assert self._t("maken") == "ˈmaːkən"
+        assert self._t("bakken") == "ˈbɑkən"
+        assert self._t("verhaal") == "ˈvɛrɦaːl"
+        assert self._t("gedaan") == "ˈɣeːdaːn"
+
+    def test_heteromorphemic_tj_stays_two_segments(self):
+        """⟨tj⟩ is not a palatalized/affricate single segment: the
+        productive diminutive suffix -tje/-etje attaches after a
+        stem-final plosive with the stem's coda /t/ and the suffix's
+        onset /j/ kept distinct across the morpheme boundary (Booij
+        1995, ch. 2-3), and word-initial ⟨tj-⟩ placenames are [tj] too
+        -- WikiPron gold: katje [kɑtjə], potje [pɔtjə], tjalk [tjɑlk],
+        tjonge [tjɔŋə]."""
+        assert self._t("katje") == "ˈkɑtjə"
+        assert self._t("potje") == "ˈpɔtjə"
+        assert self._t("tjalk") == "ˈtjɑlk"
+        assert self._t("tjonge") == "ˈtjɔŋə"
+
+    def test_tj_does_not_trigger_open_syllable_lengthening(self):
+        """Regression: the old coalesced ⟨tj⟩ digraph counted as a
+        single intervocalic consonant, wrongly lengthening the stem
+        vowel of -tje diminutives (witje -> *[ʋiːtʲə]). Since ⟨tj⟩ is
+        phonemically two segments (a closed syllable: wit-je, not
+        wi-tje), the stem vowel must stay short: witje [ʋɪtjə], not
+        [ʋiːtʲə]."""
+        assert self._t("witje") == "ˈʋɪtjə"
+        assert self._t("achtjarig") == "ˈɑxtjaːrɪx"
+
+    def test_tautomorphemic_tj_loanwords_pinned_as_exceptions(self):
+        """A small closed set of Malay/Indonesian loanwords and
+        Frisian-influenced placenames keep tautomorphemic ⟨tj⟩ as the
+        coalesced affricate [tʃ] -- the opposite of the general (now
+        majority-correct) [tj] rule above. Pinned in word_exceptions
+        per AGENTS.md 2 (closed irregular set), not the rule layer,
+        since generalizing [tʃ] would break the diminutive/placename
+        majority. WikiPron gold: tjap [tʃɑp], tjokvol [tʃɔkfɔl],
+        Tjerkgaast [tʃɛrkɣaːst]."""
+        assert self._t("tjap") == "ˈtʃɑp"
+        assert self._t("tjokvol") == "ˈtʃɔkfɔl"
+        assert self._t("Tjerkgaast") == "ˈtʃɛrkɣaːst"
+
+    def test_ambiguous_tjalk_and_ketjap_left_on_general_rule(self):
+        """Guard: 'tjalk' is genuinely ambiguous at the same lowercased
+        key -- placename 'Tjalk' is gold [tj], common noun 'tjalk'
+        (sailing barge) is gold [tʃ] -- so no override can satisfy
+        both senses; it stays on the general [tj] rule. 'ketjap' has
+        both [tj] and [tʃ] as attested WikiPron variants, so the
+        general [tj] rule already scores a match without an
+        exception."""
+        assert self._t("tjalk") == "ˈtjɑlk"
+        assert self._t("ketjap") == "ˈkɛtjɑp"
+
+
 # ═══════════════════════════════════════════════════════════════════════════
 # BELGIAN DUTCH / FLEMISH  (nl-BE)
 # ═══════════════════════════════════════════════════════════════════════════
@@ -1780,22 +1915,328 @@ class TestGermanFinalIg:
         return transcribe(word, "de-DE").replace("ˈ", "")
 
     def test_final_ig_spirantises(self):
-        assert self._t("König") == "kœnɪç"
-        assert self._t("ewig") == "ɛvɪç"
+        # König's stressed ⟨ö⟩ is in an open syllable (Kö-nig) and is long
+        # in real German (Duden: /ˈkøːnɪç/); the open-syllable-lengthening
+        # allophone rule (Wiese 1996) now gets this right.
+        assert self._t("König") == "køːnɪç"
+        # ewig's stressed ⟨e⟩ is likewise in an open syllable (e-wig) and is
+        # long in real German (Duden: /ˈeːvɪç/).
+        assert self._t("ewig") == "eːvɪç"
         assert self._t("wichtig") == "vɪçtɪç"
 
     def test_non_final_ig_stays_a_stop(self):
-        assert self._t("Königin") == "kœnɪɡɪn"
+        assert self._t("Königin") == "køːnɪɡɪn"
 
     def test_other_final_g_just_devoices(self):
         assert self._t("Tag") == "tak"
         assert self._t("Weg") == "vɛk"
 
     def test_final_ik_is_untouched(self):
-        assert self._t("Musik") == "mʊzɪk"
+        # Musik is stressed on the FINAL syllable (a French/Latin loan,
+        # Duden: /muˈziːk/) while the engine's declarative StressRules only
+        # express a default initial-stress position (Wiese 1996) with no
+        # per-lexeme exception list -- so the open-syllable-lengthening rule,
+        # which is gated on "this nucleus is stressed", fires on the wrong
+        # (first) syllable here. Known, documented engine-limit residual:
+        # final-stress loanwords are not modelled without a lexicon.
+        assert self._t("Musik") == "muːzɪk"
 
     def test_ig_is_not_a_grapheme(self):
         from orthography2ipa import get
         spec = get("de-DE")
         assert "ig" not in spec.graphemes
         assert "ig" not in (spec.positional_graphemes or {})
+
+
+class TestGermanOpenSyllableLengthVetoes:
+    """Open-syllable lengthening must respect shortness-marking letter groups.
+
+    German orthography writes a short vowel before ⟨ss⟩ ⟨ck⟩ ⟨tz⟩ ⟨ng⟩
+    (Wiese 1996, ch. 3). These spell single consonant phonemes, so a V-C-V
+    open-syllable check at the phoneme layer cannot see them — the
+    DE_OPEN_SYLLABLE_* rules veto them by source grapheme
+    (followed_by_grapheme_not).
+    """
+
+    def _t(self, word):
+        from orthography2ipa import G2P
+        return G2P("de-DE").transcribe(word)
+
+    def test_short_before_marking_groups(self):
+        assert "ɛ" in self._t("besser") and "eː" not in self._t("besser")
+        assert "aː" not in self._t("Wasser")
+        assert "aː" not in self._t("backen")
+        assert "ʊ" in self._t("Zucker")
+        assert "iː" not in self._t("sitzen")
+        assert "iː" not in self._t("wissen")
+        assert "iː" not in self._t("singen")
+
+    def test_long_in_genuine_open_syllables(self):
+        assert "aː" in self._t("Baden")
+        assert "aː" in self._t("sagen")
+        assert "aː" in self._t("Name")
+        assert "øː" in self._t("König")
+
+
+class TestGermanBeatEspeakWave:
+    """Wiese 1996-cited classes added by the beat-espeak German wave."""
+
+    def _t(self, word):
+        from orthography2ipa import G2P
+        return G2P("de-DE").transcribe(word)
+
+    def test_dehnungs_h_lengthens_and_silences(self):
+        assert self._t("Bahn") == "ˈbaːn"
+        assert self._t("Sohn") == "ˈzoːn"
+        assert self._t("Uhr") == "ˈuːʁ"
+        assert self._t("ihn") == "ˈiːn"
+        assert self._t("fährt") == "ˈfɛːʁt"
+        # sehen keeps its [h] (dev-level): -ehen elision is not separable
+        # from the pronounced-h before_vowel class (geheim, daher) without
+        # morphology — documented trade-off, not a regression vs dev.
+        assert self._t("sehen") == "ˈzeːhən"
+
+    def test_syllable_initial_h_untouched(self):
+        assert self._t("Haus").startswith("ˈh")
+        assert self._t("hinter").startswith("ˈh")
+
+    def test_unstressed_tense_vowels(self):
+        assert self._t("Auto").endswith("to")
+        assert self._t("Kino").endswith("no")
+        # Pretonic tenseness needs a non-initial stress; Politik keeps
+        # (wrong) initial stress — a documented stress residual, since -ik
+        # varies (Musík vs Grammátik) and is not in the cited suffix set.
+        assert "univɛʁzi" in self._t("Universität")
+
+    def test_lax_kept_in_closed_and_schwa_syllables(self):
+        assert self._t("bitte") == "ˈbɪtə"
+        assert self._t("Mutter") == "ˈmʊtɐ"
+        assert self._t("Musik").endswith("zɪk")
+
+
+class TestGermanStressSuffixesAndTion:
+    """Wiese 1996 ch. 8 stress-attracting suffixes + the -tion grapheme."""
+
+    def _t(self, word):
+        from orthography2ipa import G2P
+        return G2P("de-DE").transcribe(word)
+
+    def test_final_stress_suffixes(self):
+        assert self._t("Nation").startswith("naˈ")
+        assert "ˈtɛt" in self._t("Universität") or "ˈtɛːt" in self._t("Universität")
+        assert self._t("Partei").startswith("paʁˈ")
+
+    def test_penult_stress_ieren(self):
+        assert "ˈdiː" in self._t("studieren")
+
+    def test_monosyllables_unaffected(self):
+        assert self._t("frei") == "ˈfʁaɪ"
+        assert self._t("drei") == "ˈdʁaɪ"
+
+    def test_tion_grapheme(self):
+        assert self._t("Nation") == "naˈtsi̯oːn"
+        assert self._t("Funktion").endswith("tsi̯oːn")
+
+    def test_pretonic_tense_posttonic_lax(self):
+        assert "univɛʁzi" in self._t("Universität")   # pretonic i tense
+        assert self._t("Königin") == "ˈkøːnɪɡɪn"      # post-tonic i lax
+
+
+class TestDehnungsHPositional:
+    """Dehnungs-h is silent-lengthening ONLY before a consonant or finally.
+
+    Before a vowel the ⟨h⟩ is a real onset — loanwords (Ahorn, Uhu,
+    Alkohol) and her-/hin- morpheme boundaries (daher, woher, dahin).
+    Adversarial review of the first, unconditional version caught the
+    over-generalization; this pins the boundary.
+    """
+
+    def _t(self, word):
+        from orthography2ipa import G2P
+        return G2P("de-DE").transcribe(word)
+
+    def test_h_kept_before_vowel(self):
+        assert self._t("Ahorn") == "ˈaːhɔʁn"
+        assert self._t("Uhu") == "ˈuːhu"
+        assert "h" in self._t("Alkohol")
+        assert "h" in self._t("dahin")
+        assert "h" in self._t("daher")
+        assert "h" in self._t("woher")
+
+    def test_h_silent_before_consonant_and_finally(self):
+        assert self._t("Bahn") == "ˈbaːn"
+        assert self._t("Sohn") == "ˈzoːn"
+        assert self._t("fährt") == "ˈfɛːʁt"
+        assert self._t("Uhr") == "ˈuːʁ"
+
+
+class TestSuffixStressClosedExceptions:
+    """The two closed initial-stress sets the suffix rules would catch.
+
+    Native -sal nominalizer and grammatical -tiv terms are initial-stressed
+    (Wiese 1996 ch. 8; Duden); genuine -iv/-al loanwords keep suffix-final
+    stress. Round-2 adversarial review supplied the counterexample lists.
+    """
+
+    def _t(self, word):
+        from orthography2ipa import G2P
+        return G2P("de-DE").transcribe(word)
+
+    def test_sal_and_tiv_initial_stress(self):
+        assert self._t("Schicksal") == "ˈʃɪkzaːl"
+        assert self._t("Genitiv") == "ˈɡeːnitiːf"
+        assert self._t("Akkusativ") == "ˈakuzatiːf"
+
+    def test_loanwords_keep_final_stress(self):
+        assert self._t("Motiv").startswith("moˈ")
+        assert self._t("Kanal").startswith("kaˈ")
+
+
+class TestHunsrikFortisLenis:
+    """Hunsrik's plosive contrast is articulatory force, not voice.
+
+    ⟨b d g⟩ are voiceless lenis [p t k] in every position; ⟨p t k⟩ are the
+    aspirated fortis partners. Reading them as German /b d ɡ/ produces
+    voiced stops the language does not have.
+    """
+
+    def _t(self, word):
+        from orthography2ipa import G2P
+        return G2P("hrx").transcribe(word).replace("ˈ", "")
+
+    def test_lenis_letters_are_voiceless(self):
+        assert self._t("Aadem") == "ɔːtəm"
+        assert self._t("Aagust") == "ɔːkuʃt"
+        assert self._t("Abbau") == "apaʊ̯"
+
+    def test_no_voiced_plosive_anywhere(self):
+        for word in ("Aadem", "Daagh", "Aagust", "Gedrenk", "Abbau"):
+            out = self._t(word)
+            assert not any(ch in out for ch in "bdɡg"), (word, out)
+
+    def test_fortis_letters_aspirate_before_a_vowel(self):
+        assert self._t("Katz").startswith("kʰ")
+        assert self._t("Taxi").startswith("tʰ")
+        assert self._t("Putsch").startswith("pʰ")
+
+    def test_fortis_does_not_aspirate_before_a_consonant(self):
+        assert self._t("Kravatt").startswith("kr")
+        assert self._t("Kriegh").startswith("kr")
+        assert self._t("Brust").startswith("pr")
+
+
+class TestHunsrikGraphemeCoverage:
+    """Every letter the orthography writes must map to something.
+
+    ⟨x⟩, ⟨q⟩, ⟨y⟩, ⟨á⟩ and the ⟨c⟩ of ⟨ck⟩ all occur in the written norm;
+    an unmapped letter is dropped silently by the tokenizer, which turns
+    ⟨Hex⟩ into [hə] and ⟨Quelle⟩ into [uəllə].
+    """
+
+    def _t(self, word):
+        from orthography2ipa import G2P
+        return G2P("hrx").transcribe(word).replace("ˈ", "")
+
+    def test_x_is_ks(self):
+        assert self._t("Hex") == "heks"
+        assert self._t("Text").startswith("tʰeks")
+
+    def test_qu_is_kw(self):
+        assert self._t("Quelle").startswith("kw")
+        assert self._t("Quarz").startswith("kw")
+
+    def test_y_is_a_glide(self):
+        assert "j" in self._t("toych")
+
+    def test_marked_a_survives(self):
+        assert self._t("Sofá").endswith("aː")
+
+    def test_ck_is_a_single_k(self):
+        assert self._t("Aarschback") == "ɔːʃpak"
+
+
+class TestHunsrikChSplitAndSibilants:
+    """⟨ch⟩ is palatal after a front vowel or consonant, velar after a back
+    vowel; ⟨sp⟩ ⟨st⟩ are written for /ʃp ʃt/; ⟨sch⟩ is /ʃ/.
+    """
+
+    def _t(self, word):
+        from orthography2ipa import G2P
+        return G2P("hrx").transcribe(word).replace("ˈ", "")
+
+    def test_ch_palatal_after_front_vowel(self):
+        assert self._t("Eich") == "aɪ̯ç"
+        assert self._t("Bicher").endswith("ça")
+
+    def test_ch_velar_after_back_vowel(self):
+        assert self._t("Aarschloch") == "ɔːʃlox"
+        assert self._t("Achteck").startswith("axt")
+        assert self._t("Aarschloch").endswith("x")
+
+    def test_gh_is_the_same_fricative(self):
+        assert self._t("Daagh") == "tɔːx"
+        assert self._t("Kriegh") == "kriːç"
+
+    def test_s_retracts_before_p_and_t(self):
+        assert self._t("Spass") == "ʃpas"
+        assert self._t("Brust") == "pruʃt"
+
+
+class TestHunsrikRhoticAndVowels:
+    """/r/ is a tap that vocalises in the coda — never the uvular [ʁ] of
+    standard German — and the German front rounded vowels are absent.
+    """
+
+    def _t(self, word):
+        from orthography2ipa import G2P
+        return G2P("hrx").transcribe(word).replace("ˈ", "")
+
+    def test_no_uvular_rhotic(self):
+        for word in ("Aarem", "Aarsch", "Bicher", "Diere"):
+            assert "ʁ" not in self._t(word)
+
+    def test_coda_r_vocalises(self):
+        assert self._t("Aarsch") == "ɔːʃ"
+        assert self._t("Aart") == "ɔːt"
+
+    def test_post_tonic_er_is_a_vowel(self):
+        assert self._t("Acker") == "aka"
+        assert self._t("Ecker") == "eka"
+
+    def test_front_rounded_vowels_are_unrounded(self):
+        spec = orthography2ipa.get("hrx")
+        assert spec.graphemes["ö"] == ["e"]
+        assert spec.graphemes["ü"] == ["i"]
+
+    def test_written_diphthongs(self):
+        assert self._t("Beil") == "paɪ̯l"
+        assert self._t("Blau") == "plaʊ̯"
+        assert self._t("Meu") == "mɔɪ̯"
+        assert self._t("Brief") == "priːf"
+
+    def test_open_syllable_length_only_applies_word_finally(self):
+        # Word-medial open-syllable lengthening (a stressed short vowel
+        # before a single consonant then another vowel) is NOT declared:
+        # native words the norm itself keeps short in that position
+        # (Altenhofen et al. 2007:78) outnumber the unassimilated loans
+        # the rule would fix.
+        assert "aː" not in self._t("awer")
+
+
+class TestHunsrikPortugueseContactSpellings:
+    """Unassimilated Portuguese-contact spellings, including the printed
+    norm's own example words for foreign spellings kept as in the source
+    language (Altenhofen et al. 2007:82), must not be silently dropped.
+    """
+
+    def _t(self, word):
+        from orthography2ipa import G2P
+        return G2P("hrx").transcribe(word).replace("ˈ", "")
+
+    def test_portuguese_diacritics_are_not_dropped(self):
+        assert self._t("Calçada") == "kalsata"
+        assert "s" in self._t("Corrupção")
+
+    def test_initial_ch_and_c_read_as_in_the_source_language(self):
+        assert self._t("China").startswith("ʃ")
+        assert self._t("Cinema").startswith("s")

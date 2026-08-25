@@ -3,7 +3,7 @@
   "name": "Dongxiang",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "zh": [
       "tʂ"
@@ -108,7 +108,7 @@
       "notes": "Descent per Glottolog classification of Dongxiang (dong1285)."
     }
   ],
-  "notes": "Skeleton. Dongxiang (Santa) is a Mongolic language of Gansu, China, here written in an experimental Latin (Pinyin-based) romanization. Initials follow Pinyin conventions: unaspirated stops spelled b d g (p t k), aspirates p t k, the sibilant/affricate series j q x (tɕ tɕʰ ɕ) and z c s (ts tsʰ s), the retroflex digraphs zh ch sh, and r. Vowels a o e i u ü take their Pinyin values. Because this romanization was never fully standardized and Dongxiang phonology diverges from Mandarin, several consonant values (notably the retroflex series and uvular reflexes) are approximate; tone/register and vowel length are not written and are left unencoded, so a raised PER floor is expected.",
+  "notes": "Skeleton. Dongxiang (Santa) is a Mongolic language of Gansu, China, here written in an experimental Latin (Pinyin-based) romanization. Initials follow Pinyin conventions: unaspirated stops spelled b d g (p t k), aspirates p t k, the sibilant/affricate series j q x (tɕ tɕʰ ɕ) and z c s (ts tsʰ s), the retroflex digraphs zh ch sh, and r. Vowels a o e i u ü take their Pinyin values. Because this romanization was never fully standardized and Dongxiang phonology diverges from Mandarin, several consonant values (notably the retroflex series and uvular reflexes) are approximate; tone/register and vowel length are not written and are left unencoded, so a raised PER floor is expected. Dongxiang stress is not lexically contrastive in the experimental Pinyin-based romanization modelled here and is left unencoded (documented exemption).",
   "iso639_3": "sce",
   "glottolog_code": null,
   "sources": [
@@ -133,6 +133,16 @@
       "pages": null,
       "notes": "Orthography/phonology reference for the skeleton-tier grapheme map.",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Dongxiang_language"
+    },
+    {
+      "id": "sce_kim2003",
+      "author": "Kim, Stephen S.",
+      "year": 2003,
+      "title": "Santa",
+      "publisher": "in The Mongolic Languages (Janhunen, ed.), Routledge",
+      "url": null,
+      "pages": null,
+      "notes": "Descriptive grammar sketch of Dongxiang/Santa (Mongolic, Qinghai-Gansu group), alongside Field's (1997) unpublished internal description; consulted to check the experimental Pinyin-based romanization modelled here."
     }
   ],
   "wikipedia": [

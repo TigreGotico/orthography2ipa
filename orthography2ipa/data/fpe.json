@@ -44,6 +44,27 @@
     "u": [
       "u"
     ],
+    "á": [
+      "á"
+    ],
+    "é": [
+      "é"
+    ],
+    "í": [
+      "í"
+    ],
+    "ó": [
+      "ó"
+    ],
+    "ú": [
+      "ú"
+    ],
+    "ɛ́": [
+      "ɛ́"
+    ],
+    "ɔ́": [
+      "ɔ́"
+    ],
     "b": [
       "b"
     ],
@@ -106,9 +127,21 @@
       "role": "parent",
       "weight": 1.0,
       "notes": "Descent per Glottolog classification of Pichi (fern1234)."
+    },
+    {
+      "code": "en-GB",
+      "role": "lexifier",
+      "weight": 0.55,
+      "notes": "English lexifier, inherited via Krio: Pichi is a direct offshoot of the English-lexicon Krio of Sierra Leone, brought to Bioko by Krio settlers from Freetown in 1827 (Yakpo 2019; APiCS ch. 19)."
+    },
+    {
+      "code": "es-GQ",
+      "role": "adstrate",
+      "weight": 0.25,
+      "notes": "Spanish adstrate, the co-official and sole educational-medium language of Equatorial Guinea: ~50% of nouns, ~30% of verbs and ~62% of numerals in the Pichi corpus are of Spanish origin, and code-mixing with Spanish is pervasive (Yakpo 2019; APiCS ch. 19, apics-online.info/surveys/19)."
     }
   ],
-  "notes": "Research tier, consulting Yakpo's grammar of Pichi. English-lexifier Atlantic creole of Bioko (Equatorial Guinea), an offshoot of Krio, written in a Latin phonemic orthography. Grapheme map covers the seven-vowel system (a e ɛ i o ɔ u), the labial-velar stops kp/gb, and the digraphs ch, sh, ny and ng. Pichi is a tone language; lexical and grammatical tone is not marked in the working orthography and is left unencoded, which sets the dominant PER floor for this entry.",
+  "notes": "Research tier, consulting Yakpo's grammar of Pichi. English-lexifier Atlantic creole of Bioko (Equatorial Guinea), an offshoot of Krio, written in a Latin phonemic orthography. Grapheme map covers the seven-vowel system (a e ɛ i o ɔ u), the labial-velar stops kp/gb, and the digraphs ch, sh, ny and ng. Pichi contrasts a high (H) and a low (L) tone. Contrary to an earlier draft of this entry, the working orthography DOES mark tone: Yakpo (2019: 11) states that tone is marked on all Pichi words, H-toned syllables bearing an acute accent (e.g. wét [wét] 'wait') and L-toned syllables remaining unmarked (e.g. wet [wèt] 'with'). The seven H-toned vowel graphemes (á, é, í, ó, ú, ɛ́, ɔ́ — the last two written as base vowel + combining acute, U+0301, since Latin has no precomposed ɛ́/ɔ́) are mapped to the identical H-toned IPA vowel; L tone remains phonologically real but orthographically and phonetically unmarked, matching the source gold transcriptions.",
   "iso639_3": "fpe",
   "glottolog_code": null,
   "sources": [
@@ -130,9 +163,20 @@
       "title": "A Grammar of Pichi",
       "publisher": "Language Science Press (Studies in Diversity Linguistics 23)",
       "url": "https://langsci-press.org/catalog/book/85",
-      "pages": null,
-      "notes": "Reference grammar with phonology and orthography of Pichi.",
+      "pages": "11",
+      "notes": "p. 11, §1.6 Standardisation and orthography: ‘Tone is marked on all Pichi words throughout this book. H-toned syllables bear an acute accent, e.g. wét [wét] ‘wait’, and L-toned syllables remain unmarked, e.g. wet [wèt] ‘with’.’ Source for the acute-accent H-tone graphemes added to this spec. p. 39, §3.1.1: ‘Pichi contrasts two level tones, a high tone (H) and a low tone (L)’, confirming the two-tone system.",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Pichi_language"
+    },
+    {
+      "id": "fpe_apics2013",
+      "author": "Yakpo, Kofi",
+      "year": 2013,
+      "title": "Pichi (Survey chapter and structure dataset)",
+      "publisher": "In: Michaelis, S.M., Maurer, P., Haspelmath, M. & Huber, M. (eds.), Atlas of Pidgin and Creole Language Structures Online, chapter 19, Max Planck Institute for Evolutionary Anthropology",
+      "url": "https://apics-online.info/surveys/19",
+      "pages": null,
+      "notes": "English lexifier via Krio, Spanish adstrate figures (~50% nouns, ~30% verbs, ~62% numerals of Spanish origin), minor Bube substrate.",
+      "wikipedia_url": null
     }
   ],
   "wikipedia": [
