@@ -118,3 +118,53 @@ def test_digit_grapheme_is_not_swallowed_by_the_digit_token():
     it lets one claim punctuation.
     """
     assert "ʕ" in transcribe("3ar", "rif")
+
+
+#: The interjection syllables. ⟨ê⟩ is the final ㄝ /ɛ/ spelled alone, as the
+#: third note to the Scheme's table of finals directs; ⟨ng hng hm⟩ have no
+#: vowel letter at all and read /ŋ xŋ xm/, the last two toneless (Lee 2023,
+#: from the seventh edition of the 现代汉语词典).
+INTERJECTIONS = [
+    ("ê", "ɛ"),
+    ("ê1", "ɛ˥"),
+    ("ê2", "ɛ˧˥"),
+    ("ê3", "ɛ˨˩˦"),
+    ("ê4", "ɛ˥˩"),
+    ("ê̄", "ɛ˥"),
+    ("ế", "ɛ˧˥"),
+    ("ê̌", "ɛ˨˩˦"),
+    ("ề", "ɛ˥˩"),
+    ("ng", "ŋ"),
+    ("ńg", "ŋ˧˥"),
+    ("ňg", "ŋ˨˩˦"),
+    ("ǹg", "ŋ˥˩"),
+    ("hng", "xŋ"),
+    ("hm", "xm"),
+    ("m", "m"),
+    ("ḿ", "m˧˥"),
+    ("m̀", "m˥˩"),
+    ("n", "n"),
+]
+
+
+@pytest.mark.linguistic
+@pytest.mark.parametrize("word,expected", INTERJECTIONS)
+def test_interjection_syllables(word, expected):
+    assert transcribe(word, "zh") == expected
+
+
+@pytest.mark.linguistic
+def test_e_circumflex_is_not_deleted():
+    """⟨ê⟩ is a letter of the orthography, so it must reach the output.
+
+    A missing grapheme entry is dropped without an error, which turns a
+    whole syllable into the empty string and hides the gap.
+    """
+    assert transcribe("ê", "zh") != ""
+
+
+@pytest.mark.linguistic
+def test_syllabic_nasal_is_not_read_letter_by_letter():
+    """⟨ng⟩ is one syllable, not ⟨n⟩ followed by ⟨g⟩."""
+    assert "k" not in transcribe("ng", "zh")
+    assert "k" not in transcribe("hng", "zh")
