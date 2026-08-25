@@ -368,7 +368,7 @@ A row's `N` is its sample size in scored words, and it is not cosmetic: below ro
 | lmy | wikipron | 129 | 0.1695 | 0.1695 | 0.1695 | 0.2558 | 0.2558 | [0.1484, 0.1915] | 0.2558 | research | crowd-scraped |
 | lo | kaikki | 2308 | 0.3632 | 0.3632 | 0.3632 | 0.0000 | 0.0000 | [0.3590, 0.3674] | 0.0000 | research | crowd-scraped |
 | lou | wikipron | 262 | 0.1953 | 0.1953 | 0.1953 | 0.5115 | 0.5115 | [0.1679, 0.2236] | 0.5115 | research | crowd-scraped |
-| lsi | wikipron | 96 | 0.4727 | 0.4697 | 0.4697 | 0.0000 | 0.0000 | [0.4541, 0.4904] | 0.0000 | research | crowd-scraped |
+| lsi | wikipron | 96 | 0.4243 | 0.4212 | 0.4212 | 0.0000 | 0.0000 | [0.4041, 0.4436] | 0.0000 | research | crowd-scraped |
 | lt | vox_communis | 28971 | 0.2750 | 0.2749 | 0.2749 | 0.0486 | 0.0486 | [0.2733, 0.2769] | 0.0486 | research | epitran-derived |
 | lt | wikipron | 440 | 0.2646 | 0.2646 | 0.2646 | 0.1477 | 0.1477 | [0.2480, 0.2806] | 0.1477 | research | crowd-scraped |
 | lut | wikipron | 135 | 0.2259 | 0.2259 | 0.2259 | 0.2444 | 0.2444 | [0.1918, 0.2598] | 0.2444 | research | crowd-scraped |

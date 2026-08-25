@@ -10,6 +10,19 @@ yh⟩, and the finals table, which gives the checked rimes ⟨ab⟩ [ap], ⟨id�
 [it], ⟨ag⟩ [ak], ⟨ug⟩ [uk], ⟨oug⟩ [ok], ⟨eig⟩ [ək] and the glottal-final
 rimes ⟨aʼ⟩ [aʔ], ⟨oʼ⟩ [oʔ], ⟨uʼ⟩ [uʔ].
 
+The phonetic detail below that chart comes from Hkaw Luk, *A grammatical
+sketch of Lacid* (MA thesis, Payap University, 2017), a primary description
+written by a native speaker.  Two of its statements are pinned here.  Page
+14: "the unreleased voiceless plosive /p, t, k, ʔ/, and the nasals /m, n,
+ŋ/ are the only ones used in the coda of a syllable" — so a checked rime
+the chart writes [ap] is more precisely [ap̚].  The chart is a rime table in
+broad notation and does not contradict this; it simply does not notate
+release.  Page 16: creaky vowels occur with "the nasal initials /m, n, ɲ,
+ŋ/, lateral initial /l/ and approximant initials /w, ɹ, j/", and its Table 9
+gives the contrast as phonemic (jḭt 'liquor' against jit 'drunk').  That
+sonorant set is exactly the set the chart spells with a postposed ⟨h⟩, which
+is what makes the ⟨h⟩ a phonation mark on the nucleus rather than a segment.
+
 Read the scope honestly.  Most of the words below also occur in the WikiPron
 ``lsi`` gold row the spec is scored against, so they pin the spec's behaviour
 without independently corroborating it.  The one thing they DO establish
@@ -57,10 +70,11 @@ def test_zero_initial_also_applies_word_internally():
 
 def test_zero_initial_rime_still_obeys_the_open_closed_split():
     """The glottal onset does not consume the rime.  ⟨og⟩ is a closed rime
-    with no initial letter, so it is [ʔok] with the same lowered nucleus
-    ⟨Yokshan⟩ has — not [ʔɔk], which is what a word-initial reading that
-    stopped at the glottal would give."""
-    assert ipa("og") == "ʔok"
+    with no initial letter, so it is [ʔok̚] with the same lowered nucleus
+    ⟨Yokshan⟩ has — not [ʔɔk̚], which is what a word-initial reading that
+    stopped at the glottal would give.  Its plosive is unreleased with
+    every other coda plosive (Hkaw Luk 2017:14)."""
+    assert ipa("og") == "ʔok̚"
 
 
 def test_two_adjacent_zero_initial_syllables_each_get_a_glottal():
@@ -83,34 +97,41 @@ def test_written_initial_blocks_the_glottal_stop():
 
 def test_checked_rimes_are_voiceless():
     """The finals table writes the ⟨-b -d -g⟩ rimes voiceless: ⟨ab⟩ [ap],
-    ⟨id⟩ [it], ⟨ug⟩ [uk], ⟨oug⟩ [ok]."""
-    assert ipa("yab") == "jap"
-    assert ipa("yug") == "juk"
-    assert ipa("tid") == "tit"
-    assert ipa("mougmyid") == "mowkmjit"
+    ⟨id⟩ [it], ⟨ug⟩ [uk], ⟨oug⟩ [ok].  A coda plosive is also unreleased —
+    Hkaw Luk (2017:14) admits only "the unreleased voiceless plosive /p, t,
+    k, ʔ/" and the nasals to a coda — so the rime is [ap̚] [it̚] [uk̚]."""
+    assert ipa("yab") == "jap̚"
+    assert ipa("yug") == "juk̚"
+    assert ipa("tid") == "tit̚"
+    assert ipa("mougmyid") == "mowk̚mjit̚"
 
 
 def test_checked_rime_holds_before_a_following_consonant():
     """A checked rime closes its syllable whether the word ends there or
-    another syllable follows: ⟨bidthu⟩, ⟨myidjang⟩, ⟨Abraham⟩."""
-    assert ipa("bidthu") == "bittʰu"
-    assert ipa("myidjang") == "mjitdʑaŋ"
-    assert ipa("Abraham") == "ʔapɹaham"
+    another syllable follows: ⟨bidthu⟩, ⟨myidjang⟩, ⟨Abraham⟩.  Being in a
+    coda, it is unreleased there too (Hkaw Luk 2017:14)."""
+    assert ipa("bidthu") == "bit̚tʰu"
+    assert ipa("myidjang") == "mjit̚dʑaŋ"
+    assert ipa("Abraham") == "ʔap̚ɹaham"
 
 
 def test_stop_before_a_medial_glide_is_an_onset_not_a_coda():
     """COUNTER-CASE.  ⟨by⟩ and ⟨gy⟩ are the initials table's
     labial/velar-plus-medial-glide onsets [pj] [kj], not a checked rime
-    followed by ⟨y⟩, so the stop keeps its onset value."""
+    followed by ⟨y⟩, so the stop keeps its onset value — voiced, and with
+    no release mark, which Hkaw Luk (2017:14) confines to a coda.  ⟨gyid⟩
+    shows both halves at once: an onset ⟨gy⟩ [ɡj] and a coda ⟨d⟩ [t̚]."""
     assert ipa("byu") == "bju"
-    assert ipa("gyid") == "ɡjit"
+    assert ipa("gyid") == "ɡjit̚"
 
 
 def test_stop_before_a_vowel_is_an_onset():
     """COUNTER-CASE.  ⟨b⟩ and ⟨g⟩ between vowels open a syllable and stay
-    stops: without this the rule would devoice half the lexicon."""
+    stops: without this the rule would devoice half the lexicon.  ⟨Ishabag⟩
+    separates the two positions in one word — the intervocalic ⟨b⟩ stays
+    [b], while the final ⟨g⟩ closes the word and is [k̚]."""
     assert ipa("Abela") == "ʔabela"
-    assert ipa("Ishabag") == "ʔiɕabak"
+    assert ipa("Ishabag") == "ʔiɕabak̚"
 
 
 # ---------------------------------------------------------------------------
@@ -133,12 +154,19 @@ def test_apostrophe_is_the_glottal_final():
 def test_postposed_h_marks_the_glottalised_sonorant_series():
     """The initials table pairs ⟨m n ny ng l y⟩ with ⟨mh nh nyh ngh lh
     yh⟩.  The ⟨h⟩ follows its sonorant and is not a segment of its own:
-    the glottalisation the chart writes [lʼ] surfaces as creaky phonation
-    on the vowel, which this spec leaves unencoded."""
-    assert ipa("lhangmyu") == "laŋmju"
-    assert ipa("nghoid") == "ŋojt"
-    assert ipa("nyhed") == "ɲet"
-    assert ipa("yhoeb") == "jøp"
+    the glottalisation the chart writes [lʼ] is creaky phonation on the
+    nucleus, and it is emitted there.  Hkaw Luk (2017:16) reports creaky
+    vowels after exactly this sonorant set — "the nasal initials /m, n, ɲ,
+    ŋ/, lateral initial /l/ and approximant initials /w, ɹ, j/" — and its
+    Table 9 gives the contrast as phonemic, jḭt 'liquor' against jit
+    'drunk'.  The mark rides the nucleus vowel, so a diphthong takes it on
+    its first element: ⟨nghoid⟩ is [ŋo̰jt̚] and not [ŋoj̰t̚].  Creak after a
+    plain obstruent is a different matter — the gold has it, the spelling
+    gives no cue for it, and it stays unencoded."""
+    assert ipa("lhangmyu") == "la̰ŋmju"
+    assert ipa("nghoid") == "ŋo̰jt̚"
+    assert ipa("nyhed") == "ɲḛt̚"
+    assert ipa("yhoeb") == "jø̰p̚"
 
 
 # ---------------------------------------------------------------------------
@@ -148,9 +176,10 @@ def test_postposed_h_marks_the_glottalised_sonorant_series():
 def test_ei_is_a_central_vowel_not_a_diphthong():
     """The finals table gives ⟨ei⟩/⟨eu⟩ as one central nucleus, [ə] in the
     Cangmokhung chart and [ɨ] in the Waingmaw transcriptions this spec
-    ranks first — not [ei]."""
+    ranks first — not [ei].  ⟨eig⟩ closes on an unreleased [k̚] (Hkaw Luk
+    2017:14)."""
     assert ipa("Aseing") == "ʔasɨŋ"
-    assert ipa("eig") == "ʔɨk"
+    assert ipa("eig") == "ʔɨk̚"
 
 
 def test_oe_is_a_front_rounded_vowel():
@@ -175,8 +204,10 @@ def test_o_lowers_only_in_a_closed_rime():
     """COUNTER-CASE for the open/closed split.  In ⟨Yokshan⟩ the ⟨k⟩
     closes the rime, so ⟨o⟩ is [o]; in ⟨khokham⟩ the ⟨kh⟩ opens the next
     syllable, so the first ⟨o⟩ stays [ɔ].  Same letter, same neighbour
-    class, different syllable position."""
-    assert ipa("Yokshan") == "jokɕan"
+    class, different syllable position.  The closing ⟨k⟩ is unreleased, as
+    a coda plosive is (Hkaw Luk 2017:14); the ⟨kh⟩ of ⟨khokham⟩ is not,
+    because it is an onset."""
+    assert ipa("Yokshan") == "jok̚ɕan"
     assert ipa("khokham") == "kʰɔkʰam"
     assert ipa("Babelon") == "babelon"
 
@@ -188,10 +219,11 @@ def test_o_lowers_only_in_a_closed_rime():
 def test_affricate_letters_are_not_read_as_plain_latin():
     """⟨z⟩ ⟨j⟩ ⟨c⟩ are the affricate series of the initials table, not
     [z] [dʒ] [k]: the chart gives ⟨z⟩ [ts], ⟨j⟩ [tʃ], ⟨c⟩ [tʃʰ], read
-    here with the Waingmaw voicing and place ranked first."""
+    here with the Waingmaw voicing and place ranked first.  ⟨coid⟩ closes
+    on the unreleased coda [t̚] of Hkaw Luk (2017:14)."""
     assert ipa("zain") == "dzajn"
     assert ipa("je") == "dʑe"
-    assert ipa("coid") == "tɕʰojt"
+    assert ipa("coid") == "tɕʰojt̚"
 
 
 def test_pyuzung_reads_both_affricate_and_medial_glide():
