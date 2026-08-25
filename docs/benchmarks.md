@@ -172,6 +172,47 @@ toward these golds (that would launder LLM output into the spec). They are
 directional benchmarks that surface disagreements to investigate against
 real sources, not ground truth.
 
+## Corrections overlays
+
+Some upstream gold sets carry a defect that is visible from the outside and
+repairable without guessing. An **overlay** is how that repair is shipped: a
+small committed file, one row per corrected gold entry, recording the spelling,
+the reading the upstream shipped, the reading the overlay substitutes, the
+reason, and the authority the correction rests on. The upstream file is never
+edited. `scripts/build_gold_corrections.py` regenerates the overlays,
+`scripts/benchmark.py` applies them, and the overlays live in
+`orthography2ipa/data/gold/corrections/`.
+
+**A correction may be derived only from the orthography of the word or from a
+fetched citation.** It may never be derived from what orthography2ipa outputs.
+This is the whole rule. A gold repaired with this project's own answers is a
+circular gold: the board row it produces looks excellent and measures nothing,
+because the engine is being scored against a copy of itself. The derivation
+script imports no orthography2ipa, and a test enforces that by parsing its
+imports.
+
+**Overlays are separate datasets, never rewrites.** A corrected gold is
+registered under its own name — `vox_communis_corrected` beside
+`vox_communis` — so both rows stay on the board. The difference between the
+two rows *is* the measurement of the upstream defect, and it cannot be read
+if only one number is published. A correction is keyed on the spelling and the
+original reading together, so an upstream revision makes the correction lapse
+rather than overwrite a row nobody inspected.
+
+**Overlays can never gate a promotion.** A corrected gold inherits the tier of
+the base it was built from and can never rise above it: repairing one derivable
+defect leaves the untouched majority of the rows exactly what they were, and
+the repair itself was applied by an automated process rather than by a
+phonetician reading each row. `can_gate_promotion()` must be false for whatever
+tier an overlay lands on, and a test asserts it. An overlay makes a gold more
+readable, not more authoritative.
+
+**What must not be corrected.** Anything the rule above cannot reach stays in
+the gold untouched and gets counted in the build report: a spelling whose
+reading does not show the defect the overlay repairs, and a spelling whose
+correct value cannot be determined at all. A skipped row is a reportable
+negative result, not a gap to fill with a plausible guess.
+
 ## Datasets
 
 ### Primary-source gold (`primary_sources`)
@@ -909,6 +950,47 @@ writes in a nontrivial share of the words where it belongs is a real
 target. A segment the gold never writes at all, no matter how often the
 orthography calls for it, is a ceiling contributed by the tool that
 produced the gold, and no amount of tuning the spec will close it.
+
+### VoxCommunis with the Vietnamese tone merge repaired (`vox_communis_corrected`)
+
+The Vietnamese phone tier merges two contrastive tones. It writes the identical
+Chao tone letter ˨˨ for both *ngang* (A1, the unmarked tone) and *huyền* (A2),
+which Kirby's Illustration of the IPA tabulates as separate categories on the
+classic minimal pair ⟨ma⟩ 'ghost' (ngang, "level") against ⟨mà⟩ 'but, yet'
+(huyền, "mid falling"):
+
+> Kirby, James P. (2011). Vietnamese (Hanoi Vietnamese). *Journal of the
+> International Phonetic Association* 41(3): 381–392, tone table p. 386.
+> <https://doi.org/10.1017/S0025100311000181>
+
+Measured over the full 2475-pair row: 566 of 590 ngang tokens and 401 of 406
+huyền tokens carry a tone-letter sequence of exactly ˨˨ — 39% of the row spelled
+with one symbol for two phonemes.
+
+The repair is derivable from spelling alone, which is what makes it admissible.
+Vietnamese orthography writes huyền with a combining grave accent (⟨à è ì ò ù
+ỳ⟩ and their circumflex, breve and horn variants) and writes ngang with no tone
+mark at all, so which of the two merged tones a syllable carries is recoverable
+from the Unicode combining marks with no phonological model in the loop. The
+overlay rewrites the 401 grave-accented readings to ˧˩: Kirby prints tone
+letters rather than Chao digits and labels huyền "mid falling" against hỏi's
+"low falling", so huyền must begin above hỏi, which this gold writes ˨˩˨.
+
+Left uncorrected and counted: 5 huyền tokens whose reading is not a single ˨˨
+(multi-syllable readings, where no single tone letter is the merged one), and 2
+tokens carrying two tone marks, whose tone cannot be read from the spelling at
+all. The 566 merged ngang tokens are *not* corrected either — ˨˨ is what this
+gold writes for ngang, and no citation makes it wrong within this gold's own
+scale.
+
+Correcting the merge does **not** move PER, and that is worth knowing: both
+rows score 0.5596 over 2475 pairs, and 0.5716 over the 401 corrected pairs
+alone. The engine writes huyền ˧˨, which is one substitution away from the
+merged ˨˨ and one substitution away from the corrected ˧˩, so the repair is
+edit-distance-equivalent. PER is simply blind to this defect. Writing the
+engine's own ˧˨ into the gold instead would drop those 401 rows to PER 0.4048
+and the whole row to 0.5325 — a 3-point gain bought by copying the answer, and
+the exact reason the derivation rule exists.
 
 ### IPA-CHILDES split (`ipa_childes`)
 

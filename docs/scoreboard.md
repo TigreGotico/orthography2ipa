@@ -641,6 +641,7 @@ A row's `N` is its sample size in scored words, and it is not cosmetic: below ro
 | vep | northeuralex | 1004 | 0.2065 | 0.2065 | 0.2065 | 0.2629 | 0.2629 | [0.1960, 0.2170] | 0.2629 | research | lexicon-derived |
 | vi | ipadict | 70899 | 0.0777 | 0.0777 | 0.0777 | 0.4620 | 0.4620 | [0.0770, 0.0783] | 0.4620 | research | machine-generated |
 | vi | vox_communis | 2475 | 0.5596 | 0.5596 | 0.5596 | 0.0024 | 0.0024 | [0.5516, 0.5667] | 0.0024 | research | epitran-derived |
+| vi | vox_communis_corrected | 2475 | 0.5596 | 0.5596 | 0.5596 | 0.0024 | 0.0024 | [0.5516, 0.5667] | 0.0024 | research | epitran-derived |
 | vo | wikipron | 442 | 0.0185 | 0.0185 | 0.0185 | 0.9118 | 0.9118 | [0.0122, 0.0264] | 0.9118 | research | crowd-scraped |
 | vot | wikipron | 2832 | 0.0898 | 0.0898 | 0.0898 | 0.5011 | 0.5011 | [0.0864, 0.0935] | 0.5011 | research | crowd-scraped |
 | wa | wikipron | 2348 | 0.1443 | 0.1377 | 0.1332 | 0.5515 | 0.5673 | [0.1362, 0.1532] | 0.5353 | research | crowd-scraped |

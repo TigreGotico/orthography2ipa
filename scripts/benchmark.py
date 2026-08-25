@@ -1912,6 +1912,95 @@ def load_vox_communis(lang: str, limit: int) -> List[Tuple[str, str]]:
     return pairs
 
 
+_GOLD_CORRECTIONS_DIR = os.path.join(
+    os.path.dirname(__file__), "..", "orthography2ipa", "data", "gold",
+    "corrections",
+)
+
+#: Gold sets that have a corrections overlay, as ``dataset -> languages``.
+#: Each entry is backed by ``corrections/{dataset}_{lang}.jsonl``.
+GOLD_CORRECTIONS: Dict[str, List[str]] = {"vox_communis": ["vi"]}
+
+
+def read_gold_corrections(dataset: str, lang: str) -> List[Dict[str, str]]:
+    """The correction overlay rows for one gold set and language.
+
+    An OVERLAY repairs a mechanically-derivable defect in an upstream gold
+    WITHOUT touching the upstream file, which stays byte-identical. Each row
+    records the spelling, the reading the upstream shipped, the reading the
+    overlay substitutes, the reason, and the authority the correction rests on.
+
+    A correction may be derived ONLY from the orthography of the word or from a
+    fetched citation — never from what orthography2ipa outputs. A gold repaired
+    with this engine's own answers is circular: it would score beautifully and
+    measure nothing. ``scripts/build_gold_corrections.py`` regenerates these
+    files and is the place that derivation lives; it imports no o2i.
+    """
+    path = os.path.join(_GOLD_CORRECTIONS_DIR, f"{dataset}_{lang}.jsonl")
+    rows = []
+    with open(path, encoding="utf-8") as fh:
+        for line in fh:
+            line = line.strip()
+            if line:
+                rows.append(json.loads(line))
+    return rows
+
+
+def apply_gold_corrections(
+    pairs: List[Tuple[str, str]], dataset: str, lang: str,
+) -> Tuple[List[Tuple[str, str]], int, int]:
+    """Overlay the corrections for *dataset*/*lang* onto *pairs*.
+
+    A correction applies only where BOTH the spelling and the original reading
+    match the upstream pair exactly, so an upstream revision that changes a
+    reading silently loses its correction instead of silently mis-applying it.
+    Returns the corrected pairs, the number of corrections applied, and the
+    number of overlay rows that matched nothing.
+    """
+    overlay = {(r["spelling"], r["original_reading"]): r["corrected_reading"]
+               for r in read_gold_corrections(dataset, lang)}
+    applied = 0
+    out = []
+    for word, reading in pairs:
+        corrected = overlay.get((word, reading))
+        if corrected is None:
+            out.append((word, reading))
+        else:
+            out.append((word, corrected))
+            applied += 1
+    return out, applied, len(overlay) - applied
+
+
+def load_vox_communis_corrected(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """``vox_communis`` with its committed corrections overlay applied.
+
+    Registered as a SEPARATE dataset so the uncorrected row stays on the board
+    beside it: the difference between the two rows is the measurement of the
+    upstream defect, and it can only be read if both numbers are published.
+
+    For ``vi`` the defect is a lost tone contrast. The upstream phone tier
+    writes the same Chao tone letter ˨˨ for *ngang* (A1, unmarked) and *huyền*
+    (A2), which Kirby (2011: 386) tabulates as separate categories on the
+    minimal pair ⟨ma⟩ 'ghost' vs ⟨mà⟩ 'but, yet'. Vietnamese orthography writes
+    huyền with a combining grave accent, so which of the two merged tones a
+    syllable carries is recoverable from the SPELLING, and the overlay rewrites
+    those readings to ˧˩ ("mid falling", Kirby's label, and above hỏi's "low
+    falling" ˨˩˨). See ``scripts/build_gold_corrections.py``.
+
+    PROVENANCE — a corrected gold is never MORE trustworthy than its base. This
+    one keeps its base's ``epitran-derived`` tier: the corrections touch one
+    feature of 16% of the rows and the other 84% are the competitor's output
+    untouched. It is also itself the product of an automated process. It cannot
+    gate a promotion, and neither can any overlay.
+    """
+    pairs = load_vox_communis(lang, sys.maxsize)
+    pairs, applied, unmatched = apply_gold_corrections(pairs, "vox_communis", lang)
+    if unmatched:
+        print(f"warning: {unmatched} vox_communis/{lang} corrections matched "
+              f"no upstream row (applied {applied})", file=sys.stderr)
+    return pairs[:limit]
+
+
 def load_4catac(lang: str, limit: int) -> List[Tuple[str, str]]:
     """4catac gold set (sentence-level, projecte-aina/4catac on Hugging
     Face): 160 Catalan sentences transcribed in IPA by expert annotators
@@ -2817,6 +2906,8 @@ DATASETS: Dict[str, Tuple[DatasetLoader, List[str]]] = {
     "ipadict": (load_ipadict, sorted(_IPADICT_FILES)),
     "ipa_childes": (load_ipa_childes, sorted(_IPA_CHILDES_FOLDERS)),
     "vox_communis": (load_vox_communis, sorted(_VOX_COMMUNIS_FILES)),
+    "vox_communis_corrected": (load_vox_communis_corrected,
+                               GOLD_CORRECTIONS["vox_communis"]),
     "ipa_babylm": (load_ipa_babylm, ["en-US"]),
     "northeuralex": (load_northeuralex, sorted(_NORTHEURALEX_LANGS)),
     "wold": (load_wold, sorted(_WOLD_LANGS)),
@@ -2982,6 +3073,14 @@ PROVENANCE: Dict[str, str] = {
     # VoxCommunis lexicons are built with Epitran (a scored competitor),
     # XPF and Charsiu; partially hand-corrected, but not attributably so.
     "vox_communis": "epitran-derived",
+    # The SAME gold with the committed corrections overlay applied (see
+    # load_vox_communis_corrected). A corrected gold inherits its base's tier
+    # and can never rise above it: repairing one derivable defect does not make
+    # the untouched majority of the rows anything other than the competitor's
+    # output, and the repair itself was applied by an automated process. Every
+    # overlay therefore lands on a non-gating tier by construction — a test
+    # asserts can_gate_promotion is False for it.
+    "vox_communis_corrected": "epitran-derived",
     # IPA-CHILDES is MIXED-PROVENANCE and is classified PER LANGUAGE in
     # PROVENANCE_BY_LANG below: its dataset card names a DIFFERENT phonemizing
     # tool per language (phonemizer/espeak for most, epitran for six,
