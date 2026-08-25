@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.80.10a1](https://github.com/TigreGotico/orthography2ipa/tree/7.80.10a1) (2026-08-25)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.80.9a4...7.80.10a1)
+
+**Merged pull requests:**
+
+- fix\(am\): map labialised, /v/, and merged-letter Ethiopic graphemes [\#1164](https://github.com/TigreGotico/orthography2ipa/pull/1164) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.80.9a4](https://github.com/TigreGotico/orthography2ipa/tree/7.80.9a4) (2026-08-25)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.80.9a3...7.80.9a4)
@@ -150,20 +158,20 @@
 
 ## [7.79.16a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.16a1) (2026-08-24)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.15a1...7.79.16a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.14a3...7.79.16a1)
 
 **Merged pull requests:**
 
 - feat: measure how much of a board row's gold is alphabet-chart noise [\#1118](https://github.com/TigreGotico/orthography2ipa/pull/1118) ([JarbasAl](https://github.com/JarbasAl))
 - fix\(tru\): map Gamal Garshuni, diagnose gold as mostly real words [\#1117](https://github.com/TigreGotico/orthography2ipa/pull/1117) ([JarbasAl](https://github.com/JarbasAl))
 
-## [7.79.15a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.15a1) (2026-08-24)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.14a3...7.79.15a1)
-
 ## [7.79.14a3](https://github.com/TigreGotico/orthography2ipa/tree/7.79.14a3) (2026-08-24)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.14a2...7.79.14a3)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.15a1...7.79.14a3)
+
+## [7.79.15a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.15a1) (2026-08-24)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.14a2...7.79.15a1)
 
 ## [7.79.14a2](https://github.com/TigreGotico/orthography2ipa/tree/7.79.14a2) (2026-08-24)
 
@@ -667,17 +675,9 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.75.6a1...7.75.7a1)
 
-**Merged pull requests:**
-
-- fix\(twf\): map Taos \(Northern Tiwa\) from Trager's practical orthography [\#973](https://github.com/TigreGotico/orthography2ipa/pull/973) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [7.75.6a1](https://github.com/TigreGotico/orthography2ipa/tree/7.75.6a1) (2026-08-17)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.75.5a1...7.75.6a1)
-
-**Merged pull requests:**
-
-- fix\(yo\): emit Yoruba's three level tones and its five nasal vowels [\#974](https://github.com/TigreGotico/orthography2ipa/pull/974) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.75.5a1](https://github.com/TigreGotico/orthography2ipa/tree/7.75.5a1) (2026-08-17)
 
