@@ -3,7 +3,7 @@
   "name": "Makasar",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "ng": [
       "ŋ"
@@ -114,5 +114,13 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Makassarese_language"
-  ]
+  ],
+  "stress": {
+    "default_position": -2,
+    "final_stress_endings": [],
+    "penult_stress_endings": [],
+    "marked_vowels": [],
+    "stress_mark": "ˈ",
+    "notes": "Makasar has regular penultimate word stress (Jukes 2019, Makassarese, ch. on phonology/prosody); no lexical exceptions are documented for the core vocabulary modeled here."
+  }
 }
