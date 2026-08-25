@@ -6,7 +6,7 @@
   "quality": "research",
   "graphemes": {
     "a": [
-      "ɑ"
+      "a"
     ],
     "e": [
       "ɛ"
@@ -88,8 +88,8 @@
     ]
   },
   "allophones": {
-    "ɑ": [
-      "ɑ"
+    "a": [
+      "a"
     ],
     "ɛ": [
       "ɛ"
@@ -164,7 +164,7 @@
       "w"
     ]
   },
-  "notes": "Kikuyu (Gĩkũyũ), Bantu language of central Kenya. Latin orthography with the tilde vowels ⟨ĩ ũ⟩ for the close-mid /e o/, while plain ⟨e o⟩ are the open-mid /ɛ ɔ/. ⟨b d g⟩ are the fricatives /β ð ɣ/, ⟨c⟩ = /ʃ/, and the prenasalised stops are written ⟨mb nd ng nj⟩; ⟨ng'⟩ is plain /ŋ/. Kikuyu is tonal but tone is not written in the standard orthography and is not modelled here.",
+  "notes": "Kikuyu (Gĩkũyũ), Bantu language of central Kenya. Seven vowels written with five letters plus the tilde pair ⟨ĩ ũ⟩ for the close-mid /e o/, while plain ⟨e o⟩ are the open-mid /ɛ ɔ/ and ⟨a⟩ is the low CENTRAL /a/ (Englebretson 2015, Figures 2 and 4). ⟨b d g⟩ are the fricatives /β ð ɣ/, ⟨th⟩ is /ð/, ⟨c⟩ is /ʃ/, ⟨r⟩ is the tap /ɾ/, and the prenasalised stops are written ⟨mb nd ng nj⟩; ⟨ng'⟩ is plain /ŋ/. Orthographic ⟨w⟩ after a consonant is not an approximant but the first vowel of a diphthong, pronounced like ⟨ũ⟩ = /o/ — Gĩkũyũ has no consonant clusters, and ⟨w⟩ and ⟨ũ⟩ are pronounced alike in that slot (Englebretson 2015); word-initial and intervocalic ⟨w⟩ stays the approximant /w/. Englebretson (2015) itself qualifies the post-consonantal reading with one exception, before ⟨o⟩, where ⟨w⟩ instead equates with /u/; that conditioning is not implemented here, and the gold set's single ⟨Cwo⟩ token (remwo → ɾɛmoɔ) is consistent with the unconditioned /o/ reading used by this spec. ⟨c⟩ is transcribed /ʃ/ per Englebretson (2015) Figure 1, but the gold data disagrees: of the ⟨c⟩ rows, 120 use /ɕ/ against 1 use of /ʃ/, so most gold transcriptions follow a different (alveolo-palatal) convention than the source sketch; ⟨nj⟩ is transcribed /ⁿdʒ/ here while gold uses the affricate /ᶮdʑ/, the same alveolo-palatal mismatch. Dahl's law (dissimilatory voicing of a voiceless stop before a following voiceless obstruent, kĩ- → gĩ-) is already spelled out in the standard orthography, so it needs no rule here. Vowel length and tone are both phonemic but neither is written: the orthography marks length only sporadically, with a doubled vowel letter, and marks tone not at all (Englebretson 2015; Armstrong 1940; Clements 1984 on the tone system), so neither is modelled. This is a measured, proven ceiling, not a guess: of the 1025 unique spellings in the ki/wikipron gold, 321 (31.3%) recur with two or more distinct gold transcriptions that differ only in the tone/downstep diacritics the plain orthography never writes (e.g. aka -> [aka]/[àkǎ]), so no rule keyed on the Latin spelling alone can pick the right one. Scoring the same hypothesis/gold pairs with every tone mark (acute, grave, caron, downstep) folded out on both sides drops PER from the shipped 0.3972 to 0.0547, so once the unwritten information is discounted this spec is close to segmentally exhausted; the residual gap is the remaining ⟨c⟩/⟨nj⟩ transcription-convention mismatch above plus ordinary rule noise, not a missing rule the orthography could support.",
   "iso639_3": "kik",
   "glottolog_code": "kiku1240",
   "wikidata_qid": "Q33587",
@@ -183,6 +183,17 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Kikuyu_language",
       "pages": null,
       "notes": "Orthography / phonology reference."
+    },
+    {
+      "id": "englebretson_2015_gikuyu_sketch",
+      "author": "Englebretson, Robert (ed.)",
+      "year": 2015,
+      "title": "A Basic Sketch Grammar of Gĩkũyũ",
+      "publisher": "Rice University Field Methods Class",
+      "url": "https://www.ruf.rice.edu/~reng/kik/sketch.pdf",
+      "wikipedia_url": null,
+      "pages": null,
+      "notes": "Phoneme inventories and orthography tables (Figures 1-4); the vowel-vowel analysis of orthographic ⟨w⟩; vowel length and the absence of tone marking in the orthography."
     }
   ],
   "parent": "x-clade-atla1278",
@@ -199,5 +210,15 @@
     "longitude": 36.719,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Kikuyu."
+  },
+  "positional_graphemes": {
+    "w": {
+      "after_consonant": [
+        "o"
+      ],
+      "default": [
+        "w"
+      ]
+    }
   }
 }
