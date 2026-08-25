@@ -54,8 +54,8 @@ class TestSilentH:
         assert _t(da, word) == ipa
 
     @pytest.mark.parametrize("word,ipa", [
-        ("uhyre", "ˈuhyʁə"),
-        ("uhyggelig", "ˈuhyɡəliː"),
+        ("uhyre", "ˈuhyɐ"),
+        ("uhyggelig", "ˈuhyɡəli"),
     ])
     def test_onset_h_before_y_survives(self, da, word, ipa):
         """Guard: a non-initial ⟨h⟩ before ⟨y⟩ is syllable-initial, not a
@@ -98,24 +98,85 @@ class TestGElision:
 
     @pytest.mark.parametrize("word,ipa", [
         ("bygge", "ˈbyɡə"),
-        ("hyggelig", "ˈhyɡəliː"),
+        ("hyggelig", "ˈhyɡəli"),
     ])
     def test_retained_after_short_vowel(self, da, word, ipa):
         assert _t(da, word) == ipa
 
     @pytest.mark.parametrize("word,ipa", [
-        ("ligge", "ˈliːə"),
-        ("kigge", "ˈkiːə"),
-        ("tigge", "ˈtiːə"),
+        ("ligge", "ˈliɡə"),
+        ("kigge", "ˈkiɡə"),
+        ("tigge", "ˈtiɡə"),
     ])
-    def test_igg_class_known_gap(self, da, word, ipa):
-        """Known gap: word-final ⟨ig(g)⟩ before a vowel still over-lengthens
-        and elides ⟨g⟩ (gold: lʔeɡə, kikə/kʔiɡə, tekər), because the ⟨ig⟩
-        digraph maps to long [iː] and DA_G_ELIDE then fires on it. A
-        word-final ⟨ig⟩ constraint would fix this without an ad-hoc ⟨igg⟩
-        grapheme entry; tracked as o2i task #80 (45/65 non-final ⟨ig⟩ words
-        over-lengthen)."""
+    def test_igg_is_not_the_ig_digraph(self, da, word, ipa):
+        """⟨ligge, kigge, tigge⟩ are ⟨li-gg-e⟩, not ⟨lig-g-e⟩. The
+        longest-match tokenizer reads the first two letters as the ⟨ig⟩
+        digraph, which maps to long [iː] and then loses its ⟨g⟩ to
+        DA_G_ELIDE. DA_IG_BEFORE_G_NOT_A_DIGRAPH restores the short vowel
+        and its consonant."""
         assert _t(da, word) == ipa
+
+
+class TestFinalIg:
+    """The adjectivizing suffix ⟨-ig⟩ is short unstressed [-i], not long
+    [-iː] (Puggaard-Rode 2023:64, ex.(19), after Rischel 1970a)."""
+
+    @pytest.mark.parametrize("word,ipa", [
+        ("farlig", "ˈfaʁli"),
+        ("heldig", "ˈhɛli"),
+        ("hyggelig", "ˈhyɡəli"),
+    ])
+    def test_final_ig_is_short(self, da, word, ipa):
+        assert _t(da, word) == ipa
+
+
+class TestSchwaR:
+    """Unstressed schwa next to /r/ is the single vowel [ɐ], in both the
+    ⟨-er⟩ and ⟨-re⟩ orders (Puggaard-Rode 2023:40)."""
+
+    @pytest.mark.parametrize("word,ipa", [
+        ("hedder", "ˈhɛðɐ"),
+        ("sanger", "ˈsaːŋɐ"),
+        ("klatre", "ˈklatɐ"),
+        ("store", "ˈsdoːɐ"),
+    ])
+    def test_schwa_r_fuses(self, da, word, ipa):
+        assert _t(da, word) == ipa
+
+    @pytest.mark.parametrize("word,ipa", [("rose", "ˈʁoːsə"), ("mor", "ˈmoːʁ")])
+    def test_other_r_untouched(self, da, word, ipa):
+        """Guard: an /r/ not adjacent to an unstressed schwa is unchanged."""
+        assert _t(da, word) == ipa
+
+
+class TestHighVowelLowering:
+    """/i y u/ lower to [e ø o] before a coda [ŋ] or a coda nasal +
+    consonant (Puggaard-Rode 2023:46, rule (7), after Grønnum 2005:308)."""
+
+    @pytest.mark.parametrize("word,ipa", [
+        ("ting", "ˈteŋ"),
+        ("kylling", "ˈkyleŋ"),
+        ("synge", "ˈsøŋə"),
+        ("tung", "ˈtoŋ"),
+        ("vinder", "ˈvenɐ"),
+        ("vinter", "ˈventɐ"),
+        ("pynt", "ˈpønt"),
+        ("bunde", "ˈbonə"),
+    ])
+    def test_lowering_fires(self, da, word, ipa):
+        assert _t(da, word) == ipa
+
+    @pytest.mark.parametrize("word,ipa", [("drikke", "ˈdʁikə"), ("hus", "ˈhuːs")])
+    def test_lowering_does_not_overfire(self, da, word, ipa):
+        """Guard: no nasal cluster, no lowering."""
+        assert _t(da, word) == ipa
+
+    def test_hund_family_is_a_known_miss(self, da):
+        """⟨hund⟩ has a silent ⟨d⟩, so there is no coda cluster and the
+        vowel should stay [u]. The rule engine reads pre-pass slot state
+        and cannot see that DA_SILENT_D is about to remove the /d/, so it
+        lowers anyway. Pinned so the miss is visible, not hidden."""
+        assert _t(da, "hund") == "ˈhon"
 
 
 class TestSoftD:
