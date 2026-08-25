@@ -102,9 +102,11 @@ def test_n_before_a_vowel_stays_an_onset(yo, word, expected):
 @pytest.mark.parametrize("word", ["kenbu", "onta"])
 def test_e_and_o_have_no_nasal_counterpart(yo, word):
     """Yoruba nasalises only /i ɛ a ɔ u/; ⟨en⟩ and ⟨on⟩ are not nasal
-    vowel spellings, so the ⟨n⟩ must survive as a consonant."""
-    assert "n" in say(yo, word)
-    assert "̃" not in unicodedata.normalize("NFD", say(yo, word))
+    vowel spellings, so the ⟨n⟩ must survive as a nasal consonant and the
+    vowel before it must stay oral."""
+    out = unicodedata.normalize("NFD", say(yo, word))
+    assert "ŋ" in out or "n" in out
+    assert "̃" not in out
 
 
 # ── Notation order: tilde before tone ─────────────────────────────────
@@ -180,3 +182,64 @@ def test_epsilon_stays_oral_after_a_nasal_onset(yo, word, expected_first_vowel):
     out = say(yo, word)
     assert expected_first_vowel in out
     assert "ɛ̃" not in out
+
+
+# ── The syllabic nasal ─────────────────────────────────────────────────
+# Yoruba allows only open syllables (Adesola, O., *Yoruba: A Grammar
+# Sketch*, Afranaph, §2.1.2), so an ⟨n⟩ that is followed by a consonant
+# cannot be a coda. It is either the nasalisation mark of the preceding
+# vowel — which is why ⟨an in ọn un ẹn⟩ are read as nasal vowels — or a
+# syllable nucleus of its own, a syllabic nasal that carries its own tone
+# (same work, p. 2 n. 4: "Syllabic nasals can also bear tones in
+# Yoruba"). The nasal-vowel reading is only available for the five vowels
+# that have nasal counterparts, /ĩ ɛ̃ ã ɔ̃ ũ/ (same work, chart 3); /e/
+# and /o/ have none, so ⟨en⟩ and ⟨on⟩ before a consonant can only be the
+# syllabic reading. The same holds where no vowel precedes at all.
+@pytest.mark.parametrize("word,expected", [
+    # word-initial, nothing to nasalise
+    ("nkọ", "ŋ̩̄kɔ̄"),
+    ("njẹ", "ŋ̩̄dʒɛ̄"),
+    ("nla", "ŋ̩̄lā"),
+    # after ⟨o⟩ and ⟨e⟩, which have no nasal counterpart
+    ("Aderonkẹ", "ādēɾōŋ̩̄kɛ̄"),
+    ("otente", "ōtēŋ̩̄tē"),
+])
+def test_n_before_a_consonant_is_a_syllabic_nasal(yo, word, expected):
+    assert say(yo, word) == nfc(expected)
+
+
+@pytest.mark.parametrize("word", ["nkọ", "Aderonkẹ", "otente"])
+def test_the_syllabic_nasal_is_a_tone_bearing_nucleus(yo, word):
+    """Adding the nucleus adds a tone slot: the nasal carries the mid
+    tone an unmarked orthographic vowel would carry, not a bare /n/."""
+    out = unicodedata.normalize("NFD", say(yo, word))
+    i = out.index("ŋ")
+    assert out[i + 1:i + 3] == "̩̄"
+
+
+@pytest.mark.parametrize("word,expected", [
+    ("an", "ã̄"),
+    ("ọn", "ɔ̃̄"),
+    ("sùn", "sũ̀"),
+    ("ana", "ānã̄"),
+])
+def test_the_nasal_vowel_and_onset_readings_are_untouched(yo, word, expected):
+    """The syllabic reading must not eat the two readings that already
+    work: ⟨n⟩ after a nasalisable vowel with nothing following spells
+    nasalisation, and ⟨n⟩ before a vowel is an ordinary onset."""
+    assert say(yo, word) == nfc(expected)
+    assert "ŋ" not in say(yo, word)
+
+
+@pytest.mark.parametrize("word", ["Kolonbia", "alukenbu", "ipenpeju"])
+def test_the_syllabic_nasal_is_not_written_homorganic(yo, word):
+    """The descriptive literature calls the syllabic nasal homorganic
+    with the following consonant, but Standard Yoruba spells the labial
+    variant ⟨m⟩ (⟨òrombó⟩), so an orthographic ⟨n⟩ before a labial is not
+    evidence of a labial nasal. The wikipron gold agrees and transcribes
+    a velar in every one of these environments — including where the
+    spelling itself has ⟨m⟩ (⟨Abimbọla⟩ → ``a b í ŋ̄ b ɔ́ l á``) — so the
+    spec emits one velar rather than guessing a place from the spelling.
+    """
+    assert "ŋ" in say(yo, word)
+    assert "m" not in say(yo, word)
