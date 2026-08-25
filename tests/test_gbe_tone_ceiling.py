@@ -8,18 +8,23 @@ rule can recover a tone the spelling never wrote, so the raw PER against
 those golds is dominated by that notation gap rather than by segmental
 (consonant/vowel) error.
 
-These tests pin the two numbers that prove the gap is a ceiling and not
-an ordinary rule defect:
+These tests pin the two numbers that together support that reading:
 
 * the homograph count — how many distinct spellings in the gold carry
-  two or more different gold transcriptions. A low count (Ewe) means the
-  orthography almost always disambiguates a word by itself; a high count
+  two or more different gold transcriptions. This does not by itself
+  floor or ceiling any score (the harness scores a spelling against the
+  best-matching of its gold transcriptions, so a homograph is scored
+  leniently rather than penalized); it is corroborating evidence for
+  which story explains the gap. A low count (Ewe) means the orthography
+  almost always disambiguates a word by itself, consistent with a
+  tone-notation gap rather than lost segmental information; a high count
   (Gun) reflects the two competing Gun orthographies the spec documents
   (data/guw.json's ``notes``), not lost information.
 * the tone-folded PER — segmental accuracy once the tone diacritics are
   stripped from both the engine's output and the gold. This is the
-  number that actually reflects the quality of the grapheme/allophone
-  rules, isolated from the notation gap.
+  measurement that actually establishes the ceiling: it is the number
+  that reflects the quality of the grapheme/allophone rules, isolated
+  from the notation gap.
 
 Both numbers are measured directly against the cached WikiPron TSVs
 (``.benchmark_cache/ewe_latn_broad.tsv``, ``guw_latn_broad.tsv``), the

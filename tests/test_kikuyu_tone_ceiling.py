@@ -11,13 +11,16 @@ for a rule this engine implements.
 
 The ki/wikipron gold set marks tone with acute/grave/caron accents on the
 vowel and a raised downstep arrow ``ꜜ``, none of which appear in the plain
-orthographic headword. This file checks the two facts that make the row's
-PER ceiling a proven property of the writing system rather than a spec
-defect: (1) the same plain spelling recurs with different gold tone
-marking, so no orthography-only rule could disambiguate it, and (2)
-scoring with tone folded out of both hypothesis and gold collapses PER
-from the shipped ~0.40 to a small residual, which is what the notes
-report as the measured "0.0547" ceiling once tone is discounted.
+orthographic headword. This file checks two facts about that gap: (1) the same plain spelling
+recurs with different gold tone marking, evidence that the writing
+system underdetermines tone and the gold is internally inconsistent for
+a tone-blind rule set (this does not by itself floor or ceiling any
+score, since the harness scores a spelling against the best-matching of
+its gold transcriptions), and (2) scoring with tone folded out of both
+hypothesis and gold collapses PER from the shipped ~0.40 to a small
+residual — this second measurement is what actually establishes the
+ceiling, and is what the notes report as the measured "0.0547" figure
+once tone is discounted.
 """
 from __future__ import annotations
 
