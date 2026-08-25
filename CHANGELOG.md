@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.82.10a2](https://github.com/TigreGotico/orthography2ipa/tree/7.82.10a2) (2026-08-25)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.10a1...7.82.10a2)
+
+**Merged pull requests:**
+
+- docs: classify and size the limitation notes carried in language specs [\#1209](https://github.com/TigreGotico/orthography2ipa/pull/1209) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.82.10a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.10a1) (2026-08-25)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.9a1...7.82.10a1)
@@ -670,10 +678,6 @@
 ## [7.76.12a2](https://github.com/TigreGotico/orthography2ipa/tree/7.76.12a2) (2026-08-18)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.76.12a1...7.76.12a2)
-
-**Merged pull requests:**
-
-- ci: regenerate ru/vox\_communis board row, make stale-row gate blocking [\#1020](https://github.com/TigreGotico/orthography2ipa/pull/1020) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.76.12a1](https://github.com/TigreGotico/orthography2ipa/tree/7.76.12a1) (2026-08-18)
 
