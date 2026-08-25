@@ -207,19 +207,7 @@
       "publisher": "University of California Publications in Linguistics, vol. 91. University of California Press",
       "url": null,
       "pages": null,
-      "notes": "Reference grammar used to verify the grapheme table (prenasalized consonants, c/cy, j/jy, sh, ny) and to document the tone-vs-stress distinction underlying this spec's stress exemption.",
-      "wikipedia_url": "https://en.wikipedia.org/wiki/Kinyarwanda"
-    },
-    {
-      "id": "kinyarwanda_wiki",
-      "author": "Wikipedia contributors",
-      "year": 2024,
-      "title": "Kinyarwanda",
-      "publisher": "Wikipedia",
-      "url": "https://en.wikipedia.org/wiki/Kinyarwanda",
-      "wikipedia_url": "https://en.wikipedia.org/wiki/Kinyarwanda",
-      "pages": null,
-      "notes": null
+      "notes": "Reference grammar used to verify the grapheme table (prenasalized consonants, c/cy, j/jy, sh, ny) and to document the tone-vs-stress distinction underlying this spec's stress exemption."
     }
   ],
   "wikipedia": [

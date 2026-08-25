@@ -335,8 +335,7 @@
       "publisher": "LREC",
       "url": "https://github.com/CUNY-CL/wikipron",
       "pages": null,
-      "notes": "Source of the ru gold benchmark row (rus_cyrl_narrow.tsv). Upstream README (fetched directly) confirms Russian was scraped only in narrow transcription, not broad: 'some languages only have broad or narrow transcriptions, e.g. Russian only has the latter.'",
-      "wikipedia_url": null
+      "notes": "Source of the ru gold benchmark row (rus_cyrl_narrow.tsv). Upstream README (fetched directly) confirms Russian was scraped only in narrow transcription, not broad: 'some languages only have broad or narrow transcriptions, e.g. Russian only has the latter.'"
     },
     {
       "id": "avanesov1956",

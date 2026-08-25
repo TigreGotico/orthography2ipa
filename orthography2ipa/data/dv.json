@@ -171,48 +171,14 @@
   ],
   "sources": [
     {
-      "id": "dhivehi_wiki",
-      "author": "Wikipedia contributors",
-      "year": 2024,
-      "title": "Maldivian language",
-      "publisher": "Wikipedia",
-      "url": "https://en.wikipedia.org/wiki/Maldivian_language",
-      "wikipedia_url": "https://en.wikipedia.org/wiki/Maldivian_language",
-      "pages": null,
-      "notes": "Phonology, the Thaana script and the Malé Latin transliteration."
-    },
-    {
-      "id": "thaana_wiki",
-      "author": "Wikipedia contributors",
-      "year": 2024,
-      "title": "Thaana",
-      "publisher": "Wikipedia",
-      "url": "https://en.wikipedia.org/wiki/Thaana",
-      "wikipedia_url": "https://en.wikipedia.org/wiki/Thaana",
-      "pages": null,
-      "notes": "Consonant letters, the ten fili vowel diacritics and the sukun; right-to-left, no inherent vowel."
-    },
-    {
       "id": "cain2000",
       "author": "Cain, Bruce D.",
       "year": 2000,
       "title": "Dhivehi (Maldivian): A Synchronic and Diachronic Study",
       "publisher": "Cornell University (PhD thesis)",
       "url": null,
-      "wikipedia_url": null,
       "pages": null,
-      "notes": "Reference description of Dhivehi phonology and orthography."
-    },
-    {
-      "id": "thaana_letter_tables_wiki",
-      "author": "Wikipedia contributors",
-      "year": 2026,
-      "title": "Thaana — consonants, thikijehi thaana and fili tables",
-      "publisher": "Wikipedia",
-      "url": "https://en.wikipedia.org/wiki/Thaana",
-      "wikipedia_url": "https://en.wikipedia.org/wiki/Thaana",
-      "pages": null,
-      "notes": "Per-letter IPA for the 24 core consonants, the 14 Arabic-loan letters, the 10 fili and the sukun; naviyani/gnaviyani history."
+      "notes": "Reference description of Dhivehi phonology and orthography. This dissertation (Cornell PhD, ProQuest) could not be independently re-fetched in this pass; it was carried over from an existing citation and no DOI or stable public URL was located for it, so the citation rests on the existing bibliographic record rather than a page-verified read."
     }
   ],
   "timespan": {
