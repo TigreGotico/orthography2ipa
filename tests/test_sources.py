@@ -302,6 +302,68 @@ def test_linguistic_source_wikipedia_url_defaults_none() -> None:
     assert src.wikipedia_url is None
 
 
+def test_linguistic_source_has_doi_field() -> None:
+    """LinguisticSource dataclass exposes doi field."""
+    from orthography2ipa.types import LinguisticSource
+    src = LinguisticSource(
+        id="test2024",
+        author="Test, A.",
+        year=2024,
+        title="Test Title",
+        doi="10.1017/S0025100323000105",
+    )
+    assert src.doi == "10.1017/S0025100323000105"
+
+
+def test_linguistic_source_doi_defaults_none() -> None:
+    """LinguisticSource.doi defaults to None."""
+    from orthography2ipa.types import LinguisticSource
+    src = LinguisticSource(id="x", author="A.", year=2000, title="T")
+    assert src.doi is None
+
+
+def test_doi_round_trips_through_loader() -> None:
+    """A doi in a source's JSON entry survives loading onto LinguisticSource."""
+    import json
+    import tempfile
+    import os
+    from orthography2ipa import json_loader
+    from orthography2ipa.json_loader import load_json_spec
+
+    stub = {
+        "code": "xx-test-doi",
+        "name": "Test Language",
+        "family": "Test",
+        "script": "Latin",
+        "graphemes": {"a": ["a"]},
+        "allophones": {},
+        "sources": [
+            {
+                "id": "test2024",
+                "author": "Test, A.",
+                "year": 2024,
+                "title": "A Test Grammar",
+                "doi": "10.1017/S0025100323000105",
+            }
+        ],
+    }
+    with tempfile.NamedTemporaryFile(
+        mode="w", suffix=".json", delete=False, dir=_DATA_DIR
+    ) as fh:
+        json.dump(stub, fh)
+        tmp_path = fh.name
+
+    try:
+        from pathlib import Path
+        json_loader._index["xx-test-doi"] = Path(tmp_path)
+        spec = load_json_spec("xx-test-doi")
+        assert spec.sources[0].doi == "10.1017/S0025100323000105"
+    finally:
+        os.unlink(tmp_path)
+        json_loader._index.pop("xx-test-doi", None)
+        json_loader._specs.pop("xx-test-doi", None)
+
+
 def test_language_spec_wikipedia_is_tuple() -> None:
     """LanguageSpec.wikipedia is always a tuple of strings, never None."""
     import orthography2ipa
