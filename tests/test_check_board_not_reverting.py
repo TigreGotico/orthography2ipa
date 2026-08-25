@@ -425,7 +425,7 @@ class TestEndToEnd:
         git(repo, "commit", "-qm", "chore: stress")
 
         assert guard.check("dev", "HEAD", repo=repo) == 0
-        assert "does not touch the board" in capsys.readouterr().out
+        assert "touches neither the board" in capsys.readouterr().out
 
     def test_undeclared_wide_movement_fails(self, repo):
         write_board(repo, [row("mr", per=0.44), row("xh", "kaikki", per=0.25)])
@@ -515,3 +515,100 @@ class TestEndToEnd:
 
         monkeypatch.setitem(sys.modules, "orthography2ipa", None)
         assert guard.check("dev", "HEAD", repo=repo) == 2
+
+
+BURNDOWN_PATH, BURNDOWN_NAME = guard.RATCHETS[0]
+
+
+def write_ratchet(repo, codes):
+    """Write the burn-down list the guard reads, with *codes* in it."""
+    os.makedirs(os.path.join(repo, os.path.dirname(BURNDOWN_PATH)), exist_ok=True)
+    body = ", ".join(repr(c) for c in sorted(codes))
+    with open(os.path.join(repo, BURNDOWN_PATH), "w", encoding="utf-8") as fh:
+        fh.write(f"{BURNDOWN_NAME} = frozenset({{{body}}})\n")
+
+
+@pytest.fixture
+def ratchet_repo(tmp_path):
+    """Two-branch repository where dev burned the list down and the branch
+    was cut before it did — the shape a rebase resolves wrongly."""
+    path = str(tmp_path / "ratchet")
+    os.makedirs(path)
+    git(path, "init", "-q", "-b", "dev")
+    git(path, "config", "user.email", "t@example.com")
+    git(path, "config", "user.name", "t")
+    write_ratchet(path, ["aa", "bb", "cc", "dd"])
+    git(path, "add", "-A")
+    git(path, "commit", "-qm", "base")
+    git(path, "branch", "wave")
+    write_ratchet(path, ["aa"])            # dev fixed bb, cc and dd
+    git(path, "add", "-A")
+    git(path, "commit", "-qm", "fix: cite bb, cc, dd properly")
+    git(path, "checkout", "-q", "wave")
+    return path
+
+
+class TestBurnDownRatchet:
+    def test_resolving_a_merge_toward_the_longer_list_fails(self, ratchet_repo, capsys):
+        """The branch keeps its own four-entry copy, so the merge silently
+        turns three tests back off. Nothing else can see it: the entries are
+        an allowlist, so restoring them makes the suite MORE green."""
+        write_ratchet(ratchet_repo, ["aa", "bb", "cc", "dd", "ee"])
+        git(ratchet_repo, "add", "-A")
+        git(ratchet_repo, "commit", "-qm", "chore: touch the list")
+        subprocess.run(("git", "merge", "--no-commit", "dev"),
+                       cwd=ratchet_repo, capture_output=True)
+        write_ratchet(ratchet_repo, ["aa", "bb", "cc", "dd", "ee"])
+        git(ratchet_repo, "add", "-A")
+        git(ratchet_repo, "commit", "-qm", "merge dev")
+
+        assert guard.check("dev", "HEAD", repo=ratchet_repo) == 1
+        out = capsys.readouterr().out
+        assert BURNDOWN_NAME in out
+        for code in ("bb", "cc", "dd", "ee"):
+            assert code in out
+
+    def test_shrinking_the_list_passes(self, ratchet_repo):
+        """Burning an entry down is the whole point of the list."""
+        write_ratchet(ratchet_repo, ["aa"])
+        git(ratchet_repo, "add", "-A")
+        git(ratchet_repo, "commit", "-qm", "fix: cite bb, cc, dd properly too")
+        assert guard.check("dev", "HEAD", repo=ratchet_repo) == 0
+
+    def test_a_branch_that_never_touches_the_list_is_not_judged(self, ratchet_repo):
+        """The merge keeps dev's shorter list on its own; there is nothing to
+        report, and the guard must not demand a board it was never given."""
+        with open(os.path.join(ratchet_repo, "README.md"), "w") as fh:
+            fh.write("hello\n")
+        git(ratchet_repo, "add", "-A")
+        git(ratchet_repo, "commit", "-qm", "docs: readme")
+        assert guard.check("dev", "HEAD", repo=ratchet_repo) == 0
+
+    def test_reads_the_set_without_importing_the_module(self, ratchet_repo):
+        """The merged tree is not a checkout and a test module from an
+        arbitrary revision must never be executed to read one constant."""
+        with open(os.path.join(ratchet_repo, BURNDOWN_PATH), "w") as fh:
+            fh.write("raise SystemExit('imported')\n"
+                     f"{BURNDOWN_NAME} = frozenset({{'aa'}})\n")
+        git(ratchet_repo, "add", "-A")
+        git(ratchet_repo, "commit", "-qm", "chore: booby-trap")
+        assert guard.read_ratchet("HEAD", BURNDOWN_PATH, BURNDOWN_NAME,
+                                  repo=ratchet_repo) == {"aa"}
+
+    def test_an_unreadable_set_is_reported_not_assumed_empty(self, ratchet_repo):
+        """A set the guard cannot parse must not read as empty — that would
+        make every entry look like an addition, or hide a real one."""
+        with open(os.path.join(ratchet_repo, BURNDOWN_PATH), "w") as fh:
+            fh.write(f"{BURNDOWN_NAME} = frozenset(_load_from_somewhere())\n")
+        git(ratchet_repo, "add", "-A")
+        git(ratchet_repo, "commit", "-qm", "chore: computed set")
+        assert guard.read_ratchet("HEAD", BURNDOWN_PATH, BURNDOWN_NAME,
+                                  repo=ratchet_repo) is None
+
+    def test_the_real_burndown_is_readable(self):
+        """The guard is worthless if it cannot find the live list, and it
+        fails open when it cannot — so the wiring is asserted here."""
+        current = guard.read_ratchet("HEAD", BURNDOWN_PATH, BURNDOWN_NAME,
+                                     repo=os.path.join(
+                                         os.path.dirname(__file__), ".."))
+        assert current is not None and len(current) > 0

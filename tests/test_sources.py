@@ -173,6 +173,12 @@ def test_source_wikipedia_urls_point_to_wikipedia(code: str, path: str) -> None:
 # publishes it), then deleting the code from this set. No code may be added
 # to it; a new or edited spec must satisfy test_sources_not_all_wikipedia
 # directly.
+#
+# The suite cannot enforce that on its own -- every entry here turns a test
+# OFF, so a set that grew back is greener, not redder. The subset rule is
+# checked against the merge target by scripts/check_board_not_reverting.py,
+# which reads this name out of the file; renaming it means updating that
+# script's RATCHETS.
 _WIKIPEDIA_ONLY_SOURCES_BURNDOWN = frozenset({
     'aae', 'ace', 'aja', 'aju', 'aln', 'als', 'ami', 'anp',
     'av', 'ban', 'bar', 'bpy', 'btm', 'cay', 'ce', 'chm',
