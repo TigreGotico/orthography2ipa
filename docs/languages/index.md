@@ -1,18 +1,18 @@
 # Finding a language's phonology documentation
 
 `orthography2ipa` registers 350+ language and dialect codes, but only a
-handful have a hand-written prose page here — the rest are documented
+handful have a hand-written prose page here, the rest are documented
 entirely by their JSON spec (graphemes, allophones, sources, `notes`).
 Both are legitimate ways to answer "how does this library handle
 language X":
 
 1. **A hand-written page exists** for a language when someone has
-   written up the phonological reasoning in prose — useful when a
+   written up the phonological reasoning in prose, useful when a
    language has enough irregularity or contested analysis that a
    grapheme table alone doesn't explain the *why*. These pages are
    listed by family below.
 2. **No hand-written page exists** for most languages. That's normal,
-   not a gap to apologize for — the JSON spec itself is the source of
+   not a gap to apologize for, the JSON spec itself is the source of
    truth, and it's fully self-describing:
 
    ```python
@@ -34,7 +34,7 @@ language X":
 If you're checking whether a language is trustworthy enough to depend
 on, the `quality` field and the language's row (if any) in
 [../scoreboard.md](../scoreboard.md) matter more than whether a prose
-page exists — see [../quality_tiers.md](../quality_tiers.md) for what
+page exists, see [../quality_tiers.md](../quality_tiers.md) for what
 each tier actually certifies.
 
 ## Hand-written pages, by family
@@ -76,7 +76,7 @@ each tier actually certifies.
 | [lij.md](lij.md) | Ligurian / Genoese (Gallo-Italic; grafia ofiçiâ, ⟨x⟩=/ʒ/, ⟨o⟩=/u/, ⟨u⟩=/y/) |
 | [an-valleys.md](an-valleys.md) | Pyrenean-valley Aragonese: Cheso (`an-x-cheso`), Ansotano (`an-x-ansotano`), Belsetán (`an-x-belsetan`), Chistabín (`an-x-chistabin`), Tensino (`an-x-tensino`) — geminates ⟨l·l⟩/⟨n·n⟩, final-r deletion, no-epenthesis ⟨ix⟩, ro/ra tap article |
 
-#### Latin American Spanish — regional scaffolding (stub tier, no prose page yet)
+#### Latin American Spanish: regional scaffolding (stub tier, no prose page yet)
 
 Every Latin American national variety plus the major regional dialect
 zones of Lipski's (1994) classification (as summarised in Lipski's own
@@ -85,7 +85,7 @@ have at least a **stub** spec, so the ancestry / phonological-distance
 metrics resolve for the whole family. Stubs model only the pan-LatAm
 baseline (seseo, yeísmo) and carry a weighted ancestry chain
 `es-ES-x-medieval → es-ES → es-419 → country → region` plus the relevant
-indigenous adstrate; dialect-specific phonology is deliberately deferred.
+indigenous adstrate. Dialect-specific phonology is deliberately deferred.
 
 | Country | Regional stubs (`es-XX-x-…`) | Indigenous adstrate(s) |
 |:---|:---|:---|
@@ -100,7 +100,7 @@ indigenous adstrate; dialect-specific phonology is deliberately deferred.
 
 New national stubs: Honduras (`es-HN`), El Salvador (`es-SV`, Nawat/Pipil
 adstrate). Indigenous contact languages are themselves structural adstrate
-stubs (`gn`, `qu`, `ay`, `nah`, `arn`, `yua`, `quc`) — metadata only, no
+stubs (`gn`, `qu`, `ay`, `nah`, `arn`, `yua`, `quc`), metadata only, no
 phonology claimed (the `afa.json` pattern).
 
 ### Asturleonese
@@ -131,6 +131,18 @@ phonology claimed (the `afa.json` pattern).
 |:---|:---|
 | [kab.md](kab.md) | Kabyle / Taqbaylit (Northern Berber; Berber Latin alphabet, gemination-conditioned spirantization, emphatics) |
 
+### Egyptian
+
+| Doc | Languages covered |
+|:---|:---|
+| [egy.md](egy.md) | Ancient Egyptian — Egyptological transliteration in, the conventional Egyptological reading out (weak consonants as vowels, the supplied ⟨e⟩); the reconstruction is deliberately out of scope |
+
+### Chadic
+
+| Doc | Languages covered |
+|:---|:---|
+| [ha.md](ha.md) | Hausa (Boko orthography) — hooked-letter glottalized series, ⟨ts⟩ as the ejective fricative /sʼ/, unit labialized/palatalized velars, and the ⟨r⟩ trill-vs-retroflex-flap contrast the spelling hides |
+
 ### Indo-Aryan
 
 | Doc | Languages covered |
@@ -149,6 +161,24 @@ phonology claimed (the `afa.json` pattern).
 |:---|:---|
 | [fi.md](fi.md) | Finnish in detail — **production tier** (shallow, ≤0.15) |
 
+### Austroasiatic
+
+| Doc | Languages covered |
+|:---|:---|
+| [vi.md](vi.md) | Vietnamese (Hanoi) in detail — rime-level mapping, velar fronting and labial-velar finals, and the library's first tone-emitting spec |
+
+### Kra-Dai
+
+| Doc | Languages covered |
+|:---|:---|
+| [th.md](th.md) | Standard Thai in detail — tone computed from consonant class, syllable shape, vowel length and tone mark, and the circumfix vowels |
+
+### Niger-Congo
+
+| Doc | Languages covered |
+|:---|:---|
+| [yo.md](yo.md) | Yoruba in detail — three level tones (mid marked, not bare), the five nasal vowels and why ⟨en⟩/⟨on⟩ are not among them |
+
 ### Constructed
 
 | Doc | Languages covered |
@@ -156,7 +186,7 @@ phonology claimed (the `afa.json` pattern).
 | [eo.md](eo.md) | Esperanto in detail — **production tier** (shallow, ≤0.15) |
 
 If the language you need isn't in any table above, it doesn't have a
-prose page yet — go straight to its JSON spec via `orthography2ipa.get(code)`
+prose page yet, go straight to its JSON spec via `orthography2ipa.get(code)`
 as shown earlier, and consider contributing a page alongside a spec
 improvement (see [../adding_a_language.md](../adding_a_language.md)).
 
@@ -181,7 +211,7 @@ rather than a specific language, start here:
 | Vowel harmony | fi, hu, tr, ko | family docs |
 | Geminate consonants | it, fi, hu, ja, kab | [it-IT.md](it-IT.md), [kab.md](kab.md) |
 | Spirantization (lax stop → fricative) | kab | [kab.md](kab.md) |
-| Tone / pitch accent | sv, zh, ja, ko, vi | — |
+| Tone / pitch accent | sv, zh, ja, ko, vi, th | [vi.md](vi.md) (tone emitted from the orthography), [th.md](th.md) (tone computed from the syllable's shape) |
 | Liaison / sandhi | fr, pt, sa | [fr-FR.md](fr-FR.md) |
 | Tashkeel-dependent input | ar, ar-SY, ar-LB, ar-JO, ar-PS, ar-IQ, ar-IQ-x-qeltu, ar-MA, ar-DZ, ar-TN, ar-LY, ar-MR, ar-YE, ar-SD | [ar.md](ar.md), [ar-x-levantine.md](ar-x-levantine.md), [ar-IQ.md](ar-IQ.md), [ar-maghrebi-yemeni-sudanese.md](ar-maghrebi-yemeni-sudanese.md) |
 | gilit/qəltu qaf split ([ɡ] vs [q]) | ar-IQ, ar-IQ-x-qeltu | [ar-IQ.md](ar-IQ.md) |

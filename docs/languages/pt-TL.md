@@ -1,13 +1,13 @@
-# East Timorese Portuguese (pt-TL) — Phonology Reference
+# East Timorese Portuguese (pt-TL): Phonology Reference
 
 **Code**: `pt-TL` | **Family**: Indo-European > Romance > Ibero-Romance | **Script**: Latin (alphabet)
 **Quality tier**: research | **Parent**: `pt-PT`
 **Primary source**: Albuquerque, D. B. (2010), *Peculiaridades prosódicas do
-português falado em Timor Leste*, ReVEL 8(15):270–285 — **read in full**.
+português falado em Timor Leste*, ReVEL 8(15):270–285, **read in full**.
 
 East Timorese Portuguese (*Português de Timor Leste*, PTL) is the co-official
 language of Timor-Leste alongside Tetum. It is an **L2/official variety** for
-nearly the whole population — the 2001 Human Development Report cited by
+nearly the whole population, the 2001 Human Development Report cited by
 Albuquerque (2010:272) records only ~5% fluent, against >80% who speak Tetum.
 This spec models the **acrolectal / norm-oriented** end of the continuum
 Albuquerque (2010:273, fig.1) draws between *norma europeia* (urban
@@ -19,7 +19,7 @@ church) and *português acrioulado* (rural, heavy L1 transfer).
 PTL is **not** a Portuguese-based creole. The region's creoles are separate
 contact languages, modelled elsewhere:
 
-- **Bidau Creole Portuguese** of Dili (moribund) — Baxter (1990), *Notes on
+- **Bidau Creole Portuguese** of Dili (moribund), Baxter (1990), *Notes on
   the Creole Portuguese of Bidau, Timor*, JPCL 5(1):1–38.
 - The neighbouring **Macau** and **Malacca (Kristang)** creoles.
 
@@ -40,7 +40,7 @@ variedade não-nativa do português da Europa, como o Português de Moçambique
 
 The headline feature is the **absence of vowel reduction**: where the parent
 `pt-PT` gives `bate` → [ˈbatɨ] and `roda` → [ˈʁɔdɐ], `pt-TL` gives
-[ˈbate] and [ˈrɔda] — full vowels, with the EP **stressed** open/close
+[ˈbate] and [ˈrɔda], full vowels, with the EP **stressed** open/close
 contrast preserved (roda [ɔ], mesa [ɛ]). This is the Tetum/Austronesian
 substrate trait Albuquerque documents as the most consistent property of PTL.
 
@@ -52,24 +52,40 @@ end or exceed the base engine's capabilities, so they are recorded in the spec
 
 - **Consonant substitutions** ʃ→s, ʒ→z, v→b, f→p and **vowel raising** e→i,
   o→u (p.276–277: chegar [seˈga], já [za]~[dʒa], livro [ˈli.bu], força
-  [ˈpu.sa], chave [ˈsa.bi], soletrar [suˈle.ta]) — L1-transfer, too variable
+  [ˈpu.sa], chave [ˈsa.bi], soletrar [suˈle.ta]), L1-transfer, too variable
   to encode as the acrolectal norm.
 - **Denasalisation** of nasal diphthongs: educação [e.du.kaˈsa.u] (p.278).
 - **Final-consonant apocope**, esp. in infinitives: abraçar [aˈba.sa], cair
-  [kai], ajudar [aˈzu.da] (p.278–279) — a **deletion** the engine's allophone
-  layer does not express; documented engine limit.
+  [kai], ajudar [aˈzu.da] (p.278–279), a **deletion** the engine's allophone
+  layer does not express. Documented engine limit.
 - **Metathesis / epenthesis**: perguntar [peˈgun.ta], advogado
   [a.di.boˈga.do] (p.278).
 - **H–L% phrasal intonation** from the Timoric sprachbund (p.281; Himmelmann
-  2008 on Waima'a) — prosodic, out of base scope.
+  2008 on Waima'a), prosodic, out of base scope.
 
 ## Tier rationale
 
 `research`, not `production`: grounded in one fully-read primary
 phonological/prosodic source (Albuquerque 2010) plus the EP inventory baseline
-(Mateus & d'Andrade 2000, quoted via Albuquerque 2010:276). **No gold
-benchmark** exists for this small L2 variety, so PER cannot be measured — the
-production bar (gold n≥500) is unreachable at present.
+(Mateus & d'Andrade 2000, quoted via Albuquerque 2010:276).
+
+A 53,147-word gold is scored against this spec (`portuguese_unified`'s
+`pt-TL-x-dili` region), but it is classified `machine-generated`, not
+`lexicon-derived`. Diffed word-for-word against `pt-PT-x-lisboa` over the same
+53,147 shared words, `pt-TL-x-dili` is a near-total 1:1 character
+substitution of the Lisbon entries — ɐ→ə (28,713 occurrences), u→ʊ (11,653),
+ʀ→r (3,994), ɫ→w (1,681), d→ð (212), g→ɣ (146), measured 2026-08 against the
+cached `portuguese_pronunciation_lexicon.jsonl` — not independently collected
+Timorese lexicography. Swapping the symbol for the reduced vowel does not
+remove the reduction: 60% of `pt-TL-x-dili` rows still contain a reduced [ə]
+and 31% a reduced final [ʊ], and coda /s/ still surfaces as the Lisbon
+"chiado" [ʃ] (e.g. `instrumentista` → [ĩʃtɾumẽntˈiʃtə]). Albuquerque
+(2010:275 fn.7, 277) — this spec's own primary source — documents the
+opposite for East Timorese Portuguese: no unstressed-vowel reduction and an
+alveolar, non-hush coda /s/. The gold therefore measures agreement with a
+re-symbolized European Portuguese, not the acrolectal variety this spec
+models, and a low or high PER on this row cannot certify or block the spec
+(production bar gold n≥500 is met in row-count only, not in reliability).
 
 ## Sources
 
