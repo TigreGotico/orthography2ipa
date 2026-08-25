@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.81.0a4](https://github.com/TigreGotico/orthography2ipa/tree/7.81.0a4) (2026-08-25)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.81.0a3...7.81.0a4)
+
+**Merged pull requests:**
+
+- chore: burn down Wikipedia-only sources for ru, rw, ka, et, hy, ckb, dv [\#1166](https://github.com/TigreGotico/orthography2ipa/pull/1166) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.81.0a3](https://github.com/TigreGotico/orthography2ipa/tree/7.81.0a3) (2026-08-25)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.81.0a2...7.81.0a3)
@@ -179,20 +187,20 @@
 
 ## [7.79.16a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.16a1) (2026-08-24)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.15a1...7.79.16a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.14a3...7.79.16a1)
 
 **Merged pull requests:**
 
 - feat: measure how much of a board row's gold is alphabet-chart noise [\#1118](https://github.com/TigreGotico/orthography2ipa/pull/1118) ([JarbasAl](https://github.com/JarbasAl))
 - fix\(tru\): map Gamal Garshuni, diagnose gold as mostly real words [\#1117](https://github.com/TigreGotico/orthography2ipa/pull/1117) ([JarbasAl](https://github.com/JarbasAl))
 
-## [7.79.15a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.15a1) (2026-08-24)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.14a3...7.79.15a1)
-
 ## [7.79.14a3](https://github.com/TigreGotico/orthography2ipa/tree/7.79.14a3) (2026-08-24)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.14a2...7.79.14a3)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.15a1...7.79.14a3)
+
+## [7.79.15a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.15a1) (2026-08-24)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.14a2...7.79.15a1)
 
 ## [7.79.14a2](https://github.com/TigreGotico/orthography2ipa/tree/7.79.14a2) (2026-08-24)
 
@@ -677,11 +685,6 @@
 ## [7.75.9a1](https://github.com/TigreGotico/orthography2ipa/tree/7.75.9a1) (2026-08-17)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.75.8a1...7.75.9a1)
-
-**Merged pull requests:**
-
-- fix\(fa\): read the Perso-Arabic matres lectionis instead of consonantalising ā, ī and ū [\#979](https://github.com/TigreGotico/orthography2ipa/pull/979) ([JarbasAl](https://github.com/JarbasAl))
-- fix\(ha\): Hausa ejective fricative ⟨ts⟩, unit labialized/palatalized velars, and the ⟨r⟩ contrast as candidates [\#978](https://github.com/TigreGotico/orthography2ipa/pull/978) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.75.8a1](https://github.com/TigreGotico/orthography2ipa/tree/7.75.8a1) (2026-08-17)
 
