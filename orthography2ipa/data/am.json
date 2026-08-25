@@ -50,6 +50,9 @@
     "ሎ": [
       "lo"
     ],
+    "ሏ": [
+      "lʷa"
+    ],
     "ሐ": [
       "hə"
     ],
@@ -91,6 +94,9 @@
     ],
     "ሞ": [
       "mo"
+    ],
+    "ሟ": [
+      "mʷa"
     ],
     "ሠ": [
       "sə"
@@ -134,6 +140,9 @@
     "ሮ": [
       "ro"
     ],
+    "ሯ": [
+      "rʷa"
+    ],
     "ሰ": [
       "sə"
     ],
@@ -154,6 +163,9 @@
     ],
     "ሶ": [
       "so"
+    ],
+    "ሷ": [
+      "sʷa"
     ],
     "ሸ": [
       "ʃə"
@@ -197,6 +209,12 @@
     "ቆ": [
       "qo"
     ],
+    "ቋ": [
+      "qʷa"
+    ],
+    "ቍ": [
+      "qʷ"
+    ],
     "በ": [
       "bə"
     ],
@@ -217,6 +235,27 @@
     ],
     "ቦ": [
       "bo"
+    ],
+    "ቧ": [
+      "bʷa"
+    ],
+    "ቨ": [
+      "və"
+    ],
+    "ቪ": [
+      "vi"
+    ],
+    "ቫ": [
+      "va"
+    ],
+    "ቬ": [
+      "ve"
+    ],
+    "ቭ": [
+      "v"
+    ],
+    "ቮ": [
+      "vo"
     ],
     "ተ": [
       "tə"
@@ -239,6 +278,9 @@
     "ቶ": [
       "to"
     ],
+    "ቷ": [
+      "tʷa"
+    ],
     "ቸ": [
       "tʃə"
     ],
@@ -259,6 +301,21 @@
     ],
     "ቾ": [
       "tʃo"
+    ],
+    "ቿ": [
+      "tʃʷa"
+    ],
+    "ኀ": [
+      "hə"
+    ],
+    "ኃ": [
+      "ha"
+    ],
+    "ኅ": [
+      "h"
+    ],
+    "ኋ": [
+      "hʷa"
     ],
     "ነ": [
       "nə"
@@ -281,6 +338,9 @@
     "ኖ": [
       "no"
     ],
+    "ኗ": [
+      "nʷa"
+    ],
     "ኘ": [
       "ɲə"
     ],
@@ -301,6 +361,9 @@
     ],
     "ኞ": [
       "ɲo"
+    ],
+    "ኟ": [
+      "ɲʷa"
     ],
     "አ": [
       "ʔə"
@@ -343,6 +406,15 @@
     ],
     "ኮ": [
       "ko"
+    ],
+    "ኳ": [
+      "kʷa"
+    ],
+    "ኸ": [
+      "hə"
+    ],
+    "ኽ": [
+      "h"
     ],
     "ወ": [
       "wə"
@@ -407,6 +479,9 @@
     "ዞ": [
       "zo"
     ],
+    "ዟ": [
+      "zʷa"
+    ],
     "ዠ": [
       "ʒə"
     ],
@@ -470,6 +545,9 @@
     "ዶ": [
       "do"
     ],
+    "ዷ": [
+      "dʷa"
+    ],
     "ጀ": [
       "dʒə"
     ],
@@ -490,6 +568,9 @@
     ],
     "ጆ": [
       "dʒo"
+    ],
+    "ጇ": [
+      "dʒʷa"
     ],
     "ገ": [
       "ɡə"
@@ -512,6 +593,12 @@
     "ጎ": [
       "ɡo"
     ],
+    "ጐ": [
+      "ɡʷə"
+    ],
+    "ጓ": [
+      "ɡʷa"
+    ],
     "ጠ": [
       "tʼə"
     ],
@@ -532,6 +619,9 @@
     ],
     "ጦ": [
       "tʼo"
+    ],
+    "ጧ": [
+      "tʼʷa"
     ],
     "ጨ": [
       "tʃʼə"
@@ -599,6 +689,15 @@
     "ፀ": [
       "tsʼə"
     ],
+    "ፁ": [
+      "tsʼu"
+    ],
+    "ፃ": [
+      "tsʼa"
+    ],
+    "ፅ": [
+      "tsʼ"
+    ],
     "ፈ": [
       "fə"
     ],
@@ -619,6 +718,9 @@
     ],
     "ፎ": [
       "fo"
+    ],
+    "ፏ": [
+      "fʷa"
     ],
     "ፐ": [
       "pə"
@@ -729,7 +831,7 @@
       "p"
     ]
   },
-  "notes": "Amharic Ethiopic (Ge'ez) script. Abugida where each character encodes consonant + vowel; 7 vowel orders per consonant row. Ejectives: Tʼ, Čʼ, Pʼ, Tsʼ are phonemic. The 6th order (ə-vowel) is the inherent vowel. Ä, ʕ (Ayin) present in traditional script but may be realized as /ʔ/ or silent in colloquial speech. Stress exemption: Amharic has no phonemically contrastive word stress; prominence is weak/variable and is not marked by or predictable from the Ge'ez abugida modeled here; no stress block is declared. Source: Leslau, Reference Grammar of Amharic (1995).",
+  "notes": "Amharic Ethiopic (Ge'ez) script. Abugida where each character encodes consonant + vowel; 7 vowel orders per consonant row. Ejectives: Tʼ, Čʼ, Pʼ, Tsʼ are phonemic. The 6th order (ə-vowel) is the inherent vowel. Ä, ʕ (Ayin) present in traditional script but may be realized as /ʔ/ or silent in colloquial speech. Stress exemption: Amharic has no phonemically contrastive word stress; prominence is weak/variable and is not marked by or predictable from the Ge'ez abugida modeled here; no stress block is declared. Source: Leslau, Reference Grammar of Amharic (1995). Coverage gap fix: the table originally covered only the seven basic vowel orders per consonant row and omitted three further groups that occur in running Amharic text and are attested in the wikipron/vox_communis gold — (1) the labialised Cʷa series written with dedicated Ethiopic glyphs (ሏ ሟ ሯ ሷ ቧ ቷ ቿ ኗ ኟ ዟ ዷ ጇ ጧ ፏ, plus the fuller velar/uvular Cʷ paradigm ቋ ቍ ኳ ጐ ጓ and the historical ħ-row labialised form ኋ), phonemic per Ado (2021); (2) the ቨ-series used to write loanword /v/; and (3) two historical letter rows that Ge'ez orthography still distinguishes but that merged in modern Amharic pronunciation — ኀ/ኃ/ኅ/ኸ/ኽ (originally a pharyngeal/velar fricative row, ħ or x) merged with /h/, and ፁ/ፃ/ፅ (the remaining columns of the archaic ፀ row) merged with the ejective affricate /tsʼ/ row (ጸ), matching the inherent-vowel member ፀ already mapped to tsʼə. The merger values are measured directly from wikipron gold (e.g. እኅት 'sister' -> ... h ɨ t, ቪዛ 'visa' -> v i z a, ኳስ 'ball' -> kʷ a s) rather than newly sourced, since no fetched primary source was found stating the merger explicitly; the labialisation values follow Ado (2021). The Ethiopic wordspace ፡ (and ። ፣) are punctuation (Unicode category Po), already stripped generically by the tokenizer, and are deliberately left unmapped rather than given a spec entry.",
   "sources": [
     {
       "id": "leslau1995",
@@ -751,6 +853,16 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Amharic",
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "ado2021labialised",
+      "author": "Ado, Derib",
+      "year": 2021,
+      "title": "Revisiting the status of labialised consonants in contemporary Amharic",
+      "publisher": "Oslo Studies in Language 11(2), 47-58",
+      "url": "https://doi.org/10.5617/osla.8487",
+      "pages": "47-58",
+      "notes": "Confirms labialised consonants (kʷ, gʷ, kʼʷ, and the wider Cʷ series written with the dedicated Ethiopic \"wa\" glyphs) are phonemically contrastive in Amharic, not derivable from a /Cua/ or /Coa/ vowel sequence or from /w/-loss alone (Table 2 surveys 100 years of prior analyses)."
     }
   ],
   "parent": "sem-x-ethiopic",
