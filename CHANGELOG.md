@@ -1,5 +1,17 @@
 # Changelog
 
+## [7.82.18a2](https://github.com/TigreGotico/orthography2ipa/tree/7.82.18a2) (2026-08-25)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.18a1...7.82.18a2)
+
+**Merged pull requests:**
+
+- fix: refresh stale ci-sample rows and add same-n invariant test [\#1238](https://github.com/TigreGotico/orthography2ipa/pull/1238) ([JarbasAl](https://github.com/JarbasAl))
+- fix\(yo\): read ⟨n⟩ before a consonant as a syllabic nasal where no nasal vowel is available [\#1237](https://github.com/TigreGotico/orthography2ipa/pull/1237) ([JarbasAl](https://github.com/JarbasAl))
+- docs\(pcc\): record why the Chinese-loan apical vowel stays unmodelled [\#1236](https://github.com/TigreGotico/orthography2ipa/pull/1236) ([JarbasAl](https://github.com/JarbasAl))
+- docs\(lo\): record the measured scope of the word-final liquid reading [\#1234](https://github.com/TigreGotico/orthography2ipa/pull/1234) ([JarbasAl](https://github.com/JarbasAl))
+- fix\(jam\): read \<ky\> and \<gy\> as the palatalised velars \[kʲ ɡʲ\] [\#1233](https://github.com/TigreGotico/orthography2ipa/pull/1233) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.82.18a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.18a1) (2026-08-25)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.17a1...7.82.18a1)
@@ -399,33 +411,33 @@
 
 ## [7.80.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.80.1a1) (2026-08-24)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.16a1...7.80.1a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.80.0a1...7.80.1a1)
 
 **Merged pull requests:**
 
 - fix\(mww\): emit RPA tone letters instead of silencing them [\#1113](https://github.com/TigreGotico/orthography2ipa/pull/1113) ([JarbasAl](https://github.com/JarbasAl))
 - fix\(kwk\): map the U'mista ejective/uvular/lateral-affricate series [\#1106](https://github.com/TigreGotico/orthography2ipa/pull/1106) ([JarbasAl](https://github.com/JarbasAl))
 
-## [7.79.16a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.16a1) (2026-08-24)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.80.0a1...7.79.16a1)
-
 ## [7.80.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.80.0a1) (2026-08-24)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.14a3...7.80.0a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.16a1...7.80.0a1)
+
+## [7.79.16a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.16a1) (2026-08-24)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.15a1...7.79.16a1)
 
 **Merged pull requests:**
 
 - feat: measure how much of a board row's gold is alphabet-chart noise [\#1118](https://github.com/TigreGotico/orthography2ipa/pull/1118) ([JarbasAl](https://github.com/JarbasAl))
 - fix\(tru\): map Gamal Garshuni, diagnose gold as mostly real words [\#1117](https://github.com/TigreGotico/orthography2ipa/pull/1117) ([JarbasAl](https://github.com/JarbasAl))
 
-## [7.79.14a3](https://github.com/TigreGotico/orthography2ipa/tree/7.79.14a3) (2026-08-24)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.15a1...7.79.14a3)
-
 ## [7.79.15a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.15a1) (2026-08-24)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.14a2...7.79.15a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.14a3...7.79.15a1)
+
+## [7.79.14a3](https://github.com/TigreGotico/orthography2ipa/tree/7.79.14a3) (2026-08-24)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.14a2...7.79.14a3)
 
 ## [7.79.14a2](https://github.com/TigreGotico/orthography2ipa/tree/7.79.14a2) (2026-08-24)
 
@@ -663,7 +675,6 @@
 **Merged pull requests:**
 
 - fix\(xh\): syllabic nasal of the class 1/3 prefix, the prenasalised labial series, and the depressor nasal digraphs [\#1049](https://github.com/TigreGotico/orthography2ipa/pull/1049) ([JarbasAl](https://github.com/JarbasAl))
-- fix\(guw\): nasalise /j/ before a nasal vowel and complete the labialised series [\#1047](https://github.com/TigreGotico/orthography2ipa/pull/1047) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.76.23a1](https://github.com/TigreGotico/orthography2ipa/tree/7.76.23a1) (2026-08-23)
 
