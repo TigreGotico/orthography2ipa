@@ -1240,23 +1240,32 @@ def test_ab_modifier_letters_form_digraphs():
 
     гьы/гәы is the minimal pair: the same base ⟨г⟩, two different modifiers.
     """
-    assert _bare("ab", "гьы") == "ɡʲɨ"
-    assert _bare("ab", "гәы") == "ɡʷɨ"
-    assert _bare("ab", "шьы") == "ʃɨ"
-    assert _bare("ab", "шәы") == "ʃʷɨ"
-    assert _bare("ab", "ҟәы") == "qʷʼɨ"
+    assert _bare("ab", "гьы") == "ɡʲə"
+    assert _bare("ab", "гәы") == "ɡʷə"
+    assert _bare("ab", "шьы") == "ʃə"
+    assert _bare("ab", "шәы") == "ʃʷə"
+    assert _bare("ab", "ҟәы") == "qʷʼə"
 
 
 def test_ab_two_phonemic_vowels():
-    """Only /ɑ/ and /ɨ/ are phonemic; ⟨ы⟩ is [ɨ] and ⟨а⟩ is [ɑ].
+    """Only /a/ and /ə/ are phonemic; ⟨ы⟩ is /ə/ and ⟨а⟩ is /a/.
 
-    ab notes: "Only two vowels are phonemic, /ɑ/ and /ɨ/; ⟨е о и у⟩ historically
-    represent /ɑj ɑw jɨ wɨ/ sequences and are mapped to their surface values."
+    ab notes: "Only two vowels are phonemic, /a/ and /ə/ (begus2021 §2.2.3: the
+    Northwest Caucasian vertical system is 'commonly described as /ə/, /a/';
+    andersson2023 transcribes the language name /apʰsaʃʷa/)."
 
-    аԥсшәа carries the /ɑ/ at both edges; the digraph tests above carry the /ɨ/.
+    Beguš 2021 (doi:10.1093/oxfordhb/9780190690694.013.18) §2.2.3: the NWC
+    vertical vowel system is "limited to two or three vocalic phonemes,
+    commonly described as /ə/, /a/". The alphabet-table notation /ɑ ɨ/ this
+    spec used before is not the notation any fetched description of Abkhaz
+    uses, and the independent wikipron ab gold writes ⟨a⟩ 129 times against
+    ⟨ɑ⟩ 3.
+
+    аԥсшәа carries the /a/ at both edges; the digraph tests above carry /ə/.
     """
     out = _bare("ab", "аԥсшәа")
-    assert out.startswith("ɑ") and out.endswith("ɑ")
+    assert out.startswith("a") and out.endswith("a")
+    assert _bare("ab", "ы") == "ə"
 
 
 def test_ab_velar_stops_are_a_three_way_series():
@@ -1268,11 +1277,11 @@ def test_ab_velar_stops_are_a_three_way_series():
 
     The velar triple is the minimal set: the same place, three laryngeal values.
     """
-    assert _bare("ab", "гы") == "ɡɨ"
-    assert _bare("ab", "қы") == "kʰɨ"
-    assert _bare("ab", "кы") == "kʼɨ"
-    assert _bare("ab", "қьы") == "kʲʰɨ"
-    assert _bare("ab", "қәы") == "kʷʰɨ"
+    assert _bare("ab", "гы") == "ɡə"
+    assert _bare("ab", "қы") == "kʰə"
+    assert _bare("ab", "кы") == "kʼə"
+    assert _bare("ab", "қьы") == "kʲʰə"
+    assert _bare("ab", "қәы") == "kʷʰə"
 
 
 def test_ab_velar_aspirate_values_are_declared_phonemes():
@@ -1282,7 +1291,7 @@ def test_ab_velar_aspirate_values_are_declared_phonemes():
 
     Scoped to the velar aspirate series only: the ``phonemes`` list uses a
     different IPA notation from the grapheme table for roughly two dozen
-    other segments (e.g. ``ä``/``ʓ``/``t̠ʆ`` vs. the table's ``ɑ``/``d͡ʑ``/
+    other segments (e.g. ``ä``/``ʓ``/``t̠ʆ`` vs. the table's ``a``/``d͡ʑ``/
     ``t͡ɕ``), a known inventory-notation split that is follow-up work, not
     something this test can enforce generically.
     """
@@ -1306,10 +1315,10 @@ def test_ab_pre_1996_letter_forms_read_as_their_modern_equivalents():
     аҧсуа/аԥсуа 'Abkhaz (person)' is the same word in the two spellings.
     ⟨ҕь⟩ parallels the modern palatalised ⟨ӷь⟩ /ʁʲ/.
     """
-    assert _bare("ab", "аҧсуа") == _bare("ab", "аԥсуа") == "ɑpʰswɑ"
-    assert _bare("ab", "ҕы") == _bare("ab", "ӷы") == "ʁɨ"
-    assert _bare("ab", "ӄы") == _bare("ab", "қы") == "kʰɨ"
-    assert _bare("ab", "ҕьы") == _bare("ab", "ӷьы") == "ʁʲɨ"
+    assert _bare("ab", "аҧсуа") == _bare("ab", "аԥсуа") == "apʰswa"
+    assert _bare("ab", "ҕы") == _bare("ab", "ӷы") == "ʁə"
+    assert _bare("ab", "ӄы") == _bare("ab", "қы") == "kʰə"
+    assert _bare("ab", "ҕьы") == _bare("ab", "ӷьы") == "ʁʲə"
 
 
 # ===========================================================================

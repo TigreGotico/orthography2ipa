@@ -1855,6 +1855,33 @@ def load_vox_communis(lang: str, limit: int) -> List[Tuple[str, str]]:
     docs/comparison.md — alongside XPF/Charsiu, so a disagreement here
     measures divergence from a competitor's output. Directional signal
     only; can never gate a regression or a tier promotion.
+
+    ``ab`` IS WEAKER STILL, and the tier cannot say so. Epitran ships no
+    Abkhaz map at all (epitran 1.35.2 ``epitran/data/map/``: 161 maps, 14
+    Cyrillic, nearest Northwest Caucasian ``kbd-Cyrl`` for Kabardian), so
+    the "epitran" in this row's label is not literally true — the ab phone
+    tier came from XPF, Charsiu or a custom lexicon, unattributed. More
+    importantly the gold cannot express the contrast Abkhaz is built on.
+    Measured over the cached TSV: 44,279 of 76,464 word types (57.9%) are
+    ``spn`` rather than a transcription, and eight letters are at 100%
+    ``spn`` — ⟨ә⟩ (30,743 types), ⟨ԥ⟩ (7,984), ⟨қ⟩ (7,058), ⟨ӡ⟩ (5,024),
+    ⟨ҩ⟩ (4,035), ⟨ҿ⟩ (2,678), ⟨ӷ⟩ (1,741), ⟨џ⟩ (811). ⟨ә⟩ U+04D9 is the
+    orthography's LABIALISATION modifier letter, so every labialised
+    spelling is a coverage hole, and the 32,185 scoreable types draw on 35
+    distinct phone symbols with no /ʷ/ among them — in a language that
+    contrasts ~58 consonants against two vowels largely by labialisation
+    and palatalisation (Beguš 2021,
+    doi:10.1093/oxfordhb/9780190690694.013.18, §2.2.1).
+
+    No ``PROVENANCE_BY_LANG`` override is applied, deliberately. The tier
+    lattice has no rung BELOW a competitor's output: ``machine-generated``
+    reads as the weakest tier in docs/benchmarks.md but is a QUALIFYING one
+    (``can_gate_promotion`` is True for it and False for
+    ``epitran-derived``), so overriding ``ab`` down to it would hand a
+    gating vote to the least trustworthy row on the board. Leaving the
+    dataset-wide tier in place keeps the row non-qualifying, which is the
+    outcome the measurements argue for; the inaccurate half of the label is
+    corrected here in prose instead.
     """
     fname = _VOX_COMMUNIS_FILES[lang] + ".tsv"
     text = _fetch(_VOX_COMMUNIS_BASE + fname, f"vox_communis_{fname}")

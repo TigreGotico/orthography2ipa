@@ -889,14 +889,22 @@ def test_ab_labialisation_modifier_forms_one_grapheme():
     """"the modifier letters ⟨ь⟩ (palatalisation) and ⟨ә⟩ U+04D9
     (labialisation) combine with a base consonant to spell a distinct phoneme
     (... шә /ʃʷ/ ...), so every such digraph is ... matched by maximal munch
-    ahead of the bare letter."  аԥсшәа 'Abkhaz (language)' ends in [ʃʷɑ]."""
-    assert G2P("ab").transcribe_word("аԥсшәа") == "ɑpʰsʃʷɑ"
+    ahead of the bare letter."  аԥсшәа 'Abkhaz (language)' ends in [ʃʷa].
+
+    The JIPA Illustration of Abkhaz (Andersson, Vaux & Pysipa 2023,
+    doi:10.1017/S0025100320000390) transcribes the same word /apʰsaʃʷa/ in the
+    Cwyzhy dialect — the same aspirate, the same labialised sibilant."""
+    assert G2P("ab").transcribe_word("аԥсшәа") == "apʰsʃʷa"
 
 
 def test_ab_bare_a_is_the_open_vowel():
-    """"Only two vowels are phonemic, /ɑ/ and /ɨ/."  аԥсуа 'Abkhaz (person)'
-    shows ⟨а⟩ = /ɑ/, with ⟨у⟩ taking its surface glide value."""
-    assert G2P("ab").transcribe_word("аԥсуа") == "ɑpʰswɑ"
+    """"Only two vowels are phonemic, /a/ and /ə/."  аԥсуа 'Abkhaz (person)'
+    shows ⟨а⟩ = /a/, with ⟨у⟩ taking its surface glide value.
+
+    Beguš 2021 (doi:10.1093/oxfordhb/9780190690694.013.18) §2.2.3: the
+    Northwest Caucasian vertical vowel system is "commonly described as /ə/,
+    /a/"."""
+    assert G2P("ab").transcribe_word("аԥсуа") == "apʰswa"
 
 
 # ---------------------------------------------------------------------------
