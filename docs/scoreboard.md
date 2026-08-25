@@ -623,7 +623,7 @@ A row's `N` is its sample size in scored words, and it is not cosmetic: below ro
 | tr | ipa_childes | 2748 | 0.1372 | 0.1077 | 0.1065 | 0.3934 | 0.3937 | [0.1328, 0.1419] | 0.3654 | research | espeak-derived |
 | tr | vox_communis | 47013 | 0.0399 | 0.0051 | 0.0015 | 0.9505 | 0.9850 | [0.0394, 0.0405] | 0.6869 | research | epitran-derived |
 | tr | wikipron | 11579 | 0.1230 | 0.0817 | 0.0760 | 0.6026 | 0.6329 | [0.1202, 0.1257] | 0.4477 | research | crowd-scraped |
-| tru | wikipron | 168 | 0.4799 | 0.4799 | 0.4799 | 0.0000 | 0.0000 | [0.4610, 0.4987] | 0.0000 | research | crowd-scraped |
+| tru | wikipron | 168 | 0.3789 | 0.3522 | 0.3522 | 0.0238 | 0.0238 | [0.3552, 0.4030] | 0.0179 | research | crowd-scraped |
 | tt | vox_communis | 22220 | 0.3708 | 0.3238 | 0.3096 | 0.0545 | 0.0849 | [0.3687, 0.3727] | 0.0199 | research | epitran-derived |
 | twf | wikipron | 135 | 0.0240 | 0.0221 | 0.0221 | 0.9111 | 0.9111 | [0.0103, 0.0412] | 0.8963 | research | crowd-scraped |
 | tzm | wikipron | 658 | 0.0160 | 0.0160 | 0.0160 | 0.9483 | 0.9483 | [0.0101, 0.0225] | 0.9483 | research | crowd-scraped |
