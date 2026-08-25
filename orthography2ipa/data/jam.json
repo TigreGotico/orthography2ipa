@@ -6,6 +6,12 @@
   "script_type": "alphabet",
   "quality": "research",
   "graphemes": {
+    "ky": [
+      "kʲ"
+    ],
+    "gy": [
+      "ɡʲ"
+    ],
     "ii": [
       "iː"
     ],
@@ -110,6 +116,12 @@
     ]
   },
   "allophones": {
+    "kʲ": [
+      "kʲ"
+    ],
+    "ɡʲ": [
+      "ɡʲ"
+    ],
     "iː": [
       "iː"
     ],
@@ -239,7 +251,7 @@
       "notes": "Yoruba substrate: de 'to be (at a location)' < Yoruba (Cassidy & Le Page 1980; en.wikipedia.org/wiki/Jamaican_Patois)."
     }
   ],
-  "notes": "Jamaican Patois (Jumiekan Kryuol) written in the Cassidy/JLU orthography (Cassidy 1961; standardised by the Jamaican Language Unit, UWI Mona, 2002). Phonemic by design: short vowels i e a o u; long vowels doubled (ii, aa, uu); diphthongs <ie> <uo> <ai> <ou>; <ch>=/tʃ/, <j>=/dʒ/, <sh>=/ʃ/, <zh>=/ʒ/, <ng>=/ŋ/. Nasal vowels are written with a following -hn (e.g. kyaahn); that convention and the palatalised <ky>/<gy> onsets are not modelled here. /h/ is variable across Jamaica. Note: much Patois is also written in ad-hoc English-based spelling, which this spec does NOT cover — Cassidy/JLU input is assumed.",
+  "notes": "Jamaican Patois (Jumiekan Kryuol) written in the Cassidy/JLU orthography (Cassidy 1961; standardised by the Jamaican Language Unit, UWI Mona, 2002). Phonemic by design: short vowels i e a o u; long vowels doubled (ii, aa, uu); diphthongs <ie> <uo> <ai> <ou>; <ch>=/tʃ/, <j>=/dʒ/, <sh>=/ʃ/, <zh>=/ʒ/, <ng>=/ŋ/. Nasal vowels are written with a following -hn (e.g. kyaahn); that convention is not modelled here. <ky> and <gy> are read as the single palatalised velars [kʲ] [ɡʲ]: Harry 2006 derives [ɡʲaːd] 'guard' and [kʲuː] by palatalisation of a velar obstruent before a front-vowel + back-vowel sequence, and his 21-consonant inventory has no palatal stop. The palatal stops /c/ /ɟ/ of Cassidy & Le Page 1967/1980 are the older phonemic analysis of the same onsets and are superseded by that account. /h/ is variable across Jamaica. Note: much Patois is also written in ad-hoc English-based spelling, which this spec does NOT cover — Cassidy/JLU input is assumed.",
   "iso639_3": "jam",
   "glottolog_code": "jama1262",
   "wikidata_qid": "Q35939",
@@ -267,6 +279,16 @@
       "url": null,
       "pages": null,
       "notes": "The Cassidy/JLU standard orthography."
+    },
+    {
+      "id": "harry2006",
+      "author": "Harry, Otelemate G.",
+      "year": 2006,
+      "title": "Jamaican Creole (Illustrations of the IPA)",
+      "publisher": "Journal of the International Phonetic Association 36(1), 125-131",
+      "url": "https://doi.org/10.1017/S002510030600243X",
+      "pages": "126-127",
+      "notes": "Consonant inventory (p.126) and the Palatalisation section (p.127), which treats [c] [\u025f] [\u0272] as phonetic palatalised velars rather than phonemes."
     },
     {
       "id": "jampatois_wiki",
