@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.82.17a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.17a1) (2026-08-25)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.16a1...7.82.17a1)
+
+**Merged pull requests:**
+
+- fix\(engine\): let a rule triggered at a doubled consonant's own syllable boundary reach the half it applies to [\#1251](https://github.com/TigreGotico/orthography2ipa/pull/1251) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.82.16a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.16a1) (2026-08-25)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.15a1...7.82.16a1)
@@ -396,20 +404,20 @@
 
 ## [7.79.16a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.16a1) (2026-08-24)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.14a3...7.79.16a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.15a1...7.79.16a1)
 
 **Merged pull requests:**
 
 - feat: measure how much of a board row's gold is alphabet-chart noise [\#1118](https://github.com/TigreGotico/orthography2ipa/pull/1118) ([JarbasAl](https://github.com/JarbasAl))
 - fix\(tru\): map Gamal Garshuni, diagnose gold as mostly real words [\#1117](https://github.com/TigreGotico/orthography2ipa/pull/1117) ([JarbasAl](https://github.com/JarbasAl))
 
-## [7.79.14a3](https://github.com/TigreGotico/orthography2ipa/tree/7.79.14a3) (2026-08-24)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.15a1...7.79.14a3)
-
 ## [7.79.15a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.15a1) (2026-08-24)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.14a2...7.79.15a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.14a3...7.79.15a1)
+
+## [7.79.14a3](https://github.com/TigreGotico/orthography2ipa/tree/7.79.14a3) (2026-08-24)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.14a2...7.79.14a3)
 
 ## [7.79.14a2](https://github.com/TigreGotico/orthography2ipa/tree/7.79.14a2) (2026-08-24)
 
@@ -689,10 +697,6 @@
 ## [7.76.18a1](https://github.com/TigreGotico/orthography2ipa/tree/7.76.18a1) (2026-08-18)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.76.17a1...7.76.18a1)
-
-**Merged pull requests:**
-
-- fix: ground the Marathi spec in Marathi phonology, not Sanskrit orthography [\#1035](https://github.com/TigreGotico/orthography2ipa/pull/1035) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.76.17a1](https://github.com/TigreGotico/orthography2ipa/tree/7.76.17a1) (2026-08-18)
 
