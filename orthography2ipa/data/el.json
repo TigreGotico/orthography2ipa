@@ -492,6 +492,7 @@
   "glottolog_code": "mode1248",
   "iso639_3": "ell",
   "stress": {
+    "constrain_mark_onsets": false,
     "default_position": -2,
     "final_stress_endings": [],
     "penult_stress_endings": [],
