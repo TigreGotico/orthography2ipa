@@ -67,7 +67,7 @@
       "p"
     ],
     "r": [
-      "r"
+      "ɾ"
     ],
     "s": [
       "s"
@@ -188,17 +188,26 @@
     "l": [
       "l"
     ],
-    "r": [
-      "r"
+    "ɾ": [
+      "ɾ"
     ],
     "j": [
       "j"
     ],
     "w": [
       "w"
+    ],
+    "ẽ": [
+      "ẽ"
+    ],
+    "õ": [
+      "õ"
+    ],
+    "ŋ": [
+      "ŋ"
     ]
   },
-  "notes": "Nupe (Nupe-Nupe-Tako), a Nupoid (Volta-Niger, Atlantic-Congo) language of Niger and Kwara States, central Nigeria. ORTHOGRAPHY: Latin-based, 24 base letters (a b c d e f g h i j k l m n o p r s t u v w y z) plus the digraphs dz, gb, kp, sh, ts and zh. Letter values that differ from a naive IPA reading: ⟨c⟩ = /t͡ʃ/, ⟨j⟩ = /d͡ʒ/, ⟨y⟩ = /j/, ⟨sh⟩ = /ʃ/, ⟨zh⟩ = /ʒ/, ⟨ts⟩ = /t͡s/, ⟨dz⟩ = /d͡z/, ⟨gb⟩ = /ɡ͡b/, ⟨kp⟩ = /k͡p/; ⟨r⟩ is a trill/tap. Vowels: oral /i e a o u/ with nasal counterparts /ĩ ã ũ/. LABIALISATION AND PALATALISATION: Nupe has extensive secondary articulation, written consonant + ⟨w⟩ and consonant + ⟨y⟩. These are NOT enumerated as separate grapheme keys: the sources consulted do not fix a closed list of Cw / Cy digraphs, so ⟨w⟩ and ⟨y⟩ are transcribed as the glides /w/ and /j/, which under-specifies Cʷ/Cʲ. NASAL VOWELS: written vowel + ⟨n⟩ (an = /ã/, in = /ĩ/, un = /ũ/), homographic with a vowel followed by consonantal /n/; without lexical or syllable-structure context the mapping cannot disambiguate, so ⟨n⟩ always yields /n/ and nasal vowels are under-generated. INPUT CONTRACT: input is assumed to be the modern Latin (NOT Ajami) Nupe orthography, one word per token, already normalised. TONE: Nupe is tonal — three level tones plus falling and rising contours. Tone is marked with diacritics in dictionaries and careful writing (´ high, ` low, unmarked mid, ˆ/ˇ contours) but is routinely omitted in everyday text. This spec transcribes SEGMENTS ONLY: tone diacritics are not converted into tone marks, and where tone is unwritten it is NOT RECOVERABLE from the orthography.",
+  "notes": "Nupe (Nupe-Nupe-Tako), a Nupoid (Volta-Niger, Atlantic-Congo) language of Niger and Kwara States, central Nigeria. ORTHOGRAPHY: Latin-based, 24 base letters (a b c d e f g h i j k l m n o p r s t u v w y z) plus the digraphs dz, gb, kp, sh, ts and zh. Letter values that differ from a naive IPA reading: 〈c〉 = /t͡ʃ/, 〈j〉 = /d͡ʒ/, 〈y〉 = /j/, 〈sh〉 = /ʃ/, 〈zh〉 = /ʒ/, 〈ts〉 = /t͡s/, 〈dz〉 = /d͡z/, 〈gb〉 = /ɡ͡b/, 〈kp〉 = /k͡p/. Vowels: oral /i e a o u/ with nasal counterparts /ĩ ẽ ã õ ũ/. RHOTIC: 〈r〉 is realised as the tap [ɾ] throughout, never the trill (Kawu 2002; Blench 2013 Nupoid overview §2), so the grapheme maps directly to /ɾ/. SECONDARY ARTICULATION (allophone_rules): Nupe has extensive labialisation and palatalisation, written consonant + 〈w〉 / consonant + 〈y〉 (Kawu 2002, ch. 3-4). A consonant immediately followed by 〈w〉/〈y〉 surfaces labialised/palatalised and the glide is absorbed (dagwa [dàɡʷā], egya [ēɡʲà]); an intervocalic 〈w〉/〈y〉 (preceded by a vowel) stays the plain glide, since it is syllabifying between two vowels rather than modifying a preceding consonant (aduwa [àdúwā], eya [èjà]). NASAL CONSONANTS AND VOWELS (allophone_rules): 〈n〉/〈m〉 split three ways by context (Kawu 2002 on Nupe nasal vowels and the syllabic nasal; Wiktionary Nupe entry guidelines): (1) before a vowel, the nasal stays a plain onset consonant and the FOLLOWING vowel phonetically nasalises by post-nasal spread (ani [ānĩ́], namba [nã̀ŋ̀bà]); (2) word-final, or immediately before another nasal consonant, the nasal is silent and the PRECEDING vowel nasalises instead (dazan [dāzã̀], tanmako [tã̀mā̄kō]); (3) before an oral consonant elsewhere, the nasal surfaces as a tone-bearing syllabic nasal [ŋ] and the preceding vowel stays oral (dangi [dàŋ̀ɡī], nda [ń̀dá]). TONE: Nupe is tonal -- three level tones plus falling and rising contours. Tone is marked with diacritics in dictionaries and careful writing (´ high, ` low, unmarked mid, ˆ/ˇ contours) but is routinely omitted in everyday text. This spec transcribes SEGMENTS ONLY: tone diacritics are not converted into tone marks, and where tone is unwritten it is NOT RECOVERABLE from the orthography. This is a MEASURED ceiling, not a theoretical one: in the shipped wikipron/nup gold, 48 distinct Latin spellings recur with two or more different gold transcriptions that differ only in tone/nasalisation diacritics (e.g. ebe, edu, elo, ewo), so those spellings are provably unrecoverable from segments alone. Scoring only the real-word subset of that gold (excluding the alphabet-chart headwords WikiPron also carries), the segmental engine reaches PER 0.4679; folding tone diacritics out of both the hypothesis and the gold before scoring (same convention as the zom/Zou tone ceiling) drops that to PER 0.0353, which is the honest measure of how well the segmental rules perform once the genuinely unrecoverable part of the signal is set aside. INPUT CONTRACT: input is assumed to be the modern Latin (NOT Ajami) Nupe orthography, one word per token, already normalised.",
   "sources": [
     {
       "id": "nupe_wiki",
@@ -230,6 +239,16 @@
       "url": "https://web.archive.org/web/20150421033828/http://www.rogerblench.info/Language/Niger-Congo/VN/Nupoid/Nupe%20oral%20literature%20genres.pdf",
       "pages": "5-6",
       "notes": "Documents the Latin and Ajami writing traditions of Nupe (cited by the Wikipedia article for the script statement)."
+    },
+    {
+      "id": "kawu_2002_dissertation",
+      "author": "Kawu, Ahmadu Ndanusa",
+      "year": 2002,
+      "title": "Variation in Nupe Phonology and Morphology",
+      "publisher": "Rutgers, The State University of New Jersey (PhD dissertation)",
+      "url": "https://rucore.libraries.rutgers.edu/rutgers-lib/26097/",
+      "pages": null,
+      "notes": "Doctoral dissertation on Nupe phonology and morphology: labialisation, palatalisation, nasalisation, assimilation and glide formation and their interaction with Nupe prosody. Basis for the secondary-articulation and nasal-consonant allophone_rules here."
     }
   ],
   "wikipedia": [
@@ -242,6 +261,849 @@
       "role": "parent",
       "weight": 1.0,
       "notes": "Atlantic-Congo — the classification node this language sits under."
+    }
+  ],
+  "allophone_rules": [
+    {
+      "id": "NUP_LABIAL_b",
+      "phonemes": [
+        "b"
+      ],
+      "surface": "bʷ",
+      "followed_by_phoneme": [
+        "w"
+      ],
+      "notes": "Secondary labialisation: a consonant immediately followed by orthographic <w> surfaces with rounding and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe labialised consonants; cf. Blench 2013 Nupoid overview). Contrast intervocalic <w>, which stays the plain glide /w/ (e.g. aduwa [àdúwā])."
+    },
+    {
+      "id": "NUP_LABIAL_t͡ʃ",
+      "phonemes": [
+        "t͡ʃ"
+      ],
+      "surface": "t͡ʃʷ",
+      "followed_by_phoneme": [
+        "w"
+      ],
+      "notes": "Secondary labialisation: a consonant immediately followed by orthographic <w> surfaces with rounding and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe labialised consonants; cf. Blench 2013 Nupoid overview). Contrast intervocalic <w>, which stays the plain glide /w/ (e.g. aduwa [àdúwā])."
+    },
+    {
+      "id": "NUP_LABIAL_d",
+      "phonemes": [
+        "d"
+      ],
+      "surface": "dʷ",
+      "followed_by_phoneme": [
+        "w"
+      ],
+      "notes": "Secondary labialisation: a consonant immediately followed by orthographic <w> surfaces with rounding and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe labialised consonants; cf. Blench 2013 Nupoid overview). Contrast intervocalic <w>, which stays the plain glide /w/ (e.g. aduwa [àdúwā])."
+    },
+    {
+      "id": "NUP_LABIAL_d͡z",
+      "phonemes": [
+        "d͡z"
+      ],
+      "surface": "d͡zʷ",
+      "followed_by_phoneme": [
+        "w"
+      ],
+      "notes": "Secondary labialisation: a consonant immediately followed by orthographic <w> surfaces with rounding and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe labialised consonants; cf. Blench 2013 Nupoid overview). Contrast intervocalic <w>, which stays the plain glide /w/ (e.g. aduwa [àdúwā])."
+    },
+    {
+      "id": "NUP_LABIAL_f",
+      "phonemes": [
+        "f"
+      ],
+      "surface": "fʷ",
+      "followed_by_phoneme": [
+        "w"
+      ],
+      "notes": "Secondary labialisation: a consonant immediately followed by orthographic <w> surfaces with rounding and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe labialised consonants; cf. Blench 2013 Nupoid overview). Contrast intervocalic <w>, which stays the plain glide /w/ (e.g. aduwa [àdúwā])."
+    },
+    {
+      "id": "NUP_LABIAL_ɡ",
+      "phonemes": [
+        "ɡ"
+      ],
+      "surface": "ɡʷ",
+      "followed_by_phoneme": [
+        "w"
+      ],
+      "notes": "Secondary labialisation: a consonant immediately followed by orthographic <w> surfaces with rounding and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe labialised consonants; cf. Blench 2013 Nupoid overview). Contrast intervocalic <w>, which stays the plain glide /w/ (e.g. aduwa [àdúwā])."
+    },
+    {
+      "id": "NUP_LABIAL_ɡ͡b",
+      "phonemes": [
+        "ɡ͡b"
+      ],
+      "surface": "ɡ͡bʷ",
+      "followed_by_phoneme": [
+        "w"
+      ],
+      "notes": "Secondary labialisation: a consonant immediately followed by orthographic <w> surfaces with rounding and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe labialised consonants; cf. Blench 2013 Nupoid overview). Contrast intervocalic <w>, which stays the plain glide /w/ (e.g. aduwa [àdúwā])."
+    },
+    {
+      "id": "NUP_LABIAL_h",
+      "phonemes": [
+        "h"
+      ],
+      "surface": "hʷ",
+      "followed_by_phoneme": [
+        "w"
+      ],
+      "notes": "Secondary labialisation: a consonant immediately followed by orthographic <w> surfaces with rounding and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe labialised consonants; cf. Blench 2013 Nupoid overview). Contrast intervocalic <w>, which stays the plain glide /w/ (e.g. aduwa [àdúwā])."
+    },
+    {
+      "id": "NUP_LABIAL_d͡ʒ",
+      "phonemes": [
+        "d͡ʒ"
+      ],
+      "surface": "d͡ʒʷ",
+      "followed_by_phoneme": [
+        "w"
+      ],
+      "notes": "Secondary labialisation: a consonant immediately followed by orthographic <w> surfaces with rounding and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe labialised consonants; cf. Blench 2013 Nupoid overview). Contrast intervocalic <w>, which stays the plain glide /w/ (e.g. aduwa [àdúwā])."
+    },
+    {
+      "id": "NUP_LABIAL_k",
+      "phonemes": [
+        "k"
+      ],
+      "surface": "kʷ",
+      "followed_by_phoneme": [
+        "w"
+      ],
+      "notes": "Secondary labialisation: a consonant immediately followed by orthographic <w> surfaces with rounding and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe labialised consonants; cf. Blench 2013 Nupoid overview). Contrast intervocalic <w>, which stays the plain glide /w/ (e.g. aduwa [àdúwā])."
+    },
+    {
+      "id": "NUP_LABIAL_k͡p",
+      "phonemes": [
+        "k͡p"
+      ],
+      "surface": "k͡pʷ",
+      "followed_by_phoneme": [
+        "w"
+      ],
+      "notes": "Secondary labialisation: a consonant immediately followed by orthographic <w> surfaces with rounding and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe labialised consonants; cf. Blench 2013 Nupoid overview). Contrast intervocalic <w>, which stays the plain glide /w/ (e.g. aduwa [àdúwā])."
+    },
+    {
+      "id": "NUP_LABIAL_l",
+      "phonemes": [
+        "l"
+      ],
+      "surface": "lʷ",
+      "followed_by_phoneme": [
+        "w"
+      ],
+      "notes": "Secondary labialisation: a consonant immediately followed by orthographic <w> surfaces with rounding and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe labialised consonants; cf. Blench 2013 Nupoid overview). Contrast intervocalic <w>, which stays the plain glide /w/ (e.g. aduwa [àdúwā])."
+    },
+    {
+      "id": "NUP_LABIAL_m",
+      "phonemes": [
+        "m"
+      ],
+      "surface": "mʷ",
+      "followed_by_phoneme": [
+        "w"
+      ],
+      "notes": "Secondary labialisation: a consonant immediately followed by orthographic <w> surfaces with rounding and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe labialised consonants; cf. Blench 2013 Nupoid overview). Contrast intervocalic <w>, which stays the plain glide /w/ (e.g. aduwa [àdúwā])."
+    },
+    {
+      "id": "NUP_LABIAL_n",
+      "phonemes": [
+        "n"
+      ],
+      "surface": "nʷ",
+      "followed_by_phoneme": [
+        "w"
+      ],
+      "notes": "Secondary labialisation: a consonant immediately followed by orthographic <w> surfaces with rounding and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe labialised consonants; cf. Blench 2013 Nupoid overview). Contrast intervocalic <w>, which stays the plain glide /w/ (e.g. aduwa [àdúwā])."
+    },
+    {
+      "id": "NUP_LABIAL_p",
+      "phonemes": [
+        "p"
+      ],
+      "surface": "pʷ",
+      "followed_by_phoneme": [
+        "w"
+      ],
+      "notes": "Secondary labialisation: a consonant immediately followed by orthographic <w> surfaces with rounding and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe labialised consonants; cf. Blench 2013 Nupoid overview). Contrast intervocalic <w>, which stays the plain glide /w/ (e.g. aduwa [àdúwā])."
+    },
+    {
+      "id": "NUP_LABIAL_ɾ",
+      "phonemes": [
+        "ɾ"
+      ],
+      "surface": "ɾʷ",
+      "followed_by_phoneme": [
+        "w"
+      ],
+      "notes": "Secondary labialisation: a consonant immediately followed by orthographic <w> surfaces with rounding and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe labialised consonants; cf. Blench 2013 Nupoid overview). Contrast intervocalic <w>, which stays the plain glide /w/ (e.g. aduwa [àdúwā])."
+    },
+    {
+      "id": "NUP_LABIAL_s",
+      "phonemes": [
+        "s"
+      ],
+      "surface": "sʷ",
+      "followed_by_phoneme": [
+        "w"
+      ],
+      "notes": "Secondary labialisation: a consonant immediately followed by orthographic <w> surfaces with rounding and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe labialised consonants; cf. Blench 2013 Nupoid overview). Contrast intervocalic <w>, which stays the plain glide /w/ (e.g. aduwa [àdúwā])."
+    },
+    {
+      "id": "NUP_LABIAL_ʃ",
+      "phonemes": [
+        "ʃ"
+      ],
+      "surface": "ʃʷ",
+      "followed_by_phoneme": [
+        "w"
+      ],
+      "notes": "Secondary labialisation: a consonant immediately followed by orthographic <w> surfaces with rounding and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe labialised consonants; cf. Blench 2013 Nupoid overview). Contrast intervocalic <w>, which stays the plain glide /w/ (e.g. aduwa [àdúwā])."
+    },
+    {
+      "id": "NUP_LABIAL_t",
+      "phonemes": [
+        "t"
+      ],
+      "surface": "tʷ",
+      "followed_by_phoneme": [
+        "w"
+      ],
+      "notes": "Secondary labialisation: a consonant immediately followed by orthographic <w> surfaces with rounding and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe labialised consonants; cf. Blench 2013 Nupoid overview). Contrast intervocalic <w>, which stays the plain glide /w/ (e.g. aduwa [àdúwā])."
+    },
+    {
+      "id": "NUP_LABIAL_t͡s",
+      "phonemes": [
+        "t͡s"
+      ],
+      "surface": "t͡sʷ",
+      "followed_by_phoneme": [
+        "w"
+      ],
+      "notes": "Secondary labialisation: a consonant immediately followed by orthographic <w> surfaces with rounding and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe labialised consonants; cf. Blench 2013 Nupoid overview). Contrast intervocalic <w>, which stays the plain glide /w/ (e.g. aduwa [àdúwā])."
+    },
+    {
+      "id": "NUP_LABIAL_v",
+      "phonemes": [
+        "v"
+      ],
+      "surface": "vʷ",
+      "followed_by_phoneme": [
+        "w"
+      ],
+      "notes": "Secondary labialisation: a consonant immediately followed by orthographic <w> surfaces with rounding and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe labialised consonants; cf. Blench 2013 Nupoid overview). Contrast intervocalic <w>, which stays the plain glide /w/ (e.g. aduwa [àdúwā])."
+    },
+    {
+      "id": "NUP_LABIAL_z",
+      "phonemes": [
+        "z"
+      ],
+      "surface": "zʷ",
+      "followed_by_phoneme": [
+        "w"
+      ],
+      "notes": "Secondary labialisation: a consonant immediately followed by orthographic <w> surfaces with rounding and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe labialised consonants; cf. Blench 2013 Nupoid overview). Contrast intervocalic <w>, which stays the plain glide /w/ (e.g. aduwa [àdúwā])."
+    },
+    {
+      "id": "NUP_LABIAL_ʒ",
+      "phonemes": [
+        "ʒ"
+      ],
+      "surface": "ʒʷ",
+      "followed_by_phoneme": [
+        "w"
+      ],
+      "notes": "Secondary labialisation: a consonant immediately followed by orthographic <w> surfaces with rounding and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe labialised consonants; cf. Blench 2013 Nupoid overview). Contrast intervocalic <w>, which stays the plain glide /w/ (e.g. aduwa [àdúwā])."
+    },
+    {
+      "id": "NUP_PALATAL_b",
+      "phonemes": [
+        "b"
+      ],
+      "surface": "bʲ",
+      "followed_by_phoneme": [
+        "j"
+      ],
+      "notes": "Secondary palatalisation: a consonant immediately followed by orthographic <y> surfaces with palatalisation and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe palatalised consonants). Contrast intervocalic <y>, which stays the plain glide /j/ (e.g. eya [èjà])."
+    },
+    {
+      "id": "NUP_PALATAL_t͡ʃ",
+      "phonemes": [
+        "t͡ʃ"
+      ],
+      "surface": "t͡ʃʲ",
+      "followed_by_phoneme": [
+        "j"
+      ],
+      "notes": "Secondary palatalisation: a consonant immediately followed by orthographic <y> surfaces with palatalisation and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe palatalised consonants). Contrast intervocalic <y>, which stays the plain glide /j/ (e.g. eya [èjà])."
+    },
+    {
+      "id": "NUP_PALATAL_d",
+      "phonemes": [
+        "d"
+      ],
+      "surface": "dʲ",
+      "followed_by_phoneme": [
+        "j"
+      ],
+      "notes": "Secondary palatalisation: a consonant immediately followed by orthographic <y> surfaces with palatalisation and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe palatalised consonants). Contrast intervocalic <y>, which stays the plain glide /j/ (e.g. eya [èjà])."
+    },
+    {
+      "id": "NUP_PALATAL_d͡z",
+      "phonemes": [
+        "d͡z"
+      ],
+      "surface": "d͡zʲ",
+      "followed_by_phoneme": [
+        "j"
+      ],
+      "notes": "Secondary palatalisation: a consonant immediately followed by orthographic <y> surfaces with palatalisation and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe palatalised consonants). Contrast intervocalic <y>, which stays the plain glide /j/ (e.g. eya [èjà])."
+    },
+    {
+      "id": "NUP_PALATAL_f",
+      "phonemes": [
+        "f"
+      ],
+      "surface": "fʲ",
+      "followed_by_phoneme": [
+        "j"
+      ],
+      "notes": "Secondary palatalisation: a consonant immediately followed by orthographic <y> surfaces with palatalisation and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe palatalised consonants). Contrast intervocalic <y>, which stays the plain glide /j/ (e.g. eya [èjà])."
+    },
+    {
+      "id": "NUP_PALATAL_ɡ",
+      "phonemes": [
+        "ɡ"
+      ],
+      "surface": "ɡʲ",
+      "followed_by_phoneme": [
+        "j"
+      ],
+      "notes": "Secondary palatalisation: a consonant immediately followed by orthographic <y> surfaces with palatalisation and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe palatalised consonants). Contrast intervocalic <y>, which stays the plain glide /j/ (e.g. eya [èjà])."
+    },
+    {
+      "id": "NUP_PALATAL_ɡ͡b",
+      "phonemes": [
+        "ɡ͡b"
+      ],
+      "surface": "ɡ͡bʲ",
+      "followed_by_phoneme": [
+        "j"
+      ],
+      "notes": "Secondary palatalisation: a consonant immediately followed by orthographic <y> surfaces with palatalisation and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe palatalised consonants). Contrast intervocalic <y>, which stays the plain glide /j/ (e.g. eya [èjà])."
+    },
+    {
+      "id": "NUP_PALATAL_h",
+      "phonemes": [
+        "h"
+      ],
+      "surface": "hʲ",
+      "followed_by_phoneme": [
+        "j"
+      ],
+      "notes": "Secondary palatalisation: a consonant immediately followed by orthographic <y> surfaces with palatalisation and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe palatalised consonants). Contrast intervocalic <y>, which stays the plain glide /j/ (e.g. eya [èjà])."
+    },
+    {
+      "id": "NUP_PALATAL_d͡ʒ",
+      "phonemes": [
+        "d͡ʒ"
+      ],
+      "surface": "d͡ʒʲ",
+      "followed_by_phoneme": [
+        "j"
+      ],
+      "notes": "Secondary palatalisation: a consonant immediately followed by orthographic <y> surfaces with palatalisation and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe palatalised consonants). Contrast intervocalic <y>, which stays the plain glide /j/ (e.g. eya [èjà])."
+    },
+    {
+      "id": "NUP_PALATAL_k",
+      "phonemes": [
+        "k"
+      ],
+      "surface": "kʲ",
+      "followed_by_phoneme": [
+        "j"
+      ],
+      "notes": "Secondary palatalisation: a consonant immediately followed by orthographic <y> surfaces with palatalisation and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe palatalised consonants). Contrast intervocalic <y>, which stays the plain glide /j/ (e.g. eya [èjà])."
+    },
+    {
+      "id": "NUP_PALATAL_k͡p",
+      "phonemes": [
+        "k͡p"
+      ],
+      "surface": "k͡pʲ",
+      "followed_by_phoneme": [
+        "j"
+      ],
+      "notes": "Secondary palatalisation: a consonant immediately followed by orthographic <y> surfaces with palatalisation and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe palatalised consonants). Contrast intervocalic <y>, which stays the plain glide /j/ (e.g. eya [èjà])."
+    },
+    {
+      "id": "NUP_PALATAL_l",
+      "phonemes": [
+        "l"
+      ],
+      "surface": "lʲ",
+      "followed_by_phoneme": [
+        "j"
+      ],
+      "notes": "Secondary palatalisation: a consonant immediately followed by orthographic <y> surfaces with palatalisation and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe palatalised consonants). Contrast intervocalic <y>, which stays the plain glide /j/ (e.g. eya [èjà])."
+    },
+    {
+      "id": "NUP_PALATAL_m",
+      "phonemes": [
+        "m"
+      ],
+      "surface": "mʲ",
+      "followed_by_phoneme": [
+        "j"
+      ],
+      "notes": "Secondary palatalisation: a consonant immediately followed by orthographic <y> surfaces with palatalisation and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe palatalised consonants). Contrast intervocalic <y>, which stays the plain glide /j/ (e.g. eya [èjà])."
+    },
+    {
+      "id": "NUP_PALATAL_n",
+      "phonemes": [
+        "n"
+      ],
+      "surface": "nʲ",
+      "followed_by_phoneme": [
+        "j"
+      ],
+      "notes": "Secondary palatalisation: a consonant immediately followed by orthographic <y> surfaces with palatalisation and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe palatalised consonants). Contrast intervocalic <y>, which stays the plain glide /j/ (e.g. eya [èjà])."
+    },
+    {
+      "id": "NUP_PALATAL_p",
+      "phonemes": [
+        "p"
+      ],
+      "surface": "pʲ",
+      "followed_by_phoneme": [
+        "j"
+      ],
+      "notes": "Secondary palatalisation: a consonant immediately followed by orthographic <y> surfaces with palatalisation and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe palatalised consonants). Contrast intervocalic <y>, which stays the plain glide /j/ (e.g. eya [èjà])."
+    },
+    {
+      "id": "NUP_PALATAL_ɾ",
+      "phonemes": [
+        "ɾ"
+      ],
+      "surface": "ɾʲ",
+      "followed_by_phoneme": [
+        "j"
+      ],
+      "notes": "Secondary palatalisation: a consonant immediately followed by orthographic <y> surfaces with palatalisation and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe palatalised consonants). Contrast intervocalic <y>, which stays the plain glide /j/ (e.g. eya [èjà])."
+    },
+    {
+      "id": "NUP_PALATAL_s",
+      "phonemes": [
+        "s"
+      ],
+      "surface": "sʲ",
+      "followed_by_phoneme": [
+        "j"
+      ],
+      "notes": "Secondary palatalisation: a consonant immediately followed by orthographic <y> surfaces with palatalisation and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe palatalised consonants). Contrast intervocalic <y>, which stays the plain glide /j/ (e.g. eya [èjà])."
+    },
+    {
+      "id": "NUP_PALATAL_ʃ",
+      "phonemes": [
+        "ʃ"
+      ],
+      "surface": "ʃʲ",
+      "followed_by_phoneme": [
+        "j"
+      ],
+      "notes": "Secondary palatalisation: a consonant immediately followed by orthographic <y> surfaces with palatalisation and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe palatalised consonants). Contrast intervocalic <y>, which stays the plain glide /j/ (e.g. eya [èjà])."
+    },
+    {
+      "id": "NUP_PALATAL_t",
+      "phonemes": [
+        "t"
+      ],
+      "surface": "tʲ",
+      "followed_by_phoneme": [
+        "j"
+      ],
+      "notes": "Secondary palatalisation: a consonant immediately followed by orthographic <y> surfaces with palatalisation and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe palatalised consonants). Contrast intervocalic <y>, which stays the plain glide /j/ (e.g. eya [èjà])."
+    },
+    {
+      "id": "NUP_PALATAL_t͡s",
+      "phonemes": [
+        "t͡s"
+      ],
+      "surface": "t͡sʲ",
+      "followed_by_phoneme": [
+        "j"
+      ],
+      "notes": "Secondary palatalisation: a consonant immediately followed by orthographic <y> surfaces with palatalisation and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe palatalised consonants). Contrast intervocalic <y>, which stays the plain glide /j/ (e.g. eya [èjà])."
+    },
+    {
+      "id": "NUP_PALATAL_v",
+      "phonemes": [
+        "v"
+      ],
+      "surface": "vʲ",
+      "followed_by_phoneme": [
+        "j"
+      ],
+      "notes": "Secondary palatalisation: a consonant immediately followed by orthographic <y> surfaces with palatalisation and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe palatalised consonants). Contrast intervocalic <y>, which stays the plain glide /j/ (e.g. eya [èjà])."
+    },
+    {
+      "id": "NUP_PALATAL_z",
+      "phonemes": [
+        "z"
+      ],
+      "surface": "zʲ",
+      "followed_by_phoneme": [
+        "j"
+      ],
+      "notes": "Secondary palatalisation: a consonant immediately followed by orthographic <y> surfaces with palatalisation and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe palatalised consonants). Contrast intervocalic <y>, which stays the plain glide /j/ (e.g. eya [èjà])."
+    },
+    {
+      "id": "NUP_PALATAL_ʒ",
+      "phonemes": [
+        "ʒ"
+      ],
+      "surface": "ʒʲ",
+      "followed_by_phoneme": [
+        "j"
+      ],
+      "notes": "Secondary palatalisation: a consonant immediately followed by orthographic <y> surfaces with palatalisation and the glide is absorbed (Kawu 2002, ch. 3-4, on Nupe palatalised consonants). Contrast intervocalic <y>, which stays the plain glide /j/ (e.g. eya [èjà])."
+    },
+    {
+      "id": "NUP_W_ABSORB",
+      "phonemes": [
+        "w"
+      ],
+      "surface": "",
+      "preceded_by": "consonant",
+      "notes": "The glide of a C+<w> sequence is absorbed once its rounding has been transferred to the preceding consonant (see NUP_LABIAL_*). An intervocalic <w> (preceded by a vowel) is untouched and stays the plain glide /w/."
+    },
+    {
+      "id": "NUP_Y_ABSORB",
+      "phonemes": [
+        "j"
+      ],
+      "surface": "",
+      "preceded_by": "consonant",
+      "notes": "The glide of a C+<y> sequence is absorbed once palatalisation has been transferred to the preceding consonant (see NUP_PALATAL_*). An intervocalic <y> (preceded by a vowel) is untouched and stays the plain glide /j/."
+    },
+    {
+      "id": "NUP_N_DELETE_FINAL",
+      "phonemes": [
+        "n"
+      ],
+      "surface": "",
+      "word_final": true,
+      "preceded_by": "vowel",
+      "notes": "Orthographic word-final <n>/<m> after a vowel marks vowel nasalisation and is itself silent (Wiktionary Nupe entry guidelines; Kawu 2002 on Nupe nasal vowels): dazan [dāzã̀], not [dāzàn]."
+    },
+    {
+      "id": "NUP_N_DELETE_PRENASAL",
+      "phonemes": [
+        "n"
+      ],
+      "surface": "",
+      "followed_by_phoneme": [
+        "n",
+        "m"
+      ],
+      "preceded_by": "vowel",
+      "notes": "A coda nasal immediately followed by another nasal consonant assimilates fully into it: the preceding vowel nasalises and the first nasal is silent (Kawu 2002 on Nupe nasal clusters): tanmako [tã̀mã̄kō], dinni [dĩ̀nĩ́]."
+    },
+    {
+      "id": "NUP_M_DELETE_FINAL",
+      "phonemes": [
+        "m"
+      ],
+      "surface": "",
+      "word_final": true,
+      "preceded_by": "vowel",
+      "notes": "Orthographic word-final <n>/<m> after a vowel marks vowel nasalisation and is itself silent (Wiktionary Nupe entry guidelines; Kawu 2002 on Nupe nasal vowels): dazan [dāzã̀], not [dāzàn]."
+    },
+    {
+      "id": "NUP_M_DELETE_PRENASAL",
+      "phonemes": [
+        "m"
+      ],
+      "surface": "",
+      "followed_by_phoneme": [
+        "n",
+        "m"
+      ],
+      "preceded_by": "vowel",
+      "notes": "A coda nasal immediately followed by another nasal consonant assimilates fully into it: the preceding vowel nasalises and the first nasal is silent (Kawu 2002 on Nupe nasal clusters): tanmako [tã̀mã̄kō], dinni [dĩ̀nĩ́]."
+    },
+    {
+      "id": "NUP_N_SYLLABIC",
+      "phonemes": [
+        "n"
+      ],
+      "surface": "ŋ",
+      "notes": "A coda nasal before an ORAL consonant surfaces as a tone-bearing syllabic nasal [ŋ], and the preceding vowel stays oral (Kawu 2002 on the Nupe syllabic/moraic nasal; Blench 2013 Nupoid overview): dangi [dàŋ̀ɡī], nda [ŋ̀dá].",
+      "followed_by_phoneme": [
+        "b",
+        "t͡ʃ",
+        "d",
+        "d͡z",
+        "f",
+        "ɡ",
+        "ɡ͡b",
+        "h",
+        "d͡ʒ",
+        "k",
+        "k͡p",
+        "l",
+        "m",
+        "n",
+        "p",
+        "ɾ",
+        "s",
+        "ʃ",
+        "t",
+        "t͡s",
+        "v",
+        "z",
+        "ʒ"
+      ]
+    },
+    {
+      "id": "NUP_M_SYLLABIC",
+      "phonemes": [
+        "m"
+      ],
+      "surface": "ŋ",
+      "notes": "A coda nasal before an ORAL consonant surfaces as a tone-bearing syllabic nasal [ŋ], and the preceding vowel stays oral (Kawu 2002 on the Nupe syllabic/moraic nasal; Blench 2013 Nupoid overview): dangi [dàŋ̀ɡī], nda [ŋ̀dá].",
+      "followed_by_phoneme": [
+        "b",
+        "t͡ʃ",
+        "d",
+        "d͡z",
+        "f",
+        "ɡ",
+        "ɡ͡b",
+        "h",
+        "d͡ʒ",
+        "k",
+        "k͡p",
+        "l",
+        "m",
+        "n",
+        "p",
+        "ɾ",
+        "s",
+        "ʃ",
+        "t",
+        "t͡s",
+        "v",
+        "z",
+        "ʒ"
+      ]
+    },
+    {
+      "id": "NUP_NASAL_SPREAD_A",
+      "phonemes": [
+        "a"
+      ],
+      "surface": "ã",
+      "preceded_by_phoneme": [
+        "n",
+        "m"
+      ],
+      "notes": "A vowel immediately after an onset nasal consonant phonetically nasalises (post-nasal spread), a general Niger-Congo phonetic detail also attested for Nupe (Kawu 2002; Ladefoged & Maddieson 1996 on post-nasal vowel nasalisation): ani [ānĩ́], namba [nã̀ŋ̀bà]."
+    },
+    {
+      "id": "NUP_NASAL_FINAL_A",
+      "phonemes": [
+        "a"
+      ],
+      "surface": "ã",
+      "followed_by_phoneme": [
+        "n",
+        "m"
+      ],
+      "followed_by_2": "word_boundary",
+      "notes": "A vowel spelled with a following word-final <n>/<m> is nasalised; the nasal consonant letter is itself silent (orthographic nasal-vowel marking, see NUP_N_DELETE_FINAL): egun [ēɡṹ]."
+    },
+    {
+      "id": "NUP_NASAL_PRENASAL_A",
+      "phonemes": [
+        "a"
+      ],
+      "surface": "ã",
+      "followed_by_phoneme": [
+        "n",
+        "m"
+      ],
+      "followed_by_phoneme_2": [
+        "n",
+        "m"
+      ],
+      "notes": "A vowel followed by a nasal that itself precedes another nasal consonant nasalises, matching the deletion of the first nasal (see NUP_N_DELETE_PRENASAL): tanmako [tã̀mã̄kō]."
+    },
+    {
+      "id": "NUP_NASAL_SPREAD_E",
+      "phonemes": [
+        "e"
+      ],
+      "surface": "ẽ",
+      "preceded_by_phoneme": [
+        "n",
+        "m"
+      ],
+      "notes": "A vowel immediately after an onset nasal consonant phonetically nasalises (post-nasal spread), a general Niger-Congo phonetic detail also attested for Nupe (Kawu 2002; Ladefoged & Maddieson 1996 on post-nasal vowel nasalisation): ani [ānĩ́], namba [nã̀ŋ̀bà]."
+    },
+    {
+      "id": "NUP_NASAL_FINAL_E",
+      "phonemes": [
+        "e"
+      ],
+      "surface": "ẽ",
+      "followed_by_phoneme": [
+        "n",
+        "m"
+      ],
+      "followed_by_2": "word_boundary",
+      "notes": "A vowel spelled with a following word-final <n>/<m> is nasalised; the nasal consonant letter is itself silent (orthographic nasal-vowel marking, see NUP_N_DELETE_FINAL): egun [ēɡṹ]."
+    },
+    {
+      "id": "NUP_NASAL_PRENASAL_E",
+      "phonemes": [
+        "e"
+      ],
+      "surface": "ẽ",
+      "followed_by_phoneme": [
+        "n",
+        "m"
+      ],
+      "followed_by_phoneme_2": [
+        "n",
+        "m"
+      ],
+      "notes": "A vowel followed by a nasal that itself precedes another nasal consonant nasalises, matching the deletion of the first nasal (see NUP_N_DELETE_PRENASAL): tanmako [tã̀mã̄kō]."
+    },
+    {
+      "id": "NUP_NASAL_SPREAD_I",
+      "phonemes": [
+        "i"
+      ],
+      "surface": "ĩ",
+      "preceded_by_phoneme": [
+        "n",
+        "m"
+      ],
+      "notes": "A vowel immediately after an onset nasal consonant phonetically nasalises (post-nasal spread), a general Niger-Congo phonetic detail also attested for Nupe (Kawu 2002; Ladefoged & Maddieson 1996 on post-nasal vowel nasalisation): ani [ānĩ́], namba [nã̀ŋ̀bà]."
+    },
+    {
+      "id": "NUP_NASAL_FINAL_I",
+      "phonemes": [
+        "i"
+      ],
+      "surface": "ĩ",
+      "followed_by_phoneme": [
+        "n",
+        "m"
+      ],
+      "followed_by_2": "word_boundary",
+      "notes": "A vowel spelled with a following word-final <n>/<m> is nasalised; the nasal consonant letter is itself silent (orthographic nasal-vowel marking, see NUP_N_DELETE_FINAL): egun [ēɡṹ]."
+    },
+    {
+      "id": "NUP_NASAL_PRENASAL_I",
+      "phonemes": [
+        "i"
+      ],
+      "surface": "ĩ",
+      "followed_by_phoneme": [
+        "n",
+        "m"
+      ],
+      "followed_by_phoneme_2": [
+        "n",
+        "m"
+      ],
+      "notes": "A vowel followed by a nasal that itself precedes another nasal consonant nasalises, matching the deletion of the first nasal (see NUP_N_DELETE_PRENASAL): tanmako [tã̀mã̄kō]."
+    },
+    {
+      "id": "NUP_NASAL_SPREAD_O",
+      "phonemes": [
+        "o"
+      ],
+      "surface": "õ",
+      "preceded_by_phoneme": [
+        "n",
+        "m"
+      ],
+      "notes": "A vowel immediately after an onset nasal consonant phonetically nasalises (post-nasal spread), a general Niger-Congo phonetic detail also attested for Nupe (Kawu 2002; Ladefoged & Maddieson 1996 on post-nasal vowel nasalisation): ani [ānĩ́], namba [nã̀ŋ̀bà]."
+    },
+    {
+      "id": "NUP_NASAL_FINAL_O",
+      "phonemes": [
+        "o"
+      ],
+      "surface": "õ",
+      "followed_by_phoneme": [
+        "n",
+        "m"
+      ],
+      "followed_by_2": "word_boundary",
+      "notes": "A vowel spelled with a following word-final <n>/<m> is nasalised; the nasal consonant letter is itself silent (orthographic nasal-vowel marking, see NUP_N_DELETE_FINAL): egun [ēɡṹ]."
+    },
+    {
+      "id": "NUP_NASAL_PRENASAL_O",
+      "phonemes": [
+        "o"
+      ],
+      "surface": "õ",
+      "followed_by_phoneme": [
+        "n",
+        "m"
+      ],
+      "followed_by_phoneme_2": [
+        "n",
+        "m"
+      ],
+      "notes": "A vowel followed by a nasal that itself precedes another nasal consonant nasalises, matching the deletion of the first nasal (see NUP_N_DELETE_PRENASAL): tanmako [tã̀mã̄kō]."
+    },
+    {
+      "id": "NUP_NASAL_SPREAD_U",
+      "phonemes": [
+        "u"
+      ],
+      "surface": "ũ",
+      "preceded_by_phoneme": [
+        "n",
+        "m"
+      ],
+      "notes": "A vowel immediately after an onset nasal consonant phonetically nasalises (post-nasal spread), a general Niger-Congo phonetic detail also attested for Nupe (Kawu 2002; Ladefoged & Maddieson 1996 on post-nasal vowel nasalisation): ani [ānĩ́], namba [nã̀ŋ̀bà]."
+    },
+    {
+      "id": "NUP_NASAL_FINAL_U",
+      "phonemes": [
+        "u"
+      ],
+      "surface": "ũ",
+      "followed_by_phoneme": [
+        "n",
+        "m"
+      ],
+      "followed_by_2": "word_boundary",
+      "notes": "A vowel spelled with a following word-final <n>/<m> is nasalised; the nasal consonant letter is itself silent (orthographic nasal-vowel marking, see NUP_N_DELETE_FINAL): egun [ēɡṹ]."
+    },
+    {
+      "id": "NUP_NASAL_PRENASAL_U",
+      "phonemes": [
+        "u"
+      ],
+      "surface": "ũ",
+      "followed_by_phoneme": [
+        "n",
+        "m"
+      ],
+      "followed_by_phoneme_2": [
+        "n",
+        "m"
+      ],
+      "notes": "A vowel followed by a nasal that itself precedes another nasal consonant nasalises, matching the deletion of the first nasal (see NUP_N_DELETE_PRENASAL): tanmako [tã̀mã̄kō]."
     }
   ]
 }
