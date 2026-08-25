@@ -129,3 +129,69 @@ def test_consonant_values_match_the_parent_turkish_spec():
     assert ota["گ"] == ["ɡ", "ɟ"]
     # ⟨خ⟩ reads as /h/ in the Turkish stratum, keeping /x/ as a secondary.
     assert ota["خ"][0] == "h"
+
+
+#: Pairs of spellings of the same word that differ only in which codepoint
+#: writes a letter Unicode encodes twice: kef as U+0643 or U+06A9, ye as
+#: U+06CC, U+064A or U+0649. Ottoman was set in both the Arabic and the
+#: Persian tradition, so both spellings must reach the same transcription.
+CONFUSABLE_SPELLINGS = [
+    ("كوچك", "کوچک", "kucuk — kef twice, Arabic kaf against Persian keheh"),
+    ("كوچك", "كوچک", "the mixed spelling a real typesetter also produces"),
+    ("ایكیشر", "ایکیشر", "ikiser — the carrier-drop and harmony rules must fire on either kef"),
+    ("كیم", "کيم", "kim — kef and ye both swapped at once"),
+    ("یل", "يل", "yil — Persian ye against Arabic yeh"),
+    ("یل", "ىل", "yil — Persian ye against the dotless alef maksura"),
+    ("دكیل", "دكىل", "degil — the ye alternates inside a word, not only at its edge"),
+]
+
+
+@pytest.mark.linguistic
+@pytest.mark.parametrize("arabic,persian,why", CONFUSABLE_SPELLINGS)
+def test_confusable_codepoints_transcribe_alike(arabic, persian, why):
+    assert OTA.transcribe(arabic) == OTA.transcribe(persian), why
+
+
+@pytest.mark.linguistic
+def test_keheh_is_not_deleted():
+    """A letter with no grapheme entry is dropped without an error.
+
+    That is what made this a silent defect: ⟨کوچک⟩ came back as a plausible
+    short string with all three kefs missing, and nothing said so.
+    """
+    assert OTA.transcribe("کوچک") != ""
+    assert "c" in OTA.transcribe("کوچک")
+
+
+@pytest.mark.linguistic
+def test_hamza_carriers_are_read():
+    """Hemze reads /ʔ/ on every carrier, not only on ⟨ئ⟩."""
+    for word in ("مؤمن", "أمر", "إمام"):
+        assert "ʔ" in OTA.transcribe(word), word
+
+
+@pytest.mark.linguistic
+def test_kashida_and_zwnj_are_declared_empty():
+    """Line-shaping marks carry no sound and must not disturb the word.
+
+    They were already dropped, but as unknown characters rather than by
+    declaration, which is the same code path that loses a real letter.
+    """
+    plain = OTA.transcribe("آرمود")
+    assert OTA.transcribe("ـآرمودـ") == plain
+    assert OTA.transcribe("آر‌مود") == plain
+
+
+@pytest.mark.linguistic
+def test_lookalikes_from_other_traditions_stay_out():
+    """Not every confusable is an Ottoman spelling.
+
+    The Urdu he shapes, the Quranic elif wasla and the Sindhi swash kaf
+    belong to traditions Ottoman was not set in, so adopting them would
+    invent readings rather than recover them.
+    """
+    from orthography2ipa import get
+
+    graphemes = get("ota").graphemes
+    for absent in ("ہ", "ھ", "ٱ", "ڪ"):
+        assert absent not in graphemes, absent
