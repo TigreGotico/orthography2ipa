@@ -150,6 +150,25 @@ root b-b-r, and the reading convention puts a vowel between the two ⟨b⟩. A s
 says so with `doubled_letters_geminate: false`, and the protection is off for
 that language.
 
+The protection is also scoped to doubling that is genuinely one segment. A
+doubled consonant between two nuclei spans a syllable boundary (Hayes 1989;
+Ladefoged & Maddieson 1996:92) — it is a coda plus an onset, and the two halves
+are in different positions — so a rule whose neighbour condition points AT the
+twin was triggered by that boundary and may realise the half it applies to.
+That is Lashi ⟨yuggi⟩ [juk̚ɡi], where the coda rule reads the consonant after
+it and finds the second ⟨g⟩. `followed_by`, `followed_by_grapheme` and
+`followed_by_phoneme` point at the twin from the first half; the `preceded_by`
+family points at it from the second.
+
+Everything else stays blocked. Word-finally or before another consonant there
+is no following nucleus to license an onset, so the pair is one long coda that
+nothing may divide: Najdi ⟨بخّ⟩ /baxx/ keeps both halves and does not take the
+gahawa epenthesis between them. Nor does a rule that points anywhere but at the
+twin get through — an unconditioned rule, a `word_final` rule, a two-step
+condition such as `followed_by_2` that reads past the twin, or a negative
+condition such as `followed_by_grapheme_not`, which excludes rather than
+triggers.
+
 Rules are **pure data**: no code in specs. See
 [`data/SCHEMA.md`](../orthography2ipa/data/SCHEMA.md#allophone-rule-schema)
 for the JSON shape.

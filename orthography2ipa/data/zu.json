@@ -573,7 +573,7 @@
       ],
       "surface": "m̩",
       "followed_by": "consonant",
-      "notes": "⟨m⟩ before another consonant is the syllabic nasal /m̩/, the reduction of an older /mu/ prefix: \"syllabic /m̩/ occurs as a reduction of former /mu/, and acts like a true syllable: it can be syllabic even when not word-initial\" (zulu_phonology_wiki) — ⟨mhla⟩, ⟨umklomelo⟩, ⟨kamnandi⟩. The prenasalised ⟨mb mp mf mv⟩ are single graphemes and never reach this rule (see ZU_UM_PREFIX_SYLLABIC_MB), and ⟨m⟩ before a vowel stays a plain onset (⟨umuntu⟩). ⟨m⟩ immediately before another ⟨m⟩ (⟨ummese⟩) is not currently covered by this rule and stays non-syllabic; it is a single gold token and left undocumented as a rule fix, only noted here."
+      "notes": "⟨m⟩ before another consonant is the syllabic nasal /m̩/, the reduction of an older /mu/ prefix: \"syllabic /m̩/ occurs as a reduction of former /mu/, and acts like a true syllable: it can be syllabic even when not word-initial\" (zulu_phonology_wiki) — ⟨mhla⟩, ⟨umklomelo⟩, ⟨kamnandi⟩. The prenasalised ⟨mb mp mf mv⟩ are single graphemes and never reach this rule (see ZU_UM_PREFIX_SYLLABIC_MB), and ⟨m⟩ before a vowel stays a plain onset (⟨umuntu⟩). ⟨m⟩ immediately before another ⟨m⟩ is syllabic on the same terms: ⟨ummese⟩ is [um̩meːse], which is how the gold writes it."
     },
     {
       "id": "ZU_UM_PREFIX_SYLLABIC_MB",
