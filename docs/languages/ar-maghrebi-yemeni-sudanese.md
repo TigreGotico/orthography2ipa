@@ -1,8 +1,8 @@
-# Peripheral Arabic — Maghrebi, Ṣanʿānī Yemeni, and Sudanese — Phonology Reference
+# Peripheral Arabic: Maghrebi, Ṣanʿānī Yemeni, and Sudanese, Phonology Reference
 
 **Codes**: `ar-x-maghrebi` (Proto-Maghrebi node) → `ar-MA` (Moroccan Darija),
 `ar-DZ` (Algerian), `ar-TN` (Tunisian), `ar-LY` (Libyan), `ar-MR` (Mauritanian
-Hassaniya); `ar-YE` (Ṣanʿānī Yemeni); `ar-SD` (Sudanese, Khartoum koine)
+Hassaniya). `ar-YE` (Ṣanʿānī Yemeni). `ar-SD` (Sudanese, Khartoum koine)
 **Family**: Afro-Asiatic > Semitic | **Script**: Arabic (abjad) | **Quality tier**: research
 (`ar-MA`, `ar-YE`, `ar-SD`), skeleton (`ar-DZ`, `ar-TN`, `ar-LY`, `ar-MR`,
 `ar-x-maghrebi`)
@@ -14,11 +14,30 @@ Hassaniya); `ar-YE` (Ṣanʿānī Yemeni); `ar-SD` (Sudanese, Khartoum koine)
 Like every Arabic spec, all varieties here assume **fully-diacritized
 (tashkeel-marked)** input. Dialectal Arabic is normally written defectively, so
 short vowels, gemination (shadda) and sukūn surface only where they are actually
-written. Undiacritized text is not disambiguated — this is a documented contract,
+written. Undiacritized text is not disambiguated, this is a documented contract,
 not a bug. This matters most for the Maghreb, where the defining trait is
 short-vowel *deletion*: the engine transcribes the vowels that are written and
 lists reduction alternates in the allophone layer rather than deleting from
 orthography.
+
+### Measured gold ceiling: WikiPron `ary` (`ar-MA`) and `ayl` (`ar-LY`)
+
+`ar-MA`'s WikiPron gold (`ary_arab_broad.tsv`, 2168 pairs) is an undiacritized
+consonantal skeleton like the `ar` gold in [`ar.md`](ar.md#gold-benchmark): 2587 of
+11219 gold segments (23.1 %) are short-vowel qualities (`a i u ə ɪ ʊ ɛ ɔ e o`) with no
+corresponding written diacritic. Baseline PER is 0.3026; folding those segments out
+of both hypothesis and gold before rescoring gives 0.2397, at the 0.25 target. 280
+distinct input skeletons carry two or more different gold vocalizations (e.g. آخر →
+`ʔaːxur`/`ʔaːxir`), evidence that the undiacritized orthography underdetermines these
+words independently of the missing short vowels; it is not itself an additional
+score floor, since the harness scores each skeleton against the best-matching of its
+gold transcriptions.
+
+`ar-LY`'s gold (`ayl_arab_broad.tsv`, 166 pairs) shows the same shape at smaller
+scale: 175 of 866 segments (20.2 %) short vowels, baseline PER 0.3860, folded PER
+0.3525 — still well above target, with only 9 homographs (small n). These are
+**measured** distributional numbers, not a sourced claim, and no fold or
+vocalization has been added to the specs to chase them.
 
 ## Inheritance structure
 
@@ -42,7 +61,7 @@ Tunisia and urban Libya, ج is realized [ʒ] (voiced postalveolar fricative), ne
 the Mashriqi affricate [dʒ]. This reflex is declared once on `ar-x-maghrebi` and
 inherited by all country nodes.
 
-**Short vowels collapse to schwa [ə] and delete, producing heavy clusters** — the
+**Short vowels collapse to schwa [ə] and delete, producing heavy clusters**, the
 single most salient Maghrebi trait, driven by the Amazigh (Berber) substrate.
 
 | Feature | Reflex | Example | Source (read) |
@@ -56,7 +75,7 @@ Watson (p.16): in the majority of Maghribi dialects "the phoneme does not have a
 initial occlusive element and is realized as /ž/", citing Heath (1987:20–1) for
 Moroccan specifically. Noamane (p.49): the Moroccan vocalic inventory is "limited
 to three underlying short vowels /i, u, a/ and an epenthetic schwa /ə/" with no
-long vowels; Heath (p.216): the koiné "reduce[s] all three short vowels to just
+long vowels. Heath (p.216): the koiné "reduce[s] all three short vowels to just
 one short vowel ə", with original short vowels syncopating in weak metrical
 positions.
 
@@ -71,7 +90,7 @@ positions.
 | **Hassaniya** `ar-MR` | inherited | Westernmost Bedouin variety (Mauritania/W. Sahara) | — |
 
 Algerian and Tunisian carry the sedentary~Bedouin qaf duality /q ~ ɡ/ as grapheme
-alternates; Moroccan keeps /q/ as its urban reference reflex. The **Amazigh
+alternates. Moroccan keeps /q/ as its urban reference reflex. The **Amazigh
 (Berber)** substrate is linked on `ar-MA` as the cause of the vowel reduction and
 cluster phonotactics, and **French** as the adstrate contributing /p v e o/.
 
@@ -92,7 +111,7 @@ Watson (p.20): "The original voiceless uvular stop, *q, is not realized in any
 lexemes in the dialect. Even religious and Standard Arabic words are pronounced
 with a voiced velar stop, /g/, as in: al-gurʔān 'the Qur'an'." The **[ɡ]-jim**
 reflex often attributed to "Yemeni" belongs to Cairene and the **lower-Yemeni
-Taʿizz/Hugariyyah** dialects (§2.1.6 p.16), *not* Ṣanʿānī — so `ar-YE` lists
+Taʿizz/Hugariyyah** dialects (§2.1.6 p.16), *not* Ṣanʿānī, so `ar-YE` lists
 /dʒ/ first and /ɡ/ as the Taʿizzī alternate. The ḍād/ẓāʾ merger to a single
 voiced pharyngealized interdental fricative [ðˤ] loses one Classical phoneme
 (§2.2 p.20).
@@ -114,7 +133,7 @@ region represented by the dialects of Khartoum and the Šukriyya … perhaps of 
 salience, given its comparative rarity outside this region." The interdental
 series merges with the dental stops, with a distinctive extra emphatic /ḍ/ reflex
 of *ð in the Sudanic area (§3.1). Nubian/Beja/Nilotic influence is documented for
-the **lexicon** (Gasim 1965), not as a phonological cause — so no substrate sound
+the **lexicon** (Gasim 1965), not as a phonological cause, so no substrate sound
 change is modelled.
 
 ## Documented limits (not modelled)
@@ -132,15 +151,15 @@ change is modelled.
 **Read for this reference** (page/section-cited above):
 
 - **Watson, J.C.E. (2002)** *The Phonology and Morphology of Arabic*, OUP. Full
-  open-access PDF; printed pages 11, 13, 14–16, 19–20. Ṣanʿānī and Maghrebi
+  open-access PDF. Printed pages 11, 13, 14–16, 19–20. Ṣanʿānī and Maghrebi
   reflexes.
 - **Noamane, A. (2020)** "Consonant Gemination in Moroccan Arabic", *J. of Applied
-  Language and Culture Studies* 3:37–68. Open access; pp. 45, 49 (MA vowel and
+  Language and Culture Studies* 3:37–68. Open access. Pp. 45, 49 (MA vowel and
   consonant inventories).
 - **Heath, J. (2020)** "Moroccan Arabic", ch. 10 in Lucas & Manfredi (eds.),
-  *Arabic and Contact-Induced Change*, Language Science Press. Open access; p. 216
+  *Arabic and Contact-Induced Change*, Language Science Press. Open access. P. 216
   (three-way short-vowel reduction to ə).
-- **Ennaji, M. et al. (2004)** *A Grammar of Moroccan Arabic*, Fès. Open access;
+- **Ennaji, M. et al. (2004)** *A Grammar of Moroccan Arabic*, Fès. Open access.
   pp. 2–7 (28-consonant inventory: /ʒ/, no /dʒ/, no interdentals, /q/ and /ɡ/).
 - **Leddy-Cecere, T.A. (2021)** "Interrogating the Egypto-Sudanic Arabic
   Connection", *Languages* 6(3):123. Open access, cited by section (§3.1, §3.1.1).
@@ -148,9 +167,9 @@ change is modelled.
   Reflexes", *Languages* 6(3):141. Open access, cited by section (§3.1).
 
 **Not obtained** (listed for completeness, no claim sourced to it): Harrell (1962)
-*A Short Reference Grammar of Moroccan Arabic*; Heath (2002) *Jewish and Muslim
-Dialects of Moroccan Arabic*; Caubet (1993) *L'arabe marocain*; Dickins (2007)
-*Sudanese Arabic: Phonematics and Syllable Structure* — the standard primary
+*A Short Reference Grammar of Moroccan Arabic*. Heath (2002) *Jewish and Muslim
+Dialects of Moroccan Arabic*. Caubet (1993) *L'arabe marocain*. Dickins (2007)
+*Sudanese Arabic: Phonematics and Syllable Structure*, the standard primary
 monograph for Sudanese /ɟ/, library/paywall only for this pass.
 
 ---
