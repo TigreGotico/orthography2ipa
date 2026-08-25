@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.82.4a2](https://github.com/TigreGotico/orthography2ipa/tree/7.82.4a2) (2026-08-25)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.4a1...7.82.4a2)
+
+**Merged pull requests:**
+
+- docs\(vi\): document the VoxCommunis Vietnamese row as a notation artifact [\#1174](https://github.com/TigreGotico/orthography2ipa/pull/1174) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.82.4a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.4a1) (2026-08-25)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.3a1...7.82.4a1)
@@ -255,20 +263,20 @@
 
 ## [7.79.16a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.16a1) (2026-08-24)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.14a3...7.79.16a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.15a1...7.79.16a1)
 
 **Merged pull requests:**
 
 - feat: measure how much of a board row's gold is alphabet-chart noise [\#1118](https://github.com/TigreGotico/orthography2ipa/pull/1118) ([JarbasAl](https://github.com/JarbasAl))
 - fix\(tru\): map Gamal Garshuni, diagnose gold as mostly real words [\#1117](https://github.com/TigreGotico/orthography2ipa/pull/1117) ([JarbasAl](https://github.com/JarbasAl))
 
-## [7.79.14a3](https://github.com/TigreGotico/orthography2ipa/tree/7.79.14a3) (2026-08-24)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.15a1...7.79.14a3)
-
 ## [7.79.15a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.15a1) (2026-08-24)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.14a2...7.79.15a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.14a3...7.79.15a1)
+
+## [7.79.14a3](https://github.com/TigreGotico/orthography2ipa/tree/7.79.14a3) (2026-08-24)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.14a2...7.79.14a3)
 
 ## [7.79.14a2](https://github.com/TigreGotico/orthography2ipa/tree/7.79.14a2) (2026-08-24)
 
@@ -663,10 +671,6 @@
 ## [7.76.5a1](https://github.com/TigreGotico/orthography2ipa/tree/7.76.5a1) (2026-08-18)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.76.4a1...7.76.5a1)
-
-**Merged pull requests:**
-
-- fix\(skr\): Saraiki Shahmukhi letters, matres lectionis, and tap rhotic [\#998](https://github.com/TigreGotico/orthography2ipa/pull/998) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.76.4a1](https://github.com/TigreGotico/orthography2ipa/tree/7.76.4a1) (2026-08-18)
 
