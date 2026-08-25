@@ -110,3 +110,33 @@ def test_vowel_initial_spelling_takes_a_glottal_onset(pcc, word, ipa):
 ])
 def test_initials(pcc, word, ipa):
     assert pcc.transcribe_word(word) == ipa
+
+
+@pytest.mark.parametrize("word,ipa", [
+    ("sis", "si˧˥"),
+    ("siqhuaq", "si˨˦xua˨˦"),
+])
+def test_a_sibilant_does_not_condition_an_apical_nucleus(pcc, word, ipa):
+    """⟨s⟩ + ⟨i⟩ is a plain /i/, and the gold agrees on every word but one.
+
+    Chinese loans into Bouyei do carry the apical vowel after a sibilant,
+    but the 1985 orthography does not mark loan status, so the environment
+    is not recoverable from the spelling. These two words pin the plain
+    reading that any apical rule would have to leave alone.
+    """
+    assert pcc.transcribe_word(word) == ipa
+
+
+@pytest.mark.xfail(
+    reason="⟨siyzij⟩ is the one word in the 153-word WikiPron gold with the "
+           "apical vowel Chinese loans take after a sibilant (gold "
+           "`s z̩ ˧ t͡s z̩ ˥˧`). Three other ⟨si⟩ spellings in the same gold "
+           "keep a plain /i/, so the sibilant is not the conditioning "
+           "environment; Chinese-loan status is, and the orthography does "
+           "not mark it. The only string separating the four is the "
+           "following tone letter, which does not determine vowel quality. "
+           "One word does not establish a rule, so this stays unmodelled.",
+    strict=True,
+)
+def test_a_chinese_loan_takes_the_apical_vowel(pcc):
+    assert pcc.transcribe_word("siyzij") == "sz̩˧tsz̩˥˧"
