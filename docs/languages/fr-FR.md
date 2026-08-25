@@ -262,7 +262,4 @@ Tranel (1995) formalises liaison and elision within Optimality Theory as both dr
 - Wikipedia: [French phonology](https://en.wikipedia.org/wiki/French_phonology)
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
-
-*Related: [romance](romance.md), [it-IT](it-IT.md), [pt-PT](pt-PT.md)*
+[← Romanian](ro-RO.md) · [Home](../index.md) · [Italian →](it-IT.md)

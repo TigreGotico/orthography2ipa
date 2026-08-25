@@ -10,9 +10,9 @@ Committed PER/exact-match results for every gold dataset/language combination re
 PYTHONPATH=$PWD python scripts/benchmark.py --scoreboard
 ```
 
-Machine-readable form: [`benchmarks/results.json`](../benchmarks/results.json). Methodology and dataset provenance: [`docs/benchmarks.md`](benchmarks.md).
+Machine-readable form: [`benchmarks/results.json`](../benchmarks/results.json). Methodology: [`docs/benchmark_methodology.md`](benchmark_methodology.md). Dataset provenance: [`docs/benchmarks.md`](benchmarks.md).
 
-The `95% CI` column is a bootstrap confidence interval on the mean PER (per-word PERs resampled with replacement, 1000 reps, fixed seed 20260710) — see [`docs/benchmarks.md`](benchmarks.md).
+The `95% CI` column is a bootstrap confidence interval on the mean PER (per-word PERs resampled with replacement, 1000 reps, fixed seed 20260710) — see [`docs/benchmark_methodology.md`](benchmark_methodology.md).
 
 The `Oracle@3` / `Oracle@5` columns are the per-word MINIMUM PER over the engine's top-3 / top-5 readings, averaged like `PER`. They are an **orthography2ipa-only lattice-quality diagnostic** and **must never be used in a cross-system comparison or a "beats X" claim**: espeak, epitran and every other system benchmarked in [`docs/comparison.md`](comparison.md) emit ONE pronunciation, so setting their single answer against k of ours compares k guesses to one. `scripts/compare_systems.py` therefore does not read these columns, and the CI regression gate (`benchmarks/results_ci_sample.json`) stays 1-best.
 
@@ -20,7 +20,7 @@ How to read the gap: `PER − Oracle@k` is **ranking error** — some reading in
 
 `Oracle@k` improving does NOT mean the correct transcription is in the beam — only that a CLOSER one is. The separate `OracleX@k` columns are the strict version: the fraction of words where some top-k candidate **equals** a gold exactly (compare against the `Exact match` column, which is the same measure at k=1). Most of the PER-oracle gain is closer-but-still-wrong readings, so quote `OracleX@k` for any "the engine already knows the answer" claim. It is phenomena-neutral either way: it says nothing about WHICH phonological phenomenon is wrong.
 
-Oracle cells EXCLUDE injected alternatives. A spec may declare a `grammatical_endings` value as an ordered candidate list, which deliberately puts a reading it cannot choose between into the beam for a downstream rescorer. Adding candidates can only lower an oracle, so scoring with them on would let a spec inflate its own `PER − Oracle@k` headroom — the gap this board defines as RANKING error — by declaring more alternatives. The run therefore scores with them off, and a row whose language declares any records them in `oracle_injected_alternatives` in [`benchmarks/results.json`](../benchmarks/results.json). `PER` and `Exact match` are unaffected either way: an injected alternative can never reach rank 1. The movement they do cause is reported separately, as reachability, in [`docs/benchmarks.md`](benchmarks.md).
+Oracle cells EXCLUDE injected alternatives. A spec may declare a `grammatical_endings` value as an ordered candidate list, which deliberately puts a reading it cannot choose between into the beam for a downstream rescorer. Adding candidates can only lower an oracle, so scoring with them on would let a spec inflate its own `PER − Oracle@k` headroom — the gap this board defines as RANKING error — by declaring more alternatives. The run therefore scores with them off, and a row whose language declares any records them in `oracle_injected_alternatives` in [`benchmarks/results.json`](../benchmarks/results.json). `PER` and `Exact match` are unaffected either way: an injected alternative can never reach rank 1. The movement they do cause is reported separately, as reachability, in [`docs/benchmark_methodology.md`](benchmark_methodology.md).
 
 Oracle cells read `·` when the row has **not been rescored** since the oracle columns were added (most rows: a full scoreboard is ~10M scored words, so rows are refreshed in batches), and `-` when the row is **sentence-level** and can never have an oracle: the beam is per WORD, and composing a sentence-level beam out of word beams would invent a ranking the engine never produces. The two are different states and are never merged into one blank.
 
@@ -668,3 +668,6 @@ A row's `N` is its sample size in scored words, and it is not cosmetic: below ro
 | zom | wikipron | 134 | 0.4399 | 0.4399 | 0.4399 | 0.0000 | 0.0000 | [0.4190, 0.4602] | 0.0000 | research | crowd-scraped |
 | zu | wikipron | 1754 | 0.2311 | 0.2269 | 0.2268 | 0.0593 | 0.0593 | [0.2252, 0.2366] | 0.0576 | research | crowd-scraped |
 | zza | wikipron | 196 | 0.3606 | 0.3606 | 0.3606 | 0.1122 | 0.1122 | [0.3278, 0.3924] | 0.1122 | research | crowd-scraped |
+
+---
+[← Spain-Romance TTS gold set](spain-romance-tts-gold.md) · [Home](index.md) · [Comparison to other G2P systems →](comparison.md)

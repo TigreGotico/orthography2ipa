@@ -329,7 +329,4 @@ engine-only (they need sentence context). See
 - For very long documents, consider tokenizing sentence-by-sentence.
 
 ---
-
-**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
-
-*Related: [Lattice](lattice.md) · [Positional graphemes](positional_graphemes.md) · [Candidate scoring](candidate_scoring.md)*
+[← Public API stability](api_stability.md) · [Home](index.md) · [The pronunciation lattice →](lattice.md)

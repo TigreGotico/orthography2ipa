@@ -204,3 +204,6 @@ Illustration decides it.
 - **Foreign spellings** outside the quốc ngữ rime inventory
   (transliterated proper nouns, unassimilated loans) have no rime to
   match and fall back to letter-by-letter reading.
+
+---
+[← Finnish](fi.md) · [Home](../index.md) · [Standard Thai →](th.md)

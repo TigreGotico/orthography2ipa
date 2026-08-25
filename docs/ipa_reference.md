@@ -202,7 +202,4 @@ All IPA text in the package is stored as **UTF-8 encoded Python strings**. When 
 4. The length mark is `ː` (U+02D0), not `:` (U+003A, colon).
 
 ---
-
-**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
-
-*Related: [Distance](distance.md) · [Data model](data_model.md) · [Linguistic accuracy](linguistic_accuracy.md)*
+[← Quality tiers](quality_tiers.md) · [Home](index.md) · [Bibliography →](bibliography.md)

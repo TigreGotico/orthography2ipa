@@ -55,3 +55,6 @@ shallow threshold.
 - Hualde, J. I. *The Sounds of Spanish*. Cambridge University Press.
 - Penny, R. *A History of the Spanish Language*. Cambridge University Press.
 - Harris, J. *Spanish Phonology*. MIT Press.
+
+---
+[← Romance Languages](romance.md) · [Home](../index.md) · [Romanian →](ro-RO.md)

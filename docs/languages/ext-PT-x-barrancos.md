@@ -138,7 +138,4 @@ on that shape.
   Barranquenho*. Universidade de Évora. ISBN 978-972-778-464-6.
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
-
-*Related: [pt-PT](pt-PT.md), [mwl](mwl.md), [romance](romance.md)*
+[← Mozambican Portuguese](pt-MZ.md) · [Home](../index.md) · [Ligurian / Genoese →](lij.md)

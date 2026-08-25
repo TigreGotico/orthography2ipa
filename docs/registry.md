@@ -303,7 +303,4 @@ Uralic: fi
 ```
 
 ---
-
-**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
-
-*Related: [Ancestry](ancestry.md) · [Data model](data_model.md) · [Adding a language](adding_a_language.md)*
+[← Native scripts, romanizations and transliterations](orthography_kind.md) · [Home](index.md) · [Public API stability →](api_stability.md)

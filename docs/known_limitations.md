@@ -185,3 +185,6 @@ string. If it is — a letter, a digraph, a diacritic, a position in the word �
 then "left unencoded" is a defect claim and should carry a measured size. If it
 is not, the note is describing either a scope decision or an error floor, and
 the honest form of the note is a number rather than a promise.
+
+---
+[← Gold defects](gold_defects.md) · [Home](index.md) · [Ranking error →](ranking_error.md)

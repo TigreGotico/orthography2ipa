@@ -25,7 +25,4 @@ Nhatuve (2019:136) reports that in Maputo oral Portuguese the onset `<r>` is rea
 Input is standard Portuguese orthography (Acordo Ortográfico 1990). Written accents carry stress. No special pre-processing is expected.
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
-
-*Related: [pt-PT](pt-PT.md), [pt-AO](pt-AO.md), [romance](romance.md)*
+[← Cape Verdean Portuguese](pt-CV.md) · [Home](../index.md) · [Barranquenho →](ext-PT-x-barrancos.md)

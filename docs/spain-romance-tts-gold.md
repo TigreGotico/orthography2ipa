@@ -208,7 +208,4 @@ vs. recomputed IPA. Reconcile deliberately, never by silencing the check:
   predicates (Frías Conde; García Arias 2003).
 
 ---
-
-**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
-
-*Related: [Bibliography](bibliography.md) · [Linguistic accuracy](linguistic_accuracy.md) · [Benchmarks](benchmarks.md)*
+[← Iberian-creole TTS gold set](iberian-creole-tts-gold.md) · [Home](index.md) · [Scoreboard →](scoreboard.md)

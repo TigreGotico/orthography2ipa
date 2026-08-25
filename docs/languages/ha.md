@@ -110,7 +110,7 @@ The `ha` gold is entirely `Module:ha-IPA` output — every headword in a random
 sample carried a bare `{{ha-IPA|<respelling>}}` template and no hand-typed IPA
 — so the row certifies reproduction of that module's editor-typed
 tone-and-length-marked respelling, not independent pronunciation accuracy;
-see [Module-generated WikiPron rows](benchmarks.md#module-generated-wikipron-rows).
+see [Module-generated WikiPron rows](../benchmark_datasets.md#module-generated-wikipron-rows).
 
 The `ha` wikipron row scores against a gold whose IPA column is fully marked for
 tone and length while its orthographic column is stripped of both. Almost all of
@@ -222,3 +222,6 @@ word-final position therefore buys no measured PER on either row; it stops the
 lattice emitting a symbol no gold can contain. That is a notation and
 lattice-purity result, not phonological progress, and it is worth exactly
 that much.
+
+---
+[← Ancient Egyptian](egy.md) · [Home](../index.md) · [Hindi →](hi.md)

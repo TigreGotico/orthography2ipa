@@ -131,7 +131,4 @@ per the shipped-data attribution rule.
 *This page grows alongside the language specs: each spec's `sources` array is the authoritative record, and every family with cited specs is listed here.*
 
 ---
-
-**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
-
-*Related: [Linguistic accuracy](linguistic_accuracy.md) · [IPA reference](ipa_reference.md) · [Benchmarks](benchmarks.md)*
+[← IPA Reference](ipa_reference.md) · [Home](index.md) · [Link audit →](link-audit.md)

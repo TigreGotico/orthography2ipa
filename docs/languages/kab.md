@@ -169,5 +169,4 @@ regression-pinning sentence-level o2i behaviour. See
 and authoring procedure.
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
+[← Peripheral Arabic](ar-maghrebi-yemeni-sudanese.md) · [Home](../index.md) · [Ancient Egyptian →](egy.md)

@@ -244,7 +244,4 @@ except KeyError as e:
   [data_model.md](data_model.md).
 
 ---
-
-**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
-
-*Related: [Tokenizer](tokenizer.md) · [Data model](data_model.md) · [Quality tiers](quality_tiers.md) · [Distance](distance.md)*
+[Home](index.md) · [Architecture →](architecture.md)

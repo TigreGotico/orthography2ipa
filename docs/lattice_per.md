@@ -105,5 +105,5 @@ Report `per` and `top_per` together:
   different notation should be folded to the spec's conventions first,
   as the cross-engine benchmarks do.
 
-*Related: [Lattice](lattice.md) · [Benchmarks](benchmarks.md) ·
-[Distance](distance.md)*
+---
+[← The sentence-context seam](sentence_context.md) · [Home](index.md) · [Candidate scoring →](candidate_scoring.md)

@@ -74,7 +74,4 @@ the inherited-uvular rhotic `allophones` already present. `mar` → [ˈmaʁ],
   Portuguese variety.
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
-
-*Related: [pt-PT](pt-PT.md), [pt-TL](pt-TL.md), [romance](romance.md)*
+[← East Timorese Portuguese](pt-TL.md) · [Home](../index.md) · [Angolan Portuguese →](pt-AO.md)

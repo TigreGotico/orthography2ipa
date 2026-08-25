@@ -298,7 +298,7 @@ three**, and say in writing that it did:
    alternative is reported under its own heading, is not folded into any
    ranking-error headroom or per-phenomenon failure count, and appears in no
    beat-espeak or cross-system claim (see
-   [`benchmarks.md`](docs/benchmarks.md#injected-alternatives-do-not-count-as-ranking-error)).
+   [`benchmark_methodology.md`](docs/benchmark_methodology.md#injected-alternatives-do-not-count-as-ranking-error)).
    A PR that reports it as a PER-headroom win is rejected on that alone.
 
 Two mechanical gates back this up and must stay green:

@@ -146,7 +146,4 @@ accuracy.
 - Wikipedia: [German orthography](https://en.wikipedia.org/wiki/German_orthography)
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
-
-*Related: [germanic](germanic.md), [en-GB](en-GB.md)*
+[← English](en-GB.md) · [Home](../index.md) · [Faroese →](fo.md)

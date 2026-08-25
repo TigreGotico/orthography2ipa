@@ -100,7 +100,4 @@ models, and a low or high PER on this row cannot certify or block the spec
 - Thomaz, L. F. F. R. (2002). *Babel Loro Sa'e*. Instituto Camões.
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
-
-*Related: [pt-PT](pt-PT.md), [pt-MO](pt-MO.md), [romance](romance.md)*
+[← Uruguayan Portuguese](pt-UY.md) · [Home](../index.md) · [Macau Portuguese →](pt-MO.md)

@@ -220,7 +220,4 @@ lexically variable /d/ occlusion (see Allophony above).
   (nasal place assimilation, spirantisation) and the adstrate reduction.
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
-
-*Related: [romance](romance.md), [pt-PT](pt-PT.md), [ext-PT-x-barrancos](ext-PT-x-barrancos.md)*
+[← Madeiran European Portuguese](pt-PT-x-madeira.md) · [Home](../index.md) · [Slavic Languages →](slavic.md)

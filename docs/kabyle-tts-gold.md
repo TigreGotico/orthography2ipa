@@ -114,7 +114,4 @@ form is not documented in the sources, it is not used.
    (`tests/test_kabyle_tts_gold.py` runs it in CI).
 
 ---
-
-**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
-
-*Related: [Bibliography](bibliography.md) · [Linguistic accuracy](linguistic_accuracy.md) · [Benchmarks](benchmarks.md)*
+[← Arabic TTS gold set](arabic-tts-gold.md) · [Home](index.md) · [Portuguese-dialects TTS gold set →](portuguese-tts-gold.md)

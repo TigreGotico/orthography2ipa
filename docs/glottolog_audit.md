@@ -78,7 +78,4 @@ coverage remains thin relative to Romance. A new language is added by writing it
 its `parent` at the right clade node: see [adding_a_language.md](adding_a_language.md).
 
 ---
-
-**Navigation:** [Docs home](index.md) · [Ancestry](ancestry.md) · [Registry](registry.md) · [Adding a language](adding_a_language.md)
-
-*Related: [Ancestry](ancestry.md) · [Registry](registry.md) · [Adding a language](adding_a_language.md)*
+[← Ancestry System](ancestry.md) · [Home](index.md) · [Allophony →](allophony.md)

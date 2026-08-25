@@ -629,3 +629,6 @@ PYTHONPATH=$PWD python scripts/compare_systems.py --scoreboard
 Machine-readable form: [`benchmarks/comparison.json`](../benchmarks/comparison.json).
 
 </details>
+
+---
+[← Scoreboard](scoreboard.md) · [Home](index.md) · [espeak-ng agreement →](espeak_agreement.md)

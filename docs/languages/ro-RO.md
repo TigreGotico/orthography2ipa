@@ -51,3 +51,6 @@ this spec by the registry and the guard test alike) is the primary.
 - Mallinson, G. *Romanian*. Croom Helm Descriptive Grammars.
 - Deletant, D. *Teach Yourself Romanian*.
 - Ladefoged, P. & Maddieson, I. *The Sounds of the World's Languages*.
+
+---
+[← Spanish](es-ES.md) · [Home](../index.md) · [French →](fr-FR.md)

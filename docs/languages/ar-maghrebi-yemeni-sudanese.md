@@ -173,7 +173,4 @@ Dialects of Moroccan Arabic*. Caubet (1993) *L'arabe marocain*. Dickins (2007)
 monograph for Sudanese /ɟ/, library/paywall only for this pass.
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
-
-*Related: [ar](ar.md), [ar-x-levantine](ar-x-levantine.md), [ar-IQ](ar-IQ.md), [kab](kab.md)*
+[← Iraqi Arabic](ar-IQ.md) · [Home](../index.md) · [Kabyle / Taqbaylit →](kab.md)

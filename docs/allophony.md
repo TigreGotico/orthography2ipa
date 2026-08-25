@@ -594,7 +594,4 @@ between two competing "how does the deleted vowel's trace show up"
 analyses, not a regression.
 
 ---
-
-**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
-
-*Related: [Positional graphemes](positional_graphemes.md) · [Lattice](lattice.md) · [Data model](data_model.md)*
+[← Glottolog alignment](glottolog_audit.md) · [Home](index.md) · [Positional Graphemes →](positional_graphemes.md)

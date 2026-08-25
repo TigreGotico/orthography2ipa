@@ -149,7 +149,4 @@ the rule.
 * Mateus, M. H. M. & d'Andrade, E. (2000), *The Phonology of Portuguese*, OUP.
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
-
-*Related: [pt-PT](pt-PT.md), [pt-PT-x-aveiro](pt-PT-x-aveiro.md), [pt-PT-x-porto](pt-PT-x-porto.md)*
+[← Beira-Litoral (Aveiro) European Portuguese](pt-PT-x-aveiro.md) · [Home](../index.md) · [Conimbricense European Portuguese →](pt-PT-x-coimbra.md)

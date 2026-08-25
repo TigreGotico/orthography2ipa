@@ -96,7 +96,4 @@ betacism is applied to all four zones below.
 * Mateus, M. H. M. & d'Andrade, E. (2000), *The Phonology of Portuguese*, OUP.
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
-
-*Related: [pt-PT](pt-PT.md), [pt-PT-x-beira](pt-PT-x-beira.md), [pt-PT-x-porto](pt-PT-x-porto.md)*
+[← Alfena / Douro-Litoral European Portuguese](pt-PT-x-alfena.md) · [Home](../index.md) · [Beirão / Beira European Portuguese →](pt-PT-x-beira.md)

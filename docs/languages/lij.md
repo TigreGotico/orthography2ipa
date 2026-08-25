@@ -88,7 +88,4 @@ Close: /i y u/ · Mid: /e ø ɛ ɔ/ · Open: /a/, each with a long counterpart (
 - Omniglot. *Genoese (Zeneize) language and pronunciation.* <https://www.omniglot.com/writing/genoese.htm> (tertiary cross-check).
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
-
-*Related: [romance](romance.md), [it-IT](it-IT.md)*
+[← Barranquenho](ext-PT-x-barrancos.md) · [Home](../index.md) · [Pyrenean-valley Aragonese subdialects →](an-valleys.md)

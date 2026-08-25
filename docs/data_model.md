@@ -499,7 +499,4 @@ A word like English *butter* goes through two mappings:
 The package stores both levels; rule-based selection between allophones requires implementation by the consumer.
 
 ---
-
-**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
-
-*Related: [Architecture](architecture.md) · [Positional graphemes](positional_graphemes.md) · [Allophony](allophony.md) · [Registry](registry.md)*
+[← Architecture](architecture.md) · [Home](index.md) · [Native scripts, romanizations and transliterations →](orthography_kind.md)

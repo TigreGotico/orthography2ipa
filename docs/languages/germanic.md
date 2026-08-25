@@ -119,7 +119,4 @@ Key differences from Dutch:
 - Gussenhoven, C. (1992). *Dutch*. JIPA 22, 45–47.
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
-
-*Related: [de-DE](de-DE.md), [en-GB](en-GB.md)*
+[← Finding a language's phonology documentation](index.md) · [Home](../index.md) · [English →](en-GB.md)

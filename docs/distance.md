@@ -522,7 +522,4 @@ proximity: two languages of unknown position are not thereby neighbours. Callers
 must handle `None` rather than folding it into an average.
 
 ---
-
-**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
-
-*Related: [Ancestry](ancestry.md) · [IPA reference](ipa_reference.md) · [Data model](data_model.md)*
+[← Forcing a pronunciation](forcing_a_pronunciation.md) · [Home](index.md) · [Ancestry System →](ancestry.md)

@@ -133,6 +133,5 @@ The qualifying row is `wikipron`, which in fact clears even the shallow
 region-coded transcription conventions (see benchmarks.md) rather than
 spec drift, the divergence is documented, not hidden.
 
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
-
-*Related: [pt-PT](pt-PT.md), [romance](romance.md), [pt-BR-x-sp](pt-BR-x-sp.md), [pt-BR-x-rj](pt-BR-x-rj.md)*
+---
+[← Italian](it-IT.md) · [Home](../index.md) · [Caipira Portuguese →](pt-BR-x-caipira.md)

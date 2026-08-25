@@ -41,8 +41,10 @@ from typing import Dict, List, Optional, Sequence, Set, Tuple
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 sys.path.insert(0, os.path.join(ROOT, "scripts"))
+DOCS_DIR = os.path.join(ROOT, "docs")
 
 import orthography2ipa as o2i  # noqa: E402
+from docs_nav import footer  # noqa: E402
 from orthography2ipa.inventory import emission_inventory  # noqa: E402
 from orthography2ipa.json_loader import _DATA_DIR as DATA_DIR  # noqa: E402
 
@@ -568,7 +570,7 @@ def main() -> None:
         print(text)
     else:
         with open(args.out, "w", encoding="utf-8") as handle:
-            handle.write(text)
+            handle.write(text.rstrip() + footer(os.path.relpath(args.out, DOCS_DIR)))
         print("wrote {}".format(args.out))
     if args.json:
         with open(args.json, "w", encoding="utf-8") as handle:

@@ -67,7 +67,4 @@ eng.transcribe_word("chave")   # ˈtʃabɨ   — archaic ⟨ch⟩ affricate + be
 - **Mateus, M. H. M. & d'Andrade, E. (2000).** *The Phonology of Portuguese.* Oxford University Press.
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
-
-*Related: [pt-PT](pt-PT.md), [pt-PT-x-minho](pt-PT-x-minho.md), [pt-PT-x-porto](pt-PT-x-porto.md)*
+[← Minhoto / Baixo-Minho European Portuguese](pt-PT-x-minho.md) · [Home](../index.md) · [Alfena / Douro-Litoral European Portuguese →](pt-PT-x-alfena.md)

@@ -281,7 +281,4 @@ documented rather than hidden.
 - Input is standard orthography under the Acordo Ortográfico (1990).
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
-
-*Related: [pt-BR](pt-BR.md), [romance](romance.md), [pt-PT-x-lisbon](pt-PT-x-lisbon.md), [pt-PT-x-porto](pt-PT-x-porto.md)*
+[← Paranaense / Curitibano Portuguese](pt-BR-x-pr.md) · [Home](../index.md) · [Carioca Portuguese →](pt-BR-x-rj.md)

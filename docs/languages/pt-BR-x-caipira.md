@@ -111,7 +111,4 @@ eng.transcribe_word("mesmo")   # ˈmesmu  — coda /s/ alveolar, no chiado
 - **Silva, T. C. (2002).** *Fonética e fonologia do português.* Contexto.
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
-
-*Related: [pt-BR](pt-BR.md), [pt-BR-x-sp](pt-BR-x-sp.md), [pt-BR-x-mg](pt-BR-x-mg.md)*
+[← Brazilian Portuguese](pt-BR.md) · [Home](../index.md) · [Paulistano Portuguese →](pt-BR-x-sp.md)

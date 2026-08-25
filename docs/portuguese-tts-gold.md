@@ -147,7 +147,4 @@ behaviour, not just isolated-word transcription.
   (Cintra 1971, Segura 2013, Cruz-Ferreira 1995).
 
 ---
-
-**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
-
-*Related: [Bibliography](bibliography.md) · [Linguistic accuracy](linguistic_accuracy.md) · [Benchmarks](benchmarks.md)*
+[← Kabyle TTS gold set](kabyle-tts-gold.md) · [Home](index.md) · [Iberian-creole TTS gold set →](iberian-creole-tts-gold.md)

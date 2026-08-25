@@ -134,7 +134,4 @@ the urban koine (Cotter 2016:150–154). `قَلْب` → `ʔalb`, `جَمَل` 
   emphasis-spreading (not obtained in full).
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
-
-*Related: [ar](ar.md), [ar-IQ](ar-IQ.md)*
+[← Modern Standard Arabic](ar.md) · [Home](../index.md) · [Iraqi Arabic →](ar-IQ.md)

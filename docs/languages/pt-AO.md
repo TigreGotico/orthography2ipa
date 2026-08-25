@@ -58,7 +58,4 @@ spec relies on written accents for stress and does not expect any special
 pre-processing.
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
-
-*Related: [pt-PT](pt-PT.md), [pt-MZ](pt-MZ.md), [pt-CV](pt-CV.md)*
+[← Macau Portuguese](pt-MO.md) · [Home](../index.md) · [Cape Verdean Portuguese →](pt-CV.md)

@@ -120,5 +120,4 @@ print it.
   University Press.
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
+[← Vietnamese](vi.md) · [Home](../index.md) · [Yoruba →](yo.md)

@@ -311,3 +311,6 @@ divergence from epitran, and there is no epitran output to diverge from.
 The practical effect is nil, because `epitran-derived` and the alternatives all
 refuse to gate. The correction is a naming one: the row should carry a tier that
 does not assert a tool that was not used.
+
+---
+[← Gold composition](gold_composition.md) · [Home](index.md) · [Known limitations →](known_limitations.md)

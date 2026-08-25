@@ -46,6 +46,7 @@ each tier actually certifies.
 | [germanic.md](germanic.md) | de-DE, nl, sv, nb, da, af, en-GB, en-US (comparative) |
 | [en-GB.md](en-GB.md) | en-GB (RP) and en-US in detail |
 | [de-DE.md](de-DE.md) | German standard (Hochdeutsch) in detail |
+| [fo.md](fo.md) | Faroese in detail: Hammershaimb's etymological orthography and the positional rules it forces |
 
 ### Romance
 
@@ -73,8 +74,32 @@ each tier actually certifies.
 | [pt-AO.md](pt-AO.md) | Angolan Portuguese — emerging L2 norm, spelling-closer vocalism (no EP reduction), alveolar coda /s/ (Undolo 2014, Chavagne 2005) |
 | [pt-CV.md](pt-CV.md) | Cape Verdean *Portuguese* — distinct from Kabuverdianu (kea) creole; reduced reduction, plosive b/d/g (honesty-flagged, skeleton) |
 | [pt-MZ.md](pt-MZ.md) | Mozambican Portuguese — Maputo emerging norm, alveolar trill [R], aspirated /ʎ/, weaker reduction (Nhatuve 2019, Gonçalves 2010) |
+| [ext-PT-x-barrancos.md](ext-PT-x-barrancos.md) | Barranquenho (`ext-PT-x-barrancos`): the Portuguese-Spanish contact variety of Barrancos |
 | [lij.md](lij.md) | Ligurian / Genoese (Gallo-Italic; grafia ofiçiâ, ⟨x⟩=/ʒ/, ⟨o⟩=/u/, ⟨u⟩=/y/) |
 | [an-valleys.md](an-valleys.md) | Pyrenean-valley Aragonese: Cheso (`an-x-cheso`), Ansotano (`an-x-ansotano`), Belsetán (`an-x-belsetan`), Chistabín (`an-x-chistabin`), Tensino (`an-x-tensino`) — geminates ⟨l·l⟩/⟨n·n⟩, final-r deletion, no-epenthesis ⟨ix⟩, ro/ra tap article |
+
+#### European Portuguese regional varieties
+
+`pt-PT` is the standard, Lisbon-type base. Each page below is a delta spec
+over it for one region.
+
+| Doc | Region |
+|:---|:---|
+| [pt-PT-x-lisbon.md](pt-PT-x-lisbon.md) | Lisbon / Estremenho |
+| [pt-PT-x-porto.md](pt-PT-x-porto.md) | Portuense / Northern |
+| [pt-PT-x-braga.md](pt-PT-x-braga.md) | Bracarense (Braga) |
+| [pt-PT-x-minho.md](pt-PT-x-minho.md) | Minhoto / Baixo-Minho |
+| [pt-PT-x-viana.md](pt-PT-x-viana.md) | Alto-Minhoto |
+| [pt-PT-x-alfena.md](pt-PT-x-alfena.md) | Alfena / Douro-Litoral |
+| [pt-PT-x-aveiro.md](pt-PT-x-aveiro.md) | Beira-Litoral (Aveiro) |
+| [pt-PT-x-beira.md](pt-PT-x-beira.md) | Beirao / Beira |
+| [pt-PT-x-coimbra.md](pt-PT-x-coimbra.md) | Conimbricense (Coimbra) |
+| [pt-PT-x-trasosmontes.md](pt-PT-x-trasosmontes.md) | Transmontano |
+| [pt-PT-x-alentejo.md](pt-PT-x-alentejo.md) | Alentejano |
+| [pt-PT-x-algarve.md](pt-PT-x-algarve.md) | Algarvio |
+| [pt-PT-x-acores.md](pt-PT-x-acores.md) | Azorean |
+| [pt-PT-x-sao-miguel.md](pt-PT-x-sao-miguel.md) | Micaelense (Sao Miguel) |
+| [pt-PT-x-madeira.md](pt-PT-x-madeira.md) | Madeiran |
 
 #### Latin American Spanish: regional scaffolding (stub tier, no prose page yet)
 
@@ -148,6 +173,13 @@ phonology claimed (the `afa.json` pattern).
 | Doc | Languages covered |
 |:---|:---|
 | [hi.md](hi.md) | Hindi (Devanagari script, schwa deletion, 4-way contrast) |
+| [as.md](as.md) | Assamese in detail: the Assamese script read on Assamese phonology, not Bengali |
+
+### Mongolic
+
+| Doc | Languages covered |
+|:---|:---|
+| [mn.md](mn.md) | Mongolian (Khalkha) in the Cyrillic orthography, not the Traditional Mongolian script |
 
 ### Isolate
 
@@ -222,3 +254,6 @@ rather than a specific language, start here:
 | Maghrebi short-vowel reduction (→schwa/Ø, clusters) | ar-x-maghrebi, ar-MA, ar-DZ, ar-TN, ar-LY | [ar-maghrebi-yemeni-sudanese.md](ar-maghrebi-yemeni-sudanese.md) |
 | Imāla (/aː/→[eː]) | ar-LB | [ar-x-levantine.md](ar-x-levantine.md) |
 | Diphthong monophthongization | ar-x-levantine, ar-SA-x-hejaz | [ar-x-levantine.md](ar-x-levantine.md) |
+
+---
+[← Spec diagnostics](../spec_diagnostics.md) · [Home](../index.md) · [Germanic Languages →](germanic.md)
