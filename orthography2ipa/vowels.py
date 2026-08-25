@@ -66,6 +66,7 @@ character is both front and back.
 """
 from __future__ import annotations
 
+from typing import Optional
 import unicodedata
 
 __all__ = [
@@ -74,11 +75,29 @@ __all__ = [
     "is_front_vowel",
     "is_back_vowel",
     "is_palatal_consonant",
+    "is_pharyngealized_consonant",
     "is_nucleus_only",
     "grapheme_is_vowel",
     "grapheme_vowel_axis",
     "base_vowel_letter",
+    "sonority_class",
+    "is_sibilant",
+    "is_affricate",
+    "is_voiced",
+    "is_labial_approximant",
+    "is_anterior",
+    "is_palatal_glide",
+    "is_lateral",
+    "is_glottal",
+    "place_class",
     "SYLLABIC_MARKS",
+    "SONORITY_UNKNOWN",
+    "SONORITY_STOP",
+    "SONORITY_FRICATIVE",
+    "SONORITY_NASAL",
+    "SONORITY_LIQUID",
+    "SONORITY_GLIDE",
+    "SONORITY_VOWEL",
 ]
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -253,8 +272,26 @@ def is_orthographic_vowel(ch: str) -> bool:
 
     Comparison is case-insensitive: *ch* is lowercased before the
     lookup, so callers do not need to lowercase it themselves.
+
+    A Latin vowel letter carrying a diacritic is the same vowel letter:
+    ⟨ư⟩ (U+01B0) is ⟨u⟩ with a horn and ⟨ế⟩ (U+1EBF) is ⟨e⟩ under a
+    circumflex and a tone mark. The membership table cannot enumerate
+    every precomposed form — Vietnamese alone writes sixty-seven of them —
+    so a character outside it is canonically decomposed and its base
+    retried, the same fallback :func:`is_ipa_vowel` already applies.
+
+    The retry is deliberately restricted to a Latin ``a e i o u`` base.
+    Cyrillic ⟨й⟩ decomposes to ⟨и⟩ plus a breve but is a glide, and is
+    excluded from the table on purpose; an unrestricted fallback would
+    silently readmit it.
     """
-    return bool(ch) and ch.lower() in _ORTHOGRAPHIC_VOWELS
+    if not ch:
+        return False
+    lowered = ch.lower()
+    if lowered in _ORTHOGRAPHIC_VOWELS:
+        return True
+    base = unicodedata.normalize("NFD", lowered)
+    return base != lowered and base[0] in "aeiou"
 
 
 def is_ipa_vowel(ch: str) -> bool:
@@ -262,8 +299,18 @@ def is_ipa_vowel(ch: str) -> bool:
 
     Comparison is case-insensitive: *ch* is lowercased before the
     lookup, so callers do not need to lowercase it themselves.
+
+    A vowel carrying a diacritic that Unicode also encodes precomposed is the
+    same vowel: ⟨à⟩ (U+00E0) is /a/ with a tone mark, not a new vocoid. The
+    membership table lists base symbols, so a precomposed character is
+    canonically decomposed and retried on its base before the answer is "no".
     """
-    return bool(ch) and ch.lower() in _IPA_VOWELS
+    if not ch:
+        return False
+    if ch.lower() in _IPA_VOWELS:
+        return True
+    base = unicodedata.normalize("NFD", ch)
+    return base != ch and base[0].lower() in _IPA_VOWELS
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -332,6 +379,34 @@ def is_palatal_consonant(ipa: str) -> bool:
         if s.startswith(aff):
             return True
     return s[0] in _PALATAL_SINGLE
+
+
+#: IPA pharyngealization diacritic (U+02E4, MODIFIER LETTER SMALL REVERSED
+#: GLOTTAL STOP), the standard mark for a "emphatic" / secondarily
+#: pharyngealized consonant (``sˤ dˤ tˤ ðˤ``, and dialectally ``ɮˤ``).
+_PHARYNGEALIZATION = "ˤ"
+
+
+def is_pharyngealized_consonant(ipa: str) -> bool:
+    """Return True if *ipa* denotes a pharyngealized ("emphatic") consonant.
+
+    Purely a feature test: any IPA string carrying the pharyngealization
+    diacritic ``ˤ`` (U+02E4) qualifies, regardless of which base consonant it
+    modifies or which language uses it — Arabic's ``sˤ dˤ tˤ ðˤ`` (and the
+    dialectal lateral fricative ``ɮˤ``) are the best-known instance (Watson
+    2002; Davis 1995), but the predicate itself is language-agnostic: any
+    spec that marks pharyngealized consonants with ``ˤ`` gets the class for
+    free. This is the consonant-side mirror of :func:`is_palatal_consonant`:
+    both classify the *sound* a grapheme maps to, not the script or
+    language, and both back the ``"palatal"`` / ``"emphatic"``
+    allophone-rule neighbour classes.
+
+    Only the first (base) segment plus its diacritics matter, so a phoneme
+    string carrying a further length mark still classifies correctly.
+    """
+    if not ipa:
+        return False
+    return _PHARYNGEALIZATION in ipa
 
 
 def is_front_vowel(ch: str) -> bool:
@@ -516,19 +591,28 @@ def _unicode_says_vowel(ch: str) -> bool:
     return any(tok in name for tok in _UNICODE_VOWEL_NAME_TOKENS)
 
 
-def grapheme_is_vowel(grapheme: str, ipa=()) -> bool:
+def grapheme_is_vowel(grapheme: str, ipa=(), vowel_overrides=frozenset()) -> bool:
     """True if *grapheme* is an orthographic vowel, in any script.
 
     *ipa* is the grapheme's **flat-table** candidate list (``spec.graphemes``),
     never its positionally-resolved realisation — positional resolution asks
     this question, so answering it from a positional result would be circular.
 
-    Resolution order: the Latin/Greek/harakat letter sets (authoritative for
-    the inventories they close), then the spec's own IPA (nucleus-initial →
-    vowel), then the character's Unicode name. See the section comment above.
+    *vowel_overrides* is a spec's ``vowel_graphemes`` declaration: whole
+    grapheme strings (matched in full, never by first character) that the
+    spec says are vowel letters regardless of what the closed-inventory
+    letter sets say. It is checked FIRST, before the closed-inventory
+    early-out, because it exists precisely to override that answer — Hmong
+    RPA ⟨w⟩ = /ɨ/, a Latin letter the closed inventory would otherwise call
+    a consonant. Without an override, resolution order is: the Latin/Greek/
+    harakat letter sets (authoritative for the inventories they close), then
+    the spec's own IPA (nucleus-initial → vowel), then the character's
+    Unicode name. See the section comment above.
     """
     if not grapheme:
         return False
+    if grapheme in vowel_overrides:
+        return True
     ch = grapheme[0]
     if is_orthographic_vowel(ch):
         return True
@@ -570,7 +654,7 @@ def _ipa_axis(ipa: str):
     return None
 
 
-def grapheme_vowel_axis(grapheme: str, ipa=()):
+def grapheme_vowel_axis(grapheme: str, ipa=(), vowel_overrides=frozenset()):
     """``"front"`` / ``"back"`` / ``None`` for *grapheme*, in any script.
 
     Latin and Greek keep the orthographic letter classification exactly (the
@@ -578,15 +662,317 @@ def grapheme_vowel_axis(grapheme: str, ipa=()):
     non-vowel). Everywhere else the axis is read off the IPA the spec maps the
     grapheme to — ⟨ि⟩ → /ɪ/ is front, ⟨ु⟩ → /ʊ/ is back — so
     ``before_front_vowel`` / ``before_back_vowel`` work outside Latin too.
+
+    *vowel_overrides* mirrors :func:`grapheme_is_vowel`'s parameter of the same
+    name: a grapheme the spec declares a vowel letter (e.g. Hmong RPA ⟨w⟩)
+    skips the closed-inventory letter-axis lookup — which would otherwise
+    return ``None`` for a consonant letter — and its axis is derived from the
+    spec's IPA instead, exactly as it is for non-Latin scripts.
     """
     if not grapheme:
         return None
     ch = grapheme[0]
-    axis = _vowel_axis(ch)
-    if axis is not None:
-        return axis
-    if _closed(ch) or not _is_letter_or_mark(ch):
+    if grapheme not in vowel_overrides:
+        axis = _vowel_axis(ch)
+        if axis is not None:
+            return axis
+        if _closed(ch):
+            return None
+    if not _is_letter_or_mark(ch):
         return None
-    if not grapheme_is_vowel(grapheme, ipa):
+    if not grapheme_is_vowel(grapheme, ipa, vowel_overrides):
         return None
     return _ipa_axis(ipa[0] if ipa else "")
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Sonority — the scale syllable structure is built on
+# ═══════════════════════════════════════════════════════════════════════════
+#
+# The Sonority Sequencing Principle (Selkirk 1984; Blevins, "The Syllable in
+# Phonological Theory", in Goldsmith ed., *The Handbook of Phonological
+# Theory*, Blackwell 1995, § 2): sonority rises from the edge of a syllable
+# toward its nucleus and falls away from it.
+#
+# The scale below is the coarse universal one — stop < fricative < nasal <
+# liquid < glide < vowel — read off the phonological FEATURES of the segment
+# rather than a symbol list, so it works for any script the engine loads.
+# Four classes cannot be read off the feature table correctly and are named
+# instead; each is a phonological class, not a phonetic one, and each is
+# cited where it is defined below: affricates, rhotics, glottals and
+# prenasalized stops.
+
+SONORITY_UNKNOWN = 0
+SONORITY_STOP = 1
+SONORITY_FRICATIVE = 2
+SONORITY_NASAL = 3
+SONORITY_LIQUID = 4
+SONORITY_GLIDE = 5
+SONORITY_VOWEL = 6
+
+#: feature indices, mirroring ``orthography2ipa.distance._FEATURE_NAMES``
+_F_SYLLABIC = 0
+_F_SONORANT = 1
+_F_CONSONANTAL = 2
+_F_CONTINUANT = 3
+_F_NASAL = 6
+_F_STRIDENT = 7
+_F_VOICE = 8
+_F_CORONAL = 12
+_F_LABIAL = 14
+_F_HIGH = 15
+_F_BACK = 17
+
+#: The tie bars. ``t͡s`` and ``ts`` are the SAME affricate written two ways,
+#: and a classifier whose verdict depends on whether U+0361 happens to be
+#: present is not classifying anything.
+_TIE_BARS = "͜͡"
+
+#: The affricates, as bare sequences. An affricate is a stop with a fricative
+#: release and it patterns as a STOP in syllable structure — /t͡s/ opens a
+#: syllable exactly where /t/ does (Blevins 1995, § 2: affricates take the
+#: obstruent/stop position on the sonority scale, their fricative release
+#: notwithstanding). The feature table cannot be asked: its
+#: ``delayed_release`` is False for ⟨ts⟩ and ⟨tʃ⟩ and True for plain ⟨ɕ⟩, so
+#: the class is named.
+_AFFRICATE_SEQUENCES = frozenset((
+    "ts", "dz", "tʃ", "dʒ", "tɕ", "dʑ", "ʈʂ", "ɖʐ", "tʂ", "dʐ", "pf", "bv",
+    "tɬ", "dɮ", "kx", "ɡɣ", "qχ", "tθ", "dð", "cç", "ɟʝ",
+))
+
+#: The rhotics. Rhotic is a PHONOLOGICAL class, not a phonetic one: its
+#: members range from taps to trills to uvular fricatives and share no single
+#: articulatory property, yet they pattern alike — as liquids — in syllable
+#: structure everywhere (Ladefoged & Maddieson, *The Sounds of the World's
+#: Languages*, Blackwell 1996, § 7.1; Wiese 2001, "The phonology of /r/").
+#: French ⟨r⟩ is /ʁ/, a voiced uvular *fricative* by its features, and ⟨br⟩ is
+#: nonetheless a licit onset — so the class has to be named, or every French
+#: obstruent+r onset would be judged ill-formed.
+_RHOTICS = frozenset("rɾɹɻʀʁɽɺ")
+
+#: The glottals. The feature table marks /h ɦ/ [+sonorant], which would put
+#: them at the liquid tier and make /bh/ a rising onset — it is not one.
+#: They are placeless obstruents and take the fricative tier; /ʔ/ is a stop
+#: (Ladefoged & Maddieson 1996, § 3.6).
+_GLOTTAL_FRICATIVES = frozenset("hɦɧ")
+_GLOTTAL_STOPS = frozenset("ʔ")
+
+#: Prenasalization diacritics. A prenasalized stop /ᵐb ⁿd ᵑɡ/ is ONE segment
+#: and patterns as the stop it is built on, not as a nasal (Ladefoged &
+#: Maddieson 1996, § 9.3). The feature table classified ``ⁿd`` as a stop and
+#: ``ᵐb`` as unknown, which is the same segment type answered two ways.
+_PRENASAL_MARKS = "ᵐⁿᶬᶯᶮᵑᶰ"
+
+#: Latin letters that stand in for an IPA symbol the feature table keys under
+#: a different codepoint. ⟨g⟩ (U+0067) is not IPA ⟨ɡ⟩ (U+0261), yet specs
+#: write both.
+_PHONE_ALIASES = {"g": "ɡ"}
+
+#: Both memos are keyed by IPA SEGMENTS, which come from spec data and are
+#: therefore a small closed set — but a caller may hand in arbitrary text, so
+#: they are bounded rather than trusted.
+_MEMO_MAX = 4096
+_sonority_memo: dict = {}
+_place_memo: dict = {}
+
+
+def _memoize(memo: dict, key: str, value):
+    if len(memo) >= _MEMO_MAX:
+        memo.clear()
+    memo[key] = value
+    return value
+
+
+def _phone_vector(ipa: str):
+    """The 23-feature vector of *ipa*, or ``None``."""
+    from orthography2ipa.feats import vectorize_phones
+    try:
+        return vectorize_phones(ipa)
+    except (ValueError, KeyError, IndexError):
+        return None
+
+
+def _normalize_segment(ipa: str) -> str:
+    """Strip the writing-only marks so equal segments compare equal.
+
+    Tie bars and the prenasalization diacritic carry no tier of their own;
+    a length or stress mark riding on a consonant carries none either.
+    """
+    out = "".join(ch for ch in ipa
+                  if ch not in _TIE_BARS and ch not in _PRENASAL_MARKS)
+    return _PHONE_ALIASES.get(out, out)
+
+
+def is_affricate(ipa: str) -> bool:
+    """Whether *ipa* is an affricate, tie bar or no tie bar."""
+    return _normalize_segment(ipa)[:2] in _AFFRICATE_SEQUENCES
+
+
+def sonority_class(ipa: str) -> int:
+    """Sonority tier of the IPA segment *ipa* on the universal scale.
+
+    Returns one of :data:`SONORITY_STOP` … :data:`SONORITY_VOWEL`, or
+    :data:`SONORITY_UNKNOWN` when the segment is not a phone this engine
+    knows (an empty realisation, a symbol outside the feature table).
+
+    The tier is *derived*, never listed: a vocoid — or any segment carrying a
+    syllabicity mark, since /n̩/ is a nucleus — is a vowel; a sonorant that is
+    not consonantal is a glide; a nasal sonorant is a nasal; any other
+    sonorant is a liquid; an obstruent is a fricative if it is continuant and
+    a stop otherwise. That is the standard coarse sonority hierarchy (Blevins
+    1995, § 2; Vennemann, *Preference Laws for Syllable Structure*, Mouton de
+    Gruyter 1988, ch. 1, where the same ordering appears inverted as
+    Consonantal Strength). The four classes the feature table gets wrong for
+    this purpose — affricates, rhotics, glottals, prenasalized stops — are
+    named above with their citations.
+    """
+    if not ipa:
+        return SONORITY_UNKNOWN
+    cached = _sonority_memo.get(ipa)
+    if cached is not None:
+        return cached
+    return _memoize(_sonority_memo, ipa, _sonority(ipa))
+
+
+def _sonority(ipa: str) -> int:
+    if any(mark in ipa for mark in SYLLABIC_MARKS):
+        return SONORITY_VOWEL          # /m̩ n̩ l̩/ ARE nuclei
+    seg = _normalize_segment(ipa)
+    if not seg:
+        return SONORITY_UNKNOWN
+    if seg[:2] in _AFFRICATE_SEQUENCES:
+        return SONORITY_STOP
+    head = seg[0]
+    if head in _RHOTICS:
+        return SONORITY_LIQUID
+    if head in _GLOTTAL_STOPS:
+        return SONORITY_STOP
+    if head in _GLOTTAL_FRICATIVES:
+        return SONORITY_FRICATIVE
+    vec = _phone_vector(seg)
+    if vec is None:
+        vec = _phone_vector(head)
+    if vec is None:
+        # No feature entry: fall back to the orthography-independent vowel
+        # test, so an unknown vocoid is still a nucleus rather than nothing.
+        return SONORITY_VOWEL if is_ipa_vowel(head) else SONORITY_UNKNOWN
+    if vec[_F_SYLLABIC] is True:
+        return SONORITY_VOWEL
+    if vec[_F_SONORANT] is True:
+        if vec[_F_CONSONANTAL] is False:
+            return SONORITY_GLIDE
+        if vec[_F_NASAL] is True:
+            return SONORITY_NASAL
+        return SONORITY_LIQUID
+    return (SONORITY_FRICATIVE if vec[_F_CONTINUANT] is True
+            else SONORITY_STOP)
+
+
+def is_sibilant(ipa: str) -> bool:
+    """Whether *ipa* is a sibilant — a strident coronal obstruent.
+
+    Sibilants are singled out because they are the one segment class that
+    routinely sits OUTSIDE the sonority-rising onset, as an appendix adjoined
+    to the syllable (Vennemann 1988, ch. 1; Blevins 1995, § 3.2, on
+    extrasyllabic /s/): ⟨st-⟩, ⟨sp-⟩, ⟨str-⟩ open words in language after
+    language although /s/ is more sonorous than the stop that follows it.
+    """
+    seg = _normalize_segment(ipa)
+    if not seg or seg[:2] in _AFFRICATE_SEQUENCES:
+        return False        # an affricate is not the appendix, it is the core
+    vec = _phone_vector(seg) or _phone_vector(seg[0])
+    if vec is None:
+        return False
+    return (vec[_F_STRIDENT] is True and vec[_F_SONORANT] is not True
+            and vec[_F_CORONAL] is True)
+
+
+def is_voiced(ipa: str) -> Optional[bool]:
+    """Whether *ipa* is voiced. ``None`` when the feature table has no entry."""
+    seg = _normalize_segment(ipa)
+    vec = _phone_vector(seg) or (_phone_vector(seg[0]) if seg else None)
+    if vec is None:
+        return None
+    value = vec[_F_VOICE]
+    return None if value is None else bool(value)
+
+
+def place_class(ipa: str) -> str:
+    """Coarse place of articulation: ``labial``/``coronal``/``dorsal``/``""``.
+
+    Only coarse enough to answer "are these two segments homorganic?", which
+    is what an onset well-formedness test needs — see
+    :meth:`~orthography2ipa.stress._OnsetJudge._licit`.
+    """
+    cached = _place_memo.get(ipa)
+    if cached is not None:
+        return cached
+    seg = _normalize_segment(ipa)
+    vec = _phone_vector(seg) or (_phone_vector(seg[0]) if seg else None)
+    if vec is None:
+        place = ""
+    elif vec[_F_CORONAL] is True:
+        place = "coronal"
+    elif vec[_F_LABIAL] is True:
+        place = "labial"
+    elif vec[_F_HIGH] is True or vec[_F_BACK] is True:
+        place = "dorsal"
+    else:
+        place = ""
+    return _memoize(_place_memo, ipa, place)
+
+
+#: The labial approximants. ⟨v w ʋ⟩ after an obstruent form the Cw onsets of
+#: Germanic and Slavic — Swedish *kvinna*, Russian *два*, Polish *kwiat*,
+#: German *zwei*, *schwer* — and /v/ there is the reflex of an earlier glide,
+#: patterning as one however the modern language pronounces it (Vennemann
+#: 1988, ch. 1, on the Head Law; Wiese, *The Phonology of German*, OUP 1996,
+#: ch. 2, on the German ⟨Cw⟩ onsets). Without this class every one of those
+#: onsets is judged a falling obstruent cluster and split.
+_LABIAL_APPROXIMANTS = frozenset("wʋʍ") | frozenset("v")
+
+
+def is_anterior(ipa: str) -> Optional[bool]:
+    """Whether *ipa* is [+anterior] (dental/alveolar). ``None`` when unknown.
+
+    Separates /s/ from /ʃ ʂ/, which is the difference between the ⟨sw⟩ no
+    Germanic language has and the ⟨schw⟩ German does.
+    """
+    seg = _normalize_segment(ipa)
+    vec = _phone_vector(seg) or (_phone_vector(seg[0]) if seg else None)
+    if vec is None:
+        return None
+    value = vec[11]     # _F_ANTERIOR
+    return None if value is None else bool(value)
+
+
+def is_lateral(ipa: str) -> bool:
+    """Whether *ipa* is a lateral — /l ɫ ʎ ɬ/."""
+    seg = _normalize_segment(ipa)
+    vec = _phone_vector(seg) or (_phone_vector(seg[0]) if seg else None)
+    return bool(vec) and vec[5] is True      # _F_LATERAL
+
+
+def is_glottal(ipa: str) -> bool:
+    """Whether *ipa* is a glottal — /h ɦ ɧ ʔ/ (see :data:`_GLOTTAL_FRICATIVES`)."""
+    seg = _normalize_segment(ipa)
+    return bool(seg) and (seg[0] in _GLOTTAL_FRICATIVES
+                          or seg[0] in _GLOTTAL_STOPS)
+
+
+#: The palatal glides. ⟨Cj⟩ is an onset over ANY head, sonorant heads
+#: included — Icelandic *mjólk*, *ljós*, *njóta*, *rjúpa* (Árnason, *The
+#: Phonology of Icelandic and Faroese*, OUP 2011, ch. 5).
+_PALATAL_GLIDES = frozenset("jɥ")
+
+
+def is_palatal_glide(ipa: str) -> bool:
+    """Whether *ipa* is a palatal glide — see :data:`_PALATAL_GLIDES`."""
+    seg = _normalize_segment(ipa)
+    return bool(seg) and seg[0] in _PALATAL_GLIDES
+
+
+def is_labial_approximant(ipa: str) -> bool:
+    """Whether *ipa* may close a ``Cw`` onset — see :data:`_LABIAL_APPROXIMANTS`."""
+    seg = _normalize_segment(ipa)
+    return bool(seg) and seg[0] in _LABIAL_APPROXIMANTS
