@@ -353,6 +353,17 @@ copy resurrects the skips with nothing to show for it. The guard reads the set
 off the merge result and fails if it grew. Resolve that file keeping `dev`'s
 shorter set.
 
+`_DOCS_PROSE_RATCHET` in `tests/test_docs_prose.py` works the same way for
+documentation prose. Every page under `docs/` is linted by
+`scripts/ste_lint.py` in its STE-flavoured mode, and a page must stay under two
+violations per 100 words with no slop and no marketing adjectives. The listed
+pages predate the gate and may fail; the list may only shrink. A page that is
+not listed must pass, and a listed page that now passes has to be taken off the
+list. Never add a page to make a red build green — rewrite the prose instead.
+Generated pages are linted like any other, so a violation in
+`docs/comparison.md` or `docs/spec_diagnostics.md` is fixed in the generator
+script and the page is regenerated.
+
 ## Conventions (Org hard rules)
 
 - Branches: `dev` for work, `master` for stable. NEVER `main`.

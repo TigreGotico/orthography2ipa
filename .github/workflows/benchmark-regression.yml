@@ -20,6 +20,7 @@ on:
       # The burn-down list the same guard ratchets; without it here, a pull
       # request that only edits that file never reaches the check.
       - "tests/test_sources.py"
+      - "tests/test_docs_prose.py"
       - ".github/workflows/benchmark-regression.yml"
   workflow_dispatch: {}
 
