@@ -898,6 +898,42 @@ def test_sw_kh_is_the_arabic_loan_velar_fricative():
 
 
 # ---------------------------------------------------------------------------
+# ny - Chichewa (Downing & Mtenje 2017)
+# ---------------------------------------------------------------------------
+
+def test_ny_aspiration_is_never_a_separate_segment():
+    """"the <h> spells aspiration of the preceding stop and is never a segment
+    of its own, so the prenasalised aspirates <mph nth nkh ntch> are declared as
+    whole graphemes" (Downing & Mtenje 2017 chart (3): <nk(h)> = [ŋk(h)])."""
+    g = G2P("ny")
+    for word in ("nkhata", "anthu", "amphaka", "Ntcheu"):
+        assert "h" not in g.transcribe_word(word)
+    assert g.transcribe_word("nkhata") == "ŋkʰata"
+    assert g.transcribe_word("Ntcheu") == "ntʃʰɛu"
+
+
+def test_ny_sh_is_a_grapheme():
+    """"<sh> = [ʃ], mainly in loans (Downing & Mtenje 2017 chart (2))"."""
+    assert G2P("ny").transcribe_word("ashehe") == "aʃɛhɛ"
+
+
+def test_ny_single_liquid():
+    """"the inventory has one liquid, /l/; <r> is the orthographic variant used
+    after front vowels and carries the same phoneme" (Downing & Mtenje 2017
+    chart (2), whose only liquid is l)."""
+    g = G2P("ny")
+    assert "r" not in g.transcribe_word("chirombo")
+    assert g.transcribe_word("chirombo") == "tʃilɔmbɔ"
+
+
+def test_ny_tone_is_not_emitted():
+    """Declared limit: "tone is not indicated in Chichewa orthography"
+    (Downing & Mtenje 2017 §2.1), so no tone mark may be emitted."""
+    out = G2P("ny").transcribe_word("mtengo")
+    assert not any(c in out for c in "\u0301\u0300˥˦˧˨˩")
+
+
+# ---------------------------------------------------------------------------
 # id / ms — Indonesian and Malay stress
 # ---------------------------------------------------------------------------
 
