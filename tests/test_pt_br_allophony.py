@@ -186,3 +186,69 @@ def test_br_conservative_dialects_raise_without_affrication():
         assert g.spec.allophone_passes == 1
         out = g.transcribe_word("dentes")
         assert out.endswith("is") and "t͡ʃ" not in out, (lect, out)
+
+
+# ─── Sibilants: no medieval apico-alveolar leak ────────────────────────
+#
+# BP has a single plain alveolar sibilant pair /s z/ (Barbosa & Albano 2004:
+# 228, consonant chart: saca [ˈsakɐ] / zaca [ˈzakɐ], Alveolar column). The
+# apico-alveolar [s̺ z̺] belongs to the Galician-Portuguese four-sibilant
+# system that ``roa-x-galaicopt`` and ``pt-PT-x-medieval`` model, and to the
+# northern EP dialects that retain it (``pt-PT-x-minho`` and siblings). It
+# must not reach a modern spec through inheritance.
+
+@pytest.mark.parametrize("word", [
+    "isso",      # ⟨ss⟩ digraph
+    "passou",
+    "nessa",
+    "você",      # ⟨c⟩ before ⟨e⟩
+    "cidade",    # ⟨c⟩ before ⟨i⟩
+    "cinco",
+    "carroça",   # ⟨ç⟩
+])
+def test_no_apicoalveolar_sibilant(word):
+    out = G2P("pt-BR").transcribe_word(word)
+    assert "s̺" not in out and "z̺" not in out, out
+
+
+@pytest.mark.parametrize("lang,word", [
+    ("pt-PT-x-medieval", "cidade"),   # the ancestor the value belongs to
+    ("pt-PT-x-minho", "cidade"),      # declares positional ⟨c⟩ → [s̺]
+    ("pt-PT-x-trasosmontes", "isso"), # declares ⟨ss⟩ → [s̺]
+])
+def test_northern_ep_keeps_apicoalveolar(lang, word):
+    # The northern EP dialects declare the apico-alveolar deliberately
+    # (pt-PT notes: "some northern/insular dialects keep an apico-alveolar
+    # [s̺] in coda, which is a dialect delta and not modelled in the base").
+    # Correcting pt-BR must not reach them, and must not reach the medieval
+    # ancestor where the four-sibilant system is the point.
+    assert "s̺" in G2P(lang).transcribe_word(word)
+
+
+# ─── ⟨ss⟩ and ⟨rr⟩ are digraphs, not geminates ─────────────────────────
+#
+# Portuguese has no contrastive consonant length. ⟨ss⟩ spells /s/ between
+# vowels where a single ⟨s⟩ would be /z/, and ⟨rr⟩ spells the strong rhotic
+# (Barbosa & Albano 2004: 228, carro [ˈkaʁu] vs caro [ˈkaɾu]). Both are
+# declared digraphs, so neither yields a doubled segment and there is no
+# geminate for a collapse pass to remove.
+
+@pytest.mark.parametrize("word,expected", [
+    ("isso", "ˈisu"),
+    ("carro", "ˈkaʁu"),
+    ("caro", "ˈkaɾu"),
+])
+def test_digraphs_yield_one_segment(word, expected):
+    assert G2P("pt-BR").transcribe_word(word) == expected
+
+
+# ─── ⟨w⟩ is transcribed, not deleted ───────────────────────────────────
+#
+# ⟨w⟩ occurs only in loans and names but is not silent: it is [w] in English
+# loans and [v] in Germanic names. Without a grapheme entry the letter was
+# dropped outright (web → [ˈeb], show → [ˈsu]).
+
+@pytest.mark.parametrize("word", ["web", "show", "wagner", "wilson"])
+def test_w_is_not_deleted(word):
+    out = G2P("pt-BR").transcribe_word(word)
+    assert "w" in out or "v" in out, out

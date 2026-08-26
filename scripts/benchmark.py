@@ -1885,6 +1885,21 @@ def load_vox_communis(lang: str, limit: int) -> List[Tuple[str, str]]:
     outcome the measurements argue for; the inaccurate half of the label is
     corrected here in prose instead.
 
+    THE ``pt`` FILE IS EUROPEAN PORTUGUESE, and it is mapped to ``pt-BR``
+    because Common Voice's Portuguese traffic is predominantly Brazilian.
+    The phone tier is not: measured over the cached TSV, final ⟨-l⟩
+    vocalises to [w] in 0 of 948 words, ⟨t⟩ affricates before /i/ in 0 of
+    2,378, ⟨d⟩ in 5 of 1,637, final unstressed ⟨-e⟩ raises to [i] in 0 of
+    2,956 and ⟨-o⟩ to [u] in 0 of 7,429, while the European coda sibilant
+    [ʃ] appears on all 7,429 words ending in ⟨-s⟩. Its 34-symbol inventory
+    also has neither ⟨ʎ⟩ nor ⟨ɲ⟩, so the ⟨lh⟩ and ⟨nh⟩ digraphs lose their
+    ⟨h⟩ across 513 and 717 words (gatilho → ``ɡɐtilo``), and it applies the
+    European coda-sibilant rule inside the ⟨ss⟩ digraph on 981 of 995 ⟨ss⟩
+    words (isso → ``iʃso``). ``scripts/fold_pt_br_notation.py`` folds these
+    conventions out one at a time and lands at 0.2534 from 0.3886. Read the
+    row as a measurement of Epitran's European map; see
+    docs/languages/pt-BR.md.
+
     The Vietnamese file shows what that tier is protecting against, and is
     worked out in full in docs/languages/vi.md. Its PER of 0.5596 is almost
     entirely transcription convention — ``scripts/fold_vi_notation.py``
