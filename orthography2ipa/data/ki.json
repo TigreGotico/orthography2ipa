@@ -174,17 +174,6 @@
   ],
   "sources": [
     {
-      "id": "kikuyu_language_wiki",
-      "author": "Wikipedia contributors",
-      "year": 2026,
-      "title": "Kikuyu language",
-      "publisher": "Wikipedia",
-      "url": "https://en.wikipedia.org/wiki/Kikuyu_language",
-      "wikipedia_url": "https://en.wikipedia.org/wiki/Kikuyu_language",
-      "pages": null,
-      "notes": "Orthography / phonology reference."
-    },
-    {
       "id": "englebretson_2015_gikuyu_sketch",
       "author": "Englebretson, Robert (ed.)",
       "year": 2015,
@@ -194,6 +183,17 @@
       "wikipedia_url": null,
       "pages": null,
       "notes": "Phoneme inventories and orthography tables (Figures 1-4); the vowel-vowel analysis of orthographic ⟨w⟩; vowel length and the absence of tone marking in the orthography."
+    },
+    {
+      "id": "armstrong1967",
+      "author": "Armstrong, Lilias E.",
+      "year": 1967,
+      "title": "The Phonetic and Tonal Structure of Kikuyu",
+      "publisher": "London: Published for the International African Institute by Dawsons of Pall Mall",
+      "url": null,
+      "wikipedia_url": null,
+      "pages": null,
+      "notes": "The standing phonetic and tonal description of Kikuyu. Not consulted; no copy could be retrieved. Listed so the bibliography names the primary literature rather than leaving the sketch grammar as the only description on record."
     }
   ],
   "parent": "x-clade-atla1278",
