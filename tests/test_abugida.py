@@ -54,9 +54,9 @@ def test_virama_suppresses_the_inherent_vowel():
 def test_mark_supplying_no_vowel_leaves_the_inherent_vowel_standing():
     # Malayalam anusvara's IPA opens with a combining tilde — a diacritic that
     # modifies a vowel without supplying one, so ള keeps its inherent vowel for
-    # the tilde to attach to. The pipeline emits NFD (bare "a" + combining
-    # tilde U+0303), so spell the expectation with escapes.
-    assert G2P("ml").transcribe("മലയാളം") == "malajaːɭãm"
+    # the tilde to attach to. The engine's output contract is NFC (see
+    # G2P._transcribe_word), so the tilde composes onto that vowel.
+    assert G2P("ml").transcribe("മലയാളം") == "malajaːɭãm"
 
 
 # ═══════════════════════════════════════════════════════════════════════════
