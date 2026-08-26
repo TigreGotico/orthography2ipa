@@ -489,7 +489,23 @@
         "n",
         "l"
       ],
-      "notes": "⟨d⟩ is silent after ⟨n l r⟩ (mand, guld, gård); the cluster still shortens the preceding vowel"
+      "word_final": true,
+      "notes": "⟨d⟩ is silent word-finally after ⟨n l⟩ (land, kveld); the cluster still shortens the preceding vowel. Root-medial ⟨nd ld⟩ (andre, hundre, vindu) is unaffected and keeps the /d/. This is a positional flag, not a morphological one: it cannot tell a genuinely root-medial cluster from a stem+suffix boundary, so it also (correctly, by accident) leaves the /d/ in stem-final ⟨nd ld⟩ before a suffix or compound boundary where Bokmål still elides it (landet, abildene) — see o2i #61."
+    },
+    {
+      "id": "NB_SILENT_D_BEFORE_T",
+      "phonemes": [
+        "d"
+      ],
+      "surface": "",
+      "preceded_by_phoneme": [
+        "n",
+        "l"
+      ],
+      "followed_by_phoneme": [
+        "t"
+      ],
+      "notes": "⟨d⟩ is also silent after ⟨n l⟩ when followed by /t/, word-final or not (endt, endte, avholdt, håndtak, abildtre): the /nt/ /lt/ cluster simplifies the same way as the word-final case above, so this sibling rule drops the word_final requirement and keys on the following phoneme instead (followed_by_phoneme, not followed_by_grapheme, so it still fires when the ⟨t⟩ is the head of a digraph grapheme like ⟨tr⟩)."
     }
   ]
 }
