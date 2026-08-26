@@ -19,7 +19,7 @@ score, since the harness scores a spelling against the best-matching of
 its gold transcriptions), and (2) scoring with tone folded out of both
 hypothesis and gold collapses PER from the shipped ~0.40 to a small
 residual — this second measurement is what actually establishes the
-ceiling, and is what the notes report as the measured "0.0547" figure
+ceiling, and is what the notes report as the measured "0.0523" figure
 once tone is discounted.
 """
 from __future__ import annotations
@@ -52,7 +52,7 @@ def test_notes_document_the_measured_tone_ceiling():
     notes = raw["notes"]
     assert "tone" in notes
     assert "321" in notes
-    assert "0.0547" in notes
+    assert "0.0523" in notes
 
 
 def test_identical_spelling_maps_to_more_than_one_gold_tone():
@@ -98,6 +98,6 @@ def test_tone_folded_scoring_collapses_the_gap():
         bm.normalize = orig_normalize
 
     assert covered == 1025
-    # measured 0.0547; generous margin against harness float noise while
+    # measured 0.0523; generous margin against harness float noise while
     # still failing hard if a future change reopens the tone gap.
-    assert per < 0.10, f"expected tone-folded PER near 0.0547, got {per:.4f}"
+    assert per < 0.10, f"expected tone-folded PER near 0.0523, got {per:.4f}"

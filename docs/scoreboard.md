@@ -330,7 +330,7 @@ A row's `N` is its sample size in scored words, and it is not cosmetic: below ro
 | kca | northeuralex | 863 | 0.0232 | 0.0169 | 0.0169 | 0.8830 | 0.8830 | [0.0194, 0.0274] | 0.8517 | research | lexicon-derived |
 | ket | northeuralex | 793 | 0.3457 | 0.3457 | 0.3457 | 0.2282 | 0.2282 | [0.3280, 0.3658] | 0.2282 | research | lexicon-derived |
 | kgp | wikipron | 106 | 0.2351 | 0.2351 | 0.2351 | 0.3396 | 0.3396 | [0.1922, 0.2773] | 0.3396 | research | crowd-scraped |
-| ki | wikipron | 1025 | 0.3972 | 0.3955 | 0.3955 | 0.1922 | 0.1922 | [0.3841, 0.4116] | 0.1883 | research | crowd-scraped |
+| ki | wikipron | 1025 | 0.3914 | 0.3896 | 0.3896 | 0.1990 | 0.1990 | [0.3780, 0.4058] | 0.1951 | research | crowd-scraped |
 | kix | wikipron | 4240 | 0.0788 | 0.0788 | 0.0788 | 0.5116 | 0.5116 | [0.0751, 0.0823] | 0.5116 | research | crowd-scraped |
 | kk | vox_communis | 1403 | 0.3858 | 0.3218 | 0.3023 | 0.0485 | 0.1169 | [0.3788, 0.3922] | 0.0135 | research | epitran-derived |
 | kk | wikipron | 714 | 0.3393 | 0.3026 | 0.3007 | 0.1975 | 0.2003 | [0.3213, 0.3588] | 0.1737 | research | crowd-scraped |
