@@ -858,10 +858,43 @@ def test_kr_tone_is_not_emitted():
 def test_sw_penultimate_stress():
     """Stress rule: "Swahili (Standard ...) has regular penultimate stress in
     native vocabulary.  Source: Nurse & Hinnebusch (1993), Swahili and Sabaki."
-    nyumba 'house' and habari 'news' both take stress on the penult."""
+    nyumba 'house' and habari 'news' both take stress on the penult.  The
+    segments carry the implosive voiced series (Polome 1967: 38-40, reported in
+    Alsamaani 2023) and the flap /ɾ/; the claim under test is where the stress
+    mark lands, which is the penult in both words either way."""
     g = G2P("sw")
     assert g.transcribe_word("nyumba") == "ˈɲumba"
-    assert g.transcribe_word("habari") == "haˈbari"
+    assert g.transcribe_word("habari") == "haˈɓaɾi"
+
+
+def test_sw_voiced_stops_are_implosive():
+    """Inventory claim: "the voiced stop series is implosive [ɓ ɗ ʄ ɠ] ...
+    Polome (1967: 38-40), reported in Alsamaani (2023) Table 3".  After a
+    homorganic nasal the stop is a pulmonic plosive (Hayward, Omar & Goesche
+    1989), which is why <mb nd nj ng> keep [mb nd ndʒ ŋɡ]."""
+    g = G2P("sw")
+    assert g.transcribe_word("baba") == "ˈɓaɓa"
+    assert g.transcribe_word("dada") == "ˈɗaɗa"
+    assert g.transcribe_word("jana") == "ˈʄana"
+    assert g.transcribe_word("gari") == "ˈɠaɾi"
+    assert g.transcribe_word("mbwa") == "ˈmbwa"
+    assert g.transcribe_word("ndege") == "ˈndɛɠɛ"
+
+
+def test_sw_syllabic_nasal_only_before_a_consonant():
+    """"<m n> before a consonant letter form a syllable of their own (mtu
+    [m̩tu]) - declared on before_consonant, so <m> before a vowel (mama) stays
+    plain [m]"."""
+    g = G2P("sw")
+    assert g.transcribe_word("mtu") == "ˈm̩tu"
+    assert g.transcribe_word("mama") == "ˈmama"
+
+
+def test_sw_kh_is_the_arabic_loan_velar_fricative():
+    """"<kh> = [x] (Awino et al. 2022 §2: '/kh/ = kheri')."  The digraph must
+    not fall apart into /k/ plus a stray /h/."""
+    out = G2P("sw").transcribe_word("khofu")
+    assert "x" in out and "kh" not in out
 
 
 # ---------------------------------------------------------------------------
