@@ -31,7 +31,7 @@ A grapheme key represents a **single orthographic unit** in the language's writi
 Do **not** include:
 - Letter combinations that are purely sequential (no special phonological status)
 - Extremely rare or archaic spellings (unless documenting a historical variety)
-- Spelling variants that are just positional (e.g., Spanish `c` before `e/i` — handle via comment, not separate key)
+- Spelling variants that are just positional (e.g., Spanish `c` before `e/i`: handle via comment, not separate key)
 
 ### IPA value ordering
 
@@ -46,13 +46,17 @@ This ordering matters because the beam search tokenizer treats the first value a
 
 An empty string `""` is the correct IPA value for a grapheme that is always silent:
 ```python
-"h": [""],   # Spanish h — always silent
-"w": [""],   # French w before a consonant in some words (rare)
+graphemes = {
+    "h": [""],   # Spanish h: always silent
+    "w": [""],   # French w before a consonant in some words (rare)
+}
 ```
 
 Use `"∅"` (null symbol) in allophone maps when a phoneme can be deleted in certain contexts:
 ```python
-"d": ["d", "ð", "∅"],  # Catalan final /d/ can delete in fast speech
+allophones = {
+    "d": ["d", "ð", "∅"],  # Catalan final /d/ can delete in fast speech
+}
 ```
 
 ---
@@ -73,13 +77,13 @@ Do **not** include:
 
 ### Allophone list ordering
 
-The first allophone in the list should be the **citation form** — the one you would hear in slow, careful speech or a dictionary recording. Contextual variants follow.
+The first allophone in the list should be the **citation form**: the one you would hear in slow, careful speech or a dictionary recording. Contextual variants follow.
 
 ```python
 # Good
-"t": ["t", "tʰ", "ɾ", "ʔ", "t̚"]  # citation form first
+good = {"t": ["t", "tʰ", "ɾ", "ʔ", "t̚"]}  # citation form first
 # Bad
-"t": ["tʰ", "t", "ɾ", "ʔ", "t̚"]  # aspirated first makes no sense as citation form
+bad = {"t": ["tʰ", "t", "ɾ", "ʔ", "t̚"]}  # aspirated first makes no sense as citation form
 ```
 
 ---
@@ -107,9 +111,9 @@ The first allophone in the list should be the **citation form** — the one you 
 
 | Symbol | Unicode | Meaning |
 |---|---|---|
-| `ʰ` | U+02B0 | Superscript h — aspiration |
-| `ʷ` | U+02B7 | Superscript w — labialization |
-| `ʲ` | U+02B2 | Superscript j — palatalization |
+| `ʰ` | U+02B0 | Superscript h: aspiration |
+| `ʷ` | U+02B7 | Superscript w: labialization |
+| `ʲ` | U+02B2 | Superscript j: palatalization |
 | `ː` | U+02D0 | Length mark |
 | `̃` | U+0303 | Nasalization (combining) |
 | `̪` | U+032A | Dental (combining) |
@@ -132,7 +136,7 @@ Traditional Castilian distinguishes `ll` /ʎ/ from `y` /ʝ/ (`lleísmo`). The do
 
 **Lenition (spirantization)**
 
-Voiced stops /b d ɡ/ have spirant allophones [β ð ɣ] in all non-initial, non-post-nasal positions. This is one of the most robust allophonic rules in Spanish and must be in every Spanish allophone map.
+Voiced stops /b d ɡ/ have spirant allophones [β ð ɣ] in all non-initial, non-post-nasal positions. This is one of the most consistent allophonic rules in Spanish and must be in every Spanish allophone map.
 
 ### Portuguese
 
@@ -148,9 +152,11 @@ European Portuguese dramatically reduces unstressed /e/ and /o/ (often to schwa 
 
 Portuguese has phonemic nasal vowels: /ã/, /ẽ/, /ĩ/, /õ/, /ũ/. These are spelled with a tilde (`ã`, `ã`, `õ`) or before `m`/`n` in a closed syllable. The grapheme map must include nasal spellings explicitly:
 ```python
-"ã": ["ã"],
-"an": ["ã"],  # before consonant
-"am": ["ã"],  # before consonant
+graphemes = {
+    "ã": ["ã"],
+    "an": ["ã"],  # before consonant
+    "am": ["ã"],  # before consonant
+}
 ```
 
 ### French
@@ -211,7 +217,4 @@ RP English has lengthened `[ɑː]` for words like *bath*, *dance*, *path* (the B
 - Gorrochategui, J. (1984). *Onomástica indígena de Aquitania*. Univ. País Vasco.
 
 ---
-
-**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
-
-*Related: [Bibliography](bibliography.md) · [Quality tiers](quality_tiers.md) · [Benchmarks](benchmarks.md)*
+[← Adding a new Language](adding_a_language.md) · [Home](index.md) · [Quality tiers →](quality_tiers.md)

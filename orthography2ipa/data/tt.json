@@ -32,13 +32,10 @@
   "script": "Cyrillic",
   "script_type": "alphabet",
   "iso639_3": "tat",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "а": [
       "a"
-    ],
-    "ə": [
-      "æ"
     ],
     "б": [
       "b"
@@ -80,14 +77,8 @@
     "н": [
       "n"
     ],
-    "ң": [
-      "ŋ"
-    ],
     "о": [
       "o"
-    ],
-    "ö": [
-      "ø"
     ],
     "п": [
       "p"
@@ -104,17 +95,11 @@
     "у": [
       "u"
     ],
-    "ü": [
-      "y"
-    ],
     "ф": [
       "f"
     ],
     "х": [
       "x"
-    ],
-    "һ": [
-      "h"
     ],
     "ц": [
       "ts"
@@ -128,8 +113,16 @@
     "щ": [
       "ʃtʃ"
     ],
+    "ъ": [
+      "ʔ",
+      ""
+    ],
     "ы": [
       "ɯ"
+    ],
+    "ь": [
+      "ʔ",
+      ""
     ],
     "э": [
       "e"
@@ -140,8 +133,26 @@
     "я": [
       "ja"
     ],
-    "ğ": [
-      "ʁ"
+    "ё": [
+      "jo"
+    ],
+    "җ": [
+      "ʑ"
+    ],
+    "ң": [
+      "ŋ"
+    ],
+    "ү": [
+      "y"
+    ],
+    "һ": [
+      "h"
+    ],
+    "ә": [
+      "æ"
+    ],
+    "ө": [
+      "ø"
     ]
   },
   "allophones": {
@@ -238,11 +249,14 @@
     "ɯ": [
       "ɯ"
     ],
-    "ʁ": [
-      "ʁ"
+    "ʑ": [
+      "ʑ"
+    ],
+    "ʔ": [
+      "ʔ"
     ]
   },
-  "notes": "Tatar in Cyrillic script (Tatarstan). Supplemented with Ə, Ö, Ü, Ң, Ğ, Һ for Tatar-specific sounds. 9-vowel system. Ğ = /ʁ/ (voiced uvular fricative). Vowel harmony.",
+  "notes": "Tatar in Cyrillic script (Tatarstan). Nine vowels with front/back harmony: а /a/, ә /æ/, о /o/, ө /ø/, у /u/, ү /y/, ы /ɯ/, и /i/, е /e/ (values per Berta 1998, \"Tatar and Bashkir\", in The Turkic Languages, Johanson & Csató eds.; edition not consulted this session, standard Turkological description; orthographic inventory per Wikipedia, \"Tatar alphabet\"). Ә, Ө, Ү are Cyrillic letters with descenders/hooks, not the Latin ə ö ü they resemble.\n\nTatar Cyrillic has no distinct letter for the uvular fricative/stop: г spells both /ɡ/ and /ʁ/, and к both /k/ and /q/, conditioned by front/back vowel harmony (Berta 1998). The convention that marks the back (uvular) reading is the digraphs ⟨гъ⟩ and ⟨къ⟩ (ъ after г/к signals /ʁ/, /q/ rather than its own glottal value); that digraph rule is left unmodeled here — г and к are given their plain (front-harmony) values only, and ъ/ь keep their independent glottal candidate below regardless of context. This is a documented residual pending a primary-source wave, not a silent deletion, since г/к still surface as segments.\n\nҖ is a Tatar-specific letter, the voiced alveolo-palatal fricative /ʑ/, distinct from Ж /ʒ/ (Berta 1998). Ң = /ŋ/, Һ = /h/.\n\nЪ and Ь mark [ʔ] (glottal stop/glottalization) per Wikipedia, \"Tatar alphabet\"; a silent reading is kept as a secondary candidate for the minority of tokens where they are orthographic-only. Ё /jo/ and Ц /ts/, Щ /ʃtʃ/, В /v/ carry Russian loanwords.",
   "sources": [
     {
       "id": "tatar_wiki",
@@ -254,6 +268,28 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Tatar_language",
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "tatar_alphabet_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Tatar alphabet",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Tatar_alphabet",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Tatar_alphabet",
+      "pages": null,
+      "notes": "Orthography reference for the ъ/ь glottal-stop reading and the гъ/къ uvular digraph convention."
+    },
+    {
+      "id": "berta_1998_tatar_bashkir",
+      "author": "Berta, Árpád",
+      "year": 1998,
+      "title": "Tatar and Bashkir",
+      "publisher": "Routledge, in The Turkic Languages (Johanson, Lars & Csató, Éva Ágnes, eds.)",
+      "url": null,
+      "wikipedia_url": null,
+      "pages": null,
+      "notes": "Edition not consulted this session; standard Turkological description of Tatar phonology, cited for vowel/consonant values."
     }
   ],
   "wikipedia": [
