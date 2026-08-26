@@ -567,6 +567,11 @@
     "source": "glottolog",
     "notes": "Glottolog's representative point for Ewe."
   },
+  "valid_ceiling": {
+    "per": 0.008,
+    "folded": "tone",
+    "citation": "Standard Ewe orthography marks tone only where disambiguation requires it (Ansre 1961; Capo 1991); raw PER of 0.4445 against the WikiPron ewe_latn_broad gold (which transcribes a tone on every vowel) drops to 0.008 once tone diacritics are folded out of both sides -- see the `notes` field above for the full measurement (245 of 247 spellings match exactly after folding)."
+  },
   "positional_graphemes": {
     "r": {
       "after_consonant": [

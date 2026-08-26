@@ -349,8 +349,27 @@ class TestTheCIGateStays1Best:
         assert "build_scoreboard(CI_SAMPLE_LIMIT, oracle=False)" in src
 
 
+_ORACLE_HEADERS = ("Oracle@3", "Oracle@5", "OracleX@3", "OracleX@5")
+
+
 class TestScoreboardMarkers:
-    """`·` (unrescored) and `-` (sentence-level) are different states."""
+    """`·` (unrescored) and `-` (sentence-level) are different states.
+
+    These assertions read only the four ORACLE cells (`Oracle@3`,
+    `Oracle@5`, `OracleX@3`, `OracleX@5`), located by HEADER NAME — the
+    same technique scripts/check_board_not_reverting.py's
+    `_read_markdown` uses to key a row's cells regardless of column
+    order — not by a hardcoded position. They used to scan the whole
+    line for a bare `-`, which was a safe proxy for "no oracle cell
+    reads as sentence-level" back when the oracle columns were the only
+    ones a `-` could appear in. The `Ceiling` column legitimately
+    renders `-` for a row with no measured `valid_ceiling` (see
+    scripts/benchmark.py's `_valid_ceiling`), which is an unrelated
+    state and would trip the old whole-line proxy on every ordinary
+    row, and a hardcoded oracle-cell index would just as silently break
+    the NEXT time a column is inserted ahead of the oracle block.
+    Locating cells by header name is immune to both.
+    """
 
     def _row(self, **kw):
         base = dict(lang="xx", dataset="ds", n=10, per=0.5, per_ci_low=0.4,
@@ -366,27 +385,49 @@ class TestScoreboardMarkers:
         monkeypatch.setattr(benchmark, "SCOREBOARD_MD", str(tmp_path / "s.md"))
         benchmark.write_scoreboard([row])
         text = (tmp_path / "s.md").read_text(encoding="utf-8")
-        return [ln for ln in text.splitlines() if ln.startswith("| xx |")][0]
+        lines = text.splitlines()
+        header_line = next(ln for ln in lines if ln.startswith("| Lang |"))
+        data_line = next(ln for ln in lines if ln.startswith("| xx |"))
+        return header_line, data_line
+
+    @classmethod
+    def _oracle_cells(cls, header_line, data_line):
+        """The four oracle cells for *data_line*, keyed by the header
+        names in *header_line* — never by position."""
+        headers = [c.strip() for c in header_line.strip().strip("|").split("|")]
+        cells = [c.strip() for c in data_line.strip().strip("|").split("|")]
+        by_header = dict(zip(headers, cells))
+        missing = [h for h in _ORACLE_HEADERS if h not in by_header]
+        assert not missing, (
+            f"expected oracle headers {_ORACLE_HEADERS} in the rendered "
+            f"table, missing {missing} — got headers {headers}. A rename "
+            "here must fail loudly rather than let an empty/short slice "
+            "make the marker assertions vacuously true."
+        )
+        return [by_header[h] for h in _ORACLE_HEADERS]
 
     def test_unrescored_row_reads_dot_not_dash(self, tmp_path, monkeypatch):
-        line = self._render(tmp_path, monkeypatch, self._row())
-        assert "·" in line and "| - |" not in line, (
+        header_line, data_line = self._render(tmp_path, monkeypatch, self._row())
+        oracle_cells = self._oracle_cells(header_line, data_line)
+        assert all(c == "·" for c in oracle_cells), (
             "an unrescored row must not read as a sentence-level row, "
-            "which would look like zero ranking error")
+            f"which would look like zero ranking error: {oracle_cells}")
 
     def test_sentence_level_row_reads_dash(self, tmp_path, monkeypatch):
         row = self._row(oracle_per_top3=0.5, oracle_per_top5=0.5,
                         oracle_exact_top3=0.0, oracle_exact_top5=0.0,
                         oracle_fallback_words=10, oracle_scored_words=0)
-        line = self._render(tmp_path, monkeypatch, row)
-        assert "| - |" in line and "·" not in line
+        header_line, data_line = self._render(tmp_path, monkeypatch, row)
+        oracle_cells = self._oracle_cells(header_line, data_line)
+        assert all(c == "-" for c in oracle_cells), oracle_cells
 
     def test_measured_row_prints_numbers(self, tmp_path, monkeypatch):
         row = self._row(oracle_per_top3=0.3, oracle_per_top5=0.2,
                         oracle_exact_top3=0.1, oracle_exact_top5=0.15,
                         oracle_fallback_words=0, oracle_scored_words=10)
-        line = self._render(tmp_path, monkeypatch, row)
-        assert "0.3000" in line and "0.2000" in line and "0.1500" in line
+        _, data_line = self._render(tmp_path, monkeypatch, row)
+        assert ("0.3000" in data_line and "0.2000" in data_line
+                and "0.1500" in data_line)
 
     def test_scored_words_not_n_decides_the_marker(self, tmp_path,
                                                    monkeypatch):
@@ -395,8 +436,8 @@ class TestScoreboardMarkers:
         row = self._row(n=99, oracle_per_top3=0.5, oracle_per_top5=0.5,
                         oracle_exact_top3=0.0, oracle_exact_top5=0.0,
                         oracle_fallback_words=10, oracle_scored_words=0)
-        line = self._render(tmp_path, monkeypatch, row)
-        assert "| - |" in line
+        header_line, data_line = self._render(tmp_path, monkeypatch, row)
+        assert all(c == "-" for c in self._oracle_cells(header_line, data_line))
 
 
 class TestScoredWordCount:

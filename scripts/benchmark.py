@@ -3743,6 +3743,34 @@ def _quality_tier(lang: str) -> Optional[str]:
         return None
 
 
+#: The deep-orthography PER gate documented in ``docs/quality_tiers.md``
+#: ("Quality tiers" -> "production"). Used here ONLY to decide whether the
+#: scoreboard's `Ceiling` column visibly marks a row as proved
+#: input-limited; it does not feed the quality-tier computation itself,
+#: which lives in ``_quality_tier`` and is untouched by this column.
+CEILING_GATING_THRESHOLD = 0.25
+
+
+def _valid_ceiling(lang: str) -> Optional[dict]:
+    """The spec's measured ``valid_ceiling`` for *lang*, as a plain dict, or
+    ``None`` when no such measurement has been executed or the tag does not
+    resolve to a registered spec."""
+    from orthography2ipa import get
+
+    try:
+        spec = get(lang)
+    except Exception:
+        return None
+    ceiling = spec.valid_ceiling
+    if ceiling is None:
+        return None
+    return {
+        "per": ceiling.per,
+        "folded": ceiling.folded,
+        "citation": ceiling.citation,
+    }
+
+
 def _injected_alternatives(lang: str, exposed: bool) -> List[str]:
     """The injected alternatives this row's oracle EXCLUDED, or ``[]``.
 
@@ -3859,6 +3887,9 @@ def build_scoreboard(limit: Optional[int], oracle: bool = False,
                 "harness_version": HARNESS_VERSION,
                 "limit": limit,
             })
+            ceiling = _valid_ceiling(lang)
+            if ceiling is not None:
+                rows[-1]["valid_ceiling"] = ceiling
             if oracle_res is not None:
                 # Diagnostic-only lattice-quality columns. NEVER compare
                 # these to another system's 1-best (see OracleResult).
@@ -4033,9 +4064,22 @@ def write_scoreboard(rows: List[dict]) -> None:
         "never be read as comparable to a row scored on thousands of "
         "words, no matter how narrow their CI looks.",
         "",
-        "| Lang | Dataset | N | PER | Oracle@3 | Oracle@5 | OracleX@3 "
+        "The `Ceiling` column is a `valid_ceiling` measurement, when one has "
+        "been executed for the row's language: the PER once an "
+        "orthographically-unwritten contrast (tone, vowel length, or both — "
+        "these give different numbers and are never conflated) is folded out "
+        "of BOTH sides before rescoring. It reads `-` when no such "
+        "measurement has been recorded — that is \"not measured\", never "
+        "\"measured as zero\". A ceiling below "
+        f"{CEILING_GATING_THRESHOLD:.2f} is marked `†`: the row's raw `PER` "
+        "may look like an open failure, but the language has been proved "
+        "input-limited rather than defective. `valid_ceiling` never changes "
+        "`PER` itself — see [`orthography2ipa/data/SCHEMA.md`]"
+        "(../orthography2ipa/data/SCHEMA.md#valid-ceiling-schema).",
+        "",
+        "| Lang | Dataset | N | PER | Ceiling | Oracle@3 | Oracle@5 | OracleX@3 "
         "| OracleX@5 | 95% CI | Exact match | Quality tier | Provenance |",
-        "|---|---|---:|---:|---:|---:|---:|---:|---:|---|---|---|",
+        "|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---|---|---|",
     ]
     for row in rows:
         tier = row["quality_tier"] or "-"
@@ -4065,9 +4109,15 @@ def write_scoreboard(rows: List[dict]) -> None:
             return "·" if v is None else f"{v:.4f}"
 
         em = row.get("exact_match")
+        ceiling = row.get("valid_ceiling")
+        if ceiling is None:
+            ceiling_cell = "-"
+        else:
+            mark = "†" if ceiling["per"] < CEILING_GATING_THRESHOLD else ""
+            ceiling_cell = f"{ceiling['per']:.4f}{mark} ({ceiling['folded']})"
         lines.append(
             f"| {row['lang']} | {row['dataset']} | {n_cell} | "
-            f"{row['per']:.4f} | {_oracle('oracle_per_top3')} "
+            f"{row['per']:.4f} | {ceiling_cell} | {_oracle('oracle_per_top3')} "
             f"| {_oracle('oracle_per_top5')} "
             f"| {_oracle('oracle_exact_top3')} "
             f"| {_oracle('oracle_exact_top5')} | {ci} "

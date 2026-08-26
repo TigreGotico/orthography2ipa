@@ -26,648 +26,650 @@ Oracle cells read `·` when the row has **not been rescored** since the oracle c
 
 A row's `N` is its sample size in scored words, and it is not cosmetic: below roughly 20 words the bootstrap `95% CI` above stops being informative — resampling one or two words with replacement can only ever reproduce the same one or two values, so the interval collapses toward a single point (see 20 and below) instead of widening the way it would on a real sample. A degenerate `[x, x]` interval on a thin row is NOT evidence of precision; it is an artifact of having too little data to resample. Rows with fewer than 20 scored words carry a `†` after `N` for exactly this reason, and must never be read as comparable to a row scored on thousands of words, no matter how narrow their CI looks.
 
-| Lang | Dataset | N | PER | Oracle@3 | Oracle@5 | OracleX@3 | OracleX@5 | 95% CI | Exact match | Quality tier | Provenance |
-|---|---|---:|---:|---:|---:|---:|---:|---:|---|---|---|
-| aa | wikipron | 1713 | 0.2151 | 0.2151 | 0.2151 | 0.2685 | 0.2685 | [0.2071, 0.2228] | 0.2685 | research | crowd-scraped |
-| ab | vox_communis | 32180 | 0.1964 | 0.1964 | 0.1964 | 0.1921 | 0.1921 | [0.1947, 0.1980] | 0.1921 | research | epitran-derived |
-| ab | wikipron | 165 | 0.2311 | 0.2296 | 0.2296 | 0.5636 | 0.5636 | [0.1725, 0.2915] | 0.5636 | research | crowd-scraped |
-| ace | wikipron | 267 | 0.1102 | 0.0864 | 0.0864 | 0.6404 | 0.6404 | [0.0928, 0.1293] | 0.5693 | research | crowd-scraped |
-| acm | wikipron | 97 | 0.3666 | 0.3172 | 0.3172 | 0.1546 | 0.1546 | [0.3288, 0.4055] | 0.1134 | research | crowd-scraped |
-| ady | northeuralex | 928 | 0.1684 | 0.1587 | 0.1586 | 0.4483 | 0.4494 | [0.1558, 0.1813] | 0.4224 | research | lexicon-derived |
-| af | wikipron | 2076 | 0.1653 | 0.1394 | 0.1373 | 0.4711 | 0.4783 | [0.1567, 0.1731] | 0.4220 | research | crowd-scraped |
-| aii | wikipron | 4836 | 0.3758 | 0.3280 | 0.3056 | 0.0463 | 0.0567 | [0.3714, 0.3803] | 0.0209 | research | crowd-scraped |
-| ain | northeuralex | 858 | 0.0200 | 0.0200 | 0.0200 | 0.8811 | 0.8811 | [0.0160, 0.0238] | 0.8811 | research | lexicon-derived |
-| akk | wikipron | 671 | 0.0144 | 0.0144 | 0.0144 | 0.9046 | 0.9046 | [0.0109, 0.0178] | 0.9046 | research | crowd-scraped |
-| ale | northeuralex | 896 | 0.2634 | 0.2634 | 0.2634 | 0.0926 | 0.0926 | [0.2542, 0.2731] | 0.0926 | skeleton | lexicon-derived |
-| ale | wikipron | 118 | 0.1100 | 0.1100 | 0.1100 | 0.7458 | 0.7458 | [0.0650, 0.1652] | 0.7458 | skeleton | crowd-scraped |
-| am | vox_communis | 5453 | 0.2300 | 0.2300 | 0.2300 | 0.1258 | 0.1258 | [0.2258, 0.2341] | 0.1258 | research | epitran-derived |
-| am | wikipron | 388 | 0.3662 | 0.3662 | 0.3662 | 0.1082 | 0.1082 | [0.3445, 0.3881] | 0.1082 | research | crowd-scraped |
-| an | wikipron | 902 | 0.0580 | 0.0229 | 0.0207 | 0.8570 | 0.8703 | [0.0523, 0.0637] | 0.6630 | research | crowd-scraped |
-| ang | wikipron | 54696 | 0.2103 | 0.1588 | 0.1512 | 0.2471 | 0.2632 | [0.2092, 0.2116] | 0.1545 | research | crowd-scraped |
-| aot | wikipron | 181 | 0.1367 | 0.1367 | 0.1367 | 0.4475 | 0.4475 | [0.1160, 0.1588] | 0.4475 | research | crowd-scraped |
-| apw | wikipron | 147 | 0.3076 | 0.3006 | 0.3006 | 0.2449 | 0.2449 | [0.2662, 0.3507] | 0.2449 | research | crowd-scraped |
-| ar | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar | gold20_arabic | 20 | 0.0051 | - | - | - | - | [0.0010, 0.0102] | 0.8000 | research | llm-generated |
-| ar | ipadict | 857160 | 0.3774 | 0.3380 | 0.3334 | 0.0053 | 0.0059 | [0.3772, 0.3776] | 0.0030 | research | machine-generated |
-| ar | wikipron | 14268 | 0.3139 | 0.2539 | 0.2521 | 0.0763 | 0.0798 | [0.3116, 0.3162] | 0.0444 | research | crowd-scraped |
-| ar | wikipron_ar_diacritized | 14240 | 0.1721 | 0.1710 | 0.1710 | 0.3055 | 0.3055 | [0.1696, 0.1746] | 0.3051 | research | crowd-scraped |
-| ar-AE | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-AE | gold20_arabic | 20 | 0.0441 | - | - | - | - | [0.0253, 0.0651] | 0.3500 | research | llm-generated |
-| ar-BH | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-BH | gold20_arabic | 20 | 0.0410 | - | - | - | - | [0.0262, 0.0572] | 0.2000 | research | llm-generated |
-| ar-DZ | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-DZ | gold20_arabic | 20 | 0.0406 | - | - | - | - | [0.0164, 0.0674] | 0.6000 | research | llm-generated |
-| ar-DZ | primary_sources | 1† | 0.7143 | 0.7143 | 0.7143 | 0.0000 | 0.0000 | [0.7143, 0.7143] | 0.0000 | research | expert-human |
-| ar-EG | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-EG | gold20_arabic | 20 | 0.0230 | - | - | - | - | [0.0065, 0.0449] | 0.6000 | research | llm-generated |
-| ar-EG | primary_sources | 18† | 0.2390 | 0.2029 | 0.1906 | 0.2222 | 0.2222 | [0.1696, 0.3291] | 0.1111 | research | expert-human |
-| ar-EG | wikipron | 590 | 0.3692 | 0.2985 | 0.2944 | 0.1169 | 0.1203 | [0.3542, 0.3830] | 0.0729 | research | crowd-scraped |
-| ar-IQ | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-IQ | gold20_arabic | 20 | 0.0051 | - | - | - | - | [0.0000, 0.0134] | 0.9000 | research | llm-generated |
-| ar-IQ | primary_sources | 12† | 0.2907 | 0.2907 | 0.2907 | 0.2500 | 0.2500 | [0.1760, 0.4065] | 0.2500 | research | expert-human |
-| ar-IQ-x-qeltu | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-IQ-x-qeltu | gold20_arabic | 20 | 0.0147 | - | - | - | - | [0.0057, 0.0269] | 0.6000 | research | llm-generated |
-| ar-IQ-x-qeltu | primary_sources | 12† | 0.3417 | 0.3417 | 0.3417 | 0.2500 | 0.2500 | [0.1917, 0.5125] | 0.2500 | research | expert-human |
-| ar-JO | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-JO | gold20_arabic | 20 | 0.0061 | - | - | - | - | [0.0012, 0.0123] | 0.8000 | research | llm-generated |
-| ar-JO | primary_sources | 13† | 0.2179 | 0.1833 | 0.1833 | 0.3077 | 0.3077 | [0.1167, 0.3333] | 0.3077 | research | expert-human |
-| ar-JO | wikipron | 2513 | 0.3718 | 0.3119 | 0.3069 | 0.0653 | 0.0692 | [0.3656, 0.3778] | 0.0358 | research | crowd-scraped |
-| ar-KW | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-KW | gold20_arabic | 20 | 0.0237 | - | - | - | - | [0.0113, 0.0353] | 0.5000 | research | llm-generated |
-| ar-LB | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-LB | gold20_arabic | 20 | 0.0258 | - | - | - | - | [0.0097, 0.0484] | 0.5500 | research | llm-generated |
-| ar-LY | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-LY | gold20_arabic | 20 | 0.0122 | - | - | - | - | [0.0047, 0.0208] | 0.6500 | research | llm-generated |
-| ar-LY | primary_sources | 6† | 0.2042 | 0.1833 | 0.1833 | 0.3333 | 0.3333 | [0.1083, 0.3042] | 0.1667 | research | expert-human |
-| ar-MA | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-MA | gold20_arabic | 20 | 0.0496 | - | - | - | - | [0.0228, 0.0782] | 0.5000 | research | llm-generated |
-| ar-MA | primary_sources | 5† | 0.1733 | 0.1000 | 0.1000 | 0.6000 | 0.6000 | [0.0833, 0.2400] | 0.2000 | research | expert-human |
-| ar-MA | wikipron | 1832 | 0.3026 | 0.2198 | 0.2166 | 0.2200 | 0.2282 | [0.2948, 0.3103] | 0.1075 | research | crowd-scraped |
-| ar-MR | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-MR | gold20_arabic | 20 | 0.0174 | - | - | - | - | [0.0056, 0.0333] | 0.6500 | research | llm-generated |
-| ar-MR | primary_sources | 14† | 0.3988 | 0.2651 | 0.2509 | 0.2857 | 0.2857 | [0.2702, 0.5396] | 0.2143 | research | expert-human |
-| ar-NG | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-NG | gold20_arabic | 20 | 0.0228 | - | - | - | - | [0.0000, 0.0548] | 0.8500 | research | llm-generated |
-| ar-NG | primary_sources | 6† | 0.2444 | 0.2444 | 0.2444 | 0.5000 | 0.5000 | [0.0556, 0.5111] | 0.5000 | research | expert-human |
-| ar-OM | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-OM | gold20_arabic | 20 | 0.0077 | - | - | - | - | [0.0000, 0.0215] | 0.9000 | research | llm-generated |
-| ar-PS | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-PS | gold20_arabic | 20 | 0.0230 | - | - | - | - | [0.0079, 0.0408] | 0.6000 | research | llm-generated |
-| ar-PS | primary_sources | 4† | 0.1667 | 0.1000 | 0.1000 | 0.7500 | 0.7500 | [0.0417, 0.3250] | 0.2500 | research | expert-human |
-| ar-QA | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-QA | gold20_arabic | 20 | 0.0264 | - | - | - | - | [0.0151, 0.0374] | 0.4000 | research | llm-generated |
-| ar-SA-x-dawasir | primary_sources | 5† | 0.0800 | 0.0400 | 0.0400 | 0.8000 | 0.8000 | [0.0000, 0.2400] | 0.8000 | stub | expert-human |
-| ar-SA-x-hejaz | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-SA-x-hejaz | gold20_arabic | 20 | 0.0219 | - | - | - | - | [0.0024, 0.0534] | 0.8000 | research | llm-generated |
-| ar-SA-x-hejaz | primary_sources | 30 | 0.1340 | 0.1256 | 0.1256 | 0.5333 | 0.5333 | [0.0823, 0.1872] | 0.5000 | research | expert-human |
-| ar-SA-x-hejaz | wikipron | 1889 | 0.3412 | 0.2682 | 0.2648 | 0.0789 | 0.0815 | [0.3346, 0.3481] | 0.0408 | research | crowd-scraped |
-| ar-SA-x-najd | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-SA-x-najd | gold20_arabic | 20 | 0.0041 | - | - | - | - | [0.0000, 0.0091] | 0.8500 | research | llm-generated |
-| ar-SA-x-najd | primary_sources | 25 | 0.1491 | 0.1434 | 0.1434 | 0.6000 | 0.6000 | [0.0712, 0.2343] | 0.5600 | research | expert-human |
-| ar-SA-x-qassim | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-SA-x-qassim | gold20_arabic | 20 | 0.0230 | - | - | - | - | [0.0051, 0.0469] | 0.7500 | research | llm-generated |
-| ar-SA-x-qassim | primary_sources | 12† | 0.1327 | 0.1327 | 0.1327 | 0.5000 | 0.5000 | [0.0524, 0.2306] | 0.5000 | research | expert-human |
-| ar-SA-x-rijal-alma | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-SA-x-rijal-alma | gold20_arabic | 20 | 0.0184 | - | - | - | - | [0.0090, 0.0289] | 0.5500 | research | llm-generated |
-| ar-SA-x-rijal-alma | primary_sources | 8† | 0.2454 | 0.2454 | 0.2454 | 0.1250 | 0.1250 | [0.1244, 0.3834] | 0.1250 | research | expert-human |
-| ar-SA-x-sharqiyya | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-SA-x-sharqiyya | gold20_arabic | 20 | 0.0506 | - | - | - | - | [0.0320, 0.0719] | 0.2000 | research | llm-generated |
-| ar-SA-x-sharqiyya | primary_sources | 6† | 0.1944 | 0.1389 | 0.1389 | 0.5000 | 0.5000 | [0.0278, 0.3889] | 0.5000 | research | expert-human |
-| ar-SA-x-tihama-qahtan | primary_sources | 16† | 0.1084 | 0.1084 | 0.1084 | 0.5000 | 0.5000 | [0.0521, 0.1844] | 0.5000 | research | expert-human |
-| ar-SD | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-SD | gold20_arabic | 20 | 0.0274 | - | - | - | - | [0.0145, 0.0411] | 0.4000 | research | llm-generated |
-| ar-SY | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-SY | gold20_arabic | 20 | 0.0491 | - | - | - | - | [0.0220, 0.0755] | 0.5000 | research | llm-generated |
-| ar-SY | primary_sources | 11† | 0.1318 | 0.1318 | 0.1318 | 0.4545 | 0.4545 | [0.0561, 0.2031] | 0.4545 | research | expert-human |
-| ar-SY | wikipron | 410 | 0.3889 | 0.3004 | 0.2965 | 0.0902 | 0.0902 | [0.3714, 0.4047] | 0.0317 | research | crowd-scraped |
-| ar-TD | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-TD | gold20_arabic | 20 | 0.0346 | - | - | - | - | [0.0083, 0.0662] | 0.7000 | research | llm-generated |
-| ar-TN | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-TN | gold20_arabic | 20 | 0.0036 | - | - | - | - | [0.0000, 0.0080] | 0.8500 | research | llm-generated |
-| ar-TN | primary_sources | 9† | 0.3059 | 0.2549 | 0.2549 | 0.2222 | 0.2222 | [0.1960, 0.4250] | 0.1111 | research | expert-human |
-| ar-YE | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-YE | gold20_arabic | 20 | 0.0043 | - | - | - | - | [0.0000, 0.0095] | 0.8500 | research | llm-generated |
-| ar-YE | primary_sources | 15† | 0.1802 | 0.1802 | 0.1802 | 0.1333 | 0.1333 | [0.1352, 0.2202] | 0.1333 | research | expert-human |
-| ar-x-gulf | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-x-gulf | gold20_arabic | 20 | 0.0449 | - | - | - | - | [0.0259, 0.0645] | 0.3500 | research | llm-generated |
-| ar-x-gulf | wikipron | 614 | 0.4270 | 0.3399 | 0.3313 | 0.0537 | 0.0570 | [0.4144, 0.4397] | 0.0195 | research | crowd-scraped |
-| ar-x-levantine | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-x-levantine | gold20_arabic | 20 | 0.0105 | - | - | - | - | [0.0033, 0.0180] | 0.7000 | research | llm-generated |
-| ar-x-maghrebi | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-x-maghrebi | gold20_arabic | 20 | 0.0044 | - | - | - | - | [0.0000, 0.0101] | 0.8500 | research | llm-generated |
-| ar-x-mashriqi | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-x-mashriqi | gold20_arabic | 20 | 0.0175 | - | - | - | - | [0.0036, 0.0360] | 0.7500 | research | llm-generated |
-| ar-x-peninsular | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-x-peninsular | gold20_arabic | 20 | 0.0122 | - | - | - | - | [0.0041, 0.0215] | 0.7000 | research | llm-generated |
-| arb | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| arb | gold20_arabic | 20 | 0.0190 | - | - | - | - | [0.0114, 0.0272] | 0.3500 | research | llm-generated |
-| arn | wold | 1269 | 0.0112 | 0.0112 | 0.0112 | 0.9511 | 0.9511 | [0.0084, 0.0143] | 0.9511 | research | lexicon-derived |
-| as | vox_communis | 5328 | 0.2436 | 0.2432 | 0.2432 | 0.3009 | 0.3009 | [0.2371, 0.2502] | 0.3005 | production | epitran-derived |
-| as | wikipron | 2981 | 0.0918 | 0.0861 | 0.0861 | 0.6437 | 0.6441 | [0.0865, 0.0969] | 0.6307 | production | crowd-scraped |
-| ast | wikipron | 4167 | 0.0505 | 0.0253 | 0.0244 | 0.8591 | 0.8651 | [0.0475, 0.0533] | 0.7106 | research | crowd-scraped |
-| ast-PT-x-guadramil | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ast-PT-x-medieval | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ast-PT-x-rionor | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| av | northeuralex | 954 | 0.0990 | 0.0501 | 0.0378 | 0.7086 | 0.8029 | [0.0927, 0.1054] | 0.4591 | research | lexicon-derived |
-| ayl | wikipron | 156 | 0.3799 | 0.2808 | 0.2777 | 0.1474 | 0.1538 | [0.3544, 0.4062] | 0.0449 | research | crowd-scraped |
-| az | wikipron | 434 | 0.2440 | 0.2382 | 0.2382 | 0.3134 | 0.3134 | [0.2238, 0.2654] | 0.3111 | research | crowd-scraped |
-| ba | vox_communis | 70528 | 0.4047 | 0.4047 | 0.4047 | 0.0191 | 0.0191 | [0.4038, 0.4056] | 0.0191 | research | epitran-derived |
-| ba | wikipron | 171 | 0.2685 | 0.2685 | 0.2685 | 0.4211 | 0.4211 | [0.2233, 0.3172] | 0.4211 | research | crowd-scraped |
-| ban | wikipron | 299 | 0.1630 | 0.1355 | 0.1313 | 0.4013 | 0.4214 | [0.1482, 0.1789] | 0.3378 | research | crowd-scraped |
-| bbl | wikipron | 414 | 0.3228 | 0.3228 | 0.3228 | 0.2005 | 0.2005 | [0.2960, 0.3501] | 0.2005 | research | crowd-scraped |
-| bbn | wikipron | 194 | 0.0689 | 0.0689 | 0.0689 | 0.6495 | 0.6495 | [0.0556, 0.0836] | 0.6495 | research | crowd-scraped |
-| bcl | wikipron | 4793 | 0.0652 | 0.0652 | 0.0652 | 0.6359 | 0.6359 | [0.0624, 0.0680] | 0.6359 | research | crowd-scraped |
-| bdq | wikipron | 198 | 0.3363 | 0.3363 | 0.3363 | 0.1465 | 0.1465 | [0.3013, 0.3676] | 0.1465 | research | crowd-scraped |
-| be | vox_communis | 153529 | 0.1276 | 0.1253 | 0.1252 | 0.2591 | 0.2591 | [0.1271, 0.1281] | 0.2523 | research | epitran-derived |
-| be | wikipron | 7229 | 0.0064 | 0.0064 | 0.0064 | 0.9521 | 0.9521 | [0.0057, 0.0072] | 0.9519 | research | crowd-scraped |
-| bg | vox_communis | 18447 | 0.1980 | 0.1980 | 0.1980 | 0.1935 | 0.1935 | [0.1959, 0.1998] | 0.1935 | research | epitran-derived |
-| bjb | wikipron | 136 | 0.1021 | 0.1021 | 0.1021 | 0.5956 | 0.5956 | [0.0773, 0.1261] | 0.5956 | research | crowd-scraped |
-| bn | vox_communis | 30261 | 0.2051 | 0.1997 | 0.1996 | 0.1874 | 0.1874 | [0.2031, 0.2070] | 0.1874 | research | epitran-derived |
-| bn | wikipron | 6527 | 0.3162 | 0.2802 | 0.2778 | 0.1538 | 0.1554 | [0.3108, 0.3216] | 0.1316 | research | crowd-scraped |
-| bo | wikipron | 1564 | 0.3785 | 0.3718 | 0.3715 | 0.2174 | 0.2174 | [0.3606, 0.3962] | 0.2174 | research | crowd-scraped |
-| br | wikipron | 803 | 0.3210 | 0.2353 | 0.2168 | 0.1806 | 0.2192 | [0.3093, 0.3337] | 0.0872 | research | crowd-scraped |
-| bua | northeuralex | 1174 | 0.0398 | 0.0398 | 0.0398 | 0.7726 | 0.7726 | [0.0351, 0.0448] | 0.7726 | research | lexicon-derived |
-| bua | wikipron | 140 | 0.3571 | 0.3120 | 0.3114 | 0.1571 | 0.1571 | [0.3243, 0.3881] | 0.1143 | research | crowd-scraped |
-| ca | 4catac | 160 | 0.0642 | - | - | - | - | [0.0587, 0.0698] | 0.0437 | research | expert-human |
-| ca | ipa_childes | 3813 | 0.2576 | 0.1681 | 0.1462 | 0.3669 | 0.4306 | [0.2511, 0.2645] | 0.2206 | research | espeak-derived |
-| ca | vox_communis | 141623 | 0.1321 | 0.1173 | 0.1067 | 0.5120 | 0.5488 | [0.1310, 0.1332] | 0.4706 | research | epitran-derived |
-| ca | wikipron | 106 | 0.2565 | 0.1488 | 0.1289 | 0.5094 | 0.5660 | [0.2121, 0.3003] | 0.3396 | research | crowd-scraped |
-| ca-x-balear | 4catac | 160 | 0.1360 | - | - | - | - | [0.1283, 0.1446] | 0.0062 | research | expert-human |
-| ca-x-occidental | 4catac | 160 | 0.0822 | - | - | - | - | [0.0761, 0.0886] | 0.0125 | research | expert-human |
-| ca-x-valencia | 4catac | 160 | 0.0677 | - | - | - | - | [0.0620, 0.0733] | 0.0312 | research | expert-human |
-| car | wikipron | 232 | 0.3500 | 0.3500 | 0.3500 | 0.0517 | 0.0517 | [0.3259, 0.3749] | 0.0517 | research | crowd-scraped |
-| car | wold | 1191 | 0.0846 | 0.0846 | 0.0846 | 0.5600 | 0.5600 | [0.0779, 0.0923] | 0.5600 | research | lexicon-derived |
-| ce | wikipron | 461 | 0.2541 | 0.2319 | 0.2319 | 0.2842 | 0.2842 | [0.2360, 0.2727] | 0.2364 | research | crowd-scraped |
-| ceb | wikipron | 3895 | 0.1058 | 0.1058 | 0.1058 | 0.5214 | 0.5214 | [0.1017, 0.1095] | 0.5214 | research | crowd-scraped |
-| chb | wikipron | 99 | 0.1313 | 0.1313 | 0.1313 | 0.4545 | 0.4545 | [0.1001, 0.1636] | 0.4545 | research | crowd-scraped |
-| cho | wikipron | 140 | 0.3381 | 0.2795 | 0.2743 | 0.1143 | 0.1214 | [0.3053, 0.3797] | 0.0714 | research | crowd-scraped |
-| cic | wikipron | 394 | 0.1028 | 0.1028 | 0.1028 | 0.4442 | 0.4442 | [0.0912, 0.1140] | 0.4442 | research | crowd-scraped |
-| ckb | vox_communis | 26140 | 0.2607 | 0.2337 | 0.2318 | 0.1511 | 0.1511 | [0.2584, 0.2629] | 0.1436 | research | epitran-derived |
-| ckb | wikipron | 972 | 0.2107 | 0.1789 | 0.1769 | 0.3066 | 0.3086 | [0.1991, 0.2222] | 0.2726 | research | crowd-scraped |
-| ckt | northeuralex | 993 | 0.0972 | 0.0972 | 0.0972 | 0.5801 | 0.5801 | [0.0887, 0.1055] | 0.5801 | research | lexicon-derived |
-| cnk | wikipron | 342 | 0.2608 | 0.2592 | 0.2592 | 0.0000 | 0.0000 | [0.2540, 0.2680] | 0.0000 | research | crowd-scraped |
-| co | wikipron | 459 | 0.1955 | 0.1171 | 0.1055 | 0.5708 | 0.5991 | [0.1782, 0.2132] | 0.3834 | research | crowd-scraped |
-| cop | wikipron | 591 | 0.3667 | 0.3667 | 0.3667 | 0.1032 | 0.1032 | [0.3470, 0.3863] | 0.1032 | research | crowd-scraped |
-| cri | primary_sources | 13† | 0.2147 | 0.2019 | 0.2019 | 0.3077 | 0.3077 | [0.1243, 0.3116] | 0.2308 | research | expert-human |
-| crk | wikipron | 159 | 0.3174 | 0.3174 | 0.3174 | 0.0126 | 0.0126 | [0.2959, 0.3357] | 0.0126 | research | crowd-scraped |
-| crs | wold | 1874 | 0.2114 | 0.2114 | 0.2114 | 0.5139 | 0.5139 | [0.1980, 0.2262] | 0.5139 | research | lexicon-derived |
-| cs | vox_communis | 44148 | 0.0680 | 0.0636 | 0.0636 | 0.5789 | 0.5789 | [0.0672, 0.0689] | 0.5622 | research | epitran-derived |
-| csb | wikipron | 2825 | 0.1663 | 0.1663 | 0.1663 | 0.3816 | 0.3816 | [0.1594, 0.1734] | 0.3816 | research | crowd-scraped |
-| cv | vox_communis | 6779 | 0.1264 | 0.1053 | 0.1048 | 0.4507 | 0.4529 | [0.1230, 0.1295] | 0.3999 | research | epitran-derived |
-| cy | ipa_childes | 4662 | 0.2985 | 0.2770 | 0.2762 | 0.3048 | 0.3065 | [0.2909, 0.3060] | 0.2731 | research | espeak-derived |
-| cy | vox_communis | 18701 | 0.1172 | 0.0539 | 0.0474 | 0.6762 | 0.7070 | [0.1154, 0.1191] | 0.4203 | research | epitran-derived |
-| cy | wikipron | 14467 | 0.1809 | 0.1464 | 0.1416 | 0.4165 | 0.4347 | [0.1780, 0.1836] | 0.3276 | research | crowd-scraped |
-| da | ipa_childes | 2233 | 0.4476 | 0.3469 | 0.3415 | 0.1330 | 0.1335 | [0.4365, 0.4585] | 0.0448 | research | espeak-derived |
-| da | wikipron | 4331 | 0.3455 | 0.2917 | 0.2864 | 0.1697 | 0.1718 | [0.3386, 0.3523] | 0.1307 | research | crowd-scraped |
-| dar | northeuralex | 1056 | 0.0691 | 0.0670 | 0.0670 | 0.6449 | 0.6449 | [0.0632, 0.0757] | 0.6439 | research | lexicon-derived |
-| ddo | northeuralex | 871 | 0.1090 | 0.1090 | 0.1090 | 0.5649 | 0.5649 | [0.0978, 0.1201] | 0.5649 | research | lexicon-derived |
-| de | wikipron | 53010 | 0.2103 | 0.1567 | 0.1414 | 0.3150 | 0.3453 | [0.2089, 0.2118] | 0.2343 | research | crowd-scraped |
-| de-DE | ipa_childes | 24857 | 0.3948 | 0.2845 | 0.2632 | 0.1080 | 0.1251 | [0.3926, 0.3971] | 0.0513 | research | epitran-derived |
-| de-DE | ipadict | 777785 | 0.2303 | 0.1862 | 0.1724 | 0.1886 | 0.2104 | [0.2300, 0.2307] | 0.1390 | research | crowd-scraped |
-| de-x-alemannic | wikipron | 448 | 0.1734 | 0.1314 | 0.1215 | 0.5580 | 0.5804 | [0.1559, 0.1938] | 0.4554 | research | crowd-scraped |
-| dlm | wikipron | 180 | 0.2476 | 0.2476 | 0.2476 | 0.2000 | 0.2000 | [0.2193, 0.2770] | 0.2000 | research | crowd-scraped |
-| dng | wikipron | 269 | 0.4087 | 0.4087 | 0.4087 | 0.0000 | 0.0000 | [0.4003, 0.4181] | 0.0000 | research | crowd-scraped |
-| dsb | wikipron | 2010 | 0.1487 | 0.1487 | 0.1487 | 0.4522 | 0.4522 | [0.1408, 0.1564] | 0.4522 | research | crowd-scraped |
-| dum | wikipron | 197 | 0.2776 | 0.2776 | 0.2776 | 0.2234 | 0.2234 | [0.2514, 0.3024] | 0.2234 | research | crowd-scraped |
-| dv | vox_communis | 16770 | 0.0801 | 0.0801 | 0.0801 | 0.4960 | 0.4960 | [0.0785, 0.0818] | 0.4960 | research | epitran-derived |
-| dv | wikipron | 1539 | 0.0891 | 0.0890 | 0.0890 | 0.6602 | 0.6602 | [0.0822, 0.0970] | 0.6602 | research | crowd-scraped |
-| dz | wikipron | 230 | 0.3392 | 0.3378 | 0.3378 | 0.2087 | 0.2087 | [0.3050, 0.3710] | 0.2087 | research | crowd-scraped |
-| ee | wikipron | 247 | 0.4445 | 0.4445 | 0.4445 | 0.0729 | 0.0729 | [0.4235, 0.4649] | 0.0729 | research | crowd-scraped |
-| egy | wikipron | 2185 | 0.0183 | 0.0178 | 0.0178 | 0.8993 | 0.8993 | [0.0155, 0.0210] | 0.8989 | research | crowd-scraped |
-| el | vox_communis | 5983 | 0.2653 | 0.2394 | 0.2375 | 0.1339 | 0.1342 | [0.2613, 0.2690] | 0.1190 | research | epitran-derived |
-| el | wikipron | 19108 | 0.0327 | 0.0174 | 0.0160 | 0.8972 | 0.9104 | [0.0316, 0.0337] | 0.7909 | research | crowd-scraped |
-| en | wikipron | 78435 | 0.2687 | 0.2250 | 0.2047 | 0.2489 | 0.2754 | [0.2674, 0.2702] | 0.2015 | research | crowd-scraped |
-| en-GB | ipa_childes | 11445 | 0.3001 | 0.2479 | 0.2284 | 0.2015 | 0.2225 | [0.2963, 0.3035] | 0.1541 | research | espeak-derived |
-| en-GB | ipadict | 65117 | 0.2221 | 0.1706 | 0.1491 | 0.3551 | 0.3918 | [0.2206, 0.2236] | 0.2643 | research | espeak-derived |
-| en-GB | wikipron | 78377 | 0.2348 | 0.1817 | 0.1582 | 0.3496 | 0.3921 | [0.2333, 0.2364] | 0.2687 | research | crowd-scraped |
-| en-US | cmudict | 126048 | 0.3436 | 0.2887 | 0.2652 | 0.1824 | 0.2013 | [0.3424, 0.3448] | 0.1357 | research | lexicon-derived |
-| en-US | ipa_babylm | 20103 | 0.3666 | 0.3059 | 0.2848 | 0.3379 | 0.3648 | [0.3595, 0.3738] | 0.2680 | research | espeak-derived |
-| en-US | ipa_childes | 18053 | 0.2756 | 0.2137 | 0.1912 | 0.3487 | 0.3803 | [0.2724, 0.2790] | 0.2765 | research | espeak-derived |
-| en-US | ipadict | 125923 | 0.2973 | 0.2337 | 0.2076 | 0.2475 | 0.2807 | [0.2961, 0.2985] | 0.1778 | research | lexicon-derived |
-| enf | northeuralex | 838 | 0.0892 | 0.0888 | 0.0888 | 0.5346 | 0.5346 | [0.0819, 0.0963] | 0.5346 | research | lexicon-derived |
-| enm | wikipron | 6466 | 0.2981 | 0.2645 | 0.2298 | 0.1239 | 0.1961 | [0.2941, 0.3023] | 0.0981 | research | crowd-scraped |
-| eo | ipadict | 23245 | 0.0120 | 0.0120 | 0.0120 | 0.9039 | 0.9039 | [0.0115, 0.0125] | 0.9039 | production | machine-generated |
-| eo | wikipron | 41245 | 0.0328 | 0.0328 | 0.0328 | 0.7491 | 0.7491 | [0.0322, 0.0334] | 0.7491 | production | crowd-scraped |
-| es | vox_communis | 48067 | 0.0758 | 0.0728 | 0.0711 | 0.6006 | 0.6114 | [0.0746, 0.0768] | 0.5868 | production | epitran-derived |
-| es | wikipron | 132188 | 0.0797 | 0.0358 | 0.0338 | 0.7165 | 0.7305 | [0.0792, 0.0802] | 0.4604 | production | crowd-scraped |
-| es-AR | primary_sources | 29 | 0.0138 | 0.0069 | 0.0069 | 0.9655 | 0.9655 | [0.0000, 0.0345] | 0.9310 | research | expert-human |
-| es-ES | ipa_childes | 13155 | 0.0813 | 0.0576 | 0.0552 | 0.6953 | 0.7067 | [0.0791, 0.0833] | 0.5924 | production | epitran-derived |
-| es-ES | ipadict | 595896 | 0.0295 | 0.0271 | 0.0239 | 0.7530 | 0.7803 | [0.0294, 0.0297] | 0.7314 | production | machine-generated |
-| es-ES | primary_sources | 41 | 0.0272 | 0.0272 | 0.0272 | 0.8780 | 0.8780 | [0.0081, 0.0520] | 0.8780 | production | expert-human |
-| es-MX | ipadict | 595885 | 0.0397 | 0.0369 | 0.0322 | 0.6686 | 0.7081 | [0.0396, 0.0399] | 0.6459 | research | machine-generated |
-| ess | northeuralex | 814 | 0.1074 | 0.1074 | 0.1074 | 0.4730 | 0.4730 | [0.0987, 0.1171] | 0.4730 | research | lexicon-derived |
-| et | ipa_childes | 11040 | 0.2769 | 0.2194 | 0.2119 | 0.1951 | 0.2024 | [0.2736, 0.2803] | 0.1369 | research | espeak-derived |
-| et | vox_communis | 35140 | 0.2121 | 0.1593 | 0.1491 | 0.1869 | 0.2026 | [0.2104, 0.2139] | 0.1141 | research | epitran-derived |
-| et | wikipron | 2763 | 0.1587 | 0.1177 | 0.1144 | 0.3815 | 0.3815 | [0.1529, 0.1651] | 0.3815 | research | crowd-scraped |
-| ett | wikipron | 207 | 0.1444 | 0.1444 | 0.1444 | 0.5217 | 0.5217 | [0.1192, 0.1702] | 0.5217 | research | crowd-scraped |
-| eu | hitz_basque_ipa | 3113 | 0.0984 | 0.0981 | 0.0981 | 0.4616 | 0.4616 | [0.0944, 0.1026] | 0.4600 | production | machine-generated |
-| eu | ipa_childes | 3969 | 0.0821 | 0.0820 | 0.0820 | 0.6130 | 0.6130 | [0.0783, 0.0862] | 0.6127 | production | espeak-derived |
-| eu | vox_communis | 63415 | 0.0429 | 0.0395 | 0.0395 | 0.6841 | 0.6841 | [0.0424, 0.0434] | 0.6617 | production | epitran-derived |
-| eu | wikipron | 12008 | 0.0546 | 0.0545 | 0.0545 | 0.6084 | 0.6084 | [0.0532, 0.0561] | 0.6081 | production | crowd-scraped |
-| evn | northeuralex | 1132 | 0.0970 | 0.0970 | 0.0970 | 0.5088 | 0.5088 | [0.0904, 0.1043] | 0.5088 | research | lexicon-derived |
-| evn | wikipron | 145 | 0.2447 | 0.2447 | 0.2447 | 0.1241 | 0.1241 | [0.2197, 0.2710] | 0.1241 | research | crowd-scraped |
-| ext-PT-x-barrancos | barranquenho_dict | 1508 | 0.0045 | 0.0021 | 0.0013 | 0.9881 | 0.9927 | [0.0029, 0.0061] | 0.9775 | research | llm-generated |
-| ext-PT-x-barrancos | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ext-PT-x-barrancos | primary_sources | 10† | 0.2801 | 0.2241 | 0.2241 | 0.4000 | 0.4000 | [0.1363, 0.4286] | 0.3000 | research | expert-human |
-| fa | ipadict | 7695 | 0.2540 | 0.2309 | 0.2253 | 0.1193 | 0.1220 | [0.2507, 0.2574] | 0.1077 | research | machine-generated |
-| fa | wikipron | 9279 | 0.3943 | 0.3742 | 0.3702 | 0.0177 | 0.0178 | [0.3911, 0.3971] | 0.0170 | research | crowd-scraped |
-| fax | wikipron | 655 | 0.1044 | 0.0685 | 0.0683 | 0.6550 | 0.6565 | [0.0950, 0.1140] | 0.5053 | research | crowd-scraped |
-| fi | ipadict | 92836 | 0.0609 | 0.0609 | 0.0609 | 0.5012 | 0.5012 | [0.0604, 0.0613] | 0.5012 | production | machine-generated |
-| fi | vox_communis | 13324 | 0.0037 | 0.0037 | 0.0037 | 0.9678 | 0.9678 | [0.0033, 0.0041] | 0.9678 | production | epitran-derived |
-| fi | wikipron | 168808 | 0.0184 | 0.0184 | 0.0184 | 0.8173 | 0.8173 | [0.0182, 0.0186] | 0.8171 | production | crowd-scraped |
-| fo | wikipron | 2957 | 0.1674 | 0.1504 | 0.1474 | 0.4156 | 0.4231 | [0.1616, 0.1737] | 0.3842 | production | crowd-scraped |
-| fpe | wikipron | 261 | 0.0301 | 0.0301 | 0.0301 | 0.8544 | 0.8544 | [0.0208, 0.0397] | 0.8544 | research | crowd-scraped |
-| fr | wikipron | 85497 | 0.0673 | 0.0530 | 0.0486 | 0.7324 | 0.7408 | [0.0664, 0.0681] | 0.6933 | research | crowd-scraped |
-| fr-FR | ipa_childes | 9444 | 0.0925 | 0.0665 | 0.0623 | 0.7609 | 0.7753 | [0.0890, 0.0964] | 0.6840 | research | espeak-derived |
-| fr-FR | ipadict | 245716 | 0.0768 | 0.0630 | 0.0563 | 0.6672 | 0.6742 | [0.0763, 0.0773] | 0.6416 | research | machine-generated |
-| fro | wikipron | 663 | 0.2363 | 0.2352 | 0.2352 | 0.2564 | 0.2564 | [0.2200, 0.2527] | 0.2534 | research | crowd-scraped |
-| fy | vox_communis | 10681 | 0.3243 | 0.3036 | 0.3018 | 0.1352 | 0.1369 | [0.3203, 0.3281] | 0.1212 | research | epitran-derived |
-| fy | wikipron | 1091 | 0.2182 | 0.2043 | 0.2032 | 0.3327 | 0.3355 | [0.2075, 0.2295] | 0.3071 | research | crowd-scraped |
-| ga | ipa_childes | 1611 | 0.2989 | 0.2651 | 0.2410 | 0.1924 | 0.2216 | [0.2885, 0.3088] | 0.1620 | research | espeak-derived |
-| ga | wikipron | 9616 | 0.1834 | 0.1593 | 0.1498 | 0.3716 | 0.3906 | [0.1798, 0.1869] | 0.3100 | research | crowd-scraped |
-| gd | wikipron | 3719 | 0.3202 | 0.2674 | 0.2380 | 0.2124 | 0.2646 | [0.3132, 0.3273] | 0.1508 | research | crowd-scraped |
-| gl | vox_communis | 47512 | 0.0643 | 0.0493 | 0.0448 | 0.6783 | 0.7004 | [0.0634, 0.0652] | 0.6104 | research | epitran-derived |
-| gl | wikipron | 8091 | 0.0804 | 0.0354 | 0.0288 | 0.8057 | 0.8438 | [0.0777, 0.0828] | 0.5957 | research | crowd-scraped |
-| gld | northeuralex | 887 | 0.1532 | 0.1532 | 0.1532 | 0.3574 | 0.3574 | [0.1431, 0.1624] | 0.3574 | research | lexicon-derived |
-| gmh | wikipron | 1516 | 0.2938 | 0.2938 | 0.2938 | 0.0778 | 0.0778 | [0.2863, 0.3012] | 0.0778 | research | crowd-scraped |
-| gml | wikipron | 143 | 0.2771 | 0.2727 | 0.2717 | 0.1189 | 0.1189 | [0.2500, 0.3042] | 0.1189 | research | crowd-scraped |
-| gn | vox_communis | 4264 | 0.1675 | 0.1393 | 0.1372 | 0.4294 | 0.4379 | [0.1630, 0.1724] | 0.3208 | research | epitran-derived |
-| gn | wikipron | 347 | 0.1458 | 0.0819 | 0.0819 | 0.6254 | 0.6254 | [0.1275, 0.1652] | 0.4986 | research | crowd-scraped |
-| got | wikipron | 1816 | 0.0667 | 0.0221 | 0.0143 | 0.8409 | 0.9009 | [0.0622, 0.0709] | 0.5677 | research | crowd-scraped |
-| grc | wikipron | 58095 | 0.1480 | 0.1480 | 0.1480 | 0.2560 | 0.2560 | [0.1470, 0.1491] | 0.2560 | research | crowd-scraped |
-| gu | wikipron | 4082 | 0.1842 | 0.1840 | 0.1839 | 0.3025 | 0.3028 | [0.1793, 0.1892] | 0.3025 | research | crowd-scraped |
-| gul | wikipron | 207 | 0.3341 | 0.3341 | 0.3341 | 0.2367 | 0.2367 | [0.2990, 0.3705] | 0.2367 | research | crowd-scraped |
-| guw | wikipron | 595 | 0.4311 | 0.4148 | 0.4120 | 0.0034 | 0.0034 | [0.4196, 0.4423] | 0.0034 | research | crowd-scraped |
-| gv | wikipron | 690 | 0.2460 | 0.2309 | 0.2259 | 0.3362 | 0.3435 | [0.2300, 0.2627] | 0.3246 | research | crowd-scraped |
-| gwc | wikipron | 165 | 0.4170 | 0.3937 | 0.3782 | 0.0242 | 0.0242 | [0.3888, 0.4436] | 0.0242 | research | crowd-scraped |
-| gwd | wold | 976 | 0.0481 | 0.0481 | 0.0481 | 0.7602 | 0.7602 | [0.0419, 0.0552] | 0.7602 | research | lexicon-derived |
-| ha | vox_communis | 3719 | 0.1130 | 0.0427 | 0.0336 | 0.7768 | 0.8209 | [0.1083, 0.1177] | 0.4937 | research | epitran-derived |
-| ha | wikipron | 1857 | 0.5340 | 0.5179 | 0.5167 | 0.0022 | 0.0022 | [0.5287, 0.5389] | 0.0022 | research | crowd-scraped |
-| haw | wikipron | 2145 | 0.0127 | 0.0127 | 0.0127 | 0.9562 | 0.9562 | [0.0100, 0.0156] | 0.9562 | research | crowd-scraped |
-| he | primary_sources | 33 | 0.1929 | 0.0222 | 0.0222 | 0.9091 | 0.9091 | [0.1363, 0.2500] | 0.3636 | research | expert-human |
-| he | wikipron | 2872 | 0.3554 | 0.3105 | 0.2942 | 0.0665 | 0.0763 | [0.3498, 0.3607] | 0.0380 | research | crowd-scraped |
-| hi | vox_communis | 12478 | 0.2765 | 0.2761 | 0.2761 | 0.1303 | 0.1303 | [0.2733, 0.2797] | 0.1302 | research | epitran-derived |
-| hi | wikipron | 30375 | 0.1277 | 0.1277 | 0.1277 | 0.2787 | 0.2787 | [0.1266, 0.1289] | 0.2787 | research | crowd-scraped |
-| hil | wikipron | 466 | 0.0966 | 0.0966 | 0.0966 | 0.5343 | 0.5343 | [0.0857, 0.1078] | 0.5343 | research | crowd-scraped |
-| hr | ipa_childes | 4769 | 0.2066 | 0.2066 | 0.2066 | 0.2772 | 0.2772 | [0.2016, 0.2117] | 0.2772 | research | epitran-derived |
-| hr | wikipron | 26469 | 0.3000 | 0.2979 | 0.2979 | 0.0055 | 0.0055 | [0.2985, 0.3016] | 0.0050 | research | crowd-scraped |
-| hrx | wikipron | 2002 | 0.0821 | 0.0700 | 0.0643 | 0.6913 | 0.7148 | [0.0766, 0.0877] | 0.6429 | research | crowd-scraped |
-| hsb | vox_communis | 5802 | 0.3177 | 0.3102 | 0.3102 | 0.1015 | 0.1015 | [0.3130, 0.3220] | 0.0907 | research | epitran-derived |
-| hsb | wikipron | 1126 | 0.2186 | 0.2034 | 0.2034 | 0.2806 | 0.2806 | [0.2073, 0.2303] | 0.2629 | research | crowd-scraped |
-| ht | wikipron | 1691 | 0.0302 | 0.0302 | 0.0302 | 0.8669 | 0.8669 | [0.0262, 0.0346] | 0.8669 | research | crowd-scraped |
-| hts | wikipron | 329 | 0.0224 | 0.0224 | 0.0224 | 0.9240 | 0.9240 | [0.0125, 0.0349] | 0.9240 | research | crowd-scraped |
-| hu | ipa_childes | 4776 | 0.0996 | 0.0987 | 0.0987 | 0.5519 | 0.5519 | [0.0956, 0.1035] | 0.5496 | research | epitran-derived |
-| hu | vox_communis | 74549 | 0.0758 | 0.0753 | 0.0753 | 0.5284 | 0.5284 | [0.0751, 0.0765] | 0.5268 | research | epitran-derived |
-| huu | wikipron | 437 | 0.0350 | 0.0350 | 0.0350 | 0.8101 | 0.8101 | [0.0278, 0.0437] | 0.8101 | research | crowd-scraped |
-| hy | vox_communis | 26671 | 0.0465 | 0.0447 | 0.0447 | 0.6720 | 0.6720 | [0.0456, 0.0475] | 0.6720 | research | epitran-derived |
-| hy | wikipron | 17734 | 0.1027 | 0.1025 | 0.1025 | 0.4683 | 0.4683 | [0.1010, 0.1046] | 0.4681 | research | crowd-scraped |
-| ia | wikipron | 443 | 0.0646 | 0.0557 | 0.0557 | 0.7223 | 0.7223 | [0.0554, 0.0748] | 0.6727 | research | crowd-scraped |
-| iba | wikipron | 571 | 0.1655 | 0.1151 | 0.1096 | 0.5184 | 0.5394 | [0.1530, 0.1780] | 0.3538 | research | crowd-scraped |
-| id | ipa_childes | 9646 | 0.1223 | 0.0485 | 0.0347 | 0.7275 | 0.7918 | [0.1197, 0.1250] | 0.4566 | research | epitran-derived |
-| id | vox_communis | 13518 | 0.1312 | 0.0557 | 0.0413 | 0.6572 | 0.7354 | [0.1291, 0.1331] | 0.3449 | research | epitran-derived |
-| id | wikipron | 17965 | 0.1114 | 0.0630 | 0.0561 | 0.6921 | 0.7362 | [0.1094, 0.1133] | 0.4582 | research | crowd-scraped |
-| ilo | wikipron | 931 | 0.1272 | 0.1155 | 0.1152 | 0.4834 | 0.4834 | [0.1175, 0.1357] | 0.4501 | research | crowd-scraped |
-| inh | wikipron | 284 | 0.1632 | 0.1582 | 0.1582 | 0.4331 | 0.4331 | [0.1448, 0.1819] | 0.4261 | research | crowd-scraped |
-| io | wikipron | 6815 | 0.0974 | 0.0974 | 0.0974 | 0.4336 | 0.4336 | [0.0949, 0.0999] | 0.4336 | research | crowd-scraped |
-| irk | wold | 1117 | 0.2010 | 0.2010 | 0.2010 | 0.3563 | 0.3563 | [0.1900, 0.2123] | 0.3563 | research | lexicon-derived |
-| is | ipa_childes | 4106 | 0.3397 | 0.2966 | 0.2907 | 0.1320 | 0.1386 | [0.3332, 0.3468] | 0.1120 | research | espeak-derived |
-| is | ipadict | 60642 | 0.2354 | 0.2032 | 0.2003 | 0.1551 | 0.1580 | [0.2341, 0.2366] | 0.1117 | research | lexicon-derived |
-| is | wikipron | 10093 | 0.2045 | 0.1729 | 0.1700 | 0.2515 | 0.2569 | [0.2016, 0.2076] | 0.2023 | research | crowd-scraped |
-| it | vox_communis | 48570 | 0.1031 | 0.0766 | 0.0702 | 0.7919 | 0.8373 | [0.1003, 0.1060] | 0.6372 | research | epitran-derived |
-| it | wikipron | 82276 | 0.0441 | 0.0209 | 0.0131 | 0.8399 | 0.9054 | [0.0435, 0.0446] | 0.6955 | research | crowd-scraped |
-| it-IT | ipa_childes | 4583 | 0.2341 | 0.2056 | 0.2012 | 0.2638 | 0.2784 | [0.2289, 0.2395] | 0.1942 | research | espeak-derived |
-| itl | northeuralex | 603 | 0.0540 | 0.0540 | 0.0540 | 0.7894 | 0.7894 | [0.0443, 0.0645] | 0.7894 | research | lexicon-derived |
-| izh | wikipron | 7886 | 0.0092 | 0.0092 | 0.0092 | 0.9369 | 0.9369 | [0.0083, 0.0103] | 0.9369 | research | crowd-scraped |
-| ja | ipadict | 115500 | 0.3276 | 0.3276 | 0.3276 | 0.2845 | 0.2845 | [0.3259, 0.3293] | 0.2845 | research | lexicon-derived |
-| ja | vox_communis | 42550 | 0.4273 | 0.4273 | 0.4273 | 0.2000 | 0.2000 | [0.4243, 0.4304] | 0.2000 | research | epitran-derived |
-| jam | ipadict | 1869 | 0.1684 | 0.1684 | 0.1684 | 0.4034 | 0.4034 | [0.1582, 0.1777] | 0.4034 | research | lexicon-derived |
-| jam | wikipron | 382 | 0.2762 | 0.2762 | 0.2762 | 0.4031 | 0.4031 | [0.2462, 0.3061] | 0.4031 | research | crowd-scraped |
-| jv | kaikki | 96 | 0.2180 | 0.0915 | 0.0723 | 0.6667 | 0.7500 | [0.1843, 0.2542] | 0.2500 | skeleton | crowd-scraped |
-| ka | vox_communis | 79887 | 0.2337 | 0.2337 | 0.2337 | 0.0725 | 0.0725 | [0.2329, 0.2345] | 0.0725 | research | epitran-derived |
-| kab | vox_communis | 54545 | 0.2071 | 0.2071 | 0.2071 | 0.1829 | 0.1829 | [0.2057, 0.2083] | 0.1829 | research | epitran-derived |
-| kas | wikipron | 683 | 0.3231 | 0.3027 | 0.3024 | 0.3324 | 0.3324 | [0.2965, 0.3514] | 0.3192 | research | crowd-scraped |
-| kaw | wikipron | 924 | 0.1472 | 0.1472 | 0.1472 | 0.4643 | 0.4643 | [0.1361, 0.1576] | 0.4643 | research | crowd-scraped |
-| kca | northeuralex | 863 | 0.0232 | 0.0169 | 0.0169 | 0.8830 | 0.8830 | [0.0194, 0.0274] | 0.8517 | research | lexicon-derived |
-| ket | northeuralex | 793 | 0.3457 | 0.3457 | 0.3457 | 0.2282 | 0.2282 | [0.3280, 0.3658] | 0.2282 | research | lexicon-derived |
-| kgp | wikipron | 106 | 0.2351 | 0.2351 | 0.2351 | 0.3396 | 0.3396 | [0.1922, 0.2773] | 0.3396 | research | crowd-scraped |
-| ki | wikipron | 1025 | 0.3914 | 0.3896 | 0.3896 | 0.1990 | 0.1990 | [0.3780, 0.4058] | 0.1951 | research | crowd-scraped |
-| kix | wikipron | 4240 | 0.0788 | 0.0788 | 0.0788 | 0.5116 | 0.5116 | [0.0751, 0.0823] | 0.5116 | research | crowd-scraped |
-| kk | vox_communis | 1403 | 0.3858 | 0.3218 | 0.3023 | 0.0485 | 0.1169 | [0.3788, 0.3922] | 0.0135 | research | epitran-derived |
-| kk | wikipron | 714 | 0.3393 | 0.3026 | 0.3007 | 0.1975 | 0.2003 | [0.3213, 0.3588] | 0.1737 | research | crowd-scraped |
-| kl | wikipron | 1580 | 0.1765 | 0.1765 | 0.1765 | 0.2753 | 0.2753 | [0.1695, 0.1842] | 0.2753 | research | crowd-scraped |
-| kld | wikipron | 515 | 0.0550 | 0.0550 | 0.0550 | 0.7398 | 0.7398 | [0.0457, 0.0645] | 0.7398 | research | crowd-scraped |
-| klj | wikipron | 155 | 0.2995 | 0.2995 | 0.2995 | 0.2774 | 0.2774 | [0.2604, 0.3362] | 0.2774 | research | crowd-scraped |
-| km | ipadict | 3261 | 0.3335 | 0.3240 | 0.3238 | 0.1518 | 0.1521 | [0.3260, 0.3417] | 0.1389 | research | lexicon-derived |
-| km | wikipron | 6628 | 0.1922 | 0.1816 | 0.1810 | 0.5084 | 0.5124 | [0.1863, 0.1983] | 0.4665 | research | crowd-scraped |
-| kn | wikipron | 1706 | 0.2689 | 0.2689 | 0.2689 | 0.1782 | 0.1782 | [0.2593, 0.2772] | 0.1782 | research | crowd-scraped |
-| ko | ipadict | 62447 | 0.2319 | 0.2299 | 0.2298 | 0.0866 | 0.0867 | [0.2309, 0.2328] | 0.0830 | research | crowd-scraped |
-| ko | vox_communis | 6123 | 0.0728 | 0.0661 | 0.0660 | 0.6111 | 0.6113 | [0.0701, 0.0754] | 0.5964 | research | epitran-derived |
-| koi | wikipron | 229 | 0.0920 | 0.0807 | 0.0807 | 0.6987 | 0.6987 | [0.0738, 0.1103] | 0.6550 | research | crowd-scraped |
-| kok | kaikki | 830 | 0.2240 | 0.1451 | 0.1332 | 0.3735 | 0.4036 | [0.2105, 0.2375] | 0.2566 | research | crowd-scraped |
-| krl | wikipron | 641 | 0.0519 | 0.0519 | 0.0519 | 0.7176 | 0.7176 | [0.0450, 0.0592] | 0.7176 | research | crowd-scraped |
-| kru | wikipron | 187 | 0.1947 | 0.1947 | 0.1947 | 0.3155 | 0.3155 | [0.1697, 0.2205] | 0.3155 | research | crowd-scraped |
-| ktz | wikipron | 134 | 0.3464 | 0.3464 | 0.3464 | 0.3731 | 0.3731 | [0.2889, 0.4102] | 0.3731 | research | crowd-scraped |
-| ku | wikipron | 2147 | 0.1440 | 0.1440 | 0.1440 | 0.2795 | 0.2795 | [0.1391, 0.1488] | 0.2795 | research | crowd-scraped |
-| kv | wikipron | 906 | 0.1570 | 0.1437 | 0.1435 | 0.5342 | 0.5364 | [0.1457, 0.1698] | 0.4912 | research | crowd-scraped |
-| kw | wikipron | 602 | 0.2521 | 0.2444 | 0.2441 | 0.2326 | 0.2326 | [0.2360, 0.2686] | 0.2226 | research | crowd-scraped |
-| kwk | wikipron | 116 | 0.0070 | 0.0070 | 0.0070 | 0.9655 | 0.9655 | [0.0010, 0.0175] | 0.9655 | research | crowd-scraped |
-| kxd | wikipron | 318 | 0.0235 | 0.0235 | 0.0235 | 0.8962 | 0.8962 | [0.0153, 0.0329] | 0.8962 | research | crowd-scraped |
-| ky | vox_communis | 10611 | 0.1915 | 0.1654 | 0.1565 | 0.2474 | 0.3057 | [0.1890, 0.1939] | 0.1642 | research | epitran-derived |
-| ky | wikipron | 867 | 0.2217 | 0.2211 | 0.2211 | 0.3230 | 0.3230 | [0.2081, 0.2357] | 0.3195 | research | crowd-scraped |
-| lad | wikipron | 131 | 0.1397 | 0.1108 | 0.1093 | 0.5420 | 0.5496 | [0.1128, 0.1671] | 0.4427 | research | crowd-scraped |
-| lb | wikipron | 3893 | 0.2412 | 0.2320 | 0.2315 | 0.2661 | 0.2669 | [0.2347, 0.2477] | 0.2510 | research | crowd-scraped |
-| lbe | northeuralex | 1048 | 0.0387 | 0.0387 | 0.0387 | 0.8340 | 0.8340 | [0.0325, 0.0455] | 0.8340 | research | lexicon-derived |
-| lez | northeuralex | 969 | 0.1329 | 0.0528 | 0.0384 | 0.7606 | 0.8266 | [0.1206, 0.1440] | 0.5294 | research | lexicon-derived |
-| lg | vox_communis | 103344 | 0.1107 | 0.1107 | 0.1107 | 0.3384 | 0.3384 | [0.1100, 0.1114] | 0.3384 | research | epitran-derived |
-| li | wikipron | 987 | 0.3819 | 0.3499 | 0.3462 | 0.1327 | 0.1398 | [0.3667, 0.3972] | 0.1104 | research | crowd-scraped |
-| lij | vox_communis | 3416 | 0.0844 | 0.0821 | 0.0821 | 0.5928 | 0.5928 | [0.0806, 0.0885] | 0.5887 | research | epitran-derived |
-| lij | wikipron | 817 | 0.1157 | 0.1115 | 0.1115 | 0.4884 | 0.4884 | [0.1063, 0.1267] | 0.4847 | research | crowd-scraped |
-| liv | northeuralex | 1042 | 0.0748 | 0.0708 | 0.0708 | 0.6843 | 0.6843 | [0.0677, 0.0825] | 0.6843 | research | lexicon-derived |
-| liv | wikipron | 2480 | 0.1173 | 0.1048 | 0.1047 | 0.5698 | 0.5698 | [0.1108, 0.1240] | 0.5242 | research | crowd-scraped |
-| lmo | wikipron | 406 | 0.2917 | 0.2402 | 0.2336 | 0.3030 | 0.3128 | [0.2680, 0.3137] | 0.2414 | research | crowd-scraped |
-| lmy | wikipron | 129 | 0.1695 | 0.1695 | 0.1695 | 0.2558 | 0.2558 | [0.1484, 0.1915] | 0.2558 | research | crowd-scraped |
-| lo | kaikki | 2308 | 0.3632 | 0.3632 | 0.3632 | 0.0000 | 0.0000 | [0.3590, 0.3674] | 0.0000 | research | crowd-scraped |
-| lou | wikipron | 262 | 0.1953 | 0.1953 | 0.1953 | 0.5115 | 0.5115 | [0.1679, 0.2236] | 0.5115 | research | crowd-scraped |
-| lsi | wikipron | 96 | 0.4222 | 0.4212 | 0.4212 | 0.0000 | 0.0000 | [0.4022, 0.4413] | 0.0000 | research | crowd-scraped |
-| lt | vox_communis | 28971 | 0.2706 | 0.2705 | 0.2705 | 0.0530 | 0.0530 | [0.2689, 0.2726] | 0.0529 | research | epitran-derived |
-| lt | wikipron | 440 | 0.2640 | 0.2640 | 0.2640 | 0.1477 | 0.1477 | [0.2474, 0.2801] | 0.1477 | research | crowd-scraped |
-| lut | wikipron | 135 | 0.2259 | 0.2259 | 0.2259 | 0.2444 | 0.2444 | [0.1918, 0.2598] | 0.2444 | research | crowd-scraped |
-| lv | northeuralex | 1213 | 0.1901 | 0.1901 | 0.1901 | 0.2383 | 0.2383 | [0.1824, 0.1985] | 0.2383 | research | lexicon-derived |
-| lzz | wikipron | 262 | 0.2017 | 0.2017 | 0.2017 | 0.2557 | 0.2557 | [0.1824, 0.2233] | 0.2557 | research | crowd-scraped |
-| mak | wikipron | 832 | 0.0206 | 0.0206 | 0.0206 | 0.8870 | 0.8870 | [0.0165, 0.0251] | 0.8870 | research | crowd-scraped |
-| mch | wikipron | 1746 | 0.3011 | 0.3011 | 0.3011 | 0.1186 | 0.1186 | [0.2925, 0.3100] | 0.1186 | research | crowd-scraped |
-| mcm | primary_sources | 33 | 0.1146 | 0.0500 | 0.0500 | 0.8182 | 0.8182 | [0.0707, 0.1642] | 0.5758 | research | expert-human |
-| mdf | wikipron | 330 | 0.2212 | 0.2119 | 0.2112 | 0.2697 | 0.2697 | [0.2024, 0.2383] | 0.2485 | research | crowd-scraped |
-| mdh | wikipron | 205 | 0.0793 | 0.0793 | 0.0793 | 0.6146 | 0.6146 | [0.0643, 0.0948] | 0.6146 | research | crowd-scraped |
-| mfe | wikipron | 206 | 0.1238 | 0.1238 | 0.1238 | 0.5485 | 0.5485 | [0.0992, 0.1487] | 0.5485 | research | crowd-scraped |
-| mga | wikipron | 328 | 0.0594 | 0.0482 | 0.0458 | 0.7104 | 0.7195 | [0.0494, 0.0700] | 0.6738 | research | crowd-scraped |
-| mh | wikipron | 947 | 0.1182 | 0.0865 | 0.0796 | 0.4762 | 0.5026 | [0.1081, 0.1293] | 0.4002 | research | crowd-scraped |
-| mhr | northeuralex | 992 | 0.1736 | 0.1536 | 0.1509 | 0.1391 | 0.1391 | [0.1670, 0.1804] | 0.1280 | research | lexicon-derived |
-| mi | wikipron | 1003 | 0.0719 | 0.0719 | 0.0719 | 0.6401 | 0.6401 | [0.0650, 0.0784] | 0.6401 | research | crowd-scraped |
-| mic | wikipron | 203 | 0.2922 | 0.2922 | 0.2922 | 0.0887 | 0.0887 | [0.2677, 0.3154] | 0.0887 | research | crowd-scraped |
-| mk | vox_communis | 10750 | 0.0221 | 0.0221 | 0.0221 | 0.8439 | 0.8439 | [0.0211, 0.0232] | 0.8439 | research | epitran-derived |
-| ml | vox_communis | 6464 | 0.1766 | 0.1766 | 0.1766 | 0.1115 | 0.1115 | [0.1737, 0.1794] | 0.1115 | research | epitran-derived |
-| ml | wikipron | 9464 | 0.2893 | 0.2875 | 0.2875 | 0.0554 | 0.0554 | [0.2861, 0.2924] | 0.0554 | research | crowd-scraped |
-| mn | vox_communis | 15592 | 0.2077 | 0.1617 | 0.1593 | 0.2758 | 0.2830 | [0.2053, 0.2099] | 0.1840 | research | epitran-derived |
-| mn | wikipron | 3528 | 0.1557 | 0.1511 | 0.1508 | 0.3311 | 0.3325 | [0.1504, 0.1609] | 0.3245 | research | crowd-scraped |
-| mnc | northeuralex | 1205 | 0.1411 | 0.1411 | 0.1411 | 0.3560 | 0.3560 | [0.1334, 0.1492] | 0.3560 | research | lexicon-derived |
-| mns | northeuralex | 992 | 0.1024 | 0.0732 | 0.0725 | 0.4698 | 0.4698 | [0.0958, 0.1091] | 0.4597 | research | lexicon-derived |
-| mqs | wikipron | 790 | 0.0495 | 0.0495 | 0.0495 | 0.7823 | 0.7823 | [0.0424, 0.0561] | 0.7823 | research | crowd-scraped |
-| mr | vox_communis | 16938 | 0.3063 | 0.3057 | 0.3057 | 0.0436 | 0.0436 | [0.3041, 0.3084] | 0.0436 | research | epitran-derived |
-| mr | wikipron | 4267 | 0.0535 | 0.0456 | 0.0455 | 0.7157 | 0.7160 | [0.0508, 0.0561] | 0.6904 | research | crowd-scraped |
-| mrj | northeuralex | 1018 | 0.0075 | 0.0075 | 0.0075 | 0.9548 | 0.9548 | [0.0054, 0.0100] | 0.9548 | research | lexicon-derived |
-| ms | ipadict | 28215 | 0.1305 | 0.0558 | 0.0441 | 0.6437 | 0.7225 | [0.1292, 0.1317] | 0.2999 | research | machine-generated |
-| ms | wikipron | 4887 | 0.0967 | 0.0378 | 0.0303 | 0.8207 | 0.8709 | [0.0934, 0.1005] | 0.5267 | research | crowd-scraped |
-| mt | vox_communis | 8399 | 0.3056 | 0.3056 | 0.3056 | 0.0387 | 0.0387 | [0.3027, 0.3086] | 0.0387 | research | epitran-derived |
-| mt | wikipron | 15836 | 0.2314 | 0.2314 | 0.2314 | 0.1570 | 0.1570 | [0.2291, 0.2340] | 0.1570 | research | crowd-scraped |
-| mtq | wikipron | 194 | 0.3412 | 0.3412 | 0.3412 | 0.0000 | 0.0000 | [0.3227, 0.3583] | 0.0000 | research | crowd-scraped |
-| mwl | mirandese_dict | 990 | 0.0401 | 0.0318 | 0.0307 | 0.8444 | 0.8485 | [0.0340, 0.0463] | 0.8253 | research | llm-generated |
-| mwl | mirandese_g2p | 205 | 0.1317 | 0.1188 | 0.1141 | 0.5122 | 0.5220 | [0.1100, 0.1545] | 0.4829 | research | expert-human |
-| mwl | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| mwl-x-ifanes | mirandese_dict | 4† | 0.2083 | 0.0000 | 0.0000 | 1.0000 | 1.0000 | [0.0000, 0.4167] | 0.5000 | research | llm-generated |
-| mwl-x-ifanes | mirandese_g2p | 2† | 0.5000 | 0.5000 | 0.5000 | 0.0000 | 0.0000 | [0.5000, 0.5000] | 0.0000 | research | expert-human |
-| mwl-x-ifanes | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| mwl-x-sendim | mirandese_dict | 79 | 0.0937 | 0.0916 | 0.0916 | 0.6203 | 0.6203 | [0.0673, 0.1265] | 0.6203 | research | llm-generated |
-| mwl-x-sendim | mirandese_g2p | 11† | 0.3258 | 0.3258 | 0.3258 | 0.3636 | 0.3636 | [0.1641, 0.4824] | 0.3636 | research | expert-human |
-| mwl-x-sendim | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| mww | wikipron | 489 | 0.0107 | 0.0107 | 0.0107 | 0.9611 | 0.9611 | [0.0060, 0.0161] | 0.9611 | research | crowd-scraped |
-| my | wikipron | 7941 | 0.1926 | 0.1899 | 0.1898 | 0.4440 | 0.4440 | [0.1878, 0.1974] | 0.4381 | research | crowd-scraped |
-| myv | vox_communis | 6442 | 0.0944 | 0.0944 | 0.0944 | 0.3890 | 0.3890 | [0.0923, 0.0965] | 0.3890 | research | epitran-derived |
-| nap | wikipron | 198 | 0.2792 | 0.2387 | 0.2307 | 0.1263 | 0.1263 | [0.2544, 0.3033] | 0.1162 | research | crowd-scraped |
-| nb | ipa_childes | 3176 | 0.3871 | 0.2937 | 0.2788 | 0.1719 | 0.1851 | [0.3788, 0.3952] | 0.1052 | research | espeak-derived |
-| nb | ipadict | 10169 | 0.3397 | 0.2647 | 0.2448 | 0.1623 | 0.1787 | [0.3357, 0.3435] | 0.1050 | research | machine-generated |
-| nb | wikipron | 2725 | 0.3471 | 0.2748 | 0.2583 | 0.2059 | 0.2228 | [0.3376, 0.3562] | 0.1490 | research | crowd-scraped |
-| nci | wikipron | 839 | 0.1198 | 0.1197 | 0.1197 | 0.2896 | 0.2896 | [0.1128, 0.1270] | 0.2896 | research | crowd-scraped |
-| nds | wikipron | 308 | 0.2231 | 0.1674 | 0.1503 | 0.5065 | 0.5292 | [0.1969, 0.2487] | 0.4091 | research | crowd-scraped |
-| ne | kaikki | 2052 | 0.1191 | 0.1178 | 0.1178 | 0.5210 | 0.5210 | [0.1121, 0.1256] | 0.5195 | research | crowd-scraped |
-| new | wikipron | 416 | 0.0282 | 0.0282 | 0.0282 | 0.8558 | 0.8558 | [0.0181, 0.0391] | 0.8558 | research | crowd-scraped |
-| ngh | wikipron | 263 | 0.2616 | 0.2616 | 0.2616 | 0.2966 | 0.2966 | [0.2360, 0.2898] | 0.2966 | skeleton | crowd-scraped |
-| nhg | wikipron | 295 | 0.2367 | 0.2367 | 0.2367 | 0.1898 | 0.1898 | [0.2157, 0.2573] | 0.1898 | research | crowd-scraped |
-| nhx | wikipron | 145 | 0.1913 | 0.1913 | 0.1913 | 0.2207 | 0.2207 | [0.1686, 0.2141] | 0.2207 | research | crowd-scraped |
-| nio | northeuralex | 1024 | 0.0972 | 0.0887 | 0.0886 | 0.4834 | 0.4834 | [0.0900, 0.1045] | 0.4678 | research | lexicon-derived |
-| niv | northeuralex | 833 | 0.1248 | 0.1248 | 0.1248 | 0.5354 | 0.5354 | [0.1141, 0.1361] | 0.5354 | research | lexicon-derived |
-| niv | wikipron | 624 | 0.2767 | 0.2767 | 0.2767 | 0.2340 | 0.2340 | [0.2604, 0.2939] | 0.2340 | research | crowd-scraped |
-| nl | ipa_childes | 8108 | 0.2137 | 0.1918 | 0.1802 | 0.3305 | 0.3410 | [0.2093, 0.2181] | 0.3030 | research | espeak-derived |
-| nl | ipadict | 117869 | 0.1767 | 0.1507 | 0.1400 | 0.2722 | 0.2933 | [0.1759, 0.1776] | 0.2141 | research | machine-generated |
-| nl | vox_communis | 25904 | 0.2706 | 0.2288 | 0.2073 | 0.1625 | 0.1917 | [0.2687, 0.2724] | 0.0998 | research | epitran-derived |
-| nl | wikipron | 45872 | 0.0902 | 0.0701 | 0.0587 | 0.6416 | 0.6836 | [0.0891, 0.0914] | 0.5554 | research | crowd-scraped |
-| nmy | wikipron | 354 | 0.1091 | 0.1088 | 0.1088 | 0.5989 | 0.5989 | [0.0921, 0.1291] | 0.5989 | research | crowd-scraped |
-| nn | wikipron | 3829 | 0.2648 | 0.2118 | 0.2043 | 0.3842 | 0.3964 | [0.2569, 0.2729] | 0.3155 | research | crowd-scraped |
-| nn | wikipron_nor | 1093 | 0.1826 | 0.1519 | 0.1466 | 0.5261 | 0.5380 | [0.1699, 0.1949] | 0.4657 | research | crowd-scraped |
-| non | wikipron | 270 | 0.2365 | 0.2213 | 0.2213 | 0.3111 | 0.3111 | [0.2148, 0.2616] | 0.2815 | research | crowd-scraped |
-| nrf | wikipron | 143 | 0.2557 | 0.2120 | 0.2026 | 0.4266 | 0.4406 | [0.2087, 0.3017] | 0.3636 | research | crowd-scraped |
-| nup | wikipron | 393 | 0.3979 | 0.3979 | 0.3979 | 0.1501 | 0.1501 | [0.3787, 0.4165] | 0.1501 | research | crowd-scraped |
-| nv | wikipron | 989 | 0.2514 | 0.2514 | 0.2514 | 0.0940 | 0.0940 | [0.2423, 0.2602] | 0.0940 | research | crowd-scraped |
-| ny | wikipron | 1564 | 0.3119 | 0.3025 | 0.3018 | 0.0959 | 0.0972 | [0.3031, 0.3211] | 0.0850 | research | crowd-scraped |
-| oc | wikipron | 675 | 0.1283 | 0.0903 | 0.0818 | 0.5763 | 0.6044 | [0.1173, 0.1394] | 0.4800 | research | crowd-scraped |
-| oji | wikipron | 136 | 0.3108 | 0.3108 | 0.3108 | 0.0662 | 0.0662 | [0.2808, 0.3382] | 0.0662 | research | crowd-scraped |
-| olo | wikipron | 278 | 0.0801 | 0.0801 | 0.0801 | 0.6007 | 0.6007 | [0.0676, 0.0931] | 0.6007 | research | crowd-scraped |
-| om | kaikki | 13380 | 0.1001 | 0.1001 | 0.1001 | 0.1940 | 0.1940 | [0.0991, 0.1011] | 0.1940 | research | crowd-scraped |
-| or | ipadict | 6216 | 0.1115 | 0.1115 | 0.1115 | 0.4093 | 0.4093 | [0.1086, 0.1145] | 0.4093 | research | machine-generated |
-| or | vox_communis | 7918 | 0.2689 | 0.2689 | 0.2689 | 0.1274 | 0.1274 | [0.2651, 0.2728] | 0.1274 | research | epitran-derived |
-| orv | wikipron | 609 | 0.2203 | 0.2203 | 0.2203 | 0.2660 | 0.2660 | [0.2058, 0.2343] | 0.2660 | research | crowd-scraped |
-| osp | wikipron | 667 | 0.1605 | 0.1605 | 0.1605 | 0.2894 | 0.2894 | [0.1497, 0.1709] | 0.2894 | research | crowd-scraped |
-| osx | wikipron | 244 | 0.2786 | 0.2664 | 0.2664 | 0.1230 | 0.1230 | [0.2583, 0.2973] | 0.1025 | research | crowd-scraped |
-| ota | wikipron | 161 | 0.3536 | 0.3100 | 0.3072 | 0.1180 | 0.1180 | [0.3260, 0.3798] | 0.0807 | research | crowd-scraped |
-| pa | vox_communis | 4003 | 0.4454 | 0.4454 | 0.4454 | 0.0824 | 0.0824 | [0.4362, 0.4537] | 0.0824 | research | epitran-derived |
-| pa | wikipron | 1360 | 0.2553 | 0.2553 | 0.2553 | 0.1779 | 0.1779 | [0.2453, 0.2646] | 0.1779 | research | crowd-scraped |
-| pag | wikipron | 227 | 0.1277 | 0.0998 | 0.0969 | 0.5991 | 0.6123 | [0.1076, 0.1488] | 0.5286 | research | crowd-scraped |
-| pam | wikipron | 860 | 0.2861 | 0.1802 | 0.1697 | 0.3395 | 0.3663 | [0.2630, 0.3193] | 0.1186 | research | crowd-scraped |
-| pbv | wikipron | 101 | 0.3358 | 0.3358 | 0.3358 | 0.2475 | 0.2475 | [0.2875, 0.3859] | 0.2475 | research | crowd-scraped |
-| pcc | wikipron | 153 | 0.0038 | 0.0038 | 0.0038 | 0.9869 | 0.9869 | [0.0000, 0.0102] | 0.9869 | research | crowd-scraped |
-| pdc | wikipron | 405 | 0.3350 | 0.2798 | 0.2444 | 0.1605 | 0.2025 | [0.3160, 0.3548] | 0.1062 | research | crowd-scraped |
-| phl | wikipron | 2173 | 0.3287 | 0.3287 | 0.3287 | 0.0318 | 0.0318 | [0.3222, 0.3355] | 0.0318 | research | crowd-scraped |
-| pjt | wikipron | 125 | 0.0027 | 0.0027 | 0.0027 | 0.9920 | 0.9920 | [0.0000, 0.0080] | 0.9920 | research | crowd-scraped |
-| pl | ipa_childes | 15523 | 0.2465 | 0.2382 | 0.2380 | 0.1906 | 0.1906 | [0.2433, 0.2495] | 0.1891 | research | espeak-derived |
-| pl | vox_communis | 47592 | 0.0186 | 0.0122 | 0.0119 | 0.9042 | 0.9068 | [0.0182, 0.0190] | 0.8537 | research | epitran-derived |
-| pl | wikipron | 148990 | 0.0480 | 0.0464 | 0.0463 | 0.6722 | 0.6727 | [0.0476, 0.0484] | 0.6633 | research | crowd-scraped |
-| pms | wikipron | 899 | 0.1652 | 0.1295 | 0.1271 | 0.4238 | 0.4283 | [0.1553, 0.1762] | 0.3571 | research | crowd-scraped |
-| pox | wikipron | 314 | 0.3204 | 0.3204 | 0.3204 | 0.1656 | 0.1656 | [0.2983, 0.3431] | 0.1656 | research | crowd-scraped |
-| ppl | wikipron | 185 | 0.1322 | 0.1322 | 0.1322 | 0.4486 | 0.4486 | [0.1104, 0.1534] | 0.4486 | research | crowd-scraped |
-| pqm | wikipron | 151 | 0.1759 | 0.1759 | 0.1759 | 0.1589 | 0.1589 | [0.1596, 0.1937] | 0.1589 | research | crowd-scraped |
-| ps | wikipron | 1075 | 0.2453 | 0.1938 | 0.1840 | 0.3265 | 0.3433 | [0.2341, 0.2554] | 0.2558 | research | crowd-scraped |
-| pt-AO | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-AO | portuguese_unified | 53151 | 0.2498 | 0.1852 | 0.1680 | 0.1763 | 0.2161 | [0.2486, 0.2510] | 0.0860 | research | lexicon-derived |
-| pt-BR | ipa_childes | 2116 | 0.2019 | 0.1687 | 0.1549 | 0.3280 | 0.3700 | [0.1948, 0.2096] | 0.2798 | production | espeak-derived |
-| pt-BR | ipadict | 95933 | 0.2287 | 0.2235 | 0.2155 | 0.0548 | 0.0571 | [0.2278, 0.2297] | 0.0511 | production | machine-generated |
-| pt-BR | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | production | llm-generated |
-| pt-BR | portuguese_unified | 3552 | 0.1587 | 0.1429 | 0.1282 | 0.3939 | 0.4479 | [0.1520, 0.1667] | 0.3525 | production | lexicon-derived |
-| pt-BR | primary_sources | 21 | 0.0833 | 0.0833 | 0.0833 | 0.7619 | 0.7619 | [0.0238, 0.1548] | 0.7619 | production | expert-human |
-| pt-BR | vox_communis | 33958 | 0.3877 | 0.2901 | 0.2628 | 0.1018 | 0.1381 | [0.3857, 0.3895] | 0.0412 | production | epitran-derived |
-| pt-BR | wikipron | 57815 | 0.0468 | 0.0313 | 0.0224 | 0.8115 | 0.8625 | [0.0460, 0.0477] | 0.7347 | production | crowd-scraped |
-| pt-BR-x-bahia | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-BR-x-brasilia | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-BR-x-caipira | portuguese_tts | 20 | 0.0047 | - | - | - | - | [0.0000, 0.0100] | 0.8500 | research | llm-generated |
-| pt-BR-x-caipira | portuguese_unified | 31 | 0.3147 | 0.2981 | 0.2757 | 0.0000 | 0.0323 | [0.2673, 0.3637] | 0.0000 | research | lexicon-derived |
-| pt-BR-x-carioca | portuguese_unified | 111 | 0.3097 | 0.2901 | 0.2657 | 0.0270 | 0.0450 | [0.2812, 0.3412] | 0.0180 | production | lexicon-derived |
-| pt-BR-x-ce | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-BR-x-fluminense | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-BR-x-mg | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-BR-x-norte | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-BR-x-pr | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-BR-x-recife | portuguese_tts | 20 | 0.0016 | - | - | - | - | [0.0000, 0.0047] | 0.9500 | research | llm-generated |
-| pt-BR-x-rj | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-BR-x-rj | portuguese_unified | 53147 | 0.1900 | 0.1668 | 0.1552 | 0.1730 | 0.1996 | [0.1890, 0.1910] | 0.1088 | research | lexicon-derived |
-| pt-BR-x-sp | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-BR-x-sp | portuguese_unified | 53147 | 0.1795 | 0.1599 | 0.1475 | 0.1705 | 0.1984 | [0.1786, 0.1805] | 0.1073 | research | lexicon-derived |
-| pt-BR-x-sul | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-CV | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | skeleton | llm-generated |
-| pt-GW | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-MO | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | skeleton | llm-generated |
-| pt-MZ | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-MZ | portuguese_unified | 53147 | 0.1698 | 0.1442 | 0.1273 | 0.3250 | 0.3825 | [0.1686, 0.1711] | 0.2555 | research | lexicon-derived |
-| pt-PT | ep_dialects | 30 | 0.1185 | - | - | - | - | [0.0931, 0.1462] | 0.1333 | research | expert-human |
-| pt-PT | ipa_childes | 3846 | 0.2485 | 0.1863 | 0.1722 | 0.3565 | 0.3838 | [0.2412, 0.2558] | 0.2574 | research | espeak-derived |
-| pt-PT | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT | portuguese_unified | 105553 | 0.2235 | 0.2013 | 0.1904 | 0.1826 | 0.1962 | [0.2225, 0.2245] | 0.1502 | research | lexicon-derived |
-| pt-PT | wikipron | 56891 | 0.0899 | 0.0679 | 0.0587 | 0.6061 | 0.6504 | [0.0889, 0.0910] | 0.5401 | research | crowd-scraped |
-| pt-PT-x-acores | clup_dialect | 2† | 0.3214 | - | - | - | - | [0.3151, 0.3277] | 0.0000 | research | expert-human |
-| pt-PT-x-acores | ep_dialects | 29 | 0.1095 | - | - | - | - | [0.0796, 0.1392] | 0.0690 | research | expert-human |
-| pt-PT-x-acores | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-alentejo | clup_dialect | 1† | 0.2693 | - | - | - | - | [0.2693, 0.2693] | 0.0000 | research | expert-human |
-| pt-PT-x-alentejo | ep_dialects | 30 | 0.2213 | - | - | - | - | [0.1691, 0.2851] | 0.0667 | research | expert-human |
-| pt-PT-x-alentejo | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-alentejo | primary_sources | 5† | 0.3000 | 0.2333 | 0.2333 | 0.2000 | 0.2000 | [0.2667, 0.3333] | 0.0000 | research | expert-human |
-| pt-PT-x-alfena | clup_dialect | 1† | 0.3260 | - | - | - | - | [0.3260, 0.3260] | 0.0000 | research | expert-human |
-| pt-PT-x-alfena | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-algarve | clup_dialect | 3† | 0.3712 | - | - | - | - | [0.2988, 0.4378] | 0.0000 | research | expert-human |
-| pt-PT-x-algarve | ep_dialects | 30 | 0.1480 | - | - | - | - | [0.1138, 0.1796] | 0.1333 | research | expert-human |
-| pt-PT-x-algarve | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-aveiro | clup_dialect | 6† | 0.3056 | - | - | - | - | [0.2807, 0.3339] | 0.0000 | research | expert-human |
-| pt-PT-x-aveiro | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-beira | clup_dialect | 8† | 0.3248 | - | - | - | - | [0.2932, 0.3645] | 0.0000 | research | expert-human |
-| pt-PT-x-beira | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-beira | primary_sources | 8† | 0.4327 | 0.4327 | 0.4327 | 0.1250 | 0.1250 | [0.2494, 0.6202] | 0.1250 | research | expert-human |
-| pt-PT-x-braga | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-coimbra | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-lisbon | clup_dialect | 5† | 0.2921 | - | - | - | - | [0.2534, 0.3383] | 0.0000 | research | expert-human |
-| pt-PT-x-lisbon | ep_dialects | 45 | 0.1172 | - | - | - | - | [0.0948, 0.1426] | 0.1556 | research | expert-human |
-| pt-PT-x-lisbon | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-lisbon | portuguese_unified | 53150 | 0.1046 | 0.0840 | 0.0735 | 0.4796 | 0.5143 | [0.1036, 0.1055] | 0.4086 | research | lexicon-derived |
-| pt-PT-x-lisbon | primary_sources | 33 | 0.0288 | 0.0288 | 0.0288 | 0.8788 | 0.8788 | [0.0075, 0.0561] | 0.8788 | research | expert-human |
-| pt-PT-x-madeira | clup_dialect | 4† | 0.3250 | - | - | - | - | [0.2852, 0.3653] | 0.0000 | research | expert-human |
-| pt-PT-x-madeira | ep_dialects | 30 | 0.0952 | - | - | - | - | [0.0662, 0.1257] | 0.2667 | research | expert-human |
-| pt-PT-x-madeira | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-medieval | portuguese_tts | 20 | 0.0020 | - | - | - | - | [0.0000, 0.0060] | 0.9500 | research | llm-generated |
-| pt-PT-x-minho | clup_dialect | 9† | 0.3181 | - | - | - | - | [0.2908, 0.3471] | 0.0000 | research | expert-human |
-| pt-PT-x-minho | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-porto | clup_dialect | 17† | 0.4223 | - | - | - | - | [0.3919, 0.4499] | 0.0000 | research | expert-human |
-| pt-PT-x-porto | ep_dialects | 40 | 0.1881 | - | - | - | - | [0.1608, 0.2128] | 0.0500 | research | expert-human |
-| pt-PT-x-porto | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-porto | primary_sources | 5† | 0.2133 | 0.1467 | 0.1467 | 0.6000 | 0.6000 | [0.1000, 0.3400] | 0.2000 | research | expert-human |
-| pt-PT-x-sao-miguel | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-sao-miguel | primary_sources | 12† | 0.3917 | 0.3917 | 0.3917 | 0.0833 | 0.0833 | [0.2556, 0.5418] | 0.0833 | research | expert-human |
-| pt-PT-x-terceira | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-terceira | primary_sources | 10† | 0.2345 | 0.1536 | 0.1369 | 0.4000 | 0.4000 | [0.0952, 0.3953] | 0.3000 | research | expert-human |
-| pt-PT-x-trasosmontes | clup_dialect | 6† | 0.3317 | - | - | - | - | [0.3126, 0.3578] | 0.0000 | research | expert-human |
-| pt-PT-x-trasosmontes | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-viana | clup_dialect | 4† | 0.3655 | - | - | - | - | [0.3279, 0.4107] | 0.0000 | research | expert-human |
-| pt-PT-x-viana | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-ST | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-TL | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-TL | portuguese_unified | 53147 | 0.3642 | 0.3376 | 0.3193 | 0.0191 | 0.0240 | [0.3630, 0.3654] | 0.0151 | research | machine-generated |
-| pt-UY | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| quz | ipa_childes | 1853 | 0.3549 | 0.3549 | 0.3549 | 0.0621 | 0.0621 | [0.3463, 0.3623] | 0.0621 | research | espeak-derived |
-| rgn | wikipron | 261 | 0.3270 | 0.3270 | 0.3270 | 0.1226 | 0.1226 | [0.2970, 0.3597] | 0.1226 | research | crowd-scraped |
-| rif | wold | 1533 | 0.0929 | 0.0929 | 0.0929 | 0.5669 | 0.5669 | [0.0870, 0.0989] | 0.5669 | research | lexicon-derived |
-| ro | vox_communis | 10679 | 0.0693 | 0.0687 | 0.0684 | 0.5626 | 0.5636 | [0.0674, 0.0710] | 0.5608 | production | epitran-derived |
-| ro | wikipron | 8977 | 0.0198 | 0.0192 | 0.0189 | 0.8852 | 0.8865 | [0.0186, 0.0212] | 0.8830 | production | crowd-scraped |
-| ro-RO | ipa_childes | 2311 | 0.2644 | 0.2617 | 0.2616 | 0.1939 | 0.1943 | [0.2562, 0.2721] | 0.1900 | production | espeak-derived |
-| ro-RO | ipadict | 72375 | 0.0359 | 0.0354 | 0.0352 | 0.7367 | 0.7376 | [0.0354, 0.0364] | 0.7344 | production | lexicon-derived |
-| roa-x-galaicopt | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ru | alphacep_ru_book | 6175 | 0.2391 | 0.1252 | 0.0859 | 0.3153 | 0.5015 | [0.2362, 0.2419] | 0.0646 | research | machine-generated |
-| ru | coruss_ru | 9527 | 0.3572 | 0.2795 | 0.2653 | 0.1480 | 0.1685 | [0.3530, 0.3614] | 0.0639 | research | expert-human |
-| ru | primary_sources | 36 | 0.1867 | 0.1267 | 0.1267 | 0.5833 | 0.5833 | [0.1265, 0.2463] | 0.3611 | research | expert-human |
-| ru | vox_communis | 50517 | 0.3481 | 0.2432 | 0.2020 | 0.1251 | 0.2154 | [0.3467, 0.3494] | 0.0235 | research | epitran-derived |
-| ru | wikipron | 403870 | 0.1443 | 0.1082 | 0.1040 | 0.3695 | 0.3712 | [0.1439, 0.1447] | 0.3365 | research | crowd-scraped |
-| rw | vox_communis | 381086 | 0.1388 | 0.1388 | 0.1388 | 0.3128 | 0.3128 | [0.1384, 0.1392] | 0.3128 | research | epitran-derived |
-| sa | wikipron | 9796 | 0.3089 | 0.3089 | 0.3089 | 0.0699 | 0.0699 | [0.3057, 0.3118] | 0.0699 | research | crowd-scraped |
-| sah | vox_communis | 11989 | 0.0862 | 0.0862 | 0.0862 | 0.6330 | 0.6330 | [0.0837, 0.0888] | 0.6330 | research | epitran-derived |
-| sah | wikipron | 238 | 0.2492 | 0.2314 | 0.2308 | 0.3151 | 0.3151 | [0.2176, 0.2843] | 0.2857 | research | crowd-scraped |
-| sc | wikipron | 703 | 0.0630 | 0.0462 | 0.0460 | 0.8051 | 0.8065 | [0.0541, 0.0730] | 0.7511 | research | crowd-scraped |
-| sce | wikipron | 168 | 0.0640 | 0.0640 | 0.0640 | 0.7143 | 0.7143 | [0.0471, 0.0818] | 0.7143 | research | crowd-scraped |
-| scn | wikipron | 1396 | 0.1944 | 0.1760 | 0.1744 | 0.3410 | 0.3431 | [0.1846, 0.2041] | 0.3266 | research | crowd-scraped |
-| sdc | wikipron | 321 | 0.1865 | 0.1865 | 0.1865 | 0.3738 | 0.3738 | [0.1653, 0.2072] | 0.3738 | research | crowd-scraped |
-| se | wikipron | 4125 | 0.2749 | 0.2749 | 0.2749 | 0.0742 | 0.0742 | [0.2702, 0.2794] | 0.0742 | research | crowd-scraped |
-| sel | northeuralex | 886 | 0.0342 | 0.0292 | 0.0291 | 0.8149 | 0.8160 | [0.0294, 0.0393] | 0.7935 | research | lexicon-derived |
-| sga | wikipron | 3700 | 0.0889 | 0.0626 | 0.0598 | 0.6859 | 0.6905 | [0.0843, 0.0936] | 0.6089 | research | crowd-scraped |
-| shn | wikipron | 2604 | 0.3348 | 0.3348 | 0.3348 | 0.0434 | 0.0434 | [0.3280, 0.3426] | 0.0434 | research | crowd-scraped |
-| si | wikipron | 386 | 0.1394 | 0.1269 | 0.1269 | 0.5570 | 0.5570 | [0.1209, 0.1586] | 0.5207 | research | crowd-scraped |
-| sia | wikipron | 179 | 0.0948 | 0.0948 | 0.0948 | 0.6089 | 0.6089 | [0.0739, 0.1167] | 0.6089 | research | crowd-scraped |
-| sid | wikipron | 297 | 0.0731 | 0.0731 | 0.0731 | 0.6397 | 0.6397 | [0.0597, 0.0875] | 0.6397 | research | crowd-scraped |
-| sjd | northeuralex | 1011 | 0.1368 | 0.1368 | 0.1368 | 0.4807 | 0.4807 | [0.1264, 0.1463] | 0.4807 | research | lexicon-derived |
-| sjd | wikipron | 756 | 0.2298 | 0.2298 | 0.2298 | 0.2553 | 0.2553 | [0.2159, 0.2430] | 0.2553 | research | crowd-scraped |
-| sjs | wikipron | 845 | 0.0467 | 0.0467 | 0.0467 | 0.7432 | 0.7432 | [0.0405, 0.0529] | 0.7432 | research | crowd-scraped |
-| sk | vox_communis | 15944 | 0.0902 | 0.0659 | 0.0637 | 0.6066 | 0.6237 | [0.0884, 0.0918] | 0.4752 | research | epitran-derived |
-| sk | wikipron | 15893 | 0.1346 | 0.1174 | 0.1164 | 0.4797 | 0.4832 | [0.1319, 0.1373] | 0.4556 | research | crowd-scraped |
-| skr | wikipron | 309 | 0.2869 | 0.2418 | 0.2365 | 0.2136 | 0.2201 | [0.2674, 0.3061] | 0.1553 | research | crowd-scraped |
-| sl | vox_communis | 6603 | 0.3555 | 0.3370 | 0.3228 | 0.0009 | 0.0009 | [0.3522, 0.3587] | 0.0009 | research | epitran-derived |
-| sl | wikipron | 5139 | 0.3284 | 0.3085 | 0.2976 | 0.0179 | 0.0181 | [0.3248, 0.3319] | 0.0169 | research | crowd-scraped |
-| slr | wikipron | 752 | 0.2850 | 0.2847 | 0.2847 | 0.1250 | 0.1250 | [0.2717, 0.2984] | 0.1250 | research | crowd-scraped |
-| smn | northeuralex | 1055 | 0.1600 | 0.1600 | 0.1600 | 0.3137 | 0.3137 | [0.1518, 0.1694] | 0.3137 | research | lexicon-derived |
-| sms | northeuralex | 1063 | 0.2200 | 0.1758 | 0.1700 | 0.1543 | 0.1712 | [0.2128, 0.2266] | 0.0809 | research | lexicon-derived |
-| sms | wikipron | 111 | 0.0045 | 0.0045 | 0.0045 | 0.9820 | 0.9820 | [0.0000, 0.0120] | 0.9820 | research | crowd-scraped |
-| so | kaikki | 230 | 0.5567 | 0.5403 | 0.5403 | 0.0565 | 0.0565 | [0.5304, 0.5838] | 0.0435 | research | crowd-scraped |
-| sq | vox_communis | 11713 | 0.1432 | 0.1432 | 0.1432 | 0.3056 | 0.3056 | [0.1411, 0.1453] | 0.3056 | research | epitran-derived |
-| sq | wikipron | 4900 | 0.0964 | 0.0964 | 0.0964 | 0.5606 | 0.5606 | [0.0928, 0.1003] | 0.5606 | research | crowd-scraped |
-| sr | ipa_childes | 9838 | 0.3232 | 0.3232 | 0.3232 | 0.0811 | 0.0811 | [0.3198, 0.3267] | 0.0811 | research | epitran-derived |
-| sr | vox_communis | 3624 | 0.3298 | 0.3298 | 0.3298 | 0.0571 | 0.0571 | [0.3243, 0.3351] | 0.0571 | research | epitran-derived |
-| srn | wikipron | 702 | 0.0450 | 0.0450 | 0.0450 | 0.8376 | 0.8376 | [0.0360, 0.0547] | 0.8376 | research | crowd-scraped |
-| srs | wikipron | 137 | 0.1773 | 0.1773 | 0.1773 | 0.2847 | 0.2847 | [0.1521, 0.2039] | 0.2847 | research | crowd-scraped |
-| stq | wikipron | 818 | 0.3123 | 0.1880 | 0.1631 | 0.3509 | 0.4083 | [0.2976, 0.3274] | 0.1687 | research | crowd-scraped |
-| su | kaikki | 396 | 0.0969 | 0.0969 | 0.0969 | 0.6389 | 0.6389 | [0.0828, 0.1128] | 0.6389 | skeleton | crowd-scraped |
-| sv | ipa_childes | 5202 | 0.3476 | 0.2555 | 0.2470 | 0.2614 | 0.2762 | [0.3415, 0.3544] | 0.1728 | research | espeak-derived |
-| sv | ipadict | 21094 | 0.2427 | 0.1752 | 0.1637 | 0.2900 | 0.3069 | [0.2401, 0.2452] | 0.2103 | research | lexicon-derived |
-| sv | vox_communis | 19492 | 0.3717 | 0.2143 | 0.2048 | 0.2456 | 0.2681 | [0.3693, 0.3744] | 0.0802 | research | epitran-derived |
-| sv | wikipron | 5076 | 0.2407 | 0.1661 | 0.1547 | 0.4220 | 0.4439 | [0.2345, 0.2476] | 0.3339 | research | crowd-scraped |
-| sw | ipadict | 48308 | 0.1608 | 0.1422 | 0.1416 | 0.3999 | 0.4013 | [0.1594, 0.1623] | 0.3458 | research | machine-generated |
-| sw | vox_communis | 48334 | 0.1286 | 0.1149 | 0.1144 | 0.4321 | 0.4335 | [0.1273, 0.1298] | 0.3853 | research | epitran-derived |
-| sw | wikipron | 307 | 0.2539 | 0.2486 | 0.2486 | 0.2117 | 0.2117 | [0.2346, 0.2738] | 0.2085 | research | crowd-scraped |
-| syc | wikipron | 96 | 0.3707 | 0.3576 | 0.3576 | 0.0208 | 0.0208 | [0.3425, 0.3959] | 0.0208 | research | crowd-scraped |
-| szl | wikipron | 2377 | 0.2148 | 0.2148 | 0.2148 | 0.2869 | 0.2869 | [0.2072, 0.2227] | 0.2869 | research | crowd-scraped |
-| ta | vox_communis | 135937 | 0.1214 | 0.1213 | 0.1212 | 0.2368 | 0.2368 | [0.1209, 0.1219] | 0.2368 | research | epitran-derived |
-| ta | wikipron | 10093 | 0.3757 | 0.3726 | 0.3722 | 0.0240 | 0.0240 | [0.3728, 0.3787] | 0.0238 | research | crowd-scraped |
-| te | wikipron | 5101 | 0.0990 | 0.0764 | 0.0758 | 0.5546 | 0.5548 | [0.0953, 0.1027] | 0.5368 | research | crowd-scraped |
-| tet | primary_sources | 55 | 0.0683 | 0.0520 | 0.0483 | 0.7636 | 0.7818 | [0.0405, 0.0985] | 0.7091 | research | expert-human |
-| tew | wikipron | 106 | 0.0000 | 0.0000 | 0.0000 | 1.0000 | 1.0000 | [0.0000, 0.0000] | 1.0000 | research | crowd-scraped |
-| tft | wikipron | 293 | 0.1041 | 0.1041 | 0.1041 | 0.6792 | 0.6792 | [0.0827, 0.1265] | 0.6792 | research | crowd-scraped |
-| tg | wikipron | 3245 | 0.0296 | 0.0296 | 0.0296 | 0.8354 | 0.8354 | [0.0271, 0.0323] | 0.8354 | research | crowd-scraped |
-| th | vox_communis | 23704 | 0.4316 | 0.4273 | 0.4272 | 0.0403 | 0.0403 | [0.4292, 0.4342] | 0.0392 | research | epitran-derived |
-| th | wikipron | 16937 | 0.1880 | 0.1856 | 0.1856 | 0.3308 | 0.3308 | [0.1849, 0.1913] | 0.3300 | research | crowd-scraped |
-| tk | vox_communis | 5881 | 0.1629 | 0.1423 | 0.1416 | 0.3187 | 0.3231 | [0.1596, 0.1662] | 0.2588 | research | epitran-derived |
-| tk | wikipron | 424 | 0.2316 | 0.2257 | 0.2257 | 0.3679 | 0.3679 | [0.2109, 0.2517] | 0.3420 | research | crowd-scraped |
-| tkl | wikipron | 340 | 0.0497 | 0.0497 | 0.0497 | 0.7824 | 0.7824 | [0.0390, 0.0601] | 0.7824 | research | crowd-scraped |
-| tl | wikipron | 25857 | 0.1179 | 0.1042 | 0.1039 | 0.4743 | 0.4745 | [0.1162, 0.1195] | 0.4318 | research | crowd-scraped |
-| tn | vox_communis | 2271 | 0.4003 | 0.4003 | 0.4003 | 0.0555 | 0.0555 | [0.3913, 0.4086] | 0.0555 | research | epitran-derived |
-| tpw | wikipron | 372 | 0.0951 | 0.0557 | 0.0477 | 0.7554 | 0.7715 | [0.0748, 0.1161] | 0.7016 | research | crowd-scraped |
-| tr | ipa_childes | 2748 | 0.1372 | 0.1077 | 0.1065 | 0.3934 | 0.3937 | [0.1328, 0.1419] | 0.3654 | research | espeak-derived |
-| tr | vox_communis | 47013 | 0.0399 | 0.0051 | 0.0015 | 0.9505 | 0.9850 | [0.0394, 0.0405] | 0.6869 | research | epitran-derived |
-| tr | wikipron | 11579 | 0.1230 | 0.0817 | 0.0760 | 0.6026 | 0.6329 | [0.1202, 0.1257] | 0.4477 | research | crowd-scraped |
-| tru | wikipron | 168 | 0.3607 | 0.3104 | 0.3092 | 0.0357 | 0.0357 | [0.3362, 0.3856] | 0.0298 | research | crowd-scraped |
-| tt | vox_communis | 22220 | 0.3708 | 0.3238 | 0.3096 | 0.0545 | 0.0849 | [0.3687, 0.3727] | 0.0199 | research | epitran-derived |
-| twf | wikipron | 135 | 0.0240 | 0.0221 | 0.0221 | 0.9111 | 0.9111 | [0.0103, 0.0412] | 0.8963 | research | crowd-scraped |
-| tzm | wikipron | 658 | 0.0160 | 0.0160 | 0.0160 | 0.9483 | 0.9483 | [0.0101, 0.0225] | 0.9483 | research | crowd-scraped |
-| uby | wikipron | 1317 | 0.0247 | 0.0214 | 0.0209 | 0.9043 | 0.9043 | [0.0201, 0.0300] | 0.8998 | research | crowd-scraped |
-| udm | northeuralex | 973 | 0.2110 | 0.1908 | 0.1896 | 0.3875 | 0.3905 | [0.1989, 0.2233] | 0.3350 | research | lexicon-derived |
-| ug | vox_communis | 40503 | 0.0842 | 0.0842 | 0.0842 | 0.4977 | 0.4977 | [0.0832, 0.0852] | 0.4977 | research | epitran-derived |
-| ug | wikipron | 2644 | 0.1285 | 0.1285 | 0.1285 | 0.4172 | 0.4172 | [0.1239, 0.1335] | 0.4172 | research | crowd-scraped |
-| uk | primary_sources | 45 | 0.0759 | 0.0360 | 0.0264 | 0.7778 | 0.8444 | [0.0470, 0.1096] | 0.6444 | research | expert-human |
-| uk | vox_communis | 51621 | 0.2672 | 0.1695 | 0.1332 | 0.2478 | 0.3411 | [0.2659, 0.2684] | 0.0846 | research | epitran-derived |
-| uk | wikipron | 51646 | 0.0992 | 0.0724 | 0.0691 | 0.4929 | 0.5006 | [0.0982, 0.1001] | 0.4413 | research | crowd-scraped |
-| ulw | wikipron | 102 | 0.0888 | 0.0888 | 0.0888 | 0.7353 | 0.7353 | [0.0595, 0.1207] | 0.7353 | research | crowd-scraped |
-| ur | wikipron | 6296 | 0.3077 | 0.2733 | 0.2620 | 0.0718 | 0.0821 | [0.3042, 0.3111] | 0.0384 | research | crowd-scraped |
-| uz | vox_communis | 77898 | 0.0787 | 0.0787 | 0.0787 | 0.4705 | 0.4705 | [0.0780, 0.0793] | 0.4705 | research | epitran-derived |
-| uz | wikipron | 330 | 0.2458 | 0.2458 | 0.2458 | 0.2424 | 0.2424 | [0.2258, 0.2667] | 0.2424 | research | crowd-scraped |
-| vep | northeuralex | 1004 | 0.2065 | 0.2065 | 0.2065 | 0.2629 | 0.2629 | [0.1960, 0.2170] | 0.2629 | research | lexicon-derived |
-| vi | ipadict | 70899 | 0.0777 | 0.0777 | 0.0777 | 0.4620 | 0.4620 | [0.0770, 0.0783] | 0.4620 | research | machine-generated |
-| vi | vox_communis | 2475 | 0.5596 | 0.5596 | 0.5596 | 0.0024 | 0.0024 | [0.5516, 0.5667] | 0.0024 | research | epitran-derived |
-| vi | vox_communis_corrected | 2475 | 0.5596 | 0.5596 | 0.5596 | 0.0024 | 0.0024 | [0.5516, 0.5667] | 0.0024 | research | epitran-derived |
-| vo | wikipron | 442 | 0.0185 | 0.0185 | 0.0185 | 0.9118 | 0.9118 | [0.0122, 0.0264] | 0.9118 | research | crowd-scraped |
-| vot | wikipron | 2832 | 0.0898 | 0.0898 | 0.0898 | 0.5011 | 0.5011 | [0.0864, 0.0935] | 0.5011 | research | crowd-scraped |
-| wa | wikipron | 2348 | 0.1443 | 0.1377 | 0.1332 | 0.5515 | 0.5673 | [0.1362, 0.1532] | 0.5353 | research | crowd-scraped |
-| war | wikipron | 380 | 0.1478 | 0.1478 | 0.1478 | 0.3658 | 0.3658 | [0.1345, 0.1622] | 0.3658 | research | crowd-scraped |
-| wau | wikipron | 146 | 0.2968 | 0.2968 | 0.2968 | 0.1438 | 0.1438 | [0.2647, 0.3301] | 0.1438 | research | crowd-scraped |
-| wbk | wikipron | 153 | 0.2022 | 0.2022 | 0.2022 | 0.3922 | 0.3922 | [0.1710, 0.2366] | 0.3922 | research | crowd-scraped |
-| wiy | wikipron | 151 | 0.0164 | 0.0164 | 0.0164 | 0.9338 | 0.9338 | [0.0061, 0.0284] | 0.9338 | research | crowd-scraped |
-| wlm | wikipron | 403 | 0.2498 | 0.2498 | 0.2498 | 0.2357 | 0.2357 | [0.2309, 0.2702] | 0.2357 | research | crowd-scraped |
-| xaa | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| xal | wikipron | 318 | 0.2813 | 0.2813 | 0.2813 | 0.1478 | 0.1478 | [0.2619, 0.3014] | 0.1478 | research | crowd-scraped |
-| xh | kaikki | 887 | 0.3779 | 0.3761 | 0.3761 | 0.0304 | 0.0304 | [0.3681, 0.3868] | 0.0282 | research | crowd-scraped |
-| xsl | wikipron | 146 | 0.0273 | 0.0234 | 0.0234 | 0.9041 | 0.9041 | [0.0145, 0.0421] | 0.8904 | research | crowd-scraped |
-| ycl | wikipron | 111 | 0.0108 | 0.0108 | 0.0108 | 0.9369 | 0.9369 | [0.0030, 0.0201] | 0.9369 | research | crowd-scraped |
-| yi | wikipron | 4051 | 0.2042 | 0.1818 | 0.1745 | 0.3261 | 0.3453 | [0.1983, 0.2098] | 0.2735 | research | crowd-scraped |
-| ykg | northeuralex | 813 | 0.3616 | 0.3616 | 0.3616 | 0.0418 | 0.0418 | [0.3507, 0.3730] | 0.0418 | research | lexicon-derived |
-| yo | vox_communis | 5263 | 0.6392 | 0.6318 | 0.6315 | 0.0004 | 0.0004 | [0.6348, 0.6442] | 0.0004 | research | epitran-derived |
-| yo | wikipron | 4065 | 0.3828 | 0.3826 | 0.3826 | 0.1065 | 0.1065 | [0.3765, 0.3892] | 0.1063 | research | crowd-scraped |
-| yol | wikipron | 1972 | 0.3118 | 0.3118 | 0.3118 | 0.1922 | 0.1922 | [0.3012, 0.3216] | 0.1922 | research | crowd-scraped |
-| yrk | northeuralex | 1016 | 0.2342 | 0.2340 | 0.2340 | 0.1358 | 0.1358 | [0.2240, 0.2443] | 0.1358 | research | lexicon-derived |
-| yrk | wikipron | 295 | 0.3835 | 0.3828 | 0.3828 | 0.0712 | 0.0712 | [0.3626, 0.4054] | 0.0712 | research | crowd-scraped |
-| yux | wikipron | 242 | 0.2975 | 0.2975 | 0.2975 | 0.1694 | 0.1694 | [0.2738, 0.3220] | 0.1694 | research | crowd-scraped |
-| za | wikipron | 1682 | 0.2124 | 0.2124 | 0.2124 | 0.2426 | 0.2426 | [0.2048, 0.2203] | 0.2426 | research | crowd-scraped |
-| zh | ipa_childes | 4718 | 0.2879 | 0.2668 | 0.2662 | 0.2338 | 0.2342 | [0.2816, 0.2941] | 0.2126 | research | machine-generated |
-| zom | wikipron | 134 | 0.4399 | 0.4399 | 0.4399 | 0.0000 | 0.0000 | [0.4190, 0.4602] | 0.0000 | research | crowd-scraped |
-| zu | wikipron | 1754 | 0.2311 | 0.2269 | 0.2267 | 0.0593 | 0.0593 | [0.2252, 0.2365] | 0.0576 | research | crowd-scraped |
-| zza | wikipron | 196 | 0.2464 | 0.2387 | 0.2387 | 0.2551 | 0.2551 | [0.2159, 0.2745] | 0.2449 | research | crowd-scraped |
+The `Ceiling` column is a `valid_ceiling` measurement, when one has been executed for the row's language: the PER once an orthographically-unwritten contrast (tone, vowel length, or both — these give different numbers and are never conflated) is folded out of BOTH sides before rescoring. It reads `-` when no such measurement has been recorded — that is "not measured", never "measured as zero". A ceiling below 0.25 is marked `†`: the row's raw `PER` may look like an open failure, but the language has been proved input-limited rather than defective. `valid_ceiling` never changes `PER` itself — see [`orthography2ipa/data/SCHEMA.md`](../orthography2ipa/data/SCHEMA.md#valid-ceiling-schema).
+
+| Lang | Dataset | N | PER | Ceiling | Oracle@3 | Oracle@5 | OracleX@3 | OracleX@5 | 95% CI | Exact match | Quality tier | Provenance |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---|---|---|
+| aa | wikipron | 1713 | 0.2151 | - | 0.2151 | 0.2151 | 0.2685 | 0.2685 | [0.2071, 0.2228] | 0.2685 | research | crowd-scraped |
+| ab | vox_communis | 32180 | 0.1964 | - | 0.1964 | 0.1964 | 0.1921 | 0.1921 | [0.1947, 0.1980] | 0.1921 | research | epitran-derived |
+| ab | wikipron | 165 | 0.2311 | - | 0.2296 | 0.2296 | 0.5636 | 0.5636 | [0.1725, 0.2915] | 0.5636 | research | crowd-scraped |
+| ace | wikipron | 267 | 0.1102 | - | 0.0864 | 0.0864 | 0.6404 | 0.6404 | [0.0928, 0.1293] | 0.5693 | research | crowd-scraped |
+| acm | wikipron | 97 | 0.3666 | - | 0.3172 | 0.3172 | 0.1546 | 0.1546 | [0.3288, 0.4055] | 0.1134 | research | crowd-scraped |
+| ady | northeuralex | 928 | 0.1684 | - | 0.1587 | 0.1586 | 0.4483 | 0.4494 | [0.1558, 0.1813] | 0.4224 | research | lexicon-derived |
+| af | wikipron | 2076 | 0.1653 | - | 0.1394 | 0.1373 | 0.4711 | 0.4783 | [0.1567, 0.1731] | 0.4220 | research | crowd-scraped |
+| aii | wikipron | 4836 | 0.3758 | - | 0.3280 | 0.3056 | 0.0463 | 0.0567 | [0.3714, 0.3803] | 0.0209 | research | crowd-scraped |
+| ain | northeuralex | 858 | 0.0200 | - | 0.0200 | 0.0200 | 0.8811 | 0.8811 | [0.0160, 0.0238] | 0.8811 | research | lexicon-derived |
+| akk | wikipron | 671 | 0.0144 | - | 0.0144 | 0.0144 | 0.9046 | 0.9046 | [0.0109, 0.0178] | 0.9046 | research | crowd-scraped |
+| ale | northeuralex | 896 | 0.2634 | - | 0.2634 | 0.2634 | 0.0926 | 0.0926 | [0.2542, 0.2731] | 0.0926 | skeleton | lexicon-derived |
+| ale | wikipron | 118 | 0.1100 | - | 0.1100 | 0.1100 | 0.7458 | 0.7458 | [0.0650, 0.1652] | 0.7458 | skeleton | crowd-scraped |
+| am | vox_communis | 5453 | 0.2300 | - | 0.2300 | 0.2300 | 0.1258 | 0.1258 | [0.2258, 0.2341] | 0.1258 | research | epitran-derived |
+| am | wikipron | 388 | 0.3662 | - | 0.3662 | 0.3662 | 0.1082 | 0.1082 | [0.3445, 0.3881] | 0.1082 | research | crowd-scraped |
+| an | wikipron | 902 | 0.0580 | - | 0.0229 | 0.0207 | 0.8570 | 0.8703 | [0.0523, 0.0637] | 0.6630 | research | crowd-scraped |
+| ang | wikipron | 54696 | 0.2103 | - | 0.1588 | 0.1512 | 0.2471 | 0.2632 | [0.2092, 0.2116] | 0.1545 | research | crowd-scraped |
+| aot | wikipron | 181 | 0.1367 | - | 0.1367 | 0.1367 | 0.4475 | 0.4475 | [0.1160, 0.1588] | 0.4475 | research | crowd-scraped |
+| apw | wikipron | 147 | 0.3076 | - | 0.3006 | 0.3006 | 0.2449 | 0.2449 | [0.2662, 0.3507] | 0.2449 | research | crowd-scraped |
+| ar | arabic_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ar | gold20_arabic | 20 | 0.0051 | - | - | - | - | - | [0.0010, 0.0102] | 0.8000 | research | llm-generated |
+| ar | ipadict | 857160 | 0.3774 | - | 0.3380 | 0.3334 | 0.0053 | 0.0059 | [0.3772, 0.3776] | 0.0030 | research | machine-generated |
+| ar | wikipron | 14268 | 0.3139 | - | 0.2539 | 0.2521 | 0.0763 | 0.0798 | [0.3116, 0.3162] | 0.0444 | research | crowd-scraped |
+| ar | wikipron_ar_diacritized | 14240 | 0.1721 | - | 0.1710 | 0.1710 | 0.3055 | 0.3055 | [0.1696, 0.1746] | 0.3051 | research | crowd-scraped |
+| ar-AE | arabic_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ar-AE | gold20_arabic | 20 | 0.0441 | - | - | - | - | - | [0.0253, 0.0651] | 0.3500 | research | llm-generated |
+| ar-BH | arabic_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ar-BH | gold20_arabic | 20 | 0.0410 | - | - | - | - | - | [0.0262, 0.0572] | 0.2000 | research | llm-generated |
+| ar-DZ | arabic_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ar-DZ | gold20_arabic | 20 | 0.0406 | - | - | - | - | - | [0.0164, 0.0674] | 0.6000 | research | llm-generated |
+| ar-DZ | primary_sources | 1† | 0.7143 | - | 0.7143 | 0.7143 | 0.0000 | 0.0000 | [0.7143, 0.7143] | 0.0000 | research | expert-human |
+| ar-EG | arabic_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ar-EG | gold20_arabic | 20 | 0.0230 | - | - | - | - | - | [0.0065, 0.0449] | 0.6000 | research | llm-generated |
+| ar-EG | primary_sources | 18† | 0.2390 | - | 0.2029 | 0.1906 | 0.2222 | 0.2222 | [0.1696, 0.3291] | 0.1111 | research | expert-human |
+| ar-EG | wikipron | 590 | 0.3692 | - | 0.2985 | 0.2944 | 0.1169 | 0.1203 | [0.3542, 0.3830] | 0.0729 | research | crowd-scraped |
+| ar-IQ | arabic_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ar-IQ | gold20_arabic | 20 | 0.0051 | - | - | - | - | - | [0.0000, 0.0134] | 0.9000 | research | llm-generated |
+| ar-IQ | primary_sources | 12† | 0.2907 | - | 0.2907 | 0.2907 | 0.2500 | 0.2500 | [0.1760, 0.4065] | 0.2500 | research | expert-human |
+| ar-IQ-x-qeltu | arabic_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ar-IQ-x-qeltu | gold20_arabic | 20 | 0.0147 | - | - | - | - | - | [0.0057, 0.0269] | 0.6000 | research | llm-generated |
+| ar-IQ-x-qeltu | primary_sources | 12† | 0.3417 | - | 0.3417 | 0.3417 | 0.2500 | 0.2500 | [0.1917, 0.5125] | 0.2500 | research | expert-human |
+| ar-JO | arabic_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ar-JO | gold20_arabic | 20 | 0.0061 | - | - | - | - | - | [0.0012, 0.0123] | 0.8000 | research | llm-generated |
+| ar-JO | primary_sources | 13† | 0.2179 | - | 0.1833 | 0.1833 | 0.3077 | 0.3077 | [0.1167, 0.3333] | 0.3077 | research | expert-human |
+| ar-JO | wikipron | 2513 | 0.3718 | - | 0.3119 | 0.3069 | 0.0653 | 0.0692 | [0.3656, 0.3778] | 0.0358 | research | crowd-scraped |
+| ar-KW | arabic_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ar-KW | gold20_arabic | 20 | 0.0237 | - | - | - | - | - | [0.0113, 0.0353] | 0.5000 | research | llm-generated |
+| ar-LB | arabic_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ar-LB | gold20_arabic | 20 | 0.0258 | - | - | - | - | - | [0.0097, 0.0484] | 0.5500 | research | llm-generated |
+| ar-LY | arabic_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ar-LY | gold20_arabic | 20 | 0.0122 | - | - | - | - | - | [0.0047, 0.0208] | 0.6500 | research | llm-generated |
+| ar-LY | primary_sources | 6† | 0.2042 | - | 0.1833 | 0.1833 | 0.3333 | 0.3333 | [0.1083, 0.3042] | 0.1667 | research | expert-human |
+| ar-MA | arabic_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ar-MA | gold20_arabic | 20 | 0.0496 | - | - | - | - | - | [0.0228, 0.0782] | 0.5000 | research | llm-generated |
+| ar-MA | primary_sources | 5† | 0.1733 | - | 0.1000 | 0.1000 | 0.6000 | 0.6000 | [0.0833, 0.2400] | 0.2000 | research | expert-human |
+| ar-MA | wikipron | 1832 | 0.3026 | - | 0.2198 | 0.2166 | 0.2200 | 0.2282 | [0.2948, 0.3103] | 0.1075 | research | crowd-scraped |
+| ar-MR | arabic_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ar-MR | gold20_arabic | 20 | 0.0174 | - | - | - | - | - | [0.0056, 0.0333] | 0.6500 | research | llm-generated |
+| ar-MR | primary_sources | 14† | 0.3988 | - | 0.2651 | 0.2509 | 0.2857 | 0.2857 | [0.2702, 0.5396] | 0.2143 | research | expert-human |
+| ar-NG | arabic_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ar-NG | gold20_arabic | 20 | 0.0228 | - | - | - | - | - | [0.0000, 0.0548] | 0.8500 | research | llm-generated |
+| ar-NG | primary_sources | 6† | 0.2444 | - | 0.2444 | 0.2444 | 0.5000 | 0.5000 | [0.0556, 0.5111] | 0.5000 | research | expert-human |
+| ar-OM | arabic_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ar-OM | gold20_arabic | 20 | 0.0077 | - | - | - | - | - | [0.0000, 0.0215] | 0.9000 | research | llm-generated |
+| ar-PS | arabic_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ar-PS | gold20_arabic | 20 | 0.0230 | - | - | - | - | - | [0.0079, 0.0408] | 0.6000 | research | llm-generated |
+| ar-PS | primary_sources | 4† | 0.1667 | - | 0.1000 | 0.1000 | 0.7500 | 0.7500 | [0.0417, 0.3250] | 0.2500 | research | expert-human |
+| ar-QA | arabic_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ar-QA | gold20_arabic | 20 | 0.0264 | - | - | - | - | - | [0.0151, 0.0374] | 0.4000 | research | llm-generated |
+| ar-SA-x-dawasir | primary_sources | 5† | 0.0800 | - | 0.0400 | 0.0400 | 0.8000 | 0.8000 | [0.0000, 0.2400] | 0.8000 | stub | expert-human |
+| ar-SA-x-hejaz | arabic_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ar-SA-x-hejaz | gold20_arabic | 20 | 0.0219 | - | - | - | - | - | [0.0024, 0.0534] | 0.8000 | research | llm-generated |
+| ar-SA-x-hejaz | primary_sources | 30 | 0.1340 | - | 0.1256 | 0.1256 | 0.5333 | 0.5333 | [0.0823, 0.1872] | 0.5000 | research | expert-human |
+| ar-SA-x-hejaz | wikipron | 1889 | 0.3412 | - | 0.2682 | 0.2648 | 0.0789 | 0.0815 | [0.3346, 0.3481] | 0.0408 | research | crowd-scraped |
+| ar-SA-x-najd | arabic_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ar-SA-x-najd | gold20_arabic | 20 | 0.0041 | - | - | - | - | - | [0.0000, 0.0091] | 0.8500 | research | llm-generated |
+| ar-SA-x-najd | primary_sources | 25 | 0.1491 | - | 0.1434 | 0.1434 | 0.6000 | 0.6000 | [0.0712, 0.2343] | 0.5600 | research | expert-human |
+| ar-SA-x-qassim | arabic_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ar-SA-x-qassim | gold20_arabic | 20 | 0.0230 | - | - | - | - | - | [0.0051, 0.0469] | 0.7500 | research | llm-generated |
+| ar-SA-x-qassim | primary_sources | 12† | 0.1327 | - | 0.1327 | 0.1327 | 0.5000 | 0.5000 | [0.0524, 0.2306] | 0.5000 | research | expert-human |
+| ar-SA-x-rijal-alma | arabic_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ar-SA-x-rijal-alma | gold20_arabic | 20 | 0.0184 | - | - | - | - | - | [0.0090, 0.0289] | 0.5500 | research | llm-generated |
+| ar-SA-x-rijal-alma | primary_sources | 8† | 0.2454 | - | 0.2454 | 0.2454 | 0.1250 | 0.1250 | [0.1244, 0.3834] | 0.1250 | research | expert-human |
+| ar-SA-x-sharqiyya | arabic_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ar-SA-x-sharqiyya | gold20_arabic | 20 | 0.0506 | - | - | - | - | - | [0.0320, 0.0719] | 0.2000 | research | llm-generated |
+| ar-SA-x-sharqiyya | primary_sources | 6† | 0.1944 | - | 0.1389 | 0.1389 | 0.5000 | 0.5000 | [0.0278, 0.3889] | 0.5000 | research | expert-human |
+| ar-SA-x-tihama-qahtan | primary_sources | 16† | 0.1084 | - | 0.1084 | 0.1084 | 0.5000 | 0.5000 | [0.0521, 0.1844] | 0.5000 | research | expert-human |
+| ar-SD | arabic_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ar-SD | gold20_arabic | 20 | 0.0274 | - | - | - | - | - | [0.0145, 0.0411] | 0.4000 | research | llm-generated |
+| ar-SY | arabic_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ar-SY | gold20_arabic | 20 | 0.0491 | - | - | - | - | - | [0.0220, 0.0755] | 0.5000 | research | llm-generated |
+| ar-SY | primary_sources | 11† | 0.1318 | - | 0.1318 | 0.1318 | 0.4545 | 0.4545 | [0.0561, 0.2031] | 0.4545 | research | expert-human |
+| ar-SY | wikipron | 410 | 0.3889 | - | 0.3004 | 0.2965 | 0.0902 | 0.0902 | [0.3714, 0.4047] | 0.0317 | research | crowd-scraped |
+| ar-TD | arabic_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ar-TD | gold20_arabic | 20 | 0.0346 | - | - | - | - | - | [0.0083, 0.0662] | 0.7000 | research | llm-generated |
+| ar-TN | arabic_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ar-TN | gold20_arabic | 20 | 0.0036 | - | - | - | - | - | [0.0000, 0.0080] | 0.8500 | research | llm-generated |
+| ar-TN | primary_sources | 9† | 0.3059 | - | 0.2549 | 0.2549 | 0.2222 | 0.2222 | [0.1960, 0.4250] | 0.1111 | research | expert-human |
+| ar-YE | arabic_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ar-YE | gold20_arabic | 20 | 0.0043 | - | - | - | - | - | [0.0000, 0.0095] | 0.8500 | research | llm-generated |
+| ar-YE | primary_sources | 15† | 0.1802 | - | 0.1802 | 0.1802 | 0.1333 | 0.1333 | [0.1352, 0.2202] | 0.1333 | research | expert-human |
+| ar-x-gulf | arabic_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ar-x-gulf | gold20_arabic | 20 | 0.0449 | - | - | - | - | - | [0.0259, 0.0645] | 0.3500 | research | llm-generated |
+| ar-x-gulf | wikipron | 614 | 0.4270 | - | 0.3399 | 0.3313 | 0.0537 | 0.0570 | [0.4144, 0.4397] | 0.0195 | research | crowd-scraped |
+| ar-x-levantine | arabic_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ar-x-levantine | gold20_arabic | 20 | 0.0105 | - | - | - | - | - | [0.0033, 0.0180] | 0.7000 | research | llm-generated |
+| ar-x-maghrebi | arabic_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ar-x-maghrebi | gold20_arabic | 20 | 0.0044 | - | - | - | - | - | [0.0000, 0.0101] | 0.8500 | research | llm-generated |
+| ar-x-mashriqi | arabic_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ar-x-mashriqi | gold20_arabic | 20 | 0.0175 | - | - | - | - | - | [0.0036, 0.0360] | 0.7500 | research | llm-generated |
+| ar-x-peninsular | arabic_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ar-x-peninsular | gold20_arabic | 20 | 0.0122 | - | - | - | - | - | [0.0041, 0.0215] | 0.7000 | research | llm-generated |
+| arb | arabic_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| arb | gold20_arabic | 20 | 0.0190 | - | - | - | - | - | [0.0114, 0.0272] | 0.3500 | research | llm-generated |
+| arn | wold | 1269 | 0.0112 | - | 0.0112 | 0.0112 | 0.9511 | 0.9511 | [0.0084, 0.0143] | 0.9511 | research | lexicon-derived |
+| as | vox_communis | 5328 | 0.2436 | - | 0.2432 | 0.2432 | 0.3009 | 0.3009 | [0.2371, 0.2502] | 0.3005 | production | epitran-derived |
+| as | wikipron | 2981 | 0.0918 | - | 0.0861 | 0.0861 | 0.6437 | 0.6441 | [0.0865, 0.0969] | 0.6307 | production | crowd-scraped |
+| ast | wikipron | 4167 | 0.0505 | - | 0.0253 | 0.0244 | 0.8591 | 0.8651 | [0.0475, 0.0533] | 0.7106 | research | crowd-scraped |
+| ast-PT-x-guadramil | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ast-PT-x-medieval | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ast-PT-x-rionor | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| av | northeuralex | 954 | 0.0990 | - | 0.0501 | 0.0378 | 0.7086 | 0.8029 | [0.0927, 0.1054] | 0.4591 | research | lexicon-derived |
+| ayl | wikipron | 156 | 0.3799 | - | 0.2808 | 0.2777 | 0.1474 | 0.1538 | [0.3544, 0.4062] | 0.0449 | research | crowd-scraped |
+| az | wikipron | 434 | 0.2440 | - | 0.2382 | 0.2382 | 0.3134 | 0.3134 | [0.2238, 0.2654] | 0.3111 | research | crowd-scraped |
+| ba | vox_communis | 70528 | 0.4047 | - | 0.4047 | 0.4047 | 0.0191 | 0.0191 | [0.4038, 0.4056] | 0.0191 | research | epitran-derived |
+| ba | wikipron | 171 | 0.2685 | - | 0.2685 | 0.2685 | 0.4211 | 0.4211 | [0.2233, 0.3172] | 0.4211 | research | crowd-scraped |
+| ban | wikipron | 299 | 0.1630 | - | 0.1355 | 0.1313 | 0.4013 | 0.4214 | [0.1482, 0.1789] | 0.3378 | research | crowd-scraped |
+| bbl | wikipron | 414 | 0.3228 | - | 0.3228 | 0.3228 | 0.2005 | 0.2005 | [0.2960, 0.3501] | 0.2005 | research | crowd-scraped |
+| bbn | wikipron | 194 | 0.0689 | - | 0.0689 | 0.0689 | 0.6495 | 0.6495 | [0.0556, 0.0836] | 0.6495 | research | crowd-scraped |
+| bcl | wikipron | 4793 | 0.0652 | - | 0.0652 | 0.0652 | 0.6359 | 0.6359 | [0.0624, 0.0680] | 0.6359 | research | crowd-scraped |
+| bdq | wikipron | 198 | 0.3363 | - | 0.3363 | 0.3363 | 0.1465 | 0.1465 | [0.3013, 0.3676] | 0.1465 | research | crowd-scraped |
+| be | vox_communis | 153529 | 0.1276 | - | 0.1253 | 0.1252 | 0.2591 | 0.2591 | [0.1271, 0.1281] | 0.2523 | research | epitran-derived |
+| be | wikipron | 7229 | 0.0064 | - | 0.0064 | 0.0064 | 0.9521 | 0.9521 | [0.0057, 0.0072] | 0.9519 | research | crowd-scraped |
+| bg | vox_communis | 18447 | 0.1980 | - | 0.1980 | 0.1980 | 0.1935 | 0.1935 | [0.1959, 0.1998] | 0.1935 | research | epitran-derived |
+| bjb | wikipron | 136 | 0.1021 | - | 0.1021 | 0.1021 | 0.5956 | 0.5956 | [0.0773, 0.1261] | 0.5956 | research | crowd-scraped |
+| bn | vox_communis | 30261 | 0.2051 | - | 0.1997 | 0.1996 | 0.1874 | 0.1874 | [0.2031, 0.2070] | 0.1874 | research | epitran-derived |
+| bn | wikipron | 6527 | 0.3162 | - | 0.2802 | 0.2778 | 0.1538 | 0.1554 | [0.3108, 0.3216] | 0.1316 | research | crowd-scraped |
+| bo | wikipron | 1564 | 0.3785 | - | 0.3718 | 0.3715 | 0.2174 | 0.2174 | [0.3606, 0.3962] | 0.2174 | research | crowd-scraped |
+| br | wikipron | 803 | 0.3210 | - | 0.2353 | 0.2168 | 0.1806 | 0.2192 | [0.3093, 0.3337] | 0.0872 | research | crowd-scraped |
+| bua | northeuralex | 1174 | 0.0398 | - | 0.0398 | 0.0398 | 0.7726 | 0.7726 | [0.0351, 0.0448] | 0.7726 | research | lexicon-derived |
+| bua | wikipron | 140 | 0.3571 | - | 0.3120 | 0.3114 | 0.1571 | 0.1571 | [0.3243, 0.3881] | 0.1143 | research | crowd-scraped |
+| ca | 4catac | 160 | 0.0642 | - | - | - | - | - | [0.0587, 0.0698] | 0.0437 | research | expert-human |
+| ca | ipa_childes | 3813 | 0.2576 | - | 0.1681 | 0.1462 | 0.3669 | 0.4306 | [0.2511, 0.2645] | 0.2206 | research | espeak-derived |
+| ca | vox_communis | 141623 | 0.1321 | - | 0.1173 | 0.1067 | 0.5120 | 0.5488 | [0.1310, 0.1332] | 0.4706 | research | epitran-derived |
+| ca | wikipron | 106 | 0.2565 | - | 0.1488 | 0.1289 | 0.5094 | 0.5660 | [0.2121, 0.3003] | 0.3396 | research | crowd-scraped |
+| ca-x-balear | 4catac | 160 | 0.1360 | - | - | - | - | - | [0.1283, 0.1446] | 0.0062 | research | expert-human |
+| ca-x-occidental | 4catac | 160 | 0.0822 | - | - | - | - | - | [0.0761, 0.0886] | 0.0125 | research | expert-human |
+| ca-x-valencia | 4catac | 160 | 0.0677 | - | - | - | - | - | [0.0620, 0.0733] | 0.0312 | research | expert-human |
+| car | wikipron | 232 | 0.3500 | - | 0.3500 | 0.3500 | 0.0517 | 0.0517 | [0.3259, 0.3749] | 0.0517 | research | crowd-scraped |
+| car | wold | 1191 | 0.0846 | - | 0.0846 | 0.0846 | 0.5600 | 0.5600 | [0.0779, 0.0923] | 0.5600 | research | lexicon-derived |
+| ce | wikipron | 461 | 0.2541 | - | 0.2319 | 0.2319 | 0.2842 | 0.2842 | [0.2360, 0.2727] | 0.2364 | research | crowd-scraped |
+| ceb | wikipron | 3895 | 0.1058 | - | 0.1058 | 0.1058 | 0.5214 | 0.5214 | [0.1017, 0.1095] | 0.5214 | research | crowd-scraped |
+| chb | wikipron | 99 | 0.1313 | - | 0.1313 | 0.1313 | 0.4545 | 0.4545 | [0.1001, 0.1636] | 0.4545 | research | crowd-scraped |
+| cho | wikipron | 140 | 0.3381 | - | 0.2795 | 0.2743 | 0.1143 | 0.1214 | [0.3053, 0.3797] | 0.0714 | research | crowd-scraped |
+| cic | wikipron | 394 | 0.1028 | - | 0.1028 | 0.1028 | 0.4442 | 0.4442 | [0.0912, 0.1140] | 0.4442 | research | crowd-scraped |
+| ckb | vox_communis | 26140 | 0.2607 | - | 0.2337 | 0.2318 | 0.1511 | 0.1511 | [0.2584, 0.2629] | 0.1436 | research | epitran-derived |
+| ckb | wikipron | 972 | 0.2107 | - | 0.1789 | 0.1769 | 0.3066 | 0.3086 | [0.1991, 0.2222] | 0.2726 | research | crowd-scraped |
+| ckt | northeuralex | 993 | 0.0972 | - | 0.0972 | 0.0972 | 0.5801 | 0.5801 | [0.0887, 0.1055] | 0.5801 | research | lexicon-derived |
+| cnk | wikipron | 342 | 0.2608 | - | 0.2592 | 0.2592 | 0.0000 | 0.0000 | [0.2540, 0.2680] | 0.0000 | research | crowd-scraped |
+| co | wikipron | 459 | 0.1955 | - | 0.1171 | 0.1055 | 0.5708 | 0.5991 | [0.1782, 0.2132] | 0.3834 | research | crowd-scraped |
+| cop | wikipron | 591 | 0.3667 | - | 0.3667 | 0.3667 | 0.1032 | 0.1032 | [0.3470, 0.3863] | 0.1032 | research | crowd-scraped |
+| cri | primary_sources | 13† | 0.2147 | - | 0.2019 | 0.2019 | 0.3077 | 0.3077 | [0.1243, 0.3116] | 0.2308 | research | expert-human |
+| crk | wikipron | 159 | 0.3174 | - | 0.3174 | 0.3174 | 0.0126 | 0.0126 | [0.2959, 0.3357] | 0.0126 | research | crowd-scraped |
+| crs | wold | 1874 | 0.2114 | - | 0.2114 | 0.2114 | 0.5139 | 0.5139 | [0.1980, 0.2262] | 0.5139 | research | lexicon-derived |
+| cs | vox_communis | 44148 | 0.0680 | - | 0.0636 | 0.0636 | 0.5789 | 0.5789 | [0.0672, 0.0689] | 0.5622 | research | epitran-derived |
+| csb | wikipron | 2825 | 0.1663 | - | 0.1663 | 0.1663 | 0.3816 | 0.3816 | [0.1594, 0.1734] | 0.3816 | research | crowd-scraped |
+| cv | vox_communis | 6779 | 0.1264 | - | 0.1053 | 0.1048 | 0.4507 | 0.4529 | [0.1230, 0.1295] | 0.3999 | research | epitran-derived |
+| cy | ipa_childes | 4662 | 0.2985 | - | 0.2770 | 0.2762 | 0.3048 | 0.3065 | [0.2909, 0.3060] | 0.2731 | research | espeak-derived |
+| cy | vox_communis | 18701 | 0.1172 | - | 0.0539 | 0.0474 | 0.6762 | 0.7070 | [0.1154, 0.1191] | 0.4203 | research | epitran-derived |
+| cy | wikipron | 14467 | 0.1809 | - | 0.1464 | 0.1416 | 0.4165 | 0.4347 | [0.1780, 0.1836] | 0.3276 | research | crowd-scraped |
+| da | ipa_childes | 2233 | 0.4476 | - | 0.3469 | 0.3415 | 0.1330 | 0.1335 | [0.4365, 0.4585] | 0.0448 | research | espeak-derived |
+| da | wikipron | 4331 | 0.3455 | - | 0.2917 | 0.2864 | 0.1697 | 0.1718 | [0.3386, 0.3523] | 0.1307 | research | crowd-scraped |
+| dar | northeuralex | 1056 | 0.0691 | - | 0.0670 | 0.0670 | 0.6449 | 0.6449 | [0.0632, 0.0757] | 0.6439 | research | lexicon-derived |
+| ddo | northeuralex | 871 | 0.1090 | - | 0.1090 | 0.1090 | 0.5649 | 0.5649 | [0.0978, 0.1201] | 0.5649 | research | lexicon-derived |
+| de | wikipron | 53010 | 0.2103 | - | 0.1567 | 0.1414 | 0.3150 | 0.3453 | [0.2089, 0.2118] | 0.2343 | research | crowd-scraped |
+| de-DE | ipa_childes | 24857 | 0.3948 | - | 0.2845 | 0.2632 | 0.1080 | 0.1251 | [0.3926, 0.3971] | 0.0513 | research | epitran-derived |
+| de-DE | ipadict | 777785 | 0.2303 | - | 0.1862 | 0.1724 | 0.1886 | 0.2104 | [0.2300, 0.2307] | 0.1390 | research | crowd-scraped |
+| de-x-alemannic | wikipron | 448 | 0.1734 | - | 0.1314 | 0.1215 | 0.5580 | 0.5804 | [0.1559, 0.1938] | 0.4554 | research | crowd-scraped |
+| dlm | wikipron | 180 | 0.2476 | - | 0.2476 | 0.2476 | 0.2000 | 0.2000 | [0.2193, 0.2770] | 0.2000 | research | crowd-scraped |
+| dng | wikipron | 269 | 0.4087 | - | 0.4087 | 0.4087 | 0.0000 | 0.0000 | [0.4003, 0.4181] | 0.0000 | research | crowd-scraped |
+| dsb | wikipron | 2010 | 0.1487 | - | 0.1487 | 0.1487 | 0.4522 | 0.4522 | [0.1408, 0.1564] | 0.4522 | research | crowd-scraped |
+| dum | wikipron | 197 | 0.2776 | - | 0.2776 | 0.2776 | 0.2234 | 0.2234 | [0.2514, 0.3024] | 0.2234 | research | crowd-scraped |
+| dv | vox_communis | 16770 | 0.0801 | - | 0.0801 | 0.0801 | 0.4960 | 0.4960 | [0.0785, 0.0818] | 0.4960 | research | epitran-derived |
+| dv | wikipron | 1539 | 0.0891 | - | 0.0890 | 0.0890 | 0.6602 | 0.6602 | [0.0822, 0.0970] | 0.6602 | research | crowd-scraped |
+| dz | wikipron | 230 | 0.3392 | - | 0.3378 | 0.3378 | 0.2087 | 0.2087 | [0.3050, 0.3710] | 0.2087 | research | crowd-scraped |
+| ee | wikipron | 247 | 0.4445 | 0.0080† (tone) | 0.4445 | 0.4445 | 0.0729 | 0.0729 | [0.4235, 0.4649] | 0.0729 | research | crowd-scraped |
+| egy | wikipron | 2185 | 0.0183 | - | 0.0178 | 0.0178 | 0.8993 | 0.8993 | [0.0155, 0.0210] | 0.8989 | research | crowd-scraped |
+| el | vox_communis | 5983 | 0.2653 | - | 0.2394 | 0.2375 | 0.1339 | 0.1342 | [0.2613, 0.2690] | 0.1190 | research | epitran-derived |
+| el | wikipron | 19108 | 0.0327 | - | 0.0174 | 0.0160 | 0.8972 | 0.9104 | [0.0316, 0.0337] | 0.7909 | research | crowd-scraped |
+| en | wikipron | 78435 | 0.2687 | - | 0.2250 | 0.2047 | 0.2489 | 0.2754 | [0.2674, 0.2702] | 0.2015 | research | crowd-scraped |
+| en-GB | ipa_childes | 11445 | 0.3001 | - | 0.2479 | 0.2284 | 0.2015 | 0.2225 | [0.2963, 0.3035] | 0.1541 | research | espeak-derived |
+| en-GB | ipadict | 65117 | 0.2221 | - | 0.1706 | 0.1491 | 0.3551 | 0.3918 | [0.2206, 0.2236] | 0.2643 | research | espeak-derived |
+| en-GB | wikipron | 78377 | 0.2348 | - | 0.1817 | 0.1582 | 0.3496 | 0.3921 | [0.2333, 0.2364] | 0.2687 | research | crowd-scraped |
+| en-US | cmudict | 126048 | 0.3436 | - | 0.2887 | 0.2652 | 0.1824 | 0.2013 | [0.3424, 0.3448] | 0.1357 | research | lexicon-derived |
+| en-US | ipa_babylm | 20103 | 0.3666 | - | 0.3059 | 0.2848 | 0.3379 | 0.3648 | [0.3595, 0.3738] | 0.2680 | research | espeak-derived |
+| en-US | ipa_childes | 18053 | 0.2756 | - | 0.2137 | 0.1912 | 0.3487 | 0.3803 | [0.2724, 0.2790] | 0.2765 | research | espeak-derived |
+| en-US | ipadict | 125923 | 0.2973 | - | 0.2337 | 0.2076 | 0.2475 | 0.2807 | [0.2961, 0.2985] | 0.1778 | research | lexicon-derived |
+| enf | northeuralex | 838 | 0.0892 | - | 0.0888 | 0.0888 | 0.5346 | 0.5346 | [0.0819, 0.0963] | 0.5346 | research | lexicon-derived |
+| enm | wikipron | 6466 | 0.2981 | - | 0.2645 | 0.2298 | 0.1239 | 0.1961 | [0.2941, 0.3023] | 0.0981 | research | crowd-scraped |
+| eo | ipadict | 23245 | 0.0120 | - | 0.0120 | 0.0120 | 0.9039 | 0.9039 | [0.0115, 0.0125] | 0.9039 | production | machine-generated |
+| eo | wikipron | 41245 | 0.0328 | - | 0.0328 | 0.0328 | 0.7491 | 0.7491 | [0.0322, 0.0334] | 0.7491 | production | crowd-scraped |
+| es | vox_communis | 48067 | 0.0758 | - | 0.0728 | 0.0711 | 0.6006 | 0.6114 | [0.0746, 0.0768] | 0.5868 | production | epitran-derived |
+| es | wikipron | 132188 | 0.0797 | - | 0.0358 | 0.0338 | 0.7165 | 0.7305 | [0.0792, 0.0802] | 0.4604 | production | crowd-scraped |
+| es-AR | primary_sources | 29 | 0.0138 | - | 0.0069 | 0.0069 | 0.9655 | 0.9655 | [0.0000, 0.0345] | 0.9310 | research | expert-human |
+| es-ES | ipa_childes | 13155 | 0.0813 | - | 0.0576 | 0.0552 | 0.6953 | 0.7067 | [0.0791, 0.0833] | 0.5924 | production | epitran-derived |
+| es-ES | ipadict | 595896 | 0.0295 | - | 0.0271 | 0.0239 | 0.7530 | 0.7803 | [0.0294, 0.0297] | 0.7314 | production | machine-generated |
+| es-ES | primary_sources | 41 | 0.0272 | - | 0.0272 | 0.0272 | 0.8780 | 0.8780 | [0.0081, 0.0520] | 0.8780 | production | expert-human |
+| es-MX | ipadict | 595885 | 0.0397 | - | 0.0369 | 0.0322 | 0.6686 | 0.7081 | [0.0396, 0.0399] | 0.6459 | research | machine-generated |
+| ess | northeuralex | 814 | 0.1074 | - | 0.1074 | 0.1074 | 0.4730 | 0.4730 | [0.0987, 0.1171] | 0.4730 | research | lexicon-derived |
+| et | ipa_childes | 11040 | 0.2769 | - | 0.2194 | 0.2119 | 0.1951 | 0.2024 | [0.2736, 0.2803] | 0.1369 | research | espeak-derived |
+| et | vox_communis | 35140 | 0.2121 | - | 0.1593 | 0.1491 | 0.1869 | 0.2026 | [0.2104, 0.2139] | 0.1141 | research | epitran-derived |
+| et | wikipron | 2763 | 0.1587 | - | 0.1177 | 0.1144 | 0.3815 | 0.3815 | [0.1529, 0.1651] | 0.3815 | research | crowd-scraped |
+| ett | wikipron | 207 | 0.1444 | - | 0.1444 | 0.1444 | 0.5217 | 0.5217 | [0.1192, 0.1702] | 0.5217 | research | crowd-scraped |
+| eu | hitz_basque_ipa | 3113 | 0.0984 | - | 0.0981 | 0.0981 | 0.4616 | 0.4616 | [0.0944, 0.1026] | 0.4600 | production | machine-generated |
+| eu | ipa_childes | 3969 | 0.0821 | - | 0.0820 | 0.0820 | 0.6130 | 0.6130 | [0.0783, 0.0862] | 0.6127 | production | espeak-derived |
+| eu | vox_communis | 63415 | 0.0429 | - | 0.0395 | 0.0395 | 0.6841 | 0.6841 | [0.0424, 0.0434] | 0.6617 | production | epitran-derived |
+| eu | wikipron | 12008 | 0.0546 | - | 0.0545 | 0.0545 | 0.6084 | 0.6084 | [0.0532, 0.0561] | 0.6081 | production | crowd-scraped |
+| evn | northeuralex | 1132 | 0.0970 | - | 0.0970 | 0.0970 | 0.5088 | 0.5088 | [0.0904, 0.1043] | 0.5088 | research | lexicon-derived |
+| evn | wikipron | 145 | 0.2447 | - | 0.2447 | 0.2447 | 0.1241 | 0.1241 | [0.2197, 0.2710] | 0.1241 | research | crowd-scraped |
+| ext-PT-x-barrancos | barranquenho_dict | 1508 | 0.0045 | - | 0.0021 | 0.0013 | 0.9881 | 0.9927 | [0.0029, 0.0061] | 0.9775 | research | llm-generated |
+| ext-PT-x-barrancos | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ext-PT-x-barrancos | primary_sources | 10† | 0.2801 | - | 0.2241 | 0.2241 | 0.4000 | 0.4000 | [0.1363, 0.4286] | 0.3000 | research | expert-human |
+| fa | ipadict | 7695 | 0.2540 | - | 0.2309 | 0.2253 | 0.1193 | 0.1220 | [0.2507, 0.2574] | 0.1077 | research | machine-generated |
+| fa | wikipron | 9279 | 0.3943 | - | 0.3742 | 0.3702 | 0.0177 | 0.0178 | [0.3911, 0.3971] | 0.0170 | research | crowd-scraped |
+| fax | wikipron | 655 | 0.1044 | - | 0.0685 | 0.0683 | 0.6550 | 0.6565 | [0.0950, 0.1140] | 0.5053 | research | crowd-scraped |
+| fi | ipadict | 92836 | 0.0609 | - | 0.0609 | 0.0609 | 0.5012 | 0.5012 | [0.0604, 0.0613] | 0.5012 | production | machine-generated |
+| fi | vox_communis | 13324 | 0.0037 | - | 0.0037 | 0.0037 | 0.9678 | 0.9678 | [0.0033, 0.0041] | 0.9678 | production | epitran-derived |
+| fi | wikipron | 168808 | 0.0184 | - | 0.0184 | 0.0184 | 0.8173 | 0.8173 | [0.0182, 0.0186] | 0.8171 | production | crowd-scraped |
+| fo | wikipron | 2957 | 0.1674 | - | 0.1504 | 0.1474 | 0.4156 | 0.4231 | [0.1616, 0.1737] | 0.3842 | production | crowd-scraped |
+| fpe | wikipron | 261 | 0.0301 | - | 0.0301 | 0.0301 | 0.8544 | 0.8544 | [0.0208, 0.0397] | 0.8544 | research | crowd-scraped |
+| fr | wikipron | 85497 | 0.0673 | - | 0.0530 | 0.0486 | 0.7324 | 0.7408 | [0.0664, 0.0681] | 0.6933 | research | crowd-scraped |
+| fr-FR | ipa_childes | 9444 | 0.0925 | - | 0.0665 | 0.0623 | 0.7609 | 0.7753 | [0.0890, 0.0964] | 0.6840 | research | espeak-derived |
+| fr-FR | ipadict | 245716 | 0.0768 | - | 0.0630 | 0.0563 | 0.6672 | 0.6742 | [0.0763, 0.0773] | 0.6416 | research | machine-generated |
+| fro | wikipron | 663 | 0.2363 | - | 0.2352 | 0.2352 | 0.2564 | 0.2564 | [0.2200, 0.2527] | 0.2534 | research | crowd-scraped |
+| fy | vox_communis | 10681 | 0.3243 | - | 0.3036 | 0.3018 | 0.1352 | 0.1369 | [0.3203, 0.3281] | 0.1212 | research | epitran-derived |
+| fy | wikipron | 1091 | 0.2182 | - | 0.2043 | 0.2032 | 0.3327 | 0.3355 | [0.2075, 0.2295] | 0.3071 | research | crowd-scraped |
+| ga | ipa_childes | 1611 | 0.2989 | - | 0.2651 | 0.2410 | 0.1924 | 0.2216 | [0.2885, 0.3088] | 0.1620 | research | espeak-derived |
+| ga | wikipron | 9616 | 0.1834 | - | 0.1593 | 0.1498 | 0.3716 | 0.3906 | [0.1798, 0.1869] | 0.3100 | research | crowd-scraped |
+| gd | wikipron | 3719 | 0.3202 | - | 0.2674 | 0.2380 | 0.2124 | 0.2646 | [0.3132, 0.3273] | 0.1508 | research | crowd-scraped |
+| gl | vox_communis | 47512 | 0.0643 | - | 0.0493 | 0.0448 | 0.6783 | 0.7004 | [0.0634, 0.0652] | 0.6104 | research | epitran-derived |
+| gl | wikipron | 8091 | 0.0804 | - | 0.0354 | 0.0288 | 0.8057 | 0.8438 | [0.0777, 0.0828] | 0.5957 | research | crowd-scraped |
+| gld | northeuralex | 887 | 0.1532 | - | 0.1532 | 0.1532 | 0.3574 | 0.3574 | [0.1431, 0.1624] | 0.3574 | research | lexicon-derived |
+| gmh | wikipron | 1516 | 0.2938 | - | 0.2938 | 0.2938 | 0.0778 | 0.0778 | [0.2863, 0.3012] | 0.0778 | research | crowd-scraped |
+| gml | wikipron | 143 | 0.2771 | - | 0.2727 | 0.2717 | 0.1189 | 0.1189 | [0.2500, 0.3042] | 0.1189 | research | crowd-scraped |
+| gn | vox_communis | 4264 | 0.1675 | - | 0.1393 | 0.1372 | 0.4294 | 0.4379 | [0.1630, 0.1724] | 0.3208 | research | epitran-derived |
+| gn | wikipron | 347 | 0.1458 | - | 0.0819 | 0.0819 | 0.6254 | 0.6254 | [0.1275, 0.1652] | 0.4986 | research | crowd-scraped |
+| got | wikipron | 1816 | 0.0667 | - | 0.0221 | 0.0143 | 0.8409 | 0.9009 | [0.0622, 0.0709] | 0.5677 | research | crowd-scraped |
+| grc | wikipron | 58095 | 0.1480 | - | 0.1480 | 0.1480 | 0.2560 | 0.2560 | [0.1470, 0.1491] | 0.2560 | research | crowd-scraped |
+| gu | wikipron | 4082 | 0.1842 | - | 0.1840 | 0.1839 | 0.3025 | 0.3028 | [0.1793, 0.1892] | 0.3025 | research | crowd-scraped |
+| gul | wikipron | 207 | 0.3341 | - | 0.3341 | 0.3341 | 0.2367 | 0.2367 | [0.2990, 0.3705] | 0.2367 | research | crowd-scraped |
+| guw | wikipron | 595 | 0.4311 | - | 0.4148 | 0.4120 | 0.0034 | 0.0034 | [0.4196, 0.4423] | 0.0034 | research | crowd-scraped |
+| gv | wikipron | 690 | 0.2460 | - | 0.2309 | 0.2259 | 0.3362 | 0.3435 | [0.2300, 0.2627] | 0.3246 | research | crowd-scraped |
+| gwc | wikipron | 165 | 0.4170 | - | 0.3937 | 0.3782 | 0.0242 | 0.0242 | [0.3888, 0.4436] | 0.0242 | research | crowd-scraped |
+| gwd | wold | 976 | 0.0481 | - | 0.0481 | 0.0481 | 0.7602 | 0.7602 | [0.0419, 0.0552] | 0.7602 | research | lexicon-derived |
+| ha | vox_communis | 3719 | 0.1130 | - | 0.0427 | 0.0336 | 0.7768 | 0.8209 | [0.1083, 0.1177] | 0.4937 | research | epitran-derived |
+| ha | wikipron | 1857 | 0.5340 | 0.0223† (tone+length) | 0.5179 | 0.5167 | 0.0022 | 0.0022 | [0.5287, 0.5389] | 0.0022 | research | crowd-scraped |
+| haw | wikipron | 2145 | 0.0127 | - | 0.0127 | 0.0127 | 0.9562 | 0.9562 | [0.0100, 0.0156] | 0.9562 | research | crowd-scraped |
+| he | primary_sources | 33 | 0.1929 | - | 0.0222 | 0.0222 | 0.9091 | 0.9091 | [0.1363, 0.2500] | 0.3636 | research | expert-human |
+| he | wikipron | 2872 | 0.3554 | - | 0.3105 | 0.2942 | 0.0665 | 0.0763 | [0.3498, 0.3607] | 0.0380 | research | crowd-scraped |
+| hi | vox_communis | 12478 | 0.2765 | - | 0.2761 | 0.2761 | 0.1303 | 0.1303 | [0.2733, 0.2797] | 0.1302 | research | epitran-derived |
+| hi | wikipron | 30375 | 0.1277 | - | 0.1277 | 0.1277 | 0.2787 | 0.2787 | [0.1266, 0.1289] | 0.2787 | research | crowd-scraped |
+| hil | wikipron | 466 | 0.0966 | - | 0.0966 | 0.0966 | 0.5343 | 0.5343 | [0.0857, 0.1078] | 0.5343 | research | crowd-scraped |
+| hr | ipa_childes | 4769 | 0.2066 | - | 0.2066 | 0.2066 | 0.2772 | 0.2772 | [0.2016, 0.2117] | 0.2772 | research | epitran-derived |
+| hr | wikipron | 26469 | 0.3000 | - | 0.2979 | 0.2979 | 0.0055 | 0.0055 | [0.2985, 0.3016] | 0.0050 | research | crowd-scraped |
+| hrx | wikipron | 2002 | 0.0821 | - | 0.0700 | 0.0643 | 0.6913 | 0.7148 | [0.0766, 0.0877] | 0.6429 | research | crowd-scraped |
+| hsb | vox_communis | 5802 | 0.3177 | - | 0.3102 | 0.3102 | 0.1015 | 0.1015 | [0.3130, 0.3220] | 0.0907 | research | epitran-derived |
+| hsb | wikipron | 1126 | 0.2186 | - | 0.2034 | 0.2034 | 0.2806 | 0.2806 | [0.2073, 0.2303] | 0.2629 | research | crowd-scraped |
+| ht | wikipron | 1691 | 0.0302 | - | 0.0302 | 0.0302 | 0.8669 | 0.8669 | [0.0262, 0.0346] | 0.8669 | research | crowd-scraped |
+| hts | wikipron | 329 | 0.0224 | - | 0.0224 | 0.0224 | 0.9240 | 0.9240 | [0.0125, 0.0349] | 0.9240 | research | crowd-scraped |
+| hu | ipa_childes | 4776 | 0.0996 | - | 0.0987 | 0.0987 | 0.5519 | 0.5519 | [0.0956, 0.1035] | 0.5496 | research | epitran-derived |
+| hu | vox_communis | 74549 | 0.0758 | - | 0.0753 | 0.0753 | 0.5284 | 0.5284 | [0.0751, 0.0765] | 0.5268 | research | epitran-derived |
+| huu | wikipron | 437 | 0.0350 | - | 0.0350 | 0.0350 | 0.8101 | 0.8101 | [0.0278, 0.0437] | 0.8101 | research | crowd-scraped |
+| hy | vox_communis | 26671 | 0.0465 | - | 0.0447 | 0.0447 | 0.6720 | 0.6720 | [0.0456, 0.0475] | 0.6720 | research | epitran-derived |
+| hy | wikipron | 17734 | 0.1027 | - | 0.1025 | 0.1025 | 0.4683 | 0.4683 | [0.1010, 0.1046] | 0.4681 | research | crowd-scraped |
+| ia | wikipron | 443 | 0.0646 | - | 0.0557 | 0.0557 | 0.7223 | 0.7223 | [0.0554, 0.0748] | 0.6727 | research | crowd-scraped |
+| iba | wikipron | 571 | 0.1655 | - | 0.1151 | 0.1096 | 0.5184 | 0.5394 | [0.1530, 0.1780] | 0.3538 | research | crowd-scraped |
+| id | ipa_childes | 9646 | 0.1223 | - | 0.0485 | 0.0347 | 0.7275 | 0.7918 | [0.1197, 0.1250] | 0.4566 | research | epitran-derived |
+| id | vox_communis | 13518 | 0.1312 | - | 0.0557 | 0.0413 | 0.6572 | 0.7354 | [0.1291, 0.1331] | 0.3449 | research | epitran-derived |
+| id | wikipron | 17965 | 0.1114 | - | 0.0630 | 0.0561 | 0.6921 | 0.7362 | [0.1094, 0.1133] | 0.4582 | research | crowd-scraped |
+| ilo | wikipron | 931 | 0.1272 | - | 0.1155 | 0.1152 | 0.4834 | 0.4834 | [0.1175, 0.1357] | 0.4501 | research | crowd-scraped |
+| inh | wikipron | 284 | 0.1632 | - | 0.1582 | 0.1582 | 0.4331 | 0.4331 | [0.1448, 0.1819] | 0.4261 | research | crowd-scraped |
+| io | wikipron | 6815 | 0.0974 | - | 0.0974 | 0.0974 | 0.4336 | 0.4336 | [0.0949, 0.0999] | 0.4336 | research | crowd-scraped |
+| irk | wold | 1117 | 0.2010 | - | 0.2010 | 0.2010 | 0.3563 | 0.3563 | [0.1900, 0.2123] | 0.3563 | research | lexicon-derived |
+| is | ipa_childes | 4106 | 0.3397 | - | 0.2966 | 0.2907 | 0.1320 | 0.1386 | [0.3332, 0.3468] | 0.1120 | research | espeak-derived |
+| is | ipadict | 60642 | 0.2354 | - | 0.2032 | 0.2003 | 0.1551 | 0.1580 | [0.2341, 0.2366] | 0.1117 | research | lexicon-derived |
+| is | wikipron | 10093 | 0.2045 | - | 0.1729 | 0.1700 | 0.2515 | 0.2569 | [0.2016, 0.2076] | 0.2023 | research | crowd-scraped |
+| it | vox_communis | 48570 | 0.1031 | - | 0.0766 | 0.0702 | 0.7919 | 0.8373 | [0.1003, 0.1060] | 0.6372 | research | epitran-derived |
+| it | wikipron | 82276 | 0.0441 | - | 0.0209 | 0.0131 | 0.8399 | 0.9054 | [0.0435, 0.0446] | 0.6955 | research | crowd-scraped |
+| it-IT | ipa_childes | 4583 | 0.2341 | - | 0.2056 | 0.2012 | 0.2638 | 0.2784 | [0.2289, 0.2395] | 0.1942 | research | espeak-derived |
+| itl | northeuralex | 603 | 0.0540 | - | 0.0540 | 0.0540 | 0.7894 | 0.7894 | [0.0443, 0.0645] | 0.7894 | research | lexicon-derived |
+| izh | wikipron | 7886 | 0.0092 | - | 0.0092 | 0.0092 | 0.9369 | 0.9369 | [0.0083, 0.0103] | 0.9369 | research | crowd-scraped |
+| ja | ipadict | 115500 | 0.3276 | - | 0.3276 | 0.3276 | 0.2845 | 0.2845 | [0.3259, 0.3293] | 0.2845 | research | lexicon-derived |
+| ja | vox_communis | 42550 | 0.4273 | - | 0.4273 | 0.4273 | 0.2000 | 0.2000 | [0.4243, 0.4304] | 0.2000 | research | epitran-derived |
+| jam | ipadict | 1869 | 0.1684 | - | 0.1684 | 0.1684 | 0.4034 | 0.4034 | [0.1582, 0.1777] | 0.4034 | research | lexicon-derived |
+| jam | wikipron | 382 | 0.2762 | - | 0.2762 | 0.2762 | 0.4031 | 0.4031 | [0.2462, 0.3061] | 0.4031 | research | crowd-scraped |
+| jv | kaikki | 96 | 0.2180 | - | 0.0915 | 0.0723 | 0.6667 | 0.7500 | [0.1843, 0.2542] | 0.2500 | skeleton | crowd-scraped |
+| ka | vox_communis | 79887 | 0.2337 | - | 0.2337 | 0.2337 | 0.0725 | 0.0725 | [0.2329, 0.2345] | 0.0725 | research | epitran-derived |
+| kab | vox_communis | 54545 | 0.2071 | - | 0.2071 | 0.2071 | 0.1829 | 0.1829 | [0.2057, 0.2083] | 0.1829 | research | epitran-derived |
+| kas | wikipron | 683 | 0.3231 | - | 0.3027 | 0.3024 | 0.3324 | 0.3324 | [0.2965, 0.3514] | 0.3192 | research | crowd-scraped |
+| kaw | wikipron | 924 | 0.1472 | - | 0.1472 | 0.1472 | 0.4643 | 0.4643 | [0.1361, 0.1576] | 0.4643 | research | crowd-scraped |
+| kca | northeuralex | 863 | 0.0232 | - | 0.0169 | 0.0169 | 0.8830 | 0.8830 | [0.0194, 0.0274] | 0.8517 | research | lexicon-derived |
+| ket | northeuralex | 793 | 0.3457 | - | 0.3457 | 0.3457 | 0.2282 | 0.2282 | [0.3280, 0.3658] | 0.2282 | research | lexicon-derived |
+| kgp | wikipron | 106 | 0.2351 | - | 0.2351 | 0.2351 | 0.3396 | 0.3396 | [0.1922, 0.2773] | 0.3396 | research | crowd-scraped |
+| ki | wikipron | 1025 | 0.3914 | - | 0.3896 | 0.3896 | 0.1990 | 0.1990 | [0.3780, 0.4058] | 0.1951 | research | crowd-scraped |
+| kix | wikipron | 4240 | 0.0788 | - | 0.0788 | 0.0788 | 0.5116 | 0.5116 | [0.0751, 0.0823] | 0.5116 | research | crowd-scraped |
+| kk | vox_communis | 1403 | 0.3858 | - | 0.3218 | 0.3023 | 0.0485 | 0.1169 | [0.3788, 0.3922] | 0.0135 | research | epitran-derived |
+| kk | wikipron | 714 | 0.3393 | - | 0.3026 | 0.3007 | 0.1975 | 0.2003 | [0.3213, 0.3588] | 0.1737 | research | crowd-scraped |
+| kl | wikipron | 1580 | 0.1765 | - | 0.1765 | 0.1765 | 0.2753 | 0.2753 | [0.1695, 0.1842] | 0.2753 | research | crowd-scraped |
+| kld | wikipron | 515 | 0.0550 | - | 0.0550 | 0.0550 | 0.7398 | 0.7398 | [0.0457, 0.0645] | 0.7398 | research | crowd-scraped |
+| klj | wikipron | 155 | 0.2995 | - | 0.2995 | 0.2995 | 0.2774 | 0.2774 | [0.2604, 0.3362] | 0.2774 | research | crowd-scraped |
+| km | ipadict | 3261 | 0.3335 | - | 0.3240 | 0.3238 | 0.1518 | 0.1521 | [0.3260, 0.3417] | 0.1389 | research | lexicon-derived |
+| km | wikipron | 6628 | 0.1922 | - | 0.1816 | 0.1810 | 0.5084 | 0.5124 | [0.1863, 0.1983] | 0.4665 | research | crowd-scraped |
+| kn | wikipron | 1706 | 0.2689 | - | 0.2689 | 0.2689 | 0.1782 | 0.1782 | [0.2593, 0.2772] | 0.1782 | research | crowd-scraped |
+| ko | ipadict | 62447 | 0.2319 | - | 0.2299 | 0.2298 | 0.0866 | 0.0867 | [0.2309, 0.2328] | 0.0830 | research | crowd-scraped |
+| ko | vox_communis | 6123 | 0.0728 | - | 0.0661 | 0.0660 | 0.6111 | 0.6113 | [0.0701, 0.0754] | 0.5964 | research | epitran-derived |
+| koi | wikipron | 229 | 0.0920 | - | 0.0807 | 0.0807 | 0.6987 | 0.6987 | [0.0738, 0.1103] | 0.6550 | research | crowd-scraped |
+| kok | kaikki | 830 | 0.2240 | - | 0.1451 | 0.1332 | 0.3735 | 0.4036 | [0.2105, 0.2375] | 0.2566 | research | crowd-scraped |
+| krl | wikipron | 641 | 0.0519 | - | 0.0519 | 0.0519 | 0.7176 | 0.7176 | [0.0450, 0.0592] | 0.7176 | research | crowd-scraped |
+| kru | wikipron | 187 | 0.1947 | - | 0.1947 | 0.1947 | 0.3155 | 0.3155 | [0.1697, 0.2205] | 0.3155 | research | crowd-scraped |
+| ktz | wikipron | 134 | 0.3464 | - | 0.3464 | 0.3464 | 0.3731 | 0.3731 | [0.2889, 0.4102] | 0.3731 | research | crowd-scraped |
+| ku | wikipron | 2147 | 0.1440 | - | 0.1440 | 0.1440 | 0.2795 | 0.2795 | [0.1391, 0.1488] | 0.2795 | research | crowd-scraped |
+| kv | wikipron | 906 | 0.1570 | - | 0.1437 | 0.1435 | 0.5342 | 0.5364 | [0.1457, 0.1698] | 0.4912 | research | crowd-scraped |
+| kw | wikipron | 602 | 0.2521 | - | 0.2444 | 0.2441 | 0.2326 | 0.2326 | [0.2360, 0.2686] | 0.2226 | research | crowd-scraped |
+| kwk | wikipron | 116 | 0.0070 | - | 0.0070 | 0.0070 | 0.9655 | 0.9655 | [0.0010, 0.0175] | 0.9655 | research | crowd-scraped |
+| kxd | wikipron | 318 | 0.0235 | - | 0.0235 | 0.0235 | 0.8962 | 0.8962 | [0.0153, 0.0329] | 0.8962 | research | crowd-scraped |
+| ky | vox_communis | 10611 | 0.1915 | - | 0.1654 | 0.1565 | 0.2474 | 0.3057 | [0.1890, 0.1939] | 0.1642 | research | epitran-derived |
+| ky | wikipron | 867 | 0.2217 | - | 0.2211 | 0.2211 | 0.3230 | 0.3230 | [0.2081, 0.2357] | 0.3195 | research | crowd-scraped |
+| lad | wikipron | 131 | 0.1397 | - | 0.1108 | 0.1093 | 0.5420 | 0.5496 | [0.1128, 0.1671] | 0.4427 | research | crowd-scraped |
+| lb | wikipron | 3893 | 0.2412 | - | 0.2320 | 0.2315 | 0.2661 | 0.2669 | [0.2347, 0.2477] | 0.2510 | research | crowd-scraped |
+| lbe | northeuralex | 1048 | 0.0387 | - | 0.0387 | 0.0387 | 0.8340 | 0.8340 | [0.0325, 0.0455] | 0.8340 | research | lexicon-derived |
+| lez | northeuralex | 969 | 0.1329 | - | 0.0528 | 0.0384 | 0.7606 | 0.8266 | [0.1206, 0.1440] | 0.5294 | research | lexicon-derived |
+| lg | vox_communis | 103344 | 0.1107 | - | 0.1107 | 0.1107 | 0.3384 | 0.3384 | [0.1100, 0.1114] | 0.3384 | research | epitran-derived |
+| li | wikipron | 987 | 0.3819 | - | 0.3499 | 0.3462 | 0.1327 | 0.1398 | [0.3667, 0.3972] | 0.1104 | research | crowd-scraped |
+| lij | vox_communis | 3416 | 0.0844 | - | 0.0821 | 0.0821 | 0.5928 | 0.5928 | [0.0806, 0.0885] | 0.5887 | research | epitran-derived |
+| lij | wikipron | 817 | 0.1157 | - | 0.1115 | 0.1115 | 0.4884 | 0.4884 | [0.1063, 0.1267] | 0.4847 | research | crowd-scraped |
+| liv | northeuralex | 1042 | 0.0748 | - | 0.0708 | 0.0708 | 0.6843 | 0.6843 | [0.0677, 0.0825] | 0.6843 | research | lexicon-derived |
+| liv | wikipron | 2480 | 0.1173 | - | 0.1048 | 0.1047 | 0.5698 | 0.5698 | [0.1108, 0.1240] | 0.5242 | research | crowd-scraped |
+| lmo | wikipron | 406 | 0.2917 | - | 0.2402 | 0.2336 | 0.3030 | 0.3128 | [0.2680, 0.3137] | 0.2414 | research | crowd-scraped |
+| lmy | wikipron | 129 | 0.1695 | - | 0.1695 | 0.1695 | 0.2558 | 0.2558 | [0.1484, 0.1915] | 0.2558 | research | crowd-scraped |
+| lo | kaikki | 2308 | 0.3632 | - | 0.3632 | 0.3632 | 0.0000 | 0.0000 | [0.3590, 0.3674] | 0.0000 | research | crowd-scraped |
+| lou | wikipron | 262 | 0.1953 | - | 0.1953 | 0.1953 | 0.5115 | 0.5115 | [0.1679, 0.2236] | 0.5115 | research | crowd-scraped |
+| lsi | wikipron | 96 | 0.4222 | - | 0.4212 | 0.4212 | 0.0000 | 0.0000 | [0.4022, 0.4413] | 0.0000 | research | crowd-scraped |
+| lt | vox_communis | 28971 | 0.2706 | - | 0.2705 | 0.2705 | 0.0530 | 0.0530 | [0.2689, 0.2726] | 0.0529 | research | epitran-derived |
+| lt | wikipron | 440 | 0.2640 | - | 0.2640 | 0.2640 | 0.1477 | 0.1477 | [0.2474, 0.2801] | 0.1477 | research | crowd-scraped |
+| lut | wikipron | 135 | 0.2259 | - | 0.2259 | 0.2259 | 0.2444 | 0.2444 | [0.1918, 0.2598] | 0.2444 | research | crowd-scraped |
+| lv | northeuralex | 1213 | 0.1901 | - | 0.1901 | 0.1901 | 0.2383 | 0.2383 | [0.1824, 0.1985] | 0.2383 | research | lexicon-derived |
+| lzz | wikipron | 262 | 0.2017 | - | 0.2017 | 0.2017 | 0.2557 | 0.2557 | [0.1824, 0.2233] | 0.2557 | research | crowd-scraped |
+| mak | wikipron | 832 | 0.0206 | - | 0.0206 | 0.0206 | 0.8870 | 0.8870 | [0.0165, 0.0251] | 0.8870 | research | crowd-scraped |
+| mch | wikipron | 1746 | 0.3011 | - | 0.3011 | 0.3011 | 0.1186 | 0.1186 | [0.2925, 0.3100] | 0.1186 | research | crowd-scraped |
+| mcm | primary_sources | 33 | 0.1146 | - | 0.0500 | 0.0500 | 0.8182 | 0.8182 | [0.0707, 0.1642] | 0.5758 | research | expert-human |
+| mdf | wikipron | 330 | 0.2212 | - | 0.2119 | 0.2112 | 0.2697 | 0.2697 | [0.2024, 0.2383] | 0.2485 | research | crowd-scraped |
+| mdh | wikipron | 205 | 0.0793 | - | 0.0793 | 0.0793 | 0.6146 | 0.6146 | [0.0643, 0.0948] | 0.6146 | research | crowd-scraped |
+| mfe | wikipron | 206 | 0.1238 | - | 0.1238 | 0.1238 | 0.5485 | 0.5485 | [0.0992, 0.1487] | 0.5485 | research | crowd-scraped |
+| mga | wikipron | 328 | 0.0594 | - | 0.0482 | 0.0458 | 0.7104 | 0.7195 | [0.0494, 0.0700] | 0.6738 | research | crowd-scraped |
+| mh | wikipron | 947 | 0.1182 | - | 0.0865 | 0.0796 | 0.4762 | 0.5026 | [0.1081, 0.1293] | 0.4002 | research | crowd-scraped |
+| mhr | northeuralex | 992 | 0.1736 | - | 0.1536 | 0.1509 | 0.1391 | 0.1391 | [0.1670, 0.1804] | 0.1280 | research | lexicon-derived |
+| mi | wikipron | 1003 | 0.0719 | - | 0.0719 | 0.0719 | 0.6401 | 0.6401 | [0.0650, 0.0784] | 0.6401 | research | crowd-scraped |
+| mic | wikipron | 203 | 0.2922 | - | 0.2922 | 0.2922 | 0.0887 | 0.0887 | [0.2677, 0.3154] | 0.0887 | research | crowd-scraped |
+| mk | vox_communis | 10750 | 0.0221 | - | 0.0221 | 0.0221 | 0.8439 | 0.8439 | [0.0211, 0.0232] | 0.8439 | research | epitran-derived |
+| ml | vox_communis | 6464 | 0.1766 | - | 0.1766 | 0.1766 | 0.1115 | 0.1115 | [0.1737, 0.1794] | 0.1115 | research | epitran-derived |
+| ml | wikipron | 9464 | 0.2893 | - | 0.2875 | 0.2875 | 0.0554 | 0.0554 | [0.2861, 0.2924] | 0.0554 | research | crowd-scraped |
+| mn | vox_communis | 15592 | 0.2077 | - | 0.1617 | 0.1593 | 0.2758 | 0.2830 | [0.2053, 0.2099] | 0.1840 | research | epitran-derived |
+| mn | wikipron | 3528 | 0.1557 | - | 0.1511 | 0.1508 | 0.3311 | 0.3325 | [0.1504, 0.1609] | 0.3245 | research | crowd-scraped |
+| mnc | northeuralex | 1205 | 0.1411 | - | 0.1411 | 0.1411 | 0.3560 | 0.3560 | [0.1334, 0.1492] | 0.3560 | research | lexicon-derived |
+| mns | northeuralex | 992 | 0.1024 | - | 0.0732 | 0.0725 | 0.4698 | 0.4698 | [0.0958, 0.1091] | 0.4597 | research | lexicon-derived |
+| mqs | wikipron | 790 | 0.0495 | - | 0.0495 | 0.0495 | 0.7823 | 0.7823 | [0.0424, 0.0561] | 0.7823 | research | crowd-scraped |
+| mr | vox_communis | 16938 | 0.3063 | - | 0.3057 | 0.3057 | 0.0436 | 0.0436 | [0.3041, 0.3084] | 0.0436 | research | epitran-derived |
+| mr | wikipron | 4267 | 0.0535 | - | 0.0456 | 0.0455 | 0.7157 | 0.7160 | [0.0508, 0.0561] | 0.6904 | research | crowd-scraped |
+| mrj | northeuralex | 1018 | 0.0075 | - | 0.0075 | 0.0075 | 0.9548 | 0.9548 | [0.0054, 0.0100] | 0.9548 | research | lexicon-derived |
+| ms | ipadict | 28215 | 0.1305 | - | 0.0558 | 0.0441 | 0.6437 | 0.7225 | [0.1292, 0.1317] | 0.2999 | research | machine-generated |
+| ms | wikipron | 4887 | 0.0967 | - | 0.0378 | 0.0303 | 0.8207 | 0.8709 | [0.0934, 0.1005] | 0.5267 | research | crowd-scraped |
+| mt | vox_communis | 8399 | 0.3056 | - | 0.3056 | 0.3056 | 0.0387 | 0.0387 | [0.3027, 0.3086] | 0.0387 | research | epitran-derived |
+| mt | wikipron | 15836 | 0.2314 | - | 0.2314 | 0.2314 | 0.1570 | 0.1570 | [0.2291, 0.2340] | 0.1570 | research | crowd-scraped |
+| mtq | wikipron | 194 | 0.3412 | - | 0.3412 | 0.3412 | 0.0000 | 0.0000 | [0.3227, 0.3583] | 0.0000 | research | crowd-scraped |
+| mwl | mirandese_dict | 990 | 0.0401 | - | 0.0318 | 0.0307 | 0.8444 | 0.8485 | [0.0340, 0.0463] | 0.8253 | research | llm-generated |
+| mwl | mirandese_g2p | 205 | 0.1317 | - | 0.1188 | 0.1141 | 0.5122 | 0.5220 | [0.1100, 0.1545] | 0.4829 | research | expert-human |
+| mwl | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| mwl-x-ifanes | mirandese_dict | 4† | 0.2083 | - | 0.0000 | 0.0000 | 1.0000 | 1.0000 | [0.0000, 0.4167] | 0.5000 | research | llm-generated |
+| mwl-x-ifanes | mirandese_g2p | 2† | 0.5000 | - | 0.5000 | 0.5000 | 0.0000 | 0.0000 | [0.5000, 0.5000] | 0.0000 | research | expert-human |
+| mwl-x-ifanes | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| mwl-x-sendim | mirandese_dict | 79 | 0.0937 | - | 0.0916 | 0.0916 | 0.6203 | 0.6203 | [0.0673, 0.1265] | 0.6203 | research | llm-generated |
+| mwl-x-sendim | mirandese_g2p | 11† | 0.3258 | - | 0.3258 | 0.3258 | 0.3636 | 0.3636 | [0.1641, 0.4824] | 0.3636 | research | expert-human |
+| mwl-x-sendim | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| mww | wikipron | 489 | 0.0107 | - | 0.0107 | 0.0107 | 0.9611 | 0.9611 | [0.0060, 0.0161] | 0.9611 | research | crowd-scraped |
+| my | wikipron | 7941 | 0.1926 | - | 0.1899 | 0.1898 | 0.4440 | 0.4440 | [0.1878, 0.1974] | 0.4381 | research | crowd-scraped |
+| myv | vox_communis | 6442 | 0.0944 | - | 0.0944 | 0.0944 | 0.3890 | 0.3890 | [0.0923, 0.0965] | 0.3890 | research | epitran-derived |
+| nap | wikipron | 198 | 0.2792 | - | 0.2387 | 0.2307 | 0.1263 | 0.1263 | [0.2544, 0.3033] | 0.1162 | research | crowd-scraped |
+| nb | ipa_childes | 3176 | 0.3871 | - | 0.2937 | 0.2788 | 0.1719 | 0.1851 | [0.3788, 0.3952] | 0.1052 | research | espeak-derived |
+| nb | ipadict | 10169 | 0.3397 | - | 0.2647 | 0.2448 | 0.1623 | 0.1787 | [0.3357, 0.3435] | 0.1050 | research | machine-generated |
+| nb | wikipron | 2725 | 0.3471 | - | 0.2748 | 0.2583 | 0.2059 | 0.2228 | [0.3376, 0.3562] | 0.1490 | research | crowd-scraped |
+| nci | wikipron | 839 | 0.1198 | - | 0.1197 | 0.1197 | 0.2896 | 0.2896 | [0.1128, 0.1270] | 0.2896 | research | crowd-scraped |
+| nds | wikipron | 308 | 0.2231 | - | 0.1674 | 0.1503 | 0.5065 | 0.5292 | [0.1969, 0.2487] | 0.4091 | research | crowd-scraped |
+| ne | kaikki | 2052 | 0.1191 | - | 0.1178 | 0.1178 | 0.5210 | 0.5210 | [0.1121, 0.1256] | 0.5195 | research | crowd-scraped |
+| new | wikipron | 416 | 0.0282 | - | 0.0282 | 0.0282 | 0.8558 | 0.8558 | [0.0181, 0.0391] | 0.8558 | research | crowd-scraped |
+| ngh | wikipron | 263 | 0.2616 | - | 0.2616 | 0.2616 | 0.2966 | 0.2966 | [0.2360, 0.2898] | 0.2966 | skeleton | crowd-scraped |
+| nhg | wikipron | 295 | 0.2367 | - | 0.2367 | 0.2367 | 0.1898 | 0.1898 | [0.2157, 0.2573] | 0.1898 | research | crowd-scraped |
+| nhx | wikipron | 145 | 0.1913 | - | 0.1913 | 0.1913 | 0.2207 | 0.2207 | [0.1686, 0.2141] | 0.2207 | research | crowd-scraped |
+| nio | northeuralex | 1024 | 0.0972 | - | 0.0887 | 0.0886 | 0.4834 | 0.4834 | [0.0900, 0.1045] | 0.4678 | research | lexicon-derived |
+| niv | northeuralex | 833 | 0.1248 | - | 0.1248 | 0.1248 | 0.5354 | 0.5354 | [0.1141, 0.1361] | 0.5354 | research | lexicon-derived |
+| niv | wikipron | 624 | 0.2767 | - | 0.2767 | 0.2767 | 0.2340 | 0.2340 | [0.2604, 0.2939] | 0.2340 | research | crowd-scraped |
+| nl | ipa_childes | 8108 | 0.2137 | - | 0.1918 | 0.1802 | 0.3305 | 0.3410 | [0.2093, 0.2181] | 0.3030 | research | espeak-derived |
+| nl | ipadict | 117869 | 0.1767 | - | 0.1507 | 0.1400 | 0.2722 | 0.2933 | [0.1759, 0.1776] | 0.2141 | research | machine-generated |
+| nl | vox_communis | 25904 | 0.2706 | - | 0.2288 | 0.2073 | 0.1625 | 0.1917 | [0.2687, 0.2724] | 0.0998 | research | epitran-derived |
+| nl | wikipron | 45872 | 0.0902 | - | 0.0701 | 0.0587 | 0.6416 | 0.6836 | [0.0891, 0.0914] | 0.5554 | research | crowd-scraped |
+| nmy | wikipron | 354 | 0.1091 | - | 0.1088 | 0.1088 | 0.5989 | 0.5989 | [0.0921, 0.1291] | 0.5989 | research | crowd-scraped |
+| nn | wikipron | 3829 | 0.2648 | - | 0.2118 | 0.2043 | 0.3842 | 0.3964 | [0.2569, 0.2729] | 0.3155 | research | crowd-scraped |
+| nn | wikipron_nor | 1093 | 0.1826 | - | 0.1519 | 0.1466 | 0.5261 | 0.5380 | [0.1699, 0.1949] | 0.4657 | research | crowd-scraped |
+| non | wikipron | 270 | 0.2365 | - | 0.2213 | 0.2213 | 0.3111 | 0.3111 | [0.2148, 0.2616] | 0.2815 | research | crowd-scraped |
+| nrf | wikipron | 143 | 0.2557 | - | 0.2120 | 0.2026 | 0.4266 | 0.4406 | [0.2087, 0.3017] | 0.3636 | research | crowd-scraped |
+| nup | wikipron | 393 | 0.3979 | - | 0.3979 | 0.3979 | 0.1501 | 0.1501 | [0.3787, 0.4165] | 0.1501 | research | crowd-scraped |
+| nv | wikipron | 989 | 0.2514 | - | 0.2514 | 0.2514 | 0.0940 | 0.0940 | [0.2423, 0.2602] | 0.0940 | research | crowd-scraped |
+| ny | wikipron | 1564 | 0.3119 | - | 0.3025 | 0.3018 | 0.0959 | 0.0972 | [0.3031, 0.3211] | 0.0850 | research | crowd-scraped |
+| oc | wikipron | 675 | 0.1283 | - | 0.0903 | 0.0818 | 0.5763 | 0.6044 | [0.1173, 0.1394] | 0.4800 | research | crowd-scraped |
+| oji | wikipron | 136 | 0.3108 | - | 0.3108 | 0.3108 | 0.0662 | 0.0662 | [0.2808, 0.3382] | 0.0662 | research | crowd-scraped |
+| olo | wikipron | 278 | 0.0801 | - | 0.0801 | 0.0801 | 0.6007 | 0.6007 | [0.0676, 0.0931] | 0.6007 | research | crowd-scraped |
+| om | kaikki | 13380 | 0.1001 | - | 0.1001 | 0.1001 | 0.1940 | 0.1940 | [0.0991, 0.1011] | 0.1940 | research | crowd-scraped |
+| or | ipadict | 6216 | 0.1115 | - | 0.1115 | 0.1115 | 0.4093 | 0.4093 | [0.1086, 0.1145] | 0.4093 | research | machine-generated |
+| or | vox_communis | 7918 | 0.2689 | - | 0.2689 | 0.2689 | 0.1274 | 0.1274 | [0.2651, 0.2728] | 0.1274 | research | epitran-derived |
+| orv | wikipron | 609 | 0.2203 | - | 0.2203 | 0.2203 | 0.2660 | 0.2660 | [0.2058, 0.2343] | 0.2660 | research | crowd-scraped |
+| osp | wikipron | 667 | 0.1605 | - | 0.1605 | 0.1605 | 0.2894 | 0.2894 | [0.1497, 0.1709] | 0.2894 | research | crowd-scraped |
+| osx | wikipron | 244 | 0.2786 | - | 0.2664 | 0.2664 | 0.1230 | 0.1230 | [0.2583, 0.2973] | 0.1025 | research | crowd-scraped |
+| ota | wikipron | 161 | 0.3536 | - | 0.3100 | 0.3072 | 0.1180 | 0.1180 | [0.3260, 0.3798] | 0.0807 | research | crowd-scraped |
+| pa | vox_communis | 4003 | 0.4454 | - | 0.4454 | 0.4454 | 0.0824 | 0.0824 | [0.4362, 0.4537] | 0.0824 | research | epitran-derived |
+| pa | wikipron | 1360 | 0.2553 | - | 0.2553 | 0.2553 | 0.1779 | 0.1779 | [0.2453, 0.2646] | 0.1779 | research | crowd-scraped |
+| pag | wikipron | 227 | 0.1277 | - | 0.0998 | 0.0969 | 0.5991 | 0.6123 | [0.1076, 0.1488] | 0.5286 | research | crowd-scraped |
+| pam | wikipron | 860 | 0.2861 | - | 0.1802 | 0.1697 | 0.3395 | 0.3663 | [0.2630, 0.3193] | 0.1186 | research | crowd-scraped |
+| pbv | wikipron | 101 | 0.3358 | - | 0.3358 | 0.3358 | 0.2475 | 0.2475 | [0.2875, 0.3859] | 0.2475 | research | crowd-scraped |
+| pcc | wikipron | 153 | 0.0038 | - | 0.0038 | 0.0038 | 0.9869 | 0.9869 | [0.0000, 0.0102] | 0.9869 | research | crowd-scraped |
+| pdc | wikipron | 405 | 0.3350 | - | 0.2798 | 0.2444 | 0.1605 | 0.2025 | [0.3160, 0.3548] | 0.1062 | research | crowd-scraped |
+| phl | wikipron | 2173 | 0.3287 | - | 0.3287 | 0.3287 | 0.0318 | 0.0318 | [0.3222, 0.3355] | 0.0318 | research | crowd-scraped |
+| pjt | wikipron | 125 | 0.0027 | - | 0.0027 | 0.0027 | 0.9920 | 0.9920 | [0.0000, 0.0080] | 0.9920 | research | crowd-scraped |
+| pl | ipa_childes | 15523 | 0.2465 | - | 0.2382 | 0.2380 | 0.1906 | 0.1906 | [0.2433, 0.2495] | 0.1891 | research | espeak-derived |
+| pl | vox_communis | 47592 | 0.0186 | - | 0.0122 | 0.0119 | 0.9042 | 0.9068 | [0.0182, 0.0190] | 0.8537 | research | epitran-derived |
+| pl | wikipron | 148990 | 0.0480 | - | 0.0464 | 0.0463 | 0.6722 | 0.6727 | [0.0476, 0.0484] | 0.6633 | research | crowd-scraped |
+| pms | wikipron | 899 | 0.1652 | - | 0.1295 | 0.1271 | 0.4238 | 0.4283 | [0.1553, 0.1762] | 0.3571 | research | crowd-scraped |
+| pox | wikipron | 314 | 0.3204 | - | 0.3204 | 0.3204 | 0.1656 | 0.1656 | [0.2983, 0.3431] | 0.1656 | research | crowd-scraped |
+| ppl | wikipron | 185 | 0.1322 | - | 0.1322 | 0.1322 | 0.4486 | 0.4486 | [0.1104, 0.1534] | 0.4486 | research | crowd-scraped |
+| pqm | wikipron | 151 | 0.1759 | - | 0.1759 | 0.1759 | 0.1589 | 0.1589 | [0.1596, 0.1937] | 0.1589 | research | crowd-scraped |
+| ps | wikipron | 1075 | 0.2453 | - | 0.1938 | 0.1840 | 0.3265 | 0.3433 | [0.2341, 0.2554] | 0.2558 | research | crowd-scraped |
+| pt-AO | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-AO | portuguese_unified | 53151 | 0.2498 | - | 0.1852 | 0.1680 | 0.1763 | 0.2161 | [0.2486, 0.2510] | 0.0860 | research | lexicon-derived |
+| pt-BR | ipa_childes | 2116 | 0.2019 | - | 0.1687 | 0.1549 | 0.3280 | 0.3700 | [0.1948, 0.2096] | 0.2798 | production | espeak-derived |
+| pt-BR | ipadict | 95933 | 0.2287 | - | 0.2235 | 0.2155 | 0.0548 | 0.0571 | [0.2278, 0.2297] | 0.0511 | production | machine-generated |
+| pt-BR | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | production | llm-generated |
+| pt-BR | portuguese_unified | 3552 | 0.1587 | - | 0.1429 | 0.1282 | 0.3939 | 0.4479 | [0.1520, 0.1667] | 0.3525 | production | lexicon-derived |
+| pt-BR | primary_sources | 21 | 0.0833 | - | 0.0833 | 0.0833 | 0.7619 | 0.7619 | [0.0238, 0.1548] | 0.7619 | production | expert-human |
+| pt-BR | vox_communis | 33958 | 0.3877 | - | 0.2901 | 0.2628 | 0.1018 | 0.1381 | [0.3857, 0.3895] | 0.0412 | production | epitran-derived |
+| pt-BR | wikipron | 57815 | 0.0468 | - | 0.0313 | 0.0224 | 0.8115 | 0.8625 | [0.0460, 0.0477] | 0.7347 | production | crowd-scraped |
+| pt-BR-x-bahia | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-BR-x-brasilia | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-BR-x-caipira | portuguese_tts | 20 | 0.0047 | - | - | - | - | - | [0.0000, 0.0100] | 0.8500 | research | llm-generated |
+| pt-BR-x-caipira | portuguese_unified | 31 | 0.3147 | - | 0.2981 | 0.2757 | 0.0000 | 0.0323 | [0.2673, 0.3637] | 0.0000 | research | lexicon-derived |
+| pt-BR-x-carioca | portuguese_unified | 111 | 0.3097 | - | 0.2901 | 0.2657 | 0.0270 | 0.0450 | [0.2812, 0.3412] | 0.0180 | production | lexicon-derived |
+| pt-BR-x-ce | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-BR-x-fluminense | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-BR-x-mg | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-BR-x-norte | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-BR-x-pr | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-BR-x-recife | portuguese_tts | 20 | 0.0016 | - | - | - | - | - | [0.0000, 0.0047] | 0.9500 | research | llm-generated |
+| pt-BR-x-rj | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-BR-x-rj | portuguese_unified | 53147 | 0.1900 | - | 0.1668 | 0.1552 | 0.1730 | 0.1996 | [0.1890, 0.1910] | 0.1088 | research | lexicon-derived |
+| pt-BR-x-sp | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-BR-x-sp | portuguese_unified | 53147 | 0.1795 | - | 0.1599 | 0.1475 | 0.1705 | 0.1984 | [0.1786, 0.1805] | 0.1073 | research | lexicon-derived |
+| pt-BR-x-sul | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-CV | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | skeleton | llm-generated |
+| pt-GW | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-MO | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | skeleton | llm-generated |
+| pt-MZ | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-MZ | portuguese_unified | 53147 | 0.1698 | - | 0.1442 | 0.1273 | 0.3250 | 0.3825 | [0.1686, 0.1711] | 0.2555 | research | lexicon-derived |
+| pt-PT | ep_dialects | 30 | 0.1185 | - | - | - | - | - | [0.0931, 0.1462] | 0.1333 | research | expert-human |
+| pt-PT | ipa_childes | 3846 | 0.2485 | - | 0.1863 | 0.1722 | 0.3565 | 0.3838 | [0.2412, 0.2558] | 0.2574 | research | espeak-derived |
+| pt-PT | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-PT | portuguese_unified | 105553 | 0.2235 | - | 0.2013 | 0.1904 | 0.1826 | 0.1962 | [0.2225, 0.2245] | 0.1502 | research | lexicon-derived |
+| pt-PT | wikipron | 56891 | 0.0899 | - | 0.0679 | 0.0587 | 0.6061 | 0.6504 | [0.0889, 0.0910] | 0.5401 | research | crowd-scraped |
+| pt-PT-x-acores | clup_dialect | 2† | 0.3214 | - | - | - | - | - | [0.3151, 0.3277] | 0.0000 | research | expert-human |
+| pt-PT-x-acores | ep_dialects | 29 | 0.1095 | - | - | - | - | - | [0.0796, 0.1392] | 0.0690 | research | expert-human |
+| pt-PT-x-acores | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-PT-x-alentejo | clup_dialect | 1† | 0.2693 | - | - | - | - | - | [0.2693, 0.2693] | 0.0000 | research | expert-human |
+| pt-PT-x-alentejo | ep_dialects | 30 | 0.2213 | - | - | - | - | - | [0.1691, 0.2851] | 0.0667 | research | expert-human |
+| pt-PT-x-alentejo | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-PT-x-alentejo | primary_sources | 5† | 0.3000 | - | 0.2333 | 0.2333 | 0.2000 | 0.2000 | [0.2667, 0.3333] | 0.0000 | research | expert-human |
+| pt-PT-x-alfena | clup_dialect | 1† | 0.3260 | - | - | - | - | - | [0.3260, 0.3260] | 0.0000 | research | expert-human |
+| pt-PT-x-alfena | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-PT-x-algarve | clup_dialect | 3† | 0.3712 | - | - | - | - | - | [0.2988, 0.4378] | 0.0000 | research | expert-human |
+| pt-PT-x-algarve | ep_dialects | 30 | 0.1480 | - | - | - | - | - | [0.1138, 0.1796] | 0.1333 | research | expert-human |
+| pt-PT-x-algarve | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-PT-x-aveiro | clup_dialect | 6† | 0.3056 | - | - | - | - | - | [0.2807, 0.3339] | 0.0000 | research | expert-human |
+| pt-PT-x-aveiro | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-PT-x-beira | clup_dialect | 8† | 0.3248 | - | - | - | - | - | [0.2932, 0.3645] | 0.0000 | research | expert-human |
+| pt-PT-x-beira | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-PT-x-beira | primary_sources | 8† | 0.4327 | - | 0.4327 | 0.4327 | 0.1250 | 0.1250 | [0.2494, 0.6202] | 0.1250 | research | expert-human |
+| pt-PT-x-braga | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-PT-x-coimbra | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-PT-x-lisbon | clup_dialect | 5† | 0.2921 | - | - | - | - | - | [0.2534, 0.3383] | 0.0000 | research | expert-human |
+| pt-PT-x-lisbon | ep_dialects | 45 | 0.1172 | - | - | - | - | - | [0.0948, 0.1426] | 0.1556 | research | expert-human |
+| pt-PT-x-lisbon | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-PT-x-lisbon | portuguese_unified | 53150 | 0.1046 | - | 0.0840 | 0.0735 | 0.4796 | 0.5143 | [0.1036, 0.1055] | 0.4086 | research | lexicon-derived |
+| pt-PT-x-lisbon | primary_sources | 33 | 0.0288 | - | 0.0288 | 0.0288 | 0.8788 | 0.8788 | [0.0075, 0.0561] | 0.8788 | research | expert-human |
+| pt-PT-x-madeira | clup_dialect | 4† | 0.3250 | - | - | - | - | - | [0.2852, 0.3653] | 0.0000 | research | expert-human |
+| pt-PT-x-madeira | ep_dialects | 30 | 0.0952 | - | - | - | - | - | [0.0662, 0.1257] | 0.2667 | research | expert-human |
+| pt-PT-x-madeira | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-PT-x-medieval | portuguese_tts | 20 | 0.0020 | - | - | - | - | - | [0.0000, 0.0060] | 0.9500 | research | llm-generated |
+| pt-PT-x-minho | clup_dialect | 9† | 0.3181 | - | - | - | - | - | [0.2908, 0.3471] | 0.0000 | research | expert-human |
+| pt-PT-x-minho | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-PT-x-porto | clup_dialect | 17† | 0.4223 | - | - | - | - | - | [0.3919, 0.4499] | 0.0000 | research | expert-human |
+| pt-PT-x-porto | ep_dialects | 40 | 0.1881 | - | - | - | - | - | [0.1608, 0.2128] | 0.0500 | research | expert-human |
+| pt-PT-x-porto | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-PT-x-porto | primary_sources | 5† | 0.2133 | - | 0.1467 | 0.1467 | 0.6000 | 0.6000 | [0.1000, 0.3400] | 0.2000 | research | expert-human |
+| pt-PT-x-sao-miguel | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-PT-x-sao-miguel | primary_sources | 12† | 0.3917 | - | 0.3917 | 0.3917 | 0.0833 | 0.0833 | [0.2556, 0.5418] | 0.0833 | research | expert-human |
+| pt-PT-x-terceira | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-PT-x-terceira | primary_sources | 10† | 0.2345 | - | 0.1536 | 0.1369 | 0.4000 | 0.4000 | [0.0952, 0.3953] | 0.3000 | research | expert-human |
+| pt-PT-x-trasosmontes | clup_dialect | 6† | 0.3317 | - | - | - | - | - | [0.3126, 0.3578] | 0.0000 | research | expert-human |
+| pt-PT-x-trasosmontes | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-PT-x-viana | clup_dialect | 4† | 0.3655 | - | - | - | - | - | [0.3279, 0.4107] | 0.0000 | research | expert-human |
+| pt-PT-x-viana | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-ST | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-TL | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-TL | portuguese_unified | 53147 | 0.3642 | - | 0.3376 | 0.3193 | 0.0191 | 0.0240 | [0.3630, 0.3654] | 0.0151 | research | machine-generated |
+| pt-UY | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| quz | ipa_childes | 1853 | 0.3549 | - | 0.3549 | 0.3549 | 0.0621 | 0.0621 | [0.3463, 0.3623] | 0.0621 | research | espeak-derived |
+| rgn | wikipron | 261 | 0.3270 | - | 0.3270 | 0.3270 | 0.1226 | 0.1226 | [0.2970, 0.3597] | 0.1226 | research | crowd-scraped |
+| rif | wold | 1533 | 0.0929 | - | 0.0929 | 0.0929 | 0.5669 | 0.5669 | [0.0870, 0.0989] | 0.5669 | research | lexicon-derived |
+| ro | vox_communis | 10679 | 0.0693 | - | 0.0687 | 0.0684 | 0.5626 | 0.5636 | [0.0674, 0.0710] | 0.5608 | production | epitran-derived |
+| ro | wikipron | 8977 | 0.0198 | - | 0.0192 | 0.0189 | 0.8852 | 0.8865 | [0.0186, 0.0212] | 0.8830 | production | crowd-scraped |
+| ro-RO | ipa_childes | 2311 | 0.2644 | - | 0.2617 | 0.2616 | 0.1939 | 0.1943 | [0.2562, 0.2721] | 0.1900 | production | espeak-derived |
+| ro-RO | ipadict | 72375 | 0.0359 | - | 0.0354 | 0.0352 | 0.7367 | 0.7376 | [0.0354, 0.0364] | 0.7344 | production | lexicon-derived |
+| roa-x-galaicopt | portuguese_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ru | alphacep_ru_book | 6175 | 0.2391 | - | 0.1252 | 0.0859 | 0.3153 | 0.5015 | [0.2362, 0.2419] | 0.0646 | research | machine-generated |
+| ru | coruss_ru | 9527 | 0.3572 | - | 0.2795 | 0.2653 | 0.1480 | 0.1685 | [0.3530, 0.3614] | 0.0639 | research | expert-human |
+| ru | primary_sources | 36 | 0.1867 | - | 0.1267 | 0.1267 | 0.5833 | 0.5833 | [0.1265, 0.2463] | 0.3611 | research | expert-human |
+| ru | vox_communis | 50517 | 0.3481 | - | 0.2432 | 0.2020 | 0.1251 | 0.2154 | [0.3467, 0.3494] | 0.0235 | research | epitran-derived |
+| ru | wikipron | 403870 | 0.1443 | - | 0.1082 | 0.1040 | 0.3695 | 0.3712 | [0.1439, 0.1447] | 0.3365 | research | crowd-scraped |
+| rw | vox_communis | 381086 | 0.1388 | - | 0.1388 | 0.1388 | 0.3128 | 0.3128 | [0.1384, 0.1392] | 0.3128 | research | epitran-derived |
+| sa | wikipron | 9796 | 0.3089 | - | 0.3089 | 0.3089 | 0.0699 | 0.0699 | [0.3057, 0.3118] | 0.0699 | research | crowd-scraped |
+| sah | vox_communis | 11989 | 0.0862 | - | 0.0862 | 0.0862 | 0.6330 | 0.6330 | [0.0837, 0.0888] | 0.6330 | research | epitran-derived |
+| sah | wikipron | 238 | 0.2492 | - | 0.2314 | 0.2308 | 0.3151 | 0.3151 | [0.2176, 0.2843] | 0.2857 | research | crowd-scraped |
+| sc | wikipron | 703 | 0.0630 | - | 0.0462 | 0.0460 | 0.8051 | 0.8065 | [0.0541, 0.0730] | 0.7511 | research | crowd-scraped |
+| sce | wikipron | 168 | 0.0640 | - | 0.0640 | 0.0640 | 0.7143 | 0.7143 | [0.0471, 0.0818] | 0.7143 | research | crowd-scraped |
+| scn | wikipron | 1396 | 0.1944 | - | 0.1760 | 0.1744 | 0.3410 | 0.3431 | [0.1846, 0.2041] | 0.3266 | research | crowd-scraped |
+| sdc | wikipron | 321 | 0.1865 | - | 0.1865 | 0.1865 | 0.3738 | 0.3738 | [0.1653, 0.2072] | 0.3738 | research | crowd-scraped |
+| se | wikipron | 4125 | 0.2749 | - | 0.2749 | 0.2749 | 0.0742 | 0.0742 | [0.2702, 0.2794] | 0.0742 | research | crowd-scraped |
+| sel | northeuralex | 886 | 0.0342 | - | 0.0292 | 0.0291 | 0.8149 | 0.8160 | [0.0294, 0.0393] | 0.7935 | research | lexicon-derived |
+| sga | wikipron | 3700 | 0.0889 | - | 0.0626 | 0.0598 | 0.6859 | 0.6905 | [0.0843, 0.0936] | 0.6089 | research | crowd-scraped |
+| shn | wikipron | 2604 | 0.3348 | - | 0.3348 | 0.3348 | 0.0434 | 0.0434 | [0.3280, 0.3426] | 0.0434 | research | crowd-scraped |
+| si | wikipron | 386 | 0.1394 | - | 0.1269 | 0.1269 | 0.5570 | 0.5570 | [0.1209, 0.1586] | 0.5207 | research | crowd-scraped |
+| sia | wikipron | 179 | 0.0948 | - | 0.0948 | 0.0948 | 0.6089 | 0.6089 | [0.0739, 0.1167] | 0.6089 | research | crowd-scraped |
+| sid | wikipron | 297 | 0.0731 | - | 0.0731 | 0.0731 | 0.6397 | 0.6397 | [0.0597, 0.0875] | 0.6397 | research | crowd-scraped |
+| sjd | northeuralex | 1011 | 0.1368 | - | 0.1368 | 0.1368 | 0.4807 | 0.4807 | [0.1264, 0.1463] | 0.4807 | research | lexicon-derived |
+| sjd | wikipron | 756 | 0.2298 | - | 0.2298 | 0.2298 | 0.2553 | 0.2553 | [0.2159, 0.2430] | 0.2553 | research | crowd-scraped |
+| sjs | wikipron | 845 | 0.0467 | - | 0.0467 | 0.0467 | 0.7432 | 0.7432 | [0.0405, 0.0529] | 0.7432 | research | crowd-scraped |
+| sk | vox_communis | 15944 | 0.0902 | - | 0.0659 | 0.0637 | 0.6066 | 0.6237 | [0.0884, 0.0918] | 0.4752 | research | epitran-derived |
+| sk | wikipron | 15893 | 0.1346 | - | 0.1174 | 0.1164 | 0.4797 | 0.4832 | [0.1319, 0.1373] | 0.4556 | research | crowd-scraped |
+| skr | wikipron | 309 | 0.2869 | - | 0.2418 | 0.2365 | 0.2136 | 0.2201 | [0.2674, 0.3061] | 0.1553 | research | crowd-scraped |
+| sl | vox_communis | 6603 | 0.3555 | - | 0.3370 | 0.3228 | 0.0009 | 0.0009 | [0.3522, 0.3587] | 0.0009 | research | epitran-derived |
+| sl | wikipron | 5139 | 0.3284 | - | 0.3085 | 0.2976 | 0.0179 | 0.0181 | [0.3248, 0.3319] | 0.0169 | research | crowd-scraped |
+| slr | wikipron | 752 | 0.2850 | - | 0.2847 | 0.2847 | 0.1250 | 0.1250 | [0.2717, 0.2984] | 0.1250 | research | crowd-scraped |
+| smn | northeuralex | 1055 | 0.1600 | - | 0.1600 | 0.1600 | 0.3137 | 0.3137 | [0.1518, 0.1694] | 0.3137 | research | lexicon-derived |
+| sms | northeuralex | 1063 | 0.2200 | - | 0.1758 | 0.1700 | 0.1543 | 0.1712 | [0.2128, 0.2266] | 0.0809 | research | lexicon-derived |
+| sms | wikipron | 111 | 0.0045 | - | 0.0045 | 0.0045 | 0.9820 | 0.9820 | [0.0000, 0.0120] | 0.9820 | research | crowd-scraped |
+| so | kaikki | 230 | 0.5567 | - | 0.5403 | 0.5403 | 0.0565 | 0.0565 | [0.5304, 0.5838] | 0.0435 | research | crowd-scraped |
+| sq | vox_communis | 11713 | 0.1432 | - | 0.1432 | 0.1432 | 0.3056 | 0.3056 | [0.1411, 0.1453] | 0.3056 | research | epitran-derived |
+| sq | wikipron | 4900 | 0.0964 | - | 0.0964 | 0.0964 | 0.5606 | 0.5606 | [0.0928, 0.1003] | 0.5606 | research | crowd-scraped |
+| sr | ipa_childes | 9838 | 0.3232 | - | 0.3232 | 0.3232 | 0.0811 | 0.0811 | [0.3198, 0.3267] | 0.0811 | research | epitran-derived |
+| sr | vox_communis | 3624 | 0.3298 | - | 0.3298 | 0.3298 | 0.0571 | 0.0571 | [0.3243, 0.3351] | 0.0571 | research | epitran-derived |
+| srn | wikipron | 702 | 0.0450 | - | 0.0450 | 0.0450 | 0.8376 | 0.8376 | [0.0360, 0.0547] | 0.8376 | research | crowd-scraped |
+| srs | wikipron | 137 | 0.1773 | - | 0.1773 | 0.1773 | 0.2847 | 0.2847 | [0.1521, 0.2039] | 0.2847 | research | crowd-scraped |
+| stq | wikipron | 818 | 0.3123 | - | 0.1880 | 0.1631 | 0.3509 | 0.4083 | [0.2976, 0.3274] | 0.1687 | research | crowd-scraped |
+| su | kaikki | 396 | 0.0969 | - | 0.0969 | 0.0969 | 0.6389 | 0.6389 | [0.0828, 0.1128] | 0.6389 | skeleton | crowd-scraped |
+| sv | ipa_childes | 5202 | 0.3476 | - | 0.2555 | 0.2470 | 0.2614 | 0.2762 | [0.3415, 0.3544] | 0.1728 | research | espeak-derived |
+| sv | ipadict | 21094 | 0.2427 | - | 0.1752 | 0.1637 | 0.2900 | 0.3069 | [0.2401, 0.2452] | 0.2103 | research | lexicon-derived |
+| sv | vox_communis | 19492 | 0.3717 | - | 0.2143 | 0.2048 | 0.2456 | 0.2681 | [0.3693, 0.3744] | 0.0802 | research | epitran-derived |
+| sv | wikipron | 5076 | 0.2407 | - | 0.1661 | 0.1547 | 0.4220 | 0.4439 | [0.2345, 0.2476] | 0.3339 | research | crowd-scraped |
+| sw | ipadict | 48308 | 0.1608 | - | 0.1422 | 0.1416 | 0.3999 | 0.4013 | [0.1594, 0.1623] | 0.3458 | research | machine-generated |
+| sw | vox_communis | 48334 | 0.1286 | - | 0.1149 | 0.1144 | 0.4321 | 0.4335 | [0.1273, 0.1298] | 0.3853 | research | epitran-derived |
+| sw | wikipron | 307 | 0.2539 | - | 0.2486 | 0.2486 | 0.2117 | 0.2117 | [0.2346, 0.2738] | 0.2085 | research | crowd-scraped |
+| syc | wikipron | 96 | 0.3707 | - | 0.3576 | 0.3576 | 0.0208 | 0.0208 | [0.3425, 0.3959] | 0.0208 | research | crowd-scraped |
+| szl | wikipron | 2377 | 0.2148 | - | 0.2148 | 0.2148 | 0.2869 | 0.2869 | [0.2072, 0.2227] | 0.2869 | research | crowd-scraped |
+| ta | vox_communis | 135937 | 0.1214 | - | 0.1213 | 0.1212 | 0.2368 | 0.2368 | [0.1209, 0.1219] | 0.2368 | research | epitran-derived |
+| ta | wikipron | 10093 | 0.3757 | - | 0.3726 | 0.3722 | 0.0240 | 0.0240 | [0.3728, 0.3787] | 0.0238 | research | crowd-scraped |
+| te | wikipron | 5101 | 0.0990 | - | 0.0764 | 0.0758 | 0.5546 | 0.5548 | [0.0953, 0.1027] | 0.5368 | research | crowd-scraped |
+| tet | primary_sources | 55 | 0.0683 | - | 0.0520 | 0.0483 | 0.7636 | 0.7818 | [0.0405, 0.0985] | 0.7091 | research | expert-human |
+| tew | wikipron | 106 | 0.0000 | - | 0.0000 | 0.0000 | 1.0000 | 1.0000 | [0.0000, 0.0000] | 1.0000 | research | crowd-scraped |
+| tft | wikipron | 293 | 0.1041 | - | 0.1041 | 0.1041 | 0.6792 | 0.6792 | [0.0827, 0.1265] | 0.6792 | research | crowd-scraped |
+| tg | wikipron | 3245 | 0.0296 | - | 0.0296 | 0.0296 | 0.8354 | 0.8354 | [0.0271, 0.0323] | 0.8354 | research | crowd-scraped |
+| th | vox_communis | 23704 | 0.4316 | - | 0.4273 | 0.4272 | 0.0403 | 0.0403 | [0.4292, 0.4342] | 0.0392 | research | epitran-derived |
+| th | wikipron | 16937 | 0.1880 | - | 0.1856 | 0.1856 | 0.3308 | 0.3308 | [0.1849, 0.1913] | 0.3300 | research | crowd-scraped |
+| tk | vox_communis | 5881 | 0.1629 | - | 0.1423 | 0.1416 | 0.3187 | 0.3231 | [0.1596, 0.1662] | 0.2588 | research | epitran-derived |
+| tk | wikipron | 424 | 0.2316 | - | 0.2257 | 0.2257 | 0.3679 | 0.3679 | [0.2109, 0.2517] | 0.3420 | research | crowd-scraped |
+| tkl | wikipron | 340 | 0.0497 | - | 0.0497 | 0.0497 | 0.7824 | 0.7824 | [0.0390, 0.0601] | 0.7824 | research | crowd-scraped |
+| tl | wikipron | 25857 | 0.1179 | - | 0.1042 | 0.1039 | 0.4743 | 0.4745 | [0.1162, 0.1195] | 0.4318 | research | crowd-scraped |
+| tn | vox_communis | 2271 | 0.4003 | - | 0.4003 | 0.4003 | 0.0555 | 0.0555 | [0.3913, 0.4086] | 0.0555 | research | epitran-derived |
+| tpw | wikipron | 372 | 0.0951 | - | 0.0557 | 0.0477 | 0.7554 | 0.7715 | [0.0748, 0.1161] | 0.7016 | research | crowd-scraped |
+| tr | ipa_childes | 2748 | 0.1372 | - | 0.1077 | 0.1065 | 0.3934 | 0.3937 | [0.1328, 0.1419] | 0.3654 | research | espeak-derived |
+| tr | vox_communis | 47013 | 0.0399 | - | 0.0051 | 0.0015 | 0.9505 | 0.9850 | [0.0394, 0.0405] | 0.6869 | research | epitran-derived |
+| tr | wikipron | 11579 | 0.1230 | - | 0.0817 | 0.0760 | 0.6026 | 0.6329 | [0.1202, 0.1257] | 0.4477 | research | crowd-scraped |
+| tru | wikipron | 168 | 0.3607 | - | 0.3104 | 0.3092 | 0.0357 | 0.0357 | [0.3362, 0.3856] | 0.0298 | research | crowd-scraped |
+| tt | vox_communis | 22220 | 0.3708 | - | 0.3238 | 0.3096 | 0.0545 | 0.0849 | [0.3687, 0.3727] | 0.0199 | research | epitran-derived |
+| twf | wikipron | 135 | 0.0240 | - | 0.0221 | 0.0221 | 0.9111 | 0.9111 | [0.0103, 0.0412] | 0.8963 | research | crowd-scraped |
+| tzm | wikipron | 658 | 0.0160 | - | 0.0160 | 0.0160 | 0.9483 | 0.9483 | [0.0101, 0.0225] | 0.9483 | research | crowd-scraped |
+| uby | wikipron | 1317 | 0.0247 | - | 0.0214 | 0.0209 | 0.9043 | 0.9043 | [0.0201, 0.0300] | 0.8998 | research | crowd-scraped |
+| udm | northeuralex | 973 | 0.2110 | - | 0.1908 | 0.1896 | 0.3875 | 0.3905 | [0.1989, 0.2233] | 0.3350 | research | lexicon-derived |
+| ug | vox_communis | 40503 | 0.0842 | - | 0.0842 | 0.0842 | 0.4977 | 0.4977 | [0.0832, 0.0852] | 0.4977 | research | epitran-derived |
+| ug | wikipron | 2644 | 0.1285 | - | 0.1285 | 0.1285 | 0.4172 | 0.4172 | [0.1239, 0.1335] | 0.4172 | research | crowd-scraped |
+| uk | primary_sources | 45 | 0.0759 | - | 0.0360 | 0.0264 | 0.7778 | 0.8444 | [0.0470, 0.1096] | 0.6444 | research | expert-human |
+| uk | vox_communis | 51621 | 0.2672 | - | 0.1695 | 0.1332 | 0.2478 | 0.3411 | [0.2659, 0.2684] | 0.0846 | research | epitran-derived |
+| uk | wikipron | 51646 | 0.0992 | - | 0.0724 | 0.0691 | 0.4929 | 0.5006 | [0.0982, 0.1001] | 0.4413 | research | crowd-scraped |
+| ulw | wikipron | 102 | 0.0888 | - | 0.0888 | 0.0888 | 0.7353 | 0.7353 | [0.0595, 0.1207] | 0.7353 | research | crowd-scraped |
+| ur | wikipron | 6296 | 0.3077 | - | 0.2733 | 0.2620 | 0.0718 | 0.0821 | [0.3042, 0.3111] | 0.0384 | research | crowd-scraped |
+| uz | vox_communis | 77898 | 0.0787 | - | 0.0787 | 0.0787 | 0.4705 | 0.4705 | [0.0780, 0.0793] | 0.4705 | research | epitran-derived |
+| uz | wikipron | 330 | 0.2458 | - | 0.2458 | 0.2458 | 0.2424 | 0.2424 | [0.2258, 0.2667] | 0.2424 | research | crowd-scraped |
+| vep | northeuralex | 1004 | 0.2065 | - | 0.2065 | 0.2065 | 0.2629 | 0.2629 | [0.1960, 0.2170] | 0.2629 | research | lexicon-derived |
+| vi | ipadict | 70899 | 0.0777 | - | 0.0777 | 0.0777 | 0.4620 | 0.4620 | [0.0770, 0.0783] | 0.4620 | research | machine-generated |
+| vi | vox_communis | 2475 | 0.5596 | - | 0.5596 | 0.5596 | 0.0024 | 0.0024 | [0.5516, 0.5667] | 0.0024 | research | epitran-derived |
+| vi | vox_communis_corrected | 2475 | 0.5596 | - | 0.5596 | 0.5596 | 0.0024 | 0.0024 | [0.5516, 0.5667] | 0.0024 | research | epitran-derived |
+| vo | wikipron | 442 | 0.0185 | - | 0.0185 | 0.0185 | 0.9118 | 0.9118 | [0.0122, 0.0264] | 0.9118 | research | crowd-scraped |
+| vot | wikipron | 2832 | 0.0898 | - | 0.0898 | 0.0898 | 0.5011 | 0.5011 | [0.0864, 0.0935] | 0.5011 | research | crowd-scraped |
+| wa | wikipron | 2348 | 0.1443 | - | 0.1377 | 0.1332 | 0.5515 | 0.5673 | [0.1362, 0.1532] | 0.5353 | research | crowd-scraped |
+| war | wikipron | 380 | 0.1478 | - | 0.1478 | 0.1478 | 0.3658 | 0.3658 | [0.1345, 0.1622] | 0.3658 | research | crowd-scraped |
+| wau | wikipron | 146 | 0.2968 | - | 0.2968 | 0.2968 | 0.1438 | 0.1438 | [0.2647, 0.3301] | 0.1438 | research | crowd-scraped |
+| wbk | wikipron | 153 | 0.2022 | - | 0.2022 | 0.2022 | 0.3922 | 0.3922 | [0.1710, 0.2366] | 0.3922 | research | crowd-scraped |
+| wiy | wikipron | 151 | 0.0164 | - | 0.0164 | 0.0164 | 0.9338 | 0.9338 | [0.0061, 0.0284] | 0.9338 | research | crowd-scraped |
+| wlm | wikipron | 403 | 0.2498 | - | 0.2498 | 0.2498 | 0.2357 | 0.2357 | [0.2309, 0.2702] | 0.2357 | research | crowd-scraped |
+| xaa | arabic_tts | 20 | 0.0000 | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| xal | wikipron | 318 | 0.2813 | - | 0.2813 | 0.2813 | 0.1478 | 0.1478 | [0.2619, 0.3014] | 0.1478 | research | crowd-scraped |
+| xh | kaikki | 887 | 0.3779 | - | 0.3761 | 0.3761 | 0.0304 | 0.0304 | [0.3681, 0.3868] | 0.0282 | research | crowd-scraped |
+| xsl | wikipron | 146 | 0.0273 | - | 0.0234 | 0.0234 | 0.9041 | 0.9041 | [0.0145, 0.0421] | 0.8904 | research | crowd-scraped |
+| ycl | wikipron | 111 | 0.0108 | - | 0.0108 | 0.0108 | 0.9369 | 0.9369 | [0.0030, 0.0201] | 0.9369 | research | crowd-scraped |
+| yi | wikipron | 4051 | 0.2042 | - | 0.1818 | 0.1745 | 0.3261 | 0.3453 | [0.1983, 0.2098] | 0.2735 | research | crowd-scraped |
+| ykg | northeuralex | 813 | 0.3616 | - | 0.3616 | 0.3616 | 0.0418 | 0.0418 | [0.3507, 0.3730] | 0.0418 | research | lexicon-derived |
+| yo | vox_communis | 5263 | 0.6392 | - | 0.6318 | 0.6315 | 0.0004 | 0.0004 | [0.6348, 0.6442] | 0.0004 | research | epitran-derived |
+| yo | wikipron | 4065 | 0.3828 | - | 0.3826 | 0.3826 | 0.1065 | 0.1065 | [0.3765, 0.3892] | 0.1063 | research | crowd-scraped |
+| yol | wikipron | 1972 | 0.3118 | - | 0.3118 | 0.3118 | 0.1922 | 0.1922 | [0.3012, 0.3216] | 0.1922 | research | crowd-scraped |
+| yrk | northeuralex | 1016 | 0.2342 | - | 0.2340 | 0.2340 | 0.1358 | 0.1358 | [0.2240, 0.2443] | 0.1358 | research | lexicon-derived |
+| yrk | wikipron | 295 | 0.3835 | - | 0.3828 | 0.3828 | 0.0712 | 0.0712 | [0.3626, 0.4054] | 0.0712 | research | crowd-scraped |
+| yux | wikipron | 242 | 0.2975 | - | 0.2975 | 0.2975 | 0.1694 | 0.1694 | [0.2738, 0.3220] | 0.1694 | research | crowd-scraped |
+| za | wikipron | 1682 | 0.2124 | - | 0.2124 | 0.2124 | 0.2426 | 0.2426 | [0.2048, 0.2203] | 0.2426 | research | crowd-scraped |
+| zh | ipa_childes | 4718 | 0.2879 | - | 0.2668 | 0.2662 | 0.2338 | 0.2342 | [0.2816, 0.2941] | 0.2126 | research | machine-generated |
+| zom | wikipron | 134 | 0.4399 | - | 0.4399 | 0.4399 | 0.0000 | 0.0000 | [0.4190, 0.4602] | 0.0000 | research | crowd-scraped |
+| zu | wikipron | 1754 | 0.2311 | - | 0.2269 | 0.2267 | 0.0593 | 0.0593 | [0.2252, 0.2365] | 0.0576 | research | crowd-scraped |
+| zza | wikipron | 196 | 0.2464 | - | 0.2387 | 0.2387 | 0.2551 | 0.2551 | [0.2159, 0.2745] | 0.2449 | research | crowd-scraped |
 
 ---
 [← Spain-Romance TTS gold set](spain-romance-tts-gold.md) · [Home](index.md) · [Comparison to other G2P systems →](comparison.md)

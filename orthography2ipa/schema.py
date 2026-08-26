@@ -248,6 +248,15 @@ class OrthographyStandardModel(_Strict):
     notes: Optional[str] = None
 
 
+class ValidCeilingModel(_Strict):
+    """Measured PER floor after folding an unwritten contrast
+    (``valid_ceiling``). Mirrors ``ValidCeiling``."""
+
+    per: float = Field(ge=0.0, le=1.0)
+    folded: str = Field(min_length=1)
+    citation: str = Field(min_length=1)
+
+
 class LocationModel(_Strict):
     """Representative point for where a language is spoken (``location``)."""
 
@@ -426,6 +435,7 @@ class LanguageSpecModel(_Strict):
     timespan: Optional[TimeSpanModel] = None
     orthography_standard: Optional[OrthographyStandardModel] = None
     location: Optional[LocationModel] = None
+    valid_ceiling: Optional[ValidCeilingModel] = None
 
 
     # ─── whole-word overrides for a closed irregular set ─────────────

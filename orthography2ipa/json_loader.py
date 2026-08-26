@@ -39,6 +39,7 @@ from orthography2ipa.types import (
     StressRules,
     ToneRules,
     TimeSpan,
+    ValidCeiling,
 )
 from orthography2ipa.positional import normalize_ending_value
 from orthography2ipa.weights import split_weighted_graphemes
@@ -451,6 +452,16 @@ def load_json_spec(code: str) -> LanguageSpec:
             notes=raw_ortho.get("notes", "") or "",
         )
 
+    # Parse the measured valid-ceiling, when one has been executed
+    valid_ceiling: Optional[ValidCeiling] = None
+    raw_ceiling = raw.get("valid_ceiling")
+    if raw_ceiling and isinstance(raw_ceiling, dict):
+        valid_ceiling = ValidCeiling(
+            per=float(raw_ceiling["per"]),
+            folded=raw_ceiling["folded"],
+            citation=raw_ceiling["citation"],
+        )
+
     # Parse stress rules. A spec's own ``stress`` block wins outright; when it
     # declares none (absent or ``null``), the accentuation rules inherit
     # through the ``graphemes_base`` data edge. Stress assignment is a
@@ -590,6 +601,7 @@ def load_json_spec(code: str) -> LanguageSpec:
         orthography_standard=orthography_standard,
         location=location,
         timespan=timespan,
+        valid_ceiling=valid_ceiling,
         stress=stress,
         word_exceptions=merged_base_fields["word_exceptions"] or None,
         grammatical_endings=merged_base_fields["grammatical_endings"] or None,
