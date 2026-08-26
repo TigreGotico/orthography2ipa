@@ -38,6 +38,7 @@ from typing import Dict, FrozenSet, List, Sequence, Set, Tuple
 
 from orthography2ipa.allophony import segment_ipa
 from orthography2ipa.lexicon import get_lexicon
+from orthography2ipa.positional import normalize_ending_value
 from orthography2ipa.types import LanguageSpec
 
 __all__ = [
@@ -97,10 +98,27 @@ def _base_emissions(spec: LanguageSpec) -> Set[str]:
     for rule in (spec.allophone_rules or ()):
         if rule.surface:
             emissions.add(rule.surface)
+        if rule.append:
+            # An inserting rule emits the inserted segment; the phoneme it
+            # attaches to is already an emission of the grapheme table.
+            emissions.add(rule.append)
 
     # Word-level overrides hand the engine whole transcriptions, so their IPA
     # never passes through the grapheme table at all.
     emissions.update((spec.word_exceptions or {}).values())
+    # Suffix morphology replaces the word's tail wholesale, so its IPA also
+    # bypasses the grapheme table (see LanguageSpec.grammatical_endings).
+    # An ambiguous ending declares an ordered candidate LIST, and every
+    # element of it can surface — the lower-ranked ones through
+    # ``word_candidates``/a rescorer rather than through 1-best — so the
+    # whole list is an emission source. A deferring rank 1 (``None``)
+    # emits nothing of its own: rank 1 comes from the grapheme table,
+    # which is already counted.
+    for value in (spec.grammatical_endings or {}).values():
+        rank1, alternatives = normalize_ending_value(value)
+        if rank1 is not None:
+            emissions.add(rank1)
+        emissions.update(alternatives)
     emissions.update(get_lexicon(spec.code).values())
 
     if spec.stress:
@@ -264,8 +282,17 @@ def dead_allophone_rules(spec: LanguageSpec) -> Tuple[str, ...]:
     *and*, for segmental rules, against the segments within it. So a rule on
     ``a`` is live in a spec whose only source of ``a`` is the emission ``ja``,
     and a rule on ``dʒa`` is live only if some slot emits exactly that.
+
+    An abugida adds one more source the tables do not show. A consonant letter
+    carries its inherent vowel unless a matra or a virama cancels it, so a slot
+    can hold ``kə`` in a spec whose grapheme table only ever writes ``k`` — and
+    the inherent vowel is exactly what the schwa-deletion rules of every
+    Devanagari language target. Those rules are reachable, so the check adds
+    reading + inherent vowel to the producible set for an abugida.
     """
-    producible = phoneme_inventory(spec) | emission_inventory(spec)
+    producible = set(phoneme_inventory(spec) | emission_inventory(spec))
+    if spec.script_type == "abugida" and spec.inherent_vowel:
+        producible.update(p + spec.inherent_vowel for p in tuple(producible))
     dead: List[str] = []
     for rule in (spec.allophone_rules or ()):
         targets: Sequence[str] = rule.phonemes or ()

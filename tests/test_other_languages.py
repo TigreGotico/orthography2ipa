@@ -145,6 +145,70 @@ class TestModernGreek:
         vals = _grapheme(self.spec, "ευ")
         _assert_contains(vals, "ev", "ef", label="ευ")
 
+    # Polytonic spellings in Modern Greek text
+    #
+    # Monotonic orthography has been standard since 1982, but polytonic
+    # spellings stay in circulation — proper names, learned vocabulary,
+    # ecclesiastical and pre-reform text — and the wikipron gold reads them as
+    # plain Modern Greek: ⟨Κωνσταντῖνος⟩ is transcribed [k o n s t a n d i n o
+    # s], with the breathings and the iota subscript contributing nothing and
+    # the circumflex marking only the stressed syllable.
+    #
+    # The breathings (psili, dasia), the iota subscript and the length marks
+    # are folded away through ``fold_diacritics``; the circumflex (perispomeni)
+    # and the grave (varia) are stress marks and stay, so their letters are
+    # graphemes in their own right and members of ``marked_vowels``.
+
+    def test_breathings_are_segmentless(self):
+        """Psili and dasia write nothing: ⟨ἀ ἁ⟩ read as ⟨α⟩."""
+        assert "̓" in self.spec.fold_diacritics
+        assert "̔" in self.spec.fold_diacritics
+
+    def test_iota_subscript_is_segmentless(self):
+        """Ypogegrammeni writes nothing in Modern Greek: ⟨ᾳ⟩ reads as ⟨α⟩."""
+        assert "ͅ" in self.spec.fold_diacritics
+
+    def test_perispomeni_letters_are_graphemes(self):
+        """⟨ᾶ ῆ ῖ ῦ ῶ⟩ map to the plain vowel, not to nothing."""
+        for grapheme, expected in (("ᾶ", "a"), ("ῆ", "i"), ("ῖ", "i"),
+                                   ("ῦ", "i"), ("ῶ", "o")):
+            _assert_first(_grapheme(self.spec, grapheme), expected,
+                          label=grapheme)
+
+    def test_perispomeni_letters_mark_stress(self):
+        """The circumflex marks the stressed syllable in polytonic text."""
+        for grapheme in "ᾶῆῖῦῶ":
+            assert grapheme in self.spec.stress.marked_vowels, grapheme
+
+    def test_varia_letters_mark_stress(self):
+        """The grave is the final-syllable variant of the acute."""
+        for grapheme in "ὰὲὴὶὸὺὼ":
+            assert _grapheme(self.spec, grapheme) is not None, grapheme
+            assert grapheme in self.spec.stress.marked_vowels, grapheme
+
+    def test_polytonic_digraphs_survive_the_accent(self):
+        """⟨εῖ οῦ αῖ⟩ are the digraphs ⟨ει ου αι⟩ under a circumflex."""
+        _assert_first(_grapheme(self.spec, "εῖ"), "i", label="εῖ")
+        _assert_first(_grapheme(self.spec, "οῦ"), "u", label="οῦ")
+        _assert_first(_grapheme(self.spec, "αῖ"), "e", label="αῖ")
+
+    @pytest.mark.parametrize("word,expected", [
+        # Written accent on ί; the breathing on ἀ must not shift it.
+        ("ἀναγνωρίσεις", "anaɣnoˈɾisis"),
+        ("ἐτάφην", "eˈtafin"),
+        # Stress sits on the circumflex, and the ι it carries is a nucleus.
+        ("Κωνσταντῖνος", "konstaˈndinos"),
+        ("Ναυσικᾶ", "nafsiˈka"),
+        # Iota subscript is silent.
+        ("σοφίᾳ", "soˈfia"),
+        # Circumflex on the second half of a digraph keeps the digraph.
+        ("πλατεῖα", "plaˈtia"),
+        ("φυτικοῦ", "fitiˈku"),
+    ])
+    def test_polytonic_words_transcribe_as_modern_greek(self, word, expected):
+        """Polytonic spellings read as their monotonic equivalents."""
+        assert orthography2ipa.G2P("el").transcribe(word) == expected
+
     def test_parent_is_grc(self):
         """Modern Greek inherits from Ancient Greek."""
         assert self.spec.parent == "grc"
@@ -225,6 +289,52 @@ class TestAncientGreek:
     def test_family(self):
         """Ancient Greek is Hellenic (Indo-European)."""
         assert {"Indo-European", "Hellenic"} <= set(self.spec.family_path)
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Tsakonian
+# ═══════════════════════════════════════════════════════════════════════════
+
+
+@pytest.mark.linguistic
+class TestTsakonian:
+    """Accuracy tests for Tsakonian (tsd).
+
+    Sole living descendant of Doric Greek; uses the standard Greek alphabet
+    plus digraphs for sounds not covered by the plain letters
+    (Wikipedia: Tsakonian language).
+    """
+
+    LANGUAGE_CODE = "tsd"
+
+    @pytest.fixture(autouse=True)
+    def _setup(self):
+        self.spec = _load(self.LANGUAGE_CODE)
+
+    def test_sch_digraph(self):
+        """σχ is [ʃ], like German ⟨sch⟩ -- not the concatenation of σ+χ."""
+        _assert_first(_grapheme(self.spec, "σχ"), "ʃ", label="σχ")
+
+    def test_tsch_digraph(self):
+        """τσχ is [tʃ]."""
+        _assert_first(_grapheme(self.spec, "τσχ"), "tʃ", label="τσχ")
+
+    def test_aspirate_digraphs(self):
+        """⟨τθ κχ πφ⟩ spell the aspirated stops [tʰ kʰ pʰ]."""
+        _assert_first(_grapheme(self.spec, "τθ"), "tʰ", label="τθ")
+        _assert_first(_grapheme(self.spec, "κχ"), "kʰ", label="κχ")
+        _assert_first(_grapheme(self.spec, "πφ"), "pʰ", label="πφ")
+
+    def test_rz_digraph(self):
+        """ρζ is the voiced postalveolar fricative [ʒ], not a cluster [rʒ]."""
+        _assert_first(_grapheme(self.spec, "ρζ"), "ʒ", label="ρζ")
+
+    def test_not_descended_from_attic_ionic(self):
+        """Tsakonian's ancestry routes through Doric, not grc/el's Attic-Ionic chain."""
+        ancestor_codes = {a.code for a in self.spec.ancestors}
+        assert "x-clade-doric-greek" in ancestor_codes
+        assert "grc" not in ancestor_codes
+        assert "el" not in ancestor_codes
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -735,7 +845,8 @@ class TestMandarin:
     - Palatal series: j=[tɕ], q=[tɕʰ], x=[ɕ]
     - Retroflex series: zh=[ʈʂ], ch=[ʈʂʰ], sh=[ʂ], r=[ɻ/ʐ]
     - h → [x] (velar, not glottal)
-    - Tonal (not modeled in grapheme table)
+    - Tone is written, in both the diacritic and the tone-digit
+      conventions; see tests/test_mandarin_pinyin.py
     """
 
     LANGUAGE_CODE = "zh"
@@ -810,3 +921,75 @@ class TestMandarin:
     def test_family(self):
         """Mandarin is Sino-Tibetan."""
         assert {"Sino-Tibetan", "Sinitic"} <= set(self.spec.family_path)
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Yola
+# ═══════════════════════════════════════════════════════════════════════════
+
+
+@pytest.mark.linguistic
+class TestYola:
+    """Accuracy tests for Yola (yol), the extinct English variety of Forth
+    and Bargy, County Wexford, descended from Middle English.
+    """
+
+    LANGUAGE_CODE = "yol"
+
+    @pytest.fixture(autouse=True)
+    def _setup(self):
+        self.spec = _load(self.LANGUAGE_CODE)
+
+    def test_ck_digraph_single_stop(self):
+        """⟨ck⟩ spells a single /k/, as in English orthography (e.g. Poole's
+        ``crock``, ``brocke``, ``Carrick``), not the concatenation of the two
+        letters c+k, which would double the stop.
+        """
+        _assert_first(_grapheme(self.spec, "ck"), "k", label="ck")
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Coptic
+# ═══════════════════════════════════════════════════════════════════════════
+
+
+@pytest.mark.linguistic
+class TestCoptic:
+    """Accuracy tests for Coptic (cop), the final stage of the Egyptian
+    language. The spec targets the Sahidic dialect and its cop/wikipron
+    benchmark row is an agreement row against a mixture of reconstruction
+    traditions, not attested speech; see the spec's ``notes`` field for the
+    evidence (Wiktionary key-derived IPA, homograph rate, Greco-Bohairic
+    markers, and dialect-exclusive letters found in the gold).
+    """
+
+    LANGUAGE_CODE = "cop"
+
+    @pytest.fixture(autouse=True)
+    def _setup(self):
+        self.spec = _load(self.LANGUAGE_CODE)
+
+    def test_beta_is_stop_not_greco_bohairic_fricative(self):
+        """⟨ⲃ⟩ spells the stop /b/ under this spec's Sahidic analysis, not
+        the [β]/[v] fricative introduced by the 19th-century Greco-Bohairic
+        liturgical pronunciation reform (Ishaq 1975, discussed in the
+        English Wikipedia 'Coptic pronunciation reform' article).
+        """
+        _assert_first(_grapheme(self.spec, "ⲃ"), "b", label="ⲃ")
+
+    def test_theta_is_aspirated_stop_not_fricative(self):
+        """⟨ⲑ⟩ spells the aspirated stop /tʰ/, the Sahidic/Old Bohairic
+        reconstruction value, not the /θ/ fricative that the Greco-Bohairic
+        reform introduced by imitating Greek theta.
+        """
+        _assert_first(_grapheme(self.spec, "ⲑ"), "tʰ", label="ⲑ")
+
+    def test_notes_document_gold_reconstruction_mixing(self):
+        """The spec notes must document, with counts, that the cop/wikipron
+        gold mixes reconstruction traditions rather than reflecting attested
+        Sahidic speech -- the same category of finding as yol/wikipron.
+        """
+        notes = self.spec.notes or ""
+        assert "agreement row" in notes
+        assert "Greco-Bohairic" in notes
+        assert "49.1%" in notes or "homograph" in notes.lower()
