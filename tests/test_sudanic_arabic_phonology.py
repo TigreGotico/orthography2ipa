@@ -80,7 +80,9 @@ def test_chadian_variably_retains_the_interdentals():
     'noon' keeps [ðˤ] (Kaye 1976; de Pommerol 1999; Roth-Laly 1979)."""
     assert get("ar-TD").graphemes["ث"] == ["θ", "t"]
     assert transcribe("ثَلج", "ar-TD") == "ˈθaldʒ"
-    assert transcribe("ظُهر", "ar-TD") == "ˈðˤuhr"
+    # /u/ backs to [ʊ] after the emphatic ðˤ (Watson 2002 emphasis spread;
+    # Davis 1995), inherited from arb's AR_EMPHASIS_SPREAD_U_AFTER.
+    assert transcribe("ظُهر", "ar-TD") == "ˈðˤʊhr"
 
 
 def test_nigerian_completes_the_interdental_merger():
@@ -91,7 +93,9 @@ def test_nigerian_completes_the_interdental_merger():
     assert get("ar-NG").graphemes["ث"] == ["t"]
     assert get("ar-NG").graphemes["ظ"] == ["dˤ"]
     assert transcribe("ثَلج", "ar-NG") == "ˈtaldʒ"
-    assert transcribe("ظُهر", "ar-NG") == "ˈdˤuhr"
+    # /u/ backs to [ʊ] after the emphatic dˤ (Watson 2002 emphasis spread;
+    # Davis 1995), inherited from arb's AR_EMPHASIS_SPREAD_U_AFTER.
+    assert transcribe("ظُهر", "ar-NG") == "ˈdˤʊhr"
 
 
 # ─── Gahawa syndrome: /a/-insertion after a guttural coda ───────────────────
