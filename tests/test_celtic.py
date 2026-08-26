@@ -482,6 +482,15 @@ class TestIrish:
         ("gorm", "ɡɔɾˠəmˠ"),
         # All-broad word, unstressed vowel reduced. Ref. /ˈmˠad̪ˠɾˠə/.
         ("madra", "mˠad̪ˠɾˠə"),
+        # ⟨ae⟩ (no fada) is flanked by BROAD consonants on both sides — it is
+        # a plain long [eː], not a digraph whose opening ⟨a⟩ slenderises the
+        # PRECEDING consonant or whose trailing ⟨e⟩ slenderises the
+        # FOLLOWING one; Modern Irish ⟨ae⟩ carries no such offglide reading
+        # (contrast Old Irish ⟨ía úa⟩, which does). ⟨l⟩/⟨r⟩ after ⟨ae⟩ stay
+        # broad, off the spec's own dental/velarised realisation of ⟨l⟩.
+        # Ref. Gael /ɡeːl̪ˠ/, aer /eːɾˠ/.
+        ("Gael", "ɡeːl̪ˠ"),
+        ("aer", "eːɾˠ"),
     ])
     def test_broad_slender_words(self, word, expected):
         """Cited word→IPA pairs exercising the quality system end to end.
@@ -879,6 +888,86 @@ class TestBreton:
         vals = _allophone(self.spec, "ʁ")
         _assert_contains(vals, "ʁ", "r", label="br:ʁ allophones")
 
+    # ── Peurunvan orthography: every letter is mapped ───────────────────────
+
+    def test_plural_digraph_ou_grave_maps_to_u(self):
+        """The peurunvan plural digraph ⟨où⟩ spells /u/ in KLT.
+
+        ARBRES, 'Accentuation', quotes Goyat (2012:128-9) transcribing
+        ⟨an avalou-se⟩ as [ãn a'vaːlu se]. Unmapped, ⟨ù⟩ is not a grapheme
+        at all and the tokenizer drops it silently.
+        """
+        _assert_first(_grapheme(self.spec, "où"), "u", label="br:où→u")
+
+    def test_plural_ending_is_not_silently_deleted(self):
+        """⟨avaloù⟩ keeps its plural vowel: the word ends in /u/, not /o/."""
+        ipa = _segments(orthography2ipa.G2P("br").transcribe_word("avaloù"))
+        assert ipa.endswith("u"), f"br:avaloù lost its plural vowel: {ipa!r}"
+
+    @pytest.mark.parametrize("apostrophe", ["'", "’", "ʼ"])
+    def test_c_h_digraph_accepts_every_apostrophe(self, apostrophe):
+        """⟨c'h⟩ is written with U+0027, U+2019 or U+02BC and is /x/ in all three.
+
+        An unmapped apostrophe does not merely lose the apostrophe: the ⟨c⟩
+        goes with it and the word is read as if spelt with a bare ⟨h⟩.
+        """
+        word = "c" + apostrophe + "hoari"
+        ipa = _segments(orthography2ipa.G2P("br").transcribe_word(word))
+        assert ipa.startswith("x"), f"br:{word!r} → {ipa!r}, expected /x/ onset"
+
+    # ── Stress and stressed-vowel length ────────────────────────────────────
+
+    def test_stress_is_penultimate(self):
+        """KLT and the standard are paroxytone.
+
+        ARBRES, 'Accentuation', 'Mots simples': "Le KLT accentue sur
+        l'avant-dernière syllabe (paroxyton ...), quand le vannetais accentue
+        sur la dernière (oxyton)."
+        """
+        assert self.spec.stress is not None, "br: no stress block"
+        assert self.spec.stress.default_position == -2
+
+    def test_stressed_vowel_lengthens_before_single_lenis(self):
+        """⟨avaloù⟩ is [aˈvaːlu]: stressed /a/ before a single lenis /l/.
+
+        Hewitt (1978), JIPA 8(1-2):80: stressed vowels are half long unless
+        before fortis consonants or consonant clusters.
+        """
+        ipa = orthography2ipa.G2P("br").transcribe_word("avaloù")
+        assert ipa == "aˈvaːlu", f"br:avaloù → {ipa!r}"
+
+    def test_stressed_vowel_stays_short_before_a_cluster(self):
+        """⟨dorn⟩ 'hand' keeps a short vowel: /rn/ is a cluster."""
+        ipa = _segments(orthography2ipa.G2P("br").transcribe_word("dorn"))
+        assert "ː" not in ipa, f"br:dorn lengthened before a cluster: {ipa!r}"
+
+    def test_word_final_stressed_vowel_is_long(self):
+        """⟨du⟩ 'black' is [dyː] — a final stressed vowel has no coda at all."""
+        ipa = _segments(orthography2ipa.G2P("br").transcribe_word("du"))
+        assert ipa == "dyː", f"br:du → {ipa!r}"
+
+    def test_unstressed_vowel_does_not_lengthen(self):
+        """Only the stressed syllable lengthens: ⟨Gwened⟩ is [ˈɡweːnet]."""
+        ipa = orthography2ipa.G2P("br").transcribe_word("Gwened")
+        assert ipa == "ˈɡweːnet", f"br:Gwened → {ipa!r}"
+
+    # ── Final lenis-obstruent devoicing ─────────────────────────────────────
+
+    @pytest.mark.parametrize("word,tail", [
+        ("Breizh", "s"),    # <zh> = /z/ in KLT, devoiced word-finally
+        ("Pariz", "s"),
+        ("Gwened", "t"),
+        ("chug", "k"),
+    ])
+    def test_final_lenis_obstruent_devoices(self, word, tail):
+        """Peurunvan writes the lenis member; the pausal form is voiceless.
+
+        Hewitt (1978), JIPA 8(1-2):80, records "lenis obstruent devoicing in
+        final pausal position and in sandhi".
+        """
+        ipa = _segments(orthography2ipa.G2P("br").transcribe_word(word))
+        assert ipa.endswith(tail), f"br:{word} → {ipa!r}, expected …{tail}"
+
 
 # ═══════════════════════════════════════════════════════════════════════════
 # Manx (gv)
@@ -903,12 +992,16 @@ class TestManx:
     # ── Long vowel digraphs ──────────────────────────────────────────────────
 
     def test_aa_maps_to_long_e(self):
-        """⟨aa⟩ in Manx maps to /eː/ — a distinctive Manx sound correspondence.
+        """⟨aa⟩ in Manx maps to /ɛː/ — a distinctive Manx sound correspondence.
 
         Manx ⟨aa⟩ does NOT simply mean 'long a'. The historical vowel shifted
-        to /eː/, reflecting the development from Common Goidelic to Manx.
+        away from plain /aː/, reflecting the development from Common Goidelic
+        to Manx. Broderick's Late Spoken Manx material (and the WikiPron
+        broad-transcription gold) show the predominant realisation as /ɛː/,
+        with /eː/ as a secondary variant (e.g. before certain consonant
+        clusters).
         """
-        _assert_first(_grapheme(self.spec, "aa"), "eː", label="gv:aa→eː")
+        _assert_first(_grapheme(self.spec, "aa"), "ɛː", label="gv:aa→ɛː")
 
     def test_ee_maps_to_long_close_front(self):
         """⟨ee⟩ maps to /iː/ (long close front vowel)."""
@@ -926,16 +1019,20 @@ class TestManx:
         _assert_contains(vals, "a", "æ", label="gv:a variants")
 
     def test_e_maps_to_open_mid_front(self):
-        """⟨e⟩ maps to /ɛ/ (open-mid front unrounded)."""
-        _assert_first(_grapheme(self.spec, "e"), "ɛ", label="gv:e→ɛ")
+        """⟨e⟩ primary realisation is /e/ (close-mid front unrounded), with
+        /ɛ/ (open-mid) as a secondary variant. The WikiPron broad-
+        transcription gold shows plain /e/ as dominant."""
+        _assert_first(_grapheme(self.spec, "e"), "e", label="gv:e→e")
 
     def test_i_primary_is_near_close(self):
-        """⟨i⟩ primary realisation is /ɪ/ (near-close near-front)."""
-        _assert_first(_grapheme(self.spec, "i"), "ɪ", label="gv:i primary=ɪ")
+        """⟨i⟩ primary realisation is /i/ (close front), with /ɪ/
+        (near-close) and /ə/ (unstressed reduction) as secondary variants."""
+        _assert_first(_grapheme(self.spec, "i"), "i", label="gv:i primary=i")
 
     def test_o_maps_to_open_mid_back(self):
-        """⟨o⟩ maps to /ɔ/ (open-mid back rounded)."""
-        _assert_first(_grapheme(self.spec, "o"), "ɔ", label="gv:o→ɔ")
+        """⟨o⟩ primary realisation is /o/ (close-mid back rounded), with
+        /ɔ/ (open-mid) as a secondary variant."""
+        _assert_first(_grapheme(self.spec, "o"), "o", label="gv:o→o")
 
     def test_u_includes_near_close_back_and_mid_back(self):
         """⟨u⟩ has both /ʊ/ (near-close back) and /ɤ/ (close-mid back unrounded)."""
@@ -949,21 +1046,37 @@ class TestManx:
         _assert_first(_grapheme(self.spec, "ch"), "x", label="gv:ch→x")
 
     def test_gh_maps_to_voiced_velar_fricative(self):
-        """⟨gh⟩ maps to /ɣ/ (voiced velar fricative) in Manx."""
-        _assert_first(_grapheme(self.spec, "gh"), "ɣ", label="gv:gh→ɣ")
+        """⟨gh⟩ primary realisation is /x/ (voiceless velar fricative), the
+        dominant Late Spoken Manx and WikiPron-gold realisation (word-final
+        and preconsonantal), with /ɣ/ (voiced) as a secondary, mostly
+        intervocalic variant."""
+        _assert_first(_grapheme(self.spec, "gh"), "x", label="gv:gh→x")
 
     def test_sh_maps_to_postalveolar_fricative(self):
         """⟨sh⟩ maps to /ʃ/ (voiceless postalveolar fricative)."""
         _assert_first(_grapheme(self.spec, "sh"), "ʃ", label="gv:sh→ʃ")
 
-    def test_th_includes_dental_fricatives(self):
-        """⟨th⟩ maps to /θ/ (voiceless) or /ð/ (voiced dental fricative).
+    def test_th_is_a_plain_stop(self):
+        """⟨th⟩ maps to /t/. Manx has no dental fricatives.
 
-        Manx ⟨th⟩ can realise as either dental fricative — the voiceless /θ/
-        being more frequent word-initially.
+        The digraph is an English spelling convention, not an English
+        sound: Lewin, "Aspects of the historical phonology of Manx"
+        (PhD thesis, University of Edinburgh, 2020,
+        https://era.ed.ac.uk/handle/1842/37271) transcribes thallooin
+        /taˈluːnʲ/ (p. 72) and farrys-thie /ˌfarəsˈtai/, and the Old Irish
+        /θ/ that these words continue had already gone to /h/ and then to
+        zero in monosyllables (§2.2.1). No /θ ð/ appears anywhere in the
+        Manx inventory the thesis reconstructs.
         """
-        vals = _grapheme(self.spec, "th")
-        _assert_contains(vals, "θ", "ð", label="gv:th→θ/ð")
+        _assert_first(_grapheme(self.spec, "th"), "t", label="gv:th\u2192t")
+
+    def test_lh_is_a_palatalised_lateral(self):
+        """⟨lh⟩ maps to /lʲ/, not /l/ followed by /h/.
+
+        Lewin (2020): lhean /lʲeːn/ 'wide', lhiabbee /lʲabi/ 'bed',
+        lhune /lʲuːn/ 'ale', lhiaght /lʲaxt/.
+        """
+        _assert_first(_grapheme(self.spec, "lh"), "l\u02b2", label="gv:lh\u2192l\u02b2")
 
 
 # ═══════════════════════════════════════════════════════════════════════════
