@@ -256,7 +256,7 @@ A row's `N` is its sample size in scored words, and it is not cosmetic: below ro
 | fi | vox_communis | 13324 | 0.0037 | 0.0037 | 0.0037 | 0.9678 | 0.9678 | [0.0033, 0.0041] | 0.9678 | production | epitran-derived |
 | fi | wikipron | 168808 | 0.0184 | 0.0184 | 0.0184 | 0.8173 | 0.8173 | [0.0182, 0.0186] | 0.8171 | production | crowd-scraped |
 | fo | wikipron | 2957 | 0.1674 | 0.1504 | 0.1474 | 0.4156 | 0.4231 | [0.1616, 0.1737] | 0.3842 | production | crowd-scraped |
-| fpe | wikipron | 261 | 0.1269 | 0.1269 | 0.1269 | 0.4943 | 0.4943 | [0.1089, 0.1455] | 0.4943 | research | crowd-scraped |
+| fpe | wikipron | 261 | 0.0301 | 0.0301 | 0.0301 | 0.8544 | 0.8544 | [0.0208, 0.0397] | 0.8544 | research | crowd-scraped |
 | fr | wikipron | 85497 | 0.0673 | 0.0530 | 0.0486 | 0.7324 | 0.7408 | [0.0664, 0.0681] | 0.6933 | research | crowd-scraped |
 | fr-FR | ipa_childes | 9444 | 0.0925 | 0.0665 | 0.0623 | 0.7609 | 0.7753 | [0.0890, 0.0964] | 0.6840 | research | espeak-derived |
 | fr-FR | ipadict | 245716 | 0.0768 | 0.0630 | 0.0563 | 0.6672 | 0.6742 | [0.0763, 0.0773] | 0.6416 | research | machine-generated |
