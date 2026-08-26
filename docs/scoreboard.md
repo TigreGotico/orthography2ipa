@@ -355,7 +355,7 @@ A row's `N` is its sample size in scored words, and it is not cosmetic: below ro
 | ky | vox_communis | 10611 | 0.1915 | 0.1654 | 0.1565 | 0.2474 | 0.3057 | [0.1890, 0.1939] | 0.1642 | research | epitran-derived |
 | ky | wikipron | 867 | 0.2217 | 0.2211 | 0.2211 | 0.3230 | 0.3230 | [0.2081, 0.2357] | 0.3195 | research | crowd-scraped |
 | lad | wikipron | 131 | 0.1397 | 0.1108 | 0.1093 | 0.5420 | 0.5496 | [0.1128, 0.1671] | 0.4427 | research | crowd-scraped |
-| lb | wikipron | 3893 | 0.3576 | 0.3576 | 0.3576 | 0.0896 | 0.0896 | [0.3504, 0.3646] | 0.0896 | research | crowd-scraped |
+| lb | wikipron | 3893 | 0.2412 | 0.2320 | 0.2315 | 0.2661 | 0.2669 | [0.2347, 0.2477] | 0.2510 | research | crowd-scraped |
 | lbe | northeuralex | 1048 | 0.0387 | 0.0387 | 0.0387 | 0.8340 | 0.8340 | [0.0325, 0.0455] | 0.8340 | research | lexicon-derived |
 | lez | northeuralex | 969 | 0.1329 | 0.0528 | 0.0384 | 0.7606 | 0.8266 | [0.1206, 0.1440] | 0.5294 | research | lexicon-derived |
 | lg | vox_communis | 103344 | 0.1107 | 0.1107 | 0.1107 | 0.3384 | 0.3384 | [0.1100, 0.1114] | 0.3384 | research | epitran-derived |
