@@ -1,12 +1,16 @@
 # Changelog
 
+## [7.82.41a3](https://github.com/TigreGotico/orthography2ipa/tree/7.82.41a3) (2026-08-26)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.41a2...7.82.41a3)
+
+**Merged pull requests:**
+
+- fix\(sw\): implosive voiced stops, flap /r/, \<kh\>, and the syllabic nasal [\#1329](https://github.com/TigreGotico/orthography2ipa/pull/1329) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.82.41a2](https://github.com/TigreGotico/orthography2ipa/tree/7.82.41a2) (2026-08-26)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.40a5...7.82.41a2)
-
-## [7.82.40a5](https://github.com/TigreGotico/orthography2ipa/tree/7.82.40a5) (2026-08-26)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.40a6...7.82.40a5)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.40a6...7.82.41a2)
 
 ## [7.82.40a6](https://github.com/TigreGotico/orthography2ipa/tree/7.82.40a6) (2026-08-26)
 
@@ -14,7 +18,11 @@
 
 ## [7.82.41a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.41a1) (2026-08-26)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.40a4...7.82.41a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.40a5...7.82.41a1)
+
+## [7.82.40a5](https://github.com/TigreGotico/orthography2ipa/tree/7.82.40a5) (2026-08-26)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.40a4...7.82.40a5)
 
 ## [7.82.40a4](https://github.com/TigreGotico/orthography2ipa/tree/7.82.40a4) (2026-08-26)
 
@@ -651,20 +659,19 @@
 
 ## [7.79.16a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.16a1) (2026-08-24)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.14a3...7.79.16a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.15a1...7.79.16a1)
 
 **Merged pull requests:**
 
 - feat: measure how much of a board row's gold is alphabet-chart noise [\#1118](https://github.com/TigreGotico/orthography2ipa/pull/1118) ([JarbasAl](https://github.com/JarbasAl))
-- fix\(tru\): map Gamal Garshuni, diagnose gold as mostly real words [\#1117](https://github.com/TigreGotico/orthography2ipa/pull/1117) ([JarbasAl](https://github.com/JarbasAl))
-
-## [7.79.14a3](https://github.com/TigreGotico/orthography2ipa/tree/7.79.14a3) (2026-08-24)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.15a1...7.79.14a3)
 
 ## [7.79.15a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.15a1) (2026-08-24)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.14a2...7.79.15a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.14a3...7.79.15a1)
+
+## [7.79.14a3](https://github.com/TigreGotico/orthography2ipa/tree/7.79.14a3) (2026-08-24)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.14a2...7.79.14a3)
 
 ## [7.79.14a2](https://github.com/TigreGotico/orthography2ipa/tree/7.79.14a2) (2026-08-24)
 
@@ -673,10 +680,6 @@
 ## [7.79.14a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.14a1) (2026-08-24)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.13a1...7.79.14a1)
-
-**Merged pull requests:**
-
-- docs\(zom\): document Zou's three-tone system as an unrecoverable ceiling [\#1116](https://github.com/TigreGotico/orthography2ipa/pull/1116) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.79.13a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.13a1) (2026-08-24)
 
