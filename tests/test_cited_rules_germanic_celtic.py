@@ -611,6 +611,48 @@ def test_is_preaspiration():
     assert "ʰt" in _bare("is", "katt")
 
 
+def test_is_quantity_is_positional():
+    """QUANTITY: the stressed vowel is long in an open syllable, short before
+    a geminate, a preaspirated stop or a cluster.
+
+    Flego & Berkson (2019) state the contrast as ˈVːC vs ˈVCː and give the
+    minimal sets in their Table 3, from which these words are taken:
+    mala [ˈmaːla] vs manna [ˈmanːa], skata [ˈskaːta] vs skatta [ˈskahta]
+    (their [h] is this spec's [ʰ]). They add that pre-aspirated stops behave
+    like geminates for the contrast in always being preceded by a short vowel.
+
+    Length is positional, not lexical, so ⟨ú⟩ is long in an open syllable and
+    short before a cluster.
+    """
+    assert _bare("is", "mala") == "maːla"
+    assert _bare("is", "mana") == "maːna"
+    assert _bare("is", "manna") == "manːa"
+    assert _bare("is", "massa") == "masːa"
+    assert "aː" not in _bare("is", "skatta")
+    assert _bare("is", "hús").startswith("huː")
+    assert "uː" not in _bare("is", "úlfur")
+
+
+def test_is_doubled_letters_are_long_consonants_except_the_stops():
+    """GEMINATES: Icelandic keeps consonant length — unlike Danish, whose
+    doubled letters are read as a single consonant.
+
+    Flego & Berkson (2019) Table 3 gives krabba [ˈkʰrapːa], skadda [ˈskatːa],
+    sagga [ˈsakːa], kaffi [ˈkʰafːɪ], klemmu [ˈkʰlɛmːʏ], manna [ˈmanːa],
+    marra [ˈmarːa] and massa [ˈmasːa] as long consonants, against krappa
+    [ˈkʰrahpa], skatta [ˈskahta] and sakka [ˈsahka], where ⟨pp tt kk⟩ are
+    preaspirated and NOT long. So the ⟨pp tt kk⟩ series is the one doubled
+    spelling that must not come out as a geminate.
+    """
+    for word, geminate in [("krabba", "pː"), ("skadda", "tː"), ("sagga", "kː"),
+                           ("kaffi", "fː"), ("klemmu", "mː"), ("marra", "rː"),
+                           ("manna", "nː"), ("massa", "sː")]:
+        assert geminate in _bare("is", word), word
+    for word in ("krappa", "skatta", "sakka"):
+        ipa = _bare("is", word)
+        assert "ʰ" in ipa and "ː" not in ipa, (word, ipa)
+
+
 def test_is_u_is_front_rounded():
     """⟨u⟩ = [ʏ] (front rounded).
 

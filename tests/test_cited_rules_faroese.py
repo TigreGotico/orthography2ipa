@@ -179,11 +179,19 @@ def test_fo_initial_stress():
 # ---------------------------------------------------------------------------
 
 @pytest.mark.parametrize("code,word,expected", [
-    ("is", "bátur", "ˈpautʰʏr"),
+    ("is", "bátur", "ˈpauːtʰʏr"),
     ("nn", "taka", "²tɑːkɑ"),
 ])
 def test_neighbouring_specs_unmoved(code, word, expected):
     """The fo wave is spec-only; the Scandinavian specs that share the engine
     paths it exercises (positional graphemes, allophone shortening) keep their
-    answers."""
+    answers.
+
+    Icelandic *bátur* carries a long diphthong because the stressed syllable
+    is open: [ˈpauːtʰʏr]. That is what
+    :meth:`TestIcelandic.test_a_acute_is_diphthong_au` in ``test_germanic.py``
+    has always claimed (*bát* = [bauːt]); the spec only acquired the
+    positional length that makes it true when Icelandic quantity was encoded
+    (Flego & Berkson 2019). The short reading recorded here previously was the
+    gap, not the target."""
     assert G2P(code).transcribe_word(word) == expected

@@ -310,9 +310,9 @@ A row's `N` is its sample size in scored words, and it is not cosmetic: below ro
 | inh | wikipron | 284 | 0.1632 | 0.1582 | 0.1582 | 0.4331 | 0.4331 | [0.1448, 0.1819] | 0.4261 | research | crowd-scraped |
 | io | wikipron | 6815 | 0.0974 | 0.0974 | 0.0974 | 0.4336 | 0.4336 | [0.0949, 0.0999] | 0.4336 | research | crowd-scraped |
 | irk | wold | 1117 | 0.2010 | 0.2010 | 0.2010 | 0.3563 | 0.3563 | [0.1900, 0.2123] | 0.3563 | research | lexicon-derived |
-| is | ipa_childes | 4106 | 0.3582 | 0.3407 | 0.3388 | 0.0648 | 0.0660 | [0.3521, 0.3639] | 0.0599 | research | espeak-derived |
-| is | ipadict | 60642 | 0.2690 | 0.2371 | 0.2344 | 0.0853 | 0.0865 | [0.2678, 0.2702] | 0.0628 | research | lexicon-derived |
-| is | wikipron | 10093 | 0.2466 | 0.2148 | 0.2131 | 0.1490 | 0.1501 | [0.2433, 0.2496] | 0.1232 | research | crowd-scraped |
+| is | ipa_childes | 4106 | 0.3397 | 0.2966 | 0.2907 | 0.1320 | 0.1386 | [0.3332, 0.3468] | 0.1120 | research | espeak-derived |
+| is | ipadict | 60642 | 0.2354 | 0.2032 | 0.2003 | 0.1551 | 0.1580 | [0.2341, 0.2366] | 0.1117 | research | lexicon-derived |
+| is | wikipron | 10093 | 0.2045 | 0.1729 | 0.1700 | 0.2515 | 0.2569 | [0.2016, 0.2076] | 0.2023 | research | crowd-scraped |
 | it | vox_communis | 48570 | 0.1031 | 0.0766 | 0.0702 | 0.7919 | 0.8373 | [0.1003, 0.1060] | 0.6372 | research | epitran-derived |
 | it | wikipron | 82276 | 0.0441 | 0.0209 | 0.0131 | 0.8399 | 0.9054 | [0.0435, 0.0446] | 0.6955 | research | crowd-scraped |
 | it-IT | ipa_childes | 4583 | 0.2341 | 0.2056 | 0.2012 | 0.2638 | 0.2784 | [0.2289, 0.2395] | 0.1942 | research | espeak-derived |

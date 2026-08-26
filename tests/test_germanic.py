@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import pytest
 import orthography2ipa
+from orthography2ipa import G2P
 from orthography2ipa.types import GraphemePosition
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -1317,20 +1318,43 @@ class TestIcelandic:
         _assert_first(_grapheme(self._spec, "é"), "jɛ", label="is é→jɛ")
 
     def test_i_acute_is_long_high(self):
-        """<í> → /iː/ (long high front vowel, e.g., *líf*)."""
-        _assert_first(_grapheme(self._spec, "í"), "iː", label="is í")
+        """<í> is the high front quality /i/, long in an open syllable: *líf*
+        [liːf].
+
+        The length is not in the letter. Icelandic quantity is positional —
+        the stressed vowel is long before a single short consonant and short
+        before a geminate, a preaspirated stop or a cluster (Flego & Berkson
+        2019) — so the grapheme table gives the quality and
+        ``positional_graphemes`` gives the length. The claim this test was
+        written for is about the surface, so it is asserted on the surface:
+        *líf* is long, *fínt* is short before the cluster.
+        """
+        _assert_first(_grapheme(self._spec, "í"), "i", label="is í")
+        assert G2P("is").transcribe_word("líf") == "ˈliːf"
+        assert G2P("is").transcribe_word("fínt") == "ˈfintʰ"
 
     def test_o_acute_is_diphthong(self):
         """Icelandic ó is a diphthong [ou] (Árnason 2011), not a monophthong [oː]."""
         _assert_first(_grapheme(self._spec, "ó"), "ou", label="is ó")
 
     def test_u_acute_is_long_high(self):
-        """<ú> → /uː/ (e.g., *þú*, *búa*)."""
-        _assert_first(_grapheme(self._spec, "ú"), "uː", label="is ú")
+        """<ú> is the high back quality /u/, long in an open syllable: *þú*
+        [θuː].
+
+        Positional length, exactly as for <í>; see
+        :meth:`test_i_acute_is_long_high`.
+        """
+        _assert_first(_grapheme(self._spec, "ú"), "u", label="is ú")
+        assert G2P("is").transcribe_word("þú") == "ˈθuː"
 
     def test_y_acute_equals_i_acute(self):
-        """<ý> → /iː/ (homophonous with <í>, e.g., *lýsa*)."""
-        _assert_first(_grapheme(self._spec, "ý"), "iː", label="is ý→iː")
+        """<ý> is homophonous with <í>: the quality /i/, long in an open
+        syllable — *lýsa* [liːsa].
+
+        Positional length; see :meth:`test_i_acute_is_long_high`.
+        """
+        _assert_first(_grapheme(self._spec, "ý"), "i", label="is ý→i")
+        assert G2P("is").transcribe_word("lýsa") == "ˈliːsa"
 
     def test_o_umlaut(self):
         """<ö> → /œ/ (short open front rounded, e.g., *önd*, *föt*)."""
