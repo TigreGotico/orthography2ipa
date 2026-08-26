@@ -166,8 +166,8 @@ A row's `N` is its sample size in scored words, and it is not cosmetic: below ro
 | bn | wikipron | 6527 | 0.3162 | 0.2802 | 0.2778 | 0.1538 | 0.1554 | [0.3108, 0.3216] | 0.1316 | research | crowd-scraped |
 | bo | wikipron | 1564 | 0.3785 | 0.3718 | 0.3715 | 0.2174 | 0.2174 | [0.3606, 0.3962] | 0.2174 | research | crowd-scraped |
 | br | wikipron | 803 | 0.3499 | 0.2611 | 0.2412 | 0.1457 | 0.1856 | [0.3367, 0.3647] | 0.0685 | research | crowd-scraped |
-| bua | northeuralex | 1174 | 0.0474 | 0.0474 | 0.0474 | 0.7496 | 0.7496 | [0.0422, 0.0528] | 0.7496 | research | lexicon-derived |
-| bua | wikipron | 140 | 0.3605 | 0.3206 | 0.3206 | 0.1500 | 0.1500 | [0.3265, 0.3904] | 0.1071 | research | crowd-scraped |
+| bua | northeuralex | 1174 | 0.0398 | 0.0398 | 0.0398 | 0.7726 | 0.7726 | [0.0351, 0.0448] | 0.7726 | research | lexicon-derived |
+| bua | wikipron | 140 | 0.3571 | 0.3120 | 0.3114 | 0.1571 | 0.1571 | [0.3243, 0.3881] | 0.1143 | research | crowd-scraped |
 | ca | 4catac | 160 | 0.0642 | - | - | - | - | [0.0587, 0.0698] | 0.0437 | research | expert-human |
 | ca | ipa_childes | 3813 | 0.2576 | 0.1681 | 0.1462 | 0.3669 | 0.4306 | [0.2511, 0.2645] | 0.2206 | research | espeak-derived |
 | ca | vox_communis | 141623 | 0.1321 | 0.1173 | 0.1067 | 0.5120 | 0.5488 | [0.1310, 0.1332] | 0.4706 | research | epitran-derived |
