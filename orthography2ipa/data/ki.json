@@ -8,23 +8,44 @@
     "a": [
       "a"
     ],
+    "aa": [
+      "aː"
+    ],
     "e": [
       "ɛ"
+    ],
+    "ee": [
+      "ɛː"
     ],
     "i": [
       "i"
     ],
+    "ii": [
+      "iː"
+    ],
     "ĩ": [
       "e"
+    ],
+    "ĩĩ": [
+      "eː"
     ],
     "o": [
       "ɔ"
     ],
+    "oo": [
+      "ɔː"
+    ],
     "u": [
       "u"
     ],
+    "uu": [
+      "uː"
+    ],
     "ũ": [
       "o"
+    ],
+    "ũũ": [
+      "oː"
     ],
     "b": [
       "β"
@@ -164,7 +185,7 @@
       "w"
     ]
   },
-  "notes": "Kikuyu (Gĩkũyũ), Bantu language of central Kenya. Seven vowels written with five letters plus the tilde pair ⟨ĩ ũ⟩ for the close-mid /e o/, while plain ⟨e o⟩ are the open-mid /ɛ ɔ/ and ⟨a⟩ is the low CENTRAL /a/ (Englebretson 2015, Figures 2 and 4). ⟨b d g⟩ are the fricatives /β ð ɣ/, ⟨th⟩ is /ð/, ⟨c⟩ is /ʃ/, ⟨r⟩ is the tap /ɾ/, and the prenasalised stops are written ⟨mb nd ng nj⟩; ⟨ng'⟩ is plain /ŋ/. Orthographic ⟨w⟩ after a consonant is not an approximant but the first vowel of a diphthong, pronounced like ⟨ũ⟩ = /o/ — Gĩkũyũ has no consonant clusters, and ⟨w⟩ and ⟨ũ⟩ are pronounced alike in that slot (Englebretson 2015); word-initial and intervocalic ⟨w⟩ stays the approximant /w/. Englebretson (2015) itself qualifies the post-consonantal reading with one exception, before ⟨o⟩, where ⟨w⟩ instead equates with /u/; that conditioning is not implemented here, and the gold set's single ⟨Cwo⟩ token (remwo → ɾɛmoɔ) is consistent with the unconditioned /o/ reading used by this spec. ⟨c⟩ is transcribed /ʃ/ per Englebretson (2015) Figure 1, but the gold data disagrees: of the ⟨c⟩ rows, 120 use /ɕ/ against 1 use of /ʃ/, so most gold transcriptions follow a different (alveolo-palatal) convention than the source sketch; ⟨nj⟩ is transcribed /ⁿdʒ/ here while gold uses the affricate /ᶮdʑ/, the same alveolo-palatal mismatch. Dahl's law (dissimilatory voicing of a voiceless stop before a following voiceless obstruent, kĩ- → gĩ-) is already spelled out in the standard orthography, so it needs no rule here. Vowel length and tone are both phonemic but neither is written: the orthography marks length only sporadically, with a doubled vowel letter, and marks tone not at all (Englebretson 2015; Armstrong 1940; Clements 1984 on the tone system), so neither is modelled. Of the 1025 unique spellings in the ki/wikipron gold, 321 (31.3%) recur with two or more distinct gold transcriptions that differ only in the tone/downstep diacritics the plain orthography never writes (e.g. aka -> [aka]/[àkǎ]); that is evidence that the plain spelling underdetermines tone and that the gold's own transcriptions are internally inconsistent for a tone-blind rule set, not a proof that any particular score is a floor. The harness scores each spelling against the best-matching of its gold transcriptions, so a homograph is scored leniently rather than penalized. The ceiling is measured directly instead: scoring the same hypothesis/gold pairs with every tone mark (acute, grave, caron, downstep) folded out on both sides drops PER from the shipped 0.3972 to 0.0547, so once the unwritten information is discounted this spec is close to segmentally exhausted; the residual gap is the remaining ⟨c⟩/⟨nj⟩ transcription-convention mismatch above plus ordinary rule noise, not a missing rule the orthography could support.",
+  "notes": "Kikuyu (Gĩkũyũ), Bantu language of central Kenya. Seven vowels written with five letters plus the tilde pair ⟨ĩ ũ⟩ for the close-mid /e o/, while plain ⟨e o⟩ are the open-mid /ɛ ɔ/ and ⟨a⟩ is the low CENTRAL /a/ (Englebretson 2015, Figures 2 and 4). ⟨b d g⟩ are the fricatives /β ð ɣ/, ⟨th⟩ is /ð/, ⟨c⟩ is /ʃ/, ⟨r⟩ is the tap /ɾ/, and the prenasalised stops are written ⟨mb nd ng nj⟩; ⟨ng'⟩ is plain /ŋ/. Orthographic ⟨w⟩ after a consonant is not an approximant but the first vowel of a diphthong, pronounced like ⟨ũ⟩ = /o/ — Gĩkũyũ has no consonant clusters, and ⟨w⟩ and ⟨ũ⟩ are pronounced alike in that slot (Englebretson 2015); word-initial and intervocalic ⟨w⟩ stays the approximant /w/. Englebretson (2015) itself qualifies the post-consonantal reading with one exception, before ⟨o⟩, where ⟨w⟩ instead equates with /u/; that conditioning is not implemented here, and the gold set's single ⟨Cwo⟩ token (remwo → ɾɛmoɔ) is consistent with the unconditioned /o/ reading used by this spec. ⟨c⟩ is transcribed /ʃ/ per Englebretson (2015) Figure 1, but the gold data disagrees: of the ⟨c⟩ rows, 120 use /ɕ/ against 1 use of /ʃ/, so most gold transcriptions follow a different (alveolo-palatal) convention than the source sketch; ⟨nj⟩ is transcribed /ⁿdʒ/ here while gold uses the affricate /ᶮdʑ/, the same alveolo-palatal mismatch. Dahl's law (dissimilatory voicing of a voiceless stop before a following voiceless obstruent, kĩ- → gĩ-) is already spelled out in the standard orthography, so it needs no rule here. VOWEL LENGTH: length is phonemic and, where it is written at all, it is written by doubling the vowel letter -- \"Vowel length is phonemic in Gĩkũyũ. It is often indicated orthographically by means of a sequence of two identical vowels. However, this is not consistent, especially across morpheme boundaries, and so the orthography cannot be taken as a reliable indicator of whether a vowel is long or short\" (Englebretson 2015, Orthography). The doubled spellings are therefore taken at face value here: ⟨aa ee ii oo uu ĩĩ ũũ⟩ map to the long vowels /aː ɛː iː ɔː uː eː oː/. The unreliability runs one way only, exactly as the source says: in the ki/wikipron gold 269 rows carry a length mark and 213 of them are spelled with a single vowel letter, so the orthography under-writes length and this spec cannot recover those; but of the 94 rows that DO double a vowel letter, 56 are transcribed with ː and the other 38 are transcribed as two separate vowel symbols carrying different tones (gĩĩko -> [ɣèèkɔ̀], nguruu -> [ᵑɡùɾúù]), which is the gold's notation for a long vowel whose two moras differ in tone rather than a segmental disagreement. TONE is phonemic and is not written at all (Englebretson 2015; Armstrong 1940; Clements 1984 on the tone system), so it is not modelled. Of the 1025 unique spellings in the ki/wikipron gold, 321 (31.3%) recur with two or more distinct gold transcriptions, and 251 of those 321 differ only in the tone/downstep diacritics the plain orthography never writes (e.g. aka -> [aka]/[àkǎ]); that is evidence that the plain spelling underdetermines tone and that the gold's own transcriptions are internally inconsistent for a tone-blind rule set, not a proof that any particular score is a floor. The harness scores each spelling against the best-matching of its gold transcriptions, so a homograph is scored leniently rather than penalized. The ceiling is measured directly instead: scoring the same hypothesis/gold pairs with every tone mark (acute, grave, caron, downstep) folded out on both sides drops PER from the shipped 0.3914 to 0.0523, so once the unwritten information is discounted this spec is close to segmentally exhausted; the residual gap is the remaining ⟨c⟩/⟨nj⟩ transcription-convention mismatch above plus ordinary rule noise, not a missing rule the orthography could support.",
   "iso639_3": "kik",
   "glottolog_code": "kiku1240",
   "wikidata_qid": "Q33587",
