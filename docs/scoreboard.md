@@ -270,7 +270,7 @@ A row's `N` is its sample size in scored words, and it is not cosmetic: below ro
 | gl | wikipron | 8091 | 0.0804 | 0.0354 | 0.0288 | 0.8057 | 0.8438 | [0.0777, 0.0828] | 0.5957 | research | crowd-scraped |
 | gld | northeuralex | 887 | 0.1532 | 0.1532 | 0.1532 | 0.3574 | 0.3574 | [0.1431, 0.1624] | 0.3574 | research | lexicon-derived |
 | gmh | wikipron | 1516 | 0.2938 | 0.2938 | 0.2938 | 0.0778 | 0.0778 | [0.2863, 0.3012] | 0.0778 | research | crowd-scraped |
-| gml | wikipron | 143 | 0.3670 | 0.3636 | 0.3636 | 0.0839 | 0.0839 | [0.3361, 0.3989] | 0.0699 | research | crowd-scraped |
+| gml | wikipron | 143 | 0.2771 | 0.2727 | 0.2717 | 0.1189 | 0.1189 | [0.2500, 0.3042] | 0.1189 | research | crowd-scraped |
 | gn | vox_communis | 4264 | 0.1675 | 0.1393 | 0.1372 | 0.4294 | 0.4379 | [0.1630, 0.1724] | 0.3208 | research | epitran-derived |
 | gn | wikipron | 347 | 0.1458 | 0.0819 | 0.0819 | 0.6254 | 0.6254 | [0.1275, 0.1652] | 0.4986 | research | crowd-scraped |
 | got | wikipron | 1816 | 0.0667 | 0.0221 | 0.0143 | 0.8409 | 0.9009 | [0.0622, 0.0709] | 0.5677 | research | crowd-scraped |
