@@ -1056,14 +1056,27 @@ class TestManx:
         """⟨sh⟩ maps to /ʃ/ (voiceless postalveolar fricative)."""
         _assert_first(_grapheme(self.spec, "sh"), "ʃ", label="gv:sh→ʃ")
 
-    def test_th_includes_dental_fricatives(self):
-        """⟨th⟩ maps to /θ/ (voiceless) or /ð/ (voiced dental fricative).
+    def test_th_is_a_plain_stop(self):
+        """⟨th⟩ maps to /t/. Manx has no dental fricatives.
 
-        Manx ⟨th⟩ can realise as either dental fricative — the voiceless /θ/
-        being more frequent word-initially.
+        The digraph is an English spelling convention, not an English
+        sound: Lewin, "Aspects of the historical phonology of Manx"
+        (PhD thesis, University of Edinburgh, 2020,
+        https://era.ed.ac.uk/handle/1842/37271) transcribes thallooin
+        /taˈluːnʲ/ (p. 72) and farrys-thie /ˌfarəsˈtai/, and the Old Irish
+        /θ/ that these words continue had already gone to /h/ and then to
+        zero in monosyllables (§2.2.1). No /θ ð/ appears anywhere in the
+        Manx inventory the thesis reconstructs.
         """
-        vals = _grapheme(self.spec, "th")
-        _assert_contains(vals, "θ", "ð", label="gv:th→θ/ð")
+        _assert_first(_grapheme(self.spec, "th"), "t", label="gv:th\u2192t")
+
+    def test_lh_is_a_palatalised_lateral(self):
+        """⟨lh⟩ maps to /lʲ/, not /l/ followed by /h/.
+
+        Lewin (2020): lhean /lʲeːn/ 'wide', lhiabbee /lʲabi/ 'bed',
+        lhune /lʲuːn/ 'ale', lhiaght /lʲaxt/.
+        """
+        _assert_first(_grapheme(self.spec, "lh"), "l\u02b2", label="gv:lh\u2192l\u02b2")
 
 
 # ═══════════════════════════════════════════════════════════════════════════
