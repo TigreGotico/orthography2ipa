@@ -72,6 +72,9 @@
     "iū": [
       "uː"
     ],
+    "ių": [
+      "uː"
+    ],
     "į": [
       "iː"
     ],
@@ -141,7 +144,7 @@
       "phonemes": ["b"],
       "surface": "bʲ",
       "followed_by": "front_vowel",
-      "notes": "Lithuanian consonants contrast palatalized/non-palatalized before front vowels and before the silent-i digraphs (ia, ią, io, iu, iū) that mark palatalization before a back vowel (Bakšienė et al. 2024: 414-444)."
+      "notes": "Lithuanian consonants contrast palatalized/non-palatalized before front vowels and before the silent-i digraphs (ia, ią, io, iu, ių, iū) that mark palatalization before a back vowel (Bakšienė et al. 2024: 414-444)."
     },
     {
       "id": "LT_PALATAL_C",
@@ -286,7 +289,7 @@
     }
   ],
   "parent": "x-clade-east2280",
-  "notes": "Lithuanian, the oldest attested Baltic language. Retains many archaic Indo-European features. Long vowels marked with macron/ogonek. Consonants are palatalized before front vowels (e ę ė i į y) and before the silent-i digraphs ia/ią/io/iu/iū that mark palatalization before a back vowel (Bakšienė et al. 2024) -- e.g. čia is /tʃʲa/, not /tʃia/. ą ę į ų mark historical vowel length, not nasality, in the modern language (Bakšienė et al. 2024; Ambrazas 1997, ch. on phonology). The standard orthography does not mark the acute/circumflex pitch-accent contrast on long syllables (Bakšienė et al. 2024), so it is not modelled here -- word-level tone is lexical information the letters do not carry. Digraphs dž and dz precede single letters in processing order. Ambrazas 1997 was consulted only via its published review (Language 76(2), 1997, DOI 10.2307/417422) and its own front-matter description, not the full 802pp. volume; its citation here backs the general grammar's existence and scope, not page-pinpointed claims.",
+  "notes": "Lithuanian, the oldest attested Baltic language. Retains many archaic Indo-European features. Long vowels marked with macron/ogonek. Consonants are palatalized before front vowels (e ę ė i į y) and before the silent-i digraphs ia/ią/io/iu/ių/iū that mark palatalization before a back vowel (Bakšienė et al. 2024) -- e.g. čia is /tʃʲa/, not /tʃia/. ⟨ių⟩ is the long counterpart of ⟨iu⟩ exactly as ⟨ų⟩ is of ⟨u⟩, and it spells the genitive plural of the whole soft-stem declension, so it is the most frequent member of the set (WikiPron gold: saulių -> s a u lʲ uː, siųsti -> sʲ uː sʲ tʲ ɪ). Known limitation: the ⟨io⟩ digraph is read as palatalization + /oː/ unconditionally, so Greek and Latin loans that keep a genuine /io/ hiatus -- stadionas, biologija, idioma -- come out one vowel short. The hiatus is lexical, not predictable from the letters, so no orthographic condition separates the two readings; a lexicon entry is the only correct fix. No such loan occurs in the shipped WikiPron gold (3 ⟨io⟩ rows, all of them the digraph reading), so the limitation costs nothing measurable and is recorded here rather than papered over. ą ę į ų mark historical vowel length, not nasality, in the modern language (Bakšienė et al. 2024; Ambrazas 1997, ch. on phonology). The standard orthography does not mark the acute/circumflex pitch-accent contrast on long syllables (Bakšienė et al. 2024), so it is not modelled here -- word-level tone is lexical information the letters do not carry. Digraphs dž and dz precede single letters in processing order. Ambrazas 1997 was consulted only via its published review (Vajda, Language 76(1), 2000, pp. 203-204, DOI 10.2307/417422) and its own front-matter description, not the full 802pp. volume; its citation here backs the general grammar's existence and scope, not page-pinpointed claims.",
   "sources": [
     {
       "id": "baksiene_et_al_2024",
@@ -305,7 +308,7 @@
       "title": "Lithuanian Grammar",
       "publisher": "Vilnius: Baltos Lankos",
       "pages": null,
-      "notes": "802pp. reference grammar; existence, title, editor, year and publisher confirmed via its published review (Language 76(2), 1997, DOI 10.2307/417422), full text not directly retrieved -- cited here for the grammar's general description of the palatalization, vowel-length and pitch-accent systems, not for page-pinpointed claims."
+      "notes": "802pp. reference grammar; existence, title, editor, year and publisher confirmed via its published review (Edward J. Vajda, Language 76(1), March 2000, pp. 203-204, DOI 10.2307/417422), full text not directly retrieved -- cited here for the grammar's general description of the palatalization, vowel-length and pitch-accent systems, not for page-pinpointed claims."
     }
   ],
   "wikipedia": [

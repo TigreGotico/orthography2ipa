@@ -369,8 +369,8 @@ A row's `N` is its sample size in scored words, and it is not cosmetic: below ro
 | lo | kaikki | 2308 | 0.3632 | 0.3632 | 0.3632 | 0.0000 | 0.0000 | [0.3590, 0.3674] | 0.0000 | research | crowd-scraped |
 | lou | wikipron | 262 | 0.1953 | 0.1953 | 0.1953 | 0.5115 | 0.5115 | [0.1679, 0.2236] | 0.5115 | research | crowd-scraped |
 | lsi | wikipron | 96 | 0.4222 | 0.4212 | 0.4212 | 0.0000 | 0.0000 | [0.4022, 0.4413] | 0.0000 | research | crowd-scraped |
-| lt | vox_communis | 28971 | 0.2750 | 0.2749 | 0.2749 | 0.0486 | 0.0486 | [0.2733, 0.2769] | 0.0486 | research | epitran-derived |
-| lt | wikipron | 440 | 0.2646 | 0.2646 | 0.2646 | 0.1477 | 0.1477 | [0.2480, 0.2806] | 0.1477 | research | crowd-scraped |
+| lt | vox_communis | 28971 | 0.2706 | 0.2705 | 0.2705 | 0.0530 | 0.0530 | [0.2689, 0.2726] | 0.0529 | research | epitran-derived |
+| lt | wikipron | 440 | 0.2640 | 0.2640 | 0.2640 | 0.1477 | 0.1477 | [0.2474, 0.2801] | 0.1477 | research | crowd-scraped |
 | lut | wikipron | 135 | 0.2259 | 0.2259 | 0.2259 | 0.2444 | 0.2444 | [0.1918, 0.2598] | 0.2444 | research | crowd-scraped |
 | lv | northeuralex | 1213 | 0.1901 | 0.1901 | 0.1901 | 0.2383 | 0.2383 | [0.1824, 0.1985] | 0.2383 | research | lexicon-derived |
 | lzz | wikipron | 262 | 0.2017 | 0.2017 | 0.2017 | 0.2557 | 0.2557 | [0.1824, 0.2233] | 0.2557 | research | crowd-scraped |

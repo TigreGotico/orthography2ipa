@@ -65,3 +65,27 @@ def test_ogonek_vowels_are_long_not_nasal():
     for letter, ipa in (("ą", "aː"), ("ę", "ɛː"), ("į", "iː"), ("ų", "uː")):
         assert spec.graphemes[letter] == [ipa]
         assert "̃" not in ipa[0]  # no combining tilde (nasal marker)
+
+
+# ─── ⟨ių⟩ is a silent-i digraph too: the genitive plural of soft stems ────
+
+def test_iu_ogonek_is_a_silent_i_digraph():
+    # WikiPron gold: saulių -> s a u lʲ uː. ⟨ių⟩ is to ⟨iu⟩ what ⟨ų⟩ is to
+    # ⟨u⟩ -- the long counterpart -- and it spells the genitive plural of
+    # the entire soft-stem declension, so it is the most frequent member of
+    # the silent-i set.
+    assert t("saulių") == "saʊlʲuː"
+
+
+def test_siusti_matches_wikipron_gold_vowel():
+    # WikiPron gold: siųsti -> sʲ uː sʲ tʲ ɪ. The ⟨i⟩ of ⟨ių⟩ is a
+    # palatalization mark, not a vowel.
+    ipa = t("siųsti")
+    assert ipa.startswith("sʲuː")
+
+
+def test_iu_ogonek_is_long_like_u_ogonek():
+    from orthography2ipa import get
+    spec = get("lt")
+    assert spec.graphemes["ių"] == ["uː"]
+    assert spec.graphemes["ių"] == spec.graphemes["iū"]
