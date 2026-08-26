@@ -136,6 +136,50 @@ def test_guw_homography_is_mostly_tone_not_the_dual_orthography():
     folded = [(w, _strip_tone(g)) for w, g in pairs]
     assert _homograph_count(folded) == 24
 
+def _ee_inexact_spellings(also_fold_circumflex):
+    """Ewe spellings whose transcription is not EXACTLY one of its golds."""
+    engine = G2P("ee")
+    extra = benchmark._prosody_marks("ee")
+    refs = {}
+    for word, gold in _gold_pairs("ewe_latn_broad.tsv"):
+        refs.setdefault(word, []).append(gold)
+
+    def norm(s):
+        # The circumflex is deliberately outside _TONE_COMBINING_MARKS
+        # (see the module docstring); folding it too is what isolates the
+        # segmental residual from the fold's own conservatism.
+        s = _strip_tone(benchmark.normalize(s, False, True, extra_strip=extra))
+        if also_fold_circumflex:
+            s = unicodedata.normalize(
+                "NFC", unicodedata.normalize("NFD", s).replace("̂", ""))
+        return s
+
+    return sorted(word for word, golds in refs.items()
+                  if norm(engine.transcribe_word(word))
+                  not in {norm(g) for g in golds})
+
+
+def test_ee_folded_residual_is_exactly_the_two_documented_gamma_rows():
+    # Stronger than the PER bound below, and the reason Ewe's ceiling can
+    # be called exhaustive rather than merely low: once tone is folded
+    # out, 245 of the 247 distinct spellings match a gold transcription
+    # EXACTLY, and the two that do not are the bare alphabet-letter rows
+    # the spec already documents as a gold mismatch, where WikiPron
+    # glosses the letter ⟨ɣ⟩ as [ɰ] and folds it in with ⟨w⟩. There is
+    # no diffuse segmental error left in this row, so any regression in
+    # the Ewe rules adds a word here and fails at once, long before it
+    # would be visible in the PER bound.
+    #
+    # Under this module's default fold the list also holds the two
+    # spellings whose gold writes a circumflex the spelling does not
+    # (⟨akpaviã⟩, ⟨koklozi⟩). The circumflex is deliberately left out of
+    # _TONE_COMBINING_MARKS, so those two are the fold's own conservatism
+    # showing through, not segmental error: fold the circumflex too and
+    # they go away while the two gamma rows stay.
+    assert _ee_inexact_spellings(False) == [
+        "akpaviã", "koklozi", "Ɣ", "ɣ"]
+    assert _ee_inexact_spellings(True) == ["Ɣ", "ɣ"]
+
 
 def test_ee_folded_per_confirms_the_ceiling_is_notation():
     # Once tone is stripped from both sides, Ewe's segmental PER drops
