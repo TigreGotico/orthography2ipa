@@ -3,7 +3,7 @@
   "name": "Old French",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "ch": [
       "tʃ"
@@ -144,7 +144,7 @@
       "notes": "Frankish (West Germanic) superstrate: /h/, /w/, some lexis"
     }
   ],
-  "notes": "Skeleton. Old French (c. 842-1400). Retains the affricate values ⟨ch⟩=/tʃ/, ⟨j/g⟩=/dʒ/, ⟨c/ç⟩=/ts/, ⟨z⟩=/ts/ that later simplified; final dental spirants (⟨t⟩=/θ/) occur early. Diphthongs and nasal vowels are only partially recoverable from spelling.",
+  "notes": "Skeleton. Old French (c. 842-1400). Retains the affricate values ⟨ch⟩=/tʃ/, ⟨j/g⟩=/dʒ/, ⟨c/ç⟩=/ts/, ⟨z⟩=/ts/ that later simplified; final dental spirants (⟨t⟩=/θ/) occur early. Diphthongs and nasal vowels are only partially recoverable from spelling. Stress exemption: Old French word stress was inherited from Latin etymology (largely penultimate/antepenultimate by Latin rule) and is not recoverable from Old French spelling itself; no stress block is declared. Source: Pope, M. K. (1934), From Latin to Modern French, secs. on accentuation.",
   "iso639_3": "fro",
   "glottolog_code": null,
   "sources": [
