@@ -278,7 +278,7 @@ A row's `N` is its sample size in scored words, and it is not cosmetic: below ro
 | gu | wikipron | 4082 | 0.1842 | 0.1840 | 0.1839 | 0.3025 | 0.3028 | [0.1793, 0.1892] | 0.3025 | research | crowd-scraped |
 | gul | wikipron | 207 | 0.3341 | 0.3341 | 0.3341 | 0.2367 | 0.2367 | [0.2990, 0.3705] | 0.2367 | research | crowd-scraped |
 | guw | wikipron | 595 | 0.4311 | 0.4148 | 0.4120 | 0.0034 | 0.0034 | [0.4196, 0.4423] | 0.0034 | research | crowd-scraped |
-| gv | wikipron | 690 | 0.3631 | 0.3553 | 0.3505 | 0.1594 | 0.1623 | [0.3460, 0.3792] | 0.1565 | research | crowd-scraped |
+| gv | wikipron | 690 | 0.2460 | 0.2309 | 0.2259 | 0.3362 | 0.3435 | [0.2300, 0.2627] | 0.3246 | research | crowd-scraped |
 | gwc | wikipron | 165 | 0.4170 | 0.3937 | 0.3782 | 0.0242 | 0.0242 | [0.3888, 0.4436] | 0.0242 | research | crowd-scraped |
 | gwd | wold | 976 | 0.0481 | 0.0481 | 0.0481 | 0.7602 | 0.7602 | [0.0419, 0.0552] | 0.7602 | research | lexicon-derived |
 | ha | vox_communis | 3719 | 0.1130 | 0.0467 | 0.0390 | 0.7760 | 0.8193 | [0.1083, 0.1177] | 0.4937 | research | epitran-derived |
