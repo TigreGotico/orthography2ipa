@@ -667,7 +667,7 @@ A row's `N` is its sample size in scored words, and it is not cosmetic: below ro
 | zh | ipa_childes | 4718 | 0.2879 | 0.2668 | 0.2662 | 0.2338 | 0.2342 | [0.2816, 0.2941] | 0.2126 | research | machine-generated |
 | zom | wikipron | 134 | 0.4399 | 0.4399 | 0.4399 | 0.0000 | 0.0000 | [0.4190, 0.4602] | 0.0000 | research | crowd-scraped |
 | zu | wikipron | 1754 | 0.2311 | 0.2269 | 0.2267 | 0.0593 | 0.0593 | [0.2252, 0.2365] | 0.0576 | research | crowd-scraped |
-| zza | wikipron | 196 | 0.3606 | 0.3606 | 0.3606 | 0.1122 | 0.1122 | [0.3278, 0.3924] | 0.1122 | research | crowd-scraped |
+| zza | wikipron | 196 | 0.2464 | 0.2387 | 0.2387 | 0.2551 | 0.2551 | [0.2159, 0.2745] | 0.2449 | research | crowd-scraped |
 
 ---
 [← Spain-Romance TTS gold set](spain-romance-tts-gold.md) · [Home](index.md) · [Comparison to other G2P systems →](comparison.md)
