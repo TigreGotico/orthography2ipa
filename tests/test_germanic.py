@@ -780,10 +780,12 @@ class TestFlemish:
 class TestAfrikaans:
     """Accuracy tests for Afrikaans (af).
 
-    Afrikaans is a daughter language of Dutch (17th-century Cape Colony variety)
-    with significant simplifications in morphology and some sound changes. The
-    spelling system closely reflects the spoken form. Key features: retention of
-    /ɣ/ as the dominant <g> realization, open vowels, and the /øː/ vowel for <eu>.
+    Afrikaans is a daughter language of Dutch (17th-century Cape Colony variety),
+    but its vowel system diverged far enough that Dutch values are wrong for it.
+    The expectations below follow Wissing, "Afrikaans" (Illustrations of the
+    IPA), Journal of the International Phonetic Association 50(1), 2020,
+    pp. 127-140, https://doi.org/10.1017/S0025100318000269 — the inventory
+    tables on pp. 133-135 and their orthographic examples.
     """
 
     LANGUAGE_CODE = "af"
@@ -805,17 +807,35 @@ class TestAfrikaans:
 
     # --- Vowels ---
 
-    def test_a_is_open_back(self):
-        """<a> in Afrikaans is the open back /ɑ/ (e.g., *bad*, *man*)."""
-        _assert_first(_grapheme(self._spec, "a"), "ɑ", label="af a")
+    def test_a_is_short_low(self):
+        """<a> is the short low vowel, written /a/ (e.g., *mas*, *man*).
+
+        Wissing (2020: 134) writes this vowel /ɑ/ and the long one /aː/,
+        following the Dutch tradition; his footnote 11 records that De
+        Villiers & Ponelis (1987) and Coetzee (1981) write /a/ short and
+        /ɑː/ long. The spec uses the Afrikaans-internal convention, which
+        is also the convention of the wikipron gold. Length, not quality,
+        is what the contrast rests on either way.
+        """
+        _assert_first(_grapheme(self._spec, "a"), "a", label="af a")
 
     def test_aa_is_long(self):
-        """<aa> → /aː/ (e.g., *baas*, *naam*)."""
-        _assert_first(_grapheme(self._spec, "aa"), "aː", label="af aa")
+        """<aa> is the long low vowel /ɑː/ (e.g., *naas*, *kaas*).
 
-    def test_ee_is_long_mid(self):
-        """<ee> → /eː/ (e.g., *been*, *meer*)."""
-        _assert_first(_grapheme(self._spec, "ee"), "eː", label="af ee")
+        Wissing (2020: 134): naas /naːs/; see test_a_is_short_low for the
+        notation.
+        """
+        _assert_first(_grapheme(self._spec, "aa"), "ɑː", label="af aa")
+
+    def test_ee_is_a_centring_diphthong(self):
+        """<ee> is phonetically [iə] (e.g., *mees*, *been*).
+
+        Wissing (2020: 133 and fn. 10): the long mid-high vowels /eː øː oː/
+        "are phonetically diphthongal in nature (respectively [iə yœ uə])",
+        following Combrink & De Stadler (1987) and De Villiers & Ponelis
+        (1987). Dutch keeps a monophthong here; Afrikaans does not.
+        """
+        _assert_first(_grapheme(self._spec, "ee"), "iə", label="af ee")
 
     def test_ie_is_high(self):
         """<ie> → /i/ (e.g., *dier*, *hier*); Afrikaans shortens the Dutch /iː/."""
@@ -825,13 +845,43 @@ class TestAfrikaans:
         """<oe> → /u/ (e.g., *boek*, *moeder*)."""
         _assert_first(_grapheme(self._spec, "oe"), "u", label="af oe")
 
-    def test_eu_is_front_rounded(self):
-        """<eu> → /øː/ (e.g., *seun*, *deur*)."""
-        _assert_first(_grapheme(self._spec, "eu"), "øː", label="af eu")
+    def test_eu_is_a_centring_diphthong(self):
+        """<eu> is phonetically [yœ] (e.g., *neus*, *deur*).
 
-    def test_oo_is_long(self):
-        """<oo> → /oː/ (e.g., *boom*, *roos*)."""
-        _assert_first(_grapheme(self._spec, "oo"), "oː", label="af oo")
+        Wissing (2020: 133 and fn. 10): /øː/ is realised [yœ].
+        """
+        _assert_first(_grapheme(self._spec, "eu"), "yœ", label="af eu")
+
+    def test_oo_is_a_centring_diphthong(self):
+        """<oo> is phonetically [uə] (e.g., *boos*, *boom*).
+
+        Wissing (2020: 133 and fn. 10): /oː/ is realised [uə].
+        """
+        _assert_first(_grapheme(self._spec, "oo"), "uə", label="af oo")
+
+    def test_u_is_rounded_schwa(self):
+        """Short <u> is /œ/, not Dutch /ʏ/ (e.g., *mus* 'sparrow').
+
+        Wissing (2020: 134) lists the short vowels as /i y ɛ ɑ ə œ ɔ u/ and
+        gives mus /mœs/.
+        """
+        _assert_first(_grapheme(self._spec, "u"), "œ", label="af u")
+
+    def test_i_is_schwa_in_closed_syllables(self):
+        """<i> reads /ə/, not /ɪ/ (e.g., *mis* 'mist').
+
+        Wissing (2020: 134): mis /məs/. Afrikaans has no lax /ɪ/; /i/ is
+        spelled <ie> (nies /nis/).
+        """
+        _assert_first(_grapheme(self._spec, "i"), "ə", label="af i")
+
+    def test_w_is_a_voiced_fricative(self):
+        """<w> is /v/, not Dutch /ʋ/ (e.g., *was* 'wash').
+
+        Wissing (2020: 130): was /vɑs/. [ʋ] survives only as an allophone
+        of /v/ after /t k/ (twaalf /tvaːlf/ [tʋaːlf]).
+        """
+        _assert_first(_grapheme(self._spec, "w"), "v", label="af w")
 
     # --- Consonants ---
 

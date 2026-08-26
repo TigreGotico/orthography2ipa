@@ -103,7 +103,7 @@ def _flat_best(tok: PhonetokTokenizer, word: str) -> str:
         t.ipa[0] for t in tok.grapheme_tokens(word) if t.ipa)
 
 
-@pytest.mark.parametrize("lang", ["eo", "af"])
+@pytest.mark.parametrize("lang", ["eo"])
 def test_non_positional_spec_beam_unchanged(lang):
     spec = get(lang)
     assert not spec.positional_graphemes, f"{lang} unexpectedly has positions"
