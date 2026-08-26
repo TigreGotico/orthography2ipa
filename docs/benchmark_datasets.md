@@ -702,6 +702,28 @@ override. Reclassifying the row would in fact be counterproductive:
 the ordered `RELIABILITY_TIERS` tuple would hand it a gating vote. Gating
 is set membership, not tuple position.
 
+**The `pt-BR` row is European Portuguese under a Brazilian label.** The
+VoxCommunis `pt` file is the region-untagged Common Voice locale, and it is
+mapped to `pt-BR` because Common Voice's Portuguese traffic is
+predominantly Brazilian. Its phone tier is not. Measured over the whole
+cached file by `scripts/fold_pt_br_notation.py`, none of the features that
+separate Brazilian from European Portuguese appear in it: final ⟨-l⟩
+vocalises to [w] in 0 of 948 words, ⟨t⟩ affricates before /i/ in 0 of
+2 378, ⟨d⟩ in 5 of 1 637, final unstressed ⟨-e⟩ raises to [i] in 0 of
+2 956 and ⟨-o⟩ to [u] in 0 of 7 429, while the European coda sibilant [ʃ]
+appears on all 7 429 words ending in ⟨-s⟩.
+
+The same file is wrong about Portuguese of any variety in two further
+ways. Its 34-symbol inventory contains neither ⟨ʎ⟩ nor ⟨ɲ⟩, so the ⟨lh⟩
+and ⟨nh⟩ digraphs simply lose their ⟨h⟩ across 513 and 717 words
+respectively (`gatilho` → `ɡɐtilo`, `tinha` → `tinɐ`); and it applies the
+European coda-sibilant rule *inside* the ⟨ss⟩ digraph, writing [ʃs] on 981
+of 995 ⟨ss⟩ words (`isso` → `iʃso`). Folding these conventions out of both
+sides one at a time takes the row from 0.3886 to 0.2534. As with `vi`, the
+folds stay out of `normalize()` and the row stays as scored; the
+`epitran-derived` tier already keeps it out of every gating decision. See
+[languages/pt-BR.md](languages/pt-BR.md).
+
 **Known upstream contamination, `sr`.** 35.8% of Serbian tokens carry a
 spurious word-initial `z` in the Charsiu-derived phone tier (`не` →
 `znɛ`, `и` → `zi`, `а` → `za`). It is never doubled on words that

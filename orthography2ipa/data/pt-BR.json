@@ -38,6 +38,13 @@
       "s",
       "z"
     ],
+    "ss": [
+      "s"
+    ],
+    "w": [
+      "w",
+      "v"
+    ],
     "z": [
       "z"
     ],
@@ -141,6 +148,14 @@
     ]
   },
   "positional_graphemes": {
+    "c": {
+      "before_e": [
+        "s"
+      ],
+      "before_i": [
+        "s"
+      ]
+    },
     "r": {
       "word_initial": [
         "ʁ"
@@ -497,7 +512,7 @@
   ],
   "quality": "production",
   "script_type": "alphabet",
-  "notes": "Brazilian Portuguese. Based directly on late Old Portuguese diaspora phonology. Key innovations: (1) Loss of coda R (ɾ→∅; later urban ɦ/ʁ in some dialects). (2) Coda sibilants remain alveolar (s, z), no universal palato-alveolar outcome. (3) L-vocalisation (l→w) strong and categorical in coda. (4) Palatalisation of /t, d/ > [t͡ʃ, d͡ʒ] before /i/. (5) Much weaker vowel reduction; loss of ɨ. (6) Final /e/→/i/ and /o/→/u/. (7) /rr/ always uvular. (8) Nasal vowel system preserved but with characteristic BR realisation. POST-LEXICAL ALLOPHONY (allophone_rules, base for the BR dialect specs via OVERLAY_BY_ID): final unstressed vowel raising — the near-close [ɪ]/[ʊ] selected word-finally by the positional map is realised as the standard BP close [i]/[u] (gato→[ˈɡatu], leite→[ˈlejt͡ʃi]). Targeting the reduced [ɪ]/[ʊ] (not underlying /e o/) leaves conservative dialects that retain a final [e]/[o] untouched, so the rule inherits cleanly. Deliberately kept in the positional map, NOT duplicated as allophone_rules to avoid double-application: /t d/ affrication before front vowels (grapheme-⟨i⟩ handled by the before_i positional rule) and coda /l/ vocalisation (l→w). The phoneme-conditioned refinement of affrication before a raised final ⟨e⟩ (dente→[ˈdẽt͡ʃi]) is left to the dialect-delta wave, where the non-palatalising nordeste varieties (recife/norte/ce) can opt out by rule id — expressing it in the base would silently re-impose affrication on those inheritors. Deliberately NOT modelled in the base: strong EP-style pretonic reduction (BP keeps distinct pretonic /e o/); coda /s/→[ʃ] chiado (a carioca/RJ dialect delta, not general BP — base stays alveolar [s]/[z]); coda /r/→[h~x] weak fricative (highly variable and, since the broad wikipron pt-BR gold transcribes coda /r/ as [ʁ], adding [h~x] regresses the only pt-BR gold — held as a dialect delta rather than shipped in the base).",
+  "notes": "Brazilian Portuguese. Based directly on late Old Portuguese diaspora phonology. Key innovations: (1) Loss of coda R (ɾ→∅; later urban ɦ/ʁ in some dialects). (2) Coda sibilants remain alveolar (s, z), no universal palato-alveolar outcome. (3) L-vocalisation (l→w) strong and categorical in coda. (4) Palatalisation of /t, d/ > [t͡ʃ, d͡ʒ] before /i/. (5) Much weaker vowel reduction; loss of ɨ. (6) Final /e/→/i/ and /o/→/u/. (7) /rr/ always uvular. (8) Nasal vowel system preserved but with characteristic BR realisation. POST-LEXICAL ALLOPHONY (allophone_rules, base for the BR dialect specs via OVERLAY_BY_ID): final unstressed vowel raising — the near-close [ɪ]/[ʊ] selected word-finally by the positional map is realised as the standard BP close [i]/[u] (gato→[ˈɡatu], leite→[ˈlejt͡ʃi]). Targeting the reduced [ɪ]/[ʊ] (not underlying /e o/) leaves conservative dialects that retain a final [e]/[o] untouched, so the rule inherits cleanly. Deliberately kept in the positional map, NOT duplicated as allophone_rules to avoid double-application: /t d/ affrication before front vowels (grapheme-⟨i⟩ handled by the before_i positional rule) and coda /l/ vocalisation (l→w). The phoneme-conditioned refinement of affrication before a raised final ⟨e⟩ (dente→[ˈdẽt͡ʃi]) is left to the dialect-delta wave, where the non-palatalising nordeste varieties (recife/norte/ce) can opt out by rule id — expressing it in the base would silently re-impose affrication on those inheritors. Deliberately NOT modelled in the base: strong EP-style pretonic reduction (BP keeps distinct pretonic /e o/); coda /s/→[ʃ] chiado (a carioca/RJ dialect delta, not general BP — base stays alveolar [s]/[z]); coda /r/→[h~x] weak fricative (highly variable and, since the broad wikipron pt-BR gold transcribes coda /r/ as [ʁ], adding [h~x] regresses the only pt-BR gold — held as a dialect delta rather than shipped in the base). SIBILANTS ARE PLAIN ALVEOLAR. BP has one sibilant pair /s z/ (Barbosa & Albano 2004: 228, consonant chart, Alveolar column: saca [ˈsakɐ] / zaca [ˈzakɐ]). The apico-alveolar [s̺ z̺] belongs to the Galician-Portuguese four-sibilant system that roa-x-galaicopt and pt-PT-x-medieval model, and to the northern EP dialects that retain it; it reached BP only by inheritance, because the base declared ⟨s c ç z⟩ but not the ⟨ss⟩ digraph and not positional ⟨c⟩ before ⟨e i⟩, so galaicopt ⟨ss⟩→[s̺] and medieval ⟨ce ci⟩→[s̺] fell through. Both are now declared here, matching the value all twelve pt-BR-x-* dialects already carry. ⟨ss⟩ and ⟨rr⟩ are DIGRAPHS, not geminates: Portuguese has no contrastive consonant length, ⟨ss⟩ spells /s/ where an intervocalic single ⟨s⟩ would be /z/ (isso [ˈisu]) and ⟨rr⟩ spells the strong rhotic (carro [ˈkaʁu] vs caro [ˈkaɾu], Barbosa & Albano 2004: 228), so there is no geminate for a collapse pass to remove and collapse_geminates stays unset. ⟨w⟩ occurs only in loans and names but is not silent — [w] in English loans, [v] in Germanic names — and without an entry the letter was deleted outright (web→[ˈeb], show→[ˈsu]).",
   "sources": [
     {
       "id": "barbosa_albano2004",

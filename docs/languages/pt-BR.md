@@ -95,6 +95,67 @@ Honest limits, each a documented decision rather than an omission:
   shipping [h~x] in the base regresses the only pt-BR gold. Held as a
   dialect delta.
 
+## Sibilants, digraphs, and ⟨w⟩
+
+Brazilian Portuguese has one sibilant pair, the plain alveolar /s z/
+(Barbosa & Albano 2004: 228, consonant chart, Alveolar column: `saca`
+[ˈsakɐ] vs `zaca` [ˈzakɐ]). The apico-alveolar [s̺ z̺] is a different
+system: it belongs to Galician-Portuguese, which `roa-x-galaicopt` and
+`pt-PT-x-medieval` model with four sibilants, and to the northern European
+dialects that still keep it (`pt-PT-x-minho`, `pt-PT-x-trasosmontes` and
+siblings, each of which declares it for itself).
+
+That value used to reach `pt-BR` by inheritance. The base declared ⟨s c ç
+z⟩ but neither the ⟨ss⟩ digraph nor positional ⟨c⟩ before ⟨e i⟩, so
+galaicopt's ⟨ss⟩ → [s̺] and medieval's ⟨ce ci⟩ → [s̺] fell straight through
+and `isso` came out [ˈis̺u], `cidade` [s̺iˈdad͡ʒi]. All twelve `pt-BR-x-*`
+dialects already declared the modern value; only their parent did not.
+Both keys are now declared in the base.
+
+⟨ss⟩ and ⟨rr⟩ are digraphs, not geminates. Portuguese has no contrastive
+consonant length: ⟨ss⟩ spells /s/ in the intervocalic position where a
+single ⟨s⟩ would be /z/, and ⟨rr⟩ spells the strong rhotic, which contrasts
+with the tap (`carro` [ˈkaʁu] vs `caro` [ˈkaɾu], Barbosa & Albano 2004:
+228). Neither yields a doubled segment, so there is nothing for a geminate
+collapse pass to remove and `collapse_geminates` stays unset. The only
+doubled segments the spec emits come from unassimilated loans and names
+(`watts`, `reddit`), where the gold sets double them too.
+
+⟨w⟩ is rare but not silent: [w] in English loans, [v] in Germanic names.
+With no grapheme entry the letter was deleted, which cost the whole
+syllable — `web` → [ˈeb], `show` → [ˈsu], `wagner` → [aɡˈneɾ]. It now maps
+to [w v], mirroring `pt-PT`.
+
+## Reading the vox_communis row
+
+The `vox_communis` row is the worst Portuguese row on the board and it says
+nothing about this spec. Its phone tier is Epitran output over the
+region-untagged Common Voice `pt` locale, and that output is European
+Portuguese. Measured over the whole file with
+`scripts/fold_pt_br_notation.py`, not one of the features that define
+Brazilian Portuguese appears in it:
+
+| feature | attested in the gold |
+|:---|---:|
+| final ⟨-l⟩ vocalised to [w] | 0 / 948 |
+| ⟨t⟩ affricated before /i/ | 0 / 2378 |
+| ⟨d⟩ affricated before /i/ | 5 / 1637 |
+| final unstressed ⟨-e⟩ raised to [i] | 0 / 2956 |
+| final unstressed ⟨-o⟩ raised to [u] | 0 / 7429 |
+| final ⟨-s⟩ alveolar rather than the EP [ʃ] | 0 / 7429 |
+
+The gold is also wrong about Portuguese of any variety. Its inventory has
+34 symbols and contains neither ⟨ʎ⟩ nor ⟨ɲ⟩, so the 513 ⟨lh⟩ words and 717
+⟨nh⟩ words all lose their digraph (`gatilho` → [ɡɐtilo], `tinha` →
+[tinɐ]). It applies the European coda-sibilant rule inside the ⟨ss⟩
+digraph, writing [ʃs] on 981 of 995 ⟨ss⟩ words (`isso` → [iʃso]).
+
+Folding those conventions out of both sides one at a time takes the row
+from 0.3886 to 0.2534 without touching the spec. The row is classified
+`epitran-derived` and cannot gate anything, which is the correct handling;
+read it as a measurement of Epitran's European map, never as evidence about
+the Brazilian spec.
+
 ## Benchmark effect (honest)
 
 Measured on the committed gold set (PER, lower is better):

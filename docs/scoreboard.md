@@ -468,13 +468,13 @@ A row's `N` is its sample size in scored words, and it is not cosmetic: below ro
 | ps | wikipron | 1075 | 0.2453 | 0.1938 | 0.1840 | 0.3265 | 0.3433 | [0.2341, 0.2554] | 0.2558 | research | crowd-scraped |
 | pt-AO | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | pt-AO | portuguese_unified | 53151 | 0.2499 | 0.1853 | 0.1681 | 0.1762 | 0.2160 | [0.2487, 0.2511] | 0.0860 | research | lexicon-derived |
-| pt-BR | ipa_childes | 2116 | 0.2018 | 0.1686 | 0.1548 | 0.3280 | 0.3700 | [0.1947, 0.2096] | 0.2798 | production | espeak-derived |
+| pt-BR | ipa_childes | 2116 | 0.2017 | 0.1686 | 0.1548 | 0.3280 | 0.3700 | [0.1947, 0.2095] | 0.2798 | production | espeak-derived |
 | pt-BR | ipadict | 95933 | 0.2291 | 0.2239 | 0.2160 | 0.0532 | 0.0556 | [0.2282, 0.2301] | 0.0496 | production | machine-generated |
 | pt-BR | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | production | llm-generated |
-| pt-BR | portuguese_unified | 3552 | 0.1593 | 0.1434 | 0.1288 | 0.3908 | 0.4448 | [0.1526, 0.1673] | 0.3502 | production | lexicon-derived |
+| pt-BR | portuguese_unified | 3552 | 0.1592 | 0.1434 | 0.1287 | 0.3910 | 0.4451 | [0.1524, 0.1672] | 0.3499 | production | lexicon-derived |
 | pt-BR | primary_sources | 21 | 0.0833 | 0.0833 | 0.0833 | 0.7619 | 0.7619 | [0.0238, 0.1548] | 0.7619 | production | expert-human |
-| pt-BR | vox_communis | 33957 | 0.3896 | 0.2918 | 0.2647 | 0.0997 | 0.1354 | [0.3877, 0.3916] | 0.0398 | production | epitran-derived |
-| pt-BR | wikipron | 57896 | 0.0479 | 0.0324 | 0.0235 | 0.8061 | 0.8571 | [0.0471, 0.0487] | 0.7297 | production | crowd-scraped |
+| pt-BR | vox_communis | 33958 | 0.3886 | 0.2910 | 0.2637 | 0.1005 | 0.1366 | [0.3867, 0.3905] | 0.0405 | production | epitran-derived |
+| pt-BR | wikipron | 57897 | 0.0476 | 0.0321 | 0.0232 | 0.8069 | 0.8580 | [0.0468, 0.0484] | 0.7302 | production | crowd-scraped |
 | pt-BR-x-bahia | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | pt-BR-x-brasilia | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | pt-BR-x-caipira | portuguese_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
