@@ -724,6 +724,16 @@
     ],
     "ٱ": [
       ""
+    ],
+    "ک": [
+      "k"
+    ],
+    "ی": [
+      "j",
+      "iː"
+    ],
+    "ـ": [
+      ""
     ]
   },
   "allophones": {
@@ -867,7 +877,7 @@
       "notes": "The hamzat-wasl /a/ of a word-initial definite article elides after a vowel-final word: fiː albajti → fiː lbajti; fiː aʃʃamsi → fiː ʃʃamsi (Ryding 2005 §2.10). Only the article's seat vowel is deleted (right_transform) — hamzat qatʕ words start /ʔ/ and are untouched."
     }
   ],
-  "notes": "Classical Arabic (العربية الفصحى, al-ʿArabiyya al-fuṣḥā). The variety of the Quran and pre-Islamic poetry (~6th–9th c. CE). All modern Arabic dialects descend from spoken Classical Arabic (not from Modern Standard Arabic / MSA). 28-consonant inventory. KEY CLASSICAL FEATURES: (1) ض /ɮˤ/ — emphatic LATERAL fricative (described by Sibawayhi as a lateral sound; modern dialects shift to /dˤ/ or /zˤ/); (2) ث /θ/ and ذ /ð/ fully preserved as interdentals; (3) ء /ʔ/ always realised (not dropped); (4) ق /q/ always uvular (no urban ʔ variant); (5) all three short vowels (/a i u/) fully pronounced (no deletion); (6) word-final case vowels (iʿrāb) pronounced; (7) diphthongs /aj/ and /aw/ preserved (not monophthongised). Source: Sibawayhi, al-Kitāb (8th c.); Wright (1896); Watson (2002). Tā' marbūṭa: realized [at] when a vowel follows (inflected, non-pausal context) and [a] pre-pausally — Classical behaviour per Watson (2002) and Versteegh (2001); encoded positionally (before_vowel).",
+  "notes": "Classical Arabic (العربية الفصحى, al-ʿArabiyya al-fuṣḥā). The variety of the Quran and pre-Islamic poetry (~6th–9th c. CE). All modern Arabic dialects descend from spoken Classical Arabic (not from Modern Standard Arabic / MSA). 28-consonant inventory. KEY CLASSICAL FEATURES: (1) ض /ɮˤ/ — emphatic LATERAL fricative (described by Sibawayhi as a lateral sound; modern dialects shift to /dˤ/ or /zˤ/); (2) ث /θ/ and ذ /ð/ fully preserved as interdentals; (3) ء /ʔ/ always realised (not dropped); (4) ق /q/ always uvular (no urban ʔ variant); (5) all three short vowels (/a i u/) fully pronounced (no deletion); (6) word-final case vowels (iʿrāb) pronounced; (7) diphthongs /aj/ and /aw/ preserved (not monophthongised). Source: Sibawayhi, al-Kitāb (8th c.); Wright (1896); Watson (2002). Tā' marbūṭa: realized [at] when a vowel follows (inflected, non-pausal context) and [a] pre-pausally — Classical behaviour per Watson (2002) and Versteegh (2001); encoded positionally (before_vowel). CONFUSABLE AND FORMATTING CODEPOINTS: three Unicode characters that occur in real Arabic-script text had no grapheme entry anywhere in this family, and a character with no entry is dropped without an error, so every occurrence was deleted in silence. ک KEHEH is the Persian/Urdu/Sindhi shape of kaf (annotated '= kaf mashkula') and is read here exactly as ك — [k]. ی FARSI YEH is annotated for Arabic as well as Persian, Urdu and Kashmiri, and is read exactly as ي — [j] or the mater lectionis [iː]. ـ TATWEEL is the kashida, inserted to stretch a word for justification and carrying no sound, so it maps to the empty string: the deletion is now stated instead of accidental, the treatment ٱ ALEF WASLA already had. ہ HEH GOAL is deliberately NOT added — Unicode assigns it to Urdu, and it occurs in none of the Arabic gold. The alternates are listed as bare letters only; a keheh or farsi yeh carrying a harakat does not match the diacritised digraph keys and falls back to the bare letter plus the mark, which yields the same phonemes.",
   "sources": [
     {
       "id": "watson2002",
@@ -909,6 +919,16 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "unicode_arabic_chart",
+      "author": "The Unicode Consortium",
+      "year": 2025,
+      "title": "The Unicode Standard, code chart: Arabic (Range 0600-06FF)",
+      "publisher": "Unicode, Inc.",
+      "url": "https://www.unicode.org/charts/PDF/U0600.pdf",
+      "pages": null,
+      "notes": "Read (chart PDF). U+06A9 KEHEH is annotated '= kaf mashkula' and assigned to 'Persian, Urdu, Sindhi, ...'; U+06CC FARSI YEH is assigned to 'Arabic, Persian, Urdu, Kashmiri, ...'; U+0640 TATWEEL is '= kashida', 'inserted to stretch characters or to carry tashkil with no base letter'; U+06C1 HEH GOAL is assigned to Urdu only."
     }
   ],
   "wikipedia": [
