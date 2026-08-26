@@ -94,3 +94,107 @@ def test_ethiopic_wordspace_stays_unmapped_punctuation():
     assert "፡" not in spec.graphemes
     assert "።" not in spec.graphemes
     assert "፣" not in spec.graphemes
+
+
+def _ethiopic_rows():
+    """Group U+1200-U+137F by consonant row, using the Unicode syllable names.
+
+    A row base is recovered from the unambiguous second-order name (``...U``),
+    which no Ethiopic row base ends in, so ``HAA`` resolves to row ``H`` order
+    ``AA`` and never to row ``HA`` order ``A``.
+    """
+    import unicodedata
+
+    names = {}
+    for cp in range(0x1200, 0x1380):
+        ch = chr(cp)
+        name = unicodedata.name(ch, "")
+        if name.startswith("ETHIOPIC SYLLABLE "):
+            names[ch] = name[len("ETHIOPIC SYLLABLE "):]
+    bases = sorted(
+        {n[:-1] for n in names.values() if n.endswith("U") and not n.endswith("WU")}
+        | {n[:-2] for n in names.values() if n.endswith("WU")},
+        key=len,
+        reverse=True,
+    )
+    orders = ("A", "U", "I", "AA", "EE", "E", "O", "OA", "WA", "WI", "WAA", "WEE", "WE")
+    rows = {}
+    for ch, name in names.items():
+        base = next(
+            (b for b in bases if name.startswith(b) and name[len(b):] in orders), name
+        )
+        rows.setdefault(base, []).append(ch)
+    return rows
+
+
+#: Ethiopic syllables outside the Amharic paradigm, kept unmapped on purpose.
+#: ሇ ቇ ኇ ኯ ጏ ፇ ዏ ዯ are the eighth-order ⟨oa⟩ letters, a slot Unicode reanalysed
+#: for extended Ethiopic rather than a member of the Amharic seven-order series,
+#: and ኧ is the labialised slot of the ʾ row in an inventory with no /ʔʷ/.
+DELIBERATELY_UNMAPPED = frozenset("ሇቇኇኯጏፇዏዯኧ")
+
+
+def test_no_ethiopic_row_is_partially_mapped():
+    """Ethiopic vowel orders are regular, so a row with some members mapped and
+    its siblings missing is an oversight, and an unmapped grapheme is deleted
+    silently — it costs the letter and garbles what follows it in the word.
+
+    Every row the spec maps at all must therefore map all of it."""
+    graphemes = get("am").graphemes
+    partial = {}
+    for base, members in _ethiopic_rows().items():
+        members = [ch for ch in members if ch not in DELIBERATELY_UNMAPPED]
+        mapped = [ch for ch in members if ch in graphemes]
+        missing = [ch for ch in members if ch not in graphemes]
+        if mapped and missing:
+            partial[base] = "".join(missing)
+    assert not partial, f"partially mapped Ethiopic rows: {partial}"
+
+
+def test_deliberately_unmapped_letters_stay_unmapped():
+    """The exclusion list is a claim about Amharic, not a licence to forget a
+    letter: none of these occurs in the shipped wikipron or vox_communis gold."""
+    graphemes = get("am").graphemes
+    assert not [ch for ch in DELIBERATELY_UNMAPPED if ch in graphemes]
+
+
+def test_ado_labialised_inventory_proof_words():
+    """The agentive forms Ado (2020, p. 55) uses to prove /ʃʷ/, /tʃʼʷ/, /sʼʷ/
+    and the word that carries /ʒʷ/ each begin with a Cʷa glyph; before these
+    were mapped, every one of them lost its whole first syllable."""
+    assert transcribe("ሿሚ", lang="am") == "ʃʷami"
+    assert transcribe("ጯሂ", lang="am") == "tʃʼʷahi"
+    assert transcribe("ጿሚ", lang="am") == "tsʼʷami"
+    assert transcribe("ዧሪ", lang="am") == "ʒʷari"
+
+
+def test_v_series_u_order():
+    """⟨ቩ⟩ is the u-order of the loanword /v/ row the spec already maps."""
+    assert transcribe("ቫቩ", lang="am") == "vavu"
+
+
+def test_historical_h_rows_share_one_value():
+    """Hayward & Hayward (1992) give Amharic a single /h/, so the ሀ, ሐ, ኀ and
+    ኸ rows are homophonous throughout, not only in the orders already mapped."""
+    for row in ("ሁሂሄሆ", "ሑሒሔሖ", "ኁኂኄኆ", "ኹኺኼኾ"):
+        assert [transcribe(ch, lang="am") for ch in row] == ["hu", "hi", "he", "ho"]
+
+
+def test_labialised_velar_sub_rows_are_complete():
+    """ቈ/ኰ/ጐ and their i-, e- and ɨ-order siblings are the same labialised
+    velars as the ቋ/ኳ/ጓ glyphs already mapped."""
+    assert transcribe("ቈጠረ", lang="am") == "qʷətʼərə"
+    assert transcribe("ኰን", lang="am") == "kʷənə"
+    assert transcribe("ጒድ", lang="am") == "ɡʷidə"
+
+
+def test_archaic_tza_row_is_complete():
+    """ፂ/ፄ/ፆ complete the archaic ፀ row onto the ejective /tsʼ/ row."""
+    assert transcribe("ፂና", lang="am") == "tsʼina"
+    assert transcribe("ፆም", lang="am") == "tsʼomə"
+
+
+def test_hwa_glyph_writes_hayward_hwala():
+    """Hayward & Hayward (1992) cite hʷala 'after' for /hʷ/; it is written ሗላ,
+    whose first glyph belongs to the ሐ row and so carries the merged /h/."""
+    assert transcribe("ሗላ", lang="am") == "hʷala"
