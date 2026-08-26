@@ -977,17 +977,32 @@ def test_stq_g_has_fricative_allophone():
 
 
 def test_stq_open_syllable_single_vowel_is_long():
-    """Fort's (2015) orthographic convention: single vowel in an open
-    syllable spells a long vowel; a closed syllable keeps it short.
+    """A single vowel letter in an open syllable spells a long vowel; a
+    closed syllable keeps it short. The citation for Fort's convention lives
+    in the `stq` spec's notes and its `bergqvist2020` source entry.
 
-    Peters (2017: 223) states that the orthographic conventions of his
-    description "are adopted from Fort (2015)". The wikipron gold reflects
-    this convention directly: ⟨Apel⟩ 'apple' (open first syllable) has a
-    long vowel, while ⟨Adder⟩ 'snake' (closed first syllable) has a short
-    one.
+    The test words are the gold's own: ⟨Apel⟩ 'apple' has a long vowel in
+    an open first syllable, ⟨Adder⟩ 'snake' a short one in a closed first
+    syllable. The spec gets the length right in both but not the full
+    transcription — see the known gap recorded in the spec notes.
     """
     assert "aː" in _t("stq", "Apel")
     assert "aː" not in _t("stq", "Adder")
+
+
+def test_stq_open_syllable_matches_the_sources_own_examples():
+    """Bergqvist's laf / rood / bale contrast set: short in a closed
+    syllable, long spelled double in a closed syllable, long spelled single
+    in an open syllable. ⟨rood⟩ and ⟨bale⟩ carry the transcriptions asserted
+    here in the stq gold; ⟨laf⟩ is the source's example only, absent from
+    the gold, and is asserted against the spec's own short-vowel path.
+
+    Nothing in this file's behaviour changed when it was added, so it
+    characterises the existing rule rather than guarding a fix.
+    """
+    assert _t("stq", "laf") == "laf"
+    assert "oː" in _t("stq", "rood")
+    assert "aː" in _t("stq", "bale")
 
 
 def test_stq_accented_long_vowels_ie_and_uu():
@@ -996,8 +1011,9 @@ def test_stq_accented_long_vowels_ie_and_uu():
     These acute-accented vowels are absent from the previous spec's
     grapheme table entirely (silent deletion), even though they are common
     in the stq/wikipron gold — e.g. ⟨Brúur⟩ 'brother' /bruːr/, ⟨Bíerig⟩
-    'mountainous' /biːrɪɣ/ (Kramer 1961; Fort 2015 orthography, as
-    reflected in the wikipron transcriptions).
+    'mountainous' /biːrɪɣ/. Fort places an accent over a letter to mark a
+    long vowel as against a half-long one; the citation lives in the `stq`
+    spec's `bergqvist2020` source entry.
     """
     assert _t("stq", "Brúur") == "bruːr"
     assert "iː" in _t("stq", "Bíerig")
