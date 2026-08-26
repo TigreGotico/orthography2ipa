@@ -32,7 +32,7 @@ A row's `N` is its sample size in scored words, and it is not cosmetic: below ro
 | ab | vox_communis | 32180 | 0.1964 | 0.1964 | 0.1964 | 0.1921 | 0.1921 | [0.1947, 0.1980] | 0.1921 | research | epitran-derived |
 | ab | wikipron | 165 | 0.2311 | 0.2296 | 0.2296 | 0.5636 | 0.5636 | [0.1725, 0.2915] | 0.5636 | research | crowd-scraped |
 | ace | wikipron | 267 | 0.1102 | 0.0864 | 0.0864 | 0.6404 | 0.6404 | [0.0928, 0.1293] | 0.5693 | research | crowd-scraped |
-| acm | wikipron | 97 | 0.4249 | 0.4249 | 0.4249 | 0.1031 | 0.1031 | [0.3792, 0.4681] | 0.1031 | research | crowd-scraped |
+| acm | wikipron | 97 | 0.4229 | 0.4229 | 0.4229 | 0.1031 | 0.1031 | [0.3786, 0.4671] | 0.1031 | research | crowd-scraped |
 | ady | northeuralex | 928 | 0.1684 | 0.1587 | 0.1586 | 0.4483 | 0.4494 | [0.1558, 0.1813] | 0.4224 | research | lexicon-derived |
 | af | wikipron | 2076 | 0.1653 | 0.1394 | 0.1373 | 0.4711 | 0.4783 | [0.1567, 0.1731] | 0.4220 | research | crowd-scraped |
 | aii | wikipron | 4836 | 0.3758 | 0.3280 | 0.3056 | 0.0463 | 0.0567 | [0.3714, 0.3803] | 0.0209 | research | crowd-scraped |
@@ -119,7 +119,7 @@ A row's `N` is its sample size in scored words, and it is not cosmetic: below ro
 | ar-SY | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar-SY | gold20_arabic | 20 | 0.0491 | - | - | - | - | [0.0220, 0.0755] | 0.5000 | research | llm-generated |
 | ar-SY | primary_sources | 11† | 0.1318 | 0.1318 | 0.1318 | 0.4545 | 0.4545 | [0.0561, 0.2031] | 0.4545 | research | expert-human |
-| ar-SY | wikipron | 410 | 0.3895 | 0.3010 | 0.2971 | 0.0902 | 0.0902 | [0.3719, 0.4053] | 0.0317 | research | crowd-scraped |
+| ar-SY | wikipron | 410 | 0.3889 | 0.3004 | 0.2965 | 0.0902 | 0.0902 | [0.3714, 0.4047] | 0.0317 | research | crowd-scraped |
 | ar-TD | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar-TD | gold20_arabic | 20 | 0.0346 | - | - | - | - | [0.0083, 0.0662] | 0.7000 | research | llm-generated |
 | ar-TN | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
@@ -130,7 +130,7 @@ A row's `N` is its sample size in scored words, and it is not cosmetic: below ro
 | ar-YE | primary_sources | 15† | 0.1802 | 0.1802 | 0.1802 | 0.1333 | 0.1333 | [0.1352, 0.2202] | 0.1333 | research | expert-human |
 | ar-x-gulf | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar-x-gulf | gold20_arabic | 20 | 0.0449 | - | - | - | - | [0.0259, 0.0645] | 0.3500 | research | llm-generated |
-| ar-x-gulf | wikipron | 614 | 0.4273 | 0.3401 | 0.3316 | 0.0537 | 0.0570 | [0.4148, 0.4400] | 0.0195 | research | crowd-scraped |
+| ar-x-gulf | wikipron | 614 | 0.4270 | 0.3399 | 0.3313 | 0.0537 | 0.0570 | [0.4144, 0.4397] | 0.0195 | research | crowd-scraped |
 | ar-x-levantine | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar-x-levantine | gold20_arabic | 20 | 0.0105 | - | - | - | - | [0.0033, 0.0180] | 0.7000 | research | llm-generated |
 | ar-x-maghrebi | arabic_tts | 20 | 0.0000 | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
