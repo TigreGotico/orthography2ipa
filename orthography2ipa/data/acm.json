@@ -3,7 +3,7 @@
   "name": "Mesopotamian Arabic",
   "script": "Arabic",
   "script_type": "abjad",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "ب": [
       "b"
@@ -136,6 +136,15 @@
     ],
     "ج": [
       "dʒ"
+    ],
+    "ک": [
+      "k"
+    ],
+    "ی": [
+      "j"
+    ],
+    "ـ": [
+      ""
     ]
   },
   "parent": "x-clade-cent2236",
@@ -147,7 +156,7 @@
       "notes": "Descent per Glottolog classification of Gilit Mesopotamian Arabic (meso1252)."
     }
   ],
-  "notes": "Skeleton. Gelet (gilit) Mesopotamian Arabic, a Semitic (Afroasiatic) variety written in the Arabic abjad. Consonant letters are mapped to IPA; the reflex of qāf ⟨ق⟩ is the voiced velar [ɡ] characteristic of gilit dialects, jīm ⟨ج⟩ is [dʒ], and the interdentals ⟨ث ذ ظ⟩ are retained. Short vowels are not written in the abjad and, apart from the optional harakāt, are left unencoded; gemination (shadda) and stress are likewise not recovered, so a high PER floor is expected.",
+  "notes": "Skeleton. Gelet (gilit) Mesopotamian Arabic, a Semitic (Afroasiatic) variety written in the Arabic abjad. Consonant letters are mapped to IPA; the reflex of qāf ⟨ق⟩ is the voiced velar [ɡ] characteristic of gilit dialects, jīm ⟨ج⟩ is [dʒ], and the interdentals ⟨ث ذ ظ⟩ are retained. Short vowels are not written in the abjad and, apart from the optional harakāt, are left unencoded; gemination (shadda) and stress are likewise not recovered, so a high PER floor is expected. CONFUSABLE AND FORMATTING CODEPOINTS: three Unicode characters that occur in real Arabic-script text had no grapheme entry anywhere in this family, and a character with no entry is dropped without an error, so every occurrence was deleted in silence. ک KEHEH is the Persian/Urdu/Sindhi shape of kaf (annotated '= kaf mashkula') and is read here exactly as ك — [k]. ی FARSI YEH is annotated for Arabic as well as Persian, Urdu and Kashmiri, and is read exactly as ي — [j] or the mater lectionis [iː]. ـ TATWEEL is the kashida, inserted to stretch a word for justification and carrying no sound, so it maps to the empty string: the deletion is now stated instead of accidental, the treatment ٱ ALEF WASLA already had. ہ HEH GOAL is deliberately NOT added — Unicode assigns it to Urdu, and it occurs in none of the Arabic gold. The alternates are listed as bare letters only; a keheh or farsi yeh carrying a harakat does not match the diacritised digraph keys and falls back to the bare letter plus the mark, which yields the same phonemes.",
   "iso639_3": "acm",
   "glottolog_code": null,
   "sources": [
@@ -172,6 +181,16 @@
       "pages": null,
       "notes": "Orthography/phonology reference for a skeleton-tier consonant map.",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Mesopotamian_Arabic"
+    },
+    {
+      "id": "unicode_arabic_chart",
+      "author": "The Unicode Consortium",
+      "year": 2025,
+      "title": "The Unicode Standard, code chart: Arabic (Range 0600-06FF)",
+      "publisher": "Unicode, Inc.",
+      "url": "https://www.unicode.org/charts/PDF/U0600.pdf",
+      "pages": null,
+      "notes": "Read (chart PDF). U+06A9 KEHEH is annotated '= kaf mashkula' and assigned to 'Persian, Urdu, Sindhi, ...'; U+06CC FARSI YEH is assigned to 'Arabic, Persian, Urdu, Kashmiri, ...'; U+0640 TATWEEL is '= kashida', 'inserted to stretch characters or to carry tashkil with no base letter'; U+06C1 HEH GOAL is assigned to Urdu only."
     }
   ],
   "wikipedia": [
