@@ -98,8 +98,8 @@ def test_ta_novoice_k_after_liquid():
 
 def test_ta_novoice_p_after_liquid():
     """TA_NOVOICE_p: a labial stop after a liquid stays voiceless — சார்பு
-    [tɕaːrpu], against intervocalic கபம் [kabam] (Keane 2004: 111-116)."""
-    assert G2P("ta").transcribe_word("சார்பு") == "tɕaːrpu"
+    [tɕaːɾpu], against intervocalic கபம் [kabam] (Keane 2004: 111-116)."""
+    assert G2P("ta").transcribe_word("சார்பு") == "tɕaːɾpu"
     assert "b" in G2P("ta").transcribe_word("கபம்")
 
 
@@ -787,3 +787,39 @@ def test_vo_u_umlaut_is_front_rounded():
 def test_vo_stress_is_on_the_final_vowel():
     """"Stress is always on the final vowel of a polysyllabic word" (vo notes)."""
     assert "ˈ" in G2P("vo").transcribe_word("volapük")
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Tamil (ta) — the two rhotic letters are distinct segments
+#   ⟨ர⟩ is the alveolar TAP, ⟨ற⟩ the trill; only ⟨ற⟩ geminates
+#   (Keane 2004: 113, "Liquids"; Schiffman 1999: 7, §1.2.1.6 "Rhotics")
+# ═══════════════════════════════════════════════════════════════════════════
+
+def test_ta_rhotic_ra_is_a_tap():
+    """⟨ர⟩ is a tap [ɾ]: Keane 2004: 113 lists it under "Tap" in the consonant
+    chart and glosses ⟨கரி⟩ as [kaɾi] 'charcoal'; Schiffman 1999: 7 calls it
+    "a phonetically flapped or tapped r, more or less alveolar"."""
+    assert G2P("ta").transcribe_word("கரி") == "kaɾi"
+    assert G2P("ta").transcribe_word("அரசு").startswith("aɾa")
+
+
+def test_ta_rhotic_rra_is_a_trill_not_a_tap():
+    """⟨ற⟩ is the other rhotic, realized as a trill [r]: Keane 2004: 113 reports
+    "[ɾ] and [r] are both possible realizations of ⟨ற⟩" while ⟨ர⟩ "always
+    corresponds phonetically to a tap" — so the two letters are not the same
+    segment, and swapping the letter in an otherwise identical word swaps the
+    output segment."""
+    assert "r" in G2P("ta").transcribe_word("அறம்")
+    assert "ɾ" not in G2P("ta").transcribe_word("அறம்")
+    assert G2P("ta").transcribe_word("அரம்") == "aɾam"
+    assert "r" not in G2P("ta").transcribe_word("அரம்")
+
+
+def test_ta_tap_never_geminates_but_the_trill_letter_does():
+    """"Rhotic liquids ... are the only category of sounds in Tamil that do not
+    undergo gemination" (Keane 2004: 113); the long rhotic of ⟨வெற்றி⟩ is spelt
+    with ⟨ற⟩, not ⟨ர⟩ (Schiffman 1999: 7: ⟨ர⟩ "does not undergo gemination")."""
+    assert G2P("ta").transcribe_word("வெற்றி") == "ʋerːi"
+    assert G2P("ta").transcribe_word("பரி") == "paɾi"
+    assert "ɾː" not in G2P("ta").transcribe_word("பரி")
+    assert "r" not in G2P("ta").transcribe_word("பரி")

@@ -1,0 +1,57 @@
+name: Docs Prose
+
+# Holds documentation prose at the STE-flavoured threshold of fewer than two
+# linter violations per 100 words, with zero slop and zero marketing
+# adjectives. Flavoured, not strict: strict mode locks the vocabulary down to
+# an approved dictionary and forbids contractions, which suits a procedure or
+# a safety warning but strips the voice out of a reference manual and would
+# report hundreds of violations no one intends to act on.
+#
+# Pages that predate the gate are listed in _DOCS_PROSE_RATCHET in
+# tests/test_docs_prose.py. That list may only shrink. This job catches a page
+# that is NOT on the list failing, and an entry on the list that is already
+# fixed or gone. The other direction — a branch that GROWS the list, which
+# makes this job greener rather than redder — is caught by the ratchet guard
+# in scripts/check_board_not_reverting.py, which reads the list off the merge
+# result; tests/test_docs_prose.py is in that workflow's paths filter so a
+# docs-only pull request still reaches it.
+
+on:
+  pull_request:
+    branches: [dev, master]
+    paths:
+      - "docs/**"
+      - "tests/test_docs_prose.py"
+      - "scripts/ste_lint.py"
+      # The generators that write docs/comparison.md, docs/spec_diagnostics.md,
+      # docs/scoreboard.md, docs/lexicon_scoreboard.md and
+      # docs/espeak_agreement.md: their prose is the page's prose.
+      - "scripts/compare_systems.py"
+      - "scripts/spec_diagnostics.py"
+      - "scripts/benchmark.py"
+      - "scripts/build_en_lexicon.py"
+      - "scripts/espeak_agreement.py"
+      - ".github/workflows/docs-prose.yml"
+  workflow_dispatch: {}
+
+jobs:
+  docs-prose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v8.3.2
+        with:
+          python-version: "3.11"
+
+      # The linter is pure stdlib and the test only reads files, but
+      # tests/conftest.py imports the package for the rest of the suite.
+      - name: Install dependencies
+        run: |
+          uv venv .venv
+          uv pip install --python .venv/bin/python -e ".[test]"
+
+      - name: Lint documentation prose
+        run: |
+          PYTHONPATH=$PWD .venv/bin/python -m pytest -q tests/test_docs_prose.py
