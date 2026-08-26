@@ -565,7 +565,7 @@ A row's `N` is its sample size in scored words, and it is not cosmetic: below ro
 | sah | vox_communis | 11989 | 0.0862 | 0.0862 | 0.0862 | 0.6330 | 0.6330 | [0.0837, 0.0888] | 0.6330 | research | epitran-derived |
 | sah | wikipron | 238 | 0.2492 | 0.2314 | 0.2308 | 0.3151 | 0.3151 | [0.2176, 0.2843] | 0.2857 | research | crowd-scraped |
 | sc | wikipron | 703 | 0.0630 | 0.0462 | 0.0460 | 0.8051 | 0.8065 | [0.0541, 0.0730] | 0.7511 | research | crowd-scraped |
-| sce | wikipron | 168 | 0.3655 | 0.3655 | 0.3655 | 0.1429 | 0.1429 | [0.3281, 0.4022] | 0.1429 | research | crowd-scraped |
+| sce | wikipron | 168 | 0.0640 | 0.0640 | 0.0640 | 0.7143 | 0.7143 | [0.0471, 0.0818] | 0.7143 | research | crowd-scraped |
 | scn | wikipron | 1396 | 0.1944 | 0.1760 | 0.1744 | 0.3410 | 0.3431 | [0.1846, 0.2041] | 0.3266 | research | crowd-scraped |
 | sdc | wikipron | 321 | 0.1865 | 0.1865 | 0.1865 | 0.3738 | 0.3738 | [0.1653, 0.2072] | 0.3738 | research | crowd-scraped |
 | se | wikipron | 4125 | 0.2749 | 0.2749 | 0.2749 | 0.0742 | 0.0742 | [0.2702, 0.2794] | 0.0742 | research | crowd-scraped |
