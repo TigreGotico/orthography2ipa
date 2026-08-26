@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.82.34a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.34a1) (2026-08-26)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.33a2...7.82.34a1)
+
+**Merged pull requests:**
+
+- fix\(gml\): read sch, w, v and g the way Lasch describes them [\#1285](https://github.com/TigreGotico/orthography2ipa/pull/1285) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.82.33a2](https://github.com/TigreGotico/orthography2ipa/tree/7.82.33a2) (2026-08-26)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.33a1...7.82.33a2)
@@ -662,10 +670,6 @@
 ## [7.79.5a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.5a1) (2026-08-24)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.4a1...7.79.5a1)
-
-**Merged pull requests:**
-
-- fix\(gn\): describe Guaraní in the achegety instead of deleting most of it [\#1087](https://github.com/TigreGotico/orthography2ipa/pull/1087) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.79.4a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.4a1) (2026-08-24)
 
