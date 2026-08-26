@@ -947,6 +947,66 @@ class TestYola:
         """
         _assert_first(_grapheme(self.spec, "ck"), "k", label="ck")
 
+    def test_parent_edge_carries_no_data(self):
+        """``parent`` classifies; it does not feed the table. Yola is scored
+        against Poole's nineteenth-century spelling, not against Middle
+        English spelling, so the spec declares no ``graphemes_base`` and owns
+        every value it reads. Guarding this stops a later editor from
+        "fixing" the missing base edge and importing the ``enm`` table, which
+        is keyed on editorial macron vowels Poole never writes.
+        """
+        import json
+        from pathlib import Path
+        raw = json.loads((Path(orthography2ipa.__file__).parent / "data"
+                          / "yol.json").read_text())
+        assert raw["parent"] == "enm"
+        assert raw.get("graphemes_base") is None
+        assert "ā" in _load("enm").graphemes
+        assert "ā" not in self.spec.graphemes
+
+    def test_s_is_voiceless_because_the_spelling_already_writes_the_voicing(self):
+        """Barnes records that "the Forth shows a softening of the f into v,
+        and the s into z" (Poole & Barnes 1867: 15), but Poole WRITES that
+        softening — *zeese*, *zix*, *zeven*, *zlaves*, *vlaxen*, *voxe*.
+        Reading written ⟨s⟩ as /z/ applies the change a second time.
+        """
+        _assert_first(_grapheme(self.spec, "s"), "s", label="s")
+        _assert_first(_grapheme(self.spec, "z"), "z", label="z")
+
+    def test_word_final_e_is_silent(self):
+        """Barnes's English-to-Forth lists keep English's silent final ⟨e⟩:
+        *aake faace faade glaade laace maake* for *ache face fade glade lace
+        make*, *neeghe threeve griende* for *nigh thrive grind* (Poole &
+        Barnes 1867: 13-14).
+        """
+        assert orthography2ipa.transcribe("chote", lang="yol") == "tʃɔt"
+        assert orthography2ipa.transcribe("sthone", lang="yol") == "sθɔn"
+
+    def test_q_and_x_are_read_not_dropped(self):
+        """⟨qu⟩ and ⟨x⟩ carry their English values in Poole's spelling. Both
+        letters were absent from the grapheme table, so every headword
+        containing one lost the segment silently.
+        """
+        assert orthography2ipa.transcribe("queen", lang="yol") == "kwiːn"
+        assert orthography2ipa.transcribe("voxe", lang="yol") == "vɔks"
+
+    def test_apostrophe_is_an_elision_mark_not_a_segment(self):
+        """Barnes describes ⟨'ch⟩ as the pronoun *ich* blended onto a verb —
+        *'cham* for *ich aam*, *'cha* for *ich ha* (Poole & Barnes 1867: 16).
+        The apostrophe spells the elision, so it is silent.
+        """
+        assert orthography2ipa.transcribe("'cha", lang="yol") == "tʃa"
+        assert orthography2ipa.transcribe("'cham", lang="yol") == "tʃam"
+
+    def test_e_grave_is_the_clipped_plural_ending_with_the_syllable_reachable(self):
+        """Barnes gives the ⟨-es⟩ plural "its clipping s, as in English", and
+        adds that the measure of some of the verses shows it can also be a
+        full-breath syllable (Poole & Barnes 1867: 16). Clipping first,
+        syllable second.
+        """
+        assert list(_grapheme(self.spec, "è")) == ["", "ɛ"]
+        assert orthography2ipa.transcribe("chickès", lang="yol") == "tʃɪks"
+
 
 # ═══════════════════════════════════════════════════════════════════════════
 # Coptic
