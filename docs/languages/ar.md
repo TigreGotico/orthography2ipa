@@ -284,10 +284,10 @@ The two diacritized fixes in this round (alif-maksūra merge, coda-glide guard) 
 leave the gold PER **byte-identical at 0.1868**, they correct diacritized transcription,
 which this undiacritized gold cannot reward or penalize.
 
-### Measured ceiling for the dialect WikiPron rows (`ar-EG`, `ar-SA-x-hejaz`, `ar-x-gulf`, `ar-IQ-x-qeltu`)
+### Measured ceiling for the dialect WikiPron rows (`ar-EG`, `ar-SA-x-hejaz`, `ar-x-gulf`, `ar-IQ`)
 
 Several dialect scoreboard rows (`arz`/`ar-EG`, `acw`/`ar-SA-x-hejaz`, `afb`/`ar-x-gulf`,
-`acm`/`ar-IQ-x-qeltu`) draw on the same undiacritized WikiPron tier as the `ar` gold
+`acm`/`ar-IQ`) draw on the same undiacritized WikiPron tier as the `ar` gold
 above, so the same measurement was repeated per dialect: short-vowel segments (`a i u`
 plus the reduced/allophonic qualities `ə ɪ ʊ ɛ ɔ e o` these dialects also realize the
 unwritten short-vowel phonemes as) counted in the gold, then folded out of both
@@ -298,7 +298,7 @@ hypothesis and gold before rescoring.
 | `ar-EG` (`arz`) | 590 | 1154/4053 = 28.5 % | 0.3692 | 0.3317 | 140 |
 | `ar-SA-x-hejaz` (`acw`) | 1889 | 4164/14491 = 28.7 % | 0.3412 | 0.2399 | 520 |
 | `ar-x-gulf` (`afb`) | 614 | 1079/3837 = 28.1 % | 0.4273 | 0.3252 | 123 |
-| `ar-IQ-x-qeltu` (`acm`) | 97 | 136/487 = 27.9 % | 0.3666 | 0.3521 | 9 (small n) |
+| `ar-IQ` (`acm`) | 97 | 136/487 = 27.9 % | 0.3666 | 0.3521 | 9 (small n) |
 
 `ar-SA-x-hejaz` lands at the 0.25 target once short vowels are folded out; the other
 three stay above it, so the vowel fold explains a large share of the remaining PER but
