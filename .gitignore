@@ -23,6 +23,12 @@ coverage.xml
 htmlcov/
 .benchmark_cache/
 
+# scripts/compare_systems.py fair-comparison 2x2: GPL-derived espeak-ng data
+# (rules-only compiled dicts, and o2i_lex's word->IPA cache) — comparison
+# runtime only, never committed. See docs/comparison.md "Fair-comparison 2x2".
+.espeak_rules_only/
+.o2i_lex_cache/
+
 # IDE
 .idea/
 .vscode/

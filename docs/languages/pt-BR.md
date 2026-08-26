@@ -1,4 +1,4 @@
-# Brazilian Portuguese (pt-BR) — Phonology Reference
+# Brazilian Portuguese (pt-BR): Phonology Reference
 
 **Code**: `pt-BR` | **Family**: Indo-European > Romance > Ibero-Romance | **Script**: Latin (alphabet)
 **Quality tier**: research | **Sources**: Barbosa & Albano (2004, JIPA),
@@ -44,13 +44,13 @@ Two rules make the second map live for BP:
 **Coda vowel nasalisation.** BP retains the general-Portuguese process by which
 a vowel before a **coda** ⟨m/n⟩ (word-finally or before a consonant) nasalises,
 the nasal consonant being absorbed (Mateus & d'Andrade 2000: ch. 2; Barbosa &
-Albano 2004). The nasalisation itself is pre-lexical — the `positional_graphemes`
+Albano 2004). The nasalisation itself is pre-lexical, the `positional_graphemes`
 `m`/`n` coda positions map to a **U+0303 combining tilde**, deleting the nasal and
-nasalising the preceding vowel — while the three `PT_NASAL_*_RAISE` rules supply
+nasalising the preceding vowel, while the three `PT_NASAL_*_RAISE` rules supply
 only the vowel *quality* (the **oral** base of the nasal vowel, so the tilde is
 never doubled), conditioned on a following tilde. An **onset** (intervocalic)
-⟨m/n⟩ leaves the vowel oral (`cama` [ˈkamɐ], `ano` [ˈanu]); ⟨nh⟩ tokenises first
-so `banho` [ˈbaɲu] is untouched; the nasal diphthongs ⟨ão ãe õe⟩ are whole
+⟨m/n⟩ leaves the vowel oral (`cama` [ˈkamɐ], `ano` [ˈanu]). ⟨nh⟩ tokenises first
+so `banho` [ˈbaɲu] is untouched. The nasal diphthongs ⟨ão ãe õe⟩ are whole
 graphemes and unaffected. The high vowels ⟨i u⟩ need no quality rule ([ĩ ũ] share
 the oral bases [i u]): `sim` [ˈsĩ], `mundo` [ˈmũdu]. Unlike EP, BP does **not**
 reduce unstressed ⟨o⟩ to [u], so its ⟨o⟩ before a coda nasal is already [o]
@@ -61,14 +61,14 @@ A shared engine guard (`_expand_beam`) emits the nasalisation tilde **only when
 it attaches to a vowel or a nasal-diphthong glide**, falling back to the oral
 consonant otherwise. This keeps BP output valid IPA where the pre-existing
 ⟨gu⟩→[ɡ] vowel-drop strands a consonant in the coda-nasal slot (`algum`
-[ˈawɡm], `segundo` [ˈseɡndu] — no stray tilde on [ɡ]) and prevents a doubled
+[ˈawɡm], `segundo` [ˈseɡndu], no stray tilde on [ɡ]) and prevents a doubled
 tilde on ⟨nn⟩ loans (`inn`, `Finn`).
 
 Word-final unstressed /e o/ raise to the close vowels [i]/[u] (Barbosa &
-Albano 2004: 229; Câmara Jr. 1970). The positional map selects the
-near-close [ɪ]/[ʊ] word-finally; these rules realise the standard BP close
-surface form. They target the **reduced** [ɪ]/[ʊ] only — never the
-underlying /e o/ — so a conservative dialect that retains a final [e]/[o]
+Albano 2004: 229. Câmara Jr. 1970). The positional map selects the
+near-close [ɪ]/[ʊ] word-finally. These rules realise the standard BP close
+surface form. They target the **reduced** [ɪ]/[ʊ] only, never the
+underlying /e o/, so a conservative dialect that retains a final [e]/[o]
 inherits the rules harmlessly (they simply do not fire).
 
 ```python
@@ -82,15 +82,15 @@ G2P("pt-BR", apply_allophony=False).transcribe_word("gato")  # ˈɡatʊ (broad)
 
 Honest limits, each a documented decision rather than an omission:
 
-- **Strong pretonic reduction** — BP reduction is markedly weaker than EP;
+- **Strong pretonic reduction**: BP reduction is markedly weaker than EP.
   BP keeps distinct pretonic /e o/, so only the final position raises.
 - **/t d/ affrication before a raised final ⟨e⟩** (e.g. `dente` →
-  [ˈdẽt͡ʃi]) — expressible as a phoneme-conditioned allophone rule, but it
+  [ˈdẽt͡ʃi]), expressible as a phoneme-conditioned allophone rule, but it
   would silently re-impose affrication on the non-palatalising nordeste
   varieties (recife/norte/ce) that inherit the base. It is deferred to the
   dialect-delta wave, where those varieties opt out by rule id. Grapheme-⟨i⟩
   affrication (the common case) is already handled pre-lexically.
-- **Coda /r/ → [h~x]** — the general BP weak fricative is highly variable,
+- **Coda /r/ → [h~x]**: the general BP weak fricative is highly variable,
   and the broad wikipron pt-BR gold transcribes coda /r/ as [ʁ], so
   shipping [h~x] in the base regresses the only pt-BR gold. Held as a
   dialect delta.
@@ -105,7 +105,7 @@ Measured on the committed gold set (PER, lower is better):
 | pt-BR | portuguese_lexicon (n=300) | 0.2458 | 0.1877 | **−0.0581** |
 | pt-BR | portuguese_phonetic_lexicon (n=300) | 0.2754 | 0.2226 | **−0.0528** |
 
-Coda vowel nasalisation is the dominant driver of these gains — it applies to a
+Coda vowel nasalisation is the dominant driver of these gains, it applies to a
 large fraction of BP words and every measured `pt-BR` gold rewards absorbing the
 coda nasal into the nasal vowel. Final-vowel raising to [i]/[u] both matches the
 gold's transcription and is the cited BP realisation. The `pt` styletts2 row
@@ -116,7 +116,7 @@ the [pt-PT](pt-PT.md) reference).
 
 ## Production tier: orthographic depth, threshold, and benchmark
 
-**Deep orthography — the ≤ 0.25 PER production threshold applies**
+**Deep orthography, the ≤ 0.25 PER production threshold applies**
 ([quality tiers](../quality_tiers.md)): Portuguese spelling is
 morphophonemic with substantial contextual vowel quality (pretonic
 reduction, nasalization) that the page's rules encode but gold sets
@@ -129,10 +129,9 @@ disagree on at the margins.
 | `ipadict` | machine-generated (cannot certify) | 95 933 | 0.2436 |
 
 The qualifying row is `wikipron`, which in fact clears even the shallow
-0.15 bar; the Portal lexicon row reflects that source's semi-automated,
+0.15 bar. The Portal lexicon row reflects that source's semi-automated,
 region-coded transcription conventions (see benchmarks.md) rather than
-spec drift — the divergence is documented, not hidden.
+spec drift, the divergence is documented, not hidden.
 
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
-
-*Related: [pt-PT](pt-PT.md), [romance](romance.md), [pt-BR-x-sp](pt-BR-x-sp.md), [pt-BR-x-rj](pt-BR-x-rj.md)*
+---
+[← Italian](it-IT.md) · [Home](../index.md) · [Caipira Portuguese →](pt-BR-x-caipira.md)
