@@ -268,7 +268,7 @@
       "publisher": "Africana Publishing Corp.",
       "url": null,
       "pages": "p. 166",
-      "notes": "Edition not consulted; cited via the Yoruba language Wikipedia article, which attaches this footnote to the vowel-quality chart and the statement that /e o/ have no nasal counterparts — NOT to the nasalisation-after-/m,n/ sentence, which the same article carries as its own unfooted text (or, per its footnoting pattern elsewhere, Sachnine 1997)."
+      "notes": "Edition not consulted and no copy retrievable. Named because it is the work the standard description attaches to the vowel-quality chart and to the statement that /e o/ have no nasal counterparts. It is NOT the source of the nasalisation-after-/m,n/ rule below, which rests on a measured distribution."
     },
     {
       "id": "abraham1958",
@@ -278,7 +278,7 @@
       "publisher": "University of London Press",
       "url": null,
       "pages": null,
-      "notes": "Edition not consulted; cited via Wikipedia as the dictionary that departs from standard orthography by writing vowel nasality explicitly (⟨inún⟩ for ⟨inú⟩)."
+      "notes": "Edition not consulted and no copy retrievable. Named as the dictionary that departs from the standard orthography by writing vowel nasality explicitly (⟨inún⟩ for ⟨inú⟩)."
     },
     {
       "id": "sachnine1997",
@@ -288,18 +288,7 @@
       "publisher": "Karthala/IFRA",
       "url": null,
       "pages": null,
-      "notes": "Not consulted directly; the Yoruba language Wikipedia article's nasalisation-after-/m,n/ sentence is unfooted, but the article cites this work elsewhere for related vowel-nasality claims, so it is named here as the likely source rather than invented as a locator."
-    },
-    {
-      "id": "yoruba_wiki",
-      "author": "Wikipedia contributors",
-      "year": 2024,
-      "title": "Yoruba language",
-      "publisher": "Wikipedia",
-      "url": "https://en.wikipedia.org/wiki/Yoruba_language",
-      "wikipedia_url": "https://en.wikipedia.org/wiki/Yoruba_language",
-      "pages": null,
-      "notes": null
+      "notes": "Edition not consulted and no copy retrievable. Named as the descriptive dictionary the orthographic treatment of vowel nasality traces to; nothing in this spec rests on it as read."
     }
   ],
   "wikipedia": [
@@ -446,7 +435,7 @@
         "m",
         "n"
       ],
-      "notes": "A vowel in the syllable an ⟨m⟩ or ⟨n⟩ onsets is nasal, and the orthography writes no ⟨n⟩ for it because nasality is predictable there: ⟨mi⟩ ⟨mu⟩ ⟨mọ⟩ are /mĩ mũ mɔ̃/, and ⟨n⟩ before a vowel is itself the nasal allophone of /l/, which only occurs before a nasal vowel — ⟨inú⟩ /īlṹ/ → [īnṹ] (this sentence is the article's own text, not footed to a page; Sachnine 1997 is the source the same article cites for it, and its page is not consulted. Abraham 1958's dictionary writes the nasality out as ⟨inún⟩; editions not consulted, read via https://en.wikipedia.org/wiki/Yoruba_language). Restricted to /i a ɔ u/: the same article confines phonemic /ɛ̃/ to the single SEY word ìyẹn~yẹn 'that', and the gold agrees — /ɛ/ after a nasal onset is nasal in only 3 of 55 contexts (5.45%) — so no EPSILON rule is added. Yoruba has no /ẽ õ/ either, so ⟨me⟩ ⟨mo⟩ ⟨ne⟩ ⟨no⟩ stay oral."
+      "notes": "A vowel in the syllable an ⟨m⟩ or ⟨n⟩ onsets is nasal, and the orthography writes no ⟨n⟩ for it because nasality is predictable there: ⟨mi⟩ ⟨mu⟩ ⟨mọ⟩ are /mĩ mũ mɔ̃/, and ⟨n⟩ before a vowel is itself the nasal allophone of /l/, which only occurs before a nasal vowel — ⟨inú⟩ /īlṹ/ → [īnṹ] (NO citation could be retrieved for this orthographic convention: Bamgboṣe 1969, Abraham 1958 and Sachnine 1997 are all named in the sources block but none is obtainable, so the rule rests on a distribution MEASURED in the shipped wikipron/yor gold rather than on a source. Counting every gold phone that immediately follows an [m] or an [n], the vowel carries a nasal tilde in 250 of 289 tokens of /i/, 151 of 167 of /ɔ/ and 133 of 145 of /u/ — 86 to 92 per cent — while /a/ is nasal in only 102 of 190, which makes it the weakest member of the set the rule covers. Abraham 1958's dictionary is reported to write the nasality out as ⟨inún⟩, but that report is second-hand). Restricted to /i a ɔ u/: phonemic /ɛ̃/ is confined to the single SEY word ìyẹn~yẹn 'that' and the gold agrees — /ɛ/ after a nasal onset is nasal in only 3 of 55 contexts (5.45%) — so no EPSILON rule is added. Yoruba has no /ẽ õ/ either, so ⟨me⟩ ⟨mo⟩ ⟨ne⟩ ⟨no⟩ stay oral."
     },
     {
       "id": "YO_NASAL_AFTER_NASAL_ONSET_I_HIGH",

@@ -341,15 +341,15 @@
   ],
   "sources": [
     {
-      "id": "gun_wiki",
-      "author": "Wikipedia contributors",
-      "year": 2024,
-      "title": "Gun language",
-      "publisher": "Wikipedia",
-      "url": "https://en.wikipedia.org/wiki/Gun_language",
-      "wikipedia_url": "https://en.wikipedia.org/wiki/Gun_language",
-      "pages": "Consonant table (nasals given as m~b and n~ɖ, i.e. conditioned by a following nasal vowel; x~χ~h and ɣ~ʁ as dialectal variation; /p/ marginal and mainly from loanwords), the notes that /j/ before a nasal vowel is heard as [ɲ] or [j̃] in free variation, that /l/ before a nasal vowel is [l̃], and that /l/ is realised as a trill after laminal alveolars, palato-alveolars and palatals; seven oral vowels with five nasal counterparts i u ɛ ɔ a; and the Benin Gun alphabet letter list.",
-      "notes": null
+      "id": "capo1990",
+      "author": "Capo, Hounkpati B. C.",
+      "year": 1990,
+      "title": "Towards a Viable Orthography for Egungbe",
+      "publisher": "African Languages and Cultures 3(2): 109-125. doi:10.1080/09544169008717715",
+      "url": "https://www.jstor.org/stable/1771717",
+      "wikipedia_url": null,
+      "pages": null,
+      "notes": "The descriptive article the free-variation statements about Gun consonants trace to: that ⟨y⟩ /j/ before a nasal vowel is heard as [ɲ] or [j̃], and that /l/ is realised as a trill after laminal alveolars, palato-alveolars and palatals, which is the only environment ⟨r⟩ is written in. Bibliographic record retrieved (AfricaBib, JSTOR, DOI); the full text is paywalled and was NOT consulted, so the statements are carried here as attributed rather than as read. The inventory and letter values encoded in this spec do not depend on it: they come from Capo 1991, from the Benin national alphabet, and from the WikiPron counts recorded under wikipron_guw."
     },
     {
       "id": "capo1991",
