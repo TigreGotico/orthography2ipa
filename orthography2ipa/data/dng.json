@@ -3,10 +3,13 @@
   "name": "Dungan",
   "script": "Cyrillic",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "а": [
       "a"
+    ],
+    "ан": [
+      "æ̃"
     ],
     "б": [
       "p"
@@ -21,10 +24,7 @@
       "t"
     ],
     "е": [
-      "je"
-    ],
-    "ё": [
-      "jɔ"
+      "iə"
     ],
     "ж": [
       "ʐ"
@@ -35,8 +35,11 @@
     "и": [
       "i"
     ],
+    "ин": [
+      "iŋ"
+    ],
     "й": [
-      "j"
+      ""
     ],
     "к": [
       "kʰ"
@@ -50,11 +53,11 @@
     "н": [
       "n"
     ],
-    "ң": [
-      "ŋ"
-    ],
     "о": [
       "ɔ"
+    ],
+    "он": [
+      "ɑŋ"
     ],
     "п": [
       "pʰ"
@@ -69,13 +72,31 @@
       "tʰ"
     ],
     "у": [
-      "u"
+      "ou"
     ],
-    "ў": [
-      "w"
+    "уа": [
+      "ua"
     ],
-    "ү": [
-      "y"
+    "уан": [
+      "uæ̃"
+    ],
+    "уй": [
+      "uei"
+    ],
+    "ун": [
+      "uŋ"
+    ],
+    "уон": [
+      "uɑŋ"
+    ],
+    "уэ": [
+      "uɛ"
+    ],
+    "уэй": [
+      "uei"
+    ],
+    "уә": [
+      "uə"
     ],
     "ф": [
       "f"
@@ -87,7 +108,7 @@
       "tsʰ"
     ],
     "ч": [
-      "tʂʰ"
+      "ʈʂʰ"
     ],
     "ш": [
       "ʂ"
@@ -95,29 +116,62 @@
     "щ": [
       "ɕ"
     ],
-    "ы": [
-      "ɨ"
-    ],
-    "э": [
-      "e"
-    ],
-    "ю": [
-      "ju"
-    ],
-    "я": [
-      "ja"
-    ],
-    "ә": [
-      "ə"
-    ],
-    "җ": [
-      "tʂ"
-    ],
     "ъ": [
-      "ʔ"
+      ""
+    ],
+    "ы": [
+      "ʐ̩"
+    ],
+    "ый": [
+      "ei"
+    ],
+    "ын": [
+      "əŋ"
     ],
     "ь": [
       ""
+    ],
+    "э": [
+      "ɛ"
+    ],
+    "ю": [
+      "iou"
+    ],
+    "я": [
+      "ia"
+    ],
+    "ян": [
+      "iæ̃"
+    ],
+    "ё": [
+      "iɔ"
+    ],
+    "ён": [
+      "iɑŋ"
+    ],
+    "ў": [
+      "u"
+    ],
+    "җ": [
+      "ʈʂ"
+    ],
+    "ң": [
+      "ŋ"
+    ],
+    "ү": [
+      "y"
+    ],
+    "үан": [
+      "yæ̃"
+    ],
+    "үн": [
+      "yŋ"
+    ],
+    "үә": [
+      "yə"
+    ],
+    "ә": [
+      "ə"
     ]
   },
   "parent": "x-clade-sini1245",
@@ -129,7 +183,7 @@
       "notes": "Descent per Glottolog classification of Dungan (dung1253)."
     }
   ],
-  "notes": "Skeleton. Dungan is a Sinitic (Sino-Tibetan) language — a Mandarin variety of the Central Asian Dungan people — written in a Cyrillic alphabet with the extra letters ә, ў, ү, ң and җ. Letters are mapped to approximate phonemic values (aspirated/unaspirated stop pairs б/п, г/к, д/т; retroflex and alveolo-palatal series). The three-to-four lexical tones are not marked in the orthography and are left unencoded, so an elevated PER floor is expected. Contextual e/je and o/jo readings are only approximately covered.",
+  "notes": "Dungan is a Sinitic (Sino-Tibetan) language, a Central Asian Mandarin variety of Gansu-Shaanxi type, written in a Cyrillic alphabet with the extra letters ә, ў, ү, ң and җ. The spec is built on the syllable model the orthography itself encodes: an initial, then a final spelled as a fixed letter sequence. Eighteen compound finals (ан, он, ин, ын, ун, ян, ён, үн, уан, үан, уон, уа, уә, үә, уэ, уй, уэй, ый) are therefore keyed as multigraphs and win by maximal munch over their component letters.\n\nThe letter н is never a coda consonant on its own account. A final in -н continues either Mandarin -n, which surfaces as a nasalised vowel (ан [æ̃], ян [iæ̃], уан [uæ̃], үан [yæ̃]), or Mandarin -ng, which surfaces as [ŋ] (он [ɑŋ], ён [iɑŋ], уон [uɑŋ], ин [iŋ], ын [əŋ], ун [uŋ], үн [yŋ]). ң is not the coda counterpart of н: it is an initial, and the chart records it only in the syllable ңә. Bare н is an initial.\n\nThe two high back vowel letters are distinguished by nucleus versus medial: у is the nucleus [ou] and ў is [u], while a prevocalic medial u is written у inside the compound finals. й is a zero initial, not a glide: the on-glide of е, ё, ю, я is part of the final ([iə], [iɔ], [iou], [ia]), so йи is [i] and йү is [y]. з, ц, с are dental and ш, ж retroflex in every environment; only җ and ч alternate (see allophone_rules), because щ carries the alveolo-palatal fricative separately.\n\nуэй is the spelling the final [uei] takes after х; the chart gives it as one row with уй and its IPA cell reads '[uei], [uɛi]' with the second value flagged there as erroneous, so the sic-correction [uei] is used. The single -уэй token in the wikipron gold writes [uɛi] instead.\n\nр has two rows on the chart and one value here. It is a trilled [r] in the loanwords that are its only non-final use, and a non-trilled [r] (Zavyalova's column: [ɹ]) as the syllable-final erhua letter; Lin Tao's column, which every other value in this spec follows, writes both as [r], so [r] is what the spec emits. The wikipron gold instead deletes syllable-final р outside the syllable эр, and writes that one rhotic as [ɻ]; neither is followed here. Measured against the gold that convention is exceptionless: 13 words drop a final р that the spec emits, the three -эр syllables (эр, эрту, щинчиэр) carry [ɻ], and two loanwords (гәран, гэран) read р as [l]. Those 15 rhotic words and the 4 syllabification words above are 19 of the 32 words that still differ from the gold once tone is folded away.\n\nTwo further known limits, and tone is by far the larger. The Dungan alphabet was settled at the Frunze conference of 1953 as the 32 Cyrillic letters plus five made for sounds Russian lacks, and its designers deliberately declined to write tone: \"In SD orthography, tones are never marked in running text\", tone being given only in dictionaries (Mair 1990, the discussion of tone representation). The two main dialects differ in how many tones there are to leave unwritten — the standard, Gansu-derived one has three and the Shaanxi-derived one four (Mair 1990, opening description) — and the wikipron gold marks tone on every syllable with superscript digits, which the harness scores as segments. Three contours carry almost all of it: 305 tokens of ²⁴, 120 of ⁵¹, 85 of ⁴⁴, and three stragglers. Stripping the digits from both sides drops PER to 0.0244 with 88.1% of words exact, against 0.4087 and no exact matches scored: tone is 0.3843 of this row and the segmental model underneath it is close to right. The other limit is that the orthography does not mark syllable boundaries, so where a vowel letter is followed by an initial н the compound-final reading of -ин/-он/-ан wins by maximal munch and is wrong. Four gold words hit it: the loanwords хинан and щинэ, and шонян and йимани.\n\nOne measured distribution is recorded and NOT acted on. The gold lengthens ё in an open syllable and not in the final ён: all 13 open-syllable tokens are transcribed [iɔː] and all 11 ён tokens [iɑŋ]. The chart this spec's values come from gives ё as [iɔ] with no length, so emitting [iɔː] would be fitting the spec to the gold against its own only source, and the 11 words are left costing one segment each.\n\nRetroflex affricates are written ⟨ʈʂ ʈʂʰ⟩ with the homorganic retroflex stop; ⟨tʂ tʂʰ⟩ is an equally common notation for the same segments. Stress exemption: prominence in Dungan is carried by lexical tone rather than a stress accent, so no stress block is declared.",
   "iso639_3": "dng",
   "glottolog_code": null,
   "sources": [
@@ -141,8 +195,19 @@
       "publisher": "Max Planck Institute for Evolutionary Anthropology",
       "url": "https://glottolog.org/resource/languoid/id/dung1253",
       "pages": null,
-      "notes": "Classification reference for a skeleton-tier entry.",
+      "notes": "Classification reference.",
       "wikipedia_url": null
+    },
+    {
+      "id": "dng_alphabets",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Dungan alphabets",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Dungan_alphabets",
+      "pages": null,
+      "notes": "Correspondence chart of the Cyrillic alphabet and the finals against Latin, Pinyin and IPA. Every grapheme and compound-final value in this spec is taken from its IPA column, which the chart attributes to Lin Tao (2012), with a parallel column attributed to O. Zavyalova; neither original edition was consulted.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Dungan_alphabets"
     },
     {
       "id": "dng_wikipedia",
@@ -152,11 +217,96 @@
       "publisher": "Wikipedia",
       "url": "https://en.wikipedia.org/wiki/Dungan_language",
       "pages": null,
-      "notes": "Orthography/phonology reference for a skeleton-tier entry.",
+      "notes": "Consonant inventory and the tone count used in the notes.",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Dungan_language"
+    },
+    {
+      "id": "dng_mair1990",
+      "author": "Mair, Victor H.",
+      "year": 1990,
+      "title": "Implications of the Soviet Dungan Script for Chinese Language Reform (Two Non-Tetragraphic Northern Sinitic Languages)",
+      "publisher": "Sino-Platonic Papers 18, Department of East Asian Languages and Civilizations, University of Pennsylvania",
+      "url": "https://sino-platonic.org/complete/spp018_dungan_gyami.pdf",
+      "pages": null,
+      "notes": "Open-access. Source for the 1953 Frunze adoption of the alphabet (32 Cyrillic letters plus five), for the three-tone standard dialect against the four-tone Shaanxi dialect, and for the statement that tone is never written in running text and is given only in dictionaries. The paper prints no page numbers; the tone passage is on PDF page 12.",
+      "wikipedia_url": null
     }
   ],
   "wikipedia": [
-    "https://en.wikipedia.org/wiki/Dungan_language"
+    "https://en.wikipedia.org/wiki/Dungan_language",
+    "https://en.wikipedia.org/wiki/Dungan_alphabets"
+  ],
+  "allophone_rules": [
+    {
+      "id": "dng_dzh_palatalisation",
+      "phonemes": [
+        "ʈʂ"
+      ],
+      "surface": "tɕ",
+      "followed_by_grapheme": [
+        "и",
+        "ин",
+        "е",
+        "ё",
+        "ён",
+        "ю",
+        "я",
+        "ян",
+        "ү",
+        "үн",
+        "үан",
+        "үә"
+      ],
+      "notes": "The letter җ spells two initials that are in complementary distribution by the following final: retroflex [ʈʂ] before the back and apical finals, alveolo-palatal [tɕ] before the finals beginning with a front high vowel or glide (и, е, ё, ю, я, ү and their nasal congeners). Correspondence chart in Wikipedia, 'Dungan alphabets' (IPA column attributed there to Lin Tao 2012; edition not consulted)."
+    },
+    {
+      "id": "dng_ch_palatalisation",
+      "phonemes": [
+        "ʈʂʰ"
+      ],
+      "surface": "tɕʰ",
+      "followed_by_grapheme": [
+        "и",
+        "ин",
+        "е",
+        "ё",
+        "ён",
+        "ю",
+        "я",
+        "ян",
+        "ү",
+        "үн",
+        "үан",
+        "үә"
+      ],
+      "notes": "Aspirated counterpart of dng_dzh_palatalisation: ч is [ʈʂʰ] before back and apical finals, [tɕʰ] before front high finals. Correspondence chart in Wikipedia, 'Dungan alphabets' (IPA column attributed there to Lin Tao 2012; edition not consulted)."
+    },
+    {
+      "id": "dng_apical_vowel_dental",
+      "phonemes": [
+        "ʐ̩"
+      ],
+      "surface": "z̩",
+      "preceded_by_phoneme": [
+        "ts",
+        "tsʰ",
+        "s"
+      ],
+      "notes": "ы is an apical vowel with two allophones conditioned by the preceding sibilant: apical retroflex after ж/җ/ч/ш, apical dental after з/ц/с. Correspondence chart in Wikipedia, 'Dungan alphabets' (IPA column attributed there to Lin Tao 2012; edition not consulted). The chart writes these as [ʅ] and [ɿ]; z̩ and ʐ̩ are the syllabic-consonant notation for the same two vowels."
+    },
+    {
+      "id": "dng_zhy_syllabic",
+      "phonemes": [
+        "ʐ"
+      ],
+      "surface": "",
+      "followed_by_grapheme": [
+        "ы"
+      ],
+      "notes": "The syllable жы is a single syllabic retroflex approximant: the initial ж [ʐ] and the apical retroflex vowel it governs are the same articulation held through the syllable, so no separate onset segment is transcribed."
+    }
+  ],
+  "vowel_graphemes": [
+    "ў"
   ]
 }
