@@ -25,6 +25,7 @@
       "ðˤ"
     ],
     "ض": [
+      "ðˤ",
       "dˤ"
     ],
     "ج": [
@@ -73,24 +74,31 @@
       "katt"
     ],
     "الضض": [
+      "aðˤðˤ",
       "adˤdˤ"
     ],
     "اَلضض": [
+      "aðˤðˤ",
       "adˤdˤ"
     ],
     "لِلضض": [
+      "liðˤðˤ",
       "lidˤdˤ"
     ],
     "وَالضض": [
+      "waðˤðˤ",
       "wadˤdˤ"
     ],
     "فَالضض": [
+      "faðˤðˤ",
       "fadˤdˤ"
     ],
     "بِالضض": [
+      "biðˤðˤ",
       "bidˤdˤ"
     ],
     "كَالضض": [
+      "kaðˤðˤ",
       "kadˤdˤ"
     ],
     "الظظ": [
@@ -119,6 +127,7 @@
       "itt"
     ],
     "اِلضض": [
+      "iðˤðˤ",
       "idˤdˤ"
     ],
     "اِلظظ": [
@@ -129,6 +138,7 @@
       "witt"
     ],
     "وِالضض": [
+      "wiðˤðˤ",
       "widˤdˤ"
     ],
     "وِالظظ": [
@@ -147,6 +157,12 @@
     ],
     "گ": [
       "ɡ"
+    ],
+    "خ": [
+      "χ"
+    ],
+    "غ": [
+      "ʁ"
     ]
   },
   "allophones_base": "ar-x-peninsular",
@@ -156,6 +172,7 @@
       "q"
     ],
     "ɮˤ": [
+      "ðˤ",
       "dˤ"
     ],
     "dʒ": [
@@ -213,7 +230,7 @@
       "notes": "Peninsular Arabic base — interdental retention and emphatic (pharyngealisation) spreading inherited via the AR_PEN_EMPH_* allophone rules."
     }
   ],
-  "notes": "Proto-Gulf Arabic (Khaleeji) — abstract ancestor node for Emirati (ar-AE), Bahraini (ar-BH), Kuwaiti (ar-KW) and Qatari (ar-QA); Omani (ar-OM) is genetically Peninsular and inherits ar-x-peninsular directly. DEFINING FEATURES modelled here and inherited by descendants via graphemes_base/OVERLAY_BY_ID: (1) Old Arabic *q → [ɡ] (Bedouin/sedentary Gulf), with [q] retained as a secondary MSA/formal candidate; (2) velar affrication /k/ → [tʃ] and /ɡ/(<*q) → [dʒ] adjacent to a high front vowel /i, iː/ (allophone_rules GULF_K_AFFRICATION, GULF_G_AFFRICATION); (3) interdentals /θ ð ðˤ/ RETAINED, unlike sedentary Levantine/Egyptian which merge them to stops/sibilants — a Bedouin-type retention (grapheme mappings for ث ذ ظ list the interdental first); (4) jiim /dʒ/ ~ [j] variation (glide realisation common in the eastern Gulf); (5) integrated /p/, /v/ from loanwords (پ, ڤ). Emphatic spreading (low vowels back to [ɑ]/[ɑː] next to /tˤ dˤ sˤ ðˤ zˤ/) is inherited from ar-x-peninsular (AR_PEN_EMPH_*). Input contract: fully diacritised (tashkeel) Arabic. Grounded in sources actually read: Alshammari 2026 (velar affrication, whose literature review surveys Mustafawi's Qatari and Matar's Kuwaiti data), Al-Balushi 2016 (Omani/Eastern-Arabian reflexes), Szreder & Derrick 2023 (Emirati affricate variability). MONOPHTHONGIZATION: the node declares the ay/aw→[eː oː] merger as the rank-1 realization of the ⟨َي⟩/⟨َو⟩ digraphs (graphemes َي→[eː,aj], َو→[oː,aw]; Gulf ē/ō monophthongs per Holes, as reported in the affrication sources' literature reviews). TOKENIZATION NOTE (word-initial diphthong digraphs): word-initially the onset digraphs يَ→/ja/ and وَ→/wa/ claim the fatha before an /aj//aw/ atom can form, so ⟨وَيْ⟩ came out *[waj] (وَيْن *wajn) and ⟨يَوْ⟩ *[jaw]. The two sequences are therefore spelled out in `graphemes` as وَيْ→[weː] (وَيْن → weːn 'where') and يَوْ→[joː] (يَوْم → joːm 'day') — the same [eː oː] monophthong the ⟨َي⟩/⟨َو⟩ digraphs already carry, reached from the fuller spelling instead of from the atom, the device already used on ar-SY and on the Hejazi/Qassimi specs for their identical seam. The explicit sukūn in both keys keeps حَيَوان /ħajawaːn/ and يَوَدّ /jawadd/ — where the glide carries its own vowel and there is no diphthong — out of the rule; the leaf specs (ar-AE, ar-BH, ar-KW, ar-QA, ar-SA-x-sharqiyya) inherit these keys via graphemes_base.",
+  "notes": "Proto-Gulf Arabic (Khaleeji) — abstract ancestor node for Emirati (ar-AE), Bahraini (ar-BH), Kuwaiti (ar-KW) and Qatari (ar-QA); Omani (ar-OM) is genetically Peninsular and inherits ar-x-peninsular directly. DEFINING FEATURES modelled here and inherited by descendants via graphemes_base/OVERLAY_BY_ID: (1) Old Arabic *q → [ɡ] (Bedouin/sedentary Gulf), with [q] retained as a secondary MSA/formal candidate; (2) velar affrication /k/ → [tʃ] and /ɡ/(<*q) → [dʒ] adjacent to a high front vowel /i, iː/ (allophone_rules GULF_K_AFFRICATION, GULF_G_AFFRICATION); (3) the DAD/ZAH MERGER: ‹ض› and ‹ظ› both surface as the emphatic interdental [ðˤ], the stop [dˤ] being kept only as a rank-2 MSA/formal candidate; the ‹الضض› sun-letter assimilation keys carry the same two-candidate order. The wikipron afb gold writes ‹ض› as [ðˤ] in all 15 of its tokens and never as [dˤ], and ‹ظ› as [ðˤ] in all 5. Al Taisan 2019 transcribes ضغط 'pressure' as /ðˤɑʁtˤ/, an incidental attestation of the same reflex; the merger as a pan-Gulf statement rests on the descriptive grammars (Holes 1990; Qafisheh 1977, editions not consulted); (4) UVULAR FRICATIVES: ‹خ› → [χ] and ‹غ› → [ʁ] rather than the MSA velars [x ɣ] inherited from arb. Al Taisan 2019 transcribes ‹غ› as [ʁ] throughout its Hasawi data and names /χ/ the dialect's voiceless uvular fricative, with no velar fricative anywhere in the paper. The wikipron afb gold agrees: 35 of 36 ‹خ› tokens are [χ] against a single [x], and 17 of 20 ‹غ› tokens are [ʁ] against a single [ɣ]; (5) HAMZAT AL-WAṢL carries no glottal onset: word-initial bare ‹ا› spells a prosthetic vowel, not a consonant, so it maps to [i] and the arb rule AR_WASL_EPENTHESIS (which supplies [ʔi]) is bypassed. The orthography already distinguishes it from hamzat al-qaṭʿ ‹أ إ›, which keep their [ʔ] (Wright I §19-20; Ryding 2005 §2.10, as cited on the arb rule). The diacritised spellings ‹اِ ‹اُ ‹اَ carry the written vowel directly (اِسْم → [ism], اُكْتُب → [uktub]) so the vowel is not doubled, and word-internally all four keys fall back to the mater-lectionis reading [aː]. Of the 55 bare-alif-initial rows in the wikipron afb gold, exactly one is transcribed with an initial [ʔ] — the bare article ‹ال› itself, cited elsewhere in the same gold without it; (6) the DEFINITE ARTICLE raises MSA /al-/ to /il-/ (Holes 1990; Qafisheh 1977, editions not consulted). The wikipron afb gold has an [ɪ] article vowel in 10 of its 15 ‹ال›-initial rows, against one [ə] and one [a]. The raising is carried on the plain bare ‹ال› key, scoped to word-initial position via positional_graphemes because the inherited arb ‹ال› grapheme key also matches word-internal alif+lam (غالي), where the article reading is wrong. It is a property of the UNWRITTEN waṣl vowel, so it applies to that bare ‹ال› key only: where the orthography writes a vowel on the seat — ‹اَل›, and the proclitic spellings ‹وَال فَال كَال بِال› — that vowel is read as written, the same literal treatment the ‹اَ اِ اُ› keys already get under this spec's fully-diacritised input contract. The 14 sun-letter assimilation keys (‹التت الثث الدد الذذ الرر الزز السس الشش الصص الضض الطط الظظ اللل النن›) are a separate inheritance from arb and keep the /a/ seat unraised — the afb gold's single sun-letter article row, الشارقة, is transcribed with [a] — so raising the assimilated forms is left for a separate pass. The sandhi rule AR_GULF_WASL_IL_ARTICLE elides the article's /i/ after a vowel-final word (فِي الْمَدِينَة → fiː lmaˈdiːna), the Gulf counterpart of the inherited arb AR_HAMZAT_WASL_ARTICLE, which only sees an /a/ seat. This entry is PER-NEUTRAL on the afb gold (the gold's [ɪ] is one substitution away from either [i] or [a]) and is carried for descriptive accuracy, not for score; (7) interdentals /θ ð ðˤ/ RETAINED, unlike sedentary Levantine/Egyptian which merge them to stops/sibilants — a Bedouin-type retention (grapheme mappings for ث ذ ظ list the interdental first); (8) jiim /dʒ/ ~ [j] variation (glide realisation common in the eastern Gulf); (9) integrated /p/, /v/ from loanwords (پ, ڤ). Emphatic spreading (low vowels back to [ɑ]/[ɑː] next to /tˤ dˤ sˤ ðˤ zˤ/) is inherited from ar-x-peninsular (AR_PEN_EMPH_*). Input contract: fully diacritised (tashkeel) Arabic. Grounded in sources actually read: Al Taisan 2019 (Hasawi uvulars), Alshammari 2026 (velar affrication, whose literature review surveys Mustafawi's Qatari and Matar's Kuwaiti data), Al-Balushi 2016 (Omani/Eastern-Arabian reflexes), Szreder & Derrick 2023 (Emirati affricate variability). MONOPHTHONGIZATION: the node declares the ay/aw→[eː oː] merger as the rank-1 realization of the ⟨َي⟩/⟨َو⟩ digraphs (graphemes َي→[eː,aj], َو→[oː,aw]; Gulf ē/ō monophthongs per Holes, as reported in the affrication sources' literature reviews). TOKENIZATION NOTE (word-initial diphthong digraphs): word-initially the onset digraphs يَ→/ja/ and وَ→/wa/ claim the fatha before an /aj//aw/ atom can form, so ⟨وَيْ⟩ came out *[waj] (وَيْن *wajn) and ⟨يَوْ⟩ *[jaw]. The two sequences are therefore spelled out in `graphemes` as وَيْ→[weː] (وَيْن → weːn 'where') and يَوْ→[joː] (يَوْم → joːm 'day') — the same [eː oː] monophthong the ⟨َي⟩/⟨َو⟩ digraphs already carry, reached from the fuller spelling instead of from the atom, the device already used on ar-SY and on the Hejazi/Qassimi specs for their identical seam. The explicit sukūn in both keys keeps حَيَوان /ħajawaːn/ and يَوَدّ /jawadd/ — where the glide carries its own vowel and there is no diphthong — out of the rule; the leaf specs (ar-AE, ar-BH, ar-KW, ar-QA, ar-SA-x-sharqiyya) inherit these keys via graphemes_base. MEASURED UNDECIDABLE-INPUT CEILING. Not one of the 763 WikiPron afb_arab_broad input words carries a single ḥaraka — no fatḥa, ḍamma, kasra, tanwīn, shadda or sukūn occurs anywhere on the orthographic side of this gold — while the gold transcriptions are fully vocalised: 29.2% of their phoneme segments are short vowels. Deleting every short vowel from the gold and rescoring with the harness's own scorer gives PER 0.2439, which is what a spec that emitted perfect consonants and long vowels and simply omitted the short vowels would score, and is therefore the hard floor for this row. The board row stands at 0.4270, so about 18.3 PER points separate the score from the floor. That gap is rule error and is tractable; the floor itself is undecidable input that no grapheme table can recover. A gap above the floor is a defect hypothesis, not an excuse: Hebrew sat above its own floor for what looked like the same structural reason and the excess turned out to be a real defect, an unmapped geresh. That vocalisation and not the grapheme tables dominates the Arabic error is measured on the MSA row rather than inferred: ar scores PER 0.3139 on raw WikiPron and 0.1721 on the SAME gold with the input auto-diacritized (the wikipron_ar_diacritized row, wired in scripts/benchmark.py) — below the raw row's own consonant-only floor of 0.2476. Vocalisation is worth about 14 PER points there, more than any grapheme-table change could be worth. No dialect row has such a companion: the diacritized loader is registered for ar alone, and wiring one for this row is the single highest-value follow-up available to it. It has to be labelled restored-MSA input rather than native vocalisation — the restorer targets MSA and Classical Arabic, so what it writes onto dialect orthography is an MSA reading, and a row scored against it measures the spec plus that assumption.",
   "quality": "research",
   "script_type": "abjad",
   "sources": [
@@ -246,6 +263,36 @@
       "url": "https://doi.org/10.1017/S0025100323000129",
       "pages": "54(1):146-164",
       "notes": "Abstract and published summary read (full text paywalled — cited only for what was read). Finds the [k~tʃ] alternation is a completed phonemic change (lexicalised) while [dʒ~j] is a synchronic process; a nearby similar coronal obstruent inhibits the (voiced) [j] variant of the dʒ~j alternation, whereas /k/-affrication to [tʃ] is not inhibited by similar consonants."
+    },
+    {
+      "id": "altaisan2019",
+      "author": "Al Taisan, Huda Ahmed",
+      "year": 2019,
+      "title": "Uvulars Alternation in Hasawi Arabic: A Harmonic Serialism Approach",
+      "publisher": "International Journal of Cognitive and Language Sciences 13(9)",
+      "url": "https://doi.org/10.5281/zenodo.3461938",
+      "pages": null,
+      "notes": "Open-access paper, read in full. Hasawi Arabic is the dialect of al-Ahsa in the Eastern Province of Saudi Arabia, which the paper places inside the Gulf group. It is a study of the [q]~[ʁ] alternation, so its direct evidence here is the dorsal fricative inventory: ⟨غ⟩ is transcribed [ʁ] throughout the data, /χ/ is named as the dialect's voiceless uvular fricative in the harmonic-serialism derivations, and no velar fricative appears anywhere. Its transcription of ضغط 'pressure' as /ðˤɑʁtˤ/ attests ⟨ض⟩ as the emphatic interdental, though the paper makes no claim about the merger itself. It says nothing about the definite article."
+    },
+    {
+      "id": "holes1990",
+      "author": "Holes, Clive",
+      "year": 1990,
+      "title": "Gulf Arabic",
+      "publisher": "Routledge (Croom Helm Descriptive Grammars)",
+      "url": null,
+      "pages": null,
+      "notes": "Standard descriptive grammar of Gulf Arabic, cited author-year for the pan-Gulf reflexes it is the reference work for: the ض/ظ merger to [ðˤ], the uvular fricatives, the /il-/ definite article and the ē/ō monophthongs. Edition not consulted — no locators, and no wording is quoted from it."
+    },
+    {
+      "id": "qafisheh1977",
+      "author": "Qafisheh, Hamdi A.",
+      "year": 1977,
+      "title": "A Short Reference Grammar of Gulf Arabic",
+      "publisher": "University of Arizona Press",
+      "url": null,
+      "pages": null,
+      "notes": "Reference grammar of Gulf Arabic, cited author-year alongside Holes for the same pan-Gulf reflexes. Edition not consulted — no locators, and no wording is quoted from it."
     }
   ],
   "wikipedia": [
@@ -290,5 +337,63 @@
       "مِن",
       "يَا"
     ]
-  }
+  },
+  "positional_graphemes": {
+    "ا": {
+      "word_initial": [
+        "i",
+        "a"
+      ],
+      "default": [
+        "aː",
+        "ʔ"
+      ]
+    },
+    "ال": {
+      "word_initial": [
+        "il",
+        "al"
+      ],
+      "default": [
+        "al",
+        "a"
+      ]
+    },
+    "اِ": {
+      "word_initial": [
+        "i"
+      ],
+      "default": [
+        "aː"
+      ]
+    },
+    "اُ": {
+      "word_initial": [
+        "u"
+      ],
+      "default": [
+        "aː"
+      ]
+    },
+    "اَ": {
+      "word_initial": [
+        "a"
+      ],
+      "default": [
+        "aː"
+      ]
+    }
+  },
+  "sandhi_rules": [
+    {
+      "id": "AR_GULF_WASL_IL_ARTICLE",
+      "name": "hamzat-al-wasl (il- article) elision",
+      "left_context": "[aiueoɑæə]ː?$",
+      "right_context": "^i(?=l)",
+      "transform": null,
+      "right_transform": "",
+      "obligatory": true,
+      "notes": "The Gulf article vowel elides after a vowel-final word exactly as the MSA /a/ does: فِي الْمَدِينَة → fiː lmaˈdiːna. The inherited arb rule AR_HAMZAT_WASL_ARTICLE only matches an /a/ seat, so the /il-/ article needs its own; the /i/ is deleted only before the article's /l/, which leaves i-initial words such as [ism] untouched."
+    }
+  ]
 }
