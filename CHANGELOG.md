@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.82.40a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.40a1) (2026-08-26)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.39a1...7.82.40a1)
+
+**Merged pull requests:**
+
+- fix\(he\): read the geresh consonants and ktiv-male doubled vav/yod [\#1305](https://github.com/TigreGotico/orthography2ipa/pull/1305) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.82.39a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.39a1) (2026-08-26)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.38a1...7.82.39a1)
@@ -529,10 +537,6 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.80.6a1...7.80.6a2)
 
-**Merged pull requests:**
-
-- docs\(scoreboard\): flag statistically thin rows in the N column [\#1101](https://github.com/TigreGotico/orthography2ipa/pull/1101) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [7.80.6a1](https://github.com/TigreGotico/orthography2ipa/tree/7.80.6a1) (2026-08-24)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.80.5a1...7.80.6a1)
@@ -598,20 +602,19 @@
 
 ## [7.80.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.80.1a1) (2026-08-24)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.16a1...7.80.1a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.80.0a1...7.80.1a1)
 
 **Merged pull requests:**
 
 - fix\(mww\): emit RPA tone letters instead of silencing them [\#1113](https://github.com/TigreGotico/orthography2ipa/pull/1113) ([JarbasAl](https://github.com/JarbasAl))
-- fix\(kwk\): map the U'mista ejective/uvular/lateral-affricate series [\#1106](https://github.com/TigreGotico/orthography2ipa/pull/1106) ([JarbasAl](https://github.com/JarbasAl))
-
-## [7.79.16a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.16a1) (2026-08-24)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.80.0a1...7.79.16a1)
 
 ## [7.80.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.80.0a1) (2026-08-24)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.15a1...7.80.0a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.16a1...7.80.0a1)
+
+## [7.79.16a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.16a1) (2026-08-24)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.15a1...7.79.16a1)
 
 **Merged pull requests:**
 
@@ -630,11 +633,6 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.14a1...7.79.14a2)
 
-**Merged pull requests:**
-
-- fix\(so\): confirm the kaikki PER gap is tone/ATR notation, not gold padding [\#1112](https://github.com/TigreGotico/orthography2ipa/pull/1112) ([JarbasAl](https://github.com/JarbasAl))
-- test: ratchet against all-Wikipedia sources\[\] entries [\#1107](https://github.com/TigreGotico/orthography2ipa/pull/1107) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [7.79.14a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.14a1) (2026-08-24)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.13a1...7.79.14a1)
@@ -642,7 +640,6 @@
 **Merged pull requests:**
 
 - docs\(zom\): document Zou's three-tone system as an unrecoverable ceiling [\#1116](https://github.com/TigreGotico/orthography2ipa/pull/1116) ([JarbasAl](https://github.com/JarbasAl))
-- fix\(lmo\): map the accented-vowel series in Lombard orthography [\#1102](https://github.com/TigreGotico/orthography2ipa/pull/1102) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.79.13a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.13a1) (2026-08-24)
 
@@ -652,19 +649,9 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.11a1...7.79.12a1)
 
-**Merged pull requests:**
-
-- fix\(ngh\): add click uvular-efflux and loan-consonant graphemes [\#1104](https://github.com/TigreGotico/orthography2ipa/pull/1104) ([JarbasAl](https://github.com/JarbasAl))
-- fix\(rif\): add WOLD gold-orthography graphemes to Tarifit spec [\#1098](https://github.com/TigreGotico/orthography2ipa/pull/1098) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [7.79.11a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.11a1) (2026-08-24)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.10a2...7.79.11a1)
-
-**Merged pull requests:**
-
-- docs\(ha\): complete the tone/length ceiling measurement [\#1109](https://github.com/TigreGotico/orthography2ipa/pull/1109) ([JarbasAl](https://github.com/JarbasAl))
-- fix\(wiy\): map the 14 unmapped Teeter graphemes and correct mis-valued letters [\#1099](https://github.com/TigreGotico/orthography2ipa/pull/1099) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.79.10a2](https://github.com/TigreGotico/orthography2ipa/tree/7.79.10a2) (2026-08-24)
 
@@ -673,10 +660,6 @@
 ## [7.79.10a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.10a1) (2026-08-24)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.9a1...7.79.10a1)
-
-**Merged pull requests:**
-
-- fix\(car\): map the six grave-accent vowels and loan /f/ [\#1103](https://github.com/TigreGotico/orthography2ipa/pull/1103) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.79.9a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.9a1) (2026-08-24)
 
