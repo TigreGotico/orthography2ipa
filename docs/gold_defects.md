@@ -216,6 +216,45 @@ replacement gold scraped from a modern Iranian source. Provenance is
 consequential. Tracked as issue #107, and described at length in
 [benchmarks.md](benchmarks.md) under "Variety mismatch (`fa`)".
 
+### Algerian Arabic, `primary_sources`
+
+The `ar-DZ` row on `primary_sources` holds exactly one gold pair: id
+`guerrero2019-010`, زَوْجَتُه "his wife", filed against Guerrero (2019), which
+in turn quotes W. Marçais's 1908 description of Tlemcen Arabic (W. Marçais,
+*Le dialecte arabe parlé à Tlemcen*, 1902, is the same author's earlier
+monograph on the same city). `per_ci_low` and `per_ci_high` both read 0.7143
+in `benchmarks/results.json` because there is nothing to bound — a
+confidence interval needs more than one row. Reading this PER as "the worst
+row on the board" treats a single word as a certification of the whole
+variety, which the harness's own `PROVENANCE` comment already warns against:
+`primary_sources` rows "diagnose rules rather than certify a language on
+their own."
+
+The `ar-DZ` spec's baseline is old-urban Algiers, per Boucherit (2002); its
+own sources cite Marçais's Tlemcen material only for the interdental-stop
+isogloss, not as the target variety. Guerrero's example is genuinely
+Algerian, but it is western-Algerian Tlemcen speech, not the Algiers
+phonology the spec otherwise models, and it happens to carry a construct-
+state contraction the spec was never built to reproduce: زَوْجَتُه surfaces
+in Marçais's data as *zūžtăh* ['zuːʃtah] — the medial short /a/ of the
+possessive suffix syncopates, the /aw/ of the first syllable contracts to
+/uː/, and the resulting /ʒ/ devoices to [ʃ] before the voiceless /t/. The
+spec renders the fully-vocalized input literally as ˈzawʒatuh: no syncope,
+no contraction, no devoicing.
+
+None of the three moves is an oversight. `DZ_SHORT_REDUCE`, the spec's one
+syncope rule, already documents that short /a/ syncope (as opposed to /i/) is
+deliberately scoped out pending an engine class that can except gutturals
+and pharyngeals, precisely because a blanket /a/→ə rule over-generates. The
+/aw/-contraction and cross-morpheme devoicing this single Tlemcen form shows
+are additional phenomena with no other attestation in the spec's sources;
+writing a rule to match one word would be gold-fitting on n=1, not a sourced
+correction. Nothing here is fixed: the row is read correctly as too small to
+diagnose anything beyond the one already-documented gap, not as evidence the
+spec mishandles Algerian Arabic. Provenance is `expert-human`, so the row
+technically **can gate**, but a promotion decision that turns on this single
+word should not be read as phonological.
+
 ## Mixed conventions
 
 ### Coptic, `wikipron`
