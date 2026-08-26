@@ -146,3 +146,21 @@ def test_tone_is_not_emitted(dng):
     out = dng.transcribe("җонгуйди")
     assert out == "ʈʂɑŋkueiti"
     assert not any(c in out for c in "⁰¹²³⁴⁵˥˦˧˨˩")
+
+
+def test_short_u_is_a_vowel_letter():
+    """ў spells the nucleus [u], so the engine must class it as a vowel letter.
+
+    The engine treats Cyrillic as a closed vowel inventory and refuses ⟨ў⟩ by
+    name, because in Belarusian the same letter writes the glide /w/. Dungan
+    uses it for a plain high back vowel — у is the nucleus [ou] and ў is [u] —
+    so the spec declares it in ``vowel_graphemes`` and any positional rule
+    that asks whether the following letter is a vowel gets the right answer.
+    """
+    from orthography2ipa import get
+    from orthography2ipa.vowels import grapheme_is_vowel
+
+    spec = get("dng")
+    assert list(spec.graphemes["ў"]) == ["u"]
+    assert grapheme_is_vowel("ў", list(spec.graphemes["ў"]),
+                             frozenset(spec.vowel_graphemes))
