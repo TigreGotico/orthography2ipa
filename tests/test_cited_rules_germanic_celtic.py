@@ -125,17 +125,23 @@ def test_af_initial_v_is_f():
     Minimal pair against the Dutch ancestor: Dutch keeps ⟨v⟩-initial voicing
     where Afrikaans devoices it.
     """
-    assert _t("af", "vier").startswith("f")
+    assert _t("af", "vier").lstrip("ˈˌ").startswith("f")
 
 
-def test_af_new_diphthong_oey():
-    """DEFINING CHANGE (5): the new diphthong /œɪ/ (Dutch /œy/).
+def test_af_diphthong_oey():
+    """⟨ui⟩ is the diphthong /œy/.
 
-    af notes: "(5) New diphthong /œɪ/ (Dutch /œy/)." Donaldson (1993).
+    Wissing, "Afrikaans", JIPA 50(1), 2020, p. 135
+    (https://doi.org/10.1017/S0025100318000269) lists exactly three
+    diphthongs, /əi œy œu/, and spells /œy/ as ⟨ui⟩: buit /bœyt/ 'loot'.
 
-    Minimal pair on ⟨ui⟩: af huis [ɦœɪs] vs nl huis [ɦœys].
+    The af spec previously read ⟨ui⟩ as /œɪ/ on the strength of a note
+    attributing a "new diphthong /œɪ/" to Donaldson (1993), for which no
+    retrievable text was available. Wissing's Illustration is a fetched,
+    DOI-bearing description of the same variety and gives /œy/, the same
+    symbol Dutch uses, so the claimed af-vs-nl contrast does not stand.
     """
-    assert "œɪ" in _t("af", "huis")
+    assert "œy" in _t("af", "huis")
     assert "œy" in _t("nl", "huis")
 
 
