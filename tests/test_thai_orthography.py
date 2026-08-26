@@ -293,3 +293,15 @@ def test_an_opening_diphthong_is_one_nucleus_not_two(th, word, ipa):
 ])
 def test_sara_o_is_short_and_the_syllable_is_dead(th, word, ipa):
     assert th.transcribe_word(word) == ipa
+
+
+@pytest.mark.parametrize("word,ipa", [
+    # Thanthakhat ⟨์⟩ cancels the letter it stands on (Iwasaki &
+    # Ingkaphirom 2005), so a ⟨ย⟩ carrying it cannot be the second half
+    # of the ⟨ีย⟩ circumfix and the nucleus is a plain /iː/.
+    ("คีย์บอร์ด", "kʰiː˧bɔːt̚˨˩"),
+    ("สุนีย์", "su˨˩niː˧"),
+    ("อินทรีย์", "ʔin˧siː˧"),
+])
+def test_a_cancelled_yo_yak_is_not_the_diphthong(th, word, ipa):
+    assert th.transcribe_word(word) == ipa
