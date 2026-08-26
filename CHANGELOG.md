@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.82.27a2](https://github.com/TigreGotico/orthography2ipa/tree/7.82.27a2) (2026-08-26)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.27a1...7.82.27a2)
+
+**Merged pull requests:**
+
+- docs\(gwc\): re-measure the Gawri ceiling and drop the Wikipedia citation [\#1276](https://github.com/TigreGotico/orthography2ipa/pull/1276) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.82.27a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.27a1) (2026-08-26)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.26a1...7.82.27a1)
@@ -637,10 +645,6 @@
 ## [7.79.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.1a1) (2026-08-24)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.0a1...7.79.1a1)
-
-**Merged pull requests:**
-
-- fix\(nds\): describe Low German by the SASS orthography, not a German template [\#1072](https://github.com/TigreGotico/orthography2ipa/pull/1072) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.79.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.0a1) (2026-08-24)
 
