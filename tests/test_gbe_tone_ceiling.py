@@ -18,8 +18,9 @@ These tests pin the two numbers that together support that reading:
   which story explains the gap. A low count (Ewe) means the orthography
   almost always disambiguates a word by itself, consistent with a
   tone-notation gap rather than lost segmental information; a high count
-  (Gun) reflects the two competing Gun orthographies the spec documents
-  (data/guw.json's ``notes``), not lost information.
+  (Gun) is two thirds tone disagreement inside the gold and one third
+  the two competing Gun orthographies the spec documents
+  (data/guw.json's ``notes``).
 * the tone-folded PER — segmental accuracy once the tone diacritics are
   stripped from both the engine's output and the gold. This is the
   measurement that actually establishes the ceiling: it is the number
@@ -121,9 +122,19 @@ def test_ee_homograph_count_is_near_zero():
 def test_guw_homograph_count_reflects_the_dual_orthography():
     # Gun mixes the Benin and Nigerian orthographic conventions for the
     # same phonemes (data/guw.json's notes), so a much larger share of
-    # spellings collide even before tone is considered.
+    # spellings collide.
     pairs = _gold_pairs("guw_latn_broad.tsv")
     assert _homograph_count(pairs) == 72
+
+
+def test_guw_homography_is_mostly_tone_not_the_dual_orthography():
+    # Two thirds of those 72 collisions are the gold disagreeing with
+    # itself about tone, not about segments: fold the tone marks out of
+    # the transcriptions first and only 24 spellings still carry
+    # competing readings. Those 24 are the dual-orthography residue.
+    pairs = _gold_pairs("guw_latn_broad.tsv")
+    folded = [(w, _strip_tone(g)) for w, g in pairs]
+    assert _homograph_count(folded) == 24
 
 
 def test_ee_folded_per_confirms_the_ceiling_is_notation():
