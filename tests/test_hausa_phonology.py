@@ -11,7 +11,7 @@ The claims isolated below:
 
 * p. 539 — the glottalized series is the implosives ⟨ɓ ɗ⟩ plus the ejectives
   ⟨ƙ⟩ and ⟨ts⟩, whose plain counterparts are /k/ and **/s/**; ⟨ts⟩ is therefore
-  the ejective fricative /sʼ/, not an affricate /tsʼ/;
+  the ejective fricative /sʼ/;
 * p. 539 — ⟨ƴ⟩ (Niger ⟨ʼy⟩) is the glottalized palatal approximant, one
   phoneme with two spellings;
 * pp. 538-539 — ⟨kw gw ƙw ky gy ƙy fy⟩ are unit phonemes contrasting with
@@ -21,8 +21,27 @@ The claims isolated below:
   roll occurs;
 * p. 539 — ⟨p⟩ is not in the inventory; /f/ is variably [f], [p] or [ɸ];
 * p. 537 — the alphabet represents neither tone nor vowel length.
+
+A second description is read against Newman on two letters: Russell G. Schuh &
+Lawan D. Yalwa, "Hausa", Illustrations of the IPA, in *Handbook of the
+International Phonetic Association* (Cambridge University Press, 1999), pp.
+90-95. It describes the Kano standard and disagrees twice:
+
+* p. 92 — ⟨ts⟩ "ranges from an ejective alveolar affricate with clear plosive
+  component to an ejective fricative", and in Kano "tends to be realized as the
+  affricate";
+* p. 92 — ⟨ƴ⟩/⟨ʼy⟩ is a palatalized glottal stop /ʔʲ/ in Kano and a broad range
+  of dialects, historically a contraction of ɗ plus j that Sokoto preserves.
+
+Neither disagreement is decidable from the spelling, so both letters carry an
+ordered candidate pair. Newman's reading stays FIRST in each — his statements
+are unqualified, and the one `ha` gold written in human notation writes `sʼ` 140
+times against no affricate — so the 1-best assertions below are unchanged. The
+tests that follow pin both halves: that Newman's reading is what the engine
+emits, and that Schuh & Yalwa's is reachable in the candidate beam rather than
+absent from it.
 """
-from orthography2ipa import transcribe, get
+from orthography2ipa import G2P, transcribe, get
 
 
 # ─── Metadata ───────────────────────────────────────────────────────────────
@@ -36,7 +55,7 @@ def test_cites_newman_1996():
 
 # ─── The glottalized series ────────────────────────────────────────────────
 
-def test_ts_is_the_ejective_fricative_not_an_affricate():
+def test_ts_reads_as_the_ejective_fricative():
     """⟨ts⟩ is the glottalized counterpart of /s/, so /sʼ/ — no /t/ onset.
 
     Newman 1996: 539 pairs ⟨ƙ⟩:/k/ with ⟨ts⟩:/s/.
@@ -44,6 +63,14 @@ def test_ts_is_the_ejective_fricative_not_an_affricate():
     out = transcribe("Katsina", lang="ha")
     assert "sʼ" in out
     assert "tsʼ" not in out
+
+
+def test_ts_keeps_the_kano_affricate_reachable():
+    """Schuh & Yalwa 1999: 92 report the Kano realization as the affricate
+    [tsʼ]. It is not the default reading, but it must be in the beam."""
+    cands = get("ha").graphemes["ts"]
+    assert list(cands) == ["sʼ", "tsʼ"]
+    assert "katsʼina" in G2P("ha").word_candidates("Katsina", k=4)
 
 
 def test_implosives_and_ejective_kappa_survive():
@@ -57,6 +84,15 @@ def test_hooked_y_and_apostrophe_y_are_one_phoneme():
     so they must transcribe identically (Newman 1996: 539)."""
     assert transcribe("ƴa", lang="ha") == transcribe("ʼya", lang="ha")
     assert "j̰" in transcribe("ƴa", lang="ha")
+
+
+def test_hooked_y_keeps_the_palatalized_glottal_stop_reachable():
+    """Schuh & Yalwa 1999: 92 give the same segment as /ʔʲ/ for Kano and a
+    broad range of dialects. Second candidate, and it must reach the beam from
+    every accepted spelling of the letter."""
+    engine = G2P("ha")
+    for spelling in ("ƴa", "ʼya", "'ya", "’ya"):
+        assert engine.word_candidates(spelling, k=4)[:2] == ["j̰a", "ʔʲa"]
 
 
 # ─── Unit labialized / palatalized velars ──────────────────────────────────

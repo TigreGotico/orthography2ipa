@@ -6,6 +6,11 @@
 (eds.), *Phonologies of Asia and Africa*, Eisenbrauns, pp. 537-552
 ([full text](https://scholarworks.iu.edu/dspace/bitstreams/f1d4231b-d713-4134-970c-071c5f8485ed/download)).
 The consonant inventory is Table 27-1 on p. 538; the segmental discussion is pp. 539-540.
+A second description is read alongside it: Schuh, R. G. & Yalwa, L. D. (1999),
+"Hausa", Illustrations of the IPA, in *Handbook of the International Phonetic
+Association*, Cambridge University Press, pp. 90-95
+([scan](https://archive.org/details/rosettaproject_hau_phon-4)), which describes
+the Kano standard and disagrees with Newman on two letters; see below.
 
 ## Input contract
 
@@ -66,7 +71,12 @@ differently. Hausa contrasts an apical tap or roll /r/ with a retroflex flap
 arrived through Arabic, Kanuri and English loanwords, through ideophones and
 intensives, and through rhotacization of syllable-final alveolars (pp. 539-540).
 Which rhotic a given word takes is a lexical fact with no cue in the spelling,
-so ⟨r⟩ is encoded as an ordered **candidate pair** rather than a single guess:
+Schuh & Yalwa give the standard minimal pair — [bàràː] 'begging' against
+[ɓaraː] 'servant', "both orthographic *bara*" — and note that their own Kano
+speaker "is among the minority of Hausa speakers who have only the single r
+sound, [r]" (p. 93), so even the contrast's existence is not uniform across
+speakers. ⟨r⟩ is therefore encoded as an ordered **candidate pair** rather than
+a single guess:
 both readings are in the lattice, and the ordering is a decoding default, not an
 assertion about frequency. One position is deterministic — word-finally only
 the roll occurs (p. 539) — and the spec declares that as a positional
@@ -82,8 +92,8 @@ work.
 |:--|:--|:--|
 | ɓ, ɗ | ɓ, ɗ | laryngealized implosive stops |
 | ƙ | kʼ | ejective; plain counterpart /k/ |
-| ts | sʼ | ejective **fricative**, not an affricate; plain counterpart /s/ (p. 539) |
-| ƴ, ʼy | j̰ | glottalized laryngealized palatal approximant; one phoneme, two spellings |
+| ts | sʼ / tsʼ | ejective; plain counterpart /s/. Fricative first (Newman p. 539), affricate second (Schuh & Yalwa p. 92) |
+| ƴ, ʼy | j̰ / ʔʲ | one phoneme, two spellings: Newman's glottalized palatal approximant (p. 539) or Schuh & Yalwa's palatalized glottal stop (p. 92) |
 | c, j | tʃ, dʒ | affricates in Standard (Kano) Hausa |
 | sh | ʃ | |
 | kw, gw, ƙw | kʷ, ɡʷ, kʷʼ | unit labialized velars |
@@ -103,6 +113,43 @@ shows, so the spec does not encode it.
 
 Word-initial vowels take an epenthetic glottal-stop onset, since Hausa has no
 vowel-initial syllables.
+
+## Where the two descriptions disagree
+
+Newman and Schuh & Yalwa describe the same language and differ on two letters.
+Neither difference is resolvable from the spelling, so the spec ships both
+readings of each as an ordered candidate pair and states which description put
+each one first.
+
+⟨ts⟩ is an ejective. Newman pairs it with ⟨ƙ⟩ and gives the plain counterparts
+as /s/ and /k/, which makes ⟨ts⟩ the ejective fricative /sʼ/ (p. 539). Schuh &
+Yalwa describe the same sound as ranging "from an ejective alveolar affricate
+with clear plosive component to an ejective fricative", and add that in the
+Kano dialect "it tends to be realized as the affricate" (p. 92). The fricative
+stays the first candidate: Newman states it without qualification, and the
+wikipron gold — the only `ha` gold whose IPA column is human notation — writes
+`sʼ` 140 times and `t͡s` not once. The affricate is second, so the reading Schuh
+& Yalwa report for Kano, and the one epitran writes, is in the lattice rather
+than absent from it.
+
+⟨ƴ⟩ (Niger ⟨ʼy⟩) is one phoneme with four accepted spellings. Newman calls it
+the glottalized laryngealized palatal approximant /j̰/ (p. 539). Schuh & Yalwa
+give it for Kano and "a broad range of dialects" as a palatalized glottal stop
+/ʔʲ/, historically a contraction of ɗ plus j that Sokoto preserves: Sokoto
+*ɗiyaa*, Kano *ʼyaa* (p. 92). Both are candidates, the approximant first. The
+vox_communis gold writes `ʔʲ` where the spec writes `j̰` in 18 places, so this
+is a notation difference between two published descriptions rather than an
+error in either.
+
+Both additions are second candidates only. Neither moves 1-best output, so
+neither moves PER or exact match on either row — both stay at 0.5340/0.0022 and
+0.1130/0.4937. What moves is the oracle: on vox_communis, oracle PER@5 falls
+from 0.0390 to 0.0336 and oracle exact@5 rises from 0.8193 to 0.8209, because
+the `ʔʲ` that gold writes 18 times is now in the beam. On wikipron, oracle PER@5
+falls from 0.5183 to 0.5167 and exact is unmoved, that gold using neither
+alternative. This is a lattice-reachability result and is worth exactly that
+much: a published reading of two Hausa letters is now in the candidate set
+instead of absent from it, and nothing about the engine's first answer changed.
 
 ## Reading the wikipron row
 
@@ -196,8 +243,53 @@ closed set of doubled-digraph spellings directly in the grapheme table.
 
 ## Reading the vox_communis row
 
-The two `ha` rows move in opposite directions, and the reason is the notation
-each gold is written in rather than the quality of the rules. Scored in one
+The two `ha` rows are 42 PER points apart on one spec — 0.5340 on wikipron
+against 0.1130 on vox_communis — and the whole of that gap is notation. It can
+be closed from either end, and the measurement was run from both.
+
+vox_communis carries **no** tone mark and **no** length mark: across its 3721
+`ha` pairs there are 0 combining acute, grave or circumflex accents and 0
+occurrences of `ː`. wikipron carries both on nearly every word: 5477 tone marks
+over 2172 of 2176 items (99.8%) and 2395 length marks over 1676 of them (77.0%).
+Folding tone and length out of both sides of the wikipron row takes it from PER
+0.5340 to **0.0223**, with exact match rising from 0.2% to 89.1%. Folding
+epitran's notation out of both sides of the vox_communis row — its exclusive
+`ɽ`, `ɸ`, `t͡s` and its unlabialized velars, none of which it has a symbol to
+score against — takes it from PER 0.1130 to **0.0252**, exact match 49.4% to
+88.2%.
+
+Once each gold's own notation is folded out, the two rows land within three
+thousandths of each other. There is no 42-point difference in how well the spec
+reads Hausa; there is one spec reading Hausa at roughly 97.5% phone accuracy
+against two golds written in incompatible notations, one of which marks two
+phonemic contrasts the alphabet does not write and one of which marks neither
+while writing three segments in a transcription convention the spec does not
+follow. The published gap measures the notations, not the rules.
+
+It is worth being exact about what wikipron's marking is, because "narrow
+transcription" is the wrong description of it. Tone and vowel length are
+*phonemic* in Hausa: Schuh & Yalwa state that "Hausa has two distinctive tones"
+plus a falling tone on heavy syllables (p. 94) and that the vowel system is
+"five vowels, each with a long and a short counterpart" (p. 90); Newman states
+that the alphabet marks neither (p. 537). A transcription that writes them is
+therefore a *complete* broad transcription, not a narrow one, and the deficient
+party is Boko, which underdifferentiates its own phonemes. Nothing a
+grapheme-driven transcriber can do recovers them, but the reason is that the
+orthography is defective, not that the gold is over-specified.
+
+The remaining note on this row is that a real disagreement between the golds
+survives all of the folding. Word-initial vowels take an epenthetic glottal-stop
+onset — Schuh & Yalwa say [ʔ] "occurs predictably before words written in the
+standard orthography with initial vowels" (p. 91) — and the spec writes it.
+wikipron writes `ʔ` 380 times and agrees. vox_communis has 354 vowel-initial
+headwords and writes no initial glottal stop for a single one of them, which is
+the largest single component of that row's residual after folding, at 354 of
+539 edits. The spec follows the description and the human-notation gold, and
+pays those 354 edits against epitran.
+
+Beyond that, the two `ha` rows move in opposite directions between spec
+versions, and the reason is again the notation each gold is written in rather
+than the quality of the rules. Scored in one
 session against one gold cache at a constant 3721 vox_communis and 1857
 wikipron items, the Newman-based spec puts wikipron at PER
 0.5397 where the previous spec had 0.5469, and vox_communis at PER 0.1129
