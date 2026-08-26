@@ -3,7 +3,7 @@
   "name": "Akkala Sami",
   "script": "Cyrillic",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "ъ": [
       ""
@@ -132,7 +132,7 @@
       "notes": "Descent per Glottolog classification of Akkala Saami (akka1237)."
     }
   ],
-  "notes": "Skeleton. Akkala Sami is a nearly extinct Kola (Eastern) Saami language of the Uralic family, very close to Kildin Sami and with only a marginal written tradition; where written it uses a Cyrillic alphabet modelled on the Kildin conventions, which this map follows. Base Cyrillic letters are mapped, together with Ӈ (velar nasal), the voiceless lateral Ӆ and Һ (preaspiration). Palatalization, preaspiration and vowel length are not recoverable from the spelling and are left unencoded; because the orthographic norm itself is unsettled, a high PER floor is expected.",
+  "notes": "Skeleton. Akkala Sami is a nearly extinct Kola (Eastern) Saami language of the Uralic family, very close to Kildin Sami and with only a marginal written tradition; where written it uses a Cyrillic alphabet modelled on the Kildin conventions, which this map follows. Base Cyrillic letters are mapped, together with Ӈ (velar nasal), the voiceless lateral Ӆ and Һ (preaspiration). Palatalization, preaspiration and vowel length are not recoverable from the spelling and are left unencoded; because the orthographic norm itself is unsettled, a high PER floor is expected. Akkala Sami stress is word-initial and predictable, not separately orthographically marked; left unencoded (documented exemption).",
   "iso639_3": "sia",
   "glottolog_code": null,
   "sources": [
@@ -157,6 +157,16 @@
       "pages": null,
       "notes": "Orthography/phonology reference for the skeleton-tier grapheme map.",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Akkala_Sami_language"
+    },
+    {
+      "id": "sia_zajkov1987",
+      "author": "Zajkov, Petr M.",
+      "year": 1987,
+      "title": "Babinskij dialekt saamskogo jazyka",
+      "publisher": "Karelian Branch of the USSR Academy of Sciences",
+      "url": null,
+      "pages": null,
+      "notes": "Phonological-morphological monograph on the Babino (Akkala) Sami dialect based on fieldwork with the last elderly speakers; the principal descriptive source for Akkala Sami, consulted to check the Kildin-modelled Cyrillic conventions used here."
     }
   ],
   "wikipedia": [

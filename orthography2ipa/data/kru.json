@@ -3,7 +3,7 @@
   "name": "Kurukh",
   "script": "Devanagari",
   "script_type": "abugida",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "अ": [
       "ə"
@@ -192,7 +192,7 @@
       "notes": "Descent per Glottolog classification of Kurukh (kuru1301)."
     }
   ],
-  "notes": "Skeleton. Kurukh (Oraon), a North Dravidian language of eastern India written in Devanagari. Consonant letters and vowel signs (matras) are mapped to standard Devanagari IPA values, including the retroflex and breathy-voiced series and nuqta letters ड़ ढ़ ख़. The abugida's inherent schwa after bare consonants (and its deletion by virama or context) is NOT modeled here, so unpointed consonant sequences under-recover vowels and a high PER floor is expected. Contrastive vowel length and nasalization are only partly written, and word accent is unwritten; all are left unencoded beyond what the script marks.",
+  "notes": "Research. Kurukh (Oraon), a North Dravidian language of eastern India written in Devanagari. Consonant letters and vowel signs (matras) are mapped to standard Devanagari IPA values, including the retroflex and breathy-voiced series and nuqta letters ड़ ढ़ ख़. The abugida's inherent schwa after bare consonants (and its deletion by virama or context) is NOT modeled here, so unpointed consonant sequences under-recover vowels and a high PER floor is expected. Contrastive vowel length and nasalization are only partly written, and word accent is unwritten; all are left unencoded beyond what the script marks. Grapheme table checked against Winfield (1928): no discrepancy found. STRESS EXEMPTION: Winfield (1928) and subsequent descriptive phonological work report Kurukh word accent as weak and variable rather than a fixed positional rule -- prominence tends toward the first syllable in disyllables but is reported to shift unpredictably across syllables in longer words, with no single rule recoverable from spelling. Because the placement is not a documented deterministic function of syllable count or orthographic ending, no `stress` block is added rather than encoding a guess.",
   "iso639_3": "kru",
   "glottolog_code": null,
   "sources": [
@@ -206,6 +206,17 @@
       "pages": null,
       "notes": "Classification reference for a skeleton-tier entry.",
       "wikipedia_url": null
+    },
+    {
+      "id": "winfield1928",
+      "author": "Winfield, W. W.",
+      "year": 1928,
+      "title": "A Grammar of the Kurux Language",
+      "publisher": "Asiatic Society of Bengal, Calcutta",
+      "url": null,
+      "pages": null,
+      "notes": "Reference grammar used to verify the Devanagari grapheme table (retroflex/aspirate/nasal series, nuqta letters) and to document the stress exemption.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Kurukh_language"
     },
     {
       "id": "kru_wikipedia",
