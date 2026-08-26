@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.82.36a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.36a1) (2026-08-26)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.35a1...7.82.36a1)
+
+**Merged pull requests:**
+
+- fix\(ha\): read the Kano affricate and palatalized glottal stop, and measure the notation gap between the two golds [\#1295](https://github.com/TigreGotico/orthography2ipa/pull/1295) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.82.35a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.35a1) (2026-08-26)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.34a1...7.82.35a1)
@@ -71,19 +79,19 @@
 
 ## [7.82.27a2](https://github.com/TigreGotico/orthography2ipa/tree/7.82.27a2) (2026-08-26)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.27a1...7.82.27a2)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.26a1...7.82.27a2)
 
 **Merged pull requests:**
 
 - docs\(gwc\): re-measure the Gawri ceiling and drop the Wikipedia citation [\#1276](https://github.com/TigreGotico/orthography2ipa/pull/1276) ([JarbasAl](https://github.com/JarbasAl))
 
-## [7.82.27a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.27a1) (2026-08-26)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.26a1...7.82.27a1)
-
 ## [7.82.26a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.26a1) (2026-08-26)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.25a1...7.82.26a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.27a1...7.82.26a1)
+
+## [7.82.27a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.27a1) (2026-08-26)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.25a1...7.82.27a1)
 
 **Merged pull requests:**
 
@@ -662,10 +670,6 @@
 ## [7.79.8a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.8a1) (2026-08-24)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.7a1...7.79.8a1)
-
-**Merged pull requests:**
-
-- fix\(fa\): read the Arabic encodings of ⟨ک⟩ and ⟨ی⟩ and the ⟨ه⟩ after every long ā [\#1093](https://github.com/TigreGotico/orthography2ipa/pull/1093) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.79.7a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.7a1) (2026-08-24)
 
