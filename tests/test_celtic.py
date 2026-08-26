@@ -915,6 +915,46 @@ class TestBreton:
         ipa = _segments(orthography2ipa.G2P("br").transcribe_word(word))
         assert ipa.startswith("x"), f"br:{word!r} → {ipa!r}, expected /x/ onset"
 
+    # ── Vowel digraphs ──────────────────────────────────────────────────────
+
+    @pytest.mark.parametrize("grapheme,first", [
+        ("oa", "wa"),
+        ("oe", "we"),
+        ("aou", "aw"),
+        ("eo", "ew"),
+        ("ae", "\u025b"),
+        ("ei", "\u025bj"),
+        ("ui", "\u0265i"),
+    ])
+    def test_vowel_digraphs_are_graphemes(self, grapheme, first):
+        """The vowel digraphs are single graphemes, not letter sequences.
+
+        Press (1986:21-22), A Grammar of Modern Breton, section 2.5, reads
+        them as a vowel plus [j w \u0265] inside one syllable — \u27e8kaer\u27e9
+        [\u02c8kajr], \u27e8paotr\u27e9 [\u02c8pawt(r)], \u27e8botaouer\u27e9 [bo\u02c8tawer] — and
+        gives \u27e8oa\u27e9 and \u27e8oue\u27e9 as tending to [wa] and [we]. Read letter
+        by letter, \u27e8koad\u27e9 comes out with a two-vowel hiatus instead of the
+        glide.
+        """
+        _assert_first(_grapheme(self.spec, grapheme), first,
+                      label=f"br:{grapheme}")
+
+    def test_oa_is_a_glide_not_a_hiatus(self):
+        """\u27e8koad\u27e9 'wood' is [kwa\u02d0t], not [koat]."""
+        ipa = _segments(orthography2ipa.G2P("br").transcribe_word("koad"))
+        assert ipa.startswith("kwa"), f"br:koad \u2192 {ipa!r}"
+
+    def test_eun_nasal_digraph_keeps_its_tilde(self):
+        """\u27e8ñ\u27e9 after \u27e8eu\u27e9 nasalises the vowel instead of vanishing.
+
+        The nasal-vowel graphemes are an oral vowel plus \u27e8ñ\u27e9, and \u27e8eu\u27e9
+        has the same nasal counterpart as the other vowels. Without \u27e8eu\u00f1\u27e9
+        in the table the tilde is an unmapped character and \u27e8bleu\u00f1v\u27e9 loses
+        its nasality silently.
+        """
+        ipa = _segments(orthography2ipa.G2P("br").transcribe_word("bleu\u00f1v"))
+        assert "\u0153\u0303" in ipa, f"br:bleu\u00f1v \u2192 {ipa!r}"
+
     # ── Stress and stressed-vowel length ────────────────────────────────────
 
     def test_stress_is_penultimate(self):

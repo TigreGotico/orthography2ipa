@@ -23,6 +23,28 @@
     "ou": [
       "u"
     ],
+    "aou": [
+      "aw",
+      "ɔw"
+    ],
+    "oa": [
+      "wa"
+    ],
+    "oe": [
+      "we"
+    ],
+    "eo": [
+      "ew"
+    ],
+    "ae": [
+      "ɛ"
+    ],
+    "ei": [
+      "ɛj"
+    ],
+    "ui": [
+      "ɥi"
+    ],
     "où": [
       "u"
     ],
@@ -122,6 +144,9 @@
       "œ",
       "ø"
     ],
+    "euñ": [
+      "œ̃"
+    ],
     "añ": [
       "ɑ̃"
     ],
@@ -136,6 +161,9 @@
     ],
     "uñ": [
       "ỹ"
+    ],
+    "ñ": [
+      ""
     ],
     "y": [
       "j"
@@ -269,6 +297,12 @@
     ],
     "ỹ": [
       "ỹ"
+    ],
+    "ɥ": [
+      "ɥ"
+    ],
+    "œ̃": [
+      "œ̃"
     ]
   },
   "parent": "xbr",
@@ -292,7 +326,7 @@
       "notes": "Gaulish substrate traces in Armorican territory"
     }
   ],
-  "notes": "Breton (Brezhoneg). ~200,000 speakers (est. 2020). Brittany, France. Brought from Britain by insular Brythonic speakers (~5th–6th c. CE). Four main dialects: Léonard (KLT basis), Trégorrois, Cornouaillais, Vannetais (most divergent). INPUT CONTRACT: peurunvan (the 1941 \"wholly unified\" orthography), which is what ⟨zh⟩, ⟨c'h⟩ and the plural digraph ⟨où⟩ identify; the interdialectal and skolveurieg systems spell the same words differently and are not this spec's input. The pronunciation described is the KLT-based standard: ⟨zh⟩ = /z/ (it is /h/ in Vannetais), ⟨c'h⟩ = /x/, penultimate stress. ⟨c'h⟩ is also written with U+2019 and U+02BC in running text, so all three apostrophes are mapped — an unmapped one silently deletes the ⟨c⟩ and leaves ⟨h⟩. French strongly influenced phonology (uvular /ʁ/, nasal vowels in loans). Refs: Hemon (1975), Press (1986), Hewitt (1978).",
+  "notes": "Breton (Brezhoneg). ~200,000 speakers (est. 2020). Brittany, France. Brought from Britain by insular Brythonic speakers (~5th–6th c. CE). Four main dialects: Léonard (KLT basis), Trégorrois, Cornouaillais, Vannetais (most divergent). INPUT CONTRACT: peurunvan (the 1941 \"wholly unified\" orthography), which is what ⟨zh⟩, ⟨c'h⟩ and the plural digraph ⟨où⟩ identify; the interdialectal and skolveurieg systems spell the same words differently and are not this spec's input. The pronunciation described is the KLT-based standard: ⟨zh⟩ = /z/ (it is /h/ in Vannetais), ⟨c'h⟩ = /x/, penultimate stress. ⟨c'h⟩ is also written with U+2019 and U+02BC in running text, so all three apostrophes are mapped — an unmapped one silently deletes the ⟨c⟩ and leaves ⟨h⟩. The vowel digraphs ⟨ae ei eo oa oe ui⟩ and the trigraph ⟨aou⟩ are separate graphemes, not letter sequences: Press (1986:21-22) analyses them as a vowel plus [j w ɥ] in one syllable (⟨kaer⟩ [ˈkajr], ⟨paotr⟩ [ˈpawt(r)], ⟨botaouer⟩ [boˈtawer]) and gives ⟨oa⟩ and ⟨oue⟩ as tending to [wa] and [we]. ⟨euñ⟩ is the nasal counterpart of ⟨eu⟩ and is mapped with the other nasal digraphs; a bare ⟨ñ⟩ maps to nothing so that an ⟨ñ⟩ outside a nasal digraph is dropped where it belongs rather than falling through as an unmapped character. French strongly influenced phonology (uvular /ʁ/, nasal vowels in loans). Refs: Hemon (1975), Press (1986), Hewitt (1978).",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -346,6 +380,16 @@
       "url": "https://arbres.iker.cnrs.fr/index.php/Accentuation",
       "pages": null,
       "notes": "Penultimate (paroxytone) word stress in KLT and the standard against final stress in Vannetais, after ALBB map 506 and Falc'hun (1947)."
+    },
+    {
+      "id": "press1986",
+      "author": "Press, I.",
+      "year": 1986,
+      "title": "A Grammar of Modern Breton",
+      "publisher": "Mouton de Gruyter (Mouton Grammar Library 2), Berlin",
+      "url": "https://theswissbay.ch/pdf/Books/Linguistics/Mega%20linguistics%20pack/Indo-European/Celtic/Breton%2C%20A%20Grammar%20of%20Modern%20%28Press%29.pdf",
+      "pages": "pp. 21-24",
+      "notes": "Section 2.5 'Diphthongs and Triphthongs' and section 3.1 'The Vowels'. Source of the vowel-digraph values and of the statement that a stressed vowel tends to closeness when long and to openness when short."
     }
   ],
   "wikipedia": [
