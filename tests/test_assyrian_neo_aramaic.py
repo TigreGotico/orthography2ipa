@@ -95,8 +95,10 @@ class TestConsonantValues:
 class TestDoubledWaw:
     """A written ⟨ܘܘ⟩ digraph is not a doubled vowel letter.
 
-    Measured on the shipped gold: all 18 word-medial sites read the second
-    waw as consonantal /w/, never as a second [uː].
+    Measured on the shipped gold: of the 18 headwords containing the
+    digraph, 16 have it word-medially and no gold reading of any of them
+    repeats [uː]. The digraph reading is confined to non-initial position,
+    because word-initial waw is consonantal.
     """
 
     def test_doubled_waw_is_not_a_double_long_vowel(self):
@@ -107,6 +109,17 @@ class TestDoubledWaw:
     def test_doubled_waw_general_grapheme_leads_with_a_short_vowel(self):
         ipa = _g("ܘܘ")
         assert ipa[0] == "uw"
+
+    def test_word_initial_doubled_waw_opens_with_the_consonant(self):
+        # Word-initial waw is consonantal /w/, so a word that opens with the
+        # digraph opens with /w/ too — gold ⟨ܘܘ⟩ [waw], ⟨ܘܘܐ⟩ [wawwa].
+        engine = G2P("aii")
+        assert engine.transcribe_word("ܘܘ").startswith("w")
+        assert engine.transcribe_word("ܘܘܐ").startswith("w")
+
+    def test_the_digraph_reading_still_applies_off_the_word_edge(self):
+        # The same digraph, one letter in from the edge, keeps [uw].
+        assert "uw" in G2P("aii").transcribe_word("ܡܩܘܘܡܐ")
 
 
 class TestSpecIntegrity:
