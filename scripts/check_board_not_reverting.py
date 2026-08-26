@@ -76,11 +76,13 @@ SCOREBOARD_MD = "docs/scoreboard.md"
 SPEC_DIR = "orthography2ipa/data"
 
 #: Burn-down sets: ``(path, module-level name)`` pairs naming a collection of
-#: codes a test skips, documented as only ever shrinking. Each is read out of
+#: language codes or file paths a test skips, documented as only ever
+#: shrinking. Each is read out of
 #: the file's source rather than imported, so the target's copy and the merged
 #: copy can both be read without executing either.
 RATCHETS = (
     ("tests/test_sources.py", "_WIKIPEDIA_ONLY_SOURCES_BURNDOWN"),
+    ("tests/test_docs_prose.py", "_DOCS_PROSE_RATCHET"),
 )
 
 #: How far back down the target's history a board value is still recognised as
