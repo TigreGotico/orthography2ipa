@@ -197,8 +197,8 @@ A row's `N` is its sample size in scored words, and it is not cosmetic: below ro
 | cy | ipa_childes | 4662 | 0.2985 | 0.2770 | 0.2762 | 0.3048 | 0.3065 | [0.2909, 0.3060] | 0.2731 | research | espeak-derived |
 | cy | vox_communis | 18701 | 0.1172 | 0.0539 | 0.0474 | 0.6762 | 0.7070 | [0.1154, 0.1191] | 0.4203 | research | epitran-derived |
 | cy | wikipron | 14467 | 0.1809 | 0.1464 | 0.1416 | 0.4165 | 0.4347 | [0.1780, 0.1836] | 0.3276 | research | crowd-scraped |
-| da | ipa_childes | 2233 | 0.4485 | 0.3480 | 0.3426 | 0.1308 | 0.1312 | [0.4377, 0.4595] | 0.0443 | research | espeak-derived |
-| da | wikipron | 4331 | 0.3451 | 0.2920 | 0.2867 | 0.1716 | 0.1736 | [0.3381, 0.3521] | 0.1325 | research | crowd-scraped |
+| da | ipa_childes | 2233 | 0.4476 | 0.3469 | 0.3415 | 0.1330 | 0.1335 | [0.4365, 0.4585] | 0.0448 | research | espeak-derived |
+| da | wikipron | 4331 | 0.3455 | 0.2917 | 0.2864 | 0.1697 | 0.1718 | [0.3386, 0.3523] | 0.1307 | research | crowd-scraped |
 | dar | northeuralex | 1056 | 0.0691 | 0.0670 | 0.0670 | 0.6449 | 0.6449 | [0.0632, 0.0757] | 0.6439 | research | lexicon-derived |
 | ddo | northeuralex | 871 | 0.1090 | 0.1090 | 0.1090 | 0.5649 | 0.5649 | [0.0978, 0.1201] | 0.5649 | research | lexicon-derived |
 | de | wikipron | 53010 | 0.2103 | 0.1567 | 0.1414 | 0.3150 | 0.3453 | [0.2089, 0.2118] | 0.2343 | research | crowd-scraped |

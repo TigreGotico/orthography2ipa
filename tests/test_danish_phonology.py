@@ -54,8 +54,8 @@ class TestSilentH:
         assert _t(da, word) == ipa
 
     @pytest.mark.parametrize("word,ipa", [
-        ("uhyre", "ˈuhyɐ"),
-        ("uhyggelig", "ˈuhyɡəli"),
+        ("uhyre", "ˈuːhyɐ"),
+        ("uhyggelig", "ˈuːhyɡəli"),
     ])
     def test_onset_h_before_y_survives(self, da, word, ipa):
         """Guard: a non-initial ⟨h⟩ before ⟨y⟩ is syllable-initial, not a
@@ -132,15 +132,31 @@ class TestFinalIg:
 
 class TestSchwaR:
     """Unstressed schwa next to /r/ is the single vowel [ɐ], in both the
-    ⟨-er⟩ and ⟨-re⟩ orders (Puggaard-Rode 2023:40)."""
+    ⟨-er⟩ and ⟨-re⟩ orders (Puggaard-Rode 2023:39, and 111 n.18 for ⟨-er⟩).
+    The /r/ is absorbed into that vowel only in weak, post-vocalic
+    position — the semivowel [ɐ̯] of the weak-allophone table on p. 39."""
 
     @pytest.mark.parametrize("word,ipa", [
         ("hedder", "ˈhɛðɐ"),
         ("sanger", "ˈsaːŋɐ"),
-        ("klatre", "ˈklatɐ"),
         ("store", "ˈsdoːɐ"),
+        ("dyre", "ˈdyːɐ"),
     ])
     def test_schwa_r_fuses(self, da, word, ipa):
+        assert _t(da, word) == ipa
+
+    @pytest.mark.parametrize("word,ipa", [
+        ("klatre", "ˈklatʁɐ"),
+        ("andre", "ˈanʁɐ"),
+        ("sikre", "ˈsikʁɐ"),
+        ("vandre", "ˈvanʁɐ"),
+        ("yngre", "ˈøŋʁɐ"),
+    ])
+    def test_postconsonantal_r_survives(self, da, word, ipa):
+        """A post-consonantal rhotic is strong, so only the schwa raises:
+        Puggaard-Rode writes the infinitive klatre [ˈkʰlætʁɐ] (p. 40) and
+        reserves the rhotic-less [ˈkʰlætɐ] (p. 41) for the imperative
+        klatr!, where there is no schwa left to fuse with."""
         assert _t(da, word) == ipa
 
     @pytest.mark.parametrize("word,ipa", [("rose", "ˈʁoːsə"), ("mor", "ˈmoːʁ")])
@@ -148,10 +164,16 @@ class TestSchwaR:
         """Guard: an /r/ not adjacent to an unstressed schwa is unchanged."""
         assert _t(da, word) == ipa
 
+    @pytest.mark.parametrize("word,ipa", [("bryde", "ˈbʁyːðə"), ("byde", "ˈbyːðə")])
+    def test_soft_d_after_y(self, da, word, ipa):
+        """Guard on the ⟨y⟩ vowel-letter declaration: post-vocalic /d/ is
+        the approximant [ð] after ⟨y⟩ as after any other vowel letter."""
+        assert _t(da, word) == ipa
+
 
 class TestHighVowelLowering:
     """/i y u/ lower to [e ø o] before a coda [ŋ] or a coda nasal +
-    consonant (Puggaard-Rode 2023:46, rule (7), after Grønnum 2005:308)."""
+    consonant (Puggaard-Rode 2023:46, rule (7))."""
 
     @pytest.mark.parametrize("word,ipa", [
         ("ting", "ˈteŋ"),
