@@ -122,13 +122,55 @@
     "z": [
       "z"
     ],
+    "à": [
+      "a"
+    ],
+    "á": [
+      "a"
+    ],
+    "è": [
+      "e"
+    ],
+    "é": [
+      "e"
+    ],
+    "ì": [
+      "i"
+    ],
+    "í": [
+      "i"
+    ],
+    "ò": [
+      "o"
+    ],
+    "ó": [
+      "o"
+    ],
+    "ù": [
+      "u"
+    ],
+    "ú": [
+      "u"
+    ],
     "ɔ": [
+      "ɔ"
+    ],
+    "ɔ̀": [
+      "ɔ"
+    ],
+    "ɔ́": [
       "ɔ"
     ],
     "ɖ": [
       "ɖ"
     ],
     "ɛ": [
+      "ɛ"
+    ],
+    "ɛ̀": [
+      "ɛ"
+    ],
+    "ɛ́": [
       "ɛ"
     ],
     "ṣ": [
@@ -138,7 +180,19 @@
     "ẹ": [
       "ɛ"
     ],
+    "ẹ̀": [
+      "ɛ"
+    ],
+    "ẹ́": [
+      "ɛ"
+    ],
     "ọ": [
+      "ɔ"
+    ],
+    "ọ̀": [
+      "ɔ"
+    ],
+    "ọ́": [
       "ɔ"
     ]
   },
@@ -339,14 +393,14 @@
       "url": "https://github.com/CUNY-CL/wikipron/blob/master/data/scrape/tsv/guw_latn_broad.tsv",
       "wikipedia_url": null,
       "pages": null,
-      "notes": "Crowd-scraped Wiktionary gold, 681 rows (595 distinct spellings; some spellings repeat across dialectal or orthographic variants, and 72 of those 595 spellings carry two or more distinct gold transcriptions between them — the two competing Gun orthographies this spec documents, not lost tone information, since the homograph count does not fall when tone is folded out first). Consulted only to settle which reading a letter takes where the orthographies overlap, to order the ambiguous candidate lists, and to establish that tone is not written: ⟨p⟩ is [k͡p] in 29 of 29 words (⟨pataki⟩ and ⟨kpataki⟩ are the same word), ⟨hw⟩ is [ɣʷ] in 9 of 9, ⟨h⟩ splits [h] 31 / [x] 18 / [ɣ] 7, ⟨d⟩ splits [d] 37 / [ɖ] 16, ⟨ṣ⟩ is [ʃ] with [t͡ʃ] in the ⟨Ajaṣẹ⟩/⟨Ajacɛ⟩ type, ⟨r⟩ is [ɾ] and [l] in equal numbers over 6 rows, a vowel written after ⟨m n ny⟩ is nasal in 130 of 155 cases, and tone is written in 3 of 681 entries. The gold marks tone on almost every syllable — 679 of its 681 entries carry an acute, grave or macron — while the spelling those entries transcribe writes tone in 3. The mismatch is the dominant term in the row's score: measured against the current spec and the harness's 595-distinct-spelling scoring convention, raw PER is 0.4311 and folding the tone diacritics out of both sides drops it to 0.045, so roughly nine tenths of the measured error is a notation the orthography does not carry and no grapheme rule can recover (this value moves slightly as the spec's segmental rules improve; it is a measured distributional statement, not a citation, and is re-measured rather than hand-adjusted)."
+      "notes": "Crowd-scraped Wiktionary gold, 681 rows (595 distinct spellings; some spellings repeat across dialectal or orthographic variants, and 72 of those 595 spellings carry two or more distinct gold transcriptions between them. Two thirds of that homography is tone: folding the tone diacritics out of the gold first leaves 24 of the 595 spellings with competing readings, and those 24 are the segmental disagreements the two competing Gun orthographies produce). Consulted only to settle which reading a letter takes where the orthographies overlap, to order the ambiguous candidate lists, and to establish that tone is not written: ⟨p⟩ is [k͡p] in 29 of 29 words (⟨pataki⟩ and ⟨kpataki⟩ are the same word), ⟨hw⟩ is [ɣʷ] in 9 of 9, ⟨h⟩ splits three ways — of the 88 distinct spellings that write an ⟨h⟩ outside ⟨hw⟩, 45 have an [h] in the gold, 26 an [x] and 10 a [ɣ] — and ⟨d⟩ splits two ways, 41 of the 58 distinct spellings with a ⟨d⟩ showing [d] and 17 showing [ɖ] (counts are over distinct spellings, by presence of the phone anywhere in the row), ⟨ṣ⟩ is [ʃ] with [t͡ʃ] in the ⟨Ajaṣẹ⟩/⟨Ajacɛ⟩ type, ⟨r⟩ is [ɾ] and [l] in equal numbers over 6 rows, a vowel written after ⟨m n ny⟩ is nasal in 130 of 155 cases, and tone is written in 3 of 681 entries. The gold marks tone on almost every syllable — 679 of its 681 entries carry an acute, grave or macron — while the spelling those entries transcribe writes tone in 3. The mismatch is the dominant term in the row's score: measured against the current spec and the harness's 595-distinct-spelling scoring convention, raw PER is 0.4311 and folding the tone diacritics out of both sides drops it to 0.045, so roughly nine tenths of the measured error is a notation the orthography does not carry and no grapheme rule can recover (this value moves slightly as the spec's segmental rules improve; it is a measured distributional statement, not a citation, and is re-measured rather than hand-adjusted)."
     }
   ],
   "timespan": {
     "start_year": 1923,
     "end_year": null
   },
-  "notes": "Gun / Gungbe (Gbe, Benin and south-western Nigeria). Two Latin orthographies are in use for the same language and this spec describes both. The Benin national alphabet (Africa-alphabet based, closely following Fon) writes ⟨ɛ⟩ /ɛ/, ⟨ɔ⟩ /ɔ/, ⟨ɖ⟩ /ɖ/, ⟨x⟩ /x/, ⟨xw⟩ /xʷ/, ⟨hw⟩ /ɣʷ/, ⟨gb⟩ /ɡ͡b/, ⟨kp⟩ /k͡p/, ⟨c⟩ /t͡ʃ/, ⟨ny⟩ /ɲ/. The Nigerian orthography is Yoruba-based and writes those same sounds ⟨ẹ ọ d h wh ṣ p⟩; ⟨p⟩ there is the labial-velar /k͡p/, not a plain stop, which Gbe has only in loans, and ⟨ṣ⟩ carries its Yoruba value /ʃ/ but also stands in for ⟨c⟩ /t͡ʃ/ (⟨Ajaṣẹ⟩ = ⟨Ajacɛ⟩). Because the two conventions overlap, ⟨d⟩ stands for /d/ or /ɖ/ and ⟨h⟩ for /x/, /ɣ/ or /h/, and the spec offers both readings to the lattice instead of guessing; /x/ and /ɣ/ themselves vary dialectally as [x~χ~h] and [ɣ~ʁ]. ⟨r⟩ is /ɾ/ or /l/: /l/ is realised as a trill after laminal alveolars, palato-alveolars and palatals, which is the only environment ⟨r⟩ is written in. A vowel followed by a CODA ⟨n⟩ is nasal and the ⟨n⟩ is not a segment (⟨xlan⟩ [xlã]); an ⟨n⟩ that opens the next syllable is an ordinary consonant (⟨ayɔnu⟩ [ajɔnũ]), and ⟨nn⟩ is the two together, not a geminate (⟨sunnu⟩ [sũnũ]). Only /i u ɛ ɔ a/ nasalise — /e o/ have no nasal counterparts, so a coda nasal after them survives as a consonant (⟨ogongo⟩ [oɡonɡo]; the place assimilation that gives [oɡoŋɡo] is not modelled). Every written nasal consonant entails a nasal nucleus after it, because none of them is an independent phoneme before a nasal vowel: [m] and [n] are what /b/ and /ɖ/ become there, and [ɲ] is /j/ there, in free variation with [j̃] (⟨mi⟩ [mĩ], ⟨nyɔ⟩ [ɲɔ̃]). Gungbe is tonal (H/M/L), but tone is not written in either orthography and is therefore not recoverable from ordinary spelling. Because the gold transcriptions mark tone and the spelling does not, the benchmark row for this language is dominated by that convention gap rather than by segmental error; the segmental quality of the spec is only visible with tone folded out of both sides.",
+  "notes": "Gun / Gungbe (Gbe, Benin and south-western Nigeria). Two Latin orthographies are in use for the same language and this spec describes both. The Benin national alphabet (Africa-alphabet based, closely following Fon) writes ⟨ɛ⟩ /ɛ/, ⟨ɔ⟩ /ɔ/, ⟨ɖ⟩ /ɖ/, ⟨x⟩ /x/, ⟨xw⟩ /xʷ/, ⟨hw⟩ /ɣʷ/, ⟨gb⟩ /ɡ͡b/, ⟨kp⟩ /k͡p/, ⟨c⟩ /t͡ʃ/, ⟨ny⟩ /ɲ/. The Nigerian orthography is Yoruba-based and writes those same sounds ⟨ẹ ọ d h wh ṣ p⟩; ⟨p⟩ there is the labial-velar /k͡p/, not a plain stop, which Gbe has only in loans, and ⟨ṣ⟩ carries its Yoruba value /ʃ/ but also stands in for ⟨c⟩ /t͡ʃ/ (⟨Ajaṣẹ⟩ = ⟨Ajacɛ⟩). Because the two conventions overlap, ⟨d⟩ stands for /d/ or /ɖ/ and ⟨h⟩ for /x/, /ɣ/ or /h/, and the spec offers both readings to the lattice instead of guessing; /x/ and /ɣ/ themselves vary dialectally as [x~χ~h] and [ɣ~ʁ]. ⟨r⟩ is /ɾ/ or /l/: /l/ is realised as a trill after laminal alveolars, palato-alveolars and palatals, which is the only environment ⟨r⟩ is written in. A vowel followed by a CODA ⟨n⟩ is nasal and the ⟨n⟩ is not a segment (⟨xlan⟩ [xlã]); an ⟨n⟩ that opens the next syllable is an ordinary consonant (⟨ayɔnu⟩ [ajɔnũ]), and ⟨nn⟩ is the two together, not a geminate (⟨sunnu⟩ [sũnũ]). Only /i u ɛ ɔ a/ nasalise — /e o/ have no nasal counterparts, so a coda nasal after them survives as a consonant (⟨ogongo⟩ [oɡonɡo]; the place assimilation that gives [oɡoŋɡo] is not modelled). Every written nasal consonant entails a nasal nucleus after it, because none of them is an independent phoneme before a nasal vowel: [m] and [n] are what /b/ and /ɖ/ become there, and [ɲ] is /j/ there, in free variation with [j̃] (⟨mi⟩ [mĩ], ⟨nyɔ⟩ [ɲɔ̃]). Gungbe is tonal (H/M/L) and neither orthography writes tone as a matter of course, so tone is not recoverable from ordinary spelling. Because the gold transcriptions mark tone and the spelling does not, the benchmark row for this language is dominated by that convention gap rather than by segmental error; the segmental quality of the spec is only visible with tone folded out of both sides. TONE-MARKED VOWEL LETTERS: a handful of spellings do carry an acute or a grave over a vowel (3 of the 681 gold rows: ⟨adà⟩, ⟨hùwaji⟩, ⟨hinhọ́n⟩). Those letters are the ordinary vowel letters with a diacritic on them, so each one is listed as a grapheme with the vowel's own value. Before they were listed, a precomposed tone-marked vowel matched no grapheme and was dropped from the output altogether — ⟨adà⟩ came out [ad] and ⟨hùwaji⟩ came out [hwadʒi], losing a whole nucleus. The spec deliberately does NOT carry a tone VALUE across from these marks. Reading the acute as high and the grave as low would need a description of the Gun tone orthography, and no such work could be retrieved; the sister spec data/ee.json does emit tone from the spelling because Ansre 1961 describes the Ewe convention. An unsourced tone mapping would score better against this tone-marking gold, which is exactly why it is refused.",
   "location": {
     "latitude": 6.48529,
     "longitude": 2.76767,

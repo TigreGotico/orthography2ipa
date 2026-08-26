@@ -224,3 +224,32 @@ def test_w_after_a_coda_nasal_stays_a_glide():
     labialised consonant: ⟨azọnwatọ⟩ keeps [w]."""
     assert "w" in guw("azọnwatọ")
     assert "ʷ" not in guw("azọnwatọ")
+
+
+# ---------------------------------------------------------------------------
+# Tone-marked vowel letters
+# ---------------------------------------------------------------------------
+
+def test_a_tone_marked_vowel_letter_is_still_that_vowel():
+    """Neither Gun orthography writes tone as a rule, but a few spellings do
+    carry an acute or a grave over a vowel.  A diacritic on a vowel letter
+    does not stop it being that vowel: ⟨adà⟩ keeps its final /a/ and
+    ⟨hùwaji⟩ its /u/, where before the marked letters matched nothing and
+    the whole nucleus was dropped ([ad], [hwadʒi])."""
+    assert guw("adà") == "ada"
+    assert guw("hùwaji") == guw("huwaji") == "huwadʒi"
+
+
+def test_a_tone_mark_on_a_nigerian_vowel_letter_behaves_the_same():
+    """The Nigerian letters take the marks too, and the segmental reading is
+    unchanged: ⟨hinhọ́n⟩ transcribes as ⟨hinhọn⟩ does."""
+    assert guw("hinhọ́n") == guw("hinhọn") == "hĩhɔ̃"
+
+
+def test_the_tone_value_itself_is_not_carried_into_the_output():
+    """No retrievable description of the Gun tone orthography says what the
+    acute and the grave stand for, so the spec refuses to guess: the marks
+    identify the vowel and nothing more.  The sister spec ``ee`` does emit
+    tone because Ansre 1961 describes the Ewe convention."""
+    for word in ("adà", "hùwaji", "hinhọ́n"):
+        assert not set("́̀̄̌̂") & set(guw(word))
