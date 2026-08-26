@@ -438,7 +438,7 @@ A row's `N` is its sample size in scored words, and it is not cosmetic: below ro
 | nrf | wikipron | 143 | 0.2557 | 0.2120 | 0.2026 | 0.4266 | 0.4406 | [0.2087, 0.3017] | 0.3636 | research | crowd-scraped |
 | nup | wikipron | 393 | 0.3979 | 0.3979 | 0.3979 | 0.1501 | 0.1501 | [0.3787, 0.4165] | 0.1501 | research | crowd-scraped |
 | nv | wikipron | 989 | 0.2514 | 0.2514 | 0.2514 | 0.0940 | 0.0940 | [0.2423, 0.2602] | 0.0940 | research | crowd-scraped |
-| ny | wikipron | 1564 | 0.3431 | 0.3431 | 0.3431 | 0.0774 | 0.0774 | [0.3345, 0.3528] | 0.0774 | research | crowd-scraped |
+| ny | wikipron | 1564 | 0.3119 | 0.3025 | 0.3018 | 0.0959 | 0.0972 | [0.3031, 0.3211] | 0.0850 | research | crowd-scraped |
 | oc | wikipron | 675 | 0.1283 | 0.0903 | 0.0818 | 0.5763 | 0.6044 | [0.1173, 0.1394] | 0.4800 | research | crowd-scraped |
 | oji | wikipron | 136 | 0.3108 | 0.3108 | 0.3108 | 0.0662 | 0.0662 | [0.2808, 0.3382] | 0.0662 | research | crowd-scraped |
 | olo | wikipron | 278 | 0.0801 | 0.0801 | 0.0801 | 0.6007 | 0.6007 | [0.0676, 0.0931] | 0.6007 | research | crowd-scraped |
