@@ -121,6 +121,12 @@ _ALIASES: Dict[str, str] = {
     "ajp": "ar-JO",           # South Levantine Arabic (Jordanian/Palestinian)
     "afb": "ar-x-gulf",       # Gulf Arabic
     "acw": "ar-SA-x-hejaz",   # Hijazi Arabic
+    # ``acm`` (Mesopotamian Arabic) is the ISO code for the variety ``ar-IQ``
+    # already describes: ``ar-IQ`` declares ``glottolog_code`` meso1252 (Gilit
+    # Mesopotamian Arabic) and ``iso639_3`` acm. It resolved to a separate
+    # 44-key skeleton whose key set was a strict subset of ``ar-IQ``'s, so
+    # ``get("acm")`` returned a poorer description of the same dialect.
+    "acm": "ar-IQ",           # Mesopotamian Arabic (gilit; Glottolog meso1252)
     # Dialects named in a private-use subtag. langcodes ignores private-use
     # content when it measures tag distance, so ``ar-x-najdi`` would otherwise
     # fall to the nearest bare match (``ar``); pin the spoken adjective to the
