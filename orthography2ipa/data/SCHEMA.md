@@ -98,6 +98,7 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
 | `orthography_standard`      | object | no       | The official published spelling norm, when the language has one (see [Orthography Standard Schema](#orthography-standard-schema)) |
 | `location`                  | object | no       | Representative point for where the variety is spoken (see [Location Schema](#location-schema)) |
 | `timespan`                  | object | no       | Attestation period `{"start_year": int, "end_year": int\|null}` |
+| `valid_ceiling`             | object | no       | Measured PER floor once an orthographically-unwritten contrast is folded out of both sides (see [Valid Ceiling Schema](#valid-ceiling-schema)) |
 | *(lexicon)*                 | —      | —        | **Not a spec field, and never bundled.** A word lexicon is a corpus, not a description of a language. Supply one at runtime from a local file, a URL or a Hugging Face id: `orthography2ipa.register_lexicon("en-GB", "hf://TigreGotico/en-lexicon/en-GB.tsv")`, or point at a directory of `{code}.tsv` with `set_lexicon_dir()` / `$ORTHOGRAPHY2IPA_LEXICON_DIR`. |
 
 ## Clade Nodes and the Derived `family`
@@ -788,3 +789,32 @@ A standard is a property of the *language*, not of every dialect of it: a dialec
 that spells by its standard language's norm simply omits the field, and consumers
 walk the ancestry chain. Omit it entirely for varieties with no official norm and
 for reconstructions.
+
+## Valid Ceiling Schema
+
+A row's raw PER conflates two very different failures: the engine getting
+something wrong that the orthography *does* encode, and the gold transcribing a
+contrast — tone, vowel length, both — that the orthography simply never writes.
+`valid_ceiling` records the second kind, and only when it has actually been
+MEASURED: fold the named contrast out of both the prediction and the gold and
+rescore. An unmeasured ceiling must never be recorded — it would read as proof
+a row is fine when nobody checked.
+
+| Key        | Type   | Required | Description                                        |
+|------------|--------|----------|----------------------------------------------------|
+| `per`      | float  | **yes**  | The PER measured after folding `folded` out of both sides |
+| `folded`   | string | **yes**  | The contrast(s) folded, e.g. `"tone"`, `"vowel length"`, `"tone+length"` — these give different numbers on the same row and must not be conflated |
+| `citation` | string | **yes**  | Why the contrast is unwritten in the orthography, and where the measurement is published (a grammar, a PR number, a `docs/languages/<code>.md` page) |
+
+```json
+"valid_ceiling": {
+  "per": 0.0223,
+  "folded": "tone+length",
+  "citation": "Hausa tone and vowel length are unmarked in standard Boko orthography (Newman 2000, A Grammar of Hausa, ch. 3-4); measured across PRs #1063, #1109, #1203, #1295; see docs/languages/ha.md"
+}
+```
+
+Not inherited: it is a measurement executed against this code's own gold rows,
+so a dialect child that inherits graphemes from a parent does not thereby
+inherit the parent's ceiling and must fold+rescore its own gold before
+recording one.

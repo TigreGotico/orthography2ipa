@@ -186,6 +186,46 @@ class OrthographyStandard:
 
 
 # ═══════════════════════════════════════════════════════════════════════════
+# ValidCeiling — the measured PER floor once an unwritten contrast is folded
+# ═══════════════════════════════════════════════════════════════════════════
+
+@dataclass(frozen=True)
+class ValidCeiling:
+    """The best PER a row can reach once a contrast the orthography does not
+    write is folded out of BOTH the prediction and the gold before rescoring.
+
+    This is the instrument that separates a defective row (the engine is
+    wrong about something the orthography does encode) from an
+    input-limited one (the gold distinguishes something the spelling
+    genuinely cannot signal, e.g. tone or vowel length written nowhere in
+    the script). A row whose raw PER is high but whose ceiling is low is
+    proved input-limited, not broken.
+
+    Record only a ceiling that was actually EXECUTED — rescored after
+    folding, not asserted. An unmeasured ceiling is worse than an absent
+    field: it invites treating a guess as proof the row is fine.
+
+    Parameters
+    ----------
+    per : float
+        The measured PER after folding :attr:`folded` out of both sides.
+    folded : str
+        The contrast(s) folded to obtain this number, e.g. ``"tone"``,
+        ``"vowel length"``, or ``"tone+length"``. These give DIFFERENT
+        numbers on the same row and must never be conflated — state
+        exactly what was folded, not just "the ceiling".
+    citation : str
+        Why this contrast is unwritten in the orthography, and where the
+        measurement is published (a reference grammar, a PR number, a
+        `docs/languages/<code>.md` page). Prose, not a bare URL.
+    """
+
+    per: float
+    folded: str
+    citation: str
+
+
+# ═══════════════════════════════════════════════════════════════════════════
 # Location — where a language is (or was) spoken
 # ═══════════════════════════════════════════════════════════════════════════
 
@@ -1589,6 +1629,10 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "orthography_standard": InheritanceMode.OWN_ONLY,
     "location": InheritanceMode.OWN_ONLY,
     "timespan": InheritanceMode.OWN_ONLY,
+    # A ceiling is a measurement executed against THIS code's own gold rows;
+    # a dialect child scores its own row against its own gold, so its parent's
+    # number would assert a measurement that was never run for the child.
+    "valid_ceiling": InheritanceMode.OWN_ONLY,
     "stress": InheritanceMode.NOT_INHERITED,
     "word_exceptions": InheritanceMode.BASE_MERGE,
     # Suffix morphology is shared by a dialect that shares its graphemes —
@@ -2118,6 +2162,13 @@ class LanguageSpec:
     :func:`~orthography2ipa.distance.temporal_distance` and
     ancestor weight decay in
     :func:`~orthography2ipa.distance.ancestry_similarity`."""
+
+    valid_ceiling: Optional["ValidCeiling"] = None
+    """The measured PER floor once an orthographically-unwritten contrast is
+    folded out of both prediction and gold — proof that a high raw PER is
+    input-limited rather than a defect.  ``None`` means no such measurement
+    has been executed yet, which is the honest default: an absent ceiling
+    is a "not measured", never a "measured as zero"."""
 
     stress: Optional["StressRules"] = None
     """Declarative primary-stress placement rules.  ``None`` when the

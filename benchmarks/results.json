@@ -3512,7 +3512,12 @@
   "oracle_per_top5": 0.4445,
   "oracle_exact_top5": 0.0729,
   "oracle_fallback_words": 0,
-  "oracle_scored_words": 247
+  "oracle_scored_words": 247,
+  "valid_ceiling": {
+   "per": 0.008,
+   "folded": "tone",
+   "citation": "Standard Ewe orthography marks tone only where disambiguation requires it (Ansre 1961; Capo 1991); raw PER of 0.4445 against the WikiPron ewe_latn_broad gold (which transcribes a tone on every vowel) drops to 0.008 once tone diacritics are folded out of both sides -- see the `notes` field above for the full measurement (245 of 247 spellings match exactly after folding)."
+  }
  },
  {
   "lang": "egy",
@@ -4851,7 +4856,12 @@
   "oracle_per_top5": 0.5167,
   "oracle_exact_top5": 0.0022,
   "oracle_fallback_words": 0,
-  "oracle_scored_words": 1857
+  "oracle_scored_words": 1857,
+  "valid_ceiling": {
+   "per": 0.0223,
+   "folded": "tone+length",
+   "citation": "The wikipron ha gold's IPA column is fully marked for tone and length while the orthographic column is stripped of both (Module:ha-IPA output); measured over 1857 scored items, baseline PER 0.5340 drops to 0.0223 (89.1% exact match) once both tone and length are folded out of both sides -- folding tone alone gives 0.1690 and length alone gives 0.4565, which must not be conflated with the combined figure. See docs/languages/ha.md."
+  }
  },
  {
   "lang": "haw",
