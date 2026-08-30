@@ -10,6 +10,7 @@ Validates:
 import json
 import os
 import pathlib
+import re
 import sys
 
 import pytest
@@ -158,4 +159,42 @@ def test_production_tier_has_qualifying_benchmark(code):
         f"{code} claims production tier but has no benchmarks/results.json "
         f"row with n >= {_PRODUCTION_MIN_N} and "
         f"per <= {_PRODUCTION_DEEP_PER_CEILING}"
+    )
+
+
+_INHERITANCE_CLAIM = re.compile(r"inherit|share|same", re.I)
+_NEGATION = re.compile(r"\b(no|not|nothing|never|neither|nor|without)\b", re.I)
+
+
+@pytest.mark.parametrize("code", ALL_CODES)
+def test_empty_spec_does_not_claim_to_inherit_from_its_parent(code):
+    """A spec that resolves to no graphemes must not say it inherits one.
+
+    ``parent`` is genealogy only — ``InheritanceMode.OWN_ONLY`` in
+    ``FIELD_INHERITANCE`` — so no grapheme data crosses it. Data inheritance
+    runs over ``graphemes_base``, which the JSON loader resolves separately.
+    A spec that declares a parent, declares no ``graphemes_base``, and whose
+    notes tell the reader it therefore uses the parent's system is describing
+    a mechanism that does not exist: it silently transcribes every input to
+    the empty string. Either declare the ``graphemes_base`` edge, or say in
+    the notes that the table is empty. cbk-x-cavite and cbk-x-ternate both
+    made this claim against cbk-zam and returned silence for every word.
+
+    A negated sentence ("nothing is inherited from cbk-zam") is the honest
+    disclosure this guard wants, so negation clears it.
+    """
+    raw = json.loads((DATA_DIR / f"{code}.json").read_text(encoding="utf-8"))
+    parent = raw.get("parent")
+    if not parent or get(code).graphemes:
+        return
+    if not get(parent).graphemes:
+        return  # parent carries no table either — nothing was promised
+    offenders = [
+        s for s in re.split(r"(?<=[.;])\s+", raw.get("notes") or "")
+        if parent in s and _INHERITANCE_CLAIM.search(s) and not _NEGATION.search(s)
+    ]
+    assert not offenders, (
+        f"{code}.json resolves to an empty grapheme table yet its notes claim "
+        f"it takes the system of '{parent}': {offenders}. 'parent' carries no "
+        f"data; declare 'graphemes_base' or correct the notes"
     )
