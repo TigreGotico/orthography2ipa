@@ -50,7 +50,7 @@
     ]
   },
   "parent": "no",
-  "notes": "Norwegian Bokmål — majority written standard (~85%), Urban East Norwegian phonology (Kristoffersen 2000). QUANTITY: as in Swedish, a stressed vowel is long before a single consonant and short before a geminate or a cluster; doubled letters are grapheme keys mapping to /Cː/, clusters map to the concatenated phonemes, and allophone rules shorten the stressed nucleus before them. VOWELS: short ⟨a⟩ is [a], long is [ɑː]; unstressed ⟨e⟩ is [ə] (the ubiquitous ending vowel). RETROFLEXION: ⟨rt rd rn rs rl⟩ → [ʈ ɖ ɳ ʂ ɭ]. SOFTENING: ⟨k g sk⟩ → [ç j ʃ] before a front vowel. SILENT D: word-final ⟨nd⟩→[n], ⟨ld⟩→[l]; ⟨hv⟩→[v]. R: the phoneme is the apical /r/ (Kristoffersen); the tap [ɾ] is one realisation. TONEMES (accent 1/2) are suprasegmental and are NOT encoded; the gold marks them (¹/²), a convention difference rather than an error.",
+  "notes": "Norwegian Bokmål — majority written standard (~85%), Urban East Norwegian phonology (Kristoffersen 2000). QUANTITY: as in Swedish, a stressed vowel is long before a single consonant and short before a geminate or a cluster; doubled letters are grapheme keys mapping to /Cː/, clusters map to the concatenated phonemes, and allophone rules shorten the stressed nucleus before them. VOWELS: short ⟨a⟩ is [a], long is [ɑː]; unstressed ⟨e⟩ is [ə] (the ubiquitous ending vowel). RETROFLEXION: ⟨rt rd rn rs rl⟩ → [ʈ ɖ ɳ ʂ ɭ]. SOFTENING: ⟨k g sk⟩ → [ç j ʃ] before a front vowel. SILENT D: word-final ⟨nd⟩→[n], ⟨ld⟩→[l]; ⟨hv⟩→[v]. R: the phoneme is the apical /r/ (Kristoffersen); the tap [ɾ] is one realisation. TONEMES (accent 1/2) are suprasegmental and are NOT encoded; the gold marks them (¹/²), a convention difference rather than an error. MEASURED (ipadict, n=10169, harness normalize+broad, folds applied on both hyp and gold, not shipped as valid_ceiling): raw PER 0.3391; folding the ¹/² toneme digits out changes nothing (this gold carries zero toneme digits, unlike the wikipron_nob gold, n=2725, where the same fold moves 0.3471→0.3435); folding /ː/ and gemination out of both sides (the length/quantity contrast this spec models via NB_SHORTEN_*) moves ipadict to 0.2477 and wikipron_nob to 0.2850, so length notation, not toneme notation, is the dominant fold-out gain here. A residual of roughly a quarter of words remains after both folds; a distributional read of that residual (not a citation — Kristoffersen was not reachable to verify a page-level claim this session) shows the current short-⟨a⟩ realisation [a] disagreeing with ipadict's [ɑ] in a recurring pattern across stressed and unstressed syllables alike (e.g. abbor, adapter, akademisk); substituting [ɑ] for the short allophone alone would close about 600 of the ~8600 mismatched words and drop PER a further ~0.036, but this is flagged as a needs-native-check / needs-citation lead, not shipped as a rule change.",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -83,16 +83,6 @@
       "url": "https://phoible.org/",
       "pages": null,
       "notes": "Attested phoneme inventory for glottocode norw1259."
-    },
-    {
-      "id": "wikipedia_norwegian_phonology",
-      "author": "Wikipedia contributors",
-      "year": 2026,
-      "title": "Norwegian phonology",
-      "publisher": "Wikipedia",
-      "url": "https://en.wikipedia.org/wiki/Norwegian_phonology",
-      "pages": null,
-      "notes": "Accessible overview: complementary vowel/consonant length, retroflex allophones of /r/+coronal, unstressed [ə], and the two tonemes."
     }
   ],
   "wikipedia": [
