@@ -3750,6 +3750,16 @@ def _quality_tier(lang: str) -> Optional[str]:
 #: which lives in ``_quality_tier`` and is untouched by this column.
 CEILING_GATING_THRESHOLD = 0.25
 
+#: Marks a row's `PER` cell in `docs/scoreboard.md` as non-qualifying — the
+#: row's `gating` field is `False` (see `can_gate_promotion`) — so a number
+#: that cannot qualify or block a `production` promotion does not read like
+#: one that can, the same reasoning that puts `†` on a proved-input-limited
+#: `Ceiling` value. A different glyph than `THIN_ROW_MARK`/the `Ceiling`
+#: marker (both `†`) on purpose: the three properties are independent and a
+#: row can carry any combination of them, so collapsing them onto one glyph
+#: would make a row's markers ambiguous about which claim they are making.
+NON_QUALIFYING_MARK = "‡"
+
 
 def _valid_ceiling(lang: str) -> Optional[dict]:
     """The spec's measured ``valid_ceiling`` for *lang*, as a plain dict, or
@@ -3884,6 +3894,15 @@ def build_scoreboard(limit: Optional[int], oracle: bool = False,
                 "exact_match": round(1.0 - wer, 4),
                 "quality_tier": _quality_tier(lang),
                 "provenance": provenance_for(dataset_name, lang),
+                # Whether THIS row's provenance tier may gate a `production`
+                # promotion — i.e. qualify or block one, per docs/index.md
+                # and docs/quality_tiers.md. Derived from `provenance` via
+                # `can_gate_promotion()` (the single source of truth for the
+                # tier lattice; see `NON_QUALIFYING_TIERS`) so the field can
+                # never drift from the policy it represents: regenerating
+                # the board recomputes it from the row's own provenance
+                # every time rather than carrying a hand-authored value.
+                "gating": can_gate_promotion(provenance_for(dataset_name, lang)),
                 "harness_version": HARNESS_VERSION,
                 "limit": limit,
             })
@@ -4077,6 +4096,18 @@ def write_scoreboard(rows: List[dict]) -> None:
         "`PER` itself — see [`orthography2ipa/data/SCHEMA.md`]"
         "(../orthography2ipa/data/SCHEMA.md#valid-ceiling-schema).",
         "",
+        "A `PER` marked "
+        f"`{NON_QUALIFYING_MARK}` is a **non-qualifying** row: its "
+        "`provenance` tier cannot gate a `production` promotion (see the "
+        "`Provenance` legend above and `docs/index.md`), so this number can "
+        "neither qualify a language for promotion nor block one, no matter "
+        "how good or bad it looks. `gating` in "
+        "[`benchmarks/results.json`](../benchmarks/results.json) carries the "
+        "same boolean and is DERIVED from `provenance` via "
+        "`can_gate_promotion()` at scoreboard-generation time, never "
+        "hand-set — the same one source of truth `docs/quality_tiers.md`'s "
+        "`production` criteria already use.",
+        "",
         "| Lang | Dataset | N | PER | Ceiling | Oracle@3 | Oracle@5 | OracleX@3 "
         "| OracleX@5 | 95% CI | Exact match | Quality tier | Provenance |",
         "|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---|---|---|",
@@ -4115,9 +4146,12 @@ def write_scoreboard(rows: List[dict]) -> None:
         else:
             mark = "†" if ceiling["per"] < CEILING_GATING_THRESHOLD else ""
             ceiling_cell = f"{ceiling['per']:.4f}{mark} ({ceiling['folded']})"
+        non_qualifying_mark = (
+            NON_QUALIFYING_MARK if row.get("gating") is False else "")
         lines.append(
             f"| {row['lang']} | {row['dataset']} | {n_cell} | "
-            f"{row['per']:.4f} | {ceiling_cell} | {_oracle('oracle_per_top3')} "
+            f"{row['per']:.4f}{non_qualifying_mark} | {ceiling_cell} "
+            f"| {_oracle('oracle_per_top3')} "
             f"| {_oracle('oracle_per_top5')} "
             f"| {_oracle('oracle_exact_top3')} "
             f"| {_oracle('oracle_exact_top5')} | {ci} "
