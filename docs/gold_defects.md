@@ -305,6 +305,37 @@ Correcting the row means filtering the gold to Spelling-2003 headwords, which is
 upstream work at Wiktionary or a local exclusion, not a spec change. Provenance
 is `crowd-scraped`, so the row **can gate**. Tracked as issue #120.
 
+### Scottish Gaelic, `wikipron`
+
+The `gd` gold (3720 distinct headwords over 6000 lines) mixes two things that
+the spec cannot follow at once. First, a notational split for the plain stop
+series ⟨b d g⟩: the modern instrumental analysis (Nance & Stuart-Smith 2013,
+summarised in Nance & Ó Maolalaigh 2020) finds "very little or no closure
+voicing even in word-medial stops which are orthographically b d g" and
+transcribes the series as an aspiration contrast, /pʰ/ vs /p/ — the analysis
+this spec follows. 185 of the 3720 headwords instead carry the older
+Borgstrøm (1940) / Oftedal (1956) devoicing convention, /b̥ d̥ ɡ̊/, for the
+same sounds. Second, dialect mixing: 986 of the 3720 headwords carry two or
+more mutually incompatible pronunciations (different stressed-vowel quality,
+different presence/absence of preaspiration), consistent with WikiPron's
+crowd-scraped, multi-contributor origin rather than a single consistent
+variety.
+
+A useful negative result sits alongside these counts. Two phenomena the
+orthography genuinely underdetermines — preaspiration (`GD_PREASP_*`, already
+encoded) and svarabhakti (an unwritten epenthetic vowel, not encoded — see the
+`gd` spec notes) — were folded out of both hypothesis and gold and rescored.
+Neither fold lowers PER: preaspiration folding moves the board's 0.3202 to
+0.3205, and a svarabhakti fold moves it to 0.3264, both flat-to-worse. So
+unlike the Hausa/Kikuyu tone folds and the Limburgish tone fold, neither
+phenomenon is this row's dominant error source; the mixed devoicing
+convention and the mixed dialects are the larger, harder-to-fold drivers.
+
+Correcting the row means either normalising the two devoicing conventions in
+the benchmark's IPA normalizer (a confusable fold, not a spec change) or
+filtering to a single-dialect subset upstream at Wiktionary/WikiPron — neither
+is a spec change. Provenance is `crowd-scraped`, so the row **can gate**.
+
 ## Circular
 
 ### Portuguese and Arabic TTS gold (`portuguese_tts`, `arabic_tts`)
