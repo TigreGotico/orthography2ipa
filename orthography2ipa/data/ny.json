@@ -23,6 +23,7 @@
       "u"
     ],
     "b": [
+      "ɓ",
       "b"
     ],
     "bw": [
@@ -32,7 +33,11 @@
       "tʃ"
     ],
     "d": [
+      "ɗ",
       "d"
+    ],
+    "dw": [
+      "ɗʷ"
     ],
     "f": [
       "f"
@@ -55,6 +60,9 @@
     "kh": [
       "kʰ"
     ],
+    "khw": [
+      "kʷʰ"
+    ],
     "kw": [
       "kʷ"
     ],
@@ -67,8 +75,17 @@
     "mb": [
       "mb"
     ],
+    "mbw": [
+      "mbʷ"
+    ],
     "mp": [
       "mp"
+    ],
+    "mph": [
+      "mpʰ"
+    ],
+    "mpw": [
+      "mpʷ"
     ],
     "mw": [
       "mʷ"
@@ -79,8 +96,14 @@
     "nd": [
       "nd"
     ],
+    "ndw": [
+      "ndʷ"
+    ],
     "ng": [
       "ŋɡ"
+    ],
+    "ngw": [
+      "ŋɡʷ"
     ],
     "ng'": [
       "ŋ"
@@ -88,8 +111,20 @@
     "nk": [
       "ŋk"
     ],
+    "nkh": [
+      "ŋkʰ"
+    ],
+    "nkhw": [
+      "ŋkʷʰ"
+    ],
     "nt": [
       "nt"
+    ],
+    "nth": [
+      "ntʰ"
+    ],
+    "ntch": [
+      "ntʃʰ"
     ],
     "nw": [
       "nʷ"
@@ -106,20 +141,35 @@
     "ph": [
       "pʰ"
     ],
+    "phw": [
+      "pʷʰ"
+    ],
     "pw": [
       "pʷ"
     ],
     "r": [
-      "r"
+      "l"
+    ],
+    "rw": [
+      "lʷ"
     ],
     "s": [
       "s"
+    ],
+    "sw": [
+      "sʷ"
+    ],
+    "sh": [
+      "ʃ"
     ],
     "t": [
       "t"
     ],
     "th": [
       "tʰ"
+    ],
+    "thw": [
+      "tʷʰ"
     ],
     "ts": [
       "ts"
@@ -129,6 +179,9 @@
     ],
     "v": [
       "v"
+    ],
+    "vw": [
+      "vʷ"
     ],
     "w": [
       "w"
@@ -149,73 +202,7 @@
       "tʃʰ"
     ]
   },
-  "positional_graphemes": {
-    "mb": {
-      "word_initial": [
-        "mb"
-      ]
-    },
-    "mp": {
-      "word_initial": [
-        "mp"
-      ]
-    },
-    "nd": {
-      "word_initial": [
-        "nd"
-      ]
-    },
-    "ng'": {
-      "word_initial": [
-        "ŋ"
-      ],
-      "word_final": [
-        "ŋ"
-      ]
-    },
-    "nk": {
-      "word_initial": [
-        "ŋk"
-      ]
-    },
-    "nt": {
-      "word_initial": [
-        "nt"
-      ]
-    },
-    "nz": {
-      "word_initial": [
-        "nz"
-      ]
-    },
-    "m": {
-      "word_initial": [
-        "m",
-        "m̩"
-      ]
-    },
-    "n": {
-      "word_initial": [
-        "n",
-        "n̩"
-      ]
-    },
-    "a": {
-      "word_final": [
-        "a"
-      ]
-    },
-    "i": {
-      "word_final": [
-        "i"
-      ]
-    },
-    "u": {
-      "word_final": [
-        "u"
-      ]
-    }
-  },
+  "positional_graphemes": {},
   "allophones": {
     "a": [
       "a"
@@ -297,10 +284,31 @@
     ],
     "β": [
       "β"
+    ],
+    "ɓ": [
+      "ɓ",
+      "b"
+    ],
+    "ɗ": [
+      "ɗ",
+      "d"
+    ],
+    "ʃ": [
+      "ʃ"
     ]
   },
-  "notes": "Chichewa/Nyanja (Chicheŵa). Bantu language; official language of Malawi (as Chichewa) and spoken in Zambia (as Nyanja), Mozambique (Tete province), and Zimbabwe. ~15 million speakers. KEY FEATURES: (1) FIVE-VOWEL SYSTEM: a/e/i/o/u; e=[ɛ], o=[ɔ]. (2) PRENASALIZED STOPS: mb/mp/nd/nk/nt/nz — phonemic sequences functioning as single onset consonants. (3) SYLLABIC NASALS: m- and n- noun class prefixes are syllabic (/m̩/, /n̩/) before consonants. (4) NG vs NG': <ng'> = [ŋ] (bare velar nasal), <ng> = [ŋɡ] prenasalized. (5) LABIALIZED CONSONANTS: bw/gw/kw/mw/nw/pw/tw/zw are phonemic. (6) ASPIRATED STOPS: kh/ph/th = [kʰ/pʰ/tʰ], phonemic. (7) TONES: lexical tone (H/L), not marked in standard orthography. (8) OPEN SYLLABLE PREFERENCE: most syllables end in vowel.",
+  "notes": "Chichewa/Nyanja (Chicheŵa). Bantu language of Malawi, Zambia, Mozambique and Zimbabwe. The orthography is phonemic and maps closely onto the IPA (Downing & Mtenje 2017 §2.1). KEY FEATURES: (1) FIVE-VOWEL SYSTEM: Downing & Mtenje's chart (4) pairs orthographic e/o with IPA /ɛ ɔ/, which is what this spec emits. (2) IMPLOSIVE VOICED STOPS: their consonant chart (2) gives IPA /ɓ ɗ/ for orthographic <b d>; the pulmonic plosives are kept as second candidates for loans. (3) ASPIRATED SERIES: <ph th kh ch/tch> = [pʰ tʰ kʰ tʃ/tʃʰ]; the <h> spells aspiration of the preceding stop and is never a segment of its own, so the prenasalised aspirates <mph nth nkh ntch> are declared as whole graphemes rather than left to fall apart into a stop plus a stray /h/. (4) PRENASALISED CONSONANTS: <mb mp nd nk nt nz ng> are single onsets; <ng'> is [ŋ] against <ng> [ŋɡ] (Downing & Mtenje chart (3)). (5) LABIALISATION is a general secondary articulation, so the <Cw> series covers the prenasalised and aspirated members too (<ngw ndw mbw mpw nkhw>) and not only the plain stops. (6) <sh> = [ʃ], mainly in loans (Downing & Mtenje chart (2), citing Mchombo 2004 and Watkins 1937). (7) SINGLE LIQUID: the inventory has one liquid, /l/; <r> is the orthographic variant used after front vowels and carries the same phoneme. (8) <ŵ> = [β], retained in the inventory on the Chichewa Board's recommendation despite its marginal status. (9) <h> occurs in only a handful of borrowed words. NOT MODELLED, deliberately: Chichewa contrasts high and low tone lexically, but 'tone is not indicated in Chichewa orthography' (Downing & Mtenje 2017 §2.1), so no grapheme rule can recover it. Nor is there lexical stress — stress is phrasal, realised as penult lengthening over a prosodic phrase, which a word-level spec cannot place. The syllabic nasal is likewise left undeclared: whether preconsonantal <m n> is a syllabic class prefix (m̩-tengo) or the nasal of a prenasalised onset is a morphological fact, invisible to a grapheme rule, and declaring it positionally turned correct prenasalisation into spurious syllabicity.",
   "sources": [
+    {
+      "id": "downing_mtenje2017",
+      "author": "Downing, L.J. & Mtenje, A.",
+      "year": 2017,
+      "title": "The Phonology of Chichewa",
+      "publisher": "Oxford University Press (The Phonology of the World's Languages)",
+      "url": "https://api.pageplace.de/preview/DT0400.9780191037733_A30389705/preview-9780191037733_A30389705.pdf",
+      "pages": null,
+      "notes": "§2.1 gives the consonant inventory in orthography (1) and IPA (2), the orthography-to-IPA differences (3), the vowel system (4), and states that tone is not written and that stress is phrasal penult lengthening."
+    },
     {
       "id": "mtenje1987",
       "author": "Mtenje, A.",
