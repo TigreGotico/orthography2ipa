@@ -24,6 +24,21 @@ Sources consulted:
   independently sourced, since no fetched primary source states the merger
   explicitly; this is recorded honestly in the spec notes rather than
   presented as cited.
+
+The ቅ row and its labialised ቈ series were originally mapped onto the uvular
+/q/ this test file's own assertions carried. Hayward & Hayward's consonant
+chart (1992, p. 48) has no uvular column at all: the plosive row's ejective
+column places this consonant under Velar as /kʼ/, and their example word
+list (p. 49) transcribes it "kʼəddədə 'he tore st.'" with the velar ejective
+symbol, not a uvular one. The assertions below were updated to /kʼ/, /kʼʷ/
+to match that chart, which is the same Hayward & Hayward source the rest of
+this file already cites for the h-row and ejective-sibilant mergers.
+
+The ር row was written as plain /r/ throughout this file's assertions. Hayward &
+Hayward's Conventions section (1992, p. 50) states "Single /r/ is a tap,
+geminate /rr/ a trill" — the singleton, unwritten-gemination case this spec
+always emits is therefore the tap /ɾ/, not /r/, and the assertions below were
+updated to match.
 """
 from orthography2ipa import transcribe, get
 
@@ -37,8 +52,8 @@ def test_cites_ado_2021_labialisation_source():
 def test_labialised_velar_paradigm():
     """ቋ/ቍ (q-series), ኳ (k-series) and ጐ/ጓ (g-series) are the fuller
     labialised velar paradigm Ado (2021) argues is phonemic."""
-    assert transcribe("ቋንቋ", lang="am") == "qʷanəqʷa"
-    assert transcribe("ቍርስ", lang="am") == "qʷərəsə"
+    assert transcribe("ቋንቋ", lang="am") == "kʼʷanəkʼʷa"
+    assert transcribe("ቍርስ", lang="am") == "kʼʷəɾəsə"
     assert transcribe("ኳስ", lang="am") == "kʷasə"
     assert "ɡʷə" in transcribe("አንጐል", lang="am")
     assert transcribe("ጓደኛ", lang="am") == "ɡʷadəɲa"
@@ -66,7 +81,7 @@ def test_historical_h_row_merger_not_silent_deletion():
 
 def test_kx_row_merger_not_silent_deletion():
     """ኸ/ኽ, used to write foreign /x/ in loan spellings, merged with /h/."""
-    assert transcribe("ኸርቱም", lang="am") == "hərətumə"
+    assert transcribe("ኸርቱም", lang="am") == "həɾətumə"
 
 
 def test_archaic_tza_row_completes_the_tsʼ_series():
@@ -83,8 +98,8 @@ def test_unmapped_grapheme_no_longer_swallows_the_whole_word():
     everything already accumulated could still be produced, but a whole
     labialised first syllable used to be dropped outright."""
     out = transcribe("ቋንቋ", lang="am")
-    assert out.startswith("qʷ")
-    assert len(out) > len("anəqʷa")
+    assert out.startswith("kʼʷ")
+    assert len(out) > len("anəkʼʷa")
 
 
 def test_ethiopic_wordspace_stays_unmapped_punctuation():
@@ -165,7 +180,7 @@ def test_ado_labialised_inventory_proof_words():
     assert transcribe("ሿሚ", lang="am") == "ʃʷami"
     assert transcribe("ጯሂ", lang="am") == "tʃʼʷahi"
     assert transcribe("ጿሚ", lang="am") == "tsʼʷami"
-    assert transcribe("ዧሪ", lang="am") == "ʒʷari"
+    assert transcribe("ዧሪ", lang="am") == "ʒʷaɾi"
 
 
 def test_v_series_u_order():
@@ -183,7 +198,7 @@ def test_historical_h_rows_share_one_value():
 def test_labialised_velar_sub_rows_are_complete():
     """ቈ/ኰ/ጐ and their i-, e- and ɨ-order siblings are the same labialised
     velars as the ቋ/ኳ/ጓ glyphs already mapped."""
-    assert transcribe("ቈጠረ", lang="am") == "qʷətʼərə"
+    assert transcribe("ቈጠረ", lang="am") == "kʼʷətʼəɾə"
     assert transcribe("ኰን", lang="am") == "kʷənə"
     assert transcribe("ጒድ", lang="am") == "ɡʷidə"
 
