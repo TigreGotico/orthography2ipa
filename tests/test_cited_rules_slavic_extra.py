@@ -856,17 +856,20 @@ def test_krc_front_rounded_vowels_use_iotated_letters():
 
 
 def test_kk_cyrillic_letters():
-    """Қ = /q/, Ғ = /ʁ/, Ң = /ŋ/, Ұ = /ʊ/, Ү = /y/, І = /ɪ/.
+    """Қ = /q/, Ғ = /ʁ/, Ң = /ŋ/, Ұ = /ʊ/, Ү = /y/, І = /ɪ/, А = /ɑ/, Ы = /ə/.
 
-    kk notes: "Қ = uvular /q/; Ғ = /ʁ/; Ң = /ŋ/; Ұ = back unrounded /ʊ/; Ү = /y/;
-    І = /ɪ/."
+    kk notes cite McCollum & Chen 2020 ("Kazakh", JIPA 51(2):276-298,
+    doi:10.1017/S0025100319000185), whose formant measurements place
+    Kazakh <а> as central-back [ɑ] (p. 282) rather than front [a], and
+    <ы> as central schwa-like [ə] (p. 283), not [ɯ].
     """
-    assert _bare("kk", "қазақ") == "qazaq"
+    assert _bare("kk", "қазақ") == "qɑzɑq"
     assert _bare("kk", "ғылым").startswith("ʁ")
     assert "ŋ" in _bare("kk", "маңғаз")
     assert _bare("kk", "ұл") == "ʊl"
     assert _bare("kk", "үй") == "yj"
     assert _bare("kk", "іс") == "ɪs"
+    assert _bare("kk", "ыс") == "əs"
 
 
 def test_kaa_vowel_harmony_letters():
