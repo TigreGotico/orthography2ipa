@@ -626,7 +626,7 @@ The `Ceiling` column is a `valid_ceiling` measurement, when one has been execute
 | tr | vox_communis | 47013 | 0.0399 | - | 0.0051 | 0.0015 | 0.9505 | 0.9850 | [0.0394, 0.0405] | 0.6869 | research | epitran-derived |
 | tr | wikipron | 11579 | 0.1230 | - | 0.0817 | 0.0760 | 0.6026 | 0.6329 | [0.1202, 0.1257] | 0.4477 | research | crowd-scraped |
 | tru | wikipron | 168 | 0.3607 | - | 0.3104 | 0.3092 | 0.0357 | 0.0357 | [0.3362, 0.3856] | 0.0298 | research | crowd-scraped |
-| tt | vox_communis | 22220 | 0.3708 | - | 0.3238 | 0.3096 | 0.0545 | 0.0849 | [0.3687, 0.3727] | 0.0199 | research | epitran-derived |
+| tt | vox_communis | 22220 | 0.2455 | - | 0.1986 | 0.1843 | 0.2101 | 0.2442 | [0.2433, 0.2478] | 0.1545 | research | epitran-derived |
 | twf | wikipron | 135 | 0.0240 | - | 0.0221 | 0.0221 | 0.9111 | 0.9111 | [0.0103, 0.0412] | 0.8963 | research | crowd-scraped |
 | tzm | wikipron | 658 | 0.0160 | - | 0.0160 | 0.0160 | 0.9483 | 0.9483 | [0.0101, 0.0225] | 0.9483 | research | crowd-scraped |
 | uby | wikipron | 1317 | 0.0247 | - | 0.0214 | 0.0209 | 0.9043 | 0.9043 | [0.0201, 0.0300] | 0.8998 | research | crowd-scraped |
