@@ -1758,14 +1758,20 @@
     "lang": "bn",
     "dataset": "wikipron",
     "n": 927,
-    "per": 0.3116,
-    "per_ci_low": 0.2982,
-    "per_ci_high": 0.3246,
-    "exact_match": 0.0723,
+    "per": 0.2499,
+    "per_ci_low": 0.2368,
+    "per_ci_high": 0.2627,
+    "exact_match": 0.1672,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
+    "gating": true,
     "harness_version": "1.1",
-    "limit": 1000
+    "limit": 1000,
+    "valid_ceiling": {
+      "per": 0.2274,
+      "folded": "inherent_vowel_word_final_quality",
+      "citation": "Scored as-is (this spec's fixed inherent_vowel_final=\"\") the row is 0.2395 PER. Stripping the final vowel character from BOTH hypothesis and gold whenever the orthographic word ends in a bare consonant letter (neutralising the remaining deletion/raising choice on both sides) measures 0.2274 -- this isolates what is left of the inherent-vowel phenomenon from the conjunct/যা-phala and other residual errors; see the notes field for the underlying counts."
+    }
   },
   {
     "lang": "bo",

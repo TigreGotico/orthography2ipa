@@ -700,6 +700,32 @@ class TestAssamese:
         assert orthography2ipa.transcribe("অবস্থান", "as") == "ɔbɔstʰan"
 
 
+class TestBengali:
+    """Regression coverage for the word-final inherent-vowel deletion fix.
+
+    Measured against the wikipron ``ben_beng_rarh_broad`` gold (n=6527), the
+    orthographic inherent vowel /ɔ/ is realised as nothing in 3430/4444
+    (77.2%) of word-final bare-consonant positions, but never in a
+    single-syllable word, where it is the word's only nucleus (43/43 kept).
+    See ``bn.json``'s ``notes`` field for the full count and the fold/rescore
+    that isolates this from the spec's residual errors.
+    """
+
+    LANGUAGE_CODE = "bn"
+
+    def test_polysyllable_final_inherent_vowel_deleted(self):
+        """⟨মানুষ⟩ 'human/person' is [manuʃ], not *[manuʃɔ]: the word ends
+        in a BARE consonant letter (no vowel sign, no virama), so the
+        inherent vowel it carries by default must be the one the deletion
+        rule cancels."""
+        assert orthography2ipa.transcribe("মানুষ", "bn") == "manuʃ"
+
+    def test_monosyllabic_letter_name_keeps_its_only_vowel(self):
+        """⟨ক⟩, the letter's own name, is [kɔ]: deleting the vowel here
+        would leave the word with no nucleus at all."""
+        assert orthography2ipa.transcribe("ক", "bn") == "kɔ"
+
+
 class TestPunjabi:
     """Punjabi (pa) — Gurmukhi abugida, lexical tone from the lost
     murmured series, and Indo-Aryan word-final schwa deletion.
