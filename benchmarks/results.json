@@ -12535,7 +12535,12 @@
   "oracle_per_top5": 0.3761,
   "oracle_exact_top5": 0.0304,
   "oracle_fallback_words": 0,
-  "oracle_scored_words": 887
+  "oracle_scored_words": 887,
+  "valid_ceiling": {
+   "per": 0.1519,
+   "folded": "tone",
+   "citation": "Xhosa tone is phonemic but never written, and this spec emits no tone diacritics, so the raw PER of 0.3779 against the kaikki Xhosa gold (887 scored entries) measures tone marks the hypothesis could never reproduce, not a spelling defect. Folding tone (combining acute, grave, circumflex, caron, and the grave-acute-grave contour mark) out of the gold IPA only -- one-sided, since the hypothesis side already carries none -- drops PER to 0.1519 and moves exact match from 2.8% to 41.2%; 841 of the 892 kaikki entries carry at least one tone diacritic. Measured against kaikki's Xhosa dump this session, not sourced from a published figure."
+  }
  },
  {
   "lang": "xsl",
