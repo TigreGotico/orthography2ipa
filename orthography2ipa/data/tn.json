@@ -297,5 +297,12 @@
         "longitude": 24.7587,
         "source": "glottolog",
         "notes": "Glottolog's representative point for Tswana."
+    },
+    "valid_ceiling": {
+        "vox_communis": {
+            "per": 0.2066,
+            "folded": "vowel_notation+implosive_b+ejective_marker",
+            "citation": "vox_communis is a Common Voice force-aligned, Epitran-derived gold (a scored competitor's lexicon, directional signal only -- cannot gate a regression or tier promotion). As-scored PER with the corrected /e̝/ /o̝/ vowel values is 0.3953 (n=2271). Folding the gold's own conventions out of both sides cumulatively (see fold_tn_notation.py, broad-normalized): the gold's literal /ɪ/ /ʊ/ vowel-notation convention takes it to 0.3105; the implosive-b convention to 0.2846; the kg fold is a no-op, confirming 0.2846; and dropping the ejective marker -- a symbol this gold's phone tier has no way to encode at all -- takes it to 0.2066. Dropping the aspiration marker was also tried and made the score worse (0.2871), a negative result not included in this fold. Measured, not sourced; see the notes field for the full chain."
+        }
     }
 }

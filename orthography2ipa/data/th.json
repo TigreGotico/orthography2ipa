@@ -1065,5 +1065,17 @@
         "n"
       ]
     }
+  },
+  "valid_ceiling": {
+    "wikipron": {
+      "per": 0.1713,
+      "folded": "tone_position",
+      "citation": "WikiPron writes the Chao tone letter after the whole syllable, matching this spec's tone_rules output position; scored as-is the row is 0.1881 PER. Moving the tone letter to the end of the transcription on both hypothesis and gold sides (neutralising placement while keeping tone identity and order) measures 0.1713 -- see the notes field and docs/languages/th.md for the full measurement."
+    },
+    "vox_communis": {
+      "per": 0.2295,
+      "folded": "tone_position",
+      "citation": "vox_communis is an Epitran-derived, non-qualifying gold (directional signal only, cannot gate a regression or tier promotion) whose Epitran pipeline writes the tone letter on the nucleus rather than syllable-finally; scored as-is the row is 0.4318 PER. Moving the tone letter to the end of the transcription on both sides, neutralising placement while keeping tone identity, measures 0.2295 -- this isolates the notation mismatch from a phonological one; see the notes field and docs/languages/th.md."
+    }
   }
 }
