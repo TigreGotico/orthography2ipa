@@ -50,7 +50,7 @@
     ]
   },
   "parent": "no",
-  "notes": "Norwegian Bokmål — majority written standard (~85%), Urban East Norwegian phonology (Kristoffersen 2000). QUANTITY: as in Swedish, a stressed vowel is long before a single consonant and short before a geminate or a cluster; doubled letters are grapheme keys mapping to /Cː/, clusters map to the concatenated phonemes, and allophone rules shorten the stressed nucleus before them. VOWELS: short ⟨a⟩ is [a], long is [ɑː]; unstressed ⟨e⟩ is [ə] (the ubiquitous ending vowel). RETROFLEXION: ⟨rt rd rn rs rl⟩ → [ʈ ɖ ɳ ʂ ɭ]. SOFTENING: ⟨k g sk⟩ → [ç j ʃ] before a front vowel. SILENT D: word-final ⟨nd⟩→[n], ⟨ld⟩→[l]; ⟨hv⟩→[v]. R: the phoneme is the apical /r/ (Kristoffersen); the tap [ɾ] is one realisation. TONEMES (accent 1/2) are suprasegmental and are NOT encoded; the gold marks them (¹/²), a convention difference rather than an error. MEASURED (ipadict, n=10169, harness normalize+broad, folds applied on both hyp and gold, not shipped as valid_ceiling): raw PER 0.3391; folding the ¹/² toneme digits out changes nothing (this gold carries zero toneme digits, unlike the wikipron_nob gold, n=2725, where the same fold moves 0.3471→0.3435); folding /ː/ and gemination out of both sides (the length/quantity contrast this spec models via NB_SHORTEN_*) moves ipadict to 0.2477 and wikipron_nob to 0.2850, so length notation, not toneme notation, is the dominant fold-out gain here. A residual of roughly a quarter of words remains after both folds; a distributional read of that residual (not a citation — Kristoffersen was not reachable to verify a page-level claim this session) shows the current short-⟨a⟩ realisation [a] disagreeing with ipadict's [ɑ] in a recurring pattern across stressed and unstressed syllables alike (e.g. abbor, adapter, akademisk); substituting [ɑ] for the short allophone alone would close about 600 of the ~8600 mismatched words and drop PER a further ~0.036, but this is flagged as a needs-native-check / needs-citation lead, not shipped as a rule change.",
+  "notes": "Norwegian Bokmål — majority written standard (~85%), Urban East Norwegian phonology (Kristoffersen 2000). QUANTITY: as in Swedish, a stressed vowel is long before a single consonant and short before a geminate or a cluster; doubled letters are grapheme keys mapping to /Cː/, clusters map to the concatenated phonemes, and allophone rules shorten the stressed nucleus before them. VOWELS: ⟨a⟩ is a single phoneme /ɑ/, back at both quantities (Kristoffersen 2015: p.3 katt [kɑt] vs kart [kɑʈ]; p.6 /hɑt/ hatt, /lɑːt/ lat; p.24 bestemt form /mɑɲ/ mann → [mɑːɲ]; p.29 ha [hɑː] vs hatt [hɑt]); there is no front allophone conditioned by quantity or stress. Unstressed ⟨e⟩ is [ə] (the ubiquitous ending vowel). RETROFLEXION: ⟨rt rd rn rs rl⟩ → [ʈ ɖ ɳ ʂ ɭ]. SOFTENING: ⟨k g sk⟩ → [ç j ʃ] before a front vowel. SILENT D: word-final ⟨nd⟩→[n], ⟨ld⟩→[l]; ⟨hv⟩→[v]. R: the phoneme is the apical /r/ (Kristoffersen); the tap [ɾ] is one realisation. TONEMES (accent 1/2) are suprasegmental and are NOT encoded; the gold marks them (¹/²), a convention difference rather than an error. MEASURED (harness normalize+broad, oracle top-3/top-5 columns not used for gating): raw PER is 0.3048 on ipadict (n=10169), 0.3587 on ipa_childes (n=3176, non-qualifying espeak-derived provenance) and 0.3654 on wikipron (n=2725), against 0.3397/0.3871/0.3471 before this fix. ipadict and ipa_childes both improve, consistent with Kristoffersen 2015 treating /ɑ/ as one phoneme at both quantities. wikipron gets worse, and the reason is a genuine split in the gold, not a loanword artifact: counting rows in the raw nob_latn_broad.tsv whose spelling contains ⟨a⟩, front [a] outnumbers back [ɑ] roughly 5:1 (1444 vs 257 by a token-level count; an independent count by dataset/dialect gave front outnumbering back roughly 2.7:1), and the split runs through ordinary native vocabulary on both sides: takk, fatt, kart and abbor are transcribed with front [a], while mann, alle, vann, land, hand and sjakk are transcribed with back [ɑ]. Some words are transcribed both ways in the same file (katt as both \"k a tː\" and \"k ɑ tː\"; natt likewise). This spec does not have an account for why wikipron's contributor pool skews toward front notation for this vowel; it is recorded here as an open, unresolved disagreement between a crowd-scraped gold and a phonetics reference grammar, not glossed over. Kristoffersen 2015 (open-access, checked directly, see sources) is preferred over the unverified page-level claim in Kristoffersen 2000 (the OUP monograph, still unreached) and over wikipron's crowd transcription.",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -83,6 +83,16 @@
       "url": "https://phoible.org/",
       "pages": null,
       "notes": "Attested phoneme inventory for glottocode norw1259."
+    },
+    {
+      "id": "kristoffersen2015",
+      "author": "Kristoffersen, G.",
+      "year": 2015,
+      "title": "Innføring i norsk fonologi",
+      "publisher": "University of Bergen (Bergen Open Research Archive), 4th ed.",
+      "url": "https://bora.uib.no/handle/1956/15694",
+      "pages": "3, 6, 24, 29",
+      "notes": "Norwegian-language phonology text (distinct from Kristoffersen 2000). Analyses the Norwegian low back vowel as a single phoneme /ɑ/, not /a/, and gives it at both quantities without a front allophone: p.3 katt [kɑt] vs kart [kɑʈ]; p.6 \"/hɑt/, hatt (subst.), /lɑːt/ lat (adj.)\"; p.24 bestemt form /mɑɲ/ mann realised [mɑːɲ]; p.29 the footnote on minimal Norwegian word shape gives ha as [hɑː] and hatt as [hɑt]. PDF fetched via the Wayback Machine snapshot of the BORA bitstream (the live BORA page now serves a client-rendered app that does not return the file directly)."
     }
   ],
   "wikipedia": [
@@ -284,7 +294,7 @@
         "ɑː"
       ],
       "default": [
-        "a"
+        "ɑ"
       ]
     },
     "e": {
@@ -393,8 +403,8 @@
       "phonemes": [
         "ɑː"
       ],
-      "surface": "a",
-      "notes": "short vowel before a consonant cluster or geminate (complementary quantity)",
+      "surface": "ɑ",
+      "notes": "short vowel before a consonant cluster or geminate (complementary quantity); short ⟨a⟩ keeps the same backness as long ⟨a⟩, kristoffersen2015",
       "followed_by": "consonant_cluster"
     },
     {
