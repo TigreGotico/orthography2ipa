@@ -616,13 +616,13 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | tew | wikipron | 106 | 0.0000 | - | 0.0000 | 0.0000 | 1.0000 | 1.0000 | [0.0000, 0.0000] | 1.0000 | research | crowd-scraped |
 | tft | wikipron | 293 | 0.1041 | - | 0.1041 | 0.1041 | 0.6792 | 0.6792 | [0.0827, 0.1265] | 0.6792 | research | crowd-scraped |
 | tg | wikipron | 3245 | 0.0296 | - | 0.0296 | 0.0296 | 0.8354 | 0.8354 | [0.0271, 0.0323] | 0.8354 | research | crowd-scraped |
-| th | vox_communis | 23704 | 0.4316‡ | - | 0.4273 | 0.4272 | 0.0403 | 0.0403 | [0.4292, 0.4342] | 0.0392 | research | epitran-derived |
-| th | wikipron | 16937 | 0.1880 | - | 0.1856 | 0.1856 | 0.3308 | 0.3308 | [0.1849, 0.1913] | 0.3300 | research | crowd-scraped |
+| th | vox_communis | 23704 | 0.4316‡ | 0.2295† (tone_position) | 0.4273 | 0.4272 | 0.0403 | 0.0403 | [0.4292, 0.4342] | 0.0392 | research | epitran-derived |
+| th | wikipron | 16937 | 0.1880 | 0.1713† (tone_position) | 0.1856 | 0.1856 | 0.3308 | 0.3308 | [0.1849, 0.1913] | 0.3300 | research | crowd-scraped |
 | tk | vox_communis | 5881 | 0.1629‡ | - | 0.1423 | 0.1416 | 0.3187 | 0.3231 | [0.1596, 0.1662] | 0.2588 | research | epitran-derived |
 | tk | wikipron | 424 | 0.2316 | - | 0.2257 | 0.2257 | 0.3679 | 0.3679 | [0.2109, 0.2517] | 0.3420 | research | crowd-scraped |
 | tkl | wikipron | 340 | 0.0497 | - | 0.0497 | 0.0497 | 0.7824 | 0.7824 | [0.0390, 0.0601] | 0.7824 | research | crowd-scraped |
 | tl | wikipron | 25857 | 0.1179 | - | 0.1042 | 0.1039 | 0.4743 | 0.4745 | [0.1162, 0.1195] | 0.4318 | research | crowd-scraped |
-| tn | vox_communis | 2271 | 0.3953‡ | - | 0.3953 | 0.3953 | 0.0555 | 0.0555 | [0.3868, 0.4037] | 0.0555 | research | epitran-derived |
+| tn | vox_communis | 2271 | 0.3953‡ | 0.2066† (vowel_notation+implosive_b+ejective_marker) | 0.3953 | 0.3953 | 0.0555 | 0.0555 | [0.3868, 0.4037] | 0.0555 | research | epitran-derived |
 | tpw | wikipron | 372 | 0.0951 | - | 0.0557 | 0.0477 | 0.7554 | 0.7715 | [0.0748, 0.1161] | 0.7016 | research | crowd-scraped |
 | tr | ipa_childes | 2748 | 0.1372‡ | - | 0.1077 | 0.1065 | 0.3934 | 0.3937 | [0.1328, 0.1419] | 0.3654 | research | espeak-derived |
 | tr | vox_communis | 47013 | 0.0399‡ | - | 0.0051 | 0.0015 | 0.9505 | 0.9850 | [0.0394, 0.0405] | 0.6869 | research | epitran-derived |

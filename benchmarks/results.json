@@ -11720,7 +11720,12 @@
   "oracle_per_top5": 0.4272,
   "oracle_exact_top5": 0.0403,
   "oracle_fallback_words": 0,
-  "oracle_scored_words": 23704
+  "oracle_scored_words": 23704,
+  "valid_ceiling": {
+   "per": 0.2295,
+   "folded": "tone_position",
+   "citation": "vox_communis is an Epitran-derived, non-qualifying gold (directional signal only, cannot gate a regression or tier promotion) whose Epitran pipeline writes the tone letter on the nucleus rather than syllable-finally; scored as-is the row is 0.4318 PER. Moving the tone letter to the end of the transcription on both sides, neutralising placement while keeping tone identity, measures 0.2295 -- this isolates the notation mismatch from a phonological one; see the notes field and docs/languages/th.md."
+  }
  },
  {
   "lang": "th",
@@ -11740,7 +11745,12 @@
   "oracle_per_top5": 0.1856,
   "oracle_exact_top5": 0.3308,
   "oracle_fallback_words": 0,
-  "oracle_scored_words": 16937
+  "oracle_scored_words": 16937,
+  "valid_ceiling": {
+   "per": 0.1713,
+   "folded": "tone_position",
+   "citation": "WikiPron writes the Chao tone letter after the whole syllable, matching this spec's tone_rules output position; scored as-is the row is 0.1881 PER. Moving the tone letter to the end of the transcription on both hypothesis and gold sides (neutralising placement while keeping tone identity and order) measures 0.1713 -- see the notes field and docs/languages/th.md for the full measurement."
+  }
  },
  {
   "lang": "tk",
@@ -11840,7 +11850,12 @@
   "oracle_per_top5": 0.3953,
   "oracle_exact_top5": 0.0555,
   "oracle_fallback_words": 0,
-  "oracle_scored_words": 2271
+  "oracle_scored_words": 2271,
+  "valid_ceiling": {
+   "per": 0.2066,
+   "folded": "vowel_notation+implosive_b+ejective_marker",
+   "citation": "vox_communis is a Common Voice force-aligned, Epitran-derived gold (a scored competitor's lexicon, directional signal only -- cannot gate a regression or tier promotion). As-scored PER with the corrected /e̝/ /o̝/ vowel values is 0.3953 (n=2271). Folding the gold's own conventions out of both sides cumulatively (see fold_tn_notation.py, broad-normalized): the gold's literal /ɪ/ /ʊ/ vowel-notation convention takes it to 0.3105; the implosive-b convention to 0.2846; the kg fold is a no-op, confirming 0.2846; and dropping the ejective marker -- a symbol this gold's phone tier has no way to encode at all -- takes it to 0.2066. Dropping the aspiration marker was also tried and made the score worse (0.2871), a negative result not included in this fold. Measured, not sourced; see the notes field for the full chain."
+  }
  },
  {
   "lang": "tpw",
