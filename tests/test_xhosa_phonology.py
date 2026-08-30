@@ -18,7 +18,7 @@ def test_quality_and_sources():
     spec = get("xh")
     assert spec.quality is QualityTier.RESEARCH
     ids = {s.id for s in spec.sources}
-    assert {"xhosa_wiki", "hyman2013_penult", "jessen_roux2002"} <= ids
+    assert {"jessen2002_acoustic", "hyman2013_penult", "jessen_roux2002"} <= ids
 
 
 # --- clicks -----------------------------------------------------------------
