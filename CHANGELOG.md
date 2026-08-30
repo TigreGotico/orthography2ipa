@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.85.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.85.0a1) (2026-08-30)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.84.0a1...7.85.0a1)
+
+**Merged pull requests:**
+
+- feat\(shn\): add missing compound-vowel and loan-sound graphemes [\#1376](https://github.com/TigreGotico/orthography2ipa/pull/1376) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.84.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.84.0a1) (2026-08-30)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.83.8a1...7.84.0a1)
@@ -623,10 +631,6 @@
 ## [7.81.0a4](https://github.com/TigreGotico/orthography2ipa/tree/7.81.0a4) (2026-08-25)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.81.0a3...7.81.0a4)
-
-**Merged pull requests:**
-
-- chore: burn down Wikipedia-only sources for ru, rw, ka, et, hy, ckb, dv [\#1166](https://github.com/TigreGotico/orthography2ipa/pull/1166) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.81.0a3](https://github.com/TigreGotico/orthography2ipa/tree/7.81.0a3) (2026-08-25)
 
