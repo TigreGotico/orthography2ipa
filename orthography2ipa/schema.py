@@ -249,8 +249,9 @@ class OrthographyStandardModel(_Strict):
 
 
 class ValidCeilingModel(_Strict):
-    """Measured PER floor after folding an unwritten contrast
-    (``valid_ceiling``). Mirrors ``ValidCeiling``."""
+    """Measured PER floor after folding an unwritten contrast, for ONE gold
+    dataset (one entry of ``valid_ceiling``'s dataset-keyed mapping).
+    Mirrors ``ValidCeiling``."""
 
     per: float = Field(ge=0.0, le=1.0)
     folded: str = Field(min_length=1)
@@ -435,7 +436,7 @@ class LanguageSpecModel(_Strict):
     timespan: Optional[TimeSpanModel] = None
     orthography_standard: Optional[OrthographyStandardModel] = None
     location: Optional[LocationModel] = None
-    valid_ceiling: Optional[ValidCeilingModel] = None
+    valid_ceiling: Optional[Dict[str, ValidCeilingModel]] = None
 
 
     # ─── whole-word overrides for a closed irregular set ─────────────

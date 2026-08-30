@@ -3761,17 +3761,27 @@ CEILING_GATING_THRESHOLD = 0.25
 NON_QUALIFYING_MARK = "‡"
 
 
-def _valid_ceiling(lang: str) -> Optional[dict]:
-    """The spec's measured ``valid_ceiling`` for *lang*, as a plain dict, or
-    ``None`` when no such measurement has been executed or the tag does not
-    resolve to a registered spec."""
+def _valid_ceiling(lang: str, dataset: str) -> Optional[dict]:
+    """The spec's measured ``valid_ceiling`` for the (*lang*, *dataset*) pair,
+    as a plain dict, or ``None`` when no such measurement has been executed
+    for that dataset, the spec carries no ceilings at all, or the tag does
+    not resolve to a registered spec.
+
+    A fold is defined relative to ONE gold's notation conventions, so
+    ``valid_ceiling`` is a mapping keyed by dataset name — resolving by
+    language alone would spread a ceiling measured on one gold across every
+    other gold of that language, asserting a measurement that was never
+    executed for those rows (issue #1350)."""
     from orthography2ipa import get
 
     try:
         spec = get(lang)
     except Exception:
         return None
-    ceiling = spec.valid_ceiling
+    ceilings = spec.valid_ceiling
+    if not ceilings:
+        return None
+    ceiling = ceilings.get(dataset)
     if ceiling is None:
         return None
     return {
@@ -3906,7 +3916,7 @@ def build_scoreboard(limit: Optional[int], oracle: bool = False,
                 "harness_version": HARNESS_VERSION,
                 "limit": limit,
             })
-            ceiling = _valid_ceiling(lang)
+            ceiling = _valid_ceiling(lang, dataset_name)
             if ceiling is not None:
                 rows[-1]["valid_ceiling"] = ceiling
             if oracle_res is not None:
@@ -4084,10 +4094,13 @@ def write_scoreboard(rows: List[dict]) -> None:
         "words, no matter how narrow their CI looks.",
         "",
         "The `Ceiling` column is a `valid_ceiling` measurement, when one has "
-        "been executed for the row's language: the PER once an "
-        "orthographically-unwritten contrast (tone, vowel length, or both — "
-        "these give different numbers and are never conflated) is folded out "
-        "of BOTH sides before rescoring. It reads `-` when no such "
+        "been executed for the row's (language, dataset) pair: the PER once "
+        "an orthographically-unwritten contrast (tone, vowel length, or both "
+        "— these give different numbers and are never conflated) is folded "
+        "out of BOTH sides before rescoring. A fold is defined against ONE "
+        "gold's conventions, so it renders only on the row whose dataset it "
+        "was measured against, never on a sibling row of the same language "
+        "scored against a different gold. It reads `-` when no such "
         "measurement has been recorded — that is \"not measured\", never "
         "\"measured as zero\". A ceiling below "
         f"{CEILING_GATING_THRESHOLD:.2f} is marked `†`: the row's raw `PER` "

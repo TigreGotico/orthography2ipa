@@ -452,15 +452,35 @@ def load_json_spec(code: str) -> LanguageSpec:
             notes=raw_ortho.get("notes", "") or "",
         )
 
-    # Parse the measured valid-ceiling, when one has been executed
-    valid_ceiling: Optional[ValidCeiling] = None
+    # Parse the measured valid-ceilings, keyed by the gold dataset each was
+    # folded against — a fold is defined relative to one gold's notation
+    # conventions, so the measurement is scoped to (language, dataset), never
+    # to the language alone (issue #1350). The pre-#1350 shape was a single
+    # {per, folded, citation} object hung directly off the language; that
+    # shape spread one gold's measurement across every row of the language
+    # and is rejected here rather than silently reinterpreted.
+    valid_ceiling: Optional[Dict[str, ValidCeiling]] = None
     raw_ceiling = raw.get("valid_ceiling")
-    if raw_ceiling and isinstance(raw_ceiling, dict):
-        valid_ceiling = ValidCeiling(
-            per=float(raw_ceiling["per"]),
-            folded=raw_ceiling["folded"],
-            citation=raw_ceiling["citation"],
-        )
+    if raw_ceiling:
+        if not isinstance(raw_ceiling, dict):
+            raise ValueError(
+                f"{code}: valid_ceiling must be an object mapping dataset "
+                f"name -> {{per, folded, citation}}")
+        if "per" in raw_ceiling or "folded" in raw_ceiling:
+            raise ValueError(
+                f"{code}: valid_ceiling uses the old language-scoped shape "
+                f"(bare per/folded/citation). A fold is measured against one "
+                f"gold's notation conventions, so it must be keyed by "
+                f"dataset name, e.g. {{\"wikipron\": {{\"per\": ..., "
+                f"\"folded\": ..., \"citation\": ...}}}} (issue #1350)")
+        valid_ceiling = {
+            dataset_name: ValidCeiling(
+                per=float(raw_c["per"]),
+                folded=raw_c["folded"],
+                citation=raw_c["citation"],
+            )
+            for dataset_name, raw_c in raw_ceiling.items()
+        }
 
     # Parse stress rules. A spec's own ``stress`` block wins outright; when it
     # declares none (absent or ``null``), the accentuation rules inherit
