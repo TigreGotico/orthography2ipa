@@ -35,7 +35,7 @@
   "quality": "research",
   "graphemes": {
     "а": [
-      "a"
+      "ɑ"
     ],
     "ә": [
       "æ"
@@ -97,7 +97,7 @@
       "o"
     ],
     "ө": [
-      "ø"
+      "ɵ"
     ],
     "п": [
       "p"
@@ -143,7 +143,7 @@
       "ʃtʃ"
     ],
     "ы": [
-      "ɯ"
+      "ə"
     ],
     "і": [
       "ɪ"
@@ -159,8 +159,8 @@
     ]
   },
   "allophones": {
-    "a": [
-      "a"
+    "ɑ": [
+      "ɑ"
     ],
     "æ": [
       "æ"
@@ -218,8 +218,8 @@
     "o": [
       "o"
     ],
-    "ø": [
-      "ø"
+    "ɵ": [
+      "ɵ"
     ],
     "p": [
       "p"
@@ -260,25 +260,25 @@
     "ʃ": [
       "ʃ"
     ],
-    "ɯ": [
-      "ɯ"
+    "ə": [
+      "ə"
     ],
     "ɪ": [
       "ɪ"
     ]
   },
-  "notes": "Kazakh in Cyrillic script (Kazakhstan official orthography). 14-vowel system with front/back harmony. Қ = uvular /q/; Ғ = /ʁ/; Ң = /ŋ/; Ұ = back unrounded /ʊ/; Ү = /y/; І = /ɪ/. Transitioning to Latin script (phased 2017–2025, not yet complete).",
+  "notes": "Kazakh in Cyrillic script (Kazakhstan official orthography). Eleven-vowel system with front/back and labial harmony (McCollum & Chen 2020). А = central-back /ɑ/ (not front [a]); Ы = central schwa-like /ə/ (not [ɯ]); Ө = mid central rounded /ɵ/. Қ = uvular /q/; Ғ = /ʁ/; Ң = /ŋ/; Ұ = back unrounded /ʊ/; Ү = /y/; І = /ɪ/. Orthographic ⟨и⟩ and ⟨у⟩ represent the phonetically diphthongal /ije̯/ and /uw̯/ nuclei; this spec transcribes them as simple vowels (i, u) pending a positional glide rule. Transitioning to Latin script (phased 2017-2025, not yet complete); this spec covers the Cyrillic orthography, which is what the scored gold sets use.",
   "sources": [
     {
-      "id": "kazakh_phonology_wiki",
-      "author": "Wikipedia contributors",
-      "year": 2024,
-      "title": "Kazakh phonology",
-      "publisher": "Wikipedia",
-      "url": "https://en.wikipedia.org/wiki/Kazakh_phonology",
-      "wikipedia_url": "https://en.wikipedia.org/wiki/Kazakh_phonology",
-      "pages": null,
-      "notes": null
+      "id": "mccollum_chen_2020_kazakh",
+      "author": "McCollum, Adam G. and Chen, Si",
+      "year": 2020,
+      "title": "Kazakh",
+      "publisher": "Journal of the International Phonetic Association",
+      "url": "https://doi.org/10.1017/S0025100319000185",
+      "wikipedia_url": null,
+      "pages": "276-298",
+      "notes": "Illustrations of the IPA; volume 51, issue 2; open access (CC-BY 4.0)."
     }
   ],
   "wikipedia": [
