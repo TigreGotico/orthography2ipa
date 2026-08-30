@@ -143,12 +143,12 @@ class TestSwedishScandinavian:
 
 
 class TestNorwegianScandinavian:
-    """Norwegian Bokmål (Kristoffersen 2000; Wikipedia 'Norwegian phonology')."""
+    """Norwegian Bokmål (Kristoffersen 2000; Kristoffersen 2015 Innføring i norsk fonologi)."""
 
     def test_quantity(self):
         assert _ipa("nb", "hus") == "hʉːs"
-        assert _ipa("nb", "katt") == "katː"
-        assert _ipa("nb", "gate") == "ɡɑːtə"    # short ⟨a⟩ = [a], long = [ɑː]
+        assert _ipa("nb", "katt") == "kɑtː"
+        assert _ipa("nb", "gate") == "ɡɑːtə"    # ⟨a⟩ is back [ɑ]/[ɑː] at both quantities
 
     def test_unstressed_e_is_schwa(self):
         assert _ipa("nb", "tale") == "tɑːlə"
@@ -163,15 +163,15 @@ class TestNorwegianScandinavian:
 
     def test_silent_letters(self):
         assert _ipa("nb", "hvem") == "ʋeːm"     # ⟨hv⟩ → [ʋ]
-        assert _ipa("nb", "land") == "lan"      # final ⟨d⟩ silent after ⟨n⟩
+        assert _ipa("nb", "land") == "lɑn"      # final ⟨d⟩ silent after ⟨n⟩
         assert _ipa("nb", "kveld") == "kʋɛl"
 
     def test_silent_d_after_n_l_is_word_final_only(self):
         # word-final ⟨nd ld⟩ still drops the ⟨d⟩
-        assert _ipa("nb", "land") == "lan"
+        assert _ipa("nb", "land") == "lɑn"
         assert _ipa("nb", "kveld") == "kʋɛl"
         # medial ⟨nd ld⟩ keeps the stop: andre, hundre, vindu
-        assert _ipa("nb", "andre") == "andrə"
+        assert _ipa("nb", "andre") == "ɑndrə"
         assert _ipa("nb", "hundre") == "hʉndrə"
         assert _ipa("nb", "vindu") == "ʋɪndʉ"
 
@@ -182,12 +182,12 @@ class TestNorwegianScandinavian:
         # ⟨tr⟩ (abildtre)
         assert _ipa("nb", "endt") == "ɛnt"
         assert _ipa("nb", "endte") == "ɛntə"
-        assert _ipa("nb", "avholdt") == "aʋhɔlt"
-        assert _ipa("nb", "håndtak") == "hɔntak"
+        assert _ipa("nb", "avholdt") == "ɑʋhɔlt"
+        assert _ipa("nb", "håndtak") == "hɔntɑk"
         assert _ipa("nb", "abildtre") == "ɑːbɪltrə"
 
     def test_v_is_approximant(self):
-        assert _ipa("nb", "vann") == "ʋanː"
+        assert _ipa("nb", "vann") == "ʋɑnː"
 
     def test_tonemes_are_not_transcribed(self):
         out = G2P("nb").transcribe_word("bønder")
@@ -210,7 +210,7 @@ class TestComplementaryQuantity:
 
     def test_norwegian_minimal_pair(self):
         assert _ipa("nb", "tak") == "tɑːk"
-        assert _ipa("nb", "takk") == "takː"
+        assert _ipa("nb", "takk") == "tɑkː"
 
     def test_danish_shortens_before_cluster(self):
         assert _ipa("da", "hus") == "huːs"      # open syllable
