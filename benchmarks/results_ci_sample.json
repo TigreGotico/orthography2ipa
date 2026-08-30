@@ -7065,14 +7065,20 @@
     "lang": "shn",
     "dataset": "wikipron",
     "n": 997,
-    "per": 0.3433,
-    "per_ci_low": 0.3301,
-    "per_ci_high": 0.3582,
-    "exact_match": 0.0592,
+    "per": 0.3135,
+    "per_ci_low": 0.3007,
+    "per_ci_high": 0.3279,
+    "exact_match": 0.0732,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
+    "gating": true,
     "harness_version": "1.1",
-    "limit": 1000
+    "limit": 1000,
+    "valid_ceiling": {
+      "per": 0.2547,
+      "folded": "tone",
+      "citation": "shn_mymr_broad.tsv scored as-is (after the ိူ/ို compound-vowel and ႀ=θ grapheme fixes below) is 0.3057 PER over 2607 rows. Unlike Thai/Lao, Shan spells tone with explicit, unambiguous tone-mark letters rather than computing it from consonant class, so the Thai tone-PLACEMENT fold (move the mark to a fixed position, keep identity/order) barely moves the number -- 0.3040, essentially unchanged -- confirming that prior does not transfer here. Folding tone IDENTITY out entirely on both sides (this spec emits all 6 tone marks; scripts/fold_shn_notation.py) gives 0.2547, just above the 0.25 production threshold. Folding vowel length ⟨ː⟩ as well (a notation dimension the gold transcribes inconsistently in some rows) gives 0.2777. The residual above this ceiling is a real, uninvestigated segmental gap (word-boundary/compounding errors in multi-syllable entries), not a tone-notation artifact."
+    }
   },
   {
     "lang": "si",

@@ -575,7 +575,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | se | wikipron | 4125 | 0.2749 | - | 0.2749 | 0.2749 | 0.0742 | 0.0742 | [0.2702, 0.2794] | 0.0742 | research | crowd-scraped |
 | sel | northeuralex | 886 | 0.0342 | - | 0.0292 | 0.0291 | 0.8149 | 0.8160 | [0.0294, 0.0393] | 0.7935 | research | lexicon-derived |
 | sga | wikipron | 3700 | 0.0889 | - | 0.0626 | 0.0598 | 0.6859 | 0.6905 | [0.0843, 0.0936] | 0.6089 | research | crowd-scraped |
-| shn | wikipron | 2604 | 0.3348 | - | 0.3348 | 0.3348 | 0.0434 | 0.0434 | [0.3280, 0.3426] | 0.0434 | research | crowd-scraped |
+| shn | wikipron | 2604 | 0.2985 | 0.2547 (tone) | 0.2985 | 0.2985 | 0.0545 | 0.0545 | [0.2917, 0.3057] | 0.0545 | research | crowd-scraped |
 | si | wikipron | 386 | 0.1394 | - | 0.1269 | 0.1269 | 0.5570 | 0.5570 | [0.1209, 0.1586] | 0.5207 | research | crowd-scraped |
 | sia | wikipron | 179 | 0.0948 | - | 0.0948 | 0.0948 | 0.6089 | 0.6089 | [0.0739, 0.1167] | 0.6089 | research | crowd-scraped |
 | sid | wikipron | 297 | 0.0731 | - | 0.0731 | 0.0731 | 0.6397 | 0.6397 | [0.0597, 0.0875] | 0.6397 | research | crowd-scraped |
