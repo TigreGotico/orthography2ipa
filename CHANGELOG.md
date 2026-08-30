@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.83.4a1](https://github.com/TigreGotico/orthography2ipa/tree/7.83.4a1) (2026-08-30)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.83.3a1...7.83.4a1)
+
+**Merged pull requests:**
+
+- fix\(spec\): scope valid\_ceiling by dataset, not language [\#1355](https://github.com/TigreGotico/orthography2ipa/pull/1355) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.83.3a1](https://github.com/TigreGotico/orthography2ipa/tree/7.83.3a1) (2026-08-30)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.83.2a1...7.83.3a1)
@@ -87,15 +95,15 @@
 
 ## [7.82.41a2](https://github.com/TigreGotico/orthography2ipa/tree/7.82.41a2) (2026-08-26)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.40a6...7.82.41a2)
-
-## [7.82.40a6](https://github.com/TigreGotico/orthography2ipa/tree/7.82.40a6) (2026-08-26)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.41a1...7.82.40a6)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.41a1...7.82.41a2)
 
 ## [7.82.41a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.41a1) (2026-08-26)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.40a5...7.82.41a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.40a6...7.82.41a1)
+
+## [7.82.40a6](https://github.com/TigreGotico/orthography2ipa/tree/7.82.40a6) (2026-08-26)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.40a5...7.82.40a6)
 
 ## [7.82.40a5](https://github.com/TigreGotico/orthography2ipa/tree/7.82.40a5) (2026-08-26)
 
@@ -652,10 +660,6 @@
 ## [7.80.7a1](https://github.com/TigreGotico/orthography2ipa/tree/7.80.7a1) (2026-08-25)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.80.6a2...7.80.7a1)
-
-**Merged pull requests:**
-
-- docs\(nup\): document the measured tone ceiling on nup/wikipron [\#1147](https://github.com/TigreGotico/orthography2ipa/pull/1147) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.80.6a2](https://github.com/TigreGotico/orthography2ipa/tree/7.80.6a2) (2026-08-24)
 
