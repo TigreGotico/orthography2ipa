@@ -201,6 +201,14 @@ class ValidCeiling:
     the script). A row whose raw PER is high but whose ceiling is low is
     proved input-limited, not broken.
 
+    A fold is defined relative to ONE gold's notation conventions — the
+    contrast folded, and the number that comes out, depend on how that
+    particular gold marks it. A ``ValidCeiling`` therefore measures a
+    (language, dataset) pair, never a language alone; see
+    :attr:`LanguageSpec.valid_ceiling`, which keys a mapping of these by
+    dataset name so a ceiling is only ever attached to the row it was
+    measured against (issue #1350).
+
     Record only a ceiling that was actually EXECUTED — rescored after
     folding, not asserted. An unmeasured ceiling is worse than an absent
     field: it invites treating a guess as proof the row is fine.
@@ -2163,12 +2171,18 @@ class LanguageSpec:
     ancestor weight decay in
     :func:`~orthography2ipa.distance.ancestry_similarity`."""
 
-    valid_ceiling: Optional["ValidCeiling"] = None
-    """The measured PER floor once an orthographically-unwritten contrast is
-    folded out of both prediction and gold — proof that a high raw PER is
-    input-limited rather than a defect.  ``None`` means no such measurement
-    has been executed yet, which is the honest default: an absent ceiling
-    is a "not measured", never a "measured as zero"."""
+    valid_ceiling: Optional[Dict[str, "ValidCeiling"]] = None
+    """Measured PER floors, keyed by the gold **dataset** each was folded
+    against — ``{"wikipron": ValidCeiling(...)}``.  A fold is defined
+    relative to one gold's notation conventions (how it marks tone, length,
+    etc.), so the measurement is scoped to a (language, dataset) pair, never
+    to the language alone: a ceiling measured on one gold does not carry
+    over to another gold of the same language, which may use different
+    conventions and has not been folded (issue #1350).  A language may
+    legitimately carry several entries, one per gold it has been measured
+    against.  ``None``, or a dataset absent from the mapping, means no such
+    measurement has been executed for that row yet — the honest default: an
+    absent ceiling is a "not measured", never a "measured as zero"."""
 
     stress: Optional["StressRules"] = None
     """Declarative primary-stress placement rules.  ``None`` when the

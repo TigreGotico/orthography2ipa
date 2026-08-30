@@ -98,7 +98,7 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
 | `orthography_standard`      | object | no       | The official published spelling norm, when the language has one (see [Orthography Standard Schema](#orthography-standard-schema)) |
 | `location`                  | object | no       | Representative point for where the variety is spoken (see [Location Schema](#location-schema)) |
 | `timespan`                  | object | no       | Attestation period `{"start_year": int, "end_year": int\|null}` |
-| `valid_ceiling`             | object | no       | Measured PER floor once an orthographically-unwritten contrast is folded out of both sides (see [Valid Ceiling Schema](#valid-ceiling-schema)) |
+| `valid_ceiling`             | object | no       | Measured PER floors once an orthographically-unwritten contrast is folded out of both sides, keyed by the gold **dataset** each was measured against (see [Valid Ceiling Schema](#valid-ceiling-schema)) |
 | *(lexicon)*                 | —      | —        | **Not a spec field, and never bundled.** A word lexicon is a corpus, not a description of a language. Supply one at runtime from a local file, a URL or a Hugging Face id: `orthography2ipa.register_lexicon("en-GB", "hf://TigreGotico/en-lexicon/en-GB.tsv")`, or point at a directory of `{code}.tsv` with `set_lexicon_dir()` / `$ORTHOGRAPHY2IPA_LEXICON_DIR`. |
 
 ## Clade Nodes and the Derived `family`
@@ -800,21 +800,44 @@ MEASURED: fold the named contrast out of both the prediction and the gold and
 rescore. An unmeasured ceiling must never be recorded — it would read as proof
 a row is fine when nobody checked.
 
-| Key        | Type   | Required | Description                                        |
-|------------|--------|----------|----------------------------------------------------|
-| `per`      | float  | **yes**  | The PER measured after folding `folded` out of both sides |
-| `folded`   | string | **yes**  | The contrast(s) folded, e.g. `"tone"`, `"vowel length"`, `"tone+length"` — these give different numbers on the same row and must not be conflated |
-| `citation` | string | **yes**  | Why the contrast is unwritten in the orthography, and where the measurement is published (a grammar, a PR number, a `docs/languages/<code>.md` page) |
+A fold is defined relative to **one gold's notation conventions** — how that
+particular dataset marks tone, length, or whatever else is folded — so the
+measurement is scoped to a (language, dataset) pair, never to the language
+alone. `valid_ceiling` is therefore an object **keyed by dataset name**, one
+entry per gold the language has actually been measured against:
 
 ```json
 "valid_ceiling": {
-  "per": 0.0223,
-  "folded": "tone+length",
-  "citation": "Hausa tone and vowel length are unmarked in standard Boko orthography (Newman 2000, A Grammar of Hausa, ch. 3-4); measured across PRs #1063, #1109, #1203, #1295; see docs/languages/ha.md"
+  "wikipron": {
+    "per": 0.0223,
+    "folded": "tone+length",
+    "citation": "Hausa tone and vowel length are unmarked in standard Boko orthography (Newman 2000, A Grammar of Hausa, ch. 3-4); measured across PRs #1063, #1109, #1203, #1295; see docs/languages/ha.md"
+  }
 }
 ```
 
+Each dataset's entry has the same three required keys:
+
+| Key        | Type   | Required | Description                                        |
+|------------|--------|----------|----------------------------------------------------|
+| `per`      | float  | **yes**  | The PER measured after folding `folded` out of both sides, against THIS dataset's gold |
+| `folded`   | string | **yes**  | The contrast(s) folded, e.g. `"tone"`, `"vowel length"`, `"tone+length"` — these give different numbers on the same row and must not be conflated |
+| `citation` | string | **yes**  | Why the contrast is unwritten in the orthography, and where the measurement is published (a grammar, a PR number, a `docs/languages/<code>.md` page) |
+
+A language with more than one gold may legitimately carry more than one entry
+— each gold has its own conventions and must be folded and rescored on its
+own. Resolving a language's ceiling for every row of that language regardless
+of which dataset the row scores against would spread one gold's measurement
+across golds it was never run on; the benchmark script (`scripts/benchmark.py`,
+`_valid_ceiling`) looks the dataset up by name and only ever attaches a
+ceiling to the row whose dataset matches the key.
+
+The old shape — a single `{per, folded, citation}` object hung directly off
+the language, with no dataset key — is rejected by the loader rather than
+silently reinterpreted, since it cannot be resolved to the row it was
+measured against.
+
 Not inherited: it is a measurement executed against this code's own gold rows,
 so a dialect child that inherits graphemes from a parent does not thereby
-inherit the parent's ceiling and must fold+rescore its own gold before
+inherit the parent's ceilings and must fold+rescore its own gold before
 recording one.
