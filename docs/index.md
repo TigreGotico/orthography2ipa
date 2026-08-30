@@ -213,6 +213,13 @@ below.
   production promotion nor block one.
 - **`llm-generated` gold has no error model.** No lexicon, no rules, nothing
   to attribute an error to: it certifies nothing and diagnoses nothing.
+- **The board states this determination, not just the tier.** Every row in
+  [`benchmarks/results.json`](../benchmarks/results.json) carries a `gating`
+  boolean, derived from `provenance` at scoreboard-generation time
+  (`can_gate_promotion()` in `scripts/benchmark.py`) — so reading the raw
+  data back never requires re-deriving the policy above from the tier
+  ordering. A non-qualifying row's `PER` in [scoreboard.md](scoreboard.md) is
+  marked `‡` for the same reason.
 - **No language is at `production` tier yet.** Every registered language
   is at `research` tier or below: it has at least one cited source and
   usually a benchmark, but has not cleared the volume and accuracy bar
