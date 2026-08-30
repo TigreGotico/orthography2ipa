@@ -28,6 +28,7 @@ from benchmark import (  # noqa: E402
     NON_QUALIFYING_TIERS,
     PROVENANCE,
     PROVENANCE_BY_LANG,
+    GATING_CUTOFF_TIER,
     RELIABILITY_TIERS,
     _IPA_CHILDES_FOLDERS,
     _IPA_CHILDES_PROVENANCE,
@@ -67,6 +68,52 @@ def test_can_gate_promotion_refuses_competitor_and_llm_gold():
         assert can_gate_promotion(tier) is True
     for tier in ("espeak-derived", "epitran-derived", "llm-generated"):
         assert can_gate_promotion(tier) is False
+
+
+def test_gating_power_is_monotonic_in_tier_order():
+    """RELIABILITY_TIERS reads as a quality ladder, so it must BE one.
+
+    Every reader of that tuple takes an earlier position to mean more
+    trustworthy, and acts on it: reclassifying a row they have just shown to
+    be untrustworthy moves it DOWN the tuple. If gating power did not follow
+    the order, that move could hand a gating vote to the row instead of
+    taking one away, and nothing in the diff would look wrong. So the
+    invariant is that gating power never increases as the tuple advances.
+    """
+    powers = [(tier, can_gate_promotion(tier)) for tier in RELIABILITY_TIERS]
+    for (earlier, earlier_gates), (later, later_gates) in zip(powers, powers[1:]):
+        assert earlier_gates >= later_gates, (
+            f"{earlier!r} is ordered before {later!r} in RELIABILITY_TIERS but "
+            f"gates={earlier_gates} while {later!r} gates={later_gates}: "
+            f"reclassifying a row from {earlier!r} to {later!r} reads as a "
+            f"downgrade and would GRANT it a gating vote"
+        )
+
+
+def test_gating_cutoff_is_the_last_gating_tier():
+    """The cutoff constant names the boundary, so it must sit on it."""
+    assert can_gate_promotion(GATING_CUTOFF_TIER) is True
+    after = RELIABILITY_TIERS[RELIABILITY_TIERS.index(GATING_CUTOFF_TIER) + 1:]
+    assert after, "the cutoff cannot be the last tier: nothing would be excluded"
+    assert not any(can_gate_promotion(tier) for tier in after)
+
+
+def test_agreement_tiers_extend_the_non_gating_tiers():
+    """The two tier lattices may differ, but only in the documented direction.
+
+    scripts/compare_systems.py keeps its own, narrower set of tiers a "we beat
+    espeak" claim can rest on. A tier that cannot gate a quality decision here
+    can certainly not support a comparison claim there, so the non-gating set
+    must stay a subset of that module's agreement set. The reverse containment
+    is deliberately NOT asserted: `machine-generated` is an agreement tier
+    there and still gates here, for the reason given at GATING_CUTOFF_TIER.
+    """
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
+    from compare_systems import _AGREEMENT_TIERS, _GOLD_TIERS
+
+    assert NON_QUALIFYING_TIERS <= _AGREEMENT_TIERS
+    assert _GOLD_TIERS | _AGREEMENT_TIERS == set(RELIABILITY_TIERS)
+    assert not (_GOLD_TIERS & _AGREEMENT_TIERS)
 
 
 def test_can_gate_promotion_rejects_unknown_tier():
