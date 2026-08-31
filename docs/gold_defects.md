@@ -255,6 +255,76 @@ spec mishandles Algerian Arabic. Provenance is `expert-human`, so the row
 technically **can gate**, but a promotion decision that turns on this single
 word should not be read as phonological.
 
+### Middle English, `wikipron`
+
+The `enm` gold (`enm_latn_broad.tsv`, 18,272 readings over 6,466 distinct
+headwords) is Wiktionary's crowd-scraped reconstruction of Chaucerian Late
+Middle English pronunciation, and its vowel-length notation does not hold
+still within a single headword. Counted on the harness's own SCORED
+representation (each reading run through `benchmark.normalize(broad=True,
+strip_stress=True)`, then deduplicated per headword) rather than the raw TSV
+strings, 1,403 of the 6,466 headwords (21.7%) retain two or more distinct
+normalized readings that differ from each other ONLY by the presence of the
+length mark ⟨ː⟩ on a vowel — the same editor community disagreeing with
+itself about whether a given vowel in a given word is long. (Counting the
+same predicate over raw, un-normalized TSV strings instead gives 1,291
+(20.0%); the two numbers diverge because narrow-mark and NFC folding merge a
+few otherwise-distinct raw readings before the ⟨ː⟩ comparison runs. 1,403 is
+the count that matches what actually enters the PER computation below, since
+scoring always normalizes first.) Spot-checking the mismatches this produces
+against the spec (`Irish` → gold /iːriʃ/, `Simon` → gold /simɔːn/, `amen` →
+gold /aːmɛn/) shows length assigned to plain, unmarked vowel letters in
+closed syllables with no orthographic signal the spec's macron-letter
+graphemes (⟨ā ē ī ō ū⟩) could have used to predict it — length here tracks
+Wiktionary's own open-syllable-lengthening reconstruction, not the spelling.
+
+As-scored PER (n=6,466, `broad`, `strip_stress`) is 0.2981, matching the
+committed board row. Folding the length mark ⟨ː⟩ out of both hypothesis and
+gold — the instrument, not a rule change — measures 0.2538. That ceiling does
+NOT clear the 0.25 production threshold, so this row stays open rather than
+proved input-limited: the fold moves the number in the right direction and by
+a real amount, but something beyond vowel-length notation still accounts for
+roughly a quarter of the row's segments. Folding combining acute/grave/caron
+accents alongside the length mark made no difference (the gold does not carry
+them for this row), a negative result recorded in the spec's
+`valid_ceiling.wikipron.citation` rather than reported as part of the fold.
+
+Word-final ⟨-e⟩ shows the same instability: of the 2,350 headwords with an
+orthographic final ⟨e⟩, only 12 have every reading realise it as [ə] and 416
+have every reading drop it; the remaining 1,922 (81.8%) mix pronounced and
+silent readings for the *same* headword. A naive fold (strip a trailing [ə]
+from both sides whenever the headword ends in ⟨e⟩) was tried and makes PER
+**worse** — 0.3144, up from 0.2981 raw — because plenty of the spec's correct
+[ə] outputs get stripped into mismatches against gold readings that keep
+theirs. This is reported as a negative result: final-⟨e⟩ inconsistency is real
+and documented, but no defensible fold for it was found, so no ceiling is
+recorded for it.
+
+Headword spelling itself is not standardised: an adjacent-sort near-duplicate
+scan (Ratcliff/Obershelp similarity > 0.86, length difference ≤ 2) over the
+6,466 headwords finds 669 adjacent pairs plausibly belonging to the same
+lexeme (dialectal/scribal spelling variants such as Northern vs. Midland
+forms sitting side by side), which the harness's per-word multi-reference
+scoring cannot merge because they are distinct headwords, not distinct
+readings of one headword. This is a property of an unstandardised medieval
+written language, not a defect: it is recorded here so a future reader does
+not mistake it for spec breakage.
+
+`enm` is the genealogical parent of `en-GB`, which carries zero `*_base` keys
+of its own (its `graphemes`/`allophones`/etc. are fully self-contained) — so
+nothing crosses from `enm` into `en-GB` or any further descendant. `en-US`,
+by contrast, inherits from `en-GB` (not `enm`) through four `*_base` keys
+(`graphemes_base`, `allophones_base`, `grammatical_endings_base`,
+`word_exceptions_base`). A future audit of `enm` is safe to edit freely; an
+audit of `en-GB` is not, since it is the actual base four other lects merge
+data through.
+
+Provenance is `crowd-scraped`, so the row **can gate**. `valid_ceiling.wikipron`
+records only the length-mark fold (0.2538, below the 0.25 threshold — an open
+row, not a closed one), the one fold that was measured and improved the
+score; the final-⟨e⟩ negative result and the diacritic no-op are recorded in
+the same citation rather than as separate ceiling fields.
+
 ## Mixed conventions
 
 ### Coptic, `wikipron`
