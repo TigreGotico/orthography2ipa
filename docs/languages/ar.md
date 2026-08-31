@@ -467,7 +467,7 @@ therefore *not* cited as primary reads, only as works reported within the source
 - Abdoh, E. (2010). *A Study of the Phonology and Morphology of Urban Meccan Arabic*. PhD diss., University of Kansas.
 - Alshammari, K.K. (2026). An Optimality-Theoretic Account of Velar Affrication in Northern Najdi Arabic. *Journal of Language Teaching and Research* 17(4): 1333–1341. https://doi.org/10.17507/jltr.1704.19
 - Al-Balushi, R. (2016). Omani Arabic: More than a Dialect. *Macrolinguistics* 4(1): 80–125.
-- Szreder, M. & Derrick, D. (2023). Phonological conditioning of affricate variability in Emirati Arabic. *Journal of the International Phonetic Association* 54(1): 146–164. https://doi.org/10.1017/S0025100323000129
+- Szreder, M. & Derrick, D. (2023). Phonological conditioning of affricate variability in Emirati Arabic. *Journal of the International Phonetic Association* 54(1): 146–164. https://doi.org/10.1017/S0025100323000166
 - Wikipedia: [Sun and moon letters](https://en.wikipedia.org/wiki/Sun_and_moon_letters)
 - Wikipedia: [Standard Arabic phonology](https://en.wikipedia.org/wiki/Standard_Arabic_phonology)
 
