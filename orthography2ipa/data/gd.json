@@ -114,7 +114,7 @@
       "ɲ"
     ],
     "ng": [
-      "ŋ"
+      "ŋk"
     ],
     "p": [
       "pʰ"
@@ -123,10 +123,11 @@
       "f"
     ],
     "r": [
-      "r",
-      "ɾ"
+      "ɾ",
+      "r"
     ],
     "rr": [
+      "ɾ",
       "r"
     ],
     "s": [
@@ -142,6 +143,9 @@
     ],
     "th": [
       "h"
+    ],
+    "ngh": [
+      "n̪ˠɣ"
     ]
   },
   "allophones": {
@@ -217,9 +221,6 @@
     ],
     "ç": [
       "ç"
-    ],
-    "xk": [
-      "xk"
     ],
     "t̪": [
       "t̪",
@@ -300,9 +301,6 @@
     "ɯ": [
       "ɯ"
     ],
-    "çkʲ": [
-      "çkʲ"
-    ],
     "ht̪": [
       "ht̪"
     ],
@@ -311,6 +309,21 @@
     ],
     "hp": [
       "hp"
+    ],
+    "ŋk": [
+      "ŋk"
+    ],
+    "ɲkʲ": [
+      "ɲkʲ"
+    ],
+    "n̪ˠɣ": [
+      "n̪ˠɣ"
+    ],
+    "xk": [
+      "xk"
+    ],
+    "çkʲ": [
+      "çkʲ"
     ]
   },
   "parent": "cel-x-goidelic",
@@ -322,7 +335,7 @@
       "notes": "Goidelic descent"
     }
   ],
-  "notes": "Scottish Gaelic (Gàidhlig). ~57,000 speakers (2011 census). Highlands and Islands of Scotland. PERVASIVE BROAD/SLENDER (leathann/caol) CONSONANT QUALITY: a consonant is slender (palatalised) beside ⟨e i⟩ and broad beside ⟨a o u⟩ ('caol le caol agus leathann le leathann'), and the flanking vowel letter that signals the quality is very often NOT itself pronounced — it is a quality marker, not a nucleus. Both halves are encoded in positional_graphemes: consonants take before_front_vowel/after_front_vowel slender variants, and the marker vowels map to the empty string. Stops are voiceless throughout (⟨b d g⟩ = unaspirated /p t̪ k/, ⟨p t c⟩ = aspirated), and slender velars are palatalised /kʲ kʲʰ/ rather than palatal /c ɟ/. Preaspiration of ⟨p t c⟩ after stressed vowels is encoded (GD_PREASP_*): [hp ht hk] broadly, with the velar realised as [x] before broad ⟨c⟩ (mac [maxk]). The realisation is strongly dialectal — six distinct patterns are attested — so the rules encode the central/general pattern only, matching the Lewis-dialect data in Oftedal (1956) and in Nance & Ó Maolalaigh (2020) (whose informant is from Ness, Isle of Lewis), not the dialect variation generally. Svarabhakti — an unwritten epenthetic vowel breaking up a sonorant+consonant cluster (arm [aɾam], ainm [anam], balg [palʲak], Alba [alʲapə]; Nance & Ó Maolalaigh 2020) — is real but is NOT encoded here: unlike Irish, where the epenthetic vowel reduces to a fixed /ə/ (modelled in the ga spec's GA_SVARABHAKTI_* rules), the Gaelic epenthetic vowel usually COPIES the preceding vowel's quality, which this engine's phoneme-triggered rewrite rules cannot express without enumerating a rule per vowel×sonorant×cluster combination; deferred rather than shipped half-modelled. Measured against the wikipron gold (n=3719): folding preaspiration out of both sides moves PER from 0.3202 to 0.3205, and folding a crude svarabhakti approximation moves it to 0.3264 (worse) — neither phenomenon is the dominant error source; the gold itself mixes at least two notational traditions for ⟨b d g⟩ (185/3720 words carry the Borgstrøm/Oftedal-style devoicing diacritic d̥/ɡ̊/b̥ that this spec does not use, following Nance & Ó Maolalaigh 2020's aspiration-based analysis) and mixes dialects (986/3720 words carry 2+ mutually incompatible pronunciations). Refs: Nance & Ó Maolalaigh (2020), Bauer (2011), Ó Maolalaigh (2008). Inventory and preaspiration cross-checked against Gillies (2009) and Ó Baoill (2010).",
+  "notes": "Scottish Gaelic (Gàidhlig). ~57,000 speakers (2011 census). Highlands and Islands of Scotland. PERVASIVE BROAD/SLENDER (leathann/caol) CONSONANT QUALITY: a consonant is slender (palatalised) beside ⟨e i⟩ and broad beside ⟨a o u⟩ ('caol le caol agus leathann le leathann'), and the flanking vowel letter that signals the quality is very often NOT itself pronounced — it is a quality marker, not a nucleus. Both halves are encoded in positional_graphemes: consonants take before_front_vowel/after_front_vowel slender variants, and the marker vowels map to the empty string. Stops are voiceless throughout (⟨b d g⟩ = unaspirated /p t̪ k/, ⟨p t c⟩ = aspirated), and slender velars are palatalised /kʲ kʲʰ/ rather than palatal /c ɟ/. ASPIRATION IS POSITIONAL: Nance & Ó Maolalaigh (2021) state that 'in word-initial position, stops are either voiceless unaspirated or voiceless post-aspirated. In word-medial and word-final position, the stop series are either voiceless unaspirated or voiceless pre-aspirated'. Post-aspiration is therefore a word-initial property; a medial or final ⟨p t c⟩ after a vowel preaspirates (GD_PREASP_*), and one standing after another consonant — ⟨rt⟩, ⟨lt⟩, ⟨st⟩, ⟨sp⟩, ⟨sg⟩ — is neither word-initial nor post-vocalic and falls in the plain unaspirated series (GD_UNASPIRATED_AFTER_CONSONANT_*). Preaspiration is written [h] before the coronals and labials and [x]/[ç] before the velars (mac [maxk]), the place-specific Lewis pattern of Oftedal (1956). The velar is the documented exception: it is realised [x] before broad ⟨c⟩ (mac [maxk]) and [ç] before slender ⟨c⟩, following Oftedal (1956), a Lewis source in its own right. Nance & Ó Maolalaigh (2021) transcribe every pre-aspiration as a superscript [ʰ] regardless of place (aca [aʰkə], muc [muʰk], boc [pɔʰk]) and describe the Lewis realisation as 'typically a voiceless [h]', adding that it 'can be more [x]-like, especially preceding velar stops in dialects such as Barra'. That sentence names the velar environment as where [x] appears and does not license [h] there, so the place-specific Lewis description in Oftedal governs; the uniform [ʰ] of the Illustration is read as a broad notation, not a competing claim about place. VELARISATION is confined to the laterals and the dental/alveolar nasals — 'the only sounds with actively velarised counterparts are laterals and dental/alveolar nasals' (Nance & Ó Maolalaigh 2021; that sentence stands on a cluster of earlier descriptions — Borgstrøm 1940, Ladefoged et al. 1998, Ternes 2006, Gillies 2009, Bosch 2010 — which are named here as supporting literature and were not fetched or checked page by page) — so no velarised rhotic, sibilant or labial is emitted. SONORANTS: laterals and dental/alveolar nasals hold a three-way velarised/alveolar/palatalised contrast, the rhotics a two-way one. Word-final single ⟨n⟩ is the plain alveolar member (sean 'grandfather' /ʃɛn/, nighean 'daughter' /n̪ʲi.ən/) against ⟨nn⟩ for the velarised and palatalised members (seann /ʃaun̪ˠ/, seinn /ʃəin̪ʲ/). The laterals are NOT predictable from spelling in the same way — the same source gives final single ⟨l⟩ as alveolar in dàil /t̪aːl/ but as velarised in caol /kʰɯːl̪ˠ/ — so ⟨l⟩ keeps all three readings in the lattice. The rhotic contrast is /ɾ/ vs /ɾʲ/ with no velarised member and no trill: 'trills are very rare in contemporary production'; word-initial ⟨r⟩ is the same tap as elsewhere (ràdh /ɾaː/, aran /aɾan/, car /kʰaɾ/). The traditional trill is kept as a second candidate only. ⟨ng⟩ spells /n̪ˠ/ plus /k/, surfacing as [ŋk] with the velar nasal allophone — 'velar and palatal variants of these sounds occur in the context of /k/ and /c/, e.g. long ‘ship’ and taing ‘thanks’'; ⟨ngh⟩ is ⟨n⟩ plus lenited ⟨gh⟩ and earns its own key purely to block the greedy ⟨ng⟩ match (AGENTS.md §2 test 3), not because it is a unit. Svarabhakti — an unwritten epenthetic vowel breaking up a sonorant+consonant cluster (arm 'army' [aɾam], ainm 'name' [anam], balg 'belly' [pal̪ˠak], Alba 'Scotland' [al̪ˠapə]; Nance & Ó Maolalaigh 2021) — is real but is NOT encoded here. It occurs where 'the consonant preceding the svarabhakti vowel is a sonorant', 'the preceding vowel is short', 'the consonant cluster is non-homorganic', and 'the second consonant is not a pre-aspirated plosive'; unlike Irish, where the epenthetic vowel reduces to a fixed /ə/ (modelled in the ga spec's GA_SVARABHAKTI_* rules), the Gaelic one 'is a copy of the preceding vowel', which this engine's phoneme-triggered rewrite rules cannot express without enumerating a rule per vowel×sonorant×cluster combination. Deferred rather than shipped half-modelled. The word-final ⟨-adh⟩ of verbal nouns is [əɣ] in the dialect described (turadh 'dry weather' /t̪ʰɯɾəɣ/) while final ⟨-idh⟩ and ⟨-gh⟩ are silent (chaidh /xai/, tagh /t̪ɤ/); the engine ranks word_final above the after-⟨a⟩ position, so the two cannot be split apart and ⟨dh⟩ is silenced finally throughout. The wikipron gold mixes notational traditions and dialects. Counted over its 3720 distinct words, 244 have at least one variant writing a devoicing ring (U+0325 or U+030A) on ⟨b d ɡ⟩ in the Borgstrøm/Oftedal manner this spec does not use (it follows the aspiration-based analysis above), and 986 carry two or more distinct gold strings. Counted over its 6000 rows, 442 write a velarised rhotic /rˠ/ that none of the sources above recognise for Gaelic, and post-vocalic pre-aspiration before a velar stop is written [x] 212 times, [ʰ] 45 times and [h] 6 times. Refs: Nance & Ó Maolalaigh (2021), Bauer (2011), Ó Maolalaigh (2008). Inventory and preaspiration cross-checked against Gillies (2009) and Ó Baoill (2010).",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -378,14 +391,14 @@
       "notes": "The standard orthography, incl. 'caol le caol agus leathann le leathann' and the grave-accent-only convention."
     },
     {
-      "id": "nance_omaolalaigh2020",
+      "id": "nance_omaolalaigh2021",
       "author": "Nance, C. and Ó Maolalaigh, R.",
-      "year": 2020,
+      "year": 2021,
       "title": "Scottish Gaelic",
-      "publisher": "Journal of the International Phonetic Association 51(1), 155-172 (Illustrations of the IPA)",
+      "publisher": "Journal of the International Phonetic Association 51(2), 261-275 (Illustrations of the IPA)",
       "url": "https://doi.org/10.1017/S002510031900015X",
       "pages": null,
-      "notes": "Fetched and read directly (open-access PDF via the author's site). Speaker recorded is from Ness, Isle of Lewis. Source for the consonant inventory (/pʰ p tʰ̪ t̪ tʲʰ tʲ kʰ k/ etc.), the word-initial-stress generalisation, and the dialectal variation in preaspiration realisation (voiceless [h] in Lewis, more [x]-like in Barra per Ó Murchú 1985, longest in velar/palatal stops and shortest in bilabials). Also states explicitly that orthographic ⟨b d g⟩ show 'very little or no closure voicing even in word-medial stops' (citing Nance & Stuart-Smith 2013), so the contrast is aspiration (/pʰ/ vs /p/) rather than voicing — the analysis this spec follows. Describes svarabhakti (unwritten epenthetic vowel breaking up a sonorant+consonant cluster, usually copying the preceding vowel, e.g. arm [aɾam], ainm [anam], balg [palʲak], Alba [alʲapə]) as real but NOT encoded in this spec (see notes)."
+      "notes": "Fetched and read directly (open-access PDF via the author's site). The DOI resolves in CrossRef, which returns this title, both authors, volume 51(2) and pages 261-275; CrossRef gives published-online 2019-08-08 and published-print 2021-08, and Cambridge Core and Glasgow Enlighten both cite the article as 2021. Speaker recorded is from Ness, Isle of Lewis. Source for the consonant inventory (/pʰ p t̪ʰ t̪ tʲʰ tʲ kʰ k/ etc.), the aspiration geometry (post-aspiration word-initial only, preaspiration word-medial and word-final), the Lewis [h] realisation of preaspiration, the statement that only laterals and dental/alveolar nasals are actively velarised, the three-way lateral/nasal and two-way rhotic contrasts with their word-initial, word-medial and word-final example sets, the [ŋk]/[ɲc] realisation of ⟨ng⟩, and the word-initial-stress generalisation. Also states explicitly that orthographic ⟨b d g⟩ show 'very little or no closure voicing even in word-medial stops' (citing Nance & Stuart-Smith 2013), so the contrast is aspiration (/pʰ/ vs /p/) rather than voicing — the analysis this spec follows. Describes svarabhakti as real but it is not encoded here (see notes)."
     }
   ],
   "wikipedia": [
@@ -489,6 +502,9 @@
       ],
       "intervocalic": [
         "n"
+      ],
+      "word_final": [
+        "n"
       ]
     },
     "nn": {
@@ -505,12 +521,6 @@
       ],
       "after_front_vowel": [
         "ɾʲ"
-      ],
-      "word_initial": [
-        "r"
-      ],
-      "intervocalic": [
-        "ɾ"
       ]
     },
     "dh": {
@@ -620,6 +630,14 @@
       "nucleus_unstressed": [
         "ə"
       ]
+    },
+    "ng": {
+      "before_front_vowel": [
+        "ɲkʲ"
+      ],
+      "after_front_vowel": [
+        "ɲkʲ"
+      ]
     }
   },
   "allophone_rules": [
@@ -630,7 +648,7 @@
       ],
       "surface": "xk",
       "preceded_by": "vowel",
-      "notes": "Preaspiration: Scottish Gaelic preaspirates the aspirated stops ⟨p t c⟩ medially and finally after a stressed vowel — the diagnostic feature that separates Gaelic from Irish (Nance & Ó Maolalaigh 2020; Ó Maolalaigh 2008). The realisation is strongly dialectal (six attested patterns, [xk ht hp] ~ [ʰk ʰt ʰp] ~ none); the mainstream pattern encoded here is [xk]/[çkʲ] for the velars and [h]+stop for the coronals and labials. Conditioned on a preceding vowel, so word-initial and post-consonantal stops keep their plain aspirated realisation."
+      "notes": "Preaspiration: Scottish Gaelic preaspirates the aspirated stops ⟨p t c⟩ medially and finally after a stressed vowel — the diagnostic feature that separates Gaelic from Irish (Nance & Ó Maolalaigh 2021; Ó Maolalaigh 2008). The realisation is strongly dialectal (six attested patterns, [xk ht hp] ~ [ʰk ʰt ʰp] ~ none); the central pattern encoded here is [h]+stop for the coronals and labials and [xk]/[çkʲ] for the velars. The velar is the documented exception: it is realised [x] before broad ⟨c⟩ (mac [maxk]) and [ç] before slender ⟨c⟩, following Oftedal (1956), a Lewis source in its own right. Nance & Ó Maolalaigh (2021) transcribe every pre-aspiration as a superscript [ʰ] regardless of place (aca [aʰkə], muc [muʰk], boc [pɔʰk]) and describe the Lewis realisation as 'typically a voiceless [h]', adding that it 'can be more [x]-like, especially preceding velar stops in dialects such as Barra'. That sentence names the velar environment as where [x] appears and does not license [h] there, so the place-specific Lewis description in Oftedal governs; the uniform [ʰ] of the Illustration is read as a broad notation, not a competing claim about place. Conditioned on a preceding vowel, so a word-initial stop keeps its post-aspiration and a post-consonantal one falls unaspirated (GD_UNASPIRATED_AFTER_CONSONANT_*)."
     },
     {
       "id": "GD_PREASP_C_SLENDER",
@@ -639,7 +657,7 @@
       ],
       "surface": "çkʲ",
       "preceded_by": "vowel",
-      "notes": "Preaspiration: Scottish Gaelic preaspirates the aspirated stops ⟨p t c⟩ medially and finally after a stressed vowel — the diagnostic feature that separates Gaelic from Irish (Nance & Ó Maolalaigh 2020; Ó Maolalaigh 2008). The realisation is strongly dialectal (six attested patterns, [xk ht hp] ~ [ʰk ʰt ʰp] ~ none); the mainstream pattern encoded here is [xk]/[çkʲ] for the velars and [h]+stop for the coronals and labials. Conditioned on a preceding vowel, so word-initial and post-consonantal stops keep their plain aspirated realisation."
+      "notes": "Preaspiration: Scottish Gaelic preaspirates the aspirated stops ⟨p t c⟩ medially and finally after a stressed vowel — the diagnostic feature that separates Gaelic from Irish (Nance & Ó Maolalaigh 2021; Ó Maolalaigh 2008). The realisation is strongly dialectal (six attested patterns, [xk ht hp] ~ [ʰk ʰt ʰp] ~ none); the central pattern encoded here is [h]+stop for the coronals and labials and [xk]/[çkʲ] for the velars. The velar is the documented exception: it is realised [x] before broad ⟨c⟩ (mac [maxk]) and [ç] before slender ⟨c⟩, following Oftedal (1956), a Lewis source in its own right. Nance & Ó Maolalaigh (2021) transcribe every pre-aspiration as a superscript [ʰ] regardless of place (aca [aʰkə], muc [muʰk], boc [pɔʰk]) and describe the Lewis realisation as 'typically a voiceless [h]', adding that it 'can be more [x]-like, especially preceding velar stops in dialects such as Barra'. That sentence names the velar environment as where [x] appears and does not license [h] there, so the place-specific Lewis description in Oftedal governs; the uniform [ʰ] of the Illustration is read as a broad notation, not a competing claim about place. Conditioned on a preceding vowel, so a word-initial stop keeps its post-aspiration and a post-consonantal one falls unaspirated (GD_UNASPIRATED_AFTER_CONSONANT_*)."
     },
     {
       "id": "GD_PREASP_T_BROAD",
@@ -648,7 +666,7 @@
       ],
       "surface": "ht̪",
       "preceded_by": "vowel",
-      "notes": "Preaspiration: Scottish Gaelic preaspirates the aspirated stops ⟨p t c⟩ medially and finally after a stressed vowel — the diagnostic feature that separates Gaelic from Irish (Nance & Ó Maolalaigh 2020; Ó Maolalaigh 2008). The realisation is strongly dialectal (six attested patterns, [xk ht hp] ~ [ʰk ʰt ʰp] ~ none); the mainstream pattern encoded here is [xk]/[çkʲ] for the velars and [h]+stop for the coronals and labials. Conditioned on a preceding vowel, so word-initial and post-consonantal stops keep their plain aspirated realisation."
+      "notes": "Preaspiration: Scottish Gaelic preaspirates the aspirated stops ⟨p t c⟩ medially and finally after a stressed vowel — the diagnostic feature that separates Gaelic from Irish (Nance & Ó Maolalaigh 2021; Ó Maolalaigh 2008). The realisation is strongly dialectal (six attested patterns, [xk ht hp] ~ [ʰk ʰt ʰp] ~ none); the central pattern encoded here is [h]+stop for the coronals and labials and [xk]/[çkʲ] for the velars. The velar is the documented exception: it is realised [x] before broad ⟨c⟩ (mac [maxk]) and [ç] before slender ⟨c⟩, following Oftedal (1956), a Lewis source in its own right. Nance & Ó Maolalaigh (2021) transcribe every pre-aspiration as a superscript [ʰ] regardless of place (aca [aʰkə], muc [muʰk], boc [pɔʰk]) and describe the Lewis realisation as 'typically a voiceless [h]', adding that it 'can be more [x]-like, especially preceding velar stops in dialects such as Barra'. That sentence names the velar environment as where [x] appears and does not license [h] there, so the place-specific Lewis description in Oftedal governs; the uniform [ʰ] of the Illustration is read as a broad notation, not a competing claim about place. Conditioned on a preceding vowel, so a word-initial stop keeps its post-aspiration and a post-consonantal one falls unaspirated (GD_UNASPIRATED_AFTER_CONSONANT_*)."
     },
     {
       "id": "GD_PREASP_T_SLENDER",
@@ -657,7 +675,7 @@
       ],
       "surface": "htʲ",
       "preceded_by": "vowel",
-      "notes": "Preaspiration: Scottish Gaelic preaspirates the aspirated stops ⟨p t c⟩ medially and finally after a stressed vowel — the diagnostic feature that separates Gaelic from Irish (Nance & Ó Maolalaigh 2020; Ó Maolalaigh 2008). The realisation is strongly dialectal (six attested patterns, [xk ht hp] ~ [ʰk ʰt ʰp] ~ none); the mainstream pattern encoded here is [xk]/[çkʲ] for the velars and [h]+stop for the coronals and labials. Conditioned on a preceding vowel, so word-initial and post-consonantal stops keep their plain aspirated realisation."
+      "notes": "Preaspiration: Scottish Gaelic preaspirates the aspirated stops ⟨p t c⟩ medially and finally after a stressed vowel — the diagnostic feature that separates Gaelic from Irish (Nance & Ó Maolalaigh 2021; Ó Maolalaigh 2008). The realisation is strongly dialectal (six attested patterns, [xk ht hp] ~ [ʰk ʰt ʰp] ~ none); the central pattern encoded here is [h]+stop for the coronals and labials and [xk]/[çkʲ] for the velars. The velar is the documented exception: it is realised [x] before broad ⟨c⟩ (mac [maxk]) and [ç] before slender ⟨c⟩, following Oftedal (1956), a Lewis source in its own right. Nance & Ó Maolalaigh (2021) transcribe every pre-aspiration as a superscript [ʰ] regardless of place (aca [aʰkə], muc [muʰk], boc [pɔʰk]) and describe the Lewis realisation as 'typically a voiceless [h]', adding that it 'can be more [x]-like, especially preceding velar stops in dialects such as Barra'. That sentence names the velar environment as where [x] appears and does not license [h] there, so the place-specific Lewis description in Oftedal governs; the uniform [ʰ] of the Illustration is read as a broad notation, not a competing claim about place. Conditioned on a preceding vowel, so a word-initial stop keeps its post-aspiration and a post-consonantal one falls unaspirated (GD_UNASPIRATED_AFTER_CONSONANT_*)."
     },
     {
       "id": "GD_PREASP_P",
@@ -666,12 +684,57 @@
       ],
       "surface": "hp",
       "preceded_by": "vowel",
-      "notes": "Preaspiration: Scottish Gaelic preaspirates the aspirated stops ⟨p t c⟩ medially and finally after a stressed vowel — the diagnostic feature that separates Gaelic from Irish (Nance & Ó Maolalaigh 2020; Ó Maolalaigh 2008). The realisation is strongly dialectal (six attested patterns, [xk ht hp] ~ [ʰk ʰt ʰp] ~ none); the mainstream pattern encoded here is [xk]/[çkʲ] for the velars and [h]+stop for the coronals and labials. Conditioned on a preceding vowel, so word-initial and post-consonantal stops keep their plain aspirated realisation."
+      "notes": "Preaspiration: Scottish Gaelic preaspirates the aspirated stops ⟨p t c⟩ medially and finally after a stressed vowel — the diagnostic feature that separates Gaelic from Irish (Nance & Ó Maolalaigh 2021; Ó Maolalaigh 2008). The realisation is strongly dialectal (six attested patterns, [xk ht hp] ~ [ʰk ʰt ʰp] ~ none); the central pattern encoded here is [h]+stop for the coronals and labials and [xk]/[çkʲ] for the velars. The velar is the documented exception: it is realised [x] before broad ⟨c⟩ (mac [maxk]) and [ç] before slender ⟨c⟩, following Oftedal (1956), a Lewis source in its own right. Nance & Ó Maolalaigh (2021) transcribe every pre-aspiration as a superscript [ʰ] regardless of place (aca [aʰkə], muc [muʰk], boc [pɔʰk]) and describe the Lewis realisation as 'typically a voiceless [h]', adding that it 'can be more [x]-like, especially preceding velar stops in dialects such as Barra'. That sentence names the velar environment as where [x] appears and does not license [h] there, so the place-specific Lewis description in Oftedal governs; the uniform [ʰ] of the Illustration is read as a broad notation, not a competing claim about place. Conditioned on a preceding vowel, so a word-initial stop keeps its post-aspiration and a post-consonantal one falls unaspirated (GD_UNASPIRATED_AFTER_CONSONANT_*)."
+    },
+    {
+      "id": "GD_UNASPIRATED_AFTER_CONSONANT_P",
+      "phonemes": [
+        "pʰ"
+      ],
+      "surface": "p",
+      "preceded_by": "consonant",
+      "notes": "Post-aspiration is a WORD-INITIAL property: 'In word-initial position, stops are either voiceless unaspirated or voiceless post-aspirated. In word-medial and word-final position, the stop series are either voiceless unaspirated or voiceless pre-aspirated' (Nance & Ó Maolalaigh 2021). Pre-aspiration needs a preceding vowel (GD_PREASP_*), so a ⟨p t c⟩ that stands after another consonant — ⟨rt⟩, ⟨lt⟩, ⟨st⟩, ⟨sp⟩, ⟨sg⟩ — is neither word-initial nor post-vocalic and therefore falls in the plain unaspirated series."
+    },
+    {
+      "id": "GD_UNASPIRATED_AFTER_CONSONANT_T_BROAD",
+      "phonemes": [
+        "t̪ʰ"
+      ],
+      "surface": "t̪",
+      "preceded_by": "consonant",
+      "notes": "Post-aspiration is a WORD-INITIAL property: 'In word-initial position, stops are either voiceless unaspirated or voiceless post-aspirated. In word-medial and word-final position, the stop series are either voiceless unaspirated or voiceless pre-aspirated' (Nance & Ó Maolalaigh 2021). Pre-aspiration needs a preceding vowel (GD_PREASP_*), so a ⟨p t c⟩ that stands after another consonant — ⟨rt⟩, ⟨lt⟩, ⟨st⟩, ⟨sp⟩, ⟨sg⟩ — is neither word-initial nor post-vocalic and therefore falls in the plain unaspirated series."
+    },
+    {
+      "id": "GD_UNASPIRATED_AFTER_CONSONANT_T_SLENDER",
+      "phonemes": [
+        "tʲʰ"
+      ],
+      "surface": "tʲ",
+      "preceded_by": "consonant",
+      "notes": "Post-aspiration is a WORD-INITIAL property: 'In word-initial position, stops are either voiceless unaspirated or voiceless post-aspirated. In word-medial and word-final position, the stop series are either voiceless unaspirated or voiceless pre-aspirated' (Nance & Ó Maolalaigh 2021). Pre-aspiration needs a preceding vowel (GD_PREASP_*), so a ⟨p t c⟩ that stands after another consonant — ⟨rt⟩, ⟨lt⟩, ⟨st⟩, ⟨sp⟩, ⟨sg⟩ — is neither word-initial nor post-vocalic and therefore falls in the plain unaspirated series."
+    },
+    {
+      "id": "GD_UNASPIRATED_AFTER_CONSONANT_C_BROAD",
+      "phonemes": [
+        "kʰ"
+      ],
+      "surface": "k",
+      "preceded_by": "consonant",
+      "notes": "Post-aspiration is a WORD-INITIAL property: 'In word-initial position, stops are either voiceless unaspirated or voiceless post-aspirated. In word-medial and word-final position, the stop series are either voiceless unaspirated or voiceless pre-aspirated' (Nance & Ó Maolalaigh 2021). Pre-aspiration needs a preceding vowel (GD_PREASP_*), so a ⟨p t c⟩ that stands after another consonant — ⟨rt⟩, ⟨lt⟩, ⟨st⟩, ⟨sp⟩, ⟨sg⟩ — is neither word-initial nor post-vocalic and therefore falls in the plain unaspirated series."
+    },
+    {
+      "id": "GD_UNASPIRATED_AFTER_CONSONANT_C_SLENDER",
+      "phonemes": [
+        "kʲʰ"
+      ],
+      "surface": "kʲ",
+      "preceded_by": "consonant",
+      "notes": "Post-aspiration is a WORD-INITIAL property: 'In word-initial position, stops are either voiceless unaspirated or voiceless post-aspirated. In word-medial and word-final position, the stop series are either voiceless unaspirated or voiceless pre-aspirated' (Nance & Ó Maolalaigh 2021). Pre-aspiration needs a preceding vowel (GD_PREASP_*), so a ⟨p t c⟩ that stands after another consonant — ⟨rt⟩, ⟨lt⟩, ⟨st⟩, ⟨sp⟩, ⟨sg⟩ — is neither word-initial nor post-vocalic and therefore falls in the plain unaspirated series."
     }
   ],
   "stress": {
     "default_position": 1,
     "stress_mark": "ˈ",
-    "notes": "Scottish Gaelic stresses the FIRST syllable of the word (Nance & Ó Maolalaigh 2020); unstressed vowels reduce to /ə/."
+    "notes": "Scottish Gaelic stresses the FIRST syllable of the word (Nance & Ó Maolalaigh 2021); unstressed vowels reduce to /ə/."
   }
 }

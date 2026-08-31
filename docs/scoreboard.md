@@ -269,7 +269,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | fy | wikipron | 1091 | 0.2182 | - | 0.2043 | 0.2032 | 0.3327 | 0.3355 | [0.2075, 0.2295] | 0.3071 | research | crowd-scraped |
 | ga | ipa_childes | 1611 | 0.2989‡ | - | 0.2651 | 0.2410 | 0.1924 | 0.2216 | [0.2885, 0.3088] | 0.1620 | research | espeak-derived |
 | ga | wikipron | 9616 | 0.1834 | - | 0.1593 | 0.1498 | 0.3716 | 0.3906 | [0.1798, 0.1869] | 0.3100 | research | crowd-scraped |
-| gd | wikipron | 3719 | 0.3202 | - | 0.2674 | 0.2380 | 0.2124 | 0.2646 | [0.3132, 0.3273] | 0.1508 | research | crowd-scraped |
+| gd | wikipron | 3719 | 0.2861 | - | 0.2366 | 0.2123 | 0.2600 | 0.3100 | [0.2791, 0.2932] | 0.1974 | research | crowd-scraped |
 | gl | vox_communis | 47512 | 0.0643‡ | - | 0.0493 | 0.0448 | 0.6783 | 0.7004 | [0.0634, 0.0652] | 0.6104 | research | epitran-derived |
 | gl | wikipron | 8091 | 0.0804 | - | 0.0354 | 0.0288 | 0.8057 | 0.8438 | [0.0777, 0.0828] | 0.5957 | research | crowd-scraped |
 | gld | northeuralex | 887 | 0.1532 | - | 0.1532 | 0.1532 | 0.3574 | 0.3574 | [0.1431, 0.1624] | 0.3574 | research | lexicon-derived |

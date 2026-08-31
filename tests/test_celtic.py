@@ -65,6 +65,11 @@ def _assert_first(values, expected: str, label: str = "") -> None:
     )
 
 
+def _g2p(code: str):
+    """G2P engine for *code*, pinned to that exact tag."""
+    return orthography2ipa.G2P(code)
+
+
 def _assert_null(spec, grapheme: str) -> None:
     """Assert that *grapheme* is absent or explicitly nulled in the grapheme table."""
     result = spec.graphemes.get(grapheme, _SENTINEL)
@@ -661,9 +666,114 @@ class TestScottishGaelic:
         """Lenited ⟨th⟩ maps to /h/, as in Irish."""
         _assert_first(_grapheme(self.spec, "th"), "h", label="gd:th→h")
 
-    def test_ng_maps_to_velar_nasal(self):
-        """⟨ng⟩ maps to /ŋ/ (velar nasal), as in all Goidelic languages."""
-        _assert_first(_grapheme(self.spec, "ng"), "ŋ", label="gd:ng→ŋ")
+    def test_ng_maps_to_velar_nasal_plus_stop(self):
+        """⟨ng⟩ spells the velarised nasal plus /k/, surfacing as [ŋk].
+
+        [ŋ] is not a phoneme of Gaelic but the allophone /n̪ˠ/ takes before
+        a velar stop, and the ⟨g⟩ of ⟨ng⟩ is that stop: "velar and palatal
+        variants of these sounds occur in the context of /k/ and /c/, e.g.
+        long 'ship' and taing 'thanks'" (Nance & Ó Maolalaigh 2021,
+        doi:10.1017/S002510031900015X). The slender counterpart is [ɲkʲ] in
+        this spec's palatalised-velar convention.
+        """
+        _assert_first(_grapheme(self.spec, "ng"), "ŋk", label="gd:ng→ŋk")
+        _assert_first(_positional(self.spec, "ng",
+                                  GraphemePosition.BEFORE_FRONT_VOWEL),
+                      "ɲkʲ", label="gd:ng slender→ɲkʲ")
+        assert _segments(_g2p("gd").transcribe_word("long")) == "l̪ˠɔŋk"
+        assert _segments(_g2p("gd").transcribe_word("taing")) == "t̪ʰaɲkʲ"
+
+    def test_broad_r_is_a_tap_in_every_position(self):
+        """Broad ⟨r⟩ is the tap /ɾ/ word-initially, medially and finally.
+
+        Gaelic keeps a two-way rhotic contrast, and its non-palatalised
+        member is no longer a trill: "trills are very rare in contemporary
+        production" (Nance & Ó Maolalaigh 2021). Their speaker "did not
+        produce this rhotic substantially different to the rhotic in, for
+        example, ràdh 'saying' /ɾaː/", against aran 'bread' /aɾan/ and car
+        'somewhat' /kʰaɾ/ — the same tap in all three positions.
+        """
+        _assert_first(_grapheme(self.spec, "r"), "ɾ", label="gd:r→ɾ")
+        _assert_first(_grapheme(self.spec, "rr"), "ɾ", label="gd:rr→ɾ")
+        g = _g2p("gd")
+        assert _segments(g.transcribe_word("ràdh")) == "ɾaː"
+        assert _segments(g.transcribe_word("car")) == "kʰaɾ"
+
+    def test_no_velarised_rhotic(self):
+        """Velarisation is confined to the laterals and dental/alveolar nasals.
+
+        "The only sounds with actively velarised counterparts are laterals
+        and dental/alveolar nasals" (Nance & Ó Maolalaigh 2021). That
+        sentence rests on a cluster of earlier descriptions — Borgstrøm
+        1940, Ladefoged et al. 1998, Ternes 2006, Gillies 2009, Bosch 2010 —
+        named here as supporting literature, not checked page by page. No
+        /rˠ/, /sˠ/ or velarised labial may be emitted, however often a gold
+        set writes one.
+        """
+        emitted = set()
+        for values in list(self.spec.graphemes.values()):
+            emitted.update(v for v in values if isinstance(v, str))
+        for pos_map in self.spec.positional_graphemes.values():
+            for values in pos_map.values():
+                emitted.update(v for v in values if isinstance(v, str))
+        offenders = sorted(v for v in emitted
+                           if "ˠ" in v and not v.startswith(("l", "n")))
+        assert not offenders, f"gd: velarised non-sonorant emitted: {offenders}"
+
+    def test_word_final_single_n_is_the_alveolar_nasal(self):
+        """Word-final single ⟨n⟩ is the plain alveolar /n/, not velarised.
+
+        The three-way nasal contrast is spelled: "seann 'old' /ʃaun̪ˠ/, sean
+        'grandfather' /ʃɛn/, seinn 'singing' /ʃəin̪ʲ/" (Nance & Ó Maolalaigh
+        2021) — the velarised and palatalised members take ⟨nn⟩, the
+        alveolar one single ⟨n⟩. Compare nighean 'daughter' /n̪ʲi.ən/.
+        """
+        _assert_first(_positional(self.spec, "n", GraphemePosition.WORD_FINAL),
+                      "n", label="gd:final n→n")
+        g = _g2p("gd")
+        assert _segments(g.transcribe_word("sean")).endswith("n")
+        assert not _segments(g.transcribe_word("sean")).endswith("n̪ˠ")
+        assert _segments(g.transcribe_word("seann")).endswith("n̪ˠ")
+
+    def test_post_aspiration_is_word_initial_only(self):
+        """A stop after another consonant is unaspirated, not post-aspirated.
+
+        "In word-initial position, stops are either voiceless unaspirated or
+        voiceless post-aspirated. In word-medial and word-final position, the
+        stop series are either voiceless unaspirated or voiceless
+        pre-aspirated" (Nance & Ó Maolalaigh 2021). Pre-aspiration needs a
+        preceding vowel, so ⟨p t c⟩ standing after a consonant is in neither
+        aspirated series.
+        """
+        g = _g2p("gd")
+        assert "ʰ" not in _segments(g.transcribe_word("art"))
+        assert "ʰ" not in _segments(g.transcribe_word("Lunastal"))[2:]
+        # word-initial post-aspiration survives
+        assert _segments(g.transcribe_word("cat")).startswith("kʰ")
+
+    def test_preaspiration_is_h_except_before_velars(self):
+        """Pre-aspiration is [h], but [x]/[ç] before the velars.
+
+        The velar environment is a deliberate, place-specific exception
+        sourced to Oftedal (1956), *The Gaelic of Leurbost, Isle of Lewis* —
+        a Lewis source, so this is not a Barra realisation leaking into a
+        Lewis-modelled spec. Nance & Ó Maolalaigh (2021) transcribe every
+        pre-aspiration uniformly as superscript [ʰ] and call the Lewis
+        realisation "typically a voiceless [h]", but the same sentence adds
+        that it "can be more [x]-like, especially preceding velar stops in
+        dialects such as Barra" — which names the velar environment as where
+        [x] appears rather than licensing [h] there. Do not "correct" the
+        velars to [h]: mac is [maxk].
+        """
+        surfaces = {r.id: r.surface for r in self.spec.allophone_rules
+                    if r.id.startswith("GD_PREASP")}
+        assert surfaces == {
+            "GD_PREASP_C_BROAD": "xk",
+            "GD_PREASP_C_SLENDER": "çkʲ",
+            "GD_PREASP_T_BROAD": "ht̪",
+            "GD_PREASP_T_SLENDER": "htʲ",
+            "GD_PREASP_P": "hp",
+        }, surfaces
 
     # ── Allophones ──────────────────────────────────────────────────────────
 
