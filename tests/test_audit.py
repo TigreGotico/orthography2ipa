@@ -249,6 +249,7 @@ class TestBackfilledRecordsRoundTrip:
         ("ar-DZ", "primary_sources", AuditConclusion.SAMPLE_TOO_SMALL),
         ("se", "wikipron", AuditConclusion.CHANGE_REFUSED_UNCITED),
         ("ja", "ipadict", AuditConclusion.LOGOGRAPHIC),
+        ("da", "wikipron", AuditConclusion.AT_CEILING_DOCUMENTED),
     ])
     def test_backfilled_conclusion_loads(self, code, dataset, conclusion):
         spec = json_loader.load_json_spec(code)
