@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.88.6a1](https://github.com/TigreGotico/orthography2ipa/tree/7.88.6a1) (2026-08-31)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.88.5a1...7.88.6a1)
+
+**Merged pull requests:**
+
+- fix\(benchmark\): resync stale CI-sample and full-board rows [\#1443](https://github.com/TigreGotico/orthography2ipa/pull/1443) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.88.5a1](https://github.com/TigreGotico/orthography2ipa/tree/7.88.5a1) (2026-08-31)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.88.4a1...7.88.5a1)
@@ -371,15 +379,15 @@
 
 ## [7.82.41a2](https://github.com/TigreGotico/orthography2ipa/tree/7.82.41a2) (2026-08-26)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.40a6...7.82.41a2)
-
-## [7.82.40a6](https://github.com/TigreGotico/orthography2ipa/tree/7.82.40a6) (2026-08-26)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.41a1...7.82.40a6)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.41a1...7.82.41a2)
 
 ## [7.82.41a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.41a1) (2026-08-26)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.40a5...7.82.41a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.40a6...7.82.41a1)
+
+## [7.82.40a6](https://github.com/TigreGotico/orthography2ipa/tree/7.82.40a6) (2026-08-26)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.40a5...7.82.40a6)
 
 ## [7.82.40a5](https://github.com/TigreGotico/orthography2ipa/tree/7.82.40a5) (2026-08-26)
 
@@ -550,19 +558,19 @@
 
 ## [7.82.24a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.24a1) (2026-08-26)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.22a1...7.82.24a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.23a1...7.82.24a1)
 
 **Merged pull requests:**
 
 - fix\(yrk\): map every confusable of the glottal-stop apostrophe letters, and correct their phoneme labels [\#1267](https://github.com/TigreGotico/orthography2ipa/pull/1267) ([JarbasAl](https://github.com/JarbasAl))
 
-## [7.82.22a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.22a1) (2026-08-26)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.23a1...7.82.22a1)
-
 ## [7.82.23a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.23a1) (2026-08-26)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.21a2...7.82.23a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.22a1...7.82.23a1)
+
+## [7.82.22a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.22a1) (2026-08-26)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.21a2...7.82.22a1)
 
 **Merged pull requests:**
 
@@ -609,10 +617,6 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.18a1...7.82.18a2)
 
-**Merged pull requests:**
-
-- fix: refresh stale ci-sample rows and add same-n invariant test [\#1238](https://github.com/TigreGotico/orthography2ipa/pull/1238) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [7.82.18a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.18a1) (2026-08-25)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.17a1...7.82.18a1)
@@ -657,10 +661,6 @@
 ## [7.82.12a2](https://github.com/TigreGotico/orthography2ipa/tree/7.82.12a2) (2026-08-25)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.12a1...7.82.12a2)
-
-**Merged pull requests:**
-
-- docs\(srn\): pin the 1986 orthography boundary and the pre-1986 spellings outside it [\#1239](https://github.com/TigreGotico/orthography2ipa/pull/1239) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.82.12a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.12a1) (2026-08-25)
 
