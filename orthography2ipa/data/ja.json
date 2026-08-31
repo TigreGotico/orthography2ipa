@@ -1023,6 +1023,13 @@
   },
   "notes": "Standard Tokyo Japanese. Moraic structure: each kana = one mora. The moraic nasal /N/ and the moraic obstruent /Q/ are placeless archiphonemes realised by allophone_rules from the following segment. Vowel devoicing of /i, ɯ/ between voiceless consonants is systematic but is not written: it is a phonetic detail below the level this spec transcribes. Long vowels are written only where the orthography writes them with ー; the おう and えい spellings are transcribed as the vowel sequences the kana spell. Particle は /wa/ and へ /e/ cannot be identified without syntax and are transcribed from their kana values. doubled_letters_geminate is false: kana never spell gemination by letter doubling, so an adjacent pair of identical bare consonants is always two moras of N or Q realised by allophone_rules, not an orthographic geminate.",
   "doubled_letters_geminate": false,
+  "audit": {
+    "ipadict": {
+      "conclusion": "logographic",
+      "measured": "Raw PER 0.3276 at n=115500 covered words. Splitting the covered words by script composition: 61365 (53.1%) contain at least one CJK Unified Ideograph (U+4E00-U+9FFF, i.e. kanji) and score PER 0.5723; the remaining 54135 (46.9%) are pure kana and score PER 0.0503. Kanji readings (on'yomi/kun'yomi) are lexical facts assigned per word or per compound, not derivable from the character's shape by any grapheme rule, so no rule change can close the kanji-containing share of the gap; the low kana-only PER shows the kana rules themselves already track the gold closely. Mirrors the zh/zh-Hani precedent: a phonemic script spec cannot be made to read a co-mingled logographic script by rule.",
+      "reference": "spec notes; see also zh-Hani.json notes for the same precedent"
+    }
+  },
   "quality": "research",
   "script_type": "syllabary",
   "sources": [
