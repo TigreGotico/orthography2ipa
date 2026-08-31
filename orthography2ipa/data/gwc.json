@@ -3,13 +3,13 @@
   "name": "Gawri",
   "script": "Arabic",
   "script_type": "abjad",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
+    "ئی": [
+      "j"
+    ],
     "ٹھ": [
       "ʈʰ"
-    ],
-    "ڈھ": [
-      "ɖʱ"
     ],
     "پھ": [
       "pʰ"
@@ -21,22 +21,43 @@
       "kʰ"
     ],
     "چھ": [
-      "tʃʰ"
+      "tɕʰ"
+    ],
+    "ڄھ": [
+      "ʈʂʰ"
+    ],
+    "څھ": [
+      "t̪sʰ"
     ],
     "بھ": [
-      "bʱ"
+      "b"
     ],
     "دھ": [
-      "d̪ʱ"
+      "d̪"
+    ],
+    "ڈھ": [
+      "ɖ"
     ],
     "گھ": [
-      "ɡʱ"
+      "ɡ"
     ],
     "جھ": [
-      "dʒʱ"
+      "dʑ"
     ],
     "ڑھ": [
-      "ɽʱ"
+      "ɽ"
+    ],
+    "نڑ": [
+      "ɳ"
+    ],
+    "نگ": [
+      "ŋ"
+    ],
+    "وْ": [
+      "o"
+    ],
+    "یْ": [
+      "e"
     ],
     "ب": [
       "b"
@@ -54,10 +75,16 @@
       "s"
     ],
     "ج": [
-      "dʒ"
+      "dʑ"
     ],
     "چ": [
-      "tʃ"
+      "tɕ"
+    ],
+    "څ": [
+      "t̪s"
+    ],
+    "ڄ": [
+      "ʈʂ"
     ],
     "ح": [
       "h"
@@ -75,7 +102,7 @@
       "z"
     ],
     "ر": [
-      "r"
+      "ɾ"
     ],
     "ڑ": [
       "ɽ"
@@ -84,13 +111,16 @@
       "z"
     ],
     "ژ": [
-      "ʒ"
+      "ʑ"
     ],
     "س": [
       "s"
     ],
+    "ݭ": [
+      "ʂ"
+    ],
     "ش": [
-      "ʃ"
+      "ɕ"
     ],
     "ص": [
       "s"
@@ -105,7 +135,7 @@
       "z"
     ],
     "ع": [
-      "ʔ"
+      ""
     ],
     "غ": [
       "ɣ"
@@ -125,6 +155,9 @@
     "ل": [
       "l"
     ],
+    "ݪ": [
+      "ɬ"
+    ],
     "م": [
       "m"
     ],
@@ -135,6 +168,10 @@
       "̃"
     ],
     "و": [
+      "oː",
+      "uː",
+      "o",
+      "u",
       "w"
     ],
     "ہ": [
@@ -144,9 +181,13 @@
       "ʰ"
     ],
     "ء": [
-      "ʔ"
+      ""
     ],
     "ی": [
+      "eː",
+      "iː",
+      "e",
+      "i",
       "j"
     ],
     "ے": [
@@ -159,10 +200,13 @@
       "aː"
     ],
     "ئ": [
-      "ʔ"
+      "j"
     ],
     "َ": [
       "a"
+    ],
+    "ٞ": [
+      "æ"
     ],
     "ِ": [
       "i"
@@ -183,7 +227,7 @@
       "notes": "Descent per Glottolog classification of Gawri (kala1373)."
     }
   ],
-  "notes": "Skeleton. Gawri (Kalam Kohistani), a Dardic Indo-Aryan language of the Swat and Dir Kohistan valleys of Pakistan, written in an Urdu-based Arabic script. Urdu letter values apply: retroflex ٹ ڈ ڑ, postalveolars چ ج ش ژ, and aspiration/breathiness written with do-chashmi he ھ (mapped both as digraphs and as a bare aspiration mark); the Perso-Arabic loan letters ث ذ ص ض ط ظ fold into s/z/t. Short vowels are written only defectively and vowel length, nasalization and the language's pitch accents are largely unrecoverable, so a high PER floor is expected. Any Gawri-specific extra letters beyond the Urdu set (e.g. for retroflex fricatives) are not mapped.",
+  "notes": "Gawri (Kalam Kohistani), a Dardic Indo-Aryan language of the Swat and Dir Kohistan valleys of Pakistan, written in the Perso-Arabic orthography agreed by the Gawri spelling committee in 1995 (Baart & Sagar §2.3 'Script'), which keeps maximum conformity with Urdu and adds four letters for sounds Urdu lacks. Those four are mapped here: ݭ (Sin with two vertical nuqtas above) = ʂ, ݪ (Laam with a strike-through) = ɬ, ڄ (Bari He shape with two vertical nuqtas below) = ʈʂ, څ (Bari He shape with three nuqtas above, as in Pashto) = t̪s, plus the aspirated digraphs ڄھ ʈʂʰ and څھ t̪sʰ. Gawri has no voiced aspirates — the aspirated series in Baart & Sagar §2.1.2 Table 2 covers only the voiceless stops and affricates — so the Urdu-looking digraphs بھ دھ ڈھ گھ جھ ڑھ spell plain b d̪ ɖ ɡ dʑ ɽ. There is no glottal stop in that table either, so ع and ء are silent carriers and ئ (and the word-final sequence ئی) spells the glide j. ر is the dental flap ɾ, distinct from retroflex ڑ ɽ. Word-final ہ is the vowel a, as in Urdu. The retroflex nasal ɳ is written as the digraph نڑ, Nun plus retroflex Re (Baart & Sagar §2.3, 'The retroflex nasal'); all three gold words containing it have ɳ. The parallel digraph نگ for ŋ is an INFERENCE, not a committee-stated spelling: §2.1.2 says the phonemic status of ɳ and ŋ is not fully clear and that they might be analysed as the sequences n+ɖ and n+ɡ, and §2.3 gives a digraph only for ɳ. Four of the five gold words spelling نگ have ŋ and one (باتنگنڑ) has nasalisation plus ɡ, so the digraph is the majority reading rather than a certain one. Vowel writing follows the committee's rules (Baart & Sagar §2.3, 'The writing of Gawri vowels'): Pesh always designates u and Zer always i, so a bare Wau is the o-quality and a bare Ye the e-quality, with Jazm on either marking shortness (وْ o, یْ e); Zabar is the back open vowel a and the committee's new Zabar-with-two-dots diacritic ٞ the front open vowel æ. Because ordinary text omits the vowel diacritics, a bare Wau or Ye is scored with the committee's quality first and the alternative quality as a ranked candidate, and word-initial bare Alif is a short-vowel carrier of unrecoverable quality (long initial aː is written آ). The palatal series is written ɕ tɕ dʑ. Both sources place ⟨š č ǰ⟩ in a PALATAL column explicitly contrasted with a separate retroflex column carrying ⟨ṣ c̣⟩ (Baart & Sagar §2.1.2 Table 2; Baart 2004 §2.2 Table 2), and the alveolo-palatal sibilants are the palatal-region IPA letters, so this is a reading of the sources' own place label rather than a stated articulation. The wikipron gold's transcriber, working from Baart 1997, reads it the same way. Wikipedia's rendering of the same inventory as postalveolar ʃ tʃ dʒ flattens that place label and is not followed here. Neither tone nor vowel quality is recoverable from the scored input, and together they are the whole of this row's error. Gawri has five contrastive lexical tones (Baart & Sagar §2.2; Baart 2004 §2.3), the practical orthography leaves the tone diacritics optional and ordinary text omits them, and the wikipron gold transcribes tone on every vowel: tone marks are 348 of the 1433 NFD characters the gold's 208 rows carry under the harness's own normalisation, 24.3%. The vowel diacritics are absent outright. Exactly one of the 165 distinct gold spellings contains any of Zabar, the committee's Zabar-with-two-dots, Pesh, Zer or Jazm, and that spelling IS the bare diacritic ٞ quoted as an alphabet-table headword, so every vowel quality and every length contrast in this gold has to be guessed from an unpointed skeleton. The gold also transcribes 72 tokens of ə, a quality that is not one of the six in Baart & Sagar Table 1: it is the transcriber's symbol for exactly those unwritten short-vowel slots, and it can never be matched by a spec that emits the six-vowel inventory the grammar describes. Folding tone off both sides gives PER 0.2545 against 0.4170, so tone alone costs 0.1625. Folding vowels and length off as well leaves a consonant-skeleton PER of 0.0211 with 94.6% of words exact, which is where the consonant mapping above actually stands. Four gold headwords (ٞ ڄ ݪ ݭ) are alphabet-table entries glossed with the single phoneme the letter spells, and they are the row's only four exact matches. The 208 gold rows carry 165 distinct spellings; the other 43 are homograph rows differing in tone or vowel length, which the harness scores as alternative references for the same word.",
   "iso639_3": "gwc",
   "glottolog_code": null,
   "sources": [
@@ -199,18 +243,82 @@
       "wikipedia_url": null
     },
     {
-      "id": "gwc_wikipedia",
-      "author": "Wikipedia contributors",
-      "year": 2024,
-      "title": "Gawri language",
-      "publisher": "Wikipedia",
-      "url": null,
+      "id": "gwc_baart_sagar",
+      "author": "Baart, Joan L. G.; Sagar, Muhammad Zaman",
+      "year": 2014,
+      "title": "The Gawri Language of Kalam and Dir Kohistan",
+      "publisher": "SIL International",
+      "url": "https://fli-online.org/documents/languages/gawri/gawri_introduction.pdf",
       "pages": null,
-      "notes": "Orthography/phonology reference for a skeleton-tier entry.",
-      "wikipedia_url": "https://en.wikipedia.org/wiki/Gawri_language"
+      "notes": "Descriptive account of Gawri. §2.1.1 vowels (six qualities with a length contrast), §2.1.2 consonants (Table 2, with the voiceless lateral fricative ɬ, the retroflex series, and an aspirated series only for voiceless stops and affricates), §2.2 tone (five contrastive tones), §2.3 script — the 1995 Gawri spelling committee's Perso-Arabic orthography, its four extra letters, its vowel-diacritic rules, its optional tone diacritics, and the retroflex nasal digraph."
+    },
+    {
+      "id": "gwc_baart2004_tone",
+      "author": "Baart, Joan L. G.",
+      "year": 2004,
+      "title": "Tone and song in Kalam Kohistani (Pakistan)",
+      "publisher": "In Hugo Quene & Vincent van Heuven (eds.), On Language and Speech: Studies for Sieb G. Nooteboom. Utrecht: Netherlands Graduate Institute of Linguistics",
+      "url": "https://www.fli-online.org/documents/languages/gawri/tone_sound_Kalam_kohistani.pdf",
+      "pages": null,
+      "notes": "§2.2 Table 1 (six vowel qualities, short and long) and Table 2 (consonant inventory: the aspirated series covers only voiceless stops and affricates, and there is no glottal stop); §2.3, the five contrastive tones of Kalam Kohistani, which are word melodies."
     }
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Gawri_language"
-  ]
+  ],
+  "positional_graphemes": {
+    "ا": {
+      "word_initial": [
+        "a",
+        "i",
+        "u"
+      ],
+      "default": [
+        "aː"
+      ]
+    },
+    "ہ": {
+      "word_final": [
+        "a"
+      ],
+      "default": [
+        "h"
+      ]
+    },
+    "و": {
+      "word_initial": [
+        "w"
+      ],
+      "after_vowel": [
+        "w"
+      ],
+      "default": [
+        "oː",
+        "uː",
+        "o",
+        "u"
+      ]
+    },
+    "ی": {
+      "word_initial": [
+        "j"
+      ],
+      "after_vowel": [
+        "j"
+      ],
+      "default": [
+        "eː",
+        "iː",
+        "e",
+        "i"
+      ]
+    }
+  },
+  "audit": {
+    "wikipron": {
+      "conclusion": "input_limited",
+      "measured": "Gawri has five contrastive tones (Baart & Sagar, The Gawri Language of Kalam and Dir Kohistan, SIL International, section 2.2). The 1995 spelling committee did provide tone diacritics, but section 2.3, 'The writing of tone in Gawri', states that 'on most words the tone marks would not need to be used' and that they are expected only 'in some cases ... for disambiguation'. Ordinary Gawri spelling therefore leaves tone out, and the gold bears that out exactly: 0 of the 208 rows of wikipron/gwc_arab_broad carry a tone diacritic in the Perso-Arabic column, against 204 of 208 gold transcriptions carrying one. Scored over the same 208 pairs, PER is 0.4323; folding tone out of both sides drops it to 0.2917. Tone accounts for only about a third of this row -- the larger part of the gap is segmental and is not closed by this conclusion.",
+      "reference": "spec notes"
+    }
+  }
 }
