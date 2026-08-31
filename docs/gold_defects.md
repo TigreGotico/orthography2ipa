@@ -389,9 +389,31 @@ dominant driver is the spelling-convention mix, and mistranscribing an
 out-of-contract spelling is the documented behaviour of the spec, not a defect
 in it.
 
-Correcting the row means filtering the gold to Spelling-2003 headwords, which is
-upstream work at Wiktionary or a local exclusion, not a spec change. Provenance
-is `crowd-scraped`, so the row **can gate**. Tracked as issue #120.
+The convention mix is measurable from the gold's own spelling. Of the 140
+headwords whose gold IPA contains a postalveolar fricative, 130 write it
+`sch` and 7 write it `sj`, the Spelling 2003 form; `ae` appears in 10
+headwords and `ao` in 14, against 114 carrying `ä` and 34 carrying `ü`. The
+Veldeke convention the row is scored against is therefore a small minority of
+the file. Two of the other conventions separate cleanly and do not overlap at
+all: 89 headwords carry a sign that belongs to Rheinische Dokumenta and to
+nothing else (`e̩`, `ǫ`, `ṣ`, `c͜h`), 222 carry the acute and diaeresis signs of
+the Eupen-dialect spelling, and no headword carries both.
+
+Rheinische Dokumenta is a published standard — the Landschaftsverband
+Rheinland's transcription system for the dialects of the Rhineland (Honnen
+1987) — so it gets its own entry, `li-x-rheindok`, per this repo's convention
+that a distinct written convention for the same language is modeled separately.
+It scores its 89 headwords at PER 0.0609 where `li` scores them at 0.3245, and
+58 of the 89 come out exactly right. `li` is unchanged and keeps targeting
+Spelling 2003. The Eupen block is left unmodeled: no published orthography for
+it was found, and inferring a sign table from the gold it would then be scored
+against is fitting, not describing.
+
+The board still scores the whole file against `li`, so the row's PER is
+unmoved at 0.3819. Splitting the gold by convention is upstream work at
+Wiktionary or a local exclusion, not a spec change. Provenance is
+`crowd-scraped`, so the row **can gate**. Tracked as issue #120. The `li` spec
+carries the verdict as a machine-readable `mislabeled_gold` audit record.
 
 ### Scottish Gaelic, `wikipron`
 
