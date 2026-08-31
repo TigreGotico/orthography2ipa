@@ -239,6 +239,47 @@ _NOTATIONAL_LETTER_ALIASES = {"𝼆": "ʎ̥˔"}
 #: as one penalises a transcription for text the engine correctly ignores.
 _PUNCT_MARKS = "|‖,.;:!?¡¿\"«»—–-"
 
+#: The reconstruction asterisk. A leading "*" on a transcription is the
+#: historical-linguistics mark for a form that is not attested — one
+#: inferred rather than recorded (Graffi 2002, "The asterisk from historical
+#: to descriptive and theoretical linguistics", Historiographia Linguistica
+#: 29(3):329-338, doi:10.1075/hl.29.3.04gra, on the asterisk's original and
+#: still-standard historical-linguistic value 'unattested form'). It is a
+#: status annotation on the transcription, never a segment, and no engine
+#: can or should emit it, so counting it as one charges every such row an
+#: insertion error that is unreachable by construction. Stripped
+#: UNCONDITIONALLY, on the same footing as the "g"/"ɡ" fold above: no
+#: registered spec's phoneme inventory contains "*" — verified across all
+#: 7658 data/*.json inventories, and across every phoneme-valued field
+#: (grapheme outputs, allophone surfaces, word exceptions) as well. The one
+#: "*" that does appear as a spec KEY is ar-Latn-buckwalter's grapheme for
+#: ⟨ذ⟩ ð, which is INPUT orthography and never passes through this function.
+#:
+#: What the mark annotates varies, and the fold flattens that difference —
+#: which is the cost of stripping, stated here so it is not rediscovered.
+#: In WikiPron's Tibetan scrape it is systematic: 1538 of 3621 rows are the
+#: Old Tibetan reading en.wiktionary's Module:bo-pron infers from the
+#: spelling, and the mark is a prefix on the whole reading. In the Old
+#: French scrape it is narrower: all 4 rows belong to peluchier, an ATTESTED
+#: headword whose wikitext
+#: ({{IPA|fro|/pəlyˈt͡ʃjeːɾ/|/*pəlyˈk(j)eːɾ/|q2=northern|a=classical}} and
+#: its late-period twin) marks only the second slot, a reconstructed
+#: NORTHERN pronunciation offered beside attested classical and late ones.
+#: So the mark can sit on a reconstructed pronunciation of a perfectly
+#: attested word, and stripping lets that reconstruction compete for the
+#: match as if it had been recorded.
+#:
+#: That is harmless today for the only reason that it happens to be true of
+#: peluchier: the scorer takes the minimum over a headword's golds, and
+#: peluchier also carries unstarred attested transcriptions, which win. That
+#: is why fro does not move on the board. The condition under which this
+#: decision must be revisited is therefore precise — a gold whose ONLY
+#: transcription for some headword is a starred one. There the spec would be
+#: scored against a reconstruction as though it were attested, and this fold
+#: would hide the fact that it had been. Nothing registered here is in that
+#: state; check for it before wiring a gold that carries the mark.
+_RECONSTRUCTION_MARK = "*"
+
 _WIKIPRON_BASE = (
     "https://raw.githubusercontent.com/CUNY-CL/wikipron/master/data/scrape/tsv/"
 )
@@ -3322,6 +3363,7 @@ def normalize(ipa: str, strip_stress: bool, broad: bool,
     # penalises a correct transcription for text it rightly ignored.
     for ch in _PUNCT_MARKS:
         s = s.replace(ch, "")
+    s = s.replace(_RECONSTRUCTION_MARK, "")
     for ch in _TIE_BARS:
         s = s.replace(ch, "")
     for alt, canon in _NOTATIONAL_LETTER_ALIASES.items():
