@@ -3,10 +3,13 @@
   "name": "Galibi Carib",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "ï": ["ɨ"],
+    "ɨ": ["ɨ"],
     "ʼ": ["ʔ"],
+    "’": ["ʔ"],
+    "'": ["ʔ"],
     "p": ["p"],
     "t": ["t"],
     "k": ["k"],
@@ -24,7 +27,14 @@
     "e": ["e"],
     "i": ["i"],
     "o": ["o"],
-    "u": ["u"]
+    "u": ["u"],
+    "à": ["aʔ"],
+    "è": ["eʔ"],
+    "ì": ["iʔ"],
+    "ò": ["oʔ"],
+    "ù": ["uʔ"],
+    "ỳ": ["ɨʔ"],
+    "f": ["f"]
   },
   "parent": "x-clade-cari1283",
   "ancestors": [
@@ -35,7 +45,11 @@
       "notes": "Descent per Glottolog classification of Galibi Carib (gali1262)."
     }
   ],
-  "notes": "Cariban language (Kariña/Galibi) of Venezuela and the Guianas, Latin orthography. The grapheme ï denotes the high central vowel /ɨ/. The voiced stops b/d/g overlap with post-nasal allophones of the voiceless stops p/t/k and are treated by some descriptions as conditioned rather than independent; they are mapped here at face value. Stress, palatalization allophones ([tʃ ʃ ɲ]) and fricative allophones ([β]) that the spelling does not distinguish are left unencoded; there is no tone.",
+  "stress": {
+    "default_position": -1,
+    "stress_mark": "ˈ"
+  },
+  "notes": "Research. Cariban language (Kariña/Kali'na, a.k.a. Galibi Carib) of Venezuela and the Guianas, Latin orthography (Hoff 1968). The grapheme ï (also seen written ɨ in some sources/dictionaries, mapped equivalently) denotes the high central vowel /ɨ/. The glottal stop is written with an apostrophe, whose exact codepoint varies by source text (modifier letter apostrophe ʼ, right single quotation mark ’, or plain ASCII '); all three are mapped to /ʔ/. The voiced stops b/d/g overlap with post-nasal allophones of the voiceless stops p/t/k and are treated by some descriptions as conditioned rather than independent; they are mapped here at face value. Word stress falls on the final syllable in the disyllabic-dominant WOLD gold sample (Hoff 1968); marked here as final by default. Palatalization allophones ([tʃ ʃ ɲ]) and fricative allophones ([β]) that the spelling does not distinguish are left unencoded; there is no tone. The WOLD gold sample also contains a minority of French-loanword entries spelled in French orthography (e.g. ⟨fromage⟩, ⟨mercredi⟩) rather than adapted Kali'na spelling; these are outside this spec's Kali'na grapheme map and are not modelled. GRAVE-ACCENT VOWELS (à è ì ò ù ỳ): the Suriname/French-Guiana practical orthography codified by Courtz (2008, 'A Carib Grammar and Dictionary', §1.1 p.1, §2.5.6-2.5.8 pp.43-45) writes a coda archiphoneme /Q/ -- 'all that is left of a lost syllable po or pu' -- with a grave accent on the preceding vowel; Courtz states directly that 'the accent grave... represents a glottal stop in the pronunciation' (p.1), so grave-vowel graphemes are mapped here as vowel+/ʔ/. This matches the car wikipron gold in every non-plosive environment (before nasals, glides, liquids, vowels in hiatus, and word-finally: e.g. nàna -> a ʔ n a, wòi -> o ʔ i, kò -> k o ʔ). Courtz also documents (§2.5.8 p.44-45) that this same /Q/ surfaces as preaspiration [h], not [ʔ], specifically before a following voiceless stop /p t k/ (e.g. wàto -> w a h t o, àka -> a h k a); the wikipron gold shows this split consistently. The engine's positional-grapheme context classes (before_vowel/before_consonant, before_a/e/i/o/u, before_front/back_vowel, before/after_palatal) have no 'before a following plosive' class, so the plosive-triggered [h] allophone is left undifferentiated from the general /ʔ/ mapping -- a known, documented residual PER cost on grave-vowel+plosive words rather than a spec error. The single grapheme f is attested once in the WOLD gold sample (kofu 'fist'); Courtz's dictionary marks this entry '[Sr kofu]' (p.24255 of the extracted dictionary text), i.e. a loanword from Sranan Tongo (Surinamese Creole) -- /f/ is not part of the native Carib consonant inventory /p t k s m n r w j/ (Courtz §2.2 p.22) but is mapped here at face value since it is attested in running gold text, matching this spec's existing practice for the voiced-stop and loanword layer.",
   "iso639_3": "car",
   "glottolog_code": null,
   "sources": [
@@ -48,6 +62,28 @@
       "url": "https://glottolog.org/resource/languoid/id/gali1262",
       "pages": null,
       "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "hoff1968",
+      "author": "Hoff, Berend J.",
+      "year": 1968,
+      "title": "The Carib Language",
+      "publisher": "Martinus Nijhoff",
+      "url": null,
+      "pages": null,
+      "notes": "Grammar of Carib/Kali'na: Latin orthography, the apostrophe glottal stop, ï=/ɨ/, and final word stress.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Carib_language"
+    },
+    {
+      "id": "courtz2008",
+      "author": "Courtz, Henk",
+      "year": 2008,
+      "title": "A Carib Grammar and Dictionary",
+      "publisher": "Magoria Books",
+      "url": "https://archive.org/download/caribdictionary/carib%20dictionary.pdf",
+      "pages": "pp. 1, 22, 43-45",
+      "notes": "PhD grammar (Leiden) of Suriname/French Guiana Carib (Kari'nja), fetched in full (524 pp.). p.1: the grave accent represents a glottal stop, the residue of a lost syllable po/pu. p.22 (§2.2): the native consonant inventory is p t k s m n r w j, with no /f/. pp.43-45 (§2.5.6-2.5.8): the grave-accent orthographic vowel spells the coda archiphoneme /Q/, realised [ʔ] except before a following voiceless stop p/t/k, where it surfaces as preaspiration [h]. The dictionary body (searched via pdftotext) marks the entry kofu 'fist' as [Sr kofu], i.e. a Sranan Tongo loanword, the source of this spec's only attested /f/.",
       "wikipedia_url": null
     },
     {
