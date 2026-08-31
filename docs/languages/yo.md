@@ -48,7 +48,19 @@ Yoruba carries two gold rows and they disagree about what a Yoruba transcription
 
 The **wikipron** row (`yor_latn_broad`) is crowd-scraped from Wiktionary and is fully tone-marked and fully nasal-marked, which is why it rewards a spec that emits both. Its orthographic column, however, is almost entirely *untoned*: of 4088 unique headwords, 22 carry an acute or grave tone diacritic, and 32 carry one of those or a macron (0.78%). Tone is therefore recoverable in Yoruba but not recoverable *from this gold's input*, and every high or low vowel in it is a floor the spec cannot reach — it reads an unmarked vowel as mid, correctly, and the gold says high or low. That floor is most of the row's remaining error.
 
-The **vox_communis** row is epitran-derived. Its orthography is real, fully accented Yoruba, but its phone column has no tone at all and handles nasal vowels inconsistently, because that is what epitran produces. It measures agreement with epitran, not accuracy, so emitting tone necessarily moves it a long way. Rank Yoruba on the wikipron row.
+The **wikipron_restored** row is the same gold with that input defect repaired.
+Wiktionary writes the tone on the headword line and leaves it out of the page
+title, and the title is what WikiPron scrapes, so the tone is recoverable from
+the MediaWiki API even though it is absent from the file. 3257 of the 4937 rows
+come back; on them PER falls from 0.4353 to 0.0441 and 2691 words are
+transcribed exactly. What is left is downstep, which the orthography genuinely
+does not write, and the extended orthography's unmapped ⟨ị ụ⟩. The rows that do
+not come back are mostly pages where one untoned title spells several distinct
+words — ⟨aba⟩ renders abà, abá, àba and àbá — and the intended reading cannot be
+recovered, so nothing is emitted for them. Rank Yoruba on this row where it has
+coverage and on **wikipron** otherwise; the two are not the same sample.
+
+The **vox_communis** row is epitran-derived. Its orthography is real, fully accented Yoruba, but its phone column has no tone at all and handles nasal vowels inconsistently, because that is what epitran produces. It measures agreement with epitran, not accuracy, so emitting tone necessarily moves it a long way.
 
 ---
 [← Standard Thai](th.md) · [Home](../index.md) · [Esperanto →](eo.md)

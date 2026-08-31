@@ -12,6 +12,7 @@ Jump to a dataset:
 - [WikiPron](#wikipron)
 - [Arabic with tashkeel restored (`wikipron_ar_diacritized`)](#arabic-with-tashkeel-restored-wikipron_ar_diacritized)
 - [Norwegian under the macrolanguage code (`wikipron_nor`)](#norwegian-under-the-macrolanguage-code-wikipron_nor)
+- [WikiPron with the display headword restored (`wikipron_restored`)](#wikipron-with-the-display-headword-restored-wikipron_restored)
 - [CMU Pronouncing Dictionary](#cmu-pronouncing-dictionary)
 - [European Portuguese regional dialect gold set (`ep_dialects`)](#european-portuguese-regional-dialect-gold-set-ep_dialects)
 - [CLUP dialect archive gold set (`clup_dialect`)](#clup-dialect-archive-gold-set-clup_dialect)
@@ -285,6 +286,120 @@ diacritized (what the rules actually earn on vowelized input).
 `text2tashkeel` is an optional dependency. Without it the row is
 skipped, never faked. The diacritized words are cached in
 `.benchmark_cache/wikipron_ar_diacritized.tsv` for reproducibility: delete the file to re-diacritize.
+
+### WikiPron with the display headword restored (`wikipron_restored`)
+
+WikiPron scrapes the Wiktionary page **title**, and for some languages the
+title is not the word Wiktionary displays. The Middle High German entry
+guidelines say so outright: "certain letters with diacritics (ë ā ē ī ō ū ȥ)
+are not used in article titles, but are used when displaying the word", with
+the umlauted vowels ä, ö, ü, æ, œ excepted because they count as separate
+letters. Ewe, Yoruba and Hebrew titles drop tone marks and niqqud the same way.
+The gold IPA still transcribes those contrasts, so the affected rows hand the
+engine an input that cannot encode what it is being scored on, and their PER
+measures the loss in the input rather than the rules.
+
+Ewe shows the size of it. Of 250 rows in `ewe_latn_broad.tsv`, 3 carry a tone
+diacritic in the orthography and 232 mark tone in the gold IPA; 229 rows mark
+tone the input cannot express, and tone-bearing segments are 668 of 1266, so
+just over half the segments in that gold hang on a distinction the input threw
+away.
+
+This row keeps the **same gold IPA** and replaces only the input word with the
+headword Wiktionary renders for that language, recovered from the MediaWiki API
+by `scripts/restore_wikipron_orthography.py` and republished as
+[TigreGotico/wikipron-restored-orthography](https://huggingface.co/datasets/TigreGotico/wikipron-restored-orthography).
+Extraction is scoped to the language twice over — the wikitext is cut to the
+`==Language==` section before any headword template is read, and the rendered
+headword is matched on its `lang` attribute — because a Wiktionary page holds
+one section per language and a page-wide read imports the wrong orthography.
+The page `Adam` alone carries an English `Adam`, a Hausa `Adàm` and an Ewe
+`Ádàm`.
+
+Coverage is partial and nothing is guessed. A page with no headword override,
+no section for the language, or two conflicting headwords contributes no row,
+and a restored form whose base-letter skeleton differs from the title is
+discarded rather than trusted. The result is therefore a **subset** of the
+matching `wikipron` row, and its PER is only comparable to that row restricted
+to the same words — the scoreboard's full `wikipron` figure is a different
+sample.
+
+| Language | Gold rows | Restored | Uncovered | Of which conflicting | Skeleton mismatches |
+|---|---|---|---|---|---|
+| `ee` | 250 | 217 (87%) | 33 | 8 | 0 |
+| `gmh` | 1724 | 408 (24%) | 1316 | 55 | 6 |
+| `yo` | 4937 | 3257 (66%) | 1680 | 1352 | 2 |
+| `he` | 6811 | 3725 (55%) | 3086 | 2035 | 93 |
+
+Conflicting headwords are the largest uncovered category for Yoruba and Hebrew,
+and that is the method working. One untoned or unpointed title is often the
+title of several distinct words and the page renders a headword for each: `aba`
+renders `abà`, `abá`, `àba` and `àbá`. Which one a gold row meant cannot be
+recovered from the title, so the row is refused. The skeleton mismatches are
+almost all Hebrew, where the pointed spelling is often defective and drops a
+mater lectionis the unpointed title writes — `אלוהים` against a pointed
+`אֱלֹהִים` — which changes the consonantal spine and is more than a diacritic
+restoration.
+
+Scored against the restored input, with the original gold restricted to the
+same words as the fair comparison:
+
+| Language | Original, all rows | Original, restored subset | Restored |
+|---|---|---|---|
+| `ee` | 0.4445 (n=247) | 0.4748 (n=217) | 0.0007 (n=217) |
+| `gmh` | 0.1022 (n=1516) | 0.1502 (n=380) | 0.2807 (n=380) |
+| `yo` | 0.3828 (n=4088) | 0.4353 (n=3249) | 0.0441 (n=3249) |
+| `he` | 0.3554 (n=2872) | 0.3545 (n=1821) | 0.0741 (n=1821) |
+
+The Hebrew gold mixes transcription traditions — a minority of rows are
+Tiberian-flavoured, with vowel-length marks, ɔ, ə, ŋ, θ, ð, sˤ, tˤ and hataf ă
+that Modern Israeli Hebrew's five-vowel inventory cannot produce — and that is
+a second effect on the same row. It does not move the restoration figure. 2100
+of the 6811 rows carry such a segment, but the harness scores each word against
+the best of all its gold transcriptions, and most affected words also carry a
+Modern transcription: of the 1821 scored words only 27 have exclusively
+non-Modern references. Excluding every row with a non-Modern segment, 28% of
+the subset, moves the restored figure from 0.0741 to 0.0708 and the unrestored
+baseline from 0.3545 to 0.3528. Those 27 tradition-only words score 0.3344
+against 0.0701 for the rest, and restoration helps them too — 0.5621 to 0.4063
+— without closing the gap, because the spec describes Modern Israeli Hebrew and
+cannot reproduce a Tiberian transcription from any input.
+
+Ewe's restored row scores 0.0007 where the original spelling of the same 217
+words scores 0.4748, which is low enough to deserve suspicion, and Ewe is the
+worst case for it: tone is written with the same combining marks the IPA uses,
+so a gold compared against itself would look exactly like this. It is not that.
+The restoration code never reads the IPA column, no restored word in any of the
+four languages equals its gold, the same rows scored with their original
+spellings through the identical code path still give 0.4748, 0.4353 and 0.3545,
+and pairing restored words with shuffled golds gives 1.2317, 1.2008 and 0.9924.
+Hebrew settles it on its own: the orthography is Hebrew script and the gold is
+IPA, so no copy is expressible, and it still moves from 0.3545 to 0.0741. The
+spec is doing real grapheme work on the restored inputs — ⟨Ábràhàm⟩ to
+[áblàhàm], ⟨Ànyɔ̀nyɔ̀⟩ to [àɲɔ̀ɲɔ̀], ⟨Àbarị̀ṣà⟩ to [àbāɾʃà].
+
+What Ewe's figure says is that its tone-marked orthography is very nearly a
+transliteration of its phonemic transcription, which is the same reason the row
+cannot test the spec hard. Yoruba at 0.0441, with a real residual from downstep
+and the extended ⟨ị ụ⟩, and Hebrew at 0.0741 are the more informative rows.
+
+Middle High German moves the other way: 0.1502 to 0.2807 on the 408 rows it
+covers. The `gmh` spec maps ⟨â î ô û ä ö ü æ œ⟩ and has no entry for the
+⟨ë ā ē ī ō ū ȥ⟩ that appear only in the display form, so the restored input
+hands the engine letters it does not know. A lossy gold had been hiding a real
+gap in the spec, and restoring the input is what made it visible. The restored
+row is scored against `gmh`, not against `gmh-x-wikt`: `gmh-x-wikt` models the
+title-form spelling that the plain `wikipron` row feeds it, and the restored
+row is a third orthography again.
+
+Provenance stays `crowd-scraped`. The IPA is byte-identical to WikiPron's and
+the input word comes from the same Wiktionary page, read from the headword line
+instead of the title, so no new annotator and no machine transcription enter.
+It inherits every quality problem WikiPron has, plus one of its own: the input
+and the gold are now both taken from the same page, and for a language whose
+orthography is close to phonemic the two are not independent. A very low PER on
+such a language says the spec agrees with the editors' own transliteration, not
+that it has been tested hard.
 
 ### Norwegian under the macrolanguage code (`wikipron_nor`)
 
