@@ -322,7 +322,7 @@
       "notes": "Goidelic descent"
     }
   ],
-  "notes": "Scottish Gaelic (Gàidhlig). ~57,000 speakers (2011 census). Highlands and Islands of Scotland. PERVASIVE BROAD/SLENDER (leathann/caol) CONSONANT QUALITY: a consonant is slender (palatalised) beside ⟨e i⟩ and broad beside ⟨a o u⟩ ('caol le caol agus leathann le leathann'), and the flanking vowel letter that signals the quality is very often NOT itself pronounced — it is a quality marker, not a nucleus. Both halves are encoded in positional_graphemes: consonants take before_front_vowel/after_front_vowel slender variants, and the marker vowels map to the empty string. Stops are voiceless throughout (⟨b d g⟩ = unaspirated /p t̪ k/, ⟨p t c⟩ = aspirated), and slender velars are palatalised /kʲ kʲʰ/ rather than palatal /c ɟ/. Preaspiration of ⟨p t c⟩ after stressed vowels is encoded (GD_PREASP_*): [hp ht hk] broadly, with the velar realised as [x] before broad ⟨c⟩ (mac [maxk]). The realisation is strongly dialectal — six distinct patterns are attested — so the rules encode the central/general pattern only, not the dialect variation. Refs: Wikipedia 'Scottish Gaelic orthography'/'Scottish Gaelic phonology', Bauer (2011), Ó Maolalaigh (2008). Inventory and preaspiration cross-checked against Gillies (2009) and Ó Baoill (2010).",
+  "notes": "Scottish Gaelic (Gàidhlig). ~57,000 speakers (2011 census). Highlands and Islands of Scotland. PERVASIVE BROAD/SLENDER (leathann/caol) CONSONANT QUALITY: a consonant is slender (palatalised) beside ⟨e i⟩ and broad beside ⟨a o u⟩ ('caol le caol agus leathann le leathann'), and the flanking vowel letter that signals the quality is very often NOT itself pronounced — it is a quality marker, not a nucleus. Both halves are encoded in positional_graphemes: consonants take before_front_vowel/after_front_vowel slender variants, and the marker vowels map to the empty string. Stops are voiceless throughout (⟨b d g⟩ = unaspirated /p t̪ k/, ⟨p t c⟩ = aspirated), and slender velars are palatalised /kʲ kʲʰ/ rather than palatal /c ɟ/. Preaspiration of ⟨p t c⟩ after stressed vowels is encoded (GD_PREASP_*): [hp ht hk] broadly, with the velar realised as [x] before broad ⟨c⟩ (mac [maxk]). The realisation is strongly dialectal — six distinct patterns are attested — so the rules encode the central/general pattern only, matching the Lewis-dialect data in Oftedal (1956) and in Nance & Ó Maolalaigh (2020) (whose informant is from Ness, Isle of Lewis), not the dialect variation generally. Svarabhakti — an unwritten epenthetic vowel breaking up a sonorant+consonant cluster (arm [aɾam], ainm [anam], balg [palʲak], Alba [alʲapə]; Nance & Ó Maolalaigh 2020) — is real but is NOT encoded here: unlike Irish, where the epenthetic vowel reduces to a fixed /ə/ (modelled in the ga spec's GA_SVARABHAKTI_* rules), the Gaelic epenthetic vowel usually COPIES the preceding vowel's quality, which this engine's phoneme-triggered rewrite rules cannot express without enumerating a rule per vowel×sonorant×cluster combination; deferred rather than shipped half-modelled. Measured against the wikipron gold (n=3719): folding preaspiration out of both sides moves PER from 0.3202 to 0.3205, and folding a crude svarabhakti approximation moves it to 0.3264 (worse) — neither phenomenon is the dominant error source; the gold itself mixes at least two notational traditions for ⟨b d g⟩ (185/3720 words carry the Borgstrøm/Oftedal-style devoicing diacritic d̥/ɡ̊/b̥ that this spec does not use, following Nance & Ó Maolalaigh 2020's aspiration-based analysis) and mixes dialects (986/3720 words carry 2+ mutually incompatible pronunciations). Refs: Nance & Ó Maolalaigh (2020), Bauer (2011), Ó Maolalaigh (2008). Inventory and preaspiration cross-checked against Gillies (2009) and Ó Baoill (2010).",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -365,7 +365,7 @@
       "publisher": "Akerbeltz",
       "url": "https://www.akerbeltz.org/",
       "pages": null,
-      "notes": "Reference grammar of Gaelic pronunciation; source for the broad/slender consonant series and the vowel-digraph values. Consulted via the Akerbeltz site; no printed page verified."
+      "notes": "Reference grammar of Gaelic pronunciation; source for the broad/slender consonant series and the vowel-digraph table (⟨ai⟩ /a/, ⟨ea⟩ /e ɤ ɛ a/, ⟨ei⟩ /e/, ⟨io⟩, ⟨ui⟩ /ɯ/, ⟨eu⟩ /eː/, ⟨ao⟩ /ɯː/) and lenition digraph values (⟨bh mh ch dh gh th sh fh⟩). Consulted via the Akerbeltz site; no printed page verified."
     },
     {
       "id": "goc2009",
@@ -378,26 +378,14 @@
       "notes": "The standard orthography, incl. 'caol le caol agus leathann le leathann' and the grave-accent-only convention."
     },
     {
-      "id": "wp_gd_orthography",
-      "author": "Wikipedia contributors",
-      "year": 2026,
-      "title": "Scottish Gaelic orthography",
-      "publisher": "Wikipedia",
-      "url": "https://en.wikipedia.org/wiki/Scottish_Gaelic_orthography",
+      "id": "nance_omaolalaigh2020",
+      "author": "Nance, C. and Ó Maolalaigh, R.",
+      "year": 2020,
+      "title": "Scottish Gaelic",
+      "publisher": "Journal of the International Phonetic Association 51(1), 155-172 (Illustrations of the IPA)",
+      "url": "https://doi.org/10.1017/S002510031900015X",
       "pages": null,
-      "notes": "Accessible overview; source of the vowel-digraph table (⟨ai⟩ /a/, ⟨ea⟩ /e ɤ ɛ a/, ⟨ei⟩ /e/, ⟨io⟩, ⟨ui⟩ /ɯ/, ⟨eu⟩ /eː/, ⟨ao⟩ /ɯː/) and of the lenition values of ⟨bh mh ch dh gh th sh fh⟩.",
-      "wikipedia_url": "https://en.wikipedia.org/wiki/Scottish_Gaelic_orthography"
-    },
-    {
-      "id": "wp_gd_phonology",
-      "author": "Wikipedia contributors",
-      "year": 2026,
-      "title": "Scottish Gaelic phonology",
-      "publisher": "Wikipedia",
-      "url": "https://en.wikipedia.org/wiki/Scottish_Gaelic_phonology",
-      "pages": null,
-      "notes": "Accessible overview; source of the consonant inventory used here: /p pʰ t̪ t̪ʰ tʲ tʲʰ k kʰ kʲ kʲʰ/, /s̪ ʃ x ç ɣ ʝ/, /m n̪ˠ n ɲ/, /l̪ˠ l ʎ/, /r ɾ ɾʲ/ — i.e. palatalised /kʲ/ not palatal /c/, and dental /s̪/.",
-      "wikipedia_url": "https://en.wikipedia.org/wiki/Scottish_Gaelic_phonology"
+      "notes": "Fetched and read directly (open-access PDF via the author's site). Speaker recorded is from Ness, Isle of Lewis. Source for the consonant inventory (/pʰ p tʰ̪ t̪ tʲʰ tʲ kʰ k/ etc.), the word-initial-stress generalisation, and the dialectal variation in preaspiration realisation (voiceless [h] in Lewis, more [x]-like in Barra per Ó Murchú 1985, longest in velar/palatal stops and shortest in bilabials). Also states explicitly that orthographic ⟨b d g⟩ show 'very little or no closure voicing even in word-medial stops' (citing Nance & Stuart-Smith 2013), so the contrast is aspiration (/pʰ/ vs /p/) rather than voicing — the analysis this spec follows. Describes svarabhakti (unwritten epenthetic vowel breaking up a sonorant+consonant cluster, usually copying the preceding vowel, e.g. arm [aɾam], ainm [anam], balg [palʲak], Alba [alʲapə]) as real but NOT encoded in this spec (see notes)."
     }
   ],
   "wikipedia": [
@@ -642,7 +630,7 @@
       ],
       "surface": "xk",
       "preceded_by": "vowel",
-      "notes": "Preaspiration: Scottish Gaelic preaspirates the aspirated stops ⟨p t c⟩ medially and finally after a stressed vowel — the diagnostic feature that separates Gaelic from Irish (Wikipedia, 'Scottish Gaelic phonology' and 'Preaspiration'; Ó Maolalaigh 2008). The realisation is strongly dialectal (six attested patterns, [xk ht hp] ~ [ʰk ʰt ʰp] ~ none); the mainstream pattern encoded here is [xk]/[çkʲ] for the velars and [h]+stop for the coronals and labials. Conditioned on a preceding vowel, so word-initial and post-consonantal stops keep their plain aspirated realisation."
+      "notes": "Preaspiration: Scottish Gaelic preaspirates the aspirated stops ⟨p t c⟩ medially and finally after a stressed vowel — the diagnostic feature that separates Gaelic from Irish (Nance & Ó Maolalaigh 2020; Ó Maolalaigh 2008). The realisation is strongly dialectal (six attested patterns, [xk ht hp] ~ [ʰk ʰt ʰp] ~ none); the mainstream pattern encoded here is [xk]/[çkʲ] for the velars and [h]+stop for the coronals and labials. Conditioned on a preceding vowel, so word-initial and post-consonantal stops keep their plain aspirated realisation."
     },
     {
       "id": "GD_PREASP_C_SLENDER",
@@ -651,7 +639,7 @@
       ],
       "surface": "çkʲ",
       "preceded_by": "vowel",
-      "notes": "Preaspiration: Scottish Gaelic preaspirates the aspirated stops ⟨p t c⟩ medially and finally after a stressed vowel — the diagnostic feature that separates Gaelic from Irish (Wikipedia, 'Scottish Gaelic phonology' and 'Preaspiration'; Ó Maolalaigh 2008). The realisation is strongly dialectal (six attested patterns, [xk ht hp] ~ [ʰk ʰt ʰp] ~ none); the mainstream pattern encoded here is [xk]/[çkʲ] for the velars and [h]+stop for the coronals and labials. Conditioned on a preceding vowel, so word-initial and post-consonantal stops keep their plain aspirated realisation."
+      "notes": "Preaspiration: Scottish Gaelic preaspirates the aspirated stops ⟨p t c⟩ medially and finally after a stressed vowel — the diagnostic feature that separates Gaelic from Irish (Nance & Ó Maolalaigh 2020; Ó Maolalaigh 2008). The realisation is strongly dialectal (six attested patterns, [xk ht hp] ~ [ʰk ʰt ʰp] ~ none); the mainstream pattern encoded here is [xk]/[çkʲ] for the velars and [h]+stop for the coronals and labials. Conditioned on a preceding vowel, so word-initial and post-consonantal stops keep their plain aspirated realisation."
     },
     {
       "id": "GD_PREASP_T_BROAD",
@@ -660,7 +648,7 @@
       ],
       "surface": "ht̪",
       "preceded_by": "vowel",
-      "notes": "Preaspiration: Scottish Gaelic preaspirates the aspirated stops ⟨p t c⟩ medially and finally after a stressed vowel — the diagnostic feature that separates Gaelic from Irish (Wikipedia, 'Scottish Gaelic phonology' and 'Preaspiration'; Ó Maolalaigh 2008). The realisation is strongly dialectal (six attested patterns, [xk ht hp] ~ [ʰk ʰt ʰp] ~ none); the mainstream pattern encoded here is [xk]/[çkʲ] for the velars and [h]+stop for the coronals and labials. Conditioned on a preceding vowel, so word-initial and post-consonantal stops keep their plain aspirated realisation."
+      "notes": "Preaspiration: Scottish Gaelic preaspirates the aspirated stops ⟨p t c⟩ medially and finally after a stressed vowel — the diagnostic feature that separates Gaelic from Irish (Nance & Ó Maolalaigh 2020; Ó Maolalaigh 2008). The realisation is strongly dialectal (six attested patterns, [xk ht hp] ~ [ʰk ʰt ʰp] ~ none); the mainstream pattern encoded here is [xk]/[çkʲ] for the velars and [h]+stop for the coronals and labials. Conditioned on a preceding vowel, so word-initial and post-consonantal stops keep their plain aspirated realisation."
     },
     {
       "id": "GD_PREASP_T_SLENDER",
@@ -669,7 +657,7 @@
       ],
       "surface": "htʲ",
       "preceded_by": "vowel",
-      "notes": "Preaspiration: Scottish Gaelic preaspirates the aspirated stops ⟨p t c⟩ medially and finally after a stressed vowel — the diagnostic feature that separates Gaelic from Irish (Wikipedia, 'Scottish Gaelic phonology' and 'Preaspiration'; Ó Maolalaigh 2008). The realisation is strongly dialectal (six attested patterns, [xk ht hp] ~ [ʰk ʰt ʰp] ~ none); the mainstream pattern encoded here is [xk]/[çkʲ] for the velars and [h]+stop for the coronals and labials. Conditioned on a preceding vowel, so word-initial and post-consonantal stops keep their plain aspirated realisation."
+      "notes": "Preaspiration: Scottish Gaelic preaspirates the aspirated stops ⟨p t c⟩ medially and finally after a stressed vowel — the diagnostic feature that separates Gaelic from Irish (Nance & Ó Maolalaigh 2020; Ó Maolalaigh 2008). The realisation is strongly dialectal (six attested patterns, [xk ht hp] ~ [ʰk ʰt ʰp] ~ none); the mainstream pattern encoded here is [xk]/[çkʲ] for the velars and [h]+stop for the coronals and labials. Conditioned on a preceding vowel, so word-initial and post-consonantal stops keep their plain aspirated realisation."
     },
     {
       "id": "GD_PREASP_P",
@@ -678,12 +666,12 @@
       ],
       "surface": "hp",
       "preceded_by": "vowel",
-      "notes": "Preaspiration: Scottish Gaelic preaspirates the aspirated stops ⟨p t c⟩ medially and finally after a stressed vowel — the diagnostic feature that separates Gaelic from Irish (Wikipedia, 'Scottish Gaelic phonology' and 'Preaspiration'; Ó Maolalaigh 2008). The realisation is strongly dialectal (six attested patterns, [xk ht hp] ~ [ʰk ʰt ʰp] ~ none); the mainstream pattern encoded here is [xk]/[çkʲ] for the velars and [h]+stop for the coronals and labials. Conditioned on a preceding vowel, so word-initial and post-consonantal stops keep their plain aspirated realisation."
+      "notes": "Preaspiration: Scottish Gaelic preaspirates the aspirated stops ⟨p t c⟩ medially and finally after a stressed vowel — the diagnostic feature that separates Gaelic from Irish (Nance & Ó Maolalaigh 2020; Ó Maolalaigh 2008). The realisation is strongly dialectal (six attested patterns, [xk ht hp] ~ [ʰk ʰt ʰp] ~ none); the mainstream pattern encoded here is [xk]/[çkʲ] for the velars and [h]+stop for the coronals and labials. Conditioned on a preceding vowel, so word-initial and post-consonantal stops keep their plain aspirated realisation."
     }
   ],
   "stress": {
     "default_position": 1,
     "stress_mark": "ˈ",
-    "notes": "Scottish Gaelic stresses the FIRST syllable of the word (Wikipedia, 'Scottish Gaelic phonology'); unstressed vowels reduce to /ə/."
+    "notes": "Scottish Gaelic stresses the FIRST syllable of the word (Nance & Ó Maolalaigh 2020); unstressed vowels reduce to /ə/."
   }
 }

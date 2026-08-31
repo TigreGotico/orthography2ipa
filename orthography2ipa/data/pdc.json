@@ -245,7 +245,7 @@
       "ɔɪ"
     ]
   },
-  "notes": "Pennsylvania German / Pennsylvania Dutch (Pennsilfaanisch Deitsch), a Palatine (Rhine Franconian) West Germanic variety of North America. COMMITMENT: this map implements ONE of the two rival writing systems — the BUFFINGTON-BARBA (later Buffington-Barba-Beam, 'BBB') orthography, which spells by Standard German conventions. The competing English-based spelling (which writes the same words by American English conventions, with no difference in pronunciation) is OUT OF SCOPE and will mis-transcribe here. INPUT CONTRACT: lowercase BBB-spelled Pennsylvania German. BBB letter values that differ from Standard German: <v> = /f/, <w> = the unrounded labial approximant /ʋ/, <y> = /j/ initially but /ɪ/ medially, <o> short = /ɔ/, <aa> = /ɔː/, <ei> = /aɪ/ while <ai> is also /aɪ/, <g> = /ɡ/ initially, /k/ finally and a palatal glide [j] medially, <r> is vocalised to [ɐ] after <e>. The IPA values here render the BBB pronunciation key (which is stated in English/German keywords, not IPA) against the IPA vowel inventory documented for the variety. <tz> = /ts/ follows from BBB's Standard-German spelling conventions (as does <z>). Unstressed <e> may also be the reduced /ə/ documented for the variety. Graphemes for which no BBB row exists (e.g. <ä>, <oo>, <eu>, <tsch>) are deliberately OMITTED rather than guessed. Phonologically the variety continues Palatine German: SG /œ øː yː/ -> /ɛ eː iː/, intervocalic /b/ -> /v/, post-vocalic /ɡ/ -> /j/, and final /n/ deletion.",
+  "notes": "Pennsylvania German / Pennsylvania Dutch (Pennsilfaanisch Deitsch), a Palatine (Rhine Franconian) West Germanic variety of North America. COMMITMENT: this map implements ONE of the two rival writing systems — the BUFFINGTON-BARBA (later Buffington-Barba-Beam, 'BBB') orthography, which spells by Standard German conventions. The competing English-based spelling (which writes the same words by American English conventions, with no difference in pronunciation) is OUT OF SCOPE and will mis-transcribe here. INPUT CONTRACT: lowercase BBB-spelled Pennsylvania German. BBB letter values that differ from Standard German: <v> = /f/, <w> = the unrounded labial approximant /ʋ/, <y> = /j/ initially but /ɪ/ medially, <o> short = /ɔ/, <aa> = /ɔː/, <ei> = /aɪ/ while <ai> is also /aɪ/, <g> = /ɡ/ initially, /k/ finally and a palatal glide [j] medially, <r> is vocalised to [ɐ] after <e>. The IPA values here render the BBB pronunciation key (which is stated in English/German keywords, not IPA) against the IPA vowel inventory documented for the variety. <tz> = /ts/ follows from BBB's Standard-German spelling conventions (as does <z>). Unstressed <e> may also be the reduced /ə/ documented for the variety. Graphemes for which no BBB row exists (e.g. <ä>, <oo>, <eu>, <tsch>) are deliberately OMITTED rather than guessed. Phonologically the variety continues Palatine German: SG /œ øː yː/ -> /ɛ eː iː/, intervocalic /b/ -> /v/, post-vocalic /ɡ/ -> /j/, and final /n/ deletion. FINAL DEVOICING (Auslautverhaertung): word-final /d/ devoices to [t] and /g/ to [k], the categorical West Germanic coda-obstruent process (cf. Standard German); /d/-devoicing is directly attested in the pdc/wikipron gold (4/4 word-final <d> tokens realise [t]: Freed, Kind, Kinnskind, mied), and /g/-finally-[k] mirrors what the BBB letter-value note above already claims for <g> but which the flat grapheme table left unencoded. Louden (2016) Pennsylvania Dutch: The Story of an American Language (Johns Hopkins) documents the general PG coda-devoicing pattern surfacing even in PG-substrate English (e.g. bed -> [bɛt]); claim is standard for the areal Germanic phenomenon, edition not consulted for a page locator. Final devoicing of <b> is NOT implemented: the current gold contains zero word-final <b> tokens to measure against, so extending the rule there would be an unmeasured analogical guess rather than a sourced or attested claim.",
   "iso639_3": "pdc",
   "glottolog_code": "penn1240",
   "wikidata_qid": "Q22711",
@@ -315,5 +315,24 @@
     "longitude": -76.3211,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Pennsylvania German."
+  },
+  "positional_graphemes": {
+    "d": {
+      "word_final": [
+        "t"
+      ],
+      "default": [
+        "d"
+      ]
+    },
+    "g": {
+      "word_final": [
+        "k"
+      ],
+      "default": [
+        "ɡ",
+        "j"
+      ]
+    }
   }
 }
