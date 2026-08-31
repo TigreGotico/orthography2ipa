@@ -326,5 +326,12 @@
     "source": "wikidata",
     "notes": "Dili. Portuguese is an L2 for nearly all speakers: the capital stands in for the country. [Wikidata Q9310 P625]"
   },
-  "word_exceptions_base": "pt-PT"
+  "word_exceptions_base": "pt-PT",
+  "audit": {
+    "portuguese_unified": {
+      "conclusion": "mislabeled_gold",
+      "measured": "The 53,147-word portuguese_unified gold for pt-TL-x-dili, diffed against pt-PT-x-lisboa, is a near-total 1:1 character substitution of the Lisbon entries (measured 2026-08): it still carries Lisbon-style unstressed-vowel reduction (60% of rows keep a reduced [ə], 31% a reduced final [ʊ]) and coda /s/->[ʃ], the opposite of what Albuquerque (2010:275 fn.7, 277) documents for East Timorese Portuguese.",
+      "reference": "spec notes"
+    }
+  }
 }

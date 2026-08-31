@@ -234,6 +234,93 @@ class ValidCeiling:
 
 
 # ═══════════════════════════════════════════════════════════════════════════
+# AuditConclusion / AuditRecord — a closed, screenable audit verdict
+# ═══════════════════════════════════════════════════════════════════════════
+
+class AuditConclusion(str, Enum):
+    """Closed set of verdicts a completed audit of a (language, dataset) row
+    can reach. This is the load-bearing part of :class:`AuditRecord`: a
+    keyword screen over free-text ``notes`` cannot enumerate every phrasing a
+    wave will invent (issue #1369 found eight already-closed rows re-audited
+    from scratch because their conclusions existed only as prose), but a
+    closed enum can always be screened for exactly.
+
+    The set below is drawn from every conclusion shape actually reached in
+    the rows re-audited for #1369, not invented ahead of the evidence. Do not
+    add a value speculatively; add one only when a real audit reaches a
+    verdict none of these represent.
+    """
+
+    INPUT_LIMITED = "input_limited"
+    """The orthography does not write a contrast the gold transcribes (tone,
+    vowel length, ho nam, ...). Usually paired with a measured
+    :class:`ValidCeiling` on the same dataset, but also covers cases where
+    the right instrument was identified and folding was not run as a number
+    (e.g. a consonant-only floor that was never executed)."""
+
+    MISLABELED_GOLD = "mislabeled_gold"
+    """The gold does not describe the variety it is filed under — it is
+    mislabelled, or another lect re-symbolised (``pt-TL``'s gold is
+    ``pt-PT-x-lisboa`` respelled)."""
+
+    SAMPLE_TOO_SMALL = "sample_too_small"
+    """The dataset has too few rows for a PER to mean anything (``ar-DZ``,
+    n=1)."""
+
+    AT_CEILING_DOCUMENTED = "at_ceiling_documented"
+    """The spec already reflects the best-supported analysis and the
+    residual PER is a documented gold transcription convention, not a defect
+    (``th``: the gap is tone *placement*, not tone identity)."""
+
+    CHANGE_REFUSED_UNCITED = "change_refused_uncited"
+    """A specific change was measured and would improve the score, but was
+    refused for lack of a citation (``nb``'s [a]/[ɑ] lead)."""
+
+    LOGOGRAPHIC = "logographic"
+    """The writing system does not encode pronunciation by rule at all
+    (``zh``/``zh-Hani``): no grapheme-level rule set can close the gap
+    because the script is not phonemic."""
+
+
+@dataclass(frozen=True)
+class AuditRecord:
+    """The machine-readable trace of a completed audit of one (language,
+    dataset) row — the record #1369 asks for. It exists so a later wave can
+    ask "has this row been audited, and what was decided?" without
+    re-deriving the answer from prose.
+
+    Like :class:`ValidCeiling`, an ``AuditRecord`` measures a
+    (language, dataset) pair, never a language alone, and is keyed the same
+    way in :attr:`LanguageSpec.audit`: what a wave measured and concluded
+    for one gold does not transfer to a different gold of the same
+    language, which may carry different transcription conventions and has
+    not itself been examined.
+
+    Record only a conclusion actually reached by looking at the row — an
+    invented record is worse than a missing one, exactly as an unmeasured
+    ``ValidCeiling`` would be.
+
+    Parameters
+    ----------
+    conclusion : AuditConclusion
+        The closed verdict — the part a screen can search for exactly.
+    measured : str
+        What was actually looked at or computed to reach the conclusion
+        (free text; the enum is what makes this screenable, not this field).
+    reference : str
+        Where the full reasoning lives — spec ``notes``, a
+        `docs/languages/<code>.md` page, or a PR number. A measurement is
+        not recorded until it is in the tree (issue #1369: ``xh``'s ceiling
+        existed only in a merged PR body and was invisible to anything
+        reading the repository).
+    """
+
+    conclusion: AuditConclusion
+    measured: str
+    reference: str
+
+
+# ═══════════════════════════════════════════════════════════════════════════
 # Location — where a language is (or was) spoken
 # ═══════════════════════════════════════════════════════════════════════════
 
@@ -1642,6 +1729,11 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     # a dialect child scores its own row against its own gold, so its parent's
     # number would assert a measurement that was never run for the child.
     "valid_ceiling": InheritanceMode.OWN_ONLY,
+    # An audit is executed by looking at THIS code's own gold rows and spec
+    # state, exactly like valid_ceiling — a dialect child inheriting a
+    # parent's graphemes has not thereby had its own rows looked at, so it
+    # must earn its own audit record rather than inherit the parent's verdict.
+    "audit": InheritanceMode.OWN_ONLY,
     "stress": InheritanceMode.NOT_INHERITED,
     "word_exceptions": InheritanceMode.BASE_MERGE,
     # Suffix morphology is shared by a dialect that shares its graphemes —
@@ -2203,6 +2295,21 @@ class LanguageSpec:
     against.  ``None``, or a dataset absent from the mapping, means no such
     measurement has been executed for that row yet — the honest default: an
     absent ceiling is a "not measured", never a "measured as zero"."""
+
+    audit: Optional[Dict[str, "AuditRecord"]] = None
+    """Machine-readable audit conclusions, keyed by the gold **dataset** each
+    was reached against — ``{"wikipron": AuditRecord(...)}``, mirroring how
+    :attr:`valid_ceiling` is keyed.  This is the record issue #1369 asks for:
+    without it, a row that was fully audited with a firm "nothing to fix"
+    conclusion leaves no trace a machine can find, and gets re-audited from
+    scratch by a later wave.  A ``valid_ceiling`` entry proves a NUMBER; an
+    ``audit`` entry records a VERDICT — the two commonly travel together (an
+    ``input_limited`` conclusion usually cites the ``ValidCeiling`` that
+    measured it) but an audit can conclude without ever producing a ceiling
+    (``mislabeled_gold``, ``sample_too_small``, ``logographic``, ...).
+    ``None``, or a dataset absent from the mapping, means this row has not
+    been through a recorded audit — never assume an absent entry means
+    "known-good"."""
 
     stress: Optional["StressRules"] = None
     """Declarative primary-stress placement rules.  ``None`` when the

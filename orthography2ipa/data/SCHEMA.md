@@ -100,6 +100,7 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
 | `location`                  | object | no       | Representative point for where the variety is spoken (see [Location Schema](#location-schema)) |
 | `timespan`                  | object | no       | Attestation period `{"start_year": int, "end_year": int\|null}` |
 | `valid_ceiling`             | object | no       | Measured PER floors once an orthographically-unwritten contrast is folded out of both sides, keyed by the gold **dataset** each was measured against (see [Valid Ceiling Schema](#valid-ceiling-schema)) |
+| `audit`                     | object | no       | Machine-readable audit conclusions, keyed by the gold **dataset** each was reached against (see [Audit Schema](#audit-schema)) |
 | *(lexicon)*                 | —      | —        | **Not a spec field, and never bundled.** A word lexicon is a corpus, not a description of a language. Supply one at runtime from a local file, a URL or a Hugging Face id: `orthography2ipa.register_lexicon("en-GB", "hf://TigreGotico/en-lexicon/en-GB.tsv")`, or point at a directory of `{code}.tsv` with `set_lexicon_dir()` / `$ORTHOGRAPHY2IPA_LEXICON_DIR`. |
 
 ## Clade Nodes and the Derived `family`
@@ -842,3 +843,70 @@ Not inherited: it is a measurement executed against this code's own gold rows,
 so a dialect child that inherits graphemes from a parent does not thereby
 inherit the parent's ceilings and must fold+rescore its own gold before
 recording one.
+
+## Audit Schema
+
+A language can be fully audited, with a firm conclusion that nothing needs
+fixing, and still leave no trace a machine can find: the conclusion lands in
+`notes` prose or a `docs/languages/*.md` page in whatever wording that audit
+happened to use. `audit` is the machine-readable record of that conclusion, so
+a later pass can ask "has this row been audited, and what was decided?"
+without re-deriving the answer from scratch (issue #1369).
+
+Like `valid_ceiling`, an audit conclusion is reached by looking at ONE gold's
+rows and is scoped to a (language, dataset) pair, never to the language alone
+— a different gold of the same language may carry a different orthography, a
+different sample size, or different transcription conventions and has not
+itself been examined. `audit` is therefore an object **keyed by dataset
+name**, one entry per gold the language has actually been audited against:
+
+```json
+"audit": {
+  "wikipron": {
+    "conclusion": "input_limited",
+    "measured": "Raw PER of 0.4445 against the ewe_latn_broad gold (which transcribes a tone on every vowel); dropped to 0.008 once tone diacritics were folded out of both sides (245 of 247 spellings match exactly).",
+    "reference": "spec notes; see also valid_ceiling.wikipron"
+  }
+}
+```
+
+Each dataset's entry has the same three required keys:
+
+| Key          | Type   | Required | Description                                        |
+|--------------|--------|----------|----------------------------------------------------|
+| `conclusion` | string | **yes**  | One of a **closed enum** (see below) — the part that makes the record screenable. Free text here would reproduce the exact problem `audit` exists to solve, in a new location |
+| `measured`   | string | **yes**  | What was actually looked at or computed to reach the conclusion. Free text is fine here — the enum is the index, this is the evidence |
+| `reference`  | string | **yes**  | Where the full reasoning lives: spec `notes`, a `docs/languages/<code>.md` page, or a PR number. A measurement is not recorded until it is in the tree — a conclusion that exists only in a merged PR body is invisible to anything reading the repository |
+
+`conclusion` accepts exactly these values:
+
+| Value                     | Meaning |
+|---------------------------|---------|
+| `input_limited`           | The orthography does not write a contrast the gold transcribes (tone, vowel length, ho nam, ...). Often paired with a `valid_ceiling` entry on the same dataset, but also covers a case where the right instrument was identified without a folded number ever being run |
+| `mislabeled_gold`         | The gold does not describe the variety it is filed under — it is mislabelled, or another lect re-symbolised |
+| `sample_too_small`        | The dataset has too few rows for a PER to mean anything |
+| `at_ceiling_documented`   | The spec already reflects the best-supported analysis and the residual PER is a documented gold transcription convention, not a defect |
+| `change_refused_uncited`  | A specific change was measured and would improve the score, but was refused for lack of a citation |
+| `logographic`             | The writing system does not encode pronunciation by rule at all — no grapheme-level rule set can close the gap because the script is not phonemic |
+
+The loader rejects any other value outright rather than accepting it as free
+text, since a screenable closed set is the entire point of the field. Extend
+the enum only when a real audit reaches a verdict none of these represent —
+never add a value speculatively.
+
+`audit` and `valid_ceiling` answer different questions and commonly travel
+together: `valid_ceiling` proves a NUMBER (the row is provably input-limited
+to this PER), `audit` records a VERDICT (the row has been looked at and this
+is the outcome). An `input_limited` audit conclusion usually cites the
+`ValidCeiling` that measured it; `mislabeled_gold`, `sample_too_small` and
+`logographic` conclusions typically have no ceiling at all, because folding a
+contrast out is not the relevant instrument for those failures.
+
+Not inherited, for the same reason as `valid_ceiling`: an audit is executed by
+looking at THIS code's own gold rows and spec state, so a dialect child that
+inherits graphemes from a parent has not thereby had its own rows examined and
+must earn its own audit record.
+
+An absent `audit` entry for a dataset means that row has not been through a
+recorded audit — it is never a signal that the row is known-good, only that
+nobody has recorded a conclusion for it yet.

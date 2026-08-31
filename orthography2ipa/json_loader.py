@@ -25,6 +25,8 @@ from orthography2ipa.types import (
     AllophoneRule,
     Ancestor,
     AncestorRole,
+    AuditConclusion,
+    AuditRecord,
     FIELD_INHERITANCE,
     GraphemePosition,
     InheritanceMode,
@@ -482,6 +484,25 @@ def load_json_spec(code: str) -> LanguageSpec:
             for dataset_name, raw_c in raw_ceiling.items()
         }
 
+    # Parse the machine-readable audit conclusions, keyed by gold dataset —
+    # mirrors valid_ceiling's shape exactly (issue #1369): a row's audit
+    # verdict is only ever meaningful against the gold it was reached about.
+    audit: Optional[Dict[str, AuditRecord]] = None
+    raw_audit = raw.get("audit")
+    if raw_audit:
+        if not isinstance(raw_audit, dict):
+            raise ValueError(
+                f"{code}: audit must be an object mapping dataset "
+                f"name -> {{conclusion, measured, reference}}")
+        audit = {
+            dataset_name: AuditRecord(
+                conclusion=AuditConclusion(raw_a["conclusion"]),
+                measured=raw_a["measured"],
+                reference=raw_a["reference"],
+            )
+            for dataset_name, raw_a in raw_audit.items()
+        }
+
     # Parse stress rules. A spec's own ``stress`` block wins outright; when it
     # declares none (absent or ``null``), the accentuation rules inherit
     # through the ``graphemes_base`` data edge. Stress assignment is a
@@ -623,6 +644,7 @@ def load_json_spec(code: str) -> LanguageSpec:
         location=location,
         timespan=timespan,
         valid_ceiling=valid_ceiling,
+        audit=audit,
         stress=stress,
         word_exceptions=merged_base_fields["word_exceptions"] or None,
         grammatical_endings=merged_base_fields["grammatical_endings"] or None,
