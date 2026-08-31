@@ -255,5 +255,12 @@
     "source": "wikidata",
     "notes": "the Alto Alentejo (Portalegre, Évora, Beja) — a subregion-level point. [Wikidata Q443376 P625]"
   },
-  "word_exceptions_base": "pt-PT"
+  "word_exceptions_base": "pt-PT",
+  "audit": {
+    "clup_dialect": {
+      "conclusion": "sample_too_small",
+      "measured": "The clup_dialect row holds 1 scored sentence (clup_dialect is sentence-level: each gold entry is one interview sentence, scored as a single unit against the engine's whole-sentence transcription, so the bootstrap resamples across only 1 sentence-level PER value, not across words), per=0.2693, per_ci_low=0.2693, per_ci_high=0.2693 (benchmarks/results.json). With a single sentence there is nothing to resample: every bootstrap draw reproduces that one PER value, so the reported interval [0.2693, 0.2693] is a single point, not a bound on anything -- it is a resampling artifact of n=1, not evidence of a precisely measured score. This row cannot gate a production promotion on its own strength.",
+      "reference": "spec notes"
+    }
+  }
 }

@@ -124,5 +124,12 @@
     "longitude": -6.425833,
     "source": "wikidata",
     "notes": "Sendim — the southern Terra de Miranda village the sub-dialect is named for. [Wikidata Q2121828 P625]"
+  },
+  "audit": {
+    "mirandese_g2p": {
+      "conclusion": "sample_too_small",
+      "measured": "The mirandese_g2p row holds 11 gold pairs, per=0.3258, per_ci_low=0.1641, per_ci_high=0.4824 (benchmarks/results.json). The 95% interval includes 0.25, so the row cannot be read as a failure. The parent mwl spec's own mirandese_g2p row draws on the same underlying source with 205 pairs and measures per=0.1317, well under the threshold; the 11-pair Sendim subset is too small to show whether it genuinely differs from that larger measurement or is simply noise (audit is OWN_ONLY and is not inherited from mwl).",
+      "reference": "spec notes"
+    }
   }
 }
