@@ -5,51 +5,145 @@
  "script_type": "alphabet",
  "quality": "research",
  "graphemes": {
-  "а": ["a̟"],
-  "аа": ["a̟ː"],
-  "б": ["b"],
-  "в": ["w"],
-  "г": ["ɡ"],
-  "д": ["d"],
-  "дь": ["dʲ"],
-  "е": ["jɛ", "ɛ"],
-  "ё": ["jo̞", "o̞"],
-  "ж": ["ʒ"],
-  "з": ["z"],
-  "и": ["ɪ"],
-  "ии": ["ɪː"],
-  "й": ["j"],
-  "к": ["k"],
-  "л": ["lˠ"],
-  "ль": ["l"],
-  "м": ["m"],
-  "н": ["n"],
-  "нь": ["nʲ"],
-  "ӈ": ["ŋ"],
-  "о": ["o̞"],
-  "оо": ["o̞ː"],
-  "ө": ["ɵ̞"],
-  "ӄ": ["q"],
-  "ӷ": ["ʁ"],
-  "ӻ": ["ʁ"],
-  "п": ["p"],
-  "р": ["r"],
-  "с": ["s"],
-  "т": ["t"],
-  "у": ["u"],
-  "уу": ["uː"],
-  "ф": ["f"],
-  "х": ["x"],
-  "ц": ["ts"],
-  "ч": ["tʃ"],
-  "ш": ["ʃ"],
-  "щ": ["ɕ"],
-  "ъ": [""],
-  "ы": ["ɪ"],
-  "ь": ["ʲ"],
-  "э": ["ɛ"],
-  "ю": ["ju", "u"],
-  "я": ["ja", "a̟"]
+  "а": [
+   "a̟"
+  ],
+  "аа": [
+   "a̟ː"
+  ],
+  "б": [
+   "b"
+  ],
+  "в": [
+   "w"
+  ],
+  "г": [
+   "ɡ"
+  ],
+  "д": [
+   "d"
+  ],
+  "дь": [
+   "dʲ"
+  ],
+  "е": [
+   "jɛ",
+   "ɛ"
+  ],
+  "ё": [
+   "jo̞",
+   "o̞"
+  ],
+  "ж": [
+   "ʒ"
+  ],
+  "з": [
+   "z"
+  ],
+  "и": [
+   "ɪ"
+  ],
+  "ии": [
+   "ɪː"
+  ],
+  "й": [
+   "j"
+  ],
+  "к": [
+   "k"
+  ],
+  "л": [
+   "l"
+  ],
+  "ль": [
+   "lʲ"
+  ],
+  "м": [
+   "m"
+  ],
+  "н": [
+   "n"
+  ],
+  "нь": [
+   "nʲ"
+  ],
+  "ӈ": [
+   "ŋ"
+  ],
+  "о": [
+   "o̞"
+  ],
+  "оо": [
+   "o̞ː"
+  ],
+  "ө": [
+   "ɵ̞"
+  ],
+  "ӄ": [
+   "q"
+  ],
+  "ӷ": [
+   "ʁ"
+  ],
+  "ӻ": [
+   "ʁ"
+  ],
+  "п": [
+   "p"
+  ],
+  "р": [
+   "r"
+  ],
+  "с": [
+   "s"
+  ],
+  "т": [
+   "t"
+  ],
+  "у": [
+   "u"
+  ],
+  "уу": [
+   "uː"
+  ],
+  "ф": [
+   "f"
+  ],
+  "х": [
+   "x"
+  ],
+  "ц": [
+   "ts"
+  ],
+  "ч": [
+   "tʃ"
+  ],
+  "ш": [
+   "ʃ"
+  ],
+  "щ": [
+   "ɕ"
+  ],
+  "ъ": [
+   ""
+  ],
+  "ы": [
+   "ɪ"
+  ],
+  "ь": [
+   "ʲ"
+  ],
+  "э": [
+   "ɛ"
+  ],
+  "ю": [
+   "ju",
+   "u"
+  ],
+  "я": [
+   "ja",
+   "a̟"
+  ]
  },
  "allophones": {
   "q": [
@@ -77,7 +171,7 @@
    "i"
   ]
  },
- "notes": "Northern (Tundra) Yukaghir, Yukaghir family (an isolate-level branch outside Uralic), Sakha Republic/Chukotka, Russia. INPUT CONTRACT: Tundra Yukaghir Cyrillic orthography, NFC. ⟨ӷ⟩/⟨ӻ⟩ (two attested spellings across sources for the same uvular fricative letter) map to /ʁ/, and ⟨ӄ⟩ maps to the uvular stop /q/ (Maslova 2003; NorthEuraLex йоӻул -> j o ʁ u l). ⟨л⟩ is the DEFAULT velarised lateral /lˠ/ while ⟨ль⟩ is its plain (non-velarised) counterpart /l/ — the contrast runs the opposite way from the familiar Slavic hard/soft-l convention (Maslova 2003, Sec. 1.2; NorthEuraLex сальӻарииӈ -> s a lʲ~l ʁ a r iː ŋ). Vowel length is spelled by doubling the vowel letter (⟨аа⟩ /a̟ː/, ⟨оо⟩ /o̞ː/, ⟨уу⟩ /uː/, ⟨ии⟩ /ɪː/) — a real length contrast, not free repetition, so the doubled forms are separate keys (Maslova 2003, Sec. 1.1). ⟨и⟩ and ⟨е⟩/⟨э⟩ map to the lax /ɪ/ and /ɛ/ phonemes of this inventory (already declared in this spec's ``allophones``, which give [i] and [e] as their open surface variants) rather than to tense /i/ /e/, matching the cited PHOIBLE inventory. ITERATION FIX (error-analysis pass against NorthEuraLex): ⟨ч⟩ maps to the affricate /tʃ/ and the palatalised coronals ⟨нь⟩/⟨дь⟩ to /nʲ/ /dʲ/, Maslova (2003)'s own transcription convention for Tundra Yukaghir, preferred over this spec's inherited PHOIBLE symbols /c/ /ɲ/ /ɟ/ (a different source's narrower phonetic notation for the same segments); NorthEuraLex evidence (чилгэ 'tʃilge', ньилла 'nʲilla', өдьил 'ødʲil') corroborates the affricate/palatalised-coronal reading. Word stress in Tundra Yukaghir is lexical but is not consistently orthographically marked in the practical Cyrillic script (Maslova 2003, Sec. 1.4); documented here as an ENGINE-LIMIT stress exemption and not modelled. Classification and coordinates follow Glottolog.",
+ "notes": "Northern (Tundra) Yukaghir, Yukaghir family (an isolate-level branch outside Uralic), Sakha Republic/Chukotka, Russia. INPUT CONTRACT: Tundra Yukaghir Cyrillic orthography, NFC. ⟨ӷ⟩/⟨ӻ⟩ (two attested spellings across sources for the same uvular fricative letter) map to /ʁ/, and ⟨ӄ⟩ maps to the uvular stop /q/ (Maslova 2003 Tundra Yukaghir; NorthEuraLex йоӻул -> j o ʁ u l). ⟨л⟩ is the plain lateral /l/ and ⟨ль⟩ is its palatalised counterpart /lʲ/ — the ordinary Cyrillic hard/soft-consonant convention. An earlier revision of this spec claimed the reverse (⟨л⟩ velarised default /lˠ/, ⟨ль⟩ plain /l/) under a fabricated citation (see the maslova2003tundra source note); corrected on the strength of Schmalz (2013), whose consonant table (Table 2.1.2, pp.30-31) lists only a plain-vs-palatalised /l/~/l’/ contrast with no velarised member, and of NorthEuraLex's own Segments column, which transcribes л as plain [l] (хуруул -> xuruːl) and ль as palatalised [lʲ] (хайль -> xajlʲ) with no exceptions found in the wired gold. Vowel length is spelled by doubling the vowel letter (⟨аа⟩ /a̟ː/, ⟨оо⟩ /o̞ː/, ⟨уу⟩ /uː/, ⟨ии⟩ /ɪː/) — a real length contrast, not free repetition, so the doubled forms are separate keys (Maslova 2003 Tundra Yukaghir). ⟨и⟩ and ⟨е⟩/⟨э⟩ map to the lax /ɪ/ and /ɛ/ phonemes of this inventory (already declared in this spec's ``allophones``, which give [i] and [e] as their open surface variants) rather than to tense /i/ /e/, matching the cited PHOIBLE inventory. ITERATION FIX (error-analysis pass against NorthEuraLex): ⟨ч⟩ maps to the affricate /tʃ/ and the palatalised coronals ⟨нь⟩/⟨дь⟩ to /nʲ/ /dʲ/, Maslova's own transcription convention for Tundra Yukaghir, preferred over this spec's inherited PHOIBLE symbols /c/ /ɲ/ /ɟ/ (a different source's narrower phonetic notation for the same segments); NorthEuraLex evidence (чилгэ 'tʃilge', ньилла 'nʲilla', өдьил 'ødʲil') corroborates the affricate/palatalised-coronal reading. Word stress in Tundra Yukaghir is lexical but is not consistently orthographically marked in the practical Cyrillic script; documented here as an ENGINE-LIMIT stress exemption and not modelled. Classification and coordinates follow Glottolog. GOLD-CONVENTION NOTE (measured, not modelled): NorthEuraLex's Segments column is a broad/simplified IPA transcription that drops the narrow phonetic diacritics this spec's grapheme table carries (advanced [a̟] surfaces in gold as plain [a], lowered [o̞] as plain [o], lax [ɪ]/[ɛ] as tense [i]/[e]) — measured against the wired gold, most of this row's raw mismatches disappear under that one substitution alone, so most of the remaining PER here is notation granularity, not a spec defect; the narrow symbols stay because they are what PHOIBLE 193 and the cited grammars transcribe. Two further patterns are measured but NOT modelled for lack of a source verified this session: (1) the digraph ⟨иэ⟩ (and rarer ⟨ыэ⟩) surfaces in NorthEuraLex as a merged long monophthong [eː] (e.g. чиэмэ -> tʃeːme) rather than this spec's letter-by-letter [iɛ]; Schmalz (2013:27), citing Nikolaeva (2006:30), reports this as one side of a live dispute — Nikolaeva treats /ie/ as a non-phonemic variant of /eː/ while Schmalz argues for a genuine diphthong /ie/ with no /eː/ phoneme — so encoding either the merge or the status quo picks a side of an unresolved phonemic analysis rather than following a settled source; (2) ⟨ы⟩ surfaces in NorthEuraLex as [ɨ] in a handful of forms (былаас -> bɨlaːs) rather than this spec's [ɪ], but Schmalz's vowel inventory (Table 2.1.1, p.26) has no /ɨ/ phoneme at all, so this may be a Russian-loanword reading-rule artifact rather than a native Yukaghir contrast; left unmodelled pending a source that settles it.",
  "iso639_3": "ykg",
  "glottolog_code": "nort2745",
  "wikipedia": [
@@ -85,14 +179,22 @@
  ],
  "sources": [
   {
-   "id": "maslova2003",
+   "id": "maslova2003tundra",
    "author": "Maslova, Elena",
    "year": 2003,
-   "title": "A Grammar of Tundra Yukaghir",
-   "publisher": "Mouton Grammar Library 27, Mouton de Gruyter",
-   "url": "https://www.degruyter.com/document/doi/10.1515/9783110197174/html",
-   "doi": "10.1515/9783110197174",
-   "notes": "Reference grammar of Tundra (Northern) Yukaghir: Cyrillic orthography, ⟨ӷ⟩/⟨ӻ⟩ /ʁ/, ⟨ӄ⟩ /q/, the л/ль velarised/plain lateral contrast, vowel-length spelling by letter doubling, and the lexical-but-unmarked status of stress."
+   "title": "Tundra Yukaghir",
+   "publisher": "Languages of the World/Materials 372, LINCOM Europa",
+   "url": "https://lincom-shop.eu/LWM-372-Tundra-Yukaghir/en",
+   "notes": "Grammar sketch of Tundra (Northern) Yukaghir: Cyrillic orthography, ⟨ӷ⟩/⟨ӻ⟩ /ʁ/, ⟨ӄ⟩ /q/, vowel-length spelling by letter doubling, and the lexical-but-unmarked status of stress. This spec previously cited this author/year under the fabricated title \"A Grammar of Tundra Yukaghir\" attached to DOI 10.1515/9783110197174, which is Maslova's separate Mouton Grammar Library monograph \"A Grammar of Kolyma Yukaghir\" (Southern Yukaghir, iso639_3 yux) — a different book about a different language. That DOI/title pairing is removed; specific section/page locators from the earlier citation are not carried over because they were never verified against this book's actual text."
+  },
+  {
+   "id": "schmalz2013",
+   "author": "Schmalz, Mark",
+   "year": 2013,
+   "title": "Aspects of the Grammar of Tundra Yukaghir",
+   "publisher": "PhD dissertation, University of Amsterdam",
+   "url": "https://pure.uva.nl/ws/files/1518096/130869_thesis.pdf",
+   "notes": "Table 2.1.2 (consonant inventory, pp.30-31) gives the lateral series as plain /l/ (coronal) vs. palatalized /l'/ (palatal), with minimal pair tuŋul 'covering' ~ tuŋul' 'patch' (p.26); no velarized lateral allophone or phoneme is described anywhere in the dissertation. NorthEuraLex's Segments column for ykg corroborates this directly: л is transcribed plain [l] (e.g. хуруул -> xuruːl) and ль is transcribed palatalized [lʲ] (e.g. хайль -> xajlʲ), never the reverse."
   },
   {
    "id": "glottolog2024",
@@ -129,7 +231,7 @@
   "j",
   "k",
   "l",
-  "lˠ",
+  "lʲ",
   "m",
   "n",
   "p",
