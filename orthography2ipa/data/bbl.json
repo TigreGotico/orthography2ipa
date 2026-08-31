@@ -3,7 +3,7 @@
   "name": "Bats",
   "script": "Georgian",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "ა": [
       "a"
@@ -126,7 +126,7 @@
       "notes": "Descent per Glottolog classification of Bats (bats1242)."
     }
   ],
-  "notes": "Skeleton. Bats (Tsova-Tush) is a Nakh (Northeast Caucasian) language written in the Georgian Mkhedruli script supplemented by extra letters. The 33 standard Georgian letters take their usual phonemic values, including the ejective series; added signs write the schwa ჷ (ə), the pharyngeal ჺ (ʕ), the glottal stop ჸ (ʔ) and ჶ (f). Bats has a much larger consonant inventory than Georgian — including pharyngealized consonants, additional uvulars, a voiceless-lateral series and nasalized vowels — much of which is written with digraphs and diacritic combinations not resolved by this single-symbol map; those distinctions are left under-encoded, so a substantial PER floor is expected.",
+  "notes": "Research. Bats (Tsova-Tush) is a Nakh (Northeast Caucasian) language written in the Georgian Mkhedruli script supplemented by extra letters. The 33 standard Georgian letters take their usual phonemic values, including the ejective series; added signs write the schwa ჷ (ə), the pharyngeal ჺ (ʕ), the glottal stop ჸ (ʔ) and ჶ (f). Bats has a much larger consonant inventory than Georgian -- including pharyngealized consonants, additional uvulars, a voiceless-lateral series and nasalized vowels -- much of which is written with digraphs and diacritic combinations not resolved by this single-symbol map; those distinctions are left under-encoded, so a substantial PER floor is expected. Grapheme table checked against Holisky & Gagua (1994): no discrepancy found. Stress: Holisky & Gagua (1994) describe Bats stress as weak and dynamic but gravitating toward the word-initial syllable, occasionally shifting under morphological conditions the `stress` schema cannot express; `default_position=1` encodes the unmarked initial-stress tendency as an approximation, and the morphologically-conditioned shifts are a documented gap rather than silently wrong.",
   "iso639_3": "bbl",
   "glottolog_code": null,
   "sources": [
@@ -142,6 +142,17 @@
       "wikipedia_url": null
     },
     {
+      "id": "holisky_gagua1994",
+      "author": "Holisky, Dee Ann; Gagua, Rusudan",
+      "year": 1994,
+      "title": "Tsova-Tush (Batsbi)",
+      "publisher": "In Rieks Smeets (ed.), The Indigenous Languages of the Caucasus, vol. 4: North East Caucasian Languages, Part 2. Caravan Books, Delmar, NY, pp. 147-212",
+      "url": "https://people.umass.edu/maxfield/Resources/Tsova%20Tush.pdf",
+      "pages": "147-212",
+      "notes": "Reference grammar used to verify the Georgian-script grapheme table (ejective series, added letters) and to source the stress rule.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Bats_language"
+    },
+    {
       "id": "bbl_orthography",
       "author": "Wikipedia contributors",
       "year": 2024,
@@ -155,5 +166,10 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Bats_language"
-  ]
+  ],
+  "stress": {
+    "default_position": 1,
+    "stress_mark": "ˈ",
+    "notes": "Approximates Holisky & Gagua (1994)'s initial-syllable stress tendency; morphologically-conditioned shifts to a later syllable are not expressible in this schema and are left as a documented gap."
+  }
 }
