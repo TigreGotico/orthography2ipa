@@ -70,10 +70,14 @@ def test_hindi_monosyllable_keeps_its_only_vowel():
 # Sanskrit — does NOT delete schwa (the rule lives in the DATA, not the engine)
 # ═══════════════════════════════════════════════════════════════════════════
 
+# Symbol values below are [ɐ]/[ɑː]/[ɾ], not the [ə]/[aː]/[r] of earlier
+# specs — see sa.json's notes for the Whitney (1889) §§19,21,52 citations.
+# That change is about phonetic QUALITY only; it does not touch what this
+# test verifies, which is that the inherent vowel is never DELETED here.
 @pytest.mark.parametrize("word,expected", [
-    ("राम", "raːmə"),
-    ("कमल", "kəmələ"),
-    ("शब्द", "ɕəbd̪ə"),
+    ("राम", "ɾɑːmɐ"),
+    ("कमल", "kɐmɐlɐ"),
+    ("शब्द", "ɕɐbd̪ɐ"),
 ])
 def test_sanskrit_preserves_the_inherent_vowel(word, expected):
     """Same script, same inherent vowel, no schwa deletion — by data alone."""

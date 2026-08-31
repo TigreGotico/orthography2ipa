@@ -212,13 +212,40 @@ class TestSanskrit:
     def spec(self, request):
         request.cls.spec = _load(self.LANGUAGE_CODE)
 
-    def test_a_schwa(self):
-        """अ → [ə] (inheritor of PIE short *a/e/o)."""
-        _assert_first(_grapheme(self.spec, "अ"), "ə", label="अ")
+    def test_a_neutral_vowel(self):
+        """अ → [ɐ], not a genuine mid-central schwa.
+
+        Whitney's Sanskrit Grammar (1889) §21 calls it the "neutral vowel",
+        equating it to "English so-called short u, of but, son, blood" — a
+        near-open central/back vowel, not the higher, laxer [ə] of
+        unstressed English syllables.
+        """
+        _assert_first(_grapheme(self.spec, "अ"), "ɐ", label="अ")
 
     def test_aa_long(self):
-        """आ → [aː]."""
-        _assert_first(_grapheme(self.spec, "आ"), "aː", label="आ")
+        """आ → [ɑː], a fully back open vowel distinct in QUALITY from
+        short a, not merely its long counterpart.
+
+        Whitney (1889) §19: pronounced "in the 'Continental' or 'Italian'
+        manner — as in far or farther".
+        """
+        _assert_first(_grapheme(self.spec, "आ"), "ɑː", label="आ")
+
+    def test_ra_is_a_tap_not_a_trill(self):
+        """र → [ɾ] (alveolar tap), not the trill [r] or the approximant [ɹ].
+
+        Whitney (1889) §52 only rules OUT the trill ("no authority hints at
+        a vibration as belonging to it"); it does not distinguish a tap from
+        an approximant. The tap value is a measured claim: in the wikipron
+        gold (san_deva_broad.tsv), words containing र realise it as ɾ 6404
+        times, plain r 133 times, and never as ɹ. Asserted as an equality
+        (not "not r") so a stray approximant is caught too.
+        """
+        _assert_first(_grapheme(self.spec, "र"), "ɾ", label="र")
+
+    def test_tra_conjunct_carries_the_same_tap(self):
+        """⟨त्र⟩ (the tra conjunct) must carry the same [ɾ] as plain र."""
+        _assert_first(_grapheme(self.spec, "त्र"), "t̪ɾ", label="त्र")
 
     def test_syllabic_r(self):
         """ऋ → [r̩] (syllabic r — unique Sanskrit vowel)."""
