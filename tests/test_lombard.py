@@ -15,6 +15,11 @@ the gold is a coin flip on length for â ('citâ'/'çitâ' show /aː/; 'jâld' a
 
 These words were verified to fail against the pristine (pre-fix) lmo.json
 that mapped accented vowels either to /oː/ (ô) or left them unmapped.
+
+Also covers two follow-up fixes: the missing ü/üü umlaut mapping (classical
+Milanese spelling of the same front rounded vowel plain 'u' denotes), and
+the new `lmo-x-milanese` entry, which models the classical Milanese source's
+circumflex rule literally instead of `lmo`'s gold-fit reading.
 """
 from orthography2ipa import transcribe
 
@@ -43,3 +48,32 @@ def test_circumflex_e_keeps_length_from_single_attestation():
     # matches the source's stated circumflex-length rule, but n=1 is thin
     # evidence and the spec notes say so explicitly.
     assert transcribe("paês", "lmo") == "paeːs"
+
+
+def test_u_umlaut_is_front_rounded_y_not_dropped():
+    # ü/üü are the classical-Milanese umlaut spelling of the same front
+    # rounded vowel plain 'u' denotes (/y/, /yː/). All six ü-words in the
+    # WikiPron gold realize the letter as /y/; before this fix ü was absent
+    # from the grapheme table and silently dropped instead. ('paüra' has a
+    # long /yː/ in the gold that this mapping does not reproduce.)
+    assert transcribe("lüganega", "lmo") == "lyɡaneɡa"
+    assert transcribe("paüra", "lmo") == "payra"
+    assert transcribe("süpa", "lmo") == "sypa"
+
+
+def test_milanese_entry_applies_source_circumflex_rule_literally():
+    # lmo-x-milanese models the classical-Milanese source's own stated
+    # circumflex rule (closed+long timbre) rather than lmo's gold-fit
+    # reading: ô is /oː/, not the plain /u/ lmo ships to match the
+    # WikiPron gold's two attested circumflex-o words.
+    assert transcribe("rasô", "lmo-x-milanese") == "rasoː"
+    assert transcribe("resô", "lmo-x-milanese") == "resoː"
+    assert transcribe("jâld", "lmo-x-milanese") == "jaːld"
+
+
+def test_milanese_entry_inherits_grave_acute_and_umlaut_from_lmo():
+    # The two entries share phonology outside the circumflex series; this
+    # must come through *_base inheritance, not a duplicated table.
+    assert transcribe("abdicà", "lmo-x-milanese") == "abdika"
+    assert transcribe("Giòrgio", "lmo-x-milanese") == "ɡiɔrɡio"
+    assert transcribe("süpa", "lmo-x-milanese") == "sypa"
