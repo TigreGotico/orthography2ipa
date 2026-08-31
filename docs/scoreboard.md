@@ -45,7 +45,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | ale | northeuralex | 896 | 0.2634 | - | 0.2634 | 0.2634 | 0.0926 | 0.0926 | [0.2542, 0.2731] | 0.0926 | skeleton | lexicon-derived |
 | ale | wikipron | 118 | 0.1100 | - | 0.1100 | 0.1100 | 0.7458 | 0.7458 | [0.0650, 0.1652] | 0.7458 | skeleton | crowd-scraped |
 | am | vox_communis | 5453 | 0.2300‡ | - | 0.2300 | 0.2300 | 0.1258 | 0.1258 | [0.2258, 0.2341] | 0.1258 | research | epitran-derived |
-| am | wikipron | 388 | 0.3662 | - | 0.3662 | 0.3662 | 0.1082 | 0.1082 | [0.3445, 0.3881] | 0.1082 | research | crowd-scraped |
+| am | wikipron | 388 | 0.3296 | - | 0.3296 | 0.3296 | 0.1211 | 0.1211 | [0.3098, 0.3494] | 0.1211 | research | crowd-scraped |
 | an | wikipron | 902 | 0.0580 | - | 0.0229 | 0.0207 | 0.8570 | 0.8703 | [0.0523, 0.0637] | 0.6630 | research | crowd-scraped |
 | ang | wikipron | 54696 | 0.2103 | - | 0.1588 | 0.1512 | 0.2471 | 0.2632 | [0.2092, 0.2116] | 0.1545 | research | crowd-scraped |
 | aot | wikipron | 181 | 0.1367 | - | 0.1367 | 0.1367 | 0.4475 | 0.4475 | [0.1160, 0.1588] | 0.4475 | research | crowd-scraped |
@@ -208,7 +208,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | de | wikipron | 53010 | 0.2103 | - | 0.1567 | 0.1414 | 0.3150 | 0.3453 | [0.2089, 0.2118] | 0.2343 | research | crowd-scraped |
 | de-DE | ipa_childes | 24857 | 0.3948‡ | - | 0.2845 | 0.2632 | 0.1080 | 0.1251 | [0.3926, 0.3971] | 0.0513 | research | epitran-derived |
 | de-DE | ipadict | 777785 | 0.2303 | - | 0.1862 | 0.1724 | 0.1886 | 0.2104 | [0.2300, 0.2307] | 0.1390 | research | crowd-scraped |
-| de-x-alemannic | wikipron | 448 | 0.1734 | - | 0.1314 | 0.1215 | 0.5580 | 0.5804 | [0.1559, 0.1938] | 0.4554 | research | crowd-scraped |
+| de-x-alemannic | wikipron | 448 | 0.1736 | - | 0.1382 | 0.1291 | 0.5402 | 0.5580 | [0.1561, 0.1940] | 0.4554 | research | crowd-scraped |
 | dlm | wikipron | 180 | 0.2476 | - | 0.2476 | 0.2476 | 0.2000 | 0.2000 | [0.2193, 0.2770] | 0.2000 | research | crowd-scraped |
 | dng | wikipron | 269 | 0.4087 | - | 0.4087 | 0.4087 | 0.0000 | 0.0000 | [0.4003, 0.4181] | 0.0000 | research | crowd-scraped |
 | dsb | wikipron | 2010 | 0.1487 | - | 0.1487 | 0.1487 | 0.4522 | 0.4522 | [0.1408, 0.1564] | 0.4522 | research | crowd-scraped |
