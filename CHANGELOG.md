@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.87.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.87.0a1) (2026-08-31)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.86.9a1...7.87.0a1)
+
+**Merged pull requests:**
+
+- feat: add machine-readable audit conclusion field \(\#1369\) [\#1414](https://github.com/TigreGotico/orthography2ipa/pull/1414) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.86.9a1](https://github.com/TigreGotico/orthography2ipa/tree/7.86.9a1) (2026-08-31)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.86.8a2...7.86.9a1)
@@ -628,17 +636,9 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.8a2...7.82.9a1)
 
-**Merged pull requests:**
-
-- fix\(zom\): prosthetic glottal onset, coda h as glottal stop, ch as affricate [\#1205](https://github.com/TigreGotico/orthography2ipa/pull/1205) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [7.82.8a2](https://github.com/TigreGotico/orthography2ipa/tree/7.82.8a2) (2026-08-25)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.8a1...7.82.8a2)
-
-**Merged pull requests:**
-
-- docs\(so,ha,zom,tru\): re-measure the documented ceilings and correct the ones that did not reproduce [\#1203](https://github.com/TigreGotico/orthography2ipa/pull/1203) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.82.8a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.8a1) (2026-08-25)
 
