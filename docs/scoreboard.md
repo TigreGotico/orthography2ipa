@@ -343,7 +343,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | klj | wikipron | 155 | 0.2995 | - | 0.2995 | 0.2995 | 0.2774 | 0.2774 | [0.2604, 0.3362] | 0.2774 | research | crowd-scraped |
 | km | ipadict | 3261 | 0.3335 | - | 0.3240 | 0.3238 | 0.1518 | 0.1521 | [0.3260, 0.3417] | 0.1389 | research | lexicon-derived |
 | km | wikipron | 6628 | 0.1922 | - | 0.1816 | 0.1810 | 0.5084 | 0.5124 | [0.1863, 0.1983] | 0.4665 | research | crowd-scraped |
-| kn | wikipron | 1706 | 0.2689 | - | 0.2689 | 0.2689 | 0.1782 | 0.1782 | [0.2593, 0.2772] | 0.1782 | research | crowd-scraped |
+| kn | wikipron | 1706 | 0.0161 | - | 0.0161 | 0.0161 | 0.9513 | 0.9513 | [0.0126, 0.0200] | 0.9513 | research | crowd-scraped |
 | ko | ipadict | 62447 | 0.2319 | - | 0.2299 | 0.2298 | 0.0866 | 0.0867 | [0.2309, 0.2328] | 0.0830 | research | crowd-scraped |
 | ko | vox_communis | 6123 | 0.0728‡ | - | 0.0661 | 0.0660 | 0.6111 | 0.6113 | [0.0701, 0.0754] | 0.5964 | research | epitran-derived |
 | koi | wikipron | 229 | 0.0920 | - | 0.0807 | 0.0807 | 0.6987 | 0.6987 | [0.0738, 0.1103] | 0.6550 | research | crowd-scraped |
