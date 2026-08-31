@@ -126,7 +126,7 @@ def test_monosyllabic_one_letter_word_keeps_its_only_vowel(mr):
 
 def test_sanskrit_keeps_the_inherent_vowel(sa):
     """Leak detector: mr declares sa as its parent and shares its script."""
-    assert sa.transcribe_word("नाम").endswith("ə")
+    assert sa.transcribe_word("नाम").endswith("ɐ")
 
 
 # ── medial schwa is NOT deleted ─────────────────────────────────────────────

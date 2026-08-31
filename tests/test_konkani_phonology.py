@@ -66,7 +66,7 @@ def test_sanskrit_keeps_the_inherent_vowel(sa):
     sa shares the script, the inherent vowel and an ancestry link with kok
     (kok declares sa as its parent), so this is the leak detector.
     """
-    assert sa.transcribe_word("नाम") == "n̪aːmə"
+    assert sa.transcribe_word("नाम") == "n̪ɑːmɐ"
 
 
 # ── medial VC_CV schwa deletion and its guard ───────────────────────────────
