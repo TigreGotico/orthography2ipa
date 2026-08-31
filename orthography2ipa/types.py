@@ -1615,6 +1615,7 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "preposed_vowels": InheritanceMode.OWN_ONLY,
     "coda_no_inherent_vowel": InheritanceMode.OWN_ONLY,
     "inherent_vowel_final": InheritanceMode.OWN_ONLY,
+    "virama_final_vowel": InheritanceMode.OWN_ONLY,
     "collapse_geminates": InheritanceMode.OWN_ONLY,
     "doubled_letters_geminate": InheritanceMode.OWN_ONLY,
     "constrain_onsets": InheritanceMode.BASE_SCALAR,
@@ -1805,6 +1806,25 @@ class LanguageSpec:
     :attr:`AllophoneRule.requires_other_nucleus` puts under a vowel-deleting
     allophone rule, applied where the vowel is unwritten and so has no slot
     of its own for a rule to target."""
+
+    virama_final_vowel: Optional[str] = None
+    """What an absolute word-final virama-marked consonant is realised with.
+
+    A virama (halant/chandrakkala) ordinarily suppresses a consonant
+    letter's inherent vowel outright — the mark exists to spell a bare
+    consonant cluster (C+virama+C is a conjunct). But when the mark sits at
+    the very end of the word, some abugida orthographies still give that
+    "silenced" consonant a non-phonemic epenthetic vowel rather than true
+    zero: Malayalam's word-final consonant+chandrakkala is not mute but
+    carries the "enunciative" close central vowel [ɨ] — the samvrutokaram
+    — e.g. ⟨അത്⟩ /ɐd̪ɨ/ 'that', not */ɐd̪/ (Valentine 1976; Mohanan 1986;
+    Asher & Kumari 1997; reported in Namboodiripad & Garellek 2017: 115,
+    Journal of the IPA 47(1)).
+
+    Unset (the default) leaves virama-final deletion in place — the
+    behaviour every other abugida spec already has. Declaring a vowel here
+    substitutes it ONLY when the virama is the word's last character; a
+    virama anywhere else keeps deleting the vowel to form its conjunct."""
 
     plugins: Dict[str, Tuple[str, ...]] = field(default_factory=dict)
     """Which plugin this language wants, per stage — keyed by entry-point name.
