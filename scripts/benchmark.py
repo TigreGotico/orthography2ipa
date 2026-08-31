@@ -1472,7 +1472,7 @@ _IPADICT_PROVENANCE: Dict[str, str] = {
     # ─ human dictionaries / published lexicographic sources ─
     "is": "lexicon-derived",       # Hjal / "Pronunciation Dictionary for Icelandic" (malfong.is), CC BY 3.0
     "en-US": "lexicon-derived",    # cmudict-ipa (CMU hand-curated ARPABET) + syllabify stress, MIT
-    "ja": "lexicon-derived",       # EDICT readings (EDRDG), CC BY-SA 3.0; only the kana entries are scorable (kanji entries transcribe to '' and drop out of `covered`)
+    "ja": "lexicon-derived",       # EDICT readings (EDRDG), CC BY-SA 3.0; kana-only entries score well (PER 0.05), but the majority of rows mix kanji: those entries stay in `covered` with a partial (kana-only) transcription rather than dropping out, so they drag PER to 0.33 overall — see ja.json audit.ipadict, a `logographic` conclusion (readings are lexical, not rule-derivable)
     "jam": "lexicon-derived",      # "A Learner's Grammar of Jamaican" (Open Grammar Project), CC BY 4.0
     "km": "lexicon-derived",       # Khmer-English Dictionary (aakanee.com), CC BY-NC-SA 4.0
     "ro-RO": "lexicon-derived",    # MaRePhoR phonetic dictionary (UTCluj), CC BY-NC
