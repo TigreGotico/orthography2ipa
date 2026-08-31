@@ -1,5 +1,9 @@
 # Changelog
 
+## [7.88.3a1](https://github.com/TigreGotico/orthography2ipa/tree/7.88.3a1) (2026-08-31)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.88.2a1...7.88.3a1)
+
 ## [7.88.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.88.2a1) (2026-08-31)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.88.1a1...7.88.2a1)
@@ -586,7 +590,6 @@
 - fix: refresh stale ci-sample rows and add same-n invariant test [\#1238](https://github.com/TigreGotico/orthography2ipa/pull/1238) ([JarbasAl](https://github.com/JarbasAl))
 - fix\(yo\): read ⟨n⟩ before a consonant as a syllabic nasal where no nasal vowel is available [\#1237](https://github.com/TigreGotico/orthography2ipa/pull/1237) ([JarbasAl](https://github.com/JarbasAl))
 - docs\(pcc\): record why the Chinese-loan apical vowel stays unmodelled [\#1236](https://github.com/TigreGotico/orthography2ipa/pull/1236) ([JarbasAl](https://github.com/JarbasAl))
-- docs\(lo\): record the measured scope of the word-final liquid reading [\#1234](https://github.com/TigreGotico/orthography2ipa/pull/1234) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.82.18a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.18a1) (2026-08-25)
 
