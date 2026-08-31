@@ -40,6 +40,7 @@ from orthography2ipa.positional import normalize_ending_value
 from orthography2ipa.types import (
     OrthographyKind,
     AncestorRole,
+    AuditConclusion,
     GraphemePosition,
     QualityTier,
     ScriptType,
@@ -258,6 +259,18 @@ class ValidCeilingModel(_Strict):
     citation: str = Field(min_length=1)
 
 
+class AuditRecordModel(_Strict):
+    """Machine-readable audit verdict for ONE gold dataset (one entry of
+    ``audit``'s dataset-keyed mapping). Mirrors ``AuditRecord``. ``conclusion``
+    is validated against the closed ``AuditConclusion`` enum — a value outside
+    it is rejected rather than silently accepted as free text, since a
+    screenable enum is the entire point of the field (issue #1369)."""
+
+    conclusion: AuditConclusion
+    measured: str = Field(min_length=1)
+    reference: str = Field(min_length=1)
+
+
 class LocationModel(_Strict):
     """Representative point for where a language is spoken (``location``)."""
 
@@ -438,6 +451,7 @@ class LanguageSpecModel(_Strict):
     orthography_standard: Optional[OrthographyStandardModel] = None
     location: Optional[LocationModel] = None
     valid_ceiling: Optional[Dict[str, ValidCeilingModel]] = None
+    audit: Optional[Dict[str, AuditRecordModel]] = None
 
 
     # ─── whole-word overrides for a closed irregular set ─────────────

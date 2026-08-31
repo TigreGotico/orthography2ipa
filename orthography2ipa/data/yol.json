@@ -248,5 +248,12 @@
       ],
       "notes": "Word-final /s/ voices to /z/ after a voiced segment -- the ordinary English inflectional-s allomorphy rule (cats /s/, dogs /z/) that Yola inherits along with the rest of its English-derived morphology; standard in English phonology (e.g. Chomsky & Halle 1968; Katamba 1989 'An Introduction to Phonology'), this session did not consult a specific edition or page. The schema's preceded_by/followed_by natural-class enum (vowel, consonant, consonant_cluster, coda, coda_nasal, front_vowel, back_vowel, palatal, emphatic, word_boundary, any) has no 'voiced' member, so the conditioning environment is enumerated explicitly here as the full list of voiced phonemes in this spec's inventory (every vowel plus b d dʒ l m n r v w z ɡ ŋ) rather than expressed as a natural class. Measured against the shipped wikipron gold (yol_latn_broad.tsv): headwords ending in a plain 's' preceded by one of these phonemes carry gold /z/ far more often than /s/ (e.g. traans->z, zins->z, chemis->z, waas->z), while a preceding voiceless segment keeps /s/ (butts->s, reights->s). The rule is purely positional and cannot see a morpheme boundary, so it also fires on the small number of non-inflectional words that happen to end in a voiced-segment+s spelling (the pronoun 'this' gold /s/ becomes a false positive); this is the same trade-off the prior spec notes already named."
     }
-  ]
+  ],
+  "audit": {
+    "wikipron": {
+      "conclusion": "mislabeled_gold",
+      "measured": "The wikipron/yol gold is not attested speech: every IPA is Wiktionary editors' own reconstruction under a 'Yola phonology' pronunciation key applied to Poole & Barnes's 1867 spellings, not a recording or a documented pronunciation. 444 of 1972 distinct spellings (22.5%) carry two or more mutually incompatible gold transcriptions.",
+      "reference": "spec notes"
+    }
+  }
 }

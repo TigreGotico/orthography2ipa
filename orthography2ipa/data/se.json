@@ -151,5 +151,12 @@
     "longitude": 22.1113,
     "source": "glottolog",
     "notes": "Glottolog's representative point for North Saami."
+  },
+  "audit": {
+    "wikipron": {
+      "conclusion": "change_refused_uncited",
+      "measured": "Two leads measured from the gold and deliberately left unencoded: (1) orthographic b/d/g surface as voiced stops only 6.9%/12.1%/6.9% of the time, consistent with a lenis/fortis contrast rather than voicing, but the supporting source (Bals Baal, Odden & Rice 2012, Phonology 29(2)) is paywalled and was not obtained; (2) the nj/lj/dj digraphs are unhandled pending a fetched source. Both are measured-not-sourced and refused rather than shipped uncited.",
+      "reference": "spec notes"
+    }
   }
 }
