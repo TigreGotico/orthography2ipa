@@ -1007,6 +1007,39 @@ class TestYola:
         assert list(_grapheme(self.spec, "è")) == ["", "ɛ"]
         assert orthography2ipa.transcribe("chickès", lang="yol") == "tʃɪks"
 
+    def test_gh_is_a_velar_fricative_except_word_initially(self):
+        """⟨gh⟩ reads /x/ (Lough, aloghe, boagher), the ordinary Irish-English
+        digraph value, except word-initially where the ⟨h⟩ is silent and the
+        letter keeps its plain /ɡ/ (ghou, ghemboles). Measured against the
+        shipped gold (yol_latn_broad.tsv), not sourced: Barnes's Observations
+        (Poole & Barnes 1867: 12-18) do not describe the sound of ⟨gh⟩, and
+        the glossary's own etymological notes on gh-words do not either.
+        """
+        assert orthography2ipa.transcribe("lough", lang="yol") == "luːx"
+        assert orthography2ipa.transcribe("ghou", lang="yol") == "ɡuː"
+
+    def test_word_final_ng_is_a_velar_nasal(self):
+        """Word-final ⟨ng⟩ reads /ŋ/ (furlong, ring), while medial ⟨ng⟩
+        before a vowel keeps the stop, /ŋɡ/ (hungherth, fungerlagh) — the
+        ordinary English finger/singer contrast. Measured against the
+        shipped gold, not sourced: Barnes's Observations say nothing about
+        the pronunciation of ⟨ng⟩.
+        """
+        assert orthography2ipa.transcribe("furlong", lang="yol") == "fʊrlɔŋ"
+        assert orthography2ipa.transcribe("ring", lang="yol") == "rɪŋ"
+
+    def test_inflectional_s_voices_after_a_voiced_segment(self):
+        """Word-final /s/ voices to /z/ after a voiced segment — the ordinary
+        English inflectional-s allomorphy rule (cats /s/, dogs /z/) that
+        Yola inherits with the rest of its English-derived morphology.
+        Enumerated explicitly via ``preceded_by_phoneme`` because the
+        schema's natural-class enum has no ``voiced`` member. A preceding
+        voiceless segment is unaffected.
+        """
+        assert orthography2ipa.transcribe("traans", lang="yol") == "traanz"
+        assert orthography2ipa.transcribe("zins", lang="yol") == "zɪnz"
+        assert orthography2ipa.transcribe("reights", lang="yol") == "rɛɪxts"
+
 
 # ═══════════════════════════════════════════════════════════════════════════
 # Coptic
