@@ -427,35 +427,47 @@ is a spec change. Provenance is `crowd-scraped`, so the row **can gate**.
 ### Middle High German, `wikipron`
 
 The `gmh` spec's grapheme table targets Karl Lachmann's normalised MHG
-orthography — circumflex for long vowels (â ê î ô û), ⟨æ œ⟩ for the umlaut
-reflexes, and ⟨ë⟩ against ⟨e⟩ for the *i*-umlaut split (Paul, *Mittelhochdeutsche
-Grammatik*, rev. Klein/Solms/Wegera, 2007). The gold (1724 source words, 1516
-scored after tokenizer filtering) does not use that convention: 0 of the 1724
-words carry a circumflex vowel and 0 carry ⟨ë⟩, while 115 carry ⟨æ⟩ or ⟨œ⟩. So
-the gold is not diplomatic manuscript spelling either — it keeps the umlaut
-digraphs but drops length marking and the e/ë split entirely. Vowel length that
-the gold's IPA transcribes (e.g. "bat" → `b aː t`) is therefore, for this
-particular gold, unrecoverable from the input spelling: the word is written
-identically to its short-vowel congeners, with no circumflex to read.
+orthography — circumflex for long vowels (â ê î ô û) and ⟨æ œ⟩ for the umlaut
+reflexes (Paul, *Mittelhochdeutsche Grammatik*, rev. Klein/Solms/Wegera, 2007).
+The gold (1724 source words, 1516 scored after tokenizer filtering) does not
+use that convention: 0 of the 1724 words carry a circumflex vowel and 0 carry
+⟨ë⟩, while 115 carry ⟨æ⟩ or ⟨œ⟩ and 130 carry ⟨ä ö ü⟩.
 
-The bare, non-doubled ⟨z⟩ grapheme is a second, narrower unrecoverable case:
-MHG ⟨z⟩ continues two different High German Consonant Shift outcomes, an
-affricate [t͡s] (e.g. "herze", "heizen", "gezogen") and a dorsal fricative [s]
-(e.g. "az", "biz", "daz"), and only the doubled spellings disambiguate it
-unambiguously (⟨tz⟩ = geminate affricate, ⟨zz⟩ = geminate fricative — both
-fixed in the spec). Some editions mark the fricative reflex with a diacritic
-z (ȝ/ȥ); this gold's source spelling does not carry it, so the bare-z split is
-input-limited here and is left at the affricate default rather than fitted to
-this one gold's distribution.
+That is not a defect in the gold; it is a second, legitimate spelling
+convention for the same language, and it is fully accounted for by English
+Wiktionary's own style page (*Wiktionary:About Middle High German*), which
+WikiPron scrapes: "certain letters with diacritics (ë ā ē ī ō ū ȥ) are not
+used in article titles, but are used when displaying the word", while "this
+does not apply to the umlauted vowels ä, ö, ü, æ, œ, which are treated as
+separate letters and thus appear in titles like any other letter." That
+policy predicts exactly the counts above — zero circumflex, zero ë, umlaut
+vowels intact — because WikiPron scrapes the MediaWiki page title, not the
+displayed headword line. Per this repo's convention that a distinct written
+convention for the same language gets its own spec entry (`cdo-Latn-buc`
+alongside `cdo`, `zh` alongside `zh-Hani`), this convention is modeled as
+`gmh-x-wikt`, inheriting `gmh`'s phonology whole via `graphemes_base` and
+nulling only the circumflex length graphemes, which this convention never
+writes. `gmh` itself is unchanged and keeps targeting Lachmann's convention,
+which is correct for edited MHG text using scholarly normalisation; the two
+specs describe the same language in two different, both-real, spellings. The
+`wikipron` gold should be scored against `gmh-x-wikt`, not `gmh` — see the
+scoreboard note below.
 
-Neither of these is a reason to change the spec's normalised-orthography
-target: an edited MHG text using Lachmann conventions is the overwhelmingly
-common form MHG appears in outside diplomatic manuscript editions, and the
-circumflex/ë entries are correct for that convention even though this
-particular gold does not exercise them. Provenance is `crowd-scraped`, so the
-row **can gate**; fixing the schwa reduction, apical ⟨s⟩, and ⟨tz⟩/⟨zz⟩
-gemination rules (all recoverable from the gold's own spelling, unlike the
-two cases above) moved PER from 0.2938 to 0.1022 at constant n=1516.
+The bare, non-doubled ⟨z⟩ grapheme is a separate, narrower unrecoverable case
+that affects both specs equally: MHG ⟨z⟩ continues two different High German
+Consonant Shift outcomes, an affricate [t͡s] (e.g. "herze", "heizen",
+"gezogen") and a dorsal fricative [s] (e.g. "az", "biz", "daz"), and only the
+doubled spellings disambiguate it unambiguously (⟨tz⟩ = geminate affricate,
+⟨zz⟩ = geminate fricative — both fixed in the spec). Some editions mark the
+fricative reflex with a diacritic z (ȝ/ȥ); this gold's source spelling does
+not carry it, so the bare-z split is input-limited here and is left at the
+affricate default rather than fitted to this one gold's distribution.
+
+Provenance is `crowd-scraped`, so the row **can gate**; fixing the schwa
+reduction, apical ⟨s⟩, and ⟨tz⟩/⟨zz⟩ gemination rules (all recoverable from
+the gold's own spelling) moved PER from 0.2938 to 0.1022 at constant n=1516,
+measured before `gmh-x-wikt` existed (i.e. still against `gmh`); re-scoring
+against `gmh-x-wikt` is a follow-up, not part of this change.
 
 ### Kapampangan, `wikipron`
 
