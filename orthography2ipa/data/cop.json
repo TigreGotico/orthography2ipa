@@ -331,5 +331,12 @@
       "surface": "",
       "notes": "Absent in Coptic, as EGY_EPEN_INITIAL."
     }
-  ]
+  ],
+  "audit": {
+    "wikipron": {
+      "conclusion": "mislabeled_gold",
+      "measured": "290 of 591 distinct wikipron/cop spellings (49.1%) carry two or more mutually incompatible gold transcriptions for the identical string, because the gold mixes at least two named reconstruction traditions: a 19th-century Greco-Bohairic liturgical reform pronunciation (glottal stop in 22% of references, plus beta as a fricative and theta) alongside an older academic Sahidic/Old-Bohairic reconstruction that keeps stops and schwa, which is what this spec, committed to Sahidic, describes. The gold also contains words spelled with letters belonging to other dialects' alphabets (Bohairic khai, Akhmimic), not Sahidic's. A low PER on this row would measure conformance to the reform mixture rather than accuracy of a Sahidic analysis, and chasing it was declined and reported instead.",
+      "reference": "spec notes"
+    }
+  }
 }

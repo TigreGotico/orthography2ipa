@@ -526,5 +526,12 @@
         "ʔ"
       ]
     }
+  },
+  "audit": {
+    "kaikki": {
+      "conclusion": "input_limited",
+      "measured": "Lao tone is a property of the syllable computed from consonant class and the tone marks, which this spec records in tone_inventory but maps to nothing segmentally because Lao tone is suprasegmental and not itself an IPA segment the orthography commits to a single reading of. The three named remaining gaps (word-final ho-nam digraph attachment, the e-...-o circumfix, bare intervocalic w as nucleus) are each independently documented as structural tokenizer/lookup limitations rather than unsourced rules, and are not encoded around.",
+      "reference": "spec notes"
+    }
   }
 }

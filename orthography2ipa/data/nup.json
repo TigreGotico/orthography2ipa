@@ -1095,5 +1095,12 @@
       ],
       "notes": "A vowel followed by a nasal that itself precedes another nasal consonant nasalises, matching the deletion of the first nasal (see NUP_N_DELETE_PRENASAL): tanmako [tã̀mã̄kō]."
     }
-  ]
+  ],
+  "audit": {
+    "wikipron": {
+      "conclusion": "input_limited",
+      "measured": "Nupe tone is marked with diacritics in careful writing but routinely omitted in everyday text, and this spec transcribes segments only. In the shipped wikipron/nup gold, 48 distinct spellings recur with two or more different gold transcriptions, 44 of them differing only in tone/nasalisation diacritics, proving those spellings unrecoverable from segments alone. Real-word PER is 0.4679; folding tone diacritics out of both hypothesis and gold drops it to 0.0353.",
+      "reference": "spec notes"
+    }
+  }
 }

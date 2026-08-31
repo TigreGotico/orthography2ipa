@@ -225,5 +225,12 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Assyrian_Neo-Aramaic"
-  ]
+  ],
+  "audit": {
+    "wikipron": {
+      "conclusion": "input_limited",
+      "measured": "None of the 7851 gold headwords in aii_syrc_narrow.tsv carry any Syriac combining diacritic (vowel points or qushshaya/rukkakha/majliana dots): the gold is entirely unpointed East Syriac. The residual after the real spec is dominated by the hypothesis omitting phones the gold writes but the unpointed script never encodes (leading deletions: a 2244, length mark 1578, short vowels), not by choosing the wrong reading among written alternatives (begadkepat-direction mismatches total only 440, an order of magnitude smaller).",
+      "reference": "spec notes"
+    }
+  }
 }

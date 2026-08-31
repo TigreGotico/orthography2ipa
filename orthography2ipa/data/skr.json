@@ -502,5 +502,12 @@
         "oː"
       ]
     }
+  },
+  "audit": {
+    "wikipron": {
+      "conclusion": "input_limited",
+      "measured": "Short vowels are not written in the Saraiki Shahmukhi abjad and gemination is not marked, so both are unrecoverable from unvowelised input; the spec notes state this accounts for the bulk of the residual distance against the WikiPron skr_arab_broad gold.",
+      "reference": "spec notes"
+    }
   }
 }

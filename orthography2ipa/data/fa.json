@@ -385,5 +385,12 @@
     "longitude": 53.3,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Western Farsi."
+  },
+  "audit": {
+    "wikipron": {
+      "conclusion": "input_limited",
+      "measured": "Short vowels are 13092 of the wikipron/fa gold's 67942 segments (19.3%) and the Perso-Arabic abjad writes none of them outside the 1522 words ending in he; folding the short-vowel set out of both sides alone drops PER from 0.3943 to 0.2818, an 11-point floor no G2P over bare script can close without a lexicon. The gold set is also predominantly the Classical/Early New Persian reading rather than modern Iranian Persian (e.g. aː 5654 vs modern ɒː 142 occurrences); this spec follows the cited modern standard and declines to chase that convention (tests/test_fa_convention.py). Folding both the short-vowel floor and the classical/modern convention pairs together drops PER to 0.0920.",
+      "reference": "spec notes"
+    }
   }
 }

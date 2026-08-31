@@ -328,5 +328,12 @@
       "word_final": true,
       "notes": "Word-final ⟨h⟩ is not [h]. Khumi has no phonemic codas; a word-final glottal closure is the surface manifestation of creaky phonation on the rime (Baleno 2025:19-20, 26). All five word-final ⟨-h⟩ spellings in the cnk/wikipron gold end in [ʔ], and those five are the only non-initial [ʔ] in the whole set."
     }
-  ]
+  ],
+  "audit": {
+    "wikipron": {
+      "conclusion": "input_limited",
+      "measured": "Khumi is tonal (Peterson 2008 analyses five underlying distinctions; the gold uses a three-level system) but the diaeresis-based Latin orthography this spec describes spells none of it, and no rule could recover it: seven gold spellings are each attested with two or three different tone melodies over identical segments. Full PER on the cnk/wikipron slice is 0.2608; folding the tone letters out of both gold and output drops it to 0.0069, with 333 of 342 words segmentally exact.",
+      "reference": "spec notes"
+    }
+  }
 }

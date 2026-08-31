@@ -599,5 +599,12 @@
       ],
       "notes": "Nasal place assimilation: /n/ is velar [ŋ] before a velar stop (Ohala 1999; Shapiro 2003). Urdu writes no separate velar-nasal letter, so the place is read off the following stop. The assimilation is the regular reading, not the only one — Hindustani also has morphologically derived /n/+velar clusters (ʊn+kaː), which is why the plain /n/ stays in the candidate list rather than being rewritten away."
     }
-  ]
+  ],
+  "audit": {
+    "wikipron": {
+      "conclusion": "input_limited",
+      "measured": "0 of the 6296 wikipron/ur gold words carry harakat, yet 5867 of 34091 gold segments (17.2%) are short vowels /e i u/ in non-initial position, where the Perso-Arabic abjad writes nothing at all. No G2P over bare Urdu script can recover these without a pronunciation lexicon, which is out of scope for this spec.",
+      "reference": "spec notes"
+    }
+  }
 }
