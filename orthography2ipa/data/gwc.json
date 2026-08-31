@@ -313,5 +313,12 @@
         "i"
       ]
     }
+  },
+  "audit": {
+    "wikipron": {
+      "conclusion": "input_limited",
+      "measured": "Gawri has five contrastive tones (Baart & Sagar, The Gawri Language of Kalam and Dir Kohistan, SIL International, section 2.2). The 1995 spelling committee did provide tone diacritics, but section 2.3, 'The writing of tone in Gawri', states that 'on most words the tone marks would not need to be used' and that they are expected only 'in some cases ... for disambiguation'. Ordinary Gawri spelling therefore leaves tone out, and the gold bears that out exactly: 0 of the 208 rows of wikipron/gwc_arab_broad carry a tone diacritic in the Perso-Arabic column, against 204 of 208 gold transcriptions carrying one. Scored over the same 208 pairs, PER is 0.4323; folding tone out of both sides drops it to 0.2917. Tone accounts for only about a third of this row -- the larger part of the gap is segmental and is not closed by this conclusion.",
+      "reference": "spec notes"
+    }
   }
 }

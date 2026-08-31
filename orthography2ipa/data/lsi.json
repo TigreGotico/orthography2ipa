@@ -654,5 +654,12 @@
   ],
   "urls": [
     "https://www.omniglot.com/writing/lashi.htm"
-  ]
+  ],
+  "audit": {
+    "wikipron": {
+      "conclusion": "input_limited",
+      "measured": "Lacid is tonal, with three phonemic tones (Hkaw Luk 2017, A grammatical sketch of Lacid, MA thesis, Payap University, p.16). The Roman orthography the Lacid community developed marks tone with English punctuation marks, a device the same thesis reports the Lacid literature and culture committee wants replaced and which the author sets aside in favour of IPA tone letters (pp.3-4). No gold headword uses it: 0 of the 141 rows of wikipron/lsi_latn_narrow carry a tone mark of any kind in the orthographic column, against 141 of 141 gold transcriptions carrying a Chao tone letter. 42 of the 96 unique spellings recur with more than one transcription. Scored over the same 141 pairs, PER is 0.4872; folding the Chao tone letters out of both sides drops it to 0.1843, with 85 of 141 words then exact. The residual is segmental and remains open.",
+      "reference": "spec notes"
+    }
+  }
 }

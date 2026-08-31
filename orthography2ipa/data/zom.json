@@ -201,5 +201,12 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Zou_language"
-  ]
+  ],
+  "audit": {
+    "wikipron": {
+      "conclusion": "input_limited",
+      "measured": "Zou has three contrastive tones -- level, low-rising and falling (Singh & Himmat 2013, Zou Phonology, Language in India 13(2):683-701, 'Suprasegments'), and the acute and grave in that paper are the authors' own analytic marks, not letters of the Cope romanisation. The romanisation itself writes none of them: 0 of the 165 gold headwords in wikipron/zom_latn_narrow carry any tone diacritic, against 165 of 165 gold transcriptions that do, and 10 of the 24 spellings attested with more than one transcription differ in tone alone, so no rule over segments could recover the melody. Scored over the same 165 pairs the harness sees, PER is 0.4611; folding every tone diacritic out of both hypothesis and gold drops it to 0.1924. The remaining 0.19 is segmental and is NOT covered by this conclusion -- it is still open work.",
+      "reference": "spec notes"
+    }
+  }
 }
