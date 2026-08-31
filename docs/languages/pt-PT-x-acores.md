@@ -138,7 +138,7 @@ eng.transcribe("touradas") # toˈwɾadɐʃ — /ow/ preserved
 
 - **Rogers, Francis M. (1948).** *Insular Portuguese Pronunciation: Porto Santo
   and Eastern Azores.* Hispanic Review 16(1): 1–32. University of Pennsylvania
-  Press. <https://doi.org/10.2307/470527>
+  Press. <https://doi.org/10.2307/470808>
 - **Mateus, M. H. M. & d'Andrade, E. (2000).** *The Phonology of Portuguese.*
   Oxford University Press.
 
