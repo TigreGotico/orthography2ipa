@@ -241,5 +241,12 @@
         "w"
       ]
     }
+  },
+  "audit": {
+    "wikipron": {
+      "conclusion": "input_limited",
+      "measured": "Gikuyu tone is phonemic and not written at all (Englebretson 2015; Armstrong 1940; Clements 1984). 321 of 1025 unique gold spellings (31.3%) recur with two or more distinct transcriptions, 251 of them differing only in tone/downstep diacritics the plain orthography never writes. Folding every tone mark out of both hypothesis and gold on the same word pairs drops PER from the shipped 0.3914 to 0.0523.",
+      "reference": "spec notes"
+    }
   }
 }

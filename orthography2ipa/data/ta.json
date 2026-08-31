@@ -2286,5 +2286,12 @@
       ],
       "notes": "Intervocalic / post-nasal voicing; see TA_VOICE_N_ka (Keane 2004: 111-116; Krishnamurti 2003: 4.2)."
     }
-  ]
+  ],
+  "audit": {
+    "wikipron": {
+      "conclusion": "at_ceiling_documented",
+      "measured": "A 2026 wave audit tested whether the wikipron/ta row's residual PER (0.3757, n=10093) is unmodelled stop-voicing allophony; a full confusion-matrix decomposition shows the dominant edits are narrow allophonic vowel-quality notation (a->ɐ, i->ɪ, u->ʊ, a->ɑ; ~28,070 of ~28,400 total edits) against only ~288 stop-voicing edits (~1%). The gold writes narrow allophonic vowel symbols even in non-reduced syllables, while Keane (2004) treats /i a u/ as the phonemic inventory; reproducing the gold's narrow transcription would misdescribe the language rather than model a positional process, so the existing 102 TA_GEM*/TA_NOVOICE_*/TA_VOICE_* rules were kept unchanged.",
+      "reference": "spec notes"
+    }
+  }
 }

@@ -569,5 +569,12 @@
       ],
       "notes": "See YO_NASAL_AFTER_NASAL_ONSET_I_MID."
     }
-  ]
+  ],
+  "audit": {
+    "wikipron": {
+      "conclusion": "input_limited",
+      "measured": "Yoruba orthography does write tone (acute/grave/mid), but the wikipron scrape's headwords mostly do not carry it: only 32 of 4937 words (0.65%) have a tone diacritic, so an unmarked (mid-tone) vowel is scored wrong whenever the gold's real tone is high or low. Folding tone and nasalisation marks out of both sides drops PER from 0.3832 to 0.0284 on the same 4065 words; tests/test_yoruba_tone_and_nasal_vowels.py (63/63) confirms tone itself is fully modelled. This is a degraded-input ceiling, not an unhandled feature.",
+      "reference": "spec notes; see docs/languages/yo.md"
+    }
+  }
 }

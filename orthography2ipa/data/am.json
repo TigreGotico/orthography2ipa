@@ -1028,5 +1028,12 @@
     "longitude": 39.543456,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Amharic."
+  },
+  "audit": {
+    "wikipron": {
+      "conclusion": "input_limited",
+      "measured": "Two things the Ge'ez abugida structurally cannot write account for most of the wikipron/am residual (raw PER 0.3662, n=388): gemination is contrastive but never marked in the script (Hayward & Hayward 1992 p.49), and the sixth order (sadis) is ambiguous between /i/ and a bare consonant with no vowel. Folding gemination out of both sides drops PER to 0.3327; folding the sixth-order ambiguity as well drops it to 0.1048; after also correcting three sourced grapheme values (kʼ for the qa row, the ʔ/ʕ merger, and the tap /ɾ/ for r-row gemination-conditioned by Hayward & Hayward p.50), the combined-fold ceiling is 0.0581 -- well under the 0.25 gating threshold -- so the row is input-limited.",
+      "reference": "spec notes"
+    }
   }
 }

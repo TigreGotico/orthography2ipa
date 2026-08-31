@@ -569,5 +569,12 @@
         "u"
       ]
     }
+  },
+  "audit": {
+    "wikipron": {
+      "conclusion": "input_limited",
+      "measured": "Gungbe is tonal (H/M/L); neither the Benin nor the Nigerian Latin orthography writes tone as a matter of course, so tone is not recoverable from ordinary spelling and the benchmark row is dominated by that convention gap rather than by segmental error. A specific reading of the rare acute/grave tone-marked vowels as a tone value was measured and refused for lack of a citable Gun/Gungbe tone-orthography source.",
+      "reference": "spec notes"
+    }
   }
 }
