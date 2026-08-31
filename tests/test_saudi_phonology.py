@@ -87,18 +87,29 @@ def test_qassimi_qaf_merger_and_gahawa_inherited():
 # ── Rijāl Almaʿ: the archaic lateral emphatics, kept DISTINCT ────────────────
 def test_rijal_alma_dad_is_a_voiced_lateral_emphatic():
     """Watson & Al-Azraqi 2011:428; Asiri 2009: *ḍ (ض) → voiced lateralized
-    pharyngealized fricative [ɮˤ], the sound that made Arabic lughat al-ḍād."""
-    assert RIJ.transcribe_word("ضَرَبَ") == "ˈɮˤaraba"
-    assert RIJ.transcribe_word("ضَان") == "ˈɮˤaːn"
+    pharyngealized fricative [ɮˤ], the sound that made Arabic lughat al-ḍād.
+
+    The following low vowel backs to [ɑ] after this lateral emphatic too —
+    the engine-generic ``"emphatic"`` allophone-rule class fires on ANY IPA
+    carrying the ˤ diacritic (is_pharyngealized_consonant), so a lateral
+    emphatic triggers emphasis spread exactly like the coronal ones (Watson
+    2002; Davis 1995) — a case the old hardcoded ``preceded_by_phoneme=[tˤ,
+    dˤ, sˤ, ðˤ, zˤ]`` lists elsewhere in the codebase could not reach.
+    """
+    assert RIJ.transcribe_word("ضَرَبَ") == "ˈɮˤɑraba"
+    assert RIJ.transcribe_word("ضَان") == "ˈɮˤɑːn"
     assert RIJ.transcribe_word("أَرْض") == "ˈʔarɮˤ"
 
 
 def test_rijal_alma_dha_is_a_voiceless_lateral_emphatic():
     """Watson & Al-Azraqi 2011:428: *ẓ (ظ) → VOICELESS lateralized pharyngealized
     fricative [ɬˤ] — and it is kept DISTINCT from *ḍ, which every other modern
-    dialect merges."""
-    assert RIJ.transcribe_word("ظَهْر") == "ˈɬˤahr"
-    assert RIJ.transcribe_word("ظِل") == "ˈɬˤil"
+    dialect merges.
+
+    /a/ backs to [ɑ] and /i/ backs to [ɪ] after this lateral emphatic (the
+    generic ``"emphatic"`` neighbour class; Watson 2002; Davis 1995)."""
+    assert RIJ.transcribe_word("ظَهْر") == "ˈɬˤɑhr"
+    assert RIJ.transcribe_word("ظِل") == "ˈɬˤɪl"
     # the *ḍ/*ẓ contrast: ض is voiced [ɮˤ], ظ is voiceless [ɬˤ]
     assert RIJ.transcribe_word("ضَرَبَ")[1] == "ɮˤ"[0]
     assert RIJ.transcribe_word("ظَهْر")[1] == "ɬˤ"[0]
