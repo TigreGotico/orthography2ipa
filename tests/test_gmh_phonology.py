@@ -72,3 +72,46 @@ def test_single_z_is_tied_affricate():
     tie bar.
     """
     assert transcribe("herze", "gmh") == "ˈhɛrt͡sə"
+
+
+def test_wikt_variant_shares_phonology_with_lachmann_gmh():
+    """`gmh-x-wikt` inherits phonology whole via `graphemes_base`.
+
+    Regression guard against restating the phonology table for the
+    Wiktionary title-form variant: the unstressed-e reduction, apical
+    ⟨s⟩, and ⟨tz⟩/⟨zz⟩ gemination rules established on `gmh` above must
+    hold identically here, since only the written convention (not the
+    phonology) differs between the two specs.
+    """
+    assert transcribe("bade", "gmh-x-wikt") == "ˈbadə"
+    assert transcribe("bette", "gmh-x-wikt") == "ˈbɛttə"
+    assert transcribe("katze", "gmh-x-wikt") == "ˈkat͡sːə"
+    assert transcribe("herze", "gmh-x-wikt") == "ˈhɛrt͡sə"
+
+
+def test_wikt_variant_umlaut_vowels_survive_from_base():
+    """⟨æ œ ä ö ü⟩ are kept: Wiktionary's own title policy treats them as
+    separate letters, not as diacritics stripped from article titles
+    (Wiktionary:About Middle High German), so they must still read exactly
+    as they do under `gmh`.
+    """
+    assert transcribe("bræche", "gmh-x-wikt") == transcribe("bræche", "gmh")
+    assert transcribe("bühse", "gmh-x-wikt") == transcribe("bühse", "gmh")
+
+
+def test_wikt_variant_has_no_circumflex_length_graphemes():
+    """The circumflex length graphemes (â î ô û) are nulled out.
+
+    Wiktionary's title-slug convention never writes a circumflex — the
+    style page reserves diacritic display for the ``head`` parameter only,
+    not the page title WikiPron scrapes — so the plain vowel letter must
+    read as short, and the circumflex spelling must not be a recognised
+    grapheme of this variant at all.
+    """
+    from orthography2ipa.json_loader import load_json_spec
+
+    lang = load_json_spec("gmh-x-wikt")
+    for grapheme in ("â", "î", "ô", "û"):
+        assert grapheme not in lang.graphemes, grapheme
+    # the plain vowel default (short) survives unchanged from `gmh`
+    assert transcribe("man", "gmh-x-wikt") == "ˈman"
