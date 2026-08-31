@@ -3962,6 +3962,11 @@
   "gating": true,
   "harness_version": "1.1",
   "limit": null,
+  "valid_ceiling": {
+   "per": 0.2538,
+   "folded": "vowel length mark ː",
+   "citation": "As-scored PER (n=6466, broad+strip_stress, enm_latn_broad.tsv) is 0.2981, matching the committed board row. Counted on the harness's own scored representation (each reading run through benchmark.normalize(broad=True, strip_stress=True), deduplicated per headword), 1403 of the 6466 headwords (21.7%) retain two or more distinct normalized readings that differ from each other ONLY by the presence of ː on a vowel -- the gold disagrees with itself about vowel length within the same headword (Irish -> readings iriʃ / iːriʃ; Simon -> simɔn / simɔːn). The same predicate over raw, un-normalized TSV strings gives 1291 (20.0%) instead; 1403 is reported here because normalization always runs before scoring, so it is the count that matches what the PER computation actually sees. Spot-checked mismatches assign length to plain vowel letters this spec's macron graphemes (ā ē ī ō ū) have no orthographic basis to predict. Folding ː out of both hypothesis and gold measures 0.2538 -- this does NOT clear the 0.25 production threshold, so the row remains open rather than proved input-limited; something beyond vowel-length notation still accounts for roughly a quarter of the row's segments. Folding combining acute/grave/caron alongside it made no difference (0.2538, unchanged) -- the gold does not carry those marks for this row, a negative result, not a second ceiling contributor. A separate fold for word-final -e (strip trailing [ə] on both sides when the headword ends in orthographic e) was tried and makes PER worse (0.3144) because it strips correct [ə] outputs into mismatches; that is a negative result, not a ceiling -- see docs/gold_defects.md."
+  },
   "oracle_per_top3": 0.2645,
   "oracle_exact_top3": 0.1239,
   "oracle_per_top5": 0.2298,
@@ -5270,6 +5275,11 @@
   "gating": true,
   "harness_version": "1.1",
   "limit": null,
+  "valid_ceiling": {
+   "per": 0.1733,
+   "folded": "four-way pitch-accent diacritics (rising/falling x long/short) + vowel-length mark",
+   "citation": "As-scored PER (n=26469, broad+strip_stress convention) is 0.3000. Landau, Lončarić, Horga & Škarić 1995 (JIPA 25(2):83-86, doi:10.1017/S002510030000520X), p.85, describe the four-way word-accent contrast (long rising, short rising, long falling, short falling) and state the accent marks they use 'are not part of the usual orthography, but are used to mark the accents in specialized linguistic works'; standard Croatian spelling never writes them. Measured in the gold: 95.4% of wikipron/hbs_latn_broad entries carry a pitch-accent diacritic (caron/circumflex/grave/acute) on a vowel and 53.5% carry the length mark ː, against 0% of the orthographic input forms carrying either. Folding the accent diacritics out of both sides alone takes PER to 0.2269; folding length alone takes it to 0.2524; folding both together reaches 0.1733. Syllabic /r/ is written in the gold with the IPA syllabicity mark directly on r (e.g. prst -> p r̩̂ s t), not with an epenthetic schwa, and the spec's existing syllabic-r rule already targets that representation, so no schwa-insertion rule was needed or added. Measured this session against the wikipron/hr (hbs_latn_broad.tsv) gold; not itself sourced as a target number."
+  },
   "oracle_per_top3": 0.2979,
   "oracle_exact_top3": 0.0055,
   "oracle_per_top5": 0.2979,
@@ -7770,6 +7780,11 @@
   "gating": true,
   "harness_version": "1.1",
   "limit": null,
+  "valid_ceiling": {
+   "per": 0.2096,
+   "folded": "vowel length + consonant gemination",
+   "citation": "Re-measured against the current spec (post #1366's short-⟨a⟩ backness fix, raw PER 0.3048, n=10169). Scandinavian quantity is one contrast written two ways -- a long vowel XOR a geminate consonant -- so both notations of it are folded together on both hypothesis and gold: the vowel length mark ː is stripped, and any run of an identical letter (the doubled-letter notation _expand_consonant_length already canonicalises consonant gemination to) is collapsed to one. That fold alone moves PER to 0.2096, clearing the 0.25 production threshold. Folding the ¹/² toneme digits on top makes no further difference (0.2096, unchanged) because this gold carries zero toneme digits, confirming the toneme fold remains a no-op for ipadict specifically, as recorded when this ceiling was first measured pre-fix in #1361 (then 0.3397 raw / 0.2477 folded, both stale after #1366 moved the underlying vowel rule)."
+  },
   "oracle_per_top3": 0.2432,
   "oracle_exact_top3": 0.177,
   "oracle_per_top5": 0.2295,
@@ -7790,6 +7805,11 @@
   "gating": true,
   "harness_version": "1.1",
   "limit": null,
+  "valid_ceiling": {
+   "per": 0.2995,
+   "folded": "vowel length + consonant gemination + toneme",
+   "citation": "Re-measured against the current spec (raw PER 0.3654, n=2725, up from 0.3471 pre-#1366 -- see the notes field for the unresolved front/back split behind that regression). The same length+gemination fold used for ipadict moves this row to 0.3039; folding the ¹/² toneme digits on top (this gold, unlike ipadict, carries them) moves it further to 0.2995. That does NOT clear the 0.25 production threshold, so this row stays open rather than proved input-limited: something beyond notation, plausibly the front/back ⟨a⟩ split documented in the notes field, still accounts for roughly three tenths of the row's segments."
+  },
   "oracle_per_top3": 0.2991,
   "oracle_exact_top3": 0.1582,
   "oracle_per_top5": 0.2865,
@@ -11124,6 +11144,11 @@
   "gating": true,
   "harness_version": "1.1",
   "limit": null,
+  "valid_ceiling": {
+   "per": 0.1901,
+   "folded": "tonal-accent diacritics (acute/grave/circumflex) + stress placement + vowel length + e/o mid-vowel quality + syllabic-r epenthetic schwa",
+   "citation": "As-scored PER (n=5139, broad+strip_stress convention) is 0.3284. 97.7% of gold entries carry a Slovene dictionary-style pitch-accent mark (acute/grave/circumflex) that standard orthography never writes -- Sustarsic, Komar & Petek 1995 (JIPA 25(2):86-90, doi:10.1017/S0025100300005211) report that stress placement is 'not predictable' from spelling, and that in their own careful phonetic transcription the acute/circumflex pitch-accent contrast is left unmarked because it is 'seldom lexically distinctive' and varies between speakers, even though vowel length and stress position are marked despite the redundancy. Folding the tone/stress diacritics out of both sides (they encode information the orthography cannot signal) takes PER to 0.2284. Folding the e/o mid-vowel quality contrast on top (the same source reports 'e' represents [e, ɛ, ə] and 'o' represents [o, ɔ] with no orthographic mark, already modelled here as a graphemes candidate list) adds almost nothing on its own (0.3284 -> 0.3282 alone) but reaches 0.1941 combined with the tone/stress fold. Folding a syllabic-r epenthetic schwa (er/re <-> r alternations) on top reaches 0.1901. Folding word-final l -> w l-vocalisation (already a candidate allophone in this spec) on top of all the above made no further difference (0.1901 unchanged) -- a negative result showing the l~w choice is not a current PER driver, so no new rule was added for it. Measured this session against the wikipron/sl gold; not itself sourced as a target number."
+  },
   "oracle_per_top3": 0.3085,
   "oracle_exact_top3": 0.0179,
   "oracle_per_top5": 0.2976,

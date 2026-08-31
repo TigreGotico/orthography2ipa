@@ -373,3 +373,82 @@ class TestCeilingResolvesByDatasetNotLanguage:
         # The vox_communis row must NOT show ipadict's ceiling.
         assert "0.0246" not in vox_line
         assert " - " in vox_line or "| - |" in vox_line
+
+
+class TestSpecCeilingReachesTheBoard:
+    """Issue #1396: a `valid_ceiling` recorded on a spec is read by
+    `_valid_ceiling(lang, dataset)` only at SCORING time, and written onto
+    the row in `benchmarks/results.json` only then. A measurement-only PR
+    that adds or corrects a spec's ceiling without moving any PER correctly
+    triggers no board regeneration, so the spec and the committed board can
+    disagree indefinitely with nothing to catch it. This walks every spec
+    that declares `valid_ceiling` for a dataset and asserts the committed
+    row for that (language, dataset) pair carries the identical measurement.
+    """
+
+    def _committed_rows(self):
+        import sys
+        import os
+        sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
+        import benchmark  # noqa: E402
+        with open(benchmark.SCOREBOARD_JSON, encoding="utf-8") as fh:
+            rows = json.load(fh)
+        return {(r["lang"], r["dataset"]): r for r in rows}
+
+    def test_every_spec_ceiling_matches_its_board_row(self):
+        from orthography2ipa import available_codes, get
+
+        rows = self._committed_rows()
+        missing = []
+        mismatched = []
+        for code in available_codes():
+            try:
+                spec = get(code)
+            except Exception:
+                continue
+            ceilings = spec.valid_ceiling
+            if not ceilings:
+                continue
+            for dataset, ceiling in ceilings.items():
+                row = rows.get((code, dataset))
+                if row is None or "valid_ceiling" not in row:
+                    missing.append((code, dataset))
+                    continue
+                if row["valid_ceiling"]["per"] != ceiling.per:
+                    mismatched.append(
+                        (code, dataset, ceiling.per, row["valid_ceiling"]["per"])
+                    )
+        assert not missing, (
+            f"spec declares valid_ceiling for a dataset with no matching "
+            f"board measurement: {missing}"
+        )
+        assert not mismatched, (
+            f"board valid_ceiling.per disagrees with the spec: "
+            f"(lang, dataset, spec_per, board_per) = {mismatched}"
+        )
+
+    def test_no_board_row_carries_a_ceiling_its_spec_no_longer_declares(self):
+        """The reverse gap: a row keeps a `valid_ceiling` after its spec's
+        was removed (this happens when a ceiling is later found to rest on
+        a bug and is deliberately deleted, as with a Sanskrit-family fix
+        this repo has shipped). A stale board value would then assert a
+        measurement the spec no longer makes."""
+        from orthography2ipa import available_codes, get
+
+        rows = self._committed_rows()
+        stale = []
+        for (code, dataset), row in rows.items():
+            if "valid_ceiling" not in row:
+                continue
+            try:
+                spec = get(code)
+            except Exception:
+                stale.append((code, dataset))
+                continue
+            ceilings = spec.valid_ceiling or {}
+            if dataset not in ceilings:
+                stale.append((code, dataset))
+        assert not stale, (
+            f"board row carries valid_ceiling with no matching spec "
+            f"declaration: {stale}"
+        )
