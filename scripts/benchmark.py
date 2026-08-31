@@ -1693,6 +1693,74 @@ def load_wikipron_ar_diacritized(lang: str, limit: int) -> List[Tuple[str, str]]
     return pairs
 
 
+#: Base URL of the restored-orthography republication of the affected
+#: WikiPron golds. One file per language, same two-column shape.
+_WIKIPRON_RESTORED_URL = (
+    "https://huggingface.co/datasets/TigreGotico/wikipron-restored-orthography"
+    "/resolve/main/{lang}.tsv"
+)
+
+#: WikiPron golds whose orthography column is lossy because the English
+#: Wiktionary style policy for the language keeps diacritics out of page
+#: TITLES while displaying them on the headword line.
+_WIKIPRON_RESTORED_LANGS = {
+    "ee": "Ewe",
+    "gmh": "Middle High German",
+    "yo": "Yoruba",
+    "he": "Hebrew",
+}
+
+
+def load_wikipron_restored(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """WikiPron gold with the DISPLAY headword put back in the input column.
+
+    WikiPron scrapes the Wiktionary page TITLE. Several language style
+    policies strip diacritics from titles and restore them only on the
+    headword line: ``Wiktionary:Middle High German entry guidelines``
+    says that "certain letters with diacritics (ë ā ē ī ō ū ȥ) are not
+    used in article titles, but are used when displaying the word", and
+    Ewe, Yoruba and Hebrew titles likewise drop tone marks and niqqud.
+    The orthography those rows hand the engine therefore does not encode
+    contrasts the gold IPA still transcribes, and the resulting PER
+    measures the input's loss, not the spec's rules.
+
+    This row keeps the SAME gold IPA and replaces only the input word
+    with the headword Wiktionary renders for that language, recovered
+    from the MediaWiki API by
+    ``scripts/restore_wikipron_orthography.py`` and republished as
+    ``TigreGotico/wikipron-restored-orthography``. Coverage is partial:
+    a page with no headword override, no section for the language, or
+    two conflicting headwords contributes no row, so this gold is a
+    SUBSET of the matching ``wikipron`` row and its PER is only
+    comparable to that row restricted to the same words. Nothing is
+    guessed and no row falls back to the title.
+
+    Middle High German is scored against ``gmh``, never against
+    ``gmh-x-wikt``: ``gmh-x-wikt`` models the title-form spelling the
+    plain ``wikipron`` row feeds it, and the restored word is a third
+    orthography again — the display form, with the ``ë ā ē ī ō ū ȥ`` the
+    title convention drops.
+
+    The published files carry an ``orthography\tipa`` header row so the
+    Hugging Face dataset viewer renders them; it is skipped here.
+    """
+    if lang not in _WIKIPRON_RESTORED_LANGS:
+        return []
+    fname = f"wikipron_restored_{lang}.tsv"
+    text = _fetch(_WIKIPRON_RESTORED_URL.format(lang=lang), fname)
+    pairs = []
+    lines = text.strip().splitlines()
+    if lines and lines[0] == "orthography\tipa":
+        lines = lines[1:]
+    for line in lines:
+        parts = line.split("\t")
+        if len(parts) == 2:
+            pairs.append((parts[0], parts[1]))
+        if len(pairs) >= limit:
+            break
+    return pairs
+
+
 def load_mirandese(lang: str, limit: int) -> List[Tuple[str, str]]:
     """Mirandese HUMAN gold set (TigreGotico/mirandese_g2p on Hugging Face).
 
@@ -2969,6 +3037,8 @@ DATASETS: Dict[str, Tuple[DatasetLoader, List[str]]] = {
     "wikipron": (load_wikipron, sorted(_WIKIPRON_FILES)),
     "wikipron_ar_diacritized": (load_wikipron_ar_diacritized, ["ar"]),
     "wikipron_nor": (load_wikipron_nor, sorted(_WIKIPRON_FILES_MACRO)),
+    "wikipron_restored": (load_wikipron_restored,
+                          sorted(_WIKIPRON_RESTORED_LANGS)),
     "mirandese_g2p": (load_mirandese, sorted(_MIRANDESE_DIALECTS)),
     "barranquenho_dict": (load_barranquenho_dict, ["ext-PT-x-barrancos"]),
     "mirandese_dict": (load_mirandese_dict, sorted(_MIRANDESE_DICT_DIALECTS)),
@@ -3158,6 +3228,11 @@ PROVENANCE: Dict[str, str] = {
     # Same crowd-scraped WikiPron tier as ``wikipron``; a different file,
     # scraped under the Norwegian MACROLANGUAGE code (see load_wikipron_nor).
     "wikipron_nor": "crowd-scraped",
+    # The gold IPA is byte-identical to ``wikipron`` and the input word
+    # comes from the same Wiktionary page, read from the headword line
+    # instead of the page title. No new annotator and no machine
+    # transcription enter, so the tier does not move.
+    "wikipron_restored": "crowd-scraped",
     # Portal da Língua Portuguesa scrape; semi-automated IPA, not hand-verified
     # A COMPETITOR'S OUTPUT reused as a reference. These phonemes come from the
     # espeak-ng-backed phonemizer, so this row measures AGREEMENT WITH ESPEAK,
