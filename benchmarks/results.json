@@ -432,6 +432,11 @@
   "gating": true,
   "harness_version": "1.1",
   "limit": null,
+  "valid_ceiling": {
+   "per": 0.2476,
+   "folded": "short vowels (harakat)",
+   "citation": "Wiktionary files Arabic entries at the unvocalized page title (Wiktionary:About_Arabic), so the wikipron input column carries no harakat; folding short vowels out of the gold IPA before rescoring gives this consonant-only floor. See this file's notes, 'MEASURED UNDECIDABLE-INPUT CEILING'."
+  },
   "oracle_per_top3": 0.2539,
   "oracle_exact_top3": 0.0763,
   "oracle_per_top5": 0.2521,

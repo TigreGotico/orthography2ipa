@@ -692,5 +692,12 @@
     "longitude": 35.0179,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Modern Hebrew."
+  },
+  "audit": {
+    "wikipron": {
+      "conclusion": "input_limited",
+      "measured": "0 of 6811 wikipron input words (heb_hebr_broad.tsv) carry any niqqud combining mark (U+05B0-05BC, U+05BD, U+05C1, U+05C2, U+05C7); Wiktionary explicitly forbids niqqud in Hebrew page names (Wiktionary:About_Hebrew / Wiktionary:Hebrew_entry_guidelines, 'Entry name': 'Do not use niqqud (vowel points) in page names'), matching this spec's own notes ('unpointed text (the norm) omits most vowels'). The gold also mixes transcription traditions (a minority of rows are Tiberian-style: ɔː, ə, ŋ), which is a separate, unquantified confound on the same row, so no fold was run and no valid_ceiling is recorded -- a ceiling number here would conflate the two effects.",
+      "reference": "spec notes"
+    }
   }
 }

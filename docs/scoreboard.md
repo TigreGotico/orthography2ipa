@@ -53,7 +53,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | ar | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar | gold20_arabic | 20 | 0.0051‡ | - | - | - | - | - | [0.0010, 0.0102] | 0.8000 | research | llm-generated |
 | ar | ipadict | 857160 | 0.3774 | - | 0.3380 | 0.3334 | 0.0053 | 0.0059 | [0.3772, 0.3776] | 0.0030 | research | machine-generated |
-| ar | wikipron | 14268 | 0.3139 | - | 0.2539 | 0.2521 | 0.0763 | 0.0798 | [0.3116, 0.3162] | 0.0444 | research | crowd-scraped |
+| ar | wikipron | 14268 | 0.3139 | 0.2476† (short vowels (harakat)) | 0.2539 | 0.2521 | 0.0763 | 0.0798 | [0.3116, 0.3162] | 0.0444 | research | crowd-scraped |
 | ar | wikipron_ar_diacritized | 14240 | 0.1721 | - | 0.1710 | 0.1710 | 0.3055 | 0.3055 | [0.1696, 0.1746] | 0.3051 | research | crowd-scraped |
 | ar-AE | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar-AE | gold20_arabic | 20 | 0.0441‡ | - | - | - | - | - | [0.0253, 0.0651] | 0.3500 | research | llm-generated |
