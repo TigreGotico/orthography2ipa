@@ -158,7 +158,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | ba | vox_communis | 70528 | 0.4047‡ | - | 0.4047 | 0.4047 | 0.0191 | 0.0191 | [0.4038, 0.4056] | 0.0191 | research | epitran-derived |
 | ba | wikipron | 171 | 0.2685 | - | 0.2685 | 0.2685 | 0.4211 | 0.4211 | [0.2233, 0.3172] | 0.4211 | research | crowd-scraped |
 | ban | wikipron | 299 | 0.1630 | - | 0.1355 | 0.1313 | 0.4013 | 0.4214 | [0.1482, 0.1789] | 0.3378 | research | crowd-scraped |
-| bbl | wikipron | 414 | 0.3228 | - | 0.3228 | 0.3228 | 0.2005 | 0.2005 | [0.2960, 0.3501] | 0.2005 | research | crowd-scraped |
+| bbl | wikipron | 414 | 0.2790 | 0.2635 (lateral+pharyngeal) | 0.2790 | 0.2790 | 0.2802 | 0.2802 | [0.2524, 0.3048] | 0.2802 | research | crowd-scraped |
 | bbn | wikipron | 194 | 0.0689 | - | 0.0689 | 0.0689 | 0.6495 | 0.6495 | [0.0556, 0.0836] | 0.6495 | research | crowd-scraped |
 | bcl | wikipron | 4793 | 0.0652 | - | 0.0652 | 0.0652 | 0.6359 | 0.6359 | [0.0624, 0.0680] | 0.6359 | research | crowd-scraped |
 | bdq | wikipron | 198 | 0.3363 | - | 0.3363 | 0.3363 | 0.1465 | 0.1465 | [0.3013, 0.3676] | 0.1465 | research | crowd-scraped |

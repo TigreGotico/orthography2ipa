@@ -60,7 +60,7 @@ def test_marked_vowel_is_the_accented_one(lang, word, expected):
     ("bbl", "ცაცხო", "tsʰatsʰˈxɔ"),
     ("ru-x-northern", "Авиценна", "avʲɪˈtsʲenna"),
     # …but a geminate stop is two consonants and does divide.
-    ("bbl", "ატტაჼ", "atʼˈtʼa"),
+    ("bbl", "ატტაჼ", "atʼˈtʼã"),
 ])
 def test_the_mark_never_splits_an_affricate(lang, word, expected):
     assert G2P(lang).transcribe_word(word) == expected
