@@ -599,6 +599,7 @@ def load_json_spec(code: str) -> LanguageSpec:
             raw.get("trailing_vowel_axis_digraphs", ()) or ()),
         coda_no_inherent_vowel=bool(raw.get("coda_no_inherent_vowel", False)),
         inherent_vowel_final=raw.get("inherent_vowel_final"),
+        virama_final_vowel=raw.get("virama_final_vowel"),
         collapse_geminates=bool(raw.get("collapse_geminates", False)),
         doubled_letters_geminate=bool(
             raw.get("doubled_letters_geminate", True)),

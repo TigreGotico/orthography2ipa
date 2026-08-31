@@ -2017,6 +2017,13 @@ class PhonetokTokenizer:
                         if next_ch and _is_virama(next_ch):
                             # Virama — bare consonant; consume the mark so that
                             # C+virama+C falls out as a cluster (conjuncts).
+                            # An absolute word-final virama gets a different
+                            # reading (``virama_final_vowel``, applied as a
+                            # whole-word finalisation stage in g2p.py rather
+                            # than here) — fused into THIS token it would
+                            # hide the bare consonant from gemination rules
+                            # that need to see it, e.g. Malayalam's
+                            # ⟨റ്റ⟩ = /tː/ (TA_GEM1_r/TA_GEM2_r).
                             consumed += 1
                         elif not self._supplies_vowel_at(text, next_pos):
                             # Nothing supplies a vowel — but if the current

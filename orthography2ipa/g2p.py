@@ -61,6 +61,8 @@ from orthography2ipa.phonetok import (
     lower_str,
     slot_confidence,
 )
+from orthography2ipa.phonetok import _VIRAMA_COMBINING_CLASS
+from orthography2ipa.vowels import is_ipa_vowel
 from orthography2ipa.allophony import compile_allophone_rescorer
 from orthography2ipa.positional import (match_grammatical_ending,
                                         merge_nucleusless_final_syllable,
@@ -1229,6 +1231,16 @@ class G2P:
                                         self.spec.phonemes or ())
         if collapse_geminates and self.spec.collapse_geminates and ipa:
             ipa = _collapse_geminates(ipa)
+        # Word-final virama: run AFTER geminate collapse so a doubled
+        # letter that closes with a virama (Malayalam ⟨റ്റ⟩ + ് =
+        # /tː/ + samvrutokaram) gets the vowel attached to the already-
+        # collapsed geminate, not fused into one half of the pair where
+        # the gemination allophone rule could no longer see a bare
+        # consonant to match. See ``virama_final_vowel`` on LanguageSpec.
+        if (self.spec.virama_final_vowel is not None and word and ipa
+                and unicodedata.combining(word[-1]) == _VIRAMA_COMBINING_CLASS
+                and not is_ipa_vowel(ipa[-1])):
+            ipa = ipa + self.spec.virama_final_vowel
         if self.spec.tone_marks_syllable_final and ipa:
             ipa = dock_tone_marks(ipa, self.spec.phonemes or ())
         # A forced reading is not re-stressed: `ph` is the pronunciation, mark and
