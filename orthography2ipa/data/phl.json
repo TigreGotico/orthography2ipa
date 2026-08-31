@@ -3,7 +3,7 @@
   "name": "Phalura",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "gh": [
       "ɡʰ"
@@ -153,7 +153,7 @@
       "notes": "Descent from Indo-Aryan (Dardic, Indo-Iranian); Liljegren (2008)"
     }
   ],
-  "notes": "Skeleton. Phalura/Palula (Dardic, Indo-Aryan; Chitral, Pakistan). Latin practical orthography with retroflex ṭ/ḍ/ṇ/ṣ/ṛ, aspirate digraphs and acute tone/accent marks (unencoded). Doubled vowels rendered long.",
+  "notes": "Skeleton. Phalura/Palula (Dardic, Indo-Aryan; Chitral, Pakistan). Latin practical orthography with retroflex ṭ/ḍ/ṇ/ṣ/ṛ, aspirate digraphs and acute tone/accent marks (unencoded). Doubled vowels rendered long. Stress exemption: Phalura (Palula) has a lexical pitch-accent system that is only partially predictable and not consistently marked in the orthography modeled here; no stress block is declared. Source: Liljegren, Henrik (2008), Towards a grammatical description of Palula, ch. on prosody.",
   "iso639_3": "phl",
   "glottolog_code": null,
   "sources": [
