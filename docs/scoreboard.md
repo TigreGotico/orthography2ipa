@@ -229,7 +229,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | en-US | ipa_childes | 18053 | 0.2756‡ | - | 0.2137 | 0.1912 | 0.3487 | 0.3803 | [0.2724, 0.2790] | 0.2765 | research | espeak-derived |
 | en-US | ipadict | 125923 | 0.2973 | - | 0.2337 | 0.2076 | 0.2475 | 0.2807 | [0.2961, 0.2985] | 0.1778 | research | lexicon-derived |
 | enf | northeuralex | 838 | 0.0892 | - | 0.0888 | 0.0888 | 0.5346 | 0.5346 | [0.0819, 0.0963] | 0.5346 | research | lexicon-derived |
-| enm | wikipron | 6466 | 0.2981 | 0.2538 (vowel length mark ː) | 0.2645 | 0.2298 | 0.1239 | 0.1961 | [0.2941, 0.3023] | 0.0981 | research | crowd-scraped |
+| enm | wikipron | 6466 | 0.2620 | 0.2163† (vowel length mark ː) | 0.2270 | 0.1924 | 0.1681 | 0.2505 | [0.2580, 0.2660] | 0.1174 | research | crowd-scraped |
 | eo | ipadict | 23245 | 0.0120 | - | 0.0120 | 0.0120 | 0.9039 | 0.9039 | [0.0115, 0.0125] | 0.9039 | production | machine-generated |
 | eo | wikipron | 41245 | 0.0328 | - | 0.0328 | 0.0328 | 0.7491 | 0.7491 | [0.0322, 0.0334] | 0.7491 | production | crowd-scraped |
 | es | vox_communis | 48067 | 0.0758‡ | - | 0.0728 | 0.0711 | 0.6006 | 0.6114 | [0.0746, 0.0768] | 0.5868 | production | epitran-derived |

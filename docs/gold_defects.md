@@ -278,27 +278,45 @@ closed syllables with no orthographic signal the spec's macron-letter
 graphemes (⟨ā ē ī ō ū⟩) could have used to predict it — length here tracks
 Wiktionary's own open-syllable-lengthening reconstruction, not the spelling.
 
-As-scored PER (n=6,466, `broad`, `strip_stress`) is 0.2981, matching the
-committed board row. Folding the length mark ⟨ː⟩ out of both hypothesis and
-gold — the instrument, not a rule change — measures 0.2538. That ceiling does
-NOT clear the 0.25 production threshold, so this row stays open rather than
-proved input-limited: the fold moves the number in the right direction and by
-a real amount, but something beyond vowel-length notation still accounts for
-roughly a quarter of the row's segments. Folding combining acute/grave/caron
-accents alongside the length mark made no difference (the gold does not carry
-them for this row), a negative result recorded in the spec's
-`valid_ceiling.wikipron.citation` rather than reported as part of the fold.
+As-scored PER (n=6,466, `broad`, `strip_stress`) was measured at 0.2981
+against a spec that had no grapheme entry for ⟨y⟩ anywhere — not in
+`graphemes`, not in `positional_graphemes` — so the engine silently dropped
+every ⟨y⟩ instead of erroring (`ymage` → `maɡɛ`, `yong` → `ɔnɡ`). ⟨y⟩ occurs
+in 4,593 of the 18,272 gold readings (25.1%); of the first 400 such words,
+356 have `j`, `i` or `ɪ` in the gold, so the character was being deleted, not
+merely notated differently. With ⟨y⟩ encoded positionally (a glide /j/ before
+a vowel — `yong`, `yarn`, `York` — and a vowel /i/ elsewhere, where it is a
+graphic variant of ⟨i⟩ next to minim strokes, e.g. `ydel` matching `idle`;
+Mossé 1952 and Jordan 1974 both describe this ⟨y⟩/⟨i⟩ alternation), plus
+⟨x⟩ → /ks/ (191 occurrences, all realised /ks/ in the gold, e.g. `Oxenford`)
+and ⟨ð⟩ as a thorn variant (11 occurrences, all realised [ð] in the sampled
+gold), as-scored PER moves to 0.2620. In isolation: the ⟨y⟩ fix alone moves
+0.2981 → 0.2652; adding ⟨x⟩ moves it to 0.2621; adding ⟨ð⟩ moves it to 0.2620,
+a noise-level contribution given its 11 occurrences.
+
+Folding the length mark ⟨ː⟩ out of both hypothesis and gold — the instrument,
+not a rule change — now measures 0.2163 against the fixed spec, clearing the
+0.25 production threshold: the row is input-limited by the gold's internal
+vowel-length disagreement rather than by a spec defect. The previously
+recorded 0.2538 folded figure was measured against the ⟨y⟩-dropping spec and
+undercounted correct segments the fixed spec now produces; it does not add to
+the new figure, it is superseded by it. Folding combining acute/grave/caron
+accents alongside the length mark made no difference in either measurement
+(the gold does not carry them for this row), a negative result recorded in
+the spec's `valid_ceiling.wikipron.citation` rather than reported as part of
+the fold.
 
 Word-final ⟨-e⟩ shows the same instability: of the 2,350 headwords with an
 orthographic final ⟨e⟩, only 12 have every reading realise it as [ə] and 416
 have every reading drop it; the remaining 1,922 (81.8%) mix pronounced and
 silent readings for the *same* headword. A naive fold (strip a trailing [ə]
-from both sides whenever the headword ends in ⟨e⟩) was tried and makes PER
-**worse** — 0.3144, up from 0.2981 raw — because plenty of the spec's correct
-[ə] outputs get stripped into mismatches against gold readings that keep
-theirs. This is reported as a negative result: final-⟨e⟩ inconsistency is real
-and documented, but no defensible fold for it was found, so no ceiling is
-recorded for it.
+from both sides whenever the headword ends in ⟨e⟩) was tried against the
+fixed spec and still makes PER worse — 0.2772, up from the 0.2620 as-scored
+figure — because plenty of the spec's correct [ə] outputs get stripped into
+mismatches against gold readings that keep theirs. This is reported as a
+negative result:
+final-⟨e⟩ inconsistency is real and documented, but no defensible fold for it
+was found, so no ceiling is recorded for it.
 
 Headword spelling itself is not standardised: an adjacent-sort near-duplicate
 scan (Ratcliff/Obershelp similarity > 0.86, length difference ≤ 2) over the
@@ -320,10 +338,10 @@ audit of `en-GB` is not, since it is the actual base four other lects merge
 data through.
 
 Provenance is `crowd-scraped`, so the row **can gate**. `valid_ceiling.wikipron`
-records only the length-mark fold (0.2538, below the 0.25 threshold — an open
-row, not a closed one), the one fold that was measured and improved the
-score; the final-⟨e⟩ negative result and the diacritic no-op are recorded in
-the same citation rather than as separate ceiling fields.
+records the length-mark fold (0.2163, now below the 0.25 threshold — an
+input-limited row) measured against the fixed spec; the final-⟨e⟩ negative
+result and the diacritic no-op are recorded in the same citation rather than
+as separate ceiling fields.
 
 ## Mixed conventions
 

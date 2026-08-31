@@ -2570,14 +2570,20 @@
     "lang": "enm",
     "dataset": "wikipron",
     "n": 347,
-    "per": 0.2876,
-    "per_ci_low": 0.2691,
-    "per_ci_high": 0.3072,
-    "exact_match": 0.1124,
+    "per": 0.2607,
+    "per_ci_low": 0.2423,
+    "per_ci_high": 0.2807,
+    "exact_match": 0.1383,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
+    "gating": true,
     "harness_version": "1.1",
-    "limit": 1000
+    "limit": 1000,
+    "valid_ceiling": {
+      "per": 0.2163,
+      "folded": "vowel length mark ː",
+      "citation": "Re-measured after fixing the enm ⟨y⟩/⟨x⟩/⟨ð⟩ grapheme gaps (see spec notes, y-grapheme fix). As-scored PER (n=6466, broad+strip_stress, enm_latn_broad.tsv) moved from the prior 0.2981 (measured against the defective spec that dropped ⟨y⟩ silently) to 0.2620 with the fixed spec. Folding the vowel-length mark ː out of both hypothesis and gold (same predicate as before: the gold disagrees with itself about vowel length within 1403 of 6466 headwords, e.g. Irish -> iriʃ / iːriʃ) now measures 0.2163 -- below the 0.25 production threshold. The prior 0.2538 folded figure was measured against the ⟨y⟩-dropping spec and undercounted correct segments the fixed spec now produces; it is superseded by this figure, not additive to it. This row is now input-limited by the gold's internal vowel-length disagreement rather than by a spec defect."
+    }
   },
   {
     "lang": "eo",
