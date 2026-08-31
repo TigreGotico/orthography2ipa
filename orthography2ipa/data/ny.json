@@ -362,5 +362,12 @@
     "longitude": 32.8108,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Nyanja."
+  },
+  "valid_ceiling": {
+    "wikipron": {
+      "per": 0.2604,
+      "folded": "lexical high-tone acute diacritic",
+      "citation": "As-scored PER (n=1564, broad+strip_stress convention) is 0.3119. Downing & Mtenje 2017 (The Phonology of Chichewa, OUP) §2.1 state that Chichewa contrasts lexical high and low tone but that 'tone is not indicated in Chichewa orthography'; the spec's notes already record this as deliberately unmodelled. Measured in the wikipron/nya_latn_broad gold: 731/1624 entries (45.0%) carry a combining acute-accent tone mark on a vowel or syllabic nasal, against 0/1624 orthographic headwords marking it (the two NFD hits on plain ŵ/Ŵ are the orthographic letter itself, not a tone diacritic, and were excluded). 59 of the 1564 unique headwords recur in the gold with more than one tone pattern for the identical spelling, direct evidence the orthography underdetermines tone. Folding the acute tone mark out of both hypothesis and gold (grave/circumflex/caron were checked and do not occur in this gold) takes PER to 0.2604. No vowel-length mark (ː or ˑ) occurs anywhere in this gold's 1624 entries, so a length fold was tried and made no difference — a negative result: this gold's broad transcription convention does not record the penultimate lengthening Downing & Mtenje describe, so there is nothing for a length rule to be measured against here. Measured this session against the wikipron/nya_latn_broad.tsv gold; not itself sourced as a target number."
+    }
   }
 }
