@@ -70,10 +70,14 @@ def test_hindi_monosyllable_keeps_its_only_vowel():
 # Sanskrit — does NOT delete schwa (the rule lives in the DATA, not the engine)
 # ═══════════════════════════════════════════════════════════════════════════
 
+# Symbol values below are [ɐ]/[ɑː]/[ɾ], not the [ə]/[aː]/[r] of earlier
+# specs — see sa.json's notes for the Whitney (1889) §§19,21,52 citations.
+# That change is about phonetic QUALITY only; it does not touch what this
+# test verifies, which is that the inherent vowel is never DELETED here.
 @pytest.mark.parametrize("word,expected", [
-    ("राम", "raːmə"),
-    ("कमल", "kəmələ"),
-    ("शब्द", "ɕəbd̪ə"),
+    ("राम", "ɾɑːmɐ"),
+    ("कमल", "kɐmɐlɐ"),
+    ("शब्द", "ɕɐbd̪ɐ"),
 ])
 def test_sanskrit_preserves_the_inherent_vowel(word, expected):
     """Same script, same inherent vowel, no schwa deletion — by data alone."""
@@ -113,9 +117,9 @@ def test_hindi_nukta_letters_are_mapped():
 @pytest.mark.parametrize("word,expected", [
     # Intervocalic voicing: க → [ɡ], த → [d̪], ட → [ɖ], ப → [b].
     ("புத்தகம்", "put̪ːaɡam"),   # puttakam: geminate த stays voiceless, க voices
-    ("எதிரி", "ed̪iri"),
+    ("எதிரி", "ed̪iɾi"),
     ("மகன்", "maɡan"),
-    ("பெயர்ப்படு", "pejarpːaɖu"),
+    ("பெயர்ப்படு", "pejaɾpːaɖu"),
     # Post-nasal voicing.
     ("தங்கம்", "t̪aŋɡam"),
     ("நன்கொடை", "nanɡoɖai"),
@@ -127,7 +131,7 @@ def test_hindi_nukta_letters_are_mapped():
     ("பழம்", "paɻam"),
     ("குறுகுறுக்கும்", "kuruɡurukːum"),
     # A stop after a non-nasal vowel-less consonant is NOT voiced.
-    ("பார்வை", "paːrʋai"),
+    ("பார்வை", "paːɾʋai"),
 ])
 def test_tamil_stop_allophony(word, expected):
     assert G2P("ta").transcribe(word) == expected
@@ -143,13 +147,13 @@ def test_tamil_palatal_lenites_between_vowels():
 # ═══════════════════════════════════════════════════════════════════════════
 
 def test_malayalam_inherits_tamil_voicing():
-    assert G2P("ml").transcribe("മരുതം") == "marud̪a\u0303m"
+    assert G2P("ml").transcribe("മരുതം") == "marud̪ãm"
     assert G2P("ml").transcribe("ചട്ട") == "tɕaʈːa"
 
 
 def test_malayalam_overrides_the_palatal_by_id():
     """ml voices ⟨ച⟩ to [dʑ] where ta lenites it to [s] (Asher & Kumari 1997)."""
-    assert G2P("ml").transcribe("വചനം") == "ʋadʑana\u0303m"
+    assert G2P("ml").transcribe("വചനം") == "ʋadʑanãm"
     overrides = {r.id for r in get("ml").allophone_rules
                  if r.id.startswith("TA_VOICE_tɕ")}
     assert overrides
@@ -208,7 +212,7 @@ def _reachable_slot_ipas(code):
     return vals
 
 
-@pytest.mark.parametrize("code", ["hi", "ta", "ml", "sa"])
+@pytest.mark.parametrize("code", ["hi", "ne", "ta", "ml", "sa"])
 def test_allophone_rules_key_only_on_reachable_slot_shapes(code):
     """Every rule a spec DECLARES must key on a shape that spec can emit.
 
@@ -233,3 +237,54 @@ def test_allophone_rules_key_only_on_reachable_slot_shapes(code):
             assert not dead, (
                 f"{code}: rule {rule['id']} has unreachable neighbour IPA(s) {dead}"
             )
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Nepali — conjunct-blocked schwa deletion
+# ═══════════════════════════════════════════════════════════════════════════
+#
+# Nepali and Hindi share the script, the abugida machinery and the schwa, and
+# differ in how far the deletion reaches. Nepali deletes the word-final
+# inherent vowel of a plain consonant letter but keeps it when that letter is
+# the second member of a conjunct, and it has no medial VC_CV rule at all.
+# These tests pin both halves, because the Hindi rule set is the tempting
+# thing to copy and it is wrong here.
+#
+# Sources: Khatiwada, "Nepali", JIPA 39(3) (2009), pp. 373-380; Wikipedia,
+# "Nepali language", final-schwa retention rules.
+
+@pytest.mark.parametrize("word,expected", [
+    ("नाम", "näm"),          # naam, not *naamʌ
+    ("वन", "wʌn"),           # ban/wan
+    ("नेपाल", "nepäl"),
+    ("आकाश", "äkäs"),        # one sibilant: श reads /s/
+    ("एक", "ek"),
+])
+def test_nepali_final_schwa_deleted_after_a_plain_consonant(word, expected):
+    assert G2P("ne").transcribe_word(word) == expected
+
+
+@pytest.mark.parametrize("word,expected", [
+    ("समुद्र", "sʌmud̪rʌ"),   # conjunct ⟨द्र⟩ closes the word: schwa stays
+    ("मित्र", "mit̪rʌ"),
+    ("धर्म", "d̪ʱʌrmʌ"),
+    ("अर्थ", "ʌrt̪ʰʌ"),
+])
+def test_nepali_final_schwa_survives_a_conjunct(word, expected):
+    """Hindi deletes here (शब्द [ʃəbd̪]); Nepali does not."""
+    assert G2P("ne").transcribe_word(word) == expected
+
+
+def test_nepali_has_no_medial_schwa_deletion():
+    """किनभने keeps every medial schwa — the Hindi VC_CV rule is absent."""
+    assert G2P("ne").transcribe_word("किनभने") == "kinʌbʱʌne"
+
+
+def test_nepali_one_letter_monosyllable_keeps_its_only_vowel():
+    assert G2P("ne").transcribe_word("न") == "nʌ"
+
+
+def test_nepali_and_hindi_differ_only_in_their_data():
+    """The same conjunct-final word, two languages, two answers."""
+    assert G2P("hi").transcribe_word("शब्द") == "ʃəbd̪"
+    assert G2P("ne").transcribe_word("शब्द").endswith("ʌ")
