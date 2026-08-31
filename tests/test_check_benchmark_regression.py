@@ -7,6 +7,7 @@ fail closed instead of reporting "no regressions detected" on an
 empty comparison. Also covers the harness_version/limit compatibility
 guard added alongside it.
 """
+import json
 import os
 import sys
 
@@ -14,7 +15,9 @@ import pytest
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
 
-from benchmark import HARNESS_VERSION  # noqa: E402
+from benchmark import (  # noqa: E402
+    CI_SAMPLE_JSON, CI_SAMPLE_LIMIT, HARNESS_VERSION, SCOREBOARD_JSON,
+)
 import check_benchmark_regression as cbr  # noqa: E402
 
 
@@ -118,3 +121,51 @@ class TestCompetitorDerivedGoldNeverGates:
         cur.pop("provenance", None)
         diff_rows, regressed_rows = cbr.compare(baseline, [cur], epsilon=0.005)
         assert len(regressed_rows) == 1
+
+
+class TestCiSampleMatchesFullBelowCap:
+    """This gate is one-sided by design (see the module docstring): it
+    only fails on a PER *increase*, so an IMPROVEMENT that only lands in
+    ``results.json`` never trips it, and the committed
+    ``results_ci_sample.json`` baseline goes stale silently. A PR shipped
+    with the two files disagreeing while this job stayed green.
+
+    The uniform ``CI_SAMPLE_LIMIT`` gives one case that is mechanically
+    checkable without re-running any loader: when a row's covered-word
+    count (``n``) agrees between the full board and the CI sample, both
+    runs necessarily scored the identical, un-truncated word set (the CI
+    run never hit its cap), so the two files must report the identical
+    PER by construction. A mismatch there is not sampling variance, it is
+    a stale baseline.
+
+    Rows where ``n`` disagrees between the two files are excluded on
+    purpose: that mismatch means the CI run's raw extraction WAS capped
+    at ``CI_SAMPLE_LIMIT`` even though the covered count that survived
+    scoring happens to be below it (some gold entries get filtered out
+    after extraction), so the sample is a genuine, expected subset of a
+    larger dataset rather than an identical rescoring of it.
+    """
+
+    def test_full_and_ci_sample_agree_when_n_matches(self):
+        full_rows = json.load(open(SCOREBOARD_JSON, encoding="utf-8"))
+        ci_rows = json.load(open(CI_SAMPLE_JSON, encoding="utf-8"))
+        full = {(r["lang"], r["dataset"]): r for r in full_rows}
+
+        violations = []
+        for crow in ci_rows:
+            key = (crow["lang"], crow["dataset"])
+            frow = full.get(key)
+            if frow is None:
+                continue
+            if crow["n"] >= CI_SAMPLE_LIMIT or crow["n"] != frow["n"]:
+                continue
+            if abs(crow["per"] - frow["per"]) > 1e-9:
+                violations.append(
+                    (key, frow["n"], frow["per"], crow["per"]))
+
+        assert violations == [], (
+            "results_ci_sample.json disagrees with results.json on a row "
+            "whose sample was never truncated (same n, below "
+            f"CI_SAMPLE_LIMIT={CI_SAMPLE_LIMIT}), so the sample IS the "
+            "full set and must match exactly: "
+            f"{violations}")
