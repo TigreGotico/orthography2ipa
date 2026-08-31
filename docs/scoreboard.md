@@ -168,7 +168,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | bjb | wikipron | 136 | 0.1021 | - | 0.1021 | 0.1021 | 0.5956 | 0.5956 | [0.0773, 0.1261] | 0.5956 | research | crowd-scraped |
 | bn | vox_communis | 30261 | 0.2051‡ | - | 0.1997 | 0.1996 | 0.1874 | 0.1874 | [0.2031, 0.2070] | 0.1874 | research | epitran-derived |
 | bn | wikipron | 6527 | 0.2395 | 0.2274† (inherent_vowel_word_final_quality) | 0.2036 | 0.2012 | 0.2798 | 0.2827 | [0.2345, 0.2445] | 0.2404 | research | crowd-scraped |
-| bo | wikipron | 1564 | 0.3785 | - | 0.3718 | 0.3715 | 0.2174 | 0.2174 | [0.3606, 0.3962] | 0.2174 | research | crowd-scraped |
+| bo | wikipron | 1564 | 0.3871 | - | 0.3806 | 0.3803 | 0.2174 | 0.2174 | [0.3683, 0.4061] | 0.2174 | research | crowd-scraped |
 | br | wikipron | 803 | 0.3210 | - | 0.2353 | 0.2168 | 0.1806 | 0.2192 | [0.3093, 0.3337] | 0.0872 | research | crowd-scraped |
 | bua | northeuralex | 1174 | 0.0398 | - | 0.0398 | 0.0398 | 0.7726 | 0.7726 | [0.0351, 0.0448] | 0.7726 | research | lexicon-derived |
 | bua | wikipron | 140 | 0.3571 | - | 0.3120 | 0.3114 | 0.1571 | 0.1571 | [0.3243, 0.3881] | 0.1143 | research | crowd-scraped |
