@@ -126,3 +126,29 @@ class TestPolishRzDoesNotVoiceThePrecedingStop:
     def test_final_affricate_devoices(self):
         from orthography2ipa import G2P
         assert G2P("pl").transcribe_word("łódź") == "ˈwutɕ"
+
+
+class TestMiddleEnglishYIsNotDropped:
+    """enm shipped no grapheme entry for ⟨y⟩ at all -- not in graphemes, not
+    in positional_graphemes -- so the engine silently dropped it rather than
+    erroring: ymage -> maɡɛ, yong -> ɔnɡ (the initial glide vanished). ⟨y⟩ is
+    positional in Middle English: a glide /j/ before a vowel (yong, yarn,
+    York) and a vowel /i/ elsewhere, where it is a graphic variant of ⟨i⟩
+    (ydel, matching idle) -- Mossé (1952) and Jordan (1974) both describe the
+    ⟨y⟩/⟨i⟩ alternation outside the glide environment."""
+
+    def test_initial_y_before_vowel_is_the_glide(self):
+        assert G2P("enm").transcribe_word("yong").startswith("j")
+        assert G2P("enm").transcribe_word("yarn").startswith("j")
+
+    def test_y_before_consonant_is_the_vowel_not_dropped(self):
+        ipa = G2P("enm").transcribe_word("ymage")
+        assert ipa.startswith("i")
+        assert not ipa.startswith("m")
+
+    def test_x_is_ks_not_dropped(self):
+        assert "ks" in G2P("enm").transcribe_word("axe")
+
+    def test_eth_is_a_thorn_variant_not_dropped(self):
+        ipa = G2P("enm").transcribe_word("arveð")
+        assert "ð" in ipa or "θ" in ipa
