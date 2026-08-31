@@ -439,6 +439,30 @@ row **can gate**; fixing the schwa reduction, apical ⟨s⟩, and ⟨tz⟩/⟨zz
 gemination rules (all recoverable from the gold's own spelling, unlike the
 two cases above) moved PER from 0.2938 to 0.1022 at constant n=1516.
 
+### Kapampangan, `wikipron`
+
+The `pam` spec's mid front vowel /ɛ/ is analysed as open-mid, following the
+language's Wikipedia phonology summary (which in turn cites Forman 1971,
+*Kapampangan Grammar Notes*, pp.28-29, for the language's stress system). The
+gold never writes that symbol: 0 of 926 headwords carry ⟨ɛ⟩, while 119 carry
+the plain ⟨e⟩ this spec's own transcribed vowel is not. The vowel letter is
+written in both cases — only the IPA symbol choice differs — so this is a
+notation-convention mismatch, not an unwritten contrast, and it is left
+unfixed rather than mimicked: fixing the spec's phoneme to plain /e/ to match
+one gold's transcription convention would be gold-fitting against a
+Forman-sourced analysis. Folding ⟨ɛ⟩ to ⟨e⟩ on both sides moves this row's PER
+from 0.2861 to 0.2586 in isolation; it is not counted toward the spec's
+`valid_ceiling` for this row (see `pam.json`), which is reserved for
+phenomena the orthography genuinely cannot write (the glottal stop and the
+lexical, unmarked stress that drives the /a/~[ə], /i/~[ɪ], /u/~[ʊ]
+alternation).
+
+The same file also carries plain crowd-scraped noise: 48 of its headwords
+recur with two or more mutually incompatible readings for the identical
+spelling (e.g. "Guagua" → ɡwaɡwə vs wawəʔ, "anak" → ənak vs anək), consistent
+with unpredictable per-annotator stress placement rather than a systematic
+convention split. Provenance is `crowd-scraped`, so the row **can gate**.
+
 ## Circular
 
 ### Portuguese and Arabic TTS gold (`portuguese_tts`, `arabic_tts`)
