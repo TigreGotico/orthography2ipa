@@ -250,6 +250,7 @@ class TestBackfilledRecordsRoundTrip:
         ("se", "wikipron", AuditConclusion.CHANGE_REFUSED_UNCITED),
         ("ja", "ipadict", AuditConclusion.LOGOGRAPHIC),
         ("da", "wikipron", AuditConclusion.AT_CEILING_DOCUMENTED),
+        ("so", "kaikki", AuditConclusion.CHANGE_REFUSED_UNCITED),
     ])
     def test_backfilled_conclusion_loads(self, code, dataset, conclusion):
         spec = json_loader.load_json_spec(code)
@@ -259,3 +260,27 @@ class TestBackfilledRecordsRoundTrip:
             f"{list(spec.audit)}"
         )
         assert spec.audit[dataset].conclusion == conclusion
+
+
+class TestSoAtrFoldRefused:
+    """so/kaikki (#so-tone-ceiling): a tone-only ``valid_ceiling`` is
+    recorded, but the much larger [+/-ATR] vowel-quality fold (ɑ ɛ ɪ ɔ ɞ
+    onto a e i o) is deliberately refused for lack of a citation that
+    settles whether the contrast is real or a notation artifact (Gabbard
+    2010). This pins both halves of that decision so neither can silently
+    regress: the ceiling must stay tone-only, and the audit conclusion must
+    stay a refusal, not a claim the vowel question is resolved."""
+
+    def test_valid_ceiling_folds_tone_only_not_vowel_quality(self):
+        spec = json_loader.load_json_spec("so")
+        ceiling = spec.valid_ceiling["kaikki"]
+        assert ceiling.folded == "tone"
+        assert ceiling.per == pytest.approx(0.4092)
+        for lax_vowel in "ɑɛɪɔɞ":
+            assert lax_vowel not in ceiling.folded
+
+    def test_atr_fold_is_recorded_as_refused_not_resolved(self):
+        spec = json_loader.load_json_spec("so")
+        entry = spec.audit["kaikki"]
+        assert entry.conclusion == AuditConclusion.CHANGE_REFUSED_UNCITED
+        assert "ATR" in entry.measured
