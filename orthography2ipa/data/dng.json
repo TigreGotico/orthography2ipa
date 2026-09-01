@@ -205,8 +205,8 @@
       "title": "Implications of the Soviet Dungan Script for Chinese Language Reform (Two Non-Tetragraphic Northern Sinitic Languages)",
       "publisher": "Sino-Platonic Papers 18, Department of East Asian Languages and Civilizations, University of Pennsylvania",
       "url": "https://sino-platonic.org/complete/spp018_dungan_gyami.pdf",
-      "pages": null,
-      "notes": "Open-access. Source for the 1953 Frunze adoption of the alphabet (32 Cyrillic letters plus five), for the three-tone standard dialect against the four-tone Shaanxi dialect, and for the statement that tone is never written in running text and is given only in dictionaries. The paper prints no page numbers; the tone passage is on PDF page 12.",
+      "pages": "A-10",
+      "notes": "Open-access. Source for the 1953 Frunze adoption of the alphabet (32 Cyrillic letters plus five), for the three-tone standard dialect against the four-tone Shaanxi dialect, and for the statement that tone is never written in running text and is given only in dictionaries. Most of the paper's pages carry no printed page number; the tone passage sits on the page numbered A-10 (read off a rendered image of PDF page 12, since the text layer carries no reliable page marker there): \"Those who designed the SD alphabet wisely refrained from requiring the indication of tones in running text ... Tones are, however, specified in dictionaries (they are even given for borrowings such as brigadir I-I-III), in much the same fashion that we provide pronunciation guides in our English dictionaries. SD also has an elaborate system of stressed and unstressed syllables ... but these are not designated in the orthography nor in dictionaries. It is expected that the native reader will automatically produce the correct tones, sandhi, and stress when vocalizing a text.\" Rimsky-Korsakoff, S. (1967), \"Soviet Dungan: The Chinese Language of Central Asia\" (Monumenta Serica 26), the standard reference for Dungan tone being contrastive, is JSTOR-gated (stable/40726621) with no freely accessible full text found by a scripted fetch, and was not obtained.",
       "wikipedia_url": null
     },
     {
@@ -319,5 +319,19 @@
   ],
   "vowel_graphemes": [
     "ў"
-  ]
+  ],
+  "audit": {
+    "wikipron": {
+      "conclusion": "input_limited",
+      "measured": "dng/wikipron (n=269) scores as-scored PER 0.4087, no exact matches. Almost the entire residue is a single missing symbol class: the gold carries a Chao tone-letter digit (mostly ²⁴, ⁵¹, ⁴⁴, plus a handful of ⁰ and length-plus-tone sequences) on every syllable, and the Soviet Dungan Cyrillic orthography this spec transcribes writes none of them (Mair 1990, p. A-10). Folding the superscript tone digits out of both sides with the harness's own normalize()/levenshtein() (scripts/fold_dng_notation.py) drops PER to 0.0244 with 88.1% of words matching exactly, confirming the segmental model underneath is close to right and the gap is notational.",
+      "reference": "spec notes; valid_ceiling.wikipron; scripts/fold_dng_notation.py"
+    }
+  },
+  "valid_ceiling": {
+    "wikipron": {
+      "per": 0.0244,
+      "folded": "tone",
+      "citation": "Mair, Victor H. (1990), \"Implications of the Soviet Dungan Script for Chinese Language Reform\", Sino-Platonic Papers 18, University of Pennsylvania, p. A-10: \"Those who designed the SD alphabet wisely refrained from requiring the indication of tones in running text ... Tones are, however, specified in dictionaries (they are even given for borrowings such as brigadir I-I-III), in much the same fashion that we provide pronunciation guides in our English dictionaries.\" The orthography this spec transcribes is running text, not a dictionary; the wikipron gold is drawn from Wiktionary, which is exactly the kind of dictionary Mair says carries tone that running Dungan text does not. As-scored PER against wikipron (n=269) is 0.4087, matching the committed board row. Folding the gold's superscript Chao tone-letter digits (²⁴, ⁵¹, ⁴⁴, ⁰, and the rarer length-plus-tone sequences) out of BOTH sides with the harness's own normalize()/levenshtein() (scripts/fold_dng_notation.py) measures 0.0244, with 88.1% of words exact. Rimsky-Korsakoff, S. (1967), \"Soviet Dungan: The Chinese Language of Central Asia\" (Monumenta Serica 26), the standard reference for Dungan tone being phonemically contrastive, is JSTOR-gated with no freely accessible full text found and was not obtained; this ceiling rests on Mair 1990 alone, whose passage presupposes contrastive tone throughout (\"It is expected that the native reader will automatically produce the correct tones, sandhi, and stress when vocalizing a text\"). A separate, smaller residue -- a spurious word-final r this spec emits in the -әр ending and a mismatched rhotic in the -эр/erhua ending, about 15 words -- is not folded here and is left as follow-up work; see the р discussion in the spec notes."
+    }
+  }
 }

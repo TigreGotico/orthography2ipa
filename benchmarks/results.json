@@ -3597,7 +3597,12 @@
   "oracle_per_top5": 0.4087,
   "oracle_exact_top5": 0.0,
   "oracle_fallback_words": 0,
-  "oracle_scored_words": 269
+  "oracle_scored_words": 269,
+  "valid_ceiling": {
+   "per": 0.0244,
+   "folded": "tone",
+   "citation": "Mair 1990 (Sino-Platonic Papers 18, p. A-10) states that Soviet Dungan orthography never marks tone in running text and that tone is instead \"specified in dictionaries ... in much the same fashion that we provide pronunciation guides in our English dictionaries\"; the wikipron gold is drawn from Wiktionary, a dictionary in exactly that sense. Measured over 269 scored words, baseline PER 0.4087 (0.0000 exact) drops to 0.0244 (0.8810 exact) once the gold's superscript Chao tone-letter digits are folded out of both sides. See orthography2ipa/data/dng.json (audit, valid_ceiling) and scripts/fold_dng_notation.py."
+  }
  },
  {
   "lang": "dsb",

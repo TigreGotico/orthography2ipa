@@ -239,6 +239,12 @@ class TestLoaderParsesShippedData:
         assert spec.valid_ceiling["wikipron"].per == pytest.approx(0.008)
         assert spec.valid_ceiling["wikipron"].folded == "tone"
 
+    def test_dng_valid_ceiling_loads(self):
+        spec = json_loader.load_json_spec("dng")
+        assert spec.valid_ceiling is not None
+        assert spec.valid_ceiling["wikipron"].per == pytest.approx(0.0244)
+        assert spec.valid_ceiling["wikipron"].folded == "tone"
+
 
 class TestScoreboardColumn:
     def test_ceiling_column_present_and_marks_below_threshold(
