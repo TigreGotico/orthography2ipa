@@ -210,7 +210,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | de-DE | ipadict | 777785 | 0.2303 | - | 0.1862 | 0.1724 | 0.1886 | 0.2104 | [0.2300, 0.2307] | 0.1390 | research | crowd-scraped |
 | de-x-alemannic | wikipron | 448 | 0.1736 | - | 0.1382 | 0.1291 | 0.5402 | 0.5580 | [0.1561, 0.1940] | 0.4554 | research | crowd-scraped |
 | dlm | wikipron | 180 | 0.2476 | - | 0.2476 | 0.2476 | 0.2000 | 0.2000 | [0.2193, 0.2770] | 0.2000 | research | crowd-scraped |
-| dng | wikipron | 269 | 0.4087 | - | 0.4087 | 0.4087 | 0.0000 | 0.0000 | [0.4003, 0.4181] | 0.0000 | research | crowd-scraped |
+| dng | wikipron | 269 | 0.4087 | 0.0244† (tone) | 0.4087 | 0.4087 | 0.0000 | 0.0000 | [0.4003, 0.4181] | 0.0000 | research | crowd-scraped |
 | dsb | wikipron | 2010 | 0.1487 | - | 0.1487 | 0.1487 | 0.4522 | 0.4522 | [0.1408, 0.1564] | 0.4522 | research | crowd-scraped |
 | dum | wikipron | 197 | 0.2776 | - | 0.2776 | 0.2776 | 0.2234 | 0.2234 | [0.2514, 0.3024] | 0.2234 | research | crowd-scraped |
 | dv | vox_communis | 16770 | 0.0801‡ | - | 0.0801 | 0.0801 | 0.4960 | 0.4960 | [0.0785, 0.0818] | 0.4960 | research | epitran-derived |
