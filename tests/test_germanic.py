@@ -1843,27 +1843,49 @@ class TestSaterlandFrisian:
     def test_sch_postalveolar(self):
         _assert_first(_grapheme(self._spec, "sch"), "ʃ", label="stq sch")
 
-    def test_sp_initial(self):
-        """<sp> → /ʃp/ (shared with Low German)."""
-        _assert_first(_grapheme(self._spec, "sp"), "ʃp", label="stq sp")
+    def test_sp_plain_with_palatalized_variant(self):
+        """<sp> → /sp/ by default; /ʃp/ is a younger-speaker tendency only.
 
-    def test_st_initial(self):
-        """<st> → /ʃt/ (shared with Low German)."""
-        _assert_first(_grapheme(self._spec, "st"), "ʃt", label="stq st")
+        Peters (2017: 224) describes /s/-palatalization before /p, t/ as a
+        younger-speaker tendency, not a categorical rule, and the
+        stq/wikipron gold's ⟨sp⟩ tokens are unpalatalized.
+        """
+        candidates = _grapheme(self._spec, "sp")
+        _assert_first(candidates, "sp", label="stq sp")
+        _assert_contains(candidates, "ʃp", label="stq sp palatalized variant")
 
-    # --- Final devoicing ---
+    def test_st_plain_with_palatalized_variant(self):
+        """<st> → /st/ by default; /ʃt/ is a younger-speaker tendency only.
 
-    def test_b_final_devoicing(self):
+        Peters (2017: 224) describes /s/-palatalization before /p, t/ as a
+        younger-speaker tendency, not a categorical rule, and the
+        stq/wikipron gold's medial ⟨st⟩ tokens (⟨Aaste⟩, ⟨Akster⟩) are
+        unpalatalized.
+        """
+        candidates = _grapheme(self._spec, "st")
+        _assert_first(candidates, "st", label="stq st")
+        _assert_contains(candidates, "ʃt", label="stq st palatalized variant")
+
+    # --- Final devoicing is a tendency, voiced is the default reading ---
+    # Peters (2017: 224): "Younger speakers tend to devoice voiced (lenis)
+    # obstruents in syllable-final position." The wikipron gold keeps the
+    # voiced stop in 51/53 word-final <b>/<d> tokens, so the spec ranks the
+    # voiced reading first and keeps the devoiced one as a candidate.
+
+    def test_b_final_voiced_with_devoiced_variant(self):
         p = _positional(self._spec, "b", GraphemePosition.WORD_FINAL)
-        _assert_contains(p, "p", label="stq b word_final")
+        _assert_first(p, "b", label="stq b word_final")
+        _assert_contains(p, "p", label="stq b word_final devoiced variant")
 
-    def test_d_final_devoicing(self):
+    def test_d_final_voiced_with_devoiced_variant(self):
         p = _positional(self._spec, "d", GraphemePosition.WORD_FINAL)
-        _assert_contains(p, "t", label="stq d word_final")
+        _assert_first(p, "d", label="stq d word_final")
+        _assert_contains(p, "t", label="stq d word_final devoiced variant")
 
-    def test_g_final_devoicing(self):
+    def test_g_final_voiced_with_devoiced_variant(self):
         p = _positional(self._spec, "g", GraphemePosition.WORD_FINAL)
-        _assert_contains(p, "k", label="stq g word_final")
+        _assert_first(p, "ɡ", label="stq g word_final")
+        _assert_contains(p, "k", label="stq g word_final devoiced variant")
 
     # --- Positional s voicing ---
 
