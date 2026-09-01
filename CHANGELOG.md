@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.90.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.90.0a1) (2026-09-01)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.89.2a1...7.90.0a1)
+
+**Merged pull requests:**
+
+- feat: add which\_tests.py to map a spec to its test files [\#1453](https://github.com/TigreGotico/orthography2ipa/pull/1453) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.89.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.89.2a1) (2026-09-01)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.89.1a1...7.89.2a1)
@@ -595,19 +603,19 @@
 
 ## [7.82.24a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.24a1) (2026-08-26)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.22a1...7.82.24a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.23a1...7.82.24a1)
 
 **Merged pull requests:**
 
 - fix\(yrk\): map every confusable of the glottal-stop apostrophe letters, and correct their phoneme labels [\#1267](https://github.com/TigreGotico/orthography2ipa/pull/1267) ([JarbasAl](https://github.com/JarbasAl))
 
-## [7.82.22a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.22a1) (2026-08-26)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.23a1...7.82.22a1)
-
 ## [7.82.23a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.23a1) (2026-08-26)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.21a2...7.82.23a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.22a1...7.82.23a1)
+
+## [7.82.22a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.22a1) (2026-08-26)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.21a2...7.82.22a1)
 
 **Merged pull requests:**
 
@@ -661,10 +669,6 @@
 ## [7.82.17a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.17a1) (2026-08-25)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.16a1...7.82.17a1)
-
-**Merged pull requests:**
-
-- fix\(engine\): let a rule triggered at a doubled consonant's own syllable boundary reach the half it applies to [\#1251](https://github.com/TigreGotico/orthography2ipa/pull/1251) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.82.16a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.16a1) (2026-08-25)
 
