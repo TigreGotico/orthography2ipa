@@ -255,6 +255,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | ext-PT-x-barrancos | primary_sources | 10† | 0.2801 | - | 0.2241 | 0.2241 | 0.4000 | 0.4000 | [0.1363, 0.4286] | 0.3000 | research | expert-human |
 | fa | ipadict | 7695 | 0.2540 | - | 0.2309 | 0.2253 | 0.1193 | 0.1220 | [0.2507, 0.2574] | 0.1077 | research | machine-generated |
 | fa | wikipron | 9279 | 0.3943 | - | 0.3742 | 0.3702 | 0.0177 | 0.0178 | [0.3911, 0.3971] | 0.0170 | research | crowd-scraped |
+| fa-x-enp | wikipron | 9279 | 0.2381 | - | 0.2121 | 0.2064 | 0.1230 | 0.1258 | [0.2352, 0.2410] | 0.1024 | research | crowd-scraped |
 | fax | wikipron | 655 | 0.1044 | - | 0.0685 | 0.0683 | 0.6550 | 0.6565 | [0.0950, 0.1140] | 0.5053 | research | crowd-scraped |
 | fi | ipadict | 92836 | 0.0609 | - | 0.0609 | 0.0609 | 0.5012 | 0.5012 | [0.0604, 0.0613] | 0.5012 | production | machine-generated |
 | fi | vox_communis | 13324 | 0.0037‡ | - | 0.0037 | 0.0037 | 0.9678 | 0.9678 | [0.0033, 0.0041] | 0.9678 | production | epitran-derived |

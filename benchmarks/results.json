@@ -4490,6 +4490,26 @@
   "oracle_scored_words": 9279
  },
  {
+  "lang": "fa-x-enp",
+  "dataset": "wikipron",
+  "n": 9279,
+  "per": 0.2381,
+  "per_ci_low": 0.2352,
+  "per_ci_high": 0.241,
+  "exact_match": 0.1024,
+  "quality_tier": "research",
+  "provenance": "crowd-scraped",
+  "gating": true,
+  "harness_version": "1.1",
+  "limit": null,
+  "oracle_per_top3": 0.2121,
+  "oracle_exact_top3": 0.123,
+  "oracle_per_top5": 0.2064,
+  "oracle_exact_top5": 0.1258,
+  "oracle_fallback_words": 0,
+  "oracle_scored_words": 9279
+ },
+ {
   "lang": "fax",
   "dataset": "wikipron",
   "n": 655,
