@@ -17,9 +17,18 @@ encodes distinctions the gold IPA still transcribes.
     letter
 
 The display form is recoverable from the MediaWiki API. This script
-fetches a WikiPron gold file, reads each page, and takes the headword
-that Wiktionary renders for the target language. The IPA column is never
-touched.
+reads every page a WikiPron scrape names and takes the headword
+Wiktionary renders for the target language, writing out a
+``title -> display`` map per language. ``scripts/wikipron_mirror.py``
+merges those maps into the published mirror; the IPA is never touched
+and no gold file is rewritten.
+
+Which languages belong here is not a guess either. Every language
+upstream publishes is screened once against
+``Wiktionary:About <Language>`` and checked against the scraped words,
+and only a confirmed screen earns a place in ``LANGS``. The screen,
+including the languages found not to be affected, lives in
+``scripts/wikipron_mirror.py``.
 
 Correctness rules, in order of importance:
 
@@ -38,7 +47,8 @@ Correctness rules, in order of importance:
 
 Usage::
 
-    python scripts/restore_wikipron_orthography.py ee gmh yo he --out-dir out/
+    O2I_WIKIPRON_TSV=~/tmp/wikipron/data/scrape/tsv \
+        python scripts/restore_wikipron_orthography.py ewe yor --out-dir restored/
 """
 from __future__ import annotations
 
@@ -56,10 +66,6 @@ import urllib.parse
 import urllib.request
 from typing import Dict, Iterable, List, Optional, Set, Tuple
 
-WIKIPRON_BASE = (
-    "https://raw.githubusercontent.com/CUNY-CL/wikipron/master/data/"
-    "scrape/tsv/"
-)
 API = "https://en.wiktionary.org/w/api.php"
 USER_AGENT = (
     "orthography2ipa-wikipron-restore/1.0 "
@@ -68,15 +74,52 @@ USER_AGENT = (
 CACHE_DIR = os.environ.get(
     "O2I_WIKT_CACHE", os.path.expanduser("~/tmp/o2i-wiktionary-cache"))
 
-#: One entry per affected WikiPron gold: the scrape file, the English
-#: Wiktionary ``==L2==`` section heading, and the Wiktionary language code
-#: that headword templates are tagged with.
-LANGS: Dict[str, Tuple[str, str, str]] = {
-    "ee": ("ewe_latn_broad.tsv", "Ewe", "ee"),
-    "gmh": ("gmh_latn_broad.tsv", "Middle High German", "gmh"),
-    "yo": ("yor_latn_broad.tsv", "Yoruba", "yo"),
-    "he": ("heb_hebr_broad.tsv", "Hebrew", "he"),
+#: One entry per WikiPron language the screen confirmed: the English
+#: Wiktionary ``==L2==`` section heading and the Wiktionary language code
+#: that headword templates are tagged with. Keys are WikiPron's own
+#: ISO 639-3 file prefixes, so a language covers every script and
+#: transcription width upstream publishes for it.
+#:
+#: ``scripts/wikipron_mirror.py`` holds the screen itself, including the
+#: languages that were checked and found not to be affected.
+#:
+#: Being listed here is not a promise that the language is restored in
+#: the published mirror. Restoration costs one page render per word and
+#: the largest scrapes run to six figures; ``manifest.json`` says which
+#: languages actually carry restored rows.
+LANGS: Dict[str, Tuple[str, str]] = {
+    "ajp": ("South Levantine Arabic", "ajp"),
+    "ang": ("Old English", "ang"),
+    "apc": ("North Levantine Arabic", "apc"),
+    "car": ("Kari'na", "car"),
+    "ceb": ("Cebuano", "ceb"),
+    "dum": ("Middle Dutch", "dum"),
+    "evn": ("Evenki", "evn"),
+    "ewe": ("Ewe", "ee"),
+    "gmh": ("Middle High German", "gmh"),
+    "gml": ("Middle Low German", "gml"),
+    "grc": ("Ancient Greek", "grc"),
+    "goh": ("Old High German", "goh"),
+    "hau": ("Hausa", "ha"),
+    "hbs": ("Serbo-Croatian", "sh"),
+    "heb": ("Hebrew", "he"),
+    "nci": ("Classical Nahuatl", "nci"),
+    "nya": ("Chichewa", "ny"),
+    "okm": ("Middle Korean", "okm"),
+    "osx": ("Old Saxon", "osx"),
+    "pam": ("Kapampangan", "pam"),
+    "pan": ("Punjabi", "pa"),
+    "sga": ("Old Irish", "sga"),
+    "tgl": ("Tagalog", "tl"),
+    "yor": ("Yoruba", "yo"),
+    "yrk": ("Tundra Nenets", "yrk-tun"),
 }
+
+#: Directory of the pinned upstream scrape, set by
+#: ``scripts/wikipron_mirror.py pin``. Falls back to fetching from
+#: upstream's branch, which is fine for a one-off but is not what the
+#: published mirror is built from.
+SCRAPE_DIR = os.environ.get("O2I_WIKIPRON_TSV", "")
 
 #: Requests per second against the MediaWiki API. Deliberately gentle.
 RATE = float(os.environ.get("O2I_WIKT_RATE", "3"))
@@ -306,21 +349,6 @@ def prefetch_renders(titles: List[str]) -> None:
                       flush=True)
 
 
-def fetch_gold(fname: str) -> List[Tuple[str, str]]:
-    path = _cache_path("gold", fname)
-    if os.path.exists(path):
-        text = open(path, encoding="utf-8").read()
-    else:
-        text = _get(WIKIPRON_BASE + fname)
-        _write_atomic(path, text)
-    rows = []
-    for line in text.strip().split("\n"):
-        parts = line.split("\t")
-        if len(parts) == 2:
-            rows.append((parts[0], parts[1]))
-    return rows
-
-
 # ─── the restoration itself ─────────────────────────────────────────────────
 
 def restore_word(title: str, wikitext: str, section_name: str, code: str,
@@ -352,37 +380,54 @@ def restore_word(title: str, wikitext: str, section_name: str, code: str,
     return head, "restored"
 
 
+def gold_titles(lang: str) -> List[str]:
+    """Every distinct scraped word for *lang*, across all its files.
+
+    Restoration is keyed on the page title and scoped to one language
+    section, so broad and narrow scrapes of the same language share one
+    lookup and one render.
+    """
+    if not SCRAPE_DIR:
+        raise SystemExit(
+            "set O2I_WIKIPRON_TSV to a pinned scrape directory; see "
+            "scripts/wikipron_mirror.py pin")
+    names = [n for n in sorted(os.listdir(SCRAPE_DIR))
+             if n.startswith(lang + "_") and n.endswith(".tsv")]
+    if not names:
+        raise SystemExit(f"no {lang} scrape in {SCRAPE_DIR}")
+    texts = [open(os.path.join(SCRAPE_DIR, n), encoding="utf-8").read()
+             for n in names]
+    titles: Set[str] = set()
+    for text in texts:
+        for line in text.strip().split("\n"):
+            parts = line.split("\t")
+            if len(parts) == 2:
+                titles.add(parts[0])
+    return sorted(titles)
+
+
 def restore_language(lang: str, limit: int = 0):
-    fname, section_name, code = LANGS[lang]
-    gold = fetch_gold(fname)
+    """Return ``(title -> display, outcome counts)`` for one language."""
+    section_name, code = LANGS[lang]
+    titles = gold_titles(lang)
     if limit:
-        gold = gold[:limit]
-    titles = sorted({w for w, _ in gold})
+        titles = titles[:limit]
     wikitext = fetch_wikitext(titles)
-    counts = {k: 0 for k in ("restored", "unchanged", "no_section",
-                             "no_headword", "conflict", "residue",
-                             "skeleton_mismatch")}
-    rows: List[Tuple[str, str]] = []
-    baseline: List[Tuple[str, str]] = []
-    mismatches: List[Tuple[str, str]] = []
     prefetch_renders(
         [t for t in titles
          if (sec := language_section(wikitext.get(t, ""), section_name))
          is not None and worth_rendering(t, sec, code)])
-    cache: Dict[str, Tuple[Optional[str], str]] = {}
-    for word, ipa in gold:
-        if word not in cache:
-            cache[word] = restore_word(
-                word, wikitext.get(word, ""), section_name, code, fetch_render)
-        restored, outcome = cache[word]
+    restored: Dict[str, str] = {}
+    counts = {k: 0 for k in ("restored", "unchanged", "no_section",
+                             "no_headword", "conflict", "residue",
+                             "skeleton_mismatch")}
+    for title in titles:
+        form, outcome = restore_word(
+            title, wikitext.get(title, ""), section_name, code, fetch_render)
         counts[outcome] += 1
-        if outcome == "skeleton_mismatch":
-            mismatches.append((word, ipa))
-        if restored is None:
-            continue
-        rows.append((restored, ipa))
-        baseline.append((word, ipa))
-    return rows, baseline, counts, mismatches, len(gold)
+        if form is not None:
+            restored[title] = form
+    return restored, counts, len(titles)
 
 
 def diacritic_rate(words: Iterable[str]) -> float:
@@ -401,21 +446,30 @@ def main(argv=None) -> int:
     ap.add_argument("--limit", type=int, default=0)
     args = ap.parse_args(argv)
     os.makedirs(args.out_dir, exist_ok=True)
+    empty = []
     for lang in args.langs:
-        rows, baseline, counts, mismatches, total = restore_language(
-            lang, args.limit)
-        before = diacritic_rate([w for w, _ in baseline])
-        after = diacritic_rate([w for w, _ in rows])
-        out = os.path.join(args.out_dir, f"{lang}.tsv")
+        restored, counts, total = restore_language(lang, args.limit)
+        out = os.path.join(args.out_dir, f"{lang}.json")
         with open(out, "w", encoding="utf-8") as fh:
-            fh.writelines(f"{w}\t{ipa}\n" for w, ipa in rows)
-        print(f"{lang}: {total} rows, restored {counts['restored']}, "
+            json.dump(restored, fh, ensure_ascii=False, sort_keys=True)
+        before = diacritic_rate(restored)
+        after = diacritic_rate(restored.values())
+        print(f"{lang}: {total} words, restored {counts['restored']}, "
               f"uncovered {total - counts['restored']}, "
-              f"skeleton mismatches {counts['skeleton_mismatch']}, "
               f"diacritic coverage {before:.3f} -> {after:.3f}")
         print(f"   breakdown: {counts}")
-        for word, _ in mismatches[:10]:
-            print(f"   mismatch: {word}")
+        if not restored:
+            empty.append(lang)
+    if empty:
+        # A screened language that recovers nothing has a broken lookup,
+        # not an empty Wiktionary. Tundra Nenets did exactly this:
+        # upstream's metadata calls it ``yrk`` and Wiktionary tags its
+        # headwords ``yrk-tun``, so every page rendered and every match
+        # missed, and the run reported success.
+        print(f"recovered nothing for {', '.join(empty)}; check the "
+              f"Wiktionary language code and section name in LANGS",
+              file=sys.stderr)
+        return 1
     return 0
 
 

@@ -401,6 +401,29 @@ orthography is close to phonemic the two are not independent. A very low PER on
 such a language says the spec agrees with the editors' own transliteration, not
 that it has been tested hard.
 
+#### The pinned mirror behind the row
+
+The row does not read WikiPron's branch. It reads
+[TigreGotico/wikipron-restored-orthography](https://huggingface.co/datasets/TigreGotico/wikipron-restored-orthography),
+a snapshot of every WikiPron scrape taken at one commit, with the schema
+`orthography`, `restored_orthography`, `ipa` — WikiPron's own two columns byte
+for byte, plus the recovered display headword. The restored cell is empty where
+restoration was refused or has not been attempted, so a refusal is visible in
+the data instead of being a missing row, and the loader skips empty cells rather
+than falling back to the title.
+
+Pinning matters beyond this row. Upstream publishes its scrapes on a branch it
+keeps editing, so a benchmark reading it directly cannot tell an engine change
+from an upstream edit — the same class of silent drift as a stale board.
+
+Every language upstream publishes was screened for the title-strip policy, and
+the negatives are recorded alongside the positives. Latin is the useful
+negative: its policy says page names carry no diacritical marks, in almost the
+same words as Old English's, and yet its scraped orthography carries more than
+a hundred thousand macrons across eighty-eight thousand rows, while Old English
+carries four. The policy alone would have flagged both.
+`docs/wikipron_mirror.md` covers the screen, the verdicts, and the refresh.
+
 ### Norwegian under the macrolanguage code (`wikipron_nor`)
 
 WikiPron sorts a pronunciation by the language code written inside the

@@ -164,6 +164,29 @@ def test_positional_head_scoping_is_as_strict_as_head_scoping():
     assert "Adàm" in rwo.headword_args(hausa_only, "ha")
 
 
-def test_registered_languages():
-    assert set(rwo.LANGS) == {"ee", "gmh", "yo", "he"}
-    assert rwo.LANGS["gmh"][0] == "gmh_latn_broad.tsv"
+def test_registered_languages_are_keyed_by_the_wikipron_file_prefix():
+    """One key per language, not per scrape file.
+
+    Broad and narrow scrapes of a language share page titles, so they
+    share one restoration and one set of renders.
+    """
+    assert {"ewe", "gmh", "yor", "heb"} <= set(rwo.LANGS)
+    assert all("_" not in key for key in rwo.LANGS)
+
+
+def test_the_wiktionary_code_is_not_assumed_to_be_the_file_prefix():
+    """``ewe`` scrapes are tagged ``ee`` in Wiktionary's templates."""
+    assert rwo.LANGS["ewe"] == ("Ewe", "ee")
+    assert rwo.LANGS["yor"] == ("Yoruba", "yo")
+    assert rwo.LANGS["nya"] == ("Chichewa", "ny")
+
+
+def test_every_restorable_language_is_screened_as_affected():
+    """A language is never restored on a hunch; the screen gates it."""
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..",
+                                    "scripts"))
+    import wikipron_mirror
+
+    for lang in rwo.LANGS:
+        verdict = wikipron_mirror.SCREEN[lang][0]
+        assert verdict in ("confirmed", "confirmed_empirical"), (lang, verdict)

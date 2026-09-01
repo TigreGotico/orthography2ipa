@@ -40,20 +40,36 @@ def test_provenance_is_declared():
     assert benchmark.PROVENANCE["wikipron_restored"] == "crowd-scraped"
 
 
-def test_loader_parses_pairs_and_honours_limit(monkeypatch):
+def test_loader_reads_the_restored_column_and_honours_limit(monkeypatch):
     monkeypatch.setattr(
         benchmark, "_fetch",
-        lambda url, name: "Ádàm\ta d a m\nhëlfen\th ɛ l f ə n\n")
+        lambda url, name: "Adam\tÁdàm\ta d a m\n"
+                          "helfen\thëlfen\th ɛ l f ə n\n")
     assert benchmark.load_wikipron_restored("ee", sys.maxsize) == [
         ("Ádàm", "a d a m"), ("hëlfen", "h ɛ l f ə n")]
     assert benchmark.load_wikipron_restored("ee", 1) == [("Ádàm", "a d a m")]
+
+
+def test_refused_rows_are_present_in_the_file_and_skipped(monkeypatch):
+    """An empty restored cell is a refusal, and must never be scored.
+
+    The mirror keeps every gold row so a refusal is visible; falling back
+    to the title in column one would silently score the lossy input as if
+    it had been restored.
+    """
+    monkeypatch.setattr(
+        benchmark, "_fetch",
+        lambda url, name: "aba\t\ta b a\nAdam\tÁdàm\ta d a m\n")
+    assert benchmark.load_wikipron_restored("ee", sys.maxsize) == [
+        ("Ádàm", "a d a m")]
 
 
 def test_header_row_is_not_scored_as_a_word(monkeypatch):
     """The published files carry a header so the HF viewer renders them."""
     monkeypatch.setattr(
         benchmark, "_fetch",
-        lambda url, name: "orthography\tipa\nÁdàm\ta d a m\n")
+        lambda url, name:
+        "orthography\trestored_orthography\tipa\nAdam\tÁdàm\ta d a m\n")
     assert benchmark.load_wikipron_restored("ee", sys.maxsize) == [
         ("Ádàm", "a d a m")]
 
@@ -74,7 +90,18 @@ def test_each_language_reads_its_own_file(monkeypatch):
     for lang in ("ee", "gmh", "he", "yo"):
         benchmark.load_wikipron_restored(lang, 10)
     assert [n for _, n in seen] == [
-        "wikipron_restored_ee.tsv", "wikipron_restored_gmh.tsv",
-        "wikipron_restored_he.tsv", "wikipron_restored_yo.tsv"]
-    assert all(u.endswith(f"/{lang}.tsv")
-               for (u, _), lang in zip(seen, ("ee", "gmh", "he", "yo")))
+        "wikipron_restored_ewe_latn_broad.tsv",
+        "wikipron_restored_gmh_latn_broad.tsv",
+        "wikipron_restored_heb_hebr_broad.tsv",
+        "wikipron_restored_yor_latn_broad.tsv"]
+    assert all(u.endswith(f"/data/{f}")
+               for (u, _), f in zip(seen, (
+                   "ewe_latn_broad.tsv", "gmh_latn_broad.tsv",
+                   "heb_hebr_broad.tsv", "yor_latn_broad.tsv")))
+
+
+def test_each_language_reads_the_script_and_width_it_is_scored_on():
+    """Yoruba has an Arabic-script scrape too; the row is the Latin one."""
+    assert benchmark._WIKIPRON_RESTORED_LANGS["yo"] == "yor_latn_broad.tsv"
+    assert all(f.endswith("_broad.tsv")
+               for f in benchmark._WIKIPRON_RESTORED_LANGS.values())
