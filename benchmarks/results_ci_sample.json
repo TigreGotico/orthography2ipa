@@ -1801,14 +1801,19 @@
     "lang": "br",
     "dataset": "wikipron",
     "n": 803,
-    "per": 0.321,
-    "per_ci_low": 0.3093,
-    "per_ci_high": 0.3337,
-    "exact_match": 0.0872,
+    "per": 0.3073,
+    "per_ci_low": 0.2936,
+    "per_ci_high": 0.3207,
+    "exact_match": 0.1233,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
-    "limit": 1000
+    "limit": 1000,
+    "valid_ceiling": {
+      "per": 0.1726,
+      "folded": "the /r/~/ʁ/ realisation difference, contingent vowel nasalisation, and the close/open ⟨e⟩ contrast",
+      "citation": "Press, I. (1986), A Grammar of Modern Breton, Mouton de Gruyter. p. 34, section 3.2.1.3 'The Laterals and Vibrants': \"The vibrant(s) are pronounced as an alveolar trill or as a uvular fricative, depending on local usage. The overall tendency has been for the uvular to replace the trill, probably under the influence of standard French\" — [r] and [ʁ] are two local realisations of one phoneme, so the choice between them is a transcription decision, not a fact about the word. p. 21, section 2.4 'Nasality', on a vowel nasalised by a following nasal consonant: \"This is a clear case where individual dialects and words must decide\", and \"A possible proposal might be to allocate a contingently nasal vowel to the oral vowel phoneme, and the nasal element to the nasal consonant phoneme\" — which is the analysis this spec implements, since ⟨Vn⟩ outside the ⟨añ eñ iñ oñ uñ euñ⟩ digraphs yields an oral vowel plus /n/. p. 29, section 3.1.1.3: \"there seems to be no clear way, through quantity or through following consonants/silence, of constraining the close and open e\", and the two are assigned to separate phonemes /e/ and /ɛ/ — both written ⟨e⟩ in peurunvan, so the contrast is not recoverable from the input. Folding all three on both sides of the same 803 scored words leaves PER 0.1726; folded one at a time they give 0.2616 (rhotic), 0.2682 (nasalisation) and 0.2593 (⟨e⟩) against the 0.3073 as-scored."
+    }
   },
   {
     "lang": "bua",
