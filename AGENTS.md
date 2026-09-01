@@ -210,7 +210,7 @@ pytest tests
 pytest --cov=orthography2ipa --cov-report xml tests
 ```
 
-`tests/pytest.ini` and `tests/conftest.py` configure the suite. There is a broad per-family test layout (`test_iberian.py`, `test_celtic.py`, `test_slavic.py`, `test_germanic.py`, `test_indo_iranian.py`, …) plus `test_all_languages.py` and `test_language_integrity.py` that sweep every data file.
+`tests/pytest.ini` and `tests/conftest.py` configure the suite. There is a broad per-family test layout (`test_iberian.py`, `test_celtic.py`, `test_slavic.py`, `test_germanic.py`, `test_indo_iranian.py`, …) plus `test_all_languages.py` and `test_language_integrity.py` that sweep every data file, plus per-rule `test_cited_rules_*.py` files that assert independently of the family file. The full suite is expensive to run on every change, so when editing a spec, run `python scripts/which_tests.py --lang <code>` (or `--base origin/dev` with no `--lang`) first and run exactly the files it names — a family file passing does not mean a cited-rules file for the same language still does.
 
 ## Lint/Typecheck
 
