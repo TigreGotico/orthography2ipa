@@ -1697,17 +1697,21 @@ def load_wikipron_ar_diacritized(lang: str, limit: int) -> List[Tuple[str, str]]
 #: WikiPron golds. One file per language, same two-column shape.
 _WIKIPRON_RESTORED_URL = (
     "https://huggingface.co/datasets/TigreGotico/wikipron-restored-orthography"
-    "/resolve/main/{lang}.tsv"
+    "/resolve/main/data/{fname}"
 )
 
 #: WikiPron golds whose orthography column is lossy because the English
 #: Wiktionary style policy for the language keeps diacritics out of page
 #: TITLES while displaying them on the headword line.
+#: Benchmark language code to the WikiPron scrape file it is scored on.
+#: The mirror keeps upstream's own file names, so the mapping is explicit
+#: rather than derived: a benchmark row names one script and one
+#: transcription width, and ``yo`` is not ``yor_arab_broad``.
 _WIKIPRON_RESTORED_LANGS = {
-    "ee": "Ewe",
-    "gmh": "Middle High German",
-    "yo": "Yoruba",
-    "he": "Hebrew",
+    "ee": "ewe_latn_broad.tsv",
+    "gmh": "gmh_latn_broad.tsv",
+    "yo": "yor_latn_broad.tsv",
+    "he": "heb_hebr_broad.tsv",
 }
 
 
@@ -1741,21 +1745,29 @@ def load_wikipron_restored(lang: str, limit: int) -> List[Tuple[str, str]]:
     orthography again — the display form, with the ``ë ā ē ī ō ū ȥ`` the
     title convention drops.
 
-    The published files carry an ``orthography\tipa`` header row so the
-    Hugging Face dataset viewer renders them; it is skipped here.
+    The mirror is a pinned copy of the whole WikiPron scrape, one file
+    per upstream file, with the columns
+    ``orthography``, ``restored_orthography`` and ``ipa``. Every gold row
+    is present; the restored cell is EMPTY where restoration was refused
+    or has not been attempted, so a refusal is visible in the data rather
+    than a missing row. This loader keeps only the rows that carry a
+    restored form, which is what makes it a subset of the plain
+    ``wikipron`` row.
     """
-    if lang not in _WIKIPRON_RESTORED_LANGS:
+    fname = _WIKIPRON_RESTORED_LANGS.get(lang)
+    if fname is None:
         return []
-    fname = f"wikipron_restored_{lang}.tsv"
-    text = _fetch(_WIKIPRON_RESTORED_URL.format(lang=lang), fname)
+    text = _fetch(_WIKIPRON_RESTORED_URL.format(fname=fname),
+                  f"wikipron_restored_{fname}")
     pairs = []
     lines = text.strip().splitlines()
-    if lines and lines[0] == "orthography\tipa":
+    if lines and lines[0].startswith("orthography\t"):
         lines = lines[1:]
     for line in lines:
         parts = line.split("\t")
-        if len(parts) == 2:
-            pairs.append((parts[0], parts[1]))
+        if len(parts) != 3 or not parts[1]:
+            continue
+        pairs.append((parts[1], parts[2]))
         if len(pairs) >= limit:
             break
     return pairs
