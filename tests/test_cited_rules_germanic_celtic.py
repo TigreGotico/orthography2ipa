@@ -957,29 +957,39 @@ def test_stq_no_centring_diphthongs():
     wikipron gold agrees: every one of 73 ⟨oa⟩ tokens in the 818-word
     stq/wikipron set transcribes as /ɔː/, never as a centring diphthong.
     """
-    assert "ɔː" in _t("stq", "Woater")
-    assert "ɔː" in _t("stq", "Loand")
-    assert "oə" not in _t("stq", "Woater")
-    assert "oə" not in _t("stq", "Loand")
+    assert "ɔː" in _bare("stq", "Woater")
+    assert "ɔː" in _bare("stq", "Loand")
+    assert "oə" not in _bare("stq", "Woater")
+    assert "oə" not in _bare("stq", "Loand")
 
 
-def test_stq_final_devoicing():
-    """KEY FEATURE (3): FINAL DEVOICING.
+def test_stq_final_devoicing_is_not_categorical():
+    """KEY FEATURE (3): final devoicing is a TENDENCY, not a categorical rule.
 
-    stq notes: "(3) FINAL DEVOICING as in all Frisian and continental West
-    Germanic." Sources: Fort (1980), Markey (1981).
+    Peters (2017: 224): "Younger speakers tend to devoice voiced (lenis)
+    obstruents in syllable-final position and before voiceless obstruents."
+    The wikipron gold overwhelmingly keeps the voiced stop word-finally (51
+    of 53 ⟨b⟩/⟨d⟩-final tokens, e.g. ⟨Aastfräislound⟩ /...lɔu̯nd/, ⟨Bloud⟩
+    /bloːu̯d/), so the spec ranks the voiced reading first and keeps the
+    devoiced one as a lower-ranked candidate for the minority pattern.
     """
-    assert _t("stq", "Loand").endswith("t")
+    assert _bare("stq", "Loand").endswith("d")
 
 
-def test_stq_initial_sp_st_hushing():
-    """KEY FEATURE (5): /sp, st/ → [ʃp, ʃt] word-initially.
+def test_stq_sp_st_palatalization_is_not_categorical():
+    """KEY FEATURE (5): /s/ before /p, t/ tends to palatalize, it is not a
+    categorical German-style word-initial rule.
 
-    stq notes: "(5) /sp, st/ → [ʃp, ʃt] word-initially (shared with Low German)."
-    Sources: Fort (1980), Kramer (1982).
+    Peters (2017: 224) describes palatalization of /s/ before /p, m, n, l,
+    t, v/ as a tendency of YOUNGER speakers (e.g. 'ˈʃteːtə' 'to push'), and
+    discusses /sk/ word-initial variation and /sj/ reduction separately —
+    nowhere does he state a categorical /sp/, /st/ -> [ʃp, ʃt] rule. The
+    wikipron gold's ⟨st⟩/⟨sp⟩ tokens (⟨Aaste⟩, ⟨Akster⟩,
+    ⟨Aastfräislound⟩) are all unpalatalized, so the spec ranks the plain
+    cluster first with the palatalized reading as a secondary candidate.
     """
-    assert _t("stq", "Spräke").startswith("ʃp")
-    assert _t("stq", "stien").startswith("ʃt")
+    assert _bare("stq", "Spräke").startswith("sp")
+    assert _bare("stq", "stien").startswith("st")
 
 
 def test_stq_s_voices_initially_and_intervocalically():
@@ -991,8 +1001,8 @@ def test_stq_s_voices_initially_and_intervocalically():
     Minimal pair on the same ⟨s⟩: voiced before a vowel (initial suuk, medial
     reesen), voiceless in the ⟨st⟩/⟨sp⟩ clusters above.
     """
-    assert _t("stq", "suuk").startswith("z")
-    assert "z" in _t("stq", "reesen")
+    assert _bare("stq", "suuk").startswith("z")
+    assert "z" in _bare("stq", "reesen")
 
 
 def test_stq_long_aa_umlaut_distinct_from_ee():
@@ -1003,8 +1013,8 @@ def test_stq_long_aa_umlaut_distinct_from_ee():
 
     A true minimal contrast on the nucleus alone.
     """
-    assert "ɛː" in _t("stq", "ääbend")
-    assert "eː" in _t("stq", "lees")
+    assert "ɛː" in _bare("stq", "ääbend")
+    assert "eː" in _bare("stq", "lees")
 
 
 def test_stq_g_has_fricative_allophone():
@@ -1019,7 +1029,7 @@ def test_stq_g_has_fricative_allophone():
     """
     graphemes = set()
     for cand in ("ɡ", "ɣ"):
-        if cand in _t("stq", "Reger"):
+        if cand in _bare("stq", "Reger"):
             graphemes.add(cand)
     assert "ɣ" in graphemes or "ɡ" in graphemes
 
@@ -1034,8 +1044,8 @@ def test_stq_open_syllable_single_vowel_is_long():
     syllable. The spec gets the length right in both but not the full
     transcription — see the known gap recorded in the spec notes.
     """
-    assert "aː" in _t("stq", "Apel")
-    assert "aː" not in _t("stq", "Adder")
+    assert "aː" in _bare("stq", "Apel")
+    assert "aː" not in _bare("stq", "Adder")
 
 
 def test_stq_open_syllable_matches_the_sources_own_examples():
@@ -1048,9 +1058,24 @@ def test_stq_open_syllable_matches_the_sources_own_examples():
     Nothing in this file's behaviour changed when it was added, so it
     characterises the existing rule rather than guarding a fix.
     """
-    assert _t("stq", "laf") == "laf"
-    assert "oː" in _t("stq", "rood")
-    assert "aː" in _t("stq", "bale")
+    assert _bare("stq", "laf") == "laf"
+    assert "oː" in _bare("stq", "rood")
+    assert "aː" in _bare("stq", "bale")
+
+
+def test_stq_unstressed_e_reduces_to_schwa():
+    """KEY FEATURE (10): unstressed ⟨e⟩ reduces to /ə/.
+
+    Peters (2017: 224): "the vowel system of Saterland Frisian includes
+    [ə], which is restricted to unstressed syllables." The wikipron gold's
+    ⟨Aaden⟩ 'veins' and ⟨Apel⟩ 'apple' both have an unstressed final ⟨e⟩
+    realised as /ə/ (/aːdən/, /aːpəl/), not the full vowel /ɛ/ the spec
+    used to emit unconditionally.
+    """
+    assert "ə" in _bare("stq", "Aaden")
+    assert "ɛ" not in _bare("stq", "Aaden")
+    assert "ə" in _bare("stq", "Apel")
+    assert "ɛ" not in _bare("stq", "Apel")
 
 
 def test_stq_accented_long_vowels_ie_and_uu():
@@ -1063,8 +1088,8 @@ def test_stq_accented_long_vowels_ie_and_uu():
     long vowel as against a half-long one; the citation lives in the `stq`
     spec's `bergqvist2020` source entry.
     """
-    assert _t("stq", "Brúur") == "bruːr"
-    assert "iː" in _t("stq", "Bíerig")
+    assert _bare("stq", "Brúur") == "bruːr"
+    assert "iː" in _bare("stq", "Bíerig")
 
 
 # ===========================================================================
