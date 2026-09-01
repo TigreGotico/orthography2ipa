@@ -1,4 +1,4 @@
-# Madeiran European Portuguese (pt-PT-x-madeira) — Phonology Reference
+# Madeiran European Portuguese (pt-PT-x-madeira): Phonology Reference
 
 **Code**: `pt-PT-x-madeira` | **Family**: Indo-European > Romance > Ibero-Romance | **Script**: Latin (alphabet)
 **Parent**: `pt-PT` (standard, Lisbon-type EP) | **Quality tier**: research
@@ -16,7 +16,7 @@ diagnostic features.
 ### 1. Intervocalic /l/ → [ʎ] after /i/
 
 The best-known Madeiran shibboleth: an intervocalic /l/ **after /i/** is
-palatalised to **[ʎ]** — Segura (2013) describes it as *"a palatalização de
+palatalised to **[ʎ]**, Segura (2013) describes it as *"a palatalização de
 [l] em contexto de [i]"*. Modelled as the post-lexical `allophone_rules` entry
 **`MAD_L_PALATALISATION`** (`/l/ → [ʎ]`), gated to a preceding phoneme /i/ and
 a following vowel (so the /l/ is an onset between /i/ and another vowel):
@@ -27,8 +27,8 @@ a following vowel (so the /l/ is an onset between /i/ and another vowel):
 | mochila | muˈʃilɐ | **muˈʃiʎɐ** |
 | vila | ˈvilɐ | **ˈviʎɐ** |
 
-The gate is exact: an /l/ after any *other* front vowel is untouched —
-`teleférico` → tɨlɨˈfɛɾiku (/l/ after reduced [ɨ]) — and an onset /l/ not
+The gate is exact: an /l/ after any *other* front vowel is untouched,
+`teleférico` → tɨlɨˈfɛɾiku (/l/ after reduced [ɨ]), and an onset /l/ not
 preceded by /i/ stays clear (`levada` → lɨˈvadɐ).
 
 ### 2. Nasal-diphthong → nasal+N reduction
@@ -48,7 +48,7 @@ Madeiran, like standard EP and **unlike** the northern mainland, has **no**
 betacism: /v/ stays [v] in all positions (`visitar` → viziˈtaɾ, `levada` →
 lɨˈvadɐ, `novo` → ˈnovu). The single gold datum `vinho` → [ˈbiɲu] is a
 lexicalised item, not a productive merger, and is deliberately **not** modelled
-(betacism is a Northern feature — see `pt-PT-x-porto`).
+(betacism is a Northern feature, see `pt-PT-x-porto`).
 
 ## Inherited from pt-PT (unchanged)
 
@@ -59,12 +59,12 @@ sandhi are inherited from the parent and not restated here.
 ## Known limits (documented, not faked)
 
 **Singular -ão → [õns].** The gold shows this sporadically (`verão` →
-[vɨˈɾõns]) but the far more frequent monosyllable `são` keeps [sɐ̃w]; a blanket
+[vɨˈɾõns]) but the far more frequent monosyllable `são` keeps [sɐ̃w]. A blanket
 `ão` override would regress the base, so only the productive plural
 -ões/-ães/-ãos pattern is encoded.
 
 **Stressed /i/ diphthongisation** ([i] → [ɐj]) is reported for Madeiran but is
-left out because this gold keeps [i] (`dia` → [ˈdiɐ], `ilha` → [ˈiʎɐ]); a
+left out because this gold keeps [i] (`dia` → [ˈdiɐ], `ilha` → [ˈiʎɐ]). A
 blanket rule would regress it. It is a lexically-restricted process best left
 to a downstream engine.
 
@@ -97,7 +97,4 @@ eng.transcribe("levada")      # lɨˈvadɐ  — /v/ preserved, no betacism
   Oxford University Press.
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
-
-*Related: [pt-PT](pt-PT.md), [pt-PT-x-acores](pt-PT-x-acores.md), [pt-PT-x-lisbon](pt-PT-x-lisbon.md)*
+[← Micaelense European Portuguese](pt-PT-x-sao-miguel.md) · [Home](../index.md) · [Mirandese →](mwl.md)

@@ -341,6 +341,7 @@
  "iso639_3": "ext",
  "quality": "research",
  "stress": {
+  "onset_clusters": ["bl", "br", "bɫ", "bɾ", "bʀ", "bʁ", "bʎ", "bχ", "dr", "dɾ", "dʀ", "dʁ", "dʎ", "dχ", "fl", "fr", "fɫ", "fɾ", "fʀ", "fʁ", "fʎ", "fχ", "kl", "kr", "kɫ", "kɾ", "kʀ", "kʁ", "kʎ", "kχ", "pl", "pr", "pɫ", "pɾ", "pʀ", "pʁ", "pʎ", "pχ", "tr", "tɾ", "tʀ", "tʁ", "tʎ", "tχ", "vl", "vr", "vɫ", "vɾ", "vʀ", "vʁ", "vʎ", "vχ", "ðr", "ðɾ", "ðʀ", "ðʁ", "ðʎ", "ðχ", "ɡl", "ɡr", "ɡɫ", "ɡɾ", "ɡʀ", "ɡʁ", "ɡʎ", "ɡχ", "ɣl", "ɣr", "ɣɫ", "ɣɾ", "ɣʀ", "ɣʁ", "ɣʎ", "ɣχ", "βl", "βr", "βɫ", "βɾ", "βʀ", "βʁ", "βʎ", "βχ"],
   "cliticless_words": [
    "o",
    "a",
@@ -454,5 +455,12 @@
   "source": "wikidata",
   "notes": "Barrancos (Baixo Alentejo) — the single border municipality Barranquenho is spoken in. [Wikidata Q368867 P625]"
  },
- "word_exceptions_base": "pt-PT"
+ "word_exceptions_base": "pt-PT",
+ "audit": {
+  "primary_sources": {
+   "conclusion": "sample_too_small",
+   "measured": "The primary_sources row holds 10 gold pairs, per=0.2801, per_ci_low=0.1363, per_ci_high=0.4286 (benchmarks/results.json). The 95% interval includes 0.25, so the row cannot be read as a failure. The same spec is otherwise well measured: barranquenho_dict carries 1508 pairs at per=0.0045 and portuguese_tts carries 20 at per=0.0, so Barranquenho is a well-certified variety and this 10-pair row adds no information the larger rows do not already give.",
+   "reference": "spec notes"
+  }
+ }
 }
