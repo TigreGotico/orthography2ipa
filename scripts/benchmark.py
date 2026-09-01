@@ -377,6 +377,10 @@ _WIKIPRON_FILES = {
     "enm":       "enm_latn_broad.tsv",              # Middle English (1100-1500), ~18272 rows
     "sa":        "san_deva_broad.tsv",              # Sanskrit, ~17859 rows
     "fa":        "fas_arab_broad.tsv",              # Persian, ~10312 rows
+    # fas_arab_broad.tsv is predominantly an Early New Persian reading
+    # (see data/fa.json's "audit" entry and data/fa-x-enp.json); scoring
+    # it a second time against the ENP spec is the point, not a duplicate.
+    "fa-x-enp":  "fas_arab_broad.tsv",              # Persian (Early New Persian reading), ~10312 rows
     "izh":       "izh_latn_broad.tsv",              # Ingrian, ~9755 rows
     "my":        "mya_mymr_broad.tsv",              # Burmese, ~8288 rows
     "io":        "ido_latn_broad.tsv",              # Ido, ~7874 rows
