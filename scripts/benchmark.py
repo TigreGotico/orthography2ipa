@@ -31,6 +31,17 @@ Dataset access:
   fdemelo/ipa-childes-split Hugging Face dataset directly (stdlib only).
 - ``ipa_babylm`` downloads the dev-split CSVs of the
   phonemetransformers/IPA-BabyLM Hugging Face dataset directly (stdlib only).
+- ``northeuralex`` and ``wold`` download ``cldf/forms.csv`` directly from the
+  lexibank/northeuralex and lexibank/wold GitHub repositories (stdlib only).
+- ``kaikki`` downloads per-language Wiktextract JSON-lines dumps directly
+  from kaikki.org (stdlib only).
+
+The scoreboard also reports **oracle PER@k** — the per-word minimum PER
+over the engine's top-k readings — which splits ranking error (right
+answer in the beam, ranked wrong) from model error (right answer absent
+at any k). It is a lattice-quality diagnostic for THIS engine only and
+is never valid input to a cross-system comparison: see
+:class:`OracleResult` and ``docs/benchmark_methodology.md``.
 
 The committed ``--scoreboard`` scores the FULL gold set of every language
 with NO cap (uniformly — no per-language limit juggling); the published
@@ -41,6 +52,38 @@ few loaders keep an intrinsic, language-agnostic infrastructure bound that
 ``--limit`` cannot lift (e.g. ``hitz_basque_ipa`` pages the HF rows API and
 stops at ``_HITZ_BASQUE_MAX_PARAGRAPHS`` rather than pulling the full
 1.67M-row set) — these are documented in docs/benchmarks.md.
+
+Where things live
+-----------------
+
+The module reads top to bottom as fetch -> load -> provenance -> score ->
+render. Each section carries a ``# ─── name ───`` header:
+
+``dataset loaders``
+    One ``load_<name>(lang, limit) -> [GoldPair, ...]`` per gold source.
+    Uniform signature on purpose: that is what lets :data:`DATASETS`
+    register them all interchangeably. Each loader's docstring records
+    where its IPA came from — that provenance is the reason to trust or
+    distrust every number derived from it, so it belongs with the loader.
+``DATASETS``
+    The registry. Adding a gold set = write a loader + add one entry here
+    + record its :data:`PROVENANCE` tier. Nothing else needs to change.
+``provenance / reliability tiers``
+    :data:`RELIABILITY_TIERS`, :data:`PROVENANCE`, and
+    :func:`can_gate_promotion` — which golds are trustworthy enough to FAIL
+    a build on, and which may only report drift. A gold that is another
+    tool's output can never gate.
+``metric``
+    :func:`normalize` (the one comparison space every system is scored in),
+    :func:`levenshtein`, :func:`align`, and the :func:`evaluate` family.
+    ``compare_systems.py`` imports these so its numbers are directly
+    comparable to the scoreboard's.
+``build_scoreboard`` / ``write_scoreboard``
+    Sweep every registered dataset/language, then render
+    docs/scoreboard.md + benchmarks/results.json.
+``lexicon-overlay report``
+    The separate rules-only-vs-with-lexicon board (``--lexicon-report``);
+    it writes its own docs page and never touches the main scoreboard.
 """
 from __future__ import annotations
 
@@ -57,12 +100,20 @@ import time
 import unicodedata
 import urllib.parse
 import urllib.request
-from typing import Dict, List, Optional, Tuple
+from typing import (Callable, Dict, Iterator, List, Optional, Sequence,
+                    Tuple)
+
+#: A gold entry: (orthographic word or sentence, reference IPA). Every
+#: ``load_*`` dataset loader returns a list of these, and every scoring
+#: function consumes them — the one shape the whole harness is built on.
+GoldPair = Tuple[str, str]
 
 # the repository root precedes the installed package so that running the
 # script from a checkout measures THAT checkout
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from docs_nav import footer  # noqa: E402
 from orthography2ipa.vowels import is_ipa_vowel  # noqa: E402
 
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -81,6 +132,23 @@ BOOTSTRAP_REPS = 1000
 # head. Never randomized, so the same ``limit`` always selects the same
 # words across runs/machines — an unbiased but fully reproducible slice.
 SAMPLE_SEED = 20260711
+# A row's bootstrap CI is computed by resampling its per-word PER list
+# with replacement; below this many scored words the resample can only
+# ever reproduce the handful of values it started with, so the interval
+# collapses toward the point estimate instead of widening the way it
+# would on a real sample. Rows this thin get an explicit marker in the
+# rendered `N` column rather than being left to look as trustworthy as a
+# row scored on thousands of words just because their CI happens to be
+# narrow.
+THIN_ROW_N = 20
+# Import THIN_ROW_MARK from the guard to keep them in sync and prevent drift.
+# The guard is the canonical source for this constant since it is responsible
+# for parsing the rendered scoreboard correctly.
+try:
+    from check_board_not_reverting import THIN_ROW_MARK
+except ImportError:
+    # Fallback for when this is run standalone without the guard module.
+    THIN_ROW_MARK = "†"
 SCOREBOARD_MD = os.path.join(REPO_ROOT, "docs", "scoreboard.md")
 SCOREBOARD_JSON = os.path.join(REPO_ROOT, "benchmarks", "results.json")
 LEXICON_SCOREBOARD_MD = os.path.join(REPO_ROOT, "docs", "lexicon_scoreboard.md")
@@ -106,7 +174,15 @@ CI_SAMPLE_JSON = os.path.join(REPO_ROOT, "benchmarks", "results_ci_sample.json")
 #: mark — leaving it in made every stressed syllable in the gold an unmatched
 #: character, which cost Catalan ~7 PER points of pure notation. The IPA
 #: modifier apostrophe U+02BC is deliberately NOT here: it marks ejectives and
-#: is a real segment.
+#: is a real segment. The Scandinavian pitch-accent digits ¹/² are stripped
+#: too, but ONLY for a language whose spec declares a pitch accent
+#: (``StressRules.accent2_mark`` — see :func:`_prosody_marks`): there they
+#: are word-prosodic, not segmental, and the one gold set that writes them
+#: (wikipron Swedish) marks them inconsistently — attested accent-2 trochees
+#: like ⟨alla⟩ ⟨anka⟩ are left bare — so scoring them measures the
+#: annotators' coverage, not G2P quality. For any other language the digits
+#: stay: Yi (ycl) gold writes lexical TONE with the same superscripts
+#: (²¹, ³³), and those are segments a G2P must produce.
 _STRESS_MARKS = "ˈˌ'"
 #: Tie bars are notation, not phonology: t͡s and ts are the same phoneme
 #: string at every transcription tier, so they are stripped from BOTH
@@ -114,11 +190,95 @@ _STRESS_MARKS = "ˈˌ'"
 #: strip under --broad).
 _TIE_BARS = "͜͡‿"
 
-_NARROW_MARKS = "̝̞̪̺̼̘̙.·()"
+_NARROW_MARKS = "̝̞̪̺̻̼̘̙̯.·()"
+
+#: Click accompaniment notation: a click's release/manner accompaniment
+#: (velar ⟨k⟩, nasal ⟨ŋ⟩) is conventionally written either as a full IPA
+#: letter immediately before the click letter (kǀ, ŋǃ) OR with the same
+#: accompaniment carried by a dedicated superscript modifier letter in the
+#: same slot (ᵏǀ, ᵑǃ) -- both are attested, interchangeable transcription
+#: conventions for the SAME segment sequence, not a phonemic contrast (IPA
+#: Chart 2015, superscript-modifier-letter convention; Ladefoged &
+#: Maddieson, *The Sounds of the World's Languages*, 1996, ch.8 "Clicks",
+#: pp.246-260, describing accompaniments transcribed either way with no
+#: distinction implied). Folded ONLY when the modifier letter sits directly
+#: next to one of the five IPA click letters (_CLICK_LETTERS), COMBINING
+#: MARKS ON THE MODIFIER (e.g. a combining ring below for voicelessness,
+#: ᵑ̊) allowed to ride along: ᵏ/ᵑ anywhere else (e.g. the common Bantuist
+#: prenasalized-stop notation ᵑg/ᵐb) is a different, unrelated convention
+#: and must not be touched. ʘ/ǀ/ǁ/ǃ/ǂ are five distinct click TYPES
+#: (different active articulators) and are never folded into each other.
+#: Applied AFTER the final whitespace join (some gold sets space-separate
+#: phonemes, putting the modifier and its click letter on opposite sides
+#: of a space -- e.g. "ᵑ ǂ" -- which must still fold).
+_CLICK_LETTERS = "ǀǁǃǂʘ"
+_CLICK_ACCOMPANIMENT_SUPERSCRIPTS = {"ᵏ": "k", "ᵑ": "ŋ"}
+#: U+1DF06 (𝼆, "LATIN SMALL LETTER TURNED Y WITH BELT") is NOT a click
+#: letter and is never folded into one. It is a ligature-style shorthand
+#: for the voiceless palatal lateral fricative ʎ̥˔ (Unicode 13.0, 2021 --
+#: analogous to how ɬ is a dedicated letter for the voiceless alveolar
+#: lateral fricative). The Hadza wikipron alphabet-table rows write the
+#: Hadza "tl" lateral affricate as bare 𝼆, while the corresponding word
+#: rows write the SAME segment tie-barred as c͜ʎ̥˔ (see the "hts" registry
+#: comment below) -- so the fold target is ʎ̥˔, not ǁ.
+_NOTATIONAL_LETTER_ALIASES = {"𝼆": "ʎ̥˔"}
+
+#: ASCII "g" (U+0067, keyboard Latin) vs the official IPA voiced velar
+#: plosive ɡ (U+0261, LATIN SMALL LETTER SCRIPT G) — a Unicode confusable,
+#: not a phonemic contrast (IPA Handbook, 1999, §"Consonants": the plosive
+#: symbol is U+0261; ASCII "g" is a font-rendering/keyboard stand-in with
+#: no distinct value anywhere in the Handbook's inventory). Several gold
+#: sets (e.g. NorthEuraLex's CLDF Segments column) were keyed with the
+#: plain ASCII letter, so a transcription that correctly emits ɡ was
+#: being penalised for a typographic accident rather than an error. Folded
+#: UNCONDITIONALLY (both strip_stress states, narrow and broad) because no
+#: registered spec's own phoneme inventory contrasts "g" against "ɡ" —
+#: verified against every data/*.json phonemes list before adding this.
 #: Prosodic/orthographic punctuation carried by sentence-level gold sets
 #: (phrase breaks, commas, full stops). None of it is a phoneme, so scoring it
 #: as one penalises a transcription for text the engine correctly ignores.
 _PUNCT_MARKS = "|‖,.;:!?¡¿\"«»—–-"
+
+#: The reconstruction asterisk. A leading "*" on a transcription is the
+#: historical-linguistics mark for a form that is not attested — one
+#: inferred rather than recorded (Graffi 2002, "The asterisk from historical
+#: to descriptive and theoretical linguistics", Historiographia Linguistica
+#: 29(3):329-338, doi:10.1075/hl.29.3.04gra, on the asterisk's original and
+#: still-standard historical-linguistic value 'unattested form'). It is a
+#: status annotation on the transcription, never a segment, and no engine
+#: can or should emit it, so counting it as one charges every such row an
+#: insertion error that is unreachable by construction. Stripped
+#: UNCONDITIONALLY, on the same footing as the "g"/"ɡ" fold above: no
+#: registered spec's phoneme inventory contains "*" — verified across all
+#: 7658 data/*.json inventories, and across every phoneme-valued field
+#: (grapheme outputs, allophone surfaces, word exceptions) as well. The one
+#: "*" that does appear as a spec KEY is ar-Latn-buckwalter's grapheme for
+#: ⟨ذ⟩ ð, which is INPUT orthography and never passes through this function.
+#:
+#: What the mark annotates varies, and the fold flattens that difference —
+#: which is the cost of stripping, stated here so it is not rediscovered.
+#: In WikiPron's Tibetan scrape it is systematic: 1538 of 3621 rows are the
+#: Old Tibetan reading en.wiktionary's Module:bo-pron infers from the
+#: spelling, and the mark is a prefix on the whole reading. In the Old
+#: French scrape it is narrower: all 4 rows belong to peluchier, an ATTESTED
+#: headword whose wikitext
+#: ({{IPA|fro|/pəlyˈt͡ʃjeːɾ/|/*pəlyˈk(j)eːɾ/|q2=northern|a=classical}} and
+#: its late-period twin) marks only the second slot, a reconstructed
+#: NORTHERN pronunciation offered beside attested classical and late ones.
+#: So the mark can sit on a reconstructed pronunciation of a perfectly
+#: attested word, and stripping lets that reconstruction compete for the
+#: match as if it had been recorded.
+#:
+#: That is harmless today for the only reason that it happens to be true of
+#: peluchier: the scorer takes the minimum over a headword's golds, and
+#: peluchier also carries unstarred attested transcriptions, which win. That
+#: is why fro does not move on the board. The condition under which this
+#: decision must be revisited is therefore precise — a gold whose ONLY
+#: transcription for some headword is a starred one. There the spec would be
+#: scored against a reconstruction as though it were attested, and this fold
+#: would hide the fact that it had been. Nothing registered here is in that
+#: state; check for it before wiring a gold that carries the mark.
+_RECONSTRUCTION_MARK = "*"
 
 _WIKIPRON_BASE = (
     "https://raw.githubusercontent.com/CUNY-CL/wikipron/master/data/scrape/tsv/"
@@ -264,12 +424,14 @@ _WIKIPRON_FILES = {
     "dv":        "div_thaa_broad.tsv",              # Dhivehi, ~1551 rows
     "ki":        "kik_latn_broad.tsv",              # Kikuyu, ~1420 rows
     "ps":        "pus_arab_broad.tsv",              # Pushto, ~1414 rows
-    "no":        "nor_latn_broad.tsv",              # Norwegian, ~1331 rows
+    # nor_latn_broad.tsv is NOT scored here — see load_wikipron_nor and the
+    # ``wikipron_nor`` dataset, which scores it against the Nynorsk spec.
     "fy":        "fry_latn_broad.tsv",              # Western Frisian, ~1246 rows
     "hsb":       "hsb_latn_broad.tsv",              # Upper Sorbian, ~1130 rows
     "li":        "lim_latn_broad.tsv",              # Limburgan, ~1128 rows
     "ilo":       "ilo_latn_broad.tsv",              # Iloko, ~1049 rows
     "mi":        "mri_latn_broad.tsv",              # Maori, ~1005 rows
+    "mww":       "mww_latn_broad.tsv",              # White Hmong (RPA), ~492 rows
     "nv":        "nav_latn_broad.tsv",              # Navajo, ~995 rows
     "ckb":       "ckb_arab_broad.tsv",              # Central Kurdish, ~981 rows
     "mh":        "mah_latn_broad.tsv",              # Marshallese, ~960 rows
@@ -293,7 +455,10 @@ _WIKIPRON_FILES = {
     "lmo":       "lmo_latn_broad.tsv",              # Lombard, ~595 rows
     "iba":       "iba_latn_broad.tsv",              # Iban, ~584 rows
     "az":        "aze_latn_broad.tsv",              # Azerbaijani, ~513 rows
-    "de-CH":     "gsw_latn_broad.tsv",              # Swiss German, ~511 rows
+    # ISO 639-3 gsw. The words are Alemannic DIALECT (Chatz, Angscht, Bueb,
+    # Chilbi) in Dieth-style spelling, not Schweizerhochdeutsch, so the row
+    # belongs to the spec that declares iso639_3 "gsw" — de-x-alemannic.
+    "de-x-alemannic": "gsw_latn_broad.tsv",        # Alemannic German, ~511 rows
     "pdc":       "pdc_latn_broad.tsv",              # Pennsylvania German, ~510 rows
     "lt":        "lit_latn_broad.tsv",              # Lithuanian, ~507 rows
     "co":        "cos_latn_broad.tsv",              # Corsican, ~492 rows
@@ -329,6 +494,9 @@ _WIKIPRON_FILES = {
     "pag":       "pag_latn_broad.tsv",              # Pangasinan, ~229 rows
     "ba":        "bak_cyrl_broad.tsv",              # Bashkir, ~208 rows
     "ab":        "abk_cyrl_broad.tsv",              # Abkhazian, ~206 rows
+    "kas":       "kas_arab_broad.tsv",              # Kashmiri (Perso-Arabic), ~751 rows
+    "new":       "new_deva_narrow.tsv",             # Newar (Devanagari, narrow), ~416 rows
+    "shn":       "shn_mymr_broad.tsv",              # Shan (Myanmar script), ~2607 rows
     # --- Arabic spoken dialects (ISO 639-3 codes → o2i lect) ---
     #     WikiPron scrapes six spoken Arabic dialects under their ISO 639-3
     #     codes; each maps onto an existing o2i ``ar-XX`` dialect spec (the
@@ -399,6 +567,18 @@ _WIKIPRON_FILES = {
     "gul":        "gul_latn_broad.tsv",  # Sea Island Creole English, N=304
     "gwc":        "gwc_arab_broad.tsv",  # Gawri, N=208
     "hil":        "hil_latn_broad.tsv",  # Hiligaynon, N=473
+    # Hadza. 335 rows / 329 unique headwords, of which 52 are NOT words: the
+    # scrape ingested the source's ALPHABET TABLE alongside its lexicon, so
+    # ⟨cc⟩, ⟨Nq⟩, ⟨Tlh⟩ etc. appear as headwords glossed with the single
+    # phoneme the letter spells. 26 of those 52 were transcribed in a
+    # DIFFERENT notation from the same gold's word rows: the alphabet rows
+    # write the clicks with superscript modifiers (ᵏǀ, ᵑǀʔ) and the "tl"
+    # lateral affricate with U+1DF06 (𝼆), while every word row writes the
+    # same segments with a tie bar (k͜ǀ, ŋ͜ǀˀ, c͜ʎ̥˔). `normalize` now folds
+    # both notational variants together
+    # (_CLICK_ACCOMPANIMENT_SUPERSCRIPTS for the clicks,
+    # _NOTATIONAL_LETTER_ALIASES for 𝼆 -> ʎ̥˔, alongside the tie-bar strip
+    # it already did), so the two conventions score as the same segments.
     "hts":        "hts_latn_broad.tsv",  # Hadza, N=335
     "huu":        "huu_latn_narrow.tsv",  # Murui Huitoto, N=440
     "kgp":        "kgp_latn_broad.tsv",  # Kaingang, N=107
@@ -459,6 +639,13 @@ _WIKIPRON_FILES = {
     "yux":        "yux_cyrl_narrow.tsv",  # Southern Yukaghir, N=255
     "zom":        "zom_latn_narrow.tsv",  # Zou, N=165
     "zza":        "zza_latn_narrow.tsv",  # Zaza, N=215
+    # --- orthography wave 5: fresh cited grapheme maps wired to their
+    #     upstream WikiPron gold. Scores are honest first-pass baselines.
+    "ug":         "uig_arab_broad.tsv",  # Uyghur, N=2674
+    "dz":         "dzo_tibt_broad.tsv",  # Dzongkha, N=243 (base-letter table only, see data/dz.json notes)
+    # --- orthography wave 6: fresh cited grapheme maps wired to their
+    #     upstream WikiPron gold. Scores are honest first-pass baselines.
+    "skr":        "skr_arab_broad.tsv",           # Saraiki, Shahmukhi, N~348
 }
 _MIRANDESE_URL = (
     "https://huggingface.co/datasets/TigreGotico/mirandese_g2p"
@@ -535,15 +722,62 @@ _VOX_COMMUNIS_FILES: Dict[str, str] = {
         "hu", "id", "ja", "ka", "kab", "kk", "ko", "ky", "lg", "lij", "lt",
         "mk", "ml", "mn", "mr", "mt", "myv", "nl", "or", "pl", "ru", "rw",
         "sah", "sk", "sl", "sq", "sr", "sw", "ta", "th", "tk", "tn", "tr",
-        "tt", "ug", "uk", "uz", "vi", "yo", "yue",
+        "tt", "ug", "uk", "uz", "vi", "yo",
     )
 }
 _VOX_COMMUNIS_FILES.update({
     "es": "es", "it": "it", "ro": "ro",       # bare tags resolve via registry
     "pt-BR": "pt",                            # region-untagged; see note above
-    "sv": "sv-se", "zh": "zh-cn", "hy": "hy-am",
+    "sv": "sv-se", "hy": "hy-am",
     "fy": "fy-nl", "pa": "pa-in",
 })
+#: Non-speech / no-coverage placeholders in the ``phonemized_sentence``
+#: phone tier. ``spn`` (MFA "spoken noise", reused by VoxCommunis as the
+#: lexicon-miss marker) is the ONLY one that may be filtered.
+#:
+#: The obvious siblings — ``sil``, ``sp``, ``nsn``, ``noise`` — are
+#: deliberately NOT listed, because in these files they occur almost
+#: entirely as GENUINE transcriptions of real words, and filtering on the
+#: phone string alone would silently delete them: Welsh ``sul`` → /sil/
+#: (336 rows), Amharic ``ሲል`` → /sil/, Bulgarian ``сп`` → /sp/, Tamil
+#: ``ஸ்ப்`` → /sp/, Korean ``실`` → /sil/, Punjabi ``ਸੀਲ`` → /sil/.
+#:
+#: 61 rows across seven files additionally have the marker on BOTH tiers
+#: (word ``sil`` → phones ``sil``), which does look like an aligner
+#: placeholder leaking into the orthography. Those are left in too: the
+#: identity test is not safe either, because Turkish ``sil`` ("wipe",
+#: imperative of *silmek*) is a real word genuinely pronounced [sil]. 61
+#: rows out of ~2.6M is far below the noise floor of an
+#: ``epitran-derived`` row, and no filter separates the leak from the real
+#: word without a per-language lexicon.
+#:
+#: See :func:`load_vox_communis` for why ``spn`` in particular can never be
+#: scored.
+_VOX_COMMUNIS_NON_SPEECH = frozenset({"spn"})
+# ``zh`` (Mandarin) is DELIBERATELY not registered here either, for exactly
+# the reason spelled out for ``yue`` below and already recorded for the
+# ipa-dict ``zh_*``/``yue`` files in docs/benchmark_datasets.md ("Rejected
+# candidates"): the o2i ``zh`` spec is a PINYIN spec, while
+# ``zh-cn.tsv``'s ``aligned_sentence`` column is Han characters
+# (``盘固 草 为 禾 本科 …``). Every single row therefore transcribes to the
+# empty string, and the board carried a meaningless ``per: 1.0`` row for
+# ``zh`` built entirely out of "hypothesis is empty, so the whole gold is a
+# deletion". That is not a Mandarin score; it is the absence of a
+# hanzi→pinyin front-end, measured in the units of a phone error rate. The
+# registration comes back the day such a front-end exists.
+#
+# ``yue`` (Cantonese) is DELIBERATELY not registered here even though the
+# upstream ``yue.tsv`` file exists and loads fine (12.8k rows, live-checked
+# 2026-08). The `yue` spec is a genuine grapheme-inventory STUB (see
+# orthography2ipa/g2p.py get('yue').notes): Cantonese is logographic and
+# has no letter-to-sound mapping without a Jyutping/Yale romanisation step
+# upstream of this library -- exactly like ``zh`` needs pinyin. The
+# vox-communis ``yue.tsv`` ``sentence``/``aligned_sentence`` columns are raw
+# Han characters, so every row transcribes to an empty hypothesis and the
+# harness previously recorded a fake ``per: 1.0, n: 0`` row for it. That
+# was dishonest (n=0 read as "loader is broken", not "this pairing can
+# never score"); removing the registration until a Jyutping/Yale
+# transliteration front-end exists is the honest fix.
 
 
 _4CATAC_BASE = (
@@ -661,7 +895,36 @@ _IPA_CHILDES_FOLDERS: Dict[str, str] = {
     "pl": "pl-PL",
     "pt-BR": "pt-BR",
     "pt-PT": "pt-PT",
-    "qu": "qu-PE",
+    # Cusco, not the `qu` macrolanguage. `qu.json` is a declared structural
+    # adstrate STUB with no phonology (no ⟨q⟩, no ⟨ch⟩, no ⟨ll⟩, no laryngeal
+    # series), so scoring this corpus against it measured the stub, not a
+    # Quechua spec. The corpus itself names its variety: 220 of its 1572
+    # official-alphabet word types spell an aspirate or an ejective (⟨qhawariy⟩
+    # ⟨q'illu⟩ ⟨sach'a⟩ ⟨mikhun⟩) and ⟨q⟩ is transcribed as a stop throughout —
+    # both are Cusco-Collao, and both are exactly what Ayacucho (`quy`) lacks.
+    # `quy` happens to score a little lower on this gold; taking that score
+    # would be fitting the row to the gold against the corpus's own evidence.
+    #
+    # The row keeps a high PER floor that is notation, not error. espeak-ng's
+    # `qu` voice (dictsource/qu_rules) is a plain letter-to-phoneme table: it
+    # writes /i u/ as lax [ɪ ʊ] (2391 substitutions), ⟨ch⟩ with a retraction
+    # diacritic as t̠ʃ (735), the tap as a trill r (536), and an ejective as the
+    # ejective plus a spurious glottal stop, ⟨k'⟩ → kʼʔ (133, from the rule file's
+    # own "q' → q`?"). It applies no uvular lowering at all, so every [ɑ ɛ ɔ]
+    # this spec derives by rule is scored as an error (538). Where the two
+    # disagree on a segment the cited source settles it: ⟨sh⟩ is /ʃ/ in Cusco,
+    # which espeak renders as s+h. The corpus also mixes varieties, not just
+    # orthographies — a 296-type subcorpus (corpus_id 358) is Ecuadorian
+    # Highland Kichwa, a different Quechuan language mislabelled qu-PE
+    # upstream: it has the perfect/gerund endings -shca/-shpa where Cusco has
+    # -sqa/-spa, ñuca for Cusco ñuqa, ashcu for Cusco allqu, micuna where
+    # Cusco has mikhuna. Neither `quz` nor `quy` can read Kichwa, which no
+    # trivocalic Southern Quechua spec is meant to; it scores ~0.17 worse
+    # than the official-alphabet Cusco-Collao corpus (1572 word types,
+    # corpus_id 146) for every Southern Quechua spec. Splitting Kichwa out of
+    # this IPA-CHILDES folder into its own row is future work (o2i #91), not
+    # something this loader can decide.
+    "quz": "qu-PE",
     "ro-RO": "ro-RO",
     "sr": "sr-RS",
     "sv": "sv-SE",
@@ -702,7 +965,7 @@ _IPA_CHILDES_TOOL: Dict[str, str] = {
     "pl": "phonemizer (espeak-ng), pl",
     "pt-BR": "phonemizer (espeak-ng), pt-br",
     "pt-PT": "phonemizer (espeak-ng), pt",
-    "qu": "phonemizer (espeak-ng), qu",
+    "quz": "phonemizer (espeak-ng), qu",
     "ro-RO": "phonemizer (espeak-ng), ro",
     "sr": "epitran, srp-Latn",
     "sv": "phonemizer (espeak-ng), sv",
@@ -844,6 +1107,329 @@ def load_ipa_babylm(lang: str, limit: int) -> List[Tuple[str, str]]:
     return pairs
 
 
+# Lexibank/CLDF wordlist gold. Lexibank (github.com/lexibank) republishes
+# published comparative wordlists/dictionaries as CLDF (Cross-Linguistic Data
+# Format): one ``cldf/forms.csv`` per dataset, keyed by ``Language_ID`` (the
+# dataset's own language code, resolved via ``cldf/languages.csv``), with a
+# ``Value`` column (the word as originally recorded — real orthography or
+# script) and a ``Segments`` column (space-separated IPA-ish segments, with
+# ``+`` marking a morpheme boundary). Every row cites its source dictionary
+# in the ``Source`` column, so this is compiled/cited lexicographic data, not
+# phonemizer output — ``lexicon-derived``, the same tier as ``cmudict`` and
+# ``portuguese_unified``.
+#
+# Candidates inspected and NOT wired:
+#
+# - `lexibank/ids` (Intercontinental Dictionary Series): ``Segments`` is
+#   EMPTY on every one of its 437k rows (verified by scanning the whole
+#   file) — there is no IPA column to score against at all.
+# - `lexibank/abvd` (Austronesian Basic Vocabulary Database): same problem,
+#   ``Segments`` empty on all 346k rows.
+#
+# 2026-08 audit wave — 21 more candidates inspected, NONE wired. Full verdicts
+# and evidence in docs/benchmark_datasets.md "Rejected candidates". Summary:
+#
+# - `uralex`: ``Segments`` empty on all sampled rows (same as ids/abvd).
+# - `tuled`, `dravlex`, `chaconarawakan`, `felekesemitic`, `hantganbangime`,
+#   `lundgrenomagoa`, `naganorgyalrongic`, `sagartst`, `savelyevturkic`,
+#   `abrahammonpa`, `allenbai`, `bantubvd`, `chindialectsurvey`,
+#   `birchallchapacuran`, `gravinachadic`, `kraftchadic`,
+#   `luangthongkumkaren`, `marrisonnaga`, `mitterhoferbena`: ``Value`` is
+#   itself an IPA/comparative-transcription string (tone marks, IPA-only
+#   symbols, sense-index suffixes, or a fieldworker's normalized transcription
+#   convention applied uniformly across many languages) — not each
+#   language's own writing system, failing the "Form must be real
+#   orthography, not transcription" rule this loader exists to enforce.
+# - `robinsonap`: the one candidate whose ``Value`` genuinely reads as
+#   practical orthography (real digraphs, e.g. ``ng``→``ŋ``). Still not
+#   wired: all 13 languages resolve to `stub`-quality o2i specs with an
+#   EMPTY grapheme table, so there is nothing for a gold row to exercise yet.
+#
+# Two datasets passed inspection and are wired: `northeuralex` (NorthEuraLex,
+# Dellert et al. 2020) and `wold` (World Loanword Database, Haspelmath &
+# Tadmor 2009), both real orthographic ``Value`` + populated ``Segments``.
+_LEXIBANK_RAW_BASE = "https://raw.githubusercontent.com/lexibank/{repo}/master/cldf/"
+
+
+def _lexibank_segments_to_ipa(segments: str) -> str:
+    """Join a CLDF ``Segments`` string ("s ɛ m") into one IPA string,
+    dropping the ``+`` morpheme-boundary marker (the only non-IPA token
+    either wired Lexibank dataset's Segments column contains)."""
+    return "".join(seg for seg in segments.split() if seg != "+")
+
+
+def _load_lexibank(repo: str, language_id: str, limit: int) -> List[Tuple[str, str]]:
+    """Shared CLDF ``forms.csv`` reader for the Lexibank datasets below:
+    filters to one ``Language_ID``, pairs the original-orthography ``Value``
+    with the IPA joined from ``Segments``, skips rows with no segments
+    (unelicited/missing forms) and de-duplicates by (word, ipa).
+    """
+    url = _LEXIBANK_RAW_BASE.format(repo=repo) + "forms.csv"
+    text = _fetch(url, f"lexibank_{repo}_forms.csv")
+    pairs: List[Tuple[str, str]] = []
+    seen = set()
+    reader = csv.DictReader(text.splitlines())
+    for row in reader:
+        if row.get("Language_ID") != language_id:
+            continue
+        word = (row.get("Value") or "").strip()
+        segments = (row.get("Segments") or "").strip()
+        if not word or not segments:
+            continue
+        ipa = _lexibank_segments_to_ipa(segments)
+        if not ipa:
+            continue
+        key = (word, ipa)
+        if key in seen:
+            continue
+        seen.add(key)
+        pairs.append((word, ipa))
+        if len(pairs) >= limit:
+            break
+    return pairs
+
+
+# orthography2ipa language tag -> NorthEuraLex Language_ID (its own code,
+# which happens to equal the ISO 639-3 code for every language wired here).
+# Restricted to languages whose o2i spec (a) is registered and (b) is a
+# `stub`/`skeleton`-tier spec with a NON-EMPTY grapheme table that the
+# gold can actually exercise — this loader targets the stub-promotion
+# path, not already-`research`/`production` languages. Every entry was
+# smoke-checked: the engine produces non-empty output for a large majority
+# of the language's sampled forms (see docs/benchmarks.md).
+#
+# Excluded despite an ISO/registry match: `yux` (Southern Yukaghir) has a
+# non-empty grapheme table but scored 0/913 non-empty — a script/transliteration
+# mismatch between the spec's grapheme inventory and NorthEuraLex's Cyrillic
+# orthography for this variety, not something a gold row can fix.
+_NORTHEURALEX_LANGS: Dict[str, str] = {
+    "liv": "liv",   # Livonian (skeleton)
+    "sms": "sms",   # Skolt Sami (skeleton)
+    "sjd": "sjd",   # Kildin Sami (skeleton)
+    "yrk": "yrk",   # Tundra Nenets (skeleton)
+    "bua": "bua",   # Buryat (skeleton)
+    "evn": "evn",   # Evenki (skeleton)
+    "niv": "niv",   # Nivkh (skeleton)
+    "ale": "ale",   # Aleut (skeleton)
+    "ain": "ain",   # Hokkaido Ainu (stub)
+    # 2026-08 registration wave: 9 languages with ZERO gold anywhere and a
+    # non-empty grapheme table, each verified against cldf/languages.csv
+    # (not a naive ISO 639-3 lookup — two of these need a code translation,
+    # see below) and smoke-checked at 100/100 non-empty engine output:
+    "udm": "udm",   # Udmurt (research)
+    "ady": "ady",   # Adyghe (research)
+    # o2i `av` is the macrolanguage code; NEL's own Language_ID for Avar is
+    # its ISO 639-3 code "ava" (languages.csv: avar1256, "Avar"), not "av".
+    "av": "ava",    # Avar (research)
+    "lbe": "lbe",   # Lak (research)
+    # NEL's `dar` row is glottocode darg1241, "North-Central Dargwa" — the
+    # same Akusha-based variety the o2i `dar` spec targets ("the literary
+    # standard is based on the Akusha dialect ... this spec targets the
+    # literary Akusha-based standard only"), not a different Dargwa lect.
+    # This gold row completes `dar`'s promotion from `skeleton` to `research`
+    # (sources + a documented stress exemption were already in place).
+    "dar": "dar",   # Dargwa (research, promoted by this wave)
+    "lez": "lez",   # Lezgian (research)
+    # o2i `lv` is the ISO 639-1 code; NEL's own Language_ID for Latvian is
+    # its ISO 639-3 code "lav" (languages.csv: latv1249, "Latvian").
+    "lv": "lav",    # Latvian (research)
+    "smn": "smn",   # Inari Sami (research)
+    "vep": "vep",   # Veps (research)
+    # 2026-08 "Siberian double-win" wave: 8 Uralic (+1 Yukaghir) REGISTRY STUBs
+    # that were empty-grapheme placeholders with a cited PHOIBLE phoneme
+    # inventory already in place; this wave adds cited Cyrillic orthographies
+    # (Alhoniemi 1985, Kangasmaa-Minn 1998, Nikolaeva 1999, Riese 2001,
+    # Helimski 1998, Wagner-Nagy 2018, Siegl 2013, Maslova 2003 — see each
+    # spec's `sources`) and reconciles them against the existing PHOIBLE
+    # inventories. Language_ID in cldf/languages.csv equals the o2i code for
+    # all eight (no av->ava-style translation needed here); each smoke-checked
+    # at 150/150 non-empty engine output on a NorthEuraLex sample.
+    "mhr": "mhr",   # Meadow (Eastern) Mari (research)
+    "mrj": "mrj",   # Hill (Western) Mari (research)
+    "kca": "kca",   # Northern Khanty (research)
+    "mns": "mns",   # Northern Mansi (research)
+    "sel": "sel",   # Northern Selkup (research)
+    "nio": "nio",   # Nganasan (research)
+    "enf": "enf",   # Forest Enets (research)
+    "ykg": "ykg",   # Northern Yukaghir (research)
+    # 2026-08 Siberian double-win batch B: Paleosiberian/Tungusic/isolate stubs
+    # promoted from empty REGISTRY STUBs to Cyrillic (mnc: Moellendorff Latin
+    # romanization — see mnc.json notes) grapheme tables, each verified against
+    # cldf/languages.csv (Language_ID == o2i code for all of these) and
+    # smoke-checked for non-empty engine output. `bsk` (Burushaski) was
+    # evaluated and deliberately excluded: its NEL Value column is Berger
+    # (1998) scholarly transcription, not a community orthography — see
+    # bsk.json notes.
+    "ckt": "ckt",   # Chukchi (skeleton)
+    "itl": "itl",   # Itelmen (skeleton)
+    "ket": "ket",   # Ket (skeleton)
+    "gld": "gld",   # Nanai (skeleton)
+    "mnc": "mnc",   # Manchu, Moellendorff romanization (skeleton)
+    "ddo": "ddo",   # Tsez (skeleton)
+    "ess": "ess",   # Central Siberian Yupik (skeleton)
+}
+
+
+def load_northeuralex(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """NorthEuraLex (lexibank/northeuralex, Dellert et al. 2020): a
+    100+-language comparative wordlist of Northern Eurasia, CLDF ``Value``
+    (dictionary orthography) + ``Segments`` (IPA-ish phonemic transcription,
+    cited per row to its source dictionary in ``Source``). See
+    ``_NORTHEURALEX_LANGS`` for the wired subset and why."""
+    return _load_lexibank("northeuralex", _NORTHEURALEX_LANGS[lang], limit)
+
+
+# orthography2ipa language tag -> WOLD Language_ID (the dataset's own
+# per-language folder/ID name, not an ISO code). Same stub-promotion
+# selection discipline as `_NORTHEURALEX_LANGS`: smoke-checked, non-empty
+# grapheme table, majority non-empty output.
+#
+# Excluded despite an ISO match: WOLD's own `KildinSaami` (`sjd`) romanizes
+# the language differently from NorthEuraLex's Cyrillic forms (scored only
+# 25/1473 non-empty) — NorthEuraLex's `sjd` row above is the one that
+# actually exercises the spec's grapheme table for this language, so WOLD's
+# duplicate entry is left out rather than wired at a token score.
+_WOLD_LANGS: Dict[str, str] = {
+    "car": "Kalina",       # Galibi Carib (skeleton)
+    "arn": "Mapudungun",   # Mapudungun (stub)
+    # 2026-08 gold-hunting wave 1: remaining WOLD languages cross-referenced
+    # against the o2i spec registry. Of WOLD's other 39 languages, most
+    # already have gold from wikipron/ipadict/etc (English, Dutch, Japanese,
+    # Mandarin, Thai, Vietnamese, Indonesian, Hawaiian, White Hmong, Hausa,
+    # Lower Sorbian, Kildin Saami, ...); several have NO registered o2i spec
+    # at all (Kanuri `knc`, Zinacantan Tzotzil `tzz`, Malagasy `plt`, Old
+    # High German, Selice Romani, Sakha have no ISO/spec match here); and the
+    # rest resolve to `stub` specs with an EMPTY grapheme table (Archi,
+    # Bezhta, Manange, Ket, Oroqen, Ceq Wong, Takia, Gurindji, Yaqui,
+    # Qeqchi, Otomi, Saramaccan, Imbabura Quechua, Hup, Wichi) -- nothing for
+    # a gold row to exercise yet, same reasoning as the Lexibank/robinsonap
+    # rejection above. Only four had BOTH a non-empty grapheme table AND no
+    # existing gold row anywhere in this registry; all four smoke-checked at
+    # ~100% non-empty engine coverage on a 150-row sample:
+    "gwd": "Gawwada",        # Gawwada (skeleton), coverage 150/150
+    "irk": "Iraqw",          # Iraqw (skeleton), coverage 150/150
+    "crs": "SeychellesCreole",   # Seychelles Creole (research), coverage 150/150
+    "rif": "TarifiytBerber",     # Tarifiyt Berber (research), coverage 149/150
+}
+
+
+def load_wold(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """World Loanword Database (lexibank/wold, Haspelmath & Tadmor 2009): a
+    41-language loanword-typology wordlist, CLDF ``Value`` (dictionary
+    orthography) + ``Segments`` (IPA-ish transcription). See
+    ``_WOLD_LANGS`` for the wired subset and why."""
+    return _load_lexibank("wold", _WOLD_LANGS[lang], limit)
+
+
+# ── kaikki.org (Wiktextract) ────────────────────────────────────────────────
+#
+# kaikki.org publishes machine-extracted per-language dumps of Wiktionary
+# ("Wiktextract", Ylonen 2022) as JSON-lines: one object per dictionary
+# entry, with a ``word`` (the headword as written) and a ``sounds`` list of
+# ``{"ipa": "..."}`` objects (often several transcription variants per
+# entry). Same crowd-scraped Wiktionary tier as ``wikipron`` -- this is a
+# different extraction pipeline over the same underlying source, not an
+# independent transcriber.
+#
+# 2026-08 gold-hunting wave 2: targeted at o2i specs with a non-empty
+# grapheme table and ZERO gold anywhere else in this registry. Every
+# wired language was downloaded, filtered to entries with a non-empty
+# ``sounds[].ipa``, and hand-sampled (see docs/benchmarks.md) before
+# wiring. Rejected: Tigrinya (only 28/933 entries carry ``ipa`` -- too
+# thin to be a usable gold set).
+#
+# Tetum (`tet`) was checked against kaikki.org and REJECTED: the Tetum dump has
+# 686 entries and exactly 3 of them carry a `sounds[].ipa`, an order of
+# magnitude thinner than the Tigrinya set already rejected below. WikiPron has
+# no Tetum scrape either (no `tet_latn_*.tsv` upstream), so the language's gold
+# is the primary-source set mined from its own reference grammar instead.
+#
+# 2026-08 gold-hunting wave 3: re-ran the zero-gold sweep (it shrank a lot
+# between waves) and checked kaikki.org coverage for the top-tier-by-speakers
+# zero-gold languages. Added: `so` (Somali), `om` (Oromo), `ne` (Nepali),
+# `kok` (Konkani). Re-checked: Tigrinya is UNCHANGED (still 28/933 -- stays
+# rejected), and Sindhi (`sd`) / Santali (`sat`) were investigated and
+# rejected -- see docs/benchmark_datasets.md for both.
+_KAIKKI_BASE = "https://kaikki.org/dictionary/{name}/kaikki.org-dictionary-{name}.jsonl"
+
+# orthography2ipa language tag -> kaikki.org per-language dump directory name.
+_KAIKKI_LANGS: Dict[str, str] = {
+    "jv": "Javanese",   # Javanese (skeleton)
+    "su": "Sundanese",  # Sundanese (skeleton)
+    "lo": "Lao",        # Lao (skeleton)
+    "xh": "Xhosa",      # Xhosa (skeleton)
+    "so": "Somali",     # Somali (research)
+    "om": "Oromo",      # Oromo (research)
+    "ne": "Nepali",     # Nepali (research)
+    "kok": "Konkani",   # Konkani (research)
+}
+
+#: kaikki entries whose ``pos`` is one of these are dictionary metadata
+#: (single-letter/digraph "character" glosses describing an orthographic
+#: symbol, e.g. Xhosa ``hl`` -> /ɬ/), not words -- they would double-count
+#: the same grapheme fact the spec's own table already encodes, so they are
+#: excluded from the gold rather than scored as if they were lexical items.
+_KAIKKI_EXCLUDED_POS = {"character"}
+
+#: Wiktionary mixes scripts for some languages (kaikki's Javanese dump is
+#: majority Aksara Jawa entries even though the o2i ``jv`` spec is Latin-only
+#: romanization) -- restrict to the script the wired spec actually covers.
+#: ``None`` means no filter (the dump is already single-script for that
+#: language, verified during the smoke-check).
+_KAIKKI_WORD_FILTER: Dict[str, "re.Pattern[str]"] = {
+    "jv": re.compile(r"[A-Za-z'\-]+\Z"),
+    # `so` and `om` specs are Latin-only (official orthographies), but their
+    # kaikki dumps carry a handful of non-Latin/loanword entries -- restrict
+    # to the script the spec actually covers, same rationale as `jv`.
+    "so": re.compile(r"[A-Za-z'\-]+\Z"),
+    "om": re.compile(r"[A-Za-z'\-]+\Z"),
+}
+
+
+def load_kaikki(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """kaikki.org (Wiktextract) per-language Wiktionary extract: pairs the
+    entry ``word`` with the first non-empty ``sounds[].ipa`` transcription,
+    stripping the slash/bracket transcription-type delimiters kaikki wraps
+    around each variant. See ``_KAIKKI_LANGS`` for the wired subset and why."""
+    name = _KAIKKI_LANGS[lang]
+    word_filter = _KAIKKI_WORD_FILTER.get(lang)
+    url = _KAIKKI_BASE.format(name=name)
+    text = _fetch(url, f"kaikki_{name}.jsonl")
+    pairs: List[Tuple[str, str]] = []
+    seen = set()
+    for line in text.splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            entry = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        if entry.get("pos") in _KAIKKI_EXCLUDED_POS:
+            continue
+        word = (entry.get("word") or "").strip()
+        if not word or " " in word:
+            continue
+        if word_filter is not None and not word_filter.match(word):
+            continue
+        ipa = None
+        for sound in entry.get("sounds") or []:
+            raw = (sound.get("ipa") or "").strip()
+            if raw:
+                ipa = raw.strip("/[]")
+                break
+        if not ipa:
+            continue
+        key = (word, ipa)
+        if key in seen:
+            continue
+        seen.add(key)
+        pairs.append((word, ipa))
+        if len(pairs) >= limit:
+            break
+    return pairs
+
+
 _CMUDICT_URL = (
     "https://raw.githubusercontent.com/cmusphinx/cmudict/master/cmudict.dict"
 )
@@ -927,7 +1513,7 @@ _IPADICT_PROVENANCE: Dict[str, str] = {
     # ─ human dictionaries / published lexicographic sources ─
     "is": "lexicon-derived",       # Hjal / "Pronunciation Dictionary for Icelandic" (malfong.is), CC BY 3.0
     "en-US": "lexicon-derived",    # cmudict-ipa (CMU hand-curated ARPABET) + syllabify stress, MIT
-    "ja": "lexicon-derived",       # EDICT readings (EDRDG), CC BY-SA 3.0; only the kana entries are scorable (kanji entries transcribe to '' and drop out of `covered`)
+    "ja": "lexicon-derived",       # EDICT readings (EDRDG), CC BY-SA 3.0; kana-only entries score well (PER 0.05), but the majority of rows mix kanji: those entries stay in `covered` with a partial (kana-only) transcription rather than dropping out, so they drag PER to 0.33 overall — see ja.json audit.ipadict, a `logographic` conclusion (readings are lexical, not rule-derivable)
     "jam": "lexicon-derived",      # "A Learner's Grammar of Jamaican" (Open Grammar Project), CC BY 4.0
     "km": "lexicon-derived",       # Khmer-English Dictionary (aakanee.com), CC BY-NC-SA 4.0
     "ro-RO": "lexicon-derived",    # MaRePhoR phonetic dictionary (UTCluj), CC BY-NC
@@ -960,23 +1546,39 @@ _FETCH_ATTEMPTS = 3
 _FETCH_BACKOFF_SECONDS = 1.5
 
 
-def _fetch(url: str, name: str) -> str:
+def _fetch_file(url: str, name: str) -> str:
+    """Download *url* to ``CACHE_DIR/name`` once and return the path. Binary
+    safe, so archives can be cached the same way text files are."""
     os.makedirs(CACHE_DIR, exist_ok=True)
     dest = os.path.join(CACHE_DIR, name)
     if not os.path.exists(dest):
+        # Download to a sibling temp path and atomically rename into place
+        # on success. urlretrieve writing straight to `dest` leaves a
+        # truncated file behind on an interrupted download (killed
+        # process, network drop, disk full) — the next run's
+        # os.path.exists check then treats that truncated file as a valid
+        # cache hit forever, silently poisoning every downstream read.
+        tmp_dest = dest + f".part-{os.getpid()}"
         last_exc: Optional[Exception] = None
         for attempt in range(1, _FETCH_ATTEMPTS + 1):
             try:
-                urllib.request.urlretrieve(url, dest)
+                urllib.request.urlretrieve(url, tmp_dest)
+                os.replace(tmp_dest, dest)
                 last_exc = None
                 break
             except Exception as exc:  # transient network hiccups
                 last_exc = exc
+                with contextlib.suppress(OSError):
+                    os.remove(tmp_dest)
                 if attempt < _FETCH_ATTEMPTS:
                     time.sleep(_FETCH_BACKOFF_SECONDS * attempt)
         if last_exc is not None:
             raise last_exc
-    with open(dest, encoding="utf-8", errors="replace") as fh:
+    return dest
+
+
+def _fetch(url: str, name: str) -> str:
+    with open(_fetch_file(url, name), encoding="utf-8", errors="replace") as fh:
         return fh.read()
 
 
@@ -1004,6 +1606,43 @@ _ARABIC_HARAKAT = "ًٌٍَُِْ"
 
 def _strip_final_harakat(word: str) -> str:
     return word.rstrip(_ARABIC_HARAKAT)
+
+
+def load_wikipron_nor(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """WikiPron scrape of Wiktionary IPA tagged with the MACROLANGUAGE code.
+
+    WikiPron files an entry by the language code inside its ``{{IPA|…}}``
+    template, not by the L2 section heading it sits under. Wiktionary
+    editors have tagged a large body of Nynorsk entries with the
+    macrolanguage code ``no`` instead of ``nn``, so those pronunciations
+    land in ``nor_latn_broad.tsv`` rather than ``nno_latn_broad.tsv``.
+
+    In a 200-word random sample of the file's headwords, 166 carry their
+    ``{{IPA|no|…}}`` line under a ``==Norwegian Nynorsk==`` section, 24
+    under ``==Norwegian Bokmål==``, 2 under both and 2 under the legacy
+    ``==Norwegian==`` heading. The gold is therefore Nynorsk with a
+    Bokmål minority, and it is scored against ``nn``. It stays a separate
+    row from ``wikipron``/``nn`` because it is a separate file with its
+    own annotator pool and its own ~13% Bokmål contamination — folding
+    the two would hide both.
+    """
+    fname = _WIKIPRON_FILES_MACRO[lang]
+    text = _fetch(_WIKIPRON_BASE + fname, fname)
+    pairs = []
+    for line in text.strip().splitlines():
+        parts = line.split("\t")
+        if len(parts) == 2:
+            pairs.append((parts[0], parts[1]))
+        if len(pairs) >= limit:
+            break
+    return pairs
+
+
+#: WikiPron files scraped under an ISO 639-3 MACROLANGUAGE code, mapped to
+#: the individual-language spec the words actually belong to.
+_WIKIPRON_FILES_MACRO = {
+    "nn": "nor_latn_broad.tsv",          # ISO 639-3 nor, ~1331 rows
+}
 
 
 def load_wikipron_ar_diacritized(lang: str, limit: int) -> List[Tuple[str, str]]:
@@ -1035,10 +1674,85 @@ def load_wikipron_ar_diacritized(lang: str, limit: int) -> List[Tuple[str, str]]
         rows = [(_strip_final_harakat(dia.diacritize(w)), ipa)
                 for w, ipa in raw]
         os.makedirs(CACHE_DIR, exist_ok=True)
-        with open(dest, "w", encoding="utf-8") as fh:
+        # Write to a sibling temp path and atomically rename into place —
+        # writing straight to `dest` over the slow diacritization pass
+        # leaves a truncated file behind on an interrupted run (killed
+        # process, disk full), and the next run's os.path.exists check
+        # then treats that truncated file as a valid cache hit forever.
+        tmp_dest = dest + f".part-{os.getpid()}"
+        with open(tmp_dest, "w", encoding="utf-8") as fh:
             fh.writelines(f"{w}\t{ipa}\n" for w, ipa in rows)
+        os.replace(tmp_dest, dest)
     pairs = []
     for line in open(dest, encoding="utf-8").read().strip().splitlines():
+        parts = line.split("\t")
+        if len(parts) == 2:
+            pairs.append((parts[0], parts[1]))
+        if len(pairs) >= limit:
+            break
+    return pairs
+
+
+#: Base URL of the restored-orthography republication of the affected
+#: WikiPron golds. One file per language, same two-column shape.
+_WIKIPRON_RESTORED_URL = (
+    "https://huggingface.co/datasets/TigreGotico/wikipron-restored-orthography"
+    "/resolve/main/{lang}.tsv"
+)
+
+#: WikiPron golds whose orthography column is lossy because the English
+#: Wiktionary style policy for the language keeps diacritics out of page
+#: TITLES while displaying them on the headword line.
+_WIKIPRON_RESTORED_LANGS = {
+    "ee": "Ewe",
+    "gmh": "Middle High German",
+    "yo": "Yoruba",
+    "he": "Hebrew",
+}
+
+
+def load_wikipron_restored(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """WikiPron gold with the DISPLAY headword put back in the input column.
+
+    WikiPron scrapes the Wiktionary page TITLE. Several language style
+    policies strip diacritics from titles and restore them only on the
+    headword line: ``Wiktionary:Middle High German entry guidelines``
+    says that "certain letters with diacritics (ë ā ē ī ō ū ȥ) are not
+    used in article titles, but are used when displaying the word", and
+    Ewe, Yoruba and Hebrew titles likewise drop tone marks and niqqud.
+    The orthography those rows hand the engine therefore does not encode
+    contrasts the gold IPA still transcribes, and the resulting PER
+    measures the input's loss, not the spec's rules.
+
+    This row keeps the SAME gold IPA and replaces only the input word
+    with the headword Wiktionary renders for that language, recovered
+    from the MediaWiki API by
+    ``scripts/restore_wikipron_orthography.py`` and republished as
+    ``TigreGotico/wikipron-restored-orthography``. Coverage is partial:
+    a page with no headword override, no section for the language, or
+    two conflicting headwords contributes no row, so this gold is a
+    SUBSET of the matching ``wikipron`` row and its PER is only
+    comparable to that row restricted to the same words. Nothing is
+    guessed and no row falls back to the title.
+
+    Middle High German is scored against ``gmh``, never against
+    ``gmh-x-wikt``: ``gmh-x-wikt`` models the title-form spelling the
+    plain ``wikipron`` row feeds it, and the restored word is a third
+    orthography again — the display form, with the ``ë ā ē ī ō ū ȥ`` the
+    title convention drops.
+
+    The published files carry an ``orthography\tipa`` header row so the
+    Hugging Face dataset viewer renders them; it is skipped here.
+    """
+    if lang not in _WIKIPRON_RESTORED_LANGS:
+        return []
+    fname = f"wikipron_restored_{lang}.tsv"
+    text = _fetch(_WIKIPRON_RESTORED_URL.format(lang=lang), fname)
+    pairs = []
+    lines = text.strip().splitlines()
+    if lines and lines[0] == "orthography\tipa":
+        lines = lines[1:]
+    for line in lines:
         parts = line.split("\t")
         if len(parts) == 2:
             pairs.append((parts[0], parts[1]))
@@ -1077,10 +1791,15 @@ def load_barranquenho_dict(lang: str, limit: int) -> List[Tuple[str, str]]:
     on Hugging Face) — 319 entries for the Barranquenho contact variety
     (``ext-PT-x-barrancos``), a Portuguese–Spanish border speech of Barrancos.
 
-    PROVENANCE — this gold is **LLM-generated** (Claude, conditioned on the
-    published *Convenção Ortográfica do Barranquenho* and descriptive research
-    on the variety), NOT produced by a phonemizer, by orthography2ipa, or by
-    any downstream o2i consumer — so scoring o2i against it is not circular.
+    PROVENANCE — the upstream dataset regrew to ~1.8k rows with a per-row
+    ``provenance_tier`` column. Rows tagged ``engine-verified-convention``
+    are o2i-derived and are EXCLUDED here (circular). The remaining
+    ``dicionario-headword`` rows take their headwords from the published
+    Dicionário de Barranquenho (2025), but the near-zero PER o2i scores
+    against them suggests their IPA column is itself o2i-aligned — treat
+    every number from this dataset as agreement, not correctness, until
+    upstream documents who produced the IPA. The row stays at the lowest
+    reliability tier and can gate nothing.
     It is nonetheless machine-generated and unverified by human phoneticians:
     it is classified at the lowest reliability tier (``machine-generated``) and
     is directional only. See docs/benchmarks.md "Provenance and reliability".
@@ -1097,7 +1816,17 @@ def load_barranquenho_dict(lang: str, limit: int) -> List[Tuple[str, str]]:
     reader = csv.DictReader(text.splitlines())
     for row in reader:
         word = (row.get("barranquenho_orthography") or "").strip()
-        ipa = (row.get("ipa_transcription") or "").strip()
+        # The dataset renamed its IPA column from ``ipa_transcription`` to
+        # ``ipa`` when it grew to 1.8k rows; accept both spellings so a
+        # fresh (uncached) fetch never silently yields zero rows again.
+        ipa = (row.get("ipa") or row.get("ipa_transcription") or "").strip()
+        # Rows tagged ``engine-verified-convention`` were produced by running
+        # o2i itself over the orthographic convention: scoring o2i against
+        # them is circular, so they are excluded from the gold. The
+        # ``navas-attested`` (human, Navas Sanchez-Elez) and
+        # ``dicionario-headword`` tiers remain scorable.
+        if (row.get("provenance_tier") or "").strip() == "engine-verified-convention":
+            continue
         if not word or not ipa:
             continue
         pairs.append((word, ipa))
@@ -1211,11 +1940,90 @@ def load_vox_communis(lang: str, limit: int) -> List[Tuple[str, str]]:
     do not match. Alignment artifacts (underscores, stray apostrophes) are
     stripped from the phone side.
 
+    ``spn`` TOKENS ARE DROPPED. ``spn`` is the Montreal Forced Aligner's
+    "spoken noise" symbol, which the VoxCommunis pipeline also emits for any
+    word its lexicon could not cover: the phone tier records the literal
+    three-character string ``spn`` in place of that word's phones. It is a
+    coverage hole marker, not a transcription. Scoring it as gold is not
+    merely noisy, it is unbounded: PER is normalised by the GOLD length, so
+    a real 10-segment word scored against the 3-character ``spn`` yields a
+    per-word PER above 3. Whole languages were driven past PER 1.0 by this
+    alone (``ab`` 46.5% of tokens ``spn``, ``kk`` 59.4%, ``cv`` 31.3%,
+    ``ba`` 15.1%, ``it`` 12.5%, ``sr`` 9.6% — measured over the cached
+    TSVs, 2026-08). Dropping the token is the only honest reading: the
+    dataset is telling us it has no gold for that word.
+
+    ``spn`` is the ONLY token filtered. The obvious siblings do occur in
+    these files, but as genuine transcriptions of real words — Welsh
+    ``sul`` → /sil/ (336 rows), Amharic ``ሲል``, Bulgarian ``сп``, Tamil
+    ``ஸ்ப்``, Korean ``실``, Punjabi ``ਸੀਲ`` — so filtering on the phone
+    string would delete real gold. See ``_VOX_COMMUNIS_NON_SPEECH`` for
+    the 61 identity rows (word and phones both ``sil``/``sp``) that are
+    also left alone, and why.
+
     PROVENANCE — classified ``epitran-derived`` (the competitor tier): the
     phone tier's lexicons are built with Epitran — a scored competitor in
     docs/comparison.md — alongside XPF/Charsiu, so a disagreement here
     measures divergence from a competitor's output. Directional signal
     only; can never gate a regression or a tier promotion.
+
+    ``ab`` IS WEAKER STILL, and the tier cannot say so. Epitran ships no
+    Abkhaz map at all (epitran 1.35.2 ``epitran/data/map/``: 161 maps, 14
+    Cyrillic, nearest Northwest Caucasian ``kbd-Cyrl`` for Kabardian), so
+    the "epitran" in this row's label is not literally true — the ab phone
+    tier came from XPF, Charsiu or a custom lexicon, unattributed. More
+    importantly the gold cannot express the contrast Abkhaz is built on.
+    Measured over the cached TSV: 44,279 of 76,464 word types (57.9%) are
+    ``spn`` rather than a transcription, and eight letters are at 100%
+    ``spn`` — ⟨ә⟩ (30,743 types), ⟨ԥ⟩ (7,984), ⟨қ⟩ (7,058), ⟨ӡ⟩ (5,024),
+    ⟨ҩ⟩ (4,035), ⟨ҿ⟩ (2,678), ⟨ӷ⟩ (1,741), ⟨џ⟩ (811). ⟨ә⟩ U+04D9 is the
+    orthography's LABIALISATION modifier letter, so every labialised
+    spelling is a coverage hole, and the 32,185 scoreable types draw on 35
+    distinct phone symbols with no /ʷ/ among them — in a language that
+    contrasts ~58 consonants against two vowels largely by labialisation
+    and palatalisation (Beguš 2021,
+    doi:10.1093/oxfordhb/9780190690694.013.18, §2.2.1).
+
+    No ``PROVENANCE_BY_LANG`` override is applied, deliberately. The tier
+    lattice has no rung BELOW a competitor's output: ``machine-generated``
+    reads as the weakest tier in docs/benchmarks.md but is a QUALIFYING one
+    (``can_gate_promotion`` is True for it and False for
+    ``epitran-derived``), so overriding ``ab`` down to it would hand a
+    gating vote to the least trustworthy row on the board. Leaving the
+    dataset-wide tier in place keeps the row non-qualifying, which is the
+    outcome the measurements argue for; the inaccurate half of the label is
+    corrected here in prose instead.
+
+    THE ``pt`` FILE IS EUROPEAN PORTUGUESE, and it is mapped to ``pt-BR``
+    because Common Voice's Portuguese traffic is predominantly Brazilian.
+    The phone tier is not: measured over the cached TSV, final ⟨-l⟩
+    vocalises to [w] in 0 of 948 words, ⟨t⟩ affricates before /i/ in 0 of
+    2,378, ⟨d⟩ in 5 of 1,637, final unstressed ⟨-e⟩ raises to [i] in 0 of
+    2,956 and ⟨-o⟩ to [u] in 0 of 7,429, while the European coda sibilant
+    [ʃ] appears on all 7,429 words ending in ⟨-s⟩. Its 34-symbol inventory
+    also has neither ⟨ʎ⟩ nor ⟨ɲ⟩, so the ⟨lh⟩ and ⟨nh⟩ digraphs lose their
+    ⟨h⟩ across 513 and 717 words (gatilho → ``ɡɐtilo``), and it applies the
+    European coda-sibilant rule inside the ⟨ss⟩ digraph on 981 of 995 ⟨ss⟩
+    words (isso → ``iʃso``). ``scripts/fold_pt_br_notation.py`` folds these
+    conventions out one at a time and lands at 0.2534 from 0.3886. Read the
+    row as a measurement of Epitran's European map; see
+    docs/languages/pt-BR.md.
+
+    The Vietnamese file shows what that tier is protecting against, and is
+    worked out in full in docs/languages/vi.md. Its PER of 0.5596 is almost
+    entirely transcription convention — ``scripts/fold_vi_notation.py``
+    folds the conventions out of both sides one at a time and lands at
+    0.0246 — and its tone tier writes one letter, [˨˨], for both ngang and
+    huyền, which are contrastive (Kirby 2011: 386, ma 'ghost' / mà 'but'),
+    on 967 of the row's 2,475 words. Read that row as notation drift, never
+    as evidence about the Vietnamese spec. The tier is deliberately left at
+    the dataset-wide ``epitran-derived``: it already returns False from
+    :func:`can_gate_promotion`, whereas ``machine-generated`` does NOT.
+    Gating power follows position in :data:`RELIABILITY_TIERS` — everything
+    after :data:`GATING_CUTOFF_TIER` is non-qualifying — and
+    ``machine-generated`` sits EARLIER in that tuple than ``epitran-derived``,
+    so relabelling the row that way moves it UP the lattice and would hand it
+    a gating vote it must not have.
     """
     fname = _VOX_COMMUNIS_FILES[lang] + ".tsv"
     text = _fetch(_VOX_COMMUNIS_BASE + fname, f"vox_communis_{fname}")
@@ -1234,7 +2042,7 @@ def load_vox_communis(lang: str, limit: int) -> List[Tuple[str, str]]:
             continue
         for word, phone in zip(words, phones):
             word = word.strip(".,;:!?\u00bf\u00a1\"'()")
-            if not word or not phone:
+            if not word or not phone or phone in _VOX_COMMUNIS_NON_SPEECH:
                 continue
             key = word.lower()
             if key in seen:
@@ -1244,6 +2052,95 @@ def load_vox_communis(lang: str, limit: int) -> List[Tuple[str, str]]:
             if len(pairs) >= limit:
                 return pairs
     return pairs
+
+
+_GOLD_CORRECTIONS_DIR = os.path.join(
+    os.path.dirname(__file__), "..", "orthography2ipa", "data", "gold",
+    "corrections",
+)
+
+#: Gold sets that have a corrections overlay, as ``dataset -> languages``.
+#: Each entry is backed by ``corrections/{dataset}_{lang}.jsonl``.
+GOLD_CORRECTIONS: Dict[str, List[str]] = {"vox_communis": ["vi"]}
+
+
+def read_gold_corrections(dataset: str, lang: str) -> List[Dict[str, str]]:
+    """The correction overlay rows for one gold set and language.
+
+    An OVERLAY repairs a mechanically-derivable defect in an upstream gold
+    WITHOUT touching the upstream file, which stays byte-identical. Each row
+    records the spelling, the reading the upstream shipped, the reading the
+    overlay substitutes, the reason, and the authority the correction rests on.
+
+    A correction may be derived ONLY from the orthography of the word or from a
+    fetched citation — never from what orthography2ipa outputs. A gold repaired
+    with this engine's own answers is circular: it would score beautifully and
+    measure nothing. ``scripts/build_gold_corrections.py`` regenerates these
+    files and is the place that derivation lives; it imports no o2i.
+    """
+    path = os.path.join(_GOLD_CORRECTIONS_DIR, f"{dataset}_{lang}.jsonl")
+    rows = []
+    with open(path, encoding="utf-8") as fh:
+        for line in fh:
+            line = line.strip()
+            if line:
+                rows.append(json.loads(line))
+    return rows
+
+
+def apply_gold_corrections(
+    pairs: List[Tuple[str, str]], dataset: str, lang: str,
+) -> Tuple[List[Tuple[str, str]], int, int]:
+    """Overlay the corrections for *dataset*/*lang* onto *pairs*.
+
+    A correction applies only where BOTH the spelling and the original reading
+    match the upstream pair exactly, so an upstream revision that changes a
+    reading silently loses its correction instead of silently mis-applying it.
+    Returns the corrected pairs, the number of corrections applied, and the
+    number of overlay rows that matched nothing.
+    """
+    overlay = {(r["spelling"], r["original_reading"]): r["corrected_reading"]
+               for r in read_gold_corrections(dataset, lang)}
+    applied = 0
+    out = []
+    for word, reading in pairs:
+        corrected = overlay.get((word, reading))
+        if corrected is None:
+            out.append((word, reading))
+        else:
+            out.append((word, corrected))
+            applied += 1
+    return out, applied, len(overlay) - applied
+
+
+def load_vox_communis_corrected(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """``vox_communis`` with its committed corrections overlay applied.
+
+    Registered as a SEPARATE dataset so the uncorrected row stays on the board
+    beside it: the difference between the two rows is the measurement of the
+    upstream defect, and it can only be read if both numbers are published.
+
+    For ``vi`` the defect is a lost tone contrast. The upstream phone tier
+    writes the same Chao tone letter ˨˨ for *ngang* (A1, unmarked) and *huyền*
+    (A2), which Kirby (2011: 386) tabulates as separate categories on the
+    minimal pair ⟨ma⟩ 'ghost' vs ⟨mà⟩ 'but, yet'. Vietnamese orthography writes
+    huyền with a combining grave accent, so which of the two merged tones a
+    syllable carries is recoverable from the SPELLING, and the overlay rewrites
+    those readings to ˧˩ ("mid falling", Kirby's label, and above hỏi's "low
+    falling" ˨˩˨). See ``scripts/build_gold_corrections.py``.
+
+    PROVENANCE — a corrected gold is never MORE trustworthy than its base. This
+    one keeps its base's ``epitran-derived`` tier: the corrections touch one
+    feature of 16% of the rows and the other 84% are the competitor's output
+    untouched. It is also itself the product of an automated process. It cannot
+    gate a promotion, and neither can any overlay.
+    """
+    pairs = load_vox_communis(lang, sys.maxsize)
+    pairs, applied, unmatched = apply_gold_corrections(pairs, "vox_communis", lang)
+    if unmatched:
+        print(f"warning: {unmatched} vox_communis/{lang} corrections matched "
+              f"no upstream row (applied {applied})", file=sys.stderr)
+    return pairs[:limit]
 
 
 def load_4catac(lang: str, limit: int) -> List[Tuple[str, str]]:
@@ -1618,6 +2515,78 @@ _ARABIC_TTS_LANGS = _sentence_tts_langs(_ARABIC_TTS_DIR)
 _PORTUGUESE_TTS_LANGS = _sentence_tts_langs(_PORTUGUESE_TTS_DIR)
 
 
+# ─── gold20 — Salesteq/arabic-dialects-gold20 (Hugging Face) ────────────────
+#
+# A SIBLING gold set to ``arabic_tts`` above, published upstream as
+# ``Salesteq/arabic-dialects-gold20`` on Hugging Face: 33 lects × 20
+# sentences, same shape (vocalized ``sentence`` in, broad ``ipa`` gold),
+# plus extra columns (``ipa_o2i`` engine draft, ``features``,
+# ``fable_corrections``, ``verification``, ``judge_agreement``) this loader
+# does not need and ignores. It is registered SEPARATELY, fetched at
+# runtime (never vendored) and cached under CACHE_DIR, because the
+# maintainer asked for this specific published dataset by URL — it is not a
+# vendored copy of ``arabic_tts``, whose local TSVs have since been hand
+# re-audited and diverge from the upstream file row-by-row (see e.g. the
+# ar-EG-020 delta note in ``orthography2ipa/data/gold/arabic_tts/ar-EG.tsv``).
+#
+# PROVENANCE — semi-synthetic: every ``sentence``/``ipa`` pair was drafted
+# by an LLM (the same Claude lineage that authored the o2i Arabic dialect
+# specs this scores against — a near-circular relationship), then
+# spot-checked by a native Arabic speaker who judged the set good. That
+# spot-check is documented context, not a tier upgrade: there is still no
+# lexicon and no rule system behind the gold, so a disagreement cannot be
+# attributed to anything. Tier stays ``llm-generated`` — the same, lowest
+# tier as ``arabic_tts``/``portuguese_tts``/``barranquenho_dict``/
+# ``mirandese_dict``. It gates nothing and certifies nothing. It is
+# registered anyway because for most of these Arabic dialects no other gold
+# exists at all: this is better than the alternative of no signal, not
+# because it clears any quality bar.
+_GOLD20_ARABIC_BASE = (
+    "https://huggingface.co/datasets/Salesteq/arabic-dialects-gold20"
+    "/resolve/main/{lang}.tsv"
+)
+# Upstream file stems that are already valid orthography2ipa lect codes
+# (verified 1:1 against orthography2ipa/data/*.json — every file here has a
+# matching registered spec; nothing was force-mapped and nothing was
+# rejected).
+_GOLD20_ARABIC_LANGS = sorted([
+    "ar", "arb",
+    "ar-AE", "ar-BH", "ar-DZ", "ar-EG", "ar-IQ", "ar-IQ-x-qeltu", "ar-JO",
+    "ar-KW", "ar-LB", "ar-LY", "ar-MA", "ar-MR", "ar-NG", "ar-OM", "ar-PS",
+    "ar-QA", "ar-SA-x-hejaz", "ar-SA-x-najd", "ar-SA-x-qassim",
+    "ar-SA-x-rijal-alma", "ar-SA-x-sharqiyya", "ar-SD", "ar-SY", "ar-TD",
+    "ar-TN", "ar-YE",
+    "ar-x-gulf", "ar-x-levantine", "ar-x-maghrebi", "ar-x-mashriqi",
+    "ar-x-peninsular",
+])
+
+
+def load_gold20_arabic(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """Salesteq/arabic-dialects-gold20 (Hugging Face) — one TSV per lect, 20
+    sentences each, 33 Arabic varieties. Vocalized ``sentence`` column in,
+    broad IPA ``ipa`` column as gold; the ``ipa_o2i``/``features``/
+    ``fable_corrections``/``verification``/``judge_agreement`` columns are
+    ignored by the harness. Semi-synthetic (LLM-drafted by the same Claude
+    lineage that authored the o2i Arabic dialect specs), spot-checked good by
+    a native Arabic speaker; registered because for most of these dialects no
+    other gold exists at all. See the ``gold20_arabic`` provenance note:
+    ``llm-generated``, gates no quality decision.
+    """
+    fname = f"{lang}.tsv"
+    text = _fetch(_GOLD20_ARABIC_BASE.format(lang=lang), f"gold20_arabic_{fname}")
+    pairs: List[Tuple[str, str]] = []
+    reader = csv.DictReader(text.splitlines(), delimiter="\t")
+    for row in reader:
+        sentence = (row.get("sentence") or "").strip()
+        ipa = (row.get("ipa") or "").strip()
+        if not sentence or not ipa:
+            continue
+        pairs.append((sentence, ipa))
+        if len(pairs) >= limit:
+            break
+    return pairs
+
+
 _PRIMARY_SOURCES_DIR = os.path.join(
     os.path.dirname(__file__), "..", "orthography2ipa", "data", "gold",
     "primary_sources",
@@ -1677,13 +2646,399 @@ def _primary_source_langs() -> List[str]:
     })
 
 
-DATASETS = {
+# ─── alphacep/biggest-ru-book-cleanup (Russian) ────────────────────────────
+#
+# Notation: a Latin-letter segment code per Russian phoneme. Plain
+# consonants are the code letter itself; a trailing ``j`` on a consonant
+# marks palatalization (``tj`` = /tʲ/); vowels carry a trailing stress digit
+# (``1`` = stressed, ``0`` = unstressed). Enumerated exhaustively over the
+# cached ``dev`` split (1291 rows, 314 raw segment tokens before
+# stripping, 48 distinct phoneme codes once trailing sentence punctuation
+# is stripped from word/segment-group edges the same way
+# ``load_vox_communis`` strips it) — every code below is one of those 48;
+# none were guessed.
+_ALPHACEP_RU_CONSONANTS: Dict[str, str] = {
+    "b": "b", "c": "t͡s", "ch": "t͡ɕ", "d": "d", "f": "f", "g": "ɡ",
+    "h": "x", "k": "k", "l": "ɫ", "m": "m", "n": "n", "p": "p", "r": "r",
+    "s": "s", "sch": "ɕː", "sh": "ʂ", "t": "t", "v": "v", "z": "z",
+    "zh": "ʐ", "j": "j",
+}
+_ALPHACEP_RU_VOWELS: Dict[str, str] = {
+    "a": "a", "e": "e", "i": "i", "o": "o", "u": "u", "y": "ɨ",
+}
+#: Palatalization on ``ch``/``sch``/``zh``/``sh`` is not marked with a
+#: trailing ``j`` in the source data (they are inherently soft/hard in
+#: Russian and the annotation does not append ``j`` to them) — only the
+#: single-letter and ``j``-final codes below take the ``Cj`` softening
+#: pattern, confirmed against the segment inventory (``sch``, ``sh``, ``zh``
+#: never co-occur with a trailing extra ``j``).
+_ALPHACEP_RU_PALATALIZABLE = frozenset("bdfghklmnprstvz")
+
+#: ``l`` is the one consonant whose palatalized counterpart is not the
+#: plain IPA symbol plus ``ʲ``: Russian hard /ɫ/ (velarized "dark" l) and
+#: soft /lʲ/ are two distinct places of articulation, not the same
+#: consonant with an added secondary articulation — ``lj`` -> ``ɫʲ`` would
+#: notate a velarized-AND-palatalized lateral that does not occur in
+#: Russian. Every other ``Cj`` code keeps the generic base-IPA + ``ʲ``
+#: rule.
+_ALPHACEP_RU_PALATALIZED_OVERRIDES: Dict[str, str] = {"l": "lʲ"}
+
+#: Punctuation the source data glues onto the edge of a word's phone group
+#: (sentence punctuation, quotes, parens) — none of it is a phoneme.
+_ALPHACEP_RU_PUNCT = ".,;:!?¡¿\"'()«»…-—:"
+
+
+def _alphacep_ru_strip_punct(token: str) -> str:
+    return token.strip(_ALPHACEP_RU_PUNCT)
+
+
+def _alphacep_ru_segment_to_ipa(seg: str) -> Optional[str]:
+    """Map one underscore-delimited segment code to IPA, or ``None`` if the
+    segment is punctuation left over after group-level stripping (a stray
+    quote/dash glued to an interior segment by the source annotation)."""
+    seg = _alphacep_ru_strip_punct(seg)
+    if not seg:
+        return None
+    if seg[-1].isdigit():
+        base, stress = seg[:-1], seg[-1]
+        ipa = _ALPHACEP_RU_VOWELS.get(base)
+        if ipa is None:
+            return None
+        return ("ˈ" if stress == "1" else "") + ipa
+    if (len(seg) >= 2 and seg[-1] == "j"
+            and seg[:-1] in _ALPHACEP_RU_PALATALIZABLE):
+        base = seg[:-1]
+        override = _ALPHACEP_RU_PALATALIZED_OVERRIDES.get(base)
+        if override is not None:
+            return override
+        base_ipa = _ALPHACEP_RU_CONSONANTS.get(base)
+        if base_ipa is None:
+            return None
+        return base_ipa + "ʲ"
+    return _ALPHACEP_RU_CONSONANTS.get(seg)
+
+
+def load_alphacep_ru_book(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """alphacep/biggest-ru-book-cleanup (Hugging Face, dataset repo): a
+    cleaned phone-level re-annotation of its5Q/biggest-ru-book (Russian
+    audiobook TTS data). Rows are ``wav|sentence|phones``, where ``phones``
+    is one underscore-joined segment group per whitespace-tokenized
+    ``sentence`` word — rows are split into word-level (word, IPA) pairs the
+    same way ``load_vox_communis`` does; a row whose word/group counts do
+    not match is guarded against and skipped, though the cached ``dev``
+    split has none. Only the cached ``dev`` split is read (fetched via
+    ``huggingface_hub.hf_hub_download``, which resolves from the local HF
+    cache and does not re-download a file already present there).
+
+    PRODUCTION METHOD — this gold is MORPHOPHONEMIC / accentuator-driven,
+    not a surface-phonetic transcription: it is grapheme-faithful (no
+    vowel reduction — unstressed vowels keep their full quality, e.g.
+    молчал → m_o0_l_ch_a1_l with an unreduced [o], never akanje [ɐ]/[ə]) and
+    it writes genitive-ending ⟨г⟩ as [g] rather than the spoken [v]
+    (298/300 его-suffix rows checked carry [g], confirming this is a fixed
+    orthography-driven rule of the annotation pipeline, not a transcription
+    error). o2i's Russian output is surface-phonetic (it reduces unstressed
+    vowels and realizes genitive ⟨г⟩ as [v]), so PER against this gold will
+    show systematic, EXPECTED disagreement on exactly those two phenomena —
+    that is a notation mismatch between two legitimate conventions, not a
+    model error, and it must not be "fixed" by adding akanje/г-devoicing
+    exceptions to o2i to chase this one gold's convention.
+
+    PROVENANCE — classified ``machine-generated``: the phone tier is an
+    automatic accentuator/G2P annotation over its5Q/biggest-ru-book, not a
+    hand-transcribed or lexicon-derived gold. Directional signal only; see
+    ``docs/quality_tiers.md`` — this tier cannot gate a promotion.
+    """
+    if lang != "ru":
+        return []
+    from huggingface_hub import hf_hub_download
+    path = hf_hub_download(
+        repo_id="alphacep/biggest-ru-book-cleanup",
+        filename="metadata-phones-ids.csv.dev",
+        repo_type="dataset",
+    )
+    pairs: List[Tuple[str, str]] = []
+    seen = set()
+    with open(path, encoding="utf-8", errors="replace") as fh:
+        for line in fh:
+            line = line.rstrip("\n")
+            parts = line.split("|")
+            if len(parts) < 3:
+                continue
+            sentence, phones_field = parts[1], parts[2]
+            words = sentence.split()
+            groups = phones_field.split()
+            if len(words) != len(groups):
+                continue
+            for word, group in zip(words, groups):
+                word = _alphacep_ru_strip_punct(word)
+                if not word:
+                    continue
+                ipa_segs = [_alphacep_ru_segment_to_ipa(seg)
+                            for seg in group.split("_")]
+                ipa_segs = [s for s in ipa_segs if s]
+                if not ipa_segs:
+                    continue
+                ipa = "".join(ipa_segs)
+                key = word.lower()
+                if key in seen:
+                    continue
+                seen.add(key)
+                pairs.append((word, ipa))
+                if len(pairs) >= limit:
+                    return pairs
+    return pairs
+
+
+# ─── CoRuSS phonetic dictionary (Russian) ──────────────────────────────────
+#
+# Notation: the SPbU lab's own ASCII scheme, described by the corpus site as
+# "analogous to the SAMPA set" but NOT X-SAMPA — the two disagree on most of
+# the symbols that matter here (``Q`` is /ɨ/ not /ɒ/, ``C`` is /t͡ɕ/ not /ç/,
+# ``D`` is voiced ⟨ц⟩ not /ð/, ``G`` is voiced ⟨ч⟩ not /ɣ/, ``h`` is /ɣ/ not
+# /h/, ``I`` is a vowel-context diacritic not /ɪ/, and ``:`` marks a
+# palatal environment rather than length). Running it through
+# ``scriptconv.notation.xsampa_to_ipa`` would therefore mistranscribe the
+# majority of its distinctive symbols, so the tables below are the corpus's
+# own documented set, transcribed from the conventions page
+# (https://russpeech.spbu.ru/transkrip.htm) and checked to cover every
+# symbol that actually occurs in the archive.
+#
+# Vowels are written as a base letter plus up to three optional context
+# diacritics, in this order: ``:`` after or between palatalized consonants,
+# ``I`` before a palatalized consonant, ``#`` excessive duration. Consonants
+# are their Latin transliteration plus an optional ``'`` for palatalization
+# and an optional ``#``.
+_CORUSS_VOWELS: Dict[str, str] = {
+    "a": "a", "o": "o", "e": "ɛ", "i": "i", "u": "u", "Q": "ɨ", "@": "ə",
+}
+#: The ``:`` diacritic is a COARTICULATION mark, not a phoneme distinction,
+#: for every vowel but ⟨э⟩: a fronted [ä]/[ö]/[ʉ] after a soft consonant is
+#: the same phoneme as its plain counterpart and o2i does not notate the
+#: fronting, so writing it into the gold would charge every soft-consonant
+#: vowel token as an error. ⟨э⟩ is the exception, because the hard/soft
+#: split there is the [ɛ] ~ [e] distinction o2i's own Russian inventory
+#: makes (⟨это⟩ ˈɛtə vs ⟨лес⟩ ˈlʲes). ``I`` and ``#`` carry no phoneme
+#: distinction at all and are dropped from every vowel.
+_CORUSS_VOWELS_AFTER_SOFT: Dict[str, str] = {"e": "e"}
+_CORUSS_CONSONANTS: Dict[str, str] = {
+    "b": "b", "p": "p", "d": "d", "t": "t", "k": "k", "g": "ɡ", "f": "f",
+    "v": "v", "s": "s", "z": "z", "m": "m", "n": "n", "r": "r", "j": "j",
+    "l": "ɫ", "x": "x", "h": "ɣ", "c": "t͡s", "D": "d͡z", "C": "t͡ɕ",
+    "G": "d͡ʑ", "S": "ʂ", "Z": "ʐ", "$": "ɕː",
+}
+#: Consonants that take the ``C'`` palatalization mark. The conventions
+#: page is the criterion for what a symbol means, so ``c'``, ``S'`` and
+#: ``C'`` (19 occurrences between them) are rejected as annotation slips:
+#: ⟨ц ш ч⟩ are unpaired for palatalization in Russian, the page gives them
+#: no palatalized form, and there is nothing to map them to that would not
+#: be a guess. ``Z'`` goes the other way for the same reason — the page
+#: DOES define it, as the voiced counterpart of ⟨щ⟩ — so it is honoured;
+#: see _CORUSS_PALATALIZED_OVERRIDES.
+_CORUSS_PALATALIZABLE = frozenset("bpdtkgfvszmnrlx")
+#: Hard ⟨л⟩ is velarized /ɫ/ and soft ⟨ль⟩ is /lʲ/ — two distinct Russian
+#: consonants, not one consonant plus a secondary articulation, so ``l'``
+#: cannot go through the generic base + ``ʲ`` rule (``ɫʲ`` is not a Russian
+#: segment). Same reasoning as ``load_alphacep_ru_book``.
+#:
+#: ``Z'`` takes the value the conventions page assigns it, voiced ⟨щ⟩
+#: /ʑː/, rather than the palatalized ⟨ж⟩ its shape suggests (/ʐʲ/ is not a
+#: Russian segment either way). Worth knowing about the gold: all 16 rows
+#: that use it spell ⟨ж⟩ or ⟨з⟩ and none spell ⟨щ⟩. Three of them —
+#: ⟨выезжать⟩, ⟨приезжай⟩, ⟨дождём⟩ — are the genuine old-Moscow long soft
+#: /ʑː/ for ⟨зж⟩/⟨жд⟩; the rest (⟨живёт⟩, ⟨даже⟩, ⟨ружья⟩, ⟨ежедневно⟩ …)
+#: are annotator readings that standard Russian would write with plain
+#: /ʐ/. That is a property of this gold, recorded rather than corrected:
+#: the loader's job is fidelity to the documented convention, and at ~0.1%
+#: of rows it is far below the noise floor of a 0.35 PER anyway.
+_CORUSS_PALATALIZED_OVERRIDES: Dict[str, str] = {"l": "lʲ", "Z": "ʑː"}
+
+#: ``  word [transcription]  count`` — the per-file trailing tally line
+#: (``1981/0``) has no bracket and simply fails to match.
+_CORUSS_ROW = re.compile(r"^\s*(\S+)\s+\[([^\]]*)\]\s*\d*\s*$")
+_CORUSS_CYRILLIC = frozenset("абвгдеёжзийклмнопрстуфхцчшщъыьэюя")
+_CORUSS_VOWEL_LETTERS = frozenset("аеёиоуыэюя")
+
+
+def _coruss_to_ipa(trans: str) -> Optional[str]:
+    """Map one CoRuSS transcription to IPA, or ``None`` if it contains a
+    symbol the conventions page does not define (annotation slips: stray
+    ``+``, Latin ``O``/``U``/``V``/``w``, punctuation, single Cyrillic
+    letters typed into the Latin field). Undefined symbols reject the whole
+    row rather than being dropped from it — a silently shortened reference
+    would score as a deletion error against a correct hypothesis."""
+    out: List[str] = []
+    i, n = 0, len(trans)
+    while i < n:
+        ch = trans[i]
+        # Round brackets mark a weakly realized segment the annotator still
+        # heard (⟨Брежнев⟩ [br'e:Zn'e:(f)] — a devoiced but present final
+        # stop). The segment is real; only the bracket is notation.
+        if ch in "()":
+            i += 1
+            continue
+        if ch in _CORUSS_VOWELS:
+            j = i + 1
+            after_soft = j < n and trans[j] == ":"
+            j += after_soft
+            j += j < n and trans[j] == "I"
+            j += j < n and trans[j] == "#"
+            out.append(_CORUSS_VOWELS_AFTER_SOFT[ch] if after_soft
+                       and ch in _CORUSS_VOWELS_AFTER_SOFT
+                       else _CORUSS_VOWELS[ch])
+            i = j
+            continue
+        if ch in _CORUSS_CONSONANTS:
+            j = i + 1
+            if j < n and trans[j] == "'":
+                override = _CORUSS_PALATALIZED_OVERRIDES.get(ch)
+                if override is None and ch not in _CORUSS_PALATALIZABLE:
+                    return None
+                out.append(override or _CORUSS_CONSONANTS[ch] + "ʲ")
+                j += 1
+            else:
+                out.append(_CORUSS_CONSONANTS[ch])
+            j += j < n and trans[j] == "#"
+            i = j
+            continue
+        return None
+    return "".join(out) or None
+
+
+def _coruss_anchor_stress(word: str, ipa: str) -> str:
+    """Move the orthographic stress mark onto the IPA.
+
+    CoRuSS marks stress on the ORTHOGRAPHIC side only — ``+`` follows the
+    stressed vowel letter — and leaves the transcription unmarked, so the
+    mark has to be re-anchored to be comparable with o2i's ``ˈ``. It is
+    placed before the IPA vowel at the same ordinal position as the marked
+    orthographic vowel, and only when the two vowel counts agree: this is
+    surface-phonetic transcription of colloquial speech, where a vowel is
+    often simply gone (⟨Алекса+ндровна⟩ [l'iksan@] has four vowels for
+    five letters), and there is no defensible way to say which vowel
+    survived. Unanchorable rows keep an unmarked reference; the board
+    strips stress from both sides anyway (``--keep-stress`` is off by
+    default), so this only affects stress-aware reruns.
+    """
+    if word.count("+") != 1:
+        return ipa
+    letters = [c for c in word.lower() if c in _CORUSS_CYRILLIC or c == "+"]
+    try:
+        rank = sum(1 for c in letters[:letters.index("+")]
+                   if c in _CORUSS_VOWEL_LETTERS)
+    except ValueError:
+        return ipa
+    positions = [k for k, c in enumerate(ipa) if is_ipa_vowel(c)]
+    if len(positions) != sum(1 for c in letters
+                             if c in _CORUSS_VOWEL_LETTERS) or rank < 1:
+        return ipa
+    cut = positions[rank - 1]
+    return ipa[:cut] + "ˈ" + ipa[cut:]
+
+
+def load_coruss_ru(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """CoRuSS phonetic dictionary (Corpus of Russian Colloquial Speech, the
+    phonetics lab of Saint Petersburg State University; Kachkovskaia et al.
+    2016, "CoRuSS: a corpus of Russian spontaneous speech", LREC).
+
+    The published dictionaries (``slovari.rar``, fetched once into
+    ``CACHE_DIR``) hold one ``word [transcription] count`` row per attested
+    realization, over three sub-corpora: ``READ`` (read speech), ``MONO``
+    (monologues) and ``DICT``. A wordform realized several different ways
+    contributes SEVERAL rows, and all of them are kept — the harness scores
+    a hypothesis against the best of a word's references, so the corpus's
+    pronunciation variation is used as multi-reference gold rather than
+    being collapsed to an arbitrary winner.
+
+    Rows are rejected, never patched, when the orthographic side is a
+    cross-word coalescence (``если_они``, ``потому=что``: the conventions
+    page defines these composite wordforms, and their transcriptions carry
+    sandhi a word-level G2P cannot produce), a truncated fragment
+    (``Инфо+рм-``), an unreadable legacy encoding (a handful of very
+    high-variance filler words), or when the transcription contains a
+    symbol the conventions page does not define.
+
+    PRODUCTION METHOD — HUMAN-ANNOTATED and SURFACE-PHONETIC. The lab
+    transcribed the acoustic signal directly, explicitly suppressing the
+    transcriber's lexical and grammatical knowledge, so a row records what
+    a speaker actually said in unscripted conversation, not what a
+    dictionary says the word is. Colloquial speech reduces far harder than
+    the careful speech behind a pronunciation lexicon: whole syllables
+    disappear (⟨Александровна⟩ [l'iksan@], ⟨Волгоград⟩ [vodgrat]), and no
+    G2P can or should predict that. PER against this gold is therefore a
+    FLOOR on Russian error, and a much higher one than against a
+    careful-speech reference — it must be read as the distance to
+    spontaneous-speech surface forms, and compared only against other runs
+    on this same dataset, never against a lexicon gold's number. Nothing
+    here licenses adding reduction rules to o2i to close that gap: the
+    variation is speaker- and context-specific, and fitting it would be
+    gold-fitting.
+
+    PROVENANCE — ``expert-human``: expert phonetic transcription by a
+    university phonetics lab, from audio, with no engine in the loop.
+    """
+    if lang != "ru":
+        return []
+    import rarfile  # optional; skip the row when unavailable
+    archive = _fetch_file(
+        "https://russpeech.spbu.ru/SLOVARI/slovari.rar", "coruss_slovari.rar")
+    pairs: List[Tuple[str, str]] = []
+    seen = set()
+    with rarfile.RarFile(archive) as rf:
+        for name in sorted(n for n in rf.namelist() if not n.endswith("/")):
+            text = rf.read(name).decode("cp1251", errors="replace")
+            for line in text.splitlines():
+                row = _CORUSS_ROW.match(line)
+                if row is None:
+                    continue
+                word, trans = row.group(1), row.group(2)
+                # ``^`` marks a secondary-stress vowel and is not part of
+                # the spelling; ``+`` is kept for stress anchoring below.
+                word = word.replace("^", "")
+                if ("_" in word or "=" in word or word.endswith("-")
+                        or word.startswith("-")):
+                    continue
+                spelling = word.replace("+", "").replace("-", "")
+                if not spelling or not all(c in _CORUSS_CYRILLIC
+                                           for c in spelling.lower()):
+                    continue
+                ipa = _coruss_to_ipa(trans)
+                if ipa is None:
+                    continue
+                ipa = _coruss_anchor_stress(word, ipa)
+                word = word.replace("+", "")
+                if (word, ipa) in seen:
+                    continue
+                seen.add((word, ipa))
+                pairs.append((word, ipa))
+                if len(pairs) >= limit:
+                    return pairs
+    return pairs
+
+
+#: A dataset loader: ``loader(lang, limit) -> [GoldPair, ...]``. ``limit``
+#: is a row cap (``sys.maxsize`` for "no cap"); a loader that cannot serve
+#: *lang* returns an empty list rather than raising.
+DatasetLoader = Callable[[str, int], List[GoldPair]]
+
+#: THE dataset registry: ``{name: (loader, [language, ...])}``. Every gold
+#: set the harness can score is reachable from here and nowhere else — the
+#: CLI's ``--dataset`` choices, ``build_scoreboard``'s sweep, and
+#: ``compare_systems.LANGS``' dataset references all read this one table, so
+#: registering a loader here is the whole job of adding a dataset. Every
+#: entry must also have a ``PROVENANCE`` tier (enforced below): a gold with
+#: no recorded provenance cannot be read honestly.
+DATASETS: Dict[str, Tuple[DatasetLoader, List[str]]] = {
     "primary_sources": (load_primary_sources, _primary_source_langs()),
     "arabic_tts": (load_arabic_tts, _ARABIC_TTS_LANGS),
+    "gold20_arabic": (load_gold20_arabic, _GOLD20_ARABIC_LANGS),
     "portuguese_tts": (load_portuguese_tts, _PORTUGUESE_TTS_LANGS),
     "ep_dialects": (load_ep_dialects, _EP_DIALECT_LANGS),
     "wikipron": (load_wikipron, sorted(_WIKIPRON_FILES)),
     "wikipron_ar_diacritized": (load_wikipron_ar_diacritized, ["ar"]),
+    "wikipron_nor": (load_wikipron_nor, sorted(_WIKIPRON_FILES_MACRO)),
+    "wikipron_restored": (load_wikipron_restored,
+                          sorted(_WIKIPRON_RESTORED_LANGS)),
     "mirandese_g2p": (load_mirandese, sorted(_MIRANDESE_DIALECTS)),
     "barranquenho_dict": (load_barranquenho_dict, ["ext-PT-x-barrancos"]),
     "mirandese_dict": (load_mirandese_dict, sorted(_MIRANDESE_DICT_DIALECTS)),
@@ -1695,7 +3050,14 @@ DATASETS = {
     "ipadict": (load_ipadict, sorted(_IPADICT_FILES)),
     "ipa_childes": (load_ipa_childes, sorted(_IPA_CHILDES_FOLDERS)),
     "vox_communis": (load_vox_communis, sorted(_VOX_COMMUNIS_FILES)),
+    "vox_communis_corrected": (load_vox_communis_corrected,
+                               GOLD_CORRECTIONS["vox_communis"]),
     "ipa_babylm": (load_ipa_babylm, ["en-US"]),
+    "northeuralex": (load_northeuralex, sorted(_NORTHEURALEX_LANGS)),
+    "wold": (load_wold, sorted(_WOLD_LANGS)),
+    "kaikki": (load_kaikki, sorted(_KAIKKI_LANGS)),
+    "alphacep_ru_book": (load_alphacep_ru_book, ["ru"]),
+    "coruss_ru": (load_coruss_ru, ["ru"]),
 }
 
 
@@ -1768,12 +3130,40 @@ RELIABILITY_TIERS = (
 # each points at a different column of docs/comparison.md.
 COMPETITOR_DERIVED_TIERS = frozenset({"espeak-derived", "epitran-derived"})
 
+# The last tier in RELIABILITY_TIERS that may gate a quality decision. Gating
+# power is DERIVED from tuple position rather than listed separately, so the
+# order above is the contract: a tier earlier in the tuple can never have less
+# gating power than a later one, and moving a row's tier up the tuple is always
+# an upgrade. The two are stated once because stating them twice is how they
+# drift — and a reader who mistook the tuple for a ladder that the gating sets
+# did not follow would reach exactly the wrong conclusion about which way a
+# reclassification moves a row.
+#
+# The cutoff sits AFTER `machine-generated`, which therefore gates. That is
+# deliberate and it is the one place where this lattice and the narrower
+# `_GOLD_TIERS` in scripts/compare_systems.py disagree, so it is worth being
+# explicit about why. The two answer different questions. compare_systems asks
+# whether a row may support a "we beat espeak" claim, and there an automatic
+# phonemizer's output is agreement rather than accuracy, so it does not
+# qualify. This lattice asks whether a PER movement on a row may block a merge
+# or qualify a language, and there the relevant property is whether the
+# reference has an error model a disagreement can be attributed to. A
+# phonemizer's output does: it is a rule or model system whose divergences can
+# be traced and adjudicated, exactly as espeak's can. What disqualifies the
+# competitor tiers is not that they are machine-made but that they are the
+# specific systems this project scores itself against, which makes a
+# disagreement with them a measure of our distance from a benchmark rival.
+# `machine-generated` gold is nobody's scoreline.
+GATING_CUTOFF_TIER = "machine-generated"
+
 # Tiers that can never gate a quality decision: a competitor's output (measures
 # agreement, not correctness) or an LLM's (no error model at all). A language
 # whose only >=500-entry gold sits in one of these has NO usable gold and stays
 # at `research`, and a poor score on one of these rows can equally never BLOCK a
 # language that clears the bar on a trustworthy gold. See docs/quality_tiers.md.
-NON_QUALIFYING_TIERS = COMPETITOR_DERIVED_TIERS | {"llm-generated"}
+NON_QUALIFYING_TIERS = frozenset(
+    RELIABILITY_TIERS[RELIABILITY_TIERS.index(GATING_CUTOFF_TIER) + 1:]
+)
 
 
 def can_gate_promotion(tier: str) -> bool:
@@ -1806,6 +3196,11 @@ PROVENANCE: Dict[str, str] = {
     # `llm-generated` (never `expert-human`) — directional signal only, gates
     # no quality decision (docs/quality_tiers.md).
     "arabic_tts": "llm-generated",
+    "gold20_arabic": "llm-generated",   # Salesteq/arabic-dialects-gold20 (HF):
+    # semi-synthetic (same Claude lineage that authored the o2i Arabic dialect
+    # specs — near-circular), native-speaker spot-checked but that raises
+    # confidence, not tier: no lexicon/rules behind it, so it stays the
+    # lowest, non-gating tier, same as its arabic_tts sibling.
     "portuguese_tts": "llm-generated",
     # phonetician / native-speaker / expert-annotator curated IPA
     "ep_dialects": "expert-human",       # TigreGotico team, manual, unvalidated, small-n
@@ -1830,6 +3225,14 @@ PROVENANCE: Dict[str, str] = {
     # machine noise floor on top of the gold's own tier. Diagnostic for
     # the vowelized-Arabic rules; certifies nothing beyond the raw row.
     "wikipron_ar_diacritized": "crowd-scraped",
+    # Same crowd-scraped WikiPron tier as ``wikipron``; a different file,
+    # scraped under the Norwegian MACROLANGUAGE code (see load_wikipron_nor).
+    "wikipron_nor": "crowd-scraped",
+    # The gold IPA is byte-identical to ``wikipron`` and the input word
+    # comes from the same Wiktionary page, read from the headword line
+    # instead of the page title. No new annotator and no machine
+    # transcription enter, so the tier does not move.
+    "wikipron_restored": "crowd-scraped",
     # Portal da Língua Portuguesa scrape; semi-automated IPA, not hand-verified
     # A COMPETITOR'S OUTPUT reused as a reference. These phonemes come from the
     # espeak-ng-backed phonemizer, so this row measures AGREEMENT WITH ESPEAK,
@@ -1847,6 +3250,14 @@ PROVENANCE: Dict[str, str] = {
     # VoxCommunis lexicons are built with Epitran (a scored competitor),
     # XPF and Charsiu; partially hand-corrected, but not attributably so.
     "vox_communis": "epitran-derived",
+    # The SAME gold with the committed corrections overlay applied (see
+    # load_vox_communis_corrected). A corrected gold inherits its base's tier
+    # and can never rise above it: repairing one derivable defect does not make
+    # the untouched majority of the rows anything other than the competitor's
+    # output, and the repair itself was applied by an automated process. Every
+    # overlay therefore lands on a non-gating tier by construction — a test
+    # asserts can_gate_promotion is False for it.
+    "vox_communis_corrected": "epitran-derived",
     # IPA-CHILDES is MIXED-PROVENANCE and is classified PER LANGUAGE in
     # PROVENANCE_BY_LANG below: its dataset card names a DIFFERENT phonemizing
     # tool per language (phonemizer/espeak for most, epitran for six,
@@ -1862,6 +3273,51 @@ PROVENANCE: Dict[str, str] = {
     # anything. Lowest tier; can never gate a promotion.
     "barranquenho_dict": "llm-generated",
     "mirandese_dict": "llm-generated",
+    # Lexibank/CLDF wordlists: every row is compiled from, and cites, a
+    # published source dictionary (the CLDF `Source` column) — human
+    # lexicographers via a published notation, the same class of gold as
+    # `cmudict`/`portuguese_unified`, not a phonemizer's own output.
+    "northeuralex": "lexicon-derived",  # Dellert et al. 2020, NorthEuraLex
+    "wold": "lexicon-derived",          # Haspelmath & Tadmor 2009, WOLD
+    "kaikki": "crowd-scraped",          # kaikki.org Wiktextract (Wiktionary)
+    # alphacep/biggest-ru-book-cleanup: automatic accentuator/G2P annotation
+    # over its5Q/biggest-ru-book, not hand-transcribed or lexicon-derived.
+    # Also morphophonemic (no vowel reduction, ⟨г⟩=[g]) rather than
+    # surface-phonetic — see load_alphacep_ru_book's docstring.
+    "alphacep_ru_book": "machine-generated",
+    # CoRuSS: expert phonetic transcription of recorded speech by the SPbU
+    # phonetics lab, no engine in the loop. Surface-phonetic and
+    # colloquial, so its PER floor is far above a careful-speech gold's --
+    # see load_coruss_ru's docstring.
+    "coruss_ru": "expert-human",
+}
+
+# The dataset-wide "lexicon-derived" tier for portuguese_unified is earned by
+# its Infopedia/Portal/Wiktionary majority, but the ``pt-TL-x-dili`` region
+# (the ONLY gold this row draws on, per `_PT_UNIFIED_REGIONS`) is not
+# independent Timorese lexicography: diffed word-for-word against
+# ``pt-PT-x-lisboa`` (measured 2026-08, cached
+# portuguese_pronunciation_lexicon.jsonl, 53,147 shared words), the two
+# columns are near-total 1:1 CHARACTER substitutions — ɐ→ə (28,713
+# occurrences), u→ʊ (11,653), ʀ→r (3,994), ɫ→w (1,681), d→ð (212), g→ɣ
+# (146) — not independently collected phonetic fieldwork. Substituting a
+# symbol for European Portuguese's centralised unstressed vowel does not
+# remove it: 60% of ``pt-TL-x-dili`` rows still contain a reduced [ə] and
+# 31% a reduced final [ʊ], and coda /s/ still surfaces as the Lisbon
+# "chiado" [ʃ] (e.g. gold ``instrumentista`` → [ĩʃtɾumẽntˈiʃtə]). Albuquerque
+# (2010:275, fn.7; 277), the spec's primary source, documents the opposite
+# for this variety — no unstressed-vowel reduction and an alveolar (non-hush)
+# coda /s/ — so this gold measures conformity to a re-symbolized European
+# Portuguese, not to the acrolectal East Timorese Portuguese the spec
+# models. Downgraded from the dataset default so a low PER here can never be
+# read as "the spec is wrong". Note that `machine-generated` still gates
+# (GATING_CUTOFF_TIER): the downgrade records that the reference is a
+# re-symbolized European Portuguese rather than independent Timorese
+# lexicography, it does not exempt the row from the promotion and regression
+# gates. Exempting it would need a tier below the cutoff, and none of those
+# describe this gold honestly.
+_PT_UNIFIED_PROVENANCE: Dict[str, str] = {
+    "pt-TL": "machine-generated",
 }
 
 # Per-LANGUAGE provenance overrides, for datasets that are not one source but a
@@ -1874,6 +3330,7 @@ PROVENANCE: Dict[str, str] = {
 PROVENANCE_BY_LANG: Dict[str, Dict[str, str]] = {
     "ipadict": _IPADICT_PROVENANCE,
     "ipa_childes": _IPA_CHILDES_PROVENANCE,
+    "portuguese_unified": _PT_UNIFIED_PROVENANCE,
 }
 
 
@@ -1910,20 +3367,69 @@ def _expand_consonant_length(s: str) -> str:
     notation. Affricates double their first element ([tʃː] → [ttʃ]).
     VOWEL length is untouched: it is phonemic and single-notation
     (Finnish [aː] never appears as [aa] in the wired gold sets).
+
+    The consonant preceding [ː] is not always a single codepoint: a
+    diacritic-marked letter may be a precomposed NFC codepoint (retroflex
+    [ṇ]) or an already-decomposed base+combining-mark sequence (dental
+    [n̪], base + U+032A with no precomposed form) — the same sound written
+    two ways. Scanning the NFC string one codepoint at a time only doubles
+    the LAST codepoint before [ː], which for a decomposed sequence is the
+    combining mark, not the base letter ([n̪ː] → [n̪̪], losing the [n]).
+    NFD-normalizing first makes every case a base-plus-marks sequence
+    scanned the same way, so the whole cluster is what gets duplicated.
+
+    The same walk-back also fixes a marked-VOWEL guard the old codepoint-
+    at-a-time scan got wrong: for [ɛ̌ː] (ɛ + combining caron U+030C, then
+    [ː]) the old scan checked only the combining caron against
+    ``is_ipa_vowel`` — a diacritic is never a vowel letter — so it treated
+    the cluster as a consonant and doubled the diacritic onto itself
+    ([ɛ̌ː] → [ɛ̌̌], destroying the vowel entirely). The walk-back now checks
+    the base letter of the whole cluster, sees a vowel, and correctly
+    leaves marked vowel length untouched. A length mark that is itself
+    already doubled is not deduplicated: [lːː] doubles the consonant once
+    per [ː] seen, so it expands to [lll], not [ll].
     """
     for long, doubled in _AFFRICATE_LENGTH.items():
         s = s.replace(long, doubled)
-    out = []
-    for i, ch in enumerate(s):
-        if ch == "ː" and i > 0 and not is_ipa_vowel(s[i - 1]):
-            out.append(s[i - 1])
-        else:
-            out.append(ch)
-    return "".join(out)
+    s = unicodedata.normalize("NFD", s)
+    out: List[str] = []
+    for ch in s:
+        if ch == "ː" and out:
+            j = len(out) - 1
+            while j > 0 and unicodedata.combining(out[j]):
+                j -= 1
+            cluster = out[j:]
+            if not is_ipa_vowel(cluster[0]):
+                out.extend(cluster)
+                continue
+        out.append(ch)
+    return unicodedata.normalize("NFC", "".join(out))
 
 
-def normalize(ipa: str, strip_stress: bool, broad: bool) -> str:
+def _prosody_marks(lang: str) -> str:
+    """Extra per-language suprasegmental marks PER must not score.
+
+    A spec that declares ``stress.accent2_mark`` (Scandinavian pitch accent)
+    makes ¹/² prosody for that language, unscored on both sides — exactly
+    like the universal stress marks. For every other language the digits are
+    left alone (they are lexical tone in e.g. Yi gold).
+    """
+    try:
+        from orthography2ipa import get
+        st = get(lang).stress
+    except Exception:
+        return ""
+    if st is not None and st.accent2_mark:
+        return "¹²"
+    return ""
+
+
+def normalize(ipa: str, strip_stress: bool, broad: bool,
+              extra_strip: str = "") -> str:
     s = unicodedata.normalize("NFC", ipa)
+    for ch in extra_strip:
+        s = s.replace(ch, "")
+    s = s.replace("g", "ɡ")  # ASCII/IPA confusable fold — see _NARROW_MARKS comment
     if strip_stress:
         for ch in _STRESS_MARKS:
             s = s.replace(ch, "")
@@ -1932,23 +3438,35 @@ def normalize(ipa: str, strip_stress: bool, broad: bool) -> str:
     # penalises a correct transcription for text it rightly ignored.
     for ch in _PUNCT_MARKS:
         s = s.replace(ch, "")
+    s = s.replace(_RECONSTRUCTION_MARK, "")
     for ch in _TIE_BARS:
         s = s.replace(ch, "")
+    for alt, canon in _NOTATIONAL_LETTER_ALIASES.items():
+        s = s.replace(alt, canon)
     s = _expand_consonant_length(s)
     if broad:
         decomposed = unicodedata.normalize("NFD", s)
         s = unicodedata.normalize(
             "NFC", "".join(c for c in decomposed if c not in _NARROW_MARKS))
     # comparison is segmentation-free: some gold sets space-separate phonemes
-    return "".join(s.split())
+    s = "".join(s.split())
+    # Click-accompaniment superscript fold runs AFTER the whitespace join:
+    # some gold sets space-separate phonemes, putting the modifier and its
+    # click letter on opposite sides of a space (e.g. "ᵑ ǂ"), which must
+    # still fold. Combining marks on the modifier (e.g. a combining ring
+    # below for voicelessness, ᵑ̊) ride along with it via \1.
+    for mod, letter in _CLICK_ACCOMPANIMENT_SUPERSCRIPTS.items():
+        s = re.sub(mod + "([̀-ͯ]*)(?=[" + _CLICK_LETTERS + "])",
+                   letter + r"\1", s)
+    return s
 
 
 def _is_multiword(entry: str) -> bool:
     """True if *entry* is a phrase/sentence rather than a single word.
 
     Whitespace is the signal: a gold set is either word-level (WikiPron,
-    CMUdict) or sentence-level (4catac, vox_communis), and the scorer
-    must call the matching engine API for each.
+    CMUdict, vox_communis) or sentence-level (4catac, the TTS gold
+    sets), and the scorer must call the matching engine API for each.
     """
     return len(entry.split()) > 1
 
@@ -2023,28 +3541,185 @@ def align(a: str, b: str) -> List[Tuple[Optional[str], Optional[str]]]:
     return pairs
 
 
-def evaluate_words(pairs, lang: str, strip_stress: bool, broad: bool):
+#: Top-k cut-offs the oracle metric reports. ``1`` is computed too, purely
+#: as a self-check: oracle@1 must equal the 1-best PER. That identity is
+#: NOT guaranteed by construction — ``transcribe_word`` searches greedily
+#: at width 1 while ``word_candidates`` runs a width-``max(k, 8)`` beam,
+#: and a wider beam is free to find a cheaper path than the greedy one.
+#: The two share every word-final stage, so they agree empirically on
+#: every gold set measured; the run VERIFIES it rather than assuming it,
+#: and aborts if it ever fails. See :func:`assert_oracle_self_check`.
+ORACLE_KS: Tuple[int, ...] = (1, 3, 5)
+
+#: The cut-offs published in the scoreboard row / docs table.
+ORACLE_REPORT_KS: Tuple[int, ...] = (3, 5)
+
+
+class OracleResult:
+    """Top-k oracle PER for one dataset/language row.
+
+    **Read this before using any number here.** Oracle PER@k is the
+    per-word MINIMUM PER over the engine's top-*k* readings, aggregated
+    exactly like the 1-best PER. It is a **lattice-quality diagnostic for
+    orthography2ipa only**:
+
+    - The gap ``per - oracle_per[k]`` is *ranking* error: the right
+      transcription is inside the beam but is not ranked first, so a
+      downstream rescorer (which is what actually consumes our lattice)
+      could recover it. That gap is the rescoring headroom.
+    - What remains at ``oracle_per[k]`` is *model* error: the right
+      transcription is not in the lattice at all, and no amount of
+      reranking will find it. Only new rules/data fix that.
+
+    It MUST NEVER be used in a cross-system comparison or any "beats X"
+    claim. espeak, epitran and every other system we benchmark against
+    emit ONE pronunciation; setting their 1-best against our oracle@k
+    would compare k guesses to one and is simply dishonest. This is why
+    ``scripts/compare_systems.py`` does not read these fields, and why
+    the CI regression gate (``benchmarks/results_ci_sample.json``) stays
+    1-best.
+    """
+
+    __slots__ = ("oracle_per", "oracle_exact", "fallback_words",
+                 "scored_words", "top1_mismatch")
+
+    def __init__(self, oracle_per: Dict[int, float],
+                 oracle_exact: Dict[int, float], fallback_words: int,
+                 scored_words: int, top1_mismatch: int) -> None:
+        #: mean oracle PER keyed by k (k=1 included as the self-check).
+        self.oracle_per = oracle_per
+        #: fraction of words where some top-k candidate EQUALS a gold,
+        #: keyed by k. Read this before saying "the right answer is in
+        #: the beam": ``oracle_per`` improving only means a NEARER wrong
+        #: answer is in the beam, which is a much weaker statement, and
+        #: empirically most of the PER-oracle gain is of that kind.
+        self.oracle_exact = oracle_exact
+        #: words scored with no candidate list available, so the oracle
+        #: fell back to the 1-best hypothesis (sentence-level entries, and
+        #: any word whose candidate call raised). Never a crash, always
+        #: counted.
+        self.fallback_words = fallback_words
+        #: words that got a REAL candidate list (covered minus fallback).
+        #: Zero means the whole row is fallback and its oracle columns
+        #: carry no lattice signal at all — they merely echo the PER.
+        self.scored_words = scored_words
+        #: words whose candidate 0 did not equal the 1-best hypothesis.
+        #: MUST be 0; anything else is an engine bug, not a metric quirk.
+        self.top1_mismatch = top1_mismatch
+
+    def __repr__(self) -> str:  # pragma: no cover — debugging aid
+        return (f"OracleResult(oracle_per={self.oracle_per!r}, "
+                f"oracle_exact={self.oracle_exact!r}, "
+                f"fallback_words={self.fallback_words}, "
+                f"scored_words={self.scored_words}, "
+                f"top1_mismatch={self.top1_mismatch})")
+
+
+def assert_oracle_self_check(dataset: str, lang: str, per: float,
+                             covered: int, oracle: "OracleResult",
+                             epsilon: float = 1e-9) -> None:
+    """Abort the run if the oracle path and the 1-best path disagree.
+
+    Candidate 0 of ``G2P.word_candidates`` is meant to be exactly what
+    ``transcribe_word`` returns, so oracle@1 must equal the PER column.
+    If it does not, the oracle columns describe a DIFFERENT engine than
+    the PER column beside them, and every ranking-vs-model conclusion
+    drawn from the row is wrong.
+
+    This exits non-zero rather than printing a warning: a scoreboard is
+    a committed artifact, and a run that writes a corrupted one while
+    reporting success is worse than a run that fails. A warning above
+    ``exit 0`` is a warning nobody reads.
+    """
+    problems = []
+    if oracle.top1_mismatch:
+        problems.append(
+            f"{oracle.top1_mismatch}/{covered} words where "
+            f"word_candidates()[0] != transcribe_word()")
+    delta = abs(oracle.oracle_per.get(1, per) - per)
+    if delta > epsilon:
+        problems.append(
+            f"oracle@1 {oracle.oracle_per[1]:.6f} != PER {per:.6f} "
+            f"(delta {delta:.2e} > {epsilon:g})")
+    if not problems:
+        return
+    for problem in problems:
+        print(f"ENGINE BUG: {dataset} lang={lang}: {problem}",
+              file=sys.stderr)
+    sys.exit(
+        f"ABORTING: the top-k oracle disagrees with the 1-best path, so "
+        f"the scoreboard would be corrupt. Refusing to write it. Fix "
+        f"G2P.word_candidates / transcribe_word, or rerun with --no-topk "
+        f"to write 1-best columns only.")
+
+
+def evaluate_words(pairs: Sequence[GoldPair], lang: str, strip_stress: bool,
+                   broad: bool
+                   ) -> Tuple[int, int, List[float], float, float]:
     """Like :func:`evaluate` but also returns the per-word PER list, so
     callers (e.g. :func:`bootstrap_per_ci`) can resample it. The point
     estimates returned here (``n``, ``covered``, ``per``, ``wer``) are
     computed the exact same way as :func:`evaluate` — byte-identical
     scoreboard numbers.
     """
+    n, covered, pers, per, wer, _oracle = evaluate_words_oracle(
+        pairs, lang, strip_stress, broad, oracle_ks=())
+    return n, covered, pers, per, wer
+
+
+def evaluate_words_oracle(pairs: Sequence[GoldPair], lang: str,
+                          strip_stress: bool, broad: bool,
+                          oracle_ks: Sequence[int] = ORACLE_KS,
+                          expose_ambiguous_endings: bool = False
+                          ) -> Tuple[int, int, List[float], float, float,
+                                     Optional["OracleResult"]]:
+    """:func:`evaluate_words` plus the top-k oracle PER.
+
+    One scoring loop, one normalization, one distance function: passing
+    an empty *oracle_ks* turns the oracle off and the 1-best numbers are
+    byte-identical to the pre-oracle harness. Read :class:`OracleResult`
+    for what the oracle numbers may and may not be used for.
+
+    ``expose_ambiguous_endings`` defaults to **False**, which is the
+    board's convention: injected alternatives stay out of the oracle
+    columns (see the ``G2P`` call below). Pass ``True`` only to measure
+    the injected movement itself — the separate reachability number that
+    docs/benchmarks.md requires to be reported under its own heading and
+    never folded into ranking error. It cannot change the 1-best numbers.
+
+    Returns ``(n, covered, pers, per, wer, oracle_or_None)``.
+    """
     from orthography2ipa import G2P
 
-    engine = G2P(lang)
+    # ``expose_ambiguous_endings=False``: the board's oracle columns are a
+    # RANKING diagnostic (``PER - Oracle@k`` is defined as ranking error),
+    # and a deliberately injected alternative — a list-valued
+    # ``grammatical_endings`` entry — moves that gap by construction, since
+    # adding candidates to a beam can only lower an oracle. Scoring with
+    # them on would let any spec inflate its own headroom by declaring more
+    # alternatives. The injected movement is real and worth reporting, but
+    # as REACHABILITY and under its own heading: see docs/benchmarks.md,
+    # "Injected alternatives do not count as ranking error". 1-best is
+    # identical either way, so the PER columns are unaffected.
+    engine = G2P(lang, expose_ambiguous_endings=expose_ambiguous_endings)
     # gold sets may carry several valid transcriptions per word
     # (dialect variants); score against all, keep the best
     refs: Dict[str, List[str]] = {}
     for word, gold in pairs:
         refs.setdefault(word, []).append(gold)
 
+    extra = _prosody_marks(lang)
     pers: List[float] = []
     wrong, covered = 0, 0
+    ks = sorted({int(k) for k in oracle_ks})
+    oracle_sums: Dict[int, float] = {k: 0.0 for k in ks}
+    oracle_exact_counts: Dict[int, int] = {k: 0 for k in ks}
+    fallback_words = 0
+    top1_mismatch = 0
     for word, golds in refs.items():
         try:
             # Pick the API that matches the entry's granularity. Several gold
-            # sets are sentence-level (4catac, vox_communis), and
+            # sets are sentence-level (4catac, the TTS gold sets), and
             # transcribe_word() treats a whole sentence as ONE word: word
             # boundaries vanish, per-word stress collapses to a single mark,
             # and word-final rules (Catalan final-⟨r⟩ deletion, Danish schwa)
@@ -2052,25 +3727,88 @@ def evaluate_words(pairs, lang: str, strip_stress: bool, broad: bool):
             # it cost Catalan ~7 and English ~16 PER points.
             transcribe = (engine.transcribe if _is_multiword(word)
                           else engine.transcribe_word)
-            hyp = normalize(transcribe(word), strip_stress, broad)
+            hyp = normalize(transcribe(word), strip_stress, broad,
+                            extra_strip=extra)
         except Exception:
             continue
         if not hyp:
             continue
         covered += 1
-        per = min(
-            levenshtein(hyp, g) / max(len(g), 1)
-            for g in (normalize(x, strip_stress, broad) for x in golds)
-        )
+        golds_norm = [normalize(x, strip_stress, broad, extra_strip=extra)
+                      for x in golds]
+        golds_set = set(golds_norm)
+
+        def _score(h: str) -> float:
+            """PER of hypothesis *h* against the best of this word's golds."""
+            return min(levenshtein(h, g) / max(len(g), 1) for g in golds_norm)
+
+        per = _score(hyp)
         pers.append(per)
         wrong += per > 0
+
+        if ks:
+            # Oracle: the same _score, over the engine's top-k readings
+            # instead of only its first. Sentence-level gold entries have no
+            # word-level candidate list (the beam is per WORD; composing a
+            # sentence beam out of word beams would invent a ranking the
+            # engine never produces), so they fall back to the 1-best.
+            cands: List[str] = []
+            if not _is_multiword(word):
+                try:
+                    cands = [
+                        normalize(c, strip_stress, broad, extra_strip=extra)
+                        for c in engine.word_candidates(word, k=max(ks))
+                    ]
+                except Exception:
+                    cands = []
+            if not cands:
+                fallback_words += 1
+                cands = [hyp]
+            elif cands[0] != hyp:
+                # Candidate 0 is meant to BE transcribe_word's answer. If it
+                # is not, the two paths disagree and the oracle is measuring
+                # a different engine than the 1-best column. Counted, never
+                # silently smoothed over.
+                top1_mismatch += 1
+            best = float("inf")
+            hit = False
+            for i, k in enumerate(ks):
+                lo = ks[i - 1] if i else 0
+                for cand in cands[lo:k]:
+                    best = min(best, _score(cand))
+                    # EXACT oracle: some top-k candidate IS a gold, not
+                    # merely closer to one. This is the number that
+                    # supports the phrase "the right answer is in the
+                    # beam"; the PER oracle only says "a nearer wrong
+                    # answer is in the beam", which is a much weaker
+                    # claim and empirically the common case.
+                    hit = hit or cand in golds_set
+                oracle_sums[k] += best
+                oracle_exact_counts[k] += hit
     n = len(refs)
     per_sum = sum(pers)
+    oracle = None
+    if ks:
+        oracle = OracleResult(
+            oracle_per={k: (oracle_sums[k] / covered if covered else 1.0)
+                        for k in ks},
+            oracle_exact={k: (oracle_exact_counts[k] / covered
+                              if covered else 0.0)
+                          for k in ks},
+            fallback_words=fallback_words,
+            scored_words=covered - fallback_words,
+            top1_mismatch=top1_mismatch,
+        )
     return n, covered, pers, (per_sum / covered if covered else 1.0), \
-        (wrong / covered if covered else 1.0)
+        (wrong / covered if covered else 1.0), oracle
 
 
-def evaluate(pairs, lang: str, strip_stress: bool, broad: bool):
+def evaluate(pairs: Sequence[GoldPair], lang: str, strip_stress: bool,
+             broad: bool) -> Tuple[int, int, float, float]:
+    """Score *pairs* and return just the point estimates
+    ``(n, covered, per, wer)`` — :func:`evaluate_words` without the per-word
+    PER list. Same numbers, one scoring loop; see :func:`evaluate_words_oracle`
+    for the single implementation all three wrappers share."""
     n, covered, _pers, per, wer = evaluate_words(
         pairs, lang, strip_stress, broad)
     return n, covered, per, wer
@@ -2122,7 +3860,87 @@ def _quality_tier(lang: str) -> Optional[str]:
         return None
 
 
-def build_scoreboard(limit: Optional[int]) -> List[dict]:
+#: The deep-orthography PER gate documented in ``docs/quality_tiers.md``
+#: ("Quality tiers" -> "production"). Used here ONLY to decide whether the
+#: scoreboard's `Ceiling` column visibly marks a row as proved
+#: input-limited; it does not feed the quality-tier computation itself,
+#: which lives in ``_quality_tier`` and is untouched by this column.
+CEILING_GATING_THRESHOLD = 0.25
+
+#: Marks a row's `PER` cell in `docs/scoreboard.md` as non-qualifying — the
+#: row's `gating` field is `False` (see `can_gate_promotion`) — so a number
+#: that cannot qualify or block a `production` promotion does not read like
+#: one that can, the same reasoning that puts `†` on a proved-input-limited
+#: `Ceiling` value. A different glyph than `THIN_ROW_MARK`/the `Ceiling`
+#: marker (both `†`) on purpose: the three properties are independent and a
+#: row can carry any combination of them, so collapsing them onto one glyph
+#: would make a row's markers ambiguous about which claim they are making.
+NON_QUALIFYING_MARK = "‡"
+
+
+def _valid_ceiling(lang: str, dataset: str) -> Optional[dict]:
+    """The spec's measured ``valid_ceiling`` for the (*lang*, *dataset*) pair,
+    as a plain dict, or ``None`` when no such measurement has been executed
+    for that dataset, the spec carries no ceilings at all, or the tag does
+    not resolve to a registered spec.
+
+    A fold is defined relative to ONE gold's notation conventions, so
+    ``valid_ceiling`` is a mapping keyed by dataset name — resolving by
+    language alone would spread a ceiling measured on one gold across every
+    other gold of that language, asserting a measurement that was never
+    executed for those rows (issue #1350)."""
+    from orthography2ipa import get
+
+    try:
+        spec = get(lang)
+    except Exception:
+        return None
+    ceilings = spec.valid_ceiling
+    if not ceilings:
+        return None
+    ceiling = ceilings.get(dataset)
+    if ceiling is None:
+        return None
+    return {
+        "per": ceiling.per,
+        "folded": ceiling.folded,
+        "citation": ceiling.citation,
+    }
+
+
+def _injected_alternatives(lang: str, exposed: bool) -> List[str]:
+    """The injected alternatives this row's oracle EXCLUDED, or ``[]``.
+
+    ``["<code> <ending>", ...]`` for every list-valued (ambiguous)
+    ``grammatical_endings`` entry in *lang*'s spec — the readings the
+    spec deliberately injects into the beam for a downstream rescorer.
+
+    ``exposed`` is the ``expose_ambiguous_endings`` value the row was
+    actually SCORED with, and it is a parameter rather than an assumption
+    on purpose. The field is a claim about this measurement ("these
+    readings are not in these numbers"), not about the spec, so when the
+    scoring ran with exposure ON there is nothing to claim and the list
+    is empty. Deriving it from the spec alone let the field keep
+    asserting an exclusion that had stopped happening — which is exactly
+    the failure a provenance field exists to prevent."""
+    if exposed:
+        return []
+    try:
+        from orthography2ipa import get
+        spec = get(lang)
+    except Exception:
+        return []
+    return [f"{spec.code} {ending}"
+            for ending, value in sorted(
+                (spec.grammatical_endings or {}).items())
+            if isinstance(value, list)]
+
+
+def build_scoreboard(limit: Optional[int], oracle: bool = False,
+                     only_langs: Optional[Sequence[str]] = None,
+                     only_datasets: Optional[Sequence[str]] = None,
+                     expose_ambiguous_endings: bool = False,
+                     ) -> List[dict]:
     """Run every registered gold dataset/language combination and
     return deterministic scoreboard rows sorted by language tag.
 
@@ -2134,21 +3952,65 @@ def build_scoreboard(limit: Optional[int]) -> List[dict]:
     is applied UNIFORMLY to every language (no per-language cap juggling).
     ``None`` is passed to the loaders as ``sys.maxsize`` so their
     ``len(pairs) >= limit`` / ``pairs[:limit]`` guards become no-ops.
+
+    ``oracle`` adds the top-k oracle PER columns (see
+    :class:`OracleResult` for what they mean and what they must NOT be
+    used for). It defaults to **OFF**, and every caller that wants it
+    says so. The published ``--scoreboard`` run opts in; the CI
+    regression gate (``check_benchmark_regression.py``) and the
+    ``--ci-sample`` baseline do not, because they compare 1-best PER
+    only and would otherwise pay ~1.6x for columns they never read.
+    Defaulting to off is what keeps a future call site from silently
+    inheriting that cost.
+
+    ``expose_ambiguous_endings`` is the measurement convention, and the
+    published board uses the default **False** (see
+    :func:`evaluate_words_oracle`). It is threaded through rather than
+    hardcoded so the row's ``oracle_injected_alternatives`` field can be
+    derived from the flag the row was SCORED with — a provenance field
+    that asserts an exclusion the run did not perform is worse than none.
+
+    ``only_langs`` / ``only_datasets`` restrict the run to a subset. The
+    full scoreboard is ~10M scored words and takes hours, so a targeted
+    rerun is the practical way to refresh a handful of rows; the caller
+    then MERGES the result into the committed set (see
+    :func:`merge_scoreboard_rows`). A subset run scores each row exactly
+    as the full run does — no row depends on which others ran with it.
     """
     effective = sys.maxsize if limit is None else limit
     rows: List[dict] = []
     for dataset_name, (loader, langs) in DATASETS.items():
+        if only_datasets and dataset_name not in only_datasets:
+            continue
         for lang in langs:
+            if only_langs and lang not in only_langs:
+                continue
             try:
                 pairs = loader(lang, effective)
             except Exception as exc:
                 print(f"skip {dataset_name} lang={lang}: {exc}",
                       file=sys.stderr)
                 continue
-            n, covered, pers, per, wer = evaluate_words(
+            n, covered, pers, per, wer, oracle_res = evaluate_words_oracle(
                 pairs, lang, strip_stress=True, broad=True,
+                oracle_ks=ORACLE_KS if oracle else (),
+                expose_ambiguous_endings=expose_ambiguous_endings,
             )
+            if covered == 0:
+                # A zero-coverage result is a broken loader, a dead upstream
+                # or a spec with no scorable graphemes — never a real score.
+                # Recording it would fabricate a per=1.0 row that looks like
+                # a measurement (this exact failure silently produced stale
+                # n=0 rows for tn/ug/yue). Loudly skip instead.
+                print(f"REFUSING to record zero-coverage row: "
+                      f"{dataset_name} lang={lang} (n={n}, covered=0) — "
+                      f"investigate the loader or deregister the language",
+                      file=sys.stderr)
+                continue
             ci_low, ci_high = bootstrap_per_ci(pers)
+            if oracle_res is not None:
+                assert_oracle_self_check(dataset_name, lang, per, covered,
+                                         oracle_res)
             rows.append({
                 "lang": lang,
                 "dataset": dataset_name,
@@ -2159,17 +4021,81 @@ def build_scoreboard(limit: Optional[int]) -> List[dict]:
                 "exact_match": round(1.0 - wer, 4),
                 "quality_tier": _quality_tier(lang),
                 "provenance": provenance_for(dataset_name, lang),
+                # Whether THIS row's provenance tier may gate a `production`
+                # promotion — i.e. qualify or block one, per docs/index.md
+                # and docs/quality_tiers.md. Derived from `provenance` via
+                # `can_gate_promotion()` (the single source of truth for the
+                # tier lattice; see `NON_QUALIFYING_TIERS`) so the field can
+                # never drift from the policy it represents: regenerating
+                # the board recomputes it from the row's own provenance
+                # every time rather than carrying a hand-authored value.
+                "gating": can_gate_promotion(provenance_for(dataset_name, lang)),
                 "harness_version": HARNESS_VERSION,
                 "limit": limit,
             })
+            ceiling = _valid_ceiling(lang, dataset_name)
+            if ceiling is not None:
+                rows[-1]["valid_ceiling"] = ceiling
+            if oracle_res is not None:
+                # Diagnostic-only lattice-quality columns. NEVER compare
+                # these to another system's 1-best (see OracleResult).
+                for k in ORACLE_REPORT_KS:
+                    rows[-1][f"oracle_per_top{k}"] = round(
+                        oracle_res.oracle_per[k], 4)
+                    rows[-1][f"oracle_exact_top{k}"] = round(
+                        oracle_res.oracle_exact[k], 4)
+                rows[-1]["oracle_fallback_words"] = oracle_res.fallback_words
+                # Explicit, so no reader (or later edit) has to know that a
+                # row's "n" happens to be `covered`: 0 means the row's
+                # oracle columns carry no lattice signal.
+                rows[-1]["oracle_scored_words"] = oracle_res.scored_words
+                # Which injected alternatives this row's oracle EXCLUDES,
+                # so the exclusion travels with the numbers instead of
+                # living only in prose a later reader may not find.
+                injected = _injected_alternatives(
+                    lang, expose_ambiguous_endings)
+                if injected:
+                    rows[-1]["oracle_injected_alternatives"] = injected
     rows.sort(key=lambda r: (r["lang"], r["dataset"]))
     return rows
+
+
+def merge_scoreboard_rows(old: List[dict], new: List[dict]) -> List[dict]:
+    """Overlay freshly-scored *new* rows onto the committed *old* set.
+
+    Keyed on ``(lang, dataset)`` — the scoreboard's identity. A new row
+    REPLACES the old one wholesale (never a field-by-field patch: a row
+    is one measurement, and half-refreshing one would mix two runs).
+    Rows only in *old* are carried through untouched, which is what makes
+    a per-language rerun safe when a full run is impractical.
+    """
+    merged = {(r["lang"], r["dataset"]): r for r in old}
+    for row in new:
+        merged[(row["lang"], row["dataset"])] = row
+    return sorted(merged.values(), key=lambda r: (r["lang"], r["dataset"]))
+
+
+def read_scoreboard_rows() -> List[dict]:
+    """The committed scoreboard rows, or ``[]`` if none are written yet."""
+    if not os.path.exists(SCOREBOARD_JSON):
+        return []
+    with open(SCOREBOARD_JSON, encoding="utf-8") as fh:
+        return json.load(fh)
+
+
+#: Indent used for benchmarks/results.json. It is 1, not the 2 every
+#: sibling artifact uses, because that is how the file is committed:
+#: ~80 commits touch it, and reformatting 8k lines to gain a space would
+#: conflict with every one of them in flight for no measurement value.
+#: Normalizing it to 2 is a standalone cleanup, not a rider on a
+#: feature PR.
+SCOREBOARD_JSON_INDENT = 1
 
 
 def write_scoreboard(rows: List[dict]) -> None:
     os.makedirs(os.path.dirname(SCOREBOARD_JSON), exist_ok=True)
     with open(SCOREBOARD_JSON, "w", encoding="utf-8") as fh:
-        json.dump(rows, fh, indent=2, ensure_ascii=False)
+        json.dump(rows, fh, indent=SCOREBOARD_JSON_INDENT, ensure_ascii=False)
         fh.write("\n")
 
     lines = [
@@ -2208,31 +4134,163 @@ def write_scoreboard(rows: List[dict]) -> None:
         "```",
         "",
         "Machine-readable form: [`benchmarks/results.json`]"
-        "(../benchmarks/results.json). Methodology and dataset provenance: "
-        "[`docs/benchmarks.md`](benchmarks.md).",
+        "(../benchmarks/results.json). Methodology: "
+        "[`docs/benchmark_methodology.md`](benchmark_methodology.md). Dataset "
+        "provenance: [`docs/benchmarks.md`](benchmarks.md).",
         "",
         "The `95% CI` column is a bootstrap confidence interval on the "
         "mean PER (per-word PERs resampled with replacement, "
         f"{BOOTSTRAP_REPS} reps, fixed seed {BOOTSTRAP_SEED}) — see "
-        "[`docs/benchmarks.md`](benchmarks.md).",
+        "[`docs/benchmark_methodology.md`](benchmark_methodology.md).",
         "",
-        "| Lang | Dataset | N | PER | 95% CI | Exact match | Quality tier "
-        "| Provenance |",
-        "|---|---|---:|---:|---:|---:|---|---|",
+        "The `Oracle@3` / `Oracle@5` columns are the per-word MINIMUM PER "
+        "over the engine's top-3 / top-5 readings, averaged like `PER`. "
+        "They are an **orthography2ipa-only lattice-quality diagnostic** and "
+        "**must never be used in a cross-system comparison or a \"beats X\" "
+        "claim**: espeak, epitran and every other system benchmarked in "
+        "[`docs/comparison.md`](comparison.md) emit ONE pronunciation, so "
+        "setting their single answer against k of ours compares k guesses to "
+        "one. `scripts/compare_systems.py` therefore does not read these "
+        "columns, and the CI regression gate "
+        "(`benchmarks/results_ci_sample.json`) stays 1-best.",
+        "",
+        "How to read the gap: `PER − Oracle@k` is **ranking error** — some "
+        "reading in the top-k scores better than the one the engine ranked "
+        "first, so a downstream rescorer reading our lattice could recover "
+        "that much. That gap is the **rescoring headroom**, and it is an "
+        "UPPER BOUND no real rescorer reaches: an oracle is allowed to pick "
+        "the best candidate per word after seeing the answer. What is left "
+        "at `Oracle@k` is **model error**: no better reading exists in the "
+        "lattice, and only new rules or data can fix it.",
+        "",
+        "`Oracle@k` improving does NOT mean the correct transcription is in "
+        "the beam — only that a CLOSER one is. The separate "
+        "`OracleX@k` columns are the strict version: the fraction of words "
+        "where some top-k candidate **equals** a gold exactly (compare "
+        "against the `Exact match` column, which is the same measure at "
+        "k=1). Most of the PER-oracle gain is closer-but-still-wrong "
+        "readings, so quote `OracleX@k` for any \"the engine already "
+        "knows the answer\" claim. It is phenomena-neutral either way: it "
+        "says nothing about WHICH phonological phenomenon is wrong.",
+        "",
+        "Oracle cells EXCLUDE injected alternatives. A spec may declare a "
+        "`grammatical_endings` value as an ordered candidate list, which "
+        "deliberately puts a reading it cannot choose between into the beam "
+        "for a downstream rescorer. Adding candidates can only lower an "
+        "oracle, so scoring with them on would let a spec inflate its own "
+        "`PER − Oracle@k` headroom — the gap this board defines as RANKING "
+        "error — by declaring more alternatives. The run therefore scores "
+        "with them off, and a row whose language declares any records them "
+        "in `oracle_injected_alternatives` in "
+        "[`benchmarks/results.json`](../benchmarks/results.json). `PER` and "
+        "`Exact match` are unaffected either way: an injected alternative can "
+        "never reach rank 1. The movement they do cause is reported "
+        "separately, as reachability, in "
+        "[`docs/benchmark_methodology.md`](benchmark_methodology.md).",
+        "",
+        "Oracle cells read `·` when the row has **not been rescored** since "
+        "the oracle columns were added (most rows: a full scoreboard is "
+        "~10M scored words, so rows are refreshed in batches), and `-` when "
+        "the row is **sentence-level** and can never have an oracle: the "
+        "beam is per WORD, and composing a sentence-level beam out of word "
+        "beams would invent a ranking the engine never produces. The two "
+        "are different states and are never merged into one blank.",
+        "",
+        "A row's `N` is its sample size in scored words, and it is not "
+        "cosmetic: below roughly 20 words the bootstrap `95% CI` above "
+        "stops being informative — resampling one or two words with "
+        "replacement can only ever reproduce the same one or two values, "
+        f"so the interval collapses toward a single point (see {THIN_ROW_N} "
+        "and below) instead of widening the way it would on a real "
+        "sample. A degenerate `[x, x]` interval on a thin row is NOT "
+        "evidence of precision; it is an artifact of having too little "
+        "data to resample. Rows with fewer than "
+        f"{THIN_ROW_N} scored words carry a "
+        f"`{THIN_ROW_MARK}` after `N` for exactly this reason, and must "
+        "never be read as comparable to a row scored on thousands of "
+        "words, no matter how narrow their CI looks.",
+        "",
+        "The `Ceiling` column is a `valid_ceiling` measurement, when one has "
+        "been executed for the row's (language, dataset) pair: the PER once "
+        "an orthographically-unwritten contrast (tone, vowel length, or both "
+        "— these give different numbers and are never conflated) is folded "
+        "out of BOTH sides before rescoring. A fold is defined against ONE "
+        "gold's conventions, so it renders only on the row whose dataset it "
+        "was measured against, never on a sibling row of the same language "
+        "scored against a different gold. It reads `-` when no such "
+        "measurement has been recorded — that is \"not measured\", never "
+        "\"measured as zero\". A ceiling below "
+        f"{CEILING_GATING_THRESHOLD:.2f} is marked `†`: the row's raw `PER` "
+        "may look like an open failure, but the language has been proved "
+        "input-limited rather than defective. `valid_ceiling` never changes "
+        "`PER` itself — see [`orthography2ipa/data/SCHEMA.md`]"
+        "(../orthography2ipa/data/SCHEMA.md#valid-ceiling-schema).",
+        "",
+        "A `PER` marked "
+        f"`{NON_QUALIFYING_MARK}` is a **non-qualifying** row: its "
+        "`provenance` tier cannot gate a `production` promotion (see the "
+        "`Provenance` legend above and `docs/index.md`), so this number can "
+        "neither qualify a language for promotion nor block one, no matter "
+        "how good or bad it looks. `gating` in "
+        "[`benchmarks/results.json`](../benchmarks/results.json) carries the "
+        "same boolean and is DERIVED from `provenance` via "
+        "`can_gate_promotion()` at scoreboard-generation time, never "
+        "hand-set — the same one source of truth `docs/quality_tiers.md`'s "
+        "`production` criteria already use.",
+        "",
+        "| Lang | Dataset | N | PER | Ceiling | Oracle@3 | Oracle@5 | OracleX@3 "
+        "| OracleX@5 | 95% CI | Exact match | Quality tier | Provenance |",
+        "|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---|---|---|",
     ]
     for row in rows:
         tier = row["quality_tier"] or "-"
         prov = row.get("provenance") or "-"
-        ci = f"[{row['per_ci_low']:.4f}, {row['per_ci_high']:.4f}]"
+        n_cell = f"{row['n']}{THIN_ROW_MARK}" if row["n"] < THIN_ROW_N else str(row["n"])
+        # A row scored before the CI column existed carries nulls; a
+        # merged board can hold both generations.
+        lo, hi = row.get("per_ci_low"), row.get("per_ci_high")
+        ci = "-" if lo is None or hi is None else f"[{lo:.4f}, {hi:.4f}]"
+        # Three distinct states, three distinct markers:
+        #   "·"  never rescored since the oracle columns landed
+        #   "-"  rescored, but no word had a real candidate list
+        #        (sentence-level gold: an oracle is impossible, not absent)
+        #   n.nnnn  a real measurement
+        # Collapsing the first two into one blank would let an unrescored
+        # row read as "sentence-level, no ranking error", which is a
+        # conclusion the data does not support.
+        rescored = "oracle_per_top3" in row
+        no_signal = row.get("oracle_scored_words") == 0
+
+        def _oracle(field: str) -> str:
+            if not rescored:
+                return "·"
+            if no_signal:
+                return "-"
+            v = row.get(field)
+            return "·" if v is None else f"{v:.4f}"
+
+        em = row.get("exact_match")
+        ceiling = row.get("valid_ceiling")
+        if ceiling is None:
+            ceiling_cell = "-"
+        else:
+            mark = "†" if ceiling["per"] < CEILING_GATING_THRESHOLD else ""
+            ceiling_cell = f"{ceiling['per']:.4f}{mark} ({ceiling['folded']})"
+        non_qualifying_mark = (
+            NON_QUALIFYING_MARK if row.get("gating") is False else "")
         lines.append(
-            f"| {row['lang']} | {row['dataset']} | {row['n']} | "
-            f"{row['per']:.4f} | {ci} | {row['exact_match']:.4f} | {tier} "
-            f"| {prov} |"
+            f"| {row['lang']} | {row['dataset']} | {n_cell} | "
+            f"{row['per']:.4f}{non_qualifying_mark} | {ceiling_cell} "
+            f"| {_oracle('oracle_per_top3')} "
+            f"| {_oracle('oracle_per_top5')} "
+            f"| {_oracle('oracle_exact_top3')} "
+            f"| {_oracle('oracle_exact_top5')} | {ci} "
+            f"| {'-' if em is None else f'{em:.4f}'} | {tier} | {prov} |"
         )
     lines.append("")
     os.makedirs(os.path.dirname(SCOREBOARD_MD), exist_ok=True)
     with open(SCOREBOARD_MD, "w", encoding="utf-8") as fh:
-        fh.write("\n".join(lines))
+        fh.write("\n".join(lines).rstrip() + footer("scoreboard.md"))
 
 
 # ─── lexicon-overlay report (E3) ────────────────────────────────────────────
@@ -2255,7 +4313,7 @@ _LEXICON_REPORT_TAGS: Dict[str, List[str]] = {
 
 
 @contextlib.contextmanager
-def _lexicon_disabled():
+def _lexicon_disabled() -> Iterator[None]:
     """Temporarily force every G2P engine onto the rules-only path.
 
     Swaps ``get_lexicon`` (bound both in ``orthography2ipa.lexicon`` and, by
@@ -2278,7 +4336,7 @@ def _lexicon_disabled():
         _g2p.get_lexicon = orig
 
 
-def _score_pairs(pairs, lang: str) -> Tuple[int, float]:
+def _score_pairs(pairs: Sequence[GoldPair], lang: str) -> Tuple[int, float]:
     n, covered, _pers, per, _wer = evaluate_words(
         pairs, lang, strip_stress=True, broad=True)
     return covered, per
@@ -2379,7 +4437,7 @@ def write_lexicon_report(rows: List[dict]) -> None:
     lines.append("")
     os.makedirs(os.path.dirname(LEXICON_SCOREBOARD_MD), exist_ok=True)
     with open(LEXICON_SCOREBOARD_MD, "w", encoding="utf-8") as fh:
-        fh.write("\n".join(lines))
+        fh.write("\n".join(lines).rstrip() + footer("lexicon_scoreboard.md"))
 
 
 def main() -> None:
@@ -2409,6 +4467,14 @@ def main() -> None:
                          f"--limit {CI_SAMPLE_LIMIT} sample used by "
                          "check_benchmark_regression.py (NOT the full "
                          "published scoreboard).")
+    ap.add_argument("--no-topk", action="store_true",
+                    help="Skip the top-k oracle PER columns in "
+                         "--scoreboard. The oracle is ON by default "
+                         "(measured cost: ~1.6x the 1-best run); this is "
+                         "an escape hatch for a fast ad-hoc rerun. The "
+                         "oracle is a lattice-quality diagnostic for THIS "
+                         "engine only and is never valid input to a "
+                         "cross-system comparison.")
     ap.add_argument("--lexicon-report", action="store_true",
                     help="Score rules-only vs with-lexicon PER for every "
                          "language with a registered lexicon and "
@@ -2425,7 +4491,9 @@ def main() -> None:
         return
 
     if args.ci_sample:
-        rows = build_scoreboard(CI_SAMPLE_LIMIT)
+        # 1-best only, deliberately (and by default): the regression gate
+        # compares point-estimate PER and must never drift onto an oracle.
+        rows = build_scoreboard(CI_SAMPLE_LIMIT, oracle=False)
         os.makedirs(os.path.dirname(CI_SAMPLE_JSON), exist_ok=True)
         with open(CI_SAMPLE_JSON, "w", encoding="utf-8") as fh:
             json.dump(rows, fh, indent=2, ensure_ascii=False)
@@ -2436,7 +4504,22 @@ def main() -> None:
         return
 
     if args.scoreboard:
-        rows = build_scoreboard(args.limit)
+        # --lang/--dataset narrow the run to a subset and MERGE the result
+        # into the committed scoreboard; without them the whole board is
+        # rescored from scratch.
+        subset = bool(args.lang or args.dataset)
+        # The published scoreboard is the ONE caller that opts into the
+        # oracle; build_scoreboard defaults it off so the CI gate and any
+        # future call site never inherit the ~1.6x cost by accident.
+        rows = build_scoreboard(
+            args.limit, oracle=not args.no_topk,
+            only_langs=[args.lang] if args.lang else None,
+            only_datasets=[args.dataset] if args.dataset else None,
+        )
+        if subset:
+            print(f"merging {len(rows)} rescored rows into the committed "
+                  f"scoreboard", file=sys.stderr)
+            rows = merge_scoreboard_rows(read_scoreboard_rows(), rows)
         write_scoreboard(rows)
         print(f"wrote {len(rows)} rows to "
               f"{os.path.relpath(SCOREBOARD_MD, REPO_ROOT)} and "
@@ -2454,13 +4537,21 @@ def main() -> None:
         sys.exit(f"{args.dataset} supports: {langs}")
 
     pairs = loader(lang, sys.maxsize if args.limit is None else args.limit)
-    n, covered, per, wer = evaluate(
+    n, covered, _pers, per, wer, oracle_res = evaluate_words_oracle(
         pairs, lang,
         strip_stress=not args.keep_stress,
         broad=not args.narrow,
+        oracle_ks=() if args.no_topk else ORACLE_KS,
     )
-    print(f"{args.dataset} lang={lang} n={n} covered={covered} "
-          f"PER={per:.4f} WER={wer:.4f}")
+    line = (f"{args.dataset} lang={lang} n={n} covered={covered} "
+            f"PER={per:.4f} WER={wer:.4f}")
+    if oracle_res is not None:
+        line += "".join(f" oracle@{k}={oracle_res.oracle_per[k]:.4f}"
+                        f"/x{oracle_res.oracle_exact[k]:.4f}"
+                        for k in ORACLE_REPORT_KS)
+        line += (f" (scored={oracle_res.scored_words} "
+                 f"fallback={oracle_res.fallback_words})")
+    print(line)
 
 
 if __name__ == "__main__":
