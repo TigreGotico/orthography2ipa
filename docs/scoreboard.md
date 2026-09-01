@@ -334,7 +334,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | kca | northeuralex | 863 | 0.0232 | - | 0.0169 | 0.0169 | 0.8830 | 0.8830 | [0.0194, 0.0274] | 0.8517 | research | lexicon-derived |
 | ket | northeuralex | 793 | 0.3457 | - | 0.3457 | 0.3457 | 0.2282 | 0.2282 | [0.3280, 0.3658] | 0.2282 | research | lexicon-derived |
 | kgp | wikipron | 106 | 0.2351 | - | 0.2351 | 0.2351 | 0.3396 | 0.3396 | [0.1922, 0.2773] | 0.3396 | research | crowd-scraped |
-| ki | wikipron | 1025 | 0.3914 | - | 0.3896 | 0.3896 | 0.1990 | 0.1990 | [0.3780, 0.4058] | 0.1951 | research | crowd-scraped |
+| ki | wikipron | 1025 | 0.3914 | 0.0344† (tone+length) | 0.3896 | 0.3896 | 0.1990 | 0.1990 | [0.3780, 0.4058] | 0.1951 | research | crowd-scraped |
 | kix | wikipron | 4240 | 0.0788 | - | 0.0788 | 0.0788 | 0.5116 | 0.5116 | [0.0751, 0.0823] | 0.5116 | research | crowd-scraped |
 | kk | vox_communis | 1403 | 0.1264‡ | - | 0.0624 | 0.0429 | 0.6835 | 0.7598 | [0.1182, 0.1344] | 0.5552 | research | epitran-derived |
 | kk | wikipron | 714 | 0.1820 | - | 0.1453 | 0.1434 | 0.5462 | 0.5490 | [0.1640, 0.2000] | 0.4832 | research | crowd-scraped |

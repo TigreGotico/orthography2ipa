@@ -6100,7 +6100,12 @@
   "oracle_per_top5": 0.3896,
   "oracle_exact_top5": 0.199,
   "oracle_fallback_words": 0,
-  "oracle_scored_words": 1025
+  "oracle_scored_words": 1025,
+  "valid_ceiling": {
+   "per": 0.0344,
+   "folded": "tone+length",
+   "citation": "Standard Gikuyu orthography marks neither tone/downstep nor vowel length (Englebretson 2015, A Basic Sketch Grammar of Gikuyu, pp. xi, 9), both of which the wikipron gold transcribes; measured over the same 1025 scored words as the row above, baseline PER 0.3914 drops to 0.0523 folding tone alone, 0.3843 folding length alone, and 0.0344 folding both together -- see orthography2ipa/data/ki.json's valid_ceiling entry and scripts/fold_ki_notation.py."
+  }
  },
  {
   "lang": "kix",

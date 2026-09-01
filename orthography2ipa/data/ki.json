@@ -245,8 +245,15 @@
   "audit": {
     "wikipron": {
       "conclusion": "input_limited",
-      "measured": "Gikuyu tone is phonemic and not written at all (Englebretson 2015; Armstrong 1940; Clements 1984). 321 of 1025 unique gold spellings (31.3%) recur with two or more distinct transcriptions, 251 of them differing only in tone/downstep diacritics the plain orthography never writes. Folding every tone mark out of both hypothesis and gold on the same word pairs drops PER from the shipped 0.3914 to 0.0523.",
+      "measured": "Gikuyu tone is phonemic and not written at all (Englebretson 2015; Armstrong 1940; Clements 1984). 321 of 1025 unique gold spellings (31.3%) recur with two or more distinct transcriptions, 251 of them differing only in tone/downstep diacritics the plain orthography never writes. Folding every tone mark out of both hypothesis and gold on the same word pairs drops PER from the shipped 0.3914 to 0.0523; folding vowel length as well (also unwritten, per the same source) drops it further to 0.0344.",
       "reference": "spec notes"
+    }
+  },
+  "valid_ceiling": {
+    "wikipron": {
+      "per": 0.0344,
+      "folded": "tone+length",
+      "citation": "Standard Gikuyu orthography (first published 1947 by the United Kikuyu Language Committee) marks neither of the two contrasts the wikipron gold transcribes on every vowel. On tone and downstep: \"Gikuyu has two tones (high and low, represented here as H and L respectively) and downstep. Although we do not treat tone in depth, we do have evidence that it is contrastive since we have found many minimal pairs of words differing only in tone pattern\" -- e.g. mata (LH) 'saliva' against mata (HH) 'big stomachs' (Englebretson, R. (ed.), 2015, A Basic Sketch Grammar of Gikuyu, Rice University Field Methods Class, p. 9, section 1.4 'Tone'; downstep is attributed there to Clements, G. N. (1984), 'Principles of Tone Assignment in Kikuyu', in Clements & Goldsmith (eds.), Autosegmental Studies in Bantu Tone, Foris, which this spec has not independently obtained). The same source states plainly that the orthography does not write it: \"Tone in Gikuyu is also phonemic. It is lexically contrastive, and plays a crucial role in the verb tense system. However, the orthography does not represent tone at all\" (p. xi). On vowel length: \"Vowel length is phonemic in Gikuyu. It is often indicated orthographically by means of a sequence of two identical vowels. However, this is not consistent, especially across morpheme boundaries, and so the orthography cannot be taken as a reliable indicator of whether a vowel is long or short\" (p. xi). Measured with the harness's own normalize()/levenshtein() over the same 1025 scored words as the shipped board row: as-scored PER is 0.3914; folding tone alone (acute, grave, caron, circumflex and the U+A71C downstep marker) out of both sides gives 0.0523; folding length alone (the vowel-length mark U+02D0) gives 0.3843; folding both together gives 0.0344. See scripts/fold_ki_notation.py."
     }
   }
 }
