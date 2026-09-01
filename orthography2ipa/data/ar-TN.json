@@ -387,5 +387,12 @@
     "year": 2024,
     "url": "https://arxiv.org/abs/2402.12940",
     "notes": "Arabic-script normalisation for Tunisian based on CODA*; adds the supplemental letters پ /p/, ڤ /v/, گ /g/ and a four-quality vowel system with phonemic length."
+  },
+  "audit": {
+    "primary_sources": {
+      "conclusion": "sample_too_small",
+      "measured": "The primary_sources row holds 9 gold pairs, per=0.3059, per_ci_low=0.196, per_ci_high=0.425 (benchmarks/results.json). The 95% interval straddles the 0.25 gating threshold on both sides, so the row is statistically uninformative rather than failing. The same spec scores near zero on its other two rows (arabic_tts, n=20, per=0.0; gold20_arabic, n=20, per=0.0036), so Tunisian Arabic is not an unmeasured language overall -- only this thin gold set is.",
+      "reference": "spec notes"
+    }
   }
 }
