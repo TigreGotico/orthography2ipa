@@ -17,8 +17,7 @@ imports in their checked-out state.
 
 Every symbol listed in the table below is covered by the project's
 deprecation convention: a symbol is never renamed or removed outright.
-Renaming or removal follows the semver + conventional-commits flow —
-announced as a breaking change (`feat!:` / `BREAKING CHANGE:`), superseded
+Renaming or removal follows the semver + conventional-commits flow: announced as a breaking change (`feat!:` / `BREAKING CHANGE:`), superseded
 by a documented replacement, and only actually removed once the major
 version advances past the one in which the deprecation was announced. The
 target removal version is always derived dynamically from
@@ -47,19 +46,18 @@ Notes on the table:
   subclasses/consumes to implement its own language plugin. A downstream
   plugin's **phonological rule cascade** (sun-letter assimilation,
   silent-`e`, reduction) belongs in a `LatticeRescorer` over the shared
-  lattice — see [Rescoring the lattice](lattice.md#rescoring-the-lattice) —
-  rather than in a forked tokenizer.
-- `SyllabifierPlugin` is the equivalent contract for syllabifier plugins;
+  lattice: see [Rescoring the lattice](lattice.md#rescoring-the-lattice): rather than in a forked tokenizer.
+- `SyllabifierPlugin` is the equivalent contract for syllabifier plugins.
   currently only tugaphone implements one.
 - `tugaphone`'s test suite imports `orthography2ipa.registry` as a module
   and `orthography2ipa.stress.detect_stress` directly, in addition to the
-  top-level re-exports — both paths are stable per `orthography2ipa/__init__.py`.
+  top-level re-exports: both paths are stable per `orthography2ipa/__init__.py`.
 
-## Internal — not covered by this guarantee
+## Internal: not covered by this guarantee
 
 Everything else exported from `orthography2ipa/__init__.py` is public-facing
 (importable, part of `__all__`) but has no observed downstream consumer in
-the repos audited above. These names may be reshaped more freely; treat any
+the repos audited above. These names may be reshaped more freely. Treat any
 reliance on them from outside this repo as unsupported until a downstream
 consumer is added to the inventory above:
 
@@ -90,53 +88,100 @@ consumer is added to the inventory above:
 
 `G2P` and `WordTranscription` (`orthography2ipa.g2p`) expose optional,
 additive surface for detecting words that contain characters absent from a
-spec's grapheme table — e.g. feeding a script the spec doesn't cover at all.
+spec's grapheme table: e.g. feeding a script the spec doesn't cover at all.
 Without it, such words would produce an empty `ipa` string
-indistinguishable from legitimate silence (a pure-punctuation word); this
+indistinguishable from legitimate silence (a pure-punctuation word). This
 surface makes the distinction observable.
 
-- `WordTranscription.unmapped: Tuple[str, ...] = ()` — the specific
+- `WordTranscription.unmapped: Tuple[str, ...] = ()`: the specific
   characters in `WordTranscription.word` with no grapheme mapping. Empty
   when every character mapped.
-- `WordTranscription.coverage: float = 1.0` — fraction of the word's
+- `WordTranscription.coverage: float = 1.0`: fraction of the word's
   characters that mapped to a grapheme, in `[0.0, 1.0]`.
-- `G2P(..., on_unmapped: str = "ignore")` — `"ignore"` (default, zero
+- `G2P(..., on_unmapped: str = "ignore")`: `"ignore"` (default, zero
   behavior change: `ipa` output is unaffected), `"log"` (same output, plus
   one `logging.warning` per distinct `(lang, word)` pair), or `"raise"`
   (raises `UnmappedScriptError` instead of returning a result for that
   word).
 
-The default (`on_unmapped="ignore"`) reproduces the exact prior behavior —
-callers that never pass `on_unmapped` and never read the new
+The default (`on_unmapped="ignore"`) reproduces the exact prior behavior: callers that never pass `on_unmapped` and never read the new
 `WordTranscription` fields see no change in `transcribe()` /
 `transcribe_detailed()` output.
 
 ## Per-word confidence / OOV signal (additive)
 
 `G2P` and `WordTranscription` (`orthography2ipa.g2p`) expose an optional,
-additive per-word **confidence** — a pure, deterministic read off the
+additive per-word **confidence**: a pure, deterministic read off the
 pronunciation lattice (Workstream B5) so a downstream specialized phonemizer
 can spend its lexicon/rules only where the base engine is unsure. It changes
 no existing output: `transcribe`, `transcribe_detailed().ipa`, `ipa_best`,
 and the scoreboard are byte-identical whether or not it is read.
 
-- `WordTranscription.confidence: float = 1.0` — confidence that `ipa` is the
+- `WordTranscription.confidence: float = 1.0`: confidence that `ipa` is the
   right pronunciation, in `[0.0, 1.0]`. The `[0, 1]`-normalised weakest-link
   of the per-slot top-1/top-2 `cost` margin, each slot's winner rarity, and
   the word's `coverage`. `1.0` is the neutral default for a
   `WordTranscription` constructed without the lattice.
-- `G2P.word_confidence(word, *, beam_width=8) -> float` — the same number for
+- `G2P.word_confidence(word, *, beam_width=8) -> float`: the same number for
   a single word.
-- `G2P.confidence_breakdown(word, *, beam_width=8) -> ConfidenceBreakdown` —
-  the per-signal detail (`value`, `lattice`, `per_slot`, `coverage`,
+- `G2P.confidence_breakdown(word, *, beam_width=8) -> ConfidenceBreakdown`: the per-signal detail (`value`, `lattice`, `per_slot`, `coverage`,
   `unmapped`).
 - `ConfidenceBreakdown` (`orthography2ipa.g2p`, re-exported from
-  `orthography2ipa`) — the frozen breakdown dataclass.
+  `orthography2ipa`): the frozen breakdown dataclass.
 
 The exact formula is documented in [`lattice.md`](lattice.md). This surface
-is versioned as part of the stable import surface below; a plain
+is versioned as part of the stable import surface below. A plain
 `WordTranscription(word=..., ipa=...)` keeps `confidence == 1.0`, so existing
 callers are unaffected.
+
+## Finalized top-k readings (additive)
+
+`G2P.word_candidates` (`orthography2ipa.g2p`) returns the top-*k* full
+transcriptions of one word, best first, so a caller that reranks our
+lattice does not have to re-implement the word-final pipeline. It changes
+no existing output: `transcribe`, `transcribe_detailed().ipa`,
+`transcribe_word` and the scoreboard are byte-identical whether or not it
+is called.
+
+- `G2P.word_candidates(word, *, k=5, beam_width=None) -> List[str]`: each
+  string has been through the same word-final stages as `transcribe_word`
+  — geminate collapse, grammatical-ending rewrite, stress marking, and the
+  lexicon/`word_exceptions` override. Duplicates are collapsed, so the
+  result may be shorter than *k*. A word with an override has exactly one
+  reading and no beam is consulted. A word with no pronounceable output
+  returns an empty list.
+- `beam_width` defaults to `max(k, 8)`.
+
+**Ambiguous grammatical endings widen the result below element 0.** A spec may
+declare an ending as an ordered candidate list (`"ent": [null, ""]`, see
+[SCHEMA.md](../orthography2ipa/data/SCHEMA.md#ambiguous-endings)) when
+orthography does not decide between its readings — French verbal ⟨-ent⟩ is the
+case this exists for. Each declared alternative appears as an ADDITIONAL
+reading, ranked below element 0 and never displacing it, so `transcribe`,
+`transcribe_detailed().ipa`, `transcribe_word` and the scoreboard's 1-best
+columns stay byte-identical while `word_candidates` and the oracle columns gain
+the reading a downstream POS-aware rescorer needs. A caller that assumed
+`word_candidates` returns only readings reachable from the grapheme tables must
+stop assuming it; a caller that reads element 0 is unaffected by construction.
+`G2P(lang, expose_ambiguous_endings=False)` turns the injection off for a
+caller that wants only readings the grapheme tables reach — the benchmark
+harness uses it so the scoreboard's oracle columns stay a pure ranking
+diagnostic. It defaults to `True`: exposing the reading the engine cannot
+choose is the point of declaring the ending ambiguous.
+
+Distinct from `G2P.candidates`, which returns RAW `IPAPath` beam paths with
+none of those stages applied: `candidates("bonjour")[0].ipa` is `bɔnʒu`
+(no nasalization, no stress) where `word_candidates("bonjour")[0]` is
+`bɔ̃ʒu`. Use `candidates` for lattice costs, `word_candidates` for
+readings you intend to compare against a transcription.
+
+**Element 0 is not contractually `transcribe_word(word)`.** It normally is,
+and every gold set measured agrees, but `transcribe_word` defaults to
+greedy width-1 search while this method runs a width-`max(k, 8)` beam, and
+a wider beam may find a cheaper path greedy pruning discarded. Pass
+`beam_width=1` if you need the identity to hold by construction. Consumers
+that depend on it should verify rather than assume — see the benchmark
+harness's `assert_oracle_self_check`.
 
 ## Sentence-context seam (additive)
 
@@ -147,18 +192,17 @@ changes no existing output: `transcribe`, `transcribe_detailed().ipa`, and the
 scoreboard are byte-identical whether or not it is used, because the seam only
 runs when a caller passes `sentence_rescorer=`.
 
-- `G2P(..., sentence_rescorer=None)` — accepts a `SentenceRescorer`, an
+- `G2P(..., sentence_rescorer=None)`: accepts a `SentenceRescorer`, an
   iterable of them, or `None` (the default, byte-identical path). Rescorers run
   before the spec's declarative `sandhi_rules`, which are unchanged.
-- `G2P.sentence_lattice(text, *, search="greedy", beam_width=8) -> SentenceLattice`
-  — a pure read exposing every word's lattice, IPA, and phrase / utterance
-  position in order; never affects `transcribe`.
+- `G2P.sentence_lattice(text, *, search="greedy", beam_width=8) -> SentenceLattice`: a pure read exposing every word's lattice, IPA, and phrase / utterance
+  position in order. Never affects `transcribe`.
 - `SentenceLattice`, `WordSlot`, `Position` (an `Enum`),
   `SentenceRescorer` (ABC), `SentenceRescoreContext`
-  (`orthography2ipa.sentence`, re-exported from `orthography2ipa`) — the shape a
+  (`orthography2ipa.sentence`, re-exported from `orthography2ipa`): the shape a
   cross-word rule reads and rewrites. `WordSlot.slots` is the word's
-  `SegmentSlot` lattice; `WordSlot.initial_slot` / `final_slot` are its edge
-  candidates; `SentenceRescoreContext.prev_word` / `next_word` and the
+  `SegmentSlot` lattice. `WordSlot.initial_slot` / `final_slot` are its edge
+  candidates. `SentenceRescoreContext.prev_word` / `next_word` and the
   `phrase_position` / `utterance_position` fields give cross-word adjacency and
   position.
 
@@ -166,7 +210,7 @@ These symbols join the stable, version-guarded import surface: they are never
 renamed or removed outright, only via the semver + conventional-commits
 deprecation flow, with the removal version derived dynamically from
 `orthography2ipa/version.py` (`VERSION_MAJOR + 1`). There is no new
-`LanguageSpec` field — cross-word rules are caller-supplied plugin objects, so
+`LanguageSpec` field: cross-word rules are caller-supplied plugin objects, so
 the spec data surface and its `FIELD_INHERITANCE` manifest are unchanged. The
 full seam is documented in [`sentence_context.md`](sentence_context.md). A
 caller that never passes `sentence_rescorer=` and never calls `sentence_lattice`
@@ -181,14 +225,14 @@ the shared lattice. It is a pure read and changes no existing output:
 `transcribe`, `transcribe_detailed().ipa`, `ipa_best`, and the scoreboard are
 byte-identical whether or not it is used.
 
-- `G2P.features(text) -> list[WordFeatures]` — one `WordFeatures` per word
+- `G2P.features(text) -> list[WordFeatures]`: one `WordFeatures` per word
   (same normalizer + word split as `transcribe`), built by reusing
-  `ipa_lattice`, `confidence_breakdown`, and `flat_contexts` — no new scoring.
+  `ipa_lattice`, `confidence_breakdown`, and `flat_contexts`: no new scoring.
 - `WordFeatures` (`orthography2ipa.features`, re-exported from
-  `orthography2ipa`) — frozen dataclass with `word`, `code`, `script`,
+  `orthography2ipa`): frozen dataclass with `word`, `code`, `script`,
   `confidence`, `graphemes`, and `as_dicts()` (the CRF feature sequence).
 - `GraphemeFeatures` (`orthography2ipa.features`, re-exported from
-  `orthography2ipa`) — frozen per-grapheme record: `grapheme`, `span`, `index`,
+  `orthography2ipa`): frozen per-grapheme record: `grapheme`, `span`, `index`,
   `position`, `prev`/`next`/`prev2`/`next2`, `is_vowel`/`is_consonant`/
   `is_front`/`is_back`, `candidates`, `top1_ipa`, `top1_cost`, `margin`
   (`Optional[float]`, `None` for a single-candidate slot), `n_candidates`,
@@ -208,7 +252,4 @@ and stability commitment, and does not rename, deprecate, or otherwise
 modify any code in `orthography2ipa`.
 
 ---
-
-**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
-
-*Related: [Architecture](architecture.md) · [Lattice](lattice.md) · [Data model](data_model.md)*
+[← Language Registry](registry.md) · [Home](index.md) · [Tokenizer →](tokenizer.md)
