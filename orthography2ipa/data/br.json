@@ -326,7 +326,7 @@
       "notes": "Gaulish substrate traces in Armorican territory"
     }
   ],
-  "notes": "Breton (Brezhoneg). ~200,000 speakers (est. 2020). Brittany, France. Brought from Britain by insular Brythonic speakers (~5th–6th c. CE). Four main dialects: Léonard (KLT basis), Trégorrois, Cornouaillais, Vannetais (most divergent). INPUT CONTRACT: peurunvan (the 1941 \"wholly unified\" orthography), which is what ⟨zh⟩, ⟨c'h⟩ and the plural digraph ⟨où⟩ identify; the interdialectal and skolveurieg systems spell the same words differently and are not this spec's input. The pronunciation described is the KLT-based standard: ⟨zh⟩ = /z/ (it is /h/ in Vannetais), ⟨c'h⟩ = /x/, penultimate stress. ⟨c'h⟩ is also written with U+2019 and U+02BC in running text, so all three apostrophes are mapped — an unmapped one silently deletes the ⟨c⟩ and leaves ⟨h⟩. The vowel digraphs ⟨ae ei eo oa oe ui⟩ and the trigraph ⟨aou⟩ are separate graphemes, not letter sequences: Press (1986:21-22) analyses them as a vowel plus [j w ɥ] in one syllable (⟨kaer⟩ [ˈkajr], ⟨paotr⟩ [ˈpawt(r)], ⟨botaouer⟩ [boˈtawer]) and gives ⟨oa⟩ and ⟨oue⟩ as tending to [wa] and [we]. ⟨euñ⟩ is the nasal counterpart of ⟨eu⟩ and is mapped with the other nasal digraphs; a bare ⟨ñ⟩ maps to nothing so that an ⟨ñ⟩ outside a nasal digraph is dropped where it belongs rather than falling through as an unmapped character. French strongly influenced phonology (uvular /ʁ/, nasal vowels in loans). Refs: Hemon (1975), Press (1986), Hewitt (1978). Measured against the wikipron gold (n=803, as-scored PER 0.3210): checking for mutated word-initial consonants (soft ⟨b d g gw m p t k⟩→⟨v z w/∅ v b d g⟩, spirant ⟨k p t⟩→⟨c'h f z⟩, hard ⟨b d g⟩→⟨p t k⟩) against the gold's 803 headwords found only 6 candidate radical/mutated-initial pairs, and inspection shows every one is a coincidental pair of unrelated lexemes sharing that initial alternation, not an actual mutation (gant 'with' / kant 'hundred'; gar 'leg' / kar 'car, relative'; tour 'tower' / dour 'water'; flac'h / plac'h 'girl'): zero confirmed mutated headwords. This matches the structural expectation that WikiPron entries are Wiktionary page titles, and Wiktionary Breton entries are filed under the citation (radical) form, so a grammatically-conditioned mutation triggered by a preceding word essentially never survives into an isolated-headword gold. Stress was checked the same way: the spec places penultimate stress (ˈ) on every transcription, but the gold carries zero stress marks in any of its 874 rows, and the board's own strip_stress=True scoring convention already removes stress marks from both sides before computing PER, so the officially reported 0.3210 already has stress folded out — an explicit stress fold reproduces the identical 0.3210 rather than improving it (without that convention the raw PER would be 0.4986, all of which is the stress mark itself, confirming stress carries no separate residual once the convention applies). Neither mutation nor stress is a measurable driver of the residual: mutation because the gold structurally excludes it, stress because the harness convention already excludes it. No valid_ceiling is recorded; this is a negative result, not an unmeasured one.",
+  "notes": "Breton (Brezhoneg). ~200,000 speakers (est. 2020). Brittany, France. Brought from Britain by insular Brythonic speakers (~5th–6th c. CE). Four main dialects: Léonard (KLT basis), Trégorrois, Cornouaillais, Vannetais (most divergent). INPUT CONTRACT: peurunvan (the 1941 \"wholly unified\" orthography), which is what ⟨zh⟩, ⟨c'h⟩ and the plural digraph ⟨où⟩ identify; the interdialectal and skolveurieg systems spell the same words differently and are not this spec's input. The pronunciation described is the KLT-based standard: ⟨zh⟩ = /z/ (it is /h/ in Vannetais), ⟨c'h⟩ = /x/, penultimate stress. ⟨c'h⟩ is also written with U+2019 and U+02BC in running text, so all three apostrophes are mapped — an unmapped one silently deletes the ⟨c⟩ and leaves ⟨h⟩. The vowel digraphs ⟨ae ei eo oa oe ui⟩ and the trigraph ⟨aou⟩ are separate graphemes, not letter sequences: Press (1986:21-22) analyses them as a vowel plus [j w ɥ] in one syllable (⟨kaer⟩ [ˈkajr], ⟨paotr⟩ [ˈpawt(r)], ⟨botaouer⟩ [boˈtawer]) and gives ⟨oa⟩ and ⟨oue⟩ as tending to [wa] and [we]. ⟨euñ⟩ is the nasal counterpart of ⟨eu⟩ and is mapped with the other nasal digraphs; a bare ⟨ñ⟩ maps to nothing so that an ⟨ñ⟩ outside a nasal digraph is dropped where it belongs rather than falling through as an unmapped character. French strongly influenced phonology (uvular /ʁ/, nasal vowels in loans). Refs: Hemon (1975), Press (1986), Hewitt (1978). Measured against the wikipron gold (n=803, as-scored PER 0.3210): checking for mutated word-initial consonants (soft ⟨b d g gw m p t k⟩→⟨v z w/∅ v b d g⟩, spirant ⟨k p t⟩→⟨c'h f z⟩, hard ⟨b d g⟩→⟨p t k⟩) against the gold's 803 headwords found only 6 candidate radical/mutated-initial pairs, and inspection shows every one is a coincidental pair of unrelated lexemes sharing that initial alternation, not an actual mutation (gant 'with' / kant 'hundred'; gar 'leg' / kar 'car, relative'; tour 'tower' / dour 'water'; flac'h / plac'h 'girl'): zero confirmed mutated headwords. This matches the structural expectation that WikiPron entries are Wiktionary page titles, and Wiktionary Breton entries are filed under the citation (radical) form, so a grammatically-conditioned mutation triggered by a preceding word essentially never survives into an isolated-headword gold. Stress was checked the same way: the spec places penultimate stress (ˈ) on every transcription, but the gold carries zero stress marks in any of its 874 rows, and the board's own strip_stress=True scoring convention already removes stress marks from both sides before computing PER, so the officially reported 0.3210 already has stress folded out — an explicit stress fold reproduces the identical 0.3210 rather than improving it (without that convention the raw PER would be 0.4986, all of which is the stress mark itself, confirming stress carries no separate residual once the convention applies). Neither mutation nor stress is a measurable driver of the residual: mutation because the gold structurally excludes it, stress because the harness convention already excludes it. No valid_ceiling is recorded; this is a negative result, not an unmeasured one. The residual against that gold was profiled by opcode. Three things drive it, and only one of them is a rule the orthography supports. The largest single substitution class is the close/open ⟨e⟩ contrast, which peurunvan writes with one letter and which Press (1986:29) concludes cannot be predicted from quantity or from the following consonant, assigning close and open ⟨e⟩ to separate phonemes /e/ and /ɛ/. Press does restrict one of the four variants he distinguishes: extra-open ⟨e⟩, which he assigns to /ɛ/, occurs before ⟨c'h⟩, before ⟨lc'h⟩, and before consonant groups beginning with ⟨r⟩ including ⟨rr⟩. Those three environments are stated as rules; the ⟨r⟩-group one matches all 18 gold rows whose headword has a single ⟨e⟩ in that environment, and the ⟨c'h⟩ one matches 8 of 11, the exceptions being ⟨brec'h⟩, ⟨divrec'h⟩ and ⟨trec'h⟩ — and Press gives ⟨trec'h⟩ himself as ['trɛːɣ], so the source is followed against those rows. Everything outside those environments is left as /e/ rather than guessed at. The second driver is the rhotic. Press (1986:34) records the Breton vibrant as an alveolar trill or a uvular fricative depending on local usage, with the uvular spreading under French influence, so [r] and [ʁ] realise the same phoneme and the gold's symbol is a transcription choice. The gold makes that choice both ways: 241 of its 350 rhotic-bearing rows use only [r], 109 use only [ʁ], and none mixes them. A corpus that is internally split is not a distinct notational tradition, so it earns neither a re-symbolisation of this spec nor a tagged variant entry; it is recorded as a fold in valid_ceiling instead. The third is contingent nasalisation of a vowel before a nasal consonant, which the gold applies to 106 of 233 eligible vowel tokens and which three of its repeated headwords transcribe both ways. Press (1986:21) calls this a case where individual dialects and words must decide and proposes allocating the contingently nasal vowel to the oral vowel phoneme and the nasal element to the nasal consonant — which is what this spec already does, so no rule is added. Vowel quantity gained one rule: Press (1986:27) lengthens a stressed vowel before a lenis consonant with no requirement that a vowel follow, and his examples ⟨bras⟩, ⟨mat⟩, ⟨tad⟩ and ⟨kêr⟩ are all monosyllables closed by a single lenis. Hewitt's formulation, from which BR_STRESSED_LONG_BEFORE_LENIS is derived, does not reach that context, so BR_STRESSED_LONG_BEFORE_FINAL_LENIS states it from Press.",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -388,8 +388,8 @@
       "title": "A Grammar of Modern Breton",
       "publisher": "Mouton de Gruyter (Mouton Grammar Library 2), Berlin",
       "url": "https://theswissbay.ch/pdf/Books/Linguistics/Mega%20linguistics%20pack/Indo-European/Celtic/Breton%2C%20A%20Grammar%20of%20Modern%20%28Press%29.pdf",
-      "pages": "pp. 21-24",
-      "notes": "Section 2.5 'Diphthongs and Triphthongs' and section 3.1 'The Vowels'. Source of the vowel-digraph values and of the statement that a stressed vowel tends to closeness when long and to openness when short."
+      "pages": "pp. 21-24, 27-29, 34",
+      "notes": "Section 2.4 'Nasality', section 2.5 'Diphthongs and Triphthongs', section 3.1.1.2 'Vowel Quantity', section 3.1.1.3 'Vowel Quality' and section 3.2.1.3 'The Laterals and Vibrants'. Source of the vowel-digraph values, of the statement that a stressed vowel tends to closeness when long and to openness when short, of the environments in which ⟨e⟩ is extra-open, of the lengthening of a stressed vowel before a lenis consonant, of the trill/uvular alternation in the vibrant, and of the treatment of contingent nasality as belonging to the oral vowel phoneme."
     }
   ],
   "wikipedia": [
@@ -554,6 +554,94 @@
       "surface": "ʃ",
       "word_final": true,
       "notes": "Hewitt (1978), JIPA 8(1-2):80, doi:10.1017/S0025100300001766, records \"lenis obstruent devoicing in final pausal position and in sandhi\". Peurunvan writes the lenis member (⟨z zh d g b j⟩) and leaves the alternation unwritten, so it is stated here and not in the grapheme table. the ⟨j⟩ series, by the same rule."
+    },
+    {
+      "id": "BR_E_OPEN_BEFORE_CH",
+      "phonemes": [
+        "e"
+      ],
+      "surface": "ɛ",
+      "followed_by_phoneme": [
+        "x"
+      ],
+      "notes": "Press, I. (1986), A Grammar of Modern Breton, Mouton de Gruyter, p. 29, section 3.1.1.3 'Vowel Quality': \"Extra-open e occurs only before c'h [x,γ] and before consonantal groups beginning with r (including rr), before lc'h, y [j], w/o/ou [w], and u [ẅ].\" The same section assigns extra-open ⟨e⟩ to /ɛ/ and mid-to-open ⟨e⟩ to /e/, and gives the examples sec'h ['sɛːɣ] \"dry\", kelc'h ['kɛlx] \"circle\", berr ['bɛːr] \"short\", merc'h ['mɛːrx] \"daughter\", nerzh ['nnɛrs] \"strength\". Press states the environment as a necessary condition on the extra-open variant, not as a sufficient one, so these rules read it in the direction he restricts it; the close/open contrast OUTSIDE these environments is left unmodelled because the same page concludes \"there seems to be no clear way, through quantity or through following consonants/silence, of constraining the close and open e\" and treats the two as separate phonemes. This rule covers the bare ⟨c'h⟩ environment (⟨sec'h⟩). Checked against the wikipron gold: of the 11 rows whose headword has exactly one ⟨e⟩ and it stands before ⟨c'h⟩ or ⟨lc'h⟩, 8 transcribe it [ɛ] and 3 transcribe it [e] (⟨brec'h⟩, ⟨divrec'h⟩, ⟨trec'h⟩). Press himself gives ⟨trec'h⟩ as ['trɛːɣ], so the source and those three gold rows disagree and the source is followed."
+    },
+    {
+      "id": "BR_E_OPEN_BEFORE_LCH",
+      "phonemes": [
+        "e"
+      ],
+      "surface": "ɛ",
+      "followed_by_phoneme": [
+        "l"
+      ],
+      "followed_by_phoneme_2": [
+        "x"
+      ],
+      "notes": "Press, I. (1986), A Grammar of Modern Breton, Mouton de Gruyter, p. 29, section 3.1.1.3 'Vowel Quality': \"Extra-open e occurs only before c'h [x,γ] and before consonantal groups beginning with r (including rr), before lc'h, y [j], w/o/ou [w], and u [ẅ].\" The same section assigns extra-open ⟨e⟩ to /ɛ/ and mid-to-open ⟨e⟩ to /e/, and gives the examples sec'h ['sɛːɣ] \"dry\", kelc'h ['kɛlx] \"circle\", berr ['bɛːr] \"short\", merc'h ['mɛːrx] \"daughter\", nerzh ['nnɛrs] \"strength\". Press states the environment as a necessary condition on the extra-open variant, not as a sufficient one, so these rules read it in the direction he restricts it; the close/open contrast OUTSIDE these environments is left unmodelled because the same page concludes \"there seems to be no clear way, through quantity or through following consonants/silence, of constraining the close and open e\" and treats the two as separate phonemes. This rule covers the ⟨lc'h⟩ environment Press names separately (⟨kelc'h⟩ ['kɛlx]), where the ⟨l⟩ stands between the vowel and the ⟨c'h⟩."
+    },
+    {
+      "id": "BR_E_OPEN_BEFORE_R_CLUSTER",
+      "phonemes": [
+        "e"
+      ],
+      "surface": "ɛ",
+      "followed_by_phoneme": [
+        "ʁ"
+      ],
+      "followed_by_2": "consonant",
+      "notes": "Press, I. (1986), A Grammar of Modern Breton, Mouton de Gruyter, p. 29, section 3.1.1.3 'Vowel Quality': \"Extra-open e occurs only before c'h [x,γ] and before consonantal groups beginning with r (including rr), before lc'h, y [j], w/o/ou [w], and u [ẅ].\" The same section assigns extra-open ⟨e⟩ to /ɛ/ and mid-to-open ⟨e⟩ to /e/, and gives the examples sec'h ['sɛːɣ] \"dry\", kelc'h ['kɛlx] \"circle\", berr ['bɛːr] \"short\", merc'h ['mɛːrx] \"daughter\", nerzh ['nnɛrs] \"strength\". Press states the environment as a necessary condition on the extra-open variant, not as a sufficient one, so these rules read it in the direction he restricts it; the close/open contrast OUTSIDE these environments is left unmodelled because the same page concludes \"there seems to be no clear way, through quantity or through following consonants/silence, of constraining the close and open e\" and treats the two as separate phonemes. This rule covers \"consonantal groups beginning with r (including rr)\": the ⟨r⟩ must be followed by a further consonant grapheme, which both excludes a word-final ⟨er⟩ and admits ⟨rr⟩ (⟨berr⟩) and ⟨rc'h rzh rz⟩ (⟨merc'h⟩, ⟨nerzh⟩, ⟨Kerzu⟩). Checked against the wikipron gold: all 18 rows whose headword has exactly one ⟨e⟩ and it stands before an ⟨r⟩ + consonant group transcribe it [ɛ], with no counterexample."
+    },
+    {
+      "id": "BR_STRESSED_LONG_BEFORE_FINAL_LENIS",
+      "phonemes": [
+        "a",
+        "e",
+        "ɛ",
+        "i",
+        "o",
+        "ɔ",
+        "u",
+        "y",
+        "œ",
+        "ø",
+        "ɑ̃",
+        "ẽ",
+        "ĩ",
+        "ɔ̃",
+        "ỹ"
+      ],
+      "append": "ː",
+      "stress": "stressed",
+      "followed_by_phoneme": [
+        "b",
+        "d",
+        "ɡ",
+        "v",
+        "z",
+        "ʒ",
+        "ɣ",
+        "l",
+        "n",
+        "r",
+        "ʁ"
+      ],
+      "followed_by_2": "word_boundary",
+      "notes": "Press, I. (1986), A Grammar of Modern Breton, Mouton de Gruyter, p. 27, section 3.1.1.2 'Vowel Quantity', guideline (b): \"Long before lenes (including n, l, r) and before groups ending in r/l, unless they begin in s.\" Press's own examples for the single-lenis half of that guideline are all monosyllables closed by one lenis consonant: bras ['bbraːZ] \"big\", mat ['mmaːD] \"good\", tad ['ttaːD] \"father\", kêr ['kkɛːr] \"town, settlement\". BR_STRESSED_LONG_BEFORE_LENIS states the same lengthening from Hewitt (1978) but requires a vowel two slots on, which makes the lenis single and thereby excludes exactly this context; its notes record that exclusion as undescribed. Press describes it, so it is stated here as its own rule over the same lenis series. Because the spec places stress on the penult, a stressed vowel stands before a word-final consonant only in a monosyllable, which is the shape of every example Press gives. The rule under-applies where peurunvan writes a lenis obstruent with a fortis letter — Press transcribes ⟨bras⟩ with lenis [z] and ⟨mat⟩ with lenis [d], but this spec reads ⟨s⟩ as /s/ and ⟨t⟩ as /t/ from the orthography, so those two words stay short. Lenis membership is not recoverable from peurunvan spelling and is not guessed at here. Press also names groups ending in ⟨r⟩ or ⟨l⟩ (⟨a-ratre⟩ [aˈraːtre], ⟨semplañ⟩ [ˈsɛːmplɑ̃]); that half of the guideline is not modelled."
     }
-  ]
+  ],
+  "valid_ceiling": {
+    "wikipron": {
+      "per": 0.1726,
+      "folded": "the /r/~/ʁ/ realisation difference, contingent vowel nasalisation, and the close/open ⟨e⟩ contrast",
+      "citation": "Press, I. (1986), A Grammar of Modern Breton, Mouton de Gruyter. p. 34, section 3.2.1.3 'The Laterals and Vibrants': \"The vibrant(s) are pronounced as an alveolar trill or as a uvular fricative, depending on local usage. The overall tendency has been for the uvular to replace the trill, probably under the influence of standard French\" — [r] and [ʁ] are two local realisations of one phoneme, so the choice between them is a transcription decision, not a fact about the word. p. 21, section 2.4 'Nasality', on a vowel nasalised by a following nasal consonant: \"This is a clear case where individual dialects and words must decide\", and \"A possible proposal might be to allocate a contingently nasal vowel to the oral vowel phoneme, and the nasal element to the nasal consonant phoneme\" — which is the analysis this spec implements, since ⟨Vn⟩ outside the ⟨añ eñ iñ oñ uñ euñ⟩ digraphs yields an oral vowel plus /n/. p. 29, section 3.1.1.3: \"there seems to be no clear way, through quantity or through following consonants/silence, of constraining the close and open e\", and the two are assigned to separate phonemes /e/ and /ɛ/ — both written ⟨e⟩ in peurunvan, so the contrast is not recoverable from the input. Folding all three on both sides of the same 803 scored words leaves PER 0.1726; folded one at a time they give 0.2616 (rhotic), 0.2682 (nasalisation) and 0.2593 (⟨e⟩) against the 0.3073 as-scored."
+    }
+  },
+  "audit": {
+    "wikipron": {
+      "conclusion": "input_limited",
+      "measured": "Profiled over the gold's 874 rows (803 distinct words scored). Three residual drivers, all measured as occurrence counts of difflib replace opcodes between the normalised hypothesis and the normalised gold. (1) The rhotic: 135 ⟨ʁ⟩→⟨r⟩ substitutions. The gold writes 257 [r] and 121 [ʁ] phone tokens, and of the 350 rows that contain a rhotic 241 use only [r] and 109 use only [ʁ], with no row mixing the two — the gold is a mixture of two per-row transcription habits rather than one convention, so no single symbol is the right one to emit and no tagged variant entry would describe it. (2) Contingent nasalisation: 233 gold vowel tokens stand immediately before a nasal consonant and 106 of them (45%) carry a tilde — 21/32 before nasal+consonant, 36/100 before a word-final nasal, 46/91 before nasal+vowel. Of the 64 headwords carrying more than one gold row, three contradict themselves on whether any vowel is nasalised at all (⟨Genver⟩ [ɡ ɛ n v ɛ r] against [ɡ ẽ n v ɛ r], ⟨eeun⟩, ⟨pemp⟩). (3) The close/open ⟨e⟩ contrast: 147 ⟨e⟩→⟨ɛ⟩ substitutions. Length does not predict it — the gold writes 81 long and 244 short [e] against 24 long and 301 short [ɛ]. Two environments where the source does restrict it are modelled by BR_E_OPEN_BEFORE_CH, BR_E_OPEN_BEFORE_LCH and BR_E_OPEN_BEFORE_R_CLUSTER; the rest is lexical.",
+      "reference": "spec notes"
+    }
+  }
 }

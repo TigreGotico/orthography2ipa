@@ -2189,3 +2189,46 @@ def test_alemannic_isolated_from_its_german_siblings():
     for code in ("de", "de-DE", "de-AT", "de-CH"):
         assert "kx" not in _t(code, "Brocki")
         assert _t(code, "Chatz").lstrip("ˈ").startswith("k")
+
+
+def test_br_extra_open_e_before_ch():
+    """⟨e⟩ is open before ⟨c'h⟩ and before ⟨lc'h⟩.
+
+    br rule BR_E_OPEN_BEFORE_CH / BR_E_OPEN_BEFORE_LCH, from Press (1986:29):
+    "Extra-open e occurs only before c'h [x,γ] and before consonantal groups
+    beginning with r (including rr), before lc'h, y [j], w/o/ou [w], and u
+    [ẅ]", with extra-open ⟨e⟩ assigned to /ɛ/. Press's own examples are
+    sec'h ['sɛːɣ] "dry" and kelc'h ['kɛlx] "circle".
+    """
+    assert _bare("br", "sec'h") == "sɛx"
+    assert _bare("br", "kelc'h") == "kɛlx"
+
+
+def test_br_extra_open_e_before_r_cluster():
+    """⟨e⟩ is open before a consonant group beginning with ⟨r⟩, not before a
+    word-final ⟨r⟩.
+
+    br rule BR_E_OPEN_BEFORE_R_CLUSTER, from Press (1986:29), whose examples
+    are berr ['bɛːr] "short" (note "that rr is not realized as fortis here"),
+    merc'h ['mɛːrx] "daughter" and nerzh ['nnɛrs] "strength". The group is
+    what conditions the opening, so a bare word-final ⟨er⟩ keeps /e/ — the
+    complementary environment, pinned here as a minimal pair.
+    """
+    assert _bare("br", "merc'h") == "mɛʁx"
+    assert _bare("br", "nerzh") == "nɛʁs"
+    assert _bare("br", "aber") == "aːbeʁ"
+
+
+def test_br_stressed_vowel_long_before_final_lenis():
+    """A stressed vowel is long before a single word-final lenis consonant.
+
+    br rule BR_STRESSED_LONG_BEFORE_FINAL_LENIS, from Press (1986:27),
+    guideline (b) on vowel quantity: "Long before lenes (including n, l, r)
+    and before groups ending in r/l, unless they begin in s", with the
+    monosyllabic examples tad ['ttaːD] "father" and kêr ['kkɛːr] "town,
+    settlement". Guideline (a) makes the same vowel short before a fortis or
+    a cluster, which ⟨park⟩ pins as the complementary environment.
+    """
+    assert _bare("br", "tad") == "taːt"
+    assert _bare("br", "bazh") == "baːs"
+    assert _bare("br", "park") == "paʁk"
