@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.89.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.89.1a1) (2026-09-01)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.89.0a1...7.89.1a1)
+
+**Merged pull requests:**
+
+- fix\(pdc\): vocalise word-final \<e\> to schwa and \<r\> to \[ɐ\] [\#1451](https://github.com/TigreGotico/orthography2ipa/pull/1451) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.89.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.89.0a1) (2026-08-31)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.88.7a2...7.89.0a1)
@@ -661,10 +669,6 @@
 ## [7.82.15a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.15a1) (2026-08-25)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.14a1...7.82.15a1)
-
-**Merged pull requests:**
-
-- fix\(ota\): accept both codepoints of every confusable Ottoman letter [\#1243](https://github.com/TigreGotico/orthography2ipa/pull/1243) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.82.14a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.14a1) (2026-08-25)
 
