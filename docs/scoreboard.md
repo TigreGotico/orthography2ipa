@@ -592,7 +592,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | smn | northeuralex | 1055 | 0.1600 | - | 0.1600 | 0.1600 | 0.3137 | 0.3137 | [0.1518, 0.1694] | 0.3137 | research | lexicon-derived |
 | sms | northeuralex | 1063 | 0.2200 | - | 0.1758 | 0.1700 | 0.1543 | 0.1712 | [0.2128, 0.2266] | 0.0809 | research | lexicon-derived |
 | sms | wikipron | 111 | 0.0045 | - | 0.0045 | 0.0045 | 0.9820 | 0.9820 | [0.0000, 0.0120] | 0.9820 | research | crowd-scraped |
-| so | kaikki | 230 | 0.5567 | - | 0.5403 | 0.5403 | 0.0565 | 0.0565 | [0.5304, 0.5838] | 0.0435 | research | crowd-scraped |
+| so | kaikki | 230 | 0.5567 | 0.4092 (tone) | 0.5403 | 0.5403 | 0.0565 | 0.0565 | [0.5304, 0.5838] | 0.0435 | research | crowd-scraped |
 | sq | vox_communis | 11713 | 0.1432‡ | - | 0.1432 | 0.1432 | 0.3056 | 0.3056 | [0.1411, 0.1453] | 0.3056 | research | epitran-derived |
 | sq | wikipron | 4900 | 0.0964 | - | 0.0964 | 0.0964 | 0.5606 | 0.5606 | [0.0928, 0.1003] | 0.5606 | research | crowd-scraped |
 | sr | ipa_childes | 9838 | 0.3232‡ | - | 0.3232 | 0.3232 | 0.0811 | 0.0811 | [0.3198, 0.3267] | 0.0811 | research | epitran-derived |

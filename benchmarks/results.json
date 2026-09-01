@@ -11299,7 +11299,12 @@
   "oracle_per_top5": 0.5403,
   "oracle_exact_top5": 0.0565,
   "oracle_fallback_words": 0,
-  "oracle_scored_words": 230
+  "oracle_scored_words": 230,
+  "valid_ceiling": {
+   "per": 0.4092,
+   "folded": "tone",
+   "citation": "Mohamed 2013 (mohamed2013), consonant-orthography section, p.10: \"Tone is not marked in the written language and the word initial glottal stop <'> - [ʔ] is also not shown.\" Restated in the tone section, printed p.25-26: \"Orthographically, tone is not marked in writing. Only native speakers understand where a word needs to be stressed or not.\" As-scored PER against kaikki (n=230, broad+strip_stress) is 0.5567, matching the committed board row. Folding the gold's combining tone diacritics (acute, grave, macron, circumflex; NFD-decomposed first so precomposed codepoints such as ú, ā are reached too) out of BOTH sides -- the same normalize()/levenshtein() the board uses, scripts/fold_so_notation.py -- measures 0.4092. This is a master's thesis, a weaker tier than the reference grammars this repo usually cites; Saeed, J.I. (1999) Somali (Benjamins) and Orwin, M. (1994) Aspects of Somali Phonology (PhD, SOAS, https://doi.org/10.25501/SOAS.00033834) were both sought first and would be the better citation, but Saeed 1999 has no freely accessible text found and the SOAS eprints mirror returned a Cloudflare bot-challenge page (HTTP 403) rather than the thesis to a scripted fetch. This ceiling deliberately folds ONLY tone, not the gold's [+/-ATR] vowel-quality letters (ɑ ɛ ɪ ɔ ɞ) -- see audit.kaikki for why that larger fold is refused."
+  }
  },
  {
   "lang": "sq",
