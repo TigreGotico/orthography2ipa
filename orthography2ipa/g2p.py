@@ -84,9 +84,9 @@ from orthography2ipa.sentence import (
     span_position,
 )
 from orthography2ipa.stress import (
-    _syllables_for, apply_stress_mark, cliticless_keys, detect_stress,
-    detect_stress_by_weight, secondary_stress_positions, syllabify,
-    syllabify_ipa,
+    _syllables_for, apply_iambic_length, apply_stress_mark, cliticless_keys,
+    detect_stress, detect_stress_by_weight, secondary_stress_positions,
+    syllabify, syllabify_ipa,
 )
 from orthography2ipa.tone import assign_computed_tones, dock_tone_marks
 from orthography2ipa.transforms import apply_transform
@@ -1247,6 +1247,13 @@ class G2P:
         # all. A caller who wrote a mark has placed the stress, and one who wrote
         # none has said this word carries none — re-deriving it from the spelling
         # would overrule the very thing being forced.
+        if (forced_ipa is None and self.spec.stress is not None and ipa
+                and self.spec.stress.iambic_length
+                and not self._is_cliticless(word)):
+            # Runs BEFORE the stress mark: it lengthens a nucleus by weight,
+            # never moves the mark, and a forced reading has already stated
+            # its own vowel length (see ``apply_iambic_length``).
+            ipa = apply_iambic_length(ipa, self.spec.stress)
         if (forced_ipa is None
                 and self.apply_stress and self.spec.stress is not None and ipa
                 and not self._is_cliticless(word)):

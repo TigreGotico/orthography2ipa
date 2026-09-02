@@ -557,6 +557,7 @@ def load_json_spec(code: str) -> LanguageSpec:
             coda_liquid_capture=bool(
                 raw_stress.get("coda_liquid_capture", False)),
             secondary_stress=str(raw_stress.get("secondary_stress", "") or ""),
+            iambic_length=bool(raw_stress.get("iambic_length", False)),
             source=str(raw_stress.get("source", "rules")),
             notes=raw_stress.get("notes", "") or "",
         )

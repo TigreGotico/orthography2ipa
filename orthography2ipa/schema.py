@@ -345,6 +345,7 @@ class StressRulesModel(_Strict):
     cliticless_words: Optional[List[str]] = None
     coda_liquid_capture: bool = False
     secondary_stress: Literal["", "alternating"] = ""
+    iambic_length: bool = False
     source: Literal["rules", "plugin"] = "rules"
     notes: Optional[str] = None
 

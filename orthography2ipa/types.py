@@ -631,6 +631,30 @@ class StressRules:
         still emitted. When a spec declares this,
         :func:`~orthography2ipa.stress.apply_stress_mark` also writes the
         secondary mark ``ˌ`` before those syllables.
+    iambic_length : bool
+        Whether prominent syllables of a word are realised with a LONG
+        nucleus, independently of where the word-accent mark
+        (:attr:`stress_mark`) is written. Some languages accent an
+        end-anchored syllable for the accent mark, yet lengthen a
+        *different* syllable of the word by a weight-alternating footing
+        rule (Courtz 2008, *A Carib Grammar and Dictionary*, §2.3.1
+        "even syllables ... if the word initial syllable is light [...] odd
+        syllables ... [if it is] heavy" and §2.4.1 "All vowels may be
+        pronounced a little longer ... when stressed" — a description of
+        Eastern Surinamese Carib the author states explicitly differs from
+        Hoff 1968's Western Surinamese Carib stress system, so Hoff is not a
+        source for this rule even where a spec also cites Hoff for its
+        end-anchored accent mark). The rule
+        (:func:`~orthography2ipa.stress.iambic_length_positions`): a word of
+        fewer than three syllables is unaffected; otherwise every other
+        syllable is a foot head, starting from the first syllable if it is
+        HEAVY (a diphthong or a coda) or from the second if the first is
+        LIGHT (an open short-vowel syllable) — the word-final syllable is
+        never a foot head. A foot head lengthens only if it is itself light:
+        a syllable already closed or diphthongal is not further lengthened.
+        Weight is read off the resolved IPA (a property of the
+        transcription, like :attr:`quantity_sensitive`), so it runs before
+        the stress mark is written and never moves it.
     source : str
         Where the stress comes from. ``"rules"`` (the default) means this block —
         declarative data a language owner wrote, that anyone can read, cite and
@@ -665,6 +689,7 @@ class StressRules:
     accent2_mark: str = ""
     accent2_final_letters: Tuple[str, ...] = ()
     secondary_stress: str = ""
+    iambic_length: bool = False
     source: str = "rules"
     notes: str = ""
 
