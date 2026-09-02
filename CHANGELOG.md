@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.92.9a1](https://github.com/TigreGotico/orthography2ipa/tree/7.92.9a1) (2026-09-02)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.92.8a1...7.92.9a1)
+
+**Merged pull requests:**
+
+- fix\(niv\): compose the Cyrillic soft sign as palatalisation, not deletion [\#1482](https://github.com/TigreGotico/orthography2ipa/pull/1482) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.92.8a1](https://github.com/TigreGotico/orthography2ipa/tree/7.92.8a1) (2026-09-02)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.92.7a1...7.92.8a1)
@@ -663,10 +671,6 @@
 ## [7.82.28a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.28a1) (2026-08-26)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.27a2...7.82.28a1)
-
-**Merged pull requests:**
-
-- fix\(tru\): read the waw and yodh matres lectionis as vowels [\#1278](https://github.com/TigreGotico/orthography2ipa/pull/1278) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.82.27a2](https://github.com/TigreGotico/orthography2ipa/tree/7.82.27a2) (2026-08-26)
 
