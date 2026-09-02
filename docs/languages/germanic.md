@@ -1,11 +1,11 @@
-# Germanic Languages — Comparative Phonology Reference
+# Germanic Languages: Comparative Phonology Reference
 
 **Codes**: `de-DE`, `nl`, `sv`, `nb`, `da`, `is`, `af`, `en-GB`, `en-US`, and variants
 **Family**: Indo-European > Germanic | **Script**: Latin (alphabet)
 
 ---
 
-## Final Devoicing — West and North Germanic
+## Final Devoicing: West and North Germanic
 
 Final devoicing (obstruent voicelessness in coda) is a defining feature of **most Germanic languages**:
 
@@ -41,7 +41,7 @@ Dutch ⟨g⟩ is a **velar fricative**, not a plosive:
 - Onset: [ɣ] (voiced): `gaan` [ɣaːn] "to go"
 - Coda/word-final: [x] (voiceless): `dag` [dax] "day"
 
-Northern Dutch uses [x]/[ɣ]; Southern Dutch (Belgium) uses [h]/[ɦ] for ⟨g⟩.
+Northern Dutch uses [x]/[ɣ]. Southern Dutch (Belgium) uses [h]/[ɦ] for ⟨g⟩.
 
 ---
 
@@ -77,8 +77,8 @@ Swedish has the rare phoneme [ɧ] (simultaneous [ʃ] + [x]), rendered by multipl
 ### Tone (Pitch Accent)
 
 Swedish has **two lexical tones** distinguishing otherwise identical words:
-- **Accent 1** (acute): single-peaked — `anden` [²andən] "the duck"
-- **Accent 2** (grave): double-peaked — `anden` [¹andən] "the spirit"
+- **Accent 1** (acute): single-peaked, `anden` [²andən] "the duck"
+- **Accent 2** (grave): double-peaked, `anden` [¹andən] "the spirit"
 
 ---
 
@@ -98,7 +98,7 @@ Special vowels: `eu` [øː], `oe` [uː], `ui` [œy], `ij`/`ei` [ɛi], `au`/`ou` 
 
 ---
 
-## Afrikaans (af) — Derived from Dutch
+## Afrikaans (af): Derived from Dutch
 
 Key differences from Dutch:
 - Final devoicing retained
@@ -119,7 +119,4 @@ Key differences from Dutch:
 - Gussenhoven, C. (1992). *Dutch*. JIPA 22, 45–47.
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
-
-*Related: [de-DE](de-DE.md), [en-GB](en-GB.md)*
+[← Finding a language's phonology documentation](index.md) · [Home](../index.md) · [English →](en-GB.md)

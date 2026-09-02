@@ -284,5 +284,12 @@
     "year": 2018,
     "url": "https://arxiv.org/abs/1906.05758",
     "notes": "Algerian dialectal text is written in MSA-shaped Arabic script; CODA* provides the per-dialect conventions, plus the supplemental letters پ /p/, ڤ /v/, گ /ɡ/ for French/Berber loans."
+  },
+  "audit": {
+    "primary_sources": {
+      "conclusion": "sample_too_small",
+      "measured": "The primary_sources row holds exactly one gold pair (id guerrero2019-010); per_ci_low and per_ci_high both read 0.7143 in benchmarks/results.json because a confidence interval needs more than one row. The single example is western-Algerian Tlemcen speech (Guerrero 2019, quoting Marcais 1908/1902), not the Algiers baseline the spec models, so it diagnoses rules rather than certifies the variety.",
+      "reference": "docs/gold_defects.md, 'Algerian Arabic, primary_sources' section"
+    }
   }
 }
