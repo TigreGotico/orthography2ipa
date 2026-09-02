@@ -667,7 +667,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | yol | wikipron | 1972 | 0.2861 | - | 0.2861 | 0.2861 | 0.2104 | 0.2104 | [0.2762, 0.2958] | 0.2104 | research | crowd-scraped |
 | yrk | northeuralex | 1016 | 0.1907 | - | 0.1905 | 0.1905 | 0.2717 | 0.2717 | [0.1798, 0.2020] | 0.2717 | research | lexicon-derived |
 | yrk | wikipron | 295 | 0.3500 | - | 0.3492 | 0.3492 | 0.0712 | 0.0712 | [0.3288, 0.3722] | 0.0712 | research | crowd-scraped |
-| yux | wikipron | 242 | 0.2975 | - | 0.2975 | 0.2975 | 0.1694 | 0.1694 | [0.2738, 0.3220] | 0.1694 | research | crowd-scraped |
+| yux | wikipron | 242 | 0.2711 | - | 0.2711 | 0.2711 | 0.1694 | 0.1694 | [0.2489, 0.2926] | 0.1694 | research | crowd-scraped |
 | za | wikipron | 1682 | 0.2124 | - | 0.2124 | 0.2124 | 0.2426 | 0.2426 | [0.2048, 0.2203] | 0.2426 | research | crowd-scraped |
 | zh | ipa_childes | 4718 | 0.2879 | - | 0.2668 | 0.2662 | 0.2338 | 0.2342 | [0.2816, 0.2941] | 0.2126 | research | machine-generated |
 | zom | wikipron | 134 | 0.4399 | - | 0.4399 | 0.4399 | 0.0000 | 0.0000 | [0.4190, 0.4602] | 0.0000 | research | crowd-scraped |

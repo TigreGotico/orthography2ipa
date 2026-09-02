@@ -9,13 +9,16 @@
       "ɲ"
     ],
     "дь": [
-      "dʲ"
+      "d͡ʑ"
+    ],
+    "ль": [
+      "ʎ"
     ],
     "ъ": [
       ""
     ],
     "ь": [
-      ""
+      "ʲ"
     ],
     "а": [
       "a"
@@ -117,7 +120,7 @@
       "notes": "Descent per Glottolog classification of Southern Yukaghir (sout2750)."
     }
   ],
-  "notes": "Skeleton. Southern (Kolyma) Yukaghir is a Yukaghir language of northeastern Siberia written in a Cyrillic alphabet extended for its palatal and back vowels. The map covers the base Cyrillic letters plus Ӈ (velar nasal), Ө (front rounded vowel) and the palatal digraphs нь (ɲ) and дь (dʲ); в is rendered as the approximant w. Yukaghir has phonemic vowel length and vowel harmony that the orthography does not consistently mark, and the reference gold is a narrow transcription, so length, harmony and finer allophony are left unencoded and a substantial PER floor is expected. Southern Yukaghir stress falls on heavy syllables or else the final syllable (Maslova 2003) and is predictable, not separately orthographically marked; left unencoded (documented exemption).",
+  "notes": "Skeleton. Southern (Kolyma) Yukaghir is a Yukaghir language of northeastern Siberia written in a Cyrillic alphabet extended for its palatal and back vowels. The map covers the base Cyrillic letters plus Ӈ (velar nasal), Ө (front rounded vowel) and the palatal digraphs нь (ɲ), дь (d͡ʑ) and ль (ʎ); в is rendered as the approximant w. The soft sign ⟨ь⟩ elsewhere marks palatalisation and is mapped to ʲ, following the gold transcriptions of the reference corpus. Yukaghir has phonemic vowel length and vowel harmony that the orthography does not consistently mark, and the reference gold is a narrow transcription, so length, harmony and finer allophony are left unencoded and a substantial PER floor is expected. Southern Yukaghir stress falls on heavy syllables or else the final syllable (Maslova 2003) and is predictable, not separately orthographically marked; left unencoded (documented exemption).",
   "iso639_3": "yux",
   "glottolog_code": null,
   "sources": [
