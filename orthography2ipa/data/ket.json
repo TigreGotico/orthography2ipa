@@ -52,6 +52,9 @@
   "д": [
    "d"
   ],
+  "дь": [
+   "ɟ"
+  ],
   "г": [
    "ɡ"
   ],
@@ -76,6 +79,9 @@
   "н": [
    "n"
   ],
+  "нь": [
+   "ɲ"
+  ],
   "ӄ": [
    "q"
   ],
@@ -85,8 +91,14 @@
   "с": [
    "s"
   ],
+  "сь": [
+   "ɕ"
+  ],
   "т": [
    "t"
+  ],
+  "ть": [
+   "c"
   ],
   "ӈ": [
    "ŋ"
@@ -98,7 +110,7 @@
    "ʝ"
   ],
   "ь": [
-   ""
+   "ʲ"
   ],
   "ъ": [
    ""
@@ -246,7 +258,7 @@
    "ɵ̞ː"
   ]
  },
- "notes": "Cyrillic-based practical orthography for Ket following Vajda (2004), Ket, and Vajda & Zinn's teaching materials. The northeuralex gold's apostrophe marking laryngealized tone (Vajda, E. J. (2010), 'Metathesis and Reanalysis in Ket', BLS 36, pp. 457-471, section 1.1: qɔ'j 'wish', laryngealized, vs. qōˑj 'aunt, uncle', high tone) is written with U+02BC MODIFIER LETTER APOSTROPHE (ʼ) rather than the U+2019 RIGHT SINGLE QUOTATION MARK (’) already mapped here, so both are kept as keys onto the same ʔ candidate. Ket has phonemic vowel length (doubled-vowel digraphs aa/ii/ee/oo/yy/oeoe mark long vowels, each earning its key by NOT being the concatenation of two short-vowel candidates) and lexical tone. The orthography does not mark the pitch component of Ket's four tonal prosodemes at all (Vajda 2004) -- the `stress` field is left unset and this is a documented exemption, not an oversight: Ket 'stress' is realised through the (unwritten) pitch contours rather than a predictable stress rule. It does write the laryngealized prosodeme's glottal constriction, via the apostrophe mapped above (Vajda 2010). Ket also has a productive palatalised consonant series (dʲ lʲ nʲ sʲ tʲ), spelled with a following Cyrillic soft sign the same way Russian marks softness; per the ru ⟨бь⟩ precedent (AGENTS.md) this is a diacritic the soft-sign grapheme (mapped here to a silent empty candidate) already exists to compose, not a fact that earns Cyrillic+ь its own multigraph key, so the palatalised series is left as a documented, unencoded gap (as evn/Evenki documents the analogous native-only palatalization pattern) rather than enumerated as five extra keys. g is used for the velar stop /k̟/ (Ket has no phonemic voiced velar stop, per Vajda 2004); the plain non-palatalised lateral is velarised /lˠ/; short /u/ is realised [ʊ] (Vajda 2004), contrasting with long /uː/ spelled уу.",
+ "notes": "Cyrillic-based practical orthography for Ket following Vajda (2004), Ket, and Vajda & Zinn's teaching materials. The northeuralex gold's apostrophe marking laryngealized tone (Vajda, E. J. (2010), 'Metathesis and Reanalysis in Ket', BLS 36, pp. 457-471, section 1.1: qɔ'j 'wish', laryngealized, vs. qōˑj 'aunt, uncle', high tone) is written with U+02BC MODIFIER LETTER APOSTROPHE (ʼ) rather than the U+2019 RIGHT SINGLE QUOTATION MARK (’) already mapped here, so both are kept as keys onto the same ʔ candidate. Ket has phonemic vowel length (doubled-vowel digraphs aa/ii/ee/oo/yy/oeoe mark long vowels, each earning its key by NOT being the concatenation of two short-vowel candidates) and lexical tone. The orthography does not mark the pitch component of Ket's four tonal prosodemes at all (Vajda 2004) -- the `stress` field is left unset and this is a documented exemption, not an oversight: Ket 'stress' is realised through the (unwritten) pitch contours rather than a predictable stress rule. It does write the laryngealized prosodeme's glottal constriction, via the apostrophe mapped above (Vajda 2010). Ket also has a productive palatalised consonant series, spelled with a following Cyrillic soft sign the same way Russian marks softness. The bare soft sign composes /ʲ/ (ru ⟨бь⟩ precedent, AGENTS.md: р+ь → rʲ, м+ь → mʲ are plain concatenation and get no key of their own), but the northeuralex gold shows that four of these palatalised consonants are not merely C+ʲ: с+ь, т+ь, д+ь and н+ь surface as the distinct single segments ɕ, c, ɟ and ɲ respectively (150/150, 1/1, 1/1 and 44/44 gold words checked), the same way л+ь already earns its own key for ʎ. Those four therefore earn Cyrillic+ь multigraph keys under the AGENTS.md test that a key's IPA is not merely the concatenation of its parts. No source consulted (Vajda 2004, Vajda 2010, PHOIBLE 2.0) states this set of realisations explicitly; the mapping rests on the gold evidence alone. g is used for the velar stop /k̟/ (Ket has no phonemic voiced velar stop, per Vajda 2004); the plain non-palatalised lateral is velarised /lˠ/; short /u/ is realised [ʊ] (Vajda 2004), contrasting with long /uː/ spelled уу.",
  "iso639_3": "ket",
  "glottolog_code": "kett1243",
  "sources": [
