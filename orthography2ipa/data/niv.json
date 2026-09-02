@@ -8,6 +8,12 @@
     "нь": [
       "ɲ"
     ],
+    "дь": [
+      "ɟ"
+    ],
+    "ть": [
+      "c"
+    ],
     "р̌": [
       "r̥"
     ],
@@ -39,7 +45,7 @@
       ""
     ],
     "ь": [
-      ""
+      "ʲ"
     ],
     "а": [
       "æ"
@@ -180,7 +186,7 @@
       "notes": "Descent per Glottolog classification of Amur Nivkh (gily1242)."
     }
   ],
-  "notes": "Research. Nivkh (Gilyak) is a Paleosiberian language isolate; this entry follows the Amur dialect Cyrillic alphabet (Gruzdeva 1998). Beyond the base Russian letters it covers the language-specific graphemes for the rich dorsal system: Ӈ (velar nasal), the velar/uvular fricatives Ғ (ɣ), Ӻ/Ӷ/Ҕ (ʁ), the uvular stops Ӄ/Қ and Ҟ, the uvular/velar fricatives Ҳ/Ӽ (χ), Ӿ (h), and the voiceless sonorant Ҏ (also spelled with base ⟨р⟩ plus a combining caron, ⟨р̌⟩, mapped as an equivalent multigraph). Nivkh contrasts aspirated and unaspirated stops: the practical orthography spells the default (unaspirated) series with the bare letter (п т к ӄ = [p t k q]) and the aspirated series by suffixing an apostrophe (п’ т’ к’ ӄ’ = [pʰ tʰ kʰ qʰ]) — the pre-upgrade spec had this backwards, defaulting to aspirated and never modelling the apostrophe. ⟨а⟩ is phonetically fronted [æ] in the sampled gold. The digraph ⟨нь⟩ spells the palatal nasal [ɲ]. Nivkh undergoes extensive initial-consonant mutation conditioned by morphology/syntax that is not recoverable from an isolated word's spelling and is left unencoded, so a residual PER floor from that mutation is expected. No `stress` block: Nivkh word stress is not lexically contrastive and is not treated as orthography-predictable by Gruzdeva (1998), so it is left unencoded (stress exemption).",
+  "notes": "Research. Nivkh (Gilyak) is a Paleosiberian language isolate; this entry follows the Amur dialect Cyrillic alphabet (Gruzdeva 1998). Beyond the base Russian letters it covers the language-specific graphemes for the rich dorsal system: Ӈ (velar nasal), the velar/uvular fricatives Ғ (ɣ), Ӻ/Ӷ/Ҕ (ʁ), the uvular stops Ӄ/Қ and Ҟ, the uvular/velar fricatives Ҳ/Ӽ (χ), Ӿ (h), and the voiceless sonorant Ҏ (also spelled with base ⟨р⟩ plus a combining caron, ⟨р̌⟩, mapped as an equivalent multigraph). Nivkh contrasts aspirated and unaspirated stops: the practical orthography spells the default (unaspirated) series with the bare letter (п т к ӄ = [p t k q]) and the aspirated series by suffixing an apostrophe (п’ т’ к’ ӄ’ = [pʰ tʰ kʰ qʰ]) — the pre-upgrade spec had this backwards, defaulting to aspirated and never modelling the apostrophe. ⟨а⟩ is phonetically fronted [æ] in the sampled gold. The bare soft sign ⟨ь⟩ is a palatalisation mark and composes /ʲ/ onto the preceding consonant by default (matching ru/uk); it was previously mapped to nothing, silently deleting palatalisation. The northeuralex and wikipron golds agree that three of the resulting sequences are not plain C+ʲ concatenations but single fused segments: ⟨нь⟩ -> [ɲ] (palatal nasal), ⟨дь⟩ -> [ɟ] (palatal stop), ⟨ть⟩ -> [c] (voiceless palatal stop); these earn dedicated Cyrillic+ь multigraph keys. The few ⟨ь⟩ words after other consonants (л, р, з) in the golds are Russian loans (сентябрь, учитель, обезьяна) and compose the generic bare /ʲ/ correctly without a key of their own. Nivkh undergoes extensive initial-consonant mutation conditioned by morphology/syntax that is not recoverable from an isolated word's spelling and is left unencoded, so a residual PER floor from that mutation is expected. No `stress` block: Nivkh word stress is not lexically contrastive and is not treated as orthography-predictable by Gruzdeva (1998), so it is left unencoded (stress exemption).",
   "iso639_3": "niv",
   "glottolog_code": null,
   "sources": [
