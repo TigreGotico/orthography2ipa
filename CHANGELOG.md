@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.92.7a1](https://github.com/TigreGotico/orthography2ipa/tree/7.92.7a1) (2026-09-02)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.92.6a1...7.92.7a1)
+
+**Merged pull requests:**
+
+- fix\(ket\): compose the Cyrillic soft sign as palatalisation, not deletion [\#1478](https://github.com/TigreGotico/orthography2ipa/pull/1478) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.92.6a1](https://github.com/TigreGotico/orthography2ipa/tree/7.92.6a1) (2026-09-02)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.92.5a2...7.92.6a1)
@@ -516,15 +524,15 @@
 
 ## [7.82.41a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.41a1) (2026-08-26)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.40a5...7.82.41a1)
-
-## [7.82.40a5](https://github.com/TigreGotico/orthography2ipa/tree/7.82.40a5) (2026-08-26)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.40a6...7.82.40a5)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.40a6...7.82.41a1)
 
 ## [7.82.40a6](https://github.com/TigreGotico/orthography2ipa/tree/7.82.40a6) (2026-08-26)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.40a4...7.82.40a6)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.40a5...7.82.40a6)
+
+## [7.82.40a5](https://github.com/TigreGotico/orthography2ipa/tree/7.82.40a5) (2026-08-26)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.40a4...7.82.40a5)
 
 ## [7.82.40a4](https://github.com/TigreGotico/orthography2ipa/tree/7.82.40a4) (2026-08-26)
 
@@ -659,10 +667,6 @@
 ## [7.82.27a2](https://github.com/TigreGotico/orthography2ipa/tree/7.82.27a2) (2026-08-26)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.27a1...7.82.27a2)
-
-**Merged pull requests:**
-
-- docs\(gwc\): re-measure the Gawri ceiling and drop the Wikipedia citation [\#1276](https://github.com/TigreGotico/orthography2ipa/pull/1276) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.82.27a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.27a1) (2026-08-26)
 
