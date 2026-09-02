@@ -35,7 +35,7 @@
       "year": 2023,
       "title": "Phonological conditioning of affricate variability in Emirati Arabic",
       "publisher": "Journal of the International Phonetic Association",
-      "url": "https://doi.org/10.1017/S0025100323000129",
+      "url": "https://doi.org/10.1017/S0025100323000166",
       "pages": "54(1):146-164",
       "notes": "Abstract and published summary read (full text paywalled — cited only for what was read). Emirati-specific: [k~tʃ] is a completed phonemic change (lexicalised); [dʒ~j] is a synchronic phonological process; a nearby similar coronal obstruent inhibits the (voiced) [j] variant of the dʒ~j alternation, whereas /k/-affrication to [tʃ] is not inhibited by similar consonants."
     },
@@ -96,7 +96,7 @@
   "word_exceptions": {
     "لَو": "law",
     "عِيش": "ʕeːʃ",
-    "الْعِيش": "alʕeːʃ",
+    "الْعِيش": "ilʕeːʃ",
     "الْيَوم": "iljoːm",
     "اَلْيَوم": "iljoːm"
   }
