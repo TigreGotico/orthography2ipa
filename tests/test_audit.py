@@ -251,6 +251,7 @@ class TestBackfilledRecordsRoundTrip:
         ("ja", "ipadict", AuditConclusion.LOGOGRAPHIC),
         ("da", "wikipron", AuditConclusion.AT_CEILING_DOCUMENTED),
         ("so", "kaikki", AuditConclusion.CHANGE_REFUSED_UNCITED),
+        ("km", "ipadict", AuditConclusion.CHANGE_REFUSED_UNCITED),
     ])
     def test_backfilled_conclusion_loads(self, code, dataset, conclusion):
         spec = json_loader.load_json_spec(code)
