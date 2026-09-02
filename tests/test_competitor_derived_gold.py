@@ -261,14 +261,14 @@ class TestGatingFieldDerivedAndRendered:
         assert row["gating"] == can_gate_promotion(row["provenance"])
 
     def test_backfilled_results_json_gating_matches_provenance(self):
-        """Every one of the 641 committed rows carries a `gating` value that
+        """Every one of the 643 committed rows carries a `gating` value that
         agrees with `can_gate_promotion(row["provenance"])` — the backfill
         must be a pure derivation, never a hand patch that can drift."""
         path = os.path.join(
             os.path.dirname(__file__), "..", "benchmarks", "results.json")
         with open(path, encoding="utf-8") as fh:
             rows = json.load(fh)
-        assert len(rows) == 641
+        assert len(rows) == 643
         mismatched = [
             (r["lang"], r["dataset"]) for r in rows
             if r.get("gating") != can_gate_promotion(r["provenance"])

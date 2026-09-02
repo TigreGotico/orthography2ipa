@@ -293,7 +293,13 @@ _WIKIPRON_FILES = {
     "lad": "lad_latn_broad.tsv",         # Ladino, ~145 rows
     # --- already wired ---
     "gl": "glg_latn_broad.tsv",
-    "es": "spa_latn_la_broad.tsv",
+    # "es" resolves through the registry to es-ES, Castilian Spanish, which
+    # has distincion (<cielo> -> [th-jelo]). It is scored against the Castilian
+    # gold. The Latin-American gold has seseo (<cielo> -> [s-jelo]) and belongs
+    # to es-419, wired below -- pairing it with "es" scored a distincion spec
+    # against a seseo reference.
+    "es": "spa_latn_ca_broad.tsv",
+    "es-419": "spa_latn_la_broad.tsv",
     # Explicitly regional: the ⟨po⟩ file is European Portuguese and is
     # scored against the pt-PT spec (vowel reduction makes a higher PER
     # expected than pt-BR); the ⟨bz⟩ file is Brazilian. No bare "pt" row —
@@ -348,6 +354,7 @@ _WIKIPRON_FILES = {
     # --- Other Indo-European ---
     "el": "ell_grek_broad.tsv",          # ~20k rows
     "hy": "hye_armn_e_broad.tsv",        # ~18k rows (Eastern Armenian)
+    "hyw": "hye_armn_w_broad.tsv",       # ~17k rows (Western Armenian)
     "sq": "sqi_latn_broad.tsv",          # ~5k rows
     "tr": "tur_latn_broad.tsv",          # ~12k rows
     # --- Uralic / Basque ---

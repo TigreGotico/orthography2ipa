@@ -233,7 +233,8 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | eo | ipadict | 23245 | 0.0120 | - | 0.0120 | 0.0120 | 0.9039 | 0.9039 | [0.0115, 0.0125] | 0.9039 | production | machine-generated |
 | eo | wikipron | 41245 | 0.0328 | - | 0.0328 | 0.0328 | 0.7491 | 0.7491 | [0.0322, 0.0334] | 0.7491 | production | crowd-scraped |
 | es | vox_communis | 48067 | 0.0758‡ | - | 0.0728 | 0.0711 | 0.6006 | 0.6114 | [0.0746, 0.0768] | 0.5868 | production | epitran-derived |
-| es | wikipron | 132188 | 0.0797 | - | 0.0358 | 0.0338 | 0.7165 | 0.7305 | [0.0792, 0.0802] | 0.4604 | production | crowd-scraped |
+| es | wikipron | 132189 | 0.0593 | - | 0.0155 | 0.0135 | 0.8772 | 0.8931 | [0.0589, 0.0598] | 0.5625 | production | crowd-scraped |
+| es-419 | wikipron | 132188 | 0.0597 | - | 0.0158 | 0.0138 | 0.8739 | 0.8897 | [0.0593, 0.0601] | 0.5607 | skeleton | crowd-scraped |
 | es-AR | primary_sources | 29 | 0.0138 | - | 0.0069 | 0.0069 | 0.9655 | 0.9655 | [0.0000, 0.0345] | 0.9310 | research | expert-human |
 | es-ES | ipa_childes | 13155 | 0.0813‡ | - | 0.0576 | 0.0552 | 0.6953 | 0.7067 | [0.0791, 0.0833] | 0.5924 | production | epitran-derived |
 | es-ES | ipadict | 595896 | 0.0295 | - | 0.0271 | 0.0239 | 0.7530 | 0.7803 | [0.0294, 0.0297] | 0.7314 | production | machine-generated |
@@ -306,6 +307,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | huu | wikipron | 437 | 0.0350 | - | 0.0350 | 0.0350 | 0.8101 | 0.8101 | [0.0278, 0.0437] | 0.8101 | research | crowd-scraped |
 | hy | vox_communis | 26671 | 0.0465‡ | - | 0.0447 | 0.0447 | 0.6720 | 0.6720 | [0.0456, 0.0475] | 0.6720 | research | epitran-derived |
 | hy | wikipron | 17734 | 0.1027 | - | 0.1025 | 0.1025 | 0.4683 | 0.4683 | [0.1010, 0.1046] | 0.4681 | research | crowd-scraped |
+| hyw | wikipron | 17009 | 0.2709 | - | 0.2708 | 0.2708 | 0.1333 | 0.1333 | [0.2681, 0.2735] | 0.1332 | research | crowd-scraped |
 | ia | wikipron | 443 | 0.0646 | - | 0.0557 | 0.0557 | 0.7223 | 0.7223 | [0.0554, 0.0748] | 0.6727 | research | crowd-scraped |
 | iba | wikipron | 571 | 0.1655 | - | 0.1151 | 0.1096 | 0.5184 | 0.5394 | [0.1530, 0.1780] | 0.3538 | research | crowd-scraped |
 | id | ipa_childes | 9646 | 0.1223‡ | - | 0.0485 | 0.0347 | 0.7275 | 0.7918 | [0.1197, 0.1250] | 0.4566 | research | epitran-derived |
