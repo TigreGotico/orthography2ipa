@@ -330,7 +330,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | jv | kaikki | 96 | 0.2180 | - | 0.0915 | 0.0723 | 0.6667 | 0.7500 | [0.1843, 0.2542] | 0.2500 | skeleton | crowd-scraped |
 | ka | vox_communis | 79887 | 0.2337‡ | - | 0.2337 | 0.2337 | 0.0725 | 0.0725 | [0.2329, 0.2345] | 0.0725 | research | epitran-derived |
 | kab | vox_communis | 54545 | 0.2071‡ | - | 0.2071 | 0.2071 | 0.1829 | 0.1829 | [0.2057, 0.2083] | 0.1829 | research | epitran-derived |
-| kas | wikipron | 683 | 0.3122 | - | 0.2911 | 0.2908 | 0.3411 | 0.3411 | [0.2859, 0.3397] | 0.3280 | research | crowd-scraped |
+| kas | wikipron | 683 | 0.2848 | - | 0.2639 | 0.2636 | 0.3880 | 0.3880 | [0.2581, 0.3122] | 0.3748 | research | crowd-scraped |
 | kaw | wikipron | 924 | 0.1472 | - | 0.1472 | 0.1472 | 0.4643 | 0.4643 | [0.1361, 0.1576] | 0.4643 | research | crowd-scraped |
 | kca | northeuralex | 863 | 0.0232 | - | 0.0169 | 0.0169 | 0.8830 | 0.8830 | [0.0194, 0.0274] | 0.8517 | research | lexicon-derived |
 | ket | northeuralex | 793 | 0.2688 | - | 0.2688 | 0.2688 | 0.3380 | 0.3380 | [0.2511, 0.2876] | 0.3380 | research | lexicon-derived |
