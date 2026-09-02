@@ -3,7 +3,7 @@
   "name": "Maquiritari",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "ch": [
       "tʃ"
@@ -104,5 +104,12 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Ye%27kuana_language"
-  ]
+  ],
+  "audit": {
+    "wikipron": {
+      "conclusion": "input_limited",
+      "measured": "Ye'kwana contrastive vowel nasalization and predictable stress/length are not recoverable from the practical Spanish-influenced orthography this spec describes and are left unencoded, which the spec notes state raises the PER floor.",
+      "reference": "spec notes"
+    }
+  }
 }
