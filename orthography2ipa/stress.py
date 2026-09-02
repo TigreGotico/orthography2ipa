@@ -61,6 +61,8 @@ __all__ = [
     "LIGHT",
     "HEAVY",
     "SUPERHEAVY",
+    "iambic_length_positions",
+    "apply_iambic_length",
 ]
 
 
@@ -1473,3 +1475,76 @@ def detect_stress_by_weight(
     if default < 0:
         return default if n >= -default else -n
     return -n  # a positive default counts from the start: the first syllable
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Iambic length — the accent MARK and the LONG nucleus can be different facts
+# ═══════════════════════════════════════════════════════════════════════════
+#
+# Some languages accent an end-anchored syllable for the purposes of the
+# written accent, but the vowel that is actually pronounced longer follows a
+# separate, weight-alternating footing rule. Carib is the case this was
+# written for (Courtz 2008, *A Carib Grammar and Dictionary*, §2.3.1-2.3.2,
+# §2.4.1 — Eastern Surinamese Carib, a description the author states
+# explicitly differs from Hoff 1968's Western Surinamese Carib stress
+# system): feet are built from the first syllable, whose own WEIGHT decides
+# whether the alternation starts on it or skips it — a heavy (diphthong/coda)
+# first syllable is itself a foot head, a light one is not, and every other
+# syllable after that is a foot head in turn. The word-final syllable is
+# never a foot head (Courtz 2008 §2.3.2). Only a foot head that is itself
+# light gets the extra length: a syllable already closed or diphthongal
+# carries its own weight and is not further lengthened.
+
+def iambic_length_positions(
+    ipa_syllables: Sequence[str],
+    atoms: Sequence[str] = (),
+) -> frozenset:
+    """The 0-based indices of *ipa_syllables* whose nucleus should lengthen.
+
+    Empty for a word of fewer than three syllables — the footing needs a
+    first syllable, an internal foot head and a final syllable to distinguish
+    the two roles (Courtz 2008 §2.3.2 states the rule only for "words of
+    more than two syllables").
+    """
+    n = len(ipa_syllables)
+    if n < 3:
+        return frozenset()
+    first_heavy = syllable_weight(ipa_syllables[0], atoms) != LIGHT
+    candidates = range(0, n - 1, 2) if first_heavy else range(1, n - 1, 2)
+    return frozenset(
+        i for i in candidates
+        if syllable_weight(ipa_syllables[i], atoms) == LIGHT
+    )
+
+
+def _lengthen_nucleus(syllable: str, atoms: Sequence[str] = ()) -> str:
+    """*syllable* with a length mark written after its (short) nucleus."""
+    segs = segment_ipa(syllable, tuple(atoms) + tuple(_AFFRICATES))
+    for i, seg in enumerate(segs):
+        if _is_vowel_segment(seg):
+            segs[i] = seg + _LENGTH
+            break
+    return "".join(segs)
+
+
+def apply_iambic_length(
+    ipa: str,
+    rules: "StressRules",
+    atoms: Sequence[str] = (),
+) -> str:
+    """Lengthen the foot-head nuclei of *ipa* per :attr:`StressRules.iambic_length`.
+
+    No-op unless the spec opted in, and a no-op word already carrying a
+    length mark is returned unchanged (a forced/lexicon reading has already
+    stated its own vowel length and is not re-derived). Runs on the bare
+    phoneme string, BEFORE the stress mark is written, so it never moves it.
+    """
+    if not rules.iambic_length or not ipa or _LENGTH in ipa:
+        return ipa
+    ipa_sylls = syllabify_ipa(ipa, rules.max_onset, atoms)
+    idxs = iambic_length_positions(ipa_sylls, atoms)
+    if not idxs:
+        return ipa
+    for i in idxs:
+        ipa_sylls[i] = _lengthen_nucleus(ipa_sylls[i], atoms)
+    return "".join(ipa_sylls)
