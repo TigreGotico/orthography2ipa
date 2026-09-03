@@ -71,25 +71,36 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
 | `graphemes_base`            | string | no       | Code to inherit graphemes from               |
 | `allophones_base`           | string | no       | Code to inherit allophones from              |
 | `positional_graphemes_base` | string | no       | Code to inherit positional graphemes from    |
+| `word_exceptions_base`      | string | no       | Code to inherit whole-word overrides from    |
+| `grammatical_endings_base`  | string | no       | Code to inherit grammatical endings from     |
 | `quality`                   | string | no       | Data maturity: `"stub"`, `"skeleton"`, `"research"`, `"production"` (default: `"research"`) |
 | `script_type`               | string | no       | Script typology: `"alphabet"`, `"abjad"`, `"abugida"`, `"syllabary"`, `"logographic"`, `"featural"`, `"mixed"`, `"reconstruction"` (default: `"alphabet"`) |
 | `inherent_vowel`            | string | no       | For abugidas: vowel assumed when no vowel mark (e.g. `"ə"`) |
+| `inherent_vowel_final`      | string | no       | What `inherent_vowel` becomes on a word-final consonant letter. Several Indo-Aryan orthographies write the inherent vowel on every consonant letter but do not pronounce it at the end of a word — Assamese ⟨বছৰ⟩ is /bɔsɔɹ/, not \*/bɔsɔɹɔ/ (Roy & Mahanta 2018). `""` deletes it; any other string substitutes that vowel. Unset (default) leaves it standing. The substitution is skipped unless the syllable being closed already has a nucleus, so it neither empties a word of its only syllable (⟨ক⟩ stays /kɔ/) nor manufactures a complex coda (⟨অংক⟩ stays /ɔŋkɔ/) — the floor `requires_other_nucleus` puts under a vowel-deleting rule, applied where the vowel is unwritten and so has no slot to target |
+| `virama_final_vowel`        | string | no       | What an ABSOLUTE word-final virama-marked consonant is realised with, instead of true deletion. A virama elsewhere still deletes the inherent vowel to form its conjunct (C+virama+C). Malayalam's word-final consonant+chandrakkala is not mute but carries the non-phonemic "enunciative" [ɨ] (samvrutokaram) — ⟨അത്⟩ /ɐd̪ɨ/ 'that', not */ɐd̪/ (Valentine 1976; Mohanan 1986; Asher & Kumari 1997; Namboodiripad & Garellek 2017: 115). Unset (default) leaves virama-final deletion in place. |
+| `vowel_graphemes`           | array  | no       | Whole grapheme strings this spec declares vowel letters, overriding the closed Latin/Greek/harakat inventory (e.g. `["w"]` for Hmong RPA ⟨w⟩ = /ɨ/). Empty (default) keeps the closed-inventory answer. See [data_model.md](../../docs/data_model.md#vowel_graphemes-overriding-a-closed-inventory-consonant-letter). |
+| `trailing_vowel_axis_digraphs` | array | no    | Multi-letter vowel graphemes (matched case-insensitively) for which the AFTER_FRONT_VOWEL/AFTER_BACK_VOWEL axis for a FOLLOWING grapheme is read off the digraph's trailing letter rather than its opening one, e.g. `["ía", "úa"]` for Old Irish, where quality under *caol le caol* is set by the digraph's closing letter. Empty (default) keeps the opening-letter (`grapheme[0]`) reading every other spec uses. |
 | `iso639_3`                  | string | no       | ISO 639-3 three-letter code for cross-referencing |
 | `sandhi_rules`              | array  | no       | Cross-word-boundary phonological rules       |
 | `stress`                    | object | no       | Declarative stress placement (see [Stress Schema](#stress-schema)) |
 | `word_exceptions`           | object | no       | Whole-word overrides for a closed irregular set (`{"one": "wʌn"}`); beats rules, beats a bundled lexicon |
+| `grammatical_endings`       | object | no       | Suffix morphology: orthographic ending → IPA at the effective word end (`{"tion": "ʃən"}`), or an ordered candidate list for an ending that is genuinely ambiguous (`{"ent": [null, ""]}`); see [Grammatical endings](#grammatical-endings) |
 | `allophone_rules`          | array  | no       | Post-lexical `phoneme → surface` rewrites (see [Allophone Rule Schema](#allophone-rule-schema) and [allophony](../../docs/allophony.md)) |
+| `tone_rules`                | object | no       | Tone the orthography spells with the SHAPE of the syllable rather than with a tone letter (see [Tone Rules Schema](#tone-rules-schema)) |
 | `tone_inventory`            | object | no       | IPA tone mark → label (e.g. `{"˥": "high"}`) |
-| `sources`                   | array  | no       | Bibliographic references (see Sources Schema below) |
+| `tone_marks_syllable_final` | bool   | no       | Dock every tone mark at the end of its syllable. Set it when the orthography writes tone on the nucleus letter, so that ⟨ōng⟩ comes out `oŋ³³` and not `o³³ŋ` |
+| `sources`                   | array  | no       | Works consulted for the phonological claims in this spec (see Sources Schema below). A Wikipedia article is not a source; see `wikipedia` below |
 | `glottolog_code`            | string | no       | Glottolog languoid code (e.g. `"cast1244"`) — genealogical classification |
 | `wikidata_qid`              | string | no       | Wikidata item id (e.g. `"Q1321"`) — the linked-data hub; one QID resolves this language's Glottolog, ISO 639-3, PHOIBLE, WALS and Wikipedia articles in every edition |
 | `phoible_id`                | string | no       | PHOIBLE identifier — attested phoneme inventories, the reference a spec's emitted phoneme set can be validated against |
 | `wals_code`                 | string | no       | WALS (World Atlas of Language Structures) code — typological cross-reference |
-| `wikipedia`                 | array  | no       | Wikipedia article URLs (`https://<lang>.wikipedia.org/wiki/…`) |
+| `wikipedia`                 | array  | no       | Wikipedia article URLs (`https://<lang>.wikipedia.org/wiki/…`) — a reading path into the literature, not itself a citation; see Sources Schema below |
 | `urls`                      | array  | no       | Other reference URLs (Glottolog, Ethnologue, dialect articles, …) |
 | `orthography_standard`      | object | no       | The official published spelling norm, when the language has one (see [Orthography Standard Schema](#orthography-standard-schema)) |
 | `location`                  | object | no       | Representative point for where the variety is spoken (see [Location Schema](#location-schema)) |
 | `timespan`                  | object | no       | Attestation period `{"start_year": int, "end_year": int\|null}` |
+| `valid_ceiling`             | object | no       | Measured PER floors once an orthographically-unwritten contrast is folded out of both sides, keyed by the gold **dataset** each was measured against (see [Valid Ceiling Schema](#valid-ceiling-schema)) |
+| `audit`                     | object | no       | Machine-readable audit conclusions, keyed by the gold **dataset** each was reached against (see [Audit Schema](#audit-schema)) |
 | *(lexicon)*                 | —      | —        | **Not a spec field, and never bundled.** A word lexicon is a corpus, not a description of a language. Supply one at runtime from a local file, a URL or a Hugging Face id: `orthography2ipa.register_lexicon("en-GB", "hf://TigreGotico/en-lexicon/en-GB.tsv")`, or point at a directory of `{code}.tsv` with `set_lexicon_dir()` / `$ORTHOGRAPHY2IPA_LEXICON_DIR`. |
 
 ## Clade Nodes and the Derived `family`
@@ -248,6 +259,20 @@ the four overridden entries.
 | `obligatory`   | bool   | no       | Whether rule is obligatory (default: true) |
 | `notes`        | string | no       | Optional notes                       |
 
+A sandhi rule applies only within its prosodic domain (Nespor & Vogel 1986,
+*Prosodic Phonology*). Punctuation that writes a pause — a comma, a full stop,
+and their equivalents in every script — closes the intonational phrase (IP),
+and no rule of any language reaches across that break.
+
+The engine blocks at IP boundaries only, and there is no field for it: it is a
+property of the rule type, not a per-rule choice. This is a LOWER BOUND, not
+the full story. Most cross-word rules take the smaller phonological phrase (φ)
+as their domain, and φ boundaries also fall clause-internally where no
+punctuation is written, so IP-only blocking UNDER-restricts. A per-rule
+prosodic domain (`"domain": "phi"` blocking φ-internally too) is a possible
+future refinement; it needs a φ-parser the engine does not have and evidence
+per rule, so it is deliberately not added here.
+
 ## Allophone Rule Schema
 
 `allophone_rules` is the POST-lexical half of the "two maps": an ordered
@@ -282,15 +307,24 @@ stress/sandhi. Empty by default → no-op: the rules alone decide the output. Se
 |---|---|---|---|
 | `id` | string | yes | Unique rule identifier (id-keyed inheritance overlay, like `sandhi_rules`) |
 | `phonemes` | string \| array | yes | Target underlying phoneme(s); a bare string is accepted |
-| `surface` | string | yes | Surface realisation the matched phoneme is rewritten to |
+| `surface` | string | yes, unless `append` | Surface realisation the matched phoneme is rewritten to |
+| `append` | string | no | IPA inserted AFTER the matched phoneme, which is otherwise left alone, so one rule states an insertion for a whole class of targets — what epenthesis needs, since a fixed `surface` can only name one target's output. Mutually exclusive with `surface`. See [allophony](../../docs/allophony.md#inserting-instead-of-rewriting-append) and the Egyptian (`egy`) reading convention |
 | `word_initial` | bool | no | Require (or, if `false`, forbid) word-initial position |
 | `word_final` | bool | no | Require (or forbid) word-final position |
 | `stress` | string | no | `"stressed"` / `"unstressed"` — engine path only (needs stress context) |
 | `syllable_position` | string | no | `"onset"` / `"coda"` / `"nucleus"` (maximal-onset heuristic) |
-| `preceded_by` | string | no | Previous-grapheme class: `vowel`, `consonant`, `consonant_cluster`, `coda`, `coda_nasal`, `front_vowel`, `back_vowel`, `palatal`, `word_boundary`. `consonant_cluster` = the neighbour begins two or more consonant segments counting away from this grapheme (a geminate, a multi-consonant grapheme such as ⟨x⟩ /ks/, or a consonant whose own neighbour is a consonant) — the context closed-syllable shortening and complementary quantity need. `coda` = the neighbour is in coda position; `coda_nasal` = a coda nasal — what a vowel nasalises before (⟨bon⟩ [bɔ̃] vs ⟨bonne⟩ [bɔn]). **Never enumerate clusters or nasal vowels as grapheme keys** (⟨an⟩ is not a digraph); see [allophony](../../docs/allophony.md#consonant_cluster) |
+| `preceded_by` | string | no | Previous-grapheme class: `vowel`, `consonant`, `consonant_cluster`, `coda`, `coda_nasal`, `front_vowel`, `back_vowel`, `palatal`, `emphatic`, `word_boundary`. `consonant_cluster` = the neighbour begins two or more consonant segments counting away from this grapheme (a geminate, a multi-consonant grapheme such as ⟨x⟩ /ks/, or a consonant whose own neighbour is a consonant) — the context closed-syllable shortening and complementary quantity need. `coda` = the neighbour is in coda position; `coda_nasal` = a coda nasal — what a vowel nasalises before (⟨bon⟩ [bɔ̃] vs ⟨bonne⟩ [bɔn]). `emphatic` = a pharyngealized ("emphatic") consonant, decided by the neighbour's IPA carrying the `ˤ` diacritic (`orthography2ipa.vowels.is_pharyngealized_consonant`) — a generic feature class (not Arabic-specific) that backs emphasis-spread/tafkhim vowel backing (Watson 2002; Davis 1995). **Never enumerate clusters or nasal vowels as grapheme keys** (⟨an⟩ is not a digraph); see [allophony](../../docs/allophony.md#consonant_cluster) |
 | `followed_by` | string | no | Next-grapheme class (same value set) |
 | `preceded_by_phoneme` | array | no | Previous slot's chosen phoneme must be one of these |
 | `followed_by_phoneme` | array | no | Next slot's chosen phoneme must be one of these |
+| `followed_by_grapheme` | array | no | Next slot's source grapheme must be one of these (case-insensitive). For processes a letter group triggers while its phoneme hides the cluster (Swedish short vowel before ⟨ng⟩ ⟨nk⟩ ⟨sk⟩) |
+| `followed_by_grapheme_not` | array | no | Next slot's source grapheme must NOT be one of these. For shortness-marking letter groups whose phonemes look like plain single consonants (German ⟨ss⟩ ⟨ck⟩ ⟨tz⟩ ⟨ng⟩) |
+| `word_contains_grapheme` | array | no | At least one of these letters occurs ANYWHERE in the source word (case-insensitive). Word scope, not neighbour scope: some orthographies mark a property of the whole word on a single consonant letter standing any distance from the segment it conditions. Ottoman Turkish (`ota`) is the motivating case — the abjad leaves most vowels unwritten and signals which member of a vowel-harmony pair is meant by whether the word is spelt with a hard letter ⟨ح خ ص ض ط ظ ع غ ق⟩ or a soft one ⟨ت س ك گ ه⟩. The check is a raw substring test over the joined source word, so a multi-character grapheme key matches wherever that sequence occurs as a substring, not by slot-grapheme membership |
+| `word_contains_grapheme_not` | array | no | None of these letters occurs anywhere in the source word. The negative twin of `word_contains_grapheme`, so an unmarked-harmony default can be stated as "no hard letter anywhere" instead of enumerated |
+| `requires_other_nucleus` | bool | no | Require (or, if `false`, forbid) that some OTHER slot in the word carries a syllable nucleus. A vowel-deleting rule (`surface: ""`) must not empty the word of its only nucleus — every prosodic word contains at least one syllable (Hayes 2009; Blevins 1995). Romanian's asyllabic word-final ⟨i⟩ is the motivating case: ⟨lupi⟩ is [lupʲ], but the monosyllables ⟨și⟩ [ʃi], ⟨fi⟩ [fi], ⟨zi⟩ [zi] keep a full vowel (Chitoran 2002) |
+| `followed_by_nucleus` | bool | no | Require (or, if `false`, forbid) that a syllable nucleus occurs LATER in the word than this slot — the final-syllable predicate. `false` selects the last nucleus of the word, `true` every earlier one. Unlike `requires_other_nucleus`, which is direction-blind, this one carries the direction that non-final reduction and final-syllable strengthening both need |
+| `mutates_neighbor` | string | no | An IPA modifier (e.g. `"ʲ"`) this rule ADDS to an adjacent slot's candidate when it fires — paired with `surface: ""` this is the "marker grapheme" pattern: a letter that deletes itself while palatalising (or otherwise mutating) a neighbour, atomically. Requires `mutates_neighbor_side`. See [allophony](../../docs/allophony.md#marker-graphemes-delete-a-vowel-while-mutating-a-neighbour) and the Manx (`gv`) slender-marking rules. |
+| `mutates_neighbor_side` | string | no | `"preceding"` / `"following"` — which adjacent slot, relative to THIS rule's own anchor grapheme, receives `mutates_neighbor`'s feature. Required together with `mutates_neighbor`. |
 | `notes` | string | no | Provenance / convention notes |
 
 All declared conditions are ANDed; an unset condition is "don't care". A rule
@@ -319,8 +353,13 @@ spec with no `stress` block gets no stress marks.
 | `default_position` | int | no | Default stressed syllable. Negative counts from the end (`-1` oxytone, `-2` paroxytone — the default, down to `-4`); positive counts from the start (`1` first syllable, `2` second). `0` is invalid. |
 | `final_stress_endings` | array | no | Word endings that force final stress |
 | `penult_stress_endings` | array | no | Word endings that force penultimate stress |
+| `antepenult_stress_endings` | array | no | Word endings that force antepenultimate stress (the end-anchored twin of `penult_stress_endings`, for two-syllable pre-stressed suffixes such as English `-ity`, `-ography`) |
 | `marked_vowels` | array | no | Orthographic vowels whose diacritic marks stress directly |
 | `stress_mark` | string | no | IPA mark to insert (default `"ˈ"`) |
+| `vowel_letters` | array | no | The letters this orthography uses as syllable NUCLEI, for the bundled syllabifier. Left undeclared, the splitter uses a cross-linguistic test that reads a letter's shape, and that test counts ⟨y⟩ and ⟨w⟩ as vowels because some orthographies use them so. Where a language does not — Xhosa ⟨y⟩ is /j/ and ⟨w⟩ is /w/, both onsets — the run ⟨oya⟩ collapses into one nucleus, the syllable count drops, and every position the count feeds (stress, and the `nucleus_stressed` entries hanging off it) lands on the wrong vowel or on two at once. Declaring the set states the language's own answer: the listed letters are nuclei, no other letter is. Inert for any spec that does not declare it |
+| `accent2_mark` | string | no | Scandinavian pitch-accent 2 marker (e.g. `"²"`). When set, a penult-stressed word ending in one of `accent2_final_letters` takes this mark instead of `stress_mark` (Riad 2014); empty = no pitch accent |
+| `accent2_final_letters` | array | no | Final orthographic letters selecting `accent2_mark` (e.g. `["a", "e"]`) |
+| `secondary_stress` | string | no | Second prominence level below the main word accent. `""` (default) = the binary system, nothing changes. `"alternating"` = binary feet built leftward from the main stress, so every second syllable before it is a foot head (Liberman & Prince 1977; Hayes 1995 ch. 3): English ˌcombiˈnation, reˌsponsiˈbility. A foot head is NOT unstressed — it takes the `nucleus_secondary` position instead of `nucleus_unstressed`, so the spec's reduction entries no longer reach it, and `ˌ` is written before it |
 | `notes` | string | no | Provenance / convention notes |
 
 ## Location Schema
@@ -352,9 +391,50 @@ dialect region) over a generic national point, and say so in `notes`. Omit the
 field entirely rather than guess: `geographic_distance` returns `None` for a spec
 without a location, which is honest, whereas a made-up point is not.
 
+## Tone Rules Schema
+
+`tone_rules` describes an orthography whose tone is not written by any one
+grapheme. In a Tai-style writing system the tone of a syllable follows from
+four things the spelling states jointly: the class its initial consonant
+belongs to, whether the rime is checked, how long the vowel is, and which
+tone mark — if any — rides the initial. All four are recoverable from the
+written word, but only once the syllable has been assembled, so no grapheme
+table can hold the answer.
+
+| Field         | Type   | Description |
+|---------------|--------|-------------|
+| `classes`     | object | Consonant letter → class name (`{"ก": "mid", "ข": "high"}`) |
+| `marks`       | object | Tone mark → mark name (`{"่": "mai_ek"}`) |
+| `tones`       | object | Tone name → the IPA it is transcribed with (`{"rising": "˩˩˦"}`) |
+| `table`       | object | The system: `table[class][shape][mark]` → tone name, where *shape* is `live`, `dead_short`, `dead_long`, or `any` for a mark whose reading does not depend on the rime |
+| `dead_codas`  | array  | Coda phonemes that check a syllable (`["p", "t", "k", "ʔ"]`); a syllable with no coda is dead when its vowel is short |
+| `no_mark`     | string | The name the table uses for "no tone mark" (default `none`) |
+| `notes`       | string | What the block asserts, and its sources |
+
+The class of a syllable is read off the first letter of its onset grapheme
+that `classes` names, so a cluster or a digraph takes the class of the letter
+that opens it, and a silent tone-class marker (Thai ho nam ⟨ห⟩) lends its own.
+The tone letter is written at the end of its syllable, which is where IPA
+writes it; a spec whose transcription convention puts it on the nucleus reads
+it back with `tone_marks_syllable_final`.
+
 ## Sources Schema
 
 The `sources` array contains bibliographic references for the phonological data in the spec.
+Each entry names a real author and a real title of a work someone actually
+consulted — a reference grammar, a peer-reviewed paper, a university dataset,
+or (for a language with an active community orthography) the publication of
+the body that publishes the standard. `sources` is not satisfied by pointing
+at Wikipedia: an encyclopedia article is not the authority for a phonemic
+claim, and an entry whose only content is a `wikipedia_url` is not a
+citation, however it is dressed up. The top-level `wikipedia` field is the
+correct place for Wikipedia — it is a reading path that helps a future
+contributor find the descriptive literature, not itself part of the evidence
+for any specific rule. `wikipedia_url` on an individual source entry exists
+only to note that a specific already-cited work happens to also be
+mentioned or linked from a Wikipedia article; it does not turn that entry
+into a citation on its own, and a `sources` array containing only such
+entries is treated as unsourced by `tests/test_sources.py`.
 
 ```json
 {
@@ -380,7 +460,8 @@ The `sources` array contains bibliographic references for the phonological data 
 | `year`        | integer | yes      | Publication year                                    |
 | `title`       | string  | yes      | Full title of the work                              |
 | `publisher`   | string  | no       | Publisher name                                      |
-| `url`         | string  | no       | URL or DOI; use `null` for print-only works         |
+| `url`         | string  | no       | URL for online resources; use `null` for print-only works |
+| `doi`         | string  | no       | DOI (e.g. `"10.1017/S0025100323000105"`), the preferred stable identifier for a citation — it resolves for as long as the publisher exists, where a `url` can rot |
 | `wikipedia_url` | string | no       | Wikipedia article URL for quick human reference     |
 | `pages`       | string  | no       | Specific page range, e.g. `"pp. 45-72"`            |
 | `notes`       | string  | no       | Annotation about what this source supports          |
@@ -399,6 +480,7 @@ matching the `GraphemePosition` enum:
 | `"onset"`                   | `GraphemePosition.ONSET`                   |
 | `"nucleus_stressed"`        | `GraphemePosition.NUCLEUS_STRESSED`        |
 | `"nucleus_unstressed"`      | `GraphemePosition.NUCLEUS_UNSTRESSED`      |
+| `"nucleus_secondary"`       | `GraphemePosition.NUCLEUS_SECONDARY`       |
 | `"coda"`                    | `GraphemePosition.CODA`                    |
 | `"word_initial"`            | `GraphemePosition.WORD_INITIAL`            |
 | `"word_final"`              | `GraphemePosition.WORD_FINAL`              |
@@ -449,6 +531,191 @@ entry covers every digraph producing a palatal (⟨lh⟩→ʎ, ⟨nh⟩→ɲ, �
 class tier (below exact-letter positions, so `"before_i"` wins over
 `"before_palatal"` when the neighbour ⟨i⟩ realises the palatal glide /j/) and are
 likewise inert for any spec that does not declare them.
+
+`"after_vowel"` reads the neighbour's **nucleus**, not its spelling, so in an
+abugida it also matches after a consonant LETTER whose inherent vowel still
+stands: Tibetan ⟨ལག⟩ is [lak], where ⟨ག⟩ closes the syllable ⟨ལ⟩ opened
+rather than opening one of its own, and no vowel letter is written between
+them. Only a spec that declares `inherent_vowel` matches this way, and a
+letter whose inherent vowel was suppressed — one inside a subjoined stack, or
+one the spec silences with `"before_consonant": [""]` — does not carry a
+nucleus and does not trigger it. Such a neighbour is a consonant letter as
+well, so `"after_consonant"` is still offered for the same slot, one tier
+below `"after_vowel"`.
+
+Declaring `"after_vowel"` for a grapheme is also what tells the engine the
+letter can **close** a syllable. `coda_no_inherent_vowel` uses that
+declaration to bound its search for the syllable's nucleus: it looks back
+past letters the spec describes post-vocalically — which for Tibetan is the
+suffix set ⟨ག ང ད ན བ མ འ ར ལ ས⟩, so the post-suffix ⟨ས⟩ of ⟨ཁམས⟩ finds the
+nucleus two letters behind it — and stops at any other letter. A spec that
+declares no post-vocalic reading at all (Thai, Lao) keeps the one-token
+behaviour, which is what stops the search from deleting the unwritten vowel
+of a following syllable's onset.
+
+## Grammatical endings
+
+`grammatical_endings` maps an orthographic **word ending** to the IPA it
+realises, for cases where the realisation belongs to the grammatical ending
+rather than to the letter sequence that spells it — suffix morphology.
+
+```json
+"grammatical_endings": {
+  "er": "e",
+  "ez": "e"
+}
+```
+
+Three phenomena it exists for:
+
+- **French mute ⟨-er⟩ / ⟨-ez⟩.** The infinitive and agent-noun ⟨-er⟩ is [e]
+  (`parler`, `boulanger`, `boulangers`) and the 2pl ⟨-ez⟩ is [e] (`mangez`,
+  and the frozen `nez`, `chez`, `assez`): final-consonant elision in the
+  grammatical ending (Fouché 1959, *Traité de prononciation française*;
+  Tranel 1987 §3).
+- **English suffix palatalization.** ⟨-tion⟩ → /ʃən/, ⟨-cious⟩ → /ʃəs/,
+  ⟨-tial⟩ → /ʃəl/: palatalization of the stem-final coronal before the `-ion`
+  suffix (Chomsky & Halle 1968, *The Sound Pattern of English*; surface values
+  per Wells 2008, *Longman Pronunciation Dictionary*).
+- **A morphologically ambiguous ending, exposed for downstream rescoring.**
+  See [Ambiguous endings](#ambiguous-endings) below.
+
+**Every ending is a cited linguistic claim about a suffix's realisation, never
+a PER-chasing pattern.** This applies to every key, single-valued and
+list-valued alike, and it is the same prohibition that keeps n-grams out of
+`graphemes`: an ending earns its place from a published source — a paper or a
+reference grammar — that states how that suffix is realised. Corpus frequency
+supports the *ordering* of a list value, but a frequency count on its own is
+not a citation and never licenses a key. An ending added because it moved the
+score, with the source found afterwards or not at all, is rejected.
+
+Two mechanical gates enforce this (`tests/test_grammatical_endings.py`): every
+declared ending must be named in its spec's `notes`, and that passage must
+carry a citation traceable to the spec's `sources` array.
+
+Rules of the match:
+
+- **Effective word end only.** The ending must occupy the word's last grapheme
+  tokens, or its last tokens before a *transparent grammatical suffix* the spec
+  already silences word-finally (French plural ⟨-s⟩/⟨-x⟩) — the same question
+  `effective_word_end` answers for positional graphemes. So `boulangers`
+  matches, and the word-internal ⟨er⟩ of `personne`, `version` or `terre`
+  never does.
+- **Token-aligned.** The ending must start where a grapheme token starts. The
+  word is tokenized exactly as it would be without the table, and only the
+  emitted IPA of the trailing tokens is replaced — this is why a morpheme is
+  **not** written as a grapheme key (forbidden, see `AGENTS.md`): a morpheme
+  key would change how the word's interior is cut.
+- **A head is required.** At least one token must precede the ending.
+- **Longest match wins.** English ⟨-stion⟩ → /stʃən/ overrides the ⟨-tion⟩ it
+  contains, so `question` keeps its /t/.
+
+Precedence: `word_exceptions` **>** `grammatical_endings` **>**
+`graphemes` / `positional_graphemes`. The closed set of French nouns that keep
+/ɛʁ/ (`mer`, `hiver`, `super`, and their plurals) therefore stays in
+`word_exceptions` and is unaffected.
+
+Inheritance is `base_merge`, opt-in through `grammatical_endings_base`: a
+dialect that shares its parent's graphemes shares its suffix morphology
+(en-US palatalizes ⟨-tion⟩ exactly as en-GB does) and overrides per ending.
+
+### Ambiguous endings
+
+Some endings have more than one licit reading and orthography does not say
+which. French verbal ⟨-ent⟩ is the reference case: the 3PL inflection is mute
+(*ils parlent* [paʁl]) while the noun or adjective is [ɑ̃] (*vent*, *cent*,
+*moment*). The two are separated by part of speech and by nothing spelled.
+
+**o2i does not decide, and does not accept a POS tag as an input.** That
+decision belongs to a downstream rescorer. What this layer owes is that the
+reading it cannot choose still **exists in the lattice**, because a ranking
+error is downstream-fixable and a missing candidate is not. Before this, [paʁl]
+was in no French beam at any width.
+
+An ambiguous ending is therefore declared as an **ordered candidate list** —
+the same discipline `graphemes` and `positional_graphemes` already use:
+
+```json
+"grammatical_endings": {
+  "ent": [null, ""]
+}
+```
+
+- **Element 0 is rank 1.** A string there rewrites the matched tail exactly as
+  the plain-string form does, so `["ʃən"]` is exactly `"ʃən"`.
+- **`null` at element 0 means "defer".** Rank 1 stays whatever the grapheme
+  tables already produced, and the entry contributes only the alternatives.
+  French uses this shape because the nasal reading of ⟨-ent⟩ is already what
+  nasal ⟨en⟩ + silent ⟨t⟩ yields — deferring keeps every 1-best *and* every
+  existing candidate ordering byte-identical.
+- **Elements 1..n are lower-ranked licit readings.** Each becomes an extra
+  costed path, ranked by declaration order with the same rank cost an ordered
+  grapheme list gets, so it reaches `word_candidates`, oracle@k and any
+  rescorer plugin — and can never displace rank 1.
+- **`null` is only valid at element 0.** As an alternative it would have to
+  mean "this ending may also be silent", which is written `""`. An empty list
+  is rejected.
+
+`[null]` alone declares an ending that is *not* ambiguous: it rewrites nothing
+and adds nothing, and its only effect is longest-match shielding — a way to keep
+a longer, unambiguous ending off a shorter ambiguous one.
+
+Ordering the list is a claim, and it should be made on what the consumer pays
+for. French keeps the nasal reading at rank 1 even though gold *types* run
+3873 mute to 287 nasal, because this library feeds TTS, where type counts do
+not price a mispronounced *vent*. The consequence is deliberate: oracle@k
+improves and 1-best does not move. That is the intended shape of the change,
+not a disappointing result — and the oracle movement it causes is kept OUT of
+the published scoreboard entirely, because that board defines `PER − Oracle@k`
+as ranking error. See [benchmark_methodology.md](../../docs/benchmark_methodology.md#injected-alternatives-do-not-count-as-ranking-error).
+
+#### Admissibility: a proven lattice hole, never a guess
+
+**A list-valued ending is admissible only where the missing reading is a
+demonstrated lattice hole, shown with gold evidence.** The bar is the
+**0-in-top-k test**: take a sample of the gold types that carry the missing
+reading, run `word_candidates` at a generous *k* and beam width, and show the
+gold reading appears **0 times anywhere in the top k**. That is what separates
+a *coverage* hole — which nothing downstream can repair, and which this
+mechanism exists for — from a *ranking* error, which any downstream rescorer
+already fixes without a spec change. French ⟨-ent⟩ cleared it at 0/300 in the
+top 10.
+
+Declaring a list because a reading "also exists", or "might help", or to raise
+an oracle column, is **forbidden**. An unproven alternative costs beam width and
+inflates our own diagnostic while fixing nothing (see
+[benchmark_methodology.md](../../docs/benchmark_methodology.md#injected-alternatives-do-not-count-as-ranking-error)). If the reading is already
+reachable at any *k*, the fix belongs in weights or in a downstream rescorer,
+not here.
+
+Record the evidence where the data lives: the sample size, the measured
+0-in-top-k result, and the source of the gold, in the spec's `notes` beside the
+ending.
+
+#### Not a paradigm table
+
+A list value states the **attested realisations of one spelled ending**, ordered
+by frequency and cited. It is not a place to enumerate a paradigm.
+
+**Adding ending keys shaped like a conjugation or declension table is
+forbidden**, and it is forbidden by the same clause that forbids morpheme
+chunks as grapheme keys (see `AGENTS.md`: morphology belongs to a downstream
+consumer, and the package ships no word lists, stem lists or vocabularies).
+Concretely, a key earns its place only if it is a *spelling* that a reader can
+see at the end of a word and that has its own attested realisation. Enumerating
+`ons`, `ez`, `ent`, `ais`, `ait`, `aient`, `èrent`, `assions`… because they are
+the cells of a verb paradigm is a lexicon of morphology written in the schema's
+notation, and it is rejected on sight — even though each individual key would
+match orthographically.
+
+The two tests to apply, both of which must pass:
+
+1. **Is it a spelling fact?** State the entry without naming a part of speech,
+   a tense, a person, a number, a gender or a case. If the justification cannot
+   survive that, it is morphology and it does not belong here.
+2. **Is the ordering cited?** Each list must carry a frequency claim traceable
+   to a source or a measurement on gold — not an intuition about which reading
+   "feels" more common.
 
 ## Ancestor Role Values
 
@@ -524,3 +791,122 @@ A standard is a property of the *language*, not of every dialect of it: a dialec
 that spells by its standard language's norm simply omits the field, and consumers
 walk the ancestry chain. Omit it entirely for varieties with no official norm and
 for reconstructions.
+
+## Valid Ceiling Schema
+
+A row's raw PER conflates two very different failures: the engine getting
+something wrong that the orthography *does* encode, and the gold transcribing a
+contrast — tone, vowel length, both — that the orthography simply never writes.
+`valid_ceiling` records the second kind, and only when it has actually been
+MEASURED: fold the named contrast out of both the prediction and the gold and
+rescore. An unmeasured ceiling must never be recorded — it would read as proof
+a row is fine when nobody checked.
+
+A fold is defined relative to **one gold's notation conventions** — how that
+particular dataset marks tone, length, or whatever else is folded — so the
+measurement is scoped to a (language, dataset) pair, never to the language
+alone. `valid_ceiling` is therefore an object **keyed by dataset name**, one
+entry per gold the language has actually been measured against:
+
+```json
+"valid_ceiling": {
+  "wikipron": {
+    "per": 0.0223,
+    "folded": "tone+length",
+    "citation": "Hausa tone and vowel length are unmarked in standard Boko orthography (Newman 2000, A Grammar of Hausa, ch. 3-4); measured across PRs #1063, #1109, #1203, #1295; see docs/languages/ha.md"
+  }
+}
+```
+
+Each dataset's entry has the same three required keys:
+
+| Key        | Type   | Required | Description                                        |
+|------------|--------|----------|----------------------------------------------------|
+| `per`      | float  | **yes**  | The PER measured after folding `folded` out of both sides, against THIS dataset's gold |
+| `folded`   | string | **yes**  | The contrast(s) folded, e.g. `"tone"`, `"vowel length"`, `"tone+length"` — these give different numbers on the same row and must not be conflated |
+| `citation` | string | **yes**  | Why the contrast is unwritten in the orthography, and where the measurement is published (a grammar, a PR number, a `docs/languages/<code>.md` page) |
+
+A language with more than one gold may legitimately carry more than one entry
+— each gold has its own conventions and must be folded and rescored on its
+own. Resolving a language's ceiling for every row of that language regardless
+of which dataset the row scores against would spread one gold's measurement
+across golds it was never run on; the benchmark script (`scripts/benchmark.py`,
+`_valid_ceiling`) looks the dataset up by name and only ever attaches a
+ceiling to the row whose dataset matches the key.
+
+The old shape — a single `{per, folded, citation}` object hung directly off
+the language, with no dataset key — is rejected by the loader rather than
+silently reinterpreted, since it cannot be resolved to the row it was
+measured against.
+
+Not inherited: it is a measurement executed against this code's own gold rows,
+so a dialect child that inherits graphemes from a parent does not thereby
+inherit the parent's ceilings and must fold+rescore its own gold before
+recording one.
+
+## Audit Schema
+
+A language can be fully audited, with a firm conclusion that nothing needs
+fixing, and still leave no trace a machine can find: the conclusion lands in
+`notes` prose or a `docs/languages/*.md` page in whatever wording that audit
+happened to use. `audit` is the machine-readable record of that conclusion, so
+a later pass can ask "has this row been audited, and what was decided?"
+without re-deriving the answer from scratch (issue #1369).
+
+Like `valid_ceiling`, an audit conclusion is reached by looking at ONE gold's
+rows and is scoped to a (language, dataset) pair, never to the language alone
+— a different gold of the same language may carry a different orthography, a
+different sample size, or different transcription conventions and has not
+itself been examined. `audit` is therefore an object **keyed by dataset
+name**, one entry per gold the language has actually been audited against:
+
+```json
+"audit": {
+  "wikipron": {
+    "conclusion": "input_limited",
+    "measured": "Raw PER of 0.4445 against the ewe_latn_broad gold (which transcribes a tone on every vowel); dropped to 0.008 once tone diacritics were folded out of both sides (245 of 247 spellings match exactly).",
+    "reference": "spec notes; see also valid_ceiling.wikipron"
+  }
+}
+```
+
+Each dataset's entry has the same three required keys:
+
+| Key          | Type   | Required | Description                                        |
+|--------------|--------|----------|----------------------------------------------------|
+| `conclusion` | string | **yes**  | One of a **closed enum** (see below) — the part that makes the record screenable. Free text here would reproduce the exact problem `audit` exists to solve, in a new location |
+| `measured`   | string | **yes**  | What was actually looked at or computed to reach the conclusion. Free text is fine here — the enum is the index, this is the evidence |
+| `reference`  | string | **yes**  | Where the full reasoning lives: spec `notes`, a `docs/languages/<code>.md` page, or a PR number. A measurement is not recorded until it is in the tree — a conclusion that exists only in a merged PR body is invisible to anything reading the repository |
+
+`conclusion` accepts exactly these values:
+
+| Value                     | Meaning |
+|---------------------------|---------|
+| `input_limited`           | The orthography does not write a contrast the gold transcribes (tone, vowel length, ho nam, ...). Often paired with a `valid_ceiling` entry on the same dataset, but also covers a case where the right instrument was identified without a folded number ever being run |
+| `mislabeled_gold`         | The gold does not describe the variety it is filed under — it is mislabelled, or another lect re-symbolised |
+| `sample_too_small`        | The dataset has too few rows for a PER to mean anything |
+| `at_ceiling_documented`   | The spec already reflects the best-supported analysis and the residual PER is a documented gold transcription convention, not a defect |
+| `change_refused_uncited`  | A specific change was measured and would improve the score, but was refused for lack of a citation |
+| `logographic`             | The writing system does not encode pronunciation by rule at all — no grapheme-level rule set can close the gap because the script is not phonemic |
+
+The loader rejects any other value outright rather than accepting it as free
+text, since a screenable closed set is the entire point of the field. Extend
+the enum only when a real audit reaches a verdict none of these represent —
+never add a value speculatively.
+
+`audit` and `valid_ceiling` answer different questions and commonly travel
+together: `valid_ceiling` proves a NUMBER (the row is provably input-limited
+to this PER), `audit` records a VERDICT (the row has been looked at and this
+is the outcome). An `input_limited` audit conclusion usually cites the
+`ValidCeiling` that measured it; `mislabeled_gold`, `sample_too_small` and
+`logographic` conclusions typically have no ceiling at all, because folding a
+contrast out is not the relevant instrument for those failures.
+
+Not inherited, for the same reason as `valid_ceiling`: an audit is executed by
+looking at THIS code's own gold rows and spec state, so a dialect child that
+inherits graphemes from a parent has not thereby had its own rows examined and
+must earn its own audit record.
+
+An absent `audit` entry for a dataset means that row has not been through a
+recorded audit — it is never a signal that the row is known-good, only that
+nobody has recorded a conclusion for it yet.

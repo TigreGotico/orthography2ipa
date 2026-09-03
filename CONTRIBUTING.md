@@ -27,3 +27,7 @@ Run the suite before opening a PR:
 ```bash
 pytest tests
 ```
+
+If you only touched a spec, `python scripts/which_tests.py --lang <code>` names the test
+files that assert on it (family file plus any per-rule `test_cited_rules_*.py`
+file) so you can run those instead of the full suite while iterating.
