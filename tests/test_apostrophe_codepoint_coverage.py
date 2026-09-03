@@ -20,8 +20,11 @@ applies to this guard too, so the marks each gold uses are committed as a
 fixture rather than recomputed from a download or from a cache that only
 exists on one machine. ``test_specs_map_every_apostrophe_codepoint_their_gold_uses``
 therefore runs everywhere and needs no network and no gold; the companion
-test re-derives the fixture from real golds when a cache is present, so the
-fixture cannot silently drift away from the data it describes.
+test re-derives the fixture's own 128 entries from whichever of them are
+already cached, so the fixture cannot silently drift away from the data it
+describes. It never calls a loader for a gold it cannot first prove is on
+disk, and it never walks beyond the fixture's own keys, so its cost is
+bounded by what is cached rather than by every dataset it could reach.
 
 Only a spec that maps SOME apostrophe-family codepoint is held to this
 standard. A spec mapping none has made no claim about the mark -- in many
@@ -72,6 +75,88 @@ def _block_network(*args, **kwargs):
     raise RuntimeError("network access is not allowed in this test")
 
 
+def _lexibank_cache_name(repo):
+    return "lexibank_%s_forms.csv" % repo
+
+
+# Per-dataset cache filename, computed the same way the loader itself would
+# compute it -- without calling the loader. This is what lets the companion
+# test below bound its work to what is already on disk instead of walking
+# every language of every dataset and tripping real network I/O for the
+# ones that are not cached (see module history / #1470 follow-up).
+_CACHE_FILENAME_RESOLVERS = {
+    "wikipron": lambda lang: benchmark._WIKIPRON_FILES.get(lang),
+    "ipadict": lambda lang: (
+        "ipadict_" + benchmark._IPADICT_FILES[lang]
+        if lang in benchmark._IPADICT_FILES else None),
+    "4catac": lambda lang: (
+        "4catac_" + benchmark._4CATAC_FILES[lang]
+        if lang in benchmark._4CATAC_FILES else None),
+    "vox_communis": lambda lang: (
+        "vox_communis_" + benchmark._VOX_COMMUNIS_FILES[lang] + ".tsv"
+        if lang in benchmark._VOX_COMMUNIS_FILES else None),
+    "kaikki": lambda lang: (
+        "kaikki_" + benchmark._KAIKKI_LANGS[lang] + ".jsonl"
+        if lang in benchmark._KAIKKI_LANGS else None),
+    "ipa_childes": lambda lang: (
+        "ipa_childes_" + benchmark._IPA_CHILDES_FOLDERS[lang] + ".csv"
+        if lang in benchmark._IPA_CHILDES_FOLDERS else None),
+    "cmudict": lambda lang: "cmudict.dict",
+    "northeuralex": lambda lang: _lexibank_cache_name("northeuralex"),
+    "wold": lambda lang: _lexibank_cache_name("wold"),
+}
+
+# portuguese_tts ships vendored under orthography2ipa/data/gold/ and is a
+# plain local read -- no CACHE_DIR entry and no network involved, so it is
+# always safe to load regardless of cache state.
+_ALWAYS_AVAILABLE_DATASETS = frozenset({"portuguese_tts"})
+
+# Every other dataset wired in benchmark.DATASETS (arabic_tts, gold20_arabic,
+# hitz_basque, clup_dialect, mirandese*, ep_dialects, primary_sources,
+# alphacep_ru_book, coruss_ru, ipa_babylm, ...) resolves its on-disk cache
+# path only inside the loader itself -- computed URLs, paginated
+# dataset-server calls, repo-wide archives keyed by something other than
+# `lang` -- so there is no cheap way to know whether a gold is cached
+# without calling the loader. They are left out of this guard's candidate
+# set entirely: only cache-file presence, checked ahead of time, can prove
+# a gold belongs in it.
+
+
+def _cached_candidates(fixture):
+    """(lang, dataset_name) -> loader for every fixture-named gold this
+    guard can prove is already on disk (or needs no disk at all) without
+    invoking a loader.
+
+    Bounded to the fixture's own keys rather than every language of every
+    dataset in ``benchmark.DATASETS``: a fuller walk would also catch
+    (lang, dataset) pairs the fixture has never recorded, but on a fully
+    warm cache that surfaces real, pre-existing staleness the fixture was
+    never audited against -- turning this guard red on exactly the
+    developer machine it is meant to pass on. Detecting that staleness is a
+    fixture-regeneration exercise needing per-language review, not this
+    guard's job; its job is only to prove the 128 pairs already committed
+    have not silently drifted.
+    """
+    datasets = {name: loader for name, (loader, _langs)
+                in benchmark.DATASETS.items()}
+    candidates = {}
+    for key in fixture:
+        lang, dataset_name = key.rsplit("/", 1)
+        loader = datasets.get(dataset_name)
+        if loader is None:
+            continue
+        if dataset_name in _ALWAYS_AVAILABLE_DATASETS:
+            candidates[(lang, dataset_name)] = loader
+            continue
+        resolver = _CACHE_FILENAME_RESOLVERS.get(dataset_name)
+        if resolver is None:
+            continue
+        fname = resolver(lang)
+        if fname and os.path.exists(os.path.join(benchmark.CACHE_DIR, fname)):
+            candidates[(lang, dataset_name)] = loader
+    return candidates
+
+
 def test_specs_map_every_apostrophe_codepoint_their_gold_uses():
     fixture = _gold_marks_fixture()
     assert fixture, "the apostrophe gold-marks fixture is empty"
@@ -108,33 +193,29 @@ def test_the_gold_marks_fixture_still_matches_the_real_golds():
     only rot when a gold is re-scraped. Re-derive it wherever the golds are
     actually available."""
     cache = benchmark.CACHE_DIR
-    if not (os.path.isdir(cache)
-            and any(n.endswith(".tsv") for n in os.listdir(cache))):
+    fixture = _gold_marks_fixture()
+    candidates = _cached_candidates(fixture)
+    if not candidates:
         pytest.skip(
-            "no gold cache under %s -- populate .benchmark_cache to re-derive "
+            "no cached gold under %s that this guard can check without "
+            "invoking a loader -- populate .benchmark_cache to re-derive "
             "the apostrophe fixture" % cache)
 
-    fixture = _gold_marks_fixture()
     orig = benchmark.urllib.request.urlretrieve
     benchmark.urllib.request.urlretrieve = _block_network
     derived = {}
-    seen = set()
     try:
-        for dataset_name, (loader, langs) in benchmark.DATASETS.items():
-            for lang in langs:
-                if lang in seen:
-                    continue
-                try:
-                    pairs = loader(lang, 200000)
-                except Exception:
-                    continue
-                if not pairs:
-                    continue
-                seen.add(lang)
-                marks = {c for word, _ipa in pairs
-                         for c in word if c in APOSTROPHE_FAMILY}
-                if marks:
-                    derived["%s/%s" % (lang, dataset_name)] = marks
+        for (lang, dataset_name), loader in sorted(candidates.items()):
+            try:
+                pairs = loader(lang, 200000)
+            except Exception:
+                continue
+            if not pairs:
+                continue
+            marks = {c for word, _ipa in pairs
+                     for c in word if c in APOSTROPHE_FAMILY}
+            if marks:
+                derived["%s/%s" % (lang, dataset_name)] = marks
     finally:
         benchmark.urllib.request.urlretrieve = orig
 
