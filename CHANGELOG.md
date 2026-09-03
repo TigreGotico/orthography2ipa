@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.92.12a1](https://github.com/TigreGotico/orthography2ipa/tree/7.92.12a1) (2026-09-03)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.92.11a2...7.92.12a1)
+
+**Merged pull requests:**
+
+- fix\(benchmark\): score each Spanish variety against its own gold, and wire Western Armenian [\#1490](https://github.com/TigreGotico/orthography2ipa/pull/1490) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.92.11a2](https://github.com/TigreGotico/orthography2ipa/tree/7.92.11a2) (2026-09-02)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.92.11a1...7.92.11a2)
@@ -564,15 +572,15 @@
 
 ## [7.82.41a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.41a1) (2026-08-26)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.40a5...7.82.41a1)
-
-## [7.82.40a5](https://github.com/TigreGotico/orthography2ipa/tree/7.82.40a5) (2026-08-26)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.40a6...7.82.40a5)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.40a6...7.82.41a1)
 
 ## [7.82.40a6](https://github.com/TigreGotico/orthography2ipa/tree/7.82.40a6) (2026-08-26)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.40a4...7.82.40a6)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.40a5...7.82.40a6)
+
+## [7.82.40a5](https://github.com/TigreGotico/orthography2ipa/tree/7.82.40a5) (2026-08-26)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.40a4...7.82.40a5)
 
 ## [7.82.40a4](https://github.com/TigreGotico/orthography2ipa/tree/7.82.40a4) (2026-08-26)
 
@@ -666,7 +674,6 @@
 **Merged pull requests:**
 
 - fix\(gv\): read the Manx digraphs, and stop reading them as English [\#1289](https://github.com/TigreGotico/orthography2ipa/pull/1289) ([JarbasAl](https://github.com/JarbasAl))
-- fix\(ar\): read the keheh and farsi yeh alternates instead of deleting them [\#1287](https://github.com/TigreGotico/orthography2ipa/pull/1287) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.82.31a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.31a1) (2026-08-26)
 
