@@ -724,6 +724,16 @@
     ],
     "ٱ": [
       ""
+    ],
+    "ک": [
+      "k"
+    ],
+    "ی": [
+      "j",
+      "iː"
+    ],
+    "ـ": [
+      ""
     ]
   },
   "allophones": {
@@ -820,20 +830,24 @@
       "ɑ"
     ],
     "i": [
-      "i"
+      "i",
+      "ɪ"
     ],
     "u": [
-      "u"
+      "u",
+      "ʊ"
     ],
     "aː": [
       "aː",
       "ɑː"
     ],
     "iː": [
-      "iː"
+      "iː",
+      "ɪː"
     ],
     "uː": [
-      "uː"
+      "uː",
+      "ʊː"
     ],
     "aj": [
       "aj"
@@ -863,7 +877,7 @@
       "notes": "The hamzat-wasl /a/ of a word-initial definite article elides after a vowel-final word: fiː albajti → fiː lbajti; fiː aʃʃamsi → fiː ʃʃamsi (Ryding 2005 §2.10). Only the article's seat vowel is deleted (right_transform) — hamzat qatʕ words start /ʔ/ and are untouched."
     }
   ],
-  "notes": "Classical Arabic (العربية الفصحى, al-ʿArabiyya al-fuṣḥā). The variety of the Quran and pre-Islamic poetry (~6th–9th c. CE). All modern Arabic dialects descend from spoken Classical Arabic (not from Modern Standard Arabic / MSA). 28-consonant inventory. KEY CLASSICAL FEATURES: (1) ض /ɮˤ/ — emphatic LATERAL fricative (described by Sibawayhi as a lateral sound; modern dialects shift to /dˤ/ or /zˤ/); (2) ث /θ/ and ذ /ð/ fully preserved as interdentals; (3) ء /ʔ/ always realised (not dropped); (4) ق /q/ always uvular (no urban ʔ variant); (5) all three short vowels (/a i u/) fully pronounced (no deletion); (6) word-final case vowels (iʿrāb) pronounced; (7) diphthongs /aj/ and /aw/ preserved (not monophthongised). Source: Sibawayhi, al-Kitāb (8th c.); Wright (1896); Watson (2002). Tā' marbūṭa: realized [at] when a vowel follows (inflected, non-pausal context) and [a] pre-pausally — Classical behaviour per Watson (2002) and Versteegh (2001); encoded positionally (before_vowel).",
+  "notes": "Classical Arabic (العربية الفصحى, al-ʿArabiyya al-fuṣḥā). The variety of the Quran and pre-Islamic poetry (~6th–9th c. CE). All modern Arabic dialects descend from spoken Classical Arabic (not from Modern Standard Arabic / MSA). 28-consonant inventory. KEY CLASSICAL FEATURES: (1) ض /ɮˤ/ — emphatic LATERAL fricative (described by Sibawayhi as a lateral sound; modern dialects shift to /dˤ/ or /zˤ/); (2) ث /θ/ and ذ /ð/ fully preserved as interdentals; (3) ء /ʔ/ always realised (not dropped); (4) ق /q/ always uvular (no urban ʔ variant); (5) all three short vowels (/a i u/) fully pronounced (no deletion); (6) word-final case vowels (iʿrāb) pronounced; (7) diphthongs /aj/ and /aw/ preserved (not monophthongised). Source: Sibawayhi, al-Kitāb (8th c.); Wright (1896); Watson (2002). Tā' marbūṭa: realized [at] when a vowel follows (inflected, non-pausal context) and [a] pre-pausally — Classical behaviour per Watson (2002) and Versteegh (2001); encoded positionally (before_vowel). CONFUSABLE AND FORMATTING CODEPOINTS: three Unicode characters that occur in real Arabic-script text had no grapheme entry anywhere in this family, and a character with no entry is dropped without an error, so every occurrence was deleted in silence. ک KEHEH is the Persian/Urdu/Sindhi shape of kaf (annotated '= kaf mashkula') and is read here exactly as ك — [k]. ی FARSI YEH is annotated for Arabic as well as Persian, Urdu and Kashmiri, and is read exactly as ي — [j] or the mater lectionis [iː]. ـ TATWEEL is the kashida, inserted to stretch a word for justification and carrying no sound, so it maps to the empty string: the deletion is now stated instead of accidental, the treatment ٱ ALEF WASLA already had. ہ HEH GOAL is deliberately NOT added — Unicode assigns it to Urdu, and it occurs in none of the Arabic gold. The alternates are listed as bare letters only; a keheh or farsi yeh carrying a harakat does not match the diacritised digraph keys and falls back to the bare letter plus the mark, which yields the same phonemes.",
   "sources": [
     {
       "id": "watson2002",
@@ -875,6 +889,16 @@
       "pages": null,
       "notes": null,
       "wikipedia_url": "https://en.wikipedia.org/wiki/Arabic_phonology"
+    },
+    {
+      "id": "davis1995",
+      "author": "Davis, S.",
+      "year": 1995,
+      "title": "Emphasis spread in Arabic and grounded phonology",
+      "publisher": "Linguistic Inquiry, 26(3), 465-498",
+      "url": null,
+      "pages": "465-498",
+      "notes": "Feature-geometric account of pharyngealization (emphasis) spread from an emphatic consonant onto adjacent vowels and, gradiently, further segments; cited for the local adjacent-vowel backing this spec's AR_EMPHASIS_* rules model."
     },
     {
       "id": "holes2004",
@@ -895,6 +919,16 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "unicode_arabic_chart",
+      "author": "The Unicode Consortium",
+      "year": 2025,
+      "title": "The Unicode Standard, code chart: Arabic (Range 0600-06FF)",
+      "publisher": "Unicode, Inc.",
+      "url": "https://www.unicode.org/charts/PDF/U0600.pdf",
+      "pages": null,
+      "notes": "Read (chart PDF). U+06A9 KEHEH is annotated '= kaf mashkula' and assigned to 'Persian, Urdu, Sindhi, ...'; U+06CC FARSI YEH is assigned to 'Arabic, Persian, Urdu, Kashmiri, ...'; U+0640 TATWEEL is '= kashida', 'inserted to stretch characters or to carry tashkil with no base letter'; U+06C1 HEH GOAL is assigned to Urdu only."
     }
   ],
   "wikipedia": [
@@ -970,6 +1004,114 @@
       "word_initial": true,
       "followed_by": "consonant",
       "notes": "Hamzat al-waṣl prosthesis (Wright I §19–20; Ryding 2005 §2.10): a word-initial bare waṣl ʼalif before a sukūn consonant takes the default prosthetic vowel /i/, giving [ʔiC…] not the illegal [ʔC…] onset (اسْأَل → [ʔisʔal], اشْتَرَيْت → [ʔiʃtarajt], اتَّصِل → [ʔittasˤil]). The /u/ of u-stem imperatives (اُكْتُب → [ʔuktub]) is written as ḍamma on the ʼalif and read directly, so only the unmarked default needs supplying. Fires only on the bare ʼalif's vowelless /ʔ/; hamzat-qatʕ ء/أ/إ carry their own vowel ([ʔV]) and never match."
+    },
+    {
+      "id": "AR_EMPHASIS_SPREAD_A_AFTER",
+      "phonemes": [
+        "a"
+      ],
+      "surface": "ɑ",
+      "preceded_by": "emphatic",
+      "notes": "Emphasis spread / tafkhim (Watson 2002, The Phonology and Morphology of Arabic, ch. 2: emphasis is a suprasegmental/autosegmental feature that spreads from a pharyngealized 'emphatic' consonant (sˤ dˤ tˤ ðˤ, dialectally ɮˤ) onto immediately adjacent vowels, backing and lowering them; Davis 1995, Linguistic Inquiry 26(3): feature-geometric spread of [RTR]/pharyngealization onto neighbouring vocalic segments). Modelled here as LOCAL, bidirectional backing onto the vowel immediately before or after an emphatic consonant, using the engine's generic 'emphatic' neighbour class (any IPA carrying the ˤ diacritic — is_pharyngealized_consonant — never hardcoded to Arabic). Watson also reports the spread can cross several segments and, in some dialects, is BLOCKED by an intervening high front vocoid /i j/ (Watson 2002 §2.4.2; cf. Card 1983, Younes 1993 for the blocking pattern in Palestinian/Levantine and Cairene varieties); that long-distance, blockable spread needs whole-word context the allophone-rule neighbour vocabulary (one grapheme away) cannot express, so only the immediate, unblocked, MSA-standard adjacency effect is encoded here. Dialect-specific domain-widening (e.g. word-wide spread in Gulf/Najdi ar-x-gulf, ar-SA-x-najd) is left to those dialect specs."
+    },
+    {
+      "id": "AR_EMPHASIS_SPREAD_A_BEFORE",
+      "phonemes": [
+        "a"
+      ],
+      "surface": "ɑ",
+      "followed_by": "emphatic",
+      "notes": "Emphasis spread / tafkhim (Watson 2002, The Phonology and Morphology of Arabic, ch. 2: emphasis is a suprasegmental/autosegmental feature that spreads from a pharyngealized 'emphatic' consonant (sˤ dˤ tˤ ðˤ, dialectally ɮˤ) onto immediately adjacent vowels, backing and lowering them; Davis 1995, Linguistic Inquiry 26(3): feature-geometric spread of [RTR]/pharyngealization onto neighbouring vocalic segments). Modelled here as LOCAL, bidirectional backing onto the vowel immediately before or after an emphatic consonant, using the engine's generic 'emphatic' neighbour class (any IPA carrying the ˤ diacritic — is_pharyngealized_consonant — never hardcoded to Arabic). Watson also reports the spread can cross several segments and, in some dialects, is BLOCKED by an intervening high front vocoid /i j/ (Watson 2002 §2.4.2; cf. Card 1983, Younes 1993 for the blocking pattern in Palestinian/Levantine and Cairene varieties); that long-distance, blockable spread needs whole-word context the allophone-rule neighbour vocabulary (one grapheme away) cannot express, so only the immediate, unblocked, MSA-standard adjacency effect is encoded here. Dialect-specific domain-widening (e.g. word-wide spread in Gulf/Najdi ar-x-gulf, ar-SA-x-najd) is left to those dialect specs."
+    },
+    {
+      "id": "AR_EMPHASIS_SPREAD_AA_AFTER",
+      "phonemes": [
+        "aː"
+      ],
+      "surface": "ɑː",
+      "preceded_by": "emphatic",
+      "notes": "Emphasis spread / tafkhim (Watson 2002, The Phonology and Morphology of Arabic, ch. 2: emphasis is a suprasegmental/autosegmental feature that spreads from a pharyngealized 'emphatic' consonant (sˤ dˤ tˤ ðˤ, dialectally ɮˤ) onto immediately adjacent vowels, backing and lowering them; Davis 1995, Linguistic Inquiry 26(3): feature-geometric spread of [RTR]/pharyngealization onto neighbouring vocalic segments). Modelled here as LOCAL, bidirectional backing onto the vowel immediately before or after an emphatic consonant, using the engine's generic 'emphatic' neighbour class (any IPA carrying the ˤ diacritic — is_pharyngealized_consonant — never hardcoded to Arabic). Watson also reports the spread can cross several segments and, in some dialects, is BLOCKED by an intervening high front vocoid /i j/ (Watson 2002 §2.4.2; cf. Card 1983, Younes 1993 for the blocking pattern in Palestinian/Levantine and Cairene varieties); that long-distance, blockable spread needs whole-word context the allophone-rule neighbour vocabulary (one grapheme away) cannot express, so only the immediate, unblocked, MSA-standard adjacency effect is encoded here. Dialect-specific domain-widening (e.g. word-wide spread in Gulf/Najdi ar-x-gulf, ar-SA-x-najd) is left to those dialect specs."
+    },
+    {
+      "id": "AR_EMPHASIS_SPREAD_AA_BEFORE",
+      "phonemes": [
+        "aː"
+      ],
+      "surface": "ɑː",
+      "followed_by": "emphatic",
+      "notes": "Emphasis spread / tafkhim (Watson 2002, The Phonology and Morphology of Arabic, ch. 2: emphasis is a suprasegmental/autosegmental feature that spreads from a pharyngealized 'emphatic' consonant (sˤ dˤ tˤ ðˤ, dialectally ɮˤ) onto immediately adjacent vowels, backing and lowering them; Davis 1995, Linguistic Inquiry 26(3): feature-geometric spread of [RTR]/pharyngealization onto neighbouring vocalic segments). Modelled here as LOCAL, bidirectional backing onto the vowel immediately before or after an emphatic consonant, using the engine's generic 'emphatic' neighbour class (any IPA carrying the ˤ diacritic — is_pharyngealized_consonant — never hardcoded to Arabic). Watson also reports the spread can cross several segments and, in some dialects, is BLOCKED by an intervening high front vocoid /i j/ (Watson 2002 §2.4.2; cf. Card 1983, Younes 1993 for the blocking pattern in Palestinian/Levantine and Cairene varieties); that long-distance, blockable spread needs whole-word context the allophone-rule neighbour vocabulary (one grapheme away) cannot express, so only the immediate, unblocked, MSA-standard adjacency effect is encoded here. Dialect-specific domain-widening (e.g. word-wide spread in Gulf/Najdi ar-x-gulf, ar-SA-x-najd) is left to those dialect specs."
+    },
+    {
+      "id": "AR_EMPHASIS_SPREAD_I_AFTER",
+      "phonemes": [
+        "i"
+      ],
+      "surface": "ɪ",
+      "preceded_by": "emphatic",
+      "notes": "Emphasis spread / tafkhim (Watson 2002, The Phonology and Morphology of Arabic, ch. 2: emphasis is a suprasegmental/autosegmental feature that spreads from a pharyngealized 'emphatic' consonant (sˤ dˤ tˤ ðˤ, dialectally ɮˤ) onto immediately adjacent vowels, backing and lowering them; Davis 1995, Linguistic Inquiry 26(3): feature-geometric spread of [RTR]/pharyngealization onto neighbouring vocalic segments). Modelled here as LOCAL, bidirectional backing onto the vowel immediately before or after an emphatic consonant, using the engine's generic 'emphatic' neighbour class (any IPA carrying the ˤ diacritic — is_pharyngealized_consonant — never hardcoded to Arabic). Watson also reports the spread can cross several segments and, in some dialects, is BLOCKED by an intervening high front vocoid /i j/ (Watson 2002 §2.4.2; cf. Card 1983, Younes 1993 for the blocking pattern in Palestinian/Levantine and Cairene varieties); that long-distance, blockable spread needs whole-word context the allophone-rule neighbour vocabulary (one grapheme away) cannot express, so only the immediate, unblocked, MSA-standard adjacency effect is encoded here. Dialect-specific domain-widening (e.g. word-wide spread in Gulf/Najdi ar-x-gulf, ar-SA-x-najd) is left to those dialect specs."
+    },
+    {
+      "id": "AR_EMPHASIS_SPREAD_I_BEFORE",
+      "phonemes": [
+        "i"
+      ],
+      "surface": "ɪ",
+      "followed_by": "emphatic",
+      "notes": "Emphasis spread / tafkhim (Watson 2002, The Phonology and Morphology of Arabic, ch. 2: emphasis is a suprasegmental/autosegmental feature that spreads from a pharyngealized 'emphatic' consonant (sˤ dˤ tˤ ðˤ, dialectally ɮˤ) onto immediately adjacent vowels, backing and lowering them; Davis 1995, Linguistic Inquiry 26(3): feature-geometric spread of [RTR]/pharyngealization onto neighbouring vocalic segments). Modelled here as LOCAL, bidirectional backing onto the vowel immediately before or after an emphatic consonant, using the engine's generic 'emphatic' neighbour class (any IPA carrying the ˤ diacritic — is_pharyngealized_consonant — never hardcoded to Arabic). Watson also reports the spread can cross several segments and, in some dialects, is BLOCKED by an intervening high front vocoid /i j/ (Watson 2002 §2.4.2; cf. Card 1983, Younes 1993 for the blocking pattern in Palestinian/Levantine and Cairene varieties); that long-distance, blockable spread needs whole-word context the allophone-rule neighbour vocabulary (one grapheme away) cannot express, so only the immediate, unblocked, MSA-standard adjacency effect is encoded here. Dialect-specific domain-widening (e.g. word-wide spread in Gulf/Najdi ar-x-gulf, ar-SA-x-najd) is left to those dialect specs."
+    },
+    {
+      "id": "AR_EMPHASIS_SPREAD_II_AFTER",
+      "phonemes": [
+        "iː"
+      ],
+      "surface": "ɪː",
+      "preceded_by": "emphatic",
+      "notes": "Emphasis spread / tafkhim (Watson 2002, The Phonology and Morphology of Arabic, ch. 2: emphasis is a suprasegmental/autosegmental feature that spreads from a pharyngealized 'emphatic' consonant (sˤ dˤ tˤ ðˤ, dialectally ɮˤ) onto immediately adjacent vowels, backing and lowering them; Davis 1995, Linguistic Inquiry 26(3): feature-geometric spread of [RTR]/pharyngealization onto neighbouring vocalic segments). Modelled here as LOCAL, bidirectional backing onto the vowel immediately before or after an emphatic consonant, using the engine's generic 'emphatic' neighbour class (any IPA carrying the ˤ diacritic — is_pharyngealized_consonant — never hardcoded to Arabic). Watson also reports the spread can cross several segments and, in some dialects, is BLOCKED by an intervening high front vocoid /i j/ (Watson 2002 §2.4.2; cf. Card 1983, Younes 1993 for the blocking pattern in Palestinian/Levantine and Cairene varieties); that long-distance, blockable spread needs whole-word context the allophone-rule neighbour vocabulary (one grapheme away) cannot express, so only the immediate, unblocked, MSA-standard adjacency effect is encoded here. Dialect-specific domain-widening (e.g. word-wide spread in Gulf/Najdi ar-x-gulf, ar-SA-x-najd) is left to those dialect specs."
+    },
+    {
+      "id": "AR_EMPHASIS_SPREAD_II_BEFORE",
+      "phonemes": [
+        "iː"
+      ],
+      "surface": "ɪː",
+      "followed_by": "emphatic",
+      "notes": "Emphasis spread / tafkhim (Watson 2002, The Phonology and Morphology of Arabic, ch. 2: emphasis is a suprasegmental/autosegmental feature that spreads from a pharyngealized 'emphatic' consonant (sˤ dˤ tˤ ðˤ, dialectally ɮˤ) onto immediately adjacent vowels, backing and lowering them; Davis 1995, Linguistic Inquiry 26(3): feature-geometric spread of [RTR]/pharyngealization onto neighbouring vocalic segments). Modelled here as LOCAL, bidirectional backing onto the vowel immediately before or after an emphatic consonant, using the engine's generic 'emphatic' neighbour class (any IPA carrying the ˤ diacritic — is_pharyngealized_consonant — never hardcoded to Arabic). Watson also reports the spread can cross several segments and, in some dialects, is BLOCKED by an intervening high front vocoid /i j/ (Watson 2002 §2.4.2; cf. Card 1983, Younes 1993 for the blocking pattern in Palestinian/Levantine and Cairene varieties); that long-distance, blockable spread needs whole-word context the allophone-rule neighbour vocabulary (one grapheme away) cannot express, so only the immediate, unblocked, MSA-standard adjacency effect is encoded here. Dialect-specific domain-widening (e.g. word-wide spread in Gulf/Najdi ar-x-gulf, ar-SA-x-najd) is left to those dialect specs."
+    },
+    {
+      "id": "AR_EMPHASIS_SPREAD_U_AFTER",
+      "phonemes": [
+        "u"
+      ],
+      "surface": "ʊ",
+      "preceded_by": "emphatic",
+      "notes": "Emphasis spread / tafkhim (Watson 2002, The Phonology and Morphology of Arabic, ch. 2: emphasis is a suprasegmental/autosegmental feature that spreads from a pharyngealized 'emphatic' consonant (sˤ dˤ tˤ ðˤ, dialectally ɮˤ) onto immediately adjacent vowels, backing and lowering them; Davis 1995, Linguistic Inquiry 26(3): feature-geometric spread of [RTR]/pharyngealization onto neighbouring vocalic segments). Modelled here as LOCAL, bidirectional backing onto the vowel immediately before or after an emphatic consonant, using the engine's generic 'emphatic' neighbour class (any IPA carrying the ˤ diacritic — is_pharyngealized_consonant — never hardcoded to Arabic). Watson also reports the spread can cross several segments and, in some dialects, is BLOCKED by an intervening high front vocoid /i j/ (Watson 2002 §2.4.2; cf. Card 1983, Younes 1993 for the blocking pattern in Palestinian/Levantine and Cairene varieties); that long-distance, blockable spread needs whole-word context the allophone-rule neighbour vocabulary (one grapheme away) cannot express, so only the immediate, unblocked, MSA-standard adjacency effect is encoded here. Dialect-specific domain-widening (e.g. word-wide spread in Gulf/Najdi ar-x-gulf, ar-SA-x-najd) is left to those dialect specs."
+    },
+    {
+      "id": "AR_EMPHASIS_SPREAD_U_BEFORE",
+      "phonemes": [
+        "u"
+      ],
+      "surface": "ʊ",
+      "followed_by": "emphatic",
+      "notes": "Emphasis spread / tafkhim (Watson 2002, The Phonology and Morphology of Arabic, ch. 2: emphasis is a suprasegmental/autosegmental feature that spreads from a pharyngealized 'emphatic' consonant (sˤ dˤ tˤ ðˤ, dialectally ɮˤ) onto immediately adjacent vowels, backing and lowering them; Davis 1995, Linguistic Inquiry 26(3): feature-geometric spread of [RTR]/pharyngealization onto neighbouring vocalic segments). Modelled here as LOCAL, bidirectional backing onto the vowel immediately before or after an emphatic consonant, using the engine's generic 'emphatic' neighbour class (any IPA carrying the ˤ diacritic — is_pharyngealized_consonant — never hardcoded to Arabic). Watson also reports the spread can cross several segments and, in some dialects, is BLOCKED by an intervening high front vocoid /i j/ (Watson 2002 §2.4.2; cf. Card 1983, Younes 1993 for the blocking pattern in Palestinian/Levantine and Cairene varieties); that long-distance, blockable spread needs whole-word context the allophone-rule neighbour vocabulary (one grapheme away) cannot express, so only the immediate, unblocked, MSA-standard adjacency effect is encoded here. Dialect-specific domain-widening (e.g. word-wide spread in Gulf/Najdi ar-x-gulf, ar-SA-x-najd) is left to those dialect specs."
+    },
+    {
+      "id": "AR_EMPHASIS_SPREAD_UU_AFTER",
+      "phonemes": [
+        "uː"
+      ],
+      "surface": "ʊː",
+      "preceded_by": "emphatic",
+      "notes": "Emphasis spread / tafkhim (Watson 2002, The Phonology and Morphology of Arabic, ch. 2: emphasis is a suprasegmental/autosegmental feature that spreads from a pharyngealized 'emphatic' consonant (sˤ dˤ tˤ ðˤ, dialectally ɮˤ) onto immediately adjacent vowels, backing and lowering them; Davis 1995, Linguistic Inquiry 26(3): feature-geometric spread of [RTR]/pharyngealization onto neighbouring vocalic segments). Modelled here as LOCAL, bidirectional backing onto the vowel immediately before or after an emphatic consonant, using the engine's generic 'emphatic' neighbour class (any IPA carrying the ˤ diacritic — is_pharyngealized_consonant — never hardcoded to Arabic). Watson also reports the spread can cross several segments and, in some dialects, is BLOCKED by an intervening high front vocoid /i j/ (Watson 2002 §2.4.2; cf. Card 1983, Younes 1993 for the blocking pattern in Palestinian/Levantine and Cairene varieties); that long-distance, blockable spread needs whole-word context the allophone-rule neighbour vocabulary (one grapheme away) cannot express, so only the immediate, unblocked, MSA-standard adjacency effect is encoded here. Dialect-specific domain-widening (e.g. word-wide spread in Gulf/Najdi ar-x-gulf, ar-SA-x-najd) is left to those dialect specs."
+    },
+    {
+      "id": "AR_EMPHASIS_SPREAD_UU_BEFORE",
+      "phonemes": [
+        "uː"
+      ],
+      "surface": "ʊː",
+      "followed_by": "emphatic",
+      "notes": "Emphasis spread / tafkhim (Watson 2002, The Phonology and Morphology of Arabic, ch. 2: emphasis is a suprasegmental/autosegmental feature that spreads from a pharyngealized 'emphatic' consonant (sˤ dˤ tˤ ðˤ, dialectally ɮˤ) onto immediately adjacent vowels, backing and lowering them; Davis 1995, Linguistic Inquiry 26(3): feature-geometric spread of [RTR]/pharyngealization onto neighbouring vocalic segments). Modelled here as LOCAL, bidirectional backing onto the vowel immediately before or after an emphatic consonant, using the engine's generic 'emphatic' neighbour class (any IPA carrying the ˤ diacritic — is_pharyngealized_consonant — never hardcoded to Arabic). Watson also reports the spread can cross several segments and, in some dialects, is BLOCKED by an intervening high front vocoid /i j/ (Watson 2002 §2.4.2; cf. Card 1983, Younes 1993 for the blocking pattern in Palestinian/Levantine and Cairene varieties); that long-distance, blockable spread needs whole-word context the allophone-rule neighbour vocabulary (one grapheme away) cannot express, so only the immediate, unblocked, MSA-standard adjacency effect is encoded here. Dialect-specific domain-widening (e.g. word-wide spread in Gulf/Najdi ar-x-gulf, ar-SA-x-najd) is left to those dialect specs."
     }
   ],
   "word_exceptions": {
