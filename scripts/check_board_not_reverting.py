@@ -36,15 +36,17 @@ owned by an edit to ``de-DE.json``. Re-keying a dataset onto a better-fitting
 spec shows up as one row dropped and one added, and the branch owns both.
 
 Anything else — most importantly a harness or engine change that legitimately
-moves hundreds of rows — has to be declared. A ``Board-Rows:`` line in the pull
-request body or in a commit message on the branch names the rows, or says
-``all`` with a reason when a harness change rescored the whole board::
+moves hundreds of rows — is licensed by the diff itself: the rows the merge
+would move, other than by ownership, are read straight off the base and
+merged boards, since that set is fully determined once the merge result
+exists. A ``Board-Rows:`` line in the pull request body or in a commit
+message is optional; when present it is cross-checked against that computed
+set rather than trusted to supply it, so a stated intent that names the
+wrong rows — or claims ``all`` without the diff actually touching harness or
+engine code — is an error rather than a silent bypass or a silent no-op::
 
     Board-Rows: mr/wikipron, mr/vox_communis
     Board-Rows: all - stress placement reworked, every row rescored
-
-Declaring ``all`` requires the diff to actually touch harness or engine code, so
-it is not a free bypass.
 
 The same "green on both sides, broken only in the merge" shape reaches the
 burn-down lists in the test suite, so they are checked here too. A burn-down is
@@ -332,6 +334,41 @@ def parse_declaration(*texts):
     return rows, declares_all, reason
 
 
+def malformed_declarations(*texts):
+    """``Board-Rows:`` lines in *texts* that parsed to nothing usable.
+
+    ``parse_declaration`` silently drops a line it cannot make sense of — a
+    missing ``/``, a typo where a comma or ``all`` was meant — which disarms
+    the guard with no signal. This re-parses each matched line on its own and
+    reports the ones that named neither a row nor ``all``, so a malformed
+    declaration is an error instead of a silent no-op.
+    """
+    bad = []
+    for text in texts:
+        for value in _DECLARATION_RE.findall(text or ""):
+            rows, declares_all, _ = parse_declaration(f"Board-Rows: {value}")
+            if not rows and not declares_all:
+                bad.append(value.strip())
+    return bad
+
+
+def moved_rows(base_rows, merged_rows, owns_lang):
+    """Keys the diff shows moving without ownership evidence.
+
+    This is exactly what a ``Board-Rows`` declaration used to have to name by
+    hand: once the merge result exists, which rows changed and which of
+    those the diff does not already explain by a spec edit is fully
+    determined, so the guard reads it off the boards instead of trusting
+    prose to repeat it correctly. Includes rows a revert would also touch —
+    ``classify`` judges those regardless of what is declared — and rows the
+    branch drops or adds, since membership here only ever licenses a row
+    that another branch of ``classify`` would not already allow.
+    """
+    return {key for key in set(base_rows) | set(merged_rows)
+            if scored(merged_rows.get(key)) != scored(base_rows.get(key))
+            and not owns_lang(key[0])}
+
+
 def scored(row):
     """The comparable part of a row: its measurements, in a stable order."""
     if row is None:
@@ -443,6 +480,16 @@ def check(base, head, repo=".", body=""):
                      if p.startswith(SPEC_DIR + "/") and p.endswith(".json")}
     engine_touched = any(_ENGINE_RE.match(p) for p in changed)
     messages = git("log", "--format=%B", f"{merge_base}..{head}", repo=repo) or ""
+
+    malformed = malformed_declarations(body, messages)
+    if malformed:
+        print("Board-Rows could not be parsed:", file=sys.stderr)
+        for value in malformed:
+            print(f"  Board-Rows: {value}", file=sys.stderr)
+        print("  fix: 'lang/dataset, lang/dataset, ...' or 'all - <reason>'",
+              file=sys.stderr)
+        return 1
+
     declared = parse_declaration(body, messages)
 
     owned_cache = {}
@@ -466,14 +513,49 @@ def check(base, head, repo=".", body=""):
 def _run(boards, base, merged, owns_lang, declared, engine_touched, repo="."):
     """The classification pass over every board file, once ownership can be
     resolved. Split out so a ``PackageUnavailable`` raised while resolving a
-    tag is caught in one place rather than guessed at per call site."""
-    failed = False
+    tag is caught in one place rather than guessed at per call site.
+
+    The rows a ``Board-Rows`` declaration would need to license are read off
+    the diff (:func:`moved_rows`) rather than trusted from the declaration;
+    a declaration, when one is present, is only cross-checked against that
+    computed set — a mismatch is reported and fails the check rather than
+    silently doing nothing or silently being believed.
+    """
+    declared_rows, declares_all, reason = declared
+
+    boards_data = []
+    total_moved = set()
     for path in boards:
         merged_rows = read_board(merged, path, repo=repo)
         if merged_rows is None:
             print(f"{path}: conflicted, resolve the merge first")
+            boards_data.append((path, None, None))
             continue
         base_rows = read_board(base, path, repo=repo) or {}
+        total_moved |= moved_rows(base_rows, merged_rows, owns_lang)
+        boards_data.append((path, base_rows, merged_rows))
+
+    if declares_all and not engine_touched:
+        print(f"\nBoard-Rows declares 'all' but the diff touches neither a "
+              f"language spec nor engine/harness code; the declaration "
+              f"disagrees with the diff.")
+        return 1
+    if declared_rows and not declares_all and declared_rows != total_moved:
+        only_declared = sorted(declared_rows - total_moved)
+        only_diff = sorted(total_moved - declared_rows)
+        print(f"\nBoard-Rows disagrees with the diff.")
+        if only_declared:
+            print(f"  declared but the diff shows no such movement: "
+                  f"{', '.join(f'{l}/{d}' for l, d in only_declared)}")
+        if only_diff:
+            print(f"  the diff moves these but Board-Rows does not name them: "
+                  f"{', '.join(f'{l}/{d}' for l, d in only_diff)}")
+        return 1
+
+    failed = False
+    for path, base_rows, merged_rows in boards_data:
+        if merged_rows is None:
+            continue
         candidates = [key for key in set(base_rows) | set(merged_rows)
                       if scored(merged_rows.get(key)) != scored(base_rows.get(key))
                       and merged_rows.get(key) is not None
@@ -483,8 +565,11 @@ def _run(boards, base, merged, owns_lang, declared, engine_touched, repo="."):
         def superseded(key, value, history=history):
             return value is not None and scored(value) in history.get(key, ())
 
+        # Every row the diff shows moving is licensed by that fact alone —
+        # Board-Rows was only ever cross-checked against it above.
+        path_declared = (total_moved, False, "")
         reverts, undeclared, allowed = classify(
-            base_rows, merged_rows, owns_lang, superseded, declared, engine_touched)
+            base_rows, merged_rows, owns_lang, superseded, path_declared, False)
 
         if reverts:
             failed = True

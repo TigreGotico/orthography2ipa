@@ -204,6 +204,32 @@ class TestDeclarationParsing:
             NEVER_SUPERSEDED, declared, True)
         assert [k for k, _, _ in undeclared] == [("mr", "wikipron")]
 
+    def test_malformed_line_is_reported(self):
+        bad = guard.malformed_declarations("Board-Rows: !!!broken!!!")
+        assert bad == ["!!!broken!!!"]
+
+    def test_a_well_formed_line_is_not_reported_as_malformed(self):
+        assert guard.malformed_declarations(
+            "Board-Rows: mr/wikipron") == []
+        assert guard.malformed_declarations("Board-Rows: all - reason") == []
+
+    def test_a_body_with_no_declaration_has_nothing_malformed(self):
+        assert guard.malformed_declarations("just a normal PR body") == []
+
+
+class TestMovedRows:
+    def test_an_unowned_changed_row_is_moved(self):
+        assert guard.moved_rows(board(row(per=0.4)), board(row(per=0.2)),
+                                NOTHING_OWNED) == {("mr", "wikipron")}
+
+    def test_an_owned_changed_row_is_not_moved(self):
+        assert guard.moved_rows(
+            board(row(per=0.4)), board(row(per=0.2)),
+            lambda lang: lang == "mr") == set()
+
+    def test_an_unchanged_row_is_not_moved(self):
+        assert guard.moved_rows(board(row()), board(row()), NOTHING_OWNED) == set()
+
 
 class TestMarkdownBoard:
     def test_cells_are_read_under_their_headers(self):
@@ -427,7 +453,10 @@ class TestEndToEnd:
         assert guard.check("dev", "HEAD", repo=repo) == 0
         assert "touches neither the board" in capsys.readouterr().out
 
-    def test_undeclared_wide_movement_fails(self, repo):
+    def test_wide_movement_without_a_declaration_passes_from_the_diff(self, repo):
+        """The moved rows are fully derivable from the diff, so no
+        Board-Rows line is needed to license them — only a genuine revert
+        (see TestEndToEnd) fails without one."""
         write_board(repo, [row("mr", per=0.44), row("xh", "kaikki", per=0.25)])
         with open(os.path.join(repo, "orthography2ipa", "stress.py"), "w") as fh:
             fh.write("RULE = 1\n")
@@ -435,7 +464,7 @@ class TestEndToEnd:
         git(repo, "commit", "-qm", "fix: stress placement")
         merge_dev(repo, [row("mr", per=0.054), row("xh", "kaikki", per=0.25)])
 
-        assert guard.check("dev", "HEAD", repo=repo) == 1
+        assert guard.check("dev", "HEAD", repo=repo) == 0
 
     def test_declared_wide_movement_passes(self, repo, capsys):
         write_board(repo, [row("mr", per=0.44), row("xh", "kaikki", per=0.25)])
@@ -449,15 +478,54 @@ class TestEndToEnd:
         assert guard.check("dev", "HEAD", repo=repo) == 0
         assert "accounted for" in capsys.readouterr().out
 
-    def test_declaration_read_from_the_pull_request_body(self, repo):
+    def test_a_pr_with_no_declaration_is_still_checked_off_the_diff(self, repo):
+        """No Board-Rows line at all: the guard still runs, driven by the
+        diff, and a genuine (non-reverting) move of xh passes."""
         write_board(repo, [row("mr", per=0.4351), row("xh", "kaikki", per=0.22)])
         git(repo, "add", "-A")
         git(repo, "commit", "-qm", "chore: rescore xh")
         merge_dev(repo, [row("mr", per=0.0535), row("xh", "kaikki", per=0.22)])
 
-        assert guard.check("dev", "HEAD", repo=repo) == 1
+        assert guard.check("dev", "HEAD", repo=repo) == 0
+
+    def test_a_declaration_agreeing_with_the_diff_passes(self, repo):
+        write_board(repo, [row("mr", per=0.4351), row("xh", "kaikki", per=0.22)])
+        git(repo, "add", "-A")
+        git(repo, "commit", "-qm", "chore: rescore xh")
+        merge_dev(repo, [row("mr", per=0.0535), row("xh", "kaikki", per=0.22)])
+
         assert guard.check("dev", "HEAD", repo=repo,
                            body="Board-Rows: xh/kaikki") == 0
+
+    def test_a_declaration_disagreeing_with_the_diff_errors(self, repo, capsys):
+        """The diff only moves xh; naming a different row is not cross-check
+        agreement, so it errors naming both sets rather than being trusted
+        or silently doing nothing."""
+        write_board(repo, [row("mr", per=0.4351), row("xh", "kaikki", per=0.22)])
+        git(repo, "add", "-A")
+        git(repo, "commit", "-qm", "chore: rescore xh")
+        merge_dev(repo, [row("mr", per=0.0535), row("xh", "kaikki", per=0.22)])
+
+        assert guard.check("dev", "HEAD", repo=repo,
+                           body="Board-Rows: mr/wikipron") == 1
+        out = capsys.readouterr().out
+        assert "disagrees with the diff" in out
+        assert "mr/wikipron" in out
+        assert "xh/kaikki" in out
+
+    def test_a_malformed_declaration_errors_instead_of_being_ignored(self, repo):
+        """A typo used to parse to an empty declaration and disarm the guard
+        with no signal; it must now be reported as an error."""
+        write_board(repo, [row("mr", per=0.4351), row("xh", "kaikki", per=0.22)])
+        git(repo, "add", "-A")
+        git(repo, "commit", "-qm", "chore: rescore xh")
+        merge_dev(repo, [row("mr", per=0.0535), row("xh", "kaikki", per=0.22)])
+
+        # Well-formed and absent both pass, driven off the diff alone.
+        assert guard.check("dev", "HEAD", repo=repo) == 0
+        # A line that looks like a declaration but names no row and no 'all'.
+        assert guard.check("dev", "HEAD", repo=repo,
+                           body="Board-Rows: !!!broken!!!") == 1
 
     def test_inherited_spec_owns_the_dialect_row(self, repo):
         """Editing pt-PT.json accounts for pt-PT-x-lisbon's row moving."""
