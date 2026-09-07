@@ -144,7 +144,7 @@ These dead URLs appear only inside free-text `notes` fields, so they are left un
 
 | File | Field | URL | Reason |
 | --- | --- | --- | --- |
-| `orthography2ipa/data/ext-PT-x-barrancos.json` | `/notes` | https://github.com/NLP-Workspace/g2p-barranquenho), | HTTP 404 |
+| `orthography2ipa/data/pt-PT-x-barrancos.json` | `/notes` | https://github.com/NLP-Workspace/g2p-barranquenho), | HTTP 404 |
 
 ## Inconclusive (for human review)
 

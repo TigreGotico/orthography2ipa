@@ -134,6 +134,11 @@ _ALIASES: Dict[str, str] = {
     "ar-x-najdi": "ar-SA-x-najd",     # Najdi Arabic
     "ar-x-hejazi": "ar-SA-x-hejaz",   # Hejazi Arabic
     "ar-x-hijazi": "ar-SA-x-hejaz",   # Hejazi Arabic (alternate romanization)
+    # Barranquenho was first keyed under ``ext`` (ISO 639-3 Extremaduran), a
+    # language Glottolog places under Castilic. The variety is Portuguese-based
+    # and now lives at ``pt-PT-x-barrancos``; the old tag stays resolvable for
+    # one stable cycle.
+    "ext-PT-x-barrancos": "pt-PT-x-barrancos",
 }
 
 # Default variant for a bare primary-language tag whose specs are all

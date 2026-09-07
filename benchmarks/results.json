@@ -4420,7 +4420,7 @@
   "oracle_scored_words": 145
  },
  {
-  "lang": "ext-PT-x-barrancos",
+  "lang": "pt-PT-x-barrancos",
   "dataset": "barranquenho_dict",
   "n": 1508,
   "per": 0.0045,
@@ -4440,7 +4440,7 @@
   "oracle_scored_words": 1508
  },
  {
-  "lang": "ext-PT-x-barrancos",
+  "lang": "pt-PT-x-barrancos",
   "dataset": "portuguese_tts",
   "n": 20,
   "per": 0.0,
@@ -4460,7 +4460,7 @@
   "oracle_scored_words": 0
  },
  {
-  "lang": "ext-PT-x-barrancos",
+  "lang": "pt-PT-x-barrancos",
   "dataset": "primary_sources",
   "n": 10,
   "per": 0.2801,

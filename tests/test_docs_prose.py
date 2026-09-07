@@ -53,7 +53,6 @@ _DOCS_PROSE_RATCHET = frozenset({
     "docs/languages/ar-x-levantine.md",
     "docs/languages/egy.md",
     "docs/languages/en-GB.md",
-    "docs/languages/ext-PT-x-barrancos.md",
     "docs/languages/fo.md",
     "docs/languages/fr-FR.md",
     "docs/languages/germanic.md",

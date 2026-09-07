@@ -818,14 +818,14 @@ class TestBarranquenhoLazyImport:
             return real_import(name, *a, **k)
 
         monkeypatch.setattr(builtins, "__import__", fake_import)
-        assert cs.barranquenho_transcribe("casa", "ext-PT-x-barrancos") is None
+        assert cs.barranquenho_transcribe("casa", "pt-PT-x-barrancos") is None
 
     def test_present_module_transcribes(self, monkeypatch):
         fake_pkg = type(sys)("g2p_barranquenho")
         fake_pkg.transcribe = lambda word: ["k", "a", "z", "ɐ"]
         monkeypatch.setitem(sys.modules, "g2p_barranquenho", fake_pkg)
 
-        assert (cs.barranquenho_transcribe("casa", "ext-PT-x-barrancos")
+        assert (cs.barranquenho_transcribe("casa", "pt-PT-x-barrancos")
                 == "kazɐ")
 
     def test_exception_during_transcribe_yields_none(self, monkeypatch):
@@ -836,7 +836,7 @@ class TestBarranquenhoLazyImport:
         fake_pkg.transcribe = boom
         monkeypatch.setitem(sys.modules, "g2p_barranquenho", fake_pkg)
 
-        assert cs.barranquenho_transcribe("x", "ext-PT-x-barrancos") is None
+        assert cs.barranquenho_transcribe("x", "pt-PT-x-barrancos") is None
 
 
 class TestMwlPhonemizerLazyImport:
@@ -1289,17 +1289,17 @@ class TestCompareLangWithFamilySystems:
         monkeypatch.setattr(
             cs.benchmark, "DATASETS",
             {"barranquenho_dict": (lambda lang, limit: pairs,
-                                    ["ext-PT-x-barrancos"])})
+                                    ["pt-PT-x-barrancos"])})
         monkeypatch.setitem(
-            cs.LANGS, "ext-PT-x-barrancos",
-            {"dataset": ("barranquenho_dict", "ext-PT-x-barrancos"),
+            cs.LANGS, "pt-PT-x-barrancos",
+            {"dataset": ("barranquenho_dict", "pt-PT-x-barrancos"),
              "espeak": None, "epitran": None, "gruut": None,
-             "barranquenho": "ext-PT-x-barrancos"})
+             "barranquenho": "pt-PT-x-barrancos"})
         self._install_o2i(monkeypatch, {"casa": "ˈkazɐ"})
         monkeypatch.setattr(cs, "barranquenho_transcribe",
                              lambda word, lang: "ˈkazɐ")
 
-        row = cs.compare_lang("ext-PT-x-barrancos", limit=10)[0]
+        row = cs.compare_lang("pt-PT-x-barrancos", limit=10)[0]
         assert row["barranquenho_per"] is None
         assert row["barranquenho_same_source"] is True
 

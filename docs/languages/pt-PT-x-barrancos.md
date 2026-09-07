@@ -1,7 +1,7 @@
-# Barranquenho (ext-PT-x-barrancos): Phonology Reference
+# Barranquenho (pt-PT-x-barrancos): Phonology Reference
 
-**Code**: `ext-PT-x-barrancos` | **Family**: Indo-European > Romance > Ibero-Romance | **Script**: Latin (alphabet)
-**Parent**: `pt-PT` | **Quality tier**: research | **Glottolog**: `barr1235`
+**Code**: `pt-PT-x-barrancos` | **Family**: Indo-European > Romance > Ibero-Romance | **Script**: Latin (alphabet)
+**Parent**: `pt-PT` | **Quality tier**: research | **Glottolog**: no languoid
 **Sources**: Navas Sánchez-Élez (2011), *El barranqueño: un modelo de lenguas en contacto*. Clements, Amaral & Luís (2008, *BLS* 34). Convenção Ortográfica do Barranquenho (2025). Gramática Básica de Barranquenho (Gonçalves, Navas & Correia, 2025)
 
 Barranquenho is the contact vernacular of Barrancos (Baixo Alentejo, Portugal),
@@ -10,9 +10,12 @@ endangered*. It is not a plain Portuguese dialect: Barrancos is surrounded on
 three sides by the Spanish province of Huelva (Andalusia) and borders
 Extremadura, and the variety is a genuine **contact language**, an Alentejo
 European Portuguese base with a pervasive **Extremaduran/Andalusian Spanish
-adstrate** (Navas Sánchez-Élez 2011; Clements, Amaral & Luís 2008). Modelling it
+adstrate** (Navas Sánchez-Élez 2011, Clements, Amaral & Luís 2008). Modelling it
 therefore means *overriding* several inherited European Portuguese processes,
-not only extra additions to them.
+not only extra additions to them. The code is a private-use extension of `pt-PT`
+because the Portuguese base is the structural parent. Glottolog carries no
+languoid for the variety and ISO 639-3 no code, so both crossref fields are
+null.
 
 ---
 
@@ -99,8 +102,9 @@ and are left inherited rather than invented (research-grounding rule).
 
 ## Limitations
 
-- **No gold benchmark**: Barranquenho has no scoreboard row. Correctness here is
-  by citation, not PER.
+- Scoreboard rows come from machine-generated and same-source gold, so they
+  read as agreement rather than correctness. The phonology below rests on
+  citation.
 - Apico-alveolar articulatory detail and fine pretonic vocalism are not modelled
   (documented, not invented).
 - Free variation between coda-/s/ aspiration [h] and full deletion ∅ is reduced
