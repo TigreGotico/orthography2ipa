@@ -84,13 +84,31 @@ Stress follows the Convenção § Acento: paroxytone by default, with the
 oxytone-attracting endings `-r -l -z -ç -in -un -on -is -us -ns -ão` and any
 written accent overriding.
 
-The spec transcribes /u/ as **[u]**. The `mirandese_g2p` gold instead writes it
-narrowly as the centralised **[ʉ]**, and does so for *both* stressed ⟨u/ú⟩
-(`brúzio` → [ˈbɾʉziʉ], `bufanda` → [bʉˈfãdɐ]) and reduced final ⟨-o⟩
-(`bagaroso` → [bɐɣɐˈɾoz̺ʉ]). Because [ʉ] there is the transcriber's realisation
-symbol for /u/ generally, not a distinct vowel in complementary distribution,
-the [ʉ]↔[u] disagreements are a **notation artifact**, not a spec error: the
-spec is deliberately left with the broad [u] and the mismatch is not chased.
+The spec transcribes /u/ as **[u]** and final ⟨e⟩ as **[ɨ]**, on the published
+description of the central variety. Vasconcelos worked from the speech of
+Duas-Igrejas, and his letter table (EPM v1 §24, p. 200) gives unstressed ⟨o⟩ the
+value of the Portuguese unstressed o, unstressed ⟨u⟩ as "quasi u port. em *tu*,
+*rua*", and unstressed ⟨e⟩ as the Portuguese "e surdo" with *de* as the example —
+that is, [u] and [ɨ]. His entry for /u/ (§2) puts it *closer* than Portuguese
+("parecido com o *ou* francês"), not centralised, and stressed and unstressed
+alike.
+
+Part of the `mirandese_g2p` gold instead writes the centralised **[ʉ]**, for
+*both* stressed ⟨u/ú⟩ (`brúzio` → [ˈbɾʉziʉ], `bufanda` → [bʉˈfãdɐ]) and reduced
+final ⟨-o⟩ (`bagaroso` → [bɐɣɐˈɾoz̺ʉ]), and a few rows write final ⟨e⟩ as [e̞].
+That is one contributor's narrower notation, not a second dialect: under the
+same `central` tag the gold carries 65 [u] against 36 [ʉ] with no environment
+separating them (`búltio` [ˈbʉɫtiʉ] and `adulto` [ɐˈdultu] are both closed
+syllables), and final ⟨e⟩ splits 20 [ɨ] against 3 [e̞]. The residual
+disagreements are a **notation artifact**, not a spec error, and are not chased.
+
+**Coda /l/** is velarised in Mirandese — EPM v1 §13 gives a lateral that "só
+existe em fim de syllaba", the same sound as Portuguese *caldo*, *sol*, and §113
+has every word-final `-l` from Latin `-L` "gutturalizado". The spec still emits
+plain **[l]**, because §13 writes the velarised symbol "só em notação phonetica"
+and plain `l` "no uso corrente", and the gold follows the same practice: 14 plain
+coda [l] against 6 [ɫ]. A narrower Mirandese target would want `PT_CODA_L_DARK`
+carried over from `pt-PT`.
 
 ## Allophony (post-lexical)
 
@@ -196,7 +214,7 @@ intervocalic-/b/ token, `lhobo`, is transcribed with a stop [ˈlobʊ] in the
 `n = 11` gold, small-`n` lexical variability, not a Sendinês-specific block on
 a pan-Ibero-Romance process. Residual error is otherwise dominated by
 gold-notation choices the rules cannot and should not chase: the transcriber's
-centralised final vowel [ʉ] for unstressed final ⟨-o⟩ (see below), and the
+centralised final vowel [ʉ] for unstressed final ⟨-o⟩ (see above), and the
 lexically variable /d/ occlusion (see Allophony above).
 
 ## Sources
@@ -209,8 +227,13 @@ lexically variable /d/ occlusion (see Allophony above).
   Convenção Ortográfica da Língua Mirandesa.*, Sendinês provisions.
 - **Vasconcelos, J. Leite de (1900).** *Estudos de Philologia Mirandesa
   (Vol. I).* Imprensa Nacional, Lisboa., foundational description of the
-  sibilant system and the sub-dialect division (pp.172-173). Raiano `tierra`
-  agrees with the central norm (pp.219-220).
+  sibilant system and the sub-dialect division (pp.172-173), based on the
+  speech of Duas-Igrejas. §2 (pp.173-179) describes each vowel, §13
+  (pp.187 ff.) each consonant including the coda-only velarised lateral, and
+  §24 (p.200) tabulates the phonetic value of every letter by syllable type —
+  the locator for unstressed ⟨o u⟩ = [u] and unstressed ⟨e⟩ = [ɨ]. §113
+  (p.265) covers word-final `-l` from Latin `-L`. Raiano `tierra` agrees with
+  the central norm (pp.219-220).
 - **Vasconcelos, J. Leite de (1901).** *Estudos de Philologia Mirandesa
   (Vol. II).* Imprensa Nacional, Lisboa., § "II. Mirandês raiano" (pp.28-31):
   the Raiano villages offer no phonetic differences from Central. Their
