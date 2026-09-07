@@ -193,7 +193,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | co | wikipron | 459 | 0.1955 | - | 0.1171 | 0.1055 | 0.5708 | 0.5991 | [0.1782, 0.2132] | 0.3834 | research | crowd-scraped |
 | cop | wikipron | 591 | 0.3667 | - | 0.3667 | 0.3667 | 0.1032 | 0.1032 | [0.3470, 0.3863] | 0.1032 | research | crowd-scraped |
 | cri | primary_sources | 13† | 0.2147 | - | 0.2019 | 0.2019 | 0.3077 | 0.3077 | [0.1243, 0.3116] | 0.2308 | research | expert-human |
-| crk | wikipron | 159 | 0.3174 | - | 0.3174 | 0.3174 | 0.0126 | 0.0126 | [0.2959, 0.3357] | 0.0126 | research | crowd-scraped |
+| crk | wikipron | 159 | 0.1871 | - | 0.1871 | 0.1871 | 0.1698 | 0.1698 | [0.1676, 0.2074] | 0.1698 | research | crowd-scraped |
 | crs | wold | 1874 | 0.2114 | - | 0.2114 | 0.2114 | 0.5139 | 0.5139 | [0.1980, 0.2262] | 0.5139 | research | lexicon-derived |
 | cs | vox_communis | 44148 | 0.0680‡ | - | 0.0636 | 0.0636 | 0.5789 | 0.5789 | [0.0672, 0.0689] | 0.5622 | research | epitran-derived |
 | csb | wikipron | 2825 | 0.1663 | - | 0.1663 | 0.1663 | 0.3816 | 0.3816 | [0.1594, 0.1734] | 0.3816 | research | crowd-scraped |
