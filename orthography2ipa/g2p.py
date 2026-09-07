@@ -344,6 +344,16 @@ class G2P:
     lang : str
         Language code; resolved like :func:`orthography2ipa.get` (bare
         tags, ISO 639-3 aliases and nearest-match all work).
+    spec : Optional[LanguageSpec]
+        Run on this spec instead of the registry's. For a caller whose spec
+        is a variation on a shipped one — a ``dataclasses.replace`` copy
+        that teaches the stress rules one more written accent, say — this is
+        the way to build the engine on it, because everything the engine
+        derives from a spec (tokenizer, sandhi engine, allophone rescorer)
+        is compiled during construction and reading it from an attribute
+        afterwards is too late. The engine never writes to the spec, so the
+        registry's shared object is unaffected either way; *lang* is still
+        resolved, and still names the language the result is reported under.
     expand_allophones : bool
         Enumerate surface variants: branch the beam over every allophone of
         each phoneme from ``spec.allophones`` (flat ``+0.5`` cost each). This
@@ -393,6 +403,7 @@ class G2P:
         self,
         lang: str,
         *,
+        spec: Optional[LanguageSpec] = None,
         expand_allophones: bool = False,
         dialect_profile: Optional[str] = None,
         apply_sandhi: bool = True,
@@ -431,7 +442,7 @@ class G2P:
                 "on_unmapped must be 'ignore', 'log' or 'raise', "
                 f"got {on_unmapped!r}")
         self.lang: str = resolve(lang)
-        self.spec: LanguageSpec = get(self.lang)
+        self.spec: LanguageSpec = get(self.lang) if spec is None else spec
         # User rescorer(s) first, then — as the post-lexical stage — the
         # allophone rescorer compiled from the spec's ``allophone_rules``.
         # A spec with no rules (every shipped spec bar the pilots) compiles
