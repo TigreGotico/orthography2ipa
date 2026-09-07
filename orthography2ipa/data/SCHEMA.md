@@ -746,6 +746,31 @@ The two tests to apply, both of which must pass:
 - if a grapheme is unambiguous skip defining it in `"positional_graphemes"`
 - if an allophone is predictable, use it in  `"positional_graphemes"`
 
+## Minting a private-use lect code
+
+A variety with no ISO 639-3 code of its own is keyed as a private-use extension
+of the language it descends from: `{parent-tag}-x-{slug}`, where the slug names
+the place or the variety in lowercase ASCII. The prefix is not a label of
+convenience — it must agree with the spec's own `parent` and with the
+heaviest-weighted entry in `ancestors`. A spec whose `parent` is `pt-PT` cannot
+be keyed under a Castilic prefix, and a mismatch between the code and those two
+fields is a defect in the code, not in the fields.
+
+Glottolog is the authority consulted for the genealogy. Where it carries a
+languoid for the variety, its code goes in `glottolog_code` and its classification
+settles the prefix. Where it carries none — the usual case for a small contact
+variety or a recently codified vernacular — `glottolog_code` is `null`, and that
+is a legitimate and final state, not a placeholder: borrowing a neighbouring
+languoid's code to fill the field asserts a classification no authority makes.
+`iso639_3` follows the same rule and stays `null` when ISO 639-3 has no code for
+the variety, so that a code belonging to a different language is never claimed
+twice. With no languoid available, the prefix is decided from the cited
+descriptive literature and recorded in `notes`.
+
+Renaming a lect keeps the old code resolvable. The retired code is added to the
+alias table in `orthography2ipa/registry.py`, pointing at the canonical one, and
+is kept for one stable cycle so downstream packages that pin it keep working.
+
 ## File Organisation
 
 ```

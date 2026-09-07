@@ -70,7 +70,7 @@ not to certify a language on its own.
 | Araujo & Agostinho (2010), *Revista de Letras* 26 | Santome (Forro), ALUSTP standardization article | `cri` | 13 |
 | Baxter (1988), Pacific Linguistics B-95 | Kristang (Malacca Creole Portuguese) | `mcm` | 33 |
 | Brissos (2018), Estud. ling. galega, vol. esp. I | NW Portuguese (variedade do noroeste) | `pt-PT-x-porto` | 9 |
-| Navas Sánchez-Élez (2011), *El barranqueño* | Barranquenho (Barrancos, Baixo Alentejo) | `ext-PT-x-barrancos` | 10 |
+| Navas Sánchez-Élez (2011), *El barranqueño* | Barranquenho (Barrancos, Baixo Alentejo) | `pt-PT-x-barrancos` | 10 |
 | **total** | | | **505** |
 Broad `/…/`: 343. Narrow `[…]`: 162. `confidence`: 322 high, 169 medium, 14 low.
 | Omar (1975), FSI *Saudi Arabic, Urban Hijazi Dialect* | Urban Hijazi (Jeddah/Mecca/Medina koine) | `ar-SA-x-hejaz` | 26 |

@@ -1,4 +1,4 @@
-"""Barranquenho (ext-PT-x-barrancos) — contact-variety allophony.
+"""Barranquenho (pt-PT-x-barrancos) — contact-variety allophony.
 
 Barranquenho is a Portuguese–Spanish contact variety (Alentejo Portuguese
 base + Extremaduran/Andalusian Spanish adstrate). It inherits pt-PT via
@@ -21,12 +21,12 @@ from orthography2ipa.g2p import G2P
 
 @pytest.fixture(scope="module")
 def barrancos():
-    return orthography2ipa.get("ext-PT-x-barrancos")
+    return orthography2ipa.get("pt-PT-x-barrancos")
 
 
 @pytest.fixture(scope="module")
 def g2p():
-    return G2P("ext-PT-x-barrancos")
+    return G2P("pt-PT-x-barrancos")
 
 
 def _rule(spec, rule_id):
@@ -224,3 +224,24 @@ class TestMonosyllableFinalLiquids:
         out = g2p.transcribe(word)
         assert not out.endswith("l") and not out.endswith("ɾ") \
             and not out.endswith("r"), f"{word} -> {out} should elide"
+
+
+class TestLegacyCodeAlias:
+    """``ext-PT-x-barrancos`` (the ISO 639-3 Extremaduran prefix the lect was
+    first keyed under) still resolves to the Portuguese-based spec."""
+
+    def test_alias_resolves_to_the_same_spec(self):
+        assert orthography2ipa.get("ext-PT-x-barrancos") is orthography2ipa.get(
+            "pt-PT-x-barrancos")
+
+    def test_alias_reports_the_canonical_code(self):
+        assert orthography2ipa.get("ext-PT-x-barrancos").code == "pt-PT-x-barrancos"
+
+    def test_alias_transcribes_identically(self):
+        assert (orthography2ipa.transcribe("Barrancos", "ext-PT-x-barrancos")
+                == orthography2ipa.transcribe("Barrancos", "pt-PT-x-barrancos"))
+
+    def test_spec_carries_no_extremaduran_crossrefs(self, barrancos):
+        assert barrancos.iso639_3 is None
+        assert barrancos.glottolog_code is None
+        assert barrancos.parent == "pt-PT"

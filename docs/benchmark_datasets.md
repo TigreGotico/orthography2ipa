@@ -595,7 +595,7 @@ indicative rather than statistical: read the confidence interval.
 [TigreGotico/barranquenho-ipa-dict-synthetic](https://huggingface.co/datasets/TigreGotico/barranquenho-ipa-dict-synthetic)
 on Hugging Face: 319 word/IPA entries for Barranquenho: the
 Portuguese-Spanish contact variety of Barrancos: mapped to the
-`ext-PT-x-barrancos` spec. Each row also carries part-of-speech, the
+`pt-PT-x-barrancos` spec. Each row also carries part-of-speech, the
 Portuguese and Spanish equivalents, and a phonological note. Only the
 orthography and IPA columns are scored (Barranquenho is Latin-script, so
 no special input contract applies).

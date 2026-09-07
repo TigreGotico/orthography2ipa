@@ -2177,7 +2177,7 @@
     "sampled": false
   },
   {
-    "lang": "ext-PT-x-barrancos",
+    "lang": "pt-PT-x-barrancos",
     "dataset": "barranquenho_dict",
     "n": 1508,
     "o2i_per": 0.0045,
@@ -2233,7 +2233,7 @@
     "sampled": false
   },
   {
-    "lang": "ext-PT-x-barrancos",
+    "lang": "pt-PT-x-barrancos",
     "dataset": "portuguese_tts",
     "n": 20,
     "o2i_per": 0.0,
@@ -2289,7 +2289,7 @@
     "sampled": false
   },
   {
-    "lang": "ext-PT-x-barrancos",
+    "lang": "pt-PT-x-barrancos",
     "dataset": "primary_sources",
     "n": 10,
     "o2i_per": 0.2801,

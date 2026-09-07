@@ -239,12 +239,12 @@ class TestRionorescePrimaryFeatures:
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-# Barranquenho — ext-PT-x-barrancos (Convenção 2025)
+# Barranquenho — pt-PT-x-barrancos (Convenção 2025)
 # ══════════════════════════════════════════════════════════════════════════════
 
 @pytest.fixture(scope="module")
 def barrancos():
-    return orthography2ipa.get("ext-PT-x-barrancos")
+    return orthography2ipa.get("pt-PT-x-barrancos")
 
 
 class TestBarranquenhoConvencaoSignatures:
@@ -278,7 +278,7 @@ class TestBarranquenhoConvencaoSignatures:
         from orthography2ipa.g2p import G2P
 
         def ipa(word):
-            out = G2P("ext-PT-x-barrancos").transcribe_word(word)
+            out = G2P("pt-PT-x-barrancos").transcribe_word(word)
             return unicodedata.normalize("NFC", out).replace("ˈ", "")
 
         for word, expected in (("tempu", "tẽpu"), ("quen", "kẽ"), ("bem", "bẽ")):
