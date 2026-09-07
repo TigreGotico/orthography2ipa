@@ -122,7 +122,12 @@ from orthography2ipa.underspecification import (
     mark_density,
     underdetermined_positions,
 )
-from orthography2ipa.stress import apply_stress_mark, detect_stress, syllabify
+from orthography2ipa.stress import (
+    apply_stress_mark,
+    detect_stress,
+    syllabify,
+    syllabify_ipa,
+)
 from orthography2ipa.syllabifier_plugin import SyllabifierPlugin
 from orthography2ipa.script_distance import (
     SCRIPT_REGISTRY,
@@ -196,6 +201,7 @@ __all__ = [
     "detect_stress",
     "apply_stress_mark",
     "syllabify",
+    "syllabify_ipa",
     "SyllabifierPlugin",
     "get_syllabifier",
     "ScriptFeatures",
