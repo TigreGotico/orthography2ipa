@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.92.17a1](https://github.com/TigreGotico/orthography2ipa/tree/7.92.17a1) (2026-09-07)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.92.16a1...7.92.17a1)
+
+**Merged pull requests:**
+
+- fix\(crk\): short high vowels are lax [\#1497](https://github.com/TigreGotico/orthography2ipa/pull/1497) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.92.16a1](https://github.com/TigreGotico/orthography2ipa/tree/7.92.16a1) (2026-09-07)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.92.15a1...7.92.16a1)
@@ -369,10 +377,6 @@
 ## [7.86.5a1](https://github.com/TigreGotico/orthography2ipa/tree/7.86.5a1) (2026-08-31)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.86.4a1...7.86.5a1)
-
-**Merged pull requests:**
-
-- fix\(kn\): central short-a, tap rhotic, postalveolar affricates, anusvara assimilation [\#1399](https://github.com/TigreGotico/orthography2ipa/pull/1399) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.86.4a1](https://github.com/TigreGotico/orthography2ipa/tree/7.86.4a1) (2026-08-31)
 
@@ -832,15 +836,15 @@
 
 ## [7.80.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.80.1a1) (2026-08-24)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.80.0a1...7.80.1a1)
-
-## [7.80.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.80.0a1) (2026-08-24)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.16a1...7.80.0a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.16a1...7.80.1a1)
 
 ## [7.79.16a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.16a1) (2026-08-24)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.15a1...7.79.16a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.80.0a1...7.79.16a1)
+
+## [7.80.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.80.0a1) (2026-08-24)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.15a1...7.80.0a1)
 
 ## [7.79.15a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.15a1) (2026-08-24)
 
