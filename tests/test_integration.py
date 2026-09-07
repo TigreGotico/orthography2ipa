@@ -90,11 +90,11 @@ class TestPipelineRionorese:
 
 
 class TestPipelineBarranquenho:
-    """Test: pt-PT-x-barrancos tokenization."""
+    """Test: ext-PT-x-barrancos tokenization."""
 
     @pytest.fixture()
     def spec_barr(self):
-        return orthography2ipa.get("pt-PT-x-barrancos")
+        return orthography2ipa.get("ext-PT-x-barrancos")
 
     @pytest.fixture()
     def tok_barr(self, spec_barr):

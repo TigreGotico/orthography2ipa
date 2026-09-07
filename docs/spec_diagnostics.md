@@ -383,7 +383,7 @@ da | Indo-European > Germanic > Northwest Germanic > North Germanic | 63 | 31 | 
 dar | Nakh-Daghestanian | 53 | 34 | 2 | 5.8% | no | 0 | av 0.714 | 1 | 1056 | 0.0691
 enf | Uralic | 57 | 34 | 2 | 0.5% | no | 0 | sel 0.702 | 1 | 838 | 0.0892
 evn | Tungusic | 39 | 36 | 2 | 4.5% | yes | 0 | sia 0.821 | 2 | 1277 | 0.2447
-pt-PT-x-barrancos | Indo-European > Italic > Romance > Ibero-Romance | 25 | 36 | 2 | 1.4% | yes | 0 | aoa 0.167 | 3 | 1538 | 0.2801
+ext-PT-x-barrancos | Indo-European > Italic > Romance > Ibero-Romance | 25 | 36 | 2 | 1.4% | yes | 0 | aoa 0.167 | 3 | 1538 | 0.2801
 fax | Indo-European > Italic > Romance > Ibero-Romance | 58 | 31 | 2 | 1.2% | no | 0 | pt-BR-x-sul 0.81 | 1 | 655 | 0.1044
 gul | Indo-European > Germanic > Northwest Germanic > West Germanic | 33 | 25 | 2 | 4.9% | no | 0 | yol 0.676 | 1 | 207 | 0.4674
 he | Afro-Asiatic > Semitic > Central Semitic | 113 | 40 | 2 | 1.3% | yes | 0 |  | 2 | 2905 | 0.362

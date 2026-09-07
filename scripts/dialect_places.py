@@ -413,7 +413,7 @@ PLACES: dict[str, dict] = {
         qid="Q26253", label="Madeira", country="Portugal",
         note="Madeira (Funchal reference) — the autonomous region the variety is "
              "named for."),
-    "pt-PT-x-barrancos": dict(
+    "ext-PT-x-barrancos": dict(
         qid="Q368867", label="Barrancos", country="Portugal",
         note="Barrancos (Baixo Alentejo) — the single border municipality "
              "Barranquenho is spoken in."),

@@ -135,7 +135,7 @@ derived from them: see [ancestry.md](ancestry.md#clade-nodes-and-the-derived-fam
 
 | Code | Language / Variety |
 |---|---|
-| `pt-PT-x-barrancos` | Barranquenho (Portuguese-Spanish contact) |
+| `ext-PT-x-barrancos` | Barranquenho (Portuguese-Spanish contact) |
 | `ast-PT-x-rionor` | Rionorês (Asturian-Leonese in Portugal) |
 | `ast-PT-x-guadramil` | Guadramilês |
 | `mxi` | Mozarabic |

@@ -43,7 +43,7 @@ Input is standard Portuguese orthography (as used for the variety in the literat
 
 ## Limitations
 
-- **No gold benchmark**: pt-UY has no scoreboard row. Correctness here is by citation, not PER (precedent: `pt-PT-x-barrancos`).
+- **No gold benchmark**: pt-UY has no scoreboard row. Correctness here is by citation, not PER (precedent: `ext-PT-x-barrancos`).
 - Features 3–4 rest on a secondary source (Wikipedia). The two headline features (1–2) are primary (Carvalho 1998, page-cited).
 - Sociolinguistic variation along the RUP↔UBP continuum is real and gradient. the spec fixes the focused-local pole and notes the diffusion.
 
