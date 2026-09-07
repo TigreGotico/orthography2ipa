@@ -156,4 +156,4 @@ Most 429 responses come from Wikipedia's API rate limiter. The URLs are expected
 | `orthography2ipa/data/cop.json` | `/wikipedia` | https://cop.wikipedia.org/wiki/ϯⲙⲉⲧⲣⲉⲙⲛ̀ⲭⲏⲙⲓ | API error: DNS resolution failure (cop.wikipedia.org does not exist) |
 
 ---
-[← Bibliography](bibliography.md) · [Home](index.md) · [Benchmarks →](benchmarks.md)
+[← Bibliography](bibliography.md) · [Home](index.md) · [Sourcing →](sourcing.md)
