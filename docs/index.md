@@ -275,6 +275,7 @@ neighbours, so you can read the set start to finish or jump in anywhere.
 | [ipa_reference.md](ipa_reference.md) | IPA symbol reference with Unicode code points |
 | [bibliography.md](bibliography.md) | Citation management, `LinguisticSource` |
 | [link-audit.md](link-audit.md) | Citation URL liveness audit |
+| [sourcing.md](sourcing.md) | Where to find a citable source and what each kind is good for |
 
 ### Measuring accuracy
 

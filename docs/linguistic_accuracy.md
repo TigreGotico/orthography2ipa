@@ -6,7 +6,7 @@ This guide documents the methodology, standards, and conventions used to ensure 
 
 ## Guiding Principles
 
-1. **Primary sources over secondary sources.** Every phonological claim should trace back to a peer-reviewed article, grammar, or phonology monograph. Wikipedia, language-learning apps, and AI outputs are not acceptable sources.
+1. **Primary sources over secondary sources.** Every phonological claim should trace back to a peer-reviewed article, grammar, or phonology monograph. Wikipedia, language-learning apps, and AI outputs are not acceptable sources. See [sourcing.md](sourcing.md) for where to find a primary source that is actually reachable, and what a `pages:` locator or `# ATTESTED` marker obligates you to verify.
 
 2. **Standard varieties first.** Each language module should first accurately describe the standard or prestige variety, then add dialect variation. Dialects should clearly document how they deviate from the standard.
 

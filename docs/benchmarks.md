@@ -230,4 +230,4 @@ correct value cannot be determined at all. A skipped row is a reportable
 negative result, not a gap to fill with a plausible guess.
 
 ---
-[← Link audit](link-audit.md) · [Home](index.md) · [Benchmark gold datasets →](benchmark_datasets.md)
+[← Sourcing](sourcing.md) · [Home](index.md) · [Benchmark gold datasets →](benchmark_datasets.md)
