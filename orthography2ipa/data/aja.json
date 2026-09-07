@@ -133,6 +133,16 @@
       "url": "https://en.wikipedia.org/wiki/Adja_language",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Adja_language",
       "notes": "Alternate-name article confirming classification and codes."
+    },
+    {
+      "id": "morley2011",
+      "author": "Morley, Eric A.",
+      "year": 2011,
+      "title": "A Grammar of Ajagbe",
+      "publisher": "self-published, hosted on Wikimedia Commons",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Eric_A_Morley,_Ajagbe_grammar.pdf",
+      "pages": "viii-ix",
+      "notes": "Front-matter orthography note, read in full. Corroborates two mapping decisions already in this spec: nasal vowels written with a following ⟨n⟩ rather than a dedicated diacritic, and the digraphs ⟨kp⟩/⟨gb⟩ each spelling one coarticulated stop. The author states this book's orthography is his own pre-standardization variant, not the finalized Aja orthography, so it does not settle the standard spelling used elsewhere; its description of ⟨h⟩ and ⟨x⟩ could not be read with confidence from the extracted text (the IPA symbols came through as garbled Latin capitals), so no claim is made about those two graphemes from this source."
     }
   ],
   "wikipedia": [

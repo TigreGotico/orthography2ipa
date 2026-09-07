@@ -63,6 +63,16 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Cayuga_language",
       "pages": null,
       "notes": "Consonant table with the ⟨d, t⟩ / ⟨g, k⟩ / ⟨j, ts⟩ spelling pairs; five oral vowels with long counterparts; nasal vowels [ɛ̃] ⟨ę⟩, [õ] ⟨ǫ⟩; /ts/ → [tʃ] before front vowels; /s/ → [ʃ] before /i/, /j/, /ɹ/."
+    },
+    {
+      "id": "dyck_etal2024",
+      "author": "Dyck, Carrie, Froman, Frances, Keye, Alfred and Keye, Lottie",
+      "year": 2024,
+      "title": "A grammar and dictionary of Gayogo̱hó:nǫˀ (Cayuga)",
+      "publisher": "Language Science Press",
+      "url": "https://zenodo.org/records/10473483/files/398-dyck-2024.pdf",
+      "pages": "13-17, 29-30",
+      "notes": "Ch. 2, pp. 13-17: the ⟨d, t⟩ / ⟨g, k⟩ / ⟨j, ts⟩ pairs are the modified Henry orthography's spelling of one obstruent phoneme each, voiced-looking letter used where the segment surfaces voiced not word-finally — corroborates the existing grapheme mapping, no contradiction. §3.9, pp. 29-30: confirms the not-modelled odd-numbered-syllable devoicing/laryngealization is real (citing Foster 1982 and Doherty 1993) and genuinely depends on counting syllables from the word edge, so the existing decision not to model it as an unconditioned allophone stands."
     }
   ],
   "ancestors": [
