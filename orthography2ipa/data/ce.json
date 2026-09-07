@@ -252,7 +252,7 @@
       "ø"
     ]
   },
-  "notes": "Chechen in Cyrillic script. Rich ejective series: КӀ, ПӀ, ТӀ, ЦӀ, ЧӀ. ГӀ = pharyngeal /ʕ/; ХЬ = pharyngeal /ħ/; ХӀ = /h/. Front rounded vowels: УЬ = /y/, ОЬ = /wø/, ЭЬ = /ø/. Pharyngeals and ejectives are typologically notable. Complex consonant clusters. Stress exemption: Chechen word stress is non-contrastive (typically realized near the start of the word) and is not marked by or reliably predictable from the Cyrillic orthography modeled here; no stress block is declared. Source: Chechen language, Wikipedia.",
+  "notes": "Chechen in Cyrillic script. Rich ejective series: КӀ, ПӀ, ТӀ, ЦӀ, ЧӀ. ГӀ = pharyngeal /ʕ/; ХЬ = pharyngeal /ħ/; ХӀ = /h/. Front rounded vowels: УЬ = /y/, ОЬ = /wø/, ЭЬ = /ø/. Pharyngeals and ejectives are typologically notable. Complex consonant clusters. Stress exemption: Chechen word stress is non-contrastive (typically realized near the start of the word) and is not marked by or reliably predictable from the Cyrillic orthography modeled here; no stress block is declared. Source: Chechen language, Wikipedia. Open question: the consonant chart in Dotton & Wagner (p. 5) has a uvular series /q qʼ qː/ and a voiced dorsal fricative /ʁ/ that no grapheme here produces, while ⟨гӀ⟩ is mapped to the pharyngeal /ʕ/.",
   "sources": [
     {
       "id": "chechen_wiki",
@@ -264,6 +264,16 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Chechen_language",
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "dotton_wagner_chechen",
+      "author": "Dotton, Zura & Wagner, John Doyle",
+      "year": 2017,
+      "title": "A Grammar of Chechen",
+      "publisher": "Duke University, Slavic and Eurasian Language Resource Center",
+      "url": "https://slaviccenters.duke.edu/sites/slaviccenters.duke.edu/files/file-attachments/chechen-grammar.original.pdf",
+      "pages": "5-7",
+      "notes": "Consonant system, aspiration of ejectives and the 26-vowel system read in full. The PDF carries no imprint date; the year given is the date the file was posted. The Cyrillic-to-IPA alphabet table promised in section 2.1 is absent from the distributed PDF, so this source does not settle any individual letter's value."
     }
   ],
   "wikipedia": [

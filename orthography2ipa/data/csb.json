@@ -152,7 +152,7 @@
     }
   ],
   "parent": "x-clade-west2792",
-  "notes": "Kashubian (Kaszëbsczi jãzëk), West Slavic language/dialect spoken in Pomerania, Poland. Official regional language since 2005. Nasal vowel ą /ɔ̃/, schwa ë /ə/. Digraphs sz, cz, rz, dż precede single letters. Significant German loanword influence.",
+  "notes": "Kashubian (Kaszëbsczi jãzëk), West Slavic language/dialect spoken in Pomerania, Poland. Official regional language since 2005. Nasal vowel ą /ɔ̃/, schwa ë /ə/. Digraphs sz, cz, rz, dż precede single letters. Significant German loanword influence. Open questions from Hopkins (2001: xi): his table of the official orthography gives ⟨é⟩ = /e/ rather than /ɛ/, and his note 4 makes the grave accent a labial glide onset, so ⟨ù⟩ would be /wu/ rather than the /u/ mapped here.",
   "sources": [
     {
       "id": "wiki-csb",
@@ -160,6 +160,16 @@
       "year": 2024,
       "title": "Kashubian language",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Kashubian_language"
+    },
+    {
+      "id": "hopkins2001",
+      "author": "Hopkins, Paul Stanley",
+      "year": 2001,
+      "title": "The phonological structure of the Kashubian word",
+      "publisher": "University of Victoria (PhD thesis)",
+      "url": "https://dspace.library.uvic.ca/items/3953007f-eb2c-4560-8c93-a003ed8b45be",
+      "pages": "xi",
+      "notes": "The 'Guide to Kashubian Orthography' table maps IPA to the official 1995 orthography; its note 4 states that the grave accent marks a labial glide onset to /o/ and /u/."
     }
   ],
   "wikipedia": [
