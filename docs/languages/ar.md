@@ -320,22 +320,53 @@ plus the reduced/allophonic qualities `ə ɪ ʊ ɛ ɔ e o` these dialects also r
 unwritten short-vowel phonemes as) counted in the gold, then folded out of both
 hypothesis and gold before rescoring.
 
-| Row | n (scored) | short-vowel share | baseline PER | folded PER | distinct homographs |
+| Row | n (scored) | short-vowel share of gold characters | baseline PER (board) | folded PER | omission score |
 |---|---|---|---|---|---|
-| `ar-EG` (`arz`) | 590 | 1154/4053 = 28.5 % | 0.3692 | 0.3317 | 140 |
-| `ar-SA-x-hejaz` (`acw`) | 1889 | 4164/14491 = 28.7 % | 0.3412 | 0.2399 | 520 |
-| `ar-x-gulf` (`afb`) | 614 | 1079/3837 = 28.1 % | 0.4273 | 0.3252 | 123 |
-| `ar-IQ` (`acm`) | 97 | 136/487 = 27.9 % | 0.3666 | 0.3521 | 9 (small n) |
+| `ar-EG` (`arz`) | 590 | 852/2598 = 24.7 % | 0.3237 | 0.3078 | 0.2304 |
+| `ar-SA-x-hejaz` (`acw`) | 1889 | 2979/9240 = 24.4 % | 0.2877 | 0.1983 | 0.2359 |
+| `ar-x-gulf` (`afb`) | 614 | 834/2822 = 22.8 % | 0.3786 | 0.2893 | 0.2266 |
+| `acm` (Iraqi, scored under its ISO 639-3 code) | 97 | 121/387 = 23.8 % | 0.3666 | 0.3732 | 0.2335 |
 
-`ar-SA-x-hejaz` lands at the 0.25 target once short vowels are folded out; the other
-three stay above it, so the vowel fold explains a large share of the remaining PER but
-not all of it. Every row also carries a substantial homograph count — distinct
-undiacritized input skeletons that the same gold file transcribes two or more
-different ways (e.g. `arz` أجر → `ʔaɡr`/`ʔadʒdʒar`/`ʔadʒr`/`ʔaɡɡar`; `afb` ال →
-`ʔɪl`/`ɪl`/`ɪ`) — evidence that the undiacritized orthography underdetermines these
-words independently of the missing short vowels. That is not itself an additional
-score floor: the harness scores each skeleton against the best-matching of its gold
-transcriptions, so a homograph is scored leniently rather than penalized.
+Every cell comes from the tree this table ships in. The baseline is the row's
+`per` in `benchmarks/results.json`. The share, the folded PER and the omission
+score are `scripts/folded_per.py` and `scripts/omission_score.py` run with the
+segment set `a i u ə ɪ ʊ ɛ ɔ e o`; the share is the script's own count, removed
+characters over gold characters, which is the quantity PER is measured in. The
+Iraqi row runs under `acm`: the harness registers that gold under the ISO 639-3
+code, and `ar-IQ` is not a name it knows. Its folded PER is above its baseline,
+which the script permits: folding the short vowels out of both sides shortens
+the gold, so the same consonant errors weigh more.
+
+The last three columns answer three different questions and none of them is a
+lower bound. The share counts how much of the gold the unwritten vowels hold.
+The folded PER removes those vowels from the hypothesis and the gold alike, so
+it measures how well the spec does on the material the orthography does
+supply. The omission score removes them from the hypothesis only, which is
+what a spec blind to short vowels actually emits, so it is the one number that
+can be compared with the baseline PER in the same column of the board.
+
+An omission score is a strategy's score, not a floor. Deleting a segment and
+guessing it wrong cost the same single edit, so a spec that guesses the
+likeliest vowel beats omission whenever the guess lands, and rows do come in
+below it. What it tells a reader is how much of a row's error is the unwritten
+material, and whether the spec is doing better or worse than declining to
+guess.
+
+`scripts/omission_score.py` computes that column, through the same
+normalisation and edit distance the scorer uses, so a number quoted in a spec
+note and one quoted here come from a single definition.
+`ar-SA-x-hejaz` lands under the 0.25 target once short vowels are folded out; the
+other three stay above it, so the vowel fold explains a large share of the remaining
+PER but not all of it. These golds also carry homographs — distinct undiacritized
+input skeletons that the same gold file transcribes two or more different ways
+(e.g. `arz` أجر → `ʔaɡr`/`ʔadʒdʒar`/`ʔadʒr`/`ʔaɡɡar`; `afb` ال → `ʔɪl`/`ɪl`/`ɪ`) —
+evidence that the undiacritized orthography underdetermines these words
+independently of the missing short vowels. That is not itself an additional score
+floor: the harness scores each skeleton against the best-matching of its gold
+transcriptions, so a homograph is scored leniently rather than penalized. The
+per-row homograph counts an earlier version of this table carried came from an
+older engine and are not reproduced by any shipped script, so they are not
+restated here.
 
 These figures are **measured** from the shipped gold (`scripts/benchmark.py`
 `load_wikipron`), not sourced from a grammar, and are reported as a distributional

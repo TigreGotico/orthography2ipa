@@ -433,9 +433,9 @@
   "harness_version": "1.1",
   "limit": null,
   "valid_ceiling": {
-   "per": 0.2476,
+   "per": 0.1656,
    "folded": "short vowels (harakat)",
-   "citation": "Wiktionary files Arabic entries at the unvocalized page title (Wiktionary:About_Arabic), so the wikipron input column carries no harakat; folding short vowels out of the gold IPA before rescoring gives this consonant-only floor. See this file's notes, 'MEASURED UNDECIDABLE-INPUT CEILING'."
+   "citation": "Wiktionary files Arabic entries at the unvocalized page title (Wiktionary:About_Arabic), so the wikipron input column carries no harakat. This is the folded PER: the spec's own output scored against the gold with the short vowels removed from both sides, which is what the spec scores on the material the orthography does supply. Reproduce it with scripts/folded_per.py --lang ar --dataset wikipron --segments 'a i u'. It is a different quantity from the omission score, which removes the vowels from the hypothesis only; see this file's notes."
   },
   "oracle_per_top3": 0.2539,
   "oracle_exact_top3": 0.0763,
