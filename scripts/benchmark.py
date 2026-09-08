@@ -1812,7 +1812,7 @@ def load_mirandese(lang: str, limit: int) -> List[Tuple[str, str]]:
 def load_barranquenho_dict(lang: str, limit: int) -> List[Tuple[str, str]]:
     """Barranquenho IPA dictionary (TigreGotico/barranquenho-ipa-dict-synthetic
     on Hugging Face) — 319 entries for the Barranquenho contact variety
-    (``pt-PT-x-barrancos``), a Portuguese–Spanish border speech of Barrancos.
+    (``ext-PT-x-barrancos``), a Portuguese–Spanish border speech of Barrancos.
 
     PROVENANCE — the upstream dataset regrew to ~1.8k rows with a per-row
     ``provenance_tier`` column. Rows tagged ``engine-verified-convention``
@@ -3063,7 +3063,7 @@ DATASETS: Dict[str, Tuple[DatasetLoader, List[str]]] = {
     "wikipron_restored": (load_wikipron_restored,
                           sorted(_WIKIPRON_RESTORED_LANGS)),
     "mirandese_g2p": (load_mirandese, sorted(_MIRANDESE_DIALECTS)),
-    "barranquenho_dict": (load_barranquenho_dict, ["pt-PT-x-barrancos"]),
+    "barranquenho_dict": (load_barranquenho_dict, ["ext-PT-x-barrancos"]),
     "mirandese_dict": (load_mirandese_dict, sorted(_MIRANDESE_DICT_DIALECTS)),
     "portuguese_unified": (load_portuguese_unified, sorted(_PT_UNIFIED_REGIONS)),
     "4catac": (load_4catac, sorted(_4CATAC_FILES)),

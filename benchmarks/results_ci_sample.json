@@ -2892,7 +2892,7 @@
     "limit": 1000
   },
   {
-    "lang": "pt-PT-x-barrancos",
+    "lang": "ext-PT-x-barrancos",
     "dataset": "barranquenho_dict",
     "n": 1000,
     "per": 0.004,
@@ -2905,7 +2905,7 @@
     "limit": 1000
   },
   {
-    "lang": "pt-PT-x-barrancos",
+    "lang": "ext-PT-x-barrancos",
     "dataset": "portuguese_tts",
     "n": 20,
     "per": 0.0,
@@ -2918,7 +2918,7 @@
     "limit": 1000
   },
   {
-    "lang": "pt-PT-x-barrancos",
+    "lang": "ext-PT-x-barrancos",
     "dataset": "primary_sources",
     "n": 10,
     "per": 0.2801,

@@ -251,9 +251,9 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | eu | wikipron | 12008 | 0.0546 | - | 0.0545 | 0.0545 | 0.6084 | 0.6084 | [0.0532, 0.0561] | 0.6081 | production | crowd-scraped |
 | evn | northeuralex | 1132 | 0.0970 | - | 0.0970 | 0.0970 | 0.5088 | 0.5088 | [0.0904, 0.1043] | 0.5088 | research | lexicon-derived |
 | evn | wikipron | 145 | 0.2447 | - | 0.2447 | 0.2447 | 0.1241 | 0.1241 | [0.2197, 0.2710] | 0.1241 | research | crowd-scraped |
-| pt-PT-x-barrancos | barranquenho_dict | 1508 | 0.0045‡ | - | 0.0021 | 0.0013 | 0.9881 | 0.9927 | [0.0029, 0.0061] | 0.9775 | research | llm-generated |
-| pt-PT-x-barrancos | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-barrancos | primary_sources | 10† | 0.2801 | - | 0.2241 | 0.2241 | 0.4000 | 0.4000 | [0.1363, 0.4286] | 0.3000 | research | expert-human |
+| ext-PT-x-barrancos | barranquenho_dict | 1508 | 0.0045‡ | - | 0.0021 | 0.0013 | 0.9881 | 0.9927 | [0.0029, 0.0061] | 0.9775 | research | llm-generated |
+| ext-PT-x-barrancos | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ext-PT-x-barrancos | primary_sources | 10† | 0.2801 | - | 0.2241 | 0.2241 | 0.4000 | 0.4000 | [0.1363, 0.4286] | 0.3000 | research | expert-human |
 | fa | ipadict | 7695 | 0.2540 | - | 0.2309 | 0.2253 | 0.1193 | 0.1220 | [0.2507, 0.2574] | 0.1077 | research | machine-generated |
 | fa | wikipron | 9279 | 0.3943 | - | 0.3742 | 0.3702 | 0.0177 | 0.0178 | [0.3911, 0.3971] | 0.0170 | research | crowd-scraped |
 | fa-x-enp | wikipron | 9279 | 0.2381 | - | 0.2121 | 0.2064 | 0.1230 | 0.1258 | [0.2352, 0.2410] | 0.1024 | research | crowd-scraped |

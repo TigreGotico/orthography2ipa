@@ -748,28 +748,27 @@ The two tests to apply, both of which must pass:
 
 ## Minting a private-use lect code
 
-A variety with no ISO 639-3 code of its own is keyed as a private-use extension
-of the language it descends from: `{parent-tag}-x-{slug}`, where the slug names
-the place or the variety in lowercase ASCII. The prefix is not a label of
-convenience — it must agree with the spec's own `parent` and with the
-heaviest-weighted entry in `ancestors`. A spec whose `parent` is `pt-PT` cannot
-be keyed under a Castilic prefix, and a mismatch between the code and those two
-fields is a defect in the code, not in the fields.
+A variety with no ISO 639-3 code of its own is keyed as a private-use extension,
+`{prefix}-x-{slug}`, where the slug names the place or the variety in lowercase
+ASCII. The prefix encodes a modelling decision, not a genealogical claim: it may
+deliberately signal that the variety is *not* a member of the language its
+prefix resembles. A mixed or contact language is a language in its own right and
+is not a dialect of either parent, so its prefix need not — and often must not —
+match the spec's `parent` or the heaviest entry in `ancestors`, which model the
+weighting of the inherited material rather than descent. Record the reasoning in
+`notes`.
 
-Glottolog is the authority consulted for the genealogy. Where it carries a
-languoid for the variety, its code goes in `glottolog_code` and its classification
-settles the prefix. Where it carries none — the usual case for a small contact
-variety or a recently codified vernacular — `glottolog_code` is `null`, and that
-is a legitimate and final state, not a placeholder: borrowing a neighbouring
-languoid's code to fill the field asserts a classification no authority makes.
-`iso639_3` follows the same rule and stays `null` when ISO 639-3 has no code for
-the variety, so that a code belonging to a different language is never claimed
-twice. With no languoid available, the prefix is decided from the cited
-descriptive literature and recorded in `notes`.
+Glottolog is the authority consulted for genealogy. Where it carries a languoid,
+its code goes in `glottolog_code`; where it carries none — the usual case for a
+small contact variety or a recently codified vernacular — the field is `null`,
+and that is a legitimate final state, not a placeholder. `iso639_3` follows the
+same rule and stays `null` when ISO 639-3 has no code for the variety, so that a
+code belonging to a different language is never claimed twice.
 
-Renaming a lect keeps the old code resolvable. The retired code is added to the
-alias table in `orthography2ipa/registry.py`, pointing at the canonical one, and
-is kept for one stable cycle so downstream packages that pin it keep working.
+An established lect code is public API: downstream packages pin it. Changing one
+needs the owner's agreement, and the retired code is added to the alias table in
+`orthography2ipa/registry.py` pointing at the canonical one, kept for one stable
+cycle.
 
 ## File Organisation
 
