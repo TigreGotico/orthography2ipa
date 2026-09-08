@@ -280,6 +280,17 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Udmurt_language",
       "pages": null,
       "notes": "Letter-by-letter Cyrillic→IPA table (ӝ [d͡ʒ], ӟ [d͡ʑ], ӵ [t͡ʃ], ч [t͡ɕ], ӧ [ɜ]~[ə], ӥ non-palatalising [i], ы [ɨ]~[ɯ], л [ɫ]~[ʎ]) plus the rule that д з л н с т palatalise before е ё и ю я ь; consonant and vowel inventories. Source of every value in this spec."
+    },
+    {
+      "id": "ganeyev_perevozchikov2018",
+      "author": "Ganeyev, Igor'; Perevozchikov, Yuriy; Pischlöger, Christian; Bradley, Jeremy",
+      "year": 2018,
+      "title": "Марым, лэся… – Udmurt for Beginners (Release 3.0, draft of units 0-10)",
+      "publisher": "University of Vienna / Ludwig Maximilian University Munich, INFUSE Erasmus+ project",
+      "url": "https://www.infuse.finnougristik.uni-muenchen.de/e-learning/udmurt/o5_udmurt.pdf",
+      "wikipedia_url": null,
+      "pages": "10-14",
+      "notes": "§0.2 (pp. 10-11) is the phoneme inventory in Uralic Phonetic Alphabet symbols with IPA in parentheses; §0.3 (pp. 12-14) is the 38-letter alphabet with a value per letter, read in full. Confirms ⟨ӝ⟩ = ǯ (d͡ʒ), ⟨ӟ⟩ = ʒ́ (d͡ʑ), ⟨ӵ⟩ = č (t͡ʃ), plain ⟨ч⟩ = ć (t͡ɕ), ⟨ӥ⟩ = i without palatalising the preceding consonant, ⟨ы⟩ = i̮ (ɨ), and the alveolar series ⟨д з л н с т⟩ as d~d', z~ź, l~l', n~ń, s~ś, t~t' with the palatal reading chosen by the following softening vowel or ⟨ь⟩. It gives ⟨ӧ⟩ as e̮, the close-mid unrounded central vowel (ɘ), where this spec writes ɜ~ə; a difference of symbol choice, recorded here. A teaching grammar, not a reference grammar, and marked by its authors as an incomplete draft; it is cited for its explicit letter table, which the reference works cited on Wikipedia do not put online."
     }
   ],
   "timespan": {
