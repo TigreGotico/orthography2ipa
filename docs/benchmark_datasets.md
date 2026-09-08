@@ -1205,19 +1205,22 @@ Dellert et al. 2020, *NorthEuraLex: a wide-coverage lexical database of
 Northern Eurasia*): a 100+-language comparative wordlist. Every wired
 language was smoke-checked (the engine must produce non-empty output for a
 large majority of the language's forms) and restricted to specs with a
-non-empty grapheme table:
+non-empty grapheme table. Sample sizes, spec tiers and PER for these rows
+live on the [scoreboard](scoreboard.md) under the `northeuralex` dataset;
+this page names the wiring only, so that a rescore never leaves a stale
+number here:
 
-| o2i tag | NorthEuraLex language | Spec quality | `N` | PER |
-|---|---|---|---:|---:|
-| `liv` | Livonian | skeleton | 1042 | 0.1837 |
-| `sms` | Skolt Sami | skeleton | 1063 | 0.4344 |
-| `sjd` | Kildin Sami | skeleton | 1011 | 0.2748 |
-| `yrk` | Tundra Nenets | skeleton | 1016 | 0.4423 |
-| `bua` | Buryat | skeleton | 1174 | 0.3003 |
-| `evn` | Evenki | skeleton | 1132 | 0.3407 |
-| `niv` | Nivkh | skeleton | 833 | 0.3922 |
-| `ale` | Aleut | skeleton | 896 | 0.3993 |
-| `ain` | Hokkaido Ainu | stub | 858 | 0.1672 |
+| o2i tag | NorthEuraLex language |
+|---|---|
+| `liv` | Livonian |
+| `sms` | Skolt Sami |
+| `sjd` | Kildin Sami |
+| `yrk` | Tundra Nenets |
+| `bua` | Buryat |
+| `evn` | Evenki |
+| `niv` | Nivkh |
+| `ale` | Aleut |
+| `ain` | Hokkaido Ainu |
 
 Excluded despite an ISO/registry match: `yux` (Southern Yukaghir) has a
 non-empty grapheme table but scored 0/913 non-empty in the smoke check — a
@@ -1227,16 +1230,17 @@ row alone can fix.
 
 **WOLD** ([lexibank/wold](https://github.com/lexibank/wold), Haspelmath &
 Tadmor 2009, *World Loanword Database*): a 41-language loanword-typology
-wordlist. Same selection discipline:
+wordlist. Same selection discipline; the measured rows are on the
+[scoreboard](scoreboard.md) under the `wold` dataset:
 
-| o2i tag | WOLD language | Spec quality | `N` | PER |
-|---|---|---|---:|---:|
-| `car` | Galibi Carib (Kalina) | skeleton | 1190 | 0.1578 |
-| `arn` | Mapudungun | stub | 1266 | 0.3114 |
-| `gwd` | Gawwada | skeleton | 976 | 0.0481 |
-| `irk` | Iraqw | skeleton | 1117 | 0.2182 |
-| `crs` | Seychelles Creole | research | 1874 | 0.2240 |
-| `rif` | Tarifiyt Berber | research | 1506 | 0.4095 |
+| o2i tag | WOLD language |
+|---|---|
+| `car` | Galibi Carib (Kalina) |
+| `arn` | Mapudungun |
+| `gwd` | Gawwada |
+| `irk` | Iraqw |
+| `crs` | Seychelles Creole |
+| `rif` | Tarifiyt Berber |
 
 Excluded despite an ISO match: WOLD's own `KildinSaami` (`sjd`) romanizes
 the language differently from NorthEuraLex's Cyrillic forms and scored only
@@ -1261,11 +1265,6 @@ nothing for a gold row to exercise. Only Gawwada, Iraqw, Seychelles Creole
 and Tarifiyt Berber had both a non-empty grapheme table and no existing gold
 anywhere in the registry; all four smoke-checked at ~100% non-empty engine
 coverage on a 150-row sample and are wired above.
-
-The `car`/`arn` PER figures in the table above (0.1578 / 0.3114) do not match
-`benchmarks/results.json` (0.0857 / 0.0112). The board is the authority for a
-score, so read the JSON values and treat the table cells as stale until a
-rescore refreshes them.
 
 ### kaikki.org Wiktextract gold (`kaikki`)
 
