@@ -4106,6 +4106,14 @@ def read_scoreboard_rows() -> List[dict]:
         return json.load(fh)
 
 
+def read_ci_sample_rows() -> List[dict]:
+    """The committed CI-sample rows, or ``[]`` if none are written yet."""
+    if not os.path.exists(CI_SAMPLE_JSON):
+        return []
+    with open(CI_SAMPLE_JSON, encoding="utf-8") as fh:
+        return json.load(fh)
+
+
 #: Indent used for benchmarks/results.json. It is 1, not the 2 every
 #: sibling artifact uses, because that is how the file is committed:
 #: ~80 commits touch it, and reformatting 8k lines to gain a space would
@@ -4489,7 +4497,9 @@ def main() -> None:
                          "language scored at the fixed uniform "
                          f"--limit {CI_SAMPLE_LIMIT} sample used by "
                          "check_benchmark_regression.py (NOT the full "
-                         "published scoreboard).")
+                         "published scoreboard). With --lang or --dataset "
+                         "only those rows are rescored and merged into the "
+                         "committed sample.")
     ap.add_argument("--no-topk", action="store_true",
                     help="Skip the top-k oracle PER columns in "
                          "--scoreboard. The oracle is ON by default "
@@ -4516,7 +4526,18 @@ def main() -> None:
     if args.ci_sample:
         # 1-best only, deliberately (and by default): the regression gate
         # compares point-estimate PER and must never drift onto an oracle.
-        rows = build_scoreboard(CI_SAMPLE_LIMIT, oracle=False)
+        # --lang/--dataset narrow the run and MERGE the result into the
+        # committed sample, the same contract as --scoreboard below.
+        subset = bool(args.lang or args.dataset)
+        rows = build_scoreboard(
+            CI_SAMPLE_LIMIT, oracle=False,
+            only_langs=[args.lang] if args.lang else None,
+            only_datasets=[args.dataset] if args.dataset else None,
+        )
+        if subset:
+            print(f"merging {len(rows)} rescored rows into the committed "
+                  f"CI sample", file=sys.stderr)
+            rows = merge_scoreboard_rows(read_ci_sample_rows(), rows)
         os.makedirs(os.path.dirname(CI_SAMPLE_JSON), exist_ok=True)
         with open(CI_SAMPLE_JSON, "w", encoding="utf-8") as fh:
             json.dump(rows, fh, indent=2, ensure_ascii=False)

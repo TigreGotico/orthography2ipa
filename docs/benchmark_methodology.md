@@ -109,7 +109,9 @@ regression is a real PER change, not slice noise. The published docs
 scoreboard stays full regardless. A minimum-scored-row floor still fails the
 gate closed if a wholesale dataset-loading outage would otherwise produce a
 false green. Refresh `results_ci_sample.json` whenever the full scoreboard is
-regenerated.
+regenerated. A refresh scoped with `--lang` or `--dataset` rescores only
+those rows and merges them into the committed sample, so a one-language fix
+does not sweep in unrelated drift or download every dataset.
 
 **Board staleness is a separate failure the regression gate cannot see.**
 That gate is one-sided: it fires when a row gets WORSE, so a row left
