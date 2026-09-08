@@ -42,10 +42,11 @@ portuguese = ["silabificador>=2.1.0a1"]
 # means unrar or unar: the bsdtar backend truncates its read of this archive,
 # so a host carrying only bsdtar counts as having none. Without one the CoRuSS
 # loader raises, build_scoreboard skips that row and the archive-backed tests
-# skip, exactly as the cmudict/scriptconv row does when scriptconv is absent —
-# the row is defended locally rather than in CI.
+# skip, exactly as the cmudict row does when scriptconv is absent. The CI
+# workflows install unar so the ru rows and the en-US/cmudict row are gated
+# there and not only on a developer's box.
 test = ["pytest", "pytest-timeout", "pytest-cov", "pydantic>=2", "hypothesis",
-        "silabificador>=2.1.0a1", "huggingface_hub", "rarfile"]
+        "silabificador>=2.1.0a1", "huggingface_hub", "rarfile", "scriptconv"]
 # dev-only extra for scripts/compare_systems.py; never a runtime dependency.
 # africa-g2p is NOT listed here: it isn't published on PyPI, so it can't be
 # a pip extra. Install it from a locally built wheel of the upstream
