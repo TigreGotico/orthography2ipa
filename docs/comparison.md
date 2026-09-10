@@ -32,7 +32,6 @@ One line per language: the best system on its primary gold, and where o2i lands.
 - **es (Spanish)** — epitran #1, o2i #2
 - **eu (Basque (Euskara))** — o2i #1 (beats espeak rules-only)
 - **eu-wikipron (Basque (Euskara), wikipron-primary variant)** — o2i #1 (beats espeak rules-only)
-- **pt-PT-x-barrancos** — primary gold has no comparable systems (same-source); see the per-language table below for a comparison on a secondary gold
 - **fi (Finnish)** — o2i #1 (beats epitran)
 - **fr (French)** — o2i #1 (beats espeak rules-only)
 - **ga (Irish)** — o2i #1 (beats espeak rules-only)
@@ -50,6 +49,7 @@ One line per language: the best system on its primary gold, and where o2i lands.
 - **nup (Nupe)** — o2i #1 (beats africa-g2p)
 - **pl (Polish)** — o2i #1 (beats epitran)
 - **pt-PT (European Portuguese)** — o2i #1 (beats espeak rules-only) (tugaphone with its lexicon scores 0.1887 — informational)
+- **pt-PT-x-barrancos** — primary gold has no comparable systems (same-source); see the per-language table below for a comparison on a secondary gold
 - **ro (Romanian)** — o2i #1 (beats epitran)
 - **ru (Russian)** — o2i #1 (beats epitran)
 - **sv (Swedish)** — o2i #1 (beats espeak rules-only)
@@ -207,14 +207,6 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 | vox_communis | 63415 | 0.0429 | 0.0948 | 0.0945 | same-source | 0.1039 | o2i |
 | wikipron | 12022 | 0.0546 | 0.1019 | 0.0986 | n/a | 0.1507 | o2i |
 
-### pt-PT-x-barrancos
-
-| Dataset | N | o2i | arbtok | arbtok (lexicon) | tugaphone (lexicon) | g2p_barranquenho | mwl_phonemizer | Winner |
-|---|---|---|---|---|---|---|---|---|
-| barranquenho_dict | 1508 | same-source | same-source | same-source | same-source | same-source | same-source | n/a |
-| portuguese_tts | 20 | same-source | same-source | same-source | same-source | same-source | same-source | n/a |
-| primary_sources | 10 | 0.2801 | n/a | n/a | n/a | 0.2801 | n/a | tie (g2p_barranquenho, o2i) |
-
 ### fi (Finnish)
 
 | Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | Winner |
@@ -333,6 +325,14 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 | portuguese_tts | 20 | same-source | 0.3336 | 0.3331 | 0.4042 | same-source | same-source | same-source | same-source | same-source | espeak rules-only |
 | portuguese_unified | 3000 | 0.2245 | 0.3669 | 0.3631 | 0.4146 | n/a | n/a | 0.1887 | n/a | n/a | o2i |
 | wikipron | 2272 | 0.1346 | 0.2374 | 0.2373 | 0.2903 | n/a | n/a | 0.1341 | n/a | n/a | o2i |
+
+### pt-PT-x-barrancos
+
+| Dataset | N | o2i | arbtok | arbtok (lexicon) | tugaphone (lexicon) | g2p_barranquenho | mwl_phonemizer | Winner |
+|---|---|---|---|---|---|---|---|---|
+| barranquenho_dict | 1508 | same-source | same-source | same-source | same-source | same-source | same-source | n/a |
+| portuguese_tts | 20 | same-source | same-source | same-source | same-source | same-source | same-source | n/a |
+| primary_sources | 10 | 0.2801 | n/a | n/a | n/a | 0.2801 | n/a | tie (g2p_barranquenho, o2i) |
 
 ### ro (Romanian)
 
@@ -608,7 +608,7 @@ Not every gold language has a mapping for every competitor system: espeak-ng, ep
 
 ### Staleness
 
-The `o2i PER` column here matches [`benchmarks/results.json`](../benchmarks/results.json)'s `per` for most shared language/dataset pairs, EXCEPT the 8 listed below — those `benchmarks/results.json` rows are stale (a prior PR changed the engine but did not regenerate every affected row there; see e.g. PR #802's `ca`/`4catac`-only regeneration). The numbers in THIS table reflect the current engine via a live run; `benchmarks/results.json` needs a matching regeneration for: `en`/`wikipron` (here 0.2656, results.json 0.2687); `en-GB`/`wikipron` (here 0.2327, results.json 0.2348); `es`/`wikipron` (here 0.0797, results.json 0.0593); `nl`/`vox_communis` (here 0.2925, results.json 0.2706); `sv`/`ipa_childes` (here 0.3449, results.json 0.3476); `sv`/`ipadict` (here 0.2583, results.json 0.2427); `sv`/`vox_communis` (here 0.3428, results.json 0.3717); `sv`/`wikipron` (here 0.2317, results.json 0.2407). 4 more row(s) differ for a DIFFERENT reason — not staleness: this board's `sample_n` config scores a fixed-seed SUBSET of the gold, while `benchmarks/results.json` scores the FULL gold. Same seed, different sample size, so a different PER is expected and regenerating either side will not reconcile them: `ar`/`ipadict` (here 0.3073 on 2319 sampled words, results.json 0.3774 on the full 857160); `ar`/`wikipron` (here 0.2514 on 2735 sampled words, results.json 0.3139 on the full 14268); `ar`/`wikipron_ar_diacritized` (here 0.1788 on 2717 sampled words, results.json 0.1721 on the full 14240); `pt-PT`/`wikipron` (here 0.1346 on 2272 sampled words, results.json 0.0899 on the full 56891).
+The `o2i PER` column here matches [`benchmarks/results.json`](../benchmarks/results.json)'s `per` for most shared language/dataset pairs, EXCEPT the 6 listed below — those `benchmarks/results.json` rows are stale (a prior PR changed the engine but did not regenerate every affected row there; see e.g. PR #802's `ca`/`4catac`-only regeneration). The numbers in THIS table reflect the current engine via a live run; `benchmarks/results.json` needs a matching regeneration for: `es`/`wikipron` (here 0.0797, results.json 0.0593); `nl`/`vox_communis` (here 0.2925, results.json 0.2706); `sv`/`ipa_childes` (here 0.3449, results.json 0.3476); `sv`/`ipadict` (here 0.2583, results.json 0.2427); `sv`/`vox_communis` (here 0.3428, results.json 0.3717); `sv`/`wikipron` (here 0.2317, results.json 0.2407). 4 more row(s) differ for a DIFFERENT reason — not staleness: this board's `sample_n` config scores a fixed-seed SUBSET of the gold, while `benchmarks/results.json` scores the FULL gold. Same seed, different sample size, so a different PER is expected and regenerating either side will not reconcile them: `ar`/`ipadict` (here 0.3073 on 2319 sampled words, results.json 0.3774 on the full 857160); `ar`/`wikipron` (here 0.2514 on 2735 sampled words, results.json 0.3139 on the full 14268); `ar`/`wikipron_ar_diacritized` (here 0.1788 on 2717 sampled words, results.json 0.1721 on the full 14240); `pt-PT`/`wikipron` (here 0.1346 on 2272 sampled words, results.json 0.0899 on the full 56978).
 
 **espeak-rules-only coverage.** `espeak-rules-only` (the `espeak_rules_per` field) is a permanent column on this board: espeak-ng compiled from its own letter-to-sound rules with every per-language word-exception list (`_list`/`_listx`/`_extra`) emptied first — see `scripts/build_espeak_rules_only.sh`. Every row with a stock `espeak` number also carries an `espeak-rules-only` one in this run.
 
