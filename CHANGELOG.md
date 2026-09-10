@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.93.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.1a1) (2026-09-07)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.0a1...7.93.1a1)
+
+**Merged pull requests:**
+
+- fix: oji ⟨ng⟩ spells the /n/+/ɡ/ cluster, not a velar nasal phoneme [\#1512](https://github.com/TigreGotico/orthography2ipa/pull/1512) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.93.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.0a1) (2026-09-07)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.92.19a1...7.93.0a1)
@@ -381,10 +389,6 @@
 ## [7.86.8a2](https://github.com/TigreGotico/orthography2ipa/tree/7.86.8a2) (2026-08-31)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.86.8a1...7.86.8a2)
-
-**Merged pull requests:**
-
-- docs\(pam\): document Kapampangan's input-limited wikipron ceiling [\#1411](https://github.com/TigreGotico/orthography2ipa/pull/1411) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.86.8a1](https://github.com/TigreGotico/orthography2ipa/tree/7.86.8a1) (2026-08-31)
 
