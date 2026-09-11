@@ -139,6 +139,12 @@ _ALIASES: Dict[str, str] = {
     # and now lives at ``pt-PT-x-barrancos``; the old tag stays resolvable for
     # one stable cycle.
     "ext-PT-x-barrancos": "pt-PT-x-barrancos",
+    # Spellings the downstream Portuguese front-end uses for three lects
+    # whose spec keys are shorter; without these the tags fall to the bare
+    # region and lose the lect.
+    "pt-BR-x-sao-paulo": "pt-BR-x-sp",
+    "pt-BR-x-rio-janeiro": "pt-BR-x-rj",
+    "pt-PT-x-lisboa": "pt-PT-x-lisbon",
 }
 
 # Default variant for a bare primary-language tag whose specs are all
@@ -203,6 +209,18 @@ def _resolve_code(code: str) -> str:
     available = available_json_codes()
     if code in available:
         return code
+    if "-x-" in code:
+        # BCP-47 tags are case-insensitive, and langcodes never sees a
+        # private-use tag (step 2), so fold the case here; otherwise
+        # ``ar-sa-x-najd`` misses ``ar-SA-x-najd`` and the distance match
+        # below lands it on a sibling lect.
+        folded = code.lower()
+        for known in _ALIASES:
+            if known.lower() == folded:
+                return _ALIASES[known]
+        for known in available:
+            if known.lower() == folded:
+                return known
     if code in _BARE_DEFAULTS:
         return _BARE_DEFAULTS[code]
     if code in _REGION_DEFAULTS:
