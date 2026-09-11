@@ -205,6 +205,17 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Acehnese_language",
       "pages": null,
       "notes": "Orthography / phonology reference."
+    },
+    {
+      "id": "durie1984",
+      "author": "Durie, Mark",
+      "year": 1984,
+      "title": "A grammar of Acehnese",
+      "publisher": "Australian National University (PhD thesis; published 1985 as VKI 112, Foris)",
+      "url": "https://openresearch-repository.anu.edu.au/handle/1885/138059",
+      "doi": "10.25911/5d6fa25bcc31c",
+      "pages": "34-35",
+      "notes": "Section 2.5 'Orthography' read in full: it lists the letter-to-phoneme correspondences used in the grammar (syllable-final k = /ʔ/, sy = /ʃ/, eu = /ɯ/, ô = /o/, o = /ɔ/, ö = /ʌ/, the funny nasals written mb/nd/nj/ngg). Durie writes /e/ as ⟨ê⟩ and /ɛ/ as ⟨e⟩, and reserves ⟨ë⟩ for the mid central vowel he transcribes /ɤ/, where the 1980 standard modelled here writes ⟨é⟩, ⟨è⟩ and ⟨e⟩."
     }
   ],
   "parent": "x-clade-aust1307",

@@ -140,7 +140,7 @@
     }
   ],
   "parent": "x-clade-west2792",
-  "notes": "Lower Sorbian (Dolnoserbski), West Slavic minority language spoken in Lower Lusatia, Germany. Closely related to Upper Sorbian. Distinct palatal fricatives ś /ɕ/ and ź /ʑ/. More conservative vowel system than Upper Sorbian.",
+  "notes": "Lower Sorbian (Dolnoserbski), West Slavic minority language spoken in Lower Lusatia, Germany. Closely related to Upper Sorbian. Distinct palatal fricatives ś /ɕ/ and ź /ʑ/. More conservative vowel system than Upper Sorbian. Open question: Żygis (2003: 180-181) argues that the ⟨š ž⟩ series is retroflex /ʂ ʐ/ rather than postalveolar, and that the alveolo-palatal affricates have merged with /ɕ ʑ/, which would collapse the ⟨ć⟩ and ⟨ś⟩ distinction kept here.",
   "sources": [
     {
       "id": "wiki-dsb",
@@ -148,6 +148,16 @@
       "year": 2024,
       "title": "Lower Sorbian language",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Lower_Sorbian_language"
+    },
+    {
+      "id": "zygis2003",
+      "author": "Żygis, Marzena",
+      "year": 2003,
+      "title": "Phonetic and phonological aspects of Slavic sibilant fricatives",
+      "publisher": "ZAS Papers in Linguistics 3, 175-213",
+      "url": "https://zaspil.leibniz-zas.de/article/download/191/191",
+      "pages": "180-181",
+      "notes": "Section 2.2 on Lower Sorbian read in full: it argues the ⟨š ž⟩ series is retroflex rather than postalveolar, and reports that the alveolo-palatal affricates have merged with the alveolo-palatal fricatives."
     }
   ],
   "wikipedia": [
