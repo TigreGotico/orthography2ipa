@@ -343,10 +343,28 @@ class TestTheCIGateStays1Best:
                 f"the CI gate must stay 1-best, got: {line.strip()}")
 
     def test_ci_sample_path_passes_oracle_false(self):
+        import ast
         import inspect
+        import textwrap
 
-        src = inspect.getsource(benchmark.main)
-        assert "build_scoreboard(CI_SAMPLE_LIMIT, oracle=False)" in src
+        tree = ast.parse(textwrap.dedent(inspect.getsource(benchmark.main)))
+        branches = [node for node in ast.walk(tree)
+                    if isinstance(node, ast.If)
+                    and ast.dump(node.test).find("ci_sample") != -1]
+        assert len(branches) == 1, (
+            "expected exactly one `if args.ci_sample:` branch in main()")
+        calls = [node for node in ast.walk(branches[0])
+                 if isinstance(node, ast.Call)
+                 and getattr(node.func, "id", None) == "build_scoreboard"]
+        assert len(calls) == 1, (
+            "expected the CI sample branch to build one scoreboard")
+        call = calls[0]
+        assert [getattr(a, "id", None) for a in call.args] == \
+            ["CI_SAMPLE_LIMIT"], (
+            "the CI sample must be scored at the fixed uniform limit")
+        oracle = {kw.arg: kw.value for kw in call.keywords}.get("oracle")
+        assert isinstance(oracle, ast.Constant) and oracle.value is False, (
+            "the CI gate must stay 1-best: pass oracle=False literally")
 
 
 _ORACLE_HEADERS = ("Oracle@3", "Oracle@5", "OracleX@3", "OracleX@5")
