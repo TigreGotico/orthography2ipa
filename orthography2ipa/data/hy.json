@@ -161,18 +161,14 @@
   "notes": "Eastern Armenian (standard). Armenian alphabet (Aybuben) has 38 letters. Digraph ու = /u/. Letters ե and ո have positional allophones: word-initial ե = /jɛ/, medial = /ɛ/; word-initial ո = /vo/, medial = /o/. Aspirated stops (թ, չ, փ, ք, ց) vs plain voiced (բ, գ, դ) vs plain voiceless (կ, պ, տ).",
   "sources": [
     {
-      "id": "wiki-hy",
-      "author": "Wikipedia contributors",
-      "year": 2024,
-      "title": "Armenian language",
-      "wikipedia_url": "https://en.wikipedia.org/wiki/Armenian_language"
-    },
-    {
-      "id": "wiki-hy-phon",
-      "author": "Wikipedia contributors",
-      "year": 2024,
-      "title": "Armenian phonology",
-      "wikipedia_url": "https://en.wikipedia.org/wiki/Armenian_phonology"
+      "id": "dumtragut2009",
+      "author": "Dum-Tragut, Jasmine",
+      "year": 2009,
+      "title": "Armenian: Modern Eastern Armenian",
+      "publisher": "London Oriental and African Language Library 14, John Benjamins",
+      "url": "https://doi.org/10.1075/loall.14",
+      "pages": null,
+      "notes": "Reference grammar of Modern Eastern Armenian. Confirmed via Crossref metadata (DOI 10.1075/loall.14) and publisher ISBN listing as a real, published grammar; not independently paged. Cited for the positional allophony of ե and ո (word-initial [jɛ]/[vo] vs. medial [ɛ]/[o]) and the three-way aspirated/plain-voiced/plain-voiceless stop contrast that this spec's notes describe -- claims consistent with the standard descriptive treatment of Eastern Armenian phonology, though the specific page ranges were not opened."
     }
   ],
   "wikipedia": [

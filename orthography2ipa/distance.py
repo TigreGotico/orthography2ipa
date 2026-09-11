@@ -216,10 +216,11 @@ def segment_distance(seg_a: str, seg_b: str, strict: bool = False) -> float:
         # Normalise to [0, 1].
         return min(d, 1.0)
     except (ValueError, KeyError):
-        # Fallback to feature-vector Hamming distance
-        va = feature_vector(seg_a)
-        vb = feature_vector(seg_b)
-        diff = sum(abs(a - b) for a, b in zip(va, vb))
+        # Fallback: normalised Hamming distance over the raw feature vectors
+        # (mean absolute difference per feature, each in [0, 1]).
+        vec_a = feature_vector(seg_a)
+        vec_b = feature_vector(seg_b)
+        diff = sum(abs(a - b) for a, b in zip(vec_a, vec_b))
         return diff / NUM_FEATURES
 
 
@@ -658,7 +659,6 @@ def _temporal_decay(
     float
         Multiplier in (0.0, 1.0].
     """
-    import math
     if ancestor_spec.timespan is None or descendant_spec.timespan is None:
         return 1.0
     anc_end = ancestor_spec.timespan.end_year if ancestor_spec.timespan.end_year is not None \
@@ -1259,9 +1259,12 @@ def geographic_distance(
         math.radians,
         (loc_a.latitude, loc_a.longitude, loc_b.latitude, loc_b.longitude))
     dlat, dlon = lat2 - lat1, lon2 - lon1
-    h = (math.sin(dlat / 2) ** 2
-         + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2)
-    km = 2 * _EARTH_RADIUS_KM * math.asin(math.sqrt(h))
+    # Haversine formula: great-circle distance on a sphere from two points'
+    # latitude/longitude, robust to the small-angle error that a plain
+    # law-of-cosines formula suffers near-antipodal or nearby points.
+    haversine = (math.sin(dlat / 2) ** 2
+                 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2)
+    km = 2 * _EARTH_RADIUS_KM * math.asin(math.sqrt(haversine))
     if not normalize:
         return km
     return km / (math.pi * _EARTH_RADIUS_KM)

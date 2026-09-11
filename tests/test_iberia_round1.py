@@ -68,11 +68,39 @@ def test_p2_balearic_stressed_schwa():
     assert word("ca-x-balear", "feina") == "ˈfəjnə"
 
 
-def test_p2_balearic_atonic_o_raising():
-    """ca-x-balear-010/011: unstressed /o/ raises to [u] — euros [ˈɛwɾus],
-    torrent [tuˈrent] (Veny 1982 ch. 4; Recasens 1996)."""
-    assert word("ca-x-balear", "euros") == "ˈɛwɾus"
-    assert word("ca-x-balear", "torrent") == "tuˈrent"
+def test_p2_majorcan_atonic_o_stays_o():
+    """ca-x-balear-010/011, corrected: Majorcan does NOT raise unstressed /o/.
+
+    The four-vowel unstressed system of mallorquí is [ə i o u] — /a e ɛ/
+    centralise, /o ɔ/ reduce to [o] and keep their distance from /u/ (Wheeler
+    2005 §2.3; Veny 1982 ch. 4; Llompart & Simonet 2018). Minorcan and Ibizan
+    do raise to [u]; this spec describes Majorcan, the variety of the 4catac
+    'Balear' gold.
+    """
+    # Assert the ⟨o⟩ ONLY. ⟨xocolata⟩ and ⟨polític⟩ are attested with [o] in
+    # the 4catac Balearic gold itself (ʃok'olatə, pol'itit); ⟨euros⟩ and
+    # ⟨torrent⟩ are not in that gold, so only their unstressed ⟨o⟩ — the claim
+    # the sources carry — is pinned here. The stressed ⟨e⟩ of these words is a
+    # separate question and is NOT asserted: see
+    # test_p2_majorcan_torrent_stressed_e_is_a_known_miss.
+    assert word("ca-x-balear", "xocolata") == "ʃokoˈlatə"
+    assert word("ca-x-balear", "polític") == "poˈlitik"
+    assert word("ca-x-balear", "euros").endswith("os")
+    assert word("ca-x-balear", "torrent").startswith("to")
+
+
+def test_p2_majorcan_torrent_stressed_e_is_a_known_miss():
+    """The stressed-⟨e⟩ frequency prior is wrong on the Latin-ĕ class.
+
+    ca-x-balear ranks [ə] first for a stressed unmarked ⟨e⟩ because Latin ē/ĭ
+    is its majority source (Wheeler 2005 §2.3; Veny 1982 ch. 4). ⟨torrent⟩
+    continues Latin -ĔNTEM and is [toˈrɛnt] in Majorcan as in Central, so the
+    prior misses it. Pinned as a KNOWN MISS rather than asserted as correct:
+    the split is etymological, the orthography does not record it, and closing
+    it needs a lexicon overlay, not a spec rule. 4catac has no token of this
+    word, so the gold cannot arbitrate it either.
+    """
+    assert word("ca-x-balear", "torrent") == "toˈrənt"  # prior; ĕ wants [ɛ]
 
 
 def test_p2_balearic_keeps_labiodental_v():

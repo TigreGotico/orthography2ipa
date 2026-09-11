@@ -1,6 +1,6 @@
 """Regression tests for:
 - ast-PT-x-guadramil (Guadramilese) — T-08
-- ext-PT-x-barrancos (Barranquenho)  — T-09
+- pt-PT-x-barrancos (Barranquenho)  — T-09
 
 Guadramilese is phonologically identical to Rionorese (inherits all rules via
 graphemes_base). Tests verify registry loading and that Rionorese phonological
@@ -142,12 +142,12 @@ class TestGuadramilDistance:
 
 
 # ═══════════════════════════════════════════════════════════════════════════
-# Barranquenho (ext-PT-x-barrancos)
+# Barranquenho (pt-PT-x-barrancos)
 # ═══════════════════════════════════════════════════════════════════════════
 
 @pytest.fixture(scope="module")
 def barrancos():
-    return orthography2ipa.get("ext-PT-x-barrancos")
+    return orthography2ipa.get("pt-PT-x-barrancos")
 
 
 @pytest.fixture(scope="module")
@@ -158,7 +158,7 @@ def barrancos_tok(barrancos):
 class TestBarrancosRegistry:
     def test_loads(self, barrancos):
         assert barrancos is not None
-        assert barrancos.code == "ext-PT-x-barrancos"
+        assert barrancos.code == "pt-PT-x-barrancos"
 
     def test_name(self, barrancos):
         assert barrancos.name == "Barranquenho"
@@ -167,7 +167,7 @@ class TestBarrancosRegistry:
         assert barrancos.parent == "pt-PT"
 
     def test_in_available_codes(self):
-        assert "ext-PT-x-barrancos" in orthography2ipa.available_codes()
+        assert "pt-PT-x-barrancos" in orthography2ipa.available_codes()
 
     def test_has_graphemes(self, barrancos):
         assert len(barrancos.graphemes) > 0

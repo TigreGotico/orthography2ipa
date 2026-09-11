@@ -273,6 +273,16 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "sustarsic_komar_petek1995",
+      "author": "Šuštaršič, R., Komar, S. & Petek, B.",
+      "year": 1995,
+      "title": "Slovene",
+      "publisher": "Journal of the International Phonetic Association 25(2), 86-90",
+      "url": "https://doi.org/10.1017/S0025100300005211",
+      "pages": null,
+      "notes": null
     }
   ],
   "wikipedia": [
@@ -295,5 +305,12 @@
     "longitude": 14.7766,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Slovenian."
+  },
+  "valid_ceiling": {
+    "wikipron": {
+      "per": 0.1901,
+      "folded": "tonal-accent diacritics (acute/grave/circumflex) + stress placement + vowel length + e/o mid-vowel quality + syllabic-r epenthetic schwa",
+      "citation": "As-scored PER (n=5139, broad+strip_stress convention) is 0.3284. 97.7% of gold entries carry a Slovene dictionary-style pitch-accent mark (acute/grave/circumflex) that standard orthography never writes -- Sustarsic, Komar & Petek 1995 (JIPA 25(2):86-90, doi:10.1017/S0025100300005211) report that stress placement is 'not predictable' from spelling, and that in their own careful phonetic transcription the acute/circumflex pitch-accent contrast is left unmarked because it is 'seldom lexically distinctive' and varies between speakers, even though vowel length and stress position are marked despite the redundancy. Folding the tone/stress diacritics out of both sides (they encode information the orthography cannot signal) takes PER to 0.2284. Folding the e/o mid-vowel quality contrast on top (the same source reports 'e' represents [e, ɛ, ə] and 'o' represents [o, ɔ] with no orthographic mark, already modelled here as a graphemes candidate list) adds almost nothing on its own (0.3284 -> 0.3282 alone) but reaches 0.1941 combined with the tone/stress fold. Folding a syllabic-r epenthetic schwa (er/re <-> r alternations) on top reaches 0.1901. Folding word-final l -> w l-vocalisation (already a candidate allophone in this spec) on top of all the above made no further difference (0.1901 unchanged) -- a negative result showing the l~w choice is not a current PER driver, so no new rule was added for it. Measured this session against the wikipron/sl gold; not itself sourced as a target number."
+    }
   }
 }

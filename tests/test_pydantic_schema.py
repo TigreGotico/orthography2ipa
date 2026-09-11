@@ -8,6 +8,7 @@ import pytest
 from orthography2ipa.schema import (
     LanguageSpecModel,
     SandhiRuleModel,
+    SourceModel,
     format_failure,
     iter_spec_files,
     validate_spec_file,
@@ -58,6 +59,39 @@ def test_extra_keys_are_forbidden():
                 "bogus_unknown_key": 1,
             }
         )
+
+
+# ─── SourceModel.doi ───────────────────────────────────────────────────────
+
+_SOURCE_BASE = {
+    "id": "test2024",
+    "author": "Test, A.",
+    "year": 2024,
+    "title": "A Test Grammar",
+}
+
+
+def test_source_model_accepts_a_well_formed_doi():
+    src = SourceModel.model_validate({**_SOURCE_BASE, "doi": "10.1017/S0025100323000105"})
+    assert src.doi == "10.1017/S0025100323000105"
+
+
+def test_source_model_doi_defaults_to_none():
+    src = SourceModel.model_validate(_SOURCE_BASE)
+    assert src.doi is None
+
+
+def test_source_model_rejects_a_malformed_doi():
+    """A doi must at least look like one: ``10.<registrant>/<suffix>``. This
+    guards against a URL or a bare accession number being pasted into the
+    field by mistake."""
+    with pytest.raises(Exception, match="doi"):
+        SourceModel.model_validate({**_SOURCE_BASE, "doi": "not-a-doi"})
+
+
+def test_source_model_rejects_a_doi_missing_the_slash():
+    with pytest.raises(Exception, match="doi"):
+        SourceModel.model_validate({**_SOURCE_BASE, "doi": "10.1017"})
 
 
 # ─── SandhiRuleModel ───────────────────────────────────────────────────────

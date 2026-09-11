@@ -1,4 +1,4 @@
-"""Barranquenho (ext-PT-x-barrancos) — contact-variety allophony.
+"""Barranquenho (pt-PT-x-barrancos) — contact-variety allophony.
 
 Barranquenho is a Portuguese–Spanish contact variety (Alentejo Portuguese
 base + Extremaduran/Andalusian Spanish adstrate). It inherits pt-PT via
@@ -21,12 +21,12 @@ from orthography2ipa.g2p import G2P
 
 @pytest.fixture(scope="module")
 def barrancos():
-    return orthography2ipa.get("ext-PT-x-barrancos")
+    return orthography2ipa.get("pt-PT-x-barrancos")
 
 
 @pytest.fixture(scope="module")
 def g2p():
-    return G2P("ext-PT-x-barrancos")
+    return G2P("pt-PT-x-barrancos")
 
 
 def _rule(spec, rule_id):
@@ -154,26 +154,36 @@ class TestCodaNasalization:
     [ẽ]←⟨em/en⟩, [ĩ]←⟨im/in⟩, [õ]←⟨om/on⟩, [ũ]←⟨um/un⟩. An INTERVOCALIC
     (onset) ⟨m/n⟩ is a syllable onset and leaves the vowel oral."""
 
-    NASAL = "̃"  # combining tilde marking the nasalised vowel
+    NASAL = "\u0303"  # combining tilde marking the nasalised vowel
 
-    # Nasalisation is written with U+0303 COMBINING TILDE on the base vowel
-    # (never a precomposed letter), so expected forms are spelled decomposed.
-    T = "̃"
+    # Engine output is always NFC (see G2P._transcribe_word): the coda slot
+    # emits a bare combining tilde (U+0303) which composes onto the
+    # preceding vowel when Unicode has a precomposed form for it (plain
+    # Latin a/e/i/o/u), and stays a separate combining mark otherwise —
+    # IPA \u0250 (ɐ) has no precomposed nasalised form, so ambu/campu are
+    # still spelled with a trailing combining tilde.
 
     @pytest.mark.parametrize(
         "word,expected",
         [
-            ("ambu", f"ˈɐ{T}bu"),    # am + coda (before b) -> ɐ̃
-            ("campu", f"ˈkɐ{T}pu"),  # Convenção p.26 example: campu [kɐ̃pu]
-            ("lindo", f"ˈli{T}du"),  # in + coda (before d) -> ĩ
-            ("tinta", f"ˈti{T}tɐ"),
-            ("mundo", f"ˈmu{T}du"),  # un + coda -> ũ
-            ("bom", f"ˈbo{T}"),      # om word-final -> õ (nasal, ɔ raised to o)
+            ("ambu", "\u02c8\u0250\u0303bu"),    # am + coda (before b) -> \u0250\u0303 (no precomposed form)
+            ("campu", "\u02c8k\u0250\u0303pu"),  # Conven\u00e7\u00e3o p.26 example: campu [k\u0250\u0303pu]
+            ("lindo", "\u02c8l\u0129du"),  # in + coda (before d) -> \u0129 (precomposed)
+            ("tinta", "\u02c8t\u0129t\u0250"),
+            ("mundo", "\u02c8m\u0169du"),  # un + coda -> \u0169 (precomposed)
+            ("bom", "\u02c8b\u00f5"),      # om word-final -> \u00f5 (nasal, \u0254 raised to o; precomposed)
         ],
     )
     def test_coda_mn_nasalises(self, g2p, word, expected):
+        import unicodedata
         out = g2p.transcribe(word)
-        assert self.NASAL in out, f"{word} -> {out} should be nasalised"
+        # Nasalisation is present whether or not the vowel it lands on has
+        # a precomposed form: decompose to NFD to check for the tilde
+        # either way (a precomposed "ĩ" decomposes right back to "i" +
+        # U+0303).
+        assert self.NASAL in unicodedata.normalize("NFD", out), (
+            f"{word} -> {out} should be nasalised"
+        )
         assert out == expected
 
     @pytest.mark.parametrize(
@@ -214,3 +224,24 @@ class TestMonosyllableFinalLiquids:
         out = g2p.transcribe(word)
         assert not out.endswith("l") and not out.endswith("ɾ") \
             and not out.endswith("r"), f"{word} -> {out} should elide"
+
+
+class TestLegacyCodeAlias:
+    """``ext-PT-x-barrancos`` (the ISO 639-3 Extremaduran prefix the lect was
+    first keyed under) still resolves to the Portuguese-based spec."""
+
+    def test_alias_resolves_to_the_same_spec(self):
+        assert orthography2ipa.get("ext-PT-x-barrancos") is orthography2ipa.get(
+            "pt-PT-x-barrancos")
+
+    def test_alias_reports_the_canonical_code(self):
+        assert orthography2ipa.get("ext-PT-x-barrancos").code == "pt-PT-x-barrancos"
+
+    def test_alias_transcribes_identically(self):
+        assert (orthography2ipa.transcribe("Barrancos", "ext-PT-x-barrancos")
+                == orthography2ipa.transcribe("Barrancos", "pt-PT-x-barrancos"))
+
+    def test_spec_carries_no_extremaduran_crossrefs(self, barrancos):
+        assert barrancos.iso639_3 is None
+        assert barrancos.glottolog_code is None
+        assert barrancos.parent == "pt-PT"

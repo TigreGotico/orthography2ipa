@@ -6,7 +6,7 @@
   "script": "Latin",
   "script_type": "alphabet",
   "iso639_3": "kin",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "a": [
       "a"
@@ -197,18 +197,17 @@
       "z"
     ]
   },
-  "notes": "Kinyarwanda (Rwanda national language). Bantu language. Prenasalized consonants are single phonemes. High tone vs. low tone — not marked in standard orthography. C/CY = /tʃ/; SH = /ʃ/; NY = /ɲ/.",
+  "notes": "Kinyarwanda (Rwanda national language). Bantu language. Prenasalized consonants are single phonemes. High tone vs. low tone — not marked in standard orthography. C/CY = /tʃ/; SH = /ʃ/; NY = /ɲ/. Grapheme table checked against Kimenyi (1980): no discrepancy found. STRESS EXEMPTION: Kinyarwanda is a Bantu tone language (lexical/grammatical high vs. low tone, per Kimenyi 1980), not a stress language in the sense this project's `stress` schema targets; word-level prominence is predictable from mora count/penultimate-lengthening but tone itself is unmarked in the standard orthography (as already noted) and is out of scope for the `stress` block, so no `stress` block is added.",
   "sources": [
     {
-      "id": "kinyarwanda_wiki",
-      "author": "Wikipedia contributors",
-      "year": 2024,
-      "title": "Kinyarwanda",
-      "publisher": "Wikipedia",
-      "url": "https://en.wikipedia.org/wiki/Kinyarwanda",
-      "wikipedia_url": "https://en.wikipedia.org/wiki/Kinyarwanda",
+      "id": "kimenyi1980",
+      "author": "Kimenyi, Alexandre",
+      "year": 1980,
+      "title": "A Relational Grammar of Kinyarwanda",
+      "publisher": "University of California Publications in Linguistics, vol. 91. University of California Press",
+      "url": null,
       "pages": null,
-      "notes": null
+      "notes": "Reference grammar used to verify the grapheme table (prenasalized consonants, c/cy, j/jy, sh, ny) and to document the tone-vs-stress distinction underlying this spec's stress exemption."
     }
   ],
   "wikipedia": [

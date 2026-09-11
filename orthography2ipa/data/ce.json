@@ -6,7 +6,7 @@
   "script": "Cyrillic",
   "script_type": "alphabet",
   "iso639_3": "che",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "а": [
       "a"
@@ -252,7 +252,7 @@
       "ø"
     ]
   },
-  "notes": "Chechen in Cyrillic script. Rich ejective series: КӀ, ПӀ, ТӀ, ЦӀ, ЧӀ. ГӀ = pharyngeal /ʕ/; ХЬ = pharyngeal /ħ/; ХӀ = /h/. Front rounded vowels: УЬ = /y/, ОЬ = /wø/, ЭЬ = /ø/. Pharyngeals and ejectives are typologically notable. Complex consonant clusters.",
+  "notes": "Chechen in Cyrillic script. Rich ejective series: КӀ, ПӀ, ТӀ, ЦӀ, ЧӀ. ГӀ = pharyngeal /ʕ/; ХЬ = pharyngeal /ħ/; ХӀ = /h/. Front rounded vowels: УЬ = /y/, ОЬ = /wø/, ЭЬ = /ø/. Pharyngeals and ejectives are typologically notable. Complex consonant clusters. Stress exemption: Chechen word stress is non-contrastive (typically realized near the start of the word) and is not marked by or reliably predictable from the Cyrillic orthography modeled here; no stress block is declared. Source: Chechen language, Wikipedia.",
   "sources": [
     {
       "id": "chechen_wiki",

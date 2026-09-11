@@ -166,9 +166,10 @@ def test_malayalam_anusvara_keeps_inherent_vowel_matra_replaces_it():
     #          that MODIFIES a vowel without supplying one \u2014 so \u0d33 keeps its
     #          inherent vowel for the tilde to attach to \u2192 "\u026da\u0303m".
     #
-    # The pipeline emits NFD (bare "a" + combining tilde U+0303); build the
-    # expected string from escapes to keep the combining char unambiguous.
-    expected = "malaja\u02d0\u026da\u0303m"
+    # The engine's output contract is NFC (see G2P._transcribe_word), so the
+    # combining tilde composes onto the "a" it modifies -> precomposed "\u00e3".
+    # Built from escapes to keep the composed char unambiguous.
+    expected = "malaja\u02d0\u026d\u00e3m"
     assert transcribe("\u0d2e\u0d32\u0d2f\u0d3e\u0d33\u0d02", "ml") == expected
 
 

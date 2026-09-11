@@ -3,7 +3,7 @@
   "name": "Kaingang",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "nh": ["ɲ"],
     "'": ["ʔ"],

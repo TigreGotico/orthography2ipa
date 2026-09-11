@@ -1,6 +1,6 @@
 # Features: o2i as a feature provider for ML / CRF G2P
 
-`orthography2ipa` ships **no trained weights** — every candidate cost is a
+`orthography2ipa` ships **no trained weights**: every candidate cost is a
 hand-written `-log P` or a rank cost from the spec. That is exactly what makes
 it a good *feature provider* for a downstream statistical model. It already
 computes, per grapheme, everything a sequence model wants: phonological-class
@@ -11,8 +11,8 @@ trains on linguistically-grounded features instead of raw character n-grams.
 
 This is a **pure read**: `features()` never affects `transcribe`. It reuses the
 same [lattice](lattice.md) (`ipa_lattice`), the same
-[confidence signal](lattice.md#per-word-confidence) (`confidence_breakdown`),
-and the same [`GraphemeContext`](tokenizer.md) predicates — no vowel logic is
+[confidence signal](lattice.md#per-word-confidence--oov-signal) (`confidence_breakdown`),
+and the same [`GraphemeContext`](tokenizer.md) predicates: no vowel logic is
 recomputed.
 
 ## The CRF-as-rescorer pattern
@@ -26,7 +26,7 @@ The lattice and the learned model compose instead of competing:
    the IPA it should realise; that prediction becomes a
    [`LatticeRescorer`](lattice.md#rescoring-the-lattice) that makes the
    predicted candidate the cheapest option for its slot. The model does not
-   replace the beam — it *refines* it, and the universal beam remains the
+   replace the beam: it *refines* it, and the universal beam remains the
    fallback for everything the model is unsure about.
 3. **The B5 confidence signal says WHERE to spend learned capacity.** Every
    feature record carries the word's `confidence`. High-confidence words
@@ -48,11 +48,11 @@ for wf in en.features("cough"):
 ```
 
 `cough` is one word with two grapheme slots. `word_confidence("cough")` is
-`0.6321` — ambiguous, so a place a learned model should focus. The feature
+`0.6321`: ambiguous, so a place a learned model should focus. The feature
 dicts (formatted here for reading):
 
 ```python
-# ⟨c⟩ — leading consonant, one dominant reading
+# ⟨c⟩: leading consonant, one dominant reading
 {'grapheme': 'c', 'index': 0, 'position': 'initial',
  'span_start': 0, 'span_end': 1,
  'prev': None, 'next': 'ough', 'prev2': None, 'next2': None,
@@ -60,7 +60,7 @@ dicts (formatted here for reading):
  'top1_ipa': 'k', 'top1_cost': 0.0, 'margin': 1.0, 'n_candidates': 2,
  'confidence': 0.6321205588285577, 'script': 'Latin', 'code': 'en-GB'}
 
-# ⟨ough⟩ — the ambiguous vowel digraph, six ranked candidates
+# ⟨ough⟩: the ambiguous vowel digraph, six ranked candidates
 {'grapheme': 'ough', 'index': 1, 'position': 'final',
  'span_start': 1, 'span_end': 5,
  'prev': 'c', 'next': None, 'prev2': None, 'next2': None,
@@ -78,7 +78,7 @@ ough.candidates
 # (('ɔː', 0.0), ('oʊ', 1.0), ('ʌf', 2.0), ('ɒf', 3.0), ('aʊ', 4.0), ('uː', 5.0))
 ```
 
-Those six options are exactly what a rescorer re-costs — `cough` → `/kɒf/`
+Those six options are exactly what a rescorer re-costs: `cough` → `/kɒf/`
 wants the model to lift `ɒf` to the front; `tough` → `/tʌf/` wants `ʌf`.
 
 ### Record shape
@@ -95,13 +95,13 @@ candidate), `n_candidates`, the per-word `confidence`, `script`, and `code`.
 
 `GraphemeFeatures.as_dict()` renders one grapheme as a flat, scalar,
 `json.dumps`-clean feature dict (values are `str`/`int`/`float`/`bool`/`None`
-only — the nested candidate list is deliberately omitted so the dict is a
+only: the nested candidate list is deliberately omitted so the dict is a
 direct python-crfsuite item). `WordFeatures.as_dicts()` is the feature
 **sequence** for the word.
 
 ## Feeding a CRF (illustrative)
 
-o2i adds no training dependency — the sketches below show the *shape* of
+o2i adds no training dependency: the sketches below show the *shape* of
 wiring the features into a CRF; install `python-crfsuite` or `sklearn-crfsuite`
 yourself if you want to train.
 
@@ -134,7 +134,7 @@ trainer.train("g2p.crfsuite")
 ```
 
 At inference, map the model's predicted label back onto the lattice as a
-rescorer — make the predicted IPA the cheapest candidate for its slot — so the
+rescorer: make the predicted IPA the cheapest candidate for its slot: so the
 learned model plugs into the shared beam rather than replacing it (see
 [Rescoring the lattice](lattice.md#rescoring-the-lattice)):
 
@@ -162,7 +162,4 @@ CRF only re-costs candidates the lattice already offers, and the confidence
 signal tells you where that re-costing is worth doing.
 
 ---
-
-**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
-
-*Related: [Lattice](lattice.md) · [Tokenizer](tokenizer.md) · [Candidate scoring](candidate_scoring.md) · [Sentence context](sentence_context.md) · [API stability](api_stability.md)*
+[← Candidate scoring](candidate_scoring.md) · [Home](index.md) · [Forcing a pronunciation →](forcing_a_pronunciation.md)

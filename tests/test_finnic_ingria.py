@@ -135,3 +135,32 @@ def test_karelian_wikipron_rows_declared_only():
     _assert_declared("krl", [
         "Kannanlakši", "Ruočči", "aakkua", "abie", "abu", "abuiäni",
     ])
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Ludic (lud)
+# ═══════════════════════════════════════════════════════════════════════════
+# lud has no independently-cited word list yet (its 1990s/2007 Latin
+# orthography was devised as a direct Karelian-alphabet adaptation, see
+# lud.json notes/sources); it inherits the Karelian grapheme table wholesale
+# rather than duplicating unverified letter values, so coverage here is
+# structural: the inheritance and ancestry wiring, not invented vocabulary.
+
+def test_ludic_inherits_karelian_graphemes():
+    spec = _load("lud")
+    assert spec.graphemes.get("č") == ["t͡ʃ"]
+    assert spec.graphemes.get("dž") == ["d͡ʒ"]
+    assert spec.graphemes.get("š") == ["ʃ"]
+    assert spec.graphemes.get("ž") == ["ʒ"]
+
+
+def test_ludic_transcribes_via_inherited_karelian_rules():
+    """No independently-cited Ludic word exists yet (see lud.json notes); this
+    pins the inherited-grapheme transcription so a future edit to krl.json
+    cannot silently change lud's output without a test failing."""
+    assert orthography2ipa.G2P("lud").transcribe_word("čoma") == "ˈt͡ʃomɑ"
+
+
+def test_ludic_ancestry_wired_to_finnic():
+    spec = _load("lud")
+    assert spec.parent == "x-clade-finn1317"

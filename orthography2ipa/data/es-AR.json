@@ -35,8 +35,8 @@
   },
   "positional_graphemes_base": "es-ES",
   "parent": "es-ES",
-  "notes": "Buenos Aires / Rioplatense: žeísmo/šeísmo for ⟨ll⟩/⟨y⟩.",
-  "quality": "skeleton",
+  "notes": "Buenos Aires / Rioplatense: žeísmo/šeísmo for ⟨ll⟩/⟨y⟩. Word-initial ⟨hie-, hia-, hio-⟩ keeps the GLIDE [j] here and does not join the rehilamiento: coloma2018 p.244 prints hielo [ˈjelo] in the same word list that prints llama [ˈʃama], so the ⟨hi⟩ words are demonstrably not merged with ⟨ll⟩/⟨y⟩ in this variety. The override is needed because the es-ES parent strengthens word-initial ⟨hi⟩ to its own palatal obstruent.",
+  "quality": "research",
   "script_type": "alphabet",
   "sources": [
     {
@@ -110,9 +110,58 @@
       "before_i": [
         "s"
       ]
+    },
+    "hia": {
+      "word_initial": [
+        "ja"
+      ],
+      "default": [
+        "ja"
+      ]
+    },
+    "hiá": {
+      "word_initial": [
+        "ja"
+      ],
+      "default": [
+        "ja"
+      ]
+    },
+    "hie": {
+      "word_initial": [
+        "je"
+      ],
+      "default": [
+        "je"
+      ]
+    },
+    "hié": {
+      "word_initial": [
+        "je"
+      ],
+      "default": [
+        "je"
+      ]
+    },
+    "hio": {
+      "word_initial": [
+        "jo"
+      ],
+      "default": [
+        "jo"
+      ]
+    },
+    "hió": {
+      "word_initial": [
+        "jo"
+      ],
+      "default": [
+        "jo"
+      ]
     }
   },
   "stress": {
+    "onset_clusters": ["bl", "br", "bɫ", "bɾ", "bʀ", "bʁ", "bʎ", "bχ", "dr", "dɾ", "dʀ", "dʁ", "dʎ", "dχ", "fl", "fr", "fɫ", "fɾ", "fʀ", "fʁ", "fʎ", "fχ", "kl", "kr", "kɫ", "kɾ", "kʀ", "kʁ", "kʎ", "kχ", "pl", "pr", "pɫ", "pɾ", "pʀ", "pʁ", "pʎ", "pχ", "tr", "tɾ", "tʀ", "tʁ", "tʎ", "tχ", "vl", "vr", "vɫ", "vɾ", "vʀ", "vʁ", "vʎ", "vχ", "ðr", "ðɾ", "ðʀ", "ðʁ", "ðʎ", "ðχ", "ɡl", "ɡr", "ɡɫ", "ɡɾ", "ɡʀ", "ɡʁ", "ɡʎ", "ɡχ", "ɣl", "ɣr", "ɣɫ", "ɣɾ", "ɣʀ", "ɣʁ", "ɣʎ", "ɣχ", "βl", "βr", "βɫ", "βɾ", "βʀ", "βʁ", "βʎ", "βχ"],
     "cliticless_words": [
       "el",
       "la",

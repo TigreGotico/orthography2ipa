@@ -1,11 +1,11 @@
-# Romance Languages — Comparative Phonology Reference
+# Romance Languages: Comparative Phonology Reference
 
 **Codes**: `es-ES`, `fr-FR`, `it-IT`, `pt-PT`, `pt-BR`, `ca`, `ro-RO`, `gl-ES`, `oc-x-aranes`, and variants
 **Family**: Romance (from Latin) | **Script**: Latin (alphabet)
 
 ---
 
-## C/G Softening — Shared Romance Feature
+## C/G Softening: Shared Romance Feature
 
 All Romance languages inherited Latin's **palatal softening** of ⟨c⟩ and ⟨g⟩ before front vowels:
 
@@ -85,7 +85,7 @@ This is fully encoded in `pt-PT.json`'s `positional_graphemes`.
 
 ## French Nasal Vowels vs. Italian/Spanish
 
-French preserved Latin nasal vowels; Italian and Spanish lost them:
+French preserved Latin nasal vowels. Italian and Spanish lost them:
 
 | Latin | French | Italian | Spanish |
 |:---|:---:|:---:|:---:|
@@ -95,7 +95,7 @@ French preserved Latin nasal vowels; Italian and Spanish lost them:
 
 ---
 
-## Romanian — Most Conservative Romance Language
+## Romanian: Most Conservative Romance Language
 
 Romanian preserved features lost in Western Romance:
 - Case system (nominative/accusative vs. genitive/dative)
@@ -118,7 +118,7 @@ Romanian preserved features lost in Western Romance:
 
 ---
 
-## Catalan — Between French and Iberian
+## Catalan: Between French and Iberian
 
 Catalan occupies a phonological position between French and Iberian Romance:
 - Unstressed vowel reduction (like Portuguese/French): `a`→[ə], `e`→[ə] unstressed (Central Catalan)
@@ -137,7 +137,4 @@ Catalan occupies a phonological position between French and Iberian Romance:
 - Maiden, M. & Parry, M. (1997). *The Dialects of Italy*. Routledge.
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
-
-*Related: [fr-FR](fr-FR.md), [it-IT](it-IT.md), [pt-PT](pt-PT.md), [mwl](mwl.md)*
+[← Faroese](fo.md) · [Home](../index.md) · [Spanish →](es-ES.md)

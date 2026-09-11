@@ -3,7 +3,7 @@
   "name": "Kawi (Old Javanese)",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "ng": [
       "ŋ"
@@ -114,7 +114,7 @@
       "notes": "Sanskrit adstrate: retroflex/aspirate loan series, literary vocabulary"
     }
   ],
-  "notes": "Skeleton. Kawi / Old Javanese, the literary Austronesian language of early Java, here in romanised transliteration (Zoetmulder). Heavy Sanskrit lexical adstrate accounts for the retroflex and aspirate series. The pepet ⟨ě⟩=/ə/ is encoded; length is not phonemic.",
+  "notes": "Skeleton. Kawi / Old Javanese, the literary Austronesian language of early Java, here in romanised transliteration (Zoetmulder). Heavy Sanskrit lexical adstrate accounts for the retroflex and aspirate series. The pepet ⟨ě⟩=/ə/ is encoded; length is not phonemic. Stress exemption: Old Javanese (Kawi) word prominence is not phonemic and is not marked in the Kawi script; the language's stress, where described, is predictable from syllable weight rather than recoverable purely from the orthography modeled here. Source: Zoetmulder, P. J. (1982), Old Javanese-English Dictionary, introduction on phonology.",
   "iso639_3": "kaw",
   "glottolog_code": null,
   "sources": [

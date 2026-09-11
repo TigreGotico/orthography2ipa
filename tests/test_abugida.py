@@ -54,9 +54,9 @@ def test_virama_suppresses_the_inherent_vowel():
 def test_mark_supplying_no_vowel_leaves_the_inherent_vowel_standing():
     # Malayalam anusvara's IPA opens with a combining tilde — a diacritic that
     # modifies a vowel without supplying one, so ള keeps its inherent vowel for
-    # the tilde to attach to. The pipeline emits NFD (bare "a" + combining
-    # tilde U+0303), so spell the expectation with escapes.
-    assert G2P("ml").transcribe("മലയാളം") == "malajaːɭãm"
+    # the tilde to attach to. The engine's output contract is NFC (see
+    # G2P._transcribe_word), so the tilde composes onto that vowel.
+    assert G2P("ml").transcribe("മലയാളം") == "malajaːɭãm"
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -70,7 +70,11 @@ def test_mark_supplying_no_vowel_leaves_the_inherent_vowel_standing():
     # cluster surfaces as [kː] — the engine's job here is only to suppress the
     # inherent vowel.
     ("ta", "வணக்கம்", "ʋaɳakːam"),
-    ("kn", "ಕನ್ನಡ", "kannaɖa"),      # ನ್ನ → nn, not nana
+    # ನ್ನ → nn, not nana. Vowel is [ɐ] not [a]: Kannada short /a/ is
+    # phonetically central (Bright 1970 JAOS 90(1):140-144; Schiffman 1979
+    # A Reference Grammar of Spoken Kannada), measured directly against the
+    # wikipron/kn gold in kn.json's own notes.
+    ("kn", "ಕನ್ನಡ", "kɐnnɐɖɐ"),
     ("ta", "நான்", "naːn"),          # final virama: no trailing vowel
     ("ta", "தமிழ்", "t̪amiɻ"),       # matra + final virama together
 ])

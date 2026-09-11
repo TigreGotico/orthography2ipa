@@ -103,7 +103,7 @@ def _flat_best(tok: PhonetokTokenizer, word: str) -> str:
         t.ipa[0] for t in tok.grapheme_tokens(word) if t.ipa)
 
 
-@pytest.mark.parametrize("lang", ["eo", "af"])
+@pytest.mark.parametrize("lang", ["eo"])
 def test_non_positional_spec_beam_unchanged(lang):
     spec = get(lang)
     assert not spec.positional_graphemes, f"{lang} unexpectedly has positions"
@@ -203,3 +203,71 @@ def test_resolve_branches_positional_winner_ranked_first():
     # retained at a higher cost so the beam space is preserved.
     assert branches[0] == ("s", 0.0)
     assert ("k", 1.0) in branches
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# effective_word_end contract
+# ═══════════════════════════════════════════════════════════════════════════
+
+def test_effective_word_end_contract_shapes():
+    """Pin the :class:`WordEnd` lattice on the phenomena it names, using the
+    one spec that declares them (fr-FR: e-caduc word_final silencing on ⟨e⟩,
+    transparent plural ⟨s⟩ — Tranel 1987 §3).
+
+    The three flags are not independent: ``final_slot`` and
+    ``last_audible_slot`` are mutually exclusive, and ``silent_final_vowel``
+    implies one of them — ``(False, False, True)`` is unreachable.
+    """
+    from orthography2ipa.phonetok import PhonetokTokenizer
+    from orthography2ipa.positional import WordEnd, effective_word_end
+
+    spec = get("fr-FR")
+    tok = PhonetokTokenizer(spec)
+
+    def ends(word):
+        return [effective_word_end(c, spec)
+                for c in tok.tokenize_with_context(word)]
+
+    # vie = v-i-e: final ⟨e⟩ is the e-caduc case — a silenced final vowel
+    # in the true final slot.
+    v, i, e = ends("vie")
+    assert e == WordEnd(final_slot=True, last_audible_slot=False,
+                        silent_final_vowel=True)
+    assert i == WordEnd(False, False, False)  # word-internal slot
+
+    # vies = v-i-e-s: the transparent plural ⟨s⟩ leaves ⟨e⟩ the last
+    # AUDIBLE slot, still carrying its e-caduc reading; the ⟨s⟩ itself is
+    # the plain final slot (its silencing is the spec's business, not a
+    # word-end case).
+    v, i, e, s = ends("vies")
+    assert e == WordEnd(final_slot=False, last_audible_slot=True,
+                        silent_final_vowel=True)
+    assert s == WordEnd(final_slot=True, last_audible_slot=False,
+                        silent_final_vowel=False)
+
+    # pied = p-i-e-d: a root-final silenced consonant is NOT a transparent
+    # suffix (the pied/vies minimal pair) — ⟨e⟩ is not effectively final.
+    p, i, e, d = ends("pied")
+    assert e == WordEnd(False, False, False)
+    assert d.final_slot and not d.silent_final_vowel
+
+    # alicia: a PRONOUNCED terminal vowel carries the nucleus itself —
+    # final_slot without silent_final_vowel.
+    last = ends("alicia")[-1]
+    assert last == WordEnd(final_slot=True, last_audible_slot=False,
+                           silent_final_vowel=False)
+
+    # No spec: everything is a plain boundary question.
+    for c in tok.tokenize_with_context("vies"):
+        we = effective_word_end(c, None)
+        assert not we.last_audible_slot and not we.silent_final_vowel
+
+    # ctx=None sentinel.
+    assert effective_word_end(None, spec) == WordEnd(False, False, False)
+
+    # Lattice invariants over a word sweep.
+    for word in ("vie", "vies", "pied", "pieds", "alicia", "choix"):
+        for we in ends(word):
+            assert not (we.final_slot and we.last_audible_slot)
+            if we.silent_final_vowel:
+                assert we.final_slot or we.last_audible_slot

@@ -27,7 +27,7 @@
       "notes": "Tehran standard base"
     }
   ],
-  "notes": "Yazdi Persian (Yazdī). Yazd — central Iranian plateau. Zoroastrian heartland; some archaic features in Zoroastrian community speech ('Dari' of Zoroastrians — not Afghan Dari). /æ/ → [a] (conservative, like Shirazi/Kermani). /q/ somewhat preserved in older/conservative speech.",
+  "notes": "Yazdi Persian (Yazdī). Yazd — central Iranian plateau. Zoroastrian heartland; some archaic features in Zoroastrian community speech ('Dari' of Zoroastrians — not Afghan Dari). /æ/ → [a] (conservative, like Shirazi/Kermani). /q/ somewhat preserved in older/conservative speech. Already-encoded allophones confirmed against the cited sources: ā prefers the conservative [aː] over Tehran's [ɒː]; short-a prefers [a]; ق prefers the retained uvular stop [q] over the Tehran ɣ/ɢ merger (Windfuhr 2009; Rezai & al.).",
   "quality": "skeleton",
   "script_type": "abjad",
   "sources": [
@@ -60,6 +60,26 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "windfuhr2009",
+      "author": "Windfuhr, G. (ed.)",
+      "year": 2009,
+      "title": "The Iranian Languages",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": "Regional-dialect chapter(s) on New Persian varieties (Tehran, Isfahan, Fars/Shiraz, Kerman, Khorasan/Mashhad, Yazd)."
+    },
+    {
+      "id": "rezai_dialectology",
+      "author": "Rezai, V. & al.",
+      "year": 2010,
+      "title": "Studies in Iranian regional Persian dialectology (Isfahan, Fars, Kerman, Khorasan)",
+      "publisher": "Iranian dialectology literature (regional descriptive studies)",
+      "url": null,
+      "pages": null,
+      "notes": "Secondary descriptive source for regional vowel-quality differences (majhul retention, ā/æ realisation) cross-checked against Windfuhr 2009 and Mahootian 1997."
     }
   ],
   "wikipedia": [

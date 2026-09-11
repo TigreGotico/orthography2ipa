@@ -40,9 +40,8 @@ By default that ranking is *positional*: candidate `0` costs `0`, candidate `1` 
 ### The structured lattice
 
 `ipa_beam` flattens the search into whole-word `IPAPath` strings. When you
-want the ranked options **per grapheme** — to intervene at one position,
-or to hand a downstream engine a structure it can rescore —
-`tok.ipa_lattice(text)` returns one `SegmentSlot` per grapheme, each with
+want the ranked options **per grapheme**: to intervene at one position,
+or to hand a downstream engine a structure it can rescore: `tok.ipa_lattice(text)` returns one `SegmentSlot` per grapheme, each with
 its span and ranked `Candidate(ipa, cost)` list. Concatenating each slot's
 top candidate reproduces `ipa_best` with its default arguments (the lattice
 has no whitespace/punctuation slots). `ipa_beam` also accepts the opt-in
@@ -56,14 +55,16 @@ the current ordering). See [lattice.md](lattice.md).
 ### `TokenKind`
 
 ```python
+from enum import Enum, auto
+
 class TokenKind(Enum):
-    GRAPHEME     # A linguistically meaningful grapheme from the language's table
-    WHITESPACE   # One or more whitespace characters
-    PUNCTUATION  # Punctuation marks
-    DIGIT        # One or more consecutive digits
-    UNKNOWN      # Characters not matched by any rule
-    BOS          # Beginning-of-sequence sentinel
-    EOS          # End-of-sequence sentinel
+    GRAPHEME    = auto()  # A linguistically meaningful grapheme from the language's table
+    WHITESPACE  = auto()  # One or more whitespace characters
+    PUNCTUATION = auto()  # Punctuation marks
+    DIGIT       = auto()  # One or more consecutive digits
+    UNKNOWN     = auto()  # Characters not matched by any rule
+    BOS         = auto()  # Beginning-of-sequence sentinel
+    EOS         = auto()  # End-of-sequence sentinel
 ```
 
 ### `Token`
@@ -79,6 +80,9 @@ class Token:
 ```
 
 ```python
+import orthography2ipa
+from orthography2ipa.phonetok import PhonetokTokenizer
+
 tok = PhonetokTokenizer(orthography2ipa.get("es"))
 tokens = tok.tokenize("niño")
 
@@ -87,7 +91,7 @@ for t in tokens:
 # Token(GRAPHEME, 'n', [n], pos=0)
 # Token(GRAPHEME, 'i', [i], pos=1)
 # Token(GRAPHEME, 'ñ', [ɲ], pos=2)
-# Token(GRAPHEME, 'o', [o], pos=4)
+# Token(GRAPHEME, 'o', [o|ɔ], pos=3)
 ```
 
 ### `IPAPath`
@@ -114,6 +118,7 @@ The `score` field counts how many "non-canonical" (non-first) IPA choices were m
 from orthography2ipa.phonetok import PhonetokTokenizer
 import orthography2ipa
 
+spec = orthography2ipa.get("es")   # any LanguageSpec from the registry
 tok = PhonetokTokenizer(spec)
 ```
 
@@ -122,7 +127,7 @@ Where `spec` is any `LanguageSpec` from the registry. The tokenizer builds a pre
 ### `tokenize(text)`
 
 ```python
-tokens: List[Token] = tok.tokenize(text)
+def tokenize(self, text: str) -> List[Token]: ...
 ```
 
 Returns all tokens including whitespace and punctuation. Useful for preserving text structure.
@@ -134,14 +139,14 @@ for t in tokens:
     print(f"{t.kind.name:12s}  {t.grapheme!r:8s}  {t.ipa}")
 
 # GRAPHEME      'th'      ('θ', 'ð')
-# GRAPHEME      'e'       ('iː', 'ɛ', 'ə')
+# GRAPHEME      'e'       ('ɛ', 'iː', 'ə')
 # WHITESPACE    ' '       ()
 # GRAPHEME      'c'       ('k', 's')
-# GRAPHEME      'a'       ('æ', 'eɪ', 'ɑː', 'ə')
+# GRAPHEME      'a'       ('æ', 'ɑː', 'eɪ', 'ə', 'ɔː')
 # GRAPHEME      't'       ('t',)
 # WHITESPACE    ' '       ()
 # GRAPHEME      's'       ('s', 'z')
-# GRAPHEME      'a'       ('æ', 'eɪ', 'ɑː', 'ə')
+# GRAPHEME      'a'       ('æ', 'ɑː', 'eɪ', 'ə', 'ɔː')
 # GRAPHEME      't'       ('t',)
 # PUNCTUATION   '.'       ()
 ```
@@ -149,14 +154,16 @@ for t in tokens:
 ### `ipa_beam(text, *, beam_width, expand_allophones, ...)`
 
 ```python
-paths: List[IPAPath] = tok.ipa_beam(
-    text,
-    beam_width=8,             # max number of paths (default 8)
-    expand_allophones=False,  # expand to allophone level (default False)
-    length_norm=False,        # divide the score by path length (default off)
-    diversity=0.0,            # penalise near-duplicate paths (default off)
-    rescorer=None,            # a LatticeRescorer to re-cost candidates
-)
+def ipa_beam(
+    self,
+    text: str,
+    *,
+    beam_width: int = 8,             # max number of paths (default 8)
+    expand_allophones: bool = False, # expand to allophone level (default False)
+    length_norm: bool = False,       # divide the score by path length (default off)
+    diversity: float = 0.0,          # penalise near-duplicate paths (default off)
+    rescorer=None,                   # a LatticeRescorer to re-cost candidates
+) -> List[IPAPath]: ...
 ```
 
 Returns up to `beam_width` paths, sorted by score (most canonical first):
@@ -176,8 +183,8 @@ for p in paths:
 
 ### `ipa_lattice(text)`
 
-For a *structured* view of the same search space — ranked candidates per grapheme
-rather than flattened path strings — use `ipa_lattice`, which returns a
+For a *structured* view of the same search space: ranked candidates per grapheme
+rather than flattened path strings: use `ipa_lattice`, which returns a
 `SegmentSlot` per grapheme carrying its span and ranked `Candidate(ipa, cost)`
 options. See [lattice.md](lattice.md).
 
@@ -236,8 +243,8 @@ GRAPHEME tokens are **lower-cased** before trie lookup. The `.grapheme` field st
 ## Context Model
 
 `tokenize()` returns a flat `List[Token]`. When a consumer needs to reason
-about a grapheme's *surroundings* — its neighbours, its character span, or
-its phonological class — `tokenize_with_context()` returns a
+about a grapheme's *surroundings*: its neighbours, its character span, or
+its phonological class: `tokenize_with_context()` returns a
 `TokenSequence`: a view that wraps every GRAPHEME token in a
 `GraphemeContext`.
 
@@ -249,23 +256,23 @@ for c in seq:
 
 Each `GraphemeContext` exposes:
 
-- **Neighbours** (word-local — they never cross whitespace, punctuation,
+- **Neighbours** (word-local: they never cross whitespace, punctuation,
   digits or unknown characters):
-  - `.prev` / `.next` — the adjacent grapheme, or `None` at a word edge.
-  - `.at(offset)` — the grapheme `offset` positions away (`at(2)`, `at(-1)`);
+  - `.prev` / `.next`: the adjacent grapheme, or `None` at a word edge.
+  - `.at(offset)`: the grapheme `offset` positions away (`at(2)`, `at(-1)`);
     `None` past a word edge.
-  - `.neighbors(n)` — up to `2*n` graphemes within `±n`, left-to-right,
+  - `.neighbors(n)`: up to `2*n` graphemes within `±n`, left-to-right,
     self excluded, clamped at word edges.
-- **Span** — `.span` → `(start, end)` character offsets that index the
+- **Span**: `.span` → `(start, end)` character offsets that index the
   **NFC-normalised** input `tokenize()` works on, with `.grapheme` itself
   **case-folded**. The exact contract is
   `unicodedata.normalize("NFC", text)[start:end].lower() == grapheme`. A
   raw `text[start:end]` round-trip against the caller's original string
-  only holds when that string is already lower-case NFC — it breaks for
+  only holds when that string is already lower-case NFC: it breaks for
   upper-case input (offsets index the un-folded text) and for NFD input
   (offsets index the NFC-normalised text).
 - **Class predicates**, delegating to `orthography2ipa.vowels` (the single
-  source of truth — no vowel set is defined here): `.is_vowel`,
+  source of truth: no vowel set is defined here): `.is_vowel`,
   `.is_consonant`, `.is_front`, `.is_back`. They classify by the grapheme's
   leading character, so a consonant digraph (`ch`) is a consonant and a
   vowel digraph (`ai`) reports by its leading vowel.
@@ -273,10 +280,10 @@ Each `GraphemeContext` exposes:
 ### Why it exists: replacing hand-rolled index arithmetic
 
 Without this context model a downstream phonemizer re-implements all of the
-above by hand — raw string indexing plus its own vowel set. Take a c-softening
+above by hand: raw string indexing plus its own vowel set. Take a c-softening
 rule (`c` → /s/ before a front vowel).
 
-By hand — raw index arithmetic and a private vowel list:
+By hand: raw index arithmetic and a private vowel list:
 
 ```python
 chars = list(word.lower())
@@ -286,7 +293,7 @@ for idx, char in enumerate(chars):
         phonemes[idx] = "s" if next_char in ("e", "i", "é", "í", "y") else "k"
 ```
 
-With the context model — one shared, accent-aware predicate:
+With the context model: one shared, accent-aware predicate:
 
 ```python
 for c in tok.tokenize_with_context(word):
@@ -317,12 +324,9 @@ engine-only (they need sentence context). See
 
 - The trie is built once at `PhonetokTokenizer` construction and reused for all subsequent calls.
 - `tokenize()` is O(n·k) where n is text length and k is maximum grapheme length.
-- `ipa_beam()` complexity is O(n · beam_width · |IPA alternatives|) — practical for words and short phrases.
+- `ipa_beam()` complexity is O(n · beam_width · |IPA alternatives|): practical for words and short phrases.
 - `tokenize_with_context()` adds one O(n) pass building lightweight flyweight views; neighbour lookups (`prev`/`next`/`at`) are O(1).
 - For very long documents, consider tokenizing sentence-by-sentence.
 
 ---
-
-**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
-
-*Related: [Lattice](lattice.md) · [Positional graphemes](positional_graphemes.md) · [Candidate scoring](candidate_scoring.md)*
+[← Public API stability](api_stability.md) · [Home](index.md) · [The pronunciation lattice →](lattice.md)

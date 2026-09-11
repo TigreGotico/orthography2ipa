@@ -197,12 +197,9 @@ Quick reference for the IPA symbols used in this package, organized by phonetic 
 All IPA text in the package is stored as **UTF-8 encoded Python strings**. When writing new language modules:
 
 1. Always use the correct Unicode code point, not a visually similar ASCII character.
-2. `ɡ` (U+0261, voiced velar stop) is **not** the same as `g` (U+0067, Latin small letter g) — use `ɡ` in IPA contexts.
+2. `ɡ` (U+0261, voiced velar stop) is **not** the same as `g` (U+0067, Latin small letter g): use `ɡ` in IPA contexts.
 3. Combining diacritics follow the base character: `t̪` = `t` (U+0074) + `̪` (U+032A).
 4. The length mark is `ː` (U+02D0), not `:` (U+003A, colon).
 
 ---
-
-**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
-
-*Related: [Distance](distance.md) · [Data model](data_model.md) · [Linguistic accuracy](linguistic_accuracy.md)*
+[← Quality tiers](quality_tiers.md) · [Home](index.md) · [Bibliography →](bibliography.md)

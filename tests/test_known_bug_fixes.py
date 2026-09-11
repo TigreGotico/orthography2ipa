@@ -51,24 +51,25 @@ class TestEnglishDoublingIsNotGemination:
 
     def test_doubled_consonants_collapse(self):
         g = G2P("en-GB")
-        assert g.transcribe_word("summer") == "sʌməɹ"
-        assert g.transcribe_word("running") == "ɹʌnɪŋ"
-        assert g.transcribe_word("happy") == "hæpi"
+        # RP is non-rhotic, so the ⟨er⟩ nucleus is a bare [ə]
+        assert g.transcribe_word("summer") == "ˈsʌmə"
+        assert g.transcribe_word("running") == "ˈɹʌnɪŋ"
+        assert g.transcribe_word("happy") == "ˈhæpi"
 
     def test_a_real_long_vowel_is_kept(self):
         # ⟨ee⟩/⟨oo⟩ are long vowels, not doubled letters — must not collapse.
-        assert G2P("en-GB").transcribe_word("see") == "siː"
-        assert G2P("en-GB").transcribe_word("food") == "fuːd"
+        assert G2P("en-GB").transcribe_word("see") == "ˈsiː"
+        assert G2P("en-GB").transcribe_word("food") == "ˈfuːd"
 
 
 class TestEnglishFinalYIsAVowel:
     """Word-final ⟨y⟩ is /i/ (happy, city), not the consonant /j/ (happy → hæppj)."""
 
     def test_final_y(self):
-        assert G2P("en-GB").transcribe_word("city") == "sɪti"
+        assert G2P("en-GB").transcribe_word("city") == "ˈsɪti"
 
     def test_initial_y_is_still_the_glide(self):
-        assert G2P("en-GB").transcribe_word("yes") == "jɛs"
+        assert G2P("en-GB").transcribe_word("yes") == "ˈjɛs"
 
 
 class TestWordFinalSeesThroughSilentLetters:
@@ -125,3 +126,29 @@ class TestPolishRzDoesNotVoiceThePrecedingStop:
     def test_final_affricate_devoices(self):
         from orthography2ipa import G2P
         assert G2P("pl").transcribe_word("łódź") == "ˈwutɕ"
+
+
+class TestMiddleEnglishYIsNotDropped:
+    """enm shipped no grapheme entry for ⟨y⟩ at all -- not in graphemes, not
+    in positional_graphemes -- so the engine silently dropped it rather than
+    erroring: ymage -> maɡɛ, yong -> ɔnɡ (the initial glide vanished). ⟨y⟩ is
+    positional in Middle English: a glide /j/ before a vowel (yong, yarn,
+    York) and a vowel /i/ elsewhere, where it is a graphic variant of ⟨i⟩
+    (ydel, matching idle) -- Mossé (1952) and Jordan (1974) both describe the
+    ⟨y⟩/⟨i⟩ alternation outside the glide environment."""
+
+    def test_initial_y_before_vowel_is_the_glide(self):
+        assert G2P("enm").transcribe_word("yong").startswith("j")
+        assert G2P("enm").transcribe_word("yarn").startswith("j")
+
+    def test_y_before_consonant_is_the_vowel_not_dropped(self):
+        ipa = G2P("enm").transcribe_word("ymage")
+        assert ipa.startswith("i")
+        assert not ipa.startswith("m")
+
+    def test_x_is_ks_not_dropped(self):
+        assert "ks" in G2P("enm").transcribe_word("axe")
+
+    def test_eth_is_a_thorn_variant_not_dropped(self):
+        ipa = G2P("enm").transcribe_word("arveð")
+        assert "ð" in ipa or "θ" in ipa

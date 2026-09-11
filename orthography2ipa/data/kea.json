@@ -306,6 +306,24 @@
       "role": "superstrate",
       "weight": 0.75,
       "notes": "European Portuguese superstrate: colonial contact from 1460s. The lexifier. Vocabulary, much of morphology and some phonology derive from 15th–17th century Portuguese."
+    },
+    {
+      "code": "wo",
+      "role": "substrate",
+      "weight": 0.06,
+      "notes": "Wolof substrate: Senegambian coast was a major embarkation point for the enslaved population brought to Cape Verde from the earliest (1460s-1500s) settlement period; Wolof is the standard-cited Upper Guinea Coast substrate in the Cape Verdean creolistics literature (Baptista, APiCS ch. 17; Lang 2006 dictionary introduction)."
+    },
+    {
+      "code": "tem",
+      "role": "substrate",
+      "weight": 0.03,
+      "notes": "Temne substrate: Upper Guinea Coast (Sierra Leone area) population contributing to the founder substrate pool alongside Wolof and Mandinka."
+    },
+    {
+      "code": "mnk",
+      "role": "substrate",
+      "weight": 0.03,
+      "notes": "Mandinka substrate: Upper Guinea Coast population brought to Cape Verde during the earliest (1460s-1500s) settlement, alongside Wolof and Temne; Mandinka is repeatedly cited as an Upper Guinea founder-population source for Kabuverdianu in the standard creolistics literature (Jacobs 2010, 'Upper Guinea origins of Papiamentu', which situates Kabuverdianu as the sister proto-creole formed from the same Upper Guinea Portuguese-contact pool feeding Mandinka speakers into both Cape Verde and Guinea-Bissau; Lang 2006 dictionary introduction; Quint 2000, 'Grammaire de la langue cap-verdienne')."
     }
   ],
   "notes": "Kabuverdianu / Cape Verdean Creole (ALUPEC orthography). Portuguese-based creole; vernacular language of Cape Verde (~600,000 speakers). Two macro-dialects: Badiu (Santiago island, Sotavento group) and Sampadjudo (Barlavento islands). KEY FEATURES: (1) NASAL VOWELS: phonemic; in ALUPEC written vowel+n (bon /bõ/), the coda n marking nasality and left unpronounced — the tilde is reserved for the diphthongs ãi/ãu (mãi, nãu). Handled here by the KEA_NASAL_* allophone rules. (2) FIVE-VOWEL SYSTEM: no /ɨ/; unstressed vowels preserved. (3) SILENT H: <h> has no phonetic value. (4) AFFRICATES: tx=[tʃ], dj=[dʒ] — innovations relative to PT. (5) WORD-FINAL WEAKENING: final obstruents may be deleted, especially in Badiu variety. (6) SIBILANT: x=[ʃ], j=[ʒ], s=[s]. (7) RHOTIC: single intervocalic r is a tap /ɾ/; the strong rhotic /ʀ/ is written rr and word-initial r. Official orthography ALUPEC (Alfabeto Unificado para a Escrita do Cabo-Verdiano) adopted 1998, revised 2009.",

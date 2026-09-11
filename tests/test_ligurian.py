@@ -181,7 +181,7 @@ class TestSilentI:
 
     def test_giorna_silent_i(self):
         """giornâ -> [dʒurnaː]: g soft = dʒ, silent i, o=/u/, â long stressed."""
-        assert orthography2ipa.transcribe("giornâ", "lij") == "dʒuˈrnaː"
+        assert orthography2ipa.transcribe("giornâ", "lij") == "dʒurˈnaː"
 
     def test_cio_silent_i(self):
         """cio -> [tʃu]: silent i, o=/u/."""

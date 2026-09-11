@@ -81,6 +81,33 @@ class TestAliases:
 
 
 # ═══════════════════════════════════════════════════════════════════════════
+# Private-use spellings
+# ═══════════════════════════════════════════════════════════════════════════
+
+class TestPrivateUseSpellings:
+    """A variant tag spelled the way its consumers spell it reaches the
+    spec that models it, instead of collapsing onto the base language or
+    onto a sibling variant."""
+
+    @pytest.mark.parametrize("spelling,canonical", [
+        ("pt-BR-x-sao-paulo", "pt-BR-x-sp"),
+        ("pt-BR-x-rio-janeiro", "pt-BR-x-rj"),
+        ("pt-PT-x-lisboa", "pt-PT-x-lisbon"),
+    ])
+    def test_consumer_spellings_are_aliases(self, spelling, canonical):
+        assert registry.resolve(spelling) == canonical
+        assert get(spelling) is get(canonical)
+
+    @pytest.mark.parametrize("spelling,canonical", [
+        ("ar-sa-x-najd", "ar-SA-x-najd"),
+        ("PT-PT-X-PORTO", "pt-PT-x-porto"),
+        ("eu-X-bizkaiera", "eu-x-bizkaiera"),
+    ])
+    def test_private_use_tags_match_case_insensitively(self, spelling, canonical):
+        assert registry.resolve(spelling) == canonical
+
+
+# ═══════════════════════════════════════════════════════════════════════════
 # available_codes
 # ═══════════════════════════════════════════════════════════════════════════
 
@@ -219,7 +246,7 @@ class TestCachedSpecIsImmutable:
     """
 
     def test_grapheme_key_assignment_is_blocked(self):
-        spec = get("ext-PT-x-barrancos")
+        spec = get("pt-PT-x-barrancos")
         with pytest.raises(TypeError):
             spec.graphemes["aqui"] = ["x"]
 
@@ -244,7 +271,7 @@ class TestCachedSpecIsImmutable:
         """The regression: mutate a fetched spec, then a fresh get() is
         unaffected. Even a mutation that slips past the guard must not leak
         into the next caller's spec."""
-        first = get("ext-PT-x-barrancos")
+        first = get("pt-PT-x-barrancos")
         before = dict(first.graphemes)
         # attempts to corrupt the shared instance
         for attempt in (
@@ -255,7 +282,7 @@ class TestCachedSpecIsImmutable:
                 attempt()
             except TypeError:
                 pass
-        second = get("ext-PT-x-barrancos")
+        second = get("pt-PT-x-barrancos")
         assert second is first          # identity: shared cached instance
         assert dict(second.graphemes) == before
         assert "aqui" not in second.graphemes

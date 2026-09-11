@@ -3,6 +3,13 @@
   "name": "Swedish (Rikssvenska)",
   "script": "Latin",
   "graphemes_base": "sv",
+  "graphemes": {
+    "rn": ["ɳ"],
+    "rd": ["ɖ"],
+    "rt": ["ʈ"],
+    "rl": ["ɭ"],
+    "rs": ["ʂ"]
+  },
   "allophones_base": "sv",
   "allophones": {
     "ɧ": [
@@ -32,7 +39,7 @@
     ]
   },
   "parent": "sv",
-  "notes": "Rikssvenska — Central Swedish standard (Stockholm area). TONAL ACCENT: Accent 1 (acute) and Accent 2 (grave) — pitch-accent. QUANTITY: vowel and consonant length contrastive. /ɧ/ (sj-sound): the most debated phoneme in Swedish; realised as [ɧ], [ʃ], [ɕ], or [x] depending on speaker/region. RETROFLEXION: rn rd rt rs → ɳ ɖ ʈ ʂ (Central Swedish). Source: Elert (1994), Wells (1982).",
+  "notes": "Rikssvenska — Central Swedish standard (Stockholm area). TONAL ACCENT: Accent 1 (acute) and Accent 2 (grave) — pitch-accent. QUANTITY: vowel and consonant length contrastive. /ɧ/ (sj-sound): the most debated phoneme in Swedish; realised as [ɧ], [ʃ], [ɕ], or [x] depending on speaker/region. RETROFLEXION: rn rd rt rs → ɳ ɖ ʈ ʂ (Central Swedish). Declared directly in this dialect's own 'graphemes' override (not 'allophones') because the base sv spec's unconditional retroflexion turned out to actively hurt PER against the wikipron gold convention (which mostly spells rn/rd/rt/rs out rather than retroflexing them) and was removed from base sv by the beat-espeak-germanic data campaign; rikssvenska genuinely has the process, so it keeps it as its own data. Source: Elert (1994), Wells (1982).",
   "quality": "skeleton",
   "script_type": "alphabet",
   "sources": [

@@ -156,6 +156,7 @@
       "title": "A Constraint-based Analysis of Velar Affrication in Najdi vs. Hijazi Arabic",
       "publisher": "Education and Linguistics Research 6(2), 62-72. doi:10.5296/elr.v6i2.17551",
       "url": "https://doi.org/10.5296/elr.v6i2.17551",
+      "doi": "10.5296/elr.v6i2.17551",
       "pages": "62-72",
       "notes": "Native-informant data. Affrication is free variation ([k]~[ts], [ɡ]~[dz]) triggered by a front vowel in the same syllable, blocked by central/back vowels: [tsis] 'bag', [dits] 'rooster', [ʕɪlts] 'gum', [tsef] 'how', [dzɛlb] 'opposite', [rɪzdz] 'provision' vs [kʊm] 'cuff', [ʃok] 'thorn', [ɡʌlb] 'heart', [ɡʌbəl] 'before'. §3.1 shows the fatha environment splits lexically (front [kɛlb] vs central [qʌlb]). Confirms Hijazi has NO velar affrication."
     },
@@ -207,6 +208,7 @@
       "title": "The Historical Changes of /k/ and /q/ in Najdi Arabic: A Phonological Analysis",
       "publisher": "Theory and Practice in Language Studies 13(3), 796-807. doi:10.17507/tpls.1303.30",
       "url": "https://doi.org/10.17507/tpls.1303.30",
+      "doi": "10.17507/tpls.1303.30",
       "pages": "796-807",
       "notes": "Two RIYADH-born native informants (the exact variety this spec models). Corroborates the voicing asymmetry: /k/→[ts] with front /i/ AND central /a/ (Table 2, p.800: [tsan] 'was', [mitsan] 'place', [britsah] 'blessing'), but /ɡ/(<q)→[dz] ONLY with high front /i/ (Table 4, p.803: [dzidir] 'pot', [dziblah], [rifiːdz]). /q/→[ɡ] generally (Table 5, p.804), and /q/ RETAINED as [q] before back /u/ in religious/borrowed terms (Table 6, p.804: /qurʔaːn/, /qublah/). Crucially the /a/-affrication cannot be read off the fatha, which is exactly why NAJD_AFFRIC_K excludes /a/ — Mahzari's [tsan] and Al Mahmoud's non-affricating [ɡʌlb] are both written with fatha."
     },
