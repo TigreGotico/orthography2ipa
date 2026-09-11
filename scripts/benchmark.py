@@ -1556,13 +1556,29 @@ _IPADICT_PROVENANCE: Dict[str, str] = {
 _FETCH_ATTEMPTS = 3
 _FETCH_BACKOFF_SECONDS = 1.5
 
+# When true, :func:`_fetch_file` re-downloads a gold file it already holds.
+# Off by default: scoring must not depend on the network, and a board row
+# must be reproducible from the cache that produced it. Turn it on with
+# ``--refresh-cache`` when the question is whether the cache has fallen
+# behind upstream, which is invisible otherwise — a row scored against a
+# stale snapshot looks exactly like a row scored against a current one.
+REFRESH_CACHE = False
+
 
 def _fetch_file(url: str, name: str) -> str:
     """Download *url* to ``CACHE_DIR/name`` once and return the path. Binary
-    safe, so archives can be cached the same way text files are."""
+    safe, so archives can be cached the same way text files are.
+
+    A cached file is returned untouched unless :data:`REFRESH_CACHE` is
+    set, in which case it is downloaded again and any change in the bytes
+    is reported. A refresh that fails keeps the cached copy: the point of
+    refreshing is to learn whether upstream moved, and losing the gold to
+    a network error would be a worse outcome than not knowing.
+    """
     os.makedirs(CACHE_DIR, exist_ok=True)
     dest = os.path.join(CACHE_DIR, name)
-    if not os.path.exists(dest):
+    cached = os.path.exists(dest)
+    if not cached or REFRESH_CACHE:
         # Download to a sibling temp path and atomically rename into place
         # on success. urlretrieve writing straight to `dest` leaves a
         # truncated file behind on an interrupted download (killed
@@ -1574,6 +1590,8 @@ def _fetch_file(url: str, name: str) -> str:
         for attempt in range(1, _FETCH_ATTEMPTS + 1):
             try:
                 urllib.request.urlretrieve(url, tmp_dest)
+                if cached:
+                    _report_refresh(name, dest, tmp_dest)
                 os.replace(tmp_dest, dest)
                 last_exc = None
                 break
@@ -1584,8 +1602,32 @@ def _fetch_file(url: str, name: str) -> str:
                 if attempt < _FETCH_ATTEMPTS:
                     time.sleep(_FETCH_BACKOFF_SECONDS * attempt)
         if last_exc is not None:
+            if cached:
+                print(f"cache refresh failed for {name}, keeping the cached "
+                      f"copy: {last_exc}", file=sys.stderr)
+                return dest
             raise last_exc
     return dest
+
+
+def _report_refresh(name: str, dest: str, fresh: str) -> None:
+    """Say whether a refreshed gold file differs from the cached one.
+
+    Silence here would defeat the refresh: the whole reason to re-download
+    is to find out that a board row was scored against a snapshot upstream
+    no longer serves.
+    """
+    with contextlib.suppress(OSError):
+        old_size, new_size = os.path.getsize(dest), os.path.getsize(fresh)
+        with open(dest, "rb") as a, open(fresh, "rb") as b:
+            if a.read() == b.read():
+                print(f"{name}: cache is current ({old_size} bytes)",
+                      file=sys.stderr)
+                return
+        print(f"{name}: UPSTREAM CHANGED, cache held {old_size} bytes, "
+              f"upstream serves {new_size}. Every board row scored from "
+              f"this file is measured against the older snapshot.",
+              file=sys.stderr)
 
 
 def _fetch(url: str, name: str) -> str:
@@ -4487,6 +4529,11 @@ def main() -> None:
                          "(stripped by default)")
     ap.add_argument("--list", action="store_true",
                     help="List datasets and their languages")
+    ap.add_argument("--refresh-cache", action="store_true",
+                    help="Re-download every gold file this run reads and "
+                         "report which ones upstream has changed. Scoring "
+                         "otherwise uses the cached copy, so a row measured "
+                         "against a stale snapshot is invisible.")
     ap.add_argument("--scoreboard", action="store_true",
                     help="Run every registered gold dataset/language "
                          "combination and write docs/scoreboard.md + "
@@ -4514,6 +4561,9 @@ def main() -> None:
                          "write docs/lexicon_scoreboard.md + "
                          "benchmarks/lexicon_results.json")
     args = ap.parse_args()
+
+    global REFRESH_CACHE
+    REFRESH_CACHE = args.refresh_cache
 
     if args.lexicon_report:
         rows = build_lexicon_report(args.limit)

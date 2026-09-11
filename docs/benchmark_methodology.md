@@ -75,6 +75,14 @@ the pair's count dropped.
   "Full-dataset scoreboard" below). Ad-hoc `--limit N` runs (and the CI
   regression sample) apply a uniform cap for speed. Those are reference
   points, not the published number.
+- **Cached gold**: a gold file is downloaded once and read from the cache
+  after that, so a row is scored against whatever snapshot the box holds.
+  Upstream corpora grow, and a stale snapshot looks exactly like a current
+  one: the `N` column is the only visible symptom, and it is easy to read
+  as ordinary drift. `--refresh-cache` downloads every gold file the run
+  reads and names the ones upstream has changed. Scoring never refreshes
+  on its own, so a board row stays reproducible from the cache that
+  produced it.
 
 ### Full-dataset scoreboard
 
