@@ -12774,7 +12774,12 @@
   "oracle_per_top5": 0.6315,
   "oracle_exact_top5": 0.0004,
   "oracle_fallback_words": 0,
-  "oracle_scored_words": 5263
+  "oracle_scored_words": 5263,
+  "valid_ceiling": {
+   "per": 0.0798,
+   "folded": "tone+nasalisation",
+   "citation": "vox_communis is an epitran-derived, non-qualifying gold (directional signal only): its phone tier writes no tone mark at all on the 5263 scored words, while the engine emits Yoruba tone in full (4005 mid macrons, 5488 high acutes, 5183 low grades on the hypothesis side after scoring), so every toned vowel is scored as an error the orthography does not decide. Nasalisation is the one contrast the gold partially carries (281 of 5263 words marked) while the engine nasalises 1931, so the fold removes the mark from both sides rather than adjudicating each token. Measured over 5263 scored words with scripts/fold_yo_vox_notation.py, baseline PER 0.6392 (0.0004 exact) drops to 0.0798 (0.6540 exact) once tone and nasalisation are folded out of both sides; folding tone alone gives 0.1455 and nasalisation alone 0.6056, which must not be conflated with the combined figure. Precedent: th/vox_communis (0.2295, tone_position) and tn/vox_communis (0.2066) record ceilings on this same dataset. See docs/languages/yo.md."
+  }
  },
  {
   "lang": "yo",
