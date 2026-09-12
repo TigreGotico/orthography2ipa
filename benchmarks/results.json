@@ -12429,7 +12429,12 @@
   "oracle_per_top5": 0.5596,
   "oracle_exact_top5": 0.0024,
   "oracle_fallback_words": 0,
-  "oracle_scored_words": 2475
+  "oracle_scored_words": 2475,
+  "valid_ceiling": {
+   "per": 0.0246,
+   "folded": "notation-cumulative",
+   "citation": "The vox_communis vi gold is a pan-dialectal literary transcription that writes tone letters against the nucleus, marks vowel length and unreleased stops, and uses different height/palatal symbols, so the row is notation-dominated rather than phonological. scripts/fold_vi_notation.py folds eight such conventions cumulatively out of BOTH sides with the harness's own normalize()/levenshtein() over the 2475 scored words and the ladder bottoms at PER 0.0246 from 0.5596 as scored (tone letters 0.3277, vowel length 0.1994, unreleased stop 0.1715, tie bar 0.1715, u-merge 0.1449, short vowels 0.0398, palatal finals 0.0246, height neutral). Residual disagreement is under 3 of the 56 PER points; two folds move nothing because normalize() already strips the tie bar and the height letters differ on only 71 words. Not folded: tone-letter placement inside the rime and the ngang/huyen tone merge the gold itself makes, which are gold defects, not notation. See docs/languages/vi.md and scripts/fold_vi_notation.py."
+  }
  },
  {
   "lang": "vi",
