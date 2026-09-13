@@ -123,7 +123,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | ar-SY | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar-SY | gold20_arabic | 20 | 0.0491‡ | - | - | - | - | - | [0.0220, 0.0755] | 0.5000 | research | llm-generated |
 | ar-SY | primary_sources | 11† | 0.1318 | - | 0.1318 | 0.1318 | 0.4545 | 0.4545 | [0.0561, 0.2031] | 0.4545 | research | expert-human |
-| ar-SY | wikipron | 410 | 0.3374 | - | 0.3045 | 0.2920 | 0.1244 | 0.1317 | [0.3182, 0.3543] | 0.0805 | research | crowd-scraped |
+| ar-SY | wikipron | 410 | 0.3277 | - | 0.2942 | 0.2845 | 0.1244 | 0.1317 | [0.3101, 0.3438] | 0.0805 | research | crowd-scraped |
 | ar-TD | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar-TD | gold20_arabic | 20 | 0.0346‡ | - | - | - | - | - | [0.0083, 0.0662] | 0.7000 | research | llm-generated |
 | ar-TN | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
