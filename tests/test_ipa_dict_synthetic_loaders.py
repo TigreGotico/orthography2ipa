@@ -1,6 +1,6 @@
 """Tests for scripts/benchmark.py's synthetic IPA-dictionary loaders:
 ``load_barranquenho_dict`` (TigreGotico/barranquenho-ipa-dict-synthetic,
-``pt-PT-x-barrancos``) and ``load_mirandese_dict``
+``ext-PT-x-barrancos``) and ``load_mirandese_dict``
 (TigreGotico/mirandese-ipa-dict-synthetic, ``mwl`` and sub-dialects).
 
 Both golds are LLM-generated (research-conditioned), classified at the
@@ -37,7 +37,7 @@ _MIR_CSV = (
 
 def test_load_barranquenho_dict_extracts_pairs(monkeypatch):
     monkeypatch.setattr(benchmark, "_fetch", lambda url, name: _BARR_CSV)
-    pairs = benchmark.load_barranquenho_dict("pt-PT-x-barrancos", 100)
+    pairs = benchmark.load_barranquenho_dict("ext-PT-x-barrancos", 100)
     assert ("abanicu", "ɐbɐˈniku") in pairs
     assert ("casa", "ˈkaza") in pairs
     # malformed empty row is skipped
@@ -47,7 +47,7 @@ def test_load_barranquenho_dict_extracts_pairs(monkeypatch):
 
 def test_load_barranquenho_dict_respects_limit(monkeypatch):
     monkeypatch.setattr(benchmark, "_fetch", lambda url, name: _BARR_CSV)
-    pairs = benchmark.load_barranquenho_dict("pt-PT-x-barrancos", 1)
+    pairs = benchmark.load_barranquenho_dict("ext-PT-x-barrancos", 1)
     assert pairs == [("abanicu", "ɐbɐˈniku")]
 
 
@@ -71,7 +71,7 @@ def test_load_mirandese_dict_respects_limit(monkeypatch):
 def test_synthetic_dict_loaders_registered():
     assert benchmark.DATASETS["barranquenho_dict"][0] is \
         benchmark.load_barranquenho_dict
-    assert benchmark.DATASETS["barranquenho_dict"][1] == ["pt-PT-x-barrancos"]
+    assert benchmark.DATASETS["barranquenho_dict"][1] == ["ext-PT-x-barrancos"]
 
     loader, langs = benchmark.DATASETS["mirandese_dict"]
     assert loader is benchmark.load_mirandese_dict

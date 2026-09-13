@@ -305,7 +305,7 @@
     "access": "open",
     "pagination": "Open-access scan on Docta Complutense (handle hdl.handle.net/20.500.14352/46845). The printed folio sits in the page running foot and coincides with the PDF page index (verified: PDF page 49 = folio 49, 50 = folio 50, 52 = folio 52, 53 = folio 53). The book uses a Spanish (RFE-influenced) phonetic notation: primary stress is an apostrophe placed BEFORE the stressed syllable (normalized to IPA ˈ), and [∫]=ʃ, [γ]=ɣ, [δ]=ð, [β]=β, with final unstressed <a> written [α]/[a] and read [ɐ]; the `ipa` field carries the IPA normalization and `source_notation` keeps the book's glyphs verbatim.",
     "notation": "ipa",
-    "describes": "Barranquenho (pt-PT-x-barrancos) — the Portuguese-Spanish contact variety of Barrancos (Baixo Alentejo, on the Extremadura/Andalusia border); Alentejo-Portuguese phonetic base with southern-peninsular Spanish overlay (coda /s/ aspiration, betacism, final-vowel apocope). Already cited by the pt-PT-x-barrancos spec."
+    "describes": "Barranquenho (ext-PT-x-barrancos) — the Portuguese-Spanish contact variety of Barrancos (Baixo Alentejo, on the Extremadura/Andalusia border); Alentejo-Portuguese phonetic base with southern-peninsular Spanish overlay (coda /s/ aspiration, betacism, final-vowel apocope). Already cited by the ext-PT-x-barrancos spec."
   },
   "algethami2023": {
     "authors": "Algethami, G.",

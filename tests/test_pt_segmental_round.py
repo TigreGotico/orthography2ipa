@@ -104,8 +104,8 @@ def test_peripheral_lects_do_not_centralise_em(lect, expected):
 
 def test_barranquenho_keeps_em_monophthong():
     """Barranquenho ⟨-em/-én⟩ is a nasal monophthong per the Convenção."""
-    assert _t("quen", "pt-PT-x-barrancos") == "ˈkẽ"
-    assert _t("bem", "pt-PT-x-barrancos") == "ˈbẽ"
+    assert _t("quen", "ext-PT-x-barrancos") == "ˈkẽ"
+    assert _t("bem", "ext-PT-x-barrancos") == "ˈbẽ"
 
 
 # ─── P3: BR affrication fed by the raised final ⟨e⟩ (Barbosa & Albano 2004) ──

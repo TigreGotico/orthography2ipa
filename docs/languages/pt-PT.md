@@ -59,7 +59,7 @@ Portuguese has five phonemic nasal vowels, **/ɐ̃ ẽ ĩ õ ũ/**:
 | ⟨um⟩/⟨un⟩ | [u] | [ũ] | `mundo` [ˈmũdu], `um` [ˈũ] |
 
 The process splits across the two maps by design, exactly as the
-[Barranquenho](pt-PT-x-barrancos.md) spec models it:
+[Barranquenho](ext-PT-x-barrancos.md) spec models it:
 
 - **Pre-lexical (the nasalisation itself).** The `positional_graphemes` entries
   for `m` and `n` map the coda positions (`before_consonant`, `word_final`) to a
