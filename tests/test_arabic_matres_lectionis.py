@@ -2,14 +2,17 @@
 
 The two letters are systematically ambiguous. Each spells a long vowel (/uː/,
 /iː/) when it is *quiescent* — sitting after its own homorganic short vowel with
-no vowel of its own — and the consonant (/w/, /j/) otherwise. Wright,
-*A Grammar of the Arabic Language*, 3rd ed., I §4, states the condition: the
-letter is a vowel of prolongation only when it closes the syllable, and
-otherwise "retains its consonantal power". Watson 2002 §2.6.1 gives the
-structural reason — Arabic onsets are obligatory, so a high vocoid before a
-vowel resolves as V.GV. After a *fatḥa* the quiescent glide is instead the
-offglide of a diphthong, /aw/ and /aj/, "a short vowel followed by a semivowel"
-(Ryding 2005, pp. 29-30).
+no vowel of its own — and the consonant (/w/, /j/) otherwise. This is the
+standard account in the Arabic grammars (e.g. Wright, *A Grammar of the Arabic
+Language*; edition not consulted for this file). A glide before a vowel is that
+vowel's onset: Watson (2002, p. 56) gives the minimal syllable of Cairene and
+San'ani as "monomoraic with an obligatory onset". After a *fatḥa* the quiescent
+glide is instead the offglide of a diphthong, /aw/ and /aj/ (Ryding 2005; page
+not re-checked for this file).
+
+The measured cost of the current bare-letter default, and why it is not simply
+flipped, is in docs/languages/ar.md, section "Error analysis: what the remaining
+PER is made of".
 
 ``ar`` is not a leaf: it is the ``graphemes_base`` for the whole Arabic dialect
 tree, so its bare-letter readings are inherited by every lect. These cases are
