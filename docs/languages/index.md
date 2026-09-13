@@ -74,7 +74,7 @@ each tier actually certifies.
 | [pt-AO.md](pt-AO.md) | Angolan Portuguese — emerging L2 norm, spelling-closer vocalism (no EP reduction), alveolar coda /s/ (Undolo 2014, Chavagne 2005) |
 | [pt-CV.md](pt-CV.md) | Cape Verdean *Portuguese* — distinct from Kabuverdianu (kea) creole; reduced reduction, plosive b/d/g (honesty-flagged, skeleton) |
 | [pt-MZ.md](pt-MZ.md) | Mozambican Portuguese — Maputo emerging norm, alveolar trill [R], aspirated /ʎ/, weaker reduction (Nhatuve 2019, Gonçalves 2010) |
-| [pt-PT-x-barrancos.md](pt-PT-x-barrancos.md) | Barranquenho (`pt-PT-x-barrancos`): the Portuguese-Spanish contact variety of Barrancos |
+| [ext-PT-x-barrancos.md](ext-PT-x-barrancos.md) | Barranquenho (`ext-PT-x-barrancos`): the Portuguese-Spanish contact variety of Barrancos |
 | [lij.md](lij.md) | Ligurian / Genoese (Gallo-Italic; grafia ofiçiâ, ⟨x⟩=/ʒ/, ⟨o⟩=/u/, ⟨u⟩=/y/) |
 | [an-valleys.md](an-valleys.md) | Pyrenean-valley Aragonese: Cheso (`an-x-cheso`), Ansotano (`an-x-ansotano`), Belsetán (`an-x-belsetan`), Chistabín (`an-x-chistabin`), Tensino (`an-x-tensino`) — geminates ⟨l·l⟩/⟨n·n⟩, final-r deletion, no-epenthesis ⟨ix⟩, ro/ra tap article |
 

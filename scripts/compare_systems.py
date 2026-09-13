@@ -419,19 +419,19 @@ LANGS: Dict[str, dict] = {
     # can still diverge it from raw o2i.
     "mwl": {"dataset": ("mirandese_g2p", "mwl"), "espeak": None,
             "epitran": None, "gruut": None, "mwl_phonemizer": "mwl"},
-    # Barranquenho (pt-PT-x-barrancos): the ONLY registered gold,
+    # Barranquenho (ext-PT-x-barrancos): the ONLY registered gold,
     # ``barranquenho_dict``, is documented same-source for o2i (see
     # ``_O2I_SAME_SOURCE_DATASETS`` above) — its own loader docstring says
     # the IPA column "suggests their IPA column is itself o2i-aligned:
     # treat every number from this dataset as agreement, not correctness".
     # g2p_barranquenho is built directly on o2i's own
-    # pt-PT-x-barrancos spec, so it inherits the exact same exposure —
+    # ext-PT-x-barrancos spec, so it inherits the exact same exposure —
     # wired in and correctly flagged same-source (see
     # ``_same_source_flags``'s "barranquenho" key) rather than silently
     # dropped or, worse, presented as a real comparison.
-    "pt-PT-x-barrancos": {"dataset": ("barranquenho_dict", "pt-PT-x-barrancos"),
+    "ext-PT-x-barrancos": {"dataset": ("barranquenho_dict", "ext-PT-x-barrancos"),
                             "espeak": None, "epitran": None, "gruut": None,
-                            "barranquenho": "pt-PT-x-barrancos"},
+                            "barranquenho": "ext-PT-x-barrancos"},
     "cy": {"dataset": ("wikipron", "cy"), "espeak": "cy",
            "epitran": "cym-Latn", "gruut": None},
     "ga": {"dataset": ("wikipron", "ga"), "espeak": "ga",
@@ -1134,7 +1134,7 @@ def barranquenho_transcribe(word: str, lang: str) -> Optional[str]:
     """Transcribe *word* with g2p_barranquenho's ``transcribe``, or ``None``
     if the library is absent or fails on the word. *lang* is accepted for a
     uniform call signature but unused — g2p_barranquenho scores a single
-    fixed variety (``pt-PT-x-barrancos``)."""
+    fixed variety (``ext-PT-x-barrancos``)."""
     try:
         from g2p_barranquenho import transcribe
     except ImportError:
@@ -2134,7 +2134,7 @@ _O2I_SAME_SOURCE_DATASETS = frozenset({
     # barranquenho_dict joins per this docstring's own instruction above:
     # load_barranquenho_dict's docstring documents its IPA column as itself
     # o2i-aligned, so scoring o2i (or g2p_barranquenho, which is built
-    # directly on o2i's pt-PT-x-barrancos spec) against it is circular.
+    # directly on o2i's ext-PT-x-barrancos spec) against it is circular.
     "barranquenho_dict",
 })
 
@@ -3521,7 +3521,7 @@ _O2I_FAMILY_REPOS: List[Tuple[str, str, str]] = [
      "Portuguese-family lattice"),
     ("barranquenho", "g2p_barranquenho",
      "the Barranquenho (Spanish/Portuguese contact variety) rule layer "
-     "on top of the `pt-PT-x-barrancos` lattice"),
+     "on top of the `ext-PT-x-barrancos` lattice"),
     ("mwl_phonemizer", "mwl_phonemizer",
      "Mirandese dialect selection, an optional native-speaker lexicon "
      "overlay, and CRF correction on top of the `mwl` lattice"),

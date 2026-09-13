@@ -57,7 +57,7 @@ CLITICS = ["o", "a", "os", "as", "de", "em", "por", "da", "na", "ao", "às",
 P1_LECTS = ["pt-PT", "pt-BR", "pt-PT-x-lisbon", "pt-PT-x-porto",
             "pt-PT-x-braga", "pt-PT-x-alentejo", "pt-PT-x-acores",
             "pt-BR-x-sp", "pt-AO", "pt-MZ", "pt-PT-x-medieval",
-            "roa-x-galaicopt", "pt-PT-x-barrancos"]
+            "roa-x-galaicopt", "ext-PT-x-barrancos"]
 
 
 @pytest.mark.parametrize("lect", P1_LECTS)
@@ -86,7 +86,7 @@ def test_indefinite_article_um_keeps_stress():
 
 @pytest.mark.parametrize("lect", ["pt-PT", "pt-BR", "pt-PT-x-lisbon",
                                   "pt-PT-x-braga", "pt-BR-x-sp", "pt-AO",
-                                  "pt-UY", "pt-PT-x-barrancos"])
+                                  "pt-UY", "ext-PT-x-barrancos"])
 def test_conjunction_e_raises_to_i_modern(lect):
     assert transcribe("e", lect) == "i", lect
 

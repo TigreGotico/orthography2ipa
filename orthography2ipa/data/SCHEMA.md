@@ -754,7 +754,10 @@ the place or the variety in lowercase ASCII. The prefix is not a label of
 convenience — it must agree with the spec's own `parent` and with the
 heaviest-weighted entry in `ancestors`. A spec whose `parent` is `pt-PT` cannot
 be keyed under a Castilic prefix, and a mismatch between the code and those two
-fields is a defect in the code, not in the fields.
+fields is a defect in the code, not in the fields. A parentless mixed language is
+the one exception: its private-use key takes its prefix from its documented
+external classification and need not match its heaviest-weighted ancestor, and
+the loader's `family_path` is empty for it, so the spec sets `family` itself.
 
 Glottolog is the authority consulted for the genealogy. Where it carries a
 languoid for the variety, its code goes in `glottolog_code` and its classification

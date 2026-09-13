@@ -73,7 +73,7 @@ LECTS = [
     # subdialects, gated by the same harness (their gold uses genuine Mirandese
     # orthography per the Convenção Ortográfica, not Portuguese).
     "mwl", "mwl-x-ifanes", "mwl-x-sendim",
-    "pt-PT-x-barrancos",
+    "ext-PT-x-barrancos",
     "roa-x-galaicopt",
 ]
 MIN_ROWS = 5

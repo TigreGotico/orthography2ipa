@@ -32,6 +32,7 @@ One line per language: the best system on its primary gold, and where o2i lands.
 - **es (Spanish)** — epitran #1, o2i #2
 - **eu (Basque (Euskara))** — o2i #1 (beats espeak rules-only)
 - **eu-wikipron (Basque (Euskara), wikipron-primary variant)** — o2i #1 (beats espeak rules-only)
+- **ext-PT-x-barrancos** — primary gold has no comparable systems (same-source); see the per-language table below for a comparison on a secondary gold
 - **fi (Finnish)** — o2i #1 (beats epitran)
 - **fr (French)** — o2i #1 (beats espeak rules-only)
 - **ga (Irish)** — o2i #1 (beats espeak rules-only)
@@ -49,7 +50,6 @@ One line per language: the best system on its primary gold, and where o2i lands.
 - **nup (Nupe)** — o2i #1 (beats africa-g2p)
 - **pl (Polish)** — o2i #1 (beats epitran)
 - **pt-PT (European Portuguese)** — o2i #1 (beats espeak rules-only) (tugaphone with its lexicon scores 0.1887 — informational)
-- **pt-PT-x-barrancos** — primary gold has no comparable systems (same-source); see the per-language table below for a comparison on a secondary gold
 - **ro (Romanian)** — o2i #1 (beats epitran)
 - **ru (Russian)** — o2i #1 (beats epitran)
 - **sv (Swedish)** — o2i #1 (beats espeak rules-only)
@@ -64,7 +64,7 @@ orthography2ipa is a shared lattice — a grapheme table plus allophone/sandhi r
 
 - **[arbtok](https://github.com/TigreGotico/arbtok)** — adds Arabic diacritization, dialect lexicons, nativized loanwords, and code-switch handling on top of the shared `ar`/`arb` lattice (the RANKED `arbtok` column below runs with both bundled lexicons off for a fair lexicon-free comparison — see `arbtok (lexicon)` for the full-featured stock number).
 - **[tugaphone](https://github.com/TigreGotico/tugaphone)** — adds the curated `tugalex` pronunciation lexicon, sense-based homograph marking, and cross-dialect contact-language handling on top of the Portuguese-family lattice.
-- **[g2p_barranquenho](https://github.com/TigreGotico/g2p_barranquenho)** — adds the Barranquenho (Spanish/Portuguese contact variety) rule layer on top of the `pt-PT-x-barrancos` lattice.
+- **[g2p_barranquenho](https://github.com/TigreGotico/g2p_barranquenho)** — adds the Barranquenho (Spanish/Portuguese contact variety) rule layer on top of the `ext-PT-x-barrancos` lattice.
 - **[mwl_phonemizer](https://github.com/TigreGotico/mwl_phonemizer)** — adds Mirandese dialect selection, an optional native-speaker lexicon overlay, and CRF correction on top of the `mwl` lattice.
 - **[udarnik](https://github.com/TigreGotico/udarnik)** — adds a stressonnx-placed lexical accent on top of the `ru` lattice — Russian stress is free and unwritten, and the spec's own notes name its positional guess as the main source of its error, so supplying the real stress is what conditions akanje and ikanje correctly (no word->IPA lexicon: udarnik defaults to none. Its stressonnx `ruaccent` backend does consult a 110,826-entry accent dictionary and a 19,740-entry omograph dictionary before its models — 11.21% and 4.89% of unique `alphacep_ru_book` words respectively — but those hold STRESS POSITIONS, not pronunciations, so the column is ranked as effectively lexicon-free with the exception documented, the same treatment ahotts-g2p gets).
 
@@ -207,6 +207,14 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 | vox_communis | 63415 | 0.0429 | 0.0948 | 0.0945 | same-source | 0.1039 | o2i |
 | wikipron | 12022 | 0.0546 | 0.1019 | 0.0986 | n/a | 0.1507 | o2i |
 
+### ext-PT-x-barrancos
+
+| Dataset | N | o2i | arbtok | arbtok (lexicon) | tugaphone (lexicon) | g2p_barranquenho | mwl_phonemizer | Winner |
+|---|---|---|---|---|---|---|---|---|
+| barranquenho_dict | 1508 | same-source | same-source | same-source | same-source | same-source | same-source | n/a |
+| portuguese_tts | 20 | same-source | same-source | same-source | same-source | same-source | same-source | n/a |
+| primary_sources | 10 | 0.2801 | n/a | n/a | n/a | 0.2801 | n/a | tie (g2p_barranquenho, o2i) |
+
 ### fi (Finnish)
 
 | Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | Winner |
@@ -325,14 +333,6 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 | portuguese_tts | 20 | same-source | 0.3336 | 0.3331 | 0.4042 | same-source | same-source | same-source | same-source | same-source | espeak rules-only |
 | portuguese_unified | 3000 | 0.2245 | 0.3669 | 0.3631 | 0.4146 | n/a | n/a | 0.1887 | n/a | n/a | o2i |
 | wikipron | 2272 | 0.1346 | 0.2374 | 0.2373 | 0.2903 | n/a | n/a | 0.1341 | n/a | n/a | o2i |
-
-### pt-PT-x-barrancos
-
-| Dataset | N | o2i | arbtok | arbtok (lexicon) | tugaphone (lexicon) | g2p_barranquenho | mwl_phonemizer | Winner |
-|---|---|---|---|---|---|---|---|---|
-| barranquenho_dict | 1508 | same-source | same-source | same-source | same-source | same-source | same-source | n/a |
-| portuguese_tts | 20 | same-source | same-source | same-source | same-source | same-source | same-source | n/a |
-| primary_sources | 10 | 0.2801 | n/a | n/a | n/a | 0.2801 | n/a | tie (g2p_barranquenho, o2i) |
 
 ### ro (Romanian)
 
