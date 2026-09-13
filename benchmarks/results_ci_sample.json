@@ -1313,6 +1313,7 @@
     "exact_match": 1.0,
     "quality_tier": "research",
     "provenance": "llm-generated",
+    "gating": false,
     "harness_version": "1.1",
     "limit": 1000
   },
@@ -1326,6 +1327,7 @@
     "exact_match": 0.35,
     "quality_tier": "research",
     "provenance": "llm-generated",
+    "gating": false,
     "harness_version": "1.1",
     "limit": 1000
   },
@@ -1333,12 +1335,13 @@
     "lang": "ar-x-gulf",
     "dataset": "wikipron",
     "n": 614,
-    "per": 0.427,
-    "per_ci_low": 0.4144,
-    "per_ci_high": 0.4397,
-    "exact_match": 0.0195,
+    "per": 0.388,
+    "per_ci_low": 0.3718,
+    "per_ci_high": 0.4035,
+    "exact_match": 0.0489,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
+    "gating": true,
     "harness_version": "1.1",
     "limit": 1000
   },
