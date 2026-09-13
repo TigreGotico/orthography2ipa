@@ -153,7 +153,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | ast-PT-x-medieval | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ast-PT-x-rionor | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | av | northeuralex | 954 | 0.0990 | - | 0.0501 | 0.0378 | 0.7086 | 0.8029 | [0.0927, 0.1054] | 0.4591 | research | lexicon-derived |
-| ayl | wikipron | 156 | 0.3799 | - | 0.2808 | 0.2777 | 0.1474 | 0.1538 | [0.3544, 0.4062] | 0.0449 | research | crowd-scraped |
+| ayl | wikipron | 156 | 0.3078 | - | 0.2724 | 0.2715 | 0.1923 | 0.1923 | [0.2716, 0.3508] | 0.1538 | research | crowd-scraped |
 | az | wikipron | 434 | 0.2440 | - | 0.2382 | 0.2382 | 0.3134 | 0.3134 | [0.2238, 0.2654] | 0.3111 | research | crowd-scraped |
 | ba | vox_communis | 70528 | 0.4047‡ | - | 0.4047 | 0.4047 | 0.0191 | 0.0191 | [0.4038, 0.4056] | 0.0191 | research | epitran-derived |
 | ba | wikipron | 171 | 0.2685 | - | 0.2685 | 0.2685 | 0.4211 | 0.4211 | [0.2233, 0.3172] | 0.4211 | research | crowd-scraped |
