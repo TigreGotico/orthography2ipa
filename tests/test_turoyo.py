@@ -68,3 +68,26 @@ class TestEmphaticStateEndingSurvives:
         out = G2P("tru").transcribe_word("ܟܠܒܐ")
         assert not out.endswith("ʔ")
         assert out.endswith("o")
+
+
+class TestUnpointedInputIsAudited:
+    """The standard writes /a/ with ftoḥo and plural vowels with points
+    (Surayt Orthography §2b, §2e, p. 7), so the missing vowels are an input
+    limit, not an unwritten contrast."""
+
+    def _raw(self):
+        import json
+        import pathlib
+        path = (pathlib.Path(__file__).parent.parent
+                / "orthography2ipa" / "data" / "tru.json")
+        return json.loads(path.read_text(encoding="utf-8"))
+
+    def test_wikipron_row_is_audited_as_input_limited(self):
+        raw = self._raw()
+        entry = raw["audit"]["wikipron"]
+        assert entry["conclusion"] == "input_limited"
+        assert "always expressed by ftoḥo" in entry["measured"]
+        assert "valid_ceiling" not in raw
+
+    def test_notes_do_not_call_the_pointing_optional(self):
+        assert "optional pointing" not in self._raw()["notes"]
