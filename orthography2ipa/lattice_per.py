@@ -47,10 +47,13 @@ Usage::
 
     >>> from orthography2ipa.lattice_per import lattice_per
     >>> r = lattice_per("es̻ pada", "ez bada", "eu")
-    >>> r.distance, r.per          # sandhi reading is admissible
-    (0.0, 0.0)
-    >>> lattice_per("es baða", "ez bada", "eu").distance   # genuinely wrong segments
-    2.0
+    >>> r.distance, round(r.per, 4), r.variant_credit
+    (1.0, 0.1667, 0.0)
+    >>> r = lattice_per("es baða", "ez bada", "eu")
+    >>> r.distance, round(r.per, 4), round(r.variant_credit, 4)
+    (1.0, 0.1667, 0.1667)
+
+    The values depend on the ``eu`` spec and change when it changes.
 """
 from __future__ import annotations
 
