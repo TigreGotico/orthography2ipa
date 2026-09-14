@@ -166,6 +166,33 @@
     "وِالظظ": [
       "widˤdˤ",
       "wizˤzˤ"
+    ],
+    "يو": [
+      "juː",
+      "joː",
+      "iːw"
+    ],
+    "وي": [
+      "wiː",
+      "weː",
+      "uːj"
+    ],
+    "ية": [
+      "ja",
+      "jat"
+    ],
+    "وة": [
+      "wa",
+      "wat"
+    ],
+    "وية": [
+      "uːja",
+      "wja"
+    ],
+    "يوة": [
+      "iːwa",
+      "eːwa",
+      "jwa"
     ]
   },
   "allophones_base": "ar-x-peninsular",
@@ -210,7 +237,7 @@
       "notes": "Peninsular Arabic base"
     }
   ],
-  "notes": "Hejazi Arabic (حجازي), urban western Saudi Arabia: Mecca, Medina, Jeddah. References Omar (1975) and Abdoh (2010). DEFINING FEATURES modeled here: (1) qaf ق → /ɡ/ (voiced velar stop) in inherited vocabulary — part of the early Hejazi /q/→/ɡ/ shift; /q/ retained only in learned/scientific/religious borrowings (older descriptions positing a /ʔ/ reflex are a misattribution of the Levantine/Egyptian feature); (2) jim ج → /dʒ/ (affricate; [ʒ] for some speakers); (3) interdentals MERGED TO STOPS in the urban koine — ث → /t/ (~/s/), ذ → /d/ (~/z/), ظ → /dˤ/ (~/zˤ/); interdentals are retained only in Bedouin/rural speech; (4) MONOPHTHONGIZATION — Classical /aj aw/ → [eː oː] (bayt→beːt, yawm→joːm), declared as allophone_rules HEJ_MONO_* (Omar 1975; Abdoh 2010), giving the 8-vowel system /a u i; aː uː iː eː oː/. TOKENIZATION NOTE: those rules rewrite the /aj/ and /aw/ ATOMS that the ⟨َي⟩/⟨َو⟩ digraphs emit, and in ⟨يَوْ⟩ and ⟨وَيْ⟩ the fatha is already spoken for — the inherited `ar` onset digraphs يَ→/ja/ and وَ→/wa/ claim it, so the glide that follows is a bare /w/ or /j/ and the diphthong atom never forms (يَوْم came out *[jawm]). The two sequences are therefore spelled out in `graphemes` as يَوْ→[joː] and وَيْ→[weː], which is the same monophthongization, reached from the spelling instead of from the atom. The explicit sukun in both keys is what keeps حَيَوَان /ħajawaːn/ and يَوَدّ /jawadd/ — where the waw carries its own vowel and there is no diphthong — out of the rule; (5) four emphatics /sˤ dˤ tˤ zˤ/ with pharyngealization spreading that backs low vowels — inherited from the ar-x-peninsular parent (AR_PEN_EMPH_*). No k→[tʃ] Gulf/Najdi affrication. Cosmopolitan koine shaped by Hajj contact. INPUT CONTRACT: transcribes orthography+harakat; short vowels surface only when the input is vocalised (dialectal Arabic is normally written defectively). NO ar-SA UMBRELLA NODE: Saudi dialects do not form one phonological group — they split across the Hejazi (this node), Najdi (ar-SA-x-najd + ar-SA-x-qassim), Gulf (ar-SA-x-sharqiyya) and Southwestern (ar-SA-x-rijal-alma) types — so the bare country code ar-SA is left unassigned (lang-code accuracy: null beats wrong; Omar 1975). The urban Hejazi koine modeled here is itself only the prestige city variety; rural and Bedouin Hejazi retain interdentals and lack the stop mergers.",
+  "notes": "Hejazi Arabic (حجازي), urban western Saudi Arabia: Mecca, Medina, Jeddah. References Omar (1975) and Abdoh (2010). DEFINING FEATURES modeled here: (1) qaf ق → /ɡ/ (voiced velar stop) in inherited vocabulary — part of the early Hejazi /q/→/ɡ/ shift; /q/ retained only in learned/scientific/religious borrowings (older descriptions positing a /ʔ/ reflex are a misattribution of the Levantine/Egyptian feature); (2) jim ج → /dʒ/ (affricate; [ʒ] for some speakers); (3) interdentals MERGED TO STOPS in the urban koine — ث → /t/ (~/s/), ذ → /d/ (~/z/), ظ → /dˤ/ (~/zˤ/); interdentals are retained only in Bedouin/rural speech; (4) MONOPHTHONGIZATION — Classical /aj aw/ → [eː oː] (bayt→beːt, yawm→joːm), declared as allophone_rules HEJ_MONO_* (Omar 1975; Abdoh 2010), giving the 8-vowel system /a u i; aː uː iː eː oː/. TOKENIZATION NOTE: those rules rewrite the /aj/ and /aw/ ATOMS that the ⟨َي⟩/⟨َو⟩ digraphs emit, and in ⟨يَوْ⟩ and ⟨وَيْ⟩ the fatha is already spoken for — the inherited `ar` onset digraphs يَ→/ja/ and وَ→/wa/ claim it, so the glide that follows is a bare /w/ or /j/ and the diphthong atom never forms (يَوْم came out *[jawm]). The two sequences are therefore spelled out in `graphemes` as يَوْ→[joː] and وَيْ→[weː], which is the same monophthongization, reached from the spelling instead of from the atom. The explicit sukun in both keys is what keeps حَيَوَان /ħajawaːn/ and يَوَدّ /jawadd/ — where the waw carries its own vowel and there is no diphthong — out of the rule; (5) four emphatics /sˤ dˤ tˤ zˤ/ with pharyngealization spreading that backs low vowels — inherited from the ar-x-peninsular parent (AR_PEN_EMPH_*). No k→[tʃ] Gulf/Najdi affrication. Cosmopolitan koine shaped by Hajj contact. INPUT CONTRACT: transcribes orthography+harakat; short vowels surface only when the input is vocalised (dialectal Arabic is normally written defectively). NO ar-SA UMBRELLA NODE: Saudi dialects do not form one phonological group — they split across the Hejazi (this node), Najdi (ar-SA-x-najd + ar-SA-x-qassim), Gulf (ar-SA-x-sharqiyya) and Southwestern (ar-SA-x-rijal-alma) types — so the bare country code ar-SA is left unassigned (lang-code accuracy: null beats wrong; Omar 1975). The urban Hejazi koine modeled here is itself only the prestige city variety; rural and Bedouin Hejazi retain interdentals and lack the stop mergers. MATRES LECTIONIS AFTER A CONSONANT. ⟨و⟩ and ⟨ي⟩ after a consonant letter are read first as the long vowels [uː] and [iː], then [oː] and [eː], then the glides [w] and [j]; word-initially and after a vowel they stay glides. Wikipedia 'Hejazi Arabic' (source hejazi_arabic_wiki), section Writing system: \"the vowels /oː/ and /eː/ which were not part of the CA phonemic inventory are represented by the letters ⟨و⟩ and ⟨ي⟩ respectively.\" Its vowel table writes فوق /fuːg/ 'wake up!' and /foːg/ 'above', مو /ˈmuː/, جوا /ˈd͡ʒoː/, بيض /biːdˤ/ 'whites' and /beːdˤ/ 'eggs', ذي /ˈdiː/, عليه /ʕaˈleː/. The source does not rank [uː] against [oː]; [oː] first measures 0.2864 against 0.2877 for this order, which the sister specs use. ADJACENT LETTERS AND THE FINAL TA MARBUTA. Grapheme keys يو [juː, joː, iːw], وي [wiː, weː, uːj], ية [ja, jat], وة [wa, wat], وية [uːja, wja] and يوة [iːwa, eːwa, jwa] read the first of two adjacent letters, and a letter before a final ة, as the glide; without them the after_consonant rule makes both letters long (بيوت biːuːt). The source shows no such sequence after a consonant; these keys rest on the gold count. Gold count (WikiPron ar-SA-x-hejaz, acw_arab_broad.tsv): 2640 lines. Rows with the letter after a consonant letter: و 453, ي 606; segments in those rows: و uː 130, oː 178, w 176; ي iː 235, eː 139, j 231.",
   "quality": "research",
   "script_type": "abjad",
   "sources": [
@@ -326,6 +353,17 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "hejazi_arabic_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Hejazi Arabic",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Hejazi_Arabic",
+      "pages": null,
+      "notes": "Section Writing system and the vowel table, read 2026-09-13 in the raw wikitext. The Writing system paragraph cites Holes (2004) p. 92 on its first sentence only.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Hejazi_Arabic"
     }
   ],
   "wikipedia": [
@@ -397,6 +435,42 @@
       "conclusion": "input_limited",
       "measured": "0 of 2640 wikipron input words (acw_arab_broad.tsv) carry a haraka (short-vowel diacritic); Wiktionary files Arabic entries at the unvocalized page title (Wiktionary:About_Arabic / Wiktionary:Arabic_entry_guidelines, 'Entry name'), so the scraped input is a consonant-plus-long-vowel skeleton, exactly the pattern independently measured on the bare 'ar' wikipron row (0/17,563 words carry a haraka there; see ar.json audit.wikipron). No fold was run for this dialect row -- doing so needs the dialect's own vowel inventory, not MSA's -- so no valid_ceiling is recorded here; the wikipron_ar_diacritized loader (scripts/benchmark.py) that would supply it is wired for the 'ar' row only.",
       "reference": "spec notes; see ar.json audit.wikipron for the measured MSA precedent"
+    }
+  },
+  "positional_graphemes": {
+    "و": {
+      "word_initial": [
+        "w"
+      ],
+      "after_vowel": [
+        "w"
+      ],
+      "after_consonant": [
+        "uː",
+        "oː",
+        "w"
+      ],
+      "default": [
+        "w",
+        "uː"
+      ]
+    },
+    "ي": {
+      "word_initial": [
+        "j"
+      ],
+      "after_vowel": [
+        "j"
+      ],
+      "after_consonant": [
+        "iː",
+        "eː",
+        "j"
+      ],
+      "default": [
+        "j",
+        "iː"
+      ]
     }
   }
 }
