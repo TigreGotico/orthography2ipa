@@ -246,6 +246,13 @@ class TestLoaderParsesShippedData:
         assert spec.valid_ceiling["wikipron"].folded == "tone"
 
 
+    def test_vi_valid_ceiling_loads(self):
+        spec = json_loader.load_json_spec("vi")
+        assert spec.valid_ceiling is not None
+        assert spec.valid_ceiling["vox_communis"].per == pytest.approx(0.0246)
+        assert spec.valid_ceiling["vox_communis"].folded == "notation-cumulative"
+
+
 class TestScoreboardColumn:
     def test_ceiling_column_present_and_marks_below_threshold(
         self, tmp_path, monkeypatch
