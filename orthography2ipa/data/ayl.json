@@ -148,6 +148,528 @@
     ],
     "ـ": [
       ""
+    ],
+    "ّ": [
+      "ː"
+    ],
+    "ْي": [
+      "j"
+    ],
+    "ْو": [
+      "w"
+    ],
+    "اَ": [
+      "a"
+    ],
+    "وُ": [
+      "wu"
+    ],
+    "يِ": [
+      "ji"
+    ],
+    "وَ": [
+      "wa"
+    ],
+    "يَ": [
+      "ja"
+    ],
+    "َا": [
+      "aː"
+    ],
+    "َى": [
+      "aː"
+    ],
+    "ُو": [
+      "uː"
+    ],
+    "ِي": [
+      "iː"
+    ],
+    "َو": [
+      "aw"
+    ],
+    "َي": [
+      "aj"
+    ],
+    "اَل": [
+      "al"
+    ],
+    "أَ": [
+      "ʔa"
+    ],
+    "أُ": [
+      "ʔu"
+    ],
+    "إِ": [
+      "ʔi"
+    ],
+    "ِيَ": [
+      "ija"
+    ],
+    "ُوَ": [
+      "uwa"
+    ],
+    "ِيي": [
+      "ijj"
+    ],
+    "ُوو": [
+      "uww"
+    ],
+    "ةَ": [
+      "ta"
+    ],
+    "ةُ": [
+      "tu"
+    ],
+    "ةِ": [
+      "ti"
+    ],
+    "ةً": [
+      "tan"
+    ],
+    "ةٌ": [
+      "tun"
+    ],
+    "ةٍ": [
+      "tin"
+    ],
+    "ًا": [
+      "an"
+    ],
+    "ًى": [
+      "an"
+    ],
+    "اً": [
+      "an"
+    ],
+    "وَال": [
+      "wal"
+    ],
+    "فَال": [
+      "fal"
+    ],
+    "بِال": [
+      "bil"
+    ],
+    "كَال": [
+      "kal"
+    ],
+    "لِل": [
+      "lil"
+    ],
+    "اَلتت": [
+      "att"
+    ],
+    "لِلتت": [
+      "litt"
+    ],
+    "وَالتت": [
+      "watt"
+    ],
+    "فَالتت": [
+      "fatt"
+    ],
+    "بِالتت": [
+      "bitt"
+    ],
+    "كَالتت": [
+      "katt"
+    ],
+    "اَلثث": [
+      "aθθ"
+    ],
+    "لِلثث": [
+      "liθθ"
+    ],
+    "وَالثث": [
+      "waθθ"
+    ],
+    "فَالثث": [
+      "faθθ"
+    ],
+    "بِالثث": [
+      "biθθ"
+    ],
+    "كَالثث": [
+      "kaθθ"
+    ],
+    "اَلدد": [
+      "add"
+    ],
+    "لِلدد": [
+      "lidd"
+    ],
+    "وَالدد": [
+      "wadd"
+    ],
+    "فَالدد": [
+      "fadd"
+    ],
+    "بِالدد": [
+      "bidd"
+    ],
+    "كَالدد": [
+      "kadd"
+    ],
+    "اَلذذ": [
+      "aðð"
+    ],
+    "لِلذذ": [
+      "liðð"
+    ],
+    "وَالذذ": [
+      "waðð"
+    ],
+    "فَالذذ": [
+      "faðð"
+    ],
+    "بِالذذ": [
+      "biðð"
+    ],
+    "كَالذذ": [
+      "kaðð"
+    ],
+    "اَلرر": [
+      "arr"
+    ],
+    "لِلرر": [
+      "lirr"
+    ],
+    "وَالرر": [
+      "warr"
+    ],
+    "فَالرر": [
+      "farr"
+    ],
+    "بِالرر": [
+      "birr"
+    ],
+    "كَالرر": [
+      "karr"
+    ],
+    "اَلزز": [
+      "azz"
+    ],
+    "لِلزز": [
+      "lizz"
+    ],
+    "وَالزز": [
+      "wazz"
+    ],
+    "فَالزز": [
+      "fazz"
+    ],
+    "بِالزز": [
+      "bizz"
+    ],
+    "كَالزز": [
+      "kazz"
+    ],
+    "اَلسس": [
+      "ass"
+    ],
+    "لِلسس": [
+      "liss"
+    ],
+    "وَالسس": [
+      "wass"
+    ],
+    "فَالسس": [
+      "fass"
+    ],
+    "بِالسس": [
+      "biss"
+    ],
+    "كَالسس": [
+      "kass"
+    ],
+    "اَلشش": [
+      "aʃʃ"
+    ],
+    "لِلشش": [
+      "liʃʃ"
+    ],
+    "وَالشش": [
+      "waʃʃ"
+    ],
+    "فَالشش": [
+      "faʃʃ"
+    ],
+    "بِالشش": [
+      "biʃʃ"
+    ],
+    "كَالشش": [
+      "kaʃʃ"
+    ],
+    "اَلصص": [
+      "asˤsˤ"
+    ],
+    "لِلصص": [
+      "lisˤsˤ"
+    ],
+    "وَالصص": [
+      "wasˤsˤ"
+    ],
+    "فَالصص": [
+      "fasˤsˤ"
+    ],
+    "بِالصص": [
+      "bisˤsˤ"
+    ],
+    "كَالصص": [
+      "kasˤsˤ"
+    ],
+    "اَلضض": [
+      "adˤdˤ"
+    ],
+    "لِلضض": [
+      "lidˤdˤ"
+    ],
+    "وَالضض": [
+      "wadˤdˤ"
+    ],
+    "فَالضض": [
+      "fadˤdˤ"
+    ],
+    "بِالضض": [
+      "bidˤdˤ"
+    ],
+    "كَالضض": [
+      "kadˤdˤ"
+    ],
+    "اَلطط": [
+      "atˤtˤ"
+    ],
+    "لِلطط": [
+      "litˤtˤ"
+    ],
+    "وَالطط": [
+      "watˤtˤ"
+    ],
+    "فَالطط": [
+      "fatˤtˤ"
+    ],
+    "بِالطط": [
+      "bitˤtˤ"
+    ],
+    "كَالطط": [
+      "katˤtˤ"
+    ],
+    "اَلظظ": [
+      "aðˤðˤ"
+    ],
+    "لِلظظ": [
+      "liðˤðˤ"
+    ],
+    "وَالظظ": [
+      "waðˤðˤ"
+    ],
+    "فَالظظ": [
+      "faðˤðˤ"
+    ],
+    "بِالظظ": [
+      "biðˤðˤ"
+    ],
+    "كَالظظ": [
+      "kaðˤðˤ"
+    ],
+    "اَللل": [
+      "all"
+    ],
+    "لِللل": [
+      "lill"
+    ],
+    "وَاللل": [
+      "wall"
+    ],
+    "فَاللل": [
+      "fall"
+    ],
+    "بِاللل": [
+      "bill"
+    ],
+    "كَاللل": [
+      "kall"
+    ],
+    "اَلنن": [
+      "ann"
+    ],
+    "لِلنن": [
+      "linn"
+    ],
+    "وَالنن": [
+      "wann"
+    ],
+    "فَالنن": [
+      "fann"
+    ],
+    "بِالنن": [
+      "binn"
+    ],
+    "كَالنن": [
+      "kann"
+    ],
+    "َاي": [
+      "aːj"
+    ],
+    "َة": [
+      "a"
+    ],
+    "اِل": [
+      "il"
+    ],
+    "اِلتت": [
+      "itt"
+    ],
+    "اِلثث": [
+      "iθθ"
+    ],
+    "اِلدد": [
+      "idd"
+    ],
+    "اِلذذ": [
+      "iðð"
+    ],
+    "اِلرر": [
+      "irr"
+    ],
+    "اِلزز": [
+      "izz"
+    ],
+    "اِلسس": [
+      "iss"
+    ],
+    "اِلشش": [
+      "iʃʃ"
+    ],
+    "اِلصص": [
+      "isˤsˤ"
+    ],
+    "اِلضض": [
+      "idˤdˤ"
+    ],
+    "اِلطط": [
+      "itˤtˤ"
+    ],
+    "اِلظظ": [
+      "iðˤðˤ"
+    ],
+    "اِللل": [
+      "ill"
+    ],
+    "اِلنن": [
+      "inn"
+    ],
+    "َوو": [
+      "aww"
+    ],
+    "َيي": [
+      "ajj"
+    ],
+    "وِال": [
+      "wil"
+    ],
+    "وِالتت": [
+      "witt"
+    ],
+    "وِالثث": [
+      "wiθθ"
+    ],
+    "وِالدد": [
+      "widd"
+    ],
+    "وِالذذ": [
+      "wiðð"
+    ],
+    "وِالرر": [
+      "wirr"
+    ],
+    "وِالزز": [
+      "wizz"
+    ],
+    "وِالسس": [
+      "wiss"
+    ],
+    "وِالشش": [
+      "wiʃʃ"
+    ],
+    "وِالصص": [
+      "wisˤsˤ"
+    ],
+    "وِالضض": [
+      "widˤdˤ"
+    ],
+    "وِالطط": [
+      "witˤtˤ"
+    ],
+    "وِالظظ": [
+      "wiðˤðˤ"
+    ],
+    "وِاللل": [
+      "will"
+    ],
+    "وِالنن": [
+      "winn"
+    ],
+    "ُوا": [
+      "uː"
+    ],
+    "ُوي": [
+      "uːj"
+    ],
+    "ُوَا": [
+      "uwaː"
+    ],
+    "ِيَا": [
+      "ijaː"
+    ],
+    "َوَ": [
+      "awa"
+    ],
+    "َوِ": [
+      "awi"
+    ],
+    "َوُ": [
+      "awu"
+    ],
+    "َوَا": [
+      "awaː"
+    ],
+    "َيَ": [
+      "aja"
+    ],
+    "َيِ": [
+      "aji"
+    ],
+    "َيُ": [
+      "aju"
+    ],
+    "َيَا": [
+      "ajaː"
+    ],
+    "إِي": [
+      "ʔiː"
+    ],
+    "أُو": [
+      "ʔuː"
+    ],
+    "َٰ": [
+      "aː"
+    ],
+    "وَٱ": [
+      "wa"
+    ],
+    "فَٱ": [
+      "fa"
+    ],
+    "بِٱ": [
+      "bi"
+    ],
+    "كَٱ": [
+      "ka"
+    ],
+    "وِٱ": [
+      "wi"
     ]
   },
   "parent": "ar-x-maghrebi",
@@ -159,7 +681,7 @@
       "notes": "Descent per Glottolog classification of Libyan Arabic (liby1240)."
     }
   ],
-  "notes": "Skeleton. Libyan (Sulaymitic Maghrebi) Arabic, a Semitic (Afroasiatic) variety written in the Arabic abjad. Consonant letters are mapped to IPA; qāf ⟨ق⟩ has the voiced velar reflex [ɡ] typical of the Bedouin-type dialect, jīm ⟨ج⟩ is [dʒ], and the interdentals ⟨ث ذ ظ⟩ are retained. Short vowels are not written in the abjad and, apart from optional harakāt, are left unencoded; gemination and stress are not recovered, so a high PER floor is expected. CONFUSABLE AND FORMATTING CODEPOINTS: three Unicode characters that occur in real Arabic-script text had no grapheme entry anywhere in this family, and a character with no entry is dropped without an error, so every occurrence was deleted in silence. ک KEHEH is the Persian/Urdu/Sindhi shape of kaf (annotated '= kaf mashkula') and is read here exactly as ك — [k]. ی FARSI YEH is annotated for Arabic as well as Persian, Urdu and Kashmiri, and is read exactly as ي — [j] or the mater lectionis [iː]. ـ TATWEEL is the kashida, inserted to stretch a word for justification and carrying no sound, so it maps to the empty string: the deletion is now stated instead of accidental, the treatment ٱ ALEF WASLA already had. ہ HEH GOAL is deliberately NOT added — Unicode assigns it to Urdu, and it occurs in none of the Arabic gold. The alternates are listed as bare letters only; a keheh or farsi yeh carrying a harakat does not match the diacritised digraph keys and falls back to the bare letter plus the mark, which yields the same phonemes. MEASURED UNDECIDABLE-INPUT CEILING. Not one of the 166 WikiPron ayl_arab_broad input words carries a single ḥaraka — no fatḥa, ḍamma, kasra, tanwīn, shadda or sukūn occurs anywhere on the orthographic side of this gold — while the gold transcriptions are fully vocalised: 23.8% of their phoneme segments are short vowels. Deleting every short vowel from the gold and rescoring with the harness's own scorer gives PER 0.1930, which is what a spec that emitted perfect consonants and long vowels and simply omitted the short vowels would score, and is therefore the hard floor for this row. The board row stands at 0.3799, so about 18.7 PER points separate the score from the floor. That gap is rule error and is tractable; the floor itself is undecidable input that no grapheme table can recover. A gap above the floor is a defect hypothesis, not an excuse: Hebrew sat above its own floor for what looked like the same structural reason and the excess turned out to be a real defect, an unmapped geresh. That vocalisation and not the grapheme tables dominates the Arabic error is measured on the MSA row rather than inferred: ar scores PER 0.3139 on raw WikiPron and 0.1721 on the SAME gold with the input auto-diacritized (the wikipron_ar_diacritized row, wired in scripts/benchmark.py) — below the raw row's own consonant-only floor of 0.2476. Vocalisation is worth about 14 PER points there, more than any grapheme-table change could be worth. No dialect row has such a companion: the diacritized loader is registered for ar alone, and wiring one for this row is the single highest-value follow-up available to it. It has to be labelled restored-MSA input rather than native vocalisation — the restorer targets MSA and Classical Arabic, so what it writes onto dialect orthography is an MSA reading, and a row scored against it measures the spec plus that assumption.",
+  "notes": "Skeleton. Libyan (Sulaymitic Maghrebi) Arabic, a Semitic (Afroasiatic) variety written in the Arabic abjad. Consonant letters are mapped to IPA; qāf ⟨ق⟩ has the voiced velar reflex [ɡ] typical of the Bedouin-type dialect, jīm ⟨ج⟩ is [dʒ], and the interdentals ⟨ث ذ ظ⟩ are retained. Short vowels are not written in the abjad and, apart from optional harakāt, are left unencoded; gemination and stress are not recovered, so a high PER floor is expected. CONFUSABLE AND FORMATTING CODEPOINTS: three Unicode characters that occur in real Arabic-script text had no grapheme entry anywhere in this family, and a character with no entry is dropped without an error, so every occurrence was deleted in silence. ک KEHEH is the Persian/Urdu/Sindhi shape of kaf (annotated '= kaf mashkula') and is read here exactly as ك — [k]. ی FARSI YEH is annotated for Arabic as well as Persian, Urdu and Kashmiri, and is read exactly as ي — [j] or the mater lectionis [iː]. ـ TATWEEL is the kashida, inserted to stretch a word for justification and carrying no sound, so it maps to the empty string: the deletion is now stated instead of accidental, the treatment ٱ ALEF WASLA already had. ہ HEH GOAL is deliberately NOT added — Unicode assigns it to Urdu, and it occurs in none of the Arabic gold. The alternates are listed as bare letters only; a keheh or farsi yeh carrying a harakat does not match the diacritised digraph keys and falls back to the bare letter plus the mark, which yields the same phonemes. MEASURED UNDECIDABLE-INPUT CEILING. Not one of the 166 WikiPron ayl_arab_broad input words carries a single ḥaraka — no fatḥa, ḍamma, kasra, tanwīn, shadda or sukūn occurs anywhere on the orthographic side of this gold — while the gold transcriptions are fully vocalised: 23.8% of their phoneme segments are short vowels. Deleting every short vowel from the gold and rescoring with the harness's own scorer gives PER 0.1930, which is what a spec that emitted perfect consonants and long vowels and simply omitted the short vowels would score, and is therefore the hard floor for this row. The board row stands at 0.3799, so about 18.7 PER points separate the score from the floor. That gap is rule error and is tractable; the floor itself is undecidable input that no grapheme table can recover. A gap above the floor is a defect hypothesis, not an excuse: Hebrew sat above its own floor for what looked like the same structural reason and the excess turned out to be a real defect, an unmapped geresh. That vocalisation and not the grapheme tables dominates the Arabic error is measured on the MSA row rather than inferred: ar scores PER 0.3139 on raw WikiPron and 0.1721 on the SAME gold with the input auto-diacritized (the wikipron_ar_diacritized row, wired in scripts/benchmark.py) — below the raw row's own consonant-only floor of 0.2476. Vocalisation is worth about 14 PER points there, more than any grapheme-table change could be worth. No dialect row has such a companion: the diacritized loader is registered for ar alone, and wiring one for this row is the single highest-value follow-up available to it. It has to be labelled restored-MSA input rather than native vocalisation — the restorer targets MSA and Classical Arabic, so what it writes onto dialect orthography is an MSA reading, and a row scored against it measures the spec plus that assumption. VOCALISED SPELLING KEYS. This spec had 47 graphemes and not one key that carried a haraka, so vocalised Libyan text read wrong: kabijr for كَبِير, suwraa for سُورَة, jaɡuwlu for يَقُولُ. The 174 haraka-bearing keys of arb are copied in here. They are NOT inherited: a graphemes_base edge was measured and refused, because it also brings arb's bare definite-article key ال -> ['al','a'], which matches word-internally and shortens the long /aː/ in a stem that only contains alif plus lam (شلال [ʃlaːl] -> [ʃlal], زمالة [zmaːla] -> [zmala]). On the 166 WikiPron gold pairs that base makes 12 pairs worse and 1 better; the copied keys make none worse. Every copied key needs a WRITTEN haraka, so none of them can fire on unvocalised input, and the WikiPron row does not move: PER 0.37988 before and after, to the digit. The 8 keys that spell ض carry arb's Classical lateral [ɮˤ]; they are rewritten to this spec's own [dˤ], which is the only value this spec allows for ض. MEASUREMENT LIMIT: the gold cannot check this change at all. Not one of the 166 input words carries a haraka, so the PER is a no-regression check and nothing more; the probe words above are the evidence. CITATION GAP, STATED AND NOT CLOSED: no source was found that says Libyan reads the harakat as Modern Standard Arabic does. The Unicode Arabic code chart assigns the marks to the Arabic script and to no one variety, and the Libyan Arabic Wikipedia article, read 2026-09-14, says nothing about them. The reading rests on the script-level assignment plus that assumption. REMAINING GAP: a ta marbuta that carries a case vowel still drops its [t] (مَدْرَسَةُ gives madrasau, not madrasatu). The keys improve that word from madrasaau and do not cause the fault, which arb does not have; the cause is not yet found.",
   "iso639_3": "ayl",
   "glottolog_code": null,
   "sources": [
