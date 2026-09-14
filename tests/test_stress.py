@@ -360,9 +360,11 @@ class TestBarranquenhoStress:
         assert rules is not None
         assert rules.default_position == -2
         assert "á" in rules.marked_vowels
-        # Convenção 2025 + Gramática 2025: final -r and -l are deleted and not written
-        # in canonical Barranquenho orthography; they are NOT oxytone triggers.
-        assert "r" not in rules.final_stress_endings
+        # Final -r and -l are deleted from a TONIC final syllable ("em sílaba tónica
+        # final elide-se: cantá, senhô"), so a Portuguese spelling that keeps them is
+        # oxytone (Convenção 2025 pp. 32, 35; Gramática 2025 pp. 12, 14; Navas 2011 pp. 56-57, 188).
+        assert "r" in rules.final_stress_endings
+        assert "l" in rules.final_stress_endings
         # Nasal diphthong endings -âu/-âi/-ôi ARE oxytone triggers (Convenção pp. 26–27)
         assert "âu" in rules.final_stress_endings
         assert "âi" in rules.final_stress_endings
@@ -378,10 +380,9 @@ class TestBarranquenhoStress:
         # unmarked -em/-am stay paroxytone, as in Portuguese norms
         ("homem",  0),   # ho-mem → penult
         ("falam",  0),   # fa-lam → penult
-        # falar: in canonical Barranquenho this would be written cantá (r deleted);
-        # if encountered in pt-PT spelling, -r is no longer an oxytone trigger
-        # (Convenção p. 32; Gramática p. 20) — paroxytone fallback
-        ("falar",  0),   # fa-lar → penult (r not an oxytone trigger in Barranquenho)
+        # falar: canonical Barranquenho writes falá; the deleted -r stood in the tonic
+        # final syllable, so the pt-PT spelling is oxytone (Convenção 2025 pp. 32, 35; Gramática 2025 pp. 12, 14; Navas 2011 pp. 56-57, 188)
+        ("falar",  1),   # fa-lar → final
         # caju: final -u is the regular atone ending in Barranquenho (not oxytone)
         # (Gramática p. 12, 14 — paroxytone default for unmarked -u)
         ("caju",   0),   # ca-ju → penult (unmarked -u is paroxytone)

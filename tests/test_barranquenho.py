@@ -130,8 +130,8 @@ class TestWholeWords:
             ("mesmo", "ˈmɛhmu"),   # coda s -> [h]; final -o raised to [u]
             ("visto", "ˈbihtu"),   # betacism + coda-s aspiration
             ("vaca", "ˈbakɐ"),     # betacism
-            ("cantar", "ˈkɐ̃tɐ"),  # coda-n nasalises a→ɐ̃; final -r deleted
-            ("Brasil", "ˈbɾazi"),  # final -l deleted
+            ("cantar", "kɐ̃ˈta"),  # coda-n nasalises a→ɐ̃; final -r deleted from the tonic final syllable (Convenção p. 32; Gramática p. 14 cantá)
+            ("Brasil", "bɾɐˈzi"),  # final -l deleted from the tonic final syllable (Convenção p. 32 Brasí)
         ],
     )
     def test_word(self, g2p, word, expected):

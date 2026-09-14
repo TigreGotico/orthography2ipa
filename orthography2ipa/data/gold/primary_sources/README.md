@@ -70,9 +70,9 @@ not to certify a language on its own.
 | Araujo & Agostinho (2010), *Revista de Letras* 26 | Santome (Forro), ALUSTP standardization article | `cri` | 13 |
 | Baxter (1988), Pacific Linguistics B-95 | Kristang (Malacca Creole Portuguese) | `mcm` | 33 |
 | Brissos (2018), Estud. ling. galega, vol. esp. I | NW Portuguese (variedade do noroeste) | `pt-PT-x-porto` | 9 |
-| Navas Sánchez-Élez (2011), *El barranqueño* | Barranquenho (Barrancos, Baixo Alentejo) | `ext-PT-x-barrancos` | 10 |
-| **total** | | | **505** |
-Broad `/…/`: 343. Narrow `[…]`: 162. `confidence`: 322 high, 169 medium, 14 low.
+| Navas Sánchez-Élez (2011), *El barranqueño* | Barranquenho (Barrancos, Baixo Alentejo) | `ext-PT-x-barrancos` | 42 |
+| **total** | | | **537** |
+Broad `/…/`: 343. Narrow `[…]`: 194. `confidence`: 329 high, 194 medium, 14 low.
 | Omar (1975), FSI *Saudi Arabic, Urban Hijazi Dialect* | Urban Hijazi (Jeddah/Mecca/Medina koine) | `ar-SA-x-hejaz` | 26 |
 | Almalky (2020), Essex PhD | Hijazi Arabic (urban), active participle | `ar-SA-x-hejaz` | 4 |
 | Al Solami (2023), *Lingua Posnaniensis* LXV(1) | Bani Sulaim (Bedouin Hijazi) — iambic-stress contrast | `null` | 5 |
