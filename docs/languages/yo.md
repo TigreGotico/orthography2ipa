@@ -62,5 +62,7 @@ coverage and on **wikipron** otherwise; the two are not the same sample.
 
 The **vox_communis** row is epitran-derived. Its orthography is real, fully accented Yoruba, but its phone column has no tone at all and handles nasal vowels inconsistently, because that is what epitran produces. It measures agreement with epitran, not accuracy, so emitting tone necessarily moves it a long way.
 
+The fold quantifies that. Across the 5263 scored words the gold's phone tier carries no tone mark at all, while the engine emits Yoruba tone in full (4005 mid macrons, 5488 high acutes, 5183 low graves on the hypothesis side); nasalisation is the one contrast the gold partially carries (281 words marked) against 1931 the engine marks. Folding tone and nasalisation out of both sides with scripts/fold_yo_vox_notation.py takes the row from PER 0.6392 to 0.0798, with exact match rising from 0.04% to 65.40%; folding tone alone gives 0.1455 and nasalisation alone 0.6056, which must not be conflated with the combined figure. The remaining distance is the segments epitran spells in its own conventions (its ɡ͡b and ṣ notations, its doubling) plus the nasal tokens it does or does not choose. The row's valid_ceiling records that fold; th and tn carry the same kind of ceiling on this dataset. Because the tier is epitran-derived, this number never gates a promotion.
+
 ---
 [← Standard Thai](th.md) · [Home](../index.md) · [Esperanto →](eo.md)
