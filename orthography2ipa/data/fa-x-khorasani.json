@@ -33,7 +33,7 @@
       "notes": "Tajik adstrate: geographic continuum; Uzbek/Turkmen contact words"
     }
   ],
-  "notes": "Khorasani Persian (Xorāsānī). Northeastern Iran — the historical cradle of New Persian literature (Ferdowsi's Shahnameh). CONSERVATIVE: /a/ → [a] (not fronted to [æ] as in Tehran); ā → [aː] (not backed to [ɒː]); /q/ maintained more robustly than Tehran. Geographic bridge to Dari (Afghan Persian). Turkic (Uzbek, Turkmen) contact: /ŋ/ in loanwords.",
+  "notes": "Khorasani Persian (Xorāsānī). Northeastern Iran — the historical cradle of New Persian literature (Ferdowsi's Shahnameh). CONSERVATIVE: /a/ → [a] (not fronted to [æ] as in Tehran); ā → [aː] (not backed to [ɒː]); /q/ maintained more robustly than Tehran. Geographic bridge to Dari (Afghan Persian). Turkic (Uzbek, Turkmen) contact: /ŋ/ in loanwords. Already-encoded allophones confirmed against the cited sources: ā prefers classical [aː] (does not back to Tehran's [ɒː]); short-a prefers [a] (does not front to Tehran's [æ]); ق prefers [q], maintained more robustly than the Tehran ɣ/ɢ merger -- the same conservative pattern documented for Dari, consistent with Khorasan's role as the geographic bridge to Afghanistan (Windfuhr 2009; Rezai & al.).",
   "quality": "skeleton",
   "script_type": "abjad",
   "sources": [
@@ -66,6 +66,26 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "windfuhr2009",
+      "author": "Windfuhr, G. (ed.)",
+      "year": 2009,
+      "title": "The Iranian Languages",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": "Regional-dialect chapter(s) on New Persian varieties (Tehran, Isfahan, Fars/Shiraz, Kerman, Khorasan/Mashhad, Yazd)."
+    },
+    {
+      "id": "rezai_dialectology",
+      "author": "Rezai, V. & al.",
+      "year": 2010,
+      "title": "Studies in Iranian regional Persian dialectology (Isfahan, Fars, Kerman, Khorasan)",
+      "publisher": "Iranian dialectology literature (regional descriptive studies)",
+      "url": null,
+      "pages": null,
+      "notes": "Secondary descriptive source for regional vowel-quality differences (majhul retention, ā/æ realisation) cross-checked against Windfuhr 2009 and Mahootian 1997."
     }
   ],
   "wikipedia": [

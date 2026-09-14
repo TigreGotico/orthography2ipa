@@ -159,3 +159,59 @@ def test_palop_no_pretonic_reduction(code):
     assert "ɨ" not in _t(code, "menino")     # EP would give mɨˈninu
     assert "ɨ" not in _t(code, "cebola")
     assert _bare(code, "moderno").startswith("mo")  # pretonic o stays [o]
+
+
+# ===========================================================================
+# Accented vowel digraphs — the ditongos abertos and their closed twins.
+# The acute writes the OPEN diphthong and the circumflex the closed one:
+# "as palavras oxítonas com os ditongos abertos grafados -éi, éu ou ói"
+# (Acordo Ortográfico da Língua Portuguesa 1990, Base VIII — anéis, batéis,
+# fiéis, papéis; céu, chapéu; herói, sóis). ⟨éu êu⟩ were already mapped at
+# pt-PT-x-medieval; ⟨ái áu éi êi ói ôi⟩ join them there, so the whole family
+# inherits one statement of the pattern.
+# ===========================================================================
+@pytest.mark.parametrize("code", ["pt-PT", "pt-BR", "pt-AO", "pt-TL",
+                                  "pt-PT-x-lisbon"])
+@pytest.mark.parametrize("word,nucleus", [
+    ("herói", "ɔj"),
+    ("sóis", "ɔj"),
+    ("anéis", "ɛj"),
+    ("papéis", "ɛj"),
+    ("fiéis", "ɛj"),
+    ("áureo", "aw"),
+    ("Plêiades", "ej"),
+])
+def test_accented_digraph_is_one_nucleus(code, word, nucleus):
+    # The accented digraph is a vowel plus a GLIDE, never two vowels: the
+    # letter-by-letter reading gave herói → …ɔˈi and anéis → …ɛˈiʃ.
+    assert nucleus in _t(code, word)
+    assert nucleus[0] + "ˈ" not in _t(code, word)
+
+
+@pytest.mark.parametrize("code", ["pt-PT", "pt-BR"])
+def test_iu_is_a_falling_diphthong(code):
+    # ⟨iu⟩ patterns with the other falling diphthongs (Base VIII's list is
+    # about accentuation, not about which sequences are diphthongs; Cunha &
+    # Cintra, §Ditongos, give ⟨iu⟩ as [iw] — partiu, viu).
+    assert _t(code, "viu").endswith("iw")
+    assert _t(code, "partiu").endswith("iw")
+
+
+def test_ui_with_an_acute_is_a_hiatus_not_a_diphthong():
+    # Base X §1 accents a stressed ⟨i u⟩ after a vowel precisely "quando
+    # antecedidas de uma vogal com que não formam ditongo" (juízes, ruína,
+    # influíste), so ⟨uí⟩ is the orthography SAYING the vowels are separate
+    # nuclei. It must not sit in the spec's diphthong list, or the bundled
+    # syllabifier merges ru-í-do into ruí-do. Exercised on the bundled
+    # splitter, which is the path taken wherever the optional
+    # ``orthography2ipa[portuguese]`` syllabifier is not installed.
+    from orthography2ipa.registry import get
+    from orthography2ipa.stress import syllabify
+
+    diph = get("pt-PT").stress.diphthongs
+    assert "uí" not in diph
+    assert syllabify("ruído", diphthongs=diph) == ["ru", "í", "do"]
+    assert syllabify("juízes", diphthongs=diph) == ["ju", "í", "zes"]
+    # the unaccented ⟨ui⟩ IS a diphthong and stays one nucleus
+    assert "ui" in diph
+    assert syllabify("muito", diphthongs=diph) == ["mui", "to"]

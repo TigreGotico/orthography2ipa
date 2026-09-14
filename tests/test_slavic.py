@@ -778,6 +778,49 @@ class TestSerbian:
 
 
 # ---------------------------------------------------------------------------
+# Montenegrin — smoke tests
+# ---------------------------------------------------------------------------
+
+@pytest.mark.linguistic
+class TestMontenegrin:
+    """Smoke tests for Montenegrin (cnr) — verifying spec loads and its two extra letters.
+
+    Montenegrin shares its Shtokavian-Ijekavian grapheme table with Croatian
+    (graphemes_base=hr) and adds two letters not found in sr/hr/bs: ⟨ś⟩ /ɕ/
+    and ⟨ź⟩ /ʑ/, replacing the digraphs ⟨sj⟩/⟨zj⟩.
+    """
+
+    @pytest.fixture(autouse=True, scope="class")
+    def spec(self, request):
+        """Load the Montenegrin LanguageSpec once for the whole class."""
+        request.cls._spec = _load("cnr")
+
+    def test_spec_loads(self):
+        """Montenegrin spec must load without error."""
+        assert self._spec is not None
+
+    def test_family_slavic(self):
+        """Montenegrin spec must declare family='Slavic'."""
+        assert {"Indo-European", "Slavic", "South Slavic"} <= set(self._spec.family_path)
+
+    def test_has_graphemes(self):
+        """Montenegrin spec must have a non-empty grapheme mapping (inherited from hr)."""
+        assert self._spec.graphemes, "graphemes dict must not be empty"
+
+    def test_s_acute_alveolo_palatal(self):
+        """Montenegrin ś maps to [ɕ] — the voiceless alveolo-palatal fricative."""
+        _assert_first(_grapheme(self._spec, "ś"), "ɕ", label="cnr:ś")
+
+    def test_z_acute_alveolo_palatal(self):
+        """Montenegrin ź maps to [ʑ] — the voiced alveolo-palatal fricative."""
+        _assert_first(_grapheme(self._spec, "ź"), "ʑ", label="cnr:ź")
+
+    def test_lj_palatal_lateral_inherited(self):
+        """Montenegrin lj digraph maps to [ʎ], inherited from the shared hr grapheme table."""
+        _assert_first(_grapheme(self._spec, "lj"), "ʎ", label="cnr:lj")
+
+
+# ---------------------------------------------------------------------------
 # Macedonian — smoke tests
 # ---------------------------------------------------------------------------
 

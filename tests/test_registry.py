@@ -81,6 +81,33 @@ class TestAliases:
 
 
 # ═══════════════════════════════════════════════════════════════════════════
+# Private-use spellings
+# ═══════════════════════════════════════════════════════════════════════════
+
+class TestPrivateUseSpellings:
+    """A variant tag spelled the way its consumers spell it reaches the
+    spec that models it, instead of collapsing onto the base language or
+    onto a sibling variant."""
+
+    @pytest.mark.parametrize("spelling,canonical", [
+        ("pt-BR-x-sao-paulo", "pt-BR-x-sp"),
+        ("pt-BR-x-rio-janeiro", "pt-BR-x-rj"),
+        ("pt-PT-x-lisboa", "pt-PT-x-lisbon"),
+    ])
+    def test_consumer_spellings_are_aliases(self, spelling, canonical):
+        assert registry.resolve(spelling) == canonical
+        assert get(spelling) is get(canonical)
+
+    @pytest.mark.parametrize("spelling,canonical", [
+        ("ar-sa-x-najd", "ar-SA-x-najd"),
+        ("PT-PT-X-PORTO", "pt-PT-x-porto"),
+        ("eu-X-bizkaiera", "eu-x-bizkaiera"),
+    ])
+    def test_private_use_tags_match_case_insensitively(self, spelling, canonical):
+        assert registry.resolve(spelling) == canonical
+
+
+# ═══════════════════════════════════════════════════════════════════════════
 # available_codes
 # ═══════════════════════════════════════════════════════════════════════════
 

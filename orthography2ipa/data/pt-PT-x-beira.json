@@ -124,6 +124,7 @@
   ],
   "iso639_3": "por",
   "stress": {
+    "onset_clusters": ["bl", "br", "bɫ", "bɾ", "bʀ", "bʁ", "bʎ", "bχ", "dr", "dɾ", "dʀ", "dʁ", "dʎ", "dχ", "fl", "fr", "fɫ", "fɾ", "fʀ", "fʁ", "fʎ", "fχ", "kl", "kr", "kɫ", "kɾ", "kʀ", "kʁ", "kʎ", "kχ", "pl", "pr", "pɫ", "pɾ", "pʀ", "pʁ", "pʎ", "pχ", "tr", "tɾ", "tʀ", "tʁ", "tʎ", "tχ", "vl", "vr", "vɫ", "vɾ", "vʀ", "vʁ", "vʎ", "vχ", "ðr", "ðɾ", "ðʀ", "ðʁ", "ðʎ", "ðχ", "ɡl", "ɡr", "ɡɫ", "ɡɾ", "ɡʀ", "ɡʁ", "ɡʎ", "ɡχ", "ɣl", "ɣr", "ɣɫ", "ɣɾ", "ɣʀ", "ɣʁ", "ɣʎ", "ɣχ", "βl", "βr", "βɫ", "βɾ", "βʀ", "βʁ", "βʎ", "βχ"],
     "cliticless_words": ["o", "a", "os", "as", "de", "do", "da", "dos", "das", "em", "no", "na", "nos", "nas", "por", "pelo", "pela", "pelos", "pelas", "ao", "aos", "à", "às", "com", "sem", "e", "que", "se", "me", "te", "lhe", "lhes", "vos", "lo", "la", "los", "las", "lho", "lha", "lhos", "lhas"],
     "default_position": -2,
     "final_stress_endings": [
@@ -181,8 +182,7 @@
       "ói",
       "ôi",
       "ou",
-      "ui",
-      "uí"
+      "ui"
     ]
   },
   "graphemes": {
@@ -289,5 +289,17 @@
     "source": "wikidata",
     "notes": "Viseu — a representative locality of the Beiras (Beira Litoral, Alta and Baixa), an area far larger than any one town. [Wikidata Q117676 P625]"
   },
-  "word_exceptions_base": "pt-PT"
+  "word_exceptions_base": "pt-PT",
+  "audit": {
+    "clup_dialect": {
+      "conclusion": "sample_too_small",
+      "measured": "The clup_dialect row holds 8 scored sentences (clup_dialect is sentence-level: each gold entry is one interview sentence, scored as a single unit against the engine's whole-sentence transcription, so the bootstrap resamples across only 8 sentence-level PER values, not across words), per=0.3248, per_ci_low=0.2932, per_ci_high=0.3645 (benchmarks/results.json). At n=8 sentences the bootstrap interval is already collapsing toward a point for the same reason (few distinct values to resample), so its narrow width reflects the small sample, not precision; see docs/scoreboard.md's `95% CI` note and the THIN_ROW_MARK cutoff (rows under 20 scored items). This row cannot gate a production promotion on its own strength.",
+      "reference": "spec notes"
+    },
+    "primary_sources": {
+      "conclusion": "sample_too_small",
+      "measured": "The primary_sources row holds 8 gold pairs, per=0.4327, per_ci_low=0.2494, per_ci_high=0.6202 (benchmarks/results.json). The 95% interval spans from below to well above the 0.25 gating threshold and includes it, so the row cannot be said to fail; it is not a measurement precise enough to certify or fail the variety. The other two dialect rows (clup_dialect, n=8, per=0.3248; portuguese_tts, n=20, per=0.0) are also small, so beira Portuguese has no row with enough pairs to speak for the spec's accuracy.",
+      "reference": "spec notes"
+    }
+  }
 }

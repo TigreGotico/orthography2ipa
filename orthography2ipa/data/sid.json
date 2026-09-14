@@ -3,7 +3,7 @@
   "name": "Sidamo",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "aa": [
       "aː"
@@ -115,6 +115,9 @@
     ],
     "'": [
       "ʔ"
+    ],
+    "ʼ": [
+      "ʔ"
     ]
   },
   "parent": "x-clade-cush1243",
@@ -126,7 +129,7 @@
       "notes": "Descent per Glottolog classification of Sidamo (sida1246)."
     }
   ],
-  "notes": "Skeleton. Sidamo (Sidaama), a Highland East Cushitic (Afroasiatic) language of Ethiopia written in a Latin orthography modeled on Oromo Qubee. Ejectives use dedicated letters: q=[kʼ], x=[tʼ], c=[tʃʼ], ph=[pʼ], while ch=[tʃ] is the plain affricate; dh is taken as the implosive [ɗ] on the Oromo model (grapheme not fully confirmed in sources). Doubled vowels mark phonemic length and doubled consonants mark gemination. Pitch accent/tone is not written and is left unencoded.",
+  "notes": "Skeleton. Sidamo (Sidaama), a Highland East Cushitic (Afroasiatic) language of Ethiopia written in a Latin orthography modeled on Oromo Qubee. Ejectives use dedicated letters: q=[kʼ], x=[tʼ], c=[tʃʼ], ph=[pʼ], while ch=[tʃ] is the plain affricate; dh is taken as the implosive [ɗ] on the Oromo model (grapheme not fully confirmed in sources). Doubled vowels mark phonemic length and doubled consonants mark gemination. Pitch accent/tone is not written and is left unencoded. Stress exemption: Sidamo, like other Highland East Cushitic languages, uses a pitch-accent/prosodic system rather than a fixed, orthography-predictable lexical stress; the Latin orthography modeled here does not mark it, so no stress block is declared. Source: Sidamo language, Wikipedia.",
   "iso639_3": "sid",
   "glottolog_code": null,
   "sources": [

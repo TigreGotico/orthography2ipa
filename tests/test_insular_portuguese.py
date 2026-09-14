@@ -109,8 +109,8 @@ def test_acores_keeps_conservative_u_before_a_coda():
 
 def test_acores_preserves_the_ou_diphthong():
     """Azorean keeps the falling ⟨ou⟩ diphthong [ow] where standard Lisbon
-    monophthongises to [o]: touradas → [toˈwɾadɐʃ] vs base [toˈɾadɐʃ]."""
-    assert _t("pt-PT-x-acores", "touradas") == "toˈwɾadɐʃ"
+    monophthongises to [o]: touradas → [towˈɾadɐʃ] vs base [toˈɾadɐʃ]."""
+    assert _t("pt-PT-x-acores", "touradas") == "towˈɾadɐʃ"
     assert _t("pt-PT", "touradas") == "toˈɾadɐʃ"
 
 
@@ -118,7 +118,7 @@ def test_acores_prevocalic_s_sandhi_is_palatal():
     """The shared Algarvean-Azorean external sandhi: a word-final /s/ is [ʒ]
     before a vowel-initial word (estás a ver → [eˈʃtaʒ …]), where the base has
     [z]. The clitic article o is pinned to [u]: os olhos → [uʒ ˈoʎuʃ]."""
-    assert _t("pt-PT-x-acores", "estás a ver").startswith("eˈʃtaʒ")
+    assert _t("pt-PT-x-acores", "estás a ver").startswith("eʃˈtaʒ")
     assert _t("pt-PT-x-acores", "os olhos") == "uʒ ˈoʎuʃ"
 
 

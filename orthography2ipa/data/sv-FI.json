@@ -3,6 +3,13 @@
   "name": "Swedish (Finland-Swedish)",
   "script": "Latin",
   "graphemes_base": "sv",
+  "graphemes": {
+    "rn": ["ɳ"],
+    "rd": ["ɖ"],
+    "rt": ["ʈ"],
+    "rl": ["ɭ"],
+    "rs": ["ʂ"]
+  },
   "allophones_base": "sv",
   "allophones": {
     "ɧ": [
@@ -37,7 +44,7 @@
       "notes": "Finnish adstrate: no tonal accent; long consonant quantity"
     }
   ],
-  "notes": "Finland-Swedish (finlandssvenska). Spoken by ~5% of Finns. NO TONAL ACCENT (Finnish influence — Finnish has no pitch accent). NO RETROFLEXION (alveolar r always; no ɳ ɖ ʈ ʂ clusters). sj-sound = [ʃ] or [sk] (not the mainland [ɧ]). Long consonant quantity very prominent (Finnish substrate). Source: Elert (1994).",
+  "notes": "Finland-Swedish (finlandssvenska). Spoken by ~5% of Finns. NO TONAL ACCENT (Finnish influence — Finnish has no pitch accent). NO RETROFLEXION (alveolar r always; no ɳ ɖ ʈ ʂ clusters) is the documented linguistic claim, but the engine does not yet implement it (the 'allophones' override below pre-dates and is dead against this spec's own grapheme table; kept, with a 'graphemes' override reproducing the base sv spec's OLD unconditional retroflexion, as an explicit, still-open engine-limit gap -- see the strict xfail tests in test_cited_rules_germanic_celtic.py). sj-sound = [ʃ] or [sk] (not the mainland [ɧ]). Long consonant quantity very prominent (Finnish substrate). Source: Elert (1994).",
   "quality": "skeleton",
   "script_type": "alphabet",
   "sources": [

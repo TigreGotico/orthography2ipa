@@ -50,7 +50,7 @@
     ]
   },
   "parent": "no",
-  "notes": "Norwegian Bokmål — majority written standard (~85%), Urban East Norwegian phonology (Kristoffersen 2000). QUANTITY: as in Swedish, a stressed vowel is long before a single consonant and short before a geminate or a cluster; doubled letters are grapheme keys mapping to /Cː/, clusters map to the concatenated phonemes, and allophone rules shorten the stressed nucleus before them. VOWELS: short ⟨a⟩ is [a], long is [ɑː]; unstressed ⟨e⟩ is [ə] (the ubiquitous ending vowel). RETROFLEXION: ⟨rt rd rn rs rl⟩ → [ʈ ɖ ɳ ʂ ɭ]. SOFTENING: ⟨k g sk⟩ → [ç j ʃ] before a front vowel. SILENT D: word-final ⟨nd⟩→[n], ⟨ld⟩→[l]; ⟨hv⟩→[v]. R: the phoneme is the apical /r/ (Kristoffersen); the tap [ɾ] is one realisation. TONEMES (accent 1/2) are suprasegmental and are NOT encoded; the gold marks them (¹/²), a convention difference rather than an error.",
+  "notes": "Norwegian Bokmål — majority written standard (~85%), Urban East Norwegian phonology (Kristoffersen 2000). QUANTITY: as in Swedish, a stressed vowel is long before a single consonant and short before a geminate or a cluster; doubled letters are grapheme keys mapping to /Cː/, clusters map to the concatenated phonemes, and allophone rules shorten the stressed nucleus before them. VOWELS: ⟨a⟩ is a single phoneme /ɑ/, back at both quantities (Kristoffersen 2015: p.3 katt [kɑt] vs kart [kɑʈ]; p.6 /hɑt/ hatt, /lɑːt/ lat; p.24 bestemt form /mɑɲ/ mann → [mɑːɲ]; p.29 ha [hɑː] vs hatt [hɑt]); there is no front allophone conditioned by quantity or stress. Unstressed ⟨e⟩ is [ə] (the ubiquitous ending vowel). RETROFLEXION: ⟨rt rd rn rs rl⟩ → [ʈ ɖ ɳ ʂ ɭ]. SOFTENING: ⟨k g sk⟩ → [ç j ʃ] before a front vowel. SILENT D: word-final ⟨nd⟩→[n], ⟨ld⟩→[l]; ⟨hv⟩→[v]. R: the phoneme is the apical /r/ (Kristoffersen); the tap [ɾ] is one realisation. TONEMES (accent 1/2) are suprasegmental and are NOT encoded; the gold marks them (¹/²), a convention difference rather than an error. MEASURED (harness normalize+broad, oracle top-3/top-5 columns not used for gating): raw PER is 0.3048 on ipadict (n=10169), 0.3587 on ipa_childes (n=3176, non-qualifying espeak-derived provenance) and 0.3654 on wikipron (n=2725), against 0.3397/0.3871/0.3471 before this fix. Folding length notation (vowel ː plus doubled-letter consonant gemination, one contrast written two ways) out of both hyp and gold re-measures ipadict at 0.2096 and wikipron at 0.3039; ipadict clears the 0.25 production threshold (recorded as `valid_ceiling.ipadict`), wikipron does not. Toneme digits remain a no-op fold for ipadict (0 toneme-digit tokens in this gold) but move wikipron a further 0.3039→0.2995, still short of the threshold (see `valid_ceiling.wikipron` for the full breakdown; this supersedes the pre-fix 0.3397/0.2477 figures measured in #1361, which were against the vowel rule before #1366 and are no longer current). ipadict and ipa_childes both improve, consistent with Kristoffersen 2015 treating /ɑ/ as one phoneme at both quantities. wikipron gets worse, and the reason is a genuine split in the gold, not a loanword artifact: counting rows in the raw nob_latn_broad.tsv whose spelling contains ⟨a⟩, front [a] outnumbers back [ɑ] roughly 5:1 (1444 vs 257 by a token-level count; an independent count by dataset/dialect gave front outnumbering back roughly 2.7:1), and the split runs through ordinary native vocabulary on both sides: takk, fatt, kart and abbor are transcribed with front [a], while mann, alle, vann, land, hand and sjakk are transcribed with back [ɑ]. Some words are transcribed both ways in the same file (katt as both \"k a tː\" and \"k ɑ tː\"; natt likewise). This spec does not have an account for why wikipron's contributor pool skews toward front notation for this vowel; it is recorded here as an open, unresolved disagreement between a crowd-scraped gold and a phonetics reference grammar, not glossed over. Kristoffersen 2015 (open-access, checked directly, see sources) is preferred over the unverified page-level claim in Kristoffersen 2000 (the OUP monograph, still unreached) and over wikipron's crowd transcription.",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -85,14 +85,14 @@
       "notes": "Attested phoneme inventory for glottocode norw1259."
     },
     {
-      "id": "wikipedia_norwegian_phonology",
-      "author": "Wikipedia contributors",
-      "year": 2026,
-      "title": "Norwegian phonology",
-      "publisher": "Wikipedia",
-      "url": "https://en.wikipedia.org/wiki/Norwegian_phonology",
-      "pages": null,
-      "notes": "Accessible overview: complementary vowel/consonant length, retroflex allophones of /r/+coronal, unstressed [ə], and the two tonemes."
+      "id": "kristoffersen2015",
+      "author": "Kristoffersen, G.",
+      "year": 2015,
+      "title": "Innføring i norsk fonologi",
+      "publisher": "University of Bergen (Bergen Open Research Archive), 4th ed.",
+      "url": "https://bora.uib.no/handle/1956/15694",
+      "pages": "3, 6, 24, 29",
+      "notes": "Norwegian-language phonology text (distinct from Kristoffersen 2000). Analyses the Norwegian low back vowel as a single phoneme /ɑ/, not /a/, and gives it at both quantities without a front allophone: p.3 katt [kɑt] vs kart [kɑʈ]; p.6 \"/hɑt/, hatt (subst.), /lɑːt/ lat (adj.)\"; p.24 bestemt form /mɑɲ/ mann realised [mɑːɲ]; p.29 the footnote on minimal Norwegian word shape gives ha as [hɑː] and hatt as [hɑt]. PDF fetched via the Wayback Machine snapshot of the BORA bitstream (the live BORA page now serves a client-rendered app that does not return the file directly)."
     }
   ],
   "wikipedia": [
@@ -294,7 +294,7 @@
         "ɑː"
       ],
       "default": [
-        "a"
+        "ɑ"
       ]
     },
     "e": {
@@ -403,8 +403,8 @@
       "phonemes": [
         "ɑː"
       ],
-      "surface": "a",
-      "notes": "short vowel before a consonant cluster or geminate (complementary quantity)",
+      "surface": "ɑ",
+      "notes": "short vowel before a consonant cluster or geminate (complementary quantity); short ⟨a⟩ keeps the same backness as long ⟨a⟩, kristoffersen2015",
       "followed_by": "consonant_cluster"
     },
     {
@@ -489,7 +489,35 @@
         "n",
         "l"
       ],
-      "notes": "⟨d⟩ is silent after ⟨n l r⟩ (mand, guld, gård); the cluster still shortens the preceding vowel"
+      "word_final": true,
+      "notes": "⟨d⟩ is silent word-finally after ⟨n l⟩ (land, kveld); the cluster still shortens the preceding vowel. Root-medial ⟨nd ld⟩ (andre, hundre, vindu) is unaffected and keeps the /d/. This is a positional flag, not a morphological one: it cannot tell a genuinely root-medial cluster from a stem+suffix boundary, so it also (correctly, by accident) leaves the /d/ in stem-final ⟨nd ld⟩ before a suffix or compound boundary where Bokmål still elides it (landet, abildene) — see o2i #61."
+    },
+    {
+      "id": "NB_SILENT_D_BEFORE_T",
+      "phonemes": [
+        "d"
+      ],
+      "surface": "",
+      "preceded_by_phoneme": [
+        "n",
+        "l"
+      ],
+      "followed_by_phoneme": [
+        "t"
+      ],
+      "notes": "⟨d⟩ is also silent after ⟨n l⟩ when followed by /t/, word-final or not (endt, endte, avholdt, håndtak, abildtre): the /nt/ /lt/ cluster simplifies the same way as the word-final case above, so this sibling rule drops the word_final requirement and keys on the following phoneme instead (followed_by_phoneme, not followed_by_grapheme, so it still fires when the ⟨t⟩ is the head of a digraph grapheme like ⟨tr⟩)."
     }
-  ]
+  ],
+  "valid_ceiling": {
+    "ipadict": {
+      "per": 0.2096,
+      "folded": "vowel length + consonant gemination",
+      "citation": "Re-measured against the current spec (post #1366's short-⟨a⟩ backness fix, raw PER 0.3048, n=10169). Scandinavian quantity is one contrast written two ways -- a long vowel XOR a geminate consonant -- so both notations of it are folded together on both hypothesis and gold: the vowel length mark ː is stripped, and any run of an identical letter (the doubled-letter notation _expand_consonant_length already canonicalises consonant gemination to) is collapsed to one. That fold alone moves PER to 0.2096, clearing the 0.25 production threshold. Folding the ¹/² toneme digits on top makes no further difference (0.2096, unchanged) because this gold carries zero toneme digits, confirming the toneme fold remains a no-op for ipadict specifically, as recorded when this ceiling was first measured pre-fix in #1361 (then 0.3397 raw / 0.2477 folded, both stale after #1366 moved the underlying vowel rule)."
+    },
+    "wikipron": {
+      "per": 0.2995,
+      "folded": "vowel length + consonant gemination + toneme",
+      "citation": "Re-measured against the current spec (raw PER 0.3654, n=2725, up from 0.3471 pre-#1366 -- see the notes field for the unresolved front/back split behind that regression). The same length+gemination fold used for ipadict moves this row to 0.3039; folding the ¹/² toneme digits on top (this gold, unlike ipadict, carries them) moves it further to 0.2995. That does NOT clear the 0.25 production threshold, so this row stays open rather than proved input-limited: something beyond notation, plausibly the front/back ⟨a⟩ split documented in the notes field, still accounts for roughly three tenths of the row's segments."
+    }
+  }
 }

@@ -1429,28 +1429,27 @@ def test_jam_nasal_hn_convention_is_not_modelled():
     """The -hn nasal-vowel convention is declared NOT modelled.
 
     jam notes: "Nasal vowels are written with a following -hn (e.g. kyaahn);
-    that convention and the palatalised <ky>/<gy> onsets are not modelled here."
+    that convention is not modelled here."
 
     A declared omission, pinned: the cited word kyaahn yields the literal
     [h] + [n] of the spelling and no nasalised vowel — so the gap cannot be
     silently closed, and no nasal vowel can appear by accident.
     """
     out = _bare("jam", "kyaahn")
-    assert out == "kjaːhn"
+    assert out == "kʲaːhn"
     assert "̃" not in unicodedata.normalize("NFD", out)
 
 
-def test_jam_palatalised_onsets_are_not_modelled():
-    """The palatalised ⟨ky⟩/⟨gy⟩ onsets are declared NOT modelled.
+def test_jam_palatalised_onsets_are_single_segments():
+    """⟨ky⟩ and ⟨gy⟩ spell one palatalised velar, not a stop + glide cluster.
 
-    jam notes: "that convention and the palatalised <ky>/<gy> onsets are not
-    modelled here." Cassidy (1961); Jamaican Language Unit (2002).
-
-    A declared omission, pinned: ⟨ky⟩ and ⟨gy⟩ come out as the compositional
-    stop + glide, not as a palatalised /kʲ/ /ɡʲ/ segment.
+    Harry 2006 (JIPA 36/1, p.127) gives the palatalisation derivations
+    /giaad/ → [ɡʲaːd] 'guard' and /kiuu/ → [kʲuː], and his 21-consonant
+    inventory (p.126) contains no palatal stop, so [c] [ɟ] are the phonetic
+    reflexes Cassidy & Le Page 1967/1980 had analysed as phonemes.
     """
-    assert _bare("jam", "gyal") == "ɡjal"
-    assert "ʲ" not in _bare("jam", "kyaahn")
+    assert _bare("jam", "gyal") == "ɡʲal"
+    assert "ʲ" in _bare("jam", "kyaahn")
 
 
 # ===========================================================================

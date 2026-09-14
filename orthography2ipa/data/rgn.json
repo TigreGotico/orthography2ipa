@@ -3,7 +3,7 @@
   "name": "Romagnol",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "ch": [
       "k"
@@ -132,7 +132,7 @@
       "notes": "Descent per Glottolog classification of Romagnol (roma1328)."
     }
   ],
-  "notes": "Skeleton. Gallo-Italic (Romance, Emilian-Romagnol) variety of Italy written in the Latin alphabet. Grapheme map follows Italian-based conventions: c and g are affricates [tʃ]/[dʒ] by default with ch/gh for the plain velars, gn [ɲ], gl [ʎ], plus accented vowels distinguishing open/close and long qualities (è [ɛ], ò [ɔ], ê/ô long). Romagnol's rich system of vowel length and quality distinctions is only partly written; contextual (before e/i) softening of c/g and the full length inventory are not fully recoverable and are left unencoded, so a real PER floor is expected.",
+  "notes": "Skeleton. Gallo-Italic (Romance, Emilian-Romagnol) variety of Italy written in the Latin alphabet. Grapheme map follows Italian-based conventions: c and g are affricates [tʃ]/[dʒ] by default with ch/gh for the plain velars, gn [ɲ], gl [ʎ], plus accented vowels distinguishing open/close and long qualities (è [ɛ], ò [ɔ], ê/ô long). Romagnol's rich system of vowel length and quality distinctions is only partly written; contextual (before e/i) softening of c/g and the full length inventory are not fully recoverable and are left unencoded, so a real PER floor is expected. Romagnol stress is lexically contrastive but not consistently marked in the practical orthography beyond the accented vowels already encoded; unmarked cases are left unencoded (documented exemption).",
   "iso639_3": "rgn",
   "glottolog_code": null,
   "sources": [
@@ -157,6 +157,16 @@
       "pages": null,
       "notes": "Orthography/phonology reference for a skeleton-tier entry.",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Romagnol_language"
+    },
+    {
+      "id": "rgn_vitali2008",
+      "author": "Vitali, Daniele",
+      "year": 2008,
+      "title": "L'ortografia romagnola",
+      "publisher": "Società Editrice Il Ponte Vecchio",
+      "url": "https://www.dialettoromagnolo.it/uploads/5/2/4/2/52420601/pb-233-file-ortografiaromagnola.pdf",
+      "pages": null,
+      "notes": "Phonological/orthographic study establishing the modern standardized spelling conventions for Romagnol dialects (see also Vitali & Pioggia 2014, Dialetti romagnoli); consulted to check the Italian-based grapheme map (c/g affricates, ch/gh plain velars, gn, gl) modelled here."
     }
   ],
   "wikipedia": [

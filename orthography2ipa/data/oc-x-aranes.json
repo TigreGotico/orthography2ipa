@@ -15,8 +15,7 @@
       "i"
     ],
     "o": [
-      "u",
-      "ɔ"
+      "u"
     ],
     "u": [
       "y"
@@ -56,15 +55,15 @@
       "d"
     ],
     "f": [
-      "f",
-      "h"
+      "f"
     ],
     "g": [
       "ɡ",
       "dʒ"
     ],
     "h": [
-      "h"
+      "h",
+      ""
     ],
     "j": [
       "dʒ"
@@ -135,7 +134,8 @@
       "ʃ"
     ],
     "th": [
-      "t"
+      "t",
+      "tʃ"
     ],
     "ai": [
       "aj"
@@ -163,6 +163,61 @@
     ],
     "tg": [
       "dʒ"
+    ],
+    "ll": [
+      "l"
+    ],
+    "ts": [
+      "ts"
+    ],
+    "tz": [
+      "dz",
+      "ts"
+    ],
+    "tj": [
+      "dʒ"
+    ],
+    "ish": [
+      "ʃ"
+    ],
+    "n·h": [
+      "nh"
+    ],
+    "s·h": [
+      "sh"
+    ],
+    "'": [
+      ""
+    ],
+    "’": [
+      ""
+    ],
+    "w": [
+      "w"
+    ],
+    "y": [
+      "i"
+    ],
+    "èu": [
+      "ɛw"
+    ],
+    "òu": [
+      "ɔw"
+    ],
+    "èi": [
+      "ɛj"
+    ],
+    "òi": [
+      "ɔj"
+    ],
+    "ói": [
+      "uj"
+    ],
+    "ue": [
+      "we"
+    ],
+    "uè": [
+      "wɛ"
     ]
   },
   "allophones": {
@@ -188,15 +243,11 @@
       "k"
     ],
     "f": [
-      "f",
-      "h"
+      "f"
     ],
     "h": [
-      "h"
-    ],
-    "v": [
-      "v",
-      "β"
+      "h",
+      ""
     ],
     "s": [
       "s"
@@ -259,9 +310,6 @@
     "i": [
       "i"
     ],
-    "o": [
-      "o"
-    ],
     "u": [
       "u"
     ],
@@ -287,17 +335,19 @@
       ]
     },
     "g": {
-      "default": [
-        "ɡ"
+      "before_e": [
+        "dʒ",
+        "ʒ"
+      ],
+      "before_i": [
+        "dʒ",
+        "ʒ"
       ],
       "intervocalic": [
         "ɣ"
       ],
-      "before_e": [
-        "ʒ"
-      ],
-      "before_i": [
-        "ʒ"
+      "default": [
+        "ɡ"
       ]
     },
     "r": {
@@ -327,10 +377,21 @@
       "default": [
         "ɡ"
       ]
+    },
+    "tz": {
+      "intervocalic": [
+        "dz"
+      ],
+      "word_final": [
+        "ts"
+      ],
+      "default": [
+        "ts"
+      ]
     }
   },
   "parent": "oc",
-  "notes": "Aranese (Aranès). Gascon variety of Occitan spoken in Val d'Aran, Catalonia. ~2,800 speakers. Co-official with Catalan and Spanish in Catalonia. Hallmark Gascon features: Latin F- → [h] aspiration (fo→hòc, flor→hlòr), final -a → [ɔ], front rounded /y/ (⟨u⟩). Regulated by Conselh Generau d'Aran. Classical Occitan orthography with Gascon conventions.",
+  "notes": "Aranese (Aranès), the Gascon variety of Occitan spoken in the Val d'Aran and co-official in Catalonia, regulated by the Conselh Generau d'Aran. Written in the classical Occitan orthography with Gascon conventions. Gascon hallmarks are already in the SPELLING, not in the letter values: Latin F- became ⟨h⟩ (focus > huec, ferrum > hèr) and intervocalic -N- was lost (luna > lua, farina > haria), so ⟨f⟩ here is simply [f] — reading it as [h] would apply the sound change twice. Aranese then DEASPIRATED that /h/, so ⟨h⟩ is silent except in Bausen and Canejan, where it is [h]; the [h] candidate is kept for those two. The interpunct digraphs ⟨n·h⟩ and ⟨s·h⟩ spell the SEQUENCES [n]+[h] and [s]+[h] that ⟨nh⟩ /ɲ/ and ⟨sh⟩ /ʃ/ would otherwise swallow, which is the whole reason the norm writes the interpunct; they carry keys so that maximal munch neither reads them as the palatal digraphs nor breaks the word in two at the interpunct. ⟨th⟩ is [t] (vedèth), [tʃ] in Bausen and Canejan; ⟨ll⟩ is a plain [l], not a geminate. Like the rest of Gascon and Lengadocian, Aranese has betacism, so ⟨v⟩ is [b] and /v/ is not a phoneme of the inventory.\n\nThree points are left as the shipped Spain-Romance TTS gold has them, because the gold's rows were authored and checked against Alibert and Bec while the contrary reading comes from a single tertiary description, and a native check should settle them before either is encoded. Unstressed and phrase-final ⟨a⟩ is [a] here, where descriptions of Aranese give a backed [ɑ~ɔ] and Lengadocian has a clear [ɔ]. Intervocalic ⟨s⟩ stays [s] here, where the rest of Occitan voices it to [z]. And ⟨h⟩ keeps [h] as its first reading with silence as the second, because Aranese is described as having deaspirated the Gascon /h/ everywhere except Bausen and Canejan, yet the gold pronounces it.",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -378,8 +439,22 @@
   "glottolog_code": "aran1260",
   "iso639_3": "oci",
   "stress": {
+    "onset_clusters": ["bl", "br", "bɫ", "bɾ", "bʀ", "bʁ", "bʎ", "bχ", "dr", "dɾ", "dʀ", "dʁ", "dʎ", "dχ", "fl", "fr", "fɫ", "fɾ", "fʀ", "fʁ", "fʎ", "fχ", "kl", "kr", "kɫ", "kɾ", "kʀ", "kʁ", "kʎ", "kχ", "pl", "pr", "pɫ", "pɾ", "pʀ", "pʁ", "pʎ", "pχ", "tr", "tɾ", "tʀ", "tʁ", "tʎ", "tχ", "vl", "vr", "vɫ", "vɾ", "vʀ", "vʁ", "vʎ", "vχ", "ðr", "ðɾ", "ðʀ", "ðʁ", "ðʎ", "ðχ", "ɡl", "ɡr", "ɡɫ", "ɡɾ", "ɡʀ", "ɡʁ", "ɡʎ", "ɡχ", "ɣl", "ɣr", "ɣɫ", "ɣɾ", "ɣʀ", "ɣʁ", "ɣʎ", "ɣχ", "βl", "βr", "βɫ", "βɾ", "βʀ", "βʁ", "βʎ", "βχ"],
     "default_position": -1,
-    "final_stress_endings": [],
+    "final_stress_endings": [
+      "ai",
+      "au",
+      "ei",
+      "èi",
+      "eu",
+      "èu",
+      "iu",
+      "oi",
+      "òi",
+      "ou",
+      "òu",
+      "ui"
+    ],
     "penult_stress_endings": [
       "a",
       "e",
@@ -390,11 +465,7 @@
       "es",
       "is",
       "os",
-      "us",
-      "ar",
-      "er",
-      "ir",
-      "or"
+      "us"
     ],
     "marked_vowels": [
       "à",
@@ -406,7 +477,9 @@
       "ú"
     ],
     "stress_mark": "ˈ",
-    "notes": "Aranese (Gascon Occitan) accentuation per the Conselh Generau dAran norm: same default-final, vowel/vowel+s → paroxytone rule as standard Occitan; written accents override. Aranese ⟨a⟩ in stressed position is typically [a] (not [ɔ] as standard Oc). Pattern inherited from Gascon prosody."
+    "notes": "Aranese accentuation follows the Conselh Generau d'Aran norm, which is the classical-norm system: a word ending in a vowel or in a vowel + -s is paroxytone, anything else is oxytone, and a written accent always wins. Infinitives are OXYTONE (-ar -er -ir), so those endings are NOT paroxytone triggers; the final -r is itself silent. Unstressed ⟨a⟩ is [ɑ~ɔ] and phrase-final ⟨a⟩ is [ɔ], while STRESSED ⟨a⟩ stays [a] (Wikipedia, Aranese dialect, vowel table).",
+    "max_onset": 2,
+    "coda_liquid_capture": true
   },
   "wikidata_qid": "Q10196",
   "location": {
@@ -414,5 +487,6 @@
     "longitude": 0.837222,
     "source": "wikidata",
     "notes": "the Val d'Aran — the single valley Aranese is spoken in. Glottolog's point for it is the generic Occitan point in Provence. [Wikidata Q12602 P625]"
-  }
+  },
+  "constrain_onsets": true
 }

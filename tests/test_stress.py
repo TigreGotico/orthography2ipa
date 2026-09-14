@@ -27,7 +27,7 @@ class TestSchema:
             assert rules.stress_mark == "ˈ"
 
     def test_specs_without_stress_are_none(self):
-        assert get("en-GB").stress is None
+        assert get("fr-FR").stress is None
         # `ar` now declares a quantity-sensitive block, so it is no longer an
         # example of a spec without stress.
         assert get("arc").stress is None
@@ -106,6 +106,27 @@ class TestDetectStress:
                             penult_stress_endings=("os",))
         assert detect_stress("santos", rules) == 0
         assert detect_stress("santo", rules) == 1
+
+    def test_antepenult_endings(self):
+        """``antepenult_stress_endings`` places stress three syllables from
+        the end — the end-anchored twin of ``penult_stress_endings``, for the
+        two-syllable pre-stressed suffixes (Fudge 1984, ch. 3)."""
+        rules = StressRules(default_position=1,
+                            antepenult_stress_endings=("ity",))
+        # a-bi-li-ty -> "bi"
+        assert detect_stress("ability", rules) == 1
+        # ci-ty: clamped into the word, no negative index escapes
+        assert detect_stress("city", rules) == 0
+        # unmatched word keeps the default
+        assert detect_stress("abilities", rules) == 0
+
+    def test_antepenult_ranks_below_penult(self):
+        """Precedence is final -> penult -> antepenult: a word matching both
+        a penult and an antepenult ending takes the penult reading."""
+        rules = StressRules(default_position=1,
+                            penult_stress_endings=("ity",),
+                            antepenult_stress_endings=("ability",))
+        assert detect_stress("ability", rules) == 2
 
     def test_default_clamped_on_short_words(self):
         rules = StressRules(default_position=-3)

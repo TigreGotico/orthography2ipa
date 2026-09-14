@@ -469,29 +469,21 @@ _bad_phones = {
 
 def vectorize_phones(phones: str) -> List[Union[bool, None]]:
     """
-    Resolve a phone or phone-with-modifiers into a phonetic feature vector.
+    Resolve a phone or phone-with-modifiers into its 23-feature vector.
 
-    Phones can be:
-        - A single IPA symbol (e.g. "p", "a", "ʒ")
-        - A composite sequence (e.g. "ɜ˞") where modifiers adjust features
+    A phone is either a single IPA symbol (``"p"``, ``"a"``, ``"ʒ"``) looked
+    up directly, or a composite sequence (``"ɜ˞"``) of one or more BASE
+    phones plus DIACRITIC modifiers (see :data:`modifiers`). For a composite,
+    the base phones' vectors are merged feature-by-feature — True dominates
+    (any base setting a feature True wins), otherwise False wins over
+    unknown, otherwise the feature stays unknown (``None``) — and the
+    modifiers are then applied on top, overwriting whichever feature
+    indices they name. This mirrors how a diacritic works phonetically: it
+    is a secondary articulation layered onto a base sound's place/manner,
+    not a vote among equals.
 
-    How this works:
-        1. If the phone is known to require normalization, normalize it.
-        2. If the phone consists of exactly one symbol:
-              return its feature vector directly.
-        3. If it contains multiple symbols:
-              • Some symbols represent modifiers that override features.
-              • Others represent base phones that contribute their features.
-              • We merge the base features first.
-              • Then we apply modifiers that overwrite specific features.
-
-    Feature vector rules:
-        - Each feature index holds True, False, or None (unknown/irrelevant).
-        - When merging:
-              • A True anywhere forces the feature True.
-              • Otherwise, if any base phone sets False, keep False.
-              • If all base phones leave a feature None, it remains None.
-        - Modifiers overwrite final values for specific feature indices.
+    Composite results are memoised in :data:`_phone_memory`, since the same
+    multi-symbol phone recurs often in a transcription.
     """
     global _phone_memory
 
@@ -502,62 +494,44 @@ def vectorize_phones(phones: str) -> List[Union[bool, None]]:
     if phones in _bad_phones:
         phones = _bad_phones[phones]
 
-    # --- Step 2: fast path for simple phones ---
+    # Fast path: a single symbol needs no merging.
     if len(phones) == 1:
         try:
             return phone_features[phones]
         except KeyError:
             raise ValueError(f"Unrecognized phone '{phones}'")
 
-    # --- Step 3: cached result for composite phones ---
     if phones in _phone_memory:
         return tuple(_phone_memory[phones])
 
-    # --- Step 4: compute vector for composite phone ---
     try:
-        # Start with an empty feature list (None = no information yet)
         vec = [None] * NUM_FEATURES
-
-        # A list of modifier dicts that will be applied later
         new_modifiers = []
 
-        # Merge all base phone feature contributions
-        #
-        # For every feature index, we scan all characters:
-        #   - If character is a modifier, mark for later.
-        #   - If character is a base phone, check its feature value.
-        #
-        # Merging logic:
-        #   True dominates everything (immediate)
-        #   False sets only if we have not seen a True
-        #   None means "no influence" unless no other phones give a value
-        #
+        # Merge the base phones' feature vectors, per feature index, with
+        # True > False > None dominance (True wins outright; unknown never
+        # overrides a definite value from another base phone).
         for f_idx in range(NUM_FEATURES):
             merged_val = None
             for p in phones:
                 if p in modifiers:
                     new_modifiers.append(modifiers[p])
                     continue
-
-                # Base phone feature lookup
                 base_val = phone_features[p][f_idx]
-
-                # Dominance rule: True > False > None
                 if base_val is True:
                     merged_val = True
                     break
                 elif base_val is False:
                     merged_val = False
-
             vec[f_idx] = merged_val
 
-        # Apply modifiers, which can overwrite any feature position.
-        # Modifiers represent diacritics or IPA secondary articulations.
+        # Diacritics are secondary articulations layered on top: they
+        # overwrite whichever feature indices they name, after the base
+        # merge above, never the reverse.
         for mod in new_modifiers:
             for feature_idx, mod_val in mod.items():
                 vec[feature_idx] = mod_val
 
-        # Save result to cache
         vec = tuple(vec)
         _phone_memory[phones] = vec
         return vec
@@ -582,69 +556,50 @@ def is_vowel_phone(phone: str) -> bool:
 
 def phonetic_distance(phone_a: str, phone_b: str) -> float:
     """
-    Compute a normalized phonetic distance between two IPA phones.
+    Weighted-feature distance between two IPA phones: a weighted Hamming
+    distance restricted to the feature subset relevant to the phones'
+    class (vowel or consonant), normalized by that subset's total weight.
 
-    Key rules:
-        - Space ' ' is considered a phone but can only match itself.
-        - Vowel ↔ consonant mismatches always yield distance = 1.0.
-        - Otherwise, distance is computed from weighted feature mismatches.
-        - The mismatch sum is normalized by a precomputed total weight.
-        - Consonants are scaled by factor 2.0; vowels by 1.0.
+    A space (``' '``) is a phone that matches only itself (distance 0.0,
+    else 1.0) — useful when comparing word-boundary-delimited sequences.
+    A vowel compared against a consonant always returns 1.0 (maximally
+    dissimilar): the two feature subsets below are not commensurable, so
+    no finer distinction is meaningful across the class boundary.
 
-    Algorithm:
-        1. Handle special case: if either phone is a space.
-        2. If one is vowel and the other is consonant → return 1.0.
-        3. Determine if phones are vowels or consonants.
-        4. Select feature subset and normalization constants:
-              vowels → smaller set, factor 1
-              consonants → larger set, factor 2
-        5. Retrieve feature vectors.
-        6. Compare only the relevant feature indices:
-              if vecA[i] != vecB[i], add weight[i] to difference sum.
-        7. Normalize difference sum:
-              distance = (difference_sum / total_weight) * factor
-
-    Result Range:
-        • For vowels: 0 → 1
-        • For consonants: 0 → 2 (due to factor 2)
+    Consonants are compared over a larger feature set (place, manner,
+    voicing …) than vowels (height, backness, rounding …), and the raw
+    mismatch sum is additionally scaled ×2 for consonants — consonantal
+    contrasts are weighted twice as informative as vowel-quality
+    contrasts for this metric. Result range is therefore ``[0, 1]`` for a
+    vowel pair and ``[0, 2]`` for a consonant pair.
     """
-    # --- Step 1: special-case for space phones ---
     if phone_a == ' ' or phone_b == ' ':
-        # Identical spaces match with distance 0, else fully dissimilar
         return 0.0 if phone_a == phone_b else 1.0
 
-    # --- Step 2: vowel/consonant mismatch ---
     vowel = is_vowel_phone(phone_a)
     if vowel != is_vowel_phone(phone_b):
         return 1.0
 
-    # --- Step 3: choose feature subset and scaling factor ---
     if vowel:
-        # Vowels use a limited feature set and factor = 1
         total_weights = total_vowel_weight
         feature_indices = vowel_features
         factor = 1.0
     else:
-        # Consonants use more features and factor = 2
         total_weights = total_consonant_weight
         feature_indices = consonant_features
         factor = 2.0
 
-    # --- Step 4: retrieve merged feature vectors ---
     try:
-        vecA = vectorize_phones(phone_a)
-        vecB = vectorize_phones(phone_b)
+        vec_a = vectorize_phones(phone_a)
+        vec_b = vectorize_phones(phone_b)
     except (ValueError, KeyError, IndexError):
         return 3.0
 
-    # --- Step 5: accumulate weighted mismatches ---
-    diff_sum = 0.0
-    for idx in feature_indices:
-        # Any inequality counts as a mismatch
-        if vecA[idx] != vecB[idx]:
-            diff_sum += feature_weights[idx]
-
-    # --- Step 6: normalize & scale ---
+    diff_sum = sum(
+        feature_weights[idx]
+        for idx in feature_indices
+        if vec_a[idx] != vec_b[idx]
+    )
     return (diff_sum / total_weights) * factor
 
 

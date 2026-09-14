@@ -592,13 +592,13 @@
       "ɲo"
     ],
     "ヒャ": [
-      "çʲa"
+      "ça"
     ],
     "ヒュ": [
-      "çʲɯ"
+      "çɯ"
     ],
     "ヒョ": [
-      "çʲo"
+      "ço"
     ],
     "ビャ": [
       "bʲa"
@@ -628,13 +628,295 @@
       "mʲo"
     ],
     "リャ": [
-      "rʲa"
+      "ɾʲa"
     ],
     "リュ": [
-      "rʲɯ"
+      "ɾʲɯ"
     ],
     "リョ": [
-      "rʲo"
+      "ɾʲo"
+    ],
+    "ぁ": [
+      "a"
+    ],
+    "ぃ": [
+      "i"
+    ],
+    "ぅ": [
+      "ɯ"
+    ],
+    "ぇ": [
+      "e"
+    ],
+    "ぉ": [
+      "o"
+    ],
+    "ァ": [
+      "a"
+    ],
+    "ィ": [
+      "i"
+    ],
+    "ゥ": [
+      "ɯ"
+    ],
+    "ェ": [
+      "e"
+    ],
+    "ォ": [
+      "o"
+    ],
+    "ゐ": [
+      "i"
+    ],
+    "ゑ": [
+      "e"
+    ],
+    "ヰ": [
+      "i"
+    ],
+    "ヱ": [
+      "e"
+    ],
+    "ゎ": [
+      "wa"
+    ],
+    "ヮ": [
+      "wa"
+    ],
+    "ぢゃ": [
+      "dʑa"
+    ],
+    "ぢゅ": [
+      "dʑɯ"
+    ],
+    "ぢょ": [
+      "dʑo"
+    ],
+    "ヂャ": [
+      "dʑa"
+    ],
+    "ヂュ": [
+      "dʑɯ"
+    ],
+    "ヂョ": [
+      "dʑo"
+    ],
+    "ゔ": [
+      "vɯ"
+    ],
+    "ヴ": [
+      "vɯ"
+    ],
+    "ヷ": [
+      "va"
+    ],
+    "ヴァ": [
+      "va"
+    ],
+    "ヴィ": [
+      "vi"
+    ],
+    "ヴェ": [
+      "ve"
+    ],
+    "ヴォ": [
+      "vo"
+    ],
+    "ヴュ": [
+      "vʲɯ"
+    ],
+    "ファ": [
+      "ɸa"
+    ],
+    "ふぁ": [
+      "ɸa"
+    ],
+    "フィ": [
+      "ɸi"
+    ],
+    "ふぃ": [
+      "ɸi"
+    ],
+    "フェ": [
+      "ɸe"
+    ],
+    "ふぇ": [
+      "ɸe"
+    ],
+    "フォ": [
+      "ɸo"
+    ],
+    "ふぉ": [
+      "ɸo"
+    ],
+    "フュ": [
+      "ɸʲɯ"
+    ],
+    "ふゅ": [
+      "ɸʲɯ"
+    ],
+    "ウィ": [
+      "wi"
+    ],
+    "うぃ": [
+      "wi"
+    ],
+    "ウェ": [
+      "we"
+    ],
+    "うぇ": [
+      "we"
+    ],
+    "ウォ": [
+      "wo"
+    ],
+    "うぉ": [
+      "wo"
+    ],
+    "ティ": [
+      "ti"
+    ],
+    "てぃ": [
+      "ti"
+    ],
+    "トゥ": [
+      "tɯ"
+    ],
+    "とぅ": [
+      "tɯ"
+    ],
+    "テュ": [
+      "tʲɯ"
+    ],
+    "てゅ": [
+      "tʲɯ"
+    ],
+    "ディ": [
+      "di"
+    ],
+    "でぃ": [
+      "di"
+    ],
+    "ドゥ": [
+      "dɯ"
+    ],
+    "どぅ": [
+      "dɯ"
+    ],
+    "デュ": [
+      "dʲɯ"
+    ],
+    "でゅ": [
+      "dʲɯ"
+    ],
+    "シェ": [
+      "ɕe"
+    ],
+    "しぇ": [
+      "ɕe"
+    ],
+    "ジェ": [
+      "dʑe"
+    ],
+    "じぇ": [
+      "dʑe"
+    ],
+    "チェ": [
+      "tɕe"
+    ],
+    "ちぇ": [
+      "tɕe"
+    ],
+    "スィ": [
+      "si"
+    ],
+    "すぃ": [
+      "si"
+    ],
+    "ズィ": [
+      "zi"
+    ],
+    "ずぃ": [
+      "zi"
+    ],
+    "ツァ": [
+      "tsa"
+    ],
+    "つぁ": [
+      "tsa"
+    ],
+    "ツィ": [
+      "tsi"
+    ],
+    "つぃ": [
+      "tsi"
+    ],
+    "ツェ": [
+      "tse"
+    ],
+    "つぇ": [
+      "tse"
+    ],
+    "ツォ": [
+      "tso"
+    ],
+    "つぉ": [
+      "tso"
+    ],
+    "クァ": [
+      "kwa"
+    ],
+    "くぁ": [
+      "kwa"
+    ],
+    "クィ": [
+      "kwi"
+    ],
+    "くぃ": [
+      "kwi"
+    ],
+    "クェ": [
+      "kwe"
+    ],
+    "くぇ": [
+      "kwe"
+    ],
+    "クォ": [
+      "kwo"
+    ],
+    "くぉ": [
+      "kwo"
+    ],
+    "グァ": [
+      "ɡwa"
+    ],
+    "ぐぁ": [
+      "ɡwa"
+    ],
+    "グィ": [
+      "ɡwi"
+    ],
+    "ぐぃ": [
+      "ɡwi"
+    ],
+    "グェ": [
+      "ɡwe"
+    ],
+    "ぐぇ": [
+      "ɡwe"
+    ],
+    "グォ": [
+      "ɡwo"
+    ],
+    "ぐぉ": [
+      "ɡwo"
+    ],
+    "イェ": [
+      "je"
+    ],
+    "いぇ": [
+      "je"
     ]
   },
   "allophones": {
@@ -733,9 +1015,21 @@
     ],
     "o": [
       "o"
+    ],
+    "v": [
+      "v",
+      "b"
     ]
   },
-  "notes": "Standard Tokyo Japanese. Moraic structure: each kana = one mora. Vowel devoicing of /i, ɯ/ between voiceless consonants is systematic. Moraic nasal /N/ and geminate /Q/ are archiphonemes.",
+  "notes": "Standard Tokyo Japanese. Moraic structure: each kana = one mora. The moraic nasal /N/ and the moraic obstruent /Q/ are placeless archiphonemes realised by allophone_rules from the following segment. Vowel devoicing of /i, ɯ/ between voiceless consonants is systematic but is not written: it is a phonetic detail below the level this spec transcribes. Long vowels are written only where the orthography writes them with ー; the おう and えい spellings are transcribed as the vowel sequences the kana spell. Particle は /wa/ and へ /e/ cannot be identified without syntax and are transcribed from their kana values. doubled_letters_geminate is false: kana never spell gemination by letter doubling, so an adjacent pair of identical bare consonants is always two moras of N or Q realised by allophone_rules, not an orthographic geminate.",
+  "doubled_letters_geminate": false,
+  "audit": {
+    "ipadict": {
+      "conclusion": "logographic",
+      "measured": "Raw PER 0.3276 at n=115500 covered words. Splitting the covered words by script composition: 61365 (53.1%) contain at least one CJK Unified Ideograph (U+4E00-U+9FFF, i.e. kanji) and score PER 0.5723; the remaining 54135 (46.9%) are pure kana and score PER 0.0503. Kanji readings (on'yomi/kun'yomi) are lexical facts assigned per word or per compound, not derivable from the character's shape by any grapheme rule, so no rule change can close the kanji-containing share of the gap; the low kana-only PER shows the kana rules themselves already track the gold closely. Mirrors the zh/zh-Hani precedent: a phonemic script spec cannot be made to read a co-mingled logographic script by rule.",
+      "reference": "spec notes; see also zh-Hani.json notes for the same precedent"
+    }
+  },
   "quality": "research",
   "script_type": "syllabary",
   "sources": [
@@ -745,6 +1039,16 @@
       "year": 1987,
       "title": "An Introduction to Japanese Phonology",
       "publisher": "SUNY Press",
+      "url": null,
+      "pages": null,
+      "notes": null
+    },
+    {
+      "id": "vance2008",
+      "author": "Vance, T.J.",
+      "year": 2008,
+      "title": "The Sounds of Japanese",
+      "publisher": "Cambridge University Press",
       "url": null,
       "pages": null,
       "notes": null
@@ -824,5 +1128,303 @@
     "longitude": 135.0,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Japanese."
-  }
+  },
+  "allophone_rules": [
+    {
+      "id": "JA_Q_GEMINATE_K",
+      "phonemes": [
+        "Q"
+      ],
+      "surface": "k",
+      "followed_by_phoneme": [
+        "k"
+      ],
+      "notes": "The moraic obstruent /Q/ (っ/ッ) is placeless: it surfaces as the closure half of a geminate, copying the following consonant. Affricates geminate on their stop portion ([tts], [ttɕ]). Vance 2008; Labrune 2012."
+    },
+    {
+      "id": "JA_Q_GEMINATE_KY",
+      "phonemes": [
+        "Q"
+      ],
+      "surface": "kʲ",
+      "followed_by_phoneme": [
+        "kʲ"
+      ],
+      "notes": "The moraic obstruent /Q/ (っ/ッ) is placeless: it surfaces as the closure half of a geminate, copying the following consonant. Affricates geminate on their stop portion ([tts], [ttɕ]). Vance 2008; Labrune 2012."
+    },
+    {
+      "id": "JA_Q_GEMINATE_G",
+      "phonemes": [
+        "Q"
+      ],
+      "surface": "ɡ",
+      "followed_by_phoneme": [
+        "ɡ"
+      ],
+      "notes": "The moraic obstruent /Q/ (っ/ッ) is placeless: it surfaces as the closure half of a geminate, copying the following consonant. Affricates geminate on their stop portion ([tts], [ttɕ]). Vance 2008; Labrune 2012."
+    },
+    {
+      "id": "JA_Q_GEMINATE_GY",
+      "phonemes": [
+        "Q"
+      ],
+      "surface": "ɡʲ",
+      "followed_by_phoneme": [
+        "ɡʲ"
+      ],
+      "notes": "The moraic obstruent /Q/ (っ/ッ) is placeless: it surfaces as the closure half of a geminate, copying the following consonant. Affricates geminate on their stop portion ([tts], [ttɕ]). Vance 2008; Labrune 2012."
+    },
+    {
+      "id": "JA_Q_GEMINATE_P",
+      "phonemes": [
+        "Q"
+      ],
+      "surface": "p",
+      "followed_by_phoneme": [
+        "p"
+      ],
+      "notes": "The moraic obstruent /Q/ (っ/ッ) is placeless: it surfaces as the closure half of a geminate, copying the following consonant. Affricates geminate on their stop portion ([tts], [ttɕ]). Vance 2008; Labrune 2012."
+    },
+    {
+      "id": "JA_Q_GEMINATE_PY",
+      "phonemes": [
+        "Q"
+      ],
+      "surface": "pʲ",
+      "followed_by_phoneme": [
+        "pʲ"
+      ],
+      "notes": "The moraic obstruent /Q/ (っ/ッ) is placeless: it surfaces as the closure half of a geminate, copying the following consonant. Affricates geminate on their stop portion ([tts], [ttɕ]). Vance 2008; Labrune 2012."
+    },
+    {
+      "id": "JA_Q_GEMINATE_B",
+      "phonemes": [
+        "Q"
+      ],
+      "surface": "b",
+      "followed_by_phoneme": [
+        "b"
+      ],
+      "notes": "The moraic obstruent /Q/ (っ/ッ) is placeless: it surfaces as the closure half of a geminate, copying the following consonant. Affricates geminate on their stop portion ([tts], [ttɕ]). Vance 2008; Labrune 2012."
+    },
+    {
+      "id": "JA_Q_GEMINATE_BY",
+      "phonemes": [
+        "Q"
+      ],
+      "surface": "bʲ",
+      "followed_by_phoneme": [
+        "bʲ"
+      ],
+      "notes": "The moraic obstruent /Q/ (っ/ッ) is placeless: it surfaces as the closure half of a geminate, copying the following consonant. Affricates geminate on their stop portion ([tts], [ttɕ]). Vance 2008; Labrune 2012."
+    },
+    {
+      "id": "JA_Q_GEMINATE_T",
+      "phonemes": [
+        "Q"
+      ],
+      "surface": "t",
+      "followed_by_phoneme": [
+        "t"
+      ],
+      "notes": "The moraic obstruent /Q/ (っ/ッ) is placeless: it surfaces as the closure half of a geminate, copying the following consonant. Affricates geminate on their stop portion ([tts], [ttɕ]). Vance 2008; Labrune 2012."
+    },
+    {
+      "id": "JA_Q_GEMINATE_D",
+      "phonemes": [
+        "Q"
+      ],
+      "surface": "d",
+      "followed_by_phoneme": [
+        "d"
+      ],
+      "notes": "The moraic obstruent /Q/ (っ/ッ) is placeless: it surfaces as the closure half of a geminate, copying the following consonant. Affricates geminate on their stop portion ([tts], [ttɕ]). Vance 2008; Labrune 2012."
+    },
+    {
+      "id": "JA_Q_GEMINATE_S",
+      "phonemes": [
+        "Q"
+      ],
+      "surface": "s",
+      "followed_by_phoneme": [
+        "s"
+      ],
+      "notes": "The moraic obstruent /Q/ (っ/ッ) is placeless: it surfaces as the closure half of a geminate, copying the following consonant. Affricates geminate on their stop portion ([tts], [ttɕ]). Vance 2008; Labrune 2012."
+    },
+    {
+      "id": "JA_Q_GEMINATE_Z",
+      "phonemes": [
+        "Q"
+      ],
+      "surface": "z",
+      "followed_by_phoneme": [
+        "z"
+      ],
+      "notes": "The moraic obstruent /Q/ (っ/ッ) is placeless: it surfaces as the closure half of a geminate, copying the following consonant. Affricates geminate on their stop portion ([tts], [ttɕ]). Vance 2008; Labrune 2012."
+    },
+    {
+      "id": "JA_Q_GEMINATE_SH",
+      "phonemes": [
+        "Q"
+      ],
+      "surface": "ɕ",
+      "followed_by_phoneme": [
+        "ɕ"
+      ],
+      "notes": "The moraic obstruent /Q/ (っ/ッ) is placeless: it surfaces as the closure half of a geminate, copying the following consonant. Affricates geminate on their stop portion ([tts], [ttɕ]). Vance 2008; Labrune 2012."
+    },
+    {
+      "id": "JA_Q_GEMINATE_ZH",
+      "phonemes": [
+        "Q"
+      ],
+      "surface": "ʑ",
+      "followed_by_phoneme": [
+        "ʑ"
+      ],
+      "notes": "The moraic obstruent /Q/ (っ/ッ) is placeless: it surfaces as the closure half of a geminate, copying the following consonant. Affricates geminate on their stop portion ([tts], [ttɕ]). Vance 2008; Labrune 2012."
+    },
+    {
+      "id": "JA_Q_GEMINATE_F",
+      "phonemes": [
+        "Q"
+      ],
+      "surface": "ɸ",
+      "followed_by_phoneme": [
+        "ɸ"
+      ],
+      "notes": "The moraic obstruent /Q/ (っ/ッ) is placeless: it surfaces as the closure half of a geminate, copying the following consonant. Affricates geminate on their stop portion ([tts], [ttɕ]). Vance 2008; Labrune 2012."
+    },
+    {
+      "id": "JA_Q_GEMINATE_HY",
+      "phonemes": [
+        "Q"
+      ],
+      "surface": "ç",
+      "followed_by_phoneme": [
+        "ç"
+      ],
+      "notes": "The moraic obstruent /Q/ (っ/ッ) is placeless: it surfaces as the closure half of a geminate, copying the following consonant. Affricates geminate on their stop portion ([tts], [ttɕ]). Vance 2008; Labrune 2012."
+    },
+    {
+      "id": "JA_Q_GEMINATE_H",
+      "phonemes": [
+        "Q"
+      ],
+      "surface": "h",
+      "followed_by_phoneme": [
+        "h"
+      ],
+      "notes": "The moraic obstruent /Q/ (っ/ッ) is placeless: it surfaces as the closure half of a geminate, copying the following consonant. Affricates geminate on their stop portion ([tts], [ttɕ]). Vance 2008; Labrune 2012."
+    },
+    {
+      "id": "JA_Q_GEMINATE_V",
+      "phonemes": [
+        "Q"
+      ],
+      "surface": "v",
+      "followed_by_phoneme": [
+        "v"
+      ],
+      "notes": "The moraic obstruent /Q/ (っ/ッ) is placeless: it surfaces as the closure half of a geminate, copying the following consonant. Affricates geminate on their stop portion ([tts], [ttɕ]). Vance 2008; Labrune 2012."
+    },
+    {
+      "id": "JA_Q_GEMINATE_VOICELESS_AFFRICATE",
+      "phonemes": [
+        "Q"
+      ],
+      "surface": "t",
+      "followed_by_phoneme": [
+        "ts",
+        "tɕ"
+      ],
+      "notes": "The moraic obstruent /Q/ (っ/ッ) is placeless: it surfaces as the closure half of a geminate, copying the following consonant. Affricates geminate on their stop portion ([tts], [ttɕ]). Vance 2008; Labrune 2012."
+    },
+    {
+      "id": "JA_Q_GEMINATE_VOICED_AFFRICATE",
+      "phonemes": [
+        "Q"
+      ],
+      "surface": "d",
+      "followed_by_phoneme": [
+        "dz",
+        "dʑ"
+      ],
+      "notes": "The moraic obstruent /Q/ (っ/ッ) is placeless: it surfaces as the closure half of a geminate, copying the following consonant. Affricates geminate on their stop portion ([tts], [ttɕ]). Vance 2008; Labrune 2012."
+    },
+    {
+      "id": "JA_Q_GLOTTAL_DEFAULT",
+      "phonemes": [
+        "Q"
+      ],
+      "surface": "ʔ",
+      "notes": "/Q/ with no following obstruent to geminate — word-final, or before a vowel or sonorant — is an abrupt glottal closure, the sharp cut-off of interjections such as あっ. Vance 2008; Labrune 2012."
+    },
+    {
+      "id": "JA_N_ASSIMILATE_LABIAL",
+      "phonemes": [
+        "N"
+      ],
+      "surface": "m",
+      "followed_by_phoneme": [
+        "p",
+        "pʲ",
+        "b",
+        "bʲ",
+        "m",
+        "mʲ"
+      ],
+      "notes": "The moraic nasal /N/ (ん/ン) has no place of its own and takes the place of the following consonant: labial here. Vance 2008; Labrune 2012."
+    },
+    {
+      "id": "JA_N_ASSIMILATE_CORONAL",
+      "phonemes": [
+        "N"
+      ],
+      "surface": "n",
+      "followed_by_phoneme": [
+        "t",
+        "d",
+        "n",
+        "ts",
+        "dz"
+      ],
+      "notes": "The moraic nasal /N/ (ん/ン) has no place of its own and takes the place of the following consonant: coronal here. Vance 2008; Labrune 2012."
+    },
+    {
+      "id": "JA_N_ASSIMILATE_PALATAL",
+      "phonemes": [
+        "N"
+      ],
+      "surface": "ɲ",
+      "followed_by_phoneme": [
+        "tɕ",
+        "dʑ",
+        "ɲ"
+      ],
+      "notes": "The moraic nasal /N/ (ん/ン) has no place of its own and takes the place of the following consonant: palatal here. Vance 2008; Labrune 2012."
+    },
+    {
+      "id": "JA_N_ASSIMILATE_VELAR",
+      "phonemes": [
+        "N"
+      ],
+      "surface": "ŋ",
+      "followed_by_phoneme": [
+        "k",
+        "kʲ",
+        "ɡ",
+        "ɡʲ"
+      ],
+      "notes": "The moraic nasal /N/ (ん/ン) has no place of its own and takes the place of the following consonant: velar here. Vance 2008; Labrune 2012."
+    },
+    {
+      "id": "JA_N_UVULAR_DEFAULT",
+      "phonemes": [
+        "N"
+      ],
+      "surface": "ɴ",
+      "notes": "/N/ with no oral closure to copy — word-final, or before a fricative, a glide or a vowel — is a uvular nasal. In those same environments it is often weakened further to a nasalised vocoid that nasalises the preceding vowel; that realisation modifies the neighbouring vowel rather than this segment, so the citation form is given here. Vance 2008; Labrune 2012."
+    }
+  ]
 }

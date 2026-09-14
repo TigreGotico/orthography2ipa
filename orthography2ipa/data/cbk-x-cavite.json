@@ -22,7 +22,7 @@
   ],
   "graphemes": {},
   "allophones": {},
-  "notes": "Caviteño Chabacano (Chabacano de Cavite), a Manila-Bay Spanish-lexifier creole of Cavite City, Luzon, Philippines — moribund, distinct from Zamboangueño (cbk-zam). STUB: no variety-specific grapheme map is claimed yet. In practice it uses the same Spanish-alphabet orthography and shares the core Chabacano phonology of cbk-zam (seseo, yeísmo, ⟨j g⟩ before front vowels = [h], ⟨v⟩ = [b]); the parent is set to cbk-zam so it inherits that system pending a dedicated Manila-Bay description. Documented differences from Zamboangueño (e.g. TMA particles ta/ya/di, Tagalog rather than Visayan substrate) are described in Sippola's APiCS survey but not yet encoded here.",
+  "notes": "Caviteño Chabacano (Chabacano de Cavite), a Manila-Bay Spanish-lexifier creole of Cavite City, Luzon, Philippines — moribund, distinct from Zamboangueño (cbk-zam). STUB WITH NO GRAPHEME TABLE: this spec maps nothing and transcribes every input to the empty string. `parent` records genealogy only and never carries data, so nothing is inherited from cbk-zam, and no `graphemes_base` edge is declared because Zamboangueño's table would be wrong here. Sippola's APiCS description of Cavite Chabacano lists /v/, /ʃ/ and /d͡ʒ/ as phonemes, together with /ʔ/ and /ŋ/ from the Tagalog substrate; the Zamboangueño map has no reading for any of them and reads ⟨v⟩ as [b] (Lipski 1987). The written variety is also unsettled — APiCS describes the documented lect as almost entirely written Cavite Chabacano produced by language activists — so a grapheme map has to be derived from a Manila-Bay description rather than borrowed. Documented differences from Zamboangueño (TMA particles ta/ya/di, Tagalog rather than Visayan substrate) are likewise unencoded.",
   "iso639_3": "cbk",
   "glottolog_code": "cavi1254",
   "wikidata_qid": "Q33281",
@@ -34,11 +34,11 @@
       "id": "sippola2013cavite",
       "author": "Sippola, Eeva",
       "year": 2013,
-      "title": "Cavite Chabacano structure dataset (APiCS Survey chapter 46)",
+      "title": "Cavite Chabacano (APiCS Online contribution 45)",
       "publisher": "Atlas of Pidgin and Creole Language Structures Online (APiCS), eds. Michaelis, Maurer, Haspelmath & Huber",
-      "url": "https://apics-online.info/contributions/46",
+      "url": "https://apics-online.info/contributions/45",
       "wikipedia_url": null,
-      "pages": "Manila-Bay Chabacano phonology and morphosyntax; Tagalog substrate; TMA particles distinct from Zamboangueño.",
+      "pages": "Consonant inventory including /v ʃ d͡ʒ ʔ ŋ/; five-vowel system /i e a o u/; the described lect is written Cavite Chabacano produced by language activists.",
       "notes": "Primary descriptive source for the Cavite variety; grapheme map to be derived from it."
     }
   ],

@@ -129,13 +129,15 @@ def test_the_arabic_specs_opt_in():
     assert {"ar", "arb", "ar-SA-x-najd", "ar-SA-x-hejaz", "ar-EG"} <= opted_in
     # Outside Arabic, only languages whose stress is cited as quantity-
     # sensitive may opt in: idb (Sri Lanka Portuguese — stress on the
-    # long-vowel syllable, else initial; Cardoso, APiCS 41), and the
+    # long-vowel syllable, else initial; Cardoso, APiCS 41), cic (Chickasaw —
+    # primary accent on the rightmost heavy (CVV/CVC) syllable; Munro &
+    # Willmond 1994, Chickasaw: An Analytical Dictionary), and the
     # Arabic-lineage varieties that inherit the block through their Arabic
     # ``graphemes_base``: xaa (Andalusi Arabic, base ``arb``). Varieties that
     # keep only a genetic ``parent`` while authoring their own orthography
     # (mt Maltese, acy Cypriot Arabic) do NOT inherit — stress rides the
     # graphemes edge, not the classification parent.
-    _non_arabic_ok = {"idb", "xaa"}
+    _non_arabic_ok = {"idb", "xaa", "cic"}
     assert all(c.startswith("ar") or c in _non_arabic_ok
                for c in opted_in), sorted(opted_in)
 

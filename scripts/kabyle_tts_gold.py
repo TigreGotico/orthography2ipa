@@ -92,8 +92,10 @@ FEATURES = {
     "affricate":         ("ipa",  lambda s, ipa: "t͡ʃ" in ipa or "d͡ʒ" in ipa),
     # Uvular: stop [q] or voiceless fricative ⟨x⟩ [χ].
     "uvular":            ("ipa",  lambda s, ipa: "q" in ipa or "χ" in ipa),
-    # Voiced velar/uvular fricative ⟨ɣ⟩ [ɣ].
-    "velar_fricative":   ("ipa",  lambda s, ipa: "ɣ" in ipa),
+    # Voiced velar/uvular fricative ⟨ɣ⟩. The spec realizes it as the uvular
+    # [ʁ] in every position and keeps the broad [ɣ] as a documented variant,
+    # so the tag accepts either realization of the one phoneme.
+    "velar_fricative":   ("ipa",  lambda s, ipa: "ɣ" in ipa or "ʁ" in ipa),
     # Epenthetic schwa ⟨e⟩ [ə].
     "schwa":             ("ipa",  lambda s, ipa: "ə" in ipa),
     # Glide [j w] (⟨y w⟩, and the many affixal semivowels).

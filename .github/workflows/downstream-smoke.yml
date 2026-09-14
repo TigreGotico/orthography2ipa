@@ -1,0 +1,61 @@
+name: Downstream Smoke
+
+# Plain repo-specific CI (not a gh-automations reusable workflow). The engine's
+# data is gated heavily and its consumers are not gated at all, so a removed
+# module or renamed class can break every downstream G2P package while this
+# repo's own suite stays green. Each job installs one consumer from PyPI at the
+# floor it declares, installs this checkout over it, then imports the package
+# and transcribes a word.
+
+on:
+  pull_request:
+    branches: [dev]
+    paths:
+      - "orthography2ipa/**"
+      # A dropped dependency or a renamed extra breaks a consumer as surely as
+      # a removed module does, and neither shows up in the engine's own suite.
+      - "pyproject.toml"
+      - "scripts/smoke_downstream.py"
+      - ".github/workflows/downstream-smoke.yml"
+  workflow_dispatch: {}
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    strategy:
+      # One broken consumer must not hide the state of the others.
+      fail-fast: false
+      matrix:
+        # Latest published alpha of each consumer, resolved fresh on every run:
+        # no pins here, so a downstream release that drifts from the engine
+        # shows up as a failure rather than being frozen out of the check.
+        package:
+          - arbtok
+          - tugaphone
+          - euskaphone
+          - mwl_phonemizer
+          - g2p_barranquenho
+        # udarnik, markovphone and pycotovia-ng consume the engine too but are
+        # absent here because none of them is published to PyPI: there is no
+        # installable release to smoke, and installing from git is not an
+        # option. They join the matrix when they are released.
+    name: ${{ matrix.package }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v8.3.2
+        with:
+          python-version: "3.12"
+
+      - name: Install the downstream, then this engine over it
+        # The downstream is installed first so its own floor pin resolves
+        # normally; the second install replaces the released engine with the
+        # checkout under test, which is the whole point of the job.
+        run: |
+          uv venv .venv
+          uv pip install --python .venv/bin/python --prerelease=allow "${{ matrix.package }}"
+          uv pip install --python .venv/bin/python --prerelease=allow .
+
+      - name: Import and transcribe
+        run: .venv/bin/python scripts/smoke_downstream.py ${{ matrix.package }}

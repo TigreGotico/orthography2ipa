@@ -19,12 +19,14 @@ from __future__ import annotations
 import json
 import warnings
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Tuple
 
 from orthography2ipa.types import (
     AllophoneRule,
     Ancestor,
     AncestorRole,
+    AuditConclusion,
+    AuditRecord,
     FIELD_INHERITANCE,
     GraphemePosition,
     InheritanceMode,
@@ -37,12 +39,20 @@ from orthography2ipa.types import (
     SandhiRule,
     ScriptType,
     StressRules,
+    ToneRules,
     TimeSpan,
+    ValidCeiling,
 )
+from orthography2ipa.positional import normalize_ending_value
 from orthography2ipa.weights import split_weighted_graphemes
 
 # Fields resolved via the ``{field}_base`` JSON key + ``{**base, **own}``
 # dict merge (graphemes, allophones, positional_graphemes).
+_BASE_SCALAR_FIELDS: tuple = tuple(
+    f for f, mode in FIELD_INHERITANCE.items()
+    if mode is InheritanceMode.BASE_SCALAR
+)
+
 _BASE_MERGE_FIELDS: tuple = tuple(
     f for f, mode in FIELD_INHERITANCE.items() if mode is InheritanceMode.BASE_MERGE
 )
@@ -80,14 +90,13 @@ def _nearest_data_ancestor(code: Optional[str]) -> Optional[str]:
     return None
 
 
-def _derive_family_path(parent_code: Optional[str]) -> "Tuple[str, ...]":
+def _derive_family_path(parent_code: Optional[str]) -> Tuple[str, ...]:
     """Return the classification path implied by *parent_code*'s chain.
 
     The path is the names of the clade nodes on the ancestry chain, broadest
     first. Each spec's own ``family_path`` already holds its ancestors' clades,
     so one step of recursion is enough.
     """
-    from typing import Tuple  # noqa: F401 — used in annotation only
     if not parent_code or parent_code not in _specs:
         return ()
     parent = _specs[parent_code]
@@ -137,7 +146,6 @@ _specs: Dict[str, LanguageSpec] = {}
 
 
 def _index_files():
-    global _index
     for lang_file in _DATA_DIR.glob("*.json"):
         lang_code = lang_file.name.split(".json")[0]
         _index[lang_code] = lang_file
@@ -147,7 +155,7 @@ def _index_files():
 # Helpers
 # ═══════════════════════════════════════════════════════════════════════════
 
-def _parse_wikipedia(raw: object) -> "Tuple[str, ...]":
+def _parse_wikipedia(raw: object) -> Tuple[str, ...]:
     """Normalise the JSON ``wikipedia`` field to a tuple of strings.
 
     Accepts:
@@ -155,7 +163,6 @@ def _parse_wikipedia(raw: object) -> "Tuple[str, ...]":
     - ``"https://…"`` (legacy single string) → ``("https://…",)``
     - ``["https://…", …]`` (list) → tuple of those strings
     """
-    from typing import Tuple  # noqa: F401 — used in annotation only
     if raw is None:
         return ()
     if isinstance(raw, str):
@@ -187,8 +194,6 @@ def load_json_spec(code: str) -> LanguageSpec:
     ValueError
         If the JSON is malformed or contains invalid enum values.
     """
-    global _specs
-
     # retrieve from cache
     if code in _specs:
         return _specs[code]
@@ -251,7 +256,6 @@ def load_json_spec(code: str) -> LanguageSpec:
                 is_base_dep = parent in _base_parents
                 if is_base_dep:
                     # Base dependency is required for data inheritance — clear it
-                    import warnings
                     warnings.warn(f"Could not load base '{parent}' (requested by '{code}'): {e}")
                     for field, lang in list(base_field_langs.items()):
                         if lang == parent:
@@ -276,9 +280,31 @@ def load_json_spec(code: str) -> LanguageSpec:
             }
         else:
             merged_base_fields[field] = own_value
+    # BASE_SCALAR fields follow the graphemes_base edge: a spec that does not
+    # state one takes the value of the spec whose grapheme table it pulls in.
+    # Resolution is transitive because the base spec was itself resolved when
+    # it was loaded (de-x-bavarian → de-AT → de-DE).
+    base_scalars: Dict[str, object] = {}
+    _grapheme_base_lang = base_field_langs.get("graphemes")
+    for field in _BASE_SCALAR_FIELDS:
+        if field in raw:
+            base_scalars[field] = raw[field]
+        elif _grapheme_base_lang and _grapheme_base_lang in _specs:
+            base_scalars[field] = getattr(_specs[_grapheme_base_lang], field)
+
     graphemes = merged_base_fields["graphemes"]
     allophones = merged_base_fields["allophones"]
     positional_graphemes = merged_base_fields["positional_graphemes"]
+
+    # Ending values are normalised on every match, so a malformed one
+    # would otherwise surface as a transcription-time error on whichever
+    # word happens to end that way. Fail at load, where the spec is.
+    for ending, value in (merged_base_fields["grammatical_endings"] or {}).items():
+        try:
+            normalize_ending_value(value)
+        except ValueError as e:
+            raise ValueError(
+                f"'{code}': grammatical_endings[{ending!r}]: {e}") from e
 
     # parse ancestors
     try:
@@ -319,7 +345,8 @@ def load_json_spec(code: str) -> LanguageSpec:
             AllophoneRule(
                 id=ar["id"],
                 phonemes=ar["phonemes"],
-                surface=ar["surface"],
+                surface=ar.get("surface", ""),
+                append=ar.get("append", ""),
                 word_initial=ar.get("word_initial"),
                 word_final=ar.get("word_final"),
                 stress=ar.get("stress"),
@@ -328,15 +355,32 @@ def load_json_spec(code: str) -> LanguageSpec:
                 followed_by=ar.get("followed_by"),
                 preceded_by_2=ar.get("preceded_by_2"),
                 followed_by_2=ar.get("followed_by_2"),
+                preceded_by_3=ar.get("preceded_by_3"),
                 preceded_by_phoneme=tuple(ar.get("preceded_by_phoneme", ())),
                 followed_by_phoneme=tuple(ar.get("followed_by_phoneme", ())),
+                preceded_by_grapheme=tuple(
+                    ar.get("preceded_by_grapheme", ())),
+                followed_by_grapheme=tuple(
+                    ar.get("followed_by_grapheme", ())),
+                followed_by_grapheme_not=tuple(
+                    ar.get("followed_by_grapheme_not", ())),
+                word_contains_grapheme=tuple(
+                    ar.get("word_contains_grapheme", ())),
+                word_contains_grapheme_not=tuple(
+                    ar.get("word_contains_grapheme_not", ())),
                 preceded_by_phoneme_2=tuple(ar.get("preceded_by_phoneme_2", ())),
                 followed_by_phoneme_2=tuple(ar.get("followed_by_phoneme_2", ())),
+                preceded_by_surface_phoneme_2=tuple(
+                    ar.get("preceded_by_surface_phoneme_2", ())),
+                requires_other_nucleus=ar.get("requires_other_nucleus"),
+                followed_by_nucleus=ar.get("followed_by_nucleus"),
                 grapheme=(tuple(ar["grapheme"])
                           if ar.get("grapheme") else None),
                 word=(tuple(ar["word"])
                       if ar.get("word") else None),
                 notes=ar.get("notes", ""),
+                mutates_neighbor=ar.get("mutates_neighbor"),
+                mutates_neighbor_side=ar.get("mutates_neighbor_side"),
             )
             for ar in raw_allophone
         )
@@ -370,6 +414,7 @@ def load_json_spec(code: str) -> LanguageSpec:
             title=s["title"],
             publisher=s.get("publisher"),
             url=s.get("url"),
+            doi=s.get("doi"),
             wikipedia_url=s.get("wikipedia_url"),
             pages=s.get("pages"),
             notes=s.get("notes"),
@@ -409,6 +454,55 @@ def load_json_spec(code: str) -> LanguageSpec:
             notes=raw_ortho.get("notes", "") or "",
         )
 
+    # Parse the measured valid-ceilings, keyed by the gold dataset each was
+    # folded against — a fold is defined relative to one gold's notation
+    # conventions, so the measurement is scoped to (language, dataset), never
+    # to the language alone (issue #1350). The pre-#1350 shape was a single
+    # {per, folded, citation} object hung directly off the language; that
+    # shape spread one gold's measurement across every row of the language
+    # and is rejected here rather than silently reinterpreted.
+    valid_ceiling: Optional[Dict[str, ValidCeiling]] = None
+    raw_ceiling = raw.get("valid_ceiling")
+    if raw_ceiling:
+        if not isinstance(raw_ceiling, dict):
+            raise ValueError(
+                f"{code}: valid_ceiling must be an object mapping dataset "
+                f"name -> {{per, folded, citation}}")
+        if "per" in raw_ceiling or "folded" in raw_ceiling:
+            raise ValueError(
+                f"{code}: valid_ceiling uses the old language-scoped shape "
+                f"(bare per/folded/citation). A fold is measured against one "
+                f"gold's notation conventions, so it must be keyed by "
+                f"dataset name, e.g. {{\"wikipron\": {{\"per\": ..., "
+                f"\"folded\": ..., \"citation\": ...}}}} (issue #1350)")
+        valid_ceiling = {
+            dataset_name: ValidCeiling(
+                per=float(raw_c["per"]),
+                folded=raw_c["folded"],
+                citation=raw_c["citation"],
+            )
+            for dataset_name, raw_c in raw_ceiling.items()
+        }
+
+    # Parse the machine-readable audit conclusions, keyed by gold dataset —
+    # mirrors valid_ceiling's shape exactly (issue #1369): a row's audit
+    # verdict is only ever meaningful against the gold it was reached about.
+    audit: Optional[Dict[str, AuditRecord]] = None
+    raw_audit = raw.get("audit")
+    if raw_audit:
+        if not isinstance(raw_audit, dict):
+            raise ValueError(
+                f"{code}: audit must be an object mapping dataset "
+                f"name -> {{conclusion, measured, reference}}")
+        audit = {
+            dataset_name: AuditRecord(
+                conclusion=AuditConclusion(raw_a["conclusion"]),
+                measured=raw_a["measured"],
+                reference=raw_a["reference"],
+            )
+            for dataset_name, raw_a in raw_audit.items()
+        }
+
     # Parse stress rules. A spec's own ``stress`` block wins outright; when it
     # declares none (absent or ``null``), the accentuation rules inherit
     # through the ``graphemes_base`` data edge. Stress assignment is a
@@ -423,22 +517,47 @@ def load_json_spec(code: str) -> LanguageSpec:
     # own orthography (``graphemes_base`` unset, e.g. Angolar ``aoa`` under
     # ``pt-PT``) does not inherit stress — it declares its own or has none.
     stress: Optional[StressRules] = None
+    raw_tone = raw.get("tone_rules")
+    tone_rules = None
+    if raw_tone and isinstance(raw_tone, dict):
+        tone_rules = ToneRules(
+            classes=dict(raw_tone.get("classes") or {}),
+            marks=dict(raw_tone.get("marks") or {}),
+            tones=dict(raw_tone.get("tones") or {}),
+            table={k: {s: dict(m) for s, m in v.items()}
+                   for k, v in (raw_tone.get("table") or {}).items()},
+            dead_codas=tuple(raw_tone.get("dead_codas") or ()),
+            no_mark=raw_tone.get("no_mark", "none"),
+            notes=raw_tone.get("notes"),
+        )
+
     raw_stress = raw.get("stress")
     if raw_stress and isinstance(raw_stress, dict):
         stress = StressRules(
             default_position=int(raw_stress.get("default_position", -2)),
             final_stress_endings=tuple(raw_stress.get("final_stress_endings", ())),
             penult_stress_endings=tuple(raw_stress.get("penult_stress_endings", ())),
+            antepenult_stress_endings=tuple(
+                raw_stress.get("antepenult_stress_endings", ())),
             marked_vowels=tuple(raw_stress.get("marked_vowels", ())),
             stress_mark=raw_stress.get("stress_mark", "ˈ"),
+            accent2_mark=raw_stress.get("accent2_mark", ""),
+            accent2_final_letters=tuple(raw_stress.get("accent2_final_letters", ())),
             diphthongs=tuple(raw_stress.get("diphthongs", ())),
+            vowel_letters=tuple(raw_stress.get("vowel_letters", ())),
             quantity_sensitive=bool(raw_stress.get("quantity_sensitive", False)),
             superheavy_final_attracts=bool(
                 raw_stress.get("superheavy_final_attracts", True)),
             max_onset=int(raw_stress.get("max_onset", 1)),
+            max_onset_declared="max_onset" in raw_stress,
+            onset_clusters=tuple(raw_stress.get("onset_clusters", ())),
+            constrain_mark_onsets=bool(
+                raw_stress.get("constrain_mark_onsets", True)),
             cliticless_words=tuple(raw_stress.get("cliticless_words", ())),
             coda_liquid_capture=bool(
                 raw_stress.get("coda_liquid_capture", False)),
+            secondary_stress=str(raw_stress.get("secondary_stress", "") or ""),
+            iambic_length=bool(raw_stress.get("iambic_length", False)),
             source=str(raw_stress.get("source", "rules")),
             notes=raw_stress.get("notes", "") or "",
         )
@@ -495,7 +614,18 @@ def load_json_spec(code: str) -> LanguageSpec:
         },
         optional_marks=tuple(raw.get("optional_marks", ()) or ()),
         fold_diacritics=tuple(raw.get("fold_diacritics", ()) or ()),
+        vowel_graphemes=tuple(raw.get("vowel_graphemes", ()) or ()),
+        dependent_vowels=tuple(raw.get("dependent_vowels", ()) or ()),
+        preposed_vowels=tuple(raw.get("preposed_vowels", ()) or ()),
+        trailing_vowel_axis_digraphs=tuple(
+            raw.get("trailing_vowel_axis_digraphs", ()) or ()),
+        coda_no_inherent_vowel=bool(raw.get("coda_no_inherent_vowel", False)),
+        inherent_vowel_final=raw.get("inherent_vowel_final"),
+        virama_final_vowel=raw.get("virama_final_vowel"),
         collapse_geminates=bool(raw.get("collapse_geminates", False)),
+        doubled_letters_geminate=bool(
+            raw.get("doubled_letters_geminate", True)),
+        constrain_onsets=bool(base_scalars.get("constrain_onsets", False)),
         iso639_3=raw.get("iso639_3"),
         glottolog_code=raw.get("glottolog_code"),
         wikidata_qid=raw.get("wikidata_qid"),
@@ -504,15 +634,21 @@ def load_json_spec(code: str) -> LanguageSpec:
         sandhi_rules=sandhi_rules,
         allophone_rules=allophone_rules,
         allophone_passes=int(raw.get("allophone_passes", 1)),
+        tone_rules=tone_rules,
         tone_inventory=raw.get("tone_inventory"),
+        tone_marks_syllable_final=bool(
+            raw.get("tone_marks_syllable_final", False)),
         sources=sources,
         wikipedia=_parse_wikipedia(raw.get("wikipedia")),
         urls=tuple(raw.get("urls") or ()),
         orthography_standard=orthography_standard,
         location=location,
         timespan=timespan,
+        valid_ceiling=valid_ceiling,
+        audit=audit,
         stress=stress,
         word_exceptions=merged_base_fields["word_exceptions"] or None,
+        grammatical_endings=merged_base_fields["grammatical_endings"] or None,
         grapheme_weights=own_grapheme_weights or None,
     )
 
@@ -529,14 +665,12 @@ def load_all_json_specs() -> Dict[str, LanguageSpec]:
     Dict[str, LanguageSpec]
         Mapping of language codes to their specs.
     """
-    global _specs
     for code in _index:
         if code not in _specs:
             try:
                 _specs[code] = load_json_spec(code)
             except (KeyError, ValueError) as e:
                 # Log but don't crash — allows partial loading
-                import warnings
                 warnings.warn(f"Failed to load '{code}': {e}")
     return _specs
 
