@@ -194,6 +194,17 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/V%C3%B5ro_language",
       "pages": null,
       "notes": "Orthography / phonology reference."
+    },
+    {
+      "id": "iva2007",
+      "author": "Iva, Sulev",
+      "year": 2007,
+      "title": "Võru kirjakeele sõnamuutmissüsteem [Inflectional morphology of the Võro literary language]",
+      "publisher": "University of Tartu PhD dissertation, Dissertationes Philologiae Estonicae Universitatis Tartuensis 20",
+      "url": "https://dspace.ut.ee/handle/10062/4860",
+      "wikipedia_url": null,
+      "pages": "233-236",
+      "notes": "Appendix 3, the Võro standard orthography, read in full (pp. 233-236; in Estonian). Confirms ⟨q⟩ = the glottal stop (larüngaalklusiil) as a phoneme of its own, the acute accent as the palatalisation mark (written on the last letter when several palatalised consonants stand together), ⟨f⟩ confined to loans, and ⟨c⟩ as an occasional literary spelling of ⟨ts⟩. Two things the standard has that this spec does not: ⟨y⟩ is a native letter for the high, i-coloured õ-vowel (sys, nyna; ⟨yy⟩ for its overlong grade), and the palatalisation mark is a grapheme-level contrast the map does not read. Both are recorded here as gaps, not changed. The appendix also documents the post-2005 simplified variant that drops ⟨q⟩ and ⟨y⟩, which is the spelling of the newspaper Uma Leht."
     }
   ],
   "parent": "x-clade-ural1272",
