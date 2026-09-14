@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.93.5a2](https://github.com/TigreGotico/orthography2ipa/tree/7.93.5a2) (2026-09-13)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.5a1...7.93.5a2)
+
+**Merged pull requests:**
+
+- docs\(eu\): ez bada sandhi note example matches spirantization \[es̻ paða\] [\#1555](https://github.com/TigreGotico/orthography2ipa/pull/1555) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.93.5a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.5a1) (2026-09-13)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.4a1...7.93.5a1)
@@ -374,10 +382,6 @@
 ## [7.88.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.88.2a1) (2026-08-31)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.88.1a1...7.88.2a1)
-
-**Merged pull requests:**
-
-- Record unwritten tone as an input\_limited audit conclusion for zom, lsi and gwc [\#1431](https://github.com/TigreGotico/orthography2ipa/pull/1431) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.88.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.88.1a1) (2026-08-31)
 
