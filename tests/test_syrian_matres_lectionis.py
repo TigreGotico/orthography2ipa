@@ -30,3 +30,16 @@ def test_two_adjacent_letters_are_not_both_long_vowels(word, expected):
 def test_waw_and_ya_before_a_final_ta_marbuta_are_glides(word, glide):
     out = AR_SY.transcribe(word)
     assert glide + "a" in out, out
+
+
+@pytest.mark.parametrize("word, expected", [("ختيار", "tjaː"), ("قوام", "waː"), ("دنيا", "nja")])
+def test_waw_and_ya_before_alif_are_glides(word, expected):
+    # gold: xitjaːr, ʔawaːm, dinja
+    out = AR_SY.transcribe(word)
+    assert expected in out, out
+
+
+def test_the_alif_key_is_not_skipped_after_a_pair_key():
+    # حيوان is kept out of the diphthong rule by the spec notes; the longest
+    # match must not read يو as [juː] before the alif.
+    assert AR_SY.transcribe("حيوان").lstrip("ˈ") == "ħjwaːn"
