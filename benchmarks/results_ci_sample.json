@@ -1157,6 +1157,7 @@
     "exact_match": 1.0,
     "quality_tier": "research",
     "provenance": "llm-generated",
+    "gating": false,
     "harness_version": "1.1",
     "limit": 1000
   },
@@ -1170,6 +1171,7 @@
     "exact_match": 0.5,
     "quality_tier": "research",
     "provenance": "llm-generated",
+    "gating": false,
     "harness_version": "1.1",
     "limit": 1000
   },
@@ -1183,6 +1185,7 @@
     "exact_match": 0.4545,
     "quality_tier": "research",
     "provenance": "expert-human",
+    "gating": true,
     "harness_version": "1.1",
     "limit": 1000
   },
@@ -1190,12 +1193,13 @@
     "lang": "ar-SY",
     "dataset": "wikipron",
     "n": 410,
-    "per": 0.3889,
-    "per_ci_low": 0.3714,
-    "per_ci_high": 0.4047,
-    "exact_match": 0.0317,
+    "per": 0.3199,
+    "per_ci_low": 0.3027,
+    "per_ci_high": 0.336,
+    "exact_match": 0.0854,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
+    "gating": true,
     "harness_version": "1.1",
     "limit": 1000
   },
@@ -2671,19 +2675,6 @@
     "limit": 1000
   },
   {
-    "lang": "hyw",
-    "dataset": "wikipron",
-    "n": 994,
-    "per": 0.2872,
-    "per_ci_low": 0.2756,
-    "per_ci_high": 0.2985,
-    "exact_match": 0.1247,
-    "quality_tier": "production",
-    "provenance": "crowd-scraped",
-    "harness_version": "1.1",
-    "limit": 1000
-  },
-  {
     "lang": "es-AR",
     "dataset": "primary_sources",
     "n": 29,
@@ -3616,6 +3607,19 @@
     "per_ci_high": 0.1064,
     "exact_match": 0.5217,
     "quality_tier": "research",
+    "provenance": "crowd-scraped",
+    "harness_version": "1.1",
+    "limit": 1000
+  },
+  {
+    "lang": "hyw",
+    "dataset": "wikipron",
+    "n": 994,
+    "per": 0.2872,
+    "per_ci_low": 0.2756,
+    "per_ci_high": 0.2985,
+    "exact_match": 0.1247,
+    "quality_tier": "production",
     "provenance": "crowd-scraped",
     "harness_version": "1.1",
     "limit": 1000
