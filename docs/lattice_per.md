@@ -53,13 +53,21 @@ hypothesis length.
 from orthography2ipa.lattice_per import lattice_per
 
 r = lattice_per("es̻ pada", "ez bada", "eu")
-r.per              # 0.0: the sandhi-contracted reading is admissible
-r.top_per          # what naive single-reference PER would have said
-r.variant_credit   # top_per - per: error mass a valid variant explains
+r.distance         # 1.0
+r.per              # 0.1667 (1.0 / 6 segments)
+r.top_per          # 0.1667: what naive single-reference PER would have said
+r.variant_credit   # 0.0: top_per - per, error mass a valid variant explains
 
 r = lattice_per("es baða", "ez bada", "eu")
-r.per              # > 0: wrong on every reading: a real error
+r.distance         # 1.0
+r.per              # 0.1667
+r.top_per          # 0.3333
+r.variant_credit   # 0.1667: one error is a reading the lattice admits
 ```
+
+These values are measured on the `eu` spec at the time of writing. They
+change when the spec changes: run the lines above to read the current
+values.
 
 - `hyp_ipa`: hypothesis phone string. Whitespace, stress and boundary
   marks (`ˈ ˌ . ‿ | ‖`) are stripped. Segments keep their combining
