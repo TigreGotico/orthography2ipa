@@ -75,7 +75,7 @@ class TestSyllabify:
 
 
 class TestDetectStress:
-    @pytest.fixture(scope="class")
+    @pytest.fixture
     def rules(self):
         return get("pt-PT").stress
 
@@ -134,7 +134,7 @@ class TestDetectStress:
 
 
 class TestApplyStressMark:
-    @pytest.fixture(scope="class")
+    @pytest.fixture
     def rules(self):
         return get("pt-PT").stress
 
@@ -259,7 +259,7 @@ class TestSyllabifierPlugins:
 class TestGalicianStress:
     """Gold stress placements for Galician (gl) — Cotovia/GTM rules."""
 
-    @pytest.fixture(scope="class")
+    @pytest.fixture
     def rules(self):
         return get("gl").stress
 
@@ -297,7 +297,7 @@ class TestMirandeseStress:
     (rapaç, lhuç) where Portuguese writes -z.
     """
 
-    @pytest.fixture(scope="class")
+    @pytest.fixture
     def rules(self):
         return get("mwl").stress
 
@@ -352,7 +352,7 @@ class TestMirandeseStress:
 class TestBarranquenhoStress:
     """Gold stress placements for Barranquenho (ext-PT-x-barrancos)."""
 
-    @pytest.fixture(scope="class")
+    @pytest.fixture
     def rules(self):
         return get("ext-PT-x-barrancos").stress
 
@@ -444,7 +444,7 @@ class TestFromStartAnchoring:
 # ─────────────────────────────────────────────────────────────────────────────
 
 class TestCzechStress:
-    @pytest.fixture(scope="class")
+    @pytest.fixture
     def rules(self):
         return get("cs").stress
 
@@ -466,7 +466,7 @@ class TestCzechStress:
 
 
 class TestSlovakStress:
-    @pytest.fixture(scope="class")
+    @pytest.fixture
     def rules(self):
         return get("sk").stress
 
@@ -487,7 +487,7 @@ class TestSlovakStress:
 
 
 class TestFinnishStress:
-    @pytest.fixture(scope="class")
+    @pytest.fixture
     def rules(self):
         return get("fi").stress
 
@@ -508,7 +508,7 @@ class TestFinnishStress:
 
 
 class TestEstonianStress:
-    @pytest.fixture(scope="class")
+    @pytest.fixture
     def rules(self):
         return get("et").stress
 
@@ -529,7 +529,7 @@ class TestEstonianStress:
 
 
 class TestHungarianStress:
-    @pytest.fixture(scope="class")
+    @pytest.fixture
     def rules(self):
         return get("hu").stress
 
@@ -550,7 +550,7 @@ class TestHungarianStress:
 
 
 class TestLatvianStress:
-    @pytest.fixture(scope="class")
+    @pytest.fixture
     def rules(self):
         return get("lv").stress
 
@@ -571,7 +571,7 @@ class TestLatvianStress:
 
 
 class TestIcelandicStress:
-    @pytest.fixture(scope="class")
+    @pytest.fixture
     def rules(self):
         return get("is").stress
 
@@ -592,7 +592,7 @@ class TestIcelandicStress:
 
 
 class TestUpperSorbianStress:
-    @pytest.fixture(scope="class")
+    @pytest.fixture
     def rules(self):
         return get("hsb").stress
 
@@ -613,7 +613,7 @@ class TestUpperSorbianStress:
 
 
 class TestLowerSorbianStress:
-    @pytest.fixture(scope="class")
+    @pytest.fixture
     def rules(self):
         return get("dsb").stress
 
@@ -638,7 +638,7 @@ class TestLowerSorbianStress:
 # ─────────────────────────────────────────────────────────────────────────────
 
 class TestEsperantoStress:
-    @pytest.fixture(scope="class")
+    @pytest.fixture
     def rules(self):
         return get("eo").stress
 
@@ -660,7 +660,7 @@ class TestEsperantoStress:
 
 
 class TestPolishStress:
-    @pytest.fixture(scope="class")
+    @pytest.fixture
     def rules(self):
         return get("pl").stress
 
@@ -682,7 +682,7 @@ class TestPolishStress:
 
 
 class TestSwahiliStress:
-    @pytest.fixture(scope="class")
+    @pytest.fixture
     def rules(self):
         return get("sw").stress
 
@@ -707,7 +707,7 @@ class TestSwahiliStress:
 # ─────────────────────────────────────────────────────────────────────────────
 
 class TestGreekStress:
-    @pytest.fixture(scope="class")
+    @pytest.fixture
     def rules(self):
         return get("el").stress
 
@@ -785,7 +785,7 @@ class TestEpentheticSchwaAnchoring:
     end-anchoring already lands correctly.
     """
 
-    @pytest.fixture(scope="class")
+    @pytest.fixture
     def rules(self):
         return get("pt-PT").stress  # only supplies the mark character
 
