@@ -12794,7 +12794,12 @@
   "oracle_per_top5": 0.3826,
   "oracle_exact_top5": 0.1065,
   "oracle_fallback_words": 0,
-  "oracle_scored_words": 4065
+  "oracle_scored_words": 4065,
+  "valid_ceiling": {
+   "per": 0.0288,
+   "folded": "tone+nasalisation",
+   "citation": "The wikipron yo gold's IPA carries the three tone accents and the nasalisation tilde on nearly every word while the scraped headwords the engine reads mostly carry no tone (only 32 of 4937 raw words have a tone diacritic), so an unmarked vowel scored against a toned gold is the error, not the segments. Measured over 4065 scored words with scripts/fold_yo_notation.py, baseline PER 0.3828 (0.1063 exact) drops to 0.0288 (0.8854 exact) once tone and nasalisation are folded out of both sides; folding tone alone gives 0.0379 and nasalisation alone gives 0.3855, which must not be conflated with the combined figure. Tone marks after NFC decomposition: 6064 grave, 4737 acute, 3434 mid-macron, 7 caron, 6 circumflex; nasalisation tilde 1915. Matches the audit.wikipron fold measured as 0.3832 to 0.0284 over the same words. See docs/languages/yo.md."
+  }
  },
  {
   "lang": "yol",
