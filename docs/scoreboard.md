@@ -53,7 +53,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | ar | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar | gold20_arabic | 20 | 0.0051‡ | - | - | - | - | - | [0.0010, 0.0102] | 0.8000 | research | llm-generated |
 | ar | ipadict | 857160 | 0.3774 | - | 0.3380 | 0.3334 | 0.0053 | 0.0059 | [0.3772, 0.3776] | 0.0030 | research | machine-generated |
-| ar | wikipron | 14268 | 0.3139 | 0.2476† (short vowels (harakat)) | 0.2539 | 0.2521 | 0.0763 | 0.0798 | [0.3116, 0.3162] | 0.0444 | research | crowd-scraped |
+| ar | wikipron | 14272 | 0.3141 | 0.2476† (short vowels (harakat)) | 0.2541 | 0.2523 | 0.0762 | 0.0798 | [0.3118, 0.3164] | 0.0444 | research | crowd-scraped |
 | ar | wikipron_ar_diacritized | 14240 | 0.1721 | - | 0.1710 | 0.1710 | 0.3055 | 0.3055 | [0.1696, 0.1746] | 0.3051 | research | crowd-scraped |
 | ar-AE | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar-AE | gold20_arabic | 20 | 0.0441‡ | - | - | - | - | - | [0.0253, 0.0651] | 0.3500 | research | llm-generated |
@@ -104,7 +104,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | ar-SA-x-hejaz | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar-SA-x-hejaz | gold20_arabic | 20 | 0.0219‡ | - | - | - | - | - | [0.0024, 0.0534] | 0.8000 | research | llm-generated |
 | ar-SA-x-hejaz | primary_sources | 30 | 0.1340 | - | 0.1256 | 0.1256 | 0.5333 | 0.5333 | [0.0823, 0.1872] | 0.5000 | research | expert-human |
-| ar-SA-x-hejaz | wikipron | 1889 | 0.2877 | - | 0.2585 | 0.2507 | 0.1292 | 0.1345 | [0.2812, 0.2952] | 0.0757 | research | crowd-scraped |
+| ar-SA-x-hejaz | wikipron | 1891 | 0.2885 | - | 0.2592 | 0.2515 | 0.1290 | 0.1343 | [0.2820, 0.2961] | 0.0756 | research | crowd-scraped |
 | ar-SA-x-najd | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar-SA-x-najd | gold20_arabic | 20 | 0.0041‡ | - | - | - | - | - | [0.0000, 0.0091] | 0.8500 | research | llm-generated |
 | ar-SA-x-najd | primary_sources | 25 | 0.1491 | - | 0.1434 | 0.1434 | 0.6000 | 0.6000 | [0.0712, 0.2343] | 0.5600 | research | expert-human |

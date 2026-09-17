@@ -62,6 +62,7 @@
     "exact_match": 0.1134,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
+    "gating": true,
     "harness_version": "1.1",
     "limit": 1000
   },
@@ -247,6 +248,7 @@
     "exact_match": 1.0,
     "quality_tier": "research",
     "provenance": "llm-generated",
+    "gating": false,
     "harness_version": "1.1",
     "limit": 1000
   },
@@ -260,6 +262,7 @@
     "exact_match": 0.8,
     "quality_tier": "research",
     "provenance": "llm-generated",
+    "gating": false,
     "harness_version": "1.1",
     "limit": 1000
   },
@@ -273,6 +276,7 @@
     "exact_match": 0.098,
     "quality_tier": "research",
     "provenance": "machine-generated",
+    "gating": true,
     "harness_version": "1.1",
     "limit": 1000
   },
@@ -286,8 +290,14 @@
     "exact_match": 0.1731,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
+    "gating": true,
     "harness_version": "1.1",
-    "limit": 1000
+    "limit": 1000,
+    "valid_ceiling": {
+      "per": 0.2476,
+      "folded": "short vowels (harakat)",
+      "citation": "Wiktionary files Arabic entries at the unvocalized page title (Wiktionary:About_Arabic), so the wikipron input column carries no harakat; folding short vowels out of the gold IPA before rescoring gives this consonant-only floor. See this file's notes, 'MEASURED UNDECIDABLE-INPUT CEILING'."
+    }
   },
   {
     "lang": "ar",
@@ -403,6 +413,7 @@
     "exact_match": 1.0,
     "quality_tier": "research",
     "provenance": "llm-generated",
+    "gating": false,
     "harness_version": "1.1",
     "limit": 1000
   },
@@ -416,6 +427,7 @@
     "exact_match": 0.6,
     "quality_tier": "research",
     "provenance": "llm-generated",
+    "gating": false,
     "harness_version": "1.1",
     "limit": 1000
   },
@@ -429,6 +441,7 @@
     "exact_match": 0.1111,
     "quality_tier": "research",
     "provenance": "expert-human",
+    "gating": true,
     "harness_version": "1.1",
     "limit": 1000
   },
@@ -442,6 +455,7 @@
     "exact_match": 0.0729,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
+    "gating": true,
     "harness_version": "1.1",
     "limit": 1000
   },
@@ -533,6 +547,7 @@
     "exact_match": 1.0,
     "quality_tier": "research",
     "provenance": "llm-generated",
+    "gating": false,
     "harness_version": "1.1",
     "limit": 1000
   },
@@ -546,6 +561,7 @@
     "exact_match": 0.8,
     "quality_tier": "research",
     "provenance": "llm-generated",
+    "gating": false,
     "harness_version": "1.1",
     "limit": 1000
   },
@@ -559,6 +575,7 @@
     "exact_match": 0.3077,
     "quality_tier": "research",
     "provenance": "expert-human",
+    "gating": true,
     "harness_version": "1.1",
     "limit": 1000
   },
@@ -572,6 +589,7 @@
     "exact_match": 0.0409,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
+    "gating": true,
     "harness_version": "1.1",
     "limit": 1000
   },
@@ -676,6 +694,7 @@
     "exact_match": 1.0,
     "quality_tier": "research",
     "provenance": "llm-generated",
+    "gating": false,
     "harness_version": "1.1",
     "limit": 1000
   },
@@ -689,6 +708,7 @@
     "exact_match": 0.5,
     "quality_tier": "research",
     "provenance": "llm-generated",
+    "gating": false,
     "harness_version": "1.1",
     "limit": 1000
   },
@@ -702,6 +722,7 @@
     "exact_match": 0.2,
     "quality_tier": "research",
     "provenance": "expert-human",
+    "gating": true,
     "harness_version": "1.1",
     "limit": 1000
   },
@@ -715,6 +736,7 @@
     "exact_match": 0.1175,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
+    "gating": true,
     "harness_version": "1.1",
     "limit": 1000
   },
@@ -1321,6 +1343,7 @@
     "exact_match": 1.0,
     "quality_tier": "research",
     "provenance": "llm-generated",
+    "gating": false,
     "harness_version": "1.1",
     "limit": 1000
   },
@@ -1334,6 +1357,7 @@
     "exact_match": 0.35,
     "quality_tier": "research",
     "provenance": "llm-generated",
+    "gating": false,
     "harness_version": "1.1",
     "limit": 1000
   },
@@ -1347,6 +1371,7 @@
     "exact_match": 0.0195,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
+    "gating": true,
     "harness_version": "1.1",
     "limit": 1000
   },
