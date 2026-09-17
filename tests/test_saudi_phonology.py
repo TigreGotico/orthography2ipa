@@ -8,7 +8,8 @@ three leaves that fill out that spread:
 
 * **ar-SA-x-qassim** — Qassimi, the Qaṣīm sub-variety of Najdi. Deepest source:
   Alhoody, M.M.A. (2019) *Phonological adaptation of English loanwords into
-  Qassimi Arabic* (PhD, Newcastle), §3.1.2-3.1.4, pp.41-43; Al-Rojaie, Y. (2013)
+  Qassimi Arabic* (PhD, Newcastle), §3.1.2-3.1.4, pp.41-43 (inventories) and
+  §5.1.1-5.1.6, pp.62-66 (loanword adaptation); Al-Rojaie, Y. (2013)
   "Regional dialect levelling in Najdi Arabic: the deaffrication of [ts] in the
   Qaṣīmī dialect", *Language Variation and Change* 25(1):43-63.
 * **ar-SA-x-rijal-alma** — Rijāl Almaʿ (SW ʿAsīr/Tihāmah), which preserves the
@@ -161,3 +162,77 @@ def test_sharqiyya_is_gulf_type():
     assert SHQ.transcribe_word("كِيس") == "ˈtʃiːs"          # GULF_K_AFFRICATION before front /iː/
     assert SHQ.transcribe_word("كَلْب") == "ˈkalb"          # no affrication before /a/
     assert SHQ.transcribe_word("ثَلَاثَة") == "θaˈlaːθa"    # interdental retained
+
+# ── Qassimi: the loan graphemes read as adaptations, not as donor phones ─────
+#
+# Alhoody 2019 measures English loanword adaptation into Qassimi and gives the
+# frequencies, which is what orders the candidates. §3.1.2 Table 1 p.41 lists the
+# 27 QA consonants: /p/, /v/ and /tʃ/ are absent; /b/, /f/ and /ʃ/ are present.
+
+@pytest.mark.parametrize("word,expected,why", [
+    ("كَپْتِن", "ˈkabtin",
+     "Alhoody 2019 Table 4 p.63: */p/ → [b], 89 of 89 (100%); the thesis's own "
+     "QA transcription of 'captain' is [ˈkab.tin]"),
+    ("كَرَڤَان", "karaˈfaːn",
+     "Table 5 p.63: */v/ → [f], 30 of 31 (96.8%); thesis 'caravan' [ka.raˈfaːn]"),
+    ("چَاي", "ˈʃaːj",
+     "Table 9 p.66: */tʃ/ → [ʃ], 8 of 13 (61.5%)"),
+])
+def test_qassimi_loan_graphemes_read_as_their_qassimi_adaptations(word, expected, why):
+    assert QAS.transcribe_word(word) == expected, why
+
+
+@pytest.mark.parametrize("word,expected,english", [
+    ("أَلْبُوم", "ʔalˈbuːm", "album"),
+    ("كَفِين", "kaˈfiːn", "caffeine"),
+])
+def test_qassimi_reproduces_alhoodys_published_loanword_transcriptions(word, expected, english):
+    """The strongest form of the citation: the spec returns the transcription the
+    source printed for the same loanword (Alhoody 2019 examples (37) and (38),
+    pp.63). These two carry no loan grapheme and pin the surrounding vowels, so a
+    later change to پ or ڤ cannot be masked by a shift elsewhere in the word."""
+    assert QAS.transcribe_word(word) == expected, english
+
+
+@pytest.mark.parametrize("word,qassimi,gulf", [
+    ("كَپْتِن", "ˈkabtin", "ˈkaptin"),
+    ("كَرَڤَان", "karaˈfaːn", "karaˈvaːn"),
+    ("چَاي", "ˈʃaːj", "ˈtʃaːj"),
+])
+def test_khaliji_keeps_the_donor_phone_where_qassimi_nativises(word, qassimi, gulf):
+    """The discriminator, and both sides are cited. ar-x-gulf declares *"integrated
+    /p/, /v/ from loanwords (پ, ڤ)"* in its own notes; Qassimi's inventory has
+    neither, so the same spelling separates the two dialects."""
+    assert QAS.transcribe_word(word) == qassimi
+    assert G2P("ar-x-gulf").transcribe_word(word) == gulf
+
+
+@pytest.mark.parametrize("phone", ["p", "v", "tʃ"])
+def test_the_loan_graphemes_add_no_phone_to_the_qassimi_inventory(phone):
+    """The inventory is DERIVED from the graphemes, so a donor reading here would
+    silently enlarge Qassimi. A phone outside a spec's inventory has no embedding
+    at synthesis time and the word carrying it is mispronounced silently."""
+    assert phone not in phoneme_inventory(QAS.spec)
+
+
+def test_veh_second_reading_carries_its_condition_in_the_notes():
+    """[b] for ڤ is ONE occurrence in one word. Alhoody p.64 reads it as a
+    dissimilation — 'valve' holds /v/ twice and the first is adapted as [b] to avoid
+    two [f] in one word. A grapheme key cannot see the rest of the word, so the
+    candidate is offered at every ڤ while the environment that produced it holds at
+    one in thirty-one. The spec has to say so, or the second reading reads as free
+    variation."""
+    notes = get('ar-SA-x-qassim').notes
+    assert get('ar-SA-x-qassim').graphemes['ڤ'] == ['f', 'b']
+    assert 'dissimilation' in notes
+    assert 'valve' in notes
+
+
+def test_cha_does_not_carry_the_retained_affricate_as_a_second_candidate():
+    """Alhoody records [tʃ] retained in 5 of 13 (38.5%) and attributes it to *"the
+    orthography effect"* — the English digraph <t> leads speakers to treat the
+    affricate as two segments [t] and [ʃ] across a syllable boundary. That is a
+    property of the English spelling, not of the single letter چ, so the retained
+    affricate is deliberately not a candidate here and /tʃ/ stays out."""
+    assert get("ar-SA-x-qassim").graphemes["چ"] == ["ʃ"]
+    assert "orthography effect" in get("ar-SA-x-qassim").notes
