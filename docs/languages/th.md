@@ -62,8 +62,8 @@ those tones from the spelling.
 
 | dataset | provenance | n | PER | tone-blind PER |
 |---|---|---:|---:|---:|
-| `wikipron` | crowd-scraped | 16937 | **0.1881** | 0.1651 |
-| `vox_communis` | epitran-derived | 23704 | 0.4318 | 0.2218 |
+| `wikipron` | crowd-scraped | 17221 | **0.1879** | 0.1648 |
+| `vox_communis` | epitran-derived | 23704 | 0.4316 | 0.2216 |
 
 The qualifying row is `wikipron`. `vox_communis` is epitran-derived and
 can neither qualify nor block promotion.
@@ -75,12 +75,16 @@ where the IPA writes it, and the Epitran-derived `vox_communis` rows
 write it on the nucleus, before the coda. The spec follows WikiPron.
 Scoring both rows with the tone letters moved to the end of the string
 on both sides — which neutralises placement while keeping tone identity
-and order — gives 0.1713 for `wikipron` and 0.2295 for `vox_communis`.
-Placement therefore costs the `vox_communis` row 20.2 PER points and the
-`wikipron` row 1.7, and what is left over once placement is neutralised
+and order — gives 0.1710 for `wikipron` and 0.2294 for `vox_communis`
+(`scripts/fold_th_notation.py`). Placement therefore costs the
+`vox_communis` row 20.2 PER points and the `wikipron` row 1.7, and what is left over once placement is neutralised
 is under a point on either row. The tone the spec computes is very
 nearly the tone both golds carry; the disagreement is about where to
 print it.
+
+Placement is a notation choice of each gold. Thai spells tone, so these
+numbers are recorded as `audit` entries and not as a `valid_ceiling`: that
+field is for a contrast the orthography does not write.
 
 ## Known limitations
 

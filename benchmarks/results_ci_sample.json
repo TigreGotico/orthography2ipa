@@ -7754,12 +7754,7 @@
     "provenance": "crowd-scraped",
     "gating": true,
     "harness_version": "1.1",
-    "limit": 1000,
-    "valid_ceiling": {
-      "per": 0.1713,
-      "folded": "tone_position",
-      "citation": "WikiPron writes the Chao tone letter after the whole syllable, matching this spec's tone_rules output position; scored as-is the row is 0.1881 PER. Moving the tone letter to the end of the transcription on both hypothesis and gold sides (neutralising placement while keeping tone identity and order) measures 0.1713 -- see the notes field and docs/languages/th.md for the full measurement."
-    }
+    "limit": 1000
   },
   {
     "lang": "tk",
