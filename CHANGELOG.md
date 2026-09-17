@@ -1,5 +1,17 @@
 # Changelog
 
+## [7.94.4a1](https://github.com/TigreGotico/orthography2ipa/tree/7.94.4a1) (2026-09-17)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.94.3a3...7.94.4a1)
+
+## [7.94.3a3](https://github.com/TigreGotico/orthography2ipa/tree/7.94.3a3) (2026-09-17)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.94.3a2...7.94.3a3)
+
+**Merged pull requests:**
+
+- fix: record a tone+nasalisation valid\_ceiling for yo/vox\_communis [\#1543](https://github.com/TigreGotico/orthography2ipa/pull/1543) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.94.3a2](https://github.com/TigreGotico/orthography2ipa/tree/7.94.3a2) (2026-09-17)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.94.3a1...7.94.3a2)
