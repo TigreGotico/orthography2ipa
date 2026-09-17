@@ -245,11 +245,13 @@ class TestLoaderParsesShippedData:
         assert spec.valid_ceiling["wikipron"].per == pytest.approx(0.0244)
         assert spec.valid_ceiling["wikipron"].folded == "tone"
 
-    def test_yo_valid_ceiling_loads(self):
+    def test_yo_wikipron_fold_is_an_audit_not_a_ceiling(self):
+        # Yoruba spelling writes tone; the scrape drops it. A ceiling is only
+        # for a contrast the orthography does not write, so the fold lives in
+        # audit.wikipron (T-2583).
         spec = json_loader.load_json_spec("yo")
-        assert spec.valid_ceiling is not None
-        assert spec.valid_ceiling["wikipron"].per == pytest.approx(0.0288)
-        assert spec.valid_ceiling["wikipron"].folded == "tone+nasalisation"
+        assert "wikipron" not in (spec.valid_ceiling or {})
+        assert "0.0288" in spec.audit["wikipron"].measured
 
 
 class TestScoreboardColumn:

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Measure the Yoruba (``yo``/``wikipron``) tone-and-nasalisation notation ceiling.
+"""Measure the Yoruba (``yo``/``wikipron``) tone-and-nasalisation fold.
 
 The ``yo``/``wikipron`` row is scored against a wikipron gold whose IPA
 carries the Yoruba tone accents and the nasalisation tilde, which the
