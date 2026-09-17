@@ -18,8 +18,14 @@ from orthography2ipa.registry import get
 
 # Inventory sizes before this change, so a reading that introduces a phone is caught
 # rather than merely believed absent.
+# The three specs below grew by the readings #1553, #1586 and #980 added
+# (ar-EG +16: awiː ajiː awij ajij plus the وي/يو/ية/وة digraph readings;
+# ar-x-gulf and ar-SA-x-hejaz +4 each: awiː ajiː awijj ajijj). Verified
+# against dev 4afe9f44 as an added-only diff, nothing removed. The
+# invariant this file guards is unchanged: a variant letter that reads
+# its own base adds nothing of its own.
 SIZES = {"ar": 231, "ar-SA-x-najd": 229, "ar-SA-x-qassim": 229,
-         "ar-SA-x-hejaz": 233, "ar-x-gulf": 239}
+         "ar-SA-x-hejaz": 237, "ar-x-gulf": 243}
 
 
 def _inventory(code):

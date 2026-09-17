@@ -20,8 +20,14 @@ PAIRS = [("ھ", "ه"), ("ڪ", "ك"), ("ٲ", "أ")]
 ARABIC = ["arb", "ar", "ar-SA-x-najd", "ar-SA-x-qassim", "ar-SA-x-hejaz",
           "ar-x-gulf", "ar-EG", "ar-MA"]
 # Sizes before this change: a variant that reads its own base can add nothing.
+# The three specs below grew by the readings #1553, #1586 and #980 added
+# (ar-EG +16: awiː ajiː awij ajij plus the وي/يو/ية/وة digraph readings;
+# ar-x-gulf and ar-SA-x-hejaz +4 each: awiː ajiː awijj ajijj). Verified
+# against dev 4afe9f44 as an added-only diff, nothing removed. The
+# invariant this file guards is unchanged: a variant letter that reads
+# its own base adds nothing of its own.
 SIZES = {"arb": 226, "ar": 231, "ar-SA-x-najd": 229, "ar-SA-x-qassim": 229,
-         "ar-SA-x-hejaz": 233, "ar-x-gulf": 239, "ar-EG": 205, "ar-MA": 197}
+         "ar-SA-x-hejaz": 237, "ar-x-gulf": 243, "ar-EG": 221, "ar-MA": 197}
 # Where these are letters in their own right, with values of their own.
 ELSEWHERE = [("ھ", "ckb", "h"), ("ھ", "ur", "ʰ"), ("ٲ", "kas", "əː"), ("ڭ", "ota", "ŋ")]
 

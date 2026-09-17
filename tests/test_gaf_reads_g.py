@@ -16,8 +16,14 @@ READS_GAF = ["ar-SA-x-najd", "ar-SA-x-qassim", "ar-SA-x-hejaz", "ar-x-gulf"]
 
 # Inventory sizes before the gaf key was added, so a reading that introduces a
 # phone is caught rather than merely being believed not to.
-SIZES = {"ar-SA-x-najd": 229, "ar-SA-x-qassim": 229, "ar-SA-x-hejaz": 233,
-         "ar-x-gulf": 239, "ar": 231}
+# The three specs below grew by the readings #1553, #1586 and #980 added
+# (ar-EG +16: awiː ajiː awij ajij plus the وي/يو/ية/وة digraph readings;
+# ar-x-gulf and ar-SA-x-hejaz +4 each: awiː ajiː awijj ajijj). Verified
+# against dev 4afe9f44 as an added-only diff, nothing removed. The
+# invariant this file guards is unchanged: a variant letter that reads
+# its own base adds nothing of its own.
+SIZES = {"ar-SA-x-najd": 229, "ar-SA-x-qassim": 229, "ar-SA-x-hejaz": 237,
+         "ar-x-gulf": 243, "ar": 231}
 
 
 def _inventory(code):
