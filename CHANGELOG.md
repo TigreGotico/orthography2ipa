@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.94.5a1](https://github.com/TigreGotico/orthography2ipa/tree/7.94.5a1) (2026-09-17)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.94.4a1...7.94.5a1)
+
+**Merged pull requests:**
+
+- fix\(tests\): guard that a letter introduces no phone, not that a total never moves [\#1611](https://github.com/TigreGotico/orthography2ipa/pull/1611) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.94.4a1](https://github.com/TigreGotico/orthography2ipa/tree/7.94.4a1) (2026-09-17)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.94.3a3...7.94.4a1)
