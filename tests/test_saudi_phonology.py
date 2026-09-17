@@ -215,6 +215,19 @@ def test_the_loan_graphemes_add_no_phone_to_the_qassimi_inventory(phone):
     assert phone not in phoneme_inventory(QAS.spec)
 
 
+def test_veh_second_reading_carries_its_condition_in_the_notes():
+    """[b] for ڤ is ONE occurrence in one word. Alhoody p.64 reads it as a
+    dissimilation — 'valve' holds /v/ twice and the first is adapted as [b] to avoid
+    two [f] in one word. A grapheme key cannot see the rest of the word, so the
+    candidate is offered at every ڤ while the environment that produced it holds at
+    one in thirty-one. The spec has to say so, or the second reading reads as free
+    variation."""
+    notes = get('ar-SA-x-qassim').notes
+    assert get('ar-SA-x-qassim').graphemes['ڤ'] == ['f', 'b']
+    assert 'dissimilation' in notes
+    assert 'valve' in notes
+
+
 def test_cha_does_not_carry_the_retained_affricate_as_a_second_candidate():
     """Alhoody records [tʃ] retained in 5 of 13 (38.5%) and attributes it to *"the
     orthography effect"* — the English digraph <t> leads speakers to treat the
