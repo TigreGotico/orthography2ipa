@@ -197,8 +197,28 @@ __all__ = [
 #    (they render identically and NFC does not reorder them, since shadda
 #    ccc=33 and the harakat ccc=27–32 are distinct non-zero classes).
 
-#: Arabic base letters (hamza U+0621 … yeh U+064A) that a shadda geminates.
-_AR_LETTER = "ء-ي"
+def _arabic_script_letters() -> str:
+    """Every letter of the Arabic script, across the blocks the specs draw on.
+
+    A shadda geminates any consonant, and the Arabic script did not stop at yeh:
+    the Perso-Arabic letters (پ چ ڤ گ, and the wider set behind Urdu, Pashto,
+    Kurdish, Balochi and Kashmiri) are ordinary consonants in the specs that
+    declare them. ``ar-x-gulf`` lists پ and ڤ among its own defining features.
+    Selecting on the Unicode letter category rather than on a codepoint range
+    keeps the class and the specs in step as either grows.
+    """
+    blocks = ((0x0600, 0x06FF),   # Arabic
+              (0x0750, 0x077F),   # Arabic Supplement
+              (0x0870, 0x089F),   # Arabic Extended-B
+              (0x08A0, 0x08FF))   # Arabic Extended-A
+    return "".join(chr(cp) for lo, hi in blocks for cp in range(lo, hi + 1)
+                   if unicodedata.category(chr(cp)) == "Lo")
+
+
+#: Arabic-script letters that a shadda geminates. Category-selected, so the
+#: Perso-Arabic consonants are included; marks, digits and the modifier letters
+#: U+06E5–U+06E6 are not.
+_AR_LETTER = _arabic_script_letters()
 #: Arabic short-vowel / nunation / sukun / superscript-alef marks that may
 #: sit between a consonant and its shadda (or after it).
 _AR_HARAKAT = "ً-ِْٰ"
