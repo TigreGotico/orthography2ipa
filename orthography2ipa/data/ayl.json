@@ -697,6 +697,12 @@
       "iːwa",
       "eːwa",
       "jwa"
+    ],
+    "َوِيي": [
+      "awijj"
+    ],
+    "َيِيي": [
+      "ajijj"
     ]
   },
   "parent": "ar-x-maghrebi",
@@ -805,6 +811,22 @@
       "default": [
         "j",
         "iː"
+      ]
+    },
+    "َوِي": {
+      "word_final": [
+        "awiː"
+      ],
+      "default": [
+        "awiː"
+      ]
+    },
+    "َيِي": {
+      "word_final": [
+        "ajiː"
+      ],
+      "default": [
+        "ajiː"
       ]
     }
   }
