@@ -1,5 +1,27 @@
 # Changelog
 
+## [7.94.3a2](https://github.com/TigreGotico/orthography2ipa/tree/7.94.3a2) (2026-09-17)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.94.3a1...7.94.3a2)
+
+**Merged pull requests:**
+
+- chore\(deps\): update ovos-spec-tools requirement from \>=1.5.0a1 to \>=1.12.0a1 [\#1544](https://github.com/TigreGotico/orthography2ipa/pull/1544) ([dependabot[bot]](https://github.com/apps/dependabot))
+- docs: record the Thai ho nam residue as a lexical ceiling [\#1529](https://github.com/TigreGotico/orthography2ipa/pull/1529) ([JarbasAl](https://github.com/JarbasAl))
+
+## [7.94.3a1](https://github.com/TigreGotico/orthography2ipa/tree/7.94.3a1) (2026-09-17)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.94.2a1...7.94.3a1)
+
+**Merged pull requests:**
+
+- data\(dga\): 35 primary-source gold rows from the Dàgáárè IPA Illustration [\#1587](https://github.com/TigreGotico/orthography2ipa/pull/1587) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- fix: record a notation valid\_ceiling for vi/vox\_communis [\#1542](https://github.com/TigreGotico/orthography2ipa/pull/1542) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [7.94.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.94.2a1) (2026-09-17)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.94.1a1...7.94.2a1)
+
 ## [7.94.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.94.1a1) (2026-09-17)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.94.0a1...7.94.1a1)
