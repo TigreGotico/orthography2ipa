@@ -673,6 +673,124 @@ class TestAfricaG2pLazyImport:
         cs._africa_pipeline_cache.clear()
 
 
+class TestGhanaG2pLazyImport:
+    def test_absent_module_yields_none(self, monkeypatch):
+        import builtins
+        real_import = builtins.__import__
+
+        def fake_import(name, *a, **k):
+            if name == "ghana_g2p":
+                raise ImportError("no module named ghana_g2p")
+            return real_import(name, *a, **k)
+
+        monkeypatch.setattr(builtins, "__import__", fake_import)
+        cs._ghana_g2p_cache.clear()
+        assert cs.ghana_g2p_transcribe("akwaaba", "twi") is None
+
+    def test_present_module_calls_ipa_with_no_separator(self, monkeypatch):
+        class FakeGhana:
+            def __init__(self, lang):
+                self.lang = lang
+
+            def ipa(self, word, sep=" "):
+                assert sep == ""
+                return f"ipa-{word}-{self.lang}"
+
+        fake_pkg = type(sys)("ghana_g2p")
+        fake_pkg.GhanaG2P = FakeGhana
+        monkeypatch.setitem(sys.modules, "ghana_g2p", fake_pkg)
+        cs._ghana_g2p_cache.clear()
+
+        assert cs.ghana_g2p_transcribe("akwaaba", "twi") == "ipa-akwaaba-twi"
+        cs._ghana_g2p_cache.clear()
+
+    def test_unknown_lang_yields_none(self, monkeypatch):
+        class FailingGhana:
+            def __init__(self, lang):
+                raise KeyError(lang)
+
+        fake_pkg = type(sys)("ghana_g2p")
+        fake_pkg.GhanaG2P = FailingGhana
+        monkeypatch.setitem(sys.modules, "ghana_g2p", fake_pkg)
+        cs._ghana_g2p_cache.clear()
+
+        assert cs.ghana_g2p_transcribe("x", "ee") is None
+        cs._ghana_g2p_cache.clear()
+
+    def test_exception_during_ipa_yields_none(self, monkeypatch):
+        class BoomGhana:
+            def __init__(self, lang):
+                pass
+
+            def ipa(self, word, sep=" "):
+                raise RuntimeError("boom")
+
+        fake_pkg = type(sys)("ghana_g2p")
+        fake_pkg.GhanaG2P = BoomGhana
+        monkeypatch.setitem(sys.modules, "ghana_g2p", fake_pkg)
+        cs._ghana_g2p_cache.clear()
+
+        assert cs.ghana_g2p_transcribe("x", "ewe") is None
+        cs._ghana_g2p_cache.clear()
+
+
+class TestCompareLangWithGhanaG2p:
+    def test_row_scores_ghana_g2p(self, monkeypatch):
+        pairs = [("yaa", "jaa")]
+        monkeypatch.setattr(
+            cs.benchmark, "DATASETS",
+            {"fake_ewe_dataset": (lambda lang, limit: pairs, ["ee"])})
+        monkeypatch.setitem(
+            cs.LANGS, "ee",
+            {"dataset": ("fake_ewe_dataset", "ee"), "espeak": None,
+             "epitran": None, "gruut": None, "ghana_g2p": "ewe"})
+
+        install_fake_o2i(monkeypatch, FakeEngine({"yaa": "jaa"}))
+        monkeypatch.setattr(
+            cs, "ghana_g2p_transcribe", lambda word, lang: "jaa")
+
+        row = cs.compare_lang("ee", limit=10)[0]
+        assert row["ghana_g2p_per"] == 0.0
+        assert row["ghana_g2p_n"] == 1
+
+    def test_no_ghana_g2p_mapping_yields_none(self, monkeypatch):
+        pairs = [("ola", "ola")]
+        monkeypatch.setattr(
+            cs.benchmark, "DATASETS",
+            {"fake_no_ghana_dataset": (lambda lang, limit: pairs, ["ww"])})
+        monkeypatch.setitem(
+            cs.LANGS, "ww",
+            {"dataset": ("fake_no_ghana_dataset", "ww"), "espeak": None,
+             "epitran": None, "gruut": None})
+
+        install_fake_o2i(monkeypatch, FakeEngine({"ola": "ola"}))
+
+        row = cs.compare_lang("ww", limit=10)[0]
+        assert row["ghana_g2p_per"] is None
+        assert row["ghana_g2p_n"] == 0
+
+    def test_ghana_g2p_is_ranked_as_its_own_system(self):
+        """It shares africa-g2p's rule tables but is not a pass-through.
+
+        Measured on africa-g2p 0.2.4: Ninkare vowel length (naawuni reads
+        naːwũi, not naːwũiː) and word-boundary handling differ, and on the
+        111-word WikiPron gur set it scores 0.3297 against 0.4903. So it
+        ranks normally, and a row where both columns agree is a real tie.
+        """
+        assert dict(cs._SYSTEMS)["ghana_g2p"] == "ghana-g2p"
+        row = {"o2i_per": 0.30, "africa_g2p_per": 0.42, "ghana_g2p_per": 0.10}
+        assert cs._winner(row) == "ghana-g2p"
+        assert "ghana_g2p" in cs._rules_only_values(row)
+        tie = {"o2i_per": 0.30, "africa_g2p_per": 0.10, "ghana_g2p_per": 0.10}
+        assert cs._winner(tie) == "tie (africa-g2p, ghana-g2p)"
+
+    def test_ee_and_ha_name_iso639_3_codes(self):
+        assert cs.LANGS["ee"]["africa_g2p"] == "ewe"
+        assert cs.LANGS["ee"]["ghana_g2p"] == "ewe"
+        assert cs.LANGS["ha"]["africa_g2p"] == "hau-nigeria"
+        assert cs.LANGS["ha"]["ghana_g2p"] == "hau"
+
+
 class TestCompareLangWithAfricaG2p:
     def test_kab_row_scores_africa_g2p(self, monkeypatch):
         pairs = [("azul", "azul")]

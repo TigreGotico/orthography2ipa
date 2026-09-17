@@ -25,6 +25,7 @@ One line per language: the best system on its primary gold, and where o2i lands.
 - **cop (Coptic (Sahidic))** — o2i #1 (beats africa-g2p)
 - **cy (Welsh)** — o2i #1 (beats epitran)
 - **de (German)** — o2i #1 (beats espeak rules-only)
+- **ee** — o2i #1 (beats africa-g2p)
 - **el (Modern Greek)** — o2i #1 (beats espeak rules-only)
 - **en (English)** — espeak rules-only #1, o2i #3 (gruut with its lexicon scores 0.1776 — informational)
 - **en-GB (British English (RP))** — espeak rules-only #1, o2i #2 (espeak with its lexicon scores 0.1472 — informational)
@@ -37,6 +38,7 @@ One line per language: the best system on its primary gold, and where o2i lands.
 - **fr (French)** — o2i #1 (beats espeak rules-only)
 - **ga (Irish)** — o2i #1 (beats espeak rules-only)
 - **gl (Galician)** — o2i #1 (beats pycotovia)
+- **ha** — o2i #1 (beats ghana-g2p)
 - **hi (Hindi)** — o2i #1 (beats espeak rules-only)
 - **hts (Hadza)** — o2i #1 (beats africa-g2p)
 - **it (Italian)** — o2i #1 (beats espeak rules-only)
@@ -152,6 +154,13 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 |---|---|---|---|---|---|---|
 | wikipron | 53011 | 0.2103 | 0.2126 | 0.2132 | 0.3064 | o2i |
 
+### ee
+
+| Dataset | N | o2i | africa-g2p | ghana-g2p | Winner |
+|---|---|---|---|---|---|
+| wikipron | 247 | 0.4445 | 0.4948 | 0.4948 | o2i |
+| wikipron_restored | 217 | 0.0007 | 0.5221 | 0.5221 | o2i |
+
 ### el (Modern Greek)
 
 | Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | Winner |
@@ -242,6 +251,13 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 |---|---|---|---|---|---|
 | vox_communis | 47515 | 0.0643 | same-source | 0.0883 | o2i |
 | wikipron | 8091 | 0.0804 | n/a | 0.0883 | o2i |
+
+### ha
+
+| Dataset | N | o2i | epitran | africa-g2p | ghana-g2p | Winner |
+|---|---|---|---|---|---|---|
+| vox_communis | 3721 | 0.1130 | same-source | 0.0765 | 0.0765 | tie (africa-g2p, ghana-g2p) |
+| wikipron | 1857 | 0.5340 | 0.5848 | 0.5616 | 0.5611 | o2i |
 
 ### hi (Hindi)
 
@@ -604,7 +620,7 @@ Not every gold language has a mapping for every competitor system: espeak-ng, ep
 
 **ahotts-g2p output space.** `ahotts-g2p` (Aholab / HiTZ AhoTTS G2P port; `eu`, `es`) emits its transcription in the StyleTTS2 single-character training convention: the library's `MULTI` table folds affricates (`tʃ`→`C`, `ts`→`V`, `tʂ`→`P`), aspirates (`pʰ`→`H`, `kʰ`→`K`, `tʰ`→`T`) and **stress-marked vowels** (`ˈi`→`I` … `ˈu`→`U`) onto single ASCII letters. Scoring that raw against IPA gold would charge a spurious error on every uppercase char, so the harness UNFOLDS it back to standard IPA (the inverse of `ahotts_g2p.phones.MULTI`) before scoring. The two ahotts-g2p `version`s (`classic`/`modern`) produce near-identical output; the committed rows use `classic` (see the `ahotts_version` field in `benchmarks/comparison.json`). The `eu` `hitz_basque_ipa` gold is authored by HiTZ/Aholab, the same lab behind AhoTTS, so ahotts-g2p's very low PER there is close to same-source — the independent `eu` `wikipron` (Wiktionary) row is the fairer comparison. The audio-only `pyahotts` package is NOT a comparison system here (no phoneme output).
 
-**africa-g2p coverage.** `africa-g2p` (Ghana NLP; rule-based G2P for ~400 African-language ISO 639-3 codes) is not on PyPI, so it is not part of the `[compare]` extra — install it from a locally built wheel of the upstream checkout before regenerating this table (see the script's module docstring). Rows only appear for gold languages BOTH orthography2ipa and africa-g2p's own `registry()` cover — 10 languages as of this run: `arb`, `cop`, `hts`, `kab`, `ktz`, `lad`, `mfe`, `ngh`, `nup`, `tzm`. None of these ten has a matching espeak-ng voice, epitran code, or gruut language on this machine either, so africa-g2p is currently the only comparison point for these rows.
+**africa-g2p coverage.** `africa-g2p` (AfriSpeech; rule-based G2P for ~400 African-language ISO 639-3 codes) is published on PyPI but is not part of the `[compare]` extra — install it into the run environment before regenerating this table (see the script's module docstring). **`ghana-g2p` shares those rule tables and is still its own system,** so it is ranked normally: it adds Unicode normalisation, a per-letter patch table, donor rule sets and its own word handling on top. Measured against africa-g2p 0.2.4 on the same words, it diverges where those layers bite — Ninkare (`gur`) vowel length (`naawuni` reads `naːwũi`, not `naːwũiː`) and word boundaries (`kɔ ekyi`) — and on the 111-word WikiPron `gur` set it scores PER 0.3297 against africa-g2p's 0.4903. Where a row shows the same number for both, the patch layer does not reach that language's gold, and the Winner names the tie. Rows only appear for gold languages BOTH orthography2ipa and africa-g2p's own `registry()` cover — 10 languages as of this run: `arb`, `cop`, `hts`, `kab`, `ktz`, `lad`, `mfe`, `ngh`, `nup`, `tzm`. None of these ten has a matching espeak-ng voice, epitran code, or gruut language on this machine either, so africa-g2p is currently the only comparison point for these rows.
 
 ### Staleness
 

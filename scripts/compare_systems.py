@@ -54,19 +54,26 @@ comparison target is missing.
   table.)
 - **africa-g2p**: optional Python library covering ~400 African-language
   ISO 639-3 codes (AfriSpeech, rule-based G2P derived from Omniglot script charts and Hartell's
-  *Alphabets of Africa*, UNESCO 1993). NOT published on PyPI — it is not
-  part of the ``[compare]`` extra (which must stay pip-installable from
-  PyPI); install it from a locally built wheel of the upstream checkout
-  before running this script, e.g.::
+  *Alphabets of Africa*, UNESCO 1993). Published on PyPI as ``africa-g2p``
+  (0.2.4 when the ``ee`` row was added) but not part of the ``[compare]``
+  extra; install it into the run environment before running this script::
 
-      python -m pip wheel /path/to/africa-g2p --no-deps -w /tmp/afg2p-wheel
-      python -m pip install /tmp/afg2p-wheel/africa_g2p-*.whl
+      uv pip install --prerelease=allow africa-g2p
 
   Imported lazily as ``africa_g2p``; a missing install degrades every
   ``africa_g2p`` column to ``n/a``, same as every other optional system.
   Wrapped via ``AfricaPipeline(lang=<iso639_3>, output="ipa").run(word)``;
   the library's own ``africa_g2p.loader.registry()`` is queried at import
   time so the set of covered codes is never hand-enumerated here.
+- **ghana-g2p**: optional Python library (GhanaNLP, PyPI ``ghana-g2p``,
+  Apache-2.0) for 42 Ghanaian languages. It wraps africa-g2p's rule
+  tables and adds Unicode normalisation, a patch table of corrected or
+  missing letters, and donor rule sets for languages africa-g2p lacks.
+  Not part of the ``[compare]`` extra. Imported lazily as ``ghana_g2p``;
+  a missing install degrades every ``ghana_g2p`` column to ``n/a``.
+  Wrapped via ``GhanaG2P(<iso639_3>).ipa(word, sep="")``. Its codes are
+  ISO 639-3, so a ``LANGS`` entry keyed by an ISO 639-1 tag names the code
+  explicitly (``ee`` -> ``ewe``).
 - **udarnik**: optional Python library covering Russian (``ru``), the
   o2i-downstream engine that supplies the lexical stress the ``ru`` spec
   says it cannot find. Needs ``stressonnx`` and its Russian accentuation
@@ -489,6 +496,16 @@ LANGS: Dict[str, dict] = {
            "epitran": None, "gruut": None, "arbtok": "ar", "sample_n": 3000},
     "cop": {"dataset": ("wikipron", "cop"), "espeak": None,
             "epitran": None, "gruut": None},
+    # ee and ha: espeak-ng ships no Ewe or Hausa voice and gruut has
+    # neither. africa-g2p and ghana-g2p use ISO 639-3 codes, so both are
+    # named explicitly; africa-g2p's Hausa table is "hau-nigeria", which
+    # is also what ghana-g2p's "hau" loads.
+    "ee": {"dataset": ("wikipron", "ee"), "espeak": None,
+           "epitran": None, "gruut": None,
+           "africa_g2p": "ewe", "ghana_g2p": "ewe"},
+    "ha": {"dataset": ("wikipron", "ha"), "espeak": None,
+           "epitran": "hau-Latn", "gruut": None,
+           "africa_g2p": "hau-nigeria", "ghana_g2p": "hau"},
     "hts": {"dataset": ("wikipron", "hts"), "espeak": None,
             "epitran": None, "gruut": None},
     "kab": {"dataset": ("vox_communis", "kab"), "espeak": None,
@@ -526,6 +543,24 @@ AFRICA_G2P_CODES = _africa_g2p_codes()
 
 for _tag, _cfg in LANGS.items():
     _cfg.setdefault("africa_g2p", _tag if _tag in AFRICA_G2P_CODES else None)
+
+
+def _ghana_g2p_codes() -> set:
+    """ghana-g2p's own language codes (empty if it is not installed)."""
+    try:
+        from ghana_g2p import languages
+    except ImportError:
+        return set()
+    try:
+        return {entry["code"] for entry in languages()}
+    except Exception:
+        return set()
+
+
+GHANA_G2P_CODES = _ghana_g2p_codes()
+
+for _tag, _cfg in LANGS.items():
+    _cfg.setdefault("ghana_g2p", _tag if _tag in GHANA_G2P_CODES else None)
 
 
 def apply_catalan_dialect_voices(langs: Dict[str, dict]) -> Dict[str, str]:
@@ -947,6 +982,32 @@ def africa_g2p_transcribe(word: str, lang: str) -> Optional[str]:
         _africa_pipeline_cache[lang] = pipe
     try:
         return pipe.run(word) or None
+    except Exception:
+        return None
+
+
+# ─── ghana-g2p (lazy, optional) ──────────────────────────────────────────────
+
+_ghana_g2p_cache: Dict[str, object] = {}
+
+
+def ghana_g2p_transcribe(word: str, lang: str) -> Optional[str]:
+    """Transcribe *word* with ghana-g2p's ``GhanaG2P`` for the ISO 639-3
+    *lang* code, or ``None`` if the library is absent, the code is not one
+    of its languages, or it fails on the word."""
+    try:
+        from ghana_g2p import GhanaG2P
+    except ImportError:
+        return None
+    engine = _ghana_g2p_cache.get(lang)
+    if engine is None:
+        try:
+            engine = GhanaG2P(lang)
+        except Exception:
+            return None
+        _ghana_g2p_cache[lang] = engine
+    try:
+        return engine.ipa(word, sep="") or None
     except Exception:
         return None
 
@@ -2369,6 +2430,8 @@ PER_WORD_ENGINES: List[PerWordEngine] = [
                   same_source_key="ahotts"),
     # never same-source: no registered gold is africa-g2p-derived.
     PerWordEngine("africa_g2p", "africa_g2p", "africa_g2p_transcribe"),
+    # never same-source: no registered gold is ghana-g2p-derived.
+    PerWordEngine("ghana_g2p", "ghana_g2p", "ghana_g2p_transcribe"),
     PerWordEngine("arbtok", "arbtok", "arbtok_transcribe",
                   same_source_key="arbtok"),
     PerWordEngine("arbtok_stock", "arbtok", "arbtok_stock_transcribe",
@@ -2669,6 +2732,8 @@ def _build_row(lang: str, cfg: dict, dataset_name: str, loader_lang: str,
         "ahotts_same_source": same_source["ahotts"],
         "africa_g2p_per": per("africa_g2p"),
         "africa_g2p_n": n("africa_g2p"),
+        "ghana_g2p_per": per("ghana_g2p"),
+        "ghana_g2p_n": n("ghana_g2p"),
         "arbtok_per": per("arbtok"),
         "arbtok_n": n("arbtok"),
         "arbtok_same_source": same_source["arbtok"],
@@ -3140,6 +3205,7 @@ _SYSTEMS: List[Tuple[str, str]] = [
     ("pycotovia", "pycotovia"),
     ("ahotts", "ahotts-g2p"),
     ("africa_g2p", "africa-g2p"),
+    ("ghana_g2p", "ghana-g2p"),
     # o2i-downstream family (arbtok, tugaphone, g2p_barranquenho,
     # mwl_phonemizer) — see the lexicon-disposition note by
     # arbtok_transcribe/tugaphone_transcribe/barranquenho_transcribe/
@@ -3241,7 +3307,7 @@ def _rules_only_values(row: dict) -> Dict[str, float]:
     if that variant has no number — this NEVER silently falls back to
     the lexicon-backed stock number, which would defeat the point and
     let a lexicon sneak back into the ranking. Every other system
-    (``epitran``, ``pycotovia``, ``ahotts``, ``africa_g2p``) keeps its
+    (``epitran``, ``pycotovia``, ``ahotts``, ``africa_g2p``, ``ghana_g2p``) keeps its
     normal :func:`_system_value`, because each is audited lexicon-free
     already — see the per-engine disposition in the module docstring /
     "How to read this" doc section:
@@ -3256,6 +3322,8 @@ def _rules_only_values(row: dict) -> Dict[str, float]:
       effectively lexicon-free for ranking purposes; this is an explicit
       documented exception, not an oversight.
     - ``africa_g2p`` — rule-based G2P, no bundled per-word dictionary.
+    - ``ghana_g2p`` — africa-g2p's rules plus a per-letter patch table and
+      donor rule sets; no per-word dictionary.
     - ``udarnik`` — audited: no word->IPA lexicon (``lexicon=None`` by
       default), but its stressonnx ``ruaccent`` backend consults a
       110,826-entry accent dictionary and a 19,740-entry omograph
@@ -3983,11 +4051,21 @@ def _details_block_lines(rows: List[dict], scoreboard_note: str,
         "comparison. The audio-only `pyahotts` package is NOT a "
         "comparison system here (no phoneme output).",
         "",
-        "**africa-g2p coverage.** `africa-g2p` (Ghana NLP; rule-based "
-        "G2P for ~400 African-language ISO 639-3 codes) is not on PyPI, "
-        "so it is not part of the `[compare]` extra — install it from a "
-        "locally built wheel of the upstream checkout before "
-        "regenerating this table (see the script's module docstring). "
+        "**africa-g2p coverage.** `africa-g2p` (AfriSpeech; rule-based "
+        "G2P for ~400 African-language ISO 639-3 codes) is published on "
+        "PyPI but is not part of the `[compare]` extra — install it into "
+        "the run environment before regenerating this table (see the "
+        "script's module docstring). "
+        "**`ghana-g2p` shares those rule tables and is still its own "
+        "system,** so it is ranked normally: it adds Unicode "
+        "normalisation, a per-letter patch table, donor rule sets and its "
+        "own word handling on top. Measured against africa-g2p 0.2.4 on "
+        "the same words, it diverges where those layers bite — Ninkare "
+        "(`gur`) vowel length (`naawuni` reads `naːwũi`, not `naːwũiː`) "
+        "and word boundaries (`kɔ ekyi`) — and on the 111-word WikiPron "
+        "`gur` set it scores PER 0.3297 against africa-g2p's 0.4903. "
+        "Where a row shows the same number for both, the patch layer does "
+        "not reach that language's gold, and the Winner names the tie. "
         "Rows only appear for gold languages BOTH orthography2ipa and "
         "africa-g2p's own `registry()` cover — 10 languages as of this "
         "run: `arb`, `cop`, `hts`, `kab`, `ktz`, `lad`, `mfe`, `ngh`, "
