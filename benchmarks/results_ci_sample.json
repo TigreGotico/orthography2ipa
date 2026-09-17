@@ -717,7 +717,7 @@
     "lang": "ar-MA",
     "dataset": "wikipron",
     "n": 851,
-    "per": 0.3049,
+    "per": 0.3045,
     "per_ci_low": 0.2944,
     "per_ci_high": 0.3161,
     "exact_match": 0.1175,

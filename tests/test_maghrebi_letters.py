@@ -90,9 +90,16 @@ def test_moroccan_gaf_does_not_spread_past_its_source(code):
     so mapping there would be free and would look harmless. That is why the absence is
     tested rather than left as a decision nobody wrote down.
 
-    But it is not costless. The data lane counts ⟨ݣ⟩ 3,448 times in lahgtna's judged
-    tree — ma 3,042, dz 328, tn 61, ly 2 — so refusing it here drops **391 occurrences**
-    in silence. Those varieties more usually write ⟨ڨ⟩ for the same sound and #1592 maps
+    But it is not costless. ⟨ݣ⟩ occurs **3,437** times over 2,031 rows of lahgtna's
+    judged tree, counted independently by two lanes over its 305 shards: ma 3,042,
+    dz 328, tn 61, lb 3, ly 2, sa 1. Refusing it in the three Maghrebi specs below
+    drops **391 occurrences** (328 + 61 + 2) in silence.
+
+    An earlier version of this docstring said 3,448 with a breakdown that omitted lb and
+    sa and therefore summed to 3,433 — a total that agreed with neither its own parts nor
+    the tree. Occurrences are counted as written, diacritics attached, so a form and its
+    diacritised variant count apart; that is the convention the ⟨ڭ⟩ entries state and it
+    is the one used here. Those varieties more usually write ⟨ڨ⟩ for the same sound and #1592 maps
     that, which is why the loss is tolerable for now and not why it is acceptable
     permanently. Citation-blocked, on the defect list, not settled.
     """
@@ -111,22 +118,29 @@ def test_maghribi_feh_is_not_a_borrowed_consonant():
     ) or get("ar-x-maghrebi").graphemes["ڢ"] == ["f"]
 
 
-def test_the_confusable_ng_letter_stays_unmapped():
+def test_the_confusable_ng_letter_was_licensed_separately():
     """U+06AD is visually identical to ⟨ݣ⟩ in initial and medial joined forms.
 
-    Kew 2003 says so in the proposal that encoded ⟨ݣ⟩, and both letters occur in real
-    text. Mapping U+06AD by assuming it is the same letter is the specific mistake that
-    warning exists to prevent, so the absence is pinned until it gets its own source.
+    Kew 2003 says so in the proposal that encoded ⟨ݣ⟩, and both occur in real text.
+    Mapping one by assuming it is the other is the mistake that warning exists to
+    prevent. This test used to pin U+06AD unmapped; it is mapped now, and what it pins
+    instead is that the two were licensed SEPARATELY rather than by assuming identity.
 
-    The cost is not small and an earlier draft badly understated it as "one occurrence".
-    That was the Saudi-oriented pool's count. Over lahgtna's judged tree the data lane
-    counts U+06AD **3,250 times** — ma 2,742, dz 391, tn 80 — against 3,042 Moroccan
-    occurrences of ⟨ݣ⟩. Morocco writes /ɡ/ with both letters at about the same rate, so
-    this PR adds a /ɡ/ letter to ar-MA while the spec still drops the other one. It is
-    the largest unmapped letter counted so far.
+    The evidence differs, which is the whole point. ⟨ݣ⟩ rests on Kew §3 stating the
+    form-B kāf with three dots writes /ɡ/ in Morocco, and p.6 extending it to Mauritania
+    — which is why ar-MR carries ⟨ݣ⟩. ⟨ڭ⟩ rests on the Moroccan WikiPron gold, where all
+    13 rows read [ɡ], plus corpus rows in Morocco, Algeria and Tunisia — which is why
+    ar-MR carries NO ⟨ڭ⟩: nothing licenses it there.
+
+    So ar-MR having one and not the other is the assertion. A change that mapped both
+    everywhere would look tidier and would mean the letters had been treated as
+    interchangeable, which they are not.
     """
-    for code in GAF_READS:
-        assert "ڭ" not in get(code).graphemes, code
+    ma = get("ar-MA").graphemes
+    assert ma["ݣ"] == ["ɡ"] and ma["ڭ"] == ["ɡ"], "ar-MA should read both"
+    mr = get("ar-MR").graphemes
+    assert "ݣ" in mr, "ar-MR lost the letter Kew p.6 licenses for it"
+    assert "ڭ" not in mr, "ar-MR gained a letter no evidence licenses there"
 
 
 @pytest.mark.parametrize("code", GAF_READS)
