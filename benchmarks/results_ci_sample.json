@@ -1205,7 +1205,7 @@
     "lang": "ar-SY",
     "dataset": "wikipron",
     "n": 410,
-    "per": 0.3199,
+    "per": 0.3173,
     "per_ci_low": 0.3027,
     "per_ci_high": 0.336,
     "exact_match": 0.0854,
