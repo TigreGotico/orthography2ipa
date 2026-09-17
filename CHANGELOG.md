@@ -1,5 +1,18 @@
 # Changelog
 
+## [7.94.7a1](https://github.com/TigreGotico/orthography2ipa/tree/7.94.7a1) (2026-09-17)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.94.6a1...7.94.7a1)
+
+## [7.94.6a1](https://github.com/TigreGotico/orthography2ipa/tree/7.94.6a1) (2026-09-17)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.94.5a1...7.94.6a1)
+
+**Merged pull requests:**
+
+- fix\(ayl\): read a kasra key plus ya as a long vowel [\#1615](https://github.com/TigreGotico/orthography2ipa/pull/1615) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- fix\(ar\): read the NG letter as \[ɡ\] in the Maghrebi specs whose corpus writes it [\#1612](https://github.com/TigreGotico/orthography2ipa/pull/1612) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.94.5a1](https://github.com/TigreGotico/orthography2ipa/tree/7.94.5a1) (2026-09-17)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.94.4a1...7.94.5a1)
