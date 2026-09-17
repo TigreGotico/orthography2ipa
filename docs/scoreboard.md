@@ -63,9 +63,9 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | ar-DZ | gold20_arabic | 20 | 0.0406‡ | - | - | - | - | - | [0.0164, 0.0674] | 0.6000 | research | llm-generated |
 | ar-DZ | primary_sources | 1† | 0.7143 | - | 0.7143 | 0.7143 | 0.0000 | 0.0000 | [0.7143, 0.7143] | 0.0000 | research | expert-human |
 | ar-EG | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-EG | gold20_arabic | 20 | 0.0230‡ | - | - | - | - | - | [0.0065, 0.0449] | 0.6000 | research | llm-generated |
+| ar-EG | gold20_arabic | 20 | 0.0217‡ | - | - | - | - | - | [0.0064, 0.0436] | 0.6000 | research | llm-generated |
 | ar-EG | primary_sources | 18† | 0.2390 | - | 0.2029 | 0.1906 | 0.2222 | 0.2222 | [0.1696, 0.3291] | 0.1111 | research | expert-human |
-| ar-EG | wikipron | 590 | 0.3692 | - | 0.2985 | 0.2944 | 0.1169 | 0.1203 | [0.3542, 0.3830] | 0.0729 | research | crowd-scraped |
+| ar-EG | wikipron | 590 | 0.3237 | - | 0.2920 | 0.2847 | 0.1542 | 0.1559 | [0.3068, 0.3388] | 0.1136 | research | crowd-scraped |
 | ar-IQ | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar-IQ | gold20_arabic | 20 | 0.0051‡ | - | - | - | - | - | [0.0000, 0.0134] | 0.9000 | research | llm-generated |
 | ar-IQ | primary_sources | 12† | 0.2907 | - | 0.2907 | 0.2907 | 0.2500 | 0.2500 | [0.1760, 0.4065] | 0.2500 | research | expert-human |
