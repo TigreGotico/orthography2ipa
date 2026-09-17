@@ -102,6 +102,18 @@ Rijāl Almaʿ qāf reflex from [q] to [ɡ] (see contradiction #C below). All ten
 `arabicist-transliteration` (so capped at `medium` confidence) with editor-supplied
 orthography.
 
+| Angsongna & Akinbo (2022), *JIPA* 52(2) Illustration | Central Dàgáárè (Sombo, Nadowli-Kaleo) | `dga` | 35 |
+| **total** | | | **699** |
+Broad `/…/`: 477. Narrow `[…]`: 222. `confidence`: 446 high, 237 medium, 16 low.
+The Dàgáárè increment is the first Niger-Congo language in this dataset, and
+the first Ghanaian one. The 36 languages already here are Arabic lects,
+Romance varieties and creoles, plus Tetun, Ukrainian, Russian and Hebrew.
+Pages 343 and 345 print a consonant table and a vowel table, each with a
+PHONETIC and an ORTHOGRAPHIC column, so both sides of these rows are the
+source's. The `dga` spec is a stub with 0 graphemes, so
+`G2P('dga')` returns an empty string and every one of these rows scores PER 1.0
+today: the rows are the target for building that spec, not a measurement of it.
+
 ## Notation-normalization decisions
 
 - **Nothing is silently coerced.** `source_notation` keeps the source's own
@@ -135,6 +147,18 @@ orthography.
   `orthography_vocalized` and every such row is flagged
   `orthography_provenance: editor-supplied`. The *IPA* is the source's; the
   *spelling* is the editor's, and is the weakest link in these rows.
+
+- **Dàgáárè tie bars in the orthography column.** Page 343 prints the
+  orthography of ⟨k͡p g͡b k͡y g͡y n͡y ŋ͡m⟩ with a tie bar, which Dàgáárè spelling does
+  not write. The tie bar is removed in `orthography`, and those 6 rows are
+  `editor-supplied` at `medium` confidence. `source_notation` keeps the printed
+  phonetic form.
+- **Dàgáárè two-storey g.** The typeset IPA on pages 343-345 uses a Latin `g`.
+  `ipa` writes `ɡ` (U+0261); `source_notation` keeps the printed string.
+- **Dàgáárè rows read at scale 8.** The `ɹ` row's phonetic cell is `/pʰɛ́gɾí/`
+  with a tap `ɾ`, not a plain `r`: confirmed at a scale-8 render and by the
+  page-344 prose, "occasionally realized as an alveolar tap /ɾ/ after a /g/".
+  An earlier reading at scale 4.4 took it for `r`.
 
 ## Known-dubious rows
 
@@ -352,6 +376,14 @@ running the engine over these rows.
     (`alshammari2026-009/010`). Mahzari's Table-3 exceptions (kursi, kufuːf, …) are
     all written with a *back* vowel on the kaf, so o2i already keeps `[k]` and no
     exception is needed.
+
+31. **Dàgáárè: the source itself is inconsistent on ⟨áà⟩.** Page 343 prints
+    ⟨fáà⟩ as `/fâː/` and ⟨n͡yáà⟩ as `/ɲâː/`, a falling tone on a long vowel, but
+    ⟨ŋáà⟩ as `/ŋáː/`, a high tone on a long vowel. The same orthographic shape,
+    high vowel letter plus low vowel letter, gets two readings on one page, so no
+    rule can satisfy all three rows. All three are kept as printed. This is a
+    disagreement inside the source, not between the source and a spec, and it is
+    the first thing to settle when the `dga` grapheme map is built.
 
 ## Where a source corrected the spec
 

@@ -15,7 +15,7 @@
       "notes": "Gur (Mabia) branch of Niger-Congo."
     }
   ],
-  "notes": "Southern Dagaare, a Gur (Mabia) language of northwestern Ghana and Burkina Faso. STUB: the grapheme inventory is NOT yet specified. Written in a Latin orthography using African-reference-alphabet letters (ɛ, ɔ, ŋ) and marking ATR vowel harmony and lexical tone inconsistently; no reliable published letter-to-phoneme table was consulted, so no grapheme map is claimed. wikidata_qid left unset: the code's Wikidata row resolves to the Wikimedia project item, not the language item; not recorded rather than record a wrong id.",
+  "notes": "Southern Dagaare, a Gur (Mabia) language of northwestern Ghana and Burkina Faso. STUB: the grapheme inventory is NOT yet specified. Written in a Latin orthography using African-reference-alphabet letters (ɛ, ɔ, ŋ) and marking ATR vowel harmony and lexical tone inconsistently; no grapheme map is claimed yet. Angsongna & Akinbo (2022), the open-access IPA Illustration for Central Dàgáárè, prints a letter-to-phoneme table on pages 343 and 345; its examples are the dga primary_sources gold rows, and the map is not built from it yet. Glottolog sout2789 'Central Dagaare' carries this code, so that Illustration describes this spec's language. wikidata_qid left unset: the code's Wikidata row resolves to the Wikimedia project item, not the language item; not recorded rather than record a wrong id.",
   "iso639_3": null,
   "glottolog_code": null,
   "wikidata_qid": null,
@@ -29,6 +29,15 @@
       "url": "https://www.wikidata.org/wiki/Q123351833",
       "pages": null,
       "notes": "Language identity, script and code cross-references."
+    },
+    {
+      "id": "angsongna2020",
+      "author": "Angsongna, Alexander & Akinbo, Samuel",
+      "year": 2022,
+      "title": "Dàgáárè (Central)",
+      "publisher": "Journal of the International Phonetic Association 52(2), 341-367 (Illustrations of the IPA)",
+      "url": "https://doi.org/10.1017/S0025100320000225",
+      "notes": "Open-access Illustration of the IPA for Central Dàgáárè (Sombo, Nadowli-Kaleo). Pages 343 and 345 print a consonant table and a vowel table with a PHONETIC and an ORTHOGRAPHIC column, which is the letter-to-phoneme table this spec's notes record as missing. The 35 primary_sources gold rows for dga come from these two tables. The grapheme map is not built from it yet."
     }
   ]
 }

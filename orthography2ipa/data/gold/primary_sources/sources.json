@@ -461,5 +461,16 @@
     "notation": "ipa",
     "describes": "Tetun Dili (Tetun Prasa), the Portuguese-influenced urban variety that is the basis of Official Tetun",
     "notes": "The PDF's extracted text layer mangles the IPA (⟨ʒ⟩ arrives as ⟨3⟩, ⟨ʃ⟩ as ⟨S⟩, and the trill/tap distinction is lost), so every row here was transcribed from a 170-dpi RENDER of the printed page rather than decoded from those bytes. That is what settles the rhotics the text layer flattens: the grammar does distinguish /r/ from /ɾ/ in transcription even though its orthography does not (§2.1.4, printed p. 10)."
+  },
+  "angsongna2020": {
+    "authors": "Angsongna, Alexander & Akinbo, Samuel",
+    "year": 2022,
+    "title": "Dàgáárè (Central)",
+    "venue": "Journal of the International Phonetic Association 52(2), 341-367 (Illustrations of the IPA; first published online 14 December 2020)",
+    "url": "https://doi.org/10.1017/S0025100320000225",
+    "access": "open",
+    "pagination": "The printed folio is the PDF page index plus 341 (PDF index 2 is printed page 343). The article runs 341-367.",
+    "notation": "ipa",
+    "describes": "Central Dàgáárè, the variety spoken in and around Sombo in the Nadowli-Kaleo district, Upper West Region, Ghana. Glottolog sout2789 'Central Dagaare' carries ISO 639-3 dga."
   }
 }
