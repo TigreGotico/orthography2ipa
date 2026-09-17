@@ -233,6 +233,17 @@ def test_cha_does_not_carry_the_retained_affricate_as_a_second_candidate():
     orthography effect"* — the English digraph <t> leads speakers to treat the
     affricate as two segments [t] and [ʃ] across a syllable boundary. That is a
     property of the English spelling, not of the single letter چ, so the retained
-    affricate is deliberately not a candidate here and /tʃ/ stays out."""
-    assert get("ar-SA-x-qassim").graphemes["چ"] == ["ʃ"]
+    affricate is deliberately not a candidate here and /tʃ/ stays out.
+
+    Asserted as the absence of [tʃ] and the rank of [ʃ], not as the whole list. The
+    list itself is not this test's claim: the native reflex [t͡s] was appended later
+    on its own sources, which is a different reading from the retained loan affricate
+    and leaves this one untouched. Pinning the exact list conflated "the retained
+    affricate is not a candidate" with "no reading may ever be added", which the
+    docstring never claimed and no source supports.
+    """
+    readings = get("ar-SA-x-qassim").graphemes["چ"]
+    assert "tʃ" not in readings
+    assert readings[0] == "ʃ"
+    assert "tʃ" not in phoneme_inventory(get("ar-SA-x-qassim"))
     assert "orthography effect" in get("ar-SA-x-qassim").notes
