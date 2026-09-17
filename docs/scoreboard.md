@@ -457,8 +457,8 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | osp | wikipron | 667 | 0.1605 | - | 0.1605 | 0.1605 | 0.2894 | 0.2894 | [0.1497, 0.1709] | 0.2894 | research | crowd-scraped |
 | osx | wikipron | 244 | 0.2786 | - | 0.2664 | 0.2664 | 0.1230 | 0.1230 | [0.2583, 0.2973] | 0.1025 | research | crowd-scraped |
 | ota | wikipron | 161 | 0.3536 | - | 0.3100 | 0.3072 | 0.1180 | 0.1180 | [0.3260, 0.3798] | 0.0807 | research | crowd-scraped |
-| pa | vox_communis | 4003 | 0.4454‡ | - | 0.4454 | 0.4454 | 0.0824 | 0.0824 | [0.4362, 0.4537] | 0.0824 | research | epitran-derived |
-| pa | wikipron | 1360 | 0.2553 | - | 0.2553 | 0.2553 | 0.1779 | 0.1779 | [0.2453, 0.2646] | 0.1779 | research | crowd-scraped |
+| pa | vox_communis | 4003 | 0.4432‡ | - | 0.4432 | 0.4432 | 0.0824 | 0.0824 | [0.4342, 0.4515] | 0.0824 | research | epitran-derived |
+| pa | wikipron | 1360 | 0.2541 | - | 0.2541 | 0.2541 | 0.1779 | 0.1779 | [0.2443, 0.2635] | 0.1779 | research | crowd-scraped |
 | pag | wikipron | 227 | 0.1277 | - | 0.0998 | 0.0969 | 0.5991 | 0.6123 | [0.1076, 0.1488] | 0.5286 | research | crowd-scraped |
 | pam | wikipron | 860 | 0.2861 | 0.0843† (glottal stop + unwritten-stress vowel quality (a/ə, i/ɪ, u/ʊ)) | 0.1802 | 0.1697 | 0.3395 | 0.3663 | [0.2630, 0.3193] | 0.1186 | research | crowd-scraped |
 | pbv | wikipron | 101 | 0.3358 | - | 0.3358 | 0.3358 | 0.2475 | 0.2475 | [0.2875, 0.3859] | 0.2475 | research | crowd-scraped |
