@@ -62,6 +62,12 @@
     "ويا": [
       "wjaː",
       "uːjaː"
+    ],
+    "َوِيي": [
+      "awijj"
+    ],
+    "َيِيي": [
+      "ajijj"
     ]
   },
   "allophones_base": "ar-x-levantine",
@@ -228,6 +234,22 @@
       "default": [
         "j",
         "iː"
+      ]
+    },
+    "َوِي": {
+      "word_final": [
+        "awiː"
+      ],
+      "default": [
+        "awiː"
+      ]
+    },
+    "َيِي": {
+      "word_final": [
+        "ajiː"
+      ],
+      "default": [
+        "ajiː"
       ]
     }
   }
