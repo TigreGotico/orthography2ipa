@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.93.13a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.13a1) (2026-09-17)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.12a4...7.93.13a1)
+
+**Merged pull requests:**
+
+- fix\(ar\): read the Perso-Arabic gaf as the phone it writes, where the spec has that phone [\#1589](https://github.com/TigreGotico/orthography2ipa/pull/1589) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.93.12a4](https://github.com/TigreGotico/orthography2ipa/tree/7.93.12a4) (2026-09-17)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.12a3...7.93.12a4)
@@ -367,17 +375,9 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.92.1a1...7.92.2a1)
 
-**Merged pull requests:**
-
-- fix: record a tone-only valid\_ceiling for dng/wikipron [\#1466](https://github.com/TigreGotico/orthography2ipa/pull/1466) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [7.92.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.92.1a1) (2026-09-01)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.92.0a1...7.92.1a1)
-
-**Merged pull requests:**
-
-- fix\(so\): tone-only valid\_ceiling on so/kaikki, refuse ATR fold [\#1464](https://github.com/TigreGotico/orthography2ipa/pull/1464) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.92.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.92.0a1) (2026-09-01)
 
