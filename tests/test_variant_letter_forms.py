@@ -13,7 +13,7 @@ in their own right with different values.
 import pytest
 
 from orthography2ipa.g2p import G2P
-from orthography2ipa.inventory import emission_inventory, phoneme_inventory
+from orthography2ipa.inventory import emission_inventory, phoneme_inventory, tokenize
 from orthography2ipa.registry import get
 
 PAIRS = [("ھ", "ه"), ("ڪ", "ك"), ("ٲ", "أ")]
@@ -31,6 +31,53 @@ def _inventory(code):
     return set(phoneme_inventory(spec)) | set(emission_inventory(spec))
 
 
+def _phones_of(code, grapheme):
+    """The segments a spec's reading of one grapheme is built from."""
+    spec = get(code)
+    out = set()
+    for reading in spec.graphemes.get(grapheme, []):
+        out.update(tokenize(reading, spec))
+    return out
+
+
+def _reachable_from(code, base):
+    """Every phone the spec derives from ONE named letter: its readings, plus the surfaces
+    of allophone rules that take those readings as input.
+
+    Naming the base matters. An earlier version asked whether the phone was reachable
+    ANYWHERE in the spec, which a planted ⟨چ⟩ → [ʘ] passed because an unrelated /b/ rule
+    happened to emit it. The claim each of these PRs makes is narrower: this letter reads
+    what THAT letter already yields, directly or through its own allophony — the Najdi
+    affricate is a rule on /k/ rather than a reading of ⟨ك⟩, so the rules have to be
+    followed to find it.
+    """
+    spec = get(code)
+    direct = _phones_of(code, base)
+    out = set(direct)
+    for rule in (spec.allophone_rules or ()):
+        if rule.surface and set(getattr(rule, "phonemes", ()) or ()) & direct:
+            out.update(tokenize(rule.surface, spec))
+    return out
+
+
+#: The letters that exist to write /ɡ/ in Arabic script.
+_G_FAMILY = {"گ", "ݣ", "ڨ", "ڭ"}
+
+
+def _g_rests_only_on_the_family(code):
+    """True when every source of /ɡ/ in this spec is one of those letters.
+
+    There the "reachable from ⟨ق⟩" question cannot be asked honestly: ⟨ق⟩ does not yield
+    /ɡ/ and the only things that do are the family itself, so any member passes because a
+    sibling exists. The family cannot vouch for itself, and the tests exempt such a spec by
+    name with the reason rather than let it pass silently.
+    """
+    spec = get(code)
+    sources = {k for k, v in spec.graphemes.items()
+               if any("ɡ" in tokenize(r, spec) for r in v)}
+    rules = [r for r in (spec.allophone_rules or ())
+             if r.surface and "ɡ" in tokenize(r.surface, spec)]
+    return bool(sources) and sources <= _G_FAMILY and not rules
 @pytest.mark.parametrize("variant, base", PAIRS)
 def test_the_variant_mirrors_its_base_letter(variant, base):
     """The invariant, not just the value.
@@ -49,9 +96,16 @@ def test_every_arabic_spec_reads_the_variant_as_its_base(code, variant, base):
     assert g2p.transcribe("ب" + variant + "ب") == g2p.transcribe("ب" + base + "ب"), code
 
 
-@pytest.mark.parametrize("code, size", sorted(SIZES.items()))
-def test_no_inventory_grew(code, size):
-    assert len(_inventory(code)) == size, code
+@pytest.mark.parametrize("variant, base", PAIRS)
+def test_the_variant_introduces_no_phone(variant, base):
+    """Mirroring already guarantees this; asserted separately so the reason is visible.
+
+    This replaces a total-inventory pin. The total grows whenever any unrelated
+    grapheme key adds a multi-segment reading, which o2i declares as an atom, so the
+    count could not distinguish a new phone from a new emission and went red on a
+    matres-lectionis change that touched none of these letters.
+    """
+    assert _phones_of("arb", variant) == _phones_of("arb", base)
 
 
 @pytest.mark.parametrize("letter, code, expected", ELSEWHERE)
