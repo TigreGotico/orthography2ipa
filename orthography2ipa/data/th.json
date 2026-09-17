@@ -1066,16 +1066,16 @@
       ]
     }
   },
-  "valid_ceiling": {
+  "audit": {
     "wikipron": {
-      "per": 0.1713,
-      "folded": "tone_position",
-      "citation": "WikiPron writes the Chao tone letter after the whole syllable, matching this spec's tone_rules output position; scored as-is the row is 0.1881 PER. Moving the tone letter to the end of the transcription on both hypothesis and gold sides (neutralising placement while keeping tone identity and order) measures 0.1713 -- see the notes field and docs/languages/th.md for the full measurement."
+      "conclusion": "at_ceiling_documented",
+      "measured": "Thai spells tone (tone_rules), and the WikiPron gold writes the Chao tone letter after the syllable, as this spec does. The residual tone gap is where multi-syllable words put their tone letters, a notation choice, not a contrast the spelling cannot signal, so no valid_ceiling is recorded. scripts/fold_th_notation.py scores the row with the harness's own normalize() (broad) and levenshtein(), best of each word's golds, over 17221 words: 0.1879 as scored, 0.1710 with every tone-letter run moved to the end of the transcription on both sides (identity and order kept), 0.1648 with tone letters removed.",
+      "reference": "spec notes; see docs/languages/th.md and scripts/fold_th_notation.py"
     },
     "vox_communis": {
-      "per": 0.2295,
-      "folded": "tone_position",
-      "citation": "vox_communis is an Epitran-derived, non-qualifying gold (directional signal only, cannot gate a regression or tier promotion) whose Epitran pipeline writes the tone letter on the nucleus rather than syllable-finally; scored as-is the row is 0.4318 PER. Moving the tone letter to the end of the transcription on both sides, neutralising placement while keeping tone identity, measures 0.2295 -- this isolates the notation mismatch from a phonological one; see the notes field and docs/languages/th.md."
+      "conclusion": "at_ceiling_documented",
+      "measured": "The vox_communis th gold is Epitran output and writes the Chao tone letter on the nucleus, before the coda: 18023 of 23663 toned gold transcriptions do not end in a tone letter. Thai spells tone and both golds write it, so placement is gold notation, not a contrast the spelling cannot signal, and no valid_ceiling is recorded. scripts/fold_th_notation.py scores the row with the harness's own normalize() (broad) and levenshtein() over 23704 words: 0.4316 as scored, 0.2294 with every tone-letter run moved to the end on both sides (identity and order kept), 0.2216 with tone letters removed.",
+      "reference": "spec notes; see docs/languages/th.md and scripts/fold_th_notation.py"
     }
   }
 }
