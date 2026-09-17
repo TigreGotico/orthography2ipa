@@ -31,9 +31,15 @@ below).
 Where the vowel-bearing diacritic is nonetheless absent, the spec degrades gracefully
 rather than dropping segments: the hamza carriers أ/إ fall back to their default
 hamza+vowel readings (`ʔa`/`ʔi`) so an undiacritized skeleton still surfaces a vowel,
-and the matres lectionis ا/ي/و default to their long-vowel readings word-medially and
-word-finally. This is why the undiacritized WikiPron gold, which is scored on bare
-consonantal skeletons, still transcribes usefully (see [Gold benchmark](#gold-benchmark)).
+and ا falls back to the long vowel `aː`. The other two matres, ي and و, take their
+long-vowel readings `iː`/`uː` word-finally but the consonants `j`/`w` word-medially. A
+bare skeleton therefore surfaces مكتوب as `mktwb`, not `mktuːb`. The medial default is
+the weakest point in the table: a glide that bears its own harakah is matched by a
+separate grapheme (⟨يَ⟩, ⟨ِي⟩ and their siblings), so a bare medial ي or و is by
+elimination the quiescent letter, which is the long vowel. This is the single largest
+source of error on undiacritized text, and the
+[error analysis](#error-analysis-what-the-remaining-per-is-made-of)
+below measures it and explains why the default is not simply flipped.
 
 ## Presentation-form and lam-alif ligature normalization (engine-level)
 
@@ -118,7 +124,9 @@ Two further fixes surfaced by the arbtok migration live in the shared `arb` grap
 table (not the `ar` leaf), so **every** Arabic-script spec that inherits `arb`'s graphemes
 , Classical `arb`, MSA `ar`, and the dialects, gets them. Both are Classical/MSA-correct
 and both only fire on **diacritized** input, so the undiacritized WikiPron gold is
-byte-identical (PER holds at 0.1868).
+byte-identical (WikiPron `ar` PER held at 0.1868 when that change landed in commit
+`99a7762`, 2026-07-11; that commit does not record the row count, and the current board
+row reads 0.3139 on 14 268 scored words).
 
 - **Fatḥa + standalone alif-maksūra ⟨ـَى⟩ merges to a single [aː].** `arb` already merged
   fatḥa + alif ⟨ـَا⟩ → [aː] and read a bare ى as [aː]. The fatḥa + alif-maksūra *sequence*
@@ -251,24 +259,42 @@ CUNY-CL/wikipron `ara_arab_broad.tsv` (Wiktionary-sourced broad IPA transcriptio
 community-curated, ~17.5k pairs), registered as the `ar` entry of the `wikipron` dataset
 in `scripts/benchmark.py`, matching the precedent used for gl/es/pt in this project.
 
-### Error analysis: why the remaining PER is a gold-contract limit, not a spec bug
+### Error analysis: what the remaining PER is made of
 
-Running `python scripts/error_analysis.py ar` (259 scored words) shows the top phoneme
-confusion pairs are **all** consequences of the gold being 100 % undiacritized, the very
+Running `python scripts/error_analysis.py ar --dataset wikipron --limit 300` (the first
+300 rows of the WikiPron `ar` set, 259 scored words; re-run on dev `0d7afba2`,
+2026-09-13) shows most of the top
+phoneme confusion pairs are consequences of the gold being 100 % undiacritized, the very
 short-vowel / gemination information the [input contract](#input-contract--known-limitation-diacritics)
 says the spec cannot recover, plus the already-documented emphatic-backing broad-gold
-gap. None is a principled MSA-phonology error left to fix, so no fallback is tuned to the
-gold (doing so would overfit the spec to this one lexicon):
+gap. Those are not principled MSA-phonology errors and no fallback is tuned to them
+(doing so would overfit the spec to this one lexicon). The medial mater-lectionis pair
+is the exception, and is treated as such below:
 
 - **`a → ∅` (×145), `i → ∅` (×56), `u → ∅` (×35)**: the gold carries short vowels that
   the bare consonantal skeleton simply does not write (e.g. أحبك gold `ʔuħibbuka`, hyp
   `ʔaħbk`). Unrecoverable without tashkeel. **not** fixable by the spec.
-- **`ː → w` (×27), `ː → j` (×17)**: a medial mater-lectionis ambiguity: an undiacritized
-  و/ي between consonants is read as the default glide /w/ /j/, but the gold happens to want
-  a long /uː/ /iː/ (أبوت gold `ʔubuːt`, hyp `ʔabwt`). Glide vs. long vowel here is
-  genuinely undecidable without the diacritic, so the default is **not** flipped to the
-  long vowel (that would only chase this gold's noun/loan-heavy lexicon and regress
-  glide-final skeletons).
+- **`ː → w` (×27), `ː → j` (×18)**: a medial mater-lectionis ambiguity: an undiacritized
+  و/ي between consonants is read as the default glide /w/ /j/, but the gold wants a long
+  /uː/ /iː/ (أبوت gold `ʔubuːt`, hyp `ʔabwt`). This one is **not** a gold-contract limit,
+  and the reason it is left alone is not that flipping the default would be gold-fitting.
+  In an experiment run when this PR was opened (2026-08-17), and not in the tree (no
+  branch or script), reading the medial mater as the long vowel (with word-initial glides
+  held consonantal, since the syllable onset is obligatory, and the /aw/ /aj/ diphthongs
+  restored by an allophone rule) moved the PER of the full WikiPron `ar` set (14 272 rows)
+  from 0.3201 to 0.2697, and the `wikipron_ar_diacritized` row from 0.1828 to 0.1800. The
+  experiment improved both regimes, so it was not a fit to one lexicon. Its numbers were
+  not re-run for this document. For comparison, the unflipped rows on dev `0d7afba2`
+  (2026-09-13) read 0.3139 (WikiPron `ar`, 14 268 scored words) and 0.1721
+  (`wikipron_ar_diacritized`, 14 240 scored words).
+
+  What blocks it is inheritance. `ar` is the `graphemes_base` of the whole Arabic dialect
+  tree, not a leaf, so its bare-letter readings are the readings 30-odd lects transcribe
+  with. In the same experiment, flipping the default at this node turned 19 verified rows
+  of the `arabic_tts` dialect gold red, and inspection showed genuine degradations rather
+  than pinned-snapshot drift: وَين `wajn` → `waiːn`, أَيْنَ `ʔajna` → `ʔaiːna`, Iraqi وِيَّا `wijja` → `wiːja`.
+  Landing the change means giving the dialect specs their own overrides at the same time;
+  it is not a one-line retune of `ar`.
 - **`j → ∅` (×17), `j → ː` (×10)**: word-final nisba ⟨ـيّ⟩ /-ijj/ vs. plain long ⟨ـي⟩
   /-iː/: both are written ي with no diacritic (آشوري gold `ʔaːʃuːrijj`, hyp `ʔaːʃwriː`).
   The gemination that distinguishes them is unmarked in the gold, a shadda gap, not a
@@ -276,12 +302,13 @@ gold (doing so would overfit the spec to this one lexicon):
 - **`u → a` (×16)**: the hamza-carrier / bare-vowel default (أ → `ʔa`) guessing the wrong
   short vowel on an undiacritized skeleton (أبدة gold `ʔubbada`, hyp `ʔabda`). Same
   tashkeel gap.
-- **`a → ɑ` (×7)**: the correct narrow emphatic backing [ɑ] that the **broad** gold
+- **`a → ɑ` (×8)**: the correct narrow emphatic backing [ɑ] that the **broad** gold
   writes as plain /a/. Already documented under [emphatic spreading](#emphatic-pharyngealization-spreading)
   as a broad-gold measurement limit, retained because it is linguistically correct.
 
 The two diacritized fixes in this round (alif-maksūra merge, coda-glide guard) therefore
-leave the gold PER **byte-identical at 0.1868**, they correct diacritized transcription,
+left the WikiPron `ar` PER **byte-identical at 0.1868** (commit `99a7762`, 2026-07-11),
+because they correct diacritized transcription,
 which this undiacritized gold cannot reward or penalize.
 
 ### Measured ceiling for the dialect WikiPron rows (`ar-EG`, `ar-SA-x-hejaz`, `ar-x-gulf`, `ar-IQ`)
