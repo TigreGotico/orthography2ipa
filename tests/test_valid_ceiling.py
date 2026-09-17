@@ -245,7 +245,7 @@ class TestLoaderParsesShippedData:
         assert spec.valid_ceiling["wikipron"].per == pytest.approx(0.0244)
         assert spec.valid_ceiling["wikipron"].folded == "tone"
 
-    def test_yo_valid_ceiling_loads(self):
+    def test_yo_vox_communis_valid_ceiling_loads(self):
         spec = json_loader.load_json_spec("yo")
         assert spec.valid_ceiling is not None
         assert spec.valid_ceiling["vox_communis"].per == pytest.approx(0.0798)

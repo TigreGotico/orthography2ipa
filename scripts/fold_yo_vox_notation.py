@@ -2,9 +2,10 @@
 """Measure the Yoruba (``yo``/``vox_communis``) tone-and-nasal fold ceiling.
 
 The ``yo``/``vox_communis`` row scores PER 0.6392: the engine emits Yoruba
-tone marks (the spec is verified to 0.0288 on wikipron, #1541) while this
-gold's epitran-derived phone tier writes NONE — the reverse of the wikipron
-defect. This script folds tone accents and the nasalisation tilde out of
+tone marks while this gold's epitran-derived phone tier writes NONE — the
+reverse of the wikipron/vox_communis notation mismatch measured on the
+``wikipron`` row's own tone+nasalisation ceiling. This script folds tone
+accents and the nasalisation tilde out of
 BOTH sides with the harness's own ``normalize()``/``levenshtein()``; the
 result bounds how much of the row is notation disagreement the script cannot
 record (see th and tn, which carry valid_ceiling on this same dataset).
@@ -86,26 +87,41 @@ def char_counts(rows):
     import collections
     gold_tone = collections.Counter()
     gold_nasal = 0
-    for _word, golds, _hyp in rows:
+    hyp_tone = collections.Counter()
+    hyp_nasal = 0
+    for _word, golds, hyp in rows:
         for s in golds:
             for c in unicodedata.normalize("NFD", s):
                 if c in TONE_MARKS:
                     gold_tone[c] += 1
                 elif c == NASAL_MARK:
                     gold_nasal += 1
-    return gold_tone, gold_nasal
+        for c in unicodedata.normalize("NFD", hyp):
+            if c in TONE_MARKS:
+                hyp_tone[c] += 1
+            elif c == NASAL_MARK:
+                hyp_nasal += 1
+    return gold_tone, gold_nasal, hyp_tone, hyp_nasal
 
 
 def main():
     rows = scored_pairs()
-    tone, nasal = char_counts(rows)
+    gold_tone, gold_nasal, hyp_tone, hyp_nasal = char_counts(rows)
     n_gold_tone = sum(1 for _w, golds, _h in rows
                       if any(any(c in TONE_MARKS
                                  for c in unicodedata.normalize("NFD", g))
                              for g in golds))
+    n_gold_nasal = sum(1 for _w, golds, _h in rows
+                       if any(NASAL_MARK in unicodedata.normalize("NFD", g)
+                              for g in golds))
+    n_hyp_nasal = sum(1 for _w, _golds, hyp in rows
+                      if NASAL_MARK in unicodedata.normalize("NFD", hyp))
     print(f"{DATASET} / {LANG} (full): {len(rows)} words scored")
-    print(f"  gold-side tone marks by accent: {dict(tone)}, nasal: {nasal}")
+    print(f"  gold-side tone marks by accent: {dict(gold_tone)}, nasal marks: {gold_nasal}")
     print(f"  words with any gold tone mark: {n_gold_tone}")
+    print(f"  words with a gold nasal mark: {n_gold_nasal}")
+    print(f"  hypothesis-side tone marks by accent: {dict(hyp_tone)}, nasal marks: {hyp_nasal}")
+    print(f"  words with a hypothesis nasal mark: {n_hyp_nasal}")
     a, ae = per(rows)
     print(f"  as scored           per={a:.4f} exact={ae:.4f}")
     t, te = per(rows, fold_tone)
