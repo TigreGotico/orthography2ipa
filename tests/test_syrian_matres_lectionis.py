@@ -43,3 +43,32 @@ def test_the_alif_key_is_not_skipped_after_a_pair_key():
     # حيوان is kept out of the diphthong rule by the spec notes; the longest
     # match must not read يو as [juː] before the alif.
     assert AR_SY.transcribe("حيوان").lstrip("ˈ") == "ħjwaːn"
+
+
+@pytest.mark.parametrize("word, expected", [("قَوِي", "ʔawiː"), ("حَيِي", "ħajiː")])
+def test_final_ya_after_a_kasra_key_is_a_long_vowel(word, expected):
+    # arb's keys َوِ and َيِ absorb the kasra, so a word-final ⟨ي⟩ after them
+    # looked like it followed a vowel and read [j]. After a kasra, a final
+    # ⟨ي⟩ is a long vowel, as ِي reads in عَلِي.
+    assert AR_SY.transcribe(word).lstrip("ˈ") == expected
+
+
+def test_a_kasra_key_plus_ya_is_long_medially_too():
+    """After a kasra, ⟨ي⟩ is a long vowel wherever it stands.
+
+    dev read قَوِيم as ʔaˈwijm, a glide, because the arb key َوِ takes the
+    kasra. The positional keys read iː in both positions now.
+    """
+    assert AR_SY.transcribe("قَوِيم") == "ʔaˈwiːm"
+
+
+def test_a_shadda_keeps_the_geminate_glide():
+    """A shadda doubles the letter before the graphemes are read, so the
+    doubled keys َوِيي and َيِيي carry the geminate. Without them the long
+    reading would swallow it and ⟨قَوِيَّة⟩ would read ...wiːja, which also
+    breaks the pinned ar-QA-005 arabic_tts row.
+    """
+    assert AR_SY.transcribe("قَوِيَّة") == "ʔaˈwijja"
+    assert AR_SY.transcribe("عَرَبِيَّة") == "ʕaraˈbijja"
+    assert AR_SY.transcribe("عَلِي").lstrip("ˈ") == "ʕaliː"
+
