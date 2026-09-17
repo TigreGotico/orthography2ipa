@@ -226,6 +226,32 @@ class TestMonosyllableFinalLiquids:
             and not out.endswith("r"), f"{word} -> {out} should elide"
 
 
+class TestCloseOBeforeDeletedFinalR:
+    """Convenção (2025) pp. 21-22 and 36: <ô> is a closed final tonic vowel,
+    <ó> an open one. It spells senhô (pp. 18, 32), dotô (pp. 32, 36) and
+    interiô (p. 38). The Dicionário (2025) p. 18 spells afiadó and amoladó,
+    so the rule is lexical and the -dor agentives stay open."""
+
+    @pytest.mark.parametrize("word, expected", [
+        ("senhor", "sɨˈɲo"),
+        ("doutor", "doˈto"),
+    ])
+    def test_convencao_words_close_the_o(self, word, expected):
+        assert orthography2ipa.transcribe(word, "ext-PT-x-barrancos") == expected
+
+    def test_interior_closes_the_o(self):
+        assert orthography2ipa.transcribe(
+            "interior", "ext-PT-x-barrancos").endswith("o")
+
+    def test_dor_agentive_stays_open(self):
+        assert orthography2ipa.transcribe(
+            "caçador", "ext-PT-x-barrancos").endswith("ˈdɔ")
+
+    def test_medial_stressed_o_before_r_is_untouched(self):
+        assert orthography2ipa.transcribe(
+            "porta", "ext-PT-x-barrancos") == "ˈpɔɾtɐ"
+
+
 class TestLectCodeAndAlias:
     """``ext-PT-x-barrancos`` is the canonical code: a private-use tag marking
     Barranquenho as a language of its own spoken in Portugal, not a lect of

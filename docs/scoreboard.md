@@ -253,7 +253,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | evn | wikipron | 145 | 0.2447 | - | 0.2447 | 0.2447 | 0.1241 | 0.1241 | [0.2197, 0.2710] | 0.1241 | research | crowd-scraped |
 | ext-PT-x-barrancos | barranquenho_dict | 1508 | 0.0045‡ | - | 0.0020 | 0.0011 | 0.9881 | 0.9927 | [0.0030, 0.0061] | 0.9768 | research | llm-generated |
 | ext-PT-x-barrancos | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ext-PT-x-barrancos | primary_sources | 42 | 0.3529 | - | 0.2918 | 0.2918 | 0.1429 | 0.1429 | [0.2981, 0.4066] | 0.0952 | research | expert-human |
+| ext-PT-x-barrancos | primary_sources | 42 | 0.3514 | - | 0.2903 | 0.2903 | 0.1429 | 0.1429 | [0.2969, 0.4057] | 0.0952 | research | expert-human |
 | fa | ipadict | 7695 | 0.2540 | - | 0.2309 | 0.2253 | 0.1193 | 0.1220 | [0.2507, 0.2574] | 0.1077 | research | machine-generated |
 | fa | wikipron | 9279 | 0.3943 | - | 0.3742 | 0.3702 | 0.0177 | 0.0178 | [0.3911, 0.3971] | 0.0170 | research | crowd-scraped |
 | fa-x-enp | wikipron | 9279 | 0.2381 | - | 0.2121 | 0.2064 | 0.1230 | 0.1258 | [0.2352, 0.2410] | 0.1024 | research | crowd-scraped |

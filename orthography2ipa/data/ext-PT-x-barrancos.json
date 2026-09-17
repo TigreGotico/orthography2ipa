@@ -184,6 +184,22 @@
  },
  "allophone_rules": [
   {
+   "id": "EXT_LEX_CLOSE_O_FINAL_R",
+   "phonemes": [
+    "o",
+    "ɔ"
+   ],
+   "surface": "o",
+   "stress": "stressed",
+   "word_final": true,
+   "word": [
+    "senhor",
+    "doutor",
+    "interior"
+   ],
+   "notes": "Stressed final o before the deleted final r is CLOSE [o] for these lexemes. The Convenção Ortográfica do Barranquenho (2025) writes a closed final tonic vowel with the circumflex (pp. 21-22: 'As vogais tónicas finais podem ser abertas [a, ɛ, ɔ] <-á, -é, -ó> e fechadas [e, o] < -ê, -ô>'; p. 36: 'O acento circunflexo (^) marca a vogal tónica fechada'), and spells senhô (pp. 18, 32), dotô (pp. 32, 36) and interiô (p. 38). Gold navas2011-022 gives [səˈɲo]. Lexical, not a rule on every -or: the Dicionário de Barranquenho (2025) p. 18 spells the agentives afiadó and amoladó with the acute, which marks an open vowel, so -dor stays open. No source was found for amor, flor, maior, melhor or pior."
+  },
+  {
    "id": "PT_CODA_S_HUSH",
    "phonemes": [
     "s"
