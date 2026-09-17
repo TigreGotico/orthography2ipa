@@ -93,6 +93,9 @@
     "وِالظظ": [
       "widˤdˤ",
       "wizˤzˤ"
+    ],
+    "ڨ": [
+      "ɡ"
     ]
   },
   "allophones_base": "ar-x-maghrebi",
@@ -167,7 +170,7 @@
       "notes": "French adstrate (1830–1962): /p/, /v/ phonemes, heavy loanword influence"
     }
   ],
-  "notes": "Algerian Arabic (Dziriya; ISO 639-3 arq), Algiers (al-ʿĀṣima) urban baseline. Sedentary pre-Hilalian phonology of the old city, with the Bedouin/rural layer diffusing in. INTERDENTALS MERGED to stops in Algiers: ث → /t/, ذ → /d/, ظ/ض → /dˤ/ (θalāθa → tlaːta) — Boucherit 2002; Marçais 1902 (Tlemcen); the isogloss against Tunis, which retains /θ ð ðˤ/. QĀF ق → /q/ in old-urban Algiers, with the Bedouin/rural variant /ɡ/ current across the country (dual /q ~ ɡ/) — Boucherit 2002; Grand'Henry 1972 (Cherchell). ǦĪM ج → /ʒ/ (voiced postalveolar fricative, sedentary Maghrebi; Watson 2002 p.16); the pre-Hilalian Algiers affricate /dʒ/ survives as the secondary candidate (Boucherit 2002; Marçais 1902). HEAVY SYNCOPE: short /a i u/ reduce to schwa [ə] or ∅ in weak positions, licensing initial consonant clusters (ktaːb, tlaːta) — the defining Maghrebi trait, reinforced by the Berber (Amazigh) substrate; Boucherit 2002; Marçais 1902. NO strong imāla — long /aː/ keeps its back quality (ktaːb, not the Tunis ktɛːb). Emphasis spreads, backing /a aː/ to [ɑ ɑː] near emphatics (inherited layer; Watson 2002). TĀʾ MARBŪṬA: /-a/ in pause, /-at/ in the construct (inherited pausal handling; Boucherit 2002). French adstrate is the deepest of the Maghrebi dialects (130+ years): /p/ /v/ phonemes and heavy loan integration.",
+  "notes": "Algerian Arabic (Dziriya; ISO 639-3 arq), Algiers (al-ʿĀṣima) urban baseline. Sedentary pre-Hilalian phonology of the old city, with the Bedouin/rural layer diffusing in. INTERDENTALS MERGED to stops in Algiers: ث → /t/, ذ → /d/, ظ/ض → /dˤ/ (θalāθa → tlaːta) — Boucherit 2002; Marçais 1902 (Tlemcen); the isogloss against Tunis, which retains /θ ð ðˤ/. QĀF ق → /q/ in old-urban Algiers, with the Bedouin/rural variant /ɡ/ current across the country (dual /q ~ ɡ/) — Boucherit 2002; Grand'Henry 1972 (Cherchell). ǦĪM ج → /ʒ/ (voiced postalveolar fricative, sedentary Maghrebi; Watson 2002 p.16); the pre-Hilalian Algiers affricate /dʒ/ survives as the secondary candidate (Boucherit 2002; Marçais 1902). HEAVY SYNCOPE: short /a i u/ reduce to schwa [ə] or ∅ in weak positions, licensing initial consonant clusters (ktaːb, tlaːta) — the defining Maghrebi trait, reinforced by the Berber (Amazigh) substrate; Boucherit 2002; Marçais 1902. NO strong imāla — long /aː/ keeps its back quality (ktaːb, not the Tunis ktɛːb). Emphasis spreads, backing /a aː/ to [ɑ ɑː] near emphatics (inherited layer; Watson 2002). TĀʾ MARBŪṬA: /-a/ in pause, /-at/ in the construct (inherited pausal handling; Boucherit 2002). French adstrate is the deepest of the Maghrebi dialects (130+ years): /p/ /v/ phonemes and heavy loan integration. LOAN GRAPHEME ڨ. Two facts, each cited, neither inferred from the other. What the letter is: U+06A8 ARABIC LETTER QAF WITH THREE DOTS ABOVE, a qāf-derived character written for [ɡ] — Saadane & Habash 2015 §4.1 p.70 lists it among the realisations of the MSA ‹ق› consonant as 'palatal sound \"ڨ\" [g]' and states it for Algerian, Moroccan and Tunisian alike; the Unicode code chart annotates the character 'Tunisian Arabic' but names no sound, which is why the annotation alone would not license this. That this variety has the sound: /ɡ/ is already in this spec's inventory as its ‹ق› reflex, so no phone is introduced. The reading is the sound the letter writes in a spec that already has it. CODA prescribes the cognate ‹ق› for /g/ here (Zribi et al. 2014), so this key reads a spelling that occurs without endorsing it. WHO WRITES THIS LETTER, measured over lahgtna's judged tree by the data lane and recorded as their count rather than this spec's: ‹ڨ› occurs 69,635 times in 30,610 rows, of which Algerian-labelled rows are 24,511 (81%) and Tunisian 6,032 (19%). Moroccan-labelled rows are 37, carrying 49 occurrences of genuinely Maghrebi lexis (ڨلتلك، نحڨر، عڨابي، سراڨ) — Moroccan writing more usually takes ‹ڭ› for the same sound, so ar-MA holds this key for the minority spelling rather than the usual one.",
   "quality": "research",
   "script_type": "abjad",
   "sources": [
@@ -231,6 +234,16 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "saadane_habash2015",
+      "author": "Saadane, H. & Habash, N.",
+      "year": 2015,
+      "title": "A Conventional Orthography for Algerian Arabic",
+      "publisher": "Proceedings of the Second Workshop on Arabic Natural Language Processing, Beijing (ACL W15-3208)",
+      "url": "https://aclanthology.org/W15-3208/",
+      "pages": "§4.1 Phonological Variations, p.70",
+      "notes": "The source that pairs the LETTER with the sound, which the Unicode annotation does not. §4.1 lists the realisations of the consonant equivalent to MSA ‹ق› and gives one of them as: 'palatal sound \"ڨ\" [g]: this sound is also used in both Moroccan and Tunisian dialects in addition to the ALG one. In Algeria, this sound is used in some cities like Annaba and Sétif, in addition to the Bedouin dialects where this sound is widely employed.' So ‹ڨ› is a qāf-derived letter written for [ɡ], stated for Algerian, Moroccan and Tunisian. SCOPE: 'palatal' is the paper's word for a velar stop, and the paper names no variety outside the Maghreb — it is not a source for ‹ڨ› in Saudi, Gulf or Egyptian writing. Note also that CODA itself prescribes the cognate ‹ق› for /g/ in Tunisian (Zribi et al. 2014, 'The letter ق q is used to represent the two consonants /q/ and /g/'), so this letter is a spelling that OCCURS, not one CODA endorses."
     }
   ],
   "wikipedia": [
