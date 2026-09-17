@@ -5115,6 +5115,11 @@
   "gating": true,
   "harness_version": "1.1",
   "limit": null,
+  "valid_ceiling": {
+   "per": 0.2626,
+   "folded": "tone",
+   "citation": "Baart & Sagar, The Gawri Language of Kalam and Dir Kohistan (https://fli-online.org/documents/languages/gawri/gawri_introduction.pdf), p. 10, 'The writing of tone in Gawri': \"A set of special diacritics was made available for the writing of tone ... Although it was felt that on most words the tone marks would not need to be used, it is likely that in some cases tone marks will be necessary for disambiguation.\" p. 7 (2.2 Tone): \"Gawri has no less than five contrastive tones.\" The wikipron gold transcribes tone in 204 of its 208 rows; the Perso-Arabic spelling column carries no tone diacritic. Measured by scripts/fold_gwc_notation.py with the harness's own normalize()/levenshtein() on the board's basis (165 unique words scored): as-scored PER 0.4170 (2.4% exact), matching the committed board row; with the combining acute, grave, circumflex and caron removed from BOTH sides (NFD, strip, NFC again, the form normalize() returns), 0.2626 (25.5% exact). The audit entry's 0.4323 -> 0.2917 was measured over all 208 pairs, not unique words, so the two figures differ in basis, not in finding. Vowel length is NOT folded: p. 9 says Jazm is used 'where necessary for marking shortness of a vowel', so length is partly written; tone+length folded would be 0.2526 and is not recorded. The ceiling stays above 0.25, so the row is not proved input-limited: the remaining gap is segmental."
+  },
   "oracle_per_top3": 0.3937,
   "oracle_exact_top3": 0.0242,
   "oracle_per_top5": 0.3782,
