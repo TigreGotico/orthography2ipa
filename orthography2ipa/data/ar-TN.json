@@ -133,6 +133,9 @@
     "وِالذذ": [
       "wiðð",
       "widd"
+    ],
+    "ڨ": [
+      "ɡ"
     ]
   },
   "allophones_base": "ar-x-maghrebi",
@@ -205,7 +208,7 @@
       "notes": "French adstrate: /p/, /v/ established"
     }
   ],
-  "notes": "Tunisian Arabic (Derja تونسية; ISO 639-3 aeb), Tunis (Medina) baseline. Sedentary pre-Hilalian phonology. INTERDENTALS RETAINED: ث → /θ/, ذ → /ð/, ظ → /ðˤ/ (θlɛːθa 'three'), unlike sedentary Moroccan/Algiers which merge them to stops — Gibson 2009 ('Tunis Arabic', EALL vol.4); Singer 1984; Turki et al. 2024 (retention except the Sahel/Mahdia and the Jewish dialects). QĀF ق → /q/ retained in urban Tunis (qaːl 'he said'), with the Bedouin/rural variant /ɡ/ (gālū lī) also current in the country — Singer 1984; Gibson 2009; La Rosa 2021 p.9. ǦĪM ج → /ʒ/ (voiced post-alveolar fricative, no occlusive onset — the sedentary Maghrebi reflex; Watson 2002 p.16). STRONG IMĀLA: long /aː/ → [ɛː] except adjacent to an emphatic or a back consonant /q χ ʁ ħ ʕ r/ (bɛːb 'door', ktɛːb 'book'; daːr 'house' blocked) — Singer 1984; Gibson 2009. MONOPHTHONGISATION: inherited /aj aw/ → [iː uː] in Tunis (bīt, lūn); the Sahel (Sūsa, Mahdia) retains the diphthong or has [eː oː] — Talmoudi 1980; La Rosa 2021. Short vowels reduce to [ə]/∅ but less extremely than Moroccan. French/Italian adstrate: /p/ /v/ established.",
+  "notes": "Tunisian Arabic (Derja تونسية; ISO 639-3 aeb), Tunis (Medina) baseline. Sedentary pre-Hilalian phonology. INTERDENTALS RETAINED: ث → /θ/, ذ → /ð/, ظ → /ðˤ/ (θlɛːθa 'three'), unlike sedentary Moroccan/Algiers which merge them to stops — Gibson 2009 ('Tunis Arabic', EALL vol.4); Singer 1984; Turki et al. 2024 (retention except the Sahel/Mahdia and the Jewish dialects). QĀF ق → /q/ retained in urban Tunis (qaːl 'he said'), with the Bedouin/rural variant /ɡ/ (gālū lī) also current in the country — Singer 1984; Gibson 2009; La Rosa 2021 p.9. ǦĪM ج → /ʒ/ (voiced post-alveolar fricative, no occlusive onset — the sedentary Maghrebi reflex; Watson 2002 p.16). STRONG IMĀLA: long /aː/ → [ɛː] except adjacent to an emphatic or a back consonant /q χ ʁ ħ ʕ r/ (bɛːb 'door', ktɛːb 'book'; daːr 'house' blocked) — Singer 1984; Gibson 2009. MONOPHTHONGISATION: inherited /aj aw/ → [iː uː] in Tunis (bīt, lūn); the Sahel (Sūsa, Mahdia) retains the diphthong or has [eː oː] — Talmoudi 1980; La Rosa 2021. Short vowels reduce to [ə]/∅ but less extremely than Moroccan. French/Italian adstrate: /p/ /v/ established. LOAN GRAPHEME ڨ. Two facts, each cited, neither inferred from the other. What the letter is: U+06A8 ARABIC LETTER QAF WITH THREE DOTS ABOVE, a qāf-derived character written for [ɡ] — Saadane & Habash 2015 §4.1 p.70 lists it among the realisations of the MSA ‹ق› consonant as 'palatal sound \"ڨ\" [g]' and states it for Algerian, Moroccan and Tunisian alike; the Unicode code chart annotates the character 'Tunisian Arabic' but names no sound, which is why the annotation alone would not license this. That this variety has the sound: /ɡ/ is already in this spec's inventory as its ‹ق› reflex, so no phone is introduced. The reading is the sound the letter writes in a spec that already has it. CODA prescribes the cognate ‹ق› for /g/ here (Zribi et al. 2014), so this key reads a spelling that occurs without endorsing it.",
   "quality": "research",
   "script_type": "abjad",
   "sources": [
@@ -277,6 +280,16 @@
       "url": "https://arxiv.org/abs/2402.12940",
       "pages": null,
       "notes": "Read (open-access). A CODA*-derived Arabic-script orthography norm for Tunisian; confirms interdental retention (except the Sahel), the /q/~/g/ split, four vowel qualities /a e i u/ with phonemic length, and the Perso-Arabic supplemental letters پ ڤ گ for /p v g/."
+    },
+    {
+      "id": "saadane_habash2015",
+      "author": "Saadane, H. & Habash, N.",
+      "year": 2015,
+      "title": "A Conventional Orthography for Algerian Arabic",
+      "publisher": "Proceedings of the Second Workshop on Arabic Natural Language Processing, Beijing (ACL W15-3208)",
+      "url": "https://aclanthology.org/W15-3208/",
+      "pages": "§4.1 Phonological Variations, p.70",
+      "notes": "The source that pairs the LETTER with the sound, which the Unicode annotation does not. §4.1 lists the realisations of the consonant equivalent to MSA ‹ق› and gives one of them as: 'palatal sound \"ڨ\" [g]: this sound is also used in both Moroccan and Tunisian dialects in addition to the ALG one. In Algeria, this sound is used in some cities like Annaba and Sétif, in addition to the Bedouin dialects where this sound is widely employed.' So ‹ڨ› is a qāf-derived letter written for [ɡ], stated for Algerian, Moroccan and Tunisian. SCOPE: 'palatal' is the paper's word for a velar stop, and the paper names no variety outside the Maghreb — it is not a source for ‹ڨ› in Saudi, Gulf or Egyptian writing. Note also that CODA itself prescribes the cognate ‹ق› for /g/ in Tunisian (Zribi et al. 2014, 'The letter ق q is used to represent the two consonants /q/ and /g/'), so this letter is a spelling that OCCURS, not one CODA endorses."
     }
   ],
   "wikipedia": [
