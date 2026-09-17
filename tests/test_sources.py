@@ -180,16 +180,13 @@ def test_source_wikipedia_urls_point_to_wikipedia(code: str, path: str) -> None:
 # which reads this name out of the file; renaming it means updating that
 # script's RATCHETS.
 _WIKIPEDIA_ONLY_SOURCES_BURNDOWN = frozenset({
-    'aae', 'ace', 'aja', 'aju', 'aln', 'als', 'ami', 'anp',
-    'av', 'ban', 'bar', 'bpy', 'btm', 'cay', 'ce', 'chm',
-    'cnr', 'cpg', 'crh', 'csb', 'dsb', 'dtp', 'dty', 'el-CY',
-    'fj', 'gmy', 'gnc', 'hif', 'hsb', 'iba', 'ig', 'jv', 'kaa', 'kk', 'koi', 'kv', 'ky',
-    'lah', 'lb', 'lua', 'mnw',
-    'na', 'nr', 'pcd',
-    'pfl', 'quy', 'rki', 'rup',
-    'sah', 'se', 'sgs', 'sq', 'ss', 'su', 'szl', 'ti',
-    'tly', 'tsd', 'ty', 'udm', 'uga', 've', 'vls', 'vro',
-    'x-clade-doric-greek', 'xal', 'xls', 'xmf', 'yue', 'za',
+    'aae', 'ace', 'aja', 'aju', 'aln', 'als', 'ami', 'anp', 'av', 'ban',
+    'bar', 'bpy', 'btm', 'cay', 'ce', 'chm', 'cnr', 'cpg', 'crh', 'csb',
+    'dsb', 'dtp', 'dty', 'el-CY', 'fj', 'gmy', 'gnc', 'hif', 'hsb', 'iba',
+    'ig', 'jv', 'kaa', 'koi', 'kv', 'ky', 'lah', 'lua', 'mnw', 'na', 'nr',
+    'pcd', 'pfl', 'quy', 'rki', 'rup', 'sah', 'se', 'sgs', 'ss', 'su', 'ti',
+    'tly', 'tsd', 'ty', 'uga', 'vls', 'x-clade-doric-greek', 'xal', 'xls',
+    'yue',
 })
 
 
