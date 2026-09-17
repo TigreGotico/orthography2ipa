@@ -1,5 +1,19 @@
 # Changelog
 
+## [7.93.19a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.19a1) (2026-09-17)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.18a1...7.93.19a1)
+
+## [7.93.18a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.18a1) (2026-09-17)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.17a1...7.93.18a1)
+
+**Merged pull requests:**
+
+- fix\(ayl\): copy arb's 174 harakat keys so vocalised input reads its long vowels [\#1588](https://github.com/TigreGotico/orthography2ipa/pull/1588) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- fix\(ar-EG\): read waw and ya after a consonant as long vowels first [\#1553](https://github.com/TigreGotico/orthography2ipa/pull/1553) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- fix\(ar-JO\): read waw and ya after a consonant as long vowels first [\#1552](https://github.com/TigreGotico/orthography2ipa/pull/1552) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.93.17a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.17a1) (2026-09-17)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.16...7.93.17a1)
