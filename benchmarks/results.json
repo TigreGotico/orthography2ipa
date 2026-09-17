@@ -3565,6 +3565,26 @@
   "oracle_scored_words": 448
  },
  {
+  "lang": "dga",
+  "dataset": "primary_sources",
+  "n": 35,
+  "per": 0.1143,
+  "per_ci_low": 0.0476,
+  "per_ci_high": 0.181,
+  "exact_match": 0.7429,
+  "quality_tier": "research",
+  "provenance": "expert-human",
+  "gating": true,
+  "harness_version": "1.1",
+  "limit": null,
+  "oracle_per_top3": 0.05,
+  "oracle_exact_top3": 0.8571,
+  "oracle_per_top5": 0.0429,
+  "oracle_exact_top5": 0.8857,
+  "oracle_fallback_words": 0,
+  "oracle_scored_words": 35
+ },
+ {
   "lang": "dlm",
   "dataset": "wikipron",
   "n": 180,

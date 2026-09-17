@@ -209,6 +209,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | de-DE | ipa_childes | 24857 | 0.3948‡ | - | 0.2845 | 0.2632 | 0.1080 | 0.1251 | [0.3926, 0.3971] | 0.0513 | research | epitran-derived |
 | de-DE | ipadict | 777785 | 0.2303 | - | 0.1862 | 0.1724 | 0.1886 | 0.2104 | [0.2300, 0.2307] | 0.1390 | research | crowd-scraped |
 | de-x-alemannic | wikipron | 448 | 0.1736 | - | 0.1382 | 0.1291 | 0.5402 | 0.5580 | [0.1561, 0.1940] | 0.4554 | research | crowd-scraped |
+| dga | primary_sources | 35 | 0.1143 | - | 0.0500 | 0.0429 | 0.8571 | 0.8857 | [0.0476, 0.1810] | 0.7429 | research | expert-human |
 | dlm | wikipron | 180 | 0.2476 | - | 0.2476 | 0.2476 | 0.2000 | 0.2000 | [0.2193, 0.2770] | 0.2000 | research | crowd-scraped |
 | dng | wikipron | 269 | 0.4087 | 0.0244† (tone) | 0.4087 | 0.4087 | 0.0000 | 0.0000 | [0.4003, 0.4181] | 0.0000 | research | crowd-scraped |
 | dsb | wikipron | 2010 | 0.1487 | - | 0.1487 | 0.1487 | 0.4522 | 0.4522 | [0.1408, 0.1564] | 0.4522 | research | crowd-scraped |
