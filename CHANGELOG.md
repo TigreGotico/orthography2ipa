@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.93.20a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.20a1) (2026-09-17)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.19a1...7.93.20a1)
+
+**Merged pull requests:**
+
+- fix\(ayl\): read waw and ya after a consonant as long vowels first [\#1549](https://github.com/TigreGotico/orthography2ipa/pull/1549) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.93.19a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.19a1) (2026-09-17)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.18a1...7.93.19a1)
