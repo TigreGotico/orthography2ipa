@@ -104,7 +104,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | ar-SA-x-hejaz | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar-SA-x-hejaz | gold20_arabic | 20 | 0.0219‡ | - | - | - | - | - | [0.0024, 0.0534] | 0.8000 | research | llm-generated |
 | ar-SA-x-hejaz | primary_sources | 30 | 0.1340 | - | 0.1256 | 0.1256 | 0.5333 | 0.5333 | [0.0823, 0.1872] | 0.5000 | research | expert-human |
-| ar-SA-x-hejaz | wikipron | 1889 | 0.3412 | - | 0.2682 | 0.2648 | 0.0789 | 0.0815 | [0.3346, 0.3481] | 0.0408 | research | crowd-scraped |
+| ar-SA-x-hejaz | wikipron | 1889 | 0.2877 | - | 0.2585 | 0.2507 | 0.1292 | 0.1345 | [0.2812, 0.2952] | 0.0757 | research | crowd-scraped |
 | ar-SA-x-najd | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar-SA-x-najd | gold20_arabic | 20 | 0.0041‡ | - | - | - | - | - | [0.0000, 0.0091] | 0.8500 | research | llm-generated |
 | ar-SA-x-najd | primary_sources | 25 | 0.1491 | - | 0.1434 | 0.1434 | 0.6000 | 0.6000 | [0.0712, 0.2343] | 0.5600 | research | expert-human |

@@ -910,6 +910,7 @@
     "exact_match": 1.0,
     "quality_tier": "research",
     "provenance": "llm-generated",
+    "gating": false,
     "harness_version": "1.1",
     "limit": 1000
   },
@@ -923,6 +924,7 @@
     "exact_match": 0.8,
     "quality_tier": "research",
     "provenance": "llm-generated",
+    "gating": false,
     "harness_version": "1.1",
     "limit": 1000
   },
@@ -936,6 +938,7 @@
     "exact_match": 0.5,
     "quality_tier": "research",
     "provenance": "expert-human",
+    "gating": true,
     "harness_version": "1.1",
     "limit": 1000
   },
@@ -943,12 +946,13 @@
     "lang": "ar-SA-x-hejaz",
     "dataset": "wikipron",
     "n": 710,
-    "per": 0.3408,
-    "per_ci_low": 0.3287,
-    "per_ci_high": 0.3521,
-    "exact_match": 0.0577,
+    "per": 0.2848,
+    "per_ci_low": 0.2715,
+    "per_ci_high": 0.2965,
+    "exact_match": 0.0986,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
+    "gating": true,
     "harness_version": "1.1",
     "limit": 1000
   },
