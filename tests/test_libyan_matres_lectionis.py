@@ -30,3 +30,19 @@ def test_two_adjacent_letters_are_not_both_long_vowels(word, expected):
 def test_waw_and_ya_before_a_final_ta_marbuta_are_glides(word, glide):
     out = AYL.transcribe(word)
     assert glide + "a" in out, out
+
+
+def test_a_kasra_key_plus_ya_is_a_long_vowel():
+    # arb's keys َوِ and َيِ take the kasra, so a following ⟨ي⟩ read [j] in
+    # both positions (قَوِي ɡawij, قَوِيم ɡawijm). Same fix as #1586, and
+    # it only became consistent once #1588's harakat keys were in.
+    assert AYL.transcribe("قَوِي").lstrip("ˈ") == "ɡawiː"
+    assert AYL.transcribe("حَيِي").lstrip("ˈ") == "ħajiː"
+    assert AYL.transcribe("قَوِيم").lstrip("ˈ") == "ɡawiːm"
+
+
+def test_a_shadda_keeps_the_geminate_glide():
+    # A shadda doubles the letter before the graphemes are read, so the
+    # doubled keys َوِيي and َيِيي carry the geminate.
+    assert AYL.transcribe("قَوِيَّة").lstrip("ˈ") == "ɡawijja"
+    assert AYL.transcribe("عَلِي").lstrip("ˈ") == "ʕaliː"
