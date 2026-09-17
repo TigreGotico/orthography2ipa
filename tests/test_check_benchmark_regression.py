@@ -147,8 +147,10 @@ class TestCiSampleMatchesFullBelowCap:
     """
 
     def test_full_and_ci_sample_agree_when_n_matches(self):
-        full_rows = json.load(open(SCOREBOARD_JSON, encoding="utf-8"))
-        ci_rows = json.load(open(CI_SAMPLE_JSON, encoding="utf-8"))
+        with open(SCOREBOARD_JSON, encoding="utf-8") as fh:
+            full_rows = json.load(fh)
+        with open(CI_SAMPLE_JSON, encoding="utf-8") as fh:
+            ci_rows = json.load(fh)
         full = {(r["lang"], r["dataset"]): r for r in full_rows}
 
         violations = []
