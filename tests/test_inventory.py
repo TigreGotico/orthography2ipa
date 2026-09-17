@@ -77,11 +77,18 @@ def test_every_allophone_surface_is_in_the_inventory(code):
 
 
 def test_a_rule_only_surface_is_counted():
-    """Najdi's affricate comes from a rule, not the grapheme table."""
+    """Najdi's VOICED affricate comes from a rule, not the grapheme table.
+
+    The voiceless [ts] used to be the example here and no longer can be: ⟨چ⟩ now
+    carries it directly, because a letter spelling an already-affricated word gives
+    the rule no ⟨ك⟩ to fire on. [dz] is the same phenomenon's voiced half
+    (NAJD_AFFRIC_G_*) and is still reachable only through the rule, so the property
+    under test — that a surface no grapheme emits is still counted — is unchanged.
+    """
     najd = get("ar-SA-x-najd")
-    assert "ts" not in {r for readings in najd.graphemes.values() for r in readings}
-    assert "ts" in emission_inventory(najd)
-    assert "ts" in phoneme_inventory(najd)
+    assert "dz" not in {r for readings in najd.graphemes.values() for r in readings}
+    assert "dz" in emission_inventory(najd)
+    assert "dz" in phoneme_inventory(najd)
 
 
 def test_stress_is_its_own_token():
