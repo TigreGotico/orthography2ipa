@@ -401,6 +401,22 @@
         "j",
         "iː"
       ]
+    },
+    "َوِي": {
+      "word_final": [
+        "awiː"
+      ],
+      "default": [
+        "awij"
+      ]
+    },
+    "َيِي": {
+      "word_final": [
+        "ajiː"
+      ],
+      "default": [
+        "ajij"
+      ]
     }
   }
 }

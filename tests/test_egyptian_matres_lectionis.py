@@ -30,3 +30,16 @@ def test_two_adjacent_letters_are_not_both_long_vowels(word, expected):
 def test_waw_and_ya_before_a_final_ta_marbuta_are_glides(word, glide):
     out = AR_EG.transcribe(word)
     assert glide + "a" in out, out
+
+
+@pytest.mark.parametrize("word, expected", [("قَوِي", "ʔawiː"), ("حَيِي", "ħajiː")])
+def test_final_ya_after_a_kasra_key_is_a_long_vowel(word, expected):
+    # The inherited keys َوِ and َيِ absorb the kasra, so the next ⟨ي⟩ looks
+    # like it follows a vowel and would read [j]. After a kasra, a final ⟨ي⟩
+    # is a long vowel, as ِي reads in عَلِي.
+    assert AR_EG.transcribe(word).lstrip("ˈ") == expected
+
+
+def test_medial_ya_after_a_kasra_key_stays_a_glide():
+    assert AR_EG.transcribe("قَوِيَّة").lstrip("ˈ") == "ʔaˈwijja".lstrip("ˈ")
+    assert AR_EG.transcribe("عَلِي").lstrip("ˈ") == "ʕaliː"
