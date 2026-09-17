@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.93.9a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.9a1) (2026-09-17)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.8a1...7.93.9a1)
+
+**Merged pull requests:**
+
+- fix\(phonetok\): a shadda geminates every Arabic-script consonant, not only U+0621-U+064A [\#1571](https://github.com/TigreGotico/orthography2ipa/pull/1571) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.93.8a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.8a1) (2026-09-17)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.7a1...7.93.8a1)
