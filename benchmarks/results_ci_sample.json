@@ -537,6 +537,7 @@
     "exact_match": 1.0,
     "quality_tier": "research",
     "provenance": "llm-generated",
+    "gating": false,
     "harness_version": "1.1",
     "limit": 1000
   },
@@ -550,6 +551,7 @@
     "exact_match": 0.8,
     "quality_tier": "research",
     "provenance": "llm-generated",
+    "gating": false,
     "harness_version": "1.1",
     "limit": 1000
   },
@@ -563,6 +565,7 @@
     "exact_match": 0.3077,
     "quality_tier": "research",
     "provenance": "expert-human",
+    "gating": true,
     "harness_version": "1.1",
     "limit": 1000
   },
@@ -570,12 +573,13 @@
     "lang": "ar-JO",
     "dataset": "wikipron",
     "n": 880,
-    "per": 0.3694,
-    "per_ci_low": 0.3588,
-    "per_ci_high": 0.3802,
-    "exact_match": 0.0409,
+    "per": 0.3541,
+    "per_ci_low": 0.3423,
+    "per_ci_high": 0.3647,
+    "exact_match": 0.0523,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
+    "gating": true,
     "harness_version": "1.1",
     "limit": 1000
   },
