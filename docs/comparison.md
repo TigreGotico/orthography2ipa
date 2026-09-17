@@ -213,7 +213,7 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 |---|---|---|---|---|---|---|---|---|---|
 | barranquenho_dict | 1508 | same-source | same-source | same-source | same-source | same-source | same-source | same-source | n/a |
 | portuguese_tts | 20 | same-source | same-source | same-source | same-source | same-source | same-source | same-source | n/a |
-| primary_sources | 42 | 0.3514 | n/a | n/a | n/a | 0.3514 | n/a | n/a | tie (g2p_barranquenho, o2i) |
+| primary_sources | 42 | 0.3474 | n/a | n/a | n/a | 0.3474 | n/a | n/a | tie (g2p_barranquenho, o2i) |
 
 ### fi (Finnish)
 
