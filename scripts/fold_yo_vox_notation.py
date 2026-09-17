@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
-"""Measure the Yoruba (``yo``/``vox_communis``) tone-and-nasal fold ceiling.
+"""Measure the Yoruba (``yo``/``vox_communis``) tone-and-nasal fold.
 
 The ``yo``/``vox_communis`` row scores PER 0.6392: the engine emits Yoruba
 tone marks while this gold's epitran-derived phone tier writes NONE — the
-reverse of the wikipron/vox_communis notation mismatch measured on the
-``wikipron`` row's own tone+nasalisation ceiling. This script folds tone
+reverse of the mismatch on the ``wikipron`` row, whose headwords drop the
+tone the gold carries. This script folds tone
 accents and the nasalisation tilde out of
 BOTH sides with the harness's own ``normalize()``/``levenshtein()``; the
-result bounds how much of the row is notation disagreement the script cannot
-record (see th and tn, which carry valid_ceiling on this same dataset).
+result bounds how much of the row is gold notation disagreement. It is
+recorded in ``audit.vox_communis``, not as a valid_ceiling, because Yoruba
+spelling writes tone.
 
 Run it from the repository root::
 
