@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """Measure the Hausa (``ha``/``wikipron``) tone-and-length notation ceiling.
 
-The ``ha``/``wikipron`` row is scored against a Ceisi(prompt-independent)
-wikipron gold whose IPA carries the two accents of Hausa tone and the
-length mark, neither of which Boko orthography writes (the tone system is
-documented in ``ha.md`` against Newman 2000 p.13 / Schuh's *Hausa
-orthography* description of the sentence-tone system). This script
+The ``ha``/``wikipron`` row is scored against a wikipron gold whose IPA
+carries the two accents of Hausa tone and the length mark, neither of
+which Boko orthography writes (the tone system is documented in
+``ha.md`` against Newman 1996, "Hausa Phonology" (pp. 537-539), and
+Schuh & Yalwa 1999, "Hausa" (pp. 90-94)). This script
 re-scores the row with the harness's own ``normalize()`` and
 ``levenshtein()`` (the same broad-normalized setting the board uses),
 then folds tone and length notation out of BOTH sides.
