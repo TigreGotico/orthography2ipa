@@ -30,3 +30,15 @@ def test_two_adjacent_letters_are_not_both_long_vowels(word, expected):
 def test_waw_and_ya_before_a_final_ta_marbuta_are_glides(word, glide):
     out = AR_JO.transcribe(word)
     assert glide + "a" in out, out
+
+
+def test_final_ya_after_a_kasra_key_is_a_long_vowel():
+    # arb's keys َوِ and َيِ absorb the kasra, so a word-final ⟨ي⟩ after them
+    # looked like it followed a vowel and read [j].
+    out = AR_JO.transcribe("قَوِي").lstrip("ˈ")
+    assert out.endswith("awiː"), out
+    assert AR_JO.transcribe("حَيِي").lstrip("ˈ") == "ħajiː"
+
+
+def test_medial_ya_after_a_kasra_key_stays_a_glide():
+    assert "wijja" in AR_JO.transcribe("قَوِيَّة")
