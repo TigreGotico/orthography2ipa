@@ -40,6 +40,21 @@ def test_final_ya_after_a_kasra_key_is_a_long_vowel(word, expected):
     assert AR_EG.transcribe(word).lstrip("ˈ") == expected
 
 
-def test_medial_ya_after_a_kasra_key_stays_a_glide():
-    assert AR_EG.transcribe("قَوِيَّة").lstrip("ˈ") == "ʔaˈwijja".lstrip("ˈ")
+def test_a_kasra_key_plus_ya_is_long_medially_too():
+    """After a kasra, ⟨ي⟩ is a long vowel wherever it stands.
+
+    dev read قَوِيم as ʔaˈwijm, a glide, because the arb key َوِ takes the
+    kasra and the default leg of َوِي kept the glide. The positional keys
+    read iː in both positions now, as ar-SY and ar-x-gulf do after #1586.
+    """
+    assert AR_EG.transcribe("قَوِيم") == "ʔaˈwiːm"
+
+
+def test_a_shadda_keeps_the_geminate_glide():
+    """A shadda doubles the letter before the graphemes are read, so the
+    doubled keys َوِيي and َيِيي carry the geminate. Without them the long
+    reading would swallow it and ⟨قَوِيَّة⟩ would read ...wiːja.
+    """
+    assert AR_EG.transcribe("قَوِيَّة") == "ʔaˈwijja"
+    assert AR_EG.transcribe("عَرَبِيَّة") == "ʕaraˈbijja"
     assert AR_EG.transcribe("عَلِي").lstrip("ˈ") == "ʕaliː"
