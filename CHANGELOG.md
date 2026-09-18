@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.96.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.96.0a2) (2026-09-18)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.96.0a1...7.96.0a2)
+
+**Merged pull requests:**
+
+- data\(da\): document the ipa\_childes row as gold notation, not a ceiling [\#1622](https://github.com/TigreGotico/orthography2ipa/pull/1622) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.96.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.96.0a1) (2026-09-18)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.95.3a1...7.96.0a1)
