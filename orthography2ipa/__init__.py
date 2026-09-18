@@ -91,6 +91,7 @@ from orthography2ipa.registry import (
     get,
     get_syllabifier,
     resolve,
+    resolves_exactly,
 )
 from orthography2ipa.sandhi import SandhiEngine
 from orthography2ipa.transforms import (
@@ -152,6 +153,7 @@ __all__ = [
     "GraphemeFeatures",
     "get",
     "resolve",
+    "resolves_exactly",
     "ancestry_chain",
     "available_codes",
     "available_families",
