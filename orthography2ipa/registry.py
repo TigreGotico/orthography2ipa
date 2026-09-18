@@ -124,6 +124,47 @@ _ALIASES: Dict[str, str] = {
     "aec": "ar-EG-x-saidi",   # Saʿīdi (Upper Egyptian) Arabic
     "avl": "ar-EG-x-bedawi",  # Eastern Egyptian Bedawi Arabic
     "adf": "ar-OM-x-dhofari", # Dhofari Arabic
+    "acx": "ar-OM",           # Omani Arabic
+    "apd": "ar-SD",           # Sudanese Arabic
+    "ayn": "ar-YE",           # Sanaani Arabic
+    "mey": "ar-MR",           # Hassaniyya
+    "shu": "ar-TD",           # Chadian Arabic (ar-NG is its child)
+    # ``pnb`` (Western Panjabi) is an ISO 639-3 individual code that resolved to
+    # ``lah``, its macrolanguage, which carries no graphemes at all -- so the
+    # code reached a spec that produces nothing while ``pa-PK`` describes the
+    # same variety with 57 keys and declares the code.
+    "pnb": "pa-PK",           # Western Punjabi (Shahmukhi)
+    # Codes with exactly one declaring spec, whose name is the same language as
+    # the code's, and no file of their own to shadow them. Same shape as the
+    # Arabic country codes above.
+    "ajg": "aja",             # Aja (Adja)
+    "gej": "gen",             # Gen (Mina)
+    "xdc": "xda",             # Dacian/Thracian
+    # ``cbk`` resolved to ``cbk-x-cavite``, a variety spec that declares no
+    # graphemes and inherits none, so the code reached an empty table while
+    # ``cbk-zam`` describes Chavacano with 37 keys and declares the code.
+    "cbk": "cbk-zam",         # Chavacano (Zamboangueño)
+    # ``bar`` resolved to ``bar.json``, a placeholder with no graphemes and no
+    # base, while ``de-x-bavarian`` declares the code and inherits a table
+    # through ``graphemes_base: de-AT``. Deleting the placeholder rather than
+    # leaving it to shadow the real spec is the same call this batch makes for
+    # aec, avl and adf, and the placeholder's own notes already describe
+    # Bavarian as "an Upper German variety of Bavaria, Austria and South Tyrol".
+    "bar": "de-x-bavarian",   # Bavarian (Boarisch)
+    # ``ars`` (Najdi Arabic) is declared by four Saudi specs and was reached by
+    # none of them: langcodes placed it on ``ar-SA`` and the nearest match came
+    # back ``ar-SA-x-dawasir``, which declares ``afb`` and is a different
+    # variety, so the caller got Gulf Arabic for a Najdi tag with no error.
+    #
+    # ``ar-SA-x-najd`` is the target because it is the only one of the four
+    # named Najdi Arabic and the only one holding glottocode najd1235 in its own
+    # right; ``ar-SA-x-qassim`` is its child and shares that code. The other two
+    # are not sub-varieties of it -- ``ar-SA-x-rijal-alma`` and
+    # ``ar-SA-x-tihama-qahtan`` both parent to ``ar-x-peninsular`` with no
+    # glottocode, and neither ʿAsīr nor the Tihāma coast is in Najd. That those
+    # two declare ``ars`` at all is a separate question from which spec the code
+    # should reach, and one this alias does not answer.
+    "ars": "ar-SA-x-najd",    # Najdi Arabic
     # ``acm`` (Mesopotamian Arabic) is the ISO code for the variety ``ar-IQ``
     # already describes: ``ar-IQ`` declares ``glottolog_code`` meso1252 (Gilit
     # Mesopotamian Arabic) and ``iso639_3`` acm. It resolved to a separate
