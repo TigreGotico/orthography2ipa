@@ -35,9 +35,15 @@ def test_the_spec_declares_only_what_is_cited():
     path = os.path.join(os.path.dirname(o2i.__file__), "data", "acq.json")
     with open(path, encoding="utf-8") as fh:
         raw = json.load(fh)
-    assert sorted(raw["graphemes"]) == sorted(["ث", "ذ", "ج"])
+    assert sorted(raw["graphemes"]) == sorted(["ث", "ذ", "ج", "ض", "ظ"])
     assert raw["quality"] == "research"
     assert raw["graphemes_base"] == PARENT
+
+
+def _raw():
+    path = os.path.join(os.path.dirname(o2i.__file__), "data", "acq.json")
+    with open(path, encoding="utf-8") as fh:
+        return json.load(fh)
 
 
 def test_qaf_and_kaf_are_left_to_the_parent():
@@ -51,13 +57,25 @@ def test_qaf_and_kaf_are_left_to_the_parent():
     assert get(ADEN).graphemes["ق"] == get(PARENT).graphemes["ق"]
 
 
-def test_the_contradicted_letter_is_named_in_the_notes():
-    """The source says Adeni lacks the emphatic fricative, which is the only value the
-    parent gives for zaa — so the inherited reflex is one the source denies. It is not
-    corrected, because a negative fact licenses no positive one, and the notes have to
-    say so or the next reader will take the inheritance for a finding."""
-    path = os.path.join(os.path.dirname(o2i.__file__), "data", "acq.json")
-    with open(path, encoding="utf-8") as fh:
-        raw = json.load(fh)
-    assert "ظ" not in raw["graphemes"]
-    assert "LACKS" in raw["notes"] and "no replacement" in raw["notes"].lower()
+def test_no_letter_emits_the_denied_phone_as_its_canonical_value():
+    """The source says Adeni lacks the emphatic fricative. Both emphatics inherited it,
+    and an earlier draft corrected neither while the notes named one of them.
+
+    This asserts the property over every declared letter rather than over the two that
+    happened to be noticed, so a third letter arriving with the same defect goes red.
+    """
+    denied = "ðˤ"
+    for letter, values in _raw()["graphemes"].items():
+        assert values[0] != denied, (
+            f"{letter} emits the phone the source denies as its canonical reading")
+    assert get(ADEN).graphemes["ض"][0] == "dˤ"
+    assert get(ADEN).graphemes["ظ"][0] == "dˤ"
+
+
+def test_the_inference_is_labelled_as_one():
+    """dad is a reordering of values the parent already carries; zaa's stop is an
+    inference, because the parent offers the fricative alone. The notes must keep those
+    apart, or a later reader takes both for quotations."""
+    notes = _raw()["notes"]
+    assert "REORDERING" in notes and "INFERENCE" in notes
+    assert "LACKS" in notes
