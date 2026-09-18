@@ -5148,9 +5148,9 @@
     "lang": "nb",
     "dataset": "ipa_childes",
     "n": 1000,
-    "per": 0.3563,
-    "per_ci_low": 0.3399,
-    "per_ci_high": 0.3724,
+    "per": 0.3528,
+    "per_ci_low": 0.3368,
+    "per_ci_high": 0.3687,
     "exact_match": 0.164,
     "quality_tier": "research",
     "provenance": "espeak-derived",
@@ -5162,29 +5162,39 @@
     "lang": "nb",
     "dataset": "ipadict",
     "n": 991,
-    "per": 0.3354,
-    "per_ci_low": 0.3245,
-    "per_ci_high": 0.3471,
-    "exact_match": 0.0979,
+    "per": 0.3282,
+    "per_ci_low": 0.3175,
+    "per_ci_high": 0.3395,
+    "exact_match": 0.1049,
     "quality_tier": "research",
     "provenance": "machine-generated",
     "gating": true,
     "harness_version": "1.1",
-    "limit": 1000
+    "limit": 1000,
+    "valid_ceiling": {
+      "per": 0.2096,
+      "folded": "vowel length + consonant gemination",
+      "citation": "Re-measured against the current spec (post #1366's short-⟨a⟩ backness fix, raw PER 0.3048, n=10169). Scandinavian quantity is one contrast written two ways -- a long vowel XOR a geminate consonant -- so both notations of it are folded together on both hypothesis and gold: the vowel length mark ː is stripped, and any run of an identical letter (the doubled-letter notation _expand_consonant_length already canonicalises consonant gemination to) is collapsed to one. That fold alone moves PER to 0.2096, clearing the 0.25 production threshold. Folding the ¹/² toneme digits on top makes no further difference (0.2096, unchanged) because this gold carries zero toneme digits, confirming the toneme fold remains a no-op for ipadict specifically, as recorded when this ceiling was first measured pre-fix in #1361 (then 0.3397 raw / 0.2477 folded, both stale after #1366 moved the underlying vowel rule)."
+    }
   },
   {
     "lang": "nb",
     "dataset": "wikipron",
     "n": 708,
-    "per": 0.4206,
-    "per_ci_low": 0.4068,
-    "per_ci_high": 0.4342,
-    "exact_match": 0.0268,
+    "per": 0.4159,
+    "per_ci_low": 0.4026,
+    "per_ci_high": 0.4295,
+    "exact_match": 0.0282,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
     "gating": true,
     "harness_version": "1.1",
-    "limit": 1000
+    "limit": 1000,
+    "valid_ceiling": {
+      "per": 0.2995,
+      "folded": "vowel length + consonant gemination + toneme",
+      "citation": "Re-measured against the current spec (raw PER 0.3654, n=2725, up from 0.3471 pre-#1366 -- see the notes field for the unresolved front/back split behind that regression). The same length+gemination fold used for ipadict moves this row to 0.3039; folding the ¹/² toneme digits on top (this gold, unlike ipadict, carries them) moves it further to 0.2995. That does NOT clear the 0.25 production threshold, so this row stays open rather than proved input-limited: something beyond notation, plausibly the front/back ⟨a⟩ split documented in the notes field, still accounts for roughly three tenths of the row's segments."
+    }
   },
   {
     "lang": "nci",
