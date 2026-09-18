@@ -2,7 +2,7 @@
 """Attribute the Brazilian Portuguese ``vox_communis`` PER to the gold.
 
 The ``pt-BR`` / ``vox_communis`` row is the worst Portuguese row on the board
-(PER 0.3896 over 33,957 words), which invites reading it as a defect in the
+(PER 0.3872 over 33,958 words), which invites reading it as a defect in the
 Brazilian spec. It is not one. The row's phone tier is Epitran output over the
 region-untagged Common Voice ``pt`` locale, and it is European Portuguese:
 measured over the cached TSV, NONE of the four features that define Brazilian
@@ -31,6 +31,7 @@ import collections
 import os
 import re
 import sys
+import unicodedata
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
@@ -44,21 +45,29 @@ DATASET = "vox_communis"
 #: Every fold removes a distinction the gold cannot express, so folding always
 #: loses information: these numbers bound the row's notation offset, they do
 #: not improve the spec.
+def _nasal(s):
+    """A nasal vowel and a vowel plus coda nasal letter read the same."""
+    s = unicodedata.normalize("NFD", s)
+    s = re.sub(r"([aeiou])[nm](?=[^aeiouj]|$)", r"\1", s)
+    return s.replace("\u0303", "")
+
+
 FOLDS = [
-    ("coda ⟨s⟩ as [ʃ] (EP chiado, Mateus & d'Andrade 2000: ch.2)",
-     lambda s: re.sub(r"ʃ$", "s", s)),
-    ("palatal lateral ⟨lh⟩ absent from the gold inventory",
-     lambda s: s.replace("ʎ", "l")),
-    ("palatal nasal ⟨nh⟩ absent from the gold inventory",
-     lambda s: s.replace("ɲ", "n")),
+    ("coda sibilant as [ʃ ʒ] (EP chiado, Mateus & d'Andrade 2000: ch.2)",
+     lambda s: s.replace("ʃ", "s").replace("ʒ", "z")),
     ("dental affrication before /i/ (Barbosa & Albano 2004: 228)",
-     lambda s: s.replace("t͡ʃ", "t").replace("d͡ʒ", "d")),
+     lambda s: s.replace("tsi", "ti").replace("dzi", "di")),
+    ("unstressed ⟨a⟩ as [ɐ] (EP reduction)", lambda s: s.replace("ɐ", "a")),
+    ("mid-vowel height ⟨ɛ⟩ ~ ⟨e⟩", lambda s: s.replace("ɛ", "e")),
     ("final unstressed ⟨e o⟩ raising to [i u] (Câmara 1970)",
-     lambda s: re.sub(r"i$", "e", re.sub(r"u$", "o", s))),
-    ("mid-vowel height ⟨ɛ ɔ⟩ ~ ⟨e o⟩",
-     lambda s: s.replace("ɛ", "e").replace("ɔ", "o")),
+     lambda s: re.sub(r"o(s?)$", r"u\1", re.sub(r"e(s?)$", r"i\1", s))),
+    ("nasal vowel written as vowel + n/m", _nasal),
     ("coda ⟨l⟩ vocalisation to [w] (Barbosa & Albano 2004: 228, /L/)",
-     lambda s: re.sub(r"w$", "l", s)),
+     lambda s: re.sub(r"w(?=[^aeiouɐɛɔ]|$)", "l", s)),
+    ("palatal ⟨lh nh⟩ absent from the gold inventory",
+     lambda s: s.replace("ɲ", "n").replace("ʎ", "l")),
+    ("every ⟨r⟩ as [ʁ]", lambda s: s.replace("ʁ", "ɾ")),
+    ("labialisation mark ʷ after ⟨qu gu⟩", lambda s: s.replace("ʷ", "")),
 ]
 
 #: Features that define Brazilian Portuguese against European Portuguese, as
@@ -87,7 +96,7 @@ def scored_pairs():
     extra = B._prosody_marks(LANG)
 
     def norm(s):
-        return B.normalize(s, True, False, extra_strip=extra)
+        return B.normalize(s, True, True, extra_strip=extra)
 
     out = []
     for word, gold in B.load_vox_communis(LANG, 10 ** 9):
@@ -128,6 +137,10 @@ def main():
     for name, fn in FOLDS:
         fns.append(fn)
         print(f"  + {name:<56} {per(rows, compose(fns)):.4f}")
+    fold = compose(fns)
+    exact = sum(1 for _w, g, h in rows if fold(g) == fold(h))
+    print(f"  exact matches after all folds: {exact} of {len(rows)} "
+          f"({100 * exact / len(rows):.1f}%)")
 
     print("\nDefining Brazilian features, as attested in this gold:")
     for name, selects, shows in BR_FEATURES:
@@ -149,6 +162,13 @@ def main():
     print(f"\n  Words spelled with ⟨ss⟩: {len(ss)}; written [ʃs] rather than "
           f"[s]: {split}.\n  The gold applies the EP coda rule inside the "
           f"digraph (isso → [iʃso]).")
+
+    ex = [(w, g, h) for w, g, h in rows if re.match(r"^ex[aeiouáéíóúâêôãõ]", w.lower())]
+    ex_gold = sum(1 for _w, g, _h in ex if g[1:2] == "z")
+    ex_ours = sum(1 for _w, _g, h in ex if h[1:2] == "z")
+    print(f"\n  Words starting with ⟨ex⟩ + vowel: {len(ex)}; gold writes [z]: "
+          f"{ex_gold}; this spec writes [z]: {ex_ours}\n  (PT_INITIAL_EX_VOICED; "
+          f"the one reading of ⟨x⟩ this gold can measure).")
 
     rr = [(w, g) for w, g, _h in rows if "rr" in w.lower()]
     doubled = sum(1 for _w, g in rr if "ʁʁ" in g or "rr" in g)

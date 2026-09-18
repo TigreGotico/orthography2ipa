@@ -274,6 +274,13 @@
     }
   },
   "allophone_passes": 2,
+  "audit": {
+    "vox_communis": {
+      "conclusion": "at_ceiling_documented",
+      "measured": "Board PER 0.3877 (n=33958) before PT_INITIAL_EX_VOICED, 0.3872 after it: 125 words start with ⟨ex⟩ plus a vowel, the gold writes [z] in all 125, and this spec now does too, one character each. The gold is epitran-derived and epitran's one Portuguese table (por-Latn) writes the European standard, which this spec does not (docs/languages/pt-BR.md counts the defining Brazilian features at 0 of 948 to 5 of 1637 in it). scripts/fold_pt_br_notation.py folds ten of its conventions out of BOTH sides cumulatively with the harness's own normalize() (broad) and levenshtein(): coda ʃ ʒ 0.3441, tʃi dʒi ~ ti di 0.3240, ɐ ~ a 0.2346, ɛ ~ e 0.1715, final o e ~ u i 0.1219, nasal vowel ~ vowel + n/m 0.0625, coda w ~ l 0.0550, ɲ ʎ ~ n l 0.0497, ʁ ~ ɾ 0.0429, ʷ dropped 0.0389; 26426 of 33958 words (77.8%) then match exactly. None of these is a contrast the spelling fails to write, so no valid_ceiling is recorded (T-2583). What the folds leave is the gold misreading the spelling, and it stays as scored: ⟨ss⟩ as two sibilants (981 of 995 ⟨ss⟩ words), intervocalic ⟨c⟩ before e/i and ⟨ç⟩ as z (privacidade, você), ⟨ch⟩ as k (achava), ⟨x⟩ after a diphthong as ks (baixo, deixar), ⟨ou⟩ as owu, and a final ⟨-am⟩ with no glide. This spec's readings of those letters stand (Barbosa & Albano 2004; Cunha & Cintra 1984). The ⟨ex-⟩ prefix inside a word (inexato, reexame) is [z] in the gold and [ʃ] here and stays a documented residue, since it needs a morphological cut. A coda ⟨x⟩ before a consonant (extra, texto) is ʃ here and s in the Brazilian standard, but this gold writes every coda sibilant ʃ, so it cannot measure that change and the change is not made.",
+      "reference": "PT_INITIAL_EX_VOICED notes (cunha_cintra1984, mateus_dandrade2000); docs/languages/pt-BR.md; scripts/fold_pt_br_notation.py"
+    }
+  },
   "allophone_rules": [
     {
       "id": "BR_FINAL_EM_GLIDE",
@@ -508,6 +515,23 @@
         "trouxerem"
       ],
       "notes": "The ⟨x⟩ of the trazer preterite/subjunctive stem ⟨troux-⟩ is [s], not the default [ʃ] (trouxe [ˈtɾo(w)sɨ] / BP [ˈtɾosi]; Cunha & Cintra 1984, §on ⟨x⟩; the value of orthographic ⟨x⟩ is lexically unpredictable — [ʃ] peixe, [s] trouxe/próximo, [ks] fixo, [z] exame). Keyed on the lexeme because no phonological context separates the trouxe ⟨x⟩=[s] from the luxo ⟨x⟩=[ʃ]; gated on grapheme ⟨x⟩ so it never touches a ⟨ch⟩ or lexical [ʃ]. Pins only the consonant, so vowel reduction and the surrounding processes run normally and it inherits to every pt child. SEED — the broader ⟨x⟩=[s]/[ks]/[z] lexicon (próximo, máximo, fixo, exame) is documented residual."
+    },
+    {
+      "id": "PT_INITIAL_EX_VOICED",
+      "phonemes": [
+        "ʃ"
+      ],
+      "surface": "z",
+      "grapheme": [
+        "x"
+      ],
+      "preceded_by_grapheme": [
+        "e",
+        "ê"
+      ],
+      "preceded_by_2": "word_boundary",
+      "followed_by": "vowel",
+      "notes": "Word-initial ⟨ex-⟩ before a vowel is [ez]: exame [eˈzami], exemplo [eˈzẽplu], existir [ezisˈt͡ʃiɾ], êxito [ˈezitu], exército [eˈzɛɾsitu] (Cunha & Cintra 1984, ch. 'Fonética': ⟨x⟩ 'soa como z' in the prefix ex- before a vowel; Mateus & d'Andrade 2000: ch.2, the voiced reading of ⟨x⟩ in exame/exemplo). The grapheme ⟨x⟩ carries five lexical readings and the beam takes the first, [ʃ], which is right after a diphthong (baixo, deixar) and word-initially (xadrez) but never in this prefix. Measured on the vox_communis pt-BR gold: 125 words start with ⟨ex⟩ plus a vowel letter and the gold writes [z] in all 125, [ʃ] in 0 (scripts/fold_pt_br_notation.py prints the count); 9 more start with ⟨hex⟩ and are also [z] in the gold. Gated to the ⟨x⟩ slot (grapheme), to a word-initial ⟨e/ê⟩ before it (preceded_by_grapheme plus preceded_by_2 = word_boundary) and to a vowel after it, so ⟨ex⟩ before a consonant (extra, exclusivo), a medial ⟨-ex-⟩ (sexo [ks], inexato) and the ⟨hex-⟩ words are untouched. The prefix inside a word (inexato, reexame) is also [z] but is not reachable by a neighbour condition without a morphological cut, and is left as documented residue."
     }
   ],
   "quality": "production",
