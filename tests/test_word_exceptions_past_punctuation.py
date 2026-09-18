@@ -13,10 +13,9 @@ from orthography2ipa import G2P
 
 @pytest.mark.parametrize("word", ["the", "the,", "the.", "(the)", "“the", "the?”"])
 def test_the_exception_hits_through_edge_punctuation(word):
-    # ``the`` is a declared clitic and takes no stress mark; a token the
-    # clitic list does not know (``the,``) gets one. The exception's segments
-    # are what this test is about.
-    assert G2P("en-US").transcribe_word(word).replace("ˈ", "") == "ðə"
+    # ``the`` is a declared clitic and takes no stress mark, and the comma
+    # does not change that: the clitic lookup sees past the same punctuation.
+    assert G2P("en-US").transcribe_word(word) == "ðə"
 
 
 def test_a_key_spelled_with_a_mark_still_hits():
@@ -27,8 +26,6 @@ def test_a_key_spelled_with_a_mark_still_hits():
 def test_an_elision_apostrophe_is_not_clinging_punctuation():
     # Catalan d' is the elided preposition, not ⟨d⟩ with a mark on it: the
     # bare-letter exception must not capture it.
-    g = G2P("ca")
-    assert g.transcribe_word("d'") == g.transcribe_word("d'")  # stable
     from orthography2ipa.g2p import _EDGE_PUNCT_RE
     assert _EDGE_PUNCT_RE.sub("", "d'") == "d'"
     assert _EDGE_PUNCT_RE.sub("", "'em") == "'em"

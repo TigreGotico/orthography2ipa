@@ -1183,8 +1183,14 @@ class G2P:
         # :func:`orthography2ipa.stress.is_cliticless`, which never strips.
         if any(m in word for m in self._silent_stress_marks):
             return False
-        return unicodedata.normalize(
-            "NFC", lower_str(word, self.spec.code)) in self._cliticless_cache
+        key = unicodedata.normalize("NFC", lower_str(word, self.spec.code))
+        if key in self._cliticless_cache:
+            return True
+        # The same clinging punctuation ``_override_for`` sees past: a clitic
+        # stays a clitic with a comma after it (``the,`` takes no more stress
+        # than ``the``). The exact key is tried first, as there.
+        stripped = _EDGE_PUNCT_RE.sub("", key)
+        return bool(stripped) and stripped != key and stripped in self._cliticless_cache
 
     def _transcribe_word(self, word: str, width: int,
                          forced_ipa: Optional[str] = None) -> WordTranscription:
