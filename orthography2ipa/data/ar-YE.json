@@ -141,6 +141,9 @@
     ],
     "وِالظظ": [
       "wiðˤðˤ"
+    ],
+    "گ": [
+      "ɡ"
     ]
   },
   "allophones_base": "ar-x-peninsular",
@@ -187,7 +190,7 @@
       "notes": "Peninsular Arabic base"
     }
   ],
-  "notes": "Yemeni Arabic — Ṣanʿānī (North Yemeni highland) as reference variety, per Watson (2002). ق qaf → /ɡ/ (voiced velar stop): Watson p.11 and §2.2 p.20 — *q is not realized in any lexeme, even Standard/religious words: al-gurʔān 'the Qur'an'. ج jim → /dʒ/ (voiced palatoalveolar affricate): Watson p.11, §2.2 p.20. The /ɡ/-jim reflex belongs to CAIRENE and the LOWER-Yemeni Taʿizz/Hugariyyah dialects (Watson §2.1.6 p.16), NOT Ṣanʿānī — hence /dʒ/ primary, /ɡ/ listed as the Taʿizzī alternate. Interdentals ث /θ/, ذ /ð/, ظ /ðˤ/ ALL RETAINED (§2.1.4 pp.14–15; inventory Table 2.2 p.19; contrast with interdental-losing Cairene §2.3 p.20). UNIQUE: ض ḍād merges with ظ ẓāʾ → /ðˤ/ (voiced pharyngealized interdental fricative) — §2.2 p.20, one Classical phoneme lost. No k → /tʃ/ (unlike Gulf). South Yemen (Aden/Taʿizz) patterns closer to Gulf/Cairene in the jim reflex.",
+  "notes": "Yemeni Arabic — Ṣanʿānī (North Yemeni highland) as reference variety, per Watson (2002). ق qaf → /ɡ/ (voiced velar stop): Watson p.11 and §2.2 p.20 — *q is not realized in any lexeme, even Standard/religious words: al-gurʔān 'the Qur'an'. ج jim → /dʒ/ (voiced palatoalveolar affricate): Watson p.11, §2.2 p.20. The /ɡ/-jim reflex belongs to CAIRENE and the LOWER-Yemeni Taʿizz/Hugariyyah dialects (Watson §2.1.6 p.16), NOT Ṣanʿānī — hence /dʒ/ primary, /ɡ/ listed as the Taʿizzī alternate. Interdentals ث /θ/, ذ /ð/, ظ /ðˤ/ ALL RETAINED (§2.1.4 pp.14–15; inventory Table 2.2 p.19; contrast with interdental-losing Cairene §2.3 p.20). UNIQUE: ض ḍād merges with ظ ẓāʾ → /ðˤ/ (voiced pharyngealized interdental fricative) — §2.2 p.20, one Classical phoneme lost. No k → /tʃ/ (unlike Gulf). South Yemen (Aden/Taʿizz) patterns closer to Gulf/Cairene in the jim reflex. ⟨گ⟩ U+06AF reads [ɡ]. It writes the qāf reflex: of the distinct forms carrying it in this variety's share of the judged corpus, 48% have a plain ⟨ق⟩ twin attested in the same variety (compared on bare skeletons, since diacritics and clitics defeat an exact match), and the remainder are qāf words whose plain spelling does not happen to occur — ittafaqū, al-fāriq, aqūlhum. No phone is added: ⟨ق⟩ in this spec already reads [ɡ], so the letter writes a sound the variety already makes and was being deleted in silence. Attested in 1234 rows over 1591 distinct forms.",
   "quality": "research",
   "script_type": "abjad",
   "sources": [

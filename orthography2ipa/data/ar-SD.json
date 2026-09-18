@@ -108,6 +108,9 @@
     ],
     "يَوْ": [
       "joː"
+    ],
+    "گ": [
+      "ɡ"
     ]
   },
   "allophones_base": "ar-x-mashriqi",
@@ -163,7 +166,7 @@
       "notes": "Eastern (Mashriqi / Egypto-Sudanic) Arabic base"
     }
   ],
-  "notes": "Sudanese Arabic — Khartoum/central Sudan koine, part of the Egypto-Sudanic group. DEFINING FEATURE: ج jim → /ɟ/ (voiced PALATAL stop) — an archaic reflex distinguishing Sudanese from both Egyptian (/ɡ/) and Levantine (/ʒ/); /dʒ/ also occurs. Leddy-Cecere (2021) §3.1.1: 'the palatal articulation /ɟ/ dominates in the core Sudanic region represented by the dialects of Khartoum and the Šukriyya… perhaps of high salience, given its comparative rarity outside this region.' ق qaf → /ɡ/ (voiced velar stop, Bedouin-origin reflex): Leddy-Cecere §3.1 '/g/ of Old Arabic *q, robustly characteristic of all varieties in the sample outside of Cairo'; Youssef (2021) §3.1 lists Sudan among the /ɡ/-reflex areas. Interdentals MERGE to STOPS (not retained): ث θ → /t/, ذ ð → /d/, ظ/ض → /dˤ/ (~/s z zˤ/ in MSA loanwords) — Leddy-Cecere §3.1: 'merger of the Old Arabic interdental series *θ, ð, ð̣ with corresponding alveolar stops *t, d, ḍ', with a distinctive extra emphatic /ḍ/ reflex of *ð in the Sudanic area. Nubian/Beja/Nilotic substrate is documented for the LEXICON (Gasim 1965 via Wikipedia), not as a phonological cause. Dickins (2007) is the standard primary monograph (not obtained for this pass).",
+  "notes": "Sudanese Arabic — Khartoum/central Sudan koine, part of the Egypto-Sudanic group. DEFINING FEATURE: ج jim → /ɟ/ (voiced PALATAL stop) — an archaic reflex distinguishing Sudanese from both Egyptian (/ɡ/) and Levantine (/ʒ/); /dʒ/ also occurs. Leddy-Cecere (2021) §3.1.1: 'the palatal articulation /ɟ/ dominates in the core Sudanic region represented by the dialects of Khartoum and the Šukriyya… perhaps of high salience, given its comparative rarity outside this region.' ق qaf → /ɡ/ (voiced velar stop, Bedouin-origin reflex): Leddy-Cecere §3.1 '/g/ of Old Arabic *q, robustly characteristic of all varieties in the sample outside of Cairo'; Youssef (2021) §3.1 lists Sudan among the /ɡ/-reflex areas. Interdentals MERGE to STOPS (not retained): ث θ → /t/, ذ ð → /d/, ظ/ض → /dˤ/ (~/s z zˤ/ in MSA loanwords) — Leddy-Cecere §3.1: 'merger of the Old Arabic interdental series *θ, ð, ð̣ with corresponding alveolar stops *t, d, ḍ', with a distinctive extra emphatic /ḍ/ reflex of *ð in the Sudanic area. Nubian/Beja/Nilotic substrate is documented for the LEXICON (Gasim 1965 via Wikipedia), not as a phonological cause. Dickins (2007) is the standard primary monograph (not obtained for this pass). ⟨گ⟩ U+06AF reads [ɡ]. It writes the qāf reflex: of the distinct forms carrying it in this variety's share of the judged corpus, 57% have a plain ⟨ق⟩ twin attested in the same variety (compared on bare skeletons, since diacritics and clitics defeat an exact match), and the remainder are qāf words whose plain spelling does not happen to occur — ittafaqū, al-fāriq, aqūlhum. No phone is added: ⟨ق⟩ in this spec already reads [ɡ], so the letter writes a sound the variety already makes and was being deleted in silence. Attested in 874 rows over 1359 distinct forms.",
   "quality": "research",
   "script_type": "abjad",
   "sources": [

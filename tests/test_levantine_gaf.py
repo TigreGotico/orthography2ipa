@@ -17,7 +17,7 @@ from orthography2ipa.inventory import emission_inventory, phoneme_inventory
 from orthography2ipa.registry import get
 
 READS = ["ar-LB", "ar-SY"]
-UNCHANGED = ["ar-PS", "ar-JO"]
+UNCHANGED = ["ar-JO"]
 
 
 def _inventory(code):
@@ -58,10 +58,16 @@ def test_the_native_qaf_reflex_is_untouched(code):
 
 @pytest.mark.parametrize("code", UNCHANGED)
 def test_siblings_without_gold_evidence_are_untouched(code):
-    """ar-PS and ar-JO score against a different gold, which carries no ⟨گ⟩ row.
+    """ar-JO scores against a gold that carries no ⟨گ⟩ row, and its judged corpus
+    carries no Jordanian rows either, so there is nothing anywhere licensing the letter.
 
-    They already have /ɡ/ from their own ⟨ق⟩, so mapping the letter there would be free
-    and invisible — which is exactly why the absence is pinned. The evidence is
+    It already has /ɡ/ from its own ⟨ق⟩, so mapping the letter would be free and
+    invisible — which is exactly why the absence is pinned. The evidence is
     variety-specific and so is the change.
+
+    ar-PS was pinned here on the same reasoning and no longer is: its share of the
+    judged corpus attests the letter in 37 rows over 58 distinct forms, 58% of them with
+    a plain ⟨ق⟩ twin in the same variety. The gold still has no ⟨گ⟩ row — what changed
+    is that a second kind of evidence was looked for and found, not that the bar moved.
     """
     assert "گ" not in get(code).graphemes, code

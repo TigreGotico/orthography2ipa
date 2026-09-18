@@ -17,6 +17,9 @@
     "ك": [
       "k",
       "tʃ"
+    ],
+    "گ": [
+      "ɡ"
     ]
   },
   "allophones_base": "ar-x-levantine",
@@ -45,7 +48,7 @@
       "notes": "Levantine (South Levantine) Arabic base"
     }
   ],
-  "notes": "Palestinian Arabic — South Levantine, internally diverse along an urban/rural/Bedouin axis. INPUT CONTRACT: fully-diacritized Arabic. ق qaf is the classic four-way split (Fadda 2016:28, after Al-Wer & Herin 2011:60): URBAN koine (Jerusalem, Jaffa, Nazareth) → [ʔ]; CENTRAL/NORTHERN RURAL West Bank fellahin → [k] (with the 'kaf shift' /k/→[tʃ]); SOUTHERN/Bedouin (Negev, and indigenous Gaza City) → [ɡ] (Cotter 2016:152); [q] retained only in qeltu enclaves. All four listed, ʔ first for the prestige urban form. ج jim → /ʒ/ (urban) ~ /dʒ/ (rural/Bedouin). ك kaf → [tʃ] before front vowels in central rural speech. Interdentals /θ ð ðˤ/ merge to stops [t d dˤ] in the urban koine (Cotter 2016:150-154, after Bergsträßer 1915 & Palva 1984:361-62), conserved in rural/Bedouin varieties. Diphthong monophthongization /aj aw/→[eː oː] and emphasis backing are inherited from the Levantine parent.",
+  "notes": "Palestinian Arabic — South Levantine, internally diverse along an urban/rural/Bedouin axis. INPUT CONTRACT: fully-diacritized Arabic. ق qaf is the classic four-way split (Fadda 2016:28, after Al-Wer & Herin 2011:60): URBAN koine (Jerusalem, Jaffa, Nazareth) → [ʔ]; CENTRAL/NORTHERN RURAL West Bank fellahin → [k] (with the 'kaf shift' /k/→[tʃ]); SOUTHERN/Bedouin (Negev, and indigenous Gaza City) → [ɡ] (Cotter 2016:152); [q] retained only in qeltu enclaves. All four listed, ʔ first for the prestige urban form. ج jim → /ʒ/ (urban) ~ /dʒ/ (rural/Bedouin). ك kaf → [tʃ] before front vowels in central rural speech. Interdentals /θ ð ðˤ/ merge to stops [t d dˤ] in the urban koine (Cotter 2016:150-154, after Bergsträßer 1915 & Palva 1984:361-62), conserved in rural/Bedouin varieties. Diphthong monophthongization /aj aw/→[eː oː] and emphasis backing are inherited from the Levantine parent. ⟨گ⟩ U+06AF reads [ɡ]. It writes the qāf reflex: of the distinct forms carrying it in this variety's share of the judged corpus, 58% have a plain ⟨ق⟩ twin attested in the same variety (compared on bare skeletons, since diacritics and clitics defeat an exact match), and the remainder are qāf words whose plain spelling does not happen to occur — ittafaqū, al-fāriq, aqūlhum. No phone is added: ⟨ق⟩ in this spec already reads [ɡ], so the letter writes a sound the variety already makes and was being deleted in silence. Attested in 37 rows over 58 distinct forms.",
   "quality": "research",
   "script_type": "abjad",
   "sources": [
