@@ -1210,11 +1210,6 @@ def test_grc_ei_and_ou_already_monophthongs():
     assert _bare("grc", "λογου").endswith("oː")
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="Allen (1968): rough breathing = [h]; grc produces [als] for ἁλς and "
-    "[ɛːmera] for ἡμερα — the breathing adds no [h] onset",
-)
 def test_grc_rough_breathing_is_h():
     """The rough breathing is [h].
 
