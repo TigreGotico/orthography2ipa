@@ -589,8 +589,8 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | sk | vox_communis | 15944 | 0.0902‡ | - | 0.0659 | 0.0637 | 0.6066 | 0.6237 | [0.0884, 0.0918] | 0.4752 | research | epitran-derived |
 | sk | wikipron | 15893 | 0.1346 | - | 0.1174 | 0.1164 | 0.4797 | 0.4832 | [0.1319, 0.1373] | 0.4556 | research | crowd-scraped |
 | skr | wikipron | 309 | 0.2869 | - | 0.2418 | 0.2365 | 0.2136 | 0.2201 | [0.2674, 0.3061] | 0.1553 | research | crowd-scraped |
-| sl | vox_communis | 6603 | 0.3555‡ | - | 0.3370 | 0.3228 | 0.0009 | 0.0009 | [0.3522, 0.3587] | 0.0009 | research | epitran-derived |
-| sl | wikipron | 5139 | 0.3284 | 0.1901† (tonal-accent diacritics (acute/grave/circumflex) + stress placement + vowel length + e/o mid-vowel quality + syllabic-r epenthetic schwa) | 0.3085 | 0.2976 | 0.0179 | 0.0181 | [0.3248, 0.3319] | 0.0169 | research | crowd-scraped |
+| sl | vox_communis | 6603 | 0.3451‡ | 0.0712† (pitch-accent and stress marks + vowel length + e/o mid-vowel quality + schwa for ⟨e⟩) | 0.3266 | 0.3123 | 0.0011 | 0.0011 | [0.3418, 0.3483] | 0.0011 | research | epitran-derived |
+| sl | wikipron | 5139 | 0.3166 | 0.1901† (tonal-accent diacritics (acute/grave/circumflex) + stress placement + vowel length + e/o mid-vowel quality + syllabic-r epenthetic schwa) | 0.2967 | 0.2857 | 0.0173 | 0.0175 | [0.3129, 0.3201] | 0.0163 | research | crowd-scraped |
 | slr | wikipron | 752 | 0.2850 | - | 0.2847 | 0.2847 | 0.1250 | 0.1250 | [0.2717, 0.2984] | 0.1250 | research | crowd-scraped |
 | smn | northeuralex | 1055 | 0.1600 | - | 0.1600 | 0.1600 | 0.3137 | 0.3137 | [0.1518, 0.1694] | 0.3137 | research | lexicon-derived |
 | sms | northeuralex | 1063 | 0.2200 | - | 0.1758 | 0.1700 | 0.1543 | 0.1712 | [0.2128, 0.2266] | 0.0809 | research | lexicon-derived |
