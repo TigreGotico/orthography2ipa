@@ -4,6 +4,12 @@
   "script": "Arabic",
   "graphemes_base": "ar-x-mashriqi",
   "graphemes": {
+    "َوِيي": [
+      "awijj"
+    ],
+    "َيِيي": [
+      "ajijj"
+    ],
     "ج": [
       "ɡ"
     ],
@@ -407,7 +413,7 @@
         "awiː"
       ],
       "default": [
-        "awij"
+        "awiː"
       ]
     },
     "َيِي": {
@@ -415,7 +421,7 @@
         "ajiː"
       ],
       "default": [
-        "ajij"
+        "ajiː"
       ]
     }
   }
