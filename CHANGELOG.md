@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.96.0a3](https://github.com/TigreGotico/orthography2ipa/tree/7.96.0a3) (2026-09-18)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.96.0a2...7.96.0a3)
+
+**Merged pull requests:**
+
+- data\(pa\): document the vox\_communis row: notation folds, then two counted residues [\#1623](https://github.com/TigreGotico/orthography2ipa/pull/1623) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.96.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.96.0a2) (2026-09-18)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.96.0a1...7.96.0a2)
