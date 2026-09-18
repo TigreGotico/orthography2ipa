@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.95.3a1](https://github.com/TigreGotico/orthography2ipa/tree/7.95.3a1) (2026-09-18)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.95.2a1...7.95.3a1)
+
+**Merged pull requests:**
+
+- fix\(ar\): the tcheh writes jim in Tunisian and Moroccan, where human writing attests it [\#1635](https://github.com/TigreGotico/orthography2ipa/pull/1635) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.95.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.95.2a1) (2026-09-18)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.95.1a1...7.95.2a1)
