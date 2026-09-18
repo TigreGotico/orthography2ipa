@@ -33,6 +33,7 @@ stress rules and base types — and own their richer pipelines.
 from __future__ import annotations
 
 import logging
+import re
 import unicodedata
 from dataclasses import dataclass, replace
 from typing import Callable, Dict, List, Optional, Set, Tuple
@@ -62,6 +63,7 @@ from orthography2ipa.phonetok import (
     slot_confidence,
 )
 from orthography2ipa.phonetok import _VIRAMA_COMBINING_CLASS
+from orthography2ipa.phonetok import _PUNCT_RE as _WORD_PUNCT_RE
 from orthography2ipa.vowels import is_ipa_vowel
 from orthography2ipa.allophony import compile_allophone_rescorer
 from orthography2ipa.positional import (match_grammatical_ending,
@@ -91,6 +93,13 @@ from orthography2ipa.stress import (
 from orthography2ipa.tone import assign_computed_tones, dock_tone_marks
 from orthography2ipa.transforms import apply_transform
 from orthography2ipa.types import GraphemePosition, LanguageSpec
+
+#: Punctuation clinging to either end of a raw word (see ``_override_for``).
+#: An apostrophe is not clinging punctuation: it spells an elision (Catalan
+#: ``d'`` ``l'``, English ``goin'`` ``'em``, Afrikaans ``'n``) and stays part
+#: of the key.
+_EDGE_PUNCT_CHAR = rf"(?:(?!['\u2019]){_WORD_PUNCT_RE.pattern[:-1]})"
+_EDGE_PUNCT_RE = re.compile(rf"^{_EDGE_PUNCT_CHAR}+|{_EDGE_PUNCT_CHAR}+$")
 
 __all__ = [
     "G2P",
@@ -1112,15 +1121,27 @@ class G2P:
         """
         key = lower_str(self._unmarked(word), self.spec.code)
         exceptions = self.spec.word_exceptions
-        if exceptions:
-            inline = exceptions.get(key)
-            if inline is not None:
-                return inline
         lex = get_lexicon(self.lang)
-        if lex:
-            hit = lex.get(unicodedata.normalize("NFC", key))
-            if hit is not None:
-                return hit
+        # Two keys, tried in order: the word as given, then the word with
+        # the punctuation that clings to it in raw text stripped from both
+        # ends (``I,`` ``is.`` ``"I``). The grapheme layer never sees that
+        # punctuation, so a rule reads past it, but an exception looked up
+        # on the raw key missed it and the word fell through to the rules
+        # (``I,`` → [i] while ``I`` → [aɪ]). The exact key stays first so an
+        # entry that is spelled with a mark (Afrikaans ``'n``) still hits.
+        keys = [key]
+        stripped = _EDGE_PUNCT_RE.sub("", key)
+        if stripped and stripped != key:
+            keys.append(stripped)
+        for k in keys:
+            if exceptions:
+                inline = exceptions.get(k)
+                if inline is not None:
+                    return inline
+            if lex:
+                hit = lex.get(unicodedata.normalize("NFC", k))
+                if hit is not None:
+                    return hit
         return None
 
     def _syllables_cached(self, word: str) -> List[str]:
@@ -1162,8 +1183,14 @@ class G2P:
         # :func:`orthography2ipa.stress.is_cliticless`, which never strips.
         if any(m in word for m in self._silent_stress_marks):
             return False
-        return unicodedata.normalize(
-            "NFC", lower_str(word, self.spec.code)) in self._cliticless_cache
+        key = unicodedata.normalize("NFC", lower_str(word, self.spec.code))
+        if key in self._cliticless_cache:
+            return True
+        # The same clinging punctuation ``_override_for`` sees past: a clitic
+        # stays a clitic with a comma after it (``the,`` takes no more stress
+        # than ``the``). The exact key is tried first, as there.
+        stripped = _EDGE_PUNCT_RE.sub("", key)
+        return bool(stripped) and stripped != key and stripped in self._cliticless_cache
 
     def _transcribe_word(self, word: str, width: int,
                          forced_ipa: Optional[str] = None) -> WordTranscription:

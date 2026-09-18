@@ -226,8 +226,8 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | en-GB | ipadict | 65117 | 0.2221‡ | - | 0.1706 | 0.1491 | 0.3551 | 0.3918 | [0.2206, 0.2236] | 0.2643 | research | espeak-derived |
 | en-GB | wikipron | 81535 | 0.2327 | - | 0.1799 | 0.1567 | 0.3548 | 0.3973 | [0.2313, 0.2341] | 0.2739 | research | crowd-scraped |
 | en-US | cmudict | 126048 | 0.3383 | - | 0.2850 | 0.2636 | 0.1837 | 0.2022 | [0.3372, 0.3395] | 0.1378 | research | lexicon-derived |
-| en-US | ipa_babylm | 20103 | 0.3602‡ | - | 0.3028 | 0.2832 | 0.3404 | 0.3667 | [0.3529, 0.3673] | 0.2744 | research | espeak-derived |
-| en-US | ipa_childes | 18053 | 0.2676‡ | - | 0.2087 | 0.1888 | 0.3538 | 0.3839 | [0.2643, 0.2709] | 0.2824 | research | espeak-derived |
+| en-US | ipa_babylm | 20103 | 0.3540‡ | - | 0.3008 | 0.2820 | 0.3442 | 0.3695 | [0.3469, 0.3610] | 0.2810 | research | espeak-derived |
+| en-US | ipa_childes | 18053 | 0.2675‡ | - | 0.2087 | 0.1888 | 0.3538 | 0.3839 | [0.2643, 0.2708] | 0.2826 | research | espeak-derived |
 | en-US | ipadict | 125923 | 0.2915 | - | 0.2295 | 0.2058 | 0.2539 | 0.2842 | [0.2903, 0.2927] | 0.1863 | research | lexicon-derived |
 | enf | northeuralex | 838 | 0.0892 | - | 0.0888 | 0.0888 | 0.5346 | 0.5346 | [0.0819, 0.0963] | 0.5346 | research | lexicon-derived |
 | enm | wikipron | 6466 | 0.2620 | 0.2163† (vowel length mark ː) | 0.2270 | 0.1924 | 0.1681 | 0.2505 | [0.2580, 0.2660] | 0.1174 | research | crowd-scraped |
