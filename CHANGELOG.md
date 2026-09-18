@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.97.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.97.0a2) (2026-09-18)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.97.0a1...7.97.0a2)
+
+**Merged pull requests:**
+
+- data\(ba\): document the vox\_communis row as a symbol-set difference [\#1625](https://github.com/TigreGotico/orthography2ipa/pull/1625) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.97.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.97.0a1) (2026-09-18)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.96.0a4...7.97.0a1)
@@ -102,17 +110,9 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.94.3a2...7.94.3a3)
 
-**Merged pull requests:**
-
-- fix: record a tone+nasalisation valid\_ceiling for yo/vox\_communis [\#1543](https://github.com/TigreGotico/orthography2ipa/pull/1543) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [7.94.3a2](https://github.com/TigreGotico/orthography2ipa/tree/7.94.3a2) (2026-09-17)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.94.3a1...7.94.3a2)
-
-**Merged pull requests:**
-
-- chore\(deps\): update ovos-spec-tools requirement from \>=1.5.0a1 to \>=1.12.0a1 [\#1544](https://github.com/TigreGotico/orthography2ipa/pull/1544) ([dependabot[bot]](https://github.com/apps/dependabot))
 
 ## [7.94.3a1](https://github.com/TigreGotico/orthography2ipa/tree/7.94.3a1) (2026-09-17)
 
