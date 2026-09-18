@@ -213,6 +213,37 @@ Beyond the phonology, a spec is the place to record what the language *is*:
 | `glottolog_code`, `wikidata_qid`, `phoible_id`, `wals_code`, `iso639_3` | Cross-references. `wikidata_qid` is the hub: one QID resolves the rest |
 | `wikipedia`, `urls` | Human-readable references |
 
+### Looking for a source: what a phone inventory cannot tell you
+
+A grapheme table maps a **letter** to the phones it can take. A phone inventory lists the
+phones a variety **has**. These are different facts, and the second never settles the
+first — a variety with both /q/ and /ɡ/ in its inventory still leaves ⟨ق⟩ undecided, which
+is the reflex a spec exists to record.
+
+This matters because the sources easiest to reach are inventories. Two worked examples,
+both from real searches, so nobody repeats them:
+
+- **PHOIBLE** is referenced by the `phoible_id` field and is the obvious place to look. It
+  covers Arabic at macrolanguage and standard-variety level only: a search of the full
+  database by ISO code returns **zero segments** for `ayh`, `acq`, `abv`, `ssh`, `aao`,
+  `adf`, `aec`, `avl`, `ayp`, `bbz` and `sqr`. Even where it has an inventory, it gives
+  phones and not letter mappings.
+- A **sound-definition list** in a phonetic description has the same shape. Dawod's 1952
+  thesis on the Aden dialect lists "voiced velar plosive" and "voiceless uvular plosive"
+  in readable English, which establishes that Aden has both — and its one table mapping
+  letters to those sounds has the symbol column faded off the scan. The inventory is
+  legible and the reflexes are not recoverable.
+
+So when a source is hard to get, ask first whether it would answer the question. What a
+spec needs is a statement of the form "⟨ق⟩ is realised as X in this variety", with a page
+number. An inventory, a phoneme count, a table of contents listing a section on velar
+stops, or a frequency count over a corpus are all evidence that a phone or a letter
+**occurs** — none of them licenses a reading.
+
+Where no such statement can be obtained, the honest spec is a `stub` that says so and
+names where the description would be found, not a `research` spec filled from the nearest
+inventory.
+
 ### Step 3: For dialects, use inheritance
 
 If the language shares most phonological data with a parent:
