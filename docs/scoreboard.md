@@ -422,9 +422,9 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | my | wikipron | 7941 | 0.1926 | - | 0.1899 | 0.1898 | 0.4440 | 0.4440 | [0.1878, 0.1974] | 0.4381 | research | crowd-scraped |
 | myv | vox_communis | 6442 | 0.0944‡ | - | 0.0944 | 0.0944 | 0.3890 | 0.3890 | [0.0923, 0.0965] | 0.3890 | research | epitran-derived |
 | nap | wikipron | 198 | 0.2792 | - | 0.2387 | 0.2307 | 0.1263 | 0.1263 | [0.2544, 0.3033] | 0.1162 | research | crowd-scraped |
-| nb | ipa_childes | 3176 | 0.3587‡ | - | 0.2904 | 0.2821 | 0.1744 | 0.1807 | [0.3504, 0.3670] | 0.1329 | research | espeak-derived |
-| nb | ipadict | 10169 | 0.3048 | 0.2096† (vowel length + consonant gemination) | 0.2432 | 0.2295 | 0.1770 | 0.1920 | [0.3009, 0.3085] | 0.1247 | research | machine-generated |
-| nb | wikipron | 2725 | 0.3654 | 0.2995 (vowel length + consonant gemination + toneme) | 0.2991 | 0.2865 | 0.1582 | 0.1684 | [0.3561, 0.3738] | 0.1288 | research | crowd-scraped |
+| nb | ipa_childes | 3176 | 0.3550‡ | - | 0.2881 | 0.2810 | 0.1747 | 0.1810 | [0.3467, 0.3634] | 0.1329 | research | espeak-derived |
+| nb | ipadict | 10169 | 0.2991 | 0.2096† (vowel length + consonant gemination) | 0.2389 | 0.2275 | 0.1823 | 0.1941 | [0.2952, 0.3028] | 0.1350 | research | machine-generated |
+| nb | wikipron | 2725 | 0.3601 | 0.2995 (vowel length + consonant gemination + toneme) | 0.2949 | 0.2850 | 0.1615 | 0.1695 | [0.3509, 0.3688] | 0.1347 | research | crowd-scraped |
 | nci | wikipron | 839 | 0.1198 | - | 0.1197 | 0.1197 | 0.2896 | 0.2896 | [0.1128, 0.1270] | 0.2896 | research | crowd-scraped |
 | nds | wikipron | 308 | 0.2231 | - | 0.1674 | 0.1503 | 0.5065 | 0.5292 | [0.1969, 0.2487] | 0.4091 | research | crowd-scraped |
 | ne | kaikki | 2052 | 0.1191 | - | 0.1178 | 0.1178 | 0.5210 | 0.5210 | [0.1121, 0.1256] | 0.5195 | research | crowd-scraped |
