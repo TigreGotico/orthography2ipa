@@ -28,7 +28,11 @@ DATA = os.path.join(os.path.dirname(orthography2ipa.__file__), "data")
 # the defect does not satisfy is not a guard.
 FIXED = {
     "ayh": ("ar-YE", "x-clade-afro1255"),
-    "acq": ("ar-YE", "x-clade-afro1255"),
+    # acq (Ta'izzi-Adeni) was one of these and is no longer. Its description has been
+    # read in and it declares cited reflexes of its own, so the assertions here --
+    # that the table is the base's untouched, and that nothing is asserted about the
+    # variety -- are exactly what it must now fail. A spec leaves this map when it
+    # stops being a placeholder; that is the map's meaning, not an exemption.
     "jye": ("ar-YE", "x-clade-afro1255"),
     "aao": ("ar-DZ", "x-clade-afro1255"),
     "yud": ("ar-LY", "x-clade-afro1255"),
