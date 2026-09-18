@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.98.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.98.0a1) (2026-09-18)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.97.1a1...7.98.0a1)
+
+**Merged pull requests:**
+
+- feat\(ar\): entries for six Arabic lects that are attested but not described here [\#1643](https://github.com/TigreGotico/orthography2ipa/pull/1643) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.97.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.97.1a1) (2026-09-18)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.97.0a3...7.97.1a1)
@@ -170,10 +178,6 @@
 ## [7.93.20a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.20a1) (2026-09-17)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.19a1...7.93.20a1)
-
-**Merged pull requests:**
-
-- fix\(ayl\): read waw and ya after a consonant as long vowels first [\#1549](https://github.com/TigreGotico/orthography2ipa/pull/1549) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.93.19a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.19a1) (2026-09-17)
 
