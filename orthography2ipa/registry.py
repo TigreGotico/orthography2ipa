@@ -123,6 +123,7 @@ _ALIASES: Dict[str, str] = {
     "acw": "ar-SA-x-hejaz",   # Hijazi Arabic
     "aec": "ar-EG-x-saidi",   # Saʿīdi (Upper Egyptian) Arabic
     "avl": "ar-EG-x-bedawi",  # Eastern Egyptian Bedawi Arabic
+    "adf": "ar-OM-x-dhofari", # Dhofari Arabic
     # ``acm`` (Mesopotamian Arabic) is the ISO code for the variety ``ar-IQ``
     # already describes: ``ar-IQ`` declares ``glottolog_code`` meso1252 (Gilit
     # Mesopotamian Arabic) and ``iso639_3`` acm. It resolved to a separate
