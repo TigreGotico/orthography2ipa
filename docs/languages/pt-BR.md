@@ -150,8 +150,10 @@ The gold is also wrong about Portuguese of any variety. Its inventory has
 [tinɐ]). It applies the European coda-sibilant rule inside the ⟨ss⟩
 digraph, writing [ʃs] on 981 of 995 ⟨ss⟩ words (`isso` → [iʃso]).
 
-Folding those conventions out of both sides one at a time takes the row
-from 0.3886 to 0.2534 without touching the spec. The row is classified
+Folding ten of the gold's conventions out of both sides one at a time
+takes the row from 0.3872 to 0.0389 without touching the spec, and 77.8%
+of the words then match exactly; `audit.vox_communis` in the spec lists
+each step. The row is classified
 `epitran-derived` and cannot gate anything, which is the correct handling;
 read it as a measurement of Epitran's European map, never as evidence about
 the Brazilian spec.

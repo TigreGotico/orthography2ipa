@@ -857,8 +857,8 @@ ways. Its 34-symbol inventory contains neither ⟨ʎ⟩ nor ⟨ɲ⟩, so the ⟨
 and ⟨nh⟩ digraphs simply lose their ⟨h⟩ across 513 and 717 words
 respectively (`gatilho` → `ɡɐtilo`, `tinha` → `tinɐ`); and it applies the
 European coda-sibilant rule *inside* the ⟨ss⟩ digraph, writing [ʃs] on 981
-of 995 ⟨ss⟩ words (`isso` → `iʃso`). Folding these conventions out of both
-sides one at a time takes the row from 0.3886 to 0.2534. As with `vi`, the
+of 995 ⟨ss⟩ words (`isso` → `iʃso`). Folding ten of the gold's conventions out of
+both sides one at a time takes the row from 0.3872 to 0.0389. As with `vi`, the
 folds stay out of `normalize()` and the row stays as scored; the
 `epitran-derived` tier already keeps it out of every gating decision. See
 [languages/pt-BR.md](languages/pt-BR.md).
