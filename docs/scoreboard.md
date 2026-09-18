@@ -225,10 +225,10 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | en-GB | ipa_childes | 11445 | 0.3001‡ | - | 0.2479 | 0.2284 | 0.2015 | 0.2225 | [0.2963, 0.3035] | 0.1541 | research | espeak-derived |
 | en-GB | ipadict | 65117 | 0.2221‡ | - | 0.1706 | 0.1491 | 0.3551 | 0.3918 | [0.2206, 0.2236] | 0.2643 | research | espeak-derived |
 | en-GB | wikipron | 81535 | 0.2327 | - | 0.1799 | 0.1567 | 0.3548 | 0.3973 | [0.2313, 0.2341] | 0.2739 | research | crowd-scraped |
-| en-US | cmudict | 126048 | 0.3436 | - | 0.2887 | 0.2652 | 0.1824 | 0.2013 | [0.3424, 0.3448] | 0.1357 | research | lexicon-derived |
-| en-US | ipa_babylm | 20103 | 0.3666‡ | - | 0.3059 | 0.2848 | 0.3379 | 0.3648 | [0.3595, 0.3738] | 0.2680 | research | espeak-derived |
-| en-US | ipa_childes | 18053 | 0.2756‡ | - | 0.2137 | 0.1912 | 0.3487 | 0.3803 | [0.2724, 0.2790] | 0.2765 | research | espeak-derived |
-| en-US | ipadict | 125923 | 0.2973 | - | 0.2337 | 0.2076 | 0.2475 | 0.2807 | [0.2961, 0.2985] | 0.1778 | research | lexicon-derived |
+| en-US | cmudict | 126048 | 0.3383 | - | 0.2850 | 0.2636 | 0.1837 | 0.2022 | [0.3372, 0.3395] | 0.1378 | research | lexicon-derived |
+| en-US | ipa_babylm | 20103 | 0.3602‡ | - | 0.3028 | 0.2832 | 0.3404 | 0.3667 | [0.3529, 0.3673] | 0.2744 | research | espeak-derived |
+| en-US | ipa_childes | 18053 | 0.2676‡ | - | 0.2087 | 0.1888 | 0.3538 | 0.3839 | [0.2643, 0.2709] | 0.2824 | research | espeak-derived |
+| en-US | ipadict | 125923 | 0.2915 | - | 0.2295 | 0.2058 | 0.2539 | 0.2842 | [0.2903, 0.2927] | 0.1863 | research | lexicon-derived |
 | enf | northeuralex | 838 | 0.0892 | - | 0.0888 | 0.0888 | 0.5346 | 0.5346 | [0.0819, 0.0963] | 0.5346 | research | lexicon-derived |
 | enm | wikipron | 6466 | 0.2620 | 0.2163† (vowel length mark ː) | 0.2270 | 0.1924 | 0.1681 | 0.2505 | [0.2580, 0.2660] | 0.1174 | research | crowd-scraped |
 | eo | ipadict | 23245 | 0.0120 | - | 0.0120 | 0.0120 | 0.9039 | 0.9039 | [0.0115, 0.0125] | 0.9039 | production | machine-generated |
