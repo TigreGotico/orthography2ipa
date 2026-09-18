@@ -35,7 +35,11 @@ FIXED = {
     "ayp": ("ar-IQ-x-qeltu", "x-clade-afro1255"),
     "abh": ("ar-x-mashriqi", "x-clade-afro1255"),
     "auz": ("ar-x-mashriqi", "x-clade-afro1255"),
-    "ssh": ("ar-OM", "x-clade-afro1255"),
+    # ssh (Šiḥḥi) was one of these and is no longer. Its description has since been
+    # read in and it declares cited reflexes of its own, so the assertions here --
+    # that the table is the base's untouched, and that nothing is asserted about the
+    # variety -- are exactly what it must now fail. A spec leaves this map when it
+    # stops being a placeholder; that is the map's meaning, not an exemption.
     # these four already named an Arabic parent on dev and keep it
     "jrb": ("arb", "arb"),
     "ajt": ("ar-TN", "ar-TN"),
