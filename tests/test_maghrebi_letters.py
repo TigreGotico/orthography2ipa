@@ -17,7 +17,7 @@ from orthography2ipa.inventory import emission_inventory, phoneme_inventory, tok
 from orthography2ipa.registry import get
 
 GAF_READS = ["ar-MA", "ar-MR"]          # Kew 2003 §3 p.5 (Morocco), p.6 (Mauritania)
-GAF_REFUSES = ["ar-DZ", "ar-TN", "ar-LY", "ar-x-maghrebi"]
+GAF_REFUSES = ["ar-LY", "ar-x-maghrebi"]
 FEH_READS = ["ar-MA", "ar-DZ", "ar-TN", "ar-MR", "ar-LY", "ar-x-maghrebi"]
 
 # Sizes before this change: neither letter may introduce a phone.
@@ -60,7 +60,7 @@ def _reachable_from(code, base):
 
 
 #: The letters that exist to write /ɡ/ in Arabic script.
-_G_FAMILY = {"گ", "ݣ", "ڨ", "ڭ"}
+_G_FAMILY = {"گ", "ݣ", "ڨ", "ڭ", "ګ"}
 
 
 def _g_rests_only_on_the_family(code):
@@ -90,10 +90,17 @@ def test_moroccan_gaf_does_not_spread_past_its_source(code):
     so mapping there would be free and would look harmless. That is why the absence is
     tested rather than left as a decision nobody wrote down.
 
-    But it is not costless. ⟨ݣ⟩ occurs **3,437** times over 2,031 rows of lahgtna's
-    judged tree, counted independently by two lanes over its 305 shards: ma 3,042,
-    dz 328, tn 61, lb 3, ly 2, sa 1. Refusing it in the three Maghrebi specs below
-    drops **391 occurrences** (328 + 61 + 2) in silence.
+    But it is not costless, and the cost is what eventually paid for two of the three.
+    ⟨ݣ⟩ occurs **3,437** times over 2,031 rows of lahgtna's judged tree, counted
+    independently by two lanes over its 305 shards: ma 3,042, dz 328, tn 61, lb 3,
+    ly 2, sa 1.
+
+    Algeria and Tunisia now read it. Kew is silent on them rather than against them, and
+    the corpus shows use rather than slips: 326 occurrences over 280 distinct forms in
+    Algerian, 59 over 57 in Tunisian, in native words (ݣاع, ݣير) beside French ones
+    (malgré, légumes). ⟨ݣ⟩ is a kāf with three dots and is not a near-homograph of
+    anything already declared, so a typo does not explain it. Libya keeps the pin at two
+    occurrences, which explains nothing either way and stays a known defect.
 
     An earlier version of this docstring said 3,448 with a breakdown that omitted lb and
     sa and therefore summed to 3,433 — a total that agreed with neither its own parts nor
