@@ -2077,18 +2077,6 @@ def test_grc_geminates_are_phonemic():
     assert "sː" in _t("grc", "θαλασσα")
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="Allen (1968) claims the rough breathing is [h]; grc produces [dɔːr] "
-    "for ὕδωρ — not only is no [h] emitted, the rough-breathing vowel ⟨ὕ⟩ itself "
-    "contributes no segment at all",
-)
-@pytest.mark.xfail(
-    strict=True,
-    reason="Allen (1968): rough breathing = [h]; grc produces [ydɔːr] for ὕδωρ — "
-    "the breathing adds no [h] (the vowel itself is now preserved, so the failure "
-    "is the missing onset, not a dropped nucleus)",
-)
 def test_grc_rough_breathing_is_h():
     """(7) Rough breathing = [h].
 
