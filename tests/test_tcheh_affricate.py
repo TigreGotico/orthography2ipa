@@ -57,7 +57,7 @@ def _reachable_from(code, base):
 
 
 #: The letters that exist to write /ɡ/ in Arabic script.
-_G_FAMILY = {"گ", "ݣ", "ڨ", "ڭ"}
+_G_FAMILY = {"گ", "ݣ", "ڨ", "ڭ", "ګ"}
 
 
 def _g_rests_only_on_the_family(code):
