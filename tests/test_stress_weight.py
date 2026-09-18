@@ -121,71 +121,58 @@ def test_end_anchored_languages_are_untouched():
 
 def test_the_arabic_specs_opt_in():
     """Arabic is the system this was built for, and it now declares the block."""
+    import json as _json
+    import os as _os
+
+    import orthography2ipa as _o2i
     from orthography2ipa import available_codes
+
     opted_in = {
         code for code in available_codes()
         if (get(code).stress and get(code).stress.quantity_sensitive)
     }
     assert {"ar", "arb", "ar-SA-x-najd", "ar-SA-x-hejaz", "ar-EG"} <= opted_in
-    # Outside Arabic, only languages whose stress is cited as quantity-
-    # sensitive may opt in: idb (Sri Lanka Portuguese — stress on the
-    # long-vowel syllable, else initial; Cardoso, APiCS 41), cic (Chickasaw —
-    # primary accent on the rightmost heavy (CVV/CVC) syllable; Munro &
-    # Willmond 1994, Chickasaw: An Analytical Dictionary), and the
-    # Arabic-lineage varieties that inherit the block through their Arabic
-    # ``graphemes_base``: xaa (Andalusi Arabic, base ``arb``). Varieties that
-    # keep only a genetic ``parent`` while authoring their own orthography
-    # (mt Maltese, acy Cypriot Arabic) do NOT inherit — stress rides the
-    # graphemes edge, not the classification parent.
-    # The same graphemes_base inheritance reaches thirteen Arabic varieties whose
-    # ISO codes do not begin with "ar": they were placeholders resolving to an empty
-    # table until they were given the Arabic parent they already named, and the
-    # stress block arrives with the graphemes edge exactly as it does for xaa. They
-    # are Arabic by lineage and by name; only their codes look otherwise.
-    _arabic_by_lineage = {
-        "aao",  # Algerian Saharan, base ar-DZ
-        "abh",  # Tajiki, base ar-x-mashriqi
-        "acq",  # Taʿizzi-Adeni, base ar-YE
-        "ajt",  # Judeo-Tunisian, base ar-TN
-        "aju",  # Judeo-Moroccan, base ar-MA
-        "auz",  # Uzbeki, base ar-x-mashriqi
-        "ayh",  # Hadrami, base ar-YE
-        "ayp",  # North Mesopotamian, base ar-IQ-x-qeltu
-        "jrb",  # Judeo-Arabic, base arb
-        "jye",  # Judeo-Yemeni, base ar-YE
-        "ssh",  # Šiḥḥi, base ar-OM
-        "yhd",  # Judeo-Iraqi, base ar-IQ
-        "yud",  # Judeo-Tripolitanian, base ar-LY
-    }
-    # The annotations above are comments and a comment cannot go red. Assert the
-    # property they claim: every code in the set really does reach its graphemes
-    # through an Arabic base, so the list cannot silently admit a non-Arabic spec.
-    # An explicit set, not a prefix. `startswith("ar")` is a prefix standing in for a
-    # property, and the counterexamples are in the same directory: arc Aramaic, arn
-    # Mapudungun, arp Arapaho, arr Karo, arv Arbore, arw Arawak, arx Aruá, are Western
-    # Arrarnta, arh Arhuaco, ari Arikara, ark Arikapú, aro Araona. Setting a base to
-    # `arc` passed the prefix form of this check.
-    _PERMITTED_BASES = {
-        "ar", "arb", "ar-DZ", "ar-IQ", "ar-IQ-x-qeltu", "ar-LY", "ar-MA", "ar-OM",
-        "ar-TN", "ar-YE", "ar-x-mashriqi",
-    }
-    import json as _json
-    import os as _os
 
-    import orthography2ipa as _o2i
+    # Stress rides the graphemes edge, so the set entitled to inherit the block is
+    # computed from that edge rather than listed: every spec whose ``graphemes_base``
+    # chain ends at ``arb``. A variety that keeps only a genetic ``parent`` while
+    # authoring its own orthography — mt Maltese, acy Cypriot Arabic — falls outside
+    # it, correctly. A test on the code name would be wrong in both directions: this
+    # repo ships arc Aramaic, arn Mapudungun, arp Arapaho, arr Karo, arv Arbore and
+    # arw Arawak, none of them Arabic, while bbz Babalia Creole and sqr Siculo are
+    # Arabic and look like neither.
     _data = _os.path.join(_os.path.dirname(_o2i.__file__), "data")
-    for _code in sorted(_arabic_by_lineage):
-        with open(_os.path.join(_data, _code + ".json"), encoding="utf-8") as _fh:
-            _base = _json.load(_fh).get("graphemes_base")
-        assert _base in _PERMITTED_BASES, (
-            f"{_code} is listed as Arabic by lineage but its graphemes base is "
-            f"{_base!r}, which is not an Arabic spec. A prefix test would pass here: "
-            "this repo ships arc Aramaic, arn Mapudungun, arp Arapaho, arr Karo, "
-            "arv Arbore, arw Arawak, arx Aruá and more, all beginning 'ar' and none "
-            "of them Arabic.")
-    _non_arabic_ok = {"idb", "xaa", "cic"} | _arabic_by_lineage
-    assert all(c.startswith("ar") or c in _non_arabic_ok
-               for c in opted_in), sorted(opted_in)
+
+    def _graphemes_root(code):
+        seen = set()
+        while code not in seen:
+            seen.add(code)
+            path = _os.path.join(_data, code + ".json")
+            if not _os.path.exists(path):
+                return code
+            with open(path, encoding="utf-8") as fh:
+                base = _json.load(fh).get("graphemes_base")
+            if not base:
+                return code
+            code = base
+        return code
+
+    inherits_from_arabic = {c for c in available_codes() if _graphemes_root(c) == "arb"}
+    assert {"bbz", "sqr", "xaa"} <= inherits_from_arabic
+    assert not {"mt", "acy"} & inherits_from_arabic, (
+        "a genetic parent is not a graphemes base")
+
+    # What remains is editorial, and only three specs need deciding by hand:
+    # languages outside the Arabic grapheme lineage whose stress is cited as
+    # quantity-sensitive in its own right. idb Sri Lanka Portuguese takes stress on
+    # the long-vowel syllable and otherwise initially (Cardoso, APiCS 41); cic
+    # Chickasaw puts the primary accent on the rightmost heavy CVV/CVC syllable
+    # (Munro & Willmond 1994, *Chickasaw: An Analytical Dictionary*); and
+    # ar-Latn-buckwalter is Arabic transliterated into Latin, so it declares the
+    # block without sharing an Arabic grapheme table to inherit it from.
+    _cited_outside_the_lineage = {"idb", "cic", "ar-Latn-buckwalter"}
+    assert opted_in <= inherits_from_arabic | _cited_outside_the_lineage, sorted(
+        opted_in - inherits_from_arabic - _cited_outside_the_lineage)
 
 
 # ─── weight is counted in SEGMENTS, not characters ──────────────────────
