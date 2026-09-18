@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.95.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.95.2a1) (2026-09-18)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.95.1a1...7.95.2a1)
+
+**Merged pull requests:**
+
+- fix\(grc\): stop folding the three marks the table reads as phones [\#1630](https://github.com/TigreGotico/orthography2ipa/pull/1630) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.95.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.95.1a1) (2026-09-18)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.95.0a1...7.95.1a1)
@@ -57,7 +65,6 @@
 **Merged pull requests:**
 
 - chore\(deps\): update ovos-spec-tools requirement from \>=1.5.0a1 to \>=1.12.0a1 [\#1544](https://github.com/TigreGotico/orthography2ipa/pull/1544) ([dependabot[bot]](https://github.com/apps/dependabot))
-- docs: record the Thai ho nam residue as a lexical ceiling [\#1529](https://github.com/TigreGotico/orthography2ipa/pull/1529) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.94.3a1](https://github.com/TigreGotico/orthography2ipa/tree/7.94.3a1) (2026-09-17)
 
