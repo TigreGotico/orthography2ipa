@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.96.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.96.0a1) (2026-09-18)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.95.3a1...7.96.0a1)
+
+**Merged pull requests:**
+
+- feat\(ar\): specs for Saidi and Eastern Egyptian Bedawi, which were being read as Cairene [\#1636](https://github.com/TigreGotico/orthography2ipa/pull/1636) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.95.3a1](https://github.com/TigreGotico/orthography2ipa/tree/7.95.3a1) (2026-09-18)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.95.2a1...7.95.3a1)
