@@ -340,10 +340,6 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.5a1...7.93.5a2)
 
-**Merged pull requests:**
-
-- docs\(eu\): ez bada sandhi note example matches spirantization \[es̻ paða\] [\#1555](https://github.com/TigreGotico/orthography2ipa/pull/1555) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [7.93.5a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.5a1) (2026-09-13)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.4a1...7.93.5a1)
