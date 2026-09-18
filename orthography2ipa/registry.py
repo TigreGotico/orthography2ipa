@@ -231,7 +231,7 @@ except ImportError:
 
 
 @lru_cache(maxsize=None)
-def _resolve_code(code: str) -> str:
+def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
     """Normalise common aliases to canonical BCP-47 codes.
 
     Resolution order:
@@ -274,12 +274,25 @@ def _resolve_code(code: str) -> str:
         return _BARE_DEFAULTS[code]
     if code in _REGION_DEFAULTS:
         return _REGION_DEFAULTS[code]
+    if not allow_nearest:
+        return code
     match = closest_lang(code, available)
     if match:
         _LOG.debug("resolved language code %r to nearest registered %r",
                    code, match)
         return match
     return code
+
+
+def resolves_exactly(code: str) -> bool:
+    """True when *code* names a spec without nearest-language guessing.
+
+    Alias tables, case folding, BCP-47 standardization and the curated bare-tag
+    defaults all name a spec deliberately; ``closest_lang`` guesses. This
+    separates the two, so a caller can tell "this code is registered" from
+    "something vaguely like it is".
+    """
+    return _resolve_code(code, allow_nearest=False) in available_json_codes()
 
 
 def resolve(code: str) -> str:
@@ -294,17 +307,30 @@ def resolve(code: str) -> str:
     return _resolve_code(code)
 
 
-def get(code: str) -> LanguageSpec:
+def get(code: str, strict: bool = False) -> LanguageSpec:
     """Return the :class:`LanguageSpec` for *code*, loading lazily.
 
     Args:
         code: BCP-47 language code (e.g. ``'en'``, ``'pt-BR'``) or
               ISO 639-3 three-letter code (e.g. ``'eng'``, ``'por'``).
+        strict: refuse nearest-language guessing. Aliases, case folding,
+            BCP-47 standardization and the curated bare-tag defaults still
+            apply — those name a spec deliberately. What is refused is
+            ``closest_lang``, which answers an unregistered code with the
+            nearest thing it can find.
+
+    The default is the guess, because callers depend on it. It is worth knowing
+    what it costs: before ``ar-BH-x-baharna`` had a spec, ``get`` answered it with
+    a 261-grapheme table and plausible Arabic output — the Bahraini Sunni one —
+    with nothing in the result saying a substitution had happened. A reviewer
+    reading a baseline that way got a complete, confident column from the wrong
+    spec. ``strict=True`` is for any caller that would rather be told.
 
     Raises:
-        KeyError: If the language is not registered.
+        KeyError: If the language is not registered, or — under *strict* — if it
+            resolves only by nearest-language guessing.
     """
-    code = _resolve_code(code)
+    code = _resolve_code(code, allow_nearest=not strict)
     if code not in _cache:
         _cache[code] = load_json_spec(code)
     return _cache[code]
