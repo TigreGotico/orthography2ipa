@@ -78,3 +78,17 @@ def test_the_unattested_cells_are_left_alone():
     assert rules["SHAMALI_AFFRIC_K_AFTER_CENTRAL_A"].get("word_final") is True
     assert not any("aː" in (r.get("preceded_by_phoneme") or []) for r in rules.values()), (
         "word-final /k/ next to /aː/ is the cell the author could not attest")
+
+
+def test_the_disclaimed_cells_stay_silent_whatever_the_rules_say():
+    """A claim about the spec's OUTPUT, so a later rule cannot reopen a withdrawn cell.
+
+    The position flags are asserted above, but a rule added without one would satisfy
+    that check and still affricate these words. This asserts the two cells the source
+    could not attest, over the whole rule set at once and without reading the schema.
+    """
+    assert "ts" not in transcribe("سَكَن", SHAMALI), "word-medial /k/ + /a/ is not attested"
+    assert "ts" not in transcribe("شَبَاك", SHAMALI), "word-final /k/ after /aː/ is not attested"
+    # and the attested ones must still fire, or the gate above passes by emitting nothing
+    assert "ts" in transcribe("كَلْب", SHAMALI)
+    assert "ts" in transcribe("مَكَان", SHAMALI), "ex. (2) /mi.kaːn/ -> [mi.tsaːn]"
