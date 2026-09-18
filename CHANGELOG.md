@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.97.0a3](https://github.com/TigreGotico/orthography2ipa/tree/7.97.0a3) (2026-09-18)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.97.0a2...7.97.0a3)
+
+**Merged pull requests:**
+
+- data\(de-DE\): document the ipa\_childes row: four notation folds and one gold error [\#1626](https://github.com/TigreGotico/orthography2ipa/pull/1626) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.97.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.97.0a2) (2026-09-18)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.97.0a1...7.97.0a2)
