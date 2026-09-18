@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.97.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.97.0a1) (2026-09-18)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.96.0a4...7.97.0a1)
+
+**Merged pull requests:**
+
+- feat\(ar\): a Dhofari spec that carries three sociolects rather than choosing one [\#1637](https://github.com/TigreGotico/orthography2ipa/pull/1637) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.96.0a4](https://github.com/TigreGotico/orthography2ipa/tree/7.96.0a4) (2026-09-18)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.96.0a3...7.96.0a4)
@@ -113,7 +121,6 @@
 **Merged pull requests:**
 
 - data\(dga\): 35 primary-source gold rows from the Dàgáárè IPA Illustration [\#1587](https://github.com/TigreGotico/orthography2ipa/pull/1587) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-- fix: record a notation valid\_ceiling for vi/vox\_communis [\#1542](https://github.com/TigreGotico/orthography2ipa/pull/1542) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.94.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.94.2a1) (2026-09-17)
 
@@ -126,7 +133,6 @@
 **Merged pull requests:**
 
 - fix: move th and tn notation folds from valid\_ceiling to audit [\#1583](https://github.com/TigreGotico/orthography2ipa/pull/1583) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-- fix: record a tone+nasalisation valid\_ceiling for yo/wikipron [\#1541](https://github.com/TigreGotico/orthography2ipa/pull/1541) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.94.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.94.0a1) (2026-09-17)
 
