@@ -121,6 +121,11 @@ _ALIASES: Dict[str, str] = {
     "ajp": "ar-JO",           # South Levantine Arabic (Jordanian/Palestinian)
     "afb": "ar-x-gulf",       # Gulf Arabic
     "acw": "ar-SA-x-hejaz",   # Hijazi Arabic
+    # ``abv`` (Baharna) resolved to a zero-grapheme placeholder while the modelled
+    # spec describes the variety with the Gulf table plus its own reflexes. The
+    # placeholder is deleted with the alias, as for acm: a spec file must stay
+    # reachable by its own code.
+    "abv": "ar-BH-x-baharna",  # Bahārna Arabic (B dialects of Bahrain)
     "aec": "ar-EG-x-saidi",   # Saʿīdi (Upper Egyptian) Arabic
     "avl": "ar-EG-x-bedawi",  # Eastern Egyptian Bedawi Arabic
     "adf": "ar-OM-x-dhofari", # Dhofari Arabic
