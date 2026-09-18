@@ -137,7 +137,53 @@ def test_the_arabic_specs_opt_in():
     # keep only a genetic ``parent`` while authoring their own orthography
     # (mt Maltese, acy Cypriot Arabic) do NOT inherit — stress rides the
     # graphemes edge, not the classification parent.
-    _non_arabic_ok = {"idb", "xaa", "cic"}
+    # The same graphemes_base inheritance reaches thirteen Arabic varieties whose
+    # ISO codes do not begin with "ar": they were placeholders resolving to an empty
+    # table until they were given the Arabic parent they already named, and the
+    # stress block arrives with the graphemes edge exactly as it does for xaa. They
+    # are Arabic by lineage and by name; only their codes look otherwise.
+    _arabic_by_lineage = {
+        "aao",  # Algerian Saharan, base ar-DZ
+        "abh",  # Tajiki, base ar-x-mashriqi
+        "acq",  # Taʿizzi-Adeni, base ar-YE
+        "ajt",  # Judeo-Tunisian, base ar-TN
+        "aju",  # Judeo-Moroccan, base ar-MA
+        "auz",  # Uzbeki, base ar-x-mashriqi
+        "ayh",  # Hadrami, base ar-YE
+        "ayp",  # North Mesopotamian, base ar-IQ-x-qeltu
+        "jrb",  # Judeo-Arabic, base arb
+        "jye",  # Judeo-Yemeni, base ar-YE
+        "ssh",  # Šiḥḥi, base ar-OM
+        "yhd",  # Judeo-Iraqi, base ar-IQ
+        "yud",  # Judeo-Tripolitanian, base ar-LY
+    }
+    # The annotations above are comments and a comment cannot go red. Assert the
+    # property they claim: every code in the set really does reach its graphemes
+    # through an Arabic base, so the list cannot silently admit a non-Arabic spec.
+    # An explicit set, not a prefix. `startswith("ar")` is a prefix standing in for a
+    # property, and the counterexamples are in the same directory: arc Aramaic, arn
+    # Mapudungun, arp Arapaho, arr Karo, arv Arbore, arw Arawak, arx Aruá, are Western
+    # Arrarnta, arh Arhuaco, ari Arikara, ark Arikapú, aro Araona. Setting a base to
+    # `arc` passed the prefix form of this check.
+    _PERMITTED_BASES = {
+        "ar", "arb", "ar-DZ", "ar-IQ", "ar-IQ-x-qeltu", "ar-LY", "ar-MA", "ar-OM",
+        "ar-TN", "ar-YE", "ar-x-mashriqi",
+    }
+    import json as _json
+    import os as _os
+
+    import orthography2ipa as _o2i
+    _data = _os.path.join(_os.path.dirname(_o2i.__file__), "data")
+    for _code in sorted(_arabic_by_lineage):
+        with open(_os.path.join(_data, _code + ".json"), encoding="utf-8") as _fh:
+            _base = _json.load(_fh).get("graphemes_base")
+        assert _base in _PERMITTED_BASES, (
+            f"{_code} is listed as Arabic by lineage but its graphemes base is "
+            f"{_base!r}, which is not an Arabic spec. A prefix test would pass here: "
+            "this repo ships arc Aramaic, arn Mapudungun, arp Arapaho, arr Karo, "
+            "arv Arbore, arw Arawak, arx Aruá and more, all beginning 'ar' and none "
+            "of them Arabic.")
+    _non_arabic_ok = {"idb", "xaa", "cic"} | _arabic_by_lineage
     assert all(c.startswith("ar") or c in _non_arabic_ok
                for c in opted_in), sorted(opted_in)
 
