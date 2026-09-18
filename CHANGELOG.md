@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.97.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.97.1a1) (2026-09-18)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.97.0a3...7.97.1a1)
+
+**Merged pull requests:**
+
+- fix: make a spec's declared iso639\_3 reach that spec [\#1638](https://github.com/TigreGotico/orthography2ipa/pull/1638) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.97.0a3](https://github.com/TigreGotico/orthography2ipa/tree/7.97.0a3) (2026-09-18)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.97.0a2...7.97.0a3)
@@ -150,7 +158,6 @@
 
 - feat: compare against ghana-g2p, and add the ee and ha comparison rows [\#1585](https://github.com/TigreGotico/orthography2ipa/pull/1585) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 - fix\(gur\): read doubled vowel letters as long vowels, and read ⟨ɣ⟩ [\#1584](https://github.com/TigreGotico/orthography2ipa/pull/1584) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-- fix\(li\): read doubled consonant letters, sch and g as the spelling writes them [\#1548](https://github.com/TigreGotico/orthography2ipa/pull/1548) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.93.21a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.21a1) (2026-09-17)
 
