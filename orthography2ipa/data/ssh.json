@@ -5,7 +5,7 @@
  "quality": "stub",
  "graphemes": {},
  "allophones": {},
- "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography or phonology is claimed: script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
+ "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography or phonology is claimed: script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.\n\nRESOLVES TO ITS PARENT'S TABLE, WHICH IS A PLACEHOLDER. This spec declared a parent and no `graphemes_base`, so it produced no phonology at all and the code resolved to an empty table. It now inherits, so the code reaches a usable table. That table is the parent's and is NOT a claim about this variety. Graphemes inherited from ar-OM because Ruʾūs al-Jibāl is in Musandam, Oman.\n\nA DESCRIPTION EXISTS AND IS NOT YET READ IN. Bernabela (2011), a Leiden MA thesis, describes Shiḥḥi: the Old Arabic interdentals ṯ, ḏ and ḏ̣ have plosive reflexes t, d and ḍ (§1.1.10 p.26), and Old Arabic ʕ is largely lost with a glottal stop as its primary reflex (§1.1.11 pp.26-27) — the second of which matters more for a grapheme table than anything in qāf. Those are quoted from the thesis; the sections stating the qāf, jīm and kāf reflexes proper were missing from the copy obtained, so no reflex is written here. Writing this spec is a follow-up with the full text, not a guess from what was legible.",
  "iso639_3": "ssh",
  "glottolog_code": "shih1239",
  "sources": [
@@ -27,5 +27,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-afro1255"
+ "parent": "x-clade-afro1255",
+ "graphemes_base": "ar-OM",
+ "allophones_base": "ar-OM"
 }
