@@ -2614,6 +2614,66 @@ class TestRobustnessSection:
         assert "**`uu`**" not in text
 
 
+class TestCatalanVoicesRenderFromTheRecord:
+    """The "Catalan dialects vs espeak (BSC)" section used to be rendered
+    from the espeak-ng install of the machine running the WRITER, so a docs
+    re-render on a box with no espeak-ng flipped its paragraph to "not
+    found" and the voice column to n/a while the rows still said ca-ba,
+    ca-nw, ca-va. It is now rendered from the rows' own ``espeak_voice``
+    field, the record made at leg-run time."""
+
+    def test_voice_map_is_read_from_the_rows(self):
+        rows = cs.read_comparison_rows()
+        voices = cs.catalan_voices_from_rows(rows)
+        assert set(voices) == set(cs._CATALAN_DIALECT_LABELS)
+        for tag, voice in voices.items():
+            row = next(r for r in rows if r["lang"] == tag and r["dataset"] == "4catac")
+            assert voice == row.get("espeak_voice")
+
+    def test_rerender_on_a_box_without_espeak_is_a_noop(self, tmp_path, monkeypatch):
+        # Pretend this machine has no espeak-ng at all: the module-level
+        # probe result becomes all-None, and the writer must not read it.
+        monkeypatch.setattr(cs, "CATALAN_DIALECT_VOICES",
+                            {t: None for t in cs._CATALAN_DIALECT_LABELS})
+        monkeypatch.setattr(cs, "discover_catalan_dialect_voices",
+                            lambda: {t: None for t in cs._CATALAN_DIALECT_LABELS})
+        with open(cs.COMPARISON_MD, encoding="utf-8") as fh:
+            committed = fh.read()
+        rows = cs.read_comparison_rows()
+        md_path = tmp_path / "comparison.md"
+        monkeypatch.setattr(cs, "COMPARISON_MD", str(md_path))
+        monkeypatch.setattr(cs, "COMPARISON_JSON", str(tmp_path / "comparison.json"))
+        cs.write_comparison(rows)
+        rendered = md_path.read_text(encoding="utf-8")
+        i, j = rendered.index("## Catalan dialects"), committed.index("## Catalan dialects")
+        assert rendered[i:i + 1500] == committed[j:j + 1500]
+        assert "were **not** found" not in rendered
+
+    def test_a_row_with_no_recorded_voice_renders_na(self, tmp_path, monkeypatch):
+        def row(lang, voice):
+            r = {"lang": lang, "dataset": "4catac", "n": 2, "o2i_per": 0.1,
+                 "o2i_n": 2, "espeak_per": 0.2, "espeak_n": 2,
+                 "epitran_per": None, "epitran_n": 0, "gruut_per": None,
+                 "gruut_n": 0, "provenance_tier": "expert-human",
+                 "harness_version": "1.0", "limit": 10}
+            if voice is not None:
+                r["espeak_voice"] = voice
+            return r
+        rows = [row("ca", "ca"), row("ca-x-balear", "ca-ba"),
+                row("ca-x-valencia", None), row("ca-x-occidental", "ca")]
+        for r in rows:
+            monkeypatch.setitem(cs.LANGS, r["lang"], {"dataset": ("4catac", r["lang"])})
+        md_path = tmp_path / "comparison.md"
+        monkeypatch.setattr(cs, "COMPARISON_MD", str(md_path))
+        monkeypatch.setattr(cs, "COMPARISON_JSON", str(tmp_path / "comparison.json"))
+        cs.write_comparison(rows)
+        text = md_path.read_text(encoding="utf-8")
+        assert "| balear | ca-x-balear | ca-ba |" in text
+        assert "| valencian | ca-x-valencia | n/a |" in text
+        assert "| occidental (nord-occidental) | ca-x-occidental | ca (fallback, no dialect voice found) |" in text
+        assert "were **not** found" in text
+
+
 class TestStalenessParagraphIsDerivedNotCommitted:
     """The staleness paragraph used to be committed inside docs/comparison.md
     and checked against a fresh computation. That check was right (it caught
