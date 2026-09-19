@@ -3996,6 +3996,34 @@ def _fair_comparison_2x2_lines(rows: List[dict]) -> List[str]:
     return lines
 
 
+#: The committed docs/comparison.md carries this marker and the pointer
+#: sentence after it, never the derived paragraph itself. The paragraph
+#: lists every (lang, dataset) whose ``o2i_per`` here differs from the
+#: committed ``benchmarks/results.json`` row, so it changes whenever ANY
+#: board row on the comparison board moves, and two open PRs that each
+#: moved one row both rewrote the same line and conflicted (#1660 against
+#: #1661, then #1675 against #1660). It is now derived at render time —
+#: ``python scripts/compare_systems.py --staleness`` prints it, and the
+#: pages workflow publishes it beside the explorer — and the tripwire
+#: checks the derived note, not a committed copy.
+STALENESS_MARKER = "<!-- staleness: derived at render time from benchmarks/comparison.json against benchmarks/results.json; not committed -->"
+STALENESS_POINTER = (
+    "Whether the `o2i PER` column here still matches "
+    "[`benchmarks/results.json`](../benchmarks/results.json) is not "
+    "written into this file, because that list changes whenever any board "
+    "row moves and two open pull requests would rewrite the same line. "
+    "Run `python scripts/compare_systems.py --staleness` for the current "
+    "list; the published site carries the same note as "
+    "`comparison_staleness.md`."
+)
+
+
+def render_staleness_note() -> str:
+    """The derived staleness paragraph for the COMMITTED comparison rows,
+    computed now against the committed ``benchmarks/results.json``."""
+    return _scoreboard_staleness_note(read_comparison_rows())
+
+
 def _details_block_lines(rows: List[dict], scoreboard_note: str,
                           espeak_rules_note: str,
                           gold_comparable: List[dict], gold_wins: int,
@@ -4076,7 +4104,8 @@ def _details_block_lines(rows: List[dict], scoreboard_note: str,
         "",
         "### Staleness",
         "",
-        scoreboard_note,
+        STALENESS_MARKER,
+        STALENESS_POINTER,
         "",
         "**espeak-rules-only coverage.** `espeak-rules-only` (the "
         "`espeak_rules_per` field) is a permanent column on this board: "
@@ -4380,10 +4409,19 @@ def main() -> None:
                          "documented, visibly-flagged exception)")
     ap.add_argument("--list", action="store_true",
                     help="List languages this harness can compare")
+    ap.add_argument("--staleness", action="store_true",
+                    help="Print the derived staleness paragraph (committed "
+                         "comparison.json against committed results.json) "
+                         "and exit; this is what docs/comparison.md no "
+                         "longer carries")
     ap.add_argument("--scoreboard", action="store_true",
                     help="Run every mapped language and write "
                          "docs/comparison.md + benchmarks/comparison.json")
     args = ap.parse_args()
+
+    if args.staleness:
+        print(render_staleness_note())
+        return
 
     if args.scoreboard:
         # --lang narrows the run to one language and MERGES the result into
