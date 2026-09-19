@@ -35,10 +35,11 @@ from __future__ import annotations
 import logging
 import re
 import unicodedata
+import warnings
 from dataclasses import dataclass, replace
 from typing import Callable, Dict, List, Optional, Set, Tuple
 
-from orthography2ipa.exceptions import UnmappedScriptError
+from orthography2ipa.exceptions import StubSpecWarning, UnmappedScriptError
 from orthography2ipa.features import (
     GraphemeFeatures,
     WordFeatures,
@@ -109,6 +110,7 @@ __all__ = [
     "ConfidenceBreakdown",
     "WordFeatures",
     "GraphemeFeatures",
+    "StubSpecWarning",
     "UnmappedScriptError",
     "MarkupError",
 ]
@@ -452,6 +454,13 @@ class G2P:
                 f"got {on_unmapped!r}")
         self.lang: str = resolve(lang)
         self.spec: LanguageSpec = get(self.lang) if spec is None else spec
+        if self.is_stub:
+            warnings.warn(
+                f"{self.lang}: this spec has no grapheme table; every "
+                f"transcription is the empty string and word_confidence() is "
+                f"0.0. Pass on_unmapped='raise' to get UnmappedScriptError "
+                f"per word instead.",
+                StubSpecWarning, stacklevel=2)
         # User rescorer(s) first, then — as the post-lexical stage — the
         # allophone rescorer compiled from the spec's ``allophone_rules``.
         # A spec with no rules (every shipped spec bar the pilots) compiles
@@ -764,6 +773,19 @@ class G2P:
                 start = i + 1
         utt = [span_position(i, 0, n) for i in range(n)]
         return phrase, utt
+
+    @property
+    def is_stub(self) -> bool:
+        """Whether this engine's spec has no grapheme table at all.
+
+        A clade node is not a stub (it is not a language); a language spec
+        with neither ``graphemes`` nor ``positional_graphemes`` is, and every
+        word it is given comes back empty. See
+        :class:`~orthography2ipa.exceptions.StubSpecWarning`.
+        """
+        if getattr(self.spec, "clade", None):
+            return False
+        return not self.spec.graphemes and not self.spec.positional_graphemes
 
     def transcribe_word(
         self,

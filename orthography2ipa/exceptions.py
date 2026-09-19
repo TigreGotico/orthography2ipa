@@ -7,7 +7,7 @@ from __future__ import annotations
 
 from typing import Tuple
 
-__all__ = ["UnmappedScriptError"]
+__all__ = ["StubSpecWarning", "UnmappedScriptError"]
 
 
 class UnmappedScriptError(ValueError):
@@ -33,3 +33,20 @@ class UnmappedScriptError(ValueError):
             f"{lang}: word {word!r} has unmapped characters "
             f"{''.join(unmapped)!r} not covered by the grapheme table"
         )
+
+
+class StubSpecWarning(UserWarning):
+    """Emitted once when a :class:`~orthography2ipa.g2p.G2P` engine is built
+    on a spec that has no grapheme table at all (``quality: stub`` with
+    neither ``graphemes`` nor ``positional_graphemes``, and no base to
+    inherit them from).
+
+    Every transcription from such an engine is the empty string, and
+    :meth:`~orthography2ipa.g2p.G2P.word_confidence` is ``0.0``. Before this
+    warning existed that was the only signal, and a caller who did not ask
+    for it got ``""`` back with nothing said (``azb``, ``lah``). The engine
+    still builds, because 6219 of the 7670 registered codes are such stubs
+    and the catalog, the distance metrics and the tests enumerate them;
+    ``G2P(..., on_unmapped="raise")`` turns the per-word case into
+    :class:`UnmappedScriptError`.
+    """
