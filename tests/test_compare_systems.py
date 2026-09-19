@@ -2614,37 +2614,44 @@ class TestRobustnessSection:
         assert "**`uu`**" not in text
 
 
-class TestCommittedDocsMatchesFreshStalenessNote:
-    """Mechanical guard against exactly the bug this class is named for:
-    docs/comparison.md's scoreboard-staleness paragraph was generated
-    BEFORE a rebase moved benchmarks/results.json out from under it, so
-    the committed prose named the wrong stale rows (14 rows, wrong set)
-    instead of the true count against the tree it actually shipped with
-    (21 rows). A regeneration that runs write_comparison() before its
-    final rebase/JSON update is exactly what this would have caught: the
-    committed doc's note must equal _scoreboard_staleness_note() computed
-    fresh, right now, from the COMMITTED comparison.json against the
-    COMMITTED results.json — if they differ, the doc was generated
-    against a different tree than the one that got committed."""
+class TestStalenessParagraphIsDerivedNotCommitted:
+    """The staleness paragraph used to be committed inside docs/comparison.md
+    and checked against a fresh computation. That check was right (it caught
+    a doc regenerated before a rebase, twice), but the paragraph changes
+    whenever ANY comparison-board row moves in benchmarks/results.json, so
+    two open PRs that each moved one row rewrote the same line and
+    conflicted in pairs (#1660 against #1661, then #1675 against #1660).
 
-    def test_committed_staleness_note_matches_fresh_computation(self):
-        with open(cs.COMPARISON_JSON, encoding="utf-8") as fh:
-            committed_rows = json.load(fh)
+    The committed doc now carries a marker and a pointer sentence, and the
+    paragraph is derived at render time (``compare_systems.py --staleness``,
+    published by the pages workflow). The tripwire moves with it: the
+    marker must be there, the derived text must not, and the derivation
+    must still produce a well-formed note from the committed JSON."""
+
+    def test_committed_doc_carries_the_marker_and_not_the_paragraph(self):
         with open(cs.COMPARISON_MD, encoding="utf-8") as fh:
             committed_docs = fh.read()
+        assert cs.STALENESS_MARKER in committed_docs
+        assert cs.STALENESS_POINTER in committed_docs
+        # The derived paragraph's own opening words, never committed again.
+        assert "EXCEPT the " not in committed_docs
+        assert "needs a matching regeneration for:" not in committed_docs
 
-        fresh_note = cs._scoreboard_staleness_note(committed_rows)
+    def test_the_derived_note_is_well_formed(self):
+        note = cs.render_staleness_note()
+        assert note.startswith("The `o2i PER` column here matches")
+        # Every comparison row that shares a key with the board is either
+        # listed as stale, listed as a sample-size difference, or matches;
+        # the note names the count it lists.
+        with open(cs.COMPARISON_JSON, encoding="utf-8") as fh:
+            rows = json.load(fh)
+        assert note == cs._scoreboard_staleness_note(rows)
 
-        assert fresh_note in committed_docs, (
-            "docs/comparison.md's scoreboard-staleness paragraph does not "
-            "match a fresh _scoreboard_staleness_note() computed from the "
-            "COMMITTED benchmarks/comparison.json against the COMMITTED "
-            "benchmarks/results.json — the doc was regenerated against a "
-            "different tree than what actually got committed (e.g. before "
-            "a later rebase changed results.json). Re-run "
-            "scripts/compare_systems.py's writer on the current tree "
-            "before committing.\n\nFresh note:\n" + fresh_note
-        )
+    def test_staleness_flag_prints_the_note(self, capsys, monkeypatch):
+        monkeypatch.setattr(sys, "argv", ["compare_systems.py", "--staleness"])
+        cs.main()
+        out = capsys.readouterr().out
+        assert out.strip() == cs.render_staleness_note().strip()
 
 
 class TestScoreboardStalenessNoteSampledVsGenuine:
@@ -3149,10 +3156,10 @@ class TestDetailsBlockPresence:
         # before it — data first, methodology after.
         assert text.index("### aa") < text.index("<details>")
 
-    def test_stale_note_still_names_the_row(self, tmp_path, monkeypatch):
-        # Regression guard: the honest per-row staleness naming
-        # (results.json vs a fresh live run) must still be reachable in
-        # the regenerated doc, just relocated into the details block.
+    def test_stale_note_is_derived_not_written(self, tmp_path, monkeypatch):
+        # The honest per-row staleness naming (results.json vs a fresh live
+        # run) is still reachable, through render_staleness_note() on the
+        # written comparison.json; the doc carries the marker in its place.
         rows = [
             {"lang": "aa", "dataset": "d", "n": 2, "o2i_per": 0.5},
         ]
@@ -3168,7 +3175,10 @@ class TestDetailsBlockPresence:
         monkeypatch.setattr(cs, "COMPARISON_JSON", str(json_path))
         cs.write_comparison(rows)
         text = md_path.read_text(encoding="utf-8")
-        assert note in text
+        assert note not in text
+        assert cs.STALENESS_MARKER in text
+        assert text.index("### Staleness") > text.index("<details>")
+        assert cs.render_staleness_note() == note
 
 
 class TestFairComparison2x2SameSourceRendering:
