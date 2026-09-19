@@ -217,7 +217,7 @@ class TestNasalDiphthongIsOneNucleus:
 
     def test_stress_lands_past_a_nasalised_vowel(self):
         assert _t("pt-PT", "coração") == "kuɾɐˈsɐ̃w̃"
-        assert _t("pt-PT", "irmão") == "iˈɾmɐ̃w̃"
+        assert _t("pt-PT", "irmão") == "iɾˈmɐ̃w̃"
 
     def test_the_mark_never_splits_a_vowel_from_its_tilde(self):
         assert _t("pt-PT", "cantar") == "kɐ̃ˈtaɾ"

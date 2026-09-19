@@ -72,7 +72,7 @@
       "t͡ʃʼ"
     ],
     "а": [
-      "ɑː"
+      "a"
     ],
     "б": [
       "b"
@@ -100,7 +100,8 @@
       "z"
     ],
     "и": [
-      "ɪ"
+      "i",
+      "iː"
     ],
     "й": [
       "j"
@@ -133,7 +134,8 @@
       "t"
     ],
     "у": [
-      "ʊ"
+      "u",
+      "uː"
     ],
     "ф": [
       "f"
@@ -163,11 +165,11 @@
       "ja"
     ],
     "ӏ": [
-      "ʡ"
+      "ʕ"
     ]
   },
   "allophones": {},
-  "notes": "Ingush (гӏалгӏай мотт), a Nakh (Northeast Caucasian) language of Ingushetia, written in a Cyrillic alphabet since 1938. INPUT CONTRACT: Cyrillic orthography, Unicode NFC, lowercased; the palochka must be U+04CF ⟨ӏ⟩ (lowercase) / U+04C0 ⟨Ӏ⟩ — Latin 'I', 'l' and the digit '1' are NOT accepted, since no consulted source documents them for Ingush. The orthography uses digraphs and one trigraph for the Nakh consonant inventory: ejectives пӏ тӏ кӏ цӏ чӏ, uvular кх /q/ and къ /qʼ/, pharyngeal хь /ħ/, laryngeal хӏ /h/, uvular fricative гӏ /ʁ/, the epiglottal stop ӏ /ʡ/, and рхӏ for the voiceless trill /r̥/; the engine matches these by maximal munch, so multigraphs win over their component letters. The written diphthongs listed by Nichols (иэ, уо, оа, ий, эи, ои, уи, ов, ув) are mapped as units. Consonant gemination and the ultra-short unstressed schwa are morphophonemic and not written, so they are not modelled. The letters щ, ы and ь occur only in Russian loanwords and are LEFT OUT: no source consulted gives them an Ingush IPA value. The iotated letters е, ё, ю, я, яь follow the standard Cyrillic j+V convention and are given as such. Е is given as [e] first (its value after a consonant) with [je] as the second candidate (word-initial / post-vocalic), since the source lists both without positional detail.",
+  "notes": "Ingush (гӏалгӏай мотт), a Nakh (Northeast Caucasian) language of Ingushetia, written in a Cyrillic alphabet since 1938. INPUT CONTRACT: Cyrillic orthography, Unicode NFC, lowercased; the palochka must be U+04CF ⟨ӏ⟩ (lowercase) / U+04C0 ⟨Ӏ⟩ — Latin 'I', 'l' and the digit '1' are NOT accepted, because the input contract is Cyrillic-only, not because no source writes the palochka as Latin I: the Berkeley Ingush project page itself renders the palochka as Latin I throughout its own text. The orthography uses digraphs and one trigraph for the Nakh consonant inventory: ejectives пӏ тӏ кӏ цӏ чӏ, uvular кх /q/ and къ /qʼ/, pharyngeal хь /ħ/, laryngeal хӏ /h/, uvular fricative гӏ /ʁ/, the bare palochka ӏ /ʕ/, and рхӏ for the voiceless trill /r̥/; the engine matches these by maximal munch, so multigraphs win over their component letters. The written diphthongs listed by Nichols (иэ, уо, оа, ий, эи, ои, уи, ов, ув) are mapped as units. Vowel length is contrastive but UNWRITTEN: Schrijver (2021:88) states that the standard Chechen and Ingush orthographies 'do not distinguish vowel length or diphthongization', and the Berkeley Ingush project describes the Cyrillic orthography as one that 'severely underdifferentiates the phonemes of Ingush'. So ⟨и у⟩ each emit the short reading first and the long one as a second candidate — the spec genuinely cannot choose, and the ambiguity belongs in the lattice rather than being resolved by fiat. Schrijver (2021:88) gives Ingush ⟨и⟩ and ⟨у⟩ as phonemically short/long pairs i/iː and u/uː, which is the warrant for those two length alternates. ⟨а⟩ carries no long alternate: Schrijver's Nakh vowel table has no aː, and his footnote 1 reports Nichols treating that length in Ingush as allophonic in open syllables, i.e. the opposite of phonemic support; the Berkeley Ingush project page lists ⟨aa⟩ among its falling diphthongs (ei, ai, oi, ou, ea, aa, oa, aai, aau), not among its simple vowels (ii, uu, i, y, u, (e), a, o), so it is not a source for a long ā either. No consulted source gives ⟨а⟩ a long alternate. Schrijver (2021:88) actually gives three low/central vowels for Ingush — ɨ, ʌ and a — not one; ⟨а⟩ is kept as the unmarked rank-1 grapheme value because it is overwhelmingly the more frequent correspondence in the gold (158 tokens of a against 15 of ɑ/ʌ), and Cyrillic ⟨а⟩ is also the letter used to write ʌ/schwa, as in гӏалгӏай [ʁ ə l ʁ ɑ j]. The bare palochka ⟨ӏ⟩ is the voiced pharyngeal /ʕ/: the Berkeley Ingush project states that the letter writes ejectives after a voiceless consonant — which the digraphs пӏ тӏ кӏ цӏ чӏ already cover — and pharyngeals word-initially, after a vowel, and after a voiced consonant, which is where the bare key applies. The pharyngealised series ⟨бӏ зӏ дӏ мӏ жӏ⟩ remains a known gap: the gold itself is split on how to write it, giving unitary bˤ zˤ dˤ mˤ ʒˤ in some tokens and a plain consonant plus /ʕ/ (b ʕ, z ʕ, m ʕ) in others for the same environment, so one phenomenon has two notations in the gold; this spec emits C+ʕ, which is strictly closer to the pharyngealised reading than the old ʡ value but is not attested as a unitary pharyngealised segment. Consonant gemination and the ultra-short unstressed schwa are morphophonemic and not written, so they are not modelled. The letters щ, ы and ь occur only in Russian loanwords and are LEFT OUT: no source consulted gives them an Ingush IPA value. The iotated letters е, ё, ю, я, яь follow the standard Cyrillic j+V convention and are given as such. Е is given as [e] first (its value after a consonant) with [je] as the second candidate (word-initial / post-vocalic), since the source lists both without positional detail.",
   "iso639_3": "inh",
   "glottolog_code": "ingu1240",
   "wikidata_qid": "Q33509",
@@ -208,6 +210,28 @@
       "wikipedia_url": null,
       "pages": null,
       "notes": "Confirms that ё, щ, ъ, ы and ь are used only in Russian loanwords and names."
+    },
+    {
+      "id": "schrijver2021_nakh_vowels",
+      "author": "Schrijver, Peter",
+      "year": 2021,
+      "title": "A history of the vowel systems of the Nakh languages (East Caucasian), with special reference to umlaut in Chechen and Ingush",
+      "publisher": "Languages of the Caucasus 5",
+      "url": "https://escholarship.org/uc/item/7gc4x6tv",
+      "wikipedia_url": null,
+      "pages": "88",
+      "notes": "Section 2.1 'Vowel systems in the Nakh languages'. Gives the Ingush vowel inventory (based on Nichols 2011:22, Imnajshvili 1977:37) with three low/central vowels 'ɨ', 'ʌ' and 'a', and the high vowels as phonemic short/long pairs 'i iː' and 'u uː' — no aː. States: 'The standard orthographies of Chechen and Ingush seriously underrepresent vowel distinctions: they do not distinguish vowel length or diphthongization.' Footnote 1 reports Nichols treating the corresponding length in Ingush 'a' as allophonic in open syllables, not phonemic."
+    },
+    {
+      "id": "nichols_berkeley_ingush_orthography",
+      "author": "Nichols, Johanna",
+      "year": 2011,
+      "title": "Ingush Phonology and Orthography",
+      "publisher": "University of California, Berkeley (Ingush language project)",
+      "url": "https://linguistics.berkeley.edu/~ingush/orthography.html",
+      "wikipedia_url": null,
+      "pages": null,
+      "notes": "States that the Cyrillic orthography 'severely underdifferentiates the phonemes of Ingush', and that the palochka 'is used to represent ejectives (when occuring after a voiceless consonant) and pharyngeals (when occuring after a voiced consonant, word initially, or after a vowel)'. Its practical orthography lists simple vowels 'ii, uu, i, y, u, (e), a, o' and falling diphthongs 'ei, ai, oi, ou, ea, aa, oa, aai, aau' — ⟨aa⟩ is one of the diphthongs, not a doubled simple vowel, so this page is not a source for a long ā; the page itself writes the palochka as Latin I throughout its own running text."
     }
   ],
   "timespan": {
@@ -216,7 +240,6 @@
   },
   "phonemes": [
     "a",
-    "aː",
     "b",
     "bˤ",
     "dz",
@@ -290,20 +313,18 @@
     "ɡʲ",
     "ɢ",
     "ɨ",
-    "ɪ",
     "ɾ",
     "ɾ̥",
     "ɾ̺",
     "ʁ",
     "ʃ",
-    "ʊ",
     "ʌ",
     "ʒ",
     "ʒˤ",
     "ʔ",
     "ʔˤ",
-    "ʜ",
-    "ʡ"
+    "ʕ",
+    "ʜ"
   ],
   "parent": "x-clade-nakh1245",
   "ancestors": [

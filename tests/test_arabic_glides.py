@@ -21,7 +21,9 @@ AR = G2P("ar")
 # particular is split across the boundary by definition.
 @pytest.mark.parametrize("word,expected,why", [
     # The nisba: a shadda doubles the yāʾ, so ⟨ِيّ⟩ is /ijj/, never /ijiː/.
-    ("مِصْرِيّ", "misˤˈrijj", "nisba -iyy (Ryding 2005 §5.4.1)"),
+    # /i/ backs to [ɪ] before the emphatic sˤ (Watson 2002 emphasis spread;
+    # Davis 1995), same locality as the /a/-backing rules exercised elsewhere.
+    ("مِصْرِيّ", "mɪsˤˈrijj", "nisba -iyy (Ryding 2005 §5.4.1)"),
     ("عَلِيّ", "ʕaˈlijj", "nisba -iyy"),
     # The feminine nisba ⟨ِيَّة⟩ is /ijja/.
     ("حُرِّيَّة", "ħurˈrijja", "nisba -iyya"),
@@ -37,7 +39,9 @@ def test_consonantal_glide_is_not_a_long_vowel(word, expected, why):
     # long vowel, which is what this test verifies.
     ("فِي", "fiː"),           # word-final, quiescent → genuinely long
     ("فِيهِ", "ˈfiːhi"),      # preconsonantal, quiescent → genuinely long
-    ("يُصَلِّي", "juˈsˤɑlliː"),  # word-final, quiescent
+    # /u/ also backs to [ʊ] before the emphatic sˤ (Watson 2002 emphasis
+    # spread), same rule family as the /a/-backing that already applied here.
+    ("يُصَلِّي", "jʊˈsˤɑlliː"),  # word-final, quiescent
     ("كِتَاب", "kiˈtaːb"),
 ])
 def test_a_quiescent_glide_stays_a_long_vowel(word, expected):

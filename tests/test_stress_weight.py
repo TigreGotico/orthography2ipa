@@ -121,23 +121,58 @@ def test_end_anchored_languages_are_untouched():
 
 def test_the_arabic_specs_opt_in():
     """Arabic is the system this was built for, and it now declares the block."""
+    import json as _json
+    import os as _os
+
+    import orthography2ipa as _o2i
     from orthography2ipa import available_codes
+
     opted_in = {
         code for code in available_codes()
         if (get(code).stress and get(code).stress.quantity_sensitive)
     }
     assert {"ar", "arb", "ar-SA-x-najd", "ar-SA-x-hejaz", "ar-EG"} <= opted_in
-    # Outside Arabic, only languages whose stress is cited as quantity-
-    # sensitive may opt in: idb (Sri Lanka Portuguese — stress on the
-    # long-vowel syllable, else initial; Cardoso, APiCS 41), and the
-    # Arabic-lineage varieties that inherit the block through their Arabic
-    # ``graphemes_base``: xaa (Andalusi Arabic, base ``arb``). Varieties that
-    # keep only a genetic ``parent`` while authoring their own orthography
-    # (mt Maltese, acy Cypriot Arabic) do NOT inherit — stress rides the
-    # graphemes edge, not the classification parent.
-    _non_arabic_ok = {"idb", "xaa"}
-    assert all(c.startswith("ar") or c in _non_arabic_ok
-               for c in opted_in), sorted(opted_in)
+
+    # Stress rides the graphemes edge, so the set entitled to inherit the block is
+    # computed from that edge rather than listed: every spec whose ``graphemes_base``
+    # chain ends at ``arb``. A variety that keeps only a genetic ``parent`` while
+    # authoring its own orthography — mt Maltese, acy Cypriot Arabic — falls outside
+    # it, correctly. A test on the code name would be wrong in both directions: this
+    # repo ships arc Aramaic, arn Mapudungun, arp Arapaho, arr Karo, arv Arbore and
+    # arw Arawak, none of them Arabic, while bbz Babalia Creole and sqr Siculo are
+    # Arabic and look like neither.
+    _data = _os.path.join(_os.path.dirname(_o2i.__file__), "data")
+
+    def _graphemes_root(code):
+        seen = set()
+        while code not in seen:
+            seen.add(code)
+            path = _os.path.join(_data, code + ".json")
+            if not _os.path.exists(path):
+                return code
+            with open(path, encoding="utf-8") as fh:
+                base = _json.load(fh).get("graphemes_base")
+            if not base:
+                return code
+            code = base
+        return code
+
+    inherits_from_arabic = {c for c in available_codes() if _graphemes_root(c) == "arb"}
+    assert {"bbz", "sqr", "xaa"} <= inherits_from_arabic
+    assert not {"mt", "acy"} & inherits_from_arabic, (
+        "a genetic parent is not a graphemes base")
+
+    # What remains is editorial, and only three specs need deciding by hand:
+    # languages outside the Arabic grapheme lineage whose stress is cited as
+    # quantity-sensitive in its own right. idb Sri Lanka Portuguese takes stress on
+    # the long-vowel syllable and otherwise initially (Cardoso, APiCS 41); cic
+    # Chickasaw puts the primary accent on the rightmost heavy CVV/CVC syllable
+    # (Munro & Willmond 1994, *Chickasaw: An Analytical Dictionary*); and
+    # ar-Latn-buckwalter is Arabic transliterated into Latin, so it declares the
+    # block without sharing an Arabic grapheme table to inherit it from.
+    _cited_outside_the_lineage = {"idb", "cic", "ar-Latn-buckwalter"}
+    assert opted_in <= inherits_from_arabic | _cited_outside_the_lineage, sorted(
+        opted_in - inherits_from_arabic - _cited_outside_the_lineage)
 
 
 # ─── weight is counted in SEGMENTS, not characters ──────────────────────

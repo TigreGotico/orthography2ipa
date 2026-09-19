@@ -158,6 +158,16 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Fijian_language",
       "pages": null,
       "notes": "Orthography / phonology reference."
+    },
+    {
+      "id": "schutz1985",
+      "author": "Schütz, Albert J.",
+      "year": 1985,
+      "title": "The Fijian Language",
+      "publisher": "University of Hawai'i Press (open access edition)",
+      "url": "http://hdl.handle.net/10125/62912",
+      "pages": "31-32, 647",
+      "notes": "The account of the orthography (pp. 31-32) gives b = [mb], d = [nd], q = [ŋɡ], g = [ŋ] and c = [ð]; section 44.9 (p. 647) gives /v/ = [β]."
     }
   ],
   "parent": "x-clade-mala1545",

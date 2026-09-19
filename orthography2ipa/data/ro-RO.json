@@ -114,18 +114,6 @@
     "oa": [
       "o̯a"
     ],
-    "ai": [
-      "aj"
-    ],
-    "ei": [
-      "ej"
-    ],
-    "oi": [
-      "oj"
-    ],
-    "ui": [
-      "uj"
-    ],
     "au": [
       "aw"
     ],
@@ -135,18 +123,6 @@
     "ou": [
       "ow"
     ],
-    "ia": [
-      "ja"
-    ],
-    "ie": [
-      "je"
-    ],
-    "io": [
-      "jo"
-    ],
-    "iu": [
-      "ju"
-    ],
     "ua": [
       "wa"
     ],
@@ -155,15 +131,6 @@
     ],
     "eau": [
       "e̯aw"
-    ],
-    "eai": [
-      "e̯aj"
-    ],
-    "oai": [
-      "o̯aj"
-    ],
-    "iai": [
-      "jaj"
     ]
   },
   "allophones": {
@@ -300,7 +267,7 @@
       "notes": "Hungarian adstrate: centuries of contact in Transylvania. Lexical exchange."
     }
   ],
-  "notes": "Standard Romanian. Eastern Romance, the ONLY Romance language east of the Adriatic. Key features: (1) Central vowels /ə/ (⟨ă⟩) and /ɨ/ (⟨â/î⟩) — unique in Romance. (2) NO intervocalic lenition (lup, foc — not *lub, *fogo). (3) Postposed definite article (lupul 'the wolf'). (4) Rich diphthong/triphthong system. (5) Rhotacism: intervocalic /l/ → /r/ in some words (soare < SOLEM). (6) Massive Slavic vocabulary layer (~40%). (7) Balkan sprachbund member (Chițoran 2001, Sala 2005). STRESS EXEMPTION (research/production tier rule): Romanian lexical stress is phonemic but NOT predictable from standard orthography (cópii 'copies' vs copíi 'children' are spelled identically); the standard norm writes no stress marks, so the spec carries no stress block per docs/quality_tiers.md.",
+  "notes": "Standard Romanian. Eastern Romance, the ONLY Romance language east of the Adriatic. Key features: (1) Central vowels /ə/ (⟨ă⟩) and /ɨ/ (⟨â/î⟩) — unique in Romance. (2) NO intervocalic lenition (lup, foc — not *lub, *fogo). (3) Postposed definite article (lupul 'the wolf'). (4) Rich diphthong/triphthong system. (5) Rhotacism: intervocalic /l/ → /r/ in some words (soare < SOLEM). (6) Massive Slavic vocabulary layer (~40%). (7) Balkan sprachbund member (Chițoran 2001, Sala 2005). (8) Word-initial ⟨e⟩ is [je] in a closed, cited set: the personal pronouns ⟨eu el ea ei ele⟩ and the present/imperfect forms of ⟨a fi⟩ (⟨e este ești era erai eram erați erau⟩) — everywhere else word-initial ⟨e⟩ is [e] (⟨elev⟩, ⟨examen⟩); this is lexical, so it lives in word_exceptions (DOOM3; Chitoran 2002 ch. 2). (9) ⟨ă⟩ is declared in vowel_graphemes because the engine's closed Latin letter inventory does not carry it; without that declaration every vowel-conditioned rule fails next to it (⟨băieți⟩, ⟨păi⟩). STRESS EXEMPTION (research/production tier rule): Romanian lexical stress is phonemic but NOT predictable from standard orthography (cópii 'copies' vs copíi 'children' are spelled identically); the standard norm writes no stress marks, so the spec carries no stress block per docs/quality_tiers.md. CEILING: after ⟨c g⟩ a following ⟨i⟩ before a vowel is silent in inherited vocabulary (⟨cioban⟩ [tʃoˈban]) but syllabic in the neologistic layer (⟨Dacia⟩ [ˈdatʃi.a], ⟨sociologie⟩); the split is lexical, not orthographic, so the spec emits the majority syllabic reading and leaves the rest to a caller-supplied lexicon.",
   "quality": "production",
   "script_type": "alphabet",
   "sources": [
@@ -333,6 +300,46 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "chitoran2002",
+      "author": "Chițoran, I.",
+      "year": 2002,
+      "title": "The Phonology of Romanian: A Constraint-based Approach",
+      "publisher": "Mouton de Gruyter",
+      "url": null,
+      "pages": null,
+      "notes": "Glide formation and the [j]/[i] distribution (ch. 3); asyllabic word-final /i/ and muta cum liquida (ch. 5)."
+    },
+    {
+      "id": "renwick2014",
+      "author": "Renwick, M. E. L.",
+      "year": 2014,
+      "title": "The Phonetics and Phonology of Contrast: The Case of the Romanian Vowel System",
+      "publisher": "De Gruyter Mouton",
+      "url": null,
+      "pages": null,
+      "notes": "Instrumental account of the Romanian vowel system, including final asyllabic /i/."
+    },
+    {
+      "id": "vasiliu1965",
+      "author": "Vasiliu, E.",
+      "year": 1965,
+      "title": "Fonologia limbii române",
+      "publisher": "Editura Științifică",
+      "url": null,
+      "pages": null,
+      "notes": "Phonemic description of Romanian; glide/vowel status of /i/ and /u/."
+    },
+    {
+      "id": "doom3",
+      "author": "Academia Română, Institutul de Lingvistică „Iorgu Iordan – Al. Rosetti”",
+      "year": 2021,
+      "title": "Dicționarul ortografic, ortoepic și morfologic al limbii române (DOOM3)",
+      "publisher": "Univers Enciclopedic",
+      "url": null,
+      "pages": null,
+      "notes": "Orthoepic norm: spelling-to-pronunciation conventions, the ⟨ci/ce/gi/ge⟩ palatal marker, and the asyllabic final ⟨i⟩."
     }
   ],
   "wikipedia": [
@@ -366,7 +373,7 @@
         "c"
       ],
       "followed_by": "front_vowel",
-      "notes": "⟨c⟩ is /tʃ/ before ⟨e i⟩; ⟨ch⟩ keeps /k/ (its own grapheme)"
+      "notes": "⟨c⟩ is /tʃ/ before ⟨e i⟩; ⟨ch⟩ keeps /k/ (its own grapheme). Chitoran 2002 ch. 2; DOOM3."
     },
     {
       "id": "RO_SOFT_G",
@@ -378,7 +385,101 @@
         "g"
       ],
       "followed_by": "front_vowel",
-      "notes": "⟨g⟩ is /dʒ/ before ⟨e i⟩; ⟨gh⟩ keeps /ɡ/ (its own grapheme)"
+      "notes": "⟨g⟩ is /dʒ/ before ⟨e i⟩; ⟨gh⟩ keeps /ɡ/ (its own grapheme). Chitoran 2002 ch. 2; DOOM3."
+    },
+    {
+      "id": "RO_I_GLIDE_INITIAL",
+      "phonemes": [
+        "i"
+      ],
+      "surface": "j",
+      "word_initial": true,
+      "followed_by": "vowel",
+      "notes": "Word-initial prevocalic /i/ has no onset available and surfaces as the glide [j] — ⟨iarnă⟩ [ˈjarnə], ⟨ied⟩ [jed], ⟨iute⟩ [ˈjute] (Chitoran 2002 ch. 3, glide formation; Vasiliu 1965). A glide needs a nucleus after it and the word needs one at all, so the rule is blocked before another ⟨i⟩ and on a word with no other nucleus: ⟨ii⟩ is [ij], never [jj] (Chitoran 2002 ch. 3; Hayes 2009 ch. 13).",
+      "requires_other_nucleus": true,
+      "followed_by_grapheme_not": [
+        "i"
+      ]
+    },
+    {
+      "id": "RO_I_GLIDE_POSTVOCALIC",
+      "phonemes": [
+        "i"
+      ],
+      "surface": "j",
+      "preceded_by": "vowel",
+      "notes": "Post-vocalic ⟨i⟩ is the glide [j], falling in a diphthong (⟨mai⟩ [maj], ⟨doi⟩ [doj], ⟨căi⟩ [kəj]) or in the onset of the next syllable (⟨baie⟩ [ˈbaje], ⟨ploaie⟩ [ˈplo̯aje]); the plural+article ⟨-ii⟩ is [ij] (⟨copii⟩ [koˈpij]). Post-consonantal ⟨i⟩ is NOT covered: there it is syllabic and stands in hiatus (⟨Românie⟩ [romɨˈni.e], ⟨abația⟩ [abaˈtsi.a]) — Chitoran 2002 ch. 3. A glide needs a nucleus after it and the word needs one at all, so the rule is blocked before another ⟨i⟩ and on a word with no other nucleus: ⟨ii⟩ is [ij], never [jj] (Chitoran 2002 ch. 3; Hayes 2009 ch. 13).",
+      "requires_other_nucleus": true,
+      "followed_by_grapheme_not": [
+        "i"
+      ]
+    },
+    {
+      "id": "RO_FINAL_I_ASYLLABIC",
+      "phonemes": [
+        "i"
+      ],
+      "surface": "",
+      "word_final": true,
+      "preceded_by_phoneme": [
+        "b",
+        "d",
+        "dʒ",
+        "f",
+        "ɡ",
+        "h",
+        "k",
+        "m",
+        "n",
+        "p",
+        "s",
+        "ʃ",
+        "t",
+        "ts",
+        "tʃ",
+        "v",
+        "z",
+        "ʒ"
+      ],
+      "requires_other_nucleus": true,
+      "mutates_neighbor": "ʲ",
+      "mutates_neighbor_side": "preceding",
+      "notes": "The word-final desinential ⟨i⟩ (plural, 2sg) is asyllabic: it deletes and palatalizes the preceding consonant — ⟨lupi⟩ [lupʲ], ⟨pomi⟩ [pomʲ], ⟨ochi⟩ [okʲ], ⟨vezi⟩ [vezʲ] (Chitoran 2002 ch. 5, 'final devoiced i'; Renwick 2014; DOOM3). `requires_other_nucleus` keeps the monosyllables that have no other vowel intact — ⟨și⟩ [ʃi], ⟨fi⟩ [fi], ⟨zi⟩ [zi]. Liquids are excluded here and handled by RO_FINAL_I_ASYLLABIC_LIQUID so that the muta cum liquida cluster keeps a syllabic [i]."
+    },
+    {
+      "id": "RO_FINAL_I_ASYLLABIC_LIQUID",
+      "phonemes": [
+        "i"
+      ],
+      "surface": "",
+      "word_final": true,
+      "preceded_by_phoneme": [
+        "l",
+        "r"
+      ],
+      "preceded_by_2": "vowel",
+      "requires_other_nucleus": true,
+      "mutates_neighbor": "ʲ",
+      "mutates_neighbor_side": "preceding",
+      "notes": "The same desinence after a liquid, but ONLY where the liquid is not the second member of a muta cum liquida onset: ⟨adevăruri⟩ [adeˈvərurʲ], ⟨fii⟩-type aside. After obstruent+liquid the /i/ must be syllabic because the glide cannot join a complex onset — ⟨noștri⟩ [ˈnoʃtri], ⟨codri⟩ [ˈkodri], ⟨acri⟩ [ˈakri] (Chitoran 2002 ch. 3 and ch. 5, on muta cum liquida; DOOM3)."
     }
+  ],
+  "word_exceptions": {
+    "eu": "jew",
+    "el": "jel",
+    "ea": "ja",
+    "ei": "jej",
+    "ele": "jele",
+    "este": "jeste",
+    "e": "je",
+    "ești": "jeʃtʲ",
+    "eram": "jeram",
+    "erai": "jeraj",
+    "era": "jera",
+    "erați": "jeratsʲ",
+    "erau": "jeraw"
+  },
+  "vowel_graphemes": [
+    "ă"
   ]
 }

@@ -127,19 +127,17 @@ def test_ca_nasal_palatal_assimilation_word_internally():
     assert bare("ca", "àngel") == "aɲʒəl"
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="CA_NASAL_PALATAL cites the cross-word case un jutge [uɲ ˈdʒudʒə]; "
-           "the engine applies the rule word-internally only and produces "
-           "[ˈun ˈʒudʒə] — the nasal keeps its alveolar place across the "
-           "word boundary",
-)
 def test_ca_nasal_palatal_assimilation_across_a_word_boundary():
-    """CA_NASAL_PALATAL: "Nasal place assimilation to a PALATO-ALVEOLAR
-    (Recasens 1993; Wheeler 2005 §10.3): /n/ → [ɲ] before /ʃ ʒ tʃ dʒ ʎ/ —
-    àngel [ˈaɲʒəl], un jutge [uɲ ˈdʒudʒə], any llunyà [ˈaɲ ʎuˈɲa]."
+    """CA_EXT_NASAL_PALATAL: "Nasal place assimilation to a PALATO-ALVEOLAR
+    (Recasens 1993; Wheeler 2005 §5.3, §10.3, §10.5): /n/ → [ɲ] before /ʃ ʒ
+    tʃ dʒ ʎ/ — àngel [ˈaɲʒəl], un jutge [uɲ ˈdʒudʒə], any llunyà [ˈaɲ ʎuˈɲa]."
+
+    Was strict-xfail: the word-internal CA_NASAL_PALATAL allophone rule did
+    not extend across the word boundary. CA_EXT_NASAL_PALATAL (a sandhi_rule
+    on ca-x-medieval, inherited by every Catalan variety) closes the gap.
     """
     assert phrase("ca", "un jutge")[0].endswith("ɲ")
+    assert phrase("ca", "any llunyà")[0].endswith("ɲ")
 
 
 @pytest.mark.xfail(
@@ -179,12 +177,11 @@ def test_ca_word_ending_in_a_falling_diphthong_is_oxytone():
     assert bare("ca", "avui").startswith("ə")
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="phrase-level spirantization matches the /d/ of the affricate /dʒ/ "
-           "and yields [ðʒeˈɾmana] for la germana; the cited Valencian form is "
-           "the intact affricate [dʒeɾˈma]",
-)
+# Was xfail(strict) — the phrase-level spirantization rule matched the /d/ of
+# the affricate /dʒ/ and produced *[ðʒeˈɾmana]. Fixed by the dialect-margins
+# wave: CA_EXT_SPIRANT_D's right context now guards against ⟨dʒ⟩, because
+# post-vocalic spirantization targets the voiced STOPS /b d ɡ/ (Wheeler 2005
+# §5.2) and never the affricate. See tests/test_catalan_dialect_margins.py.
 def test_ca_valencian_affricate_survives_phrase_level_spirantization():
     """Valencian notes (Wheeler 2005 §5.1; Veny 1982 ch. 3; AVL 2006): "the
     affricate [dʒ] for ⟨j⟩ and ⟨g⟩ before a front vowel (germà [dʒeɾˈma])".
@@ -195,6 +192,45 @@ def test_ca_valencian_affricate_survives_phrase_level_spirantization():
     """
     assert bare("ca-x-valencia", "germana").startswith("dʒ")
     assert phrase("ca-x-valencia", "la germana")[1].lstrip("ˈ").startswith("dʒ")
+
+
+class TestCaExternalNasalAssimilation:
+    """CA_EXT_NASAL_LABIAL / CA_EXT_NASAL_VELAR: a word-final /n/ assimilates
+    in place to a following labial or velar onset across the word boundary
+    (Wheeler 2005 §5.3, §10.5; Recasens 1993), mirroring the word-internal
+    CA_NASAL_LABIAL / CA_NASAL_VELAR allophone rules (un peu [um ˈpɛw],
+    en Barcelona [əm bərsəˈlonə], un gat [uŋ ˈɡat]).
+
+    Checked on all four living dialects — the rule lives on ca-x-medieval
+    and is inherited by every descendant.
+    """
+
+    @pytest.mark.parametrize(
+        "lang", ["ca", "ca-x-balear", "ca-x-occidental", "ca-x-valencia"]
+    )
+    def test_labial_assimilation(self, lang):
+        assert phrase(lang, "un peu")[0] == "um"
+
+    @pytest.mark.parametrize(
+        "lang", ["ca", "ca-x-balear", "ca-x-occidental", "ca-x-valencia"]
+    )
+    def test_velar_assimilation(self, lang):
+        assert phrase(lang, "un gat")[0] == "uŋ"
+
+    def test_labial_assimilation_before_a_word_initial_m(self):
+        """en mig [əm ˈmitʃ]: a following /m/ onset is labial too."""
+        assert phrase("ca", "en mig")[0] == "əm"
+
+    def test_no_assimilation_before_a_vowel(self):
+        """The rule is consonant-conditioned only: a following vowel leaves
+        the final /n/ alveolar (un amic [un əˈmik])."""
+        assert phrase("ca", "un amic")[0] == "un"
+
+    def test_no_assimilation_of_a_final_consonant_other_than_n(self):
+        """Only /n/ is the target (matching the word-internal CA_NASAL_*
+        rules, which are /n/-only): a final /m/ before a velar onset is left
+        alone (menjar gelat keeps its final ⟨r⟩-less /m/, not [ŋ])."""
+        assert not phrase("ca", "vam guanyar")[0].endswith("ŋ")
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -218,11 +254,6 @@ def test_eu_three_way_sibilant_contrast_surfaces():
     assert bare("eu-x-bizkaiera", "zezen").startswith("s̺")
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="Hualde et al. (2010: 116) is cited for intervocalic [β ð ɣ]; the "
-           "engine keeps the stops — alaba [alaba], ogia [oɡia]",
-)
 def test_eu_intervocalic_voiced_stops_are_approximants():
     """Standard Basque notes: "Voiced stops /b d ɡ/ are realised as approximants
     [β ð ɣ] intervocalically (Hualde et al. 2010: 116)."
@@ -450,15 +481,20 @@ def test_ext_f_aspiration_gives_an_audible_h():
 # Occitan
 # ═══════════════════════════════════════════════════════════════════════════
 
-def test_oc_infinitive_is_paroxytone_with_a_silent_final_r():
-    """Occitan stress notes (Bec 1973; Alibert): "Infinitives in -ar/-er/-ir are
-    paroxytone (the final -r is silent in spoken Occitan but syllabified here,
-    so penult_stress_endings must list them explicitly)."
+def test_oc_infinitive_is_oxytone_with_a_silent_final_r():
+    """Occitan infinitives take FINAL stress: ⟨cantar⟩ is [kanˈta] and
+    ⟨corrir⟩ is [kuˈri]. The ⟨-r⟩ is silent, but a word ending in a consonant
+    other than ⟨-s⟩ is oxytone and the infinitive ending is no exception.
+    Wikipédia, "Prononciation de l'occitan" states the consonant-final rule;
+    fr.wiktionary "Annexe:Prononciation/occitan" is where ⟨corrir⟩ itself is
+    listed among the oxytones.
 
-    Minimal pair against the default: ⟨occitan⟩, ending in a consonant that is
-    not an infinitive ending, is oxytone.
+    Minimal pair against a paroxytone: ⟨canta⟩, ending in a vowel, is
+    [ˈkantɔ], so the ⟨-r⟩ is what moves the accent.
     """
-    assert word("oc", "cantar") == "ˈkanta"
+    assert word("oc", "cantar").replace("ˈ", "") == "kanta"
+    assert word("oc", "cantar").endswith("ta")
+    assert word("oc", "canta") == "ˈkantɔ"
     # occitan, ending in a plain consonant, is oxytone: stress on the final
     # syllable (isolating the stress claim from the ⟨cc⟩ realisation).
     assert word("oc", "occitan").endswith("ˈta")

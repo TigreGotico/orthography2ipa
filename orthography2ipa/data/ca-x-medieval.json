@@ -463,6 +463,21 @@
   },
   "allophone_rules": [
     {
+      "id": "CA_TRILL_AFTER_NLS",
+      "phonemes": [
+        "ɾ"
+      ],
+      "surface": "r",
+      "preceded_by_phoneme": [
+        "l",
+        "ɫ",
+        "n",
+        "s",
+        "z"
+      ],
+      "notes": "Trill after a heterosyllabic /l n s/ — honra [ˈonra], Enric [ənˈrik], israelià, folre. Wheeler 2005 §7.1 and Recasens 1993 state this for CATALAN, not for one variety, so the rule is declared HERE on the shared ancestor and every descendant inherits it. It was found while fixing the Balearic coda rhotic and the first draft put it on ca-x-balear alone, which would have been fitting the rule to the row that paid for it: the same citation says honra has a trill in Central and Western too, and those specs were getting a tap.\nDoes NOT touch the tautosyllabic obstruent+r ONSET clusters (tres, quatre, pobre), whose rhotic is a tap — which is why the trigger is the /l n s/ list and not the generic ``after_consonant`` position. Stating it as after_consonant was measured and made the ca-x-balear 4catac row worse (0.1471 → 0.1534).\n/m/ is deliberately NOT in the list. somriure is often described with a trill, but Wheeler's context statement names l, n and s, and adding a segment the source does not name would be guessing."
+    },
+    {
       "id": "CA_FINAL_IG_AFFRICATE",
       "phonemes": [
         "ɡ"
@@ -660,10 +675,22 @@
       "followed_by_phoneme": [
         "p",
         "b",
-        "m",
-        "f"
+        "m"
       ],
-      "notes": "Nasal place assimilation (Recasens 1993; Wheeler 2005 §10.3): /n/ → [m] before a labial consonant."
+      "notes": "Nasal place assimilation to a following BILABIAL: /n/ before /p b m/ surfaces as [m] (Recasens 1993 §4; Wheeler 2005 §10.4; Bonet & Lloret 1998 §3). un pare [umˈpaɾe], en bici, un mes. /f v/ are NOT in this list: a nasal assimilates to the labiodental PLACE there, giving [ɱ], not the bilabial [m] — see CA_NASAL_LABIODENTAL."
+    },
+    {
+      "id": "CA_NASAL_LABIODENTAL",
+      "phonemes": [
+        "n",
+        "m"
+      ],
+      "surface": "ɱ",
+      "followed_by_phoneme": [
+        "f",
+        "v"
+      ],
+      "notes": "Nasal place assimilation to a following LABIODENTAL: a nasal before /f v/ surfaces as the labiodental nasal [ɱ], not as the bilabial [m] (Recasens 1993 §4 — nasal place assimilation in Catalan is TOTAL and includes the labiodental articulation; Wheeler 2005 §10.4, post-lexical nasal place assimilation; Bonet & Lloret 1998 §3). enfadar [əɱfəˈða], confortable [koɱfoɾˈtable], convèncer [koɱˈvɛnse], àmfora [ˈaɱfoɾa]. [ɱ] is already declared in this spec's allophones for both /m/ and /n/; before this rule nothing produced it. Declared on the Old-Catalan node because the process is pan-Catalan — every descendant dialect has it, and no source reports a variety that keeps a bilabial nasal before /f v/."
     },
     {
       "id": "CA_NASAL_VELAR",
@@ -1070,13 +1097,41 @@
       "id": "CA_EXT_SPIRANT_D",
       "name": "external-spirantization-d",
       "left_context": "[aeiouəɛɔiuwjszʃʒfvβðɣɾr]$",
-      "right_context": "^([ˈˌ]?)d",
+      "right_context": "^([ˈˌ]?)d(?!ʒ)",
       "right_transform": "\\1ð",
       "obligatory": true,
-      "notes": "PHRASE-LEVEL (cross-word) SPIRANTIZATION: Catalan lenition of /b d ɡ/ is not word-bounded — inside a phonological phrase an initial /b d ɡ/ surfaces as the approximant [β ð ɣ] whenever the preceding word ends in a continuant (a vowel, glide, liquid or fricative), and stays a stop after a pause, a nasal or another stop (Wheeler 2005 §5.2, §10.5; Recasens 1993): la seva germana [lə ˈseβə ʒərˈmanə], de decidir [ðə ðəsiˈði], es va [əz ˈβa] — but un glop [uŋ ˈɡlɔp] keeps the stop after the nasal. /d/ additionally resists lenition after a lateral, so its left context excludes ⟨l⟩."
+      "notes": "PHRASE-LEVEL (cross-word) SPIRANTIZATION: Catalan lenition of /b d ɡ/ is not word-bounded — inside a phonological phrase an initial /b d ɡ/ surfaces as the approximant [β ð ɣ] whenever the preceding word ends in a continuant (a vowel, glide, liquid or fricative), and stays a stop after a pause, a nasal or another stop (Wheeler 2005 §5.2, §10.5; Recasens 1993): la seva germana [lə ˈseβə ʒərˈmanə], de decidir [ðə ðəsiˈði], es va [əz ˈβa] — but un glop [uŋ ˈɡlɔp] keeps the stop after the nasal. /d/ additionally resists lenition after a lateral, so its left context excludes ⟨l⟩.\nThe ⟨dʒ⟩ GUARD in the right context is load-bearing, not decoration. Post-vocalic spirantisation targets the voiced STOPS /b d ɡ/ (Wheeler 2005 §5.2; Recasens 1993); the voiced palato-alveolar AFFRICATE /dʒ/ is not one of them and never lenites. Without the guard the regex bites the stop half of the affricate and the Western varieties — the ones that realise ⟨j⟩/⟨g+e,i⟩ as [dʒ] rather than Eastern [ʒ] — come out with an impossible *[ðʒ]: la gent [la ˈdʒen], not *[la ˈðʒen]; de jutge [de ˈdʒudʒe]."
+    },
+    {
+      "id": "CA_EXT_NASAL_LABIAL",
+      "name": "external-nasal-assimilation-labial",
+      "left_context": "n$",
+      "right_context": "^[ˈˌ]?[pbmf]",
+      "transform": "m",
+      "obligatory": true,
+      "notes": "PHRASE-LEVEL (cross-word) NASAL PLACE ASSIMILATION: a word-final /n/ assimilates in place to a following labial/labiodental onset across the word boundary, the same homorganic process the language applies word-internally (Wheeler 2005 §5.3, §10.5; Recasens 1993 on homorganic nasal + obstruent clusters): un peu [um ˈpɛw], en Barcelona [əm bərsəˈlonə], deu galls stays unaffected (velar, see CA_EXT_NASAL_VELAR). Mirrors the word-internal CA_NASAL_LABIAL allophone rule, extended across the boundary."
+    },
+    {
+      "id": "CA_EXT_NASAL_VELAR",
+      "name": "external-nasal-assimilation-velar",
+      "left_context": "n$",
+      "right_context": "^[ˈˌ]?[kɡ]",
+      "transform": "ŋ",
+      "obligatory": true,
+      "notes": "PHRASE-LEVEL (cross-word) NASAL PLACE ASSIMILATION: a word-final /n/ assimilates to a following velar onset across the word boundary (Wheeler 2005 §5.3, §10.5; Recasens 1993): un gat [uŋ ˈɡat], cinc pans → CA_EXT_NASAL_LABIAL handles the labial case above. Mirrors the word-internal CA_NASAL_VELAR allophone rule, extended across the boundary."
+    },
+    {
+      "id": "CA_EXT_NASAL_PALATAL",
+      "name": "external-nasal-assimilation-palatal",
+      "left_context": "n$",
+      "right_context": "^[ˈˌ]?(?:ʃ|ʒ|tʃ|dʒ|ʎ)",
+      "transform": "ɲ",
+      "obligatory": true,
+      "notes": "PHRASE-LEVEL (cross-word) NASAL PLACE ASSIMILATION: a word-final /n/ assimilates to a following palatal onset across the word boundary (Wheeler 2005 §5.3, §10.5; Recasens 1993): en Xile [əɲ ˈʃilə]. Mirrors the word-internal CA_NASAL_PALATAL allophone rule, extended across the boundary."
     }
   ],
   "stress": {
+    "onset_clusters": ["bl", "br", "bɫ", "bɾ", "bʀ", "bʁ", "bʎ", "bχ", "dr", "dɾ", "dʀ", "dʁ", "dʎ", "dχ", "fl", "fr", "fɫ", "fɾ", "fʀ", "fʁ", "fʎ", "fχ", "kl", "kr", "kɫ", "kɾ", "kʀ", "kʁ", "kʎ", "kχ", "pl", "pr", "pɫ", "pɾ", "pʀ", "pʁ", "pʎ", "pχ", "tr", "tɾ", "tʀ", "tʁ", "tʎ", "tχ", "vl", "vr", "vɫ", "vɾ", "vʀ", "vʁ", "vʎ", "vχ", "ðr", "ðɾ", "ðʀ", "ðʁ", "ðʎ", "ðχ", "ɡl", "ɡr", "ɡɫ", "ɡɾ", "ɡʀ", "ɡʁ", "ɡʎ", "ɡχ", "ɣl", "ɣr", "ɣɫ", "ɣɾ", "ɣʀ", "ɣʁ", "ɣʎ", "ɣχ", "βl", "βr", "βɫ", "βɾ", "βʀ", "βʁ", "βʎ", "βχ"],
     "cliticless_words": [
       "el",
       "la",

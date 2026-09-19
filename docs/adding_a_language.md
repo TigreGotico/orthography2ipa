@@ -2,13 +2,13 @@
 
 ## Overview
 
-All phonological data — graphemes, allophones, positional graphemes, ancestry,
-sources — lives in standalone JSON files under `orthography2ipa/data/`, one per
+All phonological data: graphemes, allophones, positional graphemes, ancestry,
+sources: lives in standalone JSON files under `orthography2ipa/data/`, one per
 language code. The engine is language-agnostic: adding a language means writing
 cited data, never code. The field-by-field authoring reference is
 [`SCHEMA.md`](../orthography2ipa/data/SCHEMA.md); this page is the walkthrough.
 
-A spec must declare **`graphemes` or `phonemes`** — the spelling, the inventory, or
+A spec must declare **`graphemes` or `phonemes`**: the spelling, the inventory, or
 both. It may not be silent about both. "Every language has graphemes" is false: a
 logographic script has no grapheme→IPA rule to write (`zh-Hani` ships an empty map
 on purpose), and an unwritten or reconstructed language has no orthography at all,
@@ -18,7 +18,7 @@ yet both have a phonology. Say which kind of writing the graphemes are with
 Two things a spec does **not** declare:
 
 - **No `family` string.** Classification comes from the clade nodes above the
-  spec in the ancestry graph — set `parent` and `family` derives itself. See
+  spec in the ancestry graph: set `parent` and `family` derives itself. See
   [Classification](#classification-wire-it-into-the-clade-chain) below.
 - **No engine hooks.** If a language needs behaviour the shared engine cannot
   express, that is a gap in the engine or in the spec vocabulary, not a reason
@@ -116,7 +116,7 @@ Python `{**GRAPHEMES_ES, ...}` pattern.
 
 ### Inheritance rules
 
-1. Only explicitly listed entries override the base — everything else is inherited.
+1. Only explicitly listed entries override the base: everything else is inherited.
 2. Inheritance chains are resolved recursively (A inherits B which inherits C).
 3. Circular inheritance is detected and raises `ValueError`.
 4. Each of `graphemes`, `allophones`, and `positional_graphemes` can independently inherit from different bases.
@@ -182,7 +182,7 @@ dataset. For historical languages, ensure the ancestral chain connects back to a
 
 A family is a **clade node**: a spec whose JSON carries `"clade": true`, a
 `name` (`"Ibero-Romance"`), and a `parent` pointing at the next clade up. It is
-classification and nothing else — no graphemes, no allophones, never inherited
+classification and nothing else: no graphemes, no allophones, never inherited
 from, and excluded from `available_codes()` unless `include_clades=True`.
 
 So a new language is classified by pointing its `parent` at the right node, and
@@ -195,7 +195,7 @@ orthography2ipa.get("pt-BR").family_path   # ('Indo-European', 'Italic', 'Romanc
 orthography2ipa.get("pt-BR").family        # 'Indo-European > Italic > Romance > Ibero-Romance'
 ```
 
-If the clade the language belongs to has no node yet, add the node — do not
+If the clade the language belongs to has no node yet, add the node: do not
 author a `family` string to route around the missing one. The one case where an
 explicit `family` string is right is a grouping that is *not* a genetic clade:
 creoles, constructed languages, isolates, unclassified languages.
@@ -206,12 +206,43 @@ Beyond the phonology, a spec is the place to record what the language *is*:
 
 | Field | Why it matters |
 |---|---|
-| `sources` | The citation bar for `research` tier — every mapping traceable to a published description |
+| `sources` | The citation bar for `research` tier: every mapping traceable to a published description |
 | `orthography_standard` | The official spelling norm, where one exists: the primary authority for what a grapheme *is* |
-| `location` | Representative point (lat/lon); feeds `geographic_distance` — most meaningful for region-anchored dialects |
+| `location` | Representative point (lat/lon); feeds `geographic_distance`: most meaningful for region-anchored dialects |
 | `timespan` | Attestation period; decays ancestry weights across time |
-| `glottolog_code`, `wikidata_qid`, `phoible_id`, `wals_code`, `iso639_3` | Cross-references. `wikidata_qid` is the hub — one QID resolves the rest |
+| `glottolog_code`, `wikidata_qid`, `phoible_id`, `wals_code`, `iso639_3` | Cross-references. `wikidata_qid` is the hub: one QID resolves the rest |
 | `wikipedia`, `urls` | Human-readable references |
+
+### Looking for a source: what a phone inventory cannot tell you
+
+A grapheme table maps a **letter** to the phones it can take. A phone inventory lists the
+phones a variety **has**. These are different facts, and the second never settles the
+first — a variety with both /q/ and /ɡ/ in its inventory still leaves ⟨ق⟩ undecided, which
+is the reflex a spec exists to record.
+
+This matters because the sources easiest to reach are inventories. Two worked examples,
+both from real searches, so nobody repeats them:
+
+- **PHOIBLE** is referenced by the `phoible_id` field and is the obvious place to look. It
+  covers Arabic at macrolanguage and standard-variety level only: a search of the full
+  database by ISO code returns **zero segments** for `ayh`, `acq`, `abv`, `ssh`, `aao`,
+  `adf`, `aec`, `avl`, `ayp`, `bbz` and `sqr`. Even where it has an inventory, it gives
+  phones and not letter mappings.
+- A **sound-definition list** in a phonetic description has the same shape. Dawod's 1952
+  thesis on the Aden dialect lists "voiced velar plosive" and "voiceless uvular plosive"
+  in readable English, which establishes that Aden has both — and its one table mapping
+  letters to those sounds has the symbol column faded off the scan. The inventory is
+  legible and the reflexes are not recoverable.
+
+So when a source is hard to get, ask first whether it would answer the question. What a
+spec needs is a statement of the form "⟨ق⟩ is realised as X in this variety", with a page
+number. An inventory, a phoneme count, a table of contents listing a section on velar
+stops, or a frequency count over a corpus are all evidence that a phone or a letter
+**occurs** — none of them licenses a reading.
+
+Where no such statement can be obtained, the honest spec is a `stub` that says so and
+names where the description would be found, not a `research` spec filled from the nearest
+inventory.
 
 ### Step 3: For dialects, use inheritance
 
@@ -244,10 +275,29 @@ uv run pytest tests/ -v
 The test suite validates:
 
 - All JSON files parse correctly
-- Every spec has its required fields (name, script, and `graphemes` **or** `phonemes` — a spec may not be silent about both)
+- Every spec has its required fields (name, script, and `graphemes` **or** `phonemes`: a spec may not be silent about both)
 - Every `parent` field points to an existing spec
 - Every PARENT-role ancestor exists in the dataset
 - Linguistic accuracy for key languages (Spanish θ, English th, German Auslautverhärtung, etc.)
+
+---
+
+## Suffix morphology (`grammatical_endings`, optional)
+
+When an ending's realisation belongs to the *grammatical ending* rather than to
+the letters that spell it — French mute ⟨-er⟩/⟨-ez⟩, English ⟨-tion⟩ → [ʃən] —
+declare it in `grammatical_endings`, never as a grapheme key (morpheme chunks
+are forbidden grapheme keys; see `AGENTS.md`). The ending is matched at the
+word's effective end only, so word-internal letters are untouched, and
+`word_exceptions` still outranks it. Full contract:
+[`SCHEMA.md`](../orthography2ipa/data/SCHEMA.md#grammatical-endings).
+
+When the ending has more than one licit reading and the spelling does not say
+which — French verbal ⟨-ent⟩ is mute, nominal ⟨-ent⟩ is [ɑ̃] — do **not** pick
+one and do not reach for a word list. Declare it as an ordered candidate list
+(`"ent": [null, ""]`) so both readings are in the lattice and a downstream
+rescorer can choose: [Ambiguous
+endings](../orthography2ipa/data/SCHEMA.md#ambiguous-endings).
 
 ---
 
@@ -255,9 +305,8 @@ The test suite validates:
 
 When grapheme rules cannot reach production accuracy for a deep-orthography
 language, ship a **lexicon**: a sidecar file
-a caller-registered `{code}.tsv` (`word<TAB>ipa`, UTF-8, NFC, never bundled —
-lowercase words, sorted, first-entry-wins), named by the language's resolved
-code (e.g. `en-GB.tsv`). No JSON change and no new spec field are needed — the
+a caller-registered `{code}.tsv` (`word<TAB>ipa`, UTF-8, NFC, never bundled: lowercase words, sorted, first-entry-wins), named by the language's resolved
+code (e.g. `en-GB.tsv`). No JSON change and no new spec field are needed: the
 file is discovered by convention and read lazily on first use. See
 [`data_model.md`](data_model.md#lexicon-overlay-sidecar-word_exceptions-at-scale)
 for the full contract (precedence: inline `word_exceptions` > lexicon > rules).
@@ -295,11 +344,18 @@ Rules to follow when adding one:
 | `nucleus`                 | Generic syllable nucleus    | When stress not distinguished             |
 | `nucleus_stressed`        | Stressed syllable nucleus   | Full vowel quality                        |
 | `nucleus_unstressed`      | Unstressed syllable nucleus | Portuguese ⟨e⟩ → [ɨ]                     |
+| `nucleus_secondary`       | Nucleus under SECONDARY stress — a foot head that is not the main accent. Emitted only when the spec declares `stress.secondary_stress`, and emitted INSTEAD OF `nucleus_unstressed`, so a reduction entry no longer reaches it | English ⟨o⟩ keeps [ɒ] in ˌcombiˈnation |
+| `open_syllable`           | Nucleus, syllable has no coda | French `"eu": {"open_syllable": ["ø"]}` |
+| `closed_syllable`         | Nucleus, syllable has a coda  | French `"eu": {"closed_syllable": ["œ"]}` |
+| `nucleus_stressed_open`   | Stressed **and** open       | Dutch ⟨e⟩ → [eː] in *le·zen*              |
+| `nucleus_stressed_closed` | Stressed **and** closed     | Dutch ⟨e⟩ → [ɛ] in *lek*                  |
+| `nucleus_unstressed_open` | Unstressed **and** open     | Aperture under reduction                  |
+| `nucleus_unstressed_closed` | Unstressed **and** closed | Aperture under reduction                  |
 | `coda`                    | Syllable coda               | Brazilian `"l": {"coda": ["w"]}`          |
 | `pretonic`                | Before stressed syllable    | Pretonic vowel reduction                  |
 | `posttonic`               | After stressed syllable     | Posttonic vowel reduction                 |
 | `before_vowel`            | Before any vowel            | Consonant allophony                       |
-| `after_vowel`             | After any vowel             | Post-vocalic changes                      |
+| `after_vowel`             | After any vowel, written or inherent | Post-vocalic changes; in an abugida also after a consonant letter carrying its inherent vowel |
 | `before_consonant`        | Before any consonant        | Pre-consonantal changes                   |
 | `after_consonant`         | After any consonant         | Post-consonantal changes                  |
 | `before_a` .. `before_u`  | Before specific vowel       | Velar softening contexts                  |
@@ -312,16 +368,12 @@ Rules to follow when adding one:
 
 | JSON value    | Description                                                |
 |---------------|------------------------------------------------------------|
-| `parent`      | Primary genetic descent (weight 0.7–1.0)                   |
-| `substrate`   | Pre-existing population language (weight 0.05–0.30)        |
-| `superstrate` | Dominant group language, later absorbed (weight 0.10–0.40) |
-| `adstrate`    | Peer contact influence (weight 0.05–0.20)                  |
-| `lexifier`    | Vocabulary source in creole (weight 0.50–0.80)             |
-| `creole_base` | Grammar source in creole (weight 0.20–0.50)                |
-
+| `parent`      | Primary genetic descent (weight 0.7-1.0)                   |
+| `substrate`   | Pre-existing population language (weight 0.05-0.30)        |
+| `superstrate` | Dominant group language, later absorbed (weight 0.10-0.40) |
+| `adstrate`    | Peer contact influence (weight 0.05-0.20)                  |
+| `lexifier`    | Vocabulary source in creole (weight 0.50-0.80)             |
+| `creole_base` | Grammar source in creole (weight 0.20-0.50)                |
 
 ---
-
-**Navigation:** [Docs home](index.md) · [Getting started](getting_started.md) · [Architecture](architecture.md) · [Languages](languages/index.md) · [Scoreboard](scoreboard.md)
-
-*Related: [Data model](data_model.md) · [Registry](registry.md) · [Quality tiers](quality_tiers.md) · [Ancestry](ancestry.md)*
+[← Positional Graphemes](positional_graphemes.md) · [Home](index.md) · [Linguistic Accuracy Guide →](linguistic_accuracy.md)
