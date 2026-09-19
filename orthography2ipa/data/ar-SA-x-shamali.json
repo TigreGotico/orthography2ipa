@@ -20,7 +20,7 @@
     "a"
    ],
    "word_initial": true,
-   "notes": "Word-initial /k/ before central /a/. Alshammari (2026, JLTR 17(4):1333-1341) ex. (1d) p.1335, /kalb/ -> [tsalb] 'dog', with /kabd/ -> [tsabd] 'liver' beside it. SCOPED TO WORD-INITIAL DELIBERATELY: the author reports at p.1336 that \"it was difficult to find a word that is affricated in the environment of the central vowel /a/ word-medially in NNA\", so the medial case is unattested and is not claimed here."
+   "notes": "Word-initial /k/ before central /a/. HOW THE ENGINE CARRIES THE VARIATION: this rule rewrites the slot, so transcribe_word() gives the affricate and candidates() (the pre-rule beam) gives the plain velar; the plain~affricate pair itself lives in the allophones table (k: [k, ts], inherited from ar-SA-x-najd through allophones_base) and both arcs appear in candidates() only with expand_allophones=True, where the allophone branch is not conditioned on the vowel. A caller who wants two arcs must opt in; a caller reading one output gets the dialect-diagnostic reflex. Alshammari (2026, JLTR 17(4):1333-1341) ex. (1d) p.1335, /kalb/ -> [tsalb] 'dog', with /kabd/ -> [tsabd] 'liver' beside it. SCOPED TO WORD-INITIAL DELIBERATELY: the author reports at p.1336 that \"it was difficult to find a word that is affricated in the environment of the central vowel /a/ word-medially in NNA\", so the medial case is unattested and is not claimed here."
   },
   {
    "id": "SHAMALI_AFFRIC_K_BEFORE_CENTRAL_AA",
