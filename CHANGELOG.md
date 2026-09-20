@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.105.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.105.0a1) (2026-09-19)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.104.1a2...7.105.0a1)
+
+**Merged pull requests:**
+
+- feat\(g2p\): a zero-grapheme stub warns when the engine is built, and G2P.is\_stub says so [\#1687](https://github.com/TigreGotico/orthography2ipa/pull/1687) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.104.1a2](https://github.com/TigreGotico/orthography2ipa/tree/7.104.1a2) (2026-09-19)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.104.1a1...7.104.1a2)
@@ -282,17 +290,9 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.21a1...7.94.0a1)
 
-**Merged pull requests:**
-
-- feat: compare against ghana-g2p, and add the ee and ha comparison rows [\#1585](https://github.com/TigreGotico/orthography2ipa/pull/1585) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [7.93.21a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.21a1) (2026-09-17)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.20a1...7.93.21a1)
-
-**Merged pull requests:**
-
-- fix\(ar\): read a final ya after a kasra key as a long vowel in ar-x-gulf, ar-SY and ar-SA-x-hejaz [\#1586](https://github.com/TigreGotico/orthography2ipa/pull/1586) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.93.20a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.20a1) (2026-09-17)
 
@@ -328,19 +328,19 @@
 
 ## [7.93.16a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.16a1) (2026-09-17)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.14a1...7.93.16a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.15a1...7.93.16a1)
 
 **Merged pull requests:**
 
 - fix\(ar\): read the two Maghribi letters every Maghrebi spec was dropping [\#1593](https://github.com/TigreGotico/orthography2ipa/pull/1593) ([JarbasAl](https://github.com/JarbasAl))
 
-## [7.93.14a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.14a1) (2026-09-17)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.15a1...7.93.14a1)
-
 ## [7.93.15a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.15a1) (2026-09-17)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.13a1...7.93.15a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.14a1...7.93.15a1)
+
+## [7.93.14a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.14a1) (2026-09-17)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.13a1...7.93.14a1)
 
 **Merged pull requests:**
 
