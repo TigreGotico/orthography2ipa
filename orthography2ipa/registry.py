@@ -401,20 +401,38 @@ def _discover_syllabifiers() -> Dict[str, "SyllabifierPlugin"]:
 
     When several plugins claim the same language code, the one with the
     highest :attr:`SyllabifierPlugin.priority` wins.
+
+    A bundled plugin's own optional third-party dependency being absent is the
+    normal case for an ordinary install (see :mod:`orthography2ipa.syllabifiers`)
+    — it is logged at DEBUG, naming the extra that would enable it. Anything
+    else that goes wrong loading or instantiating a plugin is a real problem
+    and is logged at WARNING.
     """
     plugins: Dict[str, "SyllabifierPlugin"] = {}
     eps = entry_points(group="orthography2ipa.syllabify")
     for ep in eps:
         try:
-            instance = ep.load()()
-            for code in instance.language_codes:
-                incumbent = plugins.get(code)
-                if incumbent is None or instance.priority > incumbent.priority:
-                    plugins[code] = instance
+            cls = ep.load()
         except Exception as exc:
             _LOG.warning(
                 "failed to load syllabifier plugin %r: %s", ep.name, exc)
             continue
+        try:
+            instance = cls()
+        except ModuleNotFoundError as exc:
+            _LOG.debug(
+                "syllabifier plugin %r is disabled: its optional dependency is "
+                "not installed (%s). Install the matching extra to enable it.",
+                ep.name, exc)
+            continue
+        except Exception as exc:
+            _LOG.warning(
+                "failed to load syllabifier plugin %r: %s", ep.name, exc)
+            continue
+        for code in instance.language_codes:
+            incumbent = plugins.get(code)
+            if incumbent is None or instance.priority > incumbent.priority:
+                plugins[code] = instance
     return plugins
 
 
