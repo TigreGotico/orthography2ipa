@@ -2192,6 +2192,11 @@ _GRUUT_SAME_SOURCE_DATASETS = frozenset({"cmudict", "ipadict"})
 #: self-agreement, not correctness.
 _O2I_SAME_SOURCE_DATASETS = frozenset({
     "arabic_tts", "portuguese_tts", "gold20_arabic",
+    # spain_romance_tts is pinned to o2i's own output by its authoring tool
+    # AND by its CI gate, which asserts transcribe(sentence, lect) == ipa for
+    # every row (scripts/spain_romance_tts_gold.py validate). Scoring o2i
+    # against it is circular by construction, not merely by lineage.
+    "spain_romance_tts",
     # barranquenho_dict joins per this docstring's own instruction above:
     # load_barranquenho_dict's docstring documents its IPA column as itself
     # o2i-aligned, so scoring o2i (or g2p_barranquenho, which is built
