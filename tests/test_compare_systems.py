@@ -2542,6 +2542,34 @@ class TestO2iSameSourceExclusion:
         assert cs._cell(row, "o2i") == "0.0000"
 
 
+class TestO2iSameSourceGoldCannotGate:
+    """A dataset in ``_O2I_SAME_SOURCE_DATASETS`` is gold that o2i's own
+    knowledge (or o2i's own output) went into, so its PER measures
+    self-agreement. Such a row must never qualify or block a language: the
+    ``spain_romance_tts`` provenance note in scripts/benchmark.py states the
+    rule as "a gold pinned to the system under test must never gate
+    anything". The same-source FLAG only changes how the cell renders; it
+    does not stop `can_gate_promotion` from returning True. This test binds
+    the two, so a tier edit that makes a same-source dataset gating fails
+    here.
+    """
+
+    def test_every_same_source_dataset_has_a_non_gating_tier(self):
+        for dataset in sorted(cs._O2I_SAME_SOURCE_DATASETS):
+            tier = cs.benchmark.PROVENANCE[dataset]
+            assert not cs.benchmark.can_gate_promotion(tier), (
+                f"{dataset} is same-source with o2i but its tier {tier!r} "
+                f"can gate a promotion"
+            )
+
+    def test_the_check_can_fail(self):
+        """The assertion above is only worth something if some tier in the
+        ladder DOES gate. ``machine-generated`` is the cutoff tier and gates,
+        so a same-source dataset moved to it would fail the test above."""
+        assert cs.benchmark.can_gate_promotion(
+            cs.benchmark.GATING_CUTOFF_TIER)
+
+
 class TestRobustnessSection:
     """_robustness_section is consumed by write_comparison but was
     previously untested — pin the win/loss split, the verdict labels, the
