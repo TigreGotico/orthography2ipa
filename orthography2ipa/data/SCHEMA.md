@@ -198,7 +198,7 @@ So `zh` is a **romanization** (it reads Pinyin, not Hanzi), `zh-Hani` is the
 The `*_base` fields support data inheritance. When set, the loader:
 
 1. Loads the referenced spec's data for that field
-2. Deep-merges the current file's data on top (overrides only)
+2. Merges the current file's data on top, one level deep (overrides only)
 
 ```json
 {
@@ -227,6 +227,18 @@ The `*_base` fields support data inheritance. When set, the loader:
 
 The loader resolves `es-ES` first, copies its graphemes, then overlays
 the four overridden entries.
+
+The merge is one level deep. The loader replaces the value of each key that
+the current file states. For `positional_graphemes`, the key is the letter and
+the value is that letter's full context object. A child file that states one
+context for a letter removes all the other contexts that the base file gives to
+that letter.
+
+For example, `es-ES` gives `n` the contexts `word_final` and
+`before_consonant`. The child spec `es-CU` states `default` and `word_final`
+for `n`, so the loaded `es-CU` spec has no `before_consonant` context for `n`.
+
+To keep a context from the base file, write it again in the child file.
 
 > To mark a deletion, when a grapheme is no longer valid or an allophone no longer present, it can be set to None
 > explicitly to avoid inheritance
