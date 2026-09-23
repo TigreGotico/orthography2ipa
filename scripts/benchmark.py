@@ -2521,6 +2521,10 @@ _PORTUGUESE_TTS_DIR = os.path.join(
     os.path.dirname(__file__), "..", "orthography2ipa", "data", "gold",
     "portuguese_tts",
 )
+_SPAIN_ROMANCE_TTS_DIR = os.path.join(
+    os.path.dirname(__file__), "..", "orthography2ipa", "data", "gold",
+    "spain_romance_tts",
+)
 
 
 def _load_sentence_tts(directory: str, lang: str, limit: int) \
@@ -2576,8 +2580,34 @@ def load_portuguese_tts(lang: str, limit: int) -> List[Tuple[str, str]]:
     return _load_sentence_tts(_PORTUGUESE_TTS_DIR, lang, limit)
 
 
+def load_spain_romance_tts(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """Spain-Romance sentence-level TTS gold — one TSV per lect across the
+    Romance lects of Spain and the Iberian west: Castilian and its regional
+    accents, Galician, Asturleonese, Aragonese, Catalan/Valencian, Aranese
+    Occitan, Fala, Extremaduran, Sanabrese and Ladino. ``sentence`` column in,
+    broad IPA ``ipa`` column as gold. Each lect is written in its OWN
+    orthographic convention, so a row is the sentence a TTS receives.
+
+    This gold is ENGINE-PINNED and therefore o2i same-source. Its authoring
+    tool drafts each row with ``transcribe(sentence, lect)``, and its CI gate
+    (``scripts/spain_romance_tts_gold.py validate``) asserts
+    ``transcribe(sentence, lect) == ipa`` for every row. Scoring o2i against
+    it can only return PER 0, which measures nothing about o2i and is not a
+    quality claim: the number says the regression gate holds, and nothing
+    else. ``compare_systems._O2I_SAME_SOURCE_DATASETS`` carries the flag that
+    keeps these rows out of every ranking and every "beats espeak" claim.
+
+    What the rows ARE for: a per-lect regression tripwire that moves the
+    moment a rule change alters a shipped sentence, and a registered slot so
+    an INDEPENDENT engine can be scored on these lects, where its PER is a
+    real measurement.
+    """
+    return _load_sentence_tts(_SPAIN_ROMANCE_TTS_DIR, lang, limit)
+
+
 _ARABIC_TTS_LANGS = _sentence_tts_langs(_ARABIC_TTS_DIR)
 _PORTUGUESE_TTS_LANGS = _sentence_tts_langs(_PORTUGUESE_TTS_DIR)
+_SPAIN_ROMANCE_TTS_LANGS = _sentence_tts_langs(_SPAIN_ROMANCE_TTS_DIR)
 
 
 # ─── gold20 — Salesteq/arabic-dialects-gold20 (Hugging Face) ────────────────
@@ -3098,6 +3128,7 @@ DATASETS: Dict[str, Tuple[DatasetLoader, List[str]]] = {
     "arabic_tts": (load_arabic_tts, _ARABIC_TTS_LANGS),
     "gold20_arabic": (load_gold20_arabic, _GOLD20_ARABIC_LANGS),
     "portuguese_tts": (load_portuguese_tts, _PORTUGUESE_TTS_LANGS),
+    "spain_romance_tts": (load_spain_romance_tts, _SPAIN_ROMANCE_TTS_LANGS),
     "ep_dialects": (load_ep_dialects, _EP_DIALECT_LANGS),
     "wikipron": (load_wikipron, sorted(_WIKIPRON_FILES)),
     "wikipron_ar_diacritized": (load_wikipron_ar_diacritized, ["ar"]),
@@ -3267,6 +3298,24 @@ PROVENANCE: Dict[str, str] = {
     # confidence, not tier: no lexicon/rules behind it, so it stays the
     # lowest, non-gating tier, same as its arabic_tts sibling.
     "portuguese_tts": "llm-generated",
+    # spain_romance_tts is ENGINE-PINNED, which is a step BELOW its two
+    # sentence-TTS siblings above. Their rows were drafted by a language
+    # model, so the draft was at least independent of the engine. This set is
+    # drafted by ``transcribe`` itself, and its CI gate asserts the row still
+    # equals the engine's output.
+    #
+    # It takes the LOWEST, non-qualifying tier for that reason, and NOT
+    # `machine-generated`, which the ladder above reserves for an independent
+    # machine ("machine-generated gold is nobody's scoreline") and which CAN
+    # gate a promotion. A gold pinned to the system under test must never gate
+    # anything: its PER is 0 by construction, and a 0 that cannot be anything
+    # else is not a result. The ladder has no tier that says "this system's
+    # own output", so the honest placement is the tier that gates nothing.
+    #
+    # The sentences and the per-row citation notes are hand-authored against
+    # each lect's spec sources, which is why the set is worth shipping. That
+    # audit raises confidence in the SENTENCES, never the tier of the IPA.
+    "spain_romance_tts": "llm-generated",
     # phonetician / native-speaker / expert-annotator curated IPA
     "ep_dialects": "expert-human",       # TigreGotico team, manual, unvalidated, small-n
     "mirandese_g2p": "expert-human",     # TigreGotico/mirandese_g2p; native-speaker collected; small-n
