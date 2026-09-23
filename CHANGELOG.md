@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.106.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.106.0a1) (2026-09-23)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.105.0a2...7.106.0a1)
+
+**Merged pull requests:**
+
+- feat\(comparison\): derive the staleness paragraph at render time instead of committing it [\#1688](https://github.com/TigreGotico/orthography2ipa/pull/1688) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.105.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.105.0a2) (2026-09-20)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.105.0a1...7.105.0a2)
@@ -328,19 +336,19 @@
 
 ## [7.93.16a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.16a1) (2026-09-17)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.15a1...7.93.16a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.14a1...7.93.16a1)
 
 **Merged pull requests:**
 
 - fix\(ar\): read the two Maghribi letters every Maghrebi spec was dropping [\#1593](https://github.com/TigreGotico/orthography2ipa/pull/1593) ([JarbasAl](https://github.com/JarbasAl))
 
-## [7.93.15a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.15a1) (2026-09-17)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.14a1...7.93.15a1)
-
 ## [7.93.14a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.14a1) (2026-09-17)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.13a1...7.93.14a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.15a1...7.93.14a1)
+
+## [7.93.15a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.15a1) (2026-09-17)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.13a1...7.93.15a1)
 
 **Merged pull requests:**
 
@@ -350,10 +358,6 @@
 ## [7.93.13a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.13a1) (2026-09-17)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.12a4...7.93.13a1)
-
-**Merged pull requests:**
-
-- fix\(ar\): read the Perso-Arabic gaf as the phone it writes, where the spec has that phone [\#1589](https://github.com/TigreGotico/orthography2ipa/pull/1589) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.93.12a4](https://github.com/TigreGotico/orthography2ipa/tree/7.93.12a4) (2026-09-17)
 
@@ -781,15 +785,15 @@
 
 ## [7.82.41a2](https://github.com/TigreGotico/orthography2ipa/tree/7.82.41a2) (2026-08-26)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.40a6...7.82.41a2)
-
-## [7.82.40a6](https://github.com/TigreGotico/orthography2ipa/tree/7.82.40a6) (2026-08-26)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.41a1...7.82.40a6)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.41a1...7.82.41a2)
 
 ## [7.82.41a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.41a1) (2026-08-26)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.40a5...7.82.41a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.40a6...7.82.41a1)
+
+## [7.82.40a6](https://github.com/TigreGotico/orthography2ipa/tree/7.82.40a6) (2026-08-26)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.40a5...7.82.40a6)
 
 ## [7.82.40a5](https://github.com/TigreGotico/orthography2ipa/tree/7.82.40a5) (2026-08-26)
 
