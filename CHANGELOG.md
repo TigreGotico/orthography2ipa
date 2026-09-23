@@ -350,11 +350,6 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.13a1...7.93.15a1)
 
-**Merged pull requests:**
-
-- fix\(ar\): read qaf-with-three-dots as \[ɡ\] in the Maghrebi specs, and nowhere else [\#1592](https://github.com/TigreGotico/orthography2ipa/pull/1592) ([JarbasAl](https://github.com/JarbasAl))
-- fix\(ar\): read the Perso-Arabic tcheh as the affricate each variety actually has [\#1591](https://github.com/TigreGotico/orthography2ipa/pull/1591) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [7.93.13a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.13a1) (2026-09-17)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.12a4...7.93.13a1)
