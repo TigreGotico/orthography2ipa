@@ -42,6 +42,14 @@ jobs:
           mkdir -p _site
           cp docs/explorer.html _site/index.html
 
+      - name: Derive the comparison staleness note
+        # docs/comparison.md carries a marker instead of this paragraph (it
+        # changes whenever any board row moves and made board PRs conflict
+        # in pairs); it is derived here from the committed JSON.
+        run: |
+          . .venv/bin/activate
+          PYTHONPATH=. python scripts/compare_systems.py --staleness > _site/comparison_staleness.md
+
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:
