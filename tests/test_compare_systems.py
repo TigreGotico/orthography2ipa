@@ -28,6 +28,7 @@ time rather than holding function objects.
 """
 import json
 import os
+import subprocess
 import sys
 
 import pytest
@@ -2630,21 +2631,47 @@ class TestCatalanVoicesRenderFromTheRecord:
             row = next(r for r in rows if r["lang"] == tag and r["dataset"] == "4catac")
             assert voice == row.get("espeak_voice")
 
-    def test_rerender_on_a_box_without_espeak_is_a_noop(self, tmp_path, monkeypatch):
-        # Pretend this machine has no espeak-ng at all: the module-level
-        # probe result becomes all-None, and the writer must not read it.
-        monkeypatch.setattr(cs, "CATALAN_DIALECT_VOICES",
-                            {t: None for t in cs._CATALAN_DIALECT_LABELS})
-        monkeypatch.setattr(cs, "discover_catalan_dialect_voices",
-                            lambda: {t: None for t in cs._CATALAN_DIALECT_LABELS})
+    _NO_ESPEAK_CHILD = r'''
+import os, shutil, sys
+sys.path.insert(0, {scripts!r})
+import compare_systems as cs
+
+# The child must really be a box with no espeak-ng, or this measures nothing.
+assert shutil.which("espeak-ng") is None, "espeak-ng is still on PATH"
+assert set(cs.CATALAN_DIALECT_VOICES.values()) == {{None}}, cs.CATALAN_DIALECT_VOICES
+
+rows = cs.read_comparison_rows()
+cs.COMPARISON_MD = os.path.join({out!r}, "comparison.md")
+cs.COMPARISON_JSON = os.path.join({out!r}, "comparison.json")
+cs.write_comparison(rows)
+'''
+
+    def test_rerender_on_a_box_without_espeak_is_a_noop(self, tmp_path):
+        # A REAL box with no espeak-ng: a fresh interpreter with espeak-ng
+        # off PATH, so the module-level probe runs empty at import time.
+        # Monkeypatching the module attribute in this process cannot do it:
+        # the pre-fix writer bound CATALAN_DIALECT_VOICES as a DEFAULT
+        # ARGUMENT at definition time, so a later patch of the module name
+        # never reaches it and the test result follows the espeak-ng install
+        # of whatever machine runs the suite.
+        out = tmp_path / "out"
+        out.mkdir()
+        scripts = os.path.dirname(os.path.abspath(cs.__file__))
+        script = tmp_path / "rerender.py"
+        script.write_text(self._NO_ESPEAK_CHILD.format(
+            scripts=scripts, out=str(out)), encoding="utf-8")
+
+        empty_bin = tmp_path / "bin"
+        empty_bin.mkdir()
+        env = dict(os.environ, PATH=str(empty_bin))
+        proc = subprocess.run([sys.executable, str(script)],
+                              capture_output=True, text=True, env=env,
+                              timeout=300)
+        assert proc.returncode == 0, proc.stderr
+
         with open(cs.COMPARISON_MD, encoding="utf-8") as fh:
             committed = fh.read()
-        rows = cs.read_comparison_rows()
-        md_path = tmp_path / "comparison.md"
-        monkeypatch.setattr(cs, "COMPARISON_MD", str(md_path))
-        monkeypatch.setattr(cs, "COMPARISON_JSON", str(tmp_path / "comparison.json"))
-        cs.write_comparison(rows)
-        rendered = md_path.read_text(encoding="utf-8")
+        rendered = (out / "comparison.md").read_text(encoding="utf-8")
         i, j = rendered.index("## Catalan dialects"), committed.index("## Catalan dialects")
         assert rendered[i:i + 1500] == committed[j:j + 1500]
         assert "were **not** found" not in rendered
