@@ -4170,21 +4170,48 @@ def _details_block_lines(rows: List[dict], scoreboard_note: str,
     return lines
 
 
+#: Sentinel: derive the Catalan voice map from the rows being written.
+_VOICES_FROM_ROWS = object()
+
+
+def catalan_voices_from_rows(rows: List[dict]) -> Dict[str, Optional[str]]:
+    """The espeak voice each Catalan dialect row was scored with, read from
+    the rows' own ``espeak_voice`` field — the record made at leg-run time.
+
+    This is what the "Catalan dialects vs espeak (BSC)" section must render
+    from. Before this function the section was rendered from
+    :data:`CATALAN_DIALECT_VOICES`, which probes the espeak-ng install of
+    the machine running the WRITER: a docs re-render on a box with no
+    espeak-ng flipped the paragraph to "not found" and the voice column to
+    ``n/a`` while the rows themselves still said ``ca-ba``, ``ca-nw``,
+    ``ca-va`` (seen while re-rendering the staleness paragraph in #1660,
+    #1661, #1675 and #1688, where the writer had to be handed the committed
+    map by hand). A row with no ``espeak_voice`` field renders as ``None``
+    (n/a): that is the truth about that row, not about this machine.
+    """
+    return {tag: next((r.get("espeak_voice") for r in rows
+                       if r["lang"] == tag and r["dataset"] == "4catac"), None)
+            for tag in _CATALAN_DIALECT_LABELS}
+
+
 def write_comparison(
         rows: List[dict],
-        catalan_voices: Optional[Dict[str, Optional[str]]] = CATALAN_DIALECT_VOICES,
+        catalan_voices=_VOICES_FROM_ROWS,
 ) -> None:
     """Write the comparison board (JSON) and the rendered document (Markdown).
 
-    *catalan_voices* defaults to the resolved :data:`CATALAN_DIALECT_VOICES`
-    rather than to ``None`` because the document is rewritten WHOLE on every
-    call, including a single-language ``--lang`` refresh that rescored none of
-    the Catalan rows. With a ``None`` default, any caller that simply did not
-    think about Catalan silently DELETED the committed "Catalan dialects vs
-    espeak (BSC)" section from the published document — a partial rerun must
-    never be able to drop a section it did not touch. Pass ``None`` explicitly
-    to suppress the section on purpose.
+    *catalan_voices* defaults to the map read from *rows* by
+    :func:`catalan_voices_from_rows`, so the section is rendered from what
+    the legs recorded and a re-render on any machine reproduces the
+    committed text. It does not default to ``None`` because the document
+    is rewritten WHOLE on every call, including a single-language ``--lang``
+    refresh that rescored none of the Catalan rows: with a ``None`` default
+    any caller that did not think about Catalan silently DELETED the
+    committed "Catalan dialects vs espeak (BSC)" section. Pass ``None``
+    explicitly to suppress the section on purpose, or a map to override.
     """
+    if catalan_voices is _VOICES_FROM_ROWS:
+        catalan_voices = catalan_voices_from_rows(rows)
     os.makedirs(os.path.dirname(COMPARISON_JSON), exist_ok=True)
     with open(COMPARISON_JSON, "w", encoding="utf-8") as fh:
         json.dump(rows, fh, indent=2, ensure_ascii=False)
@@ -4441,7 +4468,7 @@ def main() -> None:
             print(f"merging {len(rows)} rescored rows into the committed "
                   f"comparison board", file=sys.stderr)
             rows = merge_comparison_rows(read_comparison_rows(), rows)
-        write_comparison(rows, catalan_voices=CATALAN_DIALECT_VOICES)
+        write_comparison(rows)
         print(f"wrote {len(rows)} rows to "
               f"{os.path.relpath(COMPARISON_MD, REPO_ROOT)} and "
               f"{os.path.relpath(COMPARISON_JSON, REPO_ROOT)}")
