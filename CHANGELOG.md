@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.108.0a3](https://github.com/TigreGotico/orthography2ipa/tree/7.108.0a3) (2026-09-23)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.108.0a2...7.108.0a3)
+
+**Merged pull requests:**
+
+- docs\(schema\): base inheritance merges one level deep [\#1699](https://github.com/TigreGotico/orthography2ipa/pull/1699) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.108.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.108.0a2) (2026-09-23)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.108.0a1...7.108.0a2)
@@ -345,10 +353,6 @@
 ## [7.93.17a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.17a1) (2026-09-17)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.16...7.93.17a1)
-
-**Merged pull requests:**
-
-- fix\(arb\): read the variant letter forms as the letters they are variants of [\#1598](https://github.com/TigreGotico/orthography2ipa/pull/1598) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.93.16](https://github.com/TigreGotico/orthography2ipa/tree/7.93.16) (2026-09-17)
 
@@ -884,15 +888,15 @@
 
 ## [7.82.27a2](https://github.com/TigreGotico/orthography2ipa/tree/7.82.27a2) (2026-08-26)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.26a1...7.82.27a2)
-
-## [7.82.26a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.26a1) (2026-08-26)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.27a1...7.82.26a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.27a1...7.82.27a2)
 
 ## [7.82.27a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.27a1) (2026-08-26)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.25a1...7.82.27a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.26a1...7.82.27a1)
+
+## [7.82.26a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.26a1) (2026-08-26)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.25a1...7.82.26a1)
 
 ## [7.82.25a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.25a1) (2026-08-26)
 
