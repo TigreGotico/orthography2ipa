@@ -506,6 +506,11 @@ LANGS: Dict[str, dict] = {
     "ha": {"dataset": ("wikipron", "ha"), "espeak": None,
            "epitran": "hau-Latn", "gruut": None,
            "africa_g2p": "hau-nigeria", "ghana_g2p": "hau"},
+    # gur: Farefare. espeak-ng, epitran and gruut have no Farefare; both
+    # africa-g2p and ghana-g2p name it "gur", the same code o2i uses.
+    "gur": {"dataset": ("wikipron", "gur"), "espeak": None,
+            "epitran": None, "gruut": None,
+            "africa_g2p": "gur", "ghana_g2p": "gur"},
     "hts": {"dataset": ("wikipron", "hts"), "espeak": None,
             "epitran": None, "gruut": None},
     "kab": {"dataset": ("vox_communis", "kab"), "espeak": None,
@@ -4245,15 +4250,26 @@ def write_comparison(
     lines.extend(_leaderboard_summary(rows))
     lines.extend(_o2i_family_section(rows))
     lines.extend(_render_language_tables(rows))
+    # The two African-G2P row counts are COUNTED from the rows being
+    # written, never written by hand. The hand-written "10 African-language
+    # rows" stood while the real africa-g2p count grew to 15 and while
+    # ghana-g2p was added as an eighth system and went unnamed (T-2673).
+    _africa_rows = sum(1 for r in rows if r.get("africa_g2p_per") is not None)
+    _ghana_rows = sum(1 for r in rows if r.get("ghana_g2p_per") is not None)
     lines.extend([
         "## How to read this",
         "",
         "**Systems compared.** o2i vs **espeak-ng**, **espeak-ng "
         "rules-only**, **epitran**, **gruut**, **gruut rules-only**, "
         "**pycotovia** (Galician & Spanish), **ahotts-g2p** "
-        "(Basque & Spanish), and "
-        "**africa-g2p** (10 African-language rows) — seven systems, two "
+        "(Basque & Spanish), "
+        f"**africa-g2p** ({_africa_rows} rows) and **ghana-g2p** "
+        f"({_ghana_rows} rows, africa-g2p's tables plus a donor tier and a "
+        "patch table) — eight systems, two "
         "of which (espeak-ng, gruut) also get a rules-only column. Each "
+        "count is the number of BOARD ROWS on which that system produced a "
+        "score, not a number of languages: a language with two golds "
+        "contributes two rows. Each "
         "system covers a different subset of languages. A missing "
         "mapping, or a system not installed in the generating "
         "environment, shows as `n/a` — never skipped, never faked.",

@@ -38,6 +38,7 @@ One line per language: the best system on its primary gold, and where o2i lands.
 - **fr (French)** — o2i #1 (beats espeak rules-only)
 - **ga (Irish)** — o2i #1 (beats espeak rules-only)
 - **gl (Galician)** — o2i #1 (beats pycotovia)
+- **gur** — o2i #1 (beats ghana-g2p)
 - **ha** — o2i #1 (beats ghana-g2p)
 - **hi (Hindi)** — o2i #1 (beats espeak rules-only)
 - **hts (Hadza)** — o2i #1 (beats africa-g2p)
@@ -252,6 +253,12 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 | vox_communis | 47515 | 0.0643 | same-source | 0.0883 | o2i |
 | wikipron | 8091 | 0.0804 | n/a | 0.0883 | o2i |
 
+### gur
+
+| Dataset | N | o2i | africa-g2p | ghana-g2p | Winner |
+|---|---|---|---|---|---|
+| wikipron | 111 | 0.2968 | 0.4903 | 0.3297 | o2i |
+
 ### ha
 
 | Dataset | N | o2i | epitran | africa-g2p | ghana-g2p | Winner |
@@ -392,7 +399,7 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 
 ## How to read this
 
-**Systems compared.** o2i vs **espeak-ng**, **espeak-ng rules-only**, **epitran**, **gruut**, **gruut rules-only**, **pycotovia** (Galician & Spanish), **ahotts-g2p** (Basque & Spanish), and **africa-g2p** (10 African-language rows) — seven systems, two of which (espeak-ng, gruut) also get a rules-only column. Each system covers a different subset of languages. A missing mapping, or a system not installed in the generating environment, shows as `n/a` — never skipped, never faked.
+**Systems compared.** o2i vs **espeak-ng**, **espeak-ng rules-only**, **epitran**, **gruut**, **gruut rules-only**, **pycotovia** (Galician & Spanish), **ahotts-g2p** (Basque & Spanish), **africa-g2p** (16 rows) and **ghana-g2p** (5 rows, africa-g2p's tables plus a donor tier and a patch table) — eight systems, two of which (espeak-ng, gruut) also get a rules-only column. Each count is the number of BOARD ROWS on which that system produced a score, not a number of languages: a language with two golds contributes two rows. Each system covers a different subset of languages. A missing mapping, or a system not installed in the generating environment, shows as `n/a` — never skipped, never faked.
 
 **Rules-only columns, and why only two engines have one.** A "rules-only" column runs the SAME engine with its bundled dictionary/lexicon disabled, so it can only fall back on its own letter-to-sound rules or g2p model — the fair comparison against o2i, which by hard rule ships no word-exception list of its own. Disposition per engine:
 

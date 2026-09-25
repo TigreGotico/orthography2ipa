@@ -4061,3 +4061,122 @@ class TestO2iLexProvenanceNamesTheRunningTree:
         keys = cs.o2i_lex_lexicon_keys("en", {})
 
         assert keys.provenance["version"] == "9.9.9-tree"
+
+
+class TestSystemsComparedCountsAreCounted:
+    """The "Systems compared." sentence counts africa-g2p and ghana-g2p
+    BOARD ROWS from the rows being written.
+
+    It used to carry two hand-written claims. Both had gone stale on the
+    committed board before T-2673 noticed: it said africa-g2p covered "10
+    African-language rows" when the real count was 15, and it said "seven
+    systems" and never named ghana-g2p, which had had its own column since
+    #1585. A literal cannot be kept true by review, so these tests pin the
+    numbers to the rows.
+    """
+
+    @staticmethod
+    def _rows(africa: int, ghana: int):
+        """``africa`` rows scored by africa-g2p, ``ghana`` of them by
+        ghana-g2p too, plus one row scored by neither."""
+        rows = []
+        for i in range(africa):
+            rows.append({
+                "lang": f"l{i}", "dataset": "wikipron", "n": 2,
+                "o2i_per": 0.1, "o2i_n": 2,
+                "espeak_per": None, "espeak_n": 0,
+                "espeak_same_source": False,
+                "espeak_rules_per": None, "espeak_rules_n": 0,
+                "espeak_rules_same_source": False,
+                "epitran_per": None, "epitran_n": 0,
+                "gruut_per": None, "gruut_n": 0,
+                "africa_g2p_per": 0.2, "africa_g2p_n": 2,
+                "ghana_g2p_per": 0.3 if i < ghana else None,
+                "ghana_g2p_n": 2 if i < ghana else 0,
+                "provenance_tier": "crowd-scraped",
+                "harness_version": "1.0", "limit": 10,
+            })
+        rows.append({
+            "lang": "zz", "dataset": "wikipron", "n": 2,
+            "o2i_per": 0.1, "o2i_n": 2,
+            "espeak_per": None, "espeak_n": 0,
+            "espeak_same_source": False,
+            "espeak_rules_per": None, "espeak_rules_n": 0,
+            "espeak_rules_same_source": False,
+            "epitran_per": None, "epitran_n": 0,
+            "gruut_per": None, "gruut_n": 0,
+            "africa_g2p_per": None, "africa_g2p_n": 0,
+            "ghana_g2p_per": None, "ghana_g2p_n": 0,
+            "provenance_tier": "crowd-scraped",
+            "harness_version": "1.0", "limit": 10,
+        })
+        return rows
+
+    def _render(self, rows, tmp_path, monkeypatch):
+        for row in rows:
+            monkeypatch.setitem(cs.LANGS, row["lang"],
+                                {"dataset": ("wikipron", row["lang"])})
+        md_path = tmp_path / "comparison.md"
+        monkeypatch.setattr(cs, "COMPARISON_MD", str(md_path))
+        monkeypatch.setattr(cs, "COMPARISON_JSON",
+                            str(tmp_path / "comparison.json"))
+        cs.write_comparison(rows)
+        return md_path.read_text(encoding="utf-8")
+
+    def test_counts_follow_the_rows(self, tmp_path, monkeypatch):
+        text = self._render(self._rows(africa=4, ghana=2), tmp_path,
+                            monkeypatch)
+        assert "**africa-g2p** (4 rows)" in text
+        assert "**ghana-g2p** (2 rows" in text
+        # The row scored by neither is counted by neither.
+        assert "(5 rows)" not in text
+
+    def test_counts_move_when_a_row_is_added(self, tmp_path, monkeypatch):
+        before = self._render(self._rows(africa=4, ghana=2), tmp_path,
+                              monkeypatch)
+        after = self._render(self._rows(africa=5, ghana=3),
+                             tmp_path / "second", monkeypatch)
+        assert "**africa-g2p** (4 rows)" in before
+        assert "**africa-g2p** (5 rows)" in after
+        assert "**ghana-g2p** (3 rows" in after
+
+    def test_ghana_g2p_is_named_and_the_system_count_is_eight(
+            self, tmp_path, monkeypatch):
+        text = self._render(self._rows(africa=1, ghana=1), tmp_path,
+                            monkeypatch)
+        assert "**ghana-g2p**" in text
+        assert "eight systems" in text
+        assert "seven systems" not in text
+
+    def test_the_sentence_says_what_it_counts(self, tmp_path, monkeypatch):
+        text = self._render(self._rows(africa=1, ghana=1), tmp_path,
+                            monkeypatch)
+        assert "number of BOARD ROWS" in text
+        assert "not a number of languages" in text
+
+    def test_no_hand_written_count_is_left_in_the_writer(self):
+        import inspect
+        src = inspect.getsource(cs.write_comparison)
+        assert "African-language rows" not in src
+        assert "seven systems" not in src
+
+
+class TestGurIsRegistered:
+    """T-2673: Farefare has upstream WikiPron gold, and the row scores o2i,
+    africa-g2p and ghana-g2p on the same words. All three name it "gur"."""
+
+    def test_lang_row_names_both_african_engines(self):
+        cfg = cs.LANGS["gur"]
+        assert cfg["dataset"] == ("wikipron", "gur")
+        assert cfg["africa_g2p"] == "gur"
+        assert cfg["ghana_g2p"] == "gur"
+
+    def test_espeak_epitran_and_gruut_have_no_farefare(self):
+        cfg = cs.LANGS["gur"]
+        assert cfg["espeak"] is None
+        assert cfg["epitran"] is None
+        assert cfg["gruut"] is None
+
+    def test_wikipron_file_is_registered(self):
+        from scripts import benchmark
+        assert benchmark._WIKIPRON_FILES["gur"] == "gur_latn_broad.tsv"
