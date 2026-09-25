@@ -208,7 +208,7 @@
   ],
   "audit": {
     "wikipron": {
-      "conclusion": "input_limited",
+      "conclusion": "degraded_input",
       "measured": "The Surayt Orthography (Aramaic-Online Project 2017, §2 'Vowel marking', p. 7) writes /u/ with waw and /i/ with yuḏ 'without exceptions' and final /o/ with olaf, and writes the other vowels with vowel points: 'The vowel /a/ is always expressed by ftoḥo' (§2e); plural vowel markers 'have to be used (usually rboṣo)' (§2b); shewa ë takes a lower rboṣo (§2c). So these vowels are not an unwritten contrast; the scored input drops the points. None of the 232 rows of wikipron/tru_syrc_broad has a Syriac vowel point (U+0730-074A) in its spelling. Of the gold's 1228 segments, 149 are vowels a letter writes under §2a (u 23, i 38, final o 88), and 360 (29.3%, in 222 of 232 rows) have no vowel letter: a/ɑ 187 and ë 56, which the document says are written with points, plus e 68 and non-final o 49. The vowel-folding floor already measured in the notes (all vowels and length folded out of both sides: PER 0.3607 -> 0.2103) is the same deficit seen from the score. No valid_ceiling is recorded: the orthography writes these vowels, and a ceiling is only for a contrast the orthography does not write.",
       "reference": "spec notes (MEASURED VOWEL-FOLDING FLOOR); sources.tru_surayt_orthography"
     }
