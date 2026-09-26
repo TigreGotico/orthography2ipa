@@ -1115,6 +1115,104 @@ def secondary_stress_positions(
     return frozenset(range(stress_index % 2, stress_index - 1, 2))
 
 
+#: Vowel LETTERS for the merge-site test below. ⟨y⟩ is deliberately absent.
+#: It is a vowel in some orthographies and a consonant in others, and the
+#: naive syllabifier can hand back a nucleus-less piece that ends in it
+#: (Malaccan Creole ⟨kaminyu⟩ divides ka-mi-ny-u), which would read as a
+#: merge site that is not one. Leaving it out costs nothing: a word the test
+#: cannot account for keeps the end-anchored default.
+_WRITTEN_VOWELS = frozenset("aeiou")
+
+
+def _is_written_vowel(ch: str) -> bool:
+    """Whether *ch* is a vowel LETTER, with any diacritic ignored."""
+    base = unicodedata.normalize("NFD", ch.lower())[:1]
+    return base in _WRITTEN_VOWELS
+
+
+def _has_written_vowel(syllable: str) -> bool:
+    """Whether *syllable* has a vowel letter, and so a nucleus."""
+    return any(_is_written_vowel(ch) for ch in syllable)
+
+
+def _hiatus_merge_sites(syllables: Sequence[str]) -> List[int]:
+    """Boundaries of *syllables* where two written syllables can become one.
+
+    A boundary qualifies when the syllable before it ends in a vowel letter
+    and the syllable after it starts with one. That is the site of glide
+    formation: the spelling has two nuclei there, and a transcription that
+    turns the first or the second into a glide has one. ⟨Califòrnia⟩ divides
+    ca-li-fò-rni-a and the boundary between ``rni`` and ``a`` is such a site,
+    which is why the transcription ka-li-fɔɾ-njɔ has one syllable less than
+    the spelling.
+
+    The return value is the index of the syllable AFTER each site, so a site
+    at or before the stressed syllable is one whose value is <= the stress
+    index.
+    """
+    sites: List[int] = []
+    for i in range(1, len(syllables)):
+        before, after = syllables[i - 1], syllables[i]
+        if not before or not after:
+            continue
+        if not (_has_written_vowel(before) and _has_written_vowel(after)):
+            # A piece with no vowel letter is not a syllable. The naive
+            # splitter emits one on a digraph it does not know, and a merge
+            # site read off it would be an artefact of the split.
+            continue
+        if _is_written_vowel(before[-1]) and _is_written_vowel(after[0]):
+            sites.append(i)
+    return sites
+
+
+def _glide_anchored_index(
+    syllables: Optional[Sequence[str]],
+    ipa_sylls: Sequence[str],
+    stress_index: int,
+    rules: StressRules,
+) -> Optional[int]:
+    """The IPA syllable the stress lands on when glide formation, and only
+    glide formation, explains a shorter transcription.
+
+    The end-anchored default assumes every syllable the transcription lost
+    stands BEFORE the stress. That holds for elision and for syncope. Glide
+    formation breaks it, because the merge it makes can stand AFTER the
+    stressed syllable: Occitan ⟨Califòrnia⟩ is ca-li-fò-rni-a in the spelling
+    and ka-li-fɔɾ-njɔ in the transcription, so end-anchoring drags the mark
+    two syllables forward onto the /i/ and the word surfaces with the WRONG
+    stressed vowel, not merely a misplaced syllable boundary.
+
+    The sites are counted instead of guessed, and the count has to add up:
+    the function returns an index only when the number of merge sites
+    EXACTLY accounts for the missing syllables. When it does not, the loss
+    has another cause the spelling cannot see, and the caller keeps the
+    end-anchored default. ⟨sciéncia⟩ is the case that needs the count rather
+    than the accent: its site is sci|én, BEFORE the stressed ⟨én⟩, so the
+    index shifts down by one and the mark stays on [e].
+    """
+    if syllables is None or not ipa_sylls:
+        return None
+    if not 0 <= stress_index < len(syllables):
+        return None
+    marked = set(rules.marked_vowels)
+    if not marked or not any(ch in marked for ch in syllables[stress_index]):
+        # Only a WRITTEN ACCENT names its own syllable in the spelling. Every
+        # other rule in `detect_stress` reads an ENDING, so its index is
+        # end-relative already and the end-anchored default is what it means.
+        # This guard is also what keeps a silent digraph out: Portuguese
+        # ⟨segue⟩ divides se-gu-e, the ⟨u⟩ of ⟨gu⟩ is not a nucleus at all,
+        # and the site read off it is an artefact. ⟨segue⟩ carries no accent,
+        # so it never reaches the count below.
+        return None
+    sites = _hiatus_merge_sites(syllables)
+    if len(syllables) - len(sites) != len(ipa_sylls):
+        return None
+    shifted = stress_index - sum(1 for site in sites if site <= stress_index)
+    if not 0 <= shifted < len(ipa_sylls):
+        return None
+    return shifted
+
+
 def apply_stress_mark(
     ipa: str,
     rules: StressRules,
@@ -1216,7 +1314,10 @@ def apply_stress_mark(
                     merged.append(syll)
             ipa_sylls = merged
         elif (overflow < 0 and stress_index <= len(ipa_sylls) - 1
-              and not _ends_in_vowel(ipa)):
+              and (not _ends_in_vowel(ipa)
+                   or _glide_anchored_index(
+                       syllables, ipa_sylls, stress_index,
+                       rules) is not None)):
             # The IPA has FEWER syllables than the orthography, the
             # start-anchored stress index still points inside it, AND the
             # transcription ends in a consonant while the spelling ended in a
@@ -1230,12 +1331,22 @@ def apply_stress_mark(
             # still vowel-final): the latter falls through to end-anchoring,
             # which lands correctly. A loss BEFORE the stress (initial/medial
             # syncope) overshoots the end and also falls through.
+            #
+            # The second licensed cause is glide formation, which merges two
+            # written syllables into one and can do it AFTER the stress. There
+            # the index is not the start-anchored one but the one
+            # `_glide_anchored_index` counts, and the transcription is
+            # vowel-final, which is what the apocope guard above refuses.
+            glide_index = _glide_anchored_index(
+                syllables, ipa_sylls, stress_index, rules)
+            target_index = (stress_index if not _ends_in_vowel(ipa)
+                            else glide_index)
             for sec in secondary_indices:
-                if 0 <= sec < len(ipa_sylls) and sec != stress_index:
+                if 0 <= sec < len(ipa_sylls) and sec != target_index:
                     ipa_sylls[sec] = _prefix_mark(ipa_sylls[sec],
                                                   SECONDARY_MARK)
-            ipa_sylls[stress_index] = _prefix_mark(
-                ipa_sylls[stress_index], _mark)
+            ipa_sylls[target_index] = _prefix_mark(
+                ipa_sylls[target_index], _mark)
             return "".join(ipa_sylls)
         offset_from_end = max(1, n_orth - stress_index)
 
