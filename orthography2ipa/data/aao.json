@@ -1,0 +1,33 @@
+{
+ "code": "aao",
+ "name": "Algerian Saharan Arabic",
+ "script": "Zyyy",
+ "quality": "stub",
+ "graphemes": {},
+ "allophones": {},
+ "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography or phonology is claimed: script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.\n\nRESOLVES TO ITS PARENT'S TABLE, WHICH IS A PLACEHOLDER. This spec declared a parent and no `graphemes_base`, so it produced no phonology at all and the code resolved to an empty table — a caller asking for it got nothing, silently. It now inherits, so the code reaches a usable table. That table is the parent's and is NOT a claim about this variety: no reflex here has been checked against a source. `quality` stays `stub` for exactly that reason. Replace the inherited table with cited reflexes before treating any reading here as this variety's. Graphemes inherited from ar-DZ because the Algerian Sahara is in Algeria.",
+ "iso639_3": "aao",
+ "glottolog_code": "alge1240",
+ "sources": [
+  {
+   "id": "glottolog2024",
+   "author": "Hammarström, Harald; Forkel, Robert; Haspelmath, Martin; Bank, Sebastian",
+   "year": 2024,
+   "title": "Glottolog 5.0",
+   "publisher": "Max Planck Institute for Evolutionary Anthropology",
+   "url": "https://glottolog.org/"
+  }
+ ],
+ "urls": [
+  "https://glottolog.org/resource/languoid/id/alge1240"
+ ],
+ "location": {
+  "latitude": 20.8884,
+  "longitude": 4.8063,
+  "source": "glottolog",
+  "notes": "Glottolog's representative point."
+ },
+ "parent": "x-clade-afro1255",
+ "graphemes_base": "ar-DZ",
+ "allophones_base": "ar-DZ"
+}

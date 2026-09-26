@@ -29,7 +29,7 @@
   "name": "Castilian Spanish",
   "script": "Latin",
   "parent": "es-ES-x-medieval",
-  "notes": "Standard Peninsular Castilian Spanish (español castellano) per the Real Academia Española (RAE) and Asociación de Academias de la Lengua Española. Spoken natively by ~47 million in Spain; ~500 million worldwide as a first or second language. KEY FEATURES of Standard Castilian (distinción variety): (1) DISTINCIÓN: /θ/ ≠ /s/ — ⟨c⟩ before e/i and ⟨z⟩ = /θ/ (interdental fricative); absent in Latin American Spanish and in Andalusian/Canarian (seseo). (2) APICO-ALVEOLAR /s/ [s̺]: the standard Castilian s is produced with the tongue tip (apex) touching the upper alveolar ridge — a conservative feature shared with Asturian and Galician but absent from Portuguese (predorsal). (3) YEÍSMO: ⟨ll⟩ = ⟨y⟩ = /ʝ/ in modern standard (RAE 2010 norm); the historical /ʎ/ distinction is preserved in some regions (NW Spain, Río de la Plata). (4) BETACISM: ⟨b⟩ = ⟨v⟩ = /b/ (complete, unlike Portuguese). (5) VELAR FRICATIVE /x/: ⟨j⟩ and ⟨g+e,i⟩ = /x/ (or [χ] before back vowels in some varieties). (6) SILENT ⟨h⟩: etymological F- underwent F→H→∅ change: FILIU→hijo, FACERE→hacer. (7) INTERVOCALIC LENITION: voiced stops /b, d, ɡ/ → spirants [β, ð, ɣ] between vowels. (8) Word-final /d/ → [ð] or [∅]: verdad [berˈdað]/[berˈda]. Sources: Quilis (1999), Penny (2002), Hualde (2014).",
+  "notes": "Standard Peninsular Castilian Spanish (español castellano) per the Real Academia Española (RAE) and Asociación de Academias de la Lengua Española. Spoken natively by ~47 million in Spain; ~500 million worldwide as a first or second language. KEY FEATURES of Standard Castilian (distinción variety): (1) DISTINCIÓN: /θ/ ≠ /s/ — ⟨c⟩ before e/i and ⟨z⟩ = /θ/ (interdental fricative); absent in Latin American Spanish and in Andalusian/Canarian (seseo). (2) APICO-ALVEOLAR /s/ [s̺]: the standard Castilian s is produced with the tongue tip (apex) touching the upper alveolar ridge — a conservative feature shared with Asturian and Galician but absent from Portuguese (predorsal). (3) YEÍSMO: ⟨ll⟩ = ⟨y⟩ = /ʝ/ in modern standard (RAE 2010 norm); the historical /ʎ/ distinction is preserved in some regions (NW Spain, Río de la Plata). (4) BETACISM: ⟨b⟩ = ⟨v⟩ = /b/ (complete, unlike Portuguese). (5) VELAR FRICATIVE /x/: ⟨j⟩ and ⟨g+e,i⟩ = /x/ (or [χ] before back vowels in some varieties). (6) SILENT ⟨h⟩: etymological F- underwent F→H→∅ change: FILIU→hijo, FACERE→hacer. (7) INTERVOCALIC LENITION: voiced stops /b, d, ɡ/ → spirants [β, ð, ɣ] between vowels. (8) Word-final /d/ → [ð] or [∅]: verdad [berˈdað]/[berˈda]. (9) DIPHTHONGS ARE ASYMMETRIC: a rising diphthong has a consonantal onglide ([j w] — nación [naˈθjon], cuando [ˈkwando]) while a falling diphthong has a non-syllabic VOWEL offglide ([i̯ u̯] — aire [ˈai̯ɾe], causa [ˈkau̯sa]), per Hualde (2005 ch. 4) and RAE/ASALE NGLE Fonética y fonología (2011 ch. 8). The written accent marks stress, not hiatus: a tilde on the OPEN vowel leaves the rising diphthong intact (⟨ió⟩ in nación, ⟨iá⟩ in Adrián, ⟨ué⟩ in después), and only a tilde on the HIGH vowel signals hiatus (día, búho, continúo) — which is why ⟨iá ié ió uá ué uó⟩ are graphemes here and ⟨ía íe úa …⟩ deliberately are not. (10) VIBRANTE MÚLTIPLE: the /r/–/ɾ/ contrast is intervocalic only; in onset after a heterosyllabic /l n s/ only the trill occurs (alrededor, honra, Israel). (11) NASAL ASSIMILATION: a coda nasal is bilabial [m] before a labial (inmaculada [immakuˈlaða]). (12) WORD-INITIAL ⟨hie-, hia-, hio-⟩: the etymological silent ⟨h⟩ leaves a prevocalic high front vocoid in absolute word-initial position, where Spanish strengthens it to the palatal obstruent /ʝ/ rather than the glide [j]: hielo [ˈʝelo], hierba [ˈʝeɾba], hierro [ˈʝero], hiato [ˈʝato]. The orthography itself records this: the RAE admits the doublets yerba/hierba, yedra/hiedra and yero/hiero, i.e. the same word spelt with ⟨ye-⟩, which can only be /ʝe/. The strengthening is positional, not lexical — after a vowel the vocoid stays a glide (antihielo [antiˈjelo], contrahierba [kontɾaˈjeɾba]), which is why these are word-initial positional graphemes and not plain graphemes (Hualde 2005; Navarro Tomás 1977; RAE/ASALE NGLE Fonética y fonología 2011). (13) ⟨tx⟩ = /tʃ/: an unassimilated Basque graphotactic sequence that Spanish keeps in Basque-origin lexis and proper names — pintxo, txakolí, txapela, Arantxa, Getxo, Etxebarria. ⟨tx⟩ is not a native Spanish sequence, so no Spanish word is affected; without the entry ⟨x⟩ takes its own /ks/ value and yields the impossible *[ˈpintkso]. The value is Basque ⟨tx⟩ = /tʃ/ (Hualde & Ortiz de Urbina 2003), confirmed from the Spanish side by the RAE hispanicisation chapela ← Basque txapela, which renders the same sequence as ⟨ch⟩. (14) ⟨ý⟩: not modern RAE orthography, but it occurs in Spanish toponyms and surnames (Aýna, Ýñiguez) and in transliterated names (Almatý). It is listed with the vocalic value of ⟨y⟩ purely so the letter is not dropped; it makes no claim about accentuation and is deliberately absent from marked_vowels. Sources: Quilis (1999), Penny (2002), Hualde (2014).",
   "sources": [
     {
       "id": "hualde2005",
@@ -61,6 +61,40 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "navarro1977",
+      "author": "Navarro Tomás, T.",
+      "year": 1977,
+      "title": "Manual de pronunciación española",
+      "publisher": "CSIC",
+      "notes": "19th ed.; first published 1918. The reference handbook for the articulatory description of Castilian: nasal place assimilation (asimilación de las nasales), the vibrante múltiple after a heterosyllabic coronal, and the diphthong/hiatus inventory."
+    },
+    {
+      "id": "rae2011",
+      "author": "Real Academia Española & Asociación de Academias de la Lengua Española",
+      "year": 2011,
+      "title": "Nueva gramática de la lengua española: Fonética y fonología",
+      "publisher": "Espasa",
+      "notes": "The academies' normative phonological description. Diphthong/hiatus and the orthographic tilde, the /r/–/ɾ/ neutralisation in post-consonantal onset, and seseo as a fully standard majority norm."
+    },
+    {
+      "id": "quilis1993",
+      "author": "Quilis, A.",
+      "year": 1993,
+      "title": "Tratado de fonología y fonética españolas",
+      "publisher": "Gredos",
+      "notes": "Instrumental description of the same phenomena; used here to corroborate nasal assimilation and the vibrant distribution."
+    },
+    {
+      "id": "hualde2003basque",
+      "author": "Hualde, J.I. & Ortiz de Urbina, J. (eds.)",
+      "year": 2003,
+      "title": "A Grammar of Basque",
+      "publisher": "Mouton de Gruyter",
+      "url": null,
+      "pages": null,
+      "notes": "Cited for the value of the Basque digraph ⟨tx⟩ = /tʃ/, which Spanish keeps unchanged in Basque-origin lexis and proper names. Pages not verified."
     }
   ],
   "wikipedia": [
@@ -176,6 +210,9 @@
     "t": [
       "t"
     ],
+    "tx": [
+      "tʃ"
+    ],
     "v": [
       "b"
     ],
@@ -188,6 +225,9 @@
     ],
     "y": [
       "ʝ",
+      "i"
+    ],
+    "ý": [
       "i"
     ],
     "z": [
@@ -218,19 +258,19 @@
       "wo"
     ],
     "ai": [
-      "aj"
+      "ai̯"
     ],
     "ei": [
-      "ej"
+      "ei̯"
     ],
     "oi": [
-      "oj"
+      "oi̯"
     ],
     "au": [
-      "aw"
+      "au̯"
     ],
     "eu": [
-      "ew"
+      "eu̯"
     ],
     "iu": [
       "ju"
@@ -240,6 +280,24 @@
     ],
     "ü": [
       "w"
+    ],
+    "iá": [
+      "ja"
+    ],
+    "ié": [
+      "je"
+    ],
+    "ió": [
+      "jo"
+    ],
+    "uá": [
+      "wa"
+    ],
+    "ué": [
+      "we"
+    ],
+    "uó": [
+      "wo"
     ]
   },
   "allophones": {
@@ -424,9 +482,146 @@
       "intervocalic": [
         "β"
       ]
+    },
+    "ai": {
+      "before_vowel": [
+        "aj"
+      ],
+      "default": [
+        "ai̯"
+      ]
+    },
+    "ei": {
+      "before_vowel": [
+        "ej"
+      ],
+      "default": [
+        "ei̯"
+      ]
+    },
+    "oi": {
+      "before_vowel": [
+        "oj"
+      ],
+      "default": [
+        "oi̯"
+      ]
+    },
+    "au": {
+      "before_vowel": [
+        "aw"
+      ],
+      "default": [
+        "au̯"
+      ]
+    },
+    "eu": {
+      "before_vowel": [
+        "ew"
+      ],
+      "default": [
+        "eu̯"
+      ]
+    },
+    "iá": {
+      "word_initial": [
+        "ia"
+      ],
+      "default": [
+        "ja"
+      ]
+    },
+    "ié": {
+      "word_initial": [
+        "ie"
+      ],
+      "default": [
+        "je"
+      ]
+    },
+    "ió": {
+      "word_initial": [
+        "io"
+      ],
+      "default": [
+        "jo"
+      ]
+    },
+    "uá": {
+      "word_initial": [
+        "ua"
+      ],
+      "default": [
+        "wa"
+      ]
+    },
+    "ué": {
+      "word_initial": [
+        "ue"
+      ],
+      "default": [
+        "we"
+      ]
+    },
+    "uó": {
+      "word_initial": [
+        "uo"
+      ],
+      "default": [
+        "wo"
+      ]
+    },
+    "hia": {
+      "word_initial": [
+        "ʝa"
+      ],
+      "default": [
+        "ja"
+      ]
+    },
+    "hiá": {
+      "word_initial": [
+        "ʝa"
+      ],
+      "default": [
+        "ja"
+      ]
+    },
+    "hie": {
+      "word_initial": [
+        "ʝe"
+      ],
+      "default": [
+        "je"
+      ]
+    },
+    "hié": {
+      "word_initial": [
+        "ʝe"
+      ],
+      "default": [
+        "je"
+      ]
+    },
+    "hio": {
+      "word_initial": [
+        "ʝo"
+      ],
+      "default": [
+        "jo"
+      ]
+    },
+    "hió": {
+      "word_initial": [
+        "ʝo"
+      ],
+      "default": [
+        "jo"
+      ]
     }
   },
   "stress": {
+    "onset_clusters": ["bl", "br", "bɫ", "bɾ", "bʀ", "bʁ", "bʎ", "bχ", "dr", "dɾ", "dʀ", "dʁ", "dʎ", "dχ", "fl", "fr", "fɫ", "fɾ", "fʀ", "fʁ", "fʎ", "fχ", "kl", "kr", "kɫ", "kɾ", "kʀ", "kʁ", "kʎ", "kχ", "pl", "pr", "pɫ", "pɾ", "pʀ", "pʁ", "pʎ", "pχ", "tr", "tɾ", "tʀ", "tʁ", "tʎ", "tχ", "vl", "vr", "vɫ", "vɾ", "vʀ", "vʁ", "vʎ", "vχ", "ðr", "ðɾ", "ðʀ", "ðʁ", "ðʎ", "ðχ", "ɡl", "ɡr", "ɡɫ", "ɡɾ", "ɡʀ", "ɡʁ", "ɡʎ", "ɡχ", "ɣl", "ɣr", "ɣɫ", "ɣɾ", "ɣʀ", "ɣʁ", "ɣʎ", "ɣχ", "βl", "βr", "βɫ", "βɾ", "βʀ", "βʁ", "βʎ", "βχ"],
     "cliticless_words": [
       "el",
       "la",
@@ -506,5 +701,67 @@
     "longitude": -3.703333,
     "source": "wikidata",
     "notes": "Madrid — the centre of the Castilian norm. Glottolog's point for cast1244 is the generic Spanish point and says nothing about Castilian specifically. [Wikidata Q2807 P625]"
+  },
+  "allophone_rules": [
+    {
+      "id": "ES_TRILL_AFTER_CORONAL",
+      "phonemes": [
+        "ɾ"
+      ],
+      "surface": "r",
+      "preceded_by_phoneme": [
+        "n",
+        "l",
+        "s"
+      ],
+      "notes": "Vibrante múltiple after a heterosyllabic coronal (Navarro Tomás 1977; Hualde 2005 ch. 9 'Rhotics'; RAE/ASALE NGLE Fonética y fonología 2011 ch. 6; Quilis 1993). The /r/–/ɾ/ contrast is a strictly INTERVOCALIC one (caro ~ carro); everywhere else the distribution is predictable. In syllable onset after a heterosyllabic /l n s/ only the trill occurs — alrededor [alreðeˈðoɾ], honra [ˈonra], Israel [israˈel] — because Spanish has no tautosyllabic /lr nr sr/ onsets, so the rhotic in those strings always begins its own syllable and is always [r]. This is why the rule can be stated on the PRECEDING phoneme alone and needs no syllabification: the obstruent+liquid onsets that do exist (/pɾ bɾ tɾ dɾ kɾ ɡɾ fɾ/ — padre, tres, abrir) never have /l n s/ as their first element and are untouched."
+    },
+    {
+      "id": "ES_NASAL_LABIAL",
+      "phonemes": [
+        "n"
+      ],
+      "surface": "m",
+      "followed_by_phoneme": [
+        "b",
+        "β",
+        "p",
+        "m"
+      ],
+      "notes": "Asimilación de las nasales — a coda nasal takes the point of articulation of the following consonant (Navarro Tomás 1977; Hualde 2005 ch. 3; Quilis 1993; RAE/ASALE NGLE Fonética y fonología 2011). Before a labial the surface nasal is bilabial [m], whatever the spelling: inmaculada [immakuˈlaða], envase [emˈbase], ONPE [ˈompe], un peso [um ˈpeso]. Only the LABIAL branch is asserted here. The velar branch before /k ɡ/ was already carried by positional_graphemes n (before_consonant → [n, ŋ]), and the dental/palatal branches are sub-phonemic diacritic detail ([n̪] ante /t d/, [ɲ] ante /tʃ/) that every gold set in the board strips."
+    }
+  ],
+  "phonemes": [
+    "p",
+    "b",
+    "t",
+    "d",
+    "k",
+    "ɡ",
+    "tʃ",
+    "f",
+    "θ",
+    "s",
+    "x",
+    "ʝ",
+    "m",
+    "n",
+    "ɲ",
+    "l",
+    "ɾ",
+    "r",
+    "a",
+    "e",
+    "i",
+    "o",
+    "u"
+  ],
+  "word_exceptions": {
+    "guión": "ɡiˈon",
+    "muón": "muˈon",
+    "pión": "piˈon",
+    "prión": "pɾiˈon",
+    "ruán": "ruˈan",
+    "sión": "siˈon"
   }
 }

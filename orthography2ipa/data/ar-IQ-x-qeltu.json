@@ -158,5 +158,12 @@
       "مَا",
       "وَمَا"
     ]
+  },
+  "audit": {
+    "primary_sources": {
+      "conclusion": "sample_too_small",
+      "measured": "The primary_sources row holds 12 gold pairs, per=0.3417, per_ci_low=0.1917, per_ci_high=0.5125 (benchmarks/results.json). The 95% interval includes 0.25, so the row cannot be read as a failure. The same spec scores near zero on its other two rows (arabic_tts, n=20, per=0.0; gold20_arabic, n=20, per=0.0147), so Qeltu Iraqi Arabic is not an unmeasured language overall -- only this thin gold set is.",
+      "reference": "spec notes"
+    }
   }
 }

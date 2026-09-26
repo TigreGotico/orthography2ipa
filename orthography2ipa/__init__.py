@@ -1,5 +1,16 @@
 """orthography2ipa - Linguistically motivated grapheme→IPA and allophone maps.
 
+The engine (:class:`G2P`, :func:`transcribe`) turns orthographic text into
+IPA by resolving each language's declarative :class:`LanguageSpec` — grapheme
+tables, allophone rules, stress rules, sandhi rules — through a per-word
+candidate lattice (:mod:`~orthography2ipa.phonetok`) that a
+:class:`LatticeRescorer` may re-rank, and, optionally, a cross-word
+:class:`SentenceRescorer` for sandhi that reaches across word boundaries.
+:func:`get` / :func:`resolve` look up a language's spec by code; a lexicon
+overlay, dialect transforms and a battery of phonological distance metrics
+(:mod:`~orthography2ipa.distance`) sit alongside the engine as optional
+tools, not dependencies of it.
+
 Quick start::
 
     >>> import orthography2ipa
@@ -80,6 +91,7 @@ from orthography2ipa.registry import (
     get,
     get_syllabifier,
     resolve,
+    resolves_exactly,
 )
 from orthography2ipa.sandhi import SandhiEngine
 from orthography2ipa.transforms import (
@@ -111,7 +123,12 @@ from orthography2ipa.underspecification import (
     mark_density,
     underdetermined_positions,
 )
-from orthography2ipa.stress import apply_stress_mark, detect_stress, syllabify
+from orthography2ipa.stress import (
+    apply_stress_mark,
+    detect_stress,
+    syllabify,
+    syllabify_ipa,
+)
 from orthography2ipa.syllabifier_plugin import SyllabifierPlugin
 from orthography2ipa.script_distance import (
     SCRIPT_REGISTRY,
@@ -136,6 +153,7 @@ __all__ = [
     "GraphemeFeatures",
     "get",
     "resolve",
+    "resolves_exactly",
     "ancestry_chain",
     "available_codes",
     "available_families",
@@ -185,6 +203,7 @@ __all__ = [
     "detect_stress",
     "apply_stress_mark",
     "syllabify",
+    "syllabify_ipa",
     "SyllabifierPlugin",
     "get_syllabifier",
     "ScriptFeatures",

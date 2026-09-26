@@ -371,6 +371,15 @@ FEATURES = {
     "sibilant_voicing": ("ipa",  lambda s, ipa: "z" in ipa or "ʒ" in ipa),
     # strong-R trill [r] reflex (excludes the ubiquitous tap [ɾ])
     "rhotic":           ("ipa",  lambda s, ipa: "r" in ipa),
+    # the TAP [ɾ] reflex of a neutralised rhotic — the Balearic/Valencian
+    # counterpart of `rhotic`, where the coda rhotic is a tap and not a trill
+    # (wheeler2005 §7.1; recasens1996). A separate axis on purpose: a row
+    # tagged `rhotic` must witness the strong-R, and one tagged `rhotic_tap`
+    # must witness the weak one, so neither tag can be satisfied by the other.
+    "rhotic_tap":       ("ipa",  lambda s, ipa: "ɾ" in ipa),
+    # the postalveolar affricates [tʃ dʒ] — the Western Catalan reflex of
+    # ⟨j⟩/⟨g+e,i⟩ where Eastern has the plain fricative [ʒ] (veny1982 ch. 3)
+    "postalveolar_affricate": ("ipa", lambda s, ipa: "tʃ" in ipa or "dʒ" in ipa),
     # cross-word sandhi site (elision / liaison / final-s voicing)
     "sandhi":           ("both", lambda s, ipa: _has_sandhi_junction(s)),
     # --- Basque (eu family) coronal, palatal, front-rounded and laryngeal axes

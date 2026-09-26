@@ -130,8 +130,8 @@
       "notes": "French adstrate: Piedmont bordered Savoie, French spoken at court until 19th century."
     }
   ],
-  "notes": "Piedmontese. Gallo-Italic language of Piedmont, NW Italy. ~1.6 million speakers. Key features: (1) Front rounded vowels /y, ø/ (Gallo-Romance innovation). (2) Degemination. (3) Final vowel reduction/loss. (4) Nasal vowels. (5) Stronger intervocalic lenition than standard Italian. French adstrate influence due to historical Savoyard ties (Berruto 1974, Loporcaro 2009).",
-  "quality": "skeleton",
+  "notes": "Piedmontese. Gallo-Italic language of Piedmont, NW Italy. ~1.6 million speakers. Key features: (1) Front rounded vowels /y, ø/ (Gallo-Romance innovation). (2) Degemination. (3) Final vowel reduction/loss. (4) Nasal vowels. (5) Stronger intervocalic lenition than standard Italian. French adstrate influence due to historical Savoyard ties (Berruto 1974, Loporcaro 2009). Stress exemption: Piedmontese word stress is lexical/unpredictable from spelling, as in the other Gallo-Italic varieties modeled here; no stress block is declared. Source: Loporcaro, Michele (2009), Profilo linguistico dei dialetti italiani; Maiden & Parry (1997), The Dialects of Italy.",
+  "quality": "research",
   "script_type": "alphabet",
   "iso639_3": "pms",
   "sources": [

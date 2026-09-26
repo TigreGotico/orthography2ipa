@@ -123,3 +123,76 @@ def test_abugida_cv_cv_is_not_mistaken_for_a_geminate():
     consonant with no vowel) must leave this word alone.
     """
     assert G2P("ta").transcribe("அங்கக") == "aŋɡaɡa"
+
+
+# ─── Heterosyllabic doubling: a coda plus an onset, not one long segment ───
+
+def test_a_rule_triggered_by_its_twin_reaches_the_intervocalic_first_half():
+    """Between two nuclei a doubled consonant divides into coda + onset.
+
+    A doubled consonant is one long segment only where the syllabification
+    leaves it undivided. Intervocalically it spans a syllable boundary (Hayes
+    1989; Ladefoged & Maddieson 1996:92), and the two halves are then in
+    different positions and may be realised differently. A rule conditioned on
+    the consonant that follows is triggered by the twin — by the boundary
+    INSIDE the pair — so it must reach the first half. Blocking it there is
+    what left Lashi ⟨yuggi⟩ as *[juɡɡi].
+    """
+    coda = AllophoneRule(id="CODA_K", phonemes=("ɡ",), surface="k",
+                         followed_by="consonant")
+    spec = _spec({"a": ["a"], "g": ["ɡ"], "i": ["i"]}, (coda,))
+    assert _tok_best(spec, "aggi") == "akɡi"
+
+
+def test_a_word_final_doubled_consonant_is_not_divided():
+    """With no following nucleus there is no onset, so nothing may divide it.
+
+    Same rule, same twin-triggered condition, but the pair closes the word: it
+    is one long coda and both halves keep their value.
+    """
+    coda = AllophoneRule(id="CODA_K", phonemes=("ɡ",), surface="k",
+                         followed_by="consonant")
+    spec = _spec({"a": ["a"], "g": ["ɡ"]}, (coda,))
+    assert _tok_best(spec, "agg") == "aɡɡ"
+
+
+def test_a_neighbourless_rule_still_cannot_split_a_geminate():
+    """No neighbour condition means nothing points at the twin: still blocked.
+
+    An unconditioned rewrite carries no evidence that the pair is divided, so
+    it may not rewrite one half even between two nuclei.
+    """
+    rule = AllophoneRule(id="BARE_G", phonemes=("ɡ",), surface="k")
+    spec = _spec({"a": ["a"], "g": ["ɡ"], "i": ["i"]}, (rule,))
+    assert _tok_best(spec, "aggi") == "aɡɡi"
+
+
+def test_a_two_step_condition_reads_past_the_twin_and_stays_blocked():
+    """``followed_by_2`` looks BEYOND the twin, so its trigger is outside."""
+    rule = AllophoneRule(id="FAR_G", phonemes=("ɡ",), surface="k",
+                         followed_by_2="vowel")
+    spec = _spec({"a": ["a"], "g": ["ɡ"], "i": ["i"]}, (rule,))
+    assert _tok_best(spec, "aggi") == "aɡɡi"
+
+
+def test_lashi_doubled_g_is_a_coda_plus_an_onset():
+    """⟨yuggi⟩ is [juk̚ɡi]: the first ⟨g⟩ closes the syllable.
+
+    Hkaw Luk (2017:14) gives the Lashi coda stops as unreleased, and the
+    shipped Waingmaw gold writes this word ``j u k̚ ɡ i``. The same rule
+    already fired in ⟨dayug⟩ [dajuk̚] and ⟨Yokshan⟩ [jok̚ɕan]; only the
+    doubled spelling suppressed it.
+    """
+    assert G2P("lsi").transcribe("yuggi") == "juk̚ɡi"
+
+
+def test_najdi_word_final_geminate_guttural_takes_no_epenthesis(najd):
+    """⟨بخّ⟩ /baxx/ — gahawa epenthesis does not open a word-final geminate.
+
+    The gahawa rule inserts /a/ after a coda guttural standing before a
+    consonant (Ingham 1994:15-16, ``gahwa`` → ``gahawa``). A word-final
+    geminate /xx/ offers that rule its own second half as the following
+    consonant, but the pair has no following nucleus and is therefore one long
+    coda, not a coda plus an onset — so the epenthesis stays out of it.
+    """
+    assert najd.transcribe("بَخّ") == "ˈbaxx"

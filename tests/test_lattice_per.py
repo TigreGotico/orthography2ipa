@@ -17,25 +17,26 @@ class TestSegmentation:
 
 class TestOracleAgainstTheLattice:
     def test_engine_final_reading_scores_zero(self):
-        # The sandhi-applied reading is always admissible.
-        r = lattice_per("es̻ pada", "ez bada", "eu")
+        # The sandhi-applied reading is always admissible. (eu spirantizes
+        # intervocalic /d/ since the Hualde allophony wave: bada → [baða].)
+        r = lattice_per("es̻ paða", "ez bada", "eu")
         assert r.distance == 0.0
         assert r.per == 0.0
 
     def test_pre_sandhi_lattice_reading_scores_zero(self):
         # A lattice path the final reading rewrote is still a valid
         # pronunciation; single-reference PER would have charged it.
-        r = lattice_per("es̻ bada", "ez bada", "eu")
+        r = lattice_per("es̻ baða", "ez bada", "eu")
         assert r.distance == 0.0
         assert r.top_distance > 0.0
         assert r.variant_credit > 0.0
 
     def test_wrong_segments_are_charged_on_every_reading(self):
-        r = lattice_per("es baða", "ez bada", "eu")
-        assert r.distance == 2.0  # s̻→s and d→ð wrong on all paths
+        r = lattice_per("es bada", "ez bada", "eu")
+        assert r.distance == 2.0  # s̻→s wrong on all paths; d resists ð on all
 
     def test_oracle_never_exceeds_single_reference(self):
-        for hyp in ("es̻ pada", "es̻ bada", "es baða", "totally ˈdifferent"):
+        for hyp in ("es̻ paða", "es̻ baða", "es bada", "totally ˈdifferent"):
             r = lattice_per(hyp, "ez bada", "eu")
             assert r.distance <= r.top_distance
 
@@ -56,15 +57,16 @@ class TestWeightedCosts:
         assert weighted <= unit
 
     def test_close_segments_cost_less_than_distant_ones(self):
-        # d→ð (one lenition step) must cost less than d→a (consonant→vowel).
-        near = lattice_per("es̻ paða", "ez bada", "eu", weighted=True).distance
+        # ð→d (one lenition step off the [baða] reading) must cost less
+        # than ð→a (consonant→vowel).
+        near = lattice_per("es̻ pada", "ez bada", "eu", weighted=True).distance
         far = lattice_per("es̻ paaa", "ez bada", "eu", weighted=True).distance
         assert 0 < near < far
 
     def test_diacritic_only_difference_is_a_near_match(self):
         # s̻ vs s is outside the feature table; the base-character fallback
         # prices it as a feature flip, not a full substitution.
-        r = lattice_per("es pada", "ez bada", "eu", weighted=True)
+        r = lattice_per("es paða", "ez bada", "eu", weighted=True)
         assert 0 < r.distance < 0.5
 
 

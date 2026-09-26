@@ -24,7 +24,7 @@ jobs:
       - uses: actions/checkout@v7
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v8.3.2
+        uses: astral-sh/setup-uv@v10.1.0
 
       - name: Set up Python
         run: uv python install 3.12
@@ -41,6 +41,14 @@ jobs:
         run: |
           mkdir -p _site
           cp docs/explorer.html _site/index.html
+
+      - name: Derive the comparison staleness note
+        # docs/comparison.md carries a marker instead of this paragraph (it
+        # changes whenever any board row moves and made board PRs conflict
+        # in pairs); it is derived here from the committed JSON.
+        run: |
+          . .venv/bin/activate
+          PYTHONPATH=. python scripts/compare_systems.py --staleness > _site/comparison_staleness.md
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4

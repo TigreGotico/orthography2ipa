@@ -3,7 +3,7 @@
   "name": "Middle Dutch (ca. 1050-1350)",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "sch": [
       "sx"
@@ -111,7 +111,7 @@
       "v"
     ],
     "w": [
-      "ʋ"
+      "w"
     ],
     "z": [
       "z"
@@ -126,7 +126,7 @@
       "notes": "Descent per Glottolog classification of Middle Dutch (midd1321)."
     }
   ],
-  "notes": "Skeleton. West Germanic (Low Franconian) medieval stage written in the Latin alphabet. Grapheme map covers the monophthong letters, the digraph long vowels (ae/ee/oo/oe/ie/uu) and diphthongs (ij/ou/au/ei), the fricative digraphs sch and ch, and the plain consonants including g [ɣ] and w [ʋ]. Middle Dutch spelling varied widely by scribe and region; vowel length was written inconsistently and reduced/schwa realisations of e are not recoverable, so these are left unencoded and a real PER floor is expected.",
+  "notes": "Research. West Germanic (Low Franconian) medieval stage written in the Latin alphabet. Grapheme map covers the monophthong letters, the digraph long vowels (ae/ee/oo/oe/ie/uu) and diphthongs (ij/ou/au/ei), the fricative digraphs sch and ch, and the plain consonants including g [ɣ] and w [w]. Middle Dutch spelling varied widely by scribe and region; vowel length was written inconsistently and reduced/schwa realisations of e are not recoverable, so these are left unencoded and a real PER floor is expected. DISCREPANCY FOUND AND FIXED while citing: `w` was mapped to [ʋ] (the labiodental approximant of the MODERN Dutch consonant system); Van Loey's Klankleer (Middelnederlandse Spraakkunst, part II) describes the medieval `w` as a bilabial semivowel [w], distinct from `v`, with the shift toward a labiodental realisation a later, early-modern development. Fixed to [w].",
   "iso639_3": "dum",
   "glottolog_code": null,
   "sources": [
@@ -142,6 +142,17 @@
       "wikipedia_url": null
     },
     {
+      "id": "vanloey1976",
+      "author": "Van Loey, Adolf",
+      "year": 1976,
+      "title": "Middelnederlandse Spraakkunst II: Klankleer",
+      "publisher": "Wolters-Noordhoff, Groningen",
+      "url": "https://www.dbnl.org/titels/titel.php?id=loey001midd03",
+      "pages": null,
+      "notes": "Standard reference grammar of Middle Dutch phonology; used to verify the grapheme table (found and fixed the w=[ʋ] vs. [w] discrepancy) and to source the root-initial stress rule encoded in this spec's `stress` block.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Middle_Dutch"
+    },
+    {
       "id": "dum_wikipedia",
       "author": "Wikipedia contributors",
       "year": 2024,
@@ -155,5 +166,12 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Middle_Dutch"
-  ]
+  ],
+  "stress": {
+    "default_position": 1,
+    "quantity_sensitive": false,
+    "stress_mark": "ˈ",
+    "source": "rules",
+    "notes": "Middle Dutch keeps the inherited Common Germanic fixed root-initial stress (Van Loey 1976, Middelnederlandse Spraakkunst II). `default_position=1` (first syllable) models this; stress-neutral prefixes (e.g. ge-, be-, ver-) and French loanwords are not separately handled for lack of a documented closed list in the sources consulted."
+  }
 }

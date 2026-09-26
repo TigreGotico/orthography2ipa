@@ -419,13 +419,56 @@ class TestRomanian:
 
     # --- Romanian diphthongs ---
 
-    def test_diphthong_ia(self) -> None:
-        """Digraph <ia> maps to [ja] — falling diphthong."""
-        _assert_contains(_grapheme(self.spec, "ia"), "ja", label="ia→ja")
+    def test_prevocalic_i_is_a_glide_word_initially(self) -> None:
+        """Word-initial <i> before a vowel is the glide [j] (Chitoran 2002)."""
+        g2p = orthography2ipa.G2P("ro-RO")
+        assert g2p.transcribe_word("iarnă") == "jarnə"
+        assert g2p.transcribe_word("ied") == "jed"
 
-    def test_diphthong_ie(self) -> None:
-        """Digraph <ie> maps to [je]."""
-        _assert_contains(_grapheme(self.spec, "ie"), "je", label="ie→je")
+    def test_prevocalic_i_is_a_glide_after_a_vowel(self) -> None:
+        """Post-vocalic <i> is the glide [j], in a falling diphthong or an onset."""
+        g2p = orthography2ipa.G2P("ro-RO")
+        assert g2p.transcribe_word("baie") == "baje"
+        assert g2p.transcribe_word("doi") == "doj"
+        assert g2p.transcribe_word("copii") == "kopij"
+
+    def test_prevocalic_i_stays_syllabic_after_a_consonant(self) -> None:
+        """Post-consonantal <i> before a vowel stands in hiatus, not a glide."""
+        g2p = orthography2ipa.G2P("ro-RO")
+        assert g2p.transcribe_word("România") == "romɨnia"
+        assert g2p.transcribe_word("familie") == "familie"
+
+    def test_final_i_is_asyllabic(self) -> None:
+        """The word-final desinence <i> palatalizes the consonant and deletes."""
+        g2p = orthography2ipa.G2P("ro-RO")
+        assert g2p.transcribe_word("lupi") == "lupʲ"
+        assert g2p.transcribe_word("ochi") == "okʲ"
+        assert g2p.transcribe_word("vezi") == "vezʲ"
+
+    def test_final_i_stays_syllabic_without_another_nucleus(self) -> None:
+        """A monosyllable keeps its only vowel: <și> is [ʃi], not [ʃʲ]."""
+        g2p = orthography2ipa.G2P("ro-RO")
+        assert g2p.transcribe_word("și") == "ʃi"
+        assert g2p.transcribe_word("fi") == "fi"
+
+    def test_a_glide_never_leaves_the_word_without_a_nucleus(self) -> None:
+        """<ii> is [ij]: gliding both would produce a word with no nucleus."""
+        g2p = orthography2ipa.G2P("ro-RO")
+        assert g2p.transcribe_word("ii") == "ij"
+        assert g2p.transcribe_word("copiii") == "kopiij"
+
+    def test_final_i_stays_syllabic_after_muta_cum_liquida(self) -> None:
+        """After an obstruent+liquid onset the final <i> must be syllabic."""
+        g2p = orthography2ipa.G2P("ro-RO")
+        assert g2p.transcribe_word("noștri") == "noʃtri"
+        assert g2p.transcribe_word("acri") == "akri"
+
+    def test_initial_e_is_je_in_the_cited_closed_class(self) -> None:
+        """Pronouns and <a fi> forms have [je]; other <e>-initial words do not."""
+        g2p = orthography2ipa.G2P("ro-RO")
+        assert g2p.transcribe_word("este") == "jeste"
+        assert g2p.transcribe_word("el") == "jel"
+        assert g2p.transcribe_word("elev") == "elev"
 
     def test_diphthong_ea(self) -> None:
         """Digraph <ea> maps to [e̯a] — non-syllabic e before a."""
@@ -639,6 +682,116 @@ class TestCampidaneseSardinian:
         )
 
 
+@pytest.mark.linguistic
+class TestLogudoreseISOCode:
+    """Logudorese Sardinian under its ISO 639-3 code — src.
+
+    Mirrors sc-x-logudorese but filed under the primary ISO 639-3 identifier
+    'src', wired as a graphemes_base dialect of sc (Sardinian).
+    """
+
+    LANGUAGE_CODE = "src"
+
+    @pytest.fixture(autouse=True, scope="class")
+    def spec(self, request: pytest.FixtureRequest) -> None:
+        """Load Logudorese Sardinian (src) once per class."""
+        request.cls.spec = _load(self.LANGUAGE_CODE)
+
+    def test_parent_is_sc(self) -> None:
+        """src parent must be Standard Sardinian (sc)."""
+        assert self.spec.parent == "sc"
+
+    def test_iso639_3_is_src(self) -> None:
+        """Declared iso639_3 must match the filename/code."""
+        assert self.spec.iso639_3 == "src"
+
+    def test_inherits_conservative_c(self) -> None:
+        """<c> still maps to [k] via inheritance from sc — no affrication."""
+        _assert_first(_grapheme(self.spec, "c"), "k", label="src c→k (inherited)")
+
+
+@pytest.mark.linguistic
+class TestCampidaneseISOCode:
+    """Campidanese Sardinian under its ISO 639-3 code — sro.
+
+    Mirrors sc-x-campidanese but filed under the primary ISO 639-3 identifier
+    'sro', wired as a graphemes_base dialect of sc (Sardinian).
+    """
+
+    LANGUAGE_CODE = "sro"
+
+    @pytest.fixture(autouse=True, scope="class")
+    def spec(self, request: pytest.FixtureRequest) -> None:
+        """Load Campidanese Sardinian (sro) once per class."""
+        request.cls.spec = _load(self.LANGUAGE_CODE)
+
+    def test_parent_is_sc(self) -> None:
+        """sro parent must be Standard Sardinian (sc)."""
+        assert self.spec.parent == "sc"
+
+    def test_iso639_3_is_sro(self) -> None:
+        """Declared iso639_3 must match the filename/code."""
+        assert self.spec.iso639_3 == "sro"
+
+    def test_p_allophone_has_beta(self) -> None:
+        """Allophone of /p/ includes [β] — labial fricative lenition."""
+        _assert_contains(_allophone(self.spec, "p"), "β", label="sro p→β")
+
+    def test_t_allophone_has_eth(self) -> None:
+        """Allophone of /t/ includes [ð] — dental fricative lenition."""
+        _assert_contains(_allophone(self.spec, "t"), "ð", label="sro t→ð")
+
+    def test_k_allophone_has_gamma(self) -> None:
+        """Allophone of /k/ includes [ɣ] — velar fricative lenition."""
+        _assert_contains(_allophone(self.spec, "k"), "ɣ", label="sro k→ɣ")
+
+
+@pytest.mark.linguistic
+class TestGallurese:
+    """Gallurese — sdn.
+
+    Corsican-derived (Corso-Sardinian transitional) variety of Gallura,
+    northeastern Sardinia; classified as southern Corsican phono-morphologically
+    per Maxia, with sc (Sardinian) wired as an adstrate contact ancestor.
+    """
+
+    LANGUAGE_CODE = "sdn"
+
+    @pytest.fixture(autouse=True, scope="class")
+    def spec(self, request: pytest.FixtureRequest) -> None:
+        """Load Gallurese once per class."""
+        request.cls.spec = _load(self.LANGUAGE_CODE)
+
+    def test_parent_is_corsican(self) -> None:
+        """Gallurese descends from Corsican (co), not Sardinian (sc)."""
+        assert self.spec.parent == "co"
+
+    def test_iso639_3_is_sdn(self) -> None:
+        """Declared iso639_3 must match the filename/code."""
+        assert self.spec.iso639_3 == "sdn"
+
+    def test_has_sardinian_adstrate(self) -> None:
+        """sc (Sardinian) must be wired as an adstrate contact ancestor."""
+        adstrates = [a.code for a in self.spec.ancestors if a.role.value == "adstrate"]
+        assert "sc" in adstrates
+
+    def test_dd_maps_retroflex_geminate(self) -> None:
+        """<dd> (from Latin -LL-) maps to [ɖː], e.g. casteddu 'castle'."""
+        _assert_first(_grapheme(self.spec, "dd"), "ɖː", label="sdn dd→ɖː")
+
+    def test_chj_maps_palatal_stop(self) -> None:
+        """<chj> maps to the voiceless palatal stop [c]."""
+        _assert_first(_grapheme(self.spec, "chj"), "c", label="sdn chj→c")
+
+    def test_ghj_maps_palatal_stop(self) -> None:
+        """<ghj> maps to the voiced palatal stop [ɟ]."""
+        _assert_first(_grapheme(self.spec, "ghj"), "ɟ", label="sdn ghj→ɟ")
+
+    def test_family_is_romance(self) -> None:
+        """Gallurese must be classified as Romance (via the Corsican parent)."""
+        assert {"Indo-European", "Romance"} <= set(self.spec.family_path)
+
+
 # ═══════════════════════════════════════════════════════════════════════════
 # Occitan Aranese
 # ═══════════════════════════════════════════════════════════════════════════
@@ -652,9 +805,9 @@ class TestAranese:
     Key distinguishing features:
     - <u> → [y] — Gallo-Romance front rounded vowel (like French, unlike Spanish).
     - <a> → [a, ɔ] — contextual back-raising.
-    - <o> → [u, ɔ] — Occitan o-raising.
+    - <o> → [u]; the open [ɔ] is spelled <ò>.
     - <h> is phonemic in Aranese (retained from Latin, lost in Castilian/Catalan).
-    - <f> → [f, h] — f-aspiration before some vowels.
+    - <f> → [f]; Gascon's F- > h is in the spelling, not in the letter value.
     - Betacism: b/d/g have fricative allophones.
     - Word-initial <r> → [r] (trill).
     """
@@ -682,10 +835,13 @@ class TestAranese:
         """<a> → [a, ɔ] — a may raise to [ɔ] in certain positions."""
         _assert_contains(_grapheme(self.spec, "a"), "a", "ɔ", label="Aranese a")
 
-    def test_o_has_raised_allophone(self) -> None:
-        """<o> → [u, ɔ] — Occitan o-raising; [u] is the primary realisation."""
-        vals = _grapheme(self.spec, "o")
-        _assert_contains(vals, "u", "ɔ", label="Aranese o")
+    def test_o_is_only_u(self) -> None:
+        """<o> → [u]. The classical norm spells the open [ɔ] as <ò>, so the
+        unmarked letter carries one value and the contrast lives in the
+        accent (Wikipedia, Aranese dialect, vowel table: o/ó = [u], ò = [ɔ])."""
+        _assert_contains(_grapheme(self.spec, "o"), "u", label="Aranese o")
+        assert "ɔ" not in _grapheme(self.spec, "o")
+        _assert_contains(_grapheme(self.spec, "ò"), "ɔ", label="Aranese ò")
 
     def test_i_maps_i(self) -> None:
         """<i> → [i]."""
@@ -699,9 +855,12 @@ class TestAranese:
 
     # --- f-aspiration ---
 
-    def test_f_has_h_allophone(self) -> None:
-        """<f> allophone includes [h] — f-aspiration before some vowels."""
-        _assert_contains(_allophone(self.spec, "f"), "h", label="Aranese f→h allophone")
+    def test_f_is_never_read_as_h(self) -> None:
+        """<f> is [f] and nothing else. Gascon's Latin F- > /h/ is recorded in
+        the SPELLING (focus > huec, ferrum > hèr), so reading the surviving
+        letter <f> as [h] would apply the sound change a second time."""
+        assert "h" not in _allophone(self.spec, "f")
+        assert "h" not in _grapheme(self.spec, "f")
 
     def test_f_has_f_allophone(self) -> None:
         """<f> retains [f] as primary realisation."""
@@ -1310,3 +1469,55 @@ class TestMinhoPortuguese:
             _allophone(self.spec, "d"), "",
             label="Minho d→∅ coda deletion",
         )
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Istriot (ist) — Italo-Dalmatian Romance of coastal Istria
+# ─────────────────────────────────────────────────────────────────────────────
+
+@pytest.mark.linguistic
+class TestIstriot:
+    """Istriot — ist.
+
+    Autochthonous Romance language of the southwestern Istrian coast
+    (Rovinj/Rovigno, Vodnjan/Dignano), heavily influenced by Venetian.
+    Classified under Italo-Romance (Italo-Dalmatian), not Eastern Romance.
+    """
+
+    LANGUAGE_CODE = "ist"
+
+    @pytest.fixture(autouse=True, scope="class")
+    def spec(self, request: pytest.FixtureRequest) -> None:
+        """Load Istriot once per class."""
+        request.cls.spec = _load(self.LANGUAGE_CODE)
+
+    def test_family(self) -> None:
+        """Istriot must be classified under Italo-Romance."""
+        assert {"Indo-European", "Romance", "Italo-Romance"} <= set(self.spec.family_path)
+
+    def test_script(self) -> None:
+        """Istriot uses the Latin script."""
+        assert self.spec.script == "Latin"
+
+    def test_c_before_a_hard(self) -> None:
+        """<c> before back/central vowels stays [k]."""
+        pg = self.spec.positional_graphemes.get("c", {})
+        _assert_first(pg.get("default"), "k", label="ist c default")
+
+    def test_c_before_e_soft(self) -> None:
+        """<c> before <e> palatalizes to [tʃ]."""
+        pg = self.spec.positional_graphemes.get("c", {})
+        _assert_first(pg.get("before_e"), "tʃ", label="ist c before e")
+
+    def test_g_before_i_soft(self) -> None:
+        """<g> before <i> palatalizes to [dʒ]."""
+        pg = self.spec.positional_graphemes.get("g", {})
+        _assert_first(pg.get("before_i"), "dʒ", label="ist g before i")
+
+    def test_gn_palatal_nasal(self) -> None:
+        """<gn> spells the palatal nasal [ɲ], same unit as <nj>."""
+        _assert_first(_grapheme(self.spec, "gn"), "ɲ", label="ist gn")
+
+    def test_dz_affricate(self) -> None:
+        """<dz> spells the voiced alveolar affricate [dz]."""
+        _assert_first(_grapheme(self.spec, "dz"), "dz", label="ist dz")

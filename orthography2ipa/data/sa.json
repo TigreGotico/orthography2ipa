@@ -4,10 +4,10 @@
   "script": "Devanagari",
   "graphemes": {
     "अ": [
-      "ə"
+      "ɐ"
     ],
     "आ": [
-      "aː"
+      "ɑː"
     ],
     "इ": [
       "i"
@@ -43,7 +43,7 @@
       "əu"
     ],
     "ा": [
-      "aː"
+      "ɑː"
     ],
     "ि": [
       "i"
@@ -169,7 +169,7 @@
       "j"
     ],
     "र": [
-      "r"
+      "ɾ"
     ],
     "ल": [
       "l"
@@ -196,7 +196,7 @@
       "dʑɲ"
     ],
     "त्र": [
-      "t̪r"
+      "t̪ɾ"
     ]
   },
   "allophones": {
@@ -356,10 +356,10 @@
       "notes": "Direct descendant of Proto-Indo-European"
     }
   ],
-  "notes": "Classical Sanskrit (Pāṇinian standard, c. 4th c. BCE onward). Five-point place-of-articulation system: velar, palatal, retroflex, dental, labial. Four-way laryngeal contrast (plain/aspirated × voiced/voiceless). No short /e/ or /o/ (only long). ⟨व⟩ = [ʋ] labiodental approximant. Sandhi rules are extensive but modeled at the allophone level here.",
+  "notes": "Classical Sanskrit (Pāṇinian standard, c. 4th c. BCE onward). Five-point place-of-articulation system: velar, palatal, retroflex, dental, labial. Four-way laryngeal contrast (plain/aspirated × voiced/voiceless). No short /e/ or /o/ (only long). ⟨व⟩ = [ʋ] labiodental approximant. Sandhi rules are extensive but modeled at the allophone level here. Short ⟨अ⟩ (inherent vowel) is [ɐ], not a genuine mid-central schwa [ə]: Whitney's Sanskrit Grammar (1889) §21 describes it as the \"neutral vowel\", equating it to \"English so-called short u, of but, son, blood\" — a near-open central/back vowel, not the higher, laxer schwa of unstressed English syllables. Long ⟨आ⟩ is correspondingly [ɑː]: Whitney §19 places it \"in the 'Continental' or 'Italian' manner — as in far or farther\", i.e. a fully back open vowel, distinct in quality from short a, not merely longer. ⟨र⟩ is not a trill: Whitney §52 states it \"resembles the English smooth r, and, like this, seems to have been untrilled\", and §52a that \"no authority hints at a vibration as belonging to it\" — this only rules out the trill [r] this spec previously shipped, since Whitney's nineteenth-century articulatory terms do not distinguish a tap from an approximant. The specific value [ɾ] (alveolar tap) rests instead on a measured argument, not this citation: in san_deva_broad.tsv, words containing ⟨र⟩ realise it as ɾ 6404 times, plain r 133 times, ɽ twice and never as an approximant. The conjunct ⟨त्र⟩ carries the same tap. The syllabic ⟨ऋ ॠ ऌ⟩ series is left as r̩/r̩ː/l̩ — the gold uses that same convention (r̩ 80, ɾ 3 in words containing ⟨ऋ⟩), which is the standard IPA notation for a syllabic rhotic and does not itself assert a trill vs. tap articulation the way the plain consonant symbol does.",
   "quality": "research",
   "script_type": "abugida",
-  "inherent_vowel": "ə",
+  "inherent_vowel": "ɐ",
   "sources": [
     {
       "id": "coulson1992",
@@ -391,6 +391,16 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "whitney1889",
+      "author": "Whitney, W. D.",
+      "year": 1889,
+      "title": "Sanskrit Grammar",
+      "publisher": "Breitkopf and Härtel / Ginn & Co.",
+      "url": "https://en.wikisource.org/wiki/Sanskrit_Grammar_(Whitney)/Chapter_II",
+      "pages": "§§19, 21, 52",
+      "notes": "2nd ed.; consulted via the Wikisource transcription for the vowel-quality claims (short a as \"neutral vowel\"/short u, long ā as \"far/farther\") and for ruling OUT a trilled r. It does not specify tap vs. approximant for r; that choice is measured from the gold, not sourced to this citation (see notes)."
     }
   ],
   "wikipedia": [

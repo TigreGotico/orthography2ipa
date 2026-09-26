@@ -139,8 +139,16 @@ class TestSpirantization:
                 "KAB_SPIRANT_K", "KAB_SPIRANT_G"} <= ids
 
     def test_g_spirantizes(self):
-        """argaz 'man' -> [arʝaz]: lax /ɡ/ -> [ʝ]."""
-        assert orthography2ipa.transcribe("argaz", "kab") == "ærʝæz"
+        """agu 'cloud' -> [aʝu]: lax /ɡ/ -> [ʝ] word-initially and after a
+        vowel."""
+        assert orthography2ipa.transcribe("agu", "kab") == "æʝu"
+        assert orthography2ipa.transcribe("tigmi", "kab") == "θɪʝmi"
+
+    def test_g_spirantizes_after_m_but_not_after_other_sonorants(self):
+        """/ʝ/ occlusivizes after r, l, n — but not after m (Bedar, Quellec &
+        Tifrit 2022 on Chemini Kabyle)."""
+        assert orthography2ipa.transcribe("amger", "kab") == "æmʝər"
+        assert orthography2ipa.transcribe("argaz", "kab") == "ærɡæz"
 
     def test_d_spirantizes(self):
         """adrar 'mountain' -> [aðrar]: lax /d/ -> [ð]."""
@@ -234,8 +242,9 @@ class TestNasalAssimilation:
         assert "KAB_N_LABIAL_ASSIM" in ids
 
     def test_n_velarises_before_velar(self):
-        """/n/ -> [ŋ] before a velar/uvular; anki -> [aŋçi] (k also spirantizes)."""
-        assert orthography2ipa.transcribe("anki", "kab") == "æŋçi"
+        """/n/ -> [ŋ] before a velar/uvular; anki -> [aŋki]. The /k/ stays a
+        stop: spirantization is blocked after the nasal."""
+        assert orthography2ipa.transcribe("anki", "kab") == "æŋki"
 
     def test_n_labialises_before_labial(self):
         """/n/ -> [m] before a labial; anba -> [amba]. (The /b/ stays a stop
