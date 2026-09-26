@@ -256,7 +256,40 @@ class AuditConclusion(str, Enum):
     vowel length, ho nam, ...). Usually paired with a measured
     :class:`ValidCeiling` on the same dataset, but also covers cases where
     the right instrument was identified and folding was not run as a number
-    (e.g. a consonant-only floor that was never executed)."""
+    (e.g. a consonant-only floor that was never executed).
+
+    "Does not write" means the ORDINARY written norm does not, which is what a
+    ceiling citation has to establish. A script that has the marks but leaves
+    them out in running text is still input_limited: Arabic and Hebrew have
+    harakat and niqqud, and ordinary text omits them, so every ``ar-*`` and
+    ``he`` row belongs here. Use :attr:`DEGRADED_INPUT` instead only when the
+    written norm DOES carry the contrast and this particular gold's input
+    column threw it away."""
+
+    DEGRADED_INPUT = "degraded_input"
+    """The orthography writes the contrast, and the scored INPUT column does
+    not carry it — so the ceiling is a property of this gold, not of the
+    writing system.
+
+    The distinction from :attr:`INPUT_LIMITED` is not cosmetic: it decides
+    whether a :class:`ValidCeiling` may be recorded at all. A ceiling says the
+    best PER a row can reach once a contrast *the orthography cannot write* is
+    folded out, so a degraded-input row must NOT carry one — the fold is kept
+    as this record's measurement instead. Ruling in
+    ``knowledge/wiki/audits/o2i/valid-ceiling-tone-ruling.md``.
+
+    Two rows reached this verdict, and both were real audits before the value
+    existed: ``yo``/``wikipron``, where Yoruba orthography writes tone with an
+    acute, nothing and a grave, and 32 of 4937 scraped headwords (0.65%) carry
+    a tone mark; and ``tru``/``wikipron``, where the Surayt Orthography writes
+    /a/ and shewa with vowel points "without exceptions", and 0 of 232 scraped
+    spellings carry a Syriac vowel point.
+
+    A dictionary headword line that marks what running text does not is NOT
+    this value. ``ee``/``wikipron`` restores tone from the Wiktionary display
+    headword and reaches PER 0.0007, yet standard Ewe marks tone only for
+    disambiguation (Ansre 1961; Capo 1991), so the row stays input_limited and
+    keeps its ceiling."""
 
     MISLABELED_GOLD = "mislabeled_gold"
     """The gold does not describe the variety it is filed under — it is

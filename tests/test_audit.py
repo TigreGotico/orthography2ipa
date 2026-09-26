@@ -72,10 +72,11 @@ class TestSchemaValidation:
         assert spec.audit["wikipron"].conclusion == AuditConclusion.INPUT_LIMITED
         assert spec.audit["vox_communis"].conclusion == AuditConclusion.SAMPLE_TOO_SMALL
 
-    def test_all_six_enum_values_are_accepted(self):
+    def test_all_seven_enum_values_are_accepted(self):
         for value in (
-            "input_limited", "mislabeled_gold", "sample_too_small",
-            "at_ceiling_documented", "change_refused_uncited", "logographic",
+            "input_limited", "degraded_input", "mislabeled_gold",
+            "sample_too_small", "at_ceiling_documented",
+            "change_refused_uncited", "logographic",
         ):
             spec = LanguageSpecModel.model_validate({
                 **MINIMAL_SPEC,
@@ -285,3 +286,77 @@ class TestSoAtrFoldRefused:
         entry = spec.audit["kaikki"]
         assert entry.conclusion == AuditConclusion.CHANGE_REFUSED_UNCITED
         assert "ATR" in entry.measured
+
+
+class TestDegradedInputIsNotInputLimited:
+    """``degraded_input`` separates a limit of the GOLD from a limit of the
+    WRITING SYSTEM (T-2622, ruling in
+    ``knowledge/wiki/audits/o2i/valid-ceiling-tone-ruling.md``).
+
+    ``input_limited`` says the ordinary written norm does not write a contrast
+    the gold transcribes, and that is what licenses a ``valid_ceiling``. Two
+    shipped rows were real audits with the opposite finding — the orthography
+    writes the contrast and the scraped input column dropped it — and had to
+    borrow ``input_limited`` because no value said so. These tests pin which
+    row is which, and the invariant that separates them.
+    """
+
+    def test_yo_wikipron_is_degraded_input_not_input_limited(self):
+        """Yoruba writes tone with acute / nothing / grave (Adesola 2005);
+        32 of 4937 scraped headwords carry a mark. The limit is the scrape."""
+        entry = json_loader.load_json_spec("yo").audit["wikipron"]
+        assert entry.conclusion == AuditConclusion.DEGRADED_INPUT
+        assert entry.conclusion != AuditConclusion.INPUT_LIMITED
+
+    def test_tru_wikipron_is_degraded_input_not_input_limited(self):
+        """The Surayt Orthography writes /a/ and shewa with vowel points; 0 of
+        232 scraped spellings carry one."""
+        entry = json_loader.load_json_spec("tru").audit["wikipron"]
+        assert entry.conclusion == AuditConclusion.DEGRADED_INPUT
+
+    def test_a_degraded_input_row_never_carries_a_valid_ceiling(self):
+        """The invariant the value exists to express. A ceiling is the best PER
+        once a contrast the ORTHOGRAPHY cannot write is folded out, so a row
+        whose orthography does write it must not have one — the fold belongs in
+        the audit record's own ``measured`` field instead."""
+        offenders, seen = [], []
+        for code in json_loader.available_json_codes():
+            spec = json_loader.load_json_spec(code)
+            for dataset, entry in (spec.audit or {}).items():
+                if entry.conclusion != AuditConclusion.DEGRADED_INPUT:
+                    continue
+                seen.append(f"{code}/{dataset}")
+                if dataset in (spec.valid_ceiling or {}):
+                    offenders.append(f"{code}/{dataset}")
+        # Without this the check passes on any tree that has no such row at
+        # all, including the tree before this value existed.
+        assert sorted(seen) == ["tru/wikipron", "yo/wikipron"], (
+            f"expected exactly the two ruled rows to use the value, got {seen}"
+        )
+        assert not offenders, (
+            "degraded_input rows carrying a valid_ceiling, which the "
+            f"conclusion forbids: {offenders}"
+        )
+
+    def test_the_script_has_the_marks_rows_stay_input_limited(self):
+        """A script that HAS the marks and omits them in running text is
+        input_limited, not degraded_input. Arabic harakat and Hebrew niqqud are
+        the reason the boundary needs stating: ordinary text omits both, so
+        those rows are limited by the written norm, not by the scrape."""
+        for code in ("ar", "ar-EG", "ar-MA", "he"):
+            entry = json_loader.load_json_spec(code).audit["wikipron"]
+            assert entry.conclusion == AuditConclusion.INPUT_LIMITED, (
+                f"{code}/wikipron moved off input_limited; the ordinary "
+                "written norm omits these marks, so it belongs there"
+            )
+
+    def test_ee_wikipron_stays_input_limited_despite_a_restorable_headword(self):
+        """The near-miss. ``ee``/``wikipron`` restores tone from the Wiktionary
+        DISPLAY headword and reaches PER 0.0007, which looks like degraded
+        input — but standard Ewe marks tone only where disambiguation requires
+        it (Ansre 1961; Capo 1991). A dictionary headword marking what running
+        text does not is a lexicographic convention, not the written norm, so
+        the row stays input_limited and keeps its ceiling."""
+        spec = json_loader.load_json_spec("ee")
+        assert spec.audit["wikipron"].conclusion == AuditConclusion.INPUT_LIMITED
+        assert "wikipron" in spec.valid_ceiling
