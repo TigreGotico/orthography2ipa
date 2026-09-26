@@ -478,7 +478,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | lv | northeuralex | 1213 | 0.1901 | - | 0.1901 | 0.1901 | 0.2383 | 0.2383 | [0.1824, 0.1985] | 0.2383 | research | lexicon-derived |
 | lzz | wikipron | 262 | 0.2017 | - | 0.2017 | 0.2017 | 0.2557 | 0.2557 | [0.1824, 0.2233] | 0.2557 | research | crowd-scraped |
 | mak | wikipron | 832 | 0.0194 | - | 0.0194 | 0.0194 | 0.8918 | 0.8918 | [0.0155, 0.0240] | 0.8918 | research | crowd-scraped |
-| mch | wikipron | 1746 | 0.2799 | - | 0.2799 | 0.2799 | 0.1523 | 0.1523 | [0.2706, 0.2885] | 0.1523 | research | crowd-scraped |
+| mch | wikipron | 1746 | 0.2129 | - | 0.2129 | 0.2129 | 0.2520 | 0.2520 | [0.2041, 0.2210] | 0.2520 | research | crowd-scraped |
 | mcm | primary_sources | 33 | 0.1146 | - | 0.0500 | 0.0500 | 0.8182 | 0.8182 | [0.0707, 0.1642] | 0.5758 | research | expert-human |
 | mdf | wikipron | 330 | 0.2212 | - | 0.2119 | 0.2112 | 0.2697 | 0.2697 | [0.2024, 0.2383] | 0.2485 | research | crowd-scraped |
 | mdh | wikipron | 205 | 0.0793 | - | 0.0793 | 0.0793 | 0.6146 | 0.6146 | [0.0643, 0.0948] | 0.6146 | research | crowd-scraped |
