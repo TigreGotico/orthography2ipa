@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.108.1a2](https://github.com/TigreGotico/orthography2ipa/tree/7.108.1a2) (2026-09-26)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.108.1a1...7.108.1a2)
+
+**Merged pull requests:**
+
+- audit: state a measured count on the four records that had none [\#1708](https://github.com/TigreGotico/orthography2ipa/pull/1708) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.108.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.108.1a1) (2026-09-24)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.108.0a3...7.108.1a1)
