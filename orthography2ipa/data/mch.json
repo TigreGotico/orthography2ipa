@@ -108,7 +108,7 @@
   "audit": {
     "wikipron": {
       "conclusion": "input_limited",
-      "measured": "Ye'kwana contrastive vowel nasalization and predictable stress/length are not recoverable from the practical Spanish-influenced orthography this spec describes and are left unencoded, which the spec notes state raises the PER floor.",
+      "measured": "0 of 1746 rows in the WikiPron mch_latn_narrow gold carry a nasalized vowel, and 286 write a doubled vowel. The same 1746 gold transcriptions carry a long vowel on 830 rows, no nasalization mark on any row, and no stress mark on any row. So the contrast this row's PER floor rests on is vowel length, written in 286 rows and transcribed in 830; the practical Spanish-influenced orthography this spec describes leaves it unencoded. Nasalization and stress are named in the spec notes but are not transcribed in this gold, so no count here supports them.",
       "reference": "spec notes"
     }
   }

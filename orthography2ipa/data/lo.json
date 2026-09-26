@@ -530,7 +530,7 @@
   "audit": {
     "kaikki": {
       "conclusion": "input_limited",
-      "measured": "Lao tone is a property of the syllable computed from consonant class and the tone marks, which this spec records in tone_inventory but maps to nothing segmentally because Lao tone is suprasegmental and not itself an IPA segment the orthography commits to a single reading of. The three named remaining gaps (word-final ho-nam digraph attachment, the e-...-o circumfix, bare intervocalic w as nucleus) are each independently documented as structural tokenizer/lookup limitations rather than unsourced rules, and are not encoded around.",
+      "measured": "745 of 2309 rows in the kaikki Lao gold carry a Lao tone mark (U+0EC8-U+0ECB), and all 2309 gold transcriptions carry a tone letter. Lao tone is a property of the syllable computed from consonant class together with those marks, which this spec records in tone_inventory but maps to nothing segmentally because Lao tone is suprasegmental and not itself an IPA segment. The counts show the marks are present in the scored input, so this row is not a case of an unwritten contrast; the conclusion value is under review as its own item. The three named remaining gaps (word-final ho-nam digraph attachment, the e-...-o circumfix, bare intervocalic w as nucleus) are each documented as structural tokenizer/lookup limitations rather than unsourced rules, and are not encoded around.",
       "reference": "spec notes"
     }
   }
