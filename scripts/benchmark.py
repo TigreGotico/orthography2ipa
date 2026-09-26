@@ -505,6 +505,11 @@ _WIKIPRON_FILES = {
     "pag":       "pag_latn_broad.tsv",              # Pangasinan, ~229 rows
     "ba":        "bak_cyrl_broad.tsv",              # Bashkir, ~208 rows
     "ab":        "abk_cyrl_broad.tsv",              # Abkhazian, ~206 rows
+    # Farefare (Frafra), the one Ghanaian language with upstream WikiPron gold
+    # besides Ewe and Hausa. 111 rows, 111 unique headwords. Registered for
+    # T-2673: ghana-g2p and africa-g2p both cover it under the code "gur", so
+    # the row scores all three systems on the same words.
+    "gur":       "gur_latn_broad.tsv",              # Farefare, ~111 rows
     "kas":       "kas_arab_broad.tsv",              # Kashmiri (Perso-Arabic), ~751 rows
     "new":       "new_deva_narrow.tsv",             # Newar (Devanagari, narrow), ~416 rows
     "shn":       "shn_mymr_broad.tsv",              # Shan (Myanmar script), ~2607 rows
