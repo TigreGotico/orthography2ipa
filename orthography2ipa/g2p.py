@@ -73,7 +73,8 @@ from orthography2ipa.positional import (match_grammatical_ending,
 from orthography2ipa.rescorer import (
     LatticeRescorer, RescorerArg, apply_rescorers, normalize_rescorers,
 )
-from orthography2ipa.registry import get, get_declared_plugins, resolve
+from orthography2ipa.registry import (get, get_declared_plugins, resolve,
+                                      resolves_exactly)
 from orthography2ipa.weights import candidate_base_costs
 from orthography2ipa.sandhi import SandhiEngine
 from orthography2ipa.sentence import (
@@ -415,6 +416,7 @@ class G2P:
         lang: str,
         *,
         spec: Optional[LanguageSpec] = None,
+        strict: bool = False,
         expand_allophones: bool = False,
         dialect_profile: Optional[str] = None,
         apply_sandhi: bool = True,
@@ -452,6 +454,20 @@ class G2P:
             raise ValueError(
                 "on_unmapped must be 'ignore', 'log' or 'raise', "
                 f"got {on_unmapped!r}")
+        #: The tag this engine was asked for, before any resolution. Kept
+        #: because :attr:`lang` reports the spec that was loaded, so on its own
+        #: it cannot say whether a substitution happened.
+        self.requested: str = lang
+        #: True when the registry answered with a NEAREST spec rather than the
+        #: one the caller named. Alias tables, case folding, BCP-47
+        #: standardization and the curated defaults all name a spec
+        #: deliberately and do NOT set this; only ``closest_lang`` guessing
+        #: does. See :func:`orthography2ipa.resolves_exactly`.
+        self.substituted: bool = not resolves_exactly(lang)
+        if strict and self.substituted:
+            raise KeyError(
+                f"{lang!r} does not name a registered spec; the nearest is "
+                f"{resolve(lang)!r}. Drop strict=True to accept it.")
         self.lang: str = resolve(lang)
         self.spec: LanguageSpec = get(self.lang) if spec is None else spec
         if self.is_stub:
