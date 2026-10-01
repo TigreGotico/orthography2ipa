@@ -7,7 +7,8 @@ from __future__ import annotations
 
 from typing import Tuple
 
-__all__ = ["StubSpecWarning", "UnmappedScriptError"]
+__all__ = ["StubSpecWarning", "UnmappedScriptError",
+           "UnknownLanguageVariantError"]
 
 
 class UnmappedScriptError(ValueError):
@@ -50,3 +51,52 @@ class StubSpecWarning(UserWarning):
     ``G2P(..., on_unmapped="raise")`` turns the per-word case into
     :class:`UnmappedScriptError`.
     """
+
+
+class UnknownLanguageVariantError(KeyError):
+    """Raised when a requested code names a variant the registry does not
+    carry, and the caller did not pass ``fallback=True``.
+
+    A ``KeyError`` subclass, because that is what :func:`registry.get` has
+    always raised for a language it does not have: a caller already catching
+    ``KeyError`` keeps working.
+
+    The registry can usually find something close. Before
+    ``ar-BH-x-baharna`` had a spec, asking for it returned the Bahraini Sunni
+    table — 261 graphemes of confident Arabic — and nothing in the result said
+    so. A private-use ``-x-`` subtag claims a named lect exists, so answering
+    it with a sibling answers a different question. A region tag the registry
+    does not carry is different: that is ordinary BCP-47 matching within one
+    language, it is not refused, and it never raises this.
+
+    Parameters
+    ----------
+    requested : str
+        The code the caller asked for.
+    substitute : str
+        The registered code that would have answered it under
+        ``fallback=True``.
+    reason : str
+        Which guess was refused: ``"unknown-variant"`` for an unregistered
+        private-use subtag, ``"cross-language"`` when the nearest match
+        changes the primary language.
+    """
+
+    def __init__(self, requested: str, substitute: str,
+                 reason: str = "unknown-variant") -> None:
+        self.requested = requested
+        self.substitute = substitute
+        self.reason = reason
+        if reason == "cross-language":
+            what = (f"the nearest registered spec is {substitute!r}, which is "
+                    f"a different language")
+        else:
+            what = (f"this registry has no spec for that variant; the nearest "
+                    f"is {substitute!r}")
+        # KeyError renders its argument with repr(), so the whole sentence is
+        # one string and reads as a sentence rather than as a quoted fragment.
+        super().__init__(
+            f"{requested!r}: {what}. Readings from {substitute!r} are that "
+            f"spec's, not {requested!r}'s. Pass fallback=True to accept the "
+            f"substitution, or name a registered code."
+        )

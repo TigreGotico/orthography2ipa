@@ -286,7 +286,14 @@ def spec_code(lang, repo="."):
         raise PackageUnavailable(
             f"could not import orthography2ipa to resolve board tag {lang!r}: "
             f"{exc}") from exc
-    return get(lang).code
+    # fallback=True on purpose. A board tag can name a DATASET rather than a
+    # spec: ``pt-BR-x-carioca`` is the Wiktionary carioca word list, scored
+    # against the ``pt-BR`` spec, which carries the chiado rules. The registry
+    # refuses that substitution by default (decision o2i-resolver-fallback) so
+    # a caller cannot get a sibling lect's readings without asking; this guard
+    # asks, because mapping the tag to the spec it is scored against is its
+    # whole job.
+    return get(lang, fallback=True).code
 
 
 def spec_ancestors(lang, repo="."):

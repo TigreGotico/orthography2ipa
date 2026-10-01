@@ -73,6 +73,7 @@ from orthography2ipa.positional import (match_grammatical_ending,
 from orthography2ipa.rescorer import (
     LatticeRescorer, RescorerArg, apply_rescorers, normalize_rescorers,
 )
+from orthography2ipa.registry import _checked as _resolve_lang
 from orthography2ipa.registry import get, get_declared_plugins, resolve
 from orthography2ipa.weights import candidate_base_costs
 from orthography2ipa.sandhi import SandhiEngine
@@ -391,6 +392,19 @@ class G2P:
     normalizer : Optional[Callable[[str], str]]
         Pre-G2P text preparation (diacritization, number expansion);
         identity when omitted.
+    fallback : bool
+        Accept a language code this registry answers only by guessing. Off by
+        default: a private-use ``-x-`` subtag naming a lect the registry does
+        not carry raises
+        :class:`~orthography2ipa.exceptions.UnknownLanguageVariantError`
+        instead of transcribing with a sibling lect's table. Before
+        ``ar-BH-x-baharna`` had a spec it was answered with the Bahraini Sunni
+        one, and nothing in the result said so. With ``fallback=True`` the
+        substitution happens and is readable on the engine:
+        :attr:`requested`, :attr:`lang` and :attr:`substituted`.
+
+        Region matching inside one language is not a guess and needs no
+        opt-in: ``ar-ZZ`` and ``en-NZ`` build as they always did.
     on_unmapped : str
         How to react when a word contains characters absent from the
         spec's grapheme table (e.g. feeding Hanzi to a pinyin-only spec,
@@ -427,6 +441,7 @@ class G2P:
         sentence_rescorer: SentenceRescorerArg = None,
         allow_undeclared_phonemes: bool = False,
         expose_ambiguous_endings: bool = True,
+        fallback: bool = False,
     ) -> None:
         self.allow_undeclared_phonemes = allow_undeclared_phonemes
         #: Whether a list-valued ``grammatical_endings`` entry contributes
@@ -452,7 +467,9 @@ class G2P:
             raise ValueError(
                 "on_unmapped must be 'ignore', 'log' or 'raise', "
                 f"got {on_unmapped!r}")
-        self.lang: str = resolve(lang)
+        #: The code the caller asked for, before resolution.
+        self.requested: str = lang
+        self.lang, self.substituted = _resolve_lang(lang, fallback=fallback)
         self.spec: LanguageSpec = get(self.lang) if spec is None else spec
         if self.is_stub:
             warnings.warn(

@@ -4,10 +4,11 @@ from __future__ import annotations
 import logging
 from functools import lru_cache
 from importlib.metadata import entry_points
-from typing import TYPE_CHECKING, Dict, List, Optional
+from typing import TYPE_CHECKING, Dict, List, Optional, Tuple
 
 from ovos_spec_tools.language import closest_lang
 
+from orthography2ipa.exceptions import UnknownLanguageVariantError
 from orthography2ipa.json_loader import available_json_codes, load_json_spec
 from orthography2ipa.types import LanguageSpec
 
@@ -231,57 +232,119 @@ except ImportError:
 
 
 @lru_cache(maxsize=None)
-def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
-    """Normalise common aliases to canonical BCP-47 codes.
+def _declares_iso(spec_code: str, requested: str) -> bool:
+    """True when the spec at *spec_code* names *requested* as its own ISO
+    639-3 code.
 
-    Resolution order:
-    1. Manual alias table (handles private-use subtags and ISO 639-3 codes
-       that ``langcodes`` may not round-trip cleanly).
-    2. ``langcodes.standardize_tag()`` when the library is available and the
-       code is not a private-use subtag (``x-`` extension).
-    3. Exact match against the registered spec codes.
-    4. Curated default variant for a bare primary-language tag
-       (``pt`` → ``pt-PT``) or a region tag with only sub-regional specs
-       (``ar-SA`` → ``ar-SA-x-najd``).
-    5. Nearest registered code by language distance
-       (``en-NZ`` → ``en-GB``); no usable match leaves *code* unchanged.
+    A declared ISO code crosses the primary subtag by design: ``ar-TN``
+    declares ``aeb`` and ``tl`` declares ``tgl``, and a caller asking for
+    Tunisian Arabic by its ISO code is asking for exactly that spec. Reading
+    the spec costs one load, and only on the path where the distance match
+    already crossed languages.
     """
+    if "-" in requested or len(requested) != 3:
+        return False
+    try:
+        declared = getattr(load_json_spec(spec_code), "iso639_3", None)
+    except Exception:
+        return False
+    return bool(declared) and declared.lower() == requested.lower()
+
+
+@lru_cache(maxsize=None)
+def _resolve_detail(code: str) -> Tuple[str, str]:
+    """Resolve *code* and say HOW it resolved.
+
+    Returns ``(resolved, kind)``. The kind is what decides whether a caller
+    has to opt in:
+
+    - ``"exact"``: the code names a registered spec, directly or through the
+      alias table, case folding, BCP-47 standardization or a curated default.
+      Every one of those names a spec deliberately.
+    - ``"region"``: no spec for this region, and the nearest registered code
+      is in the same language (``ar-ZZ`` -> ``ar``, ``en-NZ`` -> ``en-GB``).
+      Ordinary BCP-47 matching, and a caller can want it.
+    - ``"unknown-variant"``: the code carries a private-use ``-x-`` subtag
+      that no spec and no alias answers. The caller named a lect; a sibling
+      is a different lect.
+    - ``"cross-language"``: the nearest match changes the primary language.
+    - ``"unresolved"``: nothing matched; *resolved* is *code* unchanged, and
+      :func:`get` raises ``KeyError`` for it.
+
+    The two guessing kinds are refused by :func:`get` and :func:`resolve`
+    unless the caller passes ``fallback=True`` (decision
+    ``o2i-resolver-fallback``, 2026-09-25).
+    """
+    requested = code
     if code in _ALIASES:
-        return _ALIASES[code]
+        return _ALIASES[code], "exact"
     if _HAS_LANGCODES and "-x-" not in code and not code.startswith("x-"):
         try:
             code = _langcodes.standardize_tag(code, macro=True)
         except Exception:
             pass
         if code in _ALIASES:
-            return _ALIASES[code]
+            return _ALIASES[code], "exact"
     available = available_json_codes()
     if code in available:
-        return code
+        return code, "exact"
     if "-x-" in code:
         # BCP-47 tags are case-insensitive, and langcodes never sees a
-        # private-use tag (step 2), so fold the case here; otherwise
+        # private-use tag, so fold the case here; otherwise
         # ``ar-sa-x-najd`` misses ``ar-SA-x-najd`` and the distance match
         # below lands it on a sibling lect.
         folded = code.lower()
         for known in _ALIASES:
             if known.lower() == folded:
-                return _ALIASES[known]
+                return _ALIASES[known], "exact"
         for known in available:
             if known.lower() == folded:
-                return known
+                return known, "exact"
     if code in _BARE_DEFAULTS:
-        return _BARE_DEFAULTS[code]
+        return _BARE_DEFAULTS[code], "exact"
     if code in _REGION_DEFAULTS:
-        return _REGION_DEFAULTS[code]
+        return _REGION_DEFAULTS[code], "exact"
+    match = closest_lang(code, available)
+    if not match:
+        return code, "unresolved"
+    if "-x-" in requested or requested.startswith("x-"):
+        # The request named a lect. Nothing above answered it, so whatever
+        # the distance match found is a different lect or its parent.
+        return match, "unknown-variant"
+    if _declares_iso(match, requested):
+        # The matched spec names this ISO 639-3 code as its own
+        # (``ar-TN`` declares ``aeb``, ``tl`` declares ``tgl``). That is the
+        # spec's own claim about what language it describes, so reaching it by
+        # that code is as deliberate as an alias, whatever the distance
+        # metric had to do to find it.
+        return match, "exact"
+    # Compare against the requested primary subtag AND the standardized one.
+    # ``standardize_tag(macro=True)`` folds a member language into its
+    # macrolanguage (``bcl`` -> ``bik``), so the match that comes back to a
+    # registered member is the same language by the caller's own spelling and
+    # is not a cross-language guess.
+    primaries = {requested.split("-")[0].lower(), code.split("-")[0].lower()}
+    if match.split("-")[0].lower() not in primaries:
+        return match, "cross-language"
+    _LOG.debug("resolved language code %r to nearest registered %r",
+               requested, match)
+    return match, "region"
+
+
+def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
+    """Normalise common aliases to canonical BCP-47 codes.
+
+    Thin wrapper over :func:`_resolve_detail`, kept because the engine's
+    internal call sites want the code and not the kind. *allow_nearest*
+    ``False`` refuses every guessing kind, so an unresolved or guessed code
+    comes back unchanged.
+    """
+    resolved, kind = _resolve_detail(code)
+    if kind in ("exact", "unresolved"):
+        return resolved
     if not allow_nearest:
         return code
-    match = closest_lang(code, available)
-    if match:
-        _LOG.debug("resolved language code %r to nearest registered %r",
-                   code, match)
-        return match
-    return code
+    return resolved
 
 
 def resolves_exactly(code: str) -> bool:
@@ -295,42 +358,75 @@ def resolves_exactly(code: str) -> bool:
     return _resolve_code(code, allow_nearest=False) in available_json_codes()
 
 
-def resolve(code: str) -> str:
+_GUESS_KINDS = ("unknown-variant", "cross-language")
+
+
+def _checked(code: str, *, fallback: bool) -> Tuple[str, bool]:
+    """Resolve *code*, refusing a guess unless *fallback*.
+
+    Returns ``(resolved, substituted)``. ``substituted`` is True only when a
+    guess was accepted, so a caller that opted in can say so.
+
+    Decision ``o2i-resolver-fallback``, 2026-09-25: refuse by default, with
+    ``fallback=True`` as the opt-in, and expose the substitution when a caller
+    opts in.
+    """
+    resolved, kind = _resolve_detail(code)
+    if kind in _GUESS_KINDS:
+        if not fallback:
+            raise UnknownLanguageVariantError(code, resolved, kind)
+        return resolved, True
+    return resolved, False
+
+
+def resolve(code: str, fallback: bool = False) -> str:
     """Return the registered spec code that *code* resolves to.
 
-    Applies the same normalisation as :func:`get` — alias tables,
-    BCP-47 standardization, curated bare-tag defaults and
-    nearest-language matching — without loading the spec. A code with
-    no usable resolution is returned unchanged (so :func:`get` raises
-    ``KeyError`` for it).
+    Applies the same normalisation as :func:`get` — alias tables, BCP-47
+    standardization, curated bare-tag defaults and region matching within one
+    language — without loading the spec. A code with no usable resolution is
+    returned unchanged (so :func:`get` raises ``KeyError`` for it).
+
+    Args:
+        code: the requested BCP-47 or ISO 639-3 code.
+        fallback: accept a guess. Without it, a private-use ``-x-`` variant
+            this registry does not carry raises
+            :class:`~orthography2ipa.exceptions.UnknownLanguageVariantError`
+            rather than answering with a sibling lect.
     """
-    return _resolve_code(code)
+    return _checked(code, fallback=fallback)[0]
 
 
-def get(code: str, strict: bool = False) -> LanguageSpec:
+def get(code: str, strict: bool = False, fallback: bool = False) -> LanguageSpec:
     """Return the :class:`LanguageSpec` for *code*, loading lazily.
 
     Args:
         code: BCP-47 language code (e.g. ``'en'``, ``'pt-BR'``) or
               ISO 639-3 three-letter code (e.g. ``'eng'``, ``'por'``).
-        strict: refuse nearest-language guessing. Aliases, case folding,
-            BCP-47 standardization and the curated bare-tag defaults still
-            apply — those name a spec deliberately. What is refused is
-            ``closest_lang``, which answers an unregistered code with the
-            nearest thing it can find.
+        strict: kept for the callers written before the default changed. It
+            asked for what is now the default, so it is accepted and changes
+            nothing.
+        fallback: accept a substitution this registry would otherwise refuse.
 
-    The default is the guess, because callers depend on it. It is worth knowing
-    what it costs: before ``ar-BH-x-baharna`` had a spec, ``get`` answered it with
-    a 261-grapheme table and plausible Arabic output — the Bahraini Sunni one —
-    with nothing in the result saying a substitution had happened. A reviewer
-    reading a baseline that way got a complete, confident column from the wrong
-    spec. ``strict=True`` is for any caller that would rather be told.
+    A private-use ``-x-`` subtag claims a named lect exists. Before
+    ``ar-BH-x-baharna`` had a spec, ``get`` answered it with a 261-grapheme
+    table and plausible Arabic output — the Bahraini Sunni one — with nothing
+    in the result saying a substitution had happened, and a reviewer read a
+    complete, confident baseline column from the wrong spec. So that answer is
+    now refused unless the caller asks for it (decision
+    ``o2i-resolver-fallback``, 2026-09-25).
+
+    Region matching inside one language is NOT refused: ``ar-ZZ`` → ``ar`` and
+    ``en-NZ`` → ``en-GB`` are ordinary BCP-47 matching, and a caller can want
+    them.
 
     Raises:
-        KeyError: If the language is not registered, or — under *strict* — if it
-            resolves only by nearest-language guessing.
+        KeyError: if the language is not registered at all.
+        ~orthography2ipa.exceptions.UnknownLanguageVariantError: a
+            ``KeyError`` subclass — if the code resolves only by guessing a
+            variant or a different language and *fallback* is not set.
     """
-    code = _resolve_code(code, allow_nearest=not strict)
+    code = _checked(code, fallback=fallback)[0]
     if code not in _cache:
         _cache[code] = load_json_spec(code)
     return _cache[code]

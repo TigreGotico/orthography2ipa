@@ -3820,7 +3820,12 @@ def evaluate_words_oracle(pairs: Sequence[GoldPair], lang: str,
     # as REACHABILITY and under its own heading: see docs/benchmarks.md,
     # "Injected alternatives do not count as ranking error". 1-best is
     # identical either way, so the PER columns are unaffected.
-    engine = G2P(lang, expose_ambiguous_endings=expose_ambiguous_endings)
+    # fallback=True on purpose: a board language can be a dataset tag with no
+    # spec of its own (``pt-BR-x-carioca`` -> the ``pt-BR`` spec). The registry
+    # refuses that substitution by default (decision o2i-resolver-fallback);
+    # the board opts in, and ``engine.substituted`` records that it happened.
+    engine = G2P(lang, expose_ambiguous_endings=expose_ambiguous_endings,
+                 fallback=True)
     # gold sets may carry several valid transcriptions per word
     # (dialect variants); score against all, keep the best
     refs: Dict[str, List[str]] = {}
