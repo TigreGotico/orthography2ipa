@@ -1,0 +1,44 @@
+"""Jordanian Arabic (``ar-JO``) matres lectionis cases the grapheme table is pinned to.
+
+The sources and the gold counts are cited in the ``ar-JO`` spec notes; this file
+only pins the readings.
+"""
+import pytest
+
+from orthography2ipa.g2p import G2P
+
+AR_JO = G2P("ar-JO")
+
+
+@pytest.mark.parametrize("word, vowel", [("توت", "uː"), ("حدود", "uː"), ("أكيد", "iː")])
+def test_waw_and_ya_after_a_consonant_are_long_vowels(word, vowel):
+    out = AR_JO.transcribe(word)
+    assert vowel in out, out
+
+
+@pytest.mark.parametrize("word, glide", [("ولد", "w"), ("يوم", "j")])
+def test_waw_and_ya_word_initially_stay_glides(word, glide):
+    assert AR_JO.transcribe(word).lstrip("ˈ").startswith(glide)
+
+
+@pytest.mark.parametrize("word, expected", [("بيوت", "bjuːt"), ("بوية", "buːja")])
+def test_two_adjacent_letters_are_not_both_long_vowels(word, expected):
+    assert AR_JO.transcribe(word).lstrip("ˈ") == expected
+
+
+@pytest.mark.parametrize("word, glide", [("قهوة", "w"), ("جمعية", "j")])
+def test_waw_and_ya_before_a_final_ta_marbuta_are_glides(word, glide):
+    out = AR_JO.transcribe(word)
+    assert glide + "a" in out, out
+
+
+def test_final_ya_after_a_kasra_key_is_a_long_vowel():
+    # arb's keys َوِ and َيِ absorb the kasra, so a word-final ⟨ي⟩ after them
+    # looked like it followed a vowel and read [j].
+    out = AR_JO.transcribe("قَوِي").lstrip("ˈ")
+    assert out.endswith("awiː"), out
+    assert AR_JO.transcribe("حَيِي").lstrip("ˈ") == "ħajiː"
+
+
+def test_medial_ya_after_a_kasra_key_stays_a_glide():
+    assert "wijja" in AR_JO.transcribe("قَوِيَّة")

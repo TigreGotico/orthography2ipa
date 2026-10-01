@@ -3,116 +3,55 @@
   "name": "K'iche'",
   "parent": "x-clade-maya1287",
   "script": "Latin",
+  "quality": "skeleton",
   "graphemes": {
-    "a": [
-      "a"
-    ],
-    "e": [
-      "e"
-    ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "o"
-    ],
-    "u": [
-      "u"
-    ],
-    "p": [
-      "p"
-    ],
-    "t": [
-      "t"
-    ],
-    "k": [
-      "k"
-    ],
-    "m": [
-      "m"
-    ],
-    "n": [
-      "n"
-    ],
-    "s": [
-      "s"
-    ],
-    "l": [
-      "l"
-    ],
-    "r": [
-      "ɾ"
-    ],
-    "w": [
-      "w"
-    ],
-    "y": [
-      "j"
-    ],
-    "h": [
-      "h"
-    ]
+    "a": ["a"],
+    "aa": ["aː"],
+    "e": ["e"],
+    "ee": ["eː"],
+    "i": ["i"],
+    "ii": ["iː"],
+    "o": ["o"],
+    "oo": ["oː"],
+    "u": ["u"],
+    "uu": ["uː"],
+    "b'": ["ɓ"],
+    "ch": ["tʃ"],
+    "ch'": ["tʃʼ"],
+    "j": ["x"],
+    "k": ["k"],
+    "k'": ["kʼ"],
+    "l": ["l"],
+    "m": ["m"],
+    "n": ["n"],
+    "p": ["p"],
+    "q": ["q"],
+    "q'": ["qʼ"],
+    "r": ["ɾ"],
+    "s": ["s"],
+    "t": ["t"],
+    "t'": ["tʼ"],
+    "tz": ["ts"],
+    "tz'": ["tsʼ"],
+    "w": ["w"],
+    "x": ["ʃ"],
+    "y": ["j"],
+    "'": ["ʔ"]
   },
   "allophones": {
-    "a": [
-      "a"
-    ],
-    "e": [
-      "e"
-    ],
-    "i": [
-      "i"
-    ],
-    "o": [
-      "o"
-    ],
-    "u": [
-      "u"
-    ],
-    "p": [
-      "p"
-    ],
-    "t": [
-      "t"
-    ],
-    "k": [
-      "k"
-    ],
-    "m": [
-      "m"
-    ],
-    "n": [
-      "n"
-    ],
-    "s": [
-      "s"
-    ],
-    "l": [
-      "l"
-    ],
-    "ɾ": [
-      "ɾ"
-    ],
-    "w": [
-      "w"
-    ],
-    "j": [
-      "j"
-    ],
-    "h": [
-      "h"
-    ]
+    "a": ["a"], "aː": ["aː"], "e": ["e"], "eː": ["eː"], "i": ["i"], "iː": ["iː"],
+    "o": ["o"], "oː": ["oː"], "u": ["u"], "uː": ["uː"],
+    "ɓ": ["ɓ"], "tʃ": ["tʃ"], "tʃʼ": ["tʃʼ"], "x": ["x"], "k": ["k"], "kʼ": ["kʼ"],
+    "l": ["l"], "m": ["m"], "n": ["n"], "p": ["p"], "q": ["q"], "qʼ": ["qʼ"],
+    "ɾ": ["ɾ"], "s": ["s"], "t": ["t"], "tʼ": ["tʼ"], "ts": ["ts"], "tsʼ": ["tsʼ"],
+    "w": ["w"], "ʃ": ["ʃ"], "j": ["j"], "ʔ": ["ʔ"]
   },
-  "notes": "STRUCTURAL ADSTRATE STUB (not a modelled G2P target). K'iche' (Quiché, Mayan). Representative highland-Mayan adstrate of Guatemalan Spanish. It exists here only so that the ancestry / phylogenetic-distance metrics of the Latin American Spanish varieties that reference it as an indigenous adstrate have a node to resolve to; the minimal grapheme set is a placeholder and NO phonology is claimed or modelled (afa.json / ber-x-kabyle-atlas.json stub pattern).",
-  "quality": "stub",
+  "notes": "Standard K'iche' Latin orthography as codified by the Academia de Lenguas Mayas de Guatemala (ALMG), described in Mondloch (1978), Basic Quiche Grammar. Ejective consonants are a following apostrophe on the plain stop/affricate letter (⟨k'⟩ /kʼ/, ⟨q'⟩ /qʼ/, ⟨t'⟩ /tʼ/, ⟨ch'⟩ /tʃʼ/, ⟨tz'⟩ /tsʼ/), each one glottalized segment rather than a stop plus a separate glottal stop (AGENTS.md test 2). ⟨b'⟩ is the implosive /ɓ/. ⟨ch⟩ and ⟨tz⟩ spell the single affricates /tʃ/ and /ts/. ⟨j⟩ and ⟨x⟩ distinguish the uvular/velar fricative /x/ from the palatal fricative /ʃ/ (a widespread K'iche'an contrast). Vowel length is phonemic in K'iche' and written by doubling the vowel letter. Stress is fixed on the final syllable and is not marked orthographically; it is left unencoded here as a documented, fully predictable exemption. This spec models the phonology and orthography of K'iche' as a language in its own right, distinct from its earlier role as a bare adstrate placeholder for Guatemalan Spanish contact studies.",
   "script_type": "alphabet",
   "iso639_3": "quc",
   "glottolog_code": "kich1262",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Kiche_language"
-  ],
-  "urls": [
-    "https://glottolog.org/resource/languoid/id/kich1262"
   ],
   "sources": [
     {
@@ -123,7 +62,23 @@
       "publisher": "Oxford University Press",
       "url": null,
       "pages": null,
-      "notes": "Reference for the classification and geographic distribution of this contact language (structural adstrate node only)."
+      "notes": "Classification and geographic distribution."
+    },
+    {
+      "id": "mondloch1978",
+      "author": "Mondloch, James L.",
+      "year": 1978,
+      "title": "Basic Quiche Grammar",
+      "publisher": "Institute for Mesoamerican Studies, SUNY Albany",
+      "notes": "Reference grammar: phonology, orthography, stress."
+    },
+    {
+      "id": "almg",
+      "author": "Academia de Lenguas Mayas de Guatemala",
+      "year": 1988,
+      "title": "Documento de referencia para la pronunciación de los idiomas Mayas",
+      "publisher": "ALMG",
+      "notes": "Official Mayan-language alphabet standard, including K'iche'."
     }
   ],
   "wikidata_qid": "Q36494",

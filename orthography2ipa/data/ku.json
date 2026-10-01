@@ -225,6 +225,17 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Kurmanji",
       "pages": null,
       "notes": "Orthography / phonology reference."
+    },
+    {
+      "id": "thackston2006",
+      "author": "Thackston, W. M.",
+      "year": 2006,
+      "title": "Kurmanji Kurdish: A Reference Grammar with Selected Readings",
+      "publisher": "Harvard University, Iranian Studies (distributed free by the author; archived copy)",
+      "url": "https://web.archive.org/web/20150616142342/http://www.fas.harvard.edu/~iranian/Kurmanji/kurmanji_1_grammar.pdf",
+      "wikipedia_url": null,
+      "pages": "1-3",
+      "notes": "'Alphabet and sounds' (pp. 1-3), read in full. Confirms the Hawar Latin letter set and ⟨c⟩ = dʒ, ⟨ç⟩ = tʃ, ⟨j⟩ = ʒ, ⟨ş⟩ = ʃ, ⟨x⟩ = x, ⟨q⟩ = q, ⟨w y⟩ = w j. Four vowel values differ from this map: ⟨e⟩ is æ as the standard reading (ɛ for many speakers, and before ⟨y⟩ or post-stress), ⟨a⟩ is ɑ, ⟨u⟩ is ʊ (ɪ-like or ʉ only in gu/ku), and Thackston states no length contrast, so the map's aː eː iː for ⟨a ê î⟩ are not his. He also records what the spelling does not show: ⟨p t k ç⟩ each stand for an aspirated and an unaspirated pharyngealised consonant, and ⟨h⟩ covers both h and the pharyngeal ħ in the areas that have it. Recorded here, not changed."
     }
   ],
   "parent": "x-clade-iran1269",

@@ -4,8 +4,10 @@
   "script": "Cyrillic",
   "graphemes_base": "ru-x-northern",
   "allophones_base": "ru-x-northern",
+  "word_exceptions_base": "ru-x-northern",
+  "grammatical_endings_base": "ru-x-northern",
   "parent": "ru-x-northern",
-  "notes": "Northern Russian, Arkhangelsk subtype. Strong оканье, цоканье.",
+  "notes": "Northern Russian, Arkhangelsk (Pomor) group. Полное оканье, soft 'lisping' цоканье (мягкое «шепелявое» цоканье — one affricate between [tsʲ] and [tɕ]), and plosive /г/ alternating with [k] word- and syllable-finally. All three are the Northern-group system this spec inherits from `ru-x-northern` unchanged; the intermediate 'lisping' quality of the Pomor affricate has no separate IPA symbol here and is written [tsʲ] with the rest of the Northern zone. Retained as a named code for the Pomor area; its distinctive material (Pomor lexicon, заударное ёканье, which the sources themselves hedge) is not grapheme-level and is not encoded. NEEDS SOURCING before this file diverges from its parent.",
   "quality": "stub",
   "script_type": "alphabet",
   "sources": [

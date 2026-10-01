@@ -21,85 +21,229 @@
     }
   ],
   "graphemes": {
-    "a": ["a"],
-    "á": ["a"],
-    "e": ["e"],
-    "é": ["e"],
-    "i": ["i"],
-    "í": ["i"],
-    "o": ["o"],
-    "ó": ["o"],
-    "u": ["u"],
-    "ú": ["u"],
-    "b": ["b"],
-    "c": ["k", "s"],
-    "ch": ["tʃ"],
-    "d": ["d"],
-    "f": ["f"],
-    "g": ["ɡ", "h"],
-    "gu": ["ɡ"],
-    "h": [""],
-    "j": ["h"],
-    "k": ["k"],
-    "l": ["l"],
-    "ll": ["j"],
-    "m": ["m"],
-    "mb": ["mb"],
-    "n": ["n"],
-    "nd": ["nd"],
-    "ng": ["ŋɡ"],
-    "ñ": ["ɲ"],
-    "p": ["p"],
-    "q": ["k"],
-    "qu": ["k"],
-    "r": ["ɾ"],
-    "rr": ["r"],
-    "s": ["s"],
-    "t": ["t"],
-    "v": ["b"],
-    "w": ["w"],
-    "x": ["ks"],
-    "y": ["j"],
-    "z": ["s"]
+    "a": [
+      "a"
+    ],
+    "á": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "é": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "í": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "ó": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "ú": [
+      "u"
+    ],
+    "b": [
+      "b"
+    ],
+    "c": [
+      "k",
+      "s"
+    ],
+    "ch": [
+      "tʃ"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "g": [
+      "ɡ",
+      "h"
+    ],
+    "gu": [
+      "ɡ"
+    ],
+    "h": [
+      ""
+    ],
+    "j": [
+      "h"
+    ],
+    "k": [
+      "k"
+    ],
+    "l": [
+      "l"
+    ],
+    "ll": [
+      "j"
+    ],
+    "m": [
+      "m"
+    ],
+    "mb": [
+      "mb"
+    ],
+    "n": [
+      "n"
+    ],
+    "nd": [
+      "nd"
+    ],
+    "ng": [
+      "ŋɡ"
+    ],
+    "ñ": [
+      "ɲ"
+    ],
+    "p": [
+      "p"
+    ],
+    "q": [
+      "k"
+    ],
+    "qu": [
+      "k"
+    ],
+    "r": [
+      "ɾ"
+    ],
+    "rr": [
+      "r"
+    ],
+    "s": [
+      "s"
+    ],
+    "t": [
+      "t"
+    ],
+    "v": [
+      "b"
+    ],
+    "w": [
+      "w"
+    ],
+    "x": [
+      "ks"
+    ],
+    "y": [
+      "j"
+    ],
+    "z": [
+      "s"
+    ]
   },
   "positional_graphemes": {
     "c": {
-      "before_front_vowel": ["s"],
-      "default": ["k"]
+      "before_front_vowel": [
+        "s"
+      ],
+      "default": [
+        "k"
+      ]
     },
     "g": {
-      "before_front_vowel": ["h"],
-      "default": ["ɡ"]
+      "before_front_vowel": [
+        "h"
+      ],
+      "default": [
+        "ɡ"
+      ]
     }
   },
   "allophones": {
-    "a": ["a"],
-    "e": ["e"],
-    "i": ["i"],
-    "o": ["o"],
-    "u": ["u"],
-    "b": ["b"],
-    "k": ["k"],
-    "s": ["s"],
-    "tʃ": ["tʃ"],
-    "d": ["d"],
-    "f": ["f"],
-    "ɡ": ["ɡ"],
-    "h": ["h"],
-    "l": ["l"],
-    "j": ["j"],
-    "m": ["m"],
-    "mb": ["mb"],
-    "n": ["n"],
-    "nd": ["nd"],
-    "ŋɡ": ["ŋɡ"],
-    "ɲ": ["ɲ"],
-    "p": ["p"],
-    "ɾ": ["ɾ"],
-    "r": ["r"],
-    "t": ["t"],
-    "w": ["w"],
-    "ks": ["ks"]
+    "a": [
+      "a"
+    ],
+    "e": [
+      "e"
+    ],
+    "i": [
+      "i"
+    ],
+    "o": [
+      "o"
+    ],
+    "u": [
+      "u"
+    ],
+    "b": [
+      "b"
+    ],
+    "k": [
+      "k"
+    ],
+    "s": [
+      "s"
+    ],
+    "tʃ": [
+      "tʃ"
+    ],
+    "d": [
+      "d"
+    ],
+    "f": [
+      "f"
+    ],
+    "ɡ": [
+      "ɡ"
+    ],
+    "h": [
+      "h"
+    ],
+    "l": [
+      "l"
+    ],
+    "j": [
+      "j"
+    ],
+    "m": [
+      "m"
+    ],
+    "mb": [
+      "mb"
+    ],
+    "n": [
+      "n"
+    ],
+    "nd": [
+      "nd"
+    ],
+    "ŋɡ": [
+      "ŋɡ"
+    ],
+    "ɲ": [
+      "ɲ"
+    ],
+    "p": [
+      "p"
+    ],
+    "ɾ": [
+      "ɾ"
+    ],
+    "r": [
+      "r"
+    ],
+    "t": [
+      "t"
+    ],
+    "w": [
+      "w"
+    ],
+    "ks": [
+      "ks"
+    ]
   },
   "iso639_3": "pln",
   "glottolog_code": "pale1260",
@@ -152,5 +296,19 @@
     "longitude": -75.2003,
     "source": "manual",
     "notes": "San Basilio de Palenque, Mahates municipality, Bolívar Department, Colombia."
-  }
+  },
+  "allophone_rules": [
+    {
+      "id": "ES_TRILL_AFTER_CORONAL",
+      "phonemes": [],
+      "surface": "r",
+      "notes": "NOT ASSERTED for this creole. The rule is inherited from the es-ES lexifier, where it is the Castilian vibrante multiple after a heterosyllabic coronal (Navarro Tomas 1977; Hualde 2005 ch. 9). No source in this spec's bibliography states that the Castilian rhotic distribution survives in the creole, and an uncited Peninsular process must not ride in on a lexifier link, so the id is re-declared with an empty 'phonemes' to disable it (the documented opt-out - see InheritanceMode.OVERLAY_BY_ID). Re-enable it with a citation."
+    },
+    {
+      "id": "ES_NASAL_LABIAL",
+      "phonemes": [],
+      "surface": "m",
+      "notes": "NOT ASSERTED for this creole, for the same reason as ES_TRILL_AFTER_CORONAL above: nasal place assimilation before a labial is cited for Castilian (Navarro Tomas 1977; Hualde 2005 ch. 3), not for this creole's phonology. Disabled by empty 'phonemes'; re-enable with a citation."
+    }
+  ]
 }

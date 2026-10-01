@@ -233,6 +233,12 @@
       "role": "parent",
       "weight": 0.88,
       "notes": "Descent from Proto-Munda; sister language to Santali"
+    },
+    {
+      "code": "hi",
+      "role": "adstrate",
+      "weight": 0.07,
+      "notes": "Hindi/Indo-Aryan adstrate: Mundari has borrowed retroflex consonants and vocabulary from surrounding Indo-Aryan languages through long-standing contact in Jharkhand, despite remaining a distinct Munda (Austroasiatic) language (Anderson 2008, The Munda Languages)."
     }
   ],
   "notes": "Mundari (Jharkhand). Closely related to Santali. Written in Latin (linguistic convention) or Devanagari. Has some retroflex consonants from IA contact.",

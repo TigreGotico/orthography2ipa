@@ -159,3 +159,104 @@ class TestBasqueNegationSandhi:
         for lect in ("eu-x-gipuzkera", "eu-x-lapurtera", "eu-x-nafarra-garaia"):
             assert self._transcribe("ez dut", lect) == "es̻ tut"
             assert self._transcribe("ez zen", lect) == "e ts̻en"
+
+
+class TestPhraseBoundary:
+    """Sandhi applies inside its prosodic domain, not across a pause.
+
+    What punctuation writes is the intonational-phrase (IP) break, and the
+    prosodic constituent bounds the rule (Nespor & Vogel 1986, *Prosodic
+    Phonology*): what a pause separates, no cross-word rule joins.
+    """
+
+    RULES = (SandhiRule(
+        id="FR_LIAISON_Z", name="z-liaison",
+        left_context=r"z$", right_context=r"^[aeiou]",
+        transform="z‿",
+    ),)
+
+    def test_a_pause_blocks_the_rule_at_that_boundary(self):
+        engine = SandhiEngine(self.RULES)
+        assert engine.apply(["lez", "ami"],
+                            pausal=[True, False]) == ["lez", "ami"]
+
+    def test_only_the_marked_boundary_is_blocked(self):
+        engine = SandhiEngine(self.RULES)
+        # pause after word 0 only; the 1-2 boundary still liaises
+        assert engine.apply(["lez", "lez", "ami"],
+                            pausal=[True, False, False]) == \
+            ["lez", "lez‿", "ami"]
+
+    def test_omitting_the_flags_treats_the_list_as_one_phrase(self):
+        engine = SandhiEngine(self.RULES)
+        assert engine.apply(["lez", "ami"]) == ["lez‿", "ami"]
+
+    def test_a_final_pause_changes_nothing(self):
+        """The last word has no boundary to its right."""
+        engine = SandhiEngine(self.RULES)
+        assert engine.apply(["lez", "ami"],
+                            pausal=[False, True]) == ["lez‿", "ami"]
+
+    def test_a_right_transform_is_blocked_too(self):
+        rules = (SandhiRule(
+            id="ELIDE", name="elision",
+            left_context=r"ə$", right_context=r"^(u)",
+            transform="", right_transform=r"\1",
+        ),)
+        engine = SandhiEngine(rules)
+        assert engine.apply(["kazə", "un"], pausal=[True, False]) == \
+            ["kazə", "un"]
+
+    def test_mismatched_flag_count_is_rejected(self):
+        import pytest
+        engine = SandhiEngine(self.RULES)
+        with pytest.raises(ValueError):
+            engine.apply(["lez", "ami"], pausal=[True])
+
+
+class TestPauseIsNotLatinOnly:
+    """A pause is a WRITING-SYSTEM fact — every script writes one.
+
+    ``_PAUSE_PUNCTUATION`` was the ASCII set ``.,;:!?…``, so a non-Latin
+    orthography got no phrase boundary at all: the Arabic comma was not even
+    classified as punctuation, so it glued to the word surface and every
+    cross-word rule ran straight through it while the ASCII comma blocked.
+    """
+
+    def test_every_listed_mark_has_its_real_unicode_name(self):
+        """A bare code point cannot be reviewed; the name is the audit trail."""
+        import unicodedata
+        from orthography2ipa.phonetok import PAUSE_PUNCTUATION
+        for char, name in PAUSE_PUNCTUATION.items():
+            assert unicodedata.name(char) == name, char
+
+    def test_every_pause_mark_tokenizes_as_punctuation(self):
+        """The two sets must not drift: a pause mark the tokenizer does not
+        classify as PUNCTUATION never reaches the phrase-boundary check."""
+        from orthography2ipa.phonetok import PAUSE_PUNCTUATION, _PUNCT_RE
+        for char in PAUSE_PUNCTUATION:
+            assert _PUNCT_RE.match(char), char
+
+    def test_no_word_separator_or_quote_is_called_a_pause(self):
+        """Word separators and paired marks are not intonational breaks."""
+        from orthography2ipa.phonetok import PAUSE_PUNCTUATION
+        for char in "\u1361\u0F0B'\u2018\u2019\u201C\u201D()[]-\u2014\u00AB\u00BB":
+            assert char not in PAUSE_PUNCTUATION, char
+
+    def test_arabic_comma_blocks_sandhi_like_the_ascii_one(self):
+        """arb's AR_HAMZAT_WASL_ARTICLE elided across its own comma."""
+        from orthography2ipa import transcribe
+        joined = transcribe("\u0641\u0650\u064a \u0627\u0644\u0628\u064e\u064a\u0652\u062a\u0650", "arb")
+        arabic_comma = transcribe("\u0641\u0650\u064a\u060c \u0627\u0644\u0628\u064e\u064a\u0652\u062a\u0650", "arb")
+        ascii_comma = transcribe("\u0641\u0650\u064a, \u0627\u0644\u0628\u064e\u064a\u0652\u062a\u0650", "arb")
+        # no pause: the article's hamzat wasl elides
+        assert joined == "fi\u02d0 l\u02c8bajti"
+        # either comma is a pause: it does not
+        assert arabic_comma == ascii_comma == "fi\u02d0 al\u02c8bajti"
+
+    def test_the_arabic_comma_is_not_glued_to_the_word(self):
+        """It was tokenized as UNKNOWN, so it ended up inside the surface."""
+        from orthography2ipa.g2p import G2P
+        words = G2P("arb")._split_words("\u0641\u0650\u064a\u060c \u0627\u0644\u0628\u064e\u064a\u0652\u062a\u0650")
+        assert "\u060c" not in words[0].surface
+        assert words[0].pausal is True

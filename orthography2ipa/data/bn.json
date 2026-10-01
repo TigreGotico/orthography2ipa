@@ -327,7 +327,7 @@
       "notes": "Contact with Hindi belt"
     }
   ],
-  "notes": "Standard Bengali (Dhaka/Kolkata). Key features: inherent vowel is /ɔ/ (not /ə/ like Hindi); ⟨য⟩ = [dʑ] word-initially, [j] elsewhere; ⟨শ⟩ and ⟨ষ⟩ both → [ʃ] (two Sanskrit sibilants merged); dental/retroflex contrast maintained; breathy stops phonemic but weakening in Bangladesh speech.",
+  "notes": "Standard Colloquial Bengali (West Bengal/Kolkata, Rarhi-based); inherent vowel is /ɔ/ (not /ə/ like Hindi); ‘য’ = [dʑ] word-initially, [j] elsewhere; ‘শ’ and ‘ষ’ both → [ʃ] (two Sanskrit sibilants merged, unlike the Bangladeshi standard's ʃ/s contrast – Khan 2010); dental/retroflex contrast maintained; breathy stops phonemic but weakening in Bangladeshi speech. Word-final inherent vowel deletion (মানুষ 'person' [manuʃ], not *[manuʃɔ] — the word ends in a bare consonant letter with no vowel sign or virama): measured against the wikipron ben_beng_rarh_broad gold (n=6527), the orthographic inherent vowel is realised as nothing in 3430/4444 (77.2%) of word-final bare-consonant positions, and as raised [o] rather than base [ɔ] in most of the remainder (898/1014 retained cases); it is never deleted in single-syllable words, where it is the word's only nucleus (43/43 in the gold, kept as ɔ in every case but one — ভ 'a Bengali letter name' is retained as raised [o] like the polysyllabic retained cases, so the raising condition is not confined to non-monosyllables). This spec ships the deletion via inherent_vowel_final, whose word-final branch is already gated on the word carrying another nucleus, matching the single-syllable exception exactly. Fixing this alone moved the wikipron row from 0.3162 to 0.2395 PER; a fold that also neutralises the residual quality/deletion choice on both sides measures a 0.2274 ceiling, so most of the remaining error is unrelated to the inherent vowel (conjunct/যা-phala decoding is the next largest visible residual, not yet fixed here). The rate is a measured distribution, not a categorical phonological rule; Ferguson & Chowdhury (1960) is the classic description of this deletion (see sources; article not obtained this session, no locator claimed), and Khan (2010) transcribes it throughout the JIPA illustration passage (e.g. আনার /anar/ 'for bringing', not *anarɔ), but the exact deletion RATE by word length is this session's own count against the gold, not a cited figure.",
   "quality": "research",
   "script_type": "abugida",
   "inherent_vowel": "ɔ",
@@ -362,6 +362,26 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "khan2010",
+      "author": "Khan, S.u.D.",
+      "year": 2010,
+      "title": "Bengali (Bangladeshi Standard)",
+      "publisher": "Journal of the International Phonetic Association 40(2), 221-225",
+      "url": "https://www.reed.edu/linguistics/khan/assets/Khan%202010%20Bengali%20Bangladeshi%20standard.pdf",
+      "pages": "221-225",
+      "notes": "Illustration of the IPA; fetched and read in full. Confirms word-final inherent-vowel deletion impressionistically in its transcribed passage and reports Bangladeshi Standard's s/ʃ contrast, which Kolkata Standard (this spec's target) lacks."
+    },
+    {
+      "id": "ferguson_chowdhury1960",
+      "author": "Ferguson, C.A. & Chowdhury, M.",
+      "year": 1960,
+      "title": "The Phonemes of Bengali",
+      "publisher": "Language 36(1), 22-59",
+      "url": null,
+      "pages": null,
+      "notes": "Classic phonemicization of Bengali cited by Khan (2010) for the schwa/inherent-vowel alternations; claim is standard, this session did not obtain the article itself so no page locator is asserted."
     }
   ],
   "wikipedia": [
@@ -383,5 +403,13 @@
     "longitude": 90.0,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Bengali."
+  },
+  "inherent_vowel_final": "",
+  "valid_ceiling": {
+    "wikipron": {
+      "per": 0.2274,
+      "folded": "inherent_vowel_word_final_quality",
+      "citation": "Scored as-is (this spec's fixed inherent_vowel_final=\"\") the row is 0.2395 PER. Stripping the final vowel character from BOTH hypothesis and gold whenever the orthographic word ends in a bare consonant letter (neutralising the remaining deletion/raising choice on both sides) measures 0.2274 -- this isolates what is left of the inherent-vowel phenomenon from the conjunct/যা-phala and other residual errors; see the notes field for the underlying counts."
+    }
   }
 }

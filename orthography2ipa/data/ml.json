@@ -173,7 +173,7 @@
       "j"
     ],
     "ര": [
-      "r"
+      "ɾ"
     ],
     "ല": [
       "l"
@@ -417,6 +417,16 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "namboodiripad_garellek2017",
+      "author": "Namboodiripad, S. & Garellek, M.",
+      "year": 2017,
+      "title": "Illustrations of the IPA: Malayalam (Namboodiri Dialect)",
+      "publisher": "Journal of the International Phonetic Association 47(1)",
+      "url": "https://doi.org/10.1017/S0025100315000407",
+      "pages": "109-118",
+      "notes": "Source for the ⟨ര⟩/⟨റ⟩ tap/trill contrast, the word-final samvrutokaram [ɨ] after a bare virama consonant, and the റ്റ-series geminate /tː/ vs dental /t̪ː/ contrast."
     }
   ],
   "wikipedia": [
@@ -472,6 +482,56 @@
         "au"
       ],
       "notes": "Malayalam inherits the Dravidian intervocalic/post-nasal voicing rules from its parent (ta): plosives are voiceless word-initially and when geminated, voiced between vowels and after a nasal (Asher & Kumari 1997: 405-406; Krishnamurti 2003: 4.2) — പകർച്ച [paɡar-], മരുതം [marud̪am]. It differs from Tamil in ONE realisation: the palatal ⟨ച⟩ does not lenite to [s] between vowels, it voices to [dʑ] like the rest of the series (Asher & Kumari 1997: 405-406). These rules override the inherited TA_VOICE_tɕ* by id."
+    },
+    {
+      "id": "TA_GEM1_r",
+      "phonemes": [
+        "r"
+      ],
+      "surface": "tː",
+      "followed_by_phoneme": [
+        "ra",
+        "r"
+      ],
+      "notes": "Malayalam-specific override of ta's TA_GEM1_r/TA_GEM2_r. Unlike Tamil, where a doubled rhotic letter is a phonetically long trill, Malayalam's written ⟨റ്റ⟩ (റ + virama + റ) represents a single phoneme realised as a voiceless ALVEOLAR stop, contrasting with the dental geminate stop spelled ⟨ത്ത⟩. Proto-Dravidian *ṯṯ was retained as a stop while the singleton *ṯ lenited to the trill /r/ (Krishnamurti 2003). Asher & Kumari (1997: 432-435), as reported in Namboodiripad & Garellek (2017: 113-114, Journal of the IPA 47(1)): 'the geminate /tː/ ... /patːi/ \"was able to\"' — a plain (non-dental) /tː/, distinct from the /t̪ː/ row for the ⟨ത്ത⟩ series. The first half carries the length; the second half is stripped to its bare vowel, same C+C+V -> Cː+V mechanics as the inherited TA_GEM pattern. HAZARD FOR ta AUDITORS: ml overrides this rule by id (TA_GEM1_r / TA_GEM2_r) and additionally depends on ta having no existing id 'TA_GEM2_r_FINAL'. Renaming or restructuring ta's TA_GEM1_r/TA_GEM2_r in a future ta audit silently reverts Malayalam to a long trill /rː/ for ⟨റ്റ⟩ instead of the correct /tː/ stop, with no test failure in ta's own suite — the leak only shows up in ml's test_indic_allophony.py."
+    },
+    {
+      "id": "TA_GEM2_r",
+      "phonemes": [
+        "r"
+      ],
+      "surface": "",
+      "preceded_by_phoneme": [
+        "r"
+      ],
+      "followed_by_phoneme": [
+        "a",
+        "aː",
+        "i",
+        "iː",
+        "u",
+        "uː",
+        "e",
+        "eː",
+        "ai",
+        "o",
+        "oː",
+        "au"
+      ],
+      "notes": "Malayalam-specific override of ta's TA_GEM1_r/TA_GEM2_r. Unlike Tamil, where a doubled rhotic letter is a phonetically long trill, Malayalam's written ⟨റ്റ⟩ (റ + virama + റ) represents a single phoneme realised as a voiceless ALVEOLAR stop, contrasting with the dental geminate stop spelled ⟨ത്ത⟩. Proto-Dravidian *ṯṯ was retained as a stop while the singleton *ṯ lenited to the trill /r/ (Krishnamurti 2003). Asher & Kumari (1997: 432-435), as reported in Namboodiripad & Garellek (2017: 113-114, Journal of the IPA 47(1)): 'the geminate /tː/ ... /patːi/ \"was able to\"' — a plain (non-dental) /tː/, distinct from the /t̪ː/ row for the ⟨ത്ത⟩ series. The first half carries the length; the second half is stripped to its bare vowel, same C+C+V -> Cː+V mechanics as the inherited TA_GEM pattern. HAZARD FOR ta AUDITORS: ml overrides this rule by id (TA_GEM1_r / TA_GEM2_r) and additionally depends on ta having no existing id 'TA_GEM2_r_FINAL'. Renaming or restructuring ta's TA_GEM1_r/TA_GEM2_r in a future ta audit silently reverts Malayalam to a long trill /rː/ for ⟨റ്റ⟩ instead of the correct /tː/ stop, with no test failure in ta's own suite — the leak only shows up in ml's test_indic_allophony.py."
+    },
+    {
+      "id": "TA_GEM2_r_FINAL",
+      "phonemes": [
+        "r"
+      ],
+      "surface": "",
+      "preceded_by_phoneme": [
+        "r"
+      ],
+      "word_final": true,
+      "notes": "Malayalam-specific companion to TA_GEM2_r: closes the word. The inherited rule only strips the geminate's second half when a vowel follows in the SAME syllable slot (Tamil put̪ːakam-style); a written ⟨റ്റ⟩ that is itself the last thing in the word — no vowel sign, closed instead by a word-final virama and the samvrutokaram vowel virama_final_vowel supplies afterwards — has no such following vowel to carry, so it needs its own word-final variant of the same second-half deletion. See TA_GEM1_r for the citation (Asher & Kumari 1997: 432-435; Namboodiripad & Garellek 2017: 113-114). Own id (not shared with ta), but its preceded_by_phoneme=['r'] condition assumes ta's TA_GEM1_r still emits bare 'r' at that point — see the hazard note on TA_GEM1_r/TA_GEM2_r."
     }
-  ]
+  ],
+  "virama_final_vowel": "ɨ"
 }

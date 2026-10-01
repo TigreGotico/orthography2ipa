@@ -67,6 +67,18 @@ class TestAliases:
 
     @pytest.mark.parametrize("alias,canonical", [
         ("por", "pt-PT"),
+        ("acx", "ar-OM"),
+        ("apd", "ar-SD"),
+        ("ayn", "ar-YE"),
+        ("mey", "ar-MR"),
+        ("ars", "ar-SA-x-najd"),
+        ("shu", "ar-TD"),
+        ("pnb", "pa-PK"),
+        ("ajg", "aja"),
+        ("gej", "gen"),
+        ("xdc", "xda"),
+        ("cbk", "cbk-zam"),
+        ("bar", "de-x-bavarian"),
     ])
     def test_iso639_3_aliases(self, alias, canonical):
         spec_alias = get(alias)
@@ -78,6 +90,33 @@ class TestAliases:
         spec_por = get("por")
         spec_pt = get("pt-PT")
         assert spec_por is spec_pt
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Private-use spellings
+# ═══════════════════════════════════════════════════════════════════════════
+
+class TestPrivateUseSpellings:
+    """A variant tag spelled the way its consumers spell it reaches the
+    spec that models it, instead of collapsing onto the base language or
+    onto a sibling variant."""
+
+    @pytest.mark.parametrize("spelling,canonical", [
+        ("pt-BR-x-sao-paulo", "pt-BR-x-sp"),
+        ("pt-BR-x-rio-janeiro", "pt-BR-x-rj"),
+        ("pt-PT-x-lisboa", "pt-PT-x-lisbon"),
+    ])
+    def test_consumer_spellings_are_aliases(self, spelling, canonical):
+        assert registry.resolve(spelling) == canonical
+        assert get(spelling) is get(canonical)
+
+    @pytest.mark.parametrize("spelling,canonical", [
+        ("ar-sa-x-najd", "ar-SA-x-najd"),
+        ("PT-PT-X-PORTO", "pt-PT-x-porto"),
+        ("eu-X-bizkaiera", "eu-x-bizkaiera"),
+    ])
+    def test_private_use_tags_match_case_insensitively(self, spelling, canonical):
+        assert registry.resolve(spelling) == canonical
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -270,3 +309,134 @@ class TestCachedSpecIsImmutable:
         spec = get("pt-PT")
         assert replace(spec, notes="x").notes == "x"
         assert isinstance(asdict(spec)["graphemes"], dict)
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Declared ISO 639-3 codes round-trip
+# ═══════════════════════════════════════════════════════════════════════════
+
+# Codes a modelled spec declares that do not yet reach it. Each needs a ruling
+# from the spec owner rather than a guess, so they are named here instead of
+# being silently tolerated, and this set may only shrink.
+#
+#   gsw   declared by de-x-alemannic (Alemannic German), reaches de-CH, which
+#         is named Swiss Standard German and declares deu -- a different code
+#         and arguably a different language. But de-x-alemannic's own parent is
+#         de-CH, so the registry already treats Alemannic as a child of it, and
+#         which of those two readings is intended is the owner's call
+UNRESOLVED_ISO_DECLARATIONS = frozenset(
+    {"gsw"}
+)
+
+
+
+
+def _refines_by_script(resolved, declarer):
+    """Is `declarer` the `resolved` spec plus a script subtag?
+
+    A script subtag is four letters in titlecase (``Latn``, ``Arab``, ``Cyrl``).
+    Anything else the declarer adds -- a region, a private-use variant -- names a
+    different lect rather than a different spelling of the same one.
+    """
+    if not declarer.startswith(resolved + "-"):
+        return False
+    first = declarer[len(resolved) + 1:].split("-")[0]
+    return len(first) == 4 and first.isalpha() and first == first.title()
+
+@pytest.fixture(scope="module")
+def declared():
+    """Every ISO 639-3 code declared by a spec that can produce phonology,
+    mapped to the specs declaring it.
+
+    A spec declaring neither its own graphemes nor a ``graphemes_base`` cannot
+    emit anything, and that test agrees with the resolved table being empty on
+    all 7,662 specs. Those are excluded, which covers both the placeholders
+    that keep the ancestry graph complete over every living ISO 639-3 language
+    and the several hundred others that carry a parent but never inherit from
+    it. Either way the code has nothing to reach, so there is nothing to
+    assert; and a placeholder is legitimately shadowed once a real spec
+    describes the variety."""
+    import glob
+    import json
+    import os
+
+    import orthography2ipa
+
+    data = os.path.join(os.path.dirname(orthography2ipa.__file__), "data")
+    out = {}
+    for path in glob.glob(os.path.join(data, "*.json")):
+        spec = json.load(open(path, encoding="utf-8"))
+        if not spec.get("graphemes") and not spec.get("graphemes_base"):
+            continue
+        iso = spec.get("iso639_3")
+        if iso:
+            out.setdefault(iso, []).append(os.path.basename(path)[: -len(".json")])
+    return out
+
+
+class TestDeclaredIsoCodesResolve:
+    """A spec that declares an ISO 639-3 code is reachable by that code.
+
+    Registry stubs are excluded: they exist so the ancestry graph covers every
+    living ISO 639-3 language, and a stub is legitimately shadowed once a
+    modelled spec describes the same variety.
+    """
+
+    def test_every_declared_iso_resolves_to_a_declaring_spec(self, declared):
+        # A floor, not a target: the real figure is 883 and it moves when specs
+        # are added. The assertion exists so a scan that reads nothing, or that
+        # loses most of the tree to a changed exclusion rule, fails loudly
+        # instead of passing over an empty set.
+        assert len(declared) > 800, (
+            f"only {len(declared)} declared codes found -- the scan read nothing"
+        )
+
+        failures = []
+        for iso, specs in sorted(declared.items()):
+            if iso in UNRESOLVED_ISO_DECLARATIONS:
+                continue
+            try:
+                got = get(iso).code
+            except KeyError:
+                failures.append(f"{iso}: declared by {sorted(specs)}, raises KeyError")
+                continue
+            if got in specs:
+                continue
+            # A script variant declaring its own language's code is not a
+            # mis-resolution. ``iu-Latn`` declares ``ike`` and the code reaches
+            # ``iu``: the caller asked for Inuktitut and got Inuktitut, in the
+            # script a bare code defaults to.
+            #
+            # What the declarer adds must be a SCRIPT subtag and nothing else.
+            # Removing a script preserves the language; removing an ``-x-``
+            # variant removes the dialect, which is the distinction this package
+            # exists to make. Without that restriction the clause admits
+            # ``ar-SA-x-hejaz`` and ``ar-SA-x-najd`` whenever a code resolves to
+            # a bare ``ar-SA`` -- the exact ars failure this change fixes, only
+            # wearing the exemption. No ar-SA spec exists today, so it could not
+            # fire yet; one language-level spec is all it would take.
+            if any(_refines_by_script(got, s) for s in specs):
+                continue
+            failures.append(f"{iso}: declared by {sorted(specs)}, resolves to {got}")
+
+        assert not failures, "\n".join(failures)
+
+    def test_the_unresolved_set_is_still_unresolved(self, declared):
+        """Shrink the set when a code is fixed; never let it go stale."""
+        fixed = []
+        for iso in sorted(UNRESOLVED_ISO_DECLARATIONS):
+            specs = declared.get(iso)
+            if not specs:
+                fixed.append(f"{iso}: no modelled spec declares it any more")
+                continue
+            try:
+                got = get(iso).code
+            except KeyError:
+                continue
+            if got in specs:
+                fixed.append(f"{iso}: now resolves to {got}")
+
+        assert not fixed, (
+            "these are no longer unresolved -- remove them from "
+            "UNRESOLVED_ISO_DECLARATIONS:\n" + "\n".join(fixed)
+        )

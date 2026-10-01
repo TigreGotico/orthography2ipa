@@ -1,18 +1,17 @@
 # Kabyle TTS gold set
 
-`orthography2ipa/data/gold/kabyle_tts/<code>.tsv` — 20 phonetically diverse,
+`orthography2ipa/data/gold/kabyle_tts/<code>.tsv`: 20 phonetically diverse,
 register-appropriate, literature-justified Kabyle sentences. Built to validate
 Kabyle (Taqbaylit) TTS voices (synthesize each sentence, ASR/listen, compare
 against the gold IPA) and to regression-pin sentence-level o2i behaviour.
 
 ## Input contract
 
-Sentences are written in the standardised Berber **Latin** alphabet — the
+Sentences are written in the standardised Berber **Latin** alphabet: the
 tamaziɣt/INALCO orthography of the Kabyle Wikipedia and Naït-Zerrad's teaching
 grammars, the same contract the `kab` spec expects. Tifinagh is a secondary
 script for Kabyle and is **not** covered here; a Tifinagh text would be
-transliterated to this Latin orthography first. Kabyle orthography is complete —
-the written form already encodes every segment a speaker needs — so a row is
+transliterated to this Latin orthography first. Kabyle orthography is complete: the written form already encodes every segment a speaker needs: so a row is
 simply the sentence a TTS receives. There is no separate `raw`/undiacritized
 column and no diacritization-gap check (contrast the Arabic gold set, whose
 input contract is fully vocalized text).
@@ -39,7 +38,7 @@ TSV, tab-separated, UTF-8, header row:
 The `ipa` column is exactly what o2i emits for `sentence` under `kab`. The
 validator recomputes it and fails on any mismatch. When o2i is wrong, **fix the
 spec** (cited, against the `kab` `sources`) or respell the sentence to a word
-the literature attests — **never hand-edit the `ipa` column**. A gold silently
+the literature attests: **never hand-edit the `ipa` column**. A gold silently
 patched to mask a spec bug is worse than no gold. Any correction is recorded in
 `notes` with the source id that grounds it.
 
@@ -52,17 +51,17 @@ characterise Kabyle phonology:
 
 | tag | verified by | fires when |
 |---|---|---|
-| `spirantization` | ipa | a spirantized lax stop `[β ð θ ç ʝ ðˤ]` present — the signature Kabyle feature |
-| `geminate` | ipa | a length mark `[ː]` — a tense (geminate) consonant, retained as a stop |
+| `spirantization` | ipa | a spirantized lax stop `[β ð θ ç ʝ ðˤ]` present: the signature Kabyle feature |
+| `geminate` | ipa | a length mark `[ː]`: a tense (geminate) consonant, retained as a stop |
 | `emphatic` | ipa | a pharyngealization mark `[ˤ]` (`ṛ ṣ ḍ ṭ ẓ` → `[rˤ sˤ dˤ tˤ zˤ]`) |
 | `pharyngeal` | ipa | `[ħ]` or `[ʕ]` (the Arabic-integrated series `ḥ ɛ`) |
 | `affricate` | ipa | `[t͡ʃ]` or `[d͡ʒ]` (`č ǧ`) |
 | `uvular` | ipa | uvular stop `[q]` or fricative `[χ]` (`x`) |
 | `velar_fricative` | ipa | `[ɣ]` (`ɣ`) |
-| `schwa` | ipa | `[ə]` — the epenthetic vowel written `e` |
+| `schwa` | ipa | `[ə]`: the epenthetic vowel written `e` |
 | `glide` | ipa | `[j]` or `[w]` (`y w` and affixal semivowels) |
-| `postnasal_stop` | both | a written `⟨nt nd nb⟩` cluster that surfaces with the stop retained (`[nt] [nd] [mb]`) — the spirantization block after a homorganic nasal |
-| `velar_nasal` | ipa | `[ŋ]` — nasal place assimilation before a dorsal |
+| `postnasal_stop` | both | a written `⟨nt nd nb⟩` cluster that surfaces with the stop retained (`[nt] [nd] [mb]`): the spirantization block after a homorganic nasal |
+| `velar_nasal` | ipa | `[ŋ]`: nasal place assimilation before a dorsal |
 
 The `orth`/`ipa`/`both` split mirrors the Arabic and Portuguese sets. Most
 axes are read off the transcription; `postnasal_stop` requires **both** the
@@ -77,7 +76,7 @@ Shape tags (not machine-verified): `statement`, `question`, `negation`,
 
 Every sentence uses **genuine** Kabyle lexicon and morphology attested in the
 cited references (Dallet 1982's Kabyle-French dictionary, Naït-Zerrad 2001's
-reference grammar) — never an invented form. The morphosyntax exercises the
+reference grammar): never an invented form. The morphosyntax exercises the
 features a Kabyle TTS most often mishandles: the *état d'annexion* on nouns
 after a preposition (`ɣer wexxam`, `ɣer ugadir`), bipartite negation `ur … ara`,
 the directional/aorist clitics `d-`/`ad`, and the aspectual verb stems. When a
@@ -85,14 +84,14 @@ form is not documented in the sources, it is not used.
 
 ## Phonological coverage highlights
 
-- **Spirantization** — the lax stops `b d t k g ḍ` surface as `[β ð θ ç ʝ ðˤ]`
+- **Spirantization**: the lax stops `b d t k g ḍ` surface as `[β ð θ ç ʝ ðˤ]`
   in the attested contexts (`argaz` → `[arʝaz]`, `adrar` → `[aðrar]`,
   `taqbaylit` → `[θaqβajliθ]`), per `kossmann_stroomer1997` p.466-469.
-- **Geminate retention** — the tense (geminate) counterparts, written by
+- **Geminate retention**: the tense (geminate) counterparts, written by
   doubling and mapped to long phonemes, stay stops and are never spirantized
   (`yeṭṭef` → `[jətˤːəf]`, `meqqer` → `[məqːər]`), per `kossmann_stroomer1997`
   p.466.
-- **Post-nasal hardening** — `⟨nt nd nb⟩` keeps the stop after a homorganic
+- **Post-nasal hardening**: `⟨nt nd nb⟩` keeps the stop after a homorganic
   nasal (`nteddu` → `[ntədːu]`, not `*[nθədːu]`), per `kossmann_stroomer1997`
   p.468. This is the axis the `KAB_POSTNASAL_HARD_*` allophone rules model.
 - The emphatic/pharyngeal series (`ṛ ṣ ḍ ṭ ẓ ḥ ɛ`), the affricates (`č ǧ`),
@@ -101,15 +100,18 @@ form is not documented in the sources, it is not used.
 
 ## Procedure (how to add sentences)
 
-1. `python scripts/kabyle_tts_gold.py checklist kab` — prints the feature
+1. `python scripts/kabyle_tts_gold.py checklist kab`: prints the feature
    checklist and which tags the current gold already covers.
 2. Author sentences in standard Berber-Latin Kabyle, grounding the lexicon in
    the references the `kab` spec cites (`dallet1982`, `naitzerrad2001`) and the
    phonological reflexes in `kossmann_stroomer1997`.
-3. `python scripts/kabyle_tts_gold.py draft kab <textfile>` — machine
+3. `python scripts/kabyle_tts_gold.py draft kab <textfile>`: machine
    first-draft: o2i IPA + auto-tagged feature axes. Author the `gloss_en` and
    the `notes` citation id by hand.
 4. Verify the IPA against the spec's phoneme mappings and sources. If o2i is
-   wrong, **fix the spec** (cited) — never hand-edit the IPA column.
+   wrong, **fix the spec** (cited): never hand-edit the IPA column.
 5. `python scripts/kabyle_tts_gold.py validate` must pass
    (`tests/test_kabyle_tts_gold.py` runs it in CI).
+
+---
+[← Arabic TTS gold set](arabic-tts-gold.md) · [Home](index.md) · [Portuguese-dialects TTS gold set →](portuguese-tts-gold.md)

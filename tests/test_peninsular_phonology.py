@@ -74,7 +74,10 @@ def test_emphatic_spreading_rules_are_declared_and_fire():
             "AR_PEN_EMPH_BACK_AA_AFTER", "AR_PEN_EMPH_BACK_AA_BEFORE"} <= ids
     assert transcribe("طَرِيق", NODE) == "tˤɑˈriːq"
     assert transcribe("صَغِير", NODE) == "sˤɑˈɣiːr"
-    assert transcribe("قَاضِي", NODE) == "ˈqɑːdˤiː"   # long aː backs too
+    assert transcribe("قَاضِي", NODE) == "ˈqɑːdˤɪː"   # long aː backs too, and
+    # the following /iː/ backs to [ɪː] after the emphatic dˤ (the
+    # engine-generic AR_EMPHASIS_SPREAD_II_AFTER rule, Watson 2002; Davis
+    # 1995 — emphasis spread is not limited to low vowels).
 
 
 def test_emphasis_rules_stay_adjacent_only():

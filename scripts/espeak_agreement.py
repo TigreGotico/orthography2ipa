@@ -43,7 +43,8 @@ import unicodedata
 from typing import Dict, List, Optional, Tuple
 
 sys.path.insert(0, os.path.dirname(__file__))
-import benchmark  # noqa: E402  — shared dataset loaders and metric helpers
+import benchmark  # noqa: E402
+from docs_nav import footer  # noqa: E402  — shared dataset loaders and metric helpers
 
 # language tag → (wordlist loader, loader lang, espeak voice)
 #
@@ -251,7 +252,7 @@ def write_agreement_scoreboard(rows: List[dict]) -> None:
     lines.append("")
     os.makedirs(os.path.dirname(AGREEMENT_MD), exist_ok=True)
     with open(AGREEMENT_MD, "w", encoding="utf-8") as fh:
-        fh.write("\n".join(lines))
+        fh.write("\n".join(lines).rstrip() + footer("espeak_agreement.md"))
 
 
 def main() -> None:

@@ -245,7 +245,7 @@
       "ɔɪ"
     ]
   },
-  "notes": "Pennsylvania German / Pennsylvania Dutch (Pennsilfaanisch Deitsch), a Palatine (Rhine Franconian) West Germanic variety of North America. COMMITMENT: this map implements ONE of the two rival writing systems — the BUFFINGTON-BARBA (later Buffington-Barba-Beam, 'BBB') orthography, which spells by Standard German conventions. The competing English-based spelling (which writes the same words by American English conventions, with no difference in pronunciation) is OUT OF SCOPE and will mis-transcribe here. INPUT CONTRACT: lowercase BBB-spelled Pennsylvania German. BBB letter values that differ from Standard German: <v> = /f/, <w> = the unrounded labial approximant /ʋ/, <y> = /j/ initially but /ɪ/ medially, <o> short = /ɔ/, <aa> = /ɔː/, <ei> = /aɪ/ while <ai> is also /aɪ/, <g> = /ɡ/ initially, /k/ finally and a palatal glide [j] medially, <r> is vocalised to [ɐ] after <e>. The IPA values here render the BBB pronunciation key (which is stated in English/German keywords, not IPA) against the IPA vowel inventory documented for the variety. <tz> = /ts/ follows from BBB's Standard-German spelling conventions (as does <z>). Unstressed <e> may also be the reduced /ə/ documented for the variety. Graphemes for which no BBB row exists (e.g. <ä>, <oo>, <eu>, <tsch>) are deliberately OMITTED rather than guessed. Phonologically the variety continues Palatine German: SG /œ øː yː/ -> /ɛ eː iː/, intervocalic /b/ -> /v/, post-vocalic /ɡ/ -> /j/, and final /n/ deletion.",
+  "notes": "Pennsylvania German / Pennsylvania Dutch (Pennsilfaanisch Deitsch), a Palatine (Rhine Franconian) West Germanic variety of North America. COMMITMENT: this map implements ONE of the two rival writing systems — the BUFFINGTON-BARBA (later Buffington-Barba-Beam, 'BBB') orthography, which spells by Standard German conventions. The competing English-based spelling (which writes the same words by American English conventions, with no difference in pronunciation) is OUT OF SCOPE and will mis-transcribe here. INPUT CONTRACT: lowercase BBB-spelled Pennsylvania German. BBB letter values that differ from Standard German: <v> = /f/, <w> = the unrounded labial approximant /ʋ/, <y> = /j/ initially but /ɪ/ medially, <o> short = /ɔ/, <aa> = /ɔː/, <ei> = /aɪ/ while <ai> is also /aɪ/, <g> = /ɡ/ initially, /k/ finally and a palatal glide [j] medially, <r> is vocalised to [ɐ] word-finally, unconditionally of the preceding vowel. The IPA values here render the BBB pronunciation key (which is stated in English/German keywords, not IPA) against the IPA vowel inventory documented for the variety. <tz> = /ts/ follows from BBB's Standard-German spelling conventions (as does <z>). Unstressed <e> may also be the reduced /ə/ documented for the variety. Graphemes for which no BBB row exists (e.g. <ä>, <oo>, <eu>, <tsch>) are deliberately OMITTED rather than guessed. Phonologically the variety continues Palatine German: SG /œ øː yː/ -> /ɛ eː iː/, intervocalic /b/ -> /v/, post-vocalic /ɡ/ -> /j/, and final /n/ deletion. FINAL DEVOICING (Auslautverhaertung): word-final /d/ devoices to [t] and /g/ to [k], the categorical West Germanic coda-obstruent process (cf. Standard German); /d/-devoicing is directly attested in the pdc/wikipron gold (4/4 word-final <d> tokens realise [t]: Freed, Kind, Kinnskind, mied), and /g/-finally-[k] mirrors what the BBB letter-value note above already claims for <g> but which the flat grapheme table left unencoded. Louden (2016) Pennsylvania Dutch: The Story of an American Language (Johns Hopkins) documents the general PG coda-devoicing pattern surfacing even in PG-substrate English (e.g. bed -> [bɛt]); claim is standard for the areal Germanic phenomenon, edition not consulted for a page locator. Final devoicing of <b> is NOT implemented: the current gold contains zero word-final <b> tokens to measure against, so extending the rule there would be an unmeasured analogical guess rather than a sourced or attested claim. UNSTRESSED FINAL <e> AND <-er> VOCALISATION: the flat grapheme table already listed /ə/ as a candidate for <e> and /ɐ/ as a candidate for <r>, but nothing selected them, so the engine always emitted the stressed values [ɛ] and [r] even in unstressed final position. Word-final positional overrides now pick the reduced values: <e> word-finally is /ə/ and <r> word-finally is /ɐ/. This is the ordinary Germanic reduction of unstressed final syllables (schwa) and coda-/r/ vocalisation (cf. Standard German unstressed final <e> = [ə] and final <-er> = [ɐ], Wiese (1996) The Phonology of German, OUP; claim is standard, edition not consulted for a page locator) and matches PG specifically: Louden (2016) Pennsylvania Dutch: The Story of an American Language documents PG's general unstressed-vowel reduction to schwa (claim is standard, edition not consulted for a page locator). Checked against the pdc/wikipron gold: 121/121 words whose only final <e> is the plain grapheme (not part of <ie>/<ee>) realise final [ə] there (one apocopated exception, 'neinzehte' -> [naɪntseːt], is a single-token stressed-ordinal apocope left unmodelled — not enough evidence for a rule); every word-final <r> in the gold (>90 tokens, e.g. Bruder, Vadder, Kinner, der, mir, wer) realises [ɐ], none stay [r]. NOTATION, NOT A DEFECT: the residual <w> = /ʋ/ vs the gold's /w/ (24 tokens, e.g. werdich, Schwaeger) is the same unrounded/weakly-rounded labial(-velar) approximant written with two different IPA symbols by different transcribers, not a PG sound the spec gets wrong (the spec's own notes already call <w> 'the unrounded labial approximant /ʋ/'); it is left as a documented gold convention (see 'audit') rather than folded, since a global /ʋ/=/w/ fold would need to be proven not to contrast with any other spec's registered /ʋ/ or /w/, which was not checked here.",
   "iso639_3": "pdc",
   "glottolog_code": "penn1240",
   "wikidata_qid": "Q22711",
@@ -295,6 +295,17 @@
       "url": "https://padutch.net/pronunciation/",
       "pages": null,
       "notes": "IPA vowel inventory of Pennsylvania German (long i e æ a ɔ o u; short ɪ ɛ a ɔ ʊ; diphthongs aɪ ɔɪ; reduced ə ɐ)."
+    },
+    {
+      "id": "wiese1996",
+      "author": "Wiese, Richard",
+      "year": 1996,
+      "title": "The Phonology of German",
+      "publisher": "Oxford University Press",
+      "url": null,
+      "wikipedia_url": null,
+      "pages": null,
+      "notes": "Standard reference for German unstressed final <e> reducing to schwa and coda /r/ vocalising to [ɐ]; claim is standard for the areal West Germanic process, edition not consulted for a page locator."
     }
   ],
   "timespan": {
@@ -315,5 +326,50 @@
     "longitude": -76.3211,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Pennsylvania German."
+  },
+  "positional_graphemes": {
+    "d": {
+      "word_final": [
+        "t"
+      ],
+      "default": [
+        "d"
+      ]
+    },
+    "g": {
+      "word_final": [
+        "k"
+      ],
+      "default": [
+        "ɡ",
+        "j"
+      ]
+    },
+    "e": {
+      "word_final": [
+        "ə"
+      ],
+      "default": [
+        "ɛ",
+        "eː",
+        "ə"
+      ]
+    },
+    "r": {
+      "word_final": [
+        "ɐ"
+      ],
+      "default": [
+        "r",
+        "ɐ"
+      ]
+    }
+  },
+  "audit": {
+    "wikipron": {
+      "conclusion": "at_ceiling_documented",
+      "measured": "profiled 510 wikipron pdc pairs with benchmark.normalize + difflib opcodes; the ʋ/w substitution (24 tokens, e.g. werdich, Schwaeger) is the spec's own <w>=/ʋ/ analysis (an unrounded labial approximant) rendered against a gold that instead writes the same phoneme with the IPA symbol /w/. No other analysis is at stake, only the IPA letter choice for one approximant.",
+      "reference": "orthography2ipa/data/pdc.json notes; PR adding the word-final <e>->[ə] and <r>->[ɐ] positional rules"
+    }
   }
 }

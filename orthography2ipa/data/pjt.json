@@ -16,9 +16,9 @@
     "rt": ["ʈ"],
     "rn": ["ɳ"],
     "rl": ["ɭ"],
-    "aa": ["aː"],
-    "ii": ["iː"],
-    "uu": ["uː"],
+    "aa": ["ɐː"],
+    "ii": ["ɪː"],
+    "uu": ["ʊː"],
     "p": ["p"],
     "t": ["t"],
     "k": ["k"],
@@ -28,9 +28,9 @@
     "r": ["r"],
     "w": ["w"],
     "y": ["j"],
-    "a": ["a"],
-    "i": ["i"],
-    "u": ["u"]
+    "a": ["ɐ"],
+    "i": ["ɪ"],
+    "u": ["ʊ"]
   },
   "parent": "x-clade-pama1250",
   "ancestors": [
@@ -41,7 +41,7 @@
       "notes": "Descent per Glottolog classification of Pitjantjatjara (pitj1243)."
     }
   ],
-  "notes": "Pama-Nyungan (Wati) language of Central Australia, with a well-established standard orthography. Retroflex consonants are written with an underline (ṯ ṉ ḻ ṟ); the common ASCII substitutions rt/rn/rl are also mapped to the same retroflex values. The palatal series is tj/ny/ly, ng is the velar nasal, single r is an alveolar trill/tap and ṟ the retroflex approximant. Long vowels are written by doubling (aa ii uu). Word-initial stress and the intervocalic voicing of stops (unmarked in spelling) are left unencoded.",
+  "notes": "Pama-Nyungan (Wati) language of Central Australia, with a well-established standard orthography. Retroflex consonants are written with an underline (ṯ ṉ ḻ ṟ); the common ASCII substitutions rt/rn/rl are also mapped to the same retroflex values. The palatal series is tj/ny/ly, ng is the velar nasal, single r is an alveolar trill/tap and ṟ the retroflex approximant. Long vowels are written by doubling (aa ii uu). Word-initial stress and the intervocalic voicing of stops (unmarked in spelling) are left unencoded. VOWELS: the three-vowel system a/i/u surfaces as the lowered/centralised allophones [ɐ]/[ɪ]/[ʊ] (long aa/ii/uu likewise [ɐː]/[ɪː]/[ʊː]), not the cardinal [a]/[i]/[u] the letters suggest -- attested throughout the WikiPron pjt_latn_narrow gold (e.g. alu [ɐlʊ], ini [ɪnɪ], kuka [kʊkɐ]) and consistent with Western Desert language descriptions of the Wati subgroup (e.g. Goddard, C. (1985), A Grammar of Yankunytjatjara, IAD Press, on the same three-vowel Wati system).",
   "iso639_3": "pjt",
   "glottolog_code": null,
   "sources": [

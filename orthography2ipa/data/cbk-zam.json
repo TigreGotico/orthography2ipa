@@ -297,5 +297,19 @@
     "longitude": 122.18849,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Chavacano."
-  }
+  },
+  "allophone_rules": [
+    {
+      "id": "ES_TRILL_AFTER_CORONAL",
+      "phonemes": [],
+      "surface": "r",
+      "notes": "NOT ASSERTED for this creole. The rule is inherited from the es-ES lexifier, where it is the Castilian vibrante multiple after a heterosyllabic coronal (Navarro Tomas 1977; Hualde 2005 ch. 9). No source in this spec's bibliography states that the Castilian rhotic distribution survives in the creole, and an uncited Peninsular process must not ride in on a lexifier link, so the id is re-declared with an empty 'phonemes' to disable it (the documented opt-out - see InheritanceMode.OVERLAY_BY_ID). Re-enable it with a citation."
+    },
+    {
+      "id": "ES_NASAL_LABIAL",
+      "phonemes": [],
+      "surface": "m",
+      "notes": "NOT ASSERTED for this creole, for the same reason as ES_TRILL_AFTER_CORONAL above: nasal place assimilation before a labial is cited for Castilian (Navarro Tomas 1977; Hualde 2005 ch. 3), not for this creole's phonology. Disabled by empty 'phonemes'; re-enable with a citation."
+    }
+  ]
 }

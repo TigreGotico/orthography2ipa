@@ -234,3 +234,87 @@ def test_stress_is_distinctive_and_defaults_to_milra():
     assert transcribe("בֵּרֵךְ", "he") == "beˈʁeχ"
     rules = get("he").stress
     assert rules.default_position == -1
+
+
+# ─── Geresh: the borrowed palato-alveolars (Pariente 2021 Table 1.1) ───────
+#
+# Modern Hebrew acquired /tʃ dʒ ʒ/ through borrowing, and the orthography
+# writes them with a geresh on the nearest native letter. Pariente (2021,
+# "Theoretical issues in Modern Hebrew phonology", LOT 599,
+# https://dx.medra.org/10.48273/LOT0599) lists all three in the consonant
+# chart of §1.3.1 (Table 1.1, pp. 6-7) beside /ts/.
+
+@pytest.mark.parametrize("word,expected", [
+    ("ג׳יפ", "dʒif"),        # jeep
+    ("ג׳ירף", "dʒiʁaf"),     # giraffe (unpointed: middle vowel unwritten)
+    ("צ׳ק", "tʃek"),          # cheque
+    ("סנדוויץ׳", "sendvitʃ"),  # sandwich — final ץ׳
+])
+def test_geresh_letters_are_the_borrowed_affricates(word, expected):
+    """ג׳ = /dʒ/, צ׳ (final ץ׳) = /tʃ/. Only the consonants are checked:
+    unpointed text writes no vowels, so the vowel skeleton is not a claim
+    this spec can make."""
+    got = _no_stress(word)
+    vowels = set("aeiou")
+    assert "".join(c for c in got if c not in vowels) == \
+        "".join(c for c in expected if c not in vowels)
+
+
+def test_zayin_geresh_is_zh():
+    """ז׳ = /ʒ/ — the third borrowed palato-alveolar."""
+    assert "ʒ" in _no_stress("ז׳אנר") and "dʒ" not in _no_stress("ז׳אנר")
+
+
+def test_ascii_apostrophe_and_quote_stand_in_for_the_punctuation():
+    """Ordinary keyboards produce U+0027 for the geresh and U+0022 for the
+    gershayim; the Unicode NamesList cross-references both pairs
+    (05F3 x 0027, 05F4 x 0022). Both spellings must read alike."""
+    assert transcribe("ג'יפ", "he") == transcribe("ג׳יפ", "he")
+    assert transcribe('ד"ר', "he") == transcribe("ד״ר", "he")
+
+
+def test_bare_geresh_and_gershayim_are_silent():
+    """A geresh not on ג/ז/צ marks an abbreviation and a gershayim marks an
+    acronym; neither writes a segment, so the mark itself emits nothing.
+    The expansion (עמ׳ = /amud/, ד״ר = /doktoʁ/) is not recoverable from
+    the letters and is not modelled."""
+    assert _no_stress("עמ׳") == _no_stress("עמ")
+    assert _no_stress("ד״ר") == _no_stress("דר")
+
+
+def test_borrowed_affricates_are_in_the_declared_inventory():
+    """A grapheme that emits /dʒ tʃ ʒ/ must be matched by an inventory that
+    declares them, or a downstream TTS has no unit to say."""
+    allophones = get("he").allophones
+    for phoneme in ("dʒ", "tʃ", "ʒ"):
+        assert phoneme in allophones
+
+
+# ─── Ktiv male: doubled vav and yod are consonants, not matres ────────────
+#
+# Academy of the Hebrew Language, Rules of Full Spelling (2017), rule ה 2 and
+# rule ו 2: word-medially a consonantal /v/ is written ⟨וו⟩ and a consonantal
+# /j/ is written ⟨יי⟩, which is exactly what distinguishes them from the
+# single letters read as the matres /o u/ and /i/.
+
+def test_doubled_vav_is_consonantal_v():
+    """סנדוויץ׳ 'sandwich' — the medial ⟨וו⟩ is /v/, not the mater /o/."""
+    got = _no_stress("סנדוויץ׳")
+    assert "v" in got and "oo" not in got
+
+
+def test_single_medial_vav_is_still_a_mater():
+    """The doubling rule must not cost the single-vav reading: שלום keeps
+    its mater /o/."""
+    assert _no_stress("שלום") == "ʃlom"
+
+
+def test_doubled_yod_is_consonantal_j():
+    """בניין 'building' — the medial ⟨יי⟩ is /j/, not the mater /i/."""
+    got = _no_stress("בניין")
+    assert "j" in got and "ii" not in got
+
+
+def test_single_medial_yod_is_still_a_mater():
+    """עברית keeps its /i/ — see test_unpointed_medial_yod_is_i."""
+    assert _no_stress("עברית").endswith("it")

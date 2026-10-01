@@ -205,7 +205,7 @@ def test_intervocalic_g_spirantises_via_positional_layer():
     # → [ɐjˈɡwal]); a naive /ɡ/→[ɣ] allophone rule would wrongly lenite it
     # the native gold has eigual [ɐjˈɡwal]: ⟨gu⟩ keeps the glide
     # before ⟨a⟩; the point here is only that /ɡ/ stays a stop
-    assert g.transcribe("eigual") == "eˈjɡwal"
+    assert g.transcribe("eigual") == "ejˈɡwal"
 
 
 def test_only_the_b_spirant_rule_is_declared():

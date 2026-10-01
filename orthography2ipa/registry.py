@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import logging
 from functools import lru_cache
+from importlib.metadata import entry_points
 from typing import TYPE_CHECKING, Dict, List, Optional
 
 from ovos_spec_tools.language import closest_lang
@@ -51,6 +52,65 @@ _ALIASES: Dict[str, str] = {
     # macro-collapse step can rewrite it.
     "bxr": "bxr",
     "diq": "diq",
+    # ``quz`` (Cusco Quechua) and ``quy`` (Ayacucho Quechua) are individual
+    # -language codes that langcodes' macro=True standardisation collapses
+    # into their macrolanguage ``qu`` (Quechua), same class of collision as
+    # bxr/diq above. Both the individual specs and the macro node exist and
+    # are distinct targets — ``qu`` is only a structural adstrate stub.
+    "quz": "quz",
+    "quy": "quy",
+    # ``tw`` (Twi) and ``fat`` (Fante) are individual-language codes that
+    # langcodes' macro=True standardisation collapses into their
+    # macrolanguage ``ak`` (Akan), same class of collision as bxr/diq above.
+    # Both the individual and the macro spec exist and are distinct targets.
+    "tw": "tw",
+    "fat": "fat",
+    # Individual-code specs collapsing into the newly-added Mari macrolanguage
+    # spec: ``mhr`` (Eastern/Meadow Mari) and ``mrj`` (Hill/Western Mari)
+    # standardize to ``chm`` (Mari macrolanguage). Pin each individual code to
+    # itself so the macro-collapse step does not rewrite it.
+    "mhr": "mhr",
+    "mrj": "mrj",
+    # ``aju`` (Judeo-Moroccan Arabic) is an individual-language code that
+    # langcodes' macro=True standardisation collapses into its
+    # macrolanguage ``jrb`` (Judeo-Arabic), same class of collision as
+    # bxr/diq/tw/fat above. Both the individual and the macro spec exist
+    # and are distinct targets.
+    "aju": "aju",
+    # ``als`` (Tosk Albanian) standardizes to ``sq`` (Albanian macrolanguage)
+    # and ``rmy`` (Vlax Romani) standardizes to ``rom`` (Romani macrolanguage).
+    # Both the individual and the macro spec exist and are distinct targets,
+    # so pin each individual code to itself before the macro-collapse step.
+    "als": "als",
+    "rmy": "rmy",
+    # ``src`` (Logudorese Sardinian) standardizes straight to ``sc`` (the
+    # generic Sardinian macrolanguage spec) under ``langcodes``, which would
+    # otherwise shadow the dedicated ``src`` spec. Pin it to itself.
+    "src": "src",
+    # ``oji`` (Ojibwa macrolanguage) and ``mnk`` (Mandinka) gained real specs
+    # while the registry also carries their langcodes-preferred siblings
+    # (``ojg`` Eastern Ojibwa, ``emk`` Eastern Maninkakan). Pin each to itself
+    # so standardisation does not rewrite an exact-file hit, same class of
+    # collision as bxr/diq above.
+    "oji": "oji",
+    "mnk": "mnk",
+    # ``haz`` (Hazaragi) has no own spec; the modelled variety lives at
+    # ``fa-x-hazaragi`` (Persian dialect continuum, Mongolic substrate).
+    "haz": "fa-x-hazaragi",
+    # ``kas`` (Kashmiri) is an ISO 639-3 individual code that langcodes'
+    # macro=True standardisation collapses into its macrolanguage tag ``ks``
+    # (Kashmiri, ISO 639-1) — same collision class as bxr/diq above. ``ks``
+    # already carries a Latin-transliteration research-tier spec; ``kas``
+    # is a distinct, separately-cited spec for the Perso-Arabic native
+    # script. Pin it to itself so the macro-collapse step does not shadow it.
+    "kas": "kas",
+    # ``bcc`` (Southern Balochi) is an ISO 639-3 individual code that
+    # langcodes' macro=True standardisation collapses into its
+    # macrolanguage tag ``bal`` (Balochi) — same collision class as
+    # bxr/diq above. ``bal`` is a newly-added macrolanguage-level spec;
+    # ``bcc`` is a distinct, separately-cited individual-variety spec.
+    # Pin it to itself so the macro-collapse step does not shadow it.
+    "bcc": "bcc",
     # Arabic spoken-dialect ISO 639-3 codes → the o2i lect that describes the
     # same variety. WikiPron and most NLP corpora tag Arabic dialects by these
     # ISO 639-3 codes; o2i keys them by BCP-47 region/variant subtags. These
@@ -61,6 +121,79 @@ _ALIASES: Dict[str, str] = {
     "ajp": "ar-JO",           # South Levantine Arabic (Jordanian/Palestinian)
     "afb": "ar-x-gulf",       # Gulf Arabic
     "acw": "ar-SA-x-hejaz",   # Hijazi Arabic
+    # ``abv`` (Baharna) resolved to a zero-grapheme placeholder while the modelled
+    # spec describes the variety with the Gulf table plus its own reflexes. The
+    # placeholder is deleted with the alias, as for acm: a spec file must stay
+    # reachable by its own code.
+    "abv": "ar-BH-x-baharna",  # Bahārna Arabic (B dialects of Bahrain)
+    "aec": "ar-EG-x-saidi",   # Saʿīdi (Upper Egyptian) Arabic
+    "avl": "ar-EG-x-bedawi",  # Eastern Egyptian Bedawi Arabic
+    "adf": "ar-OM-x-dhofari", # Dhofari Arabic
+    "acx": "ar-OM",           # Omani Arabic
+    "apd": "ar-SD",           # Sudanese Arabic
+    "ayn": "ar-YE",           # Sanaani Arabic
+    "mey": "ar-MR",           # Hassaniyya
+    "shu": "ar-TD",           # Chadian Arabic (ar-NG is its child)
+    # ``pnb`` (Western Panjabi) is an ISO 639-3 individual code that resolved to
+    # ``lah``, its macrolanguage, which carries no graphemes at all -- so the
+    # code reached a spec that produces nothing while ``pa-PK`` describes the
+    # same variety with 57 keys and declares the code.
+    "pnb": "pa-PK",           # Western Punjabi (Shahmukhi)
+    # Codes with exactly one declaring spec, whose name is the same language as
+    # the code's, and no file of their own to shadow them. Same shape as the
+    # Arabic country codes above.
+    "ajg": "aja",             # Aja (Adja)
+    "gej": "gen",             # Gen (Mina)
+    "xdc": "xda",             # Dacian/Thracian
+    # ``cbk`` resolved to ``cbk-x-cavite``, a variety spec that declares no
+    # graphemes and inherits none, so the code reached an empty table while
+    # ``cbk-zam`` describes Chavacano with 37 keys and declares the code.
+    "cbk": "cbk-zam",         # Chavacano (Zamboangueño)
+    # ``bar`` resolved to ``bar.json``, a placeholder with no graphemes and no
+    # base, while ``de-x-bavarian`` declares the code and inherits a table
+    # through ``graphemes_base: de-AT``. Deleting the placeholder rather than
+    # leaving it to shadow the real spec is the same call this batch makes for
+    # aec, avl and adf, and the placeholder's own notes already describe
+    # Bavarian as "an Upper German variety of Bavaria, Austria and South Tyrol".
+    "bar": "de-x-bavarian",   # Bavarian (Boarisch)
+    # ``ars`` (Najdi Arabic) is declared by four Saudi specs and was reached by
+    # none of them: langcodes placed it on ``ar-SA`` and the nearest match came
+    # back ``ar-SA-x-dawasir``, which declares ``afb`` and is a different
+    # variety, so the caller got Gulf Arabic for a Najdi tag with no error.
+    #
+    # ``ar-SA-x-najd`` is the target because it is the only one of the four
+    # named Najdi Arabic and the only one holding glottocode najd1235 in its own
+    # right; ``ar-SA-x-qassim`` is its child and shares that code. The other two
+    # are not sub-varieties of it -- ``ar-SA-x-rijal-alma`` and
+    # ``ar-SA-x-tihama-qahtan`` both parent to ``ar-x-peninsular`` with no
+    # glottocode, and neither ʿAsīr nor the Tihāma coast is in Najd. That those
+    # two declare ``ars`` at all is a separate question from which spec the code
+    # should reach, and one this alias does not answer.
+    "ars": "ar-SA-x-najd",    # Najdi Arabic
+    # ``acm`` (Mesopotamian Arabic) is the ISO code for the variety ``ar-IQ``
+    # already describes: ``ar-IQ`` declares ``glottolog_code`` meso1252 (Gilit
+    # Mesopotamian Arabic) and ``iso639_3`` acm. It resolved to a separate
+    # 44-key skeleton whose key set was a strict subset of ``ar-IQ``'s, so
+    # ``get("acm")`` returned a poorer description of the same dialect.
+    "acm": "ar-IQ",           # Mesopotamian Arabic (gilit; Glottolog meso1252)
+    # Dialects named in a private-use subtag. langcodes ignores private-use
+    # content when it measures tag distance, so ``ar-x-najdi`` would otherwise
+    # fall to the nearest bare match (``ar``); pin the spoken adjective to the
+    # spec, whose own token differs (``najdi`` -> ``najd``).
+    "ar-x-najdi": "ar-SA-x-najd",     # Najdi Arabic
+    "ar-x-hejazi": "ar-SA-x-hejaz",   # Hejazi Arabic
+    "ar-x-hijazi": "ar-SA-x-hejaz",   # Hejazi Arabic (alternate romanization)
+    # Barranquenho is keyed ``ext-PT-x-barrancos``: a language of its own spoken
+    # in Portugal, not a Portuguese dialect. ``pt-PT-x-barrancos`` is a retired
+    # spelling of the same lect; without the alias ``closest_lang`` resolves it
+    # to ``pt-AO`` and returns Angolan Portuguese.
+    "pt-PT-x-barrancos": "ext-PT-x-barrancos",
+    # Spellings the downstream Portuguese front-end uses for three lects
+    # whose spec keys are shorter; without these the tags fall to the bare
+    # region and lose the lect.
+    "pt-BR-x-sao-paulo": "pt-BR-x-sp",
+    "pt-BR-x-rio-janeiro": "pt-BR-x-rj",
+    "pt-PT-x-lisboa": "pt-PT-x-lisbon",
 }
 
 # Default variant for a bare primary-language tag whose specs are all
@@ -78,6 +211,18 @@ _BARE_DEFAULTS: Dict[str, str] = {
     "ro": "ro-RO",
 }
 
+# Default variety for a region tag whose specs are all sub-regional, so a bare
+# region has no exact spec and langcodes' nearest match would pick whichever
+# private-use sibling sorts first. This is an explicit editorial convention,
+# not a claim in the spec data: Saudi Arabia has several documented varieties
+# (Najdi, Hejazi, ...) and no single standard spoken form, so ``ar-SA`` is
+# steered to Najdi — the variety of the capital region (Riyadh) and the most
+# widely spoken (Ingham, Najdi Arabic, 1994) — rather than asserting that
+# Saudi Arabic *is* Najdi anywhere in the data.
+_REGION_DEFAULTS: Dict[str, str] = {
+    "ar-SA": "ar-SA-x-najd",
+}
+
 try:
     import langcodes as _langcodes
     _HAS_LANGCODES = True
@@ -86,7 +231,7 @@ except ImportError:
 
 
 @lru_cache(maxsize=None)
-def _resolve_code(code: str) -> str:
+def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
     """Normalise common aliases to canonical BCP-47 codes.
 
     Resolution order:
@@ -96,7 +241,8 @@ def _resolve_code(code: str) -> str:
        code is not a private-use subtag (``x-`` extension).
     3. Exact match against the registered spec codes.
     4. Curated default variant for a bare primary-language tag
-       (``pt`` → ``pt-PT``).
+       (``pt`` → ``pt-PT``) or a region tag with only sub-regional specs
+       (``ar-SA`` → ``ar-SA-x-najd``).
     5. Nearest registered code by language distance
        (``en-NZ`` → ``en-GB``); no usable match leaves *code* unchanged.
     """
@@ -112,14 +258,41 @@ def _resolve_code(code: str) -> str:
     available = available_json_codes()
     if code in available:
         return code
+    if "-x-" in code:
+        # BCP-47 tags are case-insensitive, and langcodes never sees a
+        # private-use tag (step 2), so fold the case here; otherwise
+        # ``ar-sa-x-najd`` misses ``ar-SA-x-najd`` and the distance match
+        # below lands it on a sibling lect.
+        folded = code.lower()
+        for known in _ALIASES:
+            if known.lower() == folded:
+                return _ALIASES[known]
+        for known in available:
+            if known.lower() == folded:
+                return known
     if code in _BARE_DEFAULTS:
         return _BARE_DEFAULTS[code]
+    if code in _REGION_DEFAULTS:
+        return _REGION_DEFAULTS[code]
+    if not allow_nearest:
+        return code
     match = closest_lang(code, available)
     if match:
         _LOG.debug("resolved language code %r to nearest registered %r",
                    code, match)
         return match
     return code
+
+
+def resolves_exactly(code: str) -> bool:
+    """True when *code* names a spec without nearest-language guessing.
+
+    Alias tables, case folding, BCP-47 standardization and the curated bare-tag
+    defaults all name a spec deliberately; ``closest_lang`` guesses. This
+    separates the two, so a caller can tell "this code is registered" from
+    "something vaguely like it is".
+    """
+    return _resolve_code(code, allow_nearest=False) in available_json_codes()
 
 
 def resolve(code: str) -> str:
@@ -134,18 +307,30 @@ def resolve(code: str) -> str:
     return _resolve_code(code)
 
 
-def get(code: str) -> LanguageSpec:
+def get(code: str, strict: bool = False) -> LanguageSpec:
     """Return the :class:`LanguageSpec` for *code*, loading lazily.
 
     Args:
         code: BCP-47 language code (e.g. ``'en'``, ``'pt-BR'``) or
               ISO 639-3 three-letter code (e.g. ``'eng'``, ``'por'``).
+        strict: refuse nearest-language guessing. Aliases, case folding,
+            BCP-47 standardization and the curated bare-tag defaults still
+            apply — those name a spec deliberately. What is refused is
+            ``closest_lang``, which answers an unregistered code with the
+            nearest thing it can find.
+
+    The default is the guess, because callers depend on it. It is worth knowing
+    what it costs: before ``ar-BH-x-baharna`` had a spec, ``get`` answered it with
+    a 261-grapheme table and plausible Arabic output — the Bahraini Sunni one —
+    with nothing in the result saying a substitution had happened. A reviewer
+    reading a baseline that way got a complete, confident column from the wrong
+    spec. ``strict=True`` is for any caller that would rather be told.
 
     Raises:
-        KeyError: If the language is not registered.
+        KeyError: If the language is not registered, or — under *strict* — if it
+            resolves only by nearest-language guessing.
     """
-    global _cache
-    code = _resolve_code(code)
+    code = _resolve_code(code, allow_nearest=not strict)
     if code not in _cache:
         _cache[code] = load_json_spec(code)
     return _cache[code]
@@ -216,23 +401,38 @@ def _discover_syllabifiers() -> Dict[str, "SyllabifierPlugin"]:
 
     When several plugins claim the same language code, the one with the
     highest :attr:`SyllabifierPlugin.priority` wins.
-    """
-    import logging
-    from importlib.metadata import entry_points
 
+    A bundled plugin's own optional third-party dependency being absent is the
+    normal case for an ordinary install (see :mod:`orthography2ipa.syllabifiers`)
+    — it is logged at DEBUG, naming the extra that would enable it. Anything
+    else that goes wrong loading or instantiating a plugin is a real problem
+    and is logged at WARNING.
+    """
     plugins: Dict[str, "SyllabifierPlugin"] = {}
     eps = entry_points(group="orthography2ipa.syllabify")
     for ep in eps:
         try:
-            instance = ep.load()()
-            for code in instance.language_codes:
-                incumbent = plugins.get(code)
-                if incumbent is None or instance.priority > incumbent.priority:
-                    plugins[code] = instance
+            cls = ep.load()
         except Exception as exc:
-            logging.getLogger(__name__).warning(
+            _LOG.warning(
                 "failed to load syllabifier plugin %r: %s", ep.name, exc)
             continue
+        try:
+            instance = cls()
+        except ModuleNotFoundError as exc:
+            _LOG.debug(
+                "syllabifier plugin %r is disabled: its optional dependency is "
+                "not installed (%s). Install the matching extra to enable it.",
+                ep.name, exc)
+            continue
+        except Exception as exc:
+            _LOG.warning(
+                "failed to load syllabifier plugin %r: %s", ep.name, exc)
+            continue
+        for code in instance.language_codes:
+            incumbent = plugins.get(code)
+            if incumbent is None or instance.priority > incumbent.priority:
+                plugins[code] = instance
     return plugins
 
 
@@ -260,9 +460,6 @@ def _discover_rescorer_plugins() -> Dict[str, List["RescorerPlugin"]]:
     by priority, lowest first, so a higher-priority plugin sees the lower one's
     work and gets the last word.
     """
-    import logging
-    from importlib.metadata import entry_points
-
     plugins: Dict[str, List["RescorerPlugin"]] = {}
     for ep in entry_points(group="orthography2ipa.rescore"):
         try:
@@ -270,7 +467,7 @@ def _discover_rescorer_plugins() -> Dict[str, List["RescorerPlugin"]]:
             for code in instance.language_codes:
                 plugins.setdefault(code, []).append(instance)
         except Exception as exc:
-            logging.getLogger(__name__).warning(
+            _LOG.warning(
                 "failed to load rescorer plugin %r: %s", ep.name, exc)
             continue
     for code in plugins:
@@ -323,9 +520,6 @@ _stress_plugins: Optional[Dict[str, "StressPlugin"]] = None
 
 
 def _discover_stress_plugins() -> Dict[str, "StressPlugin"]:
-    import logging
-    from importlib.metadata import entry_points
-
     plugins: Dict[str, "StressPlugin"] = {}
     for ep in entry_points(group="orthography2ipa.stress"):
         try:
@@ -335,7 +529,7 @@ def _discover_stress_plugins() -> Dict[str, "StressPlugin"]:
                 if incumbent is None or instance.priority > incumbent.priority:
                     plugins[code] = instance
         except Exception as exc:
-            logging.getLogger(__name__).warning(
+            _LOG.warning(
                 "failed to load stress plugin %r: %s", ep.name, exc)
             continue
     return plugins
@@ -385,9 +579,6 @@ def _discover_stage(stage: str) -> Dict[str, object]:
     declaration readable and greppable — and it means two packages cannot fight
     over a language, because the spec already said which one it wanted.
     """
-    import logging
-    from importlib.metadata import entry_points
-
     from orthography2ipa.plugins import ENTRY_POINT_GROUPS
 
     found: Dict[str, object] = {}
@@ -395,7 +586,7 @@ def _discover_stage(stage: str) -> Dict[str, object]:
         try:
             found[ep.name] = ep.load()()
         except Exception as exc:
-            logging.getLogger(__name__).warning(
+            _LOG.warning(
                 "failed to load %s plugin %r: %s", stage, ep.name, exc)
     return found
 

@@ -94,8 +94,8 @@ class TestStressIntegration:
         assert "ˈ" not in engine.transcribe("falar")
 
     def test_language_without_stress_rules_unmarked(self):
-        engine = G2P("en-GB")
-        assert "ˈ" not in engine.transcribe("hello")
+        engine = G2P("fr-FR")
+        assert "ˈ" not in engine.transcribe("bonjour")
 
     def test_marked_vowels_are_graphemes(self):
         """Stress-marked vowels a spec declares must be transcribable."""
@@ -158,15 +158,18 @@ class TestWordExceptionStressRouting:
         assert engine.transcribe_word("de") == "də"
         assert engine.transcribe_word("que") == "kə"
 
-    def test_en_gb_word_exceptions_unaffected(self):
-        """en-GB has no stress block either: same guarantee."""
+    def test_en_gb_word_exceptions_are_stress_routed(self):
+        """en-GB declares a stress block, so a word_exceptions override goes
+        through the same stress-marking path as the search result — except for
+        a declared clitic, which by definition carries no word stress."""
         engine = G2P("en-GB")
-        assert engine.spec.stress is None
-        expected = {
-            "the": "ðə", "be": "biː", "he": "hiː",
-            "me": "miː", "we": "wiː", "she": "ʃiː",
-        }
-        for word, ipa in expected.items():
+        assert engine.spec.stress is not None
+        marked = {"be": "ˈbiː", "he": "ˈhiː", "me": "ˈmiː",
+                  "we": "ˈwiː", "she": "ˈʃiː"}
+        for word, ipa in marked.items():
+            assert engine.transcribe_word(word) == ipa
+        # weak-form articles are declared cliticless_words: no stress mark
+        for word, ipa in {"the": "ðə", "a": "ə", "an": "ən"}.items():
             assert engine.transcribe_word(word) == ipa
 
 
@@ -211,6 +214,37 @@ class TestModuleLevelTranscribe:
     def test_in_dunder_all(self):
         assert "transcribe" in orthography2ipa.__all__
         assert "G2P" in orthography2ipa.__all__
+
+
+class TestNFCOutputContract:
+    """Engine output is always NFC, matching lexicon.py's is_valid_ipa/is_ipa_string.
+
+    A coda ⟨m/n⟩ slot legitimately emits a bare combining tilde onto the
+    preceding vowel (phonetok.py's _NASAL_TILDE), which without a final
+    composition pass leaves the output decomposed (e.g. 'u' + U+0303
+    instead of the precomposed 'ũ') even though nothing upstream did
+    anything wrong.
+    """
+
+    def test_pt_nasal_vowel_output_is_nfc(self):
+        import unicodedata
+        ipa = transcribe("mundo", "pt")
+        assert unicodedata.is_normalized("NFC", ipa), (
+            f"transcribe output must be NFC, got {ipa!r}"
+        )
+        # The nasal vowel is present and precomposed (U+0169 LATIN SMALL
+        # LETTER U WITH TILDE), not a bare "u" (U+0075) followed by a
+        # trailing combining tilde (U+0303) riding separately in the string.
+        assert "\u0169" in ipa
+        assert "u\u0303" not in ipa
+
+    def test_transcribe_detailed_word_ipa_is_nfc(self):
+        import unicodedata
+        engine = G2P("pt")
+        result = engine.transcribe_detailed("mundo")
+        assert unicodedata.is_normalized("NFC", result.ipa)
+        for wt in result.words:
+            assert unicodedata.is_normalized("NFC", wt.ipa)
 
 
 class TestPositionalSelection:

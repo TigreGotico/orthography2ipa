@@ -91,15 +91,17 @@ class TestOrdering:
         assert e.word_confidence("gato") < 0.8
 
     def test_english_th_ambiguity_lowers_confidence(self):
-        # en-GB "scarf" is unambiguous; "myth"/"plinth" carry an ambiguous
-        # grapheme (⟨th⟩ → ð/θ, ⟨y⟩, …) and must score lower. (Words are
-        # chosen OUTSIDE the shipped en-GB pilot lexicon so this exercises the
-        # rules-based lattice confidence, not a lexicon override — a lexicon
-        # hit is a certain answer with confidence 1.0 by design.)
+        # en-GB "harm" is unambiguous — every grapheme it uses has exactly
+        # one candidate and no positional entry; "myth"/"plinth" carry an
+        # ambiguous grapheme (⟨th⟩ → ð/θ, ⟨y⟩, …) and must score lower.
+        # (Words are chosen OUTSIDE the shipped en-GB pilot lexicon so this
+        # exercises the rules-based lattice confidence, not a lexicon
+        # override — a lexicon hit is a certain answer with confidence 1.0
+        # by design.)
         e = G2P("en-GB")
-        assert e.word_confidence("scarf") == pytest.approx(1.0)
-        assert e.word_confidence("plinth") < e.word_confidence("scarf")
-        assert e.word_confidence("myth") < e.word_confidence("scarf")
+        assert e.word_confidence("harm") == pytest.approx(1.0)
+        assert e.word_confidence("plinth") < e.word_confidence("harm")
+        assert e.word_confidence("myth") < e.word_confidence("harm")
 
     def test_weighted_spec_gives_graded_confidence(self):
         # en-GB ⟨er⟩ carries −log P weights (əɹ P=0.8, ɜːɹ P=0.2): the

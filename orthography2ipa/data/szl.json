@@ -172,6 +172,17 @@
       "year": 2024,
       "title": "Silesian language",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Silesian_language"
+    },
+    {
+      "id": "jaroszewicz2023",
+      "author": "Jaroszewicz, Henryk",
+      "year": 2023,
+      "title": "Standardization of the Silesian Language: The Current Status and Prospects for Development",
+      "publisher": "Poznańskie Studia Polonistyczne. Seria Językoznawcza 30(1), 57-72 (open access)",
+      "url": "https://doi.org/10.14746/pspsj.2023.30.1.4",
+      "wikipedia_url": null,
+      "pages": "61, 65",
+      "notes": "Read in full. p. 61 describes the orthography adopted in Cieszyn in 2009 and elaborated in the 2010 Gōrnoślōnski ślabikŏrz: Polish-style ⟨ch h ó u rz ż dź ł⟩ and ⟨ś si ć ci ź zi dź dzi⟩ for the soft series, plus ⟨ō⟩ for the closed [ȯ] absent from Polish and the two homographs ⟨ŏ⟩ and ⟨ô⟩ that unify dialectally different realisations. p. 65 tabulates the model versus optional spellings of the 2022-2023 Principles of Silesian Language Spelling (o:ŏ, o:õ, a:ã, ym:am, and the rest). This source contradicts two things this spec says: its notes call the orthography unstandardised, while a standard has existed since 2009 with a revision under way, and the map's single ⟨ô⟩ = /o/ leaves ⟨ō⟩, ⟨ŏ⟩, ⟨õ⟩ and ⟨ã⟩ unread. Recorded here; the grapheme data is not changed in this citation."
     }
   ],
   "wikipedia": [

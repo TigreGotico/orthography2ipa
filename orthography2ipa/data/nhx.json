@@ -3,7 +3,7 @@
   "name": "Isthmus-Mecayapan Nahuatl",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "ch": [
       "tʃ"
@@ -79,6 +79,9 @@
     ],
     "'": [
       "ʔ"
+    ],
+    "ʼ": [
+      "ʔ"
     ]
   },
   "parent": "nah",
@@ -90,7 +93,7 @@
       "notes": "Descent per Glottolog classification of Isthmus-Mecayapan Nahuatl (isth1242)."
     }
   ],
-  "notes": "Skeleton. Uto-Aztecan (Nahuan) variety of the Isthmus of Veracruz written in an SIL-based practical orthography. Digraphs ch=[tʃ], ts=[ts], cu/qu for [kʷ]/[k], hu=[w] and x=[ʃ], j=[h] are mapped; this variety merged the historic tl to [t]. Voiced stops b d g occur as allophones of the voiceless series in some contexts. Vowel length and the glottal stop are only partly recovered from spelling, raising the PER floor.",
+  "notes": "Skeleton. Uto-Aztecan (Nahuan) variety of the Isthmus of Veracruz written in an SIL-based practical orthography. Digraphs ch=[tʃ], ts=[ts], cu/qu for [kʷ]/[k], hu=[w] and x=[ʃ], j=[h] are mapped; this variety merged the historic tl to [t]. Voiced stops b d g occur as allophones of the voiceless series in some contexts. Vowel length and the glottal stop are only partly recovered from spelling, raising the PER floor. Isthmus-Mecayapan Nahuatl stress is predictable (penultimate) and not separately orthographically marked; left unencoded (documented exemption).",
   "iso639_3": "nhx",
   "glottolog_code": null,
   "sources": [
@@ -115,6 +118,16 @@
       "pages": null,
       "notes": "Orthography/phonology reference for a skeleton-tier grapheme map.",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Mecayapan_Nahuatl"
+    },
+    {
+      "id": "nhx_wolgemuth2002",
+      "author": "Wolgemuth, Carl",
+      "year": 2002,
+      "title": "Gramática náhuatl (melaꞌtájto̱l) de los municipios de Mecayapan y Tatahuicapan de Juárez, Veracruz",
+      "publisher": "Instituto Lingüístico de Verano (SIL Mexico)",
+      "url": "https://mexico.sil.org/resources/archives/1919",
+      "pages": null,
+      "notes": "Descriptive grammar of Isthmus-Mecayapan Nahuatl by its principal documenter; consulted to check the SIL-based practical orthography (ch, ts, cu/qu, hu, x, j) modelled here."
     }
   ],
   "wikipedia": [

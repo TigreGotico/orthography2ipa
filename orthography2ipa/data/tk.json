@@ -50,7 +50,7 @@
       "e"
     ],
     "ä": [
-      "æ"
+      "æː"
     ],
     "f": [
       "f"
@@ -95,10 +95,10 @@
       "p"
     ],
     "r": [
-      "r"
+      "ɾ"
     ],
     "s": [
-      "s"
+      "θ"
     ],
     "ş": [
       "ʃ"
@@ -116,13 +116,16 @@
       "w"
     ],
     "y": [
-      "j"
+      "ɯ"
     ],
     "ý": [
       "j"
     ],
     "z": [
-      "z"
+      "ð"
+    ],
+    "rr": [
+      "r"
     ]
   },
   "allophones": {
@@ -143,14 +146,12 @@
     "e": [
       "e"
     ],
-    "æ": [
-      "æ"
-    ],
     "f": [
       "f"
     ],
     "ɡ": [
       "ɡ",
+      "ɣ",
       "k"
     ],
     "h": [
@@ -190,12 +191,6 @@
     "p": [
       "p"
     ],
-    "r": [
-      "r"
-    ],
-    "s": [
-      "s"
-    ],
     "ʃ": [
       "ʃ"
     ],
@@ -205,43 +200,56 @@
     "u": [
       "u"
     ],
-    "y": [
-      "y"
-    ],
     "w": [
       "w"
     ],
     "j": [
       "j"
+    ],
+    "θ": [
+      "θ",
+      "s"
+    ],
+    "ɾ": [
+      "ɾ",
+      "r"
+    ],
+    "æː": [
+      "æ"
+    ],
+    "ð": [
+      "ð",
+      "z"
+    ],
+    "ɯ": [
+      "ɯ"
+    ],
+    "y": [
+      "y"
     ]
   },
-  "notes": "Turkmen in Latin script (official since 1993). 8-vowel system with vowel harmony. Ä = /æ/. Ň = /ŋ/. W is a labial-velar approximant. Ž = /ʒ/ for Russian loanwords.",
+  "notes": "Turkmen in the Latin alphabet official since 1993. The letter values follow Gray's orthography-to-IPA table (§2.2): ⟨s⟩ and ⟨z⟩ are the interdental fricatives /θ ð/, the feature that separates Turkmen from every other Turkic standard (the alveolar [s z] readings are the Charjew dialect and are kept as allophones); ⟨y⟩ is the close back unrounded vowel /ɯ/ and ⟨ý⟩ is /j/, not the Turkish assignment of ⟨y⟩ to /j/; ⟨r⟩ is a flap /ɾ/ that becomes a trill when written double (garry); ⟨g⟩ is a stop word-initially and a fricative /ɣ/ elsewhere. ⟨ä⟩ is always long (§2.3), the one length contrast the orthography does encode: length is otherwise phonemic but unwritten, so this spec cannot and does not predict it. Ä = /æː/, Ň = /ŋ/, W is a labial-velar approximant, Ž = /ʒ/ in Russian loanwords. ⟨a⟩ is left as /a/: Gray's harmony chart classes it back while his pronunciation gloss describes a front vowel, and the two shipped golds disagree on the symbol, so the choice is not decidable from the source.",
   "sources": [
     {
-      "id": "turkmen_wiki",
-      "author": "Wikipedia contributors",
-      "year": 2024,
-      "title": "Turkmen language",
-      "publisher": "Wikipedia",
-      "url": "https://en.wikipedia.org/wiki/Turkmen_language",
-      "wikipedia_url": "https://en.wikipedia.org/wiki/Turkmen_language",
-      "pages": null,
-      "notes": null
+      "id": "gray2004",
+      "author": "Gray, David",
+      "year": 2004,
+      "title": "A Short Descriptive Grammar of the Turkmen Language",
+      "publisher": "SIL-NEG, Cheltenham",
+      "url": "https://archive.org/details/032-turkmen",
+      "pages": "5-7",
+      "notes": "§2.2 orthography-to-IPA table; §2.3 vowel harmony and vowel length; §2.4 stress."
     },
     {
       "id": "johanson_csato1998",
-      "author": "Johanson, L. & Csató, É.",
+      "author": "Johanson, L. & Csátó, É. Á. (eds.)",
       "year": 1998,
       "title": "The Turkic Languages",
       "publisher": "Routledge",
       "url": null,
-      "pages": null,
-      "notes": null
+      "pages": "261-272",
+      "notes": "Schönig's Turkmen chapter; consulted for classification, not fetched."
     }
-  ],
-  "wikipedia": [
-    "https://en.wikipedia.org/wiki/Turkmen_language",
-    "https://tk.wikipedia.org/wiki/T%C3%BCrkmen_dili"
   ],
   "timespan": {
     "start_year": 1993,
@@ -263,5 +271,19 @@
     "longitude": 59.17574,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Turkmen."
-  }
+  },
+  "positional_graphemes": {
+    "g": {
+      "word_initial": [
+        "ɡ"
+      ],
+      "default": [
+        "ɣ"
+      ]
+    }
+  },
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Turkmen_language",
+    "https://tk.wikipedia.org/wiki/T%C3%BCrkmen_dili"
+  ]
 }
