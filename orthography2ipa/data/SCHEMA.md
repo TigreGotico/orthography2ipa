@@ -922,7 +922,8 @@ Each dataset's entry has the same three required keys:
 
 | Value                     | Meaning |
 |---------------------------|---------|
-| `input_limited`           | The orthography does not write a contrast the gold transcribes (tone, vowel length, ho nam, ...). Often paired with a `valid_ceiling` entry on the same dataset, but also covers a case where the right instrument was identified without a folded number ever being run |
+| `input_limited`           | The ordinary written norm does not write a contrast the gold transcribes (tone, vowel length, ho nam, ...). Often paired with a `valid_ceiling` entry on the same dataset, but also covers a case where the right instrument was identified without a folded number ever being run. A script that HAS the marks and omits them in running text is still this value: Arabic harakat and Hebrew niqqud both are |
+| `degraded_input`          | The orthography DOES write the contrast and this gold's input column does not carry it, so the limit belongs to the gold, not the writing system. A row with this conclusion must NOT carry a `valid_ceiling` (`yo`/`wikipron`, a scrape that drops written tone; `tru`/`wikipron`, unpointed input where the standard writes the points) |
 | `mislabeled_gold`         | The gold does not describe the variety it is filed under — it is mislabelled, or another lect re-symbolised |
 | `sample_too_small`        | The dataset has too few rows for a PER to mean anything |
 | `at_ceiling_documented`   | The spec already reflects the best-supported analysis and the residual PER is a documented gold transcription convention, not a defect |

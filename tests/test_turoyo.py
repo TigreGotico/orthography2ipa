@@ -73,7 +73,13 @@ class TestEmphaticStateEndingSurvives:
 class TestUnpointedInputIsAudited:
     """The standard writes /a/ with ftoḥo and plural vowels with points
     (Surayt Orthography §2b, §2e, p. 7), so the missing vowels are an input
-    limit, not an unwritten contrast."""
+    limit, not an unwritten contrast.
+
+    The conclusion is ``degraded_input`` for exactly that reason (T-2622). The
+    row read ``input_limited`` when it shipped (#1558) only because no value
+    said "the orthography writes it and this gold's input dropped it"; the
+    prose here and in the record always said so.
+    """
 
     def _raw(self):
         import json
@@ -82,10 +88,10 @@ class TestUnpointedInputIsAudited:
                 / "orthography2ipa" / "data" / "tru.json")
         return json.loads(path.read_text(encoding="utf-8"))
 
-    def test_wikipron_row_is_audited_as_input_limited(self):
+    def test_wikipron_row_is_audited_as_degraded_input(self):
         raw = self._raw()
         entry = raw["audit"]["wikipron"]
-        assert entry["conclusion"] == "input_limited"
+        assert entry["conclusion"] == "degraded_input"
         assert "always expressed by ftoḥo" in entry["measured"]
         assert "valid_ceiling" not in raw
 
