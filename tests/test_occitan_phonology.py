@@ -312,3 +312,63 @@ class TestAranese:
 
     def test_betacism(self):
         assert bare("Val", "oc-x-aranes") == "bal"
+
+
+class TestWrittenAccentSurvivesGlideFormation:
+    """A written accent must keep the mark on the vowel it is written on,
+    even when glide formation gives the transcription fewer syllables than
+    the spelling.
+
+    ``apply_stress_mark`` anchors from the END of the word, because the
+    syllables a transcription loses normally stand before the stress
+    (elision, syncope). Glide formation can merge two written syllables
+    AFTER the stressed one. Occitan ⟨Califòrnia⟩ is ca-li-fò-rni-a in the
+    spelling and ka-li-fɔɾ-njɔ in the transcription, so end-anchoring used to
+    drag the mark two syllables forward, onto the /i/: [kaˈlifɔɾnjɔ]. That is
+    a WRONG STRESSED VOWEL, not a misplaced syllable boundary, and the
+    accented ⟨ò⟩ is exactly the vowel the spelling marks.
+
+    The engine now counts the merge sites, and uses the count only when it
+    exactly accounts for the missing syllables and the stressed syllable
+    carries a written accent. Each control below is a case the count must
+    NOT move.
+    """
+
+    def test_accent_after_the_merge_keeps_its_vowel(self):
+        # The merge (rni + a) stands AFTER the accented syllable.
+        assert transcribe("Califòrnia", lang="oc") == "kaliˈfɔɾnjɔ"
+
+    def test_merge_before_the_accent_still_shifts_the_index(self):
+        # The merge (sci) stands BEFORE the accented ⟨é⟩, so the index shifts
+        # DOWN by one and the mark stays on [e]. A rule that simply
+        # start-anchored every accented word would mark [sjɔ] here.
+        assert transcribe("sciéncia", lang="oc") == "ˈsjensjɔ"
+
+    def test_an_unaccented_merge_word_is_untouched(self):
+        # ⟨nacion⟩ has the same shape and no written accent, so it never
+        # reaches the new path. Its stress comes from an ENDING, which is
+        # end-relative already.
+        assert transcribe("nacion", lang="oc") == "naˈsju"
+
+    def test_a_silent_digraph_is_not_a_merge_site(self):
+        # Portuguese ⟨segue⟩ divides se-gu-e and the ⟨u⟩ of ⟨gu⟩ is not a
+        # nucleus at all, so the boundary that looks like a hiatus is an
+        # artefact of the split. The word carries no accent and keeps its
+        # paroxytone mark.
+        assert transcribe("segue", lang="pt-PT-x-lisbon") == "ˈsɨɡɨ"
+
+    def test_a_nucleus_less_piece_is_not_a_merge_site(self):
+        # The naive splitter divides Malaccan Creole ⟨kaminyu⟩ as
+        # ka-mi-ny-u. ⟨ny⟩ holds no vowel letter, so it is not a syllable and
+        # the boundary after it is not a site.
+        assert transcribe("kaminyu", lang="mcm") == "kaˈmiɲu"
+
+    def test_the_stressed_vowel_is_the_accented_one(self):
+        # The property the class is named for, stated as a property rather
+        # than as a string: the first vowel after the mark is the phone of
+        # the accented ⟨ò⟩, which is [ɔ] in this spec. The mark is written
+        # before the whole syllable, so the onset stands between them.
+        ipa = transcribe("Califòrnia", lang="oc")
+        after = ipa[ipa.index("ˈ") + 1:]
+        first_vowel = next(ch for ch in after if ch in "aeiouɔɛɥyjwu")
+        assert first_vowel == "ɔ"
