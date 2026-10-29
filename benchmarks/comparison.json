@@ -4041,7 +4041,7 @@
     "lang": "pt-PT",
     "dataset": "portuguese_unified",
     "n": 3000,
-    "o2i_per": 0.2245,
+    "o2i_per": 0.2216,
     "o2i_n": 3000,
     "o2i_same_source": false,
     "o2i_lex_per": null,

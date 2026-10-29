@@ -354,7 +354,7 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 | ep_dialects | 30 | 0.1185 | 0.3192 | 0.3225 | 0.4095 | n/a | n/a | 0.1185 | n/a | n/a | o2i |
 | ipa_childes | 3000 | 0.2498 | same-source | same-source | 0.4027 | n/a | n/a | 0.2496 | n/a | n/a | o2i |
 | portuguese_tts | 20 | same-source | 0.3336 | 0.3331 | 0.4042 | same-source | same-source | same-source | same-source | same-source | espeak rules-only |
-| portuguese_unified | 3000 | 0.2245 | 0.3669 | 0.3631 | 0.4146 | n/a | n/a | 0.1887 | n/a | n/a | o2i |
+| portuguese_unified | 3000 | 0.2216 | 0.3669 | 0.3631 | 0.4146 | n/a | n/a | 0.1887 | n/a | n/a | o2i |
 | wikipron | 2272 | 0.1346 | 0.2374 | 0.2373 | 0.2903 | n/a | n/a | 0.1341 | n/a | n/a | o2i |
 
 ### ro (Romanian)
@@ -474,7 +474,7 @@ A system winning on one gold and losing on another for the SAME language is real
   - `wikipron` (n=148992, tier=crowd-scraped): o2i 0.0480 vs espeak 0.1132 — o2i wins
 - **`pt-PT`** (wins on all golds):
   - `ep_dialects` (n=30, tier=expert-human): o2i 0.1185 vs espeak 0.3192 — o2i wins
-  - `portuguese_unified` (n=3000, tier=lexicon-derived): o2i 0.2245 vs espeak 0.3669 — o2i wins
+  - `portuguese_unified` (n=3000, tier=lexicon-derived): o2i 0.2216 vs espeak 0.3669 — o2i wins
   - `wikipron` (n=2272, tier=crowd-scraped): o2i 0.1346 vs espeak 0.2374 — o2i wins
 - **`ro`** (wins on all golds):
   - `vox_communis` (n=10679, tier=epitran-derived): o2i 0.0693 vs espeak 0.1250 — o2i wins
@@ -545,7 +545,7 @@ The table above conflates espeak-ng's letter-to-sound RULES with its hand-curate
 | pl | wikipron | 148992 | 0.0480 | n/a | 0.1132 | 0.1136 |
 | pt-PT | ep_dialects | 30 | 0.1185 | n/a | 0.3192 | 0.3225 |
 | pt-PT | portuguese_tts | 20 | same-source | n/a | 0.3336 | 0.3331 |
-| pt-PT | portuguese_unified | 3000 | 0.2245 | n/a | 0.3669 | 0.3631 |
+| pt-PT | portuguese_unified | 3000 | 0.2216 | n/a | 0.3669 | 0.3631 |
 | pt-PT | wikipron | 2272 | 0.1346 | n/a | 0.2374 | 0.2373 |
 | ro | vox_communis | 10679 | 0.0693 | n/a | 0.1250 | 0.1246 |
 | ro | wikipron | 8978 | 0.0198 | n/a | 0.0825 | 0.0761 |

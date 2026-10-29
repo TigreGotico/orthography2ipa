@@ -90,3 +90,51 @@ def test_default_is_off():
     """A spec that does not opt in keeps one primary per hyphen element."""
     assert get("es").stress.compound_stress == ""
     assert element_marks(G2P("es").transcribe("teórico-práctico")) == [P, P]
+
+
+# The word API (transcribe_word, word_candidates) reads a compound element by
+# element, as transcribe does, and returns one token. The board scores every
+# one-word gold entry through it.
+
+@pytest.mark.parametrize("code", PT_SPECS)
+@pytest.mark.parametrize("word,expected", ROWS)
+def test_word_api_marks(code, word, expected):
+    ipa = G2P(code).transcribe_word(word)
+    assert " " not in ipa, ipa
+    assert [ch for ch in ipa if ch in (P, S)] == [m for m in expected if m], ipa
+
+
+@pytest.mark.parametrize("code", PT_SPECS)
+@pytest.mark.parametrize("word,_", ROWS)
+def test_word_api_matches_sentence_api(code, word, _):
+    """The word API runs no cross-word sandhi, so it is compared with
+    transcribe with sandhi off (pt-AO norte-americano elides a vowel
+    across the hyphen only in a sentence)."""
+    sentence = G2P(code, apply_sandhi=False).transcribe(word)
+    assert G2P(code).transcribe_word(word) == "".join(sentence.split())
+
+
+@pytest.mark.parametrize("code", ["pt-PT", "pt-BR"])
+@pytest.mark.parametrize("word,first", [
+    ("chamo-me", P),       # chamo is paroxytone: the first syllable
+    ("guarda-chuva", S),   # Portal gwˌaɾdɐʃˈuvɐ
+    ("pé-de-meia", S),     # Portal pˌɛdɨmˈɐjɐ
+    ("fá-lo-ia", S),       # the accent on fá marks its stress
+])
+def test_word_api_mark_opens_the_first_syllable(code, word, first):
+    assert G2P(code).transcribe_word(word).startswith(first)
+
+
+@pytest.mark.parametrize("code", ["pt-PT", "pt-BR"])
+@pytest.mark.parametrize("word", ["guarda-chuva", "chamo-me", "fá-lo-ia"])
+def test_word_candidates_agree_with_transcribe_word(code, word):
+    """The board's oracle check needs candidate 0 to be transcribe_word."""
+    g2p = G2P(code)
+    assert g2p.word_candidates(word, k=5) == [g2p.transcribe_word(word)]
+
+
+def test_word_api_default_is_off():
+    """A spec that does not opt in keeps the hyphen-blind word reading."""
+    g2p = G2P("es")
+    assert g2p.transcribe_word("teórico-práctico") == g2p.transcribe_word(
+        "teóricopráctico")
