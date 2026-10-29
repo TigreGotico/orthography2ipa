@@ -102,8 +102,8 @@ import urllib.parse
 import urllib.request
 from importlib.metadata import PackageNotFoundError, entry_points
 from importlib.metadata import version as package_version
-from typing import (Callable, Dict, Iterator, List, Optional, Sequence,
-                    Tuple)
+from typing import (Callable, Dict, Iterator, List, NamedTuple, Optional,
+                    Sequence, Tuple)
 
 #: A gold entry: (orthographic word or sentence, reference IPA). Every
 #: ``load_*`` dataset loader returns a list of these, and every scoring
@@ -3669,6 +3669,191 @@ def align(a: str, b: str) -> List[Tuple[Optional[str], Optional[str]]]:
     return pairs
 
 
+# ─── stress accuracy ────────────────────────────────────────────────────────
+#
+# PER strips stress marks, so it cannot see stress on the wrong syllable. The
+# stress column measures that one thing: whether the primary stress lands on
+# the gold's syllable. The definition is in docs/benchmarks.md ("Stress
+# accuracy"); tugaphone's benchmark reports the same definition.
+
+_PRIMARY_STRESS = "ˈ"
+_SECONDARY_STRESS = "ˌ"
+#: The ASCII apostrophe some gold sets write for the primary mark (see
+#: ``_STRESS_MARKS``). It is folded to ``ˈ`` before the marks are counted.
+_ASCII_STRESS = "'"
+_SYLLABLE_BREAK = "."
+_NON_SYLLABIC = "\u032f"
+_SYLLABIC = "\u0329"
+#: The 28 vowel letters of the IPA chart, and the rhotic vowels ɚ ɝ. The glide
+#: letters j w ɥ ɰ are not in it, so a glide is never a nucleus. A precomposed
+#: vowel (ã, é) is decomposed before the test, so only the base letter is
+#: looked up.
+_NUCLEUS_VOWELS = frozenset("iyɨʉɯuɪʏʊeøɘɵɤoəɛœɜɞʌɔæɐaɶɑɒɚɝ")
+
+
+class StressReading(NamedTuple):
+    """Where one transcription puts its primary stress.
+
+    ``segments`` are the transcription's segments with stress marks and
+    syllable boundaries removed, each folded the way PER folds it.
+    ``nuclei`` flags which segments are syllable nuclei, and ``nucleus`` is
+    the index of the stressed one (``None`` when the syllable after the mark
+    has no nucleus, or there is no mark).
+    """
+
+    segments: Tuple[str, ...]
+    nuclei: Tuple[bool, ...]
+    nucleus: Optional[int]
+    primaries: int
+    syllables: int
+
+
+def _is_nucleus(segment: str) -> bool:
+    """Whether a segment is a syllable nucleus: a vowel not marked
+    non-syllabic, or any letter marked syllabic."""
+    if _SYLLABIC in segment:
+        return True
+    return segment[0] in _NUCLEUS_VOWELS and _NON_SYLLABIC not in segment
+
+
+def _segments(raw: str) -> List[str]:
+    """Split an NFD transcription into segments: a base character with its
+    combining marks, where a tie bar also takes in the character after it."""
+    segments: List[str] = []
+    for ch in raw:
+        if segments and (unicodedata.combining(ch)
+                         or segments[-1][-1] in _TIE_BARS):
+            segments[-1] += ch
+        else:
+            segments.append(ch)
+    return segments
+
+
+def stress_reading(ipa: str, broad: bool, extra_strip: str = ""
+                   ) -> StressReading:
+    """Find the syllable that carries *ipa*'s primary stress.
+
+    The stressed nucleus is the first nucleus after a ``ˈ``, inside the
+    syllable the mark opens. A stress mark always opens a syllable. Where the
+    transcription writes ``.`` boundaries, they bound the syllables too, and a
+    syllable counts once however many vowel letters it holds; without them,
+    every nucleus is a syllable. Each kept segment is folded with
+    :func:`normalize`, the folds PER applies, and a segment the folds empty
+    (punctuation, a stray mark) is dropped.
+    """
+    raw = unicodedata.normalize(
+        "NFD", ipa.replace(_ASCII_STRESS, _PRIMARY_STRESS))
+    dotted = _SYLLABLE_BREAK in raw
+    segments: List[str] = []
+    nuclei: List[bool] = []
+    syllables = 0
+    stressed: Optional[int] = None
+    stress_open = False
+    nucleus_seen = False
+    for segment in _segments(raw):
+        if segment[0] in (_PRIMARY_STRESS, _SECONDARY_STRESS,
+                          _SYLLABLE_BREAK):
+            stress_open = segment[0] == _PRIMARY_STRESS
+            nucleus_seen = False
+            continue
+        folded = normalize(segment, strip_stress=True, broad=broad,
+                           extra_strip=extra_strip)
+        if not folded:
+            continue
+        is_nucleus = _is_nucleus(segment)
+        if is_nucleus and not (dotted and nucleus_seen):
+            syllables += 1
+            nucleus_seen = True
+            if stress_open:
+                stressed = len(segments)
+                stress_open = False
+        segments.append(folded)
+        nuclei.append(is_nucleus)
+    return StressReading(tuple(segments), tuple(nuclei), stressed,
+                         raw.count(_PRIMARY_STRESS), syllables)
+
+
+def stress_eligible(word: str, gold: StressReading) -> bool:
+    """Whether a gold entry can score stress: one word, exactly one primary
+    mark on a syllable with a nucleus, and at least two syllables."""
+    return (not _is_multiword(word) and gold.primaries == 1
+            and gold.nucleus is not None and gold.syllables >= 2)
+
+
+def _align_segments(gold: StressReading, hyp: StressReading
+                    ) -> Dict[int, int]:
+    """Gold segment index -> hypothesis segment index for every matched or
+    substituted pair.
+
+    The cost is the unit-cost edit distance :func:`levenshtein` takes, over
+    segments, so the result is a minimum-cost alignment. Among alignments of
+    equal cost, the one that pairs the fewest nuclei with non-nuclei wins:
+    ``meˈʎɒɹ`` against ``meˈʎɔ`` pairs ɒ with ɔ, not ɔ with ɹ.
+    """
+    a, b = gold.segments, hyp.segments
+    n, m = len(a), len(b)
+
+    def sub(i: int, j: int) -> Tuple[int, int]:
+        return (int(a[i] != b[j]), int(gold.nuclei[i] != hyp.nuclei[j]))
+
+    dp = [[(0, 0)] * (m + 1) for _ in range(n + 1)]
+    for i in range(1, n + 1):
+        dp[i][0] = (i, 0)
+    for j in range(1, m + 1):
+        dp[0][j] = (j, 0)
+    for i in range(1, n + 1):
+        row, prev = dp[i], dp[i - 1]
+        for j in range(1, m + 1):
+            cost, mix = sub(i - 1, j - 1)
+            diag = (prev[j - 1][0] + cost, prev[j - 1][1] + mix)
+            up = (prev[j][0] + 1, prev[j][1])
+            left = (row[j - 1][0] + 1, row[j - 1][1])
+            row[j] = min(diag, up, left)
+    pairs: Dict[int, int] = {}
+    i, j = n, m
+    while i and j:
+        cost, mix = sub(i - 1, j - 1)
+        if dp[i][j] == (dp[i - 1][j - 1][0] + cost,
+                        dp[i - 1][j - 1][1] + mix):
+            pairs[i - 1] = j - 1
+            i, j = i - 1, j - 1
+        elif dp[i][j] == (dp[i - 1][j][0] + 1, dp[i - 1][j][1]):
+            i -= 1
+        else:
+            j -= 1
+    return pairs
+
+
+def stress_matches(gold: StressReading, hyp: StressReading) -> bool:
+    """Whether *hyp* stresses the syllable *gold* stresses.
+
+    The two stress-stripped segment strings are aligned by edit distance
+    (see :func:`_align_segments`), and the gold's stressed nucleus must
+    align with the hypothesis's. A hypothesis with no primary mark, or more
+    than one, is a miss.
+    """
+    if hyp.primaries != 1 or hyp.nucleus is None:
+        return False
+    if gold.segments == hyp.segments:
+        return gold.nucleus == hyp.nucleus
+    return _align_segments(gold, hyp).get(gold.nucleus) == hyp.nucleus
+
+
+class StressTally:
+    """Running stress counts for one board row."""
+
+    def __init__(self, eligible: int = 0, hits: int = 0) -> None:
+        self.eligible = eligible
+        self.hits = hits
+
+    @property
+    def accuracy(self) -> Optional[float]:
+        """Share of eligible words stressed right; null on a thin row."""
+        if self.eligible < THIN_ROW_N:
+            return None
+        return self.hits / self.eligible
+
+
 #: Top-k cut-offs the oracle metric reports. ``1`` is computed too, purely
 #: as a self-check: oracle@1 must equal the 1-best PER. That identity is
 #: NOT guaranteed by construction — ``transcribe_word`` searches greedily
@@ -3782,23 +3967,25 @@ def assert_oracle_self_check(dataset: str, lang: str, per: float,
 
 
 def evaluate_words(pairs: Sequence[GoldPair], lang: str, strip_stress: bool,
-                   broad: bool
+                   broad: bool, stress: Optional[StressTally] = None,
                    ) -> Tuple[int, int, List[float], float, float]:
     """Like :func:`evaluate` but also returns the per-word PER list, so
     callers (e.g. :func:`bootstrap_per_ci`) can resample it. The point
     estimates returned here (``n``, ``covered``, ``per``, ``wer``) are
     computed the exact same way as :func:`evaluate` — byte-identical
-    scoreboard numbers.
+    scoreboard numbers. *stress* is passed through to
+    :func:`evaluate_words_oracle`.
     """
     n, covered, pers, per, wer, _oracle = evaluate_words_oracle(
-        pairs, lang, strip_stress, broad, oracle_ks=())
+        pairs, lang, strip_stress, broad, oracle_ks=(), stress=stress)
     return n, covered, pers, per, wer
 
 
 def evaluate_words_oracle(pairs: Sequence[GoldPair], lang: str,
                           strip_stress: bool, broad: bool,
                           oracle_ks: Sequence[int] = ORACLE_KS,
-                          expose_ambiguous_endings: bool = False
+                          expose_ambiguous_endings: bool = False,
+                          stress: Optional[StressTally] = None,
                           ) -> Tuple[int, int, List[float], float, float,
                                      Optional["OracleResult"]]:
     """:func:`evaluate_words` plus the top-k oracle PER.
@@ -3814,6 +4001,10 @@ def evaluate_words_oracle(pairs: Sequence[GoldPair], lang: str,
     the injected movement itself — the separate reachability number that
     docs/benchmarks.md requires to be reported under its own heading and
     never folded into ranking error. It cannot change the 1-best numbers.
+
+    A *stress* tally, when given, counts the stress column from the same
+    1-best transcriptions (see :func:`stress_matches`). It reads the
+    transcriptions before normalization and cannot change PER.
 
     Returns ``(n, covered, pers, per, wer, oracle_or_None)``.
     """
@@ -3855,13 +4046,24 @@ def evaluate_words_oracle(pairs: Sequence[GoldPair], lang: str,
             # it cost Catalan ~7 and English ~16 PER points.
             transcribe = (engine.transcribe if _is_multiword(word)
                           else engine.transcribe_word)
-            hyp = normalize(transcribe(word), strip_stress, broad,
-                            extra_strip=extra)
+            raw_hyp = transcribe(word)
+            hyp = normalize(raw_hyp, strip_stress, broad, extra_strip=extra)
         except Exception:
             continue
         if not hyp:
             continue
         covered += 1
+        if stress is not None and not _is_multiword(word):
+            stressed_golds = [
+                reading for reading in (
+                    stress_reading(g, broad, extra) for g in golds
+                    if _PRIMARY_STRESS in g or _ASCII_STRESS in g)
+                if stress_eligible(word, reading)]
+            if stressed_golds:
+                hyp_reading = stress_reading(raw_hyp, broad, extra)
+                stress.eligible += 1
+                stress.hits += any(stress_matches(g, hyp_reading)
+                                   for g in stressed_golds)
         golds_norm = [normalize(x, strip_stress, broad, extra_strip=extra)
                       for x in golds]
         golds_set = set(golds_norm)
@@ -4127,10 +4329,12 @@ def build_scoreboard(limit: Optional[int], oracle: bool = False,
                 print(f"skip {dataset_name} lang={lang}: {exc}",
                       file=sys.stderr)
                 continue
+            stress = StressTally()
             n, covered, pers, per, wer, oracle_res = evaluate_words_oracle(
                 pairs, lang, strip_stress=True, broad=True,
                 oracle_ks=ORACLE_KS if oracle else (),
                 expose_ambiguous_endings=expose_ambiguous_endings,
+                stress=stress,
             )
             if covered == 0:
                 # A zero-coverage result is a broken loader, a dead upstream
@@ -4154,6 +4358,9 @@ def build_scoreboard(limit: Optional[int], oracle: bool = False,
                 "per": round(per, 4),
                 "per_ci_low": None if ci_low is None else round(ci_low, 4),
                 "per_ci_high": None if ci_high is None else round(ci_high, 4),
+                "stress_acc": (None if stress.accuracy is None
+                               else round(stress.accuracy, 4)),
+                "n_stress": stress.eligible,
                 "exact_match": round(1.0 - wer, 4),
                 "quality_tier": _quality_tier(lang),
                 "provenance": provenance_for(dataset_name, lang),
@@ -4448,6 +4655,17 @@ def write_scoreboard(rows: List[dict]) -> None:
         f"`{THIN_ROW_MARK}` after `N` for this reason, and must never be "
         "read as comparable to a row scored on thousands of words.",
         "",
+        "The `Stress` column is the share of the row's stress-marked gold "
+        "words whose primary stress the engine puts on the gold's syllable. "
+        "`PER` strips stress marks, so it cannot see a stress error; this "
+        "column measures only that. A word counts when its gold is one word "
+        "with exactly one primary mark and at least two syllables, and "
+        "`n_stress` in [`benchmarks/results.json`](../benchmarks/results.json) "
+        f"is that count. A row with fewer than {THIN_ROW_N} such words reads "
+        "`-`, and so does a gold with no stress marks. A `-` is not a score "
+        "of zero. The definition is in "
+        "[`docs/benchmarks.md`](benchmarks.md#stress-accuracy).",
+        "",
         "The `Ceiling` column is a `valid_ceiling` measurement, when one has "
         "been executed for the row's (language, dataset) pair: the PER once "
         "an orthographically-unwritten contrast (tone, vowel length, or both "
@@ -4477,9 +4695,10 @@ def write_scoreboard(rows: List[dict]) -> None:
         "hand-set — on top of the `can_gate_promotion()` source of truth "
         "`docs/quality_tiers.md`'s `production` criteria already use.",
         "",
-        "| Lang | Dataset | N | PER | Ceiling | Oracle@3 | Oracle@5 | OracleX@3 "
-        "| OracleX@5 | 95% CI | Exact match | Quality tier | Provenance |",
-        "|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---|---|---|",
+        "| Lang | Dataset | N | PER | Stress | Ceiling | Oracle@3 | Oracle@5 "
+        "| OracleX@3 | OracleX@5 | 95% CI | Exact match | Quality tier "
+        "| Provenance |",
+        "|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|---|---|",
     ]
     for row in rows:
         tier = row["quality_tier"] or "-"
@@ -4522,9 +4741,16 @@ def write_scoreboard(rows: List[dict]) -> None:
             ceiling_cell = f"{ceiling['per']:.4f}{mark} ({ceiling['folded']})"
         non_qualifying_mark = (
             NON_QUALIFYING_MARK if row.get("gating") is False else "")
+        if "stress_acc" not in row:
+            stress_cell = "·"
+        elif row["stress_acc"] is None:
+            stress_cell = "-"
+        else:
+            stress_cell = f"{row['stress_acc']:.4f}"
         lines.append(
             f"| {row['lang']} | {row['dataset']} | {n_cell} | "
-            f"{row['per']:.4f}{non_qualifying_mark} | {ceiling_cell} "
+            f"{row['per']:.4f}{non_qualifying_mark} | {stress_cell} "
+            f"| {ceiling_cell} "
             f"| {_oracle('oracle_per_top3')} "
             f"| {_oracle('oracle_per_top5')} "
             f"| {_oracle('oracle_exact_top3')} "

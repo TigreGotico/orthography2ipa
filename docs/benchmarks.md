@@ -5,8 +5,8 @@ trusted. A provenance tier says where a transcription came from, not whether
 it is right about the language, and this page is where that distinction is
 defined.
 
-Three pages cover the benchmark set. This one covers the provenance tiers and
-the corrections overlays. [benchmark_datasets.md](benchmark_datasets.md)
+Three pages cover the benchmark set. This one covers the provenance tiers,
+the corrections overlays and the stress column. [benchmark_datasets.md](benchmark_datasets.md)
 catalogues every gold dataset, where it came from, and the caveats that
 qualify its rows, together with the candidates this project examined and
 refused. [benchmark_methodology.md](benchmark_methodology.md) covers how a
@@ -229,6 +229,68 @@ the gold untouched and gets counted in the build report: a spelling whose
 reading does not show the defect the overlay repairs, and a spelling whose
 correct value cannot be determined at all. A skipped row is a reportable
 negative result, not a gap to fill with a plausible guess.
+
+## Stress accuracy
+
+PER strips stress marks from both sides, so a transcription with every
+segment right and the stress on the wrong syllable scores a perfect PER. The
+`Stress` column on the [scoreboard](scoreboard.md) measures that one thing.
+`stress_acc` is the share of eligible gold words whose primary stress the
+engine puts on the gold's syllable, and `n_stress` is the count of eligible
+words. Both come from the same 1-best transcriptions as PER, and PER does not
+change.
+
+A gold entry is eligible when all of these are true:
+
+- its spelling is one word, with no space;
+- it carries exactly one primary mark `ˈ` (an ASCII apostrophe is read as
+  `ˈ`);
+- it has at least two syllables, so the choice of syllable is not trivial.
+
+A word with several golds counts once, and it is a hit when the hypothesis
+matches the stress of any eligible gold. This is the same rule PER uses, which
+scores a word against its best gold. A multi-word entry is never eligible, even
+when its gold has no space. A hyphenated compound is one word: its gold has one
+primary mark, so a hypothesis with a primary mark on every element is a miss.
+A row with fewer than 20 eligible words reports `stress_acc` as null, the same
+floor that applies to thin rows. A gold with no stress marks reports null and
+`n_stress` 0. That is not a score of zero.
+
+The hypothesis misses when it has no primary mark, more than one, or its mark
+falls on another syllable. To find the syllable, the harness splits both
+transcriptions into segments and removes the stress marks and syllable
+boundaries. A segment is a character with its diacritics, and a tie bar
+(U+0361, U+035C) joins the two characters it links into one segment. Each
+segment gets the same folds PER applies. The harness then aligns the two
+segment strings by unit-cost edit distance, and asks whether the gold's
+stressed nucleus aligns with the hypothesis's stressed nucleus. When two
+alignments have the same cost, the harness takes the one that pairs vowels
+with vowels. A nucleus is an IPA vowel letter, with its diacritics, that is not
+marked non-syllabic (U+032F), or any letter marked syllabic (U+0329). The
+glides `j w ɥ ɰ` are never a nucleus. The stressed nucleus is the first nucleus
+after the mark. Where a transcription writes syllable boundaries (`.`), they
+bound the syllables too.
+
+Two cases show why the harness aligns instead of counting nuclei from the end
+of the word:
+
+- `saída`, gold `sɐˈidɐ`, hypothesis `ˈsajdɐ`: the hypothesis reads the hiatus
+  as a diphthong and stresses the `a`. The gold's stressed `i` aligns with the
+  hypothesis's `j`, so this is a miss.
+- `texto`, gold `ˈtɐjʃtu`, hypothesis `ˈtɐʃtu`: the lost glide is a segment
+  error. The stressed `ɐ` aligns with the stressed `ɐ`, so this is a hit.
+
+Two more cases fix the details of the alignment:
+
+- `melhor`, gold `meˈʎɒɹ`, hypothesis `meˈʎɔ`: deleting `ɹ` and deleting `ɒ`
+  cost the same. Only the first pairs a vowel with a vowel, and it puts `ɒ` on
+  `ɔ`, so this is a hit.
+- `exigência`, gold `ˌeziʒˈe͡ɪŋsjæ`, hypothesis `eziˈʒẽsjɐ`: the tied `e͡ɪ` is
+  one segment, so it pairs with `ẽ`, and this is a hit.
+
+The CI regression gate checks `stress_acc` the way it checks PER: a row whose
+`stress_acc` drops by more than the same epsilon fails, unless its provenance
+tier cannot gate.
 
 ---
 [← Sourcing](sourcing.md) · [Home](index.md) · [Benchmark gold datasets →](benchmark_datasets.md)
