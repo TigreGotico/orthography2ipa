@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.109.1a2](https://github.com/TigreGotico/orthography2ipa/tree/7.109.1a2) (2026-10-29)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.109.1a1...7.109.1a2)
+
+**Merged pull requests:**
+
+- chore: rescore the five kaikki rows whose gold moved \(jv, kok, so, su, xh\) [\#1733](https://github.com/TigreGotico/orthography2ipa/pull/1733) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.109.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.109.1a1) (2026-10-29)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.109.0a2...7.109.1a1)
@@ -323,7 +331,6 @@
 **Merged pull requests:**
 
 - feat\(dga\): build the Central Dagaare grapheme map from the IPA Illustration [\#1617](https://github.com/TigreGotico/orthography2ipa/pull/1617) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-- fix\(ar-LB,ar-SY\): read gaf as \[ɡ\], and say plainly that it brings /ɡ/ with it [\#1614](https://github.com/TigreGotico/orthography2ipa/pull/1614) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.94.7a1](https://github.com/TigreGotico/orthography2ipa/tree/7.94.7a1) (2026-09-17)
 
@@ -336,7 +343,6 @@
 **Merged pull requests:**
 
 - fix\(ayl\): read a kasra key plus ya as a long vowel [\#1615](https://github.com/TigreGotico/orthography2ipa/pull/1615) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-- fix\(ar\): read the NG letter as \[ɡ\] in the Maghrebi specs whose corpus writes it [\#1612](https://github.com/TigreGotico/orthography2ipa/pull/1612) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.94.5a1](https://github.com/TigreGotico/orthography2ipa/tree/7.94.5a1) (2026-09-17)
 
