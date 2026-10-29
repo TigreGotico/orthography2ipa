@@ -408,6 +408,21 @@ def test_so_kh_has_no_word_initial_positional_rule():
     assert G2P("so").transcribe_word("khudaar") == "χudaːr"
 
 
+def test_so_j_ranks_the_voiced_affricate_first_on_sources_read():
+    """⟨j⟩ is [dʒ] first and [tʃ] second. Kirk 1905: 7 gives j the English
+    value of "journey" and says Somali has no "church" ch; Saeed 1982: 3-4
+    lists one affricate, voiced, for Central Somali. Gabbard 2010: 5, 10 gives
+    voiceless č with voiced free variation, so [tʃ] stays the alternate. The
+    kaikki gold's 6-of-8 voiceless count is not a reading. jid 'road' → [dʒid].
+    The order rests on the two read sources, so both must stay cited."""
+    engine = G2P("so")
+    assert engine.spec.graphemes["j"] == ["dʒ", "tʃ"]
+    assert engine.transcribe_word("jid") == "dʒid"
+    cited = {s.id: s.pages for s in engine.spec.sources}
+    assert cited.get("kirk1905") == "7"
+    assert cited.get("saeed1982") == "3-4"
+
+
 # ---------------------------------------------------------------------------
 # om — Oromo (Qubee, official since 1991)
 # ---------------------------------------------------------------------------
