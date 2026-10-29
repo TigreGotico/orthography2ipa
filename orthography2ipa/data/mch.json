@@ -9,7 +9,7 @@
       "tʃ"
     ],
     "ö": [
-      "ɤ"
+      "ə"
     ],
     "ü": [
       "ɨ"
@@ -64,6 +64,27 @@
     ],
     "'": [
       "ʔ"
+    ],
+    "aa": [
+      "aː"
+    ],
+    "ee": [
+      "eː"
+    ],
+    "ii": [
+      "iː"
+    ],
+    "oo": [
+      "oː"
+    ],
+    "uu": [
+      "uː"
+    ],
+    "üü": [
+      "ɨː"
+    ],
+    "öö": [
+      "əː"
     ]
   },
   "parent": "x-clade-cari1283",
@@ -75,7 +96,7 @@
       "notes": "Descent per Glottolog classification of Ye'kwana (maqu1238)."
     }
   ],
-  "notes": "Skeleton. Cariban language of the Venezuela-Brazil border region, self-named Ye'kwana (also Maquiritari), in its Spanish-influenced practical orthography. ch=[tʃ], j=[h], ñ=[ɲ], and the back/central unrounded vowels ö=[ɤ] and ü=[ɨ] are mapped; d denotes an implosive/flap [ɗ]. Contrastive vowel nasalization and predictable stress/length are not recovered from spelling and are left unencoded, raising the PER floor.",
+  "notes": "Skeleton. Cariban language of the Venezuela-Brazil border region, self-named Ye'kwana (also Maquiritari), in the standard orthography used in Venezuela. ch=[tʃ], j=[h], ñ=[ɲ]; d denotes an implosive/flap [ɗ]. The central vowels take their Venezuelan values, ü=[ɨ] and ö=[ə] (mch_orthography: \"In the standard orthography used in Venezuela, /ɨ/ is written ü, and /ə/ is written ö.\"). The orthography used in Brazil and Amazonas writes ö for /ɨ/ and ä for /ə/, and this spec does not read it. A doubled vowel letter spells one long vowel (mch_orthography: \"Long vowels are indicated by doubling the letter.\"), and the vowel table of the same source, adapted from Cáceres (2011), gives the doubled spelling of all seven vowels: aa, ee, ii, oo, uu, üü and öö. The source says the orthographies write every phonemic long vowel and differ on the long vowels its lengthening rule predicts (\"some long vowels are unpredictable and phonemic, while others can be fully predicted by the vowel lengthening rule\"); this spec does not derive those. Nasalization is allophonic in the source (\"Any nasal can cause nasalization of a preceding short vowel.\"), and pitch is predictable (\"in words without attached clitics, a high pitch tends to fall on the penultimate syllable\"); the spec encodes neither.",
   "iso639_3": "mch",
   "glottolog_code": null,
   "sources": [
@@ -108,7 +129,7 @@
   "audit": {
     "wikipron": {
       "conclusion": "input_limited",
-      "measured": "0 of 1746 rows in the WikiPron mch_latn_narrow gold carry a nasalized vowel, and 286 write a doubled vowel. The same 1746 gold transcriptions carry a long vowel on 830 rows, no nasalization mark on any row, and no stress mark on any row. So the contrast this row's PER floor rests on is vowel length, written in 286 rows and transcribed in 830; the practical Spanish-influenced orthography this spec describes leaves it unencoded. Nasalization and stress are named in the spec notes but are not transcribed in this gold, so no count here supports them.",
+      "measured": "Wiktionary writes mch pronunciations with its Module:mch-IPA, which rewrites the spelling by rule (ö=ə, ü=ɨ, each doubled vowel letter as the long vowel, and a rule of its own for predicted lengthening). The 1746-row WikiPron mch_latn_narrow gold agrees with that mapping on every row counted here, so a score on it measures agreement with the module, not an independent transcription: ə occurs in exactly the 567 rows whose input has ö and ɤ in none, and all 286 rows that write a doubled vowel carry a length mark. 830 rows carry a long vowel (926 marks). The 544 of them with no doubled vowel letter carry only predicted lengthening, which the spelling does not write and this spec does not derive. No row carries a nasalization mark or a stress mark.",
       "reference": "spec notes"
     }
   }
