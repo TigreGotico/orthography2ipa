@@ -18,9 +18,9 @@ spec files under ``orthography2ipa/data/`` changed, resolves board language
 tags to the spec they are scored against (inheritance included, so an edit to
 ``pt-PT.json`` also implicates ``pt-PT-x-lisbon``), and re-runs each such
 row's own gold loader against the current checkout. A row whose freshly
-measured PER — rounded to the same four decimals the board stores — no longer
-matches the committed value is stale, and the message names the row, both
-numbers, and the exact command to refresh it.
+measured PER or stress columns — rounded to the same four decimals the board
+stores — no longer match the committed values is stale, and the message names
+the row, the field, both numbers, and the exact command to refresh it.
 
 There are TWO committed board files and both are checked, independently,
 against the same touched-spec set: the FULL, published board
@@ -109,7 +109,7 @@ from typing import Dict, List, Optional, Tuple
 sys.path.insert(0, os.path.dirname(__file__))
 
 from benchmark import (  # noqa: E402
-    CI_SAMPLE_JSON, DATASETS, evaluate_words, SCOREBOARD_JSON,
+    CI_SAMPLE_JSON, DATASETS, evaluate_words, SCOREBOARD_JSON, StressTally,
 )
 from check_board_not_reverting import (  # noqa: E402
     PackageUnavailable, SPEC_DIR, spec_ancestors,
@@ -192,15 +192,22 @@ def owned_rows(rows: List[dict], specs: set, repo=REPO_ROOT
     return owned
 
 
-def rescore(row: dict) -> Tuple[Optional[float], Optional[str]]:
-    """Re-measure *row*'s PER against the current checkout, at the SAME
+#: The measured row fields this check compares. A committed row that predates
+#: a field does not carry it, and that field is not compared for it.
+CHECKED_FIELDS = ("per", "stress_acc", "n_stress")
+
+
+def rescore(row: dict) -> Tuple[Optional[dict], Optional[str]]:
+    """Re-measure *row*'s PER and stress columns against the current
+    checkout, at the SAME
     ``limit`` the row was committed at (``None`` = full gold, an integer =
     the deterministic prefix/fixed-seed-sample that limit produces), so a
     CI-sample row is compared against the identical word set it was scored
     on rather than a differently-sized rescoring of it.
 
-    Returns ``(per, None)`` on a real measurement, or ``(None, reason)``
-    when the gold could not be fetched in this environment. Raises on a
+    Returns ``({field: value}, None)`` for every :data:`CHECKED_FIELDS`
+    entry on a real measurement, or ``(None, reason)`` when the gold could
+    not be fetched in this environment. Raises on a
     zero-coverage result — that is a real failure, not an environment
     limit, and callers must not swallow it the way a fetch failure is.
     """
@@ -214,14 +221,20 @@ def rescore(row: dict) -> Tuple[Optional[float], Optional[str]]:
         pairs = loader(lang, effective)
     except Exception as exc:  # noqa: BLE001 - environment-dependent fetch
         return None, f"gold unavailable ({exc!r})"
+    stress = StressTally()
     n, covered, _pers, per, _wer = evaluate_words(
-        pairs, lang, strip_stress=True, broad=True)
+        pairs, lang, strip_stress=True, broad=True, stress=stress)
     if covered == 0:
         raise RuntimeError(
             f"{dataset} lang={lang}: loader returned {n} pairs but scored "
             f"0 of them — a broken loader or a spec that dropped this "
             f"language, not an environment limit")
-    return round(per, 4), None
+    return {
+        "per": round(per, 4),
+        "stress_acc": (None if stress.accuracy is None
+                       else round(stress.accuracy, 4)),
+        "n_stress": stress.eligible,
+    }, None
 
 
 def check_board(path: str, rel_path: str, fix_cmd: str, fix_note: str,
@@ -268,8 +281,10 @@ def check_board(path: str, rel_path: str, fix_cmd: str, fix_note: str,
                   file=sys.stderr)
             skipped.append((lang, dataset, reason))
             continue
-        if measured != row["per"]:
-            stale.append((lang, dataset, row["per"], measured))
+        for field in CHECKED_FIELDS:
+            if field in row and measured[field] != row[field]:
+                stale.append((lang, dataset, field, row[field],
+                              measured[field]))
 
     verified = len(rows) - len(skipped)
 
@@ -303,9 +318,9 @@ def check_board(path: str, rel_path: str, fix_cmd: str, fix_note: str,
 
     print(f"STALE BOARD ({rel_path}): the following committed rows no "
           f"longer match what the current spec produces:", file=sys.stderr)
-    for lang, dataset, committed_per, measured_per in stale:
-        print(f"  {lang}/{dataset}: committed per={committed_per} but the "
-              f"current spec measures {measured_per}. Fix: "
+    for lang, dataset, field, committed, measured in stale:
+        print(f"  {lang}/{dataset}: committed {field}={committed} but the "
+              f"current spec measures {measured}. Fix: "
               f"{fix_cmd.format(lang=lang, dataset=dataset)}",
               file=sys.stderr)
     print(f"then commit {fix_note}", file=sys.stderr)
