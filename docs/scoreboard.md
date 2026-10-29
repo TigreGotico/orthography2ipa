@@ -633,7 +633,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | pt-PT-x-madeira | clup_dialect | 4† | 0.3254‡ | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
 | pt-PT-x-madeira | ep_dialects | 30 | 0.0952 | - | - | - | - | - | [0.0662, 0.1257] | 0.2667 | research | expert-human |
 | pt-PT-x-madeira | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-medieval | portuguese_tts | 20 | 0.0020‡ | - | - | - | - | - | [0.0000, 0.0060] | 0.9500 | research | llm-generated |
+| pt-PT-x-medieval | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | pt-PT-x-minho | clup_dialect | 9† | 0.3181‡ | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
 | pt-PT-x-minho | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | pt-PT-x-porto | clup_dialect | 17† | 0.4223‡ | - | - | - | - | - | n too small | 0.0000 | research | expert-human |

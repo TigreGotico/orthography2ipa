@@ -707,8 +707,9 @@ def syllabify_for_mark(ipa: str, rules: StressRules) -> List[str]:
     Vennemann, *Preference Laws for Syllable Structure*, Mouton 1988, ch. 1,
     for the sonority preferences the judgement rests on).
 
-    The spec's own declarations drive the split: ``diphthongs`` says which
-    vowel sequences are ONE nucleus (the rest of a run is hiatus and splits),
+    The spec's own declarations drive the split: ``ipa_diphthongs``, or
+    ``diphthongs`` where the spec declares no IPA list, says which vowel
+    sequences are ONE nucleus (the rest of a run is hiatus and splits),
     ``max_onset`` caps the onset where a spec declares one, and
     ``onset_clusters`` replaces the built-in shapes with the language's own
     onset inventory. ``constrain_mark_onsets`` turns the whole judgement off
@@ -716,7 +717,11 @@ def syllabify_for_mark(ipa: str, rules: StressRules) -> List[str]:
     not declared yet — the mark then falls where a plain vowel-group split
     puts it, which is where it fell before any of this existed.
     """
-    sylls = syllabify(ipa, diphthongs=rules.diphthongs)
+    if rules.ipa_diphthongs is None:
+        sylls = syllabify(ipa, diphthongs=rules.diphthongs)
+    else:
+        sylls = _syllabify_with_diphthongs(ipa, _is_vowel_char,
+                                           rules.ipa_diphthongs)
     if not rules.constrain_mark_onsets:
         if rules.coda_liquid_capture:
             sylls = _capture_coda_liquids(sylls, _is_vowel_char)
@@ -734,11 +739,11 @@ def _split_nuclei(run: str, diphthongs: Sequence[str]) -> List[str]:
 
     Greedy longest-first: a run position that starts a listed sequence
     consumes it as ONE nucleus, any other vowel letter is a nucleus of its
-    own. With no diphthongs declared the whole run is one nucleus, which is
-    the behaviour every spec had before :attr:`StressRules.diphthongs`
-    existed.
+    own, so an empty *diphthongs* makes every vowel a nucleus. Merging the
+    whole run, the behaviour of a spec that declares no diphthongs, is
+    decided by :func:`syllabify` before this is reached.
     """
-    if not diphthongs or len(run) < 2:
+    if len(run) < 2:
         return [run]
     ordered = sorted(diphthongs, key=len, reverse=True)
     lowered = run.lower()
@@ -1254,7 +1259,9 @@ def apply_stress_mark(
     # them a vowel run is one nucleus, so a HIATUS merges and the mark lands a
     # syllable early (⟨coelho⟩ /kuɐʎu/ → ˈkuɐʎu instead of kuˈɐʎu). A language
     # whose diphthongs are written with glides (Portuguese /aj aw/) therefore
-    # leaves only true hiatus as a two-vowel run, and it must split.
+    # leaves only true hiatus as a two-vowel run, and it must split: such a
+    # spec declares ``ipa_diphthongs`` so its orthographic ⟨ui⟩ entry does not
+    # merge the IPA [ui] of ⟨proíbe⟩ (see syllabify_for_mark).
     ipa_sylls = (list(ipa_syllables) if ipa_syllables
                  else syllabify_for_mark(ipa, rules))
     if not ipa_sylls:

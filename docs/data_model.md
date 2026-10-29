@@ -438,6 +438,20 @@ This matters far beyond the stress mark: in a language with stress-conditioned
 vowel reduction, a wrong syllable count reduces the wrong vowel and the whole
 word is wrong.
 
+### `StressRules.ipa_diphthongs`
+
+The stress mark is written into the transcription, so the engine divides the
+IPA into syllables too. By default it splits the IPA with `diphthongs`, the
+orthographic list. That is wrong for a language whose transcription writes a
+diphthong with a glide. Portuguese ⟨ui⟩ is [uj], so an IPA [ui] comes only from
+a hiatus such as ⟨uí⟩. With the orthographic ⟨ui⟩ entry, ⟨proíbe⟩ /pɾuibɨ/
+divides into two syllables and the mark lands on the first: ˈpɾuibɨ.
+
+`ipa_diphthongs` lists the IPA vowel sequences that form one nucleus. When a
+spec declares it, the transcription is split with this list and not with
+`diphthongs`. An empty list makes every IPA vowel its own nucleus, which gives
+pɾuˈibɨ. Leave the field out to keep the orthographic list.
+
 ---
 
 ## Lexicon overlay (sidecar `word_exceptions` at scale)
