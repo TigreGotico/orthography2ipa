@@ -1732,6 +1732,7 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "collapse_geminates": InheritanceMode.OWN_ONLY,
     "doubled_letters_geminate": InheritanceMode.OWN_ONLY,
     "constrain_onsets": InheritanceMode.BASE_SCALAR,
+    "word_internal_apostrophe": InheritanceMode.BASE_SCALAR,
     "phonemes": InheritanceMode.OWN_ONLY,
     "orthography_kind": InheritanceMode.OWN_ONLY,
     "iso639_3": InheritanceMode.OWN_ONLY,
@@ -1996,6 +1997,20 @@ class LanguageSpec:
     variety that must NOT inherit says so with an explicit ``false``.
     ``nl-NL`` is a standalone spec with no ``graphemes_base``, so it declares
     the flag itself.
+    """
+
+    word_internal_apostrophe: bool = False
+    """Whether an apostrophe (U+0027 or U+2019) between two letters is part of
+    the written word. The orthography spells contractions and possessives with
+    it inside one word (``doesn't``, ``that's``), so the whole token is the
+    unit a ``word_exceptions`` entry or a registered lexicon is keyed on, and
+    the unit that is transcribed. Off by default: in an orthography where the
+    mark is an elision or a boundary (French ``l'homme``, Italian ``l'amico``)
+    it separates two words. An apostrophe at either edge of a token is
+    unaffected.
+
+    It is inherited along the ``graphemes_base`` edge
+    (:attr:`InheritanceMode.BASE_SCALAR`), like :attr:`constrain_onsets`.
     """
 
     doubled_letters_geminate: bool = True
