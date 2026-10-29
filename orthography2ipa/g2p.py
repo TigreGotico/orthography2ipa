@@ -39,7 +39,9 @@ import warnings
 from dataclasses import dataclass, replace
 from typing import Callable, Dict, List, Optional, Set, Tuple
 
-from orthography2ipa.exceptions import StubSpecWarning, UnmappedScriptError
+from orthography2ipa.exceptions import (StubSpecWarning,
+                                         UnmappedGraphemeWarning,
+                                         UnmappedScriptError)
 from orthography2ipa.features import (
     GraphemeFeatures,
     WordFeatures,
@@ -396,15 +398,20 @@ class G2P:
         spec's grapheme table (e.g. feeding Hanzi to a pinyin-only spec,
         or precomposed Hangul to a compatibility-jamo spec). One of:
 
-        - ``"ignore"`` (default): no behavior change — the word's
-          uncovered characters silently contribute nothing to ``ipa``,
-          exactly as before this option existed. Inspect
+        - ``"warn"`` (default): the uncovered characters contribute
+          nothing to ``ipa``, and each uncovered letter or combining mark
+          (Unicode category ``L*`` or ``M*``) emits
+          :class:`~orthography2ipa.exceptions.UnmappedGraphemeWarning`
+          once per engine and character. Punctuation, digits, symbols and
+          spaces do not warn, and a stub spec warns
+          :class:`~orthography2ipa.exceptions.StubSpecWarning` once
+          instead.
+        - ``"ignore"``: the same output with no signal. Inspect
           :attr:`WordTranscription.unmapped` /
           :attr:`WordTranscription.coverage` via
           :meth:`transcribe_detailed` to detect this after the fact.
-        - ``"log"``: same output as ``"ignore"``, plus a
-          ``logging.warning`` emitted once per distinct ``(lang, word)``
-          pair.
+        - ``"log"``: the same output, plus a ``logging.warning`` emitted
+          once per distinct ``(lang, word)`` pair.
         - ``"raise"``: raises
           :class:`~orthography2ipa.exceptions.UnmappedScriptError`
           instead of returning a result for that word.
@@ -422,7 +429,7 @@ class G2P:
         apply_allophony: bool = True,
         normalizer: Optional[Callable[[str], str]] = None,
         plugins: Optional[dict] = None,
-        on_unmapped: str = "ignore",
+        on_unmapped: str = "warn",
         rescorer: RescorerArg = None,
         sentence_rescorer: SentenceRescorerArg = None,
         allow_undeclared_phonemes: bool = False,
@@ -448,9 +455,9 @@ class G2P:
         #: ranking error"). 1-best is unaffected either way: an
         #: alternative can never reach rank 1.
         self.expose_ambiguous_endings = expose_ambiguous_endings
-        if on_unmapped not in ("ignore", "log", "raise"):
+        if on_unmapped not in ("warn", "ignore", "log", "raise"):
             raise ValueError(
-                "on_unmapped must be 'ignore', 'log' or 'raise', "
+                "on_unmapped must be 'warn', 'ignore', 'log' or 'raise', "
                 f"got {on_unmapped!r}")
         self.lang: str = resolve(lang)
         self.spec: LanguageSpec = get(self.lang) if spec is None else spec
@@ -527,6 +534,7 @@ class G2P:
 
         self.on_unmapped = on_unmapped
         self._warned_unmapped: Set[Tuple[str, str]] = set()
+        self._warned_graphemes: Set[str] = set()
         self._tokenizer = PhonetokTokenizer(self.spec)
         self._sandhi = (
             SandhiEngine(self.spec.sandhi_rules)
@@ -1535,6 +1543,17 @@ class G2P:
         return tuple(unmapped), coverage
 
     def _handle_unmapped(self, word: str, unmapped: Tuple[str, ...]) -> None:
+        if self.on_unmapped == "warn" and not self.is_stub:
+            for ch in unmapped:
+                if (unicodedata.category(ch)[0] not in "LM"
+                        or ch in self._warned_graphemes):
+                    continue
+                self._warned_graphemes.add(ch)
+                warnings.warn(
+                    f"{self.lang}: U+{ord(ch):04X} {ch!r} "
+                    f"({unicodedata.name(ch, 'unnamed')}) has no grapheme "
+                    f"mapping and is dropped from the transcription",
+                    UnmappedGraphemeWarning, stacklevel=2)
         if self.on_unmapped == "raise":
             raise UnmappedScriptError(word, unmapped, self.lang)
         if self.on_unmapped == "log":
