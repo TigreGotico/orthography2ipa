@@ -89,9 +89,9 @@ from orthography2ipa.sentence import (
     span_position,
 )
 from orthography2ipa.stress import (
-    _syllables_for, apply_iambic_length, apply_stress_mark, cliticless_keys,
-    detect_stress, detect_stress_by_weight, secondary_stress_positions,
-    syllabify, syllabify_ipa,
+    SECONDARY_MARK, _syllables_for, apply_iambic_length, apply_stress_mark,
+    cliticless_keys, detect_stress, detect_stress_by_weight,
+    secondary_stress_positions, syllabify, syllabify_ipa,
 )
 from orthography2ipa.tone import assign_computed_tones, dock_tone_marks
 from orthography2ipa.transforms import apply_transform
@@ -107,6 +107,8 @@ _EDGE_PUNCT_RE = re.compile(rf"^{_EDGE_PUNCT_CHAR}+|{_EDGE_PUNCT_CHAR}+$")
 #: Apostrophe-family marks ``word_internal_apostrophe`` governs: U+0027 and
 #: U+2019, the two codepoints ``_EDGE_PUNCT_CHAR`` already treats as a letter-like mark.
 _APOSTROPHES = frozenset("'\u2019")
+#: Hyphens that join the words of a compound (ASCII, U+2010, U+2011).
+_HYPHENS = frozenset("-\u2010\u2011")
 
 __all__ = [
     "G2P",
@@ -320,6 +322,8 @@ class _Word:
     sentence_final: bool = False
     #: IPA the caller forced with ``<phoneme ph="…">``, bypassing the rules.
     forced_ipa: Optional[str] = None
+    #: Joined to the word before it by a hyphen, with no space between.
+    hyphen_joined: bool = False
 
 
 
@@ -645,6 +649,9 @@ class G2P:
         ]
 
         ipa_words = [wt.ipa for wt in transcribed]
+        if (self.spec.stress is not None
+                and self.spec.stress.compound_stress == "last"):
+            ipa_words = self._mark_compounds(words, ipa_words)
         # Sentence-scope (cross-word) rescorers run first — they see the whole
         # utterance's word lattices, adjacency and phrase/utterance position —
         # then the spec's declarative sandhi pass runs exactly as before. When
@@ -1036,6 +1043,25 @@ class G2P:
                 self._group_words(self._normalize(chunk.text), words)
         return self._flag(words)
 
+    def _mark_compounds(self, words: List[_Word],
+                        ipa_words: List[str]) -> List[str]:
+        """One main stress per hyphen-joined group (``compound_stress="last"``).
+
+        The last element that carries the main stress mark keeps it, and
+        every earlier one is written with the secondary mark instead.
+        """
+        mark = self.spec.stress.stress_mark
+        out = list(ipa_words)
+        start = 0
+        for end in range(1, len(words) + 1):
+            if end < len(words) and words[end].hyphen_joined:
+                continue
+            marked = [i for i in range(start, end) if mark in out[i]]
+            for i in marked[:-1]:
+                out[i] = out[i].replace(mark, SECONDARY_MARK)
+            start = end
+        return out
+
     def _check_forced(self, ipa: str) -> str:
         """Hold forced IPA to the spec's declared inventory.
 
@@ -1086,10 +1112,13 @@ class G2P:
         """
         tokens = self._tokenizer.tokenize(text)
         current: List[str] = []
+        # hyphen_joined of the word in ``current``, and of the next one
+        joined = after_hyphen = False
 
         def flush():
             if current:
-                words.append(_Word(surface="".join(current)))
+                words.append(_Word(surface="".join(current),
+                                   hyphen_joined=joined))
                 current.clear()
 
         for token in tokens:
@@ -1097,10 +1126,13 @@ class G2P:
                 continue
             if token.kind == TokenKind.WHITESPACE:
                 flush()
+                after_hyphen = False
             elif (token.kind == TokenKind.PUNCTUATION
                   and self._is_word_internal_apostrophe(text, token)):
                 current.append(token.grapheme)
             elif token.kind == TokenKind.PUNCTUATION:
+                # A hyphen right after a word joins it to the word right after
+                after_hyphen = bool(current) and token.grapheme in _HYPHENS
                 flush()
                 if words and any(c in _PAUSE_PUNCTUATION
                                  for c in token.grapheme):
@@ -1121,6 +1153,8 @@ class G2P:
                 # its grapheme (i.e. every non-abugida token) the tail is empty
                 # and the rebuilt word is unchanged.
                 tail = token.text_span(text)[len(token.grapheme):]
+                if not current:
+                    joined, after_hyphen = after_hyphen, False
                 current.append(token.grapheme + tail)
         flush()
 
