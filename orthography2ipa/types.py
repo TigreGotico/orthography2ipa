@@ -1727,6 +1727,7 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "preposed_vowels": InheritanceMode.OWN_ONLY,
     "coda_no_inherent_vowel": InheritanceMode.OWN_ONLY,
     "consonant_nuclei": InheritanceMode.OWN_ONLY,
+    "codas": InheritanceMode.OWN_ONLY,
     "inherent_vowel_final": InheritanceMode.OWN_ONLY,
     "virama_final_vowel": InheritanceMode.OWN_ONLY,
     "collapse_geminates": InheritanceMode.OWN_ONLY,
@@ -2145,6 +2146,7 @@ class LanguageSpec:
     untouched."""
 
     coda_no_inherent_vowel: bool = False
+    codas: Tuple[str, ...] = ()
     """The third Tai abugida mechanism (Iwasaki & Ingkaphirom 2005; Enfield
     2007), scoped out of ``dependent_vowels``/``preposed_vowels`` (#781) as a
     follow-up: a bare consonant that CLOSES a syllable already given its
