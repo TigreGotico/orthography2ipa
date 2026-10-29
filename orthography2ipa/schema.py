@@ -427,6 +427,7 @@ class LanguageSpecModel(_Strict):
     trailing_vowel_axis_digraphs: Optional[List[str]] = None
     coda_no_inherent_vowel: Optional[bool] = None
     consonant_nuclei: Optional[Dict[str, str]] = None
+    codas: Optional[List[str]] = None
     inherent_vowel_final: Optional[str] = None
     virama_final_vowel: Optional[str] = None
     collapse_geminates: Optional[bool] = None
