@@ -643,6 +643,22 @@ class StressRules:
         still emitted. When a spec declares this,
         :func:`~orthography2ipa.stress.apply_stress_mark` also writes the
         secondary mark ``ˌ`` before those syllables.
+    compound_stress : str
+        How the words of a hyphen-joined group share the main stress. The
+        engine reads a hyphen as a word break, so each element is
+        transcribed, and marked, as a word of its own.
+
+        Values:
+
+        ``""``
+            (default) every element keeps its own main stress mark.
+        ``"last"``
+            the group is one prosodic word whose last marked element carries
+            the main stress: every earlier element's :attr:`stress_mark` is
+            written as the secondary mark ``ˌ`` instead. An element that
+            :attr:`cliticless_words` leaves unmarked stays unmarked. Only the
+            marks change; each element's segments are those of the word
+            alone.
     iambic_length : bool
         Whether prominent syllables of a word are realised with a LONG
         nucleus, independently of where the word-accent mark
@@ -702,6 +718,7 @@ class StressRules:
     accent2_mark: str = ""
     accent2_final_letters: Tuple[str, ...] = ()
     secondary_stress: str = ""
+    compound_stress: str = ""
     iambic_length: bool = False
     source: str = "rules"
     notes: str = ""
