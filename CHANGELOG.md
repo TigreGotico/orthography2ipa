@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.111.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.111.1a1) (2026-10-29)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.111.0a1...7.111.1a1)
+
+**Merged pull requests:**
+
+- fix\(pt\): give a hyphenated compound one primary stress [\#1765](https://github.com/TigreGotico/orthography2ipa/pull/1765) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.111.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.111.0a1) (2026-10-29)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.110.13a1...7.111.0a1)
