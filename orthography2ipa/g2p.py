@@ -104,6 +104,10 @@ from orthography2ipa.types import GraphemePosition, LanguageSpec
 _EDGE_PUNCT_CHAR = rf"(?:(?!['\u2019]){_WORD_PUNCT_RE.pattern[:-1]})"
 _EDGE_PUNCT_RE = re.compile(rf"^{_EDGE_PUNCT_CHAR}+|{_EDGE_PUNCT_CHAR}+$")
 
+#: Apostrophe-family marks ``word_internal_apostrophe`` governs: U+0027 and
+#: U+2019, the two codepoints ``_EDGE_PUNCT_CHAR`` already treats as a letter-like mark.
+_APOSTROPHES = frozenset("'\u2019")
+
 __all__ = [
     "G2P",
     "transcribe",
@@ -1093,6 +1097,9 @@ class G2P:
                 continue
             if token.kind == TokenKind.WHITESPACE:
                 flush()
+            elif (token.kind == TokenKind.PUNCTUATION
+                  and self._is_word_internal_apostrophe(text, token)):
+                current.append(token.grapheme)
             elif token.kind == TokenKind.PUNCTUATION:
                 flush()
                 if words and any(c in _PAUSE_PUNCTUATION
@@ -1116,6 +1123,17 @@ class G2P:
                 tail = token.text_span(text)[len(token.grapheme):]
                 current.append(token.grapheme + tail)
         flush()
+
+    def _is_word_internal_apostrophe(self, text: str, token: Token) -> bool:
+        """True for an apostrophe between two letters in a spec that writes
+        contractions and possessives as one word (see
+        :attr:`~orthography2ipa.types.LanguageSpec.word_internal_apostrophe`)."""
+        start = token.position
+        end = start + token.length
+        return (self.spec.word_internal_apostrophe
+                and token.grapheme in _APOSTROPHES
+                and 0 < start and end < len(text)
+                and text[start - 1].isalpha() and text[end].isalpha())
 
     def _unmarked(self, word: str) -> str:
         """*word* without the silent stress marks the spec declares.
@@ -1163,6 +1181,11 @@ class G2P:
         stripped = _EDGE_PUNCT_RE.sub("", key)
         if stripped and stripped != key:
             keys.append(stripped)
+        if self.spec.word_internal_apostrophe:
+            # Entries are written with U+0027; a typographic U+2019 is the
+            # same word.
+            keys += [k.replace("\u2019", "'") for k in keys
+                     if "\u2019" in k]
         for k in keys:
             if exceptions:
                 inline = exceptions.get(k)

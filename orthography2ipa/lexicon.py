@@ -58,6 +58,8 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
+from orthography2ipa.registry import resolve
+
 __all__ = [
     "get_lexicon",
     "register_lexicon",
@@ -79,7 +81,7 @@ CACHE_DIR = Path(
     os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache")
 ) / "orthography2ipa" / "lexicons"
 
-# code -> source (path, URL or hf:// id), set by register_lexicon()
+# resolved code -> source (path, URL or hf:// id), set by register_lexicon()
 _REGISTERED: Dict[str, str] = {}
 _LEXICON_DIR: Optional[Path] = None
 
@@ -130,8 +132,13 @@ def register_lexicon(code: str, source: str) -> None:
     *source* is a local path, an ``http(s)://`` URL, or a Hugging Face id
     (``hf://<repo_id>/<path>``, optionally ``@<revision>``). Nothing is read
     or fetched here — resolution is lazy, on first transcription for *code*.
+
+    *code* is whatever tag the caller transcribes with (``en``, ``en-GB``): it
+    is resolved to the spec that :func:`~orthography2ipa.get` answers it with,
+    and the lexicon belongs to that spec. Two tags that resolve to the same
+    spec share one slot; the later registration replaces the earlier.
     """
-    _REGISTERED[code] = source
+    _REGISTERED[resolve(code)] = source
     get_lexicon.cache_clear()
 
 
@@ -139,6 +146,8 @@ def set_lexicon_dir(path) -> None:
     """Use *path* as a directory of ``{code}.tsv`` lexicons (``None`` to unset).
 
     A lexicon registered with :func:`register_lexicon` still wins for its code.
+    A file belongs to the spec its name resolves to, so ``en.tsv`` serves
+    ``en-GB``; a file named exactly for the resolved code wins over the others.
     """
     global _LEXICON_DIR
     _LEXICON_DIR = Path(path).expanduser() if path is not None else None
@@ -230,14 +239,18 @@ def lexicon_path(code: str) -> Optional[Path]:
     Fetches a remote source on first call. Never raises for an unregistered
     language — that is the common case.
     """
+    code = resolve(code)
     source = _REGISTERED.get(code)
     if source is not None:
         return resolve_lexicon_source(source)
     d = _lexicon_dir()
     if d is not None:
-        p = d / f"{code}.tsv"
-        if p.is_file():
-            return p
+        exact = d / f"{code}.tsv"
+        if exact.is_file():
+            return exact
+        for p in sorted(d.glob("*.tsv")):
+            if resolve(p.stem) == code:
+                return p
     return None
 
 

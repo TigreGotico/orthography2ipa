@@ -52,17 +52,22 @@ sys.path.insert(0, os.path.dirname(__file__))
 
 from benchmark import (  # noqa: E402
     build_scoreboard, can_gate_promotion, CI_SAMPLE_JSON, CI_SAMPLE_LIMIT,
-    HARNESS_VERSION,
+    HARNESS_VERSION, THIN_ROW_N,
 )
 
 
-def _gate_eligible(tier) -> bool:
-    """Whether a row on this provenance tier may FAIL the regression gate.
+def _gate_eligible(tier, n=None) -> bool:
+    """Whether a row on this provenance tier, scored on *n* words, may FAIL
+    the regression gate.
 
     Rows without a provenance field (or on an unknown tier) stay
     gate-eligible: only an explicit competitor/LLM classification earns
-    the non-blocking `drifted` status.
+    the non-blocking `drifted` status. So does a row below `THIN_ROW_N`
+    scored words, the same floor `benchmark.row_gates` puts on the
+    board's `gating` field.
     """
+    if isinstance(n, int) and n < THIN_ROW_N:
+        return False
     if not isinstance(tier, str):
         return True
     try:
@@ -141,7 +146,7 @@ def compare(
             # a competitor, and diverging from a competitor may be
             # exactly what the cited source demands. Such rows are
             # reported as `drifted` — visible, never blocking.
-            gates = _gate_eligible(cur_row.get("provenance"))
+            gates = _gate_eligible(cur_row.get("provenance"), cur_row.get("n"))
             status = "regressed" if gates else "drifted"
         else:
             status = "ok"

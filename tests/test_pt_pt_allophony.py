@@ -15,6 +15,8 @@ that the rules fix become passing assertions.
 """
 import unicodedata
 
+import pytest
+
 from orthography2ipa import get
 from orthography2ipa.g2p import G2P
 
@@ -222,3 +224,43 @@ class TestNasalDiphthongIsOneNucleus:
     def test_the_mark_never_splits_a_vowel_from_its_tilde(self):
         assert _t("pt-PT", "cantar") == "kɐ̃ˈtaɾ"
         assert _t("pt-PT", "contar") == "kõˈtaɾ"
+
+
+# ─── Sibilants: the standard is plain alveolar, the apical is northern ──
+#
+# Cruz-Ferreira's IPA illustration of the Lisbon standard (Handbook of the
+# IPA 1999: 126-127) puts plain s z in the Alveolar column: caço [ˈkasu],
+# caso [ˈkazu]. ⟨ss⟩ spells that /s/ between vowels, so isso is [ˈisu] and
+# passo [ˈpasu]. Cintra 1971 (CVC reprint: 11-13) puts the apico-alveolar
+# s/ss north of a line from the Ria de Aveiro to the Mondego above Coimbra;
+# the northern specs declare their own apical ⟨ss⟩ and keep it.
+
+@pytest.mark.parametrize("lang", [
+    "pt-PT",
+    "pt-PT-x-lisbon",
+    "pt-PT-x-coimbra",
+    "pt-PT-x-alentejo",
+    "pt-PT-x-acores",
+    "pt-AO",
+    "ext-PT-x-barrancos",
+])
+def test_ss_is_the_plain_alveolar_outside_the_apical_zone(lang):
+    assert "s̺" not in _t(lang, "isso")
+    assert _t("pt-PT", "isso") == "ˈisu"
+    assert _t("pt-PT", "passo") == "ˈpasu"
+
+
+@pytest.mark.parametrize("lang", [
+    "pt-PT-x-porto",
+    "pt-PT-x-braga",
+    "pt-PT-x-viana",
+    "pt-PT-x-trasosmontes",
+    "pt-PT-x-minho",
+    "pt-PT-x-beira",
+    "pt-PT-x-aveiro",
+    "pt-PT-x-alfena",
+    "pt-PT-x-medieval",
+])
+def test_ss_stays_apical_where_the_lect_declares_it(lang):
+    assert get(lang).graphemes["ss"] == ["s̺"]
+    assert "s̺" in _t(lang, "isso")

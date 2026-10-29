@@ -176,13 +176,21 @@ uncertainty rather than as a false-precision leaderboard entry:
 - A narrow interval is only informative when `N` backs it up. Bootstrap
   resampling draws its samples from the row's own per-word PER list, so
   on a handful of words it can only ever reshuffle the same handful of
-  values back at itself: a row scored on one word gets a `[x, x]`
-  interval that looks perfectly precise, and a row scored on two or
-  three words gets one nearly as tight, purely because there was
-  nothing to resample. That is an artifact of the sample size, not
-  evidence the PER is well measured. `docs/scoreboard.md` marks any row
-  under 20 scored words with a `†` after its `N` for exactly this
-  reason: read a marked row's PER as a single anecdote, never rank it
+  values back at itself: a row scored on one word would get a `[x, x]`
+  interval that looks perfectly precise. That is an artifact of the sample
+  size, not evidence the PER is well measured. A row under
+  `THIN_ROW_N` (20) scored words therefore has `null` for `per_ci_low`
+  and `per_ci_high`, and `docs/scoreboard.md` shows `n too small` in its
+  `95% CI` cell. The floor comes from a simulation of the percentile
+  interval on zero-inflated per-word PERs: it covers the true mean in
+  0.48 of trials at n=2, 0.79 at n=5 and 0.88 at n=10, and 0.90 to 0.92
+  from n=15 up, against a nominal 0.95.
+- The same floor decides whether a row gates. A row under `THIN_ROW_N`
+  words has `gating: false` in `benchmarks/results.json`, so it can
+  neither qualify a language for promotion nor block one, and the
+  regression gate reports its worsening as `drifted`, not `regressed`.
+  `docs/scoreboard.md` marks the row with `†` after `N` and `‡` after
+  `PER`. Read a marked row's PER as a single anecdote, never rank it
   against, or average it with, an unmarked row scored on hundreds or
   thousands of words. A row's weight on the board is its `N`, not its
   position in a PER sort.

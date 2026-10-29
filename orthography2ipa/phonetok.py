@@ -1325,6 +1325,7 @@ class PhonetokTokenizer:
         self._consonant_nuclei: Dict[str, str] = {
             k.lower(): v for k, v in (spec.consonant_nuclei or {}).items()
         }
+        self._codas: FrozenSet[str] = frozenset(spec.codas)
         self._inherent_vowel_final: Optional[str] = spec.inherent_vowel_final
 
     def _supplies_vowel_at(self, text: str, pos: int) -> bool:
@@ -1504,10 +1505,19 @@ class PhonetokTokenizer:
         coda slot. Only when the vowel ends open AND nothing follows the tail
         is the tail the one available coda, and then the head is the onset:
         ⟨โหม⟩ is /hoːm/, not */moː/.
+
+        A spec that declares :attr:`LanguageSpec.codas` limits this to codas
+        the language actually has. Lao writes ⟨ໂຫລ⟩ with the same shape Thai
+        does, but /l/ closes no Lao syllable, so the reading that would put
+        one there is not available and ho nam stands.
         """
         v_ipa = self._grapheme_ipa.get(gkey) or ()
         if not v_ipa or not _ends_in_a_vowel(v_ipa[0]):
             return False
+        if self._codas:
+            tail_ipa = self._grapheme_ipa.get(ckey[1:]) or ()
+            if tail_ipa and tail_ipa[0] not in self._codas:
+                return False
         pos = after + len(ckey)
         first = True
         while pos < len(text):
