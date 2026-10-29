@@ -16,7 +16,7 @@
   },
   "positional_graphemes_base": "pt-PT",
   "parent": "pt-PT",
-  "notes": "Beira-Litoral Portuguese (Aveiro, Vagos), a northern-coastal EP dialect in Cintra's Baixo-Minhoto-Duriense-Beirão group (Beira Litoral). MODELLED FEATURES: (1) APICO-ALVEOLAR-ONLY SIBILANT SYSTEM — ⟨s/ss⟩ AND ⟨c/ç/z⟩ all merge to apico-alveolar [s̺]/[z̺] (Cintra 1971 p.93; Álvarez Pérez 2014 pp.37-38, this group 'kept only the apico-alveolar branch'). Coda ⟨s/z⟩ keep chiado [ʃ]/[ʒ]. (2) BETACISM — /v/–/b/ merged to /b/ ~ [β]; Pérez 2014 pp.35-37 shows the bilabial-merger area extends along the coast north of Coimbra (i.e. the Aveiro littoral). A local retroflex lateral [ɱ... ]/[ɭ] realisation of /l/ is reported in regional-dialect literature (not in Cintra/Pérez) and is enumerated as a secondary allophonic variant only. Porto je/wo diphthongisation is not applied. Inherits pt-PT base.",
+  "notes": "Beira-Litoral Portuguese (Aveiro, Vagos), a northern-coastal EP dialect in Cintra's Baixo-Minhoto-Duriense-Beirão group (Beira Litoral). MODELLED FEATURES: (1) APICO-ALVEOLAR-ONLY SIBILANT SYSTEM — ⟨s/ss⟩ AND ⟨c/ç/z⟩ all merge to apico-alveolar [s̺]/[z̺] (Cintra 1971 p.93; Álvarez Pérez 2014 pp.37-38, this group 'kept only the apico-alveolar branch'). Coda ⟨s/z⟩ keep chiado [ʃ]/[ʒ]. (2) BETACISM — /v/–/b/ merged to /b/ ~ [β]; Pérez 2014 pp.35-37 shows the bilabial-merger area extends along the coast north of Coimbra (i.e. the Aveiro littoral). A local retroflex lateral [ɱ... ]/[ɭ] realisation of /l/ is reported in regional-dialect literature (not in Cintra/Pérez) and is enumerated as a secondary allophonic variant only. Porto je/wo diphthongisation is not applied. Inherits pt-PT base. ⟨ss⟩ is declared apico-alveolar [s̺] here because the pt-PT base maps it to plain [s]; the value follows feature (1) above, which puts ⟨s/ss⟩ in the apical branch. Cintra 1971 (read in the Instituto Camões CVC reprint, pp. 11-13) draws the main North/South isogloss on the sibilant of the graphemes s and ss: apico-alveolar in the North, predorsodental in the South. His southern limit of the apical runs from the Ria de Aveiro to the Mondego, which it crosses upstream of Coimbra, and on towards Castelo Branco.",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -142,6 +142,9 @@
     ]
   },
   "graphemes": {
+    "ss": [
+      "s̺"
+    ],
     "ç": [
       "s̺"
     ],
