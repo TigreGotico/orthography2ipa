@@ -4,6 +4,9 @@
   "script": "Latin",
   "graphemes_base": "pt-PT-x-medieval",
   "graphemes": {
+    "ss": [
+      "s"
+    ],
     "c": [
       "k",
       "s"
@@ -477,7 +480,7 @@
   ],
   "quality": "research",
   "script_type": "alphabet",
-  "notes": "Modern European Portuguese (PT-PT). Base mapping uses a neutral orthographic standard. Digraphs per Acordo Ortográfico. Portuguese preserves the /v/~/b/ distinction (unique in Ibero-Romance — Castilian merged them). Nasal vowels and extreme vowel reduction are diagnostic features. Post-lexical allophony: the diagnostic EP unstressed vowel reduction (unstressed /a/->[ɐ], /e/->[ɨ] (word-final often deletable), /o/->[u]) is realised in the PRE-lexical positional_graphemes map (the nucleus_stressed/nucleus_unstressed/pretonic/posttonic/word_final rows), so no redundant allophone rule restates it. The allophone_rules layer adds the post-lexical CONSONANT realisations that the grapheme map cannot reach cleanly at word edges: dark coda /l/->[ɫ], and the Lisbon-standard coda sibilants /s/->[ʃ], /z/->[ʒ] (the 'chiado'). Intervocalic voiced-stop spirantisation (/b d ɡ/->[β ð ɣ]; Mateus & d'Andrade 2000) is a genuine EP process but is DELIBERATELY NOT encoded here: every available pt gold (infopedia_pt, ep_dialects, wikipron) is broad/phonemic and transcribes the stops, so a spirantisation rule is correct yet regresses all measurable golds with none rewarding it; it is left for a future narrow-transcription task. Dialect-specific sibilant/vocalism deltas (northern apico-alveolar coda [s̺], insular vocalism) are handled by the pt-PT-x-* dialect specs, not the base. Benchmark honesty: the coda sibilant rules improve every pt gold; the dark-l rule improves the narrow human golds (infopedia_pt, ep_dialects) but regresses the broader WikiPron pt row (which transcribes coda /l/ as plain [l]) — it is kept per the honesty gate because the higher-quality golds reward it, with the divergence documented. Coda vowel nasalisation: a vowel before a tautosyllabic (coda) ⟨m/n⟩ nasalises (campo [ˈkɐ̃pu], sim [ˈsĩ], bom [ˈbõ]); this is modelled by the positional m/n before_consonant/word_final → U+0303 tilde plus the PT_NASAL_*_RAISE / PT_NASAL_O_UNRED vowel-quality rules (Mateus & d'Andrade 2000: ch.2, 'Nasality'). KNOWN SIMPLIFICATION: word-final ⟨-am⟩ and ⟨-em/-ém⟩ are the nasal DIPHTHONGS [ɐ̃w̃] and [ɐ̃j̃] (cantam [ˈkɐ̃tɐ̃w̃], homem [ˈɔmɐ̃j̃], bem [ˈbɐ̃j̃]); this base spec currently renders them as the nasal MONOPHTHONGS [ɐ̃]/[ẽ] (cantam→[ˈkɐ̃tɐ̃], bem→[ˈbẽ]), because the final-nasal offglide is a separate whole-cluster process not yet modelled — it is a pre-existing gap left for a dedicated final-nasal-diphthong task, out of scope for the coda-nasalisation work. Related pre-existing gap (NOT introduced by nasalisation): the ⟨gu⟩ digraph maps to [ɡ] dropping a NUCLEAR ⟨u⟩ before a consonant (algum, segundo, água), which is wrong for gu+a/o/u; the coda-nasalisation engine guard only ensures no invalid tilde is emitted onto the stranded [ɡ], it does not fix the ⟨gu⟩ vowel-drop itself.",
+  "notes": "Modern European Portuguese (PT-PT). Base mapping uses a neutral orthographic standard. Digraphs per Acordo Ortográfico. Portuguese preserves the /v/~/b/ distinction (unique in Ibero-Romance — Castilian merged them). Nasal vowels and extreme vowel reduction are diagnostic features. Post-lexical allophony: the diagnostic EP unstressed vowel reduction (unstressed /a/->[ɐ], /e/->[ɨ] (word-final often deletable), /o/->[u]) is realised in the PRE-lexical positional_graphemes map (the nucleus_stressed/nucleus_unstressed/pretonic/posttonic/word_final rows), so no redundant allophone rule restates it. The allophone_rules layer adds the post-lexical CONSONANT realisations that the grapheme map cannot reach cleanly at word edges: dark coda /l/->[ɫ], and the Lisbon-standard coda sibilants /s/->[ʃ], /z/->[ʒ] (the 'chiado'). Intervocalic voiced-stop spirantisation (/b d ɡ/->[β ð ɣ]; Mateus & d'Andrade 2000) is a genuine EP process but is DELIBERATELY NOT encoded here: every available pt gold (infopedia_pt, ep_dialects, wikipron) is broad/phonemic and transcribes the stops, so a spirantisation rule is correct yet regresses all measurable golds with none rewarding it; it is left for a future narrow-transcription task. Dialect-specific sibilant/vocalism deltas (northern apico-alveolar coda [s̺], insular vocalism) are handled by the pt-PT-x-* dialect specs, not the base. Benchmark honesty: the coda sibilant rules improve every pt gold; the dark-l rule improves the narrow human golds (infopedia_pt, ep_dialects) but regresses the broader WikiPron pt row (which transcribes coda /l/ as plain [l]) — it is kept per the honesty gate because the higher-quality golds reward it, with the divergence documented. Coda vowel nasalisation: a vowel before a tautosyllabic (coda) ⟨m/n⟩ nasalises (campo [ˈkɐ̃pu], sim [ˈsĩ], bom [ˈbõ]); this is modelled by the positional m/n before_consonant/word_final → U+0303 tilde plus the PT_NASAL_*_RAISE / PT_NASAL_O_UNRED vowel-quality rules (Mateus & d'Andrade 2000: ch.2, 'Nasality'). KNOWN SIMPLIFICATION: word-final ⟨-am⟩ and ⟨-em/-ém⟩ are the nasal DIPHTHONGS [ɐ̃w̃] and [ɐ̃j̃] (cantam [ˈkɐ̃tɐ̃w̃], homem [ˈɔmɐ̃j̃], bem [ˈbɐ̃j̃]); this base spec currently renders them as the nasal MONOPHTHONGS [ɐ̃]/[ẽ] (cantam→[ˈkɐ̃tɐ̃], bem→[ˈbẽ]), because the final-nasal offglide is a separate whole-cluster process not yet modelled — it is a pre-existing gap left for a dedicated final-nasal-diphthong task, out of scope for the coda-nasalisation work. Related pre-existing gap (NOT introduced by nasalisation): the ⟨gu⟩ digraph maps to [ɡ] dropping a NUCLEAR ⟨u⟩ before a consonant (algum, segundo, água), which is wrong for gu+a/o/u; the coda-nasalisation engine guard only ensures no invalid tilde is emitted onto the stranded [ɡ], it does not fix the ⟨gu⟩ vowel-drop itself. SIBILANTS: the standard has plain alveolar /s z/. Cruz-Ferreira's IPA illustration of the Lisbon standard (Handbook of the IPA 1999, pp. 126-127) puts plain s and z in the Alveolar column of the consonant chart, with caço [ˈkasu] against caso [ˈkazu]. ⟨ss⟩ is therefore declared here as [s]. Without the key, the ⟨ss⟩ of roa-x-galaicopt and pt-PT-x-medieval fell through as the apico-alveolar [s̺], and isso came out [ˈis̺u]. Positional ⟨c⟩ before ⟨e i⟩, ⟨ç⟩ and ⟨s⟩ were already plain. Mateus & d'Andrade 2000 was sought for this entry and not read. The northern apico-alveolar is a dialect delta: a pt-PT-x-* spec that has it declares its own ⟨ss⟩.",
   "sources": [
     {
       "id": "mateus_dandrade2000",
@@ -487,7 +490,7 @@
       "publisher": "Oxford University Press",
       "url": null,
       "pages": null,
-      "notes": null
+      "notes": "Not consulted for the sibilant entry: Google Books shows no pages, archive.org holds no copy and the publisher text is paywalled."
     },
     {
       "id": "cruzferreira1995",
@@ -498,6 +501,16 @@
       "url": "https://doi.org/10.1017/S0025100300005223",
       "pages": "90-94",
       "notes": "Illustration of the IPA for European (Lisbon-standard) Portuguese: velarised coda /l/ [ɫ], coda sibilant [ʃ ʒ], unstressed vowel reduction."
+    },
+    {
+      "id": "cruzferreira1999",
+      "author": "Cruz-Ferreira, Madalena",
+      "year": 1999,
+      "title": "Portuguese (European)",
+      "publisher": "Handbook of the International Phonetic Association, Cambridge University Press, 126-130 (reprint of the 1995 JIPA Illustration)",
+      "url": "https://archive.org/details/rosettaproject_por_phon-1",
+      "pages": "126-127",
+      "notes": "Read directly (page images checked). The illustration is based on the Lisbon dialect. The consonant chart puts plain s and z in the Alveolar column, with caço [ˈkasu] and caso [ˈkazu] as the exemplars."
     },
     {
       "id": "cunha_cintra1984",

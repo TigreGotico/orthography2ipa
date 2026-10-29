@@ -602,7 +602,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | pt-MZ | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | pt-MZ | portuguese_unified | 53147 | 0.1698 | - | 0.1442 | 0.1273 | 0.3250 | 0.3825 | [0.1686, 0.1711] | 0.2555 | research | lexicon-derived |
 | pt-PT | ep_dialects | 30 | 0.1185 | - | - | - | - | - | [0.0931, 0.1462] | 0.1333 | research | expert-human |
-| pt-PT | ipa_childes | 3846 | 0.2485‡ | - | 0.1863 | 0.1722 | 0.3565 | 0.3838 | [0.2412, 0.2558] | 0.2574 | research | espeak-derived |
+| pt-PT | ipa_childes | 3846 | 0.2486‡ | - | 0.1864 | 0.1723 | 0.3565 | 0.3838 | [0.2413, 0.2558] | 0.2574 | research | espeak-derived |
 | pt-PT | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | pt-PT | portuguese_unified | 105553 | 0.2235 | - | 0.2013 | 0.1904 | 0.1826 | 0.1962 | [0.2225, 0.2245] | 0.1502 | research | lexicon-derived |
 | pt-PT | wikipron | 56978 | 0.0899 | - | 0.0678 | 0.0586 | 0.6061 | 0.6504 | [0.0887, 0.0909] | 0.5401 | research | crowd-scraped |
@@ -630,7 +630,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | pt-PT-x-lisbon | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | pt-PT-x-lisbon | portuguese_unified | 53150 | 0.1046 | - | 0.0840 | 0.0735 | 0.4796 | 0.5143 | [0.1036, 0.1055] | 0.4086 | research | lexicon-derived |
 | pt-PT-x-lisbon | primary_sources | 33 | 0.0288 | - | 0.0288 | 0.0288 | 0.8788 | 0.8788 | [0.0075, 0.0561] | 0.8788 | research | expert-human |
-| pt-PT-x-madeira | clup_dialect | 4† | 0.3250‡ | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
+| pt-PT-x-madeira | clup_dialect | 4† | 0.3254‡ | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
 | pt-PT-x-madeira | ep_dialects | 30 | 0.0952 | - | - | - | - | - | [0.0662, 0.1257] | 0.2667 | research | expert-human |
 | pt-PT-x-madeira | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | pt-PT-x-medieval | portuguese_tts | 20 | 0.0020‡ | - | - | - | - | - | [0.0000, 0.0060] | 0.9500 | research | llm-generated |
