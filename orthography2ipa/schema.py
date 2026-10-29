@@ -336,6 +336,7 @@ class StressRulesModel(_Strict):
     accent2_mark: str = ""
     accent2_final_letters: Optional[List[str]] = None
     diphthongs: Optional[List[str]] = None
+    ipa_diphthongs: Optional[List[str]] = None
     vowel_letters: Optional[List[str]] = None
     quantity_sensitive: bool = False
     superheavy_final_attracts: bool = True

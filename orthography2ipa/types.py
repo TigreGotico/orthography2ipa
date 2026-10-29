@@ -479,6 +479,18 @@ class StressRules:
         keeps ``ciu-tat`` and ``ai-gua`` intact while splitting ``te-ni-a``.
         Empty (the default) preserves the merge-the-whole-run behaviour, so
         every spec that does not declare it is unaffected.
+    ipa_diphthongs : Optional[Tuple[str, ...]]
+        IPA vowel sequences that form a SINGLE nucleus in the transcription,
+        read only where the stress mark is placed. ``None`` (the default)
+        splits the transcription with :attr:`diphthongs`, as the spelling is
+        split. That is wrong for a language whose spelling writes a diphthong
+        as two vowel letters but whose transcription writes it with a glide:
+        Portuguese ⟨ui⟩ is [uj], so an IPA [ui] comes only from a hiatus
+        such as ⟨uí⟩, and reading it with the orthographic ⟨ui⟩ entry merges
+        ⟨proíbe⟩ /pɾuibɨ/ into two syllables and marks ˈpɾuibɨ.
+
+        A declared tuple replaces :attr:`diphthongs` for the transcription. An
+        empty tuple makes every IPA vowel its own nucleus.
     vowel_letters : Tuple[str, ...]
         The letters this orthography uses as syllable NUCLEI, for the bundled
         syllabifier. Left empty (the default) the splitter falls back to a
@@ -677,6 +689,7 @@ class StressRules:
     marked_vowels: Tuple[str, ...] = ()
     stress_mark: str = "ˈ"
     diphthongs: Tuple[str, ...] = ()
+    ipa_diphthongs: Optional[Tuple[str, ...]] = None
     vowel_letters: Tuple[str, ...] = ()
     quantity_sensitive: bool = False
     superheavy_final_attracts: bool = True
