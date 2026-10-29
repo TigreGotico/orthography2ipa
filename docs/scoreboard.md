@@ -734,8 +734,8 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | tzm | wikipron | 658 | 0.0160 | - | 0.0160 | 0.0160 | 0.9483 | 0.9483 | [0.0101, 0.0225] | 0.9483 | research | crowd-scraped |
 | uby | wikipron | 1317 | 0.0247 | - | 0.0214 | 0.0209 | 0.9043 | 0.9043 | [0.0201, 0.0300] | 0.8998 | research | crowd-scraped |
 | udm | northeuralex | 973 | 0.2110 | - | 0.1908 | 0.1896 | 0.3875 | 0.3905 | [0.1989, 0.2233] | 0.3350 | research | lexicon-derived |
-| ug | vox_communis | 40503 | 0.0842‡ | - | 0.0842 | 0.0842 | 0.4977 | 0.4977 | [0.0832, 0.0852] | 0.4977 | research | epitran-derived |
-| ug | wikipron | 2644 | 0.0470 | - | 0.0470 | 0.0470 | 0.7307 | 0.7307 | [0.0436, 0.0502] | 0.7307 | research | crowd-scraped |
+| ug | vox_communis | 40503 | 0.0864‡ | - | 0.0864 | 0.0864 | 0.4905 | 0.4905 | [0.0853, 0.0874] | 0.4905 | research | epitran-derived |
+| ug | wikipron | 2644 | 0.0419 | - | 0.0062 | 0.0061 | 0.9675 | 0.9682 | [0.0386, 0.0450] | 0.7610 | research | crowd-scraped |
 | uk | primary_sources | 45 | 0.0759 | - | 0.0360 | 0.0264 | 0.7778 | 0.8444 | [0.0470, 0.1096] | 0.6444 | research | expert-human |
 | uk | vox_communis | 51621 | 0.2672‡ | - | 0.1695 | 0.1332 | 0.2478 | 0.3411 | [0.2659, 0.2684] | 0.0846 | research | epitran-derived |
 | uk | wikipron | 51646 | 0.0992 | - | 0.0724 | 0.0691 | 0.4929 | 0.5006 | [0.0982, 0.1001] | 0.4413 | research | crowd-scraped |
