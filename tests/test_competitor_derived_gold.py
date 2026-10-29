@@ -36,6 +36,7 @@ from benchmark import (  # noqa: E402
     _IPA_CHILDES_TOOL,
     can_gate_promotion,
     provenance_for,
+    row_gates,
 )
 
 # The promotion bar of docs/quality_tiers.md, in code, so the rule can be tested.
@@ -262,7 +263,7 @@ class TestGatingFieldDerivedAndRendered:
 
     def test_backfilled_results_json_gating_matches_provenance(self):
         """Every committed row carries a `gating` value that agrees with
-        `can_gate_promotion(row["provenance"])` — the backfill must be a pure
+        `row_gates(row["provenance"], row["n"])` — the backfill must be a pure
         derivation, never a hand patch that can drift.
 
         The row count is asserted as well, so that registering a dataset has
@@ -277,7 +278,7 @@ class TestGatingFieldDerivedAndRendered:
         assert len(rows) == 741
         mismatched = [
             (r["lang"], r["dataset"]) for r in rows
-            if r.get("gating") != can_gate_promotion(r["provenance"])
+            if r.get("gating") != row_gates(r["provenance"], r["n"])
         ]
         assert not mismatched, (
             f"rows whose committed `gating` disagrees with a fresh "
@@ -344,7 +345,8 @@ class TestGatingFieldDerivedAndRendered:
         assert "gating" in target
 
         def fake_loader(lang, limit):
-            return [("saluton", "saluton")]
+            words = [c + v for c in "bdfgklmnprstvz" for v in "aeiou"]
+            return [(w, w) for w in words[:benchmark.THIN_ROW_N]]
 
         monkeypatch.setitem(
             benchmark.DATASETS, "wikipron", (fake_loader, ["eo"]))
@@ -355,4 +357,5 @@ class TestGatingFieldDerivedAndRendered:
                           if r["lang"] == "eo" and r["dataset"] == "wikipron")
 
         assert refreshed["gating"] == target["gating"]
-        assert refreshed["gating"] == can_gate_promotion(refreshed["provenance"])
+        assert refreshed["gating"] == row_gates(
+            refreshed["provenance"], refreshed["n"])

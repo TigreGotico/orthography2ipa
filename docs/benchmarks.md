@@ -75,8 +75,9 @@ be read:
 - **Small-`N` rows are anecdotes.** Many `clup_dialect` rows are `N=1-17`
   and several `ep_dialects`/`mirandese` rows are `N<30`. Always
   cross-reference the row's bootstrap `95% CI` on the scoreboard: a wide
-  or degenerate interval (e.g. `N=1` gives `[x, x]`) means the row cannot
-  support a conclusion, only a hint. The scoreboard marks these rows
+  interval means the row is noisy, and `n too small` (fewer than 20 scored
+  words) means it has no interval at all and cannot gate. Either way the
+  row cannot support a conclusion, only a hint. The scoreboard marks these rows
   with a `†` after `N` (see "Confidence intervals" below) so they cannot
   be mistaken for a measurement of the same weight as a row scored on
   thousands of words.

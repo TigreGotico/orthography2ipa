@@ -132,14 +132,16 @@ BOOTSTRAP_REPS = 1000
 # head. Never randomized, so the same ``limit`` always selects the same
 # words across runs/machines — an unbiased but fully reproducible slice.
 SAMPLE_SEED = 20260711
-# A row's bootstrap CI is computed by resampling its per-word PER list
-# with replacement; below this many scored words the resample can only
-# ever reproduce the handful of values it started with, so the interval
-# collapses toward the point estimate instead of widening the way it
-# would on a real sample. Rows this thin get an explicit marker in the
-# rendered `N` column rather than being left to look as trustworthy as a
-# row scored on thousands of words just because their CI happens to be
-# narrow.
+# The smallest sample that supports a measurement. A row's bootstrap CI
+# resamples its per-word PER list with replacement; a list of one word can
+# only return that word, so the interval is the point itself. Coverage
+# recovers slowly: a simulation of the percentile interval on zero-inflated
+# per-word PERs (half exact, the rest Beta(1.5, 4)) covers the true mean in
+# 0.0 of trials at n=1, 0.48 at n=2, 0.79 at n=5 and 0.88 at n=10 against a
+# nominal 0.95, and reaches 0.90-0.92 from n=15 to n=50, where it stops
+# improving. 20 is the first round number on that plateau. Below it a row
+# has no interval (null), does not gate (see `row_gates`) and carries a
+# marker in the rendered `N` column.
 THIN_ROW_N = 20
 # Import THIN_ROW_MARK from the guard to keep them in sync and prevent drift.
 # The guard is the canonical source for this constant since it is responsible
@@ -3937,19 +3939,20 @@ def bootstrap_per_ci(
     pers: List[float],
     reps: int = BOOTSTRAP_REPS,
     seed: int = BOOTSTRAP_SEED,
-) -> Tuple[float, float]:
+) -> Tuple[Optional[float], Optional[float]]:
     """95% bootstrap confidence interval for the mean PER.
 
     Resamples ``pers`` (the per-word PER list) with replacement ``reps``
     times using a fixed-seed ``random.Random`` (never the global RNG),
     computes the mean of each resample, and returns the 2.5th/97.5th
     percentiles of the resulting distribution. Deterministic across runs
-    given the same input list, seed and rep count. Returns ``(0.0, 0.0)``
-    for an empty input (nothing to resample).
+    given the same input list, seed and rep count. Returns ``(None, None)``
+    below ``THIN_ROW_N`` words: a sample that small cannot be resampled into
+    an interval, and reporting its point as ``[x, x]`` claims certainty.
     """
     n = len(pers)
-    if n == 0:
-        return (0.0, 0.0)
+    if n < THIN_ROW_N:
+        return (None, None)
     rng = random.Random(seed)
     means: List[float] = []
     for _ in range(reps):
@@ -3965,6 +3968,13 @@ def bootstrap_per_ci(
         return means[lo] + (means[hi] - means[lo]) * frac
 
     return (_percentile(0.025), _percentile(0.975))
+
+
+def row_gates(provenance: str, n: int) -> bool:
+    """Whether a row may qualify or block a language, or fail the regression
+    gate: its provenance tier can gate and it has at least ``THIN_ROW_N``
+    scored words. The one place the sample-size floor is applied."""
+    return n >= THIN_ROW_N and can_gate_promotion(provenance)
 
 
 def _quality_tier(lang: str) -> Optional[str]:
@@ -4135,20 +4145,21 @@ def build_scoreboard(limit: Optional[int], oracle: bool = False,
                 "dataset": dataset_name,
                 "n": covered,
                 "per": round(per, 4),
-                "per_ci_low": round(ci_low, 4),
-                "per_ci_high": round(ci_high, 4),
+                "per_ci_low": None if ci_low is None else round(ci_low, 4),
+                "per_ci_high": None if ci_high is None else round(ci_high, 4),
                 "exact_match": round(1.0 - wer, 4),
                 "quality_tier": _quality_tier(lang),
                 "provenance": provenance_for(dataset_name, lang),
                 # Whether THIS row's provenance tier may gate a `production`
                 # promotion — i.e. qualify or block one, per docs/index.md
-                # and docs/quality_tiers.md. Derived from `provenance` via
-                # `can_gate_promotion()` (the single source of truth for the
-                # tier lattice; see `NON_QUALIFYING_TIERS`) so the field can
-                # never drift from the policy it represents: regenerating
-                # the board recomputes it from the row's own provenance
-                # every time rather than carrying a hand-authored value.
-                "gating": can_gate_promotion(provenance_for(dataset_name, lang)),
+                # and docs/quality_tiers.md. Derived from `provenance` and
+                # `n` via `row_gates()` (over `can_gate_promotion()`, the
+                # single source of truth for the tier lattice; see
+                # `NON_QUALIFYING_TIERS`) so the field can never drift from
+                # the policy it represents: regenerating the board
+                # recomputes it from the row's own provenance and sample
+                # size every time rather than carrying a hand-authored value.
+                "gating": row_gates(provenance_for(dataset_name, lang), covered),
                 "harness_version": HARNESS_VERSION,
                 "limit": limit,
             })
@@ -4324,18 +4335,14 @@ def write_scoreboard(rows: List[dict]) -> None:
         "are different states and are never merged into one blank.",
         "",
         "A row's `N` is its sample size in scored words, and it is not "
-        "cosmetic: below roughly 20 words the bootstrap `95% CI` above "
-        "stops being informative — resampling one or two words with "
-        "replacement can only ever reproduce the same one or two values, "
-        f"so the interval collapses toward a single point (see {THIN_ROW_N} "
-        "and below) instead of widening the way it would on a real "
-        "sample. A degenerate `[x, x]` interval on a thin row is NOT "
-        "evidence of precision; it is an artifact of having too little "
-        "data to resample. Rows with fewer than "
-        f"{THIN_ROW_N} scored words carry a "
-        f"`{THIN_ROW_MARK}` after `N` for exactly this reason, and must "
-        "never be read as comparable to a row scored on thousands of "
-        "words, no matter how narrow their CI looks.",
+        f"cosmetic: below {THIN_ROW_N} words a bootstrap `95% CI` cannot be "
+        "computed — resampling one or two words with replacement can only "
+        "reproduce the same one or two values, so the interval would be a "
+        "single point that reads as certainty. Such a row has a null "
+        "interval, shown as `n too small`, and cannot gate (`gating` is "
+        f"`false`). Rows with fewer than {THIN_ROW_N} scored words carry a "
+        f"`{THIN_ROW_MARK}` after `N` for this reason, and must never be "
+        "read as comparable to a row scored on thousands of words.",
         "",
         "The `Ceiling` column is a `valid_ceiling` measurement, when one has "
         "been executed for the row's (language, dataset) pair: the PER once "
@@ -4356,14 +4363,15 @@ def write_scoreboard(rows: List[dict]) -> None:
         "A `PER` marked "
         f"`{NON_QUALIFYING_MARK}` is a **non-qualifying** row: its "
         "`provenance` tier cannot gate a `production` promotion (see the "
-        "`Provenance` legend above and `docs/index.md`), so this number can "
+        "`Provenance` legend above and `docs/index.md`) or it has fewer "
+        f"than {THIN_ROW_N} scored words, so this number can "
         "neither qualify a language for promotion nor block one, no matter "
         "how good or bad it looks. `gating` in "
         "[`benchmarks/results.json`](../benchmarks/results.json) carries the "
-        "same boolean and is DERIVED from `provenance` via "
-        "`can_gate_promotion()` at scoreboard-generation time, never "
-        "hand-set — the same one source of truth `docs/quality_tiers.md`'s "
-        "`production` criteria already use.",
+        "same boolean and is DERIVED from `provenance` and `N` via "
+        "`row_gates()` at scoreboard-generation time, never "
+        "hand-set — on top of the `can_gate_promotion()` source of truth "
+        "`docs/quality_tiers.md`'s `production` criteria already use.",
         "",
         "| Lang | Dataset | N | PER | Ceiling | Oracle@3 | Oracle@5 | OracleX@3 "
         "| OracleX@5 | 95% CI | Exact match | Quality tier | Provenance |",
@@ -4376,7 +4384,10 @@ def write_scoreboard(rows: List[dict]) -> None:
         # A row scored before the CI column existed carries nulls; a
         # merged board can hold both generations.
         lo, hi = row.get("per_ci_low"), row.get("per_ci_high")
-        ci = "-" if lo is None or hi is None else f"[{lo:.4f}, {hi:.4f}]"
+        if lo is not None and hi is not None:
+            ci = f"[{lo:.4f}, {hi:.4f}]"
+        else:
+            ci = "n too small" if row["n"] < THIN_ROW_N else "-"
         # Three distinct states, three distinct markers:
         #   "·"  never rescored since the oracle columns landed
         #   "-"  rescored, but no word had a real candidate list
