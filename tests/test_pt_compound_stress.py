@@ -7,7 +7,8 @@ word break, so it used to write a primary mark on every element. With
 ``stress.compound_stress = "last"`` the last marked element of a
 hyphen-joined group keeps ``ˈ`` and every earlier one takes ``ˌ``. A
 clitic (``stress.cliticless_words``) carries no mark, as before: *chamo-me*
-is one stress, on the verb.
+is one stress, on the verb. An enclitic leans on its host, and *fala-se* is
+one prosodic word (Toneli 2011, citing Vigário 2003).
 
 Expected rows give one entry per hyphen element, read from the Portal da
 Língua Portuguesa or Infopédia transcription named beside it, or from the
@@ -39,6 +40,13 @@ ROWS = [
     ("chamo-me", [P, None]),
     ("dá-lo", [P, None]),
     ("fá-lo-ia", [S, None, P]),
+    # Mesoclisis has the shape of vê-lo-emos: the ending after the atonic
+    # pronoun is the last stressed element.
+    ("dir-se-ia", [S, None, P]),
+    # Bechara's rule, with the article an atonic clitic as in lobo-da-alsácia.
+    ("Trás-os-Montes", [S, None, P]),
+    # Not a compound: one word, one primary.
+    ("casa", [P]),
 ]
 
 
