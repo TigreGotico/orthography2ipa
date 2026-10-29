@@ -46,9 +46,9 @@ def test_wo_that_is_an_onset_or_has_its_own_vowel_is_unchanged(
     assert th.transcribe_word(word) == expected
 
 
-def test_only_thai_declares_the_field():
+def test_only_thai_and_lao_declare_the_field():
     declared = {
         code for code in registry.available_codes()
         if registry.get(code).consonant_nuclei
     }
-    assert declared == {"th"}
+    assert declared == {"th", "lo"}
