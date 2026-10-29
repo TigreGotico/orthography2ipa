@@ -87,7 +87,7 @@ def test_thin_row_threshold_is_documented_in_the_legend(tmp_path, monkeypatch):
 
 def test_results_json_values_are_unaffected_by_the_marker(tmp_path, monkeypatch):
     """The marker is a rendering-only annotation: results.json keeps the
-    raw integer n, per, and CI bounds untouched."""
+    raw integer n and per, and a null interval stays null."""
     import benchmark
     import json
 
@@ -96,14 +96,35 @@ def test_results_json_values_are_unaffected_by_the_marker(tmp_path, monkeypatch)
     monkeypatch.setattr(benchmark, "SCOREBOARD_MD", str(md))
     monkeypatch.setattr(benchmark, "SCOREBOARD_JSON", str(js))
 
-    row = _row(1, per=0.7143, per_ci_low=0.7143, per_ci_high=0.7143)
+    row = _row(1, per=0.7143, per_ci_low=None, per_ci_high=None)
     write_scoreboard([row])
 
     data = json.loads(js.read_text(encoding="utf-8"))
     assert data[0]["n"] == 1
     assert data[0]["per"] == 0.7143
-    assert data[0]["per_ci_low"] == 0.7143
-    assert data[0]["per_ci_high"] == 0.7143
+    assert data[0]["per_ci_low"] is None
+    assert data[0]["per_ci_high"] is None
+
+
+def test_thin_row_interval_renders_as_n_too_small(tmp_path, monkeypatch):
+    import benchmark
+
+    md = tmp_path / "scoreboard.md"
+    monkeypatch.setattr(benchmark, "SCOREBOARD_MD", str(md))
+    monkeypatch.setattr(benchmark, "SCOREBOARD_JSON", str(tmp_path / "r.json"))
+    thin = _row(1, lang="aa", per=0.7143, per_ci_low=None, per_ci_high=None)
+    legacy = _row(500, lang="bb", per_ci_low=None, per_ci_high=None)
+    sound = _row(500, lang="cc", per_ci_low=0.08, per_ci_high=0.12)
+    write_scoreboard([thin, legacy, sound])
+
+    cells = {}
+    for line in md.read_text(encoding="utf-8").splitlines():
+        if line.startswith("| aa |") or line.startswith("| bb |") \
+                or line.startswith("| cc |"):
+            parts = [c.strip() for c in line.strip("|").split("|")]
+            cells[parts[0]] = parts[9]
+    assert cells == {"aa": "n too small", "bb": "-",
+                     "cc": "[0.0800, 0.1200]"}
 
 
 def test_committed_scoreboard_is_in_sync_with_generator(tmp_path, monkeypatch):

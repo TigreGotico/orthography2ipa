@@ -176,13 +176,21 @@ uncertainty rather than as a false-precision leaderboard entry:
 - A narrow interval is only informative when `N` backs it up. Bootstrap
   resampling draws its samples from the row's own per-word PER list, so
   on a handful of words it can only ever reshuffle the same handful of
-  values back at itself: a row scored on one word gets a `[x, x]`
-  interval that looks perfectly precise, and a row scored on two or
-  three words gets one nearly as tight, purely because there was
-  nothing to resample. That is an artifact of the sample size, not
-  evidence the PER is well measured. `docs/scoreboard.md` marks any row
-  under 20 scored words with a `†` after its `N` for exactly this
-  reason: read a marked row's PER as a single anecdote, never rank it
+  values back at itself: a row scored on one word would get a `[x, x]`
+  interval that looks perfectly precise. That is an artifact of the sample
+  size, not evidence the PER is well measured. A row under
+  `THIN_ROW_N` (20) scored words therefore has `null` for `per_ci_low`
+  and `per_ci_high`, and `docs/scoreboard.md` shows `n too small` in its
+  `95% CI` cell. The floor comes from a simulation of the percentile
+  interval on zero-inflated per-word PERs: it covers the true mean in
+  0.48 of trials at n=2, 0.79 at n=5 and 0.88 at n=10, and 0.90 to 0.92
+  from n=15 up, against a nominal 0.95.
+- The same floor decides whether a row gates. A row under `THIN_ROW_N`
+  words has `gating: false` in `benchmarks/results.json`, so it can
+  neither qualify a language for promotion nor block one, and the
+  regression gate reports its worsening as `drifted`, not `regressed`.
+  `docs/scoreboard.md` marks the row with `†` after `N` and `‡` after
+  `PER`. Read a marked row's PER as a single anecdote, never rank it
   against, or average it with, an unmarked row scored on hundreds or
   thousands of words. A row's weight on the board is its `N`, not its
   position in a PER sort.
@@ -392,6 +400,21 @@ deliberately capped, top-frequency pilot lexicon. The shipped `en-GB` pilot
 (CMUdict-derived, General American) cuts PER on covered words roughly in half
 against the independent WikiPron gold: the pilot proves the mechanism. Full
 production lexica belong downstream.
+
+### Board environment
+
+A whole-board `--scoreboard` run writes `benchmarks/results_environment.json`.
+It lists the resolved version of every registered plugin entry point and of
+every optional scorer package, or `null` for one that is not installed. When a
+row moves with no spec change, diff this file first: a floor-pinned package
+such as `silabificador` resolves to the newest release on each box.
+
+A whole-board run exits non-zero and writes nothing when it cannot score a
+row the committed board carries. The message names each row as
+`dataset/lang`. A run scoped with `--lang` or `--dataset` prints the same
+names as a warning and keeps the committed values. A row whose scorer package
+no CI job installs carries `"ci_reproducible": false`, and the scoreboard
+shows `(not CI-reproducible)` in its `Provenance` cell.
 
 ## Reference numbers
 

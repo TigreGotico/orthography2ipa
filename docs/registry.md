@@ -32,6 +32,11 @@ orthography2ipa.ancestry_chain("pt-BR")
 # ['pt-PT-x-medieval', 'roa-x-galaicopt', 'x-clade-iberrom', 'la-x-hispania', ...]
 ```
 
+A private-use tag that names no spec (`pt-x-typo`) still resolves to the nearest
+registered spec, and `resolve()` and `get()` emit `UnknownVariantWarning` naming
+the discarded subtag and the spec chosen. Ask for the base tag to get base-language
+behaviour without the warning. `get(code, strict=True)` raises `KeyError` instead.
+
 Clade nodes are classification-only: they carry no phoneme data, are never
 inherited from, and are excluded from `available_codes()` by default. `family` is
 derived from them: see [ancestry.md](ancestry.md#clade-nodes-and-the-derived-family).
@@ -126,7 +131,6 @@ derived from them: see [ancestry.md](ancestry.md#clade-nodes-and-the-derived-fam
 | `an-x-occidental` | Western Aragonese |
 | `an-x-oriental` | Eastern Aragonese |
 | `ext` | Extremaduran |
-| `ext-x-septentrional` | Northern Extremaduran |
 | `mwl` | Mirandese |
 | `mwl-x-sendim` | Sendinese Mirandese |
 | `grc` | Ancient Greek |

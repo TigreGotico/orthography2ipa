@@ -20,6 +20,7 @@ import pytest
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
 
 import check_board_not_reverting as guard  # noqa: E402
+from orthography2ipa import UnknownVariantWarning  # noqa: E402
 
 
 def row(lang="mr", dataset="wikipron", per=0.4351, n=4267):
@@ -303,12 +304,19 @@ class TestSpecResolution:
 
     @pytest.mark.parametrize("lang, code", [
         ("de", "de-DE"), ("en", "en-GB"), ("es", "es-ES"), ("fr", "fr-FR"),
-        ("it", "it-IT"), ("ro", "ro-RO"), ("pt-BR-x-carioca", "pt-BR"),
+        ("it", "it-IT"), ("ro", "ro-RO"),
     ])
     def test_bare_tag_resolves_to_its_spec(self, lang, code):
         repo = os.path.join(os.path.dirname(__file__), "..")
         assert guard.spec_code(lang, repo=repo) == code
         assert code in guard.spec_ancestors(lang, repo=repo)
+
+    def test_a_board_label_without_a_spec_resolves_to_its_regional_spec(self):
+        """``pt-BR-x-carioca`` is a dataset label, not a spec, so the lookup
+        warns that it settled for ``pt-BR``."""
+        repo = os.path.join(os.path.dirname(__file__), "..")
+        with pytest.warns(UnknownVariantWarning):
+            assert guard.spec_code("pt-BR-x-carioca", repo=repo) == "pt-BR"
 
     def test_a_tag_with_its_own_spec_is_its_own_spec(self):
         repo = os.path.join(os.path.dirname(__file__), "..")

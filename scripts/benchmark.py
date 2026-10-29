@@ -100,6 +100,8 @@ import time
 import unicodedata
 import urllib.parse
 import urllib.request
+from importlib.metadata import PackageNotFoundError, entry_points
+from importlib.metadata import version as package_version
 from typing import (Callable, Dict, Iterator, List, Optional, Sequence,
                     Tuple)
 
@@ -132,14 +134,16 @@ BOOTSTRAP_REPS = 1000
 # head. Never randomized, so the same ``limit`` always selects the same
 # words across runs/machines — an unbiased but fully reproducible slice.
 SAMPLE_SEED = 20260711
-# A row's bootstrap CI is computed by resampling its per-word PER list
-# with replacement; below this many scored words the resample can only
-# ever reproduce the handful of values it started with, so the interval
-# collapses toward the point estimate instead of widening the way it
-# would on a real sample. Rows this thin get an explicit marker in the
-# rendered `N` column rather than being left to look as trustworthy as a
-# row scored on thousands of words just because their CI happens to be
-# narrow.
+# The smallest sample that supports a measurement. A row's bootstrap CI
+# resamples its per-word PER list with replacement; a list of one word can
+# only return that word, so the interval is the point itself. Coverage
+# recovers slowly: a simulation of the percentile interval on zero-inflated
+# per-word PERs (half exact, the rest Beta(1.5, 4)) covers the true mean in
+# 0.0 of trials at n=1, 0.48 at n=2, 0.79 at n=5 and 0.88 at n=10 against a
+# nominal 0.95, and reaches 0.90-0.92 from n=15 to n=50, where it stops
+# improving. 20 is the first round number on that plateau. Below it a row
+# has no interval (null), does not gate (see `row_gates`) and carries a
+# marker in the rendered `N` column.
 THIN_ROW_N = 20
 # Import THIN_ROW_MARK from the guard to keep them in sync and prevent drift.
 # The guard is the canonical source for this constant since it is responsible
@@ -151,6 +155,11 @@ except ImportError:
     THIN_ROW_MARK = "†"
 SCOREBOARD_MD = os.path.join(REPO_ROOT, "docs", "scoreboard.md")
 SCOREBOARD_JSON = os.path.join(REPO_ROOT, "benchmarks", "results.json")
+#: The environment that scored the whole board: the resolved version of every
+#: registered plugin and optional scorer package. It sits beside
+#: ``results.json`` because that file is a bare list of rows.
+ENVIRONMENT_JSON = os.path.join(
+    REPO_ROOT, "benchmarks", "results_environment.json")
 LEXICON_SCOREBOARD_MD = os.path.join(REPO_ROOT, "docs", "lexicon_scoreboard.md")
 LEXICON_SCOREBOARD_JSON = os.path.join(
     REPO_ROOT, "benchmarks", "lexicon_results.json")
@@ -3937,19 +3946,20 @@ def bootstrap_per_ci(
     pers: List[float],
     reps: int = BOOTSTRAP_REPS,
     seed: int = BOOTSTRAP_SEED,
-) -> Tuple[float, float]:
+) -> Tuple[Optional[float], Optional[float]]:
     """95% bootstrap confidence interval for the mean PER.
 
     Resamples ``pers`` (the per-word PER list) with replacement ``reps``
     times using a fixed-seed ``random.Random`` (never the global RNG),
     computes the mean of each resample, and returns the 2.5th/97.5th
     percentiles of the resulting distribution. Deterministic across runs
-    given the same input list, seed and rep count. Returns ``(0.0, 0.0)``
-    for an empty input (nothing to resample).
+    given the same input list, seed and rep count. Returns ``(None, None)``
+    below ``THIN_ROW_N`` words: a sample that small cannot be resampled into
+    an interval, and reporting its point as ``[x, x]`` claims certainty.
     """
     n = len(pers)
-    if n == 0:
-        return (0.0, 0.0)
+    if n < THIN_ROW_N:
+        return (None, None)
     rng = random.Random(seed)
     means: List[float] = []
     for _ in range(reps):
@@ -3965,6 +3975,13 @@ def bootstrap_per_ci(
         return means[lo] + (means[hi] - means[lo]) * frac
 
     return (_percentile(0.025), _percentile(0.975))
+
+
+def row_gates(provenance: str, n: int) -> bool:
+    """Whether a row may qualify or block a language, or fail the regression
+    gate: its provenance tier can gate and it has at least ``THIN_ROW_N``
+    scored words. The one place the sample-size floor is applied."""
+    return n >= THIN_ROW_N and can_gate_promotion(provenance)
 
 
 def _quality_tier(lang: str) -> Optional[str]:
@@ -4135,23 +4152,26 @@ def build_scoreboard(limit: Optional[int], oracle: bool = False,
                 "dataset": dataset_name,
                 "n": covered,
                 "per": round(per, 4),
-                "per_ci_low": round(ci_low, 4),
-                "per_ci_high": round(ci_high, 4),
+                "per_ci_low": None if ci_low is None else round(ci_low, 4),
+                "per_ci_high": None if ci_high is None else round(ci_high, 4),
                 "exact_match": round(1.0 - wer, 4),
                 "quality_tier": _quality_tier(lang),
                 "provenance": provenance_for(dataset_name, lang),
                 # Whether THIS row's provenance tier may gate a `production`
                 # promotion — i.e. qualify or block one, per docs/index.md
-                # and docs/quality_tiers.md. Derived from `provenance` via
-                # `can_gate_promotion()` (the single source of truth for the
-                # tier lattice; see `NON_QUALIFYING_TIERS`) so the field can
-                # never drift from the policy it represents: regenerating
-                # the board recomputes it from the row's own provenance
-                # every time rather than carrying a hand-authored value.
-                "gating": can_gate_promotion(provenance_for(dataset_name, lang)),
+                # and docs/quality_tiers.md. Derived from `provenance` and
+                # `n` via `row_gates()` (over `can_gate_promotion()`, the
+                # single source of truth for the tier lattice; see
+                # `NON_QUALIFYING_TIERS`) so the field can never drift from
+                # the policy it represents: regenerating the board
+                # recomputes it from the row's own provenance and sample
+                # size every time rather than carrying a hand-authored value.
+                "gating": row_gates(provenance_for(dataset_name, lang), covered),
                 "harness_version": HARNESS_VERSION,
                 "limit": limit,
             })
+            if dataset_name in NOT_CI_REPRODUCIBLE:
+                rows[-1]["ci_reproducible"] = False
             ceiling = _valid_ceiling(lang, dataset_name)
             if ceiling is not None:
                 rows[-1]["valid_ceiling"] = ceiling
@@ -4177,6 +4197,101 @@ def build_scoreboard(limit: Optional[int], oracle: bool = False,
                     rows[-1]["oracle_injected_alternatives"] = injected
     rows.sort(key=lambda r: (r["lang"], r["dataset"]))
     return rows
+
+
+#: Distribution names of the optional packages that shape a row: those a
+#: dataset loader imports, and ``silabificador``, which the registered
+#: Portuguese syllabifier entry point loads (the entry point itself is
+#: declared by this package, so its version says nothing about the
+#: syllabifier). A floor-pinned package resolves to whatever is newest, so
+#: its version belongs beside the numbers it produced.
+#: ``test_board_environment`` checks every import in this file is listed.
+OPTIONAL_SCORER_PACKAGES = (
+    "huggingface_hub", "rarfile", "scriptconv", "silabificador",
+    "text2tashkeel")
+
+#: Datasets whose scorer package no CI job installs, mapped to that package.
+#: Their rows are reproducible only on a box that carries it.
+NOT_CI_REPRODUCIBLE = {"wikipron_ar_diacritized": "text2tashkeel"}
+
+
+def board_environment() -> dict:
+    """The resolved version of every registered plugin and optional scorer.
+
+    A scorer that is not installed reads ``None``: a board scored without it
+    has no row for it, and the record says why.
+    """
+    from orthography2ipa.plugins import ENTRY_POINT_GROUPS
+
+    plugins: Dict[str, dict] = {}
+    for group in ENTRY_POINT_GROUPS.values():
+        plugins[group] = {
+            ep.name: {
+                "target": ep.value,
+                "distribution": ep.dist.metadata["Name"],
+                "version": ep.dist.version,
+            }
+            for ep in sorted(entry_points(group=group), key=lambda e: e.name)
+        }
+    scorers: Dict[str, Optional[str]] = {}
+    for name in OPTIONAL_SCORER_PACKAGES:
+        try:
+            scorers[name] = package_version(name)
+        except PackageNotFoundError:
+            scorers[name] = None
+    return {"plugins": plugins, "scorers": scorers}
+
+
+def write_environment() -> None:
+    with open(ENVIRONMENT_JSON, "w", encoding="utf-8") as fh:
+        json.dump(board_environment(), fh, indent=SCOREBOARD_JSON_INDENT,
+                  ensure_ascii=False)
+        fh.write("\n")
+
+
+def unscored_committed_rows(
+        committed: List[dict], scored: List[dict],
+        only_langs: Optional[Sequence[str]] = None,
+        only_datasets: Optional[Sequence[str]] = None) -> List[str]:
+    """``dataset/lang`` of every committed row in scope that this run did
+    not produce although its dataset and language are still registered.
+
+    A row whose dataset or language was deregistered is retired, not lost.
+    """
+    have = {(r["lang"], r["dataset"]) for r in scored}
+    lost = []
+    for r in committed:
+        lang, dataset = r["lang"], r["dataset"]
+        if (lang, dataset) in have:
+            continue
+        if only_langs and lang not in only_langs:
+            continue
+        if only_datasets and dataset not in only_datasets:
+            continue
+        if lang in DATASETS.get(dataset, (None, ()))[1]:
+            lost.append(f"{dataset}/{lang}")
+    return sorted(lost)
+
+
+def require_committed_rows(
+        committed: List[dict], scored: List[dict], board: str,
+        only_langs: Optional[Sequence[str]] = None,
+        only_datasets: Optional[Sequence[str]] = None) -> None:
+    """Refuse to rewrite a whole board that lost a committed row; warn on a
+    scoped run, whose merge keeps the committed row anyway."""
+    lost = unscored_committed_rows(
+        committed, scored, only_langs, only_datasets)
+    if not lost:
+        return
+    names = "\n  ".join(lost)
+    if only_langs or only_datasets:
+        print(f"warning: {len(lost)} committed {board} row(s) not rescored "
+              f"(committed values kept):\n  {names}", file=sys.stderr)
+        return
+    sys.exit(f"refusing to write {board}: {len(lost)} committed row(s) "
+             f"could not be scored in this environment (see the 'skip' "
+             f"lines above). Install the missing scorer package or "
+             f"deregister the row:\n  {names}")
 
 
 def merge_scoreboard_rows(old: List[dict], new: List[dict]) -> List[dict]:
@@ -4324,18 +4439,14 @@ def write_scoreboard(rows: List[dict]) -> None:
         "are different states and are never merged into one blank.",
         "",
         "A row's `N` is its sample size in scored words, and it is not "
-        "cosmetic: below roughly 20 words the bootstrap `95% CI` above "
-        "stops being informative — resampling one or two words with "
-        "replacement can only ever reproduce the same one or two values, "
-        f"so the interval collapses toward a single point (see {THIN_ROW_N} "
-        "and below) instead of widening the way it would on a real "
-        "sample. A degenerate `[x, x]` interval on a thin row is NOT "
-        "evidence of precision; it is an artifact of having too little "
-        "data to resample. Rows with fewer than "
-        f"{THIN_ROW_N} scored words carry a "
-        f"`{THIN_ROW_MARK}` after `N` for exactly this reason, and must "
-        "never be read as comparable to a row scored on thousands of "
-        "words, no matter how narrow their CI looks.",
+        f"cosmetic: below {THIN_ROW_N} words a bootstrap `95% CI` cannot be "
+        "computed — resampling one or two words with replacement can only "
+        "reproduce the same one or two values, so the interval would be a "
+        "single point that reads as certainty. Such a row has a null "
+        "interval, shown as `n too small`, and cannot gate (`gating` is "
+        f"`false`). Rows with fewer than {THIN_ROW_N} scored words carry a "
+        f"`{THIN_ROW_MARK}` after `N` for this reason, and must never be "
+        "read as comparable to a row scored on thousands of words.",
         "",
         "The `Ceiling` column is a `valid_ceiling` measurement, when one has "
         "been executed for the row's (language, dataset) pair: the PER once "
@@ -4356,14 +4467,15 @@ def write_scoreboard(rows: List[dict]) -> None:
         "A `PER` marked "
         f"`{NON_QUALIFYING_MARK}` is a **non-qualifying** row: its "
         "`provenance` tier cannot gate a `production` promotion (see the "
-        "`Provenance` legend above and `docs/index.md`), so this number can "
+        "`Provenance` legend above and `docs/index.md`) or it has fewer "
+        f"than {THIN_ROW_N} scored words, so this number can "
         "neither qualify a language for promotion nor block one, no matter "
         "how good or bad it looks. `gating` in "
         "[`benchmarks/results.json`](../benchmarks/results.json) carries the "
-        "same boolean and is DERIVED from `provenance` via "
-        "`can_gate_promotion()` at scoreboard-generation time, never "
-        "hand-set — the same one source of truth `docs/quality_tiers.md`'s "
-        "`production` criteria already use.",
+        "same boolean and is DERIVED from `provenance` and `N` via "
+        "`row_gates()` at scoreboard-generation time, never "
+        "hand-set — on top of the `can_gate_promotion()` source of truth "
+        "`docs/quality_tiers.md`'s `production` criteria already use.",
         "",
         "| Lang | Dataset | N | PER | Ceiling | Oracle@3 | Oracle@5 | OracleX@3 "
         "| OracleX@5 | 95% CI | Exact match | Quality tier | Provenance |",
@@ -4372,11 +4484,16 @@ def write_scoreboard(rows: List[dict]) -> None:
     for row in rows:
         tier = row["quality_tier"] or "-"
         prov = row.get("provenance") or "-"
+        if row.get("ci_reproducible") is False:
+            prov += " (not CI-reproducible)"
         n_cell = f"{row['n']}{THIN_ROW_MARK}" if row["n"] < THIN_ROW_N else str(row["n"])
         # A row scored before the CI column existed carries nulls; a
         # merged board can hold both generations.
         lo, hi = row.get("per_ci_low"), row.get("per_ci_high")
-        ci = "-" if lo is None or hi is None else f"[{lo:.4f}, {hi:.4f}]"
+        if lo is not None and hi is not None:
+            ci = f"[{lo:.4f}, {hi:.4f}]"
+        else:
+            ci = "n too small" if row["n"] < THIN_ROW_N else "-"
         # Three distinct states, three distinct markers:
         #   "·"  never rescored since the oracle columns landed
         #   "-"  rescored, but no word had a real candidate list
@@ -4638,10 +4755,15 @@ def main() -> None:
             only_langs=[args.lang] if args.lang else None,
             only_datasets=[args.dataset] if args.dataset else None,
         )
+        committed = read_ci_sample_rows()
+        require_committed_rows(
+            committed, rows, "CI sample",
+            [args.lang] if args.lang else None,
+            [args.dataset] if args.dataset else None)
         if subset:
             print(f"merging {len(rows)} rescored rows into the committed "
                   f"CI sample", file=sys.stderr)
-            rows = merge_scoreboard_rows(read_ci_sample_rows(), rows)
+            rows = merge_scoreboard_rows(committed, rows)
         os.makedirs(os.path.dirname(CI_SAMPLE_JSON), exist_ok=True)
         with open(CI_SAMPLE_JSON, "w", encoding="utf-8") as fh:
             json.dump(rows, fh, indent=2, ensure_ascii=False)
@@ -4664,10 +4786,17 @@ def main() -> None:
             only_langs=[args.lang] if args.lang else None,
             only_datasets=[args.dataset] if args.dataset else None,
         )
+        committed = read_scoreboard_rows()
+        require_committed_rows(
+            committed, rows, "scoreboard",
+            [args.lang] if args.lang else None,
+            [args.dataset] if args.dataset else None)
         if subset:
             print(f"merging {len(rows)} rescored rows into the committed "
                   f"scoreboard", file=sys.stderr)
-            rows = merge_scoreboard_rows(read_scoreboard_rows(), rows)
+            rows = merge_scoreboard_rows(committed, rows)
+        else:
+            write_environment()
         write_scoreboard(rows)
         print(f"wrote {len(rows)} rows to "
               f"{os.path.relpath(SCOREBOARD_MD, REPO_ROOT)} and "

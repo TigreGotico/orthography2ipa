@@ -49,7 +49,7 @@
   },
   "positional_graphemes_base": "pt-PT",
   "parent": "pt-PT",
-  "notes": "Minhoto Portuguese (Baixo-Minho: Braga, Guimarães, Vizela), a northern EP dialect in Cintra's Baixo-Minhoto-Duriense-Beirão group. MODELLED FEATURES: (1) APICO-ALVEOLAR-ONLY SIBILANT SYSTEM — the archaic four-sibilant opposition is reduced to a single apical branch: graphemes ⟨s⟩/⟨ss⟩ AND ⟨c⟩(before e/i)/⟨ç⟩/⟨z⟩ all realise as apico-alveolar [s̺] (voiceless) / [z̺] (voiced), unlike the conservative four-sibilant Transmontano/Alto-Minhoto system which keeps apical ⟨s/ss⟩=[s̺] distinct from laminal ⟨c/ç/z⟩=[s] (Cintra 1971 p.93; Álvarez Pérez 2014 pp.37-38: this group 'kept only the apico-alveolar branch'). Coda ⟨s/z⟩ keep the pan-EP chiado neutralisation to [ʃ]/[ʒ]. (2) BETACISM — the /v/–/b/ opposition is neutralised to /b/, realised as stop [b] or spirant [β] (Cintra 1971 p.88; Pérez 2014 pp.35-37, categorical in the far north). Porto's tonic close-vowel diphthongisation ([e]>[je], [o]>[wo]) is a Baixo-Minho/Douro-Litoral subdivision trait and is NOT applied here (kept to pt-PT-x-porto). Vowel-reduction and uvular-coda allophones are enumerated as northern variants. Inherits pt-PT base.",
+  "notes": "Minhoto Portuguese (Baixo-Minho: Braga, Guimarães, Vizela), a northern EP dialect in Cintra's Baixo-Minhoto-Duriense-Beirão group. MODELLED FEATURES: (1) APICO-ALVEOLAR-ONLY SIBILANT SYSTEM — the archaic four-sibilant opposition is reduced to a single apical branch: graphemes ⟨s⟩/⟨ss⟩ AND ⟨c⟩(before e/i)/⟨ç⟩/⟨z⟩ all realise as apico-alveolar [s̺] (voiceless) / [z̺] (voiced), unlike the conservative four-sibilant Transmontano/Alto-Minhoto system which keeps apical ⟨s/ss⟩=[s̺] distinct from laminal ⟨c/ç/z⟩=[s] (Cintra 1971 p.93; Álvarez Pérez 2014 pp.37-38: this group 'kept only the apico-alveolar branch'). Coda ⟨s/z⟩ keep the pan-EP chiado neutralisation to [ʃ]/[ʒ]. (2) BETACISM — the /v/–/b/ opposition is neutralised to /b/, realised as stop [b] or spirant [β] (Cintra 1971 p.88; Pérez 2014 pp.35-37, categorical in the far north). Porto's tonic close-vowel diphthongisation ([e]>[je], [o]>[wo]) is a Baixo-Minho/Douro-Litoral subdivision trait and is NOT applied here (kept to pt-PT-x-porto). Vowel-reduction and uvular-coda allophones are enumerated as northern variants. Inherits pt-PT base. ⟨ss⟩ is declared apico-alveolar [s̺] here because the pt-PT base maps it to plain [s]; the value follows feature (1) above, which puts ⟨s/ss⟩ in the apical branch. Cintra 1971 (read in the Instituto Camões CVC reprint, pp. 11-13) draws the main North/South isogloss on the sibilant of the graphemes s and ss: apico-alveolar in the North, predorsodental in the South. His southern limit of the apical runs from the Ria de Aveiro to the Mondego, which it crosses upstream of Coimbra, and on towards Castelo Branco.",
   "quality": "research",
   "ancestors": [
     {
@@ -187,6 +187,9 @@
     ]
   },
   "graphemes": {
+    "ss": [
+      "s̺"
+    ],
     "ç": [
       "s̺"
     ],
