@@ -440,3 +440,13 @@ class TestDeclaredIsoCodesResolve:
             "these are no longer unresolved -- remove them from "
             "UNRESOLVED_ISO_DECLARATIONS:\n" + "\n".join(fixed)
         )
+
+    @pytest.mark.parametrize("iso, spec", [("aeb", "ar-TN"), ("arq", "ar-DZ")])
+    def test_maghrebi_codes_reach_their_spec_without_guessing(self, iso, spec):
+        """aeb (Tunisian) and arq (Algerian) are named by the alias table.
+
+        Left to nearest-language matching, the answer follows the distance
+        function's treatment of the bare macrolanguage ``ar`` and drifts with
+        it. ``strict`` refuses that guess, so it fails if the alias is missing.
+        """
+        assert get(iso, strict=True).code == spec

@@ -117,6 +117,8 @@ _ALIASES: Dict[str, str] = {
     # aliases let ``get("arz")`` resolve to the Egyptian Arabic spec, etc.
     "arz": "ar-EG",           # Egyptian Arabic
     "ary": "ar-MA",           # Moroccan Arabic (Darija)
+    "arq": "ar-DZ",           # Algerian Arabic
+    "aeb": "ar-TN",           # Tunisian Arabic
     "apc": "ar-SY",           # North Levantine Arabic (Syrian/Lebanese core)
     "ajp": "ar-JO",           # South Levantine Arabic (Jordanian/Palestinian)
     "afb": "ar-x-gulf",       # Gulf Arabic
