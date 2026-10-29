@@ -7,7 +7,7 @@ spec, with nothing in the result saying a substitution had occurred.
 """
 import pytest
 
-from orthography2ipa import get, resolve, resolves_exactly
+from orthography2ipa import UnknownVariantWarning, get, resolve, resolves_exactly
 
 
 def test_a_registered_code_resolves_exactly():
@@ -29,7 +29,8 @@ def test_an_unregistered_code_does_not_resolve_exactly():
 
 def test_strict_refuses_where_the_default_guesses():
     """The case this exists for: the default answers with a plausible neighbour."""
-    loose = get("ar-XX-x-invented")          # a guess, and it succeeds
+    with pytest.warns(UnknownVariantWarning):
+        loose = get("ar-XX-x-invented")      # a guess, and it succeeds
     assert loose.code != "ar-XX-x-invented"
     with pytest.raises(KeyError):
         get("ar-XX-x-invented", strict=True)
@@ -38,5 +39,7 @@ def test_strict_refuses_where_the_default_guesses():
 def test_the_default_is_unchanged():
     """Every existing caller keeps the guess. A strict default would be a different
     library, and the point is to make the guess visible, not to remove it."""
-    assert get("ar-XX-x-invented").graphemes
-    assert resolve("ar-XX-x-invented") != "ar-XX-x-invented"
+    with pytest.warns(UnknownVariantWarning):
+        assert get("ar-XX-x-invented").graphemes
+    with pytest.warns(UnknownVariantWarning):
+        assert resolve("ar-XX-x-invented") != "ar-XX-x-invented"
