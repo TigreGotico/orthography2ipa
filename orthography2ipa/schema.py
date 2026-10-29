@@ -432,6 +432,7 @@ class LanguageSpecModel(_Strict):
     collapse_geminates: Optional[bool] = None
     doubled_letters_geminate: Optional[bool] = None
     constrain_onsets: Optional[bool] = None
+    word_internal_apostrophe: Optional[bool] = None
     iso639_3: Optional[str] = Field(default=None, pattern=r"^[a-z]{3}$")
     glottolog_code: Optional[str] = Field(default=None, pattern=r"^[a-z0-9]{4}\d{4}$")
     wikidata_qid: Optional[str] = Field(default=None, pattern=r"^Q[1-9]\d*$")

@@ -627,6 +627,8 @@ def load_json_spec(code: str) -> LanguageSpec:
         doubled_letters_geminate=bool(
             raw.get("doubled_letters_geminate", True)),
         constrain_onsets=bool(base_scalars.get("constrain_onsets", False)),
+        word_internal_apostrophe=bool(
+            base_scalars.get("word_internal_apostrophe", False)),
         iso639_3=raw.get("iso639_3"),
         glottolog_code=raw.get("glottolog_code"),
         wikidata_qid=raw.get("wikidata_qid"),
