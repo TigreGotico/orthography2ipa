@@ -2,6 +2,8 @@
 from __future__ import annotations
 
 import logging
+import re
+import warnings
 from functools import lru_cache
 from importlib.metadata import entry_points
 from typing import TYPE_CHECKING, Dict, List, Optional
@@ -17,6 +19,31 @@ if TYPE_CHECKING:
 _cache: Dict[str, LanguageSpec] = {}
 
 _LOG = logging.getLogger(__name__)
+
+
+#: The private-use singleton, which BCP 47 matches case-insensitively.
+_PRIVATE_USE = re.compile("-x-", re.IGNORECASE)
+
+
+class UnknownVariantWarning(UserWarning):
+    """A private-use (``-x-``) subtag names no registered spec.
+
+    The tag resolves to the nearest registered spec instead, which is a
+    different variety than the one asked for.
+    """
+
+
+def _warn_unknown_variant(code: str, resolved: str, stacklevel: int) -> None:
+    parts = _PRIVATE_USE.split(code, maxsplit=1)
+    if len(parts) == 1 or resolves_exactly(code):
+        return
+    discarded = parts[1]
+    warnings.warn(
+        f"unknown variant subtag {discarded!r} in {code!r}; "
+        f"using {resolved!r} instead",
+        UnknownVariantWarning,
+        stacklevel=stacklevel,
+    )
 
 
 # Fallback alias table for ISO 639-3 → BCP-47 normalisation.
@@ -250,7 +277,8 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
     """
     if code in _ALIASES:
         return _ALIASES[code]
-    if _HAS_LANGCODES and "-x-" not in code and not code.startswith("x-"):
+    if (_HAS_LANGCODES and not _PRIVATE_USE.search(code)
+            and not code.startswith("x-")):
         try:
             code = _langcodes.standardize_tag(code, macro=True)
         except Exception:
@@ -260,7 +288,7 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
     available = available_json_codes()
     if code in available:
         return code
-    if "-x-" in code:
+    if _PRIVATE_USE.search(code):
         # BCP-47 tags are case-insensitive, and langcodes never sees a
         # private-use tag (step 2), so fold the case here; otherwise
         # ``ar-sa-x-najd`` misses ``ar-SA-x-najd`` and the distance match
@@ -304,9 +332,12 @@ def resolve(code: str) -> str:
     BCP-47 standardization, curated bare-tag defaults and
     nearest-language matching — without loading the spec. A code with
     no usable resolution is returned unchanged (so :func:`get` raises
-    ``KeyError`` for it).
+    ``KeyError`` for it). A private-use (``-x-``) tag that names no spec
+    resolves to the nearest one and emits :class:`UnknownVariantWarning`.
     """
-    return _resolve_code(code)
+    resolved = _resolve_code(code)
+    _warn_unknown_variant(code, resolved, stacklevel=3)
+    return resolved
 
 
 def get(code: str, strict: bool = False) -> LanguageSpec:
@@ -332,7 +363,10 @@ def get(code: str, strict: bool = False) -> LanguageSpec:
         KeyError: If the language is not registered, or — under *strict* — if it
             resolves only by nearest-language guessing.
     """
+    requested = code
     code = _resolve_code(code, allow_nearest=not strict)
+    if not strict:
+        _warn_unknown_variant(requested, code, stacklevel=3)
     if code not in _cache:
         _cache[code] = load_json_spec(code)
     return _cache[code]
