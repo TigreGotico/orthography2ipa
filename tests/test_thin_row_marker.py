@@ -122,7 +122,7 @@ def test_thin_row_interval_renders_as_n_too_small(tmp_path, monkeypatch):
         if line.startswith("| aa |") or line.startswith("| bb |") \
                 or line.startswith("| cc |"):
             parts = [c.strip() for c in line.strip("|").split("|")]
-            cells[parts[0]] = parts[9]
+            cells[parts[0]] = parts[10]
     assert cells == {"aa": "n too small", "bb": "-",
                      "cc": "[0.0800, 0.1200]"}
 

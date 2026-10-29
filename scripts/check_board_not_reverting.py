@@ -97,10 +97,10 @@ HISTORY_DEPTH = 60
 #: Fields that carry a measurement. Provenance and tier move for reasons that
 #: have nothing to do with rescoring, and comparing them produces findings no
 #: one can act on.
-SCORED_FIELDS = ("n", "per", "per_ci_low", "per_ci_high", "exact_match",
-                 "oracle_per_top3", "oracle_exact_top3", "oracle_per_top5",
-                 "oracle_exact_top5", "oracle_scored_words",
-                 "oracle_fallback_words")
+SCORED_FIELDS = ("n", "per", "per_ci_low", "per_ci_high", "stress_acc",
+                 "n_stress", "exact_match", "oracle_per_top3",
+                 "oracle_exact_top3", "oracle_per_top5", "oracle_exact_top5",
+                 "oracle_scored_words", "oracle_fallback_words")
 
 #: The thin-row marker appended to the N column when a row falls below
 #: THIN_ROW_N scored words. This is a RENDERING ANNOTATION, not a value

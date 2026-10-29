@@ -92,6 +92,54 @@ class TestRegressionDetection:
         assert regressed_rows == []
 
 
+class TestStressRegression:
+    """A stress_acc drop beyond the same epsilon fails like a PER rise."""
+
+    def _rows(self, base_stress, new_stress, per=0.10):
+        base = _row(per=per)
+        base["stress_acc"] = base_stress
+        cur = _row(per=per)
+        cur["stress_acc"] = new_stress
+        return {("pt-PT", "wikipron"): base}, [cur]
+
+    def test_stress_drop_beyond_epsilon_regresses(self):
+        baseline, current = self._rows(0.90, 0.88)
+        _diff, regressed = cbr.compare(baseline, current, epsilon=0.005)
+        assert len(regressed) == 1
+        assert regressed[0]["stress_delta"] == -0.02
+
+    def test_stress_drop_within_epsilon_is_ok(self):
+        baseline, current = self._rows(0.90, 0.897)
+        _diff, regressed = cbr.compare(baseline, current, epsilon=0.005)
+        assert regressed == []
+
+    def test_stress_gain_is_ok(self):
+        baseline, current = self._rows(0.80, 0.95)
+        _diff, regressed = cbr.compare(baseline, current, epsilon=0.005)
+        assert regressed == []
+
+    @pytest.mark.parametrize("base, new", [(None, 0.5), (0.9, None)])
+    def test_null_stress_on_either_side_is_not_compared(self, base, new):
+        baseline, current = self._rows(base, new)
+        diff, regressed = cbr.compare(baseline, current, epsilon=0.005)
+        assert regressed == []
+        assert diff[0]["stress_delta"] is None
+
+    def test_baseline_without_the_field_is_not_compared(self):
+        baseline = {("pt-PT", "wikipron"): _row()}
+        cur = _row()
+        cur["stress_acc"] = 0.1
+        _diff, regressed = cbr.compare(baseline, [cur], epsilon=0.005)
+        assert regressed == []
+
+    def test_competitor_gold_stress_drop_is_drift(self):
+        baseline, current = self._rows(0.90, 0.50)
+        current[0]["provenance"] = "espeak-derived"
+        diff, regressed = cbr.compare(baseline, current, epsilon=0.005)
+        assert regressed == []
+        assert diff[0]["status"] == "drifted"
+
+
 class TestCompetitorDerivedGoldNeverGates:
     """A worse score against espeak-/epitran-derived or LLM gold measures
     increased DISAGREEMENT with a competitor, and diverging from a
@@ -161,9 +209,11 @@ class TestCiSampleMatchesFullBelowCap:
                 continue
             if crow["n"] >= CI_SAMPLE_LIMIT or crow["n"] != frow["n"]:
                 continue
-            if abs(crow["per"] - frow["per"]) > 1e-9:
-                violations.append(
-                    (key, frow["n"], frow["per"], crow["per"]))
+            for field in ("per", "stress_acc", "n_stress"):
+                if field in crow and field in frow \
+                        and crow[field] != frow[field]:
+                    violations.append(
+                        (key, field, frow["n"], frow[field], crow[field]))
 
         assert violations == [], (
             "results_ci_sample.json disagrees with results.json on a row "

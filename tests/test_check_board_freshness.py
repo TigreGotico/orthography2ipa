@@ -56,18 +56,18 @@ class TestRescore:
                             {"wikipron": (lambda lang, limit: ["pairs"],
                                           ["lmo"])})
         monkeypatch.setattr(cbf, "evaluate_words",
-                            lambda pairs, lang, strip_stress, broad:
+                            lambda pairs, lang, strip_stress, broad, stress=None:
                             (10, 10, [], 0.2892, 0.5))
-        per, reason = cbf.rescore(_row("lmo"))
+        measured, reason = cbf.rescore(_row("lmo"))
         assert reason is None
-        assert per == 0.2892
+        assert measured == {"per": 0.2892, "stress_acc": None, "n_stress": 0}
 
     def test_loader_failure_is_a_skip_not_a_crash(self, monkeypatch):
         def boom(lang, limit):
             raise OSError("no network in this sandbox")
         monkeypatch.setattr(cbf, "DATASETS", {"wikipron": (boom, ["lmo"])})
-        per, reason = cbf.rescore(_row("lmo"))
-        assert per is None
+        measured, reason = cbf.rescore(_row("lmo"))
+        assert measured is None
         assert "no network in this sandbox" in reason
 
     def test_zero_coverage_raises_rather_than_skips(self, monkeypatch):
@@ -78,7 +78,7 @@ class TestRescore:
                             {"wikipron": (lambda lang, limit: ["pairs"],
                                           ["lmo"])})
         monkeypatch.setattr(cbf, "evaluate_words",
-                            lambda pairs, lang, strip_stress, broad:
+                            lambda pairs, lang, strip_stress, broad, stress=None:
                             (10, 0, [], 1.0, 1.0))
         with pytest.raises(RuntimeError):
             cbf.rescore(_row("lmo"))
@@ -86,8 +86,8 @@ class TestRescore:
     def test_language_dropped_from_the_dataset_is_a_skip(self, monkeypatch):
         monkeypatch.setattr(cbf, "DATASETS",
                             {"wikipron": (lambda lang, limit: [], [])})
-        per, reason = cbf.rescore(_row("lmo"))
-        assert per is None
+        measured, reason = cbf.rescore(_row("lmo"))
+        assert measured is None
         assert "lmo" in reason
 
 
@@ -117,7 +117,7 @@ class TestCheckEndToEnd:
                             {"wikipron": (lambda lang, limit: ["pairs"],
                                           ["lmo"])})
         monkeypatch.setattr(cbf, "evaluate_words",
-                            lambda pairs, lang, strip_stress, broad:
+                            lambda pairs, lang, strip_stress, broad, stress=None:
                             (406, 406, [], measured_per, 0.5))
         return results, sample
 
@@ -128,6 +128,25 @@ class TestCheckEndToEnd:
         assert "lmo/wikipron" in err
         assert "0.2917" in err and "0.2892" in err
         assert "--lang lmo --dataset wikipron" in err
+
+    def test_stale_stress_column_fails_the_check(
+            self, tmp_path, monkeypatch, capsys):
+        """PER still matches, but the committed stress_acc does not: 30 of
+        40 eligible words measure 0.75 against a committed 0.8."""
+        self._stub(monkeypatch, tmp_path, {"lmo"}, 0.2892,
+                   results_rows='[{"lang": "lmo", "dataset": "wikipron", '
+                                '"per": 0.2892, "stress_acc": 0.8, '
+                                '"n_stress": 40, "limit": null}]')
+
+        def measured(pairs, lang, strip_stress, broad, stress=None):
+            stress.eligible, stress.hits = 40, 30
+            return 406, 406, [], 0.2892, 0.5
+
+        monkeypatch.setattr(cbf, "evaluate_words", measured)
+        assert cbf.check("origin/dev") == 1
+        err = capsys.readouterr().err
+        assert "committed stress_acc=0.8" in err and "measures 0.75" in err
+        assert "per=" not in err
 
     def test_fresh_row_passes_the_check(self, tmp_path, monkeypatch):
         self._stub(monkeypatch, tmp_path, {"lmo"}, 0.2892,
@@ -208,7 +227,7 @@ class TestCheckEndToEnd:
             "cmudict": (boom, ["lmo"]),
         })
         monkeypatch.setattr(cbf, "evaluate_words",
-                            lambda pairs, lang, strip_stress, broad:
+                            lambda pairs, lang, strip_stress, broad, stress=None:
                             (406, 406, [], 0.2892, 0.5))
 
         assert cbf.check("origin/dev") == 0
@@ -246,7 +265,7 @@ class TestCiSampleBoardIsAlsoChecked:
         monkeypatch.setattr(cbf, "DATASETS",
                             {"wikipron": (fake_loader, ["lmo"])})
         monkeypatch.setattr(cbf, "evaluate_words",
-                            lambda pairs, lang, strip_stress, broad:
+                            lambda pairs, lang, strip_stress, broad, stress=None:
                             (406, 406, [], measured_per, 0.5))
         return results, sample, seen_limits
 
@@ -304,7 +323,7 @@ class TestProgressAndInterruption:
                             {"wikipron": (lambda lang, limit: ["pairs"],
                                           ["lmo"])})
         monkeypatch.setattr(cbf, "evaluate_words",
-                            lambda pairs, lang, strip_stress, broad:
+                            lambda pairs, lang, strip_stress, broad, stress=None:
                             (406, 406, [], 0.2892, 0.5))
 
         assert cbf.check("origin/dev") == 0
@@ -331,7 +350,7 @@ class TestProgressAndInterruption:
                             {"wikipron": (lambda lang, limit: ["pairs"],
                                           ["lmo"])})
         monkeypatch.setattr(cbf, "evaluate_words",
-                            lambda pairs, lang, strip_stress, broad:
+                            lambda pairs, lang, strip_stress, broad, stress=None:
                             (406, 406, [], 0.2892, 0.5))
 
         cbf.check("origin/dev")

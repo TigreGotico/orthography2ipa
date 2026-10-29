@@ -17,7 +17,7 @@ def test_zero_coverage_row_is_refused(monkeypatch):
         return [("word-with-no-scorable-graphemes", "ipa")]
 
     def zero_eval(pairs, lang, strip_stress, broad, oracle_ks=(),
-                  expose_ambiguous_endings=False):
+                  expose_ambiguous_endings=False, stress=None):
         # The board's measurement convention must reach the scorer:
         # a stub that silently swallowed it would let build_scoreboard
         # stop threading the flag with nothing noticing.
@@ -44,7 +44,7 @@ def test_nonzero_coverage_row_is_recorded(monkeypatch):
         return [("a", "a")]
 
     def one_eval(pairs, lang, strip_stress, broad, oracle_ks=(),
-                  expose_ambiguous_endings=False):
+                  expose_ambiguous_endings=False, stress=None):
         # The board's measurement convention must reach the scorer:
         # a stub that silently swallowed it would let build_scoreboard
         # stop threading the flag with nothing noticing.
