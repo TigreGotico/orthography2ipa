@@ -567,8 +567,9 @@ const DATA = __DATA_JSON__;
       "<th>dataset</th><th>n</th><th>PER</th><th>95% CI</th><th>exact match</th>" +
       "<th>provenance</th><th>quality tier</th></tr></thead><tbody>";
     rows.forEach(function (r) {
-      const ci = (r.per_ci_low !== undefined && r.per_ci_high !== undefined)
-        ? esc(r.per_ci_low) + "–" + esc(r.per_ci_high) : "";
+      const ci = (r.per_ci_low != null && r.per_ci_high != null)
+        ? esc(r.per_ci_low) + "–" + esc(r.per_ci_high)
+        : (r.per_ci_low === null ? "n too small" : "");
       const tier = esc(r.quality_tier);
       const tierCell = tier
         ? '<span class="tier-pill ' + tier + '">' + tier + "</span>" : "";
