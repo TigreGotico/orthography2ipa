@@ -1726,6 +1726,7 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "dependent_vowels": InheritanceMode.OWN_ONLY,
     "preposed_vowels": InheritanceMode.OWN_ONLY,
     "coda_no_inherent_vowel": InheritanceMode.OWN_ONLY,
+    "consonant_nuclei": InheritanceMode.OWN_ONLY,
     "inherent_vowel_final": InheritanceMode.OWN_ONLY,
     "virama_final_vowel": InheritanceMode.OWN_ONLY,
     "collapse_geminates": InheritanceMode.OWN_ONLY,
@@ -2167,6 +2168,24 @@ class LanguageSpec:
     (``word_final=True`` rewrites) — this flag only suppresses the spurious
     VOWEL; it emits no allophone of its own. Default ``False`` — every
     other spec is byte-for-byte unaffected."""
+
+    consonant_nuclei: Optional[Dict[str, str]] = None
+    """Consonant letters that spell a syllable's nucleus when they stand
+    between a consonant with no vowel of its own and a consonant that closes
+    the syllable, mapped to the nucleus they spell. Thai writes ⟨กรวด⟩
+    /kruːat̚/ and ⟨ขวด⟩ /kʰuːat̚/ with a bare ⟨ว⟩ where ⟨ัว⟩ would stand in
+    an open syllable, so ``{"ว": "uːa"}``.
+
+    The engine reads the letter as the nucleus only when all three hold: the
+    syllable it would join has no nucleus yet, so the consonant before it
+    is an onset with nothing written on it; the letter after it is a
+    consonant; and nothing after that consonant supplies a vowel, so it
+    closes this syllable instead of opening the next. Anywhere else the
+    letter keeps its ordinary reading, so Thai ⟨วน⟩ /won/, ⟨กังวล⟩
+    /kaŋwon/ and ⟨สวรรค์⟩ are unchanged. Because the reading is decided
+    while the word is tokenised, the onset before the letter also loses its
+    inherent vowel. ``None`` (the default) leaves every other spec
+    untouched."""
 
     iso639_3: Optional[str] = None
     """ISO 639-3 three-letter code for PHOIBLE/Glottolog cross-referencing."""
