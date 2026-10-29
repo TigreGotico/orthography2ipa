@@ -179,13 +179,6 @@ def test_a_tone_mark_does_not_change_the_segments(lo, word):
 # Known gaps — documented in the spec notes, not encoded around
 # ═══════════════════════════════════════════════════════════════════════════
 
-@pytest.mark.xfail(
-    reason="the ho-nam digraph ⟨ຫຼ⟩ does not form word-finally: a preposed "
-           "vowel attaches to the single grapheme before it, not the "
-           "longest digraph match, so a trailing subscript lo surfaces as "
-           "a stray coda /l/ instead of completing the ho-nam reading",
-    strict=True,
-)
 def test_the_ho_nam_digraph_forms_word_finally(lo):
     # Gold: ʔaː˩˧loː˩˧ (tone letters aside, ʔaːloː segmentally).
     assert lo.transcribe("ອາໂຫຼ") == "ʔaːloː"

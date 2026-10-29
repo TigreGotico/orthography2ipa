@@ -62,8 +62,8 @@ those tones from the spelling.
 
 | dataset | provenance | n | PER | tone-blind PER |
 |---|---|---:|---:|---:|
-| `wikipron` | crowd-scraped | 17221 | **0.1879** | 0.1648 |
-| `vox_communis` | epitran-derived | 23704 | 0.4316 | 0.2216 |
+| `wikipron` | crowd-scraped | 17221 | **0.1788** | 0.1596 |
+| `vox_communis` | epitran-derived | 23704 | 0.4281 | 0.2162 |
 
 The qualifying row is `wikipron`. `vox_communis` is epitran-derived and
 can neither qualify nor block promotion.
@@ -75,9 +75,9 @@ where the IPA writes it, and the Epitran-derived `vox_communis` rows
 write it on the nucleus, before the coda. The spec follows WikiPron.
 Scoring both rows with the tone letters moved to the end of the string
 on both sides — which neutralises placement while keeping tone identity
-and order — gives 0.1710 for `wikipron` and 0.2294 for `vox_communis`
+and order — gives 0.1640 for `wikipron` and 0.2225 for `vox_communis`
 (`scripts/fold_th_notation.py`). Placement therefore costs the
-`vox_communis` row 20.2 PER points and the `wikipron` row 1.7, and what is left over once placement is neutralised
+`vox_communis` row 20.6 PER points and the `wikipron` row 1.5, and what is left over once placement is neutralised
 is under a point on either row. The tone the spec computes is very
 nearly the tone both golds carry; the disagreement is about where to
 print it.

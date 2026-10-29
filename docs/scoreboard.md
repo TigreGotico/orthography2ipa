@@ -24,11 +24,11 @@ Oracle cells EXCLUDE injected alternatives. A spec may declare a `grammatical_en
 
 Oracle cells read `·` when the row has **not been rescored** since the oracle columns were added (most rows: a full scoreboard is ~10M scored words, so rows are refreshed in batches), and `-` when the row is **sentence-level** and can never have an oracle: the beam is per WORD, and composing a sentence-level beam out of word beams would invent a ranking the engine never produces. The two are different states and are never merged into one blank.
 
-A row's `N` is its sample size in scored words, and it is not cosmetic: below roughly 20 words the bootstrap `95% CI` above stops being informative — resampling one or two words with replacement can only ever reproduce the same one or two values, so the interval collapses toward a single point (see 20 and below) instead of widening the way it would on a real sample. A degenerate `[x, x]` interval on a thin row is NOT evidence of precision; it is an artifact of having too little data to resample. Rows with fewer than 20 scored words carry a `†` after `N` for exactly this reason, and must never be read as comparable to a row scored on thousands of words, no matter how narrow their CI looks.
+A row's `N` is its sample size in scored words, and it is not cosmetic: below 20 words a bootstrap `95% CI` cannot be computed — resampling one or two words with replacement can only reproduce the same one or two values, so the interval would be a single point that reads as certainty. Such a row has a null interval, shown as `n too small`, and cannot gate (`gating` is `false`). Rows with fewer than 20 scored words carry a `†` after `N` for this reason, and must never be read as comparable to a row scored on thousands of words.
 
 The `Ceiling` column is a `valid_ceiling` measurement, when one has been executed for the row's (language, dataset) pair: the PER once an orthographically-unwritten contrast (tone, vowel length, or both — these give different numbers and are never conflated) is folded out of BOTH sides before rescoring. A fold is defined against ONE gold's conventions, so it renders only on the row whose dataset it was measured against, never on a sibling row of the same language scored against a different gold. It reads `-` when no such measurement has been recorded — that is "not measured", never "measured as zero". A ceiling below 0.25 is marked `†`: the row's raw `PER` may look like an open failure, but the language has been proved input-limited rather than defective. `valid_ceiling` never changes `PER` itself — see [`orthography2ipa/data/SCHEMA.md`](../orthography2ipa/data/SCHEMA.md#valid-ceiling-schema).
 
-A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot gate a `production` promotion (see the `Provenance` legend above and `docs/index.md`), so this number can neither qualify a language for promotion nor block one, no matter how good or bad it looks. `gating` in [`benchmarks/results.json`](../benchmarks/results.json) carries the same boolean and is DERIVED from `provenance` via `can_gate_promotion()` at scoreboard-generation time, never hand-set — the same one source of truth `docs/quality_tiers.md`'s `production` criteria already use.
+A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot gate a `production` promotion (see the `Provenance` legend above and `docs/index.md`) or it has fewer than 20 scored words, so this number can neither qualify a language for promotion nor block one, no matter how good or bad it looks. `gating` in [`benchmarks/results.json`](../benchmarks/results.json) carries the same boolean and is DERIVED from `provenance` and `N` via `row_gates()` at scoreboard-generation time, never hand-set — on top of the `can_gate_promotion()` source of truth `docs/quality_tiers.md`'s `production` criteria already use.
 
 | Lang | Dataset | N | PER | Ceiling | Oracle@3 | Oracle@5 | OracleX@3 | OracleX@5 | 95% CI | Exact match | Quality tier | Provenance |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|---|---|---|
@@ -70,20 +70,20 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | ar-BH | gold20_arabic | 20 | 0.0410‡ | - | - | - | - | - | [0.0262, 0.0572] | 0.2000 | research | llm-generated |
 | ar-DZ | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar-DZ | gold20_arabic | 20 | 0.0406‡ | - | - | - | - | - | [0.0164, 0.0674] | 0.6000 | research | llm-generated |
-| ar-DZ | primary_sources | 1† | 0.7143 | - | 0.7143 | 0.7143 | 0.0000 | 0.0000 | [0.7143, 0.7143] | 0.0000 | research | expert-human |
+| ar-DZ | primary_sources | 1† | 0.7143‡ | - | 0.7143 | 0.7143 | 0.0000 | 0.0000 | n too small | 0.0000 | research | expert-human |
 | ar-EG | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar-EG | gold20_arabic | 20 | 0.0217‡ | - | - | - | - | - | [0.0064, 0.0436] | 0.6000 | research | llm-generated |
-| ar-EG | primary_sources | 18† | 0.2390 | - | 0.2029 | 0.1906 | 0.2222 | 0.2222 | [0.1696, 0.3291] | 0.1111 | research | expert-human |
+| ar-EG | primary_sources | 18† | 0.2390‡ | - | 0.2029 | 0.1906 | 0.2222 | 0.2222 | n too small | 0.1111 | research | expert-human |
 | ar-EG | wikipron | 590 | 0.3237 | - | 0.2920 | 0.2847 | 0.1542 | 0.1559 | [0.3068, 0.3388] | 0.1136 | research | crowd-scraped |
 | ar-IQ | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar-IQ | gold20_arabic | 20 | 0.0051‡ | - | - | - | - | - | [0.0000, 0.0134] | 0.9000 | research | llm-generated |
-| ar-IQ | primary_sources | 12† | 0.2907 | - | 0.2907 | 0.2907 | 0.2500 | 0.2500 | [0.1760, 0.4065] | 0.2500 | research | expert-human |
+| ar-IQ | primary_sources | 12† | 0.2907‡ | - | 0.2907 | 0.2907 | 0.2500 | 0.2500 | n too small | 0.2500 | research | expert-human |
 | ar-IQ-x-qeltu | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar-IQ-x-qeltu | gold20_arabic | 20 | 0.0147‡ | - | - | - | - | - | [0.0057, 0.0269] | 0.6000 | research | llm-generated |
-| ar-IQ-x-qeltu | primary_sources | 12† | 0.3417 | - | 0.3417 | 0.3417 | 0.2500 | 0.2500 | [0.1917, 0.5125] | 0.2500 | research | expert-human |
+| ar-IQ-x-qeltu | primary_sources | 12† | 0.3417‡ | - | 0.3417 | 0.3417 | 0.2500 | 0.2500 | n too small | 0.2500 | research | expert-human |
 | ar-JO | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar-JO | gold20_arabic | 20 | 0.0061‡ | - | - | - | - | - | [0.0012, 0.0123] | 0.8000 | research | llm-generated |
-| ar-JO | primary_sources | 13† | 0.2179 | - | 0.1833 | 0.1833 | 0.3077 | 0.3077 | [0.1167, 0.3333] | 0.3077 | research | expert-human |
+| ar-JO | primary_sources | 13† | 0.2179‡ | - | 0.1833 | 0.1833 | 0.3077 | 0.3077 | n too small | 0.3077 | research | expert-human |
 | ar-JO | wikipron | 2513 | 0.3451 | - | 0.3117 | 0.3007 | 0.0871 | 0.0935 | [0.3385, 0.3518] | 0.0569 | research | crowd-scraped |
 | ar-KW | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar-KW | gold20_arabic | 20 | 0.0237‡ | - | - | - | - | - | [0.0113, 0.0353] | 0.5000 | research | llm-generated |
@@ -91,25 +91,25 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | ar-LB | gold20_arabic | 20 | 0.0258‡ | - | - | - | - | - | [0.0097, 0.0484] | 0.5500 | research | llm-generated |
 | ar-LY | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar-LY | gold20_arabic | 20 | 0.0122‡ | - | - | - | - | - | [0.0047, 0.0208] | 0.6500 | research | llm-generated |
-| ar-LY | primary_sources | 6† | 0.2042 | - | 0.1833 | 0.1833 | 0.3333 | 0.3333 | [0.1083, 0.3042] | 0.1667 | research | expert-human |
+| ar-LY | primary_sources | 6† | 0.2042‡ | - | 0.1833 | 0.1833 | 0.3333 | 0.3333 | n too small | 0.1667 | research | expert-human |
 | ar-MA | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar-MA | gold20_arabic | 20 | 0.0496‡ | - | - | - | - | - | [0.0228, 0.0782] | 0.5000 | research | llm-generated |
-| ar-MA | primary_sources | 5† | 0.1733 | - | 0.1000 | 0.1000 | 0.6000 | 0.6000 | [0.0833, 0.2400] | 0.2000 | research | expert-human |
+| ar-MA | primary_sources | 5† | 0.1733‡ | - | 0.1000 | 0.1000 | 0.6000 | 0.6000 | n too small | 0.2000 | research | expert-human |
 | ar-MA | wikipron | 1833 | 0.3005 | - | 0.2185 | 0.2154 | 0.2226 | 0.2308 | [0.2928, 0.3081] | 0.1097 | research | crowd-scraped |
 | ar-MR | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar-MR | gold20_arabic | 20 | 0.0174‡ | - | - | - | - | - | [0.0056, 0.0333] | 0.6500 | research | llm-generated |
-| ar-MR | primary_sources | 14† | 0.3988 | - | 0.2651 | 0.2509 | 0.2857 | 0.2857 | [0.2702, 0.5396] | 0.2143 | research | expert-human |
+| ar-MR | primary_sources | 14† | 0.3988‡ | - | 0.2651 | 0.2509 | 0.2857 | 0.2857 | n too small | 0.2143 | research | expert-human |
 | ar-NG | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar-NG | gold20_arabic | 20 | 0.0228‡ | - | - | - | - | - | [0.0000, 0.0548] | 0.8500 | research | llm-generated |
-| ar-NG | primary_sources | 6† | 0.2444 | - | 0.2444 | 0.2444 | 0.5000 | 0.5000 | [0.0556, 0.5111] | 0.5000 | research | expert-human |
+| ar-NG | primary_sources | 6† | 0.2444‡ | - | 0.2444 | 0.2444 | 0.5000 | 0.5000 | n too small | 0.5000 | research | expert-human |
 | ar-OM | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar-OM | gold20_arabic | 20 | 0.0077‡ | - | - | - | - | - | [0.0000, 0.0215] | 0.9000 | research | llm-generated |
 | ar-PS | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar-PS | gold20_arabic | 20 | 0.0230‡ | - | - | - | - | - | [0.0079, 0.0408] | 0.6000 | research | llm-generated |
-| ar-PS | primary_sources | 4† | 0.1667 | - | 0.1000 | 0.1000 | 0.7500 | 0.7500 | [0.0417, 0.3250] | 0.2500 | research | expert-human |
+| ar-PS | primary_sources | 4† | 0.1667‡ | - | 0.1000 | 0.1000 | 0.7500 | 0.7500 | n too small | 0.2500 | research | expert-human |
 | ar-QA | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar-QA | gold20_arabic | 20 | 0.0264‡ | - | - | - | - | - | [0.0151, 0.0374] | 0.4000 | research | llm-generated |
-| ar-SA-x-dawasir | primary_sources | 5† | 0.0800 | - | 0.0400 | 0.0400 | 0.8000 | 0.8000 | [0.0000, 0.2400] | 0.8000 | stub | expert-human |
+| ar-SA-x-dawasir | primary_sources | 5† | 0.0800‡ | - | 0.0400 | 0.0400 | 0.8000 | 0.8000 | n too small | 0.8000 | stub | expert-human |
 | ar-SA-x-hejaz | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar-SA-x-hejaz | gold20_arabic | 20 | 0.0219‡ | - | - | - | - | - | [0.0024, 0.0534] | 0.8000 | research | llm-generated |
 | ar-SA-x-hejaz | primary_sources | 30 | 0.1340 | - | 0.1256 | 0.1256 | 0.5333 | 0.5333 | [0.0823, 0.1872] | 0.5000 | research | expert-human |
@@ -119,28 +119,28 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | ar-SA-x-najd | primary_sources | 25 | 0.1491 | - | 0.1434 | 0.1434 | 0.6000 | 0.6000 | [0.0712, 0.2343] | 0.5600 | research | expert-human |
 | ar-SA-x-qassim | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar-SA-x-qassim | gold20_arabic | 20 | 0.0230‡ | - | - | - | - | - | [0.0051, 0.0469] | 0.7500 | research | llm-generated |
-| ar-SA-x-qassim | primary_sources | 12† | 0.1327 | - | 0.1327 | 0.1327 | 0.5000 | 0.5000 | [0.0524, 0.2306] | 0.5000 | research | expert-human |
+| ar-SA-x-qassim | primary_sources | 12† | 0.1327‡ | - | 0.1327 | 0.1327 | 0.5000 | 0.5000 | n too small | 0.5000 | research | expert-human |
 | ar-SA-x-rijal-alma | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar-SA-x-rijal-alma | gold20_arabic | 20 | 0.0184‡ | - | - | - | - | - | [0.0090, 0.0289] | 0.5500 | research | llm-generated |
-| ar-SA-x-rijal-alma | primary_sources | 8† | 0.2454 | - | 0.2454 | 0.2454 | 0.1250 | 0.1250 | [0.1244, 0.3834] | 0.1250 | research | expert-human |
+| ar-SA-x-rijal-alma | primary_sources | 8† | 0.2454‡ | - | 0.2454 | 0.2454 | 0.1250 | 0.1250 | n too small | 0.1250 | research | expert-human |
 | ar-SA-x-sharqiyya | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar-SA-x-sharqiyya | gold20_arabic | 20 | 0.0506‡ | - | - | - | - | - | [0.0320, 0.0719] | 0.2000 | research | llm-generated |
-| ar-SA-x-sharqiyya | primary_sources | 6† | 0.1944 | - | 0.1389 | 0.1389 | 0.5000 | 0.5000 | [0.0278, 0.3889] | 0.5000 | research | expert-human |
-| ar-SA-x-tihama-qahtan | primary_sources | 16† | 0.1084 | - | 0.1084 | 0.1084 | 0.5000 | 0.5000 | [0.0521, 0.1844] | 0.5000 | research | expert-human |
+| ar-SA-x-sharqiyya | primary_sources | 6† | 0.1944‡ | - | 0.1389 | 0.1389 | 0.5000 | 0.5000 | n too small | 0.5000 | research | expert-human |
+| ar-SA-x-tihama-qahtan | primary_sources | 16† | 0.1084‡ | - | 0.1084 | 0.1084 | 0.5000 | 0.5000 | n too small | 0.5000 | research | expert-human |
 | ar-SD | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar-SD | gold20_arabic | 20 | 0.0274‡ | - | - | - | - | - | [0.0145, 0.0411] | 0.4000 | research | llm-generated |
 | ar-SY | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar-SY | gold20_arabic | 20 | 0.0491‡ | - | - | - | - | - | [0.0220, 0.0755] | 0.5000 | research | llm-generated |
-| ar-SY | primary_sources | 11† | 0.1318 | - | 0.1318 | 0.1318 | 0.4545 | 0.4545 | [0.0561, 0.2031] | 0.4545 | research | expert-human |
+| ar-SY | primary_sources | 11† | 0.1318‡ | - | 0.1318 | 0.1318 | 0.4545 | 0.4545 | n too small | 0.4545 | research | expert-human |
 | ar-SY | wikipron | 410 | 0.3173 | - | 0.2856 | 0.2774 | 0.1293 | 0.1366 | [0.3027, 0.3360] | 0.0854 | research | crowd-scraped |
 | ar-TD | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar-TD | gold20_arabic | 20 | 0.0346‡ | - | - | - | - | - | [0.0083, 0.0662] | 0.7000 | research | llm-generated |
 | ar-TN | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar-TN | gold20_arabic | 20 | 0.0036‡ | - | - | - | - | - | [0.0000, 0.0080] | 0.8500 | research | llm-generated |
-| ar-TN | primary_sources | 9† | 0.3059 | - | 0.2549 | 0.2549 | 0.2222 | 0.2222 | [0.1960, 0.4250] | 0.1111 | research | expert-human |
+| ar-TN | primary_sources | 9† | 0.3059‡ | - | 0.2549 | 0.2549 | 0.2222 | 0.2222 | n too small | 0.1111 | research | expert-human |
 | ar-YE | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar-YE | gold20_arabic | 20 | 0.0043‡ | - | - | - | - | - | [0.0000, 0.0095] | 0.8500 | research | llm-generated |
-| ar-YE | primary_sources | 15† | 0.1802 | - | 0.1802 | 0.1802 | 0.1333 | 0.1333 | [0.1352, 0.2202] | 0.1333 | research | expert-human |
+| ar-YE | primary_sources | 15† | 0.1802‡ | - | 0.1802 | 0.1802 | 0.1333 | 0.1333 | n too small | 0.1333 | research | expert-human |
 | ar-x-gulf | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ar-x-gulf | gold20_arabic | 20 | 0.0449‡ | - | - | - | - | - | [0.0259, 0.0645] | 0.3500 | research | llm-generated |
 | ar-x-gulf | wikipron | 614 | 0.3786 | - | 0.3338 | 0.3199 | 0.0879 | 0.0928 | [0.3625, 0.3933] | 0.0521 | research | crowd-scraped |
@@ -214,7 +214,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | cnk | wikipron | 342 | 0.2608 | - | 0.2592 | 0.2592 | 0.0000 | 0.0000 | [0.2540, 0.2680] | 0.0000 | research | crowd-scraped |
 | co | wikipron | 459 | 0.1955 | - | 0.1171 | 0.1055 | 0.5708 | 0.5991 | [0.1782, 0.2132] | 0.3834 | research | crowd-scraped |
 | cop | wikipron | 591 | 0.3667 | - | 0.3667 | 0.3667 | 0.1032 | 0.1032 | [0.3470, 0.3863] | 0.1032 | research | crowd-scraped |
-| cri | primary_sources | 13† | 0.2147 | - | 0.2019 | 0.2019 | 0.3077 | 0.3077 | [0.1243, 0.3116] | 0.2308 | research | expert-human |
+| cri | primary_sources | 13† | 0.2147‡ | - | 0.2019 | 0.2019 | 0.3077 | 0.3077 | n too small | 0.2308 | research | expert-human |
 | crk | wikipron | 159 | 0.1871 | - | 0.1871 | 0.1871 | 0.1698 | 0.1698 | [0.1676, 0.2074] | 0.1698 | research | crowd-scraped |
 | crs | wold | 1874 | 0.2114 | - | 0.2114 | 0.2114 | 0.5139 | 0.5139 | [0.1980, 0.2262] | 0.5139 | research | lexicon-derived |
 | cs | vox_communis | 44148 | 0.0680‡ | - | 0.0636 | 0.0636 | 0.5789 | 0.5789 | [0.0672, 0.0689] | 0.5622 | research | epitran-derived |
@@ -340,7 +340,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | ext | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ext-PT-x-barrancos | barranquenho_dict | 1508 | 0.0045‡ | - | 0.0021 | 0.0013 | 0.9881 | 0.9927 | [0.0029, 0.0061] | 0.9775 | research | llm-generated |
 | ext-PT-x-barrancos | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ext-PT-x-barrancos | primary_sources | 10† | 0.2801 | - | 0.2241 | 0.2241 | 0.4000 | 0.4000 | [0.1363, 0.4286] | 0.3000 | research | expert-human |
+| ext-PT-x-barrancos | primary_sources | 10† | 0.2801‡ | - | 0.2241 | 0.2241 | 0.4000 | 0.4000 | n too small | 0.3000 | research | expert-human |
 | fa | ipadict | 7695 | 0.2540 | - | 0.2309 | 0.2253 | 0.1193 | 0.1220 | [0.2507, 0.2574] | 0.1077 | research | machine-generated |
 | fa | wikipron | 9279 | 0.3943 | - | 0.3742 | 0.3702 | 0.0177 | 0.0178 | [0.3911, 0.3971] | 0.0170 | research | crowd-scraped |
 | fa-x-enp | wikipron | 9279 | 0.2381 | - | 0.2121 | 0.2064 | 0.1230 | 0.1258 | [0.2352, 0.2410] | 0.1024 | research | crowd-scraped |
@@ -351,9 +351,9 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | fi | wikipron | 168808 | 0.0184 | - | 0.0184 | 0.0184 | 0.8173 | 0.8173 | [0.0182, 0.0186] | 0.8171 | production | crowd-scraped |
 | fo | wikipron | 2957 | 0.1674 | - | 0.1504 | 0.1474 | 0.4156 | 0.4231 | [0.1616, 0.1737] | 0.3842 | production | crowd-scraped |
 | fpe | wikipron | 261 | 0.0301 | - | 0.0301 | 0.0301 | 0.8544 | 0.8544 | [0.0208, 0.0397] | 0.8544 | research | crowd-scraped |
-| fr | wikipron | 85497 | 0.0673 | - | 0.0530 | 0.0486 | 0.7324 | 0.7408 | [0.0664, 0.0681] | 0.6933 | research | crowd-scraped |
-| fr-FR | ipa_childes | 9444 | 0.0925‡ | - | 0.0665 | 0.0623 | 0.7609 | 0.7753 | [0.0890, 0.0964] | 0.6840 | research | espeak-derived |
-| fr-FR | ipadict | 245716 | 0.0768 | - | 0.0630 | 0.0563 | 0.6672 | 0.6742 | [0.0763, 0.0773] | 0.6416 | research | machine-generated |
+| fr | wikipron | 85500 | 0.0667 | - | 0.0525 | 0.0481 | 0.7342 | 0.7426 | [0.0659, 0.0676] | 0.6950 | research | crowd-scraped |
+| fr-FR | ipa_childes | 9446 | 0.0917‡ | - | 0.0657 | 0.0615 | 0.7634 | 0.7778 | [0.0884, 0.0951] | 0.6865 | research | espeak-derived |
+| fr-FR | ipadict | 245718 | 0.0763 | - | 0.0625 | 0.0558 | 0.6686 | 0.6756 | [0.0759, 0.0768] | 0.6430 | research | machine-generated |
 | fro | wikipron | 663 | 0.2363 | - | 0.2352 | 0.2352 | 0.2564 | 0.2564 | [0.2200, 0.2527] | 0.2534 | research | crowd-scraped |
 | fy | vox_communis | 10681 | 0.3243‡ | - | 0.3036 | 0.3018 | 0.1352 | 0.1369 | [0.3203, 0.3281] | 0.1212 | research | epitran-derived |
 | fy | wikipron | 1091 | 0.2182 | - | 0.2043 | 0.2032 | 0.3327 | 0.3355 | [0.2075, 0.2295] | 0.3071 | research | crowd-scraped |
@@ -424,7 +424,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | ja | vox_communis | 42550 | 0.4273‡ | - | 0.4273 | 0.4273 | 0.2000 | 0.2000 | [0.4243, 0.4304] | 0.2000 | research | epitran-derived |
 | jam | ipadict | 1869 | 0.1684 | - | 0.1684 | 0.1684 | 0.4034 | 0.4034 | [0.1582, 0.1777] | 0.4034 | research | lexicon-derived |
 | jam | wikipron | 382 | 0.2762 | - | 0.2762 | 0.2762 | 0.4031 | 0.4031 | [0.2462, 0.3061] | 0.4031 | research | crowd-scraped |
-| jv | kaikki | 96 | 0.2180 | - | 0.0915 | 0.0723 | 0.6667 | 0.7500 | [0.1843, 0.2542] | 0.2500 | skeleton | crowd-scraped |
+| jv | kaikki | 99 | 0.2286 | - | 0.0994 | 0.0762 | 0.6465 | 0.7475 | [0.1945, 0.2637] | 0.2424 | skeleton | crowd-scraped |
 | ka | vox_communis | 79887 | 0.2337‡ | - | 0.2337 | 0.2337 | 0.0725 | 0.0725 | [0.2329, 0.2345] | 0.0725 | research | epitran-derived |
 | kab | vox_communis | 54545 | 0.2071‡ | - | 0.2071 | 0.2071 | 0.1829 | 0.1829 | [0.2057, 0.2083] | 0.1829 | research | epitran-derived |
 | kas | wikipron | 683 | 0.2848 | - | 0.2639 | 0.2636 | 0.3880 | 0.3880 | [0.2581, 0.3122] | 0.3748 | research | crowd-scraped |
@@ -445,7 +445,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | ko | ipadict | 62447 | 0.2319 | - | 0.2299 | 0.2298 | 0.0866 | 0.0867 | [0.2309, 0.2328] | 0.0830 | research | crowd-scraped |
 | ko | vox_communis | 6123 | 0.0728‡ | - | 0.0661 | 0.0660 | 0.6111 | 0.6113 | [0.0701, 0.0754] | 0.5964 | research | epitran-derived |
 | koi | wikipron | 229 | 0.0920 | - | 0.0807 | 0.0807 | 0.6987 | 0.6987 | [0.0738, 0.1103] | 0.6550 | research | crowd-scraped |
-| kok | kaikki | 830 | 0.2240 | - | 0.1451 | 0.1332 | 0.3735 | 0.4036 | [0.2105, 0.2375] | 0.2566 | research | crowd-scraped |
+| kok | kaikki | 830 | 0.2241 | - | 0.1453 | 0.1333 | 0.3723 | 0.4024 | [0.2105, 0.2376] | 0.2554 | research | crowd-scraped |
 | krl | wikipron | 641 | 0.0519 | - | 0.0519 | 0.0519 | 0.7176 | 0.7176 | [0.0450, 0.0592] | 0.7176 | research | crowd-scraped |
 | kru | wikipron | 187 | 0.1947 | - | 0.1947 | 0.1947 | 0.3155 | 0.3155 | [0.1697, 0.2205] | 0.3155 | research | crowd-scraped |
 | ktz | wikipron | 134 | 0.3464 | - | 0.3464 | 0.3464 | 0.3731 | 0.3731 | [0.2889, 0.4102] | 0.3731 | research | crowd-scraped |
@@ -469,7 +469,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | liv | wikipron | 2480 | 0.1173 | - | 0.1048 | 0.1047 | 0.5698 | 0.5698 | [0.1108, 0.1240] | 0.5242 | research | crowd-scraped |
 | lmo | wikipron | 406 | 0.2892 | - | 0.2377 | 0.2311 | 0.3079 | 0.3177 | [0.2660, 0.3112] | 0.2463 | research | crowd-scraped |
 | lmy | wikipron | 129 | 0.1695 | - | 0.1695 | 0.1695 | 0.2558 | 0.2558 | [0.1484, 0.1915] | 0.2558 | research | crowd-scraped |
-| lo | kaikki | 2312 | 0.3634 | - | 0.3634 | 0.3634 | 0.0000 | 0.0000 | [0.3592, 0.3676] | 0.0000 | research | crowd-scraped |
+| lo | kaikki | 2315 | 0.3570 | - | 0.3570 | 0.3570 | 0.0000 | 0.0000 | [0.3530, 0.3609] | 0.0000 | research | crowd-scraped |
 | lou | wikipron | 262 | 0.1953 | - | 0.1953 | 0.1953 | 0.5115 | 0.5115 | [0.1679, 0.2236] | 0.5115 | research | crowd-scraped |
 | lsi | wikipron | 96 | 0.4222 | - | 0.4212 | 0.4212 | 0.0000 | 0.0000 | [0.4022, 0.4413] | 0.0000 | research | crowd-scraped |
 | lt | vox_communis | 28971 | 0.2706‡ | - | 0.2705 | 0.2705 | 0.0530 | 0.0530 | [0.2689, 0.2726] | 0.0529 | research | epitran-derived |
@@ -507,11 +507,11 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | mwl | mirandese_dict | 990 | 0.0401‡ | - | 0.0318 | 0.0307 | 0.8444 | 0.8485 | [0.0340, 0.0463] | 0.8253 | research | llm-generated |
 | mwl | mirandese_g2p | 205 | 0.1317 | - | 0.1188 | 0.1141 | 0.5122 | 0.5220 | [0.1100, 0.1545] | 0.4829 | research | expert-human |
 | mwl | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| mwl-x-ifanes | mirandese_dict | 4† | 0.2083‡ | - | 0.0000 | 0.0000 | 1.0000 | 1.0000 | [0.0000, 0.4167] | 0.5000 | research | llm-generated |
-| mwl-x-ifanes | mirandese_g2p | 2† | 0.5000 | - | 0.5000 | 0.5000 | 0.0000 | 0.0000 | [0.5000, 0.5000] | 0.0000 | research | expert-human |
+| mwl-x-ifanes | mirandese_dict | 4† | 0.2083‡ | - | 0.0000 | 0.0000 | 1.0000 | 1.0000 | n too small | 0.5000 | research | llm-generated |
+| mwl-x-ifanes | mirandese_g2p | 2† | 0.5000‡ | - | 0.5000 | 0.5000 | 0.0000 | 0.0000 | n too small | 0.0000 | research | expert-human |
 | mwl-x-ifanes | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | mwl-x-sendim | mirandese_dict | 79 | 0.0937‡ | - | 0.0916 | 0.0916 | 0.6203 | 0.6203 | [0.0673, 0.1265] | 0.6203 | research | llm-generated |
-| mwl-x-sendim | mirandese_g2p | 11† | 0.3258 | - | 0.3258 | 0.3258 | 0.3636 | 0.3636 | [0.1641, 0.4824] | 0.3636 | research | expert-human |
+| mwl-x-sendim | mirandese_g2p | 11† | 0.3258‡ | - | 0.3258 | 0.3258 | 0.3636 | 0.3636 | n too small | 0.3636 | research | expert-human |
 | mwl-x-sendim | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | mww | wikipron | 489 | 0.0107 | - | 0.0107 | 0.0107 | 0.9611 | 0.9611 | [0.0060, 0.0161] | 0.9611 | research | crowd-scraped |
 | mxi | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
@@ -602,51 +602,51 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | pt-MZ | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | pt-MZ | portuguese_unified | 53147 | 0.1698 | - | 0.1442 | 0.1273 | 0.3250 | 0.3825 | [0.1686, 0.1711] | 0.2555 | research | lexicon-derived |
 | pt-PT | ep_dialects | 30 | 0.1185 | - | - | - | - | - | [0.0931, 0.1462] | 0.1333 | research | expert-human |
-| pt-PT | ipa_childes | 3846 | 0.2485‡ | - | 0.1863 | 0.1722 | 0.3565 | 0.3838 | [0.2412, 0.2558] | 0.2574 | research | espeak-derived |
+| pt-PT | ipa_childes | 3846 | 0.2486‡ | - | 0.1864 | 0.1723 | 0.3565 | 0.3838 | [0.2413, 0.2558] | 0.2574 | research | espeak-derived |
 | pt-PT | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | pt-PT | portuguese_unified | 105553 | 0.2235 | - | 0.2013 | 0.1904 | 0.1826 | 0.1962 | [0.2225, 0.2245] | 0.1502 | research | lexicon-derived |
 | pt-PT | wikipron | 56978 | 0.0899 | - | 0.0678 | 0.0586 | 0.6061 | 0.6504 | [0.0887, 0.0909] | 0.5401 | research | crowd-scraped |
-| pt-PT-x-acores | clup_dialect | 2† | 0.3214 | - | - | - | - | - | [0.3151, 0.3277] | 0.0000 | research | expert-human |
+| pt-PT-x-acores | clup_dialect | 2† | 0.3214‡ | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
 | pt-PT-x-acores | ep_dialects | 29 | 0.1095 | - | - | - | - | - | [0.0796, 0.1392] | 0.0690 | research | expert-human |
 | pt-PT-x-acores | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-alentejo | clup_dialect | 1† | 0.2693 | - | - | - | - | - | [0.2693, 0.2693] | 0.0000 | research | expert-human |
+| pt-PT-x-alentejo | clup_dialect | 1† | 0.2693‡ | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
 | pt-PT-x-alentejo | ep_dialects | 30 | 0.2213 | - | - | - | - | - | [0.1691, 0.2851] | 0.0667 | research | expert-human |
 | pt-PT-x-alentejo | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-alentejo | primary_sources | 5† | 0.3000 | - | 0.2333 | 0.2333 | 0.2000 | 0.2000 | [0.2667, 0.3333] | 0.0000 | research | expert-human |
-| pt-PT-x-alfena | clup_dialect | 1† | 0.3260 | - | - | - | - | - | [0.3260, 0.3260] | 0.0000 | research | expert-human |
+| pt-PT-x-alentejo | primary_sources | 5† | 0.3000‡ | - | 0.2333 | 0.2333 | 0.2000 | 0.2000 | n too small | 0.0000 | research | expert-human |
+| pt-PT-x-alfena | clup_dialect | 1† | 0.3260‡ | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
 | pt-PT-x-alfena | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-algarve | clup_dialect | 3† | 0.3712 | - | - | - | - | - | [0.2988, 0.4378] | 0.0000 | research | expert-human |
+| pt-PT-x-algarve | clup_dialect | 3† | 0.3712‡ | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
 | pt-PT-x-algarve | ep_dialects | 30 | 0.1480 | - | - | - | - | - | [0.1138, 0.1796] | 0.1333 | research | expert-human |
 | pt-PT-x-algarve | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-aveiro | clup_dialect | 6† | 0.3056 | - | - | - | - | - | [0.2807, 0.3339] | 0.0000 | research | expert-human |
+| pt-PT-x-aveiro | clup_dialect | 6† | 0.3056‡ | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
 | pt-PT-x-aveiro | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-beira | clup_dialect | 8† | 0.3248 | - | - | - | - | - | [0.2932, 0.3645] | 0.0000 | research | expert-human |
+| pt-PT-x-beira | clup_dialect | 8† | 0.3248‡ | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
 | pt-PT-x-beira | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-beira | primary_sources | 8† | 0.4327 | - | 0.4327 | 0.4327 | 0.1250 | 0.1250 | [0.2494, 0.6202] | 0.1250 | research | expert-human |
+| pt-PT-x-beira | primary_sources | 8† | 0.4327‡ | - | 0.4327 | 0.4327 | 0.1250 | 0.1250 | n too small | 0.1250 | research | expert-human |
 | pt-PT-x-braga | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | pt-PT-x-coimbra | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-lisbon | clup_dialect | 5† | 0.2921 | - | - | - | - | - | [0.2534, 0.3383] | 0.0000 | research | expert-human |
+| pt-PT-x-lisbon | clup_dialect | 5† | 0.2921‡ | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
 | pt-PT-x-lisbon | ep_dialects | 45 | 0.1172 | - | - | - | - | - | [0.0948, 0.1426] | 0.1556 | research | expert-human |
 | pt-PT-x-lisbon | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | pt-PT-x-lisbon | portuguese_unified | 53150 | 0.1046 | - | 0.0840 | 0.0735 | 0.4796 | 0.5143 | [0.1036, 0.1055] | 0.4086 | research | lexicon-derived |
 | pt-PT-x-lisbon | primary_sources | 33 | 0.0288 | - | 0.0288 | 0.0288 | 0.8788 | 0.8788 | [0.0075, 0.0561] | 0.8788 | research | expert-human |
-| pt-PT-x-madeira | clup_dialect | 4† | 0.3250 | - | - | - | - | - | [0.2852, 0.3653] | 0.0000 | research | expert-human |
+| pt-PT-x-madeira | clup_dialect | 4† | 0.3254‡ | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
 | pt-PT-x-madeira | ep_dialects | 30 | 0.0952 | - | - | - | - | - | [0.0662, 0.1257] | 0.2667 | research | expert-human |
 | pt-PT-x-madeira | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | pt-PT-x-medieval | portuguese_tts | 20 | 0.0020‡ | - | - | - | - | - | [0.0000, 0.0060] | 0.9500 | research | llm-generated |
-| pt-PT-x-minho | clup_dialect | 9† | 0.3181 | - | - | - | - | - | [0.2908, 0.3471] | 0.0000 | research | expert-human |
+| pt-PT-x-minho | clup_dialect | 9† | 0.3181‡ | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
 | pt-PT-x-minho | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-porto | clup_dialect | 17† | 0.4223 | - | - | - | - | - | [0.3919, 0.4499] | 0.0000 | research | expert-human |
+| pt-PT-x-porto | clup_dialect | 17† | 0.4223‡ | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
 | pt-PT-x-porto | ep_dialects | 40 | 0.1881 | - | - | - | - | - | [0.1608, 0.2128] | 0.0500 | research | expert-human |
 | pt-PT-x-porto | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-porto | primary_sources | 5† | 0.2133 | - | 0.1467 | 0.1467 | 0.6000 | 0.6000 | [0.1000, 0.3400] | 0.2000 | research | expert-human |
+| pt-PT-x-porto | primary_sources | 5† | 0.2133‡ | - | 0.1467 | 0.1467 | 0.6000 | 0.6000 | n too small | 0.2000 | research | expert-human |
 | pt-PT-x-sao-miguel | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-sao-miguel | primary_sources | 12† | 0.3917 | - | 0.3917 | 0.3917 | 0.0833 | 0.0833 | [0.2556, 0.5418] | 0.0833 | research | expert-human |
+| pt-PT-x-sao-miguel | primary_sources | 12† | 0.3917‡ | - | 0.3917 | 0.3917 | 0.0833 | 0.0833 | n too small | 0.0833 | research | expert-human |
 | pt-PT-x-terceira | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-terceira | primary_sources | 10† | 0.2345 | - | 0.1536 | 0.1369 | 0.4000 | 0.4000 | [0.0952, 0.3953] | 0.3000 | research | expert-human |
-| pt-PT-x-trasosmontes | clup_dialect | 6† | 0.3317 | - | - | - | - | - | [0.3126, 0.3578] | 0.0000 | research | expert-human |
+| pt-PT-x-terceira | primary_sources | 10† | 0.2345‡ | - | 0.1536 | 0.1369 | 0.4000 | 0.4000 | n too small | 0.3000 | research | expert-human |
+| pt-PT-x-trasosmontes | clup_dialect | 6† | 0.3317‡ | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
 | pt-PT-x-trasosmontes | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-viana | clup_dialect | 4† | 0.3655 | - | - | - | - | - | [0.3279, 0.4107] | 0.0000 | research | expert-human |
+| pt-PT-x-viana | clup_dialect | 4† | 0.3655‡ | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
 | pt-PT-x-viana | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | pt-ST | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | pt-TL | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
@@ -692,7 +692,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | smn | northeuralex | 1055 | 0.1600 | - | 0.1600 | 0.1600 | 0.3137 | 0.3137 | [0.1518, 0.1694] | 0.3137 | research | lexicon-derived |
 | sms | northeuralex | 1063 | 0.2200 | - | 0.1758 | 0.1700 | 0.1543 | 0.1712 | [0.2128, 0.2266] | 0.0809 | research | lexicon-derived |
 | sms | wikipron | 111 | 0.0045 | - | 0.0045 | 0.0045 | 0.9820 | 0.9820 | [0.0000, 0.0120] | 0.9820 | research | crowd-scraped |
-| so | kaikki | 230 | 0.5567 | 0.4092 (tone) | 0.5403 | 0.5403 | 0.0565 | 0.0565 | [0.5304, 0.5838] | 0.0435 | research | crowd-scraped |
+| so | kaikki | 230 | 0.5579 | 0.4092 (tone) | 0.5415 | 0.5415 | 0.0565 | 0.0565 | [0.5315, 0.5852] | 0.0435 | research | crowd-scraped |
 | sq | vox_communis | 11713 | 0.1432‡ | - | 0.1432 | 0.1432 | 0.3056 | 0.3056 | [0.1411, 0.1453] | 0.3056 | research | epitran-derived |
 | sq | wikipron | 4900 | 0.0964 | - | 0.0964 | 0.0964 | 0.5606 | 0.5606 | [0.0928, 0.1003] | 0.5606 | research | crowd-scraped |
 | sr | ipa_childes | 9838 | 0.3232‡ | - | 0.3232 | 0.3232 | 0.0811 | 0.0811 | [0.3198, 0.3267] | 0.0811 | research | epitran-derived |
@@ -700,7 +700,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | srn | wikipron | 702 | 0.0450 | - | 0.0450 | 0.0450 | 0.8376 | 0.8376 | [0.0360, 0.0547] | 0.8376 | research | crowd-scraped |
 | srs | wikipron | 137 | 0.1765 | - | 0.1765 | 0.1765 | 0.2847 | 0.2847 | [0.1515, 0.2027] | 0.2847 | research | crowd-scraped |
 | stq | wikipron | 818 | 0.1959 | - | 0.1475 | 0.1417 | 0.4401 | 0.4548 | [0.1840, 0.2085] | 0.3313 | research | crowd-scraped |
-| su | kaikki | 397 | 0.0973 | - | 0.0973 | 0.0973 | 0.6373 | 0.6373 | [0.0826, 0.1127] | 0.6373 | skeleton | crowd-scraped |
+| su | kaikki | 399 | 0.0978 | - | 0.0978 | 0.0978 | 0.6366 | 0.6366 | [0.0835, 0.1133] | 0.6366 | skeleton | crowd-scraped |
 | sv | ipa_childes | 5202 | 0.3458‡ | - | 0.2536 | 0.2452 | 0.2637 | 0.2784 | [0.3397, 0.3526] | 0.1745 | research | espeak-derived |
 | sv | ipadict | 21094 | 0.2405 | - | 0.1737 | 0.1617 | 0.2929 | 0.3115 | [0.2379, 0.2431] | 0.2110 | research | lexicon-derived |
 | sv | vox_communis | 19492 | 0.3695‡ | - | 0.2123 | 0.2026 | 0.2500 | 0.2730 | [0.3671, 0.3722] | 0.0813 | research | epitran-derived |
@@ -717,8 +717,8 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | tew | wikipron | 106 | 0.0000 | - | 0.0000 | 0.0000 | 1.0000 | 1.0000 | [0.0000, 0.0000] | 1.0000 | research | crowd-scraped |
 | tft | wikipron | 293 | 0.1041 | - | 0.1041 | 0.1041 | 0.6792 | 0.6792 | [0.0827, 0.1265] | 0.6792 | research | crowd-scraped |
 | tg | wikipron | 3245 | 0.0296 | - | 0.0296 | 0.0296 | 0.8354 | 0.8354 | [0.0271, 0.0323] | 0.8354 | research | crowd-scraped |
-| th | vox_communis | 23704 | 0.4316‡ | - | 0.4273 | 0.4272 | 0.0403 | 0.0403 | [0.4292, 0.4342] | 0.0392 | research | epitran-derived |
-| th | wikipron | 17221 | 0.1879 | - | 0.1855 | 0.1855 | 0.3304 | 0.3304 | [0.1848, 0.1909] | 0.3297 | research | crowd-scraped |
+| th | vox_communis | 23704 | 0.4281‡ | - | 0.4237 | 0.4236 | 0.0403 | 0.0403 | [0.4256, 0.4305] | 0.0392 | research | epitran-derived |
+| th | wikipron | 17221 | 0.1788 | - | 0.1764 | 0.1764 | 0.3304 | 0.3304 | [0.1759, 0.1816] | 0.3297 | research | crowd-scraped |
 | tk | vox_communis | 5881 | 0.1629‡ | - | 0.1423 | 0.1416 | 0.3187 | 0.3231 | [0.1596, 0.1662] | 0.2588 | research | epitran-derived |
 | tk | wikipron | 424 | 0.2316 | - | 0.2257 | 0.2257 | 0.3679 | 0.3679 | [0.2109, 0.2517] | 0.3420 | research | crowd-scraped |
 | tkl | wikipron | 340 | 0.0497 | - | 0.0497 | 0.0497 | 0.7824 | 0.7824 | [0.0390, 0.0601] | 0.7824 | research | crowd-scraped |
@@ -734,8 +734,8 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | tzm | wikipron | 658 | 0.0160 | - | 0.0160 | 0.0160 | 0.9483 | 0.9483 | [0.0101, 0.0225] | 0.9483 | research | crowd-scraped |
 | uby | wikipron | 1317 | 0.0247 | - | 0.0214 | 0.0209 | 0.9043 | 0.9043 | [0.0201, 0.0300] | 0.8998 | research | crowd-scraped |
 | udm | northeuralex | 973 | 0.2110 | - | 0.1908 | 0.1896 | 0.3875 | 0.3905 | [0.1989, 0.2233] | 0.3350 | research | lexicon-derived |
-| ug | vox_communis | 40503 | 0.0842‡ | - | 0.0842 | 0.0842 | 0.4977 | 0.4977 | [0.0832, 0.0852] | 0.4977 | research | epitran-derived |
-| ug | wikipron | 2644 | 0.1285 | - | 0.1285 | 0.1285 | 0.4172 | 0.4172 | [0.1239, 0.1335] | 0.4172 | research | crowd-scraped |
+| ug | vox_communis | 40503 | 0.0864‡ | - | 0.0864 | 0.0864 | 0.4905 | 0.4905 | [0.0853, 0.0874] | 0.4905 | research | epitran-derived |
+| ug | wikipron | 2644 | 0.0419 | - | 0.0062 | 0.0061 | 0.9675 | 0.9682 | [0.0386, 0.0450] | 0.7610 | research | crowd-scraped |
 | uk | primary_sources | 45 | 0.0759 | - | 0.0360 | 0.0264 | 0.7778 | 0.8444 | [0.0470, 0.1096] | 0.6444 | research | expert-human |
 | uk | vox_communis | 51621 | 0.2672‡ | - | 0.1695 | 0.1332 | 0.2478 | 0.3411 | [0.2659, 0.2684] | 0.0846 | research | epitran-derived |
 | uk | wikipron | 51646 | 0.0992 | - | 0.0724 | 0.0691 | 0.4929 | 0.5006 | [0.0982, 0.1001] | 0.4413 | research | crowd-scraped |
@@ -757,7 +757,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | wlm | wikipron | 403 | 0.2498 | - | 0.2498 | 0.2498 | 0.2357 | 0.2357 | [0.2309, 0.2702] | 0.2357 | research | crowd-scraped |
 | xaa | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | xal | wikipron | 318 | 0.2813 | - | 0.2813 | 0.2813 | 0.1478 | 0.1478 | [0.2619, 0.3014] | 0.1478 | research | crowd-scraped |
-| xh | kaikki | 887 | 0.3779 | 0.1519† (tone) | 0.3761 | 0.3761 | 0.0304 | 0.0304 | [0.3681, 0.3868] | 0.0282 | research | crowd-scraped |
+| xh | kaikki | 888 | 0.3776 | 0.1519† (tone) | 0.3759 | 0.3759 | 0.0304 | 0.0304 | [0.3681, 0.3870] | 0.0282 | research | crowd-scraped |
 | xsl | wikipron | 146 | 0.0273 | - | 0.0234 | 0.0234 | 0.9041 | 0.9041 | [0.0145, 0.0421] | 0.8904 | research | crowd-scraped |
 | ycl | wikipron | 111 | 0.0108 | - | 0.0108 | 0.0108 | 0.9369 | 0.9369 | [0.0030, 0.0201] | 0.9369 | research | crowd-scraped |
 | yi | wikipron | 4051 | 0.2042 | - | 0.1818 | 0.1745 | 0.3261 | 0.3453 | [0.1983, 0.2098] | 0.2735 | research | crowd-scraped |

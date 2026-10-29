@@ -33,7 +33,7 @@
   },
   "positional_graphemes_base": "pt-PT",
   "parent": "pt-PT",
-  "notes": "Alfena Portuguese (Greater Porto, Valongo — Douro-Litoral / Duriense zone), a northern EP dialect in Cintra's Baixo-Minhoto-Duriense-Beirão group. MODELLED FEATURES: (1) APICO-ALVEOLAR-ONLY SIBILANT SYSTEM — ⟨s/ss⟩ AND ⟨c/ç/z⟩ all merge to apico-alveolar [s̺]/[z̺]; the four-sibilant opposition is reduced to the single apical branch (Cintra 1971 p.93; Álvarez Pérez 2014 pp.37-38, Durienses 'kept only the apico-alveolar branch'). Coda ⟨s/z⟩ keep chiado [ʃ]/[ʒ]. (2) BETACISM — /v/–/b/ merged to /b/ ~ [β] (Cintra 1971 p.88; Pérez 2014 pp.35-37). Alfena is additionally known for a local vowel-breaking (Brechung) of stressed mid vowels ([ɛ]>[ɛ͜ɐ] etc.); those are enumerated as secondary allophonic variants from regional-dialect literature, not from Cintra/Pérez, and are not asserted as default output. Porto je/wo diphthongisation is not applied. Inherits pt-PT base.",
+  "notes": "Alfena Portuguese (Greater Porto, Valongo — Douro-Litoral / Duriense zone), a northern EP dialect in Cintra's Baixo-Minhoto-Duriense-Beirão group. MODELLED FEATURES: (1) APICO-ALVEOLAR-ONLY SIBILANT SYSTEM — ⟨s/ss⟩ AND ⟨c/ç/z⟩ all merge to apico-alveolar [s̺]/[z̺]; the four-sibilant opposition is reduced to the single apical branch (Cintra 1971 p.93; Álvarez Pérez 2014 pp.37-38, Durienses 'kept only the apico-alveolar branch'). Coda ⟨s/z⟩ keep chiado [ʃ]/[ʒ]. (2) BETACISM — /v/–/b/ merged to /b/ ~ [β] (Cintra 1971 p.88; Pérez 2014 pp.35-37). Alfena is additionally known for a local vowel-breaking (Brechung) of stressed mid vowels ([ɛ]>[ɛ͜ɐ] etc.); those are enumerated as secondary allophonic variants from regional-dialect literature, not from Cintra/Pérez, and are not asserted as default output. Porto je/wo diphthongisation is not applied. Inherits pt-PT base. ⟨ss⟩ is declared apico-alveolar [s̺] here because the pt-PT base maps it to plain [s]; the value follows feature (1) above, which puts ⟨s/ss⟩ in the apical branch. Cintra 1971 (read in the Instituto Camões CVC reprint, pp. 11-13) draws the main North/South isogloss on the sibilant of the graphemes s and ss: apico-alveolar in the North, predorsodental in the South. His southern limit of the apical runs from the Ria de Aveiro to the Mondego, which it crosses upstream of Coimbra, and on towards Castelo Branco.",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -161,6 +161,9 @@
     ]
   },
   "graphemes": {
+    "ss": [
+      "s̺"
+    ],
     "ç": [
       "s̺"
     ],
