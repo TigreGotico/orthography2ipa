@@ -320,13 +320,13 @@ class TestUnmappedCharObservability:
 
     def test_unsupported_script_reports_unmapped_but_ipa_unchanged(self):
         """A word entirely outside the spec's script surfaces via
-        unmapped/coverage while `ipa` stays empty, matching pre-existing
-        'ignore' (default) behavior — feeding Hanzi to the pinyin-only
+        unmapped/coverage while `ipa` stays empty, the same output in
+        every non-raising mode — feeding Hanzi to the pinyin-only
         zh spec, the PR #102 scenario."""
         engine = G2P("zh")
         result = engine.transcribe_detailed("你好")
         assert result.ipa == "", (
-            "Default on_unmapped='ignore' must not change ipa output")
+            "Default on_unmapped='warn' must not change ipa output")
         assert len(result.words) == 1
         word = result.words[0]
         assert word.ipa == ""
@@ -380,10 +380,13 @@ class TestUnmappedCharObservability:
             "Expected exactly one warning for the repeated (lang, word) pair")
         assert "你" in warnings[0].message or "你好" in warnings[0].message
 
-    def test_default_on_unmapped_is_ignore(self):
-        """The default G2P() constructor call must not raise or log for
-        unmapped characters — zero behavior change for existing callers."""
+    def test_default_on_unmapped_is_warn(self):
+        """The default G2P() constructor call warns for unmapped letters
+        and returns the same IPA as the explicit silent mode."""
+        from orthography2ipa.exceptions import UnmappedGraphemeWarning
+
         engine = G2P("zh")
-        assert engine.on_unmapped == "ignore"
-        ipa = engine.transcribe("你好")  # must not raise
-        assert ipa == ""
+        assert engine.on_unmapped == "warn"
+        with pytest.warns(UnmappedGraphemeWarning, match="U\\+4F60"):
+            ipa = engine.transcribe("你好")  # must not raise
+        assert ipa == G2P("zh", on_unmapped="ignore").transcribe("你好") == ""

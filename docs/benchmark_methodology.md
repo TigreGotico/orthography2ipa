@@ -401,6 +401,21 @@ deliberately capped, top-frequency pilot lexicon. The shipped `en-GB` pilot
 against the independent WikiPron gold: the pilot proves the mechanism. Full
 production lexica belong downstream.
 
+### Board environment
+
+A whole-board `--scoreboard` run writes `benchmarks/results_environment.json`.
+It lists the resolved version of every registered plugin entry point and of
+every optional scorer package, or `null` for one that is not installed. When a
+row moves with no spec change, diff this file first: a floor-pinned package
+such as `silabificador` resolves to the newest release on each box.
+
+A whole-board run exits non-zero and writes nothing when it cannot score a
+row the committed board carries. The message names each row as
+`dataset/lang`. A run scoped with `--lang` or `--dataset` prints the same
+names as a warning and keeps the committed values. A row whose scorer package
+no CI job installs carries `"ci_reproducible": false`, and the scoreboard
+shows `(not CI-reproducible)` in its `Provenance` cell.
+
 ## Reference numbers
 
 `python scripts/benchmark.py --dataset <d> --lang <l> --limit 300`:

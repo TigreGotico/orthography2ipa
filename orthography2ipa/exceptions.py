@@ -7,7 +7,7 @@ from __future__ import annotations
 
 from typing import Tuple
 
-__all__ = ["StubSpecWarning", "UnmappedScriptError"]
+__all__ = ["StubSpecWarning", "UnmappedGraphemeWarning", "UnmappedScriptError"]
 
 
 class UnmappedScriptError(ValueError):
@@ -49,4 +49,21 @@ class StubSpecWarning(UserWarning):
     and the catalog, the distance metrics and the tests enumerate them;
     ``G2P(..., on_unmapped="raise")`` turns the per-word case into
     :class:`UnmappedScriptError`.
+    """
+
+
+class UnmappedGraphemeWarning(UserWarning):
+    """Emitted when a letter or combining mark has no grapheme mapping.
+
+    The tokenizer turns a character that no ``graphemes`` key covers into an
+    ``UNKNOWN`` token, and the transcription carries nothing for it: ``ar``
+    reads ⟨بڨب⟩ as ``ˈbb``, the same string a word without the ⟨ڨ⟩ gives.
+    The engine warns once per (spec, character) with the code point and the
+    spec code, and the transcription string does not change.
+
+    Only Unicode letters (category ``L*``) and marks (``M*``) warn.
+    Punctuation, digits, symbols and spaces never do. A stub spec warns
+    :class:`StubSpecWarning` once instead of once per letter.
+    ``G2P(..., on_unmapped="ignore")`` turns the warning off and
+    ``on_unmapped="raise"`` turns it into :class:`UnmappedScriptError`.
     """

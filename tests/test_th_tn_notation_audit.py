@@ -17,8 +17,8 @@ ROOT = os.path.join(os.path.dirname(__file__), "..")
 sys.path.insert(0, os.path.join(ROOT, "scripts"))
 
 ROWS = [
-    ("th", "wikipron", "0.1710"),
-    ("th", "vox_communis", "0.2294"),
+    ("th", "wikipron", "0.1640"),
+    ("th", "vox_communis", "0.2225"),
     ("tn", "vox_communis", "0.2066"),
 ]
 

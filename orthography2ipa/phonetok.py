@@ -1322,6 +1322,9 @@ class PhonetokTokenizer:
             v.lower() for v in spec.preposed_vowels
         )
         self._coda_no_inherent_vowel: bool = spec.coda_no_inherent_vowel
+        self._consonant_nuclei: Dict[str, str] = {
+            k.lower(): v for k, v in (spec.consonant_nuclei or {}).items()
+        }
         self._inherent_vowel_final: Optional[str] = spec.inherent_vowel_final
 
     def _supplies_vowel_at(self, text: str, pos: int) -> bool:
@@ -1355,6 +1358,50 @@ class PhonetokTokenizer:
                 ipa_vals = self._grapheme_ipa.get(key)
                 return bool(ipa_vals and ipa_vals[0] and _is_nucleus(ipa_vals[0]))
         return self._supplies_vowel(text[pos])
+
+    def _consonant_nucleus_at(
+            self, text: str, pos: int, tokens: List[Token]) -> int:
+        """Offset of the consonant letter at *pos* that spells the nucleus, or -1.
+
+        See :attr:`LanguageSpec.consonant_nuclei`. *tokens* are the tokens
+        before the consonant that precedes the letter, so the test sees
+        whether that consonant is an onset with no vowel of its own.
+        """
+        if not self._consonant_nuclei or self._syllable_has_nucleus(tokens):
+            return -1
+        while pos < len(text) and self._spells_nothing(text[pos]):
+            pos += 1
+        letter = self._trie.longest_match(text, pos)
+        if letter not in self._consonant_nuclei:
+            return -1
+        close = pos + len(letter)
+        while close < len(text) and self._spells_nothing(text[close]):
+            close += 1
+        coda = self._trie.longest_match(text, close)
+        coda_ipa = self._grapheme_ipa.get(coda) if coda else None
+        if (not coda_ipa or not coda_ipa[0] or _is_nucleus(coda_ipa[0])
+                or self._supplies_vowel_at(text, close + len(coda))):
+            return -1
+        return pos
+
+    def _unfuse_consonant_nucleus(
+            self, gkey: str, text: str, pos: int, tokens: List[Token]) -> str:
+        """*gkey* without its last letter when that letter is a consonant nucleus.
+
+        A cluster key ending in such a letter (Thai ⟨ขว⟩ /kʰw/ in ⟨ขวา⟩)
+        would swallow the nucleus of ⟨ขวด⟩, so the cluster backs off to its
+        head and the letter is read on its own.
+        """
+        key_ipa = self._grapheme_ipa.get(gkey)
+        if not key_ipa or _is_nucleus(key_ipa[0]):
+            return gkey
+        for letter in self._consonant_nuclei:
+            head = gkey[:-len(letter)]
+            if (head and gkey.endswith(letter) and head in self._grapheme_ipa
+                    and self._consonant_nucleus_at(
+                        text, pos + len(head), tokens) == pos + len(head)):
+                return head
+        return gkey
 
     def _spells_nothing(self, ch: str) -> bool:
         """True when *ch* is a combining mark the spec maps to nothing.
@@ -1691,6 +1738,7 @@ class PhonetokTokenizer:
         tokens: List[Token] = []
         n = len(text)
         pos = 0
+        nucleus_at = -1
 
         if self.add_bos:
             tokens.append(Token(
@@ -1988,7 +2036,12 @@ class PhonetokTokenizer:
                             and (gkey[-1] + nlow) in self._grapheme_ipa
                         ):
                             gkey = gkey[:-1]
+                if self._consonant_nuclei:
+                    gkey = self._unfuse_consonant_nucleus(
+                        gkey, text, pos, tokens)
                 ipa_vals = self._grapheme_ipa[gkey]
+                if pos == nucleus_at and gkey in self._consonant_nuclei:
+                    ipa_vals = (self._consonant_nuclei[gkey],)
                 consumed = len(gkey)
                 # Inherent vowel for abugidas. A consonant letter carries an
                 # inherent vowel, but that vowel is *cancelled* — not added to —
@@ -2034,6 +2087,8 @@ class PhonetokTokenizer:
                     if first_ipa and not is_mark and not _is_nucleus(first_ipa):
                         next_pos = pos + consumed
                         next_ch = text[next_pos] if next_pos < n else ""
+                        nucleus_at = self._consonant_nucleus_at(
+                            text, next_pos, tokens)
                         if next_ch and _is_virama(next_ch):
                             # Virama — bare consonant; consume the mark so that
                             # C+virama+C falls out as a cluster (conjuncts).
@@ -2045,7 +2100,8 @@ class PhonetokTokenizer:
                             # that need to see it, e.g. Malayalam's
                             # ⟨റ്റ⟩ = /tː/ (TA_GEM1_r/TA_GEM2_r).
                             consumed += 1
-                        elif not self._supplies_vowel_at(text, next_pos):
+                        elif nucleus_at < 0 and not self._supplies_vowel_at(
+                                text, next_pos):
                             # Nothing supplies a vowel — but if the current
                             # syllable already got one from the token just
                             # before this consonant (Tai coda_no_inherent_vowel,

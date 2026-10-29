@@ -100,6 +100,8 @@ import time
 import unicodedata
 import urllib.parse
 import urllib.request
+from importlib.metadata import PackageNotFoundError, entry_points
+from importlib.metadata import version as package_version
 from typing import (Callable, Dict, Iterator, List, Optional, Sequence,
                     Tuple)
 
@@ -153,6 +155,11 @@ except ImportError:
     THIN_ROW_MARK = "†"
 SCOREBOARD_MD = os.path.join(REPO_ROOT, "docs", "scoreboard.md")
 SCOREBOARD_JSON = os.path.join(REPO_ROOT, "benchmarks", "results.json")
+#: The environment that scored the whole board: the resolved version of every
+#: registered plugin and optional scorer package. It sits beside
+#: ``results.json`` because that file is a bare list of rows.
+ENVIRONMENT_JSON = os.path.join(
+    REPO_ROOT, "benchmarks", "results_environment.json")
 LEXICON_SCOREBOARD_MD = os.path.join(REPO_ROOT, "docs", "lexicon_scoreboard.md")
 LEXICON_SCOREBOARD_JSON = os.path.join(
     REPO_ROOT, "benchmarks", "lexicon_results.json")
@@ -4163,6 +4170,8 @@ def build_scoreboard(limit: Optional[int], oracle: bool = False,
                 "harness_version": HARNESS_VERSION,
                 "limit": limit,
             })
+            if dataset_name in NOT_CI_REPRODUCIBLE:
+                rows[-1]["ci_reproducible"] = False
             ceiling = _valid_ceiling(lang, dataset_name)
             if ceiling is not None:
                 rows[-1]["valid_ceiling"] = ceiling
@@ -4188,6 +4197,101 @@ def build_scoreboard(limit: Optional[int], oracle: bool = False,
                     rows[-1]["oracle_injected_alternatives"] = injected
     rows.sort(key=lambda r: (r["lang"], r["dataset"]))
     return rows
+
+
+#: Distribution names of the optional packages that shape a row: those a
+#: dataset loader imports, and ``silabificador``, which the registered
+#: Portuguese syllabifier entry point loads (the entry point itself is
+#: declared by this package, so its version says nothing about the
+#: syllabifier). A floor-pinned package resolves to whatever is newest, so
+#: its version belongs beside the numbers it produced.
+#: ``test_board_environment`` checks every import in this file is listed.
+OPTIONAL_SCORER_PACKAGES = (
+    "huggingface_hub", "rarfile", "scriptconv", "silabificador",
+    "text2tashkeel")
+
+#: Datasets whose scorer package no CI job installs, mapped to that package.
+#: Their rows are reproducible only on a box that carries it.
+NOT_CI_REPRODUCIBLE = {"wikipron_ar_diacritized": "text2tashkeel"}
+
+
+def board_environment() -> dict:
+    """The resolved version of every registered plugin and optional scorer.
+
+    A scorer that is not installed reads ``None``: a board scored without it
+    has no row for it, and the record says why.
+    """
+    from orthography2ipa.plugins import ENTRY_POINT_GROUPS
+
+    plugins: Dict[str, dict] = {}
+    for group in ENTRY_POINT_GROUPS.values():
+        plugins[group] = {
+            ep.name: {
+                "target": ep.value,
+                "distribution": ep.dist.metadata["Name"],
+                "version": ep.dist.version,
+            }
+            for ep in sorted(entry_points(group=group), key=lambda e: e.name)
+        }
+    scorers: Dict[str, Optional[str]] = {}
+    for name in OPTIONAL_SCORER_PACKAGES:
+        try:
+            scorers[name] = package_version(name)
+        except PackageNotFoundError:
+            scorers[name] = None
+    return {"plugins": plugins, "scorers": scorers}
+
+
+def write_environment() -> None:
+    with open(ENVIRONMENT_JSON, "w", encoding="utf-8") as fh:
+        json.dump(board_environment(), fh, indent=SCOREBOARD_JSON_INDENT,
+                  ensure_ascii=False)
+        fh.write("\n")
+
+
+def unscored_committed_rows(
+        committed: List[dict], scored: List[dict],
+        only_langs: Optional[Sequence[str]] = None,
+        only_datasets: Optional[Sequence[str]] = None) -> List[str]:
+    """``dataset/lang`` of every committed row in scope that this run did
+    not produce although its dataset and language are still registered.
+
+    A row whose dataset or language was deregistered is retired, not lost.
+    """
+    have = {(r["lang"], r["dataset"]) for r in scored}
+    lost = []
+    for r in committed:
+        lang, dataset = r["lang"], r["dataset"]
+        if (lang, dataset) in have:
+            continue
+        if only_langs and lang not in only_langs:
+            continue
+        if only_datasets and dataset not in only_datasets:
+            continue
+        if lang in DATASETS.get(dataset, (None, ()))[1]:
+            lost.append(f"{dataset}/{lang}")
+    return sorted(lost)
+
+
+def require_committed_rows(
+        committed: List[dict], scored: List[dict], board: str,
+        only_langs: Optional[Sequence[str]] = None,
+        only_datasets: Optional[Sequence[str]] = None) -> None:
+    """Refuse to rewrite a whole board that lost a committed row; warn on a
+    scoped run, whose merge keeps the committed row anyway."""
+    lost = unscored_committed_rows(
+        committed, scored, only_langs, only_datasets)
+    if not lost:
+        return
+    names = "\n  ".join(lost)
+    if only_langs or only_datasets:
+        print(f"warning: {len(lost)} committed {board} row(s) not rescored "
+              f"(committed values kept):\n  {names}", file=sys.stderr)
+        return
+    sys.exit(f"refusing to write {board}: {len(lost)} committed row(s) "
+             f"could not be scored in this environment (see the 'skip' "
+             f"lines above). Install the missing scorer package or "
+             f"deregister the row:\n  {names}")
 
 
 def merge_scoreboard_rows(old: List[dict], new: List[dict]) -> List[dict]:
@@ -4380,6 +4484,8 @@ def write_scoreboard(rows: List[dict]) -> None:
     for row in rows:
         tier = row["quality_tier"] or "-"
         prov = row.get("provenance") or "-"
+        if row.get("ci_reproducible") is False:
+            prov += " (not CI-reproducible)"
         n_cell = f"{row['n']}{THIN_ROW_MARK}" if row["n"] < THIN_ROW_N else str(row["n"])
         # A row scored before the CI column existed carries nulls; a
         # merged board can hold both generations.
@@ -4649,10 +4755,15 @@ def main() -> None:
             only_langs=[args.lang] if args.lang else None,
             only_datasets=[args.dataset] if args.dataset else None,
         )
+        committed = read_ci_sample_rows()
+        require_committed_rows(
+            committed, rows, "CI sample",
+            [args.lang] if args.lang else None,
+            [args.dataset] if args.dataset else None)
         if subset:
             print(f"merging {len(rows)} rescored rows into the committed "
                   f"CI sample", file=sys.stderr)
-            rows = merge_scoreboard_rows(read_ci_sample_rows(), rows)
+            rows = merge_scoreboard_rows(committed, rows)
         os.makedirs(os.path.dirname(CI_SAMPLE_JSON), exist_ok=True)
         with open(CI_SAMPLE_JSON, "w", encoding="utf-8") as fh:
             json.dump(rows, fh, indent=2, ensure_ascii=False)
@@ -4675,10 +4786,17 @@ def main() -> None:
             only_langs=[args.lang] if args.lang else None,
             only_datasets=[args.dataset] if args.dataset else None,
         )
+        committed = read_scoreboard_rows()
+        require_committed_rows(
+            committed, rows, "scoreboard",
+            [args.lang] if args.lang else None,
+            [args.dataset] if args.dataset else None)
         if subset:
             print(f"merging {len(rows)} rescored rows into the committed "
                   f"scoreboard", file=sys.stderr)
-            rows = merge_scoreboard_rows(read_scoreboard_rows(), rows)
+            rows = merge_scoreboard_rows(committed, rows)
+        else:
+            write_environment()
         write_scoreboard(rows)
         print(f"wrote {len(rows)} rows to "
               f"{os.path.relpath(SCOREBOARD_MD, REPO_ROOT)} and "

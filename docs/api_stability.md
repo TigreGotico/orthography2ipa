@@ -63,7 +63,8 @@ consumer is added to the inventory above:
 
 - `transcribe`, `G2P`, `TranscriptionResult`, `WordTranscription`,
   `ConfidenceBreakdown` (`orthography2ipa.g2p`)
-- `UnmappedScriptError` (`orthography2ipa.exceptions`)
+- `UnmappedScriptError`, `UnmappedGraphemeWarning`, `StubSpecWarning`
+  (`orthography2ipa.exceptions`)
 - `resolve`, `available_codes`, `available_families` (`orthography2ipa.registry`)
 - `SandhiEngine` (`orthography2ipa.sandhi`)
 - `LanguageSpec`, `Grapheme2IPA`, `AllophoneMap`, `Ancestor`, `AncestorRole`,
@@ -98,15 +99,21 @@ surface makes the distinction observable.
   when every character mapped.
 - `WordTranscription.coverage: float = 1.0`: fraction of the word's
   characters that mapped to a grapheme, in `[0.0, 1.0]`.
-- `G2P(..., on_unmapped: str = "ignore")`: `"ignore"` (default, zero
-  behavior change: `ipa` output is unaffected), `"log"` (same output, plus
-  one `logging.warning` per distinct `(lang, word)` pair), or `"raise"`
-  (raises `UnmappedScriptError` instead of returning a result for that
-  word).
+- `G2P(..., on_unmapped: str = "warn")` takes one of four modes:
+  - `"warn"` (default): each unmapped letter or combining mark emits one
+    `UnmappedGraphemeWarning` per engine and character.
+  - `"ignore"`: no signal.
+  - `"log"`: one `logging.warning` per distinct `(lang, word)` pair.
+  - `"raise"`: raises `UnmappedScriptError` instead of returning a result
+    for that word.
+- `UnmappedGraphemeWarning` (`orthography2ipa.exceptions`) is a
+  `UserWarning` subclass. The message names the spec code and the code
+  point. Only Unicode letters (`L*`) and marks (`M*`) warn. Punctuation,
+  digits, symbols and spaces do not.
 
-The default (`on_unmapped="ignore"`) reproduces the exact prior behavior: callers that never pass `on_unmapped` and never read the new
-`WordTranscription` fields see no change in `transcribe()` /
-`transcribe_detailed()` output.
+No mode changes the `transcribe()` or `transcribe_detailed()` output. Pass
+`on_unmapped="ignore"`, or filter `UnmappedGraphemeWarning`, to turn the
+signal off.
 
 ## Per-word confidence / OOV signal (additive)
 
