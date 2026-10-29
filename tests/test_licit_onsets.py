@@ -317,7 +317,7 @@ def test_punctuation_is_transparent_to_syllable_weight():
     assert _is_open_syllable("peut", spec=spec) is False   # no seam, no strip
     g = G2P("fr-FR")
     assert g.transcribe_word("peut-être") == "pøtɛtʁ"
-    assert g.transcribe_word("à-peu-près") == "pøpʁɛ"
+    assert g.transcribe_word("à-peu-près") == "apøpʁɛ"
 
 
 # ── the opt-in gate ──────────────────────────────────────────────────────

@@ -351,9 +351,9 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | fi | wikipron | 168808 | 0.0184 | - | 0.0184 | 0.0184 | 0.8173 | 0.8173 | [0.0182, 0.0186] | 0.8171 | production | crowd-scraped |
 | fo | wikipron | 2957 | 0.1674 | - | 0.1504 | 0.1474 | 0.4156 | 0.4231 | [0.1616, 0.1737] | 0.3842 | production | crowd-scraped |
 | fpe | wikipron | 261 | 0.0301 | - | 0.0301 | 0.0301 | 0.8544 | 0.8544 | [0.0208, 0.0397] | 0.8544 | research | crowd-scraped |
-| fr | wikipron | 85497 | 0.0673 | - | 0.0530 | 0.0486 | 0.7324 | 0.7408 | [0.0664, 0.0681] | 0.6933 | research | crowd-scraped |
-| fr-FR | ipa_childes | 9444 | 0.0925‡ | - | 0.0665 | 0.0623 | 0.7609 | 0.7753 | [0.0890, 0.0964] | 0.6840 | research | espeak-derived |
-| fr-FR | ipadict | 245716 | 0.0768 | - | 0.0630 | 0.0563 | 0.6672 | 0.6742 | [0.0763, 0.0773] | 0.6416 | research | machine-generated |
+| fr | wikipron | 85500 | 0.0667 | - | 0.0525 | 0.0481 | 0.7342 | 0.7426 | [0.0659, 0.0676] | 0.6950 | research | crowd-scraped |
+| fr-FR | ipa_childes | 9446 | 0.0917‡ | - | 0.0657 | 0.0615 | 0.7634 | 0.7778 | [0.0884, 0.0951] | 0.6865 | research | espeak-derived |
+| fr-FR | ipadict | 245718 | 0.0763 | - | 0.0625 | 0.0558 | 0.6686 | 0.6756 | [0.0759, 0.0768] | 0.6430 | research | machine-generated |
 | fro | wikipron | 663 | 0.2363 | - | 0.2352 | 0.2352 | 0.2564 | 0.2564 | [0.2200, 0.2527] | 0.2534 | research | crowd-scraped |
 | fy | vox_communis | 10681 | 0.3243‡ | - | 0.3036 | 0.3018 | 0.1352 | 0.1369 | [0.3203, 0.3281] | 0.1212 | research | epitran-derived |
 | fy | wikipron | 1091 | 0.2182 | - | 0.2043 | 0.2032 | 0.3327 | 0.3355 | [0.2075, 0.2295] | 0.3071 | research | crowd-scraped |
