@@ -717,8 +717,8 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | tew | wikipron | 106 | 0.0000 | - | 0.0000 | 0.0000 | 1.0000 | 1.0000 | [0.0000, 0.0000] | 1.0000 | research | crowd-scraped |
 | tft | wikipron | 293 | 0.1041 | - | 0.1041 | 0.1041 | 0.6792 | 0.6792 | [0.0827, 0.1265] | 0.6792 | research | crowd-scraped |
 | tg | wikipron | 3245 | 0.0296 | - | 0.0296 | 0.0296 | 0.8354 | 0.8354 | [0.0271, 0.0323] | 0.8354 | research | crowd-scraped |
-| th | vox_communis | 23704 | 0.4316‡ | - | 0.4273 | 0.4272 | 0.0403 | 0.0403 | [0.4292, 0.4342] | 0.0392 | research | epitran-derived |
-| th | wikipron | 17221 | 0.1879 | - | 0.1855 | 0.1855 | 0.3304 | 0.3304 | [0.1848, 0.1909] | 0.3297 | research | crowd-scraped |
+| th | vox_communis | 23704 | 0.4281‡ | - | 0.4237 | 0.4236 | 0.0403 | 0.0403 | [0.4256, 0.4305] | 0.0392 | research | epitran-derived |
+| th | wikipron | 17221 | 0.1788 | - | 0.1764 | 0.1764 | 0.3304 | 0.3304 | [0.1759, 0.1816] | 0.3297 | research | crowd-scraped |
 | tk | vox_communis | 5881 | 0.1629‡ | - | 0.1423 | 0.1416 | 0.3187 | 0.3231 | [0.1596, 0.1662] | 0.2588 | research | epitran-derived |
 | tk | wikipron | 424 | 0.2316 | - | 0.2257 | 0.2257 | 0.3679 | 0.3679 | [0.2109, 0.2517] | 0.3420 | research | crowd-scraped |
 | tkl | wikipron | 340 | 0.0497 | - | 0.0497 | 0.0497 | 0.7824 | 0.7824 | [0.0390, 0.0601] | 0.7824 | research | crowd-scraped |
