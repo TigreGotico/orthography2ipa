@@ -259,6 +259,30 @@
       "phonemes": [],
       "surface": "̃j̃",
       "notes": "DISABLED with PT_FINAL_EM_GLIDE in this spec: the plural ⟨-ens⟩ has no palatal offglide either."
+    },
+    {
+      "id": "PT_ER_CLOSE",
+      "phonemes": [],
+      "surface": "e",
+      "notes": "DISABLED for Mozambican Portuguese. No source for the stressed vowel of a word-final ⟨-er⟩ in this variety was read, so its output stays what it was; the pt-PT rule rests on Infopédia and Priberam entries for standard European Portuguese."
+    },
+    {
+      "id": "PT_LEX_OPEN_ER",
+      "phonemes": [],
+      "surface": "e",
+      "notes": "DISABLED for Mozambican Portuguese. No source for the stressed vowel of a word-final ⟨-er⟩ in this variety was read, so its output stays what it was; the pt-PT rule rests on Infopédia and Priberam entries for standard European Portuguese."
+    },
+    {
+      "id": "PT_FINAL_EN_NUCLEUS",
+      "phonemes": [],
+      "surface": "e",
+      "notes": "DISABLED for Mozambican Portuguese. No source for a learned word-final ⟨-en⟩ in this variety was read, so its output stays what it was; the pt-PT rule rests on Infopédia and Priberam entries for standard European Portuguese."
+    },
+    {
+      "id": "PT_FINAL_EN_CODA",
+      "phonemes": [],
+      "surface": "e",
+      "notes": "DISABLED for Mozambican Portuguese. No source for a learned word-final ⟨-en⟩ in this variety was read, so its output stays what it was; the pt-PT rule rests on Infopédia and Priberam entries for standard European Portuguese."
     }
   ],
   "stress": {

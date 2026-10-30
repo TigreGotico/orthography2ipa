@@ -255,6 +255,12 @@
         "p"
       ],
       "notes": "Homorganic nasal assimilation before labials — kambrang [kambraŋ] 'prawn' (Baxter 1988, p. 22)."
+    },
+    {
+      "id": "PT_LEX_OPEN_ER",
+      "phonemes": [],
+      "surface": "e",
+      "notes": "DISABLED for the mcm creole. No source for the stressed vowel of a word-final ⟨-er⟩ in this language was read, so its output stays what it was; the pt-PT list rests on Infopédia entries for standard European Portuguese."
     }
   ],
   "ancestors": [

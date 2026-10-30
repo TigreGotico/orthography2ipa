@@ -289,14 +289,34 @@
       ],
       "surface": "̃j̃",
       "grapheme": [
-        "m"
+        "m",
+        "n"
       ],
       "word_final": true,
       "preceded_by_phoneme": [
         "e",
         "ɛ"
       ],
-      "notes": "Word-final ⟨-em / -ém / -êm⟩ is the nasal DIPHTHONG in Brazilian Portuguese too — bem [ˈbẽj̃], quem [ˈkẽj̃], também [tãˈbẽj̃], homem [ˈomẽj̃], ontem [ˈõtẽj̃] (Barbosa & Albano 2004: 228; Câmara Jr. 1970 §III; Mateus & d'Andrade 2000: ch.4). Unlike European Portuguese, BP does NOT centralise the nucleus to [ɐ̃]: it keeps the close-mid nasal [ẽ] and adds a nasal palatal offglide [j̃], so [̃]→[̃j̃] with the mid front nucleus left intact (hence no BR analogue of PT_FINAL_EM_NUCLEUS). Gated on the ORIGINAL preceding nucleus being a mid/high front vowel so ⟨-im -om -um⟩ (sim, bom, um) keep a plain nasal monophthong; word-final grapheme ⟨m⟩ only, so an ⟨em⟩ before a consonant (tempo, sempre) and word-final ⟨-en⟩ are excluded."
+      "notes": "Word-final ⟨-em / -ém / -êm⟩ is the nasal DIPHTHONG in Brazilian Portuguese too — bem [ˈbẽj̃], quem [ˈkẽj̃], também [tãˈbẽj̃], homem [ˈomẽj̃], ontem [ˈõtẽj̃] (Barbosa & Albano 2004: 228; Câmara Jr. 1970 §III; Mateus & d'Andrade 2000: ch.4). Unlike European Portuguese, BP does NOT centralise the nucleus to [ɐ̃]: it keeps the close-mid nasal [ẽ] and adds a nasal palatal offglide [j̃], so [̃]→[̃j̃] with the mid front nucleus left intact (hence no BR analogue of PT_FINAL_EM_NUCLEUS). Gated on the ORIGINAL preceding nucleus being a mid/high front vowel so ⟨-im -om -um⟩ (sim, bom, um) keep a plain nasal monophthong; word-final grapheme ⟨m⟩ only, so an ⟨em⟩ before a consonant (tempo, sempre) is excluded. Word-final ⟨-en⟩ of a learned noun takes the same diphthong: hífen [ˈifẽj̃], pólen, líquen, abdômen [abˈdomẽj̃]. Barbosa & Albano 2004 (JIPA 34(2): 230, speaker from the state of São Paulo): 'There are two post-stressed nasalised diphthongs: [ɐ̃w̃], as in bênção [ˈbẽsɐ̃w̃] ‘blessing’, and [ẽɪ̯̃], as in hífen [ˈifẽɪ̯̃] ‘hyphen’'; Ciberdúvidas answer 18963: 'No português do Brasil, em dialectos do português europeu e talvez nos países africanos onde se fala o português (não temos dados disponíveis), a grafia -em/-en(s) representa o ditongo [ẽj̃], distinguindo-se do ãe de mãe'; English Wikipedia 'Portuguese phonology' (Phonotactics, citing Mateus & d'Andrade 2000: 22, not opened): 'In Brazilian varieties, these words have a nasal diphthong ([abˈdõmẽj̃], spelled as abdômen)'. The nasalisation of the stressed [o] before the onset [m] in that last example is not modelled (see the ⟨ô⟩ finding in the pull request: the engine nasalises no stressed vowel before a nasal consonant)."
+    },
+    {
+      "id": "BR_FINAL_ENS_GLIDE",
+      "phonemes": [
+        "̃"
+      ],
+      "surface": "̃j̃",
+      "grapheme": [
+        "n"
+      ],
+      "followed_by_grapheme": [
+        "s"
+      ],
+      "followed_by_2": "word_boundary",
+      "preceded_by_phoneme": [
+        "e",
+        "ɛ"
+      ],
+      "notes": "Palatal offglide of word-final ⟨-ens⟩, the plural of the ⟨-em⟩ diphthong (see BR_FINAL_EM_GLIDE): the coda ⟨n⟩ before a word-final ⟨s⟩ after a mid front vowel is [̃j̃], so bens [ˈbẽj̃s], homens [ˈomẽj̃s], jovens [ˈʒovẽj̃s], viagens, parabéns. Ciberdúvidas answer 18963 lists the plural with the singular, with homem/homens and jovem/jovens as its examples: 'No português do Brasil, em dialectos do português europeu e talvez nos países africanos onde se fala o português (não temos dados disponíveis), a grafia -em/-en(s) representa o ditongo [ẽj̃], distinguindo-se do ãe de mãe'. Barbosa & Albano 2004 (JIPA 34(2): 230): 'Nasalised diphthongs are formed by combining [ẽ ɐ̃ õ ũ] with the offglide [j̃]'. English Wikipedia 'Portuguese phonology' (citing Cruz-Ferreira 1995, not opened): 'Nasal diphthongs occur mostly at the end of words (or followed by a final sibilant)'. Gated on the preceding mid front vowel, read before any other rule, so ⟨-ins -ons -uns⟩ keep a plain nasal monophthong (jardins, sons, atuns). Cristófaro Silva, Fonética e Fonologia do Português, was not available to read."
     },
     {
       "id": "BR_FINAL_AM_GLIDE",

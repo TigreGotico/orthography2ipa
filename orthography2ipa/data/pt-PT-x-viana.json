@@ -68,9 +68,12 @@
       "followed_by_phoneme": [
         "̃"
       ],
+      "followed_by_grapheme": [
+        "m"
+      ],
       "followed_by_2": "word_boundary",
       "surface": "e",
-      "notes": "Overridden for this northern variety: the nucleus is the close-mid [e], not the central [ɐ]. Matching it here, not disabling it, also keeps the stressed nucleus away from any tonic-[e] diphthongisation rule of the spec. Northern EP keeps the close-mid nucleus of word-final ⟨-em -ens⟩: [ẽj̃], [ẽj̃ʃ] (bem [ˈbẽj̃], homem [ˈɔmẽj̃], homens [ˈɔmẽj̃ʃ]). The centralised [ɐ̃j̃] of the pt-PT base is the Lisbon merger: Wikipedia 'Portuguese phonology', 'In Greater Lisbon, [ẽj̃] has merged with [ɐ̃j̃]'; Ciberdúvidas (Viana & Rocha 2006, 'Vogais e ditongos nasais, outra vez', n. 1): 'em dialectos do português europeu … a grafia -em/-en(s) representa o ditongo [ẽj̃]'. Leite de Vasconcellos 1901 (Esquisse d'une dialectologie portugaise, §44n, p. 93; quoted from an OCR copy, diacritics normalised): '-em < l. -ENE correspond -ẽ dans certains endroits de la frontière de Tras-os-Montes et du Minho, et -ẽi ou -ɐi dans le reste du pays'. The border monophthong [ẽ] is local and not modelled. The oral parallel in the same section (§44i): the diphthong ⟨ei⟩ is [ɐj] only 'à Lisbonne' and [ej] in Entre-Douro-e-Minho, the Beira and Trás-os-Montes."
+      "notes": "Overridden for this northern variety: the nucleus is the close-mid [e], not the central [ɐ]. Matching it here, not disabling it, also keeps the stressed nucleus away from any tonic-[e] diphthongisation rule of the spec. Northern EP keeps the close-mid nucleus of word-final ⟨-em -ens⟩: [ẽj̃], [ẽj̃ʃ] (bem [ˈbẽj̃], homem [ˈɔmẽj̃], homens [ˈɔmẽj̃ʃ]). The centralised [ɐ̃j̃] of the pt-PT base is the Lisbon merger: Wikipedia 'Portuguese phonology', 'In Greater Lisbon, [ẽj̃] has merged with [ɐ̃j̃]'; Ciberdúvidas (Viana & Rocha 2006, 'Vogais e ditongos nasais, outra vez', n. 1): 'em dialectos do português europeu … a grafia -em/-en(s) representa o ditongo [ẽj̃]'. Leite de Vasconcellos 1901 (Esquisse d'une dialectologie portugaise, §44n, p. 93; quoted from an OCR copy, diacritics normalised): '-em < l. -ENE correspond -ẽ dans certains endroits de la frontière de Tras-os-Montes et du Minho, et -ẽi ou -ɐi dans le reste du pays'. The border monophthong [ẽ] is local and not modelled. The oral parallel in the same section (§44i): the diphthong ⟨ei⟩ is [ɐj] only 'à Lisbonne' and [ej] in Entre-Douro-e-Minho, the Beira and Trás-os-Montes. The rule matches ⟨m⟩ only, so word-final ⟨-en⟩ (hífen) is not matched here and falls to PT_FINAL_EN_NUCLEUS of pt-PT."
     },
     {
       "id": "PT_FINAL_ENS_NUCLEUS",

@@ -96,6 +96,25 @@ to the oral [o] before the tilde: `contar` [kõˈtaɾ], `comprar` [kõˈpɾaɾ],
 Lusophone variants (pt-AO/MZ/TL) never reduce ⟨o⟩→[u], so their ⟨o⟩ before a
 nasal is already [o] and this rule is inert there.
 
+### Word-final ⟨-en⟩ and ⟨-er⟩ (`PT_FINAL_EN_*`, `PT_ER_CLOSE`, `PT_LEX_OPEN_ER`)
+
+A learned noun in ⟨-en⟩ keeps a final consonant. Infopédia gives `hífen`
+[ˈifɛn], `pólen` [ˈpɔlɛn] and `abdómen` [ɐˈbdɔmɛn]. The ⟨-em⟩ diphthong rules
+match ⟨m⟩ only, so these words never get [ɐ̃j̃]. `PT_FINAL_EN_NUCLEUS` sets the
+open vowel [ɛ] and `PT_FINAL_EN_CODA` sets the consonant [n]. The plural
+`hífenes` has no word-final ⟨n⟩ and reads [ˈifɨnɨʃ].
+
+The stressed ⟨e⟩ of an infinitive in ⟨-er⟩ is close-mid [e]: `comer` [kuˈmeɾ],
+`ter` [ˈteɾ], `entender` [ẽtẽˈdeɾ]. Spelling does not show open or close
+quality, so the pre-lexical map writes [ɛ] for every stressed ⟨e⟩ and
+`PT_ER_CLOSE` closes it before a word-final ⟨r⟩. A short word list,
+`PT_LEX_OPEN_ER`, keeps the open vowel of the nouns and loan words that Infopédia
+writes with [ɛ]: `mulher` [muˈʎɛɾ], `talher`, `qualquer`, `quer`, `mister`.
+The Baixo-Minho lects (`pt-PT-x-porto`, `pt-PT-x-braga`) diphthongise both:
+`comer` [kuˈmjeɾ] and `mulher` [muˈʎjɛɾ]. The African and Asian varieties, and
+Barranquenho, switch these four rules off and keep their own output. The rule
+notes carry the sources.
+
 ### Engine guard: the nasal tilde attaches only to a vowel
 
 The coda ⟨m/n⟩ → tilde slot carries an **oral consonant fallback** ([m]/[n])
@@ -168,7 +187,7 @@ as intervocalic). The base `pt-PT` gives the **standard alveolar `[z]`**:
 
 | Rule id | Context | Example |
 |:---|:---|:---|
-| `PT_FINAL_S_PREVOCALIC_VOICE` | `…s#` + `#V…` | `estás a ver` → [eˈʃtaz ˈɐ ˈvɛɾ] |
+| `PT_FINAL_S_PREVOCALIC_VOICE` | `…s#` + `#V…` | `estás a ver` → [eˈʃtaz ˈɐ ˈveɾ] |
 | | | `os amigos` → [ˈoz ɐˈmiɡuʃ] |
 
 This rule fires only before a **vowel**. Coda /s/ before a *consonant* is
