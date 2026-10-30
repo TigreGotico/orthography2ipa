@@ -2187,8 +2187,12 @@ _GOLD_CORRECTIONS_DIR = os.path.join(
 )
 
 #: Gold sets that have a corrections overlay, as ``dataset -> languages``.
-#: Each entry is backed by ``corrections/{dataset}_{lang}.jsonl``.
-GOLD_CORRECTIONS: Dict[str, List[str]] = {"vox_communis": ["vi"]}
+#: Each entry is backed by ``corrections/{dataset}_{lang}.jsonl``, with the
+#: hyphens of the language tag written as underscores.
+GOLD_CORRECTIONS: Dict[str, List[str]] = {
+    "vox_communis": ["vi"],
+    "ipadict": ["pt-BR"],
+}
 
 #: The overlaid datasets. A row on one of them never gates, whatever its tier:
 #: the tier stays the base gold's, which is the honest description of where
@@ -2225,7 +2229,8 @@ def read_gold_corrections(dataset: str, lang: str) -> List[Dict[str, str]]:
     measure nothing. ``scripts/build_gold_corrections.py`` regenerates these
     files and is the place that derivation lives; it imports no o2i.
     """
-    path = os.path.join(_GOLD_CORRECTIONS_DIR, f"{dataset}_{lang}.jsonl")
+    path = os.path.join(_GOLD_CORRECTIONS_DIR,
+                        f"{dataset}_{lang.replace('-', '_')}.jsonl")
     rows = []
     with open(path, encoding="utf-8") as fh:
         for line in fh:
@@ -2280,12 +2285,37 @@ def load_vox_communis_corrected(lang: str, limit: int) -> List[Tuple[str, str]]:
     one keeps its base's ``epitran-derived`` tier: the corrections touch one
     feature of 16% of the rows and the other 84% are the competitor's output
     untouched. It is also itself the product of an automated process. It cannot
-    gate a promotion, and neither can any overlay.
+    gate a promotion, and neither can any overlay (``CORRECTED_DATASETS``).
     """
     pairs = load_vox_communis(lang, sys.maxsize)
     pairs, applied, unmatched = apply_gold_corrections(pairs, "vox_communis", lang)
     if unmatched:
         print(f"warning: {unmatched} vox_communis/{lang} corrections matched "
+              f"no upstream row (applied {applied})", file=sys.stderr)
+    return pairs[:limit]
+
+
+def load_ipadict_corrected(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """``ipadict`` with its committed corrections overlay applied.
+
+    Registered as a SEPARATE dataset so the uncorrected row stays on the board
+    beside it, exactly as ``vox_communis_corrected`` is.
+
+    For ``pt-BR`` the defect is the place of the one primary stress the gold
+    writes on a hyphenated word. In enclisis it stresses the penultimate
+    syllable of host and clitic as one string (*acusa-o* ``a.ku.ˈza.ʊ``); in a
+    compound it stresses an element before the last (*pós-ditadura*). The
+    overlay moves the mark to the host's stressed syllable and to the last
+    element's, read from the spelling by the Acordo Ortográfico 1990 accent
+    rules. Every segment is kept. See ``scripts/build_gold_corrections.py``.
+
+    PROVENANCE — the row keeps the tier of the base file. It never gates,
+    because it is in ``CORRECTED_DATASETS``.
+    """
+    pairs = load_ipadict(lang, sys.maxsize)
+    pairs, applied, unmatched = apply_gold_corrections(pairs, "ipadict", lang)
+    if unmatched:
+        print(f"warning: {unmatched} ipadict/{lang} corrections matched "
               f"no upstream row (applied {applied})", file=sys.stderr)
     return pairs[:limit]
 
@@ -3260,6 +3290,7 @@ DATASETS: Dict[str, Tuple[DatasetLoader, List[str]]] = {
     "vox_communis": (load_vox_communis, sorted(_VOX_COMMUNIS_FILES)),
     "vox_communis_corrected": (load_vox_communis_corrected,
                                GOLD_CORRECTIONS["vox_communis"]),
+    "ipadict_corrected": (load_ipadict_corrected, GOLD_CORRECTIONS["ipadict"]),
     "ipa_babylm": (load_ipa_babylm, ["en-US"]),
     "northeuralex": (load_northeuralex, sorted(_NORTHEURALEX_LANGS)),
     "wold": (load_wold, sorted(_WOLD_LANGS)),
@@ -3489,6 +3520,10 @@ PROVENANCE: Dict[str, str] = {
     # overlay therefore lands on a non-gating tier by construction — a test
     # asserts can_gate_promotion is False for it.
     "vox_communis_corrected": "epitran-derived",
+    # ipa-dict with the committed pt-BR stress overlay applied. The tier is
+    # resolved per language through PROVENANCE_BY_LANG, from the same table as
+    # the base `ipadict` row; this fallback mirrors the base fallback.
+    "ipadict_corrected": "machine-generated",
     # IPA-CHILDES is MIXED-PROVENANCE and is classified PER LANGUAGE in
     # PROVENANCE_BY_LANG below: its dataset card names a DIFFERENT phonemizing
     # tool per language (phonemizer/espeak for most, epitran for six,
@@ -3560,6 +3595,7 @@ _PT_UNIFIED_PROVENANCE: Dict[str, str] = {
 # else's file. Keys are dataset names; values map language tag → tier.
 PROVENANCE_BY_LANG: Dict[str, Dict[str, str]] = {
     "ipadict": _IPADICT_PROVENANCE,
+    "ipadict_corrected": _IPADICT_PROVENANCE,
     "ipa_childes": _IPA_CHILDES_PROVENANCE,
     "portuguese_unified": _PT_UNIFIED_PROVENANCE,
     "portuguese_unified_corrected": _PT_UNIFIED_PROVENANCE,

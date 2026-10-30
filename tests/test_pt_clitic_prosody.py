@@ -119,11 +119,11 @@ def test_proclitic_mid_does_not_diphthongise(lect):
     assert eng.transcribe("o") == "o"     # article, not [ˈwo]
     assert eng.transcribe("os") == "oʃ"   # not [ˈwoʃ]
     assert eng.transcribe("e") == "i"     # conjunction (raised), not [ˈje]
-    # ⟨em⟩ is word-final, so the P2 rule realises it as the FALLING nasal
-    # diphthong [ɐ̃j̃] (offglide AFTER the nucleus); what this test guards is
-    # that the NW metaphony did not fire a RISING [ˈjẽ] (onglide before it).
+    # ⟨em⟩ is word-final, so it is the FALLING nasal diphthong, with the
+    # northern close-mid nucleus [ẽj̃] (offglide AFTER the nucleus); what this
+    # test guards is that the NW metaphony did not fire a RISING [ˈjẽ].
     em = _n(eng.transcribe("em"))
-    assert em == _n("ɐ̃j̃"), (lect, em)
+    assert em == _n("ẽj̃"), (lect, em)
     assert not em.startswith(("j", "ˈj", "w", "ˈw"))  # no rising metaphony onglide
 
 
@@ -137,7 +137,7 @@ def test_stressed_nasal_mid_does_not_diphthongise(lect):
         assert "j" not in eng.transcribe(w), (lect, w)
         assert "w" not in eng.transcribe(w), (lect, w)
     # Word-final ⟨-em/-ém⟩ (bem, contém) DO carry the P2 falling nasal offglide
-    # [ɐ̃j̃] — that is a nasal DIPHTHONG, not the NW metaphony. What must not
+    # [ẽj̃] — that is a nasal DIPHTHONG, not the NW metaphony. What must not
     # happen is the RISING metaphony onglide [ˈjẽ]/[ˈbjẽ]; check for that only.
     for w in ("bem", "contém"):
         got = _n(eng.transcribe(w))

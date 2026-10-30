@@ -270,6 +270,12 @@
       "phonemes": [],
       "surface": "ɐ",
       "notes": "DISABLED for Angolan Portuguese. The EP centralisation of the ⟨-em⟩ nucleus to [ɐ̃] does not apply: Angolan Portuguese does not centralise atonic vowels (Undolo 2014:183-184, 'não sofre elevação e centralização em posição átona'), so ⟨-em⟩ keeps the close-mid nucleus [ẽ] with a palatal offglide → [ẽj̃]."
+    },
+    {
+      "id": "PT_FINAL_ENS_NUCLEUS",
+      "phonemes": [],
+      "surface": "ɐ",
+      "notes": "DISABLED with PT_FINAL_EM_NUCLEUS in this spec, for the same reason: the plural ⟨-ens⟩ keeps the close-mid nucleus of ⟨-em⟩."
     }
   ],
   "wikidata_qid": "Q2994901",

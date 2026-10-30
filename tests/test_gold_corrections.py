@@ -6,12 +6,12 @@ uncorrected row stays on the board beside the corrected one.
 
 Two properties are load-bearing and are asserted here rather than trusted:
 
-* the corrections are derivable from the ORTHOGRAPHY — every row of the
-  Vietnamese overlay is re-derived from the spelling's Unicode combining marks
-  and must reproduce the committed file byte-for-byte;
+* the corrections are derivable from the ORTHOGRAPHY — every row of each
+  overlay is re-derived from its own spelling and original reading and must
+  reproduce the committed file;
 * an overlay can never gate a promotion. A gold whose readings were rewritten
   by an automated process cannot certify the engine that is scored against it,
-  and the tier the overlay is registered on has to say so.
+  so its dataset never gates, whatever tier its base gold carries.
 """
 import ast
 import json
@@ -23,24 +23,32 @@ import pytest
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
 
 from benchmark import (  # noqa: E402
+    CORRECTED_DATASETS,
     DATASETS,
     GOLD_CORRECTIONS,
-    PROVENANCE,
+    THIN_ROW_N,
     apply_gold_corrections,
-    can_gate_promotion,
     provenance_for,
     read_gold_corrections,
+    row_gates,
 )
 from build_gold_corrections import (  # noqa: E402
     TONE_LETTERS,
     VI_HUYEN_READING,
     VI_NGANG_READING,
+    build_pt_stress_rows,
     build_vi_tone_rows,
+    pt_nuclei,
+    pt_stress_from_end,
     vi_tone_from_spelling,
 )
 
 OVERLAY_FIELDS = {"dataset", "lang", "spelling", "original_reading",
                   "corrected_reading", "reason", "authority"}
+#: The fields that make a row portable into a corrections dataset assembled
+#: from several sources: the upstream file it was keyed on and the kind of
+#: defect it repairs.
+PORTABLE_FIELDS = OVERLAY_FIELDS | {"upstream_file", "kind"}
 
 
 def _overlays():
@@ -52,7 +60,7 @@ def test_overlay_rows_are_complete_and_actually_change_something(dataset, lang):
     rows = read_gold_corrections(dataset, lang)
     assert rows
     for row in rows:
-        assert set(row) == OVERLAY_FIELDS
+        assert OVERLAY_FIELDS <= set(row) <= PORTABLE_FIELDS
         assert row["dataset"] == dataset and row["lang"] == lang
         assert row["original_reading"] != row["corrected_reading"]
         assert row["reason"].strip() and row["authority"].strip()
@@ -72,18 +80,29 @@ def test_overlay_is_registered_as_its_own_dataset(dataset, lang):
 
 @pytest.mark.parametrize("dataset,lang", _overlays())
 def test_no_overlay_can_gate_a_promotion(dataset, lang):
-    """Whatever tier an overlay is registered on, it must be a non-gating one.
+    """An overlay row never gates, and it keeps its base gold's tier.
 
     A corrected gold is derived twice over — from a base gold and then from an
-    automated correction pass — so it can diagnose, never certify.
+    automated correction pass — so it can diagnose, never certify. The tier
+    stays the base's because that is where most of its readings came from;
+    the dataset, not the tier, is what keeps the row from gating.
     """
+    corrected = f"{dataset}_corrected"
+    assert corrected in CORRECTED_DATASETS
     # Through provenance_for, not PROVENANCE: scoring resolves a row's tier
-    # that way, and a PROVENANCE_BY_LANG entry for the corrected dataset would
-    # override the dataset-wide tier this test used to read.
-    tier = provenance_for(f"{dataset}_corrected", lang)
-    assert can_gate_promotion(tier) is False
-    # and never more trustworthy than the base it was built from
+    # that way, including any PROVENANCE_BY_LANG entry.
+    tier = provenance_for(corrected, lang)
     assert tier == provenance_for(dataset, lang)
+    assert row_gates(tier, 10 * THIN_ROW_N, corrected) is False
+    # the most trusted tier cannot make an overlay row gate either
+    assert row_gates("expert-human", 10 * THIN_ROW_N, corrected) is False
+
+
+def test_the_gating_check_can_fail():
+    """The test above is only worth something if the same tier and sample
+    DO gate on a dataset that is not an overlay."""
+    assert row_gates(provenance_for("ipadict", "pt-BR"), 10 * THIN_ROW_N,
+                     "ipadict") is True
 
 
 def test_vi_tone_read_from_combining_marks_only():
@@ -228,12 +247,14 @@ def test_upstream_gold_file_is_not_shipped_alongside_the_overlay():
         assert name.endswith((".jsonl", ".md")), name
     for dataset, langs in GOLD_CORRECTIONS.items():
         for lang in langs:
-            assert f"{dataset}_{lang}.jsonl" in names
+            assert f"{dataset}_{lang.replace('-', '_')}.jsonl" in names
 
 
-def test_overlay_file_is_deterministic_jsonl():
+@pytest.mark.parametrize("dataset,lang", _overlays())
+def test_overlay_file_is_deterministic_jsonl(dataset, lang):
     path = os.path.join(os.path.dirname(__file__), "..", "orthography2ipa",
-                        "data", "gold", "corrections", "vox_communis_vi.jsonl")
+                        "data", "gold", "corrections",
+                        f"{dataset}_{lang.replace('-', '_')}.jsonl")
     with open(path, encoding="utf-8") as fh:
         lines = fh.read().splitlines()
     keys = [(json.loads(ln)["spelling"], json.loads(ln)["original_reading"])
@@ -242,6 +263,115 @@ def test_overlay_file_is_deterministic_jsonl():
     for line in lines:
         assert line == json.dumps(json.loads(line), ensure_ascii=False,
                                   sort_keys=True)
+
+
+# --- ipa-dict pt-BR: stress of hyphenated words ---------------------------
+
+def test_pt_nuclei_read_diphthongs_and_hiatuses_from_spelling():
+    """A falling diphthong is one nucleus, every other vowel pair a hiatus,
+    and the u of qu/gu before a vowel is never a nucleus. Unaccented i/u
+    before nh, or before an l m n r z closing the syllable, is a hiatus
+    (Base X: rainha, ainda, juiz)."""
+    assert pt_nuclei("muito") == ["ui", "o"]
+    assert pt_nuclei("queijo") == ["ei", "o"]
+    assert pt_nuclei("guerra") == ["e", "a"]
+    assert pt_nuclei("saída") == ["a", "í", "a"]
+    assert pt_nuclei("ainda") == ["a", "i", "a"]
+    assert pt_nuclei("rainha") == ["a", "i", "a"]
+    assert pt_nuclei("juiz") == ["u", "i"]
+    assert pt_nuclei("coelho") == ["o", "e", "o"]
+    assert pt_nuclei("irmão") == ["i", "ão"]
+
+
+def test_pt_stress_read_from_spelling():
+    """Counted from the end, 1 = last syllable. A written acute or
+    circumflex marks the syllable; otherwise -a/-e/-o(s), -am, -em/-ens are
+    paroxytone and the other endings oxytone."""
+    assert pt_stress_from_end("acusa") == 2
+    assert pt_stress_from_end("matando") == 2
+    assert pt_stress_from_end("falam") == 2
+    assert pt_stress_from_end("homens") == 2
+    assert pt_stress_from_end("abandonou") == 1
+    assert pt_stress_from_end("abandoná") == 1
+    assert pt_stress_from_end("juiz") == 1
+    assert pt_stress_from_end("irmão") == 1
+    assert pt_stress_from_end("soviéticos") == 3
+    assert pt_stress_from_end("pós") == 1
+    # an ending the accent rules do not cover is not guessed
+    assert pt_stress_from_end("iceberg") is None
+
+
+#: Upstream ipa-dict pt_BR.txt rows. Each expected reading was worked out by
+#: hand from the spelling, not from any engine output.
+_PT_HAND_ROWS = [
+    # acusa = a-cu-sa, paroxytone: stress on cu; the clitic o is one syllable
+    ("acusa-o", "a.ku.ˈza.ʊ", "a.ˈku.za.ʊ", "enclitic"),
+    # matando = ma-tan-do, paroxytone: stress on tan
+    ("matando-os", "ma.tã.ˈdo.ʊs", "ma.ˈtã.do.ʊs", "enclitic"),
+    # apresenta = a-pre-sen-ta, paroxytone: stress on sen
+    ("apresenta-nos", "a.pɾe.zẽ.ˈtã.nʊs", "a.pɾe.ˈzẽ.tã.nʊs", "enclitic"),
+    # last element brisas = bri-sas, paroxytone: stress on bri
+    ("pára-brisas", "ˈpa.ɾa.bɾi.zəs", "pa.ɾa.ˈbɾi.zəs", "compound"),
+    # last element ditadura = di-ta-du-ra, paroxytone: stress on du
+    ("pós-ditadura", "ˈpɔʒ.dʒi.ta.du.ɾə", "pɔʒ.dʒi.ta.ˈdu.ɾə", "compound"),
+    # soviéticos: the acute marks vi-É, third syllable from the end
+    ("pró-soviéticos", "ˈpɾɔ.zo.vi.ɛ.tʃi.kʊs", "pɾɔ.zo.vi.ˈɛ.tʃi.kʊs",
+     "compound"),
+]
+
+
+def test_pt_hand_rows_are_corrected_to_the_hand_computed_reading():
+    rows, stats = build_pt_stress_rows(
+        [(w, g) for w, g, _, _ in _PT_HAND_ROWS], "pt_BR.txt")
+    got = {r["spelling"]: (r["corrected_reading"], r["kind"]) for r in rows}
+    assert got == {w: (c, k) for w, _, c, k in _PT_HAND_ROWS}
+    assert stats["corrected_enclitic"] == 3
+    assert stats["corrected_compound"] == 3
+    for row in rows:
+        assert set(row) == PORTABLE_FIELDS
+        assert row["dataset"] == "ipadict" and row["lang"] == "pt-BR"
+        assert row["upstream_file"] == "pt_BR.txt"
+
+
+def test_pt_rows_the_rule_cannot_reach_are_left_alone():
+    """A misspelling, a correct gold, a row whose syllables do not match the
+    spelling's nuclei, an empty element and a mesoclisis are all counted and
+    none of them is corrected."""
+    rows, stats = build_pt_stress_rows([
+        ("ajuda-lo", "a.ʒu.ˈda.lʊ"),         # misspelt ajudá-lo
+        ("abandoná-los", "a.bã.do.ˈna.lʊs"),  # gold already right
+        ("estado-juiz", "es.ta.do.ˈʒuyz"),    # ju-iz is 2 nuclei, gold 1
+        ("obras-", "o.ˈbɾas."),               # truncated upstream entry
+        ("encontrar-se-ão", "ẽ.kõ.tɾax.si.ˈãʊ̃"),
+        ("acusa", "a.ˈku.zə"),                # not hyphenated
+    ], "pt_BR.txt")
+    assert rows == []
+    assert stats["misspelling"] == 1
+    assert stats["already_correct"] == 1
+    assert stats["nucleus_count_mismatch"] == 1
+    assert stats["empty_element"] == 1
+    assert stats["mesoclisis"] == 1
+    assert sum(stats.values()) == 5
+
+
+def test_pt_overlay_rederives_from_spelling_alone():
+    committed = read_gold_corrections("ipadict", "pt-BR")
+    rebuilt, stats = build_pt_stress_rows(
+        [(r["spelling"], r["original_reading"]) for r in committed],
+        "pt_BR.txt")
+    assert stats["corrected_enclitic"] + stats["corrected_compound"] == len(
+        committed)
+    assert rebuilt == sorted(
+        committed, key=lambda r: (r["spelling"], r["original_reading"]))
+
+
+def test_pt_overlay_only_moves_the_stress_mark():
+    for row in read_gold_corrections("ipadict", "pt-BR"):
+        original, corrected = row["original_reading"], row["corrected_reading"]
+        assert corrected.count("ˈ") == 1
+        assert original.replace("ˈ", "") == corrected.replace("ˈ", "")
+        assert "ˌ" not in corrected
+        assert row["kind"] in ("enclitic", "compound")
 
 
 # ─── portuguese_unified ─────────────────────────────────────────────────────

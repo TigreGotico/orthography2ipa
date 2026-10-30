@@ -278,6 +278,24 @@
       "stress": "stressed",
       "syllable_position": "nucleus",
       "notes": "Barlavento Algarvio fronting of the stressed labio-velar /u/ to the front rounded [y] — the defining and most salient feature of the western Algarve. Cintra (1971) delimits the sub-dialect by exactly this isogloss (‘a palatalização, em maior ou menor grau, da vogal tónica u’); Brissos (2014) gives [tˈyd] ‘tudo’ and [lˈymɨ] ‘lume’; Segura da Cruz (1989) is a study dedicated to it. Restricted to the STRESSED nucleus (stress=‘stressed’): it does not apply to unstressed /u/ (Lüdtke 1957; Maia 1975–78, via Cintra 1971 and Brissos 2014), so the condition also blocks it from feeding on the inherited pt-PT unstressed /o/→[u] reduction. NOTES-ONLY (not modelled): the wider central-southern chain shift — stressed [a]→[ɛ] in high-vowel/palatal contexts and [ɔ]→[o̝] raising (Brissos 2014) — is context-conditioned and left to notes to avoid a cascade collapse of the vowel space; only the categorical /u/→[y] is realised here."
+    },
+    {
+      "id": "PT_FINAL_EM_NUCLEUS",
+      "phonemes": [],
+      "surface": "ɐ",
+      "notes": "DISABLED for Algarvio. Word-final ⟨-em⟩ in an open syllable is [ẽj̃]: Leite de Vasconcellos 1901 (Esquisse d'une dialectologie portugaise, §44n, p. 93; OCR copy, diacritics normalised): 'Dans le Baixo-Alemtejo et dans l'Algarve, on dit -ẽi en syllabe découverte, et -ẽ en syllabe couverte'. He also heard [ẽ] in open final syllables at Lagos ('bẽ et tẽ avec le même ẽ de tempo'); that local variant is not modelled."
+    },
+    {
+      "id": "PT_FINAL_ENS_NUCLEUS",
+      "phonemes": [],
+      "surface": "ɐ",
+      "notes": "DISABLED for Algarvio: the ⟨-ens⟩ syllable is closed by the plural ⟨s⟩, so its nucleus is the monophthong [ẽ] (homens [ˈɔmẽʒ]), per the 'syllabe couverte' clause quoted under PT_FINAL_EM_NUCLEUS in this spec."
+    },
+    {
+      "id": "PT_FINAL_ENS_GLIDE",
+      "phonemes": [],
+      "surface": "̃j̃",
+      "notes": "DISABLED for Algarvio: no palatal offglide in the closed ⟨-ens⟩ syllable (see PT_FINAL_ENS_NUCLEUS in this spec)."
     }
   ],
   "word_exceptions": {
