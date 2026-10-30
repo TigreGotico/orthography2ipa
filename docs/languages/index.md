@@ -132,7 +132,7 @@ phonology claimed (the `afa.json` pattern).
 
 | Doc | Languages covered |
 |:---|:---|
-| [mwl.md](mwl.md) | Mirandese (`mwl`) + Sendinês (`mwl-x-sendim`), Ifanês (`mwl-x-ifanes`) and the modern readings (`mwl-x-modern`) — the four-way sibilant system, the lax Leonese diphthongs, the nasal consonant before a stop, the spirants, sub-dialect deltas |
+| [mwl.md](mwl.md) | Mirandese (`mwl`) + Sendinês (`mwl-x-sendim`) and Ifanês (`mwl-x-ifanes`) — the four-way sibilant system, the lax Leonese diphthongs, the nasal consonant before a stop, the spirants, sub-dialect deltas |
 
 ### Slavic
 

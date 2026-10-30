@@ -16,7 +16,6 @@ Codes covered here:
 | `mwl` | Mirandese (Central) | Central / normal | research |
 | `mwl-x-sendim` | Sendinês | Southern (Vila de Sendim) | research |
 | `mwl-x-ifanes` | Ifanês | Northern / Raiano (border) | research |
-| `mwl-x-modern` | Mirandese (modern readings) | Central, with the readings of the Convenção (1999) and Ferreira et al. (2014) | research |
 
 The three sub-dialects are the classical division (Vasconcelos 1900): the
 **Central** norm on which the orthography is built, the **Northern/Raiano**
@@ -25,8 +24,7 @@ speech of the plateau border, and the **Southern Sendinês** of Vila de Sendim.
 `mwl` follows Leite de Vasconcellos (*Estudos de Philologia Mirandesa* I, 1900),
 the first phonetic description of the language. Where later sources disagree
 with him, the `notes` of the spec quote both sides with their pages, and the
-child spec `mwl-x-modern` holds the later reading. See
-[`mwl-x-modern`](#modern-readings-mwl-x-modern).
+later reading stays in the lattice as a lower-ranked candidate.
 
 ## The sibilant system: the hallmark
 
@@ -65,7 +63,7 @@ consoante sonora".
 ⟨j⟩ is always /ʒ/ (West Iberian), never the Asturian palatal. The letter ⟨y⟩ is
 the Spanish palatal [ʝ] (`you` → [ˈʝɵw]): Vasconcellos (p. 191) writes "Como o
 *y* castelhano normal em *yo*". The Convenção (letter Y) gives the glide [j],
-which is the second candidate here and the first in `mwl-x-modern`.
+which is the second candidate here.
 
 ## Leonese features
 
@@ -84,13 +82,12 @@ which is the second candidate here and the first in `mwl-x-modern`.
   and ọ̌ is "muito semelhante ao *u* do inglês *full*, *butcher*". The
   diphthong [wo] "não é normal na falla mirandesa; só se ouve em emphase ou voz
   pausada" (p. 182, Obs. 2). The Convenção writes the diphthongs [je] and
-  [wo], and `mwl-x-modern` has them first. In `mwl` they are the second
-  candidates, which keeps them in the beam for a downstream rescorer.
+  [wo]. In `mwl` they are the second candidates, which keeps them in the beam for a downstream rescorer.
 - **⟨é⟩ and ⟨ó⟩ are [e] and [o].** The Portuguese open vowels "não existem na
   pronúncia normal mirandesa" (§22, p. 198): `pé` → [ˈpe], `pós` → [ˈpos̺],
   `chapéu` → [tʃɐˈpew]. The Convenção reads the acute accent as a "qualidade
   relativamente aberta" ([ɛ], [ɔ]); that is the second candidate of ⟨é⟩ and
-  ⟨ó⟩ and the first in `mwl-x-modern`. Plain ⟨e⟩ and ⟨o⟩ have no open
+  ⟨ó⟩. Plain ⟨e⟩ and ⟨o⟩ have no open
   candidate.
 - **⟨ou⟩ is [ɵw].** The base vowel *ö* of the diphthong *öu* is the *o* of
   English *go*, *no* (§2, p. 174): `touro` → [ˈtɵwɾu].
@@ -170,7 +167,7 @@ before a fricative or a liquid, where no source gives a kept consonant. The
 [ˈsɐ̃tu]). No modern source says that the consonant is absent. The Convenção
 (letters M and N) says that the letter *m* or *n* "indica a nasalidade da
 vogal", which is a statement about spelling. The gold alone is not a
-citation, so `mwl-x-modern` keeps the consonant too.
+citation, so the consonant stays.
 
 The mid vowels [e o] give the broad mid nasals [ẽ õ]: Vasconcellos (EPM v1 §6,
 p. 180) gives nasal e as "Tão aberto como em *berra*" and nasal o as "Tão aberto
@@ -191,7 +188,7 @@ initial ⟨g⟩ after s, l or r are spirants too (`ls dedos` → [ɫz̺ ˈðeðu
 Convenção (letters B and D) agrees with Vasconcellos for ⟨b⟩ and ⟨d⟩. The
 `mirandese_g2p` gold writes a stop between vowels more often than a spirant for
 ⟨d⟩ (25 stops against 7 spirants in a plain count of its 205 words). No modern
-source supports that, so `mwl-x-modern` keeps the spirant.
+source supports that, so the spirant stays.
 
 The spirants are **pan-Mirandese**: the sub-dialects inherit them through
 `graphemes_base = mwl`.
@@ -238,32 +235,6 @@ declare only their **deltas**:
   `lureiro`, `frol` at S. Martinho, and the raia connective `antonces`, none of
   which change a grapheme→phoneme mapping. The spec therefore inherits the full
   Central system unchanged and declares no deltas.
-- **Modern readings (`mwl-x-modern`)**: the child of `mwl` that holds the
-  readings of the Convenção (1999) and of Ferreira et al. (2014) where they
-  disagree with Vasconcellos. The next section lists them.
-
-## Modern readings (`mwl-x-modern`)
-
-`mwl-x-modern` overrides only the rows where a later source states a different
-value. It changes the order of the candidates, so the Vasconcellos reading is
-still the second path. The spec `notes` quote each source.
-
-| Spelling | `mwl` (Vasconcellos) | `mwl-x-modern` | Later source |
-|:--|:--|:--|:--|
-| ⟨uo, uô⟩ | [ʊ] (`buono` → [ˈbʊnu]) | [wo] (`buono` → [ˈbwonu]) | Convenção letter O; Ferreira et al. *wo*, *won* |
-| ⟨ie, iê⟩ | [jɪ] (`tierra` → [ˈtjɪrɐ]) | [je] (`tierra` → [ˈtjerɐ]) | Convenção, Grafia dos ditongos; Ferreira et al. *je*, *jen* |
-| ⟨é, ó, éu⟩ | [e], [o], [ew] (`pé` → [ˈpe]) | [ɛ], [ɔ], [ɛw] (`pé` → [ˈpɛ]) | Convenção, Acento and letter O |
-| ⟨y⟩ | [ʝ] (`yá` → [ˈʝa]) | [j] (`yá` → [ˈja]) | Convenção letter Y |
-| final ⟨-on⟩ | [ɵ̃w̃] (`son` → [ˈs̺ɵ̃w̃]) | [õ] (`son` → [ˈs̺õ]) | Convenção letter N |
-
-Three Vasconcellos readings stay in `mwl-x-modern` because no later source
-states a different value. The nasal consonant stays before a stop, because no
-source says that it is absent. The spirants [ð] and [β] stay, because the
-Convenção (letters D and B) agrees with Vasconcellos. Final ⟨-ie⟩ stays a
-hiatus, which the Convenção lists as one of four local readings.
-
-The row `mirandese_g2p` scores `mwl-x-modern` on the same central rows as `mwl`.
-The two scores show which norm the native-speaker gold follows.
 
 ## Input contract
 
@@ -278,14 +249,13 @@ Measured against `TigreGotico/mirandese_g2p` (expert-human, small-`n`):
 | Code | n | PER |
 |:--|--:|--:|
 | `mwl` | 205 | 0.2303 |
-| `mwl-x-modern` | 205 | 0.1802 |
 | `mwl-x-sendim` | 11 | 0.4470 (wide CI, do not over-read) |
 | `mwl-x-ifanes` | 2 | 0.6250 (n = 2, do not read) |
 
 The gold writes the nasal vowel without the nasal consonant, [wo] and [je], [ɛ ɔ]
 in unmarked words, and [d] between vowels. Where it disagrees with
-Vasconcellos, `mwl` follows Vasconcellos, so its PER is higher than that of
-`mwl-x-modern` on the same rows. Residual error is also due to gold-notation
+Vasconcellos, `mwl` follows Vasconcellos, so its PER is higher than it
+would be with the modern readings. Residual error is also due to gold-notation
 choices the rules cannot and should not chase: the transcriber's centralised
 final vowel [ʉ] for unstressed final ⟨-o⟩ (see above), and the plain coda [l].
 
