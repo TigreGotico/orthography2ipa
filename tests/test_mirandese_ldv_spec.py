@@ -26,7 +26,8 @@ not fire.
   item 16  [ŋ] between a nasal vowel and a vowel   p. 192
   item 17  ⟨y⟩ = [ʝ]                           p. 191
   item 18  final -ie, -ue in two syllables     pp. 174, 177, 185, 225
-  items 19 and 20  Sendinês lh and -ien        pp. 220, 226, 259
+  items 19 and 20  Sendinês lh and -ien        pp. 185, 220, 226, 259
+  final -uo, final y, b and d after a vowel    pp. 177, 187, 188, 191, 200
 """
 import json
 import unicodedata
@@ -369,12 +370,38 @@ def test_ie_is_the_lax_vowel(word, expected):
 @pytest.mark.parametrize("word, expected", [
     ("tierra", "ˈtirɐ"),               # p. 219 "firro"
     ("fierro", "ˈfiru"),               # p. 219 "firro"
-    ("bien", "ˈbi.ẽ"),                 # p. 220 "bíẽ", stress on the i
-    ("quien", "ˈki.ẽ"),                # p. 220 "quíẽ"
-    ("cien", f"ˈ{S[0]}i.ẽ"),           # p. 220 "cíẽ"
+    # p. 220 "bíẽ", stress on the i; the footnote reads the ẽ as ẹ̌̃ or ẽ̥ and
+    # p. 185 Obs. 4 as ḙ̃ or ẽ̥, so the vowel both pages give is ẽ̥ [ɨ̃]
+    ("bien", "ˈbiɨ̃"),
+    ("quien", "ˈkiɨ̃"),                 # p. 220 "quíẽ", p. 185 "kíẽ̥"
+    ("cien", f"ˈ{S[0]}iɨ̃"),            # p. 220 "cíẽ"
 ])
 def test_sendines_ie_is_i(word, expected):
     assert ipa("mwl-x-sendim", word) == nfc(expected)
+
+
+@pytest.mark.parametrize("text, expected", [
+    # p. 220 Obs. 2: "quĩ foi, cĩ pessoas, bĩ feito", proclitic, with no accent
+    ("bien feito", "bĩ ˈfejtu"),
+    ("quien foi", "kĩ ˈfoj"),
+])
+def test_sendines_proclitic_ien_reduces_to_i_nasal(text, expected):
+    assert ipa("mwl-x-sendim", text) == nfc(expected)
+
+
+def test_sendines_proclitic_cien():
+    # p. 220 Obs. 2 "cĩ pessoas"
+    assert first_word("mwl-x-sendim", "cien pessonas") == "sĩ"
+
+
+def test_sendines_ien_before_a_pause_is_not_proclitic():
+    assert first_word("mwl-x-sendim", "bien, alto") == nfc("ˈbiɨ̃")
+
+
+@pytest.mark.parametrize("dialect", ["mwl", "mwl-x-ifanes"])
+def test_central_ien_is_not_reduced_before_a_word(dialect):
+    # Obs. 2 is a Sendinês rule; central bien is bĩẹ̌̃ (p. 180)
+    assert ipa(dialect, "bien feito") == nfc("ˈbjɪ̃ ˈfejtu")
 
 
 # item 5 ----------------------------------------------------------------------
@@ -422,9 +449,31 @@ def test_d_is_a_stop_after_a_nasal_or_l_and_at_the_start(dialect, word, expected
 
 
 def test_initial_d_after_s_and_ç_is_a_spirant_across_words(dialect):
-    # p. 188 "ls dedos", "lhuç del cielo"
+    # p. 188 "ls dedos", "lhuç dẹ̥l ci̊ẹ̌lo": dẹ̥l has the "e surdo" [ɨ] and no stress
     assert ipa(dialect, "ls dedos").split(" ")[1] == "ˈðeðu" + S
-    assert ipa(dialect, "lhuç del cielo").split(" ")[1] == "ˈðeɫ"
+    assert ipa(dialect, "lhuç del cielo").split(" ")[1] == "ðɨɫ"
+
+
+@pytest.mark.parametrize("text, expected", [
+    ("la bida", "lɐ ˈβiðɐ"),           # p. 187: the initial stop only "depois de pausa ou de nasal"
+    ("de dous", f"dɨ ˈðɵw{S}"),        # p. 188: the initial stop only "depois de pausa, de nasal e de l"
+])
+def test_initial_b_and_d_after_a_vowel_are_spirants_across_words(dialect, text, expected):
+    assert ipa(dialect, text) == nfc(expected)
+
+
+@pytest.mark.parametrize("text, expected", [
+    ("un bino", "ˈũ ˈbinu"),           # p. 187 "depois de ... nasal"
+    ("un dedo", "ˈũ ˈdeðu"),           # p. 188 "depois de ... nasal"
+    ("la gata", "lɐ ˈɡatɐ"),           # p. 192 gives g as "Medial e inicial" with no context
+])
+def test_initial_stops_after_a_nasal_and_g_after_a_vowel_stay_stops(dialect, text, expected):
+    assert ipa(dialect, text) == nfc(expected)
+
+
+def test_initial_b_after_a_pause_stays_a_stop(dialect):
+    # p. 187 "depois de pausa"
+    assert ipa(dialect, "casa, bida").split(" ")[1] == "ˈbiðɐ"
 
 
 def test_initial_d_after_l_stays_a_stop_across_words(dialect):
@@ -522,7 +571,7 @@ def test_a_velar_nasal_stands_between_a_nasal_vowel_and_a_vowel(dialect, word, e
 def test_the_velar_nasal_is_inserted_across_words():
     # p. 192 "bĩẹ̌̃ ŋ alto"
     assert ipa("mwl", "bien alto") == nfc("ˈbjɪ̃ ˈŋaɫtu")
-    assert ipa("mwl-x-sendim", "bien alto") == nfc("ˈbi.ẽ ˈŋaɫtu")
+    assert ipa("mwl-x-sendim", "bien alto") == nfc("bĩ ˈŋaɫtu")
 
 
 def test_the_velar_nasal_is_not_inserted_before_a_consonant_or_a_pause():
@@ -542,37 +591,78 @@ def test_y_is_the_spanish_palatal(dialect, word, expected):
     assert ipa(dialect, word) == nfc(expected)
 
 
+@pytest.mark.parametrize("word, expected", [
+    ("rey", "ˈrej"),                   # p. 191 y is "Inicial ou medial", so a final y is the glide
+])
+def test_final_y_is_the_glide(dialect, word, expected):
+    assert ipa(dialect, word) == nfc(expected)
+
+
 # item 18 ---------------------------------------------------------------------
 
+# ì = [ɪ] (p. 174), ù = [ʊ] (p. 177), ệ = [ə] (p. 178)
 @pytest.mark.parametrize("word, expected", [
-    ("tie", "ˈtɪ.ə"),                  # p. 185 "tìệ"
-    ("die", "ˈdɪ.ə"),                  # p. 225 "dìệ"
-    ("mie", "ˈmɪ.ə"),                  # p. 174 "mìệ"
-    ("frie", "ˈfɾɪ.ə"),                # p. 225 "frìệ"
-    ("tue", "ˈtʊ.ə"),                  # p. 185 "tùệ"
-    ("sue", f"ˈ{S}ʊ.ə"),               # p. 177 "sùệ"
+    ("tie", "ˈtɪə"),                   # p. 185 "tìệ"
+    ("die", "ˈdɪə"),                   # p. 225 "dìệ"
+    ("mie", "ˈmɪə"),                   # p. 174 "mìệ"
+    ("frie", "ˈfɾɪə"),                 # p. 225 "frìệ"
+    ("tue", "ˈtʊə"),                   # p. 185 "tùệ"
+    ("sue", f"ˈ{S}ʊə"),                # p. 177 "sùệ"
+    ("rue", "ˈrʊə"),                   # p. 232 "rùệ"
 ])
 def test_final_ie_and_ue_are_two_syllables(word, expected):
     for dialect in ("mwl", "mwl-x-ifanes"):
         assert ipa(dialect, word) == nfc(expected)
 
 
+def test_pie_is_one_syllable_with_the_diphthong():
+    # p. 219: pĕde > "pi̊ẹ̌" in central Mirandese, "pi" in Sendinês
+    for dialect in ("mwl", "mwl-x-ifanes"):
+        assert ipa(dialect, "pie") == "ˈpjɪ"
+    assert ipa("mwl-x-sendim", "pie") == "ˈpi"
+
+
 @pytest.mark.parametrize("word, expected", [
-    ("tue", "ˈtʊ.ə"),                  # p. 185 "tùệ"; LdV gives no Sendinês form
-    ("sue", f"ˈ{S}ʊ.ə"),               # p. 177 "sùệ"
+    ("tue", "ˈtʊə"),                   # p. 185 "tùệ"; LdV gives no Sendinês form
+    ("sue", f"ˈ{S}ʊə"),                # p. 177 "sùệ"
+    ("rue", "ˈru"),                    # p. 232 "e em send. ru"
 ])
-def test_sendines_final_ue_is_two_syllables(word, expected):
+def test_sendines_final_ue(word, expected):
     assert ipa("mwl-x-sendim", word) == nfc(expected)
 
 
+# the stress is on the i; the vowels before it are pretonic and reduce (p. 200:
+# atonic a [ɐ], e [ɨ], o and u [u]), exactly as in fazer [fɐˈzeɾ]
 @pytest.mark.parametrize("word, expected", [
-    ("fazie", "faˈzɪ.ə"),              # p. 185 "fazie", stress on the i
-    ("pudie", "puˈðɪ.ə"),              # p. 185 "pudie"
-    ("tenie", "teˈnɪ.ə"),              # p. 185 "tenie"
+    ("fazie", "fɐˈzɪə"),               # p. 185 "fazie"
+    ("pudie", "puˈðɪə"),               # p. 185 "pudie"; d between vowels, p. 188
+    ("tenie", "tɨˈnɪə"),               # p. 185 "tenie"
+    ("comie", "kuˈmɪə"),
+    ("habie", "ɐˈβɪə"),                # b between vowels, p. 187
+    ("sabie", f"{S}ɐˈβɪə"),
+    ("Marie", "mɐˈɾɪə"),               # Convenção 2.1.2.1 "Marie, die, não são acentuadas"
 ])
 def test_a_longer_word_in_ie_has_the_stress_on_the_i(word, expected):
     for dialect in ("mwl", "mwl-x-ifanes"):
         assert ipa(dialect, word) == nfc(expected)
+
+
+@pytest.mark.parametrize("word, expected", [
+    ("fazie", "fɐˈzi"),                # p. 225 "ti": the i keeps the stress
+    ("tenie", "tɨˈni"),
+])
+def test_sendines_longer_word_in_ie_has_the_stress_on_the_i(word, expected):
+    assert ipa("mwl-x-sendim", word) == nfc(expected)
+
+
+@pytest.mark.parametrize("word, stressed", [
+    ("série", f"ˈ{S}eɾ"),              # é = [e], p. 198
+    ("superfície", f"{S}upɨɾˈfis"),
+    ("cárie", "ˈkaɾ"),
+])
+def test_a_written_accent_keeps_the_stress_before_final_ie(dialect, word, stressed):
+    out = ipa(dialect, word)
+    assert out.startswith(nfc(stressed)) and out.count("ˈ") == 1
 
 
 @pytest.mark.parametrize("word, expected", [
@@ -586,6 +676,24 @@ def test_sendines_final_ie_is_i(word, expected):
 
 def test_qu_e_is_not_a_final_ue(dialect):
     assert ipa(dialect, "que") == "kɨ"
+
+
+# final unstressed -uo: ọ̌ is only tonic (p. 177), atonic u and o are [u] (p. 200)
+@pytest.mark.parametrize("word, expected", [
+    ("mútuo", "ˈmutuu"),
+    ("indibíduo", "ĩndiˈβiðuu"),       # nasal + stop kept, p. 188; b and d between vowels
+])
+def test_final_unstressed_uo_keeps_its_syllable(dialect, word, expected):
+    assert ipa(dialect, word) == nfc(expected)
+
+
+@pytest.mark.parametrize("word, expected", [
+    ("buono", "ˈbʊnu"),                # p. 182 Obs. 2, tonic ọ̌
+    ("fuonte", "ˈfʊ̃ntɨ"),              # p. 180 "fọ̌nte"
+])
+def test_stressed_uo_is_still_the_lax_vowel(word, expected):
+    for dialect in ("mwl", "mwl-x-ifanes"):
+        assert ipa(dialect, word) == nfc(expected)
 
 
 # item 19 ---------------------------------------------------------------------
@@ -609,12 +717,21 @@ def test_sendines_medial_lh_is_kept_and_the_initial_one_is_l(word, expected):
     "O ditongo ùọ̌ não é normal na falla mirandesa",
     "não existem na pronúncia normal mirandesa",
     "ã-mbos", "põ-ŋgo",
-    "Intervocalico, e depois de s, ç (z) e r",
+    "Intervocalico, e depois de s, ç (ʒ) e r",
+    "no meio, depois de nasal ou de consoante que não seja s, ʒ ou r",
+    "entre o i do port. viu (na pronúncia de Lisboa) e o ê do port. cêrca",
+    "pĕde > \"pi̊ẹ̌\"",
+    "A raia sêcca mirandesa é constituida pelas seguintes aldeias: Paradella, Ifanez, Constantim, Cicouro e S. Martinho de Angueira",
     "não são ditongos propriamente ditos, mas verdadeiros dissyllabos",
     # the modern sources, quoted
     "a semivogal anterior [j] (por vezes levemente fricatizada)",
     "Muitas vezes, na fala de algumas localidades, estes ditongos reduzem-se à vogal média [o] ou nasal [õ]",
-    "O ditongo [je] escreve-se yê",
+    "dos ditongos uô e uôn (puôrta, fuônte)",
+    "O ditongo [je] escreve-se yê na 3ª pessoa do singular do presente do indicativo do verbo ser e em palavras como yêrba, yêrbo, yêuga.",
+    "sendo o aparecimento de [wo] menos frequente que o de [je]",
+    "noutras, como Duas Igrejas e Constantim, [wo] é esporádico",
+    "contextual intervocalic velar nasal [ŋ] after a stressed nasal /u/ preceding a vowel",
+    "onde u nasal é seguido de a, quer em hiato quer com uma transição nasal velar",
     "marca também a qualidade relativamente aberta das vogais a, e e o (yá, sés, nó)",
     "Quando representa [ɔ] aberto em sílaba tónica de palavras agudas e esdrúxulas, recebe acento agudo (abó, bóbida)",
     "indica a nasalidade da vogal em fim de vocábulo (lhion)",
@@ -624,8 +741,35 @@ def test_sendines_medial_lh_is_kept_and_the_initial_one_is_l(word, expected):
 ])
 def test_the_mwl_notes_quote_both_sides_of_each_disagreement(fragment):
     spec = spec_json("mwl")
-    haystack = spec["notes"] + " ".join(r["notes"] for r in spec["allophone_rules"])
+    haystack = " ".join([spec["notes"], *(r["notes"] for r in spec["allophone_rules"]),
+                         *(r["notes"] for r in spec["sandhi_rules"])])
     assert fragment in haystack
+
+
+def all_notes(code: str) -> str:
+    spec = spec_json(code)
+    return " ".join([spec["notes"], spec["stress"]["notes"],
+                     *(r["notes"] for r in spec.get("allophone_rules", [])),
+                     *(r["notes"] for r in spec.get("sandhi_rules", []))])
+
+
+@pytest.mark.parametrize("code", DIALECTS)
+@pytest.mark.parametrize("fragment", [
+    # misquotes of the page images
+    "o é do port. cérca", "s, ç ou r", "ç (z)", "\"os ditongos uô", "O ditongo [je] escreve-se yê\"",
+    # edit history in the notes
+    "run after", "moved to LdV", "lost their open candidate",
+    # a self-contradicting disagreement
+    "so it agrees",
+])
+def test_the_notes_have_no_misquote_or_edit_history(code, fragment):
+    assert fragment not in all_notes(code)
+
+
+def test_malhadas_is_a_named_locality_in_mwl_and_not_in_ifanes():
+    # LdV vol. II, p. 28: Malhadas is not one of the raia sêcca villages
+    assert "Malhadas" not in spec_json("mwl-x-ifanes")["notes"]
+    assert "Disagreement, named locality: Malhadas" in spec_json("mwl")["notes"]
 
 
 @pytest.mark.parametrize("rule_id", [
@@ -635,7 +779,7 @@ def test_the_mwl_notes_quote_both_sides_of_each_disagreement(fragment):
 ])
 def test_each_new_allophone_rule_cites_ldv_with_a_page(rule_id):
     notes = mwl_rules()[rule_id]["notes"]
-    assert "Vasconcellos" in notes and "p. 1" in notes or "p. 2" in notes
+    assert "Vasconcellos" in notes and ("p. 1" in notes or "p. 2" in notes)
 
 
 def test_the_sendines_notes_cite_the_aditamento_disagreement_and_the_page():

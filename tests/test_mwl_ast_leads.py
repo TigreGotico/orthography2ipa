@@ -175,9 +175,10 @@ class TestP5Nasalisation:
         assert ifanes.transcribe("quien") == "ˈkjɪ̃"
 
     def test_sendim_final_ien_is_two_syllables(self, sendim):
-        # LdV p. 220, Obs. 1: Sendinês "quíẽ, bíẽ", stress on the i
-        assert sendim.transcribe("bien") == "ˈbi.ẽ"
-        assert sendim.transcribe("quien") == "ˈki.ẽ"
+        # LdV p. 220, Obs. 1: Sendinês "quíẽ, bíẽ", stress on the i; the
+        # footnote and p. 185 Obs. 4 agree only on the reduced nasal ẽ̥ [ɨ̃]
+        assert sendim.transcribe("bien") == "ˈbiɨ̃"
+        assert sendim.transcribe("quien") == "ˈkiɨ̃"
 
     def test_unstressed_an_nasalises(self, mwl):
         # the proclitic preposition reduces to [ɐ] yet still nasalises: [ɐ̃]

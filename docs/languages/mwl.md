@@ -54,7 +54,7 @@ occurs word-finally (`rapaç`, `lhuç`) where Portuguese would spell `-z`.
 **Voicing.** The apical ⟨s⟩ is voiced to [z̺] before a voiced consonant, inside
 a word and across words: `asno` → [ˈaz̺nu], `mesmo` → [ˈmez̺mu], `ls nius` →
 [ɫz̺ ˈnjus̺]. Word-final ⟨ç⟩ is [z] before a voiced consonant in the next word:
-`lhuç del cielo` → [ˈʎuz ˈðeɫ ˈsjɪlu]. Before a voiceless consonant, a vowel or
+`lhuç del cielo` → [ˈʎuz ðɨɫ ˈsjɪlu]. Before a voiceless consonant, a vowel or
 a pause both stay voiceless. Vasconcelos (EPM v1 §13, p. 190) gives the voiced
 apical "final de palavra antes de consoante sonora" and the voiced dorsal
 "em fim de palavra só póde ouvir-se quando a palavra seguinte começa por
@@ -62,8 +62,9 @@ consoante sonora".
 
 ⟨j⟩ is always /ʒ/ (West Iberian), never the Asturian palatal. The letter ⟨y⟩ is
 the Spanish palatal [ʝ] (`you` → [ˈʝɵw]): Vasconcellos (p. 191) writes "Como o
-*y* castelhano normal em *yo*". The Convenção (letter Y) gives the glide [j],
-which is the second candidate here.
+*y* castelhano normal em *yo*" and gives it as "Inicial ou medial", so a
+word-final ⟨y⟩ is the glide [j] (`rey` → [ˈrej]). The Convenção (letter Y)
+gives the glide [j], which is the second candidate here.
 
 ## Leonese features
 
@@ -78,11 +79,15 @@ which is the second candidate here.
 - **Leonese diphthongs.** Latin short Ĕ → ⟨iê/ie⟩ = [jɪ], Latin short Ŏ →
   ⟨uô/uo⟩ = [ʊ] (`tierra` → [ˈtjɪrɐ], `puorta` → [ˈpʊɾtɐ]). Vasconcellos
   writes the nuclei ẹ̌ and ọ̌ (§2, pp. 173 and 177): ẹ̌ lies between the *i* of
-  Portuguese *viu* and the *é* of *cerca*, close to the *i* of English *fill*,
+  Portuguese *viu* and the *ê* of *cêrca*, close to the *i* of English *fill*,
   and ọ̌ is "muito semelhante ao *u* do inglês *full*, *butcher*". The
   diphthong [wo] "não é normal na falla mirandesa; só se ouve em emphase ou voz
   pausada" (p. 182, Obs. 2). The Convenção writes the diphthongs [je] and
-  [wo]. In `mwl` they are the second candidates, which keeps them in the beam for a downstream rescorer.
+  [wo] (footnote 13), and the same footnote says that in Duas Igrejas and
+  Constantim "[wo] é esporádico", which agrees with Vasconcellos. In `mwl`
+  [je] and [wo] are the second candidates, which keeps them in the beam for a
+  downstream rescorer. Vasconcellos's ọ̌ occurs only in a stressed syllable
+  (p. 177), so a final unstressed ⟨-uo⟩ is two vowels: `mútuo` → [ˈmutuu].
 - **⟨é⟩ and ⟨ó⟩ are [e] and [o].** The Portuguese open vowels "não existem na
   pronúncia normal mirandesa" (§22, p. 198): `pé` → [ˈpe], `pós` → [ˈpos̺],
   `chapéu` → [tʃɐˈpew]. The Convenção reads the acute accent as a "qualidade
@@ -95,15 +100,22 @@ which is the second candidate here.
   `coraçon` → [kuɾɐˈsɵ̃w̃], `son` → [ˈs̺ɵ̃w̃]. The nasal vowel [õ] of the Convenção
   is the second candidate. Vasconcellos gives `non` as *nó* (`non` → [ˈno]).
 - **Final ⟨-ie⟩ and ⟨-ue⟩ have two syllables.** "Não são ditongos propriamente
-  ditos, mas verdadeiros dissyllabos" (§11, p. 185): `tie` → [ˈtɪ.ə], `tue` →
-  [ˈtʊ.ə], `fazie` → [faˈzɪ.ə]. The Convenção (footnote 19) lists the hiatus
-  [ie] beside the diphthong [je] and the monophthongs [e] (Ifanes) and [i]
-  (Sendim) for the same syllable. The ending ⟨-ien⟩ is not split in `mwl`:
+  ditos, mas verdadeiros dissyllabos" (§11, p. 185): `tie` → [ˈtɪə], `tue` →
+  [ˈtʊə], `rue` → [ˈrʊə]. The stress is on the *i* or *u*, and the vowels before
+  it reduce like any pretonic vowel (p. 200): `fazie` → [fɐˈzɪə], `tenie` →
+  [tɨˈnɪə]. A written accent keeps its place (`série` → [ˈs̺eɾɪə]). The
+  one-syllable `pie` keeps the diphthong of Latin Ĕ (*pi̊ẹ̌*, §50, p. 219):
+  `pie` → [ˈpjɪ]. The Convenção (footnote 19) lists the hiatus [ie] (Duas
+  Igrejas) beside the diphthong [je] (Malhadas) and the monophthongs [e]
+  (Ifanes) and [i] (Sendim) for the same syllable. The ending ⟨-ien⟩ is not split in `mwl`:
   *bien* and the verb ending *fugien* have the same spelling, and no rule can
   tell them apart.
 - **A velar nasal [ŋ] stands between a nasal vowel and a vowel**, inside a word
   and across words (§13, p. 192: *ũŋa*, *bĩẹ̌̃ ŋ alto*): `ũa` → [ˈũŋɐ],
-  `bien alto` → [ˈbjɪ̃ ˈŋaɫtu].
+  `bien alto` → [ˈbjɪ̃ ˈŋaɫtu]. The modern sources limit [ŋ] to a stressed nasal
+  *u* before a vowel: Ferreira et al. (2014, §2) and the Convenção
+  ("Representação da nasalidade"), which also allows a hiatus with no [ŋ]. The
+  spec follows Vasconcellos.
 - **Intervocalic /l/ and /n/ preserved** (inherited from the parent), the
   defining Leonese retention that distinguishes the group from Portuguese.
 
@@ -179,12 +191,15 @@ Vasconcellos lists (§13). ⟨b⟩ (and ⟨v⟩, which is ⟨b⟩) is a stop "no
 palavra (depois de pausa ou de nasal)" and after a nasal, and a spirant "entre
 vogaes, e depois de consoante sonora" (p. 187): `haber` → [ɐˈβeɾ], `silba` →
 [ˈs̺iɫβɐ], `servir` → [s̺ɨɾˈβiɾ], `bibal` → [biˈβaɫ]. ⟨d⟩ is a spirant "intervocalico,
-e depois de s, ç (z) e r" and a stop after a pause, a nasal or *l* (p. 188):
+e depois de s, ç (ʒ) e r" and a stop after a pause, a nasal or *l* (p. 188):
 `dedo` → [ˈdeðu], `tarde` → [ˈtaɾðɨ], `mundo` → [ˈmũndu], `caldo` → [ˈkaɫdu].
 ⟨g⟩ is a spirant "intervocalico, e depois de s, l, r" (p. 192): `mogadouro` →
-[muɣɐˈðɵwɾu], `algo` → [ˈaɫɣu], `lhargo` → [ˈʎaɾɣu]. Across words, an initial
-⟨d⟩ after a word-final s, ç (z) or r, an initial ⟨b⟩ after s, ç, l or r and an
-initial ⟨g⟩ after s, l or r are spirants too (`ls dedos` → [ɫz̺ ˈðeðus̺]). The
+[muɣɐˈðɵwɾu], `algo` → [ˈaɫɣu], `lhargo` → [ˈʎaɾɣu]. (Vasconcellos's *ʒ* is
+his letter for the voiced dorsal sibilant written ⟨z⟩.) Across words, an
+initial ⟨d⟩ after a word-final s, ç, r or vowel, an initial ⟨b⟩ after s, ç, l,
+r or vowel and an initial ⟨g⟩ after s, l or r are spirants too (`ls dedos` →
+[ɫz̺ ˈðeðus̺], `la bida` → [lɐ ˈβiðɐ]). For ⟨g⟩ after a vowel the page does not
+decide, and the stop stays (`la gata` → [lɐ ˈɡatɐ]). The
 Convenção (letters B and D) agrees with Vasconcellos for ⟨b⟩ and ⟨d⟩. The
 `mirandese_g2p` gold writes a stop between vowels more often than a spirant for
 ⟨d⟩ (25 stops against 7 spirants in a plain count of its 205 words). No modern
@@ -208,7 +223,12 @@ declare only their **deltas**:
      Secondary sources report that Sendinês loses every ⟨lh⟩ (`alá` for `alhá`);
      Vasconcellos does not say so, and the spec keeps the medial [ʎ].
   3. **Final ⟨-ien⟩ has two syllables** with the stress on the *i*: `bien` →
-     [ˈbi.ẽ], `quien` → [ˈki.ẽ], `cien` → [ˈsi.ẽ] (§50, Obs. 1, p. 220), and
+     [ˈbiɨ̃], `quien` → [ˈkiɨ̃], `cien` → [ˈsiɨ̃] (§50, Obs. 1, p. 220). The
+     final vowel is a reduced nasal: the footnote on p. 220 gives it as
+     ẹ̌̃ or ẽ̥, and §11, Obs. 4 (p. 185) as ḙ̃ or ẽ̥; the spec uses ẽ̥ [ɨ̃], the
+     value both pages give. A proclitic form reduces to ĩ (Obs. 2: *quĩ foi,
+     cĩ pessoas, bĩ feito*): `bien feito` → [bĩ ˈfejtu]. Final ⟨-ue⟩ is [u]
+     (`rue` → [ˈru], §67, p. 232), and
      final ⟨-on⟩ is [ɐ̃w̃] (`coraçon` → [kuɾɐˈsɐ̃w̃]; the footnote of §110 says
      "parece que se diz -ão").
 - **Ifanês (`mwl-x-ifanes`)**: the Northern/Raiano speech of the raia-sêcca
