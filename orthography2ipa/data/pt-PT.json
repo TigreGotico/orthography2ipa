@@ -239,8 +239,11 @@
       "followed_by_phoneme": [
         "̃"
       ],
+      "followed_by_grapheme": [
+        "m"
+      ],
       "followed_by_2": "word_boundary",
-      "notes": "Word-final ⟨-em / -ém / -êm⟩ is the nasal DIPHTHONG [ɐ̃j̃] in European Portuguese, not the nasal monophthong [ẽ] (bem [ˈbɐ̃j̃], vem, tem, quem, também [tɐ̃ˈbɐ̃j̃], homem [ˈɔmɐ̃j̃], ontem [ˈõtɐ̃j̃]; Mateus & d'Andrade 2000: ch.4 'The nasal diphthongs'; Cruz-Ferreira 1995: 92). The nucleus of that diphthong is the central [ɐ̃], so the mid front vowel selected pre-lexically for the ⟨e⟩ (stressed [e]/[ɛ], unstressed reduced [ɨ]) LOWERS/centralises to the ORAL base [ɐ] here; the tilde is supplied by the coda ⟨m⟩ slot and the [j̃] offglide by PT_FINAL_EM_GLIDE, so [ɐ]+[̃]+[j̃] = [ɐ̃j̃]. Ordered BEFORE PT_NASAL_E_RAISE (which otherwise raises the stressed [ɛ]→[e] and blocks this centralisation), so a stressed monosyllable (bem, vem) centralises like an unstressed ⟨-em⟩ (homem). Gated on grapheme ⟨e⟩ + a following tautosyllabic nasal tilde + word boundary two graphemes on (the ⟨m⟩ then the edge), so it fires ONLY on a genuine word-final ⟨-em⟩: an ⟨em⟩ before another consonant (tempo, sempre — the tilde is followed by a stop, not the word edge) keeps the nasal monophthong [ẽ] via PT_NASAL_E_RAISE, and an oral ⟨e⟩ before an onset nasal (nome, pena) is untouched. Restricted to grapheme ⟨m⟩ spellings, so word-final ⟨-en⟩ (hífen, pólen) is not swept in."
+      "notes": "Word-final ⟨-em / -ém / -êm⟩ is the nasal DIPHTHONG [ɐ̃j̃] in European Portuguese, not the nasal monophthong [ẽ] (bem [ˈbɐ̃j̃], vem, tem, quem, também [tɐ̃ˈbɐ̃j̃], homem [ˈɔmɐ̃j̃], ontem [ˈõtɐ̃j̃]; Mateus & d'Andrade 2000: ch.4 'The nasal diphthongs'; Cruz-Ferreira 1995: 92). The nucleus of that diphthong is the central [ɐ̃], so the mid front vowel selected pre-lexically for the ⟨e⟩ (stressed [e]/[ɛ], unstressed reduced [ɨ]) LOWERS/centralises to the ORAL base [ɐ] here; the tilde is supplied by the coda ⟨m⟩ slot and the [j̃] offglide by PT_FINAL_EM_GLIDE, so [ɐ]+[̃]+[j̃] = [ɐ̃j̃]. Ordered BEFORE PT_NASAL_E_RAISE (which otherwise raises the stressed [ɛ]→[e] and blocks this centralisation), so a stressed monosyllable (bem, vem) centralises like an unstressed ⟨-em⟩ (homem). Gated on grapheme ⟨e⟩ + a following ⟨m⟩ realised as a tautosyllabic nasal tilde + word boundary two graphemes on (the ⟨m⟩ then the edge), so it fires ONLY on a genuine word-final ⟨-em⟩: an ⟨em⟩ before another consonant (tempo, sempre — the tilde is followed by a stop, not the word edge) keeps the nasal monophthong [ẽ] via PT_NASAL_E_RAISE, and an oral ⟨e⟩ before an onset nasal (nome, pena) is untouched. Restricted to grapheme ⟨m⟩ spellings, so word-final ⟨-en⟩ (hífen, pólen) is not swept in; it is PT_FINAL_EN_NUCLEUS."
     },
     {
       "id": "PT_FINAL_EM_GLIDE",
@@ -317,6 +320,43 @@
         "ɨ"
       ],
       "notes": "Palatal offglide of word-final ⟨-ens⟩, the plural of the ⟨-em⟩ diphthong (see PT_FINAL_ENS_NUCLEUS and PT_FINAL_EM_GLIDE): the coda ⟨n⟩ before a word-final ⟨s⟩ after a mid front vowel is [̃j̃] (homens [ˈɔmɐ̃j̃ʃ]). Gated on the original nucleus, read before PT_FINAL_ENS_NUCLEUS rewrites it, so ⟨-ins -ons -uns⟩ keep a plain nasal monophthong (jardins, bombons, atuns)."
+    },
+    {
+      "id": "PT_FINAL_EN_NUCLEUS",
+      "phonemes": [
+        "e",
+        "ɛ",
+        "ɨ"
+      ],
+      "surface": "ɛ",
+      "grapheme": [
+        "e"
+      ],
+      "followed_by_phoneme": [
+        "̃"
+      ],
+      "followed_by_grapheme": [
+        "n"
+      ],
+      "followed_by_2": "word_boundary",
+      "notes": "Word-final ⟨-en⟩ of a learned Greek or Latin noun is not the ⟨-em⟩ nasal diphthong. European Portuguese keeps the open-mid vowel [ɛ] and a final consonant [n]: hífen [ˈifɛn], pólen [ˈpɔlɛn], líquen [ˈlikɛn], abdómen [ɐbˈdɔmɛn], sémen [ˈsɛmɛn], gérmen [ˈʒɛɾmɛn]. Sources: Infopédia, Dicionário da Língua Portuguesa (Porto Editora; web.archive.org snapshots of infopedia.pt/dicionarios/lingua-portuguesa/<word>) writes 'hí.fen ˈifɛn', 'pó.len ˈpɔlɛn', 'lí.quen ˈlikɛn', 'ab.dó.men ɐˈbdɔmɛn', 'sémen sé.men ˈsɛmɛn', 'gér.men ˈʒɛrmɛn'; English Wikipedia 'Portuguese phonology' (Phonotactics, citing Mateus & d'Andrade 2000: 22, not opened): 'syllable-final /n/ may be present in rare learned words, such as abdómen ([abˈdɔmɛn] 'abdomen')'. Ciberdúvidas answer 16719 reads the ⟨en⟩ of pólen as a nasal diphthong [ẽĩ]; the dictionary and the phonology text above agree with each other and win. This rule sets the vowel and PT_FINAL_EN_CODA sets the [n]. Before the ⟨-em⟩ nucleus rule was restricted to ⟨m⟩, it matched ⟨-en⟩ too and gave [ˈifɐ̃]. The northern lects inherit this value: no source for ⟨-en⟩ in a northern accent was read, and a learned word follows its spelling. The plural ⟨-enes⟩ (hífenes) is not word-final ⟨n⟩ and is untouched. African, Asian and creole varieties disable this rule."
+    },
+    {
+      "id": "PT_FINAL_EN_CODA",
+      "phonemes": [
+        "̃"
+      ],
+      "surface": "n",
+      "grapheme": [
+        "n"
+      ],
+      "word_final": true,
+      "preceded_by_phoneme": [
+        "e",
+        "ɛ",
+        "ɨ"
+      ],
+      "notes": "The word-final ⟨n⟩ of a learned ⟨-en⟩ noun is the consonant [n], not the nasalisation tilde that the word-final ⟨m⟩ and ⟨n⟩ map gives (hífen [ˈifɛn]; see PT_FINAL_EN_NUCLEUS for the sources). Gated on a preceding front vowel so ⟨-an -on -un -in⟩ keep their own value."
     },
     {
       "id": "PT_NASAL_A_RAISE",
@@ -405,6 +445,55 @@
       "surface": "ʒ",
       "syllable_position": "coda",
       "notes": "Voiced counterpart of PT_CODA_S_HUSH: a coda /z/ -> [ʒ] in Lisbon/standard European Portuguese. Mateus & d'Andrade (2000: ch.2)."
+    },
+    {
+      "id": "PT_LEX_OPEN_ER",
+      "phonemes": [
+        "e",
+        "ɛ"
+      ],
+      "surface": "ɛ",
+      "stress": "stressed",
+      "followed_by_grapheme": [
+        "r"
+      ],
+      "followed_by_2": "word_boundary",
+      "word": [
+        "mulher",
+        "colher",
+        "talher",
+        "qualquer",
+        "quaisquer",
+        "quer",
+        "requer",
+        "mister",
+        "aluguer",
+        "chanceler",
+        "chofer",
+        "malmequer",
+        "mester",
+        "cateter",
+        "ureter",
+        "rater"
+      ],
+      "notes": "Words in ⟨-er⟩ whose stressed vowel is open-mid [ɛ] in European Portuguese, listed before PT_ER_CLOSE so they keep the open value. Infopédia (web.archive.org snapshots, one entry per word) writes 'mu.lher muˈʎɛr', 'ta.lher tɐˈʎɛr', 'co.lher kuˈʎɛr' (the noun; the verb colher is 'kuˈʎer', so the homograph stays open), 'qual.quer kwaɫˈkɛr' with the plural 'quaisquer', 'quer ˈkɛr', 'mister miʃˈtɛr', 'a.lu.guer ɐluˈɡɛr', 'chanceler ʃɐ̃səˈlɛr', 'chofer ʃoˈfɛr', 'malmequer maɫməˈkɛr', 'mester məʃˈtɛr', 'cateter kɐtəˈtɛr', 'ureter urəˈtɛr', 'rater ʀaˈtɛr'. Priberam marks talher '|lhér|', mister '|tér|' and the noun colher '|é|' (the verb colher '|ê|'). 'requer' is the third person of 'querer' and takes the stem value of 'quer'; its own entry was not opened. The list is the set of live-checked words; the scraped lexicon holds further loanwords in ⟨-er⟩ with an open vowel (freezer, rocker, alquiler) that are not listed. African, Asian and creole varieties disable this rule."
+    },
+    {
+      "id": "PT_ER_CLOSE",
+      "phonemes": [
+        "e",
+        "ɛ"
+      ],
+      "surface": "e",
+      "stress": "stressed",
+      "grapheme": [
+        "e"
+      ],
+      "followed_by_grapheme": [
+        "r"
+      ],
+      "followed_by_2": "word_boundary",
+      "notes": "The stressed ⟨e⟩ of a word-final ⟨-er⟩ is close-mid [e] in European Portuguese: this is the infinitive of the second conjugation (comer [kuˈmeɾ], beber, ter, ver, ler, crer, fazer, haver, entender [ẽtẽˈdeɾ]) and the nouns made from it (o poder, o dever). Sources: Infopédia writes 'co.mer kuˈmer', 'ter ˈter', 'ver ˈver', 'ler ˈler', 'crer ˈkrer', 'en.ten.der ẽtẽˈder', 'que.rer kəˈrer'; Priberam (dicionario.priberam.org) marks comer, ter, ver, ler, crer, querer with '|ê|', fazer with '|zê|', haver with '|vê|'. The same Infopédia text, read as the scraped lexicon (102,685 entries), has 601 words with final stress that end in close [er] and 43 that end in open [ɛr]; the 43 are lexical and are the words of PT_LEX_OPEN_ER. The pre-lexical vowel for an unmarked stressed ⟨e⟩ is open [ɛ] (open or close is not predictable from spelling), so without this rule every infinitive came out open: comer [kuˈmɛɾ]. Gated on the ⟨r⟩ that ends the word, so ⟨-em⟩ verbs (tem, vem) and stressed ⟨-ém⟩ words (porém, ninguém) never match. The northern lects with tonic-vowel diphthongisation redeclare this rule with surface [je]. African, Asian and creole varieties disable it."
     },
     {
       "id": "PT_LEX_CLOSE_O",
