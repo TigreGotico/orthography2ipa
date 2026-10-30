@@ -506,10 +506,10 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | mt | vox_communis | 8399 | 0.3056‡ | - | - | 0.3056 | 0.3056 | 0.0387 | 0.0387 | [0.3027, 0.3086] | 0.0387 | research | epitran-derived |
 | mt | wikipron | 15836 | 0.2314 | - | - | 0.2314 | 0.2314 | 0.1570 | 0.1570 | [0.2291, 0.2340] | 0.1570 | research | crowd-scraped |
 | mtq | wikipron | 194 | 0.3412 | - | - | 0.3412 | 0.3412 | 0.0000 | 0.0000 | [0.3227, 0.3583] | 0.0000 | research | crowd-scraped |
-| mwl | mirandese_dict | 990 | 0.0438‡ | 0.9834 | - | 0.0311 | 0.0300 | 0.8465 | 0.8505 | [0.0377, 0.0505] | 0.8172 | research | llm-generated |
-| mwl | mirandese_g2p | 205 | 0.1303 | 0.9181 | - | 0.1164 | 0.1116 | 0.5220 | 0.5317 | [0.1088, 0.1521] | 0.4878 | research | expert-human |
+| mwl | mirandese_dict | 990 | 0.0560‡ | 0.9834 | - | 0.0442 | 0.0434 | 0.7980 | 0.8010 | [0.0491, 0.0639] | 0.7707 | research | llm-generated |
+| mwl | mirandese_g2p | 205 | 0.1333 | 0.9181 | - | 0.1194 | 0.1156 | 0.5073 | 0.5122 | [0.1116, 0.1557] | 0.4780 | research | expert-human |
 | mwl | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| mwl-x-ifanes | mirandese_dict | 4† | 0.2083‡ | - | - | 0.0000 | 0.0000 | 1.0000 | 1.0000 | n too small | 0.5000 | research | llm-generated |
+| mwl-x-ifanes | mirandese_dict | 4† | 0.1250‡ | - | - | 0.1250 | 0.1250 | 0.7500 | 0.7500 | n too small | 0.7500 | research | llm-generated |
 | mwl-x-ifanes | mirandese_g2p | 2† | 0.5000‡ | - | - | 0.5000 | 0.5000 | 0.0000 | 0.0000 | n too small | 0.0000 | research | expert-human |
 | mwl-x-ifanes | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | mwl-x-sendim | mirandese_dict | 79 | 0.0955‡ | 1.0000 | - | 0.0916 | 0.0916 | 0.6203 | 0.6203 | [0.0677, 0.1284] | 0.6203 | research | llm-generated |

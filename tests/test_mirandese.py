@@ -8,7 +8,7 @@ TigreGotico/mirandese_g2p expert gold:
 
 * the hallmark sibilant system — apical ⟨s⟩ /s̺ z̺/ vs dorso-dental
   ⟨c,ç,z⟩ /s z/, ⟨x⟩ /ʃ/, ⟨j,g⟩ /ʒ/, ⟨ch⟩ affricate /tʃ/;
-* Leonese initial-l palatalisation (⟨l⟩→/ʎ/) and ⟨lh⟩/⟨nh⟩;
+* initial ⟨l⟩ [l], ⟨lh⟩ [ʎ] and ⟨nh⟩ [ɲ];
 * the Leonese diphthongs ⟨iê/ie⟩ [je/jɛ] and ⟨uô/uo⟩ [wo/wɔ];
 * Sendinês deltas: monophthongisation to /i/,/u/ and ⟨lh⟩→/l/;
 * Ifanês (Raiano/Northern): phonologically tracks Central Mirandese.
@@ -62,12 +62,14 @@ def test_postalveolars_and_affricate():
     assert spec.graphemes["y"] == ["j"]     # glide, not /ʝ/
 
 
-# --- Leonese lateral / initial-l palatalisation -----------------------------
+# --- initial l and the lh / nh digraphs ----------------------------------
 
-def test_initial_l_palatalises():
+def test_initial_l_is_plain_l():
     g = _t("mwl")
-    # Convenção § L: word-initial ⟨l⟩ before a vowel = /ʎ/
-    assert g.transcribe("luç") == "ˈʎus"
+    # LdV §13 p. 188: l is "Como em português na palavra lapa"; the Latin
+    # initial L that became [ʎ] is written lh (§111 p. 259)
+    assert g.transcribe("luç") == "ˈlus"
+    assert g.transcribe("lhuç") == "ˈʎus"
 
 
 def test_lh_and_nh_digraphs():
@@ -180,7 +182,7 @@ def test_intervocalic_b_spirantises_to_beta():
 def test_word_initial_and_post_nasal_b_stays_a_stop():
     g = _t("mwl")
     # word-initial ⟨b⟩ is a stop; only the intervocalic one lenites
-    assert g.transcribe("bibal") == "biˈβal"
+    assert g.transcribe("bibal") == "biˈβaɫ"
     # post-nasal ⟨b⟩ keeps the stop — the vowel nasalises and absorbs the nasal
     # consonant (⟨amb⟩ → [ɐ̃b], see TestConvencaoWave), and /b/ after the nasal
     # vowel stays a stop rather than lenieting
@@ -205,7 +207,7 @@ def test_intervocalic_g_spirantises_via_positional_layer():
     # → [ɐjˈɡwal]); a naive /ɡ/→[ɣ] allophone rule would wrongly lenite it
     # the native gold has eigual [ɐjˈɡwal]: ⟨gu⟩ keeps the glide
     # before ⟨a⟩; the point here is only that /ɡ/ stays a stop
-    assert g.transcribe("eigual") == "ejˈɡwal"
+    assert g.transcribe("eigual") == "ejˈɡwaɫ"
 
 
 def test_only_the_b_spirant_rule_is_declared():

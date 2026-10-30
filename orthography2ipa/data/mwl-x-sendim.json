@@ -22,18 +22,11 @@
   },
   "allophones_base": "mwl",
   "positional_graphemes_base": "mwl",
-  "positional_graphemes": {
-    "l": {
-      "word_initial": [
-        "l"
-      ],
-      "onset": [
-        "l"
-      ]
-    }
-  },
   "parent": "mwl",
-  "notes": "Sendinês subdialect of Mirandese, spoken in Vila de Sendim (southern extreme of Terra de Miranda). It inherits the full Central Mirandese system (graphemes_base=mwl: apical ⟨s⟩ /s̺ z̺/ vs predorsal ⟨c,ç,z⟩ /s z/, ⟨x⟩ /ʃ/, ⟨j,g⟩ /ʒ/, ⟨ch⟩ /tʃ/, ⟨nh⟩ /ɲ/, nasal-vowel digraphs) and overrides only the two documented Sendinês deltas: (1) monophthongisation of the Leonese diphthongs ⟨iê/ie⟩ → /i/ and ⟨uô/uo⟩ → /u/ (tirra not tiêrra, curpo not cuôrpo) — the Central/Raiano [je]/[wo] is reduced to [i]/[u]; (2) DEPALATALISATION of /ʎ/ → /l/: words that other dialects say with ⟨lh⟩ /ʎ/ are said with /l/ (alá for alhá, lhado→lado, lhuç→[ˈlus], lhobo→[ˈlobu]), and word-initial ⟨l⟩ is likewise plain /l/ (no Leonese initial palatalisation). The Primeiro Aditamento à Convenção (February 2000) permits Sendinese writers to spell word-initial ⟨l-⟩ (not ⟨lh-⟩). Because ⟨lh⟩ → /l/ is overridden here, the Central word-initial ⟨l⟩ → /ʎ/ rule is also cancelled via the positional override (l stays /l/ in every position). The unstressed vowel qualities are inherited from Central Mirandese, where they are grounded in Leite de Vasconcelos's description of Duas-Igrejas (unstressed ⟨o u⟩ = [u], unstressed and final ⟨e⟩ = [ɨ]). Whether Sendinês realises those unstressed vowels differently is not settled by any description reached so far, and the Sendinês gold sample is too small to decide it; the inherited Central values stand until a published source says otherwise.",
+  "word_exceptions": {
+    "l": "l"
+  },
+  "notes": "Sendinês subdialect of Mirandese, spoken in Vila de Sendim (southern extreme of Terra de Miranda). It inherits the full Central Mirandese system (graphemes_base=mwl: apical ⟨s⟩ /s̺ z̺/ vs predorsal ⟨c,ç,z⟩ /s z/, ⟨x⟩ /ʃ/, ⟨j,g⟩ /ʒ/, ⟨ch⟩ /tʃ/, ⟨nh⟩ /ɲ/, nasal-vowel digraphs) and overrides only the two documented Sendinês deltas: (1) monophthongisation of the Leonese diphthongs ⟨iê/ie⟩ → /i/ and ⟨uô/uo⟩ → /u/ (tirra not tiêrra, curpo not cuôrpo) — the Central/Raiano [je]/[wo] is reduced to [i]/[u]; (2) DEPALATALISATION of /ʎ/ → /l/: words that other dialects say with ⟨lh⟩ /ʎ/ are said with /l/ (alá for alhá, lhado→lado, lhuç→[ˈlus], lhobo→[ˈlobu]). The Primeiro Aditamento à Convenção (February 2000) permits Sendinese writers to spell word-initial ⟨l-⟩ (not ⟨lh-⟩). The unstressed vowel qualities are inherited from Central Mirandese, where they are grounded in Leite de Vasconcelos's description of Duas-Igrejas (unstressed ⟨o u⟩ = [u], unstressed and final ⟨e⟩ = [ɨ]). Whether Sendinês realises those unstressed vowels differently is not settled by any description reached so far, and the Sendinês gold sample is too small to decide it; the inherited Central values stand until a published source says otherwise.",
   "quality": "research",
   "script_type": "alphabet",
   "allophone_rules": [
@@ -139,7 +132,7 @@
       "i", "e", "que",
       "me", "te", "se", "bos"
     ],
-    "notes": "Convenção Ortográfica da Língua Mirandesa (1999) accentuation, Portuguese-based: paroxytone default; written accent (acute or tilde) overrides. Oxytone-attracting endings reflect Mirandese orthography: consonant-final r/l/z/ç (rapaç, Pertual, falar) and the final nasals written with -n in the Asturleonese manner — -in (camin, Sendin), -un, and the systematically oxytone -on class from Latin -ōnem (naçon, coraçon, Associaçon). Unmarked -an/-en verb endings stay paroxytone as in Portuguese -am/-em. Dialect mwl-x-sendim: no evidence of stress-pattern divergence from standard Mirandese; block copied from mwl (cliticless_words included, since stress is not inherited). Sendinês keeps the plain [l] for the article and depalatalises ⟨lh⟩/initial-⟨l⟩ to [l] by its own positional table, and monophthongises ⟨ie⟩→[i] so 'quien' → [ˈkĩ]; it therefore needs no word_exceptions overriding the mwl parent's."
+    "notes": "Convenção Ortográfica da Língua Mirandesa (1999) accentuation, Portuguese-based: paroxytone default; written accent (acute or tilde) overrides. Oxytone-attracting endings reflect Mirandese orthography: consonant-final r/l/z/ç (rapaç, Pertual, falar) and the final nasals written with -n in the Asturleonese manner — -in (camin, Sendin), -un, and the systematically oxytone -on class from Latin -ōnem (naçon, coraçon, Associaçon). Unmarked -an/-en verb endings stay paroxytone as in Portuguese -am/-em. Dialect mwl-x-sendim: no evidence of stress-pattern divergence from standard Mirandese; block copied from mwl (cliticless_words included, since stress is not inherited). Sendinês depalatalises ⟨lh⟩ to [l] by its own grapheme table and monophthongises ⟨ie⟩→[i] so 'quien' → [ˈkĩ]. Its only word exception is the article l, which MWL_ARTICLE_L_VELAR velarises before a consonant."
   },
   "location": {
     "latitude": 41.389444,
