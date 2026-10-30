@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.111.9a1](https://github.com/TigreGotico/orthography2ipa/tree/7.111.9a1) (2026-10-30)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.111.8a1...7.111.9a1)
+
+**Merged pull requests:**
+
+- fix\(pt\): close the pt-PT -er vowel, keep the learned -en consonant, add the pt-BR -ens glide [\#1782](https://github.com/TigreGotico/orthography2ipa/pull/1782) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.111.8a1](https://github.com/TigreGotico/orthography2ipa/tree/7.111.8a1) (2026-10-30)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.111.7a1...7.111.8a1)
@@ -346,10 +354,6 @@
 ## [7.104.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.104.0a1) (2026-09-18)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.103.1a1...7.104.0a1)
-
-**Merged pull requests:**
-
-- feat\(registry\): let a caller refuse nearest-language guessing [\#1683](https://github.com/TigreGotico/orthography2ipa/pull/1683) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.103.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.103.1a1) (2026-09-18)
 
