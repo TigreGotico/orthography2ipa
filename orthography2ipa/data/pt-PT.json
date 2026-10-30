@@ -593,6 +593,199 @@
       "notes": "Lexically OPEN stressed ⟨e⟩ = [ɛ] for this curated set, overriding the pre-lexical default where a close [e] is selected (Brazilian and non-reducing inheritors). Includes items whose open height is etymological (Latin short ĕ: terra, serra), morphological (3sg present espera; the copula era) or simply lexical (dez). Mateus & d'Andrade 2000: ch.3; Vigário 2003. Pins only the vowel height and inherits cleanly. SEED LIST — documented residual for the tail."
     },
     {
+      "id": "PT_LEX_OPEN_E_SUFFIX",
+      "phonemes": [
+        "e",
+        "ɛ",
+        "ɨ"
+      ],
+      "surface": "ɛ",
+      "stress": "stressed",
+      "word": [
+        "reza",
+        "fresa",
+        "pesca",
+        "pesa",
+        "preza",
+        "despreza",
+        "pesco",
+        "rema",
+        "crema"
+      ],
+      "notes": "Words whose stressed ⟨e⟩ is open [ɛ] although their ending takes a close-vowel suffix rule (PT_SUFFIX_EZA_ESA_CLOSE, PT_SUFFIX_EMA_CLOSE, PT_SUFFIX_ESCO_CLOSE). Listed before those rules so they keep the open vowel. Each is the reading of its Infopédia entry in the portuguese-unified lexicon (region pt-PT): reza 'ˈʀɛzɐ', fresa 'ˈfrɛzɐ', pesca 'ˈpɛʃkɐ'. The verb forms rema (remar) and crema (cremar) are the Wiktionary pt-PT readings of WikiPron: 'ʁ ɛ m ɐ', 'k ɾ ɛ m ɐ'. The verb forms pesa, preza, despreza (pesar, prezar, desprezar) and pesco (pescar) take the open vowel of the verb: Ciberdúvidas 7872: 'nas homógrafas, a pronúncia recomendada é a do \"e\" fechado nos substantivos e \"e\" aberto nas formas verbais'. Infopédia has the rare noun pesa with the close vowel ('ˈpezɐ'); the list takes the verb, the frequent reading. dez is in PT_LEX_OPEN_E. Porto, Braga and Terceira, the African and Asian varieties and Barrancos disable this rule with the suffix rules."
+    },
+    {
+      "id": "PT_LEX_OPEN_O_SUFFIX",
+      "phonemes": [
+        "o",
+        "ɔ"
+      ],
+      "surface": "ɔ",
+      "stress": "stressed",
+      "word": [
+        "maior",
+        "melhor",
+        "menor",
+        "pior",
+        "pormenor",
+        "suor",
+        "redor",
+        "arredor",
+        "alfajor",
+        "belchior",
+        "chador",
+        "salpor",
+        "granulomatoso",
+        "mixedematoso"
+      ],
+      "notes": "Words whose stressed ⟨o⟩ is open [ɔ] although their ending takes a close-vowel suffix rule (PT_SUFFIX_OR_CLOSE, PT_SUFFIX_OSO_CLOSE). Listed before those rules so they keep the open vowel. The comparatives maior, melhor, menor and pior are the 'comparativos em -or' that Cunha & Cintra, Nova Gramática do Português Contemporâneo, 7.ª ed., Lexikon (archive.org OCR of item novagramaticadoportuguescontemporaneo, accents restored), p. 266, names apart from the adjectives in -or. Infopédia entries checked live (web.archive.org snapshot): 'me.lhor məˈʎɔr'. The other readings are the Infopédia entries of the portuguese-unified lexicon (region pt-PT): maior 'mɐjˈɔr', menor 'məˈnɔr', pior 'ˈpjɔr', pormenor 'purməˈnɔr', suor 'suˈɔr', redor 'ʀəˈdɔr', arredor 'ɐʀəˈdɔr', alfajor 'aɫfɐˈʒɔr', belchior 'bɛɫˈʃjɔr', chador 'ʃaˈdɔr', salpor 'saɫˈpɔr', granulomatoso 'ɡrɐnulumɐˈtɔzu' and mixedematoso 'miksədəmɐˈtɔz'. Porto, Braga and Terceira, the African and Asian varieties and Barrancos disable this rule with the suffix rules."
+    },
+    {
+      "id": "PT_SUFFIX_EZ_CLOSE",
+      "phonemes": [
+        "e",
+        "ɛ",
+        "ɨ"
+      ],
+      "surface": "e",
+      "stress": "stressed",
+      "grapheme": [
+        "e"
+      ],
+      "followed_by_grapheme": [
+        "z"
+      ],
+      "followed_by_2": "word_boundary",
+      "notes": "The stressed ⟨e⟩ of the word-final abstract-noun suffix ⟨-ez⟩ is close [e] (Infopédia: rapidez 'ʀɐpiˈdeʃ', altivez 'aɫtiˈveʃ'). Cunha & Cintra, Nova Gramática do Português Contemporâneo, 7.ª ed., Lexikon (archive.org OCR of item novagramaticadoportuguescontemporaneo, accents restored), p. 110, lists the suffix among those that form nouns from adjectives: '-ez altivez, honradez'. Ciberdúvidas 32668: 'A forma -ez é um sufixo que forma substantivos abstratos com base em adjetivos' and, of -ês and -ez, 'mais tarde acabaram por convergir na mesma pronúncia'; -ês is written with the circumflex, the close vowel. Infopédia entry checked live (web.archive.org snapshot): 'ra.pi.dez ʀɐpiˈdeʃ'. Measured on the Infopédia (Porto Editora) readings of the portuguese-unified lexicon, region pt-PT: 125 types end in this spelling with this vowel stressed; 124 have the close vowel, 1 do not (dez (open)). Precision 0.992, coverage 0.028 of the 4525 unaccented stressed ⟨e⟩ types. Cross-checked on the Wiktionary pt-PT readings of WikiPron (por_latn_po_broad), which include verb forms: 63 unaccented forms end in this spelling; 61 have the close vowel, 1 the open one (dez), and 1 list both readings or another vowel. Precision 0.968, or 0.984 when a form that lists the close vowel among its readings counts as right. The rule reads the spelling of the ending, so it also matches words that are not the suffix; the count above is over every word with the ending. Open or close quality is otherwise lexical (Ciberdúvidas 7872: 'em sílaba tónica, o \"e\" ou é aberto ou fechado, dependendo da etimologia'), and the pre-lexical default stays open. Exceptions are listed in PT_LEX_OPEN_E (dez). Porto, Braga and Terceira, the African and Asian varieties and Barrancos disable this rule."
+    },
+    {
+      "id": "PT_SUFFIX_EZA_ESA_CLOSE",
+      "phonemes": [
+        "e",
+        "ɛ",
+        "ɨ"
+      ],
+      "surface": "e",
+      "stress": "stressed",
+      "grapheme": [
+        "e"
+      ],
+      "followed_by_grapheme": [
+        "z",
+        "s"
+      ],
+      "followed_by_phoneme_2": [
+        "a",
+        "ɐ"
+      ],
+      "followed_by_3": "word_boundary",
+      "notes": "The stressed ⟨e⟩ of word-final ⟨-eza⟩ and ⟨-esa⟩ is close [e] (Infopédia: beleza 'bəˈlezɐ', certeza 'sərˈtezɐ', mesa 'ˈmezɐ'). Both are suffix classes in Cunha & Cintra, Nova Gramática do Português Contemporâneo, 7.ª ed., Lexikon (archive.org OCR of item novagramaticadoportuguescontemporaneo, accents restored): p. 110 lists '-eza beleza, riqueza' among the suffixes that form abstract nouns from adjectives; p. 208 names '-esa' among the feminine endings of nouns for titles of nobility. Infopédia entry checked live (web.archive.org snapshot): 'be.le.za bəˈlezɐ'. Measured on the Infopédia (Porto Editora) readings of the portuguese-unified lexicon, region pt-PT: 161 types end in this spelling with this vowel stressed; 159 have the close vowel, 2 do not (reza (open), fresa (open)). Precision 0.988, coverage 0.036 of the 4525 unaccented stressed ⟨e⟩ types. Split: -eza 116 of 117, -esa 43 of 44. Cross-checked on the Wiktionary pt-PT readings of WikiPron (por_latn_po_broad), which include verb forms: 154 unaccented forms end in this spelling; 146 have the close vowel, 4 the open one (fresa, lesa, pesa, reza), and 4 list both readings or another vowel. Precision 0.948, or 0.974 when a form that lists the close vowel among its readings counts as right. The rule reads the spelling of the ending, so it also matches words that are not the suffix; the count above is over every word with the ending. Open or close quality is otherwise lexical (Ciberdúvidas 7872: 'em sílaba tónica, o \"e\" ou é aberto ou fechado, dependendo da etimologia'), and the pre-lexical default stays open. Exceptions are listed in PT_LEX_OPEN_E_SUFFIX. Porto, Braga and Terceira, the African and Asian varieties and Barrancos disable this rule."
+    },
+    {
+      "id": "PT_SUFFIX_EMA_CLOSE",
+      "phonemes": [
+        "e",
+        "ɛ",
+        "ɨ"
+      ],
+      "surface": "e",
+      "stress": "stressed",
+      "grapheme": [
+        "e"
+      ],
+      "followed_by_grapheme": [
+        "m"
+      ],
+      "followed_by_phoneme_2": [
+        "a",
+        "ɐ"
+      ],
+      "followed_by_3": "word_boundary",
+      "notes": "The stressed ⟨e⟩ of word-final ⟨-ema⟩ is close [e] (Infopédia: tema 'ˈtemɐ', sistema 'siʃˈtemɐ', fonema 'fuˈnemɐ'). Cunha & Cintra, Nova Gramática do Português Contemporâneo, 7.ª ed., Lexikon (archive.org OCR of item novagramaticadoportuguescontemporaneo, accents restored), p. 110: 'A linguística moderna faz largo uso do sufixo -ema com o sentido de “menor unidade distintiva” ou “significativa”: fonema [...] morfema'. Infopédia entry checked live (web.archive.org snapshot): 'sis.te.ma siʃˈtemɐ'. Measured on the Infopédia (Porto Editora) readings of the portuguese-unified lexicon, region pt-PT: 108 types end in this spelling with this vowel stressed; 108 have the close vowel, 0 do not (none). Precision 1.000, coverage 0.024 of the 4525 unaccented stressed ⟨e⟩ types. Cross-checked on the Wiktionary pt-PT readings of WikiPron (por_latn_po_broad), which include verb forms: 58 unaccented forms end in this spelling; 51 have the close vowel, 2 the open one (the verb forms crema, rema), and 5 list both readings or another vowel (algema, alçaprema, blasfema, extrema, trema). Precision 0.879, or 0.966 when a form that lists the close vowel among its readings counts as right. The rule reads the spelling of the ending, so it also matches words that are not the suffix; the count above is over every word with the ending. Open or close quality is otherwise lexical (Ciberdúvidas 7872: 'em sílaba tónica, o \"e\" ou é aberto ou fechado, dependendo da etimologia'), and the pre-lexical default stays open. The verb forms rema and crema are listed in PT_LEX_OPEN_E_SUFFIX. Porto, Braga and Terceira, the African and Asian varieties and Barrancos disable this rule."
+    },
+    {
+      "id": "PT_SUFFIX_ESCO_CLOSE",
+      "phonemes": [
+        "e",
+        "ɛ",
+        "ɨ"
+      ],
+      "surface": "e",
+      "stress": "stressed",
+      "grapheme": [
+        "e"
+      ],
+      "followed_by_grapheme": [
+        "s"
+      ],
+      "followed_by_phoneme_2": [
+        "k"
+      ],
+      "followed_by_3": "back_vowel",
+      "notes": "The stressed ⟨e⟩ of the adjective suffix ⟨-esco⟩ is close [e] (Infopédia: dantesco 'dɐ̃ˈteʃku', pitoresco 'pituˈreʃku', fresca 'ˈfreʃkɐ'). Cunha & Cintra, Nova Gramática do Português Contemporâneo, 7.ª ed., Lexikon (archive.org OCR of item novagramaticadoportuguescontemporaneo, accents restored), p. 113, lists '-esco referência, semelhança: burlesco, dantesco'. The gate is a stressed ⟨e⟩ before ⟨s⟩ + ⟨c⟩ + ⟨a o u⟩, so the feminine and plural forms match and ⟨-esce⟩ (cresce, open) does not. Measured on the Infopédia (Porto Editora) readings of the portuguese-unified lexicon, region pt-PT: 100 types end in this spelling with this vowel stressed; 99 have the close vowel, 1 do not (pesca (open)). Precision 0.990, coverage 0.022 of the 4525 unaccented stressed ⟨e⟩ types. -esco alone is 95 of 95. Cross-checked on the Wiktionary pt-PT readings of WikiPron (por_latn_po_broad), which include verb forms: 27 unaccented forms end in this spelling; 24 have the close vowel, 1 the open one (pesca), and 2 list both readings or another vowel (fresco, refresco). Precision 0.889, or 0.963 when a form that lists the close vowel among its readings counts as right. The rule reads the spelling of the ending, so it also matches words that are not the suffix; the count above is over every word with the ending. Open or close quality is otherwise lexical (Ciberdúvidas 7872: 'em sílaba tónica, o \"e\" ou é aberto ou fechado, dependendo da etimologia'), and the pre-lexical default stays open. Exceptions are listed in PT_LEX_OPEN_E_SUFFIX. Porto, Braga and Terceira, the African and Asian varieties and Barrancos disable this rule."
+    },
+    {
+      "id": "PT_SUFFIX_OR_CLOSE",
+      "phonemes": [
+        "o",
+        "ɔ"
+      ],
+      "surface": "o",
+      "stress": "stressed",
+      "grapheme": [
+        "o"
+      ],
+      "followed_by_grapheme": [
+        "r"
+      ],
+      "followed_by_2": "word_boundary",
+      "notes": "The stressed ⟨o⟩ of word-final ⟨-or⟩ is close [o]: the agent and instrument suffix ⟨-dor -tor -sor⟩ (Infopédia: trabalhador 'trɐbɐʎɐˈdor', professor 'prufəˈsor') and the abstract-noun suffix ⟨-or⟩ (Infopédia: amor 'ɐˈmor', calor 'kɐˈlor'). Cunha & Cintra, Nova Gramática do Português Contemporâneo, 7.ª ed., Lexikon (archive.org OCR of item novagramaticadoportuguescontemporaneo, accents restored), p. 112: 'Em -dor, -tor e -sor, bem como em -dura, -tura e -sura, os sufixos são propriamente -or e -ura'; p. 110 lists '-or alvor, amargor'. Infopédia entries checked live (web.archive.org snapshot): 'tra.ba.lha.dor trɐbɐʎɐˈdor', 'a.mor ɐˈmor', 'se.nhor səˈɲor'. Measured on the Infopédia (Porto Editora) readings of the portuguese-unified lexicon, region pt-PT: 2698 types end in this spelling with this vowel stressed; 2682 have the close vowel, 16 do not (alfajor, arredor, belchior, chador, maior, melhor, menor, pior, pormenor, redor, salpor, suor (open), bolor, cor, mor, termidor (both)). Precision 0.994, coverage 0.369 of the 7304 unaccented stressed ⟨o⟩ types. The ⟨-dor -tor -sor⟩ words alone: 2535 of 2539. The plural ⟨-ores⟩ is not matched. Cross-checked on the Wiktionary pt-PT readings of WikiPron (por_latn_po_broad), which include verb forms: 956 unaccented forms end in this spelling; 939 have the close vowel, 12 the open one (chador, grossor, maior, major, melhor, menor, outdoor, pior, pormenor, redor, suor, xador), and 5 list both readings or another vowel. Precision 0.982, or 0.987 when a form that lists the close vowel among its readings counts as right. The rule reads the spelling of the ending, so it also matches words that are not the suffix; the count above is over every word with the ending. Open or close quality is otherwise lexical (Ciberdúvidas 7872: 'em sílaba tónica, o \"e\" ou é aberto ou fechado, dependendo da etimologia'), and the pre-lexical default stays open. Exceptions are listed in PT_LEX_OPEN_O_SUFFIX. Porto, Braga and Terceira, the African and Asian varieties and Barrancos disable this rule."
+    },
+    {
+      "id": "PT_SUFFIX_OSO_CLOSE",
+      "phonemes": [
+        "o",
+        "ɔ"
+      ],
+      "surface": "o",
+      "stress": "stressed",
+      "grapheme": [
+        "o"
+      ],
+      "followed_by_grapheme": [
+        "s"
+      ],
+      "followed_by_phoneme_2": [
+        "o",
+        "u"
+      ],
+      "followed_by_3": "word_boundary",
+      "notes": "The stressed ⟨o⟩ of the masculine singular adjective suffix ⟨-oso⟩ is close [o] (Infopédia: famoso 'fɐˈmozu', brioso 'briˈozu'). Cunha & Cintra, Nova Gramática do Português Contemporâneo, 7.ª ed., Lexikon (archive.org OCR of item novagramaticadoportuguescontemporaneo, accents restored), p. 113, lists '-oso provido ou cheio de: brioso, venenoso'; p. 266: 'Alguns adjetivos que no masculino possuem o tônico fechado [o], além de receberem a desinência -a, mudam o o fechado para aberto [ɔ], no feminino: brioso briosa formoso formosa'. Gated on the word-final ⟨o⟩, so the feminine ⟨-osa⟩ and the plural ⟨-osos⟩, open by that metaphony, keep the open default. Measured on the Infopédia (Porto Editora) readings of the portuguese-unified lexicon, region pt-PT: 942 types end in this spelling with this vowel stressed; 940 have the close vowel, 2 do not (granulomatoso, mixedematoso (open)). Precision 0.998, coverage 0.129 of the 7304 unaccented stressed ⟨o⟩ types. Cross-checked on the Wiktionary pt-PT readings of WikiPron (por_latn_po_broad), which include verb forms: 418 unaccented forms end in this spelling; 415 have the close vowel, 0 the open one, and 3 list both readings or another vowel. Precision 0.993, or 1.000 when a form that lists the close vowel among its readings counts as right. The rule reads the spelling of the ending, so it also matches words that are not the suffix; the count above is over every word with the ending. Open or close quality is otherwise lexical (Ciberdúvidas 7872: 'em sílaba tónica, o \"e\" ou é aberto ou fechado, dependendo da etimologia'), and the pre-lexical default stays open. Exceptions are listed in PT_LEX_OPEN_O_SUFFIX. Porto, Braga and Terceira, the African and Asian varieties and Barrancos disable this rule."
+    },
+    {
+      "id": "PT_SUFFIX_ONHO_CLOSE",
+      "phonemes": [
+        "o",
+        "ɔ"
+      ],
+      "surface": "o",
+      "stress": "stressed",
+      "grapheme": [
+        "o"
+      ],
+      "followed_by_grapheme": [
+        "nh"
+      ],
+      "followed_by_phoneme_2": [
+        "o",
+        "u",
+        "a",
+        "ɐ"
+      ],
+      "followed_by_3": "word_boundary",
+      "notes": "The stressed ⟨o⟩ of the adjective suffix ⟨-onho⟩ and its feminine ⟨-onha⟩ is close [o] (Infopédia: risonho 'ʀiˈzoɲu', medonho 'məˈdoɲu'). Cunha & Cintra, Nova Gramática do Português Contemporâneo, 7.ª ed., Lexikon (archive.org OCR of item novagramaticadoportuguescontemporaneo, accents restored), p. 113, lists '-onho propriedade, hábito constante: enfadonho, risonho'. Measured on the Infopédia (Porto Editora) readings of the portuguese-unified lexicon, region pt-PT: 40 types end in this spelling with this vowel stressed; 40 have the close vowel, 0 do not (none). Precision 1.000, coverage 0.005 of the 7304 unaccented stressed ⟨o⟩ types. Cross-checked on the Wiktionary pt-PT readings of WikiPron (por_latn_po_broad), which include verb forms: 41 unaccented forms end in this spelling; 41 have the close vowel, 0 the open one, and 0 list both readings or another vowel. Precision 1.000, or 1.000 when a form that lists the close vowel among its readings counts as right. The rule reads the spelling of the ending, so it also matches words that are not the suffix; the count above is over every word with the ending. Open or close quality is otherwise lexical (Ciberdúvidas 7872: 'em sílaba tónica, o \"e\" ou é aberto ou fechado, dependendo da etimologia'), and the pre-lexical default stays open. No exception was found. Porto, Braga and Terceira, the African and Asian varieties and Barrancos disable this rule."
+    },
+    {
       "id": "PT_LEX_X_S",
       "phonemes": [
         "ʃ"

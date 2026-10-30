@@ -609,42 +609,42 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | pt-MZ | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | pt-MZ | portuguese_unified | 53147 | 0.1686 | 0.9960 | - | 0.1438 | 0.1273 | 0.3256 | 0.3827 | [0.1674, 0.1699] | 0.2575 | research | lexicon-derived |
 | pt-MZ | portuguese_unified_corrected | 53145 | 0.1686‡ | 0.9961 | - | 0.1438 | 0.1273 | 0.3257 | 0.3827 | [0.1673, 0.1699] | 0.2575 | research | lexicon-derived |
-| pt-PT | ep_dialects | 30 | 0.1101 | - | - | - | - | - | - | [0.0821, 0.1393] | 0.2000 | research | expert-human |
-| pt-PT | ipa_childes | 3846 | 0.2441‡ | - | - | 0.1847 | 0.1713 | 0.3619 | 0.3877 | [0.2370, 0.2512] | 0.2605 | research | espeak-derived |
+| pt-PT | ep_dialects | 30 | 0.1085 | - | - | - | - | - | - | [0.0808, 0.1377] | 0.2000 | research | expert-human |
+| pt-PT | ipa_childes | 3846 | 0.2420‡ | - | - | 0.1832 | 0.1703 | 0.3656 | 0.3908 | [0.2348, 0.2491] | 0.2621 | research | espeak-derived |
 | pt-PT | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT | portuguese_unified | 105553 | 0.2125 | 0.9881 | - | 0.1978 | 0.1893 | 0.1844 | 0.1967 | [0.2115, 0.2135] | 0.1581 | research | lexicon-derived |
-| pt-PT | portuguese_unified_corrected | 105534 | 0.2124‡ | 0.9888 | - | 0.1977 | 0.1892 | 0.1844 | 0.1968 | [0.2116, 0.2134] | 0.1581 | research | lexicon-derived |
-| pt-PT | wikipron | 56978 | 0.0810 | - | - | 0.0654 | 0.0574 | 0.6147 | 0.6549 | [0.0800, 0.0820] | 0.5644 | research | crowd-scraped |
-| pt-PT-x-acores | clup_dialect | 2† | 0.3133‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
-| pt-PT-x-acores | ep_dialects | 29 | 0.1095 | - | - | - | - | - | - | [0.0796, 0.1392] | 0.0690 | research | expert-human |
+| pt-PT | portuguese_unified | 105553 | 0.2075 | 0.9881 | - | 0.1946 | 0.1884 | 0.1863 | 0.1973 | [0.2065, 0.2084] | 0.1630 | research | lexicon-derived |
+| pt-PT | portuguese_unified_corrected | 105534 | 0.2074‡ | 0.9888 | - | 0.1945 | 0.1884 | 0.1864 | 0.1973 | [0.2065, 0.2084] | 0.1630 | research | lexicon-derived |
+| pt-PT | wikipron | 56978 | 0.0773 | - | - | 0.0634 | 0.0572 | 0.6265 | 0.6562 | [0.0763, 0.0782] | 0.5848 | research | crowd-scraped |
+| pt-PT-x-acores | clup_dialect | 2† | 0.3124‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
+| pt-PT-x-acores | ep_dialects | 29 | 0.1050 | - | - | - | - | - | - | [0.0738, 0.1357] | 0.1379 | research | expert-human |
 | pt-PT-x-acores | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | pt-PT-x-alentejo | clup_dialect | 1† | 0.2643‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
-| pt-PT-x-alentejo | ep_dialects | 30 | 0.2213 | - | - | - | - | - | - | [0.1691, 0.2851] | 0.0667 | research | expert-human |
+| pt-PT-x-alentejo | ep_dialects | 30 | 0.2215 | - | - | - | - | - | - | [0.1694, 0.2856] | 0.0333 | research | expert-human |
 | pt-PT-x-alentejo | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | pt-PT-x-alentejo | primary_sources | 5† | 0.3000‡ | - | - | 0.2333 | 0.2333 | 0.2000 | 0.2000 | n too small | 0.0000 | research | expert-human |
-| pt-PT-x-alfena | clup_dialect | 1† | 0.3239‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
+| pt-PT-x-alfena | clup_dialect | 1† | 0.3217‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
 | pt-PT-x-alfena | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | pt-PT-x-algarve | clup_dialect | 3† | 0.3629‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
-| pt-PT-x-algarve | ep_dialects | 30 | 0.1570 | - | - | - | - | - | - | [0.1192, 0.1921] | 0.1333 | research | expert-human |
+| pt-PT-x-algarve | ep_dialects | 30 | 0.1552 | - | - | - | - | - | - | [0.1175, 0.1902] | 0.1333 | research | expert-human |
 | pt-PT-x-algarve | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-aveiro | clup_dialect | 6† | 0.2983‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
+| pt-PT-x-aveiro | clup_dialect | 6† | 0.2977‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
 | pt-PT-x-aveiro | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-beira | clup_dialect | 8† | 0.3183‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
+| pt-PT-x-beira | clup_dialect | 8† | 0.3174‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
 | pt-PT-x-beira | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | pt-PT-x-beira | primary_sources | 8† | 0.4327‡ | - | - | 0.4327 | 0.4327 | 0.1250 | 0.1250 | n too small | 0.1250 | research | expert-human |
 | pt-PT-x-braga | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | pt-PT-x-coimbra | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-lisbon | clup_dialect | 5† | 0.2841‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
-| pt-PT-x-lisbon | ep_dialects | 45 | 0.1021 | - | - | - | - | - | - | [0.0807, 0.1262] | 0.1778 | research | expert-human |
+| pt-PT-x-lisbon | clup_dialect | 5† | 0.2838‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
+| pt-PT-x-lisbon | ep_dialects | 45 | 0.0999 | - | - | - | - | - | - | [0.0796, 0.1235] | 0.1778 | research | expert-human |
 | pt-PT-x-lisbon | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-lisbon | portuguese_unified | 53150 | 0.0919 | 0.9956 | - | 0.0796 | 0.0717 | 0.4911 | 0.5206 | [0.0910, 0.0928] | 0.4378 | research | lexicon-derived |
-| pt-PT-x-lisbon | portuguese_unified_corrected | 53148 | 0.0919‡ | 0.9957 | - | 0.0795 | 0.0717 | 0.4912 | 0.5206 | [0.0910, 0.0928] | 0.4379 | research | lexicon-derived |
+| pt-PT-x-lisbon | portuguese_unified | 53150 | 0.0911 | 0.9956 | - | 0.0793 | 0.0717 | 0.4928 | 0.5211 | [0.0903, 0.0920] | 0.4414 | research | lexicon-derived |
+| pt-PT-x-lisbon | portuguese_unified_corrected | 53148 | 0.0911‡ | 0.9957 | - | 0.0792 | 0.0716 | 0.4928 | 0.5212 | [0.0902, 0.0920] | 0.4414 | research | lexicon-derived |
 | pt-PT-x-lisbon | primary_sources | 33 | 0.0288 | 1.0000 | - | 0.0288 | 0.0288 | 0.8788 | 0.8788 | [0.0075, 0.0561] | 0.8788 | research | expert-human |
-| pt-PT-x-madeira | clup_dialect | 4† | 0.3184‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
-| pt-PT-x-madeira | ep_dialects | 30 | 0.0930 | - | - | - | - | - | - | [0.0632, 0.1228] | 0.2667 | research | expert-human |
+| pt-PT-x-madeira | clup_dialect | 4† | 0.3161‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
+| pt-PT-x-madeira | ep_dialects | 30 | 0.0913 | - | - | - | - | - | - | [0.0616, 0.1219] | 0.2667 | research | expert-human |
 | pt-PT-x-madeira | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | pt-PT-x-medieval | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-minho | clup_dialect | 9† | 0.3052‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
+| pt-PT-x-minho | clup_dialect | 9† | 0.3029‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
 | pt-PT-x-minho | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | pt-PT-x-porto | clup_dialect | 17† | 0.4092‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
 | pt-PT-x-porto | ep_dialects | 40 | 0.1837 | - | - | - | - | - | - | [0.1607, 0.2041] | 0.0500 | research | expert-human |
@@ -656,7 +656,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | pt-PT-x-terceira | primary_sources | 10† | 0.2179‡ | - | - | 0.1369 | 0.1369 | 0.4000 | 0.4000 | n too small | 0.3000 | research | expert-human |
 | pt-PT-x-trasosmontes | clup_dialect | 6† | 0.3175‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
 | pt-PT-x-trasosmontes | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-viana | clup_dialect | 4† | 0.3480‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
+| pt-PT-x-viana | clup_dialect | 4† | 0.3439‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
 | pt-PT-x-viana | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | pt-ST | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | pt-TL | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
