@@ -273,12 +273,14 @@ class TestGatingFieldDerivedAndRendered:
         to state how many rows it adds. It was 644 before
         ``spain_romance_tts`` was registered, and that set adds one row per
         lect. It was 740 before the WikiPron Farefare file was registered
-        (T-2673), and that file adds exactly one row, ``gur``/``wikipron``."""
+        (T-2673), and that file adds exactly one row, ``gur``/``wikipron``.
+        It was 741 before ``ipadict_corrected`` was registered, and that
+        overlay adds exactly one row, ``pt-BR``/``ipadict_corrected``."""
         path = os.path.join(
             os.path.dirname(__file__), "..", "benchmarks", "results.json")
         with open(path, encoding="utf-8") as fh:
             rows = json.load(fh)
-        assert len(rows) == 741
+        assert len(rows) == 742
         mismatched = [
             (r["lang"], r["dataset"]) for r in rows
             if r.get("gating")
