@@ -813,8 +813,21 @@ class G2P:
         search: str = "greedy",
         beam_width: int = 8,
     ) -> str:
-        """Transcribe a single *word*."""
-        ipa = self._transcribe_word(word, self._width(search, beam_width)).ipa
+        """Transcribe a single *word*.
+
+        A hyphen-joined word that the spec stresses as one compound
+        (``compound_stress="last"``) is transcribed element by element and
+        marked as :meth:`transcribe` marks it, but returned as one token,
+        with no space between the elements.
+        """
+        width = self._width(search, beam_width)
+        elements = self._compound_elements(word)
+        if elements is None:
+            ipa = self._transcribe_word(word, width).ipa
+        else:
+            ipa = "".join(self._mark_compounds(elements, [
+                self._transcribe_word(w.surface, width).ipa
+                for w in elements]))
         # Output contract: NFC (see the note in _transcribe_word on why the
         # composition happens here, at the boundary, rather than inline).
         return unicodedata.normalize("NFC", ipa) if ipa else ipa
@@ -1042,6 +1055,23 @@ class G2P:
             else:
                 self._group_words(self._normalize(chunk.text), words)
         return self._flag(words)
+
+    def _compound_elements(self, word: str) -> Optional[List[_Word]]:
+        """The elements of *word* when the spec stresses it as one
+        hyphen-joined compound, or ``None``.
+
+        An override for the whole spelling wins, as it does for any word.
+        """
+        stress = self.spec.stress
+        if (stress is None or stress.compound_stress != "last"
+                or not _HYPHENS.intersection(word)
+                or self._override_for(word) is not None):
+            return None
+        elements = self._split_words(word)
+        if len(elements) < 2 or not all(w.hyphen_joined
+                                        for w in elements[1:]):
+            return None
+        return elements
 
     def _mark_compounds(self, words: List[_Word],
                         ipa_words: List[str]) -> List[str]:
@@ -1443,7 +1473,9 @@ class G2P:
         same string once stress and geminate collapse have run), so the
         result may be shorter than *k*. A word with a lexicon or
         ``word_exceptions`` override has exactly ONE reading — the
-        override — and the list has length 1: no beam is consulted.
+        override — and the list has length 1: no beam is consulted. A
+        hyphen-joined compound (``compound_stress="last"``) also has one
+        reading, the one :meth:`transcribe_word` returns.
 
         *beam_width* defaults to ``max(k, 8)``; a beam narrower than *k*
         cannot produce *k* readings.
@@ -1460,6 +1492,9 @@ class G2P:
             return [unicodedata.normalize(
                 "NFC", self._finalize_word_ipa(word, override,
                                                collapse_geminates=False))]
+        if self._compound_elements(word) is not None:
+            compound = self.transcribe_word(word)
+            return [compound] if compound else []
         if self._needs_context_beam:
             paths = self._positional_beam(word, width)
         else:

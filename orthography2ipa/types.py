@@ -644,9 +644,10 @@ class StressRules:
         :func:`~orthography2ipa.stress.apply_stress_mark` also writes the
         secondary mark ``ˌ`` before those syllables.
     compound_stress : str
-        How the words of a hyphen-joined group share the main stress. The
-        engine reads a hyphen as a word break, so each element is
-        transcribed, and marked, as a word of its own.
+        How the words of a hyphen-joined group share the main stress.
+        :meth:`~orthography2ipa.g2p.G2P.transcribe` reads a hyphen as a word
+        break, so each element is transcribed, and marked, as a word of its
+        own.
 
         Values:
 
@@ -656,9 +657,11 @@ class StressRules:
             the group is one prosodic word whose last marked element carries
             the main stress: every earlier element's :attr:`stress_mark` is
             written as the secondary mark ``ˌ`` instead. An element that
-            :attr:`cliticless_words` leaves unmarked stays unmarked. Only the
-            marks change; each element's segments are those of the word
-            alone.
+            :attr:`cliticless_words` leaves unmarked stays unmarked. Each
+            element's segments are those of the word alone.
+            :meth:`~orthography2ipa.g2p.G2P.transcribe_word` also reads a
+            hyphenated word element by element: it gives the same marks and
+            returns one token, with no space between the elements.
     iambic_length : bool
         Whether prominent syllables of a word are realised with a LONG
         nucleus, independently of where the word-accent mark
