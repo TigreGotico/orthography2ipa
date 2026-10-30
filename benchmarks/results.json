@@ -10440,45 +10440,51 @@
   "lang": "mwl",
   "dataset": "mirandese_dict",
   "n": 990,
-  "per": 0.056,
-  "per_ci_low": 0.0491,
-  "per_ci_high": 0.0639,
-  "stress_acc": 0.9834,
+  "per": 0.1512,
+  "per_ci_low": 0.1384,
+  "per_ci_high": 0.1642,
+  "stress_acc": 0.9704,
   "n_stress": 844,
-  "exact_match": 0.7707,
+  "exact_match": 0.499,
   "quality_tier": "research",
   "provenance": "llm-generated",
   "gating": false,
   "harness_version": "1.1",
   "limit": null,
-  "oracle_per_top3": 0.0442,
-  "oracle_exact_top3": 0.798,
-  "oracle_per_top5": 0.0434,
-  "oracle_exact_top5": 0.801,
+  "oracle_per_top3": 0.1005,
+  "oracle_exact_top3": 0.6182,
+  "oracle_per_top5": 0.092,
+  "oracle_exact_top5": 0.6424,
   "oracle_fallback_words": 6,
-  "oracle_scored_words": 984
+  "oracle_scored_words": 984,
+  "oracle_injected_alternatives": [
+   "mwl on"
+  ]
  },
  {
   "lang": "mwl",
   "dataset": "mirandese_g2p",
   "n": 205,
-  "per": 0.1333,
-  "per_ci_low": 0.1116,
-  "per_ci_high": 0.1557,
-  "stress_acc": 0.9181,
+  "per": 0.2289,
+  "per_ci_low": 0.1994,
+  "per_ci_high": 0.2606,
+  "stress_acc": 0.9123,
   "n_stress": 171,
-  "exact_match": 0.478,
+  "exact_match": 0.2634,
   "quality_tier": "research",
   "provenance": "expert-human",
   "gating": true,
   "harness_version": "1.1",
   "limit": null,
-  "oracle_per_top3": 0.1194,
-  "oracle_exact_top3": 0.5073,
-  "oracle_per_top5": 0.1156,
-  "oracle_exact_top5": 0.5122,
+  "oracle_per_top3": 0.1806,
+  "oracle_exact_top3": 0.3415,
+  "oracle_per_top5": 0.1723,
+  "oracle_exact_top5": 0.3756,
   "oracle_fallback_words": 6,
-  "oracle_scored_words": 199
+  "oracle_scored_words": 199,
+  "oracle_injected_alternatives": [
+   "mwl on"
+  ]
  },
  {
   "lang": "mwl",
@@ -10500,7 +10506,10 @@
   "oracle_per_top5": 0.0,
   "oracle_exact_top5": 1.0,
   "oracle_fallback_words": 20,
-  "oracle_scored_words": 0
+  "oracle_scored_words": 0,
+  "oracle_injected_alternatives": [
+   "mwl on"
+  ]
  },
  {
   "lang": "mwl-x-ifanes",
@@ -10522,13 +10531,16 @@
   "oracle_per_top5": 0.125,
   "oracle_exact_top5": 0.75,
   "oracle_fallback_words": 0,
-  "oracle_scored_words": 4
+  "oracle_scored_words": 4,
+  "oracle_injected_alternatives": [
+   "mwl-x-ifanes on"
+  ]
  },
  {
   "lang": "mwl-x-ifanes",
   "dataset": "mirandese_g2p",
   "n": 2,
-  "per": 0.5,
+  "per": 0.625,
   "per_ci_low": null,
   "per_ci_high": null,
   "stress_acc": null,
@@ -10544,7 +10556,10 @@
   "oracle_per_top5": 0.5,
   "oracle_exact_top5": 0.0,
   "oracle_fallback_words": 0,
-  "oracle_scored_words": 2
+  "oracle_scored_words": 2,
+  "oracle_injected_alternatives": [
+   "mwl-x-ifanes on"
+  ]
  },
  {
   "lang": "mwl-x-ifanes",
@@ -10566,27 +10581,30 @@
   "oracle_per_top5": 0.0,
   "oracle_exact_top5": 1.0,
   "oracle_fallback_words": 20,
-  "oracle_scored_words": 0
+  "oracle_scored_words": 0,
+  "oracle_injected_alternatives": [
+   "mwl-x-ifanes on"
+  ]
  },
  {
   "lang": "mwl-x-sendim",
   "dataset": "mirandese_dict",
   "n": 79,
-  "per": 0.0955,
-  "per_ci_low": 0.0677,
-  "per_ci_high": 0.1284,
+  "per": 0.1272,
+  "per_ci_low": 0.0844,
+  "per_ci_high": 0.1819,
   "stress_acc": 1.0,
   "n_stress": 72,
-  "exact_match": 0.6203,
+  "exact_match": 0.6076,
   "quality_tier": "research",
   "provenance": "llm-generated",
   "gating": false,
   "harness_version": "1.1",
   "limit": null,
-  "oracle_per_top3": 0.0916,
-  "oracle_exact_top3": 0.6203,
-  "oracle_per_top5": 0.0916,
-  "oracle_exact_top5": 0.6203,
+  "oracle_per_top3": 0.1106,
+  "oracle_exact_top3": 0.6329,
+  "oracle_per_top5": 0.109,
+  "oracle_exact_top5": 0.6329,
   "oracle_fallback_words": 0,
   "oracle_scored_words": 79
  },
@@ -10594,21 +10612,21 @@
   "lang": "mwl-x-sendim",
   "dataset": "mirandese_g2p",
   "n": 11,
-  "per": 0.3258,
+  "per": 0.447,
   "per_ci_low": null,
   "per_ci_high": null,
   "stress_acc": null,
   "n_stress": 5,
-  "exact_match": 0.3636,
+  "exact_match": 0.2727,
   "quality_tier": "research",
   "provenance": "expert-human",
   "gating": false,
   "harness_version": "1.1",
   "limit": null,
-  "oracle_per_top3": 0.3258,
-  "oracle_exact_top3": 0.3636,
-  "oracle_per_top5": 0.3258,
-  "oracle_exact_top5": 0.3636,
+  "oracle_per_top3": 0.3561,
+  "oracle_exact_top3": 0.2727,
+  "oracle_per_top5": 0.3561,
+  "oracle_exact_top5": 0.2727,
   "oracle_fallback_words": 0,
   "oracle_scored_words": 11
  },

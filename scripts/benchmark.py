@@ -681,7 +681,8 @@ _MIRANDESE_URL = (
 # ``central`` (the Central norm the Mirandese orthography is built on),
 # ``sendinese`` (Sendinês, the Sendim sub-dialect) or ``raiano`` (the
 # Raiano/Northern sub-dialect, whose local variety this repo tags
-# ``mwl-x-ifanes`` after Ifanês). Every row is scored under exactly one tag.
+# ``mwl-x-ifanes`` after Ifanês). Every row is scored under one sub-dialect
+# tag.
 _MIRANDESE_DIALECTS = {
     "mwl": "central",
     "mwl-x-sendim": "sendinese",
@@ -1848,8 +1849,8 @@ def load_mirandese(lang: str, limit: int) -> List[Tuple[str, str]]:
     most trustworthy signal for ``mwl`` in this scoreboard. Registered under
     the row id ``mirandese_g2p`` and classified ``expert-human`` (small-n,
     not externally peer-validated). Split by the ``dialect`` column per
-    ``_MIRANDESE_DIALECTS``: central→``mwl``, sendinese→``mwl-x-sendim``,
-    raiano→``mwl-x-ifanes``. Mirandese is Latin-script, so no special input
+    ``_MIRANDESE_DIALECTS``: central→``mwl``,
+    sendinese→``mwl-x-sendim``, raiano→``mwl-x-ifanes``. Mirandese is Latin-script, so no special input
     contract applies. It is a SEPARATE source from any synthetic
     Mirandese IPA dictionary; see docs/benchmarks.md "Provenance".
     """

@@ -98,7 +98,8 @@ class TestP2QuGlide:
     silent [k] (the #519 Portuguese digraph fix, reaching the mwl/ast base)."""
 
     def test_mwl_quantos_keeps_glide(self, mwl):
-        assert mwl.transcribe("quantos") == "ˈkwɐ̃tus̺"
+        # LdV §13 p. 188 keeps the n before a stop ("sã-nto")
+        assert mwl.transcribe("quantos") == "ˈkwɐ̃ntus̺"
 
     def test_medieval_quarenta_keeps_glide(self, medieval):
         assert medieval.transcribe("quarenta") == "kwaˈɾẽta"
@@ -159,30 +160,33 @@ class TestP4TchAffricate:
 
 # ── P5: nasalisation before a coda nasal ─────────────────────────────────────
 class TestP5Nasalisation:
-    """Convenção §Nasalidade + Mateus & d'Andrade 2000 (close-mid nasals):
-    the Leonese diphthong ⟨ie⟩ and the reduced unstressed ⟨an/en⟩ nasalise
-    before a tautosyllabic coda nasal instead of dropping the nasal."""
+    """Convenção §Nasalidade + LdV §6 p. 180: the Leonese diphthong ⟨ie⟩ and
+    the reduced unstressed ⟨an/en⟩ nasalise before a tautosyllabic coda nasal
+    instead of dropping the nasal."""
 
     def test_bien_nasalises(self, mwl, ifanes):
-        assert mwl.transcribe("bien") == "ˈbjẽ"
-        assert ifanes.transcribe("bien") == "ˈbjẽ"
+        # LdV p. 180: "bĩẹ̌̃", the nucleus ẹ̌ [ɪ]
+        assert mwl.transcribe("bien") == "ˈbjɪ̃"
+        assert ifanes.transcribe("bien") == "ˈbjɪ̃"
 
-    def test_quien_keeps_oral_plus_n(self, mwl, ifanes):
-        # the interrogative is the lexical exception: [kjɛn], not [kjẽ]
-        assert mwl.transcribe("quien") == "ˈkjɛn"
-        assert ifanes.transcribe("quien") == "ˈkjɛn"
+    def test_quien_is_a_nasal_diphthong(self, mwl, ifanes):
+        # LdV p. 220: central "quĩẹ̌̃", with no [n]
+        assert mwl.transcribe("quien") == "ˈkjɪ̃"
+        assert ifanes.transcribe("quien") == "ˈkjɪ̃"
 
-    def test_sendim_monophthong_path(self, sendim):
-        # Sendinês monophthongises ⟨ie⟩→[i] first, so it nasalises to [ĩ]
-        assert sendim.transcribe("bien") == "ˈbĩ"
-        assert sendim.transcribe("quien") == "ˈkĩ"
+    def test_sendim_final_ien_is_two_syllables(self, sendim):
+        # LdV p. 220, Obs. 1: Sendinês "quíẽ, bíẽ", stress on the i; the
+        # footnote and p. 185 Obs. 4 agree only on the reduced nasal ẽ̥ [ɨ̃]
+        assert sendim.transcribe("bien") == "ˈbiɨ̃"
+        assert sendim.transcribe("quien") == "ˈkiɨ̃"
 
     def test_unstressed_an_nasalises(self, mwl):
         # the proclitic preposition reduces to [ɐ] yet still nasalises: [ɐ̃]
         assert mwl.transcribe("an") == "ɐ̃"
 
-    def test_uo_diphthong_nasalises(self, mwl):
-        assert mwl.transcribe("fuonte") == "ˈfwõtɨ"
+    def test_uo_nasalises(self, mwl):
+        # LdV p. 180: "fọ̌nte", the nucleus ọ̌ [ʊ]; the n stays before the t
+        assert mwl.transcribe("fuonte") == "ˈfʊ̃ntɨ"
 
 
 # ── P6: predorsal vs apical sibilant contrast ────────────────────────────────
