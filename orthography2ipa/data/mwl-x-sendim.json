@@ -36,6 +36,18 @@
   "notes": "Sendinês subdialect of Mirandese, spoken in Vila de Sendim (southern extreme of Terra de Miranda). It inherits the full Central Mirandese system (graphemes_base=mwl: apical ⟨s⟩ /s̺ z̺/ vs predorsal ⟨c,ç,z⟩ /s z/, ⟨x⟩ /ʃ/, ⟨j,g⟩ /ʒ/, ⟨ch⟩ /tʃ/, ⟨nh⟩ /ɲ/, nasal-vowel digraphs) and overrides only the two documented Sendinês deltas: (1) monophthongisation of the Leonese diphthongs ⟨iê/ie⟩ → /i/ and ⟨uô/uo⟩ → /u/ (tirra not tiêrra, curpo not cuôrpo) — the Central/Raiano [je]/[wo] is reduced to [i]/[u]; (2) DEPALATALISATION of /ʎ/ → /l/: words that other dialects say with ⟨lh⟩ /ʎ/ are said with /l/ (alá for alhá, lhado→lado, lhuç→[ˈlus], lhobo→[ˈlobu]), and word-initial ⟨l⟩ is likewise plain /l/ (no Leonese initial palatalisation). The Primeiro Aditamento à Convenção (February 2000) permits Sendinese writers to spell word-initial ⟨l-⟩ (not ⟨lh-⟩). Because ⟨lh⟩ → /l/ is overridden here, the Central word-initial ⟨l⟩ → /ʎ/ rule is also cancelled via the positional override (l stays /l/ in every position). The unstressed vowel qualities are inherited from Central Mirandese, where they are grounded in Leite de Vasconcelos's description of Duas-Igrejas (unstressed ⟨o u⟩ = [u], unstressed and final ⟨e⟩ = [ɨ]). Whether Sendinês realises those unstressed vowels differently is not settled by any description reached so far, and the Sendinês gold sample is too small to decide it; the inherited Central values stand until a published source says otherwise.",
   "quality": "research",
   "script_type": "alphabet",
+  "allophone_rules": [
+    {
+      "id": "MWL_NASAL_E_REDUCED_FINAL",
+      "phonemes": [
+        "ɨ"
+      ],
+      "surface": "ɨ̃",
+      "followed_by": "coda_nasal",
+      "followed_by_2": "word_boundary",
+      "notes": "Sendinês has the high central nasal [ɨ̃] in unstressed word-final -en, where central Mirandese has the mid central [ə̃]. Leite de Vasconcellos (1900, vol. I, §77, p. 239): \"A -em atono no fim de palavras corresponde em mirandês normal -ḙ̃ e em sendinês -ẽ̥\", with amen → amẽ̥, amassem → amassẽ̥, têem → tenẽ̥, devem → debẽ̥, and \"o send. ẽ̥ representa uma das phases intermedias entre -ent e -ḙ̃\". The ring below marks the \"e surdo\" [ɨ] (§24, p. 201: \"i. é, e surdo (= e̥) nasal\")."
+    }
+  ],
   "sources": [
     {
       "id": "convencao1999",
@@ -66,6 +78,16 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "vasconcelos1900",
+      "author": "Vasconcelos, J. Leite de",
+      "year": 1900,
+      "title": "Estudos de Philologia Mirandesa",
+      "publisher": "Imprensa Nacional, Lisboa",
+      "url": "https://archive.org/details/estudosdephilolo01vascuoft",
+      "pages": "178, 201, 239",
+      "notes": "§77 (p. 239) gives Sendinês unstressed final -em as the \"e surdo\" nasal ẽ̥ [ɨ̃] against central [ə̃], the caret-below \"indeciso ou intermédio\" e defined on p. 178; §24 (p. 201) defines ẽ̥."
     }
   ],
   "wikipedia": [

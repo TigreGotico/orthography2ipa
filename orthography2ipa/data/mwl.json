@@ -66,8 +66,8 @@
       "title": "Estudos de Philologia Mirandesa",
       "publisher": "Imprensa Nacional, Lisboa",
       "url": "https://archive.org/details/estudosdephilolo01vascuoft",
-      "pages": "173-179, 187-191, 200, 265",
-      "notes": "Foundational description of Mirandese phonology, including the six-sibilant system. Based on the speech of Duas-Igrejas (central Mirandese). §2 (pp. 173-179) describes each vowel; §13 (pp. 187 ff.) each consonant, including the coda-only velarised lateral; §24 (p. 200) tabulates the phonetic value of every letter by syllable type, and is the locator for unstressed ⟨o⟩ = Portuguese [u], unstressed ⟨u⟩ = [u], unstressed ⟨e⟩ = Portuguese \"e surdo\" [ɨ]. §113 (p. 265) covers word-final -l from Latin -L."
+      "pages": "173-180, 187-191, 200-201, 237-239, 265",
+      "notes": "Foundational description of Mirandese phonology, including the six-sibilant system. Based on the speech of Duas-Igrejas (central Mirandese). §2 (pp. 173-179) describes each vowel; §13 (pp. 187 ff.) each consonant, including the coda-only velarised lateral; §24 (p. 200) tabulates the phonetic value of every letter by syllable type, and is the locator for unstressed ⟨o⟩ = Portuguese [u], unstressed ⟨u⟩ = [u], unstressed ⟨e⟩ = Portuguese \"e surdo\" [ɨ]. §24 (p. 201) tabulates the nasal vowels, including the \"e surdo\" nasal ẽ̥ [ɨ̃]. §§75-77 (pp. 237-239) give unstressed initial en- → ã-, medial -en- → ẽ̥ [ɨ̃], and final -em → the intermediate ḙ̃ [ə̃] (central, defined p. 178, nasal p. 180) or ẽ̥ [ɨ̃] (Sendinês). §113 (p. 265) covers word-final -l from Latin -L."
     },
     {
       "id": "convencao1999",
@@ -88,6 +88,16 @@
       "url": null,
       "pages": null,
       "notes": "February 2000 addendum. Key provision: Sendinese speakers may optionally write word-initial l- (not lh-) to represent /l/ rather than /ʎ/ (e.g., luna/lhuna). Sendinese monophthongisation of iê→i and uô→u also codified. Source: secondary (studosmirandeses.blogs.sapo.pt, cursodemirandes.wordpress.com); standalone PDF not located."
+    },
+    {
+      "id": "ferreira2014",
+      "author": "Ferreira, J.P., Chesi, C., Cho, H., Baldewijns, D., Braga, D. & Dias, M.",
+      "year": 2014,
+      "title": "On Mirandese Language Resources for Text-To-Speech",
+      "publisher": "Proceedings of SLTU-2014, St. Petersburg, pp. 87-92",
+      "url": "https://www.researchgate.net/publication/263392110_On_Mirandese_Language_Resources_for_Text-To-Speech",
+      "pages": "88-89",
+      "notes": "Mirandese TTS phone set (43 phones). §2 notes \"the rare nasal schwa\"; §3.4 lists exn, a \"voiced central high sonorant nasal vowel\" [ɨ̃]. It gives no word list for that phone."
     }
   ],
   "wikipedia": [
@@ -411,9 +421,20 @@
       "phonemes": [
         "ɨ"
       ],
-      "surface": "ẽ",
+      "surface": "ɨ̃",
       "followed_by": "coda_nasal",
-      "notes": "Nasalisation of the unstressed/reduced [ɨ] (from ⟨e⟩) before a tautosyllabic coda nasal, the front-vowel counterpart of MWL_NASAL_A_REDUCED: unstressed -en raises to close-mid nasal [ẽ] rather than surfacing as an oral [ɨ] with a dropped nasal (Convenção §Nasalidade; Mirandese nasal mid vowels are close-mid, Mateus & d'Andrade 2000)."
+      "followed_by_2": "any",
+      "notes": "Unstressed ⟨e⟩ [ɨ] before a tautosyllabic coda nasal inside the word stays a central vowel and nasalises to [ɨ̃]. Leite de Vasconcellos (1900, vol. I, §76, p. 238): \"A port. -en- (-em-) atono no interior de palavras corresponde em mir. -ẽ̥- (-e̥n-, -e̥m-)\", with entender → antẽ̥dér, lembrar → lhẽ̥mbrar, ventura → bẽ̥ntura, and \"O phenomeno normal porém é ẽ̥\". The nasal list of §6 (p. 180) gives the same vowel as \"e̥ — Ex.: stẽ̥nder\". His ring below marks the \"e surdo\" [ɨ]; the nasal-vowel table (§24, p. 201) defines ẽ̥ as \"i. é, e surdo (= e̥) nasal\". Ferreira et al. (2014, §2, §3.4) list the same vowel in the Mirandese TTS phone set as \"voiced central high sonorant nasal vowel\" (\"the rare nasal schwa\"). The Convenção Ortográfica (1999) agrees: its letter table (PDF p. 9; the PDF prints no page numbers) gives ⟨e⟩ = [ɨ̃] in \"bendima, centeno\", and \"Representação da nasalidade\" (PDF p. 19) says \"o en de bendima lê-se geralmente com um e muito fechado, quase mudo [ɨ]\". Recorded disagreement: the mirandese_g2p gold writes [ẽ] in oucidental (ows̻idẽˈtal) but [ɨ̃] in antender and antentar. The rule requires a grapheme after the nasal, so it leaves a word-final -en to MWL_NASAL_E_REDUCED_FINAL. The p. 201 table also allows a stressed ẽ̥ but gives no word for it, so stressed [ɨ̃] is not modelled."
+    },
+    {
+      "id": "MWL_NASAL_E_REDUCED_FINAL",
+      "phonemes": [
+        "ɨ"
+      ],
+      "surface": "ə̃",
+      "followed_by": "coda_nasal",
+      "followed_by_2": "word_boundary",
+      "notes": "Unstressed word-final ⟨-en⟩ [ɨ] nasalises to the mid central vowel [ə̃] in central Mirandese. Leite de Vasconcellos (1900, vol. I, §77, p. 239): \"A -em atono no fim de palavras corresponde em mirandês normal -ḙ̃ e em sendinês -ẽ̥\", with amen → amḙ̃, amassem → amassḙ̃, têem → tenḙ̃, devem → debḙ̃. His e with a caret below is defined on p. 178: \"Som que participa de ḁ e de e̥; posso por isso chamá-lo indeciso ou intermédio … Muito semelhante ao e allemão final em eine, Tage … Alguns phoneticistas representam estes últimos sons por ə\". The nasal list of §6 (p. 180) gives it as \"ḙ — Ex.: corrḙ̃\", with note 1: \"Só existe em fim de palavras (nos verbos). É ás vezes difficil distinguir nestes casos -ḙ̃ de -ẽ̥, -ḁ̃ (e ainda -ẽ̌?) atonos. O normal é porém -ḙ̃.\" Limit: the spec cannot tell a verb from another word, so the rule applies to every unstressed word-final -en. The variants -ẽ̥ [ɨ̃] and -ḁ̃ [ɐ̃] that p. 180 n. 1 records are not modelled. The Convenção (1999) gives no value for final unstressed -en. Recorded disagreement: the llm-generated mirandese_dict gold writes [ẽ] here (comen ˈkomẽ, sáben ˈs̺aβẽ, puoden ˈpwodẽ). mwl-x-sendim re-declares this id with [ɨ̃]."
     },
     {
       "id": "MWL_NASAL_DIPHTHONG_JE",
