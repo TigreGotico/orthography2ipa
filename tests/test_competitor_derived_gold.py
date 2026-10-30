@@ -275,12 +275,14 @@ class TestGatingFieldDerivedAndRendered:
         lect. It was 740 before the WikiPron Farefare file was registered
         (T-2673), and that file adds exactly one row, ``gur``/``wikipron``.
         It was 741 before ``ipadict_corrected`` was registered, and that
-        overlay adds exactly one row, ``pt-BR``/``ipadict_corrected``."""
+        overlay adds exactly one row, ``pt-BR``/``ipadict_corrected``.
+        It was 742 before ``portuguese_unified_corrected`` was registered,
+        and that overlay adds one row for each of its eight languages."""
         path = os.path.join(
             os.path.dirname(__file__), "..", "benchmarks", "results.json")
         with open(path, encoding="utf-8") as fh:
             rows = json.load(fh)
-        assert len(rows) == 742
+        assert len(rows) == 750
         mismatched = [
             (r["lang"], r["dataset"]) for r in rows
             if r.get("gating")
