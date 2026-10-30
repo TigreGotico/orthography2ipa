@@ -24,6 +24,7 @@ Jump to a dataset:
 - [HiTZ Basque Wikipedia IPA corpus (`hitz_basque_ipa`)](#hitz-basque-wikipedia-ipa-corpus-hitz_basque_ipa)
 - [VoxCommunis parallel G2P (`vox_communis`)](#voxcommunis-parallel-g2p-vox_communis)
 - [VoxCommunis with the Vietnamese tone merge repaired (`vox_communis_corrected`)](#voxcommunis-with-the-vietnamese-tone-merge-repaired-vox_communis_corrected)
+- [ipa-dict with the pt-BR hyphenated-word stress repaired (`ipadict_corrected`)](#ipa-dict-with-the-pt-br-hyphenated-word-stress-repaired-ipadict_corrected)
 - [IPA-CHILDES split (`ipa_childes`)](#ipa-childes-split-ipa_childes)
 - [IPA-BabyLM (`ipa_babylm`)](#ipa-babylm-ipa_babylm)
 - [Lexibank/CLDF wordlist gold (`northeuralex`, `wold`)](#lexibankcldf-wordlist-gold-northeuralex-wold)
@@ -990,6 +991,39 @@ edit-distance-equivalent. PER is simply blind to this defect. Writing the
 engine's own ˧˨ into the gold instead would drop those 401 rows to PER 0.4048
 and the whole row to 0.5325 — a 3-point gain bought by copying the answer, and
 the exact reason the derivation rule exists.
+
+### ipa-dict with the pt-BR hyphenated-word stress repaired (`ipadict_corrected`)
+
+The ipa-dict Brazilian Portuguese file `pt_BR.txt` writes one primary stress on
+each of its 2361 hyphenated words, and on 656 of them it puts that stress on
+the wrong syllable. In 149 enclitic forms it stresses the penultimate syllable
+of host and clitic written as one string (*acusa-o* `a.ku.ˈza.ʊ`), but the
+clitic is unstressed and the host keeps its own stress. In 507 compounds it
+stresses an element before the last (*pós-ditadura* `ˈpɔʒ.dʒi.ta.du.ɾə`), but
+the last element carries the main stress of a Portuguese compound:
+
+> Toneli, Priscila Marques (2011). O comportamento prosódico de palavras
+> compostas no Português Brasileiro. I Congresso Nacional de Estudos
+> Linguísticos, p. 2.
+
+> Bechara, *Moderna Gramática Portuguesa*, p. 340, quoted in Ciberdúvidas da
+> Língua Portuguesa, resposta 28042.
+> <https://ciberduvidas.iscte-iul.pt/consultorio/perguntas/x/28042>
+
+The repair reads the stressed syllable of the host or of the last element from
+the spelling by the Acordo Ortográfico 1990 accent rules, and moves only the
+stress mark onto the gold's own syllable. No segment changes. A row is left
+alone when the spelling's vowel nuclei do not add up to the gold's syllable
+count (32 rows), when an element is empty (34 truncated entries), when the
+spelling is a misspelt *-lo* enclisis such as *ajuda-lo* (7 rows), and for
+mesoclisis (2 rows). The overlay file and its README in
+`orthography2ipa/data/gold/corrections/` give the full rule.
+
+The row keeps the base file's `machine-generated` tier and never gates,
+because `ipadict_corrected` is in `CORRECTED_DATASETS`. PER is the same on both
+rows, 0.2294 over 95933 pairs, because PER strips stress marks. Stress accuracy
+moves from 0.9874 on `ipadict` to 0.9943 on `ipadict_corrected`, over the same
+95318 eligible words.
 
 ### IPA-CHILDES split (`ipa_childes`)
 
