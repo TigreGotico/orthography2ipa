@@ -30,9 +30,9 @@ contrast**:
 | Orthography | Phoneme | Description |
 |:--|:--|:--|
 | ⟨s⟩, ⟨ss⟩ | /s̺/ | voiceless **apico-alveolar** fricative |
-| intervocalic ⟨-s-⟩ | /z̺/ | voiced apico-alveolar |
+| ⟨s⟩ between vowels or before a voiced consonant | /z̺/ | voiced apico-alveolar |
 | ⟨c⟩ (before e/i), ⟨ç⟩ | /s/ | voiceless **dorso-dental** fricative |
-| ⟨z⟩ | /z/ | voiced dorso-dental |
+| ⟨z⟩, word-final ⟨ç⟩ before a voiced consonant | /z/ | voiced dorso-dental |
 | ⟨x⟩ | /ʃ/ | voiceless postalveolar |
 | ⟨j⟩, ⟨g⟩ (before e/i) | /ʒ/ | voiced postalveolar |
 | ⟨ch⟩ | /t͡ʃ/ | voiceless postalveolar **affricate** (still an affricate, unlike modern European Portuguese, which deaffricated it to /ʃ/) |
@@ -46,15 +46,27 @@ contrast fully explicit, and matches the convention of the expert
 `◌̻` diacritic). ⟨ç⟩ is a fricative, not the Asturian affricate /t͡s/, and it
 occurs word-finally (`rapaç`, `lhuç`) where Portuguese would spell `-z`.
 
+**Voicing.** The apical ⟨s⟩ is voiced to [z̺] before a voiced consonant, inside
+a word and across words: `asno` → [ˈaz̺nu], `mesmo` → [ˈmez̺mu], `ls nius` →
+[ɫz̺ ˈnjus̺]. Word-final ⟨ç⟩ is [z] before a voiced consonant in the next word:
+`lhuç del cielo` → [ˈʎuz ˈdeɫ ˈsjelu]. Before a voiceless consonant, a vowel or
+a pause both stay voiceless. Vasconcelos (EPM v1 §13, p. 190) gives the voiced
+apical "final de palavra antes de consoante sonora" and the voiced dorsal
+"em fim de palavra só póde ouvir-se quando a palavra seguinte começa por
+consoante sonora".
+
 ⟨j⟩ is always /ʒ/ (West Iberian), never the Asturian palatal /ʝ/. The letter
 ⟨y⟩, by contrast, is the glide /j/ (`ye` → [je]).
 
 ## Leonese features
 
-- **Initial-l palatalisation.** Word-initial ⟨l⟩ before a vowel is /ʎ/
-  (`luç` → [ˈʎus]), per Convenção § L. Bare /l/ survives word-initially only
-  in loanwords, proper nouns and the article, a documented residual limit,
-  not modelled positionally.
+- **Initial ⟨l⟩ is [l].** A written initial ⟨l⟩ is plain /l/ (`lindo` → [ˈlĩdu],
+  `litro` → [ˈlitɾu]): Vasconcelos (EPM v1 §13, p. 188) gives `lĩ-ndo` with [l]
+  and describes l as "Como em português na palavra *lapa*". The Latin initial
+  L that became [ʎ] is written ⟨lh⟩ (§111, p. 259).
+- **⟨v⟩ is ⟨b⟩.** "Na pronúncia normal mirandesa não existe differença entre b
+  e v" (§14, p. 193): `vaca` → [ˈbakɐ], `uva` → [ˈuβɐ], `envidar` → [ɨ̃biˈdaɾ].
+- **⟨ê⟩ is [e]** (Convenção, letter table E): `yê` → [ˈje], `yêrba` → [ˈjeɾbɐ].
 - **⟨lh⟩ = /ʎ/, ⟨nh⟩ = /ɲ/** in all positions.
 - **Leonese diphthongs.** Latin short Ĕ → ⟨iê/ie⟩ = [je],
   Latin short Ŏ → ⟨uô/uo⟩ = [wo] (`tierra` → [ˈtjerɐ], `puorta` →
@@ -102,13 +114,14 @@ separating them (`búltio` [ˈbʉɫtiʉ] and `adulto` [ɐˈdultu] are both close
 syllables), and final ⟨e⟩ splits 20 [ɨ] against 3 [e̞]. The residual
 disagreements are a **notation artifact**, not a spec error, and are not chased.
 
-**Coda /l/** is velarised in Mirandese — EPM v1 §13 gives a lateral that "só
-existe em fim de syllaba", the same sound as Portuguese *caldo*, *sol*, and §113
-has every word-final `-l` from Latin `-L` "gutturalizado". The spec still emits
-plain **[l]**, because §13 writes the velarised symbol "só em notação phonetica"
-and plain `l` "no uso corrente", and the gold follows the same practice: 14 plain
-coda [l] against 6 [ɫ]. A narrower Mirandese target would want `PT_CODA_L_DARK`
-carried over from `pt-PT`.
+**Coda /l/** is velarised [ɫ]. EPM v1 §13 (p. 188) gives a lateral that "só
+existe em fim de syllaba" and, "quando por si só constitue uma syllaba, como no
+artigo l antes de consoante", the same sound as Portuguese *caldo*, *sol*: `caldo`
+→ [ˈkaɫdu], `sol` → [ˈs̺oɫ], `l pai` → [ɫ ˈpaj]. LdV writes the symbol "só em
+notação phonetica" and plain `l` "no uso corrente", which is a choice of spelling
+and not a second sound. The gold writes coda [l] 14 times against [ɫ] 6; the spec
+follows LdV. Onset /l/ stays [l]. The article `l` before a vowel stays [l]. The
+velarisation of the preceding vowel (§3, p. 179) is not modelled.
 
 ## Allophony (post-lexical)
 
@@ -130,8 +143,10 @@ rule requires a preceding vowel (word-initial ⟨b⟩ keeps the stop:
 before *any* stop, voiceless or voiced ⟨mb nd ng nt…⟩, nasalises the vowel
 and the nasal is absorbed, the following stop retained: `brando` → [ˈbɾɐ̃du],
 `quando` → [ˈkwɐ̃du], `bufanda` → [buˈfɐ̃dɐ], `lhéngua` → [ˈʎẽɡwɐ],
-`ambos` → [ˈɐ̃bus̺], `sendo` → [ˈs̺ẽdu]. Stressed open [ɛ ɔ] raise to
-close-mid nasal [ẽ õ]. This is the inherited Ibero-Romance nasal-vowel +
+`ambos` → [ˈɐ̃bus̺], `sendo` → [ˈs̺ẽdu]. Stressed [e o] and open [ɛ ɔ] give
+the broad mid nasals [ẽ õ]: Vasconcelos (EPM v1 §6, p. 180) gives nasal e as "Tão
+aberto como em *berra*" and nasal o as "Tão aberto como em *obra*", and the
+nasal table (§24, p. 201) gives "com e entre é e ê" and "com o entre ó e ô". This is the inherited Ibero-Romance nasal-vowel +
 absorption behaviour and matches the human gold on every nasal+stop word.
 the earlier oral ⟨mb nd ng⟩ digraph treatment was contradicted by the gold
 and removed.
@@ -167,8 +182,7 @@ declare only their **deltas**:
   1. **Monophthongisation**: ⟨iê/ie⟩ → /i/, ⟨uô/uo⟩ → /u/ (`puorta` →
      [ˈpuɾtɐ]).
   2. **Depalatalisation**: /ʎ/ → /l/, words other dialects say with ⟨lh⟩ are
-     said with /l/ (`lhado` → [ˈladu], `alhá` → [ɐˈla]). Word-initial ⟨l⟩ is
-     likewise plain /l/. The Primeiro Aditamento (2000) permits Sendinese
+     said with /l/ (`lhado` → [ˈladu], `alhá` → [ɐˈla]). The Primeiro Aditamento (2000) permits Sendinese
      writers to spell word-initial ⟨l-⟩.
 - **Ifanês (`mwl-x-ifanes`)**: the Northern/Raiano speech of the raia-sêcca
   villages (Paradela, Ifanes, Constantim, Cicouro, S. Martinho de Angueira).

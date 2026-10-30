@@ -58,9 +58,8 @@ def sanabria():
 
 # ── P1: article/clitic ⟨l⟩ gating ────────────────────────────────────────────
 class TestP1ArticleClitic:
-    """Convenção §L: word-initial ⟨l⟩ palatalises to /ʎ/ in the traditional
-    lexicon, but bare /l/ survives in the definite article (l/la/ls/las), the
-    object clitic, loanwords and proper nouns — a closed lexical set."""
+    """A written initial ⟨l⟩ is [l] (LdV p. 188); ⟨lh⟩ is [ʎ]. The definite
+    article (l/la/ls/las) and the object clitic carry no word stress."""
 
     def test_article_l_stays_l(self, mwl):
         assert mwl.transcribe("l") == "l"
@@ -87,9 +86,10 @@ class TestP1ArticleClitic:
     def test_article_is_cliticless_in_sentence(self, mwl):
         # "Bou a l doutor l lhunes a la tarde." — l/la carry no ˈ, lhunes keeps ʎ
         out = mwl.transcribe("Bou a l doutor l lhunes a la tarde.")
-        assert " l " in f" {out} "          # bare [l] article, unstressed
+        assert " ɫ " in f" {out} "          # velarised article before a consonant (LdV p. 188), unstressed
+        assert " lɐ " in f" {out} "         # la keeps [l]
         assert "ʎunɨs̺" in out               # lhunes still palatal
-        assert "ˈʎ " not in out              # no stressed palatal article
+        assert "ˈʎ " not in out and "ˈɫ" not in out   # no stressed article
 
 
 # ── P2: ⟨qua/quo⟩ glide retention ─────────────────────────────────────────────
