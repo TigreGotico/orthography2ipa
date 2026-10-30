@@ -25,6 +25,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
 
 from benchmark import (  # noqa: E402
     COMPETITOR_DERIVED_TIERS,
+    CORRECTED_DATASETS,
     DATASETS,
     NON_QUALIFYING_TIERS,
     PROVENANCE,
@@ -49,6 +50,7 @@ def _promotable(rows) -> bool:
     whose tier can gate."""
     return any(
         row["n"] >= PRODUCTION_MIN_N and can_gate_promotion(row["provenance"])
+        and row.get("dataset") not in CORRECTED_DATASETS
         for row in rows
     )
 
@@ -263,22 +265,26 @@ class TestGatingFieldDerivedAndRendered:
 
     def test_backfilled_results_json_gating_matches_provenance(self):
         """Every committed row carries a `gating` value that agrees with
-        `row_gates(row["provenance"], row["n"])` — the backfill must be a pure
-        derivation, never a hand patch that can drift.
+        `row_gates(row["provenance"], row["n"], row["dataset"])` — the
+        backfill must be a pure derivation, never a hand patch that can
+        drift.
 
         The row count is asserted as well, so that registering a dataset has
         to state how many rows it adds. It was 644 before
         ``spain_romance_tts`` was registered, and that set adds one row per
         lect. It was 740 before the WikiPron Farefare file was registered
-        (T-2673), and that file adds exactly one row, ``gur``/``wikipron``."""
+        (T-2673), and that file adds exactly one row, ``gur``/``wikipron``.
+        It was 741 before ``ipadict_corrected`` was registered, and that
+        overlay adds exactly one row, ``pt-BR``/``ipadict_corrected``."""
         path = os.path.join(
             os.path.dirname(__file__), "..", "benchmarks", "results.json")
         with open(path, encoding="utf-8") as fh:
             rows = json.load(fh)
-        assert len(rows) == 741
+        assert len(rows) == 742
         mismatched = [
             (r["lang"], r["dataset"]) for r in rows
-            if r.get("gating") != row_gates(r["provenance"], r["n"])
+            if r.get("gating")
+            != row_gates(r["provenance"], r["n"], r["dataset"])
         ]
         assert not mismatched, (
             f"rows whose committed `gating` disagrees with a fresh "
@@ -358,4 +364,4 @@ class TestGatingFieldDerivedAndRendered:
 
         assert refreshed["gating"] == target["gating"]
         assert refreshed["gating"] == row_gates(
-            refreshed["provenance"], refreshed["n"])
+            refreshed["provenance"], refreshed["n"], refreshed["dataset"])

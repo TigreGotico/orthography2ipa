@@ -205,24 +205,28 @@ source for all four ways of naming one: `import`, `from ... import`,
 check on what the source says, not a sandbox — the build imports
 `scripts/benchmark.py` for the base gold loader, which puts the engine in
 `sys.modules` regardless. What keeps the derivation honest underneath the check
-is its shape: the correction is computed from `(spelling, reading)` pairs and
-the Unicode combining marks of the spelling, with nothing else in scope.
+is its shape: each correction is computed from `(spelling, reading)` pairs and
+the spelling alone, with nothing else in scope.
 
 **Overlays are separate datasets, never rewrites.** A corrected gold is
 registered under its own name — `vox_communis_corrected` beside
-`vox_communis` — so both rows stay on the board. The difference between the
+`vox_communis`, `ipadict_corrected` beside `ipadict` — so both rows stay on
+the board. The difference between the
 two rows *is* the measurement of the upstream defect, and it cannot be read
 if only one number is published. A correction is keyed on the spelling and the
 original reading together, so an upstream revision makes the correction lapse
 rather than overwrite a row nobody inspected.
 
-**Overlays can never gate a promotion.** A corrected gold inherits the tier of
-the base it was built from and can never rise above it: repairing one derivable
-defect leaves the untouched majority of the rows exactly what they were, and
-the repair itself was applied by an automated process rather than by a
-phonetician reading each row. `can_gate_promotion()` must be false for whatever
-tier an overlay lands on, and a test asserts it. An overlay makes a gold more
-readable, not more authoritative.
+**Overlays can never gate a promotion.** A corrected gold keeps the tier of
+the base it was built from: repairing one derivable defect leaves the
+untouched majority of the rows exactly what they were, so the base tier is
+still the honest description of where the readings came from. The repair
+itself was applied by an automated process rather than by a phonetician
+reading each row, so the row never gates, whatever that tier is. Every
+overlaid dataset is in `CORRECTED_DATASETS` in `scripts/benchmark.py`, and
+`row_gates()`, the regression gate and the promotion check all refuse a row
+on one of them. A test asserts it. An overlay makes a gold more readable, not
+more authoritative.
 
 **What must not be corrected.** Anything the rule above cannot reach stays in
 the gold untouched and gets counted in the build report: a spelling whose
