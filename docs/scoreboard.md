@@ -506,14 +506,14 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | mt | vox_communis | 8399 | 0.3056‡ | - | - | 0.3056 | 0.3056 | 0.0387 | 0.0387 | [0.3027, 0.3086] | 0.0387 | research | epitran-derived |
 | mt | wikipron | 15836 | 0.2314 | - | - | 0.2314 | 0.2314 | 0.1570 | 0.1570 | [0.2291, 0.2340] | 0.1570 | research | crowd-scraped |
 | mtq | wikipron | 194 | 0.3412 | - | - | 0.3412 | 0.3412 | 0.0000 | 0.0000 | [0.3227, 0.3583] | 0.0000 | research | crowd-scraped |
-| mwl | mirandese_dict | 990 | 0.0560‡ | 0.9834 | - | 0.0442 | 0.0434 | 0.7980 | 0.8010 | [0.0491, 0.0639] | 0.7707 | research | llm-generated |
-| mwl | mirandese_g2p | 205 | 0.1333 | 0.9181 | - | 0.1194 | 0.1156 | 0.5073 | 0.5122 | [0.1116, 0.1557] | 0.4780 | research | expert-human |
+| mwl | mirandese_dict | 990 | 0.1512‡ | 0.9704 | - | 0.1005 | 0.0920 | 0.6182 | 0.6424 | [0.1384, 0.1642] | 0.4990 | research | llm-generated |
+| mwl | mirandese_g2p | 205 | 0.2289 | 0.9123 | - | 0.1806 | 0.1723 | 0.3415 | 0.3756 | [0.1994, 0.2606] | 0.2634 | research | expert-human |
 | mwl | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | mwl-x-ifanes | mirandese_dict | 4† | 0.1250‡ | - | - | 0.1250 | 0.1250 | 0.7500 | 0.7500 | n too small | 0.7500 | research | llm-generated |
-| mwl-x-ifanes | mirandese_g2p | 2† | 0.5000‡ | - | - | 0.5000 | 0.5000 | 0.0000 | 0.0000 | n too small | 0.0000 | research | expert-human |
+| mwl-x-ifanes | mirandese_g2p | 2† | 0.6250‡ | - | - | 0.5000 | 0.5000 | 0.0000 | 0.0000 | n too small | 0.0000 | research | expert-human |
 | mwl-x-ifanes | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| mwl-x-sendim | mirandese_dict | 79 | 0.0955‡ | 1.0000 | - | 0.0916 | 0.0916 | 0.6203 | 0.6203 | [0.0677, 0.1284] | 0.6203 | research | llm-generated |
-| mwl-x-sendim | mirandese_g2p | 11† | 0.3258‡ | - | - | 0.3258 | 0.3258 | 0.3636 | 0.3636 | n too small | 0.3636 | research | expert-human |
+| mwl-x-sendim | mirandese_dict | 79 | 0.1272‡ | 1.0000 | - | 0.1106 | 0.1090 | 0.6329 | 0.6329 | [0.0844, 0.1819] | 0.6076 | research | llm-generated |
+| mwl-x-sendim | mirandese_g2p | 11† | 0.4470‡ | - | - | 0.3561 | 0.3561 | 0.2727 | 0.2727 | n too small | 0.2727 | research | expert-human |
 | mwl-x-sendim | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | mww | wikipron | 489 | 0.0107 | - | - | 0.0107 | 0.0107 | 0.9611 | 0.9611 | [0.0060, 0.0161] | 0.9611 | research | crowd-scraped |
 | mxi | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
