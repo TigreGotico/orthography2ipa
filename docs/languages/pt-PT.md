@@ -96,6 +96,25 @@ to the oral [o] before the tilde: `contar` [kõˈtaɾ], `comprar` [kõˈpɾaɾ],
 Lusophone variants (pt-AO/MZ/TL) never reduce ⟨o⟩→[u], so their ⟨o⟩ before a
 nasal is already [o] and this rule is inert there.
 
+### Word-final ⟨-en⟩ and ⟨-er⟩ (`PT_FINAL_EN_*`, `PT_ER_CLOSE`, `PT_LEX_OPEN_ER`)
+
+A learned noun in ⟨-en⟩ keeps a final consonant. Infopédia gives `hífen`
+[ˈifɛn], `pólen` [ˈpɔlɛn] and `abdómen` [ɐˈbdɔmɛn]. The ⟨-em⟩ diphthong rules
+match ⟨m⟩ only, so these words never get [ɐ̃j̃]. `PT_FINAL_EN_NUCLEUS` sets the
+open vowel [ɛ] and `PT_FINAL_EN_CODA` sets the consonant [n]. The plural
+`hífenes` has no word-final ⟨n⟩ and reads [ˈifɨnɨʃ].
+
+The stressed ⟨e⟩ of an infinitive in ⟨-er⟩ is close-mid [e]: `comer` [kuˈmeɾ],
+`ter` [ˈteɾ], `entender` [ẽtẽˈdeɾ]. Spelling does not show open or close
+quality, so the pre-lexical map writes [ɛ] for every stressed ⟨e⟩ and
+`PT_ER_CLOSE` closes it before a word-final ⟨r⟩. A short word list,
+`PT_LEX_OPEN_ER`, keeps the open vowel of the nouns and loan words that Infopédia
+writes with [ɛ]: `mulher` [muˈʎɛɾ], `talher`, `qualquer`, `quer`, `mister`.
+The Baixo-Minho lects (`pt-PT-x-porto`, `pt-PT-x-braga`) diphthongise both:
+`comer` [kuˈmjeɾ] and `mulher` [muˈʎjɛɾ]. The African and Asian varieties, and
+Barranquenho, switch these four rules off and keep their own output. The rule
+notes carry the sources.
+
 ### Engine guard: the nasal tilde attaches only to a vowel
 
 The coda ⟨m/n⟩ → tilde slot carries an **oral consonant fallback** ([m]/[n])
@@ -138,6 +157,51 @@ higher-quality gold here, **absorbs** the consonant into the nasal vowel
 correct and rewarded by the trustworthy golds, with the lone machine-gold
 divergence documented rather than hidden. See [../scoreboard.md](../scoreboard.md).
 
+## Stressed ⟨e⟩ and ⟨o⟩ in suffix endings (`PT_SUFFIX_*_CLOSE`)
+
+Spelling does not show whether an unmarked stressed ⟨e⟩ or ⟨o⟩ is open or
+close. The pre-lexical map writes the open vowel, [ɛ] and [ɔ]. In Infopédia,
+outside the suffix classes below, the open vowel is the more frequent one
+(54% of the ⟨e⟩ types and 62% of the ⟨o⟩ types), so the default stays open.
+
+A suffix class is different: its stressed vowel has one value. Seven
+post-lexical rules close the vowel of these word-final endings:
+
+| Rule | Ending | Example (Infopédia) | Precision on Infopédia types |
+|:---|:---|:---|:---|
+| `PT_SUFFIX_EZ_CLOSE` | ⟨-ez⟩ | `rapidez` [ʁɐpiˈdeʃ] | 124 of 125 |
+| `PT_SUFFIX_EZA_ESA_CLOSE` | ⟨-eza -esa⟩ | `beleza` [bɨˈlezɐ], `mesa` [ˈmezɐ] | 159 of 161 |
+| `PT_SUFFIX_EMA_CLOSE` | ⟨-ema⟩ | `sistema` [siʃˈtemɐ] | 108 of 108 |
+| `PT_SUFFIX_ESCO_CLOSE` | ⟨-esco -esca⟩ | `dantesco` [dɐ̃ˈteʃku] | 99 of 100 |
+| `PT_SUFFIX_OR_CLOSE` | ⟨-or⟩ | `trabalhador` [tɾɐbɐʎɐˈdoɾ], `amor` [ɐˈmoɾ] | 2682 of 2698 |
+| `PT_SUFFIX_OSO_CLOSE` | ⟨-oso⟩ | `famoso` [fɐˈmozu] | 940 of 942 |
+| `PT_SUFFIX_ONHO_CLOSE` | ⟨-onho -onha⟩ | `risonho` [ʁiˈzoɲu] | 40 of 40 |
+
+Cunha and Cintra name each ending as a suffix. The rule notes quote the
+grammar and give the full counts. The words that Infopédia writes with the
+open vowel are in two lists that come before the rules,
+`PT_LEX_OPEN_E_SUFFIX` and `PT_LEX_OPEN_O_SUFFIX`: the comparatives `melhor`
+[mɨˈʎɔɾ], `pior`, `maior`, `menor`, and `suor`, `reza`, `pesca`.
+The ⟨e⟩ list also holds the verb forms `pesa`, `preza`, `despreza`,
+`pesco`, `rema` and `crema`: the verb form of a homograph has the open
+vowel.
+
+The endings ⟨-eno -ena⟩ and ⟨-ona⟩ have no rule. Their nouns and
+adjectives are close (`chileno` [ʃiˈlenu], `zona` [ˈzonɐ]), but the forms
+of the verbs in ⟨-enar⟩ and ⟨-onar⟩ are open (`ordena` [ɔɾˈdɛnɐ],
+`funciona` [fũˈsjɔnɐ]), and the spelling cannot tell them apart. In the
+Wiktionary readings of WikiPron, which include verb forms, a close rule is
+right for only 75% of the ⟨-eno -ena⟩ forms and 71% of the ⟨-ona⟩ forms.
+
+The feminine and the plural of ⟨-oso⟩ keep the open vowel, because the
+masculine singular closes it and the other forms open it (`famosa`
+[fɐˈmɔzɐ], `famosos`). The gate of `PT_SUFFIX_OSO_CLOSE` is the word-final
+⟨o⟩, so these forms do not match.
+
+Porto, Braga and Terceira have their own process for the stressed mid vowels,
+so they switch these rules off. The African and Asian varieties, Barranquenho
+and the creoles also switch them off, because no source for them was read.
+
 ## Coda consonants (post-lexical `allophone_rules`)
 
 EP realises three coda consonant processes that the pre-lexical grapheme map
@@ -168,7 +232,7 @@ as intervocalic). The base `pt-PT` gives the **standard alveolar `[z]`**:
 
 | Rule id | Context | Example |
 |:---|:---|:---|
-| `PT_FINAL_S_PREVOCALIC_VOICE` | `…s#` + `#V…` | `estás a ver` → [eˈʃtaz ˈɐ ˈvɛɾ] |
+| `PT_FINAL_S_PREVOCALIC_VOICE` | `…s#` + `#V…` | `estás a ver` → [eˈʃtaz ˈɐ ˈveɾ] |
 | | | `os amigos` → [ˈoz ɐˈmiɡuʃ] |
 
 This rule fires only before a **vowel**. Coda /s/ before a *consonant* is

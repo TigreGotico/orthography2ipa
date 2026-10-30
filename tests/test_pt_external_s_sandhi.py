@@ -33,7 +33,7 @@ class TestStandardZ:
     """base pt-PT, North (porto) and Lisbon: prevocalic /s/ → alveolar [z]."""
 
     def test_base_estas_a_ver_z(self):
-        assert G2P("pt-PT").transcribe("estás a ver") == "eʃˈtaz ɐ ˈvɛɾ"
+        assert G2P("pt-PT").transcribe("estás a ver") == "eʃˈtaz ɐ ˈveɾ"
 
     def test_base_os_amigos_z(self):
         assert G2P("pt-PT").transcribe("os amigos") == "oz ɐˈmiɡuʃ"
@@ -41,12 +41,12 @@ class TestStandardZ:
     def test_porto_z(self):
         # Northern [z]; v→b is the inherited Porto betacism; the stressed open
         # [ɛ] of 'ver' now diphthongises to [jɛ] (Brissos 2018 NW open-mid).
-        assert G2P("pt-PT-x-porto").transcribe("estás a ver") == "eʃˈtaz ɐ ˈbjɛɾ"
+        assert G2P("pt-PT-x-porto").transcribe("estás a ver") == "eʃˈtaz ɐ ˈbjeɾ"
 
     def test_lisbon_z_not_palatal(self):
         # Lisbon is standard [z], NOT [ʒ]
         out = G2P("pt-PT-x-lisbon").transcribe("estás a ver")
-        assert out == "eʃˈtaz ɐ ˈvɛɾ"
+        assert out == "eʃˈtaz ɐ ˈveɾ"
         assert "ʃtaʒ" not in out.replace("ˈ", "")
 
     def test_before_voiceless_consonant_stays_hush(self):
@@ -84,7 +84,7 @@ class TestSouthernPalatal:
 
     def test_algarve_prevocalic_palatal(self):
         out = G2P("pt-PT-x-algarve").transcribe("estás a ver")
-        assert out == "eʃˈtaʒ ɐ ˈvɛɾ"
+        assert out == "eʃˈtaʒ ɐ ˈveɾ"
         assert "ʃtaʒ" in out.replace("ˈ", "")
 
     def test_algarve_word_final_palatal_categorical(self):
@@ -94,7 +94,7 @@ class TestSouthernPalatal:
 
     def test_acores_prevocalic_palatal(self):
         out = G2P("pt-PT-x-acores").transcribe("estás a ver")
-        assert out == "eʃˈtaʒ ɐ ˈvɛɾ"
+        assert out == "eʃˈtaʒ ɐ ˈveɾ"
         assert "ʃtaʒ" in out.replace("ˈ", "")
 
     def test_acores_stays_hush_before_voiceless_consonant_and_pause(self):

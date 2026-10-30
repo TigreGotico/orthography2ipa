@@ -41,6 +41,12 @@ Two rules make the second map live for BP:
 | `BR_RAISE_FINAL_E` | Final vowel raising | [ɪ] → [i] / _# | `leite` [ˈlejti] |
 | `BR_RAISE_FINAL_O` | Final vowel raising | [ʊ] → [u] / _# | `gato` [ˈɡatu] |
 
+Word-final ⟨-em⟩, ⟨-en⟩ and the plurals ⟨-ens⟩ are the nasal diphthong [ẽj̃]:
+`bem` [ˈbẽj̃], `hífen` [ˈifẽj̃], `bens` [ˈbẽj̃s], `homens` [ˈomẽj̃s]
+(`BR_FINAL_EM_GLIDE`, `BR_FINAL_ENS_GLIDE`; the sources are in the rule notes).
+The Northeast and Minas Gerais lects that reduce a post-stressed ⟨e⟩ to [ɪ̃] keep
+that reduction in ⟨-en⟩ and ⟨-ens⟩ too (`homens` [ˈomɪ̃s]).
+
 **Coda vowel nasalisation.** BP retains the general-Portuguese process by which
 a vowel before a **coda** ⟨m/n⟩ (word-finally or before a consonant) nasalises,
 the nasal consonant being absorbed (Mateus & d'Andrade 2000: ch. 2; Barbosa &
