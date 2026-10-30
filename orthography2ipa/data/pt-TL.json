@@ -321,6 +321,12 @@
       "phonemes": [],
       "surface": "ɐ",
       "notes": "DISABLED for this variety. The EP Lisbon-standard centralisation of the word-final ⟨-em⟩ nucleus to [ɐ̃] (inherited from pt-PT) does not apply here: this variety keeps the close-mid nasal nucleus [ẽ], so ⟨-em⟩ is [ẽj̃] (glide via PT_FINAL_EM_GLIDE), not [ɐ̃j̃]. Peripheral/non-Iberian Portuguese does not follow the Lisbon centralisation."
+    },
+    {
+      "id": "PT_FINAL_ENS_NUCLEUS",
+      "phonemes": [],
+      "surface": "ɐ",
+      "notes": "DISABLED with PT_FINAL_EM_NUCLEUS in this spec, for the same reason: the plural ⟨-ens⟩ keeps the close-mid nucleus of ⟨-em⟩."
     }
   ],
   "wikidata_qid": "Q4373396",

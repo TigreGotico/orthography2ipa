@@ -49,6 +49,65 @@
   },
   "positional_graphemes_base": "pt-PT",
   "parent": "pt-PT",
+  "allophone_rules": [
+    {
+      "id": "PT_FINAL_EM_NUCLEUS",
+      "phonemes": [
+        "e",
+        "ɛ",
+        "ɨ"
+      ],
+      "grapheme": [
+        "e",
+        "é",
+        "ê"
+      ],
+      "followed_by_phoneme": [
+        "̃"
+      ],
+      "followed_by_2": "word_boundary",
+      "surface": "e",
+      "notes": "Overridden for this northern variety: the nucleus is the close-mid [e], not the central [ɐ]. Matching it here, not disabling it, also keeps the stressed nucleus away from any tonic-[e] diphthongisation rule of the spec. Northern EP keeps the close-mid nucleus of word-final ⟨-em -ens⟩: [ẽj̃], [ẽj̃ʃ] (bem [ˈbẽj̃], homem [ˈɔmẽj̃], homens [ˈɔmẽj̃ʃ]). The centralised [ɐ̃j̃] of the pt-PT base is the Lisbon merger: Wikipedia 'Portuguese phonology', 'In Greater Lisbon, [ẽj̃] has merged with [ɐ̃j̃]'; Ciberdúvidas (Viana & Rocha 2006, 'Vogais e ditongos nasais, outra vez', n. 1): 'em dialectos do português europeu … a grafia -em/-en(s) representa o ditongo [ẽj̃]'. Leite de Vasconcellos 1901 (Esquisse d'une dialectologie portugaise, §44n, p. 93; quoted from an OCR copy, diacritics normalised): '-em < l. -ENE correspond -ẽ dans certains endroits de la frontière de Tras-os-Montes et du Minho, et -ẽi ou -ɐi dans le reste du pays'. The border monophthong [ẽ] is local and not modelled. The oral parallel in the same section (§44i): the diphthong ⟨ei⟩ is [ɐj] only 'à Lisbonne' and [ej] in Entre-Douro-e-Minho, the Beira and Trás-os-Montes."
+    },
+    {
+      "id": "PT_FINAL_ENS_NUCLEUS",
+      "phonemes": [
+        "e",
+        "ɛ",
+        "ɨ"
+      ],
+      "grapheme": [
+        "e",
+        "é",
+        "ê"
+      ],
+      "followed_by_phoneme": [
+        "̃"
+      ],
+      "followed_by_grapheme": [
+        "n"
+      ],
+      "followed_by_2": "consonant",
+      "followed_by_3": "word_boundary",
+      "surface": "e",
+      "notes": "Overridden for this northern variety with PT_FINAL_EM_NUCLEUS: the nucleus of the plural ⟨-ens⟩ is the close-mid [e], so it is [ẽj̃ʃ]. The sources are under PT_FINAL_EM_NUCLEUS in this spec."
+    },
+    {
+      "id": "PT_NASAL_E_UNRED",
+      "phonemes": [
+        "ɨ"
+      ],
+      "surface": "e",
+      "grapheme": [
+        "e"
+      ],
+      "followed_by_phoneme": [
+        "̃"
+      ],
+      "stress": "posttonic",
+      "notes": "Restricted to POST-tonic syllables in the Minho. A pretonic ⟨en em⟩ before a consonant keeps the reduced vowel, nasalised: [ɨ̃] (pensar [pɨ̃ˈsaɾ], lembrar, pensamento, vender, tendência, entender [ẽtɨ̃ˈdeɾ]). Leite de Vasconcellos 1900 (Estudos de Philologia Mirandesa I, §76, p. 238): 'Este phenomeno é caracteristico da lingoagem do Alto- e Baixo-Minho; toda a gente culta d'estas regiões … diz usualmente lẹmbrar, tẹmporada, intẹndimento, pẹnsamento, vẹnder (ou mesmo bẹnder!), tẹndencia'; the ring below is 'e surdo (= ẹ) nasal' (p. 201, table b, 'Como na pronúncia do Minho, nas palavras pensar, tentar, lembrar'). He cites Dialectos interamnenses VI §3, IX §8-b and Gonçalves Vianna, Essai de phonétique, p. 46, n. A word-initial ⟨en em⟩ takes the base word_initial [e] and is not reduced. The post-tonic ⟨-em -ens⟩ still un-reduces, so homem stays [ˈɔmẽj̃]."
+    }
+  ],
   "notes": "Minhoto Portuguese (Baixo-Minho: Braga, Guimarães, Vizela), a northern EP dialect in Cintra's Baixo-Minhoto-Duriense-Beirão group. MODELLED FEATURES: (1) APICO-ALVEOLAR-ONLY SIBILANT SYSTEM — the archaic four-sibilant opposition is reduced to a single apical branch: graphemes ⟨s⟩/⟨ss⟩ AND ⟨c⟩(before e/i)/⟨ç⟩/⟨z⟩ all realise as apico-alveolar [s̺] (voiceless) / [z̺] (voiced), unlike the conservative four-sibilant Transmontano/Alto-Minhoto system which keeps apical ⟨s/ss⟩=[s̺] distinct from laminal ⟨c/ç/z⟩=[s] (Cintra 1971 p.93; Álvarez Pérez 2014 pp.37-38: this group 'kept only the apico-alveolar branch'). Coda ⟨s/z⟩ keep the pan-EP chiado neutralisation to [ʃ]/[ʒ]. (2) BETACISM — the /v/–/b/ opposition is neutralised to /b/, realised as stop [b] or spirant [β] (Cintra 1971 p.88; Pérez 2014 pp.35-37, categorical in the far north). Porto's tonic close-vowel diphthongisation ([e]>[je], [o]>[wo]) is a Baixo-Minho/Douro-Litoral subdivision trait and is NOT applied here (kept to pt-PT-x-porto). Vowel-reduction and uvular-coda allophones are enumerated as northern variants. Inherits pt-PT base. ⟨ss⟩ is declared apico-alveolar [s̺] here because the pt-PT base maps it to plain [s]; the value follows feature (1) above, which puts ⟨s/ss⟩ in the apical branch. Cintra 1971 (read in the Instituto Camões CVC reprint, pp. 11-13) draws the main North/South isogloss on the sibilant of the graphemes s and ss: apico-alveolar in the North, predorsodental in the South. His southern limit of the apical runs from the Ria de Aveiro to the Mondego, which it crosses upstream of Coimbra, and on towards Castelo Branco.",
   "quality": "research",
   "ancestors": [

@@ -175,6 +175,12 @@
       "phonemes": [],
       "surface": "ɐ",
       "notes": "DISABLED for Cape Verdean Portuguese. Word-final ⟨-em⟩ is [ẽj] here — the close-mid nasal nucleus [ẽ] with a palatal offglide, WITHOUT the EP Lisbon centralisation of the nucleus to [ɐ̃]. Cape Verdean Portuguese, under a Creole substrate, keeps a spelling-faithful mid nucleus."
+    },
+    {
+      "id": "PT_FINAL_ENS_NUCLEUS",
+      "phonemes": [],
+      "surface": "ɐ",
+      "notes": "DISABLED with PT_FINAL_EM_NUCLEUS in this spec, for the same reason: the plural ⟨-ens⟩ keeps the close-mid nucleus of ⟨-em⟩."
     }
   ],
   "stress": {

@@ -157,16 +157,18 @@ KNOWN_DEAD_RULES = {
     # glide rules attach to, so the rules are inert here. The open/close mid
     # vowel pins (PT_LEX_*) inherit and fire normally; only the nasal-glide
     # pair is dead. Inherited correctly for the pt lects that keep nasalisation.
-    "kea": {"PT_FINAL_EM_GLIDE", "PT_FINAL_AM_GLIDE"},
-    "pap": {"PT_FINAL_EM_GLIDE", "PT_FINAL_AM_GLIDE"},
-    "pov": {"PT_FINAL_EM_GLIDE", "PT_FINAL_AM_GLIDE"},
-    "cri": {"PT_FINAL_EM_GLIDE", "PT_FINAL_AM_GLIDE"},
-    "mcm": {"PT_FINAL_EM_GLIDE", "PT_FINAL_AM_GLIDE", "PT_LEX_X_S"},
-    "aoa": {"PT_FINAL_EM_GLIDE", "PT_FINAL_AM_GLIDE"},
-    "mzs": {"PT_FINAL_EM_GLIDE", "PT_FINAL_AM_GLIDE"},
-    "idb": {"PT_FINAL_EM_GLIDE", "PT_FINAL_AM_GLIDE", "PT_LEX_X_S"},
-    "pre": {"PT_FINAL_EM_GLIDE", "PT_FINAL_AM_GLIDE"},
-    "vkp": {"PT_FINAL_EM_GLIDE", "PT_FINAL_AM_GLIDE"},
+    # PT_FINAL_ENS_GLIDE is the plural ⟨-ens⟩ glide and is dead for the same
+    # reason; PT_NASAL_E_UNRED targets the reduced [ɨ], which these specs lack.
+    "kea": {"PT_FINAL_EM_GLIDE", "PT_FINAL_AM_GLIDE", "PT_FINAL_ENS_GLIDE", "PT_NASAL_E_UNRED"},
+    "pap": {"PT_FINAL_EM_GLIDE", "PT_FINAL_AM_GLIDE", "PT_FINAL_ENS_GLIDE", "PT_NASAL_E_UNRED"},
+    "pov": {"PT_FINAL_EM_GLIDE", "PT_FINAL_AM_GLIDE", "PT_FINAL_ENS_GLIDE", "PT_NASAL_E_UNRED"},
+    "cri": {"PT_FINAL_EM_GLIDE", "PT_FINAL_AM_GLIDE", "PT_FINAL_ENS_GLIDE", "PT_NASAL_E_UNRED"},
+    "mcm": {"PT_FINAL_EM_GLIDE", "PT_FINAL_AM_GLIDE", "PT_FINAL_ENS_GLIDE", "PT_NASAL_E_UNRED", "PT_LEX_X_S"},
+    "aoa": {"PT_FINAL_EM_GLIDE", "PT_FINAL_AM_GLIDE", "PT_FINAL_ENS_GLIDE", "PT_NASAL_E_UNRED"},
+    "mzs": {"PT_FINAL_EM_GLIDE", "PT_FINAL_AM_GLIDE", "PT_FINAL_ENS_GLIDE", "PT_NASAL_E_UNRED"},
+    "idb": {"PT_FINAL_EM_GLIDE", "PT_FINAL_AM_GLIDE", "PT_FINAL_ENS_GLIDE", "PT_NASAL_E_UNRED", "PT_LEX_X_S"},
+    "pre": {"PT_FINAL_EM_GLIDE", "PT_FINAL_AM_GLIDE", "PT_FINAL_ENS_GLIDE", "PT_NASAL_E_UNRED"},
+    "vkp": {"PT_FINAL_EM_GLIDE", "PT_FINAL_AM_GLIDE", "PT_FINAL_ENS_GLIDE", "PT_NASAL_E_UNRED"},
     # Dead only because the spec inherits a grapheme table without its
     # positional readings, so the vowel the rule targets is never emitted.
     # Fixed by the positional-inheritance default in #348, which revives it.

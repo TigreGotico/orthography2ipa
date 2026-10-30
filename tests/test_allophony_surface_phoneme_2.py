@@ -14,6 +14,9 @@ they stand on their own outside en-GB:
   ⟨-ed⟩ needs (see ``tests/test_cited_rules_germanic.py`` for the live
   en-GB case: monosyllables like ``fed``/``ted`` whose ⟨ed⟩ IS the stem,
   not the past-tense suffix).
+* ``followed_by_3`` — the mirror of ``preceded_by_3``, one grapheme
+  further ahead than ``followed_by_2``. Portuguese word-final ⟨-ens⟩ uses it
+  to see the word edge after the plural ⟨s⟩ from the ⟨e⟩.
 * ``preceded_by_surface_phoneme_2`` — like ``preceded_by_phoneme_2`` but
   reads the resolved SURFACE candidate of the slot two positions back,
   not the grapheme's first declared candidate. Needed whenever the
@@ -106,6 +109,24 @@ def test_preceded_by_3_any_is_a_stem_existence_gate():
     spec = _spec({"a": ["a"], "b": ["b"], "x": ["x"]}, (rule,))
     assert _tok_best(spec, "abbx") == "abby"   # 4 graphemes: "a" exists at -3
     assert _tok_best(spec, "bbx") == "bbx"     # only 3 graphemes: -3 is out of bounds
+
+
+# ─── followed_by_3 ───────────────────────────────────────────────────────
+
+def test_followed_by_3_reads_three_graphemes_ahead():
+    rule = AllophoneRule(
+        id="F3", phonemes=("x",), surface="y", followed_by_3="word_boundary")
+    spec = _spec({"a": ["a"], "b": ["b"], "x": ["x"]}, (rule,))
+    assert _tok_best(spec, "xbb") == "ybb"     # the word ends 3 graphemes on
+    assert _tok_best(spec, "xbba") == "xbba"   # a grapheme stands 3 on -> no-op
+
+
+def test_followed_by_3_takes_the_neighbour_class_vocabulary():
+    rule = AllophoneRule(
+        id="F3_V", phonemes=("x",), surface="y", followed_by_3="vowel")
+    spec = _spec({"a": ["a"], "b": ["b"], "x": ["x"]}, (rule,))
+    assert _tok_best(spec, "xbba") == "ybba"
+    assert _tok_best(spec, "xbbb") == "xbbb"
 
 
 # ─── preceded_by_surface_phoneme_2 ──────────────────────────────────────
