@@ -314,8 +314,8 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 
 | Dataset | N | o2i | arbtok | arbtok (lexicon) | tugaphone (lexicon) | g2p_barranquenho | mwl_phonemizer | udarnik | Winner |
 |---|---|---|---|---|---|---|---|---|---|
-| mirandese_dict | 990 | 0.0438 | n/a | n/a | n/a | n/a | 0.0438 | n/a | tie (mwl_phonemizer, o2i) |
-| mirandese_g2p | 205 | 0.1303 | n/a | n/a | n/a | n/a | 0.1303 | n/a | tie (mwl_phonemizer, o2i) |
+| mirandese_dict | 990 | 0.0560 | n/a | n/a | n/a | n/a | 0.0560 | n/a | tie (mwl_phonemizer, o2i) |
+| mirandese_g2p | 205 | 0.1333 | n/a | n/a | n/a | n/a | 0.1333 | n/a | tie (mwl_phonemizer, o2i) |
 | portuguese_tts | 20 | same-source | same-source | same-source | same-source | same-source | same-source | same-source | n/a |
 
 ### ngh (Nǁng)
