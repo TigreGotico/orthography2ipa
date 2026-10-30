@@ -63,9 +63,9 @@ def test_row_one_below_the_minimum_is_the_boundary(monkeypatch):
 
 def test_row_gates_needs_both_a_trusted_tier_and_enough_words():
     n = benchmark.THIN_ROW_N
-    assert benchmark.row_gates("expert-human", n) is True
-    assert benchmark.row_gates("expert-human", n - 1) is False
-    assert benchmark.row_gates("espeak-derived", n) is False
+    assert benchmark.row_gates("expert-human", n, "wikipron") is True
+    assert benchmark.row_gates("expert-human", n - 1, "wikipron") is False
+    assert benchmark.row_gates("espeak-derived", n, "wikipron") is False
 
 
 def test_regression_gate_reports_a_tiny_row_as_drifted_not_regressed():

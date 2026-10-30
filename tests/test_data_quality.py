@@ -19,7 +19,7 @@ from orthography2ipa import get
 from orthography2ipa.types import QualityTier
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
-from benchmark import can_gate_promotion  # noqa: E402
+from benchmark import CORRECTED_DATASETS, can_gate_promotion  # noqa: E402
 
 DATA_DIR = (pathlib.Path(__file__).parent.parent
             / "orthography2ipa" / "data")
@@ -154,6 +154,7 @@ def test_production_tier_has_qualifying_benchmark(code):
         # promotion (docs/quality_tiers.md); rows without a provenance
         # field predate the tier system and cannot vouch either
         and _gate_eligible(row.get("provenance"))
+        and row.get("dataset") not in CORRECTED_DATASETS
     ]
     assert qualifying, (
         f"{code} claims production tier but has no benchmarks/results.json "
