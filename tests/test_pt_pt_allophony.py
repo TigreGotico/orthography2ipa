@@ -48,6 +48,10 @@ def test_pt_pt_declares_the_coda_rules():
         "PT_NASAL_O_UNRED", "PT_NASAL_E_UNRED",
         "PT_CODA_L_DARK", "PT_CODA_S_HUSH", "PT_CODA_Z_HUSH",
         "PT_LEX_CLOSE_O", "PT_LEX_CLOSE_E", "PT_LEX_OPEN_O", "PT_LEX_OPEN_E",
+        "PT_LEX_OPEN_E_SUFFIX", "PT_LEX_OPEN_O_SUFFIX",
+        "PT_SUFFIX_EZ_CLOSE", "PT_SUFFIX_EZA_ESA_CLOSE", "PT_SUFFIX_EMA_CLOSE",
+        "PT_SUFFIX_ESCO_CLOSE", "PT_SUFFIX_OR_CLOSE", "PT_SUFFIX_OSO_CLOSE",
+        "PT_SUFFIX_ONHO_CLOSE",
         "PT_LEX_X_S",
     ]
 

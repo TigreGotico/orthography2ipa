@@ -142,8 +142,9 @@ class TestStressedEPrePalatal:
     def test_unstressed_pre_palatal_e_not_centralised(self):
         """The rule is stress-gated: unstressed pretonic /e/ before a palatal
         has already reduced to [ɨ] and must NOT be centralised to [ɐ]."""
-        # me-LHOR: pretonic <e> before <lh> stays reduced [ɨ]
-        assert G2P(LISBON).transcribe_word("melhor") == "mɨˈʎoɾ"
+        # me-LHOR: pretonic <e> before <lh> stays reduced [ɨ]; the open
+        # stressed [ɔ] is the Infopédia reading məˈʎɔr
+        assert G2P(LISBON).transcribe_word("melhor") == "mɨˈʎɔɾ"
         # fe-CHAR: pretonic <e> before <ch> stays reduced [ɨ]
         assert G2P(LISBON).transcribe_word("fechar") == "fɨˈʃaɾ"
         assert "ɐʃ" not in G2P(LISBON).transcribe_word("fechar")

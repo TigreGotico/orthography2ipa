@@ -31,6 +31,60 @@
   "parent": "pt-PT",
   "allophone_rules": [
     {
+      "id": "PT_LEX_OPEN_E_SUFFIX",
+      "phonemes": [],
+      "surface": "e",
+      "notes": "DISABLED here. Braga has its own stressed mid-vowel process (diphthongisation of the tonic mid vowels), and a pt-PT rule that sets the vowel first would pre-empt it, as the PT_LEX_* lists are disabled here for the same reason. The pt-PT rule rests on Infopédia readings of standard European Portuguese."
+    },
+    {
+      "id": "PT_SUFFIX_EZ_CLOSE",
+      "phonemes": [],
+      "surface": "e",
+      "notes": "DISABLED here. Braga has its own stressed mid-vowel process (diphthongisation of the tonic mid vowels), and a pt-PT rule that sets the vowel first would pre-empt it, as the PT_LEX_* lists are disabled here for the same reason. The pt-PT rule rests on Infopédia readings of standard European Portuguese."
+    },
+    {
+      "id": "PT_SUFFIX_EZA_ESA_CLOSE",
+      "phonemes": [],
+      "surface": "e",
+      "notes": "DISABLED here. Braga has its own stressed mid-vowel process (diphthongisation of the tonic mid vowels), and a pt-PT rule that sets the vowel first would pre-empt it, as the PT_LEX_* lists are disabled here for the same reason. The pt-PT rule rests on Infopédia readings of standard European Portuguese."
+    },
+    {
+      "id": "PT_SUFFIX_EMA_CLOSE",
+      "phonemes": [],
+      "surface": "e",
+      "notes": "DISABLED here. Braga has its own stressed mid-vowel process (diphthongisation of the tonic mid vowels), and a pt-PT rule that sets the vowel first would pre-empt it, as the PT_LEX_* lists are disabled here for the same reason. The pt-PT rule rests on Infopédia readings of standard European Portuguese."
+    },
+    {
+      "id": "PT_SUFFIX_ESCO_CLOSE",
+      "phonemes": [],
+      "surface": "e",
+      "notes": "DISABLED here. Braga has its own stressed mid-vowel process (diphthongisation of the tonic mid vowels), and a pt-PT rule that sets the vowel first would pre-empt it, as the PT_LEX_* lists are disabled here for the same reason. The pt-PT rule rests on Infopédia readings of standard European Portuguese."
+    },
+    {
+      "id": "PT_LEX_OPEN_O_SUFFIX",
+      "phonemes": [],
+      "surface": "o",
+      "notes": "DISABLED here. Braga has its own stressed mid-vowel process (diphthongisation of the tonic mid vowels), and a pt-PT rule that sets the vowel first would pre-empt it, as the PT_LEX_* lists are disabled here for the same reason. The pt-PT rule rests on Infopédia readings of standard European Portuguese."
+    },
+    {
+      "id": "PT_SUFFIX_OR_CLOSE",
+      "phonemes": [],
+      "surface": "o",
+      "notes": "DISABLED here. Braga has its own stressed mid-vowel process (diphthongisation of the tonic mid vowels), and a pt-PT rule that sets the vowel first would pre-empt it, as the PT_LEX_* lists are disabled here for the same reason. The pt-PT rule rests on Infopédia readings of standard European Portuguese."
+    },
+    {
+      "id": "PT_SUFFIX_OSO_CLOSE",
+      "phonemes": [],
+      "surface": "o",
+      "notes": "DISABLED here. Braga has its own stressed mid-vowel process (diphthongisation of the tonic mid vowels), and a pt-PT rule that sets the vowel first would pre-empt it, as the PT_LEX_* lists are disabled here for the same reason. The pt-PT rule rests on Infopédia readings of standard European Portuguese."
+    },
+    {
+      "id": "PT_SUFFIX_ONHO_CLOSE",
+      "phonemes": [],
+      "surface": "o",
+      "notes": "DISABLED here. Braga has its own stressed mid-vowel process (diphthongisation of the tonic mid vowels), and a pt-PT rule that sets the vowel first would pre-empt it, as the PT_LEX_* lists are disabled here for the same reason. The pt-PT rule rests on Infopédia readings of standard European Portuguese."
+    },
+    {
       "id": "BRA_BETACISM",
       "phonemes": [
         "v"
