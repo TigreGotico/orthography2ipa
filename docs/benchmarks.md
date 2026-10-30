@@ -230,6 +230,17 @@ reading does not show the defect the overlay repairs, and a spelling whose
 correct value cannot be determined at all. A skipped row is a reportable
 negative result, not a gap to fill with a plausible guess.
 
+**The Portuguese unified lexicon overlay.** `portuguese_unified_corrected`
+sits beside `portuguese_unified` on the board. Its overlay,
+`portuguese_unified_pt.jsonl`, is keyed on the source row of the dataset:
+source, region, word, part of speech, field and the reading the row ships. The
+overlay moves or adds a primary stress mark where a written accent or the
+accent rules of the Acordo Ortográfico 1990 settle the stressed syllable. It
+drops rows that transcribe another headword or end in mis-encoded text. The
+corrected row scores the same sampled words as the base row, so the two
+numbers compare. Like every overlay, it is in `CORRECTED_DATASETS` and never
+gates.
+
 ## Stress accuracy
 
 PER strips stress marks from both sides, so a transcription with every

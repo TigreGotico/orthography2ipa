@@ -1981,9 +1981,40 @@ def load_portuguese_unified(lang: str, limit: int) -> List[Tuple[str, str]]:
     fixed-seed (``SAMPLE_SEED``) random sample of up to ``limit`` WORDS is
     drawn, keeping all of a sampled word's variants for the chosen region.
     """
+    return _sample_portuguese_unified(lang, limit)
+
+
+def pt_unified_source(row: Dict) -> str:
+    """The source of one ``portuguese_unified`` row, read from its fields.
+
+    The dataset has no source column. A Portal row is the only kind with a
+    ``phones`` value, an Infopédia row has an ``infopedia_url``, and a row
+    merged from both dictionaries has both URLs.
+    """
+    if row.get("phones"):
+        return "portal"
+    if row.get("infopedia_url") and row.get("wiktionary_url"):
+        return "infopedia+wiktionary"
+    return "infopedia" if row.get("infopedia_url") else "wiktionary"
+
+
+def _sample_portuguese_unified(
+    lang: str, limit: int,
+    overlay: Optional[Dict[Tuple[str, str, str, str, str, str], Optional[str]]] = None,
+) -> List[Tuple[str, str]]:
+    """The fixed-seed word sample of one region, with *overlay* applied.
+
+    The sample is drawn from the UNCORRECTED words, so the corrected and the
+    uncorrected rows score the same words: a dropped source row removes a
+    reading, never shifts which words are sampled. *overlay* maps a source-row
+    key ``(word, region, source, pos, field, original_reading)`` to the
+    corrected reading, or to ``None`` for a dropped row.
+    """
     region = _PT_UNIFIED_REGIONS[lang]
     text = _fetch(_PT_UNIFIED_URL, "portuguese_pronunciation_lexicon.jsonl")
     by_word: Dict[str, List[str]] = {}
+    corrected: Dict[str, List[str]] = {}
+    applied = 0
     for line in text.strip().splitlines():
         if not line.strip():
             continue
@@ -1995,12 +2026,29 @@ def load_portuguese_unified(lang: str, limit: int) -> List[Tuple[str, str]]:
         if not word or not ipa:
             continue
         by_word.setdefault(word, []).append(ipa)
+        if overlay is None:
+            continue
+        key = (word, region, pt_unified_source(row), row.get("pos") or "",
+               "ipa_narrow", row.get("ipa_narrow"))
+        if key in overlay:
+            applied += 1
+            if overlay[key] is None:
+                continue
+            ipa = overlay[key].strip()
+        corrected.setdefault(word, []).append(ipa)
+    if overlay is not None:
+        expected = sum(1 for k in overlay if k[1] == region)
+        if applied != expected:
+            print(f"warning: {expected - applied} portuguese_unified/{region} "
+                  f"corrections matched no upstream row (applied {applied})",
+                  file=sys.stderr)
     words = sorted(by_word.items())
     rng = random.Random(SAMPLE_SEED)
     rng.shuffle(words)
+    readings = by_word if overlay is None else corrected
     pairs: List[Tuple[str, str]] = []
-    for word, variants in words[:limit]:
-        for ipa in dict.fromkeys(variants):
+    for word, _ in words[:limit]:
+        for ipa in dict.fromkeys(readings.get(word, ())):
             pairs.append((word, ipa))
     return pairs
 
@@ -2142,6 +2190,26 @@ _GOLD_CORRECTIONS_DIR = os.path.join(
 #: Each entry is backed by ``corrections/{dataset}_{lang}.jsonl``.
 GOLD_CORRECTIONS: Dict[str, List[str]] = {"vox_communis": ["vi"]}
 
+#: The overlaid datasets. A row on one of them never gates, whatever its tier:
+#: the tier stays the base gold's, which is the honest description of where
+#: most of its readings came from, but the corrections were applied by an
+#: automated process, so the row can diagnose and never certify.
+CORRECTED_DATASETS = frozenset(
+    [f"{d}_corrected" for d in GOLD_CORRECTIONS] + ["portuguese_unified_corrected"])
+
+#: The ``portuguese_unified`` overlay. Unlike the ``GOLD_CORRECTIONS`` files it
+#: is keyed on the SOURCE row of the dataset (source, region, word, POS, field
+#: and the reading shipped), not on an o2i language tag, so any consumer of the
+#: dataset can apply the same rows.
+PT_UNIFIED_CORRECTIONS = "portuguese_unified_pt"
+
+#: The o2i language tags whose region the overlay corrects at least one
+#: ``ipa_narrow`` reading of (a test derives the same list from the file).
+PT_UNIFIED_CORRECTED_LANGS = [
+    "pt-AO", "pt-BR", "pt-BR-x-rj", "pt-BR-x-sp", "pt-MZ", "pt-PT",
+    "pt-PT-x-lisbon", "pt-TL",
+]
+
 
 def read_gold_corrections(dataset: str, lang: str) -> List[Dict[str, str]]:
     """The correction overlay rows for one gold set and language.
@@ -2220,6 +2288,34 @@ def load_vox_communis_corrected(lang: str, limit: int) -> List[Tuple[str, str]]:
         print(f"warning: {unmatched} vox_communis/{lang} corrections matched "
               f"no upstream row (applied {applied})", file=sys.stderr)
     return pairs[:limit]
+
+
+def read_pt_unified_corrections() -> List[Dict[str, Optional[str]]]:
+    """The ``portuguese_unified`` overlay rows. See
+    ``scripts/build_gold_corrections.py`` for the rules that produce them."""
+    path = os.path.join(_GOLD_CORRECTIONS_DIR, f"{PT_UNIFIED_CORRECTIONS}.jsonl")
+    with open(path, encoding="utf-8") as fh:
+        return [json.loads(line) for line in fh if line.strip()]
+
+
+def load_portuguese_unified_corrected(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """``portuguese_unified`` with its committed corrections overlay applied.
+
+    Registered as a SEPARATE dataset so the uncorrected row stays on the board
+    beside it, exactly as ``vox_communis_corrected`` is. The overlay moves or
+    adds a primary stress mark where a written accent or the Acordo
+    Ortográfico 1990 accent rules settle the stressed syllable, and drops rows
+    that transcribe another headword or end in mis-encoded text. The words
+    scored are the same words the base row scores.
+
+    PROVENANCE — the row keeps the tier of the base gold. It never gates,
+    because it is in ``CORRECTED_DATASETS``.
+    """
+    overlay = {(r["word"], r["region"], r["source"], r["pos"], r["field"],
+                r["original_reading"]): r["corrected_reading"]
+               for r in read_pt_unified_corrections()
+               if r["field"] == "ipa_narrow"}
+    return _sample_portuguese_unified(lang, limit, overlay)
 
 
 def load_4catac(lang: str, limit: int) -> List[Tuple[str, str]]:
@@ -3153,6 +3249,8 @@ DATASETS: Dict[str, Tuple[DatasetLoader, List[str]]] = {
     "barranquenho_dict": (load_barranquenho_dict, ["ext-PT-x-barrancos"]),
     "mirandese_dict": (load_mirandese_dict, sorted(_MIRANDESE_DICT_DIALECTS)),
     "portuguese_unified": (load_portuguese_unified, sorted(_PT_UNIFIED_REGIONS)),
+    "portuguese_unified_corrected": (load_portuguese_unified_corrected,
+                                     PT_UNIFIED_CORRECTED_LANGS),
     "4catac": (load_4catac, sorted(_4CATAC_FILES)),
     "hitz_basque_ipa": (load_hitz_basque, ["eu"]),
     "clup_dialect": (load_clup_dialect, _CLUP_LANGS),
@@ -3348,6 +3446,11 @@ PROVENANCE: Dict[str, str] = {
     # community-scraped Wiktionary
     "wikipron": "crowd-scraped",
     "portuguese_unified": "lexicon-derived",  # Infopedia + Portal lexicon + Wiktionary, convention-normalized
+    # The SAME gold with the committed stress and headword overlay applied
+    # (see load_portuguese_unified_corrected). It keeps the base tier, per
+    # language through PROVENANCE_BY_LANG as the base does, and never gates
+    # because it is in CORRECTED_DATASETS.
+    "portuguese_unified_corrected": "lexicon-derived",
     # SAME crowd-scraped WikiPron ar gold; only the INPUT word is
     # machine-diacritized (text2tashkeel, ~2% DER), which adds a small
     # machine noise floor on top of the gold's own tier. Diagnostic for
@@ -3459,6 +3562,7 @@ PROVENANCE_BY_LANG: Dict[str, Dict[str, str]] = {
     "ipadict": _IPADICT_PROVENANCE,
     "ipa_childes": _IPA_CHILDES_PROVENANCE,
     "portuguese_unified": _PT_UNIFIED_PROVENANCE,
+    "portuguese_unified_corrected": _PT_UNIFIED_PROVENANCE,
 }
 
 
@@ -4179,11 +4283,13 @@ def bootstrap_per_ci(
     return (_percentile(0.025), _percentile(0.975))
 
 
-def row_gates(provenance: str, n: int) -> bool:
+def row_gates(provenance: str, n: int, dataset: str) -> bool:
     """Whether a row may qualify or block a language, or fail the regression
-    gate: its provenance tier can gate and it has at least ``THIN_ROW_N``
-    scored words. The one place the sample-size floor is applied."""
-    return n >= THIN_ROW_N and can_gate_promotion(provenance)
+    gate: its provenance tier can gate, it has at least ``THIN_ROW_N`` scored
+    words, and its dataset is not a corrections overlay. The one place the
+    sample-size floor is applied."""
+    return (n >= THIN_ROW_N and can_gate_promotion(provenance)
+            and dataset not in CORRECTED_DATASETS)
 
 
 def _quality_tier(lang: str) -> Optional[str]:
@@ -4373,7 +4479,8 @@ def build_scoreboard(limit: Optional[int], oracle: bool = False,
                 # the policy it represents: regenerating the board
                 # recomputes it from the row's own provenance and sample
                 # size every time rather than carrying a hand-authored value.
-                "gating": row_gates(provenance_for(dataset_name, lang), covered),
+                "gating": row_gates(provenance_for(dataset_name, lang), covered,
+                                    dataset_name),
                 "harness_version": HARNESS_VERSION,
                 "limit": limit,
             })
