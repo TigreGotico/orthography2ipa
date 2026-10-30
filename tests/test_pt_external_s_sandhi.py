@@ -60,8 +60,10 @@ class TestStandardZ:
 
     def test_before_voiced_consonant_voices_to_palatal(self):
         # Voicing assimilation: coda /s/ -> [ʒ] before a voiced consonant (PT_CODA_S_VOICING).
-        for loc in ("pt-PT", "pt-PT-x-porto", "pt-PT-x-lisbon"):
+        for loc in ("pt-PT", "pt-PT-x-lisbon"):
             assert G2P(loc).transcribe("estás bem") == "eʃˈtaʒ ˈbɐ̃j̃"
+        # Porto keeps the close-mid nucleus of final -em (see test_pt_final_em_nasal).
+        assert G2P("pt-PT-x-porto").transcribe("estás bem") == "eʃˈtaʒ ˈbẽj̃"
 
     def test_as_bocas_voices_before_b(self):
         assert G2P("pt-PT").transcribe("as bocas") == "ɐʒ ˈbɔkɐʃ"
@@ -88,7 +90,7 @@ class TestSouthernPalatal:
     def test_algarve_word_final_palatal_categorical(self):
         # Algarve generalises [ʒ] to all word-final positions (via positional map)
         assert G2P("pt-PT-x-algarve").transcribe("estás") == "eʃˈtaʒ"
-        assert G2P("pt-PT-x-algarve").transcribe("estás bem") == "eʃˈtaʒ ˈbɐ̃j̃"
+        assert G2P("pt-PT-x-algarve").transcribe("estás bem") == "eʃˈtaʒ ˈbẽj̃"
 
     def test_acores_prevocalic_palatal(self):
         out = G2P("pt-PT-x-acores").transcribe("estás a ver")

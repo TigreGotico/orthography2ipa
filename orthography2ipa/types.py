@@ -1348,6 +1348,11 @@ class AllophoneRule:
         stem (``used``, ``watched``) and not in the three-letter monosyllables
         (Cruttenden 2014, § 4.3 treats ⟨-ed⟩ as the past/participial suffix,
         which by definition attaches to something).
+    followed_by_3 : Optional[str]
+        The mirror of ``preceded_by_3``: the class of the grapheme THREE
+        after the anchor. Portuguese word-final ⟨-ens⟩ needs it to tell the
+        plural ending (homens, ``followed_by_3="word_boundary"`` from the
+        ⟨e⟩) from a medial ⟨ens⟩ before a consonant (menstruação).
     preceded_by_phoneme, followed_by_phoneme : Tuple[str, ...]
         The chosen phoneme of the previous / next lattice slot must be one of
         these — the *phoneme*-level neighbour condition (for e.g. nasal place
@@ -1511,6 +1516,7 @@ class AllophoneRule:
     preceded_by_2: Optional[str] = None
     followed_by_2: Optional[str] = None
     preceded_by_3: Optional[str] = None
+    followed_by_3: Optional[str] = None
     preceded_by_phoneme_2: Tuple[str, ...] = ()
     followed_by_phoneme_2: Tuple[str, ...] = ()
     preceded_by_surface_phoneme_2: Tuple[str, ...] = ()
@@ -1589,7 +1595,8 @@ class AllophoneRule:
                     "coda_nasal", "front_vowel", "back_vowel", "palatal",
                     "emphatic", "word_boundary", "any")
         for attr in ("preceded_by", "followed_by",
-                     "preceded_by_2", "followed_by_2", "preceded_by_3"):
+                     "preceded_by_2", "followed_by_2", "preceded_by_3",
+                     "followed_by_3"):
             val = getattr(self, attr)
             if val is not None and val not in _classes:
                 raise ValueError(

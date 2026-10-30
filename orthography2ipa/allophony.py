@@ -613,6 +613,9 @@ class AllophoneRescorer(LatticeRescorer):
         if rule.preceded_by_3 is not None:
             if not _neighbor_is(rule.preceded_by_3, ctx.grapheme.at(-3), -1):
                 return False
+        if rule.followed_by_3 is not None:
+            if not _neighbor_is(rule.followed_by_3, ctx.grapheme.at(3), 1):
+                return False
         if rule.preceded_by_surface_phoneme_2:
             j = ctx.index - 2
             if j < 0:

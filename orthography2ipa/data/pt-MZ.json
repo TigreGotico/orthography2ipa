@@ -247,6 +247,18 @@
       "phonemes": [],
       "surface": "̃j̃",
       "notes": "DISABLED for this variety: word-final ⟨-em⟩ stays a nasal MONOPHTHONG [ẽ] (no palatal offglide) here."
+    },
+    {
+      "id": "PT_FINAL_ENS_NUCLEUS",
+      "phonemes": [],
+      "surface": "ɐ",
+      "notes": "DISABLED with PT_FINAL_EM_NUCLEUS in this spec, for the same reason: the plural ⟨-ens⟩ keeps the close-mid nucleus of ⟨-em⟩."
+    },
+    {
+      "id": "PT_FINAL_ENS_GLIDE",
+      "phonemes": [],
+      "surface": "̃j̃",
+      "notes": "DISABLED with PT_FINAL_EM_GLIDE in this spec: the plural ⟨-ens⟩ has no palatal offglide either."
     }
   ],
   "stress": {
