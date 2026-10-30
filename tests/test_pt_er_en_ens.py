@@ -231,3 +231,29 @@ UNCHANGED = {
 ])
 def test_varieties_without_a_source_keep_their_output(engines, lang, word):
     assert ipa(engines, lang, word) == UNCHANGED[lang][word]
+
+
+# ─── open -er words taken from the scraped Infopédia entries ─────────────
+
+# Each tail is the stressed final syllable of the Infopédia reading
+# (dataset infopedia_pt_ipa), with its [r] written [ɾ].
+SCRAPED_OPEN_ER = {
+    "esmoler": "ˈlɛɾ", "clister": "ˈtɛɾ", "alcacer": "ˈsɛɾ",
+    "alquicer": "ˈsɛɾ", "belveder": "ˈdɛɾ", "alvener": "ˈnɛɾ",
+    "escaler": "ˈlɛɾ", "sumilher": "ˈʎɛɾ", "alter": "ˈtɛɾ",
+    "ecler": "ˈklɛɾ", "xavier": "ˈɛɾ", "freezer": "ˈzɛɾ",
+    "lucifer": "ˈfɛɾ", "salter": "ˈtɛɾ", "paguer": "ˈɡɛɾ",
+    "uxiquer": "ˈkɛɾ", "camber": "ˈbɛɾ", "alquiler": "ˈlɛɾ",
+}
+
+
+@pytest.mark.parametrize("lang", ["pt-PT", "pt-PT-x-lisbon", "pt-PT-x-coimbra"])
+@pytest.mark.parametrize("word,tail", sorted(SCRAPED_OPEN_ER.items()))
+def test_scraped_infopedia_open_er_words_stay_open(engines, lang, word, tail):
+    assert ipa(engines, lang, word).endswith(tail)
+
+
+@pytest.mark.parametrize("word,tail", sorted(SCRAPED_OPEN_ER.items()))
+def test_baixo_minho_diphthongises_scraped_open_er_words(engines, word, tail):
+    out = ipa(engines, "pt-PT-x-porto", word)
+    assert out.endswith("j" + tail[-2:]) and "ˈ" in out, out
