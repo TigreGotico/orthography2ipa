@@ -1,0 +1,243 @@
+{
+  "code": "mwl-x-modern",
+  "name": "Mirandese (modern readings)",
+  "script": "Latin",
+  "graphemes_base": "mwl",
+  "graphemes": {
+    "y": [
+      "j",
+      "ʝ"
+    ],
+    "ie": [
+      "je",
+      "jɪ"
+    ],
+    "iê": [
+      "je",
+      "jɪ"
+    ],
+    "uo": [
+      "wo",
+      "ʊ"
+    ],
+    "uô": [
+      "wo",
+      "ʊ"
+    ],
+    "é": [
+      "ɛ",
+      "e"
+    ],
+    "ó": [
+      "ɔ",
+      "o"
+    ],
+    "éu": [
+      "ɛw",
+      "ew"
+    ]
+  },
+  "allophones_base": "mwl",
+  "positional_graphemes_base": "mwl",
+  "word_exceptions_base": "mwl",
+  "word_exceptions": {
+    "quien": "ˈkjẽ"
+  },
+  "grammatical_endings_base": "mwl",
+  "grammatical_endings": {
+    "on": "õ",
+    "ion": "jõ"
+  },
+  "parent": "mwl",
+  "notes": "Modern Mirandese readings. mwl follows Leite de Vasconcellos (Estudos de Philologia Mirandesa I, 1900); this spec takes the values of later sources where they disagree with him and changes nothing else. Each override below names the later source and quotes it. Where no later source states the disagreeing value, the spec keeps Leite de Vasconcellos and says so. UO. ⟨uo, uô⟩ is the diphthong [wo], and its nasal [wõ]. The Convenção Ortográfica (1999), letter O (PDF p. 15), writes \"os ditongos uô e uôn (puôrta, fuônte)\", and Ferreira et al. (2014, §3.4) list wo and won in the Mirandese TTS phone set. The Convenção adds \"Muitas vezes, na fala de algumas localidades, estes ditongos reduzem-se à vogal média [o] ou nasal [õ]\" and, in footnote 13 (PDF p. 18), that [wo] is less frequent than [je]. Leite de Vasconcellos (1900, vol. I, p. 182, Obs. 2) gives [ʊ] as the normal sound and [wo] \"só se ouve em emphase ou voz pausada\". The second candidate [ʊ] stays in the lattice. IE. ⟨ie, iê⟩ is the diphthong [je], and its nasal [jẽ]. The Convenção, \"Grafia dos ditongos\" (PDF p. 18): \"O ditongo [je] escreve-se yê\", \"Geralmente, o mirandês apresenta iê em palavras que em português têm [ɛ] aberto\"; Ferreira et al. (2014, §3.4) list je and jen. Leite de Vasconcellos (1900, vol. I, §2, p. 173) gives the lax vowel ẹ̌ [ɪ]. quien is [ˈkjẽ]. É AND Ó. ⟨é⟩ is [ɛ] and ⟨ó⟩ is [ɔ], and the diphthong ⟨éu⟩ is [ɛw] (chapéu). The Convenção says the acute accent \"marca também a qualidade relativamente aberta das vogais a, e e o (yá, sés, nó)\" (PDF p. 20) and that o \"Quando representa [ɔ] aberto em sílaba tónica de palavras agudas e esdrúxulas, recebe acento agudo (abó, bóbida)\" (letter O, PDF p. 15). Leite de Vasconcellos (1900, vol. I, §22, p. 198) says the Portuguese é and ó \"não existem na pronúncia normal mirandesa\". Plain ⟨e⟩ and ⟨o⟩ stay [e] and [o]: the Convenção marks the open vowels with the accent. Y. ⟨y⟩ is [j]. The Convenção, letter Y (PDF p. 17): \"a semivogal anterior [j] (por vezes levemente fricatizada) nos vocábulos yê, you, yá, yêuga, yêrba e yêrbo\". Leite de Vasconcellos (1900, vol. I, §13, p. 191) gives the Spanish [ʝ]: \"Como o y castelhano normal em yo\". FINAL -ON. ENDING \"on\" is the nasal vowel [õ] (Ferreira & Raposo 1999, letter N of the Convenção, PDF p. 15: \"indica a nasalidade da vogal em fim de vocábulo (lhion)\", and PDF p. 19: \"Em fim de palavra adopta-se a escrita Vogal + n (coraçon, melon, freijon)\"). ENDING \"ion\" is [jõ] for the same reason (Ferreira & Raposo 1999, letter N of the Convenção). The Convenção names the nasal vowel and no glide, and Ferreira et al. (2014, §3.4) list a nasal vowel ohn and no diphthong with a final glide; neither gives the vowel quality, so [õ] is the broad reading. Leite de Vasconcellos (1900, vol. I, §110, p. 257) gives -öũ [ɵ̃w̃]. KEPT FROM Leite de Vasconcellos. NASAL CONSONANT BEFORE A STOP: no modern source says that the consonant is absent. The Convenção, letters M and N (PDF p. 15), says that m \"é utilizada para indicar a nasalidade da vogal antes de p e de b\", which describes the spelling; the mirandese_g2p gold absorbs the nasal, and the gold alone is not a citation. SPIRANT d AND b: the Convenção agrees with LdV (letter D, PDF p. 14: \"uma fricativa se está, por exemplo, entre vogais (bida) ou depois de r (berde)\"; letter B, PDF p. 13: \"fricativa quando está entre vogais (abe) ou depois de consoante sonora (orbelhaca)\"). Sendim and Ifanes are children of mwl and not of this spec, so the Convenção's local readings (footnote 13, PDF p. 18: \"em Sendim existe [i] em lugar de [je] e [u] em lugar de [wo]\") stay in their own specs. The stress block repeats the one of mwl because stress is not inherited.",
+  "wikipedia": [
+    "https://en.wikipedia.org/wiki/Mirandese_language",
+    "https://mwl.wikipedia.org/wiki/Lh%C3%A9ngua_mirandesa",
+    "https://pt.wikipedia.org/wiki/L%C3%ADngua_mirandesa"
+  ],
+  "quality": "research",
+  "script_type": "alphabet",
+  "timespan": {
+    "start_year": 1999,
+    "end_year": null
+  },
+  "glottolog_code": null,
+  "iso639_3": "mwl",
+  "sources": [
+    {
+      "id": "vasconcelos1900",
+      "author": "Vasconcelos, J. Leite de",
+      "year": 1900,
+      "title": "Estudos de Philologia Mirandesa",
+      "publisher": "Imprensa Nacional, Lisboa",
+      "url": "https://archive.org/details/estudosdephilolo01vascuoft",
+      "pages": "173-180, 187-191, 200-201, 237-239, 265",
+      "notes": "Foundational description of Mirandese phonology, including the six-sibilant system. Based on the speech of Duas-Igrejas (central Mirandese). §2 (pp. 173-179) describes each vowel; §13 (pp. 187 ff.) each consonant, including the coda-only velarised lateral; §24 (p. 200) tabulates the phonetic value of every letter by syllable type, and is the locator for unstressed ⟨o⟩ = Portuguese [u], unstressed ⟨u⟩ = [u], unstressed ⟨e⟩ = Portuguese \"e surdo\" [ɨ]. §24 (p. 201) tabulates the nasal vowels, including the \"e surdo\" nasal ẽ̥ [ɨ̃]. §§75-77 (pp. 237-239) give unstressed initial en- → ã-, medial -en- → ẽ̥ [ɨ̃], and final -em → the intermediate ḙ̃ [ə̃] (central, defined p. 178, nasal p. 180) or ẽ̥ [ɨ̃] (Sendinês). §113 (p. 265) covers word-final -l from Latin -L."
+    },
+    {
+      "id": "convencao1999",
+      "author": "Ferreira, M.B. & Raposo, D. (coords.)",
+      "year": 1999,
+      "title": "Convenção Ortográfica da Língua Mirandesa",
+      "publisher": "Câmara Municipal de Miranda do Douro / Centro de Linguística da Universidade de Lisboa",
+      "url": "http://mirandadodouro.jfreguesia.com/images/stories/PDF/convencaomirandes.pdf",
+      "pages": "62",
+      "notes": "Official orthography. § L: word-initial l before vowel = /ʎ/ in traditional lexicon (bare l occurs only in loanwords/proper nouns/article). § Nasalidade: an/en/in/on/un are nasal-vowel digraphs at word boundaries; they do NOT nasalise sequences before onset consonants. § Sibilantes: six-way contrast s̺/z̺/s̻/z̻/ʃ/ʒ. § Ditongos: iê/ie = /je/ (stressed /jɛ/); uô/uo = /wo/ (stressed /wɔ/). § Acento: paroxytone default; oxytone for -r/-l/-z/-ç/-in/-un/-on/-is/-us/-ns/-ão endings."
+    },
+    {
+      "id": "ferreira2014",
+      "author": "Ferreira, J.P., Chesi, C., Cho, H., Baldewijns, D., Braga, D. & Dias, M.",
+      "year": 2014,
+      "title": "On Mirandese Language Resources for Text-To-Speech",
+      "publisher": "Proceedings of SLTU-2014, St. Petersburg, pp. 87-92",
+      "url": "https://www.researchgate.net/publication/263392110_On_Mirandese_Language_Resources_for_Text-To-Speech",
+      "pages": "88-89",
+      "notes": "Mirandese TTS phone set (43 phones). §2 notes \"the rare nasal schwa\"; §3.4 lists exn, a \"voiced central high sonorant nasal vowel\" [ɨ̃]. It gives no word list for that phone."
+    }
+  ],
+  "stress": {
+    "onset_clusters": [
+      "bl",
+      "br",
+      "bɫ",
+      "bɾ",
+      "bʀ",
+      "bʁ",
+      "bʎ",
+      "bχ",
+      "dr",
+      "dɾ",
+      "dʀ",
+      "dʁ",
+      "dʎ",
+      "dχ",
+      "fl",
+      "fr",
+      "fɫ",
+      "fɾ",
+      "fʀ",
+      "fʁ",
+      "fʎ",
+      "fχ",
+      "kl",
+      "kr",
+      "kɫ",
+      "kɾ",
+      "kʀ",
+      "kʁ",
+      "kʎ",
+      "kχ",
+      "pl",
+      "pr",
+      "pɫ",
+      "pɾ",
+      "pʀ",
+      "pʁ",
+      "pʎ",
+      "pχ",
+      "tr",
+      "tɾ",
+      "tʀ",
+      "tʁ",
+      "tʎ",
+      "tχ",
+      "vl",
+      "vr",
+      "vɫ",
+      "vɾ",
+      "vʀ",
+      "vʁ",
+      "vʎ",
+      "vχ",
+      "ðr",
+      "ðɾ",
+      "ðʀ",
+      "ðʁ",
+      "ðʎ",
+      "ðχ",
+      "ɡl",
+      "ɡr",
+      "ɡɫ",
+      "ɡɾ",
+      "ɡʀ",
+      "ɡʁ",
+      "ɡʎ",
+      "ɡχ",
+      "ɣl",
+      "ɣr",
+      "ɣɫ",
+      "ɣɾ",
+      "ɣʀ",
+      "ɣʁ",
+      "ɣʎ",
+      "ɣχ",
+      "βl",
+      "βr",
+      "βɫ",
+      "βɾ",
+      "βʀ",
+      "βʁ",
+      "βʎ",
+      "βχ"
+    ],
+    "default_position": -2,
+    "final_stress_endings": [
+      "r",
+      "l",
+      "z",
+      "ç",
+      "in",
+      "un",
+      "on",
+      "is",
+      "us",
+      "ns",
+      "ão"
+    ],
+    "penult_stress_endings": [],
+    "marked_vowels": [
+      "á",
+      "é",
+      "í",
+      "ó",
+      "ú",
+      "ã",
+      "ẽ",
+      "ĩ",
+      "õ",
+      "ũ"
+    ],
+    "stress_mark": "ˈ",
+    "coda_liquid_capture": true,
+    "cliticless_words": [
+      "l",
+      "la",
+      "ls",
+      "las",
+      "lo",
+      "los",
+      "a",
+      "an",
+      "de",
+      "por",
+      "cun",
+      "pul",
+      "pula",
+      "puls",
+      "pulas",
+      "ne",
+      "na",
+      "no",
+      "nas",
+      "nos",
+      "i",
+      "e",
+      "que",
+      "me",
+      "te",
+      "se",
+      "bos"
+    ],
+    "notes": "Convenção Ortográfica da Língua Mirandesa (1999) accentuation, Portuguese-based: paroxytone default; written accent (acute or tilde) overrides. Oxytone-attracting endings reflect Mirandese orthography: consonant-final r/l/z/ç (rapaç, Pertual, falar) and the final nasals written with -n in the Asturleonese manner — -in (camin, Sendin), -un, and the systematically oxytone -on class from Latin -ōnem (naçon, coraçon, Associaçon). Unmarked -an/-en verb endings stay paroxytone as in Portuguese -am/-em. cliticless_words are the monosyllabic function words (definite article l/la/ls/las and its prep+article contractions, the prepositions and coordinating conjunctions, and the enclitic object pronouns) that lean prosodically on their host and carry no word stress (Convenção §L article paradigm; the same proclitic/enclitic inventory #527 marks for Portuguese, given in Mirandese orthography). Dialect mwl-x-modern: no evidence of stress-pattern divergence from mwl; block copied from mwl (cliticless_words included, since stress is not inherited)."
+  }
+}

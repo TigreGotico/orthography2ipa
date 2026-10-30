@@ -41,6 +41,12 @@ def test_load_mirandese_central_maps_to_mwl(monkeypatch):
     assert all(w in {"abandono", "casa"} for w, _ in pairs)
 
 
+def test_load_mirandese_modern_scores_the_central_rows(monkeypatch):
+    monkeypatch.setattr(benchmark, "_fetch", lambda url, name: _MIRANDESE_TSV)
+    assert (benchmark.load_mirandese("mwl-x-modern", 10)
+            == benchmark.load_mirandese("mwl", 10))
+
+
 def test_load_mirandese_raiano_maps_to_ifanes(monkeypatch):
     monkeypatch.setattr(benchmark, "_fetch", lambda url, name: _MIRANDESE_TSV)
     pairs = benchmark.load_mirandese("mwl-x-ifanes", 10)
@@ -57,7 +63,7 @@ def test_mirandese_g2p_registered_expert_human():
     assert "mirandese_g2p" in benchmark.DATASETS
     loader, langs = benchmark.DATASETS["mirandese_g2p"]
     assert loader is benchmark.load_mirandese
-    assert langs == ["mwl", "mwl-x-ifanes", "mwl-x-sendim"]
+    assert langs == ["mwl", "mwl-x-ifanes", "mwl-x-modern", "mwl-x-sendim"]
     assert benchmark.PROVENANCE["mirandese_g2p"] == "expert-human"
     # the superseded id is gone (renamed, not duplicated)
     assert "mirandese" not in benchmark.DATASETS

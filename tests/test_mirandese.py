@@ -59,7 +59,9 @@ def test_postalveolars_and_affricate():
     assert spec.graphemes["x"] == ["ʃ"]
     assert spec.graphemes["j"] == ["ʒ"]
     assert spec.graphemes["ch"] == ["tʃ"]  # still an affricate, unlike EP
-    assert spec.graphemes["y"] == ["j"]     # glide, not /ʝ/
+    # LdV §13 p. 191: "Como o y castelhano normal em yo" = [ʝ]; the Convenção
+    # (letter Y, PDF p. 17) gives the glide [j], the second candidate
+    assert spec.graphemes["y"] == ["ʝ", "j"]
 
 
 # --- initial l and the lh / nh digraphs ----------------------------------
@@ -89,15 +91,11 @@ def test_vnh_trigraph_keeps_palatal_nasal():
 
 def test_leonese_diphthongs_central():
     g = _t("mwl")
-    # ⟨ie⟩ → [je], ⟨uo⟩ → [wo]: Mirandese has a single mid /e o/ quality
-    # (Vasconcelos, Estudos de Philologia Mirandesa v1 §§2,4, pp.178-180:
-    # "menos abertos que os nossos", intermediate between the Portuguese
-    # open/close pair; the ⟨ie⟩ nucleus is described §10 p.182 as between [i]
-    # and [e]). The close default also matches the human gold majority
-    # (rabielho→rɐˈβjeʎu, squierdo→ˈs̺kjeɾdu). Open [jɛ]/[wɔ] are
-    # non-contrastive allophonic variants, not the target.
-    assert g.transcribe("tierra").startswith("ˈtjer")   # ie -> [je]
-    assert "wo" in g.transcribe("puorta")                # uo -> [wo]
+    # ⟨ie⟩ → [jɪ] and ⟨uo⟩ → [ʊ]: LdV writes the nuclei ẹ̌ "tiẹ̌rra" (p. 173)
+    # and ọ̌ "pọ̌rta" (p. 226); the diphthongs [je] and [wo] are the second
+    # candidates (see tests/test_mirandese_ldv_spec.py)
+    assert g.transcribe("tierra") == "ˈtjɪrɐ"
+    assert g.transcribe("puorta") == "ˈpʊɾtɐ"
 
 
 # --- allophony (B8) ---------------------------------------------------------
@@ -115,13 +113,11 @@ def test_spirants_declared_in_inventory():
     assert "ð" in spec.allophones["d"]
 
 
-def test_intervocalic_d_spirant_declared_but_not_default():
-    """[ð] stays an inventory allophone / lattice candidate: intervocalic /d/
-    is stop-dominant in the expert gold (Asturleonese /d/-occlusion), so it is
-    NOT rewritten by default — contrast /b/, which IS (see the spirantisation
-    tests below)."""
-    assert _t("mwl").transcribe("nada") == "ˈnadɐ"
-    assert _t("mwl").transcribe("rabudo") == "rɐˈβudu"  # /b/ lenites, /d/ does not
+def test_intervocalic_d_is_a_spirant_by_default():
+    """LdV §13 p. 188: the spirant d is "Intervocalico, e depois de s, ç (z)
+    e r", "analogo ao th brando inglês"."""
+    assert _t("mwl").transcribe("nada") == "ˈnaðɐ"
+    assert _t("mwl").transcribe("rabudo") == "rɐˈβuðu"
 
 
 # --- Sendinês deltas --------------------------------------------------------
@@ -137,8 +133,10 @@ def test_sendim_depalatalisation():
     # ⟨lh⟩ -> /l/ and no initial-l palatalisation (isolate the lateral: use
     # words without an intervocalic voiced stop so the /b/-spirant rule does
     # not muddy the assertion)
-    assert g.transcribe("lhado") == "ˈladu"
-    assert g.transcribe("alhá") == "ɐˈla"
+    # LdV §111 p. 259: the initial L stays in Sendinês (lado); p. 226 gives
+    # ulho, so a medial ⟨lh⟩ stays [ʎ]
+    assert g.transcribe("lhado") == "ˈlaðu"
+    assert g.transcribe("alhá") == "ɐˈʎa"
     assert g.transcribe("luç") == "ˈlus"
 
 
@@ -175,34 +173,33 @@ def test_intervocalic_b_spirantises_to_beta():
     g = _t("mwl")
     # /b/ between vowels lenites to [β] (gold: haber→ɐˈβeɾ, rabudo→rɐˈβudu)
     assert g.transcribe("haber") == "ɐˈβeɾ"
-    assert g.transcribe("rabudo") == "rɐˈβudu"
-    assert g.transcribe("nuobo") == "ˈnwoβu"
+    assert g.transcribe("rabudo") == "rɐˈβuðu"
+    assert g.transcribe("nuobo") == "ˈnʊβu"
 
 
 def test_word_initial_and_post_nasal_b_stays_a_stop():
     g = _t("mwl")
     # word-initial ⟨b⟩ is a stop; only the intervocalic one lenites
     assert g.transcribe("bibal") == "biˈβaɫ"
-    # post-nasal ⟨b⟩ keeps the stop — the vowel nasalises and absorbs the nasal
-    # consonant (⟨amb⟩ → [ɐ̃b], see TestConvencaoWave), and /b/ after the nasal
-    # vowel stays a stop rather than lenieting
-    assert g.transcribe("ambos") == "ˈɐ̃bus̺"
-    assert g.transcribe("cambo") == "ˈkɐ̃bu"
+    # post-nasal ⟨b⟩ keeps the stop, and LdV keeps the nasal consonant before
+    # it (§13 p. 187: "ã-mbos")
+    assert g.transcribe("ambos") == "ˈɐ̃mbus̺"
+    assert g.transcribe("cambo") == "ˈkɐ̃mbu"
 
 
-def test_intervocalic_d_is_not_spirantised():
-    # Asturleonese /d/ resists intervocalic spirantisation (gold stop-dominant):
-    # ⟨d⟩ between vowels stays [d], NOT [ð]
+def test_d_after_a_nasal_or_l_is_a_stop():
+    # LdV §13 p. 188: the stop d exists "depois de nasal ou de consoante que
+    # não seja s, ç ou r" (mundo, caldo)
     g = _t("mwl")
-    assert g.transcribe("nada") == "ˈnadɐ"
-    assert "ð" not in g.transcribe("nada")
+    assert g.transcribe("mundo") == "ˈmũndu"
+    assert g.transcribe("caldo") == "ˈkaɫdu"
 
 
 def test_intervocalic_g_spirantises_via_positional_layer():
     # intervocalic ⟨g⟩ → [ɣ] is handled at the positional_graphemes layer, so
     # no allophone rule is needed and none double-applies after a glide
     g = _t("mwl")
-    assert g.transcribe("mogadouro") == "muɣɐˈdowɾu"
+    assert g.transcribe("mogadouro") == "muɣɐˈðɵwɾu"
     # ⟨g⟩ after the glide of a falling diphthong keeps the stop (gold: eigual
     # → [ɐjˈɡwal]); a naive /ɡ/→[ɣ] allophone rule would wrongly lenite it
     # the native gold has eigual [ɐjˈɡwal]: ⟨gu⟩ keeps the glide
@@ -210,12 +207,11 @@ def test_intervocalic_g_spirantises_via_positional_layer():
     assert g.transcribe("eigual") == "ejˈɡwaɫ"
 
 
-def test_only_the_b_spirant_rule_is_declared():
+def test_the_spirant_rules_are_declared():
     ids = [r.id for r in get("mwl").allophone_rules]
-    assert "MWL_SPIRANT_B" in ids
-    # /ɡ/ (positional layer) and /d/ (stop-dominant) get no allophone rewrite
-    assert "MWL_SPIRANT_G" not in ids
-    assert "MWL_SPIRANT_D" not in ids
+    for rule in ("MWL_SPIRANT_B", "MWL_SPIRANT_B_AFTER_CONSONANT",
+                 "MWL_SPIRANT_D", "MWL_SPIRANT_G"):
+        assert rule in ids
 
 
 def test_spirantisation_is_pan_mirandese():
@@ -236,16 +232,14 @@ class TestConvencaoWave:
         return orthography2ipa.transcribe(w, "mwl").replace("ˈ", "")
 
     def test_am_prefix_nasalises_before_voiceless_stop(self):
-        # amportante [ɐ̃puɾtɐ̃tɨ]; AN/AM = /ɐ̃/ before a voiceless stop
-        assert self._t("amportante").startswith("ɐ̃p")
+        # AN/AM = /ɐ̃/ before a voiceless stop, and LdV keeps the m (p. 187)
+        assert self._t("amportante").startswith("ɐ̃mp")
 
     def test_amb_nasalises_vowel_before_voiced_stop(self):
-        # stem-internal ⟨amb/anb/ang/and⟩: the nasal digraph nasalises the vowel
-        # and is absorbed, the following stop is retained — matching the
-        # native-speaker gold (brando→bɾɐ̃du, quando→ˈkwɐ̃du, bufanda→bʉˈfɐ̃dɐ,
-        # abandono→abɐ̃ˈdonu). The earlier oral-digraph treatment (⟨amb⟩→[amb])
-        # is contradicted by every nasal+stop word in the gold.
-        assert self._t("ambos") == "ɐ̃bus̺"
+        # stem-internal ⟨amb/anb/ang/and⟩: the nasal digraph nasalises the
+        # vowel and the nasal consonant stays before the stop (LdV §13
+        # p. 187: "ã-mbos"); the gold absorbs it and is not followed
+        assert self._t("ambos") == "ɐ̃mbus̺"
 
     def test_ui_is_a_falling_diphthong(self):
         # fui [fuj] — the falling-diphthong system is preserved
@@ -268,6 +262,6 @@ def test_mwl_coda_liquid_stress_placement():
     assert g.transcribe_word("burmeilho") == "buɾˈmejʎu"
     assert g.transcribe_word("armano") == "ɐɾˈmanu"
     # a rising ⟨lh⟩+glide onset (mu-lhier) is NOT a falling cluster: kept intact
-    assert g.transcribe_word("mulhier") == "muˈʎjeɾ"
+    assert g.transcribe_word("mulhier") == "muˈʎjɪɾ"
     # a valid rising obstruent+liquid onset (⟨bl⟩) is not captured
-    assert g.transcribe_word("arble").startswith("ˈaɾbl")
+    assert g.transcribe_word("arble").startswith("ˈaɾβl")

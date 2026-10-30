@@ -15,6 +15,18 @@ not fire.
   item 15  coda l and article l = [ɫ]          p. 188
   item 21  final ç voiced before voiced C      p. 190
   item 22  medieval notes                      §14 p. 193, p. 200
+  item 2   nasal consonant kept before a stop  pp. 187-188
+  item 3   ⟨uo⟩ = [ʊ]                          pp. 177, 180, 182, 226
+  item 4   ⟨ie⟩ = [jɪ]                         pp. 173, 180, 182, 220
+  item 5   ⟨é⟩, ⟨ó⟩ = [e], [o]                 §22, pp. 197-198
+  item 8   d spirant                           p. 188
+  item 9   b, v and g spirants                 pp. 187, 192
+  item 12  ⟨ou⟩ = [ɵw]                         pp. 174, 183
+  item 13  final -on = [ɵ̃w̃]                    §110, p. 257
+  item 16  [ŋ] between a nasal vowel and a vowel   p. 192
+  item 17  ⟨y⟩ = [ʝ]                           p. 191
+  item 18  final -ie, -ue in two syllables     pp. 174, 177, 185, 225
+  items 19 and 20  Sendinês lh and -ien        pp. 220, 226, 259
 """
 import json
 import unicodedata
@@ -50,21 +62,20 @@ def dialect(request):
 # item 1 ----------------------------------------------------------------------
 
 def test_ye_keeps_its_nucleus(dialect):
-    # ⟨y⟩ [j] + ⟨ê⟩ [e], one syllable
-    assert ipa(dialect, "yê") == "ˈje"
+    # ⟨y⟩ [ʝ] (p. 191) + ⟨ê⟩ [e], one syllable
+    assert ipa(dialect, "yê") == "ˈʝe"
 
 
 def test_yerba_keeps_its_nucleus(dialect):
-    # [j] [e] [ɾ] ... [ɐ]: the tap after e is p. 191 (chorar); the b/β after r
-    # belongs to another rule and is not asserted
-    out = ipa(dialect, "yêrba")
-    assert out.startswith("ˈjeɾ") and out.endswith("ɐ")
+    # [ʝ] [e] [ɾ] [β] [ɐ]: the tap after e is p. 191 (chorar), the spirant
+    # after r is p. 187 ("depois de consoante sonora")
+    assert ipa(dialect, "yêrba") == "ˈʝeɾβɐ"
 
 
 def test_yeuga_keeps_its_nucleus(dialect):
     # stress is not asserted: no source gives it
     out = ipa(dialect, "yêuga").replace("ˈ", "")
-    assert out == "jeuɣɐ"
+    assert out == "ʝeuɣɐ"
 
 
 # item 6 ----------------------------------------------------------------------
@@ -75,9 +86,8 @@ def test_initial_l_is_l_in_a_loan(dialect):
 
 
 def test_initial_l_before_nasal_vowel(dialect):
-    # p. 188 "lĩ-ndo". The nasal consonant that LdV keeps is outside this rule,
-    # so any [n] is removed before the comparison.
-    assert ipa(dialect, "lindo").replace("n", "") == "ˈlĩdu"
+    # p. 188 "lĩ-ndo": the l is [l] and the n is kept before the d
+    assert ipa(dialect, "lindo") == "ˈlĩndu"
 
 
 def test_initial_lh_stays_palatal():
@@ -97,7 +107,7 @@ def test_medial_l_in_onset_is_unchanged(dialect):
     ("vaca", "ˈbakɐ"),                  # initial: stop
     ("uva", "ˈuβɐ"),                    # between vowels: spirant, p. 187
     ("vocabulário", "bukɐβuˈlaɾiu"),    # initial stop, then b between vowels
-    ("envidar", "ɨ̃biˈdaɾ"),            # after a nasal: stop
+    ("envidar", "ɨ̃mbiˈðaɾ"),           # after a nasal: stop, with the kept nasal (p. 187); d between vowels: p. 188
 ])
 def test_v_is_b(dialect, word, expected):
     assert ipa(dialect, word) == nfc(expected)
@@ -258,9 +268,9 @@ def test_nasal_mid_vowel_values_are_kept():
     rules = mwl_rules()
     assert (rules["AST_NASAL_e"]["surface"], rules["AST_NASAL_o"]["surface"],
             rules["MWL_NASAL_E_OPEN"]["surface"]) == ("ẽ", "õ", "ẽ")
-    # p. 180 "drento", "pongo"; the nasal consonant LdV keeps is outside these rules
-    assert ipa("mwl", "drento").replace("n", "") == "ˈdɾẽtu"
-    assert ipa("mwl", "pongo").replace("ŋ", "").replace("n", "") == "ˈpõɡu"
+    # p. 180 "drento", "pongo", with the nasal consonant kept (p. 188)
+    assert ipa("mwl", "drento") == "ˈdɾẽntu"
+    assert ipa("mwl", "pongo") == "ˈpõŋɡu"
 
 
 def test_new_rules_cite_ldv_with_a_page():
@@ -271,3 +281,390 @@ def test_new_rules_cite_ldv_with_a_page():
         if rule["id"].startswith(("MWL_S_VOICING", "MWL_FINAL_S_VOICING", "MWL_FINAL_C_VOICING",
                                   "MWL_L_VELAR", "MWL_ARTICLE_L_VELAR")):
             assert "Vasconcellos" in rule["notes"] and "p. 1" in rule["notes"], rule["id"]
+
+
+# ---------------------------------------------------------------------------
+# The expected strings below are written from the LdV pages. Where the spec
+# keeps a convention of its own (ɐ̃ for the nasal a, p. 180 and p. 201; [o], [e]
+# and [u], [ɨ] for the unstressed vowels, p. 200), the comment says so.
+# ---------------------------------------------------------------------------
+
+# item 2 ----------------------------------------------------------------------
+
+@pytest.mark.parametrize("word, expected", [
+    ("ambos", f"ˈɐ̃mbu{S}"),         # p. 187 "ã-mbos"
+    ("campo", "ˈkɐ̃mpu"),            # p. 187, m before p
+    ("santo", f"ˈ{S}ɐ̃ntu"),         # p. 188 "sã-nto"
+    ("lindo", "ˈlĩndu"),             # p. 188 "lĩ-ndo"
+    ("mundo", "ˈmũndu"),             # p. 180 "mundo", p. 188 n before d
+    ("pongo", "ˈpõŋɡu"),             # p. 188 "põ-ŋgo"
+    ("cinco", "ˈsĩŋku"),             # p. 180 "cinco", p. 188 "mõ-ŋcas"
+])
+def test_the_nasal_consonant_is_kept_before_a_stop(dialect, word, expected):
+    assert ipa(dialect, word) == nfc(expected)
+
+
+def test_the_nasal_consonant_is_kept_before_a_stop_after_a_lax_diphthong():
+    # p. 187 "sĩẹ̌-mpre"
+    assert ipa("mwl", "siempre") == nfc(f"ˈ{S}jɪ̃mpɾɨ")
+    assert ipa("mwl-x-sendim", "siempre") == nfc(f"ˈ{S}ĩmpɾɨ")
+
+
+@pytest.mark.parametrize("word, expected", [
+    ("pan", "ˈpɐ̃"),                 # p. 257 "pane > pã"
+    ("fin", "ˈfĩ"),                  # p. 257 "fine > fĩ"
+    ("comun", "kuˈmũ"),              # p. 257 "commune > comũ"
+])
+def test_a_word_final_nasal_consonant_is_absorbed(dialect, word, expected):
+    assert ipa(dialect, word) == nfc(expected)
+
+
+def test_a_nasal_before_a_fricative_is_still_absorbed():
+    # No LdV example: pins that the kept nasal does not widen beyond the stops
+    assert ipa("mwl", "honra") == "ˈõɾɐ"
+
+
+# item 3 ----------------------------------------------------------------------
+
+@pytest.mark.parametrize("word, expected", [
+    ("buono", "ˈbʊnu"),                # p. 182 "bọ̌no"
+    ("cuosta", f"ˈkʊ{S}tɐ"),           # p. 182 "cọ̌sta"
+    ("fuogo", "ˈfʊɣu"),                # p. 182 "fọ̌go"
+    ("puorta", "ˈpʊɾtɐ"),              # p. 226 "pọ̌rta"
+    ("nuobo", "ˈnʊβu"),                # p. 226 "nọ̌bo"
+    ("uolho", "ˈʊʎu"),                 # p. 226 "ọ̌lho"
+    ("fuonte", "ˈfʊ̃ntɨ"),             # p. 180 "fọ̌nte"
+    ("puôrta", "ˈpʊɾtɐ"),              # Convenção spelling of the same word
+])
+def test_uo_is_the_lax_vowel(word, expected):
+    for dialect in ("mwl", "mwl-x-ifanes"):
+        assert ipa(dialect, word) == nfc(expected)
+
+
+@pytest.mark.parametrize("word, expected", [
+    ("buono", "ˈbunu"),                # p. 226 "buno"
+    ("puorta", "ˈpuɾtɐ"),              # p. 226 "purta"
+    ("uolho", "ˈuʎu"),                 # p. 226 "ulho"
+    ("fuonte", "ˈfũntɨ"),              # p. 226 "funte"
+])
+def test_sendines_uo_is_u(word, expected):
+    assert ipa("mwl-x-sendim", word) == nfc(expected)
+
+
+# item 4 ----------------------------------------------------------------------
+
+@pytest.mark.parametrize("word, expected", [
+    ("tierra", "ˈtjɪrɐ"),              # p. 173 "tiẹ̌rra"
+    ("tiêrra", "ˈtjɪrɐ"),              # Convenção spelling of the same word
+    ("fierro", "ˈfjɪru"),              # p. 220 "fĩẹ̌rro"
+    ("bien", "ˈbjɪ̃"),                  # p. 180 "bĩẹ̌̃"
+    ("quien", "ˈkjɪ̃"),                 # p. 220 "quĩẹ̌̃"
+    ("cien", "ˈsjɪ̃"),                  # p. 220 "cĩẹ̌̃"
+])
+def test_ie_is_the_lax_vowel(word, expected):
+    for dialect in ("mwl", "mwl-x-ifanes"):
+        assert ipa(dialect, word) == nfc(expected)
+
+
+@pytest.mark.parametrize("word, expected", [
+    ("tierra", "ˈtirɐ"),               # p. 219 "firro"
+    ("fierro", "ˈfiru"),               # p. 219 "firro"
+    ("bien", "ˈbi.ẽ"),                 # p. 220 "bíẽ", stress on the i
+    ("quien", "ˈki.ẽ"),                # p. 220 "quíẽ"
+    ("cien", f"ˈ{S[0]}i.ẽ"),           # p. 220 "cíẽ"
+])
+def test_sendines_ie_is_i(word, expected):
+    assert ipa("mwl-x-sendim", word) == nfc(expected)
+
+
+# item 5 ----------------------------------------------------------------------
+
+@pytest.mark.parametrize("word, expected", [
+    ("pé", "ˈpe"),                     # §22 pp. 197-198: no Portuguese é
+    ("pés", f"ˈpe{S}"),                # p. 197 "pés"
+    ("pós", f"ˈpo{S}"),                # p. 197 "pós"
+    ("dó", "ˈdo"),                     # p. 197 "dó"
+    ("chapéu", "tʃɐˈpew"),             # p. 183 "chapeu"
+])
+def test_the_accented_e_and_o_are_the_spanish_mid_vowels(dialect, word, expected):
+    assert ipa(dialect, word) == nfc(expected)
+
+
+@pytest.mark.parametrize("word, expected", [
+    ("ber", "ˈbeɾ"),                   # p. 173 "ber"
+    ("certo", "ˈseɾtu"),               # p. 173 "certo"
+    ("probe", "ˈpɾoβɨ"),               # p. 174 "probe"; b between vowels: p. 187
+])
+def test_the_stressed_e_and_o_have_no_open_candidate(dialect, word, expected):
+    assert ipa(dialect, word) == nfc(expected)
+    assert not any(c in "ɛɔ" for cand in G2P(dialect).word_candidates(word, k=10) for c in cand)
+
+
+# item 8 ----------------------------------------------------------------------
+
+@pytest.mark.parametrize("word, expected", [
+    ("dedo", "ˈdeðu"),                 # p. 188 "ls dedos"
+    ("tarde", "ˈtaɾðɨ"),               # p. 188 "tarde"
+    ("berde", "ˈbeɾðɨ"),               # p. 188 "depois de ... r"
+    ("cudiçoso", f"kuðiˈsoz̺u"),        # p. 188 "codiçoso"
+])
+def test_d_is_a_spirant_between_vowels_and_after_s_z_r(dialect, word, expected):
+    assert ipa(dialect, word) == nfc(expected)
+
+
+@pytest.mark.parametrize("word, expected", [
+    ("mundo", "ˈmũndu"),               # p. 188 "depois de nasal"
+    ("caldo", "ˈkaɫdu"),               # p. 188 "depois de ... l"
+    ("dou", "ˈdɵw"),                   # p. 188 "döu": initial d is a stop
+])
+def test_d_is_a_stop_after_a_nasal_or_l_and_at_the_start(dialect, word, expected):
+    assert ipa(dialect, word) == nfc(expected)
+
+
+def test_initial_d_after_s_and_ç_is_a_spirant_across_words(dialect):
+    # p. 188 "ls dedos", "lhuç del cielo"
+    assert ipa(dialect, "ls dedos").split(" ")[1] == "ˈðeðu" + S
+    assert ipa(dialect, "lhuç del cielo").split(" ")[1] == "ˈðeɫ"
+
+
+def test_initial_d_after_l_stays_a_stop_across_words(dialect):
+    # p. 188 "depois de pausa, de nasal e de l"
+    assert ipa(dialect, "el dedo").split(" ")[1] == "ˈdeðu"
+    assert ipa(dialect, "un dedo").split(" ")[1] == "ˈdeðu"
+
+
+# item 9 ----------------------------------------------------------------------
+
+@pytest.mark.parametrize("word, expected", [
+    ("silba", f"ˈ{S}iɫβɐ"),            # p. 187 "silƀa"
+    ("orbelhaca", f"uɾβɨˈʎakɐ"),       # Convenção B "orbelhaca"
+    ("servir", f"{S}ɨɾˈβiɾ"),          # §14 p. 193: v is b, so it is a spirant after r
+    ("algo", "ˈaɫɣu"),                 # p. 192
+    ("esgrimir", f"ɨ{Z}ɣɾiˈmiɾ"),      # p. 192, after s
+])
+def test_b_v_and_g_are_spirants_after_a_voiced_consonant(dialect, word, expected):
+    assert ipa(dialect, word) == nfc(expected)
+
+
+def test_g_is_a_spirant_after_r_in_lhargo():
+    # p. 192 "depois de s, l, r"; Sendinês has [l] for the initial lh (p. 259)
+    assert ipa("mwl", "lhargo") == "ˈʎaɾɣu"
+    assert ipa("mwl-x-ifanes", "lhargo") == "ˈʎaɾɣu"
+    assert ipa("mwl-x-sendim", "lhargo") == "ˈlaɾɣu"
+
+
+@pytest.mark.parametrize("word, expected", [
+    ("ambos", f"ˈɐ̃mbu{S}"),            # p. 187 "depois de nasal"
+    ("pongo", "ˈpõŋɡu"),               # Convenção G "depois de vogal nasal (pongo)"
+    ("bibal", "biˈβaɫ"),               # initial b is a stop, the second is between vowels
+])
+def test_b_and_g_stay_stops_after_a_nasal_and_at_the_start(dialect, word, expected):
+    assert ipa(dialect, word) == nfc(expected)
+
+
+def test_initial_b_and_g_are_spirants_after_s_and_l_across_words(dialect):
+    # p. 187 "ls bọnos", p. 192 "depois de s, l, r"
+    assert ipa(dialect, "ls buonos").split(" ")[1].startswith("ˈβ")
+    assert ipa(dialect, "l gato") == "ɫ ˈɣatu"
+
+
+# item 12 ---------------------------------------------------------------------
+
+@pytest.mark.parametrize("word, expected", [
+    ("touro", "ˈtɵwɾu"),               # p. 174 "töuro"
+    ("tou", "ˈtɵw"),                   # p. 183 "töu"
+    ("pouco", "ˈpɵwku"),               # p. 174 "öu"
+])
+def test_ou_has_the_base_vowel_o_umlaut(dialect, word, expected):
+    assert ipa(dialect, word) == nfc(expected)
+
+
+def test_eu_is_unchanged(dialect):
+    assert ipa(dialect, "seu") == nfc(f"ˈ{S}ew")   # p. 183 "chapeu"
+
+
+# item 13 ---------------------------------------------------------------------
+
+@pytest.mark.parametrize("word, expected", [
+    ("son", f"ˈ{S}ɵ̃w̃"),                # p. 183 "söũ"
+    ("coraçon", "kuɾɐˈsɵ̃w̃"),          # §110 p. 257, -ONE > -öũ
+    ("perdigon", "pɨɾðiˈɣɵ̃w̃"),        # p. 257 "perdigöũ"
+    ("lhion", "ˈʎjɵ̃w̃"),               # §110, -ONE after i
+    ("non", "ˈno"),                    # §110 a, p. 257 "non > nó"
+])
+def test_final_on_is_the_nasal_diphthong(word, expected):
+    for dialect in ("mwl", "mwl-x-ifanes"):
+        assert ipa(dialect, word) == nfc(expected)
+
+
+@pytest.mark.parametrize("word, expected", [
+    ("son", f"ˈ{S}ɐ̃w̃"),                # p. 257 note: "em sendinês ... -ão"
+    ("coraçon", "kuɾɐˈsɐ̃w̃"),
+])
+def test_sendines_final_on_is_ao(word, expected):
+    assert ipa("mwl-x-sendim", word) == nfc(expected)
+
+
+def test_final_un_and_in_are_unchanged(dialect):
+    assert ipa(dialect, "comun") == "kuˈmũ"        # p. 257 "comũ"
+
+
+# item 16 ---------------------------------------------------------------------
+
+@pytest.mark.parametrize("word, expected", [
+    ("ũa", "ˈũŋɐ"),                    # p. 192 "ũŋa"
+    ("algũa", "ɐɫˈɣũŋɐ"),              # p. 180 "algũ", p. 192
+])
+def test_a_velar_nasal_stands_between_a_nasal_vowel_and_a_vowel(dialect, word, expected):
+    assert ipa(dialect, word) == nfc(expected)
+
+
+def test_the_velar_nasal_is_inserted_across_words():
+    # p. 192 "bĩẹ̌̃ ŋ alto"
+    assert ipa("mwl", "bien alto") == nfc("ˈbjɪ̃ ˈŋaɫtu")
+    assert ipa("mwl-x-sendim", "bien alto") == nfc("ˈbi.ẽ ˈŋaɫtu")
+
+
+def test_the_velar_nasal_is_not_inserted_before_a_consonant_or_a_pause():
+    assert ipa("mwl", "bien dito").split(" ")[1].startswith("ˈd")
+    # p. 192, footnote 1: doubtful before a pause
+    assert ipa("mwl", "bien, alto").split(" ")[1] == "ˈaɫtu"
+
+
+# item 17 ---------------------------------------------------------------------
+
+@pytest.mark.parametrize("word, expected", [
+    ("you", "ˈʝɵw"),                   # p. 191 "yöu"
+    ("yá", "ˈʝa"),
+    ("yêrba", "ˈʝeɾβɐ"),
+])
+def test_y_is_the_spanish_palatal(dialect, word, expected):
+    assert ipa(dialect, word) == nfc(expected)
+
+
+# item 18 ---------------------------------------------------------------------
+
+@pytest.mark.parametrize("word, expected", [
+    ("tie", "ˈtɪ.ə"),                  # p. 185 "tìệ"
+    ("die", "ˈdɪ.ə"),                  # p. 225 "dìệ"
+    ("mie", "ˈmɪ.ə"),                  # p. 174 "mìệ"
+    ("frie", "ˈfɾɪ.ə"),                # p. 225 "frìệ"
+    ("tue", "ˈtʊ.ə"),                  # p. 185 "tùệ"
+    ("sue", f"ˈ{S}ʊ.ə"),               # p. 177 "sùệ"
+])
+def test_final_ie_and_ue_are_two_syllables(word, expected):
+    for dialect in ("mwl", "mwl-x-ifanes"):
+        assert ipa(dialect, word) == nfc(expected)
+
+
+@pytest.mark.parametrize("word, expected", [
+    ("tue", "ˈtʊ.ə"),                  # p. 185 "tùệ"; LdV gives no Sendinês form
+    ("sue", f"ˈ{S}ʊ.ə"),               # p. 177 "sùệ"
+])
+def test_sendines_final_ue_is_two_syllables(word, expected):
+    assert ipa("mwl-x-sendim", word) == nfc(expected)
+
+
+@pytest.mark.parametrize("word, expected", [
+    ("fazie", "faˈzɪ.ə"),              # p. 185 "fazie", stress on the i
+    ("pudie", "puˈðɪ.ə"),              # p. 185 "pudie"
+    ("tenie", "teˈnɪ.ə"),              # p. 185 "tenie"
+])
+def test_a_longer_word_in_ie_has_the_stress_on_the_i(word, expected):
+    for dialect in ("mwl", "mwl-x-ifanes"):
+        assert ipa(dialect, word) == nfc(expected)
+
+
+@pytest.mark.parametrize("word, expected", [
+    ("tie", "ˈti"),                    # p. 225 "em sendinês ti"
+    ("frie", "ˈfɾi"),                  # p. 225 "em sendinês fri"
+    ("die", "ˈdi"),                    # p. 225 "dìệ e di"
+])
+def test_sendines_final_ie_is_i(word, expected):
+    assert ipa("mwl-x-sendim", word) == nfc(expected)
+
+
+def test_qu_e_is_not_a_final_ue(dialect):
+    assert ipa(dialect, "que") == "kɨ"
+
+
+# item 19 ---------------------------------------------------------------------
+
+@pytest.mark.parametrize("word, expected", [
+    ("uolho", "ˈuʎu"),                 # p. 226 "ulho"
+    ("filho", "ˈfiʎu"),                # p. 191, medial lh
+    ("lhado", "ˈlaðu"),                # p. 259 "lado"
+])
+def test_sendines_medial_lh_is_kept_and_the_initial_one_is_l(word, expected):
+    assert ipa("mwl-x-sendim", word) == nfc(expected)
+
+
+# the spec notes quote LdV with a page and the modern source that disagrees ----
+
+@pytest.mark.parametrize("fragment", [
+    # LdV, with the page in the same sentence or the one before it
+    "Como o y castelhano normal em yo",
+    "Não deve differir muito do i das palavras inglesas fill, fit, little",
+    "Muito semelhante ao u do inglês full, butcher",
+    "O ditongo ùọ̌ não é normal na falla mirandesa",
+    "não existem na pronúncia normal mirandesa",
+    "ã-mbos", "põ-ŋgo",
+    "Intervocalico, e depois de s, ç (z) e r",
+    "não são ditongos propriamente ditos, mas verdadeiros dissyllabos",
+    # the modern sources, quoted
+    "a semivogal anterior [j] (por vezes levemente fricatizada)",
+    "Muitas vezes, na fala de algumas localidades, estes ditongos reduzem-se à vogal média [o] ou nasal [õ]",
+    "O ditongo [je] escreve-se yê",
+    "marca também a qualidade relativamente aberta das vogais a, e e o (yá, sés, nó)",
+    "Quando representa [ɔ] aberto em sílaba tónica de palavras agudas e esdrúxulas, recebe acento agudo (abó, bóbida)",
+    "indica a nasalidade da vogal em fim de vocábulo (lhion)",
+    "quer hiato [ie] (Duas Igrejas), quer ditongo [je] (Malhadas), quer monotongação em [e] (Ifanes), quer monotongação em [i] (Sendim)",
+    "Ferreira et al. (2014, §3.4) list je, jen, wo and won",
+    "The gold alone is not a citation",
+])
+def test_the_mwl_notes_quote_both_sides_of_each_disagreement(fragment):
+    spec = spec_json("mwl")
+    haystack = spec["notes"] + " ".join(r["notes"] for r in spec["allophone_rules"])
+    assert fragment in haystack
+
+
+@pytest.mark.parametrize("rule_id", [
+    "AST_NASAL_ABSORB", "MWL_NASAL_ABSORB_FINAL", "MWL_SPIRANT_D",
+    "MWL_SPIRANT_B_AFTER_CONSONANT", "MWL_SPIRANT_G", "MWL_NASAL_DIPHTHONG_JI",
+    "MWL_NASAL_DIPHTHONG_JE", "MWL_NASAL_U_LAX", "MWL_NASAL_DIPHTHONG_WO",
+])
+def test_each_new_allophone_rule_cites_ldv_with_a_page(rule_id):
+    notes = mwl_rules()[rule_id]["notes"]
+    assert "Vasconcellos" in notes and "p. 1" in notes or "p. 2" in notes
+
+
+def test_the_sendines_notes_cite_the_aditamento_disagreement_and_the_page():
+    notes = spec_json("mwl-x-sendim")["notes"]
+    assert "p. 226" in notes and "p. 259" in notes and "p. 220" in notes
+    assert "Disagreement" in notes
+
+
+def test_the_ifanes_notes_quote_the_convencao_footnote():
+    notes = spec_json("mwl-x-ifanes")["notes"]
+    assert "verifica-se a redução de [je] para [e]" in notes
+    assert "não offerece differenças phoneticas em relação á do centro" in notes
+
+
+def test_ifanes_keeps_the_central_values():
+    # LdV vol. II: the raiano speech has no phonetic difference from the centre
+    for word in ("tierra", "buono", "bien", "fuonte", "pé", "ũa"):
+        assert ipa("mwl-x-ifanes", word) == ipa("mwl", word)
+
+
+# the second candidates admitted by the 0-in-top-k test ------------------------
+
+@pytest.mark.parametrize("word, modern", [
+    ("buono", "bwonu"), ("puôrta", "pwoɾtɐ"), ("fuonte", "fwõntɨ"),
+    ("tierra", "tjerɐ"), ("bien", "bjẽ"),
+    ("pé", "pɛ"), ("pós", f"pɔ{S}"),
+    ("you", "jɵw"), ("son", f"{S}õ"),
+])
+def test_the_modern_reading_is_a_lower_candidate(word, modern):
+    candidates = [nfc(c).replace("ˈ", "") for c in G2P("mwl").word_candidates(word, k=10)]
+    assert candidates[0] != nfc(modern)
+    assert nfc(modern) in candidates

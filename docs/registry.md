@@ -133,6 +133,7 @@ derived from them: see [ancestry.md](ancestry.md#clade-nodes-and-the-derived-fam
 | `ext` | Extremaduran |
 | `mwl` | Mirandese |
 | `mwl-x-sendim` | Sendinese Mirandese |
+| `mwl-x-modern` | Mirandese (modern readings) |
 | `grc` | Ancient Greek |
 
 ### Contact / Transition Languages (Iberian)

@@ -183,10 +183,12 @@ KNOWN_DEAD_RULES = {
     "ru-x-vologda": _RU_OKANJE_DEAD,
     "ru-x-arkhangelsk": _RU_OKANJE_DEAD,
     # Sendinês monophthongises the Leonese rising diphthongs (⟨ie⟩→[i],
-    # ⟨uo⟩→[u]), so the [jɛ]/[wo] nuclei the inherited Mirandese diphthong-
-    # nasalisation rules target never surface here. The rules are live in the
-    # parent mwl and in mwl-x-ifanes, which keep the diphthongs.
-    "mwl-x-sendim": {"MWL_NASAL_DIPHTHONG_JE", "MWL_NASAL_DIPHTHONG_WO"},
+    # ⟨uo⟩→[u]), so the [jɪ]/[ʊ] nuclei and the [je]/[wo] second candidates
+    # that the inherited Mirandese nasalisation rules target never surface
+    # here. The rules are live in the parent mwl and in mwl-x-ifanes, which
+    # keep the diphthongs.
+    "mwl-x-sendim": {"MWL_NASAL_DIPHTHONG_JE", "MWL_NASAL_DIPHTHONG_WO",
+                     "MWL_NASAL_DIPHTHONG_JI", "MWL_NASAL_U_LAX"},
     # Cypriot Maronite Arabic lost the glottal stop /ʔ/ entirely (Borg 1985;
     # Roth 2004), so the inherited hamzat-al-waṣl prosthesis rule — which
     # targets /ʔ/ — can never fire here. It is live in every Arabic lect that
