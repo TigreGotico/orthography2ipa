@@ -327,8 +327,32 @@
    "phonemes": [],
    "surface": "e",
    "notes": "Not inherited from the pt-PT base. Barranquenho is its own language, and no source on its nasal ⟨e⟩ or its ⟨-ens⟩ was read for this rule, so the spec keeps its reduced nasal [ɨ̃] (onten [ˈõtɨ̃], lembrá [lɨ̃ˈbɾa]) and the plain [ẽ] of -en."
-  }
- ],
+  },
+    {
+      "id": "PT_FINAL_EN_NUCLEUS",
+      "phonemes": [],
+      "surface": "e",
+      "notes": "DISABLED for Barranquenho. No source for a learned word-final ⟨-en⟩ in this variety was read, so its output stays what it was; the pt-PT rule rests on Infopédia and Priberam entries for standard European Portuguese."
+    },
+    {
+      "id": "PT_FINAL_EN_CODA",
+      "phonemes": [],
+      "surface": "e",
+      "notes": "DISABLED for Barranquenho. No source for a learned word-final ⟨-en⟩ in this variety was read, so its output stays what it was; the pt-PT rule rests on Infopédia and Priberam entries for standard European Portuguese."
+    },
+    {
+      "id": "PT_ER_CLOSE",
+      "phonemes": [],
+      "surface": "e",
+      "notes": "DISABLED for Barranquenho. No source for the stressed vowel of a word-final ⟨-er⟩ in this variety was read, so its output stays what it was; the pt-PT rule rests on Infopédia and Priberam entries for standard European Portuguese."
+    },
+    {
+      "id": "PT_LEX_OPEN_ER",
+      "phonemes": [],
+      "surface": "e",
+      "notes": "DISABLED for Barranquenho. No source for the stressed vowel of a word-final ⟨-er⟩ in this variety was read, so its output stays what it was; the pt-PT rule rests on Infopédia and Priberam entries for standard European Portuguese."
+    }
+  ],
  "ancestors": [
   {
    "code": "pt-PT",

@@ -494,6 +494,12 @@
       "syllable_position": "coda",
       "preceded_by": "vowel",
       "notes": "The coda nasal is absorbed into the nasal vowel it created; in ALUPEC the coda n marks nasality of the preceding vowel and is not itself pronounced."
+    },
+    {
+      "id": "PT_LEX_OPEN_ER",
+      "phonemes": [],
+      "surface": "e",
+      "notes": "DISABLED for Kabuverdianu. No source for the stressed vowel of a word-final ⟨-er⟩ in this language was read, so its output stays what it was; the pt-PT list rests on Infopédia entries for standard European Portuguese."
     }
   ],
   "stress": {

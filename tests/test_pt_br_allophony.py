@@ -97,8 +97,8 @@ def test_br_declares_the_nasal_raise_rules():
     ids = [r.id for r in get("pt-BR").allophone_rules]
     # the word-final nasal-diphthong glide rules and the raised-final-e
     # affrication rules now lead the list; the nasal-raise trio follows.
-    assert ids[:5] == [
-        "BR_FINAL_EM_GLIDE", "BR_FINAL_AM_GLIDE",
+    assert ids[:6] == [
+        "BR_FINAL_EM_GLIDE", "BR_FINAL_ENS_GLIDE", "BR_FINAL_AM_GLIDE",
         "BR_AFFRIC_T_RAISED", "BR_AFFRIC_D_RAISED", "PT_NASAL_A_RAISE"]
     assert [i for i in ids if i.startswith("PT_NASAL")][:3] == [
         "PT_NASAL_A_RAISE", "PT_NASAL_E_RAISE", "PT_NASAL_O_RAISE"]
