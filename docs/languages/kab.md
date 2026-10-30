@@ -1,14 +1,14 @@
-# Kabyle / Taqbaylit (kab) — Phonology Reference
+# Kabyle / Taqbaylit (kab): Phonology Reference
 
 **Code**: `kab` | **Family**: Afro-Asiatic > Berber | **Script**: Latin (Berber alphabet)
 **Quality tier**: research | **Region**: Kabylia, north-eastern Algeria (~5–7 million speakers)
-**Sources read**: Kossmann & Stroomer, *Berber Phonology* (1997), pp. 461–475 (**primary**); Karaoui, Djeradi & Djeradi, *Acoustic Characterization of the Noise Sources for the Kabyle Fricatives* (2024), pp. 123–125; Wikipedia, *Kabyle language* (secondary orthography cross-check, flagged).
+**Sources read**: Kossmann & Stroomer, *Berber Phonology* (1997), pp. 461–475 (**primary**). Karaoui, Djeradi & Djeradi, *Acoustic Characterization of the Noise Sources for the Kabyle Fricatives* (2024), pp. 123–125. Wikipedia, *Kabyle language* (secondary orthography cross-check, flagged).
 
 ---
 
 ## Input contract
 
-This spec expects text in the **standardised Berber Latin alphabet** — the
+This spec expects text in the **standardised Berber Latin alphabet**, the
 *tamaziɣt* / INALCO orthography descending from Mouloud Mammeri's conventions,
 the everyday spelling of the Kabyle Wikipedia, the Kabyle press, and
 Naït-Zerrad's teaching grammars. **Tifinagh** (neo-Tifinagh) is a *secondary*
@@ -41,8 +41,8 @@ The alphabet is a 34-letter Latin system that adds the Berberist letters
 
 Vowels, schwa and the pharyngealization contrast are taken from Kossmann &
 Stroomer (1997): three vowels /a i u/ with strongly context-dependent
-realisation (p. 463 §23.4.1); schwa placed by syllable structure / sonority
-and mostly non-phonemic (p. 463 §23.4.2); Proto-Berber pharyngealized only
+realisation (p. 463 §23.4.1). Schwa placed by syllable structure / sonority
+and mostly non-phonemic (p. 463 §23.4.2). Proto-Berber pharyngealized only
 ⟨ḍ⟩ and ⟨ẓ⟩, the rest of the emphatics being Arabic-integrated (p. 464
 §23.4.3.1).
 
@@ -57,10 +57,10 @@ keep their occlusion.
 > "Spirantization implies the development of **lax stops into fricatives**,
 > e.g., *b* becoming *β* … It reaches its **culminating points in Riffian and
 > Kabyle** … **Spirantization never affects tense consonants**."
-> — Kossmann & Stroomer 1997, *Berber Phonology*, p. 466.
+>, Kossmann & Stroomer 1997, *Berber Phonology*, p. 466.
 
 The spirantized values (ibid. pp. 468–469, Beni-Said Riffian table, of which
-Kabyle is the co-culminating system; the velar fricatives [ç ʝ] are also
+Kabyle is the co-culminating system. The velar fricatives [ç ʝ] are also
 confirmed in the Kabyle fricative inventory by Karaoui et al. 2024, p. 123):
 
 | Underlying (lax) | Surface | Example |
@@ -72,7 +72,7 @@ confirmed in the Kabyle fricative inventory by Karaoui et al. 2024, p. 123):
 | /ɡ/ | [ʝ] | `argaz` "man" → [arʝaz] |
 | /dˤ/ | [ðˤ] | `aḍar` "foot" → [aðˤar] |
 
-The lax : tense (geminate) opposition is durational — "lax consonants are
+The lax : tense (geminate) opposition is durational, "lax consonants are
 always realized shorter than their tense counterparts" (ibid. p. 465), and
 generative analyses treat the tense series as geminates. Kabyle writes the
 geminate by **doubling the letter** (`bb dd tt kk gg ḍḍ`).
@@ -82,14 +82,14 @@ geminate by **doubling the letter** (`bb dd tt kk gg ḍḍ`).
 The spec keeps the *two-maps* separation:
 
 1. **Grapheme map** (`graphemes`): the single letters `b d t k g` map to the
-   plain stop phonemes `/b d t k ɡ/`; the doubled letters `bb dd tt kk gg`
+   plain stop phonemes `/b d t k ɡ/`. The doubled letters `bb dd tt kk gg`
    map to the **distinct long phonemes** `/bː dː tː kː ɡː/`.
 2. **Allophone map** (`allophone_rules`): five post-lexical rewrites
    (`KAB_SPIRANT_B/D/T/K/G`, plus `KAB_SPIRANT_DH_EMPH`) spirantize the plain
    stop phonemes.
 
 Because the geminates are a *different phoneme string* (`/bː/` ≠ `/b/`), the
-spirantization rules — which target `/b d t k ɡ/` — are **automatically
+spirantization rules, which target `/b d t k ɡ/`, are **automatically
 gemination-conditioned** and never touch the geminates. This is visible in a
 minimal contrast:
 
@@ -125,7 +125,7 @@ reaches the spirantization rule.
 - **Blocking after `/l/`.** Fuller descriptions also block spirantization after
   `/l/` and in some tautosyllabic obstruent clusters, but the primary source
   relied on here (Kossmann & Stroomer 1997) states only the homorganic-nasal
-  block, so only that is modelled; a lax stop after `/l/` may still be
+  block, so only that is modelled. A lax stop after `/l/` may still be
   over-spirantized. This is a small residue in running text.
 - **Morphophonological gemination alternations.** Geminated /ɣ/ surfaces as
   *qq*, geminated /w/ as *bb*, geminated /y/ as *gg*. These are lexical /
@@ -142,20 +142,20 @@ reaches the spirantization rule.
 
 - **Kossmann, Maarten G. & Stroomer, Harry J. (1997).** *Berber Phonology.* In
   A. S. Kaye (ed.), *Phonologies of Asia and Africa*, vol. 1, pp. 461–475.
-  Eisenbrauns. (Primary; read in full — spirantization, lax/tense gemination,
+  Eisenbrauns. (Primary; read in full, spirantization, lax/tense gemination,
   vowels, schwa, pharyngealization.)
   <https://hdl.handle.net/1887/4150>
-- **Karaoui, F.; Djeradi, A.; Djeradi, R. (2024).** *Acoustic Characterization
+- **Karaoui, F.. Djeradi, A.. Djeradi, R. (2024).** *Acoustic Characterization
   of the Noise Sources for the Kabyle Fricatives Consonants.* ICAECE'2023
   abstracts, AIJR, pp. 123–125. (Kabyle fricative inventory incl. [ç ʝ];
   spirantization / palatalization / affrication as Kabyle features.)
 - **Naït-Zerrad, Kamal (2001).** *Grammaire moderne du kabyle / Tajerrumt
   tatrart n teqbaylit.* Éditions Karthala, Paris. (Secondary; lexical /
-  morphological attestation for the TTS gold set — not a phonological source.)
+  morphological attestation for the TTS gold set, not a phonological source.)
 - **Dallet, Jean-Marie (1982).** *Dictionnaire kabyle-français: parler des At
   Mangellat, Algérie.* SELAF, Paris. (Secondary; lexical attestation for the TTS
-  gold set — not a phonological source.)
-- **Wikipedia, *Kabyle language*** — secondary cross-check (flagged) of the
+  gold set, not a phonological source.)
+- **Wikipedia, *Kabyle language***, secondary cross-check (flagged) of the
   34-letter Berber Latin alphabet table only.
 
 ---
@@ -169,5 +169,4 @@ regression-pinning sentence-level o2i behaviour. See
 and authoring procedure.
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
+[← Peripheral Arabic](ar-maghrebi-yemeni-sudanese.md) · [Home](../index.md) · [Ancient Egyptian →](egy.md)

@@ -1,4 +1,4 @@
-# Slavic Languages — Comparative Phonology Reference
+# Slavic Languages: Comparative Phonology Reference
 
 **Codes**: `pl`, `cs`, `sk`, `sr`, `hr`, `bg`, `mk`, `uk`, `be`, `sla`
 **Family**: Indo-European > Slavic | **Script**: Latin (pl/cs/sk/hr) or Cyrillic (ru/uk/be/sr/bg/mk)
@@ -6,7 +6,7 @@
 
 ---
 
-## Final Devoicing — Pan-Slavic Feature
+## Final Devoicing: Pan-Slavic Feature
 
 All Slavic languages with obstruent voicing contrasts apply **final devoicing** in coda position:
 
@@ -54,7 +54,7 @@ Polish ⟨ą⟩ and ⟨ę⟩ are the only nasal vowels remaining from Proto-Slav
 
 ---
 
-## Czech ⟨ě⟩ — Iotation and Softening
+## Czech ⟨ě⟩: Iotation and Softening
 
 The letter ⟨ě⟩ [jɛ] serves dual function:
 1. **Iotation**: adds [j] before [ɛ]: `věra` [vjɛra] "faith"
@@ -67,9 +67,9 @@ The letter ⟨ě⟩ [jɛ] serves dual function:
 
 ---
 
-## Czech ⟨ř⟩ — Unique Phoneme
+## Czech ⟨ř⟩: Unique Phoneme
 
-Czech has a phoneme with no equivalent in other languages: `ř` [r̝] — a raised alveolar trill (simultaneous /r/ + /ʒ/ articulation). It is always hard (non-palatalized).
+Czech has a phoneme with no equivalent in other languages: `ř` [r̝], a raised alveolar trill (simultaneous /r/ + /ʒ/ articulation). It is always hard (non-palatalized).
 
 - Voiced: `říkat` [r̝iːkat] "to say"
 - Voiceless (after voiceless consonant/word-finally): [r̝̊]: `tři` [tr̝̊ɪ] "three"
@@ -114,7 +114,4 @@ Three-way distinction in each position is unique among European languages.
 - Short, D. (1993). Czech. In: *The Slavonic Languages*, Routledge.
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
-
-*Related: [ru](ru.md)*
+[← Mirandese](mwl.md) · [Home](../index.md) · [Russian →](ru.md)

@@ -15,6 +15,7 @@ Usage::
 """
 from __future__ import annotations
 
+import dataclasses
 import json
 import os
 import sys
@@ -48,20 +49,10 @@ def _spec_to_dict(spec, bench_by_lang):
         {"code": a.code, "role": a.role.value, "weight": a.weight, "notes": a.notes}
         for a in (spec.ancestors or ())
     ]
-    sources = [
-        {
-            "id": s.id,
-            "author": s.author,
-            "year": s.year,
-            "title": s.title,
-            "publisher": s.publisher,
-            "url": s.url,
-            "wikipedia_url": s.wikipedia_url,
-            "pages": s.pages,
-            "notes": s.notes,
-        }
-        for s in (spec.sources or ())
-    ]
+    # Derived from the dataclass fields rather than hand-listed: a citation
+    # field added to LinguisticSource reaches the explorer without a seventh
+    # edit here. `doi` was omitted for exactly that reason.
+    sources = [dataclasses.asdict(s) for s in (spec.sources or ())]
 
     positional = {}
     for grapheme, pos_map in (spec.positional_graphemes or {}).items():
@@ -576,8 +567,9 @@ const DATA = __DATA_JSON__;
       "<th>dataset</th><th>n</th><th>PER</th><th>95% CI</th><th>exact match</th>" +
       "<th>provenance</th><th>quality tier</th></tr></thead><tbody>";
     rows.forEach(function (r) {
-      const ci = (r.per_ci_low !== undefined && r.per_ci_high !== undefined)
-        ? esc(r.per_ci_low) + "–" + esc(r.per_ci_high) : "";
+      const ci = (r.per_ci_low != null && r.per_ci_high != null)
+        ? esc(r.per_ci_low) + "–" + esc(r.per_ci_high)
+        : (r.per_ci_low === null ? "n too small" : "");
       const tier = esc(r.quality_tier);
       const tierCell = tier
         ? '<span class="tier-pill ' + tier + '">' + tier + "</span>" : "";
@@ -679,6 +671,7 @@ const DATA = __DATA_JSON__;
       if (s.publisher) line += ". " + esc(s.publisher);
       if (s.pages) line += ", " + esc(s.pages);
       line += ".";
+      if (s.doi) line += ' <a href="https://doi.org/' + esc(s.doi) + '" target="_blank" rel="noopener">doi:' + esc(s.doi) + '</a>';
       if (s.url) line += ' <a href="' + esc(s.url) + '" target="_blank" rel="noopener">source</a>';
       if (s.wikipedia_url) line += ' <a href="' + esc(s.wikipedia_url) + '" target="_blank" rel="noopener">wikipedia</a>';
       if (s.notes) line += "<br><span style=\\"color:var(--muted)\\">" + esc(s.notes) + "</span>";

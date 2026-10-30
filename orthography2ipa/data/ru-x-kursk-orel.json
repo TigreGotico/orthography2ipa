@@ -4,8 +4,65 @@
   "script": "Cyrillic",
   "graphemes_base": "ru-x-southern",
   "allophones_base": "ru-x-southern",
+  "positional_graphemes_base": "ru-x-southern",
+  "positional_graphemes": {
+    "о": {
+      "first_pretonic": [
+        "a",
+        "ə"
+      ],
+      "pretonic": [
+        "ə"
+      ],
+      "posttonic": [
+        "ə"
+      ]
+    },
+    "а": {
+      "first_pretonic": [
+        "a",
+        "ə"
+      ],
+      "pretonic": [
+        "ə"
+      ],
+      "posttonic": [
+        "ə"
+      ]
+    },
+    "я": {
+      "first_pretonic": [
+        "ja",
+        "jɪ"
+      ],
+      "pretonic": [
+        "jɪ"
+      ],
+      "posttonic": [
+        "jə"
+      ]
+    },
+    "е": {
+      "first_pretonic": [
+        "ja",
+        "a",
+        "jɪ",
+        "ɪ"
+      ],
+      "pretonic": [
+        "jɪ",
+        "ɪ"
+      ],
+      "posttonic": [
+        "jɪ",
+        "ɪ"
+      ]
+    }
+  },
+  "word_exceptions_base": "ru-x-southern",
+  "grammatical_endings_base": "ru-x-southern",
   "parent": "ru-x-southern",
-  "notes": "South Russian, Kursk-Orel zone. Archetypal [ɣ] fricative, strong яканье.",
+  "notes": "Southern Russian, Kursk–Orel group. The group's diagnostic is DISSIMILATIVE аканье and яканье — the Zhizdra/Sudzha type — not the 'strong яканье' this spec previously claimed; strong jakanje is the Pskov–Tver system, and claiming it here put the file in the wrong half of the Southern zone. Dissimilative means the first pretonic vowel is RECIPROCALLY conditioned by the stressed one: 'аканье диссимилятивное (расподобление ударного и предударного гласных): травинкой — травой — тръва; вадичка — вадой — въда' and 'яканье диссимилятивное: пятóк — питáк, сяло́ — сила́, стя́ной — стина́'. The pretonic vowel is low [a] before a NON-low stressed vowel and reduced [ə] (or [i] after soft consonants) before stressed [a]. That conditioning looks RIGHTWARD at the stressed vowel's height, which a positional grapheme table cannot express, so the alternation is declared as ranked alternatives — [a] first, the dissimilated [ə]/[i] second — rather than collapsed to one value or silently inherited as the eastern non-dissimilative system from `ru-x-southern`. Ranking is a modelling ceiling, not a claim about frequency, and this is the honest shape for it. Г = [ɣ] with a live /ɣ/~/x/ voicing opposition ('наличие фрикативного /ɣ/ на месте севернорусского и литературного смычного /г/. Оппозиция по звонкости/глухости /ɣ/ — /х/'), and the [ɣ] genitive, both inherited from `ru-x-southern`.",
   "quality": "stub",
   "script_type": "alphabet",
   "sources": [

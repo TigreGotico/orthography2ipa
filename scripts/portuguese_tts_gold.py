@@ -168,7 +168,13 @@ FEATURES = {
     "coda_sibilant":    ("both", lambda s, ipa: _coda_sibilant_grapheme(s)
                                                  and _coda_sibilant_hush_ipa(ipa)),
     "open_mid":         ("ipa",  lambda s, ipa: "ɛ" in ipa or "ɔ" in ipa),
-    "close_mid":        ("ipa",  lambda s, ipa: re.search(r"[eo]", ipa) is not None),
+    # close-mid [e]/[o], whether bare or riding under a nasal tilde as a
+    # precomposed letter (ẽ õ …) or a base + combining tilde (NFD) — decompose
+    # first so a precomposed nasal vowel's base letter is visible to the regex
+    # (the engine's own output is NFC, see g2p.py's G2P._transcribe_word, but
+    # this predicate must not care which form it's handed).
+    "close_mid":        ("ipa",  lambda s, ipa: re.search(
+        r"[eo]", unicodedata.normalize("NFD", ipa)) is not None),
     # nasalisation, whether the source spec emits a combining tilde (NFD) or a
     # precomposed nasal letter (ã õ …, as the historical lects do) — normalise
     # so the encoding never decides the tag.
@@ -182,8 +188,10 @@ FEATURES = {
     "diphthong_ei_ou":  ("orth", lambda s, ipa: re.search(r"ei|ou", s.lower()) is not None),
     # coda /l/ axis: dark [ɫ] (EP) vs velar vs vocalised [w] (BR)
     "l_dark_or_velar":  ("orth", lambda s, ipa: _coda_l_grapheme(s)),
-    # insular fronting of /u/ → [y] (Azores/Madeira)
-    "u_fronting":       ("ipa",  lambda s, ipa: "y" in ipa),
+    # insular fronting of /u/ → [y] (Azores/Madeira), bare or nasalised —
+    # nasalised [ỹ] is a precomposed letter in the engine's NFC output (see
+    # close_mid above), so decompose first to expose the bare "y".
+    "u_fronting":       ("ipa",  lambda s, ipa: "y" in unicodedata.normalize("NFD", ipa)),
     # cross-word sandhi site (elision / liaison / sibilant voicing)
     "sandhi":           ("both", lambda s, ipa: _has_sandhi_junction(s)),
 }

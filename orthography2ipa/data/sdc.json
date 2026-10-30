@@ -3,7 +3,7 @@
   "name": "Sassarese Sardinian",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "ddh": [
       "ɖ"
@@ -108,7 +108,7 @@
       "notes": "Descent per Glottolog classification of Sassarese Sardinian (sass1235)."
     }
   ],
-  "notes": "Skeleton. Romance variety of northern Sardinia (transitional Sardo-Corsican) written in the Latin alphabet. Grapheme map follows Italian-based conventions with Sassarese specifics: the retroflex ddh/dd [ɖ], ch/gh for plain velars, gn [ɲ], sc [ʃ] and the affricate readings of c/g before front vowels. Gemination, the precise voiced/voiceless value of z and s, and context-conditioned lenition are not fully recoverable from the spelling and are left unencoded, so a PER floor is expected.",
+  "notes": "Skeleton. Romance variety of northern Sardinia (transitional Sardo-Corsican) written in the Latin alphabet. Grapheme map follows Italian-based conventions with Sassarese specifics: the retroflex ddh/dd [ɖ], ch/gh for plain velars, gn [ɲ], sc [ʃ] and the affricate readings of c/g before front vowels. Gemination, the precise voiced/voiceless value of z and s, and context-conditioned lenition are not fully recoverable from the spelling and are left unencoded, so a PER floor is expected. Sassarese stress is lexically contrastive but only partially recoverable from the practical orthography's accent marks; unmarked cases are left unencoded (documented exemption).",
   "iso639_3": "sdc",
   "glottolog_code": null,
   "sources": [
@@ -133,6 +133,16 @@
       "pages": null,
       "notes": "Orthography/phonology reference for a skeleton-tier entry.",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Sassarese_language"
+    },
+    {
+      "id": "sdc_bazzoni1999",
+      "author": "Bazzoni, Gian Paolo",
+      "year": 1999,
+      "title": "Elementi di grammatica sassarese",
+      "publisher": "Self-published/regional imprint",
+      "url": null,
+      "pages": null,
+      "notes": "Modern descriptive grammar of Sassarese (transitional Sardo-Corsican), alongside Sanna's (1957) Il dialetto di Sassari e altri saggi; consulted to check the Italian-based grapheme map (retroflex ddh/dd, ch/gh, gn, sc) modelled here."
     }
   ],
   "wikipedia": [

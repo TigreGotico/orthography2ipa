@@ -118,6 +118,8 @@ def test_family_is_not_authored_in_json():
         # authored label rather than deriving a descent that does not exist.
         "English Creole", "French Creole", "Portuguese Creole",
         "Spanish Creole", "Creole",
+        # A mixed language (Barranquenho) has no single parent for the same reason.
+        "Mixed Language",
     }, authored
 
 

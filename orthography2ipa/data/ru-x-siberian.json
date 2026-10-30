@@ -5,13 +5,96 @@
   "graphemes_base": "ru",
   "allophones_base": "ru",
   "allophones": {
+    "a": [
+      "a"
+    ],
     "o": [
-      "o",
-      "ɐ"
+      "o"
     ]
   },
+  "positional_graphemes_base": "ru",
+  "positional_graphemes": {
+    "о": {
+      "default": [
+        "o"
+      ],
+      "first_pretonic": [
+        "o"
+      ],
+      "pretonic": [
+        "o"
+      ],
+      "posttonic": [
+        "o"
+      ]
+    },
+    "а": {
+      "default": [
+        "a"
+      ],
+      "first_pretonic": [
+        "a"
+      ],
+      "pretonic": [
+        "a"
+      ],
+      "posttonic": [
+        "a"
+      ]
+    }
+  },
+  "word_exceptions": {
+    "много": "ˈmnoɡo",
+    "немного": "nʲeˈmnoɡo",
+    "намного": "naˈmnoɡo",
+    "дорого": "ˈdoroɡo",
+    "недорого": "nʲeˈdoroɡo",
+    "строго": "ˈstroɡo",
+    "убого": "ʊˈboɡo",
+    "лого": "ˈɫoɡo",
+    "ого": "ˈoɡo",
+    "его": "jeˈvo",
+    "него": "nʲeˈvo",
+    "кого": "koˈvo",
+    "того": "toˈvo",
+    "всего": "fsʲeˈvo",
+    "сего": "sʲeˈvo",
+    "чего": "tɕeˈvo",
+    "ничего": "nʲɪtɕeˈvo",
+    "одного": "odnoˈvo",
+    "никого": "nʲɪkoˈvo",
+    "моего": "mojeˈvo",
+    "твоего": "tvojeˈvo",
+    "своего": "svojeˈvo",
+    "чьего": "tɕjeˈvo",
+    "этого": "ˈɛtovo",
+    "ничьего": "nʲɪtɕjeˈvo"
+  },
+  "grammatical_endings": {
+    "ого": "ovo",
+    "него": "nʲevo",
+    "сего": "sʲevo",
+    "жего": "ʐɨvo",
+    "жьего": "ʐjevo",
+    "шего": "ʂɨvo",
+    "цего": "tsɨvo",
+    "чего": "tɕevo",
+    "щего": "ɕːevo",
+    "чьего": "tɕjevo",
+    "тьего": "tʲjevo",
+    "сьего": "sʲjevo",
+    "зьего": "zʲjevo",
+    "льего": "lʲjevo",
+    "ньего": "nʲjevo",
+    "дьего": "dʲjevo",
+    "бьего": "bʲjevo",
+    "вьего": "vʲjevo",
+    "пьего": "pʲjevo",
+    "рьего": "rʲjevo",
+    "мьего": "mʲjevo"
+  },
   "parent": "ru",
-  "notes": "Siberian Russian (Novosibirsk, Tomsk, Krasnoyarsk regions). Generally conservative; partial аканье. г = [ɡ] plosive. Substrate influence from Siberian languages.",
+  "notes": "Siberian old-settler Russian (сибирские старожильческие говоры: Novosibirsk, Tomsk, Krasnoyarsk). These are NORTHERN-based dialects — 'диалекты и говоры русского языка, развившиеся на основе севернорусского наречия' — so their vowel system is ОКАНЬЕ, not the 'partial аканье' this spec previously claimed while inheriting the standard's akanje table outright. ⟨о⟩ and ⟨а⟩ therefore stay [o] and [a] unstressed. Unlike the Northern zone proper, the old-settler dialects DISTINGUISH /ч/ and /ц/ ('различение «ч» и «ц», в то время как северорусским говорам свойственно цоканье'), so no цоканье is encoded and ⟨ч⟩ keeps the standard [tɕ]; and /г/ is the plosive [ɡ] ('взрывной [г]'), so this spec sits on the Northern side of the [ɣ] isogloss. The behaviour of unstressed vowels after SOFT consonants is deliberately left at the standard's иканье: the sources consulted state okanje for the hard context only, and extending it to a еканье system here would be a guess. NEEDS SOURCING. Genitive ⟨-ого/-его⟩ = [v] with okanje vowels ([-ovo], его = [jeˈvo]), for the same reason as `ru-x-northern`: the [v] desinence is morphological and crosses the okanje/akanje split. ENDING \"ого\" is the adjectival/pronominal genitive singular desinence ⟨-ого⟩ itself, realised [ovo]: ⟨г⟩ = [v], the ordinary Russian genitive desinence, which is morphological and so crosses the оканье/аканье isogloss unchanged, while the desinence VOWELS are okanje vowels — unstressed /o/ stays [o] and its counterpart after a soft consonant stays [e], so the ending is not the standard's reduced shape (Timberlake 2004; Comrie & Corbett 1993). ENDING \"него\" is the genitive singular desinence ⟨-его⟩ after ⟨н⟩, realised [nʲevo]: ⟨г⟩ = [v], the ordinary Russian genitive desinence, which is morphological and so crosses the оканье/аканье isogloss unchanged, while the desinence VOWELS are okanje vowels — unstressed /o/ stays [o] and its counterpart after a soft consonant stays [e], so the ending is not the standard's reduced shape (Timberlake 2004; Comrie & Corbett 1993). ENDING \"сего\" is the genitive singular desinence ⟨-его⟩ after ⟨с⟩, realised [sʲevo]: ⟨г⟩ = [v], the ordinary Russian genitive desinence, which is morphological and so crosses the оканье/аканье isogloss unchanged, while the desinence VOWELS are okanje vowels — unstressed /o/ stays [o] and its counterpart after a soft consonant stays [e], so the ending is not the standard's reduced shape (Timberlake 2004; Comrie & Corbett 1993). ENDING \"жего\" is the genitive singular desinence ⟨-его⟩ after ⟨ж⟩, realised [ʐɨvo]: ⟨г⟩ = [v], the ordinary Russian genitive desinence, which is morphological and so crosses the оканье/аканье isogloss unchanged, while the desinence VOWELS are okanje vowels — unstressed /o/ stays [o] and its counterpart after a soft consonant stays [e], so the ending is not the standard's reduced shape (Timberlake 2004; Comrie & Corbett 1993). ENDING \"жьего\" is the possessive/soft-sign genitive singular after ⟨ж⟩, where the soft sign contributes the glide [j] before the desinence, realised [ʐjevo]: ⟨г⟩ = [v], the ordinary Russian genitive desinence, which is morphological and so crosses the оканье/аканье isogloss unchanged, while the desinence VOWELS are okanje vowels — unstressed /o/ stays [o] and its counterpart after a soft consonant stays [e], so the ending is not the standard's reduced shape (Timberlake 2004; Comrie & Corbett 1993). ENDING \"шего\" is the genitive singular desinence ⟨-его⟩ after ⟨ш⟩, realised [ʂɨvo]: ⟨г⟩ = [v], the ordinary Russian genitive desinence, which is morphological and so crosses the оканье/аканье isogloss unchanged, while the desinence VOWELS are okanje vowels — unstressed /o/ stays [o] and its counterpart after a soft consonant stays [e], so the ending is not the standard's reduced shape (Timberlake 2004; Comrie & Corbett 1993). ENDING \"цего\" is the genitive singular desinence ⟨-его⟩ after ⟨ц⟩, realised [tsɨvo]: ⟨г⟩ = [v], the ordinary Russian genitive desinence, which is morphological and so crosses the оканье/аканье isogloss unchanged, while the desinence VOWELS are okanje vowels — unstressed /o/ stays [o] and its counterpart after a soft consonant stays [e], so the ending is not the standard's reduced shape (Timberlake 2004; Comrie & Corbett 1993). ENDING \"чего\" is the genitive singular desinence ⟨-его⟩ after ⟨ч⟩, realised [tɕevo]: ⟨г⟩ = [v], the ordinary Russian genitive desinence, which is morphological and so crosses the оканье/аканье isogloss unchanged, while the desinence VOWELS are okanje vowels — unstressed /o/ stays [o] and its counterpart after a soft consonant stays [e], so the ending is not the standard's reduced shape (Timberlake 2004; Comrie & Corbett 1993). ENDING \"щего\" is the genitive singular desinence ⟨-его⟩ after ⟨щ⟩, realised [ɕːevo]: ⟨г⟩ = [v], the ordinary Russian genitive desinence, which is morphological and so crosses the оканье/аканье isogloss unchanged, while the desinence VOWELS are okanje vowels — unstressed /o/ stays [o] and its counterpart after a soft consonant stays [e], so the ending is not the standard's reduced shape (Timberlake 2004; Comrie & Corbett 1993). ENDING \"чьего\" is the possessive/soft-sign genitive singular after ⟨ч⟩, where the soft sign contributes the glide [j] before the desinence, realised [tɕjevo]: ⟨г⟩ = [v], the ordinary Russian genitive desinence, which is morphological and so crosses the оканье/аканье isogloss unchanged, while the desinence VOWELS are okanje vowels — unstressed /o/ stays [o] and its counterpart after a soft consonant stays [e], so the ending is not the standard's reduced shape (Timberlake 2004; Comrie & Corbett 1993). ENDING \"тьего\" is the possessive/soft-sign genitive singular after ⟨т⟩, where the soft sign contributes the glide [j] before the desinence, realised [tʲjevo]: ⟨г⟩ = [v], the ordinary Russian genitive desinence, which is morphological and so crosses the оканье/аканье isogloss unchanged, while the desinence VOWELS are okanje vowels — unstressed /o/ stays [o] and its counterpart after a soft consonant stays [e], so the ending is not the standard's reduced shape (Timberlake 2004; Comrie & Corbett 1993). ENDING \"сьего\" is the possessive/soft-sign genitive singular after ⟨с⟩, where the soft sign contributes the glide [j] before the desinence, realised [sʲjevo]: ⟨г⟩ = [v], the ordinary Russian genitive desinence, which is morphological and so crosses the оканье/аканье isogloss unchanged, while the desinence VOWELS are okanje vowels — unstressed /o/ stays [o] and its counterpart after a soft consonant stays [e], so the ending is not the standard's reduced shape (Timberlake 2004; Comrie & Corbett 1993). ENDING \"зьего\" is the possessive/soft-sign genitive singular after ⟨з⟩, where the soft sign contributes the glide [j] before the desinence, realised [zʲjevo]: ⟨г⟩ = [v], the ordinary Russian genitive desinence, which is morphological and so crosses the оканье/аканье isogloss unchanged, while the desinence VOWELS are okanje vowels — unstressed /o/ stays [o] and its counterpart after a soft consonant stays [e], so the ending is not the standard's reduced shape (Timberlake 2004; Comrie & Corbett 1993). ENDING \"льего\" is the possessive/soft-sign genitive singular after ⟨л⟩, where the soft sign contributes the glide [j] before the desinence, realised [lʲjevo]: ⟨г⟩ = [v], the ordinary Russian genitive desinence, which is morphological and so crosses the оканье/аканье isogloss unchanged, while the desinence VOWELS are okanje vowels — unstressed /o/ stays [o] and its counterpart after a soft consonant stays [e], so the ending is not the standard's reduced shape (Timberlake 2004; Comrie & Corbett 1993). ENDING \"ньего\" is the possessive/soft-sign genitive singular after ⟨н⟩, where the soft sign contributes the glide [j] before the desinence, realised [nʲjevo]: ⟨г⟩ = [v], the ordinary Russian genitive desinence, which is morphological and so crosses the оканье/аканье isogloss unchanged, while the desinence VOWELS are okanje vowels — unstressed /o/ stays [o] and its counterpart after a soft consonant stays [e], so the ending is not the standard's reduced shape (Timberlake 2004; Comrie & Corbett 1993). ENDING \"дьего\" is the possessive/soft-sign genitive singular after ⟨д⟩, where the soft sign contributes the glide [j] before the desinence, realised [dʲjevo]: ⟨г⟩ = [v], the ordinary Russian genitive desinence, which is morphological and so crosses the оканье/аканье isogloss unchanged, while the desinence VOWELS are okanje vowels — unstressed /o/ stays [o] and its counterpart after a soft consonant stays [e], so the ending is not the standard's reduced shape (Timberlake 2004; Comrie & Corbett 1993). ENDING \"бьего\" is the possessive/soft-sign genitive singular after ⟨б⟩, where the soft sign contributes the glide [j] before the desinence, realised [bʲjevo]: ⟨г⟩ = [v], the ordinary Russian genitive desinence, which is morphological and so crosses the оканье/аканье isogloss unchanged, while the desinence VOWELS are okanje vowels — unstressed /o/ stays [o] and its counterpart after a soft consonant stays [e], so the ending is not the standard's reduced shape (Timberlake 2004; Comrie & Corbett 1993). ENDING \"вьего\" is the possessive/soft-sign genitive singular after ⟨в⟩, where the soft sign contributes the glide [j] before the desinence, realised [vʲjevo]: ⟨г⟩ = [v], the ordinary Russian genitive desinence, which is morphological and so crosses the оканье/аканье isogloss unchanged, while the desinence VOWELS are okanje vowels — unstressed /o/ stays [o] and its counterpart after a soft consonant stays [e], so the ending is not the standard's reduced shape (Timberlake 2004; Comrie & Corbett 1993). ENDING \"пьего\" is the possessive/soft-sign genitive singular after ⟨п⟩, where the soft sign contributes the glide [j] before the desinence, realised [pʲjevo]: ⟨г⟩ = [v], the ordinary Russian genitive desinence, which is morphological and so crosses the оканье/аканье isogloss unchanged, while the desinence VOWELS are okanje vowels — unstressed /o/ stays [o] and its counterpart after a soft consonant stays [e], so the ending is not the standard's reduced shape (Timberlake 2004; Comrie & Corbett 1993). ENDING \"рьего\" is the possessive/soft-sign genitive singular after ⟨р⟩, where the soft sign contributes the glide [j] before the desinence, realised [rʲjevo]: ⟨г⟩ = [v], the ordinary Russian genitive desinence, which is morphological and so crosses the оканье/аканье isogloss unchanged, while the desinence VOWELS are okanje vowels — unstressed /o/ stays [o] and its counterpart after a soft consonant stays [e], so the ending is not the standard's reduced shape (Timberlake 2004; Comrie & Corbett 1993). ENDING \"мьего\" is the possessive/soft-sign genitive singular after ⟨м⟩, where the soft sign contributes the glide [j] before the desinence, realised [mʲjevo]: ⟨г⟩ = [v], the ordinary Russian genitive desinence, which is morphological and so crosses the оканье/аканье isogloss unchanged, while the desinence VOWELS are okanje vowels — unstressed /o/ stays [o] and its counterpart after a soft consonant stays [e], so the ending is not the standard's reduced shape (Timberlake 2004; Comrie & Corbett 1993).",
   "quality": "skeleton",
   "script_type": "alphabet",
   "sources": [

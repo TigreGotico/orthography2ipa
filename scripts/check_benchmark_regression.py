@@ -23,7 +23,9 @@ regenerated.
 A row regresses when its new PER exceeds the baseline PER by more than
 an absolute epsilon (default ``0.005`` — small enough to catch a real
 grapheme/allophone regression, large enough to absorb harness-level
-float noise between runs).
+float noise between runs), or when its new ``stress_acc`` falls below the
+baseline's by more than the same epsilon. A row whose baseline or new
+``stress_acc`` is null (a thin or unmarked gold) has no stress comparison.
 
 Datasets that need packages not installable in a plain CI runner
 (``cmudict`` needs ``scriptconv``, TigreGotico-internal) fail to load and are
@@ -52,17 +54,24 @@ sys.path.insert(0, os.path.dirname(__file__))
 
 from benchmark import (  # noqa: E402
     build_scoreboard, can_gate_promotion, CI_SAMPLE_JSON, CI_SAMPLE_LIMIT,
-    HARNESS_VERSION,
+    CORRECTED_DATASETS, HARNESS_VERSION, THIN_ROW_N,
 )
 
 
-def _gate_eligible(tier) -> bool:
-    """Whether a row on this provenance tier may FAIL the regression gate.
+def _gate_eligible(tier, n=None, dataset=None) -> bool:
+    """Whether a row on this provenance tier, scored on *n* words, may FAIL
+    the regression gate.
 
     Rows without a provenance field (or on an unknown tier) stay
     gate-eligible: only an explicit competitor/LLM classification earns
-    the non-blocking `drifted` status.
+    the non-blocking `drifted` status. So does a row below `THIN_ROW_N`
+    scored words, and a row on a corrections overlay: the same rules
+    `benchmark.row_gates` puts on the board's `gating` field.
     """
+    if isinstance(n, int) and n < THIN_ROW_N:
+        return False
+    if dataset in CORRECTED_DATASETS:
+        return False
     if not isinstance(tier, str):
         return True
     try:
@@ -120,7 +129,9 @@ def compare(
             diff_rows.append({
                 "lang": lang, "dataset": dataset,
                 "baseline_per": None, "new_per": cur_row["per"],
-                "delta": None, "status": "new",
+                "delta": None, "baseline_stress": None,
+                "new_stress": cur_row.get("stress_acc"),
+                "stress_delta": None, "status": "new",
             })
             continue
 
@@ -128,12 +139,19 @@ def compare(
             diff_rows.append({
                 "lang": lang, "dataset": dataset,
                 "baseline_per": base_row["per"], "new_per": None,
-                "delta": None, "status": "missing",
+                "delta": None, "baseline_stress": base_row.get("stress_acc"),
+                "new_stress": None, "stress_delta": None,
+                "status": "missing",
             })
             continue
 
         delta = cur_row["per"] - base_row["per"]
-        if delta > epsilon:
+        base_stress = base_row.get("stress_acc")
+        new_stress = cur_row.get("stress_acc")
+        stress_delta = (None if base_stress is None or new_stress is None
+                        else new_stress - base_stress)
+        stress_dropped = stress_delta is not None and -stress_delta > epsilon
+        if delta > epsilon or stress_dropped:
             # Competitor-derived and LLM tiers can never GATE (the same
             # rule can_gate_promotion applies to tier promotion, and for
             # the same reason): a worse score against espeak-derived or
@@ -141,14 +159,19 @@ def compare(
             # a competitor, and diverging from a competitor may be
             # exactly what the cited source demands. Such rows are
             # reported as `drifted` — visible, never blocking.
-            gates = _gate_eligible(cur_row.get("provenance"))
+            gates = _gate_eligible(cur_row.get("provenance"), cur_row.get("n"),
+                                   dataset)
             status = "regressed" if gates else "drifted"
         else:
             status = "ok"
         row = {
             "lang": lang, "dataset": dataset,
             "baseline_per": base_row["per"], "new_per": cur_row["per"],
-            "delta": round(delta, 4), "status": status,
+            "delta": round(delta, 4), "baseline_stress": base_stress,
+            "new_stress": new_stress,
+            "stress_delta": (None if stress_delta is None
+                             else round(stress_delta, 4)),
+            "status": status,
         }
         diff_rows.append(row)
         if status == "regressed":
@@ -164,7 +187,9 @@ def format_value(v) -> str:
 
 
 def print_report(diff_rows: List[dict], epsilon: float) -> None:
-    header = f"{'lang':<16}{'dataset':<20}{'baseline':>10}{'new':>10}{'delta':>10}  status"
+    header = (f"{'lang':<16}{'dataset':<20}{'baseline':>10}{'new':>10}"
+              f"{'delta':>10}{'base_str':>10}{'new_str':>10}{'str_delta':>10}"
+              f"  status")
     print(header)
     print("-" * len(header))
     for row in diff_rows:
@@ -172,7 +197,10 @@ def print_report(diff_rows: List[dict], epsilon: float) -> None:
             f"{row['lang']:<16}{row['dataset']:<20}"
             f"{format_value(row['baseline_per']):>10}"
             f"{format_value(row['new_per']):>10}"
-            f"{format_value(row['delta']):>10}  {row['status']}"
+            f"{format_value(row['delta']):>10}"
+            f"{format_value(row['baseline_stress']):>10}"
+            f"{format_value(row['new_stress']):>10}"
+            f"{format_value(row['stress_delta']):>10}  {row['status']}"
         )
         if row["status"] == "regressed":
             line += "  <-- REGRESSION"
@@ -180,7 +208,8 @@ def print_report(diff_rows: List[dict], epsilon: float) -> None:
             line += "  (competitor-derived gold: drift noted, never gates)"
         print(line)
     print("-" * len(header))
-    print(f"epsilon={epsilon} (absolute PER worsening allowed vs. baseline)")
+    print(f"epsilon={epsilon} (absolute PER worsening and stress_acc drop "
+          f"allowed vs. baseline)")
 
 
 def check_scored_row_floor(current: List[dict]) -> None:
@@ -289,9 +318,11 @@ def main() -> None:
         print(f"\n{len(regressed_rows)} row(s) regressed beyond "
               f"epsilon={args.epsilon}:")
         for row in regressed_rows:
-            print(f"  {row['lang']} ({row['dataset']}): "
+            print(f"  {row['lang']} ({row['dataset']}): PER "
                   f"{row['baseline_per']:.4f} -> {row['new_per']:.4f} "
-                  f"(delta +{row['delta']:.4f})")
+                  f"(delta {row['delta']:+.4f}), stress "
+                  f"{format_value(row['baseline_stress'])} -> "
+                  f"{format_value(row['new_stress'])}")
         sys.exit(1)
 
     print("\nno regressions detected")

@@ -4,8 +4,10 @@
   "script": "Cyrillic",
   "graphemes_base": "ru",
   "allophones_base": "ru",
+  "word_exceptions_base": "ru",
+  "grammatical_endings_base": "ru",
   "parent": "ru",
-  "notes": "Ural Russian (Perm, Yekaterinburg region). Predominantly standard-like; traces of Northern аканье in older speech. Tatar and Bashkir substrate influence.",
+  "notes": "Ural Russian (Perm, Yekaterinburg). A ГОВОРЫ ПОЗДНЕГО ФОРМИРОВАНИЯ zone, not a dialect group in the Dialectological Atlas sense: the Trans-Ural territories were settled over the last few centuries from many regions at once and the dialect features mixed, so there is no single Ural vowel system to encode. The previous note claimed 'traces of Northern аканье', which is a contradiction in terms — the Northern zone is defined by ОКАНЬЕ, and akanje is the Southern and Central feature. This spec therefore claims no phonology of its own and is an alias of the standard `ru`, including the [v] genitive it now opts into: the modern urban speech of the region is standard-like, and the old-settler Northern (okanje) substrate that survives in older rural speech is a separate system that would need its own code and its own sources. Tatar and Bashkir contact is real but affects lexicon and prosody rather than the grapheme table. NEEDS SOURCING before this file diverges from `ru`; a stub alias is the honest state, an invented inventory is not.",
   "quality": "stub",
   "script_type": "alphabet",
   "sources": [

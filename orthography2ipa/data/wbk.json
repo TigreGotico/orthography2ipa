@@ -3,7 +3,7 @@
   "name": "Waigali",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "ṭ": [
       "ʈ"
@@ -138,7 +138,7 @@
       "notes": "Descent per Glottolog classification of Nuristani Kalasha (waig1243)."
     }
   ],
-  "notes": "Skeleton. Waigali (Kalasha-ala), a Nuristani (Indo-European) language of Afghanistan. There is no standardized Latin orthography; this map covers the romanized linguistic transcription commonly used for the language, with under-dot letters for the retroflex series (ṭ ḍ ṇ ṛ ṣ ẓ), haček letters for postalveolars (č ǰ š ž) and macron vowels for length. Dentals t/d are [t̪ d̪]. Transcription practice varies between sources; vowel nasalization and any accent are typically untranscribed and are left unencoded.",
+  "notes": "Skeleton. Waigali (Kalasha-ala), a Nuristani (Indo-European) language of Afghanistan. There is no standardized Latin orthography; this map covers the romanized linguistic transcription commonly used for the language, with under-dot letters for the retroflex series (ṭ ḍ ṇ ṛ ṣ ẓ), haček letters for postalveolars (č ǰ š ž) and macron vowels for length. Dentals t/d are [t̪ d̪]. Transcription practice varies between sources; vowel nasalization and any accent are typically untranscribed and are left unencoded. Waigali stress is not consistently marked in the romanized linguistic transcription used here (there is no standardized practical orthography) and is left unencoded (documented exemption).",
   "iso639_3": "wbk",
   "glottolog_code": null,
   "sources": [
@@ -163,6 +163,16 @@
       "pages": null,
       "notes": "Orthography/phonology reference for a skeleton-tier entry.",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Waigali_language"
+    },
+    {
+      "id": "wbk_degener1998",
+      "author": "Degener, Almuth",
+      "year": 1998,
+      "title": "Die Sprache von Nisheygram im afghanischen Hindukusch",
+      "publisher": "Harrassowitz Verlag",
+      "url": null,
+      "pages": null,
+      "notes": "Grammatical description of the Kalaṣa-alā (Waigali) variety of Nisheygram, the most extensive published account of this Nuristani language's phonology; consulted to check the under-dot retroflex romanization modelled here."
     }
   ],
   "wikipedia": [

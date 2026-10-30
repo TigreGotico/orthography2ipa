@@ -19,12 +19,6 @@ Usage::
 
 Source: Cintra, L.F.L. (1971), "Nova proposta de classificação dos dialectos
 galego-portugueses", Boletim de Filologia 22:81–116.
-
-T-13: Core types (IPARule, IPAChainShift, IPALexicalRule, DialectTransform)
-T-14: debias_lisbon() — 7 de-biasing rules (DB1–DB7)
-T-15: Northern PT transforms (NORTHERN_COMMON, TRANSMONTANO, BAIXO_MINHOTO,
-       PORTO, BEIRA_ALTA)
-T-16: Central-Southern, Galician, Leonese transforms
 """
 from __future__ import annotations
 
@@ -50,7 +44,7 @@ STRESS = "ˈ"
 
 
 # ---------------------------------------------------------------------------
-# T-13: Core dataclasses
+# Core dataclasses
 # ---------------------------------------------------------------------------
 
 @dataclass
@@ -163,7 +157,7 @@ class DialectTransform:
 
 
 # ---------------------------------------------------------------------------
-# T-14: Lisbon de-biasing module
+# Lisbon de-biasing module
 # ---------------------------------------------------------------------------
 
 def debias_lisbon(ipa: str, ortho: Optional[str] = None) -> str:
@@ -247,7 +241,7 @@ def debias_lisbon_preserve_spirants(ipa: str, ortho: Optional[str] = None) -> st
 
 
 # ---------------------------------------------------------------------------
-# T-15: Northern PT rule lists
+# Northern PT rule lists
 # ---------------------------------------------------------------------------
 
 #: Rules shared by ALL Northern Portuguese varieties.
@@ -390,7 +384,7 @@ BEIRA_ALTA: List[AnyRule] = BAIXO_MINHOTO_DURIENSE + []
 
 
 # ---------------------------------------------------------------------------
-# T-16: Central-Southern PT rule lists
+# Central-Southern PT rule lists
 # ---------------------------------------------------------------------------
 
 #: Standard PT-PT *is* Central-Southern (Cintra). No additional transforms.
@@ -485,7 +479,7 @@ BARLAVENTO_ALGARVE: List[AnyRule] = CENTRAL_SOUTHERN_COMMON + [
 
 
 # ---------------------------------------------------------------------------
-# T-16: Galician rule lists
+# Galician rule lists
 # ---------------------------------------------------------------------------
 
 #: Rules common to all Galician varieties.
@@ -521,7 +515,7 @@ GALICIAN_EAST: List[AnyRule] = GALICIAN_COMMON + []
 
 
 # ---------------------------------------------------------------------------
-# T-16: Astur-Leonese enclave rule lists
+# Astur-Leonese enclave rule lists
 # ---------------------------------------------------------------------------
 
 #: Rules common to all Leonese enclave varieties.
@@ -567,7 +561,7 @@ GUADRAMILESE_RULES: List[AnyRule] = LEONESE_COMMON + [
 
 
 # ---------------------------------------------------------------------------
-# T-13: DIALECT_PROFILES registry
+# DIALECT_PROFILES registry
 # ---------------------------------------------------------------------------
 
 DIALECT_PROFILES: Dict[str, DialectTransform] = {
@@ -942,7 +936,7 @@ def available_profiles() -> List[str]:
 
 
 # ---------------------------------------------------------------------------
-# T-17: CLUP allophone continuous parameterization
+# CLUP allophone continuous parameterization
 # ---------------------------------------------------------------------------
 
 #: Mapping from CLUP CSV allophone flag columns to normalized weight keys.

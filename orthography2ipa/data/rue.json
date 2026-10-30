@@ -167,6 +167,17 @@
       "year": 2024,
       "title": "Rusyn language",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Rusyn_language"
+    },
+    {
+      "id": "baptie2011",
+      "author": "Baptie, Gavin",
+      "year": 2011,
+      "title": "Issues in Rusyn language standardisation",
+      "publisher": "University of Glasgow MPhil thesis (Enlighten Theses)",
+      "url": "https://theses.gla.ac.uk/2781/",
+      "wikipedia_url": null,
+      "pages": "16, 106-107, 127",
+      "notes": "Appendix A (p. 127), read in full, tabulates the Prešov, Lemko, Transcarpathian and Vojvodina alphabets side by side with a transliteration column: ⟨г⟩ = h against ⟨ґ⟩ = g, ⟨є ї ю я⟩ = je ji ju ja after a vowel and a softening mark after a consonant, ⟨щ⟩ = šč, ⟨х⟩ = ch, ⟨ь⟩ the soft sign, ⟨ъ⟩ present in Prešov and Lemko; p. 16 gives ⟨ы⟩ = [ɨ] and the seven-vowel system ⟨а о у е і и ы⟩ of Prešov Rusyn and Lemko; pp. 106-107 explain that the variants agree on consonants and differ in vowels and in the soft and hard signs, that Lemko lacks ⟨ї⟩ and that ⟨ё⟩ is Prešov and Transcarpathian only. Two things it does not support in this map: ⟨э⟩ is in none of the four alphabets, and the map's single letter set covers what are four codified standards. A transliteration table, not an IPA one, so the consonant values rest on the East Slavic letter values it presupposes."
     }
   ],
   "wikipedia": [

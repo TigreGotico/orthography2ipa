@@ -4,11 +4,11 @@
   "script": "Arabic",
   "graphemes": {
     "ا": [
-      "ɑː",
+      "ɑ",
       "a"
     ],
     "آ": [
-      "ɑː"
+      "ɑ"
     ],
     "و": [
       "w",
@@ -138,7 +138,7 @@
       "l"
     ],
     "ر": [
-      "ɾ"
+      "r"
     ],
     "ړ": [
       "ɻ"
@@ -153,8 +153,8 @@
       "u"
     ],
     "ي": [
-      "j",
-      "i"
+      "i",
+      "j"
     ],
     "ۀ": [
       "ə"
@@ -252,13 +252,6 @@
     "l": [
       "l"
     ],
-    "ɾ": [
-      "ɾ",
-      "r"
-    ],
-    "ɻ": [
-      "ɻ"
-    ],
     "j": [
       "j"
     ],
@@ -268,9 +261,6 @@
     "a": [
       "a",
       "ɐ"
-    ],
-    "ɑː": [
-      "ɑː"
     ],
     "i": [
       "i"
@@ -286,6 +276,18 @@
     ],
     "ə": [
       "ə"
+    ],
+    "ɑ": [
+      "ɑ",
+      "ɑː"
+    ],
+    "r": [
+      "r",
+      "ɾ"
+    ],
+    "ɻ": [
+      "ɻ",
+      "ɽ"
     ]
   },
   "parent": "x-clade-iran1269",
@@ -297,7 +299,7 @@
       "notes": "Indo-European > Indo-Iranian > Iranian > Eastern Iranian"
     }
   ],
-  "notes": "Pashto (پښتو) — Standard Afghan Pashto (Kandahari base). Eastern Iranian language; ~50–60 million speakers. One of two official languages of Afghanistan (with Dari). DEFINING FEATURES vs. Persian: (1) Retroflex consonants ʈ, ɖ, ɳ, ɻ, ʂ, ʐ; (2) Pashto shift: Proto-Iranian *č → ts, *ǰ → dz; (3) No pharyngeals (ħ ʕ absent, unlike Arabic); (4) 7-vowel system /a i u e o ə ɑː/; (5) Retroflex fricatives ʂ, ʐ in Southern dialect. Modified Arabic script with extra letters for retroflexes and affricates (ټ ډ ڼ ړ څ ځ ښ ږ). ADSTRATE EFFECT ON DARI: some retroflex-influenced articulation in Afghan Persian speakers with Pashto contact. Refs: Penzl (1955), David (2014), Tegey & Robson (1996).",
+  "notes": "Pashto (پښتو) — Standard Afghan Pashto on a Kandahari (Southwestern) base. Eastern Iranian, ~50–60 million speakers, one of the two official languages of Afghanistan. DEFINING FEATURES vs. Persian: (1) retroflex consonants ʈ ɖ ɳ ɻ ʂ ʐ; (2) the Pashto shift Proto-Iranian *č → ts, *ǰ → dz; (3) no pharyngeals; (4) a seven-vowel system /i e ə a ɑ o u/ that contrasts by QUALITY, not length — no length mark belongs on a Pashto phoneme (Tegey & Robson 1996; Penzl 1955; David 2014). DIALECT TARGET: the Southwestern (Kandahari) values ښ = ʂ and ږ = ʐ. The same two letters read x/ɡ in Northeastern (Yusufzai) and ç/ʝ or ɕ/ʑ in the Central (Karlani) group; a spec emits one dialect, so the other readings are a documented mismatch rather than an error. ORTHOGRAPHY: the abjad leaves short vowels unwritten, and three letters are positional. Word-initial alef is a vowel carrier defaulting to a short vowel (a, i, or u), with ɑ kept only as a low-priority fallback in that same slot; آ is the letter dedicated to spelling initial /ɑ/. ⟨او⟩ opens a word on the rounded vowel Waw supplies, not on /ɑw/; word-final ه spells the final vowel (the feminine -a, or ə), not /h/. Waw and the Ye letters are matres lectionis after a consonant and glides beside a vowel. ر is the alveolar trill /r/ with the tap [ɾ] as its positional variant; that choice follows the gold's notation convention (356 r vs 1 ɾ), not a positional claim. ړ has the retroflex flap [ɽ] as its general value, with a lateral flap syllable-initially and [ɻ] elsewhere; this spec keeps ɻ because the gold's notation splits near-evenly across variants (ɽ 38, ɻ 39, ɺ̢ 11, ɺ 9 tokens) and treats that as a documented refusal to pick a positional rule rather than a positional assertion. /n/ is velar [ŋ] before a velar stop. ADSTRATE EFFECT ON DARI: some retroflex-influenced articulation in Afghan Persian speakers with Pashto contact. The unwritten short vowels remain the dominant residual error: a spelling with no vowel letter cannot be given its /ə/ or /a/ from the orthography alone, and no positional rule in this spec places one.",
   "quality": "research",
   "script_type": "abjad",
   "sources": [
@@ -350,5 +352,90 @@
     "longitude": 68.827633,
     "source": "glottolog",
     "notes": "Glottolog's computed centroid for the Nuclear Pashto family — a summary of a whole clade's range, not a place anyone speaks."
-  }
+  },
+  "positional_graphemes": {
+    "ا": {
+      "word_initial": [
+        "a",
+        "i",
+        "u",
+        "ɑ"
+      ],
+      "default": [
+        "ɑ",
+        "a"
+      ]
+    },
+    "او": {
+      "word_initial": [
+        "o",
+        "u",
+        "aw"
+      ],
+      "default": [
+        "ɑw"
+      ]
+    },
+    "ه": {
+      "word_final": [
+        "a",
+        "ə"
+      ],
+      "default": [
+        "h"
+      ]
+    },
+    "ی": {
+      "word_initial": [
+        "j"
+      ],
+      "after_vowel": [
+        "j"
+      ],
+      "default": [
+        "i",
+        "ai"
+      ]
+    },
+    "ي": {
+      "word_initial": [
+        "j"
+      ],
+      "word_final": [
+        "i"
+      ],
+      "default": [
+        "i",
+        "j"
+      ]
+    },
+    "و": {
+      "word_initial": [
+        "w"
+      ],
+      "after_vowel": [
+        "w"
+      ],
+      "default": [
+        "o",
+        "u",
+        "w"
+      ]
+    }
+  },
+  "allophone_rules": [
+    {
+      "id": "PS_NASAL_VELAR",
+      "phonemes": [
+        "n"
+      ],
+      "surface": "ŋ",
+      "followed_by_phoneme": [
+        "k",
+        "ɡ",
+        "q"
+      ],
+      "notes": "Nasal place assimilation: /n/ is velar [ŋ] before a velar stop. Standard for Pashto (Tegey & Robson 1996; David 2014)."
+    }
+  ]
 }

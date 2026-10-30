@@ -266,3 +266,43 @@ class TestDistance:
         assert d_zub.combined > 0.0
         # the Biscayan sibilant/affricate mergers show up as grapheme divergence
         assert d_biz.grapheme.mean_ipa_distance > 0.0
+
+
+class TestBasqueBeatEspeakWave:
+    """Hualde & Ortiz de Urbina 2003-cited allophony (beat-espeak wave).
+
+    These allophones are obligatory in standard Basque; the phonemic-
+    convention golds (wikipron, vox_communis) transcribe without them and
+    their rows dip accordingly — documented trade-off, hitz (expert) and
+    childes improve.
+    """
+
+    def _t(self, word):
+        from orthography2ipa import G2P
+        return G2P("eu").transcribe(word)
+
+    def test_spirantization_after_vowel(self):
+        assert self._t("egin") == "eɣin"
+        assert self._t("abere") == "aβeɾe"
+        assert self._t("adar") == "aðar"
+        assert self._t("bide") == "biðe"
+
+    def test_stops_kept_initially(self):
+        assert self._t("bide").startswith("b")
+        assert self._t("gorri").startswith("ɡ")
+
+    def test_offglides(self):
+        assert self._t("gau") == "ɡau̯" or self._t("gau") == "ɡaw"
+        assert "i̯" in self._t("sei") or "j" in self._t("sei")
+
+    def test_palatalization_not_automatic(self):
+        # Lexically conditioned in Batua, deliberately NOT an allophone rule:
+        # Latinate loans keep plain n/l (adversarial review counterexamples).
+        assert self._t("familia") == "familia"
+        assert self._t("kilometro") == "kilometɾo"
+        assert self._t("kilo") == "kilo"
+        assert self._t("mina") == "mina"
+
+    def test_coda_trill(self):
+        assert self._t("adar").endswith("r")
+        assert self._t("hartu") == "artu"

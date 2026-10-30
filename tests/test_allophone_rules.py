@@ -240,7 +240,9 @@ def test_apply_allophony_toggle():
 
 def test_apply_allophony_noop_for_spec_without_rules():
     # A spec that declares no rules is unaffected by the (default-on) toggle.
-    assert G2P("es-ES")._allophone_rescorer is None
+    # ``fi`` stands in for the rules-free case; es-ES used to and no longer
+    # can — it declares ES_TRILL_AFTER_CORONAL / ES_NASAL_LABIAL.
+    assert G2P("fi")._allophone_rescorer is None
     assert G2P("pt").transcribe("casa") == \
         G2P("pt", apply_allophony=False).transcribe("casa")
 
@@ -395,3 +397,120 @@ class TestOffsetContext:
         assert _ipa("uk", "Ізмір") == "izʲmʲir"
         # ⟨знання⟩ keeps a plain ⟨з⟩: the ⟨н⟩ after it is not softened by ⟨а⟩
         assert _ipa("uk", "знання") == "znanʲːa"
+
+
+class TestRequiresOtherNucleus:
+    """A vowel-deleting rule must not empty the word of its only nucleus.
+
+    Every prosodic word contains at least one syllable (Hayes 2009; Blevins
+    1995), so ``requires_other_nucleus`` gates a ``surface: ""`` rule on some
+    OTHER slot carrying a vowel. Romanian's asyllabic word-final ⟨i⟩ is the
+    motivating case (Chitoran 2002).
+    """
+
+    def test_the_loader_keeps_the_field(self):
+        """Dropped at load time, the rule would fire on monosyllables too."""
+        rule = next(r for r in get("ro-RO").allophone_rules
+                    if r.id == "RO_FINAL_I_ASYLLABIC")
+        assert rule.requires_other_nucleus is True
+
+    def test_the_rule_fires_when_the_word_has_another_nucleus(self):
+        assert _ipa("ro-RO", "lupi") == "lupʲ"
+        assert _ipa("ro-RO", "pomi") == "pomʲ"
+
+    def test_the_rule_is_blocked_on_a_monosyllable(self):
+        assert _ipa("ro-RO", "și") == "ʃi"
+        assert _ipa("ro-RO", "zi") == "zi"
+
+    def test_a_syllabic_consonant_counts_as_a_nucleus(self):
+        """Czech ⟨vlk⟩ and Serbian ⟨prst⟩ are vowel-less WORDS.
+
+        Reading only ``is_ipa_vowel`` would call them nucleus-less and let a
+        vowel-deleting rule empty them. The nucleus test must accept a
+        syllabic consonant, exactly as ``is_nucleus_only`` does.
+        """
+        rule = AllophoneRule(id="DROP_E", phonemes=("e",), surface="",
+                             word_final=True, requires_other_nucleus=True)
+        spec = _spec({"e": ["e"], "v": ["v"], "l": ["l̩"], "k": ["k"]},
+                     (rule,))
+        # ⟨l⟩ is syllabic: the word HAS another nucleus, so ⟨e⟩ deletes.
+        assert _tok_best(spec, "vlke") == "vl̩k"
+        # No nucleus anywhere else: ⟨e⟩ must survive.
+        assert _tok_best(spec, "vke") == "vke"
+
+    def test_a_word_with_no_nucleus_at_all_keeps_its_vowel(self):
+        rule = AllophoneRule(id="DROP_E", phonemes=("e",), surface="",
+                             word_final=True, requires_other_nucleus=True)
+        spec = _spec({"e": ["e"], "k": ["k"]}, (rule,))
+        assert _tok_best(spec, "ke") == "ke"
+
+
+class TestFollowedByNucleus:
+    """A rule can ask whether a nucleus comes LATER in the word.
+
+    ``requires_other_nucleus`` is direction-blind — it fires on the last vowel
+    of a polysyllable just as readily as on the first — so it cannot express
+    the final-syllable environment that non-final reduction needs. South
+    Slavey is the motivating case: /i/ has a lax alternant everywhere except
+    the word's last nucleus.
+    """
+
+    def test_the_loader_keeps_the_field(self):
+        """json_loader builds AllophoneRule from an explicit key list; a field
+        missing from that list is dropped at LOAD time and the rule silently
+        matches on its other conditions alone."""
+        rule = next(r for r in get("xsl").allophone_rules
+                    if r.id == "xsl_i_lax_non_final")
+        assert rule.followed_by_nucleus is True, (
+            "the final-syllable condition was dropped at load time — the rule "
+            "now laxes every /i/ in the language, final ones included"
+        )
+
+    def test_non_final_nucleus_reduces(self):
+        assert _ipa("xsl", "lidí") == "ɮɪ̀tí"
+        assert _ipa("xsl", "ɂejide") == "ʔɛ̀tʃɪ̀tɛ̀"
+
+    def test_the_last_nucleus_does_not(self):
+        assert _ipa("xsl", "dih") == "tìh"
+        assert _ipa("xsl", "ti") == "tʰì"
+
+    def test_it_looks_forward_only(self):
+        """⟨ɂetthíghá⟩ has a nucleus on BOTH sides of its ⟨í⟩ and reduces,
+        while ⟨líbarí⟩'s final ⟨í⟩ has one only behind it and does not — the
+        exact contrast a direction-blind predicate collapses."""
+        assert _ipa("xsl", "ɂetthíghá") == "ʔɛ̀tθʰɪ́ɣá"
+        assert _ipa("xsl", "líbarí") == "ɮɪ́pàrí"
+
+    def test_it_reaches_past_intervening_consonants(self):
+        """⟨dihcho⟩ reduces across ⟨hch⟩: the predicate looks for the next
+        NUCLEUS, not the next segment."""
+        assert _ipa("xsl", "dihcho") == "tɪ̀ʰtʃʰò"
+
+
+class TestStressConditionedRulesReachTheEngine:
+    """A ``stress`` rule needs the beam that carries stress context.
+
+    The plain tokenizer beam has no syllabification, so a ``RescoreContext``
+    built on it answers ``is_stressed is None`` and a stress-conditioned rule
+    declines to fire. The engine used to take that beam for any spec without
+    ``positional_graphemes``, which left such a rule loaded, schema-validated,
+    documented in ``notes`` — and dead. ``br`` is the first spec to declare a
+    stress-conditioned rule without positional data, so it is the first to
+    need the switch.
+    """
+
+    def test_the_spec_has_no_positional_data(self):
+        """The precondition: br is one of the specs that used to lose them."""
+        spec = get("br")
+        assert not spec.has_positional_data()
+        assert any(r.stress for r in spec.allophone_rules)
+
+    def test_the_stress_conditioned_rule_fires(self):
+        """⟨avaloù⟩ [aˈvaːlu]: only the stressed penult lengthens."""
+        assert G2P("br").transcribe_word("avaloù") == "aˈvaːlu"
+
+    def test_it_fires_on_the_candidate_lattice_too(self):
+        """``word_candidates`` reads the same beam, so its top agrees."""
+        engine = G2P("br")
+        assert engine.word_candidates("avaloù", k=1)[0] == \
+            engine.transcribe_word("avaloù")

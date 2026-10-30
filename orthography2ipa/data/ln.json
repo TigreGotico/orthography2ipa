@@ -291,6 +291,17 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Lingala",
       "pages": null,
       "notes": "Orthography / phonology reference."
+    },
+    {
+      "id": "redden1963",
+      "author": "Redden, James E.; Bongo, F.",
+      "year": 1963,
+      "title": "Lingala Basic Course (Foreign Service Institute Basic Course Series)",
+      "publisher": "Foreign Service Institute, U.S. Department of State (public domain; livelingua.com mirror)",
+      "url": "https://www.livelingua.com/fsi/FSI%20-%20Lingala%20Basic%20Course%20-%20Student%20Text.pdf",
+      "wikipedia_url": null,
+      "pages": "xi-xiv",
+      "notes": "The introduction's four-column chart (pp. xi-xiii: orthographic symbol, phoneme, phonetic realisation, English or French comparison), read in full. It gives ⟨p t k b d g f s h z m n ny l w y⟩ with ⟨z⟩ realised [z, dz, dʒ], the labial-velars ⟨kp gb ngb⟩ as simultaneous articulations, ⟨v r⟩ confined to unassimilated loans, and two contrastive tones. Its footnote 3 says the practical orthography does not separate the two mid vowels: written ⟨e⟩ is usually /e/ but sometimes /ɛ/, written ⟨o⟩ usually /o/ but sometimes /ɔ/, which is why this map's ⟨ɛ ɔ⟩ keys belong to the literary spelling and not to the everyday one. Note 4 (p. xiv) adds that ⟨kp gb ngb⟩ are very rare, usually explosive, and implosive for some speakers. Two gaps against the map: ⟨kp⟩ and ⟨ngb⟩ have no key here while ⟨gb⟩ does. A 1963 language course whose transcription is a Bloomfieldian phonemic one, not IPA, read for the letter-to-phoneme chart and the seven-versus-five vowel note; the OCR of this scan is poor and the chart was read on the page image."
     }
   ],
   "parent": "x-clade-atla1278",

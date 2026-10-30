@@ -1,4 +1,4 @@
-"""sentence — the cross-word (utterance-scope) seam (Workstream C4).
+"""sentence — the cross-word (utterance-scope) seam.
 
 The per-word lattice (:mod:`orthography2ipa.phonetok`) and its
 :class:`~orthography2ipa.rescorer.LatticeRescorer` are, by design, strictly
@@ -61,8 +61,8 @@ order, and each pass sees the previous pass's rewritten IPA (via
 every word reads the pre-pass snapshot so the pass is order-independent and
 deterministic. A rescorer that returns ``word.ipa`` unchanged is a no-op.
 
-What is still downstream (C5)
------------------------------
+What is still downstream
+------------------------
 This seam supplies **position and cross-word adjacency**, not **meaning**.
 Homograph disambiguation that needs part-of-speech or semantics (English
 *read* /riːd/ vs /rɛd/, Portuguese *sede* 'thirst' vs 'headquarters') is not

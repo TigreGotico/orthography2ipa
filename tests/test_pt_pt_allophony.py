@@ -15,6 +15,8 @@ that the rules fix become passing assertions.
 """
 import unicodedata
 
+import pytest
+
 from orthography2ipa import get
 from orthography2ipa.g2p import G2P
 
@@ -41,10 +43,17 @@ def test_pt_pt_declares_the_coda_rules():
     ids = [r.id for r in get("pt-PT").allophone_rules]
     assert ids == [
         "PT_FINAL_EM_NUCLEUS", "PT_FINAL_EM_GLIDE", "PT_FINAL_AM_GLIDE",
+        "PT_FINAL_ENS_NUCLEUS", "PT_FINAL_ENS_GLIDE",
+        "PT_FINAL_EN_NUCLEUS", "PT_FINAL_EN_CODA",
         "PT_NASAL_A_RAISE", "PT_NASAL_E_RAISE", "PT_NASAL_O_RAISE",
-        "PT_NASAL_O_UNRED",
+        "PT_NASAL_O_UNRED", "PT_NASAL_E_UNRED",
         "PT_CODA_L_DARK", "PT_CODA_S_HUSH", "PT_CODA_Z_HUSH",
+        "PT_LEX_OPEN_ER", "PT_ER_CLOSE",
         "PT_LEX_CLOSE_O", "PT_LEX_CLOSE_E", "PT_LEX_OPEN_O", "PT_LEX_OPEN_E",
+        "PT_LEX_OPEN_E_SUFFIX", "PT_LEX_OPEN_O_SUFFIX",
+        "PT_SUFFIX_EZ_CLOSE", "PT_SUFFIX_EZA_ESA_CLOSE", "PT_SUFFIX_EMA_CLOSE",
+        "PT_SUFFIX_ESCO_CLOSE", "PT_SUFFIX_OR_CLOSE", "PT_SUFFIX_OSO_CLOSE",
+        "PT_SUFFIX_ONHO_CLOSE",
         "PT_LEX_X_S",
     ]
 
@@ -217,8 +226,48 @@ class TestNasalDiphthongIsOneNucleus:
 
     def test_stress_lands_past_a_nasalised_vowel(self):
         assert _t("pt-PT", "coração") == "kuɾɐˈsɐ̃w̃"
-        assert _t("pt-PT", "irmão") == "iˈɾmɐ̃w̃"
+        assert _t("pt-PT", "irmão") == "iɾˈmɐ̃w̃"
 
     def test_the_mark_never_splits_a_vowel_from_its_tilde(self):
         assert _t("pt-PT", "cantar") == "kɐ̃ˈtaɾ"
         assert _t("pt-PT", "contar") == "kõˈtaɾ"
+
+
+# ─── Sibilants: the standard is plain alveolar, the apical is northern ──
+#
+# Cruz-Ferreira's IPA illustration of the Lisbon standard (Handbook of the
+# IPA 1999: 126-127) puts plain s z in the Alveolar column: caço [ˈkasu],
+# caso [ˈkazu]. ⟨ss⟩ spells that /s/ between vowels, so isso is [ˈisu] and
+# passo [ˈpasu]. Cintra 1971 (CVC reprint: 11-13) puts the apico-alveolar
+# s/ss north of a line from the Ria de Aveiro to the Mondego above Coimbra;
+# the northern specs declare their own apical ⟨ss⟩ and keep it.
+
+@pytest.mark.parametrize("lang", [
+    "pt-PT",
+    "pt-PT-x-lisbon",
+    "pt-PT-x-coimbra",
+    "pt-PT-x-alentejo",
+    "pt-PT-x-acores",
+    "pt-AO",
+    "ext-PT-x-barrancos",
+])
+def test_ss_is_the_plain_alveolar_outside_the_apical_zone(lang):
+    assert "s̺" not in _t(lang, "isso")
+    assert _t("pt-PT", "isso") == "ˈisu"
+    assert _t("pt-PT", "passo") == "ˈpasu"
+
+
+@pytest.mark.parametrize("lang", [
+    "pt-PT-x-porto",
+    "pt-PT-x-braga",
+    "pt-PT-x-viana",
+    "pt-PT-x-trasosmontes",
+    "pt-PT-x-minho",
+    "pt-PT-x-beira",
+    "pt-PT-x-aveiro",
+    "pt-PT-x-alfena",
+    "pt-PT-x-medieval",
+])
+def test_ss_stays_apical_where_the_lect_declares_it(lang):
+    assert get(lang).graphemes["ss"] == ["s̺"]
+    assert "s̺" in _t(lang, "isso")

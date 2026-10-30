@@ -1303,7 +1303,7 @@ class TestMiraneseIfanes:
 
     Ifanês tracks Central Mirandese: the published descriptions record no
     segmental orthography→phoneme divergence for the Northern/Raiano group
-    (both keep the Leonese diphthongs [je]/[wo] and /ʎ/; only Sendinês
+    (both keep the Leonese diphthongs [jɪ]/[ʊ] and /ʎ/; only Sendinês
     monophthongises). The spec therefore inherits Central unchanged.
     """
 
@@ -1314,10 +1314,10 @@ class TestMiraneseIfanes:
         request.cls.spec = _load(self.LANGUAGE_CODE)
 
     def test_ie_tilde_tracks_central(self):
-        """iê keeps the Central diphthong [je] (Raiano does not monophthongise,
-        unlike Sendinese which reduces it to [i]). Central quality is the single
-        mid /e/ (Vasconcelos v1 §§2,4,10), so the diphthong is close [je]."""
-        _assert_first(_grapheme(self.spec, "iê"), "je", label="iê")
+        """iê keeps the Central diphthong [jɪ] (Raiano does not monophthongise,
+        unlike Sendinese which reduces it to [i]). The nucleus is Leite de
+        Vasconcellos's ẹ̌ (v1 §2, p. 173)."""
+        _assert_first(_grapheme(self.spec, "iê"), "jɪ", label="iê")
 
     def test_parent_is_mwl(self):
         assert self.spec.parent == "mwl"

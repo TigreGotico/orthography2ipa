@@ -1,0 +1,412 @@
+{
+ "aa/wikipron": [
+  "U+0027"
+ ],
+ "ab/wikipron": [
+  "U+0027"
+ ],
+ "ace/wikipron": [
+  "U+0027",
+  "U+2019"
+ ],
+ "af/wikipron": [
+  "U+0027"
+ ],
+ "akk/wikipron": [
+  "U+0027"
+ ],
+ "apw/wikipron": [
+  "U+02BC",
+  "U+2019"
+ ],
+ "as/wikipron": [
+  "U+0027",
+  "U+2019"
+ ],
+ "ast/wikipron": [
+  "U+0027"
+ ],
+ "bbl/wikipron": [
+  "U+02BB",
+  "U+02BC",
+  "U+2019"
+ ],
+ "bdq/wikipron": [
+  "U+02BC",
+  "U+2019"
+ ],
+ "be/wikipron": [
+  "U+0027"
+ ],
+ "br/wikipron": [
+  "U+0027",
+  "U+02BC"
+ ],
+ "ca-x-balear/4catac": [
+  "U+0027",
+  "U+2019"
+ ],
+ "ca-x-occidental/4catac": [
+  "U+0027",
+  "U+2019"
+ ],
+ "ca-x-valencia/4catac": [
+  "U+0027"
+ ],
+ "ca/wikipron": [
+  "U+0027"
+ ],
+ "cho/wikipron": [
+  "U+0027"
+ ],
+ "cic/wikipron": [
+  "U+0027"
+ ],
+ "ckt/northeuralex": [
+  "U+2019"
+ ],
+ "cy/wikipron": [
+  "U+0027"
+ ],
+ "da/wikipron": [
+  "U+0027"
+ ],
+ "de-DE/ipadict": [
+  "U+2019"
+ ],
+ "de/wikipron": [
+  "U+0027"
+ ],
+ "el/wikipron": [
+  "U+0027"
+ ],
+ "en-GB/wikipron": [
+  "U+0027",
+  "U+02BB",
+  "U+02BC"
+ ],
+ "en-US/cmudict": [
+  "U+0027"
+ ],
+ "en/wikipron": [
+  "U+0027",
+  "U+02BB",
+  "U+02BC"
+ ],
+ "enf/northeuralex": [
+  "U+0027"
+ ],
+ "eo/wikipron": [
+  "U+0027"
+ ],
+ "es/wikipron": [
+  "U+0027"
+ ],
+ "fi/wikipron": [
+  "U+0027"
+ ],
+ "fr-FR/ipadict": [
+  "U+0027",
+  "U+2019"
+ ],
+ "fr/wikipron": [
+  "U+0027"
+ ],
+ "fy/wikipron": [
+  "U+0027"
+ ],
+ "ga/wikipron": [
+  "U+0027"
+ ],
+ "gd/wikipron": [
+  "U+0027"
+ ],
+ "gn/wikipron": [
+  "U+0027"
+ ],
+ "grc/wikipron": [
+  "U+0027"
+ ],
+ "gul/wikipron": [
+  "U+0027"
+ ],
+ "gv/wikipron": [
+  "U+0027"
+ ],
+ "gwd/wold": [
+  "U+2019"
+ ],
+ "ha/wikipron": [
+  "U+0027",
+  "U+02BC"
+ ],
+ "haw/wikipron": [
+  "U+02BB"
+ ],
+ "hi/wikipron": [
+  "U+0027"
+ ],
+ "ht/wikipron": [
+  "U+0027"
+ ],
+ "id/wikipron": [
+  "U+0027"
+ ],
+ "ilo/wikipron": [
+  "U+0027"
+ ],
+ "irk/wold": [
+  "U+0027",
+  "U+2019"
+ ],
+ "it-IT/ipa_childes": [
+  "U+0027"
+ ],
+ "it/wikipron": [
+  "U+0027"
+ ],
+ "itl/northeuralex": [
+  "U+2019"
+ ],
+ "kab/vox_communis": [
+  "U+0027"
+ ],
+ "ket/northeuralex": [
+  "U+02BC"
+ ],
+ "kgp/wikipron": [
+  "U+0027"
+ ],
+ "ki/wikipron": [
+  "U+0027"
+ ],
+ "kl/wikipron": [
+  "U+0027"
+ ],
+ "ktz/wikipron": [
+  "U+02BC"
+ ],
+ "ku/wikipron": [
+  "U+0027"
+ ],
+ "kwk/wikipron": [
+  "U+0027",
+  "U+02BC"
+ ],
+ "lb/wikipron": [
+  "U+0027"
+ ],
+ "lg/vox_communis": [
+  "U+0027"
+ ],
+ "li/wikipron": [
+  "U+0027"
+ ],
+ "lij/wikipron": [
+  "U+0027"
+ ],
+ "lmo/wikipron": [
+  "U+0027"
+ ],
+ "lmy/wikipron": [
+  "U+0027"
+ ],
+ "lou/wikipron": [
+  "U+0027"
+ ],
+ "lsi/wikipron": [
+  "U+02BC"
+ ],
+ "lut/wikipron": [
+  "U+02BC"
+ ],
+ "lv/northeuralex": [
+  "U+0027"
+ ],
+ "mak/wikipron": [
+  "U+0027",
+  "U+02BC"
+ ],
+ "mch/wikipron": [
+  "U+0027"
+ ],
+ "mfe/wikipron": [
+  "U+0027"
+ ],
+ "mic/wikipron": [
+  "U+0027"
+ ],
+ "mnc/northeuralex": [
+  "U+0027"
+ ],
+ "ms/wikipron": [
+  "U+0027"
+ ],
+ "mt/wikipron": [
+  "U+0027"
+ ],
+ "nap/wikipron": [
+  "U+0027"
+ ],
+ "ngh/wikipron": [
+  "U+02BB",
+  "U+02BC"
+ ],
+ "nhx/wikipron": [
+  "U+02BC"
+ ],
+ "niv/wikipron": [
+  "U+02BC"
+ ],
+ "nl/wikipron": [
+  "U+0027"
+ ],
+ "nn/wikipron": [
+  "U+0027",
+  "U+2019"
+ ],
+ "nrf/wikipron": [
+  "U+0027"
+ ],
+ "nv/wikipron": [
+  "U+02BC"
+ ],
+ "ny/wikipron": [
+  "U+0027"
+ ],
+ "oc/wikipron": [
+  "U+0027"
+ ],
+ "oji/wikipron": [
+  "U+02BC"
+ ],
+ "om/kaikki": [
+  "U+0027"
+ ],
+ "or/ipadict": [
+  "U+0027"
+ ],
+ "pa/wikipron": [
+  "U+0027"
+ ],
+ "pl/wikipron": [
+  "U+0027"
+ ],
+ "pox/wikipron": [
+  "U+2019"
+ ],
+ "pqm/wikipron": [
+  "U+0027"
+ ],
+ "pt-BR-x-caipira/portuguese_tts": [
+  "U+0027"
+ ],
+ "quz/ipa_childes": [
+  "U+0027"
+ ],
+ "rif/wold": [
+  "U+2018",
+  "U+2019"
+ ],
+ "ro/wikipron": [
+  "U+0027"
+ ],
+ "rw/vox_communis": [
+  "U+0027"
+ ],
+ "sc/wikipron": [
+  "U+0027"
+ ],
+ "scn/wikipron": [
+  "U+0027",
+  "U+2018"
+ ],
+ "sdc/wikipron": [
+  "U+0027"
+ ],
+ "sga/wikipron": [
+  "U+0027"
+ ],
+ "sid/wikipron": [
+  "U+02BC"
+ ],
+ "sjd/wikipron": [
+  "U+02BC"
+ ],
+ "sjs/wikipron": [
+  "U+02BC"
+ ],
+ "smn/northeuralex": [
+  "U+0027"
+ ],
+ "so/kaikki": [
+  "U+0027"
+ ],
+ "sq/wikipron": [
+  "U+0027"
+ ],
+ "srn/wikipron": [
+  "U+0027"
+ ],
+ "srs/wikipron": [
+  "U+0027",
+  "U+02BC"
+ ],
+ "sv/wikipron": [
+  "U+0027"
+ ],
+ "sw/wikipron": [
+  "U+0027"
+ ],
+ "tew/wikipron": [
+  "U+02BC"
+ ],
+ "th/wikipron": [
+  "U+0027"
+ ],
+ "tl/wikipron": [
+  "U+0027"
+ ],
+ "tpw/wikipron": [
+  "U+0027"
+ ],
+ "tr/wikipron": [
+  "U+0027"
+ ],
+ "twf/wikipron": [
+  "U+02BC"
+ ],
+ "uby/wikipron": [
+  "U+0027"
+ ],
+ "uz/wikipron": [
+  "U+02BB",
+  "U+02BC"
+ ],
+ "vep/northeuralex": [
+  "U+0027"
+ ],
+ "vi/ipadict": [
+  "U+0027"
+ ],
+ "wa/wikipron": [
+  "U+0027",
+  "U+2019"
+ ],
+ "xh/kaikki": [
+  "U+0027"
+ ],
+ "xsl/wikipron": [
+  "U+02BC"
+ ],
+ "yol/wikipron": [
+  "U+0027"
+ ],
+ "yrk/wikipron": [
+  "U+02BC",
+  "U+2019"
+ ],
+ "za/wikipron": [
+  "U+0027"
+ ]
+}
