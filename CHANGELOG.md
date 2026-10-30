@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.111.5a1](https://github.com/TigreGotico/orthography2ipa/tree/7.111.5a1) (2026-10-30)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.111.4a1...7.111.5a1)
+
+**Merged pull requests:**
+
+- fix\(gold\): repair ipa-dict pt-BR stress on hyphenated words [\#1774](https://github.com/TigreGotico/orthography2ipa/pull/1774) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.111.4a1](https://github.com/TigreGotico/orthography2ipa/tree/7.111.4a1) (2026-10-30)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.111.3a1...7.111.4a1)
@@ -318,7 +326,6 @@
 **Merged pull requests:**
 
 - feat\(registry\): let a caller refuse nearest-language guessing [\#1683](https://github.com/TigreGotico/orthography2ipa/pull/1683) ([JarbasAl](https://github.com/JarbasAl))
-- fix\(g2p\): a word\_exceptions entry hits through the punctuation that clings to a raw token [\#1675](https://github.com/TigreGotico/orthography2ipa/pull/1675) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.103.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.103.1a1) (2026-09-18)
 
@@ -514,15 +521,15 @@
 
 ## [7.93.16a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.16a1) (2026-09-17)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.14a1...7.93.16a1)
-
-## [7.93.14a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.14a1) (2026-09-17)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.15a1...7.93.14a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.15a1...7.93.16a1)
 
 ## [7.93.15a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.15a1) (2026-09-17)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.13a1...7.93.15a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.14a1...7.93.15a1)
+
+## [7.93.14a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.14a1) (2026-09-17)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.13a1...7.93.14a1)
 
 ## [7.93.13a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.13a1) (2026-09-17)
 
