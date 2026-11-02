@@ -357,10 +357,6 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.108.0a1...7.108.0a2)
 
-**Merged pull requests:**
-
-- test\(compare\_systems\): a same-source dataset must carry a non-gating tier [\#1702](https://github.com/TigreGotico/orthography2ipa/pull/1702) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [7.108.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.108.0a1) (2026-09-23)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.107.0a1...7.108.0a1)
