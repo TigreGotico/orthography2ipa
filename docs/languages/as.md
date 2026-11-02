@@ -68,6 +68,13 @@ phonology and Assamese's diverge.
   has no slot a rule can address, and the harmony's nasal and coda
   blocking cannot be stated in the current rule language.
 - Gemination of a consonant before ya-phala ⟨্য⟩ is not encoded.
+- Stress is not marked. Prominence is phonetic and non-contrastive: it
+  falls on the first syllable, or on the second when the first is open
+  and the second closed, and never later (Mahanta 2012: 222). The
+  stress schema has no rule that weighs syllables from the left edge,
+  and on an abugida the stress engine counts syllables over the written
+  letters, so even a fixed initial default puts the mark on the wrong
+  syllable.
 - A word-medial conjunct that closes a syllable keeps its inherent
   vowel, because deletion is gated on the syllable being closed having
   a nucleus and never manufactures a complex coda: ভক্ত gives

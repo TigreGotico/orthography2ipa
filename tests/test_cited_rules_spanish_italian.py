@@ -1130,22 +1130,6 @@ def test_ro_no_intervocalic_lenition():
     assert "ð" in _bare("es-ES", "nada")
 
 
-def test_ro_carries_no_stress_marks():
-    """The declared STRESS EXEMPTION: Romanian output carries no stress mark.
-
-    ro-RO notes: "STRESS EXEMPTION (research/production tier rule): Romanian
-    lexical stress is phonemic but NOT predictable from standard orthography
-    (cópii 'copies' vs copíi 'children' are spelled identically); the standard
-    norm writes no stress marks, so the spec carries no stress block per
-    docs/quality_tiers.md."
-
-    A declared omission, pinned so a stress block cannot be added by accident:
-    the engine must not guess a position it cannot know.
-    """
-    for word in ("copii", "hotel", "masă", "român"):
-        assert "ˈ" not in _t("ro-RO", word)
-
-
 # ===========================================================================
 # grc — Reconstructed Classical Attic Greek (Allen 1968)
 # ===========================================================================

@@ -101,7 +101,13 @@ Every dialect declares `parent: eu` with ancestor weight 0.9, so `ancestry_simil
 
 The qualifying row is `wikipron`, far below the shallow threshold. The `hitz_basque_ipa` gap is documented in that dataset's own provenance note (tool-generated transcriptions in the StyleTTS2 convention), not a spec regression.
 
-Known engine-limit notes: Basque accent is dialect-variable and never written (see the spec's documented stress exemption). No stress marks are emitted.
+Stress: Batua has no official accent norm, and its spelling marks no accent. The `stress` block puts the accent on the second syllable of the word. This is the General Central [+2] pattern. Hualde (1994: 1559) proposes it for Batua, and Elordieta, Gaminde & Hualde (1998: 402) record it in Batua speech (*gizóna*, *emákumea*, *txistúlaria*).
+
+A monosyllabic root (*lúrra*) takes the accent on the first syllable. So does a closed set of marked words (*lékuan*, *áurrera*). The spelling shows neither, so the spec does not model them.
+
+The Eastern dialect specs (Souletin, Roncalese, Lapurdian, Lower Navarrese) declare their own penultimate [-2] block (Hualde 2022: 92, 97). The other dialect specs inherit [+2].
+
+Known engine-limit notes: the stress mark is written inside the affricates *ts̻ ts̺* (*beltˈs̻aɾi*), because the IPA segmenter does not read an affricate with a diacritic below as one segment.
 
 ---
 [← Mongolian](mn.md) · [Home](../index.md) · [Finnish →](fi.md)

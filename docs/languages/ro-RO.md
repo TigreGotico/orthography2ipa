@@ -21,11 +21,13 @@ front vowels follows the pan-Romance rule.
 - Diphthongs /e̯a/ ⟨ea⟩ and /o̯a/ ⟨oa⟩ are encoded as units. Final ⟨i⟩
   after consonants is the asyllabic palatal /ʲ/ (lupi /lupʲ/), encoded
   positionally.
-- **Stress is lexically unpredictable from orthography** (compare
-  *cópii* "copies" vs *copíi* "children") and standard spelling does not
-  mark it: the spec carries no `stress` block, with the exemption
-  documented in its `notes` per the research-tier rule. Gold scoring is
-  unaffected (PER strips stress marks).
+- **Stress** is lexical, and standard spelling does not mark it, but it
+  has a strong default (Chițoran 2002: 75–77, tabulated in Alexei &
+  Ulfsbjorninn 2022: 2–5). A word that ends in a consonant or in a
+  falling diphthong takes final stress (*bărbát*, *animál*, *gunói*,
+  *biróu*), and any other word takes penultimate stress (*máre*,
+  *feméie*, *mașínă*). The `stress` block states that default. Gold
+  scoring is unaffected (PER strips stress marks).
 
 ## Benchmark (full gold set, no cap)
 
@@ -40,8 +42,15 @@ this spec by the registry and the guard test alike) is the primary.
 
 ## Known limitations
 
-- Stress is not transcribed (see above), WER-style comparisons against
-  stress-marked competitors must strip stress to be fair.
+- The stress default misses the lexically marked words: penultimate
+  stress on a consonant-final word (*záhăr*, *călúgăr*), antepenultimate
+  stress on a vowel-final word (*pépene*, *cámeră*), and final stress on
+  a vowel (*macará*, *curéa*). The spec lists none of them.
+- Inflectional endings keep the stress of the stem (Franzén & Horne
+  1997: 75), but the engine reads the whole word, so *lupul*, *trenuri*
+  and *caselor* take the mark one syllable late. Homographs that differ
+  only in stress (*cópii* "copies", *copíi* "children") are not
+  resolved.
 - The pre-1993 ⟨î⟩-everywhere spelling and the â/î alternation in older
   text are an orthographic-norm variant, out of scope for this spec
   (o2i does no input normalization by design).
@@ -49,6 +58,10 @@ this spec by the registry and the guard test alike) is the primary.
 ## Sources
 
 - Mallinson, G. *Romanian*. Croom Helm Descriptive Grammars.
+- Alexei, S. & Ulfsbjorninn, S. (2022). Metrical exceptionality and stress
+  shift in Romanian nouns and adjectives. *Isogloss* 8(1)/4, 1–29.
+- Franzén, V. & Horne, M. (1997). Word stress in Romanian. *Lund
+  University Working Papers* 46, 75–91.
 - Deletant, D. *Teach Yourself Romanian*.
 - Ladefoged, P. & Maddieson, I. *The Sounds of the World's Languages*.
 

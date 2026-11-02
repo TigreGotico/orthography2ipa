@@ -128,8 +128,10 @@ class TestBasqueNegationSandhi:
     ez+z→etz, ez+n→en, ez+l→el, ez+b→ezp, ez+g→ezk."""
 
     def _transcribe(self, text, lect="eu"):
+        # The rules must fire on stressed output; the assertions compare
+        # segments only.
         from orthography2ipa import transcribe
-        return transcribe(text, lect)
+        return transcribe(text, lect).replace("ˈ", "").replace("ˌ", "")
 
     def test_ez_d_devoices_to_ezt(self):
         assert self._transcribe("ez dut") == "es̻ tut"
