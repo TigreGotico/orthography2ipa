@@ -118,6 +118,8 @@ PhonetokTokenizer(spec, *, add_bos=False, add_eos=False, collapse_whitespace=Tru
 
 The constructor builds a prefix trie from `spec.graphemes`. It also adds every key that exists only in `spec.positional_graphemes`, so that the trie can match it. Such a key gets its `DEFAULT` positional candidates as its flat IPA, or its first declared position when it has no `DEFAULT`.
 
+Each key takes the form that `tokenize` gives the text: lower case, NFC, and without the diacritics in `fold_diacritics`. When two keys of a spec have the same form, the key that the spec already writes in that form wins. The trie can therefore reach every key, and `decode(encode(g))` returns `g` for each grapheme `g` of the vocabulary.
+
 ### `tokenize(text)`
 
 `tokenize` returns every token, including whitespace and punctuation, so the structure of the text survives. Before the scan, it normalises the text to NFC and removes the diacritics the spec lists in `fold_diacritics`. For an Arabic-script spec, it also decomposes presentation forms and, if the spec models shadda, expands gemination.
