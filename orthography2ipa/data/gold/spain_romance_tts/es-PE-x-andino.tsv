@@ -1,7 +1,7 @@
 id	sentence	ipa	gloss_en	features	notes
 es-PE-x-andino-001	El taita llevó las llamas hasta la puna alta.	el ˈtai̯ta ʝeˈβo las ˈʝamas ˈasta la ˈpuna ˈalta	The father took the llamas up to the high moor.	yeismo;sandhi;statement	Andean lexicon; seseo and yeismo per lipski1994
 es-PE-x-andino-002	Dice pues que la cosecha estuvo buena este año.	ˈdise ˈpwes ke la koˈsetʃa esˈtuβo ˈbwena ˈeste ˈaɲo	He says the harvest was good this year.	seseo;palatal_nasal;diphthong_ie_ue;sandhi;statement	Andean 'pues' discourse marker; lipski1994
-es-PE-x-andino-003	¿Ya sembraste el maíz en la chacra de arriba?	ˈʝa semˈbɾaste el ˈmais en la ˈtʃakɾa de aˈriβa	Did you already sow the corn in the upper field?	seseo;yeismo;rhotic;sandhi;question	Quechua-contact syntax; seseo cosecha n/a; lipski1994
+es-PE-x-andino-003	¿Ya sembraste el maíz en la chacra de arriba?	ˈʝa semˈbɾaste el maˈis en la ˈtʃakɾa de aˈriβa	Did you already sow the corn in the upper field?	seseo;yeismo;rhotic;sandhi;question	Quechua-contact syntax; seseo cosecha n/a; lipski1994
 es-PE-x-andino-004	La wawa duerme abrigada con su lliclla.	la ˈwawa ˈdweɾme abɾiˈɣaða kon su ˈʝikʝa	The baby sleeps wrapped in its carrying cloth.	yeismo;diphthong_ie_ue;final_u;sandhi;statement	Quechua loans wawa/lliclla; yeismo; lipski1994
 es-PE-x-andino-005	No quiero que vendas la tierra del abuelo.	ˈno ˈkjeɾo ke ˈbendas la ˈtjera del aˈβwelo	I don't want you to sell grandfather's land.	diphthong_ie_ue;rhotic;sandhi;negation	seseo vendas→[s]; diphthong quiero→[je]; lipski1994
 es-PE-x-andino-006	Sirve el mate de coca bien caliente, por favor.	ˈsiɾbe el ˈmate de ˈkoka ˈbjen kaˈljente poɾ faˈβoɾ	Serve the coca tea nice and hot, please.	diphthong_ie_ue;sandhi;imperative	seseo n/a; diphthong caliente→[je]; lipski1994
@@ -18,4 +18,4 @@ es-PE-x-andino-016	La señora vende ch'uño seco en el mercado.	la seˈɲoɾa ˈ
 es-PE-x-andino-017	Traiga la chaquitaclla para arar el terreno.	ˈtɾai̯ɣa la tʃakiˈtakʝa paɾa aˈɾaɾ el teˈreno	Bring the foot-plough to till the plot.	yeismo;rhotic;sandhi;imperative	Quechua loan chaquitaclla; lipski1994
 es-PE-x-andino-018	Dos llamas cargan la leña por el sendero.	ˈdos ˈʝamas ˈkaɾɡan la ˈleɲa poɾ el senˈdeɾo	Two llamas carry the firewood along the trail.	yeismo;palatal_nasal;palatal_initial;sandhi;number	yeismo llamas→[ʝ]; lipski1994
 es-PE-x-andino-019	¿De dónde vienes tan cansado, hijito?	de ˈdonde ˈbjenes ˈtan kanˈsaðo iˈxito	Where are you coming from so tired, son?	diphthong_ie_ue;question	diphthong vienes→[je]; Andean diminutive; lipski1994
-es-PE-x-andino-020	El maíz y la quinua se guardan en el troje.	el ˈmais i la ˈkinwa se ˈɡwaɾdan en el ˈtɾoxe	The corn and quinoa are stored in the granary.	seseo;statement	seseo n/a; Andean lexicon; lipski1994
+es-PE-x-andino-020	El maíz y la quinua se guardan en el troje.	el maˈis i la ˈkinwa se ˈɡwaɾdan en el ˈtɾoxe	The corn and quinoa are stored in the granary.	seseo;statement	seseo n/a; Andean lexicon; lipski1994
