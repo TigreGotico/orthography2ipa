@@ -325,7 +325,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | et | vox_communis | 35140 | 0.2121‡ | - | - | 0.1593 | 0.1491 | 0.1869 | 0.2026 | [0.2104, 0.2139] | 0.1141 | research | epitran-derived |
 | et | wikipron | 2763 | 0.1587 | - | - | 0.1177 | 0.1144 | 0.3815 | 0.3815 | [0.1529, 0.1651] | 0.3815 | research | crowd-scraped |
 | ett | wikipron | 207 | 0.1444 | - | - | 0.1444 | 0.1444 | 0.5217 | 0.5217 | [0.1192, 0.1702] | 0.5217 | research | crowd-scraped |
-| eu | hitz_basque_ipa | 3113 | 0.0984 | 0.0000 | - | 0.0981 | 0.0981 | 0.4616 | 0.4616 | [0.0944, 0.1026] | 0.4600 | production | machine-generated |
+| eu | hitz_basque_ipa | 3113 | 0.0984 | 0.8677 | - | 0.0981 | 0.0981 | 0.4616 | 0.4616 | [0.0944, 0.1026] | 0.4600 | production | machine-generated |
 | eu | ipa_childes | 3969 | 0.0821‡ | - | - | 0.0820 | 0.0820 | 0.6130 | 0.6130 | [0.0783, 0.0862] | 0.6127 | production | espeak-derived |
 | eu | spain_romance_tts | 26 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | production | llm-generated |
 | eu | vox_communis | 63415 | 0.0429‡ | - | - | 0.0395 | 0.0395 | 0.6841 | 0.6841 | [0.0424, 0.0434] | 0.6617 | production | epitran-derived |
