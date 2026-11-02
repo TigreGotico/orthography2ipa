@@ -228,13 +228,26 @@ def read_ratchet(rev, path, name, repo="."):
     return None
 
 
+def renamed_paths(base, merged, repo="."):
+    """Old path to new path for every file git detects as renamed from *base* to *merged*."""
+    renames = {}
+    for line in (git("diff", "--name-status", "-M", base, merged, repo=repo) or "").splitlines():
+        status, *paths = line.split("\t")
+        if status.startswith("R") and len(paths) == 2:
+            renames[paths[0]] = paths[1]
+    return renames
+
+
 def check_ratchets(base, merged, repo="."):
     """Report burn-down sets the merge would grow. Returns True when any did.
 
     A set that grew is a resolution that took the branch's older, longer copy:
     every restored entry silences a test again, so the suite cannot notice.
+    A base entry that names a file the merge renames is compared under its
+    new path, so moving a listed page does not read as growth.
     """
     failed = False
+    renames = renamed_paths(base, merged, repo=repo)
     for path, name in RATCHETS:
         base_set = read_ratchet(base, path, name, repo=repo)
         merged_set = read_ratchet(merged, path, name, repo=repo)
@@ -243,6 +256,8 @@ def check_ratchets(base, merged, repo="."):
                   f"{'the merge result' if merged_set is None else base}; "
                   f"the burn-down guard cannot judge this merge")
             continue
+        # An entry that names a moved file follows the file to its new path.
+        base_set = frozenset(renames.get(entry, entry) for entry in base_set)
         added = sorted(merged_set - base_set)
         if not added:
             print(f"{path}: {name} does not grow "
