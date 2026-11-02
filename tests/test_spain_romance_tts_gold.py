@@ -1,4 +1,4 @@
-"""Regression gate for the Spain-Romance TTS gold set (docs/spain-romance-tts-gold.md).
+"""Regression gate for the Spain-Romance TTS gold set (docs/tts_gold.md#spain_romance_tts).
 
 Runs the validate subcommand of scripts/spain_romance_tts_gold.py over every
 Spain-Romance lect that has a gold TSV (the rest report as pending): schema,

@@ -1,28 +1,23 @@
 # The pronunciation lattice
 
-Most words have exactly one sensible pronunciation. Some do not: and the
-ones that do not are where a grapheme-to-IPA engine earns its keep.
-`orthography2ipa` does not hide that ambiguity behind a single answer: it
-exposes it as a **structured lattice**: for every grapheme, the ranked
-list of IPA options that grapheme could realise, each with a cost. The
-lattice is the object the rest of the library (and the downstream
-phonemizers) is built to consume.
+Most words have one sensible pronunciation, and the hard cases are the words that have several. `orthography2ipa` does not hide that ambiguity behind a single answer. It exposes a lattice: for each grapheme of a word, the ranked IPA options that the grapheme can realise, each with a cost. The rest of the library, and the phonemizers built on it, consume this object.
+
+This page covers the lattice, its costs, rescoring and the confidence signal. The [tokenizer](tokenizer.md) page covers how text becomes graphemes and how the beam search (`ipa_beam`) turns the same search space into whole-word readings.
 
 ## What the lattice is
 
-A lattice is a list of **slots**, one per grapheme, in surface order. Each
-slot is a [`SegmentSlot`](tokenizer.md) carrying:
+A lattice is a list of slots, one per grapheme, in surface order. Each slot is a `SegmentSlot`:
 
-- `grapheme`: the source grapheme, exactly as tokenised;
-- `span`: the `(start, end)` character offsets that locate it (same
-  NFC/case-fold contract as `GraphemeContext.span`: `unicodedata.normalize("NFC", text)[start:end].lower() == grapheme`);
-- `candidates`: a tuple of `Candidate(ipa, cost)`, ranked best (lowest
-  cost) first.
+| Member | Meaning |
+| --- | --- |
+| `grapheme` | The source grapheme, lower-cased as the tokenizer produced it |
+| `span` | The `(start, end)` character offsets, with the same contract as `GraphemeContext.span`: `unicodedata.normalize("NFC", text)[start:end].lower() == grapheme` |
+| `candidates` | A tuple of `Candidate(ipa, cost)`, best (lowest cost) first |
+| `top` | The first candidate, which is the canonical choice |
 
-`slot.top` is a shortcut for `slot.candidates[0]`, the canonical choice.
+Two methods return a lattice. `PhonetokTokenizer.ipa_lattice(text, *, beam_width=8, expand_allophones=False, rescorer=None)` works from the spec alone. `G2P.ipa_lattice(word, *, beam_width=8)` adds the engine's context, as [Positional overrides apply here too](#positional-overrides-apply-here-too) explains. In both, `beam_width` is the number of candidates kept per slot, and `-1` keeps all of them. The truncation never removes the top candidate. A grapheme that resolves to no candidates, such as a silent marker letter, gets no slot.
 
-Because the cost of each slot is independent and additive, the lattice and
-the beam are two views of the same search:
+The costs of the slots are independent and additive. The lattice and the beam are therefore two views of the same search:
 
 ```python
 from orthography2ipa import get
@@ -34,193 +29,133 @@ slots = tok.ipa_lattice("through")
 assert "".join(s.top.ipa for s in slots) == tok.ipa_best("through")
 ```
 
-Concatenating each slot's top candidate reproduces `ipa_best` with its
-default arguments. (The lattice has no slots for whitespace or
-punctuation, so it does not reflect a non-default `word_separator` or
-`include_special=True` passed to the beam.) The lattice keeps *all* the
-ranked options per position; the beam (`ipa_beam`) flattens them into
-whole-word `IPAPath` strings. Reach for the lattice when you want to
-reason about *why* a word was pronounced a certain way, or to intervene
-at a single position.
+The top candidates of the slots, joined, give `ipa_best` with its default arguments. The lattice has no slots for whitespace or punctuation. It therefore does not reflect a non-default `word_separator`, or `include_special=True`, passed to the beam. The beam flattens the options into whole-word `IPAPath` strings, while the lattice keeps every ranked option per position. Use the lattice to see why a word got its pronunciation, or to change the choice at one position.
 
 ## A worked example
 
-English `cough` is a small ambiguity: the `c` is unambiguous, but the
-`ough` cluster is famously not.
+English ⟨cough⟩ shows a small ambiguity. The ⟨c⟩ has a clear first choice, and the ⟨ough⟩ cluster has six readings.
 
 ```python
 tok = PhonetokTokenizer(get("en-GB"))
 for slot in tok.ipa_lattice("cough"):
-    print(slot.grapheme, slot.span,
-          [(c.ipa, round(c.cost, 2)) for c in slot.candidates])
+    print(slot.grapheme, slot.span, [(c.ipa, round(c.cost, 2)) for c in slot.candidates])
 ```
 
 ```text
-c    (0, 1)  [('k', 0.0), ('s', 1.0)]
-ough (1, 5)  [('ɔː', 0.0), ('oʊ', 1.0), ('ʌf', 2.0), ('ɒf', 3.0), ('aʊ', 4.0), ('uː', 5.0)]
+c (0, 1) [('k', 0.0), ('s', 1.0)]
+ough (1, 5) [('ɔː', 0.0), ('əʊ', 1.0), ('ʌf', 2.0), ('ɒf', 3.0), ('aʊ', 4.0), ('uː', 5.0)]
 ```
 
-The top-of-slot concatenation is `kɔː`: the canonical reading: but the
-`ough` slot preserves five alternatives in rank order, ready for a
-downstream rule or lexicon to promote the contextually correct one (`ɒf`
-for *cough*, in fact) without re-tokenising the word.
+The top candidates give `kɔː`. The ⟨ough⟩ slot keeps five other readings in rank order. A downstream rule or lexicon can promote the correct one for this word, `ɒf`, without tokenizing the word again.
 
-## How cost works: −log P
+## How cost works
 
-Each `Candidate.cost` is an **additive beam cost**, and lower is better.
-There are two regimes, decided per grapheme:
+`Candidate.cost` is an additive cost, and lower is better. Each grapheme uses one of two regimes.
 
-- **Plain-list spec** (the common case). A grapheme like `"e": ["e", "ɛ"]`
-  has no frequency data, so the cost is the *rank* cost: `0.0` for the
-  first (canonical) candidate, `1.0` for the next, and so on. This is the
-  library's historical ordering, unchanged.
-- **Weighted spec.** A grapheme may instead declare candidate
-  frequencies, e.g. en-GB's `"er": {"ipa": ["ɜːɹ", "əɹ"], "weights": [0.2, 0.8]}`.
-  The weights are normalised to a probability distribution and the cost
-  becomes `-log P`. So the far more common `əɹ` (P = 0.8) costs
-  `-log 0.8 ≈ 0.22`, while `ɜːɹ` (P = 0.2) costs `-log 0.2 ≈ 1.61`: and
-  the beam prefers `əɹ` even though it is listed second. See
-  [candidate_scoring.md](candidate_scoring.md) for the weight format and
-  sourcing rules.
+A grapheme with a plain list of candidates, such as `"e": ["e", "ɛ"]`, has no frequency data. Its cost is the rank: 0.0 for the first candidate, 1.0 for the next, and so on. Most graphemes in most specs use this regime.
 
-Because `-log P` is additive, a whole path's score is the negative log of
-the product of its candidates' probabilities: a proper (unnormalised)
-sequence log-probability. That is exactly what a path's total score is:
+A grapheme can instead declare candidate frequencies. The en-GB spec declares `"er": {"ipa": ["ɜːɹ", "əɹ"], "weights": [0.2, 0.8]}`. The weights become a probability distribution, and the cost of each candidate is `-log p`. The common `əɹ` (p = 0.8) costs 0.22, and `ɜːɹ` (p = 0.2) costs 1.61. The beam therefore prefers `əɹ`, although the spec lists it second. The weight format, the rules for malformed weights and the sourcing rules are in [candidate_scoring.md](candidate_scoring.md).
+
+Because `-log p` is additive, the score of a whole path is the negative log of the product of its candidate probabilities. That is an unnormalised sequence log-probability. The beam score of the best path is the sum of the top costs:
 
 ```python
 slots = tok.ipa_lattice("gher")
-best  = tok.ipa_beam("gher", beam_width=1)[0]
-assert best.score == sum(s.top.cost for s in slots)
+best = tok.ipa_beam("gher", beam_width=1)[0]
+for s in slots:
+    print(s.grapheme, [(c.ipa, round(c.cost, 3)) for c in s.candidates])
+print(best.ipa, best.score == sum(s.top.cost for s in slots))
 ```
 
-This is what turns the beam from a rank-sum toy into a real probabilistic
-lattice.
+```text
+gh [('', 0.163), ('f', 2.12), ('ɡ', 3.507)]
+er [('əɹ', 0.223), ('ɜːɹ', 1.609)]
+əɹ True
+```
 
 ## Positional overrides apply here too
 
-The lattice consults the same shared resolver the full engine uses, so
-context-sensitive [positional overrides](positional_graphemes.md): including the vowel-class positions: fire in the lattice. Spanish `c`
-softens to `θ` before a front vowel:
+The lattice uses the same shared resolver as the full engine. Context-sensitive [positional overrides](positional_graphemes.md), the vowel-class positions included, therefore fire in the lattice. Spanish ⟨c⟩ is /θ/ before a front vowel and /k/ elsewhere:
 
 ```python
 tok = PhonetokTokenizer(get("es-ES"))
 c_slot = next(s for s in tok.ipa_lattice("cena") if s.grapheme == "c")
-assert c_slot.top.ipa == "θ"          # before 'e' → θ
+assert c_slot.top.ipa == "θ"
 c_slot = next(s for s in tok.ipa_lattice("casa") if s.grapheme == "c")
-assert c_slot.top.ipa == "k"          # before 'a' → k
+assert c_slot.top.ipa == "k"
 ```
 
-`G2P.ipa_lattice(word)` returns the same structure but with the engine's
-**stress and syllable context** supplied, so stress-conditioned nucleus
-positions also fire. That lattice is the *pre-lexical* phoneme lattice: built before stress-mark insertion and cross-word sandhi: which is the
-object a downstream engine reasons over.
-
-## Scoring quality: length normalisation and diversity
-
-`ipa_beam` accepts two opt-in scoring knobs. Both default OFF and, off,
-reproduce the current ordering byte-for-byte.
-
-- **`length_norm=True`** reports each path's score as the mean per-segment
-  cost rather than the raw cumulative cost, making scores comparable
-  across inputs of different length. Within a single word every hypothesis
-  shares a segment count, so the *ordering* is unchanged: only the scale.
-- **`diversity=λ`** (a positive float) re-ranks the returned paths with a
-  Maximal-Marginal-Relevance pass: the top path is kept, and each
-  subsequent path is penalised by `λ ×` its similarity to the nearest
-  already-selected path. On a long word the raw beam collapses to
-  near-duplicates of the top path (differing in a single grapheme);
-  `diversity` demotes those in favour of genuinely different
-  pronunciations. The top-1 result never changes.
+`G2P.ipa_lattice(word)` returns the same structure with more context. The engine supplies syllables and stress, so the stress-conditioned positions also fire. It also runs its rescorers over the slots, and these include the spec's `allophone_rules`. The en-GB non-rhotic rule, for example, removes the /ɹ/ of ⟨er⟩ at the end of a word:
 
 ```python
-tok.ipa_beam("weather", beam_width=8)                 # canonical order
-tok.ipa_beam("weather", beam_width=8, diversity=5.0)  # near-dupes demoted
+from orthography2ipa import G2P
+
+print([c.ipa for c in PhonetokTokenizer(get("en-GB")).ipa_lattice("her")[1].candidates])
+print([c.ipa for c in G2P("en-GB").ipa_lattice("her")[1].candidates])
 ```
+
+```text
+['əɹ', 'ɜːɹ']
+['ə', 'ɜː']
+```
+
+The engine lattice is the pre-lexical lattice. The engine builds it before it inserts stress marks, before cross-word sandhi, and before any word-level override from `word_exceptions` or `grammatical_endings`. A downstream engine reasons over this object.
 
 ## What builds on the lattice
 
-The lattice is designed as an extension point, not a dead end:
+Several parts of the library read the `SegmentSlot` and `Candidate` shape without changing it:
 
-- A **rescorer** re-costs each slot's candidates given the neighbouring
-  slots before a path is chosen: the seam by which a downstream rule
-  cascade (a sun-letter assimilation, a silent-`e` rule) becomes a
-  refinement over the shared lattice instead of a parallel tokenizer.
-- A **per-word confidence** signal is read from the top-1 vs top-2 cost
-  margin within each slot, plus the presence of unmapped graphemes: so an
-  engine can spend its expensive lexicon only on the words the lattice is
-  unsure about, and trust the fallback elsewhere.
-
-Both read the `SegmentSlot`/`Candidate` shape described here without
-changing it; the lattice is the stable substrate they attach to.
+| Consumer | What it does | Page |
+| --- | --- | --- |
+| Rescorer | Re-costs the candidates of each slot, given its neighbours, before a path is chosen | [Rescoring the lattice](#rescoring-the-lattice) |
+| Confidence | Reads how sure the engine is about a word from the cost margins and the unmapped characters | [Per-word confidence](#per-word-confidence--oov-signal) |
+| Sentence lattice | Puts the lattices of all words of an utterance in order, with phrase position | [sentence_context.md](sentence_context.md) |
+| Feature view | Exports the lattice and the grapheme context as flat records for a learned model | [features.md](features.md) |
+| Lattice PER | Scores a phone sequence against every reading the lattice admits | [lattice_per.md](lattice_per.md) |
 
 ## Rescoring the lattice
 
-A **rescorer** is the seam that lets a downstream rule cascade run over the
-*shared* lattice instead of forking a parallel tokenizer. It is a pure,
-composable pass that re-costs: and may reorder, add, drop, or delete: a
-slot's candidates, given that slot and its context.
+A rescorer lets a downstream rule cascade run over the shared lattice, instead of a parallel tokenizer. It is a pure pass that re-costs the candidates of one slot, given the slot and its context. It can also reorder, add or remove candidates, or delete the slot.
 
 ### Where it runs in the pipeline
 
-A rescorer runs **after** positional + weight branch generation (the −log P
-costing from `resolve_branches`) and **before** the beam selects a path:
+A rescorer runs after the resolver has made each slot's candidates, with their positional order and weight costs. It runs before the beam selects a path:
 
 ```
 normalize → tokenize → resolve branches (positional + weights)
                           │
                           ▼
-                 ┌─ rescore (B4)   ← re-cost each slot given its neighbours
-                 │      │
-                 ▼      ▼
+                       rescore   ← re-cost each slot given its neighbours
+                          │
+                          ▼
              beam path selection → stress → sandhi → dialect
 ```
 
-Because a rescorer sees the **fully resolved** lattice: the pre-rescore
-candidates of every neighbouring slot, not a half-selected beam path: a
-*list* of rescorers composes deterministically: they apply in order and
-each one sees the previous one's output. This is also exactly where the
-post-lexical **allophone** pass (B8) attaches: a phoneme→surface rewrite
-is a rescorer that replaces a slot's IPA with its context-conditioned
-realisation.
+A rescorer sees the fully resolved lattice, with the candidates of every neighbouring slot, not a half-selected beam path. A list of rescorers therefore composes in a fixed way: they apply in order, and each one sees the output of the one before. The post-lexical allophone pass attaches at the same point. A rewrite from phoneme to surface form is a rescorer that replaces the IPA of a slot with its context-conditioned realisation.
 
 ### The API
 
-Implement `LatticeRescorer.rescore(slot, context)` and pass it via the
-optional `rescorer=` parameter on `ipa_beam`, `ipa_best`, `ipa_lattice`
-(the tokenizer) or the `G2P(..., rescorer=...)` constructor (the engine).
-`rescorer=` accepts a single rescorer or a list. Absent it (the default
-`None`), the lattice and beam behave byte-for-byte as before.
+Subclass `LatticeRescorer` and implement `rescore(slot, context)`. Pass the rescorer with the `rescorer=` argument of `ipa_beam`, `ipa_best` or `ipa_lattice` on the tokenizer, or of the `G2P(...)` constructor. The argument takes one rescorer or a list. With the default `None`, the lattice and the beam do not change.
 
-The `RescoreContext` gives the rescorer:
+`rescore` returns the slot's candidate list. The engine sorts the returned candidates by `(cost, ipa)` before the beam reads them, so a rescorer promotes a candidate by lowering its cost. Returning `slot.candidates` unchanged is a no-op. An empty list deletes the slot: the slot gives no segment to any path, and `ipa_lattice` leaves it out. A silent-letter rule uses this.
 
-- `context.slot` / `context.index` / `context.slots`: the current slot and
-  the full word's slots (surface order);
-- `context.grapheme`: the B1 `GraphemeContext`: word-local `prev`/`next`
-  grapheme access and `is_vowel`/`is_consonant`/`is_front`/`is_back`
-  predicates (single source of truth = `vowels.py`);
-- `context.prev_slot` / `context.next_slot`: the resolved neighbouring
-  slots, **word-local** (`None` at a word edge);
-- `context.is_word_initial` / `context.is_word_final`;
-- `context.syll_idx` / `context.stressed_syll_idx` / `context.is_stressed`: syllable/stress info **where available**.
+The `RescoreContext` gives the rescorer these members:
 
-**Stress availability differs by entry path, honestly.** The engine path
-(`G2P.transcribe`, `G2P.ipa_lattice`) computes syllabification and stress,
-so the stress fields are populated. The standalone tokenizer path
-(`PhonetokTokenizer.ipa_beam` / `ipa_lattice`) has no sentence-level stress
-detection, so `context.is_stressed` (and the syllable indices) are `None`.
-A rescorer that needs stress must guard for `None`: and may simply no-op
-when it is absent, exactly as the stress-conditioned positional rules do.
+| Member | Meaning |
+| --- | --- |
+| `slot`, `index`, `slots` | The current slot, its position in the word and all slots of the word, so `slots[index] is slot` |
+| `grapheme` | The [`GraphemeContext`](tokenizer.md#context-model) of the slot, with word-local `prev` and `next` and the class predicates |
+| `prev_slot`, `next_slot` | The neighbouring slots in the same word, or `None` at a word edge or when an earlier rescorer deleted the neighbour |
+| `is_word_initial` | True for the first grapheme of the word |
+| `is_word_final` | True when every later grapheme of the word is silent, so it marks the last pronounced grapheme |
+| `syll_idx`, `stressed_syll_idx`, `is_stressed` | Syllable and stress information, or `None` where it is not available |
 
-**Empty-candidate return** is a feature, not an error: returning an empty
-sequence **deletes** the slot: it contributes no segment to any beam path
-and is dropped from `ipa_lattice` output. That is how a silent-grapheme
-rule (tugaphone silent-`e`) is expressed. The beam never crashes on it.
+The context never crosses a word boundary, on either entry path. Stress information depends on the entry path. The engine methods `G2P.transcribe` and `G2P.ipa_lattice` compute syllables and stress, so they fill the stress members. The tokenizer methods `PhonetokTokenizer.ipa_beam` and `ipa_lattice` have no stress detection, so these members are `None` there. A rescorer that needs stress must check for `None`, and it can do nothing when stress is absent.
 
-### Worked example: a mini assimilation rule in ~20 lines
+In the engine, the caller's rescorers run first. The rescorers of declared plugins run next, and the spec's allophone rules run last, so the spec has the last word. The plugin stage is in [architecture.md](architecture.md).
 
-Final-obstruent devoicing (a voiced obstruent surfaces voiceless
-word-finally: German, Dutch, Russian, Catalan) is a whole realisation
-rule in about twenty lines:
+### Worked example: final devoicing
+
+Final-obstruent devoicing makes a voiced obstruent voiceless at the end of a word, as in German, Dutch, Russian and Catalan. The whole rule fits in a short rescorer. English has no such rule, so the example applies it to en-GB to show the effect:
 
 ```python
 from orthography2ipa import G2P, LatticeRescorer, Candidate
@@ -229,179 +164,96 @@ class FinalDevoicing(LatticeRescorer):
     VOICED = {"b": "p", "d": "t", "ɡ": "k", "z": "s", "v": "f", "ʒ": "ʃ"}
 
     def rescore(self, slot, context):
-        if not context.is_word_final:          # only at the word edge
+        if not context.is_word_final:
             return slot.candidates
-        out = []
-        for c in slot.candidates:
-            surface = self.VOICED.get(c.ipa, c.ipa)   # devoice if voiced
-            out.append(Candidate(surface, c.cost))
-        return out                             # re-sorted by cost for you
+        return [Candidate(self.VOICED.get(c.ipa, c.ipa), c.cost)
+                for c in slot.candidates]
 
-ca = G2P("ca", rescorer=FinalDevoicing())
-ca.transcribe("club")    # "ˈklub" → "ˈklup": final /b/ realised as [p]
+print(G2P("en-GB").transcribe("dog"))
+print(G2P("en-GB", rescorer=FinalDevoicing()).transcribe("dog"))
 ```
 
-The same shape expresses *c-before-front-vowel* softening: inspect
-`context.grapheme.next.is_front` and promote the soft candidate: or a
-sun-letter assimilation (compare `context.prev_slot`'s IPA). The rule reads
-the shared lattice; it never re-tokenizes.
+```text
+ˈdɒɡ
+ˈdɒk
+```
+
+The same shape expresses ⟨c⟩ softening before a front vowel: read `context.grapheme.next.is_front` and lower the cost of the soft candidate. A sun-letter assimilation reads the IPA of `context.prev_slot`. The rule reads the shared lattice and never tokenizes again.
 
 ### Who builds on this
 
-The post-lexical **allophone rules** (final devoicing, assimilation, vowel
-reduction, flapping, …) are the built-in rescorer over this seam: a spec's
-declarative `allophone_rules` compile into an `AllophoneRescorer` the engine
-runs automatically after phoneme selection. This is the second of the
-library's "two maps"; see [`allophony.md`](allophony.md). A downstream
-engine can attach its own cascade the same way: Arabic sun-letter
-assimilation, a Portuguese sibilant rule: expressing each rule as a
-re-costing over the shared lattice. Whether that is the right choice for a
-given engine is the subject of the next section.
+The engine's own post-lexical allophone rules use this seam. A spec's declarative `allophone_rules` compile into an `AllophoneRescorer`, which the engine runs after phoneme selection. These rules are the second of the library's two maps, and [allophony.md](allophony.md) describes them. A downstream engine attaches its own cascade the same way, such as Arabic sun-letter assimilation or a Portuguese sibilant rule. The next section helps decide whether that is the right choice for an engine.
 
 ## Refine the lattice, or fork the tokenizer?
 
-A downstream phonemizer has two honest ways to build on this library, and
-which one fits depends on the *shape* of its rules, not on a blanket
-preference. Both are supported; each carries a cost.
+A downstream phonemizer can build on this library in two ways. The shape of its rules decides which one fits. Both are supported, and each has a cost.
 
-### Refine: express rules as rescorers over the shared lattice
+### Refine: rules as rescorers over the shared lattice
 
-Keep the shared tokenizer and lattice, and add `LatticeRescorer`s that
-re-cost candidates.
+Keep the shared tokenizer and lattice, and add `LatticeRescorer` classes that re-cost candidates.
 
-Choose this when:
+This fits when your rules choose, in context, among the candidates that the shared trie already lists. A coronal-triggered assimilation, a positional sibilant and a silent letter all have that shape. It also needs your IPA to come from candidate selection per grapheme, so `ipa_lattice` or `ipa_best` is, or can become, your generation path. In return you get maximal munch, positional conditioning, candidate weights and the confidence signal for every language. Your rules also compose with the built-in allophone rules and with each other.
 
-- Your rules are **context-conditioned choices among the grapheme→phoneme
-  candidates the shared trie already enumerates**: a coronal-triggered
-  assimilation, a positional sibilant, a silent-grapheme drop. Re-costing is
-  exactly that shape.
-- **IPA is assembled from per-grapheme candidate selection**: that is,
-  `ipa_lattice` / `ipa_best` is, or can become, your generation path.
-- You want the maximal-munch trie, positional conditioning, candidate
-  weights, and the confidence / OOV signal for every language for free, and
-  you want your rules to **compose** with the built-in allophone rules and
-  with one another.
+Refinement has three limits:
 
-Where it does not reach:
+1. A rescorer sees one slot and its neighbours in the same word. A rule that needs context outside the word does not fit a rescorer: cross-word sandhi, pausal and phrase-final forms, morphological decomposition, part of speech. Such a rule belongs in a thin layer above the lattice. The [sentence-context seam](sentence_context.md) (`SentenceLattice` and `SentenceRescorer`) is that shared layer. It gives cross-word adjacency and phrase and utterance position, so an engine does not need to fork its own.
+2. A rescorer can only choose among the candidates that the spec offers. If the spec leaves out or mis-states a candidate that a rule needs, re-costing cannot recover it. Examples are a semivowel that must geminate, or a word-final long vowel that competes with a consonant reading. The fix belongs in the spec data, not in a workaround.
+3. If your engine makes IPA some other way, such as a character-level cascade, a rescorer does nothing until your generation goes through `ipa_lattice`.
 
-- A rescorer sees **one slot and its immediate neighbours**. Rules that need
-  **non-local context**: cross-word sandhi, pausal or phrase-final forms,
-  morphological decomposition, part of speech: do not fit a per-slot
-  rescorer; they belong in a thin orchestration layer *above* the lattice,
-  not inside it. That layer is shared: the
-  [sentence-context seam](sentence_context.md) (`SentenceLattice` +
-  `SentenceRescorer`) gives cross-word adjacency and phrase / utterance
-  position so a downstream engine need not fork its own.
-- **Multi-segment interactions need care.** A rescorer promotes a candidate
-  by making it strictly cheapest, and it can only reason over the candidates
-  the spec actually offers. If the shared spec omits or mis-bakes a candidate
-  a rule needs: a semivowel that must geminate, a word-final long vowel
-  competing with a consonant reading: re-costing alone cannot recover it;
-  the fix belongs in the spec data upstream, not in a workaround.
-- If your engine's generation model is **not** the lattice: it assembles IPA
-  another way, such as a character-level cascade: a rescorer is dead code
-  until generation is routed through `ipa_lattice`.
+### Fork: a bespoke tokenizer and rule engine
 
-### Fork: keep a bespoke tokenizer and rule engine
+Own the tokenization and the rule pass from end to end.
 
-Own the tokenization and rule pass end to end.
+This fits when you need a representation that the per-slot lattice cannot express. Examples are rules over the whole utterance, morphological structure, prosody, or an intermediate form that is not IPA. It also fits when your data differs so much from the base spec that inheriting it causes more work than it saves. A fork also gives independence from this library's release cycle, and a hand-tuned path where the general lattice costs more than it returns.
 
-Choose this when:
-
-- You need a **representation or context the per-slot lattice cannot
-  express**: whole-utterance rules, morphological structure, prosody, or a
-  non-IPA intermediate the rest of your engine consumes.
-- Your data **diverges enough from the base spec** that inheriting it is a
-  liability, or you need units the base cannot model and that cannot be
-  pushed upstream cleanly.
-- You need **independence from the base engine's release cadence**, or a
-  hand-tuned path where the lattice's generality costs more than it returns.
-
-What it costs:
-
-- You **re-implement and maintain tokenization**: the maximal-munch scan,
-  the digraph and trigraph handling: and its bugs are yours to find.
-- You forgo the **shared multilingual grapheme data, positional
-  conditioning, candidate weights, confidence signal, and every later engine
-  improvement**, and your rules **cannot compose** with another engine's
-  rescorers or the built-in allophone layer.
+The cost is that you implement and maintain tokenization yourself: the maximal-munch scan and the digraph and trigraph handling, with their bugs. You also lose the shared grapheme data, positional conditioning, candidate weights, the confidence signal and every later engine fix. Your rules cannot compose with the rescorers of another engine or with the built-in allophone layer.
 
 ### In practice: hybrid, and push gaps upstream
 
-Most engines land on a **hybrid**: word-internal phonology as rescorers over
-the shared lattice, and the genuinely non-local part: cross-word sandhi,
-pausal forms, lexical exceptions: on a small orchestration layer that calls
-into it. The boundary between the two must be **enforced, not assumed**: a
-word that needs cross-word context should be routed to the layer that has it,
-never sent silently through the word lattice.
+Most engines become a hybrid. Phonology inside the word runs as rescorers over the shared lattice. The non-local part, such as cross-word sandhi, pausal forms and lexical exceptions, runs on a small layer that calls the lattice. Enforce the boundary between the two in code. A word that needs cross-word context must go to the layer that has that context, never silently through the word lattice.
 
-Treat every capability a migration finds missing as an **upstream task**, not
-a reason to fork permanently. When a rule cannot be expressed because the
-shared spec bakes the wrong candidate or the engine lacks a hook, fix the
-spec or add the hook: so more of the engine moves onto the shared lattice
-over time and the next engine inherits the fix.
+Treat each missing capability as a task for this library, not as a reason to fork for good. Sometimes a rule cannot be expressed, because the shared spec has the wrong candidate or the engine lacks a hook. Then fix the spec or add the hook. More of each engine then moves onto the shared lattice, and the next engine gets the fix too.
 
 ## Per-word confidence / OOV signal
 
-The lattice does not only say *what* a word is pronounced as: read the right
-way it also says *how sure the base engine is*. That is the whole point of a
-per-word **confidence** signal: it tells a downstream specialized phonemizer
-**where to spend effort**. A word the base engine is confident about can be
-trusted as-is; a word it is unsure about is exactly where an expensive
-lexicon lookup or hand-written rule cascade earns its keep. Confidence is how
-`orthography2ipa` *explicitly enables* a specialized engine instead of
-competing with it.
+The lattice also tells how sure the base engine is about a word. A downstream phonemizer uses this signal to decide where to spend effort. A word with high confidence can keep the base engine's reading. A word with low confidence is where an expensive lexicon lookup or a hand-written rule cascade pays off.
 
-The signal is a pure, deterministic read off the lattice: no global state,
-thread-safe: surfaced three ways:
+The signal is a deterministic read of the lattice, with no global state, so it is thread-safe. It comes in three forms:
 
-- `WordTranscription.confidence: float` on every word of a
-  `transcribe_detailed(...)` result;
-- `G2P.word_confidence(word) -> float` for a single word;
-- `G2P.confidence_breakdown(word) -> ConfidenceBreakdown` for the per-slot
-  detail (which position the engine was unsure about).
+| Where | What |
+| --- | --- |
+| `WordTranscription.confidence` | A float on every word of a `transcribe_detailed(...)` result |
+| `G2P.word_confidence(word, *, beam_width=8)` | The float for one word |
+| `G2P.confidence_breakdown(word, *, beam_width=8)` | A `ConfidenceBreakdown` with the detail per slot, to find the position the engine was unsure about |
+
+`ConfidenceBreakdown` has the fields `value`, `lattice`, `per_slot`, `coverage` and `unmapped`. The functions `slot_confidence(slot)` and `lattice_confidence(slots)` in `orthography2ipa.phonetok` compute the two lattice terms.
 
 ### The formula
 
-Confidence is built entirely from costs the lattice already carries
-(`Candidate.cost`, see [How cost works](#how-cost-works-log-p) above),
-combining three signals.
+Confidence uses only the costs that the lattice already carries (see [How cost works](#how-cost-works)). It combines three signals.
 
-**1: Ambiguity (top-1 vs top-2 margin).** Within a slot, let `cost₁` and
-`cost₂` be the two lowest candidate costs. The **margin** `m = cost₂ − cost₁`
-is how decisively the winner beats its nearest rival. A slot with a single
-candidate has no rival, so `m = +∞`. Squashed into `[0, 1]`:
+Ambiguity is the margin between the two best candidates of a slot. Let cost₁ and cost₂ be the two lowest costs, and let m = cost₂ - cost₁. A slot with one candidate has no rival, so m is infinite. The margin maps into [0, 1]:
 
 ```
-ambiguity = 1 − exp(−m)      # m = 0 → 0 (a dead tie); m = +∞ → 1 (decisive)
+ambiguity = 1 - exp(-m)      # m = 0 gives 0 (a tie), m = inf gives 1 (decisive)
 ```
 
-**2: Rarity (winner cost).** A slot whose *winner* is itself high-cost: a
-rare mapping, a large −log P: is less trustworthy than one whose winner is
-the free, canonical `cost = 0` option:
+Rarity is the cost of the winner. A slot whose winner has a high cost, such as a rare mapping with a large `-log p`, is less trustworthy than a slot whose winner costs 0:
 
 ```
-rarity = exp(−cost₁)         # cost₁ = 0 → 1; larger cost → smaller
+rarity = exp(-cost₁)         # cost₁ = 0 gives 1, a larger cost gives less
 ```
 
-**3: Coverage (OOV).** Any grapheme the spec's table does not cover lowers
-`WordTranscription.coverage` below `1.0`. Because an out-of-script character
-means the engine has *no* opinion at all there, it multiplies straight in.
+Coverage is the fraction of the word's characters that map to a grapheme. An unmapped character means the engine has no opinion at that point. `WordTranscription.coverage` holds this value, and it multiplies straight in.
 
-Per slot the two intra-lattice factors multiply; across the word the
-**minimum** ("weakest link") wins, then coverage folds in:
+Each slot multiplies its two lattice factors. Across the word the minimum slot wins, and coverage then multiplies in:
 
 ```
-slot_confidence  = ambiguity × rarity
-word_confidence  = min(slot_confidence over all slots) × coverage
+slot_confidence = ambiguity × rarity
+word_confidence = min(slot_confidence over all slots) × coverage
 ```
 
-The weakest-link choice is deliberate: a downstream engine wants to know
-whether **any** position is uncertain, not the average. `confidence_breakdown`
-exposes the full `per_slot` tuple so a caller that prefers a mean, or wants to
-localise the single hard grapheme, can. A `word_exceptions` lexicon override
-is a certain answer, so its lattice confidence is `1.0` (only coverage can
-lower it).
+The minimum is deliberate. A downstream engine needs to know whether any position is uncertain, not the average. `confidence_breakdown` gives the full `per_slot` tuple, so a caller can compute a mean or find the single hard grapheme instead. A `word_exceptions` override is a certain answer, so its lattice confidence is 1.0, and only coverage can lower it. An empty lattice also has lattice confidence 1.0.
 
 ### Worked example: where a downstream engine spends effort
 
@@ -409,45 +261,42 @@ lower it).
 from orthography2ipa import G2P
 
 es = G2P("es-ES")
-es.word_confidence("luz")    # 1.0000: every grapheme maps one way
-es.word_confidence("gato")   # 0.6321: ⟨g⟩ and ⟨o⟩ each have a rival
+print(es.word_confidence("luz"), es.word_confidence("gato"))
 ```
 
-Spanish `luz` is unambiguous: `l`, `u`, `z` each have a single realisation,
-every slot's margin is `+∞`, so confidence is a flat `1.0`. Spanish `gato`
-carries two rank-cost rivals (`g → ɡ/x`, `o → o/…`), each a margin of exactly
-`1.0` over a free winner: `1 − exp(−1) ≈ 0.6321`: and the weakest such slot
-sets the word. A downstream Spanish phonemizer can skip `luz` entirely and
-spend its lexicon only on words like `gato`.
+```text
+1.0 0.6321205588285577
+```
 
-Weighted specs give a *graded* answer rather than the flat rank-cost `0.6321`:
+Every grapheme of Spanish ⟨luz⟩ has one candidate in the engine lattice. Every margin is infinite, so the confidence is 1.0. In ⟨gato⟩, ⟨g⟩ has the rival /x/ and ⟨o⟩ has the rival /ɔ/, each at rank cost 1.0 over a winner that costs 0. Each of those slots scores 1 - exp(-1) ≈ 0.6321, and the weakest slot sets the word. A Spanish phonemizer can skip ⟨luz⟩ and spend its lexicon on words like ⟨gato⟩.
+
+A spec with weights gives a graded answer instead of the flat 0.6321 of rank costs:
 
 ```python
 en = G2P("en-GB")
-en.word_confidence("bar")    # 1.0000: b, a(only ɑː here), r all decisive
-en.word_confidence("her")    # 0.6000: ⟨er⟩ is −log P weighted
+print(en.word_confidence("bar"), round(en.word_confidence("her"), 4))
+print([(c.ipa, round(c.cost, 3)) for c in en.ipa_lattice("her")[1].candidates])
 ```
 
-en-GB `⟨er⟩` declares candidate weights (`əɹ` P = 0.8 → cost 0.223, `ɜːɹ`
-P = 0.2 → cost 1.609). Its margin is `1.609 − 0.223 = 1.386`, so
-`ambiguity = 1 − exp(−1.386) = 0.75`, and because the winner is not free
-`rarity = exp(−0.223) = 0.80`; the slot: and the word: score
-`0.75 × 0.80 = 0.60`. The probabilistic ambiguity of `⟨er⟩` reads out as a
-number strictly between the confident `1.0` and a dead tie.
+```text
+1.0 0.6
+[('ə', 0.223), ('ɜː', 1.609)]
+```
 
-Finally, an out-of-script character drops confidence sharply through
-coverage:
+In ⟨bar⟩, ⟨b⟩ and ⟨ar⟩ each have one candidate. In ⟨her⟩, the weighted ⟨er⟩ slot has a margin of 1.609 - 0.223 = 1.386, so its ambiguity is 1 - exp(-1.386) = 0.75. The winner does not cost 0, so its rarity is exp(-0.223) = 0.80. The slot, and the word, score 0.75 × 0.80 = 0.60. The probabilistic ambiguity of ⟨er⟩ gives a number between the certain 1.0 and a tie.
+
+An unmapped character lowers confidence through coverage:
 
 ```python
 b = en.confidence_breakdown("bar你")
-b.coverage    # 0.75-3 of 4 characters map
-b.lattice     # 0.6321: 'bar' is not perfectly confident on its own
-b.value       # 0.4741: lattice × coverage
-b.unmapped    # ('你',)
+print(b.value, b.lattice, b.per_slot, b.coverage, b.unmapped)
 ```
 
-The OOV character pulls the word well below any fully-mapped word: the
-strongest signal of all that a downstream engine (or a human) must handle it.
+```text
+0.75 1.0 (1.0, 1.0) 0.75 ('你',)
+```
+
+Three of the four characters map, so coverage is 0.75. The lattice of ⟨bar⟩ is certain, so the word confidence is 1.0 × 0.75. A word with an unmapped character is the clearest case for a downstream engine, or a person, to handle.
 
 ---
-[← Tokenizer](tokenizer.md) · [Home](index.md) · [The sentence-context seam →](sentence_context.md)
+[← Candidate scoring](candidate_scoring.md) · [Home](index.md) · [The sentence-context seam →](sentence_context.md)
