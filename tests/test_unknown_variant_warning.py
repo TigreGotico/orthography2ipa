@@ -65,3 +65,13 @@ def test_strict_get_raises_without_warning():
 def test_suite_turns_the_warning_into_an_error():
     with pytest.raises(UnknownVariantWarning):
         registry.resolve("gmh-x-typo123")
+
+
+@pytest.mark.parametrize("tag", ["-X-", "-x-", "zzzz-x-nothing"])
+def test_a_tag_that_resolves_to_no_spec_raises_keyerror_without_warning(tag):
+    """No spec stands in, so there is no substitution to warn about."""
+    with warnings.catch_warnings():
+        warnings.simplefilter("error")
+        assert registry.resolve(tag) == tag
+        with pytest.raises(KeyError):
+            registry.get(tag)
