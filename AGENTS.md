@@ -200,7 +200,7 @@ pip install -e .
 pip install -e .[validation]
 ```
 
-Runtime deps are minimal: `numpy`, `langcodes` (see `requirements.txt`). `langcodes` is used for ISO 639-3 → BCP-47 normalisation, with a hand-maintained fallback alias table in `registry.py`.
+Runtime deps are minimal: `numpy`, `langcodes`, `ovos-spec-tools` (see `dependencies` in `pyproject.toml`). `langcodes` is used for ISO 639-3 → BCP-47 normalisation, with a hand-maintained fallback alias table in `registry.py`.
 
 ## Test
 
@@ -378,7 +378,7 @@ script and the page is regenerated.
 ## Gotchas
 
 - This is **pure data + logic, no trained network weights** despite living in the ML cluster — the package ships no G2P plugin implementation; algorithmic diacritization/G2P pipelines (e.g. Arabic tashkeel) live in downstream consumers such as [arbtok](https://github.com/TigreGotico/arbtok).
-- `dynamic = ["version", "dependencies"]`: version comes from `orthography2ipa/version.py` attr, deps from `requirements.txt`. The release workflows reference a `setup.py` that is not present in the tree — packaging is `pyproject`-only, so the `setup.py`-based release steps will fail.
+- `dynamic = ["version"]`: version comes from `orthography2ipa/version.py` attr; deps are listed in `pyproject.toml`. The release workflows reference a `setup.py` that is not present in the tree — packaging is `pyproject`-only, so the `setup.py`-based release steps will fail.
 - `QualityTier` ranges from `stub`/`skeleton` through `research`/`production`; not every one of the 356 specs is `production` quality. Check `spec.quality` before relying on a mapping.
 - Graphemes ≠ allophones: `graphemes` maps a spelling to the phonemes it can represent; `allophones` maps a phoneme to its contextual surface forms. Keep them distinct.
 - Many scratch report files (AUDIT.md, MAINTENANCE_REPORT.md, SUGGESTIONS.md, PLAN.md, QUICK_FACTS.md, FAQ.md) and 78 `.pyc` files are committed despite `.gitignore` — do not add more.

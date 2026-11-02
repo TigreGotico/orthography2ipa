@@ -4,7 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "orthography2ipa"
-dynamic = ["version", "dependencies"]
+dynamic = ["version"]
+dependencies = ["numpy", "langcodes", "ovos-spec-tools>=1.16.1a1"]
 description = "Linguistically motivated grapheme-to-IPA and allophone mappings for 350+ language codes"
 readme = "README.md"
 license = {text = "Apache-2.0"}
@@ -26,7 +27,6 @@ keywords = ["ipa", "phonetics", "phonology", "grapheme", "allophone", "linguisti
 
 [tool.setuptools.dynamic]
 version = {attr = "orthography2ipa.version.VERSION_STR"}
-dependencies = {file = ["requirements.txt"]}
 
 [project.optional-dependencies]
 hf = ["huggingface_hub"]
