@@ -80,6 +80,8 @@ eml
 enf
 ess
 ett
+eu-x-bizkaiera
+eu-x-nafarra-garaia
 ewo
 fa
 fat

@@ -112,3 +112,13 @@ def test_souletin_penultimate_word():
 def test_central_basque_dialect_keeps_second_syllable():
     # Gipuzkoan is the General Central [+2] system (Hualde 2022: 84, Table 2).
     assert get("eu-x-gipuzkera").stress.default_position == 2
+
+
+@pytest.mark.parametrize("code,word", [("eu-x-bizkaiera", "gizona"),
+                                       ("eu-x-nafarra-garaia", "mendia")])
+def test_mixed_accent_dialect_prints_no_stress(code, word):
+    # Bizkaia mixes the Western phrase-accent systems with Central ones
+    # (Hualde 2022: 83, Table 1); Upper Navarre holds tonal Goizueta [+2H]
+    # (Hualde 2022: 84, Table 2) and the [-2] Baztan Valley (Hualde 2022: 80,
+    # note 5). Neither spec takes the Batua [+2] block.
+    assert "ˈ" not in orthography2ipa.transcribe(word, code)

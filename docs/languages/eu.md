@@ -120,7 +120,9 @@ Batua has no official accent norm, and its spelling marks no accent. The `stress
 
 A monosyllabic root (*lúrra*) takes the accent on the first syllable. So does a closed set of marked words (*lékuan*, *áurrera*). The spelling shows neither, so the spec does not model them.
 
-The Eastern dialect specs (Souletin, Roncalese, Lapurdian, Lower Navarrese) declare their own penultimate [-2] block (Hualde 2022: 92, 97). The other dialect specs inherit [+2].
+The Eastern dialect specs (Souletin, Roncalese, Lapurdian, Lower Navarrese) declare their own penultimate [-2] block (Hualde 2022: 92, 97). Gipuzkoan inherits [+2], the General Central system (Hualde 2022: 84).
+
+Biscayan and Upper Navarrese state `"stress": false` and print no stress marks. Each area mixes accent systems. Bizkaia has the Western systems, where most words are unaccented and the accent falls on the phrase, next to Central systems (Hualde 2022: 83, Table 1). Upper Navarre has the tonal [+2H] system of Goizueta (Hualde 2022: 84, Table 2) and the penultimate [-2] of the Baztan Valley (Hualde 2022: 80). No single block can be written for either spec.
 
 The engine writes the stress mark inside the affricates *ts̻ ts̺* (*beltˈs̻aɾi*). The IPA segmenter does not read an affricate with a diacritic below as one segment.
 
