@@ -238,3 +238,203 @@ def test_gl_lenition_survives_a_heterorganic_cluster(word, expected):
     """The counter-case that keeps the guard narrow: lenition DOES apply
     across a cluster of two DIFFERENT voiced obstruents."""
     assert bare(word) == expected
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Accentuation, diphthongs and hiatus — RAG/ILG Normas 2012; Regueira 2010
+# ═══════════════════════════════════════════════════════════════════════════
+#
+# Expected values are written from the sources. Regueira 2010 marks the final
+# unstressed vowels as raised (o̝ a̝ e̝), a detail the spec does not model, so
+# the expected strings below drop that diacritic. Where the dictionary's vowel
+# quality differs from the spec on a segment this section does not test, the
+# assertion checks only the stressed syllable.
+
+def stressed(w: str, lang: str = "gl") -> str:
+    return G2P(lang).transcribe_word(w)
+
+
+def tail(w: str, lang: str = "gl") -> str:
+    """The transcription from the stress mark on."""
+    out = stressed(w, lang)
+    assert out.count("ˈ") == 1, out
+    return out[out.index("ˈ") + 1:]
+
+
+@pytest.mark.parametrize("word,expected_tail", [
+    ("amei", "mej"),
+    ("amou", "mow"),
+    ("recibiu", "βiw"),
+    ("colleu", "ʎew"),
+    ("ademais", "majs"),
+    ("capitais", "tajs"),
+    ("papeis", "pejs"),
+    ("españois", "ɲojs"),
+    ("cantou", "tow"),
+    ("pensei", "sej"),
+])
+def test_gl_unaccented_final_falling_diphthong_is_oxytone(word, expected_tail):
+    """RAG/ILG Normas §2.2 (p. 24): agudas that end in a falling diphthong,
+    followed or not by n or s, take no written accent. The first eight words
+    are the ones §2.2 lists, so the unaccented spelling marks an oxytone."""
+    assert tail(word) == expected_tail
+
+
+def test_gl_grave_with_a_final_falling_diphthong_carries_the_accent():
+    """The counter-case, §2.3 (p. 24): a grave with a falling diphthong in the
+    last syllable is written with the accent, and the accent wins."""
+    assert tail("amábeis") == "maβejs"
+
+
+@pytest.mark.parametrize("word,expected", [
+    ("caqui", "ˈkaki"),
+    ("ianqui", "ˈjaŋki"),
+])
+def test_gl_qu_plus_i_is_not_a_falling_diphthong(word, expected):
+    """The counter-case that keeps ⟨ui⟩ out of the oxytone endings: after
+    ⟨q⟩ the ⟨u⟩ belongs to the digraph, and Regueira 2010 gives these words
+    as paroxytone."""
+    assert stressed(word) == expected
+
+
+def test_gl_final_y_after_a_vowel_is_an_oxytone_diphthong():
+    """RAG/ILG Normas §2.6 (p. 26): words ending in ⟨-y⟩ have the treatment of
+    words ending in ⟨-i⟩: playboy, spray, like convoi. Regueira 2010 gives
+    playboy as plejˈβɔj; the mark stands before the last syllable."""
+    t = tail("playboy")
+    assert t[0] == "β" and t[-1] == "j" and "a" not in t
+
+
+@pytest.mark.parametrize("word,expected", [
+    ("whisky", "ˈwiski"),
+    ("mayo", "ˈmajo"),
+])
+def test_gl_y_is_a_vowel_after_a_consonant_and_a_glide_after_a_vowel(
+        word, expected):
+    """⟨y⟩ occurs in loans and names (RAG/ILG Normas §1, p. 16). After a
+    consonant it is the vowel [i] (§2.6; whisky ˈwiski in Regueira 2010).
+    Next to a vowel it is the glide, and ⟨ay⟩ is one syllable, so mayo
+    divides may-o and is paroxytone."""
+    assert stressed(word) == expected
+
+
+def test_gl_rugby_ends_in_the_vowel_i():
+    """Regueira 2010: rugby ˈruɡbi, a paroxytone with a final [i]."""
+    out = stressed("rugby")
+    assert out.startswith("ˈru") and out.endswith("i")
+
+
+@pytest.mark.parametrize("word,expected", [
+    ("areal", "aɾeˈal"),
+    ("perdoar", "peɾðoˈaɾ"),
+])
+def test_gl_hiatus_divides_two_syllables(word, expected):
+    """RAG/ILG Normas §3.2.5 (pp. 33-34): two vowels that do not form a
+    diphthong belong to two syllables (are-al, perdo-amos). Regueira 2010:
+    areal aɾeˈal, perdoar peɾðoˈaɾ."""
+    assert stressed(word) == expected
+
+
+def test_gl_bloqueo_has_a_hiatus_before_the_final_vowel():
+    """Regueira 2010: bloqueo blɔˈkeo̝, so the stress falls on ⟨e⟩ and the
+    final ⟨o⟩ is a syllable of its own."""
+    assert tail("bloqueo") == "keo"
+
+
+def test_gl_aldea_has_a_hiatus_before_the_final_vowel():
+    """Regueira 2010: aldea alˈdea̝."""
+    out = stressed("aldea")
+    assert out.split("ˈ")[0] == "al" and out.endswith("ea")
+
+
+@pytest.mark.parametrize("word,expected", [
+    ("ruído", "ruˈiðo"),
+    ("aínda", "aˈinda"),
+    ("saía", "saˈia"),
+    ("raíña", "raˈiɲa"),
+    ("xesuíta", "ʃesuˈita"),
+])
+def test_gl_accented_high_vowel_is_its_own_nucleus(word, expected):
+    """RAG/ILG Normas §2.5 (p. 25): an accented ⟨í ú⟩ next to an unstressed
+    vowel marks the two as separate syllables (aínda, ruído, saía, raíña;
+    §3.2.5 xesu-íta). Regueira 2010: ruído ruˈiðo̝."""
+    assert stressed(word) == expected
+
+
+@pytest.mark.parametrize("word,expected", [
+    ("cáustico", "ˈkawstiko"),
+    ("náutico", "ˈnawtiko"),
+    ("terapéutico", "teɾaˈpɛwtiko"),
+    ("apóutega", "aˈpowteɣa"),
+    ("Máis", "ˈmajs"),
+])
+def test_gl_accented_falling_diphthong_keeps_its_glide(word, expected):
+    """The RAG accent on the open vowel of a falling diphthong marks stress,
+    and the high vowel after it stays a glide. Regueira 2010: cáustico
+    ˈkawstiko̝, náutico ˈnawtiko̝, terapéutico teɾaˈpɛwtiko̝, apóutega
+    aˈpowte̝ɣa̝, máis ˈmajs."""
+    assert stressed(word) == expected
+
+
+def test_gl_accented_ei_keeps_its_glide():
+    """Regueira 2010: béisbol ˈbejsβo̝l."""
+    assert stressed("béisbol").startswith("ˈbejs")
+
+
+@pytest.mark.parametrize("word,expected", [
+    ("bidueiro", "biðuˈejɾo"),
+    ("badueira", "baðuˈejɾa"),
+    ("cueiro", "kuˈejɾo"),
+])
+def test_gl_uei_outside_qu_gu_is_u_plus_the_diphthong_ei(word, expected):
+    """Regueira 2010 gives a hiatus [u] followed by the diphthong [ej] in 17
+    of its 18 ⟨uei⟩ lemmas outside ⟨qu gu⟩: bidueiro biðuˈejɾo̝, badueira
+    baðuˈejɾa̝, cueiro kuˈejɾo̝."""
+    assert stressed(word) == expected
+
+
+@pytest.mark.parametrize("word,expected", [
+    ("queixo", "ˈkejʃo"),
+    ("arqueiro", "aɾˈkejɾo"),
+])
+def test_gl_qu_before_ei_stays_a_digraph(word, expected):
+    """The counter-case: ⟨qu⟩ is matched first, so its ⟨u⟩ is mute.
+    Regueira 2010: queixo ˈkejʃo̝, arqueiro aɾˈkejɾo̝."""
+    assert stressed(word) == expected
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# The gl accentuation reaches gl-ES and the gl dialect specs
+# ═══════════════════════════════════════════════════════════════════════════
+
+@pytest.mark.parametrize("lang", [
+    "gl-ES", "gl-x-central", "gl-x-occidental", "gl-x-oriental",
+])
+@pytest.mark.parametrize("word,expected_tail", [
+    ("cantou", "tow"),
+    ("pensei", "sej"),
+    ("bloqueo", "keo"),
+])
+def test_gl_accentuation_is_inherited(lang, word, expected_tail):
+    """RAG/ILG Normas §2.2 and §3.2.5 hold for every variety that writes the
+    RAG norm, so these specs take the gl stress block through
+    ``graphemes_base``."""
+    assert tail(word, lang) == expected_tail
+
+
+@pytest.mark.parametrize("word,expected", [
+    ("casa", "ˈkasa"),
+    ("mayo", "ˈmajo"),
+])
+def test_gl_es_marks_stress_and_reads_y(word, expected):
+    """gl-ES is standard Galician: casa is a paroxytone (RAG/ILG Normas §2.3),
+    and ⟨y⟩, a loan letter (§1, p. 16), is the glide next to a vowel."""
+    assert stressed(word, "gl-ES") == expected
+
+
+def test_eonavian_unaccented_final_diphthong_stays_paroxytone():
+    """The counter-case: the Normas ortográficas del eonaviego (2025, §1.5.2,
+    p. 20) write the accent on an oxytone falling diphthong (baxóu, cantéi),
+    so gl-x-eonavia keeps its own stress block and an unaccented cantou is
+    paroxytone there."""
+    assert stressed("cantou", "gl-x-eonavia") == "ˈkantow"

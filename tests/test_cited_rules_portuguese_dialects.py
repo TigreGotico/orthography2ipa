@@ -165,23 +165,17 @@ def test_gl_preserves_the_diphthongs_ou_and_ei():
 # ===========================================================================
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="gl-ES notes claim distinción (interdental /θ/); engine produces "
-    "[kinko] for cinco and [kiðaðe] for cidade — the ⟨c⟩ grapheme has no "
-    "before-front-vowel branch in this spec, so soft ⟨c⟩ surfaces as [k]. The "
-    "parent gl gets it right, so this is a gl-ES DATA gap, not an engine limit",
-)
 def test_gl_es_distincion_on_soft_c():
     """gl-ES has the interdental /θ/ for ⟨c⟩ before a front vowel.
 
     gl-ES notes: "Standard Galician has interdental /θ/ (distinción); seseo is
     western-dialectal (see gl-x-occidental), not standard." Regueira (1996: 119).
 
-    Minimal pair inside the spec: ⟨z⟩ does yield [θ] (zapato), so only the soft-⟨c⟩
-    branch of the same cited claim fails.
+    gl-ES states no positional value for ⟨c⟩ and takes the gl one through
+    ``positional_graphemes_base``.
     """
     assert _bare("gl-ES", "cinco").startswith("θ")
+    assert _bare("gl-ES", "cidade").startswith("θ")
 
 
 def test_gl_es_z_is_interdental():

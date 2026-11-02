@@ -2,6 +2,9 @@
   "code": "gl-ES",
   "name": "Galician",
   "script": "Latin",
+  "graphemes_base": "gl",
+  "allophones_base": "gl",
+  "positional_graphemes_base": "gl",
   "graphemes": {
     "a": [
       "a"
@@ -349,13 +352,13 @@
       ]
     }
   },
-  "parent": "roa-x-galaicopt",
+  "parent": "gl",
   "ancestors": [
     {
-      "code": "roa-x-galaicopt",
+      "code": "gl",
       "role": "parent",
-      "weight": 0.78,
-      "notes": "Primary descent from Hispanic Vulgar Latin"
+      "weight": 0.95,
+      "notes": "gl-ES is standard Galician as used in Spain, the variety the gl spec describes. It takes the gl tables as its base, and with them the gl accentuation rules, which follow the graphemes_base edge."
     },
     {
       "code": "cel",
@@ -388,7 +391,7 @@
       "notes": "Arabic adstrate: minimal in NW (reconquered by ~11th c.)"
     }
   ],
-  "notes": "Standard Galician per RAG norms. Gheada not reflected in standard. Standard Galician has interdental /θ/ (distinción); seseo is western-dialectal (see gl-x-occidental), not standard. Standard-Galician traits distinguishing it from Portuguese: ⟨g⟩ is /ɡ/ only (no [ʃ] alternant); no unstressed vowel reduction, /a/ stays [a] (Regueira 1996:119); RAG orthography uses only acute accents (no ⟨ç⟩, ⟨ê⟩, ⟨ô⟩, ⟨ão⟩ — those are Portuguese spellings); no voiced sibilants (no intervocalic /s/→[z] voicing); ⟨nh⟩ is the velar nasal /ŋ/ (e.g. unha), not palatal /ɲ/.",
+  "notes": "Standard Galician per RAG norms. Gheada not reflected in standard. Standard Galician has interdental /θ/ (distinción); seseo is western-dialectal (see gl-x-occidental), not standard. Standard-Galician traits distinguishing it from Portuguese: ⟨g⟩ is /ɡ/ only (no [ʃ] alternant); no unstressed vowel reduction, /a/ stays [a] (Regueira 1996:119); RAG orthography uses only acute accents (no ⟨ç⟩, ⟨ê⟩, ⟨ô⟩, ⟨ão⟩ — those are Portuguese spellings); no voiced sibilants (no intervocalic /s/→[z] voicing); ⟨nh⟩ is the velar nasal /ŋ/ (e.g. unha), not palatal /ɲ/. gl-ES takes gl as its base. The gl graphemes, allophones, positional values and allophone rules apply wherever this file states no value of its own, and the gl accentuation rules apply through the graphemes_base edge.",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
