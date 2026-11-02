@@ -19,7 +19,7 @@ Purely synchronic phonological comparison (inventory distance, grapheme divergen
 
 The ancestry graph carries two kinds of non-leaf node, and the distinction matters:
 
-- A **proto-language** (`ine` Proto-Indo-European, `bnt` Proto-Bantu, `la-x-hispania` Hispanic Vulgar Latin) is a *reconstructed language*. It has phonology, it carries graphemes, and it is a legitimate data ancestor: a descendant may inherit graphemes, sandhi rules and allophone rules from it.
+- A **proto-language** (`ine` Proto-Indo-European, `la-x-hispania` Hispanic Vulgar Latin) is a *reconstructed language*. It has phonology, it carries graphemes, and it is a legitimate data ancestor: a descendant may inherit graphemes, sandhi rules and allophone rules from it. A proto-language whose reconstruction is not yet encoded, such as `bnt` Proto-Bantu, is a `stub` with no grapheme table and serves only as an ancestry node.
 - A **clade node** (`x-clade-roma1334` Romance, `x-clade-west2793` West Germanic) is *classification only*. It is flagged `"clade": true`, has empty `graphemes`/`allophones` and tier `stub`, and is **never** a data-inheritance source. It exists to make the classification hierarchy part of the one ancestry graph, instead of a hand-maintained string on every spec.
 
 Every clade node cites its Glottolog languoid (`glottolog_code`, e.g. `roma1334` Romance, `celt1248` Celtic, `semi1276` Semitic) and its Wikipedia page. Where Glottolog has no node with exactly that membership (Ibero-Romance, Gallo-Romance, Italo-Romance, Vasconic, Tyrsenian), the node cites Wikipedia and its `notes` name Glottolog's nearest equivalent.
