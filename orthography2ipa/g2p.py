@@ -512,7 +512,6 @@ class G2P:
         self._rescorers: Tuple[LatticeRescorer, ...] = (
             user_rescorers + self._allophone_chain
         )
-        self._plugin_rescorers_resolved = False
         self.expand_allophones = expand_allophones
         self.dialect_profile = dialect_profile
         self.apply_sandhi = apply_sandhi
