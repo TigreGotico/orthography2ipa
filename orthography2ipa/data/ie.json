@@ -82,6 +82,7 @@
       "ks"
     ],
     "y": [
+      "i",
       "j"
     ],
     "z": [
@@ -190,6 +191,14 @@
     ]
   },
   "positional_graphemes": {
+    "y": {
+      "after_vowel": [
+        "j"
+      ],
+      "before_vowel": [
+        "j"
+      ]
+    },
     "c": {
       "before_front_vowel": [
         "ts"
@@ -209,7 +218,7 @@
   "iso639_3": "ile",
   "glottolog_code": "inte1260",
   "wikidata_qid": "Q35850",
-  "notes": "Interlingue (originally Occidental), constructed international auxiliary language published by Edgar de Wahl in 1922; renamed Interlingue in 1949. Published, fully regular phonemic orthography over the 26-letter Latin alphabet. Softening rules: ⟨c⟩ = [ts] before e/i/y and [k] elsewhere; ⟨g⟩ = [ʒ] before e/i/y and [ɡ] elsewhere; intervocalic ⟨s⟩ = [z]. ⟨ch⟩ = [ʃ], ⟨j⟩ = [ʒ], ⟨z⟩ = [dz], ⟨y⟩ = [j] as a consonant and [i] as a vowel. Stress falls on the vowel before the final consonant; the endings -bil, -ic, -im, -ul, -um are ignored for stress; irregular stress is marked with an acute accent (café, ímpossibil), so the accented vowels map to the same qualities as their unaccented counterparts.",
+  "notes": "Interlingue (originally Occidental), constructed international auxiliary language published by Edgar de Wahl in 1922; renamed Interlingue in 1949. Published, fully regular phonemic orthography over the 26-letter Latin alphabet. Softening rules: ⟨c⟩ = [ts] before e/i/y and [k] elsewhere; ⟨g⟩ = [ʒ] before e/i/y and [ɡ] elsewhere; intervocalic ⟨s⟩ = [z]. ⟨ch⟩ = [ʃ], ⟨j⟩ = [ʒ], ⟨z⟩ = [dz], ⟨y⟩ = [j] as a consonant and [i] as a vowel: 'y is a consonant after a vowel or beginning a word before a vowel, otherwise is pronounced as i' (Wikipedia, Interlingue, Orthography and pronunciation), so the grapheme table lists both readings, [i] by default and [j] after or before a vowel. before_vowel also covers a ⟨y⟩ between a consonant and a vowel, which the quoted rule reads as [i]; no positional class separates the two. Stress falls on the vowel before the final consonant; the endings -bil, -ic, -im, -ul, -um are ignored for stress; irregular stress is marked with an acute accent (café, ímpossibil), so the accented vowels map to the same qualities as their unaccented counterparts.",
   "sources": [
     {
       "id": "dewahl1922",
