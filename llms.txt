@@ -1,0 +1,72 @@
+# orthography2ipa
+
+> Cited, per-language JSON specs that map spelling to IPA, a language-agnostic engine that turns them into transcriptions and ranked pronunciation lattices, and distance metrics that compare languages on separate axes. No trained weights.
+
+Start with AGENTS.md before you change anything. Every spec is a file in orthography2ipa/data/, and its fields are in orthography2ipa/data/SCHEMA.md.
+
+## Entry points
+
+- [README](README.md): what the library does, install, quick start
+- [AGENTS.md](AGENTS.md): repository map, setup, hard rules, checklist before a push
+- [Spec schema](orthography2ipa/data/SCHEMA.md): every JSON key the loader reads
+- [Python API](docs/reference/api.md): every exported name
+- [Command line](docs/reference/cli.md): every subcommand
+- [Scripts](scripts/README.md), [benchmarks](benchmarks/README.md), [tests](tests/README.md): what each directory holds
+
+## Documentation, in reading order
+
+- [Getting Started](docs/getting_started.md)
+- [Architecture](docs/architecture.md)
+- [Data Model](docs/data_model.md)
+- [Native scripts, romanizations and transliterations](docs/orthography_kind.md)
+- [Language Registry](docs/registry.md)
+- [Public API stability](docs/api_stability.md)
+- [Python API](docs/reference/api.md)
+- [Command line](docs/reference/cli.md)
+- [Tokenizer](docs/tokenizer.md)
+- [The pronunciation lattice](docs/lattice.md)
+- [The sentence-context seam](docs/sentence_context.md)
+- [Lattice PER](docs/lattice_per.md)
+- [Candidate scoring](docs/candidate_scoring.md)
+- [Features](docs/features.md)
+- [Forcing a pronunciation](docs/forcing_a_pronunciation.md)
+- [Distance Metrics](docs/distance.md)
+- [Ancestry System](docs/ancestry.md)
+- [Glottolog alignment](docs/glottolog_audit.md)
+- [Allophony](docs/allophony.md)
+- [Positional Graphemes](docs/positional_graphemes.md)
+- [Adding a new Language](docs/adding_a_language.md)
+- [Linguistic Accuracy Guide](docs/linguistic_accuracy.md)
+- [Quality tiers](docs/quality_tiers.md)
+- [IPA Reference](docs/ipa_reference.md)
+- [Bibliography](docs/bibliography.md)
+- [Sourcing a claim](docs/sourcing.md)
+- [Spec authoring rules](docs/contributing/spec_authoring.md)
+- [Citation honesty](docs/contributing/citations.md)
+- [Board regeneration](docs/contributing/board.md)
+- [Engine changes](docs/contributing/engine.md)
+- [Benchmarks](docs/benchmarks.md)
+- [Benchmark gold datasets](docs/benchmark_datasets.md)
+- [Benchmark methodology](docs/benchmark_methodology.md)
+- [The pinned WikiPron mirror](docs/wikipron_mirror.md)
+- [Arabic TTS gold set](docs/arabic-tts-gold.md)
+- [Kabyle TTS gold set](docs/kabyle-tts-gold.md)
+- [Portuguese-dialects TTS gold set](docs/portuguese-tts-gold.md)
+- [Iberian-creole TTS gold set](docs/iberian-creole-tts-gold.md)
+- [Spain-Romance TTS gold set](docs/spain-romance-tts-gold.md)
+- [Scoreboard](docs/scoreboard.md)
+- [Comparison to other G2P systems](docs/comparison.md)
+- [espeak-ng agreement](docs/espeak_agreement.md)
+- [Lexicon-overlay scoreboard](docs/lexicon_scoreboard.md)
+- [Gold composition](docs/gold_composition.md)
+- [Gold defects](docs/gold_defects.md)
+- [Known limitations](docs/known_limitations.md)
+- [Ranking error](docs/ranking_error.md)
+- [Spec diagnostics](docs/spec_diagnostics.md)
+- [Finding a language's phonology documentation](docs/languages/index.md)
+- [Language data explorer](docs/explorer.md)
+
+## Optional
+
+- [Per-language pages](docs/languages/index.md): phonology notes for single languages and families
+- [Changelog](CHANGELOG.md)

@@ -149,9 +149,8 @@ def test_production_tier_has_qualifying_benchmark(code):
     is a reviewer-enforced convention checked against the spec's
     docs/languages/ page during promotion review, not by this test.
 
-    No spec is currently at production tier, so this test is presently
-    vacuous for every code — that is expected: tier promotion is a
-    test-gated act, not a label change.
+    Tier promotion is a test-gated act, not a label change: every spec
+    that claims production must pass this test.
     """
     spec = get(code)
     if spec.quality is not QualityTier.PRODUCTION:

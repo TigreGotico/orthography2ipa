@@ -11,7 +11,7 @@ orthography into an IPA (International Phonetic Alphabet) transcription.
 >>> orthography2ipa.transcribe("olá mundo", "pt")
 'oˈla ˈmũdu'
 >>> orthography2ipa.transcribe("hello world", "en")
-'hɛlɒ wɔːɹld'
+'ˈhɛləʊ ˈwɔːld'
 ```
 
 Languages plus classification-only clade nodes ship with the package.
@@ -72,14 +72,14 @@ them apart is the first design decision this library makes.
 ## Install and run your first transcription
 
 ```bash
-pip install orthography2ipa
+uv pip install --prerelease=allow orthography2ipa
 ```
 
 ```python
 import orthography2ipa
 
 orthography2ipa.transcribe("olá mundo", "pt")   # 'oˈla ˈmũdu'
-orthography2ipa.transcribe("bona nuèit", "oc")  # 'ˈbunɔ ˈnyɛjt'
+orthography2ipa.transcribe("bona nuèit", "oc")  # 'ˈbunɔ ˈnɥɛit'
 
 en = orthography2ipa.get("en-GB")
 en.graphemes["th"]   # ['θ', 'ð']
@@ -115,14 +115,20 @@ for the sourcing and IPA conventions every spec must follow, and
 [data_model.md](data_model.md) for the full `LanguageSpec` field
 reference.
 
-**I maintain a downstream engine (Arabic, Portuguese, or similar) and
-need the plugin ABCs.**
+**I maintain a downstream engine (Arabic, Portuguese, or similar).**
 Read [architecture.md](architecture.md) for how the engine pipeline
 (normalize → tokenize → beam search → stress → sandhi → dialect
-transform) fits together, then look at the step plugins in
-[registry.md](registry.md): that is the extension point
+transform) fits together. A downstream engine builds on the library: it
+refines the lattice with a `LatticeRescorer` ([lattice.md](lattice.md)) or
+registers a step plugin (`RescorerPlugin`, `StressPlugin`,
+`SyllabifierPlugin`, `NormalizePlugin`, `SandhiPlugin`, listed in
+[reference/api.md](reference/api.md)).
 [arbtok](https://github.com/TigreGotico/arbtok) and
-[tugaphone](https://github.com/TigreGotico/tugaphone) build on.
+[tugaphone](https://github.com/TigreGotico/tugaphone) are built this way.
+
+**I want to change this repository.**
+Read [`AGENTS.md`](../AGENTS.md) first. The contributing pages below hold
+the rules for a spec, a citation, the benchmark board and the engine.
 
 **I want the ranked pronunciation lattice, or to build a specialised
 phonemizer.**
@@ -160,9 +166,8 @@ trusted.
 **I'm doing production-readiness due diligence.**
 [api_stability.md](api_stability.md) covers what is a public,
 version-guarded surface; [scoreboard.md](scoreboard.md) is the
-unfiltered accuracy table; [link-audit.md](link-audit.md) covers
-citation URL liveness; the license is Apache 2.0. No language
-carries the `production` quality tier: see [Honest
+unfiltered accuracy table; the license is Apache 2.0. Few specs carry
+the `production` quality tier, and most are `stub`: see [Honest
 limitations](#honest-limitations-read-this-before-you-trust-a-tier)
 below.
 
@@ -185,9 +190,8 @@ below.
   (`orthography2ipa.get(code).notes`) before assuming raw native-script
   input works end to end.
 - **PER (phoneme error rate) is genuinely mediocre for several
-  languages**, not only the exotic ones: English sits at 0.3494 against
-  WikiPron gold (`en-GB`), Tamil at 0.7250, Scottish Gaelic at 0.6203.
-  See the full, unfiltered [scoreboard.md](scoreboard.md): reported for
+  languages**, not only the exotic ones: English, Tamil and Scottish
+  Gaelic among them. See the full, unfiltered [scoreboard.md](scoreboard.md): reported for
   honesty, not flattery. Every score is reproducible with
   `python scripts/benchmark.py --scoreboard`, which scores the entire gold
   set of every registered dataset/language pair (no cap), so a row's `N` is
@@ -221,12 +225,19 @@ below.
   data back never requires re-deriving the policy above from the tier
   ordering. A non-qualifying row's `PER` in [scoreboard.md](scoreboard.md) is
   marked `‡` for the same reasons.
-- **No language is at `production` tier yet.** Every registered language
-  is at `research` tier or below: it has at least one cited source and
-  usually a benchmark, but has not cleared the volume and accuracy bar
-  `quality_tiers.md` defines for production use. Check
-  `orthography2ipa.get(code).quality` before depending on a language for
-  anything where accuracy matters.
+- **Few languages are at `production` tier.** Most specs are `stub`
+  or `skeleton`. A `production` spec has cleared the volume and accuracy
+  bar that `quality_tiers.md` defines, and a test checks that bar against
+  the board. Check `orthography2ipa.get(code).quality` before you depend on
+  a language for work where accuracy matters. This command lists the
+  `production` specs:
+
+  ```python
+  import orthography2ipa as o2i
+  from orthography2ipa import QualityTier
+
+  [c for c in o2i.available_codes() if o2i.get(c).quality is QualityTier.PRODUCTION]
+  ```
 
 ## Reading order
 
@@ -243,6 +254,13 @@ neighbours, so you can read the set start to finish or jump in anywhere.
 | [orthography_kind.md](orthography_kind.md) | Native scripts, romanizations and transliterations, and why Pinyin is transcribable where Hanzi is not |
 | [registry.md](registry.md) | Full language registry, code resolution, step plugins |
 | [api_stability.md](api_stability.md) | What is public and version-guarded |
+
+### Reference
+
+| Doc | Covers |
+| :--- | :--- |
+| [reference/api.md](reference/api.md) | Every name `orthography2ipa` exports, with its docstring summary (generated) |
+| [reference/cli.md](reference/cli.md) | The `--help` output of every `orthography2ipa` subcommand (generated) |
 
 ### The engine
 
@@ -275,8 +293,16 @@ neighbours, so you can read the set start to finish or jump in anywhere.
 | [quality_tiers.md](quality_tiers.md) | What `stub`, `skeleton`, `research` and `production` require |
 | [ipa_reference.md](ipa_reference.md) | IPA symbol reference with Unicode code points |
 | [bibliography.md](bibliography.md) | Citation management, `LinguisticSource` |
-| [link-audit.md](link-audit.md) | Citation URL liveness audit |
 | [sourcing.md](sourcing.md) | Where to find a citable source and what each kind is good for |
+
+### Contributing
+
+| Doc | Covers |
+| :--- | :--- |
+| [contributing/spec_authoring.md](contributing/spec_authoring.md) | The rules a spec must keep, how to express context, and how to audit the data |
+| [contributing/citations.md](contributing/citations.md) | What counts as a source, how to quote it, and which gold sets are silver |
+| [contributing/board.md](contributing/board.md) | How to regenerate the benchmark board, and every guard that checks it |
+| [contributing/engine.md](contributing/engine.md) | How to add an engine capability, and the review gate for engine code |
 
 ### Measuring accuracy
 

@@ -32,6 +32,12 @@ on:
       - "scripts/benchmark.py"
       - "scripts/build_en_lexicon.py"
       - "scripts/espeak_agreement.py"
+      # The navigation footers and the generated reference pages: api.md
+      # reads every exported docstring, cli.md the real --help output.
+      - "scripts/docs_nav.py"
+      - "scripts/gen_reference_docs.py"
+      - "orthography2ipa/**"
+      - "llms.txt"
       - ".github/workflows/docs-prose.yml"
   workflow_dispatch: {}
 
@@ -56,3 +62,14 @@ jobs:
       - name: Lint documentation prose
         run: |
           PYTHONPATH=$PWD .venv/bin/python -m pytest -q tests/test_docs_prose.py
+
+      - name: Check the navigation footers
+        run: |
+          .venv/bin/python scripts/docs_nav.py --check
+
+      # argparse lays out --help differently across Python versions, so the
+      # CLI page is checked on the 3.11 this job installs, never in the
+      # version matrix of the build tests.
+      - name: Check the generated reference pages and llms.txt
+        run: |
+          PYTHONPATH=$PWD .venv/bin/python scripts/gen_reference_docs.py --check

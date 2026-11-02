@@ -308,4 +308,4 @@ The CI regression gate checks `stress_acc` the way it checks PER: a row whose
 tier cannot gate.
 
 ---
-[← Sourcing](sourcing.md) · [Home](index.md) · [Benchmark gold datasets →](benchmark_datasets.md)
+[← Engine changes](contributing/engine.md) · [Home](index.md) · [Benchmark gold datasets →](benchmark_datasets.md)

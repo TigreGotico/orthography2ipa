@@ -107,7 +107,10 @@ def _with_footer(text: str, rel: str, order: list[str]) -> str:
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    ap.add_argument("--write", action="store_true", help="rewrite the footers")
+    mode = ap.add_mutually_exclusive_group()
+    mode.add_argument("--write", action="store_true", help="rewrite the footers")
+    mode.add_argument("--check", action="store_true",
+                      help="exit 1 on a stale footer (the default)")
     args = ap.parse_args()
 
     order = reading_order()

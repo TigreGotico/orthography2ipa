@@ -20,7 +20,7 @@ metrics used to compare languages.
 ## Install
 
 ```bash
-pip install orthography2ipa
+uv pip install --prerelease=allow orthography2ipa
 ```
 
 The only runtime dependency is **phonematcher**, which supplies the
@@ -38,8 +38,8 @@ step is driven by data in the language's `LanguageSpec`: there's no
 hidden model behind it.
 
 ```python
-orthography2ipa.transcribe("hello world", "en")   # 'hɛlɒ wɔːɹld'
-orthography2ipa.transcribe("bona nuèit", "oc")     # 'ˈbunɔ ˈnyɛjt'
+orthography2ipa.transcribe("hello world", "en")   # 'ˈhɛləʊ ˈwɔːld'
+orthography2ipa.transcribe("bona nuèit", "oc")     # 'ˈbunɔ ˈnɥɛit'
 ```
 
 ## Fetching a language spec directly
