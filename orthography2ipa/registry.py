@@ -35,7 +35,8 @@ class UnknownVariantWarning(UserWarning):
 
 def _warn_unknown_variant(code: str, resolved: str, stacklevel: int) -> None:
     parts = _PRIVATE_USE.split(code, maxsplit=1)
-    if len(parts) == 1 or resolves_exactly(code):
+    if (len(parts) == 1 or resolved not in available_json_codes()
+            or resolves_exactly(code)):
         return
     discarded = parts[1]
     warnings.warn(
