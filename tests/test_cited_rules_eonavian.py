@@ -1,4 +1,4 @@
-"""Cited-rule tests for Eonavian (``gl-x-eonavia``).
+"""Cited-rule tests for Eonavian (``gl-ES-x-eonavia``).
 
 Each test asserts one statement of the *Normas ortográficas del eonaviego*
 (Academia de la Llingua Asturiana, Secretaría Llingüística del Navia-Eo,
@@ -10,7 +10,7 @@ import pytest
 
 from orthography2ipa.g2p import G2P
 
-LANG = "gl-x-eonavia"
+LANG = "gl-ES-x-eonavia"
 
 
 def ipa(word: str) -> str:
@@ -102,3 +102,29 @@ def test_eonavian_diacritic_accent_still_marks_the_open_vowel(word, expected):
     coyémos, the accent does mark the open vowel /ɛ, ɔ/. The diphthong keys
     must not take that value away from a single accented vowel."""
     assert ipa(word) == expected
+
+
+@pytest.mark.parametrize("word,stressed_syllable", [
+    ("bidueira", "ˈejɾa"),
+    ("llambueiro", "ˈejɾo"),
+    ("bloqueo", "ˈkeo"),
+    ("aldea", "ˈðea"),
+    ("persoas", "ˈsoas"),
+    ("voando", "ˈando"),
+])
+def test_eonavian_hiatus_splits_and_paroxytone_stress_counts_it(word, stressed_syllable):
+    """§1.5.3 (p. 20): two adjacent vowels of different syllables are in
+    hiatus, the system of the RAG/ILG Normas. bloqueo, aldea, persoas and
+    voando divide blo-que-o, al-de-a, per-so-as, vo-an-do, and an unaccented
+    word in a vowel or -s is paroxytone by §1.5.1. In ⟨uei⟩ the falling
+    diphthong ⟨ei⟩ is one nucleus, so bidueira (§1.4.1, p. 18) and
+    llambueiro take the stress on [ej]."""
+    assert ipa(word).endswith(stressed_syllable)
+    assert ipa(word).count("ˈ") == 1
+
+
+def test_eonavian_mute_u_before_ei_is_no_nucleus():
+    """Counter-case: after ⟨qu⟩ the ⟨u⟩ is mute, so merquei holds two nuclei
+    and stays paroxytone by §1.5.1; only the accented form cantéi (§1.5.2,
+    p. 20) is oxytone."""
+    assert ipa("merquei") == "ˈmeɾkej"

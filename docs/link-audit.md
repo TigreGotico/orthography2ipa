@@ -24,7 +24,7 @@ Wikipedia URLs are checked for article existence via the MediaWiki API. Other UR
 
 | File | Field | Old URL | Action |
 | --- | --- | --- | --- |
-| `orthography2ipa/data/gl.json` | `sources[3].url` | `http://gtm.uvigo.es/cotovia/` | Set to `null` (HTTP 404, software decommissioned) |
+| `orthography2ipa/data/gl-ES.json` | `sources[3].url` | `http://gtm.uvigo.es/cotovia/` | Set to `null` (HTTP 404, software decommissioned) |
 
 ### Wikipedia enrichments added
 
@@ -113,8 +113,8 @@ Dead URLs replaced with a verified live equivalent.
 | `orthography2ipa/data/ff.json` | `urls` | https://en.wikipedia.org/wiki/Fula_phonology | MediaWiki API: missing (title='Fula phonology') | no snapshot |
 | `orthography2ipa/data/frr.json` | `urls` | https://en.wikipedia.org/wiki/Mooring_dialect | MediaWiki API: missing (title='Mooring dialect') | no snapshot |
 | `orthography2ipa/data/gem-x-ingvaeonic.json` | `urls` | https://de.wikipedia.org/wiki/Ingw%C3%A4onische_Sprachen | MediaWiki API: missing (title='Ingwäonische Sprachen') | no snapshot |
-| `orthography2ipa/data/gl-x-central.json` | `urls` | https://en.wikipedia.org/wiki/Dialects_of_Galician | MediaWiki API: missing (title='Dialects of Galician') | no snapshot |
-| `orthography2ipa/data/gl-x-central.json` | `wikipedia` | https://en.wikipedia.org/wiki/Dialects_of_Galician | MediaWiki API: missing (title='Dialects of Galician') | no snapshot |
+| `orthography2ipa/data/gl-ES-x-central.json` | `urls` | https://en.wikipedia.org/wiki/Dialects_of_Galician | MediaWiki API: missing (title='Dialects of Galician') | no snapshot |
+| `orthography2ipa/data/gl-ES-x-central.json` | `wikipedia` | https://en.wikipedia.org/wiki/Dialects_of_Galician | MediaWiki API: missing (title='Dialects of Galician') | no snapshot |
 | `orthography2ipa/data/lad.json` | `urls` | https://en.wikipedia.org/wiki/Judeo-Spanish_phonology | MediaWiki API: missing (title='Judeo-Spanish phonology') | no snapshot |
 | `orthography2ipa/data/lij.json` | `wikipedia` | https://lij.wikipedia.org/wiki/Lengua_lìgure | MediaWiki API: missing (title='Lengua lìgure') | no snapshot |
 | `orthography2ipa/data/nds.json` | `urls` | https://en.wikipedia.org/wiki/Low_German_phonology | MediaWiki API: missing (title='Low German phonology') | no snapshot |

@@ -147,7 +147,7 @@ def test_orthography_standard_is_a_first_class_field():
     assert "Acordo Ortográfico" in pt.orthography_standard.name
     assert pt.orthography_standard.url
 
-    gl = o2i.get("gl")
+    gl = o2i.get("gl-ES")
     assert gl.orthography_standard is not None
     assert "Real Academia Galega" in gl.orthography_standard.authority
 

@@ -137,7 +137,7 @@ def build_data():
     # whose timespan has ENDED is an ancestry grouping (Galaico-Portuguese
     # 1100–1400, Medieval Portuguese 1200–1500, Hispanic Latin 200–900), not a
     # living variety. Still-spoken languages that also parent a sub-variety
-    # (gl, es-ES, pt-PT) have an open-ended timespan, so they are NOT flagged —
+    # (gl-ES, es-ES, pt-PT) have an open-ended timespan, so they are NOT flagged —
     # this avoids mislabelling a modern language whose gold is keyed under a
     # bare code (es vs es-ES).
     parent_set = {d["parent"] for d in languages.values() if d["parent"]}

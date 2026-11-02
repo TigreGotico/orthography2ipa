@@ -433,8 +433,8 @@ compared by Jaccard distance. The result is the mean over the shared phonemes.
 import orthography2ipa as o2i
 from orthography2ipa.distance import grapheme_divergence, spelling_divergence
 
-gl = o2i.get("gl")                  # RAG norm: /ɲ/ is written ⟨ñ⟩
-glr = o2i.get("gl-x-reintegrado")   # reintegrationist norm: /ɲ/ is written ⟨nh⟩
+gl = o2i.get("gl-ES")                  # RAG norm: /ɲ/ is written ⟨ñ⟩
+glr = o2i.get("gl-ES-x-reintegrado")   # reintegrationist norm: /ɲ/ is written ⟨nh⟩
 
 grapheme_divergence(gl, glr).mean_ipa_distance   # 0.0233: they read almost identically
 spelling_divergence(gl, glr).mean_distance       # 0.0871: but they spell differently
@@ -471,8 +471,8 @@ writing systems are (`0.6 * script_distance + 0.4 * grapheme_divergence`).
 import orthography2ipa as o2i
 from orthography2ipa.distance import orthographic_distance
 
-gl = o2i.get("gl")
-glr = o2i.get("gl-x-reintegrado")
+gl = o2i.get("gl-ES")
+glr = o2i.get("gl-ES-x-reintegrado")
 orthographic_distance(gl, glr)   # 0.0233: same script, reduces to grapheme divergence
 
 pt = o2i.get("pt-BR")

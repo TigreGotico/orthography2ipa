@@ -345,7 +345,7 @@ LANGS: Dict[str, dict] = {
            # Cotovia's own Spanish mode (pycotovia.Phonemizer(lang="es"))
            # — Cotovia is a Galician/Spanish system per Univ. de Vigo/GTM,
            # so this row is its Spanish-mode showing, alongside the
-           # Galician "gl" row's native-mode showing.
+           # Galician "gl-ES" row's native-mode showing.
            "pycotovia": "es"},
     # sample_n: the unified pt gold is ~116k pt-PT words; epitran/gruut transcribe
     # word-by-word in-process and cannot batch, so a full pass is days of
@@ -413,8 +413,8 @@ LANGS: Dict[str, dict] = {
     "ca-x-valencia": {"dataset": ("4catac", "ca-x-valencia"),
                        "espeak": "ca-va",
                        "epitran": "cat-Latn", "gruut": None},
-    "gl": {"dataset": ("wikipron", "gl"), "espeak": None,
-           "epitran": None, "gruut": None, "pycotovia": "gl"},
+    "gl-ES": {"dataset": ("wikipron", "gl-ES"), "espeak": None,
+              "epitran": None, "gruut": None, "pycotovia": "gl"},
     # Mirandese (mwl): scored against ``mirandese_g2p`` — a native-speaker,
     # human-collected gold that is a SEPARATE source from o2i (see
     # benchmark.load_mirandese's docstring), so this row is a real
@@ -3147,7 +3147,7 @@ _LANG_DISPLAY_NAMES: Dict[str, str] = {
     "fi": "Finnish",
     "fr": "French",
     "ga": "Irish",
-    "gl": "Galician",
+    "gl-ES": "Galician",
     "hi": "Hindi",
     "hts": "Hadza",
     "it": "Italian",
@@ -4299,7 +4299,7 @@ def write_comparison(
         "gold sets — see the same-source note below for those two rows.",
         "- **epitran** is a rule/mapping-based transliterator for the "
         "languages this board scores, not a lexicon lookup, so there is "
-        "no dictionary to strip; the `es`/`gl` gold it is scored against "
+        "no dictionary to strip; the `es`/`gl-ES` gold it is scored against "
         "uses a BROAD transcription convention (no ð/β/ɣ/θ allophone "
         "diacritics, glide notation folded) rather than the narrow one "
         "o2i and espeak-ng target — see the note on that below.",
@@ -4379,8 +4379,8 @@ def write_comparison(
         "drafted by the same Claude lineage that wrote orthography2ipa's "
         "own Arabic/Portuguese specs.",
         "",
-        "**epitran's `es`/`gl` gold uses a broad transcription "
-        "convention.** The wikipron gold rows for `es` and `gl` (and "
+        "**epitran's `es`/`gl-ES` gold uses a broad transcription "
+        "convention.** The wikipron gold rows for `es` and `gl-ES` (and "
         "epitran's own output) are scored in the BROAD IPA convention — "
         "no allophonic diacritics (`ð β ɣ θ` etc.) and glide notation "
         "folded (`j w i̯ u̯` → `i u`) — rather than the narrower "
