@@ -160,7 +160,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | as | vox_communis | 5328 | 0.2436‡ | - | - | 0.2432 | 0.2432 | 0.3009 | 0.3009 | [0.2371, 0.2502] | 0.3005 | production | epitran-derived |
 | as | wikipron | 2981 | 0.0918 | - | - | 0.0861 | 0.0861 | 0.6437 | 0.6441 | [0.0865, 0.0969] | 0.6307 | production | crowd-scraped |
 | ast | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ast | wikipron | 4167 | 0.0505 | - | - | 0.0253 | 0.0244 | 0.8591 | 0.8651 | [0.0475, 0.0533] | 0.7106 | research | crowd-scraped |
+| ast | wikipron | 4169 | 0.0696 | - | - | 0.0696 | 0.0696 | 0.6004 | 0.6004 | [0.0665, 0.0725] | 0.6004 | research | crowd-scraped |
 | ast-ES-x-leon | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ast-PT-x-guadramil | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | ast-PT-x-medieval | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
