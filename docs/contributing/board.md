@@ -13,7 +13,7 @@ The benchmark board is five files that must move together:
 Never edit these files by hand. A change that touches one board file
 regenerates the others in the same run, or the consistency tests fail. This
 page gives the procedure and every guard that checks the result. The
-scoring method is in [benchmark_methodology.md](../benchmark_methodology.md).
+scoring method is in [benchmarks.md](../benchmarks.md).
 
 ## Before you regenerate
 
@@ -94,8 +94,8 @@ in between.
 
 | Guard | What it fails on | Local command |
 |---|---|---|
-| Benchmark regression | A row in the CI sample whose PER gets worse by more than 0.005, or whose stress accuracy drops by more than 0.005 | `PYTHONPATH=$PWD python scripts/check_benchmark_regression.py --epsilon 0.005` |
-| Row counts | A row whose `n` is larger than the pairs its gold loader yields, or a row for a language the dataset no longer registers | `PYTHONPATH=$PWD python scripts/check_board_row_counts.py` |
+| Benchmark regression | A CI-sample row whose PER or stress accuracy gets worse by more than 0.005 | `PYTHONPATH=$PWD python scripts/check_benchmark_regression.py --epsilon 0.005` |
+| Row counts | A row whose `n` is larger than the pairs its gold loader yields, or a row for a language the dataset does not register | `PYTHONPATH=$PWD python scripts/check_board_row_counts.py` |
 | Board freshness | A row that a touched spec owns, whose fresh score differs from the committed value in either board file | `PYTHONPATH=$PWD python scripts/check_board_freshness.py --base origin/dev` |
 | Board not reverting | A merge result that puts back a row value `dev` already moved past, or that grows a burn-down list | `PYTHONPATH=$PWD python scripts/check_board_not_reverting.py --base origin/dev --body-file pr-body.md` |
 | Scoreboard in sync | A `docs/scoreboard.md` that differs from what `results.json` renders | `PYTHONPATH=$PWD python -m pytest tests/test_thin_row_marker.py` |
@@ -115,7 +115,7 @@ your side. Then `dev`'s newer numbers are lost, and both sides stay green.
 
 Resolve each board file row by row. Keep `dev`'s value for every row you did
 not rescore, then regenerate `docs/scoreboard.md`.
-`check_board_not_reverting.py` performs the merge with `git merge-tree` and
+`check_board_not_reverting.py` merges the two sides with `git merge-tree` and
 fails on an old value, unless the branch edits that language's spec. An edit
 to a parent or clade spec owns the rows of every language that inherits from
 it, through `parent` or a `*_base` table.

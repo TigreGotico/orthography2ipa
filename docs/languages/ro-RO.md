@@ -1,56 +1,50 @@
 # Romanian (`ro-RO`)
 
-Standard Romanian (limba română standard). Eastern Romance, the only
-Romance language east of the Adriatic. The bare tag `ro` resolves to
-this reference variety in the registry.
+**Code**: `ro-RO` | **Family**: Indo-European > Romance > Eastern Romance | **Script**: Latin (alphabet) | **Quality tier**: production
+
+The `ro-RO` spec describes Standard Romanian (limba română standard). The registry resolves the bare tag `ro` to this spec.
 
 ## Orthographic depth and production threshold
 
-**Shallow (phonemic) orthography, the ≤ 0.15 PER production threshold
-applies** (see [quality tiers](../quality_tiers.md)). The post-1993
-orthography is highly regular: the central vowels have dedicated letters
-(⟨ă⟩ = /ə/, ⟨â/î⟩ = /ɨ/), and the palatalization of ⟨c⟩/⟨g⟩ before
-front vowels follows the pan-Romance rule.
+Romanian has a shallow (phonemic) orthography, so the 0.15 PER production target applies (see [quality tiers](../quality_tiers.md#the-per-threshold)). The orthography of 1993 is regular. The central vowels have their own letters: ⟨ă⟩ is /ə/, and ⟨â⟩ and ⟨î⟩ are /ɨ/. The letters ⟨c⟩ and ⟨g⟩ soften before front vowels, as in the rest of Romance.
 
-## Phonology (as encoded)
+## Phonology as encoded
 
-- 7 vowels /a e i o u ə ɨ/, the central vowels /ə/ and /ɨ/ are unique
-  in Romance and are written unambiguously.
-- No intervocalic lenition (Lat. *lupus* → *lup*, not \*lubo), Eastern
-  Romance conservatism the spec inherits from its ancestry position.
-- Diphthongs /e̯a/ ⟨ea⟩ and /o̯a/ ⟨oa⟩ are encoded as units. Final ⟨i⟩
-  after consonants is the asyllabic palatal /ʲ/ (lupi /lupʲ/), encoded
-  positionally.
-- **Stress is lexically unpredictable from orthography** (compare
-  *cópii* "copies" vs *copíi* "children") and standard spelling does not
-  mark it: the spec carries no `stress` block, with the exemption
-  documented in its `notes` per the research-tier rule. Gold scoring is
-  unaffected (PER strips stress marks).
+Romanian has seven vowels, /a e i o u ə ɨ/. The orthography writes each central vowel with a letter of its own, so the spec reads them without ambiguity. The spec declares ⟨ă⟩ in `vowel_graphemes`, because the engine's closed inventory of Latin vowel letters does not include it. Without that declaration, a rule that tests for a neighbouring vowel would fail next to ⟨ă⟩, as in ⟨băieți⟩.
 
-## Benchmark (full gold set, no cap)
+The rules `RO_SOFT_C` and `RO_SOFT_G` make ⟨c⟩ /tʃ/ and ⟨g⟩ /dʒ/ before ⟨e⟩ and ⟨i⟩. The digraphs ⟨ch⟩ and ⟨gh⟩ are graphemes of their own and keep /k/ and /ɡ/. The spec gives ⟨cer⟩ as `tʃer` and ⟨cheie⟩ as `keje`. Romanian has no intervocalic lenition, so the spec maps ⟨p t c⟩ to plain stops in every position (⟨lup⟩ gives `lup`).
 
-| dataset | row tag | provenance | n | PER |
-|---|---|---|---:|---:|
-| `wikipron` | `ro` | crowd-scraped | 8 977 | **0.0348** |
-| `ipadict` | `ro-RO` | lexicon-derived | 72 375 | 0.0479 |
+The diphthongs ⟨ea⟩ /e̯a/ and ⟨oa⟩ /o̯a/ are graphemes, so ⟨soare⟩ gives `so̯are`. Two rules make ⟨i⟩ the glide [j]: `RO_I_GLIDE_INITIAL` before a vowel at the start of a word, and `RO_I_GLIDE_POSTVOCALIC` after a vowel. The plural ⟨copii⟩ gives `kopij`.
 
-Two independent gate-eligible rows both sit far below the 0.15 shallow
-threshold. `wikipron` (registered under the bare tag `ro`, resolved to
-this spec by the registry and the guard test alike) is the primary.
+The word-final ⟨i⟩ of a plural or a second-person singular is asyllabic. The rule `RO_FINAL_I_ASYLLABIC` deletes it and palatalises the consonant before it, so ⟨lupi⟩ gives `lupʲ`. The rule `RO_FINAL_I_ASYLLABIC_LIQUID` does the same after ⟨l⟩ or ⟨r⟩, but only where the liquid is not the second member of an obstruent-liquid onset. Both rules apply only when the word keeps another vowel nucleus (Chițoran 2002, ch. 5).
+
+Word-initial ⟨e⟩ is [je] only in a closed set. That set holds the personal pronouns ⟨eu el ea ei ele⟩ and the present and imperfect forms of ⟨a fi⟩, such as ⟨este⟩ and ⟨era⟩. These words are in `word_exceptions`, so ⟨este⟩ gives `jeste` and ⟨elev⟩ gives `elev` (DOOM3, Chițoran 2002 ch. 2).
+
+## Stress
+
+Romanian stress is phonemic, but the standard spelling does not mark it and does not predict it. The words ⟨copii⟩ 'children' and ⟨copii⟩ 'copies' have the same spelling and different stress. The spec therefore has no `stress` block, and its `notes` state the exemption that [quality tiers](../quality_tiers.md#research) allows. The benchmark strips stress marks, so the missing stress does not change the PER.
+
+## Benchmark
+
+Two rows can gate a promotion: `wikipron` under the bare tag `ro`, which is crowd-scraped, and `ipadict` under `ro-RO`, which is lexicon-derived. The registry and the guard test both resolve `ro` to this spec. The `vox_communis` row is epitran-derived and the `ipa_childes` row is espeak-derived. Those two rows measure agreement with another system and cannot gate. The scores are on the [scoreboard](../scoreboard.md).
 
 ## Known limitations
 
-- Stress is not transcribed (see above), WER-style comparisons against
-  stress-marked competitors must strip stress to be fair.
-- The pre-1993 ⟨î⟩-everywhere spelling and the â/î alternation in older
-  text are an orthographic-norm variant, out of scope for this spec
-  (o2i does no input normalization by design).
+The spec does not transcribe stress. A comparison with a system that marks stress must strip stress from both sides.
+
+After ⟨c⟩ or ⟨g⟩, an ⟨i⟩ before a vowel is silent in the inherited vocabulary and syllabic in the learned layer. Examples are ⟨cioban⟩ [tʃoˈban] and ⟨Dacia⟩ [ˈdatʃi.a]. The split is lexical, not orthographic. The spec emits the syllabic reading for both, so ⟨cioban⟩ gives `tʃioban`. A caller-supplied lexicon can correct the inherited words.
+
+The spelling before 1993 used ⟨î⟩ inside words where the standard writes ⟨â⟩. That spelling is a variant of the orthographic norm. The spec does not cover it, because orthography2ipa does not normalise its input.
+
+The spec maps only the comma-below letters ⟨ș⟩ and ⟨ț⟩. Much Romanian text uses the cedilla letters ⟨ş⟩ (U+015F) and ⟨ţ⟩ (U+0163) in their place. The spec has no mapping for them, so the engine drops them with an `UnmappedGraphemeWarning`. So ⟨şase⟩ gives `ase` where ⟨șase⟩ gives `ʃase`. A caller must convert the cedilla letters to comma-below before transcription.
 
 ## Sources
 
-- Mallinson, G. *Romanian*. Croom Helm Descriptive Grammars.
-- Deletant, D. *Teach Yourself Romanian*.
-- Ladefoged, P. & Maddieson, I. *The Sounds of the World's Languages*.
+- Mallinson, G. (1986). *Romanian*. Croom Helm Descriptive Grammars.
+- Deletant, D. & Alexandrescu, I. (1983). *Teach Yourself Romanian*. Hodder & Stoughton.
+- Ladefoged, P. & Maddieson, I. (1996). *The Sounds of the World's Languages*. Blackwell.
+- Chițoran, I. (2002). *The Phonology of Romanian: A Constraint-based Approach*. Mouton de Gruyter.
+- Academia Română (2021). *Dicționarul ortografic, ortoepic și morfologic al limbii române* (DOOM3). Univers Enciclopedic.
 
 ---
 [← Spanish](es-ES.md) · [Home](../index.md) · [French →](fr-FR.md)

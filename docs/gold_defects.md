@@ -1,565 +1,293 @@
 # Gold defects
 
-Every gold dataset in the harness has a provenance tier
-([benchmarks.md](benchmarks.md), [quality_tiers.md](quality_tiers.md)), but a
-tier only says where a transcription came from. It does not say whether the
-transcription is *wrong about the language*. This page is the registry of the
-specific, measured defects found in individual gold rows: cases where the gold
-collapses a contrast the language makes, marks something the language forbids,
-describes a different lect than its tag claims, or was produced by the system it
-is being used to score.
+Every gold dataset in the harness has a provenance tier ([benchmarks.md](benchmarks.md), [quality_tiers.md](quality_tiers.md)). A tier says where a transcription came from. It does not say whether the transcription is wrong about the language. This page is the registry of measured defects in individual gold rows. In each case the gold merges a contrast, marks something impossible, describes another lect, mixes conventions, or comes from the system it scores.
 
-Every figure below was measured directly against the cached gold in
-`.benchmark_cache/`, using the same loaders the scoreboard uses, so any of them
-can be reproduced. Where a figure differs from one recorded elsewhere in the
-repository, both are given and the difference explained.
+The figures were measured against the cached gold in `.benchmark_cache/`, with the loaders that the scoreboard uses, so each one can be reproduced. They count words and symbols in the gold files, which the harness pins.
 
-The registry exists because these findings determine what a reader may conclude
-from a score. A PER of 0.56 on a row whose gold merges two tones is not a
-statement about the spec. Fixing the spec toward such a gold is gold-fitting, and
-the harness rules forbid it.
+These findings decide what a reader may conclude from a score. A high PER on a row whose gold merges two tones says nothing about the spec. A spec change toward such a gold is gold-fitting, and the harness rules forbid it.
 
-## What a defect class means
+## Defect classes
 
-The class of a defect decides what can be done about it, so the registry is
-organised by class rather than by language.
+The class of a defect decides what can be done about it, so the registry is ordered by class, not by language.
 
-**Merged contrast.** The gold writes one symbol for two things the language keeps
-apart. The information is destroyed, but the source data (the orthography) still
-carries it, so the merge is in principle undoable by whoever owns the gold.
-
-**Missing data.** The gold never encoded the contrast at all — no symbol for it
-appears anywhere in the file. Nothing can recover it. The only honest options are
-to exclude the row or to read it as a partial score over the subset it does
-cover.
-
-**Structurally impossible marking.** The gold places a mark where the language it
-claims to describe cannot have one. This is a generator bug, not a transcription
-choice, and it is correctable only upstream in the tool that produced it.
-
-**Wrong variety.** The gold is internally consistent and possibly excellent, but
-it describes a different lect than the tag it is filed under. Correcting it means
-relabelling it, or replacing it with a gold for the variety actually named.
-
-**Mixed conventions.** The gold merges two or more incompatible transcription
-traditions into one file. Whether this is repairable depends on whether the
-traditions separate cleanly, which has to be tested rather than assumed.
-
-**Circular.** The gold derives from the system being scored, or from the same
-authorship lineage that wrote the specs. The score measures self-agreement.
-
-**False provenance label.** The recorded tier names a tool that was not, and
-could not have been, used to produce the file. The number may still be usable,
-but the reason a reader was given for trusting or distrusting it is wrong.
+| Class | What the gold does | What can be done |
+|---|---|---|
+| Merged contrast | writes one symbol for two things that the language keeps apart | The orthography still carries the contrast, so the owner of the gold can undo the merge. |
+| Missing data | never encodes the contrast, so no symbol for it occurs in the file | Nothing recovers it. Exclude the row, or read it as a partial score over the subset it covers. |
+| Structurally impossible marking | puts a mark where the language cannot have one | It is a bug in the tool that made the gold, and only that tool can fix it. |
+| Wrong variety | is consistent, but describes another lect than its tag | Relabel it, or replace it with a gold for the named variety. |
+| Mixed conventions | merges incompatible transcription traditions in one file | Whether the traditions separate cleanly has to be tested, not assumed. |
+| Circular | comes from the system it scores, or from the authorship that wrote the specs | The score measures self-agreement. Only an independent gold helps. |
+| False provenance label | carries a tier that names a tool that cannot have made it | The number may be usable, but the reason a reader was given to trust or distrust it is wrong. |
 
 ## A note on gating
 
-`can_gate_promotion()` in `scripts/benchmark.py` decides whether a row may
-qualify or block a language for the `production` quality tier. It refuses
-`espeak-derived`, `epitran-derived` and `llm-generated`, because those are a
-competitor's output or an LLM's, and accepts everything else.
+`row_gates()` in `scripts/benchmark.py` decides whether a row may qualify or block a language for the `production` quality tier. A row gates only when three conditions hold. Its tier passes `can_gate_promotion()`, it has at least `THIN_ROW_N` (20) scored words, and its dataset is not a corrections overlay. `can_gate_promotion()` refuses `espeak-derived`, `epitran-derived` and `llm-generated`, and accepts every other tier.
 
-The consequence is that the lattice does not run in the order a reader expects.
-`machine-generated` — a rule script or an automatic annotator — **gates**, while
-`epitran-derived` does not, because the objection to the competitor tiers is
-circularity rather than quality. So the most consequential entries in this
-registry are not the worst-transcribed ones. They are the ones on `crowd-scraped`
-and `machine-generated` rows, which are free to block a promotion while carrying
-a defect that has nothing to do with the spec.
+The tier order therefore does not run the way a reader expects. `machine-generated` gold, from a rule script or an automatic annotator, gates. `epitran-derived` gold does not, because the objection to the competitor tiers is circularity, not quality. The entries with the most effect are therefore not the worst-transcribed ones. They are the `crowd-scraped` and `machine-generated` rows, which can block a promotion while they carry a defect that has nothing to do with the spec.
+
+## The registry
+
+| Dataset | Language | Class | Evidence | Effect |
+|---|---|---|---|---|
+| `vox_communis` | Vietnamese (`vi`) | Merged contrast | [ngang and huyền share ˨˨](#vietnamese-vox_communis), and the tone letter sits inside the rime | `epitran-derived`, cannot gate. `vox_communis_corrected` repairs the huyền side. |
+| `vox_communis` | Abkhaz (`ab`) | Missing data | [no labialization symbol](#abkhaz-vox_communis), and eight letters always `spn` | `epitran-derived`, cannot gate. Only exclusion helps. |
+| `ipa_childes` | Danish (`da`) | Structurally impossible marking | [stød on a short vowel before a voiceless stop](#danish-ipa_childes), and double stød in one stress group | `espeak-derived`, cannot gate. The fix is upstream. |
+| `portuguese_unified` | East Timorese Portuguese (`pt-TL`) | Wrong variety | [the `pt-TL-x-dili` region is Lisbon Portuguese with other symbols](#east-timorese-portuguese-portuguese_unified) | `machine-generated`, gates. Needs a gold from Timorese speakers. |
+| `wikipron` | Persian (`fa`) | Wrong variety | [Classical Persian markers dominate](#persian-wikipron) | `crowd-scraped`, gates. Relabel or replace. |
+| `primary_sources` | Algerian Arabic (`ar-DZ`) | Wrong variety | [one Tlemcen word scored against an Algiers spec](#algerian-arabic-primary_sources) | Below `THIN_ROW_N`, so it does not gate. |
+| `wikipron` | Middle English (`enm`) | Mixed conventions | [vowel length differs between readings of one headword](#middle-english-wikipron) | `crowd-scraped`, gates. The spec records the length fold as a ceiling. |
+| `wikipron` | Coptic (`cop`) | Mixed conventions | [competing reconstructions mixed inside single readings](#coptic-wikipron) | `crowd-scraped`, gates. Only per-row tagging helps. |
+| `wikipron` | Limburgish (`li`) | Mixed conventions | [Veldeke, Rheinische Dokumenta and Eupen spellings in one file](#limburgish-wikipron) | `crowd-scraped`, gates. `li-x-rheindok` models one convention. |
+| `wikipron` | Scottish Gaelic (`gd`) | Mixed conventions | [two notations for ⟨b d g⟩ and mixed dialects](#scottish-gaelic-wikipron) | `crowd-scraped`, gates. Fix in the normalizer or upstream. |
+| `wikipron` | Middle High German (`gmh`) | Mixed conventions | [Wiktionary page titles, not Lachmann spelling](#middle-high-german-wikipron) | `crowd-scraped`, gates. Score against `gmh-x-wikt`. |
+| `wikipron` | Kapampangan (`pam`) | Mixed conventions | [⟨e⟩ where the spec writes ⟨ɛ⟩, and readings that conflict](#kapampangan-wikipron) | `crowd-scraped`, gates. Left as it is. |
+| `arabic_tts`, `portuguese_tts`, `spain_romance_tts` | Arabic, Portuguese, the languages of Spain | Circular | [the gold equals the engine output by contract](#the-tts-sentence-gold-sets-arabic_tts-portuguese_tts-spain_romance_tts) | `llm-generated`, cannot gate |
+| `vox_communis` | Abkhaz (`ab`) | False provenance label | [epitran has no Abkhaz map](#abkhaz-vox_communis-1) | No effect on gating. The label is wrong. |
+
+The sections below give the evidence that does not fit in a table cell.
 
 ## Merged contrast
 
 ### Vietnamese, `vox_communis`
 
-The row loads 2,475 word types, of which 2,468 carry at least one tone letter.
-The gold writes ⟨˨˨⟩ for two contrastive tones at once. Reading each headword's
-tone off its orthographic diacritic — Vietnamese writes tone unambiguously, so
-this is decidable per type — ngang (no diacritic) takes ⟨˨˨⟩ in 584 of its 590
-types, and huyền (grave accent) in all 406 of its 406. No other tone class uses
-the symbol, apart from one stray hỏi type. 991 types therefore contain ⟨˨˨⟩ and
-967 have it as their only tone run, which is 39.1% of the row.
+The row loads 2,475 word types, and 2,468 of them carry at least one tone letter. The gold writes ⟨˨˨⟩ for two contrastive tones. Vietnamese writes tone without ambiguity, so the tone of each headword can be read off its diacritic. Ngang, with no diacritic, takes ⟨˨˨⟩ in 584 of its 590 types. Huyền, with a grave accent, takes it in all 406 of its 406 types. No other tone class uses the symbol, apart from one stray hỏi type.
 
-Ngang is a level tone and huyền is a low falling, often breathy, tone. They are a
-minimal contrast in Vietnamese, and the gold gives them the same Chao letter, so
-roughly two fifths of the row cannot distinguish a correct tone from an incorrect
-one.
+That puts ⟨˨˨⟩ in 991 types, and in 967 of them it is the only tone. That is 39.1% of the row. Ngang is a level tone and huyền is a low falling tone, often breathy. They form a minimal contrast, and the gold gives them one Chao letter. About two fifths of the row therefore cannot tell a correct tone from a wrong one.
 
-The row has a second, separate problem of placement. In 1,957 of the 2,468 toned
-types (79.3%) the tone letter sits inside the rime with segments after it —
-`t oː˨˨ j` for *tôi*, where the tone belongs to the syllable as a whole and is
-conventionally written after it. Any spec that writes tone syllable-finally
-mismatches those 1,957 types on position alone, independently of whether it got
-the tone right.
+The row also places tone in the wrong spot. In 1,957 of the 2,468 toned types (79.3%) the tone letter sits inside the rime, with segments after it. An example is `t oː˨˨ j` for *tôi*. Tone belongs to the whole syllable and is written after it by convention. A spec that writes tone at the end of the syllable mismatches those 1,957 types on position alone, even when the tone is right.
 
-Earlier records of this row report 566/590 for ngang and 401/406 for huyền, and
-77.2% for the placement figure. Those did not reproduce; the values above are the
-measured ones. The 39.1% coverage figure did reproduce exactly.
-
-Provenance is `epitran-derived`, so the row cannot gate. Correcting it is not a
-local matter: the tone merge lives in the VoxCommunis lexicons and would have to
-be fixed by their maintainers. Rewriting the shipped gold here is forbidden.
+The tier is `epitran-derived`, so the row cannot gate. The merge lives in the VoxCommunis lexicons. The shipped gold is never rewritten here. The `vox_communis_corrected` overlay repairs the huyền side from the grave accent alone, as [benchmark_datasets.md](benchmark_datasets.md#voxcommunis-with-the-vietnamese-tone-merge-repaired-vox_communis_corrected) describes.
 
 ## Missing data
 
 ### Abkhaz, `vox_communis`
 
-Abkhaz has a large labialized consonant series, and the gold has no way to write
-it. Of 76,459 raw word types in the file, 44,279 (57.9%) have `spn` — the forced
-aligner's "spoken noise" marker, which the pipeline also emits for any word its
-lexicon could not cover — in place of their phones. The remaining 32,180
-scoreable types use exactly 35 distinct phone symbols, and not one of them
-carries the labialization diacritic ⟨ʷ⟩. The inventory is `a b d f j kʲʼ kʼ l m n
-pʼ qʲʼ qʼ r s t ts tsʼ tʃ tʃʲ tʃʲʼ tʼ v w z ħ ə ɡ ɡʲ ʃ ʃʲ ʒ ʒʲ χ χʲ` —
-palatalization is present throughout, labialization is absent throughout.
+Abkhaz has a large series of labialized consonants, and the gold cannot write it. The file holds 76,459 raw word types. In 44,279 of them (57.9%) the phones are `spn`, the "spoken noise" marker of the forced aligner. The pipeline also writes `spn` for any word that its lexicon does not cover. The 32,180 types that remain use exactly 35 phone symbols, and none carries the labialization mark ⟨ʷ⟩.
 
-The unmapped half of the file is not random. Eight Abkhaz letters are `spn` in
-every single type that contains them: ⟨ә⟩ (30,743 types), ⟨ԥ⟩ (7,984), ⟨қ⟩
-(7,058), ⟨ӡ⟩ (5,024), ⟨ҩ⟩ (4,035), ⟨ҿ⟩ (2,678), ⟨ӷ⟩ (1,741) and ⟨џ⟩ (811). The
-gold's lexicon simply does not cover them, so the scoreable subset is
-systematically the part of the vocabulary that avoids those letters. An earlier
-record gives the denominator as 76,464; the numerator and the percentage
-reproduce, the denominator is 76,459.
+The inventory is `a b d f j kʲʼ kʼ l m n pʼ qʲʼ qʼ r s t ts tsʼ tʃ tʃʲ tʃʲʼ tʼ v w z ħ ə ɡ ɡʲ ʃ ʃʲ ʒ ʒʲ χ χʲ`. Palatalization occurs throughout, and labialization never occurs.
 
-Nothing can be recovered here. A missing symbol cannot be inferred from a file
-that never contains it, so the row is not correctable — only excludable, or
-readable as a score over a biased subset. Provenance is `epitran-derived`, so it
-cannot gate in any case.
+The `spn` half is not random. Eight Abkhaz letters are `spn` in every type that contains them: ⟨ә⟩ (30,743 types), ⟨ԥ⟩ (7,984), ⟨қ⟩ (7,058), ⟨ӡ⟩ (5,024), ⟨ҩ⟩ (4,035), ⟨ҿ⟩ (2,678), ⟨ӷ⟩ (1,741) and ⟨џ⟩ (811). The lexicon of the gold does not cover them. The scoreable subset is therefore the part of the vocabulary that avoids those letters.
+
+Nothing can be recovered. A missing symbol cannot be inferred from a file that never contains it. The row can only be excluded, or read as a score over a biased subset. The tier is `epitran-derived`, so it cannot gate in any case.
 
 ## Structurally impossible marking
 
 ### Danish, `ipa_childes`
 
-Danish stød is a laryngealization associated with a stressed syllable. Two rules
-of the language bear on the gold: a stress group carries at most one stød, and
-stød requires a stødbasis — a long vowel or a sonorant coda. A short vowel
-followed by a voiceless stop cannot carry it.
+Danish stød is a laryngealization tied to a stressed syllable. Two rules of the language apply to the gold. A stress group carries at most one stød. Stød also needs a stødbasis, which is a long vowel or a sonorant coda. A short vowel before a voiceless stop cannot carry it.
 
-The scored column (`ipa_g2p_plus`) writes stød as ⟨ˤ⟩, not ⟨ʔ⟩. Of 2,233 word
-types, 1,302 carry the mark, 328 carry it twice or more, and 224 place it on a
-short vowel immediately before a voiceless stop: *op* → `ɔˤp`, *ikke* → `eˤkə`,
-*nok* → `nɔˤk`, *lidt* → `leˤt`. Multiple-stød types are ordinary bimorphemic
-words, not compounds with two stress groups: *hedder* → `heˤðɔˤ`, *holder* →
-`hɔˤlɔˤ`, *flere* → `fleˤɔˤ`.
+The scored column (`ipa_g2p_plus`) writes stød as ⟨ˤ⟩, not ⟨ʔ⟩. Of 2,233 word types, 1,302 carry the mark, and 328 carry it twice or more. 224 put it on a short vowel directly before a voiceless stop: *op* `ɔˤp`, *ikke* `eˤkə`, *nok* `nɔˤk`, *lidt* `leˤt`. The types with more than one stød are ordinary words of two morphemes, not compounds with two stress groups: *hedder* `heˤðɔˤ`, *holder* `hɔˤlɔˤ`, *flere* `fleˤɔˤ`.
 
-The mechanism is visible by comparing the two IPA columns of the same file. The
-raw `ipa_espeak` column marks 1,297 types with ⟨ʔ⟩, of which 110 are
-**word-initial** — that is not stød at all, it is the epenthetic glottal onset
-espeak-ng inserts before a vowel-initial word. 106 of those 110 reappear in the
-scored column carrying ⟨ˤ⟩ on the vowel: *op* `ʔʌp` → `ɔˤp`, *også* `ʔʌsə` →
-`ɔˤsə`, *ikke* `ʔekə` → `eˤkə`, *en* `ʔen` → `eˤn`. espeak-ng uses one symbol for
-two unrelated things, and the G2P+ conversion reads every one of them as stød.
-That single confusion generates the impossible stødbasis cases and inflates the
-double-stød count.
+The two IPA columns of the file show the mechanism. The raw `ipa_espeak` column marks 1,297 types with ⟨ʔ⟩, and 110 of those marks are word-initial. A word-initial ⟨ʔ⟩ is not stød. It is the glottal onset that espeak-ng puts before a word that starts with a vowel. 106 of the 110 come back in the scored column with ⟨ˤ⟩ on the vowel: *op* `ʔʌp` to `ɔˤp`, *også* `ʔʌsə` to `ɔˤsə`, *ikke* `ʔekə` to `eˤkə`, *en* `ʔen` to `eˤn`.
 
-The counts 328 and 224 reproduce exactly. The attribution does not: the earlier
-record describes the defect in terms of ⟨ʔ⟩ in the scored data, and the scored
-data contains no ⟨ʔ⟩ at all. The symbol is ⟨ˤ⟩, and ⟨ʔ⟩ is what the upstream
-espeak column shows.
+espeak-ng uses one symbol for two unrelated things, and the G2P+ conversion reads every one of them as stød. That one confusion produces the cases without stødbasis and inflates the count of double stød. The scored data holds no ⟨ʔ⟩ at all. The fault shows as ⟨ˤ⟩ in the scored column and as ⟨ʔ⟩ in the espeak column.
 
-Correction belongs to espeak-ng and to G2P+, not here. Provenance is
-`espeak-derived`, so the row cannot gate; it also cannot be read as evidence
-about stød placement in either direction.
+The fix belongs to espeak-ng and G2P+, not to this project. The tier is `espeak-derived`, so the row cannot gate. It is also no evidence about stød placement in either direction.
 
 ## Wrong variety
 
 ### East Timorese Portuguese, `portuguese_unified`
 
-The `pt-TL` row draws on the `pt-TL-x-dili` region of the unified lexicon, and
-that region is not independent Timorese lexicography. Diffed word for word
-against `pt-PT-x-lisboa`, the two regions share 53,147 words. Restricting to the
-35,800 shared entries whose transcriptions are the same length — where a
-positional diff is meaningful — 90.6% of all 63,189 character differences fall in
-six substitutions: ɐ→ə (30,042), u→ʊ (12,075), u→o (7,345), ʀ→r (4,186), ɐ→a
-(1,858) and ɫ→w (1,724). Further down: d→ð (223) and ɡ→ɣ (150). A further 3,076
-shared words are byte-identical between the two regions.
+The `pt-TL` row reads the `pt-TL-x-dili` region of the unified lexicon. That region is not independent Timorese lexicography. A word-by-word diff against `pt-PT-x-lisboa` finds 53,147 shared words, and 3,076 of them are byte-identical in the two regions.
 
-Re-spelling European Portuguese's centralized unstressed vowel with a different
-symbol does not remove it. 60% of `pt-TL-x-dili` entries still contain a reduced
-[ə] and 31% still end in a reduced [ʊ], and coda /s/ still surfaces as the Lisbon
-*chiado*: gold *instrumentista* is `ĩʃtɾumẽntˈiʃtə` against Lisbon's
-`ĩʃtɾumẽtˈiʃtɐ`. Albuquerque (2010:275 fn.7, 277), the source the `pt-TL` spec
-is built on, documents the opposite for this variety — no unstressed-vowel
-reduction and an alveolar, non-hush coda /s/. The row therefore measures
-conformity to a re-symbolized European Portuguese, not to the acrolectal East
-Timorese Portuguese the spec models.
+The diff then keeps the 35,800 shared entries whose transcriptions have the same length, where a positional diff means something. Six substitutions account for 90.6% of the 63,189 character differences:
 
-The earlier record for this row gives ɐ→ə 28,713, u→ʊ 11,653, ʀ→r 3,994, ɫ→w
-1,681, d→ð 212 and ɡ→ɣ 146. Those did not reproduce exactly — the direction and
-magnitude hold, the counts are the ones above, measured over first-variant pairs
-of equal length. The 53,147 shared-word count, the 60% and 31% residual figures,
-and the *instrumentista* example all reproduced exactly.
+| Substitution | Count |
+|---|---:|
+| ɐ to ə | 30,042 |
+| u to ʊ | 12,075 |
+| u to o | 7,345 |
+| ʀ to r | 4,186 |
+| ɐ to a | 1,858 |
+| ɫ to w | 1,724 |
 
-This is the sharpest entry in the registry, because `pt-TL` is classified
-`machine-generated` and **can gate**. The classification is already a deliberate
-downgrade from the dataset-wide `lexicon-derived` tier, recorded in
-`_PT_UNIFIED_PROVENANCE`, so a low PER here cannot be read as "the spec is
-right". But the tier lattice still lets the row block a promotion, and it should
-not be read as doing so on phonological grounds. The defect is not correctable
-by transcription work; it needs a gold collected from Timorese speakers.
+Further down come d to ð (223) and ɡ to ɣ (150). These counts are over the first-variant pairs of equal length.
+
+Another symbol for the reduced unstressed vowel of European Portuguese does not remove the vowel. 60% of `pt-TL-x-dili` entries still have a reduced [ə], and 31% still end in a reduced [ʊ]. Coda /s/ still surfaces as the Lisbon hush: gold *instrumentista* is `ĩʃtɾumẽntˈiʃtə`, and Lisbon has `ĩʃtɾumẽtˈiʃtɐ`. Albuquerque (2010:275 fn. 7, 277), the source of the `pt-TL` spec, documents the opposite for this variety. It has no reduction of unstressed vowels and an alveolar coda /s/ with no hush. The row therefore measures agreement with European Portuguese in other symbols, not with the East Timorese acrolect that the spec models.
+
+This entry matters most, because the row gates. `_PT_UNIFIED_PROVENANCE` already lowers `pt-TL` from the dataset tier `lexicon-derived` to `machine-generated`, so a low PER here cannot mean that the spec is right. The tier order still lets the row block a promotion, and such a block is not phonological. No transcription work fixes the defect. It needs a gold collected from Timorese speakers.
 
 ### Persian, `wikipron`
 
-The WikiPron `fa` set is predominantly Classical or Early New Persian, not the
-modern Iranian Persian the `fa` tag names. Measured over the file's 62,914 gold
-segments, the classical reading wins on every diagnostic: ⟨aː⟩ 5,654 against
-⟨ɒː⟩ 142, ⟨r⟩ 4,078 against ⟨ɾ⟩ 154, ⟨w⟩ 1,130 against ⟨v⟩ 24, ⟨q⟩ 880 against
-⟨ɣ⟩ 332. The *majhūl* vowels that Iranian Persian merged into /iː uː/ centuries
-ago are still present and frequent, ⟨eː⟩ 513 and ⟨oː⟩ 523, as is labialized
-⟨xʷ⟩ 124 for ⟨خو⟩. Modern short /e o/ appear 139 and 106 times against classical
-/i u/ at 2,796 and 2,075. Every one of these counts reproduced.
+The WikiPron `fa` set is mostly Classical or Early New Persian, not the modern Iranian Persian that the `fa` tag names. Over the 62,914 gold segments of the file, the classical reading wins on every diagnostic:
 
-Describing Persian more accurately cannot improve this row. The only way down is
-to transcribe Classical Persian under the tag `fa`, which would be false. The
-correction is a relabelling — the gold is fine, its tag is wrong — or a
-replacement gold scraped from a modern Iranian source. Provenance is
-`crowd-scraped`, so the row **can gate**, which makes the mislabelling
-consequential. Tracked as issue #107, and described at length in
-[benchmarks.md](benchmarks.md) under "Variety mismatch (`fa`)".
+| Classical | Count | Modern | Count |
+|---|---:|---|---:|
+| ⟨aː⟩ | 5,654 | ⟨ɒː⟩ | 142 |
+| ⟨r⟩ | 4,078 | ⟨ɾ⟩ | 154 |
+| ⟨w⟩ | 1,130 | ⟨v⟩ | 24 |
+| ⟨q⟩ | 880 | ⟨ɣ⟩ | 332 |
+| /i u/ | 2,796 and 2,075 | short /e o/ | 139 and 106 |
+
+The majhūl vowels, which Iranian Persian merged into /iː uː/ centuries ago, are still frequent: ⟨eː⟩ 513 and ⟨oː⟩ 523. So is labialized ⟨xʷ⟩ for ⟨خو⟩, with 124.
+
+A better description of Persian cannot improve this row. The only way to lower its PER is to transcribe Classical Persian under the tag `fa`, which would be false. The gold is fine and its tag is wrong. The fix is a correct label, or a gold from a modern Iranian source. The tier is `crowd-scraped`, so the row gates, and the wrong label has consequences. [benchmark_datasets.md](benchmark_datasets.md#variety-mismatch-fa) describes the same row.
 
 ### Algerian Arabic, `primary_sources`
 
-The `ar-DZ` row on `primary_sources` holds exactly one gold pair: id
-`guerrero2019-010`, زَوْجَتُه "his wife", filed against Guerrero (2019), which
-in turn quotes W. Marçais's 1908 description of Tlemcen Arabic (W. Marçais,
-*Le dialecte arabe parlé à Tlemcen*, 1902, is the same author's earlier
-monograph on the same city). `per_ci_low` and `per_ci_high` both read 0.7143
-in `benchmarks/results.json` because there is nothing to bound — a
-confidence interval needs more than one row. Reading this PER as "the worst
-row on the board" treats a single word as a certification of the whole
-variety, which the harness's own `PROVENANCE` comment already warns against:
-`primary_sources` rows "diagnose rules rather than certify a language on
-their own."
+The `ar-DZ` row on `primary_sources` has one gold pair: id `guerrero2019-010`, زَوْجَتُه "his wife". It is filed against Guerrero (2019), who quotes the 1908 description of Tlemcen Arabic by W. Marçais. *Le dialecte arabe parlé à Tlemcen* (1902) is the earlier monograph of the same author on the same city. A confidence interval needs more than one row, so `per_ci_low` and `per_ci_high` in `benchmarks/results.json` both equal the PER. The `PROVENANCE` comment in `scripts/benchmark.py` warns that `primary_sources` rows "diagnose rules rather than certify a language on their own."
 
-The `ar-DZ` spec's baseline is old-urban Algiers, per Boucherit (2002); its
-own sources cite Marçais's Tlemcen material only for the interdental-stop
-isogloss, not as the target variety. Guerrero's example is genuinely
-Algerian, but it is western-Algerian Tlemcen speech, not the Algiers
-phonology the spec otherwise models, and it happens to carry a construct-
-state contraction the spec was never built to reproduce: زَوْجَتُه surfaces
-in Marçais's data as *zūžtăh* ['zuːʃtah] — the medial short /a/ of the
-possessive suffix syncopates, the /aw/ of the first syllable contracts to
-/uː/, and the resulting /ʒ/ devoices to [ʃ] before the voiceless /t/. The
-spec renders the fully-vocalized input literally as ˈzawʒatuh: no syncope,
-no contraction, no devoicing.
+The `ar-DZ` spec models old urban Algiers, after Boucherit (2002). It cites the Tlemcen material of Marçais only for the isogloss of the interdental stops. Guerrero's example is Algerian, but it is western Tlemcen speech. It also carries a construct-state contraction that the spec was never built to produce. In Marçais the word surfaces as *zūžtăh* ['zuːʃtah]. The short /a/ of the possessive syncopates, /aw/ contracts to /uː/, and /ʒ/ devoices to [ʃ] before /t/. The spec reads the vocalized input as it is written, `ˈzawʒatuh`, with no syncope, contraction or devoicing.
 
-None of the three moves is an oversight. `DZ_SHORT_REDUCE`, the spec's one
-syncope rule, already documents that short /a/ syncope (as opposed to /i/) is
-deliberately scoped out pending an engine class that can except gutturals
-and pharyngeals, precisely because a blanket /a/→ə rule over-generates. The
-/aw/-contraction and cross-morpheme devoicing this single Tlemcen form shows
-are additional phenomena with no other attestation in the spec's sources;
-writing a rule to match one word would be gold-fitting on n=1, not a sourced
-correction. Nothing here is fixed: the row is read correctly as too small to
-diagnose anything beyond the one already-documented gap, not as evidence the
-spec mishandles Algerian Arabic. Provenance is `expert-human`, so the row
-technically **can gate**, but a promotion decision that turns on this single
-word should not be read as phonological.
+None of the three changes is an oversight. `DZ_SHORT_REDUCE`, the one syncope rule of the spec, documents that short /a/ syncope is left out on purpose. A rule for /a/ needs an engine class that can exclude gutturals and pharyngeals, and a blanket /a/ to ə rule over-generates. The /aw/ contraction and the devoicing across a morpheme boundary have no other attestation in the spec's sources. A rule written to match one word would be gold-fitting on one row, not a sourced correction.
 
-### Middle English, `wikipron`
-
-The `enm` gold (`enm_latn_broad.tsv`, 18,272 readings over 6,466 distinct
-headwords) is Wiktionary's crowd-scraped reconstruction of Chaucerian Late
-Middle English pronunciation, and its vowel-length notation does not hold
-still within a single headword. Counted on the harness's own SCORED
-representation (each reading run through `benchmark.normalize(broad=True,
-strip_stress=True)`, then deduplicated per headword) rather than the raw TSV
-strings, 1,403 of the 6,466 headwords (21.7%) retain two or more distinct
-normalized readings that differ from each other ONLY by the presence of the
-length mark ⟨ː⟩ on a vowel — the same editor community disagreeing with
-itself about whether a given vowel in a given word is long. (Counting the
-same predicate over raw, un-normalized TSV strings instead gives 1,291
-(20.0%); the two numbers diverge because narrow-mark and NFC folding merge a
-few otherwise-distinct raw readings before the ⟨ː⟩ comparison runs. 1,403 is
-the count that matches what actually enters the PER computation below, since
-scoring always normalizes first.) Spot-checking the mismatches this produces
-against the spec (`Irish` → gold /iːriʃ/, `Simon` → gold /simɔːn/, `amen` →
-gold /aːmɛn/) shows length assigned to plain, unmarked vowel letters in
-closed syllables with no orthographic signal the spec's macron-letter
-graphemes (⟨ā ē ī ō ū⟩) could have used to predict it — length here tracks
-Wiktionary's own open-syllable-lengthening reconstruction, not the spelling.
-
-As-scored PER (n=6,466, `broad`, `strip_stress`) was measured at 0.2981
-against a spec that had no grapheme entry for ⟨y⟩ anywhere — not in
-`graphemes`, not in `positional_graphemes` — so the engine silently dropped
-every ⟨y⟩ instead of erroring (`ymage` → `maɡɛ`, `yong` → `ɔnɡ`). ⟨y⟩ occurs
-in 4,593 of the 18,272 gold readings (25.1%); of the first 400 such words,
-356 have `j`, `i` or `ɪ` in the gold, so the character was being deleted, not
-merely notated differently. With ⟨y⟩ encoded positionally (a glide /j/ before
-a vowel — `yong`, `yarn`, `York` — and a vowel /i/ elsewhere, where it is a
-graphic variant of ⟨i⟩ next to minim strokes, e.g. `ydel` matching `idle`;
-Mossé 1952 and Jordan 1974 both describe this ⟨y⟩/⟨i⟩ alternation), plus
-⟨x⟩ → /ks/ (191 occurrences, all realised /ks/ in the gold, e.g. `Oxenford`)
-and ⟨ð⟩ as a thorn variant (11 occurrences, all realised [ð] in the sampled
-gold), as-scored PER moves to 0.2620. In isolation: the ⟨y⟩ fix alone moves
-0.2981 → 0.2652; adding ⟨x⟩ moves it to 0.2621; adding ⟨ð⟩ moves it to 0.2620,
-a noise-level contribution given its 11 occurrences.
-
-Folding the length mark ⟨ː⟩ out of both hypothesis and gold — the instrument,
-not a rule change — now measures 0.2163 against the fixed spec, clearing the
-0.25 production threshold: the row is input-limited by the gold's internal
-vowel-length disagreement rather than by a spec defect. The previously
-recorded 0.2538 folded figure was measured against the ⟨y⟩-dropping spec and
-undercounted correct segments the fixed spec now produces; it does not add to
-the new figure, it is superseded by it. Folding combining acute/grave/caron
-accents alongside the length mark made no difference in either measurement
-(the gold does not carry them for this row), a negative result recorded in
-the spec's `valid_ceiling.wikipron.citation` rather than reported as part of
-the fold.
-
-Word-final ⟨-e⟩ shows the same instability: of the 2,350 headwords with an
-orthographic final ⟨e⟩, only 12 have every reading realise it as [ə] and 416
-have every reading drop it; the remaining 1,922 (81.8%) mix pronounced and
-silent readings for the *same* headword. A naive fold (strip a trailing [ə]
-from both sides whenever the headword ends in ⟨e⟩) was tried against the
-fixed spec and still makes PER worse — 0.2772, up from the 0.2620 as-scored
-figure — because plenty of the spec's correct [ə] outputs get stripped into
-mismatches against gold readings that keep theirs. This is reported as a
-negative result:
-final-⟨e⟩ inconsistency is real and documented, but no defensible fold for it
-was found, so no ceiling is recorded for it.
-
-Headword spelling itself is not standardised: an adjacent-sort near-duplicate
-scan (Ratcliff/Obershelp similarity > 0.86, length difference ≤ 2) over the
-6,466 headwords finds 669 adjacent pairs plausibly belonging to the same
-lexeme (dialectal/scribal spelling variants such as Northern vs. Midland
-forms sitting side by side), which the harness's per-word multi-reference
-scoring cannot merge because they are distinct headwords, not distinct
-readings of one headword. This is a property of an unstandardised medieval
-written language, not a defect: it is recorded here so a future reader does
-not mistake it for spec breakage.
-
-`enm` is the genealogical parent of `en-GB`, which carries zero `*_base` keys
-of its own (its `graphemes`/`allophones`/etc. are fully self-contained) — so
-nothing crosses from `enm` into `en-GB` or any further descendant. `en-US`,
-by contrast, inherits from `en-GB` (not `enm`) through four `*_base` keys
-(`graphemes_base`, `allophones_base`, `grammatical_endings_base`,
-`word_exceptions_base`). A future audit of `enm` is safe to edit freely; an
-audit of `en-GB` is not, since it is the actual base four other lects merge
-data through.
-
-Provenance is `crowd-scraped`, so the row **can gate**. `valid_ceiling.wikipron`
-records the length-mark fold (0.2163, now below the 0.25 threshold — an
-input-limited row) measured against the fixed spec; the final-⟨e⟩ negative
-result and the diacritic no-op are recorded in the same citation rather than
-as separate ceiling fields.
+Read the row as too small to diagnose anything beyond the one documented gap. It is no evidence that the spec handles Algerian Arabic badly. The tier is `expert-human`, but the row has one word, below `THIN_ROW_N`, so `row_gates()` keeps it out of every gating decision.
 
 ## Mixed conventions
 
+### Middle English, `wikipron`
+
+The `enm` gold (`enm_latn_broad.tsv`) has 18,272 readings over 6,466 headwords. It is the crowd-scraped Wiktionary reconstruction of late Middle English as Chaucer spoke it. Its vowel-length notation changes inside one headword.
+
+The count runs on the scored form of each reading: `benchmark.normalize(broad=True, strip_stress=True)`, then one copy per headword. 1,403 of the 6,466 headwords (21.7%) keep two or more readings that differ only by the length mark ⟨ː⟩ on a vowel. The editors disagree with each other about whether a vowel is long. The same count over the raw TSV strings gives 1,291 (20.0%). The two differ because the narrow-mark and NFC folds merge a few raw readings before the comparison. The figure 1,403 matches what enters the PER computation, because scoring always normalizes first.
+
+The mismatches this causes show length on plain vowel letters in closed syllables: `Irish` gold /iːriʃ/, `Simon` gold /simɔːn/, `amen` gold /aːmɛn/. The spelling gives no signal there that the macron graphemes ⟨ā ē ī ō ū⟩ of the spec could use. The length follows the Wiktionary reconstruction of open-syllable lengthening, not the spelling.
+
+The spec maps ⟨y⟩ by position: a glide /j/ before a vowel (`yong`, `yarn`, `York`), and /i/ elsewhere. Elsewhere ⟨y⟩ is a graphic variant of ⟨i⟩ next to minim strokes, so `ydel` matches `idle` (Mossé 1952, Jordan 1974). ⟨x⟩ maps to /ks/, which the gold confirms in all 191 occurrences (`Oxenford`). ⟨ð⟩ maps as a variant of thorn.
+
+With the length mark folded out of both hypothesis and gold, the row falls below the 0.25 production threshold. The row is limited by the gold's own disagreement about vowel length, not by a spec defect. `valid_ceiling.wikipron` in `enm.json` records the measured fold. Folding the acute, grave and caron accents with the length mark changes nothing, because the gold does not carry them. That negative result is in the same citation.
+
+Final ⟨-e⟩ is unstable too. Of the 2,350 headwords with a final ⟨e⟩, 12 realise it as [ə] in every reading and 416 drop it in every reading. The other 1,922 (81.8%) mix pronounced and silent readings for one headword. A naive fold, which strips a final [ə] from both sides when the headword ends in ⟨e⟩, makes PER worse. It turns correct [ə] outputs of the spec into mismatches against readings that keep theirs. No defensible fold was found, so no ceiling is recorded for final ⟨-e⟩.
+
+Headword spelling is not standardized either. A near-duplicate scan over adjacent sorted headwords (Ratcliff/Obershelp similarity above 0.86, length difference at most 2) finds 669 pairs that are probably one lexeme. They are scribal and dialect variants, such as Northern and Midland forms. The harness scores several references per word, but it cannot merge distinct headwords. That is a property of an unstandardized medieval written language, not a defect and not a spec bug.
+
+`enm` is the parent of `en-GB` in the ancestry, but `en-GB` has no `*_base` keys, so no data crosses from `enm` into any descendant. `en-US` inherits from `en-GB`, not `enm`, through four keys: `graphemes_base`, `allophones_base`, `grammatical_endings_base` and `word_exceptions_base`. An edit to `enm` therefore reaches no other spec. An edit to `en-GB` reaches `en-US`.
+
+The tier is `crowd-scraped`, so the row gates.
+
 ### Coptic, `wikipron`
 
-The Coptic gold merges reconstruction traditions rather than recording one. The
-file holds 881 rows over 591 distinct spellings, and 155 spellings carry two or
-more distinct readings. Symbols that belong to competing reconstructions appear
-side by side across the file: ⟨ʔ⟩ in 181 readings, ⟨β⟩ in 68, ⟨x⟩ in 30, ⟨v⟩ in
-19, ⟨θ⟩ in 8.
+The Coptic gold mixes reconstruction traditions. The file holds 881 rows over 591 spellings, and 155 spellings carry two or more readings. Symbols of competing reconstructions occur side by side: ⟨ʔ⟩ in 181 readings, ⟨β⟩ in 68, ⟨x⟩ in 30, ⟨v⟩ in 19 and ⟨θ⟩ in 8.
 
-An earlier record gives 290 spellings with multiple readings. It does not
-reproduce; the count is 155.
+The obvious repair does not work. It splits the file into two systems, one plain with short vowels and one ejective with long vowels. Of the 881 readings, 536 are plain with no length mark and 38 are ejective with length. The other 307 mix a marker from each tradition. The traditions do not separate, so the only fix is per-row tagging by someone who knows Coptic philology. This negative result rules out the cheap fix.
 
-The obvious repair — split the file into two coherent systems, one plain and
-short-voweled, one ejective and long-voweled — **was tested and does not work**.
-Of the 881 readings, 536 are plain with no length mark and 38 are ejective with
-length, but 307 are mixed: they combine a marker from one tradition with a marker
-from the other. The Coptic gold cannot be cleanly separated by tradition, so the
-only correction available is per-row tagging by someone competent in Coptic
-philology. This negative result matters more than the counts: it closes off the
-cheap fix.
-
-Provenance is `crowd-scraped`, so the row **can gate**.
+The tier is `crowd-scraped`, so the row gates.
 
 ### Limburgish, `wikipron`
 
-The `li` spec implements *Spelling 2003 voor de Limburgse dialecten* (the
-Veldeke spelling), and states that Dutch-based and German-based ad-hoc spellings
-are out of scope. The gold does not respect that boundary: it draws headwords
-from Wiktionary's German-based, Rheinische-Dokumenta and Eupen-dialect
-alternative forms alongside the Veldeke ones. The file holds 1,128 gold lines
-over 989 distinct headwords, of which 123 are homographs with two or more
-distinct readings — the orthography underdetermines the pronunciation, partly
-through dialect variation and partly because Spelling 2003 does not write the
-sleeptoon/stoottoon contrast at all. 90 gold lines, covering 55 distinct words,
-carry an IPA tone letter that the orthography cannot supply. All of these
-reproduced.
+The `li` spec implements *Spelling 2003 voor de Limburgse dialecten*, the Veldeke spelling. It states that ad-hoc spellings based on Dutch or German are out of scope. The gold mixes headwords from the Veldeke spelling with alternative forms from Wiktionary. These come from the German-based spelling, from Rheinische Dokumenta and from the Eupen dialect.
 
-A useful negative result sits alongside them, recorded in the `li` spec notes:
-folding the tone letters out of both hypothesis and gold moves PER only from the
-board's 0.3819 to 0.3771, so unlike the
-Hausa and Kikuyu tone folds, tone is not the dominant error source here. The
-dominant driver is the spelling-convention mix, and mistranscribing an
-out-of-contract spelling is the documented behaviour of the spec, not a defect
-in it.
+The file holds 1,128 gold lines over 989 headwords. 123 headwords are homographs with two or more readings. The spelling underdetermines the pronunciation, partly through dialect variation, and partly because Spelling 2003 does not write the contrast of sleeptoon and stoottoon. 90 gold lines, over 55 words, carry an IPA tone letter that the spelling cannot supply.
 
-The convention mix is measurable from the gold's own spelling. Of the 140
-headwords whose gold IPA contains a postalveolar fricative, 130 write it
-`sch` and 7 write it `sj`, the Spelling 2003 form; `ae` appears in 10
-headwords and `ao` in 14, against 114 carrying `ä` and 34 carrying `ü`. The
-Veldeke convention the row is scored against is therefore a small minority of
-the file. Two of the other conventions separate cleanly and do not overlap at
-all: 89 headwords carry a sign that belongs to Rheinische Dokumenta and to
-nothing else (`e̩`, `ǫ`, `ṣ`, `c͜h`), 222 carry the acute and diaeresis signs of
-the Eupen-dialect spelling, and no headword carries both.
+Tone is not the main source of error here, unlike the Hausa and Kikuyu tone folds. Folding the tone letters out of both sides barely moves the PER of the row. The `li` spec notes record the figures, and `tests/test_li_gold_composition.py` checks them. The main driver is the mix of spelling conventions. Mistranscribing an out-of-contract spelling is the documented behaviour of the spec, not a defect in it.
 
-Rheinische Dokumenta is a published standard — the Landschaftsverband
-Rheinland's transcription system for the dialects of the Rhineland (Honnen
-1987) — so it gets its own entry, `li-x-rheindok`, per this repo's convention
-that a distinct written convention for the same language is modeled separately.
-It scores its 89 headwords at PER 0.0609 where `li` scores them at 0.3245, and
-58 of the 89 come out exactly right. `li` is unchanged and keeps targeting
-Spelling 2003. The Eupen block is left unmodeled: no published orthography for
-it was found, and inferring a sign table from the gold it would then be scored
-against is fitting, not describing.
+The gold's own spelling measures the mix. Of the 140 headwords whose IPA has a postalveolar fricative, 130 write it `sch` and 7 write it `sj`, the Spelling 2003 form. `ae` occurs in 10 headwords and `ao` in 14, against 114 with `ä` and 34 with `ü`. The Veldeke convention that the row is scored against is a small minority of the file.
 
-The board still scores the whole file against `li`, so the row's PER is
-unmoved at 0.3819. Splitting the gold by convention is upstream work at
-Wiktionary or a local exclusion, not a spec change. Provenance is
-`crowd-scraped`, so the row **can gate**. Tracked as issue #120. The `li` spec
-carries the verdict as a machine-readable `mislabeled_gold` audit record.
+Two other conventions separate cleanly. 89 headwords carry a sign that belongs only to Rheinische Dokumenta (`e̩`, `ǫ`, `ṣ`, `c͜h`). 222 carry the acute and diaeresis signs of the Eupen spelling. No headword carries both. Rheinische Dokumenta is a published standard, the transcription system of the Landschaftsverband Rheinland for the dialects of the Rhineland (Honnen 1987). It therefore has its own spec, `li-x-rheindok`, because a distinct written convention for one language gets its own entry. `li-x-rheindok` scores those 89 headwords far better than `li` does, and 58 of them come out exactly right.
+
+`li` still targets Spelling 2003. The Eupen block stays unmodelled. No published orthography for it was found, and a sign table inferred from the gold that then scores it would be fitting, not description. The board still scores the whole file against `li`. Splitting the gold by convention is upstream work at Wiktionary, or a local exclusion, not a spec change. The tier is `crowd-scraped`, so the row gates. The `li` spec carries the verdict as a machine-readable `mislabeled_gold` audit record.
 
 ### Scottish Gaelic, `wikipron`
 
-The `gd` gold (3720 distinct headwords over 6000 lines) mixes two things that
-the spec cannot follow at once. First, a notational split for the plain stop
-series ⟨b d g⟩: the modern instrumental analysis (Nance & Stuart-Smith 2013,
-summarised in Nance & Ó Maolalaigh 2020) finds "very little or no closure
-voicing even in word-medial stops which are orthographically b d g" and
-transcribes the series as an aspiration contrast, /pʰ/ vs /p/ — the analysis
-this spec follows. 185 of the 3720 headwords instead carry the older
-Borgstrøm (1940) / Oftedal (1956) devoicing convention, /b̥ d̥ ɡ̊/, for the
-same sounds. Second, dialect mixing: 986 of the 3720 headwords carry two or
-more mutually incompatible pronunciations (different stressed-vowel quality,
-different presence/absence of preaspiration), consistent with WikiPron's
-crowd-scraped, multi-contributor origin rather than a single consistent
-variety.
+The `gd` gold has 3,720 headwords over 6,000 lines. It mixes two things that the spec cannot follow at once.
 
-A useful negative result sits alongside these counts. Two phenomena the
-orthography genuinely underdetermines — preaspiration (`GD_PREASP_*`, already
-encoded) and svarabhakti (an unwritten epenthetic vowel, not encoded — see the
-`gd` spec notes) — were folded out of both hypothesis and gold and rescored.
-Neither fold lowers PER: preaspiration folding moves the board's 0.3202 to
-0.3205, and a svarabhakti fold moves it to 0.3264, both flat-to-worse. So
-unlike the Hausa/Kikuyu tone folds and the Limburgish tone fold, neither
-phenomenon is this row's dominant error source; the mixed devoicing
-convention and the mixed dialects are the larger, harder-to-fold drivers.
+The first is a notation split for the plain stops ⟨b d g⟩. The modern instrumental analysis finds "very little or no closure voicing even in word-medial stops which are orthographically b d g". It writes the series as an aspiration contrast, /pʰ/ against /p/ (Nance and Stuart-Smith 2013, summarized in Nance and Ó Maolalaigh 2020). The spec follows that analysis. 185 of the 3,720 headwords use the older devoicing convention of Borgstrøm (1940) and Oftedal (1956), /b̥ d̥ ɡ̊/, for the same sounds.
 
-Correcting the row means either normalising the two devoicing conventions in
-the benchmark's IPA normalizer (a confusable fold, not a spec change) or
-filtering to a single-dialect subset upstream at Wiktionary/WikiPron — neither
-is a spec change. Provenance is `crowd-scraped`, so the row **can gate**.
+The second is dialect mixing. 986 of the 3,720 headwords carry two or more pronunciations that cannot both be right. They differ in the quality of the stressed vowel, or in whether preaspiration occurs. That fits the crowd-scraped origin of WikiPron, with many contributors, not one variety.
+
+Two phenomena that the spelling underdetermines were folded out of both sides and scored again. Preaspiration is encoded (`GD_PREASP_*`), and svarabhakti, an unwritten epenthetic vowel, is not (see the `gd` spec notes). Neither fold lowers PER. The preaspiration fold leaves it flat, and the svarabhakti fold makes it worse. Neither phenomenon is the main source of error, unlike the tone folds of Hausa, Kikuyu and Limburgish. The mixed devoicing notation and the mixed dialects are the larger drivers, and they are harder to fold.
+
+The fix is to normalize the two devoicing conventions in the IPA normalizer of the benchmark, which is a fold and not a spec change. The other fix is a single-dialect subset upstream at Wiktionary or WikiPron. The tier is `crowd-scraped`, so the row gates.
 
 ### Middle High German, `wikipron`
 
-The `gmh` spec's grapheme table targets Karl Lachmann's normalised MHG
-orthography — circumflex for long vowels (â ê î ô û) and ⟨æ œ⟩ for the umlaut
-reflexes (Paul, *Mittelhochdeutsche Grammatik*, rev. Klein/Solms/Wegera, 2007).
-The gold (1724 source words, 1516 scored after tokenizer filtering) does not
-use that convention: 0 of the 1724 words carry a circumflex vowel and 0 carry
-⟨ë⟩, while 115 carry ⟨æ⟩ or ⟨œ⟩ and 130 carry ⟨ä ö ü⟩.
+The `gmh` spec targets the normalized orthography of Karl Lachmann. It writes long vowels with a circumflex (â ê î ô û) and the umlaut reflexes as ⟨æ œ⟩ (Paul, *Mittelhochdeutsche Grammatik*, revised by Klein, Solms and Wegera, 2007). The gold has 1,724 source words, and 1,516 are scored after the tokenizer filter. It does not use that convention. None of the 1,724 words carries a circumflex vowel or ⟨ë⟩, while 115 carry ⟨æ⟩ or ⟨œ⟩ and 130 carry ⟨ä ö ü⟩.
 
-That is not a defect in the gold; it is a second, legitimate spelling
-convention for the same language, and it is fully accounted for by English
-Wiktionary's own style page (*Wiktionary:About Middle High German*), which
-WikiPron scrapes: "certain letters with diacritics (ë ā ē ī ō ū ȥ) are not
-used in article titles, but are used when displaying the word", while "this
-does not apply to the umlauted vowels ä, ö, ü, æ, œ, which are treated as
-separate letters and thus appear in titles like any other letter." That
-policy predicts exactly the counts above — zero circumflex, zero ë, umlaut
-vowels intact — because WikiPron scrapes the MediaWiki page title, not the
-displayed headword line. Per this repo's convention that a distinct written
-convention for the same language gets its own spec entry (`cdo-Latn-buc`
-alongside `cdo`, `zh` alongside `zh-Hani`), this convention is modeled as
-`gmh-x-wikt`, inheriting `gmh`'s phonology whole via `graphemes_base` and
-nulling only the circumflex length graphemes, which this convention never
-writes. `gmh` itself is unchanged and keeps targeting Lachmann's convention,
-which is correct for edited MHG text using scholarly normalisation; the two
-specs describe the same language in two different, both-real, spellings. The
-`wikipron` gold should be scored against `gmh-x-wikt`, not `gmh` — see the
-scoreboard note below.
+That is a second, real spelling convention, not a defect. The English Wiktionary style page (*Wiktionary:About Middle High German*) explains it. It says that "certain letters with diacritics (ë ā ē ī ō ū ȥ) are not used in article titles, but are used when displaying the word". It adds that "this does not apply to the umlauted vowels ä, ö, ü, æ, œ". WikiPron scrapes the page title, not the displayed headword, so the policy predicts the counts above exactly.
 
-The bare, non-doubled ⟨z⟩ grapheme is a separate, narrower unrecoverable case
-that affects both specs equally: MHG ⟨z⟩ continues two different High German
-Consonant Shift outcomes, an affricate [t͡s] (e.g. "herze", "heizen",
-"gezogen") and a dorsal fricative [s] (e.g. "az", "biz", "daz"), and only the
-doubled spellings disambiguate it unambiguously (⟨tz⟩ = geminate affricate,
-⟨zz⟩ = geminate fricative — both fixed in the spec). Some editions mark the
-fricative reflex with a diacritic z (ȝ/ȥ); this gold's source spelling does
-not carry it, so the bare-z split is input-limited here and is left at the
-affricate default rather than fitted to this one gold's distribution.
+A distinct written convention for one language gets its own spec, as `cdo-Latn-buc` beside `cdo` and `zh-Hani` beside `zh`. This one is `gmh-x-wikt`. It takes the phonology of `gmh` whole through `graphemes_base` and nulls only the circumflex length graphemes, which this convention never writes. `gmh` keeps Lachmann's convention, which is correct for edited text in scholarly normalization. Score the `wikipron` gold against `gmh-x-wikt`, not `gmh`.
 
-Provenance is `crowd-scraped`, so the row **can gate**; fixing the schwa
-reduction, apical ⟨s⟩, and ⟨tz⟩/⟨zz⟩ gemination rules (all recoverable from
-the gold's own spelling) moved PER from 0.2938 to 0.1022 at constant n=1516,
-measured before `gmh-x-wikt` existed (i.e. still against `gmh`); re-scoring
-against `gmh-x-wikt` is a follow-up, not part of this change.
+The bare ⟨z⟩ is a narrower case that cannot be recovered, and it affects both specs. Middle High German ⟨z⟩ continues two outcomes of the High German consonant shift. One is the affricate [t͡s] ("herze", "heizen", "gezogen"). The other is a fricative [s] ("az", "biz", "daz"). Only the doubled spellings settle it: ⟨tz⟩ is the geminate affricate and ⟨zz⟩ the geminate fricative, and the spec maps both. Some editions mark the fricative with a special z (ȝ or ȥ), but this gold does not. The bare ⟨z⟩ split is therefore limited by the input, and the spec keeps the affricate default rather than fit it to this gold.
+
+The tier is `crowd-scraped`, so the row gates. Schwa reduction, apical ⟨s⟩ and the ⟨tz⟩ and ⟨zz⟩ geminates are recoverable from the spelling of the gold, and the spec encodes them.
 
 ### Kapampangan, `wikipron`
 
-The `pam` spec's mid front vowel /ɛ/ is analysed as open-mid, following the
-language's Wikipedia phonology summary (which in turn cites Forman 1971,
-*Kapampangan Grammar Notes*, pp.28-29, for the language's stress system). The
-gold never writes that symbol: 0 of 926 headwords carry ⟨ɛ⟩, while 119 carry
-the plain ⟨e⟩ this spec's own transcribed vowel is not. The vowel letter is
-written in both cases — only the IPA symbol choice differs — so this is a
-notation-convention mismatch, not an unwritten contrast, and it is left
-unfixed rather than mimicked: fixing the spec's phoneme to plain /e/ to match
-one gold's transcription convention would be gold-fitting against a
-Forman-sourced analysis. Folding ⟨ɛ⟩ to ⟨e⟩ on both sides moves this row's PER
-from 0.2861 to 0.2586 in isolation; it is not counted toward the spec's
-`valid_ceiling` for this row (see `pam.json`), which is reserved for
-phenomena the orthography genuinely cannot write (the glottal stop and the
-lexical, unmarked stress that drives the /a/~[ə], /i/~[ɪ], /u/~[ʊ]
-alternation).
+The `pam` spec writes its mid front vowel as open-mid /ɛ/. It follows the phonology summary of the Wikipedia article on the language, which cites Forman 1971, *Kapampangan Grammar Notes*, pages 28 and 29, for stress. The gold never writes that symbol. None of its 926 headwords carries ⟨ɛ⟩, and 119 carry plain ⟨e⟩.
 
-The same file also carries plain crowd-scraped noise: 48 of its headwords
-recur with two or more mutually incompatible readings for the identical
-spelling (e.g. "Guagua" → ɡwaɡwə vs wawəʔ, "anak" → ənak vs anək), consistent
-with unpredictable per-annotator stress placement rather than a systematic
-convention split. Provenance is `crowd-scraped`, so the row **can gate**.
+Both write the same vowel letter, and only the IPA symbol differs. This is a mismatch of notation, not an unwritten contrast. It is left as it is. Changing the spec to /e/ to match one gold's convention would be gold-fitting against an analysis sourced from Forman. Folding ⟨ɛ⟩ to ⟨e⟩ on both sides lowers the PER of the row. The fold does not count toward `valid_ceiling` in `pam.json`. That ceiling is for what the spelling cannot write: the glottal stop, and the unmarked lexical stress behind the /a/~[ə], /i/~[ɪ] and /u/~[ʊ] alternation.
+
+The file also carries plain crowd-scraped noise. 48 headwords recur with two or more readings that conflict for one spelling ("Guagua" `ɡwaɡwə` and `wawəʔ`, "anak" `ənak` and `anək`). That fits unpredictable stress placement by each annotator, not a systematic split of conventions. The tier is `crowd-scraped`, so the row gates.
 
 ## Circular
 
-### Portuguese and Arabic TTS gold (`portuguese_tts`, `arabic_tts`)
+### The TTS sentence gold sets (`arabic_tts`, `portuguese_tts`, `spain_romance_tts`)
 
-Both datasets sit at PER exactly 0.0000 on every row. `portuguese_tts` has 47
-rows and `arabic_tts` has 34, all 81 at zero, all `llm-generated`, and every
-single row at n = 20. Nothing in either dataset is anything other than a perfect
-score on twenty items.
+Every row of these three datasets scores a PER of exactly zero. That is a property of the gold, not of the spec. The [engine-pin contract](tts_gold.md#the-engine-pin-contract) requires each `ipa` cell to equal `transcribe(sentence, lect)`, and CI fails when it does not. The score therefore compares the engine with a copy of its own output.
 
-The reason is circularity. The transcriptions were drafted by a large language
-model and then audited against the literature; the harness's own provenance
-comment on the sibling `gold20_arabic` dataset calls it "near-circular, same
-Claude lineage that authored the o2i Arabic dialect specs". The same lineage
-authored these. A perfect score against a gold written by the same authorship
-that wrote the spec measures agreement between two expressions of one belief.
+The authorship is circular as well. A language model drafted the Arabic and Portuguese transcriptions, which were then audited against the literature. The provenance comment on the sibling `gold20_arabic` dataset calls it "near-circular", from the same Claude lineage that wrote the Arabic dialect specs. The same lineage wrote these sets. The `spain_romance_tts` set is drafted by `transcribe` itself.
 
-Both are `llm-generated`, so neither can gate, and the tier is correct. The
-defect is not that the number is used wrongly by the harness — it is that the
-number looks like a result and is not one. No amount of auditing converts it;
-only an independently collected gold would.
-
-For completeness: 82 rows on the scoreboard sit at PER exactly 0.0000, not 81.
-The 82nd is `tew` / `wikipron`, n = 106, `crowd-scraped` — a different situation
-from these two datasets and not part of this registry.
+All three are `llm-generated`, so none can gate, and the tier is correct. The harness does not misuse the number. The defect is that the number looks like a result and is not one. No audit converts it. Only an independently collected gold would.
 
 ## False provenance label
 
 ### Abkhaz, `vox_communis`
 
-The `ab` row is recorded as `epitran-derived`, and epitran cannot have produced
-it. epitran 1.35.2 ships 161 grapheme-to-phoneme maps in `epitran/data/map/`, and
-none of them is Abkhaz — there is no `abk` map and no `ab` map of any script.
-Whatever built the Abkhaz phone tier, it was one of the other tools in the
-VoxCommunis pipeline (XPF, Charsiu, or a custom dictionary), not epitran.
+The `ab` row carries the tier `epitran-derived`, and epitran cannot have produced it. epitran 1.35.2 ships 161 grapheme-to-phoneme maps in `epitran/data/map/`, and none is Abkhaz. It has no `abk` map and no `ab` map in any script. Another tool of the VoxCommunis pipeline built the Abkhaz phone tier: XPF, Charsiu or a custom dictionary.
 
-The dataset-wide `epitran-derived` tier is a reasonable default for VoxCommunis
-as a whole, since its lexicons are built from a mix of tools and the tier is
-deliberately pessimistic. But for this particular row the label names a specific
-competitor, and the identity of the competitor is precisely what the tier
-name exists to communicate — a reader is being told to interpret the row as
-divergence from epitran, and there is no epitran output to diverge from.
+The dataset-wide tier `epitran-derived` is a reasonable default for VoxCommunis. Its lexicons come from a mix of tools, and the tier is pessimistic on purpose. For this row, though, the label names a competitor that was not used. The name of the competitor is exactly what the tier exists to tell a reader. The reader is told to read the row as divergence from epitran, and no epitran output exists to diverge from.
 
-The practical effect is nil, because `epitran-derived` and the alternatives all
-refuse to gate. The correction is a naming one: the row should carry a tier that
-does not assert a tool that was not used.
+The effect on gating is nil, because `epitran-derived` and the tiers that could replace it all refuse to gate. The fix is a name: the row needs a tier that does not claim a tool that was not used. [benchmark_datasets.md](benchmark_datasets.md#coverage-hole-in-abkhaz-ab) explains why the row gets no `PROVENANCE_BY_LANG` override.
+
+## Alphabet-chart entries in a row
+
+The [scoreboard](scoreboard.md) gives one PER per gold row. That number says something about running text only if the gold is running text. WikiPron scrapes Wiktionary headwords. For a small language, a Wiktionary edition often lists the whole alphabet as ordinary headwords: single letters, names of digraphs, and letters with diacritics. They sit in the same TSV as real words. A grapheme table transcribes those entries by construction, because they are the table read back. A row can therefore look excellent while its gold says little about real sentences.
+
+[`scripts/gold_composition.py`](../scripts/gold_composition.py) measures this. It reads each row of `benchmarks/results.json`, loads its gold from `.benchmark_cache/`, and splits it into a trivial subset and a subset of real words. It scores each subset with `evaluate_words` from `scripts/benchmark.py`, with stress stripped and broad normalization. `trivial_per` and `real_per` are therefore in the units of the board's PER column. The script never changes a spec or a board file.
+
+### What counts as trivial
+
+The signal comes from the language's own alphabet. Every spec has a `graphemes` table, which lists its letters and its multi-character units such as the Kwak'wala digraphs `kw`, `ch` and `dz`. An entry is a short form when its base form has one or two characters. The base form folds case and drops combining marks. If the distinct short forms of a row cover at least `ALPHABET_COVERAGE_THRESHOLD` (0.3) of the spec's alphabet, the row is an alphabet chart. All its short entries are then trivial. Below that coverage they stay ordinary short words.
+
+A few short real words never come close to 30% of a real alphabet. A real scrape of an alphabet chart usually covers far more of it. Multi-word entries, from the sentence-level gold sets, are never trivial, because an alphabet chart is a list of words.
+
+The fold catches more than plain letters. A chart row with a diacritic folds to the same base form as its bare letter and counts once. An example is the Kwak'wala "A̱", a plain `a` with a combining macron below. A chart row that spells a digraph such as `kw` as its own headword counts too. The comparison is with the spec's alphabet, not with a fixed length.
+
+A fixed length cutoff, where any entry of two characters or fewer is trivial, does not work. Many languages have short real words: function words of one letter, such as French "y" or English "a", and content words of one syllable. A length rule would treat those the same in every language. Chinese monosyllables would count like the alphabet rows of Kwak'wala, for unrelated reasons.
+
+A second kind of trivial entry has its own count, `n_bound_affix`. A single-word entry that contains U+0640 ARABIC TATWEEL is a bound affix from an inflection table, not a free word. The `_TATWEEL` docstring in the script gives the `tru` examples. Such an entry is trivial whatever its length or alphabet coverage.
+
+The method does not find an entry whose gold is the name of a letter rather than its sound, such as English "y" as /waɪ/. That would need a per-language table of letter names, which does not exist here. Guessing one from the gold would make exactly the kind of unsourced rule that this project rejects. It shows indirectly, though. A chart row whose trivial subset scores unexpectedly badly usually has entries glossed with letter names, which the engine correctly does not produce.
+
+### Running the script
+
+Run it from the root of a checkout:
+
+```bash
+PYTHONPATH=. python scripts/gold_composition.py --max-n 5000
+```
+
+| Option | Effect |
+|---|---|
+| `--start N`, `--end N` | score only the board rows `[start:end]`, so a full sweep can run in batches |
+| `--max-n N` | skip a row whose board `n` is above `N`, without loading its gold |
+
+The script prints one JSON object. `rows_scored` and `rows_skipped_no_cache` count the rows it scored and skipped, and the `skipped` list names the skipped rows. A row is skipped when its gold is not in the cache, when it is above `--max-n`, or when its loader fails. The script blocks network access, so it never downloads gold. Its output depends only on what is in the cache. `most_flattered` lists the ten rows with the largest positive `gap`, and `rows` lists every scored row.
+
+The `--max-n` skip has a known bound. A spec's alphabet has a few dozen graphemes. Even if every grapheme appears as a headword, a gold of `N` words has a trivial share below about `alphabet_size / N`. That bound fails for a script that writes one character per morpheme. A spot check of `ja` on `ipadict` found a large trivial share far above the cutoff. A CJK row skipped by `--max-n` can therefore hold a real finding, so check such rows with a higher bound or with none.
+
+### Reading the output
+
+| Field | Meaning |
+|---|---|
+| `trivial_share` | the trivial entries as a fraction of all the loaded gold entries of the row |
+| `alphabet_coverage`, `is_alphabet_chart` | the share of the spec's alphabet that the short forms cover, and whether it reaches the threshold |
+| `trivial_per`, `real_per` | the PER of each subset |
+| `real_n` | the number of covered real words behind `real_per` |
+| `gap` | `real_per − trivial_per` |
+
+A large positive `gap` is the finding that the script exists to surface. An easy trivial subset pulls the headline PER down, while the real words score much worse. A negative `gap` means the trivial subset scored worse than the real words. That happens on a very small chart row with few real words left, or when the chart entries carry letter names. Then the alphabet chart does not flatter the row, and the output reports that as it is.
+
+A `gap` from a handful of real words is noisy, as any PER on a small row is. Read it with that limit in mind.
+
+`kwk` on `wikipron` is the row the method was built on, and it is a counter-example. 108 of its 116 raw entries (93.1%) are trivial: mostly single Latin letters, and several chart rows with diacritics such as "A̱". Its trivial subset scores worse than its real words, so the `gap` is negative. Eight real words are too few to lean on, but the direction holds. The alphabet chart does not make this row look good.
+
+`tru` on `wikipron` has 6 bound-affix entries among its 232 raw entries (2.6%). They also score worse than the real words, so the bound forms are harder for the spec, not easier.
+
+### What the measurement is not
+
+It is not a spec fix, and it never moves `docs/scoreboard.md` or `benchmarks/results.json`. Only `scripts/benchmark.py` writes those, from the actual behaviour of the spec. A large `gap` means that the row needs a larger and more representative gold before it can support a claim about running text. It is not evidence that the spec is wrong. A `trivial_per` or `real_per` on a `crowd-scraped` or lower tier carries every caveat of that tier, as [benchmarks.md](benchmarks.md#provenance-and-reliability-read-this-before-trusting-any-number) describes.
 
 ---
-[← Gold composition](gold_composition.md) · [Home](index.md) · [Known limitations →](known_limitations.md)
+[← Lexicon-overlay scoreboard](lexicon_scoreboard.md) · [Home](index.md) · [Known limitations →](known_limitations.md)

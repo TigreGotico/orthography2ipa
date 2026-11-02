@@ -18,7 +18,7 @@ Quick start::
     >>> en.graphemes["th"]
     ['θ', 'ð']
     >>> en.allophones["t"]
-    ['t', 'tʰ', 'ɾ', 'ʔ', 't̚']
+    ['t', 'tʰ', 'ʔ', 'ɾ']
 
     >>> pt = orthography2ipa.get("pt-BR")
     >>> pt.graphemes["lh"]
