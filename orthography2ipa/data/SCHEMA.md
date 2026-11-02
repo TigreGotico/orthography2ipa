@@ -94,7 +94,7 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
 | `plugins`                   | object | no       | The plugin to use for a pipeline stage, keyed by stage (`normalize`, `stress`, `rescore`, `sandhi`) and naming an entry point: `{"sandhi": "arbtok"}`. A named plugin that is not installed raises `MissingPlugin`. No shipped spec declares it. A caller passes the same mapping to `G2P(code, plugins=...)`. See `orthography2ipa/plugins.py`. |
 | `iso639_3`                  | string | no       | ISO 639-3 three-letter code for cross-referencing |
 | `sandhi_rules`              | array  | no       | Cross-word-boundary phonological rules       |
-| `stress`                    | object | no       | Declarative stress placement (see [Stress Schema](#stress-schema)) |
+| `stress`                    | object or `false` | no | Declarative stress placement (see [Stress Schema](#stress-schema)); `false` opts out of an inherited block |
 | `word_exceptions`           | object | no       | Whole-word overrides for a closed irregular set (`{"one": "wʌn"}`); beats rules, beats a bundled lexicon |
 | `grammatical_endings`       | object | no       | Suffix morphology: orthographic ending → IPA at the effective word end (`{"tion": "ʃən"}`), or an ordered candidate list for an ending that is genuinely ambiguous (`{"ent": [null, ""]}`); see [Grammatical endings](#grammatical-endings) |
 | `allophone_rules`          | array  | no       | Post-lexical `phoneme → surface` rewrites (see [Allophone Rule Schema](#allophone-rule-schema) and [allophony](../../docs/allophony.md)) |
@@ -370,8 +370,37 @@ inherits the parent's rules and can override one by `id` or append new ones.
 
 ## Stress Schema
 
-Declarative stress placement. The engine applies it after phoneme selection; a
-spec with no `stress` block gets no stress marks.
+Declarative stress placement. The engine applies it after phoneme selection.
+
+A spec that states a `stress` block keeps that block whole. The loader does not
+merge it key by key with a base block. A spec that states no block takes a block
+from one base, in this order:
+
+1. The resolved block of its `graphemes_base`.
+2. Without a `graphemes_base`, the resolved block of the nearest data ancestor
+   on `parent` (clade nodes are skipped). The loader takes it only when that
+   ancestor is the same language: the spec's `iso639_3` is unset, or it is
+   equal to the ancestor's `iso639_3`.
+
+A spec that gets no block from these steps has no stress marks. A spec that
+states `"stress": false` takes no block and has no stress marks. Use `false`
+only when a cited source says that the spec's accent differs from its base's
+and no block can be written from the sources. The spec's `notes` cite that
+source. An empty object `{}` and `null` do not opt out: they take the base's
+block.
+
+The language check exists because stress placement is a property of one
+language, and the accent marks that override it (`marked_vowels`) are graphemes
+of its orthography. A regional variety that has no ISO 639-3 code of its own
+shares them with its language: `el-CY` takes the block of `el`, and
+`it-IT-x-toscana` (`iso639_3` `ita`) takes the block of `it-IT`. A language
+with its own code that keeps `parent` only for its genealogy has its own stress
+system. Angolar (`aoa`, under `pt-PT`) and A Fala (`fax`, under `gl-ES`) do not
+take their parent's block. Such a spec states its own block, with a citation,
+or has none.
+
+Do not copy a base's block into a child. A child that differs from its base
+states its whole block, and its `notes` say how it differs.
 
 ```json
 "stress": {

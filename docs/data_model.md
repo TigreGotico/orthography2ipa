@@ -229,7 +229,8 @@ A dialect often shares most of its data with a base variety. The JSON of the dia
 | `BASE_MERGE` | The own values overlay the values of the base key by key | `graphemes`, `allophones`, `positional_graphemes`, `word_exceptions`, `grammatical_endings` |
 | `OVERLAY_BY_ID` | The rules of the base come first, in order. An own rule with the same `id` replaces one, and an own rule with a new `id` goes at the end | `sandhi_rules`, `allophone_rules` |
 | `BASE_SCALAR` | The value follows the `graphemes_base` edge unless the spec states it | `constrain_onsets`, `word_internal_apostrophe` |
-| `NOT_INHERITED` | Each file states its own value on purpose | `stress`, `grapheme_weights`, `allophone_passes` |
+| `BASE_BLOCK` | A spec that states the block keeps it whole. A spec that does not takes the block of its `graphemes_base`, else of a `parent` that is the same language (same or no `iso639_3`). `false` takes no block | `stress` |
+| `NOT_INHERITED` | Each file states its own value on purpose | `grapheme_weights`, `allophone_passes` |
 | `OWN_ONLY` | The field never takes part in inheritance | Identity, classification, bibliography and script fields, such as `code`, `name`, `sources`, `timespan`, `vowel_graphemes` |
 
 Each `*_base` key can name a different base, and the loader resolves a chain of bases recursively. A field added to `LanguageSpec` must have an entry in `FIELD_INHERITANCE`. [adding_a_language.md](adding_a_language.md) shows a dialect file that uses these keys.

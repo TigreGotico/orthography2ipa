@@ -449,7 +449,8 @@ class LanguageSpecModel(_Strict):
     sandhi_rules: Optional[List[SandhiRuleModel]] = None
     allophone_rules: Optional[List[AllophoneRuleModel]] = None
     allophone_passes: int = Field(default=1, ge=1, le=4)
-    stress: Optional[StressRulesModel] = None
+    # ``false`` takes no block: the spec opts out of the inherited one.
+    stress: Union[StressRulesModel, Literal[False], None] = None
     tone_rules: Optional[ToneRulesModel] = None
     tone_inventory: Optional[Dict[str, str]] = None
     tone_marks_syllable_final: Optional[bool] = None
