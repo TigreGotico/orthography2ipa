@@ -231,10 +231,11 @@ class TestAsturian:
         idx = stress_index("ast", "páxaru")
         assert idx == -3
 
-    def test_ast_n_final_oxytone(self):
-        # Asturian: n-final is oxytone (unlike Spanish)
+    def test_ast_n_final_paroxytone(self):
+        # An oxytone ending in -n carries a written accent (caxón, manguán),
+        # so an unaccented -n word is paroxytone (Normes Ortográfiques §1.9.1.1 a).
         idx = stress_index("ast", "xoven")
-        assert idx == -1
+        assert idx == -2
 
 
 # ---------------------------------------------------------------------------

@@ -1587,17 +1587,19 @@ class TestAsturian:
         g = _grapheme(self._spec, "e")
         assert "e" in g
 
-    def test_vowel_e_open(self):
-        g = _grapheme(self._spec, "e")
-        assert "ɛ" in g
+    def test_vowel_e_five_vowel_system(self):
+        """"Los fonemes vocálicos son: /a, e, i, o, u/" (Normes §1.2); the
+        open variant stays in the allophone inventory (Gramática II.2)."""
+        assert _grapheme(self._spec, "e") == ["e"]
+        assert "ɛ" in _allophone(self._spec, "e")
 
     def test_vowel_o_default(self):
         g = _grapheme(self._spec, "o")
         assert "o" in g
 
-    def test_vowel_o_open(self):
-        g = _grapheme(self._spec, "o")
-        assert "ɔ" in g
+    def test_vowel_o_five_vowel_system(self):
+        assert _grapheme(self._spec, "o") == ["o"]
+        assert "ɔ" in _allophone(self._spec, "o")
 
     # --- Consonants ---
 
@@ -1678,7 +1680,8 @@ class TestAsturian:
         _assert_first(_grapheme(self._spec, "ue"), "we", "ast ue")
 
     def test_diphthong_ou(self):
-        _assert_first(_grapheme(self._spec, "ou"), "ow", "ast ou")
+        # The second element is the semivowel [u̯] of pautu (Gramática II.2).
+        _assert_first(_grapheme(self._spec, "ou"), "ou̯", "ast ou")
 
     # --- Allophones ---
 
@@ -1733,17 +1736,17 @@ class TestAsturian:
         p = _positional(self._spec, "c", GraphemePosition.BEFORE_I)
         assert p and "θ" in p
 
-    def test_positional_b_intervocalic_fricative(self):
-        p = _positional(self._spec, "b", GraphemePosition.INTERVOCALIC)
-        assert p and "β" in p
+    def test_intervocalic_b_fricative(self):
+        # Gramática III.1.5: [β] between vowels (llavar).
+        assert orthography2ipa.transcribe("llavar", "ast") == "ʎaˈβaɾ"
 
-    def test_positional_d_intervocalic_fricative(self):
-        p = _positional(self._spec, "d", GraphemePosition.INTERVOCALIC)
-        assert p and "ð" in p
+    def test_intervocalic_d_fricative(self):
+        # Gramática III.1.6: [ð] between vowels (rueda).
+        assert orthography2ipa.transcribe("rueda", "ast") == "ˈrweða"
 
-    def test_positional_g_intervocalic_fricative(self):
-        p = _positional(self._spec, "g", GraphemePosition.INTERVOCALIC)
-        assert p and "ɣ" in p
+    def test_intervocalic_g_fricative(self):
+        # Gramática III.1.8: [ɣ] between vowels (mugor).
+        assert orthography2ipa.transcribe("mugor", "ast") == "muˈɣoɾ"
 
     def test_positional_r_word_initial_trill(self):
         p = _positional(self._spec, "r", GraphemePosition.WORD_INITIAL)
@@ -1753,9 +1756,9 @@ class TestAsturian:
         p = _positional(self._spec, "r", GraphemePosition.INTERVOCALIC)
         assert p and "ɾ" in p
 
-    def test_positional_n_coda_velar(self):
-        p = _positional(self._spec, "n", GraphemePosition.BEFORE_CONSONANT)
-        assert p and "ŋ" in p
+    def test_n_velar_before_velar(self):
+        # Gramática III.1.15 g: /N/ is [ŋ] before a velar (concu).
+        assert orthography2ipa.transcribe("concu", "ast") == "ˈkoŋku"
 
     # --- Isogloss: Asturian ≠ Spanish ---
 

@@ -13,6 +13,7 @@ Sources referenced per test:
 import pytest
 
 import orthography2ipa
+from orthography2ipa import G2P
 from orthography2ipa.types import GraphemePosition
 
 
@@ -98,13 +99,14 @@ class TestWesternLeoneseDiphthongs:
 
     def test_gu_digraph_maps_to_g(self, occidental):
         """⟨gu⟩ + e/i = /g/ — guerra standard Hispanic convention.
-        Source B §2.1. Against institutional *gerra* variant."""
-        assert occidental.graphemes.get("gu") == ["g"]
+        Source B §2.1. Against institutional *gerra* variant. The /g/ is the
+        fricative [ɣ] after a pause (Gramática de la Llingua Asturiana III.1.8)."""
+        assert G2P("ast-x-occidental").transcribe("guerra") == "ˈɣera"
 
     def test_gu_umlaut_maps_to_gw(self, occidental):
         """⟨gü⟩ = /gw/ — güerta, güeyu; diéresis obligatory.
         Source B §2.1, §6.3; Source A p. 25. CONFIDENCE: HIGH."""
-        assert occidental.graphemes.get("gü") == ["gw"]
+        assert G2P("ast-x-occidental").transcribe("güerta") == "ˈɣweɾta"
 
     def test_che_vaqueira_l_dot_l(self, occidental):
         """⟨l.l⟩ = /ts/ (che vaqueira) — Laciana/Alto Sil only.
@@ -119,10 +121,11 @@ class TestWesternLeoneseDiphthongs:
 
     def test_final_o_to_u(self, occidental):
         """Word-final ⟨o⟩ → [u] in western Leonese — *casu, xeitu, territoriu*.
-        Source A p. 10; Source B §2.4. CONFIDENCE: HIGH."""
-        pos_rules = occidental.positional_graphemes or {}
-        o_rules = pos_rules.get("o", {})
-        assert o_rules.get("word_final") == ["u"]
+        Source A p. 10; Source B §2.4. CONFIDENCE: HIGH. Only an unstressed
+        final vowel closes, so the stressed ⟨o⟩ of yo keeps its quality."""
+        engine = G2P("ast-x-occidental")
+        assert engine.transcribe("cabo") == "ˈkaβu"
+        assert engine.transcribe("yo") == "ˈɟ͡ʝo"
 
 
 # ══════════════════════════════════════════════════════════════════════════════
