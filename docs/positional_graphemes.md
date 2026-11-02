@@ -1,192 +1,129 @@
 # Positional Graphemes
 
-## Overview
+The `positional_graphemes` field refines the flat `graphemes` table by context. Many letters change their sound with their position in the word or with their neighbours. A positional entry states which IPA candidates apply in one environment. The engine builds an ordered list of the positions a grapheme stands in, and it uses the first position that the spec declares.
 
-The **positional grapheme system** extends the base `graphemes` mapping with optional context-sensitive IPA overrides. 
-Many languages have graphemes whose pronunciation depends systematically on position within a word or syllable. Rather than listing all possible realisations in the flat `graphemes` dict (leaving consumers to guess which applies), `positional_graphemes` encodes exactly which IPA mapping applies in each phonological environment.
+The field serves transcription. A positional entry does not change the phoneme inventory.
 
-> NOTE: This is provided as utility for downstream G2P tasks, but it's not within the scope of this repo to perform full phonemization
+## Why positions
 
----
-
-## Why Positional Graphemes?
-
-Consider Portuguese ⟨s⟩. The flat `graphemes` mapping lists all possibilities:
-
-```python
-graphemes = {"s": ["s", "z", "ʃ", "ʒ"]}
-```
-
-But the distribution is entirely predictable by position:
-
-| Position | Realisation | Example |
-|---|---|---|
-| Word-initial | [s] | **s**ol → [sɔl] |
-| Intervocalic | [z] | ca**s**a → [kazɐ] |
-| Coda (before voiceless) | [ʃ] | e**s**tar → [ɨʃtar] |
-| Coda (before voiced) | [ʒ] | me**s**mo → [meʒmu] |
-| Word-final | [ʃ] | gato**s** → [gatuʃ] |
-| Cross-word before vowel | [z] | os amigos → [ˈoz ɐmiɡuʃ] |
-
-The `positional_graphemes` field captures this directly:
-
-```python
-positional_graphemes={
-    "s": {
-        GraphemePosition.WORD_INITIAL: ["s"],
-        GraphemePosition.INTERVOCALIC: ["z"],
-        GraphemePosition.CODA: ["ʃ", "ʒ"],         # [ʃ] default, [ʒ] before voiced
-        GraphemePosition.WORD_FINAL: ["ʃ"],
-        GraphemePosition.INTERVOCALIC_CROSS_WORD: ["z"],
-    },
-}
-```
-
-This makes the phonemizer significantly more accurate out of the box, even though the primary goal of this package is phoneme inventories rather than full G2P.
-
----
-
-## `GraphemePosition` Enum
-
-```python
-from orthography2ipa.types import GraphemePosition
-```
-
-| Value | Environment | Notation | Example phenomena |
-|---|---|---|---|
-| `DEFAULT` | Context-free fallback |: | Equivalent to base `graphemes` |
-| `WORD_INITIAL` | Absolute word-initial | #_ | English aspiration, German [z] for ⟨s⟩ |
-| `WORD_FINAL` | Absolute word-final | _# | German Auslautverhärtung, Portuguese [ʃ] |
-| `INTERVOCALIC` | Between vowels (same word) | V_V | Spanish lenition, Portuguese voicing |
-| `INTERVOCALIC_CROSS_WORD` | Between vowels across words | V#_V | French liaison, Portuguese sandhi |
-| `ONSET` | Syllable onset | σ[_ | English clear [l], Korean aspirated stops |
-| `NUCLEUS` | Generic syllable nucleus | σ_σ | When stress is not distinguished |
-| `NUCLEUS_STRESSED` | Stressed syllable nucleus | σ́_σ | Full vowel quality in stressed position |
-| `NUCLEUS_UNSTRESSED` | Unstressed syllable nucleus | σ_σ̆ | Portuguese ⟨e⟩ → [ɨ], English ⟨a⟩ → [ə] |
-| `OPEN_SYLLABLE` | Nucleus of a syllable with no coda | _]σ, CV | French ⟨eu⟩ → [ø] in *heu·reux* |
-| `CLOSED_SYLLABLE` | Nucleus of a syllable with a coda | _C]σ, CVC | French ⟨eu⟩ → [œ] in *fleur* |
-| `NUCLEUS_STRESSED_OPEN` | Stressed **and** open | σ́(CV) | Romance loi de position under stress |
-| `NUCLEUS_STRESSED_CLOSED` | Stressed **and** closed | σ́(CVC) | Romance loi de position under stress |
-| `NUCLEUS_UNSTRESSED_OPEN` | Unstressed **and** open | σ̆(CV) | Aperture surviving reduction |
-| `NUCLEUS_UNSTRESSED_CLOSED` | Unstressed **and** closed | σ̆(CVC) | Aperture surviving reduction |
-| `BEFORE_FINAL_VOWEL` | Before a vowel that is itself the word's last audible slot | _V# | French ⟨ie⟩ stays [i] (*vie*), blocking glide formation |
-| `CODA` | Syllable coda | _]σ | English dark [ɫ], Korean neutralisation, Brazilian [w] |
-| `PRETONIC` | Before stressed syllable |: | Pretonic vowel reduction |
-| `POSTTONIC` | After stressed syllable |: | Posttonic vowel reduction |
-| `BEFORE_VOWEL` | Before any vowel | _V | Consonant allophony before vowels |
-| `AFTER_VOWEL` | After any vowel, written or inherent | V_ | Post-vocalic consonant changes; in an abugida, after a consonant letter whose inherent vowel still stands (Tibetan ⟨ལག⟩ [lak]) |
-| `BEFORE_CONSONANT` | Before any consonant | _C | Pre-consonantal changes |
-| `AFTER_CONSONANT` | After any consonant | C_ | Post-consonantal changes |
-| `BEFORE_A` | Before ⟨a⟩ | _a | Velar softening contexts |
-| `BEFORE_E` | Before ⟨e⟩ | _e | Velar softening contexts |
-| `BEFORE_I` | Before ⟨i⟩ | _i | Velar softening contexts |
-| `BEFORE_O` | Before ⟨o⟩ | _o | Velar softening contexts |
-| `BEFORE_U` | Before ⟨u⟩ | _u | Velar softening contexts |
-| `BEFORE_FRONT_VOWEL` | Before any front vowel letter | _[+front] | Romance c/g softening (soft) |
-| `BEFORE_BACK_VOWEL` | Before any back vowel letter | _[+back] | Romance c/g softening (hard) |
-| `AFTER_FRONT_VOWEL` | After any front vowel letter | [+front]_ | German ⟨ch⟩ → [ç] (Ich-Laut) |
-| `AFTER_BACK_VOWEL` | After any back vowel letter | [+back]_ | German ⟨ch⟩ → [x] (Ach-Laut) |
-| `BEFORE_PALATAL` | Before a palatal / palato-alveolar consonant | _[+pal] | EP stressed ⟨e⟩ → [ɐ] before ⟨lh⟩ |
-| `AFTER_PALATAL` | After a palatal / palato-alveolar consonant | [+pal]_ | Vowel colouring next to a palatal |
-| `CONSONANTAL` | Consonantal context |: | Grapheme realised as consonant |
-| `VOCALIC` | Vocalic context |: | Grapheme realised as vowel |
-
-These positions correspond to standard phonological environments documented in:
-
-- Kenstowicz, M. (1994). *Phonology in Generative Grammar*. Blackwell.
-- Hayes, B. (2009). *Introductory Phonology*. Wiley-Blackwell.
-- Zsiga, E. (2013). *The Sounds of Language*. Wiley-Blackwell.
-
-### Syllable aperture (open / closed)
-
-`OPEN_SYLLABLE` / `CLOSED_SYLLABLE` and the four
-`NUCLEUS_{STRESSED,UNSTRESSED}_{OPEN,CLOSED}` crossings key a nucleus on
-whether its syllable has a coda. This is the environment the Romance
-*loi de position* is stated in — close-mid /e ø o/ in open syllables
-against open-mid /ɛ œ ɔ/ in closed ones (Fougeron & Smith 1993,
-`fougeron_smith1993`; Tranel 1987 ch. 4, `tranel1987` — both in
-`fr-FR`'s `sources`).
-
-Three things to know before declaring one:
-
-1. **Aperture is decided on the ORTHOGRAPHIC syllable**, from the spec's
-   own syllabifier: a syllable is open when its last character is a vowel
-   letter. In the word's LAST syllable, the trailing graphemes the spec
-   emits nothing for are stripped first — a mute word-final ⟨x⟩ or ⟨h⟩
-   does not close a syllable (*heureux*, *beuh* are open), while a mute
-   ⟨s⟩ over a pronounced ⟨r⟩ does not open one (*chanteurs* is closed).
-2. **The crossed positions outrank both** the aperture-only pair and the
-   stress-only `NUCLEUS_STRESSED` / `NUCLEUS_UNSTRESSED`, which in turn
-   outrank `NUCLEUS` and `DEFAULT`. Declare `nucleus_unstressed` without
-   `nucleus_unstressed_open` and the unstressed rule still wins over
-   aperture, which is usually what a reduction language wants.
-3. **A secondary-stressed nucleus takes neither pair.** When a spec
-   declares `stress.secondary_stress`, a syllable that is a secondary
-   foot head emits `nucleus_secondary` and NO unstressed position —
-   neither `nucleus_unstressed` nor its aperture pair — because such a
-   syllable is not weak (Liberman & Prince 1977; Hayes 1995 ch. 3). A
-   spec that declares nothing for `nucleus_secondary` therefore falls
-   through to the grapheme's default mapping, which is the full-quality
-   vowel, and its reduction entries keep applying to the level-0
-   syllables only. Specs without the declaration are unaffected.
-4. **The proxy is only as good as the syllable boundary.** Where the
-   syllabifier maximises onsets without phonotactics it will invent open
-   syllables; measure before shipping. French ⟨o⟩ and every Dutch vowel
-   were declared, measured, and REVERTED for exactly this reason — see
-   [`ranking_error.md`](ranking_error.md).
-
----
-
-## Vowel-class positions (front / back)
-
-The per-letter positions `BEFORE_A` … `BEFORE_U` (and their `AFTER_*` mirrors)
-force a spec to enumerate one rule per triggering vowel: and, worse, per
-*accented* variant of that vowel. The most common context-sensitive rule in
-Latin-script orthographies, Romance **c/g softening**, conditions on the whole
-*front vs. back vowel class*, not on individual letters: ⟨c⟩ is soft before any
-of ⟨e i y é è ê …⟩ and hard before any of ⟨a o u á à â …⟩.
-
-The class positions express this in a single entry each:
-
-- **`BEFORE_FRONT_VOWEL`** / **`AFTER_FRONT_VOWEL`**: the following /
-  preceding grapheme starts with a *front* vowel letter.
-- **`BEFORE_BACK_VOWEL`** / **`AFTER_BACK_VOWEL`**: the following /
-  preceding grapheme starts with a *back* vowel letter.
-
-Membership is decided **solely** by
-[`orthography2ipa.vowels`](../orthography2ipa/vowels.py), the single source of
-truth for vowel classification:
-
-```python
-from orthography2ipa.vowels import is_front_vowel, is_back_vowel
-
-is_front_vowel("é")   # True: front, incl. accented and y / ü ö ø œ æ
-is_back_vowel("â")    # True: back,  incl. accented a o u
-```
-
-Front class: `e i y` + accented forms + the front rounded letters `ü ö ø œ æ`.
-Back class: `a o u` + accented forms. `y` is treated as front (it patterns with
-⟨i⟩ for softening). See the `vowels` module docstring for every borderline
-classification.
-
-### Worked example: Italian ⟨c⟩ softening
-
-Instead of five near-identical per-letter entries, one class entry captures the
-rule (⟨c⟩ → /tʃ/ before a front vowel, /k/ otherwise):
+The flat table lists every sound a letter can spell. European Portuguese ⟨s⟩ has a flat entry of `["s", "z"]`. That list does not say which candidate a given word takes. The `pt-PT` spec adds the context:
 
 ```json
-{
-  "graphemes": { "c": ["k"] },
-  "positional_graphemes": {
-    "c": { "before_front_vowel": ["tʃ"] }
+"positional_graphemes": {
+  "s": {
+    "word_initial": ["s"],
+    "intervocalic": ["z"],
+    "word_final": ["ʃ"],
+    "intervocalic_cross_word": ["z"]
   }
 }
 ```
 
 ```python
+from orthography2ipa import G2P
+
+pt = G2P("pt-PT")
+pt.transcribe_word("sol")     # 'ˈsɔɫ'
+pt.transcribe_word("casa")    # 'ˈkazɐ'
+pt.transcribe_word("gatos")   # 'ˈɡatuʃ'
+pt.transcribe("os amigos")    # 'oz ɐˈmiɡuʃ'
+```
+
+Not every one of these results comes from the positional table. The coda [ʃ] of ⟨pasta⟩ comes from an allophone rule, and the [z] of ⟨os amigos⟩ comes from a sandhi rule (see [allophony.md](allophony.md)). The `intervocalic_cross_word` key in this spec is one of the positions the engine never emits, as the next section explains.
+
+## The `GraphemePosition` values
+
+The keys are the values of `orthography2ipa.types.GraphemePosition`. A spec JSON uses the lowercase value, such as `word_initial`.
+
+These positions describe the word edges and the neighbours:
+
+| Value | Environment | Example |
+|---|---|---|
+| `word_initial` | first grapheme of the word | Spanish ⟨r⟩ is the trill [r] |
+| `word_final` | last grapheme of the word | Spanish ⟨d⟩ is [ð] |
+| `intervocalic` | between two vowel graphemes of one word | Spanish ⟨b d g⟩ lenite to [β ð ɣ] |
+| `before_vowel`, `after_vowel` | next to any vowel grapheme | Brazilian ⟨l⟩ stays [l] before a vowel |
+| `before_consonant`, `after_consonant` | next to any consonant grapheme | Brazilian ⟨l⟩ is [w] before a consonant |
+| `before_final_vowel` | before a vowel that is the last audible slot and that the spec silences | French ⟨ie⟩ stays [i] in ⟨vie⟩ |
+| `before_mute_e` | the vowel of the ⟨VCe⟩ pattern | English ⟨i⟩ is [aɪ] in ⟨time⟩ |
+
+In an abugida, a consonant letter whose inherent vowel still stands counts as a vowel for `after_vowel`. Tibetan ⟨ལག⟩ is [lak], so the ⟨ག⟩ is after a vowel and also after a consonant.
+
+These positions read the neighbouring letter or its class:
+
+| Value | Environment | Example |
+|---|---|---|
+| `before_a`, `before_e`, `before_i`, `before_o`, `before_u`, `before_y` | before that vowel letter | Spanish ⟨c⟩ is [θ] before ⟨e⟩ and ⟨i⟩ |
+| `after_a`, `after_e`, `after_i`, `after_o`, `after_u` | after that vowel letter | German ⟨ch⟩ after ⟨a⟩ |
+| `before_front_vowel`, `after_front_vowel` | next to a front vowel letter | Romance ⟨c g⟩ softening |
+| `before_back_vowel`, `after_back_vowel` | next to a back vowel letter | German ⟨ch⟩ is [x] after a back vowel |
+| `before_palatal`, `after_palatal` | next to a grapheme whose IPA is a palatal consonant | European Portuguese stressed ⟨e⟩ before ⟨lh⟩ |
+
+The exact-letter positions also match the Cyrillic plain vowel letters ⟨а э и і о у⟩. The iotated letters ⟨е ё ю я⟩ open with a glide, so they do not match.
+
+These positions need the stress and syllable context that only the engine computes:
+
+| Value | Environment | Example |
+|---|---|---|
+| `nucleus_stressed` | nucleus of the stressed syllable | full vowel quality |
+| `nucleus_unstressed` | nucleus of an unstressed syllable | Catalan unstressed ⟨a⟩ is [ə] |
+| `nucleus_secondary` | nucleus of a syllable with secondary stress | English keeps the vowel full |
+| `first_pretonic` | the syllable just before the stress | Russian first-pretonic [ɐ] |
+| `pretonic`, `posttonic` | before or after the stressed syllable | pretonic and posttonic reduction |
+| `open_syllable`, `closed_syllable` | nucleus of a syllable without or with a coda | French ⟨eu⟩ is [ø] or [œ] |
+| `nucleus_stressed_open`, `nucleus_stressed_closed` | stress and aperture together | Romance mid vowels under stress |
+| `nucleus_unstressed_open`, `nucleus_unstressed_closed` | no stress, with aperture | aperture that survives reduction |
+| `nucleus` | any vowel grapheme | a nucleus with no stress distinction |
+| `default` | every context | the fallback entry |
+
+A vowel grapheme and a grapheme whose first IPA candidate holds a vowel both take the nucleus positions. The second case covers the Cyrillic CV units, such as ⟨дя⟩ for [dʲa].
+
+The enum also holds `onset`, `coda`, `intervocalic_cross_word`, `consonantal` and `vocalic`. The engine never emits these five, so an entry under one of them never fires in a transcription. Only a direct call to `resolve_grapheme` reads them. The test `test_positional_graphemes_never_key_on_inert_coda` in `tests/test_data_quality.py` refuses a spec that keys on `coda`. Use `word_final` or `before_consonant` for a consonant in the coda. Use an allophone rule with `syllable_position: "coda"` for real coda phonology. Cross-word effects belong in `sandhi_rules`.
+
+The docstrings in `orthography2ipa/types.py` carry the citations for each position. Kenstowicz (1994), *Phonology in Generative Grammar*, Hayes (2009), *Introductory Phonology*, and Zsiga (2013), *The Sounds of Language*, describe the general environments.
+
+## Resolution order
+
+`orthography2ipa.positional.grapheme_positions` builds the ordered list for one grapheme. The order runs from the most specific position to the least specific:
+
+1. `before_final_vowel`.
+2. The exact next letter (`before_e`), then the next letter's vowel class (`before_front_vowel` or `before_back_vowel`), then `before_palatal`.
+3. `word_initial`, then `word_final` for the true last grapheme.
+4. `intervocalic`.
+5. The crossed aperture position (`nucleus_stressed_open` and its siblings), then `open_syllable` or `closed_syllable`.
+6. `nucleus_stressed`, or `nucleus_secondary`, or `nucleus_unstressed`. Then `first_pretonic`, `pretonic` or `posttonic`.
+7. `before_mute_e`.
+8. `word_final` for a grapheme that only a silenced plural ⟨-s⟩ or ⟨-x⟩ follows.
+9. The previous letter (`after_e`), its vowel class, `after_palatal` and `after_vowel`. After a consonant, `after_palatal` and `after_consonant`.
+10. `before_vowel` or `before_consonant`.
+11. `nucleus`, then `default`.
+
+`orthography2ipa.positional.positional_candidates` walks this list and returns the candidates of the first position the spec declares. If the grapheme has a positional entry, the winning candidates rank first and the flat candidates follow them. The beam keeps the full search space this way. If no position matches, the flat table and its weights apply.
+
+A spec can therefore declare a class rule and a narrower letter rule together. With `before_front_vowel` and `before_e` on one grapheme, ⟨e⟩ takes the `before_e` entry and every other front vowel takes the class entry. A vowel letter that a spec reads as the glide /j/ is both a front vowel and a palatal. The vowel class comes first, so `before_front_vowel` outranks `before_palatal` for that neighbour.
+
+A plural ⟨-s⟩ makes the slot before it count as word-final at step 8, below the stress positions. So a stress rule wins over a `word_final` reduction for a stressed clitic such as Barranquenho ⟨les⟩.
+
+## Vowel-class positions
+
+The front and back classes state the commonest context rule of Latin-script orthographies in one entry. Romance ⟨c⟩ and ⟨g⟩ soften before any front vowel letter, accented or not. Without the classes, a spec needs one entry for each vowel letter and for each accented form of it.
+
+`orthography2ipa.vowels` decides membership. The front class is ⟨e i y⟩, their accented forms and the front rounded letters ⟨ü ö ø œ æ⟩. The back class is ⟨a o u⟩ and their accented forms. The class reads the first letter of the neighbouring grapheme.
+
+```python
+from orthography2ipa.vowels import is_back_vowel, is_front_vowel
+
+is_front_vowel("é")   # True
+is_front_vowel("y")   # True
+is_back_vowel("â")    # True
+```
+
+This Italian-style demo spec has one class entry for ⟨c⟩:
+
+```python
+from orthography2ipa import G2P
 from orthography2ipa.registry import _cache
 from orthography2ipa.types import LanguageSpec
-from orthography2ipa import G2P
 
 demo = LanguageSpec(
     code="x-demo", name="Demo", family="Demo", family_path=(), clade=False,
@@ -199,191 +136,90 @@ demo = LanguageSpec(
 _cache["x-demo"] = demo
 eng = G2P("x-demo")
 
-eng.transcribe_word("ce")   # "tʃe"   before_front_vowel → /tʃ/
-eng.transcribe_word("ci")   # "tʃi"
-eng.transcribe_word("cé")   # "tʃe"   accented front vowel matches too
-eng.transcribe_word("cy")   # "tʃi"   ⟨y⟩ is front
-eng.transcribe_word("ca")   # "ka"    back vowel → default /k/
-eng.transcribe_word("co")   # "ko"
-eng.transcribe_word("cu")   # "ku"
+eng.transcribe_word("ce")   # 'tʃe'
+eng.transcribe_word("cé")   # 'tʃe'
+eng.transcribe_word("cy")   # 'tʃi'
+eng.transcribe_word("ca")   # 'ka'
+eng.transcribe_word("cu")   # 'ku'
 ```
 
----
+## Palatal positions
 
-## Palatal-consonant positions (`BEFORE_PALATAL` / `AFTER_PALATAL`)
+`before_palatal` and `after_palatal` are the consonant-side mirror of the vowel classes. They read the primary IPA candidate of the neighbour, not its spelling. So one entry covers ⟨lh⟩ [ʎ], ⟨nh⟩ [ɲ], ⟨ch⟩ [ʃ], ⟨x⟩ and ⟨j⟩ together.
 
-The vowel-class positions above condition on a neighbouring **vowel**; their
-consonant-side mirror conditions on a neighbouring **palatal / palato-alveolar
-consonant**. A single `BEFORE_PALATAL` entry replaces enumerating every digraph
-that spells a palatal (⟨lh⟩→/ʎ/, ⟨nh⟩→/ɲ/, ⟨ch⟩→/ʃ/, ⟨x⟩, ⟨j⟩…), because
-membership is decided by the **IPA the neighbour maps to**, not its spelling:
-
-- **`BEFORE_PALATAL`**: the *following* grapheme's primary IPA is a palatal.
-- **`AFTER_PALATAL`**: the *preceding* grapheme's primary IPA is a palatal.
-
-Membership is decided **solely** by
-[`orthography2ipa.vowels.is_palatal_consonant`](../orthography2ipa/vowels.py): the single source of truth, alongside `is_front_vowel` / `is_back_vowel`:
+`orthography2ipa.vowels.is_palatal_consonant` decides membership. The set is ⟨ʎ ɲ ʃ ʒ j c ɟ ç ʝ ɕ ʑ ɥ⟩ and the affricates ⟨tʃ dʒ tɕ dʑ⟩, with or without a tie bar. The function reads only the first segment, so ⟨ʃː⟩ is palatal too.
 
 ```python
 from orthography2ipa.vowels import is_palatal_consonant
 
-is_palatal_consonant("ʎ")    # True: ⟨lh⟩
-is_palatal_consonant("tʃ")   # True: affricate, tie-bar t͡ʃ too
-is_palatal_consonant("j")    # True: palatal glide
+is_palatal_consonant("ʎ")    # True
+is_palatal_consonant("t͡ʃ")   # True
 is_palatal_consonant("s")    # False
 ```
 
-Palatal set: `ʎ ɲ ʃ ʒ j c ɟ ç ʝ ɕ ʑ ɥ` plus the affricates `tʃ dʒ tɕ dʑ`
-(with or without a tie bar). Unlike the vowel classes, the test reads the
-grapheme's **IPA head** (`ipa[0]`), so ⟨lh⟩, ⟨nh⟩ and ⟨ch⟩ all count regardless
-of how they are written.
-
-### Worked example: European-Portuguese stressed ⟨e⟩ → [ɐ] before ⟨lh⟩
-
-Stressed ⟨e⟩ centralises to [ɐ] before a palatal (as in *velho*, *espelho*),
-but stays [e] elsewhere. One class entry captures it: no per-digraph listing:
-
-```json
-{
-  "graphemes": {
-    "e": ["e"], "t": ["t"],
-    "lh": ["ʎ"], "nh": ["ɲ"], "ch": ["ʃ"]
-  },
-  "positional_graphemes": {
-    "e": { "before_palatal": ["ɐ"] }
-  }
-}
-```
+European Portuguese stressed ⟨e⟩ becomes [ɐ] before a palatal, as in ⟨velho⟩ and ⟨espelho⟩. This demo spec states the rule once:
 
 ```python
-from orthography2ipa.registry import _cache
-from orthography2ipa.types import LanguageSpec
-from orthography2ipa import G2P
-
-demo = LanguageSpec(
+demo2 = LanguageSpec(
     code="x-demo2", name="Demo2", family="Demo", family_path=(), clade=False,
     script="Latin",
     graphemes={"e": ["e"], "t": ["t"], "lh": ["ʎ"], "nh": ["ɲ"], "ch": ["ʃ"]},
     allophones={},
     positional_graphemes={"e": {"before_palatal": ["ɐ"]}},
 )
-_cache["x-demo2"] = demo
+_cache["x-demo2"] = demo2
 eng = G2P("x-demo2")
 
-eng.transcribe_word("elh")   # "ɐʎ"   before ⟨lh⟩ (/ʎ/) → ɐ
-eng.transcribe_word("enh")   # "ɐɲ"   before ⟨nh⟩ (/ɲ/) → ɐ
-eng.transcribe_word("ech")   # "ɐʃ"   before ⟨ch⟩ (/ʃ/) → ɐ
-eng.transcribe_word("et")    # "et"   before ⟨t⟩ (non-palatal) → default /e/
+eng.transcribe_word("elh")   # 'ɐʎ'
+eng.transcribe_word("enh")   # 'ɐɲ'
+eng.transcribe_word("ech")   # 'ɐʃ'
+eng.transcribe_word("et")    # 'et'
 ```
 
-Like the vowel-class positions, `BEFORE_PALATAL` / `AFTER_PALATAL` are inert for
-any spec that does not declare them, so adding them changes no existing
-transcription.
+The class positions do nothing for a spec that does not declare them.
 
----
+## Syllable aperture
 
-### Resolution order
+`open_syllable`, `closed_syllable` and the four crossed positions key a nucleus on whether its syllable has a coda. The Romance *loi de position* is stated in this environment. It gives close-mid /e ø o/ in open syllables and open-mid /ɛ œ ɔ/ in closed ones (Fougeron & Smith 1993, Tranel 1987 ch. 4, both in the `sources` of `fr-FR`). The French spec keys ⟨eu⟩ on aperture:
 
-For any grapheme + neighbouring-context, the engine tries positions
-**most-specific first** and takes the first one the spec actually declares:
+```json
+"eu": {"default": ["ø", "œ"], "open_syllable": ["ø", "œ"], "closed_syllable": ["œ", "ø"]}
+```
 
-1. **Exact-letter position**: `BEFORE_E`, `AFTER_A`, … (a specific vowel letter).
-2. **Neighbour-class position**: the vowel classes `BEFORE_FRONT_VOWEL` /
-   `AFTER_BACK_VOWEL` … and the palatal-consonant classes `BEFORE_PALATAL` /
-   `AFTER_PALATAL`.
-3. **Default grapheme mapping**: the base `graphemes[grapheme]` list.
+```python
+fr = G2P("fr-FR")
+fr.transcribe_word("heureux")     # 'øʁø'
+fr.transcribe_word("fleur")       # 'flœʁ'
+fr.transcribe_word("chanteurs")   # 'ʃɑ̃tœʁ'
+```
 
-Palatality is decided by the neighbour's **IPA**, so it usually applies to a
-consonant grapheme that the vowel classes ignore: but the two classes *can*
-co-occur when a vowel *letter* is realised as the palatal glide /j/ (⟨i⟩/⟨y⟩).
-In that case both the vowel class and the palatal class are emitted, with the
-vowel class first, so `BEFORE_FRONT_VOWEL` out-ranks `BEFORE_PALATAL` for a
-glide-spelled neighbour; and an exact-letter position (`BEFORE_I`) still wins
-over both.
+The engine decides aperture on the orthographic syllable from the spec's own syllabifier. A syllable is open when its last character is a vowel letter. In the last syllable of the word, the engine first strips the trailing graphemes that the spec silences. So a mute ⟨x⟩ or ⟨h⟩ does not close a syllable (*heureux*, *beuh*). A mute ⟨s⟩ after a pronounced ⟨r⟩ does not open one (*chanteurs*). A hyphen also ends the word for this test, so *peut-être* has an open first syllable.
 
-So a spec can declare `BEFORE_FRONT_VOWEL` for the general case and still add a
-narrower `BEFORE_E` override for one letter that behaves differently: the exact
-`BEFORE_E` entry wins for ⟨e⟩ while every other front vowel falls through to the
-class rule. Class positions are inert for any spec that does not declare them, so
-adding them changes no existing transcription.
+The crossed positions outrank the aperture pair, and the aperture pair outranks the stress-only positions. So a spec that declares `nucleus_unstressed` without `nucleus_unstressed_open` keeps its reduction in every unstressed syllable. The engine syllabifies a word for aperture only when the spec declares one of these keys.
 
-### The engine and the standalone beam agree
+The proxy is only as good as the syllable boundary. A syllabifier that maximises onsets without phonotactics makes syllables open that are closed. Measure an aperture declaration on the [benchmark board](benchmarks.md) before you ship it.
 
-Positional resolution is **not** engine-only. The standalone tokenizer beam
-(`PhonetokTokenizer.ipa_beam` / `ipa_best`) consults the same
-`positional_graphemes` overrides: including the vowel-class positions: through
-the shared resolver in `orthography2ipa.positional`. So for a single word the
-tokenizer and the full engine select the **same** context-conditioned candidate:
+## Secondary stress
+
+A spec can declare `stress.secondary_stress`. A syllable that heads a secondary foot then takes `nucleus_secondary` and no unstressed position. It takes neither `nucleus_unstressed` nor its aperture pair, because such a syllable is not weak (Liberman & Prince 1977, Hayes 1995 ch. 3). If the spec declares nothing for `nucleus_secondary`, the grapheme falls through to its default mapping, which is the full vowel. The reduction entries then reach only the syllables with no stress. A spec without the declaration does not change.
+
+## The engine and the standalone beam
+
+The standalone tokenizer beam (`PhonetokTokenizer.ipa_beam` and `ipa_best`) reads the same positional entries as the engine. Both call `orthography2ipa.positional.resolve_branches`, so the two paths cannot drift apart.
 
 ```python
 from orthography2ipa import get
-from orthography2ipa.g2p import G2P
 from orthography2ipa.phonetok import PhonetokTokenizer
 
-spec = get("es-ES")
-G2P("es-ES").transcribe_word("cena")        # "ˈθena"  (c → /θ/ before ⟨e⟩)
-PhonetokTokenizer(spec).ipa_best("cena")    # "θena"   same choice, no stress
+G2P("es-ES").transcribe_word("cena")             # 'ˈθena'
+PhonetokTokenizer(get("es-ES")).ipa_best("cena")  # 'θena'
 ```
 
-The one difference is deliberate: **stress and sandhi stay engine-only**, because
-the standalone tokenizer has no sentence context. The engine also supplies
-syllable/stress information so the stress-conditioned nucleus positions
-(`NUCLEUS_STRESSED`, `PRETONIC`, …) can fire and stress marks are added; the beam
-omits exactly those. Every other position: `BEFORE_FRONT_VOWEL`, `INTERVOCALIC`,
-`WORD_INITIAL`, `WORD_FINAL`, and the rest: resolves identically in both. The
-per-word grapheme→IPA selection therefore matches (modulo stress marks/sandhi).
+The beam has no stress context and no syllabification. So the stress positions and the aperture positions fire on the engine path only, and the beam adds no stress marks and no sandhi. French ⟨fleur⟩ shows the difference. The engine gives `flœʁ` from the closed syllable, and `ipa_best` gives `fløʁ` from the default entry. Every other position resolves the same on both paths.
 
-Both paths call one function, `orthography2ipa.positional.resolve_branches`, so
-the engine and the beam cannot drift out of agreement.
+## Reading positions from Python
 
----
-
-## `PositionalGrapheme2IPA` Type
-
-```python
-PositionalGrapheme2IPA = Dict[str, Dict[GraphemePosition, List[str]]]
-```
-
-Maps grapheme keys to dicts of `{GraphemePosition: [IPA candidates]}`. Only graphemes whose IPA changes by position need entries. All other graphemes use the base `graphemes` mapping.
-
----
-
-## `LanguageSpec` Integration
-
-```python
-@dataclass(frozen=True)
-class LanguageSpec:
-    # ... existing fields ...
-    positional_graphemes: PositionalGrapheme2IPA = None  # normalised to {} in __post_init__
-```
-
-### Resolution method
-
-```python
-def resolve_grapheme(self, grapheme: str, position: GraphemePosition = GraphemePosition.DEFAULT) -> List[str]: ...
-```
-
-**Lookup order:**
-1. `positional_graphemes[grapheme][position]`: exact match
-2. `positional_graphemes[grapheme][DEFAULT]`: positional default override
-3. `graphemes[grapheme]`: base mapping fallback
-4. `KeyError` if not found anywhere
-
-### Introspection methods
-
-```python
-spec = orthography2ipa.get("pt-PT")
-
-spec.has_positional_data()           # bool: any positional overrides?
-spec.positional_grapheme_keys()      # frozenset: which graphemes have overrides
-spec.positions_for_grapheme("s")     # tuple of GraphemePosition values
-```
-
----
-
-## Usage Examples
-
-### Basic resolution
+`LanguageSpec.resolve_grapheme(grapheme, position=None)` returns the candidates for one position. It tries `positional_graphemes[grapheme][position]` first and then the flat `graphemes[grapheme]`. It does not fall back to a positional `default` entry. It raises `KeyError` when the grapheme is in neither table. This method is a lookup, not the engine. It reads the five positions the engine never emits, and it applies no resolution order.
 
 ```python
 import orthography2ipa
@@ -391,116 +227,64 @@ from orthography2ipa.types import GraphemePosition
 
 pt = orthography2ipa.get("pt-PT")
 
-# Context-free (uses base graphemes or positional DEFAULT)
-pt.resolve_grapheme("s")                                    # ["s", "z", "ʃ", "ʒ"]
+pt.resolve_grapheme("s")                                  # ['s', 'z']
+pt.resolve_grapheme("s", GraphemePosition.WORD_INITIAL)   # ['s']
+pt.resolve_grapheme("s", GraphemePosition.INTERVOCALIC)   # ['z']
+pt.resolve_grapheme("s", GraphemePosition.WORD_FINAL)     # ['ʃ']
+pt.resolve_grapheme("a", GraphemePosition.ONSET)          # ['a', 'ɐ']
 
-# Positional (if positional_graphemes is populated)
-pt.resolve_grapheme("s", GraphemePosition.WORD_INITIAL)     # ["s"]
-pt.resolve_grapheme("s", GraphemePosition.INTERVOCALIC)     # ["z"]
-pt.resolve_grapheme("s", GraphemePosition.WORD_FINAL)       # ["ʃ"]
-
-# Grapheme without positional override falls back to base
-pt.resolve_grapheme("a", GraphemePosition.ONSET)            # ["a"] (from base)
+pt.has_positional_data()                  # True
+sorted(pt.positional_grapheme_keys())     # ['a', 'c', 'e', 'g', 'gu', 'l', 'm', 'n', 'o', 'qu', 'r', 's', 'z']
+pt.positions_for_grapheme("s")
+# (<GraphemePosition.WORD_FINAL: 'word_final'>, <GraphemePosition.WORD_INITIAL: 'word_initial'>,
+#  <GraphemePosition.INTERVOCALIC: 'intervocalic'>,
+#  <GraphemePosition.INTERVOCALIC_CROSS_WORD: 'intervocalic_cross_word'>)
 ```
 
-### Checking for positional data
+The type of the field is `PositionalGrapheme2IPA`, which is `Dict[str, Dict[GraphemePosition, List[str]]]`. The loader turns the JSON keys into enum members. The dataclass default is `None`, and `__post_init__` turns it into `{}`.
+
+## Positions in the shipped specs
+
+Give a grapheme a positional entry only when its sound changes with context. A grapheme with one sound everywhere stays in the flat table. The `es-ES` spec states Spanish lenition and the soft ⟨c g⟩ this way:
+
+```json
+"positional_graphemes": {
+  "b": {"intervocalic": ["β"]},
+  "d": {"intervocalic": ["ð"], "word_final": ["ð"]},
+  "g": {"before_e": ["x"], "before_i": ["x"], "intervocalic": ["ɣ"]},
+  "c": {"before_e": ["θ"], "before_i": ["θ"]}
+}
+```
 
 ```python
-if pt.has_positional_data():
-    keys = pt.positional_grapheme_keys()
-    print(f"Positional overrides for: {keys}")
-    for g in keys:
-        positions = pt.positions_for_grapheme(g)
-        for pos in positions:
-            ipa = pt.resolve_grapheme(g, pos)
-            print(f"  ⟨{g}⟩ in {pos.value}: {ipa}")
+es = G2P("es-ES")
+es.transcribe_word("lobo")     # 'ˈloβo'
+es.transcribe_word("boca")     # 'ˈboka'
+es.transcribe_word("verdad")   # 'beɾˈdað'
+es.transcribe_word("gente")    # 'ˈxente'
+es.transcribe_word("lago")     # 'ˈlaɣo'
 ```
 
----
-
-## Adding Positional Data to a Language
-
-When creating or extending a `LanguageSpec`, add `positional_graphemes` for graphemes with position-dependent pronunciation. Only include graphemes that genuinely vary: if a grapheme has the same IPA in all positions, leave it in the base `graphemes` only.
-
-### Example: Spanish lenition (JSON)
-
-In `orthography2ipa/data/es-ES.json`:
+The `pt-BR` spec vocalises ⟨l⟩ in the coda with `before_consonant` and `word_final`:
 
 ```json
-{
-  "positional_graphemes": {
-    "b": {
-      "default": ["b"],
-      "intervocalic": ["β"]
-    },
-    "d": {
-      "default": ["d"],
-      "intervocalic": ["ð"],
-      "word_final": ["ð", "∅"]
-    },
-    "g": {
-      "default": ["ɡ"],
-      "intervocalic": ["ɣ"]
-    }
-  }
-}
+"l": {"before_consonant": ["w"], "word_final": ["w"], "before_vowel": ["l"], "onset": ["l"]}
 ```
 
-### Example: Brazilian Portuguese coda vocalization (JSON)
-
-In `orthography2ipa/data/pt-BR.json`:
-
-```json
-{
-  "positional_graphemes": {
-    "l": {
-      "onset": ["l"],
-      "coda": ["w"]
-    },
-    "s": {
-      "word_initial": ["s"],
-      "intervocalic": ["z"],
-      "coda": ["s", "z"],
-      "word_final": ["s"]
-    },
-    "r": {
-      "word_initial": ["ʁ"],
-      "intervocalic": ["ɾ"],
-      "coda": ["ɾ", "ʁ", "h"]
-    }
-  }
-}
+```python
+br = G2P("pt-BR")
+br.transcribe_word("alto")   # 'ˈawtu'
+br.transcribe_word("mal")    # 'ˈmaw'
+br.transcribe_word("mala")   # 'ˈmalɐ'
 ```
+
+Its `onset` entry never fires. The `before_vowel` entry does that work.
+
+## Positional entries and allophone rules
+
+The two layers work at different levels. `positional_graphemes` picks the phoneme a grapheme spells. `allophone_rules` pick the surface form of a phoneme that is already chosen. Some processes fit either layer, such as English /t/ flapping. Use `positional_graphemes` when the step from spelling to phoneme is ambiguous. Use `allophone_rules` when the step from phoneme to surface varies. A spec can use both. [allophony.md](allophony.md) describes the rule layer.
+
+`distance.positional_divergence` compares the positional entries of two specs. The other metrics in [distance.md](distance.md) do not read positional entries.
 
 ---
-
-## Relationship to Allophones
-
-The `positional_graphemes` system operates at the **grapheme → phoneme** level, not the **phoneme → allophone** level. The two layers are complementary:
-
-```
-orthography → positional_graphemes → phoneme → allophones → surface
-   "casa"       ⟨s⟩ intervocalic      /z/        [z]        [z]
-   "sol"        ⟨s⟩ word-initial      /s/        [s]        [s]
-   "gatos"      ⟨s⟩ word-final        /ʃ/        [ʃ]        [ʃ]
-```
-
-- **`positional_graphemes`**: Disambiguates *which phoneme* a grapheme represents based on position
-- **`allophones`**: Documents *which surface variants* a phoneme has (regardless of how we got to that phoneme)
-
-Some phenomena (like English /t/ flapping) could be modelled at either level. As a guideline:
-
-- If the orthography→phoneme step is ambiguous → use `positional_graphemes`
-- If the phoneme→surface step varies → use `allophones`
-- If both apply, use both
-
----
-
-## Integration with Distance Metrics
-
-The distance calculation functions in `distance.py` continue to use the base `graphemes` mapping for inventory-level comparisons. Positional data provides finer-grained disambiguation for G2P but does not change the phoneme inventory or allophone set, so distance metrics remain consistent.
-
-However, consumers building on this package can use positional data to compute **positional divergence** between related languages: for example, comparing how Portuguese and Spanish handle intervocalic stops differently.
-
----
-[← Allophony](allophony.md) · [Home](index.md) · [Adding a new Language →](adding_a_language.md)
+[← Allophony](allophony.md) · [Home](index.md) · [Quality tiers →](quality_tiers.md)

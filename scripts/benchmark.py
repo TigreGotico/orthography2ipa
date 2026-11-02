@@ -41,7 +41,7 @@ over the engine's top-k readings — which splits ranking error (right
 answer in the beam, ranked wrong) from model error (right answer absent
 at any k). It is a lattice-quality diagnostic for THIS engine only and
 is never valid input to a cross-system comparison: see
-:class:`OracleResult` and ``docs/benchmark_methodology.md``.
+:class:`OracleResult` and ``docs/benchmarks.md``.
 
 The committed ``--scoreboard`` scores the FULL gold set of every language
 with NO cap (uniformly — no per-language limit juggling); the published
@@ -2644,8 +2644,7 @@ _EP_DIALECT_LANGS = sorted(_EP_DIALECT_MAP.values())
 # ``portuguese_tts`` in ``PROVENANCE`` and docs/benchmarks.md): every
 # transcription was drafted by a language model, then engine-pinned and
 # audited row-by-row against the cited phonological literature recorded in
-# each row's ``notes`` column (docs/arabic-tts-gold.md,
-# docs/portuguese-tts-gold.md). Citation-audited is not expert-authored, so
+# each row's ``notes`` column (docs/tts_gold.md). Citation-audited is not expert-authored, so
 # the honest tier is ``llm-generated``: it has no error model and can gate no
 # quality decision — a directional signal only.
 #
@@ -2707,7 +2706,7 @@ def load_arabic_tts(lang: str, limit: int) -> List[Tuple[str, str]]:
     """Arabic sentence-level TTS gold — one TSV per lect, 20 sentences each
     across 33 Arabic varieties (MSA + regional macro-lects + country/city
     dialects). Vocalized ``sentence`` column in, broad IPA ``ipa`` column as
-    gold. LLM-authored, literature-audited: see docs/arabic-tts-gold.md and
+    gold. LLM-authored, literature-audited: see docs/tts_gold.md and
     the ``arabic_tts`` provenance note.
     """
     return _load_sentence_tts(_ARABIC_TTS_DIR, lang, limit)
@@ -2717,7 +2716,7 @@ def load_portuguese_tts(lang: str, limit: int) -> List[Tuple[str, str]]:
     """Portuguese sentence-level TTS gold — one TSV per lect across European
     Portuguese standard + regional varieties. ``sentence`` column in, broad
     IPA ``ipa`` column as gold. LLM-authored, literature-audited: see
-    docs/portuguese-tts-gold.md and the ``portuguese_tts`` provenance note.
+    docs/tts_gold.md and the ``portuguese_tts`` provenance note.
     """
     return _load_sentence_tts(_PORTUGUESE_TTS_DIR, lang, limit)
 
@@ -3430,7 +3429,7 @@ PROVENANCE: Dict[str, str] = {
     # Arabic + Portuguese sentence-level TTS gold. LLM-authored: every IPA
     # transcription was drafted by a large language model, then engine-pinned
     # and audited row-by-row against the phonological literature cited in each
-    # row's `notes` column (docs/arabic-tts-gold.md, docs/portuguese-tts-gold.md).
+    # row's `notes` column (docs/tts_gold.md).
     # Citation-auditing raises confidence but does NOT change the error model:
     # there is still no lexicon, no G2P, no rule system behind the gold, so a
     # disagreement cannot be attributed to anything. The honest tier is
@@ -4728,14 +4727,13 @@ def write_scoreboard(rows: List[dict]) -> None:
         "```",
         "",
         "Machine-readable form: [`benchmarks/results.json`]"
-        "(../benchmarks/results.json). Methodology: "
-        "[`docs/benchmark_methodology.md`](benchmark_methodology.md). Dataset "
-        "provenance: [`docs/benchmarks.md`](benchmarks.md).",
+        "(../benchmarks/results.json). Methodology and dataset provenance: "
+        "[`docs/benchmarks.md`](benchmarks.md).",
         "",
         "The `95% CI` column is a bootstrap confidence interval on the "
         "mean PER (per-word PERs resampled with replacement, "
         f"{BOOTSTRAP_REPS} reps, fixed seed {BOOTSTRAP_SEED}) — see "
-        "[`docs/benchmark_methodology.md`](benchmark_methodology.md).",
+        "[`docs/benchmarks.md`](benchmarks.md#confidence-intervals).",
         "",
         "The `Oracle@3` / `Oracle@5` columns are the per-word MINIMUM PER "
         "over the engine's top-3 / top-5 readings, averaged like `PER`. "
@@ -4780,7 +4778,7 @@ def write_scoreboard(rows: List[dict]) -> None:
         "`Exact match` are unaffected either way: an injected alternative can "
         "never reach rank 1. The movement they do cause is reported "
         "separately, as reachability, in "
-        "[`docs/benchmark_methodology.md`](benchmark_methodology.md).",
+        "[`docs/benchmarks.md`](benchmarks.md#injected-alternatives-do-not-count-as-ranking-error).",
         "",
         "Oracle cells read `·` when the row has **not been rescored** since "
         "the oracle columns were added (most rows: a full scoreboard is "
@@ -5015,26 +5013,24 @@ def write_lexicon_report(rows: List[dict]) -> None:
     lines = [
         "# Lexicon-overlay scoreboard",
         "",
-        "Rules-only vs with-lexicon PER for every language that ships an "
-        "optional caller-registered lexicon (never bundled) "
-        "— see [`docs/data_model.md`](data_model.md) and "
-        "[`orthography2ipa/lexicon.py`]). This keeps rule quality honest: the "
-        "overlay must *improve* PER without letting the underlying grapheme "
-        "rules rot behind lexicon coverage. Same gold, scored twice — once "
-        "with `get_lexicon` stubbed to `{}` (rules-only) and once with the "
-        "sidecar active. Regenerate with:",
+        "Rules-only against with-lexicon PER for each language with a "
+        "caller-registered lexicon. The package bundles no lexicon: see "
+        "[`docs/lexicon.md`](lexicon.md) and `orthography2ipa/lexicon.py`. "
+        "Each gold set is scored twice, once with `get_lexicon` stubbed to "
+        "`{}` (rules-only) and once with the lexicon active. A lexicon must "
+        "lower PER, and the rules-only column shows whether the grapheme rules "
+        "still hold up without it. Regenerate with:",
         "",
         "```bash",
         "PYTHONPATH=$PWD python scripts/benchmark.py --lexicon-report",
         "```",
         "",
-        "`PER (covered)` columns restrict scoring to the gold words the "
-        "lexicon actually contains — where the overlay can act — so the "
-        "covered-subset delta is the lexicon's own accuracy vs the rules on "
-        "the *same* words. The `full` columns dilute that by every gold word "
-        "outside the (deliberately capped, top-frequency) pilot lexicon; a "
-        "full production lexicon belongs downstream (see "
-        "[`docs/adding_a_language.md`](adding_a_language.md)).",
+        "The `covered` columns score only the gold words that the lexicon "
+        "holds, where the overlay can act. Their delta is the accuracy of the "
+        "lexicon against the rules on the same words. The `full` columns score "
+        "every gold word, so the words outside the capped, top-frequency "
+        "pilot lexicon dilute the delta. A full production lexicon belongs "
+        "downstream (see [`docs/lexicon.md`](lexicon.md)).",
         "",
         "| Lexicon | Lang | Gold | Entries | N (full) | PER rules-only (full) "
         "| PER +lexicon (full) | N (covered) | PER rules-only (covered) "

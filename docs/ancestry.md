@@ -1,37 +1,38 @@
 # Ancestry System
 
-The ancestry system models the historical relationships between languages: parent descent, substrate influences, superstrate overlays, and ongoing contact: in a structured, typed way. This data powers phylogenetically-informed distance calculations and enables the package to be used as a digital reference for historical linguistics.
+The ancestry system records how languages relate in history. It holds parent descent and also the contact edges: substrate, superstrate, adstrate and the creole roles. The distance metrics weight these edges, and the classification path of each language comes from them.
 
----
+## Why model ancestry
 
-## Why Model Ancestry?
+A comparison of inventories and spellings alone misses several facts:
 
-Purely synchronic phonological comparison (inventory distance, grapheme divergence) misses important information:
-
-1. **Two languages can be phonologically similar for different reasons**: they might share a common ancestor, or they might have converged through contact.
-2. **Substrate effects** explain phonological features that deviate from the genetic ancestor. The Basque substrate is the leading explanation for Castilian's *f → h* change; knowing this lets us weight the Basque connection appropriately.
-3. **Creoles and contact languages** cannot be adequately described with a single parent chain.
-4. **Distance metrics improve** when ancestry similarity is factored in alongside synchronic phonological metrics.
-
----
+1. Two languages can sound alike because they share an ancestor, or because they converged through contact. The two cases need different edges.
+2. A substrate explains features that depart from the genetic parent. The `es-ES` spec cites a Basque substrate for the Latin *f* to *h* change (*filium* to *hijo*).
+3. A creole or a contact language does not fit a single parent chain.
+4. A distance metric improves when it adds ancestry to the phonological comparison.
 
 ## Clade Nodes and the Derived `family`
 
-The ancestry graph carries two kinds of non-leaf node, and the distinction matters:
+The ancestry graph has two kinds of node above the languages.
 
-- A **proto-language** (`ine` Proto-Indo-European, `la-x-hispania` Hispanic Vulgar Latin) is a *reconstructed language*. It has phonology, it carries graphemes, and it is a legitimate data ancestor: a descendant may inherit graphemes, sandhi rules and allophone rules from it. A proto-language whose reconstruction is not yet encoded, such as `bnt` Proto-Bantu, is a `stub` with no grapheme table and serves only as an ancestry node.
-- A **clade node** (`x-clade-roma1334` Romance, `x-clade-west2793` West Germanic) is *classification only*. It is flagged `"clade": true`, has empty `graphemes`/`allophones` and tier `stub`, and is **never** a data-inheritance source. It exists to make the classification hierarchy part of the one ancestry graph, instead of a hand-maintained string on every spec.
+A proto-language, such as `ine` (Proto-Indo-European) or `la-x-hispania` (Hispanic Vulgar Latin), is a reconstructed language. It has phonology and a grapheme table, and it is a data ancestor. A descendant can inherit graphemes, sandhi rules and allophone rules from it. A proto-language whose reconstruction has no data yet, such as `bnt` (Proto-Bantu), has no grapheme table and is only a node of the graph.
 
-Every clade node cites its Glottolog languoid (`glottolog_code`, e.g. `roma1334` Romance, `celt1248` Celtic, `semi1276` Semitic) and its Wikipedia page. Where Glottolog has no node with exactly that membership (Ibero-Romance, Gallo-Romance, Italo-Romance, Vasconic, Tyrsenian), the node cites Wikipedia and its `notes` name Glottolog's nearest equivalent.
+A clade node, such as `x-clade-roma1334` (Romance) or `x-clade-west2793` (West Germanic), is classification only. It has `"clade": true`, empty `graphemes` and `allophones`, and the quality tier `stub`. It is never a source of inherited data. It puts the classification hierarchy into the one ancestry graph, so that no spec carries a hand-kept family string.
 
-Clade nodes are spliced *into* the parent chain, never in place of it:
+A clade node cites its Glottolog languoid in `glottolog_code` (`roma1334` Romance, `celt1248` Celtic, `semi1276` Semitic) and its Wikipedia page. Some clades have no Glottolog node with exactly their membership, such as Ibero-Romance, Gallo-Romance, Italo-Romance, Vasconic and Tyrsenian. Such a node cites Wikipedia, and its `notes` name the nearest Glottolog node.
 
+The loader splices the clade nodes into the parent chain and never puts one in place of a language:
+
+```python
+from orthography2ipa.registry import ancestry_chain
+
+ancestry_chain("pt-PT")
+# ['pt-PT-x-medieval', 'roa-x-galaicopt', 'x-clade-iberrom', 'la-x-hispania',
+#  'x-clade-roma1334', 'la-x-late', 'la', 'la-x-archaic', 'ine-x-italic',
+#  'x-clade-ital1284', 'ine', 'x-clade-indo1319']
 ```
-pt-PT → pt-PT-x-medieval → roa-x-galaicopt → [Ibero-Romance] → la-x-hispania
-      → la-x-late → [Romance] … [Italic] → ine → [Indo-European]
-```
 
-`family` is then **derived**, not authored. The loader walks `parent` upwards and collects the clade names it passes, broadest first:
+The loader derives `family` from this chain. It walks `parent` upwards and collects the names of the clades it passes, broadest first:
 
 ```python
 import orthography2ipa
@@ -40,214 +41,176 @@ orthography2ipa.get("pt-PT").family_path   # ('Indo-European', 'Italic', 'Romanc
 orthography2ipa.get("pt-PT").family        # 'Indo-European > Italic > Romance > Ibero-Romance'
 ```
 
-Because it is a chain rather than a fixed-depth string, a consumer can ask at any depth: `available_families()` indexes a language under *every* step of its path, so `--family Romance` and `--family Ibero-Romance` both return `pt-PT`.
+`available_families()` groups the codes by the full path string. The CLI filter `orthography2ipa list --family` matches any one step of the path, so `--family Romance` and `--family Ibero-Romance` both list `pt-PT`.
 
-A spec may still carry an explicit `family` string, which wins over the derived one. That escape hatch is for groupings that are not genetic clades: creoles (`Portuguese Creole`), constructed languages, isolates, and unclassified languages.
+A spec can carry an explicit `family` string, which wins over the derived one. It serves the groupings that are not genetic clades: creoles (`English Creole`), constructed languages (`Constructed`), isolates (`Isolate`) and unclassifiable languages (`Unclassifiable`).
 
 ### Clades never change inheritance
 
-`parent` is the fallback data-inheritance edge for `sandhi_rules` and `allophone_rules` (used when a spec declares no `graphemes_base`). Splicing a contentless node into that edge would silently strip a spec's inherited rules, so the loader **walks through** clade nodes when it looks for the nearest data-bearing ancestor, and the distance metrics do the same when they weight ancestry. A clade node on the chain is therefore transparent: transcription and ancestry weights are exactly what they would be without it.
+`parent` is the fallback edge for inherited `sandhi_rules` and `allophone_rules`, when a spec declares no `graphemes_base`. A node with no content on that edge would strip the inherited rules. So the loader walks through clade nodes when it looks for the nearest data-bearing ancestor. The distance metrics do the same when they weight ancestry. A clade node on the chain is therefore transparent, and transcription and ancestry weights are the same as without it.
 
----
-
-## The Ancestry Model
+## The ancestry model
 
 Each `LanguageSpec` has an `ancestors` tuple of `Ancestor` objects:
 
 ```python
 @dataclass(frozen=True)
 class Ancestor:
-    code: str            # Language code
-    role: AncestorRole   # Relationship type
-    weight: float        # Phonological contribution [0.0, 1.0]
-    notes: str           # Optional documentation
+    code: str            # language code
+    role: AncestorRole   # relationship type
+    weight: float = 0.5  # phonological contribution, 0.0 to 1.0
+    notes: str = ""      # the reasoning and its source
 ```
 
-### AncestorRole values
+A spec that sets only `parent` gets one `PARENT` ancestor with weight 1.0.
 
-#### `PARENT`
+### `AncestorRole` values
 
-Primary genetic descent. The normal line of language transmission across generations.
+| Role | Meaning | Example in the data |
+|---|---|---|
+| `parent` | primary genetic descent, at most one per language | `es-ES` from `es-ES-x-medieval`, 0.85 |
+| `parent_dialect` | a dialect ancestor inside the same language | `el-CY` from `el` |
+| `proto_language` | the reconstructed ancestor at the top of a lineage | `aln` from `ine` |
+| `ancestor` | an earlier stage of the same lineage that is not the parent | `ja` from `ojp`, 0.10 |
+| `substrate` | the language of a population before it adopted this one | `es-ES` from `xaq` (Basque), 0.06 |
+| `superstrate` | the language of a dominant group that the local language absorbed | `fr-FR` from `gem` (Frankish), 0.18 |
+| `adstrate` | a neighbour of about equal prestige, with ongoing contact | `es-ES` from `xaa` (Andalusi Arabic), 0.06 |
+| `lexifier` | the source of most of the vocabulary of a creole or pidgin | `bi` (Bislama) from `en-GB`, 0.65 |
+| `creole_base` | a language that gave grammatical structure to a creole | |
+| `related` | a sister language with shared features and no descent | for typological comparison |
 
-- Every living/attested language should have exactly one PARENT (except reconstructed proto-languages).
-- Weight: 0.70-1.00
+A substrate shows as features that depart from the parent. It can also show as sound changes limited to the area of the substrate, or as prosodic and syllable patterns that mirror it. A superstrate changed the local language heavily before it disappeared. An adstrate leaves its trace through bilingualism and loans. The Andalusi Arabic adstrate left Spanish and Portuguese words with *al-*, such as *alcohol*, *algodón* and *almohada*.
 
-```python
-# Latin → Spanish
-Ancestor("la-x-hispania", AncestorRole.PARENT, 0.80,
-         "Primary descent from Hispanic Vulgar Latin")
-```
-
-#### `SUBSTRATE`
-
-The language of the indigenous population who adopted the incoming language. Substrate effects typically manifest as:
-- Phonological features that deviate from the parent language
-- Sound changes that occur only in geographic areas where the substrate was spoken
-- Structural patterns (prosody, syllable typology) that mirror the substrate
-
-```python
-# Basque substrate in Castilian Spanish
-Ancestor("xaq", AncestorRole.SUBSTRATE, 0.08,
-         "Basque substrate: f→h change, reinforcement of 5-vowel system")
-```
-
-Classic substrate effects in the package:
-- **Basque substrate → Castilian**: The *f → h* sound change (*filium* → *hijo*) is attested only in the Basque-speaking area of medieval Iberia.
-- **Gaulish substrate → French**: Lenition of intervocalic stops, vowel nasalization.
-- **Pre-Roman substrate → French /y/**: The front rounded vowel /y/ is unusual in Romance and may reflect a Gaulish or pre-IE substrate.
-
-#### `SUPERSTRATE`
-
-The language of a socially dominant group that was eventually absorbed by the local population. The dominant group's language influenced the local language heavily before disappearing.
+## Accessing ancestry data
 
 ```python
-# Visigothic (Gothic) superstrate in Spanish
-Ancestor("got", AncestorRole.SUPERSTRATE, 0.05,
-         "Visigothic: guerra, guardar, ropa; some palatalization influence")
-
-# Frankish superstrate in French
-Ancestor("gem", AncestorRole.SUPERSTRATE, 0.10,
-         "Frankish influence: vocabulary, some phonological features")
-```
-
-#### `ADSTRATE`
-
-A neighbouring language at roughly equal social prestige that exerts ongoing influence through bilingualism and lexical borrowing.
-
-```python
-# Arabic adstrate on medieval Ibero-Romance
-Ancestor("xaa", AncestorRole.ADSTRATE, 0.07,
-         "Andalusi Arabic adstrate: ~4000 loanwords in Spanish/Portuguese")
-```
-
-The 700-year Arabic presence on the Iberian Peninsula left a massive lexical footprint (words beginning with *al-* in Spanish and Portuguese: *alcohol*, *algodón*, *almohada*) and some phonological influence in southern dialects.
-
-#### `LEXIFIER`
-
-The language providing the majority of vocabulary in a creole or pidgin. In creole linguistics, the lexifier is sometimes called the "superstrate," though the sociolinguistic situation differs from the above.
-
-```python
-# Portuguese as lexifier of Papiamentu (not currently in registry: example only)
-Ancestor("pt", AncestorRole.LEXIFIER, 0.65,
-         "Portuguese lexifier: core vocabulary")
-```
-
-#### `CREOLE_BASE`
-
-The substrate language(s) contributing grammatical structure to a creole. In many Atlantic creoles, West African languages contributed the tonal/serial verb structure while the lexifier supplied most vocabulary.
-
----
-
-## Accessing Ancestry Data
-
-```python
-import orthography2ipa
 from orthography2ipa.types import AncestorRole
 
 spec = orthography2ipa.get("es")
+spec.code   # 'es-ES'
 
-# All ancestors
 for anc in spec.get_ancestors():
-    print(f"  {anc.role.value:12s}  {anc.code:20s}  w={anc.weight:.2f}  {anc.notes}")
+    print(f"{anc.role.value:12s} {anc.code:18s} w={anc.weight:.2f}")
+# parent       es-ES-x-medieval   w=0.85
+# substrate    xaq                w=0.06
+# superstrate  got                w=0.04
+# adstrate     xaa                w=0.06
 
-# Substrate ancestors only
-subs = spec.get_ancestors(AncestorRole.SUBSTRATE)
-
-# Convenience properties
-print(spec.primary_parent)      # 'la-x-hispania'
-print(spec.substrate_codes)     # ('xaq',)
-print(spec.superstrate_codes)   # ('got',)
-print(spec.contact_codes)       # all non-parent: ('xaq', 'xaa', 'got')
+spec.get_ancestors(AncestorRole.SUBSTRATE)   # (Ancestor('xaq', substrate, w=0.06),)
+spec.primary_parent                          # 'es-ES-x-medieval'
+spec.substrate_codes                         # ('xaq',)
+spec.superstrate_codes                       # ('got',)
+spec.contact_codes                           # ('xaq', 'got', 'xaa')
 ```
 
----
+`contact_codes` holds every ancestor that is not a parent.
 
-## The Iberian Pre-Roman Layer
+## The pre-Roman layer of Iberia
 
-The package has unusually deep coverage of the pre-Roman Iberian Peninsula, reflecting the complex linguistic landscape before Latin arrived:
+The ancestry chains of the Iberian Romance languages use these pre-Roman and contact languages as substrates and superstrates:
 
-| Code | Language | Notes |
+| Code | Name in the spec | Note |
 |---|---|---|
-| `xce` | Celtiberian | Celtic branch of IE, spoken in eastern Iberia |
-| `xib` | Iberian | Non-IE language of the eastern coast, script partially deciphered |
-| `xlg` | Lusitanian | Possibly IE, spoken in what is now Portugal/Extremadura |
-| `txr` | Tartessian | Possibly Celtic, script only partially read, SW Iberia |
-| `xaq` | Proto-Basque (Aquitanian) | Non-IE isolate, only ancestor of modern Basque |
-| `phn` | Phoenician | Semitic, trading colonies along Mediterranean coast |
-| `cel` | Common Celtic | Ancestor of Celtiberian and other Iberian Celtic |
+| `xce` | Celtiberian | Celtic, eastern Iberia, child of `cel` |
+| `xib` | Iberian | not Indo-European, eastern coast |
+| `xlg` | Lusitanian | child of `ine`, western Iberia |
+| `txr` | Tartessian (Southwestern) | south-western Iberia |
+| `xaq` | Aquitanian (Proto-Basque) | parent of `eu` |
+| `phn` | Phoenician/Punic | Semitic, coastal trading colonies |
+| `cel` | Proto-Celtic (reconstructed) | parent of Celtiberian |
 
-These are used as substrates and superstrates in the ancestry chains of modern Iberian Romance languages, enabling more nuanced distance calculations.
+## Ancestry similarity
 
----
+`orthography2ipa.distance.ancestry_similarity(spec_a, spec_b)` returns a value from 0.0 to 1.0. The algorithm has three steps:
 
-## Ancestry Distance Calculation
+1. Trace every ancestor of each language through all the edges. The weight of a path is the product of the edge weights on it. When several paths reach one ancestor, the strongest path counts. Clade nodes are skipped.
+2. For each ancestor that both languages reach, multiply the two path weights. The similarity is the largest of these products.
+3. When one language is itself an ancestor of the other, the result is the larger of its path weight and the shared-ancestor score.
 
-The `ancestry_similarity` function traverses the full ancestry graph recursively:
+A language compared with itself returns 1.0. The result is capped at 1.0.
 
 ```python
 from orthography2ipa.distance import ancestry_similarity
 
-# Languages with shared ancestors → higher similarity
-sim_es_pt = ancestry_similarity(
-    orthography2ipa.get("es"),
-    orthography2ipa.get("pt")
-)
-# Both descend from la-x-hispania (via Vulgar Latin)
-# Both have the Basque substrate (xaq)
-# Both have the Arabic adstrate (xaa)
-# → high similarity
-
-sim_es_ja = ancestry_similarity(
-    orthography2ipa.get("es"),
-    orthography2ipa.get("ja")
-)
-# No shared ancestors anywhere in the tree
-# → 0.0
+get = orthography2ipa.get
+ancestry_similarity(get("pt-PT"), get("pt-PT-x-porto"))   # 0.9
+ancestry_similarity(get("es"), get("pt"))                 # 0.5304000000000001
+ancestry_similarity(get("es"), get("ja"))                 # 0.0015342500000000005
 ```
 
-The algorithm:
-1. Build the full ancestor graph for each language (recursively following all ancestry links)
-2. For each shared ancestor, add `min(weight_a, weight_b)` to the similarity score
-3. Normalize by the total weight
+The products shrink fast along a long chain, so distant relatives score low. Spanish and Japanese still share a small score, because `ja` has an English adstrate and English reaches `ine` and `gem`. Two languages whose graphs never meet score 0.0.
 
----
+With `temporal_decay=True`, each edge weight also decays with the time gap between the ancestor and the descendant, when both specs carry a `timespan`. The factor is `exp(-gap / decay_halflife)`, and `decay_halflife` defaults to 1000 years. [distance.md](distance.md) covers the other metrics that use ancestry.
 
-## Writing Ancestry for New Languages
+## Writing ancestry for a language
 
-When adding a new language, consult the historical linguistics literature for:
+Read the historical linguistics literature for four things:
 
-1. **The primary parent**: usually straightforward (which known language gave rise to this one?)
-2. **Substrate candidates**: what languages were spoken in this area before?
-3. **Superstrate candidates**: were there any conquest/prestige languages that left phonological traces?
-4. **Adstrate candidates**: what neighboring languages have been in continuous contact?
+1. The primary parent: the known language this one descends from.
+2. The substrate candidates: the languages spoken in the area before.
+3. The superstrate candidates: conquest or prestige languages that left phonological traces.
+4. The adstrate candidates: the neighbouring languages in continuous contact.
 
-### Weights should reflect phonological impact, not just historical presence
+Make the weight reflect the effect on phonology, not the length of the contact. Centuries of contact can leave a phonology almost unchanged, and that edge takes a low weight. A short and intense contact, such as the Norman conquest of England, can take a higher weight because of the sound changes it caused.
 
-A language can have had centuries of contact with Arabic without Arabic affecting its phonology much. In that case, use a low weight even if the historical relationship is well-documented. Conversely, a brief but intense contact event (like the Norman conquest of England) can merit a higher weight due to phonological changes it triggered.
-
-### Document your reasoning in `notes`
+Put the reasoning and its source in `notes`:
 
 ```python
 Ancestor(
     code="xib",
     role=AncestorRole.SUBSTRATE,
     weight=0.06,
-    notes=(
-        "Iberian substrate in Catalan: some place names, possibly /ɾ/ "
-        "as default rhotic vs. /r/ trill; cf. Coromines (1954)"
-    )
+    notes="Iberian substrate in Catalan: some place names, possibly /ɾ/ "
+          "as default rhotic vs. /r/ trill; cf. Coromines (1954)",
 )
 ```
 
+Point `parent` at the right clade node or data ancestor. [adding_a_language.md](adding_a_language.md) gives the full procedure.
+
+## Alignment with Glottolog
+
+The reference for genetic classification is Glottolog, read from `clld/glottolog-cldf`: `cldf/languages.csv` and the `classification` parameter in `cldf/values.csv`. These give a full ancestor path for each glottocode.
+
+Glottolog governs genetic classification only. This library is finer than Glottolog, because it has dialects, historical stages and reconstructed proto-nodes. It is also richer, because it has the contact edges, which Glottolog does not model. Glottolog serves to catch errors and fill gaps, and never to flatten the graph.
+
+| Concern | Authority |
+|---|---|
+| `glottolog_code` on a spec | Glottolog. The code must resolve, and it must point at that language, not at the subgroup above it. |
+| The clade node a language hangs from | Glottolog, where it has an opinion. |
+| Whether a dialect exists | This library. Glottolog files most sub-national varieties under the national language, which is a coarser resolution and not a correction. |
+| Contact ancestry | This library. Glottolog does not model it. |
+| `family` | The clade chain. It is never authored and never copied from a Glottolog string. |
+
+`null` is the correct `glottolog_code` when Glottolog has no node for a variety. A wrong code is worse than no code. A code that points at the subgroup above the language, or at an unrelated language, corrupts every audit that reads it.
+
+### Coverage
+
+Compute the coverage from the data. A printed figure goes stale as specs are added:
+
+```python
+codes = orthography2ipa.available_codes()                                        # languages
+clades = set(orthography2ipa.available_codes(include_clades=True)) - set(codes)  # clade nodes
+with_code = [c for c in codes if orthography2ipa.get(c).glottolog_code]          # languages with a glottolog_code
+families = orthography2ipa.available_families()                                  # codes grouped by family path
+
+len(codes), len(clades), len(codes) + len(clades), len(with_code)
+```
+
+### Why the path is not a raw Glottolog slice
+
+Glottolog's path to Portuguese runs through nodes whose names do not work as branch labels: `Italic > Latino-Faliscan > Latinic > Imperial Latin > Shifted Western Romance > …`. The clade nodes of this library use the traditional branch names that a linguist knows, such as `Indo-European > Italic > Romance > Ibero-Romance`. Each node carries a citation, and it carries the glottocode where Glottolog has a matching node.
+
+Depth matters. A flat scheme with two levels would put every Romance variety into one bucket. It would lose the Ibero-Romance, Gallo-Romance, West Germanic and West Slavic distinctions that the Iberian detail of this library depends on. The `--family` filter matches any step of the path, so the depth costs the caller nothing.
+
+### Where Glottolog has no node
+
+A spec without a `glottolog_code` is usually one of three kinds:
+
+1. A dialect or historical variety with an `-x-` code, such as `pt-PT-x-porto`. Glottolog files it under the national language. A code that pointed at the parent would claim that the spec is the parent, which is the error `null` avoids.
+2. A national variety that Glottolog does not separate, such as `en-US`, `de-AT`, `nl-BE`, `pt-AO` and `es-CR`.
+3. A reconstructed proto-node with no Glottolog node, such as `brx-x-proto-boro-garo` and `xpa`.
+
+Glottolog does have nodes for the hard-looking cases, and the specs use them. Esperanto is `espe1235` with family `Constructed`, Iberian is `iber1250` with `Isolate`, and Tartessian is `tart1237` with `Unclassifiable`. A creole has a lexifier and a creole base, not one line of descent. The explicit `family` override exists for that case.
+
 ---
-
-## Transitive Ancestry
-
-When computing ancestry similarity, the system follows the full tree recursively. This means:
-
-- Spanish and Portuguese are close not only because both have `la-x-hispania` as parent, but because `la-x-hispania` → `la` (Classical Latin) → `ine` (Proto-Indo-European), and both languages inherit these deep connections.
-- Two dialects of the same language will show near-1.0 ancestry similarity because they share essentially all ancestors.
-- Unrelated language families will converge to 0.0 because their ancestry trees never intersect.
-
----
-[← Distance Metrics](distance.md) · [Home](index.md) · [Glottolog alignment →](glottolog_audit.md)
+[← Distance Metrics](distance.md) · [Home](index.md) · [Adding a language →](adding_a_language.md)

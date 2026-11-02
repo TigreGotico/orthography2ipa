@@ -1,35 +1,24 @@
 # The sentence-context seam
 
-The [pronunciation lattice](lattice.md) is deliberately **word-local**: a
-`LatticeRescorer` sees one grapheme slot and its neighbours *within a word*,
-and never crosses a word boundary. That is the right scope for word-internal
-phonology, but a whole class of processes lives *between* words and cannot be
-expressed there:
+The [pronunciation lattice](lattice.md) is word-local by design. A `LatticeRescorer` sees one grapheme slot and its neighbours inside a word, and it never crosses a word boundary. That scope suits phonology inside the word. A whole class of processes lives between words, and the word lattice cannot express them:
 
-- **Arabic** `waṣl`: a following word's initial *hamzat al-waṣl* (the
-  definite article's vowel) elides across a boundary: and **pausal** forms: a phrase-final word is realised differently (`tanwīn` suppression,
-  `tāʾ marbūṭa` → [h]);
-- **French liaison**: a latent word-final consonant resyllabifies as the
-  *next* word's onset before a vowel;
-- **Portuguese** external `/s/`-sandhi across a word boundary.
+| Process | What happens |
+| --- | --- |
+| Arabic waṣl | The *hamzat al-waṣl* of a word, such as the vowel of the definite article, elides after a preceding word |
+| Arabic pausal forms | A phrase-final word is realised differently, with *tanwīn* suppression and *tāʾ marbūṭa* as [h] |
+| French liaison | A latent word-final consonant becomes the onset of the next word before a vowel |
+| Portuguese external /s/-sandhi | A word-final /s/ changes across the word boundary |
 
-Each needs two things the word lattice does not carry: **visibility into the
-adjacent word's edge** (its final / initial candidates) and the word's
-**phrase / utterance position**. Historically a downstream engine that needed
-those forked a private sentence orchestrator on top of this library. The
-**sentence-context seam** is the shared cross-word surface downstream consumes
-instead: so it does not have to fork one.
+Each of these needs two things that the word lattice does not carry. It needs to see the edge of the adjacent word, that is its final or initial candidates. It also needs the position of the word in its phrase and in the utterance. The sentence-context seam is the shared cross-word surface that gives both, so a downstream engine does not need its own sentence orchestrator.
 
 ## The two objects
 
 ### `SentenceLattice`: the utterance, in order
 
-`G2P.sentence_lattice(text) -> SentenceLattice` exposes the whole utterance as
-an **ordered** list of `WordSlot`, each carrying that word's per-grapheme
-[lattice](lattice.md) (`SegmentSlot`s), its chosen IPA, and its position:
+`G2P.sentence_lattice(text, *, search="greedy", beam_width=8)` returns a `SentenceLattice`. It holds the utterance as an ordered tuple of `WordSlot` objects, one per word:
 
 ```python
-from orthography2ipa import G2P, Position
+from orthography2ipa import G2P
 
 g = G2P("pt")
 sl = g.sentence_lattice("olá mundo, bonito!")
@@ -38,22 +27,28 @@ for w in sl:
 ```
 
 ```text
-olá     oˈla     initial   initial
-mundo   ˈmundu   final     medial
-bonito  buˈnitu  sole      final
+olá oˈla initial initial
+mundo ˈmũdu final medial
+bonito buˈnitu sole final
 ```
 
-A consumer sees the ranked candidates of **every** word in order (not a
-flattened string): `w.slots` is exactly what `G2P.ipa_lattice(w.surface)`
-returns, and `w.initial_slot` / `w.final_slot` are the onset / coda edge slots
-a cross-word rule reaches across a boundary to inspect. `sentence_lattice` is a
-pure **read**: it applies no rescorers and never affects `transcribe`.
+| `WordSlot` member | Meaning |
+| --- | --- |
+| `surface` | The normalised spelling of the word |
+| `ipa` | The word's IPA in isolation, after stress and before any sentence rescorer or sandhi, not yet NFC-composed |
+| `slots` | The word's lattice, equal to `G2P.ipa_lattice(w.surface)`, and empty for a `word_exceptions` override or a word with no mapped grapheme |
+| `index` | The position of the word in the utterance |
+| `phrase_position`, `utterance_position` | The `Position` of the word in its phrase and in the utterance |
+| `pausal` | True when the word stands before a pause, equal to `phrase_position.is_final()` |
+| `initial_slot`, `final_slot` | The first and last lattice slots, the onset and coda edges that a cross-word rule inspects, or `None` with no lattice |
+
+A consumer sees the ranked candidates of every word in order, not a flattened string. The lattice iterates and indexes over its words. Its `ipa` property joins the per-word IPA with spaces. `sentence_lattice` only reads: it applies no sentence rescorer and no sandhi, and it never changes `transcribe`.
+
+The `search` argument works as in `transcribe`. With the default `"greedy"`, each slot keeps only its top candidate. Pass `search="beam"` to keep up to `beam_width` candidates per slot.
 
 ### `SentenceRescorer`: the boundary-aware rewrite seam
 
-`SentenceRescorer` is the `LatticeRescorer` analogue at sentence scope. It is
-invoked once per word with a `SentenceRescoreContext` and returns that word's
-(possibly rewritten) IPA:
+`SentenceRescorer` is the counterpart of `LatticeRescorer` at sentence scope. The engine calls it once per word with a `SentenceRescoreContext`, and it returns that word's IPA, rewritten or not:
 
 ```python
 from abc import ABC
@@ -65,144 +60,104 @@ class SentenceRescorer(ABC):
 
 The context gives a cross-word rule what the word lattice cannot:
 
-- `context.prev_word` / `context.next_word`: the adjacent `WordSlot`s (with
-  their `.final_slot` / `.initial_slot` edge candidates), `None` at an
-  utterance edge;
-- `context.prev_word_ipa` / `context.next_word_ipa` / `context.this_word_ipa`: the chain-current IPA of each (reflecting earlier rescorers' rewrites);
-- `context.phrase_position` / `context.utterance_position`: the word's
-  `Position` (`INITIAL` / `MEDIAL` / `FINAL` / `SOLE`) within its
-  punctuation-bounded phrase and within the whole utterance, plus the
-  `is_phrase_final`, `is_utterance_initial`, … convenience predicates.
+| Member | Meaning |
+| --- | --- |
+| `prev_word`, `next_word` | The adjacent `WordSlot`, with its `final_slot` or `initial_slot`, or `None` at an utterance edge |
+| `this_word_ipa`, `prev_word_ipa`, `next_word_ipa` | The current IPA of each word in the chain, which includes the rewrites of earlier rescorers |
+| `phrase_position`, `utterance_position` | The `Position` of the word |
+| `is_phrase_initial`, `is_phrase_final`, `is_utterance_initial`, `is_utterance_final` | Shortcuts over the two positions |
+| `word`, `index`, `words`, `lang` | The word, its index, all words and the resolved language code |
 
-**Bidirectional by construction.** Because `rescore` runs once per word, a
-boundary process that must change *both* words is expressed by each word's
-invocation rewriting its own side while reading the shared boundary: the
-resyllabification and `waṣl`-elision the legacy left-only
-[`SandhiEngine`](lattice.md#rescoring-the-lattice) cannot do (it could only
-rewrite the *left* word of a pair).
+Return `context.this_word_ipa` for a no-op. A process can change both words at a boundary. Each word's call rewrites its own side while it reads the shared boundary. That is how resyllabification and waṣl elision on the right word work. The older `SandhiEngine` can rewrite only the left word of a pair.
 
 ## Phrase and utterance position
 
-A **phrase** is a run of words bounded by pause punctuation (`.,;:!?…`) or the
-utterance edges: the same boundary the tokenizer already marks as *pausal*.
-`Position` is computed for both the phrase span and the whole-utterance span:
-the first word of a span is `INITIAL`, the last is `FINAL`, interior words are
-`MEDIAL`, and a one-word span is `SOLE` (both initial and final). `word.pausal`
-is exactly `word.phrase_position.is_final()`.
+A phrase is a run of words between two pauses, or between a pause and an utterance edge. A pause is a mark from `orthography2ipa.phonetok.PAUSE_PUNCTUATION`, which names the pause marks of each script. For Latin text these are `. , ; : ! ? …`. The tokenizer uses the same boundary when it marks a word as pausal.
 
-## Worked example 1: Arabic waṣl + pausal
+`Position` is computed for the phrase and for the whole utterance. The first word of a span is `INITIAL`, the last is `FINAL` and the words between are `MEDIAL`. A span of one word is `SOLE`, and `SOLE` counts as both initial and final for `is_initial()` and `is_final()`.
 
-Two toy rescorers (illustrations of the seam, **not** shipped language data)
-prove the seam supplies the cross-word visibility and phrase position that
-arbtok's private orchestration needs:
+## Worked example 1: Arabic waṣl and pausal forms
+
+These two rescorers are toys that show the seam. The library does not ship them as language data. They show that the seam gives the cross-word view and the phrase position that an Arabic engine needs.
 
 ```python
 from orthography2ipa.sentence import SentenceRescorer
 
-class WaslElision(SentenceRescorer):        # right-word rewrite across a boundary
+class WaslElision(SentenceRescorer):        # rewrites the right word of a boundary
     def rescore(self, word, context):
         ipa = context.this_word_ipa
-        if context.prev_word is not None and ipa.startswith("al"):
-            return ipa[1:]                  # elide the article's initial vowel
+        onset = word.initial_slot
+        if context.prev_word is not None and onset is not None and onset.grapheme == "ال":
+            return ipa.replace("a", "", 1)  # elide the vowel of the article
         return ipa
 
 class PausalForm(SentenceRescorer):         # driven by phrase position
     def rescore(self, word, context):
         ipa = context.this_word_ipa
         if context.is_phrase_final and ipa and not ipa.endswith("ʔ"):
-            return ipa + "ʔ"                # pausal citation form
+            return ipa + "ʔ"                # toy pausal citation form
         return ipa
 
-g = G2P("ar", sentence_rescorer=[WaslElision(), PausalForm()])
+text = "الكتاب الجديد"
+print(G2P("ar").transcribe(text))
+print(G2P("ar", sentence_rescorer=[WaslElision(), PausalForm()]).transcribe(text))
 ```
 
-| word | default | with seam | why |
-| --- | --- | --- | --- |
-| `الكتاب` | `alktaːb` | `alktaːb` | utterance-initial: waṣl needs a preceding word |
-| `الجديد` | `aldʒdjd` | `ldʒdjdʔ` | `al` elided across the boundary (**right** word), then pausal (phrase-final) |
+```text
+alkˈtaːb ˈaldʒdjd
+alkˈtaːb ˈldʒdjdʔ
+```
 
-The winner changes **across a boundary**, and on the *right* word: visibility
-(`prev_word`) and phrase position (`is_phrase_final`) drove both edits.
+The first word opens the utterance, so waṣl has no preceding word and does nothing. On the second word, the article's vowel elides across the boundary, and the pausal form then applies because the word ends the phrase. The change happens across a boundary and on the right word. The adjacent word (`prev_word`), the edge slot (`initial_slot`) and the phrase position (`is_phrase_final`) drove both edits.
 
-## Worked example 2: French liaison (resyllabification)
+## Worked example 2: French liaison
 
 ```python
+VOWELS = set("aeiouyɛɔøœɑ")
+
 class FrenchLiaison(SentenceRescorer):
     LATENT = {"s", "x", "z"}
+
     def rescore(self, word, context):
         ipa = context.this_word_ipa
         prev = context.prev_word
-        if prev and prev.surface[-1:].lower() in self.LATENT and ipa[:1] in VOWELS:
-            return "z" + ipa                # right word gains the /z/ onset
-        nxt = context.next_word
-        if word.surface[-1:].lower() in self.LATENT and nxt and \
-                (context.next_word_ipa or "")[:1] in VOWELS:
-            return ipa + "‿"               # left word marks the liaison tie
+        if prev and prev.surface[-1:] in self.LATENT and ipa[:1] in VOWELS:
+            return "z" + ipa                # the right word gains the /z/ onset
+        if (context.next_word and word.surface[-1:] in self.LATENT
+                and (context.next_word_ipa or "")[:1] in VOWELS):
+            return ipa + "‿"                # the left word marks the liaison tie
         return ipa
 
-g = G2P("fr", sentence_rescorer=FrenchLiaison())
+print(G2P("fr").transcribe("nous avons"))
+print(G2P("fr", sentence_rescorer=FrenchLiaison()).transcribe("nous avons"))
 ```
 
-| input | default | with seam |
-| --- | --- | --- |
-| `les amis` | `lə ami` | `lə‿ zami` |
+```text
+nu avɔ̃
+nu‿ zavɔ̃
+```
 
-The latent final consonant of *les* resyllabifies as the onset of *amis*: the
-**right** word gains `z`, the left word marks the tie. A left-only rewrite
-cannot move a segment onto the next word; this seam can.
+The latent final consonant of *nous* becomes the onset of *avons*. The right word gains /z/, and the left word marks the tie. A rewrite of the left word only cannot move a segment onto the next word, and this seam can.
 
 ## How it composes with the word lattice
 
-The sentence seam sits **above** the word [lattice](lattice.md): each
-`WordSlot.slots` *is* the word's `ipa_lattice`, and a `SentenceRescorer` reads
-those edge slots but rewrites at the word-IPA level. In `transcribe`, sentence
-rescorers run **first** (whole-utterance visibility), then the spec's
-declarative `sandhi_rules` run through the existing `SandhiEngine` exactly as
-before: the two **coexist**. A *list* of sentence rescorers composes like
-lattice rescorers: each pass sees the previous pass's rewrites, while within a
-pass every word reads a stable pre-pass snapshot, so a pass is
-order-independent and deterministic.
+The sentence seam sits above the word [lattice](lattice.md). Each `WordSlot.slots` is the word's `ipa_lattice`. A `SentenceRescorer` reads the edge slots and rewrites at the level of the word's IPA.
 
-`SandhiEngine.apply` is handed the per-word pause flags the tokenizer already
-computes, so a declarative rule stays inside its prosodic domain: nothing joins
-the two words a pause separates (Nespor & Vogel 1986, *Prosodic Phonology*).
-The blocked boundary is the intonational phrase (IP) — what punctuation writes.
-Rules whose real domain is the smaller phonological phrase (φ) are still
-unblocked at a clause-internal φ edge, so this is a lower bound. A sentence
-rescorer sees the same positions through `WordSlot.phrase_position`.
+In `transcribe`, the sentence rescorers run first, with a view of the whole utterance. The spec's declarative `sandhi_rules` then run through `SandhiEngine`, and the two coexist. A list of sentence rescorers composes like lattice rescorers: each pass sees the rewrites of the pass before it. Inside one pass, every word reads the same snapshot taken before the pass, so the order of the words does not change the result.
 
-## Off by default, byte-identical when unused
+The engine passes `SandhiEngine.apply` the pause flag of each word, so a declarative rule stays inside its prosodic domain. No rule joins two words that a pause separates (Nespor & Vogel 1986, *Prosodic Phonology*). The blocked boundary is the intonational phrase, which is what punctuation writes. Some rules have the smaller phonological phrase as their real domain. Such a rule still applies at a phonological-phrase edge inside a clause, so the pause flags give a lower bound only. A sentence rescorer sees the same positions through `WordSlot.phrase_position`.
 
-Nothing here runs unless a caller passes `sentence_rescorer=` to `G2P` (or
-calls `sentence_lattice` explicitly). With no sentence rescorer,
-`transcribe` is byte-for-byte what it was: single-word scoring never touches
-the seam, the benchmark scoreboard is unchanged, and a spec's `sandhi_rules`
-keep working exactly as now. There is no new spec field: cross-word *rules* are
-caller-supplied plugin objects, keeping the spec data surface unchanged.
+## Off by default
 
-## Refine, fork, or reach for this seam
+Nothing in this seam runs unless a caller passes `sentence_rescorer=` to `G2P`, or calls `sentence_lattice`. Without a sentence rescorer, `transcribe` does not use the seam, and the scoring of single words and the benchmark board do not change. A spec's `sandhi_rules` work the same either way. The seam adds no spec field: cross-word rules are plugin objects that the caller supplies, so the spec data surface stays the same.
 
-The [refine-or-fork guidance](lattice.md#refine-the-lattice-or-fork-the-tokenizer)
-still holds, with a third option between them. Word-internal phonology →
-**refine** the word lattice with a `LatticeRescorer`. A genuinely non-local
-process (cross-word sandhi, pausal / phrase-final forms, liaison) →
-**this seam**, rather than forking a private orchestrator. Only a representation
-the seam still cannot express (morphological structure, prosody, a non-IPA
-intermediate) is a reason to **fork**. A downstream engine such as
-[arbtok](https://github.com/TigreGotico/arbtok) retires its cross-word fork by
-moving waṣl / pausal / assimilation onto `SentenceRescorer`s over the shared
-`SentenceLattice`, keeping only its truly bespoke stages private.
+## Refine, fork, or use this seam
 
-## Still downstream: semantic / POS disambiguation (C5)
+The [refine-or-fork guidance](lattice.md#refine-the-lattice-or-fork-the-tokenizer) still applies, with a third option between the two. For phonology inside the word, refine the word lattice with a `LatticeRescorer`. For a non-local process, such as cross-word sandhi, pausal forms or liaison, use this seam instead of a private orchestrator. Fork only for a representation that the seam cannot express. Examples are morphological structure, prosody or an intermediate form that is not IPA. A downstream engine such as [arbtok](https://github.com/TigreGotico/arbtok) can move waṣl, pausal forms and assimilation onto `SentenceRescorer` classes over the shared `SentenceLattice`. It then keeps private only the stages that are truly its own.
 
-This seam supplies **position and cross-word adjacency, not meaning**.
-Homograph disambiguation that needs part of speech or semantics: English
-*read* /riːd/ vs /rɛd/, Portuguese *sede* 'thirst' vs 'headquarters': is
-**not** expressible here: the context carries no POS or sense field,
-deliberately. That remains a downstream concern (Workstream C5). The honest
-boundary is the same one [lattice.md](lattice.md#refine-the-lattice-or-fork-the-tokenizer)
-draws: route a word that needs context it cannot see to the layer that has it,
-never silently through a layer that does not.
+## Still downstream: semantic and part-of-speech disambiguation
+
+This seam gives position and cross-word adjacency, not meaning. It cannot express a homograph choice that needs part of speech or sense. Examples are English *read* /riːd/ against /rɛd/, and Portuguese *sede* 'thirst' against 'headquarters'. The context carries no part-of-speech or sense field, on purpose, and that choice stays with a downstream engine. The boundary is the same one that [lattice.md](lattice.md#refine-the-lattice-or-fork-the-tokenizer) draws. Send a word that needs context to the layer that has that context, never silently through a layer that does not.
 
 ---
 [← The pronunciation lattice](lattice.md) · [Home](index.md) · [Lattice PER →](lattice_per.md)

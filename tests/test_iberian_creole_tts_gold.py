@@ -1,5 +1,5 @@
 """Regression gate for the unified Iberian-creole TTS gold set
-(docs/iberian-creole-tts-gold.md).
+(docs/tts_gold.md#iberian_creole_tts).
 
 Runs the validate subcommand of scripts/iberian_creole_tts_gold.py over every
 Iberian-lexified creole lect that has a gold TSV — the whole roster across the

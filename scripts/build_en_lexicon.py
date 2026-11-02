@@ -6,12 +6,12 @@ The library bundles no lexicon. Write the file wherever you like and point
 directory and use ``set_lexicon_dir()`` / ``$ORTHOGRAPHY2IPA_LEXICON_DIR``).
 
 The E3 lexicon-overlay mechanism (see ``orthography2ipa/lexicon.py`` and
-``docs/data_model.md``) reads an optional per-language sidecar
+``docs/lexicon.md``) reads an optional per-language sidecar
 a ``{code}.tsv`` (``word<TAB>ipa``) the caller registers, folded into the
-engine's ``word_exceptions`` override pathway. This script regenerates the
-one bundled pilot lexicon that proves the mechanism end-to-end.
+engine's ``word_exceptions`` override pathway. This script builds a pilot
+English lexicon that a caller registers; the package ships no lexicon.
 
-Provenance (see ``docs/bibliography.md``):
+Provenance (see ``docs/lexicon.md``):
 
 - **Pronunciations** — the CMU Pronouncing Dictionary (``cmudict``), a
   hand-curated public-domain / BSD-style ARPABET lexicon of North American
@@ -20,7 +20,7 @@ Provenance (see ``docs/bibliography.md``):
   so it speaks roughly the same IPA convention as the ``en-GB`` rule spec.
   CMUdict is General American, so this pilot most helps the General-American
   ("en") evaluation; a full RP / en-GB lexicon belongs downstream (this is a
-  ~5k-entry pilot, not a production lexicon — see ``docs/adding_a_language.md``).
+  ~5k-entry pilot, not a production lexicon — see ``docs/lexicon.md``).
 - **Frequency ordering / entry selection** — the ``google-10000-english``
   frequency list (Google Web Trillion Word Corpus, MIT-licensed), used ONLY
   to pick which ~5k words to include (the highest-frequency ones). None of

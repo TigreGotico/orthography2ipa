@@ -1,12 +1,12 @@
 # Lexicon-overlay scoreboard
 
-Rules-only vs with-lexicon PER for every language with a caller-registered lexicon (never bundled: see [`docs/data_model.md`](data_model.md) and [`orthography2ipa/lexicon.py`]). This keeps rule quality honest: the overlay must *improve* PER without letting the underlying grapheme rules rot behind lexicon coverage. Same gold, scored twice: once with `get_lexicon` stubbed to `{}` (rules-only) and once with the sidecar active. Regenerate with:
+Rules-only against with-lexicon PER for each language with a caller-registered lexicon. The package bundles no lexicon: see [`docs/lexicon.md`](lexicon.md) and `orthography2ipa/lexicon.py`. Each gold set is scored twice, once with `get_lexicon` stubbed to `{}` (rules-only) and once with the lexicon active. A lexicon must lower PER, and the rules-only column shows whether the grapheme rules still hold up without it. Regenerate with:
 
 ```bash
 PYTHONPATH=$PWD python scripts/benchmark.py --lexicon-report
 ```
 
-`PER (covered)` columns restrict scoring to the gold words the lexicon actually contains: where the overlay can act: so the covered-subset delta is the lexicon's own accuracy vs the rules on the *same* words. The `full` columns dilute that by every gold word outside the (deliberately capped, top-frequency) pilot lexicon; a full production lexicon belongs downstream (see [`docs/adding_a_language.md`](adding_a_language.md)).
+The `covered` columns score only the gold words that the lexicon holds, where the overlay can act. Their delta is the accuracy of the lexicon against the rules on the same words. The `full` columns score every gold word, so the words outside the capped, top-frequency pilot lexicon dilute the delta. A full production lexicon belongs downstream (see [`docs/lexicon.md`](lexicon.md)).
 
 | Lexicon | Lang | Gold | Entries | N (full) | PER rules-only (full) | PER +lexicon (full) | N (covered) | PER rules-only (covered) | PER +lexicon (covered) |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|
@@ -14,4 +14,4 @@ PYTHONPATH=$PWD python scripts/benchmark.py --lexicon-report
 | en-GB | en-GB | wikipron | 5000 | 2378 | 0.4242 | 0.4156 | 80 | 0.3902 | 0.1344 |
 
 ---
-[← espeak-ng agreement](espeak_agreement.md) · [Home](index.md) · [Gold composition →](gold_composition.md)
+[← espeak-ng agreement](espeak_agreement.md) · [Home](index.md) · [Gold defects →](gold_defects.md)

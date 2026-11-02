@@ -586,4 +586,4 @@ zom | Sino-Tibetan | 32 | 20 | 0 |  | no | 0 | cnk 0.912 | 1 | 134 | 0.528
 zu | Atlantic-Congo > Bantu | 66 | 26 | 0 |  | yes | 0 | nd 0.682 | 1 | 1754 | 0.2311
 
 ---
-[← Ranking error](ranking_error.md) · [Home](index.md) · [Finding a language's phonology documentation →](languages/index.md)
+[← Known limitations](known_limitations.md) · [Home](index.md) · [Language pages →](languages/index.md)
