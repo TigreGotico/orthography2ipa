@@ -58,7 +58,7 @@ from orthography2ipa.vowels import (
     is_palatal_consonant,
     is_pharyngealized_consonant,
 )
-from orthography2ipa.positional import build_branches, resolve_branches
+from orthography2ipa.positional import resolve_branches
 
 # ── Positional-nasalisation guard (see PhonetokTokenizer._expand_beam) ──
 # The combining tilde a coda ⟨m/n⟩ slot emits to nasalise the preceding
@@ -2657,32 +2657,6 @@ class PhonetokTokenizer:
         return "".join(parts)
 
     # ─── Internal helpers ───────────────────────────────────────────────
-
-    @staticmethod
-    def _ipa_branches(
-            token: Token,
-            allophone_map: Optional[Dict[str, List[str]]],
-            weights: Optional[Sequence[float]] = None,
-    ) -> List[Tuple[str, float]]:
-        """Return (ipa_string, cost) branches for one GRAPHEME token.
-
-        Without *weights* (plain-list grapheme): cost 0 for the first
-        (canonical) IPA and +1 for each alternative — the rank ordering.
-        With valid *weights* the per-candidate cost is ``-log(p)`` (see
-        :func:`orthography2ipa.weights.candidate_base_costs`); the branch
-        shape ``(ipa, cost)`` is unchanged so ``_expand_beam`` is agnostic.
-        If allophone expansion is on, each phoneme further branches into
-        its allophonic variants at +0.5 cost each beyond the first.
-
-        This is a thin wrapper over
-        :func:`orthography2ipa.positional.build_branches`, the single
-        shared branch-builder used by both the tokenizer beam and the
-        engine's positional beam; it does **not** apply positional
-        overrides (those need context — see :func:`~orthography2ipa.
-        positional.resolve_branches`).
-        """
-        return build_branches(
-            token.ipa, weights, allophone_map, token.grapheme)
 
     @staticmethod
     def _expand_beam(

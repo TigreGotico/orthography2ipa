@@ -1,8 +1,13 @@
 name: Build Tests
 
+# dev only. The pull requests into master are the release pull requests, and
+# the release automation opens them with GITHUB_TOKEN. GitHub holds a
+# pull_request run that GITHUB_TOKEN triggers until a person approves it, so
+# the run never starts, expires, and reports "workflow file issue". The
+# release head is the dev tip, which the dev pull requests already test.
 on:
   pull_request:
-    branches: [dev, master]
+    branches: [dev]
   workflow_dispatch:
 
 jobs:
@@ -12,3 +17,4 @@ jobs:
       python_versions: '["3.10", "3.11", "3.12", "3.13"]'
       install_extras: 'test'
       test_path: 'tests'
+      pytest_args: '--durations=25'

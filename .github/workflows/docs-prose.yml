@@ -18,7 +18,8 @@ name: Docs Prose
 
 on:
   pull_request:
-    branches: [dev, master]
+    # dev only, for the reason given in build-tests.yml.
+    branches: [dev]
     paths:
       - "docs/**"
       - "tests/test_docs_prose.py"
