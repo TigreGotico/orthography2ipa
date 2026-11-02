@@ -4,11 +4,11 @@
 
 This page describes the `en-GB` spec, which models British Received Pronunciation, and the `en-US` spec, which models General American. The registry resolves the bare tag `en` to `en-GB`. The spec `en-US` inherits the grapheme table, the allophones, the grammatical endings, the word exceptions and the stress block of `en-GB`, and states only its own differences. The other English codes are skeleton specs whose parent is `en-GB`.
 
-English has a deep orthography, so the 0.25 PER threshold applies to a promotion (see [quality tiers](../quality_tiers.md#the-per-threshold)). The sources are Wells (1982), Roach (2004), Roach (2009) and Cruttenden (2014), with Fudge (1984), Liberman & Prince (1977) and Hayes (1995) for stress.
+English has a deep orthography, so the 0.25 PER threshold applies to a promotion (see [quality tiers](../specs/quality_tiers.md#the-per-threshold)). The sources are Wells (1982), Roach (2004), Roach (2009) and Cruttenden (2014), with Fudge (1984), Liberman & Prince (1977) and Hayes (1995) for stress.
 
 ## Benchmark
 
-The `wikipron` rows under `en` and `en-GB` are crowd-scraped. The `cmudict` and `ipadict` rows under `en-US` are lexicon-derived. These rows can gate a promotion. The `ipadict` row under `en-GB` and the `ipa_childes` and `ipa_babylm` rows are espeak-derived, so they measure agreement with espeak and cannot gate. The scores are on the [scoreboard](../scoreboard.md).
+The `wikipron` rows under `en` and `en-GB` are crowd-scraped. The `cmudict` and `ipadict` rows under `en-US` are lexicon-derived. These rows can gate a promotion. The `ipadict` row under `en-GB` and the `ipa_childes` and `ipa_babylm` rows are espeak-derived, so they measure agreement with espeak and cannot gate. The scores are on the [scoreboard](../evaluation/generated/scoreboard.md).
 
 ## Consonant inventory
 

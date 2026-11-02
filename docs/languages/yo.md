@@ -58,7 +58,7 @@ The spec does not model downstep. The WikiPron gold marks it, but the orthograph
 
 ## The gold rows read two conventions
 
-Yoruba has gold rows that disagree about what a Yoruba transcription contains. For the scores, see the [scoreboard](../scoreboard.md).
+Yoruba has gold rows that disagree about what a Yoruba transcription contains. For the scores, see the [scoreboard](../evaluation/generated/scoreboard.md).
 
 The `wikipron` row (`yor_latn_broad`) comes from Wiktionary and marks tone and nasalisation in full, so it rewards a spec that emits both. Its orthographic column, however, almost never carries tone. Tone is recoverable in Yoruba, but not from this gold's input. The spec reads an unmarked vowel as mid, which is correct for the spelling it gets, and the gold says high or low. That gap is most of the row's remaining error, and the spec `audit` entry records the row as `input_limited`.
 

@@ -15,7 +15,7 @@ The `pt-PT` spec is also the base of the regional European Portuguese specs. The
 
 ## Two maps: where each process is modelled
 
-The library realises pronunciation as two maps (see [../allophony.md](../allophony.md)). The pre-lexical map goes from spelling to phoneme, in `graphemes` and `positional_graphemes`. The post-lexical map goes from phoneme to surface allophone, in `allophone_rules`. Cross-word changes are in `sandhi_rules`.
+The library realises pronunciation as two maps (see [../engine/allophony.md](../engine/allophony.md)). The pre-lexical map goes from spelling to phoneme, in `graphemes` and `positional_graphemes`. The post-lexical map goes from phoneme to surface allophone, in `allophone_rules`. Cross-word changes are in `sandhi_rules`.
 
 | Process | Map | Field |
 |:---|:---|:---|
@@ -152,7 +152,7 @@ Spirantisation of the voiced stops between vowels (/b d ɡ/ to [β ð ɣ], Mateu
 
 ## Gold sets that disagree with the spec
 
-Two gold sets write some processes differently from the spec. See [../scoreboard.md](../scoreboard.md) for the scores.
+Two gold sets write some processes differently from the spec. See [../evaluation/generated/scoreboard.md](../evaluation/generated/scoreboard.md) for the scores.
 
 WikiPron writes the EP coda /l/ as a plain [l]. So `PT_CODA_L_DARK` disagrees with the WikiPron `pt` row, while the narrow human gold sets agree with it. The rule stays, because it is correct and the higher-quality gold sets support it.
 

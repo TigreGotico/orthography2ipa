@@ -239,4 +239,4 @@ The rhotic of English is the approximant /ɹ/, never the trill `r`. The code `en
 Received Pronunciation has [ɑː] in the BATH words (*bath*, *dance*, *path*), and General American has /æ/ in both TRAP and BATH. Both specs map `a` to the same ranked list, `["æ", "ɑː", "eɪ", "ə", "ɔː"]`. The spelling does not mark the BATH set, so both read `bath` as [ˈbæθ].
 
 ---
-[← Quality tiers](quality_tiers.md) · [Home](index.md) · [Bibliography →](bibliography.md)
+[← Ancestry System](ancestry.md) · [Home](../index.md) · [Bibliography →](bibliography.md)

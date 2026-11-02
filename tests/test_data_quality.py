@@ -111,7 +111,7 @@ def test_stub_carries_no_table_of_its_own(code):
 
 # Deep-orthography PER ceiling, applied uniformly below because
 # LanguageSpec carries no orthographic-depth field to key a per-language
-# threshold off. See docs/quality_tiers.md for the shallow (0.15) / deep
+# threshold off. See docs/specs/quality_tiers.md for the shallow (0.15) / deep
 # (0.25) rationale, and for why the shallow threshold is reviewer- rather
 # than machine-enforced.
 _PRODUCTION_MIN_N = 500
@@ -140,7 +140,7 @@ def _benchmark_rows():
 def test_production_tier_has_qualifying_benchmark(code):
     """A spec claiming `production` must have a benchmarks/results.json
     row for one of its language tags meeting the tier threshold
-    documented in docs/quality_tiers.md (n >= 500, PER <= ceiling).
+    documented in docs/specs/quality_tiers.md (n >= 500, PER <= ceiling).
 
     This guard enforces the deep-orthography ceiling (0.25) uniformly,
     since LanguageSpec has no orthographic-depth field to derive a
@@ -159,7 +159,7 @@ def test_production_tier_has_qualifying_benchmark(code):
     rows = _benchmark_rows()
 
     def _matches(row_lang: str) -> bool:
-        # docs/quality_tiers.md: the gold may be registered under "one of
+        # docs/specs/quality_tiers.md: the gold may be registered under "one of
         # the spec's language tags" — benchmark rows record the tag the
         # dataset was registered with (wikipron "es"), which the registry
         # resolves to the reference variety's spec ("es-ES"). Resolve the
@@ -177,7 +177,7 @@ def test_production_tier_has_qualifying_benchmark(code):
         and row.get("n", 0) >= _PRODUCTION_MIN_N
         and row.get("per", 1.0) <= _PRODUCTION_DEEP_PER_CEILING
         # a row on a competitor-derived or LLM tier can never qualify a
-        # promotion (docs/quality_tiers.md); rows without a provenance
+        # promotion (docs/specs/quality_tiers.md); rows without a provenance
         # field predate the tier system and cannot vouch either
         and _gate_eligible(row.get("provenance"))
         and row.get("dataset") not in CORRECTED_DATASETS

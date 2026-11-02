@@ -1,18 +1,16 @@
 # The pinned WikiPron mirror
 
-[TigreGotico/wikipron-restored-orthography](https://huggingface.co/datasets/TigreGotico/wikipron-restored-orthography) is a snapshot of every pronunciation scrape in [CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron) at one commit. A second orthography column holds the headword that English Wiktionary displays. The `wikipron_restored` benchmark row reads it (see [benchmark_datasets.md](benchmark_datasets.md#wikipron-with-the-display-headword-restored-wikipron_restored)). This page is the maintainer procedure that refreshes it.
+[TigreGotico/wikipron-restored-orthography](https://huggingface.co/datasets/TigreGotico/wikipron-restored-orthography) is a snapshot of every pronunciation scrape in [CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron) at one commit. A second orthography column holds the headword that English Wiktionary displays. The `wikipron_restored` benchmark row reads it (see [its section in the dataset catalogue](datasets.md#wikipron-with-the-display-headword-restored-wikipron_restored)). This page is the maintainer procedure that refreshes it.
 
 The mirror exists for two reasons.
 
 The first is reproducibility. WikiPron publishes its scrapes on a branch that it keeps editing. A benchmark that reads that branch scores against other data from one week to the next, with no code change. An upstream edit then looks the same as an engine regression. The mirror pins one commit and records the upstream SHA-256 of each file, so a refresh gives a diff and not a mystery. The plain `wikipron` row still reads the upstream branch, so only the restored row has this protection.
 
-The second reason is the lossy orthography. WikiPron pairs a pronunciation with the MediaWiki page title. Several language style policies keep diacritics out of titles and put them back only on the headword line. For those languages the scraped word does not write contrasts that the pronunciation still transcribes. Scoring a grapheme-to-phoneme system on those rows measures the input, not the system.
+The second reason is the lossy orthography. WikiPron pairs a pronunciation with the MediaWiki page title. Several language style policies keep diacritics out of titles and put them back only on the headword line. The dataset catalogue says what that loss does to a score and what the restored row measures.
 
 ## Schema
 
 Each file under `data/` is tab-separated, with one header row and the columns `orthography`, `restored_orthography` and `ipa`. There is one file per upstream file. The first and third columns are the two WikiPron columns, byte for byte. The second column is empty where restoration was refused or not attempted, so a refusal shows in the data and is not a missing row.
-
-`scripts/benchmark.py` reads the second column and skips empty cells. The `wikipron_restored` row is therefore a subset of the matching `wikipron` row. Compare it only with that row restricted to the same words.
 
 The build also writes `manifest.json` and the dataset card `README.md`. The manifest holds the upstream commit and its date, the SHA-256 and row count of each file, and a screen record per language.
 
@@ -104,7 +102,7 @@ Run the refresh from a checkout of the repository, with the repository venv. It 
    hf upload TigreGotico/wikipron-restored-orthography mirror.new/ . --repo-type dataset
    ```
 
-8. Score the `wikipron_restored` row again with `--refresh-cache`, so the harness fetches the new files and not its cached copies. The board procedure is in [contributing/board.md](contributing/board.md).
+8. Score the `wikipron_restored` row again with `--refresh-cache`, so the harness fetches the new files and not its cached copies. The board procedure is in [contributing/board.md](../contributing/board.md).
 
    ```bash
    python scripts/benchmark.py --dataset wikipron_restored --refresh-cache
@@ -134,4 +132,4 @@ The restore script reads these environment variables:
 The cache holds one file per page title, with wikitext and rendered HTML in separate subdirectories. The renders take most of the space, and the cache grows to gigabytes over a large restoration run. Set `O2I_WIKT_CACHE` to a disk with room. Delete the `html/` subdirectory once a run is published. The wikitext half is small, and it is what makes a later screen cheap.
 
 ---
-[← Benchmark gold datasets](benchmark_datasets.md) · [Home](index.md) · [TTS sentence gold sets →](tts_gold.md)
+[← Benchmark gold datasets](datasets.md) · [Home](../index.md) · [TTS silver sets →](silver_sets.md)

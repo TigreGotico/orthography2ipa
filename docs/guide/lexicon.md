@@ -81,7 +81,7 @@ That choice is explicit, and anyone who reads the call site can see it. A lastin
 
 ## Whole-word overrides in the spec: `word_exceptions`
 
-`word_exceptions` maps a word to its IPA in the JSON of the spec. It suits a small, closed set of irregular words, such as English `{"one": "wʌn"}`. An inline exception beats a lexicon and the rules. The field is `BASE_MERGE`, so a dialect inherits the exceptions of its base through the `word_exceptions_base` key. The own entries of the dialect win word by word ([data_model.md](data_model.md#inheritance-between-specs)).
+`word_exceptions` maps a word to its IPA in the JSON of the spec. It suits a small, closed set of irregular words, such as English `{"one": "wʌn"}`. An inline exception beats a lexicon and the rules. The field is `BASE_MERGE`, so a dialect inherits the exceptions of its base through the `word_exceptions_base` key. The own entries of the dialect win word by word ([data_model.md](../specs/data_model.md#inheritance-between-specs)).
 
 The field does not scale to thousands of entries. Deep orthographies such as English, Danish and Irish cannot reach production accuracy from grapheme rules alone, because too many words are irregular. A lexicon covers that case.
 
@@ -169,15 +169,15 @@ CMUdict describes General American, so this file helps most on the General Ameri
 
 ## Measuring the effect of a lexicon
 
-`scripts/benchmark.py --lexicon-report` scores each language that has a lexicon twice on the same WikiPron gold: once with the rules only and once with the lexicon. It writes `docs/lexicon_scoreboard.md` and `benchmarks/lexicon_results.json`. The benchmark runs in its own process, so give it the lexicon through the directory variable:
+`scripts/benchmark.py --lexicon-report` scores each language that has a lexicon twice on the same WikiPron gold: once with the rules only and once with the lexicon. It writes `docs/evaluation/generated/lexicon_scoreboard.md` and `benchmarks/lexicon_results.json`. The benchmark runs in its own process, so give it the lexicon through the directory variable:
 
 ```bash
 ORTHOGRAPHY2IPA_LEXICON_DIR=/data/lexicons PYTHONPATH=$PWD python scripts/benchmark.py --lexicon-report
 ```
 
-The report has two sets of columns. The full columns score every gold word, so each gold word outside the lexicon dilutes the gain. The covered columns score only the gold words that the lexicon contains, where the overlay can act. The delta on the covered subset compares the lexicon with the rules on the same words. The report also keeps the rules honest: a lexicon must lower PER without hiding a regression in the grapheme rules behind it. [lexicon_scoreboard.md](lexicon_scoreboard.md) holds the last report.
+The report has two sets of columns. The full columns score every gold word, so each gold word outside the lexicon dilutes the gain. The covered columns score only the gold words that the lexicon contains, where the overlay can act. The delta on the covered subset compares the lexicon with the rules on the same words. The report also keeps the rules honest: a lexicon must lower PER without hiding a regression in the grapheme rules behind it. [lexicon_scoreboard.md](../evaluation/generated/lexicon_scoreboard.md) holds the last report.
 
-[spec_authoring.md](contributing/spec_authoring.md#supply-a-lexicon-never-bundle-one) gives the rule for contributors: supply a lexicon, never bundle one.
+[spec_authoring.md](../contributing/spec_authoring.md#supply-a-lexicon-never-bundle-one) gives the rule for contributors: supply a lexicon, never bundle one.
 
 ---
-[← Language Registry](registry.md) · [Home](index.md) · [Public API stability →](api_stability.md)
+[← Getting Started](getting_started.md) · [Home](../index.md) · [Distance Metrics →](distance.md)

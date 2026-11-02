@@ -4,7 +4,7 @@ produces.
 
 ``tests/test_thin_row_marker.py::test_committed_scoreboard_is_in_sync_with_generator``
 guards a narrower thing than its name suggests: it regenerates
-``docs/scoreboard.md`` from ``benchmarks/results.json`` and checks the two
+``docs/evaluation/generated/scoreboard.md`` from ``benchmarks/results.json`` and checks the two
 agree with EACH OTHER. That catches a stale markdown render; it says nothing
 about whether the numbers in ``results.json`` still describe what the specs
 actually do. A pull request that edits a grapheme table moves the true PER for
@@ -347,7 +347,7 @@ def check(base: str, head: str = "HEAD", repo=REPO_ROOT) -> int:
         SCOREBOARD_JSON, "benchmarks/results.json",
         "python scripts/benchmark.py --scoreboard --lang {lang} "
         "--dataset {dataset}",
-        "the regenerated benchmarks/results.json and docs/scoreboard.md.",
+        "the regenerated benchmarks/results.json and docs/evaluation/generated/scoreboard.md.",
         specs, repo=repo))
     rc = max(rc, check_board(
         CI_SAMPLE_JSON, "benchmarks/results_ci_sample.json",

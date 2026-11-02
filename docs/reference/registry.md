@@ -1,8 +1,23 @@
 # Language Registry
 
-The registry (`registry.py`) turns a language code into a registered spec code, and it loads the `LanguageSpec` for that code from `orthography2ipa/data/` on demand. It also finds the plugins that installed packages register. A spec loads the first time a caller asks for it through `get()`, and the registry caches it from then on.
+The registry (`registry.py`) turns a language code into a registered spec code, and it loads the `LanguageSpec` for that code from `orthography2ipa/data/` on demand. Import of the package indexes the file names in that directory and parses no JSON. `get()` parses the file of a spec the first time a caller asks for it, and the registry caches the spec from then on. The registry also finds the plugins that installed packages register. [getting_started.md](../guide/getting_started.md#finding-a-language-code) shows the tasks that use it: look up a language, and install or write a plugin.
 
 ## API
+
+The top level of `orthography2ipa` exports each of these functions.
+
+| Function | Returns |
+| :--- | :--- |
+| `get(code, strict=False)` | The `LanguageSpec` for the resolved code. It raises `KeyError` when no spec matches, and under `strict` when only the nearest-language step finds one. |
+| `resolve(code)` | The registered code that `get()` would load, as a string. A code with no usable match comes back unchanged. |
+| `resolves_exactly(code)` | `True` when the code names a spec without the nearest-language guess, and `False` otherwise. |
+| `available_codes(include_clades=False)` | A sorted list of the registered language codes. The clade nodes are in it only with `include_clades=True`. |
+| `available_families()` | A dict from each family path to the list of its language codes. |
+| `ancestry_chain(code)` | The list of `parent` codes above the spec, nearest first, with the clade nodes that the chain passes through. |
+| `get_syllabifier(code)` | The `SyllabifierPlugin` that answers for the code, or `None`. |
+| `get_rescorers(code)` | The list of `LatticeRescorer` objects that the installed rescorer plugins contribute for the code. |
+| `get_stress_plugin(code)` | The `StressPlugin` registered for the code, or `None`. |
+| `who_answers(code)` | A dict with the resolved `code`, the `syllabify` class name and the `rescore` list. |
 
 ```python
 import orthography2ipa
@@ -18,19 +33,7 @@ orthography2ipa.resolve("en-NZ")                             # the code get() wo
 # 'en-GB'
 ```
 
-`ancestry_chain` includes the clade nodes that the chain passes through. A clade node is for classification only. It carries no phoneme data, no spec inherits data from it, and `available_codes()` leaves it out by default. The loader derives `family` from the clade nodes ([ancestry.md](ancestry.md#clade-nodes-and-the-derived-family)). `available_families()` keys each language by that full path, and `orthography2ipa list --family Romance` matches any single step of it.
-
-## Finding the supported languages
-
-The set of specs changes with each data change, so no page lists it by hand. Use one of these live sources:
-
-| Source | What it gives |
-| :--- | :--- |
-| `orthography2ipa list` | Each language code, and `--family <name>` filters by any step of the family path |
-| `orthography2ipa.available_codes()` | The language codes as a sorted list, and `include_clades=True` adds the clade nodes |
-| `orthography2ipa.available_families()` | The codes grouped by family path |
-| The [explorer](https://tigregotico.pt/orthography2ipa/) | Each spec with its family, script, quality tier, sources and benchmark rows ([getting_started.md](getting_started.md#browsing-the-specs-in-the-explorer)) |
-| [languages/index.md](languages/index.md) | The languages that have a page of notes of their own |
+A clade node is for classification only. It carries no phoneme data, no spec inherits data from it, and `available_codes()` leaves it out by default. The loader derives `family` from the clade nodes ([ancestry.md](../specs/ancestry.md#clade-nodes-and-the-derived-family)). `available_families()` keys each language by that full path, and `orthography2ipa list --family Romance` matches any single step of it.
 
 ## Code resolution
 
@@ -81,7 +84,7 @@ orthography2ipa.resolves_exactly("en-NZ")   # False: only the nearest-language g
 
 ## Code aliases
 
-The alias table maps these ISO 639-3 codes to a spec:
+The alias table maps these ISO 639-3 codes of major languages to a spec:
 
 | ISO 639-3 | Spec | ISO 639-3 | Spec | ISO 639-3 | Spec |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -97,7 +100,14 @@ The alias table maps these ISO 639-3 codes to a spec:
 | `ron` | `ro-RO` | `mwl` | `mwl` | `arg` | `an` |
 | `lat` | `la` | `tgk` | `tg` | `prs` | `fa-AF` |
 
-The table also holds two other kinds of entry. The ISO 639-3 codes of the Arabic varieties map to their dialect specs. For example, `arz` goes to `ar-EG`, `ary` to `ar-MA`, `acm` to `ar-IQ` and `ars` to `ar-SA-x-najd`. Some private-use tags map to the spec that holds the variety, for example `pt-PT-x-barrancos` to `ext-PT-x-barrancos`, `pt-BR-x-sao-paulo` to `pt-BR-x-sp` and `ar-x-hijazi` to `ar-SA-x-hejaz`.
+The table holds four other kinds of entry:
+
+| Kind | Examples |
+| :--- | :--- |
+| The ISO 639-3 code of an Arabic variety, mapped to its dialect spec | `arz` to `ar-EG`, `ary` to `ar-MA`, `acm` to `ar-IQ`, `ars` to `ar-SA-x-najd` |
+| An individual-language code that `macro=True` standardisation would collapse into its macrolanguage, mapped to itself | `quz`, which would otherwise become `qu`, and `diq`, which would become `zza` |
+| An ISO 639-3 code whose variety has its spec under another key | `pnb` to `pa-PK`, `bar` to `de-x-bavarian` |
+| A private-use tag, mapped to the spec that holds the variety | `pt-PT-x-barrancos` to `ext-PT-x-barrancos`, `pt-BR-x-sao-paulo` to `pt-BR-x-sp`, `ar-x-hijazi` to `ar-SA-x-hejaz` |
 
 Galician has one standard spec, `gl-ES`, and the bare tag `gl` resolves to it. The variety codes `gl-x-central`, `gl-x-occidental`, `gl-x-oriental`, `gl-x-eonavia` and `gl-x-reintegrado` resolve to the `gl-ES-x-*` spec of the same variety. `_ALIASES` in `registry.py` holds the full table.
 
@@ -114,7 +124,7 @@ The registry finds plugins through `importlib.metadata` entry points, with one g
 
 The default `priority` of each plugin base class is `50`.
 
-Discovery alone selects only a syllabifier, because a syllabifier must not change the transcription. The engine runs a normalize, stress, rescore or sandhi plugin only when the spec or the caller names it by entry-point name ([architecture.md](architecture.md#pluggable-steps)). `get_rescorers(code)` lists what the installed rescorer plugins contribute, but `G2P` runs only the declared ones. A stress plugin runs only when the spec sets `stress.source` to `"plugin"`, and if none is installed, the engine raises `MissingStressPlugin`. A named plugin that is not installed raises `MissingPlugin`.
+Discovery alone selects only a syllabifier, because a syllabifier must not change the transcription. The engine runs a normalize, stress, rescore or sandhi plugin only when the spec or the caller names it by entry-point name ([architecture.md](../engine/architecture.md#pluggable-steps)). `get_rescorers(code)` lists what the installed rescorer plugins contribute, but `G2P` runs only the declared ones. A stress plugin runs only when the spec sets `stress.source` to `"plugin"`. If none is installed, the engine raises `MissingStressPlugin`, which `orthography2ipa.registry` defines. A named plugin that is not installed raises `MissingPlugin`.
 
 `who_answers(code)` reports which syllabifier and which rescorers answer for a code:
 
@@ -136,7 +146,5 @@ silabificador = "orthography2ipa.syllabifiers:SilabificadorSyllabifier"
 
 It loads only when the `silabificador` package is installed, through the `portuguese` extra. It claims the Portuguese codes: `pt`, `pt-PT`, `pt-BR`, `pt-AO` and the other national varieties. With no syllabifier installed, `get_syllabifier()` returns `None` for every code, and the engine uses the bundled vowel-group splitter.
 
-A downstream package registers a plugin the same way, with the entry point in its own `pyproject.toml`. The class implements the base class of the stage, such as `SyllabifierPlugin`, and declares its `language_codes`.
-
 ---
-[← Data Model](data_model.md) · [Home](index.md) · [Lexicons and forced pronunciations →](lexicon.md)
+[← Command line](cli.md) · [Home](../index.md) · [Public API stability →](api_stability.md)

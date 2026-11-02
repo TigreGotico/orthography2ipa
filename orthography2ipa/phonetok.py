@@ -510,7 +510,7 @@ class IPAPath:
     listed for each grapheme is the canonical form (cost 0) and
     alternatives receive +1 each. When a spec declares per-candidate
     weights the per-grapheme cost is ``-log(p)`` instead — see
-    :mod:`orthography2ipa.weights` and ``docs/candidate_scoring.md``."""
+    :mod:`orthography2ipa.weights` and ``docs/engine/lattice.md#how-cost-works``."""
 
     graphemes: Tuple[str, ...] = ()
     """The grapheme key each segment came from, parallel to
@@ -543,7 +543,7 @@ class Candidate:
     candidate's (normalised) probability; for a plain-list spec it is the
     uniform-descending *rank* cost (``0.0`` for the canonical candidate,
     ``1.0`` for the next, …). Lower cost = more likely. See
-    :mod:`orthography2ipa.weights` and ``docs/lattice.md``.
+    :mod:`orthography2ipa.weights` and ``docs/engine/lattice.md``.
     """
 
     ipa: str
@@ -617,7 +617,7 @@ class SegmentSlot:
 #
 # It is built entirely from costs the lattice already carries
 # (``Candidate.cost`` = −log P for a weighted spec, rank cost otherwise; see
-# ``docs/lattice.md``), combining three signals:
+# ``docs/engine/lattice.md``), combining three signals:
 #
 # 1. **Ambiguity** — the top-1 vs top-2 ``cost`` margin *within* a slot. A
 #    large margin means one option dominates (confident); a margin of ``0``
@@ -2087,7 +2087,7 @@ class PhonetokTokenizer:
                 # question about the Brahmic specs' own schwa handling, with
                 # its own fleet-wide cost. They keep their existing behaviour
                 # here so this change has one blast radius; the finding is
-                # recorded in docs/benchmarks.md for its own PR.
+                # recorded in docs/evaluation/benchmarks.md for its own PR.
                 if self.spec.inherent_vowel and ipa_vals:
                     first_ipa = ipa_vals[0]
                     is_mark = (

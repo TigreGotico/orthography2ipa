@@ -2,7 +2,7 @@
 
 The `pt-PT-x-*` specs model the regional speech of mainland Portugal, Madeira and the Azores. Each one is a delta spec over [pt-PT](pt-PT.md): it inherits the whole standard and declares only what its region changes. This page first explains how the inheritance works. One table then compares the defining features of every lect. Each lect then has its own section, with its sources, its rules and their conditions, and its known gaps.
 
-Every transcription on this page is real output of `orthography2ipa.transcribe(text, code)`. For the scores of each spec, see [../scoreboard.md](../scoreboard.md).
+Every transcription on this page is real output of `orthography2ipa.transcribe(text, code)`. For the scores of each spec, see [../evaluation/generated/scoreboard.md](../evaluation/generated/scoreboard.md).
 
 ## How the dialect specs inherit from pt-PT
 
@@ -10,7 +10,7 @@ Every spec on this page sets `parent` to `pt-PT`. It also sets the four base key
 
 The dictionary fields `graphemes`, `allophones`, `positional_graphemes` and `word_exceptions` merge key by key (`InheritanceMode.BASE_MERGE`). An own entry replaces the `pt-PT` entry with the same key, and every other key is inherited. In `positional_graphemes` the key is the grapheme. So an own map for ⟨s⟩ replaces the whole ⟨s⟩ map of `pt-PT`. A position that the dialect leaves out of that map falls back to the grapheme table, not to the `pt-PT` value for that position.
 
-The rule lists `allophone_rules` and `sandhi_rules` merge by id (`InheritanceMode.OVERLAY_BY_ID`, see [../allophony.md](../allophony.md#inheritance)). The `pt-PT` rules keep their order. An own rule with the same id replaces the inherited rule in place. An own rule with a new id goes to the end of the list. The allophony stage applies the first rule whose phoneme and context match. So a dialect rule at the end of the list fires only where no inherited rule matched first.
+The rule lists `allophone_rules` and `sandhi_rules` merge by id (`InheritanceMode.OVERLAY_BY_ID`, see [../engine/allophony.md](../engine/allophony.md#inheritance)). The `pt-PT` rules keep their order. An own rule with the same id replaces the inherited rule in place. An own rule with a new id goes to the end of the list. The allophony stage applies the first rule whose phoneme and context match. So a dialect rule at the end of the list fires only where no inherited rule matched first.
 
 A spec switches off an inherited rule when it declares the same id with an empty `phonemes` list. Such a rule matches no phoneme. Porto, Braga and Terceira switch off the suffix rules and word lists of `pt-PT` (`PT_SUFFIX_*`, `PT_LEX_*`), because their own stressed-vowel rules must reach the vowel first. The Algarve switches off `PT_FINAL_EM_NUCLEUS`, `PT_FINAL_ENS_NUCLEUS` and `PT_FINAL_ENS_GLIDE`.
 

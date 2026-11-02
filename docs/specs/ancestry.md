@@ -140,7 +140,7 @@ ancestry_similarity(get("es"), get("ja"))                 # 0.001534250000000000
 
 The products shrink fast along a long chain, so distant relatives score low. Spanish and Japanese still share a small score, because `ja` has an English adstrate and English reaches `ine` and `gem`. Two languages whose graphs never meet score 0.0.
 
-With `temporal_decay=True`, each edge weight also decays with the time gap between the ancestor and the descendant, when both specs carry a `timespan`. The factor is `exp(-gap / decay_halflife)`, and `decay_halflife` defaults to 1000 years. [distance.md](distance.md) covers the other metrics that use ancestry.
+With `temporal_decay=True`, each edge weight also decays with the time gap between the ancestor and the descendant, when both specs carry a `timespan`. The factor is `exp(-gap / decay_halflife)`, and `decay_halflife` defaults to 1000 years. [distance.md](../guide/distance.md) covers the other metrics that use ancestry.
 
 ## Writing ancestry for a language
 
@@ -165,7 +165,7 @@ Ancestor(
 )
 ```
 
-Point `parent` at the right clade node or data ancestor. [adding_a_language.md](adding_a_language.md) gives the full procedure.
+Point `parent` at the right clade node or data ancestor. [../contributing/spec_authoring.md](../contributing/spec_authoring.md) gives the full procedure.
 
 ## Alignment with Glottolog
 
@@ -213,4 +213,4 @@ A spec without a `glottolog_code` is usually one of three kinds:
 Glottolog does have nodes for the hard-looking cases, and the specs use them. Esperanto is `espe1235` with family `Constructed`, Iberian is `iber1250` with `Isolate`, and Tartessian is `tart1237` with `Unclassifiable`. A creole has a lexifier and a creole base, not one line of descent. The explicit `family` override exists for that case.
 
 ---
-[← Distance Metrics](distance.md) · [Home](index.md) · [Adding a language →](adding_a_language.md)
+[← Quality tiers](quality_tiers.md) · [Home](../index.md) · [IPA Reference →](ipa_reference.md)

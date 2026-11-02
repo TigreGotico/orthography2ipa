@@ -2,7 +2,7 @@
 
 Each file in this folder repairs a defect in an upstream gold set. The upstream file stays byte-identical. Each row of an overlay is one corrected gold entry, as one line of JSON.
 
-A correction may come only from the spelling of the word or from a citation that was fetched and read. It may never come from the output of orthography2ipa, because a gold repaired with the engine's own answers measures nothing. The rules for citations are in [Citations](../../../../docs/contributing/citations.md). [Corrections overlays](../../../../docs/benchmarks.md#corrections-overlays) explains how the board scores an overlay.
+A correction may come only from the spelling of the word or from a citation that was fetched and read. It may never come from the output of orthography2ipa, because a gold repaired with the engine's own answers measures nothing. The rules for citations are in [Citations](../../../../docs/contributing/citations.md). [Corrections overlays](../../../../docs/evaluation/benchmarks.md#corrections-overlays) explains how the board scores an overlay.
 
 ## How the benchmark uses an overlay
 

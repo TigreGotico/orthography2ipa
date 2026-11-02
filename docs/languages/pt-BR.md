@@ -11,11 +11,11 @@
 
 `pt-BR` models the general Brazilian standard. It takes its grapheme, allophone and positional maps from `pt-PT-x-medieval` through the three `*_base` keys. Its `ancestors` add Old Tupi (`tpw`) as a substrate and Kimbundu (`kmb`) as an adstrate, for the lexicon. The regional Brazilian specs inherit from `pt-BR` and change only what their region changes. [pt-BR-dialects.md](pt-BR-dialects.md) describes them. Uruguayan Portuguese ([pt-UY.md](pt-UY.md)) is also a child of `pt-BR`. For a comparison with the other Romance languages, see [comparative.md](comparative.md).
 
-Every transcription on this page is real output of `orthography2ipa.transcribe(text, "pt-BR")`. For the scores of the spec, see [../scoreboard.md](../scoreboard.md).
+Every transcription on this page is real output of `orthography2ipa.transcribe(text, "pt-BR")`. For the scores of the spec, see [../evaluation/generated/scoreboard.md](../evaluation/generated/scoreboard.md).
 
 ## The two maps
 
-The library models pronunciation as two maps (see [../allophony.md](../allophony.md)). The pre-lexical map goes from spelling to phoneme, in `positional_graphemes`. The post-lexical map goes from phoneme to surface allophone, in `allophone_rules`. `pt-BR` runs the post-lexical rules in two passes (`allophone_passes: 2`).
+The library models pronunciation as two maps (see [../engine/allophony.md](../engine/allophony.md)). The pre-lexical map goes from spelling to phoneme, in `positional_graphemes`. The post-lexical map goes from phoneme to surface allophone, in `allophone_rules`. `pt-BR` runs the post-lexical rules in two passes (`allophone_passes: 2`).
 
 ### Pre-lexical map
 
@@ -108,7 +108,7 @@ The script folds ten conventions of the gold out of both sides, one at a time, a
 
 ## Tier
 
-`pt-BR` is at the production tier. Portuguese spelling is deep: vowel quality depends on stress, nasality and the word. So the deep-orthography threshold of [quality tiers](../quality_tiers.md) applies, PER at most 0.25 on a gate-eligible gold of at least 500 entries. The qualifying row is `wikipron` (crowd-scraped). The other rows use other transcription conventions, and [../benchmark_datasets.md](../benchmark_datasets.md) describes them. For the figures, see [../scoreboard.md](../scoreboard.md).
+`pt-BR` is at the production tier. Portuguese spelling is deep: vowel quality depends on stress, nasality and the word. So the deep-orthography threshold of [quality tiers](../specs/quality_tiers.md) applies, PER at most 0.25 on a gate-eligible gold of at least 500 entries. The qualifying row is `wikipron` (crowd-scraped). The other rows use other transcription conventions, and [../evaluation/datasets.md](../evaluation/datasets.md) describes them. For the figures, see [../evaluation/generated/scoreboard.md](../evaluation/generated/scoreboard.md).
 
 ---
 [← European Portuguese dialects](pt-PT-dialects.md) · [Home](../index.md) · [Brazilian Portuguese dialects →](pt-BR-dialects.md)

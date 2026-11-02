@@ -13,7 +13,7 @@ and then plugs back in as a
 The public entry point is :meth:`orthography2ipa.g2p.G2P.features`; this module
 holds the record types it returns. Everything here is a **pure read** — it
 never affects :meth:`~orthography2ipa.g2p.G2P.transcribe`. See
-``docs/features.md`` for the CRF-as-rescorer pattern and a worked example.
+``docs/engine/lattice.md#feature-export-for-a-learned-model`` for the CRF-as-rescorer pattern and a worked example.
 """
 from __future__ import annotations
 

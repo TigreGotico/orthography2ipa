@@ -98,17 +98,17 @@ The blocks after /m/ for /t/ and /d/ follow the Chemini and Aït Mengellat patte
 - The labiovelarized *kʷ gʷ* are usually unwritten in the standard orthography, and the spec does not model them.
 - Tifinagh input is out of scope. Transliterate it to Latin first.
 
-## TTS gold set
+## TTS silver set
 
-`orthography2ipa/data/gold/kabyle_tts/kab.tsv` holds phonetically diverse Kabyle sentences, each justified from the literature. It validates Kabyle TTS voices and pins the sentence-level behaviour of the spec. The [TTS gold sets](../tts_gold.md#kabyle_tts) page describes the schema, the feature tags and the authoring steps.
+`orthography2ipa/data/gold/kabyle_tts/kab.tsv` holds phonetically diverse Kabyle sentences, each justified from the literature. It validates Kabyle TTS voices and pins the sentence-level behaviour of the spec. The [TTS silver sets](../evaluation/silver_sets.md#kabyle_tts) page describes the schema, the feature tags and the authoring steps.
 
 ## Sources
 
 - Kossmann, Maarten G. & Stroomer, Harry J. (1997). *Berber Phonology*. In A. S. Kaye (ed.), *Phonologies of Asia and Africa*, vol. 1, pp. 461-475. Eisenbrauns. The primary source, read in full, for spirantization, lax and tense gemination, the vowels, the schwa and pharyngealization. <https://hdl.handle.net/1887/4150>
 - Karaoui, F., Djeradi, A. & Djeradi, R. (2024). *Acoustic Characterization of the Noise Sources for the Kabyle Fricatives Consonants*. ICAECE'2023 abstracts, AIJR, pp. 123-125. The Kabyle fricative inventory, [ç ʝ] included.
 - Bedar, A., Quellec, L. & Tifrit, A. (2022). *Post-sonorant occlusivization in Kabyle*. Speaker judgments for Chemini Kabyle, with comparative data from Aït Mengellat, Boghni and Makouda.
-- Naït-Zerrad, Kamal (2001). *Grammaire moderne du kabyle / Tajerrumt tatrart n teqbaylit*. Éditions Karthala, Paris. A lexical and morphological source for the TTS gold set, not a phonological source.
-- Dallet, Jean-Marie (1982). *Dictionnaire kabyle-français: parler des At Mangellat, Algérie*. SELAF, Paris. A lexical source for the TTS gold set, not a phonological source.
+- Naït-Zerrad, Kamal (2001). *Grammaire moderne du kabyle / Tajerrumt tatrart n teqbaylit*. Éditions Karthala, Paris. A lexical and morphological source for the TTS silver set, not a phonological source.
+- Dallet, Jean-Marie (1982). *Dictionnaire kabyle-français: parler des At Mangellat, Algérie*. SELAF, Paris. A lexical source for the TTS silver set, not a phonological source.
 - Wikipedia, *Kabyle language*. A secondary check of the Berber Latin alphabet table only.
 
 ---

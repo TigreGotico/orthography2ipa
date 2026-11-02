@@ -2,13 +2,13 @@
 
 **Code**: `fr-FR` | **Family**: Indo-European > Romance > Gallo-Romance | **Script**: Latin (alphabet) | **Quality tier**: research
 
-The `fr-FR` spec describes Standard Metropolitan French, as spoken in Paris and the north. That is the variety the WikiPron gold transcribes. The registry resolves the bare tag `fr` to this spec. French has a deep orthography, so the 0.25 PER threshold applies to a promotion (see [quality tiers](../quality_tiers.md#the-per-threshold)).
+The `fr-FR` spec describes Standard Metropolitan French, as spoken in Paris and the north. That is the variety the WikiPron gold transcribes. The registry resolves the bare tag `fr` to this spec. French has a deep orthography, so the 0.25 PER threshold applies to a promotion (see [quality tiers](../specs/quality_tiers.md#the-per-threshold)).
 
 The sources are Fouché (1959), Tranel (1987), Fougeron & Smith (1993), Tranel (1995), Ladefoged & Maddieson (1996), Divay & Vitale (1997) and Walker (2001).
 
 ## Benchmark
 
-The `wikipron` row under the tag `fr` is crowd-scraped, and the `ipadict` row under `fr-FR` is machine-generated. Both can gate a promotion. The `ipa_childes` row is espeak-derived, so it measures agreement with espeak and cannot gate. The scores are on the [scoreboard](../scoreboard.md).
+The `wikipron` row under the tag `fr` is crowd-scraped, and the `ipadict` row under `fr-FR` is machine-generated. Both can gate a promotion. The `ipa_childes` row is espeak-derived, so it measures agreement with espeak and cannot gate. The scores are on the [scoreboard](../evaluation/generated/scoreboard.md).
 
 ## Consonants
 

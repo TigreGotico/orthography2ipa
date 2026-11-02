@@ -2,7 +2,7 @@
 """Fail when merging a pull request would carry benchmark board rows backwards.
 
 The board (``benchmarks/results.json``, ``benchmarks/results_ci_sample.json``,
-``docs/scoreboard.md``) is regenerated whole, but a branch only rescores the
+``docs/evaluation/generated/scoreboard.md``) is regenerated whole, but a branch only rescores the
 rows it worked on; every other row is a copy of the merge target as it stood
 when the branch was cut. That staleness is not by itself a problem: the merge
 is a three-way merge, so rows the branch never edited keep the target's newer
@@ -74,7 +74,7 @@ import subprocess
 import sys
 
 BOARD_JSON = ("benchmarks/results.json", "benchmarks/results_ci_sample.json")
-SCOREBOARD_MD = "docs/scoreboard.md"
+SCOREBOARD_MD = "docs/evaluation/generated/scoreboard.md"
 SPEC_DIR = "orthography2ipa/data"
 
 #: Burn-down sets: ``(path, module-level name)`` pairs naming a collection of
@@ -228,13 +228,26 @@ def read_ratchet(rev, path, name, repo="."):
     return None
 
 
+def renamed_paths(base, merged, repo="."):
+    """Old path to new path for every file git detects as renamed from *base* to *merged*."""
+    renames = {}
+    for line in (git("diff", "--name-status", "-M", base, merged, repo=repo) or "").splitlines():
+        status, *paths = line.split("\t")
+        if status.startswith("R") and len(paths) == 2:
+            renames[paths[0]] = paths[1]
+    return renames
+
+
 def check_ratchets(base, merged, repo="."):
     """Report burn-down sets the merge would grow. Returns True when any did.
 
     A set that grew is a resolution that took the branch's older, longer copy:
     every restored entry silences a test again, so the suite cannot notice.
+    A base entry that names a file the merge renames is compared under its
+    new path, so moving a listed page does not read as growth.
     """
     failed = False
+    renames = renamed_paths(base, merged, repo=repo)
     for path, name in RATCHETS:
         base_set = read_ratchet(base, path, name, repo=repo)
         merged_set = read_ratchet(merged, path, name, repo=repo)
@@ -243,6 +256,8 @@ def check_ratchets(base, merged, repo="."):
                   f"{'the merge result' if merged_set is None else base}; "
                   f"the burn-down guard cannot judge this merge")
             continue
+        # An entry that names a moved file follows the file to its new path.
+        base_set = frozenset(renames.get(entry, entry) for entry in base_set)
         added = sorted(merged_set - base_set)
         if not added:
             print(f"{path}: {name} does not grow "
@@ -581,7 +596,7 @@ def _run(boards, base, merged, owns_lang, declared, engine_touched, repo="."):
                       f"this diff does not touch {key[0]}'s spec.")
             print(f"  Fix: merge {base} into the branch and resolve the board "
                   f"files keeping {base}'s value for every row you did not "
-                  f"rescore yourself, then regenerate docs/scoreboard.md.")
+                  f"rescore yourself, then regenerate docs/evaluation/generated/scoreboard.md.")
 
         if undeclared:
             failed = True

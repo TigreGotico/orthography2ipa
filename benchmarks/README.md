@@ -13,10 +13,10 @@ here, so never edit one by hand. The procedure is in
 | `espeak_agreement.json` | Symbol-level agreement with espeak-ng | `scripts/espeak_agreement.py` |
 | `latency.py` | A script that times `G2P.transcribe` per utterance | Run it: `python benchmarks/latency.py` |
 
-`docs/scoreboard.md`, `docs/comparison.md`, `docs/lexicon_scoreboard.md` and
-`docs/espeak_agreement.md` are the rendered pages of these files. A
+`docs/evaluation/generated/scoreboard.md`, `docs/evaluation/generated/comparison.md`, `docs/evaluation/generated/lexicon_scoreboard.md` and
+`docs/evaluation/generated/espeak_agreement.md` are the rendered pages of these files. A
 whole-board `--scoreboard` run also writes `results_environment.json`, the
 versions of the plugin and scorer packages it used.
 
 How a score is computed and how far it can be trusted is in
-[docs/benchmarks.md](../docs/benchmarks.md).
+[docs/evaluation/benchmarks.md](../docs/evaluation/benchmarks.md).

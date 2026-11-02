@@ -1137,7 +1137,7 @@ def test_ro_carries_no_stress_marks():
     lexical stress is phonemic but NOT predictable from standard orthography
     (cópii 'copies' vs copíi 'children' are spelled identically); the standard
     norm writes no stress marks, so the spec carries no stress block per
-    docs/quality_tiers.md."
+    docs/specs/quality_tiers.md."
 
     A declared omission, pinned so a stress block cannot be added by accident:
     the engine must not guess a position it cannot know.

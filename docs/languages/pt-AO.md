@@ -11,7 +11,7 @@
 
 Angolan Portuguese (Português de Angola, PA) is the emerging second norm of educated Angolan speakers. It is not a creole. Portuguese has been the sole official language of Angola since 1975. It is the mother tongue of a growing urban minority and the second language of most Angolans. It is in contact with many Bantu languages, such as Umbundu, Kimbundu and Kikongo. The spec inherits the `pt-PT` maps and removes several European reduction processes from them.
 
-Every transcription on this page is real output of `orthography2ipa.transcribe(text, code)`. For the scores of the spec, see [../scoreboard.md](../scoreboard.md).
+Every transcription on this page is real output of `orthography2ipa.transcribe(text, code)`. For the scores of the spec, see [../evaluation/generated/scoreboard.md](../evaluation/generated/scoreboard.md).
 
 ## What the spec models
 
