@@ -114,7 +114,17 @@ Every dialect spec declares `parent: eu` with an ancestor weight of 0.9. So `anc
 
 Euskara Batua has a shallow (phonemic) orthography, so the 0.15 PER production threshold applies (see [quality tiers](../specs/quality_tiers.md#the-per-threshold)). Its spelling is regular. The palatal spellings ⟨tt dd ñ ll⟩ and the affricate digraphs ⟨tz ts tx⟩ are closed rules that a spec can encode.
 
-Basque accent varies by dialect and the orthography never writes it. The `eu` spec has no `stress` block and states the exemption in its `notes`, so the engine emits no stress marks.
+Basque accent varies by dialect, and the orthography never writes it.
+
+Batua has no official accent norm, and its spelling marks no accent. The `stress` block puts the accent on the second syllable of the word. This is the General Central [+2] pattern. Hualde (1994: 1559) proposes it for Batua, and Elordieta, Gaminde & Hualde (1998: 402) record it in Batua speech (*gizóna*, *emákumea*, *txistúlaria*).
+
+A monosyllabic root (*lúrra*) takes the accent on the first syllable. So does a closed set of marked words (*lékuan*, *áurrera*). The spelling shows neither, so the spec does not model them.
+
+The Eastern dialect specs (Souletin, Roncalese, Lapurdian, Lower Navarrese) declare their own penultimate [-2] block (Hualde 2022: 92, 97). Gipuzkoan inherits [+2], the General Central system (Hualde 2022: 84).
+
+Biscayan and Upper Navarrese state `"stress": false` and print no stress marks. Each area mixes accent systems. Bizkaia has the Western systems, where most words are unaccented and the accent falls on the phrase, next to Central systems (Hualde 2022: 83, Table 1). Upper Navarre has the tonal [+2H] system of Goizueta (Hualde 2022: 84, Table 2) and the penultimate [-2] of the Baztan Valley (Hualde 2022: 80). No single block can be written for either spec.
+
+The engine writes the stress mark inside the affricates *ts̻ ts̺* (*beltˈs̻aɾi*). The IPA segmenter does not read an affricate with a diacritic below as one segment.
 
 ## Benchmark
 

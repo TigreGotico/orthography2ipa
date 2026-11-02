@@ -6442,7 +6442,7 @@
   "per": 0.0984,
   "per_ci_low": 0.0944,
   "per_ci_high": 0.1026,
-  "stress_acc": 0.0,
+  "stress_acc": 0.8677,
   "n_stress": 3017,
   "exact_match": 0.46,
   "quality_tier": "production",

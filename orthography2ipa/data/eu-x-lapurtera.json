@@ -32,6 +32,47 @@
     }
   ],
   "notes": "Lapurdian Basque (Lapurtera / Labourdian). Spoken in Labourd/Lapurdi, French Basque Country (around Bayonne, Biarritz, Saint-Jean-de-Luz). In Zuazo's classification Lapurdian and Lower Navarrese form the single Navarro-Lapurdian dialect. Classical literary dialect: Axular's Gero (1643), written in the speech of Sara (Lapurdi), is the canonical Basque prose text. VALIDATED against Hualde (2018), 'Aspiration in Basque'. KEY FEATURES: (1) ASPIRATION — RECEDING: classical 17th-century Lapurdian preserved both the laryngeal fricative /h/ and aspirated stops [pʰ tʰ kʰ], amply attested in Axular's Gero (Hualde 2018: 5, list (1)); however, in the coastal French Basque Country aspiration was already lost by the 19th century (Hualde 2018: 2, citing Michelena FHV VI:168). Modern coastal Lapurdian therefore has /h/ only variably/residually — modelled here as h -> [h] ~ [∅]. Unlike Souletin, modern Lapurdian has no productive aspirated-stop series. (2) FULL SIBILANT CONTRAST: /s̺ s̻ ʃ/ and /ts̺ ts̻ tʃ/ are maintained as in the conservative base. (3) PALATAL STOPS /c ɟ/ maintained. (4) FRENCH CONTACT: uvular [ʁ] for /r/ and /ɾ/ appears in French-contact speech alongside the inherited alveolar [r]/[ɾ] (contact feature; no dedicated page cite). (5) Conservative morphology, close to the classical literary norm.",
+  "stress": {
+    "default_position": -2,
+    "diphthongs": [
+      "ai",
+      "ei",
+      "oi",
+      "ui",
+      "au",
+      "eu"
+    ],
+    "ipa_diphthongs": [
+      "ai̯",
+      "ei̯",
+      "oi̯",
+      "ui̯",
+      "au̯",
+      "eu̯"
+    ],
+    "max_onset": 2,
+    "onset_clusters": [
+      "pɾ",
+      "bɾ",
+      "βɾ",
+      "tɾ",
+      "dɾ",
+      "ðɾ",
+      "kɾ",
+      "ɡɾ",
+      "ɣɾ",
+      "fɾ",
+      "pl",
+      "bl",
+      "βl",
+      "kl",
+      "ɡl",
+      "ɣl",
+      "fl"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "Penultimate accent [-2]: east of the Bidasoa 'the most common pattern is penultimate accentuation, [–2]' (Hualde 2022: 92), and the Low Navarrese/Lapurdian region later lost all older lexical accent contrasts (Hualde 2022: 80, fn. 5). The block replaces the General Central [+2] block of eu, which the dialect does not use. The diphthong, hiatus and onset settings are those of the eu block (Hualde 1994: 1549)."
+  },
   "sources": [
     {
       "id": "hualde2018_aspiration",
@@ -62,6 +103,26 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "hualde2022_ocb",
+      "author": "Hualde, J.I.",
+      "year": 2022,
+      "title": "The reconstruction of Old Common Basque accentuation: Closing open issues",
+      "publisher": "Anuario del Seminario de Filología Vasca Julio de Urquijo (ASJU) 56(2)",
+      "url": "https://doi.org/10.1387/asju.23983",
+      "pages": "77-106",
+      "notes": "Read for the dialect accent systems: Western-type systems (Table 1, p. 83), Central-type systems with General Central [+2] (Table 2, p. 84), penultimate [-2] east of the Bidasoa (p. 92) and in Zuberoan (p. 97)."
+    },
+    {
+      "id": "hualde1994_batua",
+      "author": "Hualde, J.I.",
+      "year": 1994,
+      "title": "Euskal azentuak eta euskara batua",
+      "publisher": "Euskera 39 (2. aldia), Euskaltzaindia",
+      "url": "https://www.euskaltzaindia.eus/dok/euskera/50051.pdf",
+      "pages": "1549-1568",
+      "notes": "Read for the accent proposal for Batua, (12) p. 1559: [+2] in the general case (mendía, txakúrra, emákumea, bertsólariarekin), [+1] after a monosyllabic root (lúrra, lúrrera) and in marked words (lékuan, bésteari, áurrera, átzetik), a secondary accent on the last syllable of the phrase; and for hiatus in Batua vowel sequences, p. 1549 ([a.te.a], [ba.so.a])."
     }
   ],
   "wikipedia": [
