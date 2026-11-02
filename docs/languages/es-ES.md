@@ -25,7 +25,9 @@ front vowels, ⟨gu⟩/⟨qu⟩ digraphs, silent ⟨h⟩, ⟨y⟩ as consonant/v
   Spanish.
 - Stress: the written-accent system plus the vowel/n/s-final penult
   default is fully predictable from orthography and encoded in the
-  `stress` block.
+  `stress` block. A final vowel + ⟨y⟩ is an oxytone ending with no tilde
+  (⟨estoy⟩, ⟨virrey⟩, ⟨Uruguay⟩; DPD s.v. tilde § 1.2.1), and ⟨y⟩ next
+  to a vowel is never a syllable of its own (⟨mayo⟩ ma-yo).
 
 ## Benchmark (full gold set, no cap)
 

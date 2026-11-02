@@ -192,9 +192,9 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | bua | northeuralex | 1174 | 0.0398 | - | - | 0.0398 | 0.0398 | 0.7726 | 0.7726 | [0.0351, 0.0448] | 0.7726 | research | lexicon-derived |
 | bua | wikipron | 140 | 0.3571 | - | - | 0.3120 | 0.3114 | 0.1571 | 0.1571 | [0.3243, 0.3881] | 0.1143 | research | crowd-scraped |
 | ca | 4catac | 160 | 0.0642 | - | - | - | - | - | - | [0.0587, 0.0698] | 0.0437 | research | expert-human |
-| ca | ipa_childes | 3813 | 0.2576‡ | - | - | 0.1681 | 0.1462 | 0.3669 | 0.4306 | [0.2511, 0.2645] | 0.2206 | research | espeak-derived |
+| ca | ipa_childes | 3813 | 0.2566‡ | - | - | 0.1676 | 0.1458 | 0.3669 | 0.4306 | [0.2501, 0.2635] | 0.2206 | research | espeak-derived |
 | ca | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ca | vox_communis | 141623 | 0.1321‡ | 0.9391 | - | 0.1173 | 0.1067 | 0.5120 | 0.5488 | [0.1310, 0.1332] | 0.4706 | research | epitran-derived |
+| ca | vox_communis | 141623 | 0.1320‡ | 0.9415 | - | 0.1173 | 0.1067 | 0.5126 | 0.5493 | [0.1308, 0.1331] | 0.4718 | research | epitran-derived |
 | ca | wikipron | 106 | 0.2565 | - | - | 0.1488 | 0.1289 | 0.5094 | 0.5660 | [0.2121, 0.3003] | 0.3396 | research | crowd-scraped |
 | ca-x-balear | 4catac | 160 | 0.1360 | - | - | - | - | - | - | [0.1283, 0.1446] | 0.0062 | research | expert-human |
 | ca-x-balear | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
@@ -246,13 +246,13 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | el | vox_communis | 5983 | 0.2653‡ | - | - | 0.2394 | 0.2375 | 0.1339 | 0.1342 | [0.2613, 0.2690] | 0.1190 | research | epitran-derived |
 | el | wikipron | 19108 | 0.0327 | - | - | 0.0174 | 0.0160 | 0.8972 | 0.9104 | [0.0316, 0.0337] | 0.7909 | research | crowd-scraped |
 | en | wikipron | 80985 | 0.2656 | - | - | 0.2217 | 0.2015 | 0.2570 | 0.2842 | [0.2642, 0.2670] | 0.2078 | research | crowd-scraped |
-| en-GB | ipa_childes | 11445 | 0.3001‡ | - | - | 0.2479 | 0.2284 | 0.2015 | 0.2225 | [0.2963, 0.3035] | 0.1541 | research | espeak-derived |
-| en-GB | ipadict | 65117 | 0.2221‡ | 0.6258 | - | 0.1706 | 0.1491 | 0.3551 | 0.3918 | [0.2206, 0.2236] | 0.2643 | research | espeak-derived |
+| en-GB | ipa_childes | 11445 | 0.3000‡ | - | - | 0.2478 | 0.2283 | 0.2016 | 0.2226 | [0.2963, 0.3034] | 0.1542 | research | espeak-derived |
+| en-GB | ipadict | 65117 | 0.2221‡ | 0.6260 | - | 0.1706 | 0.1490 | 0.3554 | 0.3920 | [0.2205, 0.2235] | 0.2643 | research | espeak-derived |
 | en-GB | wikipron | 81535 | 0.2327 | - | - | 0.1799 | 0.1567 | 0.3548 | 0.3973 | [0.2313, 0.2341] | 0.2739 | research | crowd-scraped |
-| en-US | cmudict | 126048 | 0.3383 | - | - | 0.2850 | 0.2636 | 0.1837 | 0.2022 | [0.3372, 0.3395] | 0.1378 | research | lexicon-derived |
-| en-US | ipa_babylm | 20103 | 0.3540‡ | - | - | 0.3008 | 0.2820 | 0.3442 | 0.3695 | [0.3469, 0.3610] | 0.2810 | research | espeak-derived |
-| en-US | ipa_childes | 18053 | 0.2675‡ | - | - | 0.2087 | 0.1888 | 0.3538 | 0.3839 | [0.2643, 0.2708] | 0.2826 | research | espeak-derived |
-| en-US | ipadict | 125923 | 0.2915 | 0.6162 | - | 0.2295 | 0.2058 | 0.2539 | 0.2842 | [0.2903, 0.2927] | 0.1863 | research | lexicon-derived |
+| en-US | cmudict | 126048 | 0.3383 | - | - | 0.2849 | 0.2635 | 0.1838 | 0.2023 | [0.3371, 0.3395] | 0.1380 | research | lexicon-derived |
+| en-US | ipa_babylm | 20103 | 0.3540‡ | - | - | 0.3007 | 0.2819 | 0.3444 | 0.3696 | [0.3469, 0.3610] | 0.2813 | research | espeak-derived |
+| en-US | ipa_childes | 18053 | 0.2674‡ | - | - | 0.2086 | 0.1887 | 0.3541 | 0.3844 | [0.2642, 0.2708] | 0.2826 | research | espeak-derived |
+| en-US | ipadict | 125923 | 0.2915 | 0.6162 | - | 0.2295 | 0.2057 | 0.2540 | 0.2843 | [0.2903, 0.2927] | 0.1863 | research | lexicon-derived |
 | enf | northeuralex | 838 | 0.0892 | - | - | 0.0888 | 0.0888 | 0.5346 | 0.5346 | [0.0819, 0.0963] | 0.5346 | research | lexicon-derived |
 | enm | wikipron | 6466 | 0.2620 | - | 0.2163† (vowel length mark ː) | 0.2270 | 0.1924 | 0.1681 | 0.2505 | [0.2580, 0.2660] | 0.1174 | research | crowd-scraped |
 | eo | ipadict | 23245 | 0.0120 | - | - | 0.0120 | 0.0120 | 0.9039 | 0.9039 | [0.0115, 0.0125] | 0.9039 | production | machine-generated |

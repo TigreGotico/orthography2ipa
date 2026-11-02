@@ -103,7 +103,10 @@ class TestSpanishFinalYIsAVowel:
     def test_prevocalic_y_is_the_consonant(self):
         from orthography2ipa import G2P
         assert G2P("es").transcribe_word("yo") == "ˈʝo"
-        assert G2P("es").transcribe_word("playa") == "plaˈʝa"
+        # A paroxytone, pla-ya: ⟨y⟩ before a vowel opens the syllable
+        # (Navarro Tomás 1918, § 122: hoyo-óyo), and a vowel-final word
+        # without a tilde stresses the penult (DPD s.v. tilde § 1.2.2).
+        assert G2P("es").transcribe_word("playa") == "ˈplaʝa"
 
 
 class TestPolishRzDoesNotVoiceThePrecedingStop:
