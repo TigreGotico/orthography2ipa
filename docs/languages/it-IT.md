@@ -1,111 +1,81 @@
 # Italian (it-IT): Phonology Reference
 
-**Code**: `it-IT` | **Family**: Indo-European > Romance > Italo-Romance | **Script**: Latin (alphabet)
-**Quality tier**: research | **Sources**: Lepschy & Lepschy (1988), Maiden (1995), Rogers & d'Arcangeli (2004)
+**Code**: `it-IT` | **Family**: Indo-European > Romance > Italo-Romance | **Script**: Latin (alphabet) | **Quality tier**: research
 
----
+The `it-IT` spec describes Standard Italian, which rests on Florentine and Tuscan usage. Where the regional varieties disagree, it writes the Standard Northern value. The sources are Lepschy & Lepschy (1988), Maiden (1995), Rogers & d'Arcangeli (2004), Bertinetto & Loporcaro (2005), Krämer (2009) and Canepari (2009).
 
-## Consonant System
+## C and G softening
 
-### C and G Softening
+The letters ⟨c⟩ and ⟨g⟩ are [tʃ] and [dʒ] before ⟨e⟩ and ⟨i⟩, and [k] and [ɡ] elsewhere. The digraphs ⟨ch⟩ and ⟨gh⟩ always keep the stop. The spec states the softening as `before_e` and `before_i` entries in `positional_graphemes`.
 
-| Grapheme | Before e/i | Elsewhere | Digraphs |
+| Grapheme | Before ⟨e i⟩ | Elsewhere | Spec output |
 |:---:|:---:|:---:|:---|
-| c | [tʃ] | [k] | `ci`, `ce` → [tʃ]; `ch` → [k] always; `chi`, `che` → [k] |
-| g | [dʒ] | [ɡ] | `gi`, `ge` → [dʒ]; `gh` → [ɡ] always; `ghi`, `ghe` → [ɡ] |
+| c | tʃ | k | ⟨cena⟩ `ˈtʃena`, ⟨cosa⟩ `ˈkoza` |
+| g | dʒ | ɡ | ⟨gente⟩ `ˈdʒente`, ⟨gatto⟩ `ˈɡatːo` |
+| ch | k | k | ⟨chiaro⟩ `ˈkjaro` |
+| sc | ʃ | sk | ⟨scena⟩ `ˈʃena`, ⟨scala⟩ `ˈskala` |
 
-Examples:
-- `cena` [ˈtʃeːna] "dinner" | `cosa` [ˈkɔːza] "thing"
-- `gente` [ˈdʒɛnte] "people" | `gatto` [ˈɡatto] "cat"
-- `cielo` [ˈtʃɛːlo] "sky" | `chiaro` [ˈkjaːro] "clear"
+The ⟨i⟩ of ⟨ci⟩, ⟨gi⟩ and ⟨sci⟩ before another vowel is a spelling marker and has no sound of its own. The spec declares these sequences as graphemes with a `before_vowel` entry, so ⟨cielo⟩ gives `ˈtʃelo` and not a form with [i]. The doubled ⟨cc⟩ and ⟨gg⟩ take the value that the next vowel selects, as in ⟨leggo⟩ `ˈleɡːo` and ⟨legge⟩ `ˈledːʒe`. Only the stop part of the geminate affricate is long (Krämer 2009, §2.2 and §7.1). The sequences ⟨cci⟩ and ⟨ggi⟩ mute the ⟨i⟩ in the same way: ⟨faccia⟩ gives `ˈfatːʃa` and ⟨maggio⟩ gives `ˈmadːʒo`.
 
-The ⟨i⟩ in `ci`, `gi` before another vowel is a graphemic marker only (not pronounced as [i]):
-- `cielo` → [ˈtʃɛːlo], not [ˈtʃiɛːlo]
+The digraph ⟨gu⟩ before a vowel is /ɡw/, the voiced partner of ⟨qu⟩. So ⟨guerra⟩ gives `ˈɡwerːa`. Before a consonant the ⟨u⟩ is an ordinary vowel, as in ⟨gustare⟩.
 
-### SC: Affrication Before Front Vowels
+## GL and the palatal lateral
 
-| Environment | Realization | Examples |
-|:---|:---:|:---|
-| Before e/i | [ʃ] | `scena` [ˈʃɛːna], `scivolare` [ʃivoˈlaːɾe] |
-| Elsewhere | [sk] | `scala` [ˈskala], `scoperta` [skoˈpɛrta] |
+The digraph ⟨gl⟩ is [ʎ] before ⟨i⟩ and [ɡl] elsewhere. The spec gives ⟨figlio⟩ as `ˈfiʎʎo` and ⟨glottale⟩ as `ɡloˈtːale`. The palatal lateral is long between vowels, and the rule `IT_INHERENT_GEMINATE_GLI` writes it twice. The rules `IT_INHERENT_GEMINATE_GN`, `IT_INHERENT_GEMINATE_SC`, `IT_INHERENT_GEMINATE_TS` and `IT_INHERENT_GEMINATE_DZ` do the same for ⟨gn⟩, ⟨sc⟩ and ⟨z⟩.
 
-### GL: Lateral Palatalization
+## S and Z
 
-| Environment | Realization | Examples |
-|:---|:---:|:---|
-| Before i (⟨gli⟩) | [ʎ] | `gli` [ʎi], `figlio` [ˈfiʎʎo] |
-| Elsewhere | [ɡl] | `glottale` [ɡlotˈtaːle] |
+A single ⟨s⟩ is [s] at the start of a word and [z] between vowels, as in ⟨casa⟩ `ˈkaza`. Intervocalic voicing is the northern and central norm, and southern varieties keep [s]. Before a consonant, Italian has no voicing contrast. The rule `IT_S_VOICING_BEFORE_VOICED_C` gives [z] before every voiced consonant, so ⟨svelto⟩ gives `ˈzvelto`. Before a voiceless consonant ⟨s⟩ stays [s], as in ⟨pasta⟩ (Bertinetto & Loporcaro 2005, Krämer 2009 §5.3).
 
-### S: Voicing
+The letter ⟨z⟩ is [dz] at the start of a word, so ⟨zero⟩ gives `ˈdzero`. After a consonant the spec ranks [ts] first and [dz] second, so ⟨marzo⟩ gives `ˈmartso`. Between vowels the default [ts] becomes long through `IT_INHERENT_GEMINATE_TS`: ⟨nazione⟩ gives `natˈtsjone`. The doubled ⟨zz⟩ is [tːs] first and [dːz] second, so ⟨pizza⟩ gives `ˈpitːsa`.
 
-| Environment | Realization | Examples |
-|:---|:---:|:---|
-| Word-initial | [s] | `sole` [ˈsoːle] |
-| Intervocalic (standard N. Italian) | [z] | `casa` [ˈkaːza], `rosa` [ˈroːza] |
-| Before voiced consonant | [z] | `svelto` [ˈzvɛlto] |
-| Elsewhere | [s] | `pasta` [ˈpasta] |
+## Geminate consonants
 
-**Note**: Intervocalic voicing is standard in northern/central Italian. Southern varieties maintain [s] throughout.
+Italian contrasts short and long consonants. The spec maps every doubled letter to a long consonant with the length mark ⟨ː⟩.
 
-### Z: Initial vs. Medial
+| Short | Long | Gloss |
+|:---|:---|:---|
+| ⟨fato⟩ `ˈfato` | ⟨fatto⟩ `ˈfatːo` | fate, done |
+| ⟨caro⟩ `ˈkaro` | ⟨carro⟩ `ˈkarːo` | dear, cart |
+| ⟨pala⟩ `ˈpala` | ⟨palla⟩ `ˈpalːa` | shovel, ball |
 
-| Environment | Realization | Examples |
-|:---|:---:|:---|
-| Word-initial | [dz] | `zero` [ˈdzeːro], `zona` [ˈdzoːna] |
-| After consonant | [dz] | `marzo` [ˈmardzo] |
-| Intervocalic | [ts] | `nazione` [natˈtsjoːne], `pizza` [ˈpittsa] |
+Raddoppiamento fonosintattico lengthens a consonant across a word boundary. It belongs to the sandhi layer, and the spec does not model it.
 
----
+## Vowels
 
-## Geminate Consonants
+Italian has seven stressed vowels, /a e ɛ i o ɔ u/. In unstressed syllables the open-mid /ɛ ɔ/ do not occur, which leaves five vowels. In the reference grammars, a stressed vowel is long in an open syllable and short in a closed one, as in [ˈpaːdre] and [ˈfɔrte].
 
-Italian makes systematic use of **geminate (long) consonants**, which are phonemically distinctive:
+The spec writes only ⟨e⟩ /e/ and ⟨o⟩ /o/ for the mid vowels, and it does not write vowel length. The choice between the close-mid and the open-mid vowel depends on the word and its history, and the spelling does not mark it. So ⟨bello⟩ gives `ˈbelːo` and ⟨forte⟩ gives `ˈforte`.
 
-| Short | Long | Minimal pair |
-|:---:|:---:|:---|
-| `fato` [ˈfaːto] | `fatto` [ˈfatto] | destiny vs. done |
-| `caro` [ˈkaːro] | `carro` [ˈkarro] | dear vs. cart |
-| `pala` [ˈpaːla] | `palla` [ˈpalla] | shovel vs. ball |
+The sequences ⟨ia ie io iu⟩ and ⟨ua ue uo⟩ are glide plus vowel. The spec gives ⟨pianta⟩ as `ˈpjanta`, ⟨buono⟩ as `ˈbwono` and ⟨quando⟩ as `ˈkwando`.
 
-Geminates in the spec: `bb→[bː]`, `cc→[kː]/[tːʃ]`, `dd→[dː]`, `ff→[fː]`, `gg→[ɡː]/[dːʒ]`, etc.
+## Stress
 
----
+The `stress` block puts stress on the penultimate syllable by default. A written accent (⟨à è é ì ò ó ù⟩) always marks the stressed vowel and overrides the default. Antepenultimate stress, as in ⟨tavola⟩, is lexical. Standard spelling does not require an accent on it, so the spec cannot predict it.
 
-## Vowel System
+## Known limitations
 
-Italian has 7 vowel phonemes (5 in unstressed position):
+The spec cannot recover these contrasts from the spelling, and a downstream lexicon must supply them:
 
-| IPA | Stressed | Unstressed | Example |
-|:---:|:---:|:---:|:---|
-| a | ✓ | ✓ | `padre` [ˈpaːdɾe] |
-| e | ✓ | ✓ | `sera` [ˈseːɾa] |
-| ɛ | ✓ | — | `bello` [ˈbɛllo] |
-| i | ✓ | ✓ | `filo` [ˈfiːlo] |
-| o | ✓ | ✓ | `poco` [ˈpoːko] |
-| ɔ | ✓ | — | `forte` [ˈfɔrte] |
-| u | ✓ | ✓ | `luna` [ˈluːna] |
+| Contrast | Example |
+|:---|:---|
+| Close-mid against open-mid vowels | ⟨bello⟩ has [ɛ], the spec writes `e` |
+| [ts] against [dz] for ⟨z⟩ and ⟨zz⟩ | ⟨azzurro⟩ [addzurro] against ⟨pizza⟩ [pittsa] |
+| Glide against hiatus for ⟨i u⟩ before a vowel | ⟨Adriana⟩ [adriana] against ⟨piano⟩ [pjano] |
+| Antepenultimate stress | ⟨tavola⟩ |
+| Tuscan [s] against Northern [z] between vowels | ⟨casa⟩ |
 
-**Vowel length**: stressed open syllables have long vowels. Stressed closed syllables have short vowels.
-
----
-
-## Diphthongs and Glides
-
-| Grapheme | IPA | Examples |
-|:---:|:---:|:---|
-| ie (stressed) | [jɛ] | `bene` → `beni`, `piedé` [pjɛˈde] |
-| uo (stressed) | [wɔ] | `buono` [ˈbwɔno] |
-| ia, io, iu | [ja], [jo], [ju] | `pianta` [ˈpjanta] |
-| ua, ue, uo | [wa], [we], [wo] | `quando` [ˈkwando] |
-
----
+The spec `notes` give the share of the remaining error that each contrast causes on the WikiPron gold. The scores are on the [scoreboard](../scoreboard.md).
 
 ## References
 
 - Lepschy, A.L. & Lepschy, G. (1988). *The Italian Language Today* (2nd ed.). Routledge.
 - Maiden, M. (1995). *A Linguistic History of Italian*. Longman.
-- Rogers, D. & d'Arcangeli, L. (2004). *Italian*. Journal of the IPA, 34(1), 117–121.
+- Rogers, D. & d'Arcangeli, L. (2004). *Italian*. Journal of the IPA, 34(1), 117-121.
+- Bertinetto, P.M. & Loporcaro, M. (2005). The sound pattern of Standard Italian, as compared with the varieties spoken in Florence, Milan and Rome. *Journal of the International Phonetic Association*.
+- Krämer, M. (2009). *The Phonology of Italian*. Oxford University Press.
+- Canepari, L. (2009). *Dizionario di pronuncia italiana* (DiPI). Zanichelli.
 - Wikipedia: [Italian phonology](https://en.wikipedia.org/wiki/Italian_phonology)
 
 ---
-[← French](fr-FR.md) · [Home](../index.md) · [Brazilian Portuguese →](pt-BR.md)
+[← French](fr-FR.md) · [Home](../index.md) · [Ligurian / Genoese →](lij.md)

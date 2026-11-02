@@ -1,61 +1,46 @@
-# Angolan Portuguese (pt-AO): Phonology Reference
+# Angolan Portuguese (pt-AO)
 
-**Code**: `pt-AO` | **Family**: Indo-European > Romance > Ibero-Romance | **Script**: Latin (alphabet)
-**Parent**: `pt-PT` | **Quality tier**: research
-**Sources**: Undolo (2014, *Revista de Filología Románica* 31(2):181–187). Chavagne (2005, PhD, Lyon 2). Inverno (2011, PhD, Coimbra). Mateus & d'Andrade (2000)
+| Field | Value |
+|:---|:---|
+| Code | `pt-AO` |
+| Family | Indo-European > Italic > Romance > Ibero-Romance |
+| Script | Latin (alphabet) |
+| Quality tier | research |
+| Parent | `pt-PT` |
+| Sources | Undolo (2014, *Revista de Filología Románica* 31(2):181-187), Chavagne (2005, PhD, Lyon 2), Inverno (2011, PhD, Coimbra), Mateus & d'Andrade (2000), Cunha & Cintra (1984) |
 
-Angolan Portuguese (Português de Angola, **PA**) is the emerging L2 /
-second-norm variety of educated Angolan speakers. It is **not a creole**:
-Portuguese has been the sole official language since 1975, is the mother
-tongue of a growing urban minority, and the second language of most
-Angolans, in contact with dozens of Bantu languages (Umbundu, Kimbundu,
-Kikongo, …). Modelling it means *removing* several inherited European
-Portuguese (EP) reduction processes, not only extra additions to them.
+Angolan Portuguese (Português de Angola, PA) is the emerging second norm of educated Angolan speakers. It is not a creole. Portuguese has been the sole official language of Angola since 1975. It is the mother tongue of a growing urban minority and the second language of most Angolans. It is in contact with many Bantu languages, such as Umbundu, Kimbundu and Kikongo. The spec inherits the `pt-PT` maps and removes several European reduction processes from them.
 
-## What the spec models (and the source for each)
+Every transcription on this page is real output of `orthography2ipa.transcribe(text, code)`. For the scores of the spec, see [../scoreboard.md](../scoreboard.md).
 
-The headline feature is a **spelling-closer vocalism**: PA lacks the strong
-EP unstressed-vowel reduction, so its written vowels stay close to their
-full quality. Undolo (2014) is an explicit contrastive description of the
-educated-PA vowel system. The delta is encoded by overriding the inherited
-pt-PT positional vowels.
+## What the spec models
 
-| Feature | EP (pt-PT) | pt-AO | Source |
+The main feature is a vocalism close to the spelling. Angolan Portuguese lacks the strong European reduction of unstressed vowels, so its written vowels keep their full quality. Undolo (2014) describes the vowel system of educated speakers against the European one. The spec encodes the difference as an own positional map for ⟨a e o⟩ over the inherited `pt-PT` map.
+
+| Feature | pt-PT | pt-AO | Source |
 |:---|:---|:---|:---|
-| Final unstressed `a` | [ɐ] (`casa` [ˈkazɐ]) | **[a]** (`casa` [ˈkaza]) | Undolo 2014:183 |
-| Pretonic `e` | [ɨ] / centralised | **[e]** (`presidente` …[e]…) | Undolo 2014:183 |
-| Pretonic `o` | [u] (`morar` [muˈɾaɾ]) | **[o]** (`morar` [moˈɾaɾ]) | Undolo 2014:184 |
-| Final unstressed `e` | [ɨ] | [ɨ] (retained) | Undolo 2014:183 |
-| Coda `s` | [ʃ]/[ʒ] (chiado) | **[s]** (alveolar) | overrides `PT_CODA_S_HUSH` |
+| Final unstressed ⟨a⟩ | [ɐ]: `casa` [ˈkazɐ] | [a]: `casa` [ˈkaza] | Undolo 2014:183 |
+| Pretonic ⟨e⟩ | [ɨ]: `menino` [mɨˈninu] | [e]: `menino` [meˈninʊ] | Undolo 2014:183 |
+| Pretonic ⟨o⟩ | [u]: `morar` [muˈɾaɾ] | [o]: `morar` [moˈɾaɾ] | Undolo 2014:184 |
+| Final unstressed ⟨e⟩ | [ɨ]: `disse` [ˈdisɨ] | [ɨ], kept: `disse` [ˈdisɨ] | Undolo 2014:183 |
+| Coda ⟨s⟩ | [ʃ]: `costas` [ˈkɔʃtɐʃ] | [s]: `costas` [ˈkɔstas] | spec override of `PT_CODA_S_HUSH` |
 
-Undolo (2014:184) summarises the vowel system as one that *"não sofre
-elevação e centralização em posição átona"* and in which [ɨ] *"restringe-se
-à posição átona final"*. Chavagne (2005:64) independently reports that in
-Angolan Portuguese *"les voyelles atones gardent le timbre des voyelles
-toniques"*, unstressed syllables keep the timbre of the stressed vowels,
-with a much smaller tonic/atonic intensity contrast than EP. Undolo
-(2014:186) attributes the fuller vocalism to the simple, open-nucleus
-syllable structure of the Angolan Bantu substrate.
+Undolo (2014:184) sums up the system as one that *"não sofre elevação e centralização em posição átona"*. In it, [ɨ] *"restringe-se à posição átona final"*. Chavagne (2005:64) reports the same independently: in Angolan Portuguese *"les voyelles atones gardent le timbre des voyelles toniques"*. Unstressed syllables keep the quality of the stressed vowels, and the intensity contrast between them is much smaller than in European Portuguese. Undolo (2014:186) attributes the full vocalism to the simple syllable structure, with open nuclei, of the Angolan Bantu substrate.
 
-A tendency to **open stressed mid vowels** (favouring [ɛ], [ɔ] over [e],
-[o], Undolo 2014:183–184, e.g. [beˈlɛza]) is documented but variable and
-lexical. It is modelled only as candidate ordering in `nucleus_stressed`,
-not applied categorically.
+Undolo (2014:183-184) also reports a tendency to open the stressed mid vowels, with [ɛ ɔ] favoured over [e o] (for example [beˈlɛza]). The tendency is variable and lexical. The spec lists [ɛ] before [e] and [ɔ] before [o] for a stressed vowel. So the top output is open, and the close vowel is the second candidate: `beleza` [beˈlɛza], `mesa` [ˈmɛza].
 
-## Limits and honesty notes
+The spec switches off the coda rules `PT_CODA_S_HUSH` and `PT_CODA_Z_HUSH` by redeclaring their ids with an alveolar surface. It also switches off `PT_FINAL_EM_NUCLEUS` and `PT_FINAL_ENS_NUCLEUS`, because Angolan Portuguese does not centralise unstressed vowels (Undolo 2014:183-184). So ⟨-em⟩ keeps the close-mid nucleus: `bem` [ˈbẽj̃]. The `pt-PT` suffix and word-list rules for stressed vowel height (`PT_SUFFIX_*`, `PT_LEX_*_SUFFIX`, `PT_ER_CLOSE`, `PT_LEX_OPEN_ER`, `PT_FINAL_EN_*`) are switched off too. Their notes say that no source for these endings in Angola was read.
 
-- The extra nasal contrast Undolo reports (PA central-open [ã] vs EP [ɐ̃],
-  2014:184) and fine rhotic variation are left largely to downstream
-  engines. Only the vowel and coda-sibilant deltas are modelled here.
-- Inverno (2011) is a **morphosyntactic** thesis on the restructured
-  vernacular of Dundo. It is cited for contact framing only, not for the
-  vowel model.
+## Known gaps
+
+- Undolo (2014:184) reports a central open nasal [ã] where European Portuguese has [ɐ̃]. The spec does not model it.
+- The spec has no source for the rhotic. Its ⟨r⟩ map gives the tap [ɾ] at the start of a word, between vowels and at the end of a word. Elsewhere the inherited grapheme value [ʁ] comes first: `rato` [ˈɾatʊ], `pedra` [ˈpɛdʁa], `porta` [ˈpɔʁta], `carro` [ˈkaʁʊ].
+- A final unstressed ⟨o⟩ is the near-close [ʊ] (`cabo` [ˈkabʊ]), where `pt-PT` gives [u]. No source on this page states the value.
+- Inverno (2011) is a thesis on the morphosyntax of the restructured vernacular of Dundo. The spec cites it for the contact setting only, not for the vowel model.
 
 ## Input contract
 
-Input is standard Portuguese orthography (Acordo Ortográfico 1990). The
-spec relies on written accents for stress and does not expect any special
-pre-processing.
+Input is standard Portuguese orthography (Acordo Ortográfico 1990). The spec uses the written accents for stress, and the input needs no special preparation.
 
 ---
-[← Macau Portuguese](pt-MO.md) · [Home](../index.md) · [Cape Verdean Portuguese →](pt-CV.md)
+[← Brazilian Portuguese dialects](pt-BR-dialects.md) · [Home](../index.md) · [Cape Verdean Portuguese →](pt-CV.md)

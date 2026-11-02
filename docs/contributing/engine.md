@@ -11,7 +11,7 @@ every such change passes. The module map is in
 No language name, script name or language code may drive a branch in
 `orthography2ipa/*.py`. A spec may not carry logic either. If a language
 needs a behaviour that the engine cannot express, add a generic capability,
-such as a new context class or a new rule field. Then use it from the data.
+such as a context class or a rule field. Then use it from the data.
 Never special-case the language in code, and never fake the capability by
 enumerating data.
 
@@ -31,7 +31,7 @@ lowers PER.
 ## Add a capability
 
 1. Add the capability as a language-neutral predicate or rule field, such as
-   a new `followed_by` class in `vowels.py` or `allophony.py`.
+   a `followed_by` class in `vowels.py` or `allophony.py`.
 2. Add the field in four places: the dataclass and its docstring in
    `types.py`, the validation in `schema.py`, the parse in `json_loader.py`
    and the user documentation in

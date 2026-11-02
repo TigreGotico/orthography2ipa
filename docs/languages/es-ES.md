@@ -59,4 +59,4 @@ shallow threshold.
 - Harris, J. *Spanish Phonology*. MIT Press.
 
 ---
-[← Romance Languages](romance.md) · [Home](../index.md) · [Romanian →](ro-RO.md)
+[← Faroese](fo.md) · [Home](../index.md) · [Romanian →](ro-RO.md)

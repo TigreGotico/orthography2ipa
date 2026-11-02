@@ -1,158 +1,137 @@
 # The pinned WikiPron mirror
 
-`TigreGotico/wikipron-restored-orthography` is a snapshot of every
-pronunciation scrape in [CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron),
-taken at one commit, with a second orthography column holding the
-headword English Wiktionary displays.
+[TigreGotico/wikipron-restored-orthography](https://huggingface.co/datasets/TigreGotico/wikipron-restored-orthography) is a snapshot of every pronunciation scrape in [CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron) at one commit. A second orthography column holds the headword that English Wiktionary displays. The `wikipron_restored` benchmark row reads it (see [benchmark_datasets.md](benchmark_datasets.md#wikipron-with-the-display-headword-restored-wikipron_restored)). This page is the maintainer procedure that refreshes it.
 
-It exists for two reasons.
+The mirror exists for two reasons.
 
-The first is reproducibility. WikiPron publishes its scrapes on a branch
-it keeps editing. A benchmark that reads that branch scores against
-different data from one week to the next with no code change, which
-makes an upstream edit indistinguishable from an engine regression. The
-mirror pins one commit and records each file's upstream SHA-256, so a
-refresh produces a diff instead of a mystery.
+The first is reproducibility. WikiPron publishes its scrapes on a branch that it keeps editing. A benchmark that reads that branch scores against other data from one week to the next, with no code change. An upstream edit then looks the same as an engine regression. The mirror pins one commit and records the upstream SHA-256 of each file, so a refresh gives a diff and not a mystery. The plain `wikipron` row still reads the upstream branch, so only the restored row has this protection.
 
-The second is the lossy orthography. WikiPron pairs a pronunciation with
-the MediaWiki **page title**. Several language style policies keep
-diacritics out of titles and put them back only on the headword line, so
-for those languages the scraped word no longer writes contrasts the
-pronunciation still transcribes. Scoring a grapheme-to-phoneme system on
-those rows measures the input, not the system.
+The second reason is the lossy orthography. WikiPron pairs a pronunciation with the MediaWiki page title. Several language style policies keep diacritics out of titles and put them back only on the headword line. For those languages the scraped word does not write contrasts that the pronunciation still transcribes. Scoring a grapheme-to-phoneme system on those rows measures the input, not the system.
 
 ## Schema
 
-`orthography`, `restored_orthography`, `ipa`, tab separated, one header
-row, one file per upstream file under `data/`. Columns one and three are
-WikiPron's own two columns, byte for byte. Column two is empty wherever
-restoration was refused or has not been attempted, so a refusal is
-visible in the data rather than a missing row.
+Each file under `data/` is tab-separated, with one header row and the columns `orthography`, `restored_orthography` and `ipa`. There is one file per upstream file. The first and third columns are the two WikiPron columns, byte for byte. The second column is empty where restoration was refused or not attempted, so a refusal shows in the data and is not a missing row.
 
-`scripts/benchmark.py` reads column two and skips empty cells, which is
-why the `wikipron_restored` row is a subset of the matching `wikipron`
-row and comparable only to that row restricted to the same words.
+`scripts/benchmark.py` reads the second column and skips empty cells. The `wikipron_restored` row is therefore a subset of the matching `wikipron` row. Compare it only with that row restricted to the same words.
+
+The build also writes `manifest.json` and the dataset card `README.md`. The manifest holds the upstream commit and its date, the SHA-256 and row count of each file, and a screen record per language.
 
 ## The screen
 
-Restoration costs one page render per word, so no language is restored
-before it is screened. The screen is cheap and has two halves, and a
-language passes only if both agree.
+Restoration costs one page render per word, so no language is restored before it is screened. The screen has two halves, and a language passes only if both agree.
 
-The policy half fetches `Wiktionary:About <Language>` once per language
-and looks for a statement about diacritics in titles as against display.
-The data half counts the marks that statement names in the scraped
-orthography. A policy saying macrons never reach titles predicts zero
-macrons; where they are present in quantity the policy does not reach
-this dataset.
+The policy half fetches `Wiktionary:About <Language>` once per language and looks for a statement about diacritics in titles against display. The data half counts the marks that the statement names in the scraped orthography. A policy that says macrons never reach titles predicts zero macrons. Where macrons occur in quantity, the policy does not reach this dataset.
 
-Latin is why the second half is not optional. Its policy says the page
-name "should not contain diacritical marks", almost word for word like
-Old English's, and yet its scraped words carry more than a hundred
-thousand macrons across eighty-eight thousand rows. Old English, with
-the same policy, carries four. One is a real defect and the other is
-not, and only the data says which. Latin was caught by reading the
-policy and the count together, and is curated `not_affected` on that
-basis. The automatic downgrade exists so the next such language does not
-depend on a reader noticing: a `confirmed` verdict whose data carries
-the policy's marks above a stray rate becomes `not_affected`, with the
-rate that overturned it recorded beside it.
+Latin is why the data half is required. Its policy says that the page name "should not contain diacritical marks", in almost the same words as the policy of Old English. Its scraped words still carry more than one macron per row on average, and the Old English words carry almost none. One of the two is a real defect and the other is not, and only the data says which. Latin is curated `not_affected` for that reason.
 
-A verdict is a snapshot against a live wiki, and the wiki moves.
-Mandarin is recorded `no_policy_page`, yet `Wiktionary:About Mandarin`
-redirects to `Wiktionary:Chinese entry guidelines`, which exists. That
-page describes no title/headword split, so the verdict stands, and the
-mismatch is what drift looks like. Expect some `no_policy_page` to have
-grown a page, and re-screen before trusting an old negative. Only the
-pinned scrape is stable.
+The automatic downgrade covers the next such language. A `confirmed` verdict whose data carries the marks of the policy above `STRAY_RATE` (0.01 marks per row) becomes `not_affected`, and the rate that overturned it is recorded with it.
 
-Verdicts recorded in `manifest.json`:
+A verdict is a snapshot of a live wiki, and the wiki changes. The published manifest records Mandarin as `no_policy_page`, but `Wiktionary:About Mandarin` redirects to `Wiktionary:Chinese entry guidelines`, which exists. That page describes no split between title and headword, so the verdict stands, and the mismatch shows what drift looks like. Expect some `no_policy_page` languages to gain a page, and screen again before you trust an old negative. Only the pinned scrape is stable.
+
+`manifest.json` records one of these verdicts per language:
 
 | Verdict | Meaning |
 |---|---|
-| `confirmed` | a policy states the split, and the gold agrees |
-| `confirmed_empirical` | no policy statement, but the marks are absent from every scraped word |
-| `not_affected` | a policy mentions diacritics and titles but creates no split here |
-| `no_policy_page` | `Wiktionary:About <Language>` does not exist |
-| `inconclusive` | the page exists and says nothing decisive |
+| `confirmed` | A policy states the split, and the gold agrees. |
+| `confirmed_empirical` | No policy statement, but the marks are absent from every scraped word. |
+| `not_affected` | A policy mentions diacritics and titles, but it creates no split here. |
+| `no_policy_page` | `Wiktionary:About <Language>` does not exist. |
+| `inconclusive` | The page exists and says nothing decisive. |
 
-A verdict says whether a language is affected, never whether anything
-was done about it. `restoration_attempted` is the separate fact: false
-means nobody has run the language yet, and the empty
-`restored_orthography` column carries no other meaning. A language that
-was run and recovered nothing has a broken lookup rather than an empty
-Wiktionary — Tundra Nenets did exactly that, upstream's metadata calling
-it `yrk` where Wiktionary tags its headwords `yrk-tun` — so the build
-refuses to publish that state and the restore script exits non-zero.
+A verdict says whether a language is affected, never whether anything was done about it. The separate field `restoration_attempted` records that. A false value means that nobody has run the language, and an empty `restored_orthography` column has no other meaning. A language that ran and recovered nothing has a broken lookup, not an empty Wiktionary. Tundra Nenets did that, because the upstream metadata calls it `yrk` and Wiktionary tags its headwords `yrk-tun`. The build refuses to publish that state, and the restore script exits with status 1.
 
-Negative results are recorded on purpose. A language written down as
-`not_affected` does not have to be investigated again.
+The screen records negative results on purpose. A language recorded as `not_affected` does not need another investigation.
 
 ## What restoration will not do
 
-`scripts/restore_wikipron_orthography.py` never invents a form.
+`scripts/restore_wikipron_orthography.py` never invents a form. These rules apply to every language:
 
-* A Wiktionary page holds one section per language. The wikitext is cut
-  to the target `==Language==` section before any headword template is
-  read, and the rendered headword is matched on its `lang` attribute.
-  `Adam` renders an English `Adam` and an Ewe `Ádàm`; `helfen` renders a
-  Middle High German `hëlfen` and an Old High German `hëlfēn`.
-* Whole pages are rendered, never sections. A section render's natural
-  cache key is the page title while its result depends on the language
-  whose templates were expanded, and `ade` is both Ewe and Yoruba.
-* Headwords are read from positional template arguments as well as
-  `head=`: `{{ee-proper noun|Àfɔ̀fìɛ́}}` carries its headword positionally.
-* Two headwords that disagree are refused, not resolved. One unpointed
-  title often spells several distinct words.
-* A restored form whose base-letter spine differs from the title is
-  discarded.
+| Rule | Reason |
+|---|---|
+| The wikitext is cut to the target `==Language==` section before any headword template is read, and the rendered headword is matched on its `lang` attribute. | A page holds one section per language. `Adam` renders an English `Adam` and an Ewe `Ádàm`. `helfen` renders a Middle High German `hëlfen` and an Old High German `hëlfēn`. |
+| Whole pages are rendered, never sections. | The cache key of a section render is the page title, but its result depends on the language whose templates were expanded. `ade` is both Ewe and Yoruba. |
+| Headwords are read from positional template arguments as well as from `head=`. | `{{ee-proper noun|Àfɔ̀fìɛ́}}` carries its headword positionally. |
+| Two headwords that disagree are refused, not resolved. | One unpointed or untoned title often spells several different words. |
+| A restored form whose base-letter skeleton differs from the title is discarded. | The skeleton is NFD with the combining marks removed. A different skeleton means more than a restoration of diacritics. |
 
-## Refreshing
+## Refreshing the mirror
 
-One documented sequence, run from a checkout:
+Run the refresh from a checkout of the repository, with the repository venv. It needs network access, a Hugging Face write token for the dataset, and hours of MediaWiki renders for each language whose scrape changed. Before the first step, read `df -h` for the disk that holds the clone and the cache. A large restoration run fills gigabytes.
 
-```bash
-# 1. Re-pin upstream and record what moved.
-python scripts/wikipron_mirror.py pin --clone-dir ~/tmp/wikipron
-python scripts/wikipron_mirror.py diff \
-    --old mirror/manifest.json --new mirror.new/manifest.json
+1. Clone the upstream scrape into a new directory. Use a fresh directory for each refresh. `pin` on an existing clone fetches `master` but does not move `HEAD`, so it reports the old commit.
 
-# 2. Screen any language whose file is new or changed.
-python scripts/wikipron_mirror.py screen --clone-dir ~/tmp/wikipron
+   ```bash
+   python scripts/wikipron_mirror.py pin --clone-dir ~/tmp/wikipron-<date>
+   ```
 
-# 3. Re-restore only the changed languages. The MediaWiki cache under
-#    $O2I_WIKT_CACHE makes an unchanged language nearly free.
-python scripts/restore_wikipron_orthography.py <lang> --out-dir restored/
+   The command makes a blobless sparse clone of `data/scrape/tsv/` and `data/scrape/lib/languages.json`, and prints the pinned commit as JSON.
 
-# 4. Rebuild the mirror and its card, then publish.
-python scripts/wikipron_mirror.py build --clone-dir ~/tmp/wikipron \
-    --restored-dir restored/ --out-dir mirror/
-huggingface-cli upload TigreGotico/wikipron-restored-orthography \
-    mirror/ . --repo-type dataset
-```
+2. Fetch the policy pages. The command writes the map of languages to their `Wiktionary:About` pages to the `--policy-pages` file (default `policy_pages.json`).
 
-There is no scheduled workflow, deliberately. A refresh needs a write
-token for a public dataset, hours of MediaWiki renders for any language
-whose scrape changed, and a judgement call on each new language's screen
-verdict that a regular expression cannot make. A job that republished a
-public dataset unattended would move benchmark numbers with nobody
-reading the diff, which is the failure the pin exists to prevent. The
-pin is what makes the manual cadence safe: until someone runs the
-refresh, the data does not move.
+   ```bash
+   python scripts/wikipron_mirror.py screen --clone-dir ~/tmp/wikipron-<date> \
+       --policy-pages policy_pages.json
+   ```
 
-A restoration run is resumable. Every page fetched is written to the
-cache before it is used, so a run that is interrupted — or one whose
-connection stalls, which happens over thousands of requests — can be
-killed and started again at no cost beyond the pages in flight.
+3. Read the policy page of each language that is new or whose verdict could change. Write a hand-read verdict into `SCREEN` in `scripts/wikipron_mirror.py`, with the verbatim quote and the marks that the policy names. For a confirmed language, add its Wiktionary section name and language code to `LANGS` in `scripts/restore_wikipron_orthography.py`. This step is a judgement, and no script makes it.
+
+4. Restore the languages that are new or whose scrape changed. Point `O2I_WIKIPRON_TSV` at the pinned scrape. The script stops with an error when the variable is not set. Each language writes `<code>.json` to `--out-dir`. An unchanged language is almost free, because the MediaWiki cache holds its pages.
+
+   ```bash
+   O2I_WIKIPRON_TSV=~/tmp/wikipron-<date>/data/scrape/tsv \
+       python scripts/restore_wikipron_orthography.py ewe gmh yor heb --out-dir restored/
+   ```
+
+5. Build the new mirror into a new directory. The build reads the pinned scrape, the restoration maps in `--restored-dir` and the policy pages, then writes `data/`, `manifest.json` and `README.md`.
+
+   ```bash
+   python scripts/wikipron_mirror.py build --clone-dir ~/tmp/wikipron-<date> \
+       --restored-dir restored/ --out-dir mirror.new/ --policy-pages policy_pages.json
+   ```
+
+6. Download the manifest of the published mirror and compare the two snapshots. The diff prints the two commits and each file that was added, removed or changed, with its row counts.
+
+   ```bash
+   hf download TigreGotico/wikipron-restored-orthography manifest.json \
+       --repo-type dataset --local-dir mirror.old/
+   python scripts/wikipron_mirror.py diff \
+       --old mirror.old/manifest.json --new mirror.new/manifest.json
+   ```
+
+7. Read the diff. Then publish the new mirror.
+
+   ```bash
+   hf upload TigreGotico/wikipron-restored-orthography mirror.new/ . --repo-type dataset
+   ```
+
+8. Score the `wikipron_restored` row again with `--refresh-cache`, so the harness fetches the new files and not its cached copies. The board procedure is in [contributing/board.md](contributing/board.md).
+
+   ```bash
+   python scripts/benchmark.py --dataset wikipron_restored --refresh-cache
+   ```
+
+9. Delete the `html/` subdirectory of the MediaWiki cache. Remove the clone directory and the build directories when the refresh is published.
+
+## Why the refresh is manual
+
+The repository has no scheduled workflow for the refresh, on purpose. A refresh needs a write token for a public dataset and hours of MediaWiki renders. It also needs a judgement on the screen verdict of each new language, which a regular expression cannot make. An unattended job that republished a public dataset would move benchmark numbers with nobody reading the diff. That is the failure that the pin prevents.
+
+The pin makes the manual cadence safe. Until someone runs the refresh, the data does not move.
+
+A restoration run can resume. Every fetched page goes to the cache before it is used. A run that stops, or one whose connection stalls over thousands of requests, can be killed and started again. The only cost is the pages that were in flight.
 
 ## Caches and disk
 
-The MediaWiki cache defaults to `~/tmp/o2i-wiktionary-cache` and holds
-one file per page title, wikitext and rendered HTML separately. Renders
-dominate it and it grows to gigabytes across a large restoration run.
-Set `O2I_WIKT_CACHE` to place it somewhere with room, and delete the
-`html/` subdirectory once a run is published: the wikitext half is small
-and is what makes a re-screen cheap.
+The restore script reads these environment variables:
+
+| Variable | Default | Purpose |
+|---|---|---|
+| `O2I_WIKIPRON_TSV` | none, required | The `data/scrape/tsv` directory of the pinned clone. |
+| `O2I_WIKT_CACHE` | `~/tmp/o2i-wiktionary-cache` | The MediaWiki cache, with `wikitext/` and `html/` subdirectories. |
+| `O2I_WIKT_RATE` | `3` | Requests per second against the MediaWiki API. |
+| `O2I_WIKT_WORKERS` | `4` | Concurrent requests under the same rate cap. |
+
+The cache holds one file per page title, with wikitext and rendered HTML in separate subdirectories. The renders take most of the space, and the cache grows to gigabytes over a large restoration run. Set `O2I_WIKT_CACHE` to a disk with room. Delete the `html/` subdirectory once a run is published. The wikitext half is small, and it is what makes a later screen cheap.
 
 ---
-[← Benchmark methodology](benchmark_methodology.md) · [Home](index.md) · [Arabic TTS gold set →](arabic-tts-gold.md)
+[← Benchmark gold datasets](benchmark_datasets.md) · [Home](index.md) · [TTS sentence gold sets →](tts_gold.md)

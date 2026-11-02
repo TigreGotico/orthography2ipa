@@ -1,192 +1,76 @@
-# Adding a new Language
+# Adding a language
 
-## Overview
+A language is one JSON file under `orthography2ipa/data/`, named by its code. The engine is language-agnostic, so you add a language by writing cited data, never code. This page is the procedure. The field reference is [`SCHEMA.md`](../orthography2ipa/data/SCHEMA.md), and the rules that a spec must keep are in [spec authoring rules](contributing/spec_authoring.md).
 
-All phonological data: graphemes, allophones, positional graphemes, ancestry,
-sources: lives in standalone JSON files under `orthography2ipa/data/`, one per
-language code. The engine is language-agnostic: adding a language means writing
-cited data, never code. The field-by-field authoring reference is
-[`SCHEMA.md`](../orthography2ipa/data/SCHEMA.md); this page is the walkthrough.
+## What a spec declares
 
-A spec must declare **`graphemes` or `phonemes`**: the spelling, the inventory, or
-both. It may not be silent about both. "Every language has graphemes" is false: a
-logographic script has no grapheme→IPA rule to write (`zh-Hani` ships an empty map
-on purpose), and an unwritten or reconstructed language has no orthography at all,
-yet both have a phonology. Say which kind of writing the graphemes are with
-[`orthography_kind`](orthography_kind.md).
+A spec must declare `graphemes`, `phonemes`, or both. It may not be silent about both. Some languages have a phonology and no grapheme rule to write. A logographic script has no letter-to-sound map, so `zh-Hani` ships an empty grapheme map and a declared inventory. An unwritten or reconstructed language has no orthography at all. The field `orthography_kind` says which kind of writing the graphemes are ([orthography kind](../orthography2ipa/data/SCHEMA.md#orthography-kind)).
 
-Two things a spec does **not** declare:
+A spec does not declare a `family` string. The family comes from the clade nodes above the spec in the ancestry graph (see [Classification](#classification-wire-it-into-the-clade-chain)). A spec also has no engine hooks. If a language needs behaviour that the shared engine cannot express, the engine or the spec vocabulary has a gap. Close the gap as [engine.md](contributing/engine.md) describes. Do not write code for one language.
 
-- **No `family` string.** Classification comes from the clade nodes above the
-  spec in the ancestry graph: set `parent` and `family` derives itself. See
-  [Classification](#classification-wire-it-into-the-clade-chain) below.
-- **No engine hooks.** If a language needs behaviour the shared engine cannot
-  express, that is a gap in the engine or in the spec vocabulary, not a reason
-  for language-specific code.
+## Procedure
 
----
+1. Create `orthography2ipa/data/<code>.json`. Set `code`, `name`, `script` and an honest `quality`. Use `stub` when the spec is a stub ([quality tiers](quality_tiers.md)).
 
-## Architecture
+2. Declare `graphemes` or `phonemes`.
 
-```
-orthography2ipa/
-├── types.py          # Data types
-├── json_loader.py    # JSON loading with inheritance resolution
-├── registry.py       
-├── data/
-│   ├── SCHEMA.md     # JSON schema reference
-│   ├── ine.json          # Proto-Indo-European
-│   ├── la.json           # Classical Latin
-│   ├── la-x-hispania.json
-│   ├── la-x-gallia.json
-│   ├── es-ES.json        # Castilian Spanish
-│   ├── es-ES-x-andalusia-w.json  # inherits from es-ES
-│   ├── fr-FR.json
-│   ├── pt-PT.json
-│   ├── pt-BR.json        # inherits from pt-PT
-│   ├── it-IT.json
-│   ├── gem.json          # Proto-Germanic
-│   ├── goh.json          # Old High German
-│   ├── enm.json          # Middle English
-│   ├── en-GB.json
-│   ├── de-DE.json
-│   └── nl-NL.json
-│   └── ...
-```
+3. Keep `graphemes` to real orthographic units ([A grapheme key is an orthographic unit](contributing/spec_authoring.md#a-grapheme-key-is-an-orthographic-unit)).
 
----
+4. Put each context in the rule layer, never in extra keys ([Express a context](contributing/spec_authoring.md#express-a-context)). The position keys are in [positional graphemes](positional_graphemes.md).
 
-## JSON Loader API
+5. Cite every claim in `sources`, as [citation honesty](contributing/citations.md) describes.
 
-```python
-from orthography2ipa.json_loader import (
-    load_json_spec,
-    load_all_json_specs,
-    available_json_codes
-)
+6. Add `glottolog_code`, `wikidata_qid` and `iso639_3` where they exist. Make sure that each identifier resolves to this language. A null code is better than a wrong one.
 
-# Load a single spec
-spec = load_json_spec("es-ES")
+7. Connect the ancestry with `parent` or `ancestors`. The ancestor roles and their typical weights are in [data model](data_model.md) and in [`SCHEMA.md`](../orthography2ipa/data/SCHEMA.md#ancestor-role-values).
 
-# Load all specs
-specs = load_all_json_specs()
+8. Make sure that the parent has its own file. A dialect needs its standard variety. A historical language needs an ancestor chain that reaches a proto-language.
 
-# List available codes
-codes = available_json_codes()  # ['de-DE', 'en-GB', 'es-ES', ...]
+9. If an ancestor or a related lect has no file, add a cited stub. Leave no dangling reference. Add a grouping node (`"clade": true`) only when the literature recognises the group.
 
-```
+10. For a dialect, inherit the parent's tables with `graphemes_base` and the related fields (see [Inherit a parent's tables](#inherit-a-parents-tables)).
 
----
+11. Run the tests that name the language (see [Run the tests](#run-the-tests)).
 
-## Inheritance System
+## A minimal spec
 
-Many dialects share most of their phonological data with a parent variety. Instead of duplicating entire grapheme maps,
-JSON files can inherit from a base spec using `*_base` fields:
-
-```json
-{
-  "code": "es-ES-x-andalusia-w",
-  "graphemes_base": "es-ES",
-  "graphemes": {
-    "c": [
-      "k",
-      "s",
-      "θ"
-    ],
-    "ll": [
-      "ʝ"
-    ]
-  },
-  "allophones_base": "es-ES",
-  "allophones": {
-    "s": [
-      "s",
-      "h",
-      "∅"
-    ],
-    "x": [
-      "h"
-    ]
-  }
-}
-```
-
-The loader resolves `es-ES` first, copies its graphemes, then overlays the four overridden entries. This replaces the
-Python `{**GRAPHEMES_ES, ...}` pattern.
-
-### Inheritance rules
-
-1. Only explicitly listed entries override the base: everything else is inherited.
-2. Inheritance chains are resolved recursively (A inherits B which inherits C).
-3. Circular inheritance is detected and raises `ValueError`.
-4. Each of `graphemes`, `allophones`, and `positional_graphemes` can independently inherit from different bases.
-
----
-
-## Adding a New Language (JSON)
-
-### Step 1: Create the JSON file
-
-Create `orthography2ipa/data/{code}.json`:
+This file has one plain grapheme, one digraph, one positional rule and one parent link. The field `notes` holds the citation in prose, and `sources` holds it as data.
 
 ```json
 {
   "code": "xx-YY",
   "name": "Language Name",
   "script": "Latin",
+  "quality": "stub",
   "graphemes": {
-    "a": [
-      "a"
-    ],
-    "ch": [
-      "tʃ"
-    ]
+    "a": ["a"],
+    "ch": ["tʃ"]
   },
   "allophones": {
-    "a": [
-      "a"
-    ],
-    "tʃ": [
-      "tʃ"
-    ]
+    "a": ["a"],
+    "tʃ": ["tʃ"]
   },
   "positional_graphemes": {
     "b": {
-      "default": [
-        "b"
-      ],
-      "intervocalic": [
-        "β"
-      ]
+      "default": ["b"],
+      "intervocalic": ["β"]
     }
   },
   "parent": "parent-code",
   "ancestors": [
-    {
-      "code": "parent-code",
-      "role": "parent",
-      "weight": 0.85,
-      "notes": "Primary descent"
-    }
+    {"code": "parent-code", "role": "parent", "weight": 0.85, "notes": "Primary descent"}
   ],
   "notes": "Source: Author (year). Title."
 }
 ```
 
-### Step 2: Ensure parent exists
+The package layout and the loader functions (`load_json_spec`, `load_all_json_specs`, `available_json_codes`) are described in [architecture](architecture.md).
 
-The parent language must have its own JSON file. If adding a dialect, ensure the standard variety is already in the
-dataset. For historical languages, ensure the ancestral chain connects back to a proto-language.
+## Classification: wire it into the clade chain
 
-### Classification: wire it into the clade chain
+A family is a clade node. A clade node is a spec whose JSON carries `"clade": true`, a `name` such as `"Ibero-Romance"`, and a `parent` that points at the next clade up. It holds classification only. It has no graphemes and no allophones, and no spec inherits data from it. `available_codes()` leaves clade nodes out unless you pass `include_clades=True`.
 
-A family is a **clade node**: a spec whose JSON carries `"clade": true`, a
-`name` (`"Ibero-Romance"`), and a `parent` pointing at the next clade up. It is
-classification and nothing else: no graphemes, no allophones, never inherited
-from, and excluded from `available_codes()` unless `include_clades=True`.
-
-So a new language is classified by pointing its `parent` at the right node, and
-`family` / `family_path` derive themselves:
+You classify a new language when you point its `parent` at the correct node. Then `family` and `family_path` derive themselves:
 
 ```python
 import orthography2ipa
@@ -195,185 +79,84 @@ orthography2ipa.get("pt-BR").family_path   # ('Indo-European', 'Italic', 'Romanc
 orthography2ipa.get("pt-BR").family        # 'Indo-European > Italic > Romance > Ibero-Romance'
 ```
 
-If the clade the language belongs to has no node yet, add the node: do not
-author a `family` string to route around the missing one. The one case where an
-explicit `family` string is right is a grouping that is *not* a genetic clade:
-creoles, constructed languages, isolates, unclassified languages.
+If the clade of the language has no node, add the node. Do not write a `family` string to go around the missing node. An explicit `family` string is correct only for a grouping that is not a genetic clade: creoles, constructed languages, isolates and unclassified languages. The full contract is in [`SCHEMA.md`](../orthography2ipa/data/SCHEMA.md#clade-nodes-and-the-derived-family).
 
-### Metadata worth filling in
+## Inherit a parent's tables
 
-Beyond the phonology, a spec is the place to record what the language *is*:
-
-| Field | Why it matters |
-|---|---|
-| `sources` | The citation bar for `research` tier: every mapping traceable to a published description |
-| `orthography_standard` | The official spelling norm, where one exists: the primary authority for what a grapheme *is* |
-| `location` | Representative point (lat/lon); feeds `geographic_distance`: most meaningful for region-anchored dialects |
-| `timespan` | Attestation period; decays ancestry weights across time |
-| `glottolog_code`, `wikidata_qid`, `phoible_id`, `wals_code`, `iso639_3` | Cross-references. `wikidata_qid` is the hub: one QID resolves the rest |
-| `wikipedia`, `urls` | Human-readable references |
-
-### Looking for a source: what a phone inventory cannot tell you
-
-A grapheme table maps a **letter** to the phones it can take. A phone inventory lists the
-phones a variety **has**. These are different facts, and the second never settles the
-first — a variety with both /q/ and /ɡ/ in its inventory still leaves ⟨ق⟩ undecided, which
-is the reflex a spec exists to record.
-
-This matters because the sources easiest to reach are inventories. Two worked examples,
-both from real searches, so nobody repeats them:
-
-- **PHOIBLE** is referenced by the `phoible_id` field and is the obvious place to look. It
-  covers Arabic at macrolanguage and standard-variety level only: a search of the full
-  database by ISO code returns **zero segments** for `ayh`, `acq`, `abv`, `ssh`, `aao`,
-  `adf`, `aec`, `avl`, `ayp`, `bbz` and `sqr`. Even where it has an inventory, it gives
-  phones and not letter mappings.
-- A **sound-definition list** in a phonetic description has the same shape. Dawod's 1952
-  thesis on the Aden dialect lists "voiced velar plosive" and "voiceless uvular plosive"
-  in readable English, which establishes that Aden has both — and its one table mapping
-  letters to those sounds has the symbol column faded off the scan. The inventory is
-  legible and the reflexes are not recoverable.
-
-So when a source is hard to get, ask first whether it would answer the question. What a
-spec needs is a statement of the form "⟨ق⟩ is realised as X in this variety", with a page
-number. An inventory, a phoneme count, a table of contents listing a section on velar
-stops, or a frequency count over a corpus are all evidence that a phone or a letter
-**occurs** — none of them licenses a reading.
-
-Where no such statement can be obtained, the honest spec is a `stub` that says so and
-names where the description would be found, not a `research` spec filled from the nearest
-inventory.
-
-### Step 3: For dialects, use inheritance
-
-If the language shares most phonological data with a parent:
+A dialect shares most of its data with a parent variety. It inherits that data through the `*_base` fields and states only the entries that differ:
 
 ```json
 {
   "code": "xx-YY-x-dialect",
   "graphemes_base": "xx-YY",
   "graphemes": {
-    "only": [
-      "overrides"
-    ]
+    "only": ["overrides"]
   },
   "allophones_base": "xx-YY",
   "allophones": {
-    "only": [
-      "overrides"
-    ]
+    "only": ["overrides"]
   }
 }
 ```
 
-### Step 4: Run tests
+The loader resolves the base spec first, then puts the dialect's own entries on top. Each `*_base` field can name a different base. A base can inherit from a base of its own, and the loader resolves the whole chain. When a spec states no `positional_graphemes_base`, its positional entries follow `graphemes_base`. The `allophones` layer follows only an explicit `allophones_base`.
 
-```bash
-uv run pytest tests/ -v
-```
+The merge is one level deep, so a dialect that states one context for a letter replaces every context that the base gives that letter. Set a key to `null` to delete an inherited entry. Do not make a cycle of `*_base` references. The loader does not detect a cycle and fails with a `RecursionError`. The worked example, `es-ES-x-andalusia-w`, is in [`SCHEMA.md`](../orthography2ipa/data/SCHEMA.md#inheritance).
 
-The test suite validates:
+## Metadata worth filling in
 
-- All JSON files parse correctly
-- Every spec has its required fields (name, script, and `graphemes` **or** `phonemes`: a spec may not be silent about both)
-- Every `parent` field points to an existing spec
-- Every PARENT-role ancestor exists in the dataset
-- Linguistic accuracy for key languages (Spanish θ, English th, German Auslautverhärtung, etc.)
+A spec also records what the language is:
 
----
+| Field | What it gives |
+|---|---|
+| `sources` | The citations, which trace every mapping of a `research` spec to a published description |
+| `orthography_standard` | The official spelling norm, where one exists, and the primary authority for what a grapheme is |
+| `location` | A representative point (latitude and longitude) that feeds `geographic_distance` |
+| `timespan` | The attestation period, across which ancestry weights decay |
+| `glottolog_code`, `wikidata_qid`, `phoible_id`, `wals_code`, `iso639_3` | Cross-references, of which `wikidata_qid` resolves the others |
+| `wikipedia`, `urls` | References for a human reader |
+
+## Looking for a source: what a phone inventory cannot tell you
+
+A grapheme table maps a letter to the phones that it can take. A phone inventory lists the phones that a variety has. These are different facts, and the second never settles the first. A variety with both /q/ and /ɡ/ in its inventory still leaves ⟨ق⟩ undecided, and that reflex is the fact a spec records.
+
+The sources that are easiest to reach are inventories. PHOIBLE is the obvious place to look, and the `phoible_id` field points to it. It covers Arabic only at the level of the macrolanguage and the standard variety. A search of the full database by ISO code returns zero segments for `ayh`, `acq`, `abv`, `ssh`, `aao`, `adf`, `aec`, `avl`, `ayp`, `bbz` and `sqr`. Where PHOIBLE has an inventory, it gives phones and no letter mappings.
+
+A sound-definition list in a phonetic description has the same limit. Dawod's 1952 thesis on the Aden dialect lists "voiced velar plosive" and "voiceless uvular plosive" in readable English, so Aden has both. Its one table that maps letters to those sounds has a symbol column that is not legible on the scan. The inventory is legible, and the reflexes cannot be recovered.
+
+So when a source is hard to get, first ask whether it answers the question. A spec needs a statement such as "⟨ق⟩ is realised as X in this variety", with a page number. Some evidence shows only that a phone or a letter occurs. Examples are an inventory, a phoneme count, a section on velar stops in a table of contents, and a corpus frequency count. None of them licenses a reading.
+
+If no such statement is available, write a `stub` that says so and names where the description would be. Do not fill a `research` spec from the nearest inventory.
 
 ## Suffix morphology (`grammatical_endings`, optional)
 
-When an ending's realisation belongs to the *grammatical ending* rather than to
-the letters that spell it — French mute ⟨-er⟩/⟨-ez⟩, English ⟨-tion⟩ → [ʃən] —
-declare it in `grammatical_endings`, never as a grapheme key (morpheme chunks
-are forbidden grapheme keys; see [spec authoring rules](contributing/spec_authoring.md#a-grapheme-key-is-an-orthographic-unit)). The ending is matched at the
-word's effective end only, so word-internal letters are untouched, and
-`word_exceptions` still outranks it. Full contract:
-[`SCHEMA.md`](../orthography2ipa/data/SCHEMA.md#grammatical-endings).
+Some endings take their sound from the grammatical ending and not from the letters that spell it. Examples are French mute ⟨-er⟩ and ⟨-ez⟩, and English ⟨-tion⟩ [ʃən]. Declare such an ending in `grammatical_endings`, never as a grapheme key, because a morpheme chunk is a forbidden key ([spec authoring rules](contributing/spec_authoring.md#a-grapheme-key-is-an-orthographic-unit)). The engine matches the ending only at the effective end of the word, so it does not touch letters inside the word. An entry in `word_exceptions` still wins over it. The contract is in [`SCHEMA.md`](../orthography2ipa/data/SCHEMA.md#grammatical-endings).
 
-When the ending has more than one licit reading and the spelling does not say
-which — French verbal ⟨-ent⟩ is mute, nominal ⟨-ent⟩ is [ɑ̃] — do **not** pick
-one and do not reach for a word list. Declare it as an ordered candidate list
-(`"ent": [null, ""]`) so both readings are in the lattice and a downstream
-rescorer can choose: [Ambiguous
-endings](../orthography2ipa/data/SCHEMA.md#ambiguous-endings).
+An ending can have more than one correct reading that the spelling does not choose between. French verbal ⟨-ent⟩ is mute, and nominal ⟨-ent⟩ is [ɑ̃]. Do not pick one, and do not write a word list. Declare an ordered candidate list, such as `"ent": [null, ""]`, so that both readings reach the lattice and a rescorer downstream can choose ([ambiguous endings](../orthography2ipa/data/SCHEMA.md#ambiguous-endings)). The review rules for such a list are in [Ambiguous grammatical endings](contributing/spec_authoring.md#ambiguous-grammatical-endings).
 
----
+## Supply a lexicon (optional)
 
-## Adding a lexicon overlay (optional)
+A deep orthography can need a word list on top of the rules. The caller registers that list at run time, and the package never bundles one. See [lexicon](lexicon.md).
 
-When grapheme rules cannot reach production accuracy for a deep-orthography
-language, ship a **lexicon**: a sidecar file
-a caller-registered `{code}.tsv` (`word<TAB>ipa`, UTF-8, NFC, never bundled: lowercase words, sorted, first-entry-wins), named by the language's resolved
-code (e.g. `en-GB.tsv`). No JSON change and no new spec field are needed: the
-file is discovered by convention and read lazily on first use. See
-[`data_model.md`](data_model.md#lexicon-overlay-sidecar-word_exceptions-at-scale)
-for the full contract (precedence: inline `word_exceptions` > lexicon > rules).
+## Run the tests
 
-Rules to follow when adding one:
+`scripts/which_tests.py` lists the test files that assert on a language. Run those files:
 
-1. **Keep the pilot small and license-clean.** The bundled `en-GB.tsv` is a
-   ~5k top-frequency slice of CMUdict (BSD-style, public domain), converted to
-   broad IPA by `scripts/build_en_lexicon.py`. Cite the source in
-   [`bibliography.md`](bibliography.md). Full production lexica (hundreds of
-   thousands of entries) belong in a downstream package, not in this library.
-2. **Validate.** Every entry must pass `lexicon.validate_lexicon_text` (correct
-   `word<TAB>ipa` shape, NFC, lowercase word, IPA-characters-only, no
-   duplicates); the shipped-data test enforces this over every `*.tsv`.
-3. **Speak the spec's IPA convention.** Convert source pronunciations to the
-   same broad IPA the language's `graphemes` use, so lexicon and rule output
-   are comparable.
-4. **Report the impact.** Regenerate the rules-only vs with-lexicon comparison
-   with `python scripts/benchmark.py --lexicon-report` so
-   [`lexicon_scoreboard.md`](lexicon_scoreboard.md) shows the overlay improves
-   PER without masking rule regressions.
+```bash
+PYTHONPATH=$PWD python scripts/which_tests.py --lang fi
+PYTHONPATH=$PWD python -m pytest $(PYTHONPATH=$PWD python scripts/which_tests.py --lang fi)
+```
+
+The script writes one test file per line to stdout and a summary line to stderr. With no `--lang`, it reads the specs that changed against `origin/dev`. With `--no-children`, it matches the exact code only and leaves out the specs that inherit from it. A family test file that passes does not prove that a `test_cited_rules_*.py` file for the same language passes.
+
+The checks over every spec run in the full suite. These files hold them:
+
+| Test file | What it checks |
+|---|---|
+| `tests/test_language_integrity.py` | Required fields, `graphemes` or a declared inventory, existing `parent` and ancestor codes, weights in range, no parent cycles, and facts for key languages |
+| `tests/test_data_quality.py` | An explicit `quality` tier, content above `stub`, no own table on a stub, and the `production` benchmark bar |
+| `tests/test_sources.py` | At least one real source on every spec above `stub`, with well-formed fields |
+| `tests/test_grammatical_endings.py` | Every list-valued ending is documented in `notes`, under a cap per spec |
 
 ---
-
-## Positional Grapheme Keys
-
-| JSON key                  | Description                 | Example                                   |
-|---------------------------|-----------------------------|-------------------------------------------|
-| `default`                 | Default (any position)      | Spanish `"b": {"default": ["b"]}`         |
-| `word_initial`            | Word-initial                | Portuguese `"s": {"word_initial": ["s"]}` |
-| `word_final`              | Word-final                  | German `"d": {"word_final": ["t"]}`       |
-| `intervocalic`            | Between vowels              | Spanish `"b": {"intervocalic": ["β"]}`    |
-| `intervocalic_cross_word` | Between vowels across words | Portuguese liaison                        |
-| `onset`                   | Syllable onset              | Portuguese `"l": {"onset": ["l"]}`        |
-| `nucleus`                 | Generic syllable nucleus    | When stress not distinguished             |
-| `nucleus_stressed`        | Stressed syllable nucleus   | Full vowel quality                        |
-| `nucleus_unstressed`      | Unstressed syllable nucleus | Portuguese ⟨e⟩ → [ɨ]                     |
-| `nucleus_secondary`       | Nucleus under SECONDARY stress — a foot head that is not the main accent. Emitted only when the spec declares `stress.secondary_stress`, and emitted INSTEAD OF `nucleus_unstressed`, so a reduction entry no longer reaches it | English ⟨o⟩ keeps [ɒ] in ˌcombiˈnation |
-| `open_syllable`           | Nucleus, syllable has no coda | French `"eu": {"open_syllable": ["ø"]}` |
-| `closed_syllable`         | Nucleus, syllable has a coda  | French `"eu": {"closed_syllable": ["œ"]}` |
-| `nucleus_stressed_open`   | Stressed **and** open       | Dutch ⟨e⟩ → [eː] in *le·zen*              |
-| `nucleus_stressed_closed` | Stressed **and** closed     | Dutch ⟨e⟩ → [ɛ] in *lek*                  |
-| `nucleus_unstressed_open` | Unstressed **and** open     | Aperture under reduction                  |
-| `nucleus_unstressed_closed` | Unstressed **and** closed | Aperture under reduction                  |
-| `coda`                    | Syllable coda               | Brazilian `"l": {"coda": ["w"]}`          |
-| `pretonic`                | Before stressed syllable    | Pretonic vowel reduction                  |
-| `posttonic`               | After stressed syllable     | Posttonic vowel reduction                 |
-| `before_vowel`            | Before any vowel            | Consonant allophony                       |
-| `after_vowel`             | After any vowel, written or inherent | Post-vocalic changes; in an abugida also after a consonant letter carrying its inherent vowel |
-| `before_consonant`        | Before any consonant        | Pre-consonantal changes                   |
-| `after_consonant`         | After any consonant         | Post-consonantal changes                  |
-| `before_a` .. `before_u`  | Before specific vowel       | Velar softening contexts                  |
-| `consonantal`             | Consonantal context         | Grapheme as consonant                     |
-| `vocalic`                 | Vocalic context             | Grapheme as vowel                         |
-
----
-
-## Ancestor Roles
-
-| JSON value    | Description                                                |
-|---------------|------------------------------------------------------------|
-| `parent`      | Primary genetic descent (weight 0.7-1.0)                   |
-| `substrate`   | Pre-existing population language (weight 0.05-0.30)        |
-| `superstrate` | Dominant group language, later absorbed (weight 0.10-0.40) |
-| `adstrate`    | Peer contact influence (weight 0.05-0.20)                  |
-| `lexifier`    | Vocabulary source in creole (weight 0.50-0.80)             |
-| `creole_base` | Grammar source in creole (weight 0.20-0.50)                |
-
----
-[← Positional Graphemes](positional_graphemes.md) · [Home](index.md) · [Linguistic Accuracy Guide →](linguistic_accuracy.md)
+[← Ancestry System](ancestry.md) · [Home](index.md) · [Allophony →](allophony.md)

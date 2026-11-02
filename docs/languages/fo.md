@@ -1,83 +1,71 @@
 # Faroese (`fo`)
 
-Føroyskt, ~50,000 speakers in the Faroe Islands. West Scandinavian, closest
-living relative Icelandic. The orthography is Hammershaimb's 19th-century
-etymological norm: it was designed to keep the spelling close to Old West
-Norse and to Icelandic, not to the modern spoken sound, so a compositional
-letter-by-letter reading of a Faroese word is usually wrong. The spec leans
-on positional grapheme rules and allophone rules rather than a flat
-grapheme table for that reason.
+**Code**: `fo` | **Family**: Indo-European > Germanic > North Germanic (West Scandinavian) | **Script**: Latin (alphabet) | **Quality tier**: production
+
+Faroese (føroyskt) is the language of the Faroe Islands, and Icelandic is its closest living relative. The orthography is the etymological norm of Hammershaimb from the 19th century. It keeps the spelling close to Old West Norse and to Icelandic, not to the modern spoken sound. So a letter-by-letter reading of a Faroese word is usually wrong. For this reason, the spec depends on positional grapheme rules and allophone rules more than on its flat grapheme table.
 
 ## Orthographic depth and production threshold
 
-**Deep orthography, the ≤ 0.25 PER production threshold applies** (see
-[quality tiers](../quality_tiers.md)). The written form under-determines
-quantity (vowel length and quality both alternate with syllable structure
-but only the syllable structure is written), the stop series (voicing is
-written where the contrast is aspiration), and the two segments spelled
-⟨g⟩ and ⟨ð⟩ each cover several distinct surface realisations chosen by
-position. None of this is dialectal noise; it is the norm working as
-designed, three centuries after the sound system it was fixed to moved on.
+Faroese has a deep orthography, so the 0.25 PER production threshold applies (see [quality tiers](../quality_tiers.md#the-per-threshold)). The written form does not fully determine quantity. Vowel length and vowel quality both alternate with syllable structure, and only the syllable structure is written. The spelling writes voicing on the stops, but the contrast is aspiration. The letters ⟨g⟩ and ⟨ð⟩ each cover several surface forms, and position selects among them. This is not dialect noise. It is the norm as designed, fixed to a sound system that has since changed.
 
-## Phonology (as encoded)
+## Phonology as encoded
 
-- **Quantity.** Every stressed vowel letter has two realisations that
-  differ in quality, not only in length: the long value in an open
-  stressed syllable, the short value before a geminate or a consonant
-  cluster (⟨a⟩ [ɛaː]/[a], ⟨á⟩ [ɔaː]/[ɔ], ⟨e⟩ [eː]/[ɛ], ⟨i y⟩ [iː]/[ɪ],
-  ⟨í ý⟩ [ʊiː]/[ʊj], ⟨o⟩ [oː]/[ɔ], ⟨ó⟩ [ɔuː]/[œ], ⟨u⟩ [uː]/[ʊ], ⟨ú⟩
-  [ʉuː]/[ʏ], ⟨ø⟩ [øː]/[œ]). The long values sit in `nucleus_stressed`;
-  shortening before a cluster is an `allophone_rules` entry per vowel.
-- **Stops.** No voicing contrast: ⟨b d g⟩ are the unaspirated stops
-  [p t k]. ⟨p t k⟩ are aspirated only in the word-initial onset — medial
-  or post-⟨s⟩ they are plain. ⟨pp tt kk⟩ are preaspirated [ʰpp ʰtt ʰkk].
-- **Palatalisation.** ⟨k g sk⟩ become [tʃʰ tʃ ʃ] before ⟨e i y⟩ and in the
-  digraphs ⟨kj gj ggj skj sj⟩. ⟨í ý⟩ do not trigger it — they pattern as
-  the back-onset diphthong [ʊi], not a front vowel. The inherited
-  diphthong spellings ⟨kei koy gei goy skei skoy⟩ block it and keep the
-  velar; ⟨ey⟩ does not block it (⟨geykur⟩ [tʃɛiːkʊɹ], not [kɛiːkʊɹ]).
-  ⟨hj⟩ is [j].
-- **Skerping.** ⟨ógv úgv⟩ are [ɛkv]/[ɪkv] — the vowel changes quality and
-  a stop is inserted, which no compositional reading gives, so they are
-  encoded as grapheme units rather than derived.
-- **Rhotic.** /r/ is the alveolar approximant [ɹ], not a trill.
-- **⟨ð⟩.** Silent by default; the glide [j] between vowels, with [v] and
-  [w] as further allophones. [j] is the 1-best output. WikiPron gold
-  favours [w] specifically after a rounded vowel and [v]/[j] elsewhere,
-  but no cited source states that conditioning and the spec does not
-  encode it.
-- **Stress.** Categorically word-initial; the acute-accented letters mark
-  vowel quality, not stress placement.
+### Quantity
 
-## Benchmark (full gold set, no cap)
+Every stressed vowel letter has two values that differ in quality, not only in length. The long value occurs in an open stressed syllable. The short value occurs before a geminate or a consonant cluster. The long values are `nucleus_stressed` entries in `positional_graphemes`. A `FO_SHORTEN_*` allophone rule for each vowel shortens it before a consonant cluster.
 
-| dataset | provenance | n | PER |
-|---|---|---:|---:|
-| `wikipron` | crowd-scraped | 2957 | **0.1679** |
+| Letter | Long | Short |
+|:---:|:---:|:---:|
+| ⟨a⟩ | [ɛaː] | [a] |
+| ⟨á⟩ | [ɔaː] | [ɔ] |
+| ⟨e⟩ | [eː] | [ɛ] |
+| ⟨i y⟩ | [iː] | [ɪ] |
+| ⟨í ý⟩ | [ʊiː] | [ʊj] |
+| ⟨o⟩ | [oː] | [ɔ] |
+| ⟨ó⟩ | [ɔuː] | [œ] |
+| ⟨u⟩ | [uː] | [ʊ] |
+| ⟨ú⟩ | [ʉuː] | [ʏ] |
+| ⟨ø⟩ | [øː] | [œ] |
 
-The qualifying row is `wikipron` (crowd-scraped, gate-eligible), below the
-0.25 deep-orthography threshold.
+### Stops
+
+Faroese has no voicing contrast in its stops. The spec reads ⟨b d g⟩ as the unaspirated stops [p t k]. It reads ⟨p t k⟩ as aspirated only at the start of a word, and as plain elsewhere. The geminates ⟨pp tt kk⟩ are preaspirated [ʰpp ʰtt ʰkk].
+
+### Palatalisation
+
+Before ⟨e i y⟩, the spec reads ⟨k g sk⟩ as [tʃʰ tʃ ʃ]. The digraphs ⟨kj gj ggj skj sj⟩ give the same palatal values, and ⟨hj⟩ is [j]. The letters ⟨í ý⟩ do not cause palatalisation, because they pattern as the back-onset diphthong [ʊi]. The spec has separate entries for ⟨kí gí skí⟩ and their ⟨ý⟩ forms, which keep the velar.
+
+The inherited diphthong spellings ⟨kei koy gei goy skei skoy⟩ also block palatalisation and keep the velar. The spelling ⟨ey⟩ does not block it:
+
+```python
+>>> import orthography2ipa as o
+>>> [o.transcribe(w, "fo") for w in ["geykur", "keisari", "kirkja"]]
+['ˈtʃɛiːkʊɹ', 'ˈkʰaiːsaɹɪ', 'ˈtʃʰɪɹtʃʰa']
+```
+
+### Other segments
+
+The sequences ⟨ógv úgv⟩ are [ɛkv] and [ɪkv]. The vowel changes quality and a stop is inserted, which no letter-by-letter reading gives. So the spec stores them as grapheme units.
+
+The rhotic /r/ is the alveolar approximant [ɹ], not a trill. The spec reads ⟨ll⟩ as [tl] first and ⟨nn⟩ as [nn] first, with [ll] and [tn] as second candidates.
+
+The letter ⟨ð⟩ is silent by default. Between vowels the spec gives the glide [j] first, with [v] and [w] as further candidates. The WikiPron gold prefers [w] after a rounded vowel and [v] or [j] elsewhere. No cited source states that condition, so the spec does not encode it. Between vowels, ⟨g⟩ also gives [j] first and [v] second.
+
+### Stress
+
+Stress falls on the first syllable of every word. The acute-accented letters mark vowel quality, not stress, and the `stress` block puts the stress on the first syllable.
+
+## Benchmark
+
+The `wikipron` row is crowd-scraped and is the row that qualifies `fo` for production. See the [scoreboard](../scoreboard.md) for its score.
 
 ## Known limitations
 
-- **Compound secondary stress is the largest remaining error class.**
-  `nucleus_stressed` fires only on the word-initial syllable, so a second
-  or later stem in a compound never receives its long vowel. Of the gold
-  rows with two or more IPA length marks, 352 of 354 come out short for
-  exactly this reason. Fixing it needs a compound-boundary detector the
-  engine does not currently have.
-- Retroflex assimilation of ⟨rn rs rt rl rd⟩, and the stop insertion that
-  turns ⟨rn⟩ into [tn], are both real and both variable in the gold
-  (⟨Arnar⟩ is [aɻɳaɹ] while ⟨Arinbjørn⟩ ends [pjœtn]); encoding either one
-  as categorical would state something the sources do not support, so
-  neither is encoded.
-- Danish loanwords keep unpalatalised velars and plain [a] where a native
-  word would palatalise or diphthongise, and the spec has no loan lexicon
-  to separate the two strata.
-- The short ⟨ú⟩ value [ʏ] is correct and used as an output symbol, but ʏ
-  is missing from the engine's general vowel-classification set (task
-  #72); the spec never relies on it as a rule condition, so it does not
-  depend on that gap closing.
+Compound secondary stress is the largest open class of error. The `nucleus_stressed` position fires only on the first syllable of the word. So a second or later stem in a compound never gets its long vowel. Almost all gold rows with two or more length marks come out short for this reason. A fix needs a detector for compound boundaries, and the engine has none.
+
+Two cluster processes are real but vary in the gold. One is retroflex assimilation of ⟨rn rs rt rl rd⟩. The other is the stop insertion that turns ⟨rn⟩ into [tn]. For example, ⟨Arnar⟩ is [aɻɳaɹ], and ⟨Arinbjørn⟩ ends in [pjœtn]. The spec encodes neither, because a categorical rule would state more than the sources support.
+
+Danish loanwords keep plain velars and plain [a] where a native word would palatalise or diphthongise. The spec has no loan lexicon to separate the two layers of vocabulary.
 
 ## Sources
 
@@ -86,4 +74,4 @@ The qualifying row is `wikipron` (crowd-scraped, gate-eligible), below the
 - Lockwood, W. B. *An Introduction to Modern Faroese*. Munksgaard, 1955.
 
 ---
-[← German](de-DE.md) · [Home](../index.md) · [Romance Languages →](romance.md)
+[← German](de-DE.md) · [Home](../index.md) · [Spanish →](es-ES.md)
