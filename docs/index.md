@@ -286,6 +286,7 @@ neighbours, so you can read the set start to finish or jump in anywhere.
 | [benchmark_datasets.md](benchmark_datasets.md) | Every gold dataset, where it came from, and the caveats on its rows |
 | [benchmark_methodology.md](benchmark_methodology.md) | How a score is computed and reproduced, and how to diagnose a bad one |
 | [wikipron_mirror.md](wikipron_mirror.md) | The pinned WikiPron snapshot, the title-strip screen, and how to refresh it |
+| [contributing/silver_correction.md](contributing/silver_correction.md) | How to correct the IPA of the LLM-generated gold sets with Claude |
 | [arabic-tts-gold.md](arabic-tts-gold.md) | The hand-built Arabic sentence gold set |
 | [kabyle-tts-gold.md](kabyle-tts-gold.md) | The hand-built Kabyle sentence gold set |
 | [portuguese-tts-gold.md](portuguese-tts-gold.md) | The hand-built Portuguese-dialects sentence gold set |

@@ -53,6 +53,10 @@ test = ["pytest", "pytest-timeout", "pytest-cov", "pydantic>=2", "hypothesis",
 # checkout (https://github.com/AfriSpeech/africa-g2p) before regenerating the
 # comparison table — see scripts/compare_systems.py's module docstring.
 compare = ["epitran", "gruut", "pycotovia", "ahotts-g2p"]
+# dev-only extra for scripts/correct_silver_ipa.py, which corrects the
+# LLM-generated gold sets with Claude; never a runtime dependency. Its tests
+# replace the network with a fake transport, so the test extra omits it.
+silver-correction = ["anthropic>=2.0.0"]
 
 [project.entry-points."orthography2ipa.syllabify"]
 silabificador = "orthography2ipa.syllabifiers:SilabificadorSyllabifier"

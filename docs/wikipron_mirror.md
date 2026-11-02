@@ -153,3 +153,6 @@ dominate it and it grows to gigabytes across a large restoration run.
 Set `O2I_WIKT_CACHE` to place it somewhere with room, and delete the
 `html/` subdirectory once a run is published: the wikitext half is small
 and is what makes a re-screen cheap.
+
+---
+[← Benchmark methodology](benchmark_methodology.md) · [Home](index.md) · [Silver IPA correction →](contributing/silver_correction.md)
