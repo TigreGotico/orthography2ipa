@@ -10,6 +10,7 @@ import json
 import os
 import socket
 import sys
+from collections import Counter
 from pathlib import Path
 
 import pytest
@@ -670,11 +671,17 @@ def test_a_pending_batch_waits_for_its_own_key(tmp_path, capsys):
     assert "with key anthropic-invoices.key" in err
     assert "stays pending" in err
     # The two batches of the keys present were collected with their own
-    # key; nothing was submitted again.
-    assert [len(s["submissions"]) for s in servers.values()] == [1, 1, 1]
-    assert sorted({r["key_name"] for r in _cache_records(tmp_path)}) == [
+    # key, and no A or B was submitted again. Row 2, in the share of the
+    # first key, has its A and B, so its pass C went out while the batch of
+    # the missing key stays pending.
+    assert [len(s["submissions"]) for s in servers.values()] == [2, 1, 1]
+    records = {r["key"]: r for r in _cache_records(tmp_path)}
+    [late] = servers["ovos"]["submissions"][1:]
+    assert [(records[k]["pass"], records[k]["row_id"]) for k in late] == [
+        ("C", ROWS[1]["id"])]
+    assert sorted({r["key_name"] for r in records.values()}) == [
         "anthropic-jarbas.key", "anthropic-ovos.key"]
-    assert len(_cache_records(tmp_path)) == 8
+    assert len(records) == 9
 
 
 class LeakyKeyTransport(FakeTransport):
@@ -954,3 +961,110 @@ def test_conventions_defaults_to_every_lect_of_the_sets(tmp_path, capsys):
     out = capsys.readouterr().out
     count = len(csi.set_lects("spain_romance_tts"))
     assert f"convention sheets to write: {count}" in out
+
+
+# ─── batch scheduling, the cap and canonical output ─────────────────────────
+
+class ScheduledBatchTransport(FakeTransport):
+    """A batch ends only when the test puts its id in ``server["ended"]``.
+    A custom id in ``server["unusable"]`` comes back once as an errored
+    item."""
+
+    def batch_status(self, batch_id):
+        return "ended" if batch_id in self.server["ended"] else "in_progress"
+
+    def batch_results(self, batch_id):
+        for custom_id, message in super().batch_results(batch_id):
+            if custom_id in self.server["unusable"]:
+                self.server["unusable"].discard(custom_id)
+                yield custom_id, {"error": "errored"}
+            else:
+                yield custom_id, message
+
+
+def _passes_of(server, batch_id):
+    return [(_pass_of(r["params"]), _sentence_of(r["params"]))
+            for r in server["batches"][batch_id]]
+
+
+def test_pass_c_goes_out_while_an_a_b_retry_is_still_running(tmp_path):
+    server = {"batches": {}, "submissions": [], "ended": set(),
+              "unusable": set()}
+
+    def run():
+        return _run(tmp_path, ScheduledBatchTransport(batch_server=server),
+                    "--max-usd", "50", "--no-wait")
+
+    assert run() == 0
+    [first] = server["batches"]
+    assert sorted(_passes_of(server, first)) == sorted(
+        (name, r["sentence"]) for r in ROWS for name in "AB")
+    # Pass B of row 1 comes back unusable. Row 2 has its A and B, and they
+    # disagree, so row 2 needs pass C.
+    retry = next(r["custom_id"] for r in server["batches"][first]
+                 if _pass_of(r["params"]) == "B"
+                 and _sentence_of(r["params"]) == ROWS[0]["sentence"])
+    server["ended"].add(first)
+    server["unusable"].add(retry)
+
+    assert run() == 0
+    later = [b for b in server["batches"] if b != first]
+    submitted = sorted(p for b in later for p in _passes_of(server, b))
+    # The retry of B for row 1 is still running, and pass C for row 2 went
+    # out in the same run.
+    assert submitted == [("B", ROWS[0]["sentence"]),
+                         ("C", ROWS[1]["sentence"])]
+    assert not any(b in server["ended"] for b in later)
+
+    server["ended"].update(later)
+    assert run() == 0
+    # Only the unusable B went out twice.
+    counts = Counter(cid for batch in server["submissions"] for cid in batch)
+    assert counts.pop(retry) == 2
+    assert sorted(counts.values()) == [1, 1, 1, 1]
+    assert [r["flag"] for r in _output(tmp_path)] == ["agreed", "adjudicated"]
+
+
+def test_a_low_cap_still_collects_batches_already_submitted(tmp_path,
+                                                            capsys):
+    server = {"batches": {}, "submissions": [], "polls_left": 1}
+    assert _run(tmp_path, FakeTransport(batch_server=server),
+                "--max-usd", "50", "--no-wait") == 0
+    assert [len(s) for s in server["submissions"]] == [4]
+    capsys.readouterr()
+
+    # Pass C of row 2 costs more than the cap, so the run submits nothing
+    # new. The A/B batch is paid for already: the run collects it.
+    assert _run(tmp_path, FakeTransport(batch_server=server),
+                "--max-usd", "0.0001", "--poll-seconds", "0") == 3
+    assert "refus" in capsys.readouterr().out.lower()
+    assert [len(s) for s in server["submissions"]] == [4]
+    assert {(r["pass"], r["row_id"]) for r in _cache_records(tmp_path)} == {
+        (name, r["id"]) for r in ROWS for name in "AB"}
+    pending = tmp_path / "cache" / "pending_batches.json"
+    assert json.loads(pending.read_text("utf-8")) == []
+    assert [(r["id"], r["flag"]) for r in _output(tmp_path)] == [
+        (ROWS[0]["id"], "agreed")]
+
+
+class AsciiGTransport(FakeTransport):
+    """Every answer writes ASCII g (U+0067) where the fake writes k, so A
+    and B disagree with the engine and every row needs pass C."""
+
+    def create_message(self, params):
+        message = super().create_message(params)
+        return dict(message, text=message["text"].replace("k", "g"))
+
+
+def test_written_ipa_uses_the_ipa_letter_for_the_velar_stop(tmp_path):
+    assert _run(tmp_path, AsciiGTransport(), "--sync", "--max-usd", "50") == 0
+    rows = _output(tmp_path)
+    assert [r["sentence"] for r in rows] == [r["sentence"] for r in ROWS]
+    for row in rows:
+        engine = ENGINE[row["sentence"]]
+        assert "k" in engine
+        assert row["ipa"] == ("adjudicated" + engine).replace("k", "\u0261")
+        # The passes stay as the model wrote them.
+        assert row["passes"]["A"] == engine.replace("k", "g")
+        assert row["passes"]["C"]["ipa"] == ("adjudicated"
+                                             + engine).replace("k", "g")

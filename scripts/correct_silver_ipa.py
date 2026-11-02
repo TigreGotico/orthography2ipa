@@ -43,18 +43,24 @@ Every pass uses structured output (a JSON schema). Full runs go through the
 Message Batches API; ``--sync`` sends one request at a time for small
 pilots. The output is one JSONL file per set,
 ``<out-dir>/<set>.llm-corrected.jsonl``; the original files stay unchanged.
+The ``ipa`` field writes the voiced velar stop as the IPA letter ɡ (U+0261);
+``passes`` keeps each response as the model wrote it.
 The tier of every output row is ``llm-corrected``: still silver.
 
 Spend: before any request the tool prints an upper-bound estimate (one input
 token per UTF-8 byte of the prompt plus a fixed overhead per request, and
 ``--max-tokens`` output tokens per request, with pass C counted for every row
-whose A and B are not known yet) and refuses to start when it exceeds
-``--max-usd``. ``--sync`` also stops before a request that would take the
-run's actual spend past the cap.
+whose A and B are not known yet) and submits no new request when it
+exceeds ``--max-usd``. The cap limits new requests only: batches already
+submitted are paid for, and a run always collects them, before the estimate
+when they have ended. ``--sync`` also stops before a request that would take
+the run's actual spend past the cap.
 
 Resume: every response is cached under ``--cache-dir``, keyed on the set,
 the row id, the model and a hash of the request. A run that stops continues
 from the cache and from any batch still pending, and pays for no row twice.
+Pass C of a row goes out as soon as its A and B are cached, while the
+batches of other rows still run.
 
 Credentials: ``O2I_ANTHROPIC_KEY_FILE`` holds one or more key file paths,
 separated by ``:``; without it, ``ANTHROPIC_API_KEY`` holds one key. Sync
@@ -1013,8 +1019,16 @@ def word_count(ipa: str, engine: str) -> dict:
     return {"ipa": words, "engine": expected, "ok": words == expected}
 
 
+def canonical_ipa(ipa: str) -> str:
+    """*ipa* with the IPA voiced velar stop ɡ (U+0261) in place of ASCII g
+    (U+0067), which no IPA transcription uses for any other sound."""
+    return ipa.replace("g", "ɡ")
+
+
 def output_row(job: Job, settings: Settings, cache: Cache) -> Optional[dict]:
-    """The corrected row, or ``None`` while a pass it needs is missing."""
+    """The corrected row, or ``None`` while a pass it needs is missing. The
+    ``ipa`` field is canonical (:func:`canonical_ipa`); ``passes`` keeps each
+    response as the model wrote it."""
     a, b = (cache.result(r.key) for r in blind_requests(job, settings))
     if a is None or b is None:
         return None
@@ -1025,7 +1039,7 @@ def output_row(job: Job, settings: Settings, cache: Cache) -> Optional[dict]:
         if c is None:
             return None
     row = job.row
-    ipa = a["ipa"] if c is None else c["ipa"]
+    ipa = canonical_ipa(a["ipa"] if c is None else c["ipa"])
     return {
         "dataset": row.dataset, "lect": row.lect, "id": row.id,
         "sentence": row.sentence,
@@ -1175,6 +1189,9 @@ class Run:
     prices: Mapping[str, Price]
     max_usd: float
     spend: Spend = field(default_factory=Spend)
+    #: Batches that stay pending for this run: their key is missing or
+    #: failed.
+    stuck: set = field(default_factory=set)
 
     def record(self, meta: dict, message: dict, *, batch: bool,
                key_name: str) -> bool:
@@ -1254,67 +1271,82 @@ class Run:
                               f"{len(chunk)} requests on key {lane.name}")
         return []
 
-    def collect(self, wait: bool, poll_seconds: float) -> bool:
-        """Collect every pending batch with the key that submitted it.
-        ``False`` when a batch stays pending: it is still running and *wait*
-        is off, or its key is missing or failed."""
+    def collect_ended(self) -> int:
+        """Collect every pending batch that has ended, each with the key
+        that submitted it. Returns the number of batches still running. A
+        batch whose key this run does not have, or whose key failed, stays
+        pending and is reported once."""
+        running = 0
         for batch in list(self.cache.pending):
+            batch_id = batch["batch_id"]
+            if batch_id in self.stuck:
+                continue
             lane = self.keys.by_name(batch["key_name"])
-            if lane is None:
-                self.reporter.say(f"batch {batch['batch_id']} was submitted "
-                                  f"with key {batch['key_name']}, which this "
-                                  f"run does not have; it stays pending",
+            if lane is None or lane.exhausted:
+                self.stuck.add(batch_id)
+                self.reporter.say(f"batch {batch_id} was submitted with key "
+                                  f"{batch['key_name']}, which this run "
+                                  f"cannot use; it stays pending",
                                   error=True)
-                return False
+                continue
             try:
-                if not self._wait(lane, batch["batch_id"], wait,
-                                  poll_seconds):
-                    return False
-                results = list(lane.transport.batch_results(
-                    batch["batch_id"]))
+                if lane.transport.batch_status(batch_id) != "ended":
+                    running += 1
+                    continue
+                results = list(lane.transport.batch_results(batch_id))
             except KeyUnusable as exc:
                 self.keys.exhaust(lane, str(exc))
-                self.reporter.say(f"batch {batch['batch_id']} stays pending",
+                self.stuck.add(batch_id)
+                self.reporter.say(f"batch {batch_id} stays pending",
                                   error=True)
-                return False
+                continue
             for custom_id, message in results:
                 self.record(batch["requests"][custom_id], message, batch=True,
                             key_name=lane.name)
             self.cache.pending.remove(batch)
             self.cache.save_pending()
-            self.reporter.say(f"collected batch {batch['batch_id']}")
-        return True
+            self.reporter.say(f"collected batch {batch_id}")
+        return running
 
-    def _wait(self, lane: Lane, batch_id: str, wait: bool,
-              poll_seconds: float) -> bool:
-        status = lane.transport.batch_status(batch_id)
-        while status != "ended":
-            if not wait:
-                self.reporter.say(f"batch {batch_id} is {status}; run the "
-                                  f"same command again to collect it")
-                return False
-            time.sleep(poll_seconds)
-            status = lane.transport.batch_status(batch_id)
-        return True
+    def missing(self, jobs: Sequence[Job]) -> List[Request]:
+        """The passes the run can submit now: A and B of every row that has
+        them neither cached nor pending, and pass C of every row whose A and
+        B are both cached."""
+        skip = set(self.cache.records) | self.cache.pending_keys()
+        requests: List[Request] = []
+        for job in jobs:
+            requests += [r for r in blind_requests(job, self.settings)
+                         if r.key not in skip]
+            adjudication = adjudication_request(job, self.settings,
+                                                self.cache)
+            if adjudication is not None and adjudication.key not in skip:
+                requests.append(adjudication)
+        return requests
 
     def run_batches(self, jobs: Sequence[Job], wait: bool,
-                    poll_seconds: float) -> None:
-        if not self.collect(wait, poll_seconds):
-            return
-        skip = set(self.cache.records)
-        blind = [r for job in jobs for r in blind_requests(job, self.settings)
-                 if r.key not in skip]
-        if blind:
-            self.submit(blind)
-            if not self.collect(wait, poll_seconds):
+                    poll_seconds: float, submit: bool = True) -> None:
+        """Collect the pending batches and, when *submit* is on, submit the
+        passes the run still needs. Pass C of a row goes out as soon as its
+        A and B are cached, while other batches still run. A pass is
+        submitted at most once per run, so an unusable response waits for
+        the next run."""
+        submitted: set = set()
+        while True:
+            running = self.collect_ended()
+            new = ([r for r in self.missing(jobs) if r.key not in submitted]
+                   if submit else [])
+            if new:
+                submitted.update(r.key for r in new)
+                self.submit(new)
+                continue
+            if not running:
                 return
-        adjudication = [r for r in (adjudication_request(job, self.settings,
-                                                         self.cache)
-                                    for job in jobs)
-                        if r is not None and r.key not in self.cache.records]
-        if adjudication:
-            self.submit(adjudication)
-            self.collect(wait, poll_seconds)
+            if not wait:
+                self.reporter.say(f"{running} batches are still running; "
+                                  f"run the same command again to collect "
+                                  f"them")
+                return
+            time.sleep(poll_seconds)
 
 
 class CapReached(Exception):
@@ -1538,8 +1570,14 @@ def execute(args: argparse.Namespace, jobs: Sequence[Job],
         return keys.call(lambda t: t.count_tokens(params))[1]
 
     counter = count_tokens if args.count_tokens else None
-    planned = estimate(jobs, settings, cache, counter)
+    run = Run(keys, settings, cache, reporter, prices, args.max_usd)
     batch = not args.sync
+    collected_before = len(cache.records)
+    if batch and keys is not None:
+        # Batches already submitted are paid for: collect them before the
+        # estimate, whatever the cap. The cap limits new submissions only.
+        run.collect_ended()
+    planned = estimate(jobs, settings, cache, counter)
     bound = usd(planned.input, planned.output, settings.model, batch=batch,
                 prices=prices)
     reporter.say(f"passes: {planned.cached} cached or pending, "
@@ -1554,18 +1592,22 @@ def execute(args: argparse.Namespace, jobs: Sequence[Job],
             reporter.say(f"the estimate is {verdict} --max-usd "
                          f"${args.max_usd:.4f}")
         return 0
-    if bound > args.max_usd:
-        reporter.say(f"refusing to start: the estimate ${bound:.4f} is above "
-                     f"--max-usd ${args.max_usd:.4f}")
-        return 3
+    within_cap = bound <= args.max_usd
+    if not within_cap:
+        reporter.say(f"refusing to submit new requests: the estimate "
+                     f"${bound:.4f} is above --max-usd ${args.max_usd:.4f}")
+        if not batch or (not cache.pending
+                         and len(cache.records) == collected_before):
+            reporter.say(run.spend.line())
+            return 3
 
-    run = Run(keys, settings, cache, reporter, prices, args.max_usd)
     try:
         if args.sync:
             run.run_sync(jobs)
         else:
             run.run_batches(jobs, wait=not args.no_wait,
-                            poll_seconds=args.poll_seconds)
+                            poll_seconds=args.poll_seconds,
+                            submit=within_cap)
     except CapReached as exc:
         reporter.say(str(exc))
         return 3
@@ -1577,7 +1619,7 @@ def execute(args: argparse.Namespace, jobs: Sequence[Job],
     finally:
         reporter.say(run.spend.line())
         write_outputs(jobs, settings, cache, args.out_dir, reporter)
-    return 0
+    return 0 if within_cap else 3
 
 
 def main(argv: Optional[Sequence[str]] = None, *,

@@ -106,11 +106,11 @@ and id. Each line holds one row:
 | Field | Value |
 | :--- | :--- |
 | `dataset`, `lect`, `id`, `sentence` | the source row |
-| `ipa` | the corrected IPA |
+| `ipa` | the corrected IPA, with the IPA letter ɡ (U+0261) for the voiced velar stop where a pass wrote ASCII g (U+0067) |
 | `ipa_llm_original` | the `ipa` of the source row |
 | `ipa_engine` | the engine output for the sentence |
 | `model` | the model that wrote the passes |
-| `passes` | the IPA of pass A and pass B, and the full answer of pass C or `null` |
+| `passes` | the IPA of pass A and pass B, and the full answer of pass C or `null`, as the model wrote them |
 | `flag`, `reason` | the decision |
 | `note_conflict` | the spec note that pass C disagrees with, or an empty string |
 | `word_count` | the number of words in `ipa` and in the engine output, and `ok`, which is false when they are different |
@@ -120,7 +120,10 @@ and id. Each line holds one row:
 ## Spend
 
 Before it sends a request, the tool prints an estimate and compares it with
-`--max-usd`. If the estimate is more than the cap, the tool does not start.
+`--max-usd`. If the estimate is more than the cap, the tool sends no new
+request. The cap applies only to new requests: in batch mode, the tool always
+collects the batches that it sent before, because they are already paid for.
+It collects the batches that have ended before it makes the estimate.
 The estimate is an upper bound:
 
 - It counts one input token for each UTF-8 byte of the prompt, plus 1000
@@ -144,6 +147,12 @@ keeps the ids of the batches that it sent and did not collect. If a run
 stops, run the same command again. The tool collects the open batches, uses
 the kept responses, and sends only the requests that have no response. Each
 kept response also records the file name of the key that served it.
+
+In batch mode, the tool sends pass C for a row when the cache has the A and
+B of that row. It does not wait for the batches of other rows, for example a
+batch that sends again an A or B that came back unusable. The tool sends each
+request at most once in a run. A response that is unusable again waits for
+the next run.
 
 ## Credentials
 
