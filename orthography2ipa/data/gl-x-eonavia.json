@@ -240,7 +240,7 @@
       "ú"
     ],
     "stress_mark": "ˈ",
-    "notes": "Placement follows the Normas ortográficas del eonaviego §1.5.1 (p. 20): \"Llevan acento gráfico: a) Todas as palabras agudas acabadas en vocal, -n, ou -s [...] b) Todas as palabras graves acabadas en consonante que nun sía nin -n nin -s [...] c) As palabras esdrúxulas\". An unaccented word that ends in a vowel, -n or -s is therefore paroxytone, and an unaccented word that ends in another consonant is oxytone; §1.4.1c (p. 18) limits word-final consonants to z, s, n, l, r. That is the placement of the gl block, so the endings, the onset clusters and the clitic list are the ones gl states. The block differs from gl in vowel_letters only. ⟨y⟩ is never a syllable nucleus inside an Eonavian word: §1.2.5 (p. 16) states \"El fonema /ʝ/ represéntase por y\", and §1.3.2 (p. 17) writes a word-final diphthong with ⟨i⟩ (hoi, hai, rei) and keeps ⟨y⟩ as a vowel only for the conjunction y. A splitter that counts ⟨y⟩ as a vowel merges ⟨ayo⟩ into one nucleus and puts the stress of mayo [ˈmaʝo], paya and díxoye on the wrong syllable.",
+    "notes": "Placement follows the Normas ortográficas del eonaviego §1.5.1 (p. 20): \"Llevan acento gráfico: a) Todas as palabras agudas acabadas en vocal, -n, ou -s [...] b) Todas as palabras graves acabadas en consonante que nun sía nin -n nin -s [...] c) As palabras esdrúxulas\". An unaccented word that ends in a vowel, -n or -s is therefore paroxytone, and an unaccented word that ends in another consonant is oxytone; §1.4.1c (p. 18) limits word-final consonants to z, s, n, l, r. That is the placement of the gl block, so the endings, the onset clusters and the clitic list are the ones gl states. The block differs from gl in two ways. It has vowel_letters, and it has none of the gl endings for an unaccented final falling diphthong, because §1.5.2 (p. 20) writes the accent on an oxytone diphthong (baxóu, cantéi), so an unaccented one is paroxytone by §1.5.1. ⟨y⟩ is never a syllable nucleus inside an Eonavian word: §1.2.5 (p. 16) states \"El fonema /ʝ/ represéntase por y\", and §1.3.2 (p. 17) writes a word-final diphthong with ⟨i⟩ (hoi, hai, rei) and keeps ⟨y⟩ as a vowel only for the conjunction y. A splitter that counts ⟨y⟩ as a vowel merges ⟨ayo⟩ into one nucleus and puts the stress of mayo [ˈmaʝo], paya and díxoye on the wrong syllable. HIATUS: §1.5.3 (p. 20) states that two or three adjacent vowels that belong to different syllables are in hiatus, and that the closed vowel takes the accent when it is tonic (falcatrúa, recibíu). That is the system of the RAG/ILG Normas §2.5, so diphthongs keeps the gl list of the vowel sequences that form one syllable, and every other vowel pair splits. ipa_diphthongs is empty for the gl reason: the inherited grapheme map writes every diphthong with a glide. The norm does not state how ⟨uei⟩ divides. The spec keeps the inherited gl key ⟨uei⟩ [uej], the value Regueira's Dicionario de pronuncia gives for the same Galician lexemes (bidueiro biðuˈejɾo̝), so bidueira, which §1.4.1 (p. 18) lists, is stressed on its [ej] nucleus. diphthongs lists ⟨uei⟩ as one unit for the gl reason: after ⟨qu gu⟩ the ⟨u⟩ is mute and ⟨quei guei⟩ hold the one nucleus [ej], so an unaccented merquei stays paroxytone by §1.5.1.",
     "vowel_letters": [
       "a",
       "e",
@@ -252,7 +252,39 @@
       "í",
       "ó",
       "ú"
-    ]
+    ],
+    "diphthongs": [
+      "uei",
+      "ai",
+      "au",
+      "ei",
+      "eu",
+      "iu",
+      "oi",
+      "ou",
+      "ui",
+      "ái",
+      "áu",
+      "éi",
+      "éu",
+      "ói",
+      "óu",
+      "ia",
+      "ie",
+      "io",
+      "ua",
+      "ue",
+      "uo",
+      "iá",
+      "ié",
+      "ió",
+      "uá",
+      "ué",
+      "uó",
+      "üe",
+      "üi"
+    ],
+    "ipa_diphthongs": []
   },
   "orthography_standard": {
     "name": "Normas ortográficas del eonaviego (fala ou gallego-asturiano)",

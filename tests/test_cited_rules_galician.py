@@ -403,6 +403,24 @@ def test_gl_qu_before_ei_stays_a_digraph(word, expected):
     assert stressed(word) == expected
 
 
+@pytest.mark.parametrize("word,expected_tail", [
+    ("queixos", "kejʃos"),
+    ("arqueiros", "kejɾos"),
+    ("vaqueiros", "kejɾos"),
+    ("queimas", "kejmas"),
+    ("nogueiras", "ejɾas"),
+    ("salgueiros", "ejɾos"),
+])
+def test_gl_qu_gu_before_ei_in_a_plural_keeps_the_stress(word, expected_tail):
+    """The ⟨-s⟩ of the plural does not move the stress: "non se acentúan as
+    palabras graves rematadas en [...] vogal + s" (RAG/ILG Normas §2.3,
+    p. 24), so an unaccented word in a vowel plus ⟨-s⟩ is paroxytone and the
+    plural keeps the stress of the singular Regueira 2010 gives (queixo
+    ˈkejʃo̝, arqueiro aɾˈkejɾo̝). The mute ⟨u⟩ of ⟨qu gu⟩ is no nucleus."""
+    assert tail(word).endswith(expected_tail)
+    assert len(tail(word)) - len(expected_tail) <= 1
+
+
 # ═══════════════════════════════════════════════════════════════════════════
 # The gl accentuation reaches gl-ES and the gl dialect specs
 # ═══════════════════════════════════════════════════════════════════════════
