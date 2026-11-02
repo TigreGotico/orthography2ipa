@@ -329,4 +329,4 @@ engine-only (they need sentence context). See
 - For very long documents, consider tokenizing sentence-by-sentence.
 
 ---
-[← Public API stability](api_stability.md) · [Home](index.md) · [The pronunciation lattice →](lattice.md)
+[← Command line](reference/cli.md) · [Home](index.md) · [The pronunciation lattice →](lattice.md)

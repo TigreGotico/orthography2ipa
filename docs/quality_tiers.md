@@ -88,8 +88,7 @@ All `research` criteria, plus:
   [`docs/languages/`](languages/) covering the spec's phonology,
   sources, and known limitations.
 - Any known engine-limit exceptions (documented cases the current
-  transcription engine cannot resolve, e.g. the positional-trie or
-  hyphen-boundary-stress gaps noted in `AGENTS.md`) are listed on that
+  transcription engine cannot resolve) are listed on that
   page rather than silently lowering the measured PER's meaning.
 
 ## Guard test
@@ -103,12 +102,11 @@ orthographic-depth signal to key off. Shallow-orthography languages
 (e.g. Spanish, Finnish, Esperanto) are still expected to meet the
 tighter `≤ 0.15` target documented above, but that expectation is
 enforced by reviewers reading the spec's `docs/languages/` page during
-promotion review, not by this test. No spec is currently at
-`production` tier, so the guard is presently vacuous: promoting a spec
-to `production` is a test-gated act: the benchmark row must exist and
-pass the `0.25` guard, and for shallow-orthography languages the `0.15`
-target must also be confirmed by the reviewer before the tier
-claim is legitimate.
+promotion review, not by this test. The guard runs on every spec that
+claims `production`. Promoting a spec to `production` is a test-gated
+act. The benchmark row must exist and pass the `0.25` guard. For a
+shallow-orthography language, the reviewer must also confirm the `0.15`
+target before the tier claim is legitimate.
 
 ---
 [← Linguistic Accuracy Guide](linguistic_accuracy.md) · [Home](index.md) · [IPA Reference →](ipa_reference.md)
