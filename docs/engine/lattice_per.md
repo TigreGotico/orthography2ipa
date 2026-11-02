@@ -20,7 +20,7 @@ The candidate lattice of a reference text, under a lect spec, is the set of pron
 
 Two kinds of reading are admissible:
 
-1. Every path through the sentence lattice of the reference (`G2P.sentence_lattice(ref_text)`), which takes one candidate per grapheme slot, in order, before sandhi.
+1. Every path through the beam sentence lattice of the reference (`G2P.sentence_lattice(ref_text, search="beam", beam_width=beam_width)`), which takes one candidate per grapheme slot, in order, before sandhi.
 2. The engine's final reading, `G2P(lang).transcribe(ref_text)`. It includes the cross-word sandhi and the sentence rescorers that the lattice does not apply.
 
 The oracle does not enumerate paths. It pushes a Levenshtein frontier through the lattice, slot by slot, and takes the element-wise minimum over the candidates of each slot. This is the edit-distance transducer composed with the acyclic lattice. The cost is linear in the lattice size times the hypothesis length.
@@ -89,7 +89,7 @@ Over a test set, a large credit shows that the references are normalised away fr
 
 The metric inherits the spec. A permissive spec, with many candidates per slot, makes hypotheses look better, and a thin spec under-reports valid variation. Report the lect code and the engine version next to any number. The gap between `per` and `top_per` on known-good hypotheses is a probe for permissiveness.
 
-The lattice that `lattice_per` builds keeps only the top candidate of each slot. It calls `sentence_lattice` with the default greedy search, so the `beam_width` argument has no effect. The admissible readings are therefore the top lattice path and the final reading, and the lower-ranked candidates of the spec do not reach the oracle.
+The lattice that `lattice_per` builds keeps up to `beam_width` candidates in each slot, so the lower-ranked candidates of the spec reach the oracle. With `beam_width=1`, the admissible readings are only the top lattice path and the final reading.
 
 The lattice path before sandhi and the final reading do not cover every combination of sandhi. An optional sandhi that the final reading applied is admissible through reading 2, and its absence is admissible through reading 1. A mixture, with one contraction applied and another not in the same utterance, is covered only when the lattice itself carries it.
 
