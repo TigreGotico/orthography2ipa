@@ -145,6 +145,9 @@ jobs:
   board-not-reverting:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
     steps:
       # The PR HEAD, not the merge ref: the check performs the merge itself
       # and reads the result, and doing so needs both sides plus enough of
@@ -175,9 +178,13 @@ jobs:
         # was checked out above so the merge has both sides, but a branch
         # cut before this script existed (or one that edited it) must not
         # get to supply, weaken, or omit the guard that judges it.
+        # The Board-Rows line is read from the live PR body, not the event
+        # payload, so a re-run after a body edit sees the edited declaration.
         env:
-          PR_BODY: ${{ github.event.pull_request.body }}
+          GH_TOKEN: ${{ github.token }}
         run: |
+          PR_BODY="$(gh pr view ${{ github.event.pull_request.number }} --repo ${{ github.repository }} --json body -q .body)"
+          export PR_BODY
           git fetch --no-tags origin ${{ github.base_ref }}
           git show origin/${{ github.base_ref }}:scripts/check_board_not_reverting.py > "${RUNNER_TEMP}/check_board_not_reverting.py"
           PYTHONPATH=$PWD .venv/bin/python "${RUNNER_TEMP}/check_board_not_reverting.py" \
