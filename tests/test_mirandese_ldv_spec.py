@@ -748,7 +748,7 @@ def test_the_mwl_notes_quote_both_sides_of_each_disagreement(fragment):
 
 def all_notes(code: str) -> str:
     spec = spec_json(code)
-    return " ".join([spec["notes"], spec["stress"]["notes"],
+    return " ".join([spec["notes"], (spec.get("stress") or {}).get("notes", ""),
                      *(r["notes"] for r in spec.get("allophone_rules", [])),
                      *(r["notes"] for r in spec.get("sandhi_rules", []))])
 

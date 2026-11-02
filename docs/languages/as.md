@@ -1,93 +1,51 @@
 # Assamese (`as`)
 
-Standard eastern Assamese, written in the Bengali-derived Assamese script.
-Assamese shares its script with Bengali but not its phonology, and the
-spec below follows Mahanta (2012) and Roy & Mahanta (2018) rather than
-the script's Bengali reading.
+**Code**: `as` | **Family**: Indo-European > Indo-Iranian > Indo-Aryan | **Script**: Bengali (the Assamese alphabet, an abugida) | **Quality tier**: production
+
+The `as` spec describes Standard eastern Assamese, written in the Assamese script, which derives from the Bengali script. Assamese shares the script with Bengali but not the phonology. The spec follows Mahanta (2012) and Roy & Mahanta (2018), not the Bengali reading of the letters.
 
 ## Orthographic depth and production threshold
 
-**Deep orthography, the ≤ 0.25 PER production threshold applies** (see
-[quality tiers](../quality_tiers.md)). An abugida with an unwritten
-inherent vowel, word-final vowel deletion, and a consonant cluster
-fronting rule is not a shallow correspondence, even though the sound
-changes involved are regular once identified.
+Assamese has a deep orthography, so the deep threshold of 0.25 PER applies (see [quality tiers](../quality_tiers.md#the-per-threshold)). The script is an abugida with an unwritten inherent vowel. It also has word-final vowel deletion and a rule that fronts a consonant cluster. The sound changes are regular once identified, but the correspondence is not shallow.
 
-## Phonology (as encoded)
+## Phonology
 
-- Twenty consonants, one alveolar plosive series only: the retroflex
-  series written as ⟨ট ঠ ড ঢ ণ⟩ has neutralised with the dentals to
-  /t tʰ d dʱ n/, so no /ʈ ɖ ɳ ɽ/ occurs. Mahanta (2012, p.218) and
-  Roy & Mahanta (2018, p.2829) count this inventory as twenty and
-  twenty-three consonants respectively, a difference in what each
-  paper's table includes rather than a disagreement about the segments
-  themselves; both tables agree on the segments the spec encodes.
-- No affricates: ⟨চ ছ⟩ are /s/ and ⟨জ ঝ য⟩ are /z zʱ/ rather than the
-  palatals their Bengali cognates spell.
-- The Sanskrit sibilants ⟨শ ষ স⟩ merged to a velar fricative /x/,
-  unique among Indo-Aryan languages, with cluster-fronting to [s]
-  before a following consonant (`AS_X_BEFORE_CONSONANT`).
-- The one rhotic is the approximant /ɹ/, written ⟨ৰ⟩ and ⟨ড়⟩ (the
-  aspirated ⟨ঢ়⟩ gives /ɹʱ/); ⟨ৱ⟩ writes /w/. These two letters are the
-  script's own point of departure from Bengali.
-- Eight oral vowels /i e ɛ u ʊ o ɔ a/ with an ATR contrast; ⟨ও ো⟩ write
-  /ʊ/ and ⟨এ ে⟩ write /ɛ/, not the /o/ and /e/ their Bengali cognates
-  spell.
-- The inherent vowel is /ɔ/ and is not pronounced on a word-final
-  consonant letter, encoded through `inherent_vowel_final`. The
-  deletion is skipped where the syllable being closed has no nucleus
-  (a monosyllable keeps its vowel: ⟨ক⟩ stays /kɔ/) or would leave a
-  complex coda the language does not allow (⟨অংক⟩ stays /ɔŋkɔ/, not
-  */ɔŋk/); see Known limitations for what this floor does to a
-  word-medial conjunct.
+The spec has one alveolar plosive series. The retroflex letters ⟨ট ঠ ড ঢ ণ⟩ have merged with the dentals as /t tʰ d dʱ n/, so no /ʈ ɖ ɳ ɽ/ occurs. Mahanta (2012, p.218) counts twenty consonants and Roy & Mahanta (2018, p.2829) count twenty-three. The difference is in what each table includes. Both tables agree on the segments that the spec encodes.
 
-## Benchmark (full gold set, no cap)
+Assamese has no affricates. The spec maps ⟨চ ছ⟩ to /s/ and ⟨জ ঝ য⟩ to /z zʱ/, not to the palatals that their Bengali cognates spell.
 
-| dataset | provenance | n | PER |
-|---|---|---:|---:|
-| `wikipron` | crowd-scraped | 2981 | **0.0918** |
-| `vox_communis` | epitran-derived | 5328 | 0.2436 |
+The Sanskrit sibilants ⟨শ ষ স⟩ merged to a velar fricative /x/, which is unique among Indo-Aryan languages. Before a consonant, the cluster fronts /x/ to [s]. The allophone rule `AS_X_BEFORE_CONSONANT` states this, so the spec gives `skul` for স্কুল.
 
-The qualifying row is `wikipron`. `vox_communis` is epitran-derived and
-can neither qualify nor block promotion; it measures agreement with
-epitran rather than with Assamese, and epitran does not model the
-sibilant merger, so the two golds disagree exactly where epitran's own
-phonology and Assamese's diverge.
+The one rhotic is the approximant /ɹ/, written ⟨ৰ⟩ and ⟨ড়⟩. The aspirated ⟨ঢ়⟩ gives /ɹʱ/, and ⟨ৱ⟩ writes /w/. The letters ⟨ৰ⟩ and ⟨ৱ⟩ are where the Assamese script differs from Bengali.
+
+The eight oral vowels are /i e ɛ u ʊ o ɔ a/, with an ATR contrast. The spec maps ⟨ও ো⟩ to /ʊ/ and ⟨এ ে⟩ to /ɛ/, not to the /o/ and /e/ that their Bengali cognates spell.
+
+## The inherent vowel
+
+The inherent vowel is /ɔ/. It is not pronounced after a word-final consonant letter, and the spec encodes this through `inherent_vowel_final`. The spec gives `kɔlɔm` for কলম and `ɔxɔm` for অসম.
+
+The deletion does not apply in two cases. If the syllable has no other nucleus, the vowel stays, so a monosyllable such as ক is `kɔ`. If the deletion would leave a complex coda that Assamese does not allow, the vowel also stays, so অংক is `ɔŋkɔ` and not `ɔŋk`.
+
+## Benchmark
+
+Two gold rows score the spec. For the figures, see the [scoreboard](../scoreboard.md). The `wikipron` row is crowd-scraped and is the qualifying row. The `vox_communis` row is epitran-derived, so it can neither qualify nor block a promotion. It measures agreement with epitran, not with Assamese. Epitran does not model the sibilant merger, so the two golds disagree where the phonology of epitran and of Assamese differ.
 
 ## Known limitations
 
-- Three gold transcription conventions are not matched: ⟨ɦ⟩ for the
-  glottal fricative, ⟨ɪ ʊ⟩ as diphthong offglides where the sources
-  analyse /i u/, and vox_communis's ⟨ʱ⟩ marking aspiration on voiceless
-  stops. Both source tables print /h/, /i u/ and unaspirated stops
-  respectively; matching the gold notation instead would put a claim
-  in the spec that neither source supports.
-- Regressive ATR vowel harmony (raising /ɛ ɔ ʊ/ to /e o u/ before a
-  following high vowel) is described by both sources and is not
-  encoded: its principal target is the unwritten inherent vowel, which
-  has no slot a rule can address, and the harmony's nasal and coda
-  blocking cannot be stated in the current rule language.
-- Gemination of a consonant before ya-phala ⟨্য⟩ is not encoded.
-- Stress is not marked. Prominence is phonetic and non-contrastive: it
-  falls on the first syllable, or on the second when the first is open
-  and the second closed, and never later (Mahanta 2012: 222). The
-  stress schema has no rule that weighs syllables from the left edge,
-  and on an abugida the stress engine counts syllables over the written
-  letters, so even a fixed initial default puts the mark on the wrong
-  syllable.
-- A word-medial conjunct that closes a syllable keeps its inherent
-  vowel, because deletion is gated on the syllable being closed having
-  a nucleus and never manufactures a complex coda: ভক্ত gives
-  /bʱɔktɔ/, not */bʱɔkt/, retaining the second inherent vowel even
-  though it is not word-final in the orthography the way the rule
-  usually targets.
+The spec does not match three gold conventions. The golds write ⟨ɦ⟩ for the glottal fricative, ⟨ɪ ʊ⟩ for the offglides of diphthongs, and, in `vox_communis`, ⟨ʱ⟩ on voiceless stops. The source tables print /h/, /i u/ and unaspirated stops. To match the gold notation, the spec would have to make a claim that neither source supports.
+
+Both sources describe regressive ATR vowel harmony, which raises /ɛ ɔ ʊ/ to /e o u/ before a high vowel. The spec does not encode it. The main target of the harmony is the unwritten inherent vowel, and no rule can address that slot. The rule language also cannot state the blocking of the harmony by nasals and codas.
+
+The spec does not encode the gemination of a consonant before the ya-phala ⟨্য⟩.
+
+The spec does not mark stress. Prominence in Assamese is phonetic and non-contrastive. It falls on the first syllable, or on the second when the first is open and the second is closed, and never later (Mahanta 2012: 222). The stress schema has no rule that weighs syllables from the left edge. On an abugida, the stress engine also counts syllables over the written letters, so a fixed initial default puts the mark on the wrong syllable.
+
+A conjunct inside a word that closes a syllable keeps its inherent vowel. The deletion needs a nucleus in the syllable that it closes, and it never makes a complex coda. So ভক্ত gives `bʱɔktɔ` and not `bʱɔkt`, and the second inherent vowel stays.
 
 ## Sources
 
-- Mahanta, S. (2012). Assamese. *Journal of the International Phonetic
-  Association*, 42(2).
-- Roy, S. & Mahanta, S. (2018). A computational model for Assamese
-  grapheme-to-phoneme conversion. *Interspeech 2018*.
+- Mahanta, S. (2012). Assamese. *Journal of the International Phonetic Association*, 42(2).
+- Roy, S. & Mahanta, S. (2018). A computational model for Assamese grapheme-to-phoneme conversion. *Interspeech 2018*.
 
 ---
 [← Hindi](hi.md) · [Home](../index.md) · [Mongolian →](mn.md)

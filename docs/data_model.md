@@ -1,10 +1,10 @@
 # Data Model
 
-## Overview
+The package rests on a small set of types in `orthography2ipa/types.py`. Each type is a frozen dataclass or an enum. The loader also deep-freezes the dict and list fields of a `LanguageSpec`. So `registry.get()` hands out one shared, cached object that no caller can change. An attempt to change a grapheme list raises `TypeError`.
 
-The entire package is built around a small, stable set of types defined in `types.py`. All types are immutable (frozen dataclasses or enums), enabling safe caching and sharing.
+Every authored string in a spec is NFC-normalised. That covers graphemes, allophones, `word_exceptions`, notes and source titles, and `tests/test_data_nfc.py` checks each data file. The engine also normalises its own output to NFC.
 
----
+`orthography2ipa/data/SCHEMA.md` names every JSON key the loader reads. This page describes the Python objects that the loader builds from those keys.
 
 ## `Grapheme2IPA`
 
@@ -12,39 +12,21 @@ The entire package is built around a small, stable set of types defined in `type
 Grapheme2IPA = Dict[str, List[str]]
 ```
 
-A mapping from orthographic strings to lists of IPA phoneme strings.
+A `Grapheme2IPA` maps an orthographic string to a list of IPA phoneme strings. A key is a grapheme as the orthography of the language writes it. It can be a single letter (`"a"`, `"ñ"`, `"ü"`) or a digraph (`"ch"`, `"ll"`, `"lh"`, `"nh"`, `"rr"`). It can also be a trigraph, such as German ⟨sch⟩, English ⟨tch⟩ or French ⟨eau⟩. Some languages also key a vowel sequence (`"ai"`, `"ie"`, `"ua"`) where it needs its own reading.
 
-**Keys** are graphemes as they appear in the language's orthography. They may be:
-- Single characters: `"a"`, `"b"`, `"ñ"`, `"ü"`
-- Digraphs: `"ch"`, `"ll"`, `"sh"`, `"lh"`, `"nh"`, `"rr"`
-- Trigraphs (rare): `"sch"` in German, `"tch"` in French
-- Diphthong spellings: `"ai"`, `"ie"`, `"ua"`: for languages where diphthong graphemes need explicit handling
-
-**Values** are lists of IPA strings representing the possible phonemic realisations of the grapheme, ordered from most to least common:
+A value lists the phonemes the grapheme can stand for, the most common first:
 
 ```python
-# English
-english = {
-    "c":  ["k", "s"],      # /k/ is primary (cat, cup), /s/ secondary (cent, city)
-    "th": ["θ", "ð"],      # /θ/ primary (think), /ð/ secondary (the, this)
-}
-
-# Castilian Spanish
-castilian = {
-    "c":  ["k", "θ"],      # /k/ before a,o,u; /θ/ before e,i
-    "ll": ["ʎ", "ʝ"],      # /ʎ/ traditional lleísmo; /ʝ/ yeísmo variant
-}
-
-# Portuguese
-portuguese = {
-    "lh": ["ʎ"],                       # always /ʎ/: no ambiguity
-    "x":  ["ʃ", "ks", "s", "z"],       # highly ambiguous in Portuguese
-}
+import orthography2ipa
+orthography2ipa.get("en-GB").graphemes["c"]    # ['k', 's']: cat, city
+orthography2ipa.get("en-GB").graphemes["th"]   # ['θ', 'ð']: think, this
+orthography2ipa.get("es-ES").graphemes["c"]    # ['k', 'θ']: /k/ before a, o, u and /θ/ before e, i
+orthography2ipa.get("es-ES").graphemes["ll"]   # ['ʝ']: yeísmo
+orthography2ipa.get("pt-PT").graphemes["lh"]   # ['ʎ']: one reading only
+orthography2ipa.get("pt-PT").graphemes["x"]    # ['ʃ', 'ks', 'z', 's', 'ɡz']
 ```
 
-The ordering matters: the `PhonetokTokenizer`'s beam search treats the first value as the canonical (lowest-scoring) option.
-
----
+The order matters. The beam search of `PhonetokTokenizer` gives the first value the lowest cost, so it is the reading the engine picks when nothing else decides. [candidate_scoring.md](candidate_scoring.md) describes how weights and positional overrides change the cost.
 
 ## `AllophoneMap`
 
@@ -52,36 +34,206 @@ The ordering matters: the `PhonetokTokenizer`'s beam search treats the first val
 AllophoneMap = Dict[str, List[str]]
 ```
 
-A mapping from underlying phonemes to their contextual surface realisations (allophones).
-
-**Keys** are IPA phoneme strings (the underlying phonological forms).
-
-**Values** are lists of IPA strings representing the attested surface forms:
+An `AllophoneMap` maps an underlying phoneme to the surface forms it takes in context. A key is an IPA phoneme, and a value lists its attested allophones:
 
 ```python
-# English /t/: multiple allophones depending on phonological context
-english_t = ["t",   # canonical: word-initial (top, ten)
-             "tʰ",  # aspirated: syllable-initial before stressed vowel
-             "ɾ",   # flap: intervocalic in North American English (butter, water)
-             "ʔ",   # glottal stop: before syllabic /n/ (button, cotton)
-             "t̚"]  # unreleased: word-final (cat, but)
-
-# Spanish /b/: lenition
-spanish_b = ["b",   # after pause or nasal (burro, un barco)
-             "β"]   # spirantised: all other positions (lobo, el barco)
-
-# Spanish /n/: place assimilation
-spanish_n = ["n",   # default alveolar
-             "m",   # before bilabials (un padre → [um padre])
-             "ɱ",   # labiodental before /f/ (enfermo)
-             "n̪",  # dental before /t,d/
-             "ŋ",   # velar before /k,g/ (banco)
-             "ɲ"]   # palatal before /ʎ,ʝ/ (ancho)
+import orthography2ipa
+orthography2ipa.get("en-GB").allophones["t"]   # ['t', 'tʰ', 'ʔ', 'ɾ']
+orthography2ipa.get("es-ES").allophones["b"]   # ['b', 'β']: β between vowels
+orthography2ipa.get("es-ES").allophones["n"]   # ['n', 'ŋ', 'm']: place assimilation
 ```
 
-The `AllophoneMap` does **not** encode the phonological rules that determine which allophone occurs: it only records *which allophones exist* for distance calculations and phonological inventory analysis. Allophone selection rules would need to be implemented separately by the consumer.
+The map records which allophones exist. The distance metrics and the inventory functions read it. It does not say which allophone occurs where. The spec's `allophone_rules` make that choice, and the engine applies them after it selects the phonemes ([allophony.md](allophony.md)). A spec that declares graphemes and no allophones gets an identity map: each phoneme a grapheme can produce is its own allophone.
 
----
+### How the two maps relate
+
+The two maps are two layers of description:
+
+```
+orthography → graphemes → underlying phonemes → allophones → surface forms
+  "butter"     b,u,tt,e,r     /b ʌ t ə r/       [b ʌ ɾ ə r]
+```
+
+The grapheme map goes from orthography to phonology. The allophone map goes from phonology to phonetics. In American English, *butter* passes through both. The grapheme step maps ⟨tt⟩ to /t/, and the allophone step realises /t/ as the flap [ɾ] between vowels.
+
+## `LanguageSpec`
+
+A `LanguageSpec` holds all the data for one language, dialect, historical stage or clade node. The fields fall into these groups. `SCHEMA.md` documents the JSON key behind each one.
+
+| Group | Fields | What they hold |
+| :--- | :--- | :--- |
+| Identity | `code`, `name`, `script`, `script_type`, `orthography_kind` | The BCP-47 code, the display name, the script and its type, and what kind of writing the graphemes are |
+| Cross-references | `iso639_3`, `glottolog_code`, `wikidata_qid`, `phoible_id`, `wals_code` | Identifiers in other catalogues |
+| Classification | `family`, `family_path`, `clade`, `parent`, `ancestors` | The derived family path, the clade flag and the typed ancestry |
+| Sound and spelling | `graphemes`, `allophones`, `phonemes`, `positional_graphemes`, `grapheme_weights` | The two maps, the declared inventory, the context-sensitive overrides and the candidate weights |
+| Whole words and endings | `word_exceptions`, `grammatical_endings` | Overrides for an irregular set of words, and suffix readings at the word end |
+| Script behaviour | `inherent_vowel`, `inherent_vowel_final`, `virama_final_vowel`, `dependent_vowels`, `preposed_vowels`, `coda_no_inherent_vowel`, `codas`, `consonant_nuclei`, `vowel_graphemes`, `fold_diacritics`, `optional_marks`, `word_internal_apostrophe`, `doubled_letters_geminate`, `collapse_geminates`, `trailing_vowel_axis_digraphs`, `constrain_onsets` | How the tokenizer and the syllabifier read the script |
+| Rules | `stress`, `allophone_rules`, `allophone_passes`, `sandhi_rules`, `tone_rules`, `tone_inventory`, `tone_marks_syllable_final`, `plugins` | Stress placement, post-lexical rewrites, cross-word rules, tone and the plugins a stage must use |
+| Provenance | `quality`, `sources`, `wikipedia`, `urls`, `notes`, `audit`, `valid_ceiling` | The quality tier, the citations, the notes and the recorded audit results |
+| Place and time | `location`, `timespan`, `orthography_standard` | A representative point, the attestation period and the official spelling norm |
+
+`positional_graphemes` defaults to `None` in the dataclass, and `__post_init__` turns it into `{}`. `quality` defaults to `RESEARCH` and `script_type` to `ALPHABET`. [positional_graphemes.md](positional_graphemes.md) covers the positional overrides.
+
+### `phonemes`: the inventory, stated directly
+
+`phonemes` is the phoneme inventory of the language: the sounds it has, declared apart from `graphemes`. The sounds of a language are not a property of its writing system. Most languages of the world have little or no writing, and PHOIBLE catalogues inventories for thousands of them. A logographic script encodes no sound at all. So a reading of the inventory out of the spelling fails in both cases.
+
+```python
+import orthography2ipa
+ine = orthography2ipa.get("ine")        # Proto-Indo-European, never written
+len(ine.phonemes)                       # 30 reconstructed phonemes, declared
+han = orthography2ipa.get("zh-Hani")    # Chinese in Han script
+dict(han.graphemes)                     # {}: no grapheme-to-IPA rule exists to write
+len(han.phonemes)                       # 60: the phonology is known regardless
+```
+
+When `phonemes` is empty, the inventory comes from `graphemes`: each phoneme that any grapheme can produce. A spec that says nothing keeps the inventory its grapheme map implies. That derivation is a fallback, not the definition, because it reads the sounds out of the spelling. `distance._extract_phonemes` applies the rule, so the declared inventory wins and the grapheme map is the fallback. Every phonological metric builds on it.
+
+A spec must declare `graphemes` or `phonemes`, and it may not leave both empty. Logographic scripts and unwritten languages show that a language can lack graphemes. No language lacks both sounds and spelling. `tests/test_language_integrity.py` checks this rule.
+
+### `orthography_kind`: native scripts, romanizations and transliterations
+
+The `graphemes` map says that some writing produces some sounds, and `orthography_kind` says which writing. Han characters, Pinyin and Buckwalter ASCII make three different claims, and a consumer must be able to tell them apart.
+
+| `orthography_kind` | What the graphemes are | Standards body | Example |
+| :--- | :--- | :--- | :--- |
+| `native` | The writing system of the language | Usually | `zh-Hani` (Han), `ar` (Arabic), `en-GB` (Latin) |
+| `romanization` | An alternative orthography that people read and write | Yes | `zh` (Pinyin, ISO 7098) |
+| `transliteration` | A lossless machine re-encoding of another script | No, and that absence is the tell | `ar-Latn-buckwalter` |
+
+```python
+import orthography2ipa
+orthography2ipa.get("zh").orthography_kind                   # OrthographyKind.ROMANIZATION
+orthography2ipa.get("zh-Hani").orthography_kind              # OrthographyKind.NATIVE
+orthography2ipa.get("ar-Latn-buckwalter").orthography_kind   # OrthographyKind.TRANSLITERATION
+```
+
+`native` is the default. A spec that says nothing claims to read the own script of the language.
+
+#### A romanization is an orthography, a transliteration is an encoding
+
+A romanization is a real orthography of the language. Schools teach Pinyin, the law sets it, and ISO 7098 standardises it. A Chinese primary-school child writes it. It is also a plain alphabet, which is why rules can transcribe it where they cannot transcribe the native script:
+
+```python
+from orthography2ipa import G2P
+G2P("zh").transcribe("beijing")   # 'peitɕiŋ': Pinyin in, IPA out
+```
+
+So `zh` reads Pinyin, not Hanzi, and says so. The conversion of Han text to Pinyin is a dictionary lookup (CC-CEDICT and similar), and this library does not do it.
+
+A transliteration re-encodes another script for machines. Nobody reads Buckwalter as a language. It takes every property of the script it re-encodes, and the limits come with it.
+
+#### Buckwalter cannot recover the vowels
+
+A transliteration that changed the pronunciation would not be a transliteration. `ar` and `ar-Latn-buckwalter` write the same word in two encodings and give one IPA:
+
+```python
+from orthography2ipa import G2P
+G2P("ar").transcribe("كَتَبَ")                    # 'ˈkataba': vocalised Arabic
+G2P("ar-Latn-buckwalter").transcribe("kataba")   # 'ˈkataba': the same IPA
+```
+
+A re-encoding cannot recover what the script never wrote. Unvocalised Buckwalter is as hard to read as unvocalised Arabic. Both omit the short vowels, and nothing puts them back:
+
+```python
+from orthography2ipa import G2P
+g = G2P("ar-Latn-buckwalter")
+g.transcribe("kataba")   # 'ˈkataba'
+g.transcribe("ktb")      # 'ˈktb': the bare form has no vowels
+```
+
+#### The native Han spec has no grapheme map
+
+A Han character does not encode sound. Its reading depends on the word it sits in. So `zh-Hani` has no grapheme map at all, and that empty map is the answer, not a gap:
+
+```python
+import orthography2ipa
+han = orthography2ipa.get("zh-Hani")
+dict(han.graphemes)   # {}: there is no grapheme-to-IPA rule to write
+len(han.phonemes)     # 60: the phonology is declared
+```
+
+The input contract for Han text is a dictionary, which is a lexical lookup and not a phonological rule. That is a fact about the writing system, not a defect of the engine. The romanization avoids the problem, because Pinyin is an alphabet that rules can read. `zh-Hani` also shows why the [phoneme inventory](#phonemes-the-inventory-stated-directly) is declared apart from the graphemes. It has no orthography the rules can read, and its phonology is complete.
+
+### `vowel_graphemes`: overriding a closed-inventory consonant letter
+
+`orthography2ipa.vowels.grapheme_is_vowel` treats the Latin, Greek and Arabic-harakat letter sets as closed inventories. A Latin letter outside them, such as ⟨w⟩, ⟨y⟩ or ⟨r⟩, is a consonant letter by construction, whatever IPA a spec maps it to. This is deliberate. Czech syllabic ⟨r⟩ and English ⟨y⟩ must not become vowels because their IPA output is a vowel somewhere else.
+
+Some orthographies do use one of those consonant letters to spell a vowel: Hmong RPA ⟨w⟩ is /ɨ/, and Welsh ⟨w⟩ is /ʊ, w/. `vowel_graphemes` is the exception for one spec. It is a tuple of whole grapheme strings, matched in full and not by the first character, that the spec declares vowel letters. The check reads it before the closed inventories:
+
+```python
+import orthography2ipa
+orthography2ipa.get("mww").vowel_graphemes   # ('w',)
+```
+
+An empty tuple, the default, gives the closed-inventory answer. The field is `OWN_ONLY`, like `script_type` and `optional_marks`. A dialect that shares the grapheme table of a parent does not get the script exceptions of that parent.
+
+### Derived classification: `family`, `family_path`, `clade`
+
+No spec author writes `family`. Families are clade nodes in the ancestry graph: specs with `clade=True`, which carry classification and nothing else. The loader walks the `parent` chain upwards and collects the names of the clades it passes, broadest first, into `family_path`. `family` is that path joined with `" > "`:
+
+```python
+import orthography2ipa
+orthography2ipa.get("pt-BR").family_path   # ('Indo-European', 'Italic', 'Romance', 'Ibero-Romance')
+orthography2ipa.get("pt-BR").family        # 'Indo-European > Italic > Romance > Ibero-Romance'
+orthography2ipa.get("pt-BR").clade         # False
+```
+
+A spec can still carry an explicit `family` string, and that string wins over the derived one. The exception exists for groupings that are not genetic clades: creoles, constructed languages, isolates and unclassified languages. `available_codes()` leaves out the clade nodes unless you pass `include_clades=True`. [ancestry.md](ancestry.md#clade-nodes-and-the-derived-family) describes the clade graph.
+
+### `Location`, `OrthographyStandard`, `TimeSpan`
+
+| Type | Fields | Purpose |
+| :--- | :--- | :--- |
+| `Location` | `latitude`, `longitude`, `source`, `notes` | A representative point for the variety. It feeds `geographic_distance`. The point of a clade is a centroid of its range. |
+| `OrthographyStandard` | `name`, `authority`, `year`, `url`, `notes` | The official published spelling norm, when one exists. It belongs to the language, not to each dialect. A dialect that spells by the norm of its standard language omits the field, and consumers walk the ancestry chain. |
+| `TimeSpan` | `start_year`, `end_year` | The attestation period. It decays ancestry weights across time and drives `temporal_distance`. |
+
+```python
+import orthography2ipa
+orthography2ipa.get("gl-ES").orthography_standard.authority
+# 'Real Academia Galega / Instituto da Lingua Galega'
+orthography2ipa.get("ca").location.latitude   # 41.453
+```
+
+### The `parent` and `ancestors` fields
+
+A spec can state its parent in two ways. `parent` is a string shorthand, and `ancestors` is the full typed tuple of `Ancestor` objects. If `ancestors` is empty and `parent` is set, `__post_init__` makes a `PARENT` ancestor with weight 1.0. If `parent` is empty and `ancestors` holds a `PARENT` entry, `__post_init__` sets `parent` from it.
+
+Give a new language or dialect the full `ancestors` tuple, because it carries the most data. A dialect that differs little from its parent can use `parent` alone.
+
+### Accessor methods and properties
+
+```python
+import orthography2ipa
+from orthography2ipa.types import AncestorRole, GraphemePosition
+spec = orthography2ipa.get("es-ES")
+spec.primary_parent                         # 'es-ES-x-medieval'
+spec.get_ancestors()                        # every ancestor
+spec.get_ancestors(AncestorRole.SUBSTRATE)  # the substrate ancestors only
+spec.substrate_codes                        # ('xaq',)
+spec.superstrate_codes                      # ('got',)
+spec.contact_codes                          # every non-parent ancestor: ('xaq', 'got', 'xaa')
+spec.resolve_grapheme("b", GraphemePosition.INTERVOCALIC)   # ['β']
+spec.has_positional_data()                  # True
+spec.positional_grapheme_keys()             # frozenset of the graphemes with overrides
+spec.positions_for_grapheme("b")            # (GraphemePosition.INTERVOCALIC,)
+```
+
+## Inheritance between specs
+
+A dialect often shares most of its data with a base variety. The JSON of the dialect names that base with a `*_base` key, such as `graphemes_base` or `allophones_base`, and states only what differs. The loader in `json_loader.py` resolves the base first and then applies the own values of the dialect. `FIELD_INHERITANCE` in `types.py` sets the mode for each field:
+
+| Mode | Behaviour | Fields |
+| :--- | :--- | :--- |
+| `BASE_MERGE` | The own values overlay the values of the base key by key | `graphemes`, `allophones`, `positional_graphemes`, `word_exceptions`, `grammatical_endings` |
+| `OVERLAY_BY_ID` | The rules of the base come first, in order. An own rule with the same `id` replaces one, and an own rule with a new `id` goes at the end | `sandhi_rules`, `allophone_rules` |
+| `BASE_SCALAR` | The value follows the `graphemes_base` edge unless the spec states it | `constrain_onsets`, `word_internal_apostrophe` |
+| `BASE_BLOCK` | A spec that states the block keeps it whole. A spec that does not takes the block of its `graphemes_base`, else of a `parent` that is the same language (same or no `iso639_3`). `false` takes no block | `stress` |
+| `NOT_INHERITED` | Each file states its own value on purpose | `grapheme_weights`, `allophone_passes` |
+| `OWN_ONLY` | The field never takes part in inheritance | Identity, classification, bibliography and script fields, such as `code`, `name`, `sources`, `timespan`, `vowel_graphemes` |
+
+Each `*_base` key can name a different base, and the loader resolves a chain of bases recursively. A field added to `LanguageSpec` must have an entry in `FIELD_INHERITANCE`. [adding_a_language.md](adding_a_language.md) shows a dialect file that uses these keys.
 
 ## `AncestorRole`
 
@@ -99,418 +251,104 @@ class AncestorRole(Enum):
     RELATED         = "related"
 ```
 
-Encodes the **type of historical relationship** between a language and its ancestor.
+`AncestorRole` names the kind of historical relation between a language and an ancestor.
 
-| Role | Definition | Example |
-|---|---|---|
-| `PARENT` | Primary genetic descent | Latin → Spanish |
-| `PARENT_DIALECT` | Direct dialectal ancestor within the same language | A regional variety descending from a broader standard |
-| `PROTO_LANGUAGE` | Reconstructed common ancestor at the top of a lineage | Proto-Indo-European, Proto-Germanic, Proto-Semitic |
-| `ANCESTOR` | Earlier historical stage of the same lineage that is not the immediate parent | Old Spanish in the ancestry of modern Spanish |
-| `SUBSTRATE` | Language of the pre-existing population | Basque substrate in Castilian |
-| `SUPERSTRATE` | Language of a dominant group, later absorbed | Frankish superstrate in French |
-| `ADSTRATE` | Peer contact influence from a neighbouring language | Arabic adstrate on Ibero-Romance |
-| `LEXIFIER` | Vocabulary source in creole/pidgin formation | Portuguese lexifier of Papiamento |
-| `CREOLE_BASE` | Grammar/structural source in creole formation | West African languages as creole base |
-| `RELATED` | Sister language with shared features but no direct descent | Used for typological comparison rather than inheritance |
+| Role | Definition | Example | Typical weight |
+| :--- | :--- | :--- | :--- |
+| `PARENT` | Primary genetic descent | Latin to Spanish | 0.70 to 1.00 |
+| `PARENT_DIALECT` | Direct dialectal ancestor in the same language | A regional variety that descends from a broader standard | |
+| `PROTO_LANGUAGE` | Reconstructed common ancestor at the top of a lineage | Proto-Indo-European, Proto-Germanic, Proto-Semitic | |
+| `ANCESTOR` | Earlier stage of the same lineage that is not the immediate parent | Old Spanish in the ancestry of modern Spanish | |
+| `SUBSTRATE` | Language of the population that was there first | Basque substrate in Castilian | 0.05 to 0.30 |
+| `SUPERSTRATE` | Language of a dominant group, later absorbed | Frankish superstrate in French | 0.10 to 0.40 |
+| `ADSTRATE` | Contact influence from a neighbouring language of equal status | Arabic adstrate on Ibero-Romance | 0.05 to 0.20 |
+| `LEXIFIER` | Vocabulary source in creole or pidgin formation | Portuguese lexifier of Papiamento | 0.50 to 0.80 |
+| `CREOLE_BASE` | Grammatical source in creole formation | West African languages as a creole base | 0.20 to 0.50 |
+| `RELATED` | Sister language with shared features and no direct descent | Typological comparison, not inheritance | |
 
-### Linguistic notes
+A language has at most one `PARENT`, which is its primary line of descent. A reconstructed proto-language has none.
 
-**PARENT**: Every language (except reconstructed proto-languages) should have exactly one PARENT. This is the primary line of descent. The weight is typically 0.7-1.0.
+A substrate is the language of the original population that took up the incoming language. Its effects show as phonological features that depart from the parent. The Basque substrate in Castilian is the classic explanation for the change of *f-* to *h-* (Latin *filium*, Spanish *hijo*).
 
-**PARENT_DIALECT**: Direct dialectal ancestor within the same language, for example a regional variety descending from a broader standard.
+A superstrate is a prestige language whose speakers shift to the local language in the end, but leave phonological and lexical traces. Frankish gave vocabulary, and possibly phonological features, to Old French.
 
-**PROTO_LANGUAGE**: The reconstructed common ancestor at the top of a lineage, such as Proto-Indo-European, Proto-Germanic, or Proto-Semitic.
-
-**ANCESTOR**: An earlier historical stage of the same lineage that is not the immediate parent, such as Old Spanish in the ancestry of modern Spanish.
-
-**SUBSTRATE**: A substrate is the language of the original population that adopted the incoming language. Substrate effects show up as phonological features that deviate from the parent. The Basque substrate in Castilian is the classic explanation for the *f-* → *h-* sound change (Latin *filium* → Spanish *hijo*). Weight: 0.05-0.30.
-
-**SUPERSTRATE**: A superstrate is a prestige language whose speakers eventually shift to the local language but leave phonological and lexical traces. Frankish (Proto-Germanic) contributed vocabulary and possibly phonological features to Old French. Weight: 0.10-0.40.
-
-**ADSTRATE**: An adstrate is a neighbouring language at roughly equal social status that exerts ongoing influence. Arabic was an adstrate on medieval Ibero-Romance, contributing over 4,000 loanwords to Spanish and Portuguese. Weight: 0.05-0.20.
-
-**RELATED**: A sister language that shares features with the descendant but is not on its line of descent. This role is used for typological comparison rather than inheritance.
-
----
+An adstrate is a neighbouring language of about equal social status that keeps up its influence. Arabic was an adstrate on medieval Ibero-Romance and gave more than 4,000 loanwords to Spanish and Portuguese.
 
 ## `Ancestor`
 
 ```python
 @dataclass(frozen=True)
 class Ancestor:
-    code: str            # Language code of the ancestor
-    role: AncestorRole   # Type of relationship
-    weight: float = 0.5  # Contribution weight [0.0, 1.0]
-    notes: str = ""      # Optional explanatory notes
+    code: str            # language code of the ancestor
+    role: AncestorRole   # kind of relation
+    weight: float = 0.5  # contribution weight in [0.0, 1.0]
+    notes: str = ""      # optional notes
 ```
 
-### Weight guidelines
-
-| Role | Typical weight range |
-|---|---|
-| PARENT | 0.70-1.00 |
-| SUBSTRATE | 0.05-0.30 |
-| SUPERSTRATE | 0.10-0.40 |
-| ADSTRATE | 0.05-0.20 |
-| LEXIFIER | 0.50-0.80 |
-| CREOLE_BASE | 0.20-0.50 |
-
-Weights do not need to sum to 1.0. They represent approximate phonological contribution, not relative proportion of heritage.
-
-### Example
+The weights in the role table are guidelines from the `Ancestor` docstring. They need not sum to 1.0. A weight is an approximate phonological contribution, not a share of heritage.
 
 ```python
 from orthography2ipa.types import Ancestor, AncestorRole
-
-Ancestor(
-    code="la-x-hispania",
-    role=AncestorRole.PARENT,
-    weight=0.80,
-    notes="Primary descent from Hispanic Vulgar Latin"
-)
+Ancestor(code="la-x-hispania", role=AncestorRole.PARENT, weight=0.80,
+         notes="Primary descent from Hispanic Vulgar Latin")
+# Ancestor('la-x-hispania', parent, w=0.80)
 ```
 
----
+## `QualityTier`
 
-## `LanguageSpec`
+| Value | Meaning |
+| :--- | :--- |
+| `STUB` | Code, name, script and a parent for the clade chain, with no phoneme data |
+| `SKELETON` | Graphemes and allophones from auto-generation, not validated |
+| `RESEARCH` | Validated against published phonology, with positional rules |
+| `PRODUCTION` | Full coverage, regression tests and cited sources |
 
-`orthography2ipa/types.py:379`
+[quality_tiers.md](quality_tiers.md) sets the bar a spec must clear for each tier.
 
-```python
-@dataclass(frozen=True)
-class LanguageSpec:
-    code: str                                          # BCP-47 or ISO 639 code
-    name: str                                          # Human-readable name
-    family: str                                        # DERIVED classification path
-    family_path: Tuple[str, ...]                       # DERIVED clade chain, broadest first
-    clade: bool                                        # classification-only node
-    script: str                                        # Primary script
-    graphemes: Grapheme2IPA                            # Grapheme → IPA
-    allophones: AllophoneMap                           # Phoneme → allophones
-    phonemes: Tuple[str, ...] = ()                     # The inventory, stated directly
-    orthography_kind: OrthographyKind = OrthographyKind.NATIVE  # native | romanization | transliteration
-    parent: Optional[str] = None                       # Primary parent code (shorthand)
-    ancestors: Tuple[Ancestor, ...] = ()               # Full ancestry specification
-    positional_graphemes: PositionalGrapheme2IPA = None # Context-sensitive IPA (normalised to {} in __post_init__)
-    glottolog_code: str | None = None                  # Glottolog languoid code
-    notes: str = ""                                    # Free-form notes
-    quality: QualityTier = QualityTier.RESEARCH        # Data maturity tier
-    script_type: ScriptType = ScriptType.ALPHABET      # Writing system typology
-    inherent_vowel: Optional[str] = None               # For abugidas (e.g. "ə" for Hindi)
-    vowel_graphemes: Tuple[str, ...] = ()              # Closed-inventory letters this spec declares vowels (e.g. Hmong RPA "w")
-    iso639_3: Optional[str] = None                     # ISO 639-3 code
-    wikidata_qid: Optional[str] = None                 # Wikidata item id: the linked-data hub
-    phoible_id: Optional[str] = None                   # PHOIBLE inventory identifier
-    wals_code: Optional[str] = None                    # WALS typological cross-reference
-    sandhi_rules: Tuple[SandhiRule, ...] = ()          # Cross-word phonological rules
-    allophone_rules: Tuple[AllophoneRule, ...] = ()    # Post-lexical phoneme → surface rewrites
-    stress: Optional[StressRules] = None               # Stress placement rules
-    tone_rules: Optional[ToneRules] = None             # tone computed from the syllable's shape
-    tone_inventory: Optional[Dict[str, str]] = None    # IPA tone mark → label
-    tone_marks_syllable_final: bool = False            # dock tone at the syllable end
-    word_exceptions: Optional[Dict[str, str]] = None   # Whole-word overrides for an irregular set
-    grammatical_endings: Optional[Dict[str, EndingValue]] = None  # Suffix morphology: ending → IPA (or an ordered candidate list) at the word end
-    orthography_standard: Optional[OrthographyStandard] = None  # Official spelling norm
-    location: Optional[Location] = None                # Representative point (lat/lon)
-    timespan: Optional[TimeSpan] = None                # Attestation period
-    sources: Tuple[LinguisticSource, ...] = ()         # Bibliographic references
-    wikipedia: Tuple[str, ...] = ()                    # Wikipedia article URLs
-    urls: Tuple[str, ...] = ()                         # Other reference URLs
-```
+## `ScriptType`
 
-### `phonemes`: the inventory, stated directly
-
-`phonemes` is the language's phoneme inventory: the sounds it **has**, declared
-independently of `graphemes`. A language's sounds are not a property of its writing
-system. Most of the world's languages are unwritten or barely written and PHOIBLE
-catalogues inventories for thousands of them; a logographic script encodes no sound
-at all. Reading the inventory out of the spelling cannot work for either.
-
-```python
-import orthography2ipa
-
-ine = orthography2ipa.get("ine")        # Proto-Indo-European: never written
-len(ine.phonemes)                       # 30 reconstructed phonemes, declared
-
-han = orthography2ipa.get("zh-Hani")    # Chinese in Han script
-han.graphemes                           # {}: no grapheme→IPA rule exists to write
-len(han.phonemes)                       # 60: the phonology is known regardless
-```
-
-When `phonemes` is empty the inventory is **derived** from `graphemes`: every
-phoneme any grapheme can produce: so a spec that says nothing keeps exactly the
-inventory it always had. That derivation is a *fallback*, not the definition: it
-reads the sounds out of the spelling, which is backwards, and it is why a
-reconstructed language once had to fake an identity orthography (`p` → [p]) merely
-to have an inventory. `distance._extract_phonemes` applies the rule: declared
-inventory wins, grapheme map is the fallback: and every phonological metric is
-built on it.
-
-**The integrity invariant:** a spec must declare `graphemes` **or** `phonemes`. It
-may not be silent about both. "Every language has graphemes" is false: logographic
-scripts and unwritten languages are the counterexamples: and no spec is allowed to
-claim it has neither sounds nor spelling.
-
-### `orthography_kind`: what kind of writing the graphemes are
-
-`native` (default) | `romanization` | `transliteration`. Han characters, Pinyin and
-Buckwalter ASCII make three different claims, and a consumer must be able to tell
-them apart:
-
-```python
-import orthography2ipa
-
-orthography2ipa.get("zh").orthography_kind                   # ROMANIZATION: Pinyin (ISO 7098)
-orthography2ipa.get("zh-Hani").orthography_kind              # NATIVE: Han script
-orthography2ipa.get("ar-Latn-buckwalter").orthography_kind   # TRANSLITERATION: Arabic in ASCII
-```
-
-Full treatment, with the reason a romanization is transcribable where the native
-script is not: [orthography_kind.md](orthography_kind.md).
-
-### `vowel_graphemes`: overriding a closed-inventory consonant letter
-
-`orthography2ipa.vowels.grapheme_is_vowel` treats the Latin, Greek and
-Arabic-harakat letter sets as **closed inventories**: a Latin letter absent
-from them (⟨w⟩, ⟨y⟩, ⟨r⟩) is a consonant letter by construction, no matter
-what IPA a spec maps it to. That is deliberate — Czech syllabic ⟨r⟩ and
-English ⟨y⟩ must not become vowels just because their IPA output happens to
-be a vowel elsewhere.
-
-Some orthographies genuinely use one of those closed-inventory consonant
-letters to spell a vowel: Hmong RPA ⟨w⟩ = /ɨ/, Welsh ⟨w⟩ = /ʊ, w/.
-`vowel_graphemes` is the per-spec escape hatch — a tuple of whole grapheme
-strings (matched in full, not by first character) that this spec declares
-vowel letters, overriding the closed-inventory answer:
-
-```python
-import orthography2ipa
-
-orthography2ipa.get("mww").vowel_graphemes   # ("w",)
-```
-
-Empty (the default) is the previous, closed-inventory-only behaviour exactly.
-It is `OWN_ONLY` inherited — a dialect that shares a parent's grapheme table
-does not thereby inherit its parent's script exceptions, exactly like
-`script_type` and `optional_marks`.
-
-### Derived classification: `family`, `family_path`, `clade`
-
-`family` is not authored on a spec. Families are **clade nodes** in the ancestry
-graph: specs flagged `clade=True`, which carry classification and nothing else: and the loader derives `family_path` by walking the `parent` chain upwards and
-collecting the clade names it passes, broadest first. `family` is that path joined
-with `" > "`:
-
-```python
-import orthography2ipa
-
-orthography2ipa.get("pt-BR").family_path   # ('Indo-European', 'Italic', 'Romance', 'Ibero-Romance')
-orthography2ipa.get("pt-BR").family        # 'Indo-European > Italic > Romance > Ibero-Romance'
-orthography2ipa.get("pt-BR").clade         # False
-```
-
-A spec may still carry an explicit `family` string, which wins over the derived
-one; that escape hatch exists for groupings that are not genetic clades (creoles,
-constructed languages, isolates, unclassified languages). Clade nodes are excluded
-from `available_codes()` unless `include_clades=True` is passed. See
-[ancestry.md](ancestry.md#clade-nodes-and-the-derived-family).
-
-### `Location`, `OrthographyStandard`, `TimeSpan`
-
-| Type | Fields | Purpose |
-|---|---|---|
-| `Location` | `latitude`, `longitude`, `source`, `notes` | Representative point for the variety; feeds `geographic_distance`. A clade's point is a centroid of its descendants. |
-| `OrthographyStandard` | `name`, `authority`, `year`, `url`, `notes` | The official published spelling norm, when one exists. A property of the language, not of every dialect of it: a dialect that spells by its standard language's norm omits the field and consumers walk the ancestry chain. |
-| `TimeSpan` | `start_year`, `end_year` | Attestation period; decays ancestry weights across time and drives `temporal_distance`. |
-
-```python
-import orthography2ipa
-
-orthography2ipa.get("gl-ES").orthography_standard.authority
-# 'Real Academia Galega / Instituto da Lingua Galega'
-orthography2ipa.get("ca").location.latitude   # 41.453
-```
-
-### Accessor methods and properties
-
-```python
-import orthography2ipa
-from orthography2ipa.types import AncestorRole, GraphemePosition
-
-spec = orthography2ipa.get("es-ES")
-
-# Primary parent code
-spec.primary_parent          # "la-x-hispania"
-
-# All ancestors, optionally filtered by role
-spec.get_ancestors()                           # all ancestors
-spec.get_ancestors(AncestorRole.SUBSTRATE)     # substrate ancestors only
-
-# Convenience tuples of codes
-spec.substrate_codes          # ('xaq',)
-spec.superstrate_codes        # ('got',)
-spec.contact_codes            # all non-parent ancestors: ('xaq', 'xaa', 'got')
-
-# Positional grapheme resolution
-spec.resolve_grapheme("b", GraphemePosition.INTERVOCALIC)  # ["β"]
-spec.has_positional_data()           # bool
-spec.positional_grapheme_keys()      # frozenset of graphemes with overrides
-spec.positions_for_grapheme("b")     # tuple of GraphemePosition values
-```
-
-### The `parent` vs `ancestors` fields
-
-For backward compatibility, `LanguageSpec` supports both `parent` (a simple string shorthand) and `ancestors` (the full typed tuple). If `ancestors` is empty but `parent` is set, `__post_init__` synthesises a `PARENT` ancestor with weight 1.0 automatically. Conversely, if `parent` is empty but `ancestors` contains a PARENT-role entry, `parent` is set from it.
-
-For new languages and dialects, always populate the `ancestors` tuple for richest data. Simple dialects that differ minimally from a parent may use just `parent`.
-
-### `QualityTier` enum
-
-`orthography2ipa/types.py:174`
-
-| Value | Description |
-|---|---|
-| `STUB` | Code + name + script + a parent to hang the clade chain on; no phoneme data |
-| `SKELETON` | Graphemes + allophones from auto-generation (unvalidated) |
-| `RESEARCH` | Validated against published phonology; positional rules present |
-| `PRODUCTION` | Full coverage, regression-tested, cited sources |
-
-### `ScriptType` enum
-
-`orthography2ipa/types.py:194`
-
-| Value | Description |
-|---|---|
+| Value | Scripts |
+| :--- | :--- |
 | `ALPHABET` | Latin, Cyrillic, Greek, Armenian, Georgian |
-| `ABJAD` | Arabic, Hebrew: consonants primary, vowels optional |
-| `ABUGIDA` | Devanagari, Bengali, Tamil, Thai: inherent vowel |
+| `ABJAD` | Arabic, Hebrew: the consonants come first and the vowels are optional |
+| `ABUGIDA` | Devanagari, Bengali, Tamil, Thai: each consonant carries an inherent vowel |
 | `SYLLABARY` | Kana, Cherokee |
-| `LOGOGRAPHIC` | Hanzi / CJK ideographs |
+| `LOGOGRAPHIC` | Hanzi and other CJK ideographs |
 | `FEATURAL` | Hangul |
-| `MIXED` | Japanese (logographic + syllabary) |
-| `RECONSTRUCTION` | IPA-based phonological reconstruction for extinct languages |
+| `MIXED` | Japanese, which mixes logographs and a syllabary |
+| `RECONSTRUCTION` | An IPA-based reconstruction for an extinct language |
 
-### `LinguisticSource` dataclass
+## `LinguisticSource`
 
-`orthography2ipa/types.py:258`
+A `LinguisticSource` is one bibliographic reference. Its fields are `id`, `author`, `year`, `title`, `publisher`, `url`, `doi`, `wikipedia_url`, `pages` and `notes`.
 
-Fields: `id`, `author`, `year`, `title`, `publisher`, `url`, `wikipedia_url`, `pages`, `notes`.
+## `SandhiRule`
 
-### `SandhiRule` dataclass
+A `SandhiRule` is one cross-word rule. Its fields are `id`, `name`, `left_context`, `right_context`, `transform`, `right_transform`, `obligatory` and `notes`.
 
-`orthography2ipa/types.py:300`
+A word boundary has two sides, and a rule can rewrite either side or both. `transform` replaces the `left_context` match in the left word. A process that the right side conditions (regressive) needs this shape, such as the voicing of coda /s/ in European Portuguese. A `None` value leaves the left word as it is.
 
-Fields: `id`, `name`, `left_context`, `right_context`, `transform`,
-`right_transform`, `obligatory`, `notes`.
+`right_transform` replaces the `right_context` match in the right word. A process that the left side conditions (progressive) needs this shape. Catalan phrase-level spirantization is one example: the initial /b d ɡ/ of the next word lenites after a continuant, so *de decidir* gives `də ðəsiˈði`. Spanish and Galician have the same shape. `None`, the default, leaves the right word as it is.
 
-A boundary has two sides and a rule may rewrite either or both:
+The side that a rule rewrites is its target, which is not the same as its direction of conditioning. A rule must declare at least one of the two transforms, and the schema rejects a rule that declares neither. Such a rule would match a boundary and change nothing.
 
-- `transform` substitutes for the `left_context` match in the LEFT word: the
-  shape a right-conditioned (regressive) process needs, e.g. European
-  Portuguese coda-/s/ voicing. `None` leaves the left word alone.
-- `right_transform` substitutes for the `right_context` match in the RIGHT word: the shape a left-conditioned (**progressive**) process needs. Catalan
-  phrase-level spirantization is one: continuant-spreading rightwards across
-  the boundary, so the *following* word's initial /b d ɡ/ lenites after a
-  continuant (`de decidir` → [ðə ðəsiˈði]); Spanish and Galician have the same
-  shape. `None` (the default) leaves the right word alone, so a rule that
-  declares only `transform` behaves exactly as it always has.
+The two sides resolve apart from each other, and the first matching rule wins on each side. So one boundary can voice the coda of the left word and lenite the onset of the right word: *els dos* gives `əlz ˈðos`. The contexts always match against the original words, so the side that fires first cannot hide the trigger of the other.
 
-Which side is rewritten is the rule's TARGET, not its direction of
-conditioning; a rule must declare at least one of the two, or it matches a
-boundary and changes nothing (the schema rejects it).
+## `StressRules.diphthongs`
 
-The two sides resolve independently: first matching rule wins *per side*: so
-one boundary can both voice the left word's coda and lenite the right word's
-onset (`els dos` → [əlz ðos]). Contexts are always matched against the original
-words, so the side that fires first cannot mask the other's trigger.
+The bundled syllabifier counts each maximal run of vowel letters as one nucleus. That works for a language whose vowel runs are all diphthongs. It fails where the orthography also writes hiatus. The `diphthongs` list names the vowel sequences that form one nucleus, and every other vowel letter in a run becomes a nucleus of its own. So Catalan *ciutat* has the diphthong ⟨iu⟩ (`siwˈtat`), while *tenia* splits into te-ni-a (`təˈniə`). An empty list, the default, merges the whole run.
 
-### `StressRules.diphthongs`
+The syllable count matters for more than the stress mark. In a language with vowel reduction that depends on stress, a wrong count reduces the wrong vowel and the whole word is wrong. Without its `diphthongs` list, Catalan *tenia* comes out `ˈtɛniə`.
 
-The bundled syllabifier counts each maximal run of vowel LETTERS as one nucleus.
-That is right for a language whose vowel runs are all diphthongs and wrong
-wherever the orthography also writes hiatus. `diphthongs` lists the vowel
-sequences that form a single nucleus; every other vowel letter in a run becomes
-a nucleus of its own, so Catalan `ciutat` stays ci-u-tat = ciu-tat while `tenia`
-splits te-ni-a. Empty (the default) merges the whole run, unchanged.
+## `StressRules.ipa_diphthongs`
 
-This matters far beyond the stress mark: in a language with stress-conditioned
-vowel reduction, a wrong syllable count reduces the wrong vowel and the whole
-word is wrong.
+The engine writes the stress mark into the transcription, so it also divides the IPA into syllables. By default it splits the IPA with `diphthongs`, the orthographic list. That fails for a language whose transcription writes a diphthong with a glide. Portuguese ⟨ui⟩ is [uj], so an IPA [ui] comes only from a hiatus such as ⟨uí⟩. With the orthographic ⟨ui⟩ entry, ⟨proíbe⟩ /pɾuibɨ/ falls into two syllables and the mark lands on the first: `ˈpɾuibɨ`.
 
-### `StressRules.ipa_diphthongs`
-
-The stress mark is written into the transcription, so the engine divides the
-IPA into syllables too. By default it splits the IPA with `diphthongs`, the
-orthographic list. That is wrong for a language whose transcription writes a
-diphthong with a glide. Portuguese ⟨ui⟩ is [uj], so an IPA [ui] comes only from
-a hiatus such as ⟨uí⟩. With the orthographic ⟨ui⟩ entry, ⟨proíbe⟩ /pɾuibɨ/
-divides into two syllables and the mark lands on the first: ˈpɾuibɨ.
-
-`ipa_diphthongs` lists the IPA vowel sequences that form one nucleus. When a
-spec declares it, the transcription is split with this list and not with
-`diphthongs`. An empty list makes every IPA vowel its own nucleus, which gives
-pɾuˈibɨ. Leave the field out to keep the orthographic list.
-
----
+`ipa_diphthongs` lists the IPA vowel sequences that form one nucleus. When a spec declares it, the engine splits the transcription with this list and not with `diphthongs`. An empty list makes each IPA vowel its own nucleus, which gives `pɾuˈibɨ`, and `pt-PT` declares that empty list. Leave the field out to keep the orthographic list.
 
 ## Lexicon overlay (sidecar `word_exceptions` at scale)
 
-`orthography2ipa/lexicon.py`
-
-Deep-orthography languages (English, Danish, Irish) cannot reach production
-accuracy from grapheme rules alone: too many words are irregular. The
-`word_exceptions` field on `LanguageSpec` handles a *closed, tiny* set of
-irregulars inline in the JSON, but it does not scale to thousands of entries.
-
-A **lexicon** is an optional, convention-based sidecar file
-a caller-registered TSV (`orthography2ipa.register_lexicon(code, path_or_url_or_hf_id)`; nothing is bundled): one `word<TAB>ipa` pair per line,
-UTF-8, NFC-normalised, lowercase words, sorted, first-entry-wins. It needs **no
-new spec field and no JSON change**: the file is discovered by its name (the
-resolved language code, e.g. `en-GB.tsv`), so `FIELD_INHERITANCE` is untouched.
-
-Contract:
-
-- **Lazy.** Importing the package, and even loading a `LanguageSpec`, reads
-  **no** lexicon. A language's TSV is read once, on the first transcription for
-  that language (`get_lexicon(code)`), then cached for the process lifetime.
-- **Same pathway as `word_exceptions`.** `G2P._override_for` folds a lexicon
-  hit into the *exact* override path `word_exceptions` uses, so a lexicon entry
-  still gets stress-mark insertion and cross-word sandhi applied and is
-  reported with `confidence == 1.0` (a certain answer).
-- **Precedence:** inline `word_exceptions` **>** lexicon **>** rules. An inline
-  exception always wins; the sidecar always wins over the grapheme/positional
-  beam.
-- **Absent lexicon → no effect.** A language with no `{code}.tsv` gets an empty
-  overlay, and the rules alone decide the transcription.
-
-Every shipped TSV is validated (parseable `word<TAB>ipa`, NFC, lowercase word,
-IPA-characters-only) by `lexicon.validate_lexicon_text`; the shipped-data test
-runs that guard over every file. The one bundled pilot is `en-GB.tsv`
-(CMUdict-derived: see [`bibliography.md`](bibliography.md) and
-`scripts/build_en_lexicon.py`); the rules-only vs with-lexicon PER impact is
-reported in [`lexicon_scoreboard.md`](lexicon_scoreboard.md). Full production
-lexica belong downstream: see [`adding_a_language.md`](adding_a_language.md).
+A caller-registered lexicon extends `word_exceptions` to thousands of words, and [lexicon.md](lexicon.md) describes its contract.
 
 ---
-
-## Relationship between `graphemes` and `allophones`
-
-These are **different layers** of phonological description:
-
-```
-orthography → graphemes → underlying phonemes → allophones → surface forms
-    "butter"    b,u,tt,e,r     /b ʌ t ə r/     [b ʌ ɾ ə r]    "buh-der"
-```
-
-- `graphemes` maps **orthography → phonology** (abstract level)
-- `allophones` maps **phonology → phonetics** (surface level)
-
-A word like English *butter* goes through two mappings:
-1. Grapheme step: `tt` → `/t/` (the underlying phoneme)
-2. Allophone step: `/t/` → `[ɾ]` (the flap allophone in this context)
-
-The package stores both levels; rule-based selection between allophones requires implementation by the consumer.
-
----
-[← Architecture](architecture.md) · [Home](index.md) · [Native scripts, romanizations and transliterations →](orthography_kind.md)
+[← Architecture](architecture.md) · [Home](index.md) · [Language Registry →](registry.md)

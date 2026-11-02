@@ -1,117 +1,99 @@
 # Lattice PER: pronunciation-fair phone error rate
 
-`orthography2ipa.lattice_per` scores a phone sequence: typically ASR
-phone output, or the phonemized form of an ASR word hypothesis: against
-**every pronunciation the lect admits** for a reference text, instead of
-against one arbitrary reference transcription.
+`orthography2ipa.lattice_per` scores a phone sequence against every pronunciation that a lect admits for a reference text. The phone sequence is usually ASR phone output, or the phonemized form of an ASR word hypothesis. A plain phone error rate compares against one reference transcription, and that one choice of reading is arbitrary.
 
 ## Why single-reference PER is unfair
 
-A phoneme error rate computed against a single reference transcription
-charges the model for pronunciation choices that are not errors:
+A phone error rate against a single reference transcription charges the model for pronunciation choices that are not errors:
 
-- **optional sandhi**: a Basque speaker saying *ez dut* produces the
-  contracted [es̻tut]. A reference that pins the uncontracted form marks
-  every contraction as two errors, and vice versa.
-- **dialectal allophone choices**: seseo vs distinción, tap vs trill,
-  open vs closed mid vowels.
-- **cliticization and reduction variants** the orthography does not
-  disambiguate.
+| Source of variation | Example |
+| --- | --- |
+| Optional sandhi | A Basque speaker says *ez dut* with the contracted [es̻ tut]. A reference that keeps the uncontracted form marks each contraction as two errors, and the reverse holds too |
+| Dialectal allophones | Seseo against distinción, a tap against a trill, open against closed mid vowels |
+| Cliticization and reduction | Variants that the spelling does not distinguish |
 
-The effect is systematic: speakers of non-standard lects score worse *for
-being lect speakers*, not for being misrecognized. References normalized
-toward a standard (as dialect-ASR references usually are) make the
-reported error rate partly a measure of the speaker's distance from the
-standard.
+The effect is systematic. Speakers of non-standard lects score worse because they speak their lect, not because the model misheard them. Dialect-ASR references are usually normalised toward a standard. The reported error rate then partly measures how far the speaker is from the standard.
 
 ## What the lattice gives
 
-The candidate lattice for a reference text under a lect spec is exactly
-the set of pronunciations a speaker of that lect could validly have
-produced. `lattice_per` therefore computes the **oracle edit distance**:
-the minimum, over all admissible readings, of the segment-level edit
-distance to the hypothesis. A hypothesis is only charged for segments
-that are wrong on *every* valid reading.
+The candidate lattice of a reference text, under a lect spec, is the set of pronunciations that a speaker of that lect could validly produce. The function therefore computes the oracle edit distance: the minimum, over all admissible readings, of the segment-level edit distance to the hypothesis. A hypothesis pays only for segments that are wrong on every valid reading.
 
-Admissible readings are:
+Two kinds of reading are admissible:
 
-1. every path through `G2P.sentence_lattice(ref_text)`: each grapheme
-   slot's ranked candidates, in order, pre-sandhi.
-2. the engine's final reading (`transcribe(ref_text, lang)`), which
-   includes cross-word sandhi and sentence rescorers the raw lattice
-   deliberately does not apply.
+1. Every path through the sentence lattice of the reference (`G2P.sentence_lattice(ref_text)`), which takes one candidate per grapheme slot, in order, before sandhi.
+2. The engine's final reading, `G2P(lang).transcribe(ref_text)`. It includes the cross-word sandhi and the sentence rescorers that the lattice does not apply.
 
-The oracle is computed without enumerating paths: a Levenshtein frontier
-is pushed through the lattice slot by slot, taking the elementwise
-minimum over each slot's candidates: the edit-distance transducer
-composed with the acyclic lattice. Cost is linear in lattice size times
-hypothesis length.
+The oracle does not enumerate paths. It pushes a Levenshtein frontier through the lattice, slot by slot, and takes the element-wise minimum over the candidates of each slot. This is the edit-distance transducer composed with the acyclic lattice. The cost is linear in the lattice size times the hypothesis length.
 
 ## Usage
 
 ```python
 from orthography2ipa.lattice_per import lattice_per
 
-r = lattice_per("es̻ pada", "ez bada", "eu")
-r.distance         # 1.0
-r.per              # 0.1667 (1.0 / 6 segments)
-r.top_per          # 0.1667: what naive single-reference PER would have said
-r.variant_credit   # 0.0: top_per - per, error mass a valid variant explains
-
-r = lattice_per("es baða", "ez bada", "eu")
-r.distance         # 1.0
-r.per              # 0.1667
-r.top_per          # 0.3333
-r.variant_credit   # 0.1667: one error is a reading the lattice admits
+for hyp in ("es̻ pada", "es baða"):
+    r = lattice_per(hyp, "ez bada", "eu")
+    print(r.distance, round(r.per, 4), round(r.top_per, 4), round(r.variant_credit, 4))
 ```
 
-These values are measured on the `eu` spec at the time of writing. They
-change when the spec changes: run the lines above to read the current
-values.
+```text
+1.0 0.1667 0.1667 0.0
+1.0 0.1667 0.3333 0.1667
+```
 
-- `hyp_ipa`: hypothesis phone string. Whitespace, stress and boundary
-  marks (`ˈ ˌ . ‿ | ‖`) are stripped. Segments keep their combining
-  diacritics (`s̻` is one segment).
-- `ref_text`: reference **orthography**. Its lattice is built under
-  `lang`.
-- `weighted=True`: substitutions cost articulatory feature distance in
-  `[0, 1]` (insertions/deletions stay 1), turning PER into a graded
-  phonological error rate: a laminal/apical sibilant confusion costs a
-  fraction of a stop/vowel confusion. Segments outside the feature table
-  compare by base character plus a one-feature diacritic penalty.
+The engine's final reading of *ez bada* is `es̻ paða`, with sandhi, and the lattice path is `es̻ baða`. The first hypothesis is one segment away from the final reading, so the naive score and the fair score agree. The second hypothesis is two segments away from the final reading but one away from the lattice path. The lattice admits the unsandhied reading, so half of the naive error is a valid variant. The values depend on the `eu` spec and change when the spec changes, so run the lines to read the values that apply to your version.
 
-`per` is normalized by the segment count of the engine's final reading of
-the reference: a single deterministic denominator (oracle paths differ
-in length).
+`lattice_per(hyp_ipa, ref_text, lang, *, weighted=False, beam_width=8)` takes these arguments:
+
+| Argument | Meaning |
+| --- | --- |
+| `hyp_ipa` | The hypothesis phone string. The function removes whitespace and the stress and boundary marks `ˈ ˌ . ‿ \| ‖`. A segment keeps its combining diacritics, so `s̻` is one segment |
+| `ref_text` | The reference text as orthography. The function builds its lattice under `lang` |
+| `lang` | The lect code |
+| `weighted` | With `True`, a substitution costs the articulatory feature distance in [0, 1], and insertions and deletions still cost 1 |
+| `beam_width` | The number of candidates per slot for the sentence lattice |
+
+With `weighted=True`, the metric becomes a graded phonological error rate. A laminal against apical sibilant confusion costs a fraction of a stop against vowel confusion. A segment outside the feature table compares by its base character, plus a penalty of one feature flip (1/16) for the diacritic. A substitution never costs more than 1.
+
+```python
+print(lattice_per("es pada", "ez bada", "eu").distance)
+print(round(lattice_per("es pada", "ez bada", "eu", weighted=True).distance, 4))
+```
+
+```text
+2.0
+0.2753
+```
+
+The result is a frozen `LatticePER`:
+
+| Field | Meaning |
+| --- | --- |
+| `distance` | The oracle edit distance over all admissible readings |
+| `per` | `distance / ref_segments`, the headline figure |
+| `top_distance` | The edit distance against the engine's final reading only, which is what single-reference PER gives |
+| `top_per` | `top_distance / ref_segments` |
+| `ref_segments` | The segment count of the engine's final reading, which is the denominator |
+| `hyp_segments` | The segment count of the hypothesis after mark removal |
+| `lang` | The resolved lect code |
+| `variant_credit` | A property, `top_per - per` |
+
+The denominator is the segment count of the engine's final reading. Oracle paths differ in length, so one fixed denominator keeps scores comparable across runs.
 
 ## Reading the two numbers
 
-Report `per` and `top_per` together:
+Report `per` and `top_per` together. `per` is the fair figure: the errors that no valid pronunciation explains. `variant_credit` is how much the naive metric over-charged.
 
-- `per` is the fair figure: errors no valid pronunciation explains.
-- `top_per − per` (`variant_credit`) is how much the naive metric
-  over-charged. Aggregated over a test set, a large credit means the
-  references are pronunciation-normalized away from how the speakers
-  talk: itself a dataset diagnostic: rows whose hypothesis is far from
-  every lattice path are candidates for *mislabeled audio*, not model
-  errors.
+Over a test set, a large credit shows that the references are normalised away from how the speakers talk. That is a diagnostic of the dataset in itself. A row whose hypothesis is far from every lattice path is a candidate for mislabeled audio, not for a model error.
 
-## Caveats: stated so scores stay honest
+## Caveats
 
-- **The metric inherits the spec.** A permissive spec (many candidates
-  per slot) makes hypotheses look better. A thin spec under-reports valid
-  variation. Report the lect code and engine version next to any number.
-  The gap between `per` and `top_per` on known-good hypotheses is a
-  permissiveness probe.
-- **Pre-sandhi lattice + final reading is not every sandhi combination.**
-  Optional sandhi that the final reading applied is admissible via
-  reading 2, and unapplied via reading 1, but *mixtures* (one contraction
-  fired, another not, in the same utterance) are only covered when the
-  lattice itself carries them.
-- **Segmentation convention.** Scoring is per IPA segment
-  (base + combining marks, affricate ties kept). A hypothesis in a
-  different notation should be folded to the spec's conventions first,
-  as the cross-engine benchmarks do.
+The metric inherits the spec. A permissive spec, with many candidates per slot, makes hypotheses look better, and a thin spec under-reports valid variation. Report the lect code and the engine version next to any number. The gap between `per` and `top_per` on known-good hypotheses is a probe for permissiveness.
+
+The lattice that `lattice_per` builds keeps only the top candidate of each slot. It calls `sentence_lattice` with the default greedy search, so the `beam_width` argument has no effect. The admissible readings are therefore the top lattice path and the final reading, and the lower-ranked candidates of the spec do not reach the oracle.
+
+The lattice path before sandhi and the final reading do not cover every combination of sandhi. An optional sandhi that the final reading applied is admissible through reading 2, and its absence is admissible through reading 1. A mixture, with one contraction applied and another not in the same utterance, is covered only when the lattice itself carries it.
+
+Scoring is per IPA segment: a base character with its combining marks, with affricate ties kept. A hypothesis in another notation must first be folded to the spec's conventions, as the cross-engine benchmarks do.
 
 ---
-[← The sentence-context seam](sentence_context.md) · [Home](index.md) · [Candidate scoring →](candidate_scoring.md)
+[← The sentence-context seam](sentence_context.md) · [Home](index.md) · [Features →](features.md)

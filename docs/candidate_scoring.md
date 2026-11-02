@@ -1,105 +1,61 @@
 # Candidate scoring (per-spec candidate weights)
 
-When a grapheme maps to several IPA candidates, the beam has to decide
-which one wins. By default that decision is *positional* order: the first
-IPA listed for a grapheme is the canonical form and gets beam cost `0`,
-the second gets `+1`, and so on (see
-[tokenizer.md](tokenizer.md#ipa-ambiguity-and-beam-search)). This is a
-reasonable default: list the most common pronunciation first: but it is
-a coarse, integer, rank-only signal.
+When a grapheme maps to several IPA candidates, the beam must decide which one wins. By default the order of the list decides. The first IPA listed for a grapheme is the canonical form and costs 0, the second costs 1, and so on. The [tokenizer page](tokenizer.md#ipa-ambiguity-and-beam-search) shows this rank cost in the beam. This default asks the spec author to list the most common pronunciation first, and it gives only a rank, never a size of preference.
 
-**Candidate weights** let a spec attach real candidate *frequencies* to a
-grapheme so the beam favours the corpus-dominant pronunciation and,
-crucially, so a path's score becomes a proper (unnormalised)
-log-probability rather than a rank sum. This is the mechanism that turns
-the beam into a probabilistic lattice.
+Candidate weights let a spec attach real candidate frequencies to a grapheme. The beam then favours the pronunciation that dominates in a corpus. The score of a path also becomes an unnormalised log-probability instead of a sum of ranks. This makes the beam a probabilistic [lattice](lattice.md#how-cost-works).
 
 ## The two JSON shapes
 
-A grapheme's value in a language spec may be written in **either** form:
+A grapheme's value in a language spec takes one of two forms:
 
 ```jsonc
-// plain list: today's shape, unchanged
+// plain list
 "c": ["k", "s"]
 
-// weighted object: new, optional
-"th": { "ipa": ["θ", "ð"], "weights": [0.7, 0.3] }
+// weighted object
+"er": { "ipa": ["ɜːɹ", "əɹ"], "weights": [0.2, 0.8] }
 ```
 
-Both are normalised, in one place
-([`orthography2ipa/weights.py`](../orthography2ipa/weights.py), called
-from the JSON loader), to the same internal representation: a plain IPA
-list in `spec.graphemes` plus a *sparse* `spec.grapheme_weights` table
-that carries an entry **only** for graphemes written in the weighted-object
-form. Every existing consumer keeps seeing `spec.graphemes` as a plain
-`list[str]` map.
-
-`weights` is aligned index-for-index with `ipa`.
+`weights` aligns index by index with `ipa`. The JSON loader passes the grapheme table through [`orthography2ipa/weights.py`](../orthography2ipa/weights.py), which turns both forms into one internal shape. `spec.graphemes` holds a plain IPA list for every grapheme, so every consumer reads `spec.graphemes` as a `list[str]` map. `spec.grapheme_weights` is sparse: it has an entry only for the graphemes written in the weighted form.
 
 ## How cost maps to weight
 
-| grapheme value | candidate *i* beam cost |
+| Grapheme value | Beam cost of candidate *i* |
 | --- | --- |
-| plain list | `float(i)`: rank `0, 1, 2, …` |
+| plain list | `float(i)`, the rank `0, 1, 2, …` |
 | weighted object | `-log(pᵢ)`, where `pᵢ = weightᵢ / Σ weight` |
 
-Because beam cost is **additive** over a word's graphemes, using `-log(p)`
-makes a whole path's cost the negative log of the product of its
-candidate probabilities: a sequence log-probability. Lower weight →
-higher cost → the candidate falls later in the beam.
+The beam cost adds up over the graphemes of a word. With `-log(p)`, the cost of a whole path is the negative log of the product of its candidate probabilities, which is a sequence log-probability. A lower weight gives a higher cost, and the candidate falls further down the beam.
 
-**Absent weights == today.** A grapheme with no weights uses the rank
-cost `0, 1, 2, …`, which is *byte-identical* to the behaviour that
-predates this feature. Every spec that uses only plain lists produces
-exactly the same transcriptions and the same scoreboard numbers as before.
+A grapheme without weights uses the rank cost. A spec that uses only plain lists therefore gives the same transcriptions as it would with no weight support at all.
 
-The same normalisation and cost function feed **both** beam paths: the
-standalone `PhonetokTokenizer.ipa_beam` and the engine's positional beam
-in `g2p.py`: so they never disagree about a grapheme's costs. (Weights
-apply to the flat grapheme table; a grapheme resolved by a
-`positional_graphemes` override keeps rank ordering: per-position weights
-are a separate, later layer.)
+Both beams use the same cost function, `weights.candidate_base_costs`, through the shared resolver in `orthography2ipa.positional`. The standalone `PhonetokTokenizer.ipa_beam` and the engine's beam in `g2p.py` therefore always agree on the costs of a grapheme. Weights apply to the flat grapheme table only. When a `positional_graphemes` override fires, its candidates come first in their declared order, the flat alternatives follow, and all of them take rank costs.
 
-## Defensive handling of malformed weights
+## Malformed weights
 
-Weights are validated before use. Any of the following makes the whole
-entry fall back to plain rank ordering (with a warning), so a bad weight
-can never crash transcription or silently drop a candidate:
+Two layers check weights. The pydantic model `WeightedGraphemeModel` in [`orthography2ipa/schema.py`](../orthography2ipa/schema.py) rejects a weighted value when:
 
-- `weights` length ≠ `ipa` length,
-- any weight negative or non-numeric,
-- the weight sum is `0`.
+- the `weights` list and the `ipa` list differ in length,
+- a weight is negative or not a number,
+- the weights sum to 0 or less.
 
-A single **zero** weight (with a positive sum elsewhere) is *kept*: its
-probability is floored to `1e-6` so its cost is large but finite: the
-candidate is strongly disfavoured yet still reachable.
+`orthography2ipa validate` and the test suite run this model on every shipped spec, so a malformed weight fails validation before it ships.
+
+At run time, `candidate_base_costs` checks the same conditions again. If an entry fails, it emits a warning and the whole entry falls back to rank ordering. A bad weight can therefore never stop a transcription or silently drop a candidate.
+
+One zero weight, with a positive sum elsewhere, is valid. Its probability gets the floor `WEIGHT_FLOOR = 1e-6`, so its cost is large but finite. The beam strongly disfavours that candidate, but it can still reach it.
 
 ## Inheritance
 
-`grapheme_weights` is **not inherited** through ancestry
-(`InheritanceMode.NOT_INHERITED`; see the `FIELD_INHERITANCE` manifest in
-[`types.py`](../orthography2ipa/types.py)). A variety that pulls its
-`graphemes` from a parent via `graphemes_base` gets the parent's IPA lists
-but **not** its weights, so its transcription stays byte-identical to
-rank ordering until it declares its own weights. Two reasons:
+`grapheme_weights` does not inherit through ancestry. Its mode is `InheritanceMode.NOT_INHERITED` in the `FIELD_INHERITANCE` manifest in [`types.py`](../orthography2ipa/types.py). A variety that takes its `graphemes` from a parent through `graphemes_base` gets the parent's IPA lists but not its weights. It keeps rank ordering until it declares weights of its own. en-AU, for example, takes its graphemes from en-GB and has an empty `grapheme_weights`.
 
-1. Candidate frequency is *variety-specific* corpus data: the relative
-   frequency of ⟨ou⟩ → /aʊ/ vs /uː/ in en-GB is not the same statistic as
-   in en-US: so a child must cite its own, not silently inherit.
-2. It preserves the byte-identical guarantee for every inheriting child.
+There are two reasons for this rule. First, candidate frequency is corpus data for one variety. The frequency of ⟨ou⟩ as /aʊ/ against /uː/ in en-GB is not the same statistic as in en-US. A child must therefore cite its own data and not inherit it silently. Second, an inheriting child keeps the plain rank ordering that its own data supports.
 
-Within one spec a grapheme's IPA list and its weights live together in
-the weighted-object value, so they are always authored (and overridden)
-as a unit.
+Within one spec, a grapheme's IPA list and its weights live in the same weighted-object value. An author therefore writes and overrides them together.
 
 ## Provenance
 
-Weights must be justifiable candidate frequencies from cited corpora
-(recorded in the spec's `sources` / `notes`), never PER-tuned parameters.
-The first weighted spec is **en-GB** (see its `notes`), grounded in
-Gontijo, Gontijo & Shillcock (2003), *Grapheme-phoneme probabilities in
-British English*, and Berndt, Reggia & Mitchum (1987), *Empirically
-derived probabilities for grapheme-to-phoneme correspondences in English*.
+Weights must be candidate frequencies from cited corpora, recorded in the spec's `sources` or `notes`. They are never parameters tuned to lower the PER. The en-GB spec weights ⟨er⟩, ⟨gh⟩ and ⟨ie⟩. Its sources are Gontijo, Gontijo & Shillcock (2003), *Grapheme-phoneme probabilities in British English*, and Berndt, Reggia & Mitchum (1987), *Empirically derived probabilities for grapheme-to-phoneme correspondences in English*. The spec's `notes` give the values and the reasons.
 
 ---
-[← Lattice PER](lattice_per.md) · [Home](index.md) · [Features →](features.md)
+[← Tokenizer](tokenizer.md) · [Home](index.md) · [The pronunciation lattice →](lattice.md)

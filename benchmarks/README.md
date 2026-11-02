@@ -19,5 +19,4 @@ whole-board `--scoreboard` run also writes `results_environment.json`, the
 versions of the plugin and scorer packages it used.
 
 How a score is computed and how far it can be trusted is in
-[docs/benchmark_methodology.md](../docs/benchmark_methodology.md) and
 [docs/benchmarks.md](../docs/benchmarks.md).

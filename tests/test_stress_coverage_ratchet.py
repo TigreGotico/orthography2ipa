@@ -13,9 +13,10 @@ the set can only shrink:
 
 Clade nodes, stubs, skeletons and historical specs (a ``timespan`` with an
 ``end_year``) are out of scope. The schema has no field that declares "this
-language has no word stress", so tone languages stay in the pinned set. So do
-languages whose stress the schema cannot express, such as Assamese (Mahanta
-2012: 222); their notes say why.
+language has no word stress"; ``"stress": false`` only opts a spec out of an
+inherited block. So tone languages stay in the pinned set, and so does a spec
+that opts out. So do languages whose stress the schema cannot express, such as
+Assamese (Mahanta 2012: 222); their notes say why.
 """
 import pathlib
 import warnings
@@ -54,8 +55,8 @@ def test_stressless_set_only_shrinks():
     stale = sorted(PINNED - current)
     assert not joined, (
         f"living research/production specs with no stress block: {joined}. "
-        "Give each a cited stress block, or let it inherit one through "
-        "graphemes_base.")
+        "Give each a cited stress block, or let it inherit one from its "
+        "graphemes_base or a same-language parent.")
     assert not stale, (
         f"these specs now resolve a stress block or left the scope; "
         f"remove them from tests/data/stress_ratchet_pinned.txt: {stale}")

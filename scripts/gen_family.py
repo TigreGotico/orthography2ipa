@@ -87,7 +87,7 @@ MANUAL = {
     "it-IT-x-abruzzo": "Indo-European > Romance > Italo-Romance",
     "it-IT-x-calabria": "Indo-European > Romance > Italo-Romance",
     "it-IT-x-puglia": "Indo-European > Romance > Italo-Romance",
-    # orphan: parent is null (see docs/glottolog_audit.md 3a); parent not rewired here
+    # orphan: parent is null (see docs/ancestry.md, "Where Glottolog has no node"); parent not rewired here
     "pt-PT-x-lisbon": "Indo-European > Romance > Ibero-Romance",
     # reconstructed proto-nodes with no parent and no Glottolog node of their own
     "brx-x-proto-boro-garo": "Sino-Tibetan",

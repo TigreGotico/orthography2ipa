@@ -76,7 +76,6 @@ dv
 dz
 ee
 egy
-el-CY
 eml
 enf
 ess
@@ -132,11 +131,7 @@ irk
 isv
 it-IT-x-abruzzo
 it-IT-x-calabria
-it-IT-x-marche
 it-IT-x-puglia
-it-IT-x-roma
-it-IT-x-toscana
-it-IT-x-umbria
 itl
 iu
 ja

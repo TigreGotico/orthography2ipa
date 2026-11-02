@@ -1,20 +1,10 @@
 # Allophony: the second map
 
-The library models pronunciation as **two maps**:
+The library models pronunciation as two maps. The pre-lexical map takes orthography to phonemes. `positional_graphemes`, the vowel-class positions and the candidate weights condition it. The post-lexical map takes a phoneme to its surface allophone. `allophone_rules` make this second map conditional on context.
 
-1. **Pre-lexical**: orthography → phoneme. Richly conditioned by
-   `positional_graphemes`, the vowel-class positions and candidate weights.
-2. **Post-lexical**: phoneme → surface allophone. The bare `spec.allophones`
-   inventory is stored but not conditioned: its only consumer,
-   `expand_allophones`, dumps every variant into the beam at a flat `+0.5`
-   cost with no way to pick the context-correct one.
+A spec declares an ordered list of `allophone_rules`. Each rule is a declarative `phoneme → surface` rewrite with context conditions. The list compiles into a [lattice rescorer](lattice.md), `orthography2ipa.allophony.AllophoneRescorer`. The rescorer replaces a chosen phoneme with its one context-correct surface form at the same beam cost. It realises the phoneme and does not add beam branches.
 
-`allophone_rules` make the second map live. A spec declares an ordered list
-of declarative, context-conditioned `phoneme → surface` rewrites; they
-compile into a [lattice rescorer](lattice.md) (`AllophoneRescorer`) that the
-engine runs as a **deterministic post-lexical pass**: replacing a chosen
-phoneme with its single context-correct surface form at the same beam cost.
-It is realisation, not search-space inflation.
+The flat `spec.allophones` table is a different thing. It lists the variants of each phoneme with no context. Only `expand_allophones` reads it, and that option puts every variant into the beam at a flat `+0.5` cost.
 
 ## Where it runs in the pipeline
 
@@ -29,78 +19,84 @@ normalize → tokenize → select (positional + weights)
                  beam path selection → stress marks → sandhi → dialect
 ```
 
-Allophony is the **allophony stage** of the pipeline: after phoneme
-selection (so it sees the chosen phoneme and its resolved neighbours),
-composed *after* any user rescorer, and *before* beam path selection: hence
-before stress-mark insertion and cross-word sandhi, which act on the whole
-utterance. In the structured lattice this is the second stage: phoneme
-lattice → allophone lattice.
+The allophony stage runs after phoneme selection, so it sees the chosen phoneme and its resolved neighbours. It runs after any user rescorer and before beam path selection. So it runs before stress-mark insertion and before cross-word sandhi, which act on the whole utterance. In the structured lattice, it turns the phoneme lattice into the allophone lattice.
 
-Because stress and syllable context are computed only by the engine, the
-allophony pass needs the **engine path** (`G2P.transcribe` /
-`G2P.ipa_lattice`). On the standalone tokenizer path
-(`PhonetokTokenizer.ipa_beam`) there is no stress context, so a
-stress-conditioned rule simply does not fire there: identical to how the
-stress-conditioned positional rules behave. Word-position and neighbour
-conditions work on both paths.
+Stress and syllable context come only from the engine path (`G2P.transcribe` and `G2P.ipa_lattice`). The standalone tokenizer path (`PhonetokTokenizer.ipa_beam`) has no stress context, so a stress-conditioned rule does not fire there. The stress-conditioned positional entries behave the same way. Word-position and neighbour conditions work on both paths.
 
 ## The condition vocabulary
 
-Each rule targets one or more underlying `phonemes`, a `surface`
-realisation, and a set of conditions (all ANDed; a condition left
-unset is "don't care"):
+Each rule names one or more underlying `phonemes` and a `surface` realisation. Its conditions are all ANDed, and a condition left unset matches anything. For each slot, the first rule in the list whose phoneme and conditions match is the one that fires. A rule with an empty `phonemes` list never fires, which is how a child spec disables a rule it inherits.
+
+The conditions on the slot itself:
 
 | Condition | Values | Fires when |
 |---|---|---|
-| `word_initial` / `word_final` | `true` / `false` | the grapheme is (not) at the word edge |
-| `stress` | `"stressed"` / `"unstressed"` | the grapheme's syllable carries (not) primary stress: engine path only |
-| `syllable_position` | `"onset"` / `"coda"` / `"nucleus"` | a vowel is a nucleus; a consonant before a vowel is an onset, else a coda (maximal-onset heuristic) |
-| `preceded_by` / `followed_by` | `"vowel"`, `"consonant"`, `"consonant_cluster"`, `"front_vowel"`, `"back_vowel"`, `"palatal"`, `"word_boundary"`, `"any"` | the previous / next **grapheme** matches that class (predicates from `vowels.py`; `"palatal"` = a palatal / palato-alveolar consonant, decided by the neighbour's IPA: see `is_palatal_consonant`; `"consonant_cluster"`: see below; `"any"` = a grapheme exists there, regardless of class — the opposite test of `"word_boundary"`) |
-| `preceded_by_2` / `followed_by_2` | same vocabulary as above, incl. `"any"` | the grapheme TWO away matches that class — for a process that looks past a mute letter |
-| `preceded_by_3` | same vocabulary as above, incl. `"any"` | the grapheme THREE away matches that class — e.g. "is there a real stem before a short C-e-C ending" (`preceded_by_3: "any"`, English ⟨-ed⟩) |
-| `followed_by_3` | same vocabulary as above, incl. `"any"` | the grapheme THREE after matches that class — e.g. the word edge after Portuguese plural ⟨-ens⟩ (`followed_by_3: "word_boundary"` from the ⟨e⟩) |
-| `preceded_by_phoneme` / `followed_by_phoneme` | list of IPA strings | the previous / next lattice slot's **chosen phoneme** is one of them |
-| `preceded_by_phoneme_2` / `followed_by_phoneme_2` | list of IPA strings | the grapheme TWO away's **first declared candidate** (the underlying phoneme, known before any rule runs) is one of them |
-| `preceded_by_surface_phoneme_2` | list of IPA strings | the lattice slot TWO positions back's **resolved surface candidate** (post positional/weight resolution, pre-this-rule) is one of them — use this instead of `preceded_by_phoneme_2` whenever the declared candidate order can disagree with what actually gets selected (English ⟨-ed⟩ devoicing must see the stem's ACTUAL final consonant, not its citation-form voicing) |
+| `word_initial`, `word_final` | `true` or `false` | the grapheme is, or is not, at that word edge |
+| `stress` | `"stressed"`, `"unstressed"`, `"pretonic"`, `"posttonic"` | the syllable has, or lacks, primary stress, or stands before or after it (engine path only) |
+| `syllable_position` | `"onset"`, `"coda"`, `"nucleus"` | a vowel is a nucleus, a consonant before a vowel is an onset, and any other consonant is a coda |
+| `grapheme` | list of graphemes | the slot's own source grapheme is one of them |
+| `word` | list of words | the whole source word is one of them |
+| `word_contains_grapheme` | list of strings | one of them occurs anywhere in the source word |
+| `word_contains_grapheme_not` | list of strings | none of them occurs in the source word |
+| `requires_other_nucleus` | `true` or `false` | another slot of the word carries a nucleus |
+| `followed_by_nucleus` | `true` or `false` | a nucleus occurs later in the word |
 
-This small vocabulary expresses the common post-lexical processes:
+The conditions on the neighbours:
 
-- **Final-obstruent devoicing**: `word_final: true`.
-- **Unstressed vowel reduction**: `stress: "unstressed"`.
-- **Intervocalic flapping**: `preceded_by: "vowel"`, `followed_by: "vowel"`.
-- **Nasal place assimilation**: `followed_by_phoneme: ["k", "ɡ"]` (→ velar)
-  or `["p", "b", "m"]` (→ labial), conditioning on the *following* phoneme's
-  place.
-- **Closed-syllable shortening / complementary quantity**: `followed_by: "consonant_cluster"`.
+| Condition | Values | Fires when |
+|---|---|---|
+| `preceded_by`, `followed_by` | a neighbour class | the previous or next grapheme belongs to the class |
+| `preceded_by_2`, `followed_by_2` | a neighbour class | the grapheme two away belongs to the class |
+| `preceded_by_3`, `followed_by_3` | a neighbour class | the grapheme three away belongs to the class |
+| `preceded_by_phoneme`, `followed_by_phoneme` | list of IPA strings | the chosen phoneme of the previous or next slot is one of them |
+| `preceded_by_phoneme_2`, `followed_by_phoneme_2` | list of IPA strings | the first declared candidate of the grapheme two away is one of them |
+| `preceded_by_surface_phoneme_2` | list of IPA strings | the resolved candidate of the slot two back is one of them |
+| `preceded_by_grapheme`, `followed_by_grapheme` | list of graphemes | the previous or next source grapheme is one of them |
+| `followed_by_grapheme_not` | list of graphemes | the next source grapheme is none of them |
+
+The neighbour classes are `vowel`, `consonant`, `consonant_cluster`, `coda`, `coda_nasal`, `front_vowel`, `back_vowel`, `palatal`, `emphatic`, `word_boundary` and `any`. `orthography2ipa.vowels` holds the predicates. `palatal` and `emphatic` read the neighbour's IPA. `word_boundary` matches when no grapheme stands there, and `any` matches when one does.
+
+The offset conditions look past a mute letter. Russian final devoicing reaches the ⟨в⟩ of ⟨любовь⟩ because the silent ⟨ь⟩ after it is word-final (`followed_by_2: "word_boundary"`). English ⟨-ed⟩ uses `preceded_by_3: "any"` to tell a real stem (⟨used⟩) from a monosyllable whose ⟨ed⟩ is the stem (⟨fed⟩). Portuguese plural ⟨-ens⟩ uses `followed_by_3: "word_boundary"` from the ⟨e⟩.
+
+`preceded_by_phoneme_2` reads the underlying phoneme, which is known before any rule runs. `preceded_by_surface_phoneme_2` reads what the slot resolved to. English ⟨-ed⟩ devoicing needs the second one. The stem of ⟨used⟩ resolves its ⟨s⟩ to [z], but the first declared candidate of ⟨s⟩ is [s].
+
+`word` is the lexeme-level hook. Portuguese ⟨sopa⟩ has close [o] and ⟨sova⟩ has open [ɔ], and only the lexeme decides. A `word` rule pins that one vowel and lets every other process run, so it inherits cleanly to the dialects. A `word_exceptions` entry freezes the whole word instead.
+
+`requires_other_nucleus: true` keeps a vowel-deleting rule from emptying a word of its only nucleus (Hayes 2009, ch. 13). Romanian word-final ⟨i⟩ is asyllabic in ⟨lupi⟩ [lupʲ] but full in the monosyllables ⟨și⟩, ⟨fi⟩ and ⟨zi⟩ (Chitoran 2002, ch. 5). A syllabic consonant counts as a nucleus, so Czech ⟨vlk⟩ has one.
+
+The vocabulary covers the common post-lexical processes:
+
+| Process | Conditions |
+|---|---|
+| Final-obstruent devoicing | `word_final: true` |
+| Unstressed vowel reduction | `stress: "unstressed"` |
+| Intervocalic flapping | `preceded_by: "vowel"`, `followed_by: "vowel"` |
+| Nasal place assimilation | `followed_by_phoneme: ["k", "ɡ"]` for velar, `["p", "b", "m"]` for labial |
+| Closed-syllable shortening, complementary quantity | `followed_by: "consonant_cluster"` |
 
 ### `consonant_cluster`
 
-The neighbour begins **two or more consonant segments**, counted away from the
-anchor grapheme. Three ways to qualify, all decided phonemically:
+The neighbour begins two or more consonant segments, counted away from the anchor grapheme. The engine decides this on the phonemes, in one of three ways. The neighbour realises a long consonant (`tː`), which is moraic on its own. The neighbour is one grapheme that spells several consonants, such as ⟨x⟩ for /ks/. Or the grapheme beyond the neighbour is also a consonant, as in ⟨s⟩⟨t⟩.
 
-- the neighbour realises a long/geminate consonant (`tː`): moraic on its own;
-- the neighbour is one grapheme spelling several consonants (⟨x⟩ → /ks/);
-- the grapheme beyond the neighbour is also a consonant (⟨s⟩⟨t⟩).
+Mainland Scandinavian complementary quantity needs this context (Riad 2014, Kristoffersen 2000, Basbøll 2005). A stressed vowel is long in an open syllable and short before a cluster:
 
-This is the context that mainland-Scandinavian complementary quantity needs
-(Riad 2014; Kristoffersen 2000; Basbøll 2005): a stressed vowel is long in an
-open syllable and short before a cluster, so Swedish ⟨vit⟩ is [viːt] but ⟨vitt⟩
-is [vɪtː].
+```python
+from orthography2ipa import G2P
 
-Stating it as a class is the *only* correct encoding. Enumerating the clusters
-as grapheme keys (`bl`, `bf`, `st`, …) asserts spellings the orthography does not
-have, explodes combinatorially, and: because the tokenizer is maximal-munch: silently changes how neighbouring rules see the word.
+sv = G2P("sv-SE")
+sv.transcribe_word("vit")    # 'ˈviːt'
+sv.transcribe_word("vitt")   # 'ˈvɪtː'
+```
+
+State the context as a class. Do not list the clusters as grapheme keys (`bl`, `bf`, `st`). Such keys assert spellings the orthography does not have, and their number grows with every pair. The tokenizer also reads the longest key first, so a cluster key changes how the neighbouring rules see the word.
+
+Some letter groups hide a cluster behind one phoneme. Swedish vowels are short before ⟨ng⟩, ⟨nk⟩ and ⟨sk⟩, but ⟨ng⟩ maps to the single [ŋ]. `followed_by_grapheme` states these by spelling.
 
 ### `coda` and `coda_nasal`
 
-`coda`: the neighbour sits in coda position (the maximal-onset heuristic of
-`syllable_position`, applied to the neighbour instead of the anchor).
+`coda` matches a neighbour in coda position, with the same heuristic as `syllable_position`. `coda_nasal` matches a coda neighbour whose IPA is a nasal consonant.
 
-`coda_nasal`: the neighbour is a coda **and** its IPA is a nasal consonant.
-This is what nasal vowels need: a vowel nasalises before a nasal that *closes*
-the syllable, and stays oral before one that opens the next (French ⟨bon⟩ [bɔ̃]
-but ⟨bonne⟩ [bɔn]; Mirandese ⟨pan⟩ [pɐ̃] but ⟨cana⟩ [kanɐ]). Pair it with an
-absorb rule that deletes the coda nasal:
+Nasal vowels need `coda_nasal`. A vowel nasalises before a nasal that closes the syllable and stays oral before one that opens the next. Pair the vowel rule with an absorb rule that deletes the coda nasal:
 
 ```json
 {"id": "FR_NASAL_a", "phonemes": ["a"], "surface": "ɑ̃",
@@ -109,459 +105,233 @@ absorb rule that deletes the coda nasal:
  "syllable_position": "coda", "preceded_by": "vowel"}
 ```
 
-⟨an⟩ is **not** a digraph: no orthography has one. It is a vowel letter and a
-nasal letter, and the nasality is a rule. Spelling the nasal vowels out as
-`{"an": ["ɑ̃"], "am": ["ɑ̃"], "en": ["ɑ̃"], …}` cannot express the onset contrast
-at all, and forces further pseudo-graphemes (⟨anh⟩) to defeat the ones it
-created. Follow the language's official orthography for what a digraph is:
-Mirandese has ⟨nh⟩ and ⟨lh⟩, not ⟨an⟩.
+```python
+G2P("fr-FR").transcribe_word("bon")     # 'bɔ̃'
+G2P("fr-FR").transcribe_word("bonne")   # 'bɔn'
+G2P("mwl").transcribe_word("pan")       # 'ˈpɐ̃'
+G2P("mwl").transcribe_word("cana")      # 'ˈkanɐ'
+```
 
-**Ordering.** Neighbour lookups read the *original* slots, so a rule cannot feed
-another within a sweep. That is why the vowel rule keys on `coda_nasal` (a
-**grapheme**-level class, immune to the nasal's slot being emptied) while the
-absorb rule keys on the slot. Reverse them and the absorb bleeds the
-nasalisation: the vowel rule finds an empty next slot and never fires.
+⟨an⟩ is not a digraph in any orthography. It is a vowel letter and a nasal letter, and a rule supplies the nasality. A table of pseudo-digraphs such as `{"an": ["ɑ̃"], "am": ["ɑ̃"], "en": ["ɑ̃"]}` cannot express the onset contrast. It also forces more pseudo-graphemes (⟨anh⟩) to undo the first ones. Follow the official orthography of the language for what a digraph is. Mirandese has ⟨nh⟩ and ⟨lh⟩, and it has no ⟨an⟩.
+
+Neighbour lookups read the original slots, so one rule cannot feed another within a pass. That is why the vowel rule keys on `coda_nasal`, a grapheme-level class that the emptied nasal slot does not change. The absorb rule keys on the slot. If the absorb rule fed the vowel rule, it would bleed the nasalisation. The vowel rule would then see an empty next slot.
+
+### `emphatic`
+
+`emphatic` matches a neighbour whose IPA carries the pharyngealisation diacritic ⟨ˤ⟩ (U+02E4). `orthography2ipa.vowels.is_pharyngealized_consonant` decides it, as the mirror of `is_palatal_consonant`. The class names no language. Any spec that writes a pharyngealised consonant with ⟨ˤ⟩ gets it, including the lateral emphatics ⟨ɬˤ ɮˤ⟩.
 
 ## Inserting instead of rewriting: `append`
 
-A rule normally names the `surface` its target becomes. Epenthesis does not fit
-that shape: the inserted segment is the same wherever it goes, while the segment
-it attaches to is any member of a class, and one fixed `surface` string can only
-name one of them. `append` states the insertion instead — the realisation is
-`phoneme + append`, so a single rule covers the whole class:
+A rule normally names the `surface` that its target becomes. Epenthesis does not fit that shape. The inserted segment is the same wherever it goes, while the segment it attaches to is any member of a class. A fixed `surface` string can name only one of them. `append` states the insertion. The realisation is `phoneme + append`, so one rule covers the whole class:
 
 ```json
-{"id": "EGY_EPEN_INITIAL", "phonemes": ["b", "p", "f", "m", "n", "t", "k"],
+{"id": "EGY_EPEN_INITIAL",
+ "phonemes": ["b", "d", "d͡ʒ", "f", "h", "k", "m", "n", "p", "r", "s", "t", "t͡ʃ", "x", "z", "ç", "ɡ", "ʃ", "w"],
  "append": "ɛ", "word_initial": true, "followed_by": "consonant"}
 ```
 
-That is the Egyptological reading of Egyptian, where the script writes no
-vowels and the convention supplies one to break the consonant string: ⟨nfr⟩ is
-read [nɛfɛr] (see [languages/egy.md](languages/egy.md)). `append` and `surface`
-are mutually exclusive — a rule either rewrites its target or inserts next to
-it.
+This is the Egyptological reading of Egyptian. The script writes no vowels, and the convention supplies one to break the consonant string (see [languages/egy.md](languages/egy.md)):
+
+```python
+G2P("egy").transcribe_word("nfr")   # 'nɛfɛr'
+```
+
+`append` and `surface` are mutually exclusive. A rule either rewrites its target or inserts next to it.
 
 ## Doubled letters that are not geminates
 
-The pass protects a geminate from being split: a rule fired by material outside
-it may not rewrite one half and leave a heterorganic cluster behind. That
-assumes the orthography writes gemination by doubling the letter, which most
-do. A consonantal skeleton does not — Egyptological ⟨bbr⟩ is the three-radical
-root b-b-r, and the reading convention puts a vowel between the two ⟨b⟩. A spec
-says so with `doubled_letters_geminate: false`, and the protection is off for
-that language.
+The pass protects a geminate from being split. A rule that material outside the geminate triggers may not rewrite one half and leave a heterorganic cluster. This protection assumes that the orthography writes gemination by doubling the letter, and most orthographies do. A consonantal skeleton does not. Egyptological ⟨bbr⟩ is the root b-b-r, and the reading convention puts a vowel between the two ⟨b⟩. The `egy` spec sets `doubled_letters_geminate: false`, which turns the protection off:
 
-The protection is also scoped to doubling that is genuinely one segment. A
-doubled consonant between two nuclei spans a syllable boundary (Hayes 1989;
-Ladefoged & Maddieson 1996:92) — it is a coda plus an onset, and the two halves
-are in different positions — so a rule whose neighbour condition points AT the
-twin was triggered by that boundary and may realise the half it applies to.
-That is Lashi ⟨yuggi⟩ [juk̚ɡi], where the coda rule reads the consonant after
-it and finds the second ⟨g⟩. `followed_by`, `followed_by_grapheme` and
-`followed_by_phoneme` point at the twin from the first half; the `preceded_by`
-family points at it from the second.
+```python
+G2P("egy").transcribe_word("bbr")   # 'bɛbɛr'
+```
 
-Everything else stays blocked. Word-finally or before another consonant there
-is no following nucleus to license an onset, so the pair is one long coda that
-nothing may divide: Najdi ⟨بخّ⟩ /baxx/ keeps both halves and does not take the
-gahawa epenthesis between them. Nor does a rule that points anywhere but at the
-twin get through — an unconditioned rule, a `word_final` rule, a two-step
-condition such as `followed_by_2` that reads past the twin, or a negative
-condition such as `followed_by_grapheme_not`, which excludes rather than
-triggers.
+The protection also covers only doubling that is one segment. A doubled consonant between two nuclei spans a syllable boundary (Hayes 1989, Ladefoged & Maddieson 1996:92). Its halves are a coda and an onset. So a rule whose neighbour condition points at the twin may realise the half it applies to, because the boundary triggered it. Lashi ⟨yuggi⟩ shows this. The coda rule reads the consonant after the first ⟨g⟩ and finds the second one:
 
-Rules are **pure data**: no code in specs. See
-[`data/SCHEMA.md`](../orthography2ipa/data/SCHEMA.md#allophone-rule-schema)
-for the JSON shape.
+```python
+G2P("lsi").transcribe_word("yuggi")   # 'juk̚ɡi'
+```
+
+`followed_by`, `followed_by_grapheme` and `followed_by_phoneme` point at the twin from the first half. The `preceded_by` family points at it from the second half.
+
+Everything else stays blocked. Word-finally, or before another consonant, no nucleus follows to license an onset. The pair is then one long coda that nothing may divide. Najdi ⟨بَخّ⟩ keeps both halves and takes no gahawa epenthesis between them:
+
+```python
+G2P("ar-SA-x-najd").transcribe_word("بَخّ")   # 'ˈbaxx'
+```
+
+A rule that points anywhere but at the twin is blocked too. This covers a rule with no condition, a `word_final` rule, a two-step condition such as `followed_by_2` that reads past the twin, and a negative condition such as `followed_by_grapheme_not`.
+
+Rules are pure data, and specs hold no code. [`data/SCHEMA.md`](../orthography2ipa/data/SCHEMA.md#allophone-rule-schema) gives the JSON shape.
 
 ## Toggles
 
-- `G2P(lang, apply_allophony=True)` (the default) applies a spec's
-  `allophone_rules`. It is a **no-op for every spec that declares none**
-  (all shipped specs bar the pilots), so the default engine path is
-  byte-identical. Set `apply_allophony=False` to force broad/phonemic output
-  even for a spec that declares rules.
-- `expand_allophones` is unchanged and independent: it is the
-  *enumerate-variants* knob (dump every `spec.allophones` variant into the
-  beam), useful for "show me all surface possibilities": not for picking the
-  contextually-correct one.
+`G2P(lang, apply_allophony=True)` is the default, and it applies the spec's `allophone_rules`. It does nothing for a spec that declares none. Set `apply_allophony=False` to get the broad, phonemic output for a spec that declares rules.
+
+`expand_allophones` is independent. It puts every `spec.allophones` variant into the beam, which shows all surface possibilities. It does not pick the variant that fits the context.
 
 ## Inheritance
 
-`allophone_rules` inherit by **id-keyed overlay**
-(`InheritanceMode.OVERLAY_BY_ID`), exactly like `sandhi_rules`: a child spec
-that sets `graphemes_base` inherits the parent's whole rule list in order;
-an own rule with a matching `id` replaces the inherited one in place, and a
-new `id` is appended. A post-lexical process is typically a property of the
-whole language: Catalan final devoicing and nasal assimilation hold in
-every Catalan variety: so the standard dialects inherit the pilots for free
-while remaining able to override a single rule by `id`.
+`allophone_rules` inherit by id-keyed overlay (`InheritanceMode.OVERLAY_BY_ID`), as `sandhi_rules` do. A child spec that sets `graphemes_base` inherits the whole rule list of its base, in order. An own rule with a matching `id` replaces the inherited rule in place. An own rule with a new `id` goes to the end of the list.
 
-## The Catalan pilots
+A post-lexical process is usually a property of the whole language. Catalan final devoicing and nasal assimilation hold in every Catalan variety, so the dialects inherit them and can still override one rule by `id`. A child that lacks a process redeclares the rule `id` with an empty `phonemes` list. Afrikaans (`af`) does this for the Dutch open-syllable lengthening rules it would otherwise inherit.
 
-Catalan (`ca`) is the first spec to declare `allophone_rules`, each cited to
-reference grammars:
+## Worked example: Catalan
 
-### 1. Final-obstruent devoicing
+The `ca` spec declares rules for four processes, each cited to a reference grammar.
 
-Word-final voiced obstruents devoice: `/b d ɡ z ʒ v/ → [p t k s ʃ f] / _#`
-(Wheeler 2005, *The Phonology of Catalan*, §5.3).
+### Final-obstruent devoicing
+
+Word-final voiced obstruents devoice: `/b d ɡ z ʒ v/ → [p t k s ʃ f] / _#` (Wheeler 2005, *The Phonology of Catalan*, §5.3).
 
 ```python
-from orthography2ipa import G2P
 ca = G2P("ca")
-ca.transcribe_word("fred")   # …t  (/d/# → [t])
-ca.transcribe_word("sang")   # …k  (/ɡ/# → [k])
-G2P("ca", apply_allophony=False).transcribe_word("fred")  # …d (broad)
+ca.transcribe_word("fred")                                  # 'ˈfɾɛt'
+ca.transcribe_word("llarg")                                 # 'ˈʎark'
+G2P("ca", apply_allophony=False).transcribe_word("fred")    # 'ˈfɾɛd'
 ```
 
-### 2. Nasal place assimilation
+Central Catalan also deletes a word-final stop after a homorganic nasal or lateral (Wheeler 2005 §10.4). The `CA_CLUSTER_*_FINAL` rules state this, so ⟨sang⟩ is [ˈsaŋ] and ⟨camp⟩ is [ˈkam]. Valencian and Balearic keep the stop.
 
-`/n/` assimilates to the place of a following consonant: `[m]` before a
-labial `/p b m f/`, `[ŋ]` before a velar `/k ɡ/` (Recasens 1993, *Fonètica i
-fonologia*).
+### Nasal place assimilation
+
+/n/ takes the place of a following consonant (Recasens 1993, *Fonètica i fonologia*). It becomes [m] before a labial, [ɱ] before /f v/, [ŋ] before a velar and [ɲ] before a palatal.
 
 ```python
-ca.transcribe_word("banc")   # …ŋk  (/n/ → [ŋ] before /k/)
+ca.transcribe_word("banca")   # 'ˈbaŋkə'
+ca.transcribe_word("canvi")   # 'ˈkambi'
+ca.transcribe_word("àngel")   # 'ˈaɲʒəl'
 ```
 
-### 3. Intervocalic spirantization
+### Spirantisation
 
-Voiced stops lenite to approximants between vowels: `/b d ɡ/ → [β ð ɣ] / V_V`
-(Wheeler 2005, §5.2). Encoded with the grapheme-class neighbour conditions
-`preceded_by: "vowel"` + `followed_by: "vowel"`, so it fires only between
-vowels and stays a stop elsewhere.
+The voiced stops lenite to approximants after a vowel: `/b d ɡ/ → [β ð ɣ]` (Wheeler 2005, §5.2). The `CA_SPIRANT_*` rules key on `preceded_by: "vowel"`, and the `CA_SPIRANT_*_CONT` rules extend them to a preceding continuant. A word-final stop takes the devoicing rule instead, because that rule comes first in the list. The `CA_GEMINATE_BL` and `CA_GEMINATE_GL` rules keep /b ɡ/ a stop before a lateral, where Catalan geminates them.
 
 ```python
-ca.transcribe_word("cada")    # ˈkaðə  (/d/ → [ð])
-ca.transcribe_word("pagar")   # pəˈɣaɾ (/ɡ/ → [ɣ])
-ca.transcribe_word("poble")   # ˈpɔblə (/b/ before /l/ stays a stop)
+ca.transcribe_word("cada")    # 'ˈkaðə'
+ca.transcribe_word("pagar")   # 'pəˈɣa'
+ca.transcribe_word("roba")    # 'ˈrɔβə'
+ca.transcribe_word("poble")   # 'ˈpɔblə'
 ```
 
-### 4. Stress-conditioned unstressed vowel reduction
+### Unstressed vowel reduction
 
-The Eastern (Central/Balearic) block reduces vowels **only in unstressed
-syllables**: unstressed `/a e ɛ/ → [ə]` and `/o ɔ/ → [u]`; stressed vowels
-keep full quality (Wheeler 2005, §2.3). This is the canonical "reduce in the
-unstressed nucleus" case, so it is modelled with the **`nucleus_unstressed`
-positional slot** (the stress-conditioned member of the `GraphemePosition`
-vowel-class family) rather than a phoneme→surface rule: the reduced vowel is
-selected pre-lexically, keyed on stress. Because the slot is stress-conditioned
-it fires on the engine path only, exactly like a `stress`-conditioned
-`allophone_rule`.
+The Eastern block (Central and Balearic) reduces vowels only in unstressed syllables. Unstressed /a e ɛ/ become [ə] and /o ɔ/ become [u], and stressed vowels keep full quality (Wheeler 2005, §2.3). The spec states this in the pre-lexical map, with the `nucleus_unstressed` position of [positional_graphemes.md](positional_graphemes.md), and not as an allophone rule. Like a stress-conditioned rule, the position fires on the engine path only.
 
 ```python
-ca.transcribe_word("gos")     # ˈɡɔs  (stressed o keeps [ɔ]: NOT reduced)
-ca.transcribe_word("casa")    # ˈkazə (unstressed a → [ə])
-ca.transcribe_word("dona")    # ˈdɔnə (stressed [ɔ], unstressed [ə])
+ca.transcribe_word("casa")   # 'ˈkazə'
+ca.transcribe_word("dona")   # 'ˈdɔnə'
 ```
 
-The Western block (Valencian `ca-x-valencia`, Northwestern
-`ca-x-occidental`) does **not** reduce: it keeps the full 7-vowel inventory
-in atonic position (Recasens 1996; Veny 1982). Each Western variety overrides
-the inherited `nucleus_unstressed` reduction with a full-quality vowel entry,
-so `transcribe("casa", "ca-x-occidental")` is `kaza`, not `kazə`.
-
-### Benchmark effect (honest)
-
-Measured on the committed gold sets (PER, lower is better):
-
-| Row | Gold | Rules off | Rules on | Δ |
-|---|---|---:|---:|---:|
-| ca | 4catac (expert human) | 0.4170 | 0.4120 | **−0.0050** |
-| ca-x-balear | 4catac | 0.3924 | 0.3884 | **−0.0040** |
-| ca-x-occidental | 4catac | 0.5680 | 0.5633 | **−0.0047** |
-| ca-x-valencia | 4catac | 0.3046 | 0.3005 | **−0.0041** |
-| ca | styletts2_phonemes (espeak) | 0.4043 | 0.4083 | +0.0040 |
-
-Both phenomena improve the **expert human** 4catac gold across all four
-Catalan varieties: the gold that actually transcribes surface forms.
-Devoicing alone is neutral-or-better everywhere. The nasal-assimilation
-half slightly *regresses* the automatic **espeak-derived** styletts2 gold
-(by +0.004, below the 0.005 regression-CI threshold): espeak Catalan does
-not transcribe nasal place assimilation, so a broad/phonemic-leaning gold
-cannot reward a correct narrow realisation. The phenomenon is nonetheless
-linguistically correct (Recasens 1993) and rewarded by the higher-quality
-gold. This is the expected "broad gold ≠ narrow surface" trade-off: it is
-reported here rather than hidden.
-
-Stress-conditioned reduction (§4) and intervocalic spirantization (§3),
-together with Northwestern Catalan declaring its own full-vowel atonic
-inventory instead of inheriting Central reduction, place the expert-human
-4catac gold well across the varieties: most dramatically Northwestern, which
-keeps vowels the Central block reduces:
-
-| Row | Gold | Rules off | Rules on | Δ |
-|---|---|---:|---:|---:|
-| ca | 4catac (expert human) | 0.4120 | 0.4026 | **−0.0094** |
-| ca-x-occidental | 4catac | 0.5633 | 0.4663 | **−0.0970** |
-| ca-x-valencia | 4catac | 0.3005 | 0.2994 | **−0.0011** |
-| ca-x-balear | 4catac | 0.3884 | 0.3893 | +0.0009 |
-| ca | styletts2_phonemes (espeak) | 0.4083 | 0.4012 | **−0.0071** |
-
-Northwestern Catalan (`ca-x-occidental`) sits nearly 0.10 lower with the rules
-on: it does not schwa-reduce vowels the Western block keeps full. Central and
-Valencian benefit from stressed vowels being left unreduced. Balearic is flat
-within noise (+0.0009, far below the 0.005 regression threshold): its stressed
-vowels are correct, but the automatic gold does not reward the change
-measurably.
-
-## Brazilian Portuguese: final vowel raising
-
-Brazilian Portuguese (`pt-BR`) is the base spec for twelve regional dialect
-specs; its `allophone_rules` model **final unstressed vowel raising**
-(Barbosa & Albano 2004; Câmara Jr. 1970). Word-final /e o/ raise to the
-close vowels [i]/[u]:
+The Western block does not reduce in this way (Recasens 1996, Veny 1982). Valencian (`ca-x-valencia`) keeps full ⟨a⟩ in unstressed syllables. Northwestern Catalan (`ca-x-occidental`) has its own word-final [ɛ] for ⟨a⟩.
 
 ```python
-from orthography2ipa import G2P
-br = G2P("pt-BR")
-br.transcribe_word("gato")    # ˈɡatu   ([ʊ] → [u] / _#)
-br.transcribe_word("leite")   # ˈlejti  ([ɪ] → [i] / _#)
-G2P("pt-BR", apply_allophony=False).transcribe_word("gato")  # ˈɡatʊ (broad)
+G2P("ca-x-valencia").transcribe_word("casa")     # 'ˈkaza'
+G2P("ca-x-occidental").transcribe_word("casa")   # 'ˈkazɛ'
 ```
+
+## Worked example: Brazilian Portuguese
+
+The `pt-BR` spec is the base of the Brazilian dialect specs. Its rules raise the final unstressed vowels (Barbosa & Albano 2004, Câmara Jr. 1970). Word-final /e o/ become the close vowels [i u]:
 
 ```json
-{
-  "id": "BR_RAISE_FINAL_E",
-  "phonemes": ["ɪ"],
-  "surface": "i",
-  "word_final": true
-}
+{"id": "BR_RAISE_FINAL_E", "phonemes": ["ɪ"], "surface": "i", "word_final": true}
 ```
 
-Two design points illustrate the inheritance-friendly way to write a base
-rule:
+```python
+br = G2P("pt-BR")
+br.transcribe_word("gato")                                    # 'ˈɡatu'
+br.transcribe_word("leite")                                   # 'ˈlejt͡ʃi'
+G2P("pt-BR", apply_allophony=False).transcribe_word("gato")   # 'ˈɡatʊ'
+G2P("pt-BR", apply_allophony=False).transcribe_word("leite")  # 'ˈlejtɪ'
+```
 
-1. **Target the reduced vowel, not the underlying phoneme.** The rule fires
-   on the near-close [ɪ]/[ʊ] the pre-lexical map already selects
-   word-finally, *not* on underlying /e o/. A conservative dialect that
-   retains a final [e]/[o] therefore inherits the rule harmlessly: it
-   simply never fires there: so the base can ship the rule without
-   breaking the varieties that override the reduction.
-2. **Leave a process pre-lexical when it is already positional.** BP /t d/
-   affrication before ⟨i⟩ is handled by `positional_graphemes`; re-stating
-   it as an allophone rule would double-apply. See
-   [languages/pt-BR.md](languages/pt-BR.md) for the full breakdown,
-   including the processes deliberately deferred to the dialect wave.
+The rules show two ways to write a base rule that inherits well:
 
-Effect on the committed gold (PER, lower is better):
+1. Target the reduced vowel, not the underlying phoneme. The rule fires on the near-close [ɪ ʊ] that the pre-lexical map already selects word-finally. A conservative dialect that keeps a final [e o] inherits the rule, and the rule never fires there.
+2. Leave a process pre-lexical when a position already states it. The `pt-BR` positional table affricates ⟨t d⟩ before the letter ⟨i⟩ (⟨tia⟩ [ˈt͡ʃiɐ]). The `BR_AFFRIC_T_RAISED` and `BR_AFFRIC_D_RAISED` rules cover only the [i ɪ] that a raised ⟨e⟩ supplies, as in ⟨leite⟩.
 
-| Row | Gold | Rules off | Rules on | Δ |
-|---|---|---:|---:|---:|
-| pt-BR | wikipron (n=124) | 0.1901 | 0.1578 | **−0.0323** |
+[languages/pt-BR.md](languages/pt-BR.md) gives the full description.
 
-## Worked example: European Portuguese coda consonants (`pt-PT`)
+## Worked example: European Portuguese
 
-European Portuguese also declares `allophone_rules`.
-Where Catalan exercises the phoneme-neighbour conditions, `pt-PT` exercises the
-**syllable-position** condition: three rules realise the post-lexical coda
-consonants that the pre-lexical `positional_graphemes` map does not reach
-cleanly at word edges.
+The `pt-PT` rules use the `syllable_position` condition for the coda consonants.
 
-### 1. Dark (velarised) coda /l/
+### Dark coda /l/
 
-`/l/ → [ɫ]` in the syllable coda: word-finally and pre-consonantally: while an onset `/l/` stays clear (Mateus & d'Andrade 2000, ch. 2;
-Cruz-Ferreira 1995, *JIPA* 25(2): 91).
+/l/ becomes [ɫ] in the coda, both word-finally and before a consonant. An onset /l/ stays clear (Mateus & d'Andrade 2000, ch. 2, Cruz-Ferreira 1995, *JIPA* 25(2): 91).
 
 ```python
-from orthography2ipa import G2P
 pt = G2P("pt-PT")
-pt.transcribe("sol")    # ˈsɔɫ   (coda /l/ → [ɫ])
-pt.transcribe("alto")   # ˈaɫtu  (pre-consonantal coda)
-pt.transcribe("bola")   # ˈbɔlɐ  (onset /l/ stays clear)
+pt.transcribe("sol")    # 'ˈsɔɫ'
+pt.transcribe("alto")   # 'ˈɐɫtu'
+pt.transcribe("bola")   # 'ˈbɔlɐ'
 ```
 
-### 2. Coda sibilants: the *chiado*
+### Coda sibilants
 
-The Lisbon/standard realisation of a coda sibilant: `/s/ → [ʃ]` and
-`/z/ → [ʒ]` (Mateus & d'Andrade 2000, ch. 2). Voicing of `[ʃ]→[ʒ]` before a
-voiced consonant across a word boundary is handled separately by the
-`PT_CODA_S_VOICING` sandhi rule.
+The standard realisation of a coda sibilant is the *chiado*: /s/ becomes [ʃ] and /z/ becomes [ʒ] (Mateus & d'Andrade 2000, ch. 2). The `PT_CODA_S_HUSH` and `PT_CODA_Z_HUSH` rules state it. The sandhi rule `PT_CODA_S_VOICING` voices [ʃ] to [ʒ] before a voiced consonant in the next word.
 
 ```python
-pt.transcribe("pasta")  # ˈpaʃtɐ  (coda /s/ → [ʃ])
-pt.transcribe("casa")   # ˈkazɐ   (intervocalic /z/ unaffected)
+pt.transcribe("pasta")      # 'ˈpaʃtɐ'
+pt.transcribe("casa")       # 'ˈkazɐ'
+pt.transcribe("os dedos")   # 'oʒ ˈdɛduʃ'
 ```
 
-### What is *not* here
+The `pt-PT-x-*` dialect specs inherit these rules by id. The varieties that keep an alveolar coda /s/ (`pt-AO`, `pt-CV`, `pt-GW`, `pt-MZ`, `pt-ST`, `pt-TL`) override `PT_CODA_S_HUSH` and `PT_CODA_Z_HUSH` by id with [s] and [z].
 
-EP unstressed vowel reduction (`/a/→[ɐ]`, `/e/→[ɨ]`, `/o/→[u]`) is realised
-in the **pre-lexical** `positional_graphemes` map (its `nucleus_stressed` /
-`nucleus_unstressed` / `pretonic` / `word_final` rows), so no redundant
-allophone rule restates it. Intervocalic voiced-stop spirantisation
-(`/b d ɡ/→[β ð ɣ]`) is a genuine EP process (Mateus & d'Andrade 2000) but is
-**deliberately not encoded**: every available `pt` gold is broad/phonemic
-and transcribes the stops, so the rule is correct yet regresses all
-measurable golds with none rewarding it. It is left for a future
-narrow-transcription task. Dialect-specific sibilant/vocalism deltas (e.g.
-northern apico-alveolar coda `[s̺]`) belong in the `pt-PT-x-*` dialect specs.
+### Processes outside the rule list
 
-### Benchmark effect (honest)
-
-Measured on the committed gold sets (PER, lower is better):
-
-| Row | Gold | Rules off | Rules on | Δ |
-|---|---|---:|---:|---:|
-| pt-PT | infopedia_pt (human lexicon) | 0.3160 | 0.2942 | **−0.0218** |
-| pt-PT | ep_dialects (CLUP) | 0.2599 | 0.2218 | **−0.0381** |
-| pt | styletts2_phonemes | 0.3999 | 0.3871 | **−0.0128** |
-| pt | wikipron | 0.1817 | 0.2090 | +0.0273 |
-
-Split by rule (measured in isolation):
-
-* **coda sibilants** (`PT_CODA_S_HUSH`/`PT_CODA_Z_HUSH`) improve *every* gold,
-  including WikiPron (which transcribes the coda *chiado*): a clean win.
-* **dark coda /l/** (`PT_CODA_L_DARK`) improves the two narrow human golds
-  (infopedia_pt, ep_dialects) but *regresses* the broader WikiPron `pt` row
-  by +0.031: WikiPron transcribes European Portuguese coda /l/ broadly as
-  plain `[l]`, so a broad-leaning gold cannot reward the correct velarised
-  surface. The rule is nonetheless well attested in the literature (Mateus & d'Andrade
-  2000; Cruz-Ferreira 1995) and rewarded by the higher-quality human golds,
-  so it is kept and the divergence reported here: the same "broad gold ≠
-  narrow surface" trade-off as the Catalan nasal-assimilation pilot. This
-  regression is above the 0.005 benchmark-regression threshold and is a
-  deliberate, documented decision, not an oversight.
-
-The `pt-PT-x-*` European dialect specs inherit these three rules by id-keyed
-overlay, so their rows move too: all improve. The six Lusophone
-African/Asian varieties that already declare an alveolar coda /s/ in their
-`positional_graphemes` (pt-AO, pt-CV, pt-GW, pt-MZ, pt-ST, pt-TL) override
-`PT_CODA_S_HUSH`/`PT_CODA_Z_HUSH` back to `[s]`/`[z]` by id so they keep their
-non-*chiado* realisation. (Broader P5 Lusophone-variety deltas are a later
-task; only the already-encoded alveolar-coda intent is preserved here.)
+European Portuguese unstressed vowel reduction (/a/ to [ɐ], /e/ to [ɨ], /o/ to [u]) lives in the pre-lexical map. The `nucleus_stressed`, `nucleus_unstressed`, `pretonic` and `word_final` positions state it, so no allophone rule repeats it. Intervocalic spirantisation of /b d ɡ/ is a real process (Mateus & d'Andrade 2000), and the spec does not encode it. Every `pt` gold set is broad and transcribes the stops. Dialect features such as the northern apico-alveolar coda [s̺] belong in the `pt-PT-x-*` specs.
 
 ## Multi-pass feeding (`allophone_passes`)
 
-The allophone pass reads every rule's neighbouring segments from the state
-*before* the pass, so within one pass two rules cannot feed each other: a rule
-that only fires on another rule's output never sees it. Brazilian Portuguese is
-the canonical case: the final unstressed `-es`/`-os` ending raises to `[i]`/`[u]`
-(`BR_RAISE_FINAL_ES`/`_OS`), and `/t d/` should then affricate before the raised
-`[i]` (`BR_AFFRIC_T_RAISED`/`_D_RAISED`); but in a single pass the affrication
-reads the *pre-raise* vowel and does not fire, so `estes` surfaces as `[ˈestes]`
-instead of `[ˈest͡ʃis]`.
+One pass reads the neighbours of every rule from the state before the pass. So two rules in one pass cannot feed each other, and a rule that needs another rule's output never sees it. Brazilian Portuguese shows the problem. The unstressed final ⟨-es⟩ and ⟨-os⟩ raise to [i] and [u] (`BR_RAISE_FINAL_ES`, `BR_RAISE_FINAL_OS`). Then /t d/ must affricate before the raised [i]. In one pass, the affrication rule reads the vowel before raising and does not fire.
 
-A spec sets `allophone_passes: N` (default `1`) to run the compiled pass `N`
-times. Each repeat rebuilds the segment context from the previous pass's output,
-so the raise now feeds the affrication on pass 2: `estes → [ˈest͡ʃis]`, `dentes →
-[ˈdẽt͡ʃis]`, `gatos → [ˈɡatus]`. The count is **bounded** (no unbounded fixpoint)
-so a pathological rule set cannot loop.
+A spec sets `allophone_passes: N` to run the compiled pass N times. The default is 1. Each pass rebuilds the segment context from the output of the pass before it, so in pass 2 the raised vowel feeds the affrication:
 
-It is `NOT_INHERITED` (like `stress`) and opt-in per spec on purpose: re-running
-the pass can re-fire a non-idempotent rule, so each spec restates the count and
-confirms: against its own gold: that the extra pass changes only the intended
-feeding cases. pt-BR and its palatalising urban dialects (bahia, brasília,
-fluminense, mg, rj, sp) declare `2`; the conservative-dental dialects that
-disable the affrication (caipira, sul, …) keep the default `1`, since their
-raising needs no second pass. Measured blast radius on the full pt-BR WikiPron
-set: the only pass-1→pass-2 differences are the intended `/t d/` affrications
-before a raised final `-Vs`: no other output moves.
+```python
+br.transcribe_word("estes")                                     # 'ˈest͡ʃis'
+br.transcribe_word("dentes")                                    # 'ˈdẽt͡ʃis'
+br.transcribe_word("gatos")                                     # 'ˈɡatus'
+G2P("pt-BR", apply_allophony=False).transcribe_word("estes")    # 'ˈestes'
+```
 
-## Arabic: emphasis spread (tafkhim) and the generic `"emphatic"` class
+The count is fixed, so a rule set cannot loop. The field is `NOT_INHERITED`. A second pass can fire a rule that is not idempotent again, so each spec states its own count and checks it against its own gold. `pt-BR` and its affricating urban dialects (`pt-BR-x-bahia`, `pt-BR-x-brasilia`, `pt-BR-x-fluminense`, `pt-BR-x-mg`, `pt-BR-x-rj`, `pt-BR-x-sp`) declare 2. The dialects that keep dental stops, such as `pt-BR-x-caipira` and `pt-BR-x-sul`, keep 1, because their raising needs no second pass.
 
-Emphasis spread — pharyngealization ("tafkhim") radiating from an emphatic
-consonant onto adjacent vowels, backing `a i u` to `[ɑ ɪ ʊ]` — is Arabic's
-best-known allophonic process (Watson 2002, *The Phonology and Morphology of
-Arabic*, ch. "Emphasis"; Davis 1995, *Linguistic Inquiry* 26(3): feature-
-geometric spread of pharyngealization onto neighbouring vocalic segments).
-`ar` already modelled the low-vowel half of it (`AR_EMPH_BACK_A_*`/
-`AR_EMPH_BACK_AA_*`, plus several dialect-local copies), each keyed on a
-hand-enumerated Arabic phoneme list (`preceded_by_phoneme=["tˤ","dˤ","sˤ",
-"ðˤ","zˤ"]`) — silently missing the lateral emphatics `ɬˤ`/`ɮˤ` some
-dialects (e.g. `ar-SA-x-rijal-alma`) use for ظ/ض, and missing `i`/`u`
-entirely.
+## Worked example: Arabic emphasis spread
 
-Rather than hand-list a fifth/sixth Arabic phoneme, the engine gained a
-generic **`"emphatic"` neighbour class** (`preceded_by`/`followed_by`,
-alongside `"palatal"`/`"front_vowel"`/`"back_vowel"`): true to any IPA
-carrying the pharyngealization diacritic `ˤ` (U+02E4) —
-`vowels.is_pharyngealized_consonant`, the consonant-side mirror of
-`is_palatal_consonant` — never hardcoded to Arabic. Any spec that marks a
-pharyngealized consonant with `ˤ` gets the class for free, including
-laterals it was never enumerated for.
+Emphasis spread, or *tafkhim*, is pharyngealisation that radiates from an emphatic consonant onto the adjacent vowels. It backs /a i u/ to [ɑ ɪ ʊ] (Watson 2002, *The Phonology and Morphology of Arabic*, ch. "Emphasis", Davis 1995, *Linguistic Inquiry* 26(3)).
 
-`arb` (Classical/MSA, the root of the whole Arabic family's
-`graphemes_base` chain) declares twelve `AR_EMPHASIS_SPREAD_*` rules on top
-of this class — `a/aː/i/iː/u/uː → ɑ/ɑː/ɪ/ɪː/ʊ/ʊː`, each `preceded_by`/
-`followed_by: "emphatic"` — inherited by every descendant. This is
-deliberately **local** (immediately adjacent vowel only): Watson also
-reports the spread crossing several segments and, in some dialects, being
-*blocked* by an intervening high front vocoid `/i j/` (Watson 2002 §2.4.2) —
-that word-domain, blockable spread needs context beyond one grapheme away
-and is left to future dialect-level work. The pre-existing hardcoded `a/aː`
-rules are **not** redundant with the new ones and were kept: they alone
-reach the `-ayy-`/`-aww-` fused nisba/gemination grapheme (`"َيي"` → `ajj`),
-a single multi-phoneme token the grapheme-class condition cannot see inside
-without a phoneme-neighbour condition alongside it.
+The `arb` spec (Classical and Modern Standard Arabic) is the root of the `graphemes_base` chain of the Arabic family. It declares the `AR_EMPHASIS_SPREAD_*` rules over the `emphatic` class, for /a aː i iː u uː/ before and after an emphatic. Every descendant inherits them.
 
-### Benchmark effect (honest)
+```python
+ar = G2P("arb")
+ar.transcribe_word("صَبَرَ")   # 'ˈsˤɑbara'
+ar.transcribe_word("طَالِب")   # 'ˈtˤɑːlib'
+ar.transcribe_word("صُوف")    # 'ˈsˤʊːf'
+ar.transcribe_word("كَتَبَ")   # 'ˈkataba'
+```
 
-WikiPron Arabic (broad, unpointed-leaning transcription; n=14244): PER
-0.1666 → 0.1721 (**+0.0055**, a regression) — WikiPron does not transcribe
-tafkhim, so a correct narrow backing cannot be rewarded there; the same
-"broad gold ≠ narrow surface" trade-off already documented for the Catalan
-and European Portuguese pilots above.
+The spread is local and reaches only the adjacent vowel. Watson also reports spread across several segments, and in some dialects an intervening high front vocoid /i j/ blocks it (Watson 2002 §2.4.2). That word-domain spread needs context beyond one grapheme.
 
-`primary_sources` (human dialect fieldwork gold): most dialects are
-unchanged (their own pre-existing hardcoded rules already produced the
-before behaviour for the rows they cover). Two move:
-
-| Row | Before | After | Δ |
-|---|---:|---:|---:|
-| ar-EG | 0.2099 | 0.2390 | +0.0291 |
-| ar-SA-x-rijal-alma | 0.1958 | 0.2454 | +0.0496 |
-
-Both are regressions against this gold's own transcription convention, not
-correctness regressions: `ar-SA-x-rijal-alma`'s move is the lateral
-emphatics `ɬˤ`/`ɮˤ` now correctly triggering spread (Watson & Al-Azraqi
-2011:428) where the old hand-enumerated list silently didn't reach them —
-a real gap the generic class closes, reported here rather than hidden. The
-Arabic TTS gold (`orthography2ipa/data/gold/arabic_tts/*.tsv`, o2i-verified
-by construction) was reconciled to the new, cited-correct output across all
-34 lects.
+The `ar` spec and its descendants also carry the `AR_EMPH_BACK_A_*` and `AR_EMPH_BACK_AA_*` rules, which key on a listed set of emphatic phonemes. They are not redundant with the class rules. Only they reach the fused nisba and gemination grapheme ⟨َيي⟩ [ajj], a single token with several phonemes that the grapheme class cannot see inside.
 
 ## Marker graphemes: delete a vowel while mutating a neighbour
 
-Some orthographies use a vowel letter as a pure diacritic on an ADJACENT
-consonant: it contributes a phonological feature to its neighbour and
-never surfaces as a vowel itself. Goidelic slender/broad (*caol/leathan*)
-marking is the paradigm case: a written ⟨i⟩/⟨e⟩ beside a consonant marks
-that consonant "slender" (palatalized) and is otherwise silent — Manx
-`giare` [ɡʲɛːr] (the ⟨i⟩ of ⟨gia-⟩ palatalizes ⟨g⟩ and does not itself
-surface), `dowin` [daunʲ] (the ⟨i⟩ palatalizes the following word-final
-⟨n⟩) (Broderick 1984-86, *A Handbook of Late Spoken Manx*, vol. 3;
-Thomson 1992, "The Manx Language", in MacAulay (ed.), *The Celtic
-Languages*, ch. 3). The Cyrillic soft sign ⟨ь⟩ and similar Slavic/Uralic
-"soft indicator" letters are the same shape: a grapheme that is itself
-silent but marks the preceding consonant palatalized.
+Some orthographies use a vowel letter as a diacritic on an adjacent consonant. The letter adds a feature to its neighbour and is otherwise silent. Goidelic slender and broad marking (*caol* and *leathan*) is the main case. A written ⟨i⟩ or ⟨e⟩ beside a consonant marks that consonant as palatalised (Broderick 1984-86, *A Handbook of Late Spoken Manx*, vol. 3, Thomson 1992, "The Manx Language", in MacAulay (ed.), *The Celtic Languages*, ch. 3). The Cyrillic soft sign ⟨ь⟩ and similar Slavic and Uralic letters have the same shape.
 
-An ordinary `allophone_rules` entry cannot express this: `surface`
-rewrites the rule's OWN matched phoneme, not a different slot. The
-existing two-rule technique used for French/Mirandese nasal vowels (the
-vowel rule keys on the neighbour's `coda_nasal` *class*, the absorb rule
-separately deletes the nasal) does not transfer here, because the
-direction is reversed and the information is asymmetric: the CONSONANT's
-own rule would need to know "will my neighbouring vowel delete itself
-in a marker context", and grapheme-class neighbour lookups
-(`preceded_by`/`followed_by`) read the *pre-rescore* grapheme, not
-whatever a not-yet-run rule on the vowel would decide — there is no
-class the consonant can test that means "my neighbour is about to be a
-silent slender-marker" without duplicating the vowel rule's own
-conditions on the consonant side and keeping the two forever in sync.
+An ordinary rule cannot express this, because `surface` rewrites only the rule's own phoneme. The two-rule technique of the nasal vowels does not transfer. The consonant's rule would need to know whether its neighbouring vowel is about to delete itself. The grapheme-class lookups read the slots before the rescorer runs, so no class answers that question. The consonant rule would have to copy the vowel rule's conditions and keep the two in step.
 
-`mutates_neighbor` (an IPA modifier string, e.g. `"ʲ"`) combined with
-`mutates_neighbor_side` (`"preceding"` / `"following"`) solves this
-atomically: ONE rule, declared on the marker vowel, both deletes its own
-slot (`surface: ""`) and appends the feature to the named adjacent slot.
-Because both effects come from the same rule firing once, they can never
-go out of sync.
+`mutates_neighbor` holds an IPA modifier such as `"ʲ"`, and `mutates_neighbor_side` is `"preceding"` or `"following"`. One rule on the marker vowel rewrites its own slot and adds the feature to the named neighbour. One firing produces both effects, so they cannot go out of step. The two fields go together, and the schema refuses one without the other.
+
+The `gv` spec declares two such rules. The rule `GV_SLENDER_ONSET_CONSONANT` deletes an ⟨i⟩ or ⟨e⟩ between an onset consonant and a vowel. It palatalises the consonant before it. The rule `GV_SLENDER_FINAL_N` palatalises a word-final ⟨n⟩. It keeps the marker as [ə], because most Manx transcriptions show a schwa there:
 
 ```json
 {
   "id": "GV_SLENDER_FINAL_N",
   "phonemes": ["i", "e"],
-  "surface": "",
+  "surface": "ə",
   "followed_by_phoneme": ["n"],
   "followed_by_2": "word_boundary",
   "mutates_neighbor": "ʲ",
@@ -570,48 +340,15 @@ go out of sync.
 ```
 
 ```python
-from orthography2ipa import G2P
 gv = G2P("gv")
-gv.transcribe_word("dowin")   # d a u n ʲ  (i deletes, final n palatalizes)
-gv.transcribe_word("giare")   # ɡ ʲ a r e  (i deletes, onset g palatalizes)
+gv.transcribe_word("giare")                                   # 'ɡʲare'
+gv.transcribe_word("dowin")                                   # 'dowənʲ'
+G2P("gv", apply_allophony=False).transcribe_word("giare")     # 'ɡiare'
 ```
 
-Mechanically, `mutates_neighbor` is evaluated from the AFFECTED slot's own
-rescore pass: the rescorer re-runs the marker's rule-matching logic
-against a reconstruction of the marker's context, reading the shared
-pre-pass slot state — safe and order-independent, exactly like every
-other allophone-rule neighbour lookup (see "Ordering" above). Stress
-conditions on a `mutates_neighbor` rule are approximated from the
-AFFECTED slot's own stress context (a per-grapheme stress array for the
-marker itself is not available at this layer); none of the motivating
-Goidelic/Slavic marker-grapheme cases condition on stress, so this is not
-a practical limitation for them.
+The rescorer evaluates `mutates_neighbor` from the affected slot. It runs the marker rule's match against a rebuilt context of the marker slot, and it reads the shared slot state from before the pass. So the result does not depend on which slot the pass reaches first. A stress condition on such a rule reads the stress context of the affected slot, because this layer has no stress array for the marker itself. The Goidelic and Slavic marker cases do not condition on stress.
 
-The mechanism is language-agnostic: nothing in `allophony.py` names
-Goidelic, Manx, or any language. It is generic wherever a marker
-grapheme deletes itself while contributing a feature to a neighbour —
-Slavic/Cyrillic soft-sign palatalization and comparable Uralic
-orthography conventions fit the identical shape.
-
-### Benchmark effect (honest)
-
-Measured on the committed gold set (PER, lower is better):
-
-| Row | Gold | Rules off | Rules on | Δ |
-|---|---|---:|---:|---:|
-| gv | wikipron (n=690) | 0.3650 | 0.3630 | **−0.0020** |
-
-A small, real improvement, not a sweep of every slender-marking context
-in the gold: the two rules cover the word-final `-in`/`-en` environment
-(`GV_SLENDER_FINAL_N`) and the onset consonant + vowel environment
-(`GV_SLENDER_ONSET_CONSONANT`) that Broderick and Thomson describe and
-that the two example words (`giare`, `dowin`) exercise directly. Several
-WikiPron `-in` entries (e.g. `Mannin` → `manənʲ`) show an epenthetic
-schwa the crowd-scraped gold keeps rather than a fully-deleted vowel;
-those rows are unaffected either way since the rule deletes the vowel
-outright rather than reducing it to schwa — an honest, reported gap
-between two competing "how does the deleted vowel's trace show up"
-analyses, not a regression.
+The mechanism names no language, and `allophony.py` does not mention Goidelic or Manx. It applies wherever a marker grapheme deletes itself and adds a feature to a neighbour.
 
 ---
-[← Glottolog alignment](glottolog_audit.md) · [Home](index.md) · [Positional Graphemes →](positional_graphemes.md)
+[← Adding a language](adding_a_language.md) · [Home](index.md) · [Positional Graphemes →](positional_graphemes.md)

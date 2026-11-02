@@ -1,7 +1,7 @@
 """Gold composition diagnostic: how much of a row's gold is alphabet-chart
 noise rather than running text.
 
-See docs/gold_composition.md for the method and the resulting tables.
+See docs/gold_defects.md ("Alphabet-chart entries in a row") for the method.
 
 WikiPron (and several other crowd-scraped golds) is built by scraping
 Wiktionary headwords, and for small languages a Wiktionary edition often
@@ -202,7 +202,7 @@ def score_row(lang: str, dataset: str, board_n: int, board_per: float,
     ``max_n=5000`` and a generous 80-grapheme alphabet that is 1.6%, far
     under any threshold this page reports against. Skipping these rows
     trades a small, provably-irrelevant slice of the board for making a
-    full sweep tractable; see docs/gold_composition.md for the count of
+    full sweep tractable; see docs/gold_defects.md for the count of
     rows this excludes on a given run.
     """
     if max_n is not None and board_n > max_n:

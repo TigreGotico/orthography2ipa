@@ -1,409 +1,248 @@
 # Primary-source gold
 
-Example transcriptions mined from the **primary sources the language specs
-themselves cite** — the grammars, phonology monographs and theses listed in each
-spec's `sources` array. Every row is a worked example printed by the linguist who
-described the variety, together with the printed page it stands on.
+This gold holds worked examples from the primary sources that the language specs cite. The sources are the grammars, phonology monographs and theses in the `sources` array of each spec. Each row is one transcription that the linguist who described the variety printed, with the printed page it is on.
 
-This is the only gold in the harness where each row can be checked against a
-named page of a named document. It is small; that is the point. It is meant to be
-*diagnostic* (does the engine reproduce what the source we cite actually says?),
-not to certify a language on its own.
+Each row in this set can be checked against a named page of a named document. No other gold in the harness gives that. The set is small on purpose. It is a diagnostic: it asks if the engine reproduces what the cited source says. It cannot certify a language alone.
 
-- `rows.jsonl` — one JSON object per example.
-- `sources.json` — the bibliography, with the URL, the access status and, per
-  source, **how its printed folio maps to the PDF page index** (they diverge; the
-  `page` field is always the *printed* page).
+[Benchmark gold datasets](../../../../docs/benchmark_datasets.md#primary-source-gold-primary_sources) puts this set beside the other gold sets. The scoreboard gives the scores per language.
 
-## Schema
+## Files
 
-| field | meaning |
+| File | Content |
 |---|---|
-| `id` | `<source>-NNN` |
-| `source` | key into `sources.json` |
-| `page` | **printed** page (from the document's own running head/footer), never the PDF page index |
-| `lang` | o2i spec code, or `null` where no mapping is defensible |
-| `source_variety` | the variety label the source itself uses |
-| `orthography` | the word as printed by the source, if it printed one |
-| `orthography_vocalized` | Arabic only: the same word with ḥarakāt (see below) |
-| `orthography_provenance` | `as-printed` or `editor-supplied`. A source that prints only a transcription gives `editor-supplied`, whatever the spelling costs to derive — the Tetun stress inventory is the clearest case: `kabás` needs the grammar's acute-accent rule and `hakarak` needs nothing at all, and both are `editor-supplied` because neither word is printed on the page |
-| `source_notation` | the source's transcription **verbatim**, brackets and all |
-| `notation_system` | `ipa` or `arabicist-transliteration` |
-| `ipa` | the normalized IPA actually scored |
-| `level` | `broad` (source used `/…/`) or `narrow` (source used `[…]`) |
-| `gloss` | English gloss as given |
-| `confidence` | `high` / `medium` / `low` |
-| `notes` | conditioning, in-source disagreements, what a normalization changed |
+| `rows.jsonl` | One JSON object per example. |
+| `sources.json` | The bibliography, keyed by the source id that rows use in `source`. Each entry gives the authors, year, title, venue, URL, access status, notation and the variety the source describes. Its `pagination` field tells how the printed folio maps to the page index of the PDF. |
 
-## Row counts
+The two page counts differ in most sources. The `page` field of a row always holds the printed page. The bibliography can also list a source that no row uses.
 
-| source | variety | lang | rows |
-|---|---|---|---|
-| Pompino-Marschall, Steriopolo & Żygis (2017), JIPA Illustration | Standard Ukrainian | `uk` | 45 |
-| Yanushevskaya & Bunčić (2015), JIPA Illustration | Standard Russian | `ru` | 36 |
-| Cruz-Ferreira (1995), JIPA Illustration | European Portuguese (Lisbon) | `pt-PT-x-lisbon` | 33 |
-| Jasim (2020), Newcastle PhD | Baghdadi Gilit / Muslawi Qəltu | `ar-IQ` / `ar-IQ-x-qeltu` | 12 / 12 |
-| Barbosa & Albano (2004), JIPA Illustration | Brazilian Portuguese | `pt-BR` | 21 |
-| Fadda (2016), MA thesis | Ammani | `ar-JO` | 13 |
-| Brissos (2014), JPL | EP central-interior (CI) / southwestern (SW) | `pt-PT-x-beira` / `pt-PT-x-alentejo` | 8 / 5 |
-| Silva (2008), JPL 7-1 | Micaelense (São Miguel, Azores) | `pt-PT-x-sao-miguel` | 12 |
-| Mikołajczak (2014), Studia Iberystyczne 13 | Terceirense (Ilha Terceira, Azores) | `pt-PT-x-terceira` | 10 |
-| Almbark & Hellmuth (2015), ICPhS | Damascene | `ar-SY` | 11 |
-| Cotter (2016), JAIS | Gaza City | `ar-PS` | 4 |
-| Martínez-Celdrán, Fernández-Planas & Carrera-Sabaté (2003), JIPA Illustration | Castilian Spanish | `es-ES` | 41 |
-| Coloma (2018), JIPA Illustration | Buenos Aires / River Plate Spanish | `es-AR` | 29 |
-| Laufer (1999), Handbook of the IPA Illustration | Modern Israeli Hebrew (Non-Oriental / Oriental) | `he` | 33 |
-| Owens (2006), A Linguistic History of Arabic | Nigerian Arabic (Shuwa) | `ar-NG` | 8 |
-| Procházka (2026), JSS gahawa survey | Nigeria (Lake Chad Arabic) | `ar-NG` | 1 |
-| Guerrero (2019), *Arabica* 66(1-2) | Maghrebi *ǧīm* reflexes (Tangiers / Fez / Tunis / Tripoli / Tlemcen) | `ar-MA` / `ar-TN` / `ar-LY` / `ar-DZ` | 4 / 2 / 3 / 1 |
-| Benkato (2020), *Maghrebi Arabic* (Lucas & Manfredi, eds.) | Libyan Arabic (Tripoli / Benghazi) | `ar-LY` | 3 |
-| Taine-Cheikh (2007), EALL *Ḥassāniyya Arabic* | Ḥassāniyya (Mauritania, Gǝbla) | `ar-MR` | 18 |
-| Williams-van Klinken, Hajek & Nordlinger (2002), Pacific Linguistics 528 | Tetun Dili | `tet` | 55 |
-| La Rosa (2021), Languages 6:145 | Tunisian Sahel (Mahdia/Msaken) | `ar-TN` | 7 |
-| Watson (2002), The Phonology and Morphology of Arabic | Cairene / Moroccan (Lmnabha, as quoted from Elmedlaoui) / Ṣanʿānī | `ar-EG` / `ar-MA` / `ar-YE` | 18 / 1 / 15 |
-| Alhoody (2019), Newcastle PhD | Qassimi (Qaṣīm) | `ar-SA-x-qassim` | 12 |
-| Algethami (2023), ICPhS | Najdi vowels (acoustic) | `ar-SA-x-najd` | 3 |
-| Mahzari (2023), TPLS 13(3) | Najdi /k/,/q/ (Riyadh) | `ar-SA-x-najd` | 8 |
-| Alshammari (2026), JLTR 17(4) | Northern Najdi velar affrication (Ḥāʾil) | `ar-SA-x-najd` / `null` | 4 / 2 |
-| Watson & Al-Azraqi (2011), PSAS 41 | Rijāl Almaʿ (SW Saudi Tihāmah) | `ar-SA-x-rijal-alma` | 3 |
-| Al-Taisan (2022), Essex PhD | Hasawi (al-Hasa, Eastern Province) | `ar-SA-x-sharqiyya` | 2 |
-| Araujo & Agostinho (2010), *Revista de Letras* 26 | Santome (Forro), ALUSTP standardization article | `cri` | 13 |
-| Baxter (1988), Pacific Linguistics B-95 | Kristang (Malacca Creole Portuguese) | `mcm` | 33 |
-| Brissos (2018), Estud. ling. galega, vol. esp. I | NW Portuguese (variedade do noroeste) | `pt-PT-x-porto` | 9 |
-| Navas Sánchez-Élez (2011), *El barranqueño* | Barranquenho (Barrancos, Baixo Alentejo) | `ext-PT-x-barrancos` | 10 |
-| **total** | | | **505** |
-Broad `/…/`: 343. Narrow `[…]`: 162. `confidence`: 322 high, 169 medium, 14 low.
-| Omar (1975), FSI *Saudi Arabic, Urban Hijazi Dialect* | Urban Hijazi (Jeddah/Mecca/Medina koine) | `ar-SA-x-hejaz` | 26 |
-| Almalky (2020), Essex PhD | Hijazi Arabic (urban), active participle | `ar-SA-x-hejaz` | 4 |
-| Al Solami (2023), *Lingua Posnaniensis* LXV(1) | Bani Sulaim (Bedouin Hijazi) — iambic-stress contrast | `null` | 5 |
-| Al-Rohili (2019), Essex PhD | Ḥarbi of Medina (Bedouin NW) — palatalisation contrast | `null` | 5 |
-| **total** | | | **528** |
-Broad `/…/`: 369. Narrow `[…]`: 159. `confidence`: 316 high, 198 medium, 14 low.
-The four Saudi/Hijazi sources added in the deep-validation round are page-pinned to the
-literature the `ar-SA-x-hejaz` spec cites. Omar (1975) is the spec's base source; its
-pronunciation guide (pp.xi-xvi) supplies the urban qaf→[ɡ] / interdental-merger / 8-vowel /
-monophthongization attestations. Al Solami (2023) and Al-Rohili (2019) are BEDOUIN Hijazi
-(Bani Sulaim; Ḥarbi of Medina) and are deliberately `lang: null` — they document the
-iambic-stress, interdental-retention and palatalisation features that the *urban* koine node
-does **not** have, i.e. the split that keeps the bare `ar-SA` code unassigned.
-| Alshammari (2026), JLTR 17(4) velar affrication | Northern Najdi (Ḥāʾil) | `ar-SA-x-najd` / — | 8 / 2 |
-| Mahzari (2023), TPLS 13(3) k/q change | Najdi (Riyadh) | `ar-SA-x-najd` | 8 |
-| Algethami (2023), ICPhS vowel acoustics | Najdi (15 speakers) | `ar-SA-x-najd` | 3 |
-| **total** | | | **509** |
-Broad `/…/`: 341. Narrow `[…]`: 168. `confidence`: 324 high, 171 medium, 14 low.
+## Row fields
 
-| Alfaifi (2024), OBP *Diversity across the Arabian Peninsula* ch.5 | Rijāl Almaʿ (quoting Asiri 2008) / Central Faifi | `ar-SA-x-rijal-alma` / `null` | 5 / 2 |
-| Davis, Alshammari, Alahmari & Alhuwaykim (2024), OBP ch.4 | SW Saudi, Northern Tihāmah (Alahmari 2018) | `null` | 3 |
-| **total** | | | **~528** |
-The two OBP-volume chapters added in the Rijāl-Almaʿ increment are page-pinned to the
-literature the `ar-SA-x-rijal-alma` and `ar-SA-x-tihama-qahtan` specs cite. Alfaifi
-(2024:177-178) quotes Asiri (2008) directly and is the source that CORRECTED the
-Rijāl Almaʿ qāf reflex from [q] to [ɡ] (see contradiction #C below). All ten rows are
-`arabicist-transliteration` (so capped at `medium` confidence) with editor-supplied
-orthography.
+| Field | Meaning |
+|---|---|
+| `id` | The source id, a hyphen and a serial number, for example `jasim2020-007`. Some sources add a tag before the number (`owens2006-ng-002`). |
+| `source` | A key into `sources.json`. |
+| `page` | The printed page, from the running head or footer of the document. It is never the PDF page index. |
+| `lang` | The o2i spec code, or `null` when no o2i spec is a defensible match. |
+| `source_variety` | The variety label that the source uses. |
+| `orthography` | The word as the source prints it, when the source prints a spelling. |
+| `orthography_vocalized` | Arabic only. The same word with ḥarakāt. |
+| `orthography_provenance` | `as-printed` or `editor-supplied`. |
+| `source_notation` | The transcription of the source, verbatim, with its brackets. |
+| `notation_system` | `ipa` or `arabicist-transliteration`. |
+| `ipa` | The normalised IPA that the benchmark scores. |
+| `level` | `broad` when the source uses `/…/`, `narrow` when it uses `[…]`. |
+| `gloss` | The English gloss that the source gives. |
+| `confidence` | `high`, `medium` or `low`. |
+| `notes` | The conditioning, any disagreement inside the source, and what a normalisation changed. |
 
-| Angsongna & Akinbo (2022), *JIPA* 52(2) Illustration | Central Dàgáárè (Sombo, Nadowli-Kaleo) | `dga` | 35 |
-| **total** | | | **699** |
-Broad `/…/`: 477. Narrow `[…]`: 222. `confidence`: 446 high, 237 medium, 16 low.
-The Dàgáárè increment is the first Niger-Congo language in this dataset, and
-the first Ghanaian one. The 36 languages already here are Arabic lects,
-Romance varieties and creoles, plus Tetun, Ukrainian, Russian and Hebrew.
-Pages 343 and 345 print a consonant table and a vowel table, each with a
-PHONETIC and an ORTHOGRAPHIC column, so both sides of these rows are the
-source's. The `dga` spec is a stub with 0 graphemes, so
-`G2P('dga')` returns an empty string and every one of these rows scores PER 1.0
-today: the rows are the target for building that spec, not a measurement of it.
+The `orthography_provenance` field records who wrote the spelling. A source that prints only a transcription gives `editor-supplied`, however easy the spelling is to derive. The Tetun stress inventory shows this. The spelling `kabás` needs the acute-accent rule of the grammar, and `hakarak` needs no rule. Both rows are `editor-supplied`, because the page prints neither word.
 
-## Notation-normalization decisions
+`load_primary_sources` in `scripts/benchmark.py` reads the rows for the `primary_sources` dataset, with the provenance tier `expert-human`. It scores `orthography_vocalized` when the row has it, and `orthography` when it does not, against `ipa`. A row with `lang: null` is not scored. A row with no word or no IPA is skipped. To count the rows, read `rows.jsonl`. The benchmark output gives the rows per language.
 
-- **Nothing is silently coerced.** `source_notation` keeps the source's own
-  string; `ipa` is the normalization, and every row that needed one says so in
-  `notes`.
-- **Stress.** The Arabic sources mark no stress at all; Brissos marks it with an
-  apostrophe placed *after the onset* (`[l'ymɨ]`). Normalized to the IPA primary
-  stress mark before the syllable (`ˈlymɨ`). The scoreboard strips stress anyway.
-- **Arabicist transliteration** (Cotter 2016, which prints `ḥadīθ`, not IPA):
-  `ā ī ū` → `aː iː uː`; `ḥ` → `ħ`; `y` → `j`; doubled letters → geminates; `ˤ`
-  for emphasis. Rows converted this way are capped at `confidence: medium`.
-  `cotter2016-004` (`hāḏa`) is `confidence: low` — the paper *argues* the Gaza
-  reflex is the stop [d] while quoting a source that writes ⟨ḏ⟩, so the IPA
-  follows the argument and not the letter.
-- **`x` vs `χ`.** Almbark writes `/xoːd/` where o2i's Arabic specs use `/χ/`.
-  Kept as printed: this is a notation difference between phonologists, not a
-  claim about Syrian Arabic.
-- **Scanned PDFs are read as images, never guessed.** The Cruz-Ferreira (1995) and
-  Barbosa & Albano (2004) Illustrations are scans whose text layer mangles the IPA;
-  the Ukrainian and Russian Illustrations have text-layer glyph substitutions (ɪ→`I`,
-  ɔ→`ↄ`, ɨ→`-i`, ʲ→`j`). In every one of these cases the rows were transcribed from a
-  **render of the printed page**, which is authoritative. No mangled font was
-  hand-decoded from its byte values.
-- **Russian Cyrillic is editor-supplied.** The Illustration prints its words in
-  scholarly transliteration (`pal'cy`), not Cyrillic, so the Cyrillic is ours —
-  unambiguous given transliteration plus gloss, but flagged, and every Russian row is
-  capped at `confidence: medium`.
-- **Arabic ḥarakāt are editor-supplied.** The Arabic sources print their examples
-  in transcription, not in script. o2i's Arabic input contract is fully-diacritized
-  text, so a diacritized spelling of the cited lexeme is supplied in
-  `orthography_vocalized` and every such row is flagged
-  `orthography_provenance: editor-supplied`. The *IPA* is the source's; the
-  *spelling* is the editor's, and is the weakest link in these rows.
+## Sources by language
 
-- **Dàgáárè tie bars in the orthography column.** Page 343 prints the
-  orthography of ⟨k͡p g͡b k͡y g͡y n͡y ŋ͡m⟩ with a tie bar, which Dàgáárè spelling does
-  not write. The tie bar is removed in `orthography`, and those 6 rows are
-  `editor-supplied` at `medium` confidence. `source_notation` keeps the printed
-  phonetic form.
-- **Dàgáárè two-storey g.** The typeset IPA on pages 343-345 uses a Latin `g`.
-  `ipa` writes `ɡ` (U+0261); `source_notation` keeps the printed string.
-- **Dàgáárè rows read at scale 8.** The `ɹ` row's phonetic cell is `/pʰɛ́gɾí/`
-  with a tap `ɾ`, not a plain `r`: confirmed at a scale-8 render and by the
-  page-344 prose, "occasionally realized as an alveolar tap /ɾ/ after a /g/".
-  An earlier reading at scale 4.4 took it for `r`.
+This table lists each source under the spec code its rows carry. A source that covers two codes appears under each code.
 
-## Known-dubious rows
+| Language code | Source | What it gives |
+|---|---|---|
+| `ar-DZ` | Guerrero (2019), *Arabica* 66(1-2) | The Tlemcen reflex of Old Arabic *ǧ. |
+| `ar-EG` | Watson (2002), *The Phonology and Morphology of Arabic* | Cairene examples. |
+| `ar-IQ` | Jasim (2020), Newcastle PhD | Baghdadi Gilit: qāf and kāf reflexes, epenthesis, emphasis, monophthongs. |
+| `ar-IQ-x-qeltu` | Jasim (2020), Newcastle PhD | Muslawi Qəltu: retained qāf, the rhotic [ɣ], emphasis harmony, monophthongs. |
+| `ar-JO` | Fadda (2016), MA thesis | Ammani: monophthongs, emphasis spread, final imāla, interdental reflexes of the "bi'ul" group. |
+| `ar-LY` | Guerrero (2019), *Arabica* 66(1-2) | Tripoli reflexes of *ǧ. |
+| `ar-LY` | Benkato (2020), in Lucas & Manfredi (eds.) | Libyan examples from Tripoli and Benghazi. |
+| `ar-MA` | Guerrero (2019), *Arabica* 66(1-2) | Reflexes of *ǧ in Tangiers, Fez and northern Taza or Chefchaouen. |
+| `ar-MA` | Watson (2002), *The Phonology and Morphology of Arabic* | One Moroccan (Lmnabha) form, as quoted from Elmedlaoui. |
+| `ar-MR` | Taine-Cheikh (2007), EALL "Ḥassāniyya Arabic" | Ḥassāniyya of the Gǝbla (Mauritania). |
+| `ar-NG` | Owens (2006), *A Linguistic History of Arabic* | Nigerian (Shuwa) Arabic. |
+| `ar-NG` | Procházka (2026), *Journal of Semitic Studies* | A gahawa example from Lake Chad Arabic. |
+| `ar-PS` | Cotter (2016), *JAIS* 16 | Gaza City Arabic, with the interdentals of MSA-register borrowings. |
+| `ar-SA-x-dawasir` | Alaodini (2019), Essex PhD | Dawāsir Arabic of Dammam. |
+| `ar-SA-x-hejaz` | Omar (1975), FSI *Saudi Arabic, Urban Hijazi Dialect* | The pronunciation guide (pp. xi-xvi): qāf as [ɡ], the interdental merger, the eight vowels, monophthongs. Omar is the base source of the spec. |
+| `ar-SA-x-hejaz` | Almalky (2020), Essex PhD | Urban Hijazi pronouns, from a study of the active participle. |
+| `ar-SA-x-najd` | Algethami (2023), ICPhS | Najdi vowel acoustics, with monophthong tokens. |
+| `ar-SA-x-najd` | Mahzari (2023), *TPLS* 13(3) | Riyadh reflexes of /k/ and /q/, with velar affrication. |
+| `ar-SA-x-najd` | Alshammari (2026), *JLTR* 17(4) | Northern Najdi (Ḥāʾil) velar affrication and its loanword exceptions. |
+| `ar-SA-x-qassim` | Alhoody (2019), Newcastle PhD | Qassimi Arabic of the Qaṣīm, with its monophthongs. |
+| `ar-SA-x-rijal-alma` | Watson & Al-Azraqi (2011), *PSAS* 41 | Lateral reflexes of *ḍ and *ẓ in Rijāl Almaʿ. |
+| `ar-SA-x-rijal-alma` | Alfaifi (2024), OBP *Diversity across the Arabian Peninsula*, ch. 5 | Rijāl Almaʿ examples quoted from Asiri (2008): qāf as [ɡ], retained diphthongs. |
+| `ar-SA-x-sharqiyya` | Al-Taisan (2022), Essex PhD | Hasawi Arabic of al-Hasa (Eastern Province). |
+| `ar-SA-x-tihama-qahtan` | Alqahtani (2015), Essex PhD | Tihami Qahtani. |
+| `ar-SY` | Almbark & Hellmuth (2015), ICPhS | Damascene vowels. |
+| `ar-TN` | Guerrero (2019), *Arabica* 66(1-2) | Tunis reflexes of *ǧ. |
+| `ar-TN` | La Rosa (2021), *Languages* 6:145 | Tunisian Sahel (Mahdia, Msaken). |
+| `ar-YE` | Watson (2002), *The Phonology and Morphology of Arabic* | Ṣanʿānī examples. |
+| `cri` | Araujo & Agostinho (2010), *Revista de Letras* 26 | Santome (Forro) in the ALUSTP standard orthography. |
+| `dga` | Angsongna & Akinbo (2022), *JIPA* 52(2) | Central Dàgáárè (Sombo, Nadowli-Kaleo). Pages 343 and 345 print a consonant table and a vowel table, each with a phonetic and an orthographic column. |
+| `es-AR` | Coloma (2018), *JIPA* | Buenos Aires (River Plate) Spanish, with an allophone column. |
+| `es-ES` | Martínez-Celdrán, Fernández-Planas & Carrera-Sabaté (2003), *JIPA* | Formal Castilian Spanish. |
+| `ext-PT-x-barrancos` | Navas Sánchez-Élez (2011), *El barranqueño* | Barranquenho of Barrancos (Baixo Alentejo). |
+| `he` | Laufer (1999), *Handbook of the IPA* | Modern Israeli Hebrew, Non-Oriental and Oriental. |
+| `mcm` | Baxter (1988), *Pacific Linguistics* B-95 | Kristang (Malacca Creole Portuguese), chapter 2 phonology. |
+| `pt-BR` | Barbosa & Albano (2004), *JIPA* | Brazilian Portuguese with dental affrication before [i]. |
+| `pt-PT-x-alentejo` | Brissos (2014), *JPL* 13(1) | The southwestern (SW) subdialect and its tonic chain shift. |
+| `pt-PT-x-beira` | Brissos (2014), *JPL* 13(1) | The central-interior (CI) subdialect and its tonic chain shift. |
+| `pt-PT-x-lisbon` | Cruz-Ferreira (1995), *JIPA* | European Portuguese of Lisbon. |
+| `pt-PT-x-porto` | Brissos (2018), *Estudos de Lingüística Galega*, vol. esp. I | Tonic diphthongisation of the northwest variety. |
+| `pt-PT-x-sao-miguel` | Silva (2008), *JPL* 7-1 | Micaelense (São Miguel, Azores) front rounded vowels and chain shift. |
+| `pt-PT-x-terceira` | Mikołajczak (2014), *Studia Iberystyczne* 13 | Terceirense (Azores) on-glides and a-metaphony. |
+| `ru` | Yanushevskaya & Bunčić (2015), *JIPA* | Standard Russian (Moscow type). |
+| `tet` | Williams-van Klinken, Hajek & Nordlinger (2002), *Pacific Linguistics* 528 | Tetun Dili, with its stress inventory. |
+| `uk` | Pompino-Marschall, Steriopolo & Żygis (2017), *JIPA* | Standard Ukrainian. |
+| `null` | Alshammari (2026), *JLTR* 17(4) | Northern Najdi /k/ affrication next to /a/, a Shammar extension that central Najd and Qaṣīm do not have. |
+| `null` | Al Solami (2023), *Lingua Posnaniensis* LXV(1) | Bani Sulaim (Bedouin Hijazi) iambic stress and retained interdentals. |
+| `null` | Al-Rohili (2019), Essex PhD | Ḥarbi of Medina (Bedouin northwest) palatalisation. |
+| `null` | Alfaifi (2024), OBP ch. 5 | Central Faifi. |
+| `null` | Davis, Alshammari, Alahmari & Alhuwaykim (2024), OBP ch. 4 | A southwest Saudi (Northern Tihāmah) variety, after Alahmari (2018). |
+| `null` | Alqarni (2025), Essex PhD | Qarni (Balqarn), which has no o2i spec. |
 
-- `fadda2016-010` عَمَّان — the source gives **four** co-existing realizations
-  (`[ʕammaːn] ~ [ʕammæːn] ~ [ʕammɛːn] ~ [ʕammeːn]`). A single gold IPA cannot be
-  right here; the most conservative is recorded and the row is `confidence: low`.
-- `cotter2016-004` هَذَا — see above.
-- `jasim2020-007` سَمَك — the thesis gives **both** `[simatʃ]` (p.23) and
-  `[simaʃ]` (p.25) for the same gilit word. Recorded as the affricate; the
-  fricative variant is an in-source disagreement, not a typo to smooth over.
-- `jasim2020-017` بَارِد — the thesis's phonemic form `/baɾid/` has a short first
-  vowel where the standard spelling بارد has a long one.
-- `fadda2016-011..013` are labelled with the source's own group name ("bi'ul"
-  group = urban Palestinian type, which Fadda says is the base of Western Amman
-  speech). They are tagged `ar-JO`, but `ar-PS` would be equally defensible.
+The Bedouin Hijazi rows of Al Solami and Al-Rohili carry `lang: null` on purpose. They document the iambic stress, retained interdentals and palatalisation that the urban `ar-SA-x-hejaz` koine does not have. That split is the reason that the bare `ar-SA` code has no spec.
 
-## Where a source contradicts the spec
+## Notation decisions
 
-Recorded because disagreement is signal. Verified against the current specs by
-running the engine over these rows.
+The data coerces nothing silently. `source_notation` keeps the string of the source, and `ipa` holds the normalised form. Each row that needed a normalisation says so in `notes`.
 
-1. **`ar-IQ` kaf affrication is not front-vowel-conditioned.** The spec's
-   `IQ_GILIT_AFFRIC_K_BEFORE/AFTER` rules fire only next to `i iː j e eː`. Jasim
-   (2020) p.25 gives `/kalb/ → [tʃalib]` 'dog', `/kabiːr/ → [tʃibiːr]` 'big',
-   `/ʃubbaːk/ → [ʃubbaːtʃ]` 'window', `/samak/ → [simatʃ]` 'fish' — in every one
-   of these the affricate appears next to a **non-front** vowel (and in `ʃubbaːtʃ`
-   after a long back one). Gilit kaf affrication is lexicalized/historical, not
-   a synchronic front-vowel allophony. o2i currently returns `ˈkalb`, `kaˈbiːr`,
-   `ʃubˈbaːk`, `ˈsamak` for these.
-2. **`ar-IQ` epenthesis and u-colouring are not modelled.** `/qalb/ → [ɡalˤʊb]`,
-   `/kalb/ → [tʃalib]`, `[χʊbʊz]` 'bread' (p.24-25) all split the final cluster
-   with an epenthetic vowel whose quality is set by the flanking consonants;
-   o2i gives `ˈɡalb`, `ˈxubz`. Related: the emphatic /lˤ/ of `[ɡalˤʊb]` and the
-   emphatic /rˤ/ of `[rˤabiːʕ]` are not derived either.
-3. **`ar-IQ` /a/ → [ʊ] near emphatics vs the spec's [ɑ].** `/basˤal/ → [bʊsˤal]`
-   (p.25); the spec's `IQ_EMPH_A_*` rules back /a/ to `[ɑ]`, giving `ˈbɑsˤɑl`.
-   Both are cited to Jasim; the thesis prints the raising-to-[ʊ] form.
-4. **`ar-IQ-x-qeltu` rhotic and emphasis harmony.** The spec documents /r/ → [ɣ]
-   as *deliberately unmodelled* (lexically conditioned). Jasim p.23 supplies the
-   evidence: `[χɛːɣ]`, `[dɛːɣ]`, `[θoːɣ]`, `[baɣid]`. Likewise the rightward
-   emphasis harmony of `/naːquːs/ → [naːqoːsˤ]` (p.22) is unmodelled. The rows are
-   kept so the cost of that decision is visible rather than invisible.
-5. **`ar-JO` emphasis spread.** Fadda p.29 writes `sˤawt → [sˤoːtˤ]`: emphasis
-   spreads onto the final /t/. o2i gives `ˈsˤoːt`. Also, the `ar-JO` spec cites
-   this very example as "Fadda 2016:30" — the table is on **printed page 29**.
-6. **`ar-JO` final imāla.** `[ħɪlwɛ]` 'beautiful' vs `[bɪʃʕa]` 'ugly' (p.30) is a
-   minimal contrast: tā marbūṭa raises to `[ɛ]` except after a velar, pharyngeal
-   or emphatic. o2i gives `ˈħilwa` for both patterns.
-7. **`ar-PS` interdentals in MSA borrowings.** The spec merges the interdentals;
-   Cotter p.157 shows `θānawiyya` and `ḥadīθ` keeping `[θ]` *because they are
-   formal-register borrowings*. This is a lexical-stratum effect the grapheme
-   rules cannot see, and it is the sort of fact that belongs in a lexicon, not a
-   rule.
-8. **`pt-PT-x-beira` models only the /u/ → [y] leg of the chain shift.** The spec
-   says so explicitly. Brissos p.66 prints the rest of it: `[e]` → `[œ]`
-   (`cozer [kuzˈœɾ]`, `cesto [ˈsœʃt]`), monophthongized ⟨ou⟩ → `[ø]`
-   (`roupa [ˈrøp]`), `[a]` → `[ɛ]` after a high vowel or glide
-   (`pisado [pizˈɛðɨ]`, `tosquiar [tɨʃkjˈɛɾ]`), and deletion of the final
-   unstressed vowel (`tudo [ˈtyd]`).
-9. **`pt-PT-x-alentejo` loses a consonant.** `seda` → o2i `ˈsɛɐ`, gold
-   `[ˈsɛðɐ]` — the ⟨d⟩ vanishes entirely rather than spirantizing to `[ð]`. This
-   is not a modelling gap but a probable bug, and it is the single most useful
-   row in the Portuguese half.
-10. **`pt-PT-x-alentejo` chain shift.** Brissos p.67 has `[e]` → `[ɛ]`
-    (`seda`), `[ɛ]` → `[æ]` (`erva`), `[a]` → `[ɒ]` (`mar`), `[ɔ]` → `[ɔ̝]`
-    (`avó`); the spec models the /u/ → [y] leg only.
+The Arabic sources mark no stress. Brissos marks stress with an apostrophe after the onset (`[l'ymɨ]`). The `ipa` field puts the IPA primary stress mark before the syllable (`ˈlymɨ`). The scoreboard strips stress in any case.
 
-11. **`ru` sibilants: /ʃ ʒ/ vs the spec's [ʂ ʐ].** The JIPA Illustration analyses the
-    Russian hard sibilants as post-alveolar /ʃ ʒ/ (шар /ˈʃar/, жар /ˈʒar/, p.222) and
-    the soft ones as /tʃʲ/ and /ʃʲː/ (чары, щука); o2i produces [ʂ], [ʐ], [tɕ], [ɕː].
-    Both analyses are current in the literature — this is a genuine disagreement
-    between our spec and a source, not an engine bug, and the rows record it.
-12. **`ru` Гёте / Хюбнер**: the source keeps the unstressed vowels unreduced in its
-    phonemic transcription (/ˈɡʲote/, /ˈxʲubner/) where o2i applies reduction
-    (`ˈɡʲɵtʲɪ`, `ˈxʲubnʲɪr`). The gold here is broad; the engine is narrow. A reminder
-    that a broad-vs-narrow mismatch is a measurement artefact, not an error — which is
-    exactly why `level` is recorded per row.
-13. **`uk` stress placement.** перелаз / перелазь are stressed on the final syllable in
-    the source (`pɛrɛˈɫaz`); o2i stresses the second (`peˈrɛɫɐz`) and reduces the
-    unstressed vowels, which the source does not.
-14. **`uk` long palatalized consonants.** піддашшя `[pʲiˈdːaʃʲːa]` and ніччю
-    `[ˈnʲit͡ʃʲːu]` show gemination-with-palatalization that o2i renders as a plain
-    cluster plus /j/ (`ˈpʲiddaʃʃjɑ`, `ˈnʲitʃtʃju`). Same for мяу and свят: the source has
-    a palatalized consonant (`mʲau̯`, `sʲʋʲat`), o2i inserts a /j/ and backs the vowel.
-15. **`pt-PT-x-lisbon` mute ⟨c⟩.** Cruz-Ferreira p.91 gives tacto `[ˈtatu]`, cacto
-    `[ˈkatu]`, jacto `[ˈʒatu]` — the ⟨c⟩ is not pronounced in the pre-AO1990 spelling.
-    o2i pronounces it (`ˈtaktu`, `ˈkaktu`, `ˈʒaktu`). Note this is precisely an
-    orthography-normalization question, and o2i deliberately does no normalization: the
-    modern spellings (tato, cato, jato) would transcribe correctly.
-16. **`pt-BR` nasalization before a palatal nasal.** ganho is `[ɡẽɲʊ]` in Barbosa &
-    Albano p.228; o2i gives `ˈɡaɲu` — the vowel is not nasalized.
-17. **`pt-BR` final unstressed /o/.** The Illustration transcribes it `[ʊ]`
-    (galo `[ɡalʊ]`, caro `[kaɾʊ]`); o2i raises it all the way to `[u]`. And `carro` is
-    `[kaɣʊ]` there (a velar fricative /R/) against o2i's uvular `[ʁ]` — the source says
-    the /R/ realization varies across Brazil, so this is a variety choice, not an error.
+Cotter (2016) prints Arabicist transliteration (`ḥadīθ`), not IPA. The conversion writes `ā ī ū` as `aː iː uː`, `ḥ` as `ħ`, `y` as `j`, a doubled letter as a geminate, and `ˤ` for emphasis. A row converted from transliteration has `confidence` `medium` at most. The row `cotter2016-004` (`hāḏa`) is `low`. The paper argues that the Gaza reflex is the stop [d], but it quotes a source that writes ⟨ḏ⟩. The IPA follows the argument, not the letter.
 
-18. **`es-ES` has no lleísmo.** The Castilian Illustration (p.255) transcribes allí
-    `[aˈʎi]` and yate `[ˈɟ͡ʝate]` — /ʎ/ and /ɟ͡ʝ/ are distinct phonemes in the variety
-    it describes. o2i merges both to `[ʝ]` (`aˈʝi`, `ˈʝate`).
-19. **`es-ES` word-final ⟨y⟩ is a glide, not a consonant.** soy is `[ˈsoi̯]` (p.256);
-    o2i gives `ˈsoʝ`. This is a bug, not a modelling choice — the same engine handles
-    peine and pausa as diphthongs.
-20. **`es-ES` / `es-AR` spirantization of /b d ɡ/ is not applied.** cuadro `[ˈkwaðɾo]`
-    (Castilian p.256), pava `[ˈpaβa]`, huevo `[ˈweβo]`, nada `[ˈnaða]`, maga `[ˈmaɣa]`
-    (Argentine p.244) — o2i gives the stops throughout. The Argentine article lists
-    these explicitly in an ALLOPHONES column, so they are narrow rows; the Castilian
-    ones are in the source's broad transcription.
-21. **`es-AR` /s/ → [h] before a consonant.** pasta `[ˈpahta]` (p.244); o2i gives
-    `ˈpasta`. The article calls this a regular process of the variety.
-22. **`es-ES` / `es-AR` nasal place assimilation.** manga `[ˈmaŋɡa]` (p.244) and the
-    nasalized vowel of mamá `[mãˈma]` (p.255); o2i gives `ˈmanɡa`, `maˈma`.
-23. **Affricate tie-bars.** The Spanish, Ukrainian and Russian sources write `t͡ʃ`,
-    `t͡s`, `d͡z` with the tie bar; o2i emits the bare sequence. Cosmetic, but it is a
-    real difference between what the cited source prints and what we produce, so it is
-    recorded rather than normalized away.
-24. **`pt-PT-x-sao-miguel` models the [y]/[ø] fronting but not the rest of the
-    micaelense system.** Silva (2008) p.4 gives the full stereotype set. o2i now
-    reproduces the front-rounded monophthongs — [y] < stressed ⟨u⟩ (`uva ['yvɐ]`,
-    `azul [ɐ'zyl]`, and crucially `cruz [kryʃ]` *before a coda*, which is why the
-    Rogers-based coda guard was dropped for this leaf) and [ø] < ⟨oi/ou⟩ (`oito [øt]`,
-    `pouco [pøk]`). It does **not** model (a) the final-unstressed-vowel elision
-    (`oito` is `[øt]` in the source, `ˈøtu` in o2i), (b) the `[ø]` from ⟨o⟩ before
-    `[ʒ]` (`hoje [øʒ]`, o2i `ˈɔʒɨ`), or (c) the tonic chain shift (`sete [sæt]`,
-    `avó [ɐ'vo]`, `avô [ɐ'vu]`). The rows record what is and is not covered.
-25. **`pt-PT-x-terceira` models the a-metaphony and the labial crescent glide, not
-    the harmonic glide.** Mikołajczak (2014) pp.422-423. o2i reproduces the
-    vocalic harmonisation (`pato ['pɔtu]`, `gato ['gɔtu]`) and the labial-conditioned
-    `[w]` on-glide (`porco [pw'orku]`, `bicho [bw'iszu]`). It does **not** reproduce
-    the harmonic `[j]`/`[w]` on-glide whose quality copies a high vowel a syllable
-    back (`ceifar [sei'fjar]`, `pintar [pint'jar]`) nor the glide on an unstressed
-    syllable (`morrer [mw'orer]`), nor the northern-type raising `soa ['sua]`,
-    `flor ['flur]` — all recorded as attested-but-unmodelled rows.
+Almbark writes `/xoːd/`, where the Arabic specs of o2i write `/χ/`. The row keeps the printed form. This is a notation difference between phonologists, not a claim about Syrian Arabic.
 
-26. **`pt-PT-x-porto` now diphthongizes the open mids, but the base open/close
-    selection still limits the match.** Brissos (2018) pp.199-201 prints the NW
-    diphthongization set. o2i reproduces `pé [ˈpjɛ]` exactly (the added
-    open-mid rule), but `Porto` comes out `[ˈpwɔɾtu]` where the source has
-    `[ˈpu̯oɾtu]` — the base engine mis-selects the OPEN allophone for the
-    spelling-unmarked `⟨o⟩`, so it diphthongizes to `[wɔ]` not `[wo]`; and
-    `toque` comes out `[ˈtukɨ]` where the source has `[ˈtu̯ɔkɨ]` — the base
-    RAISES the stressed `⟨o⟩` to `[u]`, so no mid-vowel rule can fire. Both are
-    the documented pre-lexical open/close/raising limit, not a rule gap.
-27. **`pt-PT-x-porto` does not model RD2 or the /i/-diphthong.** The toward-
-    central subtype (`fazer [fɐˈzeɐ̯ɾ]`, `pé [ˈpɛɐ̯]`, p.200) co-exists with the
-    modelled within-axis RD1, and the marginal `maquia [mɐˈkei̯ɐ]` (`[i]→[ei̯]`,
-    ~19% of tokens, pre-pause/vowel only, p.199) is deliberately left out; the
-    rows record what is and is not covered.
-28. **`ar-SA-x-hejaz` over-applies qaf→[ɡ] to classicisms.** Omar (1975) p.xiii states
-    /q/ "occurs only in classicized words; it often alternates with /g/" — the base
-    source's own contract is that inherited vocab has [ɡ] but learned/borrowed items keep
-    [q]. o2i has no lexical stratum, so قُرآن 'Quran' and اِقتِصاد 'economy' come out
-    `[ɡurʔaːn]`, `[ʔiɡtisˤɑːd]` where the source keeps `[qurʔaːn]`, `[iqtisˤaːd]`. Same
-    class as the `ar-PS` MSA-borrowing note (#7): a lexical fact the grapheme rules cannot
-    see. The rows are kept so the cost is visible.
-29. **`ar-SA-x-hejaz` interdental ث lacks the [s] reflex.** Omar p.xiv gives both
-    reflexes of the voiceless interdental: θalaaθa→talaata ([t]) *and* maθalan→masalan
-    ([s]). The spec models only ث→[t,θ], so مَثَلا comes out `[matalaː]` not `[masalan]`.
-    The [s]/[z] sibilant reflexes are the older/minority urban pattern; recorded as an
-    attested-but-unmodelled reflex.
-30. **`ar-SA-x-hejaz` lexical mid vowels aren't derivable from ⟨ِي⟩.** Omar lists فين and
-    اثنين under /ee/=[eː] ([feːn], [itneːn]), but these have no Classical /ay/; the mid
-    vowel is lexical. From the diacritized spellings ⟨فِين⟩/⟨اِثْنِين⟩ o2i correctly reads the
-    kasra+yāʔ as [iː] (`[fiːn]`, `[itniːn]`). [fiːn]~[feːn] coexist; [feːn] would need a
-    lexicon, not a rule — o2i does no normalization. (The monophthong from a real diphthong,
-    e.g. خَيْر→[xeːr], بَيْت→[beːt], صَوْت→[sˤoːt], *is* reproduced.)
-31. **`ar-SA-x-hejaz` final long vowels and emphatic backing are narrow choices.** The FSI
-    broad transcription shortens unstressed final long vowels (مَرحَبا `[marħaba]`, عَرَبي
-    `[ʕarabi]`, أَنا `[ʔana]`) where o2i keeps the orthographic length (`[marħabaː]` etc.),
-    and does not back /aː/ next to an emphatic (قِطار `[ɡitˤaːr]`) where o2i gives narrow
-    `[ɡitˤɑːr]`. Broad-vs-narrow measurement artefacts, recorded per `level`, not bugs.
-28. **`ar-SA-x-najd` monophthongization is not modelled, yet the sources say
-    central Najd monophthongizes too.** Algethami (2023) p.3385 gives `[beːt]`
-    'home' and `[soːt]` 'sound', and Ingham (1994:15, reproduced in Algethami's
-    Fig.1) already lists /eː oː/ in the Najdi inventory. o2i's `ar-SA-x-najd`
-    spec retains the diphthongs (`بَيْت → [bajt]`), so these rows score as
-    errors against it. The consequence is that the Qaṣīm leaf's QAS_MONO_AY/AW
-    "defining delta from central Najd" is largely an artifact of the parent
-    modelling diphthong retention — the monophthongs are pan-Najdi. Flagged for
-    the `ar-SA-x-najd` spec (a sibling's file).
-29. **`ar-SA-x-najd` /ɡ/-affrication trigger set is wider than the literature.**
-    Alshammari (2026, `[ɡumar]` 'moon', pp.1335-1337) and Mahzari (2023) both
-    restrict `/ɡ/→[dz]` to HIGH FRONT `/i iː/` only (voicing asymmetry), while
-    `/k/→[ts]` reaches central `/a/` in Northern Najdi (`[tsalb]`, `[simats]` —
-    tagged `null`, an NNA/Shammar extension absent from central Najd/Qaṣīm). The
-    o2i NAJD_AFFRIC_G rules include `/e eː/` in the trigger; no Qaṣīm gold row
-    exercises that leg, so it is inert here but over-generous for the parent.
-30. **`ar-SA-x-najd` lexical exceptions to /k/-affrication are unmodelled.**
-    Mahzari (2023) p.802 Table 3: `kursi → [kirsi]` 'chair' keeps `[k]` despite a
-    surface front `/i/`; the grapheme rule would give `*[tsirsi]`. A lexical
-    stratum the rules cannot see — the sort of fact that belongs in a lexicon.
-28. **`ar-SA-x-najd` diphthongs — retained, against Algethami's monophthongized
-    tokens.** Algethami (2023) p.3385 records `bēt`/`sōt` for his 15 Najdi
-    speakers (`aj aw → eː oː`), and Mahzari's Riyadh inventory is 5-vowel
-    (`i u eː oː a`). But the spec RETAINS the diphthongs (`[bajt]`, `[wajn]`),
-    following Ingham's central-Najdi description — and this is not an oversight:
-    Alhoody (2019) frames `/bajt/ → [beːt]` as precisely the *Qassimi* feature
-    that distinguishes it from diphthong-retaining central Najdi (`alhoody2019-002`),
-    and the shipped `ar-SA-x-qassim` monophthongization rules are defined as "the
-    defining vocalic delta from central Najdi, which retains [aj]/[aw]". Flipping
-    `ar-SA-x-najd` to monophthongize would erase that contrast. The tension is a
-    genuine within-Najd / register split; `algethami2023-003` records the
-    monophthongized attestation at `medium` confidence rather than resolving it.
-29. **`ar-SA-x-najd` /ɡ/-affrication trigger tightened to `/i iː/`.** The
-    `NAJD_AFFRIC_G_*` rules previously fired next to `/i iː j e eː/`, but both
-    Alshammari (2026 §V, p.1337) and Mahzari (2023 Table 4, p.803) restrict the
-    voiced-velar affrication to high front `/i iː/` only — the voicing-conditioned
-    asymmetry with `/k/`, which tolerates a wider set. The list was narrowed to
-    `/i iː/` to match the sources; no gold row depended on the mid-vowel triggers.
-30. **`ar-SA-x-najd` loanword /k/-affrication exceptions.** Alshammari (2026)
-    ex.(4) p.1336 lists MSA/foreign borrowings that resist affrication even next
-    to a front vowel — تذكرة `[taðkirah]` 'ticket' (not *[taðtsirah]), مكينة
-    `[mikiːnah]` 'machine' (not *[mitsiːnah]). This is a lexical-stratum effect
-    the grapheme rules cannot see (cf. the `ar-PS` interdental-borrowing case #7);
-    the two clearest cases are carried in the spec's `word_exceptions`
-    (`alshammari2026-009/010`). Mahzari's Table-3 exceptions (kursi, kufuːf, …) are
-    all written with a *back* vowel on the kaf, so o2i already keeps `[k]` and no
-    exception is needed.
+Rows from a scanned PDF come from a render of the printed page, which is the authority. The Cruz-Ferreira (1995) and Barbosa & Albano (2004) Illustrations are scans whose text layer corrupts the IPA. The Ukrainian and Russian Illustrations have glyph substitutions in the text layer (ɪ as `I`, ɔ as `ↄ`, ɨ as `-i`, ʲ as `j`). No row decodes a corrupted font from its byte values.
 
-31. **Dàgáárè: the source itself is inconsistent on ⟨áà⟩.** Page 343 prints
-    ⟨fáà⟩ as `/fâː/` and ⟨n͡yáà⟩ as `/ɲâː/`, a falling tone on a long vowel, but
-    ⟨ŋáà⟩ as `/ŋáː/`, a high tone on a long vowel. The same orthographic shape,
-    high vowel letter plus low vowel letter, gets two readings on one page, so no
-    rule can satisfy all three rows. All three are kept as printed. This is a
-    disagreement inside the source, not between the source and a spec, and it is
-    the first thing to settle when the `dga` grapheme map is built.
+The Russian Illustration prints its words in scholarly transliteration (`pal'cy`), not in Cyrillic. The Cyrillic in these rows is editor-supplied. The transliteration and the gloss make it unambiguous, but each Russian row is flagged and has `confidence` `medium` at most.
 
-## Where a source corrected the spec
+The Arabic input contract of o2i is fully diacritised text. Most Arabic sources print their examples in transcription, not in script. For these rows the editor writes a diacritised spelling of the cited word in `orthography_vocalized` and flags the row `editor-supplied`. The IPA comes from the source, but the spelling comes from the editor, and it is the weakest part of these rows.
 
-**C. `ar-SA-x-rijal-alma` qāf was [q], corrected to [ɡ].** The spec originally
-modelled Rijāl Almaʿ qāf as retained [q], inferred from a general "SW-sedentary =
-qaf-retaining" heuristic (its own caveat flagged this rested on Asiri as cited, not
-on Asiri directly). Alfaifi (2024:177-178) quotes Asiri's (2008:72-73) Rijāl Almaʿ
-examples verbatim, and historical *q surfaces as voiced [ɡ] throughout — `gābalt`
-'I met', `im=bagar` 'the cows', `saragu` 'they stole', `gaṭaʕaw` 'they cut' — with
-no [q] anywhere. The neighbouring SW/Tihāmah lects behave identically (Davis et al.
-2024:149 `galam` 'pen'; Central Faifi `gāma`, `lagīt`). The spec was changed to
-ق→[ɡ] (primary) with [q] kept only as a classicism candidate, and the four affected
-`ar-SA-x-rijal-alma` gold sentences were regenerated. Consequence: qāf is no longer
-the "sharpest split" between Rijāl Almaʿ and Tihāmi Qaḥtāni (both [ɡ]); the split is
-the ẓāʾ reflex (voiceless lateral [ɬˤ] kept distinct vs merged [ðˤ]). The diphthong
-retention the spec models is *confirmed* by the same source (`m=bayt`, not *beet).
+Page 343 of the Dàgáárè Illustration spells ⟨k͡p g͡b k͡y g͡y n͡y ŋ͡m⟩ with a tie bar. Dàgáárè spelling does not write one. The `orthography` field drops the tie bar, and those rows are `editor-supplied` at `medium` confidence. `source_notation` keeps the printed phonetic form. The typeset IPA on pages 343 to 345 uses a Latin `g`. The `ipa` field writes `ɡ` (U+0261), and `source_notation` keeps the printed string.
+
+The phonetic cell of the Dàgáárè `ɹ` row is `/pʰɛ́gɾí/`, with a tap `ɾ`, not a plain `r`. A render at scale 8 confirms this, and the prose of page 344 agrees: "occasionally realized as an alveolar tap /ɾ/ after a /g/".
+
+## Rows to read with care
+
+The row `fadda2016-010` (عَمَّان) has four realisations in the source: `[ʕammaːn] ~ [ʕammæːn] ~ [ʕammɛːn] ~ [ʕammeːn]`. A single gold IPA cannot be right. The row records the most conservative form and has `confidence` `low`.
+
+The thesis gives both `[simatʃ]` (p. 23) and `[simaʃ]` (p. 25) for the Gilit word سَمَك in `jasim2020-007`. The row records the affricate. The fricative is a disagreement inside the source, not a typo to smooth over.
+
+In `jasim2020-017` (بَارِد), the phonemic form `/baɾid/` of the thesis has a short first vowel, but the standard spelling بارد writes a long one.
+
+The rows `fadda2016-011` to `fadda2016-013` carry the label of the source's own group, "bi'ul" (the urban Palestinian type). Fadda says this group is the base of Western Amman speech. The rows are tagged `ar-JO`, but `ar-PS` is equally defensible.
+
+The row `cotter2016-004` is described under notation decisions.
+
+## Where a source disagrees with a spec
+
+A disagreement between a source and a spec is a signal, so this section records each one. Each entry gives what the source prints and what o2i gives for the same row. To check an entry, run the engine over the rows it names.
+
+### Iraqi Arabic
+
+In `ar-IQ`, kāf affrication is not conditioned by a front vowel. The rules `IQ_GILIT_AFFRIC_K_BEFORE` and `IQ_GILIT_AFFRIC_K_AFTER` fire only next to `i iː j e eː`. Jasim (2020: 25) gives `/kalb/ → [tʃalib]` 'dog', `/kabiːr/ → [tʃibiːr]` 'big', `/ʃubbaːk/ → [ʃubbaːtʃ]` 'window' and `/samak/ → [simatʃ]` 'fish'. In each word the affricate is next to a non-front vowel, and in `ʃubbaːtʃ` it follows a long back vowel. Gilit kāf affrication is lexicalised, not a live front-vowel allophony. o2i gives `ˈkalb`, `kaˈbiːr`, `ʃubˈbaːk` and `ˈsamak`.
+
+The `ar-IQ` spec does not model epenthesis or u-colouring. `/qalb/ → [ɡalˤʊb]`, `/kalb/ → [tʃalib]` and `[χʊbʊz]` 'bread' (pp. 24-25) split the final cluster with a vowel whose quality comes from the consonants around it. o2i gives `ˈɡalb` and `ˈxubz`. The spec also does not derive the emphatic /lˤ/ of `[ɡalˤʊb]` or the emphatic /rˤ/ of `[rˤabiːʕ]`.
+
+Near an emphatic, Jasim prints /a/ as [ʊ]: `/basˤal/ → [bʊsˤal]` (p. 25). The `IQ_EMPH_A_*` rules back /a/ to `[ɑ]` instead, and o2i gives `ˈbɑsˤɑl`. The spec cites Jasim for both.
+
+The `ar-IQ-x-qeltu` spec leaves /r/ → [ɣ] unmodelled on purpose, because the change is lexically conditioned. Jasim (2020: 23) gives the evidence: `[χɛːɣ]`, `[dɛːɣ]`, `[θoːɣ]`, `[baɣid]`. The rightward emphasis harmony of `/naːquːs/ → [naːqoːsˤ]` (p. 22) is also unmodelled. The rows stay so that the cost of that decision is visible.
+
+### Levantine Arabic
+
+In `ar-JO`, emphasis spreads to the final /t/: Fadda (2016: 29) writes `sˤawt → [sˤoːtˤ]`. o2i gives `ˈsˤoːt`. The `ar-JO` spec cites this example as "Fadda 2016:30", but the table is on printed page 29.
+
+Fadda (2016: 30) gives the minimal contrast `[ħɪlwɛ]` 'beautiful' and `[bɪʃʕa]` 'ugly'. Tā marbūṭa raises to `[ɛ]` except after a velar, a pharyngeal or an emphatic. o2i gives `ˈħilwa` and `ˈbiʃʕa`, with [a] in both.
+
+The `ar-PS` spec merges the interdentals. Cotter (2016: 157) shows `θānawiyya` and `ḥadīθ` with `[θ]`, because they are formal-register borrowings. Grapheme rules cannot see this lexical-stratum effect. It belongs in a lexicon, not in a rule.
+
+### Najdi Arabic
+
+The `ar-SA-x-najd` spec keeps the diphthongs: o2i gives `بَيْت → [bajt]`. Algethami (2023: 3385) records `[beːt]` 'home' and `[soːt]` 'sound' for his 15 Najdi speakers. Ingham (1994: 15), reproduced in Algethami's Fig. 1, lists /eː oː/ in the Najdi inventory, and the Riyadh inventory of Mahzari has five vowels (`i u eː oː a`).
+
+The Algethami rows with [eː] and [oː] score as errors against the spec. The spec follows the diphthong retention of central Najdi on purpose. Alhoody (2019) gives `/bajt/ → [beːt]` as the feature that sets Qassimi apart from central Najdi (`alhoody2019-002`). The `ar-SA-x-qassim` monophthong rules are "the defining vocalic delta from central Najdi", so a monophthong rule in the parent would erase that contrast. The tension is a real split inside Najd or between registers. `algethami2023-006` records the monophthong at `medium` confidence and does not resolve it.
+
+The `NAJD_AFFRIC_G_BEFORE` and `NAJD_AFFRIC_G_AFTER` rules fire next to `/i iː/` only. Alshammari (2026: §V, p. 1337) and Mahzari (2023: Table 4, p. 803) restrict the voiced velar affrication to the high front vowels. This is a voicing asymmetry: /k/ affricates in a wider set of contexts.
+
+In Northern Najdi, `/k/ → [ts]` reaches central /a/ (`[tsalb]`, `[simats]`). Central Najd and Qaṣīm do not have this extension, so those rows carry `lang: null`.
+
+Some MSA and foreign borrowings resist /k/ affrication even next to a front vowel. Alshammari (2026: ex. 4, p. 1336) gives تذكرة `[taðkirah]` 'ticket', not *[taðtsirah], and مكينة `[mikiːnah]` 'machine', not *[mitsiːnah]. Grapheme rules cannot see this lexical-stratum effect, as with the `ar-PS` borrowings.
+
+The spec carries these words in its `word_exceptions` (`alshammari2026-009` and `alshammari2026-010`). The Table 3 exceptions of Mahzari (2023: 802), such as `kursi`, are spelled with a back vowel after the kāf. o2i keeps `[k]` for them without an exception.
+
+### Hijazi Arabic
+
+The `ar-SA-x-hejaz` spec applies qāf → [ɡ] to classicisms too. Omar (1975: xiii) says that /q/ "occurs only in classicized words" and that "it often alternates with /g/". Inherited words have [ɡ], and learned or borrowed words keep [q]. o2i has no lexical stratum, so قُرآن 'Quran' and اِقتِصاد 'economy' come out as `ɡurˈʔaːn` and `ʔiɡtɪˈsˤɑːd`. The source keeps `[qurʔaːn]` and `[iqtisˤaːd]`. This is the same class of fact as the `ar-PS` borrowings, and the rows stay so that the cost is visible.
+
+The spec has no [s] reflex for the interdental ث. Omar (1975: xiv) gives both reflexes of the voiceless interdental: θalaaθa → talaata with [t], and maθalan → masalan with [s]. The spec models only ث → [t, θ], so مَثَلا comes out as `ˈmatalaː`, not `[masalan]`. The sibilant reflexes [s] and [z] are the older, minority urban pattern. The rows record an attested reflex that the spec does not model.
+
+The lexical mid vowels of Hijazi do not follow from ⟨ِي⟩. Omar lists فين and اثنين under /ee/ = [eː] (`[feːn]`, `[itneːn]`), but these words have no Classical /ay/. From the diacritised spellings ⟨فِين⟩ and ⟨اِثْنِين⟩, o2i reads kasra plus yāʔ as [iː] (`ˈfiːn`, `ʔitˈniːn`). The forms [fiːn] and [feːn] coexist, and [feːn] needs a lexicon, not a rule. o2i does no normalisation.
+
+o2i does give the monophthong of a real diphthong: خَيْر → `ˈxeːr`, بَيْت → `ˈbeːt`, صَوْت → `ˈsˤoːt`.
+
+The broad FSI transcription shortens an unstressed final long vowel: مَرحَبا `[marħaba]`, عَرَبي `[ʕarabi]`, أَنا `[ʔana]`. o2i keeps the length that the spelling writes (`ˈmarħabaː`). The source also does not back /aː/ next to an emphatic (قِطار `[ɡitˤaːr]`), where o2i gives narrow `ɡɪˈtˤɑːr`. These are broad-versus-narrow measurement artefacts, which the `level` field records. They are not bugs.
+
+### Rijāl Almaʿ
+
+The `ar-SA-x-rijal-alma` spec reads qāf as [ɡ], with [q] kept only as a candidate for classicisms. Alfaifi (2024: 177-178) quotes the Rijāl Almaʿ examples of Asiri (2008: 72-73) verbatim. In them, historical *q is voiced [ɡ] throughout, with no [q]: `gābalt` 'I met', `im=bagar` 'the cows', `saragu` 'they stole', `gaṭaʕaw` 'they cut'. The neighbouring southwest and Tihāmah lects agree: Davis et al. (2024: 149) give `galam` 'pen', and Central Faifi has `gāma` and `lagīt`.
+
+The same source confirms the diphthong retention that the spec models (`m=bayt`, not *beet).
+
+Because both lects have [ɡ], qāf is not the split between Rijāl Almaʿ and Tihāmi Qaḥtāni. The split is the reflex of ẓāʾ. Rijāl Almaʿ keeps a distinct voiceless lateral [ɬˤ], and Tihāmi Qaḥtāni merges it with [ðˤ]. The rows of Alfaifi (2024) and Davis et al. (2024) are `arabicist-transliteration`, with `medium` confidence at most and an editor-supplied spelling.
+
+### European Portuguese
+
+The `pt-PT-x-beira` spec models only the /u/ → [y] step of the chain shift, and it says so. Brissos (2014: 66) prints the rest. Stressed `[e]` becomes `[œ]` (`cozer [kuzˈœɾ]`, `cesto [ˈsœʃt]`). Monophthongal ⟨ou⟩ becomes `[ø]` (`roupa [ˈrøp]`). `[a]` becomes `[ɛ]` after a high vowel or a glide (`pisado [pizˈɛðɨ]`, `tosquiar [tɨʃkjˈɛɾ]`). The final unstressed vowel drops (`tudo [ˈtyd]`).
+
+In `pt-PT-x-alentejo`, o2i gives `seda` as `ˈsɛɐ` against the gold `[ˈsɛðɐ]`. The ⟨d⟩ disappears, where it should become `[ð]`. This is a probable bug, not a modelling gap, and it is the most useful row in the Portuguese half. Brissos (2014: 67) also prints the southwestern chain shift: `[e]` → `[ɛ]` (`seda`), `[ɛ]` → `[æ]` (`erva`), `[a]` → `[ɒ]` (`mar`), `[ɔ]` → `[ɔ̝]` (`avó`). The spec models the /u/ → [y] step only.
+
+Cruz-Ferreira (1995: 91) gives tacto `[ˈtatu]`, cacto `[ˈkatu]` and jacto `[ˈʒatu]`, with the mute ⟨c⟩ of the spelling before the 1990 Orthographic Agreement. o2i pronounces the ⟨c⟩ (`ˈtaktu`, `ˈkaktu`, `ˈʒaktu`). This is a question of spelling normalisation, and o2i does no normalisation on purpose. The modern spellings tato, cato and jato transcribe correctly.
+
+The `pt-PT-x-sao-miguel` spec models the [y] and [ø] fronting of Micaelense, but not the rest of the system. Silva (2008: 4) gives the full set. o2i gives [y] for stressed ⟨u⟩ (`uva ['yvɐ]`, `azul [ɐ'zyl]`). It does so before a coda too (`cruz [kryʃ]`). For this reason the spec drops the coda guard that the general `pt-PT-x-acores` spec keeps. o2i also gives [ø] for ⟨oi⟩ and ⟨ou⟩ (`oito`, `pouco`).
+
+The spec does not model the elision of the final unstressed vowel (`oito` is `[øt]` in the source and `ˈøtu` in o2i). It does not model `[ø]` from ⟨o⟩ before `[ʒ]` (`hoje [øʒ]`, o2i `ˈɔʒɨ`). It does not model the tonic chain shift (`sete [sæt]`, `avó [ɐ'vo]`, `avô [ɐ'vu]`).
+
+The `pt-PT-x-terceira` spec models the a-metaphony and the labial on-glide, but not the harmonic glide (Mikołajczak 2014: 422-423). o2i gives the vowel harmony of `pato ['pɔtu]` and `gato ['gɔtu]`, and the labial `[w]` on-glide of `porco [pw'orku]` and `bicho [bw'iszu]`. It does not give the `[j]` or `[w]` on-glide whose quality copies a high vowel one syllable back (`ceifar [sei'fjar]`, `pintar [pint'jar]`). It does not give the glide on an unstressed syllable (`morrer [mw'orer]`) or the northern raising of `soa ['sua]` and `flor ['flur]`. The rows record these as attested but unmodelled.
+
+The `pt-PT-x-porto` spec diphthongises the open mid vowels, but the base selection of open and close vowels limits the match. Brissos (2018: 199-201) prints the northwest diphthongisation set. o2i gives `pé` as `ˈpjɛ`, an exact match from the open-mid rule.
+
+o2i gives `Porto` as `ˈpwɔɾtu`, where the source has `[ˈpu̯oɾtu]`. The base engine picks the open allophone for the unmarked ⟨o⟩, so the diphthong is `[wɔ]`, not `[wo]`. It gives `toque` as `ˈtukɨ`, where the source has `[ˈtu̯ɔkɨ]`. The base raises the stressed ⟨o⟩ to `[u]`, so no mid-vowel rule can fire. Both are the documented limit of the pre-lexical open, close and raising choice, not a gap in the rules.
+
+The `pt-PT-x-porto` spec does not model the RD2 subtype or the /i/ diphthong. The subtype towards a central vowel (`fazer [fɐˈzeɐ̯ɾ]`, `pé [ˈpɛɐ̯]`, p. 200) coexists with the modelled RD1 subtype inside one axis. The marginal `maquia [mɐˈkei̯ɐ]` (`[i]` → `[ei̯]`, about 19% of tokens, before a pause or a vowel only, p. 199) is left out on purpose. o2i gives `mɐˈkiɐ`.
+
+### Brazilian Portuguese
+
+Barbosa & Albano (2004: 228) give ganho as `[ɡẽɲʊ]`, with a nasal vowel before the palatal nasal. o2i gives `ˈɡaɲu`, with no nasal vowel.
+
+The Illustration writes final unstressed /o/ as `[ʊ]` (galo `[ɡalʊ]`, caro `[kaɾʊ]`). o2i raises it to `[u]`. The Illustration writes carro as `[kaɣʊ]`, with a velar fricative for /R/, where o2i gives a uvular `[ʁ]`. The source says that /R/ varies across Brazil, so this is a variety choice, not an error.
+
+### Russian and Ukrainian
+
+The Russian Illustration analyses the hard sibilants as postalveolar /ʃ ʒ/ (шар /ˈʃar/, жар /ˈʒar/, p. 222), and the soft ones as /tʃʲ/ and /ʃʲː/ (чары, щука). o2i gives [ʂ], [ʐ], [tɕ] and [ɕː]. Both analyses are current in the literature. This is a real disagreement between the spec and a source, not an engine bug, and the rows record it.
+
+For Гёте and Хюбнер, the phonemic transcription of the source keeps the unstressed vowels unreduced (/ˈɡʲote/, /ˈxʲubner/). o2i reduces them (`ˈɡʲɵtʲɪ`, `ˈxʲubnʲɪr`). The gold is broad, and the engine is narrow. A broad-versus-narrow mismatch is a measurement artefact, not an error, and the `level` field records it per row for this reason.
+
+The Ukrainian source stresses перелаз and перелазь on the final syllable (`pɛrɛˈɫaz`). o2i stresses the second syllable (`peˈrɛɫɐz`) and reduces the unstressed vowels, which the source does not.
+
+The Ukrainian source gives long palatalised consonants in піддашшя `[pʲiˈdːaʃʲːa]` and ніччю `[ˈnʲit͡ʃʲːu]`. o2i gives a long consonant without palatalisation (`pʲiˈdːaʃʃa`, `ˈnʲitʃtʃu`).
+
+### Spanish
+
+The Castilian Illustration (p. 255) transcribes allí `[aˈʎi]` and yate `[ˈɟ͡ʝate]`. In the variety it describes, /ʎ/ and /ɟ͡ʝ/ are separate phonemes. o2i merges both to `[ʝ]` (`aˈʝi`, `ˈʝate`).
+
+The `es-ES` spec does not spirantise /b d ɡ/. The Castilian Illustration gives cuadro `[ˈkwaðɾo]` (p. 256) in its broad transcription, and o2i gives the stop (`ˈkwadɾo`). For `es-AR`, o2i matches the spirants that Coloma (2018: 244) lists in his allophone column: pava `ˈpaβa`, huevo `ˈweβo`, nada `ˈnaða`, maga `ˈmaɣa`.
+
+In `es-AR`, /s/ becomes [h] before a consonant: pasta `[ˈpahta]` (p. 244). The article calls this a regular process of the variety. o2i gives `ˈpasta`.
+
+The Spanish sources assimilate a nasal to the place of the next consonant. Coloma gives manga `[ˈmaŋɡa]` (p. 244), and the Castilian Illustration gives the nasal vowel of mamá `[mãˈma]` (p. 255). o2i gives `ˈmanɡa` and `maˈma`.
+
+### Affricate tie bars
+
+The Spanish, Ukrainian and Russian sources write `t͡ʃ`, `t͡s` and `d͡z` with a tie bar. o2i writes the bare sequence. The difference is cosmetic, but it is a real difference between the cited source and the output. The rows record it and do not normalise it away.
+
+### Dàgáárè
+
+The Dàgáárè source is not consistent about ⟨áà⟩. Page 343 prints ⟨fáà⟩ as `/fâː/` and ⟨n͡yáà⟩ as `/ɲâː/`, a falling tone on a long vowel. It prints ⟨ŋáà⟩ as `/ŋáː/`, a high tone on a long vowel. One spelling shape, a high-tone vowel letter followed by a low-tone vowel letter, gets two readings on one page. No rule can match all three rows, and all three stay as printed.
+
+The `dga` grapheme map follows the falling reading, so o2i gives `ŋâː` for the third row. This is a disagreement inside the source, not between the source and the spec.
 
 ## Adding rows
 
-Only from a source a spec actually cites, and only if you have the document open.
-Record the printed page from the page's own running head — `pdftotext`'s page
-index is *not* the printed page (see `sources.json` for each source's offset).
-If you cannot verify what the source says, the row does not go in.
+Add a row only from a source that a spec cites, and only with the document open in front of you. Record the printed page from the running head of the page. The page index of `pdftotext` is not the printed page. The `pagination` field in `sources.json` gives the offset for each source. If you cannot verify what the source says, do not add the row.
