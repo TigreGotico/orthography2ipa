@@ -21,6 +21,19 @@ pass C
     (``agreed``, ``adjudicated`` or ``uncertain``), a one-line reason, and
     the spec note its reading disagrees with, if any.
 
+Convention sheet: before a run, the ``conventions`` subcommand writes one
+Markdown sheet per lect, ``<conventions-dir>/<lect>.md``, from one model call
+that sees the spec notes and sources and no row. The sheet fixes the choices
+where published descriptions differ (stress tradition, stressed function
+words, pausal forms, connected speech, glides), each with its source, and the
+word segmentation of the engine. A person reviews and edits it. Every pass
+reads it, and a run refuses a lect that has no sheet.
+
+Word segmentation: each pass gets the words of its text as the engine splits
+them (at spaces, hyphens and punctuation), and writes one IPA word for each.
+An output row whose word count differs from the engine output is flagged in
+its ``word_count`` field and in the run report, never changed.
+
 The spec notes give the transcription conventions, never the authority on
 the pronunciation: the engine implements those notes, so a prompt that
 deferred to them would pull every pass toward the engine output. The
@@ -56,23 +69,27 @@ Requires the ``silver-correction`` extra for live runs::
 
     uv pip install -e '.[silver-correction]'
 
-Pilot (20 rows per lect, synchronous)::
+Pilot: write and review the sheets, then run 20 rows per lect::
 
+    python scripts/correct_silver_ipa.py conventions \\
+        --lect es-ES pt-PT ar --max-usd 5
     python scripts/correct_silver_ipa.py \\
         --dataset spain_romance_tts portuguese_tts arabic_tts \\
-        --lect es-ES pt-PT ar --limit 20 --sync --max-usd 40
+        --lect es-ES pt-PT ar --limit 20 --sync --max-usd 50
 
 See docs/contributing/silver_correction.md.
 """
 from __future__ import annotations
 
 import argparse
+import concurrent.futures
 import csv
 import functools
 import hashlib
 import json
 import os
 import sys
+import threading
 import time
 import traceback
 import unicodedata
@@ -92,6 +109,7 @@ from orthography2ipa.vowels import is_ipa_vowel  # noqa: E402
 
 GOLD_DIR = REPO_ROOT / "orthography2ipa" / "data" / "gold"
 DEFAULT_CACHE_DIR = REPO_ROOT / ".silver_correction_cache"
+CONVENTIONS_DIR = GOLD_DIR / "conventions"
 
 #: Sets held in this repository: one ``<lect>.tsv`` per lect under
 #: ``orthography2ipa/data/gold/<set>/`` with ``id``, ``sentence`` and ``ipa``
@@ -112,7 +130,8 @@ AGREED_REASON = ("passes A and B and the engine agree after broad "
                  "normalisation")
 OUTPUT_FIELDS = {"dataset", "lect", "id", "sentence", "ipa",
                  "ipa_llm_original", "ipa_engine", "model", "passes", "flag",
-                 "reason", "note_conflict", "tier", "source_row"}
+                 "reason", "note_conflict", "word_count", "tier",
+                 "source_row"}
 
 KEY_FILE_ENV = "O2I_ANTHROPIC_KEY_FILE"
 KEY_ENV = "ANTHROPIC_API_KEY"
@@ -158,8 +177,8 @@ SCHEMAS: Dict[str, dict] = {
     "B": {"type": "object",
           "properties": {
               "word_forms": {"type": "array", "items": {"type": "string"},
-                             "description": "Citation form of each word, "
-                                            "in order, as broad IPA."},
+                             "description": "Citation form of each listed "
+                                            "word, in order, as broad IPA."},
               "ipa": _IPA},
           "required": ["word_forms", "ipa"], "additionalProperties": False},
     "C": {"type": "object",
@@ -191,21 +210,29 @@ reference grammars and phonetic descriptions of the lect. The notes can be \
 wrong. Where the published pronunciation disagrees with a note, follow the \
 published pronunciation.
 
+The convention sheet after the notes fixes the choices where published \
+descriptions differ. Follow it in every case it covers.
+
 Transcribe what a native speaker of this lect says when reading the text \
 aloud at a normal pace. Write broad IPA. Mark primary stress with ˈ before \
-the stressed syllable of each stressed word. Separate words with single \
-spaces. Do not transcribe punctuation.
+the stressed syllable of each stressed word. The request lists the words of \
+the text: write one IPA word for each listed word, in the same order, \
+separated by single spaces. Do not join two listed words, and do not split \
+one. Do not transcribe punctuation.
 
 """
 
+WORDS_TEXT = "\nWords ({count}): {words}"
+
 USER_TEXT = {
-    "A": "Transcribe this text into broad IPA.\n\nText: {sentence}",
+    "A": ("Transcribe this text into broad IPA.\n\nText: {sentence}"
+          "{words}"),
     "B": ("Work word by word. First write the citation form of each word of "
           "the text in this lect, in order, as broad IPA. Then apply the "
           "connected-speech processes the lect notes describe across word "
           "boundaries, such as elision, resyllabification, assimilation and "
           "sandhi, and write the whole text as broad IPA.\n\n"
-          "Text: {sentence}"),
+          "Text: {sentence}{words}"),
     "C": ("Two independent transcriptions of a text and the output of a "
           "rule-based engine follow. They disagree, or the engine disagrees "
           "with both transcriptions. Decide the correct broad IPA of the "
@@ -222,11 +249,90 @@ USER_TEXT = {
           "not settle the case. When your reading disagrees with a spec "
           "note, name the note and say how in note_conflict, in one line; "
           "otherwise leave note_conflict empty.\n\n"
-          "Text: {sentence}\n"
+          "Text: {sentence}{words}\n"
           "Transcription A: {a}\n"
           "Transcription B: {b}\n"
           "Engine output: {engine}"),
 }
+
+
+#: The topics of a convention sheet: field name, heading, and what the
+#: model is asked to fix.
+CONVENTION_TOPICS: Tuple[Tuple[str, str, str], ...] = (
+    ("stress", "Stress",
+     "the rule that places primary stress, the tradition it follows, and how "
+     "it treats long vowels, geminates and case endings"),
+    ("function_words", "Stressed and unstressed words",
+     "which articles, prepositions, conjunctions, pronouns, clitics and "
+     "auxiliaries carry stress in connected speech, and which do not"),
+    ("pausal_forms", "Pausal forms",
+     "where a pausal form applies (at the end of the sentence, at a comma, or "
+     "nowhere), and what happens there to final short vowels, case endings "
+     "and nunation (tanwīn)"),
+    ("connected_speech", "Connected speech",
+     "which processes apply across word boundaries (assimilation, elision, "
+     "liaison, linking, resyllabification), and how the transcription writes "
+     "them while each word stays in its own place"),
+    ("glides", "Glides and diphthongs",
+     "how the transcription writes glides and diphthongs, for example j w "
+     "against i̯ u̯"),
+)
+
+_CHOICE = {"type": "object",
+           "properties": {
+               "choice": {"type": "string",
+                          "description": "The convention, stated so that a "
+                                         "transcriber can apply it the same "
+                                         "way in every row, with short "
+                                         "examples in broad IPA."},
+               "source": {"type": "string",
+                          "description": "The published description it "
+                                         "follows: author, year, and section "
+                                         "or page where known."}},
+           "required": ["choice", "source"], "additionalProperties": False}
+
+CONVENTIONS_SCHEMA: dict = {
+    "type": "object",
+    "properties": {
+        **{name: _CHOICE for name, _, _ in CONVENTION_TOPICS},
+        "other": {"type": "array",
+                  "description": "Other choices where published "
+                                 "descriptions differ; empty when none.",
+                  "items": {"type": "object",
+                            "properties": {"topic": {"type": "string"},
+                                           **_CHOICE["properties"]},
+                            "required": ["topic", "choice", "source"],
+                            "additionalProperties": False}}},
+    "required": [name for name, _, _ in CONVENTION_TOPICS] + ["other"],
+    "additionalProperties": False,
+}
+
+CONVENTIONS_SYSTEM_TEXT = """\
+You are a phonetician. You write the transcription conventions for a set of \
+broad IPA transcriptions of sentences in one lect. Later passes transcribe \
+the sentences one at a time, and every pass reads your conventions, so that \
+every sentence makes the same choice where published phonological \
+descriptions of the lect differ.
+
+Below is the description of the lect from a grapheme-to-phoneme \
+specification. Its notes give the transcription conventions of the \
+specification: which allophones a broad transcription writes, which symbol \
+stands for which sound, and how stress is marked. For the pronunciation, \
+follow the standard pronunciation of the lect as published phonological \
+descriptions give it, and say so where that disagrees with a note.
+
+"""
+
+CONVENTIONS_USER_TEXT = (
+    "Write the conventions for the topics below. For each topic, state one "
+    "choice that a transcriber can apply the same way in every sentence, "
+    "with short examples in broad IPA, and name the published description "
+    "it follows. Where descriptions differ, say which tradition you follow. "
+    "Where a topic does not apply to this lect, say so in one line. Add "
+    "other choices where published descriptions differ, if there are any.\n"
+    "\n{topics}\n\n"
+    "Do not write about word segmentation. The tool fixes it as follows, and "
+    "your conventions must keep to it:\n\n{segmentation}")
 
 
 # ─── credentials and reporting ──────────────────────────────────────────────
@@ -279,15 +385,17 @@ class Reporter:
     def __init__(self, log_path: Optional[Path] = None):
         self.log_path = log_path
         self.secrets: List[str] = []
+        self._lock = threading.Lock()
 
     def say(self, message: str, *, error: bool = False) -> None:
-        message = redact(message, self.secrets)
-        print(message, file=sys.stderr if error else sys.stdout)
-        if self.log_path is not None:
-            self.log_path.parent.mkdir(parents=True, exist_ok=True)
-            stamp = datetime.now(timezone.utc).isoformat(timespec="seconds")
-            with open(self.log_path, "a", encoding="utf-8") as fh:
-                fh.write(f"{stamp} {message}\n")
+        with self._lock:
+            message = redact(message, self.secrets)
+            print(message, file=sys.stderr if error else sys.stdout)
+            if self.log_path is not None:
+                self.log_path.parent.mkdir(parents=True, exist_ok=True)
+                stamp = datetime.now(timezone.utc).isoformat(timespec="seconds")
+                with open(self.log_path, "a", encoding="utf-8") as fh:
+                    fh.write(f"{stamp} {message}\n")
 
 
 # ─── transport ──────────────────────────────────────────────────────────────
@@ -447,13 +555,31 @@ def _engine(lect: str) -> orthography2ipa.G2P:
     return orthography2ipa.G2P(lect)
 
 
-def engine_ipa(row: Row) -> str:
+def engine_reading(row: Row) -> Tuple[str, Tuple[str, ...]]:
     """The engine output for *row*, through the API the scorer uses for an
-    entry of its granularity."""
+    entry of its granularity, and the words of the sentence as the engine
+    splits them: one word for each space-separated word of the output."""
     engine = _engine(row.lect)
-    if benchmark._is_multiword(row.sentence):
-        return engine.transcribe(row.sentence)
-    return engine.transcribe_word(row.sentence)
+    if not benchmark._is_multiword(row.sentence):
+        return engine.transcribe_word(row.sentence), (row.sentence,)
+    result = engine.transcribe_detailed(row.sentence)
+    return result.ipa, tuple(w.word for w in result.words if w.ipa)
+
+
+def segmentation_text(lect: str) -> str:
+    """How the engine splits a text into words for *lect*."""
+    apostrophe = (
+        "An apostrophe between two letters stays inside its word."
+        if orthography2ipa.get(lect).word_internal_apostrophe else
+        "An apostrophe splits words, as punctuation does.")
+    return (
+        "The engine splits a text into words at spaces, at hyphens and at "
+        f"punctuation. {apostrophe} A clitic joined to its host by a hyphen "
+        "is a word of its own. Each pass gets the words of its text in this "
+        "split, and writes one IPA word for each word, in the same order, "
+        "separated by single spaces. A process across a word boundary "
+        "changes the words on each side of the boundary; it does not join "
+        "them.")
 
 
 def _cite(source) -> str:
@@ -468,35 +594,107 @@ def _cite(source) -> str:
 
 
 @functools.lru_cache(maxsize=None)
-def system_text(lect: str) -> str:
-    """The task instructions and the lect's notes and cited sources."""
+def lect_description(lect: str) -> str:
+    """The lect's name, notes and cited sources."""
     spec = orthography2ipa.get(lect)
-    lines = [SYSTEM_TEXT + f"Lect: {spec.name} ({lect})", "", "Notes:",
+    lines = [f"Lect: {spec.name} ({lect})", "", "Notes:",
              spec.notes.strip() or "(none)", "", "Cited sources:"]
     lines += [f"- {_cite(s)}" for s in spec.sources] or ["(none)"]
     return "\n".join(lines)
 
 
-def build_request(pass_name: str, row: Row, *, engine: str,
-                  a: Optional[str], b: Optional[str], model: str,
-                  effort: str, max_tokens: int) -> dict:
-    """Messages API parameters for one pass over one row. Passes A and B
-    receive neither *engine* nor the row's existing ``ipa``."""
-    if pass_name == "C":
-        user = USER_TEXT["C"].format(sentence=row.sentence, a=a, b=b,
-                                     engine=engine)
-    else:
-        user = USER_TEXT[pass_name].format(sentence=row.sentence)
+@functools.lru_cache(maxsize=None)
+def system_text(lect: str, sheet: str) -> str:
+    """The task instructions, the lect description, and the convention
+    sheet of the lect after the notes."""
+    return (SYSTEM_TEXT + lect_description(lect)
+            + "\n\nConvention sheet:\n\n" + sheet.strip())
+
+
+def _params(system: str, user: str, schema: dict, *, model: str,
+            effort: str, max_tokens: int) -> dict:
     return {
         "model": model,
         "max_tokens": max_tokens,
-        "system": [{"type": "text", "text": system_text(row.lect),
+        "system": [{"type": "text", "text": system,
                     "cache_control": {"type": "ephemeral"}}],
         "messages": [{"role": "user", "content": user}],
         "output_config": {"effort": effort,
                           "format": {"type": "json_schema",
-                                     "schema": SCHEMAS[pass_name]}},
+                                     "schema": schema}},
     }
+
+
+def build_request(pass_name: str, row: Row, *, engine: str,
+                  words: Sequence[str], sheet: str, a: Optional[str],
+                  b: Optional[str], model: str, effort: str,
+                  max_tokens: int) -> dict:
+    """Messages API parameters for one pass over one row. Passes A and B
+    receive neither *engine* nor the row's existing ``ipa``; every pass gets
+    the engine's word split of the text, *words*, and the convention sheet
+    of the lect."""
+    listed = WORDS_TEXT.format(count=len(words), words=" | ".join(words))
+    if pass_name == "C":
+        user = USER_TEXT["C"].format(sentence=row.sentence, words=listed,
+                                     a=a, b=b, engine=engine)
+    else:
+        user = USER_TEXT[pass_name].format(sentence=row.sentence,
+                                           words=listed)
+    return _params(system_text(row.lect, sheet), user, SCHEMAS[pass_name],
+                   model=model, effort=effort, max_tokens=max_tokens)
+
+
+def conventions_request(lect: str, *, model: str, effort: str,
+                        max_tokens: int) -> dict:
+    """The one request that drafts the convention sheet of *lect*. It sees
+    the lect description and no row and no engine output."""
+    topics = "\n".join(f"- {name}: {what}."
+                       for name, _, what in CONVENTION_TOPICS)
+    user = CONVENTIONS_USER_TEXT.format(topics=topics,
+                                        segmentation=segmentation_text(lect))
+    return _params(CONVENTIONS_SYSTEM_TEXT + lect_description(lect), user,
+                   CONVENTIONS_SCHEMA, model=model, effort=effort,
+                   max_tokens=max_tokens)
+
+
+def render_sheet(lect: str, answer: Mapping) -> str:
+    """The convention sheet of *lect* as Markdown, from the model's answer
+    and the engine's word segmentation."""
+    spec = orthography2ipa.get(lect)
+    parts = [f"# Transcription conventions: {spec.name} ({lect})", "",
+             "Every pass of `scripts/correct_silver_ipa.py` reads this "
+             "sheet. Correct it before the run. A change to the text "
+             "changes the cache key, so the rows of the lect run again.", ""]
+
+    def section(heading: str, item: Mapping, level: str = "##") -> None:
+        parts.extend([f"{level} {heading}", "", item["choice"].strip(), "",
+                      f"Source: {item['source'].strip()}", ""])
+
+    for name, heading, _ in CONVENTION_TOPICS:
+        section(heading, answer[name])
+    if answer["other"]:
+        parts.extend(["## Other choices", ""])
+        for item in answer["other"]:
+            section(item["topic"].strip(), item, "###")
+    parts.extend(["## Word segmentation", "", segmentation_text(lect), ""])
+    return "\n".join(parts)
+
+
+def sheet_path(directory: Path, lect: str) -> Path:
+    return directory / f"{lect}.md"
+
+
+def load_sheets(directory: Path, lects: Iterable[str]
+                ) -> Tuple[Dict[str, str], List[str]]:
+    """The convention sheets of *lects*, and the lects that have none."""
+    sheets, missing = {}, []
+    for lect in sorted(set(lects)):
+        path = sheet_path(directory, lect)
+        if path.is_file():
+            sheets[lect] = path.read_text("utf-8")
+        else:
+            missing.append(lect)
+    return sheets, missing
 
 
 def prompt_hash(params: dict) -> str:
@@ -559,8 +757,9 @@ def needs_adjudication(a: str, b: str, engine: str, lect: str) -> bool:
     return not (same_ipa(a, b, lect) and same_ipa(a, engine, lect))
 
 
-def parse_result(pass_name: str, message: dict) -> Tuple[Optional[dict], str]:
-    """The pass's JSON object, or ``None`` and the reason it is unusable."""
+def _json_object(message: dict, schema: dict) -> Tuple[Optional[dict], str]:
+    """The JSON object of *message* with the top-level fields of *schema*,
+    or ``None`` and the reason it is unusable."""
     if "error" in message:
         return None, f"batch item {message['error']}"
     if message["stop_reason"] != "end_turn":
@@ -569,13 +768,31 @@ def parse_result(pass_name: str, message: dict) -> Tuple[Optional[dict], str]:
         data = json.loads(message["text"])
     except json.JSONDecodeError:
         return None, "response is not JSON"
-    schema = SCHEMAS[pass_name]
     if not isinstance(data, dict) or set(data) != set(schema["required"]):
-        return None, "response does not match the pass schema"
+        return None, "response does not match the schema"
+    return data, ""
+
+
+def parse_result(pass_name: str, message: dict) -> Tuple[Optional[dict], str]:
+    """The pass's JSON object, or ``None`` and the reason it is unusable."""
+    data, problem = _json_object(message, SCHEMAS[pass_name])
+    if data is None:
+        return None, problem
     if not isinstance(data["ipa"], str) or not data["ipa"].strip():
         return None, "response has an empty ipa"
     if pass_name == "C" and data["flag"] not in FLAGS:
         return None, "response has an unknown flag"
+    return data, ""
+
+
+def parse_conventions(message: dict) -> Tuple[Optional[dict], str]:
+    """The convention answer, or ``None`` and the reason it is unusable."""
+    data, problem = _json_object(message, CONVENTIONS_SCHEMA)
+    if data is None:
+        return None, problem
+    for name, _, _ in CONVENTION_TOPICS:
+        if not str(data[name].get("choice", "")).strip():
+            return None, f"response has no choice for {name}"
     return data, ""
 
 
@@ -700,11 +917,14 @@ class Settings:
     model: str
     effort: str
     max_tokens: int
+    sheets: Mapping[str, str] = field(default_factory=dict)
 
-    def request(self, pass_name: str, row: Row, engine: str,
-                a: Optional[str] = None, b: Optional[str] = None) -> Request:
-        params = build_request(pass_name, row, engine=engine, a=a, b=b,
-                               model=self.model, effort=self.effort,
+    def request(self, pass_name: str, job: "Job", a: Optional[str] = None,
+                b: Optional[str] = None) -> Request:
+        row = job.row
+        params = build_request(pass_name, row, engine=job.engine,
+                               words=job.words, sheet=self.sheets[row.lect],
+                               a=a, b=b, model=self.model, effort=self.effort,
                                max_tokens=self.max_tokens)
         prompt = prompt_hash(params)
         key = cache_key(row.dataset, row.id, self.model, prompt)
@@ -715,10 +935,15 @@ class Settings:
 class Job:
     row: Row
     engine: str
+    words: Tuple[str, ...]
+
+    @classmethod
+    def of(cls, row: Row) -> "Job":
+        return cls(row, *engine_reading(row))
 
 
 def blind_requests(job: Job, settings: Settings) -> List[Request]:
-    return [settings.request(name, job.row, job.engine) for name in "AB"]
+    return [settings.request(name, job) for name in "AB"]
 
 
 def adjudication_request(job: Job, settings: Settings,
@@ -730,7 +955,7 @@ def adjudication_request(job: Job, settings: Settings,
         return None
     if not needs_adjudication(a["ipa"], b["ipa"], job.engine, job.row.lect):
         return None
-    return settings.request("C", job.row, job.engine, a["ipa"], b["ipa"])
+    return settings.request("C", job, a["ipa"], b["ipa"])
 
 
 @dataclass
@@ -767,8 +992,8 @@ def estimate(jobs: Sequence[Job], settings: Settings, cache: Cache,
         if all(cache.result(r.key) is not None for r in blind):
             adjudication = adjudication_request(job, settings, cache)
         else:
-            adjudication = settings.request("C", job.row, job.engine,
-                                            job.engine, job.engine)
+            adjudication = settings.request("C", job, job.engine,
+                                            job.engine)
         if adjudication is None:
             continue
         if adjudication.key in skip:
@@ -781,6 +1006,13 @@ def estimate(jobs: Sequence[Job], settings: Settings, cache: Cache,
 
 # ─── output ─────────────────────────────────────────────────────────────────
 
+def word_count(ipa: str, engine: str) -> dict:
+    """The words of *ipa* and of the engine output; ``ok`` is false when
+    the counts differ."""
+    words, expected = len(ipa.split()), len(engine.split())
+    return {"ipa": words, "engine": expected, "ok": words == expected}
+
+
 def output_row(job: Job, settings: Settings, cache: Cache) -> Optional[dict]:
     """The corrected row, or ``None`` while a pass it needs is missing."""
     a, b = (cache.result(r.key) for r in blind_requests(job, settings))
@@ -788,16 +1020,16 @@ def output_row(job: Job, settings: Settings, cache: Cache) -> Optional[dict]:
         return None
     c = None
     if needs_adjudication(a["ipa"], b["ipa"], job.engine, job.row.lect):
-        request = settings.request("C", job.row, job.engine, a["ipa"],
-                                   b["ipa"])
+        request = settings.request("C", job, a["ipa"], b["ipa"])
         c = cache.result(request.key)
         if c is None:
             return None
     row = job.row
+    ipa = a["ipa"] if c is None else c["ipa"]
     return {
         "dataset": row.dataset, "lect": row.lect, "id": row.id,
         "sentence": row.sentence,
-        "ipa": a["ipa"] if c is None else c["ipa"],
+        "ipa": ipa,
         "ipa_llm_original": row.ipa,
         "ipa_engine": job.engine,
         "model": settings.model,
@@ -805,6 +1037,7 @@ def output_row(job: Job, settings: Settings, cache: Cache) -> Optional[dict]:
         "flag": "agreed" if c is None else c["flag"],
         "reason": AGREED_REASON if c is None else c["reason"],
         "note_conflict": "" if c is None else c["note_conflict"],
+        "word_count": word_count(ipa, job.engine),
         "tier": TIER,
         "source_row": row.source_row,
     }
@@ -824,8 +1057,14 @@ def write_outputs(jobs: Sequence[Job], settings: Settings, cache: Cache,
         row = output_row(job, settings, cache)
         if row is None:
             missing += 1
-        else:
-            by_set.setdefault(row["dataset"], []).append(row)
+            continue
+        by_set.setdefault(row["dataset"], []).append(row)
+        count = row["word_count"]
+        if not count["ok"]:
+            reporter.say(f"{row['dataset']} {row['id']}: the ipa has "
+                         f"{count['ipa']} words and the engine output has "
+                         f"{count['engine']}; word_count.ok is false",
+                         error=True)
     for dataset, rows in sorted(by_set.items()):
         path = output_path(out_dir, dataset)
         merged: Dict[Tuple[str, str], dict] = {}
@@ -869,6 +1108,7 @@ class KeyPool:
         self.lanes = list(lanes)
         self.reporter = reporter
         self._cursor = 0
+        self._lock = threading.Lock()
 
     def live(self) -> List[Lane]:
         return [lane for lane in self.lanes if not lane.exhausted]
@@ -877,15 +1117,19 @@ class KeyPool:
         return next((lane for lane in self.lanes if lane.name == name), None)
 
     def next(self) -> Lane:
-        for step in range(len(self.lanes)):
-            index = (self._cursor + step) % len(self.lanes)
-            if not self.lanes[index].exhausted:
-                self._cursor = index + 1
-                return self.lanes[index]
+        with self._lock:
+            for step in range(len(self.lanes)):
+                index = (self._cursor + step) % len(self.lanes)
+                if not self.lanes[index].exhausted:
+                    self._cursor = index + 1
+                    return self.lanes[index]
         raise NoKeyLeft("stopping: no usable key is left")
 
     def exhaust(self, lane: Lane, reason: str) -> None:
-        lane.exhausted = True
+        with self._lock:
+            if lane.exhausted:
+                return
+            lane.exhausted = True
         self.reporter.say(f"key {lane.name} failed ({reason}); it is not "
                           f"used for the rest of this run, "
                           f"{len(self.live())} keys left", error=True)
@@ -1079,21 +1323,11 @@ class CapReached(Exception):
 
 # ─── command line ───────────────────────────────────────────────────────────
 
-def parse_args(argv: Optional[Sequence[str]]) -> argparse.Namespace:
-    ap = argparse.ArgumentParser(
-        description=__doc__.splitlines()[0],
-        formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--dataset", nargs="+", choices=SILVER_SETS,
-                    default=list(SILVER_SETS),
-                    help="sets to correct (default: every LLM-generated set)")
-    ap.add_argument("--lect", nargs="+",
-                    help="only these lects (default: every lect of the sets)")
-    ap.add_argument("--limit", type=int,
-                    help="at most this many rows per lect, in file order")
+def _shared_options(ap: argparse.ArgumentParser, max_tokens: int) -> None:
     ap.add_argument("--model", default=DEFAULT_MODEL)
     ap.add_argument("--effort", default="high",
                     choices=("low", "medium", "high", "xhigh", "max"))
-    ap.add_argument("--max-tokens", type=int, default=8000,
+    ap.add_argument("--max-tokens", type=int, default=max_tokens,
                     help="output token limit per request, thinking included")
     ap.add_argument("--max-usd", type=float,
                     help="refuse to start when the estimate exceeds this; "
@@ -1103,18 +1337,37 @@ def parse_args(argv: Optional[Sequence[str]]) -> argparse.Namespace:
                     help="US dollars per million input and output tokens, "
                          "for a model the price table does not hold; cache "
                          "reads are priced at a tenth of the input price")
+    ap.add_argument("--dry-run", action="store_true",
+                    help="print the estimate; no key, no API call")
+    ap.add_argument("--cache-dir", type=Path, default=DEFAULT_CACHE_DIR)
+    ap.add_argument("--conventions-dir", type=Path, default=CONVENTIONS_DIR,
+                    help="where the convention sheets are, one <lect>.md "
+                         "per lect")
+
+
+def parse_args(argv: Sequence[str]) -> argparse.Namespace:
+    ap = argparse.ArgumentParser(
+        description=__doc__.splitlines()[0],
+        epilog="Write the convention sheets first: "
+               "correct_silver_ipa.py conventions --help",
+        formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--dataset", nargs="+", choices=SILVER_SETS,
+                    default=list(SILVER_SETS),
+                    help="sets to correct (default: every LLM-generated set)")
+    ap.add_argument("--lect", nargs="+",
+                    help="only these lects (default: every lect of the sets)")
+    ap.add_argument("--limit", type=int,
+                    help="at most this many rows per lect, in file order")
+    _shared_options(ap, max_tokens=8000)
     ap.add_argument("--sync", action="store_true",
                     help="one request at a time instead of the Message "
                          "Batches API")
-    ap.add_argument("--dry-run", action="store_true",
-                    help="print the estimate; no key, no API call")
     ap.add_argument("--count-tokens", action="store_true",
                     help="estimate input with the token-counting endpoint "
                          "instead of the byte bound")
     ap.add_argument("--no-wait", action="store_true",
                     help="submit or collect batches, then exit")
     ap.add_argument("--poll-seconds", type=float, default=60.0)
-    ap.add_argument("--cache-dir", type=Path, default=DEFAULT_CACHE_DIR)
     ap.add_argument("--out-dir", type=Path, default=GOLD_DIR)
     args = ap.parse_args(argv)
     if args.max_usd is None and not args.dry_run:
@@ -1122,6 +1375,159 @@ def parse_args(argv: Optional[Sequence[str]]) -> argparse.Namespace:
     if args.count_tokens and args.dry_run:
         ap.error("--count-tokens calls the API; it cannot run with --dry-run")
     return args
+
+
+def parse_conventions_args(argv: Sequence[str]) -> argparse.Namespace:
+    ap = argparse.ArgumentParser(
+        prog="correct_silver_ipa.py conventions",
+        description="Write the convention sheet of each lect with one model "
+                    "call that sees the spec notes and sources, and no row. "
+                    "Review and edit each sheet before the run.")
+    ap.add_argument("--dataset", nargs="+", choices=SILVER_SETS,
+                    default=list(SILVER_SETS),
+                    help="write a sheet for every lect of these sets "
+                         "(default: every LLM-generated set)")
+    ap.add_argument("--lect", nargs="+",
+                    help="only these lects (default: every lect of the sets)")
+    ap.add_argument("--force", action="store_true",
+                    help="write a sheet again when its file exists")
+    ap.add_argument("--concurrency", type=int, default=8,
+                    help="requests in flight at a time, spread over the keys")
+    _shared_options(ap, max_tokens=16000)
+    args = ap.parse_args(argv)
+    if args.max_usd is None and not args.dry_run:
+        ap.error("--max-usd is required unless --dry-run")
+    return args
+
+
+def _prices(args: argparse.Namespace, reporter: Reporter
+            ) -> Optional[Dict[str, Price]]:
+    prices = dict(PRICES)
+    if args.usd_per_mtok:
+        tokens_in, tokens_out = args.usd_per_mtok
+        prices[args.model] = Price(tokens_in, tokens_out, tokens_in * 0.1)
+    if args.model not in prices:
+        reporter.say(f"no price for {args.model}: pass --usd-per-mtok",
+                     error=True)
+        return None
+    return prices
+
+
+def _named_keys(env: Mapping[str, str], reporter: Reporter
+                ) -> Optional[List[Tuple[str, str]]]:
+    """The keys of the run, registered with *reporter* for redaction."""
+    try:
+        named_keys = load_api_keys(env)
+    except CredentialError as exc:
+        reporter.say(str(exc), error=True)
+        return None
+    reporter.secrets.extend(key for _, key in named_keys)
+    reporter.say(f"keys: {', '.join(name for name, _ in named_keys)}")
+    return named_keys
+
+
+def write_conventions(args: argparse.Namespace, env: Mapping[str, str],
+                      transport_factory: Callable[[str], Transport]) -> int:
+    """The ``conventions`` subcommand: one request per lect, one sheet per
+    lect. An existing sheet is kept unless ``--force``."""
+    reporter = Reporter(None if args.dry_run else args.cache_dir / "run.log")
+    prices = _prices(args, reporter)
+    if prices is None:
+        return 2
+    lects = args.lect or sorted({lect for dataset in args.dataset
+                                 for lect in set_lects(dataset)})
+    unknown = []
+    for lect in lects:
+        try:
+            orthography2ipa.get(lect)
+        except KeyError:
+            unknown.append(lect)
+    if unknown:
+        reporter.say(f"no spec for the lects {unknown}", error=True)
+        return 2
+    todo = []
+    for lect in dict.fromkeys(lects):
+        path = sheet_path(args.conventions_dir, lect)
+        if path.exists() and not args.force:
+            reporter.say(f"kept {path}: the sheet exists; pass --force to "
+                         f"write it again")
+        else:
+            todo.append(lect)
+    if not todo:
+        return 0
+    requests = {lect: conventions_request(lect, model=args.model,
+                                          effort=args.effort,
+                                          max_tokens=args.max_tokens)
+                for lect in todo}
+    tokens_in = tokens_out = 0
+    for params in requests.values():
+        request_in, request_out = upper_bound_tokens(params)
+        tokens_in += request_in
+        tokens_out += request_out
+    bound = usd(tokens_in, tokens_out, args.model, batch=False, prices=prices)
+    reporter.say(f"convention sheets to write: {len(todo)}")
+    reporter.say(f"estimate: ${bound:.4f} upper bound (input at most "
+                 f"{tokens_in} tokens, output at most {tokens_out} tokens, "
+                 f"sync prices)")
+    if args.dry_run:
+        return 0
+    if bound > args.max_usd:
+        reporter.say(f"refusing to start: the estimate ${bound:.4f} is above "
+                     f"--max-usd ${args.max_usd:.4f}")
+        return 3
+    named_keys = _named_keys(env, reporter)
+    if named_keys is None:
+        return 2
+    spend = Spend()
+    status = 0
+    try:
+        keys = KeyPool([Lane(name, transport_factory(key))
+                        for name, key in named_keys], reporter)
+
+        def send(params: dict):
+            return keys.call(
+                lambda transport: transport.create_message(params))
+
+        with concurrent.futures.ThreadPoolExecutor(
+                max(1, args.concurrency)) as pool:
+            futures = {pool.submit(send, params): lect
+                       for lect, params in requests.items()}
+            for future in concurrent.futures.as_completed(futures):
+                lect = futures[future]
+                try:
+                    lane, message = future.result()
+                except NoKeyLeft:
+                    status = 4
+                    continue
+                except Exception:  # report it through redaction, go on
+                    reporter.say(f"{lect}: {traceback.format_exc()}",
+                                 error=True)
+                    status = max(status, 2)
+                    continue
+                if "usage" in message:
+                    spend.add(message["usage"], args.model, batch=False,
+                              prices=prices)
+                answer, problem = parse_conventions(message)
+                if answer is None:
+                    reporter.say(f"{lect}: unusable response, {problem}",
+                                 error=True)
+                    status = max(status, 2)
+                    continue
+                path = sheet_path(args.conventions_dir, lect)
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text(render_sheet(lect, answer), "utf-8")
+                reporter.say(f"wrote {path} with key {lane.name}; review "
+                             f"it before the run")
+    except Exception:  # transport set-up errors: report them redacted
+        reporter.say(traceback.format_exc(), error=True)
+        return 2
+    finally:
+        reporter.say(spend.line())
+    if status == 4:
+        reporter.say("stopping: no usable key is left; run the same command "
+                     "again with a working key to write the missing sheets",
+                     error=True)
+    return status
 
 
 def execute(args: argparse.Namespace, jobs: Sequence[Job],
@@ -1178,17 +1584,15 @@ def main(argv: Optional[Sequence[str]] = None, *,
          env: Optional[Mapping[str, str]] = None,
          transport_factory: Optional[Callable[[str], Transport]]
          = AnthropicTransport) -> int:
-    args = parse_args(argv)
+    argv = sys.argv[1:] if argv is None else list(argv)
     env = os.environ if env is None else env
+    if argv[:1] == ["conventions"]:
+        return write_conventions(parse_conventions_args(argv[1:]), env,
+                                 transport_factory)
+    args = parse_args(argv)
     reporter = Reporter(None if args.dry_run else args.cache_dir / "run.log")
-
-    prices = dict(PRICES)
-    if args.usd_per_mtok:
-        tokens_in, tokens_out = args.usd_per_mtok
-        prices[args.model] = Price(tokens_in, tokens_out, tokens_in * 0.1)
-    if args.model not in prices:
-        reporter.say(f"no price for {args.model}: pass --usd-per-mtok",
-                     error=True)
+    prices = _prices(args, reporter)
+    if prices is None:
         return 2
 
     if args.lect:
@@ -1202,24 +1606,29 @@ def main(argv: Optional[Sequence[str]] = None, *,
     if not rows:
         reporter.say("no rows selected", error=True)
         return 2
-    jobs = [Job(row, engine_ipa(row)) for row in rows]
+    sheets, missing = load_sheets(args.conventions_dir,
+                                  (row.lect for row in rows))
+    if missing:
+        reporter.say(f"no convention sheet in {args.conventions_dir} for the "
+                     f"lects {missing}: write and review them first with "
+                     f"correct_silver_ipa.py conventions --lect "
+                     f"{' '.join(missing)}", error=True)
+        return 2
+    jobs = [Job.of(row) for row in rows]
     lects = {(r.dataset, r.lect) for r in rows}
     reporter.say(f"rows: {len(rows)} in {len(lects)} lects of "
                  f"{len({d for d, _ in lects})} sets; model {args.model}, "
                  f"effort {args.effort}")
 
-    keys = None
+    named_keys = None
     if not args.dry_run:
-        try:
-            named_keys = load_api_keys(env)
-        except CredentialError as exc:
-            reporter.say(str(exc), error=True)
+        named_keys = _named_keys(env, reporter)
+        if named_keys is None:
             return 2
-        reporter.secrets.extend(key for _, key in named_keys)
-        reporter.say(f"keys: {', '.join(name for name, _ in named_keys)}")
-    settings = Settings(args.model, args.effort, args.max_tokens)
+    settings = Settings(args.model, args.effort, args.max_tokens, sheets)
     try:
-        if not args.dry_run:
+        keys = None
+        if named_keys is not None:
             keys = KeyPool([Lane(name, transport_factory(key))
                             for name, key in named_keys], reporter)
         return execute(args, jobs, settings, Cache(args.cache_dir), keys,
@@ -1227,6 +1636,7 @@ def main(argv: Optional[Sequence[str]] = None, *,
     except Exception:  # transport errors: report them through redaction
         reporter.say(traceback.format_exc(), error=True)
         return 2
+
 
 if __name__ == "__main__":
     sys.exit(main())

@@ -23,10 +23,57 @@ The tool reads these sets:
 The three remote sets carry no row id. The tool uses the position of the row
 in the loader output as its id.
 
+## Convention sheets
+
+Published descriptions of a lect do not always agree. For example, they give
+different stress rules for Modern Standard Arabic, and different pausal
+forms. If each row makes its own choice, the set is not consistent. Thus each
+lect gets one convention sheet, and every pass of every row reads it.
+
+The `conventions` subcommand writes the sheets. It sends one request for each
+lect. The request gets the notes and the cited sources of the lect spec. It
+does not get a row or the engine output. The tool writes the answer to
+`orthography2ipa/data/gold/conventions/<lect>.md`. The sheet has one section
+for each of these topics, and each section names its source:
+
+- the stress rule and the tradition that it follows
+- the function words that carry stress and the words that do not
+- the pausal forms: where they apply, and what tanwīn and the final vowels do
+- the connected-speech processes across word boundaries
+- the notation of glides and diphthongs
+- the other choices where published descriptions disagree
+
+The last section, word segmentation, comes from the tool and not from the
+model. Refer to [Word segmentation](#word-segmentation).
+
+Without `--lect`, the subcommand writes a sheet for each lect of the sets
+that `--dataset` names, and by default of all eight sets. It sends up to
+`--concurrency` requests at the same time (8 by default), with the keys in
+turn.
+
+Read each sheet and correct it before the run. The sheet is plain Markdown.
+If a sheet file exists, the subcommand keeps it. To write it again, give
+`--force`. A run refuses a lect that has no sheet. A change to a sheet changes
+the cache key, so the rows of that lect run again.
+
+## Word segmentation
+
+The engine splits a text into words at spaces, at hyphens and at
+punctuation. An apostrophe between two letters stays in its word only if the
+spec sets `word_internal_apostrophe`. Thus `liga-me` is two words, `ˈliɡɐ mɨ`.
+
+Each pass gets the list of words of its text, in this split. It must write
+one IPA word for each word in the list. The comparison of the passes ignores
+spaces, so a pass that joins two words can still agree. Thus the tool counts
+the words of each output row and compares the count with the engine output.
+If the counts are different, the `word_count` field of the row shows it and
+the run report names the row. The tool does not change the IPA of the row.
+
 ## How the tool decides a row
 
 Each row gets up to three passes. Every pass returns JSON that matches a
-schema.
+schema. Every pass gets the convention sheet of the lect after the notes,
+and the word list of the text.
 
 1. Pass A transcribes the sentence. It gets the sentence, the lect code, and
    the notes and cited sources of the lect spec. It does not get the engine
@@ -66,6 +113,7 @@ and id. Each line holds one row:
 | `passes` | the IPA of pass A and pass B, and the full answer of pass C or `null` |
 | `flag`, `reason` | the decision |
 | `note_conflict` | the spec note that pass C disagrees with, or an empty string |
+| `word_count` | the number of words in `ipa` and in the engine output, and `ok`, which is false when they are different |
 | `tier` | `llm-corrected` |
 | `source_row` | the other columns of the source row |
 
@@ -126,7 +174,19 @@ Install the extra for the API client:
 uv pip install -e '.[silver-correction]'
 ```
 
-Read the estimate first. This command sends no request:
+Write the convention sheets first. Read the estimate with `--dry-run`, then
+write the sheets:
+
+```bash
+python scripts/correct_silver_ipa.py conventions \
+    --lect es-ES pt-PT ar --dry-run
+O2I_ANTHROPIC_KEY_FILE=/path/to/first.key:/path/to/second.key \
+python scripts/correct_silver_ipa.py conventions \
+    --lect es-ES pt-PT ar --max-usd 5
+```
+
+Read and correct the three sheets. Then read the estimate of the run. This
+command sends no request:
 
 ```bash
 python scripts/correct_silver_ipa.py \
@@ -140,7 +200,7 @@ Then run the pilot with 20 rows for each lect:
 O2I_ANTHROPIC_KEY_FILE=/path/to/first.key:/path/to/second.key \
 python scripts/correct_silver_ipa.py \
     --dataset spain_romance_tts portuguese_tts arabic_tts \
-    --lect es-ES pt-PT ar --limit 20 --sync --max-usd 40
+    --lect es-ES pt-PT ar --limit 20 --sync --max-usd 50
 ```
 
 For a full set, remove `--limit` and `--sync`. Add `--no-wait` to send the

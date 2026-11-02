@@ -35,9 +35,19 @@ ROWS = ALL_ROWS[:2]
 ENGINE = {r["sentence"]: G2P("es-ES").transcribe(r["sentence"])
           for r in ALL_ROWS}
 NOTE_CONFLICT = "the note on stress in -ea- words disagrees with hualde2005"
+SHEET = ("# Transcription conventions: Spanish (es-ES)\n\n## Stress\n\n"
+         "Stress follows the written accent rules. Source: RAE 2010.\n")
+CONVENTIONS_ANSWER = {
+    **{name: {"choice": f"the {name} choice, as in ˈkasa",
+              "source": "Hualde 2005, ch. 12"}
+       for name, _, _ in csi.CONVENTION_TOPICS},
+    "other": [{"topic": "Rhotics", "choice": "the tap ɾ between vowels",
+               "source": "Navarro Tomás 1918, § 111"}]}
 
 
 def _pass_of(params):
+    if params["output_config"]["format"]["schema"] == csi.CONVENTIONS_SCHEMA:
+        return "conventions"
     for name, schema in csi.SCHEMAS.items():
         if params["output_config"]["format"]["schema"] == schema:
             return name
@@ -64,7 +74,10 @@ def _answer(params):
     """Row 2: B disagrees, so pass C must run. Every other row: A and B
     agree with the engine up to where the stress mark sits in the onset and
     word spacing."""
-    name, sentence = _pass_of(params), _sentence_of(params)
+    name = _pass_of(params)
+    if name == "conventions":
+        return CONVENTIONS_ANSWER
+    sentence = _sentence_of(params)
     engine = ENGINE[sentence]
     if name == "A":
         return {"ipa": engine}
@@ -75,7 +88,7 @@ def _answer(params):
             return {"word_forms": engine.split(),
                     "ipa": _onset_stress(engine)}
         return {"word_forms": engine.split(), "ipa": engine}
-    return {"ipa": "adjudicated " + engine, "flag": "adjudicated",
+    return {"ipa": "adjudicated" + engine, "flag": "adjudicated",
             "reason": "rule cited in hualde2005",
             "note_conflict": NOTE_CONFLICT}
 
@@ -142,10 +155,32 @@ class FakeTransport:
             yield req["custom_id"], _message(_answer(req["params"]))
 
 
-def _argv(tmp_path, *extra):
+def _sheet(tmp_path, lect="es-ES", text=SHEET):
+    path = tmp_path / "conventions" / f"{lect}.md"
+    if text is None:
+        return path
+    path.parent.mkdir(exist_ok=True)
+    if not path.exists():
+        path.write_text(text, encoding="utf-8")
+    return path
+
+
+def _argv(tmp_path, *extra, sheet=SHEET):
+    _sheet(tmp_path, text=sheet)
     return ["--dataset", "spain_romance_tts", "--lect", "es-ES",
             "--limit", "2", "--out-dir", str(tmp_path / "out"),
-            "--cache-dir", str(tmp_path / "cache"), *extra]
+            "--cache-dir", str(tmp_path / "cache"),
+            "--conventions-dir", str(tmp_path / "conventions"), *extra]
+
+
+def _request(name, row, **overrides):
+    """Parameters of one pass over *row*, with the engine reading and the
+    test sheet."""
+    engine, words = csi.engine_reading(row)
+    options = dict(engine=engine, words=words, sheet=SHEET, a=None, b=None,
+                   model="claude-opus-5-5", effort="high", max_tokens=8000)
+    options.update(overrides)
+    return csi.build_request(name, row, **options)
 
 
 def _run(tmp_path, transport, *extra, env=None):
@@ -231,12 +266,10 @@ def test_needs_adjudication(a, b, engine, expected):
 
 def test_prompts_take_pronunciation_from_published_descriptions():
     row = csi.load_rows(["spain_romance_tts"], ["es-ES"], 1)[0]
-    system = csi.system_text(row.lect)
+    system = csi.system_text(row.lect, SHEET)
     assert "transcription conventions" in system
     assert "published phonological descriptions" in system
-    c = csi.build_request("C", row, engine="ˈengine", a="ˈa", b="ˈb",
-                          model="claude-opus-5-5", effort="high",
-                          max_tokens=8000)
+    c = _request("C", row, engine="ˈengine", a="ˈa", b="ˈb")
     assert "note_conflict" in c["messages"][-1]["content"]
     assert "note_conflict" in csi.SCHEMAS["C"]["required"]
 
@@ -246,9 +279,7 @@ def test_passes_a_and_b_are_blind_to_engine_and_original():
     row = csi.load_rows(["spain_romance_tts"], ["es-ES"], 1)[0]
     engine = ENGINE[row.sentence]
     for name in ("A", "B"):
-        params_by_pass[name] = csi.build_request(
-            name, row, engine=engine, a=None, b=None,
-            model="claude-opus-5-5", effort="high", max_tokens=8000)
+        params_by_pass[name] = _request(name, row)
     for params in params_by_pass.values():
         blob = json.dumps(params, ensure_ascii=False)
         assert engine not in blob
@@ -257,9 +288,7 @@ def test_passes_a_and_b_are_blind_to_engine_and_original():
             != params_by_pass["B"]["messages"])
     # The row is engine-pinned (its ipa IS the engine output), so pass C is
     # given a distinct engine string to show the original ipa stays out.
-    c = csi.build_request("C", row, engine="ˈengine", a="ˈa", b="ˈb",
-                          model="claude-opus-5-5", effort="high",
-                          max_tokens=8000)
+    c = _request("C", row, engine="ˈengine", a="ˈa", b="ˈb")
     blob = json.dumps(c, ensure_ascii=False)
     assert "ˈengine" in blob and "ˈa" in blob and "ˈb" in blob
     assert row.ipa not in blob
@@ -406,7 +435,7 @@ def test_output_schema_and_original_untouched(tmp_path):
     assert agreed["ipa"] == agreed["passes"]["A"] == ENGINE[ROWS[0]["sentence"]]
     assert adjudicated["flag"] == "adjudicated"
     assert adjudicated["passes"]["C"]["flag"] == "adjudicated"
-    assert adjudicated["ipa"] == "adjudicated " + ENGINE[ROWS[1]["sentence"]]
+    assert adjudicated["ipa"] == "adjudicated" + ENGINE[ROWS[1]["sentence"]]
     assert adjudicated["reason"] == "rule cited in hualde2005"
 
 
@@ -745,3 +774,183 @@ def test_anthropic_transport_turns_key_failures_into_key_unusable(
         import anthropic
         with pytest.raises(anthropic.APIStatusError):
             transport.create_message({})
+
+
+# ─── convention sheets ──────────────────────────────────────────────────────
+
+def _conventions(tmp_path, transport, *extra):
+    return csi.main(["conventions", "--conventions-dir",
+                     str(tmp_path / "conventions"), "--cache-dir",
+                     str(tmp_path / "cache"), *extra],
+                    env={"ANTHROPIC_API_KEY": FAKE_KEY},
+                    transport_factory=lambda key: transport)
+
+
+def test_conventions_writes_one_sheet_per_lect_from_a_blind_request(
+        tmp_path):
+    fake = FakeTransport()
+    assert _conventions(tmp_path, fake, "--lect", "es-ES", "pt-PT",
+                        "--max-usd", "5") == 0
+    assert [_pass_of(p) for p in fake.calls] == ["conventions"] * 2
+    for params, (dataset, lect) in zip(
+            fake.calls, [("spain_romance_tts", "es-ES"),
+                         ("portuguese_tts", "pt-PT")]):
+        system = params["system"][0]["text"]
+        assert csi.orthography2ipa.get(lect).notes.strip() in system
+        blob = json.dumps(params, ensure_ascii=False)
+        for row in csi.load_rows([dataset], [lect], 20):
+            assert row.sentence not in blob
+            assert row.ipa not in blob
+            assert csi.engine_reading(row)[0] not in blob
+        sheet = (tmp_path / "conventions" / f"{lect}.md").read_text("utf-8")
+        for _, heading, _ in csi.CONVENTION_TOPICS:
+            assert f"\n## {heading}\n" in sheet
+        assert "Source: Hualde 2005, ch. 12" in sheet
+        assert "### Rhotics" in sheet
+        assert sheet.rstrip().endswith(csi.segmentation_text(lect))
+        assert "## Word segmentation" in sheet
+
+
+def test_conventions_keeps_an_edited_sheet_unless_forced(tmp_path):
+    path = _sheet(tmp_path, text="# edited by hand\n")
+    fake = FakeTransport()
+    assert _conventions(tmp_path, fake, "--lect", "es-ES",
+                        "--max-usd", "5") == 0
+    assert fake.calls == []
+    assert path.read_text("utf-8") == "# edited by hand\n"
+    assert _conventions(tmp_path, fake, "--lect", "es-ES", "--force",
+                        "--max-usd", "5") == 0
+    assert len(fake.calls) == 1
+    assert path.read_text("utf-8").startswith(
+        "# Transcription conventions: ")
+
+
+def test_conventions_spend_cap_refuses_before_any_call(tmp_path, capsys):
+    fake = FakeTransport()
+    assert _conventions(tmp_path, fake, "--lect", "es-ES", "pt-PT", "ar",
+                        "--max-usd", "0.0001") == 3
+    assert fake.calls == []
+    assert "refusing to start" in capsys.readouterr().out
+    assert not (tmp_path / "conventions").exists()
+
+
+@pytest.mark.parametrize("mode", [("--dry-run",), ("--sync", "--max-usd",
+                                                   "50")])
+def test_a_run_refuses_a_lect_without_a_sheet(tmp_path, capsys, mode):
+    def factory(key):
+        raise AssertionError("a transport was built for a lect with no sheet")
+    assert csi.main(_argv(tmp_path, *mode, sheet=None),
+                    env={"ANTHROPIC_API_KEY": FAKE_KEY},
+                    transport_factory=factory) == 2
+    err = capsys.readouterr().err
+    assert "no convention sheet" in err
+    assert "conventions --lect es-ES" in err
+    assert not (tmp_path / "out").exists()
+
+
+def test_every_pass_reads_the_sheet_after_the_notes(tmp_path):
+    fake = FakeTransport()
+    assert _run(tmp_path, fake, "--sync", "--max-usd", "50") == 0
+    assert sorted(_pass_of(p) for p in fake.calls) == ["A", "A", "B", "B",
+                                                       "C"]
+    for params in fake.calls:
+        (block,) = params["system"]
+        assert block["cache_control"] == {"type": "ephemeral"}
+        assert SHEET.strip() in block["text"]
+        assert block["text"].index(SHEET.strip()) > block["text"].index(
+            "Cited sources:")
+
+
+def test_editing_the_sheet_changes_the_cache_key(tmp_path):
+    assert _run(tmp_path, FakeTransport(), "--sync", "--max-usd", "50") == 0
+    unchanged = FakeTransport()
+    assert _run(tmp_path, unchanged, "--sync", "--max-usd", "50") == 0
+    assert unchanged.calls == []
+    _sheet(tmp_path).write_text(SHEET + "\n## Glides\n\nWrite j w.\n",
+                                encoding="utf-8")
+    edited = FakeTransport()
+    assert _run(tmp_path, edited, "--sync", "--max-usd", "50") == 0
+    assert len(edited.calls) == 5
+
+
+# ─── word segmentation ──────────────────────────────────────────────────────
+
+def test_each_pass_gets_the_engine_word_split():
+    row = csi.Row("portuguese_tts", "pt-PT", "pt-PT-x",
+                  "Ele liga-me amanhã.", "ˈelɨ ˈliɡɐmɨ ɐmɐˈɲɐ̃")
+    engine, words = csi.engine_reading(row)
+    # The hyphen splits the clitic from its host, as in the engine output.
+    assert words == ("ele", "liga", "me", "amanhã")
+    assert len(engine.split()) == len(words)
+    listed = "Words (4): ele | liga | me | amanhã"
+    for name in "ABC":
+        params = _request(name, row, a="ˈa", b="ˈb")
+        assert listed in params["messages"][-1]["content"]
+
+
+@pytest.mark.parametrize("ipa,engine,expected", [
+    ("ˈelɨ ˈliɡɐ mɨ", "ˈelɨ ˈliɡɐ mɨ", {"ipa": 3, "engine": 3, "ok": True}),
+    ("ˈelɨ ˈliɡɐmɨ", "ˈelɨ ˈliɡɐ mɨ", {"ipa": 2, "engine": 3, "ok": False}),
+    ("ˈelɨ  ˈliɡɐ   mɨ", "ˈelɨ ˈliɡɐ mɨ", {"ipa": 3, "engine": 3,
+                                            "ok": True}),
+])
+def test_word_count(ipa, engine, expected):
+    assert csi.word_count(ipa, engine) == expected
+
+
+class JoiningTransport(FakeTransport):
+    """Passes A and B join the first two words of the first row. The
+    agreement test ignores spaces, so the row is agreed without pass C."""
+
+    def create_message(self, params):
+        message = super().create_message(params)
+        if (_pass_of(params) in "AB"
+                and _sentence_of(params) == ROWS[0]["sentence"]):
+            ipa = ENGINE[ROWS[0]["sentence"]].replace(" ", "", 1)
+            message = _message({"ipa": ipa} if _pass_of(params) == "A"
+                               else {"word_forms": [], "ipa": ipa})
+        return message
+
+
+def test_a_word_count_that_differs_from_the_engine_is_flagged_not_fixed(
+        tmp_path, capsys):
+    assert _run(tmp_path, JoiningTransport(), "--sync",
+                "--max-usd", "50") == 0
+    joined, kept = _output(tmp_path)
+    engine = ENGINE[ROWS[0]["sentence"]]
+    assert joined["flag"] == "agreed"
+    assert joined["ipa"] == engine.replace(" ", "", 1)
+    assert joined["word_count"] == {"ipa": len(engine.split()) - 1,
+                                    "engine": len(engine.split()),
+                                    "ok": False}
+    assert kept["word_count"]["ok"] is True
+    err = capsys.readouterr().err
+    assert f"{ROWS[0]['id']}: the ipa has" in err
+    assert ROWS[1]["id"] not in err
+
+
+def test_conventions_spreads_concurrent_calls_over_the_keys(tmp_path):
+    log, fakes = _fakes(jarbas={"unusable_after": 0})
+    by_key = {KEYS[name]: fake for name, fake in fakes.items()}
+    lects = ["es-ES", "pt-PT", "ar", "gl", "ca", "it"]
+    assert csi.main(["conventions", "--lect", *lects, "--concurrency", "4",
+                     "--max-usd", "5",
+                     "--conventions-dir", str(tmp_path / "conventions"),
+                     "--cache-dir", str(tmp_path / "cache")],
+                    env=_key_files(tmp_path),
+                    transport_factory=by_key.__getitem__) == 0
+    assert sorted(p.stem for p in (tmp_path / "conventions").glob("*.md")) \
+        == sorted(lects)
+    assert len(log) == len(lects)
+    assert "anthropic-jarbas.key" not in log
+    assert set(log) == {"anthropic-ovos.key", "anthropic-invoices.key"}
+
+
+def test_conventions_defaults_to_every_lect_of_the_sets(tmp_path, capsys):
+    assert csi.main(["conventions", "--dataset", "spain_romance_tts",
+                     "--dry-run", "--conventions-dir",
+                     str(tmp_path / "conventions")], env={},
+                    transport_factory=None) == 0
+    out = capsys.readouterr().out
+    count = len(csi.set_lects("spain_romance_tts"))
+    assert f"convention sheets to write: {count}" in out
