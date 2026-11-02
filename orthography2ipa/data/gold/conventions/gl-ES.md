@@ -1,4 +1,4 @@
-# Transcription conventions: Galician (gl)
+# Transcription conventions: Galician (gl-ES)
 
 Every pass of `scripts/correct_silver_ipa.py` reads this sheet. Correct it before the run. A change to the text changes the cache key, so the rows of the lect run again.
 

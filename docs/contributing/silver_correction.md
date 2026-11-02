@@ -117,6 +117,8 @@ and id. Each line holds one row:
 | `tier` | `llm-corrected` |
 | `source_row` | the other columns of the source row |
 
+`scripts/benchmark.py` scores `arabic_tts`, `gold20_arabic`, `portuguese_tts`, `spain_romance_tts`, `barranquenho_dict` and `mirandese_dict` against these files, at the provenance tier `llm-corrected`. The tier is silver and gates nothing. A row is never evidence for a phonetic value. The board does not register `kabyle_tts` and `iberian_creole_tts`. `tests/test_llm_corrected_sets.py` checks the shape of each row, that each file holds the rows of its source set, and the word counts.
+
 ## Spend
 
 Before it sends a request, the tool prints an estimate and compares it with

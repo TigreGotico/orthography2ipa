@@ -1,4 +1,4 @@
-# Transcription conventions: Galician (reintegrationist orthography) (gl-x-reintegrado)
+# Transcription conventions: Galician (reintegrationist orthography) (gl-ES-x-reintegrado)
 
 Every pass of `scripts/correct_silver_ipa.py` reads this sheet. Correct it before the run. A change to the text changes the cache key, so the rows of the lect run again.
 

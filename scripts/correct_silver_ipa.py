@@ -123,9 +123,12 @@ CONVENTIONS_DIR = GOLD_DIR / "conventions"
 LOCAL_SETS = ("arabic_tts", "iberian_creole_tts", "kabyle_tts",
               "portuguese_tts", "spain_romance_tts")
 #: Sets published elsewhere, read through their ``scripts/benchmark.py``
-#: loader. Their rows carry no id, so a row's id is its position in the
-#: loader's output.
-REMOTE_SETS = ("barranquenho_dict", "gold20_arabic", "mirandese_dict")
+#: source loader. Their rows carry no id, so a row's id is its position in
+#: the loader's output. The board scores the llm-corrected file instead.
+REMOTE_LOADERS = {"barranquenho_dict": benchmark.load_barranquenho_dict,
+                  "gold20_arabic": benchmark.load_gold20_arabic,
+                  "mirandese_dict": benchmark.load_mirandese_dict}
+REMOTE_SETS = tuple(REMOTE_LOADERS)
 SILVER_SETS = LOCAL_SETS + REMOTE_SETS
 
 TIER = "llm-corrected"
@@ -537,7 +540,7 @@ def _local_rows(dataset: str, lect: str, limit: int) -> List[Row]:
 
 
 def _remote_rows(dataset: str, lect: str, limit: int) -> List[Row]:
-    loader = benchmark.DATASETS[dataset][0]
+    loader = REMOTE_LOADERS[dataset]
     return [Row(dataset, lect, f"{lect}-{n:04d}", text, ipa)
             for n, (text, ipa) in enumerate(loader(lect, limit), 1)]
 

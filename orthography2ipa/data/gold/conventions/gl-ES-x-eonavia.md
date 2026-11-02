@@ -1,4 +1,4 @@
-# Transcription conventions: Eonavian (Galician-Asturian, gallego-asturiano) (gl-x-eonavia)
+# Transcription conventions: Eonavian (Galician-Asturian, gallego-asturiano) (gl-ES-x-eonavia)
 
 Every pass of `scripts/correct_silver_ipa.py` reads this sheet. Correct it before the run. A change to the text changes the cache key, so the rows of the lect run again.
 
