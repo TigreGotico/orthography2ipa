@@ -448,7 +448,7 @@ so the raise now feeds the affrication on pass 2: `estes → [ˈest͡ʃis]`, `de
 [ˈdẽt͡ʃis]`, `gatos → [ˈɡatus]`. The count is **bounded** (no unbounded fixpoint)
 so a pathological rule set cannot loop.
 
-It is `NOT_INHERITED` (like `stress`) and opt-in per spec on purpose: re-running
+It is `NOT_INHERITED` and opt-in per spec on purpose: re-running
 the pass can re-fire a non-idempotent rule, so each spec restates the count and
 confirms: against its own gold: that the extra pass changes only the intended
 feeding cases. pt-BR and its palatalising urban dialects (bahia, brasília,

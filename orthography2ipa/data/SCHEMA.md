@@ -370,8 +370,32 @@ inherits the parent's rules and can override one by `id` or append new ones.
 
 ## Stress Schema
 
-Declarative stress placement. The engine applies it after phoneme selection; a
-spec with no `stress` block gets no stress marks.
+Declarative stress placement. The engine applies it after phoneme selection.
+
+A spec that states a `stress` block keeps that block whole. The loader does not
+merge it key by key with a base block. A spec that states no block takes a block
+from one base, in this order:
+
+1. The resolved block of its `graphemes_base`.
+2. Without a `graphemes_base`, the resolved block of the nearest data ancestor
+   on `parent` (clade nodes are skipped). The loader takes it only when that
+   ancestor is the same language: the spec's `iso639_3` is unset, or it is
+   equal to the ancestor's `iso639_3`.
+
+A spec that gets no block from these steps has no stress marks.
+
+The language check exists because stress placement is a property of one
+language, and the accent marks that override it (`marked_vowels`) are graphemes
+of its orthography. A regional variety that has no ISO 639-3 code of its own
+shares them with its language: `el-CY` takes the block of `el`, and
+`it-IT-x-toscana` (`iso639_3` `ita`) takes the block of `it-IT`. A language
+with its own code that keeps `parent` only for its genealogy has its own stress
+system. Angolar (`aoa`, under `pt-PT`) and A Fala (`fax`, under `gl-ES`) do not
+take their parent's block. Such a spec states its own block, with a citation,
+or has none.
+
+Do not copy a base's block into a child. A child that differs from its base
+states its whole block, and its `notes` say how it differs.
 
 ```json
 "stress": {

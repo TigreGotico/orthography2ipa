@@ -1696,7 +1696,7 @@ class InheritanceMode(str, Enum):
     """Own-file-only by design. The field never propagates through
     inheritance even though a base/parent is set — this is a deliberate
     modeling choice (documented per-field), not an oversight. Used by
-    ``stress`` and ``grapheme_weights``.
+    ``allophone_passes`` and ``grapheme_weights``.
 
     ``word_exceptions`` moved from this mode to BASE_MERGE: a dialect child
     that pulls its graphemes from the standard should see the standard's
@@ -1731,6 +1731,24 @@ class InheritanceMode(str, Enum):
     read ``de-DE``'s graphemes while silently syllabifying them by a different
     rule than ``de-DE`` does, and that split is a language-feature parity gap,
     which this project treats as a bug."""
+
+    BASE_BLOCK = "base_block"
+    """A whole block that a spec either states or takes from one base. A spec
+    that states the field keeps its own block whole; nothing is merged key by
+    key. A spec that does not state it takes the resolved block of its
+    ``graphemes_base``. Without a ``graphemes_base``, it takes the block of
+    the nearest data ancestor on ``parent``, but only when that ancestor is
+    the same language: the spec's ``iso639_3`` is unset or equal to the
+    ancestor's.
+
+    Used by ``stress``. Stress placement is a property of a language, and the
+    accent marks that override it (``marked_vowels``) are graphemes of its
+    orthography. A regional variety with no ISO 639-3 code of its own
+    (``el-CY`` under ``el``, ``it-IT-x-toscana`` under ``it-IT``) shares both
+    with the language it belongs to. A language with its own code that keeps
+    ``parent`` for its genealogy (Angolar ``aoa`` under ``pt-PT``, A Fala
+    ``fax`` under ``gl-ES``) has its own stress system and its own
+    orthography, so it declares its own block or has none."""
 
     OWN_ONLY = "own_only"
     """Identity / bibliographic / classification field that never
@@ -1802,7 +1820,10 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     # parent's graphemes has not thereby had its own rows looked at, so it
     # must earn its own audit record rather than inherit the parent's verdict.
     "audit": InheritanceMode.OWN_ONLY,
-    "stress": InheritanceMode.NOT_INHERITED,
+    # A dialect shares the stress system of its language: a spec with no
+    # block of its own takes its graphemes_base's block, else its parent's
+    # when the parent is the same language (same or no iso639_3).
+    "stress": InheritanceMode.BASE_BLOCK,
     "word_exceptions": InheritanceMode.BASE_MERGE,
     # Suffix morphology is shared by a dialect that shares its graphemes —
     # en-US palatalizes ⟨-tion⟩ exactly as en-GB does — so a child opts in
@@ -2317,8 +2338,8 @@ class LanguageSpec:
     the affrication (estes → [ˈest͡ʃis]).
 
     Default ``1`` — the engine is byte-identical for every spec that does not
-    opt in. It is opt-in per spec on purpose (``NOT_INHERITED``, like
-    ``stress``): re-running the pass can re-fire a non-idempotent rule, so each
+    opt in. It is opt-in per spec on purpose (``NOT_INHERITED``):
+    re-running the pass can re-fire a non-idempotent rule, so each
     spec must restate the count and confirm — against its own gold — that the
     extra pass changes only the intended feeding cases. A palatalising
     Brazilian dialect that shares pt-BR's affrication restates ``2``; a
@@ -2416,8 +2437,10 @@ class LanguageSpec:
     """Declarative primary-stress placement rules.  ``None`` when the
     language has no (encoded) predictable stress system.
 
-    Not inherited through ancestry — each spec declares its own block;
-    consumed by :func:`orthography2ipa.stress.detect_stress`."""
+    A spec with no block of its own takes its ``graphemes_base``'s block,
+    else the block of a ``parent`` that is the same language (see
+    :attr:`InheritanceMode.BASE_BLOCK`); consumed by
+    :func:`orthography2ipa.stress.detect_stress`."""
 
     grapheme_weights: Optional[GraphemeWeights] = None
     """Optional per-candidate weights for :attr:`graphemes`.

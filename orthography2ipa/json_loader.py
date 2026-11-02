@@ -504,19 +504,16 @@ def load_json_spec(code: str) -> LanguageSpec:
             for dataset_name, raw_a in raw_audit.items()
         }
 
-    # Parse stress rules. A spec's own ``stress`` block wins outright; when it
-    # declares none (absent or ``null``), the accentuation rules inherit
-    # through the ``graphemes_base`` data edge. Stress assignment is a
-    # language-generic behaviour: a dialect that only overlays graphemes /
-    # allophones over its base — e.g. ``es-ES-x-murcia`` over ``es-ES`` — must
-    # keep the base's stress placement rather than silently emitting unstressed
-    # output. The edge is ``graphemes_base`` and NOT the bare classification
-    # ``parent``, because stress marking is bound to the orthography: a spec's
-    # ``marked_vowels`` are graphemes (á é í …), so the written-accent rules
-    # only transfer to a spec that shares the base's writing system. A creole
-    # that keeps ``parent`` only for genetic classification while authoring its
-    # own orthography (``graphemes_base`` unset, e.g. Angolar ``aoa`` under
-    # ``pt-PT``) does not inherit stress — it declares its own or has none.
+    # Parse stress rules (InheritanceMode.BASE_BLOCK). A spec's own ``stress``
+    # block wins whole. A spec that declares none takes the resolved block of
+    # its ``graphemes_base``, else of the nearest data ancestor on ``parent``
+    # when that ancestor is the same language: the child's ``iso639_3`` is
+    # unset or equal to the ancestor's. Stress placement and the accent marks
+    # that override it belong to one language and its orthography, so a
+    # variety with no code of its own (``el-CY`` under ``el``) shares them,
+    # while a language with its own code that keeps ``parent`` for its
+    # genealogy (a creole such as Angolar ``aoa`` under ``pt-PT``, A Fala
+    # ``fax`` under ``gl-ES``) declares its own block or has none.
     stress: Optional[StressRules] = None
     raw_tone = raw.get("tone_rules")
     tone_rules = None
@@ -566,12 +563,14 @@ def load_json_spec(code: str) -> LanguageSpec:
             notes=raw_stress.get("notes", "") or "",
         )
     else:
-        # No own stress block: inherit the graphemes-base spec's resolved
-        # StressRules (already resolved up its own chain), so a child that
-        # shares its base's orthography also shares its accentuation.
-        _stress_base = base_field_langs.get("graphemes")
-        if _stress_base and _stress_base in _specs:
-            stress = _specs[_stress_base].stress
+        stress_base = base_field_langs.get("graphemes")
+        if not stress_base:
+            data_parent = _nearest_data_ancestor(parent_lang)
+            if data_parent and raw.get("iso639_3") in (
+                    None, _specs[data_parent].iso639_3):
+                stress_base = data_parent
+        if stress_base and stress_base in _specs:
+            stress = _specs[stress_base].stress
 
     # Derive the classification path from the ancestry chain. The chain is
     # walked through ``parent``; a spec that declares its genetic parent only
