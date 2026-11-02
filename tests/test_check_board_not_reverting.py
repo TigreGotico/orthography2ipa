@@ -681,6 +681,32 @@ class TestBurnDownRatchet:
         assert guard.read_ratchet("HEAD", BURNDOWN_PATH, BURNDOWN_NAME,
                                   repo=ratchet_repo) is None
 
+    def test_an_entry_that_follows_its_renamed_page_does_not_grow(self, tmp_path):
+        """Moving a listed page renames its entry. The set holds the same
+        page, so the guard must not read the new path as an addition."""
+        repo = str(tmp_path / "rename")
+        os.makedirs(os.path.join(repo, "docs"))
+        git(repo, "init", "-q", "-b", "dev")
+        git(repo, "config", "user.email", "t@example.com")
+        git(repo, "config", "user.name", "t")
+        with open(os.path.join(repo, "docs", "page.md"), "w") as fh:
+            fh.write("# Page\n\n" + "A line of prose.\n" * 20)
+        write_ratchet(repo, ["docs/page.md"])
+        git(repo, "add", "-A")
+        git(repo, "commit", "-qm", "base")
+        git(repo, "checkout", "-q", "-b", "move")
+        os.makedirs(os.path.join(repo, "docs", "sub"))
+        git(repo, "mv", "docs/page.md", "docs/sub/page.md")
+        write_ratchet(repo, ["docs/sub/page.md"])
+        git(repo, "add", "-A")
+        git(repo, "commit", "-qm", "docs: move the page")
+        assert guard.check("dev", "HEAD", repo=repo) == 0
+
+        write_ratchet(repo, ["docs/sub/page.md", "docs/other.md"])
+        git(repo, "add", "-A")
+        git(repo, "commit", "-qm", "chore: grow the list")
+        assert guard.check("dev", "HEAD", repo=repo) == 1
+
     def test_the_real_burndown_is_readable(self):
         """The guard is worthless if it cannot find the live list, and it
         fails open when it cannot — so the wiring is asserted here."""
