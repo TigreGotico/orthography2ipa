@@ -32,7 +32,7 @@ from __future__ import annotations
 import logging
 import unicodedata
 from collections import OrderedDict
-from typing import List, Optional, Sequence
+from typing import Dict, List, Optional, Sequence
 
 from orthography2ipa.allophony import segment_ipa
 from orthography2ipa.phonetok import lower_str
@@ -40,10 +40,11 @@ from orthography2ipa.types import LanguageSpec, StressRules
 from orthography2ipa.vowels import (
     SONORITY_FRICATIVE, SONORITY_GLIDE, SONORITY_LIQUID, SONORITY_NASAL,
     SONORITY_STOP,
-    SONORITY_UNKNOWN, is_ipa_vowel, is_labial_approximant,
-    is_orthographic_vowel, is_affricate, is_glottal, is_lateral,
-    is_palatal_glide, is_sibilant, is_voiced, place_class,
-    sonority_class)
+    SONORITY_UNKNOWN, SEMIVOWEL_CONTEXTUAL, SEMIVOWEL_LETTERS,
+    SEMIVOWEL_NUCLEUS, is_basic_vowel_letter, is_ipa_vowel,
+    is_labial_approximant, is_orthographic_vowel, is_affricate, is_glottal,
+    is_lateral, is_palatal_glide, is_sibilant, is_voiced, place_class,
+    semivowel_role, sonority_class)
 
 __all__ = [
     "syllabify",
@@ -114,6 +115,61 @@ def _is_vowel_char(ch: str) -> bool:
     return is_orthographic_vowel(ch) or is_ipa_vowel(ch)
 
 
+def _nucleus_mask(word: str, is_vowel_char, semivowels=None) -> List[bool]:
+    """Which characters of *word* belong to a syllable nucleus.
+
+    *is_vowel_char* answers for every character on its own. *semivowels* maps
+    a :data:`~orthography2ipa.vowels.SEMIVOWEL_LETTERS` letter to its
+    :func:`~orthography2ipa.vowels.semivowel_role` in the language, and its
+    answer replaces *is_vowel_char* for that letter. A contextual letter is a
+    nucleus only when neither neighbour is a nucleus on its own account: next
+    to a vowel letter it is the onset or the off-glide of that vowel (Spanish
+    ⟨mayo⟩ ma-yo, ⟨rey⟩ one syllable), and with no vowel letter beside it, it
+    is the only nucleus there is (⟨rugby⟩ ru-gby). Combining marks are never
+    nuclei, and they are skipped when the neighbours are read.
+    """
+    roles = semivowels or {}
+    fixed: List[Optional[bool]] = []
+    for ch in word:
+        role = roles.get(ch.lower())
+        if unicodedata.combining(ch):
+            fixed.append(False)
+        elif role is None:
+            fixed.append(is_vowel_char(ch))
+        elif role == SEMIVOWEL_CONTEXTUAL:
+            fixed.append(None)
+        else:
+            fixed.append(role == SEMIVOWEL_NUCLEUS)
+    mask: List[bool] = []
+    for i, status in enumerate(fixed):
+        if status is None:
+            before = next((fixed[k] for k in range(i - 1, -1, -1)
+                           if not unicodedata.combining(word[k])), False)
+            after = next((fixed[k] for k in range(i + 1, len(word))
+                          if not unicodedata.combining(word[k])), False)
+            status = not (before or after)
+        mask.append(status)
+    return mask
+
+
+#: One semivowel-role table per spec, rebuilt when the spec object changes.
+_semivowel_cache: dict = {}
+
+
+def _semivowel_roles(spec: LanguageSpec) -> Dict[str, str]:
+    """The :func:`~orthography2ipa.vowels.semivowel_role` of each semivowel
+    letter in *spec*."""
+    cached = _semivowel_cache.get(spec.code)
+    if cached is not None and cached[0] is spec:
+        return cached[1]
+    positional = spec.positional_graphemes or {}
+    roles = {letter: role for letter in SEMIVOWEL_LETTERS
+             if (role := semivowel_role(letter, spec.graphemes,
+                                        letter in positional)) is not None}
+    _semivowel_cache[spec.code] = (spec, roles)
+    return roles
+
+
 def _ends_in_vowel(ipa: str) -> bool:
     """Whether *ipa*'s final phonetic segment is a vowel (ignoring trailing
     combining marks such as nasality/length). Used to tell a word-final vowel
@@ -140,7 +196,7 @@ _LIQUIDS = frozenset("lɫʎɬrɾʁʀɽɭɺ")
 
 def _capture_coda_liquids(
     syllables: List[str],
-    is_vowel_char,
+    nucleus: Sequence[bool],
 ) -> List[str]:
     """Move a syllable-initial liquid that heads a consonant cluster back onto
     the preceding syllable as its coda.
@@ -152,16 +208,20 @@ def _capture_coda_liquids(
     liquid of a ≥2-consonant onset is captured; a lone onset liquid (``ʎu``) or
     a rising cluster (``bɾ``, ``pl``) is left untouched. Opt-in per spec via
     :attr:`~orthography2ipa.types.StressRules.coda_liquid_capture`.
+
+    *nucleus* is the :func:`_nucleus_mask` of the word the syllables divide.
     """
     if len(syllables) < 2:
         return syllables
     out: List[str] = [syllables[0]]
+    start = len(syllables[0])
     for syll in syllables[1:]:
         # onset = the leading consonant segments before the first nucleus char
         j = 0
         while j < len(syll) and (
-                unicodedata.combining(syll[j]) or not is_vowel_char(syll[j])):
+                unicodedata.combining(syll[j]) or not nucleus[start + j]):
             j += 1
+        start += len(syll)
         onset = syll[:j]
         # the base consonant characters of the onset (combining marks ride along)
         cons = [c for c in onset if not unicodedata.combining(c)]
@@ -632,7 +692,7 @@ def _judge_for(
 
 def _rebalance_onsets(
     syllables: List[str],
-    is_vowel_char,
+    nucleus: Sequence[bool],
     judge: "_OnsetJudge",
 ) -> List[str]:
     """Move whatever the language cannot license as an onset into the coda.
@@ -645,15 +705,19 @@ def _rebalance_onsets(
 
     The first syllable's onset is never re-judged: a cluster that begins a
     word of the language IS a licit onset of that language.
+
+    *nucleus* is the :func:`_nucleus_mask` of the word the syllables divide.
     """
     if len(syllables) < 2:
         return syllables
     out: List[str] = [syllables[0]]
+    start = len(syllables[0])
     for syll in syllables[1:]:
         j = 0
         while j < len(syll) and (
-                unicodedata.combining(syll[j]) or not is_vowel_char(syll[j])):
+                unicodedata.combining(syll[j]) or not nucleus[start + j]):
             j += 1
+        start += len(syll)
         onset = syll[:j]
         if not onset or not out[-1]:
             out.append(syll)
@@ -713,20 +777,20 @@ def syllabify_for_mark(ipa: str, rules: StressRules) -> List[str]:
     not declared yet — the mark then falls where a plain vowel-group split
     puts it, which is where it fell before any of this existed.
     """
+    nucleus = _nucleus_mask(ipa, _is_vowel_char)
     if rules.ipa_diphthongs is None:
         sylls = syllabify(ipa, diphthongs=rules.diphthongs)
     else:
-        sylls = _syllabify_with_diphthongs(ipa, _is_vowel_char,
-                                           rules.ipa_diphthongs)
+        sylls = _syllabify_with_diphthongs(ipa, nucleus, rules.ipa_diphthongs)
     if not rules.constrain_mark_onsets:
         if rules.coda_liquid_capture:
-            sylls = _capture_coda_liquids(sylls, _is_vowel_char)
+            sylls = _capture_coda_liquids(sylls, nucleus)
         return sylls
     judge = _ipa_judge(rules.max_onset if rules.max_onset_declared else None,
                        rules.onset_clusters)
-    sylls = _rebalance_onsets(sylls, _is_vowel_char, judge)
+    sylls = _rebalance_onsets(sylls, nucleus, judge)
     if rules.coda_liquid_capture:
-        sylls = _capture_coda_liquids(sylls, _is_vowel_char)
+        sylls = _capture_coda_liquids(sylls, nucleus)
     return sylls
 
 
@@ -774,6 +838,7 @@ def syllabify(
     coda_liquid_capture: bool = False,
     spec: Optional[LanguageSpec] = None,
     max_onset: Optional[int] = None,
+    semivowels: Optional[Dict[str, str]] = None,
 ) -> List[str]:
     """Split *word* into syllables by vowel groups.
 
@@ -797,23 +862,30 @@ def syllabify(
     hiatus rather than a diphthong — Catalan ``tenia`` is te-ni-a, and the
     syllable count decides where stress (and the vowel reduction it
     conditions) lands. Empty = merge each run into one nucleus, unchanged.
+
+    *semivowels* gives the language's
+    :func:`~orthography2ipa.vowels.semivowel_role` for ⟨y⟩ and ⟨w⟩, which
+    decides where those letters are nuclei (see :func:`_nucleus_mask`).
+    Without it, each character is judged on its own.
     """
     is_vowel_char = (lambda c: c.lower() in vowels) if vowels is not None else _is_vowel_char
     if not word:
         return []
+    nucleus = _nucleus_mask(word, is_vowel_char, semivowels)
     judge = _judge_for(spec, max_onset)
     if diphthongs:
-        sylls = _syllabify_with_diphthongs(word, is_vowel_char, diphthongs)
+        sylls = _syllabify_with_diphthongs(word, nucleus, diphthongs)
         if judge is not None:
-            sylls = _rebalance_onsets(sylls, is_vowel_char, judge)
+            sylls = _rebalance_onsets(sylls, nucleus, judge)
         if coda_liquid_capture:
-            sylls = _capture_coda_liquids(sylls, is_vowel_char)
+            sylls = _capture_coda_liquids(sylls, nucleus)
         return sylls
     # indices of nucleus starts
     syllables: List[str] = []
     current = ""
+    current_start = 0
     in_nucleus = False
-    for ch in word:
+    for i, ch in enumerate(word):
         if unicodedata.combining(ch) or ch == _LENGTH:
             # A combining mark, or the IPA length mark ``ː``, belongs to the
             # character it sits on: neither opens or closes a syllable, and
@@ -824,37 +896,37 @@ def syllabify(
             # stress mark then lands.
             current += ch
             continue
-        is_vowel = is_vowel_char(ch)
+        is_vowel = nucleus[i]
         if is_vowel and not in_nucleus and current and any(
-                is_vowel_char(c) for c in current):
+                nucleus[current_start:i]):
             # a new nucleus after the previous syllable already has one:
             # close the syllable before this consonant-less transition
             syllables.append(current)
-            current = ch
+            current, current_start = ch, i
         elif not is_vowel and in_nucleus:
             # first consonant after a nucleus: close the syllable here so
             # the consonant opens the next one (onset-maximising)
             syllables.append(current)
-            current = ch
+            current, current_start = ch, i
         else:
             current += ch
         in_nucleus = is_vowel
     if current:
-        if any(is_vowel_char(c) for c in current) or not syllables:
+        if any(nucleus[current_start:]) or not syllables:
             syllables.append(current)
         else:
             # trailing consonant cluster joins the last syllable
             syllables[-1] += current
     if judge is not None:
-        syllables = _rebalance_onsets(syllables, is_vowel_char, judge)
+        syllables = _rebalance_onsets(syllables, nucleus, judge)
     if coda_liquid_capture:
-        syllables = _capture_coda_liquids(syllables, is_vowel_char)
+        syllables = _capture_coda_liquids(syllables, nucleus)
     return syllables
 
 
 def _syllabify_with_diphthongs(
     word: str,
-    is_vowel_char,
+    nucleus: Sequence[bool],
     diphthongs: Sequence[str],
 ) -> List[str]:
     """:func:`syllabify` with a vowel run split into nuclei by *diphthongs*.
@@ -862,12 +934,13 @@ def _syllabify_with_diphthongs(
     Onset-maximising exactly like the plain splitter: a whole consonant run
     opens the syllable of the nucleus that follows it, a trailing consonant
     run joins the last syllable, and only the run→nuclei step differs.
+    *nucleus* is the :func:`_nucleus_mask` of *word*.
     """
     syllables: List[str] = []
     onset = ""
     i = 0
     while i < len(word):
-        if not is_vowel_char(word[i]):
+        if not nucleus[i]:
             onset += word[i]
             i += 1
             # a combining mark rides along with whatever it sits on
@@ -877,11 +950,11 @@ def _syllabify_with_diphthongs(
             continue
         j = i
         while j < len(word) and (
-                is_vowel_char(word[j]) or unicodedata.combining(word[j])
+                nucleus[j] or unicodedata.combining(word[j])
                 or word[j] == _LENGTH):
             j += 1
-        for k, nucleus in enumerate(_split_nuclei(word[i:j], diphthongs)):
-            syllables.append((onset if k == 0 else "") + nucleus)
+        for k, piece in enumerate(_split_nuclei(word[i:j], diphthongs)):
+            syllables.append((onset if k == 0 else "") + piece)
         onset = ""
         i = j
     if onset:
@@ -926,9 +999,12 @@ def _syllables_for(
     # letters are nuclei is the language's own statement and is independent
     # of whether its onset inventory has been checked.
     vowels = None
+    semivowels = None
     if spec is not None and spec.stress is not None \
             and spec.stress.vowel_letters:
         vowels = {v.lower() for v in spec.stress.vowel_letters}
+    elif spec is not None:
+        semivowels = _semivowel_roles(spec)
     max_onset = None
     if spec is not None and not spec.constrain_onsets:
         # The spec has not opted in: its onset inventory has not been checked
@@ -940,7 +1016,7 @@ def _syllables_for(
             and spec.stress.max_onset_declared:
         max_onset = spec.stress.max_onset
     return syllabify(word, vowels=vowels, diphthongs=diphthongs, spec=spec,
-                     max_onset=max_onset)
+                     max_onset=max_onset, semivowels=semivowels)
 
 
 def _spec_for(lang: str) -> Optional[LanguageSpec]:
@@ -1116,21 +1192,6 @@ def secondary_stress_positions(
     return frozenset(range(stress_index % 2, stress_index - 1, 2))
 
 
-#: Vowel LETTERS for the merge-site test below. ⟨y⟩ is deliberately absent.
-#: It is a vowel in some orthographies and a consonant in others, and the
-#: naive syllabifier can hand back a nucleus-less piece that ends in it
-#: (Malaccan Creole ⟨kaminyu⟩ divides ka-mi-ny-u), which would read as a
-#: merge site that is not one. Leaving it out costs nothing: a word the test
-#: cannot account for keeps the end-anchored default.
-_WRITTEN_VOWELS = frozenset("aeiou")
-
-
-def _is_written_vowel(ch: str) -> bool:
-    """Whether *ch* is a vowel LETTER, with any diacritic ignored."""
-    base = unicodedata.normalize("NFD", ch.lower())[:1]
-    return base in _WRITTEN_VOWELS
-
-
 def _hiatus_merge_sites(syllables: Sequence[str]) -> List[int]:
     """Boundaries of *syllables* where two written syllables can become one.
 
@@ -1151,7 +1212,7 @@ def _hiatus_merge_sites(syllables: Sequence[str]) -> List[int]:
         before, after = syllables[i - 1], syllables[i]
         if not before or not after:
             continue
-        if _is_written_vowel(before[-1]) and _is_written_vowel(after[0]):
+        if is_basic_vowel_letter(before[-1]) and is_basic_vowel_letter(after[0]):
             sites.append(i)
     return sites
 

@@ -26,15 +26,15 @@ import re
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Union
 
+from orthography2ipa.vowels import IPA_VOWEL_SYMBOLS
+
 
 # ---------------------------------------------------------------------------
 # Vowel / consonant reference sets
 # ---------------------------------------------------------------------------
 
-#: All IPA vowel characters used in Ibero-Romance transcription.
-VOWEL_SET: frozenset = frozenset(
-    "aeɛɐiɨoɔuɑæøœyãẽĩõũ"
-)
+#: The IPA vowel symbols, shared with the rest of the package.
+VOWEL_SET: frozenset = IPA_VOWEL_SYMBOLS
 
 #: Palatal consonants — used to detect "adjacent to palatal" context.
 PALATAL_SET: frozenset = frozenset(["ɲ", "ʎ", "ʃ", "ʒ", "j"])

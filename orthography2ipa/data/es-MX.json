@@ -45,6 +45,26 @@
   "script_type": "alphabet",
   "sources": [
     {
+      "id": "navarro1918",
+      "author": "Navarro Tomás, T.",
+      "year": 1918,
+      "title": "Manual de pronunciación española",
+      "publisher": "Centro de Estudios Históricos, Madrid",
+      "url": "https://archive.org/details/manualdepronunci00navauoft",
+      "pages": "§ 47 p. 39; § 50 p. 41; § 122 pp. 100-102",
+      "notes": "First edition, read in the archive.org scan. § 47: written y in the diphthongs ay, ey, oy is the semivowel [i̯]. § 122: y in syllable onset is the palatal fricative (cayado, ayer, bueyes, hoyo, ayuda)."
+    },
+    {
+      "id": "rae_dpd_tilde",
+      "author": "Real Academia Española & Asociación de Academias de la Lengua Española",
+      "year": 2026,
+      "title": "Diccionario panhispánico de dudas, 2nd ed. (online), s.v. tilde",
+      "publisher": "RAE-ASALE",
+      "url": "https://www.rae.es/dpd/tilde",
+      "pages": "§ 1.2.1-1.2.2",
+      "notes": "Online edition, year of consultation. Oxytones ending in -y take no tilde (guirigay, virrey, convoy, estoy); paroxytones ending in -y take one (yérsey, yóquey). The 2010 Ortografía de la lengua española is not online; this DPD entry states its accentuation rules."
+    },
+    {
       "id": "hualde2005",
       "author": "Hualde, J.I.",
       "year": 2005,
@@ -159,7 +179,11 @@
       "j",
       "x",
       "k",
-      "f"
+      "f",
+      "ay",
+      "ey",
+      "oy",
+      "uy"
     ],
     "penult_stress_endings": [
       "n",
@@ -174,7 +198,7 @@
       "ú"
     ],
     "stress_mark": "ˈ",
-    "notes": "Standard Spanish accentuation (inherited from es-ES): default paroxytone; written accent wins; oxytone before consonant codas other than n/s; proparoxytones always written-accented."
+    "notes": "Standard Spanish accentuation (inherited from es-ES): default paroxytone; written accent wins; oxytone before consonant codas other than n/s; proparoxytones always written-accented. Final -y after a vowel: the letter writes the off-glide of a falling diphthong, 'en los diptongos ai, ei, oi, que a veces se escriben en la forma ay, ey, oy, la i (y) se pronuncia ... más corta' (ley [ˈlei̯], buey, soy; Navarro Tomás 1918, Manual de pronunciación española, § 47, p. 39), and § 50, p. 41 repeats that the written y of ley, rey, doy, soy 'se pronuncia como i'. For accentuation such a word counts as consonant-final: oxytones ending in -y take no tilde (guirigay, virrey, convoy, estoy) and paroxytones ending in -y do (yérsey, yóquey) (RAE-ASALE, Diccionario panhispánico de dudas, 2nd ed., s.v. tilde, § 1.2.1-1.2.2). The endings ay, ey, oy, uy encode that rule. A consonant+y ending is not a Spanish spelling: rugby and sexy are unadapted English forms whose adaptations are rugbi and sexi (DPD s.v. rugbi, sexi), so they keep the default paroxytone."
   },
   "ancestors": [
     {
