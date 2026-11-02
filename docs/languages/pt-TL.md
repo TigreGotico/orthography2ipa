@@ -13,7 +13,7 @@ East Timorese Portuguese (*Português de Timor Leste*, PTL) is a co-official lan
 
 Albuquerque (2010:273, fig. 1) draws a continuum. At one end is the *norma europeia* of highly schooled urban speakers in Dili and Baucau. They use it in formal domains such as law, the university and the church. At the other end is the *português acrioulado* of rural speakers, with heavy transfer from their first language. The spec models the acrolectal end, the one that follows the norm.
 
-Every transcription in `code` form on this page is real output of `orthography2ipa.transcribe(text, code)`. Forms in italics are quoted from the source. For the scores of the spec, see [../scoreboard.md](../scoreboard.md).
+Every transcription in `code` form on this page is real output of `orthography2ipa.transcribe(text, code)`. Forms in italics are quoted from the source. For the scores of the spec, see [../evaluation/generated/scoreboard.md](../evaluation/generated/scoreboard.md).
 
 ## Not a creole
 
@@ -60,7 +60,7 @@ The `pt-TL-x-dili` region of the `portuguese_unified` gold is scored against thi
 
 A new symbol for the reduced vowel does not remove the reduction. Many rows of `pt-TL-x-dili` still have a reduced [ə] or a reduced final [ʊ]. The coda /s/ is still the Lisbon *chiado* [ʃ]: the gold gives *instrumentista* as [ĩʃtɾumẽntˈiʃtə]. The primary source of this spec documents the opposite (Albuquerque 2010:275 fn. 7, 277). East Timorese Portuguese has no reduction of unstressed vowels and an alveolar coda /s/. The `audit.portuguese_unified` entry of the spec records this as a mislabelled gold.
 
-So the row measures agreement with a re-symbolised European Portuguese, not with the acrolectal variety that the spec models. Its PER says nothing about the spec. The row meets the production size bar of n ≥ 500 in row count only, not in reliability. It still gates, as [../benchmark_datasets.md](../benchmark_datasets.md) explains.
+So the row measures agreement with a re-symbolised European Portuguese, not with the acrolectal variety that the spec models. Its PER says nothing about the spec. The row meets the production size bar of n ≥ 500 in row count only, not in reliability. It still gates, as [../evaluation/datasets.md](../evaluation/datasets.md) explains.
 
 ## Sources
 

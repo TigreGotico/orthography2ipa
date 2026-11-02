@@ -5,7 +5,7 @@ Reliable G2P "gold" barely exists: most benchmark datasets are
 semi-automated, dictionary-extracted, community-scraped, or a
 phonemizer's own output reused as a reference. Every registered dataset
 must therefore carry an explicit reliability tier so the caveat travels
-with the numbers (docs/scoreboard.md column + benchmarks/results.json
+with the numbers (docs/evaluation/generated/scoreboard.md column + benchmarks/results.json
 field). These tests are a forcing function: a new dataset cannot be
 registered without classifying it, and the scoreboard must keep emitting
 the provenance column/field.

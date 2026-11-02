@@ -1,6 +1,6 @@
 # Gold defects
 
-Every gold dataset in the harness has a provenance tier ([benchmarks.md](benchmarks.md), [quality_tiers.md](quality_tiers.md)). A tier says where a transcription came from. It does not say whether the transcription is wrong about the language. This page is the registry of measured defects in individual gold rows. In each case the gold merges a contrast, marks something impossible, describes another lect, mixes conventions, or comes from the system it scores.
+A [provenance tier](benchmarks.md#reliability-tiers) says where a gold transcription came from, not whether it is right about the language. This page is the registry of measured defects in individual gold rows. In each case the gold merges a contrast, marks something impossible, describes another lect, mixes conventions, or comes from the system it scores.
 
 The figures were measured against the cached gold in `.benchmark_cache/`, with the loaders that the scoreboard uses, so each one can be reproduced. They count words and symbols in the gold files, which the harness pins.
 
@@ -22,9 +22,9 @@ The class of a defect decides what can be done about it, so the registry is orde
 
 ## A note on gating
 
-`row_gates()` in `scripts/benchmark.py` decides whether a row may qualify or block a language for the `production` quality tier. A row gates only when three conditions hold. Its tier passes `can_gate_promotion()`, it has at least `THIN_ROW_N` (20) scored words, and its dataset is not a corrections overlay. `can_gate_promotion()` refuses `espeak-derived`, `epitran-derived` and `llm-generated`, and accepts every other tier.
+`row_gates()` in `scripts/benchmark.py` decides whether a row may qualify or block a language for the `production` quality tier ([quality tiers](../specs/quality_tiers.md)). [Confidence intervals](benchmarks.md#confidence-intervals) gives its three conditions, and [reliability tiers](benchmarks.md#reliability-tiers) says which tiers gate.
 
-The tier order therefore does not run the way a reader expects. `machine-generated` gold, from a rule script or an automatic annotator, gates. `epitran-derived` gold does not, because the objection to the competitor tiers is circularity, not quality. The entries with the most effect are therefore not the worst-transcribed ones. They are the `crowd-scraped` and `machine-generated` rows, which can block a promotion while they carry a defect that has nothing to do with the spec.
+The gating does not run the way a reader expects. `machine-generated` gold gates, and `epitran-derived` gold does not, because the objection to the competitor tiers is circularity, not quality. The entries with the most effect are therefore not the worst-transcribed ones. They are the `crowd-scraped` and `machine-generated` rows, which can block a promotion while they carry a defect that has nothing to do with the spec.
 
 ## The registry
 
@@ -42,7 +42,7 @@ The tier order therefore does not run the way a reader expects. `machine-generat
 | `wikipron` | Scottish Gaelic (`gd`) | Mixed conventions | [two notations for ⟨b d g⟩ and mixed dialects](#scottish-gaelic-wikipron) | `crowd-scraped`, gates. Fix in the normalizer or upstream. |
 | `wikipron` | Middle High German (`gmh`) | Mixed conventions | [Wiktionary page titles, not Lachmann spelling](#middle-high-german-wikipron) | `crowd-scraped`, gates. Score against `gmh-x-wikt`. |
 | `wikipron` | Kapampangan (`pam`) | Mixed conventions | [⟨e⟩ where the spec writes ⟨ɛ⟩, and readings that conflict](#kapampangan-wikipron) | `crowd-scraped`, gates. Left as it is. |
-| `arabic_tts`, `portuguese_tts`, `spain_romance_tts` | Arabic, Portuguese, the languages of Spain | Circular | [the gold equals the engine output by contract](#the-tts-sentence-gold-sets-arabic_tts-portuguese_tts-spain_romance_tts) | `llm-generated`, cannot gate |
+| `arabic_tts`, `portuguese_tts`, `spain_romance_tts` | Arabic, Portuguese, the languages of Spain | Circular | [the silver set equals the engine output by contract](#the-tts-silver-sets-arabic_tts-portuguese_tts-spain_romance_tts) | `llm-generated`, cannot gate |
 | `vox_communis` | Abkhaz (`ab`) | False provenance label | [epitran has no Abkhaz map](#abkhaz-vox_communis-1) | No effect on gating. The label is wrong. |
 
 The sections below give the evidence that does not fit in a table cell.
@@ -57,19 +57,19 @@ That puts ⟨˨˨⟩ in 991 types, and in 967 of them it is the only tone. That 
 
 The row also places tone in the wrong spot. In 1,957 of the 2,468 toned types (79.3%) the tone letter sits inside the rime, with segments after it. An example is `t oː˨˨ j` for *tôi*. Tone belongs to the whole syllable and is written after it by convention. A spec that writes tone at the end of the syllable mismatches those 1,957 types on position alone, even when the tone is right.
 
-The tier is `epitran-derived`, so the row cannot gate. The merge lives in the VoxCommunis lexicons. The shipped gold is never rewritten here. The `vox_communis_corrected` overlay repairs the huyền side from the grave accent alone, as [benchmark_datasets.md](benchmark_datasets.md#voxcommunis-with-the-vietnamese-tone-merge-repaired-vox_communis_corrected) describes.
+The tier is `epitran-derived`, so the row cannot gate. The merge lives in the VoxCommunis lexicons. The shipped gold is never rewritten here. The `vox_communis_corrected` overlay repairs the huyền side from the grave accent alone, as [its section in the dataset catalogue](datasets.md#voxcommunis-with-the-vietnamese-tone-merge-repaired-vox_communis_corrected) describes.
 
 ## Missing data
 
 ### Abkhaz, `vox_communis`
 
-Abkhaz has a large series of labialized consonants, and the gold cannot write it. The file holds 76,459 raw word types. In 44,279 of them (57.9%) the phones are `spn`, the "spoken noise" marker of the forced aligner. The pipeline also writes `spn` for any word that its lexicon does not cover. The 32,180 types that remain use exactly 35 phone symbols, and none carries the labialization mark ⟨ʷ⟩.
+Abkhaz has a very large consonant inventory and only two vowels, and it palatalizes and labializes almost every place of articulation (Beguš 2021, [doi:10.1093/oxfordhb/9780190690694.013.18](https://doi.org/10.1093/oxfordhb/9780190690694.013.18), §2.2.1). The orthography writes labialization with the modifier letter ⟨ә⟩ (U+04D9). The gold cannot write labialization at all. The file holds 76,459 raw word types. In 44,279 of them (57.9%) the phones are `spn`, the "spoken noise" marker of the forced aligner. The pipeline also writes `spn` for any word that its lexicon does not cover. The 32,180 types that remain use exactly 35 phone symbols, and none carries the labialization mark ⟨ʷ⟩.
 
 The inventory is `a b d f j kʲʼ kʼ l m n pʼ qʲʼ qʼ r s t ts tsʼ tʃ tʃʲ tʃʲʼ tʼ v w z ħ ə ɡ ɡʲ ʃ ʃʲ ʒ ʒʲ χ χʲ`. Palatalization occurs throughout, and labialization never occurs.
 
 The `spn` half is not random. Eight Abkhaz letters are `spn` in every type that contains them: ⟨ә⟩ (30,743 types), ⟨ԥ⟩ (7,984), ⟨қ⟩ (7,058), ⟨ӡ⟩ (5,024), ⟨ҩ⟩ (4,035), ⟨ҿ⟩ (2,678), ⟨ӷ⟩ (1,741) and ⟨џ⟩ (811). The lexicon of the gold does not cover them. The scoreable subset is therefore the part of the vocabulary that avoids those letters.
 
-Nothing can be recovered. A missing symbol cannot be inferred from a file that never contains it. The row can only be excluded, or read as a score over a biased subset. The tier is `epitran-derived`, so it cannot gate in any case.
+Nothing can be recovered. A missing symbol cannot be inferred from a file that never contains it. The row can only be excluded, or read as a score over a biased subset. The tier is `epitran-derived`, so it cannot gate in any case. The part of the distance that is convention, not mapping, is in the [dataset catalogue](datasets.md#coverage-hole-in-abkhaz-ab).
 
 ## Structurally impossible marking
 
@@ -120,13 +120,13 @@ The WikiPron `fa` set is mostly Classical or Early New Persian, not the modern I
 | ⟨q⟩ | 880 | ⟨ɣ⟩ | 332 |
 | /i u/ | 2,796 and 2,075 | short /e o/ | 139 and 106 |
 
-The majhūl vowels, which Iranian Persian merged into /iː uː/ centuries ago, are still frequent: ⟨eː⟩ 513 and ⟨oː⟩ 523. So is labialized ⟨xʷ⟩ for ⟨خو⟩, with 124.
+The majhūl vowels, which Iranian Persian merged into /iː uː/ centuries ago, are still frequent: ⟨eː⟩ 513 and ⟨oː⟩ 523. So is labialized ⟨xʷ⟩ for ⟨خو⟩, with 124. The modern markers ⟨t̪ʰ kʲ⟩ are rare too. Overall the classical markers outnumber the modern ones by about an order of magnitude, and few rows carry a modern marker.
 
-A better description of Persian cannot improve this row. The only way to lower its PER is to transcribe Classical Persian under the tag `fa`, which would be false. The gold is fine and its tag is wrong. The fix is a correct label, or a gold from a modern Iranian source. The tier is `crowd-scraped`, so the row gates, and the wrong label has consequences. [benchmark_datasets.md](benchmark_datasets.md#variety-mismatch-fa) describes the same row.
+A better description of Persian cannot improve this row. The only way to lower its PER is to transcribe Classical Persian under the tag `fa`, which would be false. The gold is fine and its tag is wrong. The fix is a correct label, or a gold from a modern Iranian source. The tier is `crowd-scraped`, so the row gates, and the wrong label has consequences.
 
 ### Algerian Arabic, `primary_sources`
 
-The `ar-DZ` row on `primary_sources` has one gold pair: id `guerrero2019-010`, زَوْجَتُه "his wife". It is filed against Guerrero (2019), who quotes the 1908 description of Tlemcen Arabic by W. Marçais. *Le dialecte arabe parlé à Tlemcen* (1902) is the earlier monograph of the same author on the same city. A confidence interval needs more than one row, so `per_ci_low` and `per_ci_high` in `benchmarks/results.json` both equal the PER. The `PROVENANCE` comment in `scripts/benchmark.py` warns that `primary_sources` rows "diagnose rules rather than certify a language on their own."
+The `ar-DZ` row on `primary_sources` has one gold pair: id `guerrero2019-010`, زَوْجَتُه "his wife". It is filed against Guerrero (2019), who quotes the 1908 description of Tlemcen Arabic by W. Marçais. *Le dialecte arabe parlé à Tlemcen* (1902) is the earlier monograph of the same author on the same city. The row is far below `THIN_ROW_N`, so `per_ci_low` and `per_ci_high` in `benchmarks/results.json` are null, and the scoreboard shows `n too small`. The `PROVENANCE` comment in `scripts/benchmark.py` warns that `primary_sources` rows "diagnose rules rather than certify a language on their own."
 
 The `ar-DZ` spec models old urban Algiers, after Boucherit (2002). It cites the Tlemcen material of Marçais only for the isogloss of the interdental stops. Guerrero's example is Algerian, but it is western Tlemcen speech. It also carries a construct-state contraction that the spec was never built to produce. In Marçais the word surfaces as *zūžtăh* ['zuːʃtah]. The short /a/ of the possessive syncopates, /aw/ contracts to /uː/, and /ʒ/ devoices to [ʃ] before /t/. The spec reads the vocalized input as it is written, `ˈzawʒatuh`, with no syncope, contraction or devoicing.
 
@@ -212,13 +212,13 @@ The file also carries plain crowd-scraped noise. 48 headwords recur with two or 
 
 ## Circular
 
-### The TTS sentence gold sets (`arabic_tts`, `portuguese_tts`, `spain_romance_tts`)
+### The TTS silver sets (`arabic_tts`, `portuguese_tts`, `spain_romance_tts`)
 
-Every row of these three datasets scores a PER of exactly zero. That is a property of the gold, not of the spec. The [engine-pin contract](tts_gold.md#the-engine-pin-contract) requires each `ipa` cell to equal `transcribe(sentence, lect)`, and CI fails when it does not. The score therefore compares the engine with a copy of its own output.
+These three silver sets are circular in two ways. The [engine-pin contract](silver_sets.md#the-engine-pin-contract) makes each `ipa` cell a copy of the engine output, so [every row scores a PER of zero](silver_sets.md#what-a-score-on-these-sets-means). That is a property of the set, not of the spec.
 
-The authorship is circular as well. A language model drafted the Arabic and Portuguese transcriptions, which were then audited against the literature. The provenance comment on the sibling `gold20_arabic` dataset calls it "near-circular", from the same Claude lineage that wrote the Arabic dialect specs. The same lineage wrote these sets. The `spain_romance_tts` set is drafted by `transcribe` itself.
+The authorship is circular as well. The Claude lineage that wrote the specs also wrote these sets. The provenance comment on the sibling `gold20_arabic` dataset calls that relation "near-circular".
 
-All three are `llm-generated`, so none can gate, and the tier is correct. The harness does not misuse the number. The defect is that the number looks like a result and is not one. No audit converts it. Only an independently collected gold would.
+All three are `llm-generated`, so none can gate, and the tier is correct. The harness does not misuse the number. The defect is that the number looks like a result and is not one. No citation audit converts it. Only an independently collected gold would.
 
 ## False provenance label
 
@@ -228,13 +228,13 @@ The `ab` row carries the tier `epitran-derived`, and epitran cannot have produce
 
 The dataset-wide tier `epitran-derived` is a reasonable default for VoxCommunis. Its lexicons come from a mix of tools, and the tier is pessimistic on purpose. For this row, though, the label names a competitor that was not used. The name of the competitor is exactly what the tier exists to tell a reader. The reader is told to read the row as divergence from epitran, and no epitran output exists to diverge from.
 
-The effect on gating is nil, because `epitran-derived` and the tiers that could replace it all refuse to gate. The fix is a name: the row needs a tier that does not claim a tool that was not used. [benchmark_datasets.md](benchmark_datasets.md#coverage-hole-in-abkhaz-ab) explains why the row gets no `PROVENANCE_BY_LANG` override.
+The effect on gating is nil, because `epitran-derived` and the tiers that could replace it all refuse to gate. The fix is a name: the row needs a tier that does not claim a tool that was not used. The [dataset catalogue](datasets.md#coverage-hole-in-abkhaz-ab) explains why the row gets no `PROVENANCE_BY_LANG` override.
 
 ## Alphabet-chart entries in a row
 
-The [scoreboard](scoreboard.md) gives one PER per gold row. That number says something about running text only if the gold is running text. WikiPron scrapes Wiktionary headwords. For a small language, a Wiktionary edition often lists the whole alphabet as ordinary headwords: single letters, names of digraphs, and letters with diacritics. They sit in the same TSV as real words. A grapheme table transcribes those entries by construction, because they are the table read back. A row can therefore look excellent while its gold says little about real sentences.
+The [scoreboard](generated/scoreboard.md) gives one PER per gold row. That number says something about running text only if the gold is running text. WikiPron scrapes Wiktionary headwords. For a small language, a Wiktionary edition often lists the whole alphabet as ordinary headwords: single letters, names of digraphs, and letters with diacritics. They sit in the same TSV as real words. A grapheme table transcribes those entries by construction, because they are the table read back. A row can therefore look excellent while its gold says little about real sentences.
 
-[`scripts/gold_composition.py`](../scripts/gold_composition.py) measures this. It reads each row of `benchmarks/results.json`, loads its gold from `.benchmark_cache/`, and splits it into a trivial subset and a subset of real words. It scores each subset with `evaluate_words` from `scripts/benchmark.py`, with stress stripped and broad normalization. `trivial_per` and `real_per` are therefore in the units of the board's PER column. The script never changes a spec or a board file.
+[`scripts/gold_composition.py`](../../scripts/gold_composition.py) measures this. It reads each row of `benchmarks/results.json`, loads its gold from `.benchmark_cache/`, and splits it into a trivial subset and a subset of real words. It scores each subset with `evaluate_words` from `scripts/benchmark.py`, with stress stripped and broad normalization. `trivial_per` and `real_per` are therefore in the units of the board's PER column. The script never changes a spec or a board file.
 
 ### What counts as trivial
 
@@ -287,7 +287,7 @@ A `gap` from a handful of real words is noisy, as any PER on a small row is. Rea
 
 ### What the measurement is not
 
-It is not a spec fix, and it never moves `docs/scoreboard.md` or `benchmarks/results.json`. Only `scripts/benchmark.py` writes those, from the actual behaviour of the spec. A large `gap` means that the row needs a larger and more representative gold before it can support a claim about running text. It is not evidence that the spec is wrong. A `trivial_per` or `real_per` on a `crowd-scraped` or lower tier carries every caveat of that tier, as [benchmarks.md](benchmarks.md#provenance-and-reliability-read-this-before-trusting-any-number) describes.
+It is not a spec fix, and it never moves `docs/evaluation/generated/scoreboard.md` or `benchmarks/results.json`. Only `scripts/benchmark.py` writes those, from the actual behaviour of the spec. A large `gap` means that the row needs a larger and more representative gold before it can support a claim about running text. It is not evidence that the spec is wrong. A `trivial_per` or `real_per` on a `crowd-scraped` or lower tier carries every caveat of that tier, as [benchmarks.md](benchmarks.md#provenance-and-reliability-read-this-before-trusting-any-number) describes.
 
 ---
-[← Lexicon-overlay scoreboard](lexicon_scoreboard.md) · [Home](index.md) · [Known limitations →](known_limitations.md)
+[← TTS silver sets](silver_sets.md) · [Home](../index.md) · [Scoreboard →](generated/scoreboard.md)

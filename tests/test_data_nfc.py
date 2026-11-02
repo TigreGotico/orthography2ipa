@@ -1,7 +1,7 @@
 """Every spec data file is NFC-normalized, string for string.
 
 ``lexicon.py``'s ``is_valid_ipa``/``is_ipa_string`` reject non-NFC IPA, and
-``docs/data_model.md`` documents NFC as the data-model-wide contract — not
+``docs/specs/data_model.md`` documents NFC as the data-model-wide contract — not
 just for IPA fields, but for every authored string (graphemes, allophones,
 word_exceptions, notes, source titles, …). A spec authored in NFD (e.g. a
 nasal vowel written as base letter + combining tilde, ``a`` + U+0303,

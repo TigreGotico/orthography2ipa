@@ -61,7 +61,7 @@ A doubled letter in a consonantal skeleton is two radicals of a root, not one lo
 
 The `egy` WikiPron gold mixes two kinds of transcription under the same headword. Some lines are generated Egyptological readings. Others are hand-entered reconstructions of various stages, with ejectives, schwas, an explicit `V` for an unknown vowel, and forms that follow Coptic. Scoring takes the closest of a word's variants, so the row measures conformance to the reading convention, which every headword in this gold carries. The orthography cannot reach the reconstructions, but none of them is a headword's only reading, so none puts a floor under the row.
 
-The convention lines come from the same published guidelines that the spec encodes. The row is therefore a reproduction test, not an accuracy measurement, and it is not eligible for comparison. See [the module-generated WikiPron rows](../benchmark_datasets.md#module-generated-wikipron-rows). For the score, see the [scoreboard](../scoreboard.md).
+The convention lines come from the same published guidelines that the spec encodes. The row is therefore a reproduction test, not an accuracy measurement, and it is not eligible for comparison. See [the module-generated WikiPron rows](../evaluation/datasets.md#module-generated-wikipron-rows). For the score, see the [scoreboard](../evaluation/generated/scoreboard.md).
 
 The misses fall into three groups. Most are placements inside a cluster, where the spec satisfies the constraint differently from the gold or cannot reach the position. The others are causative s- words and one-letter words.
 

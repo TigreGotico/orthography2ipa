@@ -2,7 +2,7 @@
 
 Mirandese (*mirandés*, *lhéngua mirandesa*) is an Asturleonese language of the municipality of Miranda do Douro, in north-eastern Portugal. Portugal has recognised it as a co-official regional language since 1999. It is not a dialect of Portuguese. Its parent in this library is `ast-PT-x-medieval` (Medieval Asturian-Leonese of Portugal), and its features are West Iberian and Leonese, not Portuguese allophony. Modern Mirandese does carry a heavy Portuguese adstrate from schooling and administration, which shows mostly in the reduction of unstressed vowels. The spec `ancestors` list `pt-PT-x-medieval` and `ast-x-sanabria` as adstrates.
 
-Every transcription on this page is real output of `orthography2ipa.transcribe(text, code)`, for the code of its section. Forms in italics are quoted from a source or from the gold. For the scores of the specs, see [../scoreboard.md](../scoreboard.md).
+Every transcription on this page is real output of `orthography2ipa.transcribe(text, code)`, for the code of its section. Forms in italics are quoted from a source or from the gold. For the scores of the specs, see [../evaluation/generated/scoreboard.md](../evaluation/generated/scoreboard.md).
 
 | Code | Name | Sub-dialect | Tier |
 |:--|:--|:--|:--|
@@ -88,7 +88,7 @@ The gold writes a coda [l] more often than [ɫ], and the spec follows Vasconcelo
 
 ## Allophony
 
-The spec declares cited [allophone rules](../allophony.md) and sandhi rules.
+The spec declares cited [allophone rules](../engine/allophony.md) and sandhi rules.
 
 ### Nasal before a stop
 
@@ -146,7 +146,7 @@ Input is Mirandese text in the official orthography (Convenção 1999). Give the
 
 ## Measuring against the gold
 
-The `TigreGotico/mirandese_g2p` gold is `expert-human` and small, and its rows for the sub-dialects are very small. Read the confidence interval on [../scoreboard.md](../scoreboard.md) before you read the PER of a sub-dialect.
+The `TigreGotico/mirandese_g2p` gold is `expert-human` and small, and its rows for the sub-dialects are very small. Read the confidence interval on [../evaluation/generated/scoreboard.md](../evaluation/generated/scoreboard.md) before you read the PER of a sub-dialect.
 
 The gold writes the nasal vowel without the nasal consonant. It writes [wo] and [je], [ɛ ɔ] in unmarked words, and [d] between vowels. Where it disagrees with Vasconcelos, `mwl` follows Vasconcelos, so its PER is higher than it would be with the modern readings. Some residual error also comes from notation choices of the gold that the rules cannot and should not follow. These are the central final vowel [ʉ] for an unstressed final ⟨-o⟩, and the plain coda [l].
 

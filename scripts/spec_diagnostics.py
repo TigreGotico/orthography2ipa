@@ -554,7 +554,7 @@ def render(entries: List[dict], top: int = 20) -> str:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--langs", help="comma-separated codes; default every spec")
-    parser.add_argument("--out", default=os.path.join(ROOT, "docs", "spec_diagnostics.md"))
+    parser.add_argument("--out", default=os.path.join(ROOT, "docs", "evaluation", "generated", "spec_diagnostics.md"))
     parser.add_argument("--json", help="also write the raw per-spec records here")
     parser.add_argument("--top", type=int, default=20)
     parser.add_argument("--sample", type=int, default=5000,

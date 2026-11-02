@@ -2,7 +2,7 @@
 
 The `pt-BR-x-*` specs model the regional speech of Brazil. Each one is a delta spec over [pt-BR](pt-BR.md): it inherits the general Brazilian standard and declares only what its region changes. This page first explains how the inheritance works. One table then compares the defining features of every lect. Each lect then has its own section, with its sources, its rules and their conditions, and its known gaps.
 
-Every transcription on this page is real output of `orthography2ipa.transcribe(text, code)`. For the scores of each spec, see [../scoreboard.md](../scoreboard.md). For the list of registered specs, run `orthography2ipa list --family Ibero-Romance`.
+Every transcription on this page is real output of `orthography2ipa.transcribe(text, code)`. For the scores of each spec, see [../evaluation/generated/scoreboard.md](../evaluation/generated/scoreboard.md). For the list of registered specs, run `orthography2ipa list --family Ibero-Romance`.
 
 ## How the dialect specs inherit from pt-BR
 
@@ -10,7 +10,7 @@ Every spec on this page sets `parent` to `pt-BR`. It also sets the three base ke
 
 The dictionary fields `graphemes`, `allophones` and `positional_graphemes` merge key by key. An own entry replaces the `pt-BR` entry with the same key, and every other key is inherited. In `positional_graphemes` the key is the grapheme. So an own map for ⟨r⟩ replaces the whole ⟨r⟩ map of `pt-BR`.
 
-The rule list `allophone_rules` merges by id through the `graphemes_base` edge (see [../allophony.md](../allophony.md#inheritance)). An own rule with the same id replaces the inherited rule in place. An own rule with a new id goes to the end of the list. A spec switches off an inherited rule when it declares the same id with an empty `phonemes` list. Six specs switch off `BR_AFFRIC_T_RAISED` and `BR_AFFRIC_D_RAISED` this way: `pt-BR-x-caipira`, `pt-BR-x-ce`, `pt-BR-x-norte`, `pt-BR-x-pr`, `pt-BR-x-recife` and `pt-BR-x-sul`. In these specs, a raised final ⟨e⟩ does not affricate /t d/.
+The rule list `allophone_rules` merges by id through the `graphemes_base` edge (see [../engine/allophony.md](../engine/allophony.md#inheritance)). An own rule with the same id replaces the inherited rule in place. An own rule with a new id goes to the end of the list. A spec switches off an inherited rule when it declares the same id with an empty `phonemes` list. Six specs switch off `BR_AFFRIC_T_RAISED` and `BR_AFFRIC_D_RAISED` this way: `pt-BR-x-caipira`, `pt-BR-x-ce`, `pt-BR-x-norte`, `pt-BR-x-pr`, `pt-BR-x-recife` and `pt-BR-x-sul`. In these specs, a raised final ⟨e⟩ does not affricate /t d/.
 
 The fields `allophone_passes` and `stress` are not inherited. Each spec declares its own `stress`. The specs that declare `allophone_passes: 2` run the post-lexical rules twice, as `pt-BR` does. The other specs run them once.
 
@@ -265,7 +265,7 @@ Sources listed in the spec: Cardoso et al. (2014, ALiB), Mateus & d'Andrade (200
 
 Brasília postdates by a decade the six *subfalares* into which Nascentes (1953) divides Brazil. So no historical *subfalar* exists to source a distinctive accent from, as there is for the older regions. The Brasiliense accent is a koiné. It formed from waves of internal migration, from 1956 onward, of construction workers and civil servants from every region. It converged on the dominant southeastern norm, close to São Paulo and Minas Gerais, over a Goiás and Centre-West substratum.
 
-No source that the spec cites documents a phonemic feature that sets Brasiliense apart from that southeastern norm. The spec exists to name the variety and to record why it carries no divergence. If fieldwork on the Distrito Federal, for example from ALiB, documents a real phonemic difference, a sourced positional delta can follow. The page [../adding_a_language.md](../adding_a_language.md) describes the process.
+No source that the spec cites documents a phonemic feature that sets Brasiliense apart from that southeastern norm. The spec exists to name the variety and to record why it carries no divergence. If fieldwork on the Distrito Federal, for example from ALiB, documents a real phonemic difference, a sourced positional delta can follow. The page [../contributing/spec_authoring.md](../contributing/spec_authoring.md) describes the process.
 
 Sources listed in the spec: Nascentes (1953, pp. 20, 23-25, for the context), Noll (2008), Mateus & d'Andrade (2000), Callou & Leite (2001), Silva (2002).
 

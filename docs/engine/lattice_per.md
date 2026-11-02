@@ -96,4 +96,4 @@ The lattice path before sandhi and the final reading do not cover every combinat
 Scoring is per IPA segment: a base character with its combining marks, with affricate ties kept. A hypothesis in another notation must first be folded to the spec's conventions, as the cross-engine benchmarks do.
 
 ---
-[← The sentence-context seam](sentence_context.md) · [Home](index.md) · [Features →](features.md)
+[← The pronunciation lattice](lattice.md) · [Home](../index.md) · [Allophony →](allophony.md)

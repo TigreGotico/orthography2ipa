@@ -520,7 +520,7 @@ def test_board_scores_without_injected_alternatives_by_default():
         assert default is False, (
             f"{fn.__name__}'s expose_ambiguous_endings default is "
             f"{default!r}, not False. The published oracle columns must be "
-            f"measured on the beam the engine RANKS; see docs/benchmarks.md, "
+            f"measured on the beam the engine RANKS; see docs/evaluation/benchmarks.md, "
             f"'Injected alternatives do not count as ranking error'.")
 
 

@@ -128,7 +128,7 @@ def test_thin_row_interval_renders_as_n_too_small(tmp_path, monkeypatch):
 
 
 def test_committed_scoreboard_is_in_sync_with_generator(tmp_path, monkeypatch):
-    """The committed docs/scoreboard.md must be byte-identical to what
+    """The committed docs/evaluation/generated/scoreboard.md must be byte-identical to what
     write_scoreboard(read_scoreboard_rows()) produces. This catches drift
     where the generator changes but the output file is not regenerated.
 
@@ -143,7 +143,7 @@ def test_committed_scoreboard_is_in_sync_with_generator(tmp_path, monkeypatch):
     # Load the committed scoreboard rows.
     repo_root = os.path.dirname(os.path.dirname(__file__))
     results_json = os.path.join(repo_root, "benchmarks", "results.json")
-    committed_md = os.path.join(repo_root, "docs", "scoreboard.md")
+    committed_md = os.path.join(repo_root, "docs", "evaluation", "generated", "scoreboard.md")
 
     if not os.path.exists(results_json) or not os.path.exists(committed_md):
         # Skip if not running in the repo (e.g., on a minimal test install).

@@ -2,7 +2,7 @@
 
 **Family**: Afro-Asiatic > Semitic > Central Semitic | **Script**: Arabic (abjad)
 
-This page covers the spoken Arabic specs: Egyptian, the Peninsular lects, Levantine, Iraqi, the Maghreb and Sudanese. Modern Standard Arabic, the grapheme base of all of them, has its own page: [ar.md](ar.md). For the live list of specs and their tiers, run `orthography2ipa list` or read the [scoreboard](../scoreboard.md).
+This page covers the spoken Arabic specs: Egyptian, the Peninsular lects, Levantine, Iraqi, the Maghreb and Sudanese. Modern Standard Arabic, the grapheme base of all of them, has its own page: [ar.md](ar.md). For the live list of specs and their tiers, run `orthography2ipa list` or read the [scoreboard](../evaluation/generated/scoreboard.md).
 
 ## What the dialect specs share
 
@@ -112,7 +112,7 @@ The urban koine merges the interdentals to stops: ث [t], ذ [d], ظ [dˤ]. The 
 
 The node gives ق as [ɡ], with [q] as the formal alternate: قَلَم is `ˈɡalam`. The interdentals are kept, Bedouin-type, unlike sedentary Levantine and Egyptian: ثَلاثَة is `θaˈlaːθa` and ذَهَب is `ˈðahab`. ج varies between [dʒ] and [j]. The loan phonemes /p/ and /v/ are integrated, spelt پ and ڤ.
 
-Velar affrication is the defining Gulf feature, and the spec models it with two post-lexical [allophone](../allophony.md) rules. The rule `GULF_K_AFFRICATION` gives /k/ → [tʃ] next to /i iː/: كِتَاب is `tʃiˈtaːb`, and كَلْب stays `ˈkalb`. The rule `GULF_G_AFFRICATION` gives /ɡ/ → [dʒ] in the same context: قِرْد is `ˈdʒird`. The high-front conditioning follows Mustafawi's (2006, 2007) analysis of Qatari, as Alshammari (2026) reports it.
+Velar affrication is the defining Gulf feature, and the spec models it with two post-lexical [allophone](../engine/allophony.md) rules. The rule `GULF_K_AFFRICATION` gives /k/ → [tʃ] next to /i iː/: كِتَاب is `tʃiˈtaːb`, and كَلْب stays `ˈkalb`. The rule `GULF_G_AFFRICATION` gives /ɡ/ → [dʒ] in the same context: قِرْد is `ˈdʒird`. The high-front conditioning follows Mustafawi's (2006, 2007) analysis of Qatari, as Alshammari (2026) reports it.
 
 The rule notes record the limits. Johnstone (1967) and Szreder & Derrick (2023) treat [k~tʃ] as a completed phonemic change, with /tʃ/ an independent phoneme. Adjacent emphatics and the OCP also block affrication. The coda case (samak → simatʃ) and Matar's non-adjacent Kuwaiti trigger across /r l/ are not modelled.
 

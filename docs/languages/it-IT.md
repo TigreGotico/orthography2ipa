@@ -65,7 +65,7 @@ The spec cannot recover these contrasts from the spelling, and a downstream lexi
 | Antepenultimate stress | ⟨tavola⟩ |
 | Tuscan [s] against Northern [z] between vowels | ⟨casa⟩ |
 
-The spec `notes` give the share of the remaining error that each contrast causes on the WikiPron gold. The scores are on the [scoreboard](../scoreboard.md).
+The spec `notes` give the share of the remaining error that each contrast causes on the WikiPron gold. The scores are on the [scoreboard](../evaluation/generated/scoreboard.md).
 
 ## References
 

@@ -14,7 +14,7 @@ Barranquenho is the contact vernacular of Barrancos, in the Baixo Alentejo of Po
 
 The code is a private-use tag. Its `ext-PT-` prefix marks Barranquenho as a language of its own, spoken in Portugal, not as a lect of `pt-PT`. The prefix records that modelling decision, not a genealogy. Glottolog has no languoid for the variety and ISO 639-3 has no code, so both cross-reference fields are null. The retired spelling `pt-PT-x-barrancos` still resolves through the alias table in `orthography2ipa/registry.py`.
 
-Every transcription on this page is real output of `orthography2ipa.transcribe(text, "ext-PT-x-barrancos")`. For the scores of the spec, see [../scoreboard.md](../scoreboard.md).
+Every transcription on this page is real output of `orthography2ipa.transcribe(text, "ext-PT-x-barrancos")`. For the scores of the spec, see [../evaluation/generated/scoreboard.md](../evaluation/generated/scoreboard.md).
 
 ## Inheritance and the contact overrides
 
@@ -26,7 +26,7 @@ The spec has no `parent`, as for a creole. Its `ancestors` weight the contributo
 | `ext` (Extremaduran) | adstrate | 0.35 |
 | `roa-x-galaicopt` | substrate | 0.05 |
 
-The spec takes its data from `pt-PT` through `graphemes_base`, `allophones_base`, `positional_graphemes_base` and `word_exceptions_base`. The `allophone_rules` inherit by id (see [../allophony.md](../allophony.md#inheritance)): a child rule with the same id replaces the inherited rule in place. So without overrides, Barranquenho would inherit the Lisbon *chiado* of the coda sibilants and the dark coda /l/. Those are the European features that Barranquenho does not share, and the spec redeclares their ids:
+The spec takes its data from `pt-PT` through `graphemes_base`, `allophones_base`, `positional_graphemes_base` and `word_exceptions_base`. The `allophone_rules` inherit by id (see [../engine/allophony.md](../engine/allophony.md#inheritance)): a child rule with the same id replaces the inherited rule in place. So without overrides, Barranquenho would inherit the Lisbon *chiado* of the coda sibilants and the dark coda /l/. Those are the European features that Barranquenho does not share, and the spec redeclares their ids:
 
 | Inherited rule id | pt-PT surface | Barranquenho surface | Reason |
 |:---|:---|:---|:---|

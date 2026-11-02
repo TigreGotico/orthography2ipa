@@ -39,7 +39,7 @@ The inventory comes from the Python imports on the `dev` branch of each downstre
 | `SyllabifierPlugin` | `syllabifier_plugin` | tugaphone |
 | `LanguageSpec` | `types` | tugaphone |
 
-`WordContext` is the shared cross-word vocabulary of the downstream engines. A downstream phonological rule cascade (sun-letter assimilation, silent ⟨e⟩, reduction) belongs in a `LatticeRescorer` over the shared lattice, not in a forked tokenizer ([lattice.md](lattice.md#rescoring-the-lattice)). `SyllabifierPlugin` is the matching contract for a syllabifier, and tugaphone implements one.
+`WordContext` is the shared cross-word vocabulary of the downstream engines. A downstream phonological rule cascade (sun-letter assimilation, silent ⟨e⟩, reduction) belongs in a `LatticeRescorer` over the shared lattice, not in a forked tokenizer ([lattice.md](../engine/lattice.md#rescoring-the-lattice)). `SyllabifierPlugin` is the matching contract for a syllabifier, and tugaphone implements one.
 
 ### Names outside `__all__`
 
@@ -110,7 +110,7 @@ The per-word confidence is a deterministic read off the pronunciation lattice. A
 | `G2P.confidence_breakdown(word, *, beam_width=8) -> ConfidenceBreakdown` | The detail of each signal: `value`, `lattice`, `per_slot`, `coverage`, `unmapped` |
 | `ConfidenceBreakdown` | The frozen breakdown dataclass, re-exported from `orthography2ipa` |
 
-The value is the weakest link of three signals, each normalised to `[0, 1]`. The signals are the top-1 to top-2 cost margin of each slot, the rarity of each slot winner, and the word `coverage`. [lattice.md](lattice.md) gives the formula. A `WordTranscription(word=..., ipa=...)` built without a lattice keeps `confidence == 1.0`, so existing callers see no change.
+The value is the weakest link of three signals, each normalised to `[0, 1]`. The signals are the top-1 to top-2 cost margin of each slot, the rarity of each slot winner, and the word `coverage`. [lattice.md](../engine/lattice.md) gives the formula. A `WordTranscription(word=..., ipa=...)` built without a lattice keeps `confidence == 1.0`, so existing callers see no change.
 
 ### Finalized top-k readings
 
@@ -133,7 +133,7 @@ Element 0 of `word_candidates` is not by contract `transcribe_word(word)`. It us
 
 #### Ambiguous grammatical endings
 
-A spec can declare an ending as an ordered candidate list, such as `"ent": [null, ""]`, when the orthography does not decide between its readings ([SCHEMA.md](../orthography2ipa/data/SCHEMA.md#ambiguous-endings)). French verbal ⟨-ent⟩ is the case this exists for. Each declared alternative appears as an extra reading, ranked below element 0 and never above it. So `transcribe`, `transcribe_detailed().ipa`, `transcribe_word` and the 1-best columns of the scoreboard do not change. `word_candidates` and the oracle columns gain the reading that a downstream rescorer with part-of-speech tags needs.
+A spec can declare an ending as an ordered candidate list, such as `"ent": [null, ""]`, when the orthography does not decide between its readings ([SCHEMA.md](../../orthography2ipa/data/SCHEMA.md#ambiguous-endings)). French verbal ⟨-ent⟩ is the case this exists for. Each declared alternative appears as an extra reading, ranked below element 0 and never above it. So `transcribe`, `transcribe_detailed().ipa`, `transcribe_word` and the 1-best columns of the scoreboard do not change. `word_candidates` and the oracle columns gain the reading that a downstream rescorer with part-of-speech tags needs.
 
 A caller that assumes `word_candidates` returns only readings that the grapheme tables reach must drop that assumption. A caller that reads element 0 is not affected. `G2P(lang, expose_ambiguous_endings=False)` turns the extra readings off. The benchmark harness uses it, so the oracle columns of the scoreboard stay a pure diagnostic of ranking. The default is `True`, because a declared ambiguous ending exists to expose the reading that the engine cannot choose.
 
@@ -147,7 +147,7 @@ A caller that assumes `word_candidates` returns only readings that the grapheme 
 | `G2P.sentence_lattice(text, *, search="greedy", beam_width=8) -> SentenceLattice` | A pure read of the lattice, IPA, and phrase and utterance position of each word, in order |
 | `SentenceLattice`, `WordSlot`, `Position`, `SentenceRescorer`, `SentenceRescoreContext` | The shape a cross-word rule reads and rewrites, re-exported from `orthography2ipa` |
 
-`WordSlot.slots` is the `SegmentSlot` lattice of the word, and `WordSlot.initial_slot` and `final_slot` are its edge candidates. `Position` is an enum with the values `INITIAL`, `MEDIAL`, `FINAL` and `SOLE`. `SentenceRescoreContext.prev_word` and `next_word` give the adjacent words, and `phrase_position` and `utterance_position` give the position. The stability commitment covers these names. The seam adds no `LanguageSpec` field, because a cross-word rule is a plugin object that the caller supplies. [sentence_context.md](sentence_context.md) documents the seam.
+`WordSlot.slots` is the `SegmentSlot` lattice of the word, and `WordSlot.initial_slot` and `final_slot` are its edge candidates. `Position` is an enum with the values `INITIAL`, `MEDIAL`, `FINAL` and `SOLE`. `SentenceRescoreContext.prev_word` and `next_word` give the adjacent words, and `phrase_position` and `utterance_position` give the position. The stability commitment covers these names. The seam adds no `LanguageSpec` field, because a cross-word rule is a plugin object that the caller supplies. [../engine/lattice.md](../engine/lattice.md#the-sentence-context-seam) documents the seam.
 
 ### Feature export
 
@@ -159,7 +159,7 @@ A caller that assumes `word_candidates` returns only readings that the grapheme 
 | `WordFeatures` | Frozen dataclass: `word`, `code`, `script`, `confidence`, `graphemes`, and `as_dicts()` for the CRF feature sequence |
 | `GraphemeFeatures` | Frozen record per grapheme: `grapheme`, `span`, `index`, `position`, `prev`, `next`, `prev2`, `next2`, `is_vowel`, `is_consonant`, `is_front`, `is_back`, `candidates`, `top1_ipa`, `top1_cost`, `margin`, `n_candidates`, `confidence`, `script`, `code`, and `as_dict()` |
 
-`margin` is `None` for a slot with one candidate. `as_dict()` returns a flat dict of scalars that `json.dumps` accepts, ready for python-crfsuite or sklearn-crfsuite. The stability commitment covers these names, and the export adds no `LanguageSpec` field. [features.md](features.md) documents the export.
+`margin` is `None` for a slot with one candidate. `as_dict()` returns a flat dict of scalars that `json.dumps` accepts, ready for python-crfsuite or sklearn-crfsuite. The stability commitment covers these names, and the export adds no `LanguageSpec` field. [../engine/lattice.md](../engine/lattice.md#feature-export-for-a-learned-model) documents the export.
 
 ---
-[← Lexicons and forced pronunciations](lexicon.md) · [Home](index.md) · [Python API →](reference/api.md)
+[← Language Registry](registry.md) · [Home](../index.md) · [Architecture →](../engine/architecture.md)

@@ -1,12 +1,12 @@
 # Architecture
 
-`orthography2ipa` has two parts: the per-language JSON specs under `orthography2ipa/data/`, and one engine that reads any spec. This page describes the stages of the engine, the modules that hold them and the design choices behind them. The repository map in [`AGENTS.md`](../AGENTS.md) gives the short view of the files.
+`orthography2ipa` has two parts: the per-language JSON specs under `orthography2ipa/data/`, and one engine that reads any spec. This page describes the stages of the engine, the modules that hold them and the design choices behind them. The repository map in [`AGENTS.md`](../../AGENTS.md) gives the short view of the files.
 
 ## The pipeline
 
 `G2P` in `g2p.py` is the full engine, and `transcribe()` wraps it. For each call, it runs these stages in order:
 
-1. Markup. `markup.parse_markup` splits out each `<phoneme ph="…">` element. A forced word keeps its IPA through the word stages and gets no stress mark ([lexicon.md](lexicon.md)).
+1. Markup. `markup.parse_markup` splits out each `<phoneme ph="…">` element. A forced word keeps its IPA through the word stages and gets no stress mark ([lexicon.md](../guide/lexicon.md)).
 2. Normalize. The normalize plugin that the spec or the caller names runs first, and then the `normalizer` callable of the caller. With neither, the text passes through unchanged, because the library does not normalise text.
 3. Word override. Each word looks up `word_exceptions` and then a registered lexicon. A hit replaces the rules for that word.
 4. Tokenize. `PhonetokTokenizer` cuts the word into grapheme tokens by maximal munch over a trie of the grapheme keys.
@@ -24,7 +24,7 @@ Each stage reads only the spec and the input. A stage with nothing to do (no rul
 
 ### Tokenizer and lattice
 
-`phonetok.py` is the tokenizer, and it works from a `LanguageSpec` alone. `_GraphemeTrie` matches the longest grapheme key at each position in O(k) time, where k is the length of the longest key. Each token has a `TokenKind`: `GRAPHEME`, `WHITESPACE`, `PUNCTUATION`, `DIGIT`, `UNKNOWN`, `BOS` or `EOS`. A character that no key covers becomes an `UNKNOWN` token.
+`phonetok.py` is the tokenizer, and it works from a `LanguageSpec` alone. `_GraphemeTrie` matches the longest grapheme key at each position. [tokenizer.md](tokenizer.md) describes the token kinds and the context view.
 
 ```
 text
@@ -48,19 +48,11 @@ PhonetokTokenizer.ipa_beam()
 List[IPAPath]   (sorted by score, best first)
 ```
 
-`tokenize_with_context(text)` returns a `TokenSequence` that wraps each grapheme token in a `GraphemeContext`. A `GraphemeContext` gives the neighbours in the word (`prev`, `next`, `at`, `neighbors`) and the character `span`. It also gives the class predicates `is_vowel`, `is_consonant`, `is_front` and `is_back` from `vowels.py`.
-
-The pronunciation lattice and the rescorer seam both rest on this context. A phonemizer built on the engine reads the same view, and needs no index arithmetic or vowel sets of its own. `ipa_lattice(text)` returns the ranked lattice, and `ipa_best(text)` returns its best path. [lattice.md](lattice.md) describes the lattice.
-
-### The rescorer seam
-
-The rescore stage runs after the candidates of each slot are resolved and before the beam selects a path. A rescorer re-costs one slot as a pure function of the slot and its context. A downstream rule cascade, such as sun-letter assimilation or a silent-⟨e⟩ rule, can be a rescorer over the shared lattice. That works when the rule chooses among candidates that the lattice already holds. Then the engine needs no forked tokenizer.
-
-[Rescoring the lattice](lattice.md#rescoring-the-lattice) and [Refine or fork?](lattice.md#refine-the-lattice-or-fork-the-tokenizer) say when each approach fits. With no rescorer, the output does not change.
+The pronunciation lattice and the rescorer seam both rest on the `GraphemeContext` view of each grapheme, with its neighbours and its class predicates from `vowels.py`. A phonemizer built on the engine reads the same view, and needs no index arithmetic or vowel sets of its own. `ipa_lattice(text)` returns the ranked lattice, and `ipa_best(text)` returns its best path. [lattice.md](lattice.md) describes the lattice, [Rescoring the lattice](lattice.md#rescoring-the-lattice) describes the rescore stage, and [Refine or fork?](lattice.md#refine-the-lattice-or-fork-the-tokenizer) says when a downstream rule cascade belongs in it.
 
 ### Allophony
 
-The allophony stage is the rescorer built into the engine. A spec's `allophone_rules` are post-lexical rewrites from phoneme to surface form: final devoicing, place assimilation, reduction and flapping. `allophony.compile_allophone_rescorer` compiles them into an `AllophoneRescorer`, and the engine puts it after every other rescorer, so the rules of the spec have the last word. `allophone_passes` sets how many times the pass runs, so one rule can feed another.
+The allophony stage is the rescorer built into the engine. A spec's `allophone_rules` are post-lexical rewrites from phoneme to surface form: final devoicing, place assimilation, reduction and flapping. `allophony.compile_allophone_rescorer` compiles them into an `AllophoneRescorer`, the last rescorer of the rescore stage. `allophone_passes` sets how many times the pass runs, so one rule can feed another.
 
 The stage turns the phoneme lattice into an allophone lattice. It needs the stress context of the engine, so it does not run on the standalone tokenizer path, like sandhi and stress. A spec with no `allophone_rules` compiles to no rescorer. [allophony.md](allophony.md) describes the rules.
 
@@ -82,7 +74,7 @@ A caller that is sensitive to quantity has already divided the transcription, be
 
 ### Sandhi and the sentence
 
-`sandhi.SandhiEngine` applies the `SandhiRule` objects of a spec across word boundaries. A rule can rewrite the left word, the right word or both, and the first matching rule wins on each side ([data_model.md](data_model.md#sandhirule)). The punctuation between words marks a pause, and a rule applies only inside its prosodic domain. `sentence.py` holds the cross-word context: `SentenceLattice`, `SentenceRescorer`, `WordSlot`, `Position` and `WordContext`, the context an engine passes down. [sentence_context.md](sentence_context.md) describes that seam.
+`sandhi.SandhiEngine` applies the `SandhiRule` objects of a spec across word boundaries. A rule can rewrite the left word, the right word or both, and the first matching rule wins on each side ([data_model.md](../specs/data_model.md#sandhirule)). The punctuation between words marks a pause, and a rule applies only inside its prosodic domain. `sentence.py` holds the cross-word context: `SentenceLattice`, `SentenceRescorer`, `WordSlot`, `Position` and `WordContext`, the context an engine passes down. [The sentence-context seam](lattice.md#the-sentence-context-seam) describes it.
 
 ## Pluggable steps
 
@@ -96,7 +88,7 @@ Five stages accept a plugin. Four of them change the transcription, so the spec 
 | `rescore` | `RescorerPlugin` (`rescorer_plugin.py`) | `orthography2ipa.rescore` | Declared |
 | `sandhi` | `SandhiPlugin` (`plugins.py`) | `orthography2ipa.sandhi` | Declared |
 
-The spec names a plugin in its `plugins` field by entry-point name, such as `{"sandhi": "arbtok"}`. The caller overrides it with `G2P(lang, plugins={...})`. A declared plugin that is not installed raises `MissingPlugin`, and the engine never falls back to the built-in answer. `conformance.py` holds the contract checks: `assert_syllabifier_conforms` fails if an installed syllabifier moves the output, and `assert_rescorer_conforms` checks a rescorer. [registry.md](registry.md#plugin-discovery) describes how the registry finds plugins and which one wins.
+The spec names a plugin in its `plugins` field by entry-point name, such as `{"sandhi": "arbtok"}`. The caller overrides it with `G2P(lang, plugins={...})`. A declared plugin that is not installed raises `MissingPlugin`, and the engine never falls back to the built-in answer. `plugins.py` states the contract of each stage. `conformance.py` holds the contract checks: `assert_syllabifier_conforms` fails if an installed syllabifier moves the output, and `assert_rescorer_conforms` checks a rescorer. [registry.md](../reference/registry.md#plugin-discovery) describes how the registry finds plugins and which one wins.
 
 ## Modules
 
@@ -114,9 +106,9 @@ The spec names a plugin in its `plugins` field by entry-point name, such as `{"s
 | `stress.py`, `tone.py` | Syllabification, stress placement and tone marks | `syllabify`, `syllabify_ipa`, `detect_stress`, `apply_stress_mark` |
 | `sandhi.py`, `sentence.py` | Cross-word rules and the sentence lattice | `SandhiEngine`, `SentenceLattice`, `SentenceRescorer`, `WordContext` |
 | `lexicon.py`, `markup.py` | The lexicon overlay and the `<phoneme>` markup | `register_lexicon`, `get_lexicon`, `MarkupError` |
-| `features.py` | Feature export for ML and CRF G2P ([features.md](features.md)) | `WordFeatures`, `GraphemeFeatures` |
+| `features.py` | Feature export for ML and CRF G2P ([feature export](lattice.md#feature-export-for-a-learned-model)) | `WordFeatures`, `GraphemeFeatures` |
 | `inventory.py`, `underspecification.py` | Emission and phoneme inventories, TTS tokens, and the places where the spelling leaves a reading open | `phoneme_inventory`, `emission_inventory`, `is_underdetermined` |
-| `distance.py` | The relational distance metrics ([distance.md](distance.md)) | See below |
+| `distance.py` | The relational distance metrics ([distance.md](../guide/distance.md)) | See below |
 | `feats.py` | The 21-feature SPE/IPA distinctive-feature matrix, adapted from [PyPhone](https://github.com/lingz/pyphone) (MIT) | `vectorize_phones`, `is_vowel_phone`, `phonetic_distance` |
 | `script_distance.py` | Typological distance between writing systems | `ScriptFeatures`, `SCRIPT_REGISTRY`, `script_distance`, `script_distance_by_name` |
 | `lattice_per.py` | Phone error rate against a lattice ([lattice_per.md](lattice_per.md)) | |
@@ -124,7 +116,7 @@ The spec names a plugin in its `plugins` field by entry-point name, such as `{"s
 | `lm.py` | Phoneme n-gram language model utilities | `phoneme_embeddings`, `build_ngram_lm`, `perplexity` |
 | `plugins.py`, `*_plugin.py`, `syllabifiers.py`, `conformance.py` | The pluggable steps, the bundled `silabificador` entry point and the contract checks | `NormalizePlugin`, `SandhiPlugin`, `STAGES`, `SyllabifierPlugin`, `RescorerPlugin`, `StressPlugin` |
 | `exceptions.py` | Exception and warning types | `UnmappedScriptError`, `UnmappedGraphemeWarning`, `StubSpecWarning` |
-| `cli.py` | The `orthography2ipa` command ([reference/cli.md](reference/cli.md)) | `main` |
+| `cli.py` | The `orthography2ipa` command ([reference/cli.md](../reference/cli.md)) | `main` |
 | `version.py` | The version, which the release workflow sets | `VERSION_STR` |
 
 ### The distance metrics
@@ -150,7 +142,7 @@ The spec names a plugin in its `plugins` field by entry-point name, such as `{"s
 
 ### JSON data files
 
-Each spec is a JSON file, apart from the code. People can review, edit and validate a spec without reading Python. A dialect reuses its base through the `*_base` keys ([data_model.md](data_model.md#inheritance-between-specs)).
+Each spec is a JSON file, apart from the code. People can review, edit and validate a spec without reading Python. A dialect reuses its base through the `*_base` keys ([data_model.md](../specs/data_model.md#inheritance-between-specs)).
 
 ### Maximal munch
 
@@ -158,7 +150,7 @@ Maximal munch, the longest match first, is the standard way to tokenize an ortho
 
 ### Beam search
 
-Ambiguous graphemes multiply the paths of a word: English ⟨c⟩ alone gives /k/ or /s/. A full enumeration does not scale to long words. Beam search keeps the cheapest paths. Without weights, the cheapest path takes the first candidate of each grapheme, and with weights it is the most probable path ([candidate_scoring.md](candidate_scoring.md)).
+Ambiguous graphemes multiply the paths of a word: English ⟨c⟩ alone gives /k/ or /s/. A full enumeration does not scale to long words. Beam search keeps the cheapest paths. Without weights, the cheapest path takes the first candidate of each grapheme, and with weights it is the most probable path ([How cost works](lattice.md#how-cost-works)).
 
 ### Lazy loading
 
@@ -166,13 +158,13 @@ Import of `orthography2ipa` indexes the file names in the data directory and par
 
 ## Downstream engines
 
-`orthography2ipa` hosts no G2P engine plugins. Nothing here discovers or calls a whole engine. Language-specific engines such as [arbtok](https://github.com/TigreGotico/arbtok) (Arabic) and [tugaphone](https://github.com/TigreGotico/tugaphone) (Portuguese) consume this library. They read its spec data, drive its lattice and add their own rescorers. That is the opposite direction from a plugin.
+`orthography2ipa` hosts no G2P engine plugins. Nothing here discovers or calls a whole engine. Language-specific engines such as [arbtok](https://github.com/TigreGotico/arbtok) (Arabic) and [tugaphone](https://github.com/TigreGotico/tugaphone) (Portuguese) consume this library. They read its spec data, drive its lattice and add their own rescorers, or keep a tokenizer of their own ([lattice.md](lattice.md#refine-the-lattice-or-fork-the-tokenizer) covers the choice). That is the opposite direction from a plugin.
 
-What a package can replace is one step of the pipeline, through the stages above. [api_stability.md](api_stability.md) lists the names those engines import.
+What a package can replace is one step of the pipeline, through the stages above. [api_stability.md](../reference/api_stability.md) lists the names those engines import.
 
 ## Extending the package
 
-[adding_a_language.md](adding_a_language.md) is the full guide to a new language. In short, create `orthography2ipa/data/{code}.json` with the fields that `data/SCHEMA.md` requires. A dialect uses `graphemes_base` and `allophones_base` to inherit from its parent. Then run the test suite, which validates the spec. [contributing/engine.md](contributing/engine.md) covers a change to the engine.
+[../contributing/spec_authoring.md](../contributing/spec_authoring.md) covers a new language, and [contributing/engine.md](../contributing/engine.md) covers a change to the engine.
 
 ---
-[← Getting Started](getting_started.md) · [Home](index.md) · [Data Model →](data_model.md)
+[← Public API stability](../reference/api_stability.md) · [Home](../index.md) · [Tokenizer →](tokenizer.md)

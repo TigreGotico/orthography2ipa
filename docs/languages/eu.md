@@ -112,13 +112,13 @@ Every dialect spec declares `parent: eu` with an ancestor weight of 0.9. So `anc
 
 ## Orthographic depth and production threshold
 
-Euskara Batua has a shallow (phonemic) orthography, so the 0.15 PER production threshold applies (see [quality tiers](../quality_tiers.md#the-per-threshold)). Its spelling is regular. The palatal spellings ⟨tt dd ñ ll⟩ and the affricate digraphs ⟨tz ts tx⟩ are closed rules that a spec can encode.
+Euskara Batua has a shallow (phonemic) orthography, so the 0.15 PER production threshold applies (see [quality tiers](../specs/quality_tiers.md#the-per-threshold)). Its spelling is regular. The palatal spellings ⟨tt dd ñ ll⟩ and the affricate digraphs ⟨tz ts tx⟩ are closed rules that a spec can encode.
 
 Basque accent varies by dialect and the orthography never writes it. The `eu` spec has no `stress` block and states the exemption in its `notes`, so the engine emits no stress marks.
 
 ## Benchmark
 
-The `wikipron` row is crowd-scraped and is the row that can qualify `eu` for production. The `vox_communis` row is epitran-derived and the `ipa_childes` row is espeak-derived, so neither can gate a promotion. The `hitz_basque_ipa` row is machine-generated, with tool-generated transcriptions in the StyleTTS2 convention. The `spain_romance_tts` rows for `eu` and the dialects are LLM-generated, and an LLM-generated row never gates. See the [scoreboard](../scoreboard.md) for the scores.
+The `wikipron` row is crowd-scraped and is the row that can qualify `eu` for production. The `vox_communis` row is epitran-derived and the `ipa_childes` row is espeak-derived, so neither can gate a promotion. The `hitz_basque_ipa` row is machine-generated, with tool-generated transcriptions in the StyleTTS2 convention. The `spain_romance_tts` rows for `eu` and the dialects are LLM-generated, and an LLM-generated row never gates. See the [scoreboard](../evaluation/generated/scoreboard.md) for the scores.
 
 ---
 [← Mongolian](mn.md) · [Home](../index.md) · [Finnish →](fi.md)

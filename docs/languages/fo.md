@@ -6,7 +6,7 @@ Faroese (føroyskt) is the language of the Faroe Islands, and Icelandic is its c
 
 ## Orthographic depth and production threshold
 
-Faroese has a deep orthography, so the 0.25 PER production threshold applies (see [quality tiers](../quality_tiers.md#the-per-threshold)). The written form does not fully determine quantity. Vowel length and vowel quality both alternate with syllable structure, and only the syllable structure is written. The spelling writes voicing on the stops, but the contrast is aspiration. The letters ⟨g⟩ and ⟨ð⟩ each cover several surface forms, and position selects among them. This is not dialect noise. It is the norm as designed, fixed to a sound system that has since changed.
+Faroese has a deep orthography, so the 0.25 PER production threshold applies (see [quality tiers](../specs/quality_tiers.md#the-per-threshold)). The written form does not fully determine quantity. Vowel length and vowel quality both alternate with syllable structure, and only the syllable structure is written. The spelling writes voicing on the stops, but the contrast is aspiration. The letters ⟨g⟩ and ⟨ð⟩ each cover several surface forms, and position selects among them. This is not dialect noise. It is the norm as designed, fixed to a sound system that has since changed.
 
 ## Phonology as encoded
 
@@ -57,7 +57,7 @@ Stress falls on the first syllable of every word. The acute-accented letters mar
 
 ## Benchmark
 
-The `wikipron` row is crowd-scraped and is the row that qualifies `fo` for production. See the [scoreboard](../scoreboard.md) for its score.
+The `wikipron` row is crowd-scraped and is the row that qualifies `fo` for production. See the [scoreboard](../evaluation/generated/scoreboard.md) for its score.
 
 ## Known limitations
 

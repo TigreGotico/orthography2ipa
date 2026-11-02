@@ -1,4 +1,4 @@
-"""Regression gate for the Kabyle TTS gold set (docs/tts_gold.md#kabyle_tts).
+"""Regression gate for the Kabyle TTS gold set (docs/evaluation/silver_sets.md#kabyle_tts).
 
 Runs the validate subcommand of scripts/kabyle_tts_gold.py over every Kabyle
 lect that has a gold TSV (the rest report as pending): schema, row minimum, o2i

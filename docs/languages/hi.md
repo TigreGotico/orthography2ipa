@@ -102,7 +102,7 @@ Anusvara before a consonant is nasalisation of the vowel in the output, not a ho
 
 ## Gold rows
 
-The `wikipron` row is `crowd-scraped` and can gate. The `vox_communis` row is `epitran-derived`, so it can neither qualify nor block a promotion. For the figures, see the [scoreboard](../scoreboard.md).
+The `wikipron` row is `crowd-scraped` and can gate. The `vox_communis` row is `epitran-derived`, so it can neither qualify nor block a promotion. For the figures, see the [scoreboard](../evaluation/generated/scoreboard.md).
 
 ## References
 

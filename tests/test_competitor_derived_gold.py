@@ -4,7 +4,7 @@ A gold set's value is its ERROR MODEL:
 
 - human / lexicon gold is trustworthy;
 - rule-system gold (espeak, epitran) measures agreement with a system this
-  project benchmarks itself AGAINST (docs/comparison.md scores both
+  project benchmarks itself AGAINST (docs/evaluation/generated/comparison.md scores both
   ``espeak_per`` and ``epitran_per``), so it is diagnostic — a deterministic
   rule system's disagreements can be traced to a rule and adjudicated — but it
   can never CERTIFY us;
@@ -15,7 +15,7 @@ A gold set's value is its ERROR MODEL:
 These tests are the forcing function for that distinction: the tiers exist, the
 IPA-CHILDES rows carry the tier of the TOOL its dataset card names for that
 language (not one flattering dataset-wide tier), and no such row can qualify a
-language for the ``production`` quality tier (docs/quality_tiers.md).
+language for the ``production`` quality tier (docs/specs/quality_tiers.md).
 """
 import json
 import os
@@ -40,13 +40,13 @@ from benchmark import (  # noqa: E402
     row_gates,
 )
 
-# The promotion bar of docs/quality_tiers.md, in code, so the rule can be tested.
+# The promotion bar of docs/specs/quality_tiers.md, in code, so the rule can be tested.
 PRODUCTION_MIN_N = 500
 
 
 def _promotable(rows) -> bool:
     """Is there a scoreboard row that may qualify a language for `production`?
-    Mirrors docs/quality_tiers.md: at least 500 evaluated entries on a gold
+    Mirrors docs/specs/quality_tiers.md: at least 500 evaluated entries on a gold
     whose tier can gate."""
     return any(
         row["n"] >= PRODUCTION_MIN_N and can_gate_promotion(row["provenance"])
@@ -131,7 +131,7 @@ def test_can_gate_promotion_rejects_unknown_tier():
 
 def test_language_with_only_competitor_gold_is_not_promotable():
     """A language whose only >=500-entry gold is a competitor's own output has
-    NO usable gold: it stays at `research` (docs/quality_tiers.md)."""
+    NO usable gold: it stays at `research` (docs/specs/quality_tiers.md)."""
     rows = [
         {"lang": "xx", "dataset": "ipa_childes", "n": 18055,
          "provenance": "espeak-derived"},
@@ -219,7 +219,7 @@ def test_ipa_childes_languages_are_real_spec_codes():
 class TestGatingFieldDerivedAndRendered:
     """`build_scoreboard` writes each row's qualify/block determination as a
     `gating` field, derived from the row's own `provenance` via
-    `can_gate_promotion()` — the SAME function `docs/quality_tiers.md`'s
+    `can_gate_promotion()` — the SAME function `docs/specs/quality_tiers.md`'s
     `production` criteria already use. Nothing computes qualification a
     second way: a hand-authored `gating` value that fell out of sync with
     `provenance` is exactly the defect #1351 reports.

@@ -194,7 +194,7 @@ def agreement(lang: str, limit: int) -> Optional[dict]:
 
 
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-AGREEMENT_MD = os.path.join(REPO_ROOT, "docs", "espeak_agreement.md")
+AGREEMENT_MD = os.path.join(REPO_ROOT, "docs", "evaluation", "generated", "espeak_agreement.md")
 AGREEMENT_JSON = os.path.join(REPO_ROOT, "benchmarks", "espeak_agreement.json")
 
 
@@ -229,7 +229,7 @@ def write_agreement_scoreboard(rows: List[dict]) -> None:
         "Committed symbol-level agreement between orthography2ipa and "
         "espeak-ng, for every language where this repo has both a gold-"
         "dataset wordlist and espeak-ng has a voice. This is NOT an "
-        "accuracy benchmark — see `docs/benchmarks.md` for what it means "
+        "accuracy benchmark: see `docs/evaluation/benchmarks.md` for what it means "
         "and does not mean. Regenerate with:",
         "",
         "```bash",
@@ -237,7 +237,7 @@ def write_agreement_scoreboard(rows: List[dict]) -> None:
         "```",
         "",
         "Machine-readable form: [`benchmarks/espeak_agreement.json`]"
-        "(../benchmarks/espeak_agreement.json).",
+        "(../../../benchmarks/espeak_agreement.json).",
         "",
         "| Lang | espeak voice | N | Exact | Exact (no stress) | "
         "Segmental | OOV rate |",
@@ -252,7 +252,7 @@ def write_agreement_scoreboard(rows: List[dict]) -> None:
     lines.append("")
     os.makedirs(os.path.dirname(AGREEMENT_MD), exist_ok=True)
     with open(AGREEMENT_MD, "w", encoding="utf-8") as fh:
-        fh.write("\n".join(lines).rstrip() + footer("espeak_agreement.md"))
+        fh.write("\n".join(lines).rstrip() + footer("evaluation/generated/espeak_agreement.md"))
 
 
 def main() -> None:
@@ -263,7 +263,7 @@ def main() -> None:
                     help="List languages and their espeak voices")
     ap.add_argument("--scoreboard", action="store_true",
                     help="Run every SOURCES language with an espeak-ng "
-                         "voice and write docs/espeak_agreement.md + "
+                         "voice and write docs/evaluation/generated/espeak_agreement.md + "
                          "benchmarks/espeak_agreement.json")
     args = ap.parse_args()
 

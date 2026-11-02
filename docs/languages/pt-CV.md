@@ -9,7 +9,7 @@
 | Parent | `pt-PT` |
 | Sources | Freitas (2017, *RILP* 31:153-172, on the Creole), Undolo (2014, on Angolan Portuguese), Lang (2009), Baptista (2002), Veiga (2004) |
 
-Every transcription on this page is real output of `orthography2ipa.transcribe(text, code)`. For the scores of the spec, see [../scoreboard.md](../scoreboard.md).
+Every transcription on this page is real output of `orthography2ipa.transcribe(text, code)`. For the scores of the spec, see [../evaluation/generated/scoreboard.md](../evaluation/generated/scoreboard.md).
 
 ## Cape Verdean Portuguese is not the Creole
 

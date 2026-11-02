@@ -51,9 +51,9 @@ Word prominence is not contrastive, and the literature does not agree on its pla
 
 ## Gold rows
 
-Mongolian Cyrillic is a deep orthography for the purpose of the tiers. The letters record a historical shape of the word from before the reduction, not its surface form. So the 0.25 deep-orthography threshold applies (see [quality tiers](../quality_tiers.md#the-per-threshold)). For the figures, see the [scoreboard](../scoreboard.md).
+Mongolian Cyrillic is a deep orthography for the purpose of the tiers. The letters record a historical shape of the word from before the reduction, not its surface form. So the 0.25 deep-orthography threshold applies (see [quality tiers](../specs/quality_tiers.md#the-per-threshold)). For the figures, see the [scoreboard](../evaluation/generated/scoreboard.md).
 
-The WikiPron `mon_cyrl_broad` gold (`crowd-scraped`) is a mix of hand-typed Wiktionary IPA and `Module:mn-IPA` output. In a sample of the raw en.wiktionary source, most entries were module output. Part of this row is therefore a reproduction test, not an accuracy test (see [Module-generated WikiPron rows](../benchmark_datasets.md#module-generated-wikipron-rows)). The `vox_communis` row is `epitran-derived`, so it can neither qualify nor block a promotion.
+The WikiPron `mon_cyrl_broad` gold (`crowd-scraped`) is a mix of hand-typed Wiktionary IPA and `Module:mn-IPA` output. In a sample of the raw en.wiktionary source, most entries were module output. Part of this row is therefore a reproduction test, not an accuracy test (see [Module-generated WikiPron rows](../evaluation/datasets.md#module-generated-wikipron-rows)). The `vox_communis` row is `epitran-derived`, so it can neither qualify nor block a promotion.
 
 The WikiPron gold is a narrow phonetic transcription. It differs from this spec in the depth of the transcription, not in the phonology:
 

@@ -5,7 +5,7 @@ Distinctive-feature matrix for IPA phones used by PyPhone.
 
 This table encodes a hybrid SPE/IPA feature system for segment-to-segment
 distance computation and classification. Each phone maps to a vector of
-21 features. Features are boolean where applicable; `None` denotes that
+``NUM_FEATURES`` features. Features are boolean where applicable; `None` denotes that
 a feature is not defined for a particular phone.
 
 Feature index layout (0–20):
@@ -44,7 +44,7 @@ NUM_FEATURES = 23
 
 # ---------------------------------------------------------------------------
 # phone_features:
-#   A mapping of IPA phones to a 21-element feature vector.
+#   A mapping of IPA phones to a NUM_FEATURES-element feature vector.
 #
 # Notes:
 # - Values are manually derived from articulatory definitions in IPA
