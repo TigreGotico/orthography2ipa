@@ -259,4 +259,4 @@ and stability commitment, and does not rename, deprecate, or otherwise
 modify any code in `orthography2ipa`.
 
 ---
-[← Language Registry](registry.md) · [Home](index.md) · [Tokenizer →](tokenizer.md)
+[← Language Registry](registry.md) · [Home](index.md) · [Python API →](reference/api.md)

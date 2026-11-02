@@ -85,4 +85,4 @@ contradicts it. A lower error rate bought by discarding a checked source is
 not an improvement; it is a regression that happens to score well.
 
 ---
-[← Link audit](link-audit.md) · [Home](index.md) · [Benchmarks →](benchmarks.md)
+[← Bibliography](bibliography.md) · [Home](index.md) · [Spec authoring rules →](contributing/spec_authoring.md)

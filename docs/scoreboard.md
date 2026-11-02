@@ -46,7 +46,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | akk | wikipron | 671 | 0.0123 | - | - | 0.0123 | 0.0123 | 0.9180 | 0.9180 | [0.0092, 0.0155] | 0.9180 | research | crowd-scraped |
 | ale | northeuralex | 896 | 0.2634 | - | - | 0.2634 | 0.2634 | 0.0926 | 0.0926 | [0.2542, 0.2731] | 0.0926 | skeleton | lexicon-derived |
 | ale | wikipron | 118 | 0.1100 | - | - | 0.1100 | 0.1100 | 0.7458 | 0.7458 | [0.0650, 0.1652] | 0.7458 | skeleton | crowd-scraped |
-| am | vox_communis | 5453 | 0.2300‡ | · | - | 0.2300 | 0.2300 | 0.1258 | 0.1258 | [0.2258, 0.2341] | 0.1258 | research | epitran-derived |
+| am | vox_communis | 5453 | 0.2376‡ | - | - | 0.2376 | 0.2376 | 0.1058 | 0.1058 | [0.2334, 0.2417] | 0.1058 | research | epitran-derived |
 | am | wikipron | 388 | 0.3296 | - | - | 0.3296 | 0.3296 | 0.1211 | 0.1211 | [0.3098, 0.3494] | 0.1211 | research | crowd-scraped |
 | an | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
 | an | wikipron | 902 | 0.0580 | - | - | 0.0229 | 0.0207 | 0.8570 | 0.8703 | [0.0523, 0.0637] | 0.6630 | research | crowd-scraped |

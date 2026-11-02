@@ -4,7 +4,7 @@ Runnable scripts, ordered from first transcription to building on the engine.
 Each is self-contained and prints what it demonstrates:
 
 ```bash
-pip install orthography2ipa
+uv pip install --prerelease=allow orthography2ipa
 python examples/01_basic_usage.py
 ```
 

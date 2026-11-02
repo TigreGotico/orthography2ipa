@@ -107,12 +107,21 @@ class TestNodesResolve:
     def test_spanish_is_romance(self, code):
         assert {"Indo-European", "Romance", "Ibero-Romance"} <= set(get(code).family_path)
 
-    @pytest.mark.parametrize("code", ADSTRATE_STUBS)
-    def test_adstrate_nonempty_inventory(self, code):
-        """Adstrate stubs carry a placeholder inventory (data-quality guard)."""
+    @pytest.mark.parametrize("code", SKELETON_ADSTRATES + RESEARCH_ADSTRATES)
+    def test_described_adstrate_has_inventory(self, code):
         spec = get(code)
         assert spec.graphemes
         assert spec.allophones
+
+    @pytest.mark.parametrize(
+        "code",
+        [c for c in ADSTRATE_STUBS if c not in SKELETON_ADSTRATES and c not in RESEARCH_ADSTRATES],
+    )
+    def test_stub_adstrate_has_no_inventory(self, code):
+        """A stub claims no phonology, so it carries no letter table."""
+        spec = get(code)
+        assert spec.graphemes == {}
+        assert spec.allophones == {}
 
 
 # ---------------------------------------------------------------------------

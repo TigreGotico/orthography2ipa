@@ -536,4 +536,4 @@ gold standard, so this table never substitutes for the gold-benchmark
 scoreboard above.
 
 ---
-[← Benchmark gold datasets](benchmark_datasets.md) · [Home](index.md) · [Arabic TTS gold set →](arabic-tts-gold.md)
+[← Benchmark gold datasets](benchmark_datasets.md) · [Home](index.md) · [The pinned WikiPron mirror →](wikipron_mirror.md)
