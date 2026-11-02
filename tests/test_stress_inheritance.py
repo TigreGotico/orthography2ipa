@@ -3,7 +3,7 @@
 A dialect child that overlays graphemes over a base (``graphemes_base``, or
 the nearest data ancestor of ``parent``) but declares no ``stress`` block of
 its own inherits the base's accentuation rules. Previously ``stress`` was
-own-file-only, so every ``es-ES-x-*`` / ``an-x-*`` / ``gl-x-*`` / ``ast-x-*``
+own-file-only, so every ``es-ES-x-*`` / ``an-x-*`` / ``gl-ES-x-*`` / ``ast-x-*``
 child silently emitted UNSTRESSED output — e.g. ``es-ES-x-murcia`` produced
 ``el θjelo`` where its ``es-ES`` parent produces ``ˈel ˈθjelo``.
 
@@ -35,7 +35,7 @@ def _children_without_own_stress(base):
 
 class TestStressInheritance:
 
-    @pytest.mark.parametrize("base", ["es-ES", "an", "gl", "ast"])
+    @pytest.mark.parametrize("base", ["es-ES", "an", "gl-ES", "ast"])
     def test_children_inherit_base_stress(self, base):
         parent = get(base)
         assert parent.stress is not None, base

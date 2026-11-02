@@ -98,7 +98,7 @@ def test_is_family_flags_ended_ancestor_stages_not_living_languages():
     assert langs["pt-PT-x-medieval"]["is_family"] is True
     # Living languages (open-ended timespan) → not family, even when they
     # parent a sub-variety or their gold is keyed under a bare code.
-    assert langs["gl"]["is_family"] is False
+    assert langs["gl-ES"]["is_family"] is False
     assert langs["pt-PT"]["is_family"] is False
     assert langs["es-ES"]["is_family"] is False
     # Pure ancestry stubs ("… (family node)", proto-language nodes) carry tier

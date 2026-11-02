@@ -18,8 +18,8 @@ def test_spelling_divergence_sees_what_reading_divergence_cannot():
     Reading: given the same TEXT, do these sound alike?
     Spelling: given the same SOUND, do these write it alike?
     """
-    rag = o2i.get("gl")
-    reint = o2i.get("gl-x-reintegrado")
+    rag = o2i.get("gl-ES")
+    reint = o2i.get("gl-ES-x-reintegrado")
     pt = o2i.get("pt-PT")
 
     # /ɲ/ is written <ñ> by the RAG norm (a Castilian convention) and <nh> by the
@@ -39,16 +39,16 @@ def test_spelling_divergence_sees_what_reading_divergence_cannot():
 def test_reintegrationist_galician_spells_more_like_portuguese_than_rag_does():
     """The reintegrationist claim, made measurable."""
     to_pt_reint = spelling_divergence(
-        o2i.get("gl-x-reintegrado"), o2i.get("pt-PT")).mean_distance
+        o2i.get("gl-ES-x-reintegrado"), o2i.get("pt-PT")).mean_distance
     to_pt_rag = spelling_divergence(
-        o2i.get("gl"), o2i.get("pt-PT")).mean_distance
+        o2i.get("gl-ES"), o2i.get("pt-PT")).mean_distance
     assert to_pt_reint < to_pt_rag
 
 
 def test_rag_galician_spells_more_like_spanish_than_like_portuguese():
     """The other half of the same claim: the official norm follows Castilian
     convention. This is the reintegrationist critique, and it is measurable."""
-    rag = o2i.get("gl")
+    rag = o2i.get("gl-ES")
     to_es = spelling_divergence(rag, o2i.get("es-ES")).mean_distance
     to_pt = spelling_divergence(rag, o2i.get("pt-PT")).mean_distance
     assert to_es < to_pt
@@ -58,8 +58,8 @@ def test_the_two_norms_are_phonologically_the_same_language():
     """A norm is an orthography, not a variety. Both specs inherit their
     phonology from the same source, so their phoneme inventories and allophony
     are identical — only the spelling differs."""
-    rag = o2i.get("gl")
-    reint = o2i.get("gl-x-reintegrado")
+    rag = o2i.get("gl-ES")
+    reint = o2i.get("gl-ES-x-reintegrado")
     pt = o2i.get("pt-PT")
 
     assert reint.allophones == rag.allophones

@@ -4840,14 +4840,15 @@
     "lang": "fax",
     "dataset": "wikipron",
     "n": 655,
-    "per": 0.1044,
-    "per_ci_low": 0.095,
-    "per_ci_high": 0.114,
+    "per": 0.0977,
+    "per_ci_low": 0.0883,
+    "per_ci_high": 0.1075,
     "stress_acc": null,
     "n_stress": 0,
-    "exact_match": 0.5053,
+    "exact_match": 0.5282,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
+    "gating": true,
     "harness_version": "1.1",
     "limit": 1000
   },
@@ -5065,7 +5066,7 @@
     "limit": 1000
   },
   {
-    "lang": "gl",
+    "lang": "gl-ES",
     "dataset": "spain_romance_tts",
     "n": 20,
     "per": 0.0,
@@ -5081,37 +5082,39 @@
     "limit": 1000
   },
   {
-    "lang": "gl",
+    "lang": "gl-ES",
     "dataset": "vox_communis",
     "n": 1000,
-    "per": 0.0733,
-    "per_ci_low": 0.0646,
-    "per_ci_high": 0.0846,
+    "per": 0.0738,
+    "per_ci_low": 0.065,
+    "per_ci_high": 0.0849,
     "stress_acc": null,
     "n_stress": 0,
-    "exact_match": 0.652,
+    "exact_match": 0.65,
     "quality_tier": "research",
     "provenance": "epitran-derived",
+    "gating": false,
     "harness_version": "1.1",
     "limit": 1000
   },
   {
-    "lang": "gl",
+    "lang": "gl-ES",
     "dataset": "wikipron",
     "n": 832,
-    "per": 0.0994,
-    "per_ci_low": 0.0914,
-    "per_ci_high": 0.1075,
+    "per": 0.0986,
+    "per_ci_low": 0.0906,
+    "per_ci_high": 0.1064,
     "stress_acc": null,
     "n_stress": 0,
-    "exact_match": 0.5108,
+    "exact_match": 0.5144,
     "quality_tier": "research",
     "provenance": "crowd-scraped",
+    "gating": true,
     "harness_version": "1.1",
     "limit": 1000
   },
   {
-    "lang": "gl-x-central",
+    "lang": "gl-ES-x-central",
     "dataset": "spain_romance_tts",
     "n": 20,
     "per": 0.0,
@@ -5127,7 +5130,7 @@
     "limit": 1000
   },
   {
-    "lang": "gl-x-eonavia",
+    "lang": "gl-ES-x-eonavia",
     "dataset": "spain_romance_tts",
     "n": 20,
     "per": 0.0,
@@ -5143,7 +5146,7 @@
     "limit": 1000
   },
   {
-    "lang": "gl-x-occidental",
+    "lang": "gl-ES-x-occidental",
     "dataset": "spain_romance_tts",
     "n": 20,
     "per": 0.0,
@@ -5159,7 +5162,7 @@
     "limit": 1000
   },
   {
-    "lang": "gl-x-oriental",
+    "lang": "gl-ES-x-oriental",
     "dataset": "spain_romance_tts",
     "n": 20,
     "per": 0.0,
@@ -5175,7 +5178,7 @@
     "limit": 1000
   },
   {
-    "lang": "gl-x-reintegrado",
+    "lang": "gl-ES-x-reintegrado",
     "dataset": "spain_romance_tts",
     "n": 20,
     "per": 0.0,

@@ -60,7 +60,7 @@ SOURCES: Dict[str, Tuple] = {
     "en": (benchmark.load_wikipron, "en", "en-gb"),
     "en-GB": (benchmark.load_wikipron, "en-GB", "en-gb"),
     "es": (benchmark.load_wikipron, "es", "es"),
-    "gl": (benchmark.load_wikipron, "gl", None),  # espeak has no Galician
+    "gl-ES": (benchmark.load_wikipron, "gl-ES", None),  # espeak has no Galician
     "pt": (benchmark.load_wikipron, "pt", "pt"),
     "pt-PT": (benchmark.load_portuguese_unified, "pt-PT", "pt"),
     "pt-BR": (benchmark.load_portuguese_unified, "pt-BR", "pt-br"),

@@ -1082,16 +1082,16 @@ class TestCatalan:
 class TestGalician:
     """Comprehensive tests for Standard Galician (gl)."""
 
-    LANGUAGE_CODE = "gl"
+    LANGUAGE_CODE = "gl-ES"
 
     @pytest.fixture(autouse=True, scope="class")
     def spec(self, request):
-        request.cls._spec = _load("gl")
+        request.cls._spec = _load("gl-ES")
 
     # --- Registry ---
 
     def test_code(self):
-        assert self._spec.code == "gl"
+        assert self._spec.code == "gl-ES"
 
     def test_name(self):
         assert "Galician" in self._spec.name
@@ -2100,7 +2100,7 @@ class TestIberianIsoglosses:
 
     def test_distincion_vs_seseo(self):
         """DISTINCIÓN vs SESEO: es-ES/ast/gl have /θ/; pt-PT/ca/an do not."""
-        distincion = [_load("es-ES"), _load("ast"), _load("gl")]
+        distincion = [_load("es-ES"), _load("ast"), _load("gl-ES")]
         seseo = [_load("pt-PT"), _load("ca")]
 
         for spec in distincion:
@@ -2118,7 +2118,7 @@ class TestIberianIsoglosses:
         (Valencian/Balearic preserve it), so ca is excluded from this test.
         """
         preserving = [_load("pt-PT")]
-        merging = [_load("es-ES"), _load("gl"), _load("ast"), _load("an")]
+        merging = [_load("es-ES"), _load("gl-ES"), _load("ast"), _load("an")]
 
         for spec in preserving:
             v_phoneme = _allophone(spec, "v")
@@ -2134,7 +2134,7 @@ class TestIberianIsoglosses:
 
     def test_ll_palatal_lateral(self):
         """ll → /ʎ/ in pt-PT, gl, ca, ast, an; ll → /ʝ/ in es-ES (yeísmo)."""
-        palatal = [_load("gl"), _load("ca"), _load("ast"), _load("an")]
+        palatal = [_load("gl-ES"), _load("ca"), _load("ast"), _load("an")]
         yod = [_load("es-ES")]
 
         for spec in palatal:
@@ -2147,7 +2147,7 @@ class TestIberianIsoglosses:
 
     def test_ch_realisation(self):
         """ch → /tʃ/ (affricate) in es-ES, gl, ast, an; ch → /ʃ/ in pt-PT."""
-        affricate = [_load("es-ES"), _load("gl"), _load("ast"), _load("an")]
+        affricate = [_load("es-ES"), _load("gl-ES"), _load("ast"), _load("an")]
         fricative = [_load("pt-PT")]
 
         for spec in affricate:
@@ -2162,7 +2162,7 @@ class TestIberianIsoglosses:
 
     def test_rr_realisation(self):
         """rr → /r/ (alveolar trill) in most Iberian; rr → /ʁ/ (uvular) in pt-PT."""
-        alveolar = [_load("es-ES"), _load("gl"), _load("ast"), _load("ca"), _load("an")]
+        alveolar = [_load("es-ES"), _load("gl-ES"), _load("ast"), _load("ca"), _load("an")]
         uvular = [_load("pt-PT")]
 
         for spec in alveolar:
@@ -2184,7 +2184,7 @@ class TestIberianIsoglosses:
         pt-PT uses "" (the null symbol) for silent h.
         Standard eu is h-less; continental eu-x-zuberera keeps "h".
         """
-        silent_empty = [_load("es-ES"), _load("gl"), _load("ast"), _load("ca"),
+        silent_empty = [_load("es-ES"), _load("gl-ES"), _load("ast"), _load("ca"),
                         _load("an"), _load("eu")]
         silent_null_sym = [_load("pt-PT")]
         phonemic = [_load("eu-x-zuberera")]
@@ -2207,7 +2207,7 @@ class TestIberianIsoglosses:
 
     def test_apical_vs_predorsal_s(self):
         """es-ES, gl, ast have apico-alveolar [s̺]; pt-PT has predorsal [s̻]."""
-        apical = [_load("es-ES"), _load("gl"), _load("ast")]
+        apical = [_load("es-ES"), _load("gl-ES"), _load("ast")]
         for spec in apical:
             a = _allophone(spec, "s")
             assert a and "s̺" in a, (
@@ -2227,7 +2227,7 @@ class TestIberianIsoglosses:
         from orthography2ipa.distance import phonological_distance
         specs = {
             code: _load(code)
-            for code in ("es-ES", "pt-PT", "gl", "ca", "ast")
+            for code in ("es-ES", "pt-PT", "gl-ES", "ca", "ast")
         }
         arb = _load("arb")
 
@@ -2551,26 +2551,26 @@ class TestPortugueseBrazilian:
 # ═══════════════════════════════════════════════════════════════════════════
 
 class TestGalicianWestern:
-    """Tests for Western Galician (gl-x-occidental)."""
+    """Tests for Western Galician (gl-ES-x-occidental)."""
 
-    LANGUAGE_CODE = "gl-x-occidental"
+    LANGUAGE_CODE = "gl-ES-x-occidental"
 
     @pytest.fixture(autouse=True, scope="class")
     def spec(self, request):
-        request.cls._spec = _load("gl-x-occidental")
+        request.cls._spec = _load("gl-ES-x-occidental")
 
     def test_code(self):
-        assert self._spec.code == "gl-x-occidental"
+        assert self._spec.code == "gl-ES-x-occidental"
 
     def test_family(self):
         assert {"Indo-European", "Romance", "Ibero-Romance"} <= set(self._spec.family_path)
 
     def test_parent_galician(self):
-        assert "gl" in self._spec.parent
+        assert "gl-ES" in self._spec.parent
 
     def test_closer_to_galician_than_arabic(self):
         from orthography2ipa.distance import phonological_distance
-        gl = _load("gl")
+        gl = _load("gl-ES")
         arb = _load("arb")
         d_gl = phonological_distance(self._spec, gl)
         d_arb = phonological_distance(self._spec, arb)
@@ -2578,7 +2578,7 @@ class TestGalicianWestern:
 
 
 # ---------------------------------------------------------------------------
-# GALICIAN (gl-ES regional spec) — de-contamination regression tests
+# GALICIAN (gl-ES) — de-contamination regression tests
 # ---------------------------------------------------------------------------
 class TestGalicianES:
     """gl-ES is Standard Galician per RAG norms. It must NOT carry Portuguese

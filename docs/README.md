@@ -20,7 +20,7 @@ from orthography2ipa.distance import grapheme_divergence, spelling_divergence
 
 o2i.transcribe("olá mundo", "pt")   # 'oˈla ˈmũdu'
 
-gl, glr = o2i.get("gl"), o2i.get("gl-x-reintegrado")
+gl, glr = o2i.get("gl-ES"), o2i.get("gl-ES-x-reintegrado")
 grapheme_divergence(gl, glr).mean_ipa_distance   # 0.0233: they read alike
 spelling_divergence(gl, glr).mean_distance       # 0.0659: they are written differently
 ```

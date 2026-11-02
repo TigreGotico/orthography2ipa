@@ -23,8 +23,8 @@ its own:
 import orthography2ipa as o2i
 from orthography2ipa.distance import grapheme_divergence, spelling_divergence
 
-gl = o2i.get("gl")                  # Galician, RAG norm: writes /ɲ/ as ⟨ñ⟩, as Castilian does
-glr = o2i.get("gl-x-reintegrado")   # Galician, reintegrationist norm: as ⟨nh⟩, as Portuguese does
+gl = o2i.get("gl-ES")                  # Galician, RAG norm: writes /ɲ/ as ⟨ñ⟩, as Castilian does
+glr = o2i.get("gl-ES-x-reintegrado")   # Galician, reintegrationist norm: as ⟨nh⟩, as Portuguese does
 
 grapheme_divergence(gl, glr).mean_ipa_distance   # 0.0233: reading: same text, same sounds
 spelling_divergence(gl, glr).mean_distance       # 0.0659: spelling: same sounds, written differently

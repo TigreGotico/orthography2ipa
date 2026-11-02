@@ -118,10 +118,10 @@ derived from them: see [ancestry.md](ancestry.md#clade-nodes-and-the-derived-fam
 | `ca-x-occidental` | North-Western Catalan |
 | `oc` | Occitan |
 | `oc-x-aranes` | Aranese (Gascon Occitan) |
-| `gl` | Galician |
-| `gl-x-occidental` | Western Galician |
-| `gl-x-central` | Central Galician |
-| `gl-x-oriental` | Eastern Galician |
+| `gl-ES` | Galician |
+| `gl-ES-x-occidental` | Western Galician |
+| `gl-ES-x-central` | Central Galician |
+| `gl-ES-x-oriental` | Eastern Galician |
 | `fax` | Fala (Galician-Portuguese isolate in Spain) |
 | `ast` | Asturian |
 | `ast-x-occidental` | Western Asturian |
@@ -264,7 +264,7 @@ The following ISO 639-3 codes are automatically resolved to BCP-47:
 | `kor` | `ko` |
 | `eus` | `eu` |
 | `cat` | `ca` |
-| `glg` | `gl` |
+| `glg` | `gl-ES` |
 | `oci` | `oc` |
 | `tur` | `tr` |
 | `fin` | `fi` |
@@ -275,6 +275,8 @@ The following ISO 639-3 codes are automatically resolved to BCP-47:
 | `mwl` | `mwl` |
 | `arg` | `an` |
 | `lat` | `la` |
+
+Galician has one standard spec, `gl-ES`. The bare tag `gl` resolves to it, and the retired variety codes `gl-x-central`, `gl-x-occidental`, `gl-x-oriental`, `gl-x-eonavia` and `gl-x-reintegrado` resolve to the `gl-ES-x-*` spec of the same variety.
 
 ---
 

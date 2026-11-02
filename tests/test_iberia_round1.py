@@ -137,7 +137,7 @@ def test_p3_catalan_clitics_unstressed():
 def test_p3_galician_do_is_proclitic_but_pola_is_tonic():
     """gl-015: the contraction 'do' is an unstressed proclitic while 'pola'
     (por+a) is tonic (Freixeiro Mato 1998; Regueira 1996)."""
-    p = phrase("gl", "corre pola ribeira do río").split()
+    p = phrase("gl-ES", "corre pola ribeira do río").split()
     assert "do" in p                       # unstressed
     assert "ˈpɔla" in p                     # tonic AND open-mid
 
@@ -169,7 +169,7 @@ def test_p4_valencian_open_mid():
 def test_p4_galician_open_o():
     """gl-015: Galician tonic 'corre' is open [ˈkɔɾe]... [ˈkɔre] (Regueira 1996;
     Freixeiro Mato 1998)."""
-    assert word("gl", "corre") == "ˈkɔre"
+    assert word("gl-ES", "corre") == "ˈkɔre"
 
 
 # ── P5 — Canarian / Extremaduran velar /x/ -> [h] ────────────────────────────
