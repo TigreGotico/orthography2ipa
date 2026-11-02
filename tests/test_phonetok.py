@@ -232,6 +232,42 @@ class TestVocabEncoding:
         assert 3 in ids  # <unk> = 3
 
 
+class TestEveryVocabularyGraphemeRoundTrips:
+    """decode(encode(g)) == g for each key of the tokenizer's vocabulary.
+
+    mh writes ⟨ņ ļ⟩ in NFC and again as n/l + U+0327. grc writes the
+    smooth-breathing vowels ⟨ἀ ἐ …⟩ and folds U+0313. nhx writes ⟨u⟩ only
+    inside the digraphs ⟨cu hu qu⟩.
+    """
+
+    @pytest.mark.parametrize("code", ["mh", "grc", "nhx"])
+    def test_round_trip(self, code):
+        tok = PhonetokTokenizer(orthography2ipa.get(code))
+        broken = {g: tok.decode(tok.encode(g)) for g in tok._grapheme_ipa
+                  if tok.decode(tok.encode(g)) != g}
+        assert broken == {}
+
+    def test_keys_take_the_form_the_text_takes(self):
+        import unicodedata
+        tok = PhonetokTokenizer(orthography2ipa.get("mh"))
+        nfd = "n\u0327"
+        assert unicodedata.normalize("NFC", nfd) == "\u0146"
+        assert nfd not in tok._grapheme_ipa
+        assert tok.encode(nfd) == tok.encode("\u0146")
+
+    def test_folded_twin_is_not_a_key(self):
+        tok = PhonetokTokenizer(orthography2ipa.get("grc"))
+        assert "\u1f00" not in tok._grapheme_ipa
+        assert tok.encode("\u1f00") == tok.encode("\u03b1")
+
+    @pytest.mark.parametrize("word", ["cu", "tecu", "cuc"])
+    def test_a_digraph_letter_without_a_reading_stays_in_the_digraph(
+            self, word):
+        tok = PhonetokTokenizer(orthography2ipa.get("nhx"))
+        assert "u" not in orthography2ipa.get("nhx").graphemes
+        assert tok.decode(tok.encode(word)) == word
+
+
 # ═══════════════════════════════════════════════════════════════════════════
 # Token dataclass
 # ═══════════════════════════════════════════════════════════════════════════
