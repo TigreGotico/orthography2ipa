@@ -1,6 +1,6 @@
 """Real-language application of the ``mutates_neighbor`` marker-grapheme
 mechanism (see ``tests/test_allophone_mutates_neighbor.py`` for the
-synthetic-spec mechanism tests, and ``docs/allophony.md`` "Marker
+synthetic-spec mechanism tests, and ``docs/engine/allophony.md`` "Marker
 graphemes" for the write-up).
 
 Manx (`gv`) vestigially preserves Goidelic slender/broad (caol/leathan)

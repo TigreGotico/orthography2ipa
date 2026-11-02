@@ -170,7 +170,7 @@ def feature_vector(segment: str) -> FeatureVector:
 
 
 def feature_names() -> Tuple[str, ...]:
-    """Return the tuple of feature names (21 features)."""
+    """Return the tuple of feature names, one per phone feature."""
     return _FEATURE_NAMES
 
 

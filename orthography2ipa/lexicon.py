@@ -47,7 +47,7 @@ Design contract
   existed.
 
 ``scripts/build_en_lexicon.py`` builds a CMUdict-derived ``en-GB.tsv`` you can
-register; see ``docs/bibliography.md``.
+register; see ``docs/guide/lexicon.md``.
 """
 from __future__ import annotations
 

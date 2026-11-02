@@ -137,7 +137,7 @@ def build_data():
     # whose timespan has ENDED is an ancestry grouping (Galaico-Portuguese
     # 1100–1400, Medieval Portuguese 1200–1500, Hispanic Latin 200–900), not a
     # living variety. Still-spoken languages that also parent a sub-variety
-    # (gl, es-ES, pt-PT) have an open-ended timespan, so they are NOT flagged —
+    # (gl-ES, es-ES, pt-PT) have an open-ended timespan, so they are NOT flagged —
     # this avoids mislabelling a modern language whose gold is keyed under a
     # bare code (es vs es-ES).
     parent_set = {d["parent"] for d in languages.values() if d["parent"]}
@@ -382,7 +382,7 @@ footer { padding: 10px 20px; border-top: 1px solid var(--border); color: var(--m
     <span><span class="dot stub"></span>stub — code + name + family + script only</span>
   </div>
   <div class="caveat">Gold benchmark data is a grain of salt — PER is directional, not a certification. See
-    <a href="benchmarks.md">docs/benchmarks.md</a> and <a href="scoreboard.md">docs/scoreboard.md</a>.</div>
+    <a href="evaluation/benchmarks.md">docs/evaluation/benchmarks.md</a> and <a href="evaluation/generated/scoreboard.md">docs/evaluation/generated/scoreboard.md</a>.</div>
   <div class="counts" id="counts-line"></div>
 </header>
 <nav class="viewnav" role="tablist" aria-label="Explorer views">

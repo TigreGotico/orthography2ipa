@@ -16,7 +16,7 @@ on:
       - "scripts/check_board_freshness.py"
       - "benchmarks/results.json"
       - "benchmarks/results_ci_sample.json"
-      - "docs/scoreboard.md"
+      - "docs/evaluation/generated/scoreboard.md"
       - "tests/data/**"
       # The burn-down list the same guard ratchets; without it here, a pull
       # request that only edits that file never reaches the check.

@@ -268,7 +268,7 @@ class WordTranscription:
     character scores low. It exists so a downstream specialized phonemizer
     can spend its expensive lexicon/rules only where the base engine is
     unsure and trust the fallback elsewhere. See :meth:`G2P.word_confidence`
-    and ``docs/lattice.md`` for the exact formula. ``1.0`` is the neutral
+    and ``docs/engine/lattice.md`` for the exact formula. ``1.0`` is the neutral
     default for a word built without the lattice (e.g. a plain
     :class:`WordTranscription` constructed by a caller)."""
 
@@ -459,7 +459,7 @@ class G2P:
         #: more alternatives. So the published oracle columns are measured
         #: on the beam the engine RANKS, and the movement caused by an
         #: injected alternative is reported separately as reachability
-        #: (docs/benchmarks.md, "Injected alternatives do not count as
+        #: (docs/evaluation/benchmarks.md, "Injected alternatives do not count as
         #: ranking error"). 1-best is unaffected either way: an
         #: alternative can never reach rank 1.
         self.expose_ambiguous_endings = expose_ambiguous_endings
@@ -512,7 +512,6 @@ class G2P:
         self._rescorers: Tuple[LatticeRescorer, ...] = (
             user_rescorers + self._allophone_chain
         )
-        self._plugin_rescorers_resolved = False
         self.expand_allophones = expand_allophones
         self.dialect_profile = dialect_profile
         self.apply_sandhi = apply_sandhi
@@ -962,7 +961,7 @@ class G2P:
         is the number surfaced as :attr:`WordTranscription.confidence`; a
         downstream engine uses it to decide where to spend effort. See
         :func:`orthography2ipa.phonetok.slot_confidence` and
-        ``docs/lattice.md``.
+        ``docs/engine/lattice.md``.
         """
         return self.confidence_breakdown(word, beam_width=beam_width).value
 
@@ -1013,7 +1012,7 @@ class G2P:
         :func:`~orthography2ipa.phonetok.flat_contexts` (predicates +
         neighbours) — no vowel logic is recomputed. Every record's
         :meth:`~orthography2ipa.features.GraphemeFeatures.as_dict` is a flat,
-        JSON-able, CRF-consumable feature dict. See ``docs/features.md`` for
+        JSON-able, CRF-consumable feature dict. See ``docs/engine/lattice.md#feature-export-for-a-learned-model`` for
         the CRF-as-rescorer pattern and a worked example.
         """
         out: List[WordFeatures] = []

@@ -17,7 +17,7 @@ from orthography2ipa.types import QualityTier
 
 SAMPLE_LANGS = [
     "pt-PT", "pt-BR", "es-ES", "en-GB", "fr-FR", "de-DE", "it-IT",
-    "ca", "gl", "eu", "oc", "ast", "mwl", "an", "cy", "ga", "ru",
+    "ca", "gl-ES", "eu", "oc", "ast", "mwl", "an", "cy", "ga", "ru",
     "el", "ar", "fa", "hi", "tr",
 ]
 SAMPLE_TEXTS = {

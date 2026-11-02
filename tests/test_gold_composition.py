@@ -1,7 +1,7 @@
 """Tests for scripts/gold_composition.py's trivial/real classification.
 
 The substance of the script is deciding which gold entries are alphabet-
-chart noise rather than running text (see docs/gold_composition.md). These
+chart noise rather than running text (see docs/evaluation/gold_defects.md). These
 tests exercise that decision directly, against a stub spec, so they do
 not depend on any particular registered language's current grapheme
 table or gold set.

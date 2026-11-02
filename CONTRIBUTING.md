@@ -1,33 +1,39 @@
 # Contributing
 
-## Adding or improving language data
+Read [AGENTS.md](AGENTS.md) first. It holds the repository map, the setup,
+the hard rules and the checks to run before a push. The detail pages are in
+[docs/contributing/](docs/contributing/spec_authoring.md).
 
-Language/dialect specs live under `orthography2ipa/data/*.json`. See
-[`docs/adding_a_language.md`](docs/adding_a_language.md) for the schema,
-inheritance model, and quality-tier expectations before submitting new
-grapheme→IPA mappings, allophone rules, or dialect profiles.
+## Language data
+
+Specs live in `orthography2ipa/data/*.json`. Read
+[docs/contributing/spec_authoring.md](docs/contributing/spec_authoring.md) and
+[docs/contributing/spec_authoring.md](docs/contributing/spec_authoring.md)
+before you add or change a grapheme map, an allophone rule or a dialect. The
+fields are in [`orthography2ipa/data/SCHEMA.md`](orthography2ipa/data/SCHEMA.md).
 
 ## Branch model
 
-- All work targets `dev`. Never commit to `dev` or `master` directly — open a
+- All work targets `dev`. Never commit to `dev` or `master` directly. Open a
   pull request from a feature branch.
-- Releases flow `dev` → alpha pre-release → `master` (stable), driven by the
-  shared `gh-automations` reusable workflows.
-- Commit messages follow the Conventional Commits format (`feat:`, `fix:`,
-  `feat!:` / `BREAKING CHANGE:`, `docs:`, `chore:`, ...). The commit prefix
-  (or PR label) drives the semantic version bump — never hand-edit
-  `orthography2ipa/version.py`.
-- Open pull requests as drafts and keep them draft until CI is green;
-  mark ready for review only once the automated checks pass.
+- Releases flow from `dev` to an alpha pre-release to `master` (stable),
+  driven by the shared `gh-automations` reusable workflows.
+- Commit messages follow Conventional Commits (`feat:`, `fix:`, `feat!:`,
+  `docs:`, `chore:`). The prefix or the pull request label drives the
+  semantic version bump. Never edit `orthography2ipa/version.py` by hand.
+- Open a pull request as a draft. Mark it ready for review when CI is green.
 
 ## Tests
 
-Run the suite before opening a PR:
+Run the suite in a venv inside the checkout before you open a pull request:
 
 ```bash
-pytest tests
+unset VIRTUAL_ENV
+uv venv --python 3.11 .venv
+uv pip install --python .venv --prerelease=allow -e '.[test]'
+PYTHONPATH=$PWD .venv/bin/python -m pytest tests
 ```
 
-If you only touched a spec, `python scripts/which_tests.py --lang <code>` names the test
-files that assert on it (family file plus any per-rule `test_cited_rules_*.py`
-file) so you can run those instead of the full suite while iterating.
+If you changed only a spec, `scripts/which_tests.py --lang <code>` names the
+test files that assert on it. Run those while you work, and run the full
+suite before you push.

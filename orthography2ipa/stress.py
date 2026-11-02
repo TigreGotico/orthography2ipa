@@ -391,10 +391,6 @@ class _OnsetJudge:
         segs = segment_ipa(ipa, _AFFRICATES)
         return bool(segs) and segs[0].startswith(_VELAR_NASAL)
 
-    def _tier(self, grapheme: str) -> int:
-        seg = self._segment(grapheme)
-        return sonority_class(seg) if seg else SONORITY_UNKNOWN
-
     # ---- the judgement ----------------------------------------------------
     def licit(self, run: str) -> bool:
         """Whether the orthographic consonant *run* may open a syllable."""

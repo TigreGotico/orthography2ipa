@@ -4,7 +4,7 @@
 (TigreGotico/mirandese-ipa-dict-synthetic, ``mwl`` and sub-dialects).
 
 Both golds are LLM-generated (research-conditioned), classified at the
-``machine-generated`` reliability tier — see docs/benchmarks.md. Network
+``machine-generated`` reliability tier — see docs/evaluation/benchmarks.md. Network
 access is mocked out via benchmark._fetch so these run offline and
 deterministically, mirroring the other loader tests.
 """
@@ -81,7 +81,7 @@ def test_synthetic_dict_loaders_registered():
 def test_synthetic_dict_loaders_are_llm_generated():
     # LLM-generated golds must sit at the lowest reliability tier: an LLM has
     # no lexicon and no rules, so its IPA has no error model at all and can
-    # never gate a promotion (docs/quality_tiers.md).
+    # never gate a promotion (docs/specs/quality_tiers.md).
     assert benchmark.PROVENANCE["barranquenho_dict"] == "llm-generated"
     assert benchmark.PROVENANCE["mirandese_dict"] == "llm-generated"
     assert not benchmark.can_gate_promotion("llm-generated")

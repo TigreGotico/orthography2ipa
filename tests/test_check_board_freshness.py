@@ -1,7 +1,7 @@
 """Tests for scripts/check_board_freshness.py.
 
 ``test_thin_row_marker.py::test_committed_scoreboard_is_in_sync_with_generator``
-only checks that ``docs/scoreboard.md`` agrees with ``benchmarks/results.json``
+only checks that ``docs/evaluation/generated/scoreboard.md`` agrees with ``benchmarks/results.json``
 -- it never asks whether either agrees with what the specs actually produce.
 A pull request that edits a grapheme table (e.g. ``lmo``'s missing ``ü``
 mapping) moves the true PER for every row scored against that spec; if the

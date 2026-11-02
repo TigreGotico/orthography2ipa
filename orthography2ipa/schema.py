@@ -63,7 +63,7 @@ class _Strict(BaseModel):
 
 class WeightedGraphemeModel(_Strict):
     """The weighted-object form of a grapheme value:
-    ``{"ipa": [...], "weights": [...]}`` (see ``docs/candidate_scoring.md``).
+    ``{"ipa": [...], "weights": [...]}`` (see ``docs/engine/lattice.md#how-cost-works``).
 
     ``weights`` are candidate frequencies, one per ``ipa`` entry, and must
     be non-negative and sum to a positive value; the model enforces the
@@ -449,7 +449,8 @@ class LanguageSpecModel(_Strict):
     sandhi_rules: Optional[List[SandhiRuleModel]] = None
     allophone_rules: Optional[List[AllophoneRuleModel]] = None
     allophone_passes: int = Field(default=1, ge=1, le=4)
-    stress: Optional[StressRulesModel] = None
+    # ``false`` takes no block: the spec opts out of the inherited one.
+    stress: Union[StressRulesModel, Literal[False], None] = None
     tone_rules: Optional[ToneRulesModel] = None
     tone_inventory: Optional[Dict[str, str]] = None
     tone_marks_syllable_final: Optional[bool] = None

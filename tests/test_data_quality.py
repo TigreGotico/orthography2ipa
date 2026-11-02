@@ -82,9 +82,36 @@ def test_non_stub_resolves_to_content(code):
     assert spec.allophones, f"{code} ({spec.quality.value}) has no allophones"
 
 
+# Stub specs allowed to carry a letter table of their own without a base,
+# because a source listed in the spec supports the table. Each value names
+# that source. Such a spec is a promotion candidate, not a stub.
+STUB_TABLE_EXEMPTIONS: dict[str, str] = {}
+
+
+@pytest.mark.parametrize("code", ALL_CODES)
+def test_stub_carries_no_table_of_its_own(code):
+    """A stub claims no phonology (QualityTier.STUB: code, name, family and
+    script only), so it carries no letter table of its own. A stub dialect
+    may still state a small delta over the base it inherits a table from.
+
+    An invented table on a stub hides StubSpecWarning and makes the engine
+    print IPA that no source supports.
+    """
+    raw = json.loads((DATA_DIR / f"{code}.json").read_text(encoding="utf-8"))
+    if raw.get("quality") != "stub" or code in STUB_TABLE_EXEMPTIONS:
+        return
+    if not raw.get("graphemes") and not raw.get("positional_graphemes"):
+        return
+    assert raw.get("graphemes_base") or raw.get("positional_graphemes_base"), (
+        f"{code}.json is a stub with a grapheme table and no base to "
+        f"inherit from: remove the table, or cite the source that supports "
+        f"it and promote the spec"
+    )
+
+
 # Deep-orthography PER ceiling, applied uniformly below because
 # LanguageSpec carries no orthographic-depth field to key a per-language
-# threshold off. See docs/quality_tiers.md for the shallow (0.15) / deep
+# threshold off. See docs/specs/quality_tiers.md for the shallow (0.15) / deep
 # (0.25) rationale, and for why the shallow threshold is reviewer- rather
 # than machine-enforced.
 _PRODUCTION_MIN_N = 500
@@ -113,7 +140,7 @@ def _benchmark_rows():
 def test_production_tier_has_qualifying_benchmark(code):
     """A spec claiming `production` must have a benchmarks/results.json
     row for one of its language tags meeting the tier threshold
-    documented in docs/quality_tiers.md (n >= 500, PER <= ceiling).
+    documented in docs/specs/quality_tiers.md (n >= 500, PER <= ceiling).
 
     This guard enforces the deep-orthography ceiling (0.25) uniformly,
     since LanguageSpec has no orthographic-depth field to derive a
@@ -122,9 +149,8 @@ def test_production_tier_has_qualifying_benchmark(code):
     is a reviewer-enforced convention checked against the spec's
     docs/languages/ page during promotion review, not by this test.
 
-    No spec is currently at production tier, so this test is presently
-    vacuous for every code — that is expected: tier promotion is a
-    test-gated act, not a label change.
+    Tier promotion is a test-gated act, not a label change: every spec
+    that claims production must pass this test.
     """
     spec = get(code)
     if spec.quality is not QualityTier.PRODUCTION:
@@ -133,7 +159,7 @@ def test_production_tier_has_qualifying_benchmark(code):
     rows = _benchmark_rows()
 
     def _matches(row_lang: str) -> bool:
-        # docs/quality_tiers.md: the gold may be registered under "one of
+        # docs/specs/quality_tiers.md: the gold may be registered under "one of
         # the spec's language tags" — benchmark rows record the tag the
         # dataset was registered with (wikipron "es"), which the registry
         # resolves to the reference variety's spec ("es-ES"). Resolve the
@@ -151,7 +177,7 @@ def test_production_tier_has_qualifying_benchmark(code):
         and row.get("n", 0) >= _PRODUCTION_MIN_N
         and row.get("per", 1.0) <= _PRODUCTION_DEEP_PER_CEILING
         # a row on a competitor-derived or LLM tier can never qualify a
-        # promotion (docs/quality_tiers.md); rows without a provenance
+        # promotion (docs/specs/quality_tiers.md); rows without a provenance
         # field predate the tier system and cannot vouch either
         and _gate_eligible(row.get("provenance"))
         and row.get("dataset") not in CORRECTED_DATASETS

@@ -58,7 +58,7 @@ from orthography2ipa.vowels import (
     is_palatal_consonant,
     is_pharyngealized_consonant,
 )
-from orthography2ipa.positional import build_branches, resolve_branches
+from orthography2ipa.positional import resolve_branches
 
 # ── Positional-nasalisation guard (see PhonetokTokenizer._expand_beam) ──
 # The combining tilde a coda ⟨m/n⟩ slot emits to nasalise the preceding
@@ -510,7 +510,7 @@ class IPAPath:
     listed for each grapheme is the canonical form (cost 0) and
     alternatives receive +1 each. When a spec declares per-candidate
     weights the per-grapheme cost is ``-log(p)`` instead — see
-    :mod:`orthography2ipa.weights` and ``docs/candidate_scoring.md``."""
+    :mod:`orthography2ipa.weights` and ``docs/engine/lattice.md#how-cost-works``."""
 
     graphemes: Tuple[str, ...] = ()
     """The grapheme key each segment came from, parallel to
@@ -543,7 +543,7 @@ class Candidate:
     candidate's (normalised) probability; for a plain-list spec it is the
     uniform-descending *rank* cost (``0.0`` for the canonical candidate,
     ``1.0`` for the next, …). Lower cost = more likely. See
-    :mod:`orthography2ipa.weights` and ``docs/lattice.md``.
+    :mod:`orthography2ipa.weights` and ``docs/engine/lattice.md``.
     """
 
     ipa: str
@@ -617,7 +617,7 @@ class SegmentSlot:
 #
 # It is built entirely from costs the lattice already carries
 # (``Candidate.cost`` = −log P for a weighted spec, rank cost otherwise; see
-# ``docs/lattice.md``), combining three signals:
+# ``docs/engine/lattice.md``), combining three signals:
 #
 # 1. **Ambiguity** — the top-1 vs top-2 ``cost`` margin *within* a slot. A
 #    large margin means one option dominates (confident); a margin of ``0``
@@ -2087,7 +2087,7 @@ class PhonetokTokenizer:
                 # question about the Brahmic specs' own schwa handling, with
                 # its own fleet-wide cost. They keep their existing behaviour
                 # here so this change has one blast radius; the finding is
-                # recorded in docs/benchmarks.md for its own PR.
+                # recorded in docs/evaluation/benchmarks.md for its own PR.
                 if self.spec.inherent_vowel and ipa_vals:
                     first_ipa = ipa_vals[0]
                     is_mark = (
@@ -2657,32 +2657,6 @@ class PhonetokTokenizer:
         return "".join(parts)
 
     # ─── Internal helpers ───────────────────────────────────────────────
-
-    @staticmethod
-    def _ipa_branches(
-            token: Token,
-            allophone_map: Optional[Dict[str, List[str]]],
-            weights: Optional[Sequence[float]] = None,
-    ) -> List[Tuple[str, float]]:
-        """Return (ipa_string, cost) branches for one GRAPHEME token.
-
-        Without *weights* (plain-list grapheme): cost 0 for the first
-        (canonical) IPA and +1 for each alternative — the rank ordering.
-        With valid *weights* the per-candidate cost is ``-log(p)`` (see
-        :func:`orthography2ipa.weights.candidate_base_costs`); the branch
-        shape ``(ipa, cost)`` is unchanged so ``_expand_beam`` is agnostic.
-        If allophone expansion is on, each phoneme further branches into
-        its allophonic variants at +0.5 cost each beyond the first.
-
-        This is a thin wrapper over
-        :func:`orthography2ipa.positional.build_branches`, the single
-        shared branch-builder used by both the tokenizer beam and the
-        engine's positional beam; it does **not** apply positional
-        overrides (those need context — see :func:`~orthography2ipa.
-        positional.resolve_branches`).
-        """
-        return build_branches(
-            token.ipa, weights, allophone_map, token.grapheme)
 
     @staticmethod
     def _expand_beam(

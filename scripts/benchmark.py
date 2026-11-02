@@ -5,12 +5,12 @@ Self-contained evaluation harness for this library: it loads a gold
 dataset, transcribes every word with :class:`orthography2ipa.G2P`, and
 reports PER (phoneme error rate) and WER (word error rate). The
 datasets, their sources and the methodology are documented in
-``docs/benchmarks.md``.
+``docs/evaluation/benchmarks.md``.
 
 Usage::
 
     python scripts/benchmark.py --dataset portuguese_unified --lang pt-PT
-    python scripts/benchmark.py --dataset wikipron --lang gl --broad
+    python scripts/benchmark.py --dataset wikipron --lang gl-ES --broad
     python scripts/benchmark.py --dataset mirandese_g2p --lang mwl
     python scripts/benchmark.py --list
 
@@ -41,17 +41,17 @@ over the engine's top-k readings — which splits ranking error (right
 answer in the beam, ranked wrong) from model error (right answer absent
 at any k). It is a lattice-quality diagnostic for THIS engine only and
 is never valid input to a cross-system comparison: see
-:class:`OracleResult` and ``docs/benchmark_methodology.md``.
+:class:`OracleResult` and ``docs/evaluation/benchmarks.md``.
 
 The committed ``--scoreboard`` scores the FULL gold set of every language
 with NO cap (uniformly — no per-language limit juggling); the published
-docs/scoreboard.md is full-dataset. ``--limit N`` still applies a uniform
+docs/evaluation/generated/scoreboard.md is full-dataset. ``--limit N`` still applies a uniform
 cap for ad-hoc fast runs, and the CI regression gate re-scores at a fixed
 uniform sample (see ``--ci-sample`` and check_benchmark_regression.py). A
 few loaders keep an intrinsic, language-agnostic infrastructure bound that
 ``--limit`` cannot lift (e.g. ``hitz_basque_ipa`` pages the HF rows API and
 stops at ``_HITZ_BASQUE_MAX_PARAGRAPHS`` rather than pulling the full
-1.67M-row set) — these are documented in docs/benchmarks.md.
+1.67M-row set) — these are documented in docs/evaluation/benchmarks.md.
 
 Where things live
 -----------------
@@ -80,7 +80,7 @@ render. Each section carries a ``# ─── name ───`` header:
     comparable to the scoreboard's.
 ``build_scoreboard`` / ``write_scoreboard``
     Sweep every registered dataset/language, then render
-    docs/scoreboard.md + benchmarks/results.json.
+    docs/evaluation/generated/scoreboard.md + benchmarks/results.json.
 ``lexicon-overlay report``
     The separate rules-only-vs-with-lexicon board (``--lexicon-report``);
     it writes its own docs page and never touches the main scoreboard.
@@ -153,14 +153,14 @@ try:
 except ImportError:
     # Fallback for when this is run standalone without the guard module.
     THIN_ROW_MARK = "†"
-SCOREBOARD_MD = os.path.join(REPO_ROOT, "docs", "scoreboard.md")
+SCOREBOARD_MD = os.path.join(REPO_ROOT, "docs", "evaluation", "generated", "scoreboard.md")
 SCOREBOARD_JSON = os.path.join(REPO_ROOT, "benchmarks", "results.json")
 #: The environment that scored the whole board: the resolved version of every
 #: registered plugin and optional scorer package. It sits beside
 #: ``results.json`` because that file is a bare list of rows.
 ENVIRONMENT_JSON = os.path.join(
     REPO_ROOT, "benchmarks", "results_environment.json")
-LEXICON_SCOREBOARD_MD = os.path.join(REPO_ROOT, "docs", "lexicon_scoreboard.md")
+LEXICON_SCOREBOARD_MD = os.path.join(REPO_ROOT, "docs", "evaluation", "generated", "lexicon_scoreboard.md")
 LEXICON_SCOREBOARD_JSON = os.path.join(
     REPO_ROOT, "benchmarks", "lexicon_results.json")
 
@@ -301,7 +301,7 @@ _WIKIPRON_FILES = {
     "an": "arg_latn_broad.tsv",          # Aragonese, ~1.3k rows
     "lad": "lad_latn_broad.tsv",         # Ladino, ~145 rows
     # --- already wired ---
-    "gl": "glg_latn_broad.tsv",
+    "gl-ES": "glg_latn_broad.tsv",
     # "es" resolves through the registry to es-ES, Castilian Spanish, which
     # has distincion (<cielo> -> [th-jelo]). It is scored against the Castilian
     # gold. The Latin-American gold has seseo (<cielo> -> [s-jelo]) and belongs
@@ -744,7 +744,7 @@ _VOX_COMMUNIS_BASE = (
 _VOX_COMMUNIS_FILES: Dict[str, str] = {
     lang: lang for lang in (
         "ab", "am", "as", "ba", "be", "bg", "bn", "ca", "ckb", "cs", "cv",
-        "cy", "dv", "el", "et", "eu", "fi", "gl", "gn", "ha", "hi", "hsb",
+        "cy", "dv", "el", "et", "eu", "fi", "gn", "ha", "hi", "hsb",
         "hu", "id", "ja", "ka", "kab", "kk", "ko", "ky", "lg", "lij", "lt",
         "mk", "ml", "mn", "mr", "mt", "myv", "nl", "or", "pl", "ru", "rw",
         "sah", "sk", "sl", "sq", "sr", "sw", "ta", "th", "tk", "tn", "tr",
@@ -754,6 +754,7 @@ _VOX_COMMUNIS_FILES: Dict[str, str] = {
 _VOX_COMMUNIS_FILES.update({
     "es": "es", "it": "it", "ro": "ro",       # bare tags resolve via registry
     "pt-BR": "pt",                            # region-untagged; see note above
+    "gl-ES": "gl",
     "sv": "sv-se", "hy": "hy-am",
     "fy": "fy-nl", "pa": "pa-in",
 })
@@ -782,7 +783,7 @@ _VOX_COMMUNIS_FILES.update({
 _VOX_COMMUNIS_NON_SPEECH = frozenset({"spn"})
 # ``zh`` (Mandarin) is DELIBERATELY not registered here either, for exactly
 # the reason spelled out for ``yue`` below and already recorded for the
-# ipa-dict ``zh_*``/``yue`` files in docs/benchmark_datasets.md ("Rejected
+# ipa-dict ``zh_*``/``yue`` files in docs/evaluation/datasets.md ("Rejected
 # candidates"): the o2i ``zh`` spec is a PINYIN spec, while
 # ``zh-cn.tsv``'s ``aligned_sentence`` column is Han characters
 # (``盘固 草 为 禾 本科 …``). Every single row therefore transcribes to the
@@ -966,7 +967,7 @@ _IPA_CHILDES_STEM_COLUMN = {"zh"}
 # languages were run through ``phonemizer`` (whose backend is espeak-ng), six
 # through ``epitran``, Mandarin through ``pinyin_to_ipa`` and Cantonese through
 # ``pingyam``. espeak and epitran are both systems this project benchmarks
-# itself AGAINST (docs/comparison.md), so a row scored on their output measures
+# itself AGAINST (docs/evaluation/generated/comparison.md), so a row scored on their output measures
 # agreement with a competitor, not correctness — hence the per-language tiers in
 # ``_IPA_CHILDES_PROVENANCE`` below rather than one dataset-wide tier.
 _IPA_CHILDES_TOOL: Dict[str, str] = {
@@ -1075,7 +1076,7 @@ _IPA_BABYLM_BASE = (
 # prepare_babylm.ipynb) calls it as ``transcribe_utterances(..., 'phonemizer',
 # language='en-us', ...)``, and G2P+'s phonemizer backend requires espeak-ng.
 # So this gold is espeak output: espeak-derived, a COMPETITOR's transcription
-# (docs/comparison.md). It can neither qualify nor block English.
+# (docs/evaluation/generated/comparison.md). It can neither qualify nor block English.
 #
 # LICENCE — the dataset card declares none; the underlying BabyLM 2024 corpora
 # (BNC, CHILDES, Gutenberg, OpenSubtitles, Simple Wikipedia, Switchboard) keep
@@ -1153,7 +1154,7 @@ def load_ipa_babylm(lang: str, limit: int) -> List[Tuple[str, str]]:
 #   ``Segments`` empty on all 346k rows.
 #
 # 2026-08 audit wave — 21 more candidates inspected, NONE wired. Full verdicts
-# and evidence in docs/benchmark_datasets.md "Rejected candidates". Summary:
+# and evidence in docs/evaluation/datasets.md "Rejected candidates". Summary:
 #
 # - `uralex`: ``Segments`` empty on all sampled rows (same as ids/abvd).
 # - `tuled`, `dravlex`, `chaconarawakan`, `felekesemitic`, `hantganbangime`,
@@ -1222,7 +1223,7 @@ def _load_lexibank(repo: str, language_id: str, limit: int) -> List[Tuple[str, s
 # gold can actually exercise — this loader targets the stub-promotion
 # path, not already-`research`/`production` languages. Every entry was
 # smoke-checked: the engine produces non-empty output for a large majority
-# of the language's sampled forms (see docs/benchmarks.md).
+# of the language's sampled forms (see docs/evaluation/benchmarks.md).
 #
 # Excluded despite an ISO/registry match: `yux` (Southern Yukaghir) has a
 # non-empty grapheme table but scored 0/913 non-empty — a script/transliteration
@@ -1360,7 +1361,7 @@ def load_wold(lang: str, limit: int) -> List[Tuple[str, str]]:
 # 2026-08 gold-hunting wave 2: targeted at o2i specs with a non-empty
 # grapheme table and ZERO gold anywhere else in this registry. Every
 # wired language was downloaded, filtered to entries with a non-empty
-# ``sounds[].ipa``, and hand-sampled (see docs/benchmarks.md) before
+# ``sounds[].ipa``, and hand-sampled (see docs/evaluation/benchmarks.md) before
 # wiring. Rejected: Tigrinya (only 28/933 entries carry ``ipa`` -- too
 # thin to be a usable gold set).
 #
@@ -1375,7 +1376,7 @@ def load_wold(lang: str, limit: int) -> List[Tuple[str, str]]:
 # zero-gold languages. Added: `so` (Somali), `om` (Oromo), `ne` (Nepali),
 # `kok` (Konkani). Re-checked: Tigrinya is UNCHANGED (still 28/933 -- stays
 # rejected), and Sindhi (`sd`) / Santali (`sat`) were investigated and
-# rejected -- see docs/benchmark_datasets.md for both.
+# rejected -- see docs/evaluation/datasets.md for both.
 _KAIKKI_BASE = "https://kaikki.org/dictionary/{name}/kaikki.org-dictionary-{name}.jsonl"
 
 # orthography2ipa language tag -> kaikki.org per-language dump directory name.
@@ -1852,7 +1853,7 @@ def load_mirandese(lang: str, limit: int) -> List[Tuple[str, str]]:
     ``_MIRANDESE_DIALECTS``: central→``mwl``,
     sendinese→``mwl-x-sendim``, raiano→``mwl-x-ifanes``. Mirandese is Latin-script, so no special input
     contract applies. It is a SEPARATE source from any synthetic
-    Mirandese IPA dictionary; see docs/benchmarks.md "Provenance".
+    Mirandese IPA dictionary; see docs/evaluation/benchmarks.md "Provenance".
     """
     dialect = _MIRANDESE_DIALECTS[lang]
     text = _fetch(_MIRANDESE_URL, "mirandese_g2p.tsv")
@@ -1882,7 +1883,7 @@ def load_barranquenho_dict(lang: str, limit: int) -> List[Tuple[str, str]]:
     reliability tier and can gate nothing.
     It is nonetheless machine-generated and unverified by human phoneticians:
     it is classified at the lowest reliability tier (``machine-generated``) and
-    is directional only. See docs/benchmarks.md "Provenance and reliability".
+    is directional only. See docs/evaluation/benchmarks.md "Provenance and reliability".
 
     Each CSV row is ``barranquenho_orthography,ipa_transcription,part_of_speech,
     portuguese_equivalent,spanish_equivalent,phonological_notes``; only the
@@ -1929,7 +1930,7 @@ def load_mirandese_dict(lang: str, limit: int) -> List[Tuple[str, str]]:
     classified at the lowest reliability tier (``machine-generated``) and is
     directional only. It is a SEPARATE, complementary source from the existing
     ``mirandese`` gold (TigreGotico/mirandese_g2p, native-speaker collected).
-    See docs/benchmarks.md "Provenance and reliability".
+    See docs/evaluation/benchmarks.md "Provenance and reliability".
 
     Each CSV row is ``word,ipa,pos,english,portuguese,dialect,notes``; only
     ``word``, ``ipa`` and ``dialect`` are used. Mirandese is Latin-script, so
@@ -2091,7 +2092,7 @@ def load_vox_communis(lang: str, limit: int) -> List[Tuple[str, str]]:
 
     PROVENANCE — classified ``epitran-derived`` (the competitor tier): the
     phone tier's lexicons are built with Epitran — a scored competitor in
-    docs/comparison.md — alongside XPF/Charsiu, so a disagreement here
+    docs/evaluation/generated/comparison.md — alongside XPF/Charsiu, so a disagreement here
     measures divergence from a competitor's output. Directional signal
     only; can never gate a regression or a tier promotion.
 
@@ -2114,7 +2115,7 @@ def load_vox_communis(lang: str, limit: int) -> List[Tuple[str, str]]:
 
     No ``PROVENANCE_BY_LANG`` override is applied, deliberately. The tier
     lattice has no rung BELOW a competitor's output: ``machine-generated``
-    reads as the weakest tier in docs/benchmarks.md but is a QUALIFYING one
+    reads as the weakest tier in docs/evaluation/benchmarks.md but is a QUALIFYING one
     (``can_gate_promotion`` is True for it and False for
     ``epitran-derived``), so overriding ``ab`` down to it would hand a
     gating vote to the least trustworthy row on the board. Leaving the
@@ -2381,7 +2382,7 @@ def load_hitz_basque(lang: str, limit: int) -> List[Tuple[str, str]]:
     automatic tool (ahoNT) rather than a human annotator. Per an explicit,
     dataset-specific decision, that is accepted here because the dataset
     is published by an academic/university NLP research center (HiTZ) --
-    see docs/benchmarks.md for the full rationale; this is not a general
+    see docs/evaluation/benchmarks.md for the full rationale; this is not a general
     exception to the "gold only from humans" rule.
 
     The dataset is paragraph-level, a different shape than this harness's
@@ -2407,7 +2408,7 @@ def load_hitz_basque(lang: str, limit: int) -> List[Tuple[str, str]]:
     ``_HITZ_BASQUE_MAX_PARAGRAPHS`` paragraphs -- an intrinsic bound that
     ``limit=None`` does NOT lift, so this is the one dataset the full-dataset
     scoreboard does not read end-to-end (never the full 1.67M-row set). The
-    bound is disclosed in ``docs/benchmarks.md``.
+    bound is disclosed in ``docs/evaluation/benchmarks.md``.
     """
     import re
 
@@ -2529,7 +2530,7 @@ def load_ipadict(lang: str, limit: int) -> List[Tuple[str, str]]:
     scoreboard row via :func:`provenance_for`) rather than inheriting a
     single dataset-wide tier. ``en-GB`` in particular is **espeak output**
     and can therefore neither qualify nor block a language
-    (docs/quality_tiers.md). Consult the project README Credits section —
+    (docs/specs/quality_tiers.md). Consult the project README Credits section —
     never assume — before wiring another language.
 
     Each entry is ``word TAB /IPA/``. A word with several attested
@@ -2640,11 +2641,10 @@ _EP_DIALECT_LANGS = sorted(_EP_DIALECT_MAP.values())
 # Two sibling gold sets of full sentences, one TSV per lect, each row an
 # orthographic sentence paired with a hand-written broad IPA transcription.
 # They are LLM-authored (see the provenance note on ``arabic_tts`` /
-# ``portuguese_tts`` in ``PROVENANCE`` and docs/benchmarks.md): every
+# ``portuguese_tts`` in ``PROVENANCE`` and docs/evaluation/benchmarks.md): every
 # transcription was drafted by a language model, then engine-pinned and
 # audited row-by-row against the cited phonological literature recorded in
-# each row's ``notes`` column (docs/arabic-tts-gold.md,
-# docs/portuguese-tts-gold.md). Citation-audited is not expert-authored, so
+# each row's ``notes`` column (docs/evaluation/silver_sets.md). Citation-audited is not expert-authored, so
 # the honest tier is ``llm-generated``: it has no error model and can gate no
 # quality decision — a directional signal only.
 #
@@ -2706,7 +2706,7 @@ def load_arabic_tts(lang: str, limit: int) -> List[Tuple[str, str]]:
     """Arabic sentence-level TTS gold — one TSV per lect, 20 sentences each
     across 33 Arabic varieties (MSA + regional macro-lects + country/city
     dialects). Vocalized ``sentence`` column in, broad IPA ``ipa`` column as
-    gold. LLM-authored, literature-audited: see docs/arabic-tts-gold.md and
+    gold. LLM-authored, literature-audited: see docs/evaluation/silver_sets.md and
     the ``arabic_tts`` provenance note.
     """
     return _load_sentence_tts(_ARABIC_TTS_DIR, lang, limit)
@@ -2716,7 +2716,7 @@ def load_portuguese_tts(lang: str, limit: int) -> List[Tuple[str, str]]:
     """Portuguese sentence-level TTS gold — one TSV per lect across European
     Portuguese standard + regional varieties. ``sentence`` column in, broad
     IPA ``ipa`` column as gold. LLM-authored, literature-audited: see
-    docs/portuguese-tts-gold.md and the ``portuguese_tts`` provenance note.
+    docs/evaluation/silver_sets.md and the ``portuguese_tts`` provenance note.
     """
     return _load_sentence_tts(_PORTUGUESE_TTS_DIR, lang, limit)
 
@@ -2983,7 +2983,7 @@ def load_alphacep_ru_book(lang: str, limit: int) -> List[Tuple[str, str]]:
     PROVENANCE — classified ``machine-generated``: the phone tier is an
     automatic accentuator/G2P annotation over its5Q/biggest-ru-book, not a
     hand-transcribed or lexicon-derived gold. Directional signal only; see
-    ``docs/quality_tiers.md`` — this tier cannot gate a promotion.
+    ``docs/specs/quality_tiers.md`` — this tier cannot gate a promotion.
     """
     if lang != "ru":
         return []
@@ -3308,11 +3308,11 @@ DATASETS: Dict[str, Tuple[DatasetLoader, List[str]]] = {
 # phonemizer's OWN output reused as a reference. A low PER against a
 # machine-generated gold means "agrees with that tool", NOT "correct".
 # Treat every scoreboard number as directional, never precise. The
-# reliability tier below is surfaced per-row in docs/scoreboard.md and
+# reliability tier below is surfaced per-row in docs/evaluation/generated/scoreboard.md and
 # benchmarks/results.json so the caveat travels WITH the numbers.
 #
 # Tiers, most to least trustworthy (all still subject to notation
-# conventions and small-n noise — see docs/benchmarks.md "Provenance and
+# conventions and small-n noise — see docs/evaluation/benchmarks.md "Provenance and
 # reliability"):
 #
 #   expert-human     — IPA curated by phoneticians, trained annotators, or
@@ -3337,14 +3337,14 @@ DATASETS: Dict[str, Tuple[DatasetLoader, List[str]]] = {
 #   espeak-derived   — the gold is espeak-ng's own output (directly, or via
 #   epitran-derived    phonemizer/G2P+ which wrap it), or epitran's. Both are
 #                      COMPETITORS we benchmark ourselves against
-#                      (docs/comparison.md has espeak_per and epitran_per
+#                      (docs/evaluation/generated/comparison.md has espeak_per and epitran_per
 #                      columns), so the row measures AGREEMENT WITH A
 #                      COMPETITOR. It is still diagnostic — they are
 #                      deterministic rule systems, so a disagreement can be
 #                      traced to a rule and adjudicated against a cited source,
 #                      and diverging from them may be exactly right. But it can
 #                      never CERTIFY us: it can neither qualify a language for
-#                      promotion nor block one (docs/quality_tiers.md).
+#                      promotion nor block one (docs/specs/quality_tiers.md).
 #   llm-generated    — the gold was produced by a large language model. Worst
 #                      of all: no lexicon, no G2P model, no rules — therefore
 #                      NO ERROR MODEL. The output is plausible-looking IPA that
@@ -3367,7 +3367,7 @@ RELIABILITY_TIERS = (
 # label) because the identity of the competitor is what a reader needs in order
 # to interpret the row: an espeak-derived row on English and an epitran-derived
 # row on Spanish are non-comparable evidence, and the circularity warning for
-# each points at a different column of docs/comparison.md.
+# each points at a different column of docs/evaluation/generated/comparison.md.
 COMPETITOR_DERIVED_TIERS = frozenset({"espeak-derived", "epitran-derived"})
 
 # The last tier in RELIABILITY_TIERS that may gate a quality decision. Gating
@@ -3400,7 +3400,7 @@ GATING_CUTOFF_TIER = "machine-generated"
 # agreement, not correctness) or an LLM's (no error model at all). A language
 # whose only >=500-entry gold sits in one of these has NO usable gold and stays
 # at `research`, and a poor score on one of these rows can equally never BLOCK a
-# language that clears the bar on a trustworthy gold. See docs/quality_tiers.md.
+# language that clears the bar on a trustworthy gold. See docs/specs/quality_tiers.md.
 NON_QUALIFYING_TIERS = frozenset(
     RELIABILITY_TIERS[RELIABILITY_TIERS.index(GATING_CUTOFF_TIER) + 1:]
 )
@@ -3409,7 +3409,7 @@ NON_QUALIFYING_TIERS = frozenset(
 def can_gate_promotion(tier: str) -> bool:
     """Whether a scoreboard row on this tier may qualify (or block) a language
     for the `production` quality tier. False for competitor-derived and
-    LLM-generated gold; see docs/quality_tiers.md."""
+    LLM-generated gold; see docs/specs/quality_tiers.md."""
     if tier not in RELIABILITY_TIERS:
         raise ValueError(f"unknown reliability tier: {tier!r}")
     return tier not in NON_QUALIFYING_TIERS
@@ -3417,7 +3417,7 @@ def can_gate_promotion(tier: str) -> bool:
 # Every key in DATASETS MUST appear here (a test enforces it, so a new
 # dataset cannot be registered without an explicit, evidence-based
 # reliability classification). Classifications are justified per-dataset in
-# docs/benchmarks.md "Provenance and reliability".
+# docs/evaluation/benchmarks.md "Provenance and reliability".
 PROVENANCE: Dict[str, str] = {
     # The transcriptions are the published examples of the phonologists and
     # dialectologists the specs cite — the most authoritative gold in the
@@ -3429,12 +3429,12 @@ PROVENANCE: Dict[str, str] = {
     # Arabic + Portuguese sentence-level TTS gold. LLM-authored: every IPA
     # transcription was drafted by a large language model, then engine-pinned
     # and audited row-by-row against the phonological literature cited in each
-    # row's `notes` column (docs/arabic-tts-gold.md, docs/portuguese-tts-gold.md).
+    # row's `notes` column (docs/evaluation/silver_sets.md).
     # Citation-auditing raises confidence but does NOT change the error model:
     # there is still no lexicon, no G2P, no rule system behind the gold, so a
     # disagreement cannot be attributed to anything. The honest tier is
     # `llm-generated` (never `expert-human`) — directional signal only, gates
-    # no quality decision (docs/quality_tiers.md).
+    # no quality decision (docs/specs/quality_tiers.md).
     "arabic_tts": "llm-generated",
     "gold20_arabic": "llm-generated",   # Salesteq/arabic-dialects-gold20 (HF):
     # semi-synthetic (same Claude lineage that authored the o2i Arabic dialect
@@ -3500,7 +3500,7 @@ PROVENANCE: Dict[str, str] = {
     # A COMPETITOR'S OUTPUT reused as a reference. These phonemes come from the
     # espeak-ng-backed phonemizer, so this row measures AGREEMENT WITH ESPEAK,
     # not correctness — and espeak is a system we benchmark ourselves *against*
-    # (docs/comparison.md). Diverging from it can mean we are right and it is
+    # (docs/evaluation/generated/comparison.md). Diverging from it can mean we are right and it is
     # wrong, which would show here as a *worse* score. Quality also varies by
     # language. Never gate a quality decision on this row; judge any divergence
     # against a cited source instead. Kept because it is broad coverage and a
@@ -3814,7 +3814,7 @@ def align(a: str, b: str) -> List[Tuple[Optional[str], Optional[str]]]:
 #
 # PER strips stress marks, so it cannot see stress on the wrong syllable. The
 # stress column measures that one thing: whether the primary stress lands on
-# the gold's syllable. The definition is in docs/benchmarks.md ("Stress
+# the gold's syllable. The definition is in docs/evaluation/benchmarks.md ("Stress
 # accuracy"); tugaphone's benchmark reports the same definition.
 
 _PRIMARY_STRESS = "ˈ"
@@ -4140,7 +4140,7 @@ def evaluate_words_oracle(pairs: Sequence[GoldPair], lang: str,
     board's convention: injected alternatives stay out of the oracle
     columns (see the ``G2P`` call below). Pass ``True`` only to measure
     the injected movement itself — the separate reachability number that
-    docs/benchmarks.md requires to be reported under its own heading and
+    docs/evaluation/benchmarks.md requires to be reported under its own heading and
     never folded into ranking error. It cannot change the 1-best numbers.
 
     A *stress* tally, when given, counts the stress column from the same
@@ -4158,7 +4158,7 @@ def evaluate_words_oracle(pairs: Sequence[GoldPair], lang: str,
     # adding candidates to a beam can only lower an oracle. Scoring with
     # them on would let any spec inflate its own headroom by declaring more
     # alternatives. The injected movement is real and worth reporting, but
-    # as REACHABILITY and under its own heading: see docs/benchmarks.md,
+    # as REACHABILITY and under its own heading: see docs/evaluation/benchmarks.md,
     # "Injected alternatives do not count as ranking error". 1-best is
     # identical either way, so the PER columns are unaffected.
     engine = G2P(lang, expose_ambiguous_endings=expose_ambiguous_endings)
@@ -4341,14 +4341,14 @@ def _quality_tier(lang: str) -> Optional[str]:
         return None
 
 
-#: The deep-orthography PER gate documented in ``docs/quality_tiers.md``
+#: The deep-orthography PER gate documented in ``docs/specs/quality_tiers.md``
 #: ("Quality tiers" -> "production"). Used here ONLY to decide whether the
 #: scoreboard's `Ceiling` column visibly marks a row as proved
 #: input-limited; it does not feed the quality-tier computation itself,
 #: which lives in ``_quality_tier`` and is untouched by this column.
 CEILING_GATING_THRESHOLD = 0.25
 
-#: Marks a row's `PER` cell in `docs/scoreboard.md` as non-qualifying — the
+#: Marks a row's `PER` cell in `docs/evaluation/generated/scoreboard.md` as non-qualifying — the
 #: row's `gating` field is `False` (see `can_gate_promotion`) — so a number
 #: that cannot qualify or block a `production` promotion does not read like
 #: one that can, the same reasoning that puts `†` on a proved-input-limited
@@ -4509,7 +4509,7 @@ def build_scoreboard(limit: Optional[int], oracle: bool = False,
                 "provenance": provenance_for(dataset_name, lang),
                 # Whether THIS row's provenance tier may gate a `production`
                 # promotion — i.e. qualify or block one, per docs/index.md
-                # and docs/quality_tiers.md. Derived from `provenance` and
+                # and docs/specs/quality_tiers.md. Derived from `provenance` and
                 # `n` via `row_gates()` (over `can_gate_promotion()`, the
                 # single source of truth for the tier lattice; see
                 # `NON_QUALIFYING_TIERS`) so the field can never drift from
@@ -4702,7 +4702,7 @@ def write_scoreboard(rows: List[dict]) -> None:
         "**directional/relative**, and cross-reference the `95% CI` (a wide or "
         "degenerate interval, common on small-`N` rows, means the row cannot "
         "support a conclusion). Full per-dataset classification and the honest "
-        "caveats: [`docs/benchmarks.md`](benchmarks.md) "
+        "caveats: [`docs/evaluation/benchmarks.md`](../benchmarks.md) "
         "(\"Provenance and reliability\").",
         "",
         "`Provenance` legend (most → least trustworthy, all still subject to "
@@ -4727,21 +4727,20 @@ def write_scoreboard(rows: List[dict]) -> None:
         "```",
         "",
         "Machine-readable form: [`benchmarks/results.json`]"
-        "(../benchmarks/results.json). Methodology: "
-        "[`docs/benchmark_methodology.md`](benchmark_methodology.md). Dataset "
-        "provenance: [`docs/benchmarks.md`](benchmarks.md).",
+        "(../../../benchmarks/results.json). Methodology and dataset provenance: "
+        "[`docs/evaluation/benchmarks.md`](../benchmarks.md).",
         "",
         "The `95% CI` column is a bootstrap confidence interval on the "
         "mean PER (per-word PERs resampled with replacement, "
         f"{BOOTSTRAP_REPS} reps, fixed seed {BOOTSTRAP_SEED}) — see "
-        "[`docs/benchmark_methodology.md`](benchmark_methodology.md).",
+        "[`docs/evaluation/benchmarks.md`](../benchmarks.md#confidence-intervals).",
         "",
         "The `Oracle@3` / `Oracle@5` columns are the per-word MINIMUM PER "
         "over the engine's top-3 / top-5 readings, averaged like `PER`. "
         "They are an **orthography2ipa-only lattice-quality diagnostic** and "
         "**must never be used in a cross-system comparison or a \"beats X\" "
         "claim**: espeak, epitran and every other system benchmarked in "
-        "[`docs/comparison.md`](comparison.md) emit ONE pronunciation, so "
+        "[`docs/evaluation/generated/comparison.md`](comparison.md) emit ONE pronunciation, so "
         "setting their single answer against k of ours compares k guesses to "
         "one. `scripts/compare_systems.py` therefore does not read these "
         "columns, and the CI regression gate "
@@ -4775,11 +4774,11 @@ def write_scoreboard(rows: List[dict]) -> None:
         "error — by declaring more alternatives. The run therefore scores "
         "with them off, and a row whose language declares any records them "
         "in `oracle_injected_alternatives` in "
-        "[`benchmarks/results.json`](../benchmarks/results.json). `PER` and "
+        "[`benchmarks/results.json`](../../../benchmarks/results.json). `PER` and "
         "`Exact match` are unaffected either way: an injected alternative can "
         "never reach rank 1. The movement they do cause is reported "
         "separately, as reachability, in "
-        "[`docs/benchmark_methodology.md`](benchmark_methodology.md).",
+        "[`docs/evaluation/benchmarks.md`](../benchmarks.md#injected-alternatives-do-not-count-as-ranking-error).",
         "",
         "Oracle cells read `·` when the row has **not been rescored** since "
         "the oracle columns were added (most rows: a full scoreboard is "
@@ -4804,11 +4803,11 @@ def write_scoreboard(rows: List[dict]) -> None:
         "`PER` strips stress marks, so it cannot see a stress error; this "
         "column measures only that. A word counts when its gold is one word "
         "with exactly one primary mark and at least two syllables, and "
-        "`n_stress` in [`benchmarks/results.json`](../benchmarks/results.json) "
+        "`n_stress` in [`benchmarks/results.json`](../../../benchmarks/results.json) "
         f"is that count. A row with fewer than {THIN_ROW_N} such words reads "
         "`-`, and so does a gold with no stress marks. A `-` is not a score "
         "of zero. The definition is in "
-        "[`docs/benchmarks.md`](benchmarks.md#stress-accuracy).",
+        "[`docs/evaluation/benchmarks.md`](../benchmarks.md#stress-accuracy).",
         "",
         "The `Ceiling` column is a `valid_ceiling` measurement, when one has "
         "been executed for the row's (language, dataset) pair: the PER once "
@@ -4824,7 +4823,7 @@ def write_scoreboard(rows: List[dict]) -> None:
         "may look like an open failure, but the language has been proved "
         "input-limited rather than defective. `valid_ceiling` never changes "
         "`PER` itself — see [`orthography2ipa/data/SCHEMA.md`]"
-        "(../orthography2ipa/data/SCHEMA.md#valid-ceiling-schema).",
+        "(../../../orthography2ipa/data/SCHEMA.md#valid-ceiling-schema).",
         "",
         "A `PER` marked "
         f"`{NON_QUALIFYING_MARK}` is a **non-qualifying** row: its "
@@ -4833,11 +4832,11 @@ def write_scoreboard(rows: List[dict]) -> None:
         f"than {THIN_ROW_N} scored words, so this number can "
         "neither qualify a language for promotion nor block one, no matter "
         "how good or bad it looks. `gating` in "
-        "[`benchmarks/results.json`](../benchmarks/results.json) carries the "
+        "[`benchmarks/results.json`](../../../benchmarks/results.json) carries the "
         "same boolean and is DERIVED from `provenance` and `N` via "
         "`row_gates()` at scoreboard-generation time, never "
         "hand-set — on top of the `can_gate_promotion()` source of truth "
-        "`docs/quality_tiers.md`'s `production` criteria already use.",
+        "`docs/specs/quality_tiers.md`'s `production` criteria already use.",
         "",
         "| Lang | Dataset | N | PER | Stress | Ceiling | Oracle@3 | Oracle@5 "
         "| OracleX@3 | OracleX@5 | 95% CI | Exact match | Quality tier "
@@ -4904,7 +4903,7 @@ def write_scoreboard(rows: List[dict]) -> None:
     lines.append("")
     os.makedirs(os.path.dirname(SCOREBOARD_MD), exist_ok=True)
     with open(SCOREBOARD_MD, "w", encoding="utf-8") as fh:
-        fh.write("\n".join(lines).rstrip() + footer("scoreboard.md"))
+        fh.write("\n".join(lines).rstrip() + footer("evaluation/generated/scoreboard.md"))
 
 
 # ─── lexicon-overlay report (E3) ────────────────────────────────────────────
@@ -4915,7 +4914,7 @@ def write_scoreboard(rows: List[dict]) -> None:
 # lexicon disabled ("rules-only PER") and once with it on ("with-lexicon PER")
 # — for every language with a registered lexicon (none are bundled), so a regression
 # in rule quality can't hide behind lexicon coverage. It is a SEPARATE artifact
-# from the main scoreboard (docs/scoreboard.md is left untouched): languages
+# from the main scoreboard (docs/evaluation/generated/scoreboard.md is left untouched): languages
 # with no lexicon are byte-identical with or without this feature.
 
 # wikipron gold tags to score per lexicon code (a lexicon file is named by the
@@ -5014,26 +5013,24 @@ def write_lexicon_report(rows: List[dict]) -> None:
     lines = [
         "# Lexicon-overlay scoreboard",
         "",
-        "Rules-only vs with-lexicon PER for every language that ships an "
-        "optional caller-registered lexicon (never bundled) "
-        "— see [`docs/data_model.md`](data_model.md) and "
-        "[`orthography2ipa/lexicon.py`]). This keeps rule quality honest: the "
-        "overlay must *improve* PER without letting the underlying grapheme "
-        "rules rot behind lexicon coverage. Same gold, scored twice — once "
-        "with `get_lexicon` stubbed to `{}` (rules-only) and once with the "
-        "sidecar active. Regenerate with:",
+        "Rules-only against with-lexicon PER for each language with a "
+        "caller-registered lexicon. The package bundles no lexicon: see "
+        "[`docs/guide/lexicon.md`](../../guide/lexicon.md) and `orthography2ipa/lexicon.py`. "
+        "Each gold set is scored twice, once with `get_lexicon` stubbed to "
+        "`{}` (rules-only) and once with the lexicon active. A lexicon must "
+        "lower PER, and the rules-only column shows whether the grapheme rules "
+        "still hold up without it. Regenerate with:",
         "",
         "```bash",
         "PYTHONPATH=$PWD python scripts/benchmark.py --lexicon-report",
         "```",
         "",
-        "`PER (covered)` columns restrict scoring to the gold words the "
-        "lexicon actually contains — where the overlay can act — so the "
-        "covered-subset delta is the lexicon's own accuracy vs the rules on "
-        "the *same* words. The `full` columns dilute that by every gold word "
-        "outside the (deliberately capped, top-frequency) pilot lexicon; a "
-        "full production lexicon belongs downstream (see "
-        "[`docs/adding_a_language.md`](adding_a_language.md)).",
+        "The `covered` columns score only the gold words that the lexicon "
+        "holds, where the overlay can act. Their delta is the accuracy of the "
+        "lexicon against the rules on the same words. The `full` columns score "
+        "every gold word, so the words outside the capped, top-frequency "
+        "pilot lexicon dilute the delta. A full production lexicon belongs "
+        "downstream (see [`docs/guide/lexicon.md`](../../guide/lexicon.md)).",
         "",
         "| Lexicon | Lang | Gold | Entries | N (full) | PER rules-only (full) "
         "| PER +lexicon (full) | N (covered) | PER rules-only (covered) "
@@ -5051,7 +5048,7 @@ def write_lexicon_report(rows: List[dict]) -> None:
     lines.append("")
     os.makedirs(os.path.dirname(LEXICON_SCOREBOARD_MD), exist_ok=True)
     with open(LEXICON_SCOREBOARD_MD, "w", encoding="utf-8") as fh:
-        fh.write("\n".join(lines).rstrip() + footer("lexicon_scoreboard.md"))
+        fh.write("\n".join(lines).rstrip() + footer("evaluation/generated/lexicon_scoreboard.md"))
 
 
 def main() -> None:
@@ -5077,7 +5074,7 @@ def main() -> None:
                          "against a stale snapshot is invisible.")
     ap.add_argument("--scoreboard", action="store_true",
                     help="Run every registered gold dataset/language "
-                         "combination and write docs/scoreboard.md + "
+                         "combination and write docs/evaluation/generated/scoreboard.md + "
                          "benchmarks/results.json")
     ap.add_argument("--ci-sample", action="store_true",
                     help="Write the CI regression baseline "
@@ -5099,7 +5096,7 @@ def main() -> None:
     ap.add_argument("--lexicon-report", action="store_true",
                     help="Score rules-only vs with-lexicon PER for every "
                          "language with a registered lexicon and "
-                         "write docs/lexicon_scoreboard.md + "
+                         "write docs/evaluation/generated/lexicon_scoreboard.md + "
                          "benchmarks/lexicon_results.json")
     args = ap.parse_args()
 

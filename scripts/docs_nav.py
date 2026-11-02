@@ -6,7 +6,8 @@
 it. This module reads both, so the order lives in one place instead of being
 restated in every page.
 
-Every page except ``docs/index.md`` and ``docs/README.md`` ends with a footer:
+Every page except ``docs/index.md``, ``docs/README.md`` and the :data:`STUBS`
+ends with a footer:
 a horizontal rule, then one line linking the previous page, the index, and the
 next page, with relative links only.
 
@@ -33,7 +34,9 @@ import sys
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DOCS = os.path.join(REPO_ROOT, "docs")
 INDEX = "index.md"
-NOT_IN_ORDER = {INDEX, "README.md"}
+# Pages that only point to a moved page, kept because other sites link them.
+STUBS = {"benchmarks.md", "scoreboard.md"}
+NOT_IN_ORDER = {INDEX, "README.md"} | STUBS
 
 _TABLE_LINK = re.compile(r"^\| \[[^\]]+\]\(([^)]+)\)", re.M)
 _ANY_LINK = re.compile(r"\]\((?!\.\.)([A-Za-z0-9._-]+\.md)\)")
@@ -107,7 +110,10 @@ def _with_footer(text: str, rel: str, order: list[str]) -> str:
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    ap.add_argument("--write", action="store_true", help="rewrite the footers")
+    mode = ap.add_mutually_exclusive_group()
+    mode.add_argument("--write", action="store_true", help="rewrite the footers")
+    mode.add_argument("--check", action="store_true",
+                      help="exit 1 on a stale footer (the default)")
     args = ap.parse_args()
 
     order = reading_order()

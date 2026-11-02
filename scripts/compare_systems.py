@@ -231,7 +231,7 @@ Each section below carries a ``# ─── name ───`` header:
     Build the full board, merge a partial rerun into the committed one,
     read it back.
 ``rendering`` / ``ranking policy``
-    Everything that turns rows into ``docs/comparison.md``, and the rules
+    Everything that turns rows into ``docs/evaluation/generated/comparison.md``, and the rules
     for what may be called a winner (lexicon-free only).
 """
 from __future__ import annotations
@@ -264,7 +264,7 @@ from docs_nav import footer  # noqa: E402
 logging.getLogger("epitran").setLevel(logging.ERROR)
 
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-COMPARISON_MD = os.path.join(REPO_ROOT, "docs", "comparison.md")
+COMPARISON_MD = os.path.join(REPO_ROOT, "docs", "evaluation", "generated", "comparison.md")
 COMPARISON_JSON = os.path.join(REPO_ROOT, "benchmarks", "comparison.json")
 
 HARNESS_VERSION = "1.0"
@@ -345,7 +345,7 @@ LANGS: Dict[str, dict] = {
            # Cotovia's own Spanish mode (pycotovia.Phonemizer(lang="es"))
            # — Cotovia is a Galician/Spanish system per Univ. de Vigo/GTM,
            # so this row is its Spanish-mode showing, alongside the
-           # Galician "gl" row's native-mode showing.
+           # Galician "gl-ES" row's native-mode showing.
            "pycotovia": "es"},
     # sample_n: the unified pt gold is ~116k pt-PT words; epitran/gruut transcribe
     # word-by-word in-process and cannot batch, so a full pass is days of
@@ -413,8 +413,8 @@ LANGS: Dict[str, dict] = {
     "ca-x-valencia": {"dataset": ("4catac", "ca-x-valencia"),
                        "espeak": "ca-va",
                        "epitran": "cat-Latn", "gruut": None},
-    "gl": {"dataset": ("wikipron", "gl"), "espeak": None,
-           "epitran": None, "gruut": None, "pycotovia": "gl"},
+    "gl-ES": {"dataset": ("wikipron", "gl-ES"), "espeak": None,
+              "epitran": None, "gruut": None, "pycotovia": "gl"},
     # Mirandese (mwl): scored against ``mirandese_g2p`` — a native-speaker,
     # human-collected gold that is a SEPARATE source from o2i (see
     # benchmark.load_mirandese's docstring), so this row is a real
@@ -572,7 +572,7 @@ def apply_catalan_dialect_voices(langs: Dict[str, dict]) -> Dict[str, str]:
     """Mutate *langs*' Catalan dialect entries in place with the espeak
     voices actually discovered on this machine (see
     ``discover_catalan_dialect_voices``); return the resolved mapping so
-    callers (and ``docs/comparison.md`` generation) can report exactly
+    callers (and ``docs/evaluation/generated/comparison.md`` generation) can report exactly
     which voices were used, including any generic-``ca`` fallback."""
     voices = discover_catalan_dialect_voices()
     for tag, voice in voices.items():
@@ -2211,7 +2211,7 @@ _O2I_SAME_SOURCE_DATASETS = frozenset({
 
 #: arbtok is built directly on o2i's own Arabic lattice AND its
 #: code-switched-Arabic gold text is machine-pinned to o2i's own output
-#: (see docs/benchmarks.md "Provenance"), so it shares o2i's same-source
+#: (see docs/evaluation/benchmarks.md "Provenance"), so it shares o2i's same-source
 #: exposure 1:1 — same datasets, same reason.
 _ARBTOK_SAME_SOURCE_DATASETS = _O2I_SAME_SOURCE_DATASETS
 
@@ -2835,7 +2835,7 @@ def read_comparison_rows() -> List[dict]:
         return json.load(fh)
 
 
-# ─── rendering: docs/comparison.md ──────────────────────────────────────────
+# ─── rendering: docs/evaluation/generated/comparison.md ──────────────────────────────────────────
 
 def _fmt(per: Optional[float]) -> str:
     return f"{per:.4f}" if per is not None else "n/a"
@@ -3030,7 +3030,7 @@ def _scoreboard_staleness_note(rows: List[dict]) -> str:
     if not stale and not sampled_diff:
         return (
             "The `o2i PER` column here matches "
-            "[`benchmarks/results.json`](../benchmarks/results.json)'s "
+            "[`benchmarks/results.json`](../../../benchmarks/results.json)'s "
             "`per` for every shared language/dataset pair in this run."
         )
 
@@ -3038,7 +3038,7 @@ def _scoreboard_staleness_note(rows: List[dict]) -> str:
     if not stale:
         parts.append(
             "The `o2i PER` column here matches "
-            "[`benchmarks/results.json`](../benchmarks/results.json)'s "
+            "[`benchmarks/results.json`](../../../benchmarks/results.json)'s "
             "`per` for every shared language/dataset pair that used the "
             "same word count."
         )
@@ -3051,7 +3051,7 @@ def _scoreboard_staleness_note(rows: List[dict]) -> str:
         )
         parts.append(
             f"The `o2i PER` column here matches "
-            f"[`benchmarks/results.json`](../benchmarks/results.json)'s "
+            f"[`benchmarks/results.json`](../../../benchmarks/results.json)'s "
             f"`per` for most shared language/dataset pairs, EXCEPT the "
             f"{len(stale)} listed below — those `benchmarks/results.json` "
             f"rows are stale (a prior PR changed the engine but did not "
@@ -3147,7 +3147,7 @@ _LANG_DISPLAY_NAMES: Dict[str, str] = {
     "fi": "Finnish",
     "fr": "French",
     "ga": "Irish",
-    "gl": "Galician",
+    "gl-ES": "Galician",
     "hi": "Hindi",
     "hts": "Hadza",
     "it": "Italian",
@@ -4006,7 +4006,7 @@ def _fair_comparison_2x2_lines(rows: List[dict]) -> List[str]:
     return lines
 
 
-#: The committed docs/comparison.md carries this marker and the pointer
+#: The committed docs/evaluation/generated/comparison.md carries this marker and the pointer
 #: sentence after it, never the derived paragraph itself. The paragraph
 #: lists every (lang, dataset) whose ``o2i_per`` here differs from the
 #: committed ``benchmarks/results.json`` row, so it changes whenever ANY
@@ -4019,7 +4019,7 @@ def _fair_comparison_2x2_lines(rows: List[dict]) -> List[str]:
 STALENESS_MARKER = "<!-- staleness: derived at render time from benchmarks/comparison.json against benchmarks/results.json; not committed -->"
 STALENESS_POINTER = (
     "Whether the `o2i PER` column here still matches "
-    "[`benchmarks/results.json`](../benchmarks/results.json) is not "
+    "[`benchmarks/results.json`](../../../benchmarks/results.json) is not "
     "written into this file, because that list changes whenever any board "
     "row moves and two open pull requests would rewrite the same line. "
     "Run `python scripts/compare_systems.py --staleness` for the current "
@@ -4167,7 +4167,7 @@ def _details_block_lines(rows: List[dict], scoreboard_note: str,
         "```",
         "",
         "Machine-readable form: "
-        "[`benchmarks/comparison.json`](../benchmarks/comparison.json).",
+        "[`benchmarks/comparison.json`](../../../benchmarks/comparison.json).",
         "",
         "</details>",
         "",
@@ -4299,7 +4299,7 @@ def write_comparison(
         "gold sets — see the same-source note below for those two rows.",
         "- **epitran** is a rule/mapping-based transliterator for the "
         "languages this board scores, not a lexicon lookup, so there is "
-        "no dictionary to strip; the `es`/`gl` gold it is scored against "
+        "no dictionary to strip; the `es`/`gl-ES` gold it is scored against "
         "uses a BROAD transcription convention (no ð/β/ɣ/θ allophone "
         "diacritics, glide notation folded) rather than the narrow one "
         "o2i and espeak-ng target — see the note on that below.",
@@ -4379,8 +4379,8 @@ def write_comparison(
         "drafted by the same Claude lineage that wrote orthography2ipa's "
         "own Arabic/Portuguese specs.",
         "",
-        "**epitran's `es`/`gl` gold uses a broad transcription "
-        "convention.** The wikipron gold rows for `es` and `gl` (and "
+        "**epitran's `es`/`gl-ES` gold uses a broad transcription "
+        "convention.** The wikipron gold rows for `es` and `gl-ES` (and "
         "epitran's own output) are scored in the BROAD IPA convention — "
         "no allophonic diacritics (`ð β ɣ θ` etc.) and glide notation "
         "folded (`j w i̯ u̯` → `i u`) — rather than the narrower "
@@ -4442,7 +4442,7 @@ def write_comparison(
                                        agreement_comparable, agreement_wins))
     os.makedirs(os.path.dirname(COMPARISON_MD), exist_ok=True)
     with open(COMPARISON_MD, "w", encoding="utf-8") as fh:
-        fh.write("\n".join(lines).rstrip() + footer("comparison.md"))
+        fh.write("\n".join(lines).rstrip() + footer("evaluation/generated/comparison.md"))
 
 
 def main() -> None:
@@ -4460,11 +4460,11 @@ def main() -> None:
     ap.add_argument("--staleness", action="store_true",
                     help="Print the derived staleness paragraph (committed "
                          "comparison.json against committed results.json) "
-                         "and exit; this is what docs/comparison.md no "
+                         "and exit; this is what docs/evaluation/generated/comparison.md no "
                          "longer carries")
     ap.add_argument("--scoreboard", action="store_true",
                     help="Run every mapped language and write "
-                         "docs/comparison.md + benchmarks/comparison.json")
+                         "docs/evaluation/generated/comparison.md + benchmarks/comparison.json")
     args = ap.parse_args()
 
     if args.staleness:
