@@ -60,6 +60,25 @@ ROMANIAN = [
     ("gunoi", 2), ("pârâu", 2), ("birou", 2), ("liceu", 2),
 ]
 
+# A word-final ⟨ea⟩ [e̯a] is stressed: "the diphthongs [e̯a] and [o̯a] are only
+# found in stressed position" (Alexei & Ulfsbjorninn 2022: 18).
+ROMANIAN_FINAL_EA = [
+    # Alexei & Ulfsbjorninn 2022: 2 (masea) and 5, Table 2 (curea)
+    ("masea", 2), ("curea", 2),
+    # Franzén & Horne 1997: 81, (8b): ac'ea
+    ("acea", 2),
+    # Words in ⟨-ea⟩ under the rule of Alexei & Ulfsbjorninn 2022: 18
+    ("cafea", 2), ("perdea", 2), ("avea", 2),
+]
+
+# Words that keep their stress when ⟨-ea⟩ becomes an ending: kásə (Alexei &
+# Ulfsbjorninn 2022: 6, (2c)), kre̯áŋgə with a stressed ⟨ea⟩ inside the word
+# (2022: 18, Table 3) and cop'ii (Franzén & Horne 1997: 82, (9b)). masă and
+# fereastră follow the vowel-final penultimate default (2022: 2), and the
+# ⟨ea⟩ of fereastră is the stressed penult (2022: 18).
+ROMANIAN_UNCHANGED = [("casă", 1), ("masă", 1), ("fereastră", 2),
+                      ("creangă", 1), ("copii", 2)]
+
 BASQUE = [
     # Elordieta, Gaminde & Hualde 1998: 402 (young Donostia Batua speakers)
     ("gizon", 2), ("atal", 2), ("enbor", 2),
@@ -122,3 +141,15 @@ def test_mixed_accent_dialect_prints_no_stress(code, word):
     # (Hualde 2022: 84, Table 2) and the [-2] Baztan Valley (Hualde 2022: 80,
     # note 5). Neither spec takes the Batua [+2] block.
     assert "ˈ" not in orthography2ipa.transcribe(word, code)
+
+
+@pytest.mark.parametrize("word,syllable", ROMANIAN_FINAL_EA)
+def test_romanian_final_ea_is_stressed(word, syllable):
+    ipa = orthography2ipa.transcribe(word, "ro-RO")
+    assert _stressed_syllable(ipa) == syllable, ipa
+
+
+@pytest.mark.parametrize("word,syllable", ROMANIAN_UNCHANGED)
+def test_romanian_stress_without_final_ea_is_unchanged(word, syllable):
+    ipa = orthography2ipa.transcribe(word, "ro-RO")
+    assert _stressed_syllable(ipa) == syllable, ipa

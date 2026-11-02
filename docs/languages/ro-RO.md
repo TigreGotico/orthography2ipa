@@ -22,7 +22,7 @@ Word-initial ⟨e⟩ is [je] only in a closed set. That set holds the personal p
 
 ## Stress
 
-Romanian stress is lexical, and the standard spelling does not mark it. It has a strong default (Chițoran 2002: 75-77, tabulated in Alexei & Ulfsbjorninn 2022: 2-5). A word that ends in a consonant takes final stress (*bărbát*, *animál*). A word that ends in a falling diphthong also takes final stress (*gunói*, *biróu*). Any other word takes penultimate stress (*máre*, *feméie*, *mașínă*). The `stress` block states that default. The benchmark strips stress marks, so the block does not change the PER.
+Romanian stress is lexical, and the standard spelling does not mark it. It has a strong default (Chițoran 2002: 75-77, tabulated in Alexei & Ulfsbjorninn 2022: 2-5). A word that ends in a consonant takes final stress (*bărbát*, *animál*). A word that ends in a falling diphthong also takes final stress (*gunói*, *biróu*). So does a word that ends in the diphthong ⟨ea⟩ [e̯a] (*cafeá*, *perdeá*, *aveá*), because that diphthong occurs only in stressed position (Alexei & Ulfsbjorninn 2022: 18). Any other word takes penultimate stress (*máre*, *feméie*, *mașínă*). The `stress` block states that default. The benchmark strips stress marks, so the block does not change the PER.
 
 ## Benchmark
 
@@ -30,9 +30,9 @@ Two rows can gate a promotion: `wikipron` under the bare tag `ro`, which is crow
 
 ## Known limitations
 
-The stress default misses the lexically marked words. These have penultimate stress on a consonant-final word (*záhăr*, *călúgăr*), antepenultimate stress on a vowel-final word (*pépene*, *cámeră*), or final stress on a vowel (*macará*, *curéa*). The spec lists none of them.
+The stress default misses the lexically marked words. These have penultimate stress on a consonant-final word (*záhăr*, *călúgăr*), antepenultimate stress on a vowel-final word (*pépene*, *cámeră*), or final stress on a plain vowel (*macará*, *pané*). The spec lists none of them.
 
-Inflectional endings keep the stress of the stem (Franzén & Horne 1997: 75). The engine reads the whole word, so *lupul*, *trenuri* and *caselor* take the mark one syllable late. The spec does not resolve homographs that differ only in stress, such as *cópii* 'copies' and *copíi* 'children'.
+Inflectional endings keep the stress of the stem (Franzén & Horne 1997: 75). The engine reads the whole word, so *lupul*, *trenuri* and *caselor* take the mark one syllable late. The definite article on a noun in *-e* also writes ⟨ea⟩, so *cartea* and *mintea* take the mark on the article. The spec does not resolve homographs that differ only in stress, such as *cópii* 'copies' and *copíi* 'children'.
 
 After ⟨c⟩ or ⟨g⟩, an ⟨i⟩ before a vowel is silent in the inherited vocabulary and syllabic in the learned layer. Examples are ⟨cioban⟩ [tʃoˈban] and ⟨Dacia⟩ [ˈdatʃi.a]. The split is lexical, not orthographic. The spec emits the syllabic reading for both, so ⟨cioban⟩ gives `tʃioban`. A caller-supplied lexicon can correct the inherited words.
 
