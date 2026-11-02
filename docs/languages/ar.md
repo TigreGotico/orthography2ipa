@@ -121,7 +121,7 @@ The engine works one word at a time, and three Arabic processes need more than t
 
 The `ar` entry of the `wikipron` dataset in `scripts/benchmark.py` is CUNY-CL/wikipron `ara_arab_broad.tsv`: Wiktionary broad IPA, crowd-curated. Wiktionary files Arabic entries under the unvocalised page title, so the input column carries no harakat while the gold IPA writes every short vowel. A spec that follows the input contract cannot recover those vowels from this input.
 
-The `wikipron_ar_diacritized` dataset keeps the same gold IPA and restores the tashkeel on the input side with `text2tashkeel`. That dependency is optional, so CI does not reproduce this row. The `valid_ceiling` block in `ar.json` records the folded score: the spec's output scored with the short vowels removed from both sides. Reproduce it with `scripts/folded_per.py --lang ar --dataset wikipron --segments 'a i u'`. For the scores themselves, see the [scoreboard](../scoreboard.md).
+The `wikipron_ar_diacritized` dataset keeps the same gold IPA and restores the tashkeel on the input side with `text2tashkeel`. That dependency is optional, so CI does not reproduce this row. The `valid_ceiling` block in `ar.json` records the folded score: the spec's output scored with the short vowels removed from both sides. Reproduce it with `scripts/folded_per.py --lang ar --dataset wikipron --segments 'a i u'`. For the scores themselves, see the [scoreboard](../evaluation/generated/scoreboard.md).
 
 ### Error analysis: what the remaining PER is made of
 

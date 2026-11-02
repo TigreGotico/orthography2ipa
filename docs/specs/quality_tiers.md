@@ -1,6 +1,6 @@
 # Quality tiers
 
-`orthography2ipa.types.QualityTier` classifies how mature the data of a spec is. Every spec JSON states its tier in the `quality` field, and [`tests/test_data_quality.py`](../tests/test_data_quality.py) fails a spec that leaves it out. This page defines what a spec must meet for each tier, so that a reader can check a tier claim against the repository.
+`orthography2ipa.types.QualityTier` classifies how mature the data of a spec is. Every spec JSON states its tier in the `quality` field, and [`tests/test_data_quality.py`](../../tests/test_data_quality.py) fails a spec that leaves it out. This page defines what a spec must meet for each tier, so that a reader can check a tier claim against the repository.
 
 | Tier | What it means | What a test enforces |
 |---|---|---|
@@ -27,7 +27,7 @@ A research spec meets every `skeleton` criterion. It also has these:
 
 - A `stress` block, when the language has lexical or predictable word stress. A language without lexical stress is exempt. So is a language whose stress the orthography does not predict. State the exemption in the spec's `notes`.
 
-- A gold set in the `DATASETS` registry of `scripts/benchmark.py` for at least one of the spec's language tags. The set has a PER in [`benchmarks/results.json`](../benchmarks/results.json).
+- A gold set in the `DATASETS` registry of `scripts/benchmark.py` for at least one of the spec's language tags. The set has a PER in [`benchmarks/results.json`](../../benchmarks/results.json).
 
 Reviewers check these two criteria. No test checks them for every spec.
 
@@ -49,11 +49,11 @@ The language check resolves a row tag the way the engine does. A wikipron row re
 
 Three provenance tiers can never gate a promotion: `espeak-derived`, `epitran-derived` and `llm-generated`. `can_gate_promotion()` is the single source of truth for this rule, and `tests/test_competitor_derived_gold.py` tests it. The reasons differ by tier:
 
-- A gold that a competing G2P system generated (`espeak-derived`, `epitran-derived`) measures agreement with that competitor, not correctness. This project benchmarks itself against both systems ([comparison](comparison.md)), so their output cannot also be the truth.
+- A gold that a competing G2P system generated (`espeak-derived`, `epitran-derived`) measures agreement with that competitor, not correctness. This project benchmarks itself against both systems ([comparison](../evaluation/generated/comparison.md)), so their output cannot also be the truth.
 
 - A gold that a large language model generated (`llm-generated`) has no lexicon and no rules, so it has no error model. A disagreement with it says nothing about the spec, so it can certify nothing.
 
-A language whose only gold of 500 words or more sits in one of these tiers has no usable gold, and it stays at `research`. A poor score on one of these tiers never disqualifies a language that clears the bar on a trusted gold. A cited source can require exactly the divergence from espeak, epitran or a model output that such a row counts as error. The tiers of every dataset are in [benchmarks](benchmarks.md#reliability-tiers).
+A language whose only gold of 500 words or more sits in one of these tiers has no usable gold, and it stays at `research`. A poor score on one of these tiers never disqualifies a language that clears the bar on a trusted gold. A cited source can require exactly the divergence from espeak, epitran or a model output that such a row counts as error. The tiers of every dataset are in [benchmarks](../evaluation/benchmarks.md#reliability-tiers).
 
 A row on a corrections overlay never gates either, whatever its tier. An automated process applied the corrections, so the row can diagnose and never certify.
 
@@ -68,17 +68,17 @@ The threshold depends on how regular the orthography is:
 | Shallow (phonemic) | 0.15 | Spanish, Finnish, Esperanto | The spelling-to-sound relation is mostly regular, so a rule-driven engine reaches near-perfect accuracy. A higher PER means a gap in the spec |
 | Deep | 0.25 | English, French, Portuguese, Danish | The spelling has historical, morphophonemic or dialectal irregularity. Even curated gold sets disagree on regional and optional variants at this rate |
 
-The spec's page under [`docs/languages/`](languages/) states the threshold and the classification of the language. A page that says nothing gets the deep threshold.
+The spec's page under [`docs/languages/`](../languages) states the threshold and the classification of the language. A page that says nothing gets the deep threshold.
 
 `LanguageSpec` has no field for orthographic depth. So `test_production_tier_has_qualifying_benchmark` cannot look up a threshold for each language, and it applies the 0.25 ceiling to every spec. The 0.15 target for a shallow orthography is a reviewer check. A reviewer compares a promotion of such a language with the 0.15 target before the merge, because the test alone does not prove it.
 
 ### The language page
 
-A production spec has a page under [`docs/languages/`](languages/). The page covers the phonology, the sources and the known limitations of the spec. It lists the cases that the engine cannot resolve, so that these cases do not silently change what the measured PER means.
+A production spec has a page under [`docs/languages/`](../languages). The page covers the phonology, the sources and the known limitations of the spec. It lists the cases that the engine cannot resolve, so that these cases do not silently change what the measured PER means.
 
 ## Promotion is a test-gated act
 
 A change of tier to `production` is a claim that a test checks. The benchmark row must exist and pass the checks above, and `test_production_tier_has_qualifying_benchmark` fails every spec that claims `production` without one. For a shallow orthography, a reviewer also confirms the 0.15 target before the tier claim stands.
 
 ---
-[← Positional Graphemes](positional_graphemes.md) · [Home](index.md) · [IPA Reference →](ipa_reference.md)
+[← Data Model](data_model.md) · [Home](../index.md) · [Ancestry System →](ancestry.md)

@@ -6,7 +6,7 @@ Esperanto is a constructed international language (L. L. Zamenhof, *Unua Libro*,
 
 ## Orthographic depth and production threshold
 
-Esperanto has a shallow (phonemic) orthography, so the shallow threshold of 0.15 PER applies (see [quality tiers](../quality_tiers.md#the-per-threshold)). It is the limiting case of a shallow orthography, because it was designed to be phonemic. So the remaining error measures noise in the harness and the gold, and gaps in the spec, not irregular spelling.
+Esperanto has a shallow (phonemic) orthography, so the shallow threshold of 0.15 PER applies (see [quality tiers](../specs/quality_tiers.md#the-per-threshold)). It is the limiting case of a shallow orthography, because it was designed to be phonemic. So the remaining error measures noise in the harness and the gold, and gaps in the spec, not irregular spelling.
 
 ## Phonology
 
@@ -18,7 +18,7 @@ The norm requires no vowel reduction and no assimilation. The spec transcribes t
 
 ## Benchmark
 
-Two gold rows score the spec. For the figures, see the [scoreboard](../scoreboard.md). The `wikipron` row is crowd-scraped and can qualify a promotion. The `ipadict` row is the output of a rule script, so it shows agreement, not proof.
+Two gold rows score the spec. For the figures, see the [scoreboard](../evaluation/generated/scoreboard.md). The `wikipron` row is crowd-scraped and can qualify a promotion. The `ipadict` row is the output of a rule script, so it shows agreement, not proof.
 
 ## Known limitations
 

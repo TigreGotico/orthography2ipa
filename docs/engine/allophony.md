@@ -130,7 +130,7 @@ A rule normally names the `surface` that its target becomes. Epenthesis does not
  "append": "ɛ", "word_initial": true, "followed_by": "consonant"}
 ```
 
-This is the Egyptological reading of Egyptian. The script writes no vowels, and the convention supplies one to break the consonant string (see [languages/egy.md](languages/egy.md)):
+This is the Egyptological reading of Egyptian. The script writes no vowels, and the convention supplies one to break the consonant string (see [languages/egy.md](../languages/egy.md)):
 
 ```python
 G2P("egy").transcribe_word("nfr")   # 'nɛfɛr'
@@ -162,7 +162,7 @@ G2P("ar-SA-x-najd").transcribe_word("بَخّ")   # 'ˈbaxx'
 
 A rule that points anywhere but at the twin is blocked too. This covers a rule with no condition, a `word_final` rule, a two-step condition such as `followed_by_2` that reads past the twin, and a negative condition such as `followed_by_grapheme_not`.
 
-Rules are pure data, and specs hold no code. [`data/SCHEMA.md`](../orthography2ipa/data/SCHEMA.md#allophone-rule-schema) gives the JSON shape.
+Rules are pure data, and specs hold no code. [`data/SCHEMA.md`](../../orthography2ipa/data/SCHEMA.md#allophone-rule-schema) gives the JSON shape.
 
 ## Toggles
 
@@ -251,7 +251,7 @@ The rules show two ways to write a base rule that inherits well:
 1. Target the reduced vowel, not the underlying phoneme. The rule fires on the near-close [ɪ ʊ] that the pre-lexical map already selects word-finally. A conservative dialect that keeps a final [e o] inherits the rule, and the rule never fires there.
 2. Leave a process pre-lexical when a position already states it. The `pt-BR` positional table affricates ⟨t d⟩ before the letter ⟨i⟩ (⟨tia⟩ [ˈt͡ʃiɐ]). The `BR_AFFRIC_T_RAISED` and `BR_AFFRIC_D_RAISED` rules cover only the [i ɪ] that a raised ⟨e⟩ supplies, as in ⟨leite⟩.
 
-[languages/pt-BR.md](languages/pt-BR.md) gives the full description.
+[languages/pt-BR.md](../languages/pt-BR.md) gives the full description.
 
 ## Worked example: European Portuguese
 
@@ -351,4 +351,4 @@ The rescorer evaluates `mutates_neighbor` from the affected slot. It runs the ma
 The mechanism names no language, and `allophony.py` does not mention Goidelic or Manx. It applies wherever a marker grapheme deletes itself and adds a feature to a neighbour.
 
 ---
-[← Adding a language](adding_a_language.md) · [Home](index.md) · [Positional Graphemes →](positional_graphemes.md)
+[← Lattice PER](lattice_per.md) · [Home](../index.md) · [Positional Graphemes →](positional_graphemes.md)

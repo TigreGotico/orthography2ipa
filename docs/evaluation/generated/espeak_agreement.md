@@ -1,12 +1,12 @@
 # espeak-ng agreement
 
-Committed symbol-level agreement between orthography2ipa and espeak-ng, for every language where this repo has both a gold-dataset wordlist and espeak-ng has a voice. This is NOT an accuracy benchmark: see `docs/benchmarks.md` for what it means and does not mean. Regenerate with:
+Committed symbol-level agreement between orthography2ipa and espeak-ng, for every language where this repo has both a gold-dataset wordlist and espeak-ng has a voice. This is NOT an accuracy benchmark: see `docs/evaluation/benchmarks.md` for what it means and does not mean. Regenerate with:
 
 ```bash
 PYTHONPATH=$PWD python scripts/espeak_agreement.py --scoreboard
 ```
 
-Machine-readable form: [`benchmarks/espeak_agreement.json`](../benchmarks/espeak_agreement.json).
+Machine-readable form: [`benchmarks/espeak_agreement.json`](../../../benchmarks/espeak_agreement.json).
 
 | Lang | espeak voice | N | Exact | Exact (no stress) | Segmental | OOV rate |
 |---|---|---:|---:|---:|---:|---:|
@@ -53,4 +53,4 @@ Machine-readable form: [`benchmarks/espeak_agreement.json`](../benchmarks/espeak
 | tr | tr | 300 | 0.0000 | 0.2033 | 0.8003 | 0.0000 |
 
 ---
-[← Comparison to other G2P systems](comparison.md) · [Home](index.md) · [Lexicon-overlay scoreboard →](lexicon_scoreboard.md)
+[← Comparison to other G2P systems](comparison.md) · [Home](../../index.md) · [Lexicon-overlay scoreboard →](lexicon_scoreboard.md)

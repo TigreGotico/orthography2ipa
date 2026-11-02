@@ -63,7 +63,7 @@ class _Strict(BaseModel):
 
 class WeightedGraphemeModel(_Strict):
     """The weighted-object form of a grapheme value:
-    ``{"ipa": [...], "weights": [...]}`` (see ``docs/candidate_scoring.md``).
+    ``{"ipa": [...], "weights": [...]}`` (see ``docs/engine/lattice.md#how-cost-works``).
 
     ``weights`` are candidate frequencies, one per ``ipa`` entry, and must
     be non-negative and sum to a positive value; the model enforces the

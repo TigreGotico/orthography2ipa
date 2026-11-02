@@ -19,7 +19,7 @@ Tone and stress exemptions make up most of the unwritten contrasts.
 
 Ask one question: is the trigger visible in the input string? If it is a letter, a digraph, a diacritic or a position in the word, then "left unencoded" claims a defect. Such a note should carry a measured size. If the trigger is not visible, the note describes a scope decision or an error floor. The honest form of that note is a number, not a promise.
 
-To size a note, count the gold words that contain the trigger. Transcribe them, and count how many the engine gets wrong on account of the note. [benchmarks.md](benchmarks.md#diagnosing-a-language) describes `scripts/error_analysis.py`, which ranks the confusion pairs and the worst words of a gold row. A note that misdescribes the engine is worse than no note. It sends a maintainer to look for a defect that is not there.
+To size a note, count the gold words that contain the trigger. Transcribe them, and count how many the engine gets wrong on account of the note. [benchmarks.md](../evaluation/benchmarks.md#diagnosing-a-language) describes `scripts/error_analysis.py`, which ranks the confusion pairs and the worst words of a gold row. A note that misdescribes the engine is worse than no note. It sends a maintainer to look for a defect that is not there.
 
 A spec without a gold dataset cannot be sized. Its notes may be right or wrong, and nothing in the repository can tell which. Getting gold for the language comes before any action on such a note.
 
@@ -53,7 +53,7 @@ Two more notes cannot be measured for another reason. The labiovelarized `kʷ g�
 
 ## Ranking errors
 
-The [scoreboard](scoreboard.md) reports a 1-best PER and an oracle PER@k, the per-word minimum over the top k readings of the engine. The difference is ranking error: the beam already holds a better reading and ranks it lower. What remains at the oracle is model error, where no reading in the beam is better. [benchmarks.md](benchmarks.md#finding-where-the-beam-ranks-a-better-reading-wrong) describes the scripts that attribute ranking error to single decisions, and how to reproduce a sweep. Every rejection below is the result of such a sweep.
+The [scoreboard](../evaluation/generated/scoreboard.md) reports a 1-best PER and an oracle PER@k, the per-word minimum over the top k readings of the engine. The difference is ranking error: the beam already holds a better reading and ranks it lower. What remains at the oracle is model error, where no reading in the beam is better. [benchmarks.md](../evaluation/benchmarks.md#finding-where-the-beam-ranks-a-better-reading-wrong) describes the scripts that attribute ranking error to single decisions, and how to reproduce a sweep. Every rejection below is the result of such a sweep.
 
 ### Measured and rejected
 
@@ -86,7 +86,7 @@ False ['paʁlɑ̃', 'paʁle', 'paʁlɑ̃t', 'paʁlet', 'paʁlɛ']
 True ['paʁlɑ̃', 'paʁle', 'paʁlɑ̃t', 'paʁl', 'paʁlet']
 ```
 
-On a 300-word sample of the ⟨-ent⟩ words that the gold makes mute, the gold reading is in the top 10 for 192 of them. Exact match at rank 1 stays at zero, as it must, because o2i is not the layer that decides. That movement is reachability, not ranking improvement. [benchmarks.md](benchmarks.md#injected-alternatives-do-not-count-as-ranking-error) explains why the scoreboard measures its oracle without injected alternatives. [SCHEMA.md](../orthography2ipa/data/SCHEMA.md#ambiguous-endings) describes the list form.
+On a 300-word sample of the ⟨-ent⟩ words that the gold makes mute, the gold reading is in the top 10 for 192 of them. Exact match at rank 1 stays at zero, as it must, because o2i is not the layer that decides. That movement is reachability, not ranking improvement. [benchmarks.md](../evaluation/benchmarks.md#injected-alternatives-do-not-count-as-ranking-error) explains why the scoreboard measures its oracle without injected alternatives. [SCHEMA.md](../../orthography2ipa/data/SCHEMA.md#ambiguous-endings) describes the list form.
 
 The spec declares no ⟨-ment⟩ entry beside it. ⟨-ment⟩ has the same ambiguity: *dorment* and *ferment* are mute, *moment* and *comment* are not. A longer entry would shield exactly the verbs that the list form reaches. Without `"ent"`, the nasal ⟨en⟩ and a silent ⟨t⟩ already give *rapidement* [ʁapidəmɑ̃]. A `"ment": "mɑ̃"` entry also fails in the adverbs in ⟨-amment⟩ and ⟨-emment⟩. ⟨mm⟩ is one token there, so ⟨-ment⟩ cannot match. The entry turned *comment* into [kɔm] and *apparemment* into [apaʁəm], with 131 losses against 7 wins in that bucket.
 
@@ -103,4 +103,4 @@ The aperture positions let a spec choose a vowel by whether its syllable is open
 | Boundaries inside compounds | The word-level rules cannot see a boundary inside a compound. French intervocalic ⟨s⟩ in learned compounds (*pléonasme*, *œcuménisme*) goes wrong in both directions. Dutch devoicing at the boundary does not fire: *opvanghuis* gives `ˈoːpvɑŋɦœys` with [v]. | compound segmentation |
 
 ---
-[← Gold defects](gold_defects.md) · [Home](index.md) · [Spec diagnostics →](spec_diagnostics.md)
+[← Distance Metrics](distance.md) · [Home](../index.md) · [Python API →](../reference/api.md)

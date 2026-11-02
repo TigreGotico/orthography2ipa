@@ -6,7 +6,7 @@ The `ro-RO` spec describes Standard Romanian (limba română standard). The regi
 
 ## Orthographic depth and production threshold
 
-Romanian has a shallow (phonemic) orthography, so the 0.15 PER production target applies (see [quality tiers](../quality_tiers.md#the-per-threshold)). The orthography of 1993 is regular. The central vowels have their own letters: ⟨ă⟩ is /ə/, and ⟨â⟩ and ⟨î⟩ are /ɨ/. The letters ⟨c⟩ and ⟨g⟩ soften before front vowels, as in the rest of Romance.
+Romanian has a shallow (phonemic) orthography, so the 0.15 PER production target applies (see [quality tiers](../specs/quality_tiers.md#the-per-threshold)). The orthography of 1993 is regular. The central vowels have their own letters: ⟨ă⟩ is /ə/, and ⟨â⟩ and ⟨î⟩ are /ɨ/. The letters ⟨c⟩ and ⟨g⟩ soften before front vowels, as in the rest of Romance.
 
 ## Phonology as encoded
 
@@ -26,7 +26,7 @@ Romanian stress is lexical, and the standard spelling does not mark it. It has a
 
 ## Benchmark
 
-Two rows can gate a promotion: `wikipron` under the bare tag `ro`, which is crowd-scraped, and `ipadict` under `ro-RO`, which is lexicon-derived. The registry and the guard test both resolve `ro` to this spec. The `vox_communis` row is epitran-derived and the `ipa_childes` row is espeak-derived. Those two rows measure agreement with another system and cannot gate. The scores are on the [scoreboard](../scoreboard.md).
+Two rows can gate a promotion: `wikipron` under the bare tag `ro`, which is crowd-scraped, and `ipadict` under `ro-RO`, which is lexicon-derived. The registry and the guard test both resolve `ro` to this spec. The `vox_communis` row is epitran-derived and the `ipa_childes` row is espeak-derived. Those two rows measure agreement with another system and cannot gate. The scores are on the [scoreboard](../evaluation/generated/scoreboard.md).
 
 ## Known limitations
 

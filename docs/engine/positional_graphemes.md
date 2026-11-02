@@ -197,7 +197,7 @@ The engine decides aperture on the orthographic syllable from the spec's own syl
 
 The crossed positions outrank the aperture pair, and the aperture pair outranks the stress-only positions. So a spec that declares `nucleus_unstressed` without `nucleus_unstressed_open` keeps its reduction in every unstressed syllable. The engine syllabifies a word for aperture only when the spec declares one of these keys.
 
-The proxy is only as good as the syllable boundary. A syllabifier that maximises onsets without phonotactics makes syllables open that are closed. Measure an aperture declaration on the [benchmark board](benchmarks.md) before you ship it.
+The proxy is only as good as the syllable boundary. A syllabifier that maximises onsets without phonotactics makes syllables open that are closed. Measure an aperture declaration on the [benchmark board](../evaluation/benchmarks.md) before you ship it.
 
 ## Secondary stress
 
@@ -284,7 +284,7 @@ Its `onset` entry never fires. The `before_vowel` entry does that work.
 
 The two layers work at different levels. `positional_graphemes` picks the phoneme a grapheme spells. `allophone_rules` pick the surface form of a phoneme that is already chosen. Some processes fit either layer, such as English /t/ flapping. Use `positional_graphemes` when the step from spelling to phoneme is ambiguous. Use `allophone_rules` when the step from phoneme to surface varies. A spec can use both. [allophony.md](allophony.md) describes the rule layer.
 
-`distance.positional_divergence` compares the positional entries of two specs. The other metrics in [distance.md](distance.md) do not read positional entries.
+`distance.positional_divergence` compares the positional entries of two specs. The other metrics in [distance.md](../guide/distance.md) do not read positional entries.
 
 ---
-[← Allophony](allophony.md) · [Home](index.md) · [Quality tiers →](quality_tiers.md)
+[← Allophony](allophony.md) · [Home](../index.md) · [Data Model →](../specs/data_model.md)

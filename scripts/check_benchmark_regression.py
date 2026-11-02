@@ -7,7 +7,7 @@ combination against the current checkout, then compares each resulting
 row's PER to the matching row in the committed baseline.
 
 FULL-vs-SAMPLE, never mixed. The PUBLISHED scoreboard
-(``benchmarks/results.json`` / ``docs/scoreboard.md``) is FULL-dataset —
+(``benchmarks/results.json`` / ``docs/evaluation/generated/scoreboard.md``) is FULL-dataset —
 every gold word, no cap — and is far too slow to re-run in a CI job (the
 598k-row ``portuguese_unified`` gold
 alone takes the better part of an hour). So this gate does NOT compare

@@ -1,6 +1,6 @@
-# TTS sentence gold sets
+# TTS silver sets
 
-The TTS sentence gold sets are full sentences with a broad IPA transcription, one TSV file per lect. They have two uses. First, they check a TTS voice for a lect. Synthesize each sentence, listen to it or run ASR on it, and compare the result with the gold IPA. Second, they pin the sentence-level behaviour of the engine, so a spec change that alters a transcription fails CI.
+The TTS silver sets are full sentences with a broad IPA transcription, one TSV file per lect. A large language model wrote them, and each IPA cell is the output of this engine. They are therefore [silver labels, never gold](../contributing/citations.md#silver-labels-are-never-gold). They have two uses. First, they check a TTS voice for a lect. Synthesize each sentence, listen to it or run ASR on it, and compare the result with the stored IPA. Second, they pin the sentence-level behaviour of the engine, so a spec change that alters a transcription fails CI.
 
 Five sets share one design. This page describes the design once, then lists what each set adds.
 
@@ -14,7 +14,7 @@ Five sets share one design. This page describes the design once, then lists what
 | [`iberian_creole_tts`](#iberian_creole_tts) | The Portuguese creoles of Asia and the Gulf of Guinea, the Upper Guinea creoles, and the Spanish creoles of the Caribbean and the Philippines | `scripts/iberian_creole_tts_gold.py` | `tests/test_iberian_creole_tts_gold.py` | not a benchmark dataset |
 | [`spain_romance_tts`](#spain_romance_tts) | Castilian and its accents, Galician, Asturleonese, Aragonese, Catalan and Valencian, Aranese, Fala, Extremaduran, Ladino, Latin American and Equatoguinean Spanish, and Basque | `scripts/spain_romance_tts_gold.py` | `tests/test_spain_romance_tts_gold.py` | `llm-generated` |
 
-The files live in `orthography2ipa/data/gold/<set>/<code>.tsv`. List that directory for the lects that have gold. The `LECTS` list at the top of each builder is the full roster that `validate` checks.
+The files live in `orthography2ipa/data/gold/<set>/<code>.tsv`. List that directory for the lects that have a file. The `LECTS` list at the top of each builder is the full roster that `validate` checks.
 
 The benchmark tier comes from `PROVENANCE` in `scripts/benchmark.py`. `kabyle_tts` and `iberian_creole_tts` are not in the dataset registry, so the scoreboard does not score them. See [What a score on these sets means](#what-a-score-on-these-sets-means).
 
@@ -27,7 +27,7 @@ Each file is tab-separated UTF-8 with a header row. The columns are the `FIELDS`
 | `id` | `<lect>-NNN`, numbered from `001` |
 | `sentence` | The sentence in the input orthography of the lect. This is the text a TTS voice receives, and the text the engine transcribes. |
 | `raw` | Arabic only. The sentence with the ḥarakāt removed, which is what a TTS normally receives. |
-| `ipa` | The output of `transcribe(sentence, lect)`, checked by hand against the cited sources of the lect |
+| `ipa` | The output of `transcribe(sentence, lect)`, audited against the cited sources of the lect |
 | `gloss_en` | An English translation |
 | `features` | Coverage tags, separated by semicolons (see [Feature tags](#feature-tags)) |
 | `notes` | Corrections to the engine output, and the source ids from the spec's `sources` that justify the row |
@@ -40,12 +40,12 @@ Only the Arabic set has a `raw` column. Arabic orthography leaves short vowels u
 
 The `ipa` column is exactly what the engine emits for `sentence` under the lect. `validate` computes it again and fails on any difference. That makes each file a regression pin on the spec.
 
-Never edit the `ipa` column by hand. A gold that is patched to hide a spec bug is worse than no gold. When the engine is wrong, fix the spec, with a citation from the lect's `sources`. You can also change the sentence to a word that the literature attests and that the spec transcribes correctly. Record every correction in `notes`, with the source id that grounds it.
+Never edit the `ipa` column by hand. A set that is patched to hide a spec bug is worse than no set. When the engine is wrong, fix the spec, with a citation from the lect's `sources`. You can also change the sentence to a word that the literature attests and that the spec transcribes correctly. Record every correction in `notes`, with the source id that grounds it.
 
 When a spec change alters a stored transcription, `validate` prints the stored and the computed IPA. Reconcile the two on purpose:
 
-1. If the changed transcription is more accurate against the cited sources, the gold pinned an older, less correct output. Regenerate the `ipa` column from the engine with `draft`, or copy the `got:` line. Check the feature tags against the changed IPA, and note the spec change with its source id.
-2. If the changed transcription is wrong, the gold caught a regression. Fix the spec and leave the gold as it is.
+1. If the changed transcription is more accurate against the cited sources, the set pinned an older, less correct output. Regenerate the `ipa` column from the engine with `draft`, or copy the `got:` line. Check the feature tags against the changed IPA, and note the spec change with its source id.
+2. If the changed transcription is wrong, the set caught a regression. Fix the spec and leave the set as it is.
 3. If the engine cannot yet produce the attested form, state the gap at the top of the pull request description. Change the sentence to a form that the spec transcribes correctly and the literature attests, and keep the gap on record.
 
 ## What `validate` checks
@@ -93,7 +93,7 @@ The builders share three subcommands. Run them from the root of a checkout. Each
    python scripts/kabyle_tts_gold.py checklist kab
    ```
 
-   The output starts with the lect name and the source ids of the spec. Then it lists every tag with its kind, and an `x` marks each tag that the gold already covers:
+   The output starts with the lect name and the source ids of the spec. Then it lists every tag with its kind, and an `x` marks each tag that the set already covers:
 
    ```text
    feature checklist (tag  verified-by  covered?):
@@ -133,7 +133,7 @@ The builders share three subcommands. Run them from the root of a checkout. Each
    kab-001	Azul fell-awen.	æzul fəlː æwən		geminate;schwa;glide	NEEDS-REVIEW: author gloss + citation id from spec sources
    ```
 
-4. Write the gloss, the shape tags and the `notes` by hand, with a source id in the notes.
+4. Write the gloss, the shape tags and the `notes` yourself, with a source id in the notes.
 5. Check the IPA against the phoneme mappings and the sources of the spec. If the engine is wrong, fix the spec as described in [The engine-pin contract](#the-engine-pin-contract).
 6. Run `python scripts/kabyle_tts_gold.py validate` and confirm that it prints `all green`. The test file of the set runs the same command in CI.
 
@@ -164,13 +164,15 @@ The Portuguese and Spain-Romance sets build each lect's rows on one list of shar
 
 Coverage rows follow the frames. They fill the phonetic tags that frames 1 to 14 left empty for the lect.
 
-Both sets are also written to be rich in sandhi. Word junctions are where these languages change sounds: vowel elision and liaison, and /s/ voicing before a voiced onset. Those are what a TTS voice most often gets wrong. Write most rows with at least one `sandhi` junction, so the gold tests connected speech and not only isolated words.
+Both sets are also written to be rich in sandhi. Word junctions are where these languages change sounds: vowel elision and liaison, and /s/ voicing before a voiced onset. Those are what a TTS voice most often gets wrong. Write most rows with at least one `sandhi` junction, so the set tests connected speech and not only isolated words.
 
 ## What a score on these sets means
 
-The scoreboard scores `arabic_tts`, `portuguese_tts` and `spain_romance_tts` at the `llm-generated` tier, which can never gate a quality decision. The `ipa` column is the engine's own output by contract, so each row scores a PER of zero by construction. The rows measure drift from the pinned output, not accuracy. The `PROVENANCE` comment on `spain_romance_tts` in `scripts/benchmark.py` states that a gold pinned to the system under test must never gate anything.
+A language model wrote the sentences of all five sets. For `arabic_tts` and `portuguese_tts` it also drafted each transcription. Each draft was then pinned to the engine and audited row by row against the literature cited in `notes`. The `spain_romance_tts` transcriptions are drafted by `transcribe` itself. Each row of every set names in `notes` the spec sources that ground it, and `validate` checks that each id resolves.
 
-The citation audit in `notes` raises confidence in the sentences and their grounding. It does not raise the tier of the IPA. [gold_defects.md](gold_defects.md#circular) records these sets as circular gold, and [benchmarks.md](benchmarks.md#provenance-and-reliability-read-this-before-trusting-any-number) explains the tiers.
+The scoreboard scores `arabic_tts`, `portuguese_tts` and `spain_romance_tts` at the `llm-generated` tier, which can never gate a quality decision. The `ipa` column is the engine's own output by contract, so each row scores a PER of zero by construction. The rows measure drift from the pinned output, not accuracy. The `PROVENANCE` comment on `spain_romance_tts` in `scripts/benchmark.py` states that a set pinned to the system under test must never gate anything.
+
+The citation audit in `notes` raises confidence in the sentences and their grounding. It does not raise the tier of the IPA, and it does not make a silver set gold. [Gold defects](gold_defects.md#circular) records these sets as circular, and [benchmarks.md](benchmarks.md#provenance-and-reliability-read-this-before-trusting-any-number) explains the tiers.
 
 ## `arabic_tts`
 
@@ -180,7 +182,7 @@ The Arabic set covers Classical Arabic (`arb`), Modern Standard Arabic (`ar`), t
 
 The grouping nodes are `ar-x-gulf`, `ar-x-levantine`, `ar-x-maghrebi`, `ar-x-mashriqi` and `ar-x-peninsular`. Their register is pan-group. A sentence uses only words that the leaves of the group share. Examples are Gulf `šlon` and `wāyid`, Levantine `qaddēsh` and `baddi`, and pan-Maghrebi `bzzāf` and `shri` in the sense of Heath and Marçais.
 
-Where the leaves of a group differ, the node does not choose a reflex. The gold shows the rank-1 candidate of the node instead. `ar-x-maghrebi` keeps /q/ and puts ʒ first for ǧīm. `ar-x-peninsular` puts the fricative interdentals first and keeps the diphthongs. `ar-x-gulf` and `ar-x-levantine` change ay and aw to ē and ō. That is the documented behaviour of the node, and each row notes it.
+Where the leaves of a group differ, the node does not choose a reflex. The set shows the rank-1 candidate of the node instead. `ar-x-maghrebi` keeps /q/ and puts ʒ first for ǧīm. `ar-x-peninsular` puts the fricative interdentals first and keeps the diphthongs. `ar-x-gulf` and `ar-x-levantine` change ay and aw to ē and ō. That is the documented behaviour of the node, and each row notes it.
 
 ### Tags
 
@@ -205,7 +207,7 @@ The shape tags are `statement`, `question`, `negation`, `imperative` and `number
 
 ### Authoring differences
 
-The Arabic `draft` vocalizes each line with text2tashkeel (`rawi-ensemble`) before it transcribes. text2tashkeel models Modern Standard Arabic only. For a dialect its output is out of domain, so `draft` marks each row for hand correction against the lect's sources. Classical and Modern Standard Arabic drafts still need a review of case endings and waṣl. The Arabic `draft` stops with an import error when the `text2tashkeel` package is not installed. When the package is installed but vocalization fails on a line, the draft keeps the line as written and records the error in `notes`.
+The Arabic `draft` vocalizes each line with text2tashkeel (`rawi-ensemble`) before it transcribes. text2tashkeel models Modern Standard Arabic only. For a dialect its output is out of domain, so `draft` marks each row for correction against the lect's sources. Classical and Modern Standard Arabic drafts still need a review of case endings and waṣl. The Arabic `draft` stops with an import error when the `text2tashkeel` package is not installed. When the package is installed but vocalization fails on a line, the draft keeps the line as written and records the error in `notes`.
 
 `scripts/_gold_build.py` is a second way to write an Arabic file. It takes a lect code and a Python file that defines `ROWS` as a list of `(sentence, gloss_en, shape_tags, notes)` tuples. It computes `raw`, the IPA and the machine tags, warns about bare consonants, and overwrites `<lect>.tsv`:
 
@@ -217,7 +219,7 @@ If a fix to the spec changes a letter mapping, run `scripts/gen_arabic_orthograp
 
 ### Vocalized connected speech
 
-The gold follows the conventions for vocalized text that `scripts/gen_arabic_orthography_keys.py` encodes. A sun letter carries the shadda of the assimilated article. Proclitics contract with the article, tā marbūṭa links to the next word, tanwīn sits on its alif seat, and waṣl elides. The docstring of that script gives the rules and their grounding in Ryding and Watson. Dialect sentences spell the article as their literature does: Cairene and Baghdadi `اِلْ‍` /il/, and the Levantine contraction `عَ ال‍`.
+The set follows the conventions for vocalized text that `scripts/gen_arabic_orthography_keys.py` encodes. A sun letter carries the shadda of the assimilated article. Proclitics contract with the article, tā marbūṭa links to the next word, tanwīn sits on its alif seat, and waṣl elides. The docstring of that script gives the rules and their grounding in Ryding and Watson. Dialect sentences spell the article as their literature does: Cairene and Baghdadi `اِلْ‍` /il/, and the Levantine contraction `عَ ال‍`.
 
 ### Grounding by lect
 
@@ -245,11 +247,11 @@ The gold follows the conventions for vocalized text that `scripts/gen_arabic_ort
 | `ar-LY` | halba and nibbi, with ق /ɡ/ | Pereira 2008 |
 | `ar-MR` | Ḥassāniyya keeps the interdentals | Taine-Cheikh 2007 |
 
-The lexical attestation also draws on the PADIC, QADI, EDC and SDC corpora. The sentences are written for the gold, never copied from a corpus.
+The lexical attestation also draws on the PADIC, QADI, EDC and SDC corpora. The sentences are written for the set, never copied from a corpus.
 
 ### Limits
 
-The specs of `ar-TD`, `ar-NG`, `ar-TN`, `ar-DZ`, `ar-LY` and `ar-MR` have thinner grounding. Their sentences keep to well-attested features shared across the region. All dialect vocalization is set by hand. The IPA is broad, and the pre-pausal tanwīn is kept, as in full style.
+The specs of `ar-TD`, `ar-NG`, `ar-TN`, `ar-DZ`, `ar-LY` and `ar-MR` have thinner grounding. Their sentences keep to well-attested features shared across the region. No dialect vocalization is text2tashkeel output as it stands: each draft is corrected against the sources of the lect. The IPA is broad, and the pre-pausal tanwīn is kept, as in full style.
 
 ## `kabyle_tts`
 
@@ -456,4 +458,4 @@ Each lect uses its own attested words, never Castilian spoken with an accent. Ga
 | `ast-x-sanabria` | stressed Ŏ to /wo/ (`cuostan`, `buonas`), initial L- to [ʎ] and N- to [ɲ], distinción [θ], final -o to -u, and four sibilants | Frías Conde, García Arias 2003 |
 
 ---
-[← The pinned WikiPron mirror](wikipron_mirror.md) · [Home](index.md) · [Scoreboard →](scoreboard.md)
+[← The pinned WikiPron mirror](wikipron_mirror.md) · [Home](../index.md) · [Gold defects →](gold_defects.md)

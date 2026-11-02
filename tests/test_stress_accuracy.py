@@ -1,7 +1,7 @@
 """The stress column: does the primary stress land on the gold's syllable.
 
 PER strips stress marks, so it cannot see a stress error. The definition the
-column implements is in docs/benchmarks.md ("Stress accuracy"). Every expected
+column implements is in docs/evaluation/benchmarks.md ("Stress accuracy"). Every expected
 value below is worked out by hand from the transcriptions in the test: which
 syllable the gold marks, which one the hypothesis marks, and which segments
 the edit-distance alignment pairs.

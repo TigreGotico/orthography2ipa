@@ -633,7 +633,7 @@ Not every gold language has a mapping for every competitor system: espeak-ng, ep
 ### Staleness
 
 <!-- staleness: derived at render time from benchmarks/comparison.json against benchmarks/results.json; not committed -->
-Whether the `o2i PER` column here still matches [`benchmarks/results.json`](../benchmarks/results.json) is not written into this file, because that list changes whenever any board row moves and two open pull requests would rewrite the same line. Run `python scripts/compare_systems.py --staleness` for the current list; the published site carries the same note as `comparison_staleness.md`.
+Whether the `o2i PER` column here still matches [`benchmarks/results.json`](../../../benchmarks/results.json) is not written into this file, because that list changes whenever any board row moves and two open pull requests would rewrite the same line. Run `python scripts/compare_systems.py --staleness` for the current list; the published site carries the same note as `comparison_staleness.md`.
 
 **espeak-rules-only coverage.** `espeak-rules-only` (the `espeak_rules_per` field) is a permanent column on this board: espeak-ng compiled from its own letter-to-sound rules with every per-language word-exception list (`_list`/`_listx`/`_extra`) emptied first — see `scripts/build_espeak_rules_only.sh`. Every row with a stock `espeak` number also carries an `espeak-rules-only` one in this run.
 
@@ -651,9 +651,9 @@ pip install '.[compare]'  # epitran, gruut, pycotovia, ahotts-g2p — dev-only e
 PYTHONPATH=$PWD python scripts/compare_systems.py --scoreboard
 ```
 
-Machine-readable form: [`benchmarks/comparison.json`](../benchmarks/comparison.json).
+Machine-readable form: [`benchmarks/comparison.json`](../../../benchmarks/comparison.json).
 
 </details>
 
 ---
-[← Scoreboard](scoreboard.md) · [Home](index.md) · [espeak-ng agreement →](espeak_agreement.md)
+[← Scoreboard](scoreboard.md) · [Home](../../index.md) · [espeak-ng agreement →](espeak_agreement.md)

@@ -97,9 +97,9 @@ Gemination of a doubled digraph, ⟨kkw⟩ as /kʷkʷ/ and ⟨ssh⟩ as /ʃʃ/, 
 
 ## Reading the WikiPron row
 
-The `ha` WikiPron gold is entirely `Module:ha-IPA` output. Every headword in a random sample carried a bare `{{ha-IPA|<respelling>}}` template and no hand-typed IPA. The row therefore certifies reproduction of the module's tone- and length-marked respelling, not independent pronunciation accuracy. See [Module-generated WikiPron rows](../benchmark_datasets.md#module-generated-wikipron-rows).
+The `ha` WikiPron gold is entirely `Module:ha-IPA` output. Every headword in a random sample carried a bare `{{ha-IPA|<respelling>}}` template and no hand-typed IPA. The row therefore certifies reproduction of the module's tone- and length-marked respelling, not independent pronunciation accuracy. See [Module-generated WikiPron rows](../evaluation/datasets.md#module-generated-wikipron-rows).
 
-The gold's IPA column marks tone and length in full, while its orthographic column carries neither. Almost all of the row's error is that mismatch, not rule error. The script `scripts/fold_ha_notation.py` measures it by folding the marks out of both sides. The `valid_ceiling` block in `ha.json` records the result. For the scores, see the [scoreboard](../scoreboard.md).
+The gold's IPA column marks tone and length in full, while its orthographic column carries neither. Almost all of the row's error is that mismatch, not rule error. The script `scripts/fold_ha_notation.py` measures it by folding the marks out of both sides. The `valid_ceiling` block in `ha.json` records the result. For the scores, see the [scoreboard](../evaluation/generated/scoreboard.md).
 
 | Fold | What it shows |
 |:--|:--|

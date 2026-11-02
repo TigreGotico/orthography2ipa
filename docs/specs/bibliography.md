@@ -1,6 +1,6 @@
 # Bibliography
 
-This page lists reference works for spec authors, grouped by language family. The authoritative record of what a spec cites is that spec's own `sources` array. A bold key in a table is the `id` that the specs use for the work. A work with no key is a recommended reference that no spec cites in `sources`. The rules for citing are in [citation honesty](contributing/citations.md).
+This page lists reference works for spec authors, grouped by language family. The authoritative record of what a spec cites is that spec's own `sources` array. A bold key in a table is the `id` that the specs use for the work. A work with no key is a recommended reference that no spec cites in `sources`. The rules for citing are in [citation honesty](../contributing/citations.md).
 
 ## How a spec cites a work
 
@@ -25,7 +25,7 @@ import orthography2ipa
 | `pages` | no | The page range that you read, such as `pp. 45-72` |
 | `notes` | no | What the source supports |
 
-The schema of each field is in [`SCHEMA.md`](../orthography2ipa/data/SCHEMA.md#sources-schema).
+The schema of each field is in [`SCHEMA.md`](../../orthography2ipa/data/SCHEMA.md#sources-schema).
 
 ## Germanic
 
@@ -107,11 +107,11 @@ The schema of each field is in [`SCHEMA.md`](../orthography2ipa/data/SCHEMA.md#s
 
 ## Sources mined for gold
 
-The [`primary_sources`](../orthography2ipa/data/gold/primary_sources/README.md) benchmark set is built from the worked transcriptions that the cited sources print. Examples are the Arabic works above and `brissos2014`. Others are the JIPA *Illustrations of the IPA* for Ukrainian (`pompino2017`), Russian (`yanushevskaya2015`), European Portuguese (`cruzferreira1995`) and Brazilian Portuguese (`barbosa2004`). Each gold row names its source and its printed page. The file `sources.json` in that directory lists every source of the set. For each source, it records how the printed folio maps to the page index of the PDF.
+The [`primary_sources`](../../orthography2ipa/data/gold/primary_sources/README.md) benchmark set is built from the worked transcriptions that the cited sources print. Examples are the Arabic works above and `brissos2014`. Others are the JIPA *Illustrations of the IPA* for Ukrainian (`pompino2017`), Russian (`yanushevskaya2015`), European Portuguese (`cruzferreira1995`) and Brazilian Portuguese (`barbosa2004`). Each gold row names its source and its printed page. The file `sources.json` in that directory lists every source of the set. For each source, it records how the printed folio maps to the page index of the PDF.
 
 ## Lexicon sources
 
-The sources of a caller-registered lexicon, such as CMUdict for English, are on the [lexicon](lexicon.md) page.
+The sources of a caller-registered lexicon, such as CMUdict for English, are on the [lexicon](../guide/lexicon.md) page.
 
 ---
-[← IPA Reference](ipa_reference.md) · [Home](index.md) · [Spec authoring rules →](contributing/spec_authoring.md)
+[← IPA Reference](ipa_reference.md) · [Home](../index.md) · [Writing a language spec →](../contributing/spec_authoring.md)

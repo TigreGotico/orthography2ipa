@@ -2730,7 +2730,7 @@ cs.write_comparison(rows)
 
 
 class TestStalenessParagraphIsDerivedNotCommitted:
-    """The staleness paragraph used to be committed inside docs/comparison.md
+    """The staleness paragraph used to be committed inside docs/evaluation/generated/comparison.md
     and checked against a fresh computation. That check was right (it caught
     a doc regenerated before a rebase, twice), but the paragraph changes
     whenever ANY comparison-board row moves in benchmarks/results.json, so
@@ -2889,7 +2889,7 @@ class TestScoreboardLangScoping:
     mapped languages — every external system over every gold row, hours of
     espeak-ng and epitran subprocesses. The practical effect was that a
     one-language refresh was never run at all and the board's rows went
-    stale instead (the staleness note in ``docs/comparison.md`` was
+    stale instead (the staleness note in ``docs/evaluation/generated/comparison.md`` was
     carrying 20 such rows).
     """
 

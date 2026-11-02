@@ -81,7 +81,7 @@ The spec reads `gl` as [ɡl], because Genoese does not have the Italian ⟨gli�
 
 ## Benchmark
 
-The `wikipron` row is crowd-scraped and can gate a promotion. The `vox_communis` row is epitran-derived, so it measures agreement with epitran and cannot gate. See the [scoreboard](../scoreboard.md) for the scores.
+The `wikipron` row is crowd-scraped and can gate a promotion. The `vox_communis` row is epitran-derived, so it measures agreement with epitran and cannot gate. See the [scoreboard](../evaluation/generated/scoreboard.md) for the scores.
 
 ## Sources
 

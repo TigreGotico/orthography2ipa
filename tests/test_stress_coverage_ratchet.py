@@ -1,7 +1,7 @@
 """Ratchet: living research and production specs may not ship without stress.
 
 A spec at ``research`` or ``production`` tier describes a living language well
-enough to be benchmarked, and docs/quality_tiers.md asks such a spec for a
+enough to be benchmarked, and docs/specs/quality_tiers.md asks such a spec for a
 ``stress`` block when the language has word stress that the spelling lets a
 rule predict. Many specs do not have one yet. This test pins that set, read
 after inheritance (a dialect that inherits its base's block is covered), so

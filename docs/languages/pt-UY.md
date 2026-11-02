@@ -14,7 +14,7 @@ Uruguayan Portuguese is the border-contact vernacular of northern Uruguay, based
 
 It is a Portuguese vernacular of rural origin in close contact with border Spanish. It was once the only language of the border communities, and it is diglossic today (Carvalho 1998: 642, Elizaincín 1992).
 
-Every transcription on this page is real output of `orthography2ipa.transcribe(text, "pt-UY")`. For the scores of the spec, see [../scoreboard.md](../scoreboard.md).
+Every transcription on this page is real output of `orthography2ipa.transcribe(text, "pt-UY")`. For the scores of the spec, see [../evaluation/generated/scoreboard.md](../evaluation/generated/scoreboard.md).
 
 ## Parent and ancestry
 

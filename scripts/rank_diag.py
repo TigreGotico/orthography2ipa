@@ -1,6 +1,6 @@
 """Ranking-error diagnosis: which slot choice does the beam get wrong?
 
-See docs/benchmarks.md ("Finding where the beam ranks a better reading wrong")
+See docs/evaluation/benchmarks.md ("Finding where the beam ranks a better reading wrong")
 for the method.
 
 For every word where oracle@k beats top-1, align the top-1 beam path

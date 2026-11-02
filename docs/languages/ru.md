@@ -109,7 +109,7 @@ The vowels е, ё, ю, я stand for [j] plus a vowel at the start of a word, aft
 
 ## Benchmark
 
-The `wikipron` row is crowd-scraped and comes from WikiPron's `rus_cyrl_narrow.tsv`, because WikiPron scraped Russian only in narrow transcription. The `coruss_ru` and `primary_sources` rows are expert-human. The `alphacep_ru_book` row is machine-generated. The `vox_communis` row is epitran-derived and cannot gate. The WikiPron gold writes no stress mark, so it cannot judge stress placement. See the [scoreboard](../scoreboard.md) for the scores, and [the Slavic section of the comparative page](comparative.md#slavic-languages) for Russian among its relatives.
+The `wikipron` row is crowd-scraped and comes from WikiPron's `rus_cyrl_narrow.tsv`, because WikiPron scraped Russian only in narrow transcription. The `coruss_ru` and `primary_sources` rows are expert-human. The `alphacep_ru_book` row is machine-generated. The `vox_communis` row is epitran-derived and cannot gate. The WikiPron gold writes no stress mark, so it cannot judge stress placement. See the [scoreboard](../evaluation/generated/scoreboard.md) for the scores, and [the Slavic section of the comparative page](comparative.md#slavic-languages) for Russian among its relatives.
 
 ## References
 
