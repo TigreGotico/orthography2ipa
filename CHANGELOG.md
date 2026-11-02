@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.111.16a1](https://github.com/TigreGotico/orthography2ipa/tree/7.111.16a1) (2026-11-02)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.111.15a4...7.111.16a1)
+
+**Merged pull requests:**
+
+- fix: inherit stress from a same-language parent [\#1806](https://github.com/TigreGotico/orthography2ipa/pull/1806) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.111.15a4](https://github.com/TigreGotico/orthography2ipa/tree/7.111.15a4) (2026-11-02)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.111.15a3...7.111.15a4)
@@ -348,10 +356,6 @@
 ## [7.109.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.109.0a1) (2026-09-26)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.108.1a2...7.109.0a1)
-
-**Merged pull requests:**
-
-- feat\(gur\): register the WikiPron Farefare gold and score it on the board [\#1706](https://github.com/TigreGotico/orthography2ipa/pull/1706) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.108.1a2](https://github.com/TigreGotico/orthography2ipa/tree/7.108.1a2) (2026-09-26)
 
