@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.111.15a1](https://github.com/TigreGotico/orthography2ipa/tree/7.111.15a1) (2026-11-02)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.111.14a1...7.111.15a1)
+
+**Merged pull requests:**
+
+- fix\(data\): remove invented letter tables from 29 stub specs [\#1798](https://github.com/TigreGotico/orthography2ipa/pull/1798) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.111.14a1](https://github.com/TigreGotico/orthography2ipa/tree/7.111.14a1) (2026-11-02)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.111.13a3...7.111.14a1)
@@ -337,10 +345,6 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.108.0a2...7.108.0a3)
 
-**Merged pull requests:**
-
-- docs\(schema\): base inheritance merges one level deep [\#1699](https://github.com/TigreGotico/orthography2ipa/pull/1699) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [7.108.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.108.0a2) (2026-09-23)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.108.0a1...7.108.0a2)
@@ -352,10 +356,6 @@
 ## [7.108.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.108.0a1) (2026-09-23)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.107.0a1...7.108.0a1)
-
-**Merged pull requests:**
-
-- feat\(oc\): add a Provencal spec as a cited child of the Lengadocian one [\#1698](https://github.com/TigreGotico/orthography2ipa/pull/1698) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.107.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.107.0a1) (2026-09-23)
 
