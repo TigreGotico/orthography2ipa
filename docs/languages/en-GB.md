@@ -123,7 +123,7 @@ The `word_exceptions` table holds two closed classes. The first is the function 
 | GOOSE | uː | ⟨goose⟩, ⟨blue⟩ |
 | PRICE | aɪ | ⟨price⟩, ⟨my⟩ |
 | CHOICE | ɔɪ | ⟨choice⟩, ⟨boy⟩ |
-| MOUTH | aʊ | ⟨mouth⟩, ⟨now⟩ |
+| MOUTH | aʊ | ⟨mouth⟩, ⟨cow⟩ |
 
 RP is non-rhotic: /ɹ/ occurs only before a vowel. The `EN_GB_NONRHOTIC_*` rules delete the /ɹ/ of an r-coloured vowel before a consonant and at the end of a word. So ⟨car⟩ gives `ˈkɑː`, ⟨hard⟩ gives `ˈhɑːd` and ⟨girl⟩ gives `ˈɡɜːl`. Before a vowel, the `EN_GB_PREVOCALIC_R_*` rules keep the /ɹ/ and shorten the vowel, as in ⟨arrive⟩ `ˈæɹaɪv`. The LOT vowel is rounded [ɒ], as in ⟨hop⟩ `ˈhɒp`.
 
