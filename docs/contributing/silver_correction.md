@@ -30,16 +30,24 @@ schema.
 
 1. Pass A transcribes the sentence. It gets the sentence, the lect code, and
    the notes and cited sources of the lect spec. It does not get the engine
-   output or the existing `ipa`.
+   output or the existing `ipa`. The notes give the transcription conventions
+   and context. For the pronunciation, the prompt tells the model to follow
+   the published phonological descriptions of the lect, also where a note
+   disagrees.
 2. Pass B does the same task with a different framing. It writes each word in
    its citation form, then applies the connected-speech rules of the lect. It
    does not get the engine output or the existing `ipa` either.
 3. The tool compares A, B and the engine output. It uses the broad
-   normalisation of the scorer: no stress marks, no spaces, no narrow marks.
+   normalisation of the scorer: no spaces and no narrow marks. It keeps the
+   primary stress. It moves each stress mark to the vowel after it, so
+   `esˈta` and `eˈsta` are equal, but `ˈesta` and `esˈta` are not. It removes
+   the secondary stress marks, because the board does not score them.
 4. If all three agree, the tool keeps A and sets the flag `agreed`.
 5. If they do not agree, pass C decides. It sees A, B, the engine output and
    the cited rules of the lect. It returns one IPA, a flag (`agreed`,
-   `adjudicated` or `uncertain`) and a reason of one line.
+   `adjudicated` or `uncertain`) and a reason of one line. It also returns
+   `note_conflict`: the spec note that its reading disagrees with, or an
+   empty string. A conflict is a lead for a fix to the spec.
 
 ## The output
 
@@ -57,6 +65,7 @@ and id. Each line holds one row:
 | `model` | the model that wrote the passes |
 | `passes` | the IPA of pass A and pass B, and the full answer of pass C or `null` |
 | `flag`, `reason` | the decision |
+| `note_conflict` | the spec note that pass C disagrees with, or an empty string |
 | `tier` | `llm-corrected` |
 | `source_row` | the other columns of the source row |
 
@@ -85,13 +94,29 @@ The tool keeps each response in `.silver_correction_cache/`. The key of a
 response is the set, the row id, the model and a hash of the request. It also
 keeps the ids of the batches that it sent and did not collect. If a run
 stops, run the same command again. The tool collects the open batches, uses
-the kept responses, and sends only the requests that have no response.
+the kept responses, and sends only the requests that have no response. Each
+kept response also records the file name of the key that served it.
 
 ## Credentials
 
-Put the API key in a file and set `O2I_ANTHROPIC_KEY_FILE` to its path, or set
-`ANTHROPIC_API_KEY`. The tool does not write the key to the screen, the log,
-the cache or the output. A dry run needs no key.
+Put each API key in its own file. Set `O2I_ANTHROPIC_KEY_FILE` to the paths
+of the files, with `:` between them. The file names must be different. If
+you have one key, you can set `ANTHROPIC_API_KEY` instead.
+
+The tool divides the work between the keys:
+
+- In `--sync` mode, it sends each request with the next key in the list.
+- In batch mode, it divides the rows equally between the keys and sends one
+  batch for each key. It collects each batch with the key that sent it.
+
+A key can fail with HTTP 401, 402 or 403, a `billing_error`, or an HTTP 400
+about the credit balance. Then the tool does not use that key again in the
+run, and it gives the work of that key to the other keys. If no key is left,
+the tool stops with exit status 4. The cache keeps each response, so run the
+same command again with a key that works.
+
+The tool names a key only by its file name. It does not write the key to the
+screen, the log, the cache or the output. A dry run needs no key.
 
 ## Run a pilot
 
@@ -112,6 +137,7 @@ python scripts/correct_silver_ipa.py \
 Then run the pilot with 20 rows for each lect:
 
 ```bash
+O2I_ANTHROPIC_KEY_FILE=/path/to/first.key:/path/to/second.key \
 python scripts/correct_silver_ipa.py \
     --dataset spain_romance_tts portuguese_tts arabic_tts \
     --lect es-ES pt-PT ar --limit 20 --sync --max-usd 40

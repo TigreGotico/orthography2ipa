@@ -30,8 +30,11 @@ def _gold_rows(n):
         return list(csv.DictReader(fh, delimiter="\t"))[:n]
 
 
-ROWS = _gold_rows(2)
-ENGINE = {r["sentence"]: G2P("es-ES").transcribe(r["sentence"]) for r in ROWS}
+ALL_ROWS = _gold_rows(6)
+ROWS = ALL_ROWS[:2]
+ENGINE = {r["sentence"]: G2P("es-ES").transcribe(r["sentence"])
+          for r in ALL_ROWS}
+NOTE_CONFLICT = "the note on stress in -ea- words disagrees with hualde2005"
 
 
 def _pass_of(params):
@@ -43,25 +46,38 @@ def _pass_of(params):
 
 def _sentence_of(params):
     user = params["messages"][-1]["content"]
-    found = [r["sentence"] for r in ROWS if r["sentence"] in user]
+    found = [r["sentence"] for r in ALL_ROWS if r["sentence"] in user]
     assert len(found) == 1, user
     return found[0]
 
 
+def _onset_stress(ipa):
+    """The same stress, with the mark put inside the onset of three words
+    and doubled word spacing."""
+    moved = (ipa.replace("ˈθj", "θˈj").replace("ˈkl", "kˈl")
+             .replace("ˈno", "nˈo"))
+    assert moved != ipa
+    return "  ".join(moved.split())
+
+
 def _answer(params):
-    """Row 1: A and B agree with the engine up to stress marks and spacing.
-    Row 2: B disagrees, so pass C must run."""
+    """Row 2: B disagrees, so pass C must run. Every other row: A and B
+    agree with the engine up to where the stress mark sits in the onset and
+    word spacing."""
     name, sentence = _pass_of(params), _sentence_of(params)
     engine = ENGINE[sentence]
     if name == "A":
         return {"ipa": engine}
     if name == "B":
+        if sentence == ROWS[1]["sentence"]:
+            return {"word_forms": [], "ipa": "x" + engine}
         if sentence == ROWS[0]["sentence"]:
             return {"word_forms": engine.split(),
-                    "ipa": "  ".join(engine.replace("ˈ", "").split())}
-        return {"word_forms": [], "ipa": "x" + engine}
+                    "ipa": _onset_stress(engine)}
+        return {"word_forms": engine.split(), "ipa": engine}
     return {"ipa": "adjudicated " + engine, "flag": "adjudicated",
-            "reason": "rule cited in hualde2005"}
+            "reason": "rule cited in hualde2005",
+            "note_conflict": NOTE_CONFLICT}
 
 
 def _message(payload):
@@ -73,25 +89,44 @@ def _message(payload):
 
 
 class FakeTransport:
-    """Answers every call from ``_answer``; records what it was asked."""
+    """Answers every call from ``_answer``; records what it was asked.
 
-    def __init__(self, fail_after=None, batch_server=None):
+    *fail_after* calls succeed before a network failure; *unusable_after*
+    calls succeed before the key fails with *unusable_reason*. *log* is a
+    list shared by the fakes of one run, filled with *name* per call."""
+
+    def __init__(self, fail_after=None, batch_server=None, *, name=None,
+                 log=None, unusable_after=None,
+                 unusable_reason="HTTP 400 credit balance"):
         self.calls = []
         self.fail_after = fail_after
+        self.name = name
+        self.log = log if log is not None else []
+        self.unusable_after = unusable_after
+        self.unusable_reason = unusable_reason
         self.server = batch_server if batch_server is not None else {
             "batches": {}, "submissions": [], "polls_left": 0}
+
+    def _check_key(self):
+        if (self.unusable_after is not None
+                and len(self.calls) >= self.unusable_after):
+            raise csi.KeyUnusable(self.unusable_reason)
 
     def create_message(self, params):
         if self.fail_after is not None and len(self.calls) >= self.fail_after:
             raise RuntimeError("simulated network failure")
+        self._check_key()
         self.calls.append(params)
+        self.log.append(self.name)
         return _message(_answer(params))
 
     def count_tokens(self, params):
         raise AssertionError("count_tokens is not expected in these tests")
 
     def submit_batch(self, requests):
-        batch_id = f"msgbatch_{len(self.server['batches'])}"
+        self._check_key()
+        self.calls.append(requests)
+        batch_id = f"msgbatch_{self.name}_{len(self.server['batches'])}"
         self.server["batches"][batch_id] = list(requests)
         self.server["submissions"].append([r["custom_id"] for r in requests])
         return batch_id
@@ -152,33 +187,58 @@ def test_dry_run_needs_no_key_and_makes_no_call(tmp_path, capsys):
 
 def _scorer_equal(a, b, lect):
     marks = benchmark._prosody_marks(lect)
-    return (benchmark.normalize(a, True, True, extra_strip=marks)
-            == benchmark.normalize(b, True, True, extra_strip=marks))
+    return (benchmark.normalize(a, False, True, extra_strip=marks)
+            == benchmark.normalize(b, False, True, extra_strip=marks))
 
 
 @pytest.mark.parametrize("a,b", [
-    ("ˈkasa ˈβlanka", "kasa βlanka"),      # stress marks only
     ("ˈkasa ˈβlanka", "ˈkasaˈβlanka"),     # word spacing only
     ("ˈkasa", "ˈkaza"),                    # a real segment difference
     ("ˈt͡ʃiko", "ˈtʃiko"),                  # tie bar only
+    ("ˈkasa ˈβlanka", "ˈkasa βlanka"),     # one stress mark missing
 ])
-def test_same_ipa_is_the_scorer_normalisation(a, b):
+def test_same_ipa_is_the_scorer_normalisation_with_stress_kept(a, b):
+    # On pairs that put each stress mark at the same place, the agreement
+    # test is the scorer's broad comparison with stress kept.
     assert csi.same_ipa(a, b, "es-ES") is _scorer_equal(a, b, "es-ES")
 
 
-def test_same_ipa_ignores_stress_and_spacing_but_not_segments():
-    assert csi.same_ipa("ˈkasa ˈβlanka", "kasa  βlanka", "es-ES")
+def test_same_ipa_ignores_where_the_onset_holds_the_stress_mark():
+    assert csi.same_ipa("esˈta", "eˈsta", "es-ES")
+    assert csi.same_ipa("ˈklaɾo", "kˈlaɾo", "es-ES")
+    assert csi.same_ipa("el ˈθjelo", "el  θjˈelo", "es-ES")
+    # The board scores primary stress only.
+    assert csi.same_ipa("ˌkasaˈβlanka", "kasaˈβlanka", "es-ES")
+
+
+def test_same_ipa_keeps_stress_and_segments():
+    assert not csi.same_ipa("ˈesta", "esˈta", "es-ES")
+    assert not csi.same_ipa("ˈkasa", "kasa", "es-ES")
     assert not csi.same_ipa("ˈkasa", "ˈkaza", "es-ES")
 
 
 @pytest.mark.parametrize("a,b,engine,expected", [
-    ("ˈkasa", "kasa", "ˈkasa", False),   # A, B and engine agree
-    ("ˈkasa", "kasa", "ˈkaza", True),    # A and B agree, engine differs
-    ("ˈkasa", "ˈkaza", "ˈkasa", True),   # A and B disagree
-    ("ˈkasa", "ˈkaza", "ˈkaza", True),   # B agrees with the engine, A not
+    ("esˈta", "eˈsta", "esˈta", False),   # A, B and engine agree
+    ("esˈta", "esˈta", "esˈte", True),    # A and B agree, engine differs
+    ("esˈta", "esˈte", "esˈta", True),    # A and B disagree
+    ("esˈta", "esˈte", "esˈte", True),    # B agrees with the engine, A not
+    ("ˈesta", "esˈta", "esˈta", True),    # A and B differ only in stress
+    ("esˈta", "esˈta", "ˈesta", True),    # the engine differs in stress
 ])
 def test_needs_adjudication(a, b, engine, expected):
     assert csi.needs_adjudication(a, b, engine, "es-ES") is expected
+
+
+def test_prompts_take_pronunciation_from_published_descriptions():
+    row = csi.load_rows(["spain_romance_tts"], ["es-ES"], 1)[0]
+    system = csi.system_text(row.lect)
+    assert "transcription conventions" in system
+    assert "published phonological descriptions" in system
+    c = csi.build_request("C", row, engine="ˈengine", a="ˈa", b="ˈb",
+                          model="claude-opus-5-5", effort="high",
+                          max_tokens=8000)
+    assert "note_conflict" in c["messages"][-1]["content"]
+    assert "note_conflict" in csi.SCHEMAS["C"]["required"]
 
 
 def test_passes_a_and_b_are_blind_to_engine_and_original():
@@ -341,6 +401,8 @@ def test_output_schema_and_original_untouched(tmp_path):
     agreed, adjudicated = rows
     assert agreed["flag"] == "agreed"
     assert agreed["passes"]["C"] is None
+    assert agreed["note_conflict"] == ""
+    assert adjudicated["note_conflict"] == NOTE_CONFLICT
     assert agreed["ipa"] == agreed["passes"]["A"] == ENGINE[ROWS[0]["sentence"]]
     assert adjudicated["flag"] == "adjudicated"
     assert adjudicated["passes"]["C"]["flag"] == "adjudicated"
@@ -362,24 +424,55 @@ def test_output_merges_runs_over_different_lects(tmp_path):
 
 # ─── credentials ────────────────────────────────────────────────────────────
 
-def test_key_file_wins_over_the_environment_variable(tmp_path):
-    key_file = tmp_path / "key"
-    key_file.write_text(FAKE_KEY + "\n", encoding="utf-8")
-    env = {csi.KEY_FILE_ENV: str(key_file), csi.KEY_ENV: "other"}
-    assert csi.load_api_key(env) == FAKE_KEY
-    assert csi.load_api_key({csi.KEY_ENV: FAKE_KEY}) == FAKE_KEY
+KEYS = {name: f"sk-ant-api03-FAKE{name.upper()}-" + "w4Rt" * 12
+        for name in ("ovos", "jarbas", "invoices")}
+
+
+def _key_files(tmp_path, names=tuple(KEYS)):
+    directory = tmp_path / "secret"
+    directory.mkdir(exist_ok=True)
+    paths = []
+    for name in names:
+        path = directory / f"anthropic-{name}.key"
+        path.write_text(KEYS[name] + "\n", encoding="utf-8")
+        paths.append(str(path))
+    return {csi.KEY_FILE_ENV: ":".join(paths)}
+
+
+def test_key_files_win_over_the_environment_variable(tmp_path):
+    env = dict(_key_files(tmp_path), **{csi.KEY_ENV: "other"})
+    assert csi.load_api_keys(env) == [
+        (f"anthropic-{name}.key", key) for name, key in KEYS.items()]
+    assert csi.load_api_keys({csi.KEY_ENV: FAKE_KEY}) == [
+        (csi.KEY_ENV, FAKE_KEY)]
+
+
+def test_key_files_need_distinct_file_names(tmp_path):
+    env = _key_files(tmp_path, ["ovos"])
+    other = tmp_path / "other"
+    other.mkdir()
+    (other / "anthropic-ovos.key").write_text(KEYS["jarbas"],
+                                              encoding="utf-8")
+    env[csi.KEY_FILE_ENV] += ":" + str(other / "anthropic-ovos.key")
+    with pytest.raises(csi.CredentialError) as exc:
+        csi.load_api_keys(env)
+    assert "distinct" in str(exc.value)
 
 
 def test_missing_key_error_names_the_variables_not_a_value(tmp_path):
     with pytest.raises(csi.CredentialError) as exc:
-        csi.load_api_key({})
+        csi.load_api_keys({})
     assert csi.KEY_FILE_ENV in str(exc.value)
     assert csi.KEY_ENV in str(exc.value)
-    key_file = tmp_path / "key"
+    key_file = tmp_path / "secret" / "empty.key"
+    key_file.parent.mkdir()
     key_file.write_text("", encoding="utf-8")
     with pytest.raises(csi.CredentialError) as exc:
-        csi.load_api_key({csi.KEY_FILE_ENV: str(key_file)})
+        csi.load_api_keys({csi.KEY_FILE_ENV: str(key_file)})
     assert csi.KEY_FILE_ENV in str(exc.value)
+    assert "empty.key" in str(exc.value)
+    # The error names the file, never the directory that holds the keys.
+    assert str(key_file.parent) not in str(exc.value)
 
 
 class LeakyTransport(FakeTransport):
@@ -421,3 +514,234 @@ def test_key_never_appears_in_any_output_or_log(tmp_path, capsys):
     assert leaked == []
     # The leaking error was reported, with the key replaced.
     assert csi.REDACTED in captured.err
+
+
+# ─── several keys ───────────────────────────────────────────────────────────
+
+def _fakes(**options):
+    """One fake per key, sharing a log of which key served each call."""
+    log = []
+    return log, {name: FakeTransport(name=f"anthropic-{name}.key", log=log,
+                                     **options.get(name, {}))
+                 for name in KEYS}
+
+
+def _run_keys(tmp_path, fakes, *extra, names=tuple(KEYS)):
+    by_key = {KEYS[name]: fake for name, fake in fakes.items()}
+    return csi.main(_argv(tmp_path, *extra), env=_key_files(tmp_path, names),
+                    transport_factory=by_key.__getitem__)
+
+
+def _cache_records(tmp_path):
+    path = tmp_path / "cache" / "responses.jsonl"
+    return [json.loads(line) for line in path.read_text("utf-8").splitlines()]
+
+
+@pytest.mark.parametrize("status,error_type,message,expected", [
+    (401, "authentication_error", "invalid x-api-key", "HTTP 401"),
+    (402, "billing_error", "payment required", "HTTP 402"),
+    (403, "permission_error", "not allowed", "HTTP 403"),
+    (400, "invalid_request_error",
+     "Your credit balance is too low to access the Anthropic API.",
+     "HTTP 400 credit balance"),
+    (400, "billing_error", "billing problem", "HTTP 400 billing_error"),
+    (400, "invalid_request_error", "max_tokens: field required", None),
+    (429, "rate_limit_error", "rate limited", None),
+    (500, "api_error", "internal error", None),
+    (529, "overloaded_error", "overloaded", None),
+])
+def test_key_failure_classification(status, error_type, message, expected):
+    assert csi.key_failure(status, error_type, message) == expected
+
+
+def test_sync_requests_go_to_the_keys_in_turn(tmp_path):
+    log, fakes = _fakes()
+    assert _run_keys(tmp_path, fakes, "--sync", "--max-usd", "50") == 0
+    names = [f"anthropic-{name}.key" for name in KEYS]
+    assert log == (names * 2)[:5]
+    # The cache records which key file served each response, by name only.
+    assert [r["key_name"] for r in _cache_records(tmp_path)] == log
+
+
+def test_sync_fails_over_after_a_credit_error(tmp_path, capsys):
+    log, fakes = _fakes(jarbas={"unusable_after": 0})
+    assert _run_keys(tmp_path, fakes, "--sync", "--max-usd", "50") == 0
+    assert log == ["anthropic-ovos.key", "anthropic-invoices.key",
+                   "anthropic-ovos.key", "anthropic-invoices.key",
+                   "anthropic-ovos.key"]
+    assert fakes["jarbas"].calls == []
+    assert [r["flag"] for r in _output(tmp_path)] == ["agreed",
+                                                      "adjudicated"]
+    err = capsys.readouterr().err
+    assert "anthropic-jarbas.key failed (HTTP 400 credit balance)" in err
+
+
+def test_all_keys_exhausted_stops_cleanly_and_resumes(tmp_path, capsys):
+    log, fakes = _fakes(ovos={"unusable_after": 1},
+                        jarbas={"unusable_after": 1},
+                        invoices={"unusable_after": 0,
+                                  "unusable_reason": "HTTP 402"})
+    assert _run_keys(tmp_path, fakes, "--sync", "--max-usd", "50") == 4
+    assert log == ["anthropic-ovos.key", "anthropic-jarbas.key"]
+    assert len(_cache_records(tmp_path)) == 2
+    assert "no usable key is left" in capsys.readouterr().err
+
+    log, fakes = _fakes()
+    assert _run_keys(tmp_path, fakes, "--sync", "--max-usd", "50",
+                     names=["invoices"]) == 0
+    assert len(log) == 3
+    assert [r["flag"] for r in _output(tmp_path)] == ["agreed",
+                                                      "adjudicated"]
+
+
+def test_batch_mode_sends_one_batch_per_key_with_an_even_split(tmp_path):
+    log, fakes = _fakes()
+    assert _run_keys(tmp_path, fakes, "--max-usd", "50", "--limit", "6",
+                     "--poll-seconds", "0") == 0
+    blind = {name: fake.server["submissions"][0]
+             for name, fake in fakes.items()}
+    assert [len(ids) for ids in blind.values()] == [4, 4, 4]
+    all_ids = [cid for ids in blind.values() for cid in ids]
+    assert len(set(all_ids)) == 12
+    # Pass C for the one row that needs it is the second batch of the
+    # first key; each key collected its own batches.
+    assert [len(f.server["submissions"]) for f in fakes.values()] == [2, 1, 1]
+    names = {r["key"]: r["key_name"] for r in _cache_records(tmp_path)}
+    for name, fake in fakes.items():
+        for ids in fake.server["submissions"]:
+            assert {names[cid] for cid in ids} == {f"anthropic-{name}.key"}
+    assert len(_output(tmp_path)) == 6
+
+
+def test_batch_share_of_a_failed_key_goes_to_the_keys_left(tmp_path):
+    log, fakes = _fakes(jarbas={"unusable_after": 0})
+    assert _run_keys(tmp_path, fakes, "--max-usd", "50", "--limit", "6",
+                     "--poll-seconds", "0") == 0
+    sizes = {name: [len(ids) for ids in fake.server["submissions"]]
+             for name, fake in fakes.items()}
+    assert sizes == {"ovos": [4, 2, 1], "jarbas": [], "invoices": [4, 2]}
+    assert len(_output(tmp_path)) == 6
+
+
+def test_a_pending_batch_waits_for_its_own_key(tmp_path, capsys):
+    servers = {name: {"batches": {}, "submissions": [], "polls_left": 1}
+               for name in KEYS}
+    options = {name: {"batch_server": server}
+               for name, server in servers.items()}
+    _, fakes = _fakes(**options)
+    assert _run_keys(tmp_path, fakes, "--max-usd", "50", "--limit", "6",
+                     "--no-wait") == 0
+    assert [len(s["submissions"]) for s in servers.values()] == [1, 1, 1]
+    capsys.readouterr()
+
+    _, fakes = _fakes(**options)
+    assert _run_keys(tmp_path, fakes, "--max-usd", "50", "--limit", "6",
+                     "--poll-seconds", "0", names=["ovos", "jarbas"]) == 0
+    err = capsys.readouterr().err
+    assert "with key anthropic-invoices.key" in err
+    assert "stays pending" in err
+    # The two batches of the keys present were collected with their own
+    # key; nothing was submitted again.
+    assert [len(s["submissions"]) for s in servers.values()] == [1, 1, 1]
+    assert sorted({r["key_name"] for r in _cache_records(tmp_path)}) == [
+        "anthropic-jarbas.key", "anthropic-ovos.key"]
+    assert len(_cache_records(tmp_path)) == 8
+
+
+class LeakyKeyTransport(FakeTransport):
+    """Fails with an error that echoes its own key."""
+
+    def __init__(self, key, unusable, **kwargs):
+        super().__init__(**kwargs)
+        self.key = key
+        self.unusable = unusable
+
+    def create_message(self, params):
+        if self.unusable:
+            raise csi.KeyUnusable(f"HTTP 401 invalid x-api-key {self.key}")
+        if self.calls:
+            raise RuntimeError(f"connection reset for key {self.key}")
+        return super().create_message(params)
+
+
+def test_no_key_of_the_list_appears_in_any_output_or_log(tmp_path, capsys):
+    transports = {
+        KEYS["ovos"]: LeakyKeyTransport(KEYS["ovos"], True),
+        KEYS["jarbas"]: LeakyKeyTransport(KEYS["jarbas"], True),
+        KEYS["invoices"]: LeakyKeyTransport(KEYS["invoices"], False),
+    }
+    status = csi.main(_argv(tmp_path, "--sync", "--max-usd", "50"),
+                      env=_key_files(tmp_path),
+                      transport_factory=transports.__getitem__)
+    assert status != 0
+    captured = capsys.readouterr()
+    texts = {"stdout": captured.out, "stderr": captured.err}
+    for path in tmp_path.rglob("*"):
+        if path.is_file() and "secret" not in path.parts:
+            texts[str(path)] = path.read_text("utf-8", errors="replace")
+    assert any(name.endswith("run.log") for name in texts)
+    leaked = [(name, key_name) for name, text in texts.items()
+              for key_name, key in KEYS.items() if key in text]
+    assert leaked == []
+    # Two key failures and one traceback were reported, each redacted.
+    assert captured.err.count(csi.REDACTED) >= 3
+    assert "anthropic-ovos.key failed" in captured.err
+    assert "anthropic-jarbas.key failed" in captured.err
+
+
+class StressOnlyTransport(FakeTransport):
+    """Pass B puts the stress of the first row on another syllable."""
+
+    def create_message(self, params):
+        message = super().create_message(params)
+        if (_pass_of(params) == "B"
+                and _sentence_of(params) == ROWS[0]["sentence"]):
+            ipa = ENGINE[ROWS[0]["sentence"]].replace("esˈta", "ˈesta")
+            assert ipa != ENGINE[ROWS[0]["sentence"]]
+            message = _message({"word_forms": [], "ipa": ipa})
+        return message
+
+
+def test_a_stress_only_difference_between_a_and_b_requests_pass_c(tmp_path):
+    fake = StressOnlyTransport()
+    assert _run(tmp_path, fake, "--sync", "--max-usd", "50") == 0
+    c_rows = [_sentence_of(p) for p in fake.calls if _pass_of(p) == "C"]
+    assert sorted(c_rows) == sorted(r["sentence"] for r in ROWS)
+
+
+def _sdk_error(status, body):
+    import anthropic
+    import httpx2
+    request = httpx2.Request("POST", "https://api.anthropic.com/v1/messages")
+    response = httpx2.Response(status, json=body, request=request)
+    return anthropic.APIStatusError(body["error"]["message"],
+                                    response=response, body=body)
+
+
+@pytest.mark.parametrize("status,body,unusable", [
+    (400, {"type": "error", "error": {
+        "type": "invalid_request_error",
+        "message": "Your credit balance is too low to access the "
+                   "Anthropic API."}}, True),
+    (401, {"type": "error", "error": {"type": "authentication_error",
+                                      "message": "invalid x-api-key"}}, True),
+    (429, {"type": "error", "error": {"type": "rate_limit_error",
+                                      "message": "rate limited"}}, False),
+])
+def test_anthropic_transport_turns_key_failures_into_key_unusable(
+        status, body, unusable):
+    class Messages:
+        def create(self, **params):
+            raise _sdk_error(status, body)
+
+    transport = csi.AnthropicTransport(FAKE_KEY)
+    transport._client = type("Client", (), {"messages": Messages()})()
+    if unusable:
+        with pytest.raises(csi.KeyUnusable) as exc:
+            transport.create_message({})
+        assert str(exc.value).startswith(f"HTTP {status}")
+        assert exc.value.__cause__ is None
+    else:
+        import anthropic
+        with pytest.raises(anthropic.APIStatusError):
+            transport.create_message({})

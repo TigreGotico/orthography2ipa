@@ -15,10 +15,16 @@ pass B
     does the same task under a different framing (word by word, then
     connected speech). It is also blind.
 pass C
-    runs only when A and B disagree after the scorer's broad normalisation,
-    or when they agree and the engine disagrees. It sees A, B, the engine
+    runs unless A, B and the engine agree under the scorer's broad
+    normalisation with the primary stress kept. It sees A, B, the engine
     output and the lect's cited rules, and returns one transcription, a flag
-    (``agreed``, ``adjudicated`` or ``uncertain``) and a one-line reason.
+    (``agreed``, ``adjudicated`` or ``uncertain``), a one-line reason, and
+    the spec note its reading disagrees with, if any.
+
+The spec notes give the transcription conventions, never the authority on
+the pronunciation: the engine implements those notes, so a prompt that
+deferred to them would pull every pass toward the engine output. The
+pronunciation follows the published phonological descriptions of the lect.
 
 Every pass uses structured output (a JSON schema). Full runs go through the
 Message Batches API; ``--sync`` sends one request at a time for small
@@ -37,9 +43,14 @@ Resume: every response is cached under ``--cache-dir``, keyed on the set,
 the row id, the model and a hash of the request. A run that stops continues
 from the cache and from any batch still pending, and pays for no row twice.
 
-Credentials: the API key comes from the file named by ``O2I_ANTHROPIC_KEY_FILE``
-or from ``ANTHROPIC_API_KEY``. The tool never prints or logs it. A dry run
-needs no key and makes no API call.
+Credentials: ``O2I_ANTHROPIC_KEY_FILE`` holds one or more key file paths,
+separated by ``:``; without it, ``ANTHROPIC_API_KEY`` holds one key. Sync
+requests go to the keys in turn, and a batch run sends one batch per key with
+the rows split evenly. A key that fails with an authentication or billing
+error is set aside for the rest of the run; when no key is left, the run
+stops with every response kept in the cache. The tool names a key only by its
+file name, and never prints or logs a key. A dry run needs no key and makes no
+API call.
 
 Requires the ``silver-correction`` extra for live runs::
 
@@ -64,6 +75,7 @@ import os
 import sys
 import time
 import traceback
+import unicodedata
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
@@ -76,6 +88,7 @@ sys.path.insert(0, str(REPO_ROOT / "scripts"))
 
 import benchmark  # noqa: E402
 import orthography2ipa  # noqa: E402
+from orthography2ipa.vowels import is_ipa_vowel  # noqa: E402
 
 GOLD_DIR = REPO_ROOT / "orthography2ipa" / "data" / "gold"
 DEFAULT_CACHE_DIR = REPO_ROOT / ".silver_correction_cache"
@@ -92,15 +105,19 @@ REMOTE_SETS = ("barranquenho_dict", "gold20_arabic", "mirandese_dict")
 SILVER_SETS = LOCAL_SETS + REMOTE_SETS
 
 TIER = "llm-corrected"
+PRIMARY_STRESS = "ˈ"
+SECONDARY_STRESS = "ˌ"
 FLAGS = ("agreed", "adjudicated", "uncertain")
 AGREED_REASON = ("passes A and B and the engine agree after broad "
                  "normalisation")
 OUTPUT_FIELDS = {"dataset", "lect", "id", "sentence", "ipa",
                  "ipa_llm_original", "ipa_engine", "model", "passes", "flag",
-                 "reason", "tier", "source_row"}
+                 "reason", "note_conflict", "tier", "source_row"}
 
 KEY_FILE_ENV = "O2I_ANTHROPIC_KEY_FILE"
 KEY_ENV = "ANTHROPIC_API_KEY"
+#: HTTP statuses that make a key unusable for the rest of a run.
+KEY_FAILURE_STATUSES = (401, 402, 403)
 REDACTED = "[REDACTED]"
 
 DEFAULT_MODEL = "claude-opus-5-5"
@@ -118,8 +135,12 @@ class Price(NamedTuple):
     cache_read: float
 
 
-#: Standard first-party prices. A cache write costs 1.25 times the input
-#: price; the Message Batches API bills half of every price.
+#: Standard first-party prices, as the claude-api skill gives them
+#: (shared/models.md): Claude Opus 5.5 "$4 / $20 per MTok; cache reads
+#: $0.20", Claude Sonnet 5.5 "$2 / $10 per MTok; cache reads $0.20", Claude
+#: Fable 5.1 "$10/$50 per MTok; cache reads $0.25/MTok". The Message Batches
+#: API gives a "50% cost reduction on all token usage" (batches.md), and a
+#: 5-minute cache write costs "1.25x input" (shared/cost-optimization.md).
 PRICES: Dict[str, Price] = {
     "claude-opus-5-5": Price(4.0, 20.0, 0.20),
     "claude-sonnet-5-5": Price(2.0, 10.0, 0.20),
@@ -147,25 +168,33 @@ SCHEMAS: Dict[str, dict] = {
               "flag": {"type": "string", "enum": list(FLAGS)},
               "reason": {"type": "string",
                          "description": "One line that names the rule or "
-                                        "source that decides the case."}},
-          "required": ["ipa", "flag", "reason"],
+                                        "source that decides the case."},
+              "note_conflict": {"type": "string",
+                                "description": "The spec note this reading "
+                                               "disagrees with and how, in "
+                                               "one line; empty when none."}},
+          "required": ["ipa", "flag", "reason", "note_conflict"],
           "additionalProperties": False},
 }
 
 SYSTEM_TEXT = """\
 You are a phonetician. You transcribe text written in one lect into broad IPA.
 
-The lect description below is your authority. Its notes state the \
-transcription conventions and the phonological rules of the lect, and its \
-sources are the published works those rules cite. Where your own knowledge \
-and the notes disagree, follow the notes unless a cited source says \
-otherwise.
+Below is the description of the lect from a grapheme-to-phoneme \
+specification. Use its notes for the transcription conventions: which \
+allophones a broad transcription writes, which symbol stands for which sound, \
+and how stress is marked. Use them also as context on the lect.
+
+For the pronunciation itself, follow the standard pronunciation of the lect \
+as published phonological descriptions give it: the cited sources, and the \
+reference grammars and phonetic descriptions of the lect. The notes can be \
+wrong. Where the published pronunciation disagrees with a note, follow the \
+published pronunciation.
 
 Transcribe what a native speaker of this lect says when reading the text \
-aloud at a normal pace. Write broad IPA: phonemes, plus the allophones the \
-notes say the convention writes. Mark primary stress with ˈ before the \
-stressed syllable of each stressed word. Separate words with single spaces. \
-Do not transcribe punctuation.
+aloud at a normal pace. Write broad IPA. Mark primary stress with ˈ before \
+the stressed syllable of each stressed word. Separate words with single \
+spaces. Do not transcribe punctuation.
 
 """
 
@@ -181,14 +210,18 @@ USER_TEXT = {
           "rule-based engine follow. They disagree, or the engine disagrees "
           "with both transcriptions. Decide the correct broad IPA of the "
           "text in this lect.\n\n"
-          "The engine applies the lect's rules mechanically and can be "
+          "The engine applies the spec notes mechanically and can be "
           "wrong. Either transcription can also be wrong. Decide each "
-          "difference by what the lect notes and cited sources state.\n\n"
-          "Return one transcription, a flag and a one-line reason. Use the "
-          "flag \"agreed\" when the candidates differ only in notation, "
-          "\"adjudicated\" when the notes or sources support the reading "
-          "you return, and \"uncertain\" when the notes and sources do not "
-          "settle the case.\n\n"
+          "difference, stress included, by the standard pronunciation of "
+          "the lect as published phonological descriptions give it. Use the "
+          "notes only for the transcription conventions.\n\n"
+          "Return one transcription, a flag, a one-line reason and a note "
+          "conflict. Use the flag \"agreed\" when the candidates differ "
+          "only in notation, \"adjudicated\" when published descriptions "
+          "support the reading you return, and \"uncertain\" when they do "
+          "not settle the case. When your reading disagrees with a spec "
+          "note, name the note and say how in note_conflict, in one line; "
+          "otherwise leave note_conflict empty.\n\n"
           "Text: {sentence}\n"
           "Transcription A: {a}\n"
           "Transcription B: {b}\n"
@@ -202,26 +235,35 @@ class CredentialError(Exception):
     """No usable API key. The message names variables, never values."""
 
 
-def load_api_key(env: Mapping[str, str]) -> str:
-    """Read the key from the file named by ``O2I_ANTHROPIC_KEY_FILE``, else
-    from ``ANTHROPIC_API_KEY``."""
-    key_file = env.get(KEY_FILE_ENV)
-    if key_file:
+def load_api_keys(env: Mapping[str, str]) -> List[Tuple[str, str]]:
+    """``(name, key)`` for each key file in ``O2I_ANTHROPIC_KEY_FILE``
+    (paths separated by ``:``), named by the file name; else the one key in
+    ``ANTHROPIC_API_KEY``, named after that variable."""
+    paths = [p for p in env.get(KEY_FILE_ENV, "").split(":") if p]
+    if not paths:
+        key = env.get(KEY_ENV, "").strip()
+        if not key:
+            raise CredentialError(
+                f"no API key: set {KEY_FILE_ENV} to the paths of key files, "
+                f"separated by ':', or set {KEY_ENV}")
+        return [(KEY_ENV, key)]
+    keys: List[Tuple[str, str]] = []
+    for path in paths:
+        name = Path(path).name
         try:
-            key = Path(key_file).expanduser().read_text("utf-8").strip()
+            key = Path(path).expanduser().read_text("utf-8").strip()
         except OSError as exc:
             raise CredentialError(
-                f"{KEY_FILE_ENV} names a file that cannot be read "
+                f"{KEY_FILE_ENV}: key file {name} cannot be read "
                 f"({exc.strerror})") from None
         if not key:
-            raise CredentialError(f"the file named by {KEY_FILE_ENV} is empty")
-        return key
-    key = env.get(KEY_ENV, "").strip()
-    if not key:
+            raise CredentialError(f"{KEY_FILE_ENV}: key file {name} is empty")
+        keys.append((name, key))
+    names = [name for name, _ in keys]
+    if len(set(names)) != len(names):
         raise CredentialError(
-            f"no API key: set {KEY_FILE_ENV} to the path of a key file, or "
-            f"set {KEY_ENV}")
-    return key
+            f"{KEY_FILE_ENV}: the key files must have distinct file names")
+    return keys
 
 
 def redact(text: str, secrets: Iterable[str]) -> str:
@@ -266,6 +308,25 @@ class Transport(Protocol):
     def batch_results(self, batch_id: str) -> Iterator[Tuple[str, dict]]: ...
 
 
+class KeyUnusable(Exception):
+    """The key failed authentication or billing. The message names the
+    failure, never the key."""
+
+
+def key_failure(status: int, error_type: Optional[str],
+                message: str) -> Optional[str]:
+    """Why an API error makes the key unusable, or ``None`` when it does
+    not: HTTP 401, 402 or 403, a ``billing_error``, or a 400 about the
+    credit balance."""
+    if status in KEY_FAILURE_STATUSES:
+        return f"HTTP {status}"
+    if error_type == "billing_error":
+        return f"HTTP {status} billing_error"
+    if status == 400 and "credit balance" in message.lower():
+        return "HTTP 400 credit balance"
+    return None
+
+
 USAGE_FIELDS = ("input_tokens", "output_tokens",
                 "cache_creation_input_tokens", "cache_read_input_tokens")
 
@@ -290,22 +351,37 @@ class AnthropicTransport:
                              "silver-correction extra "
                              "(uv pip install -e '.[silver-correction]')")
         self._client = anthropic.Anthropic(api_key=api_key)
+        self._status_error = anthropic.APIStatusError
+
+    def _call(self, method: Callable, **kwargs):
+        try:
+            return method(**kwargs)
+        except self._status_error as exc:
+            reason = key_failure(exc.status_code, exc.type, exc.message)
+            if reason is None:
+                raise
+            raise KeyUnusable(reason) from None
 
     def create_message(self, params: dict) -> dict:
-        return _message_dict(self._client.messages.create(**params))
+        return _message_dict(self._call(self._client.messages.create,
+                                        **params))
 
     def count_tokens(self, params: dict) -> int:
         counted = {k: v for k, v in params.items() if k != "max_tokens"}
-        return self._client.messages.count_tokens(**counted).input_tokens
+        return self._call(self._client.messages.count_tokens,
+                          **counted).input_tokens
 
     def submit_batch(self, requests: Sequence[dict]) -> str:
-        return self._client.messages.batches.create(requests=list(requests)).id
+        return self._call(self._client.messages.batches.create,
+                          requests=list(requests)).id
 
     def batch_status(self, batch_id: str) -> str:
-        return self._client.messages.batches.retrieve(batch_id).processing_status
+        return self._call(self._client.messages.batches.retrieve,
+                          message_batch_id=batch_id).processing_status
 
     def batch_results(self, batch_id: str) -> Iterator[Tuple[str, dict]]:
-        for item in self._client.messages.batches.results(batch_id):
+        for item in self._call(self._client.messages.batches.results,
+                               message_batch_id=batch_id):
             if item.result.type == "succeeded":
                 yield item.custom_id, _message_dict(item.result.message)
             else:
@@ -437,18 +513,49 @@ def cache_key(dataset: str, row_id: str, model: str, prompt: str) -> str:
 
 # ─── agreement ──────────────────────────────────────────────────────────────
 
+def stress_on_nucleus(ipa: str) -> str:
+    """Move each primary stress mark to just before the first vowel after it
+    in its word, and drop secondary stress marks.
+
+    The board reads the stressed nucleus as the first nucleus after a ``ˈ``
+    (``benchmark.stress_reading``), so where a transcription puts the mark
+    inside the onset (``esˈta``, ``eˈsta``) does not change the stress it
+    claims. Moving the mark onto the nucleus makes those spellings equal."""
+    words = []
+    text = unicodedata.normalize("NFC", ipa.replace("'", PRIMARY_STRESS))
+    for word in text.split():
+        out: List[str] = []
+        pending = False
+        for ch in word:
+            if ch == PRIMARY_STRESS:
+                pending = True
+            elif ch == SECONDARY_STRESS:
+                continue
+            else:
+                if pending and is_ipa_vowel(ch):
+                    out.append(PRIMARY_STRESS)
+                    pending = False
+                out.append(ch)
+        if pending:
+            out.append(PRIMARY_STRESS)
+        words.append("".join(out))
+    return " ".join(words)
+
+
 def _broad(ipa: str, lect: str) -> str:
-    return benchmark.normalize(ipa, strip_stress=True, broad=True,
+    return benchmark.normalize(stress_on_nucleus(ipa), strip_stress=False,
+                               broad=True,
                                extra_strip=benchmark._prosody_marks(lect))
 
 
 def same_ipa(x: str, y: str, lect: str) -> bool:
-    """Equal under the scorer's broad normalisation for *lect*."""
+    """Equal under the scorer's broad normalisation for *lect*, with the
+    primary stress kept on its nucleus."""
     return _broad(x, lect) == _broad(y, lect)
 
 
 def needs_adjudication(a: str, b: str, engine: str, lect: str) -> bool:
-    """Pass C runs unless A, B and the engine all agree."""
+    """Pass C runs unless A, B and the engine all agree, stress included."""
     return not (same_ipa(a, b, lect) and same_ipa(a, engine, lect))
 
 
@@ -697,6 +804,7 @@ def output_row(job: Job, settings: Settings, cache: Cache) -> Optional[dict]:
         "passes": {"A": a["ipa"], "B": b["ipa"], "C": c},
         "flag": "agreed" if c is None else c["flag"],
         "reason": AGREED_REASON if c is None else c["reason"],
+        "note_conflict": "" if c is None else c["note_conflict"],
         "tier": TIER,
         "source_row": row.source_row,
     }
@@ -739,11 +847,84 @@ def write_outputs(jobs: Sequence[Job], settings: Settings, cache: Cache,
                      f"again to finish them")
 
 
+# ─── keys ───────────────────────────────────────────────────────────────────
+
+@dataclass
+class Lane:
+    """One key, by its file name, and the transport that uses it."""
+    name: str
+    transport: Transport
+    exhausted: bool = False
+
+
+class NoKeyLeft(Exception):
+    pass
+
+
+class KeyPool:
+    """The keys of a run. New work goes to the usable keys in turn; a key
+    that fails authentication or billing is set aside for the run."""
+
+    def __init__(self, lanes: Sequence[Lane], reporter: Reporter):
+        self.lanes = list(lanes)
+        self.reporter = reporter
+        self._cursor = 0
+
+    def live(self) -> List[Lane]:
+        return [lane for lane in self.lanes if not lane.exhausted]
+
+    def by_name(self, name: str) -> Optional[Lane]:
+        return next((lane for lane in self.lanes if lane.name == name), None)
+
+    def next(self) -> Lane:
+        for step in range(len(self.lanes)):
+            index = (self._cursor + step) % len(self.lanes)
+            if not self.lanes[index].exhausted:
+                self._cursor = index + 1
+                return self.lanes[index]
+        raise NoKeyLeft("stopping: no usable key is left")
+
+    def exhaust(self, lane: Lane, reason: str) -> None:
+        lane.exhausted = True
+        self.reporter.say(f"key {lane.name} failed ({reason}); it is not "
+                          f"used for the rest of this run, "
+                          f"{len(self.live())} keys left", error=True)
+
+    def call(self, method: Callable[[Transport], object]
+             ) -> Tuple[Lane, object]:
+        """Call *method* with the next usable key, and move on to the key
+        after it while a key fails."""
+        while True:
+            lane = self.next()
+            try:
+                return lane, method(lane.transport)
+            except KeyUnusable as exc:
+                self.exhaust(lane, str(exc))
+
+
+def split_by_row(requests: Sequence[Request], parts: int
+                 ) -> List[List[Request]]:
+    """*parts* contiguous shares of *requests* that keep the passes of a row
+    together and differ by at most one row."""
+    rows: Dict[Tuple[str, str], List[Request]] = {}
+    for request in requests:
+        rows.setdefault((request.row.dataset, request.row.id),
+                        []).append(request)
+    groups = list(rows.values())
+    size, extra = divmod(len(groups), parts)
+    shares, start = [], 0
+    for part in range(parts):
+        end = start + size + (part < extra)
+        shares.append([r for group in groups[start:end] for r in group])
+        start = end
+    return shares
+
+
 # ─── live runs ──────────────────────────────────────────────────────────────
 
 @dataclass
 class Run:
-    transport: Transport
+    keys: KeyPool
     settings: Settings
     cache: Cache
     reporter: Reporter
@@ -751,8 +932,10 @@ class Run:
     max_usd: float
     spend: Spend = field(default_factory=Spend)
 
-    def record(self, meta: dict, message: dict, *, batch: bool) -> bool:
-        """Cache a usable response; report an unusable one."""
+    def record(self, meta: dict, message: dict, *, batch: bool,
+               key_name: str) -> bool:
+        """Cache a usable response, with the name of the key that served
+        it; report an unusable one."""
         if "usage" in message:
             self.spend.add(message["usage"], meta["model"], batch=batch,
                            prices=self.prices)
@@ -763,7 +946,7 @@ class Run:
                               f"{problem}", error=True)
             return False
         self.cache.put(dict(meta, result=result, usage=message["usage"],
-                            batch=batch))
+                            batch=batch, key_name=key_name))
         return True
 
     # sync
@@ -776,8 +959,10 @@ class Run:
             raise CapReached(
                 f"stopping: the next request could take the spend of this "
                 f"run past --max-usd ${self.max_usd:.4f}")
-        message = self.transport.create_message(request.params)
-        return self.record(request.meta(), message, batch=False)
+        lane, message = self.keys.call(
+            lambda transport: transport.create_message(request.params))
+        return self.record(request.meta(), message, batch=False,
+                           key_name=lane.name)
 
     def run_sync(self, jobs: Sequence[Job]) -> None:
         for job in jobs:
@@ -793,36 +978,79 @@ class Run:
     # batch
 
     def submit(self, requests: Sequence[Request]) -> None:
-        for start in range(0, len(requests), BATCH_CHUNK):
-            chunk = requests[start:start + BATCH_CHUNK]
-            batch_id = self.transport.submit_batch(
-                [{"custom_id": r.key, "params": r.params} for r in chunk])
+        """Split *requests* evenly by row over the usable keys, one batch
+        per key. The share of a key that fails goes to the keys left."""
+        remaining = list(requests)
+        while remaining:
+            live = self.keys.live()
+            if not live:
+                raise NoKeyLeft("stopping: no usable key is left")
+            left: List[Request] = []
+            for lane, share in zip(live, split_by_row(remaining, len(live))):
+                left += self._submit_share(lane, share)
+            remaining = left
+
+    def _submit_share(self, lane: Lane, share: Sequence[Request]
+                      ) -> List[Request]:
+        """Submit *share* with one key. Returns the requests not submitted
+        because the key failed."""
+        for start in range(0, len(share), BATCH_CHUNK):
+            chunk = share[start:start + BATCH_CHUNK]
+            try:
+                batch_id = lane.transport.submit_batch(
+                    [{"custom_id": r.key, "params": r.params} for r in chunk])
+            except KeyUnusable as exc:
+                self.keys.exhaust(lane, str(exc))
+                return list(share[start:])
             self.cache.pending.append(
-                {"batch_id": batch_id,
+                {"batch_id": batch_id, "key_name": lane.name,
                  "requests": {r.key: r.meta() for r in chunk}})
             self.cache.save_pending()
             self.reporter.say(f"submitted batch {batch_id} with "
-                              f"{len(chunk)} requests")
+                              f"{len(chunk)} requests on key {lane.name}")
+        return []
 
     def collect(self, wait: bool, poll_seconds: float) -> bool:
-        """Collect every pending batch. ``False`` when a batch is still
-        running and *wait* is off."""
+        """Collect every pending batch with the key that submitted it.
+        ``False`` when a batch stays pending: it is still running and *wait*
+        is off, or its key is missing or failed."""
         for batch in list(self.cache.pending):
-            status = self.transport.batch_status(batch["batch_id"])
-            while status != "ended":
-                if not wait:
-                    self.reporter.say(f"batch {batch['batch_id']} is "
-                                      f"{status}; run the same command again "
-                                      f"to collect it")
+            lane = self.keys.by_name(batch["key_name"])
+            if lane is None:
+                self.reporter.say(f"batch {batch['batch_id']} was submitted "
+                                  f"with key {batch['key_name']}, which this "
+                                  f"run does not have; it stays pending",
+                                  error=True)
+                return False
+            try:
+                if not self._wait(lane, batch["batch_id"], wait,
+                                  poll_seconds):
                     return False
-                time.sleep(poll_seconds)
-                status = self.transport.batch_status(batch["batch_id"])
-            for custom_id, message in self.transport.batch_results(
-                    batch["batch_id"]):
-                self.record(batch["requests"][custom_id], message, batch=True)
+                results = list(lane.transport.batch_results(
+                    batch["batch_id"]))
+            except KeyUnusable as exc:
+                self.keys.exhaust(lane, str(exc))
+                self.reporter.say(f"batch {batch['batch_id']} stays pending",
+                                  error=True)
+                return False
+            for custom_id, message in results:
+                self.record(batch["requests"][custom_id], message, batch=True,
+                            key_name=lane.name)
             self.cache.pending.remove(batch)
             self.cache.save_pending()
             self.reporter.say(f"collected batch {batch['batch_id']}")
+        return True
+
+    def _wait(self, lane: Lane, batch_id: str, wait: bool,
+              poll_seconds: float) -> bool:
+        status = lane.transport.batch_status(batch_id)
+        while status != "ended":
+            if not wait:
+                self.reporter.say(f"batch {batch_id} is {status}; run the "
+                                  f"same command again to collect it")
+                return False
+            time.sleep(poll_seconds)
+            status = lane.transport.batch_status(batch_id)
         return True
 
     def run_batches(self, jobs: Sequence[Job], wait: bool,
@@ -897,10 +1125,13 @@ def parse_args(argv: Optional[Sequence[str]]) -> argparse.Namespace:
 
 
 def execute(args: argparse.Namespace, jobs: Sequence[Job],
-            settings: Settings, cache: Cache, transport: Optional[Transport],
+            settings: Settings, cache: Cache, keys: Optional[KeyPool],
             reporter: Reporter, prices: Mapping[str, Price]) -> int:
     """Estimate, check the cap, run, and write the finished rows."""
-    counter = transport.count_tokens if args.count_tokens else None
+    def count_tokens(params: dict) -> int:
+        return keys.call(lambda t: t.count_tokens(params))[1]
+
+    counter = count_tokens if args.count_tokens else None
     planned = estimate(jobs, settings, cache, counter)
     batch = not args.sync
     bound = usd(planned.input, planned.output, settings.model, batch=batch,
@@ -922,7 +1153,7 @@ def execute(args: argparse.Namespace, jobs: Sequence[Job],
                      f"--max-usd ${args.max_usd:.4f}")
         return 3
 
-    run = Run(transport, settings, cache, reporter, prices, args.max_usd)
+    run = Run(keys, settings, cache, reporter, prices, args.max_usd)
     try:
         if args.sync:
             run.run_sync(jobs)
@@ -932,6 +1163,11 @@ def execute(args: argparse.Namespace, jobs: Sequence[Job],
     except CapReached as exc:
         reporter.say(str(exc))
         return 3
+    except NoKeyLeft as exc:
+        reporter.say(f"{exc}; every response so far is in the cache: run the "
+                     f"same command again with a working key to finish",
+                     error=True)
+        return 4
     finally:
         reporter.say(run.spend.line())
         write_outputs(jobs, settings, cache, args.out_dir, reporter)
@@ -972,18 +1208,21 @@ def main(argv: Optional[Sequence[str]] = None, *,
                  f"{len({d for d, _ in lects})} sets; model {args.model}, "
                  f"effort {args.effort}")
 
-    transport = None
+    keys = None
     if not args.dry_run:
         try:
-            key = load_api_key(env)
+            named_keys = load_api_keys(env)
         except CredentialError as exc:
             reporter.say(str(exc), error=True)
             return 2
-        reporter.secrets.append(key)
-        transport = transport_factory(key)
+        reporter.secrets.extend(key for _, key in named_keys)
+        reporter.say(f"keys: {', '.join(name for name, _ in named_keys)}")
     settings = Settings(args.model, args.effort, args.max_tokens)
     try:
-        return execute(args, jobs, settings, Cache(args.cache_dir), transport,
+        if not args.dry_run:
+            keys = KeyPool([Lane(name, transport_factory(key))
+                            for name, key in named_keys], reporter)
+        return execute(args, jobs, settings, Cache(args.cache_dir), keys,
                        reporter, prices)
     except Exception:  # transport errors: report them through redaction
         reporter.say(traceback.format_exc(), error=True)
