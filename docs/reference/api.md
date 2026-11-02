@@ -216,4 +216,4 @@ These are the names `import orthography2ipa` exports, from `orthography2ipa.__al
 | `underdetermined_positions` | function | Indices of the letters in *word* whose reading the writing does not fix. |
 
 ---
-[← Public API stability](../api_stability.md) · [Home](../index.md) · [Command line →](cli.md)
+[← Known limitations](../guide/known_limitations.md) · [Home](../index.md) · [Command line →](cli.md)

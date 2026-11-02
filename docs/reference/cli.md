@@ -92,4 +92,4 @@ The package installs one command, `orthography2ipa`. Each subcommand takes `--js
       --json      Output the validation report as JSON.
 
 ---
-[← Python API](api.md) · [Home](../index.md) · [Tokenizer →](../tokenizer.md)
+[← Python API](api.md) · [Home](../index.md) · [Language Registry →](registry.md)

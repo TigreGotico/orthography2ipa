@@ -1,6 +1,6 @@
 """Generate stub specs for every living ISO 639-3 language missing from the registry.
 
-Each stub follows the documented `stub` tier (docs/quality_tiers.md): code, name,
+Each stub follows the documented `stub` tier (docs/specs/quality_tiers.md): code, name,
 script and a resolvable clade chain, no phonology claimed. Classification,
 coordinates and languoid levels come from Glottolog (CLDF export). Isolates get
 an authored ``family: "Isolate"`` per the existing convention (xib, ecr, ecy).

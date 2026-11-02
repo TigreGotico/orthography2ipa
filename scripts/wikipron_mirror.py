@@ -25,7 +25,7 @@ Commands::
         --new mirror/manifest.json
     python scripts/wikipron_mirror.py upload --out-dir mirror/
 
-``docs/wikipron_mirror.md`` documents the whole refresh.
+``docs/evaluation/wikipron_mirror.md`` documents the whole refresh.
 """
 from __future__ import annotations
 

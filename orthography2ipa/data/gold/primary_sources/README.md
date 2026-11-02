@@ -4,7 +4,7 @@ This gold holds worked examples from the primary sources that the language specs
 
 Each row in this set can be checked against a named page of a named document. No other gold in the harness gives that. The set is small on purpose. It is a diagnostic: it asks if the engine reproduces what the cited source says. It cannot certify a language alone.
 
-[Benchmark gold datasets](../../../../docs/benchmark_datasets.md#primary-source-gold-primary_sources) puts this set beside the other gold sets. The scoreboard gives the scores per language.
+[Benchmark gold datasets](../../../../docs/evaluation/datasets.md#primary-source-gold-primary_sources) puts this set beside the other gold sets. The scoreboard gives the scores per language.
 
 ## Files
 

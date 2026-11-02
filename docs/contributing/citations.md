@@ -1,6 +1,6 @@
 # Citation honesty
 
-Every mapping in a spec is a claim about a language, and every claim needs a source that a reader can open and check. This page says what counts as a source, where to find one, how to record it, and which reference data counts as evidence. The `sources` fields are in [`SCHEMA.md`](../../orthography2ipa/data/SCHEMA.md#sources-schema), and the reference works by language family are in [bibliography](../bibliography.md).
+Every mapping in a spec is a claim about a language, and every claim needs a source that a reader can open and check. This page says what counts as a source, where to find one, how to record it, and which reference data counts as evidence. The `sources` fields are in [`SCHEMA.md`](../../orthography2ipa/data/SCHEMA.md#sources-schema), and the reference works by language family are in [bibliography](../specs/bibliography.md).
 
 ## Principles
 
@@ -10,7 +10,7 @@ A spec describes the standard or prestige variety first. A dialect spec then sta
 
 A small correct list is better than a large wrong one. If you are not sure that an allophone belongs in the list, leave it out.
 
-Every spec carries its bibliography in `sources`. Every mapping that is not obvious carries a line in `notes` that says why. The symbols follow the [IPA reference](../ipa_reference.md).
+Every spec carries its bibliography in `sources`. Every mapping that is not obvious carries a line in `notes` that says why. The symbols follow the [IPA reference](../specs/ipa_reference.md).
 
 ## Quote the source you opened
 
@@ -41,7 +41,7 @@ These sources are open to every reader, so a claim that cites them can be checke
 
 Two specs show the open sources at work. The Mi'kmaq spec (`mic.json`) cites Fidelholtz's 1968 dissertation on Micmac phonology at MIT's DSpace, handle `1721.1/13001`. The full text is open, and it is the source of the open-mid vowel values that the spec ships. The Mirandese vowel question was settled from archive.org. Leite de Vasconcelos's *Estudos de Philologia Mirandesa*, volume I, identifier `estudosdephilolo01vascuoft`, gives the forms directly and in full text.
 
-A `phoible_id` answers "which phonemes does this language have", and nothing more. A phone inventory never settles which letter spells which phone ([adding a language](../adding_a_language.md#looking-for-a-source-what-a-phone-inventory-cannot-tell-you)). Glottolog has no entry for some of the varieties that this project models. For those, `glottolog_code: null` is the honest state. Do not fill the field with the code of a nearby languoid.
+A `phoible_id` answers "which phonemes does this language have", and nothing more. A phone inventory never settles which letter spells which phone ([writing a language spec](spec_authoring.md#looking-for-a-source-what-a-phone-inventory-cannot-tell-you)). Glottolog has no entry for some of the varieties that this project models. For those, `glottolog_code: null` is the honest state. Do not fill the field with the code of a nearby languoid.
 
 ## Wikipedia and Ciberdúvidas are extra sources only
 
@@ -61,7 +61,7 @@ Mirandese hundreds are the worked example. Vasconcelos records both the periphra
 
 ## A cited disagreement with the board is a win
 
-A benchmark number is evidence, never a justification. If a cited rule makes a score worse against a gold set, keep the rule. Gold sets contain errors, and [gold defects](../gold_defects.md) records the ones that were measured.
+A benchmark number is evidence, never a justification. If a cited rule makes a score worse against a gold set, keep the rule. Gold sets contain errors, and [gold defects](../evaluation/gold_defects.md) records the ones that were measured.
 
 ## Refusing a change is a valid outcome
 
@@ -73,21 +73,21 @@ Fidelholtz's dissertation gives the open-mid values that the spec already ships,
 
 Some reference sets have no error model. Call these sets silver labels, never gold, in spec notes, in documentation and in pull request text:
 
-- Sets that a large language model wrote, such as `mirandese_dict`, `barranquenho_dict`, `arabic_tts` and `portuguese_tts`. An audit against the literature makes them more reliable, but it does not give them an error model.
+- Sets that a large language model wrote, such as `mirandese_dict`, `barranquenho_dict` and the [TTS silver sets](../evaluation/silver_sets.md). An audit against the literature makes them more reliable, but it does not give them an error model.
 
 - Sets that are pinned to the output of this engine. A score near zero on an engine-pinned set shows that the output did not change. It does not show that the output is correct.
 
 - Sets that another phonemizer produced, such as the `espeak-derived` and `epitran-derived` rows. These measure agreement with that tool.
 
-The board records these sets in the `provenance` column as `llm-generated`, `espeak-derived` or `epitran-derived`. A silver row can never qualify a spec for the `production` tier, and it can never block one. The tiers are defined in [quality tiers](../quality_tiers.md) and [benchmarks](../benchmarks.md#reliability-tiers).
+The board marks these sets with the tiers that never gate, which [benchmarks](../evaluation/benchmarks.md#reliability-tiers) and [quality tiers](../specs/quality_tiers.md) define.
 
 ## Corrections to a gold set
 
-A correction overlay repairs a defect in an upstream gold set and leaves the upstream file unchanged. A correction may come only from the spelling of the word or from a citation that you opened. It may never come from the output of orthography2ipa, because that makes the gold circular. The overlay files and their rules are in [`orthography2ipa/data/gold/corrections/README.md`](../../orthography2ipa/data/gold/corrections/README.md), and [benchmarks](../benchmarks.md#corrections-overlays) explains how the board scores them.
+A correction overlay repairs a defect in an upstream gold set and leaves the upstream file unchanged. Its sources follow the rules of this page, and [corrections overlays](../evaluation/benchmarks.md#corrections-overlays) states which sources a correction may use and how the board scores it. The overlay files are in [`orthography2ipa/data/gold/corrections/`](../../orthography2ipa/data/gold/corrections/README.md).
 
 ## AI-written specs
 
 Large language models wrote most specs, under the direction of a human maintainer. A model reads the sources and encodes them as JSON under these rules. A cited spec that a model wrote is still not the judgment of a native speaker, and the `quality` tier records that. If you speak a language and a spec is wrong, open an issue with a citation or a native-speaker judgment. Corrections from speakers have priority over all other work in this repository.
 
 ---
-[← Spec authoring rules](spec_authoring.md) · [Home](../index.md) · [Board regeneration →](board.md)
+[← Writing a language spec](spec_authoring.md) · [Home](../index.md) · [Board regeneration →](board.md)

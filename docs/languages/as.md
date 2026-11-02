@@ -6,7 +6,7 @@ The `as` spec describes Standard eastern Assamese, written in the Assamese scrip
 
 ## Orthographic depth and production threshold
 
-Assamese has a deep orthography, so the deep threshold of 0.25 PER applies (see [quality tiers](../quality_tiers.md#the-per-threshold)). The script is an abugida with an unwritten inherent vowel. It also has word-final vowel deletion and a rule that fronts a consonant cluster. The sound changes are regular once identified, but the correspondence is not shallow.
+Assamese has a deep orthography, so the deep threshold of 0.25 PER applies (see [quality tiers](../specs/quality_tiers.md#the-per-threshold)). The script is an abugida with an unwritten inherent vowel. It also has word-final vowel deletion and a rule that fronts a consonant cluster. The sound changes are regular once identified, but the correspondence is not shallow.
 
 ## Phonology
 
@@ -28,7 +28,7 @@ The deletion does not apply in two cases. If the syllable has no other nucleus, 
 
 ## Benchmark
 
-Two gold rows score the spec. For the figures, see the [scoreboard](../scoreboard.md). The `wikipron` row is crowd-scraped and is the qualifying row. The `vox_communis` row is epitran-derived, so it can neither qualify nor block a promotion. It measures agreement with epitran, not with Assamese. Epitran does not model the sibilant merger, so the two golds disagree where the phonology of epitran and of Assamese differ.
+Two gold rows score the spec. For the figures, see the [scoreboard](../evaluation/generated/scoreboard.md). The `wikipron` row is crowd-scraped and is the qualifying row. The `vox_communis` row is epitran-derived, so it can neither qualify nor block a promotion. It measures agreement with epitran, not with Assamese. Epitran does not model the sibilant merger, so the two golds disagree where the phonology of epitran and of Assamese differ.
 
 ## Known limitations
 

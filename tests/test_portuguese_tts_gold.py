@@ -1,4 +1,4 @@
-"""Regression gate for the Portuguese TTS gold set (docs/tts_gold.md#portuguese_tts).
+"""Regression gate for the Portuguese TTS gold set (docs/evaluation/silver_sets.md#portuguese_tts).
 
 Runs the validate subcommand of scripts/portuguese_tts_gold.py over every
 Portuguese lect that has a gold TSV (the rest report as pending): schema, row

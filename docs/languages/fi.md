@@ -6,7 +6,7 @@ The `fi` spec describes Standard Finnish (yleiskieli). The orthography is almost
 
 ## Orthographic depth and production threshold
 
-Finnish has a shallow (phonemic) orthography, so the shallow threshold of 0.15 PER applies (see [quality tiers](../quality_tiers.md#the-per-threshold)). The irregularities are few and can be listed: ⟨ng⟩ is /ŋː/, ⟨nk⟩ is /ŋk/, and the loanword letters ⟨b d g f⟩ occur.
+Finnish has a shallow (phonemic) orthography, so the shallow threshold of 0.15 PER applies (see [quality tiers](../specs/quality_tiers.md#the-per-threshold)). The irregularities are few and can be listed: ⟨ng⟩ is /ŋː/, ⟨nk⟩ is /ŋk/, and the loanword letters ⟨b d g f⟩ occur.
 
 ## Phonology
 
@@ -18,7 +18,7 @@ Stress is fixed on the first syllable, and the `stress` block states this with `
 
 ## Benchmark
 
-Three gold rows score the spec. For the figures, see the [scoreboard](../scoreboard.md). The `wikipron` row is crowd-scraped and can qualify a promotion. It is one of the largest single gold sets on the board. The `ipadict` row is the output of a rule script, and the `vox_communis` row is epitran-derived. Neither of them can gate a promotion.
+Three gold rows score the spec. For the figures, see the [scoreboard](../evaluation/generated/scoreboard.md). The `wikipron` row is crowd-scraped and can qualify a promotion. It is one of the largest single gold sets on the board. The `ipadict` row is the output of a rule script, and the `vox_communis` row is epitran-derived. Neither of them can gate a promotion.
 
 ## Known limitations
 

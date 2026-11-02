@@ -20,8 +20,8 @@ orthography2ipa info fi --graphemes
 A page exists where a language needs prose to explain why its tables look the
 way they do: an irregular orthography, a contested analysis, or a family of
 dialects that share one base. To decide whether a language is fit for your
-use, read its `quality` tier ([../quality_tiers.md](../quality_tiers.md)) and
-its rows on the [scoreboard](../scoreboard.md). Whether a page exists says
+use, read its `quality` tier ([../specs/quality_tiers.md](../specs/quality_tiers.md)) and
+its rows on the [scoreboard](../evaluation/generated/scoreboard.md). Whether a page exists says
 nothing about either.
 
 ## Pages by family
@@ -129,10 +129,10 @@ across languages.
 | Phenomenon | Where to read |
 | :--- | :--- |
 | Final devoicing | [comparative.md](comparative.md#germanic-languages), [de-DE.md](de-DE.md) |
-| Softening of ⟨c⟩ and ⟨g⟩ before front vowels | [comparative.md](comparative.md#romance-languages), [../positional_graphemes.md](../positional_graphemes.md) |
+| Softening of ⟨c⟩ and ⟨g⟩ before front vowels | [comparative.md](comparative.md#romance-languages), [../engine/positional_graphemes.md](../engine/positional_graphemes.md) |
 | Unstressed vowel reduction | [pt-PT.md](pt-PT.md), [ru.md](ru.md) |
 | Weak or absent reduction in African Portuguese | [pt-AO.md](pt-AO.md), [pt-MZ.md](pt-MZ.md), [pt-CV.md](pt-CV.md) |
-| Coda allophony: dark /l/, coda sibilants | [pt-PT.md](pt-PT.md), [../allophony.md](../allophony.md) |
+| Coda allophony: dark /l/, coda sibilants | [pt-PT.md](pt-PT.md), [../engine/allophony.md](../engine/allophony.md) |
 | Nasal vowels | [fr-FR.md](fr-FR.md), [comparative.md](comparative.md#slavic-languages), [eu.md](eu.md) |
 | Apical and laminal sibilants | [eu.md](eu.md), [pt-PT-dialects.md](pt-PT-dialects.md#northern-sibilant-systems), [mwl.md](mwl.md) |
 | Retroflex consonants | [hi.md](hi.md), [pt-BR-dialects.md](pt-BR-dialects.md#caipira-pt-br-x-caipira) |
@@ -140,13 +140,13 @@ across languages.
 | Geminates | [it-IT.md](it-IT.md), [kab.md](kab.md) |
 | Spirantization | [kab.md](kab.md) |
 | Tone from the orthography | [vi.md](vi.md), [th.md](th.md), [yo.md](yo.md), [ha.md](ha.md) |
-| Liaison and other cross-word rules | [fr-FR.md](fr-FR.md), [../sentence_context.md](../sentence_context.md) |
+| Liaison and other cross-word rules | [fr-FR.md](fr-FR.md), [../engine/lattice.md](../engine/lattice.md#the-sentence-context-seam) |
 | Input that depends on tashkeel | [ar.md](ar.md), [ar-dialects.md](ar-dialects.md#what-the-dialect-specs-share) |
 | Arabic dialect reflexes of qāf, jīm and kāf | [ar-dialects.md](ar-dialects.md#defining-features-by-lect) |
 
 A language with no page above is described by its spec alone. To write a
-page, follow [../adding_a_language.md](../adding_a_language.md) and add the
+page, follow [../contributing/spec_authoring.md](../contributing/spec_authoring.md) and add the
 page to a table here.
 
 ---
-[← Spec diagnostics](../spec_diagnostics.md) · [Home](../index.md) · [Comparative phonology →](comparative.md)
+[← Spec diagnostics](../evaluation/generated/spec_diagnostics.md) · [Home](../index.md) · [Comparative phonology →](comparative.md)

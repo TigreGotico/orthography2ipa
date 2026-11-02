@@ -24,9 +24,9 @@ on:
       - "docs/**"
       - "tests/test_docs_prose.py"
       - "scripts/ste_lint.py"
-      # The generators that write docs/comparison.md, docs/spec_diagnostics.md,
-      # docs/scoreboard.md, docs/lexicon_scoreboard.md and
-      # docs/espeak_agreement.md: their prose is the page's prose.
+      # The generators that write docs/evaluation/generated/comparison.md, docs/evaluation/generated/spec_diagnostics.md,
+      # docs/evaluation/generated/scoreboard.md, docs/evaluation/generated/lexicon_scoreboard.md and
+      # docs/evaluation/generated/espeak_agreement.md: their prose is the page's prose.
       - "scripts/compare_systems.py"
       - "scripts/spec_diagnostics.py"
       - "scripts/benchmark.py"

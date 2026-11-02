@@ -11,7 +11,7 @@
 
 Mozambican Portuguese (Português de Moçambique, PM) is an emerging non-native variety. Perpétua Gonçalves describes how it arises (Barbosa 2011:202, reviewing Gonçalves 2010:7). Children whose mother tongue is a Bantu language learn Portuguese as a second language. It is not a creole. About 6.5 % of Mozambicans have Portuguese as a first language, and most learn a Bantu language first (Barbosa 2011:202). The spec models the educated prestige variety of Maputo. Its `ancestors` list Swahili, Nyanja and Tsonga as substrates.
 
-Every transcription on this page is real output of `orthography2ipa.transcribe(text, code)`. For the scores of the spec, see [../scoreboard.md](../scoreboard.md).
+Every transcription on this page is real output of `orthography2ipa.transcribe(text, code)`. For the scores of the spec, see [../evaluation/generated/scoreboard.md](../evaluation/generated/scoreboard.md).
 
 ## What the spec models
 

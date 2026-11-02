@@ -2,7 +2,7 @@
 """Fail when merging a pull request would carry benchmark board rows backwards.
 
 The board (``benchmarks/results.json``, ``benchmarks/results_ci_sample.json``,
-``docs/scoreboard.md``) is regenerated whole, but a branch only rescores the
+``docs/evaluation/generated/scoreboard.md``) is regenerated whole, but a branch only rescores the
 rows it worked on; every other row is a copy of the merge target as it stood
 when the branch was cut. That staleness is not by itself a problem: the merge
 is a three-way merge, so rows the branch never edited keep the target's newer
@@ -74,7 +74,7 @@ import subprocess
 import sys
 
 BOARD_JSON = ("benchmarks/results.json", "benchmarks/results_ci_sample.json")
-SCOREBOARD_MD = "docs/scoreboard.md"
+SCOREBOARD_MD = "docs/evaluation/generated/scoreboard.md"
 SPEC_DIR = "orthography2ipa/data"
 
 #: Burn-down sets: ``(path, module-level name)`` pairs naming a collection of
@@ -596,7 +596,7 @@ def _run(boards, base, merged, owns_lang, declared, engine_touched, repo="."):
                       f"this diff does not touch {key[0]}'s spec.")
             print(f"  Fix: merge {base} into the branch and resolve the board "
                   f"files keeping {base}'s value for every row you did not "
-                  f"rescore yourself, then regenerate docs/scoreboard.md.")
+                  f"rescore yourself, then regenerate docs/evaluation/generated/scoreboard.md.")
 
         if undeclared:
             failed = True

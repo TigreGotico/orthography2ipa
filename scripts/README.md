@@ -21,7 +21,7 @@ module docstring with its usage, and most take `--help`.
 | `gold_composition.py`, `spec_diagnostics.py`, `check_unmapped_graphemes.py` | Diagnostics over the gold sets and the specs |
 | `wikipron_mirror.py`, `restore_wikipron_orthography.py` | Build the pinned WikiPron mirror |
 | `build_gold_corrections.py` | Regenerates the gold correction overlays |
-| `*_tts_gold.py`, `_gold_build.py` | Author and validate the hand-built sentence gold sets |
+| `*_tts_gold.py`, `_gold_build.py` | Author and validate the TTS sentence silver sets |
 | `build_en_lexicon.py` | Builds an English lexicon from CMUdict for a caller to register |
 
 The procedure and the guards are in

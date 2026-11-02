@@ -41,7 +41,7 @@ IPAPath('aɪsɛ', score=1.0)
 IPAPath('ɪs', score=1.0)
 ```
 
-The beam search keeps only the `beam_width` cheapest partial readings at each grapheme. Every candidate has a cost, and a reading's score is the sum of the costs of its candidates. Without candidate weights the cost is the rank: the first candidate costs 0, the second 1, and so on. A spec can attach weights to a grapheme, and then the cost is `-log p`. The [lattice page](lattice.md#how-cost-works) explains the two cost regimes, and [candidate_scoring.md](candidate_scoring.md) gives the weight format.
+The beam search keeps only the `beam_width` cheapest partial readings at each grapheme. Every candidate has a cost, and a reading's score is the sum of the costs of its candidates. Without candidate weights the cost is the rank: the first candidate costs 0, the second 1, and so on. A spec can attach weights to a grapheme, and then the cost is `-log p`. The [lattice page](lattice.md#how-cost-works) explains the two cost regimes, and [lattice.md](lattice.md#how-cost-works) gives the weight format.
 
 The rank comes from the context, not only from the flat grapheme table. The beam resolves each grapheme through the spec's [positional overrides](positional_graphemes.md). In ⟨ice⟩ the flat table lists /k/ first for ⟨c⟩, but the override for a ⟨c⟩ before a front vowel ranks /s/ first. The word-final ⟨e⟩ ranks its silent reading first for the same reason.
 
@@ -345,4 +345,4 @@ Some stages exist only in the engine. The engine adds syllable and stress contex
 The trie is built once, at construction, and every later call reuses it. The cost of `tokenize()` is O(n·k), where n is the text length and k is the longest grapheme key. The cost of `ipa_beam()` is O(n · beam_width · candidates per grapheme), which suits words and short phrases. The context view of `tokenize_with_context()` adds one O(n) pass. Its neighbour lookups `prev`, `next` and `at` are O(1). For a long document, tokenize one sentence at a time.
 
 ---
-[← Command line](reference/cli.md) · [Home](index.md) · [Candidate scoring →](candidate_scoring.md)
+[← Architecture](architecture.md) · [Home](../index.md) · [The pronunciation lattice →](lattice.md)

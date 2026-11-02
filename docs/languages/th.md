@@ -4,7 +4,7 @@
 
 The `th` spec describes Standard (Central) Thai in the Thai script. Two facts shape it. Thai does not write tone, so the spec computes it from the shape of the syllable. Thai also writes vowels around the consonant, not only after it.
 
-Thai is a deep orthography, so the 0.25 PER production threshold applies (see [quality tiers](../quality_tiers.md#the-per-threshold)). No part of a Thai syllable is a one-to-one correspondence. Four interacting properties give the tone, and none of them is a tone letter. A vowel can be written before, above, below or after its consonant. The coda inventory neutralises most of the alphabet.
+Thai is a deep orthography, so the 0.25 PER production threshold applies (see [quality tiers](../specs/quality_tiers.md#the-per-threshold)). No part of a Thai syllable is a one-to-one correspondence. Four interacting properties give the tone, and none of them is a tone letter. A vowel can be written before, above, below or after its consonant. The coda inventory neutralises most of the alphabet.
 
 ## Tone is computed, not spelled
 
@@ -43,13 +43,13 @@ A bare ⟨ว⟩ between two consonants also spells /uːa/ in a closed syllable.
 
 ## The gold rows
 
-Two gold sets score the spec. For the figures, see the [scoreboard](../scoreboard.md).
+Two gold sets score the spec. For the figures, see the [scoreboard](../evaluation/generated/scoreboard.md).
 
 The `wikipron` row (`tha_thai_broad`) is `crowd-scraped` and can gate. The `vox_communis` row is `epitran-derived`, so it can neither qualify nor block a promotion.
 
 Most of the gap between the two rows is notation, not phonology. Both golds write the tone, in different slots. WikiPron writes the Chao letter after the whole syllable, where IPA writes it. The `vox_communis` gold, which comes from Epitran, writes it on the nucleus, before the coda. The spec follows WikiPron. `scripts/fold_th_notation.py` scores both rows with every tone letter moved to the end of the string on both sides, which keeps tone identity and order. That fold removes most of the `vox_communis` gap and a small part of the `wikipron` one. What remains is under a point of PER on either row. The tone that the spec computes is very nearly the tone that both golds carry.
 
-Placement is a notation choice of each gold, and Thai spells tone. So the spec records these folds as `audit` entries (`at_ceiling_documented`), not as a `valid_ceiling`, which is for a contrast that the orthography does not write. [A tone-marked gold measures the tone computation too](../benchmark_datasets.md#a-tone-marked-gold-measures-the-tone-computation-too-th) explains how to read the `th` rows.
+Placement is a notation choice of each gold, and Thai spells tone. So the spec records these folds as `audit` entries (`at_ceiling_documented`), not as a `valid_ceiling`, which is for a contrast that the orthography does not write. [A tone-marked gold measures the tone computation too](../evaluation/datasets.md#a-tone-marked-gold-measures-the-tone-computation-too-th) explains how to read the `th` rows.
 
 ## Known limitations
 

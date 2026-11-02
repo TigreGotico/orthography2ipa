@@ -343,8 +343,8 @@ def write_board(repo, rows):
     for name, indent in (("results.json", 1), ("results_ci_sample.json", 2)):
         with open(os.path.join(repo, "benchmarks", name), "w", encoding="utf-8") as fh:
             json.dump(rows, fh, indent=indent)
-    os.makedirs(os.path.join(repo, "docs"), exist_ok=True)
-    with open(os.path.join(repo, "docs", "scoreboard.md"), "w", encoding="utf-8") as fh:
+    os.makedirs(os.path.join(repo, "docs", "evaluation", "generated"), exist_ok=True)
+    with open(os.path.join(repo, "docs", "evaluation", "generated", "scoreboard.md"), "w", encoding="utf-8") as fh:
         fh.write("| Lang | Dataset | N | PER |\n|---|---|---:|---:|\n")
         for r in rows:
             fh.write(f"| {r['lang']} | {r['dataset']} | {r['n']} | {r['per']} |\n")

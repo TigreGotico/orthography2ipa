@@ -1,4 +1,4 @@
-"""Regression gate for the Arabic TTS gold set (docs/tts_gold.md#arabic_tts).
+"""Regression gate for the Arabic TTS gold set (docs/evaluation/silver_sets.md#arabic_tts).
 
 Runs the validate subcommand of scripts/arabic_tts_gold.py over all 25 lects:
 schema, row minimum, diacritization completeness, o2i transcription

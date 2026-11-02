@@ -43,8 +43,8 @@ _DOCS_DIR = os.path.join(_ROOT, "docs")
 #: in scripts/compare_systems.py and scripts/spec_diagnostics.py respectively,
 #: then the page is regenerated.
 _DOCS_PROSE_RATCHET = frozenset({
-    "docs/comparison.md",
-    "docs/spec_diagnostics.md",
+    "docs/evaluation/generated/comparison.md",
+    "docs/evaluation/generated/spec_diagnostics.md",
 })
 
 

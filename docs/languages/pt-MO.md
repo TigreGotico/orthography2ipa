@@ -11,7 +11,7 @@
 
 Macau Portuguese (*Português de Macau*) is a co-official language of the Macau SAR of the People's Republic of China, with Chinese. A small first-language and heritage community speaks it. It is also the second-language official register of legislation, the courts and public administration. Its use has declined since the handover of 1999. It is the most European of the Asian Portuguese varieties, and it *"closely follows the standard European dialect in pronunciation and vocabulary"*. The spec `ancestors` list Chinese (`zh`) and Patuá (`mzs`) as adstrates.
 
-Every transcription on this page is real output of `orthography2ipa.transcribe(text, code)`. For the scores of the spec, see [../scoreboard.md](../scoreboard.md).
+Every transcription on this page is real output of `orthography2ipa.transcribe(text, code)`. For the scores of the spec, see [../evaluation/generated/scoreboard.md](../evaluation/generated/scoreboard.md).
 
 ## Patuá is a separate language
 

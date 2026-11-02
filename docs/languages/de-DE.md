@@ -2,7 +2,7 @@
 
 **Code**: `de-DE` | **Family**: Indo-European > Germanic > West Germanic | **Script**: Latin (alphabet) | **Quality tier**: research
 
-The `de-DE` spec describes Standard German after Wiese (1996), Hall (2003), the Duden pronouncing dictionary (Mangold 2005) and the IPA Illustration by Kohler (1990). German has a deep orthography, so the deep threshold of 0.25 PER applies to a promotion (see [quality tiers](../quality_tiers.md#the-per-threshold)). The spec is at `research` tier. For its scores on the WikiPron gold, see the [scoreboard](../scoreboard.md).
+The `de-DE` spec describes Standard German after Wiese (1996), Hall (2003), the Duden pronouncing dictionary (Mangold 2005) and the IPA Illustration by Kohler (1990). German has a deep orthography, so the deep threshold of 0.25 PER applies to a promotion (see [quality tiers](../specs/quality_tiers.md#the-per-threshold)). The spec is at `research` tier. For its scores on the WikiPron gold, see the [scoreboard](../evaluation/generated/scoreboard.md).
 
 ## Consonants
 

@@ -221,7 +221,7 @@ round(orthographic_distance(pt_br, ar), 4)             # 0.742
 
 ## `ancestry_similarity`
 
-`ancestry_similarity(spec_a, spec_b, max_depth=10, temporal_decay=False, decay_halflife=1000.0)` returns a similarity from 0.0 to 1.0. It multiplies the edge weights along each path and keeps the best path to each ancestor. The result is the strongest connection through a shared ancestor. [ancestry.md](ancestry.md#ancestry-similarity) gives the full algorithm.
+`ancestry_similarity(spec_a, spec_b, max_depth=10, temporal_decay=False, decay_halflife=1000.0)` returns a similarity from 0.0 to 1.0. It multiplies the edge weights along each path and keeps the best path to each ancestor. The result is the strongest connection through a shared ancestor. [ancestry.md](../specs/ancestry.md#ancestry-similarity) gives the full algorithm.
 
 ```python
 from orthography2ipa.distance import ancestry_similarity
@@ -262,7 +262,7 @@ The function returns `None`, not 0.0, when either spec has no `location`. Two la
 
 ## `positional_divergence`
 
-`positional_divergence(spec_a, spec_b)` measures how differently two specs use their [positional overrides](positional_graphemes.md). It returns 0.0 when neither spec has positional data.
+`positional_divergence(spec_a, spec_b)` measures how differently two specs use their [positional overrides](../engine/positional_graphemes.md). It returns 0.0 when neither spec has positional data.
 
 ```python
 from orthography2ipa.distance import positional_divergence
@@ -355,4 +355,4 @@ matrix = pairwise_distances(langs, metric="combined")
 The `combined` metric has a narrow range. It gives 0.051 for `pt-BR` against `pt-PT` and 0.394 for `es` against `zh`, rounded. Use the `"ancestry"` metric or `weighted_full_distance` when relatedness matters.
 
 ---
-[← Features](features.md) · [Home](index.md) · [Ancestry System →](ancestry.md)
+[← Lexicons and forced pronunciations](lexicon.md) · [Home](../index.md) · [Known limitations →](known_limitations.md)

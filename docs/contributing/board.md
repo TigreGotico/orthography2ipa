@@ -5,15 +5,15 @@ The benchmark board is five files that must move together:
 | File | Written by |
 |---|---|
 | `benchmarks/results.json` | `scripts/benchmark.py --scoreboard` |
-| `docs/scoreboard.md` | `scripts/benchmark.py --scoreboard` |
+| `docs/evaluation/generated/scoreboard.md` | `scripts/benchmark.py --scoreboard` |
 | `benchmarks/results_ci_sample.json` | `scripts/benchmark.py --ci-sample` |
 | `benchmarks/comparison.json` | `scripts/compare_systems.py --scoreboard` |
-| `docs/comparison.md` | `scripts/compare_systems.py --scoreboard` |
+| `docs/evaluation/generated/comparison.md` | `scripts/compare_systems.py --scoreboard` |
 
 Never edit these files by hand. A change that touches one board file
 regenerates the others in the same run, or the consistency tests fail. This
 page gives the procedure and every guard that checks the result. The
-scoring method is in [benchmarks.md](../benchmarks.md).
+scoring method is in [benchmarks.md](../evaluation/benchmarks.md).
 
 ## Before you regenerate
 
@@ -29,10 +29,12 @@ scoring method is in [benchmarks.md](../benchmarks.md).
    their cells as n/a and drops their columns from the tables.
 3. Write down the rows that your change defends. Every other row that moves
    is drift. Exclude it, or declare it in the pull request.
-4. Freeze the word lists before a differential on `vox_communis`. Its loads
-   change between sessions, so run both trees in one session against one
-   cache. Report a spec change at constant `n`, and report an `n` change from
-   a refetch on its own.
+4. Run both trees of any differential in one session against one cache. A
+   committed board row can predate a refresh of the gold cache and move on an
+   unmodified tree, and a differential across sessions reads that drift as a
+   result. Freeze the word lists before a differential on `vox_communis`,
+   whose loads change between sessions. Report a spec change at constant `n`,
+   and report an `n` change from a refetch on its own.
 
 ```bash
 scripts/build_espeak_rules_only.sh en fr de nl ca sv eu
@@ -45,7 +47,10 @@ The script clones espeak-ng into a scratch directory and writes only to
 ## Regenerate
 
 Use `--lang` or `--dataset` to rescore only the rows you own. A scoped run
-merges its rows into the committed files and keeps every other row.
+scores each row exactly as the full run does. It merges its rows into the
+committed files and keeps every other row, so a fix to one language carries
+no unrelated drift and downloads no other dataset. Refresh
+`results_ci_sample.json` each time you regenerate the scoreboard.
 
 ```bash
 PYTHONPATH=$PWD python scripts/benchmark.py --scoreboard --lang fi
@@ -56,19 +61,18 @@ PYTHONPATH=$PWD python scripts/compare_systems.py --scoreboard --lang fi
 `compare_systems.py --lang` accepts only the languages that
 `compare_systems.py --list` prints. Without `--lang`, each command rescores
 its whole board, which takes hours. A whole-board `--scoreboard` run also
-writes `benchmarks/results_environment.json`, the version of every plugin
-and scorer package it used. When a row moves with no spec change, read that
-file first.
+writes the [board environment](../evaluation/benchmarks.md#board-environment)
+file, which you read first when a row moves with no spec change.
 
 After the run, diff the CI sample against the merge base and count the rows
-that changed. Only your rows may move. `check_benchmark_regression.py` fails
-only when a row gets worse, so a sweep of unrelated improvements passes CI
-without a word. Restrict the refresh to your rows, or disclose the sweep in
+that changed. Only your rows may move. The
+[regression gate](../evaluation/benchmarks.md#stale-board-rows) is one-sided,
+so a sweep of unrelated improvements passes CI without a word. Restrict the refresh to your rows, or disclose the sweep in
 the pull request.
 
 ## Check the result
 
-1. Diff `docs/comparison.md`. Both espeak-ng columns (stock and rules-only)
+1. Diff `docs/evaluation/generated/comparison.md`. Both espeak-ng columns (stock and rules-only)
    must stay in every table that had them. The "N of M" tally changes only
    where your change defends it.
 2. Run the board tests and your language's tests:
@@ -94,11 +98,11 @@ in between.
 
 | Guard | What it fails on | Local command |
 |---|---|---|
-| Benchmark regression | A CI-sample row whose PER or stress accuracy gets worse by more than 0.005 | `PYTHONPATH=$PWD python scripts/check_benchmark_regression.py --epsilon 0.005` |
-| Row counts | A row whose `n` is larger than the pairs its gold loader yields, or a row for a language the dataset does not register | `PYTHONPATH=$PWD python scripts/check_board_row_counts.py` |
+| Benchmark regression | A CI-sample row that gets worse ([the CI regression sample](../evaluation/benchmarks.md#the-ci-regression-sample)) | `PYTHONPATH=$PWD python scripts/check_benchmark_regression.py --epsilon 0.005` |
+| Row counts | A stale row ([stale board rows](../evaluation/benchmarks.md#stale-board-rows)). Run it after every regeneration. | `PYTHONPATH=$PWD python scripts/check_board_row_counts.py` |
 | Board freshness | A row that a touched spec owns, whose fresh score differs from the committed value in either board file | `PYTHONPATH=$PWD python scripts/check_board_freshness.py --base origin/dev` |
 | Board not reverting | A merge result that puts back a row value `dev` already moved past, or that grows a burn-down list | `PYTHONPATH=$PWD python scripts/check_board_not_reverting.py --base origin/dev --body-file pr-body.md` |
-| Scoreboard in sync | A `docs/scoreboard.md` that differs from what `results.json` renders | `PYTHONPATH=$PWD python -m pytest tests/test_thin_row_marker.py` |
+| Scoreboard in sync | A `docs/evaluation/generated/scoreboard.md` that differs from what `results.json` renders | `PYTHONPATH=$PWD python -m pytest tests/test_thin_row_marker.py` |
 | Docs prose | A generated page that fails the prose lint (fix the generator, then regenerate) | `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py` |
 
 The CI workflow `.github/workflows/benchmark-regression.yml` runs the first
@@ -114,7 +118,7 @@ you merge `dev` into the branch and resolve a conflicted board file by keeping
 your side. Then `dev`'s newer numbers are lost, and both sides stay green.
 
 Resolve each board file row by row. Keep `dev`'s value for every row you did
-not rescore, then regenerate `docs/scoreboard.md`.
+not rescore, then regenerate `docs/evaluation/generated/scoreboard.md`.
 `check_board_not_reverting.py` merges the two sides with `git merge-tree` and
 fails on an old value, unless the branch edits that language's spec. An edit
 to a parent or clade spec owns the rows of every language that inherits from

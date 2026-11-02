@@ -43,7 +43,7 @@ jobs:
           cp docs/explorer.html _site/index.html
 
       - name: Derive the comparison staleness note
-        # docs/comparison.md carries a marker instead of this paragraph (it
+        # docs/evaluation/generated/comparison.md carries a marker instead of this paragraph (it
         # changes whenever any board row moves and made board PRs conflict
         # in pairs); it is derived here from the committed JSON.
         run: |

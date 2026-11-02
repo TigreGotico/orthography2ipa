@@ -1,10 +1,9 @@
 # Engine changes
 
-The engine is the Python code in `orthography2ipa/`. It knows no language.
-The data in `orthography2ipa/data/` holds every fact about a language. This
-page gives the rules for a change to the engine and the review gate that
-every such change passes. The module map is in
-[architecture.md](../architecture.md).
+This page gives the rules for a change to the engine, the Python code in
+`orthography2ipa/`, and the review gate that every such change passes.
+[architecture.md](../engine/architecture.md) describes how the engine works
+and holds the module map.
 
 ## The engine is language-agnostic
 
@@ -50,18 +49,11 @@ loader reads a key that `SCHEMA.md` does not name.
 
 ## Plugins are steps, not engines
 
-The pipeline has five steps that a package can replace: `normalize`,
-`syllabify`, `stress`, `rescore` and `sandhi`. A syllabifier must reach the
-same transcription by better means, and the conformance kit fails it if the
-output moves. The other four steps change the output. So a spec or a caller
-must name such a plugin by its entry-point name, through the spec's
-`plugins` field or `G2P(code, plugins=...)`. A named plugin that is not
-installed raises `MissingPlugin`. `orthography2ipa/plugins.py` states the
-contract.
-
-A downstream engine such as arbtok or tugaphone is built on this library,
-not plugged into it. It refines the shared lattice with a `LatticeRescorer`
-or keeps its own tokenizer. [lattice.md](../lattice.md) covers the choice.
+A package can replace one of the five
+[pluggable steps](../engine/architecture.md#pluggable-steps) of the
+pipeline, and that page gives the contract of each step. A downstream engine
+such as arbtok or tugaphone is built on this library, not plugged into it
+([downstream engines](../engine/architecture.md#downstream-engines)).
 
 ## The review gate for engine code
 
@@ -90,4 +82,4 @@ No linter or type checker is configured. The code uses
 `from __future__ import annotations` and typed dataclasses.
 
 ---
-[← Board regeneration](board.md) · [Home](../index.md) · [Benchmarks →](../benchmarks.md)
+[← Board regeneration](board.md) · [Home](../index.md) · [Benchmarks →](../evaluation/benchmarks.md)
