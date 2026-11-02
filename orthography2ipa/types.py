@@ -1748,7 +1748,11 @@ class InheritanceMode(str, Enum):
     with the language it belongs to. A language with its own code that keeps
     ``parent`` for its genealogy (Angolar ``aoa`` under ``pt-PT``, A Fala
     ``fax`` under ``gl-ES``) has its own stress system and its own
-    orthography, so it declares its own block or has none."""
+    orthography, so it declares its own block or has none.
+
+    A spec that states ``"stress": false`` takes no block. It is for a child
+    whose accent a cited source says differs from its base's, where no block
+    can be written yet."""
 
     OWN_ONLY = "own_only"
     """Identity / bibliographic / classification field that never
@@ -2438,8 +2442,9 @@ class LanguageSpec:
     language has no (encoded) predictable stress system.
 
     A spec with no block of its own takes its ``graphemes_base``'s block,
-    else the block of a ``parent`` that is the same language (see
-    :attr:`InheritanceMode.BASE_BLOCK`); consumed by
+    else the block of a ``parent`` that is the same language, unless it
+    states ``"stress": false`` (see :attr:`InheritanceMode.BASE_BLOCK`);
+    consumed by
     :func:`orthography2ipa.stress.detect_stress`."""
 
     grapheme_weights: Optional[GraphemeWeights] = None

@@ -94,7 +94,7 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
 | `plugins`                   | object | no       | The plugin to use for a pipeline stage, keyed by stage (`normalize`, `stress`, `rescore`, `sandhi`) and naming an entry point: `{"sandhi": "arbtok"}`. A named plugin that is not installed raises `MissingPlugin`. No shipped spec declares it. A caller passes the same mapping to `G2P(code, plugins=...)`. See `orthography2ipa/plugins.py`. |
 | `iso639_3`                  | string | no       | ISO 639-3 three-letter code for cross-referencing |
 | `sandhi_rules`              | array  | no       | Cross-word-boundary phonological rules       |
-| `stress`                    | object | no       | Declarative stress placement (see [Stress Schema](#stress-schema)) |
+| `stress`                    | object or `false` | no | Declarative stress placement (see [Stress Schema](#stress-schema)); `false` opts out of an inherited block |
 | `word_exceptions`           | object | no       | Whole-word overrides for a closed irregular set (`{"one": "wʌn"}`); beats rules, beats a bundled lexicon |
 | `grammatical_endings`       | object | no       | Suffix morphology: orthographic ending → IPA at the effective word end (`{"tion": "ʃən"}`), or an ordered candidate list for an ending that is genuinely ambiguous (`{"ent": [null, ""]}`); see [Grammatical endings](#grammatical-endings) |
 | `allophone_rules`          | array  | no       | Post-lexical `phoneme → surface` rewrites (see [Allophone Rule Schema](#allophone-rule-schema) and [allophony](../../docs/allophony.md)) |
@@ -382,7 +382,12 @@ from one base, in this order:
    ancestor is the same language: the spec's `iso639_3` is unset, or it is
    equal to the ancestor's `iso639_3`.
 
-A spec that gets no block from these steps has no stress marks.
+A spec that gets no block from these steps has no stress marks. A spec that
+states `"stress": false` takes no block and has no stress marks. Use `false`
+only when a cited source says that the spec's accent differs from its base's
+and no block can be written from the sources. The spec's `notes` cite that
+source. An empty object `{}` and `null` do not opt out: they take the base's
+block.
 
 The language check exists because stress placement is a property of one
 language, and the accent marks that override it (`marked_vowels`) are graphemes

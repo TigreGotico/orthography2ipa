@@ -513,7 +513,8 @@ def load_json_spec(code: str) -> LanguageSpec:
     # variety with no code of its own (``el-CY`` under ``el``) shares them,
     # while a language with its own code that keeps ``parent`` for its
     # genealogy (a creole such as Angolar ``aoa`` under ``pt-PT``, A Fala
-    # ``fax`` under ``gl-ES``) declares its own block or has none.
+    # ``fax`` under ``gl-ES``) declares its own block or has none. A spec that
+    # states ``"stress": false`` takes no block at all.
     stress: Optional[StressRules] = None
     raw_tone = raw.get("tone_rules")
     tone_rules = None
@@ -562,7 +563,7 @@ def load_json_spec(code: str) -> LanguageSpec:
             source=str(raw_stress.get("source", "rules")),
             notes=raw_stress.get("notes", "") or "",
         )
-    else:
+    elif raw_stress is not False:
         stress_base = base_field_langs.get("graphemes")
         if not stress_base:
             data_parent = _nearest_data_ancestor(parent_lang)

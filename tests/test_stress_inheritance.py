@@ -235,3 +235,35 @@ class TestSyntheticParentEdge:
         spec = _load_synthetic(tmp_path, monkeypatch, [_PARENT, child], child["code"])
         assert spec.stress.default_position == -1
         assert spec.stress.final_stress_endings == ()
+
+
+class TestOptOut:
+    """``"stress": false`` takes no block; ``{}`` and ``null`` inherit."""
+
+    @pytest.mark.parametrize("edge", ["graphemes_base", "parent"])
+    def test_false_takes_no_block(self, tmp_path, monkeypatch, edge):
+        child = {"code": "zq-PAR-x-out", "name": "Out", "script": "Latn",
+                 "parent": "zq-PAR", "graphemes": {"a": ["a"]}, "stress": False}
+        if edge == "graphemes_base":
+            child["graphemes_base"] = "zq-PAR"
+        spec = _load_synthetic(tmp_path, monkeypatch, [_PARENT, child], child["code"])
+        assert spec.stress is None
+
+    @pytest.mark.parametrize("value", [{}, None])
+    def test_empty_or_null_still_inherits(self, tmp_path, monkeypatch, value):
+        child = {"code": "zq-PAR-x-in", "name": "In", "script": "Latn",
+                 "parent": "zq-PAR", "graphemes": {"a": ["a"]}, "stress": value}
+        spec = _load_synthetic(tmp_path, monkeypatch, [_PARENT, child], child["code"])
+        assert spec.stress is not None
+        assert spec.stress.default_position == 1
+
+    def test_schema_accepts_false_and_rejects_true(self, tmp_path):
+        from orthography2ipa.schema import validate_spec_file
+        base = {"code": "zq-PAR-x-out", "name": "Out", "script": "Latn",
+                "graphemes": {"a": ["a"]}}
+        ok, bad = tmp_path / "ok.json", tmp_path / "bad.json"
+        ok.write_text(json.dumps({**base, "stress": False}), encoding="utf-8")
+        bad.write_text(json.dumps({**base, "stress": True}), encoding="utf-8")
+        assert validate_spec_file(ok).stress is False
+        with pytest.raises(Exception):
+            validate_spec_file(bad)
