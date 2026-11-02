@@ -261,7 +261,7 @@ class TestGalicianStress:
 
     @pytest.fixture
     def rules(self):
-        return get("gl").stress
+        return get("gl-ES").stress
 
     def test_gl_carries_stress_block(self, rules):
         assert rules is not None

@@ -1,4 +1,4 @@
-"""Cited-rule tests for Eonavian (``gl-x-eonavia``).
+"""Cited-rule tests for Eonavian (``gl-ES-x-eonavia``).
 
 Each test asserts one statement of the *Normas ortográficas del eonaviego*
 (Academia de la Llingua Asturiana, Secretaría Llingüística del Navia-Eo,
@@ -10,7 +10,7 @@ import pytest
 
 from orthography2ipa.g2p import G2P
 
-LANG = "gl-x-eonavia"
+LANG = "gl-ES-x-eonavia"
 
 
 def ipa(word: str) -> str:

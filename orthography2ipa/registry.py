@@ -54,7 +54,7 @@ _ALIASES: Dict[str, str] = {
     "ita": "it-IT", "nld": "nl", "swe": "sv", "dan": "da", "nor": "no",
     "rus": "ru", "ukr": "uk", "ara": "ar", "fas": "fa", "hin": "hi",
     "zho": "zh", "jpn": "ja", "kor": "ko", "eus": "eu", "cat": "ca",
-    "glg": "gl", "oci": "oc", "tur": "tr", "fin": "fi", "ell": "el",
+    "glg": "gl-ES", "oci": "oc", "tur": "tr", "fin": "fi", "ell": "el",
     "pol": "pl", "ces": "cs", "ron": "ro-RO",
     "mwl": "mwl",  # Mirandese ISO 639-3
     "ast": "ast",  # Asturian ISO 639-3
@@ -223,6 +223,13 @@ _ALIASES: Dict[str, str] = {
     "pt-BR-x-sao-paulo": "pt-BR-x-sp",
     "pt-BR-x-rio-janeiro": "pt-BR-x-rj",
     "pt-PT-x-lisboa": "pt-PT-x-lisbon",
+    # Galician has one standard spec, ``gl-ES``, and its varieties carry the
+    # region. These are the retired codes of the same varieties.
+    "gl-x-central": "gl-ES-x-central",
+    "gl-x-occidental": "gl-ES-x-occidental",
+    "gl-x-oriental": "gl-ES-x-oriental",
+    "gl-x-eonavia": "gl-ES-x-eonavia",
+    "gl-x-reintegrado": "gl-ES-x-reintegrado",
 }
 
 # Default variant for a bare primary-language tag whose specs are all
@@ -235,6 +242,7 @@ _BARE_DEFAULTS: Dict[str, str] = {
     "en": "en-GB",
     "es": "es-ES",
     "fr": "fr-FR",
+    "gl": "gl-ES",
     "it": "it-IT",
     "pt": "pt-PT",
     "ro": "ro-RO",

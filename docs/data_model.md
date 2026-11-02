@@ -327,7 +327,7 @@ from `available_codes()` unless `include_clades=True` is passed. See
 ```python
 import orthography2ipa
 
-orthography2ipa.get("gl").orthography_standard.authority
+orthography2ipa.get("gl-ES").orthography_standard.authority
 # 'Real Academia Galega / Instituto da Lingua Galega'
 orthography2ipa.get("ca").location.latitude   # 41.453
 ```

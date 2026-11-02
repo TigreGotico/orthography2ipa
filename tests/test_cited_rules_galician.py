@@ -1,6 +1,6 @@
-"""Cited-rule tests for standard Galician (``gl``).
+"""Cited-rule tests for standard Galician (``gl-ES``).
 
-Every test isolates ONE claim the ``gl`` spec makes with a citation, on a real
+Every test isolates ONE claim the ``gl-ES`` spec makes with a citation, on a real
 word, and asserts exactly the segment the citation asserts. Each rule is paired
 with the counter-case the same citation predicts, so a rule that over-applies
 fails here rather than in the benchmark.
@@ -12,11 +12,12 @@ Freixeiro Mato 1998 (*Gramática da lingua galega I: Fonética e fonoloxía*),
 
 import pytest
 
+from orthography2ipa import registry
 from orthography2ipa.g2p import G2P
 
 
 def bare(w: str) -> str:
-    return G2P("gl").transcribe_word(w).replace("ˈ", "")
+    return G2P("gl-ES").transcribe_word(w).replace("ˈ", "")
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -250,11 +251,11 @@ def test_gl_lenition_survives_a_heterorganic_cluster(word, expected):
 # quality differs from the spec on a segment this section does not test, the
 # assertion checks only the stressed syllable.
 
-def stressed(w: str, lang: str = "gl") -> str:
+def stressed(w: str, lang: str = "gl-ES") -> str:
     return G2P(lang).transcribe_word(w)
 
 
-def tail(w: str, lang: str = "gl") -> str:
+def tail(w: str, lang: str = "gl-ES") -> str:
     """The transcription from the stress mark on."""
     out = stressed(w, lang)
     assert out.count("ˈ") == 1, out
@@ -422,11 +423,11 @@ def test_gl_qu_gu_before_ei_in_a_plural_keeps_the_stress(word, expected_tail):
 
 
 # ═══════════════════════════════════════════════════════════════════════════
-# The gl accentuation reaches gl-ES and the gl dialect specs
+# The gl-ES accentuation reaches the Galician dialect specs
 # ═══════════════════════════════════════════════════════════════════════════
 
 @pytest.mark.parametrize("lang", [
-    "gl-ES", "gl-x-central", "gl-x-occidental", "gl-x-oriental",
+    "gl-ES-x-central", "gl-ES-x-occidental", "gl-ES-x-oriental",
 ])
 @pytest.mark.parametrize("word,expected_tail", [
     ("cantou", "tow"),
@@ -435,7 +436,7 @@ def test_gl_qu_gu_before_ei_in_a_plural_keeps_the_stress(word, expected_tail):
 ])
 def test_gl_accentuation_is_inherited(lang, word, expected_tail):
     """RAG/ILG Normas §2.2 and §3.2.5 hold for every variety that writes the
-    RAG norm, so these specs take the gl stress block through
+    RAG norm, so these specs take the gl-ES stress block through
     ``graphemes_base``."""
     assert tail(word, lang) == expected_tail
 
@@ -453,6 +454,44 @@ def test_gl_es_marks_stress_and_reads_y(word, expected):
 def test_eonavian_unaccented_final_diphthong_stays_paroxytone():
     """The counter-case: the Normas ortográficas del eonaviego (2025, §1.5.2,
     p. 20) write the accent on an oxytone falling diphthong (baxóu, cantéi),
-    so gl-x-eonavia keeps its own stress block and an unaccented cantou is
+    so gl-ES-x-eonavia keeps its own stress block and an unaccented cantou is
     paroxytone there."""
-    assert stressed("cantou", "gl-x-eonavia") == "ˈkantow"
+    assert stressed("cantou", "gl-ES-x-eonavia") == "ˈkantow"
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Galician has one standard spec, gl-ES, and every Galician tag reaches it
+# ═══════════════════════════════════════════════════════════════════════════
+
+@pytest.mark.parametrize("code", ["gl", "gl-ES", "gl_ES", "gl-es", "glg"])
+@pytest.mark.parametrize("word,expected", [
+    ("casa", "ˈkasa"),
+    ("queixo", "ˈkejʃo"),
+    ("arqueiro", "aɾˈkejɾo"),
+    ("bidueiro", "biðuˈejɾo"),
+])
+def test_every_galician_tag_reaches_the_one_standard(code, word, expected):
+    """casa is a paroxytone (RAG/ILG Normas §2.3, p. 24); Regueira 2010 gives
+    queixo ˈkejʃo̝, arqueiro aɾˈkejɾo̝, bidueiro biðuˈejɾo̝. The bare tag, the
+    ISO 639-3 code and every spelling of the region tag name the same spec
+    without nearest-language guessing."""
+    assert registry.resolve(code) == "gl-ES"
+    assert registry.resolves_exactly(code)
+    assert stressed(word, code) == expected
+
+
+@pytest.mark.parametrize("old,new", [
+    ("gl-x-central", "gl-ES-x-central"),
+    ("gl-x-occidental", "gl-ES-x-occidental"),
+    ("gl-x-oriental", "gl-ES-x-oriental"),
+    ("gl-x-eonavia", "gl-ES-x-eonavia"),
+    ("gl-x-reintegrado", "gl-ES-x-reintegrado"),
+])
+def test_retired_galician_variety_codes_reach_their_spec(old, new):
+    """The varieties carry the region of the standard they derive from. Their
+    retired codes still name the same spec exactly, so callers that pass them
+    get the same transcription."""
+    assert registry.resolve(old) == new
+    assert registry.resolves_exactly(old)
+    for word in ("bidueira", "cantou", "xente"):
+        assert stressed(word, old) == stressed(word, new)

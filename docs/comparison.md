@@ -37,7 +37,7 @@ One line per language: the best system on its primary gold, and where o2i lands.
 - **fi (Finnish)** — o2i #1 (beats epitran)
 - **fr (French)** — o2i #1 (beats espeak rules-only)
 - **ga (Irish)** — o2i #1 (beats espeak rules-only)
-- **gl (Galician)** — o2i #1 (beats pycotovia)
+- **gl-ES (Galician)** — o2i #1 (beats pycotovia)
 - **gur** — o2i #1 (beats ghana-g2p)
 - **ha** — o2i #1 (beats ghana-g2p)
 - **hi (Hindi)** — o2i #1 (beats espeak rules-only)
@@ -246,12 +246,13 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 | ipa_childes | 1612 | 0.2989 | same-source | same-source | o2i |
 | wikipron | 9621 | 0.1834 | 0.5223 | 0.5100 | o2i |
 
-### gl (Galician)
+### gl-ES (Galician)
 
-| Dataset | N | o2i | epitran | pycotovia | Winner |
-|---|---|---|---|---|---|
-| vox_communis | 47515 | 0.0643 | same-source | 0.0883 | o2i |
-| wikipron | 8091 | 0.0804 | n/a | 0.0883 | o2i |
+| Dataset | N | o2i | epitran | pycotovia | arbtok | arbtok (lexicon) | tugaphone (lexicon) | g2p_barranquenho | mwl_phonemizer | udarnik | Winner |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| spain_romance_tts | 20 | same-source | n/a | 0.0744 | same-source | same-source | same-source | same-source | same-source | same-source | pycotovia |
+| vox_communis | 47513 | 0.0648 | same-source | 0.0887 | n/a | n/a | n/a | n/a | n/a | n/a | o2i |
+| wikipron | 8091 | 0.0801 | n/a | 0.0894 | n/a | n/a | n/a | n/a | n/a | n/a | o2i |
 
 ### gur
 
@@ -405,7 +406,7 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 
 - **espeak-ng** — `espeak_rules`: its dictsource `_list`/`_listx`/`_extra` word-exception files emptied before compiling (`scripts/build_espeak_rules_only.sh`, espeak-ng 1.52.0 pinned). Every number is verified before publishing: the build's manifest must list the language AND the compiled dictionary must differ from the stock one by md5 (`assert_espeak_rules_built_for`) — an earlier version of this board published a stock-vs-stock "comparison" for `es` because that check did not exist yet.
 - **gruut** — `gruut_rules`: its bundled lexicon lookup (`TextProcessorSettings.lookup_phonemes`) disabled at runtime so every word falls through to gruut's own g2p fallback model instead of a dictionary hit. This exists because gruut's `en-US` lexicon (124,392 words) turned out to be CMUdict-derived and covers 98.2% of both the `cmudict` and `ipadict` gold sets — see the same-source note below for those two rows.
-- **epitran** is a rule/mapping-based transliterator for the languages this board scores, not a lexicon lookup, so there is no dictionary to strip; the `es`/`gl` gold it is scored against uses a BROAD transcription convention (no ð/β/ɣ/θ allophone diacritics, glide notation folded) rather than the narrow one o2i and espeak-ng target — see the note on that below.
+- **epitran** is a rule/mapping-based transliterator for the languages this board scores, not a lexicon lookup, so there is no dictionary to strip; the `es`/`gl-ES` gold it is scored against uses a BROAD transcription convention (no ð/β/ɣ/θ allophone diacritics, glide notation folded) rather than the narrow one o2i and espeak-ng target — see the note on that below.
 - **pycotovia** — audited: its lexicon is closed to function-word stress tables (a small, fixed, rule-grade set, not a general word dictionary), so there is no general-purpose lexicon to disable and no rules-only column is needed.
 - **ahotts-g2p** — audited: it ships an HDIC dictionary (1,990 expansion entries; 103 TF_MRK words whose phonetic transcription is supplied directly by the dictionary; 1,065 per-word allophone-exception and 293 stress-marked entries), but those entries hit only 1.5% of the `eu` wikipron gold and 2.6% of `hitz_basque_ipa`, so a rules-only column would move the number by a fraction of a percent — recorded here rather than given a column.
 
@@ -417,7 +418,7 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 
 **`same-source` cells.** A cell reads `same-source` (never `n/a`) when the gold dataset IS that system's own output — e.g. scoring `espeak` against `ipa_babylm` (espeak-derived), `ahotts-g2p` against `hitz_basque_ipa` (HiTZ's own phonemizer output, same lab as AhoTTS), or `gruut` (dictionary lookup, not `gruut_rules`) against `cmudict`/`ipadict` (gruut's `en-US` lexicon is CMUdict-derived — see above). Scoring a system against its own generator would score near-zero by construction, not because it is accurate, so that comparison is refused. The same rule applies to o2i itself on `arabic_tts`, `portuguese_tts`, and `gold20_arabic` — gold drafted by the same Claude lineage that wrote orthography2ipa's own Arabic/Portuguese specs.
 
-**epitran's `es`/`gl` gold uses a broad transcription convention.** The wikipron gold rows for `es` and `gl` (and epitran's own output) are scored in the BROAD IPA convention — no allophonic diacritics (`ð β ɣ θ` etc.) and glide notation folded (`j w i̯ u̯` → `i u`) — rather than the narrower transcription o2i and espeak-ng aim for. #867 measured this directly: folding tier symbols out of both sides on `es`/`wikipron` moved o2i's PER from 0.0172 to 0.0090, and folding glide notation too moved it from 0.0099 to 0.0086 — most of a PER change on this row is notation converging, not an audible accuracy change. Read a narrow-vs-broad PER gap here as a convention difference, not a correctness gap.
+**epitran's `es`/`gl-ES` gold uses a broad transcription convention.** The wikipron gold rows for `es` and `gl-ES` (and epitran's own output) are scored in the BROAD IPA convention — no allophonic diacritics (`ð β ɣ θ` etc.) and glide notation folded (`j w i̯ u̯` → `i u`) — rather than the narrower transcription o2i and espeak-ng aim for. #867 measured this directly: folding tier symbols out of both sides on `es`/`wikipron` moved o2i's PER from 0.0172 to 0.0090, and folding glide notation too moved it from 0.0099 to 0.0086 — most of a PER change on this row is notation converging, not an audible accuracy change. Read a narrow-vs-broad PER gap here as a convention difference, not a correctness gap.
 
 **Machine-generated gold measures agreement, not accuracy.** Some gold datasets are themselves another phonemizer's or an LLM's output (see each dataset's `provenance_tier` in `benchmarks/comparison.json`). A win on one of those rows shows how much a system agrees with the tool that generated the gold — it is not a correctness claim.
 

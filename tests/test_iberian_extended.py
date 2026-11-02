@@ -811,7 +811,7 @@ class TestGalicianStandard:
     """Standard Galician (RAG norms) — gl-ES.
 
     Distinción variety (unlike Portuguese seseo): c → [k, θ], z → [θ],
-    ç → s, unique sibilant system with apical/laminal contrast.
+    apical [s̺] for ⟨s⟩.
     """
 
     LANGUAGE_CODE = "gl-ES"
@@ -843,19 +843,24 @@ class TestGalicianStandard:
 
     def test_g_velar_only(self):
         """gl-ES ⟨g⟩ → /ɡ/ only; there is no [ʃ] realisation (that was an error).
-        Gheada gives [h~x~χ] and only in western dialect (gl-x-occidental), never [ʃ]."""
+        Gheada gives [h~x~χ] and only in western dialect (gl-ES-x-occidental), never [ʃ]."""
         vals = _grapheme(self.spec, "g")
         assert vals == ["ɡ"], f"gl-ES g: expected [ɡ] only, got {vals}"
 
-    def test_j_sibilant(self):
-        """j → ʃ (Galician, not velar like Castilian)."""
-        _assert_first(_grapheme(self.spec, "j"), "ʃ", label="j")
+    def test_j_is_a_loan_letter(self):
+        """RAG/ILG Normas §1 (p. 16) keep ⟨j⟩ for loans and medieval texts only,
+        so the standard maps no ⟨j⟩; native [ʃ] is written ⟨x⟩ (§1.9, p. 22)."""
+        assert self.spec.graphemes.get("j") is None
+        _assert_first(_grapheme(self.spec, "x"), "ʃ", label="x")
 
     def test_s_no_intervocalic_voicing(self):
-        """Standard Galician has no voiced sibilants — intervocalic ⟨s⟩ stays [s],
-        it does NOT voice to [z] (that voicing was a Portuguese contamination error)."""
+        """Standard Galician has no voiced sibilants: RAG/ILG Normas §1 (p. 16)
+        give ⟨s⟩ the one value [s̺], so intervocalic ⟨s⟩ does NOT voice to [z]
+        as in Portuguese."""
+        assert _grapheme(self.spec, "s") == ["s"]
+        assert _allophone(self.spec, "s") == ["s̺"]
         iv = _positional(self.spec, "s", GraphemePosition.INTERVOCALIC)
-        assert iv == ["s"], f"gl-ES s/INTERVOCALIC: expected [s], got {iv}"
+        assert iv is None or "z" not in iv, f"gl-ES s/INTERVOCALIC: got {iv}"
 
     def test_r_word_initial_trill(self):
         """Word-initial r → r (trill)."""
@@ -878,8 +883,8 @@ class TestGalicianStandard:
         _assert_contains(_allophone(self.spec, "d"), "ð", label="d allophone")
 
     def test_v_betacism(self):
-        """v allophone → β (merger with b, betacism)."""
-        _assert_contains(_allophone(self.spec, "v"), "β", label="v allophone")
+        """RAG/ILG Normas §1 (p. 16) give ⟨v⟩ the value [b]: betacism."""
+        assert _grapheme(self.spec, "v") == ["b"]
 
     def test_positional_v_intervocalic(self):
         """v intervocalic → β."""
@@ -890,13 +895,13 @@ class TestGalicianStandard:
 
 @pytest.mark.iberian
 class TestGalicianOriental:
-    """Oriental Galician — gl-x-oriental.
+    """Oriental Galician — gl-ES-x-oriental.
 
     Eastern dialect: Leonese diphthongs ie→[je], ue→[we],
     conservative ʎ (no yeísmo), preserved tʃ affricate.
     """
 
-    LANGUAGE_CODE = "gl-x-oriental"
+    LANGUAGE_CODE = "gl-ES-x-oriental"
 
     @pytest.fixture(autouse=True, scope="class")
     def spec(self, request):
@@ -919,7 +924,7 @@ class TestGalicianOriental:
         _assert_first(_allophone(self.spec, "tʃ"), "tʃ", label="tʃ allophone")
 
     def test_parent_is_gl(self):
-        assert self.spec.parent == "gl"
+        assert self.spec.parent == "gl-ES"
 
 
 # ═══════════════════════════════════════════════════════════════════════════

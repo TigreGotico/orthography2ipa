@@ -160,23 +160,23 @@ PLACES: dict[str, dict] = {
              "area."),
 
     # ── Galician ──────────────────────────────────────────────────────────────
-    "gl-x-occidental": dict(
+    "gl-ES-x-occidental": dict(
         qid="Q12411", label="Pontevedra", country="Spain",
         note="Pontevedra — a representative locality of the western Galician block "
              "(Pontevedra province and coastal A Coruña), the gheada heartland."),
-    "gl-x-central": dict(
+    "gl-ES-x-central": dict(
         qid="Q11125", label="Lugo", country="Spain",
         note="Lugo — a representative locality of the central Galician block (Lugo, "
              "eastern A Coruña, Ourense)."),
-    "gl-x-oriental": dict(
+    "gl-ES-x-oriental": dict(
         qid="Q1465213", label="A Fonsagrada", country="Spain",
         note="A Fonsagrada (eastern Lugo, on the Asturian border) — a representative "
              "locality of the eastern Galician block, where Asturleonese contact is "
              "strongest."),
-    "gl-x-reintegrado": dict(
+    "gl-ES-x-reintegrado": dict(
         qid="Q3908", label="Galicia", country="Spain",
         note="Galicia. This spec is an ORTHOGRAPHY, not a speech variety — it shares "
-             "its phonology and its territory with `gl`, so it shares its point."),
+             "its phonology and its territory with `gl-ES`, so it shares its point."),
 
     # ── Spanish: Iberia ───────────────────────────────────────────────────────
     "es-ES-x-cantabria": dict(

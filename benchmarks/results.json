@@ -7257,7 +7257,7 @@
   "oracle_scored_words": 3719
  },
  {
-  "lang": "gl",
+  "lang": "gl-ES",
   "dataset": "spain_romance_tts",
   "n": 20,
   "per": 0.0,
@@ -7279,7 +7279,7 @@
   "oracle_scored_words": 0
  },
  {
-  "lang": "gl",
+  "lang": "gl-ES",
   "dataset": "vox_communis",
   "n": 47512,
   "per": 0.0648,
@@ -7301,7 +7301,7 @@
   "oracle_scored_words": 47512
  },
  {
-  "lang": "gl",
+  "lang": "gl-ES",
   "dataset": "wikipron",
   "n": 8091,
   "per": 0.0801,
@@ -7323,7 +7323,7 @@
   "oracle_scored_words": 8091
  },
  {
-  "lang": "gl-x-central",
+  "lang": "gl-ES-x-central",
   "dataset": "spain_romance_tts",
   "n": 20,
   "per": 0.0,
@@ -7345,7 +7345,7 @@
   "oracle_scored_words": 0
  },
  {
-  "lang": "gl-x-eonavia",
+  "lang": "gl-ES-x-eonavia",
   "dataset": "spain_romance_tts",
   "n": 20,
   "per": 0.0,
@@ -7367,7 +7367,7 @@
   "oracle_scored_words": 0
  },
  {
-  "lang": "gl-x-occidental",
+  "lang": "gl-ES-x-occidental",
   "dataset": "spain_romance_tts",
   "n": 20,
   "per": 0.0,
@@ -7389,7 +7389,7 @@
   "oracle_scored_words": 0
  },
  {
-  "lang": "gl-x-oriental",
+  "lang": "gl-ES-x-oriental",
   "dataset": "spain_romance_tts",
   "n": 20,
   "per": 0.0,
@@ -7411,7 +7411,7 @@
   "oracle_scored_words": 0
  },
  {
-  "lang": "gl-x-reintegrado",
+  "lang": "gl-ES-x-reintegrado",
   "dataset": "spain_romance_tts",
   "n": 20,
   "per": 0.0,

@@ -60,8 +60,8 @@ LECTS = [
     "es-ES-x-canarias", "es-ES-x-cantabria", "es-ES-x-extremadura",
     "es-ES-x-medieval", "es-ES-x-murcia",
     # Galician (RAG and reintegrado registers, dialect blocks)
-    "gl", "gl-x-central", "gl-x-occidental", "gl-x-oriental",
-    "gl-x-reintegrado", "gl-x-eonavia",
+    "gl-ES", "gl-ES-x-central", "gl-ES-x-occidental", "gl-ES-x-oriental",
+    "gl-ES-x-reintegrado", "gl-ES-x-eonavia",
     # Asturleonese
     "ast", "ast-ES-x-leon",
     "ast-x-leon", "ast-x-cantabrian", "ast-x-occidental", "ast-x-oriental",

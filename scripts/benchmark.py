@@ -10,7 +10,7 @@ datasets, their sources and the methodology are documented in
 Usage::
 
     python scripts/benchmark.py --dataset portuguese_unified --lang pt-PT
-    python scripts/benchmark.py --dataset wikipron --lang gl --broad
+    python scripts/benchmark.py --dataset wikipron --lang gl-ES --broad
     python scripts/benchmark.py --dataset mirandese_g2p --lang mwl
     python scripts/benchmark.py --list
 
@@ -301,7 +301,7 @@ _WIKIPRON_FILES = {
     "an": "arg_latn_broad.tsv",          # Aragonese, ~1.3k rows
     "lad": "lad_latn_broad.tsv",         # Ladino, ~145 rows
     # --- already wired ---
-    "gl": "glg_latn_broad.tsv",
+    "gl-ES": "glg_latn_broad.tsv",
     # "es" resolves through the registry to es-ES, Castilian Spanish, which
     # has distincion (<cielo> -> [th-jelo]). It is scored against the Castilian
     # gold. The Latin-American gold has seseo (<cielo> -> [s-jelo]) and belongs
@@ -744,7 +744,7 @@ _VOX_COMMUNIS_BASE = (
 _VOX_COMMUNIS_FILES: Dict[str, str] = {
     lang: lang for lang in (
         "ab", "am", "as", "ba", "be", "bg", "bn", "ca", "ckb", "cs", "cv",
-        "cy", "dv", "el", "et", "eu", "fi", "gl", "gn", "ha", "hi", "hsb",
+        "cy", "dv", "el", "et", "eu", "fi", "gn", "ha", "hi", "hsb",
         "hu", "id", "ja", "ka", "kab", "kk", "ko", "ky", "lg", "lij", "lt",
         "mk", "ml", "mn", "mr", "mt", "myv", "nl", "or", "pl", "ru", "rw",
         "sah", "sk", "sl", "sq", "sr", "sw", "ta", "th", "tk", "tn", "tr",
@@ -754,6 +754,7 @@ _VOX_COMMUNIS_FILES: Dict[str, str] = {
 _VOX_COMMUNIS_FILES.update({
     "es": "es", "it": "it", "ro": "ro",       # bare tags resolve via registry
     "pt-BR": "pt",                            # region-untagged; see note above
+    "gl-ES": "gl",
     "sv": "sv-se", "hy": "hy-am",
     "fy": "fy-nl", "pa": "pa-in",
 })
