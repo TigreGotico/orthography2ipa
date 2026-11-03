@@ -112,9 +112,9 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 
 | Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | Winner |
 |---|---|---|---|---|---|---|
-| 4catac | 160 | 0.0642 | 0.0403 | 0.1206 | 0.4641 | o2i |
-| ipa_childes | 3814 | 0.2566 | same-source | same-source | 0.3447 | o2i |
-| vox_communis | 141624 | 0.1320 | 0.1231 | 0.1217 | same-source | espeak rules-only |
+| 4catac | 160 | 0.0641 | 0.0403 | 0.1206 | 0.4641 | o2i |
+| ipa_childes | 3814 | 0.2562 | same-source | same-source | 0.3447 | o2i |
+| vox_communis | 141624 | 0.1317 | 0.1231 | 0.1217 | same-source | espeak rules-only |
 | wikipron | 106 | 0.2565 | 0.2221 | 0.2798 | 0.3518 | o2i |
 
 ### ca-x-balear (Balearic Catalan)
@@ -433,8 +433,8 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 A system winning on one gold and losing on another for the SAME language is real signal, not noise to average away. Every language with 2+ espeak-comparable gold datasets is listed below with its exact win/loss split (same-source cells excluded — they are never comparable, see above).
 
 - **`ca`** (loses on all golds):
-  - `4catac` (n=160, tier=expert-human): o2i 0.0642 vs espeak 0.0403 — o2i loses
-  - `vox_communis` (n=141624, tier=epitran-derived): o2i 0.1320 vs espeak 0.1231 — o2i loses
+  - `4catac` (n=160, tier=expert-human): o2i 0.0641 vs espeak 0.0403 — o2i loses
+  - `vox_communis` (n=141624, tier=epitran-derived): o2i 0.1317 vs espeak 0.1231 — o2i loses
   - `wikipron` (n=106, tier=crowd-scraped): o2i 0.2565 vs espeak 0.2221 — o2i loses
 - **`cy`** (wins on all golds):
   - `vox_communis` (n=18701, tier=epitran-derived): o2i 0.1172 vs espeak 0.3005 — o2i wins
@@ -505,8 +505,8 @@ The table above conflates espeak-ng's letter-to-sound RULES with its hand-curate
 
 | Lang | Dataset | N | o2i | o2i_lex | espeak | espeak_rules |
 |---|---|---:|---:|---:|---:|---:|
-| ca | 4catac | 160 | 0.0642 | n/a | 0.0403 | 0.1206 |
-| ca | vox_communis | 141624 | 0.1320 | n/a | 0.1231 | 0.1217 |
+| ca | 4catac | 160 | 0.0641 | n/a | 0.0403 | 0.1206 |
+| ca | vox_communis | 141624 | 0.1317 | n/a | 0.1231 | 0.1217 |
 | ca | wikipron | 106 | 0.2565 | n/a | 0.2221 | 0.2798 |
 | ca-x-balear | 4catac | 160 | 0.1360 | n/a | 0.0797 | 0.1419 |
 | ca-x-occidental | 4catac | 160 | 0.0822 | n/a | 0.0497 | 0.0832 |
