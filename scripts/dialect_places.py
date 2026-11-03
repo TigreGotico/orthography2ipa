@@ -455,6 +455,12 @@ PLACES: dict[str, dict] = {
     "pt-BR-x-sul": dict(
         qid="Q40269", label="Porto Alegre", country="Brazil",
         note="Porto Alegre — the centre of the Sulista/Gaúcho area."),
+    "pt-BR-x-floripa": dict(
+        qid="Q132997", label="Florianópolis", country="Brazil",
+        note="Florianópolis — the island city whose native 'manezinho' speech this spec models."),
+    "pt-BR-x-cuiaba": dict(
+        qid="Q170762", label="Cuiabá", country="Brazil",
+        note="Cuiabá — the centre of the Baixada Cuiabana, the river valley this spec models."),
 
     # ── Portuguese beyond Europe and Brazil ───────────────────────────────────
     "pt-AO": dict(
