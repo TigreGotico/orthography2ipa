@@ -173,8 +173,9 @@ def test_syllabic_nasal_is_not_read_letter_by_letter():
 # `phonemes` is the inventory of single sounds. A final such as /an/ or a
 # whole syllable such as /pʰou/ in it becomes one atom when the list is
 # passed to the syllabifier: /ana/ turns into one syllable and /pʰou/ into a
-# syllable with no nucleus. The syllable is CGVX (Duanmu 2005): a full
-# syllable with a diphthong or a nasal coda is heavy.
+# syllable with no nucleus. The weights are what `syllable_weight` gives each
+# shape, CV light and CVC or CVV heavy. They pin the cut, not a moraic
+# analysis of Mandarin.
 _ZH_SYLLABLES = [
     ("ana", ["a", "na"], ["light", "light"]),
     ("pan", ["pan"], ["heavy"]),
