@@ -383,7 +383,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | guw | wikipron | 595 | 0.4311 | - | - | 0.4148 | 0.4120 | 0.0034 | 0.0034 | [0.4196, 0.4423] | 0.0034 | research | crowd-scraped |
 | gv | wikipron | 690 | 0.2460 | - | - | 0.2309 | 0.2259 | 0.3362 | 0.3435 | [0.2300, 0.2627] | 0.3246 | research | crowd-scraped |
 | gwc | wikipron | 165 | 0.4170 | - | 0.2626 (tone) | 0.3937 | 0.3782 | 0.0242 | 0.0242 | [0.3888, 0.4436] | 0.0242 | research | crowd-scraped |
-| gwd | wold | 976 | 0.0481 | - | - | 0.0481 | 0.0481 | 0.7602 | 0.7602 | [0.0419, 0.0552] | 0.7602 | research | lexicon-derived |
+| gwd | wold | 976 | 0.0385 | - | - | 0.0385 | 0.0385 | 0.8053 | 0.8053 | [0.0331, 0.0452] | 0.8053 | research | lexicon-derived |
 | ha | vox_communis | 3719 | 0.1130‡ | - | - | 0.0427 | 0.0336 | 0.7768 | 0.8209 | [0.1083, 0.1177] | 0.4937 | research | epitran-derived |
 | ha | wikipron | 1857 | 0.5340 | - | 0.0223† (tone+length) | 0.5179 | 0.5167 | 0.0022 | 0.0022 | [0.5287, 0.5389] | 0.0022 | research | crowd-scraped |
 | haw | wikipron | 2145 | 0.0127 | - | - | 0.0127 | 0.0127 | 0.9562 | 0.9562 | [0.0100, 0.0156] | 0.9562 | research | crowd-scraped |
@@ -413,7 +413,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | ilo | wikipron | 931 | 0.1272 | - | - | 0.1155 | 0.1152 | 0.4834 | 0.4834 | [0.1175, 0.1357] | 0.4501 | research | crowd-scraped |
 | inh | wikipron | 284 | 0.1632 | - | - | 0.1582 | 0.1582 | 0.4331 | 0.4331 | [0.1448, 0.1819] | 0.4261 | research | crowd-scraped |
 | io | wikipron | 6815 | 0.0974 | - | - | 0.0974 | 0.0974 | 0.4336 | 0.4336 | [0.0949, 0.0999] | 0.4336 | research | crowd-scraped |
-| irk | wold | 1117 | 0.2010 | - | - | 0.2010 | 0.2010 | 0.3563 | 0.3563 | [0.1900, 0.2123] | 0.3563 | research | lexicon-derived |
+| irk | wold | 1117 | 0.1898 | - | - | 0.1898 | 0.1898 | 0.4002 | 0.4002 | [0.1785, 0.2014] | 0.4002 | research | lexicon-derived |
 | is | ipa_childes | 4106 | 0.3397‡ | - | - | 0.2966 | 0.2907 | 0.1320 | 0.1386 | [0.3332, 0.3468] | 0.1120 | research | espeak-derived |
 | is | ipadict | 60642 | 0.2354 | - | - | 0.2032 | 0.2003 | 0.1551 | 0.1580 | [0.2341, 0.2366] | 0.1117 | research | lexicon-derived |
 | is | wikipron | 10093 | 0.2045 | - | - | 0.1729 | 0.1700 | 0.2515 | 0.2569 | [0.2016, 0.2076] | 0.2023 | research | crowd-scraped |
