@@ -126,10 +126,25 @@ def _nfd_br(word):
     return unicodedata.normalize("NFD", G2P("pt-BR").transcribe_word(word))
 
 
-def test_br_intervocalic_nasal_leaves_vowel_oral():
-    for word in ("cama", "ano", "lua", "lima", "nome", "fome"):
+@pytest.mark.parametrize("word,expected", [
+    # Barbosa & Albano (2004: 229): a stressed vowel nasalises before a
+    # heterosyllabic nasal consonant: cima [ˈsĩmɐ], sama [ˈsɐ̃mɐ], soma [ˈsõmɐ].
+    ("cima", "ˈsĩmɐ"), ("soma", "ˈsõmɐ"), ("cama", "ˈkɐ̃mɐ"),
+    ("ano", "ˈɐ̃nu"), ("fome", "ˈfõmi"), ("ganho", "ˈɡɐ̃ɲu"),
+])
+def test_br_stressed_vowel_nasalised_before_onset_nasal(word, expected):
+    import unicodedata
+    got = unicodedata.normalize("NFC", G2P("pt-BR").transcribe_word(word))
+    assert got == unicodedata.normalize("NFC", expected)
+
+
+def test_br_pretonic_vowel_oral_before_onset_nasal():
+    # Barbosa & Albano (2004: 229): a pretonic vowel nasalises only before
+    # /N/ or /ɲ/ (ganhar [gɐ̃ˈɲaɾ]); before an onset /m n/ it stays oral.
+    for word in ("camada", "lunar", "lua"):
         out = _nfd_br(word)
         assert TILDE not in out, (word, out)
+    assert _nfd_br("ganhar").startswith("ɡɐ" + TILDE)
 
 
 def test_br_no_double_tilde():
@@ -139,8 +154,10 @@ def test_br_no_double_tilde():
 
 
 def test_br_nh_digraph_unbroken():
+    # ⟨nh⟩ stays one palatal nasal; the stressed vowel before it is nasalised
+    # (Barbosa & Albano 2004: 228, ganho [ˈɡɐ̃ɲʊ]).
     out = _nfd_br("banho")
-    assert "ɲ" in out and TILDE not in out, out
+    assert "ɲ" in out and "n" + "ɲ" not in out and out.count(TILDE) == 1, out
 
 
 def test_br_final_es_os_raising_feeds_affrication():
@@ -252,3 +269,52 @@ def test_digraphs_yield_one_segment(word, expected):
 def test_w_is_not_deleted(word):
     out = G2P("pt-BR").transcribe_word(word)
     assert "w" in out or "v" in out, out
+
+
+# ─── Coda /S/ voicing, strong /r/ after a coda, epenthesis ─────────────────
+
+
+@pytest.mark.parametrize("word,expected", [
+    # Barbosa & Albano (2004: 229): coda /S/ "tends to assimilate the voicing
+    # of the following sound".
+    ("mesmo", "ˈmezmu"), ("desde", "ˈdezd͡ʒi"), ("rasgar", "ʁazˈɡaɾ"),
+    ("festa", "ˈfestɐ"),
+])
+def test_br_coda_s_voices_before_voiced_consonant(word, expected):
+    assert G2P("pt-BR").transcribe_word(word) == expected
+
+
+@pytest.mark.parametrize("word", ["honra", "genro", "Israel"])
+def test_br_strong_r_after_coda(word):
+    # Cristófaro Silva (2025: 240, 243): after a coda consonant the rhotic is
+    # the strong one (honra, Israel), never the tap.
+    out = G2P("pt-BR").transcribe_word(word)
+    assert "ʁ" in out and "ɾ" not in out, out
+
+
+def test_br_onset_cluster_keeps_tap():
+    # The tap of an onset cluster is not after a coda: três [ˈtɾes].
+    assert G2P("pt-BR").transcribe_word("três") == "ˈtɾes"
+
+
+@pytest.mark.parametrize("word,expected", [
+    # Barbosa & Albano (2004: 227): epenthesis breaks two-obstruent sequences
+    # with [i]; Collischonn (2004: 67-68): pretonic 69 %, advogado type 89 %.
+    ("advogado", "ad͡ʒivoˈɡadu"), ("obter", "obiˈteɾ"), ("absurdo", "abiˈsuɾdu"),
+])
+def test_br_pretonic_epenthesis(word, expected):
+    assert G2P("pt-BR").transcribe_word(word) == expected
+
+
+def test_br_no_epenthesis_after_stressed_vowel():
+    # Collischonn (2004: 67): post-tonic epenthesis is a minority (24 %).
+    assert G2P("pt-BR").transcribe_word("pacto") == "ˈpaktu"
+
+
+@pytest.mark.parametrize("word,expected", [
+    # Barbosa & Albano (2004: 229-230): the post-stressed oral vowels are
+    # [ɪ ɐ ʊ e̞]; an unstressed final ⟨a⟩ is [ɐ] also before the plural ⟨-s⟩.
+    ("casas", "ˈkazɐs"), ("falas", "ˈfalɐs"), ("gás", "ˈɡas"), ("atrás", "aˈtɾas"),
+])
+def test_br_final_as_reduces(word, expected):
+    assert G2P("pt-BR").transcribe_word(word) == expected
