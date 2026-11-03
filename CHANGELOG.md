@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.113.11a1](https://github.com/TigreGotico/orthography2ipa/tree/7.113.11a1) (2026-11-03)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.113.10a1...7.113.11a1)
+
+**Merged pull requests:**
+
+- fix\(pt-BR\): source-checked base allophony and citations [\#1866](https://github.com/TigreGotico/orthography2ipa/pull/1866) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.113.10a1](https://github.com/TigreGotico/orthography2ipa/tree/7.113.10a1) (2026-11-03)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.113.9a1...7.113.10a1)
