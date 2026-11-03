@@ -1783,8 +1783,14 @@ def syllable_weight(syllable: str, atoms: Sequence[str] = ()) -> str:
     nucleus = segs[start:end]
     coda = segs[end:]
 
-    # A long vowel or a diphthong is a branching (heavy) nucleus.
-    long_vowel = any(_LENGTH in s for s in nucleus) or len(nucleus) > 1
+    # A long vowel or a diphthong is a branching (heavy) nucleus. A diphthong
+    # the spec declares as one atom is one segment that holds two adjacent
+    # vocoid letters. The vowel table also lists the combining tilde and the
+    # non-syllabic mark, which are not vocoids of their own.
+    letters = [[c for c in s if not unicodedata.combining(c)] for s in nucleus]
+    long_vowel = (any(_LENGTH in s for s in nucleus) or len(nucleus) > 1
+                  or any(is_ipa_vowel(a) and is_ipa_vowel(b)
+                         for seg in letters for a, b in zip(seg, seg[1:])))
 
     if long_vowel and coda:
         return SUPERHEAVY

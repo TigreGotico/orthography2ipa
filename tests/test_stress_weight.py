@@ -225,6 +225,34 @@ def test_spec_phonemes_as_atoms_keep_the_affricate_whole(
     assert syllable_weight("a" + affricate, atoms) == HEAVY, "CVC, one coda consonant"
 
 
+# A spec may declare a diphthong as one phoneme. Passed as an atom it becomes
+# one segment, but it is still a branching nucleus, so the syllable is heavy.
+@pytest.mark.parametrize("lang,diphthong,syllable", [
+    ("nb", "æʉ", "æʉ"),
+    ("diq", "ai", "ai"),
+    ("diq", "au", "au"),
+    ("shk", "aɪ", "aɪ"),
+    ("sah", "ɯa", "ɯa"),
+    ("inh", "oa", "joa"),
+])
+def test_a_diphthong_declared_as_one_phoneme_is_heavy(lang, diphthong, syllable):
+    atoms = list(get(lang).phonemes)
+    assert diphthong in atoms, "the case only bites while the spec declares the diphthong"
+    assert syllable_weight(syllable, atoms) == HEAVY
+    assert syllable_weight(syllable + "n", atoms) == SUPERHEAVY, "branching nucleus + coda"
+    assert syllable_weight(syllable[:-1], atoms) == LIGHT, "one vowel alone stays light"
+
+
+@pytest.mark.parametrize("syllable,weight,why", [
+    ("aɪ̯", HEAVY, "a falling diphthong with a non-syllabic mark is two vocoids"),
+    ("ɐ̃", LIGHT, "the nasal tilde is a mark on one vowel, not a second vowel"),
+    ("ɛ̯", LIGHT, "the non-syllabic mark alone is not a second vowel"),
+    ("amo", LIGHT, "two vowels with a consonant between them are no diphthong"),
+])
+def test_one_atom_nucleus_branches_only_on_adjacent_vowels(syllable, weight, why):
+    assert syllable_weight(syllable, [syllable]) == weight, why
+
+
 def test_the_stress_mark_never_lands_inside_a_long_vowel():
     """The mark is placed against the weight syllabifier's own division.
 
