@@ -51,6 +51,8 @@ The ALiB rates /t d/ palatalisation in the capital as *"moderada"* (Battisti & D
 
 Almeida (2004: 153, 158) also reports [ʃ] for /s/ between vowels and word-initially (*moço*, *senhor*), the glide [j] for ⟨lh⟩, and the deletion of a coda /l/. He reports each of these beside the standard form, and the spec does not model them.
 
+Almeida (2004: 154) prints *várzea* as [ˈvaʒa], with no coda /R/ before the sibilant. The spec keeps the coda /R/ there: `várzea` [ˈvaɻzeɐ].
+
 The stressed vowel quality is lexical and not marked in the spelling. Almeida writes *sete* with [ɛ], and the spec gives the inherited [e] (see issue #1824).
 
 ## Input contract
