@@ -214,11 +214,12 @@ class TestItalianDialectInheritance:
     """What the four ``parent: it-IT`` varieties do and do not inherit.
 
     ``it-IT-x-marche``, ``-roma``, ``-toscana`` and ``-umbria`` declare
-    ``parent: it-IT`` but carry their own full ``graphemes`` tables, so
-    they inherit it-IT's ``allophone_rules`` and NOT its grapheme or
-    positional-grapheme entries. This class pins that split explicitly,
-    because it is invisible in the data and a rule added to it-IT reaches
-    four more specs without any of them being edited.
+    ``parent: it-IT`` and ``graphemes_base: it-IT``, so they inherit
+    it-IT's ``allophone_rules``, its grapheme table and its
+    positional-grapheme entries, except the ⟨s⟩ and ⟨z⟩ entries that each
+    variety states itself. This class pins that split, because a rule
+    added to it-IT reaches four more specs without any of them being
+    edited.
 
     Preconsonantal /s/ voicing is INTENDED to reach them: the agreement
     is pan-Italian, holding in Florence and Rome exactly as in the
@@ -250,9 +251,18 @@ class TestItalianDialectInheritance:
             assert self._t(lang, "sbagliare").startswith("sb"), lang
             assert self._t(lang, "asma") == "asma", lang
 
-    def test_no_variety_inherits_it_it_grapheme_entries(self):
-        # they declare their own graphemes tables, so the it-IT
-        # geminate-softening and ⟨gu⟩ entries do not reach them
-        for lang in self.CENTRAL + self.UNPARENTED:
+    def test_central_varieties_inherit_it_it_grapheme_entries(self):
+        # the it-IT geminate-softening and ⟨gu⟩ entries reach them
+        for lang in self.CENTRAL:
+            assert self._t(lang, "faccia") == "fatːʃa", lang
+            assert self._t(lang, "guida") == "ɡwida", lang
+
+    def test_central_varieties_keep_their_own_intervocalic_s(self):
+        # the it-IT intervocalic [z] is the Standard Northern value
+        for lang in self.CENTRAL:
+            assert self._t(lang, "casa") == "kasa", lang
+
+    def test_unparented_varieties_do_not_inherit_it_it_grapheme_entries(self):
+        for lang in self.UNPARENTED:
             assert "tʃ" not in self._t(lang, "faccia"), lang
             assert not self._t(lang, "guida").startswith("ɡw"), lang

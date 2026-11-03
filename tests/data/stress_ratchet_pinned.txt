@@ -275,7 +275,6 @@ pis
 pjt
 pln
 pms
-pnt
 pov
 pox
 ppl

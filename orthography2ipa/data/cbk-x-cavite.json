@@ -20,9 +20,11 @@
       "notes": "Tagalog substrate (Manila Bay area): phonology and grammar."
     }
   ],
+  "graphemes_base": "cbk-zam",
   "graphemes": {},
+  "allophones_base": "cbk-zam",
   "allophones": {},
-  "notes": "Caviteño Chabacano (Chabacano de Cavite), a Manila-Bay Spanish-lexifier creole of Cavite City, Luzon, Philippines — moribund, distinct from Zamboangueño (cbk-zam). STUB WITH NO GRAPHEME TABLE: this spec maps nothing and transcribes every input to the empty string. `parent` records genealogy only and never carries data, so nothing is inherited from cbk-zam, and no `graphemes_base` edge is declared because Zamboangueño's table would be wrong here. Sippola's APiCS description of Cavite Chabacano lists /v/, /ʃ/ and /d͡ʒ/ as phonemes, together with /ʔ/ and /ŋ/ from the Tagalog substrate; the Zamboangueño map has no reading for any of them and reads ⟨v⟩ as [b] (Lipski 1987). The written variety is also unsettled — APiCS describes the documented lect as almost entirely written Cavite Chabacano produced by language activists — so a grapheme map has to be derived from a Manila-Bay description rather than borrowed. Documented differences from Zamboangueño (TMA particles ta/ya/di, Tagalog rather than Visayan substrate) are likewise unencoded.",
+  "notes": "Caviteño Chabacano (Chabacano de Cavite), a Manila-Bay Spanish-lexifier creole of Cavite City, Luzon, Philippines, distinct from Zamboangueño (cbk-zam). Sippola (2013, §4 Phonology) states that the usual orthography is based on Spanish and uses ⟨c, qu⟩ for /k/, ⟨j⟩ for /h/, ⟨y⟩ for /j/ and ⟨ch⟩ for /tʃ/, and transcribes casa as [kása] 'house'. These are the readings of the Spanish-based cbk-zam table, so the spec takes its table over `graphemes_base: cbk-zam` and states no letter of its own. The other letter values (⟨c⟩ and ⟨g⟩ before a front vowel, ⟨ll⟩, ⟨ñ⟩, ⟨r⟩ against ⟨rr⟩, ⟨v⟩ = [b], ⟨z⟩ = [s]) and the non-lenited allophone map are inherited from cbk-zam with no Cavite source that states them. Table 2 has /h/ and no /x/, so the inherited [x] reading of ⟨g⟩ before a front vowel has no phoneme in the inventory; the chapter does not state the value of that ⟨g⟩. The chapter writes hombre 'male' with an etymological ⟨h⟩ and gives no reading for it; ⟨h⟩ keeps the cbk-zam reading [h]. Sippola states that /f/, /v/, /ʃ/ and /dʒ/ occur in loanwords from English; the spelling of those loanwords is not described, so ⟨v⟩ keeps the cbk-zam reading [b]. The close realisation of unstressed and word-final mid vowels that Sippola reports is a variant and is not encoded. Stress is not marked: cbk-zam carries no stress block, and casa against casá is contrastive (Sippola 2013, §4). The described lect is almost entirely written Cavite Chabacano produced by language activists, and there is no standardized orthography (Sippola 2013, §3). The variety is moribund. Documented differences from Zamboangueño (the TMA particles ta, ya and di, and a Tagalog rather than Visayan substrate) are not encoded.",
   "iso639_3": "cbk",
   "glottolog_code": "cavi1254",
   "wikidata_qid": "Q33281",
@@ -34,12 +36,12 @@
       "id": "sippola2013cavite",
       "author": "Sippola, Eeva",
       "year": 2013,
-      "title": "Cavite Chabacano (APiCS Online contribution 45)",
+      "title": "Cavite Chabacano (APiCS survey chapter 45)",
       "publisher": "Atlas of Pidgin and Creole Language Structures Online (APiCS), eds. Michaelis, Maurer, Haspelmath & Huber",
-      "url": "https://apics-online.info/contributions/45",
+      "url": "https://apics-online.info/surveys/45",
       "wikipedia_url": null,
-      "pages": "Consonant inventory including /v ʃ d͡ʒ ʔ ŋ/; five-vowel system /i e a o u/; the described lect is written Cavite Chabacano produced by language activists.",
-      "notes": "Primary descriptive source for the Cavite variety; grapheme map to be derived from it."
+      "pages": "Online survey chapter, §3 Sociolinguistic situation (no standardized orthography; the described lect is written Chabacano by language activists) and §4 Phonology, Table 1 (vowels /i e o u a/) and Table 2 (consonants), with the sentence 'The usual orthography is based on Spanish and uses <c, qu> for /k/, <j> for /h/, <y> for /j/, <ch> for /tʃ/, and so on', and casa [kása] 'house', casá [kasá] 'to marry'. Print chapter: The survey of pidgin and creole languages, vol. 2, Oxford University Press; print page numbers not checked.",
+      "notes": "Primary descriptive source for the variety, and the source of every letter value the spec states or confirms."
     }
   ],
   "timespan": {
