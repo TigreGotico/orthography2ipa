@@ -55,12 +55,11 @@ class TestCaipiraRetroflex:
         r = bare(_g("pt-BR-x-caipira").transcribe_word("caro"))
         assert "ɻ" not in r and "ɾ" in r
 
-    def test_coda_l_default_vocalised_traditional_retroflex_available(self):
-        # Modern caipira vocalises coda /l/ to [w] (sol -> [ˈsow]); the
-        # traditional Amaral §22a rhotacised realisation [ɻ] is retained as a
-        # declared secondary candidate.
-        assert bare(_g("pt-BR-x-caipira").transcribe_word("sol")).endswith("w")
-        assert "ɻ" in get("pt-BR-x-caipira").positional_graphemes["l"]["before_consonant"]
+    def test_coda_l_rhotacised_vocalised_available(self):
+        # Amaral 1920 §22a: coda l 'muda-se em r' (arma); [w] stays the
+        # declared second candidate.
+        assert bare(_g("pt-BR-x-caipira").transcribe_word("sol")).endswith("ɻ")
+        assert "w" in get("pt-BR-x-caipira").positional_graphemes["l"]["before_consonant"]
 
 
 # ─── caipira: coda /s/ laminodental, no chiado (Amaral 1920 §6a) ─────────────
@@ -121,6 +120,8 @@ class TestParanaense:
 @pytest.mark.parametrize("code", ["pt-BR-x-sp", "pt-BR-x-caipira", "pt-BR-x-pr"])
 class TestBaseInheritance:
     def test_coda_l_vocalisation(self, code):
+        if code == "pt-BR-x-caipira":
+            pytest.skip("caipira rhotacises coda /l/ (Amaral 1920 §22a)")
         assert bare(_g(code).transcribe_word("sol")).endswith("w")
 
     def test_a_final_reduction(self, code):
