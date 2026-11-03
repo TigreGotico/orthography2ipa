@@ -175,9 +175,10 @@ _ALIASES: Dict[str, str] = {
     "ajg": "aja",             # Aja (Adja)
     "gej": "gen",             # Gen (Mina)
     "xdc": "xda",             # Dacian/Thracian
-    # ``cbk`` resolved to ``cbk-x-cavite``, a variety spec that declares no
-    # graphemes and inherits none, so the code reached an empty table while
-    # ``cbk-zam`` describes Chavacano with 37 keys and declares the code.
+    "tmg": "cbk-x-ternate",   # Ternateño (Ternate Chabacano)
+    # ``cbk`` resolved to ``cbk-x-cavite``, the Manila-Bay variety, while
+    # ``cbk-zam`` describes Zamboangueño, the main Chavacano variety, and
+    # declares the code. ``cbk-x-cavite`` takes its table from ``cbk-zam``.
     "cbk": "cbk-zam",         # Chavacano (Zamboangueño)
     # ``bar`` resolved to ``bar.json``, a placeholder with no graphemes and no
     # base, while ``de-x-bavarian`` declares the code and inherits a table
