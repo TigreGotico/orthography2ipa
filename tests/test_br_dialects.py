@@ -129,7 +129,7 @@ class TestSP:
 class TestRJ:
     def test_coda_s_palatal_mesmo(self):
         """mesmo -> [ˈmeʒmʊ]: coda /S/ -> [ʒ] before voiced consonant."""
-        assert "ʃ" in bare(_g("pt-BR-x-rj").transcribe_word("mesmo"))
+        assert bare(_g("pt-BR-x-rj").transcribe_word("mesmo")) == "meʒmu"
 
     def test_final_s_palatal_paz(self):
         assert bare(_g("pt-BR-x-rj").transcribe_word("paz")).endswith("ʃ")
@@ -149,7 +149,7 @@ class TestRJ:
 
 class TestFluminense:
     def test_coda_s_palatal(self):
-        assert "ʃ" in bare(_g("pt-BR-x-fluminense").transcribe_word("mesmo"))
+        assert bare(_g("pt-BR-x-fluminense").transcribe_word("mesmo")) == "meʒmu"
 
     def test_palatalisation_present(self):
         assert "t͡ʃ" in bare(_g("pt-BR-x-fluminense").transcribe_word("tia"))
@@ -271,7 +271,8 @@ class TestRecife:
         assert bare(_g("pt-BR-x-recife").transcribe_word("boneca")).startswith("bɔ")
 
     def test_coda_s_palatal(self):
-        assert "ʃ" in bare(_g("pt-BR-x-recife").transcribe_word("mesmo"))
+        assert bare(_g("pt-BR-x-recife").transcribe_word("mesmo")) == "meʒmu"
+        assert "ʃt" in bare(_g("pt-BR-x-recife").transcribe_word("festa"))
 
 
 # ─── pt-BR-x-norte (Amazônico) ──────────────────────────────────────────────
@@ -286,7 +287,8 @@ class TestNorte:
         assert "t͡ʃ" in bare(_g("pt-BR-x-norte").transcribe_word("tia"))
 
     def test_coda_s_palatal(self):
-        assert "ʃ" in bare(_g("pt-BR-x-norte").transcribe_word("mesmo"))
+        assert bare(_g("pt-BR-x-norte").transcribe_word("mesmo")) == "meʒmu"
+        assert "ʃt" in bare(_g("pt-BR-x-norte").transcribe_word("festa"))
 
     def test_l_vocalisation(self):
         assert bare(_g("pt-BR-x-norte").transcribe_word("sol")).endswith("w")
