@@ -344,11 +344,9 @@ def test_br_children_are_found():
 
 @pytest.mark.parametrize("lang", BR_CHILDREN)
 def test_br_child_uses_the_pt_br_syllabifier(lang):
-    # A child reads the pt-BR grapheme table, so it takes the pt-BR syllables:
-    # pac.to, op.ção. The stress gate of BR_EPENTHESIS reads that split.
-    parent = get_syllabifier("pt-BR")
-    assert parent is not None
-    assert get_syllabifier(lang) is parent
+    # A child reads the pt-BR grapheme table, so it takes the pt-BR syllables
+    # from the same syllabifier, whether or not the plugin is installed.
+    assert get_syllabifier(lang) is get_syllabifier("pt-BR")
 
 
 def _assert_epenthesis_words(g2p):
