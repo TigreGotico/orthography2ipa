@@ -63,7 +63,7 @@ These names are public and importable, but no downstream repository uses them. T
 | :--- | :--- |
 | `g2p` | `transcribe`, `TranscriptionResult`, `WordTranscription`, `ConfidenceBreakdown` |
 | `registry` | `resolve`, `resolves_exactly`, `ancestry_chain`, `available_families`, `get_rescorers`, `get_stress_plugin`, `MissingPlugin`, `UnknownVariantWarning` |
-| `lexicon` | `get_lexicon`, `set_lexicon_dir`, `resolve_lexicon_source`, `available_lexicon_codes`, `is_ipa_string` |
+| `lexicon` | `get_lexicon`, `set_lexicon_dir`, `resolve_lexicon_source`, `available_lexicon_codes`, `use_packaged_lexicons`, `packaged_lexicon_sources`, `is_ipa_string` |
 | `types` | `Grapheme2IPA`, `AllophoneMap`, `PositionalGrapheme2IPA`, `Ancestor`, `AncestorRole`, `QualityTier`, `ScriptType`, `OrthographyKind`, `OrthographyStandard`, `Location`, `SandhiRule`, `AllophoneRule`, `StressRules` |
 | `phonetok` | `Token`, `IPAPath`, `GraphemeContext`, `TokenSequence` |
 | `allophony`, `sandhi` | `AllophoneRescorer`, `SandhiEngine` |

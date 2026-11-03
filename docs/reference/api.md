@@ -73,13 +73,15 @@ These are the names `import orthography2ipa` exports, from `orthography2ipa.__al
 
 | Name | Kind | Summary |
 | --- | --- | --- |
-| `available_lexicon_codes` | function | Sorted codes with a registered lexicon, a `{code}.tsv` in the dir, or a packaged default. |
-| `clear_lexicons` | function | Forget every registered lexicon and the lexicon dir. |
+| `available_lexicon_codes` | function | Sorted codes with a registered lexicon, a `{code}.tsv` in the dir, or an enabled packaged one. |
+| `clear_lexicons` | function | Forget every registered lexicon, the lexicon dir and the enabled packaged lexicons. |
 | `get_lexicon` | function | Return the `{word: ipa}` overlay for *code*, or `{}` if none is set. |
 | `is_ipa_string` | function | Return `True` when *ipa* is NFC and contains only IPA characters. |
+| `packaged_lexicon_sources` | function | The installed packaged lexicons, as `{resolved code: local file}`. |
 | `register_lexicon` | function | Register the lexicon *source* to use for language *code*. |
 | `resolve_lexicon_source` | function | Resolve a lexicon *source* to a local file, fetching it if remote. |
 | `set_lexicon_dir` | function | Use *path* as a directory of `{code}.tsv` lexicons (`None` to unset). |
+| `use_packaged_lexicons` | function | Enable the installed packaged lexicons for *codes*, or for all of them. |
 | `validate_lexicon_text` | function | Validate a lexicon TSV body; return a list of `(line_no, reason)`. |
 
 ## `orthography2ipa.phonetok`
