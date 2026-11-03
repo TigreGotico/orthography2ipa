@@ -279,7 +279,7 @@ class TestBasqueBeatEspeakWave:
 
     def _t(self, word):
         from orthography2ipa import G2P
-        return G2P("eu").transcribe(word)
+        return G2P("eu", apply_stress=False).transcribe(word)
 
     def test_spirantization_after_vowel(self):
         assert self._t("egin") == "eɣin"

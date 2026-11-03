@@ -216,7 +216,8 @@ def lattice_per(hyp_ipa: str, ref_text: str, lang: str, *,
     top_distance = f[-1]
 
     # Reading 1: every path through the pre-sandhi sentence lattice.
-    lattice = g2p.sentence_lattice(ref_text, beam_width=beam_width)
+    lattice = g2p.sentence_lattice(ref_text, search="beam",
+                                   beam_width=beam_width)
     slot_candidates: List[List[List[str]]] = []
     for word in lattice:
         if not word.slots:

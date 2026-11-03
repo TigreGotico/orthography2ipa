@@ -5,7 +5,7 @@ Some words cannot be transcribed from their spelling, and no rule can change tha
 ## The precedence ladder
 
 ```
-<phoneme ph="…">  >  spec word_exceptions  >  caller's lexicon  >  the rules
+<phoneme ph="…">  >  spec word_exceptions  >  caller's lexicon  >  enabled packaged lexicon  >  the rules
 ```
 
 | Tier | Scope | Who supplies it |
@@ -13,6 +13,7 @@ Some words cannot be transcribed from their spelling, and no rule can change tha
 | `<phoneme>` markup | One occurrence of a word in the input text | The caller, in the text |
 | `word_exceptions` | A small, closed set of irregular words | The spec author, in the JSON |
 | Lexicon | Thousands of words in a `word<TAB>ipa` file | The caller, by registration |
+| Packaged lexicon | The words the rules get wrong, in a `word<TAB>ipa` file | An installed package, such as `o2i-lexicons`, that the caller enables in code |
 | Rules | Every other word | The spec: graphemes, positional overrides, allophone and stress rules |
 
 Each tier answers the same question: what is the IPA of this word? The stages after it do not depend on which tier answered. Cross-word sandhi still applies, and the word reports `confidence == 1.0`. An entry from `word_exceptions` or from a lexicon also gets the stress mark of the spec. A forced `<phoneme>` reading does not, as the next section explains.
@@ -87,7 +88,7 @@ The field does not scale to thousands of entries. Deep orthographies such as Eng
 
 ## Supplying a lexicon
 
-The package ships no lexicon. A lexicon is a word list, not a description of a language, so it is not part of the payload. The wheel holds only `data/*.json` and `data/SCHEMA.md`, and `available_lexicon_codes()` returns an empty list on a fresh install. The caller supplies a lexicon from a local file, a URL or a Hugging Face dataset:
+The package ships no lexicon. A lexicon is a word list, not a description of a language, so it is not part of the payload. The wheel holds only `data/*.json` and `data/SCHEMA.md`, and `available_lexicon_codes()` returns an empty list on a fresh install, with or without a lexicon package. The caller supplies a lexicon from a local file, a URL or a Hugging Face dataset:
 
 ```python
 import orthography2ipa as o2i
@@ -100,6 +101,39 @@ o2i.set_lexicon_dir("~/lexicons")   # a directory of {code}.tsv files
 The environment variable `ORTHOGRAPHY2IPA_LEXICON_DIR` sets the directory too, and `set_lexicon_dir()` overrides it. A Hugging Face id has the form `hf://<owner>/<repo>/<path>`, with an optional `@<revision>`. The library fetches it from a dataset repository with `huggingface_hub`. A URL or a Hugging Face file downloads once into `$XDG_CACHE_HOME/orthography2ipa/lexicons`, which is `~/.cache/orthography2ipa/lexicons` by default.
 
 `register_lexicon(code, source)` resolves `code` to the spec that `get()` returns for it. So two tags that resolve to the same spec share one slot, and the later registration replaces the earlier one. A file in the lexicon directory belongs to the spec that its name resolves to, so `en.tsv` serves `en-GB`. A file named for the exact resolved code wins over the others. A registered lexicon wins over a file in the directory.
+
+### Packaged lexicons
+
+A package can supply a lexicon for a language. [o2i-lexicons](https://github.com/TigreGotico/o2i-lexicons) is such a package. It holds only the words that the rules get wrong, and each entry records the gold it came from. Install it through the extra:
+
+```bash
+uv pip install 'orthography2ipa[lexicons]'
+```
+
+The install changes no output. The transcription is a function of the spec and the input, never of the environment, so the caller enables a packaged lexicon in code:
+
+```python
+import orthography2ipa as o2i
+o2i.packaged_lexicon_sources()          # {'en-GB': PosixPath('…/wikipron.tsv')}: lists, enables nothing
+o2i.use_packaged_lexicons()             # enable every installed packaged lexicon
+o2i.use_packaged_lexicons(["en-GB"])    # enable only these
+o2i.clear_lexicons()                    # disable them again, with every registration
+```
+
+`use_packaged_lexicons()` raises `LookupError` for a code that no installed package serves. A request for an absent lexicon is an error, not a quiet fall back to the rules.
+
+A provider declares one entry point per language code in the group `orthography2ipa.lexicons`. The entry point loads a callable. The library calls it with the name of the entry point, and the callable returns the path of a local `word<TAB>ipa` file:
+
+```toml
+[project.entry-points."orthography2ipa.lexicons"]
+"en-GB" = "o2i_lexicons:tsv_path"
+```
+
+Only `use_packaged_lexicons()` and `packaged_lexicon_sources()` read the entry points, once per process. Import, `get()` and transcription never read them. The library loads a provider only on the first transcription for its language after the caller enabled it. The name of the entry point must name a registered spec exactly. The library skips an entry point that only a nearest-language guess would place, and it logs a warning. It also logs a warning and uses the rules when a provider raises or returns a path that is not a file.
+
+An enabled packaged lexicon has the lowest rank of the lexicon sources. A lexicon from `register_lexicon()` or from the lexicon directory replaces it for that language. The two lexicons do not merge. When two packages serve one spec, the entry point named for the exact resolved code wins. Then the first by distribution name wins, and the library logs a warning.
+
+The benchmark never enables a packaged lexicon, so the board stays rules-only whatever is installed.
 
 ### The file format
 
@@ -133,9 +167,11 @@ Write the lexicon in the same broad IPA that the `graphemes` of the spec use. Th
 | :--- | :--- | :--- |
 | `register_lexicon(code, source)` | yes | Use `source` as the lexicon for `code` |
 | `set_lexicon_dir(path)` | yes | Use a directory of `{code}.tsv` files, or `None` to unset it |
-| `clear_lexicons()` | yes | Forget every registration and the directory |
+| `clear_lexicons()` | yes | Forget every registration and the directory, and disable the packaged lexicons |
+| `use_packaged_lexicons(codes=None)` | yes | Enable the installed packaged lexicons, for every code or for `codes` |
+| `packaged_lexicon_sources()` | yes | The installed packaged lexicons, as `{code: path}`. Enables nothing |
 | `get_lexicon(code)` | yes | The `{word: ipa}` map for a resolved code, or `{}` |
-| `available_lexicon_codes()` | yes | The registered codes, and the file stems in the directory |
+| `available_lexicon_codes()` | yes | The registered codes, the file stems in the directory, and the enabled packaged codes |
 | `resolve_lexicon_source(source)` | yes | The local file for a source, fetched if remote |
 | `validate_lexicon_text(text)` | yes | The list of problems in a lexicon body |
 | `is_ipa_string(ipa)` | yes | True for an NFC string of IPA characters |

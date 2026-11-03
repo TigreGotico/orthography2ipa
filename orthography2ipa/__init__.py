@@ -58,7 +58,9 @@ from orthography2ipa.lexicon import (
     is_ipa_string,
     register_lexicon,
     resolve_lexicon_source,
+    packaged_lexicon_sources,
     set_lexicon_dir,
+    use_packaged_lexicons,
     validate_lexicon_text,
 )
 from orthography2ipa.phonetok import (
@@ -163,6 +165,8 @@ __all__ = [
     "register_lexicon",
     "clear_lexicons",
     "available_lexicon_codes",
+    "use_packaged_lexicons",
+    "packaged_lexicon_sources",
     "is_ipa_string",
     "validate_lexicon_text",
     "WordContext",
