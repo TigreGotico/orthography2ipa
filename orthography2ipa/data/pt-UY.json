@@ -278,6 +278,60 @@
       "notes": "Switched off. The pt-BR rule of this id describes the São Paulo variety of Barbosa & Albano (2004). No source on the border variety that this spec cites states the process, so the spec keeps its output until one does."
     },
     {
+      "id": "BR_GEMINATE_P",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Switched off with BR_EPENTHESIS, which this rule gates."
+    },
+    {
+      "id": "BR_GEMINATE_B",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Switched off with BR_EPENTHESIS, which this rule gates."
+    },
+    {
+      "id": "BR_GEMINATE_T",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Switched off with BR_EPENTHESIS, which this rule gates."
+    },
+    {
+      "id": "BR_GEMINATE_D",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Switched off with BR_EPENTHESIS, which this rule gates."
+    },
+    {
+      "id": "BR_GEMINATE_C",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Switched off with BR_EPENTHESIS, which this rule gates."
+    },
+    {
+      "id": "BR_GEMINATE_K",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Switched off with BR_EPENTHESIS, which this rule gates."
+    },
+    {
+      "id": "BR_GEMINATE_G",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Switched off with BR_EPENTHESIS, which this rule gates."
+    },
+    {
+      "id": "BR_GEMINATE_F",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Switched off with BR_EPENTHESIS, which this rule gates."
+    },
+    {
+      "id": "BR_GEMINATE_V",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Switched off with BR_EPENTHESIS, which this rule gates."
+    },
+    {
       "id": "BR_EPENTHESIS",
       "phonemes": [],
       "surface": "",

@@ -349,6 +349,14 @@ def test_br_child_uses_the_pt_br_syllabifier(lang):
     assert get_syllabifier(lang) is get_syllabifier("pt-BR")
 
 
+#: Every ⟨ff⟩ loan of the owned board rows' gold entries.
+FF_LOANS = (
+    "buffalo", "buffar", "buffer", "buffet", "buffett", "chiffon", "debuffar",
+    "eiffel", "giraffas", "jefferson", "jeniffer", "knêiffia", "libreoffice",
+    "muffato", "muffins", "office", "openoffice", "tiffany",
+)
+
+
 def _assert_epenthesis_words(g2p):
     # The cluster after the stressed vowel keeps its consonants, and the mark
     # stays on the stressed syllable: pacto [ˈpaktu], not [paˈkitu].
@@ -359,6 +367,11 @@ def _assert_epenthesis_words(g2p):
     # opção [opiˈsɐ̃w̃], adverso [ad͡ʒiˈvɛɾsu] (Barbosa & Albano 2004: 227).
     assert re.fullmatch(r"[oɔu]piˈsɐ̃w̃", g2p.transcribe_word("opção"))
     assert re.match(r"ad(͡ʒ)?iˈv", g2p.transcribe_word("adverso"))
+    # Epenthesis does not apply to geminates (Curioletti & Sandri 2019,
+    # citing Monaretto 1997: 188), so a doubled letter stays unbroken.
+    for word in FF_LOANS:
+        assert re.search(r"f[ˈˌ]?f", g2p.transcribe_word(word)), word
+    assert re.fullmatch(r"bufˈfe.", g2p.transcribe_word("buffer"))
 
 
 @pytest.mark.parametrize("lang", BR_CHILDREN)

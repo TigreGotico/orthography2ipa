@@ -598,6 +598,145 @@
       "notes": "An ⟨r⟩ at the start of a syllable after a coda consonant is the strong rhotic, not the tap: honra [ˈõʁɐ], genro [ˈʒẽʁu], Israel [izʁaˈɛw], desrespeito. Cristófaro Silva (2025: 240): 'Nos demais contextos, o R-forte ocorre sempre em início de sílaba que pode ser: início de sílaba que coincide com início de palavra (rapaz, rio, rosa etc.); início de sílaba em meio de palavra (carro, terra) ou início de sílaba após consoante (Israel, desrespeito etc.).' Cristófaro Silva (2025: 243) names the three consonants: 'uma sibilante (Israel), uma nasal fonológica sem manifestação fonética (honra) ou uma lateral que pode ou não ser vocalizada (guelra)', and reports a tap after the vocalised lateral as an innovation ([ˈgɛʊhɐ] ~ [ˈgɛʊɾɐ]). The rule reads the previous slot's phoneme: the nasal tilde of a coda ⟨m n⟩ or a coda sibilant. The tap of an onset cluster (prato, abraço) and the tap after a diphthong (feira, Europa) are untouched. After a vocalised ⟨l⟩ the spec keeps the tap, the variant Cristófaro Silva reports (guelra, melro). A regional spec with another strong rhotic overrides this rule by id."
     },
     {
+      "id": "BR_GEMINATE_P",
+      "phonemes": [
+        "p"
+      ],
+      "surface": "p",
+      "grapheme": [
+        "p"
+      ],
+      "followed_by_grapheme": [
+        "p"
+      ],
+      "followed_by_phoneme": ["p"],
+      "notes": "Blocks BR_EPENTHESIS between the two halves of a doubled consonant letter, which only loans spell: buffer [bufˈfeɾ], buffet, Zotti, Uppsala. The rule rewrites the first half to itself, and it stands before BR_EPENTHESIS, so the first rule that matches is this one. It names the second half in followed_by_phoneme, so the engine's geminate protection lets it act on the first half. Curioletti & Sandri (2019, Cadernos do IL 59, PDF p. 6): 'Daí decorre a epêntese, que só se aplica em sequências não-homorgânicas, como em capto [kapitu], e não em geminadas subjacentes (carro) ou de superfície (carta) (MONARETTO, 1997, p. 188)'. Monaretto (1997) was not opened. A doubled ⟨t d⟩ is gated before any vowel, because [t t͡ʃ] and [d d͡ʒ] are homorganic. A doubled ⟨c g⟩ is gated only where both letters spell the same stop: ⟨cc⟩ before ⟨e i⟩ is [ks] (occipital) and ⟨gg⟩ before ⟨e i⟩ is [ɡʒ], two non-homorganic obstruents, which the rule still breaks."
+    },
+    {
+      "id": "BR_GEMINATE_B",
+      "phonemes": [
+        "b"
+      ],
+      "surface": "b",
+      "grapheme": [
+        "b"
+      ],
+      "followed_by_grapheme": [
+        "b"
+      ],
+      "followed_by_phoneme": ["b"],
+      "notes": "See BR_GEMINATE_P."
+    },
+    {
+      "id": "BR_GEMINATE_T",
+      "phonemes": [
+        "t"
+      ],
+      "surface": "t",
+      "grapheme": [
+        "t"
+      ],
+      "followed_by_grapheme": [
+        "t"
+      ],
+      "followed_by_phoneme": ["t", "t͡ʃ"],
+      "notes": "See BR_GEMINATE_P."
+    },
+    {
+      "id": "BR_GEMINATE_D",
+      "phonemes": [
+        "d"
+      ],
+      "surface": "d",
+      "grapheme": [
+        "d"
+      ],
+      "followed_by_grapheme": [
+        "d"
+      ],
+      "followed_by_phoneme": ["d", "d͡ʒ"],
+      "notes": "See BR_GEMINATE_P."
+    },
+    {
+      "id": "BR_GEMINATE_C",
+      "phonemes": [
+        "k"
+      ],
+      "surface": "k",
+      "grapheme": [
+        "c"
+      ],
+      "followed_by_grapheme": [
+        "c"
+      ],
+      "followed_by_phoneme": [
+        "k"
+      ],
+      "notes": "See BR_GEMINATE_P."
+    },
+    {
+      "id": "BR_GEMINATE_K",
+      "phonemes": [
+        "k"
+      ],
+      "surface": "k",
+      "grapheme": [
+        "k"
+      ],
+      "followed_by_grapheme": [
+        "k"
+      ],
+      "followed_by_phoneme": ["k"],
+      "notes": "See BR_GEMINATE_P."
+    },
+    {
+      "id": "BR_GEMINATE_G",
+      "phonemes": [
+        "ɡ"
+      ],
+      "surface": "ɡ",
+      "grapheme": [
+        "g"
+      ],
+      "followed_by_grapheme": [
+        "g"
+      ],
+      "followed_by_phoneme": [
+        "ɡ"
+      ],
+      "notes": "See BR_GEMINATE_P."
+    },
+    {
+      "id": "BR_GEMINATE_F",
+      "phonemes": [
+        "f"
+      ],
+      "surface": "f",
+      "grapheme": [
+        "f"
+      ],
+      "followed_by_grapheme": [
+        "f"
+      ],
+      "followed_by_phoneme": ["f"],
+      "notes": "See BR_GEMINATE_P."
+    },
+    {
+      "id": "BR_GEMINATE_V",
+      "phonemes": [
+        "v"
+      ],
+      "surface": "v",
+      "grapheme": [
+        "v"
+      ],
+      "followed_by_grapheme": [
+        "v"
+      ],
+      "followed_by_phoneme": ["v"],
+      "notes": "See BR_GEMINATE_P."
+    },
+    {
       "id": "BR_EPENTHESIS",
       "phonemes": [
         "p",
