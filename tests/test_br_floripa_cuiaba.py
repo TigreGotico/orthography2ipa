@@ -33,6 +33,14 @@ def test_floripa_preconsonantal_s_palatal():
     assert "ʃt" in transcribe("festa", FLORIPA)
 
 
+# Brescancini (2015: 76): "[s] ou [S] antes de consoante surda ou pausa e [z] ou
+# [Z] antes de consoante sonora" (me[Z]mo). The palatal coda voices before a
+# voiced consonant and stays voiceless before a voiceless one.
+@pytest.mark.parametrize("word, expected", [("mesmo", "ˈmeʒmu"), ("desde", "ˈdeʒdi"), ("Lisboa", "liʒˈboɐ")])
+def test_floripa_palatal_coda_voices_before_voiced_consonant(word, expected):
+    assert transcribe(word, FLORIPA) == expected
+
+
 def test_floripa_plural_after_stop_is_raised_and_palatal():
     assert transcribe("dentes", FLORIPA) == "ˈdẽtiʃ"
 
@@ -68,6 +76,13 @@ def test_cuiaba_coda_s_palatal(word, expected):
     assert transcribe(word, CUIABA) == expected
 
 
+# Almeida (2004: 154): "O recuo do ponto de articulação também ocorre com a
+# sonora [z] > [Z]": [»raZga] rasga, [»vaZa] várzea.
+@pytest.mark.parametrize("word, expected", [("rasga", "ˈraʒɡɐ"), ("mesmo", "ˈmeʒmu"), ("desde", "ˈdeʒdi")])
+def test_cuiaba_palatal_coda_voices_before_voiced_consonant(word, expected):
+    assert transcribe(word, CUIABA) == expected
+
+
 def test_cuiaba_festas_two_palatal_codas_no_affricate():
     got = transcribe("festas", CUIABA)
     assert got.count("ʃ") == 2 and "t͡ʃ" not in got
@@ -95,4 +110,11 @@ def test_cuiaba_coda_r_retroflex(word):
 # is not a rhotic and stays.
 @pytest.mark.parametrize("word, expected", [("fazer", "faˈze"), ("casar", "kaˈza")])
 def test_cuiaba_final_r_drops(word, expected):
+    assert transcribe(word, CUIABA) == expected
+
+
+# The strong /R/ is the trill (pp. 158-159) in every R-forte context, after a
+# coda consonant too (Cristófaro Silva 2025: 240).
+@pytest.mark.parametrize("word, expected", [("honra", "ˈõrɐ"), ("genro", "ˈd͡ʒẽru")])
+def test_cuiaba_strong_r_after_coda_is_trill(word, expected):
     assert transcribe(word, CUIABA) == expected

@@ -154,6 +154,31 @@
       "notes": "Voiced counterpart of CUIABA_CODA_S. Almeida (2004: 154): 'O recuo do ponto de articulação também ocorre com a sonora [z] > [Z]'."
     },
     {
+      "id": "BR_CODA_SH_VOICED",
+      "phonemes": [
+        "ʃ"
+      ],
+      "surface": "ʒ",
+      "syllable_position": "coda",
+      "followed_by_phoneme": [
+        "b",
+        "d",
+        "ɡ",
+        "v",
+        "z",
+        "ʒ",
+        "d͡ʒ",
+        "m",
+        "n",
+        "ɲ",
+        "l",
+        "ʎ",
+        "ɾ",
+        "ʁ"
+      ],
+      "notes": "The palatal coda /S/ takes the voicing of a following voiced consonant: mesmo [ˈmeʒmu], rasga [ˈraʒɡɐ]. Almeida (2004: 154): 'O recuo do ponto de articulação também ocorre com a sonora [z] > [Z]', with [»raZga] rasga and [»vaZa] várzea. The rule runs in the second pass, after CUIABA_CODA_S has written the coda as [ʃ]."
+    },
+    {
       "id": "CUIABA_FINAL_R_DELETION",
       "phonemes": [
         "ɻ",
@@ -165,6 +190,21 @@
       ],
       "word_final": true,
       "notes": "Word-final /R/ drops: 'Quando temos /R/ em final de vocábulo, a tendência é ocorrer o apagamento da consoante: [fa»ze] fazer, [ka»za] casar, [mu»¥E] mulher' (Almeida 2004: 159). The rate is below 100 %, and slow speech keeps a retroflex."
+    },
+    {
+      "id": "BR_STRONG_R_AFTER_CODA",
+      "phonemes": [
+        "ɾ"
+      ],
+      "surface": "r",
+      "preceded_by_phoneme": [
+        "̃",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ"
+      ],
+      "notes": "An ⟨r⟩ after a coda consonant is the strong rhotic, the trill of rapaz and burro (Almeida 2004: 158-159): honra [ˈõrɐ], genro [ˈd͡ʒẽru]. Cristófaro Silva (2025: 240) puts the R-forte in one class across three contexts: 'início de sílaba que coincide com início de palavra (rapaz, rio, rosa etc.); início de sílaba em meio de palavra (carro, terra) ou início de sílaba após consoante (Israel, desrespeito etc.)'."
     }
   ],
   "location": {

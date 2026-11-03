@@ -26,13 +26,13 @@ The stops /t d/ stay stops before /i/. Almeida (2004: 151-152) finds an *"articu
 
 The palatal fricatives are often affricates. The fricatives *"comumente são pronunciadas, respectivamente, como africadas surda /tS/ e sonora /dZ/"* (pp. 154-155), as in *chegar*, *peixe*, *gente* and *hoje* (p. 155). The rules `CUIABA_AFFRIC_SH` and `CUIABA_AFFRIC_ZH` apply in the onset: `chegar` [t͡ʃeˈɡa], `puxa` [ˈput͡ʃɐ], `gente` [ˈd͡ʒẽti], `hoje` [ˈod͡ʒi].
 
-A coda /S/ is palato-alveolar, *"principalmente quando se encontra em final de vocábulo"* (p. 153). The rules `CUIABA_CODA_S` and `CUIABA_CODA_Z` give [ʃ ʒ] in the coda. A coda [ʃ] is not an onset, so it does not become an affricate: `mas` [ˈmaʃ], `três` [ˈtɾeʃ], `dez` [ˈdɛʃ].
+A coda /S/ is palato-alveolar, *"principalmente quando se encontra em final de vocábulo"* (p. 153). The rules `CUIABA_CODA_S` and `CUIABA_CODA_Z` give [ʃ ʒ] in the coda. A coda [ʃ] is not an onset, so it does not become an affricate: `mas` [ˈmaʃ], `três` [ˈtɾeʃ], `dez` [ˈdɛʃ]. *"O recuo do ponto de articulação também ocorre com a sonora [z] > [Z]"* (p. 154), as in *rasga* and *várzea*. The rule `BR_CODA_SH_VOICED` gives [ʒ] before a voiced consonant: `rasga` [ˈraʒɡɐ], `mesmo` [ˈmeʒmu].
 
 A coda /l/ is retroflex: *"Travando sílaba ou em final de vocábulo, a tendência é pela realização da retroflexa"* (p. 157). The positional map gives [ɻ] first and [w] second: `mal` [ˈmaɻ], `igual` [iˈɡwaɻ].
 
 A coda /R/ is also retroflex, *"como se pode observar no chamado dialeto caipira brasileiro"* (p. 159): `porto` [ˈpoɻtu], `curva` [ˈkuɻvɐ]. A word-final /R/ tends to drop (p. 159), and the rule `CUIABA_FINAL_R_DELETION` deletes it: `fazer` [faˈze], `casar` [kaˈza]. The rule reads the grapheme ⟨r⟩, so a final retroflex /l/ stays.
 
-A word-initial ⟨r⟩ and ⟨rr⟩ are the trill [r], with the velar [x] as the other form (pp. 158-159): `rapaz` [raˈpaʃ], `burro` [ˈburu].
+A word-initial ⟨r⟩ and ⟨rr⟩ are the trill [r], with the velar [x] as the other form (pp. 158-159): `rapaz` [raˈpaʃ], `burro` [ˈburu]. After a coda consonant the rhotic is the same R-forte (Cristófaro Silva 2025: 240), and the rule `BR_STRONG_R_AFTER_CODA` gives the trill: `honra` [ˈõrɐ], `genro` [ˈd͡ʒẽru].
 
 | Spelling | IPA | Feature |
 |:---|:---|:---|
@@ -40,6 +40,7 @@ A word-initial ⟨r⟩ and ⟨rr⟩ are the trill [r], with the velar [x] as the
 | `chegar` | t͡ʃeˈɡa | ⟨ch⟩ gives [t͡ʃ], final /R/ drops |
 | `hoje` | ˈod͡ʒi | ⟨j⟩ gives [d͡ʒ] |
 | `mas` | ˈmaʃ | word-final /S/ gives [ʃ] |
+| `rasga` | ˈraʒɡɐ | coda /S/ gives [ʒ] before a voiced consonant |
 | `mal` | ˈmaɻ | coda /l/ gives [ɻ] |
 | `porto` | ˈpoɻtu | coda /R/ gives [ɻ] |
 | `rapaz` | raˈpaʃ | strong /R/ is the trill [r] |
@@ -64,6 +65,7 @@ No board gold exists for this variety. So the correctness of the spec rests on o
 
 - Almeida, Manoel Mourivaldo Santiago (2004). "As consoantes do português falado no Vale do Cuiabá". *Signum: Estudos da Linguagem* (UEL) 7(1), 149-163. <https://ojs.uel.br/revistas/uel/index.php/signum/article/download/3880/3119/13043>
 - Battisti, Elisa & Dornelles Filho, Adalberto Ayjara (2015). "Análise em tempo real da palatalização de /t/ e /d/ no português falado em uma comunidade ítalo-brasileira". *Revista da ABRALIN* 14(1), 221-246. <https://revista.abralin.org/index.php/abralin/article/download/1239/1162/549>
+- Cristófaro Silva, Thaïs (2025). "A Representação Fonológica dos Róticos no Português Brasileiro". *Caligrama* 30(3), 238-254. <https://doi.org/10.35699/2238-3824.2025.61138>
 
 ---
 [← Florianópolis Portuguese](pt-BR-x-floripa.md) · [Home](../index.md) · [Angolan Portuguese →](pt-AO.md)
