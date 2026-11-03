@@ -11,7 +11,7 @@ from orthography2ipa.registry import UnknownVariantWarning
 @pytest.mark.parametrize("tag, chosen, discarded", [
     ("gmh-x-typo123", "gmh", "typo123"),
     # The default-region ruling: a bare tag goes to the region where the
-    # language first appeared, so pt reads pt-PT (ovos-spec-tools 1.17.0a1).
+    # language first appeared, so pt reads pt-PT.
     ("pt-x-doesnotexist", "pt-PT", "doesnotexist"),
     ("pt-TL-x-dili", "pt-TL", "dili"),
     ("en-gb-x-rp", "en-GB", "rp"),
