@@ -185,7 +185,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | be | wikipron | 7229 | 0.0064 | - | - | 0.0064 | 0.0064 | 0.9521 | 0.9521 | [0.0057, 0.0072] | 0.9519 | research | crowd-scraped |
 | bg | vox_communis | 18447 | 0.1980‡ | - | - | 0.1980 | 0.1980 | 0.1935 | 0.1935 | [0.1959, 0.1998] | 0.1935 | research | epitran-derived |
 | bjb | wikipron | 136 | 0.1021 | - | - | 0.1021 | 0.1021 | 0.5956 | 0.5956 | [0.0773, 0.1261] | 0.5956 | research | crowd-scraped |
-| bn | vox_communis | 30261 | 0.2051‡ | · | - | 0.1997 | 0.1996 | 0.1874 | 0.1874 | [0.2031, 0.2070] | 0.1874 | research | epitran-derived |
+| bn | vox_communis | 30261 | 0.1581‡ | - | - | 0.1527 | 0.1526 | 0.2920 | 0.2920 | [0.1563, 0.1597] | 0.2920 | research | epitran-derived |
 | bn | wikipron | 6527 | 0.2395 | - | 0.2274† (inherent_vowel_word_final_quality) | 0.2036 | 0.2012 | 0.2798 | 0.2827 | [0.2345, 0.2445] | 0.2404 | research | crowd-scraped |
 | bo | wikipron | 1564 | 0.3871 | - | - | 0.3806 | 0.3803 | 0.2174 | 0.2174 | [0.3683, 0.4061] | 0.2174 | research | crowd-scraped |
 | br | wikipron | 803 | 0.3073 | - | 0.1726† (the /r/~/ʁ/ realisation difference, contingent vowel nasalisation, and the close/open ⟨e⟩ contrast) | 0.2237 | 0.2083 | 0.2354 | 0.2615 | [0.2936, 0.3207] | 0.1233 | research | crowd-scraped |
