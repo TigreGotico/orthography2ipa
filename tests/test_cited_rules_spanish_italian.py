@@ -71,12 +71,15 @@ def test_latam_stub_seseo(code):
     assert _bare("es-ES", "cielo").startswith("θ")
 
 
-# The two highland varieties that resist the merger: NW Argentina keeps /ʎ/
-# distinct (ll-retention) and highland Andean Ecuador is zheísta (⟨ll⟩ = [ʒ]).
-# Both are still seseante, so they stay in LATAM_STUBS above but out of the
-# yeísmo cohort here.
+# The varieties outside the /ʝ/ merger: north-western and north-eastern
+# Argentina keep /ʎ/ distinct (ll-retention), highland Andean Ecuador is
+# zheísta (⟨ll⟩ = [ʒ]), and central and southern Argentina merge ⟨ll⟩ and ⟨y⟩
+# into the Rioplatense [ʃ] (Lipski 2018, p. 502). All are still seseante, so
+# they stay in LATAM_STUBS above but out of the yeísmo cohort here.
 YEISTA_STUBS = [c for c in LATAM_STUBS
-                if c not in ("es-AR-x-norte", "es-EC-x-andino")]
+                if c not in ("es-AR-x-norte", "es-AR-x-litoral",
+                             "es-EC-x-andino", "es-AR-x-cordoba",
+                             "es-AR-x-cuyo", "es-AR-x-patagonia")]
 
 
 @pytest.mark.parametrize("code", YEISTA_STUBS)
@@ -107,17 +110,17 @@ def test_es_mx_yucatan_seseo_against_parent():
     assert _bare("es-MX", "cielo").startswith("θ")
 
 
-def test_es_ar_litoral_yeismo_against_parent_sheismo():
-    """The Litoraleño stub models only the Lipski yeísmo baseline, not Rioplatense šeísmo.
+def test_es_ar_litoral_keeps_lateral_against_parent_sheismo():
+    """North-eastern Argentina keeps /ʎ/, against the Rioplatense [ʃ] of es-AR.
 
-    es-AR-x-litoral notes: "Only the pan-Latin-American baseline (seseo:
-    c/z->/s/, yeismo: ll->/ʝ/; Lipski 1994) is modelled here; the
-    dialect-specific phonology is deliberately not yet described (stub tier)."
+    Lipski (2011, p. 5): "In Latin America, the phoneme /ʎ/ is maintained in
+    all regional and social dialects of Paraguay and Bolivia, and in
+    neighboring areas of northeastern and northwestern Argentina."
 
     Same word, dialect vs parent: es-AR realises ⟨ll⟩ as the Rioplatense [ʃ];
-    the stub, by its own declaration, resets to the baseline [ʝ].
+    the Litoraleño stub keeps the lateral.
     """
-    assert "ʝ" in _bare("es-AR-x-litoral", "pollo")
+    assert "ʎ" in _bare("es-AR-x-litoral", "pollo")
     assert "ʃ" in _bare("es-AR", "pollo")
 
 

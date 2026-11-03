@@ -12,7 +12,7 @@
       "s"
     ],
     "ll": [
-      "ʝ"
+      "ʃ"
     ]
   },
   "allophones_base": "es-ES",
@@ -30,7 +30,7 @@
   },
   "positional_graphemes_base": "es-ES",
   "parent": "es-ES",
-  "notes": "Uruguayan Spanish. Rioplatense base: žeísmo/šeísmo for ⟨ll⟩/⟨y⟩ (devoicing trend toward [ʃ] in younger speakers). Less extreme than Buenos Aires in some features. Border dialects show Portuguese influence (DPU — Dialectos Portugueses del Uruguay).",
+  "notes": "Uruguayan Spanish. Rioplatense base: žeísmo/šeísmo for ⟨ll⟩/⟨y⟩ (devoicing trend toward [ʃ] in younger speakers). Less extreme than Buenos Aires in some features. Border dialects show Portuguese influence (DPU — Dialectos Portugueses del Uruguay). ⟨LL⟩ AND ⟨Y⟩: both are [ʃ] before a vowel (calle [ˈkaʃe], yo [ˈʃo]). Lipski (2018, p. 502): «In most of Argentina and Uruguay, /j/ has traditionally been realized as a voiced fricative, [ʒ], but devoicing to [ʃ] has extended from Buenos Aires and Montevideo to much of the remaining territory.» The devoiced [ʃ] is the value that sentence gives for the present-day spread; [ʒ] is the older value.",
   "quality": "skeleton",
   "script_type": "alphabet",
   "sources": [
@@ -64,6 +64,16 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "lipski2018_dialects",
+      "author": "Lipski, John M.",
+      "year": 2018,
+      "title": "Dialects of Spanish and Portuguese",
+      "publisher": "In C. Boberg, J. Nerbonne & D. Watt (eds.), The Handbook of Dialectology, ch. 30, Wiley-Blackwell",
+      "url": null,
+      "pages": "p. 502",
+      "notes": "READ (papers/iberian/lipski_dialects-spanish-portuguese-chapter.pdf). p. 502: «In most of Argentina and Uruguay, /j/ has traditionally been realized as a voiced fricative, [ʒ], but devoicing to [ʃ] has extended from Buenos Aires and Montevideo to much of the remaining territory.»"
     }
   ],
   "wikipedia": [
@@ -76,6 +86,16 @@
   },
   "glottolog_code": null,
   "iso639_3": "spa",
+  "positional_graphemes": {
+    "y": {
+      "before_vowel": [
+        "ʃ"
+      ],
+      "default": [
+        "i"
+      ]
+    }
+  },
   "wikidata_qid": "Q4477330",
   "location": {
     "latitude": -34.905917,
