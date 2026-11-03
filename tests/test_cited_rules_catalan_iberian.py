@@ -440,7 +440,9 @@ def test_ext_word_final_d_is_deleted():
     """Extremaduran notes: "(5) WORD-FINAL /d/ → [∅]: verdad [berˈdá] (complete
     elision more frequent than standard Castilian [ð])."
     """
-    assert bare("ext", "verdad") == "beɾda"
+    # The /d/ after /ɾ/ is the spirant inherited from es-ES (Navarro Tomás
+    # 1918, § 101); only the final /d/ is at issue here.
+    assert bare("ext", "verdad") == "beɾða"
 
 
 def test_ext_yeismo():
