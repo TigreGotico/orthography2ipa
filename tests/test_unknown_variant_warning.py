@@ -10,7 +10,7 @@ from orthography2ipa.registry import UnknownVariantWarning
 
 @pytest.mark.parametrize("tag, chosen, discarded", [
     ("gmh-x-typo123", "gmh", "typo123"),
-    ("pt-x-doesnotexist", "pt-AO", "doesnotexist"),
+    ("pt-x-doesnotexist", "pt-PT", "doesnotexist"),
     ("pt-TL-x-dili", "pt-TL", "dili"),
     ("en-gb-x-rp", "en-GB", "rp"),
     ("pt-PT-X-typo", "pt-PT", "typo"),

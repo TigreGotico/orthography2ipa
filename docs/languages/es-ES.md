@@ -1,9 +1,9 @@
 # Spanish (Castilian) (`es-ES`)
 
 Standard Peninsular Castilian Spanish per the Real Academia Española
-(RAE). The bare tag `es` resolves to this reference variety in the
-registry (`_BARE_DEFAULTS`). Latin-American varieties are separate specs
-under `es-419` and country tags.
+(RAE). The bare tag `es` resolves to this reference variety, because
+Spain is the default region of `es`. Latin-American varieties are
+separate specs under `es-419` and country tags.
 
 ## Orthographic depth and production threshold
 

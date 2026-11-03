@@ -42,10 +42,10 @@ A clade node is for classification only. It carries no phoneme data, no spec inh
 1. The alias table `_ALIASES`, which holds ISO 639-3 codes and private-use tags that `langcodes` does not round-trip.
 2. `langcodes.standardize_tag(code, macro=True)`, for a code with no private-use subtag. The result goes through the alias table again.
 3. An exact match against the registered spec codes. A private-use tag also matches without regard to case, so `ars-sa-x-qassim` finds `ars-SA-x-qassim`.
-4. A curated default variant for a bare language tag or for a region that has only sub-regional specs.
-5. The nearest registered code by language distance (`ovos_spec_tools.language.closest_lang`), so `en-NZ` gives `en-GB`. With no usable match, the code stays as it is, and `get()` raises `KeyError`.
+4. For a bare language tag, the spec of its default region (`linguatag.with_default_region`), when that spec is registered. For a region that has only sub-regional specs, a curated default variant.
+5. The nearest registered code by language distance (`linguatag.closest_lang`), so `en-NZ` gives `en-GB`. A private-use subtag counts for nothing in the distance, so an unknown variant ties with the sibling lects of its language. The call passes `lects="standard"`, which breaks the tie toward the standard variety: `arb-x-zzz` gives `ar`, not an Arabic dialect. With no usable match, the code stays as it is, and `get()` raises `KeyError`.
 
-The curated defaults steer the unmarked form of a language to its reference variety. Without them, `langcodes` sends a bare tag to the region with the most speakers, such as `pt` to `pt-BR`.
+The default region of a bare tag is its motherland, the region where the language first appeared and is still spoken. `linguatag` takes it from CLDR likely subtags and overrides CLDR where the most-populous region differs, so `pt` goes to `pt-PT` and not to `pt-BR`.
 
 | Code | Resolves to |
 | :--- | :--- |
@@ -57,7 +57,7 @@ The curated defaults steer the unmarked form of a language to its reference vari
 | `it` | `it-IT` |
 | `pt` | `pt-PT` |
 | `ro` | `ro-RO` |
-| `ar-SA` | `ars-SA` |
+| `ar-SA` | `ars-SA` (curated) |
 
 The `ar-SA` default is an editorial choice, not a claim in the spec data. Saudi Arabia has several documented varieties, Najdi and Hejazi among them, and no single standard spoken form. `ar-SA` goes to Najdi, the variety of the capital region and the most widely spoken (Ingham, *Najdi Arabic*, 1994).
 

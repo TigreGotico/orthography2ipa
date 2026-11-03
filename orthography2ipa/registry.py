@@ -8,7 +8,7 @@ from functools import lru_cache
 from importlib.metadata import entry_points
 from typing import TYPE_CHECKING, Dict, List, Optional
 
-from ovos_spec_tools.language import closest_lang
+from linguatag import closest_lang, with_default_region
 
 from orthography2ipa.json_loader import available_json_codes, load_json_spec
 from orthography2ipa.types import LanguageSpec
@@ -208,6 +208,12 @@ _ALIASES: Dict[str, str] = {
     "gl-x-oriental": "gl-ES-x-oriental",
     "gl-x-eonavia": "gl-ES-x-eonavia",
     "gl-x-reintegrado": "gl-ES-x-reintegrado",
+    # The Cantonese spec reads Han text in either script. A bare ``yue`` is
+    # mainland Cantonese in Simplified script, so the Hong Kong, Macau and
+    # Traditional tags are too far from it to match without these.
+    "yue-HK": "yue",
+    "yue-MO": "yue",
+    "yue-Hant": "yue",
 }
 
 #: The keys a spec had before it took its canonical key, mapped to that key.
@@ -253,22 +259,6 @@ _RENAMED: Dict[str, str] = {
 }
 _ALIASES.update(_RENAMED)
 
-# Default variant for a bare primary-language tag whose specs are all
-# regional. ``langcodes`` resolves a bare tag towards its most-populous
-# region (``pt`` → ``pt-BR``); the unmarked form of a language should
-# resolve to its reference variety instead, matching the ISO 639-3
-# aliases above (``por`` → ``pt-PT``, ``eng`` → ``en-GB``).
-_BARE_DEFAULTS: Dict[str, str] = {
-    "de": "de-DE",
-    "en": "en-GB",
-    "es": "es-ES",
-    "fr": "fr-FR",
-    "gl": "gl-ES",
-    "it": "it-IT",
-    "pt": "pt-PT",
-    "ro": "ro-RO",
-}
-
 # Default variety for a region tag whose specs are all sub-regional, so a bare
 # region has no exact spec and langcodes' nearest match would pick whichever
 # private-use sibling sorts first. This is an explicit editorial convention,
@@ -298,8 +288,9 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
     2. ``langcodes.standardize_tag()`` when the library is available and the
        code is not a private-use subtag (``x-`` extension).
     3. Exact match against the registered spec codes.
-    4. Curated default variant for a bare primary-language tag
-       (``pt`` → ``pt-PT``) or a region tag with only sub-regional specs
+    4. The default region of a bare primary-language tag, when that
+       spec is registered (``pt`` → ``pt-PT``), or the curated default
+       variant of a region tag with only sub-regional specs
        (``ar-SA`` → ``ars-SA``).
     5. Nearest registered code by language distance
        (``en-NZ`` → ``en-GB``); no usable match leaves *code* unchanged.
@@ -329,13 +320,17 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
         for known in available:
             if known.lower() == folded:
                 return known
-    if code in _BARE_DEFAULTS:
-        return _BARE_DEFAULTS[code]
+    # A bare tag names its motherland variety, not the most-populous region
+    # langcodes would pick: ``pt`` is ``pt-PT``, not ``pt-BR``.
+    if "-" not in code and (default := with_default_region(code)) in available:
+        return default
     if code in _REGION_DEFAULTS:
         return _REGION_DEFAULTS[code]
     if not allow_nearest:
         return code
-    match = closest_lang(code, sorted({*available, *_RENAMED}))
+    # An unknown variant falls back to the standard variety, not to whichever
+    # sibling lect ties with it: private use counts for nothing in the distance.
+    match = closest_lang(code, sorted({*available, *_RENAMED}), lects="standard")
     if match:
         match = _RENAMED.get(match, match)
         _LOG.debug("resolved language code %r to nearest registered %r",
@@ -347,8 +342,8 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
 def resolves_exactly(code: str) -> bool:
     """True when *code* names a spec without nearest-language guessing.
 
-    Alias tables, case folding, BCP-47 standardization and the curated bare-tag
-    defaults all name a spec deliberately; ``closest_lang`` guesses. This
+    Alias tables, case folding, BCP-47 standardization and the default region
+    of a bare tag all name a spec deliberately; ``closest_lang`` guesses. This
     separates the two, so a caller can tell "this code is registered" from
     "something vaguely like it is".
     """
@@ -359,7 +354,7 @@ def resolve(code: str) -> str:
     """Return the registered spec code that *code* resolves to.
 
     Applies the same normalisation as :func:`get` — alias tables,
-    BCP-47 standardization, curated bare-tag defaults and
+    BCP-47 standardization, the default region of a bare tag and
     nearest-language matching — without loading the spec. A code with
     no usable resolution is returned unchanged (so :func:`get` raises
     ``KeyError`` for it). A private-use (``-x-``) tag that names no spec
@@ -377,8 +372,8 @@ def get(code: str, strict: bool = False) -> LanguageSpec:
         code: BCP-47 language code (e.g. ``'en'``, ``'pt-BR'``) or
               ISO 639-3 three-letter code (e.g. ``'eng'``, ``'por'``).
         strict: refuse nearest-language guessing. Aliases, case folding,
-            BCP-47 standardization and the curated bare-tag defaults still
-            apply — those name a spec deliberately. What is refused is
+            BCP-47 standardization and the default region of a bare tag
+            still apply — those name a spec deliberately. What is refused is
             ``closest_lang``, which answers an unregistered code with the
             nearest thing it can find.
 
