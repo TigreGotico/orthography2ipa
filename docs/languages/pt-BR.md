@@ -42,7 +42,7 @@ The *chiado* (coda /s/ to [ʃ]) belongs to Rio de Janeiro and some other regions
 | `BR_EPENTHESIS` | [i] breaks two obstruents before an unstressed syllable | `advogado` [ad͡ʒivoˈɡadu], `absurdo` [abiˈsuɾdu] |
 | `BR_RAISE_FINAL_E`, `BR_RAISE_FINAL_O` | final [ɪ ʊ] give [i u] | `leite` [ˈlejt͡ʃi], `gato` [ˈɡatu] |
 | `BR_RAISE_FINAL_ES`, `BR_RAISE_FINAL_OS` | unstressed ⟨e o⟩ give [i u] before a final ⟨-s⟩ | `leites` [ˈlejt͡ʃis], `gatos` [ˈɡatus] |
-| `BR_REDUCE_FINAL_AS` | unstressed ⟨a⟩ gives [ɐ] before a final ⟨-s⟩ (Barbosa & Albano 2004: 229-230) | `casas` [ˈkazɐs], `festas` [ˈfestɐs] |
+| `BR_REDUCE_FINAL_AS` | post-stressed ⟨a⟩ gives [ɐ] before a final ⟨-s⟩ (Barbosa & Albano 2004: 229-230); the clitics `as` and `às` keep [a] | `casas` [ˈkazɐs], `festas` [ˈfestɐs] |
 | `BR_AFFRIC_T_RAISED`, `BR_AFFRIC_D_RAISED` | /t d/ give [t͡ʃ d͡ʒ] before a raised [i ɪ] | `dente` [ˈdẽt͡ʃi], `tarde` [ˈtaɾd͡ʒi] |
 | `BR_FINAL_EM_GLIDE`, `BR_FINAL_ENS_GLIDE` | final ⟨-em -en -ens⟩ give the diphthong [ẽj̃] | `bem` [ˈbẽj̃], `hífen` [ˈifẽj̃], `homens` [ˈõmẽj̃s] |
 | `BR_FINAL_AM_GLIDE` | final ⟨-am⟩ gives [ɐ̃w̃] | `falam` [ˈfalɐ̃w̃] |
@@ -93,7 +93,7 @@ A coda /S/ "tends to assimilate the voicing of the following sound" (Barbosa & A
 
 After a coda consonant, /r/ is the strong rhotic, not the tap (Cristófaro Silva 2025: 240, 243: honra, Israel, desrespeito). `BR_STRONG_R_AFTER_CODA` gives `honra` [ˈõʁɐ] and `genro` [ˈʒẽʁu]. A tap in an onset cluster stays a tap (`três` [ˈtɾes]).
 
-"BP exhibits vowel epenthesis, breaking most two-obstruent sequences", and "the epenthetic vowel is always [i] or [ɪ]" (Barbosa & Albano 2004: 227). The rate depends on the position: 69 % pretonic and 24 % post-tonic in the southern capitals (Collischonn 2004: 67). `BR_EPENTHESIS` inserts [i] only before an unstressed syllable that follows (`advogado` [ad͡ʒivoˈɡadu], `obter` [obiˈteɾ]). After a stressed vowel the cluster stays (`pacto` [ˈpaktu], `ritmo` [ˈʁitmu]). The stress mark counts syllables, so a vowel inserted after the stressed syllable would move it.
+"BP exhibits vowel epenthesis, breaking most two-obstruent sequences", and "the epenthetic vowel is always [i] or [ɪ]" (Barbosa & Albano 2004: 227). The rate depends on the position: 69 % pretonic and 24 % post-tonic in the southern capitals (Collischonn 2004: 67). `BR_EPENTHESIS` inserts [i] only before an unstressed syllable that follows (`advogado` [ad͡ʒivoˈɡadu], `obter` [obiˈteɾ]). After a stressed vowel the cluster stays (`pacto` [ˈpaktu], `ritmo` [ˈʁitmu]). The stress mark counts syllables, so a vowel inserted after the stressed syllable would move it. The regional `pt-BR-x-*` specs take the `pt-BR` syllables, so the rule reads the same split there (`pac.to`, `op.ção`).
 
 ## Sibilants, digraphs and ⟨w⟩
 

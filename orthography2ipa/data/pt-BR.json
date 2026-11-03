@@ -664,13 +664,14 @@
         "a"
       ],
       "surface": "ɐ",
-      "stress": "unstressed",
+      "stress": "posttonic",
+      "requires_other_nucleus": true,
       "followed_by_phoneme": [
         "s",
         "ʃ"
       ],
       "followed_by_2": "word_boundary",
-      "notes": "Unstressed final /a/ before the plural or verbal ⟨-s⟩ is [ɐ], as it is word-finally without the ⟨s⟩ (casa [ˈkazɐ] : casas [ˈkazɐs]; festas, falas). Barbosa & Albano (2004: 229-230): 'In post-stressed position, the variety studied here contrasts four oral vowels [...] [ɪ ɐ ʊ e̞]'; [a] is not one of them. The ⟨s⟩ closes the syllable, so the pre-lexical posttonic map leaves the nucleus [a], and this rule reduces it. Gated `unstressed` so a stressed ⟨-ás⟩ (gás, atrás) keeps [a]; `followed_by_2 = word_boundary` keeps a medial ⟨a⟩ before ⟨s⟩+C (pasta) untouched. [ʃ] is listed for the children whose coda /S/ is palatal."
+      "notes": "Post-stressed final /a/ before the plural or verbal ⟨-s⟩ is [ɐ], as it is word-finally without the ⟨s⟩ (casa [ˈkazɐ] : casas [ˈkazɐs]; festas, falas). Barbosa & Albano (2004: 229-230): 'In post-stressed position, the variety studied here contrasts four oral vowels, including a centralised version of [e] (in this variety, only in non-final post-stressed position under antepenultimate stress, as in ópera [ˈɔpe̞ɾɐ] ‘opera’ and número [ˈnũme̞ɾʊ] ‘number’): [ɪ ɐ ʊ e̞]'; [a] is not one of them. The ⟨s⟩ closes the syllable, so the pre-lexical posttonic map leaves the nucleus [a], and this rule reduces it. The rule takes the position the source states: `posttonic` keeps a stressed ⟨-ás⟩ (gás, atrás) at [a], and `requires_other_nucleus` keeps a monosyllable out, so the clitics as and às, which have no stress of their own and so no post-stressed syllable, are not reduced by this rule. `followed_by_2 = word_boundary` keeps a medial ⟨a⟩ before ⟨s⟩+C (pasta) untouched. [ʃ] is listed for the children whose coda /S/ is palatal."
     },
     {
       "id": "BR_RAISE_FINAL_E",

@@ -15,8 +15,14 @@ only on the reduced vowels (so conservative dialects that retain a final
 [e]/[o] are untouched); the ``apply_allophony`` toggle recovers the broad
 form; and grapheme-⟨i⟩ affrication still fires via the positional map.
 """
+import json
+import re
+from pathlib import Path
+
 import pytest
 
+import orthography2ipa
+from orthography2ipa import get_syllabifier
 from orthography2ipa.g2p import G2P
 
 
@@ -318,3 +324,65 @@ def test_br_no_epenthesis_after_stressed_vowel():
 ])
 def test_br_final_as_reduces(word, expected):
     assert G2P("pt-BR").transcribe_word(word) == expected
+
+
+# ─── Regional children take the pt-BR syllables ─────────────────────────
+
+def _br_children():
+    data = Path(orthography2ipa.__file__).parent / "data"
+    return sorted(
+        path.stem for path in data.glob("pt-BR-x-*.json")
+        if json.loads(path.read_text("utf-8")).get("graphemes_base") == "pt-BR")
+
+
+BR_CHILDREN = _br_children()
+
+
+def test_br_children_are_found():
+    assert len(BR_CHILDREN) == 12
+
+
+@pytest.mark.parametrize("lang", BR_CHILDREN)
+def test_br_child_uses_the_pt_br_syllabifier(lang):
+    # A child reads the pt-BR grapheme table, so it takes the pt-BR syllables:
+    # pac.to, op.ção. The stress gate of BR_EPENTHESIS reads that split.
+    parent = get_syllabifier("pt-BR")
+    assert parent is not None
+    assert get_syllabifier(lang) is parent
+
+
+@pytest.mark.parametrize("lang", BR_CHILDREN)
+def test_br_child_epenthesis_follows_the_parent(lang):
+    # The cluster after the stressed vowel keeps its consonants, and the mark
+    # stays on the stressed syllable: pacto [ˈpaktu], not [paˈkitu].
+    g2p = G2P(lang)
+    assert re.fullmatch(r"ˈpak.?tu", g2p.transcribe_word("pacto"))
+    assert re.fullmatch(r"ˈap.?tu", g2p.transcribe_word("apto"))
+    assert re.search(r"ˈpaktɐ$", g2p.transcribe_word("compacta"))
+    # The pretonic cluster takes the epenthetic [i], which is unstressed:
+    # opção [opiˈsɐ̃w̃] (Barbosa & Albano 2004: 227).
+    assert re.fullmatch(r"[oɔu]piˈsɐ̃w̃", g2p.transcribe_word("opção"))
+
+
+# ─── pt-UY keeps final ⟨-as⟩ ────────────────────────────────────────────
+
+@pytest.mark.parametrize("word,expected", [
+    ("casas", "ˈkazas"), ("andas", "ˈɐ̃das"), ("frutas", "ˈfɾutas"),
+])
+def test_pt_uy_switches_off_final_as_reduction(word, expected):
+    assert G2P("pt-UY").transcribe_word(word) == expected
+
+
+# ─── Final ⟨-as⟩ reduction is post-stressed only ────────────────────────
+
+@pytest.mark.parametrize("lang", ["pt-BR", "pt-BR-x-sp", "pt-BR-x-rj"])
+@pytest.mark.parametrize("word", ["as", "às"])
+def test_br_clitic_as_is_not_reduced(lang, word):
+    # Barbosa & Albano (2004: 229-230) state the vowel set of the post-stressed
+    # position. The article as and the contraction às have no stress of their
+    # own, so they have no post-stressed syllable.
+    assert G2P(lang).transcribe_word(word) in ("as", "aʃ")
+
+
+def test_br_clitic_as_in_a_sentence():
+    assert G2P("pt-BR").transcribe("as casas às três") == "as ˈkazɐs as ˈtɾes"
