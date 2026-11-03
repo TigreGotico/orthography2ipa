@@ -304,15 +304,6 @@ KNOWN_DEAD_RULES = {
     # voiceless everywhere), so the /z/ member of nl's coda-devoicing series
     # has no target here. The other members are live.
     "af": {"NL_CODA_DEVOICE_Z"},
-    # The two Manila-Bay Chabacano stubs are declared as pure genealogy:
-    # "graphemes": {} and "allophones": {}, with es-ES as the lexifier
-    # ancestor. Rules travel down that lexifier link but the inventory does
-    # not, so EVERY rule es-ES declares arrives here with no slot to match
-    # (the same shape as the "kri" case above). Both stubs say in their own
-    # notes that a variety-specific grapheme map is still to be derived from
-    # Sippola (2013); these entries go away when it is.
-    "cbk-x-cavite": {"ES_TRILL_AFTER_CORONAL", "ES_NASAL_LABIAL"},
-    "cbk-x-ternate": {"ES_TRILL_AFTER_CORONAL", "ES_NASAL_LABIAL"},
     # pa-PK (Shahmukhi abjad, no inherent vowel): the inherent-vowel half
     # of each word-initial *DH rule pair has no ``Cə`` slot to match.
     "pa-PK": {"PA_DH_INITIAL_ɡ˩_0", "PA_DH_INITIAL_dʒ˩_0", "PA_DH_INITIAL_ɖ˩_0", "PA_DH_INITIAL_d̪˩_0", "PA_DH_INITIAL_b˩_0"},
@@ -334,9 +325,8 @@ KNOWN_DEAD_RULES = {
 #: ("graphemes": {}, "allophones": {}, script Zyyy, no script_type and no
 #: inherent vowel) so the ancestry graph covers every living ISO 639-3 code.
 #: Marathi's rules travel down that link but its inventory does not, so the
-#: whole MR_ family arrives with no slot to match — the same shape as the
-#: Chabacano stubs above. These entries go away when either stub gains a cited
-#: orthography.
+#: whole MR_ family arrives with no slot to match. These entries go away when
+#: either stub gains a cited orthography.
 #: pa-PK is Shahmukhi, an ABJAD: it declares its own Perso-Arabic grapheme
 #: table and no ``inherent_vowel``, so no letter ever emits a bare consonant
 #: plus schwa. Every Punjabi rule whose target is such a ``Cə`` reading —
