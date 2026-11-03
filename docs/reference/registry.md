@@ -144,7 +144,7 @@ The package declares one entry point of its own in `pyproject.toml`:
 silabificador = "orthography2ipa.syllabifiers:SilabificadorSyllabifier"
 ```
 
-It loads only when the `silabificador` package is installed, through the `portuguese` extra. It claims the Portuguese codes: `pt`, `pt-PT`, `pt-BR`, `pt-AO` and the other national varieties. With no syllabifier installed, `get_syllabifier()` returns `None` for every code, and the engine uses the bundled vowel-group splitter.
+It loads only when the `silabificador` package is installed, through the `portuguese` extra. It claims the Portuguese codes: `pt`, `pt-PT`, `pt-BR`, `pt-AO` and the other national varieties, and the regional `pt-BR-x-*` specs, which read the `pt-BR` grapheme table. With no syllabifier installed, `get_syllabifier()` returns `None` for every code, and the engine uses the bundled vowel-group splitter.
 
 ---
 [← Command line](cli.md) · [Home](../index.md) · [Public API stability →](api_stability.md)

@@ -74,7 +74,7 @@ The examples use the Convenção spelling, which the spec expects.
 
 ## Limitations
 
-- The board rows for this spec come from `llm-generated` golds and from a small `expert-human` row, and none of them gates. So they measure agreement, not correctness, and the phonology on this page rests on its citations.
+- The board rows for this spec come from silver golds at the `llm-corrected` tier and from a small `expert-human` row, and none of them gates. So they measure agreement, not correctness, and the phonology on this page rests on its citations.
 - The spec does not model the apico-alveolar articulation or the fine pretonic vowels.
 - Coda /s/ varies freely between the aspirate [h] and full deletion. The spec reduces that variation to [h] inside the word and to deletion at the end of the word.
 - The positional layer has no position for the syllable count. So the spec cannot state the monosyllable condition on the final liquid as a rule, and it uses a closed `word_exceptions` set (*mal*, *tal*, *cual*, *pur*).

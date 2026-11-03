@@ -1,288 +1,219 @@
 # Brazilian Portuguese dialects (pt-BR-x-*)
 
-The `pt-BR-x-*` specs model the regional speech of Brazil. Each one is a delta spec over [pt-BR](pt-BR.md): it inherits the general Brazilian standard and declares only what its region changes. This page first explains how the inheritance works. One table then compares the defining features of every lect. Each lect then has its own section, with its sources, its rules and their conditions, and its known gaps.
+The `pt-BR-x-*` specs model the regional speech of Brazil. Each one is a delta spec over [pt-BR](pt-BR.md): it inherits the general Brazilian standard and declares only what its region changes. This page first explains how the inheritance works. One table then compares the defining features of every lect. Each lect then has its own section, with its sources, its rules and its known gaps.
 
 Every transcription on this page is real output of `orthography2ipa.transcribe(text, code)`. For the scores of each spec, see [../evaluation/generated/scoreboard.md](../evaluation/generated/scoreboard.md). For the list of registered specs, run `orthography2ipa list --family Ibero-Romance`.
 
+Most features on this page vary in speech. A spec gives one transcription, so it writes the variant that the cited source finds in most tokens for that city. The rule notes in each spec quote the source and its rate.
+
 ## How the dialect specs inherit from pt-BR
 
-Every spec on this page sets `parent` to `pt-BR`. It also sets the three base keys `graphemes_base`, `allophones_base` and `positional_graphemes_base` to `pt-BR`. So each dialect starts from the full standard. It gets /t d/ affrication before ⟨i⟩, coda /l/ to [w] and the alveolar coda /s/. It also gets coda nasalisation and final vowel raising. None of the specs sets `word_exceptions_base`, so the word exceptions of `pt-BR` do not reach them.
+Every spec on this page sets `parent` to `pt-BR`. It also sets the three base keys `graphemes_base`, `allophones_base` and `positional_graphemes_base` to `pt-BR`. So each dialect starts from the full standard. None of the specs sets `word_exceptions_base`, so the word exceptions of `pt-BR` do not reach them.
 
-The dictionary fields `graphemes`, `allophones` and `positional_graphemes` merge key by key. An own entry replaces the `pt-BR` entry with the same key, and every other key is inherited. In `positional_graphemes` the key is the grapheme. So an own map for ⟨r⟩ replaces the whole ⟨r⟩ map of `pt-BR`.
+The dictionary fields `graphemes`, `allophones` and `positional_graphemes` merge key by key. An own entry replaces the `pt-BR` entry with the same key, and every other key is inherited. In `positional_graphemes` the key is the grapheme. So an own map for ⟨e⟩ replaces the whole ⟨e⟩ map of `pt-BR`, and it must repeat every context it keeps.
 
-The rule list `allophone_rules` merges by id through the `graphemes_base` edge (see [../engine/allophony.md](../engine/allophony.md#inheritance)). An own rule with the same id replaces the inherited rule in place. An own rule with a new id goes to the end of the list. A spec switches off an inherited rule when it declares the same id with an empty `phonemes` list. Six specs switch off `BR_AFFRIC_T_RAISED` and `BR_AFFRIC_D_RAISED` this way: `pt-BR-x-caipira`, `pt-BR-x-ce`, `pt-BR-x-norte`, `pt-BR-x-pr`, `pt-BR-x-recife` and `pt-BR-x-sul`. In these specs, a raised final ⟨e⟩ does not affricate /t d/.
+The rule list `allophone_rules` merges by id through the `graphemes_base` edge (see [../engine/allophony.md](../engine/allophony.md#inheritance)). An own rule with the same id replaces the inherited rule in place. An own rule with a new id goes to the end of the list. A spec switches off an inherited rule when it declares the same id with an empty `phonemes` list. `pt-BR-x-pr` and `pt-BR-x-recife` switch off `BR_AFFRIC_T_RAISED` and `BR_AFFRIC_D_RAISED` this way.
 
-The fields `allophone_passes` and `stress` are not inherited. Each spec declares its own `stress`. The specs that declare `allophone_passes: 2` run the post-lexical rules twice, as `pt-BR` does. The other specs run them once.
+The fields `allophone_passes` and `stress` are not inherited. Every spec on this page declares `allophone_passes: 2`, as `pt-BR` does. With one pass, a plural ending raised to [i] never reaches the affrication rule, and `dentes` keeps a plain [t].
+
+`pt-BR-x-brasilia` is an alias of `pt-BR`. No opened source gives a feature that separates the speech of Brasília from the base: its coda /S/ is alveolar in 97 % of tokens (Hora 1999: 35, reporting Corrêa 1998).
 
 ## Defining features
 
-The table gives the features that set each lect apart from `pt-BR`. The lects run from the Southeast to the South, then the North, the Northeast and the Centre-West.
+The table gives the features that set each lect apart from `pt-BR`. The lects run from the Southeast to the South, then the North and the Northeast.
 
 | Lect | Region | Features that set it apart | Example |
 |:---|:---|:---|:---|
-| [`pt-BR-x-rj`](#carioca-pt-br-x-rj) | Rio de Janeiro city | coda /s/ [ʃ] (*chiado*)<br>coda /r/ [x], final /r/ [h]<br>onset /r/ [χ] | `mesmo` [ˈmeʃmu], `porta` [ˈpoxtɐ], `mar` [ˈmah] |
-| [`pt-BR-x-fluminense`](#fluminense-pt-br-x-fluminense) | Rio de Janeiro state | the Carioca coda deltas<br>onset /r/ [x] | `paz` [ˈpaʃ], `rato` [ˈxatu] |
-| [`pt-BR-x-sp`](#paulistano-pt-br-x-sp) | São Paulo city | the `pt-BR` values unchanged | `porta` [ˈpoɾtɐ], `mesmo` [ˈmesmu] |
-| [`pt-BR-x-caipira`](#caipira-pt-br-x-caipira) | São Paulo interior, Goiás, Mato Grosso | coda /r/ [ɻ]<br>onset /r/ [h]<br>no affrication before a final ⟨e⟩ | `porta` [ˈpoɻtɐ], `rato` [ˈhatu], `leite` [ˈlejti] |
-| [`pt-BR-x-mg`](#mineiro-pt-br-x-mg) | Minas Gerais | pretonic /e o/ [i u] | `menino` [miˈninu], `coruja` [kuˈɾuʒɐ] |
-| [`pt-BR-x-pr`](#paranaense-pt-br-x-pr) | Curitiba, Paraná | dental /t d/ before /i/<br>final /e/ [e]<br>onset /r/ [h] | `tia` [ˈtiɐ], `verde` [ˈveɾde], `rato` [ˈhatu] |
-| [`pt-BR-x-sul`](#sulista-pt-br-x-sul) | Rio Grande do Sul | dental /t d/ before /i/<br>final /e/ [e]<br>onset /r/ [r] | `tia` [ˈtiɐ], `verde` [ˈveɾde], `rato` [ˈratu] |
-| [`pt-BR-x-norte`](#nortista-pt-br-x-norte) | Belém, Manaus | coda /s/ [ʃ]<br>open pretonic [ɛ ɔ]<br>no affrication before a final ⟨e⟩ | `mesmo` [ˈmeʃmu], `menino` [mɛˈninu], `dente` [ˈdẽti] |
-| [`pt-BR-x-bahia`](#baiano-pt-br-x-bahia) | Salvador, Bahia | open pretonic [ɛ ɔ] | `menino` [mɛˈninu], `boneca` [bɔˈnekɐ] |
-| [`pt-BR-x-ce`](#cearense-pt-br-x-ce) | Fortaleza, Ceará | coda /s/ before a consonant [h]<br>open pretonic [ɛ ɔ]<br>no affrication before a final ⟨e⟩ | `mesmo` [ˈmehmu], `costas` [ˈkohtas] |
-| [`pt-BR-x-recife`](#pernambucano-pt-br-x-recife) | Recife | dental /t d/ before /i/<br>coda /s/ [ʃ]<br>open pretonic [ɛ ɔ] | `tia` [ˈtiɐ], `mesmo` [ˈmeʃmu], `menino` [mɛˈninu] |
-| [`pt-BR-x-brasilia`](#brasiliense-pt-br-x-brasilia) | Brasília | the `pt-BR` values unchanged | `tia` [ˈt͡ʃiɐ], `mesmo` [ˈmesmu] |
+| [`pt-BR-x-rj`](#carioca-pt-br-x-rj) | Rio de Janeiro city | coda /s/ [ʃ], [ʒ] before a voiced consonant<br>coda /r/ [x], final /r/ [h]<br>onset /r/ [χ] | `festa` [ˈfeʃtɐ], `mesmo` [ˈmeʒmu], `porta` [ˈpoxtɐ], `mar` [ˈmah] |
+| [`pt-BR-x-fluminense`](#fluminense-pt-br-x-fluminense) | Rio de Janeiro state interior | coda /r/ [h]<br>onset /r/ [x] | `porta` [ˈpohtɐ], `paz` [ˈpas], `rato` [ˈxatu] |
+| [`pt-BR-x-sp`](#paulistano-pt-br-x-sp) | São Paulo city | strong /r/ [x], [ɣ] between vowels<br>yod before a final /s/ | `rato` [ˈxatu], `carro` [ˈkaɣu], `arroz` [aˈɣojs] |
+| [`pt-BR-x-caipira`](#caipira-pt-br-x-caipira) | São Paulo interior | coda /r/ and coda /l/ [ɻ]<br>⟨lh⟩ [j] | `porta` [ˈpoɻtɐ], `alma` [ˈaɻmɐ], `filho` [ˈfiju] |
+| [`pt-BR-x-mg`](#mineiro-pt-br-x-mg) | Belo Horizonte | pretonic /e/ [i] before a high vowel and word-initially<br>coda /r/ [h] | `pedido` [piˈd͡ʒidu], `escola` [isˈkolɐ], `porta` [ˈpohtɐ] |
+| [`pt-BR-x-pr`](#paranaense-pt-br-x-pr) | Curitiba | /t d/ stops before /i/<br>final /e/ [e] | `tia` [ˈtiɐ], `verde` [ˈveɾde] |
+| [`pt-BR-x-sul`](#sulista-pt-br-x-sul) | Porto Alegre | strong /r/ [x] | `rato` [ˈxatu], `carro` [ˈkaxu] |
+| [`pt-BR-x-norte`](#nortista-pt-br-x-norte) | Belém | coda /s/ [ʃ], [ʒ] before a voiced consonant<br>coda /r/ [h] | `festa` [ˈfeʃtɐ], `mesmo` [ˈmeʒmu], `dentes` [ˈdẽt͡ʃiʃ], `porta` [ˈpohtɐ] |
+| [`pt-BR-x-bahia`](#baiano-pt-br-x-bahia) | Salvador | open pretonic [ɛ ɔ] before an open, nasal or low vowel<br>coda /r/ [h], final /r/ deleted | `pedaço` [pɛˈdasu], `bolacha` [bɔˈlaʃɐ], `falar` [faˈla] |
+| [`pt-BR-x-ce`](#cearense-pt-br-x-ce) | Fortaleza | the Baiano pretonics and rhotics<br>coda /s/ [h] before /d n/ | `pedaço` [pɛˈdasu], `desde` [ˈdehd͡ʒi] |
+| [`pt-BR-x-recife`](#pernambucano-pt-br-x-recife) | Recife | /t d/ stops before /i/<br>coda /s/ [ʃ], [ʒ] before a voiced consonant<br>the Northeastern pretonics and rhotics | `tia` [ˈtiɐ], `festa` [ˈfeʃtɐ], `pedaço` [pɛˈdasu] |
 
 ## Carioca (pt-BR-x-rj)
 
-Carioca is the speech of the city of Rio de Janeiro, one of the two media-standard accents of Brazil. Its defining feature is the *chiado carioca*. A coda sibilant surfaces as the palatal [ʃ] or [ʒ], not as the alveolar [s z] of São Paulo or the interior.
+Carioca is the speech of the city of Rio de Janeiro. Its defining feature is the *chiado*: a coda sibilant surfaces as the palatal [ʃ] or [ʒ]. Brito (2016: 148) finds that "[ʃ] or [ʒ] account for 85.3% of the occurrences". The palatal takes the voicing of the next consonant: it is "[z] or [ʒ] in syllable-final position followed by voiced consonant" (p. 142), as in `mesmo` [ˈmeʒmu]. The ALiB map gives a palatal rate above 76 % only in Rio de Janeiro, Belém and Florianópolis (Borges & Mendonça 2019: 58). Before a vowel in the next word, the sibilant is [z] (Nanini: 17).
 
-> "A realização palatalizada do S em coda, no português do Brasil, o famoso 'chiado carioca', se restringia, de início, ao que tudo indica, ao Rio de Janeiro.", Callou (2010:134)
-
-The NURC data of the 1990s shows how regular it is (Callou 2010:135, Tabela 1). The coda /S/ is palatal in 91 % of tokens inside the word (`ga[ʃ]to`) and in 76 % at the end of the word (`lapi[ʃ]`). The alveolar figures are 4 % and 19 %. It is the highest palatalisation index among the major Brazilian capitals.
-
-The `pt-BR` base keeps an alveolar coda /s/, so the *chiado* is a phoneme-to-surface process. The spec models it with post-lexical rules, as `pt-PT` does with `PT_CODA_S_HUSH`. The rules apply in the coda only, so an onset ⟨s⟩ stays [s] or [z] (`sala` [ˈsalɐ], `casa` [ˈkazɐ]).
-
-The Carioca rhotic is posterior. The positional map gives the strong onset ⟨r⟩ as [χ], with [x] and [h] as further candidates (`rio` [ˈχiu]). Callou describes the coda:
-
-> "a variante que predomina na fala culta carioca … é a fricativa velar, com exceção em final de vocábulo, em que ocorre preferencialmente o apagamento ou a aspiração.", Callou (2010:138), reporting Callou (1987)
+The Carioca rhotic is posterior. Callou, Moraes & Leite (1998: 62-63) describe the coda /R/ as a range that "vai de uma vibrante, alveolar ou uvular, a uma fricativa, velar ou glotal, chegando a seu total apagamento". Word-final deletion reaches 73-82 % in verbs and 32 % in other words (p. 67).
 
 | Rule id | Rule | Example |
 |:---|:---|:---|
-| `RJ_CHIADO_CODA_S` | /s/ gives [ʃ] in the coda | `mesmo` [ˈmeʃmu], `paz` [ˈpaʃ], `dois` [ˈdojʃ] |
-| `RJ_CHIADO_CODA_Z` | /z/ gives [ʒ] in the coda | no word in this list reaches it, see the gaps |
-| `RJ_CODA_R_VELAR` | a coda /R/ before a consonant gives [x] | `porta` [ˈpoxtɐ], `carta` [ˈkaxtɐ] |
-| `RJ_CODA_R_FINAL` | a word-final /R/ gives [h] | `mar` [ˈmah], `falar` [faˈlah] |
+| `RJ_CHIADO_CODA_S` | /s/ gives [ʃ] in the coda | `festa` [ˈfeʃtɐ], `paz` [ˈpaʃ] |
+| `RJ_CHIADO_CODA_Z` | /z/ gives [ʒ] in the coda | no word reaches it, see the gaps |
+| `BR_CODA_SH_VOICED` | a coda [ʃ] gives [ʒ] before a voiced consonant | `mesmo` [ˈmeʒmu], `desde` [ˈdeʒd͡ʒi], `Lisboa` [liʒˈboɐ] |
+| `RJ_CODA_R_VELAR` | a coda /R/ before a consonant gives [x] | `porta` [ˈpoxtɐ] |
+| `RJ_CODA_R_FINAL` | a word-final /R/ gives [h] | `mar` [ˈmah] |
 
-The spec writes a word-final /R/ as the aspirate [h], not as a deletion, so the segment stays in the output. The tap between vowels stays [ɾ] (`caro` [ˈkaɾu]). The spec inherits /t d/ affrication (`tia` [ˈt͡ʃiɐ], `tarde` [ˈtaxd͡ʒi]), coda /l/ to [w] (`sol` [ˈsɔw]) and final vowel raising from `pt-BR`.
+The positional map gives the strong onset ⟨r⟩ as [χ], with [x] and [h] as further candidates (`rio` [ˈχiu]). One R-forte class covers the start of a word (rio), ⟨rr⟩ (carro) and the onset after a consonant (Israel) (Cristófaro Silva 2025: 240), so ⟨rr⟩ and the rule `BR_STRONG_R_AFTER_CODA` give the same [χ] (`carro` [ˈkaχu], `honra` [ˈõχɐ]). Before this voiceless rhotic the coda sibilant stays voiceless (`desrespeito` [deʃχeʃˈpejtu]). The spec inherits /t d/ affrication (`tia` [ˈt͡ʃiɐ]) and coda /l/ to [w].
 
 Known gaps:
 
-- The positional map gives a coda ⟨s⟩ as /s/ before any consonant. So `RJ_CHIADO_CODA_Z` never sees a /z/, and a voiced consonant does not voice the sibilant: `desde` [ˈdeʃd͡ʒi], `rasgar` [χaʃˈɡah].
-- Voicing of a word-final sibilant before a voiced consonant in the next word is a sandhi process, and the spec does not apply it.
-- The rhotic is socially graded between the suburbs and the Zona Sul (Callou 2010:138-139). A deterministic spec does not encode that distribution.
-
-Sources listed in the spec: Callou (2010), Mateus & d'Andrade (2000), Callou & Leite (2001), Silva (2002), Cardoso et al. (2014, ALiB).
+- The spec writes a word-final /R/ as the aspirate [h] in every word. The source finds deletion in most verbs.
 
 ## Fluminense (pt-BR-x-fluminense)
 
-Fluminense is the Portuguese of the state of Rio de Janeiro beyond the capital. Its coastal prestige form shares the Carioca profile. The spec models it with the same deltas as `pt-BR-x-rj`, under its own rule ids.
-
-The NURC Rio data that measures the *chiado carioca* (Callou 2010:135) is the coastal Fluminense norm, and the spec uses it as the default.
+Fluminense is the Portuguese of the state of Rio de Janeiro outside the capital. Its coda sibilant is alveolar. In the North-Northwest of the state, "há predomínio das realizações alveolares, ao contrário do que acontece na capital do Estado" (Hora 1999: 34-35, reporting Brandão). Its coda /R/ is glottal: ALiB counts 80 % glottal tokens in the state (Silva 2023: 68).
 
 | Rule id | Rule | Example |
 |:---|:---|:---|
-| `FLU_CHIADO_CODA_S` | /s/ gives [ʃ] in the coda | `mesmo` [ˈmeʃmu], `paz` [ˈpaʃ] |
-| `FLU_CHIADO_CODA_Z` | /z/ gives [ʒ] in the coda | no word reaches it, as for Carioca |
-| `FLU_CODA_R_VELAR` | a coda /R/ before a consonant gives [x] | `porta` [ˈpoxtɐ] |
+| `FLU_CODA_R_GLOTTAL` | a coda /R/ before a consonant gives [h] | `porta` [ˈpohtɐ] |
 | `FLU_CODA_R_FINAL` | a word-final /R/ gives [h] | `mar` [ˈmah] |
 
-The rules apply in the coda only (`sala` [ˈsalɐ]). The positional map gives the strong onset ⟨r⟩ as [x], with [χ] and [h] as further candidates (`rato` [ˈxatu]). The spec inherits /t d/ affrication, coda /l/ to [w] and final vowel raising from `pt-BR`.
-
-Fluminense is not uniform. The *chiado* is less regular in the rural and northern interior of the state. There, an inland tap rhotic, partly influenced by Caipira, coexists with the coastal palatal sibilant. The spec encodes the coastal prestige value and records the variation in its `notes`, without a second transcription. For the retroflex rhotic of the interior, see [Caipira](#caipira-pt-br-x-caipira).
-
-Sources listed in the spec: Callou (2010), Mateus & d'Andrade (2000), Callou & Leite (2001), Silva (2002), Cardoso et al. (2014, ALiB).
+The strong onset ⟨r⟩ is [x] (`rato` [ˈxatu]). One R-forte class covers the start of a word (rio), ⟨rr⟩ (carro) and the onset after a consonant (Israel) (Cristófaro Silva 2025: 240), so ⟨rr⟩ and the rule `BR_STRONG_R_AFTER_CODA` give the same [x] (`carro` [ˈkaxu], `honra` [ˈõxɐ]). A coda /s/ takes the voicing of the next sound (Barbosa & Albano 2004: 229), so it is [z] before a voiced consonant and stays [s] before this voiceless rhotic (`mesmo` [ˈmezmu], `desrespeito` [desxesˈpejtu]). The coda sibilant keeps the base values (`festa` [ˈfestɐ], `paz` [ˈpas]).
 
 ## Paulistano (pt-BR-x-sp)
 
-Paulistano is the urban Portuguese of the city and metropolitan region of São Paulo. It is the reference variety of the *Illustrations of the IPA* description of Brazilian Portuguese (Barbosa & Albano 2004). It is one of the two southeastern prestige norms on which `pt-BR` is built. So the spec declares no positional map and no rules of its own: it is `pt-BR` unchanged.
+Paulistano is the urban Portuguese of São Paulo city, the variety that Barbosa & Albano (2004) describe. `pt-BR` follows the same source, so the spec adds only the two features that the source gives for this variety alone.
 
-The coda /r/ is a plain alveolar tap [ɾ] (`porta` [ˈpoɾtɐ], `mar` [ˈmaɾ]). Amaral (1920) §6b describes a retroflex "r caipira" that *"assemelha-se bastante ao r inglês post-vocálico"*. That retroflex belongs to the Caipira interior around the city, not to the capital. `pt-BR-x-sp` is the non-retroflex member of the São Paulo pair.
+Strong /r/ is "a velar fricative, usually voiced between voiced sounds and voiceless elsewhere" (Barbosa & Albano 2004: 228, with carro [ˈkaɣʊ]). The positional map gives a word-initial ⟨r⟩ as [x], and ⟨rr⟩ is [ɣ]. After a coda consonant the rhotic follows a nasal vowel or a voiced [z], and the rule `BR_STRONG_R_AFTER_CODA` gives the voiced [ɣ] (`honra` [ˈõɣɐ], `genro` [ˈʒẽɣu]).
 
-The coda /s/ stays alveolar (`mesmo` [ˈmesmu], `dois` [ˈdojs]), never the Carioca [ʃ ʒ]. This is the southeastern sibilant pattern outside Rio (Barbosa & Albano 2004). The stops /t d/ affricate before ⟨i⟩ and before a raised final ⟨e⟩ (`tia` [ˈt͡ʃiɐ], `norte` [ˈnoɾt͡ʃi]).
+> "Diphthongs also emerge in this variety from yodisation of vowels (with the exception of [i]) followed by /S/, as in arroz [aɣoɪ̯s] 'rice' and mas [maɪ̯s] 'but'", Barbosa & Albano (2004: 229)
 
-The spec also inherits coda /l/ to [w] (`sol` [ˈsɔw]), final unstressed reduction, and the strong onset rhotic [ʁ] (`rato` [ˈʁatu]). A word-final ⟨r⟩ has an empty second candidate, for the infinitive /r/ that speakers drop.
+| Rule id | Rule | Example |
+|:---|:---|:---|
+| `SP_YOD_BEFORE_FINAL_S` | a stressed vowel other than /i/ takes [j] before a word-final /S/ | `arroz` [aˈɣojs], `mas` [ˈmajs], `três` [ˈtɾejs] |
 
-Known gap: the height of a stressed ⟨o⟩ or ⟨e⟩ without an accent is lexical, and the spelling does not show it. The engine gives the close vowel unless a `PT_LEX_*` list names the word. So `porta` is [ˈpoɾtɐ], not [ˈpɔɾtɐ]. This gap applies to every Brazilian spec.
+The coda /r/ is the tap (`porta` [ˈpoɾtɐ]): "Entre os paulistanos, o tepe é a realização predominante" (Castro 2013: 566). The retroflex belongs to the rest of the state (see [Caipira](#caipira-pt-br-x-caipira)).
 
-Sources listed in the spec: Barbosa & Albano (2004), Amaral (1920, §6b, for the contrast), Mateus & d'Andrade (2000), Callou & Leite (2001), Silva (2002).
+Known gap: the source gives yodisation in stressed final syllables. The spec does not apply it to an unstressed vowel.
 
 ## Caipira (pt-BR-x-caipira)
 
-Caipira is the speech of the São Paulo interior, western Minas Gerais, Goiás, Mato Grosso, Mato Grosso do Sul and the Paraná hinterland. The foundational description is Amadeu Amaral's *O Dialeto Caipira* (1920), the first systematic dialect monograph on a Brazilian variety. The features below cite its numbered sections.
+Caipira is the speech of the São Paulo interior and the neighbouring areas. The founding description is Amaral (1920), cited here by section.
 
-The hallmark of the dialect is the retroflex "r caipira". Amaral (1920) §6b:
+The hallmark is the retroflex "r caipira". Amaral (1920) §6b: "r inter e post-vocálico (arara, carta) possui um valor peculiar: é linguò-palatal e guturalizado". ALiB finds it "de forma praticamente categórica em todo o estado de São Paulo [...] exceto na capital e na cidade de Santos" (Silva 2023: 70). The spec writes it as [ɻ] in the coda (`porta` [ˈpoɻtɐ], `mar` [ˈmaɻ]).
 
-> *"r inter e post-vocálico (arara, carta) possui um valor peculiar: é linguo-palatal e guturalizado. Na sua prolação … a língua … vira a extremidade para cima, sem tocá-la na abóbada palatal. Não há quase nenhuma vibração tremulante. Para o ouvido, este r caipira assemelha-se bastante ao r inglês post-vocálico."*
-
-The tongue tip curls up without contact, with almost no trill, and the sound is close to English post-vocalic /r/. The spec writes it as the retroflex approximant [ɻ]. The positional map for ⟨r⟩ gives [ɻ] before a consonant and at the end of a word.
-
-| Word | pt-BR | pt-BR-x-caipira |
-|:---|:---|:---|
-| porta | ˈpoɾtɐ | ˈpoɻtɐ |
-| carta | ˈkaɾtɐ | ˈkaɻtɐ |
-| mar | ˈmaɾ | ˈmaɻ |
-
-A weak ⟨r⟩ between vowels stays a tap (`caro` [ˈkaɾu]). The strong onset ⟨r⟩ is [h], with [x] as the second candidate (`rato` [ˈhatu]). Amaral §23a reports that a word-final /r/ can drop: *"Cai, quando final de palavra: andá, muié, esquecê, subi, vapô"*. The spec gives the word-final ⟨r⟩ as `[ɻ, ""]`, so the deletion is the second candidate.
-
-Amaral §22a gives a coda /l/ that turns into the same rhotic: *"l - Em final de sílaba, muda-se em r: quarquér, papér, mér, arma."*
-
-Modern urban Caipira uses the general Brazilian [w] instead. So the positional map for ⟨l⟩ gives [w] first and Amaral's [ɻ] second, before a consonant and at the end of a word (`papel` [paˈpew]).
-
-The coda /s/ is a plain alveolar [s], with no *chiado*. Amaral §6a: *"s propriamente sibilante, assobiado, e bem assim chiante, são aqui desconhecidos."* So `mesmo` is [ˈmesmu] and `costas` is [ˈkostas].
-
-Amaral §25 reports that /ʎ/ becomes a glide: *"lh - Vocaliza-se em i: espaiado, maio, muié"*. In §6e he writes that the palatal lateral *"não existe no dialeto"*. The spec lists [j] as the second allophone of /ʎ/, after [ʎ]. The top output keeps [ʎ] (`mulher` [muˈʎeɻ]).
-
-The spec switches off `BR_AFFRIC_T_RAISED` and `BR_AFFRIC_D_RAISED`. So /t d/ stay dental before a raised final ⟨e⟩ (`leite` [ˈlejti], `tarde` [ˈtaɻdi]), but they still affricate before a written ⟨i⟩ (`tia` [ˈt͡ʃiɐ], `dia` [ˈd͡ʒiɐ]). The notes of the two rules give no source for this split.
+Amaral §22a gives a coda /l/ that turns into the same rhotic: "Em final de sílaba, muda-se em r: quarqué [...] arma". The positional map gives [ɻ] first and [w] second (`alma` [ˈaɻmɐ], `sol` [ˈsɔɻ]). Amaral §25 gives ⟨lh⟩ as [j]: "Vocaliza-se em i: [...] muié, fiio". The spec maps ⟨lh⟩ to [j] (`filho` [ˈfiju], `mulher` [muˈjeɻ]).
 
 Known gaps:
 
-- Amaral cites `porta` with an open [ɔ]. The height of an unmarked stressed vowel is lexical, so the engine gives the close [o].
-- Amaral §8 reports that rural Caipira of his time kept a final unstressed /e/ and /o/. He writes *"Não se operou aqui a permuta de e final por i … como não se operou a de o por u."* Modern Caipira raises them like general Brazilian Portuguese, and the spec inherits the raising.
-
-Sources listed in the spec: Amaral (1920, §6a-b, §8, §22a, §23a, §25), Castilho (2010), Mateus & d'Andrade (2000), Callou & Leite (2001), Silva (2002).
+- Amaral also gives intervocalic r as retroflex, ⟨ch j⟩ as affricates (§6d) and final e and o as unraised (§8). No modern source on these was opened, so the spec does not encode them.
+- Amaral §23a gives a word-final r that drops. The spec keeps [ɻ].
+- No opened source describes /t d/ before /i/ in this variety, so the spec follows the base (`leite` [ˈlejt͡ʃi]).
 
 ## Mineiro (pt-BR-x-mg)
 
-Mineiro is the Portuguese of Minas Gerais, centred on Belo Horizonte. Its diagnostic feature is vocalic: the pretonic mid vowels /e o/ raise to the high vowels [i u] (*alçamento*).
+Mineiro here is the speech of Belo Horizonte. Its pretonic raising varies: the alternations "têm status de variáveis lingüísticas, não podendo ser capturadas adequadamente por uma regra categorial" (Viegas & Veado 1982: 54). The spec raises /e/ where that study finds most tokens raised.
 
-> "as vogais médias [e,o] alçam para vogais [i,u] … como em p[i]ru … s[i]nhora e b[u]neca.", Lemos & Viegas (2016:314)
+| Rule id | Rule | Rate (Viegas & Veado 1982: 58) | Example |
+|:---|:---|:---|:---|
+| `MG_PRETONIC_HARMONY_E` | pretonic /e/ gives [i] before a high vowel in the next syllable | 66.6 % | `pedido` [piˈd͡ʒidu], `perigo` [piˈɾiɡu] |
+| `MG_INITIAL_E_RAISE` | word-initial unstressed /e/ gives [i] | 90.7 % | `escola` [isˈkolɐ] |
+| `MG_INITIAL_EN_RAISE` | word-initial unstressed /ẽ/ gives [ĩ] | 100 % | `entender` [ĩtẽˈdeh] |
 
-Lemos & Viegas (2016:314-315) give two causes: harmony with a following high vowel, and vowel reduction driven by the consonant. Viegas (1987) showed that the lexical item also plays a part. The trigger is a position in the spelling, a pretonic ⟨e⟩ or ⟨o⟩. So the spec puts the raising in the positional map, not in `allophone_rules`.
-
-| Process | Rule | Example |
-|:---|:---|:---|
-| Pretonic raising of /e/ | ⟨e⟩ gives [i] before the stress | `menino` [miˈninu] |
-| Pretonic raising of /o/ | ⟨o⟩ gives [u] before the stress | `coruja` [kuˈɾuʒɐ], `boneca` [buˈnekɐ] |
-
-Mineiro keeps the alveolar coda /s/ of `pt-BR`. The spec declares no coda-sibilant rule, so `mesmo` stays [ˈmesmu] and `paz` stays [ˈpas]. This absence of an override is the contrast with the Carioca *chiado*.
-
-The spec reduces a post-stressed ⟨e⟩ to [ɪ], and it keeps that vowel in ⟨-en⟩ and ⟨-ens⟩ (`hífen` [ˈifɪ̃], `homens` [ˈomɪ̃s]).
+Without a high vowel next, /e/ stays [e] (`pecado` [peˈkadu]). The coda /R/ is glottal: ALiB counts "77% (1068) do /r/ glotal" in Minas Gerais, and 1 % tap (Silva 2023: 68). The positional map gives [h] in the coda (`porta` [ˈpohtɐ]).
 
 Known gaps:
 
-- The source conditions the raising on harmony, on the consonant and on the word. The spec raises every pretonic ⟨e o⟩, including words with no high vowel after them (`segundo` [siˈɡũdu], `contar` [kũˈtaɾ]).
-- Belo Horizonte uses the tap [ɾ] (`porta` [ˈpoɾtɐ]), and that is the encoded value. The rural interior shares the Caipira retroflex [ɻ], which [Caipira](#caipira-pt-br-x-caipira) models.
-- Extreme posttonic reduction and syllable loss are stereotyped Mineiro traits. They are prosodic deletion processes outside the reach of a spec conditioned on graphemes, so the spec does not encode them.
-
-Sources listed in the spec: Lemos & Viegas (2016), Castilho (2010), Mateus & d'Andrade (2000), Callou & Leite (2001), Silva (2002), Cardoso et al. (2014, ALiB).
+- Pretonic /o/ raising depends on the adjacent consonants (Viegas 2001: 229). The spec does not encode it, so `coruja` is [koˈɾuʒɐ].
+- The harmony rule reads the vowel two graphemes to the right. A pretonic syllable closed by a consonant does not see the next vowel.
 
 ## Paranaense (pt-BR-x-pr)
 
-`pt-BR-x-pr` models Curitibano or Paranaense, the Portuguese of Curitiba and Paraná. It is a transitional variety between Sulista and Paulistano, over Slavic and Italian settler substrata. The spec overrides the conservative southern features.
+Paranaense here is the speech of Curitiba. Final unstressed /e/ mostly stays [e]: Limeira (2013), reported by Franceschini & Loregian-Penkal (2023: 2), finds "62% para /o/ e 70% para /e/" of post-tonic mid vowels not raised. The spec keeps final [e] (`verde` [ˈveɾde]) and raises final /o/ as the base does.
 
-The Curitibano default keeps dental /t d/ before /i/: `tia` [ˈtiɐ], `dia` [ˈdiɐ]. The positional map for ⟨t d⟩ gives the plain stop before ⟨i⟩. The spec also switches off `BR_AFFRIC_T_RAISED` and `BR_AFFRIC_D_RAISED`, so a raised final vowel does not affricate either. The spec `notes` record that younger and Paulista-influenced speakers do palatalise.
-
-A final and unstressed /e/ stays [e] and does not raise to [i]: `verde` [ˈveɾde], not [ˈveɾd͡ʒi]. This is the Curitiba *e fechado*. The positional map for ⟨e⟩ gives [e] word-finally, posttonically and in an unstressed nucleus.
-
-The coda /r/ is a Sulista alveolar tap [ɾ] (`porta` [ˈpoɾtɐ], `mar` [ˈmaɾ]). The strong onset ⟨r⟩ is [h], with [x] and [ʁ] as further candidates (`rato` [ˈhatu]). The retroflex "r caipira" (Amaral 1920 §6b) belongs to the northern Paraná interior, which patterns with [Caipira](#caipira-pt-br-x-caipira). This spec models the capital. The coda /s/ stays alveolar (`costas` [ˈkostas]), with neither the Carioca [ʃ] nor the Northeastern [h].
-
-| Word | pt-BR-x-sp | pt-BR-x-pr |
-|:---|:---|:---|
-| tia | ˈt͡ʃiɐ | ˈtiɐ |
-| verde | ˈveɾd͡ʒi | ˈveɾde |
-| porta | ˈpoɾtɐ | ˈpoɾtɐ |
+ALiB rates Curitiba palatalisation of /t d/ as "moderada" (Battisti & Dornelles Filho 2015: 226). The spec keeps the stop as the first candidate before /i/ (`tia` [ˈtiɐ]) and switches off the two base rules that affricate before a raised ⟨e⟩.
 
 Known gaps:
 
-- The spec keeps only the final /e/. A final /o/ still raises to [u] (`gato` [ˈɡatu]).
-- Paraná is not uniform, and the interior is closer to Caipira. The spec encodes the Curitiba norm only.
-
-Sources listed in the spec: Noll (2008), Cardoso et al. (2014, ALiB), Mateus & d'Andrade (2000), Callou & Leite (2001), Silva (2002), Amaral (1920, §6b, for the contrast).
+- The plural ending raises as in the base (`dentes` [ˈdẽtis]), while the singular keeps [e]. No opened source gives the plural rate.
+- Silva (2023: 67) places Paraná in the retroflex zone of the coda /R/. The spec keeps the tap, and the opened sources do not settle the value for the capital.
 
 ## Sulista (pt-BR-x-sul)
 
-`pt-BR-x-sul` models Sulista or Gaúcho Portuguese, the southern norm centred on Rio Grande do Sul and Porto Alegre. It extends loosely across Rio Grande do Sul, Santa Catarina and Paraná, over Italian and German settler substrata. Nascentes (1953:25) bases the North and South division of Brazilian Portuguese on the openness of the pretonic vowels. He puts this area among the *falares do Sul*.
+Sulista here is the speech of Porto Alegre. The strong /r/ is the velar fricative. In Porto Alegre the trill fell "de 30,9% nos anos 1990 para apenas 0,4%" (Corrêa 2020: 87), and ALiB shows "o predomínio do uso da fricativa velar [x] nos estados do Rio Grande do Sul e Santa Catarina" (Comiotto & Margotti 2019: PDF p. 6). The positional map gives a word-initial ⟨r⟩ as [x], and ⟨rr⟩ is [x] (`rato` [ˈxatu], `carro` [ˈkaxu]). The rule `BR_STRONG_R_AFTER_CODA` gives the same [x] after a coda consonant (`honra` [ˈõxɐ]; Cristófaro Silva 2025: 240). A coda /s/ takes the voicing of the next sound (Barbosa & Albano 2004: 229), so it is [z] before a voiced consonant and stays [s] before this voiceless rhotic (`mesmo` [ˈmezmu], `desrespeito` [desxesˈpejtu]).
 
-The encoded default keeps dental /t d/ before /i/ (`tia` [ˈtiɐ], `dia` [ˈdiɐ]), the opposite of the southeastern norm. The positional map for ⟨t d⟩ gives the plain stop before ⟨i⟩, and the spec switches off `BR_AFFRIC_T_RAISED` and `BR_AFFRIC_D_RAISED`. The spec `notes` record a generational shift toward palatalisation in urban Porto Alegre.
+The other features follow the base. ALiB rates Porto Alegre palatalisation as categorical (Battisti & Dornelles Filho 2015: 226), so `tia` is [ˈt͡ʃiɐ] and `dentes` is [ˈdẽt͡ʃis]. Final /o/ raises in 97 % of Porto Alegre tokens (Franceschini & Loregian-Penkal 2023: 2), and no opened source gives final [e] for the capital (`verde` [ˈveɾd͡ʒi]). The coda /R/ is the tap, "from São Paulo southwards" (Barbosa & Albano 2004: 228).
 
-The strong onset ⟨r⟩ is the alveolar trill [r], with [ʁ] as the second candidate (`rato` [ˈratu]). It is not the [h x] of São Paulo and Rio. The coda /r/ is a tap and does not drop (`mar` [ˈmaɾ]). A final unstressed /e/ stays [e] in conservative speech (`verde` [ˈveɾde]).
-
-| Word | pt-BR-x-sp | pt-BR-x-sul |
-|:---|:---|:---|
-| tia | ˈt͡ʃiɐ | ˈtiɐ |
-| rato | ˈʁatu | ˈratu |
-| verde | ˈveɾd͡ʒi | ˈveɾde |
-
-[Paranaense](#paranaense-pt-br-x-pr) has the same dental stops and the same final /e/. `pt-BR-x-sul` models the broader Gaúcho norm that the Paraná variety is transitional from. The two specs share these deltas on purpose. They differ in the onset rhotic.
-
-Silva (2014:6-7, ALFAL XVII #4817-4818) cites Bisol (1994, 2012) on diphthongisation before a coda /S/. Bisol bases those impressions on Porto Alegre speech (Bisol 1994:125). That work is about diphthongs, not about the /r/ and /t d/ features of this spec.
-
-Known gaps:
-
-- Sulista covers three states with real internal variation. The Florianópolis coast leans toward a Carioca-like *chiado*, from VARSUL data in Silva (2014:5-6). The spec encodes the conservative Porto Alegre default and does not model Florianópolis or the Paraná interior.
-- A final /o/ still raises to [u] (`gato` [ˈɡatu]).
-
-Sources listed in the spec: Nascentes (1953), Noll (2008), Cardoso et al. (2014, ALiB), Silva (2014, ALFAL XVII), Mateus & d'Andrade (2000), Callou & Leite (2001), Silva (2002).
+Known gap: the trill and the low palatalisation rates belong to the Italian, German and border interior of the state (Dutra 2008: 48; Comiotto & Margotti 2019). This spec does not model the interior.
 
 ## Nortista (pt-BR-x-norte)
 
-`pt-BR-x-norte` models Nortista or Amazônico Portuguese, of Belém and Manaus, with Tupí and Nheengatu contact in prosody and lexicon. Nascentes (1953:25) puts this area among the *falares do Norte*.
+Nortista here is the speech of Belém. The coda sibilant is palatal (Borges & Mendonça 2019: 58), and /t d/ affricate before /i/: Belém 88 % (Oliveira 2013: 216), categorical in ALiB (Battisti & Dornelles Filho 2015: 226). The pretonic vowels stay closed: "a região Norte não pode ser caracterizada como uma área de vogais abertas" (Mota & Lopes 2018: 217). The coda /R/ is the glottal [h], dominant in the North in the ALiB maps (Silva & Aguilera, preprint).
 
-The coda /s z/ is palatal [ʃ] (`mesmo` [ˈmeʃmu], `paz` [ˈpaʃ]), as in Rio and unlike the alveolar norm of the Northeast proper. The positional map for ⟨s z⟩ gives [ʃ] before a consonant and at the end of a word, and keeps [z] between vowels. Silva (2014) gives the source:
-
-> "[C]erto espraiamento dessas realizações para outras áreas do Brasil, a exemplo de Belém e Macapá, no Norte, onde haveria um grau de palatalização similar ao do Rio de Janeiro.", Silva (2014:2, ALFAL XVII, printed page header #4814), citing Noll (2008)
-
-Silva (2014:2) also reports the grouping of Brazilian capitals by Mota, Jesus & Evangelista (2010), from ALiB data. It puts Belém and Macapá with Rio de Janeiro, Florianópolis, Recife, Manaus, Cuiabá and Salvador. In these capitals the palatal variant leads both inside the word and at the absolute end of the word.
-
-The pretonic /e o/ open to [ɛ ɔ], a Northeastern feature that the North shares (`menino` [mɛˈninu], `boneca` [bɔˈnekɐ]). The stops /t d/ affricate before a written ⟨i⟩ (`tia` [ˈt͡ʃiɐ], `dia` [ˈd͡ʒiɐ]). ALiB data names the North as the region of strongest /t d/ palatalisation (Cardoso et al. 2014). The spec switches off `BR_AFFRIC_T_RAISED` and `BR_AFFRIC_D_RAISED`, so a raised final ⟨e⟩ keeps a dental stop (`dente` [ˈdẽti]). The notes of the two rules give no source for that.
-
-| Word | pt-BR-x-sp | pt-BR-x-norte |
+| Rule id | Rule | Example |
 |:---|:---|:---|
-| mesmo | ˈmesmu | ˈmeʃmu |
-| tia | ˈt͡ʃiɐ | ˈt͡ʃiɐ |
-| menino | meˈninu | mɛˈninu |
+| `BR_RAISE_FINAL_ES` | the plural -es raises before [ʃ] as before [s] | `dentes` [ˈdẽt͡ʃiʃ] |
+| `BR_RAISE_FINAL_OS` | the plural -os raises before [ʃ] as before [s] | `ovos` [ˈovuʃ] |
+| `BR_CODA_SH_VOICED` | a coda [ʃ] gives [ʒ] before a voiced consonant | `mesmo` [ˈmeʒmu], `desde` [ˈdeʒd͡ʒi] |
+
+The positional map gives a coda ⟨s⟩ as [ʃ] (`festa` [ˈfeʃtɐ]) and a coda ⟨r⟩ as [h] (`porta` [ˈpohtɐ]). Data from the Pará atlas give the coda /S/ as "pós-alveolar (surda e sonora), alveolar (surda e sonora)", aspirated or deleted (Marins & Margotti 2012: 255).
+
+Known gap: Manaus is outside this spec. Its word-final /S/ is 67.1 % alveolar (Marins & Margotti 2012: 265).
+
+## Northeastern pretonic vowels and rhotics
+
+`pt-BR-x-bahia`, `pt-BR-x-ce` and `pt-BR-x-recife` share three rules. Pretonic mid vowels "têm uma maior probabilidade de se tornarem médias abertas no contexto de tônica também de timbre aberto (médias-baixas), médias nasais e diante da vogal baixa [a]" (Mota & Lopes 2018: 215). Before a close-mid stressed vowel they stay closed in 86 % (/e/) and 91 % (/o/) of tokens.
+
+The coda /R/ in these capitals is "[- vibrante] e [- anterior]" (Callou, Serra & Cunha 2015: 197). Word-final deletion reaches 94-98 % in verbs and 62-95 % in other words in every capital (p. 207).
+
+| Rule id | Rule | Example |
+|:---|:---|:---|
+| `NE_PRETONIC_OPEN_E` | pretonic /e/ gives [ɛ] before an open, nasal or low vowel | `pedaço` [pɛˈdasu] |
+| `NE_PRETONIC_OPEN_O` | pretonic /o/ gives [ɔ] in the same context | `bolacha` [bɔˈlaʃɐ] |
+| `NE_FINAL_R_DELETION` | a word-final /R/ is deleted | `falar` [faˈla], `mar` [ˈma] |
+
+The positional map gives a coda ⟨r⟩ before a consonant as [h] (`porta` [ˈpohtɐ]). Before a high or close-mid vowel the pretonic stays closed (`pedido` [peˈd͡ʒidu]).
 
 Known gaps:
 
-- The positional map hands the post-lexical rules an [ʃ], and `BR_RAISE_FINAL_ES` and `BR_RAISE_FINAL_OS` look for an [s]. So a plural keeps the near-close vowel: `gatos` [ˈɡatʊʃ], `leites` [ˈlejtɪʃ].
-- Nortista covers a vast region that the atlases describe thinly. Belém, the source of the *chiado* citation, and Manaus need not pattern alike, and the spec does not model the interior of Amazonia.
-
-Sources listed in the spec: Nascentes (1953), Silva (2014, ALFAL XVII), Noll (2008), Cardoso et al. (2014, ALiB), Mateus & d'Andrade (2000), Callou & Leite (2001), Silva (2002).
+- The trigger is the vowel two graphemes to the right, so a pretonic syllable closed by a consonant keeps the closed vowel (`espera` [esˈpɛɾɐ]).
+- A stressed ⟨e o⟩ without an accent is close in the engine output, so `boneca` does not trigger the open pretonic.
 
 ## Baiano (pt-BR-x-bahia)
 
-`pt-BR-x-bahia` models Baiano, the speech of Salvador and Bahia. It has the Northeastern open pretonic vowels: the positional map gives a pretonic ⟨e o⟩ as [ɛ ɔ] (`menino` [mɛˈninu], `boneca` [bɔˈnekɐ]).
+Baiano here is the speech of Salvador. ALiB groups Bahia with the Northeast for the open pretonics (Mota & Lopes 2018: 217). /t d/ affricate before /i/: "Em Salvador, o processo mostra-se variável, mas a proporção é alta, 85%" (Battisti & Dornelles Filho 2015: 225).
 
-The spec `notes` separate two ALiB phenomena. Salvador palatalises /t d/ before /i/, like most of Brazil, and only the context after a glide (*muito*, *oito*) shows low rates. So the spec keeps the affrication of `pt-BR` (`tia` [ˈt͡ʃiɐ], `leite` [ˈlejt͡ʃi]). The coda /s/ stays alveolar (`mesmo` [ˈmesmu]), unlike the Recife and Carioca *chiado*. The spec lists [j] as the second allophone of /ʎ/, for the weakening that its notes report.
-
-Sources listed in the spec: Cardoso et al. (2014, ALiB), Castilho (2010), Mateus & d'Andrade (2000), Callou & Leite (2001), Silva (2002). The notes cite no page for these features.
+The coda sibilant is alveolar (`festa` [ˈfestɐ]). ALiB gives 49 % alveolar in Salvador, and the alveolar is the form of younger and university-educated speakers (Marins & Margotti 2012: 256, reporting Jesus & Mota 2006). The NURC data give an even split (p. 254), so this value is the weakest in the spec.
 
 ## Cearense (pt-BR-x-ce)
 
-`pt-BR-x-ce` models Cearense, the speech of Fortaleza. It has the Northeastern open pretonic vowels (`menino` [mɛˈninu]). Its diagnostic feature is the aspiration of a coda /s/ before a consonant: the positional map for ⟨s z⟩ gives [h] there (`mesmo` [ˈmehmu], `costas` [ˈkohtas]). A word-final /s/ stays [s] (`paz` [ˈpas]).
+Cearense here is the speech of Fortaleza. ALiB rates its /t d/ palatalisation as categorical (Battisti & Dornelles Filho 2015: 226), so `gente` is [ˈʒẽt͡ʃi]. The coda sibilant is alveolar "em qualquer contexto" (Marins & Margotti 2012: 257, quoting Jesus & Mota 2007), so `costas` is [ˈkostas].
 
-The spec `notes` report that ALiB and the urban norm of Fortaleza make /t d/ palatalisation before /i/ the prestige default. So the spec keeps the affrication before a written ⟨i⟩ (`tia` [ˈt͡ʃiɐ]). It switches off `BR_AFFRIC_T_RAISED` and `BR_AFFRIC_D_RAISED`, so a raised final ⟨e⟩ keeps a dental stop (`leite` [ˈlejti]).
+| Rule id | Rule | Example |
+|:---|:---|:---|
+| `CE_CODA_S_ASPIRATION` | coda /s/ gives [h] before /d n/ | `desde` [ˈdehd͡ʒi] |
 
-Sources listed in the spec: Cardoso et al. (2014, ALiB), Mateus & d'Andrade (2000), Callou & Leite (2001), Silva (2002). The notes cite no page for these features.
+Toledo & Cantoni (2021: 27) report the Fortaleza DSC corpus (Roncarati & Uchôa 2014): 16.1 % aspiration overall, 52 % before /d/ and 61 % before /n/. ALiB gives Fortaleza only 2 % aspiration (ibid.). The rule follows the popular speech of the DSC corpus in the two contexts where aspiration is the majority.
 
 ## Pernambucano (pt-BR-x-recife)
 
-`pt-BR-x-recife` models Pernambucano, the speech of Recife. The spec `notes` name its two strongest North and South isoglosses. First, /t d/ do not palatalise: the notes give about 10 % palatalisation in Recife from ALiB. The positional map for ⟨t d⟩ gives the plain stop before ⟨i⟩, and the spec switches off `BR_AFFRIC_T_RAISED` and `BR_AFFRIC_D_RAISED` (`tia` [ˈtiɐ], `leite` [ˈlejti]). Second, the pretonic /e o/ open to [ɛ ɔ] (`menino` [mɛˈninu], `boneca` [bɔˈnekɐ]).
+Pernambucano here is the speech of Recife. /t d/ stay stops before /i/: ALiB palatalisation "é baixa em Aracaju, Maceió, Recife, João Pessoa" (Battisti & Dornelles Filho 2015: 226). The positional map keeps ⟨ti di⟩ as stops, and the spec switches off the base rules for a raised final ⟨e⟩ (`tia` [ˈtiɐ], `dentes` [ˈdẽtiʃ]).
 
-The coda /s z/ is palatal [ʃ], the Recife *chiado* (`mesmo` [ˈmeʃmu], `paz` [ˈpaʃ]).
-
-Known gaps:
-
-- The spec `notes` describe an aspirated coda /R/, but the spec declares no rhotic map, so the coda keeps the tap of `pt-BR` (`mar` [ˈmaɾ]).
-- As in Nortista, the palatal plural ⟨-s⟩ blocks the final raising rules: `gatos` [ˈɡatʊʃ].
-
-Sources listed in the spec: Cardoso et al. (2014, ALiB), Mateus & d'Andrade (2000), Callou & Leite (2001), Silva (2002).
-
-## Brasiliense (pt-BR-x-brasilia)
-
-`pt-BR-x-brasilia` models Brasiliense or Candango Portuguese, the speech of Brasília, the planned capital inaugurated in 1960. The spec declares no positional map and no rules of its own. It is `pt-BR` unchanged (`tia` [ˈt͡ʃiɐ], `mesmo` [ˈmesmu], `vento` [ˈvẽtu]).
-
-Brasília postdates by a decade the six *subfalares* into which Nascentes (1953) divides Brazil. So no historical *subfalar* exists to source a distinctive accent from, as there is for the older regions. The Brasiliense accent is a koiné. It formed from waves of internal migration, from 1956 onward, of construction workers and civil servants from every region. It converged on the dominant southeastern norm, close to São Paulo and Minas Gerais, over a Goiás and Centre-West substratum.
-
-No source that the spec cites documents a phonemic feature that sets Brasiliense apart from that southeastern norm. The spec exists to name the variety and to record why it carries no divergence. If fieldwork on the Distrito Federal, for example from ALiB, documents a real phonemic difference, a sourced positional delta can follow. The page [../contributing/spec_authoring.md](../contributing/spec_authoring.md) describes the process.
-
-Sources listed in the spec: Nascentes (1953, pp. 20, 23-25, for the context), Noll (2008), Mateus & d'Andrade (2000), Callou & Leite (2001), Silva (2002).
+The coda sibilant is palatal: "Comporta-se Recife de forma semelhante ao Rio de Janeiro com o predomínio da pós-alveolar (69,5%)" in NURC (Marins & Margotti 2012: 254). ALiB gives an even split (p. 256). Before a voiced consonant the palatal is voiced: listeners in João Pessoa hear "me[ʒ]mo" as typical of "Rio de Janeiro e Recife" (Hora, Henrique & Amorim 2018: 284). The spec carries the same plural rules and the same voicing rule `BR_CODA_SH_VOICED` as `pt-BR-x-norte` (`mesmo` [ˈmeʒmu], `desde` [ˈdeʒdi]).
 
 ## Sources
 
-- Amaral, Amadeu (1920). *O Dialeto Caipira.* Casa Editora "O Livro", São Paulo. §6a-b retroflex /r/ and laminodental /s/, §8 vowel retention, §22a coda /l/ rhotacism, §23a final /r/ deletion, §25 /ʎ/ vocalisation.
+- Amaral, A. (1920). *O Dialeto Caipira.* Casa Editora "O Livro", São Paulo. Cited by section.
 - Barbosa, P. A. & Albano, E. C. (2004). Brazilian Portuguese (Illustrations of the IPA). *Journal of the International Phonetic Association* 34(2): 227-232. [doi:10.1017/S0025100304001756](https://doi.org/10.1017/S0025100304001756)
-- Callou, D. (with Leite, Y. & Moraes, J.) (2010). Um perfil da fala carioca. In Ribeiro, Costa & Cardoso (orgs.), *Dos sons às palavras: nas trilhas da língua portuguesa*, EDUFBA, pp. 129-140. p. 135, Tabela 1: the *chiado*. pp. 137-138: the posterior coda /R/.
-- Callou, D. & Leite, Y. (2001). *Iniciação à fonética e à fonologia* (8th ed.). Zahar.
-- Cardoso, S. A. M. et al. (2014). *Atlas Linguístico do Brasil (ALiB)*, vols. 1-2. EDUEL. Pretonic-vowel and palatalisation isoglosses.
-- Castilho, Ataliba T. (2010). *Nova Gramática do Português Brasileiro.* Contexto.
-- Lemos, F. A. P. & Viegas, M. C. (2016). O alçamento das vogais médias pretônicas em falares mineiros: os dados. *Caletroscópio* 4, número especial (II DIVERMINAS), pp. 314-333.
-- Mateus, M. H. M. & d'Andrade, E. (2000). *The Phonology of Portuguese.* Oxford University Press.
-- Nascentes, Antenor (1953). *O linguajar carioca* (2nd ed.). Organização Simões, Rio de Janeiro. pp. 20, 23-25: the North and South division on pretonic-vowel openness.
-- Noll, Volker (2008). *O português brasileiro: formação e contrastes.* Globo.
-- Silva, A. R. (2014). Variação fonética em capitais brasileiras: a ditongação diante de /S/ e as realizações fonéticas do /S/ em coda. *XVII Congreso Internacional ALFAL*, João Pessoa, #4813-4818. p. 2 (#4814): the Belém and Macapá coda /S/, citing Noll (2008) and Mota, Jesus & Evangelista (2010). pp. 6-7 (#4817-4818): Bisol (1994, 2012) on Porto Alegre speech.
-- Silva, T. C. (2002). *Fonética e fonologia do português.* Contexto.
+- Battisti, E. & Dornelles Filho, A. A. (2015). Análise em tempo real da palatalização de /t/ e /d/ no português falado em uma comunidade ítalo-brasileira. *Revista da ABRALIN* 14(1): 221-246. The ALiB capital map (Cardoso et al. 2014: 123) is summarised on p. 226.
+- Borges, C. K. V. & Mendonça, J. J. (2019). A realização do /S/ na fala de universitários sergipanos do interior. *Primeira Escrita* 6: 57-73.
+- Brito, E. P. (2016). The variation of post-vowel -S in the Portuguese dialect of Rio de Janeiro. *Cadernos de Estudos Linguísticos* 58(1): 139-151.
+- Callou, D., Moraes, J. & Leite, Y. (1998). Apagamento do R final no dialeto carioca. *D.E.L.T.A.* 14 (número especial): 61-72.
+- Callou, D., Serra, C. & Cunha, C. (2015). Mudança em curso no português brasileiro: o apagamento do R no dialeto nordestino. *Revista da ABRALIN* 14(1): 195-219.
+- Castro, V. S. (2013). O "r caipira" em Mato Grosso do Sul. *Estudos Linguísticos* 42(1): 566-575.
+- Comiotto, A. F. & Margotti, F. W. (2019). Uso dos róticos do português em contato com os dialetos italianos. *Acta Scientiarum. Language and Culture* 41(2).
+- Corrêa, R. C. (2020). *Os significados sociais da realização variável da vibrante múltipla alveolar em onset silábico em Porto Alegre (RS).* PhD thesis, UFRGS.
+- Cristófaro Silva, T. (2025). A Representação Fonológica dos Róticos no Português Brasileiro. *Caligrama* 30(3): 238-254. [doi:10.35699/2238-3824.2025.61138](https://doi.org/10.35699/2238-3824.2025.61138)
+- Dutra, E. O. (2008). A palatalização das oclusivas dentais no município do Chuí, RS: perfil social. *Signos* 29(2): 47-64.
+- Franceschini, L. T. & Loregian-Penkal, L. (2023). Análise da elevação da vogal átona final /o/ em Prudentópolis e Mallet, Paraná. *Interfaces* 13(4).
+- Hora, D. (1999). Processo de palatalização das fricativas na língua portuguesa. *Revista do GELNE* 1(2): 34-36.
+- Hora, D., Henrique, P. F. L. & Amorim, A. W. D. (2018). Produção e percepção: o processo de palatalização em jogo. *Diadorim* 20(2): 280-296. [doi:10.35520/diadorim.2018.v20n2a18269](https://doi.org/10.35520/diadorim.2018.v20n2a18269)
+- Marins, F. S. & Margotti, F. W. (2012). Comportamento fonético-fonológico do /S/ pós-vocálico em Manaus. *Investigações* 25(2): 249-274.
+- Mota, J. A. & Lopes, P. H. S. (2018). Os subfalares do Norte e o traçado das vogais médias pretônicas. *Estudos de Lingüística Galega*, volume especial I: 209-218.
+- Nanini, R. F. *O /S/ pós-vocálico na fala carioca: uma análise dos falantes mais velhos de Copacabana.* Monografia, UFRJ.
+- Oliveira, M. B. (2013). Os dados do ALiB: recaracterizando os falares amazônico e nordestino. *Actes du XXVIIe CILPR*, section 8: 209-219.
+- Silva, H. C. (2023). Mapeamento da variação do /R/, em coda silábica interna, na Região Sudeste. *Signum* 26(3): 62-77.
+- Silva, H. C. & Aguilera, V. A. Os róticos e a configuração dialetal do português brasileiro: de Nascentes ao ALiB. *SciELO Preprints* 14175 (not peer reviewed).
+- Toledo, G. D. & Cantoni, M. M. (2021). Aspiração do /s/ em coda no português brasileiro: uma revisão sociolinguística. *Revista Colineares* 8(2): 21-46.
+- Viegas, M. C. & Veado, R. M. A. (1982). Alçamento de vogais pretônicas. *Cadernos de Linguística e Teoria da Literatura* 4(7): 53-70.
+- Viegas, M. C. (2001). Estudo sobre o alçamento de vogais médias pretônicas e os itens lexicais. *Revista do CESP* 21(28/29): 217-241.
 
 ---
 [← Brazilian Portuguese](pt-BR.md) · [Home](../index.md) · [Florianópolis Portuguese →](pt-BR-x-floripa.md)

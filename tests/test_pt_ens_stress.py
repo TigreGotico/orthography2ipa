@@ -34,7 +34,7 @@ ROWS = [
 
 
 def test_every_pt_spec_is_covered():
-    assert len(PT_SPECS) == 41, PT_SPECS
+    assert len(PT_SPECS) == 40, PT_SPECS
 
 
 @pytest.mark.parametrize("code", PT_SPECS)

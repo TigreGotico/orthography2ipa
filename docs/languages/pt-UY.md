@@ -69,7 +69,7 @@ Input is standard Portuguese orthography, as the literature and written *portuñ
 
 ## Limitations
 
-The only board row for `pt-UY` comes from an `llm-generated` gold (`portuguese_tts`). So the correctness of the spec rests on its citations, not on a PER. The two main features, the glide and the dental stops, rest on a primary source (Carvalho 1998, cited by page). The coda /l/ and the trill rest on a secondary source (Wikipedia). Variation along the continuum from RUP to UBP is real and gradient. The spec fixes the focused local pole and notes the spread.
+The only board row for `pt-UY` comes from a silver gold, `portuguese_tts` at the `llm-corrected` tier. So the correctness of the spec rests on its citations, not on a PER. The two main features, the glide and the dental stops, rest on a primary source (Carvalho 1998, cited by page). The coda /l/ and the trill rest on a secondary source (Wikipedia). Variation along the continuum from RUP to UBP is real and gradient. The spec fixes the focused local pole and notes the spread.
 
 ## Sources
 

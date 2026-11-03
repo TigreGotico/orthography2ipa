@@ -1,3 +1,0 @@
-numpy
-langcodes
-ovos-spec-tools>=1.16.1a1

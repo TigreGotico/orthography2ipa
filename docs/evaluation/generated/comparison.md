@@ -63,7 +63,7 @@ One line per language: the best system on its primary gold, and where o2i lands.
 
 orthography2ipa is a shared lattice — a grapheme table plus allophone/sandhi rules per language variety — that several TigreGotico projects build directly on top of, adding what the shared lattice deliberately leaves to the caller (lexicons, diacritization, dialect selection, normalization). These are FIRST-CLASS to this board, not "other G2P systems" being compared against o2i as competitors:
 
-*Versions pinned: the family rows above were produced with arbtok 0.0.0a57, tugaphone 1.2.1a1, g2p_barranquenho 0.1.2a3, mwl_phonemizer 2.1.0a2 — every one of these exact versions is published on PyPI as a pre-release alpha (verified with `pip index versions <pkg> --pre`), so the number is reproducible from a plain `pip install --pre <pkg>==<version>` even on generating environments that installed a local/editable checkout at the same version instead.*
+*Versions pinned: the family rows above were produced with arbtok 0.0.0a57, tugaphone 1.2.1a1, g2p_barranquenho 0.1.2a3, mwl_phonemizer 2.1.1a1 — every one of these exact versions is published on PyPI as a pre-release alpha (verified with `pip index versions <pkg> --pre`), so the number is reproducible from a plain `pip install --pre <pkg>==<version>` even on generating environments that installed a local/editable checkout at the same version instead.*
 
 - **[arbtok](https://github.com/TigreGotico/arbtok)** — adds Arabic diacritization, dialect lexicons, nativized loanwords, and code-switch handling on top of the shared `ar`/`arb` lattice (the RANKED `arbtok` column below runs with both bundled lexicons off for a fair lexicon-free comparison — see `arbtok (lexicon)` for the full-featured stock number).
 - **[tugaphone](https://github.com/TigreGotico/tugaphone)** — adds the curated `tugalex` pronunciation lexicon, sense-based homograph marking, and cross-dialect contact-language handling on top of the Portuguese-family lattice.
@@ -112,9 +112,9 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 
 | Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | Winner |
 |---|---|---|---|---|---|---|
-| 4catac | 160 | 0.0642 | 0.0403 | 0.1206 | 0.4641 | o2i |
-| ipa_childes | 3814 | 0.2566 | same-source | same-source | 0.3447 | o2i |
-| vox_communis | 141624 | 0.1320 | 0.1231 | 0.1217 | same-source | espeak rules-only |
+| 4catac | 160 | 0.0641 | 0.0403 | 0.1206 | 0.4641 | o2i |
+| ipa_childes | 3814 | 0.2562 | same-source | same-source | 0.3447 | o2i |
+| vox_communis | 141624 | 0.1317 | 0.1231 | 0.1217 | same-source | espeak rules-only |
 | wikipron | 106 | 0.2565 | 0.2221 | 0.2798 | 0.3518 | o2i |
 
 ### ca-x-balear (Balearic Catalan)
@@ -315,7 +315,7 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 
 | Dataset | N | o2i | arbtok | arbtok (lexicon) | tugaphone (lexicon) | g2p_barranquenho | mwl_phonemizer | udarnik | Winner |
 |---|---|---|---|---|---|---|---|---|---|
-| mirandese_dict | 990 | 0.0560 | n/a | n/a | n/a | n/a | 0.0560 | n/a | tie (mwl_phonemizer, o2i) |
+| mirandese_dict | 990 | 0.0449 | n/a | n/a | n/a | n/a | 0.0451 | n/a | tie (mwl_phonemizer, o2i) |
 | mirandese_g2p | 205 | 0.1333 | n/a | n/a | n/a | n/a | 0.1333 | n/a | tie (mwl_phonemizer, o2i) |
 | portuguese_tts | 20 | same-source | same-source | same-source | same-source | same-source | same-source | same-source | n/a |
 
@@ -433,8 +433,8 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 A system winning on one gold and losing on another for the SAME language is real signal, not noise to average away. Every language with 2+ espeak-comparable gold datasets is listed below with its exact win/loss split (same-source cells excluded — they are never comparable, see above).
 
 - **`ca`** (loses on all golds):
-  - `4catac` (n=160, tier=expert-human): o2i 0.0642 vs espeak 0.0403 — o2i loses
-  - `vox_communis` (n=141624, tier=epitran-derived): o2i 0.1320 vs espeak 0.1231 — o2i loses
+  - `4catac` (n=160, tier=expert-human): o2i 0.0641 vs espeak 0.0403 — o2i loses
+  - `vox_communis` (n=141624, tier=epitran-derived): o2i 0.1317 vs espeak 0.1231 — o2i loses
   - `wikipron` (n=106, tier=crowd-scraped): o2i 0.2565 vs espeak 0.2221 — o2i loses
 - **`cy`** (wins on all golds):
   - `vox_communis` (n=18701, tier=epitran-derived): o2i 0.1172 vs espeak 0.3005 — o2i wins
@@ -505,8 +505,8 @@ The table above conflates espeak-ng's letter-to-sound RULES with its hand-curate
 
 | Lang | Dataset | N | o2i | o2i_lex | espeak | espeak_rules |
 |---|---|---:|---:|---:|---:|---:|
-| ca | 4catac | 160 | 0.0642 | n/a | 0.0403 | 0.1206 |
-| ca | vox_communis | 141624 | 0.1320 | n/a | 0.1231 | 0.1217 |
+| ca | 4catac | 160 | 0.0641 | n/a | 0.0403 | 0.1206 |
+| ca | vox_communis | 141624 | 0.1317 | n/a | 0.1231 | 0.1217 |
 | ca | wikipron | 106 | 0.2565 | n/a | 0.2221 | 0.2798 |
 | ca-x-balear | 4catac | 160 | 0.1360 | n/a | 0.0797 | 0.1419 |
 | ca-x-occidental | 4catac | 160 | 0.0822 | n/a | 0.0497 | 0.0832 |

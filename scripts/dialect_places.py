@@ -443,11 +443,7 @@ PLACES: dict[str, dict] = {
         note="Fortaleza — the centre of the Cearense area."),
     "pt-BR-x-norte": dict(
         qid="Q12829733", label="Belém", country="Brazil",
-        note="Belém — the reference city of the Nortista/Amazônico area (with "
-             "Manaus, 1,300 km west: a single point is a poor summary of Amazonia)."),
-    "pt-BR-x-brasilia": dict(
-        qid="Q2844", label="Brasília", country="Brazil",
-        note="Brasília — the planned capital whose migration koiné this spec models."),
+        note="Belém — the city this spec models. Manaus differs in its coda /S/."),
     "pt-BR-x-caipira": dict(
         qid="Q330175", label="Piracicaba", country="Brazil",
         note="Piracicaba — a representative locality of the caipira area, whose "

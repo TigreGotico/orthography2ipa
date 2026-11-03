@@ -27,7 +27,7 @@ Each file is tab-separated UTF-8 with a header row. The columns are the `FIELDS`
 | `id` | `<lect>-NNN`, numbered from `001` |
 | `sentence` | The sentence in the input orthography of the lect. This is the text a TTS voice receives, and the text the engine transcribes. |
 | `raw` | Arabic only. The sentence with the ḥarakāt removed, which is what a TTS normally receives. |
-| `ipa` | The output of `transcribe(sentence, lect)`, audited against the cited sources of the lect |
+| `ipa` | The engine draft from `transcribe(sentence, lect)`, audited against the cited sources of the lect |
 | `gloss_en` | An English translation |
 | `features` | Coverage tags, separated by semicolons (see [Feature tags](#feature-tags)) |
 | `notes` | Corrections to the engine output, and the source ids from the spec's `sources` that justify the row |
@@ -36,17 +36,13 @@ All columns except `notes` must be non-empty. The `notes` column must carry at l
 
 Only the Arabic set has a `raw` column. Arabic orthography leaves short vowels unwritten, and the engine takes fully vocalized text as its Arabic input. In the other four sets the spelling already writes every segment a speaker needs, so the sentence is the TTS input as it stands.
 
-## The engine-pin contract
+## The engine draft and the corrected label
 
-The `ipa` column is exactly what the engine emits for `sentence` under the lect. `validate` computes it again and fails on any difference. That makes each file a regression pin on the spec.
+`draft` writes the `ipa` column from the engine output for `sentence` under the lect. The author then audits each row against the lect's `sources` and records every correction in `notes`, with the source id that grounds it. `validate` does not compare the `ipa` column with the engine.
 
-Never edit the `ipa` column by hand. A set that is patched to hide a spec bug is worse than no set. When the engine is wrong, fix the spec, with a citation from the lect's `sources`. You can also change the sentence to a word that the literature attests and that the spec transcribes correctly. Record every correction in `notes`, with the source id that grounds it.
+The board does not score the `ipa` column. It scores the label that [`scripts/correct_silver_ipa.py`](../contributing/silver_correction.md) wrote for each row, in `orthography2ipa/data/gold/<set>.llm-corrected.jsonl`. `tests/test_llm_corrected_sets.py` checks that each such file holds exactly the rows of its source set. A row that you add to, or change in, a source file therefore needs a correction run before the suite passes again.
 
-When a spec change alters a stored transcription, `validate` prints the stored and the computed IPA. Reconcile the two on purpose:
-
-1. If the changed transcription is more accurate against the cited sources, the set pinned an older, less correct output. Regenerate the `ipa` column from the engine with `draft`, or copy the `got:` line. Check the feature tags against the changed IPA, and note the spec change with its source id.
-2. If the changed transcription is wrong, the set caught a regression. Fix the spec and leave the set as it is.
-3. If the engine cannot yet produce the attested form, state the gap at the top of the pull request description. Change the sentence to a form that the spec transcribes correctly and the literature attests, and keep the gap on record.
+Never edit the `ipa` column, or a corrected label, to hide a spec bug. When the engine is wrong, fix the spec, with a citation from the lect's `sources`.
 
 ## What `validate` checks
 
@@ -58,7 +54,6 @@ When a spec change alters a stored transcription, `validate` prints the stored a
 | Required fields | `id`, `sentence`, `ipa`, `gloss_en` or `features` is empty (`raw` too, in the Arabic set) |
 | Row minimum | a lect file has fewer than `MIN_ROWS` rows. `MIN_ROWS` is 20 in the Kabyle builder and 5 in the other four. |
 | Duplicates | two rows of one lect have the same sentence |
-| Engine pin | `transcribe(sentence, lect)` differs from `ipa` |
 | Feature tags | a tag is unknown, or its predicate is false on the row |
 | Citations | `notes` names an id that is not in the lect's `sources`, holds an author-year citation in free text, or holds no resolvable id |
 | Arabic vocalization | `raw` differs from `sentence` with the ḥarakāt removed, or a consonant has no diacritic outside the allowed cases |
@@ -134,7 +129,7 @@ The builders share three subcommands. Run them from the root of a checkout. Each
    ```
 
 4. Write the gloss, the shape tags and the `notes` yourself, with a source id in the notes.
-5. Check the IPA against the phoneme mappings and the sources of the spec. If the engine is wrong, fix the spec as described in [The engine-pin contract](#the-engine-pin-contract).
+5. Check the IPA against the phoneme mappings and the sources of the spec. If the engine is wrong, fix the spec as described in [The engine draft and the corrected label](#the-engine-draft-and-the-corrected-label).
 6. Run `python scripts/kabyle_tts_gold.py validate` and confirm that it prints `all green`. The test file of the set runs the same command in CI.
 
 The `checklist` docstrings mention an optional TSV argument, but the parser accepts only the lect code.
@@ -170,7 +165,7 @@ Both sets are also written to be rich in sandhi. Word junctions are where these 
 
 A language model wrote the sentences of all five sets. For `arabic_tts` and `portuguese_tts` it also drafted each transcription. Each draft was then pinned to the engine and audited row by row against the literature cited in `notes`. The `spain_romance_tts` transcriptions are drafted by `transcribe` itself. Each row of every set names in `notes` the spec sources that ground it, and `validate` checks that each id resolves.
 
-The scoreboard scores `arabic_tts`, `portuguese_tts` and `spain_romance_tts` at the `llm-generated` tier, which can never gate a quality decision. The `ipa` column is the engine's own output by contract, so each row scores a PER of zero by construction. The rows measure drift from the pinned output, not accuracy. The `PROVENANCE` comment on `spain_romance_tts` in `scripts/benchmark.py` states that a set pinned to the system under test must never gate anything.
+The scoreboard scores `arabic_tts`, `portuguese_tts` and `spain_romance_tts` against their corrected labels, at the `llm-corrected` tier. That tier is silver and can never gate a quality decision. Two blind model passes wrote each label, and a third pass decided where they differed, with the engine output in view. The label is still a language model's. A PER on these rows measures distance from that label. It is not an accuracy, and a row is never evidence for a phonetic value. The `kabyle_tts` and `iberian_creole_tts` sets have corrected labels too, but the board does not register them.
 
 The citation audit in `notes` raises confidence in the sentences and their grounding. It does not raise the tier of the IPA, and it does not make a silver set gold. [Gold defects](gold_defects.md#circular) records these sets as circular, and [benchmarks.md](benchmarks.md#provenance-and-reliability-read-this-before-trusting-any-number) explains the tiers.
 

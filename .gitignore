@@ -28,6 +28,9 @@ htmlcov/
 .espeak_rules_only/
 .o2i_lex_cache/
 
+# scripts/correct_silver_ipa.py: paid API responses, pending batches, run log.
+.silver_correction_cache/
+
 # IDE
 .idea/
 .vscode/
