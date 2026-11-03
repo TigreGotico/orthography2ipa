@@ -122,6 +122,21 @@ def test_french_obstruent_plus_liquid_stays_together():
     assert syllables("fr-FR", "table") == ["ta", "ble"]
 
 
+@pytest.mark.parametrize("word,expected", [
+    ("pacto", ["pac", "to"]), ("opção", ["op", "ção"]),
+    ("pasta", ["pas", "ta"]), ("escola", ["es", "co", "la"]),
+    ("advogado", ["ad", "vo", "ga", "do"]), ("palavra", ["pa", "la", "vra"]),
+    ("aglomerar", ["a", "glo", "me", "rar"]),
+])
+def test_declared_onset_inventory_decides_the_split(word, expected):
+    """pt-BR declares its complex onsets in ``stress.onset_clusters``: an
+    obstruent and a non-nasal sonorant. That list, and not the built-in
+    shapes, decides: the shapes license ⟨st⟩ and ⟨dv⟩, Portuguese does not.
+    No plugin is asked (*lang* is ``None``), so this is the bundled splitter."""
+    spec = get("pt-BR")
+    assert _syllables_for(word, None, spec.stress.diphthongs, spec=spec) == expected
+
+
 def test_french_silent_h_does_not_form_a_cluster():
     assert syllables("fr-FR", "malheur") == ["mal", "heur"]
 
