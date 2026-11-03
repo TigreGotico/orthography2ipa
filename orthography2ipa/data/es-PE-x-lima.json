@@ -26,7 +26,7 @@
   },
   "positional_graphemes_base": "es-ES",
   "parent": "es-ES",
-  "notes": "Lima coastal Peruvian Spanish. Conservative coda /s/, yeísmo universal (no /ʎ/). Less Quechua influence than highland. Standard reference for Peruvian media.",
+  "notes": "Lima coastal Peruvian Spanish. Conservative coda /s/, yeísmo universal (no /ʎ/). Less Quechua influence than highland. Standard reference for Peruvian media. WORD-FINAL /n/ IS VELAR [ŋ]: pan [ˈpaŋ], un otro [uŋ ˈotɾo]. Lipski (2011, p. 7): «Velarization of phrase-final /n/ is the rule in Galicia and parts of Asturias, Extremadura, Andalusia, the Canary Islands, all Caribbean and Central American dialects, along the Pacific coast of Colombia, Peru, and Ecuador, and sporadically in the Andean highlands. Word-final prevocalic nasals are typically also velarized in these dialects, although with generally lower rates than for phrase-final /n/ (Lipski 1986): un otro [uŋ.ˈo.tɾo]».",
   "quality": "skeleton",
   "script_type": "alphabet",
   "sources": [
@@ -60,6 +60,16 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "lipski_overview",
+      "author": "Lipski, John M.",
+      "year": 2011,
+      "title": "Geographical and Social Varieties of Spanish: An Overview",
+      "publisher": "In J.I. Hualde, A. Olarrea & E. O'Rourke (eds.), The Handbook of Hispanic Linguistics, Wiley-Blackwell",
+      "url": "https://johnlipski.github.io/geo.pdf",
+      "pages": "pp. 1-26",
+      "notes": "READ (geo.pdf). Reproduces the Lipski (1994) geographical dialect-zone classification of Latin American Spanish (list (2)): Mexican/SW-US; Caribbean; Guatemala-Yucatan-Costa Rica; El Salvador-Honduras-Nicaragua; interior Colombia + highland Venezuela; Pacific coast Colombia/Ecuador/Peru; Andean (Ecuador/Peru/Bolivia/NW-Argentina/NE-Chile); Chile; Paraguay/NE-Argentina/E-Bolivia; Argentina/Uruguay. Used here to enumerate the regional zones, and p. 7 for the velar word-final /n/."
     }
   ],
   "wikipedia": [
@@ -72,6 +82,17 @@
   },
   "glottolog_code": null,
   "iso639_3": "spa",
+  "positional_graphemes": {
+    "n": {
+      "before_consonant": [
+        "n",
+        "ŋ"
+      ],
+      "word_final": [
+        "ŋ"
+      ]
+    }
+  },
   "location": {
     "latitude": -12.06,
     "longitude": -77.0375,

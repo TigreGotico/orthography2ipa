@@ -25,6 +25,15 @@
       "before_i": [
         "s"
       ]
+    },
+    "n": {
+      "before_consonant": [
+        "n",
+        "ŋ"
+      ],
+      "word_final": [
+        "ŋ"
+      ]
     }
   },
   "parent": "es-ES",
@@ -42,7 +51,7 @@
       "notes": "General Latin American Spanish (koine) baseline (Lipski 1994)."
     }
   ],
-  "notes": "STRUCTURAL STUB. Honduran Spanish — Lipski's (1994) 'El Salvador, Honduras, and Nicaragua' Central American zone; voseo, /s/-aspiration, occlusive /b d g/. Only the pan-Latin-American baseline (seseo, yeismo; Lipski 1994) is modelled; national-specific phonology not yet described (stub tier).",
+  "notes": "STRUCTURAL STUB. Honduran Spanish — Lipski's (1994) 'El Salvador, Honduras, and Nicaragua' Central American zone; voseo, /s/-aspiration, occlusive /b d g/. Only the pan-Latin-American baseline (seseo, yeismo; Lipski 1994) is modelled; national-specific phonology not yet described (stub tier). WORD-FINAL /n/ IS VELAR [ŋ]: pan [ˈpaŋ], un otro [uŋ ˈotɾo]. Lipski (2011, p. 7): «Velarization of phrase-final /n/ is the rule in Galicia and parts of Asturias, Extremadura, Andalusia, the Canary Islands, all Caribbean and Central American dialects, along the Pacific coast of Colombia, Peru, and Ecuador, and sporadically in the Andean highlands. Word-final prevocalic nasals are typically also velarized in these dialects, although with generally lower rates than for phrase-final /n/ (Lipski 1986): un otro [uŋ.ˈo.tɾo]».",
   "quality": "stub",
   "script_type": "alphabet",
   "iso639_3": "spa",
@@ -60,7 +69,7 @@
       "publisher": "In J.I. Hualde, A. Olarrea & E. O'Rourke (eds.), The Handbook of Hispanic Linguistics, Wiley-Blackwell",
       "url": "https://johnlipski.github.io/geo.pdf",
       "pages": "pp. 1-26",
-      "notes": "READ (geo.pdf). Reproduces the Lipski (1994) geographical dialect-zone classification of Latin American Spanish (list (2)): Mexican/SW-US; Caribbean; Guatemala-Yucatan-Costa Rica; El Salvador-Honduras-Nicaragua; interior Colombia + highland Venezuela; Pacific coast Colombia/Ecuador/Peru; Andean (Ecuador/Peru/Bolivia/NW-Argentina/NE-Chile); Chile; Paraguay/NE-Argentina/E-Bolivia; Argentina/Uruguay. Used here to enumerate the regional zones; no phonology quoted."
+      "notes": "READ (geo.pdf). Reproduces the Lipski (1994) geographical dialect-zone classification of Latin American Spanish (list (2)): Mexican/SW-US; Caribbean; Guatemala-Yucatan-Costa Rica; El Salvador-Honduras-Nicaragua; interior Colombia + highland Venezuela; Pacific coast Colombia/Ecuador/Peru; Andean (Ecuador/Peru/Bolivia/NW-Argentina/NE-Chile); Chile; Paraguay/NE-Argentina/E-Bolivia; Argentina/Uruguay. Used here to enumerate the regional zones, and p. 7 for the velar word-final /n/."
     },
     {
       "id": "lipski1994",
