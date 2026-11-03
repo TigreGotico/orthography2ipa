@@ -24,21 +24,21 @@ The table gives the features that set each lect apart from `pt-BR`. The lects ru
 
 | Lect | Region | Features that set it apart | Example |
 |:---|:---|:---|:---|
-| [`pt-BR-x-rj`](#carioca-pt-br-x-rj) | Rio de Janeiro city | coda /s/ [ʃ]<br>coda /r/ [x], final /r/ [h]<br>onset /r/ [χ] | `festa` [ˈfeʃtɐ], `porta` [ˈpoxtɐ], `mar` [ˈmah] |
+| [`pt-BR-x-rj`](#carioca-pt-br-x-rj) | Rio de Janeiro city | coda /s/ [ʃ], [ʒ] before a voiced consonant<br>coda /r/ [x], final /r/ [h]<br>onset /r/ [χ] | `festa` [ˈfeʃtɐ], `mesmo` [ˈmeʒmu], `porta` [ˈpoxtɐ], `mar` [ˈmah] |
 | [`pt-BR-x-fluminense`](#fluminense-pt-br-x-fluminense) | Rio de Janeiro state interior | coda /r/ [h]<br>onset /r/ [x] | `porta` [ˈpohtɐ], `paz` [ˈpas], `rato` [ˈxatu] |
 | [`pt-BR-x-sp`](#paulistano-pt-br-x-sp) | São Paulo city | strong /r/ [x], [ɣ] between vowels<br>yod before a final /s/ | `rato` [ˈxatu], `carro` [ˈkaɣu], `arroz` [aˈɣojs] |
 | [`pt-BR-x-caipira`](#caipira-pt-br-x-caipira) | São Paulo interior | coda /r/ and coda /l/ [ɻ]<br>⟨lh⟩ [j] | `porta` [ˈpoɻtɐ], `alma` [ˈaɻmɐ], `filho` [ˈfiju] |
 | [`pt-BR-x-mg`](#mineiro-pt-br-x-mg) | Belo Horizonte | pretonic /e/ [i] before a high vowel and word-initially<br>coda /r/ [h] | `pedido` [piˈd͡ʒidu], `escola` [isˈkolɐ], `porta` [ˈpohtɐ] |
 | [`pt-BR-x-pr`](#paranaense-pt-br-x-pr) | Curitiba | /t d/ stops before /i/<br>final /e/ [e] | `tia` [ˈtiɐ], `verde` [ˈveɾde] |
 | [`pt-BR-x-sul`](#sulista-pt-br-x-sul) | Porto Alegre | strong /r/ [x] | `rato` [ˈxatu], `carro` [ˈkaxu] |
-| [`pt-BR-x-norte`](#nortista-pt-br-x-norte) | Belém | coda /s/ [ʃ]<br>coda /r/ [h] | `festa` [ˈfeʃtɐ], `dentes` [ˈdẽt͡ʃiʃ], `porta` [ˈpohtɐ] |
+| [`pt-BR-x-norte`](#nortista-pt-br-x-norte) | Belém | coda /s/ [ʃ], [ʒ] before a voiced consonant<br>coda /r/ [h] | `festa` [ˈfeʃtɐ], `mesmo` [ˈmeʒmu], `dentes` [ˈdẽt͡ʃiʃ], `porta` [ˈpohtɐ] |
 | [`pt-BR-x-bahia`](#baiano-pt-br-x-bahia) | Salvador | open pretonic [ɛ ɔ] before an open, nasal or low vowel<br>coda /r/ [h], final /r/ deleted | `pedaço` [pɛˈdasu], `bolacha` [bɔˈlaʃɐ], `falar` [faˈla] |
 | [`pt-BR-x-ce`](#cearense-pt-br-x-ce) | Fortaleza | the Baiano pretonics and rhotics<br>coda /s/ [h] before /d n/ | `pedaço` [pɛˈdasu], `desde` [ˈdehd͡ʒi] |
-| [`pt-BR-x-recife`](#pernambucano-pt-br-x-recife) | Recife | /t d/ stops before /i/<br>coda /s/ [ʃ]<br>the Northeastern pretonics and rhotics | `tia` [ˈtiɐ], `festa` [ˈfeʃtɐ], `pedaço` [pɛˈdasu] |
+| [`pt-BR-x-recife`](#pernambucano-pt-br-x-recife) | Recife | /t d/ stops before /i/<br>coda /s/ [ʃ], [ʒ] before a voiced consonant<br>the Northeastern pretonics and rhotics | `tia` [ˈtiɐ], `festa` [ˈfeʃtɐ], `pedaço` [pɛˈdasu] |
 
 ## Carioca (pt-BR-x-rj)
 
-Carioca is the speech of the city of Rio de Janeiro. Its defining feature is the *chiado*: a coda sibilant surfaces as the palatal [ʃ] or [ʒ]. Brito (2016: 148) finds that "[ʃ] or [ʒ] account for 85.3% of the occurrences". The ALiB map gives a palatal rate above 76 % only in Rio de Janeiro, Belém and Florianópolis (Borges & Mendonça 2019: 58). Before a vowel in the next word, the sibilant is [z] (Nanini: 17).
+Carioca is the speech of the city of Rio de Janeiro. Its defining feature is the *chiado*: a coda sibilant surfaces as the palatal [ʃ] or [ʒ]. Brito (2016: 148) finds that "[ʃ] or [ʒ] account for 85.3% of the occurrences". The palatal takes the voicing of the next consonant: it is "[z] or [ʒ] in syllable-final position followed by voiced consonant" (p. 142), as in `mesmo` [ˈmeʒmu]. The ALiB map gives a palatal rate above 76 % only in Rio de Janeiro, Belém and Florianópolis (Borges & Mendonça 2019: 58). Before a vowel in the next word, the sibilant is [z] (Nanini: 17).
 
 The Carioca rhotic is posterior. Callou, Moraes & Leite (1998: 62-63) describe the coda /R/ as a range that "vai de uma vibrante, alveolar ou uvular, a uma fricativa, velar ou glotal, chegando a seu total apagamento". Word-final deletion reaches 73-82 % in verbs and 32 % in other words (p. 67).
 
@@ -46,10 +46,11 @@ The Carioca rhotic is posterior. Callou, Moraes & Leite (1998: 62-63) describe t
 |:---|:---|:---|
 | `RJ_CHIADO_CODA_S` | /s/ gives [ʃ] in the coda | `festa` [ˈfeʃtɐ], `paz` [ˈpaʃ] |
 | `RJ_CHIADO_CODA_Z` | /z/ gives [ʒ] in the coda | no word reaches it, see the gaps |
+| `BR_CODA_SH_VOICED` | a coda [ʃ] gives [ʒ] before a voiced consonant | `mesmo` [ˈmeʒmu], `desde` [ˈdeʒd͡ʒi], `Lisboa` [liʒˈboɐ] |
 | `RJ_CODA_R_VELAR` | a coda /R/ before a consonant gives [x] | `porta` [ˈpoxtɐ] |
 | `RJ_CODA_R_FINAL` | a word-final /R/ gives [h] | `mar` [ˈmah] |
 
-The positional map gives the strong onset ⟨r⟩ as [χ], with [x] and [h] as further candidates (`rio` [ˈχiu]). The spec inherits /t d/ affrication (`tia` [ˈt͡ʃiɐ]) and coda /l/ to [w].
+The positional map gives the strong onset ⟨r⟩ as [χ], with [x] and [h] as further candidates (`rio` [ˈχiu]). One R-forte class covers the start of a word (rio), ⟨rr⟩ (carro) and the onset after a consonant (Israel) (Cristófaro Silva 2025: 240), so ⟨rr⟩ and the rule `BR_STRONG_R_AFTER_CODA` give the same [χ] (`carro` [ˈkaχu], `honra` [ˈõχɐ]). Before this voiceless rhotic the coda sibilant stays voiceless (`desrespeito` [deʃχeʃˈpejtu]). The spec inherits /t d/ affrication (`tia` [ˈt͡ʃiɐ]) and coda /l/ to [w].
 
 Known gaps:
 
@@ -64,13 +65,13 @@ Fluminense is the Portuguese of the state of Rio de Janeiro outside the capital.
 | `FLU_CODA_R_GLOTTAL` | a coda /R/ before a consonant gives [h] | `porta` [ˈpohtɐ] |
 | `FLU_CODA_R_FINAL` | a word-final /R/ gives [h] | `mar` [ˈmah] |
 
-The strong onset ⟨r⟩ is [x] (`rato` [ˈxatu]). The coda sibilant keeps the base values (`festa` [ˈfestɐ], `paz` [ˈpas]).
+The strong onset ⟨r⟩ is [x] (`rato` [ˈxatu]). One R-forte class covers the start of a word (rio), ⟨rr⟩ (carro) and the onset after a consonant (Israel) (Cristófaro Silva 2025: 240), so ⟨rr⟩ and the rule `BR_STRONG_R_AFTER_CODA` give the same [x] (`carro` [ˈkaxu], `honra` [ˈõxɐ]). A coda /s/ takes the voicing of the next sound (Barbosa & Albano 2004: 229), so it is [z] before a voiced consonant and stays [s] before this voiceless rhotic (`mesmo` [ˈmezmu], `desrespeito` [desxesˈpejtu]). The coda sibilant keeps the base values (`festa` [ˈfestɐ], `paz` [ˈpas]).
 
 ## Paulistano (pt-BR-x-sp)
 
 Paulistano is the urban Portuguese of São Paulo city, the variety that Barbosa & Albano (2004) describe. `pt-BR` follows the same source, so the spec adds only the two features that the source gives for this variety alone.
 
-Strong /r/ is "a velar fricative, usually voiced between voiced sounds and voiceless elsewhere" (Barbosa & Albano 2004: 228, with carro [ˈkaɣʊ]). The positional map gives a word-initial ⟨r⟩ as [x], and ⟨rr⟩ is [ɣ].
+Strong /r/ is "a velar fricative, usually voiced between voiced sounds and voiceless elsewhere" (Barbosa & Albano 2004: 228, with carro [ˈkaɣʊ]). The positional map gives a word-initial ⟨r⟩ as [x], and ⟨rr⟩ is [ɣ]. After a coda consonant the rhotic follows a nasal vowel or a voiced [z], and the rule `BR_STRONG_R_AFTER_CODA` gives the voiced [ɣ] (`honra` [ˈõɣɐ], `genro` [ˈʒẽɣu]).
 
 > "Diphthongs also emerge in this variety from yodisation of vowels (with the exception of [i]) followed by /S/, as in arroz [aɣoɪ̯s] 'rice' and mas [maɪ̯s] 'but'", Barbosa & Albano (2004: 229)
 
@@ -126,7 +127,7 @@ Known gaps:
 
 ## Sulista (pt-BR-x-sul)
 
-Sulista here is the speech of Porto Alegre. The strong /r/ is the velar fricative. In Porto Alegre the trill fell "de 30,9% nos anos 1990 para apenas 0,4%" (Corrêa 2020: 87), and ALiB shows "o predomínio do uso da fricativa velar [x] nos estados do Rio Grande do Sul e Santa Catarina" (Comiotto & Margotti 2019: PDF p. 6). The positional map gives a word-initial ⟨r⟩ as [x], and ⟨rr⟩ is [x] (`rato` [ˈxatu], `carro` [ˈkaxu]).
+Sulista here is the speech of Porto Alegre. The strong /r/ is the velar fricative. In Porto Alegre the trill fell "de 30,9% nos anos 1990 para apenas 0,4%" (Corrêa 2020: 87), and ALiB shows "o predomínio do uso da fricativa velar [x] nos estados do Rio Grande do Sul e Santa Catarina" (Comiotto & Margotti 2019: PDF p. 6). The positional map gives a word-initial ⟨r⟩ as [x], and ⟨rr⟩ is [x] (`rato` [ˈxatu], `carro` [ˈkaxu]). The rule `BR_STRONG_R_AFTER_CODA` gives the same [x] after a coda consonant (`honra` [ˈõxɐ]; Cristófaro Silva 2025: 240). A coda /s/ takes the voicing of the next sound (Barbosa & Albano 2004: 229), so it is [z] before a voiced consonant and stays [s] before this voiceless rhotic (`mesmo` [ˈmezmu], `desrespeito` [desxesˈpejtu]).
 
 The other features follow the base. ALiB rates Porto Alegre palatalisation as categorical (Battisti & Dornelles Filho 2015: 226), so `tia` is [ˈt͡ʃiɐ] and `dentes` is [ˈdẽt͡ʃis]. Final /o/ raises in 97 % of Porto Alegre tokens (Franceschini & Loregian-Penkal 2023: 2), and no opened source gives final [e] for the capital (`verde` [ˈveɾd͡ʒi]). The coda /R/ is the tap, "from São Paulo southwards" (Barbosa & Albano 2004: 228).
 
@@ -140,8 +141,9 @@ Nortista here is the speech of Belém. The coda sibilant is palatal (Borges & Me
 |:---|:---|:---|
 | `BR_RAISE_FINAL_ES` | the plural -es raises before [ʃ] as before [s] | `dentes` [ˈdẽt͡ʃiʃ] |
 | `BR_RAISE_FINAL_OS` | the plural -os raises before [ʃ] as before [s] | `ovos` [ˈovuʃ] |
+| `BR_CODA_SH_VOICED` | a coda [ʃ] gives [ʒ] before a voiced consonant | `mesmo` [ˈmeʒmu], `desde` [ˈdeʒd͡ʒi] |
 
-The positional map gives a coda ⟨s⟩ as [ʃ] (`festa` [ˈfeʃtɐ]) and a coda ⟨r⟩ as [h] (`porta` [ˈpohtɐ]).
+The positional map gives a coda ⟨s⟩ as [ʃ] (`festa` [ˈfeʃtɐ]) and a coda ⟨r⟩ as [h] (`porta` [ˈpohtɐ]). Data from the Pará atlas give the coda /S/ as "pós-alveolar (surda e sonora), alveolar (surda e sonora)", aspirated or deleted (Marins & Margotti 2012: 255).
 
 Known gap: Manaus is outside this spec. Its word-final /S/ is 67.1 % alveolar (Marins & Margotti 2012: 265).
 
@@ -184,7 +186,7 @@ Toledo & Cantoni (2021: 27) report the Fortaleza DSC corpus (Roncarati & Uchôa 
 
 Pernambucano here is the speech of Recife. /t d/ stay stops before /i/: ALiB palatalisation "é baixa em Aracaju, Maceió, Recife, João Pessoa" (Battisti & Dornelles Filho 2015: 226). The positional map keeps ⟨ti di⟩ as stops, and the spec switches off the base rules for a raised final ⟨e⟩ (`tia` [ˈtiɐ], `dentes` [ˈdẽtiʃ]).
 
-The coda sibilant is palatal: "Comporta-se Recife de forma semelhante ao Rio de Janeiro com o predomínio da pós-alveolar (69,5%)" in NURC (Marins & Margotti 2012: 254). ALiB gives an even split (p. 256). The spec carries the same plural rules as `pt-BR-x-norte`.
+The coda sibilant is palatal: "Comporta-se Recife de forma semelhante ao Rio de Janeiro com o predomínio da pós-alveolar (69,5%)" in NURC (Marins & Margotti 2012: 254). ALiB gives an even split (p. 256). Before a voiced consonant the palatal is voiced: listeners in João Pessoa hear "me[ʒ]mo" as typical of "Rio de Janeiro e Recife" (Hora, Henrique & Amorim 2018: 284). The spec carries the same plural rules and the same voicing rule `BR_CODA_SH_VOICED` as `pt-BR-x-norte` (`mesmo` [ˈmeʒmu], `desde` [ˈdeʒdi]).
 
 ## Sources
 
@@ -198,9 +200,11 @@ The coda sibilant is palatal: "Comporta-se Recife de forma semelhante ao Rio de 
 - Castro, V. S. (2013). O "r caipira" em Mato Grosso do Sul. *Estudos Linguísticos* 42(1): 566-575.
 - Comiotto, A. F. & Margotti, F. W. (2019). Uso dos róticos do português em contato com os dialetos italianos. *Acta Scientiarum. Language and Culture* 41(2).
 - Corrêa, R. C. (2020). *Os significados sociais da realização variável da vibrante múltipla alveolar em onset silábico em Porto Alegre (RS).* PhD thesis, UFRGS.
+- Cristófaro Silva, T. (2025). A Representação Fonológica dos Róticos no Português Brasileiro. *Caligrama* 30(3): 238-254. [doi:10.35699/2238-3824.2025.61138](https://doi.org/10.35699/2238-3824.2025.61138)
 - Dutra, E. O. (2008). A palatalização das oclusivas dentais no município do Chuí, RS: perfil social. *Signos* 29(2): 47-64.
 - Franceschini, L. T. & Loregian-Penkal, L. (2023). Análise da elevação da vogal átona final /o/ em Prudentópolis e Mallet, Paraná. *Interfaces* 13(4).
 - Hora, D. (1999). Processo de palatalização das fricativas na língua portuguesa. *Revista do GELNE* 1(2): 34-36.
+- Hora, D., Henrique, P. F. L. & Amorim, A. W. D. (2018). Produção e percepção: o processo de palatalização em jogo. *Diadorim* 20(2): 280-296. [doi:10.35520/diadorim.2018.v20n2a18269](https://doi.org/10.35520/diadorim.2018.v20n2a18269)
 - Marins, F. S. & Margotti, F. W. (2012). Comportamento fonético-fonológico do /S/ pós-vocálico em Manaus. *Investigações* 25(2): 249-274.
 - Mota, J. A. & Lopes, P. H. S. (2018). Os subfalares do Norte e o traçado das vogais médias pretônicas. *Estudos de Lingüística Galega*, volume especial I: 209-218.
 - Nanini, R. F. *O /S/ pós-vocálico na fala carioca: uma análise dos falantes mais velhos de Copacabana.* Monografia, UFRJ.

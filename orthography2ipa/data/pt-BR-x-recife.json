@@ -398,6 +398,16 @@
       "url": "https://revista.abralin.org/index.php/abralin/article/download/1238/1161",
       "pages": "197, 207",
       "notes": null
+    },
+    {
+      "id": "hora_henrique_amorim2018",
+      "author": "Hora, D. da, Henrique, P.F.L. & Amorim, A.W.D.",
+      "year": 2018,
+      "title": "Produção e percepção: o processo de palatalização em jogo",
+      "publisher": "Diadorim 20(2): 280-296",
+      "url": "https://doi.org/10.35520/diadorim.2018.v20n2a18269",
+      "pages": "284",
+      "notes": null
     }
   ],
   "wikipedia": [
@@ -579,6 +589,31 @@
       ],
       "followed_by_2": "word_boundary",
       "notes": "The palatal coda sibilant of this variety is [ʃ], so the base rule must also match [ʃ]; the plural endings raise as in the base (dentes, ovos)."
+    },
+    {
+      "id": "BR_CODA_SH_VOICED",
+      "phonemes": [
+        "ʃ"
+      ],
+      "surface": "ʒ",
+      "syllable_position": "coda",
+      "followed_by_phoneme": [
+        "b",
+        "d",
+        "ɡ",
+        "v",
+        "z",
+        "ʒ",
+        "d͡ʒ",
+        "m",
+        "n",
+        "ɲ",
+        "l",
+        "ʎ",
+        "ɾ",
+        "ʁ"
+      ],
+      "notes": "The palatal coda /S/ takes the voicing of a following voiced consonant: mesmo [ˈmeʒmu], desde [ˈdeʒdi]. Hora, Henrique & Amorim (2018: 284) cite the palatal variants 'ca[ʃ]ca', 'me[ʒ]mo' e 'doi[ʃ]' as 'estereótipos de falares de outras comunidades linguísticas, como Rio de Janeiro e Recife'. The positional map writes the coda as [ʃ]; this rule voices it in the second pass."
     }
   ]
 }

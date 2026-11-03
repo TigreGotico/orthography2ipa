@@ -445,6 +445,21 @@
       ],
       "followed_by_2": "word_boundary",
       "notes": "Barbosa & Albano (2004: 229): 'Diphthongs also emerge in this variety from yodisation of vowels (with the exception of [i]) followed by /S/, as in arroz [aɣoɪ̯s] ‘rice’ and mas [maɪ̯s] ‘but’'. Applied to a stressed vowel before a word-final /S/, the context of both examples; the spec writes the glide [j]."
+    },
+    {
+      "id": "BR_STRONG_R_AFTER_CODA",
+      "phonemes": [
+        "ɾ"
+      ],
+      "surface": "ɣ",
+      "preceded_by_phoneme": [
+        "̃",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ"
+      ],
+      "notes": "An ⟨r⟩ after a coda consonant is the strong rhotic: honra [ˈõɣɐ], genro [ˈʒẽɣu]. Cristófaro Silva (2025: 240) puts the R-forte in one class across three contexts: 'início de sílaba que coincide com início de palavra (rapaz, rio, rosa etc.); início de sílaba em meio de palavra (carro, terra) ou início de sílaba após consoante (Israel, desrespeito etc.)'. Barbosa & Albano (2004: 228) give the Paulistano strong /r/ as 'a velar fricative, usually voiced between voiced sounds and voiceless elsewhere'; a nasal vowel or a voiced [z] precedes it here, so it is [ɣ] as in carro [ˈkaɣu]."
     }
   ]
 }

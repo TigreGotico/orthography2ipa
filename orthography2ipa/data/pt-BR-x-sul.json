@@ -479,5 +479,47 @@
     "source": "wikidata",
     "notes": "Porto Alegre — the centre of the Sulista/Gaúcho area. [Wikidata Q40269 P625]"
   },
-  "allophone_rules": []
+  "allophone_rules": [
+    {
+      "id": "BR_CODA_S_VOICED",
+      "phonemes": [
+        "s"
+      ],
+      "surface": "z",
+      "syllable_position": "coda",
+      "followed_by_phoneme": [
+        "b",
+        "d",
+        "ɡ",
+        "v",
+        "z",
+        "ʒ",
+        "d͡ʒ",
+        "m",
+        "n",
+        "ɲ",
+        "l",
+        "ʎ",
+        "ʁ",
+        "ɣ",
+        "r"
+      ],
+      "notes": "A coda /S/ takes the voicing of a following voiced consonant: mesmo [ˈmezmu], desde [ˈdezd͡ʒi]. Barbosa & Albano (2004: 229): 'it tends to assimilate the voicing of the following sound'. The list leaves out the tap and reads the next slot on the second pass, after BR_STRONG_R_AFTER_CODA has written ⟨r⟩ as the voiceless strong rhotic [x], so a coda sibilant before it stays voiceless: desrespeito [desxesˈpejtu]."
+    },
+    {
+      "id": "BR_STRONG_R_AFTER_CODA",
+      "phonemes": [
+        "ɾ"
+      ],
+      "surface": "x",
+      "preceded_by_phoneme": [
+        "̃",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ"
+      ],
+      "notes": "An ⟨r⟩ after a coda consonant is the strong rhotic of rato [ˈxatu] and carro [ˈkaxu]: honra [ˈõxɐ], genro [ˈʒẽxu]. Cristófaro Silva (2025: 240) puts the R-forte in one class across three contexts: 'início de sílaba que coincide com início de palavra (rapaz, rio, rosa etc.); início de sílaba em meio de palavra (carro, terra) ou início de sílaba após consoante (Israel, desrespeito etc.)'."
+    }
+  ]
 }

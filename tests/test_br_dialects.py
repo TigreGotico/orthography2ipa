@@ -139,9 +139,16 @@ class TestSP:
 
 
 class TestRJ:
-    def test_coda_s_palatal_mesmo(self):
-        """mesmo -> [ˈmeʒmʊ]: coda /S/ -> [ʒ] before voiced consonant."""
-        assert "ʃ" in bare(_g("pt-BR-x-rj").transcribe_word("mesmo"))
+    def test_coda_s_palatal_festa(self):
+        assert bare(_g("pt-BR-x-rj").transcribe_word("festa")) == "feʃtɐ"
+
+    @pytest.mark.parametrize("word, expected", [
+        ("mesmo", "meʒmu"), ("desde", "deʒd͡ʒi"), ("Lisboa", "liʒboɐ"), ("asma", "aʒmɐ"),
+    ])
+    def test_coda_s_palatal_voices(self, word, expected):
+        """Brito (2016: 142): 'It occurs as [z] or [ʒ] in syllable-final
+        position followed by voiced consonant' (asma [ˈaʒma])."""
+        assert bare(_g("pt-BR-x-rj").transcribe_word(word)) == expected
 
     def test_final_s_palatal_paz(self):
         assert bare(_g("pt-BR-x-rj").transcribe_word("paz")).endswith("ʃ")
@@ -319,7 +326,13 @@ class TestRecife:
         assert bare(_g("pt-BR-x-recife").transcribe_word("falar")) == "fala"
 
     def test_coda_s_palatal(self):
-        assert "ʃ" in bare(_g("pt-BR-x-recife").transcribe_word("mesmo"))
+        assert bare(_g("pt-BR-x-recife").transcribe_word("festa")) == "feʃtɐ"
+
+    @pytest.mark.parametrize("word, expected", [("mesmo", "meʒmu"), ("desde", "deʒdi")])
+    def test_coda_s_palatal_voices(self, word, expected):
+        """Hora, Henrique & Amorim (2018: 284): 'me[ʒ]mo' among the
+        palatal variants heard as typical of Rio de Janeiro and Recife."""
+        assert bare(_g("pt-BR-x-recife").transcribe_word(word)) == expected
 
 
 # ─── pt-BR-x-norte (Amazônico) ──────────────────────────────────────────────
@@ -340,7 +353,13 @@ class TestNorte:
         assert "t͡ʃ" in bare(_g("pt-BR-x-norte").transcribe_word("tia"))
 
     def test_coda_s_palatal(self):
-        assert "ʃ" in bare(_g("pt-BR-x-norte").transcribe_word("mesmo"))
+        assert bare(_g("pt-BR-x-norte").transcribe_word("festa")) == "feʃtɐ"
+
+    @pytest.mark.parametrize("word, expected", [("mesmo", "meʒmu"), ("desde", "deʒd͡ʒi")])
+    def test_coda_s_palatal_voices(self, word, expected):
+        """Marins & Margotti (2012: 255): Pará coda /S/ includes the
+        'pós-alveolar (surda e sonora)'; Belém favours the post-alveolar."""
+        assert bare(_g("pt-BR-x-norte").transcribe_word(word)) == expected
 
     def test_l_vocalisation(self):
         assert bare(_g("pt-BR-x-norte").transcribe_word("sol")).endswith("w")
@@ -412,3 +431,26 @@ class TestBrasilia:
         assert get("pt-BR-x-brasilia").code == "pt-BR"
         for w in ("tia", "mesmo", "porta", "carro"):
             assert _g("pt-BR-x-brasilia").transcribe_word(w) == _g("pt-BR").transcribe_word(w)
+
+
+# ─── One strong rhotic per variety ──────────────────────────────────────────
+
+@pytest.mark.parametrize("code, word, expected", [
+    ("pt-BR-x-rj", "carro", "kaχu"), ("pt-BR-x-rj", "honra", "õχɐ"),
+    ("pt-BR-x-fluminense", "carro", "kaxu"), ("pt-BR-x-fluminense", "honra", "õxɐ"),
+    ("pt-BR-x-sp", "honra", "õɣɐ"), ("pt-BR-x-sp", "genro", "ʒẽɣu"),
+    ("pt-BR-x-sul", "honra", "õxɐ"), ("pt-BR-x-sul", "genro", "ʒẽxu"),
+])
+def test_strong_r_same_in_every_context(code, word, expected):
+    """Cristófaro Silva (2025: 240): the R-forte of rio, of carro and of
+    Israel after a consonant is one class, so a variety gives it one value."""
+    assert bare(_g(code).transcribe_word(word)) == expected
+
+
+@pytest.mark.parametrize("code, expected", [
+    ("pt-BR-x-rj", "iʃχaew"), ("pt-BR-x-fluminense", "isxaew"), ("pt-BR-x-sul", "isxaew"),
+])
+def test_coda_s_before_voiceless_strong_r_stays_voiceless(code, expected):
+    """Barbosa & Albano (2004: 229): coda /S/ 'tends to assimilate the voicing
+    of the following sound'; here that sound is a voiceless strong rhotic."""
+    assert bare(_g(code).transcribe_word("Israel")) == expected

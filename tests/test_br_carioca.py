@@ -68,8 +68,13 @@ class TestCariocaChiado:
         assert "RJ_CHIADO_CODA_Z" in ids
 
     def test_coda_s_hushes_preconsonantal(self):
-        # mesmo → [ˈmeʃmu]: coda /S/ before a consonant palatalises.
-        assert "ʃ" in bare(_t("pt-BR-x-rj", "mesmo"))
+        # festa → [ˈfeʃtɐ]: coda /S/ before a voiceless consonant is [ʃ].
+        assert bare(_t("pt-BR-x-rj", "festa")) == "feʃtɐ"
+
+    def test_coda_s_hushes_and_voices_before_voiced(self):
+        # mesmo → [ˈmeʒmu]: before a voiced consonant the palatal is [ʒ]
+        # (Brito 2016: 142).
+        assert bare(_t("pt-BR-x-rj", "mesmo")) == "meʒmu"
 
     def test_coda_s_hushes_word_final(self):
         # paz → [ˈpaʃ], dois → [ˈdojʃ]: word-final coda /S/ palatalises.

@@ -572,6 +572,31 @@
       ],
       "followed_by_2": "word_boundary",
       "notes": "The palatal coda sibilant of this variety is [ʃ], so the base rule must also match [ʃ]; the plural endings raise as in the base (dentes, ovos)."
+    },
+    {
+      "id": "BR_CODA_SH_VOICED",
+      "phonemes": [
+        "ʃ"
+      ],
+      "surface": "ʒ",
+      "syllable_position": "coda",
+      "followed_by_phoneme": [
+        "b",
+        "d",
+        "ɡ",
+        "v",
+        "z",
+        "ʒ",
+        "d͡ʒ",
+        "m",
+        "n",
+        "ɲ",
+        "l",
+        "ʎ",
+        "ɾ",
+        "ʁ"
+      ],
+      "notes": "The palatal coda /S/ takes the voicing of a following voiced consonant: mesmo [ˈmeʒmu], desde [ˈdeʒd͡ʒi]. Marins & Margotti (2012: 255) report six coda /S/ realisations in the Pará atlas data, among them 'pós-alveolar (surda e sonora)', and for Belém that 'é a variante pós-alveolar que é utilizada com mais frequência'. The positional map writes the coda as [ʃ]; this rule voices it in the second pass."
     }
   ]
 }

@@ -148,7 +148,9 @@
       "ɲ"
     ],
     "rr": [
-      "ʁ"
+      "χ",
+      "x",
+      "h"
     ],
     "ss": [
       "s"
@@ -475,6 +477,32 @@
       "notes": "Voiced counterpart of RJ_CHIADO_CODA_S: coda /z/ is [ʒ] before a voiced consonant. Brito (2016: 142): 'It occurs as [z] or [ʒ] in syllable-final position followed by voiced consonant' (asma)."
     },
     {
+      "id": "BR_CODA_SH_VOICED",
+      "phonemes": [
+        "ʃ"
+      ],
+      "surface": "ʒ",
+      "syllable_position": "coda",
+      "followed_by_phoneme": [
+        "b",
+        "d",
+        "ɡ",
+        "v",
+        "z",
+        "ʒ",
+        "d͡ʒ",
+        "m",
+        "n",
+        "ɲ",
+        "l",
+        "ʎ",
+        "ʁ",
+        "ɣ",
+        "r"
+      ],
+      "notes": "The palatal coda /S/ takes the voicing of a following voiced consonant: mesmo [ˈmeʒmu], desde [ˈdeʒd͡ʒi], Lisboa [liʒˈboɐ]. Brito (2016: 142): 'It occurs as [z] or [ʒ] in syllable-final position followed by voiced consonant' (asma [ˈazma] or [ˈaʒma]). The rule runs in the second pass, after RJ_CHIADO_CODA_S has written the coda as [ʃ]. The list leaves out the tap and reads the next slot on the second pass, after BR_STRONG_R_AFTER_CODA has written ⟨r⟩ as the voiceless strong rhotic [χ], so a coda sibilant before it stays voiceless: desrespeito [deʃχeʃˈpejtu]."
+    },
+    {
       "id": "RJ_CODA_R_FINAL",
       "phonemes": [
         "ʁ",
@@ -495,6 +523,47 @@
       "surface": "x",
       "syllable_position": "coda",
       "notes": "Non-final coda /R/ (porta, carta) is a posterior fricative, written velar [x] (Callou, Moraes & Leite 1998: 62-63). Barbosa & Albano (2004: 228) give the isogloss: velar and glottal fricatives 'from Rio de Janeiro northwards'. Onset and intervocalic rhotics are untouched."
+    },
+    {
+      "id": "BR_CODA_S_VOICED",
+      "phonemes": [
+        "s"
+      ],
+      "surface": "z",
+      "syllable_position": "coda",
+      "followed_by_phoneme": [
+        "b",
+        "d",
+        "ɡ",
+        "v",
+        "z",
+        "ʒ",
+        "d͡ʒ",
+        "m",
+        "n",
+        "ɲ",
+        "l",
+        "ʎ",
+        "ʁ",
+        "ɣ",
+        "r"
+      ],
+      "notes": "A coda /S/ takes the voicing of a following voiced consonant: mesmo [ˈmezmu], desde [ˈdezd͡ʒi]. Barbosa & Albano (2004: 229): 'it tends to assimilate the voicing of the following sound'. The list leaves out the tap and reads the next slot on the second pass, after BR_STRONG_R_AFTER_CODA has written ⟨r⟩ as the voiceless strong rhotic [χ], so a coda sibilant before it stays voiceless: desrespeito [deʃχeʃˈpejtu]."
+    },
+    {
+      "id": "BR_STRONG_R_AFTER_CODA",
+      "phonemes": [
+        "ɾ"
+      ],
+      "surface": "χ",
+      "preceded_by_phoneme": [
+        "̃",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ"
+      ],
+      "notes": "An ⟨r⟩ after a coda consonant is the strong rhotic, the posterior fricative of rio [ˈχiu]: honra [ˈõχɐ], genro [ˈʒẽχu]. Cristófaro Silva (2025: 240) puts the R-forte in one class across three contexts: 'início de sílaba que coincide com início de palavra (rapaz, rio, rosa etc.); início de sílaba em meio de palavra (carro, terra) ou início de sílaba após consoante (Israel, desrespeito etc.)'. The Carioca strong /r/ is a posterior fricative (Callou, Moraes & Leite 1998: 62-63)."
     }
   ],
   "wikidata_qid": "Q10265995",
