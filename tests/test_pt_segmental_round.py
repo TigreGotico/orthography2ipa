@@ -86,7 +86,7 @@ def test_ep_final_nasal_diphthong(word, expected):
 
 @pytest.mark.parametrize("word,expected", [
     # BP keeps the close-mid nucleus [ẽ] (no Lisbon centralisation)
-    ("bem", "ˈbẽj̃"), ("quem", "ˈkẽj̃"), ("homem", "ˈomẽj̃"),
+    ("bem", "ˈbẽj̃"), ("quem", "ˈkẽj̃"), ("homem", "ˈõmẽj̃"),
     ("custam", "ˈkustɐ̃w̃"), ("sim", "ˈsĩ"),
 ])
 def test_bp_final_nasal_diphthong(word, expected):

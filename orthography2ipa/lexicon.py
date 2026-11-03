@@ -24,6 +24,20 @@ Remote sources are fetched lazily on first use and cached under
 ``$XDG_CACHE_HOME/orthography2ipa``. A language with no registered lexicon gets
 an empty mapping and behaves exactly as if this module did not exist.
 
+A package can also supply default lexicons, such as ``o2i-lexicons``
+(``pip install orthography2ipa[lexicons]``). Installing it changes nothing:
+the caller enables its lexicons in code, for every language or for some::
+
+    o2i.use_packaged_lexicons()            # every installed packaged lexicon
+    o2i.use_packaged_lexicons(["en-GB"])   # only these
+
+Such a package declares one entry point per language code in the group
+``orthography2ipa.lexicons``. The entry point loads a callable that takes the
+code and returns the path of a local ``word<TAB>ipa`` file::
+
+    [project.entry-points."orthography2ipa.lexicons"]
+    "en-GB" = "o2i_lexicons:tsv_path"
+
 Design contract
 ---------------
 
@@ -32,33 +46,47 @@ Design contract
   never touches the network. A lexicon is read (and, if remote, fetched) once,
   on the first :func:`get_lexicon` call for that code, and cached for the
   process lifetime.
-- **Never implicit.** No lexicon is consulted unless the caller registered one
-  (or set a lexicon dir). The library does not download anything on its own.
+- **Never implicit.** No lexicon is consulted unless the caller registered one,
+  set a lexicon dir, or enabled a packaged one with
+  :func:`use_packaged_lexicons`. Installing a provider package only makes its
+  lexicons discoverable (:func:`packaged_lexicon_sources`): the transcription
+  is a function of the spec and the input, never of the environment. The
+  library does not download anything on its own, and a provider returns a
+  local file.
 - **Same pathway as ``word_exceptions``.** :class:`~orthography2ipa.g2p.G2P`
   folds a lexicon hit into the *exact* override path that
   ``spec.word_exceptions`` uses — so a lexicon entry still routes through
   stress-mark insertion and cross-word sandhi, and is reported with the same
   ``confidence == 1.0`` (a certain answer).
-- **Precedence.** inline ``spec.word_exceptions`` > lexicon > rules. An inline
-  exception always wins over the sidecar; the sidecar always wins over the
-  grapheme/positional beam.
+- **Precedence.** inline ``spec.word_exceptions`` > the caller's lexicon
+  (:func:`register_lexicon`, then :func:`set_lexicon_dir`) > an enabled
+  packaged lexicon > rules. An inline exception always wins over the sidecar; the
+  sidecar always wins over the grapheme/positional beam.
 - **Absent lexicon → byte-identical.** A language with no registered lexicon
-  gets an empty mapping and behaves exactly as it did before this module
-  existed.
+  and no enabled packaged lexicon gets an empty mapping and behaves exactly as
+  it did before this module existed, whatever is installed.
+- **Discovery is lazy too.** The ``orthography2ipa.lexicons`` entry points are
+  read only by :func:`use_packaged_lexicons` and
+  :func:`packaged_lexicon_sources`, once per process, never at import and
+  never by :func:`get_lexicon`.
 
 ``scripts/build_en_lexicon.py`` builds a CMUdict-derived ``en-GB.tsv`` you can
 register; see ``docs/guide/lexicon.md``.
 """
 from __future__ import annotations
 
+import logging
 import os
 import unicodedata
 import urllib.request
 from functools import lru_cache
+from importlib.metadata import EntryPoint, entry_points
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, Iterable, List, Optional, Set, Tuple
 
-from orthography2ipa.registry import resolve
+from orthography2ipa.registry import resolve, resolves_exactly
+
+_LOG = logging.getLogger(__name__)
 
 __all__ = [
     "get_lexicon",
@@ -67,6 +95,8 @@ __all__ = [
     "set_lexicon_dir",
     "resolve_lexicon_source",
     "available_lexicon_codes",
+    "use_packaged_lexicons",
+    "packaged_lexicon_sources",
     "lexicon_path",
     "parse_lexicon_text",
     "validate_lexicon_text",
@@ -76,6 +106,10 @@ __all__ = [
 #: Env var naming a directory of ``{code}.tsv`` lexicons.
 LEXICON_DIR_ENV = "ORTHOGRAPHY2IPA_LEXICON_DIR"
 
+#: Entry-point group through which an installed package supplies default
+#: lexicons, one entry point per language code.
+ENTRY_POINT_GROUP = "orthography2ipa.lexicons"
+
 #: Where fetched remote lexicons are cached.
 CACHE_DIR = Path(
     os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache")
@@ -84,6 +118,10 @@ CACHE_DIR = Path(
 # resolved code -> source (path, URL or hf:// id), set by register_lexicon()
 _REGISTERED: Dict[str, str] = {}
 _LEXICON_DIR: Optional[Path] = None
+# resolved code -> provider entry point; None until the first discovery
+_PACKAGED: Optional[Dict[str, EntryPoint]] = None
+# resolved codes whose packaged lexicon the caller enabled
+_ENABLED: Set[str] = set()
 
 # Non-letter IPA symbols allowed in a transcription: length/stress/tone marks,
 # spacing modifiers (aspiration, palatalisation …), tie bars and the affricate
@@ -155,11 +193,106 @@ def set_lexicon_dir(path) -> None:
 
 
 def clear_lexicons() -> None:
-    """Forget every registered lexicon and the lexicon dir."""
-    global _LEXICON_DIR
+    """Forget every registered lexicon, the lexicon dir and the enabled packaged lexicons."""
+    global _LEXICON_DIR, _PACKAGED
     _REGISTERED.clear()
     _LEXICON_DIR = None
+    _PACKAGED = None
+    _ENABLED.clear()
     get_lexicon.cache_clear()
+
+
+def use_packaged_lexicons(codes: Optional[Iterable[str]] = None) -> List[str]:
+    """Enable the installed packaged lexicons for *codes*, or for all of them.
+
+    A packaged lexicon comes from an installed package that declares an entry
+    point in the ``orthography2ipa.lexicons`` group. It ranks below
+    :func:`register_lexicon` and :func:`set_lexicon_dir`, and above the rules.
+    :func:`clear_lexicons` disables it again. Returns the enabled codes.
+
+    Raises
+    ------
+    LookupError
+        A code in *codes* has no installed provider. Asking for a lexicon that
+        is absent is an error, never a quiet fall back to the rules.
+    """
+    providers = _packaged_providers()
+    if codes is None:
+        wanted = set(providers)
+    else:
+        wanted = {resolve(code) for code in codes}
+        missing = sorted(wanted - set(providers))
+        if missing:
+            raise LookupError(
+                f"no installed package provides a lexicon for {missing}; "
+                f"installed: {sorted(providers) or 'nothing'}")
+    _ENABLED.update(wanted)
+    get_lexicon.cache_clear()
+    return sorted(_ENABLED)
+
+
+def packaged_lexicon_sources() -> Dict[str, Path]:
+    """The installed packaged lexicons, as ``{resolved code: local file}``.
+
+    This lists them and enables nothing. A provider that fails is left out and
+    logged at WARNING.
+    """
+    found = {}
+    for code in sorted(_packaged_providers()):
+        path = _packaged_path(code)
+        if path is not None:
+            found[code] = path
+    return found
+
+
+def _packaged_providers() -> Dict[str, EntryPoint]:
+    """The ``orthography2ipa.lexicons`` entry points, by resolved spec code.
+
+    Read once per process. An entry point must name a registered spec exactly;
+    one that only a nearest-language guess would place is skipped, so a
+    provider never lands on a spec it did not name. When two providers serve
+    one spec, the one named for the exact resolved code wins, then the first
+    by distribution and entry-point name.
+    """
+    global _PACKAGED
+    if _PACKAGED is not None:
+        return _PACKAGED
+    candidates = []
+    for ep in entry_points(group=ENTRY_POINT_GROUP):
+        if resolves_exactly(ep.name):
+            candidates.append((resolve(ep.name), ep))
+        else:
+            _LOG.warning("lexicon provider %r names no registered spec; skipped",
+                         ep.name)
+    candidates.sort(key=lambda c: (c[1].name != c[0],
+                                   c[1].dist.name if c[1].dist else "",
+                                   c[1].name))
+    found: Dict[str, EntryPoint] = {}
+    for code, ep in candidates:
+        if code in found:
+            _LOG.warning("lexicon providers %r and %r both serve %r; using %r",
+                         found[code].value, ep.value, code, found[code].value)
+        else:
+            found[code] = ep
+    _PACKAGED = found
+    return found
+
+
+def _packaged_path(code: str) -> Optional[Path]:
+    """The file a packaged provider supplies for resolved *code*, or ``None``."""
+    ep = _packaged_providers().get(code)
+    if ep is None:
+        return None
+    try:
+        path = Path(ep.load()(ep.name))
+    except Exception as exc:
+        _LOG.warning("lexicon provider %r failed for %r: %s", ep.value, code, exc)
+        return None
+    if not path.is_file():
+        _LOG.warning("lexicon provider %r returned %s, which is not a file",
+                     ep.value, path)
+        return None
+    return path
 
 
 def _lexicon_dir() -> Optional[Path]:
@@ -236,8 +369,9 @@ def _fetch_hf(spec: str) -> Path:
 def lexicon_path(code: str) -> Optional[Path]:
     """The local file backing *code*'s lexicon, or ``None`` if there is none.
 
-    Fetches a remote source on first call. Never raises for an unregistered
-    language — that is the common case.
+    The caller's registration wins, then the lexicon dir, then a packaged
+    lexicon the caller enabled with :func:`use_packaged_lexicons`. Fetches a remote source on first call. Never raises for an
+    unregistered language — that is the common case.
     """
     code = resolve(code)
     source = _REGISTERED.get(code)
@@ -251,12 +385,12 @@ def lexicon_path(code: str) -> Optional[Path]:
         for p in sorted(d.glob("*.tsv")):
             if resolve(p.stem) == code:
                 return p
-    return None
+    return _packaged_path(code) if code in _ENABLED else None
 
 
 def available_lexicon_codes() -> List[str]:
-    """Sorted language codes with a registered lexicon or a ``{code}.tsv`` in the dir."""
-    codes = set(_REGISTERED)
+    """Sorted codes with a registered lexicon, a ``{code}.tsv`` in the dir, or an enabled packaged one."""
+    codes = set(_REGISTERED) | _ENABLED
     d = _lexicon_dir()
     if d is not None and d.is_dir():
         codes.update(p.stem for p in d.glob("*.tsv"))
@@ -330,9 +464,10 @@ def get_lexicon(code: str) -> Dict[str, str]:
 
     Reads (and, for a remote source, fetches) the lexicon on first call for
     *code*, then caches it. Nothing is bundled: this returns ``{}`` unless the
-    caller registered a lexicon (:func:`register_lexicon`) or set a lexicon dir
-    (:func:`set_lexicon_dir`). An absent lexicon is the common case and keeps
-    the engine byte-identical for that language.
+    caller registered a lexicon (:func:`register_lexicon`), set a lexicon dir
+    (:func:`set_lexicon_dir`), or enabled a packaged one
+    (:func:`use_packaged_lexicons`). An absent lexicon is the common case and
+    keeps the engine byte-identical for that language.
 
     *code* must be the resolved, registered language code (e.g. ``"en-GB"``),
     exactly as :attr:`orthography2ipa.g2p.G2P.lang` holds it.

@@ -1438,7 +1438,8 @@ class G2P:
                 ipa = apply_stress_mark(
                     ipa, self.spec.stress, idx, syllables=sylls, mark=mark,
                     secondary_indices=sorted(secondary_stress_positions(
-                        len(sylls), idx, self.spec.stress)))
+                        len(sylls), idx, self.spec.stress)),
+                    spec=self.spec)
         # NOT NFC-composed: see the note in _transcribe_word.
         return ipa
 

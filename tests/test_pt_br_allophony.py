@@ -15,8 +15,14 @@ only on the reduced vowels (so conservative dialects that retain a final
 [e]/[o] are untouched); the ``apply_allophony`` toggle recovers the broad
 form; and grapheme-⟨i⟩ affrication still fires via the positional map.
 """
+import json
+import re
+from pathlib import Path
+
 import pytest
 
+import orthography2ipa
+from orthography2ipa import get_syllabifier
 from orthography2ipa.g2p import G2P
 
 
@@ -126,10 +132,25 @@ def _nfd_br(word):
     return unicodedata.normalize("NFD", G2P("pt-BR").transcribe_word(word))
 
 
-def test_br_intervocalic_nasal_leaves_vowel_oral():
-    for word in ("cama", "ano", "lua", "lima", "nome", "fome"):
+@pytest.mark.parametrize("word,expected", [
+    # Barbosa & Albano (2004: 229): a stressed vowel nasalises before a
+    # heterosyllabic nasal consonant: cima [ˈsĩmɐ], sama [ˈsɐ̃mɐ], soma [ˈsõmɐ].
+    ("cima", "ˈsĩmɐ"), ("soma", "ˈsõmɐ"), ("cama", "ˈkɐ̃mɐ"),
+    ("ano", "ˈɐ̃nu"), ("fome", "ˈfõmi"), ("ganho", "ˈɡɐ̃ɲu"),
+])
+def test_br_stressed_vowel_nasalised_before_onset_nasal(word, expected):
+    import unicodedata
+    got = unicodedata.normalize("NFC", G2P("pt-BR").transcribe_word(word))
+    assert got == unicodedata.normalize("NFC", expected)
+
+
+def test_br_pretonic_vowel_oral_before_onset_nasal():
+    # Barbosa & Albano (2004: 229): a pretonic vowel nasalises only before
+    # /N/ or /ɲ/ (ganhar [gɐ̃ˈɲaɾ]); before an onset /m n/ it stays oral.
+    for word in ("camada", "lunar", "lua"):
         out = _nfd_br(word)
         assert TILDE not in out, (word, out)
+    assert _nfd_br("ganhar").startswith("ɡɐ" + TILDE)
 
 
 def test_br_no_double_tilde():
@@ -139,8 +160,10 @@ def test_br_no_double_tilde():
 
 
 def test_br_nh_digraph_unbroken():
+    # ⟨nh⟩ stays one palatal nasal; the stressed vowel before it is nasalised
+    # (Barbosa & Albano 2004: 228, ganho [ˈɡɐ̃ɲʊ]).
     out = _nfd_br("banho")
-    assert "ɲ" in out and TILDE not in out, out
+    assert "ɲ" in out and "n" + "ɲ" not in out and out.count(TILDE) == 1, out
 
 
 def test_br_final_es_os_raising_feeds_affrication():
@@ -259,3 +282,146 @@ def test_digraphs_yield_one_segment(word, expected):
 def test_w_is_not_deleted(word):
     out = G2P("pt-BR").transcribe_word(word)
     assert "w" in out or "v" in out, out
+
+
+# ─── Coda /S/ voicing, strong /r/ after a coda, epenthesis ─────────────────
+
+
+@pytest.mark.parametrize("word,expected", [
+    # Barbosa & Albano (2004: 229): coda /S/ "tends to assimilate the voicing
+    # of the following sound".
+    ("mesmo", "ˈmezmu"), ("desde", "ˈdezd͡ʒi"), ("rasgar", "ʁazˈɡaɾ"),
+    ("festa", "ˈfestɐ"),
+])
+def test_br_coda_s_voices_before_voiced_consonant(word, expected):
+    assert G2P("pt-BR").transcribe_word(word) == expected
+
+
+@pytest.mark.parametrize("word", ["honra", "genro", "Israel"])
+def test_br_strong_r_after_coda(word):
+    # Cristófaro Silva (2025: 240, 243): after a coda consonant the rhotic is
+    # the strong one (honra, Israel), never the tap.
+    out = G2P("pt-BR").transcribe_word(word)
+    assert "ʁ" in out and "ɾ" not in out, out
+
+
+def test_br_onset_cluster_keeps_tap():
+    # The tap of an onset cluster is not after a coda: três [ˈtɾes].
+    assert G2P("pt-BR").transcribe_word("três") == "ˈtɾes"
+
+
+@pytest.mark.parametrize("word,expected", [
+    # Barbosa & Albano (2004: 227): epenthesis breaks two-obstruent sequences
+    # with [i]; Collischonn (2004: 67-68): pretonic 69 %, advogado type 89 %.
+    ("advogado", "ad͡ʒivoˈɡadu"), ("obter", "obiˈteɾ"), ("absurdo", "abiˈsuɾdu"),
+])
+def test_br_pretonic_epenthesis(word, expected):
+    assert G2P("pt-BR").transcribe_word(word) == expected
+
+
+def test_br_no_epenthesis_after_stressed_vowel():
+    # Collischonn (2004: 67): post-tonic epenthesis is a minority (24 %).
+    assert G2P("pt-BR").transcribe_word("pacto") == "ˈpaktu"
+
+
+@pytest.mark.parametrize("word,expected", [
+    # Barbosa & Albano (2004: 229-230): the post-stressed oral vowels are
+    # [ɪ ɐ ʊ e̞]; an unstressed final ⟨a⟩ is [ɐ] also before the plural ⟨-s⟩.
+    ("casas", "ˈkazɐs"), ("falas", "ˈfalɐs"), ("gás", "ˈɡas"), ("atrás", "aˈtɾas"),
+])
+def test_br_final_as_reduces(word, expected):
+    assert G2P("pt-BR").transcribe_word(word) == expected
+
+
+# ─── Regional children take the pt-BR syllables ─────────────────────────
+
+def _br_children():
+    data = Path(orthography2ipa.__file__).parent / "data"
+    return sorted(
+        path.stem for path in data.glob("pt-BR-x-*.json")
+        if json.loads(path.read_text("utf-8")).get("graphemes_base") == "pt-BR")
+
+
+BR_CHILDREN = _br_children()
+
+
+def test_br_children_are_found():
+    assert len(BR_CHILDREN) == 11
+
+
+@pytest.mark.parametrize("lang", BR_CHILDREN)
+def test_br_child_uses_the_pt_br_syllabifier(lang):
+    # A child reads the pt-BR grapheme table, so it takes the pt-BR syllables
+    # from the same syllabifier, whether or not the plugin is installed.
+    assert get_syllabifier(lang) is get_syllabifier("pt-BR")
+
+
+#: Every ⟨ff⟩ loan of the owned board rows' gold entries.
+FF_LOANS = (
+    "buffalo", "buffar", "buffer", "buffet", "buffett", "chiffon", "debuffar",
+    "eiffel", "giraffas", "jefferson", "jeniffer", "knêiffia", "libreoffice",
+    "muffato", "muffins", "office", "openoffice", "tiffany",
+)
+
+
+def _assert_epenthesis_words(g2p):
+    # The cluster after the stressed vowel keeps its consonants, and the mark
+    # stays on the stressed syllable: pacto [ˈpaktu], not [paˈkitu].
+    assert re.fullmatch(r"ˈpak.?tu", g2p.transcribe_word("pacto"))
+    assert re.fullmatch(r"ˈap.?tu", g2p.transcribe_word("apto"))
+    assert re.search(r"ˈpaktɐ$", g2p.transcribe_word("compacta"))
+    # The pretonic cluster takes the epenthetic [i], which is unstressed:
+    # opção [opiˈsɐ̃w̃], adverso [ad͡ʒiˈvɛɾsu] (Barbosa & Albano 2004: 227).
+    assert re.fullmatch(r"[oɔu]piˈsɐ̃w̃", g2p.transcribe_word("opção"))
+    assert re.match(r"ad(͡ʒ)?iˈv", g2p.transcribe_word("adverso"))
+    # Epenthesis does not apply to geminates (Curioletti & Sandri 2019,
+    # citing Monaretto 1997: 188), so a doubled letter stays unbroken.
+    for word in FF_LOANS:
+        assert re.search(r"f[ˈˌ]?f", g2p.transcribe_word(word)), word
+    # The final /R/ is the lect's own, so buffer ends as comer does.
+    comer = g2p.transcribe_word("comer")
+    assert comer.startswith("koˈme")
+    assert g2p.transcribe_word("buffer") == "bufˈfe" + comer[len("koˈme"):]
+
+
+@pytest.mark.parametrize("lang", BR_CHILDREN)
+def test_br_child_epenthesis_follows_the_parent(lang):
+    _assert_epenthesis_words(G2P(lang))
+
+
+@pytest.fixture
+def without_syllabifier_plugin(monkeypatch):
+    # The plugin is an optional extra. Discovery that finds none leaves the
+    # bundled splitter, which must give the same answer.
+    from orthography2ipa import registry
+    monkeypatch.setattr(registry, "_syllabifiers", {})
+
+
+@pytest.mark.parametrize("lang", ["pt-BR", *BR_CHILDREN])
+def test_br_epenthesis_without_the_plugin(lang, without_syllabifier_plugin):
+    assert get_syllabifier(lang) is None
+    _assert_epenthesis_words(G2P(lang))
+
+
+# ─── pt-UY keeps final ⟨-as⟩ ────────────────────────────────────────────
+
+@pytest.mark.parametrize("word,expected", [
+    ("casas", "ˈkazas"), ("andas", "ˈɐ̃das"), ("frutas", "ˈfɾutas"),
+])
+def test_pt_uy_switches_off_final_as_reduction(word, expected):
+    assert G2P("pt-UY").transcribe_word(word) == expected
+
+
+# ─── Final ⟨-as⟩ reduction is post-stressed only ────────────────────────
+
+@pytest.mark.parametrize("lang", ["pt-BR", "pt-BR-x-sp", "pt-BR-x-rj"])
+@pytest.mark.parametrize("word", ["as", "às"])
+def test_br_clitic_as_is_not_reduced(lang, word):
+    # Barbosa & Albano (2004: 229-230) state the vowel set of the post-stressed
+    # position. The article as and the contraction às have no stress of their
+    # own, so they have no post-stressed syllable.
+    assert G2P(lang).transcribe_word(word) in ("as", "aʃ")
+
+
+def test_br_clitic_as_in_a_sentence():
+    assert G2P("pt-BR").transcribe("as casas às três") == "as ˈkazɐs as ˈtɾes"

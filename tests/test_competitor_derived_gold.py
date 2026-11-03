@@ -21,6 +21,8 @@ import json
 import os
 import sys
 
+import pytest
+
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
 
 from benchmark import (  # noqa: E402
@@ -58,19 +60,22 @@ def _promotable(rows) -> bool:
 def test_competitor_tiers_exist_and_are_ordered_last():
     """espeak/epitran/LLM gold are the least trustworthy tiers, in that order."""
     assert COMPETITOR_DERIVED_TIERS == {"espeak-derived", "epitran-derived"}
-    assert RELIABILITY_TIERS[-3:] == (
+    assert RELIABILITY_TIERS[-4:] == (
         "espeak-derived",
         "epitran-derived",
+        "llm-corrected",
         "llm-generated",
     )
-    assert NON_QUALIFYING_TIERS == COMPETITOR_DERIVED_TIERS | {"llm-generated"}
+    assert NON_QUALIFYING_TIERS == COMPETITOR_DERIVED_TIERS | {
+        "llm-corrected", "llm-generated"}
 
 
 def test_can_gate_promotion_refuses_competitor_and_llm_gold():
     for tier in ("expert-human", "lexicon-derived", "crowd-scraped",
                  "machine-generated"):
         assert can_gate_promotion(tier) is True
-    for tier in ("espeak-derived", "epitran-derived", "llm-generated"):
+    for tier in ("espeak-derived", "epitran-derived", "llm-corrected",
+                 "llm-generated"):
         assert can_gate_promotion(tier) is False
 
 
@@ -147,20 +152,21 @@ def test_language_with_only_competitor_gold_is_not_promotable():
     assert _promotable(rows)
 
 
-def test_language_with_only_llm_gold_is_not_promotable():
+@pytest.mark.parametrize("tier", ["llm-generated", "llm-corrected"])
+def test_language_with_only_llm_gold_is_not_promotable(tier):
     """LLM gold has no error model; it can never qualify a promotion, at any N."""
     rows = [
         {"lang": "xx", "dataset": "mirandese_dict", "n": 50000,
-         "provenance": "llm-generated"},
+         "provenance": tier},
     ]
     assert not _promotable(rows)
 
 
-def test_llm_generated_datasets_are_tiered_as_such():
+def test_llm_written_datasets_are_tiered_as_silver():
     """The two LLM-written IPA dictionaries must not hide under
     `machine-generated` alongside real phonemizer output."""
-    assert PROVENANCE["barranquenho_dict"] == "llm-generated"
-    assert PROVENANCE["mirandese_dict"] == "llm-generated"
+    assert PROVENANCE["barranquenho_dict"] == "llm-corrected"
+    assert PROVENANCE["mirandese_dict"] == "llm-corrected"
 
 
 def test_ipa_childes_is_classified_per_language_by_its_tool():

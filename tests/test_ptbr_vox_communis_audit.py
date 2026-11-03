@@ -22,7 +22,7 @@ def test_vox_communis_is_an_audit_not_a_ceiling():
 
 
 @pytest.mark.parametrize("word, expected", [
-    ("exame", "eˈzami"),
+    ("exame", "eˈzɐ̃mi"),
     ("exemplo", "eˈzẽplu"),
     ("êxito", "ˈezitu"),
     ("exército", "eˈzɛɾsitu"),

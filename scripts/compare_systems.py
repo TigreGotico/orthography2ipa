@@ -2197,10 +2197,10 @@ _GRUUT_SAME_SOURCE_DATASETS = frozenset({"cmudict", "ipadict"})
 #: self-agreement, not correctness.
 _O2I_SAME_SOURCE_DATASETS = frozenset({
     "arabic_tts", "portuguese_tts", "gold20_arabic",
-    # spain_romance_tts is pinned to o2i's own output by its authoring tool
-    # AND by its CI gate, which asserts transcribe(sentence, lect) == ipa for
-    # every row (scripts/spain_romance_tts_gold.py validate). Scoring o2i
-    # against it is circular by construction, not merely by lineage.
+    # spain_romance_tts was drafted with o2i's own output by its authoring
+    # tool, and its llm-corrected label was decided with the engine output in
+    # view (scripts/correct_silver_ipa.py, pass C). Scoring o2i against it
+    # stays same-source.
     "spain_romance_tts",
     # barranquenho_dict joins per this docstring's own instruction above:
     # load_barranquenho_dict's docstring documents its IPA column as itself
@@ -2230,7 +2230,8 @@ _GOLD_TIERS = frozenset({"expert-human", "lexicon-derived", "crowd-scraped"})
 #: another automatic phonemizer's output (e.g. HiTZ's ahoNT for
 #: ``hitz_basque_ipa``) rather than a human- or corpus-derived reference.
 _AGREEMENT_TIERS = frozenset({
-    "machine-generated", "espeak-derived", "epitran-derived", "llm-generated",
+    "machine-generated", "espeak-derived", "epitran-derived", "llm-corrected",
+    "llm-generated",
 })
 
 

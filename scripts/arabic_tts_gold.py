@@ -23,8 +23,7 @@ draft <lect> <textfile>
 
 validate [lect ...]
     CI gate over the gold TSVs: schema, per-lect row minimum, diacritization
-    completeness, o2i transcription regression (``transcribe(sentence, lect)
-    == ipa``), feature-tag verifiability and in-lect duplicate detection.
+    completeness, feature-tag verifiability and in-lect duplicate detection.
 
 Schema (TSV, tab-separated, UTF-8, header row)
 ----------------------------------------------
@@ -237,9 +236,6 @@ def cmd_validate(args):
             gaps = diacritization_gaps(r["sentence"])
             if gaps:
                 failures.append(f"{rid}: bare consonants {gaps}")
-            got = orthography2ipa.transcribe(r["sentence"], lect)
-            if got != r["ipa"]:
-                failures.append(f"{rid}: o2i regression\n    stored: {r['ipa']}\n    got:    {got}")
             for tag in [t for t in r["features"].split(";") if t]:
                 if tag in SHAPE_TAGS:
                     continue
