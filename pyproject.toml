@@ -31,8 +31,8 @@ version = {attr = "orthography2ipa.version.VERSION_STR"}
 hf = ["huggingface_hub"]
 # Residual lexicons, found through the orthography2ipa.lexicons entry points.
 # Installing this extra changes no output: the caller enables them with
-# use_packaged_lexicons().
-lexicons = ["o2i-lexicons>=0.0.1a1"]
+# use_packaged_lexicons(). 0.0.1a1 ships no lexicon and no entry point.
+lexicons = ["o2i-lexicons>=0.1.0a1"]
 validation = ["pydantic>=2"]
 # A real Portuguese syllabifier. Optional: the bundled splitter is correct on its
 # own (pt-PT declares its diphthongs), and this only draws better boundaries.
