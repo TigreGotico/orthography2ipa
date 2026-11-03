@@ -685,6 +685,27 @@ def test_ie_enclitic_finales_keep_the_stress_of_the_rest_of_the_word(word, expec
     assert G2P("ie").transcribe_word(word) == expected
 
 
+@pytest.mark.parametrize("word, expected", [
+    ("aer", "aˈer"),
+    ("país", "paˈis"),
+    ("leer", "leˈer"),
+    ("leibil", "leˈibil"),
+    ("egoism", "eɡoˈism"),
+])
+def test_ie_two_vowels_in_contact_are_two_syllables(word, expected):
+    """Cosmoglotta 64, p. 152: "du vocales intersecuent in general es pronunciat
+    separat: aer ... [aér], país ... [país], leer ... [le-ér], leibil ... [leíbil]";
+    p. 153: egoism [egoíssm]. The mark stands before the stressed vowel, not before
+    the whole vowel run."""
+    assert G2P("ie").transcribe_word(word) == expected
+
+
+def test_ie_y_after_a_vowel_closes_the_syllable():
+    """Cosmoglotta 64, p. 152: "Pos un vocal ... y es consonant", so art. 1 puts the
+    stress on the vowel before it; p. 153: antey [antéy]."""
+    assert G2P("ie").transcribe_word("antey") == "anˈtej"
+
+
 # ── Interlingua (ia) ──
 
 def test_ia_c_is_ts_before_front_vowels_and_k_elsewhere():
