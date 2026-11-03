@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.113.9a1](https://github.com/TigreGotico/orthography2ipa/tree/7.113.9a1) (2026-11-03)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.113.8a1...7.113.9a1)
+
+**Merged pull requests:**
+
+- fix: give cbk-x-cavite and cbk-x-ternate the cbk-zam letter table [\#1913](https://github.com/TigreGotico/orthography2ipa/pull/1913) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.113.8a1](https://github.com/TigreGotico/orthography2ipa/tree/7.113.8a1) (2026-11-03)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.113.7a1...7.113.8a1)
