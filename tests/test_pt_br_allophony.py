@@ -351,17 +351,35 @@ def test_br_child_uses_the_pt_br_syllabifier(lang):
     assert get_syllabifier(lang) is parent
 
 
-@pytest.mark.parametrize("lang", BR_CHILDREN)
-def test_br_child_epenthesis_follows_the_parent(lang):
+def _assert_epenthesis_words(g2p):
     # The cluster after the stressed vowel keeps its consonants, and the mark
     # stays on the stressed syllable: pacto [ˈpaktu], not [paˈkitu].
-    g2p = G2P(lang)
     assert re.fullmatch(r"ˈpak.?tu", g2p.transcribe_word("pacto"))
     assert re.fullmatch(r"ˈap.?tu", g2p.transcribe_word("apto"))
     assert re.search(r"ˈpaktɐ$", g2p.transcribe_word("compacta"))
     # The pretonic cluster takes the epenthetic [i], which is unstressed:
-    # opção [opiˈsɐ̃w̃] (Barbosa & Albano 2004: 227).
+    # opção [opiˈsɐ̃w̃], adverso [ad͡ʒiˈvɛɾsu] (Barbosa & Albano 2004: 227).
     assert re.fullmatch(r"[oɔu]piˈsɐ̃w̃", g2p.transcribe_word("opção"))
+    assert re.match(r"ad(͡ʒ)?iˈv", g2p.transcribe_word("adverso"))
+
+
+@pytest.mark.parametrize("lang", BR_CHILDREN)
+def test_br_child_epenthesis_follows_the_parent(lang):
+    _assert_epenthesis_words(G2P(lang))
+
+
+@pytest.fixture
+def without_syllabifier_plugin(monkeypatch):
+    # The plugin is an optional extra. Discovery that finds none leaves the
+    # bundled splitter, which must give the same answer.
+    from orthography2ipa import registry
+    monkeypatch.setattr(registry, "_syllabifiers", {})
+
+
+@pytest.mark.parametrize("lang", ["pt-BR", *BR_CHILDREN])
+def test_br_epenthesis_without_the_plugin(lang, without_syllabifier_plugin):
+    assert get_syllabifier(lang) is None
+    _assert_epenthesis_words(G2P(lang))
 
 
 # ─── pt-UY keeps final ⟨-as⟩ ────────────────────────────────────────────
