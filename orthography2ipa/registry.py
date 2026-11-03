@@ -271,9 +271,10 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
     Resolution order:
     1. Manual alias table (handles private-use subtags and ISO 639-3 codes
        that ``langcodes`` may not round-trip cleanly).
-    2. ``langcodes.standardize_tag()`` when the library is available and the
+    2. Exact match against the registered spec codes, then
+       ``langcodes.standardize_tag()`` when the library is available and the
        code is not a private-use subtag (``x-`` extension).
-    3. Exact match against the registered spec codes.
+    3. Exact match of the standardized code.
     4. The default region of a bare primary-language tag, when that
        spec is registered (``pt`` → ``pt-PT``), or the curated default
        variant of a region tag with only sub-regional specs
@@ -283,6 +284,12 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
     """
     if code in _ALIASES:
         return _ALIASES[code]
+    available = available_json_codes()
+    # A registered code names its own spec. ``macro=True`` below folds an
+    # individual language into its macrolanguage (``tl`` → ``fil``,
+    # ``bcl`` → ``bik``), which would miss the spec.
+    if code in available:
+        return code
     if (_HAS_LANGCODES and not _PRIVATE_USE.search(code)
             and not code.startswith("x-")):
         try:
@@ -291,7 +298,6 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
             pass
         if code in _ALIASES:
             return _ALIASES[code]
-    available = available_json_codes()
     if code in available:
         return code
     if _PRIVATE_USE.search(code):
