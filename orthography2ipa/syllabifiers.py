@@ -62,10 +62,10 @@ class SilabificadorSyllabifier(SyllabifierPlugin):
         return [
             "pt", "pt-PT", "pt-BR", "pt-AO", "pt-MZ", "pt-TL",
             "pt-CV", "pt-GW", "pt-ST", "pt-MO", "pt-UY",
-            "pt-BR-x-bahia", "pt-BR-x-brasilia", "pt-BR-x-caipira",
-            "pt-BR-x-ce", "pt-BR-x-fluminense", "pt-BR-x-mg",
-            "pt-BR-x-norte", "pt-BR-x-pr", "pt-BR-x-recife", "pt-BR-x-rj",
-            "pt-BR-x-sp", "pt-BR-x-sul",
+            "pt-BR-x-bahia", "pt-BR-x-caipira", "pt-BR-x-ce",
+            "pt-BR-x-fluminense", "pt-BR-x-mg", "pt-BR-x-norte",
+            "pt-BR-x-pr", "pt-BR-x-recife", "pt-BR-x-rj", "pt-BR-x-sp",
+            "pt-BR-x-sul",
         ]
 
     @property

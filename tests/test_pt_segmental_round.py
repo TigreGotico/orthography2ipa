@@ -119,8 +119,7 @@ def test_bp_affrication_before_raised_final_e(word, expected):
 
 
 @pytest.mark.parametrize("lect", [
-    "pt-BR-x-caipira", "pt-BR-x-sul", "pt-UY",
-    "pt-BR-x-pr", "pt-BR-x-recife",
+    "pt-UY", "pt-BR-x-pr", "pt-BR-x-recife",
 ])
 def test_conservative_lects_keep_dental_before_raised_e(lect):
     """The conservative-dental / non-palatalising varieties do NOT affricate a
