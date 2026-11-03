@@ -208,6 +208,23 @@ def test_an_affricate_is_never_split_across_a_syllable_boundary():
     assert syllabify_ipa("matˤɑr", max_onset=1) == ["ma", "tˤɑr"]
 
 
+# A spec's phoneme list is in inventory order, not longest-first: es-ES lists
+# /t/ before /tʃ/, and zh lists /t/ before /tɕ/ before /tɕʰ/. Passed as atoms,
+# the longest phoneme must still win, or the affricate splits across the
+# syllable boundary and its syllable counts a two-consonant coda.
+@pytest.mark.parametrize("lang,affricate,prefixes,ipa,syllables", [
+    ("es-ES", "tʃ", ("t",), "atʃa", ["a", "tʃa"]),
+    ("zh", "tɕʰ", ("t", "tɕ"), "atɕʰa", ["a", "tɕʰa"]),
+])
+def test_spec_phonemes_as_atoms_keep_the_affricate_whole(
+        lang, affricate, prefixes, ipa, syllables):
+    atoms = list(get(lang).phonemes)
+    assert all(atoms.index(p) < atoms.index(affricate) for p in prefixes), (
+        "the case only bites while a prefix of the affricate is listed first")
+    assert syllabify_ipa(ipa, max_onset=1, atoms=atoms) == syllables
+    assert syllable_weight("a" + affricate, atoms) == HEAVY, "CVC, one coda consonant"
+
+
 def test_the_stress_mark_never_lands_inside_a_long_vowel():
     """The mark is placed against the weight syllabifier's own division.
 
