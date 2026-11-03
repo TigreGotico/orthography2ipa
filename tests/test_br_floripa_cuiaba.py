@@ -1,8 +1,8 @@
 """Distinguishing features of the Florianópolis and Cuiabá specs.
 
-Each expected form is read from the transcription the cited source prints,
-rewritten in the spec's broad notation. The cited rule note in the spec holds
-the quote and the page.
+Each expected form applies the rule that the cited source states, in the
+spec's broad notation. Where the source prints a transcription of the word,
+the test uses it. The cited rule note in the spec holds the quote and the page.
 
 Lexical vowel quality is unmarked in the spelling, so most tests assert the
 consonant the source describes and not the whole word.

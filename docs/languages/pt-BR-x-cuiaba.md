@@ -8,7 +8,7 @@
 | Quality tier | research |
 | ISO 639-3 | `por` |
 | Parent | `pt-BR` |
-| Sources | Almeida (2004), Battisti & Dornelles Filho (2015) |
+| Sources | Almeida (2004), Battisti & Dornelles Filho (2015), Cristófaro Silva (2025) |
 
 This spec models the traditional speech of the Cuiabá river valley in Mato Grosso, the *Baixada Cuiabana*. Almeida (2004: 149) describes the speech of riverside Cuiabá natives, about fifty years old, with little or no schooling, whose parents and grandparents were also born there.
 
