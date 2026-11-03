@@ -324,8 +324,13 @@ class TestCachedSpecIsImmutable:
 #         and arguably a different language. But de-x-alemannic's own parent is
 #         de-CH, so the registry already treats Alemannic as a child of it, and
 #         which of those two readings is intended is the owner's call
+#   twi   declared by tw (Twi), reaches ak, which tw inherits whole: CLDR folds
+#         twi into the macrolanguage ak. Which of the two specs keeps the table
+#         is the open ak/tw duplicate
+#   vsn   declared by sa-x-vedic (Vedic Sanskrit), raises KeyError: no key or
+#         alias names vsn until the spec takes the ISO key
 UNRESOLVED_ISO_DECLARATIONS = frozenset(
-    {"gsw"}
+    {"gsw", "twi", "vsn"}
 )
 
 
