@@ -39,8 +39,35 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | ab | wikipron | 165 | 0.2311 | - | - | 0.2296 | 0.2296 | 0.5636 | 0.5636 | [0.1725, 0.2915] | 0.5636 | research | crowd-scraped |
 | ace | wikipron | 267 | 0.1102 | - | - | 0.0864 | 0.0864 | 0.6404 | 0.6404 | [0.0928, 0.1293] | 0.5693 | research | crowd-scraped |
 | acm | wikipron | 97 | 0.3666 | - | - | 0.3172 | 0.3172 | 0.1546 | 0.1546 | [0.3288, 0.4055] | 0.1134 | research | crowd-scraped |
+| acm-IQ | arabic_tts | 20 | 0.0728‡ | - | - | - | - | - | - | [0.0546, 0.0905] | 0.1500 | research | llm-corrected |
+| acm-IQ | gold20_arabic | 20 | 0.0719‡ | - | - | - | - | - | - | [0.0530, 0.0912] | 0.1500 | research | llm-corrected |
+| acm-IQ | primary_sources | 12† | 0.2907‡ | - | - | 0.2907 | 0.2907 | 0.2500 | 0.2500 | n too small | 0.2500 | research | expert-human |
+| acw-SA | arabic_tts | 20 | 0.0734‡ | - | - | - | - | - | - | [0.0521, 0.0968] | 0.1500 | research | llm-corrected |
+| acw-SA | gold20_arabic | 20 | 0.0689‡ | - | - | - | - | - | - | [0.0467, 0.0940] | 0.2000 | research | llm-corrected |
+| acw-SA | primary_sources | 30 | 0.1340 | - | - | 0.1256 | 0.1256 | 0.5333 | 0.5333 | [0.0823, 0.1872] | 0.5000 | research | expert-human |
+| acw-SA | wikipron | 1889 | 0.2877 | - | - | 0.2585 | 0.2507 | 0.1292 | 0.1345 | [0.2812, 0.2952] | 0.0757 | research | crowd-scraped |
+| acx-OM | arabic_tts | 20 | 0.1448‡ | - | - | - | - | - | - | [0.1194, 0.1693] | 0.0000 | research | llm-corrected |
+| acx-OM | gold20_arabic | 20 | 0.1432‡ | - | - | - | - | - | - | [0.1188, 0.1682] | 0.0000 | research | llm-corrected |
 | ady | northeuralex | 928 | 0.1684 | - | - | 0.1587 | 0.1586 | 0.4483 | 0.4494 | [0.1558, 0.1813] | 0.4224 | research | lexicon-derived |
+| aeb-TN | arabic_tts | 20 | 0.1243‡ | - | - | - | - | - | - | [0.1018, 0.1479] | 0.0000 | research | llm-corrected |
+| aeb-TN | gold20_arabic | 20 | 0.1247‡ | - | - | - | - | - | - | [0.1019, 0.1487] | 0.0000 | research | llm-corrected |
+| aeb-TN | primary_sources | 9† | 0.3059‡ | - | - | 0.2549 | 0.2549 | 0.2222 | 0.2222 | n too small | 0.1111 | research | expert-human |
 | af | wikipron | 2076 | 0.1653 | - | - | 0.1394 | 0.1373 | 0.4711 | 0.4783 | [0.1567, 0.1731] | 0.4220 | research | crowd-scraped |
+| afb | arabic_tts | 20 | 0.0673‡ | - | - | - | - | - | - | [0.0383, 0.0991] | 0.2500 | research | llm-corrected |
+| afb | gold20_arabic | 20 | 0.0561‡ | - | - | - | - | - | - | [0.0347, 0.0801] | 0.2500 | research | llm-corrected |
+| afb | wikipron | 614 | 0.3786 | - | - | 0.3338 | 0.3199 | 0.0879 | 0.0928 | [0.3625, 0.3933] | 0.0521 | research | crowd-scraped |
+| afb-AE | arabic_tts | 20 | 0.0765‡ | - | - | - | - | - | - | [0.0564, 0.0964] | 0.1000 | research | llm-corrected |
+| afb-AE | gold20_arabic | 20 | 0.0765‡ | - | - | - | - | - | - | [0.0564, 0.0964] | 0.1000 | research | llm-corrected |
+| afb-BH | arabic_tts | 20 | 0.1147‡ | - | - | - | - | - | - | [0.0845, 0.1452] | 0.0500 | research | llm-corrected |
+| afb-BH | gold20_arabic | 20 | 0.1076‡ | - | - | - | - | - | - | [0.0790, 0.1365] | 0.0500 | research | llm-corrected |
+| afb-KW | arabic_tts | 20 | 0.0912‡ | - | - | - | - | - | - | [0.0683, 0.1128] | 0.1000 | research | llm-corrected |
+| afb-KW | gold20_arabic | 20 | 0.0838‡ | - | - | - | - | - | - | [0.0628, 0.1057] | 0.1000 | research | llm-corrected |
+| afb-QA | arabic_tts | 20 | 0.1158‡ | - | - | - | - | - | - | [0.0884, 0.1465] | 0.1000 | research | llm-corrected |
+| afb-QA | gold20_arabic | 20 | 0.1227‡ | - | - | - | - | - | - | [0.0959, 0.1513] | 0.0500 | research | llm-corrected |
+| afb-SA-x-dawasir | primary_sources | 5† | 0.0800‡ | - | - | 0.0400 | 0.0400 | 0.8000 | 0.8000 | n too small | 0.8000 | stub | expert-human |
+| afb-SA-x-sharqiya | arabic_tts | 20 | 0.1145‡ | - | - | - | - | - | - | [0.0858, 0.1480] | 0.1000 | research | llm-corrected |
+| afb-SA-x-sharqiya | gold20_arabic | 20 | 0.1183‡ | - | - | - | - | - | - | [0.0890, 0.1509] | 0.1000 | research | llm-corrected |
+| afb-SA-x-sharqiya | primary_sources | 6† | 0.1944‡ | - | - | 0.1389 | 0.1389 | 0.5000 | 0.5000 | n too small | 0.5000 | research | expert-human |
 | aii | wikipron | 4836 | 0.3758 | - | - | 0.3280 | 0.3056 | 0.0463 | 0.0567 | [0.3714, 0.3803] | 0.0209 | research | crowd-scraped |
 | ain | northeuralex | 858 | 0.0200 | - | - | 0.0200 | 0.0200 | 0.8811 | 0.8811 | [0.0160, 0.0238] | 0.8811 | research | lexicon-derived |
 | akk | wikipron | 671 | 0.0123 | - | - | 0.0123 | 0.0123 | 0.9180 | 0.9180 | [0.0092, 0.0155] | 0.9180 | research | crowd-scraped |
@@ -60,94 +87,39 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | an-x-tensino | spain_romance_tts | 20 | 0.0611‡ | - | - | - | - | - | - | [0.0424, 0.0801] | 0.2000 | skeleton | llm-corrected |
 | ang | wikipron | 54696 | 0.2103 | - | - | 0.1588 | 0.1512 | 0.2471 | 0.2632 | [0.2092, 0.2116] | 0.1545 | research | crowd-scraped |
 | aot | wikipron | 181 | 0.1367 | - | - | 0.1367 | 0.1367 | 0.4475 | 0.4475 | [0.1160, 0.1588] | 0.4475 | research | crowd-scraped |
+| apc | arabic_tts | 20 | 0.0978‡ | - | - | - | - | - | - | [0.0793, 0.1161] | 0.0000 | research | llm-corrected |
+| apc | gold20_arabic | 20 | 0.0968‡ | - | - | - | - | - | - | [0.0775, 0.1162] | 0.0500 | research | llm-corrected |
+| apc-JO | arabic_tts | 20 | 0.0968‡ | - | - | - | - | - | - | [0.0724, 0.1196] | 0.1000 | research | llm-corrected |
+| apc-JO | gold20_arabic | 20 | 0.0995‡ | - | - | - | - | - | - | [0.0801, 0.1181] | 0.0500 | research | llm-corrected |
+| apc-JO | primary_sources | 13† | 0.2179‡ | - | - | 0.1833 | 0.1833 | 0.3077 | 0.3077 | n too small | 0.3077 | research | expert-human |
+| apc-JO | wikipron | 2513 | 0.3451 | - | - | 0.3117 | 0.3007 | 0.0871 | 0.0935 | [0.3385, 0.3518] | 0.0569 | research | crowd-scraped |
+| apc-LB | arabic_tts | 20 | 0.1028‡ | - | - | - | - | - | - | [0.0781, 0.1265] | 0.0500 | research | llm-corrected |
+| apc-LB | gold20_arabic | 20 | 0.1062‡ | - | - | - | - | - | - | [0.0808, 0.1322] | 0.0500 | research | llm-corrected |
+| apc-PS | arabic_tts | 20 | 0.1109‡ | - | - | - | - | - | - | [0.0926, 0.1273] | 0.0000 | research | llm-corrected |
+| apc-PS | gold20_arabic | 20 | 0.1121‡ | - | - | - | - | - | - | [0.0936, 0.1291] | 0.0000 | research | llm-corrected |
+| apc-PS | primary_sources | 4† | 0.1667‡ | - | - | 0.1000 | 0.1000 | 0.7500 | 0.7500 | n too small | 0.2500 | research | expert-human |
+| apc-SY | arabic_tts | 20 | 0.0802‡ | - | - | - | - | - | - | [0.0692, 0.0908] | 0.0000 | research | llm-corrected |
+| apc-SY | gold20_arabic | 20 | 0.0775‡ | - | - | - | - | - | - | [0.0688, 0.0859] | 0.0000 | research | llm-corrected |
+| apc-SY | primary_sources | 11† | 0.1318‡ | - | - | 0.1318 | 0.1318 | 0.4545 | 0.4545 | n too small | 0.4545 | research | expert-human |
+| apc-SY | wikipron | 410 | 0.3173 | · | - | 0.2856 | 0.2774 | 0.1293 | 0.1366 | [0.3027, 0.3360] | 0.0854 | research | crowd-scraped |
+| apd-SD | arabic_tts | 20 | 0.1007‡ | - | - | - | - | - | - | [0.0844, 0.1182] | 0.0000 | research | llm-corrected |
+| apd-SD | gold20_arabic | 20 | 0.1069‡ | - | - | - | - | - | - | [0.0899, 0.1243] | 0.0000 | research | llm-corrected |
 | apw | wikipron | 147 | 0.3076 | - | - | 0.3006 | 0.3006 | 0.2449 | 0.2449 | [0.2662, 0.3507] | 0.2449 | research | crowd-scraped |
 | ar | arabic_tts | 20 | 0.0707‡ | - | - | - | - | - | - | [0.0561, 0.0849] | 0.0000 | research | llm-corrected |
 | ar | gold20_arabic | 20 | 0.0707‡ | - | - | - | - | - | - | [0.0561, 0.0849] | 0.0000 | research | llm-corrected |
 | ar | ipadict | 857160 | 0.3774 | - | - | 0.3380 | 0.3334 | 0.0053 | 0.0059 | [0.3772, 0.3776] | 0.0030 | research | machine-generated |
 | ar | wikipron | 14268 | 0.3139 | - | 0.1656† (short vowels (harakat)) | 0.2539 | 0.2521 | 0.0763 | 0.0798 | [0.3116, 0.3162] | 0.0444 | research | crowd-scraped |
 | ar | wikipron_ar_diacritized | 14240 | 0.1721 | · | - | 0.1710 | 0.1710 | 0.3055 | 0.3055 | [0.1696, 0.1746] | 0.3051 | research | crowd-scraped |
-| ar-AE | arabic_tts | 20 | 0.0765‡ | - | - | - | - | - | - | [0.0564, 0.0964] | 0.1000 | research | llm-corrected |
-| ar-AE | gold20_arabic | 20 | 0.0765‡ | - | - | - | - | - | - | [0.0564, 0.0964] | 0.1000 | research | llm-corrected |
-| ar-BH | arabic_tts | 20 | 0.1147‡ | - | - | - | - | - | - | [0.0845, 0.1452] | 0.0500 | research | llm-corrected |
-| ar-BH | gold20_arabic | 20 | 0.1076‡ | - | - | - | - | - | - | [0.0790, 0.1365] | 0.0500 | research | llm-corrected |
-| ar-DZ | arabic_tts | 20 | 0.1815‡ | - | - | - | - | - | - | [0.1545, 0.2091] | 0.0000 | research | llm-corrected |
-| ar-DZ | gold20_arabic | 20 | 0.1800‡ | - | - | - | - | - | - | [0.1542, 0.2059] | 0.0000 | research | llm-corrected |
-| ar-DZ | primary_sources | 1† | 0.7143‡ | - | - | 0.7143 | 0.7143 | 0.0000 | 0.0000 | n too small | 0.0000 | research | expert-human |
-| ar-EG | arabic_tts | 20 | 0.1205‡ | - | - | - | - | - | - | [0.0987, 0.1436] | 0.0000 | research | llm-corrected |
-| ar-EG | gold20_arabic | 20 | 0.1181‡ | - | - | - | - | - | - | [0.0969, 0.1405] | 0.0000 | research | llm-corrected |
-| ar-EG | primary_sources | 18† | 0.2390‡ | - | - | 0.2029 | 0.1906 | 0.2222 | 0.2222 | n too small | 0.1111 | research | expert-human |
-| ar-EG | wikipron | 590 | 0.3237 | - | - | 0.2920 | 0.2847 | 0.1542 | 0.1559 | [0.3068, 0.3388] | 0.1136 | research | crowd-scraped |
-| ar-IQ | arabic_tts | 20 | 0.0728‡ | - | - | - | - | - | - | [0.0546, 0.0905] | 0.1500 | research | llm-corrected |
-| ar-IQ | gold20_arabic | 20 | 0.0719‡ | - | - | - | - | - | - | [0.0530, 0.0912] | 0.1500 | research | llm-corrected |
-| ar-IQ | primary_sources | 12† | 0.2907‡ | - | - | 0.2907 | 0.2907 | 0.2500 | 0.2500 | n too small | 0.2500 | research | expert-human |
 | ar-IQ-x-qeltu | arabic_tts | 20 | 0.0529‡ | - | - | - | - | - | - | [0.0401, 0.0665] | 0.0500 | research | llm-corrected |
 | ar-IQ-x-qeltu | gold20_arabic | 20 | 0.0498‡ | - | - | - | - | - | - | [0.0370, 0.0623] | 0.0500 | research | llm-corrected |
 | ar-IQ-x-qeltu | primary_sources | 12† | 0.3417‡ | - | - | 0.3417 | 0.3417 | 0.2500 | 0.2500 | n too small | 0.2500 | research | expert-human |
-| ar-JO | arabic_tts | 20 | 0.0968‡ | - | - | - | - | - | - | [0.0724, 0.1196] | 0.1000 | research | llm-corrected |
-| ar-JO | gold20_arabic | 20 | 0.0995‡ | - | - | - | - | - | - | [0.0801, 0.1181] | 0.0500 | research | llm-corrected |
-| ar-JO | primary_sources | 13† | 0.2179‡ | - | - | 0.1833 | 0.1833 | 0.3077 | 0.3077 | n too small | 0.3077 | research | expert-human |
-| ar-JO | wikipron | 2513 | 0.3451 | - | - | 0.3117 | 0.3007 | 0.0871 | 0.0935 | [0.3385, 0.3518] | 0.0569 | research | crowd-scraped |
-| ar-KW | arabic_tts | 20 | 0.0912‡ | - | - | - | - | - | - | [0.0683, 0.1128] | 0.1000 | research | llm-corrected |
-| ar-KW | gold20_arabic | 20 | 0.0838‡ | - | - | - | - | - | - | [0.0628, 0.1057] | 0.1000 | research | llm-corrected |
-| ar-LB | arabic_tts | 20 | 0.1028‡ | - | - | - | - | - | - | [0.0781, 0.1265] | 0.0500 | research | llm-corrected |
-| ar-LB | gold20_arabic | 20 | 0.1062‡ | - | - | - | - | - | - | [0.0808, 0.1322] | 0.0500 | research | llm-corrected |
 | ar-LY | arabic_tts | 20 | 0.1776‡ | - | - | - | - | - | - | [0.1525, 0.2041] | 0.0000 | research | llm-corrected |
 | ar-LY | gold20_arabic | 20 | 0.1776‡ | - | - | - | - | - | - | [0.1521, 0.2021] | 0.0000 | research | llm-corrected |
 | ar-LY | primary_sources | 6† | 0.2042‡ | - | - | 0.1833 | 0.1833 | 0.3333 | 0.3333 | n too small | 0.1667 | research | expert-human |
-| ar-MA | arabic_tts | 20 | 0.1488‡ | - | - | - | - | - | - | [0.1170, 0.1802] | 0.0000 | research | llm-corrected |
-| ar-MA | gold20_arabic | 20 | 0.1498‡ | - | - | - | - | - | - | [0.1185, 0.1817] | 0.0000 | research | llm-corrected |
-| ar-MA | primary_sources | 5† | 0.1733‡ | - | - | 0.1000 | 0.1000 | 0.6000 | 0.6000 | n too small | 0.2000 | research | expert-human |
-| ar-MA | wikipron | 1833 | 0.3005 | - | - | 0.2185 | 0.2154 | 0.2226 | 0.2308 | [0.2928, 0.3081] | 0.1097 | research | crowd-scraped |
-| ar-MR | arabic_tts | 20 | 0.1633‡ | - | - | - | - | - | - | [0.1349, 0.1912] | 0.0000 | research | llm-corrected |
-| ar-MR | gold20_arabic | 20 | 0.1673‡ | - | - | - | - | - | - | [0.1410, 0.1938] | 0.0000 | research | llm-corrected |
-| ar-MR | primary_sources | 14† | 0.3988‡ | - | - | 0.2651 | 0.2509 | 0.2857 | 0.2857 | n too small | 0.2143 | research | expert-human |
-| ar-NG | arabic_tts | 20 | 0.1248‡ | - | - | - | - | - | - | [0.0956, 0.1585] | 0.0500 | research | llm-corrected |
-| ar-NG | gold20_arabic | 20 | 0.1211‡ | - | - | - | - | - | - | [0.0918, 0.1553] | 0.0500 | research | llm-corrected |
-| ar-NG | primary_sources | 6† | 0.2444‡ | - | - | 0.2444 | 0.2444 | 0.5000 | 0.5000 | n too small | 0.5000 | research | expert-human |
-| ar-OM | arabic_tts | 20 | 0.1448‡ | - | - | - | - | - | - | [0.1194, 0.1693] | 0.0000 | research | llm-corrected |
-| ar-OM | gold20_arabic | 20 | 0.1432‡ | - | - | - | - | - | - | [0.1188, 0.1682] | 0.0000 | research | llm-corrected |
-| ar-PS | arabic_tts | 20 | 0.1109‡ | - | - | - | - | - | - | [0.0926, 0.1273] | 0.0000 | research | llm-corrected |
-| ar-PS | gold20_arabic | 20 | 0.1121‡ | - | - | - | - | - | - | [0.0936, 0.1291] | 0.0000 | research | llm-corrected |
-| ar-PS | primary_sources | 4† | 0.1667‡ | - | - | 0.1000 | 0.1000 | 0.7500 | 0.7500 | n too small | 0.2500 | research | expert-human |
-| ar-QA | arabic_tts | 20 | 0.1158‡ | - | - | - | - | - | - | [0.0884, 0.1465] | 0.1000 | research | llm-corrected |
-| ar-QA | gold20_arabic | 20 | 0.1227‡ | - | - | - | - | - | - | [0.0959, 0.1513] | 0.0500 | research | llm-corrected |
-| ar-SA-x-dawasir | primary_sources | 5† | 0.0800‡ | - | - | 0.0400 | 0.0400 | 0.8000 | 0.8000 | n too small | 0.8000 | stub | expert-human |
-| ar-SA-x-hejaz | arabic_tts | 20 | 0.0734‡ | - | - | - | - | - | - | [0.0521, 0.0968] | 0.1500 | research | llm-corrected |
-| ar-SA-x-hejaz | gold20_arabic | 20 | 0.0689‡ | - | - | - | - | - | - | [0.0467, 0.0940] | 0.2000 | research | llm-corrected |
-| ar-SA-x-hejaz | primary_sources | 30 | 0.1340 | - | - | 0.1256 | 0.1256 | 0.5333 | 0.5333 | [0.0823, 0.1872] | 0.5000 | research | expert-human |
-| ar-SA-x-hejaz | wikipron | 1889 | 0.2877 | - | - | 0.2585 | 0.2507 | 0.1292 | 0.1345 | [0.2812, 0.2952] | 0.0757 | research | crowd-scraped |
-| ar-SA-x-najd | arabic_tts | 20 | 0.0726‡ | - | - | - | - | - | - | [0.0539, 0.0912] | 0.1500 | research | llm-corrected |
-| ar-SA-x-najd | gold20_arabic | 20 | 0.0671‡ | - | - | - | - | - | - | [0.0501, 0.0831] | 0.1500 | research | llm-corrected |
-| ar-SA-x-najd | primary_sources | 25 | 0.1491 | - | - | 0.1434 | 0.1434 | 0.6000 | 0.6000 | [0.0712, 0.2343] | 0.5600 | research | expert-human |
-| ar-SA-x-qassim | arabic_tts | 20 | 0.0906‡ | - | - | - | - | - | - | [0.0647, 0.1184] | 0.1000 | research | llm-corrected |
-| ar-SA-x-qassim | gold20_arabic | 20 | 0.0882‡ | - | - | - | - | - | - | [0.0633, 0.1156] | 0.1000 | research | llm-corrected |
-| ar-SA-x-qassim | primary_sources | 12† | 0.1327‡ | - | - | 0.1327 | 0.1327 | 0.5000 | 0.5000 | n too small | 0.5000 | research | expert-human |
 | ar-SA-x-rijal-alma | arabic_tts | 20 | 0.1117‡ | - | - | - | - | - | - | [0.0854, 0.1400] | 0.1000 | research | llm-corrected |
 | ar-SA-x-rijal-alma | gold20_arabic | 20 | 0.1091‡ | - | - | - | - | - | - | [0.0841, 0.1353] | 0.1000 | research | llm-corrected |
 | ar-SA-x-rijal-alma | primary_sources | 8† | 0.2454‡ | - | - | 0.2454 | 0.2454 | 0.1250 | 0.1250 | n too small | 0.1250 | research | expert-human |
-| ar-SA-x-sharqiyya | arabic_tts | 20 | 0.1145‡ | - | - | - | - | - | - | [0.0858, 0.1480] | 0.1000 | research | llm-corrected |
-| ar-SA-x-sharqiyya | gold20_arabic | 20 | 0.1183‡ | - | - | - | - | - | - | [0.0890, 0.1509] | 0.1000 | research | llm-corrected |
-| ar-SA-x-sharqiyya | primary_sources | 6† | 0.1944‡ | - | - | 0.1389 | 0.1389 | 0.5000 | 0.5000 | n too small | 0.5000 | research | expert-human |
 | ar-SA-x-tihama-qahtan | primary_sources | 16† | 0.1084‡ | - | - | 0.1084 | 0.1084 | 0.5000 | 0.5000 | n too small | 0.5000 | research | expert-human |
-| ar-SD | arabic_tts | 20 | 0.1007‡ | - | - | - | - | - | - | [0.0844, 0.1182] | 0.0000 | research | llm-corrected |
-| ar-SD | gold20_arabic | 20 | 0.1069‡ | - | - | - | - | - | - | [0.0899, 0.1243] | 0.0000 | research | llm-corrected |
-| ar-SY | arabic_tts | 20 | 0.0802‡ | - | - | - | - | - | - | [0.0692, 0.0908] | 0.0000 | research | llm-corrected |
-| ar-SY | gold20_arabic | 20 | 0.0775‡ | - | - | - | - | - | - | [0.0688, 0.0859] | 0.0000 | research | llm-corrected |
-| ar-SY | primary_sources | 11† | 0.1318‡ | - | - | 0.1318 | 0.1318 | 0.4545 | 0.4545 | n too small | 0.4545 | research | expert-human |
-| ar-SY | wikipron | 410 | 0.3173 | · | - | 0.2856 | 0.2774 | 0.1293 | 0.1366 | [0.3027, 0.3360] | 0.0854 | research | crowd-scraped |
-| ar-TD | arabic_tts | 20 | 0.1220‡ | - | - | - | - | - | - | [0.1018, 0.1429] | 0.0000 | research | llm-corrected |
-| ar-TD | gold20_arabic | 20 | 0.1239‡ | - | - | - | - | - | - | [0.1019, 0.1488] | 0.0000 | research | llm-corrected |
-| ar-TN | arabic_tts | 20 | 0.1243‡ | - | - | - | - | - | - | [0.1018, 0.1479] | 0.0000 | research | llm-corrected |
-| ar-TN | gold20_arabic | 20 | 0.1247‡ | - | - | - | - | - | - | [0.1019, 0.1487] | 0.0000 | research | llm-corrected |
-| ar-TN | primary_sources | 9† | 0.3059‡ | - | - | 0.2549 | 0.2549 | 0.2222 | 0.2222 | n too small | 0.1111 | research | expert-human |
-| ar-YE | arabic_tts | 20 | 0.0678‡ | - | - | - | - | - | - | [0.0482, 0.0907] | 0.1000 | research | llm-corrected |
-| ar-YE | gold20_arabic | 20 | 0.0688‡ | - | - | - | - | - | - | [0.0506, 0.0887] | 0.1000 | research | llm-corrected |
-| ar-YE | primary_sources | 15† | 0.1802‡ | - | - | 0.1802 | 0.1802 | 0.1333 | 0.1333 | n too small | 0.1333 | research | expert-human |
-| ar-x-gulf | arabic_tts | 20 | 0.0673‡ | - | - | - | - | - | - | [0.0383, 0.0991] | 0.2500 | research | llm-corrected |
-| ar-x-gulf | gold20_arabic | 20 | 0.0561‡ | - | - | - | - | - | - | [0.0347, 0.0801] | 0.2500 | research | llm-corrected |
-| ar-x-gulf | wikipron | 614 | 0.3786 | - | - | 0.3338 | 0.3199 | 0.0879 | 0.0928 | [0.3625, 0.3933] | 0.0521 | research | crowd-scraped |
-| ar-x-levantine | arabic_tts | 20 | 0.0978‡ | - | - | - | - | - | - | [0.0793, 0.1161] | 0.0000 | research | llm-corrected |
-| ar-x-levantine | gold20_arabic | 20 | 0.0968‡ | - | - | - | - | - | - | [0.0775, 0.1162] | 0.0500 | research | llm-corrected |
 | ar-x-maghrebi | arabic_tts | 20 | 0.1832‡ | - | - | - | - | - | - | [0.1580, 0.2115] | 0.0000 | research | llm-corrected |
 | ar-x-maghrebi | gold20_arabic | 20 | 0.1788‡ | - | - | - | - | - | - | [0.1527, 0.2069] | 0.0000 | research | llm-corrected |
 | ar-x-mashriqi | arabic_tts | 20 | 0.0568‡ | - | - | - | - | - | - | [0.0428, 0.0689] | 0.0500 | research | llm-corrected |
@@ -157,6 +129,23 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | arb | arabic_tts | 20 | 0.0688‡ | - | - | - | - | - | - | [0.0529, 0.0843] | 0.0000 | research | llm-corrected |
 | arb | gold20_arabic | 20 | 0.0688‡ | - | - | - | - | - | - | [0.0529, 0.0843] | 0.0000 | research | llm-corrected |
 | arn | wold | 1269 | 0.0112 | - | - | 0.0112 | 0.0112 | 0.9511 | 0.9511 | [0.0084, 0.0143] | 0.9511 | research | lexicon-derived |
+| arq-DZ | arabic_tts | 20 | 0.1815‡ | - | - | - | - | - | - | [0.1545, 0.2091] | 0.0000 | research | llm-corrected |
+| arq-DZ | gold20_arabic | 20 | 0.1800‡ | - | - | - | - | - | - | [0.1542, 0.2059] | 0.0000 | research | llm-corrected |
+| arq-DZ | primary_sources | 1† | 0.7143‡ | - | - | 0.7143 | 0.7143 | 0.0000 | 0.0000 | n too small | 0.0000 | research | expert-human |
+| ars-SA | arabic_tts | 20 | 0.0726‡ | - | - | - | - | - | - | [0.0539, 0.0912] | 0.1500 | research | llm-corrected |
+| ars-SA | gold20_arabic | 20 | 0.0671‡ | - | - | - | - | - | - | [0.0501, 0.0831] | 0.1500 | research | llm-corrected |
+| ars-SA | primary_sources | 25 | 0.1491 | - | - | 0.1434 | 0.1434 | 0.6000 | 0.6000 | [0.0712, 0.2343] | 0.5600 | research | expert-human |
+| ars-SA-x-qassim | arabic_tts | 20 | 0.0906‡ | - | - | - | - | - | - | [0.0647, 0.1184] | 0.1000 | research | llm-corrected |
+| ars-SA-x-qassim | gold20_arabic | 20 | 0.0882‡ | - | - | - | - | - | - | [0.0633, 0.1156] | 0.1000 | research | llm-corrected |
+| ars-SA-x-qassim | primary_sources | 12† | 0.1327‡ | - | - | 0.1327 | 0.1327 | 0.5000 | 0.5000 | n too small | 0.5000 | research | expert-human |
+| ary-MA | arabic_tts | 20 | 0.1488‡ | - | - | - | - | - | - | [0.1170, 0.1802] | 0.0000 | research | llm-corrected |
+| ary-MA | gold20_arabic | 20 | 0.1498‡ | - | - | - | - | - | - | [0.1185, 0.1817] | 0.0000 | research | llm-corrected |
+| ary-MA | primary_sources | 5† | 0.1733‡ | - | - | 0.1000 | 0.1000 | 0.6000 | 0.6000 | n too small | 0.2000 | research | expert-human |
+| ary-MA | wikipron | 1833 | 0.3005 | - | - | 0.2185 | 0.2154 | 0.2226 | 0.2308 | [0.2928, 0.3081] | 0.1097 | research | crowd-scraped |
+| arz-EG | arabic_tts | 20 | 0.1205‡ | - | - | - | - | - | - | [0.0987, 0.1436] | 0.0000 | research | llm-corrected |
+| arz-EG | gold20_arabic | 20 | 0.1181‡ | - | - | - | - | - | - | [0.0969, 0.1405] | 0.0000 | research | llm-corrected |
+| arz-EG | primary_sources | 18† | 0.2390‡ | - | - | 0.2029 | 0.1906 | 0.2222 | 0.2222 | n too small | 0.1111 | research | expert-human |
+| arz-EG | wikipron | 590 | 0.3237 | - | - | 0.2920 | 0.2847 | 0.1542 | 0.1559 | [0.3068, 0.3388] | 0.1136 | research | crowd-scraped |
 | as | vox_communis | 5328 | 0.2436‡ | - | - | 0.2432 | 0.2432 | 0.3009 | 0.3009 | [0.2371, 0.2502] | 0.3005 | production | epitran-derived |
 | as | wikipron | 2981 | 0.0918 | - | - | 0.0861 | 0.0861 | 0.6437 | 0.6441 | [0.0865, 0.0969] | 0.6307 | production | crowd-scraped |
 | ast | spain_romance_tts | 20 | 0.0334‡ | - | - | - | - | - | - | [0.0202, 0.0481] | 0.4000 | research | llm-corrected |
@@ -173,6 +162,9 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | ast-x-sanabria | spain_romance_tts | 20 | 0.1236‡ | - | - | - | - | - | - | [0.0997, 0.1515] | 0.0500 | research | llm-corrected |
 | av | northeuralex | 954 | 0.0990 | - | - | 0.0501 | 0.0378 | 0.7086 | 0.8029 | [0.0927, 0.1054] | 0.4591 | research | lexicon-derived |
 | ayl | wikipron | 156 | 0.3055 | - | - | 0.2695 | 0.2662 | 0.1987 | 0.1987 | [0.2698, 0.3496] | 0.1538 | research | crowd-scraped |
+| ayn-YE | arabic_tts | 20 | 0.0678‡ | - | - | - | - | - | - | [0.0482, 0.0907] | 0.1000 | research | llm-corrected |
+| ayn-YE | gold20_arabic | 20 | 0.0688‡ | - | - | - | - | - | - | [0.0506, 0.0887] | 0.1000 | research | llm-corrected |
+| ayn-YE | primary_sources | 15† | 0.1802‡ | - | - | 0.1802 | 0.1802 | 0.1333 | 0.1333 | n too small | 0.1333 | research | expert-human |
 | az | wikipron | 434 | 0.2440 | - | - | 0.2382 | 0.2382 | 0.3134 | 0.3134 | [0.2238, 0.2654] | 0.3111 | research | crowd-scraped |
 | ba | vox_communis | 70528 | 0.4047‡ | - | - | 0.4047 | 0.4047 | 0.0191 | 0.0191 | [0.4038, 0.4056] | 0.0191 | research | epitran-derived |
 | ba | wikipron | 171 | 0.2685 | - | - | 0.2685 | 0.2685 | 0.4211 | 0.4211 | [0.2233, 0.3172] | 0.4211 | research | crowd-scraped |
@@ -484,6 +476,9 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | mcm | primary_sources | 33 | 0.1146 | 0.9565 | - | 0.0500 | 0.0500 | 0.8182 | 0.8182 | [0.0707, 0.1642] | 0.5758 | research | expert-human |
 | mdf | wikipron | 330 | 0.2212 | - | - | 0.2119 | 0.2112 | 0.2697 | 0.2697 | [0.2024, 0.2383] | 0.2485 | research | crowd-scraped |
 | mdh | wikipron | 205 | 0.0793 | - | - | 0.0793 | 0.0793 | 0.6146 | 0.6146 | [0.0643, 0.0948] | 0.6146 | research | crowd-scraped |
+| mey-MR | arabic_tts | 20 | 0.1633‡ | - | - | - | - | - | - | [0.1349, 0.1912] | 0.0000 | research | llm-corrected |
+| mey-MR | gold20_arabic | 20 | 0.1673‡ | - | - | - | - | - | - | [0.1410, 0.1938] | 0.0000 | research | llm-corrected |
+| mey-MR | primary_sources | 14† | 0.3988‡ | - | - | 0.2651 | 0.2509 | 0.2857 | 0.2857 | n too small | 0.2143 | research | expert-human |
 | mfe | wikipron | 206 | 0.1238 | - | - | 0.1238 | 0.1238 | 0.5485 | 0.5485 | [0.0992, 0.1487] | 0.5485 | research | crowd-scraped |
 | mga | wikipron | 328 | 0.0594 | - | - | 0.0482 | 0.0458 | 0.7104 | 0.7195 | [0.0494, 0.0700] | 0.6738 | research | crowd-scraped |
 | mh | wikipron | 947 | 0.1182 | - | - | 0.0865 | 0.0796 | 0.4762 | 0.5026 | [0.1081, 0.1293] | 0.4002 | research | crowd-scraped |
@@ -688,6 +683,11 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | sel | northeuralex | 886 | 0.0342 | - | - | 0.0292 | 0.0291 | 0.8149 | 0.8160 | [0.0294, 0.0393] | 0.7935 | research | lexicon-derived |
 | sga | wikipron | 3700 | 0.0889 | · | - | 0.0626 | 0.0598 | 0.6859 | 0.6905 | [0.0843, 0.0936] | 0.6089 | research | crowd-scraped |
 | shn | wikipron | 2604 | 0.2985 | - | 0.2547 (tone) | 0.2985 | 0.2985 | 0.0545 | 0.0545 | [0.2917, 0.3057] | 0.0545 | research | crowd-scraped |
+| shu-NG | arabic_tts | 20 | 0.1248‡ | - | - | - | - | - | - | [0.0956, 0.1585] | 0.0500 | research | llm-corrected |
+| shu-NG | gold20_arabic | 20 | 0.1211‡ | - | - | - | - | - | - | [0.0918, 0.1553] | 0.0500 | research | llm-corrected |
+| shu-NG | primary_sources | 6† | 0.2444‡ | - | - | 0.2444 | 0.2444 | 0.5000 | 0.5000 | n too small | 0.5000 | research | expert-human |
+| shu-TD | arabic_tts | 20 | 0.1220‡ | - | - | - | - | - | - | [0.1018, 0.1429] | 0.0000 | research | llm-corrected |
+| shu-TD | gold20_arabic | 20 | 0.1239‡ | - | - | - | - | - | - | [0.1019, 0.1488] | 0.0000 | research | llm-corrected |
 | si | wikipron | 386 | 0.1394 | - | - | 0.1269 | 0.1269 | 0.5570 | 0.5570 | [0.1209, 0.1586] | 0.5207 | research | crowd-scraped |
 | sia | wikipron | 179 | 0.0948 | - | - | 0.0948 | 0.0948 | 0.6089 | 0.6089 | [0.0739, 0.1167] | 0.6089 | research | crowd-scraped |
 | sid | wikipron | 297 | 0.0622 | - | - | 0.0622 | 0.0622 | 0.6768 | 0.6768 | [0.0496, 0.0751] | 0.6768 | research | crowd-scraped |

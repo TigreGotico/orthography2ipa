@@ -264,7 +264,7 @@ class AuditConclusion(str, Enum):
     ``pt-PT-x-lisboa`` respelled)."""
 
     SAMPLE_TOO_SMALL = "sample_too_small"
-    """The dataset has too few rows for a PER to mean anything (``ar-DZ``,
+    """The dataset has too few rows for a PER to mean anything (``arq-DZ``,
     n=1)."""
 
     AT_CEILING_DOCUMENTED = "at_ceiling_documented"

@@ -42,7 +42,8 @@ def test_warning_is_a_user_warning_and_exported():
 @pytest.mark.parametrize("tag, chosen", [
     ("pt-BR-x-sp", "pt-BR-x-sp"),
     ("pt-BR-x-sao-paulo", "pt-BR-x-sp"),
-    ("ar-sa-x-najd", "ar-SA-x-najd"),
+    ("ar-sa-x-najd", "ars-SA"),
+    ("ars-sa-x-qassim", "ars-SA-x-qassim"),
     ("pt", "pt-PT"),
     ("en-NZ", "en-GB"),
     ("PT-PT-X-PORTO", "pt-PT-x-porto"),

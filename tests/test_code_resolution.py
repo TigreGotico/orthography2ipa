@@ -81,17 +81,17 @@ class TestRegionAndDialectDefaults:
     """Region and dialect Arabic tags resolve to the intended spec.
 
     ``ar-SA`` — the natural code for Saudi Arabic — has no exact spec (the
-    Saudi varieties are keyed by private-use subtag), so nearest-match would
+    Saudi varieties are keyed by their own ISO 639-3 codes), so nearest-match would
     otherwise pick whichever sibling sorts first. A curated region default and
     private-use dialect aliases steer it to the intended variety instead. The
     Saudi default (Najdi) is an editorial convention, not a claim in the data.
     """
 
     @pytest.mark.parametrize("requested,expected", [
-        ("ar-SA", "ar-SA-x-najd"),        # region default: most widely spoken
-        ("ar-x-najdi", "ar-SA-x-najd"),   # dialect named in a private-use subtag
-        ("ar-x-hejazi", "ar-SA-x-hejaz"),
-        ("ar-x-hijazi", "ar-SA-x-hejaz"),
+        ("ar-SA", "ars-SA"),              # region default: most widely spoken
+        ("ar-x-najdi", "ars-SA"),         # dialect named in a private-use subtag
+        ("ar-x-hejazi", "acw-SA"),
+        ("ar-x-hijazi", "acw-SA"),
     ])
     def test_region_and_dialect_defaults(self, requested, expected):
         assert resolve(requested) == expected
@@ -100,8 +100,9 @@ class TestRegionAndDialectDefaults:
 
     @pytest.mark.parametrize("requested,expected", [
         ("ar", "ar"),                     # MSA leaf, unchanged
-        ("ar-EG", "ar-EG"),               # region with a single spec
-        ("ar-SA-x-najd", "ar-SA-x-najd"), # exact dialect spec, unchanged
+        ("ar-EG", "arz-EG"),              # former key of Egyptian Arabic
+        ("arz-EG", "arz-EG"),             # exact dialect spec, unchanged
+        ("ar-SA-x-najd", "ars-SA"),       # former key of Najdi Arabic
     ])
     def test_existing_arabic_mappings_are_unregressed(self, requested, expected):
         assert resolve(requested) == expected

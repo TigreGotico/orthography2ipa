@@ -41,7 +41,7 @@ A clade node is for classification only. It carries no phoneme data, no spec inh
 
 1. The alias table `_ALIASES`, which holds ISO 639-3 codes and private-use tags that `langcodes` does not round-trip.
 2. `langcodes.standardize_tag(code, macro=True)`, for a code with no private-use subtag. The result goes through the alias table again.
-3. An exact match against the registered spec codes. A private-use tag also matches without regard to case, so `ar-sa-x-najd` finds `ar-SA-x-najd`.
+3. An exact match against the registered spec codes. A private-use tag also matches without regard to case, so `ars-sa-x-qassim` finds `ars-SA-x-qassim`.
 4. A curated default variant for a bare language tag or for a region that has only sub-regional specs.
 5. The nearest registered code by language distance (`ovos_spec_tools.language.closest_lang`), so `en-NZ` gives `en-GB`. With no usable match, the code stays as it is, and `get()` raises `KeyError`.
 
@@ -57,7 +57,7 @@ The curated defaults steer the unmarked form of a language to its reference vari
 | `it` | `it-IT` |
 | `pt` | `pt-PT` |
 | `ro` | `ro-RO` |
-| `ar-SA` | `ar-SA-x-najd` |
+| `ar-SA` | `ars-SA` |
 
 The `ar-SA` default is an editorial choice, not a claim in the spec data. Saudi Arabia has several documented varieties, Najdi and Hejazi among them, and no single standard spoken form. `ar-SA` goes to Najdi, the variety of the capital region and the most widely spoken (Ingham, *Najdi Arabic*, 1994).
 
@@ -100,14 +100,15 @@ The alias table maps these ISO 639-3 codes of major languages to a spec:
 | `ron` | `ro-RO` | `mwl` | `mwl` | `arg` | `an` |
 | `lat` | `la` | `tgk` | `tg` | `prs` | `fa-AF` |
 
-The table holds four other kinds of entry:
+The table holds five other kinds of entry:
 
 | Kind | Examples |
 | :--- | :--- |
-| The ISO 639-3 code of an Arabic variety, mapped to its dialect spec | `arz` to `ar-EG`, `ary` to `ar-MA`, `acm` to `ar-IQ`, `ars` to `ar-SA-x-najd` |
+| The bare ISO 639-3 code of an Arabic variety, mapped to the spec keyed by that code | `arz` to `arz-EG`, `ars` to `ars-SA`, and `ajp`, which SIL retired into `apc`, to `apc-JO` |
+| A key that a spec had before it took its ISO 639-3 code, mapped to that spec | `ar-EG` to `arz-EG`, `ar-SA-x-najd` to `ars-SA`, `ar-x-gulf` to `afb` |
 | An individual-language code that `macro=True` standardisation would collapse into its macrolanguage, mapped to itself | `quz`, which would otherwise become `qu`, and `diq`, which would become `zza` |
 | An ISO 639-3 code whose variety has its spec under another key | `pnb` to `pa-PK`, `bar` to `de-x-bavarian` |
-| A private-use tag, mapped to the spec that holds the variety | `pt-PT-x-barrancos` to `ext-PT-x-barrancos`, `pt-BR-x-sao-paulo` to `pt-BR-x-sp`, `ar-x-hijazi` to `ar-SA-x-hejaz` |
+| A private-use tag, mapped to the spec that holds the variety | `pt-PT-x-barrancos` to `ext-PT-x-barrancos`, `pt-BR-x-sao-paulo` to `pt-BR-x-sp`, `ar-x-hijazi` to `acw-SA` |
 
 Galician has one standard spec, `gl-ES`, and the bare tag `gl` resolves to it. The variety codes `gl-x-central`, `gl-x-occidental`, `gl-x-oriental`, `gl-x-eonavia` and `gl-x-reintegrado` resolve to the `gl-ES-x-*` spec of the same variety. `_ALIASES` in `registry.py` holds the full table.
 
