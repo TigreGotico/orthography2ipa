@@ -136,6 +136,51 @@ class TestInventoryGuard:
             '<phoneme ph="ˈmiːtɪŋ">meeting</phoneme>') == "ˈmiːtɪŋ"
 
 
+def _quoted_transcriptions(text):
+    """The [phonetic] and /phonemic/ transcriptions a prose text quotes."""
+    import re
+    return re.findall(r"\[([^\]'\"\s]+)\]", text) + re.findall(r"/([^/\s]+)/", text)
+
+
+def _refused(code, ipa):
+    try:
+        G2P(code).transcribe(f'<phoneme ph="{ipa}">x</phoneme>')
+    except MarkupError:
+        return True
+    return False
+
+
+class TestTheRefusalTellsTheTruth:
+    """The error text and the module guide give examples the check refuses.
+
+    The ``ar`` spec lists [ŋ] as a surface of /n/ and [ɪ] as a surface of
+    /i/ in its resolved ``allophones`` table, so a text that offers
+    [ˈmiːtɪŋ] as a reading ``ar`` refuses states a false fact.
+    """
+
+    FORCED = '<phoneme ph="ˈmiːtinɡ">meeting</phoneme>'
+
+    def test_ar_lists_the_symbols_the_old_example_called_foreign(self):
+        from orthography2ipa.registry import get
+        allophones = get("ar").allophones
+        assert "ŋ" in allophones["n"] and "ɪ" in allophones["i"]
+        assert not _refused("ar", "ˈmiːtɪŋ")
+
+    def test_every_transcription_in_the_message_is_refused(self):
+        with pytest.raises(MarkupError) as err:
+            G2P("ar").transcribe(self.FORCED)
+        for ipa in _quoted_transcriptions(str(err.value)):
+            assert _refused("ar", ipa), ipa
+
+    def test_every_transcription_in_the_module_guide_is_refused(self):
+        import orthography2ipa.markup as markup
+        section = markup.__doc__.split("## The inventory is still the law")[1]
+        quoted = _quoted_transcriptions(section)
+        assert quoted
+        for ipa in quoted:
+            assert _refused("ar", ipa), ipa
+
+
 class TestForcingSurvivesPunctuation:
     """A forced word standing before a pause lost its forcing.
 

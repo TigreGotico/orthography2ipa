@@ -114,6 +114,10 @@ def _words(sentence: str):
     return [w for w in re.findall(r"[^\s]+", sentence) if re.search(r"\w", w)]
 
 
+def _unstressed(ipa: str) -> str:
+    return ipa.replace("ˈ", "").replace("ˌ", "")
+
+
 def _strip_punct(word: str) -> str:
     return word.strip(".,;:!?¿¡\"'«»()—-·").lower()
 
@@ -332,7 +336,9 @@ def _eu_postalveolar_ipa(ipa: str) -> bool:
 # "ipa" predicates demonstrate a realised reflex; "orth" predicates prove the
 # sentence exercises an axis whose reflex varies across lects; "both" require an
 # orthographic trigger AND the predicted (position-tied) ipa so the tag proves
-# the row genuinely exercises the axis.
+# the row genuinely exercises the axis. Predicates see the ipa with its stress
+# marks removed: the tags name segmental reflexes, and a mark can fall inside
+# a segment such as the affricate [ts̻].
 FEATURES = {
     # /θ ~ s/ merger axis: distinción keeps [θ], seseo merges ⟨c z⟩ to [s]
     "distincion":       ("both", lambda s, ipa: _has_cz_grapheme(s) and "θ" in ipa),
@@ -460,7 +466,7 @@ def cmd_draft(args):
     w.writerow(FIELDS)
     for i, line in enumerate(lines, 1):
         ipa = orthography2ipa.transcribe(line, lect)
-        feats = ";".join(tag for tag, (_, pred) in FEATURES.items() if pred(line, ipa))
+        feats = ";".join(tag for tag, (_, pred) in FEATURES.items() if pred(line, _unstressed(ipa)))
         w.writerow([f"{lect}-{i:03d}", line, ipa, "", feats,
                     "NEEDS-REVIEW: author gloss + citation id from spec sources"])
 
@@ -509,7 +515,7 @@ def cmd_validate(args):
                     continue
                 if tag not in FEATURES:
                     failures.append(f"{rid}: unknown feature tag {tag!r}")
-                elif not FEATURES[tag][1](r["sentence"], r["ipa"]):
+                elif not FEATURES[tag][1](r["sentence"], _unstressed(r["ipa"])):
                     failures.append(f"{rid}: feature {tag!r} not verifiable in row")
             spec = orthography2ipa.get(lect)
             src_ids = {getattr(s, "id", None) for s in (getattr(spec, "sources", None) or ())}

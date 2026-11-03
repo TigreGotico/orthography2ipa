@@ -494,18 +494,16 @@ class StressRules:
     vowel_letters : Tuple[str, ...]
         The letters this orthography uses as syllable NUCLEI, for the bundled
         syllabifier. Left empty (the default) the splitter falls back to a
-        cross-linguistic vowel test that reads a letter's shape, and that test
-        counts ⟨y⟩ and ⟨w⟩ as vowels because some orthographies use them so.
-        Where a language does not — Xhosa ⟨y⟩ is /j/ and ⟨w⟩ is /w/, both
-        onsets — the run ⟨oya⟩ collapses into a single nucleus, the syllable
-        count drops, and every position the count feeds (stress, and the
-        ``nucleus_stressed`` entries that hang off it) lands on the wrong
-        vowel or on two at once.
+        cross-linguistic vowel test that reads a letter's shape. That test
+        reads ⟨y⟩ and ⟨w⟩ from the spec's own grapheme table
+        (:func:`~orthography2ipa.vowels.semivowel_role`): a letter that writes
+        only a vowel is a nucleus, a letter that writes only a consonant or a
+        glide is not, and a letter that writes both is a nucleus only where no
+        vowel letter is beside it. Spanish ⟨y⟩ /ʝ i/ is then the onset of
+        ⟨mayo⟩, the off-glide of ⟨rey⟩ and the nucleus of ⟨rugby⟩.
 
         Declaring the set states the language's own answer and nothing else
         changes: the letters listed are nuclei, every other letter is not.
-        A spec that does not declare it keeps the shape-based test exactly as
-        before.
     quantity_sensitive : bool
         Stress is placed by **syllable weight**, not by an orthographic
         ending. A quantity-sensitive system reads the *transcription* — a

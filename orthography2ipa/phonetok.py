@@ -1272,20 +1272,21 @@ class PhonetokTokenizer:
         self.add_bos = add_bos
         self.add_eos = add_eos
         self.collapse_whitespace = collapse_whitespace
-        # Build normalised lookup (lowercase keys) from the base grapheme
-        # table first.
-        self._grapheme_ipa: Dict[str, Tuple[str, ...]] = {
-            k.lower(): tuple(v) for k, v in spec.graphemes.items()
-        }
+        # Build normalised lookup from the base grapheme table first. A key
+        # takes the form `tokenize` gives the text (lowercase, NFC, folded
+        # diacritics removed), so the trie can reach every key. A key written
+        # in another form yields to its twin written in that form.
+        self._grapheme_ipa: Dict[str, Tuple[str, ...]] = self._normalised_keys(
+            {k: tuple(v) for k, v in spec.graphemes.items()})
 
         # Per-candidate weights aligned to `_grapheme_ipa` (lowercased
         # keys). Sparse — only graphemes whose spec used the weighted-object
         # form appear. Absent → `weights_for` returns None → the beam uses
         # rank cost (byte-identical to the pre-weights behaviour).
-        self._grapheme_weights: Dict[str, Tuple[float, ...]] = {
-            k.lower(): tuple(w)
-            for k, w in (spec.grapheme_weights or {}).items()
-        }
+        self._grapheme_weights: Dict[str, Tuple[float, ...]] = (
+            self._normalised_keys(
+                {k: tuple(w)
+                 for k, w in (spec.grapheme_weights or {}).items()}))
 
         # Grapheme keys that exist *only* as positional overrides (no entry
         # in the base `graphemes` table) must still be discoverable by the
@@ -1299,7 +1300,7 @@ class PhonetokTokenizer:
         # the context-correct candidate.
         if spec.positional_graphemes:
             for grapheme, pos_map in spec.positional_graphemes.items():
-                key = grapheme.lower()
+                key = self._normalise(grapheme.lower())
                 if key in self._grapheme_ipa or not pos_map:
                     continue
                 candidates = pos_map.get(GraphemePosition.DEFAULT)
@@ -1327,6 +1328,36 @@ class PhonetokTokenizer:
         }
         self._codas: FrozenSet[str] = frozenset(spec.codas)
         self._inherent_vowel_final: Optional[str] = spec.inherent_vowel_final
+
+    def _normalise(self, text: str) -> str:
+        """*text* in NFC, with the spec's segment-less diacritics removed.
+
+        NFC normalization handles combining marks (Arabic harakat, Devanagari
+        matras, accented Latin characters). The diacritics the spec declares
+        as segment-less — the Greek pitch accents and length marks, say — are
+        then folded away: decompose so a precomposed letter exposes its
+        combining marks, drop the listed ones, recompose. ⟨ό⟩ → ⟨ο⟩, which the
+        grapheme table can read, instead of an UNKNOWN token that drops the
+        vowel with it.
+        """
+        text = unicodedata.normalize("NFC", text)
+        if self._fold_diacritics:
+            decomposed = unicodedata.normalize("NFD", text)
+            stripped = "".join(c for c in decomposed
+                               if c not in self._fold_diacritics)
+            text = unicodedata.normalize("NFC", stripped)
+        return text
+
+    def _normalised_keys(self, table: Dict[str, Tuple]) -> Dict[str, Tuple]:
+        """*table* keyed by the lowercase :meth:`_normalise` form of each key.
+
+        A key already in that form wins over a twin that normalises to it.
+        """
+        out = {k.lower(): v for k, v in table.items()
+               if self._normalise(k.lower()) == k.lower()}
+        for k, v in table.items():
+            out.setdefault(self._normalise(k.lower()), v)
+        return out
 
     def _supplies_vowel_at(self, text: str, pos: int) -> bool:
         """True if the grapheme starting at *pos* supplies a syllable nucleus.
@@ -1719,20 +1750,7 @@ class PhonetokTokenizer:
            e. Single unknown character.
         3. Optionally wrap with BOS/EOS.
         """
-        # NFC normalization handles combining marks (Arabic harakat,
-        # Devanagari matras, accented Latin characters)
-        text = unicodedata.normalize("NFC", text)
-
-        # Fold away the diacritics the spec declares as segment-less — the Greek
-        # pitch accents and length marks, say. Decompose so a precomposed letter
-        # exposes its combining marks, drop the listed ones, recompose: ⟨ό⟩ →
-        # ⟨ο⟩, which the grapheme table can read, instead of an UNKNOWN token
-        # that drops the vowel with it.
-        if self._fold_diacritics:
-            decomposed = unicodedata.normalize("NFD", text)
-            stripped = "".join(c for c in decomposed
-                               if c not in self._fold_diacritics)
-            text = unicodedata.normalize("NFC", stripped)
+        text = self._normalise(text)
 
         # Arabic-script pre-tokenization normalization (script-scoped; no
         # other script is touched). See the module block comment for detail.
@@ -1970,16 +1988,19 @@ class PhonetokTokenizer:
                 # ⟨gue gua⟩ = [ɡe ɡwa]. Before a consonant or word-end the same
                 # letter is a syllabic nucleus (⟨seguro laguna⟩ = [seɣuɾo
                 # laɣuna], not *[seɣɾo laɣna]); the maximal-munch digraph would
-                # wrongly swallow it. When the digraph-minus-glide is itself a
-                # mapped grapheme, back off to it so the glide letter tokenises
-                # as its own vowel on the next pass. Pure orthographic geometry
-                # (no language hard-coded); vowel-initial diphthongs ⟨au ou ui⟩
-                # are untouched (first letter is a vowel).
+                # wrongly swallow it. When the digraph-minus-glide and the
+                # glide letter are both mapped graphemes, back off so the glide
+                # letter tokenises as its own vowel on the next pass. A spec
+                # that writes the letter only inside digraphs keeps the
+                # digraph, since the bare letter has no reading. Pure
+                # orthographic geometry (no language hard-coded); vowel-initial
+                # diphthongs ⟨au ou ui⟩ are untouched (first letter is a vowel).
                 if (
                     len(gkey) >= 2
                     and gkey[-1] in ("u", "i")
                     and not is_orthographic_vowel(gkey[0])
                     and gkey[:-1] in self._grapheme_ipa
+                    and gkey[-1] in self._grapheme_ipa
                 ):
                     after = pos + len(gkey)
                     next_ch = text[after] if after < n else ""

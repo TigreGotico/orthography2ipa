@@ -69,7 +69,17 @@ from __future__ import annotations
 from typing import Optional
 import unicodedata
 
+from orthography2ipa.feats import is_vowel_phone
+
 __all__ = [
+    "IPA_VOWEL_SYMBOLS",
+    "LATIN_VOWEL_LETTERS",
+    "SEMIVOWEL_LETTERS",
+    "SEMIVOWEL_NUCLEUS",
+    "SEMIVOWEL_MARGIN",
+    "SEMIVOWEL_CONTEXTUAL",
+    "is_basic_vowel_letter",
+    "semivowel_role",
     "is_orthographic_vowel",
     "is_ipa_vowel",
     "is_front_vowel",
@@ -104,8 +114,13 @@ __all__ = [
 # Orthographic vowels: Latin (incl. accented/diacritic forms) + Greek
 # ═══════════════════════════════════════════════════════════════════════════
 
-_ORTHOGRAPHIC_VOWELS = frozenset(
-    "aeiou"
+#: The five basic Latin vowel letters. Every Latin-script orthography writes
+#: a vowel with each of them, which is what makes them the one Latin set that
+#: needs no spec to interpret. ⟨y⟩ and ⟨w⟩ are not in it: see
+#: :data:`SEMIVOWEL_LETTERS`.
+LATIN_VOWEL_LETTERS = frozenset("aeiou")
+
+_ORTHOGRAPHIC_VOWELS = LATIN_VOWEL_LETTERS | frozenset(
     # Latin accented forms (formerly g2p._VOWEL_CHARS / stress._VOWELS)
     "áéíóúàèìòùâêîôûãõäëïöüåæø"
     # Precomposed nasal vowels: ã and õ arrived with the accented forms
@@ -171,6 +186,21 @@ _ORTHOGRAPHIC_VOWELS = frozenset(
 #: the contrast that makes it a phoneme.
 _GLIDES_WITH_VOWEL_BASE = frozenset("йў")
 
+#: Latin letters that write a vowel in some orthographies and a consonant in
+#: others. ⟨y⟩ "mostly represents a vowel and seldom a consonant" in English,
+#: "and in other orthographies it may represent a vowel or a consonant"; ⟨w⟩
+#: is used "in Welsh and Cornish to represent the vowel /u/ as well as the
+#: related approximant consonant /w/" (Wikipedia, "Y" and "W"). No closed
+#: letter set can say which one a word holds, so a spec's own grapheme table
+#: decides it: see :func:`semivowel_role`.
+SEMIVOWEL_LETTERS = frozenset("yw")
+
+#: The three answers :func:`semivowel_role` gives.
+SEMIVOWEL_NUCLEUS = "nucleus"
+SEMIVOWEL_MARGIN = "margin"
+SEMIVOWEL_CONTEXTUAL = "contextual"
+
+
 # ═══════════════════════════════════════════════════════════════════════════
 # IPA vowels (vocoids)
 # ═══════════════════════════════════════════════════════════════════════════
@@ -189,6 +219,14 @@ _IPA_VOWELS = frozenset(
     # breve below (non-syllabic).
     "̯̃"
 )
+
+
+#: The IPA vowel symbols themselves, without the combining marks
+#: :data:`_IPA_VOWELS` carries for nucleus runs. A caller that scans a
+#: transcription one character at a time, such as the dialect transforms,
+#: tests membership here.
+IPA_VOWEL_SYMBOLS = frozenset(c for c in _IPA_VOWELS
+                              if not unicodedata.combining(c))
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -345,6 +383,68 @@ def is_orthographic_vowel(ch: str) -> bool:
     return decomposed[0] in _ORTHOGRAPHIC_VOWELS and all(
         unicodedata.combining(m) for m in decomposed[1:]
     )
+
+
+def is_basic_vowel_letter(ch: str) -> bool:
+    """Whether *ch* is one of :data:`LATIN_VOWEL_LETTERS` under any diacritic.
+
+    ⟨à⟩, ⟨ò⟩ and ⟨ü⟩ qualify through their base letter; ⟨y⟩ never does,
+    because whether it writes a vowel depends on the orthography.
+    """
+    base = unicodedata.normalize("NFD", ch.lower())[:1]
+    return base in LATIN_VOWEL_LETTERS
+
+
+def _first_segment(ipa: str) -> str:
+    """The first character of *ipa* with the combining marks written on it."""
+    end = 1
+    while end < len(ipa) and unicodedata.combining(ipa[end]):
+        end += 1
+    return ipa[:end]
+
+
+def semivowel_role(letter: str, graphemes,
+                   conditioned: bool = False) -> Optional[str]:
+    """How a :data:`SEMIVOWEL_LETTERS` letter takes part in syllables of a spec.
+
+    *graphemes* is the spec's flat grapheme table, and *conditioned* tells
+    whether the spec's positional rules choose among the letter's readings.
+    The answer comes from what the spec says the letter writes:
+
+    - its own entry lists only vowels: :data:`SEMIVOWEL_NUCLEUS`, the letter
+      is a vowel letter (Finnish ⟨y⟩ /y/, Welsh ⟨y⟩ /ə ɨ/);
+    - its own entry lists only consonants or glides, or the letter has no
+      entry and occurs only inside multigraph entries: :data:`SEMIVOWEL_MARGIN`,
+      the letter is never a nucleus (Indonesian ⟨y⟩ /j/, Catalan ⟨ny⟩ /ɲ/);
+    - its own entry lists both, and a positional rule or a consonant first
+      reading lets the context choose: :data:`SEMIVOWEL_CONTEXTUAL`, the
+      neighbouring letters decide (Spanish ⟨y⟩ /ʝ i/ is a consonant in
+      ⟨mayo⟩, a glide in ⟨rey⟩ and the only possible nucleus in ⟨rugby⟩);
+    - its own entry lists both, a vowel first, and no positional rule:
+      :data:`SEMIVOWEL_NUCLEUS`, because the transcription writes that first
+      vowel next to another vowel too (Portuguese ⟨y⟩ /i j/);
+    - the table does not mention the letter at all: ``None``. The
+      transcription drops such a letter, so the table gives no answer, and
+      the caller keeps its letter-shape test.
+
+    A reading writes a vowel when its first segment, with the combining marks
+    on it, is [+syllabic] in the feature table: /ʏ/ and /əi/ do, /i̯/ and /wa/
+    do not.
+    """
+    readings = graphemes.get(letter)
+    if readings is None:
+        if any(letter in key for key in graphemes):
+            return SEMIVOWEL_MARGIN
+        return None
+    kinds = {bool(ipa) and is_vowel_phone(_first_segment(ipa))
+             for ipa in readings}
+    if kinds == {True}:
+        return SEMIVOWEL_NUCLEUS
+    if True not in kinds:
+        return SEMIVOWEL_MARGIN
+    if not conditioned and is_vowel_phone(_first_segment(readings[0])):
+        return SEMIVOWEL_NUCLEUS
+    return SEMIVOWEL_CONTEXTUAL
 
 
 def is_ipa_vowel(ch: str) -> bool:

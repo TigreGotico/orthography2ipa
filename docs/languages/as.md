@@ -38,6 +38,8 @@ Both sources describe regressive ATR vowel harmony, which raises /ɛ ɔ ʊ/ to /
 
 The spec does not encode the gemination of a consonant before the ya-phala ⟨্য⟩.
 
+The spec does not mark stress. Prominence in Assamese is phonetic and non-contrastive. It falls on the first syllable, or on the second when the first is open and the second is closed, and never later (Mahanta 2012: 222). The stress schema has no rule that weighs syllables from the left edge. On an abugida, the stress engine also counts syllables over the written letters, so a fixed initial default puts the mark on the wrong syllable.
+
 A conjunct inside a word that closes a syllable keeps its inherent vowel. The deletion needs a nucleus in the syllable that it closes, and it never makes a complex coda. So ভক্ত gives `bʱɔktɔ` and not `bʱɔkt`, and the second inherent vowel stays.
 
 ## Sources

@@ -1108,11 +1108,11 @@ class G2P:
             raise MarkupError(
                 f"<phoneme ph={ipa!r}> uses {outside!r}, which the {self.spec.code} "
                 f"spec does not declare.\n\n"
-                f"A phoneme outside the inventory has no embedding at synthesis time, "
-                f"so the word carrying it is mispronounced permanently and silently. "
-                f"This is the usual shape of a loanword forced in its donor's "
-                f"phonology: English 'meeting' is not [ˈmiːtɪŋ] in Arabic, it is "
-                f"nativised, and /ɪ/ and /ŋ/ are not Arabic phonemes.\n\n"
+                f"The inventory is every segment the spec's tables can emit, "
+                f"allophones included. A symbol outside it has no embedding at "
+                f"synthesis time, so the word carrying it is mispronounced "
+                f"permanently and silently. This is the usual shape of a loanword "
+                f"forced in its donor's phonology.\n\n"
                 f"Give the nativised reading, or — if the phonology really does have "
                 f"this sound — declare it in the spec, where it can be read, cited "
                 f"and diffed."
@@ -1438,7 +1438,8 @@ class G2P:
                 ipa = apply_stress_mark(
                     ipa, self.spec.stress, idx, syllables=sylls, mark=mark,
                     secondary_indices=sorted(secondary_stress_positions(
-                        len(sylls), idx, self.spec.stress)))
+                        len(sylls), idx, self.spec.stress)),
+                    spec=self.spec)
         # NOT NFC-composed: see the note in _transcribe_word.
         return ipa
 

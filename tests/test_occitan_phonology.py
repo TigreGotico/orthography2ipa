@@ -351,11 +351,13 @@ class TestWrittenAccentSurvivesGlideFormation:
         assert transcribe("nacion", lang="oc") == "naˈsju"
 
     def test_a_silent_digraph_is_not_a_merge_site(self):
-        # Portuguese ⟨segue⟩ divides se-gu-e and the ⟨u⟩ of ⟨gu⟩ is not a
-        # nucleus at all, so the boundary that looks like a hiatus is an
-        # artefact of the split. The word carries no accent and keeps its
-        # paroxytone mark.
-        assert transcribe("segue", lang="pt-PT-x-lisbon") == "ˈsɨɡɨ"
+        # Portuguese ⟨segue⟩ is se-gue. The ⟨u⟩ of ⟨gu⟩ is not a nucleus at
+        # all, so a division se-gu-e would show a hiatus that the word does
+        # not have. The word carries no accent and keeps its
+        # paroxytone mark. The stressed ⟨e⟩ is not reduced: [ɨ] "occurs only
+        # in unstressed syllables" (Cruz-Ferreira 1999: 127, as the pt-PT
+        # spec notes quote it).
+        assert transcribe("segue", lang="pt-PT-x-lisbon") == "ˈsɛɡɨ"
 
     def test_y_is_not_a_vowel_letter_at_a_merge_site(self):
         # The engine divides Malaccan Creole ⟨kaminyu⟩ as ka-mi-ny-u. ⟨y⟩ is

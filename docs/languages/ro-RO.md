@@ -22,7 +22,7 @@ Word-initial ⟨e⟩ is [je] only in a closed set. That set holds the personal p
 
 ## Stress
 
-Romanian stress is phonemic, but the standard spelling does not mark it and does not predict it. The words ⟨copii⟩ 'children' and ⟨copii⟩ 'copies' have the same spelling and different stress. The spec therefore has no `stress` block, and its `notes` state the exemption that [quality tiers](../specs/quality_tiers.md#research) allows. The benchmark strips stress marks, so the missing stress does not change the PER.
+Romanian stress is lexical, and the standard spelling does not mark it. It has a strong default (Chițoran 2002: 75-77, tabulated in Alexei & Ulfsbjorninn 2022: 2-5). A word that ends in a consonant takes final stress (*bărbát*, *animál*). A word that ends in a falling diphthong also takes final stress (*gunói*, *biróu*). So does a word that ends in the diphthong ⟨ea⟩ [e̯a] (*cafeá*, *perdeá*, *aveá*), because that diphthong occurs only in stressed position (Alexei & Ulfsbjorninn 2022: 18). Any other word takes penultimate stress (*máre*, *feméie*, *mașínă*). The `stress` block states that default. The benchmark strips stress marks, so the block does not change the PER.
 
 ## Benchmark
 
@@ -30,7 +30,9 @@ Two rows can gate a promotion: `wikipron` under the bare tag `ro`, which is crow
 
 ## Known limitations
 
-The spec does not transcribe stress. A comparison with a system that marks stress must strip stress from both sides.
+The stress default misses the lexically marked words. These have penultimate stress on a consonant-final word (*záhăr*, *călúgăr*), antepenultimate stress on a vowel-final word (*pépene*, *cámeră*), or final stress on a plain vowel (*macará*, *pané*). The spec lists none of them.
+
+Inflectional endings keep the stress of the stem (Franzén & Horne 1997: 75). The engine reads the whole word, so *lupul*, *trenuri* and *caselor* take the mark one syllable late. The definite article on a noun in *-e* also writes ⟨ea⟩, so *cartea* and *mintea* take the mark on the article. The spec does not resolve homographs that differ only in stress, such as *cópii* 'copies' and *copíi* 'children'.
 
 After ⟨c⟩ or ⟨g⟩, an ⟨i⟩ before a vowel is silent in the inherited vocabulary and syllabic in the learned layer. Examples are ⟨cioban⟩ [tʃoˈban] and ⟨Dacia⟩ [ˈdatʃi.a]. The split is lexical, not orthographic. The spec emits the syllabic reading for both, so ⟨cioban⟩ gives `tʃioban`. A caller-supplied lexicon can correct the inherited words.
 
@@ -44,6 +46,8 @@ The spec maps only the comma-below letters ⟨ș⟩ and ⟨ț⟩. Much Romanian 
 - Deletant, D. & Alexandrescu, I. (1983). *Teach Yourself Romanian*. Hodder & Stoughton.
 - Ladefoged, P. & Maddieson, I. (1996). *The Sounds of the World's Languages*. Blackwell.
 - Chițoran, I. (2002). *The Phonology of Romanian: A Constraint-based Approach*. Mouton de Gruyter.
+- Alexei, S. & Ulfsbjorninn, S. (2022). Metrical exceptionality and stress shift in Romanian nouns and adjectives. *Isogloss* 8(1)/4, 1-29.
+- Franzén, V. & Horne, M. (1997). Word stress in Romanian. *Lund University Working Papers* 46, 75-91.
 - Academia Română (2021). *Dicționarul ortografic, ortoepic și morfologic al limbii române* (DOOM3). Univers Enciclopedic.
 
 ---
