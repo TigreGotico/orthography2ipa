@@ -180,12 +180,19 @@ def test_br_final_raising_is_gated():
 
 def test_br_conservative_dialects_raise_without_affrication():
     """A dental (non-palatalising) dialect still raises the ending but keeps
-    /t d/ dental — a single pass suffices, so it stays at allophone_passes=1."""
-    for lect in ("pt-BR-x-caipira", "pt-BR-x-sul"):
+    /t d/ dental."""
+    for lect in ("pt-BR-x-pr", "pt-BR-x-recife"):
+        out = G2P(lect).transcribe_word("dentes")
+        assert out.endswith(("is", "iʃ")) and "t͡ʃ" not in out, (lect, out)
+
+
+def test_br_affricating_dialects_affricate_before_raised_plural():
+    """allophone_passes is not inherited: a child that affricates must run the
+    base's two passes, or the plural raised in pass one is never affricated."""
+    for lect in ("pt-BR-x-ce", "pt-BR-x-norte", "pt-BR-x-sul", "pt-BR-x-caipira"):
         g = G2P(lect)
-        assert g.spec.allophone_passes == 1
-        out = g.transcribe_word("dentes")
-        assert out.endswith("is") and "t͡ʃ" not in out, (lect, out)
+        assert g.spec.allophone_passes == 2
+        assert "t͡ʃi" in g.transcribe_word("dentes"), lect
 
 
 # ─── Sibilants: no medieval apico-alveolar leak ────────────────────────

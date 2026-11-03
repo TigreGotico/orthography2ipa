@@ -58,7 +58,7 @@ LECTS = [
     "pt-PT-x-acores", "pt-PT-x-sao-miguel", "pt-PT-x-terceira",
     "pt-PT-x-madeira",
     # Brazilian
-    "pt-BR-x-bahia", "pt-BR-x-brasilia", "pt-BR-x-caipira", "pt-BR-x-ce",
+    "pt-BR-x-bahia", "pt-BR-x-caipira", "pt-BR-x-ce",
     "pt-BR-x-fluminense", "pt-BR-x-mg", "pt-BR-x-norte", "pt-BR-x-pr",
     "pt-BR-x-recife", "pt-BR-x-rj", "pt-BR-x-sp", "pt-BR-x-sul",
     # African + Asian
@@ -182,8 +182,8 @@ FEATURES = {
     # nasal diphthong: a nasalised glide [w̃]/[j̃] (ão, ãe, õe, …)
     "nasal_diphthong":  ("ipa",  lambda s, ipa: re.search(r"[wj]̃", ipa) is not None),
     "palatal":          ("ipa",  lambda s, ipa: "ʎ" in ipa or "ɲ" in ipa),
-    # strong-R reflex [ʀ ʁ r h χ] (excludes the ubiquitous tap [ɾ])
-    "rhotic":           ("ipa",  lambda s, ipa: re.search(r"[ʀʁrhχ]", ipa) is not None),
+    # strong-R reflex [ʀ ʁ r h χ x ɣ] (excludes the ubiquitous tap [ɾ])
+    "rhotic":           ("ipa",  lambda s, ipa: re.search(r"[ʀʁrhχxɣ]", ipa) is not None),
     # ei/ou axis: retention (EP-south [ɐj]/[o(w)]) vs monophthong (north [e]/[o])
     "diphthong_ei_ou":  ("orth", lambda s, ipa: re.search(r"ei|ou", s.lower()) is not None),
     # coda /l/ axis: dark [ɫ] (EP) vs velar vs vocalised [w] (BR)
