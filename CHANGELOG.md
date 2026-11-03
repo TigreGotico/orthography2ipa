@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.112.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.112.1a1) (2026-11-03)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.112.0a1...7.112.1a1)
+
+**Merged pull requests:**
+
+- fix\(ie\): encode the Occidental accentuation rule in the stress block [\#1870](https://github.com/TigreGotico/orthography2ipa/pull/1870) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.112.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.112.0a1) (2026-11-03)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.111.24a1...7.112.0a1)
@@ -365,10 +373,6 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.109.3a2...7.109.4a1)
 
-**Merged pull requests:**
-
-- feat: read a bare consonant letter as the nucleus between an unvowelled onset and a closing consonant [\#1732](https://github.com/TigreGotico/orthography2ipa/pull/1732) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [7.109.3a2](https://github.com/TigreGotico/orthography2ipa/tree/7.109.3a2) (2026-10-29)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.109.3a1...7.109.3a2)
@@ -392,10 +396,6 @@
 ## [7.109.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.109.1a1) (2026-10-29)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.109.0a2...7.109.1a1)
-
-**Merged pull requests:**
-
-- fix: name aeb and arq in the alias table so they stop depending on nearest-language distance [\#1731](https://github.com/TigreGotico/orthography2ipa/pull/1731) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.109.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.109.0a2) (2026-10-01)
 
