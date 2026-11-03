@@ -44,7 +44,7 @@ class TestBareDefaults:
                 failures.append(f"{primary}: {exc.__class__.__name__}")
         assert not failures, (
             "bare primary subtags without a resolution "
-            f"(extend _BARE_DEFAULTS or add a spec): {failures}"
+            f"(add a spec or an alias): {failures}"
         )
 
 

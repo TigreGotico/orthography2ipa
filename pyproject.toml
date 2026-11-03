@@ -5,18 +5,17 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "orthography2ipa"
 dynamic = ["version"]
-dependencies = ["numpy", "langcodes", "ovos-spec-tools>=1.16.1a1"]
+dependencies = ["numpy", "langcodes", "linguatag>=0.1.1a1"]
 description = "Linguistically motivated grapheme-to-IPA and allophone mappings for thousands of languages, dialects and historical stages"
 readme = "README.md"
 license = {text = "Apache-2.0"}
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
     "Intended Audience :: Science/Research",
     "Topic :: Text Processing :: Linguistic",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
