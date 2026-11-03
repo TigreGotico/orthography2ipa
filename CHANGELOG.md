@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.113.12a2](https://github.com/TigreGotico/orthography2ipa/tree/7.113.12a2) (2026-11-03)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.113.12a1...7.113.12a2)
+
+**Merged pull requests:**
+
+- refactor\(registry\): measure language tags with linguatag [\#1929](https://github.com/TigreGotico/orthography2ipa/pull/1929) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.113.12a1](https://github.com/TigreGotico/orthography2ipa/tree/7.113.12a1) (2026-11-03)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.113.11a1...7.113.12a1)
