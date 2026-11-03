@@ -70,7 +70,7 @@ _NASAL_CARRIERS = frozenset(
     # oral IPA vowels (deliberately excludes the precomposed nasal vowels
     # ã ẽ ĩ õ ũ and every combining mark, so a second tilde never stacks)
     "aeiou"
-    "ɛɔəɨʉɯæɐʌɒœøɪʊɤɵɞɑɘɚɜɝɶy"
+    "ɛɔəɨʉɯæɐʌɒœøɪʏʊɤɵɞɑɘɚɜɝɶy"
     # glides that legitimately carry a nasal offglide (nasal diphthongs
     # ɐ̃w̃ / ɐ̃j̃ from ⟨ão ãe õe⟩)
     "wjɥɰ"

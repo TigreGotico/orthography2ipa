@@ -208,7 +208,7 @@ SEMIVOWEL_CONTEXTUAL = "contextual"
 _IPA_VOWELS = frozenset(
     "aeiou"
     # Core IPA vowel symbols (formerly phonetok._vowels)
-    "ɛɔəɨʉɯæɐʌɒœøɪʊɤɵɞɑ"
+    "ɛɔəɨʉɯæɐʌɒœøɪʏʊɤɵɞɑ"
     # Additional IPA vowel symbols (formerly stress._VOWELS only)
     "ɘɚɜɝɶy"
     # Precomposed nasal vowels used as IPA transcription output

@@ -143,7 +143,7 @@ _CLITIC_NO_STRESS = -1
 
 #: Vowels never collapse — ⟨ee⟩/⟨oo⟩ are real long vowels, not doubled letters.
 #: Length and stress marks are not segments, so a run is identical across them.
-_VOWEL_IPA = set("aeiouɑɐɒæɓəɘɛɜɞɤɪɨɯɵøœʊʉʌʏyɶ")
+_VOWEL_IPA = set("aeiouɑɐɒæɔəɘɛɜɞɤɪɨɯɵøœʊʉʌʏyɶ")
 
 
 #: Positions whose value depends on syllable aperture. A spec that keys on
