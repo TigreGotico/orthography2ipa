@@ -41,7 +41,7 @@ from orthography2ipa.vowels import (
     SONORITY_FRICATIVE, SONORITY_GLIDE, SONORITY_LIQUID, SONORITY_NASAL,
     SONORITY_STOP,
     SONORITY_UNKNOWN, SEMIVOWEL_CONTEXTUAL, SEMIVOWEL_LETTERS,
-    SEMIVOWEL_NUCLEUS, is_basic_vowel_letter, is_ipa_vowel,
+    SEMIVOWEL_NUCLEUS, is_basic_vowel_letter, is_ipa_vowel, is_vowel_phone,
     is_labial_approximant, is_orthographic_vowel, is_affricate, is_glottal,
     is_lateral, is_palatal_glide, is_sibilant, is_voiced, place_class,
     semivowel_role, sonority_class)
@@ -1666,6 +1666,10 @@ def apply_stress_mark(
 #: Length mark; a nucleus carrying it is long.
 _LENGTH = "ː"
 
+#: Glide letters. After a vowel letter in one atom, a glide is the second half
+#: of a diphthong (``aj``, ``aw``), unless a vowel follows it as its nucleus.
+_OFFGLIDES = frozenset("jwɥɰ")
+
 LIGHT, HEAVY, SUPERHEAVY = "light", "heavy", "superheavy"
 
 
@@ -1777,6 +1781,16 @@ def syllabify_ipa(
     return syllables
 
 
+def _holds_diphthong(segment: str) -> bool:
+    """Whether one segment holds a vowel letter followed by a second vowel
+    letter, or by a glide letter that no vowel letter follows."""
+    letters = [c for c in segment if not unicodedata.combining(c)]
+    vowel = [is_ipa_vowel(c) or is_vowel_phone(c) for c in letters]
+    vowel.append(False)
+    return any(vowel[i] and (vowel[i + 1] or (c in _OFFGLIDES and not vowel[i + 2]))
+               for i, c in enumerate(letters[1:]))
+
+
 def syllable_weight(syllable: str, atoms: Sequence[str] = ()) -> str:
     """Classify one IPA syllable as ``light``, ``heavy`` or ``superheavy``.
 
@@ -1809,8 +1823,14 @@ def syllable_weight(syllable: str, atoms: Sequence[str] = ()) -> str:
     nucleus = segs[start:end]
     coda = segs[end:]
 
-    # A long vowel or a diphthong is a branching (heavy) nucleus.
-    long_vowel = any(_LENGTH in s for s in nucleus) or len(nucleus) > 1
+    # A long vowel or a diphthong is a branching (heavy) nucleus. A diphthong
+    # the spec declares as one atom is one segment that holds a vowel letter
+    # and, next to it, a second vowel letter (``ai``, ``œʏ``) or a glide letter
+    # with no vowel after it (``aj``, ``aw``). The vowel table also lists the
+    # combining tilde and the non-syllabic mark, which are not vowel letters
+    # of their own, and it leaves out ``ʏ``, which the feature table holds.
+    long_vowel = (any(_LENGTH in s for s in nucleus) or len(nucleus) > 1
+                  or any(_holds_diphthong(s) for s in nucleus))
 
     if long_vowel and coda:
         return SUPERHEAVY
