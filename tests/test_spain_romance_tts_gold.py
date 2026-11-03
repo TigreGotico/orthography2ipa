@@ -1,11 +1,12 @@
-"""Regression gate for the Spain-Romance TTS gold set (docs/evaluation/silver_sets.md#spain_romance_tts).
+"""Source-file gate for the Spain-Romance TTS gold set (docs/evaluation/silver_sets.md#spain_romance_tts).
 
 Runs the validate subcommand of scripts/spain_romance_tts_gold.py over every
 Spain-Romance lect that has a gold TSV (the rest report as pending): schema,
-row minimum, o2i transcription regression, feature-tag verifiability, duplicate
-detection and citation-id resolution. If a spec change alters a gold
-transcription this fails, forcing a deliberate reconciliation of the spec and
-the gold (cited accuracy wins).
+row minimum, feature-tag verifiability, duplicate detection and citation-id
+resolution.
+
+The board scores the set against its llm-corrected file, which
+tests/test_llm_corrected_sets.py checks. Nothing here pins engine output.
 """
 import subprocess
 import sys

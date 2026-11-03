@@ -136,6 +136,7 @@ The pages under `evaluation/generated/` are written by scripts.
 | [citations.md](contributing/citations.md) | Where to find a source, how to quote it, and which gold sets are silver |
 | [board.md](contributing/board.md) | How to regenerate the benchmark board, and the guards that check it |
 | [engine.md](contributing/engine.md) | How to add an engine capability, and the review gate for engine code |
+| [silver_correction.md](contributing/silver_correction.md) | How to correct the IPA of the silver sentence sets with Claude |
 
 ### Evaluation
 

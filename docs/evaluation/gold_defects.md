@@ -42,7 +42,7 @@ The gating does not run the way a reader expects. `machine-generated` gold gates
 | `wikipron` | Scottish Gaelic (`gd`) | Mixed conventions | [two notations for ⟨b d g⟩ and mixed dialects](#scottish-gaelic-wikipron) | `crowd-scraped`, gates. Fix in the normalizer or upstream. |
 | `wikipron` | Middle High German (`gmh`) | Mixed conventions | [Wiktionary page titles, not Lachmann spelling](#middle-high-german-wikipron) | `crowd-scraped`, gates. Score against `gmh-x-wikt`. |
 | `wikipron` | Kapampangan (`pam`) | Mixed conventions | [⟨e⟩ where the spec writes ⟨ɛ⟩, and readings that conflict](#kapampangan-wikipron) | `crowd-scraped`, gates. Left as it is. |
-| `arabic_tts`, `portuguese_tts`, `spain_romance_tts` | Arabic, Portuguese, the languages of Spain | Circular | [the silver set equals the engine output by contract](#the-tts-silver-sets-arabic_tts-portuguese_tts-spain_romance_tts) | `llm-generated`, cannot gate |
+| `arabic_tts`, `portuguese_tts`, `spain_romance_tts` | Arabic, Portuguese, the languages of Spain | Circular | [the model lineage that wrote the specs also wrote the label, and saw the engine output](#the-tts-silver-sets-arabic_tts-portuguese_tts-spain_romance_tts) | `llm-corrected`, cannot gate |
 | `vox_communis` | Abkhaz (`ab`) | False provenance label | [epitran has no Abkhaz map](#abkhaz-vox_communis-1) | No effect on gating. The label is wrong. |
 
 The sections below give the evidence that does not fit in a table cell.
@@ -214,11 +214,13 @@ The file also carries plain crowd-scraped noise. 48 headwords recur with two or 
 
 ### The TTS silver sets (`arabic_tts`, `portuguese_tts`, `spain_romance_tts`)
 
-These three silver sets are circular in two ways. The [engine-pin contract](silver_sets.md#the-engine-pin-contract) makes each `ipa` cell a copy of the engine output, so [every row scores a PER of zero](silver_sets.md#what-a-score-on-these-sets-means). That is a property of the set, not of the spec.
+The board scores these three silver sets against their [corrected labels](../contributing/silver_correction.md). Two passes wrote each label blind to the engine, and the label is not a copy of the engine output. It stays circular in two ways.
 
-The authorship is circular as well. The Claude lineage that wrote the specs also wrote these sets. The provenance comment on the sibling `gold20_arabic` dataset calls that relation "near-circular".
+The authorship is circular. The Claude lineage that wrote the specs also wrote the sentences, the source IPA and the corrected label. The provenance comment on the sibling `gold20_arabic` dataset calls that relation "near-circular".
 
-All three are `llm-generated`, so none can gate, and the tier is correct. The harness does not misuse the number. The defect is that the number looks like a result and is not one. No citation audit converts it. Only an independently collected gold would.
+The adjudication saw the engine. Where the two blind passes and the engine disagree, a third pass decides the label with the engine output as one of its candidates.
+
+All three are `llm-corrected`, so none can gate, and the tier is correct. A PER on these rows measures distance from a model's label. No citation audit converts it into an accuracy. Only an independently collected gold would.
 
 ## False provenance label
 
