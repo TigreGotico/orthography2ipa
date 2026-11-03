@@ -443,11 +443,7 @@ PLACES: dict[str, dict] = {
         note="Fortaleza — the centre of the Cearense area."),
     "pt-BR-x-norte": dict(
         qid="Q12829733", label="Belém", country="Brazil",
-        note="Belém — the reference city of the Nortista/Amazônico area (with "
-             "Manaus, 1,300 km west: a single point is a poor summary of Amazonia)."),
-    "pt-BR-x-brasilia": dict(
-        qid="Q2844", label="Brasília", country="Brazil",
-        note="Brasília — the planned capital whose migration koiné this spec models."),
+        note="Belém — the city this spec models. Manaus differs in its coda /S/."),
     "pt-BR-x-caipira": dict(
         qid="Q330175", label="Piracicaba", country="Brazil",
         note="Piracicaba — a representative locality of the caipira area, whose "
@@ -459,6 +455,12 @@ PLACES: dict[str, dict] = {
     "pt-BR-x-sul": dict(
         qid="Q40269", label="Porto Alegre", country="Brazil",
         note="Porto Alegre — the centre of the Sulista/Gaúcho area."),
+    "pt-BR-x-floripa": dict(
+        qid="Q132997", label="Florianópolis", country="Brazil",
+        note="Florianópolis — the island city whose native 'manezinho' speech this spec models."),
+    "pt-BR-x-cuiaba": dict(
+        qid="Q170762", label="Cuiabá", country="Brazil",
+        note="Cuiabá — the centre of the Baixada Cuiabana, the river valley this spec models."),
 
     # ── Portuguese beyond Europe and Brazil ───────────────────────────────────
     "pt-AO": dict(

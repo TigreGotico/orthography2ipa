@@ -627,6 +627,71 @@ def test_ie_z_is_dz_and_ch_is_esh():
     assert g.transcribe_word("yun").lstrip("ˈ").startswith("j")
 
 
+# Janotta 1929, Cosmoglotta 64, pp. 152-154, B. Pronunciation. The page transcribes
+# IPA [y] as [ü], IPA [ø] as [ö] and IPA [j] as [y]; the expected values below are
+# its transcriptions in IPA.
+
+@pytest.mark.parametrize("word, expected", [
+    ("cylindre", "tsyˈlindre"),
+    ("hymne", "ˈhymne"),
+    ("styr", "ˈstyr"),
+    ("yttrium", "ˈyttrjum"),
+])
+def test_ie_vocalic_y_is_close_front_rounded(word, expected):
+    """p. 152: "y vocalic es pronunciat quam german ü o frances u; transcrition [ü],
+    por exemple: cylindre [tsülíndre], hymne [hü'mne] styr [stür] ... yttrium
+    [ü'ttryum]"."""
+    assert G2P("ie").transcribe_word(word) == expected
+
+
+@pytest.mark.parametrize("word, expected", [
+    ("europa", "øˈropa"),
+    ("meuble", "ˈmøble"),
+    ("neutral", "nøˈtral"),
+])
+def test_ie_eu_is_close_mid_front_rounded(word, expected):
+    """p. 152: "eu es egal al frances eu e al german ö; transcrition [ö], por exemple:
+    Europa [örópa], meuble [mö'ble], neutral [nötrál]"."""
+    assert G2P("ie").transcribe_word(word) == expected
+
+
+@pytest.mark.parametrize("word, expected", [
+    ("photograph", "fotoˈɡraf"),
+    ("rheumatic", "røˈmatik"),
+    ("lithograph", "litoˈɡraf"),
+])
+def test_ie_greek_digraphs_ph_rh_th(word, expected):
+    """p. 154: "ph = f in paroles de grec orígine, p. ex. fotograf = photograph
+    [fotográf]"; "rh = r ... reumatic = rheumatic [römátik]"; "th = t ... litograf =
+    lithograph [litográf]"."""
+    assert G2P("ie").transcribe_word(word) == expected
+
+
+@pytest.mark.parametrize("word, expected", [
+    ("ciel", "ˈtsjel"),
+    ("lingue", "ˈlinɡwe"),
+    ("piano", "ˈpjano"),
+    ("statue", "ˈstatwe"),
+])
+def test_ie_i_and_u_before_a_vowel_are_glides(word, expected):
+    """p. 152: "i e u ante vocales in plursyllabic paroles ... es pronunciat tre curt,
+    presc consonantic e ne posse formar propri syllabes; transcrition [y] e [w]. p.
+    ex.: ciel [tsyél], lingue [língwe], aqua [ákwa], piano [pyáno]"; p. 153: statue
+    [sstátwe]."""
+    assert G2P("ie").transcribe_word(word) == expected
+
+
+def test_ie_stressed_i_before_a_vowel_stays_a_vowel():
+    """The glide of p. 152 is unstressed. Cosmoglotta 65, p. 166, art. 4: "Paroles ne
+    havent vocales ante li ultim consonant es accentuat sur li unesim vocale: die ...
+    via; plurale: dies", so the ⟨i⟩ of die, via, dies carries the stress and is a
+    vowel, while the ⟨i⟩ of ciel [tsyél] is the glide."""
+    g = G2P("ie")
+    assert g.transcribe_word("ciel") == "ˈtsjel"
+    assert [g.transcribe_word(w) for w in ("die", "via", "dies")] == [
+        "ˈdie", "ˈvia", "ˈdies"]
+
+
 # Janotta 1929, "Complet grammatica de Occidental", Cosmoglotta 65, p. 165, C.
 # Accentuation. The ie stress block quotes the articles; the stressed vowel of each
 # word below is the bold letter of that page.
@@ -647,11 +712,12 @@ def test_ie_consonant_final_word_stresses_the_vowel_before_it(word, expected):
 
 @pytest.mark.parametrize("word, expected", [
     ("linea", "ˈlinea"),
-    ("familie", "faˈmilie"),
+    ("familie", "faˈmilje"),
     ("honore", "hoˈnore"),
 ])
 def test_ie_vowel_final_word_stresses_the_vowel_before_the_last_consonant(word, expected):
-    """Art. 1: línea, famílie, honóre."""
+    """Art. 1: línea, famílie, honóre. Cosmoglotta 64, p. 154 transcribes famílie
+    as [famílye]."""
     assert G2P("ie").transcribe_word(word) == expected
 
 
@@ -683,6 +749,27 @@ def test_ie_enclitic_finales_keep_the_stress_of_the_rest_of_the_word(word, expec
     have influentie al accentu del céteri parol-parte": doctóres, vocábules, álbum,
     máximum, sóbrimen."""
     assert G2P("ie").transcribe_word(word) == expected
+
+
+@pytest.mark.parametrize("word, expected", [
+    ("aer", "aˈer"),
+    ("país", "paˈis"),
+    ("leer", "leˈer"),
+    ("leibil", "leˈibil"),
+    ("egoism", "eɡoˈism"),
+])
+def test_ie_two_vowels_in_contact_are_two_syllables(word, expected):
+    """Cosmoglotta 64, p. 152: "du vocales intersecuent in general es pronunciat
+    separat: aer ... [aér], país ... [país], leer ... [le-ér], leibil ... [leíbil]";
+    p. 153: egoism [egoíssm]. The mark stands before the stressed vowel, not before
+    the whole vowel run."""
+    assert G2P("ie").transcribe_word(word) == expected
+
+
+def test_ie_y_after_a_vowel_closes_the_syllable():
+    """Cosmoglotta 64, p. 152: "Pos un vocal ... y es consonant", so art. 1 puts the
+    stress on the vowel before it; p. 153: antey [antéy]."""
+    assert G2P("ie").transcribe_word("antey") == "anˈtej"
 
 
 # ── Interlingua (ia) ──

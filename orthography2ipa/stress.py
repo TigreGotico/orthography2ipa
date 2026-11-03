@@ -41,7 +41,7 @@ from orthography2ipa.vowels import (
     SONORITY_FRICATIVE, SONORITY_GLIDE, SONORITY_LIQUID, SONORITY_NASAL,
     SONORITY_STOP,
     SONORITY_UNKNOWN, SEMIVOWEL_CONTEXTUAL, SEMIVOWEL_LETTERS,
-    SEMIVOWEL_NUCLEUS, is_basic_vowel_letter, is_ipa_vowel,
+    SEMIVOWEL_NUCLEUS, is_basic_vowel_letter, is_ipa_vowel, is_vowel_phone,
     is_labial_approximant, is_orthographic_vowel, is_affricate, is_glottal,
     is_lateral, is_palatal_glide, is_sibilant, is_voiced, place_class,
     semivowel_role, sonority_class)
@@ -265,7 +265,11 @@ def _capture_coda_liquids(
 #       everything below it: Arabic says one, so one it is. It is applied
 #       FIRST, before any well-formedness reasoning, because a cap the spec
 #       wrote cannot be argued out of by the engine.
-#   (b) the universal shapes below, read off the spec's own grapheme→IPA
+#   (b) the spec's own ``stress.onset_clusters``, when the spec declares
+#       them. The graphemes of a run are read as IPA through the spec's
+#       table, and the list decides every complex onset: Portuguese opens no
+#       syllable with ⟨st⟩ or ⟨dv⟩, which the shapes below license.
+#   (c) the universal shapes below, read off the spec's own grapheme→IPA
 #       table through :mod:`orthography2ipa.vowels`.
 #
 # An earlier revision had a third tier between them: onsets harvested from
@@ -368,6 +372,10 @@ class _OnsetJudge:
             if len(g) > 1 and not _is_vowel_char(g[0])
             and _is_vowel_char(g[-1]) and v
             and all(r and not any(_is_vowel_char(c) for c in r) for r in v))
+        #: The spec's own complex onsets, in IPA (``stress.onset_clusters``).
+        #: Declared, they decide every complex onset in place of the shapes.
+        self._onsets = frozenset(
+            spec.stress.onset_clusters if spec.stress else ())
         #: Verdicts, keyed by the consonant run asked about. The runs come
         #: from words the caller supplies, so the key space is unbounded and
         #: the cache is bounded to match.
@@ -487,6 +495,8 @@ class _OnsetJudge:
             return False    # coda-only segment — see the module comment
         if len(units) == 1:
             return True   # every language licenses a simple onset
+        if self._onsets:
+            return self._declared(units)
         if len(units) > self.MAX_MEMBERS:
             return False
         if any(self._is_geminate(u) for u in units):
@@ -497,6 +507,22 @@ class _OnsetJudge:
                 return True     # ⟨brj⟩ ⟨glj⟩ — Árnason 2011, ch. 5
             return self._appendix_on(units[0], units[1:])
         return self._two_member(units[0], units[1])
+
+    def _declared(self, units: List[str]) -> bool:
+        """Whether the graphemes *units* spell an onset the spec declares.
+
+        The shapes below license an /s/ + stop appendix and an obstruent +
+        /v/ onset for every language, and Ibero-Romance has neither: Spanish
+        and Portuguese ⟨pasta⟩ ⟨escola⟩ ⟨advogado⟩ split before the stop and
+        after the ⟨d⟩. A spec that declares ``stress.onset_clusters`` has
+        stated its inventory, so that list decides. A final glide rides on the
+        onset before it, as in :class:`_IpaOnsetJudge`.
+        """
+        last = self._segment(units[-1])
+        if last is not None and sonority_class(last) == SONORITY_GLIDE:
+            return len(units) == 2 or self.licit("".join(units[:-1]))
+        segments = [self._segment(u) for u in units]
+        return None not in segments and "".join(segments) in self._onsets
 
     # ---- the four shapes --------------------------------------------------
     def _two_member(self, first: str, second: str) -> bool:
@@ -1640,6 +1666,10 @@ def apply_stress_mark(
 #: Length mark; a nucleus carrying it is long.
 _LENGTH = "ː"
 
+#: Glide letters. After a vowel letter in one atom, a glide is the second half
+#: of a diphthong (``aj``, ``aw``), unless a vowel follows it as its nucleus.
+_OFFGLIDES = frozenset("jwɥɰ")
+
 LIGHT, HEAVY, SUPERHEAVY = "light", "heavy", "superheavy"
 
 
@@ -1751,6 +1781,16 @@ def syllabify_ipa(
     return syllables
 
 
+def _holds_diphthong(segment: str) -> bool:
+    """Whether one segment holds a vowel letter followed by a second vowel
+    letter, or by a glide letter that no vowel letter follows."""
+    letters = [c for c in segment if not unicodedata.combining(c)]
+    vowel = [is_ipa_vowel(c) or is_vowel_phone(c) for c in letters]
+    vowel.append(False)
+    return any(vowel[i] and (vowel[i + 1] or (c in _OFFGLIDES and not vowel[i + 2]))
+               for i, c in enumerate(letters[1:]))
+
+
 def syllable_weight(syllable: str, atoms: Sequence[str] = ()) -> str:
     """Classify one IPA syllable as ``light``, ``heavy`` or ``superheavy``.
 
@@ -1783,8 +1823,14 @@ def syllable_weight(syllable: str, atoms: Sequence[str] = ()) -> str:
     nucleus = segs[start:end]
     coda = segs[end:]
 
-    # A long vowel or a diphthong is a branching (heavy) nucleus.
-    long_vowel = any(_LENGTH in s for s in nucleus) or len(nucleus) > 1
+    # A long vowel or a diphthong is a branching (heavy) nucleus. A diphthong
+    # the spec declares as one atom is one segment that holds a vowel letter
+    # and, next to it, a second vowel letter (``ai``, ``œʏ``) or a glide letter
+    # with no vowel after it (``aj``, ``aw``). The vowel table also lists the
+    # combining tilde and the non-syllabic mark, which are not vowel letters
+    # of their own, and it leaves out ``ʏ``, which the feature table holds.
+    long_vowel = (any(_LENGTH in s for s in nucleus) or len(nucleus) > 1
+                  or any(_holds_diphthong(s) for s in nucleus))
 
     if long_vowel and coda:
         return SUPERHEAVY

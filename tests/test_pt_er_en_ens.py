@@ -164,7 +164,7 @@ def test_pt_pt_en_plural_is_not_a_final_n(engines, word, expected):
 
 @pytest.mark.parametrize("word,expected", [
     ("hífen", "ˈifẽj̃"), ("pólen", "ˈpɔlẽj̃"), ("líquen", "ˈlikẽj̃"),
-    ("bens", "ˈbẽj̃s"), ("homens", "ˈomẽj̃s"), ("jovens", "ˈʒovẽj̃s"),
+    ("bens", "ˈbẽj̃s"), ("homens", "ˈõmẽj̃s"), ("jovens", "ˈʒovẽj̃s"),
     ("parabéns", "paɾaˈbẽj̃s"), ("viagens", "viˈaʒẽj̃s"),
 ])
 def test_pt_br_final_en_and_ens_end_in_the_nasal_diphthong(
@@ -188,7 +188,7 @@ def test_pt_br_ens_matches_its_singular_em(engines, lang):
 
 
 @pytest.mark.parametrize("word,expected", [
-    ("bem", "ˈbẽj̃"), ("homem", "ˈomẽj̃"), ("também", "tɐ̃ˈbẽj̃"),
+    ("bem", "ˈbẽj̃"), ("homem", "ˈõmẽj̃"), ("também", "tɐ̃ˈbẽj̃"),
     ("bom", "ˈbõ"), ("sons", "ˈsõs"), ("jardins", "ʒaɾˈd͡ʒĩs"),
 ])
 def test_pt_br_other_nasal_endings_do_not_move(engines, word, expected):

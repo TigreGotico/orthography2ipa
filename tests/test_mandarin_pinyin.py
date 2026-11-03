@@ -168,3 +168,44 @@ def test_syllabic_nasal_is_not_read_letter_by_letter():
     """⟨ng⟩ is one syllable, not ⟨n⟩ followed by ⟨g⟩."""
     assert "k" not in transcribe("ng", "zh")
     assert "k" not in transcribe("hng", "zh")
+
+
+# `phonemes` is the inventory of single sounds. A final such as /an/ or a
+# whole syllable such as /pʰou/ in it becomes one atom when the list is
+# passed to the syllabifier: /ana/ turns into one syllable and /pʰou/ into a
+# syllable with no nucleus. The weights are what `syllable_weight` gives each
+# shape, CV light and CVC or CVV heavy. They pin the cut, not a moraic
+# analysis of Mandarin.
+_ZH_SYLLABLES = [
+    ("ana", ["a", "na"], ["light", "light"]),
+    ("pan", ["pan"], ["heavy"]),
+    ("pai", ["pai"], ["heavy"]),
+    ("mou", ["mou"], ["heavy"]),
+    ("pʰoupʰou", ["pʰou", "pʰou"], ["heavy", "heavy"]),
+    ("wanwan", ["wan", "wan"], ["heavy", "heavy"]),
+    ("atsʰa", ["a", "tsʰa"], ["light", "light"]),
+]
+
+
+@pytest.mark.linguistic
+@pytest.mark.parametrize("ipa,syllables,weights", _ZH_SYLLABLES)
+def test_phonemes_as_atoms_give_cgvx_syllables(ipa, syllables, weights):
+    from orthography2ipa.stress import syllabify_ipa, syllable_weight
+    atoms = list(get("zh").phonemes)
+    got = syllabify_ipa(ipa, 1, atoms)
+    assert got == syllables
+    assert [syllable_weight(s, atoms) for s in got] == weights
+
+
+@pytest.mark.linguistic
+@pytest.mark.parametrize("code", ["zh", "zh-Hani"])
+def test_phonemes_hold_no_vowel_next_to_another_segment(code):
+    from orthography2ipa.allophony import segment_ipa
+    from orthography2ipa.vowels import is_ipa_vowel
+    phonemes = get(code).phonemes
+    atoms = sorted((p for p in phonemes if len(p) > 1), key=len, reverse=True)
+    for phoneme in phonemes:
+        segments = segment_ipa(phoneme, atoms)
+        assert segments == [phoneme], f"{phoneme} is {segments}, not one segment"
+        if any(is_ipa_vowel(c) for c in phoneme):
+            assert len(phoneme.rstrip("̩")) == 1, f"{phoneme} is not one vowel"
