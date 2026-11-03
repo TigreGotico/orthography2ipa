@@ -285,4 +285,4 @@ Sources listed in the spec: Nascentes (1953, pp. 20, 23-25, for the context), No
 - Silva, T. C. (2002). *Fonética e fonologia do português.* Contexto.
 
 ---
-[← Brazilian Portuguese](pt-BR.md) · [Home](../index.md) · [Angolan Portuguese →](pt-AO.md)
+[← Brazilian Portuguese](pt-BR.md) · [Home](../index.md) · [Florianópolis Portuguese →](pt-BR-x-floripa.md)
