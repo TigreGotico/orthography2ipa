@@ -78,3 +78,44 @@ class TestResultShape:
             r.distance = 1.0
         assert r.hyp_segments == 6
         assert r.ref_segments == 6
+
+
+def _levenshtein(a, b):
+    """Textbook unit-cost edit distance between two segment lists."""
+    row = list(range(len(b) + 1))
+    for i, x in enumerate(a, 1):
+        prev, row[0] = row[0], i
+        for j, y in enumerate(b, 1):
+            prev, row[j] = row[j], min(row[j] + 1, row[j - 1] + 1,
+                                       prev + (x != y))
+    return row[-1]
+
+
+class TestBeamWidth:
+    # en-GB.json maps <c> to [k, s] and <ough> to [ɔː, əʊ, ʌf, ɒf, aʊ, uː].
+    # The top path of <cough> is [kɔː]; [kɒf] takes the fourth <ough>
+    # candidate, so only a lattice that keeps four or more candidates
+    # per slot admits it.
+
+    def test_lower_ranked_candidate_is_admissible(self):
+        assert lattice_per("kɒf", "cough", "en-GB", beam_width=8).distance == 0.0
+
+    def test_width_one_admits_only_the_top_path(self):
+        # [kɒf] against [kɔː]: substitute ɔː by ɒ, insert f.
+        assert lattice_per("kɒf", "cough", "en-GB", beam_width=1).distance == 2.0
+
+    @pytest.mark.parametrize("hyp", ["kɒf", "kʌf", "suː", "kaʊf", "ɒf", ""])
+    def test_oracle_is_the_minimum_over_every_beam_path(self, hyp):
+        import itertools
+        from orthography2ipa import G2P
+
+        g2p = G2P("en-GB")
+        slots = [[_segments(c.ipa) for c in slot.candidates]
+                 for word in g2p.sentence_lattice("cough", search="beam",
+                                                  beam_width=8)
+                 for slot in word.slots]
+        hyp_segments = _segments(hyp)
+        paths = [sum(path, []) for path in itertools.product(*slots)]
+        paths.append(_segments(g2p.transcribe("cough")))
+        expected = min(_levenshtein(p, hyp_segments) for p in paths)
+        assert lattice_per(hyp, "cough", "en-GB", beam_width=8).distance == expected
