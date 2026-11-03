@@ -627,21 +627,62 @@ def test_ie_z_is_dz_and_ch_is_esh():
     assert g.transcribe_word("yun").lstrip("ˈ").startswith("j")
 
 
-@pytest.mark.xfail(strict=True, reason="ie notes claim -bil is ignored for stress; "
-                                       "engine stresses the i of -bil: possibil → "
-                                       "poˈssibil, not ˈpossibil")
-def test_ie_ending_bil_is_ignored_for_stress():
-    """"Stress falls on the vowel before the final consonant; the endings -bil, -ic,
-    -im, -ul, -um are ignored for stress" (ie notes)."""
-    assert G2P("ie").transcribe_word("possibil") == "ˈpossibil"
+# Janotta 1929, "Complet grammatica de Occidental", Cosmoglotta 65, p. 165, C.
+# Accentuation. The ie stress block quotes the articles; the stressed vowel of each
+# word below is the bold letter of that page.
+
+@pytest.mark.parametrize("word, expected", [
+    ("crater", "kraˈter"),
+    ("doctor", "dokˈtor"),
+    ("general", "ʒeneˈral"),
+    ("natural", "natuˈral"),
+    ("hotel", "hoˈtel"),
+    ("rapid", "raˈpid"),
+])
+def test_ie_consonant_final_word_stresses_the_vowel_before_it(word, expected):
+    """Art. 1: "Li accentu tonic es situat ordinarmen sur li vocal ante li ultim
+    consonant": cratér, doctór, generál. rapíd is in art. 3."""
+    assert G2P("ie").transcribe_word(word) == expected
 
 
-@pytest.mark.xfail(strict=True, reason="ie notes claim -ic is ignored for stress; "
-                                       "engine gives akaˈdemik, not aˈkademik")
-def test_ie_ending_ic_is_ignored_for_stress():
-    """Same claim as -bil: "the endings -bil, -ic, -im, -ul, -um are ignored for
-    stress" (ie notes) — academic → [aˈkademik]."""
-    assert G2P("ie").transcribe_word("academic") == "aˈkademik"
+@pytest.mark.parametrize("word, expected", [
+    ("linea", "ˈlinea"),
+    ("familie", "faˈmilie"),
+    ("honore", "hoˈnore"),
+])
+def test_ie_vowel_final_word_stresses_the_vowel_before_the_last_consonant(word, expected):
+    """Art. 1: línea, famílie, honóre."""
+    assert G2P("ie").transcribe_word(word) == expected
+
+
+@pytest.mark.parametrize("word, expected", [
+    ("possibil", "posˈsibil"),
+    ("academic", "akaˈdemik"),
+    ("regul", "ˈreɡul"),
+    ("heroic", "heˈroik"),
+    ("lexico", "ˈleksiko"),
+    ("radica", "ˈradika"),
+    ("calcula", "ˈkalkula"),
+])
+def test_ie_atonic_finales_put_the_stress_on_the_syllable_before(word, expected):
+    """Art. 2: "Li finales -bil, -ic, (si it es pronunciat [ik]), -im, -ul es
+    ínaccentuat e attrae li accentu al precendent syllabe": possíbil, heróic,
+    léxico, rádica, cálcula, régul."""
+    assert G2P("ie").transcribe_word(word) == expected
+
+
+@pytest.mark.parametrize("word, expected", [
+    ("doctores", "dokˈtores"),
+    ("vocabules", "voˈkabules"),
+    ("album", "ˈalbum"),
+    ("maximum", "ˈmaksimum"),
+    ("sobrimen", "ˈsobrimen"),
+])
+def test_ie_enclitic_finales_keep_the_stress_of_the_rest_of_the_word(word, expected):
+    """Art. 3: "Li finale -s del plurale e li finales -men e -um es ínaccentuat e ne
+    have influentie al accentu del céteri parol-parte": doctóres, vocábules, álbum,
+    máximum, sóbrimen."""
+    assert G2P("ie").transcribe_word(word) == expected
 
 
 # ── Interlingua (ia) ──

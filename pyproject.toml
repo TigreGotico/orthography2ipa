@@ -4,7 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "orthography2ipa"
-dynamic = ["version", "dependencies"]
+dynamic = ["version"]
+dependencies = ["numpy", "langcodes", "ovos-spec-tools>=1.16.1a1"]
 description = "Linguistically motivated grapheme-to-IPA and allophone mappings for thousands of languages, dialects and historical stages"
 readme = "README.md"
 license = {text = "Apache-2.0"}
@@ -26,10 +27,13 @@ keywords = ["ipa", "phonetics", "phonology", "grapheme", "allophone", "linguisti
 
 [tool.setuptools.dynamic]
 version = {attr = "orthography2ipa.version.VERSION_STR"}
-dependencies = {file = ["requirements.txt"]}
 
 [project.optional-dependencies]
 hf = ["huggingface_hub"]
+# Residual lexicons, found through the orthography2ipa.lexicons entry points.
+# Installing this extra changes no output: the caller enables them with
+# use_packaged_lexicons().
+lexicons = ["o2i-lexicons>=0.0.1a1"]
 validation = ["pydantic>=2"]
 # A real Portuguese syllabifier. Optional: the bundled splitter is correct on its
 # own (pt-PT declares its diphthongs), and this only draws better boundaries.
@@ -46,13 +50,18 @@ portuguese = ["silabificador>=2.1.0a1"]
 # workflows install unar so the ru rows and the en-US/cmudict row are gated
 # there and not only on a developer's box.
 test = ["pytest", "pytest-timeout", "pytest-cov", "pydantic>=2", "hypothesis",
-        "silabificador>=2.1.0a1", "huggingface_hub", "rarfile", "scriptconv"]
+        "silabificador>=2.1.0a1", "huggingface_hub", "rarfile", "scriptconv",
+        "anthropic>=2.0.0"]
 # dev-only extra for scripts/compare_systems.py; never a runtime dependency.
 # africa-g2p is NOT listed here: it isn't published on PyPI, so it can't be
 # a pip extra. Install it from a locally built wheel of the upstream
 # checkout (https://github.com/AfriSpeech/africa-g2p) before regenerating the
 # comparison table — see scripts/compare_systems.py's module docstring.
 compare = ["epitran", "gruut", "pycotovia", "ahotts-g2p"]
+# dev-only extra for scripts/correct_silver_ipa.py, which corrects the
+# LLM-generated silver sets with Claude; never a runtime dependency. The test
+# extra also lists the SDK, because some tests map its real error classes.
+silver-correction = ["anthropic>=2.0.0"]
 
 [project.entry-points."orthography2ipa.syllabify"]
 silabificador = "orthography2ipa.syllabifiers:SilabificadorSyllabifier"

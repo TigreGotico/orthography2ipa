@@ -48,129 +48,129 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | ale | wikipron | 118 | 0.1100 | - | - | 0.1100 | 0.1100 | 0.7458 | 0.7458 | [0.0650, 0.1652] | 0.7458 | skeleton | crowd-scraped |
 | am | vox_communis | 5453 | 0.2376‡ | - | - | 0.2376 | 0.2376 | 0.1058 | 0.1058 | [0.2334, 0.2417] | 0.1058 | research | epitran-derived |
 | am | wikipron | 388 | 0.3296 | - | - | 0.3296 | 0.3296 | 0.1211 | 0.1211 | [0.3098, 0.3494] | 0.1211 | research | crowd-scraped |
-| an | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| an | spain_romance_tts | 20 | 0.0420‡ | - | - | - | - | - | - | [0.0265, 0.0583] | 0.3000 | research | llm-corrected |
 | an | wikipron | 902 | 0.0580 | - | - | 0.0229 | 0.0207 | 0.8570 | 0.8703 | [0.0523, 0.0637] | 0.6630 | research | crowd-scraped |
-| an-x-ansotano | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | skeleton | llm-generated |
-| an-x-belsetan | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| an-x-benasques | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| an-x-cheso | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| an-x-chistabin | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| an-x-occidental | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| an-x-oriental | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | skeleton | llm-generated |
-| an-x-tensino | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | skeleton | llm-generated |
+| an-x-ansotano | spain_romance_tts | 20 | 0.0649‡ | - | - | - | - | - | - | [0.0424, 0.0910] | 0.2000 | skeleton | llm-corrected |
+| an-x-belsetan | spain_romance_tts | 20 | 0.0633‡ | - | - | - | - | - | - | [0.0444, 0.0837] | 0.2000 | research | llm-corrected |
+| an-x-benasques | spain_romance_tts | 20 | 0.0510‡ | - | - | - | - | - | - | [0.0322, 0.0734] | 0.2000 | research | llm-corrected |
+| an-x-cheso | spain_romance_tts | 20 | 0.0520‡ | - | - | - | - | - | - | [0.0332, 0.0712] | 0.2500 | research | llm-corrected |
+| an-x-chistabin | spain_romance_tts | 20 | 0.0555‡ | - | - | - | - | - | - | [0.0359, 0.0761] | 0.3000 | research | llm-corrected |
+| an-x-occidental | spain_romance_tts | 20 | 0.0550‡ | - | - | - | - | - | - | [0.0376, 0.0739] | 0.2000 | research | llm-corrected |
+| an-x-oriental | spain_romance_tts | 20 | 0.0858‡ | - | - | - | - | - | - | [0.0655, 0.1073] | 0.1000 | skeleton | llm-corrected |
+| an-x-tensino | spain_romance_tts | 20 | 0.0611‡ | - | - | - | - | - | - | [0.0424, 0.0801] | 0.2000 | skeleton | llm-corrected |
 | ang | wikipron | 54696 | 0.2103 | - | - | 0.1588 | 0.1512 | 0.2471 | 0.2632 | [0.2092, 0.2116] | 0.1545 | research | crowd-scraped |
 | aot | wikipron | 181 | 0.1367 | - | - | 0.1367 | 0.1367 | 0.4475 | 0.4475 | [0.1160, 0.1588] | 0.4475 | research | crowd-scraped |
 | apw | wikipron | 147 | 0.3076 | - | - | 0.3006 | 0.3006 | 0.2449 | 0.2449 | [0.2662, 0.3507] | 0.2449 | research | crowd-scraped |
-| ar | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar | gold20_arabic | 20 | 0.0051‡ | - | - | - | - | - | - | [0.0010, 0.0102] | 0.8000 | research | llm-generated |
+| ar | arabic_tts | 20 | 0.0707‡ | - | - | - | - | - | - | [0.0561, 0.0849] | 0.0000 | research | llm-corrected |
+| ar | gold20_arabic | 20 | 0.0707‡ | - | - | - | - | - | - | [0.0561, 0.0849] | 0.0000 | research | llm-corrected |
 | ar | ipadict | 857160 | 0.3774 | - | - | 0.3380 | 0.3334 | 0.0053 | 0.0059 | [0.3772, 0.3776] | 0.0030 | research | machine-generated |
 | ar | wikipron | 14268 | 0.3139 | - | 0.1656† (short vowels (harakat)) | 0.2539 | 0.2521 | 0.0763 | 0.0798 | [0.3116, 0.3162] | 0.0444 | research | crowd-scraped |
 | ar | wikipron_ar_diacritized | 14240 | 0.1721 | · | - | 0.1710 | 0.1710 | 0.3055 | 0.3055 | [0.1696, 0.1746] | 0.3051 | research | crowd-scraped |
-| ar-AE | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-AE | gold20_arabic | 20 | 0.0441‡ | - | - | - | - | - | - | [0.0253, 0.0651] | 0.3500 | research | llm-generated |
-| ar-BH | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-BH | gold20_arabic | 20 | 0.0410‡ | - | - | - | - | - | - | [0.0262, 0.0572] | 0.2000 | research | llm-generated |
-| ar-DZ | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-DZ | gold20_arabic | 20 | 0.0406‡ | - | - | - | - | - | - | [0.0164, 0.0674] | 0.6000 | research | llm-generated |
+| ar-AE | arabic_tts | 20 | 0.0765‡ | - | - | - | - | - | - | [0.0564, 0.0964] | 0.1000 | research | llm-corrected |
+| ar-AE | gold20_arabic | 20 | 0.0765‡ | - | - | - | - | - | - | [0.0564, 0.0964] | 0.1000 | research | llm-corrected |
+| ar-BH | arabic_tts | 20 | 0.1147‡ | - | - | - | - | - | - | [0.0845, 0.1452] | 0.0500 | research | llm-corrected |
+| ar-BH | gold20_arabic | 20 | 0.1076‡ | - | - | - | - | - | - | [0.0790, 0.1365] | 0.0500 | research | llm-corrected |
+| ar-DZ | arabic_tts | 20 | 0.1815‡ | - | - | - | - | - | - | [0.1545, 0.2091] | 0.0000 | research | llm-corrected |
+| ar-DZ | gold20_arabic | 20 | 0.1800‡ | - | - | - | - | - | - | [0.1542, 0.2059] | 0.0000 | research | llm-corrected |
 | ar-DZ | primary_sources | 1† | 0.7143‡ | - | - | 0.7143 | 0.7143 | 0.0000 | 0.0000 | n too small | 0.0000 | research | expert-human |
-| ar-EG | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-EG | gold20_arabic | 20 | 0.0217‡ | - | - | - | - | - | - | [0.0064, 0.0436] | 0.6000 | research | llm-generated |
+| ar-EG | arabic_tts | 20 | 0.1205‡ | - | - | - | - | - | - | [0.0987, 0.1436] | 0.0000 | research | llm-corrected |
+| ar-EG | gold20_arabic | 20 | 0.1181‡ | - | - | - | - | - | - | [0.0969, 0.1405] | 0.0000 | research | llm-corrected |
 | ar-EG | primary_sources | 18† | 0.2390‡ | - | - | 0.2029 | 0.1906 | 0.2222 | 0.2222 | n too small | 0.1111 | research | expert-human |
 | ar-EG | wikipron | 590 | 0.3237 | - | - | 0.2920 | 0.2847 | 0.1542 | 0.1559 | [0.3068, 0.3388] | 0.1136 | research | crowd-scraped |
-| ar-IQ | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-IQ | gold20_arabic | 20 | 0.0051‡ | - | - | - | - | - | - | [0.0000, 0.0134] | 0.9000 | research | llm-generated |
+| ar-IQ | arabic_tts | 20 | 0.0728‡ | - | - | - | - | - | - | [0.0546, 0.0905] | 0.1500 | research | llm-corrected |
+| ar-IQ | gold20_arabic | 20 | 0.0719‡ | - | - | - | - | - | - | [0.0530, 0.0912] | 0.1500 | research | llm-corrected |
 | ar-IQ | primary_sources | 12† | 0.2907‡ | - | - | 0.2907 | 0.2907 | 0.2500 | 0.2500 | n too small | 0.2500 | research | expert-human |
-| ar-IQ-x-qeltu | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-IQ-x-qeltu | gold20_arabic | 20 | 0.0147‡ | - | - | - | - | - | - | [0.0057, 0.0269] | 0.6000 | research | llm-generated |
+| ar-IQ-x-qeltu | arabic_tts | 20 | 0.0529‡ | - | - | - | - | - | - | [0.0401, 0.0665] | 0.0500 | research | llm-corrected |
+| ar-IQ-x-qeltu | gold20_arabic | 20 | 0.0498‡ | - | - | - | - | - | - | [0.0370, 0.0623] | 0.0500 | research | llm-corrected |
 | ar-IQ-x-qeltu | primary_sources | 12† | 0.3417‡ | - | - | 0.3417 | 0.3417 | 0.2500 | 0.2500 | n too small | 0.2500 | research | expert-human |
-| ar-JO | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-JO | gold20_arabic | 20 | 0.0061‡ | - | - | - | - | - | - | [0.0012, 0.0123] | 0.8000 | research | llm-generated |
+| ar-JO | arabic_tts | 20 | 0.0968‡ | - | - | - | - | - | - | [0.0724, 0.1196] | 0.1000 | research | llm-corrected |
+| ar-JO | gold20_arabic | 20 | 0.0995‡ | - | - | - | - | - | - | [0.0801, 0.1181] | 0.0500 | research | llm-corrected |
 | ar-JO | primary_sources | 13† | 0.2179‡ | - | - | 0.1833 | 0.1833 | 0.3077 | 0.3077 | n too small | 0.3077 | research | expert-human |
 | ar-JO | wikipron | 2513 | 0.3451 | - | - | 0.3117 | 0.3007 | 0.0871 | 0.0935 | [0.3385, 0.3518] | 0.0569 | research | crowd-scraped |
-| ar-KW | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-KW | gold20_arabic | 20 | 0.0237‡ | - | - | - | - | - | - | [0.0113, 0.0353] | 0.5000 | research | llm-generated |
-| ar-LB | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-LB | gold20_arabic | 20 | 0.0258‡ | - | - | - | - | - | - | [0.0097, 0.0484] | 0.5500 | research | llm-generated |
-| ar-LY | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-LY | gold20_arabic | 20 | 0.0122‡ | - | - | - | - | - | - | [0.0047, 0.0208] | 0.6500 | research | llm-generated |
+| ar-KW | arabic_tts | 20 | 0.0912‡ | - | - | - | - | - | - | [0.0683, 0.1128] | 0.1000 | research | llm-corrected |
+| ar-KW | gold20_arabic | 20 | 0.0838‡ | - | - | - | - | - | - | [0.0628, 0.1057] | 0.1000 | research | llm-corrected |
+| ar-LB | arabic_tts | 20 | 0.1028‡ | - | - | - | - | - | - | [0.0781, 0.1265] | 0.0500 | research | llm-corrected |
+| ar-LB | gold20_arabic | 20 | 0.1062‡ | - | - | - | - | - | - | [0.0808, 0.1322] | 0.0500 | research | llm-corrected |
+| ar-LY | arabic_tts | 20 | 0.1776‡ | - | - | - | - | - | - | [0.1525, 0.2041] | 0.0000 | research | llm-corrected |
+| ar-LY | gold20_arabic | 20 | 0.1776‡ | - | - | - | - | - | - | [0.1521, 0.2021] | 0.0000 | research | llm-corrected |
 | ar-LY | primary_sources | 6† | 0.2042‡ | - | - | 0.1833 | 0.1833 | 0.3333 | 0.3333 | n too small | 0.1667 | research | expert-human |
-| ar-MA | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-MA | gold20_arabic | 20 | 0.0496‡ | - | - | - | - | - | - | [0.0228, 0.0782] | 0.5000 | research | llm-generated |
+| ar-MA | arabic_tts | 20 | 0.1488‡ | - | - | - | - | - | - | [0.1170, 0.1802] | 0.0000 | research | llm-corrected |
+| ar-MA | gold20_arabic | 20 | 0.1498‡ | - | - | - | - | - | - | [0.1185, 0.1817] | 0.0000 | research | llm-corrected |
 | ar-MA | primary_sources | 5† | 0.1733‡ | - | - | 0.1000 | 0.1000 | 0.6000 | 0.6000 | n too small | 0.2000 | research | expert-human |
 | ar-MA | wikipron | 1833 | 0.3005 | - | - | 0.2185 | 0.2154 | 0.2226 | 0.2308 | [0.2928, 0.3081] | 0.1097 | research | crowd-scraped |
-| ar-MR | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-MR | gold20_arabic | 20 | 0.0174‡ | - | - | - | - | - | - | [0.0056, 0.0333] | 0.6500 | research | llm-generated |
+| ar-MR | arabic_tts | 20 | 0.1633‡ | - | - | - | - | - | - | [0.1349, 0.1912] | 0.0000 | research | llm-corrected |
+| ar-MR | gold20_arabic | 20 | 0.1673‡ | - | - | - | - | - | - | [0.1410, 0.1938] | 0.0000 | research | llm-corrected |
 | ar-MR | primary_sources | 14† | 0.3988‡ | - | - | 0.2651 | 0.2509 | 0.2857 | 0.2857 | n too small | 0.2143 | research | expert-human |
-| ar-NG | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-NG | gold20_arabic | 20 | 0.0228‡ | - | - | - | - | - | - | [0.0000, 0.0548] | 0.8500 | research | llm-generated |
+| ar-NG | arabic_tts | 20 | 0.1248‡ | - | - | - | - | - | - | [0.0956, 0.1585] | 0.0500 | research | llm-corrected |
+| ar-NG | gold20_arabic | 20 | 0.1211‡ | - | - | - | - | - | - | [0.0918, 0.1553] | 0.0500 | research | llm-corrected |
 | ar-NG | primary_sources | 6† | 0.2444‡ | - | - | 0.2444 | 0.2444 | 0.5000 | 0.5000 | n too small | 0.5000 | research | expert-human |
-| ar-OM | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-OM | gold20_arabic | 20 | 0.0077‡ | - | - | - | - | - | - | [0.0000, 0.0215] | 0.9000 | research | llm-generated |
-| ar-PS | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-PS | gold20_arabic | 20 | 0.0230‡ | - | - | - | - | - | - | [0.0079, 0.0408] | 0.6000 | research | llm-generated |
+| ar-OM | arabic_tts | 20 | 0.1448‡ | - | - | - | - | - | - | [0.1194, 0.1693] | 0.0000 | research | llm-corrected |
+| ar-OM | gold20_arabic | 20 | 0.1432‡ | - | - | - | - | - | - | [0.1188, 0.1682] | 0.0000 | research | llm-corrected |
+| ar-PS | arabic_tts | 20 | 0.1109‡ | - | - | - | - | - | - | [0.0926, 0.1273] | 0.0000 | research | llm-corrected |
+| ar-PS | gold20_arabic | 20 | 0.1121‡ | - | - | - | - | - | - | [0.0936, 0.1291] | 0.0000 | research | llm-corrected |
 | ar-PS | primary_sources | 4† | 0.1667‡ | - | - | 0.1000 | 0.1000 | 0.7500 | 0.7500 | n too small | 0.2500 | research | expert-human |
-| ar-QA | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-QA | gold20_arabic | 20 | 0.0264‡ | - | - | - | - | - | - | [0.0151, 0.0374] | 0.4000 | research | llm-generated |
+| ar-QA | arabic_tts | 20 | 0.1158‡ | - | - | - | - | - | - | [0.0884, 0.1465] | 0.1000 | research | llm-corrected |
+| ar-QA | gold20_arabic | 20 | 0.1227‡ | - | - | - | - | - | - | [0.0959, 0.1513] | 0.0500 | research | llm-corrected |
 | ar-SA-x-dawasir | primary_sources | 5† | 0.0800‡ | - | - | 0.0400 | 0.0400 | 0.8000 | 0.8000 | n too small | 0.8000 | stub | expert-human |
-| ar-SA-x-hejaz | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-SA-x-hejaz | gold20_arabic | 20 | 0.0219‡ | - | - | - | - | - | - | [0.0024, 0.0534] | 0.8000 | research | llm-generated |
+| ar-SA-x-hejaz | arabic_tts | 20 | 0.0734‡ | - | - | - | - | - | - | [0.0521, 0.0968] | 0.1500 | research | llm-corrected |
+| ar-SA-x-hejaz | gold20_arabic | 20 | 0.0689‡ | - | - | - | - | - | - | [0.0467, 0.0940] | 0.2000 | research | llm-corrected |
 | ar-SA-x-hejaz | primary_sources | 30 | 0.1340 | - | - | 0.1256 | 0.1256 | 0.5333 | 0.5333 | [0.0823, 0.1872] | 0.5000 | research | expert-human |
 | ar-SA-x-hejaz | wikipron | 1889 | 0.2877 | - | - | 0.2585 | 0.2507 | 0.1292 | 0.1345 | [0.2812, 0.2952] | 0.0757 | research | crowd-scraped |
-| ar-SA-x-najd | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-SA-x-najd | gold20_arabic | 20 | 0.0041‡ | - | - | - | - | - | - | [0.0000, 0.0091] | 0.8500 | research | llm-generated |
+| ar-SA-x-najd | arabic_tts | 20 | 0.0726‡ | - | - | - | - | - | - | [0.0539, 0.0912] | 0.1500 | research | llm-corrected |
+| ar-SA-x-najd | gold20_arabic | 20 | 0.0671‡ | - | - | - | - | - | - | [0.0501, 0.0831] | 0.1500 | research | llm-corrected |
 | ar-SA-x-najd | primary_sources | 25 | 0.1491 | - | - | 0.1434 | 0.1434 | 0.6000 | 0.6000 | [0.0712, 0.2343] | 0.5600 | research | expert-human |
-| ar-SA-x-qassim | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-SA-x-qassim | gold20_arabic | 20 | 0.0230‡ | - | - | - | - | - | - | [0.0051, 0.0469] | 0.7500 | research | llm-generated |
+| ar-SA-x-qassim | arabic_tts | 20 | 0.0906‡ | - | - | - | - | - | - | [0.0647, 0.1184] | 0.1000 | research | llm-corrected |
+| ar-SA-x-qassim | gold20_arabic | 20 | 0.0882‡ | - | - | - | - | - | - | [0.0633, 0.1156] | 0.1000 | research | llm-corrected |
 | ar-SA-x-qassim | primary_sources | 12† | 0.1327‡ | - | - | 0.1327 | 0.1327 | 0.5000 | 0.5000 | n too small | 0.5000 | research | expert-human |
-| ar-SA-x-rijal-alma | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-SA-x-rijal-alma | gold20_arabic | 20 | 0.0184‡ | - | - | - | - | - | - | [0.0090, 0.0289] | 0.5500 | research | llm-generated |
+| ar-SA-x-rijal-alma | arabic_tts | 20 | 0.1117‡ | - | - | - | - | - | - | [0.0854, 0.1400] | 0.1000 | research | llm-corrected |
+| ar-SA-x-rijal-alma | gold20_arabic | 20 | 0.1091‡ | - | - | - | - | - | - | [0.0841, 0.1353] | 0.1000 | research | llm-corrected |
 | ar-SA-x-rijal-alma | primary_sources | 8† | 0.2454‡ | - | - | 0.2454 | 0.2454 | 0.1250 | 0.1250 | n too small | 0.1250 | research | expert-human |
-| ar-SA-x-sharqiyya | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-SA-x-sharqiyya | gold20_arabic | 20 | 0.0506‡ | - | - | - | - | - | - | [0.0320, 0.0719] | 0.2000 | research | llm-generated |
+| ar-SA-x-sharqiyya | arabic_tts | 20 | 0.1145‡ | - | - | - | - | - | - | [0.0858, 0.1480] | 0.1000 | research | llm-corrected |
+| ar-SA-x-sharqiyya | gold20_arabic | 20 | 0.1183‡ | - | - | - | - | - | - | [0.0890, 0.1509] | 0.1000 | research | llm-corrected |
 | ar-SA-x-sharqiyya | primary_sources | 6† | 0.1944‡ | - | - | 0.1389 | 0.1389 | 0.5000 | 0.5000 | n too small | 0.5000 | research | expert-human |
 | ar-SA-x-tihama-qahtan | primary_sources | 16† | 0.1084‡ | - | - | 0.1084 | 0.1084 | 0.5000 | 0.5000 | n too small | 0.5000 | research | expert-human |
-| ar-SD | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-SD | gold20_arabic | 20 | 0.0274‡ | - | - | - | - | - | - | [0.0145, 0.0411] | 0.4000 | research | llm-generated |
-| ar-SY | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-SY | gold20_arabic | 20 | 0.0491‡ | - | - | - | - | - | - | [0.0220, 0.0755] | 0.5000 | research | llm-generated |
+| ar-SD | arabic_tts | 20 | 0.1007‡ | - | - | - | - | - | - | [0.0844, 0.1182] | 0.0000 | research | llm-corrected |
+| ar-SD | gold20_arabic | 20 | 0.1069‡ | - | - | - | - | - | - | [0.0899, 0.1243] | 0.0000 | research | llm-corrected |
+| ar-SY | arabic_tts | 20 | 0.0802‡ | - | - | - | - | - | - | [0.0692, 0.0908] | 0.0000 | research | llm-corrected |
+| ar-SY | gold20_arabic | 20 | 0.0775‡ | - | - | - | - | - | - | [0.0688, 0.0859] | 0.0000 | research | llm-corrected |
 | ar-SY | primary_sources | 11† | 0.1318‡ | - | - | 0.1318 | 0.1318 | 0.4545 | 0.4545 | n too small | 0.4545 | research | expert-human |
 | ar-SY | wikipron | 410 | 0.3173 | · | - | 0.2856 | 0.2774 | 0.1293 | 0.1366 | [0.3027, 0.3360] | 0.0854 | research | crowd-scraped |
-| ar-TD | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-TD | gold20_arabic | 20 | 0.0346‡ | - | - | - | - | - | - | [0.0083, 0.0662] | 0.7000 | research | llm-generated |
-| ar-TN | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-TN | gold20_arabic | 20 | 0.0036‡ | - | - | - | - | - | - | [0.0000, 0.0080] | 0.8500 | research | llm-generated |
+| ar-TD | arabic_tts | 20 | 0.1220‡ | - | - | - | - | - | - | [0.1018, 0.1429] | 0.0000 | research | llm-corrected |
+| ar-TD | gold20_arabic | 20 | 0.1239‡ | - | - | - | - | - | - | [0.1019, 0.1488] | 0.0000 | research | llm-corrected |
+| ar-TN | arabic_tts | 20 | 0.1243‡ | - | - | - | - | - | - | [0.1018, 0.1479] | 0.0000 | research | llm-corrected |
+| ar-TN | gold20_arabic | 20 | 0.1247‡ | - | - | - | - | - | - | [0.1019, 0.1487] | 0.0000 | research | llm-corrected |
 | ar-TN | primary_sources | 9† | 0.3059‡ | - | - | 0.2549 | 0.2549 | 0.2222 | 0.2222 | n too small | 0.1111 | research | expert-human |
-| ar-YE | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-YE | gold20_arabic | 20 | 0.0043‡ | - | - | - | - | - | - | [0.0000, 0.0095] | 0.8500 | research | llm-generated |
+| ar-YE | arabic_tts | 20 | 0.0678‡ | - | - | - | - | - | - | [0.0482, 0.0907] | 0.1000 | research | llm-corrected |
+| ar-YE | gold20_arabic | 20 | 0.0688‡ | - | - | - | - | - | - | [0.0506, 0.0887] | 0.1000 | research | llm-corrected |
 | ar-YE | primary_sources | 15† | 0.1802‡ | - | - | 0.1802 | 0.1802 | 0.1333 | 0.1333 | n too small | 0.1333 | research | expert-human |
-| ar-x-gulf | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-x-gulf | gold20_arabic | 20 | 0.0449‡ | - | - | - | - | - | - | [0.0259, 0.0645] | 0.3500 | research | llm-generated |
+| ar-x-gulf | arabic_tts | 20 | 0.0673‡ | - | - | - | - | - | - | [0.0383, 0.0991] | 0.2500 | research | llm-corrected |
+| ar-x-gulf | gold20_arabic | 20 | 0.0561‡ | - | - | - | - | - | - | [0.0347, 0.0801] | 0.2500 | research | llm-corrected |
 | ar-x-gulf | wikipron | 614 | 0.3786 | - | - | 0.3338 | 0.3199 | 0.0879 | 0.0928 | [0.3625, 0.3933] | 0.0521 | research | crowd-scraped |
-| ar-x-levantine | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-x-levantine | gold20_arabic | 20 | 0.0105‡ | - | - | - | - | - | - | [0.0033, 0.0180] | 0.7000 | research | llm-generated |
-| ar-x-maghrebi | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-x-maghrebi | gold20_arabic | 20 | 0.0044‡ | - | - | - | - | - | - | [0.0000, 0.0101] | 0.8500 | research | llm-generated |
-| ar-x-mashriqi | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-x-mashriqi | gold20_arabic | 20 | 0.0175‡ | - | - | - | - | - | - | [0.0036, 0.0360] | 0.7500 | research | llm-generated |
-| ar-x-peninsular | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ar-x-peninsular | gold20_arabic | 20 | 0.0122‡ | - | - | - | - | - | - | [0.0041, 0.0215] | 0.7000 | research | llm-generated |
-| arb | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| arb | gold20_arabic | 20 | 0.0190‡ | - | - | - | - | - | - | [0.0114, 0.0272] | 0.3500 | research | llm-generated |
+| ar-x-levantine | arabic_tts | 20 | 0.0978‡ | - | - | - | - | - | - | [0.0793, 0.1161] | 0.0000 | research | llm-corrected |
+| ar-x-levantine | gold20_arabic | 20 | 0.0968‡ | - | - | - | - | - | - | [0.0775, 0.1162] | 0.0500 | research | llm-corrected |
+| ar-x-maghrebi | arabic_tts | 20 | 0.1832‡ | - | - | - | - | - | - | [0.1580, 0.2115] | 0.0000 | research | llm-corrected |
+| ar-x-maghrebi | gold20_arabic | 20 | 0.1788‡ | - | - | - | - | - | - | [0.1527, 0.2069] | 0.0000 | research | llm-corrected |
+| ar-x-mashriqi | arabic_tts | 20 | 0.0568‡ | - | - | - | - | - | - | [0.0428, 0.0689] | 0.0500 | research | llm-corrected |
+| ar-x-mashriqi | gold20_arabic | 20 | 0.0550‡ | - | - | - | - | - | - | [0.0425, 0.0661] | 0.0500 | research | llm-corrected |
+| ar-x-peninsular | arabic_tts | 20 | 0.0403‡ | - | - | - | - | - | - | [0.0220, 0.0578] | 0.4000 | research | llm-corrected |
+| ar-x-peninsular | gold20_arabic | 20 | 0.0405‡ | - | - | - | - | - | - | [0.0220, 0.0583] | 0.4000 | research | llm-corrected |
+| arb | arabic_tts | 20 | 0.0688‡ | - | - | - | - | - | - | [0.0529, 0.0843] | 0.0000 | research | llm-corrected |
+| arb | gold20_arabic | 20 | 0.0688‡ | - | - | - | - | - | - | [0.0529, 0.0843] | 0.0000 | research | llm-corrected |
 | arn | wold | 1269 | 0.0112 | - | - | 0.0112 | 0.0112 | 0.9511 | 0.9511 | [0.0084, 0.0143] | 0.9511 | research | lexicon-derived |
 | as | vox_communis | 5328 | 0.2436‡ | - | - | 0.2432 | 0.2432 | 0.3009 | 0.3009 | [0.2371, 0.2502] | 0.3005 | production | epitran-derived |
 | as | wikipron | 2981 | 0.0918 | - | - | 0.0861 | 0.0861 | 0.6437 | 0.6441 | [0.0865, 0.0969] | 0.6307 | production | crowd-scraped |
-| ast | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ast | spain_romance_tts | 20 | 0.0334‡ | - | - | - | - | - | - | [0.0202, 0.0481] | 0.4000 | research | llm-corrected |
 | ast | wikipron | 4169 | 0.0696 | - | - | 0.0696 | 0.0696 | 0.6004 | 0.6004 | [0.0665, 0.0725] | 0.6004 | research | crowd-scraped |
-| ast-ES-x-leon | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ast-PT-x-guadramil | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ast-PT-x-medieval | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ast-PT-x-rionor | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ast-x-cantabrian | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ast-x-leon | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ast-x-occidental | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ast-x-oriental | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ast-x-pasiego | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | skeleton | llm-generated |
-| ast-x-sanabria | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ast-ES-x-leon | spain_romance_tts | 20 | 0.0503‡ | - | - | - | - | - | - | [0.0341, 0.0662] | 0.2000 | research | llm-corrected |
+| ast-PT-x-guadramil | portuguese_tts | 20 | 0.1491‡ | - | - | - | - | - | - | [0.1148, 0.1848] | 0.0500 | research | llm-corrected |
+| ast-PT-x-medieval | portuguese_tts | 20 | 0.0442‡ | - | - | - | - | - | - | [0.0266, 0.0652] | 0.3500 | research | llm-corrected |
+| ast-PT-x-rionor | portuguese_tts | 20 | 0.2429‡ | - | - | - | - | - | - | [0.2083, 0.2745] | 0.0000 | research | llm-corrected |
+| ast-x-cantabrian | spain_romance_tts | 20 | 0.0351‡ | - | - | - | - | - | - | [0.0169, 0.0546] | 0.5000 | research | llm-corrected |
+| ast-x-leon | spain_romance_tts | 20 | 0.0856‡ | - | - | - | - | - | - | [0.0662, 0.1051] | 0.0500 | research | llm-corrected |
+| ast-x-occidental | spain_romance_tts | 20 | 0.0656‡ | - | - | - | - | - | - | [0.0495, 0.0820] | 0.1000 | research | llm-corrected |
+| ast-x-oriental | spain_romance_tts | 20 | 0.0612‡ | - | - | - | - | - | - | [0.0452, 0.0771] | 0.1000 | research | llm-corrected |
+| ast-x-pasiego | spain_romance_tts | 20 | 0.1727‡ | - | - | - | - | - | - | [0.1322, 0.2134] | 0.0000 | skeleton | llm-corrected |
+| ast-x-sanabria | spain_romance_tts | 20 | 0.1236‡ | - | - | - | - | - | - | [0.0997, 0.1515] | 0.0500 | research | llm-corrected |
 | av | northeuralex | 954 | 0.0990 | - | - | 0.0501 | 0.0378 | 0.7086 | 0.8029 | [0.0927, 0.1054] | 0.4591 | research | lexicon-derived |
 | ayl | wikipron | 156 | 0.3055 | - | - | 0.2695 | 0.2662 | 0.1987 | 0.1987 | [0.2698, 0.3496] | 0.1538 | research | crowd-scraped |
 | az | wikipron | 434 | 0.2440 | - | - | 0.2382 | 0.2382 | 0.3134 | 0.3134 | [0.2238, 0.2654] | 0.3111 | research | crowd-scraped |
@@ -191,18 +191,18 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | br | wikipron | 803 | 0.3073 | - | 0.1726† (the /r/~/ʁ/ realisation difference, contingent vowel nasalisation, and the close/open ⟨e⟩ contrast) | 0.2237 | 0.2083 | 0.2354 | 0.2615 | [0.2936, 0.3207] | 0.1233 | research | crowd-scraped |
 | bua | northeuralex | 1174 | 0.0398 | - | - | 0.0398 | 0.0398 | 0.7726 | 0.7726 | [0.0351, 0.0448] | 0.7726 | research | lexicon-derived |
 | bua | wikipron | 140 | 0.3571 | - | - | 0.3120 | 0.3114 | 0.1571 | 0.1571 | [0.3243, 0.3881] | 0.1143 | research | crowd-scraped |
-| ca | 4catac | 160 | 0.0642 | - | - | - | - | - | - | [0.0587, 0.0698] | 0.0437 | research | expert-human |
-| ca | ipa_childes | 3813 | 0.2566‡ | - | - | 0.1676 | 0.1458 | 0.3669 | 0.4306 | [0.2501, 0.2635] | 0.2206 | research | espeak-derived |
-| ca | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ca | vox_communis | 141623 | 0.1320‡ | 0.9415 | - | 0.1173 | 0.1067 | 0.5126 | 0.5493 | [0.1308, 0.1331] | 0.4718 | research | epitran-derived |
+| ca | 4catac | 160 | 0.0641 | - | - | - | - | - | - | [0.0587, 0.0695] | 0.0437 | research | expert-human |
+| ca | ipa_childes | 3813 | 0.2562‡ | - | - | 0.1674 | 0.1456 | 0.3677 | 0.4317 | [0.2498, 0.2631] | 0.2213 | research | espeak-derived |
+| ca | spain_romance_tts | 20 | 0.0562‡ | - | - | - | - | - | - | [0.0382, 0.0768] | 0.2000 | research | llm-corrected |
+| ca | vox_communis | 141623 | 0.1317‡ | 0.9531 | - | 0.1171 | 0.1065 | 0.5131 | 0.5498 | [0.1306, 0.1329] | 0.4724 | research | epitran-derived |
 | ca | wikipron | 106 | 0.2565 | - | - | 0.1488 | 0.1289 | 0.5094 | 0.5660 | [0.2121, 0.3003] | 0.3396 | research | crowd-scraped |
 | ca-x-balear | 4catac | 160 | 0.1360 | - | - | - | - | - | - | [0.1283, 0.1446] | 0.0062 | research | expert-human |
-| ca-x-balear | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ca-x-medieval | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ca-x-balear | spain_romance_tts | 20 | 0.0775‡ | - | - | - | - | - | - | [0.0596, 0.0950] | 0.0500 | research | llm-corrected |
+| ca-x-medieval | spain_romance_tts | 20 | 0.0762‡ | - | - | - | - | - | - | [0.0561, 0.0970] | 0.1000 | research | llm-corrected |
 | ca-x-occidental | 4catac | 160 | 0.0822 | - | - | - | - | - | - | [0.0761, 0.0886] | 0.0125 | research | expert-human |
-| ca-x-occidental | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ca-x-occidental | spain_romance_tts | 20 | 0.0724‡ | - | - | - | - | - | - | [0.0507, 0.0933] | 0.1500 | research | llm-corrected |
 | ca-x-valencia | 4catac | 160 | 0.0677 | - | - | - | - | - | - | [0.0620, 0.0733] | 0.0312 | research | expert-human |
-| ca-x-valencia | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ca-x-valencia | spain_romance_tts | 20 | 0.0624‡ | - | - | - | - | - | - | [0.0464, 0.0769] | 0.1000 | research | llm-corrected |
 | car | wikipron | 232 | 0.3116 | - | - | 0.3116 | 0.3116 | 0.1336 | 0.1336 | [0.2848, 0.3372] | 0.1336 | research | crowd-scraped |
 | car | wold | 1191 | 0.1400 | - | 0.0845† (vowel length) | 0.1400 | 0.1400 | 0.2762 | 0.2762 | [0.1332, 0.1473] | 0.2762 | research | lexicon-derived |
 | ce | wikipron | 461 | 0.2541 | - | - | 0.2319 | 0.2319 | 0.2842 | 0.2842 | [0.2360, 0.2727] | 0.2364 | research | crowd-scraped |
@@ -259,67 +259,67 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | eo | wikipron | 41245 | 0.0328 | - | - | 0.0328 | 0.0328 | 0.7491 | 0.7491 | [0.0322, 0.0334] | 0.7491 | production | crowd-scraped |
 | es | vox_communis | 48067 | 0.0758‡ | - | - | 0.0728 | 0.0711 | 0.6006 | 0.6114 | [0.0746, 0.0768] | 0.5868 | production | epitran-derived |
 | es | wikipron | 132189 | 0.0593 | - | - | 0.0155 | 0.0135 | 0.8772 | 0.8931 | [0.0589, 0.0598] | 0.5625 | production | crowd-scraped |
-| es-419 | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | skeleton | llm-generated |
+| es-419 | spain_romance_tts | 20 | 0.0378‡ | - | - | - | - | - | - | [0.0247, 0.0534] | 0.2000 | skeleton | llm-corrected |
 | es-419 | wikipron | 132188 | 0.0597 | - | - | 0.0158 | 0.0138 | 0.8739 | 0.8897 | [0.0593, 0.0601] | 0.5607 | skeleton | crowd-scraped |
 | es-AR | primary_sources | 29 | 0.0138 | 0.9655 | - | 0.0069 | 0.0069 | 0.9655 | 0.9655 | [0.0000, 0.0345] | 0.9310 | research | expert-human |
-| es-AR | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| es-AR-x-cordoba | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | stub | llm-generated |
-| es-AR-x-cuyo | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | stub | llm-generated |
-| es-AR-x-litoral | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | stub | llm-generated |
-| es-AR-x-norte | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | stub | llm-generated |
-| es-AR-x-patagonia | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | stub | llm-generated |
-| es-BO | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | skeleton | llm-generated |
-| es-BO-x-andino | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | stub | llm-generated |
-| es-BO-x-camba | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | stub | llm-generated |
-| es-CL | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| es-CL-x-andino | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | stub | llm-generated |
-| es-CL-x-chilote | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | stub | llm-generated |
-| es-CO | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | skeleton | llm-generated |
-| es-CO-x-costa | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| es-CO-x-llanero | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | stub | llm-generated |
-| es-CO-x-pacifico | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | stub | llm-generated |
-| es-CO-x-paisa | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | skeleton | llm-generated |
-| es-CO-x-santander | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | stub | llm-generated |
-| es-CO-x-valluno | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | stub | llm-generated |
-| es-CR | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | skeleton | llm-generated |
-| es-CU | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| es-DO | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| es-EC | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | skeleton | llm-generated |
-| es-EC-x-andino | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | stub | llm-generated |
-| es-EC-x-costa | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | stub | llm-generated |
+| es-AR | spain_romance_tts | 20 | 0.0300‡ | - | - | - | - | - | - | [0.0157, 0.0444] | 0.4500 | research | llm-corrected |
+| es-AR-x-cordoba | spain_romance_tts | 20 | 0.0506‡ | - | - | - | - | - | - | [0.0346, 0.0698] | 0.1500 | stub | llm-corrected |
+| es-AR-x-cuyo | spain_romance_tts | 20 | 0.0329‡ | - | - | - | - | - | - | [0.0240, 0.0439] | 0.2000 | stub | llm-corrected |
+| es-AR-x-litoral | spain_romance_tts | 20 | 0.0367‡ | - | - | - | - | - | - | [0.0226, 0.0529] | 0.2500 | stub | llm-corrected |
+| es-AR-x-norte | spain_romance_tts | 20 | 0.0330‡ | - | - | - | - | - | - | [0.0159, 0.0513] | 0.5000 | stub | llm-corrected |
+| es-AR-x-patagonia | spain_romance_tts | 20 | 0.1085‡ | - | - | - | - | - | - | [0.0848, 0.1309] | 0.0500 | stub | llm-corrected |
+| es-BO | spain_romance_tts | 20 | 0.0493‡ | - | - | - | - | - | - | [0.0291, 0.0705] | 0.3000 | skeleton | llm-corrected |
+| es-BO-x-andino | spain_romance_tts | 20 | 0.0341‡ | - | - | - | - | - | - | [0.0203, 0.0472] | 0.3500 | stub | llm-corrected |
+| es-BO-x-camba | spain_romance_tts | 20 | 0.0881‡ | - | - | - | - | - | - | [0.0673, 0.1091] | 0.0500 | stub | llm-corrected |
+| es-CL | spain_romance_tts | 20 | 0.0499‡ | - | - | - | - | - | - | [0.0367, 0.0642] | 0.1000 | research | llm-corrected |
+| es-CL-x-andino | spain_romance_tts | 20 | 0.0267‡ | - | - | - | - | - | - | [0.0167, 0.0380] | 0.3500 | stub | llm-corrected |
+| es-CL-x-chilote | spain_romance_tts | 20 | 0.0172‡ | - | - | - | - | - | - | [0.0093, 0.0261] | 0.5000 | stub | llm-corrected |
+| es-CO | spain_romance_tts | 20 | 0.0266‡ | - | - | - | - | - | - | [0.0122, 0.0433] | 0.6000 | skeleton | llm-corrected |
+| es-CO-x-costa | spain_romance_tts | 20 | 0.0702‡ | - | - | - | - | - | - | [0.0547, 0.0868] | 0.0500 | research | llm-corrected |
+| es-CO-x-llanero | spain_romance_tts | 20 | 0.0423‡ | - | - | - | - | - | - | [0.0294, 0.0558] | 0.2500 | stub | llm-corrected |
+| es-CO-x-pacifico | spain_romance_tts | 20 | 0.1467‡ | - | - | - | - | - | - | [0.1139, 0.1793] | 0.0000 | stub | llm-corrected |
+| es-CO-x-paisa | spain_romance_tts | 20 | 0.0434‡ | - | - | - | - | - | - | [0.0239, 0.0650] | 0.4000 | skeleton | llm-corrected |
+| es-CO-x-santander | spain_romance_tts | 20 | 0.0514‡ | - | - | - | - | - | - | [0.0342, 0.0681] | 0.2500 | stub | llm-corrected |
+| es-CO-x-valluno | spain_romance_tts | 20 | 0.0760‡ | - | - | - | - | - | - | [0.0572, 0.0944] | 0.1500 | stub | llm-corrected |
+| es-CR | spain_romance_tts | 20 | 0.0762‡ | - | - | - | - | - | - | [0.0538, 0.1036] | 0.1000 | skeleton | llm-corrected |
+| es-CU | spain_romance_tts | 20 | 0.0785‡ | - | - | - | - | - | - | [0.0603, 0.1001] | 0.0000 | research | llm-corrected |
+| es-DO | spain_romance_tts | 20 | 0.0938‡ | - | - | - | - | - | - | [0.0764, 0.1131] | 0.0500 | research | llm-corrected |
+| es-EC | spain_romance_tts | 20 | 0.0936‡ | - | - | - | - | - | - | [0.0719, 0.1167] | 0.1000 | skeleton | llm-corrected |
+| es-EC-x-andino | spain_romance_tts | 20 | 0.0839‡ | - | - | - | - | - | - | [0.0669, 0.1025] | 0.0000 | stub | llm-corrected |
+| es-EC-x-costa | spain_romance_tts | 20 | 0.0782‡ | - | - | - | - | - | - | [0.0569, 0.1015] | 0.1000 | stub | llm-corrected |
 | es-ES | ipa_childes | 13155 | 0.0813‡ | - | - | 0.0576 | 0.0552 | 0.6953 | 0.7067 | [0.0791, 0.0833] | 0.5924 | production | epitran-derived |
-| es-ES | ipadict | 595896 | 0.0295 | 0.9479 | - | 0.0271 | 0.0239 | 0.7530 | 0.7803 | [0.0294, 0.0297] | 0.7314 | production | machine-generated |
+| es-ES | ipadict | 595896 | 0.0295 | 0.9969 | - | 0.0271 | 0.0239 | 0.7530 | 0.7803 | [0.0294, 0.0297] | 0.7314 | production | machine-generated |
 | es-ES | primary_sources | 41 | 0.0272 | 1.0000 | - | 0.0272 | 0.0272 | 0.8780 | 0.8780 | [0.0081, 0.0520] | 0.8780 | production | expert-human |
-| es-ES | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | production | llm-generated |
-| es-ES-x-andalusia-e | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| es-ES-x-andalusia-w | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| es-ES-x-canarias | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| es-ES-x-cantabria | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| es-ES-x-extremadura | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| es-ES-x-medieval | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| es-ES-x-murcia | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| es-GQ | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | skeleton | llm-generated |
-| es-GT | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | skeleton | llm-generated |
-| es-HN | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | stub | llm-generated |
-| es-MX | ipadict | 595885 | 0.0397 | 0.9479 | - | 0.0369 | 0.0322 | 0.6686 | 0.7081 | [0.0396, 0.0399] | 0.6459 | research | machine-generated |
-| es-MX | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| es-MX-x-costa | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| es-MX-x-norte | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | stub | llm-generated |
-| es-MX-x-yucatan | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| es-NI | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| es-PA | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| es-PE | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | skeleton | llm-generated |
-| es-PE-x-amazonico | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | stub | llm-generated |
-| es-PE-x-andino | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | stub | llm-generated |
-| es-PE-x-lima | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | skeleton | llm-generated |
-| es-PR | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| es-PY | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | skeleton | llm-generated |
-| es-SV | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | stub | llm-generated |
-| es-UY | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | skeleton | llm-generated |
-| es-VE | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| es-VE-x-andino | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | stub | llm-generated |
-| es-VE-x-llanero | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | stub | llm-generated |
-| es-VE-x-maracucho | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | stub | llm-generated |
+| es-ES | spain_romance_tts | 20 | 0.0439‡ | - | - | - | - | - | - | [0.0290, 0.0596] | 0.2500 | production | llm-corrected |
+| es-ES-x-andalusia-e | spain_romance_tts | 20 | 0.1321‡ | - | - | - | - | - | - | [0.0995, 0.1596] | 0.1000 | research | llm-corrected |
+| es-ES-x-andalusia-w | spain_romance_tts | 20 | 0.1085‡ | - | - | - | - | - | - | [0.0877, 0.1300] | 0.0500 | research | llm-corrected |
+| es-ES-x-canarias | spain_romance_tts | 20 | 0.0610‡ | - | - | - | - | - | - | [0.0456, 0.0755] | 0.1500 | research | llm-corrected |
+| es-ES-x-cantabria | spain_romance_tts | 20 | 0.0781‡ | - | - | - | - | - | - | [0.0606, 0.0955] | 0.0500 | research | llm-corrected |
+| es-ES-x-extremadura | spain_romance_tts | 20 | 0.0478‡ | - | - | - | - | - | - | [0.0358, 0.0606] | 0.1500 | research | llm-corrected |
+| es-ES-x-medieval | spain_romance_tts | 20 | 0.0438‡ | - | - | - | - | - | - | [0.0236, 0.0641] | 0.4000 | research | llm-corrected |
+| es-ES-x-murcia | spain_romance_tts | 20 | 0.1108‡ | - | - | - | - | - | - | [0.0866, 0.1399] | 0.0500 | research | llm-corrected |
+| es-GQ | spain_romance_tts | 20 | 0.0389‡ | - | - | - | - | - | - | [0.0249, 0.0536] | 0.3000 | skeleton | llm-corrected |
+| es-GT | spain_romance_tts | 20 | 0.0245‡ | - | - | - | - | - | - | [0.0141, 0.0351] | 0.4000 | skeleton | llm-corrected |
+| es-HN | spain_romance_tts | 20 | 0.0536‡ | - | - | - | - | - | - | [0.0419, 0.0657] | 0.0500 | stub | llm-corrected |
+| es-MX | ipadict | 595885 | 0.0397 | 0.9969 | - | 0.0369 | 0.0322 | 0.6686 | 0.7081 | [0.0396, 0.0399] | 0.6459 | research | machine-generated |
+| es-MX | spain_romance_tts | 20 | 0.0685‡ | - | - | - | - | - | - | [0.0532, 0.0841] | 0.0000 | research | llm-corrected |
+| es-MX-x-costa | spain_romance_tts | 20 | 0.0745‡ | - | - | - | - | - | - | [0.0566, 0.0919] | 0.1000 | research | llm-corrected |
+| es-MX-x-norte | spain_romance_tts | 20 | 0.0657‡ | - | - | - | - | - | - | [0.0448, 0.0893] | 0.1500 | stub | llm-corrected |
+| es-MX-x-yucatan | spain_romance_tts | 20 | 0.0092‡ | - | - | - | - | - | - | [0.0012, 0.0195] | 0.8000 | research | llm-corrected |
+| es-NI | spain_romance_tts | 20 | 0.0777‡ | - | - | - | - | - | - | [0.0606, 0.0953] | 0.1500 | research | llm-corrected |
+| es-PA | spain_romance_tts | 20 | 0.0487‡ | - | - | - | - | - | - | [0.0314, 0.0653] | 0.2000 | research | llm-corrected |
+| es-PE | spain_romance_tts | 20 | 0.0449‡ | - | - | - | - | - | - | [0.0236, 0.0704] | 0.2500 | skeleton | llm-corrected |
+| es-PE-x-amazonico | spain_romance_tts | 20 | 0.0293‡ | - | - | - | - | - | - | [0.0181, 0.0426] | 0.3000 | stub | llm-corrected |
+| es-PE-x-andino | spain_romance_tts | 20 | 0.0632‡ | - | - | - | - | - | - | [0.0466, 0.0801] | 0.1000 | stub | llm-corrected |
+| es-PE-x-lima | spain_romance_tts | 20 | 0.0359‡ | - | - | - | - | - | - | [0.0242, 0.0500] | 0.2000 | skeleton | llm-corrected |
+| es-PR | spain_romance_tts | 20 | 0.0878‡ | - | - | - | - | - | - | [0.0686, 0.1110] | 0.0000 | research | llm-corrected |
+| es-PY | spain_romance_tts | 20 | 0.0920‡ | - | - | - | - | - | - | [0.0689, 0.1161] | 0.0500 | skeleton | llm-corrected |
+| es-SV | spain_romance_tts | 20 | 0.0633‡ | - | - | - | - | - | - | [0.0438, 0.0868] | 0.1500 | stub | llm-corrected |
+| es-UY | spain_romance_tts | 20 | 0.1182‡ | - | - | - | - | - | - | [0.1019, 0.1371] | 0.0000 | skeleton | llm-corrected |
+| es-VE | spain_romance_tts | 20 | 0.0562‡ | - | - | - | - | - | - | [0.0397, 0.0723] | 0.1000 | research | llm-corrected |
+| es-VE-x-andino | spain_romance_tts | 20 | 0.0355‡ | - | - | - | - | - | - | [0.0243, 0.0483] | 0.2000 | stub | llm-corrected |
+| es-VE-x-llanero | spain_romance_tts | 20 | 0.0403‡ | - | - | - | - | - | - | [0.0262, 0.0542] | 0.2000 | stub | llm-corrected |
+| es-VE-x-maracucho | spain_romance_tts | 20 | 0.1155‡ | - | - | - | - | - | - | [0.0946, 0.1350] | 0.0000 | stub | llm-corrected |
 | ess | northeuralex | 814 | 0.1074 | - | - | 0.1074 | 0.1074 | 0.4730 | 0.4730 | [0.0987, 0.1171] | 0.4730 | research | lexicon-derived |
 | et | ipa_childes | 11040 | 0.2769‡ | - | - | 0.2194 | 0.2119 | 0.1951 | 0.2024 | [0.2736, 0.2803] | 0.1369 | research | espeak-derived |
 | et | vox_communis | 35140 | 0.2121‡ | - | - | 0.1593 | 0.1491 | 0.1869 | 0.2026 | [0.2104, 0.2139] | 0.1141 | research | epitran-derived |
@@ -327,26 +327,26 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | ett | wikipron | 207 | 0.1444 | - | - | 0.1444 | 0.1444 | 0.5217 | 0.5217 | [0.1192, 0.1702] | 0.5217 | research | crowd-scraped |
 | eu | hitz_basque_ipa | 3113 | 0.0984 | 0.8677 | - | 0.0981 | 0.0981 | 0.4616 | 0.4616 | [0.0944, 0.1026] | 0.4600 | production | machine-generated |
 | eu | ipa_childes | 3969 | 0.0821‡ | - | - | 0.0820 | 0.0820 | 0.6130 | 0.6130 | [0.0783, 0.0862] | 0.6127 | production | espeak-derived |
-| eu | spain_romance_tts | 26 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | production | llm-generated |
+| eu | spain_romance_tts | 26 | 0.0436‡ | - | - | - | - | - | - | [0.0249, 0.0648] | 0.5000 | production | llm-corrected |
 | eu | vox_communis | 63415 | 0.0429‡ | - | - | 0.0395 | 0.0395 | 0.6841 | 0.6841 | [0.0424, 0.0434] | 0.6617 | production | epitran-derived |
 | eu | wikipron | 12008 | 0.0546 | - | - | 0.0545 | 0.0545 | 0.6084 | 0.6084 | [0.0532, 0.0561] | 0.6081 | production | crowd-scraped |
-| eu-x-bizkaiera | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| eu-x-erronkariera | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| eu-x-gipuzkera | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| eu-x-lapurtera | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| eu-x-nafarra-beherea | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| eu-x-nafarra-garaia | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| eu-x-zuberera | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| eu-x-bizkaiera | spain_romance_tts | 20 | 0.0935‡ | - | - | - | - | - | - | [0.0642, 0.1280] | 0.1000 | research | llm-corrected |
+| eu-x-erronkariera | spain_romance_tts | 20 | 0.0453‡ | - | - | - | - | - | - | [0.0327, 0.0580] | 0.2000 | research | llm-corrected |
+| eu-x-gipuzkera | spain_romance_tts | 20 | 0.0250‡ | - | - | - | - | - | - | [0.0129, 0.0409] | 0.5500 | research | llm-corrected |
+| eu-x-lapurtera | spain_romance_tts | 20 | 0.0654‡ | - | - | - | - | - | - | [0.0469, 0.0857] | 0.1500 | research | llm-corrected |
+| eu-x-nafarra-beherea | spain_romance_tts | 20 | 0.0226‡ | - | - | - | - | - | - | [0.0126, 0.0341] | 0.5000 | research | llm-corrected |
+| eu-x-nafarra-garaia | spain_romance_tts | 20 | 0.1107‡ | - | - | - | - | - | - | [0.0829, 0.1370] | 0.0500 | research | llm-corrected |
+| eu-x-zuberera | spain_romance_tts | 20 | 0.0226‡ | - | - | - | - | - | - | [0.0092, 0.0377] | 0.6000 | research | llm-corrected |
 | evn | northeuralex | 1132 | 0.0970 | - | - | 0.0970 | 0.0970 | 0.5088 | 0.5088 | [0.0904, 0.1043] | 0.5088 | research | lexicon-derived |
 | evn | wikipron | 145 | 0.2447 | - | - | 0.2447 | 0.2447 | 0.1241 | 0.1241 | [0.2197, 0.2710] | 0.1241 | research | crowd-scraped |
-| ext | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| ext-PT-x-barrancos | barranquenho_dict | 1508 | 0.0045‡ | 0.9993 | - | 0.0021 | 0.0013 | 0.9881 | 0.9927 | [0.0029, 0.0061] | 0.9775 | research | llm-generated |
-| ext-PT-x-barrancos | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| ext | spain_romance_tts | 20 | 0.0795‡ | - | - | - | - | - | - | [0.0567, 0.1089] | 0.1000 | research | llm-corrected |
+| ext-PT-x-barrancos | barranquenho_dict | 1508 | 0.0567‡ | 0.9137 | - | 0.0272 | 0.0204 | 0.8329 | 0.8740 | [0.0516, 0.0622] | 0.6989 | research | llm-corrected |
+| ext-PT-x-barrancos | portuguese_tts | 20 | 0.0665‡ | - | - | - | - | - | - | [0.0436, 0.0921] | 0.2500 | research | llm-corrected |
 | ext-PT-x-barrancos | primary_sources | 10† | 0.2801‡ | - | - | 0.2241 | 0.2241 | 0.4000 | 0.4000 | n too small | 0.3000 | research | expert-human |
 | fa | ipadict | 7695 | 0.2540 | - | - | 0.2309 | 0.2253 | 0.1193 | 0.1220 | [0.2507, 0.2574] | 0.1077 | research | machine-generated |
 | fa | wikipron | 9279 | 0.3943 | - | - | 0.3742 | 0.3702 | 0.0177 | 0.0178 | [0.3911, 0.3971] | 0.0170 | research | crowd-scraped |
 | fa-x-enp | wikipron | 9279 | 0.2381 | - | - | 0.2121 | 0.2064 | 0.1230 | 0.1258 | [0.2352, 0.2410] | 0.1024 | research | crowd-scraped |
-| fax | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| fax | spain_romance_tts | 20 | 0.0519‡ | - | - | - | - | - | - | [0.0303, 0.0752] | 0.3500 | research | llm-corrected |
 | fax | wikipron | 655 | 0.0977 | - | - | 0.0618 | 0.0616 | 0.6840 | 0.6855 | [0.0883, 0.1075] | 0.5282 | research | crowd-scraped |
 | fi | ipadict | 92836 | 0.0609 | 1.0000 | - | 0.0609 | 0.0609 | 0.5012 | 0.5012 | [0.0604, 0.0613] | 0.5012 | production | machine-generated |
 | fi | vox_communis | 13324 | 0.0037‡ | - | - | 0.0037 | 0.0037 | 0.9678 | 0.9678 | [0.0033, 0.0041] | 0.9678 | production | epitran-derived |
@@ -362,14 +362,14 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | ga | ipa_childes | 1611 | 0.2989‡ | - | - | 0.2651 | 0.2410 | 0.1924 | 0.2216 | [0.2885, 0.3088] | 0.1620 | research | espeak-derived |
 | ga | wikipron | 9616 | 0.1834 | - | - | 0.1593 | 0.1498 | 0.3716 | 0.3906 | [0.1798, 0.1869] | 0.3100 | research | crowd-scraped |
 | gd | wikipron | 3719 | 0.2775 | - | - | 0.2296 | 0.2074 | 0.2740 | 0.3192 | [0.2707, 0.2844] | 0.2124 | research | crowd-scraped |
-| gl-ES | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| gl-ES | spain_romance_tts | 20 | 0.0986‡ | - | - | - | - | - | - | [0.0708, 0.1286] | 0.1000 | research | llm-corrected |
 | gl-ES | vox_communis | 47512 | 0.0648‡ | - | - | 0.0497 | 0.0452 | 0.6759 | 0.6979 | [0.0640, 0.0657] | 0.6082 | research | epitran-derived |
 | gl-ES | wikipron | 8091 | 0.0801 | - | - | 0.0351 | 0.0286 | 0.8067 | 0.8453 | [0.0775, 0.0825] | 0.5967 | research | crowd-scraped |
-| gl-ES-x-central | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| gl-ES-x-eonavia | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| gl-ES-x-occidental | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| gl-ES-x-oriental | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| gl-ES-x-reintegrado | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| gl-ES-x-central | spain_romance_tts | 20 | 0.1143‡ | - | - | - | - | - | - | [0.0890, 0.1429] | 0.0500 | research | llm-corrected |
+| gl-ES-x-eonavia | spain_romance_tts | 20 | 0.1015‡ | - | - | - | - | - | - | [0.0729, 0.1309] | 0.0500 | research | llm-corrected |
+| gl-ES-x-occidental | spain_romance_tts | 20 | 0.0734‡ | - | - | - | - | - | - | [0.0487, 0.1043] | 0.1000 | research | llm-corrected |
+| gl-ES-x-oriental | spain_romance_tts | 20 | 0.0690‡ | - | - | - | - | - | - | [0.0425, 0.0966] | 0.2500 | research | llm-corrected |
+| gl-ES-x-reintegrado | spain_romance_tts | 20 | 0.1368‡ | - | - | - | - | - | - | [0.1165, 0.1600] | 0.0000 | research | llm-corrected |
 | gld | northeuralex | 887 | 0.1532 | - | - | 0.1532 | 0.1532 | 0.3574 | 0.3574 | [0.1431, 0.1624] | 0.3574 | research | lexicon-derived |
 | gmh | wikipron | 1516 | 0.1022 | - | - | · | · | · | · | [0.0965, 0.1078] | 0.4769 | research | crowd-scraped |
 | gml | wikipron | 143 | 0.2771 | - | - | 0.2727 | 0.2717 | 0.1189 | 0.1189 | [0.2500, 0.3042] | 0.1189 | research | crowd-scraped |
@@ -458,7 +458,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | kxd | wikipron | 318 | 0.0235 | - | - | 0.0235 | 0.0235 | 0.8962 | 0.8962 | [0.0153, 0.0329] | 0.8962 | research | crowd-scraped |
 | ky | vox_communis | 10611 | 0.1915‡ | - | - | 0.1654 | 0.1565 | 0.2474 | 0.3057 | [0.1890, 0.1939] | 0.1642 | research | epitran-derived |
 | ky | wikipron | 867 | 0.2217 | - | - | 0.2211 | 0.2211 | 0.3230 | 0.3230 | [0.2081, 0.2357] | 0.3195 | research | crowd-scraped |
-| lad | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| lad | spain_romance_tts | 20 | 0.0399‡ | - | - | - | - | - | - | [0.0262, 0.0550] | 0.3500 | research | llm-corrected |
 | lad | wikipron | 131 | 0.1397 | - | - | 0.1108 | 0.1093 | 0.5420 | 0.5496 | [0.1128, 0.1671] | 0.4427 | research | crowd-scraped |
 | lb | wikipron | 3893 | 0.2412 | - | - | 0.2320 | 0.2315 | 0.2661 | 0.2669 | [0.2347, 0.2477] | 0.2510 | research | crowd-scraped |
 | lbe | northeuralex | 1048 | 0.0387 | - | - | 0.0387 | 0.0387 | 0.8340 | 0.8340 | [0.0325, 0.0455] | 0.8340 | research | lexicon-derived |
@@ -506,17 +506,17 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | mt | vox_communis | 8399 | 0.3056‡ | - | - | 0.3056 | 0.3056 | 0.0387 | 0.0387 | [0.3027, 0.3086] | 0.0387 | research | epitran-derived |
 | mt | wikipron | 15836 | 0.2314 | - | - | 0.2314 | 0.2314 | 0.1570 | 0.1570 | [0.2291, 0.2340] | 0.1570 | research | crowd-scraped |
 | mtq | wikipron | 194 | 0.3412 | - | - | 0.3412 | 0.3412 | 0.0000 | 0.0000 | [0.3227, 0.3583] | 0.0000 | research | crowd-scraped |
-| mwl | mirandese_dict | 990 | 0.1512‡ | 0.9704 | - | 0.1005 | 0.0920 | 0.6182 | 0.6424 | [0.1384, 0.1642] | 0.4990 | research | llm-generated |
+| mwl | mirandese_dict | 990 | 0.0449‡ | 0.9412 | - | 0.0440 | 0.0440 | 0.8000 | 0.8000 | [0.0380, 0.0532] | 0.7980 | research | llm-corrected |
 | mwl | mirandese_g2p | 205 | 0.2289 | 0.9123 | - | 0.1806 | 0.1723 | 0.3415 | 0.3756 | [0.1994, 0.2606] | 0.2634 | research | expert-human |
-| mwl | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| mwl-x-ifanes | mirandese_dict | 4† | 0.1250‡ | - | - | 0.1250 | 0.1250 | 0.7500 | 0.7500 | n too small | 0.7500 | research | llm-generated |
+| mwl | portuguese_tts | 20 | 0.0304‡ | - | - | - | - | - | - | [0.0149, 0.0507] | 0.5500 | research | llm-corrected |
+| mwl-x-ifanes | mirandese_dict | 4† | 0.2500‡ | - | - | 0.2500 | 0.2500 | 0.7500 | 0.7500 | n too small | 0.7500 | research | llm-corrected |
 | mwl-x-ifanes | mirandese_g2p | 2† | 0.6250‡ | - | - | 0.5000 | 0.5000 | 0.0000 | 0.0000 | n too small | 0.0000 | research | expert-human |
-| mwl-x-ifanes | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| mwl-x-sendim | mirandese_dict | 79 | 0.1272‡ | 1.0000 | - | 0.1106 | 0.1090 | 0.6329 | 0.6329 | [0.0844, 0.1819] | 0.6076 | research | llm-generated |
+| mwl-x-ifanes | portuguese_tts | 20 | 0.1537‡ | - | - | - | - | - | - | [0.1177, 0.1906] | 0.0000 | research | llm-corrected |
+| mwl-x-sendim | mirandese_dict | 79 | 0.1352‡ | 0.9726 | - | 0.1144 | 0.1128 | 0.5696 | 0.5823 | [0.1031, 0.1674] | 0.5190 | research | llm-corrected |
 | mwl-x-sendim | mirandese_g2p | 11† | 0.4470‡ | - | - | 0.3561 | 0.3561 | 0.2727 | 0.2727 | n too small | 0.2727 | research | expert-human |
-| mwl-x-sendim | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| mwl-x-sendim | portuguese_tts | 20 | 0.1388‡ | - | - | - | - | - | - | [0.1103, 0.1667] | 0.0000 | research | llm-corrected |
 | mww | wikipron | 489 | 0.0107 | - | - | 0.0107 | 0.0107 | 0.9611 | 0.9611 | [0.0060, 0.0161] | 0.9611 | research | crowd-scraped |
-| mxi | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| mxi | spain_romance_tts | 20 | 0.0432‡ | - | - | - | - | - | - | [0.0282, 0.0595] | 0.3000 | research | llm-corrected |
 | my | wikipron | 7941 | 0.1926 | - | - | 0.1899 | 0.1898 | 0.4440 | 0.4440 | [0.1878, 0.1974] | 0.4381 | research | crowd-scraped |
 | myv | vox_communis | 6442 | 0.0944‡ | - | - | 0.0944 | 0.0944 | 0.3890 | 0.3890 | [0.0923, 0.0965] | 0.3890 | research | epitran-derived |
 | nap | wikipron | 198 | 0.2792 | - | - | 0.2387 | 0.2307 | 0.1263 | 0.1263 | [0.2544, 0.3033] | 0.1162 | research | crowd-scraped |
@@ -546,7 +546,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | nv | wikipron | 989 | 0.2514 | - | - | 0.2514 | 0.2514 | 0.0940 | 0.0940 | [0.2423, 0.2602] | 0.0940 | research | crowd-scraped |
 | ny | wikipron | 1564 | 0.3119 | - | 0.2604 (lexical high-tone acute diacritic) | 0.3025 | 0.3018 | 0.0959 | 0.0972 | [0.3031, 0.3211] | 0.0850 | research | crowd-scraped |
 | oc | wikipron | 675 | 0.1283 | - | - | 0.0903 | 0.0818 | 0.5763 | 0.6044 | [0.1173, 0.1394] | 0.4800 | research | crowd-scraped |
-| oc-x-aranes | spain_romance_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| oc-x-aranes | spain_romance_tts | 20 | 0.0787‡ | - | - | - | - | - | - | [0.0532, 0.1065] | 0.1500 | research | llm-corrected |
 | oji | wikipron | 136 | 0.2973 | - | - | 0.2973 | 0.2973 | 0.0662 | 0.0662 | [0.2700, 0.3240] | 0.0662 | research | crowd-scraped |
 | olo | wikipron | 278 | 0.0801 | - | - | 0.0801 | 0.0801 | 0.6007 | 0.6007 | [0.0676, 0.0931] | 0.6007 | research | crowd-scraped |
 | om | kaikki | 519 | 0.1026 | 0.0000 | - | 0.1026 | 0.1026 | 0.3237 | 0.3237 | [0.0961, 0.1098] | 0.3237 | research | crowd-scraped |
@@ -573,96 +573,96 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | ppl | wikipron | 185 | 0.1322 | - | - | 0.1322 | 0.1322 | 0.4486 | 0.4486 | [0.1104, 0.1534] | 0.4486 | research | crowd-scraped |
 | pqm | wikipron | 151 | 0.1759 | - | - | 0.1759 | 0.1759 | 0.1589 | 0.1589 | [0.1596, 0.1937] | 0.1589 | research | crowd-scraped |
 | ps | wikipron | 1075 | 0.2453 | - | - | 0.1938 | 0.1840 | 0.3265 | 0.3433 | [0.2341, 0.2554] | 0.2558 | research | crowd-scraped |
-| pt-AO | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-AO | portuguese_tts | 20 | 0.1940‡ | - | - | - | - | - | - | [0.1651, 0.2261] | 0.0000 | research | llm-corrected |
 | pt-AO | portuguese_unified | 53151 | 0.2492 | 0.9933 | - | 0.1862 | 0.1696 | 0.1756 | 0.2148 | [0.2481, 0.2504] | 0.0862 | research | lexicon-derived |
 | pt-AO | portuguese_unified_corrected | 53149 | 0.2492‡ | 0.9934 | - | 0.1862 | 0.1696 | 0.1756 | 0.2148 | [0.2481, 0.2503] | 0.0862 | research | lexicon-derived |
 | pt-BR | ipa_childes | 2116 | 0.2010‡ | - | - | 0.1678 | 0.1540 | 0.3280 | 0.3700 | [0.1940, 0.2087] | 0.2798 | production | espeak-derived |
 | pt-BR | ipadict | 95933 | 0.2295 | 0.9874 | - | 0.2245 | 0.2166 | 0.0546 | 0.0569 | [0.2286, 0.2305] | 0.0510 | production | machine-generated |
 | pt-BR | ipadict_corrected | 95933 | 0.2295‡ | 0.9943 | - | 0.2245 | 0.2166 | 0.0546 | 0.0569 | [0.2286, 0.2305] | 0.0510 | production | machine-generated |
-| pt-BR | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | production | llm-generated |
+| pt-BR | portuguese_tts | 20 | 0.0902‡ | - | - | - | - | - | - | [0.0623, 0.1167] | 0.2000 | production | llm-corrected |
 | pt-BR | portuguese_unified | 3552 | 0.1567 | 0.9779 | - | 0.1413 | 0.1270 | 0.4003 | 0.4538 | [0.1499, 0.1649] | 0.3595 | production | lexicon-derived |
 | pt-BR | portuguese_unified_corrected | 3548 | 0.1538‡ | 0.9809 | - | 0.1385 | 0.1241 | 0.4008 | 0.4543 | [0.1481, 0.1595] | 0.3599 | production | lexicon-derived |
 | pt-BR | primary_sources | 21 | 0.0833 | - | - | 0.0833 | 0.0833 | 0.7619 | 0.7619 | [0.0238, 0.1548] | 0.7619 | production | expert-human |
 | pt-BR | vox_communis | 33958 | 0.3874‡ | - | - | 0.2897 | 0.2623 | 0.1019 | 0.1385 | [0.3855, 0.3892] | 0.0411 | production | epitran-derived |
 | pt-BR | wikipron | 57897 | 0.0461 | - | - | 0.0306 | 0.0217 | 0.8148 | 0.8660 | [0.0453, 0.0469] | 0.7380 | production | crowd-scraped |
-| pt-BR-x-bahia | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-BR-x-brasilia | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-BR-x-caipira | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-BR-x-bahia | portuguese_tts | 20 | 0.2074‡ | - | - | - | - | - | - | [0.1846, 0.2296] | 0.0000 | research | llm-corrected |
+| pt-BR-x-brasilia | portuguese_tts | 20 | 0.0883‡ | - | - | - | - | - | - | [0.0684, 0.1065] | 0.0500 | research | llm-corrected |
+| pt-BR-x-caipira | portuguese_tts | 20 | 0.0738‡ | - | - | - | - | - | - | [0.0582, 0.0894] | 0.1000 | research | llm-corrected |
 | pt-BR-x-caipira | portuguese_unified | 31 | 0.3147 | 1.0000 | - | 0.2981 | 0.2757 | 0.0000 | 0.0323 | [0.2673, 0.3637] | 0.0000 | research | lexicon-derived |
 | pt-BR-x-carioca | portuguese_unified | 111 | 0.3140 | 0.9904 | - | 0.2964 | 0.2720 | 0.0270 | 0.0450 | [0.2845, 0.3459] | 0.0180 | production | lexicon-derived |
-| pt-BR-x-ce | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-BR-x-fluminense | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-BR-x-mg | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-BR-x-norte | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-BR-x-pr | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-BR-x-recife | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-BR-x-rj | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-BR-x-rj | portuguese_unified | 53147 | 0.1890 | 0.9954 | - | 0.1662 | 0.1550 | 0.1737 | 0.2002 | [0.1880, 0.1899] | 0.1097 | research | lexicon-derived |
-| pt-BR-x-rj | portuguese_unified_corrected | 53145 | 0.1890‡ | 0.9955 | - | 0.1661 | 0.1550 | 0.1738 | 0.2002 | [0.1880, 0.1899] | 0.1097 | research | lexicon-derived |
-| pt-BR-x-sp | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-BR-x-sp | portuguese_unified | 53147 | 0.1789 | 0.9942 | - | 0.1595 | 0.1472 | 0.1704 | 0.1982 | [0.1779, 0.1799] | 0.1073 | research | lexicon-derived |
-| pt-BR-x-sp | portuguese_unified_corrected | 53145 | 0.1788‡ | 0.9943 | - | 0.1594 | 0.1472 | 0.1704 | 0.1982 | [0.1779, 0.1798] | 0.1073 | research | lexicon-derived |
-| pt-BR-x-sul | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-CV | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | skeleton | llm-generated |
-| pt-GW | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-MO | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | skeleton | llm-generated |
-| pt-MZ | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-BR-x-ce | portuguese_tts | 20 | 0.1233‡ | - | - | - | - | - | - | [0.1003, 0.1453] | 0.0500 | research | llm-corrected |
+| pt-BR-x-fluminense | portuguese_tts | 20 | 0.0619‡ | - | - | - | - | - | - | [0.0466, 0.0798] | 0.0500 | research | llm-corrected |
+| pt-BR-x-mg | portuguese_tts | 20 | 0.1441‡ | - | - | - | - | - | - | [0.1229, 0.1655] | 0.0000 | research | llm-corrected |
+| pt-BR-x-norte | portuguese_tts | 20 | 0.1961‡ | - | - | - | - | - | - | [0.1608, 0.2299] | 0.0000 | research | llm-corrected |
+| pt-BR-x-pr | portuguese_tts | 20 | 0.0862‡ | - | - | - | - | - | - | [0.0584, 0.1173] | 0.1500 | research | llm-corrected |
+| pt-BR-x-recife | portuguese_tts | 20 | 0.1812‡ | - | - | - | - | - | - | [0.1488, 0.2126] | 0.0000 | research | llm-corrected |
+| pt-BR-x-rj | portuguese_tts | 20 | 0.0632‡ | - | - | - | - | - | - | [0.0432, 0.0845] | 0.1500 | research | llm-corrected |
+| pt-BR-x-rj | portuguese_unified | 53147 | 0.1890 | 0.9960 | - | 0.1662 | 0.1550 | 0.1737 | 0.2002 | [0.1880, 0.1899] | 0.1097 | research | lexicon-derived |
+| pt-BR-x-rj | portuguese_unified_corrected | 53145 | 0.1890‡ | 0.9961 | - | 0.1661 | 0.1550 | 0.1738 | 0.2002 | [0.1880, 0.1899] | 0.1097 | research | lexicon-derived |
+| pt-BR-x-sp | portuguese_tts | 20 | 0.1653‡ | - | - | - | - | - | - | [0.1352, 0.1952] | 0.0000 | research | llm-corrected |
+| pt-BR-x-sp | portuguese_unified | 53147 | 0.1789 | 0.9948 | - | 0.1595 | 0.1472 | 0.1704 | 0.1982 | [0.1779, 0.1799] | 0.1073 | research | lexicon-derived |
+| pt-BR-x-sp | portuguese_unified_corrected | 53145 | 0.1788‡ | 0.9949 | - | 0.1594 | 0.1472 | 0.1704 | 0.1982 | [0.1779, 0.1798] | 0.1073 | research | lexicon-derived |
+| pt-BR-x-sul | portuguese_tts | 20 | 0.0858‡ | - | - | - | - | - | - | [0.0588, 0.1141] | 0.1000 | research | llm-corrected |
+| pt-CV | portuguese_tts | 20 | 0.2758‡ | - | - | - | - | - | - | [0.2209, 0.3277] | 0.0500 | skeleton | llm-corrected |
+| pt-GW | portuguese_tts | 20 | 0.3217‡ | - | - | - | - | - | - | [0.2956, 0.3488] | 0.0000 | research | llm-corrected |
+| pt-MO | portuguese_tts | 20 | 0.1374‡ | - | - | - | - | - | - | [0.1063, 0.1672] | 0.1000 | skeleton | llm-corrected |
+| pt-MZ | portuguese_tts | 20 | 0.2109‡ | - | - | - | - | - | - | [0.1910, 0.2322] | 0.0000 | research | llm-corrected |
 | pt-MZ | portuguese_unified | 53147 | 0.1686 | 0.9960 | - | 0.1438 | 0.1273 | 0.3256 | 0.3827 | [0.1674, 0.1699] | 0.2575 | research | lexicon-derived |
 | pt-MZ | portuguese_unified_corrected | 53145 | 0.1686‡ | 0.9961 | - | 0.1438 | 0.1273 | 0.3257 | 0.3827 | [0.1673, 0.1699] | 0.2575 | research | lexicon-derived |
 | pt-PT | ep_dialects | 30 | 0.1085 | - | - | - | - | - | - | [0.0808, 0.1377] | 0.2000 | research | expert-human |
 | pt-PT | ipa_childes | 3846 | 0.2420‡ | - | - | 0.1832 | 0.1703 | 0.3656 | 0.3908 | [0.2348, 0.2491] | 0.2621 | research | espeak-derived |
-| pt-PT | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT | portuguese_unified | 105553 | 0.2075 | 0.9881 | - | 0.1946 | 0.1884 | 0.1863 | 0.1973 | [0.2065, 0.2084] | 0.1630 | research | lexicon-derived |
-| pt-PT | portuguese_unified_corrected | 105534 | 0.2074‡ | 0.9888 | - | 0.1945 | 0.1884 | 0.1864 | 0.1973 | [0.2065, 0.2084] | 0.1630 | research | lexicon-derived |
-| pt-PT | wikipron | 56978 | 0.0773 | - | - | 0.0634 | 0.0572 | 0.6265 | 0.6562 | [0.0763, 0.0782] | 0.5848 | research | crowd-scraped |
-| pt-PT-x-acores | clup_dialect | 2† | 0.3124‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
+| pt-PT | portuguese_tts | 20 | 0.0710‡ | - | - | - | - | - | - | [0.0491, 0.0970] | 0.2000 | research | llm-corrected |
+| pt-PT | portuguese_unified | 105553 | 0.2075 | 0.9882 | - | 0.1946 | 0.1884 | 0.1863 | 0.1973 | [0.2065, 0.2084] | 0.1630 | research | lexicon-derived |
+| pt-PT | portuguese_unified_corrected | 105534 | 0.2074‡ | 0.9889 | - | 0.1945 | 0.1884 | 0.1864 | 0.1973 | [0.2065, 0.2084] | 0.1630 | research | lexicon-derived |
+| pt-PT | wikipron | 56978 | 0.0772 | - | - | 0.0634 | 0.0571 | 0.6266 | 0.6564 | [0.0762, 0.0782] | 0.5851 | research | crowd-scraped |
+| pt-PT-x-acores | clup_dialect | 2† | 0.3138‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
 | pt-PT-x-acores | ep_dialects | 29 | 0.1050 | - | - | - | - | - | - | [0.0738, 0.1357] | 0.1379 | research | expert-human |
-| pt-PT-x-acores | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-PT-x-acores | portuguese_tts | 20 | 0.1161‡ | - | - | - | - | - | - | [0.0869, 0.1483] | 0.0000 | research | llm-corrected |
 | pt-PT-x-alentejo | clup_dialect | 1† | 0.2643‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
 | pt-PT-x-alentejo | ep_dialects | 30 | 0.2215 | - | - | - | - | - | - | [0.1694, 0.2856] | 0.0333 | research | expert-human |
-| pt-PT-x-alentejo | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-PT-x-alentejo | portuguese_tts | 20 | 0.1473‡ | - | - | - | - | - | - | [0.1163, 0.1815] | 0.0000 | research | llm-corrected |
 | pt-PT-x-alentejo | primary_sources | 5† | 0.3000‡ | - | - | 0.2333 | 0.2333 | 0.2000 | 0.2000 | n too small | 0.0000 | research | expert-human |
 | pt-PT-x-alfena | clup_dialect | 1† | 0.3217‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
-| pt-PT-x-alfena | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-PT-x-alfena | portuguese_tts | 20 | 0.0733‡ | - | - | - | - | - | - | [0.0476, 0.1026] | 0.1500 | research | llm-corrected |
 | pt-PT-x-algarve | clup_dialect | 3† | 0.3629‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
 | pt-PT-x-algarve | ep_dialects | 30 | 0.1552 | - | - | - | - | - | - | [0.1175, 0.1902] | 0.1333 | research | expert-human |
-| pt-PT-x-algarve | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-aveiro | clup_dialect | 6† | 0.2977‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
-| pt-PT-x-aveiro | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-beira | clup_dialect | 8† | 0.3174‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
-| pt-PT-x-beira | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-PT-x-algarve | portuguese_tts | 20 | 0.1249‡ | - | - | - | - | - | - | [0.1016, 0.1519] | 0.0000 | research | llm-corrected |
+| pt-PT-x-aveiro | clup_dialect | 6† | 0.2987‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
+| pt-PT-x-aveiro | portuguese_tts | 20 | 0.0976‡ | - | - | - | - | - | - | [0.0669, 0.1314] | 0.2000 | research | llm-corrected |
+| pt-PT-x-beira | clup_dialect | 8† | 0.3186‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
+| pt-PT-x-beira | portuguese_tts | 20 | 0.0838‡ | - | - | - | - | - | - | [0.0591, 0.1103] | 0.1000 | research | llm-corrected |
 | pt-PT-x-beira | primary_sources | 8† | 0.4327‡ | - | - | 0.4327 | 0.4327 | 0.1250 | 0.1250 | n too small | 0.1250 | research | expert-human |
-| pt-PT-x-braga | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-coimbra | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-lisbon | clup_dialect | 5† | 0.2838‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
+| pt-PT-x-braga | portuguese_tts | 20 | 0.1082‡ | - | - | - | - | - | - | [0.0882, 0.1300] | 0.0000 | research | llm-corrected |
+| pt-PT-x-coimbra | portuguese_tts | 20 | 0.1023‡ | - | - | - | - | - | - | [0.0706, 0.1337] | 0.1500 | research | llm-corrected |
+| pt-PT-x-lisbon | clup_dialect | 5† | 0.2835‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
 | pt-PT-x-lisbon | ep_dialects | 45 | 0.0999 | - | - | - | - | - | - | [0.0796, 0.1235] | 0.1778 | research | expert-human |
-| pt-PT-x-lisbon | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-lisbon | portuguese_unified | 53150 | 0.0911 | 0.9956 | - | 0.0793 | 0.0717 | 0.4928 | 0.5211 | [0.0903, 0.0920] | 0.4414 | research | lexicon-derived |
-| pt-PT-x-lisbon | portuguese_unified_corrected | 53148 | 0.0911‡ | 0.9957 | - | 0.0792 | 0.0716 | 0.4928 | 0.5212 | [0.0902, 0.0920] | 0.4414 | research | lexicon-derived |
+| pt-PT-x-lisbon | portuguese_tts | 20 | 0.0518‡ | - | - | - | - | - | - | [0.0303, 0.0762] | 0.3500 | research | llm-corrected |
+| pt-PT-x-lisbon | portuguese_unified | 53150 | 0.0909 | 0.9962 | - | 0.0792 | 0.0715 | 0.4932 | 0.5218 | [0.0901, 0.0918] | 0.4422 | research | lexicon-derived |
+| pt-PT-x-lisbon | portuguese_unified_corrected | 53148 | 0.0909‡ | 0.9963 | - | 0.0791 | 0.0715 | 0.4932 | 0.5218 | [0.0900, 0.0918] | 0.4422 | research | lexicon-derived |
 | pt-PT-x-lisbon | primary_sources | 33 | 0.0288 | 1.0000 | - | 0.0288 | 0.0288 | 0.8788 | 0.8788 | [0.0075, 0.0561] | 0.8788 | research | expert-human |
-| pt-PT-x-madeira | clup_dialect | 4† | 0.3161‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
+| pt-PT-x-madeira | clup_dialect | 4† | 0.3177‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
 | pt-PT-x-madeira | ep_dialects | 30 | 0.0913 | - | - | - | - | - | - | [0.0616, 0.1219] | 0.2667 | research | expert-human |
-| pt-PT-x-madeira | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-medieval | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-minho | clup_dialect | 9† | 0.3029‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
-| pt-PT-x-minho | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-porto | clup_dialect | 17† | 0.4092‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
+| pt-PT-x-madeira | portuguese_tts | 20 | 0.0968‡ | - | - | - | - | - | - | [0.0687, 0.1260] | 0.1500 | research | llm-corrected |
+| pt-PT-x-medieval | portuguese_tts | 20 | 0.2720‡ | - | - | - | - | - | - | [0.2403, 0.3004] | 0.0000 | research | llm-corrected |
+| pt-PT-x-minho | clup_dialect | 9† | 0.3045‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
+| pt-PT-x-minho | portuguese_tts | 20 | 0.0994‡ | - | - | - | - | - | - | [0.0723, 0.1272] | 0.1500 | research | llm-corrected |
+| pt-PT-x-porto | clup_dialect | 17† | 0.4123‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
 | pt-PT-x-porto | ep_dialects | 40 | 0.1837 | - | - | - | - | - | - | [0.1607, 0.2041] | 0.0500 | research | expert-human |
-| pt-PT-x-porto | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-porto | primary_sources | 5† | 0.1800‡ | - | - | 0.1467 | 0.1467 | 0.6000 | 0.6000 | n too small | 0.4000 | research | expert-human |
-| pt-PT-x-sao-miguel | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-PT-x-porto | portuguese_tts | 20 | 0.0775‡ | - | - | - | - | - | - | [0.0561, 0.1001] | 0.1000 | research | llm-corrected |
+| pt-PT-x-porto | primary_sources | 5† | 0.1000‡ | - | - | 0.0667 | 0.0667 | 0.8000 | 0.8000 | n too small | 0.6000 | research | expert-human |
+| pt-PT-x-sao-miguel | portuguese_tts | 20 | 0.0622‡ | - | - | - | - | - | - | [0.0324, 0.0931] | 0.3500 | research | llm-corrected |
 | pt-PT-x-sao-miguel | primary_sources | 12† | 0.3917‡ | - | - | 0.3917 | 0.3917 | 0.0833 | 0.0833 | n too small | 0.0833 | research | expert-human |
-| pt-PT-x-terceira | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-PT-x-terceira | portuguese_tts | 20 | 0.1074‡ | - | - | - | - | - | - | [0.0735, 0.1454] | 0.2000 | research | llm-corrected |
 | pt-PT-x-terceira | primary_sources | 10† | 0.2179‡ | - | - | 0.1369 | 0.1369 | 0.4000 | 0.4000 | n too small | 0.3000 | research | expert-human |
-| pt-PT-x-trasosmontes | clup_dialect | 6† | 0.3175‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
-| pt-PT-x-trasosmontes | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-PT-x-viana | clup_dialect | 4† | 0.3439‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
-| pt-PT-x-viana | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-ST | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
-| pt-TL | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-PT-x-trasosmontes | clup_dialect | 6† | 0.3182‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
+| pt-PT-x-trasosmontes | portuguese_tts | 20 | 0.1279‡ | - | - | - | - | - | - | [0.0925, 0.1690] | 0.1000 | research | llm-corrected |
+| pt-PT-x-viana | clup_dialect | 4† | 0.3454‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
+| pt-PT-x-viana | portuguese_tts | 20 | 0.1144‡ | - | - | - | - | - | - | [0.0872, 0.1465] | 0.0500 | research | llm-corrected |
+| pt-ST | portuguese_tts | 20 | 0.2879‡ | - | - | - | - | - | - | [0.2530, 0.3233] | 0.0000 | research | llm-corrected |
+| pt-TL | portuguese_tts | 20 | 0.1703‡ | - | - | - | - | - | - | [0.1397, 0.2011] | 0.0000 | research | llm-corrected |
 | pt-TL | portuguese_unified | 53147 | 0.3638 | 0.9925 | - | 0.3378 | 0.3200 | 0.0192 | 0.0240 | [0.3626, 0.3649] | 0.0152 | research | machine-generated |
 | pt-TL | portuguese_unified_corrected | 53145 | 0.3637‡ | 0.9926 | - | 0.3378 | 0.3200 | 0.0192 | 0.0240 | [0.3626, 0.3648] | 0.0152 | research | machine-generated |
-| pt-UY | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| pt-UY | portuguese_tts | 20 | 0.0937‡ | - | - | - | - | - | - | [0.0682, 0.1198] | 0.1000 | research | llm-corrected |
 | quz | ipa_childes | 1853 | 0.3549‡ | - | - | 0.3549 | 0.3549 | 0.0621 | 0.0621 | [0.3463, 0.3623] | 0.0621 | research | espeak-derived |
 | rgn | wikipron | 261 | 0.3270 | - | - | 0.3270 | 0.3270 | 0.1226 | 0.1226 | [0.2970, 0.3597] | 0.1226 | research | crowd-scraped |
 | rif | wold | 1533 | 0.0929 | - | - | 0.0929 | 0.0929 | 0.5669 | 0.5669 | [0.0870, 0.0989] | 0.5669 | research | lexicon-derived |
@@ -670,7 +670,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | ro | wikipron | 8977 | 0.0198 | - | - | 0.0192 | 0.0189 | 0.8852 | 0.8865 | [0.0186, 0.0212] | 0.8830 | production | crowd-scraped |
 | ro-RO | ipa_childes | 2311 | 0.2644‡ | - | - | 0.2617 | 0.2616 | 0.1939 | 0.1943 | [0.2562, 0.2721] | 0.1900 | production | espeak-derived |
 | ro-RO | ipadict | 72375 | 0.0359 | - | - | 0.0354 | 0.0352 | 0.7367 | 0.7376 | [0.0354, 0.0364] | 0.7344 | production | lexicon-derived |
-| roa-x-galaicopt | portuguese_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| roa-x-galaicopt | portuguese_tts | 20 | 0.1283‡ | - | - | - | - | - | - | [0.0923, 0.1672] | 0.0500 | research | llm-corrected |
 | ru | alphacep_ru_book | 6175 | 0.2391 | 0.4936 | - | 0.1252 | 0.0859 | 0.3153 | 0.5015 | [0.2362, 0.2419] | 0.0646 | research | machine-generated |
 | ru | coruss_ru | 9527 | 0.3572 | 0.5178 | - | 0.2795 | 0.2653 | 0.1480 | 0.1685 | [0.3530, 0.3614] | 0.0639 | research | expert-human |
 | ru | primary_sources | 36 | 0.1867 | - | - | 0.1267 | 0.1267 | 0.5833 | 0.5833 | [0.1265, 0.2463] | 0.3611 | research | expert-human |
@@ -766,7 +766,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | wbk | wikipron | 153 | 0.2022 | - | - | 0.2022 | 0.2022 | 0.3922 | 0.3922 | [0.1710, 0.2366] | 0.3922 | research | crowd-scraped |
 | wiy | wikipron | 151 | 0.0164 | - | - | 0.0164 | 0.0164 | 0.9338 | 0.9338 | [0.0061, 0.0284] | 0.9338 | research | crowd-scraped |
 | wlm | wikipron | 403 | 0.2498 | - | - | 0.2498 | 0.2498 | 0.2357 | 0.2357 | [0.2309, 0.2702] | 0.2357 | research | crowd-scraped |
-| xaa | arabic_tts | 20 | 0.0000‡ | - | - | - | - | - | - | [0.0000, 0.0000] | 1.0000 | research | llm-generated |
+| xaa | arabic_tts | 20 | 0.1228‡ | - | - | - | - | - | - | [0.0934, 0.1584] | 0.0000 | research | llm-corrected |
 | xal | wikipron | 318 | 0.2813 | - | - | 0.2813 | 0.2813 | 0.1478 | 0.1478 | [0.2619, 0.3014] | 0.1478 | research | crowd-scraped |
 | xh | kaikki | 888 | 0.3776 | - | 0.1519† (tone) | 0.3759 | 0.3759 | 0.0304 | 0.0304 | [0.3681, 0.3870] | 0.0282 | research | crowd-scraped |
 | xsl | wikipron | 146 | 0.0273 | - | - | 0.0234 | 0.0234 | 0.9041 | 0.9041 | [0.0145, 0.0421] | 0.8904 | research | crowd-scraped |

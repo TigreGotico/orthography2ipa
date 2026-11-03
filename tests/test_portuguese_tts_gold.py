@@ -1,11 +1,12 @@
-"""Regression gate for the Portuguese TTS gold set (docs/evaluation/silver_sets.md#portuguese_tts).
+"""Source-file gate for the Portuguese TTS gold set (docs/evaluation/silver_sets.md#portuguese_tts).
 
 Runs the validate subcommand of scripts/portuguese_tts_gold.py over every
 Portuguese lect that has a gold TSV (the rest report as pending): schema, row
-minimum, o2i transcription regression, feature-tag verifiability, duplicate
-detection and citation-id resolution. If a spec change alters a gold
-transcription this fails, forcing a deliberate reconciliation of the spec and
-the gold (cited accuracy wins).
+minimum, feature-tag verifiability, duplicate detection and citation-id
+resolution.
+
+The board scores the set against its llm-corrected file, which
+tests/test_llm_corrected_sets.py checks. Nothing here pins engine output.
 """
 import subprocess
 import sys

@@ -2313,7 +2313,8 @@ class TestSpanishPhonologicalRules:
     @pytest.mark.parametrize("word,expected", [
         ("enrique", "en\u02c8rike"),
         ("honra", "\u02c8onra"),
-        ("israel", "is\u02c8rael"),
+        # Is-ra-el, two open vowels in hiatus, an aguda in -l.
+        ("israel", "isra\u02c8el"),
         ("alrededor", "alre\u00f0e\u02c8\u00f0o\u027e"),
     ])
     def test_trill_after_coronal(self, word, expected):

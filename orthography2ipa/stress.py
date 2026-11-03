@@ -32,7 +32,7 @@ from __future__ import annotations
 import logging
 import unicodedata
 from collections import OrderedDict
-from typing import Dict, List, Optional, Sequence
+from typing import Dict, List, Optional, Sequence, Tuple
 
 from orthography2ipa.allophony import segment_ipa
 from orthography2ipa.phonetok import lower_str
@@ -360,6 +360,14 @@ class _OnsetJudge:
         self._graphemes = sorted(
             (g for g in graphemes if g), key=len, reverse=True)
         self._ipa_of = {g: (v[0] if v else "") for g, v in graphemes.items()}
+        #: Consonant graphemes whose last letter is a vowel letter, such as
+        #: Spanish ⟨qu gu⟩ (/k ɡ/): every reading is a consonant, so the vowel
+        #: letter is part of the onset and is never a nucleus of its own.
+        self.vowel_final_consonants = frozenset(
+            g.lower() for g, v in graphemes.items()
+            if len(g) > 1 and not _is_vowel_char(g[0])
+            and _is_vowel_char(g[-1]) and v
+            and all(r and not any(_is_vowel_char(c) for c in r) for r in v))
         #: Verdicts, keyed by the consonant run asked about. The runs come
         #: from words the caller supplies, so the key space is unbounded and
         #: the cache is bounded to match.
@@ -839,6 +847,7 @@ def syllabify(
     spec: Optional[LanguageSpec] = None,
     max_onset: Optional[int] = None,
     semivowels: Optional[Dict[str, str]] = None,
+    onset_graphemes: Sequence[str] = (),
 ) -> List[str]:
     """Split *word* into syllables by vowel groups.
 
@@ -867,6 +876,10 @@ def syllabify(
     :func:`~orthography2ipa.vowels.semivowel_role` for ⟨y⟩ and ⟨w⟩, which
     decides where those letters are nuclei (see :func:`_nucleus_mask`).
     Without it, each character is judged on its own.
+
+    *onset_graphemes* are the consonant graphemes that end in a vowel letter
+    (Spanish ⟨qu gu⟩). With *diphthongs*, that letter stays in the onset
+    before another vowel, so ⟨quieres⟩ is quie-res and ⟨acequia⟩ a-ce-quia.
     """
     is_vowel_char = (lambda c: c.lower() in vowels) if vowels is not None else _is_vowel_char
     if not word:
@@ -874,7 +887,8 @@ def syllabify(
     nucleus = _nucleus_mask(word, is_vowel_char, semivowels)
     judge = _judge_for(spec, max_onset)
     if diphthongs:
-        sylls = _syllabify_with_diphthongs(word, nucleus, diphthongs)
+        sylls = _syllabify_with_diphthongs(word, nucleus, diphthongs,
+                                           onset_graphemes)
         if judge is not None:
             sylls = _rebalance_onsets(sylls, nucleus, judge)
         if coda_liquid_capture:
@@ -928,6 +942,7 @@ def _syllabify_with_diphthongs(
     word: str,
     nucleus: Sequence[bool],
     diphthongs: Sequence[str],
+    onset_graphemes: Sequence[str] = (),
 ) -> List[str]:
     """:func:`syllabify` with a vowel run split into nuclei by *diphthongs*.
 
@@ -935,11 +950,23 @@ def _syllabify_with_diphthongs(
     opens the syllable of the nucleus that follows it, a trailing consonant
     run joins the last syllable, and only the run→nuclei step differs.
     *nucleus* is the :func:`_nucleus_mask` of *word*.
+
+    *onset_graphemes* are consonant graphemes that end in a vowel letter. When
+    the onset so far and the next letter spell one of them, and a vowel
+    follows, the letter joins the onset: the ⟨u⟩ of Spanish ⟨quieres⟩ is part
+    of ⟨qu⟩, so the word is quie-res and not qui-e-res.
     """
     syllables: List[str] = []
     onset = ""
     i = 0
     while i < len(word):
+        if onset and i + 1 < len(word) and nucleus[i + 1] and any(
+                g[-1] == word[i].lower()
+                and onset[len(onset) - len(g) + 1:].lower() == g[:-1]
+                for g in onset_graphemes):
+            onset += word[i]
+            i += 1
+            continue
         if not nucleus[i]:
             onset += word[i]
             i += 1
@@ -1005,6 +1032,8 @@ def _syllables_for(
         vowels = {v.lower() for v in spec.stress.vowel_letters}
     elif spec is not None:
         semivowels = _semivowel_roles(spec)
+    judge = _judge_for(spec)
+    onset_graphemes = judge.vowel_final_consonants if judge else frozenset()
     max_onset = None
     if spec is not None and not spec.constrain_onsets:
         # The spec has not opted in: its onset inventory has not been checked
@@ -1016,7 +1045,8 @@ def _syllables_for(
             and spec.stress.max_onset_declared:
         max_onset = spec.stress.max_onset
     return syllabify(word, vowels=vowels, diphthongs=diphthongs, spec=spec,
-                     max_onset=max_onset, semivowels=semivowels)
+                     max_onset=max_onset, semivowels=semivowels,
+                     onset_graphemes=onset_graphemes)
 
 
 def _spec_for(lang: str) -> Optional[LanguageSpec]:
@@ -1217,6 +1247,144 @@ def _hiatus_merge_sites(syllables: Sequence[str]) -> List[int]:
     return sites
 
 
+#: The IPA diacritics that make a vowel NON-syllabic: inverted breve below and
+#: inverted breve above. A vowel carrying one is a glide, never a nucleus.
+_NON_SYLLABIC = "\u032f\u0311"
+
+#: How a written syllable boundary relates to the transcription.
+_HIATUS, _MERGE = "hiatus", "merge"
+
+
+def _written_vowel_contacts(
+    syllables: Sequence[str],
+    rules: StressRules,
+    spec: Optional[LanguageSpec],
+) -> Dict[int, str]:
+    """The boundaries of *syllables* where two written vowels are in contact.
+
+    A boundary qualifies when the syllable before it ends in a vowel letter
+    and the syllable after it starts with one, after an onset that writes
+    nothing (every reading of each of its graphemes is empty, as Spanish
+    ⟨h⟩). The value says what the boundary is:
+
+    * ``_HIATUS`` when the two letters are not one of the spec's
+      ``diphthongs``. The spelling records two nuclei that the transcription
+      may run together: the accent of Spanish ⟨país⟩ is lost in [pais], and
+      the ⟨h⟩ of ⟨ahorrábamos⟩ in [aoraβamos].
+    * ``_MERGE`` when they are, across a silent letter. The pair can then be
+      one nucleus, because the silent letter does not stop the diphthong
+      (Spanish ⟨desahucio⟩ is de-sahu-cio), and the transcription decides
+      whether it is.
+
+    The key is the index of the syllable AFTER the boundary.
+    """
+    diphthongs = {d.lower() for d in rules.diphthongs}
+    judge = _judge_for(spec)
+    graphemes = (spec.graphemes or {}) if spec is not None else {}
+    contacts: Dict[int, str] = {}
+    for i in range(1, len(syllables)):
+        before, after = syllables[i - 1], syllables[i]
+        if not before or not is_basic_vowel_letter(before[-1]):
+            continue
+        j = 0
+        while j < len(after) and not is_basic_vowel_letter(after[j]):
+            j += 1
+        if j == len(after):
+            continue
+        if j and (judge is None or not all(
+                g in graphemes and not any(graphemes[g])
+                for g in judge.graphemes_of(lower_str(after[:j], spec.code)))):
+            continue
+        if (before[-1] + after[j]).lower() not in diphthongs:
+            contacts[i] = _HIATUS
+        elif j:
+            contacts[i] = _MERGE
+    return contacts
+
+
+def _split_first_nucleus(syll: str) -> Optional[Tuple[str, str]]:
+    """*syll* cut after its first syllabic vowel, when another one follows.
+
+    The onset and the first vowel, with its diacritics and length mark, stay
+    on the left. The next vowel and the rest of the syllable go to the right.
+    ``None`` when the nucleus has one syllabic vowel only: a vowel with a
+    non-syllabic diacritic (Spanish [ai̯]) is a glide.
+    """
+    i = 0
+    while i < len(syll) and not _is_vowel_char(syll[i]):
+        i += 1
+    if i == len(syll):
+        return None
+    i += 1
+    while i < len(syll) and (unicodedata.combining(syll[i])
+                             or syll[i] in _LENGTH_MARKS):
+        if syll[i] in _NON_SYLLABIC:
+            return None
+        i += 1
+    if i == len(syll) or not _is_vowel_char(syll[i]):
+        return None
+    if i + 1 < len(syll) and syll[i + 1] in _NON_SYLLABIC:
+        return None
+    return syll[:i], syll[i:]
+
+
+def _align_written_syllables(
+    syllables: Sequence[str],
+    ipa_sylls: Sequence[str],
+    rules: StressRules,
+    spec: Optional[LanguageSpec],
+) -> Optional[Tuple[List[str], List[int]]]:
+    """Map each written syllable onto the IPA syllable that holds its nucleus.
+
+    The stress index counts written syllables, so a transcription with fewer
+    syllables needs to know WHERE it has fewer. Every anchoring in
+    :func:`apply_stress_mark` guesses: it assumes that the missing syllables
+    stand before the stress, or after it. Where two written vowels are in
+    contact (:func:`_written_vowel_contacts`), the spelling says it instead.
+    The two divisions are walked in step:
+
+    * at a hiatus, the IPA syllable in hand is cut after its first syllabic
+      vowel when the transcription ran the two vowels together, so that
+      Spanish [pais] becomes pa-is;
+    * at a merge, the next written syllable maps onto the same IPA syllable,
+      when the transcription holds both vowels in it;
+    * at every other boundary, the walk moves to the next IPA syllable.
+
+    Returns the IPA syllables, cut where needed, and for each written
+    syllable the index of its IPA syllable. ``None`` when the walk does not
+    use up the transcription exactly, or when no contact accounts for the
+    difference: the transcription then lost a syllable for another reason
+    (elision, glide formation), and the caller keeps its own anchoring.
+    """
+    contacts = _written_vowel_contacts(syllables, rules, spec)
+    if not contacts:
+        return None
+    out: List[str] = []
+    slots = [0]
+    pending = ipa_sylls[0]
+    j = 0
+    for k in range(1, len(syllables)):
+        kind = contacts.get(k)
+        cut = _split_first_nucleus(pending) if kind else None
+        if kind == _MERGE and cut is not None:
+            slots.append(len(out))
+            continue
+        if kind == _MERGE or cut is None:
+            j += 1
+            if j == len(ipa_sylls):
+                return None
+            out.append(pending)
+            pending = ipa_sylls[j]
+        else:
+            out.append(cut[0])
+            pending = cut[1]
+        slots.append(len(out))
+    if j != len(ipa_sylls) - 1:
+        return None
+    out.append(pending)
+    return out, slots
+
+
 def _glide_anchored_index(
     syllables: Optional[Sequence[str]],
     ipa_sylls: Sequence[str],
@@ -1273,6 +1441,7 @@ def apply_stress_mark(
     ipa_syllables: Optional[Sequence[str]] = None,
     mark: Optional[str] = None,
     secondary_indices: Sequence[int] = (),
+    spec: Optional[LanguageSpec] = None,
 ) -> str:
     """Insert ``rules.stress_mark`` before the stressed syllable of *ipa*.
 
@@ -1306,6 +1475,10 @@ def apply_stress_mark(
         division is what its weights were read off), and must pass it back:
         the naive :func:`syllabify` used otherwise cuts ``saːliq`` as
         ``sa|ːliq``, so the mark would land *inside* the long vowel.
+    spec : Optional[LanguageSpec]
+        The spec *syllables* were divided with. It tells which letters are
+        silent, so that a hiatus written across one (Spanish ⟨ahí⟩) can
+        divide the transcription too.
 
     Already-marked transcriptions are returned unchanged.
     """
@@ -1323,6 +1496,25 @@ def apply_stress_mark(
                  else syllabify_for_mark(ipa, rules))
     if not ipa_sylls:
         return ipa
+    aligned = (_align_written_syllables(syllables, ipa_sylls, rules, spec)
+               if syllables is not None and len(ipa_sylls) < len(syllables)
+               and -len(syllables) <= stress_index < len(syllables)
+               else None)
+    if aligned is not None:
+        # The transcription has fewer syllables than the spelling, and the
+        # spelling shows where: two written vowels in contact. The anchorings
+        # below would guess the place instead, and a merge on the other side
+        # of the stress (⟨ahorrábamos⟩ [aoraβamos]) moves the mark.
+        ipa_sylls, slots = aligned
+        main = slots[stress_index]
+        marked = {main}
+        for sec in secondary_indices:
+            if 0 <= sec < len(slots) and slots[sec] not in marked:
+                marked.add(slots[sec])
+                ipa_sylls[slots[sec]] = _prefix_mark(ipa_sylls[slots[sec]],
+                                                     SECONDARY_MARK)
+        ipa_sylls[main] = _prefix_mark(ipa_sylls[main], _mark)
+        return "".join(ipa_sylls)
 
     if stress_index < 0:
         offset_from_end = -stress_index
