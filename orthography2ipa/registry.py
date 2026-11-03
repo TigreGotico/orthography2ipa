@@ -139,35 +139,39 @@ _ALIASES: Dict[str, str] = {
     # ``bcc`` is a distinct, separately-cited individual-variety spec.
     # Pin it to itself so the macro-collapse step does not shadow it.
     "bcc": "bcc",
-    # Arabic spoken dialects are keyed by their ISO 639-3 individual code
-    # (SCHEMA.md, "Minting a private-use lect code"). A bare code resolves to
-    # the spec of that code; ``afb`` and ``apc`` name the abstract Gulf and
-    # Levantine nodes, which carry the bare code as their own key.
-    "arz": "arz-EG",          # Egyptian Arabic
-    "aec": "aec-EG",          # Saʿīdi (Upper Egyptian) Arabic
-    "avl": "avl-EG",          # Eastern Egyptian Bedawi Arabic
-    "ary": "ary-MA",          # Moroccan Arabic (Darija)
-    "arq": "arq-DZ",          # Algerian Arabic
-    "aeb": "aeb-TN",          # Tunisian Arabic
-    "mey": "mey-MR",          # Hassaniyya
-    "apd": "apd-SD",          # Sudanese Arabic
-    "shu": "shu-TD",          # Chadian Arabic (shu-NG is its child)
-    "acx": "acx-OM",          # Omani Arabic
-    "adf": "adf-OM",          # Dhofari Arabic
-    "ayn": "ayn-YE",          # Sanaani Arabic
-    "acm": "acm-IQ",          # Mesopotamian Arabic (gilit; Glottolog meso1252)
-    "abv": "abv-BH",          # Bahārna Arabic (B dialects of Bahrain)
-    "ars": "ars-SA",          # Najdi Arabic
-    "acw": "acw-SA",          # Hijazi Arabic
-    # SIL retired ``ajp`` (South Levantine Arabic) into ``apc``.
-    "ajp": "apc-JO",
+    # Arabic spoken-dialect ISO 639-3 codes → the o2i lect that describes the
+    # same variety. WikiPron and most NLP corpora tag Arabic dialects by these
+    # ISO 639-3 codes; o2i keys them by BCP-47 region/variant subtags. These
+    # aliases let ``get("arz")`` resolve to the Egyptian Arabic spec, etc.
+    "arz": "ar-EG",           # Egyptian Arabic
+    "ary": "ar-MA",           # Moroccan Arabic (Darija)
+    "arq": "ar-DZ",           # Algerian Arabic
+    "aeb": "ar-TN",           # Tunisian Arabic
+    "apc": "ar-SY",           # North Levantine Arabic (Syrian/Lebanese core)
+    "ajp": "ar-JO",           # South Levantine Arabic (Jordanian/Palestinian)
+    "afb": "ar-x-gulf",       # Gulf Arabic
+    "acw": "ar-SA-x-hejaz",   # Hijazi Arabic
+    # ``abv`` (Baharna) resolved to a zero-grapheme placeholder while the modelled
+    # spec describes the variety with the Gulf table plus its own reflexes. The
+    # placeholder is deleted with the alias, as for acm: a spec file must stay
+    # reachable by its own code.
+    "abv": "ar-BH-x-baharna",  # Bahārna Arabic (B dialects of Bahrain)
+    "aec": "ar-EG-x-saidi",   # Saʿīdi (Upper Egyptian) Arabic
+    "avl": "ar-EG-x-bedawi",  # Eastern Egyptian Bedawi Arabic
+    "adf": "ar-OM-x-dhofari", # Dhofari Arabic
+    "acx": "ar-OM",           # Omani Arabic
+    "apd": "ar-SD",           # Sudanese Arabic
+    "ayn": "ar-YE",           # Sanaani Arabic
+    "mey": "ar-MR",           # Hassaniyya
+    "shu": "ar-TD",           # Chadian Arabic (ar-NG is its child)
     # ``pnb`` (Western Panjabi) is an ISO 639-3 individual code that resolved to
     # ``lah``, its macrolanguage, which carries no graphemes at all -- so the
     # code reached a spec that produces nothing while ``pa-PK`` describes the
     # same variety with 57 keys and declares the code.
     "pnb": "pa-PK",           # Western Punjabi (Shahmukhi)
     # Codes with exactly one declaring spec, whose name is the same language as
-    # the code's, and no file of their own to shadow them.
+    # the code's, and no file of their own to shadow them. Same shape as the
+    # Arabic country codes above.
     "ajg": "aja",             # Aja (Adja)
     "gej": "gen",             # Gen (Mina)
     "xdc": "xda",             # Dacian/Thracian
@@ -183,13 +187,33 @@ _ALIASES: Dict[str, str] = {
     # aec, avl and adf, and the placeholder's own notes already describe
     # Bavarian as "an Upper German variety of Bavaria, Austria and South Tyrol".
     "bar": "de-x-bavarian",   # Bavarian (Boarisch)
+    # ``ars`` (Najdi Arabic) is declared by four Saudi specs and was reached by
+    # none of them: langcodes placed it on ``ar-SA`` and the nearest match came
+    # back ``ar-SA-x-dawasir``, which declares ``afb`` and is a different
+    # variety, so the caller got Gulf Arabic for a Najdi tag with no error.
+    #
+    # ``ar-SA-x-najd`` is the target because it is the only one of the four
+    # named Najdi Arabic and the only one holding glottocode najd1235 in its own
+    # right; ``ar-SA-x-qassim`` is its child and shares that code. The other two
+    # are not sub-varieties of it -- ``ar-SA-x-rijal-alma`` and
+    # ``ar-SA-x-tihama-qahtan`` both parent to ``ar-x-peninsular`` with no
+    # glottocode, and neither ʿAsīr nor the Tihāma coast is in Najd. That those
+    # two declare ``ars`` at all is a separate question from which spec the code
+    # should reach, and one this alias does not answer.
+    "ars": "ar-SA-x-najd",    # Najdi Arabic
+    # ``acm`` (Mesopotamian Arabic) is the ISO code for the variety ``ar-IQ``
+    # already describes: ``ar-IQ`` declares ``glottolog_code`` meso1252 (Gilit
+    # Mesopotamian Arabic) and ``iso639_3`` acm. It resolved to a separate
+    # 44-key skeleton whose key set was a strict subset of ``ar-IQ``'s, so
+    # ``get("acm")`` returned a poorer description of the same dialect.
+    "acm": "ar-IQ",           # Mesopotamian Arabic (gilit; Glottolog meso1252)
     # Dialects named in a private-use subtag. langcodes ignores private-use
     # content when it measures tag distance, so ``ar-x-najdi`` would otherwise
     # fall to the nearest bare match (``ar``); pin the spoken adjective to the
-    # spec it names.
-    "ar-x-najdi": "ars-SA",       # Najdi Arabic
-    "ar-x-hejazi": "acw-SA",      # Hejazi Arabic
-    "ar-x-hijazi": "acw-SA",      # Hejazi Arabic (alternate romanization)
+    # spec, whose own token differs (``najdi`` -> ``najd``).
+    "ar-x-najdi": "ar-SA-x-najd",     # Najdi Arabic
+    "ar-x-hejazi": "ar-SA-x-hejaz",   # Hejazi Arabic
+    "ar-x-hijazi": "ar-SA-x-hejaz",   # Hejazi Arabic (alternate romanization)
     # Barranquenho is keyed ``ext-PT-x-barrancos``: a language of its own spoken
     # in Portugal, not a Portuguese dialect. ``pt-PT-x-barrancos`` is a retired
     # spelling of the same lect; without the alias ``closest_lang`` resolves it
@@ -216,48 +240,6 @@ _ALIASES: Dict[str, str] = {
     "yue-Hant": "yue",
 }
 
-#: The keys a spec had before it took its canonical key, mapped to that key.
-#: Each is an exact alias. The nearest-match step still measures a tag against
-#: the old key, so a tag that adds an unknown subtag to it (``ar-MA-x-fes``)
-#: lands on the same spec as before the rename.
-_RENAMED: Dict[str, str] = {
-    "ar-EG":                "arz-EG",
-    "ar-EG-x-fayyum":       "arz-EG-x-fayyum",
-    "ar-EG-x-saidi":        "aec-EG",
-    "ar-EG-x-bedawi":       "avl-EG",
-    "ar-MA":                "ary-MA",
-    "ar-DZ":                "arq-DZ",
-    "ar-TN":                "aeb-TN",
-    "ar-MR":                "mey-MR",
-    "ar-SD":                "apd-SD",
-    "ar-TD":                "shu-TD",
-    "ar-NG":                "shu-NG",
-    "ar-OM":                "acx-OM",
-    "ar-OM-x-dhofari":      "adf-OM",
-    "ar-YE":                "ayn-YE",
-    "ar-YE-x-highland":     "ayn-YE-x-highland",
-    "ar-YE-x-manakha":      "ayn-YE-x-manakha",
-    "ar-IQ":                "acm-IQ",
-    "ar-SY":                "apc-SY",
-    "ar-TR-x-cukurova":     "apc-TR-x-cukurova",
-    "ar-LB":                "apc-LB",
-    "ar-JO":                "apc-JO",
-    "ar-PS":                "apc-PS",
-    "ar-x-levantine":       "apc",
-    "ar-x-gulf":            "afb",
-    "ar-SA-x-sharqiyya":    "afb-SA-x-sharqiya",
-    "ar-SA-x-dawasir":      "afb-SA-x-dawasir",
-    "ar-KW":                "afb-KW",
-    "ar-QA":                "afb-QA",
-    "ar-AE":                "afb-AE",
-    "ar-BH":                "afb-BH",
-    "ar-BH-x-baharna":      "abv-BH",
-    "ar-SA-x-najd":         "ars-SA",
-    "ar-SA-x-qassim":       "ars-SA-x-qassim",
-    "ar-SA-x-shamali":      "ars-SA-x-shamali",
-    "ar-SA-x-hejaz":        "acw-SA",
-}
-_ALIASES.update(_RENAMED)
 
 # Default variety for a region tag whose specs are all sub-regional, so a bare
 # region has no exact spec and langcodes' nearest match would pick whichever
@@ -268,7 +250,7 @@ _ALIASES.update(_RENAMED)
 # widely spoken (Ingham, Najdi Arabic, 1994) — rather than asserting that
 # Saudi Arabic *is* Najdi anywhere in the data.
 _REGION_DEFAULTS: Dict[str, str] = {
-    "ar-SA": "ars-SA",
+    "ar-SA": "ar-SA-x-najd",
 }
 
 try:
@@ -291,7 +273,7 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
     4. The default region of a bare primary-language tag, when that
        spec is registered (``pt`` → ``pt-PT``), or the curated default
        variant of a region tag with only sub-regional specs
-       (``ar-SA`` → ``ars-SA``).
+       (``ar-SA`` → ``ar-SA-x-najd``).
     5. Nearest registered code by language distance
        (``en-NZ`` → ``en-GB``); no usable match leaves *code* unchanged.
     """
@@ -330,9 +312,8 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
         return code
     # An unknown variant falls back to the standard variety, not to whichever
     # sibling lect ties with it: private use counts for nothing in the distance.
-    match = closest_lang(code, sorted({*available, *_RENAMED}), lects="standard")
+    match = closest_lang(code, available, lects="standard")
     if match:
-        match = _RENAMED.get(match, match)
         _LOG.debug("resolved language code %r to nearest registered %r",
                    code, match)
         return match

@@ -11,7 +11,7 @@ import pytest
 from orthography2ipa import get
 from orthography2ipa.g2p import G2P
 
-DHOFARI, OMANI = "adf-OM", "acx-OM"
+DHOFARI, OMANI = "ar-OM-x-dhofari", "ar-OM"
 
 
 def test_it_hangs_off_omani_with_the_right_codes():
@@ -27,7 +27,7 @@ def test_all_three_sociolect_readings_are_carried():
 
 
 def test_the_parent_reading_is_not_silently_dropped():
-    """acx-OM reads ⟨ج⟩ as [dʒ]; that is Davey's Group 2 and must survive."""
+    """ar-OM reads ⟨ج⟩ as [dʒ]; that is Davey's Group 2 and must survive."""
     assert get(OMANI).graphemes["ج"] == ["dʒ"]
     assert "dʒ" in get(DHOFARI).graphemes["ج"]
 
@@ -43,7 +43,7 @@ def json_keys():
     import json
     from pathlib import Path
     import orthography2ipa
-    p = Path(orthography2ipa.__file__).parent / "data" / "adf-OM.json"
+    p = Path(orthography2ipa.__file__).parent / "data" / "ar-OM-x-dhofari.json"
     return json.loads(p.read_text(encoding="utf-8"))["graphemes"]
 
 

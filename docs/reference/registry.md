@@ -41,7 +41,7 @@ A clade node is for classification only. It carries no phoneme data, no spec inh
 
 1. The alias table `_ALIASES`, which holds ISO 639-3 codes and private-use tags that `langcodes` does not round-trip.
 2. `langcodes.standardize_tag(code, macro=True)`, for a code with no private-use subtag. The result goes through the alias table again.
-3. An exact match against the registered spec codes. A private-use tag also matches without regard to case, so `ars-sa-x-qassim` finds `ars-SA-x-qassim`.
+3. An exact match against the registered spec codes. A private-use tag also matches without regard to case, so `ar-sa-x-najd` finds `ar-SA-x-najd`.
 4. For a bare language tag, the spec of its default region (`linguatag.with_default_region`), when that spec is registered. For a region that has only sub-regional specs, a curated default variant.
 5. The nearest registered code by language distance (`linguatag.closest_lang`), so `en-NZ` gives `en-GB`. A private-use subtag counts for nothing in the distance, so an unknown variant ties with the sibling lects of its language. The call passes `lects="standard"`, which breaks the tie toward the standard variety: `arb-x-zzz` gives `ar`, not an Arabic dialect. With no usable match, the code stays as it is, and `get()` raises `KeyError`.
 
@@ -57,7 +57,7 @@ The default region of a bare tag is its motherland, the region where the languag
 | `it` | `it-IT` |
 | `pt` | `pt-PT` |
 | `ro` | `ro-RO` |
-| `ar-SA` | `ars-SA` (curated) |
+| `ar-SA` | `ar-SA-x-najd` (curated) |
 
 The `ar-SA` default is an editorial choice, not a claim in the spec data. Saudi Arabia has several documented varieties, Najdi and Hejazi among them, and no single standard spoken form. `ar-SA` goes to Najdi, the variety of the capital region and the most widely spoken (Ingham, *Najdi Arabic*, 1994).
 
@@ -100,15 +100,14 @@ The alias table maps these ISO 639-3 codes of major languages to a spec:
 | `ron` | `ro-RO` | `mwl` | `mwl` | `arg` | `an` |
 | `lat` | `la` | `tgk` | `tg` | `prs` | `fa-AF` |
 
-The table holds five other kinds of entry:
+The table holds four other kinds of entry:
 
 | Kind | Examples |
 | :--- | :--- |
-| The bare ISO 639-3 code of an Arabic variety, mapped to the spec keyed by that code | `arz` to `arz-EG`, `ars` to `ars-SA`, and `ajp`, which SIL retired into `apc`, to `apc-JO` |
-| A key that a spec had before it took its ISO 639-3 code, mapped to that spec | `ar-EG` to `arz-EG`, `ar-SA-x-najd` to `ars-SA`, `ar-x-gulf` to `afb` |
+| The ISO 639-3 code of an Arabic variety, mapped to its dialect spec | `arz` to `ar-EG`, `ary` to `ar-MA`, `acm` to `ar-IQ`, `ars` to `ar-SA-x-najd` |
 | An individual-language code that `macro=True` standardisation would collapse into its macrolanguage, mapped to itself | `quz`, which would otherwise become `qu`, and `diq`, which would become `zza` |
 | An ISO 639-3 code whose variety has its spec under another key | `pnb` to `pa-PK`, `bar` to `de-x-bavarian` |
-| A private-use tag, mapped to the spec that holds the variety | `pt-PT-x-barrancos` to `ext-PT-x-barrancos`, `pt-BR-x-sao-paulo` to `pt-BR-x-sp`, `ar-x-hijazi` to `acw-SA` |
+| A private-use tag, mapped to the spec that holds the variety | `pt-PT-x-barrancos` to `ext-PT-x-barrancos`, `pt-BR-x-sao-paulo` to `pt-BR-x-sp`, `ar-x-hijazi` to `ar-SA-x-hejaz` |
 
 Galician has one standard spec, `gl-ES`, and the bare tag `gl` resolves to it. The variety codes `gl-x-central`, `gl-x-occidental`, `gl-x-oriental`, `gl-x-eonavia` and `gl-x-reintegrado` resolve to the `gl-ES-x-*` spec of the same variety. `_ALIASES` in `registry.py` holds the full table.
 
@@ -145,7 +144,7 @@ The package declares one entry point of its own in `pyproject.toml`:
 silabificador = "orthography2ipa.syllabifiers:SilabificadorSyllabifier"
 ```
 
-It loads only when the `silabificador` package is installed, through the `portuguese` extra. It claims the Portuguese codes: `pt`, `pt-PT`, `pt-BR`, `pt-AO` and the other national varieties. With no syllabifier installed, `get_syllabifier()` returns `None` for every code, and the engine uses the bundled vowel-group splitter.
+It loads only when the `silabificador` package is installed, through the `portuguese` extra. It claims the Portuguese codes: `pt`, `pt-PT`, `pt-BR`, `pt-AO` and the other national varieties, and the regional `pt-BR-x-*` specs, which read the `pt-BR` grapheme table. With no syllabifier installed, `get_syllabifier()` returns `None` for every code, and the engine uses the bundled vowel-group splitter.
 
 ---
 [← Command line](cli.md) · [Home](../index.md) · [Public API stability →](api_stability.md)

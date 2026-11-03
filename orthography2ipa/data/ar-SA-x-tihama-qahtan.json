@@ -99,7 +99,7 @@
     "start_year": 1400,
     "end_year": null
   },
-  "iso639_3": null,
+  "iso639_3": "ars",
   "allophone_rules": [],
   "location": {
     "latitude": 18.6,
@@ -125,7 +125,7 @@
     "superheavy_final_attracts": true,
     "max_onset": 1,
     "stress_mark": "ˈ",
-    "notes": "Quantity-sensitive Arabic stress, inherited from the peninsular parent; see ars-SA for the cascade and input contract. Prosodic clitics as for the peninsular class.",
+    "notes": "Quantity-sensitive Arabic stress, inherited from the peninsular parent; see ar-SA-x-najd for the cascade and input contract. Prosodic clitics as for the peninsular class.",
     "cliticless_words": [
       "فِي",
       "مَا",

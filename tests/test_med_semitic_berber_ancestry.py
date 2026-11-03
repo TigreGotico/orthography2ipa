@@ -6,7 +6,7 @@ Chains exercised:
     uga -> x-clade-semi1276
     hbo -> sem-x-central          he -> hbo -> sem-x-central
     jrb -> arb                    (macrolanguage collective, not a clade)
-    ajt -> jrb / aeb-TN            aju -> jrb / ary-MA           yhd -> jrb / acm-IQ
+    ajt -> jrb / ar-TN            aju -> jrb / ar-MA           yhd -> jrb / ar-IQ
     rif -> ber                    gnc -> ber
 """
 import pytest
@@ -71,9 +71,9 @@ class TestJudeoArabicMacronode:
         assert jrb.clade is False
 
     @pytest.mark.parametrize("code,regional_parent", [
-        ("ajt", "aeb-TN"),
-        ("aju", "ary-MA"),
-        ("yhd", "acm-IQ"),
+        ("ajt", "ar-TN"),
+        ("aju", "ar-MA"),
+        ("yhd", "ar-IQ"),
     ])
     def test_single_genetic_parent_plus_jrb_related(self, code, regional_parent):
         # Every o2i language has AT MOST ONE PARENT (engine constraint,

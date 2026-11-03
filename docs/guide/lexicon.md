@@ -60,15 +60,15 @@ orthography2ipa.markup.MarkupError: <phoneme ph='ˈmiːtinɡ'> uses ['ɡ'], whic
 ...
 ```
 
-In Najdi Arabic, /ɡ/ is the Gulf reflex of qāf, and the `ars-SA` spec has it. The same reading then passes:
+In Najdi Arabic, /ɡ/ is the Gulf reflex of qāf, and the `ar-SA-x-najd` spec has it. The same reading then passes:
 
 ```python
->>> G2P("ars-SA").transcribe(
+>>> G2P("ar-SA-x-najd").transcribe(
 ...     'عِنْدِي <phoneme ph="ˈmiːtinɡ">meeting</phoneme> السَّاعَة')
 'ˈʕindiː ˈmiːtinɡ asˈsaːʕa'
 ```
 
-The inventory is a claim about the phonology, so it separates varieties that really differ. A refusal for `ar` and an acceptance for `ars-SA` show the check at work.
+The inventory is a claim about the phonology, so it separates varieties that really differ. A refusal for `ar` and an acceptance for `ar-SA-x-najd` show the check at work.
 
 A caller who means to emit a phoneme outside the inventory says so in code:
 

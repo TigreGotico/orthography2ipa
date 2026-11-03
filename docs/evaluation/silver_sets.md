@@ -175,9 +175,9 @@ The Arabic set covers Classical Arabic (`arb`), Modern Standard Arabic (`ar`), t
 
 ### Grouping nodes
 
-The grouping nodes are `afb`, `apc`, `ar-x-maghrebi`, `ar-x-mashriqi` and `ar-x-peninsular`. Their register is pan-group. A sentence uses only words that the leaves of the group share. Examples are Gulf `šlon` and `wāyid`, Levantine `qaddēsh` and `baddi`, and pan-Maghrebi `bzzāf` and `shri` in the sense of Heath and Marçais.
+The grouping nodes are `ar-x-gulf`, `ar-x-levantine`, `ar-x-maghrebi`, `ar-x-mashriqi` and `ar-x-peninsular`. Their register is pan-group. A sentence uses only words that the leaves of the group share. Examples are Gulf `šlon` and `wāyid`, Levantine `qaddēsh` and `baddi`, and pan-Maghrebi `bzzāf` and `shri` in the sense of Heath and Marçais.
 
-Where the leaves of a group differ, the node does not choose a reflex. The set shows the rank-1 candidate of the node instead. `ar-x-maghrebi` keeps /q/ and puts ʒ first for ǧīm. `ar-x-peninsular` puts the fricative interdentals first and keeps the diphthongs. `afb` and `apc` change ay and aw to ē and ō. That is the documented behaviour of the node, and each row notes it.
+Where the leaves of a group differ, the node does not choose a reflex. The set shows the rank-1 candidate of the node instead. `ar-x-maghrebi` keeps /q/ and puts ʒ first for ǧīm. `ar-x-peninsular` puts the fricative interdentals first and keeps the diphthongs. `ar-x-gulf` and `ar-x-levantine` change ay and aw to ē and ō. That is the documented behaviour of the node, and each row notes it.
 
 ### Tags
 
@@ -207,7 +207,7 @@ The Arabic `draft` vocalizes each line with text2tashkeel (`rawi-ensemble`) befo
 `scripts/_gold_build.py` is a second way to write an Arabic file. It takes a lect code and a Python file that defines `ROWS` as a list of `(sentence, gloss_en, shape_tags, notes)` tuples. It computes `raw`, the IPA and the machine tags, warns about bare consonants, and overwrites `<lect>.tsv`:
 
 ```bash
-python scripts/_gold_build.py arz-EG rows_ar_eg.py
+python scripts/_gold_build.py ar-EG rows_ar_eg.py
 ```
 
 If a fix to the spec changes a letter mapping, run `scripts/gen_arabic_orthography_keys.py` again.
@@ -222,31 +222,31 @@ The set follows the conventions for vocalized text that `scripts/gen_arabic_orth
 |---|---|---|
 | `arb` | Sībawayhi's lateral emphatic ض [ɮˤ] | spec notes |
 | `ar` | the merged stop [dˤ] for ض | Versteegh 2001 |
-| `arz-EG` | ج /ɡ/, ق /ʔ/, stop interdentals, the article `اِلْ‍` | Badawi and Hinds 1986, Mitchell 1956 |
-| `apc-SY`, `apc-LB`, `apc-JO`, `apc-PS` | ق /ʔ/ (/g/ in the Jordanian koine), ج /ʒ/ (/dʒ/ in Jordan), ay and aw to ē and ō, final imāla -e written `ِة`. Beirut fronting of ā to ē is frequent, from an `apc-LB` spec rule. | Cowell 1964, Almbark and Hellmuth 2015, Al-Wer 2020, Cotter 2016 |
-| `acm-IQ` | gilit Iraqi: ق /ɡ/ written گ, ك to چ /tʃ/, interdentals kept, ay and aw to ē and ō | Erwin 1963 |
+| `ar-EG` | ج /ɡ/, ق /ʔ/, stop interdentals, the article `اِلْ‍` | Badawi and Hinds 1986, Mitchell 1956 |
+| `ar-SY`, `ar-LB`, `ar-JO`, `ar-PS` | ق /ʔ/ (/g/ in the Jordanian koine), ج /ʒ/ (/dʒ/ in Jordan), ay and aw to ē and ō, final imāla -e written `ِة`. Beirut fronting of ā to ē is frequent, from an `ar-LB` spec rule. | Cowell 1964, Almbark and Hellmuth 2015, Al-Wer 2020, Cotter 2016 |
+| `ar-IQ` | gilit Iraqi: ق /ɡ/ written گ, ك to چ /tʃ/, interdentals kept, ay and aw to ē and ō | Erwin 1963 |
 | `ar-IQ-x-qeltu` | /q/ and plain /k/ kept. The qeltu and gilit split is the diagnostic of the pair. | Blanc 1964 |
-| `apd-SD` | ج /ɟ/, a palatal stop, ق /ɡ/, and the words zōl and dāyir | Dickins 2007 |
-| `shu-TD`, `shu-NG` | g-dialect qāf, and frames with an n- first person singular imperfect | Owens 1993 |
-| `afb-AE`, `afb-BH`, `afb-KW`, `afb-QA` | ق /ɡ/, affricated kāf چ /tʃ/, interdentals kept, ē and ō from `afb` | Holes 2004, Alshammari 2026 |
-| `acx-OM` | the sedentary control: /q/, plain /k/, diphthongs kept | Al-Balushi 2016 |
-| `ars-SA` | the epenthesis of the gahawa syndrome (gahawa, aḥamar) | Ingham 1994 |
-| `acw-SA` | urban stop interdentals, and a register close to Cairene | Omar 1975, Abdoh 2010 |
-| `ayn-YE` | the verb aští, diphthongs and interdentals kept | Watson 2002 |
-| `ars-SA-x-qassim` | the Najdi velar affricates [ts] and [dz], and /aj aw/ to [eː oː] (loːnak, joːm, bureːda), which central Najdi does not have | Alhoody 2019:42, Al-Rojaie 2013 |
+| `ar-SD` | ج /ɟ/, a palatal stop, ق /ɡ/, and the words zōl and dāyir | Dickins 2007 |
+| `ar-TD`, `ar-NG` | g-dialect qāf, and frames with an n- first person singular imperfect | Owens 1993 |
+| `ar-AE`, `ar-BH`, `ar-KW`, `ar-QA` | ق /ɡ/, affricated kāf چ /tʃ/, interdentals kept, ē and ō from `ar-x-gulf` | Holes 2004, Alshammari 2026 |
+| `ar-OM` | the sedentary control: /q/, plain /k/, diphthongs kept | Al-Balushi 2016 |
+| `ar-SA-x-najd` | the epenthesis of the gahawa syndrome (gahawa, aḥamar) | Ingham 1994 |
+| `ar-SA-x-hejaz` | urban stop interdentals, and a register close to Cairene | Omar 1975, Abdoh 2010 |
+| `ar-YE` | the verb aští, diphthongs and interdentals kept | Watson 2002 |
+| `ar-SA-x-qassim` | the Najdi velar affricates [ts] and [dz], and /aj aw/ to [eː oː] (loːnak, joːm, bureːda), which central Najdi does not have | Alhoody 2019:42, Al-Rojaie 2013 |
 | `ar-SA-x-rijal-alma` | the old lateral emphatics, ض as voiced [ɮˤ] and ظ as voiceless [ɬˤ], kept apart, and [q] for qāf | Watson and Al-Azraqi 2011, Asiri 2009, Al-Azraqi 2010 |
-| `afb-SA-x-sharqiya` | Baḥārna ج to [j], affricated kāf [tʃ], qāf [ɡ] | Johnstone 1967, Holes 2004, Al-Taisan 2022 |
-| `ary-MA` | heavy initial clusters, ma-...-š negation, n- first person singular, and the words ma-ṭīša, zwīn and bzzāf | Harrell 1962, Heath 2020 |
-| `aeb-TN` | barša and bāhi, with the interdentals kept | Gibson 2009 |
-| `arq-DZ` | mlīḥ and wāš rāk, attested in PADIC | Boucherit 2002 |
+| `ar-SA-x-sharqiyya` | Baḥārna ج to [j], affricated kāf [tʃ], qāf [ɡ] | Johnstone 1967, Holes 2004, Al-Taisan 2022 |
+| `ar-MA` | heavy initial clusters, ma-...-š negation, n- first person singular, and the words ma-ṭīša, zwīn and bzzāf | Harrell 1962, Heath 2020 |
+| `ar-TN` | barša and bāhi, with the interdentals kept | Gibson 2009 |
+| `ar-DZ` | mlīḥ and wāš rāk, attested in PADIC | Boucherit 2002 |
 | `ar-LY` | halba and nibbi, with ق /ɡ/ | Pereira 2008 |
-| `mey-MR` | Ḥassāniyya keeps the interdentals | Taine-Cheikh 2007 |
+| `ar-MR` | Ḥassāniyya keeps the interdentals | Taine-Cheikh 2007 |
 
 The lexical attestation also draws on the PADIC, QADI, EDC and SDC corpora. The sentences are written for the set, never copied from a corpus.
 
 ### Limits
 
-The specs of `shu-TD`, `shu-NG`, `aeb-TN`, `arq-DZ`, `ar-LY` and `mey-MR` have thinner grounding. Their sentences keep to well-attested features shared across the region. No dialect vocalization is text2tashkeel output as it stands: each draft is corrected against the sources of the lect. The IPA is broad, and the pre-pausal tanwīn is kept, as in full style.
+The specs of `ar-TD`, `ar-NG`, `ar-TN`, `ar-DZ`, `ar-LY` and `ar-MR` have thinner grounding. Their sentences keep to well-attested features shared across the region. No dialect vocalization is text2tashkeel output as it stands: each draft is corrected against the sources of the lect. The IPA is broad, and the pre-pausal tanwīn is kept, as in full style.
 
 ## `kabyle_tts`
 

@@ -2,12 +2,12 @@
 
 Covers the dialects added/reviewed in the Arabic expansion round:
 
-- Egyptian / Cairene (arz-EG)
-- Levantine intermediate (apc) + Syrian (apc-SY), Lebanese (apc-LB),
-  Jordanian (apc-JO), Palestinian (apc-PS)
-- Sudanese (apd-SD)
-- Hejazi (acw-SA) — qaf reflex correction
-- Gulf country passthroughs (afb-AE, afb-KW) — signature inherited from afb
+- Egyptian / Cairene (ar-EG)
+- Levantine intermediate (ar-x-levantine) + Syrian (ar-SY), Lebanese (ar-LB),
+  Jordanian (ar-JO), Palestinian (ar-PS)
+- Sudanese (ar-SD)
+- Hejazi (ar-SA-x-hejaz) — qaf reflex correction
+- Gulf country passthroughs (ar-AE, ar-KW) — signature inherited from ar-x-gulf
 
 Each gold item is derived by explicit reasoning from the dialect's documented
 phonology and verified against the data-driven engine.
@@ -17,7 +17,7 @@ Two assertion levels are used, matching what the engine can express:
 - **Word level** (``_ipa`` via :class:`G2P`): the signature *consonant* reflexes
   (qaf / jim / interdentals). Input is vocalised (harakat) so short vowels
   surface. The engine transcribes orthography, so vowel *length* and stress are
-  NOT asserted at word level (see grapheme-level tests and the arz-EG notes).
+  NOT asserted at word level (see grapheme-level tests and the ar-EG notes).
 - **Grapheme / allophone level** (``spec.graphemes`` / resolved allophones): the
   *variant* reflexes a single word cannot show — Gulf jim → /j/, Palestinian
   qaf → /k/, interdental merger alternates — and any claim the orthography-driven
@@ -69,7 +69,7 @@ def _assert_first(values, expected: str, label: str = "") -> None:
 
 
 # ═══════════════════════════════════════════════════════════════════════════
-# Egyptian / Cairene — arz-EG
+# Egyptian / Cairene — ar-EG
 # Signature: jim → /ɡ/, qaf → /ʔ/, interdentals merge to stops (t/d/dˤ).
 # جميل → gamiːl, قلب → ʔalb.  (Watson 2002; Mitchell 1956; Badawi & Hinds 1986)
 # ═══════════════════════════════════════════════════════════════════════════
@@ -77,7 +77,7 @@ def _assert_first(values, expected: str, label: str = "") -> None:
 
 @pytest.mark.linguistic
 class TestEgyptianArabic:
-    CODE = "arz-EG"
+    CODE = "ar-EG"
 
     @pytest.fixture(autouse=True, scope="class")
     def spec(self, request):
@@ -135,14 +135,14 @@ class TestEgyptianArabic:
 
 
 # ═══════════════════════════════════════════════════════════════════════════
-# Levantine intermediate — apc
+# Levantine intermediate — ar-x-levantine
 # Signature: qaf → /ʔ/ (urban), jim → /ʒ/, interdentals variable.
 # ═══════════════════════════════════════════════════════════════════════════
 
 
 @pytest.mark.linguistic
 class TestLevantineProto:
-    CODE = "apc"
+    CODE = "ar-x-levantine"
 
     @pytest.fixture(autouse=True, scope="class")
     def spec(self, request):
@@ -174,13 +174,13 @@ class TestLevantineProto:
 
 
 # ═══════════════════════════════════════════════════════════════════════════
-# Syrian (Damascene) — apc-SY
+# Syrian (Damascene) — ar-SY
 # ═══════════════════════════════════════════════════════════════════════════
 
 
 @pytest.mark.linguistic
 class TestSyrianArabic:
-    CODE = "apc-SY"
+    CODE = "ar-SY"
 
     @pytest.fixture(autouse=True, scope="class")
     def spec(self, request):
@@ -208,17 +208,17 @@ class TestSyrianArabic:
         _assert_contains(_grapheme(self.spec, "ق"), "q", label="ق learned")
 
     def test_parent(self):
-        assert self.spec.parent == "apc"
+        assert self.spec.parent == "ar-x-levantine"
 
 
 # ═══════════════════════════════════════════════════════════════════════════
-# Lebanese (Beiruti) — apc-LB
+# Lebanese (Beiruti) — ar-LB
 # ═══════════════════════════════════════════════════════════════════════════
 
 
 @pytest.mark.linguistic
 class TestLebaneseArabic:
-    CODE = "apc-LB"
+    CODE = "ar-LB"
 
     @pytest.fixture(autouse=True, scope="class")
     def spec(self, request):
@@ -244,18 +244,18 @@ class TestLebaneseArabic:
         _assert_contains(self.spec.allophones.get("a"), "e", "æ", label="a fronting")
 
     def test_parent(self):
-        assert self.spec.parent == "apc"
+        assert self.spec.parent == "ar-x-levantine"
 
 
 # ═══════════════════════════════════════════════════════════════════════════
-# Jordanian (Ammani) — apc-JO
+# Jordanian (Ammani) — ar-JO
 # Bedouin-influenced: qaf → /ɡ/ widespread, jim → /dʒ/ retained.
 # ═══════════════════════════════════════════════════════════════════════════
 
 
 @pytest.mark.linguistic
 class TestJordanianArabic:
-    CODE = "apc-JO"
+    CODE = "ar-JO"
 
     @pytest.fixture(autouse=True, scope="class")
     def spec(self, request):
@@ -285,18 +285,18 @@ class TestJordanianArabic:
         assert _ipa(self.CODE, "إِذَا") == "ˈʔizaː"
 
     def test_parent(self):
-        assert self.spec.parent == "apc"
+        assert self.spec.parent == "ar-x-levantine"
 
 
 # ═══════════════════════════════════════════════════════════════════════════
-# Palestinian — apc-PS
+# Palestinian — ar-PS
 # Three-way qaf split: urban /ʔ/, central rural /k/ (+ kaf→tʃ), Bedouin /ɡ/.
 # ═══════════════════════════════════════════════════════════════════════════
 
 
 @pytest.mark.linguistic
 class TestPalestinianArabic:
-    CODE = "apc-PS"
+    CODE = "ar-PS"
 
     @pytest.fixture(autouse=True, scope="class")
     def spec(self, request):
@@ -321,18 +321,18 @@ class TestPalestinianArabic:
         _assert_contains(_grapheme(self.spec, "ك"), "k", "tʃ", label="ك")
 
     def test_parent(self):
-        assert self.spec.parent == "apc"
+        assert self.spec.parent == "ar-x-levantine"
 
 
 # ═══════════════════════════════════════════════════════════════════════════
-# Sudanese — apd-SD
+# Sudanese — ar-SD
 # Signature: qaf → /ɡ/, jim → /ɟ/ (palatal stop, archaic), interdentals merge.
 # ═══════════════════════════════════════════════════════════════════════════
 
 
 @pytest.mark.linguistic
 class TestSudaneseArabic:
-    CODE = "apd-SD"
+    CODE = "ar-SD"
 
     @pytest.fixture(autouse=True, scope="class")
     def spec(self, request):
@@ -369,13 +369,13 @@ class TestSudaneseArabic:
 
 
 # ═══════════════════════════════════════════════════════════════════════════
-# Hejazi — acw-SA  (qaf reflex correction: /ɡ/, not /ʔ/)
+# Hejazi — ar-SA-x-hejaz  (qaf reflex correction: /ɡ/, not /ʔ/)
 # ═══════════════════════════════════════════════════════════════════════════
 
 
 @pytest.mark.linguistic
 class TestHejaziArabic:
-    CODE = "acw-SA"
+    CODE = "ar-SA-x-hejaz"
 
     @pytest.fixture(autouse=True, scope="class")
     def spec(self, request):
@@ -404,36 +404,36 @@ class TestHejaziArabic:
 
 
 # ═══════════════════════════════════════════════════════════════════════════
-# Gulf country passthroughs — signature inherited from afb
+# Gulf country passthroughs — signature inherited from ar-x-gulf
 # qaf → /ɡ/, jim → /dʒ ~ j/, interdentals retained, kaf → /tʃ/.
 # ═══════════════════════════════════════════════════════════════════════════
 
 
 @pytest.mark.linguistic
 class TestGulfCountryReflexes:
-    @pytest.mark.parametrize("code", ["afb-AE", "afb-KW", "afb-BH", "afb-QA"])
+    @pytest.mark.parametrize("code", ["ar-AE", "ar-KW", "ar-BH", "ar-QA"])
     def test_qaf_g_qalb(self, code):
-        """قَلْب → [ɡalb] — Gulf qaf → /ɡ/ inherited from afb."""
+        """قَلْب → [ɡalb] — Gulf qaf → /ɡ/ inherited from ar-x-gulf."""
         assert _ipa(code, "قَلْب") == "ˈɡalb"
 
-    @pytest.mark.parametrize("code", ["afb-AE", "afb-KW"])
+    @pytest.mark.parametrize("code", ["ar-AE", "ar-KW"])
     def test_jim_yaa_variant(self, code):
         """ج includes /j/ — Gulf jim-to-yaa (jidiːd for jadīd) variant."""
         spec = _load(code)
         _assert_contains(_grapheme(spec, "ج"), "dʒ", "j", label=f"{code} ج")
 
-    @pytest.mark.parametrize("code", ["afb-AE", "afb-KW"])
+    @pytest.mark.parametrize("code", ["ar-AE", "ar-KW"])
     def test_interdentals_retained(self, code):
         """ث primary /θ/ — Gulf retains interdentals (unlike EG/Levant)."""
         spec = _load(code)
         _assert_first(_grapheme(spec, "ث"), "θ", label=f"{code} ث")
 
-    @pytest.mark.parametrize("code", ["afb-AE", "afb-KW"])
+    @pytest.mark.parametrize("code", ["ar-AE", "ar-KW"])
     def test_kaf_affrication(self, code):
         """/k/ → [tʃ] before a high front vowel via GULF_K_AFFRICATION.
 
         Affrication is a post-lexical allophone rule (B8) inherited from
-        afb, not a grapheme candidate — كِتَاب affricates, كَلْب does not.
+        ar-x-gulf, not a grapheme candidate — كِتَاب affricates, كَلْب does not.
         """
         spec = _load(code)
         assert "GULF_K_AFFRICATION" in [r.id for r in spec.allophone_rules]
@@ -451,7 +451,7 @@ class TestGulfCountryReflexes:
 
 @pytest.mark.linguistic
 class TestYemeniReflex:
-    CODE = "ayn-YE"
+    CODE = "ar-YE"
 
     def test_jim_affricate_jabal(self):
         """جَبَل → [dʒabal] — Ṣanʿānī jim → /dʒ/ affricate (Watson 2002 p.11)."""
@@ -506,7 +506,7 @@ class TestEmphaticSpreading:
 
     def test_egyptian_emphatic_spreading(self):
         """صَبَاح → [sˤɑbaːħ] — Cairene /a/ backs to [ɑ] next to emphatic /sˤ/."""
-        assert _ipa("arz-EG", "صَبَاح") == "sˤɑˈbaːħ"
+        assert _ipa("ar-EG", "صَبَاح") == "sˤɑˈbaːħ"
 
     def test_rule_ids_present_on_msa(self):
         """MSA declares the four AR_EMPH_BACK_* allophone rules."""
@@ -518,7 +518,7 @@ class TestEmphaticSpreading:
 
     def test_peninsular_emphatic_inherited_by_saudi(self):
         """Najdi and Hejazi inherit the Peninsular emphatic rules by id."""
-        for code in ("ars-SA", "acw-SA"):
+        for code in ("ar-SA-x-najd", "ar-SA-x-hejaz"):
             ids = {r.id for r in _load(code).allophone_rules}
             assert "AR_PEN_EMPH_BACK_A_AFTER" in ids, code
 
@@ -532,7 +532,7 @@ class TestEmphaticSpreading:
 
 @pytest.mark.linguistic
 class TestNajdiArabic:
-    CODE = "ars-SA"
+    CODE = "ar-SA-x-najd"
 
     @pytest.fixture(autouse=True, scope="class")
     def spec(self, request):
@@ -581,7 +581,7 @@ class TestNajdiArabic:
 
 @pytest.mark.linguistic
 class TestHejaziMonophthong:
-    CODE = "acw-SA"
+    CODE = "ar-SA-x-hejaz"
 
     @pytest.fixture(autouse=True, scope="class")
     def spec(self, request):
@@ -613,7 +613,7 @@ class TestHejaziMonophthong:
 
 
 # ═══════════════════════════════════════════════════════════════════════════
-# Maghrebi group — ary-MA / arq-DZ / aeb-TN / ar-LY (+ mey-MR Hassaniya)
+# Maghrebi group — ar-MA / ar-DZ / ar-TN / ar-LY (+ ar-MR Hassaniya)
 # Signature: jim ج → /ʒ/ (voiced postalveolar fricative, sedentary Maghreb),
 # NOT /dʒ/; interdentals merge (ث → /t/); qaf ق → /q/ in sedentary/pre-Hilali
 # varieties (dual /q ~ ɡ/ in Algerian/Tunisian). Massive short-vowel reduction
@@ -631,12 +631,12 @@ class TestMaghrebiJim:
     Modelled on the ``ar-x-maghrebi`` parent so every country node inherits it.
     """
 
-    @pytest.mark.parametrize("code", ["ary-MA", "arq-DZ", "aeb-TN", "ar-LY", "mey-MR"])
+    @pytest.mark.parametrize("code", ["ar-MA", "ar-DZ", "ar-TN", "ar-LY", "ar-MR"])
     def test_jim_zh_jamal(self, code):
         """جَمَل → [ʒamal] — Maghrebi jim → /ʒ/ postalveolar fricative."""
         assert _ipa(code, "جَمَل") == "ˈʒamal"
 
-    @pytest.mark.parametrize("code", ["ary-MA", "arq-DZ", "aeb-TN", "ar-LY"])
+    @pytest.mark.parametrize("code", ["ar-MA", "ar-DZ", "ar-TN", "ar-LY"])
     def test_jim_grapheme_zh_first(self, code):
         """ج primary /ʒ/, /dʒ/ retained as Bedouin/loan alternate."""
         spec = _load(code)
@@ -651,7 +651,7 @@ class TestMaghrebiJim:
 
 @pytest.mark.linguistic
 class TestMoroccanDarija:
-    CODE = "ary-MA"
+    CODE = "ar-MA"
 
     @pytest.fixture(autouse=True, scope="class")
     def spec(self, request):
@@ -697,7 +697,7 @@ class TestMaghrebiQafDifferentiation:
     """Algerian/Tunisian carry the sedentary~Bedouin qaf duality /q ~ ɡ/;
     Moroccan keeps /q/ only (urban reference variety)."""
 
-    @pytest.mark.parametrize("code", ["arq-DZ", "aeb-TN"])
+    @pytest.mark.parametrize("code", ["ar-DZ", "ar-TN"])
     def test_qaf_dual_reflex(self, code):
         """ق lists both /q/ (sedentary) and /ɡ/ (Bedouin/rural)."""
         spec = _load(code)

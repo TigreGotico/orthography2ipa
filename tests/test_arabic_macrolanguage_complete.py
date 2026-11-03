@@ -5,8 +5,8 @@ nothing in the registry records that the language was ever considered. That is w
 than a stub, which at least says what it does not know.
 
 This was found by enumerating the macrolanguage rather than by reading the file list:
-of the codes below, `bbz` (Babalia Creole) and `sqr` (Siculo) had no spec declaring
-them and the others did. No existing test could see it, because every one of them
+of the 31 codes below, `bbz` (Babalia Creole) and `sqr` (Siculo) had no spec declaring
+them and the other 29 did. No existing test could see it, because every one of them
 starts from the specs that exist.
 """
 import glob
@@ -27,14 +27,13 @@ DATA = os.path.join(os.path.dirname(orthography2ipa.__file__), "data")
 # directory, so the source of the list is what makes it auditable — if this literal is
 # not current, the check silently stops covering whatever ISO added.
 #
-# 30 codes: 28 members of [ara] proper, plus arb Standard Arabic and sqr Siculo, which
-# carry their own codes. ajp (South Levantine) is not listed: SIL retired it into apc,
-# so the specs for it declare apc, and the code ajp resolves to apc-JO. The
-# Judeo-Arabic varieties (jrb and its members ajt, aju, jye, yhd, yud) sit under their
-# own macrolanguage and are covered by the inheritance test instead.
+# 31 codes: 29 members of [ara] proper, plus arb Standard Arabic and sqr Siculo, which
+# carry their own codes. The Judeo-Arabic varieties (jrb and its members ajt, aju, jye,
+# yhd, yud) sit under their own macrolanguage and are covered by the inheritance test
+# instead.
 ARA_MEMBERS = [
     "aao", "abh", "abv", "acm", "acq", "acw", "acx", "acy", "adf", "aeb", "aec",
-    "afb", "apc", "apd", "arb", "arq", "ars", "ary", "arz", "auz", "avl",
+    "afb", "ajp", "apc", "apd", "arb", "arq", "ars", "ary", "arz", "auz", "avl",
     "ayh", "ayl", "ayn", "ayp", "bbz", "pga", "shu", "sqr", "ssh",
 ]
 

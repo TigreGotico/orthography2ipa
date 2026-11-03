@@ -264,7 +264,7 @@ class AuditConclusion(str, Enum):
     ``pt-PT-x-lisboa`` respelled)."""
 
     SAMPLE_TOO_SMALL = "sample_too_small"
-    """The dataset has too few rows for a PER to mean anything (``arq-DZ``,
+    """The dataset has too few rows for a PER to mean anything (``ar-DZ``,
     n=1)."""
 
     AT_CEILING_DOCUMENTED = "at_ceiling_documented"
@@ -549,8 +549,9 @@ class StressRules:
         onset, splitting ⟨tr⟩ and ⟨bl⟩. Set by the loader, never by hand.
     onset_clusters : Tuple[str, ...]
         The language's complex onsets, in IPA. Declared, they decide every
-        complex onset the stress marker judges, in place of the built-in
-        sonority shapes — which are calibrated on Germanic, Slavic and Romance
+        complex onset the stress marker judges, and every one the bundled
+        syllabifier judges for a spec that sets ``constrain_onsets``, in
+        place of the built-in sonority shapes — which are calibrated on Germanic, Slavic and Romance
         and are wrong in both directions elsewhere: Greek opens words with
         ⟨κτ πτ σμ⟩, which no shape licenses, and Spanish opens none with /s/ +
         stop, which the sibilant appendix licenses for everyone. A simple

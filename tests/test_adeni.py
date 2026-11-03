@@ -1,6 +1,6 @@
 """Adeni Arabic: three cited reflexes, two of which the parent cannot express.
 
-Each case is asserted against ayn-YE as well. A spec that changed nothing would pass a
+Each case is asserted against ar-YE as well. A spec that changed nothing would pass a
 test that only looked at acq, and two of these three letters are exactly where the
 parent disagrees.
 """
@@ -12,7 +12,7 @@ import pytest
 import orthography2ipa as o2i
 from orthography2ipa import get, transcribe
 
-PARENT = "ayn-YE"
+PARENT = "ar-YE"
 ADEN = "acq"
 
 

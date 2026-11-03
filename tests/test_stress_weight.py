@@ -109,7 +109,7 @@ def test_arabic_is_stressed_end_to_end(word, expected, why):
     assert G2P("ar").transcribe(word) == expected, why
 
 
-@pytest.mark.parametrize("lang", ["ars-SA", "acw-SA", "arz-EG"])
+@pytest.mark.parametrize("lang", ["ar-SA-x-najd", "ar-SA-x-hejaz", "ar-EG"])
 def test_the_varieties_are_stressed_too(lang):
     assert G2P(lang).transcribe("كِتَاب").endswith("ˈtaːb")
 
@@ -132,7 +132,7 @@ def test_the_arabic_specs_opt_in():
         code for code in available_codes()
         if (get(code).stress and get(code).stress.quantity_sensitive)
     }
-    assert {"ar", "arb", "ars-SA", "acw-SA", "arz-EG"} <= opted_in
+    assert {"ar", "arb", "ar-SA-x-najd", "ar-SA-x-hejaz", "ar-EG"} <= opted_in
 
     # Stress rides the graphemes edge, so the set entitled to inherit the block is
     # computed from that edge rather than listed: every spec whose ``graphemes_base``

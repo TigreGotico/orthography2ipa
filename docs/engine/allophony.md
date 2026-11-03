@@ -157,7 +157,7 @@ G2P("lsi").transcribe_word("yuggi")   # 'juk̚ɡi'
 Everything else stays blocked. Word-finally, or before another consonant, no nucleus follows to license an onset. The pair is then one long coda that nothing may divide. Najdi ⟨بَخّ⟩ keeps both halves and takes no gahawa epenthesis between them:
 
 ```python
-G2P("ars-SA").transcribe_word("بَخّ")   # 'ˈbaxx'
+G2P("ar-SA-x-najd").transcribe_word("بَخّ")   # 'ˈbaxx'
 ```
 
 A rule that points anywhere but at the twin is blocked too. This covers a rule with no condition, a `word_final` rule, a two-step condition such as `followed_by_2` that reads past the twin, and a negative condition such as `followed_by_grapheme_not`.

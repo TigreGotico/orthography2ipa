@@ -6,7 +6,7 @@ Hejazi, Gulf and Southwestern groups, so there is deliberately **no** ``ar-SA``
 umbrella node (lang-code accuracy: null beats wrong). This module covers the
 three leaves that fill out that spread:
 
-* **ars-SA-x-qassim** — Qassimi, the Qaṣīm sub-variety of Najdi. Deepest source:
+* **ar-SA-x-qassim** — Qassimi, the Qaṣīm sub-variety of Najdi. Deepest source:
   Alhoody, M.M.A. (2019) *Phonological adaptation of English loanwords into
   Qassimi Arabic* (PhD, Newcastle), §3.1.2-3.1.4, pp.41-43 (inventories) and
   §5.1.1-5.1.6, pp.62-66 (loanword adaptation); Al-Rojaie, Y. (2013)
@@ -17,7 +17,7 @@ three leaves that fill out that spread:
   fricatives and lateral emphatics in southern Saudi Arabia and Mehri", *PSAS*
   41:425-432, pp.427-428; Asiri, Y.M. (2009) PhD, Salford; Al-Azraqi, M. (2010)
   "The ancient Ḍād in southwest Saudi Arabia", *Arabica* 57:57-67.
-* **afb-SA-x-sharqiya** — Eastern Province (al-Hasa/Qatif), a Gulf dialect.
+* **ar-SA-x-sharqiyya** — Eastern Province (al-Hasa/Qatif), a Gulf dialect.
   Al-Taisan, H. (2022) PhD, Essex; Johnstone, T.M. (1967) *Eastern Arabian
   Dialect Studies*; Holes, C. (2004) *Modern Arabic*.
 
@@ -28,12 +28,12 @@ import pytest
 from orthography2ipa import G2P, get
 from orthography2ipa.inventory import dead_allophone_rules, phoneme_inventory
 
-QAS = G2P("ars-SA-x-qassim")
+QAS = G2P("ar-SA-x-qassim")
 RIJ = G2P("ar-SA-x-rijal-alma")
-SHQ = G2P("afb-SA-x-sharqiya")
+SHQ = G2P("ar-SA-x-sharqiyya")
 
 
-@pytest.mark.parametrize("lang", ["ars-SA-x-qassim", "ar-SA-x-rijal-alma", "afb-SA-x-sharqiya"])
+@pytest.mark.parametrize("lang", ["ar-SA-x-qassim", "ar-SA-x-rijal-alma", "ar-SA-x-sharqiyya"])
 def test_no_dead_allophone_rules(lang):
     """Every declared/inherited rule targets a phoneme the spec can produce."""
     assert dead_allophone_rules(G2P(lang).spec) == ()
@@ -41,9 +41,9 @@ def test_no_dead_allophone_rules(lang):
 
 # ── Ancestry: each leaf hangs off the RIGHT group, and there is no ar-SA ──────
 def test_leaves_parent_the_correct_group():
-    assert get("ars-SA-x-qassim").parent == "ars-SA"        # Najdi sub-variety
+    assert get("ar-SA-x-qassim").parent == "ar-SA-x-najd"        # Najdi sub-variety
     assert get("ar-SA-x-rijal-alma").parent == "ar-x-peninsular"  # SW archaic type
-    assert get("afb-SA-x-sharqiya").parent == "afb"         # Gulf type
+    assert get("ar-SA-x-sharqiyya").parent == "ar-x-gulf"         # Gulf type
 
 
 def test_no_ar_sa_umbrella_node():
@@ -52,7 +52,7 @@ def test_no_ar_sa_umbrella_node():
     country code falls BACK to a leaf rather than resolving a genuine umbrella
     spec — the resolved code is never ``ar-SA`` itself."""
     assert get("ar-SA").code != "ar-SA"
-    assert "no ar-sa umbrella" in get("ars-SA").notes.lower()
+    assert "no ar-sa umbrella" in get("ar-SA-x-najd").notes.lower()
 
 
 # ── Qassimi: monophthongization is the delta from central Najdi ──────────────
@@ -64,7 +64,7 @@ def test_no_ar_sa_umbrella_node():
 def test_qassimi_monophthongizes_where_najdi_keeps_diphthong(word, expected, why):
     assert QAS.transcribe_word(word) == expected, why
     # the central-Najdi parent keeps the diphthong — this is the discriminator
-    assert G2P("ars-SA").transcribe_word(word) != expected
+    assert G2P("ar-SA-x-najd").transcribe_word(word) != expected
 
 
 @pytest.mark.parametrize("word,expected,why", [
@@ -141,7 +141,7 @@ def test_sharqiyya_jim_is_the_affricate():
     Arabian dialects, never attested in Hasawi. In the Gulf sect isogloss [dʒ]
     is the Šiʿi Baḥārna reflex (the majority in al-Qaṭīf/al-Hasa) while [j] is
     the Sunni ʕArab/Dawāsir reflex (Holes 1980/2016, in Alaodini 2019:94). So
-    the sedentary Eastern leaf has [dʒ] primary; [j] moves to afb-SA-x-dawasir."""
+    the sedentary Eastern leaf has [dʒ] primary; [j] moves to ar-SA-x-dawasir."""
     assert SHQ.transcribe_word("جَمَل") == "ˈdʒamal"
     assert SHQ.transcribe_word("جِيب") == "ˈdʒiːb"
 
@@ -150,7 +150,7 @@ def test_dawasir_jim_is_the_traditional_glide():
     """Alaodini 2019: the Dawāsir (Sunni, Najdi-origin, Dammam) carry the
     traditional [j] reflex acquired under Bahraini Sunni prestige — the mirror
     image of the sedentary Baḥārna [dʒ], and receding back toward [dʒ]."""
-    DAW = G2P("afb-SA-x-dawasir")
+    DAW = G2P("ar-SA-x-dawasir")
     assert DAW.transcribe_word("جَمَل") == "ˈjamal"
     assert DAW.transcribe_word("جِيب") == "ˈjiːb"
 
@@ -200,11 +200,11 @@ def test_qassimi_reproduces_alhoodys_published_loanword_transcriptions(word, exp
     ("چَاي", "ˈʃaːj", "ˈtʃaːj"),
 ])
 def test_khaliji_keeps_the_donor_phone_where_qassimi_nativises(word, qassimi, gulf):
-    """The discriminator, and both sides are cited. afb declares *"integrated
+    """The discriminator, and both sides are cited. ar-x-gulf declares *"integrated
     /p/, /v/ from loanwords (پ, ڤ)"* in its own notes; Qassimi's inventory has
     neither, so the same spelling separates the two dialects."""
     assert QAS.transcribe_word(word) == qassimi
-    assert G2P("afb").transcribe_word(word) == gulf
+    assert G2P("ar-x-gulf").transcribe_word(word) == gulf
 
 
 @pytest.mark.parametrize("phone", ["p", "v", "tʃ"])
@@ -222,8 +222,8 @@ def test_veh_second_reading_carries_its_condition_in_the_notes():
     candidate is offered at every ڤ while the environment that produced it holds at
     one in thirty-one. The spec has to say so, or the second reading reads as free
     variation."""
-    notes = get('ars-SA-x-qassim').notes
-    assert get('ars-SA-x-qassim').graphemes['ڤ'] == ['f', 'b']
+    notes = get('ar-SA-x-qassim').notes
+    assert get('ar-SA-x-qassim').graphemes['ڤ'] == ['f', 'b']
     assert 'dissimilation' in notes
     assert 'valve' in notes
 
@@ -242,8 +242,8 @@ def test_cha_does_not_carry_the_retained_affricate_as_a_second_candidate():
     affricate is not a candidate" with "no reading may ever be added", which the
     docstring never claimed and no source supports.
     """
-    readings = get("ars-SA-x-qassim").graphemes["چ"]
+    readings = get("ar-SA-x-qassim").graphemes["چ"]
     assert "tʃ" not in readings
     assert readings[0] == "ʃ"
-    assert "tʃ" not in phoneme_inventory(get("ars-SA-x-qassim"))
-    assert "orthography effect" in get("ars-SA-x-qassim").notes
+    assert "tʃ" not in phoneme_inventory(get("ar-SA-x-qassim"))
+    assert "orthography effect" in get("ar-SA-x-qassim").notes

@@ -39,7 +39,7 @@ def test_sudanic_creole_clade_groups_juba_and_nubi():
     assert clade.parent == "x-clade-semi1276"
     for code in ("pga", "kcn"):
         lexifiers = {a.code for a in get(code).ancestors if a.role.value == "lexifier"}
-        assert "apd-SD" in lexifiers
+        assert "ar-SD" in lexifiers
 
 
 # ─── Juba Arabic (pga), APiCS chapter 64 ───────────────────────────────────
