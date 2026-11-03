@@ -11,6 +11,7 @@ import pytest
 
 from orthography2ipa import get
 from orthography2ipa.g2p import G2P
+from orthography2ipa.inventory import phoneme_atoms
 from orthography2ipa.stress import (
     HEAVY, LIGHT, SUPERHEAVY, detect_stress_by_weight, syllabify_ipa,
     syllable_weight,
@@ -250,6 +251,42 @@ def test_a_diphthong_declared_as_one_phoneme_is_heavy(lang, diphthong, syllable)
     ("amo", LIGHT, "two vowels with a consonant between them are no diphthong"),
 ])
 def test_one_atom_nucleus_branches_only_on_adjacent_vowels(syllable, weight, why):
+    assert syllable_weight(syllable, [syllable]) == weight, why
+
+
+@pytest.mark.parametrize("lang,diphthong,syllable", [
+    ("nn", "œʏ", "œʏ"), ("wym", "ɔʏ", "ɔʏ"), ("sxu", "ɞʏ̯", "ɞʏ̯"),
+])
+def test_a_declared_diphthong_ending_in_y_is_heavy(lang, diphthong, syllable):
+    # ʏ is not in the IPA vowel table; the feature table holds it as a vowel.
+    atoms = list(get(lang).phonemes)
+    assert diphthong in atoms, "the case only bites while the spec declares the diphthong"
+    assert syllable_weight(syllable, atoms) == HEAVY
+    assert syllable_weight(syllable + "n", atoms) == SUPERHEAVY, "branching nucleus + coda"
+
+
+@pytest.mark.parametrize("lang,diphthong,syllable", [
+    ("es-ES", "aj", "paj"), ("es-ES", "aw", "kaw"), ("ar", "aj", "bajt"),
+    ("pt-PT", "ɐ̃w̃", "mɐ̃w̃"), ("de-DE", "ɔʏ", "nɔʏ"), ("nl-NL", "œʏ", "œʏ"),
+])
+def test_a_diphthong_atom_weighs_as_its_letters_do_without_the_atom(lang, diphthong, syllable):
+    # Without the atom the glide or ʏ is a second segment and the syllable is
+    # heavy; the atom must not make the same syllable lighter.
+    atoms = phoneme_atoms(get(lang))
+    assert diphthong in atoms, "the case only bites while the spec emits the diphthong"
+    assert syllable_weight(syllable, atoms) == syllable_weight(syllable)
+    assert syllable_weight(syllable, atoms) in (HEAVY, SUPERHEAVY)
+
+
+@pytest.mark.parametrize("syllable,weight,why", [
+    ("aj", HEAVY, "a vowel and a glide letter are a falling diphthong"),
+    ("aw", HEAVY, "a vowel and a glide letter are a falling diphthong"),
+    ("ɐ̃w̃", HEAVY, "the nasal tilde on the glide does not hide it"),
+    ("aja", LIGHT, "a glide before a vowel opens that vowel, it does not close the first"),
+    ("ja", LIGHT, "a glide before the only vowel is an onset"),
+    ("aʲ", LIGHT, "a palatalisation mark is not a glide letter"),
+])
+def test_a_glide_letter_branches_the_nucleus_only_after_a_vowel(syllable, weight, why):
     assert syllable_weight(syllable, [syllable]) == weight, why
 
 
