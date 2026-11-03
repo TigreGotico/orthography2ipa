@@ -28,7 +28,8 @@ def test_the_segmental_marks_are_not_folded():
 def test_the_smooth_breathing_stays_folded():
     """It marks the absence of /h/, so folding it loses nothing."""
     assert SMOOTH in set(get("grc").fold_diacritics)
-    assert get("grc").graphemes["ἀ"] == get("grc").graphemes["α"]
+    for smooth, bare in (("ἀ", "α"), ("ἐγώ", "εγώ"), ("ὀδούς", "οδούς")):
+        assert transcribe(smooth, "grc") == transcribe(bare, "grc")
 
 
 @pytest.mark.parametrize("rough,smooth", [("ἑπτά", "ἐπτά"), ("ὥρα", "ὦρα")])
