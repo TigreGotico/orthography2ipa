@@ -390,10 +390,6 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.111.2a1...7.111.3a1)
 
-**Merged pull requests:**
-
-- fix\(pt\): stress a hyphenated compound in transcribe\_word as transcribe does [\#1771](https://github.com/TigreGotico/orthography2ipa/pull/1771) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [7.111.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.111.2a1) (2026-10-29)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.111.1a1...7.111.2a1)
