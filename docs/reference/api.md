@@ -73,7 +73,7 @@ These are the names `import orthography2ipa` exports, from `orthography2ipa.__al
 
 | Name | Kind | Summary |
 | --- | --- | --- |
-| `available_lexicon_codes` | function | Sorted language codes with a registered lexicon or a `{code}.tsv` in the dir. |
+| `available_lexicon_codes` | function | Sorted codes with a registered lexicon, a `{code}.tsv` in the dir, or a packaged default. |
 | `clear_lexicons` | function | Forget every registered lexicon and the lexicon dir. |
 | `get_lexicon` | function | Return the `{word: ipa}` overlay for *code*, or `{}` if none is set. |
 | `is_ipa_string` | function | Return `True` when *ipa* is NFC and contains only IPA characters. |
