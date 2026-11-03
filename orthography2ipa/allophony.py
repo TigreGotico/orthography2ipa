@@ -66,11 +66,11 @@ def segment_ipa(ipa: str, atoms: Sequence[str] = ()) -> List[str]:
     """Split an IPA candidate string into phoneme-sized segments.
 
     *atoms* — multi-character phonemes the caller cares about (affricates
-    like ``tɕ``, rule targets/surfaces), tried longest-first so ``tɕʰ``
-    is one segment, never ``t`` + ``ɕʰ``. Everything else groups as one
-    base character plus its trailing modifiers. A single-phoneme string
-    round-trips to itself, so single-segment slots behave exactly as the
-    pre-segmentation rescorer did.
+    like ``tɕ``, rule targets/surfaces), in any order. The longest match
+    wins, so ``tɕʰ`` is one segment, never ``t`` + ``ɕʰ``. Everything
+    else groups as one base character plus its trailing modifiers. A
+    single-phoneme string round-trips to itself, so single-segment slots
+    behave exactly as the pre-segmentation rescorer did.
     """
     segments: List[str] = []
     i, n = 0, len(ipa)
@@ -89,18 +89,21 @@ def segment_ipa(ipa: str, atoms: Sequence[str] = ()) -> List[str]:
 def _match_atom(ipa: str, start: int, atoms: Sequence[str]) -> Optional[str]:
     """The longest *atom* starting at *start*, or ``None``.
 
-    An atom only matches when not immediately followed by a modifier —
-    ``k`` must not steal the base of ``k͈`` (tense) or ``kʰ`` (aspirated),
-    which are different phonemes.
+    The order of *atoms* does not matter: ``t`` listed before ``tʃ`` still
+    yields ``tʃ``. An atom only matches when not immediately followed by a
+    modifier — ``k`` must not steal the base of ``k͈`` (tense) or ``kʰ``
+    (aspirated), which are different phonemes.
     """
+    longest = None
     for atom in atoms:
         end = start + len(atom)
         if not ipa.startswith(atom, start):
             continue
         if end < len(ipa) and _is_modifier(ipa[end]):
             continue
-        return atom
-    return None
+        if longest is None or len(atom) > len(longest):
+            longest = atom
+    return longest
 
 
 @dataclass(frozen=True)
