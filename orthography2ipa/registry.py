@@ -395,9 +395,15 @@ def available_codes(include_clades: bool = False) -> List[str]:
     languages — they carry no phonology and cannot be transcribed — so they
     are excluded unless *include_clades* is set.
     """
+    return list(_available_codes(include_clades))
+
+
+# The spec index is built once at import, so the filtered list never changes.
+@lru_cache(maxsize=None)
+def _available_codes(include_clades: bool) -> tuple:
     codes = sorted(available_json_codes())
     if include_clades:
-        return codes
+        return tuple(codes)
     keep: List[str] = []
     for code in codes:
         try:
@@ -405,7 +411,7 @@ def available_codes(include_clades: bool = False) -> List[str]:
                 keep.append(code)
         except (KeyError, ValueError, ModuleNotFoundError):
             keep.append(code)
-    return keep
+    return tuple(keep)
 
 
 def ancestry_chain(code: str) -> List[str]:
