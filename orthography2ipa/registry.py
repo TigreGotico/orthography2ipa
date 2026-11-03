@@ -224,6 +224,10 @@ _ALIASES: Dict[str, str] = {
     # region and lose the lect.
     "pt-BR-x-sao-paulo": "pt-BR-x-sp",
     "pt-BR-x-rio-janeiro": "pt-BR-x-rj",
+    # Brasília speech shows no feature that separates it from the pt-BR base
+    # in the opened sources (alveolar coda /S/, 97 %: Hora 1999: 35), so the
+    # code reads the base.
+    "pt-BR-x-brasilia": "pt-BR",
     "pt-PT-x-lisboa": "pt-PT-x-lisbon",
     # Galician has one standard spec, ``gl-ES``, and its varieties carry the
     # region. These are the retired codes of the same varieties.
