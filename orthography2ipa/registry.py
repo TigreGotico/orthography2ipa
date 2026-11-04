@@ -288,7 +288,7 @@ _RENAMED: Dict[str, str] = {
     "es-ES-x-extremadura":  "es-ES-x-extremad",
     "es-PE-x-amazonico":    "es-PE-x-amazonia",
     "es-VE-x-maracucho":    "es-VE-x-zulia",
-    "eu-x-bizkaiera":       "eu-x-bizkaia",
+    "eu-x-bizkaiera":       "eu-biscayan",
     "eu-x-erronkariera":    "eu-x-roncal",
     "eu-x-gipuzkera":       "eu-x-gipuzkoa",
     "eu-x-lapurtera":       "eu-x-lapurdi",
@@ -301,7 +301,7 @@ _RENAMED: Dict[str, str] = {
     "hak-Latn-phak-fa-su":  "hak-Latn-x-phak-fa-su",
     "la-x-galloitalic":     "la-x-gallo-italic",
     "nan-Latn-poj":         "nan-Latn-pehoeji",
-    "oc-x-provencau":       "oc-x-provenca",
+    "oc-x-provencau":       "oc-provenc",
     "pt-BR-x-fluminense":   "pt-BR-x-fluminen",
     "pt-PT-x-trasosmontes": "pt-PT-x-tras-os-montes",
     "roa-x-galaicopt":      "roa-x-galaico-pt",
@@ -310,6 +310,9 @@ _RENAMED: Dict[str, str] = {
     "sc-x-logudorese":      "sc-x-logudoro",
     "sv-x-rikssvenska":     "sv-x-rikssven",
     "ta-x-proto-dravidian": "ta-x-proto-dravidia",
+    # SIL retired ``bbz`` as non-existent and names no replacement, so Babalia
+    # Creole Arabic takes a private-use key. ``bbz`` is no other language's code.
+    "bbz":                  "ar-TD-x-babalia",
 }
 _ALIASES.update(_RENAMED)
 

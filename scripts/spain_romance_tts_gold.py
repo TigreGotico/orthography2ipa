@@ -95,7 +95,7 @@ LECTS = [
     # scripts/iberian_creole_tts_gold.py — with the rest of the creole roster.)
     # Basque (mega-set): Euskara Batua + the dialect specs. Not Romance, but an
     # Iberian language sharing the harness; its rows use the eu_* feature axes.
-    "eu", "eu-x-bizkaia", "eu-x-gipuzkoa", "eu-x-lapurdi",
+    "eu", "eu-biscayan", "eu-x-gipuzkoa", "eu-x-lapurdi",
     "eu-x-nafarra-garaia", "eu-x-nafarra-beherea", "eu-x-zuberera",
     "eu-x-roncal",
 ]

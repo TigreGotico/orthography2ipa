@@ -133,7 +133,7 @@ def test_central_basque_dialect_keeps_second_syllable():
     assert get("eu-x-gipuzkoa").stress.default_position == 2
 
 
-@pytest.mark.parametrize("code,word", [("eu-x-bizkaia", "gizona"),
+@pytest.mark.parametrize("code,word", [("eu-biscayan", "gizona"),
                                        ("eu-x-nafarra-garaia", "mendia")])
 def test_mixed_accent_dialect_prints_no_stress(code, word):
     # Bizkaia mixes the Western phrase-accent systems with Central ones

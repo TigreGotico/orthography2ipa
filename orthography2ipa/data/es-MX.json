@@ -40,7 +40,7 @@
   },
   "positional_graphemes_base": "es-ES",
   "parent": "es-ES",
-  "notes": "Highland Mexican (Mexico City / Central Plateau). Conservative: full coda /s/, velar [x], no aspiration. Distinctive unstressed vowel devoicing (especially sentence-finally). Very tense [tʃ]. Weak approximant [ʝ̞]. Largest Spanish-speaking country.",
+  "notes": "Highland Mexican (Mexico City / Central Plateau). Conservative: full coda /s/, velar [x], no aspiration. Distinctive unstressed vowel devoicing (especially sentence-finally). Very tense [tʃ]. Weak approximant [ʝ̞]. Largest Spanish-speaking country. SESEO: ⟨c⟩ before ⟨e i⟩ is [s], the same phoneme as ⟨z⟩. Lipski (2011, p. 4): «The opposition /s/-/θ/ is not found in the Canary Islands (where seseo is the norm), nor in any part of Latin America.»",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -107,6 +107,16 @@
   },
   "glottolog_code": "mexi1248",
   "iso639_3": "spa",
+  "positional_graphemes": {
+    "c": {
+      "before_e": [
+        "s"
+      ],
+      "before_i": [
+        "s"
+      ]
+    }
+  },
   "ancestors": [
     {
       "code": "es-ES",

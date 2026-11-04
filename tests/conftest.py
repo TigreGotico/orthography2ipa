@@ -127,7 +127,7 @@ _IBERIAN_CLASS_TO_CODE: dict[str, str] = {
     "TestCatalanOccidental": "ca-x-occident",
     "TestGalicianStandard": "gl-ES",
     "TestGalicianOriental": "gl-ES-x-oriental",
-    "TestBasqueBizkaiera": "eu-x-bizkaia",
+    "TestBasqueBizkaiera": "eu-biscayan",
     "TestBasqueGipuzkera": "eu-x-gipuzkoa",
     "TestAsturianOccidental": "ast-x-occident",
     "TestAsturianOriental": "ast-x-oriental",

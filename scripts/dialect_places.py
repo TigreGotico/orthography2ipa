@@ -670,7 +670,7 @@ PLACES: dict[str, dict] = {
              "transitional to Catalan."),
 
     # ── Basque ────────────────────────────────────────────────────────────────
-    "eu-x-bizkaia": dict(
+    "eu-biscayan": dict(
         qid="Q93366", label="Biscay", country="Spain",
         note="Bizkaia — the province the dialect is named for."),
     "eu-x-gipuzkoa": dict(

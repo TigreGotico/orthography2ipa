@@ -30,7 +30,7 @@ from orthography2ipa.g2p import G2P
 from orthography2ipa.distance import ancestry_similarity, phonological_distance
 
 DIALECTS = [
-    "eu-x-bizkaia",
+    "eu-biscayan",
     "eu-x-gipuzkoa",
     "eu-x-nafarra-garaia",
     "eu-x-nafarra-beherea",
@@ -99,7 +99,7 @@ class TestBaseInventory:
 # Biscayan — Western mergers (Bedialauneta & Hualde 2023: 1098)
 # ───────────────────────────────────────────────────────────────────────
 class TestBiscayan:
-    CODE = "eu-x-bizkaia"
+    CODE = "eu-biscayan"
 
     def test_sibilant_merger_to_apical(self):
         g = _spec(self.CODE).graphemes
@@ -254,13 +254,13 @@ class TestDistance:
         assert ancestry_similarity(_spec("eu"), _spec(code)) == pytest.approx(0.9)
 
     def test_siblings_share_grandparent(self):
-        sim = ancestry_similarity(_spec("eu-x-bizkaia"), _spec("eu-x-zuberera"))
+        sim = ancestry_similarity(_spec("eu-biscayan"), _spec("eu-x-zuberera"))
         assert sim == pytest.approx(0.81)
 
     def test_phonological_distance_nonzero_for_diverging_dialects(self):
         # Both diverge from the base; Biscayan via grapheme mergers, Souletin
         # via the added /y/ grapheme and aspiration allophones.
-        d_biz = phonological_distance(_spec("eu"), _spec("eu-x-bizkaia"))
+        d_biz = phonological_distance(_spec("eu"), _spec("eu-biscayan"))
         d_zub = phonological_distance(_spec("eu"), _spec("eu-x-zuberera"))
         assert d_biz.combined > 0.0
         assert d_zub.combined > 0.0

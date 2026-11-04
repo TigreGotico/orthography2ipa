@@ -7,7 +7,8 @@ Basque is a language isolate: it has no demonstrated genetic relationship to any
 | Code | Variety | Quality tier |
 |:---|:---|:---|
 | `eu` | Euskara Batua (standard) | production |
-| `eu-x-bizkaia` | Biscayan (Western) | research |
+| `eu-biscayan
+` | Biscayan (Western) | research |
 | `eu-x-gipuzkoa` | Gipuzkoan (Central) | research |
 | `eu-x-nafarra-garaia` | Upper (High) Navarrese | research |
 | `eu-x-nafarra-beherea` | Lower Navarrese | research |
@@ -54,7 +55,8 @@ The specs follow the modern classification of Koldo Zuazo. Western is Biscayan, 
 
 Every dialect spec takes its graphemes, allophones and positional graphemes from `eu` (`graphemes_base`, `allophones_base` and `positional_graphemes_base`). It then states only its own differences.
 
-### Biscayan: `eu-x-bizkaia` (Western)
+### Biscayan: `eu-biscayan
+` (Western)
 
 The Biscayan spec follows Markina Basque (Bedialauneta & Hualde 2023). Western Basque has merged sibilant contrasts that the base keeps. The apico-alveolar `s̺` and the lamino-alveolar `s̻` merge to one apico-alveolar `s̺`. The affricates `ts̺` and `ts̻` merge to one denti-alveolar `ts̻` (2023: 1098). So the spec reads both ⟨s⟩ and ⟨z⟩ as /s̺/, and both ⟨ts⟩ and ⟨tz⟩ as /ts̻/. The palatal stop `c` (⟨tt⟩) merges with `tʃ` (2023: 1098), and the spec reads ⟨tt⟩ as [tʃ].
 

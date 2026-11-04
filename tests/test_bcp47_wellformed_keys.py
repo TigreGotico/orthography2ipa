@@ -51,7 +51,7 @@ RENAMED = {
     "es-ES-x-extremadura": "es-ES-x-extremad",
     "es-PE-x-amazonico": "es-PE-x-amazonia",
     "es-VE-x-maracucho": "es-VE-x-zulia",
-    "eu-x-bizkaiera": "eu-x-bizkaia",
+    "eu-x-bizkaiera": "eu-biscayan",
     "eu-x-erronkariera": "eu-x-roncal",
     "eu-x-gipuzkera": "eu-x-gipuzkoa",
     "eu-x-lapurtera": "eu-x-lapurdi",
@@ -64,7 +64,7 @@ RENAMED = {
     "hak-Latn-phak-fa-su": "hak-Latn-x-phak-fa-su",
     "la-x-galloitalic": "la-x-gallo-italic",
     "nan-Latn-poj": "nan-Latn-pehoeji",
-    "oc-x-provencau": "oc-x-provenca",
+    "oc-x-provencau": "oc-provenc",
     "pt-BR-x-fluminense": "pt-BR-x-fluminen",
     "pt-PT-x-trasosmontes": "pt-PT-x-tras-os-montes",
     "roa-x-galaicopt": "roa-x-galaico-pt",
@@ -74,6 +74,10 @@ RENAMED = {
     "sv-x-rikssvenska": "sv-x-rikssven",
     "ta-x-proto-dravidian": "ta-x-proto-dravidia",
 }
+
+#: Well-formed keys that are not valid: SIL retired ``bbz`` (2020, reason N) and
+#: IANA deprecated it with no preferred value.
+DEPRECATED = {"bbz": "ar-TD-x-babalia"}
 
 #: Older aliases of the renamed specs, which follow the spec to its new key.
 CHAINED = {
@@ -113,7 +117,7 @@ def test_every_code_a_spec_names_is_well_formed_bcp47():
     assert bad == []
 
 
-@pytest.mark.parametrize("new", sorted(RENAMED.values()))
+@pytest.mark.parametrize("new", sorted({*RENAMED.values(), *DEPRECATED.values()}))
 def test_new_key_is_a_spec_and_resolves_to_itself(new):
     assert new in available_json_codes()
     others = {k.lower() for k in available_json_codes() if k != new}
@@ -124,7 +128,7 @@ def test_new_key_is_a_spec_and_resolves_to_itself(new):
     assert get(new).code == new
 
 
-@pytest.mark.parametrize("old,new", sorted({**RENAMED, **CHAINED}.items()))
+@pytest.mark.parametrize("old,new", sorted({**RENAMED, **CHAINED, **DEPRECATED}.items()))
 def test_old_key_resolves_exactly_to_new_key(old, new):
     assert old not in available_json_codes()
     assert _ALIASES[old] == new
@@ -133,3 +137,7 @@ def test_old_key_resolves_exactly_to_new_key(old, new):
     assert get(old).code == new
     if "-x-" in old:
         assert get(old.upper()).code == new
+
+
+def test_babalia_declares_no_retired_code():
+    assert get("ar-TD-x-babalia").iso639_3 is None

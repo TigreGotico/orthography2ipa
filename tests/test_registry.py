@@ -116,7 +116,7 @@ class TestPrivateUseSpellings:
         ("ar-sa-x-najd", "ars-SA"),
         ("ars-sa-x-qassim", "ars-SA-x-qassim"),
         ("PT-PT-X-PORTO", "pt-PT-x-porto"),
-        ("eu-X-bizkaiera", "eu-x-bizkaia"),
+        ("eu-X-bizkaiera", "eu-biscayan"),
     ])
     def test_private_use_tags_match_case_insensitively(self, spelling, canonical):
         assert registry.resolve(spelling) == canonical

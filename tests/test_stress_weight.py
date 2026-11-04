@@ -140,7 +140,7 @@ def test_the_arabic_specs_opt_in():
     # authoring its own orthography — mt Maltese, acy Cypriot Arabic — falls outside
     # it, correctly. A test on the code name would be wrong in both directions: this
     # repo ships arc Aramaic, arn Mapudungun, arp Arapaho, arr Karo, arv Arbore and
-    # arw Arawak, none of them Arabic, while bbz Babalia Creole and sqr Siculo are
+    # arw Arawak, none of them Arabic, while ar-TD-x-babalia Babalia Creole and sqr Siculo are
     # Arabic and look like neither.
     _data = _os.path.join(_os.path.dirname(_o2i.__file__), "data")
 
@@ -159,7 +159,7 @@ def test_the_arabic_specs_opt_in():
         return code
 
     inherits_from_arabic = {c for c in available_codes() if _graphemes_root(c) == "arb"}
-    assert {"bbz", "sqr", "xaa"} <= inherits_from_arabic
+    assert {"ar-TD-x-babalia", "sqr", "xaa"} <= inherits_from_arabic
     assert not {"mt", "acy"} & inherits_from_arabic, (
         "a genetic parent is not a graphemes base")
 

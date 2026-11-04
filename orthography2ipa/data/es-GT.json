@@ -27,7 +27,7 @@
   },
   "positional_graphemes_base": "es-ES",
   "parent": "es-ES",
-  "notes": "Guatemalan/highland Central American Spanish. Conservative: coda /s/ largely retained, velar [x]. Mayan substrate influence in bilingual areas (glottalisation, vowel length).",
+  "notes": "Guatemalan/highland Central American Spanish. Conservative: coda /s/ largely retained, velar [x]. Mayan substrate influence in bilingual areas (glottalisation, vowel length). SESEO: ⟨c⟩ before ⟨e i⟩ is [s], the same phoneme as ⟨z⟩. Lipski (2011, p. 4): «The opposition /s/-/θ/ is not found in the Canary Islands (where seseo is the norm), nor in any part of Latin America.»",
   "quality": "skeleton",
   "script_type": "alphabet",
   "sources": [
@@ -93,6 +93,16 @@
   },
   "glottolog_code": null,
   "iso639_3": "spa",
+  "positional_graphemes": {
+    "c": {
+      "before_e": [
+        "s"
+      ],
+      "before_i": [
+        "s"
+      ]
+    }
+  },
   "ancestors": [
     {
       "code": "es-ES",

@@ -7,6 +7,8 @@ in Etoloakarnania", JIPA 52(2): the stress section (p. 337), the broad
 transcription (p. 338) and the orthographic version (p. 339) of "The North
 Wind and the Sun".
 """
+import unicodedata
+
 import pytest
 
 import orthography2ipa
@@ -119,3 +121,125 @@ class TestStress:
         "a; el gives ˈaeɾas for αέρας in the same way"))
     def test_hiatus_before_the_accented_vowel(self):
         assert _vowels_after_mark(_pnt("αέν")) == _vowels_after_mark("aˈen")
+
+
+def _segments(word):
+    return _pnt(word).replace("ˈ", "")
+
+
+class TestDoubledConsonantLetters:
+    """A doubled consonant letter reads as one consonant.
+
+    Oeconomides (1908), Lautlehre des Pontischen, p. 175 (addendum to p. 9):
+    forms such as ἄλλο, ἄλλος "die mit Doppelkonsonant geschrieben sind, sind
+    trotzdem so auszusprechen, als ob sie mit einfachem Konsonant geschrieben
+    wären". Armostis et al. (2020) transcribe κάλλα [ˈkala] (p. 337) and
+    πολλά [poˈla] (pp. 338-339).
+    """
+
+    @pytest.mark.parametrize("word,source", [
+        ("κάλλα", "ˈkala"),
+        ("πολλά", "poˈla"),
+    ])
+    def test_armostis_single_consonant(self, word, source):
+        assert _pnt(word) == source
+
+    @pytest.mark.parametrize("letter", list("βκλμνπρστ"))
+    def test_doubled_letter_reads_as_the_single_letter(self, letter):
+        assert _segments(f"α{letter}{letter}α") == _segments(f"α{letter}α")
+
+    @pytest.mark.parametrize("doubled,single", [
+        ("ἄλλο", "ἄλο"),
+        ("ἄλλος", "ἄλος"),
+    ])
+    def test_oeconomides_forms(self, doubled, single):
+        assert _segments(doubled) == _segments(single)
+
+
+class TestGammaKappa:
+    """⟨γκ⟩ is [ɡ] at the start of a word and [ŋɡ] inside it.
+
+    Armostis et al. (2020): γκαρίζ’ [ɡaˈɾiz] (pp. 331, 334); the narrow
+    transcription (p. 339) has [eneˈŋɡasten] ενεγκάστεν and [anaˈŋɡasten]
+    αναγκάστεν, and p. 335 states that /n/ takes the place of a following
+    dorsal.
+    """
+
+    @pytest.mark.parametrize("word,source", [
+        ("ενεγκάστεν", "eneˈŋɡasten"),
+        ("αναγκάστεν", "anaˈŋɡasten"),
+    ])
+    def test_word_internal(self, word, source):
+        assert _pnt(word) == source
+
+    def test_word_initial(self):
+        ipa = _segments("γκαρίζ’")
+        assert ipa.startswith("ɡa"), ipa
+        assert "ŋ" not in ipa and "k" not in ipa, ipa
+
+
+def _with(base, *marks):
+    return unicodedata.normalize("NFC", base + "".join(marks))
+
+
+PSILI, DASIA = "̓", "̔"
+ACUTE, GRAVE, PERISPOMENI = "́", "̀", "͂"
+
+
+class TestPolytonic:
+    """Oeconomides (1908) writes Pontic in polytonic spelling.
+
+    The rough breathing is no longer spoken (p. 34), the smooth breathing
+    follows the etymology (p. 84), each vowel letter has one value (p. 2), and
+    the accent marks the stressed syllable (p. 125).
+    """
+
+    @pytest.mark.parametrize("vowel,breathing,accent", [
+        (vowel, breathing, accent)
+        for vowel in "αεηιουω"
+        for breathing in (PSILI, DASIA)
+        for accent in ("", ACUTE, GRAVE, PERISPOMENI)
+        # Greek has no ε or ο with the circumflex.
+        if not (accent == PERISPOMENI and vowel in "εο")
+    ])
+    def test_letter_reads_as_the_plain_vowel(self, vowel, breathing, accent):
+        letter = _with(vowel, breathing, accent)
+        assert len(letter) == 1, letter
+        assert _segments(f"τ{letter}τ") == _segments(f"τ{vowel}τ")
+
+    @pytest.mark.parametrize("vowel", list("αηιυω"))
+    def test_circumflex_without_breathing(self, vowel):
+        assert _segments(f"τ{_with(vowel, PERISPOMENI)}τ") == _segments(
+            f"τ{vowel}τ")
+
+    @pytest.mark.parametrize("digraph", ["αι", "ει", "οι", "ου", "αυ", "ευ"])
+    @pytest.mark.parametrize("accent", [GRAVE, PERISPOMENI])
+    def test_accented_digraph_reads_as_the_plain_digraph(self, digraph, accent):
+        accented = digraph[0] + _with(digraph[1], accent)
+        assert _segments(f"τ{accented}τ") == _segments(f"τ{digraph}τ")
+
+    def test_upsilon_iota_is_one_vowel(self):
+        """p. 2, note: "η, ει, οι, υι wie i"; ο is o and ς is s (pp. 2-3)."""
+        assert _segments("υιός") == "ios"
+
+    @pytest.mark.parametrize("polytonic,monotonic", [
+        ("ἄλλο", "άλλο"),
+        ("ἔχει", "έχει"),
+        ("ἔρται", "έρται"),
+        ("ἄνθρωπος", "άνθρωπος"),
+        ("υἱός", "υιός"),
+    ])
+    def test_breathing_writes_no_sound(self, polytonic, monotonic):
+        assert _pnt(polytonic) == _pnt(monotonic)
+
+    @pytest.mark.parametrize("word,plain,vowels_after", [
+        # p. 125: "Der Accent wird zurückgezogen ... im Vocativ": μῶρε
+        # (st. μωρὲ); in the adjectives in -ικος: Τούρκικον (st. Τουρκικὸν).
+        ("μῶρε", "μωρε", 2),
+        ("μωρὲ", "μωρε", 1),
+        ("Τουρκικὸν", "τουρκικον", 1),
+    ])
+    def test_grave_and_circumflex_mark_the_stress(self, word, plain,
+                                                   vowels_after):
+        assert _segments(word) == _segments(plain)
+        assert _vowels_after_mark(_pnt(word)) == vowels_after

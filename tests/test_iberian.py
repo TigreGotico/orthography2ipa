@@ -2283,7 +2283,7 @@ class TestSpanishPhonologicalRules:
     @pytest.mark.parametrize("word,expected", [
         ("naci\u00f3n", "na\u02c8\u03b8jon"),
         ("asunci\u00f3n", "asun\u02c8\u03b8jon"),
-        ("adri\u00e1n", "a\u02c8dɾjan"),
+        ("adri\u00e1n", "a\u02c8ðɾjan"),  # /d/ after a vowel is [ð] (Navarro Tomás 1918, § 101)
         ("despu\u00e9s", "des\u02c8pwes"),
         ("cu\u00e1nto", "\u02c8kwanto"),
     ])

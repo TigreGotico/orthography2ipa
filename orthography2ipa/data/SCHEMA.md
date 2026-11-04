@@ -862,11 +862,13 @@ language subtag comes from the parent's key, and the region is the country
 where the variety is spoken: `ars-SA-x-qassim` under `ars-SA`,
 `apc-TR-x-cukurova` under `apc-SY`. The slug names the place or the variety in
 lowercase ASCII and has 1 to 8 characters, the BCP 47 limit for a private-use
-subtag. When the name is longer, the slug is its standard short or local form
-if that has 8 characters or fewer (`gipuzkoa`, `roncal`). A name of several
-words becomes several subtags (`pt-PT-x-tras-os-montes`). A name with no short
-form is cut to its first 8 characters (`ext-PT-x-barranco`). A transliteration
-or romanization after the script subtag is a variant that IANA registers
+subtag. A variety that IANA registers as a variant takes the variant subtag
+in place of a slug (`eu-biscayan`, `oc-provenc`). When the name is longer than
+8 characters, the slug is its standard short or local form if that has 8
+characters or fewer (`gipuzkoa`, `roncal`). A name of several words becomes
+several subtags (`pt-PT-x-tras-os-montes`). A name with no short form is cut to
+its first 8 characters (`ext-PT-x-barranco`). A transliteration or
+romanization after the script subtag is a variant that IANA registers
 (`nan-Latn-pehoeji`), or it goes after the `x` (`ar-Latn-x-buckwalt`). The
 prefix is not a label of convenience: it must agree with the spec's
 own `parent` and with the heaviest-weighted entry in `ancestors`. A spec whose

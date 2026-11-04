@@ -251,7 +251,7 @@ def test_eu_three_way_sibilant_contrast_surfaces():
     assert bare("eu", "zezen").startswith("s̻")
     assert bare("eu", "sagar").startswith("s̺")
     assert bare("eu", "xarma").startswith("ʃ")
-    assert bare("eu-x-bizkaia", "zezen").startswith("s̺")
+    assert bare("eu-biscayan", "zezen").startswith("s̺")
 
 
 def test_eu_intervocalic_voiced_stops_are_approximants():
@@ -281,7 +281,7 @@ def test_eu_bizkaiera_palatal_stop_merged_into_the_affricate():
 
     Minimal pair by variety: the same ⟨tt⟩ is the palatal stop in Batua.
     """
-    assert "tʃ" in bare("eu-x-bizkaia", "tturru")
+    assert "tʃ" in bare("eu-biscayan", "tturru")
     assert "c" in bare("eu", "ttantta")
 
 
@@ -440,7 +440,9 @@ def test_ext_word_final_d_is_deleted():
     """Extremaduran notes: "(5) WORD-FINAL /d/ → [∅]: verdad [berˈdá] (complete
     elision more frequent than standard Castilian [ð])."
     """
-    assert bare("ext", "verdad") == "beɾda"
+    # The /d/ after /ɾ/ is the spirant inherited from es-ES (Navarro Tomás
+    # 1918, § 101); only the final /d/ is at issue here.
+    assert bare("ext", "verdad") == "beɾða"
 
 
 def test_ext_yeismo():

@@ -80,7 +80,7 @@ eml
 enf
 ess
 ett
-eu-x-bizkaia
+eu-biscayan
 eu-x-nafarra-garaia
 ewo
 fa

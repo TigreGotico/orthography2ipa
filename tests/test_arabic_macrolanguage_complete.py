@@ -27,15 +27,17 @@ DATA = os.path.join(os.path.dirname(orthography2ipa.__file__), "data")
 # directory, so the source of the list is what makes it auditable — if this literal is
 # not current, the check silently stops covering whatever ISO added.
 #
-# 30 codes: 28 members of [ara] proper, plus arb Standard Arabic and sqr Siculo, which
+# 29 codes: 27 members of [ara] proper, plus arb Standard Arabic and sqr Siculo, which
 # carry their own codes. ajp (South Levantine) is not listed: SIL retired it into apc,
-# so the specs for it declare apc, and the code ajp resolves to apc-JO. The
+# so the specs for it declare apc, and the code ajp resolves to apc-JO. bbz (Babalia
+# Creole) is not listed: the SIL macrolanguage table gives it status R, retired on
+# 2020-01-23 as non-existent, so its spec ar-TD-x-babalia declares no code. The
 # Judeo-Arabic varieties (jrb and its members ajt, aju, jye, yhd, yud) sit under their
 # own macrolanguage and are covered by the inheritance test instead.
 ARA_MEMBERS = [
     "aao", "abh", "abv", "acm", "acq", "acw", "acx", "acy", "adf", "aeb", "aec",
     "afb", "apc", "apd", "arb", "arq", "ars", "ary", "arz", "auz", "avl",
-    "ayh", "ayl", "ayn", "ayp", "bbz", "pga", "shu", "sqr", "ssh",
+    "ayh", "ayl", "ayn", "ayp", "pga", "shu", "sqr", "ssh",
 ]
 
 
@@ -61,7 +63,7 @@ def test_every_arabic_macrolanguage_member_has_an_entry():
           "minimum.")
 
 
-@pytest.mark.parametrize("code", ["bbz", "sqr"])
+@pytest.mark.parametrize("code", ["ar-TD-x-babalia", "sqr"])
 def test_the_two_added_here_reach_a_table_and_claim_nothing(code):
     spec = get(code)
     assert spec.code == code
@@ -77,7 +79,7 @@ def test_the_two_added_here_reach_a_table_and_claim_nothing(code):
 def test_each_states_why_its_parent_is_weak():
     """Both parents are chosen on grounds weaker than description, and the notes say
     so rather than letting a reader infer agreement from the inheritance."""
-    with open(os.path.join(DATA, "bbz.json"), encoding="utf-8") as fh:
+    with open(os.path.join(DATA, "ar-TD-x-babalia.json"), encoding="utf-8") as fh:
         _bbz = json.load(fh)
     assert "CREOLE" in _bbz["notes"]
     assert _bbz["parent"] != _bbz["graphemes_base"], (

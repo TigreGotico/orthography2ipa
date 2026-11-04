@@ -934,7 +934,7 @@ class TestGalicianOriental:
 
 @pytest.mark.iberian
 class TestBasqueBizkaiera:
-    """Bizkaian Basque — eu-x-bizkaia.
+    """Bizkaian Basque — eu-biscayan.
 
     Western dialect: sibilants include [ʃ], h aspirate lost (→ ∅).
     The Biscayan raising of the article /-a/ → [-e] after a high vowel is
@@ -943,7 +943,7 @@ class TestBasqueBizkaiera:
     allophone (Bedialauneta & Hualde 2023: 1107-1108).
     """
 
-    LANGUAGE_CODE = "eu-x-bizkaia"
+    LANGUAGE_CODE = "eu-biscayan"
 
     @pytest.fixture(autouse=True, scope="class")
     def spec(self, request):
