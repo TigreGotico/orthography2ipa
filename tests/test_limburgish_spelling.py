@@ -174,6 +174,28 @@ def test_word_final_h_keeps_the_e_short(word):
     assert _vowels(out) == ["æ"], out
 
 
+# Spelling 2003, printed p. 13, §8 a: 'Om die kortheid aan te geven, moeten ze
+# gevolgd worden door een h: deh, meh, nih'. The ⟨h⟩ is a sign for the short
+# vowel, as in Dutch 'bah, oh, eh'; Trommelen & Zonneveld 1997, p. 320: 'In een
+# syllabe komt h nooit voor in postvocalische positie'. The vowels are the
+# short ⟨e⟩ and ⟨i⟩ of the li table (printed p. 10).
+
+@pytest.mark.parametrize("word, segments", [("deh", "dæ"), ("meh", "mæ"), ("nih", "nɪ")])
+def test_word_final_h_after_a_short_vowel_is_silent(word, segments):
+    assert LI.transcribe_word(word).replace("ˈ", "") == segments
+
+
+def test_the_sign_h_is_the_consonant():
+    """Printed p. 11 lists ⟨h⟩ among the consonants."""
+    assert LI.transcribe_word("h").replace("ˈ", "") in ("h", "ɦ")
+
+
+def test_rheinische_dokumenta_does_not_take_the_length_sign():
+    """Rheinische Dokumenta writes sounds, so its ⟨h⟩ is [h]: the rule is off."""
+    rule = {r.id: r for r in G2P("li-x-rheindok").spec.allophone_rules}["LI_FINAL_H_LENGTH_SIGN"]
+    assert rule.phonemes == ()
+
+
 # A word-final full vowel is written with two signs: ⟨eh⟩ for the short one
 # (p. 13, §8 a) and ⟨ee⟩ for the long one (p. 16, §14 b: 'het basiswoord
 # eindigt op die noodzakelijke dubbele ee'). A final single ⟨e⟩ is [ə]: p. 10
