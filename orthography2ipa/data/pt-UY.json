@@ -338,6 +338,12 @@
       "notes": "Switched off. The pt-BR rule of this id describes the São Paulo variety of Barbosa & Albano (2004). No source on the border variety that this spec cites states the process, so the spec keeps its output until one does."
     },
     {
+      "id": "BR_EPENTHESIS_POSTTONIC",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Switched off with BR_EPENTHESIS, for the same reason."
+    },
+    {
       "id": "BR_REDUCE_FINAL_AS",
       "phonemes": [],
       "surface": "",
