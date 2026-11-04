@@ -22,6 +22,19 @@ chuva ['ch', 'u', 'v', 'a'] ʃuvɐ
 lhano ['lh', 'a', 'n', 'o'] ʎanu
 ```
 
+A spec can name multigraphs in `prevocalic_glide_backoff`. Each one ends in a glide letter that opens the next syllable when a vowel letter follows. There the tokenizer takes the multigraph without its last letter, and the glide letter starts the next grapheme. Limburgish lists ⟨ew⟩: before a vowel it is ⟨e⟩ + ⟨w⟩, and elsewhere it stays one sign:
+
+```python
+tok = PhonetokTokenizer(orthography2ipa.get("li"))
+for word in ("geweun", "kew"):
+    print(word, [t.grapheme for t in tok.grapheme_tokens(word)], tok.ipa_best(word))
+```
+
+```text
+geweun ['g', 'e', 'w', 'eu', 'n'] ʝəwøːn
+kew ['k', 'ew'] kæw
+```
+
 ### IPA Ambiguity and Beam Search
 
 Many graphemes map to several IPA values. The number of whole-word readings is the product of the candidate counts of its graphemes, so it grows fast with word length. English ⟨ice⟩ has three candidates for ⟨i⟩, two for ⟨c⟩ and four for ⟨e⟩, which gives 24 readings:

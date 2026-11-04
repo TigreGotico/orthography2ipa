@@ -1331,6 +1331,8 @@ class PhonetokTokenizer:
         self._hiatus: bool = spec.stress is not None and bool(
             spec.stress.closed_hiatus or spec.stress.final_diphthongs)
         self._hiatus_by_word: Dict[str, FrozenSet[int]] = {}
+        self._prevocalic_glide_backoff: FrozenSet[str] = frozenset(
+            g.lower() for g in spec.prevocalic_glide_backoff)
 
     def _hiatus_prefix(self, text: str, pos: int, gkey: str) -> str:
         """*gkey*, cut before a letter that opens a nucleus of its own.
@@ -2018,6 +2020,17 @@ class PhonetokTokenizer:
                 if (self._hiatus and len(gkey) > 1
                         and is_orthographic_vowel(gkey[0])):
                     gkey = self._hiatus_prefix(text, pos, gkey)
+                # A listed vowel + glide sign (Limburgish ⟨ew⟩) gives its glide
+                # letter to the next syllable when a vowel letter follows:
+                # ⟨geweun⟩ is ⟨g·e·w·eu·n⟩.
+                if (
+                    gkey in self._prevocalic_glide_backoff
+                    and gkey[:-1] in self._grapheme_ipa
+                    and gkey[-1] in self._grapheme_ipa
+                    and pos + len(gkey) < n
+                    and is_orthographic_vowel(text[pos + len(gkey)])
+                ):
+                    gkey = gkey[:-1]
                 # Vowel-gated digraph. A consonant-initial digraph ending in a
                 # high glide letter ⟨u⟩/⟨i⟩ (Romance ⟨gu qu gi ci⟩ …) uses that
                 # letter as a mute/glide marker only when a vowel follows —
