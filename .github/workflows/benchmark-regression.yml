@@ -92,20 +92,21 @@ jobs:
         run: |
           PYTHONPATH=$PWD .venv/bin/python scripts/check_board_row_counts.py
 
-  board-freshness:
+  # The board-freshness guard runs in three jobs. The plan job lists every
+  # board row a touched spec owns and splits them into shards balanced by
+  # word count. One shard job per shard measures its rows in parallel. The
+  # board-freshness job reads every shard's results and gives the verdict:
+  # a planned row with no result fails it, so a shard that crashed, timed
+  # out or never ran cannot read as a pass. An edit to a clade spec owns
+  # hundreds of rows (iir.json and its siblings owned 178 rows in each board
+  # file, about 2.7 million word pairs), which one job cannot measure inside
+  # its time limit; the shards keep every one of those rows measured.
+  board-freshness-plan:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
-    # A widely-inherited parent spec (en-GB.json, a hub several dialects
-    # declare tables against) can own many large rows at once -- editing it
-    # alone owns 8 rows across cmudict/ipadict/wikipron/ipa_babylm/
-    # ipa_childes, roughly half a million word pairs, and one real run of
-    # that case ran past 5 minutes with no row yet complete. 45 minutes
-    # gives that worst-known case comfortable headroom (the check never
-    # samples or skips rows to go faster, so a real hang has to be caught
-    # by a deadline rather than by the check cutting corners) while staying
-    # far below the 360-minute platform default, so a genuine hang fails
-    # the build instead of tying up a runner for hours.
-    timeout-minutes: 45
+    timeout-minutes: 15
+    outputs:
+      shards: ${{ steps.plan.outputs.shards }}
     steps:
       # Needs origin/dev reachable to diff against, and enough history to
       # find the merge base -- same reason board-not-reverting below fetches
@@ -113,6 +114,46 @@ jobs:
       - uses: actions/checkout@v7
         with:
           fetch-depth: 0
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.3.3
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          uv venv .venv
+          uv pip install --python .venv/bin/python -e ".[test]"
+
+      - name: Plan the rows the touched specs own
+        id: plan
+        run: |
+          git fetch --no-tags origin dev
+          PYTHONPATH=$PWD .venv/bin/python scripts/check_board_freshness.py \
+            --base origin/dev --plan-out board-freshness-plan.json
+          echo "shards=$(jq -c '[range(.shards)]' board-freshness-plan.json)" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: board-freshness-plan
+          path: board-freshness-plan.json
+          if-no-files-found: error
+
+  board-freshness-shard:
+    needs: board-freshness-plan
+    if: needs.board-freshness-plan.outputs.shards != '[]'
+    runs-on: ubuntu-latest
+    # A shard is planned at about 15 minutes on a hosted runner; the cap on
+    # the shard count keeps even a whole-board plan under 25. The limit
+    # still lets a genuine hang fail the build instead of tying up a runner
+    # for the 360-minute platform default.
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: ${{ fromJSON(needs.board-freshness-plan.outputs.shards) }}
+    steps:
+      - uses: actions/checkout@v7
 
       - name: Install uv
         uses: astral-sh/setup-uv@v10.3.3
@@ -132,15 +173,64 @@ jobs:
           uv venv .venv
           uv pip install --python .venv/bin/python -e ".[test]"
 
-      - name: Check the board matches what touched specs now produce
-        # Rescores only the rows a language-spec edit in this diff could
-        # have moved (see the script's docstring), so it stays cheap even
-        # though it measures against the FULL committed board rather than
-        # the CI sample. A dataset whose gold cannot be fetched here is
-        # reported and skipped, never silently passed.
+      - uses: actions/download-artifact@v8
+        with:
+          name: board-freshness-plan
+
+      - name: Measure this shard's rows
+        # Rescores against the FULL committed board, not the CI sample. A
+        # dataset whose gold cannot be fetched here is reported and
+        # skipped, never silently passed.
         run: |
-          git fetch --no-tags origin dev
-          PYTHONPATH=$PWD .venv/bin/python scripts/check_board_freshness.py --base origin/dev
+          mkdir -p board-freshness-results
+          PYTHONPATH=$PWD .venv/bin/python scripts/check_board_freshness.py \
+            --plan board-freshness-plan.json --shard ${{ matrix.shard }} \
+            --results-out board-freshness-results/shard-${{ matrix.shard }}.json
+
+      # Uploaded when the shard found a stale row too, so the verdict job
+      # names it; a shard that wrote nothing leaves its rows unverified.
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: board-freshness-result-${{ matrix.shard }}
+          path: board-freshness-results/shard-${{ matrix.shard }}.json
+          if-no-files-found: warn
+
+  board-freshness:
+    needs: [board-freshness-plan, board-freshness-shard]
+    if: always() && github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.3.3
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          uv venv .venv
+          uv pip install --python .venv/bin/python -e ".[test]"
+
+      - uses: actions/download-artifact@v8
+        with:
+          name: board-freshness-plan
+
+      # No result artifact exists when the plan owns no row; the verdict
+      # step below fails on any planned row that has no result.
+      - uses: actions/download-artifact@v8
+        continue-on-error: true
+        with:
+          pattern: board-freshness-result-*
+          path: board-freshness-results
+          merge-multiple: true
+
+      - name: Check the board matches what touched specs now produce
+        run: |
+          PYTHONPATH=$PWD .venv/bin/python scripts/check_board_freshness.py \
+            --plan board-freshness-plan.json --aggregate board-freshness-results
 
   board-not-reverting:
     if: github.event_name == 'pull_request'
