@@ -142,3 +142,35 @@ class TestRuleDeclaration:
             rule = next(r for r in spec.sandhi_rules if r.id == "PT_CODA_S_VOICING")
             assert rule.transform == "ʒ", loc
             assert rule.right_context.startswith("^[ˈˌ]?"), loc
+
+
+class TestVoicingBeforeVelar:
+    """Coda /s/ before a word-initial /ɡ/ is [ʒ], as before every voiced consonant.
+
+    "Syllable-final /ʃ/ occurs as [ʒ] before a voiced consonant (except before
+    /ʒ/ itself, where it is deleted)" (Cruz-Ferreira 1999, Handbook of the IPA,
+    p. 128). The engine writes the velar as IPA \u0261, so the rule context must
+    list that code point and not ASCII g.
+    """
+
+    LECTS = ("pt-PT", "pt-PT-x-lisbon", "pt-PT-x-porto", "pt-PT-x-acores")
+    VOICED_VELAR = ("os gatos", "as gotas", "os grandes", "os glaciares")
+
+    def test_coda_s_voices_before_velar(self):
+        for loc in self.LECTS:
+            g2p = G2P(loc)
+            for phrase in self.VOICED_VELAR:
+                first, second = g2p.transcribe(phrase).split(" ", 1)
+                assert first.endswith("ʒ"), (loc, phrase, first)
+                assert second.lstrip("ˈˌ").startswith("\u0261"), (loc, phrase, second)
+
+    def test_coda_s_stays_hush_before_voiceless_velar(self):
+        for loc in self.LECTS:
+            first = G2P(loc).transcribe("os casos").split(" ", 1)[0]
+            assert first.endswith("ʃ"), (loc, first)
+
+    def test_voicing_context_lists_ipa_g(self):
+        rule = next(r for r in G2P("pt-PT").spec.sandhi_rules
+                    if r.id == "PT_CODA_S_VOICING")
+        assert "\u0261" in rule.right_context
+        assert "g" not in rule.right_context

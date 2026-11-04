@@ -142,7 +142,7 @@ A word-final coda /s/ is [ʃ] alone and before a voiceless consonant. Across a w
 
 Before a vowel, the final sibilant joins the next syllable and is voiced to the alveolar [z]. Before a voiced consonant, it takes the voicing of that consonant and is the post-alveolar [ʒ] (Mateus & d'Andrade 2000, ch. 2). Before a voiceless consonant it stays [ʃ]: `estás feliz` [eʃˈtaʃ fɨˈliʃ]. A single word does not change: `estás` [eʃˈtaʃ].
 
-The `right_context` of `PT_CODA_S_VOICING` is `^[ˈˌ]?[bdgvzʒmnɲɾʁlʎ]`. The optional stress mark lets it fire on a next word that starts with a stressed syllable, such as `bocas` [ˈbɔkɐʃ].
+The `right_context` of `PT_CODA_S_VOICING` is `^[ˈˌ]?[bdɡvzʒmnɲɾʁlʎ]`. The optional stress mark lets it fire on a next word that starts with a stressed syllable, such as `bocas` [ˈbɔkɐʃ]. The velar in the class is IPA ɡ (U+0261), the code point the engine emits, so `os gatos` gives [oʒ ˈɡatuʃ]. An ASCII g (U+0067) in its place never matches.
 
 The standard [z] before a vowel is well documented (Mateus & d'Andrade 2000, ch. 2). Wikipedia, *Portuguese phonology*, section Consonant sandhi, gives `bons amigos` [bõz ɐˈmiɣuʃ]. Every `pt-PT-x-*` spec inherits both rules by id. Some dialects use [ʒ] before a vowel as well. The [dialect page](pt-PT-dialects.md#s-sandhi-before-a-vowel) gives the value of each spec and its sources.
 
