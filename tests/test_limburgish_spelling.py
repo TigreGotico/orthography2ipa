@@ -211,3 +211,30 @@ def test_ew_alone_stays_one_sign():
 def test_the_prefix_before_a_glide_is_schwa(word):
     out = LI.transcribe_word(word)
     assert out.split("ˈ")[0] in ("ʝə", "bə") and out.split("ˈ")[1][0] == "w", out
+
+
+# ⟨àè⟩. Spelling 2003, printed p. 10, gives the long partner of short ⟨e⟩ as
+# 'àè (de e van Ned. pet maar dan lang)', with the after-glide signs ⟨àèë⟩ and
+# ⟨àèw⟩. The Dutch vowel of pet is [ɛ] (Wells, SAMPA for Dutch, 'E pet pEt';
+# Gussenhoven 1992, p. 46, 'ɛ bed'). No source word uses the sign, so the
+# words are test strings.
+
+@pytest.mark.parametrize("word, tokens", [
+    ("zàèle", ["z", "àè", "l", "e"]),
+    ("vàèl", ["v", "àè", "l"]),
+    ("vàèë", ["v", "àèë"]),
+    ("zàèw", ["z", "àèw"]),
+])
+def test_ae_grave_is_one_sign(word, tokens):
+    assert LI._tokenizer.graphemes(word) == tokens
+
+
+@pytest.mark.parametrize("word, segments", [
+    ("zàèle", "zɛːlə"),
+    ("vàèl", "vɛːl"),
+    ("vàèë", "vɛːə"),
+    ("zàèw", "zɛːw"),
+])
+def test_ae_grave_is_the_long_vowel_of_dutch_pet(word, segments):
+    strict = G2P("li", on_unmapped="raise")
+    assert strict.transcribe_word(word).replace("ˈ", "") == segments
