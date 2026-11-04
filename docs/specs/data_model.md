@@ -332,7 +332,7 @@ no_list = dataclasses.replace(ca, stress=dataclasses.replace(ca.stress, diphthon
 G2P("ca", spec=no_list).transcribe("tenia")   # 'ˈtɛniə'
 ```
 
-`ipa_diphthongs` divides the transcription where the engine writes the mark. Its Python value is `None` when the spec leaves the field out, and then the engine divides the IPA with `diphthongs`. `pt-PT` declares an empty list, so each IPA vowel is its own nucleus. With the orthographic list, the ⟨ui⟩ entry merges the hiatus of *proíbe*, and the mark lands on the first syllable:
+`ipa_diphthongs` divides the transcription where the engine writes the mark. Its Python value is `None` when the spec leaves the field out, and then the engine divides the IPA with `diphthongs`. `pt-PT` declares an empty list, so each IPA vowel is its own nucleus. With the orthographic list, the ⟨ui⟩ entry merges the hiatus of *ruim*, and the mark lands on the first syllable:
 
 ```python
 import dataclasses
@@ -340,9 +340,9 @@ import orthography2ipa
 from orthography2ipa import G2P
 pt = orthography2ipa.get("pt-PT")
 pt.stress.ipa_diphthongs                 # ()
-G2P("pt-PT").transcribe("proíbe")        # 'pɾuˈibɨ'
+G2P("pt-PT").transcribe("ruim")          # 'ʁuˈĩ'
 undeclared = dataclasses.replace(pt, stress=dataclasses.replace(pt.stress, ipa_diphthongs=None))
-G2P("pt-PT", spec=undeclared).transcribe("proíbe")   # 'ˈpɾuibɨ'
+G2P("pt-PT", spec=undeclared).transcribe("ruim")     # 'ˈʁuĩ'
 ```
 
 `closed_hiatus` splits a written vowel pair where a consonant closes the syllable of its second letter. Portuguese writes no acute on a tonic ⟨i u⟩ that forms a syllable with ⟨nh⟩ or with a following l, m, n, r or z (Acordo Ortográfico 1990, Base X, 2.º), so *rainha* is ra-i-nha and not rai-nha. The split holds only where the split-off vowel is stressed. The tokenizer reads the field too, so the ⟨ai⟩ of *rainha* is two graphemes and the ⟨i⟩ is a vowel, not a glide:
