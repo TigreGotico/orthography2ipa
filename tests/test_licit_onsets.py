@@ -386,7 +386,7 @@ def test_constrain_onsets_is_inherited_along_the_grapheme_base():
     Without this, ``de-AT`` read ``de-DE``'s graphemes while syllabifying them
     by a different rule — a language-feature parity gap, which is a bug."""
     for code in ("nl", "nl-NL", "nl-BE", "de-DE", "de-AT", "de-CH",
-                 "bar-AT", "de-x-alemannic", "fr-FR"):
+                 "bar-AT", "de-x-alemanni", "fr-FR"):
         assert get(code).constrain_onsets is True, code
     # …and it does not leak to a language that never asked for it
     for code in ("el", "is", "sv", "ru", "pl", "pt-PT", "en", "ar"):

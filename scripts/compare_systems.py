@@ -303,7 +303,7 @@ DICTSOURCE_LANG: Dict[str, str] = {
     "nl": "nl",
     "ca": "ca",
     "ca-x-balear": "ca",
-    "ca-x-occidental": "ca",
+    "ca-x-occident": "ca",
     "ca-x-valencia": "ca",
     "sv": "sv",
     "eu": "eu",
@@ -399,7 +399,7 @@ LANGS: Dict[str, dict] = {
            "epitran": "cat-Latn", "gruut": None},
     # Catalan dialect voices added to espeak-ng by the Barcelona
     # Supercomputing Center (BSC); matched 1:1 to the 4catac gold's four
-    # regional accents. ca-x-occidental -> espeak's "ca-nw"
+    # regional accents. ca-x-occident -> espeak's "ca-nw"
     # (Catalan_(North-western)) is a direct semantic match to 4catac's
     # "Nord-Occ" accent, not an approximation. The actual espeak voice
     # used per dialect is resolved at runtime (see
@@ -407,7 +407,7 @@ LANGS: Dict[str, dict] = {
     # "ca" voice, clearly labeled, if a dialect voice isn't installed.
     "ca-x-balear": {"dataset": ("4catac", "ca-x-balear"), "espeak": "ca-ba",
                      "epitran": "cat-Latn", "gruut": None},
-    "ca-x-occidental": {"dataset": ("4catac", "ca-x-occidental"),
+    "ca-x-occident": {"dataset": ("4catac", "ca-x-occident"),
                          "espeak": "ca-nw",
                          "epitran": "cat-Latn", "gruut": None},
     "ca-x-valencia": {"dataset": ("4catac", "ca-x-valencia"),
@@ -426,19 +426,19 @@ LANGS: Dict[str, dict] = {
     # can still diverge it from raw o2i.
     "mwl": {"dataset": ("mirandese_g2p", "mwl"), "espeak": None,
             "epitran": None, "gruut": None, "mwl_phonemizer": "mwl"},
-    # Barranquenho (ext-PT-x-barrancos): the ONLY registered gold,
+    # Barranquenho (ext-PT-x-barranco): the ONLY registered gold,
     # ``barranquenho_dict``, is documented same-source for o2i (see
     # ``_O2I_SAME_SOURCE_DATASETS`` above) — its own loader docstring says
     # the IPA column "suggests their IPA column is itself o2i-aligned:
     # treat every number from this dataset as agreement, not correctness".
     # g2p_barranquenho is built directly on o2i's own
-    # ext-PT-x-barrancos spec, so it inherits the exact same exposure —
+    # ext-PT-x-barranco spec, so it inherits the exact same exposure —
     # wired in and correctly flagged same-source (see
     # ``_same_source_flags``'s "barranquenho" key) rather than silently
     # dropped or, worse, presented as a real comparison.
-    "ext-PT-x-barrancos": {"dataset": ("barranquenho_dict", "ext-PT-x-barrancos"),
+    "ext-PT-x-barranco": {"dataset": ("barranquenho_dict", "ext-PT-x-barranco"),
                             "espeak": None, "epitran": None, "gruut": None,
-                            "barranquenho": "ext-PT-x-barrancos"},
+                            "barranquenho": "ext-PT-x-barranco"},
     "cy": {"dataset": ("wikipron", "cy"), "espeak": "cy",
            "epitran": "cym-Latn", "gruut": None},
     "ga": {"dataset": ("wikipron", "ga"), "espeak": "ga",
@@ -601,7 +601,7 @@ def discover_catalan_dialect_voices() -> Dict[str, Optional[str]]:
     """
     wanted = {
         "ca": "ca", "ca-x-balear": "ca-ba",
-        "ca-x-occidental": "ca-nw", "ca-x-valencia": "ca-va",
+        "ca-x-occident": "ca-nw", "ca-x-valencia": "ca-va",
     }
     if not espeak_available():
         return {tag: None for tag in wanted}
@@ -1200,7 +1200,7 @@ def barranquenho_transcribe(word: str, lang: str) -> Optional[str]:
     """Transcribe *word* with g2p_barranquenho's ``transcribe``, or ``None``
     if the library is absent or fails on the word. *lang* is accepted for a
     uniform call signature but unused — g2p_barranquenho scores a single
-    fixed variety (``ext-PT-x-barrancos``)."""
+    fixed variety (``ext-PT-x-barranco``)."""
     try:
         from g2p_barranquenho import transcribe
     except ImportError:
@@ -2205,7 +2205,7 @@ _O2I_SAME_SOURCE_DATASETS = frozenset({
     # barranquenho_dict joins per this docstring's own instruction above:
     # load_barranquenho_dict's docstring documents its IPA column as itself
     # o2i-aligned, so scoring o2i (or g2p_barranquenho, which is built
-    # directly on o2i's ext-PT-x-barrancos spec) against it is circular.
+    # directly on o2i's ext-PT-x-barranco spec) against it is circular.
     "barranquenho_dict",
 })
 
@@ -2856,7 +2856,7 @@ _CATALAN_DIALECT_LABELS = {
     "ca": "central",
     "ca-x-balear": "balear",
     "ca-x-valencia": "valencian",
-    "ca-x-occidental": "occidental (nord-occidental)",
+    "ca-x-occident": "occidental (nord-occidental)",
 }
 
 
@@ -3133,7 +3133,7 @@ _LANG_DISPLAY_NAMES: Dict[str, str] = {
     "arb": "Classical Arabic",
     "ca": "Catalan",
     "ca-x-balear": "Balearic Catalan",
-    "ca-x-occidental": "North-Western Catalan",
+    "ca-x-occident": "North-Western Catalan",
     "ca-x-valencia": "Valencian",
     "cop": "Coptic (Sahidic)",
     "cy": "Welsh",
@@ -3600,7 +3600,7 @@ _O2I_FAMILY_REPOS: List[Tuple[str, str, str]] = [
      "Portuguese-family lattice"),
     ("barranquenho", "g2p_barranquenho",
      "the Barranquenho (Spanish/Portuguese contact variety) rule layer "
-     "on top of the `ext-PT-x-barrancos` lattice"),
+     "on top of the `ext-PT-x-barranco` lattice"),
     ("mwl_phonemizer", "mwl_phonemizer",
      "Mirandese dialect selection, an optional native-speaker lexicon "
      "overlay, and CRF correction on top of the `mwl` lattice"),

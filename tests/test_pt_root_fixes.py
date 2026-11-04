@@ -4,7 +4,7 @@ Each test takes ONE cited claim and proves the shared engine / base-spec now
 honours it, isolating the change to a single segment and, where the phonology
 allows, using a minimal pair (same word under a sibling or parent lect). The
 leads these cover were surfaced while authoring the ``portuguese_tts`` gold
-sets; the fixes live in the base ``roa-x-galaicopt`` / ``pt-PT-x-medieval``
+sets; the fixes live in the base ``roa-x-galaico-pt`` / ``pt-PT-x-medieval``
 specs, the per-lect override tables, and the shared positional engine — never
 in per-word patches.
 """
@@ -43,7 +43,7 @@ def test_soft_g_before_e_i_is_zh(code):
 def test_soft_g_deaffrication_medieval_vs_galaicopt():
     # minimal pair on the same word: the affricate survives in the older lect,
     # deaffricates in Old Portuguese and its descendants.
-    assert "d͡ʒ" in _bare("roa-x-galaicopt", "gente")
+    assert "d͡ʒ" in _bare("roa-x-galaico-pt", "gente")
     assert "ʒ" in _bare("pt-PT-x-medieval", "gente")
     assert "d͡ʒ" not in _bare("pt-PT-x-medieval", "gente")
 
@@ -78,7 +78,7 @@ def test_voce_northern_betacism_not_velar():
 # attracts stress rather than being dropped (an accented grapheme must map to
 # its plain quality — deletion is always wrong).
 # ===========================================================================
-@pytest.mark.parametrize("code", ["pt-PT-x-medieval", "roa-x-galaicopt"])
+@pytest.mark.parametrize("code", ["pt-PT-x-medieval", "roa-x-galaico-pt"])
 @pytest.mark.parametrize("word,vowel", [("está", "a"), ("café", "ɛ"), ("avô", "o")])
 def test_accented_vowels_not_deleted(code, word, vowel):
     out = _t(code, word)
@@ -89,8 +89,8 @@ def test_accented_vowels_not_deleted(code, word, vowel):
 def test_galaicopt_emits_stress():
     # Galaico-Portuguese was paroxytone-by-default with oxytone consonant
     # endings, like its descendants; the transcriber must mark stress.
-    assert "ˈ" in _t("roa-x-galaicopt", "amigo")
-    assert "ˈ" in _t("roa-x-galaicopt", "cantar")
+    assert "ˈ" in _t("roa-x-galaico-pt", "amigo")
+    assert "ˈ" in _t("roa-x-galaico-pt", "cantar")
 
 
 # ===========================================================================

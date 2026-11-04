@@ -194,7 +194,7 @@ def test_ta_geminate_glide_v_is_long():
 
 
 # ═══════════════════════════════════════════════════════════════════════════
-# Proto-Dravidian (ta-x-proto-dravidian)
+# Proto-Dravidian (ta-x-proto-dravidia)
 #   "5 vowel qualities × short/long; two stop series (initial: unaspirated;
 #    medial: voiced allophones); no aspiration contrast in native vocabulary;
 #    retroflex series (ʈ ɖ ɳ ɭ ɻ)" — Krishnamurti (2003)
@@ -203,7 +203,7 @@ def test_ta_geminate_glide_v_is_long():
 def test_proto_dravidian_retroflex_series_is_mapped():
     """"retroflex series (ʈ ɖ ɳ ɭ ɻ) — may be the source of IA retroflexes"
     (Krishnamurti 2003)."""
-    g = G2P("ta-x-proto-dravidian")
+    g = G2P("ta-x-proto-dravidia")
     for seg in ("ʈ", "ɖ", "ɳ", "ɭ", "ɻ"):
         assert g.transcribe_word("a" + seg + "u") == "a" + seg + "u"
 
@@ -211,7 +211,7 @@ def test_proto_dravidian_retroflex_series_is_mapped():
 def test_proto_dravidian_vowel_length_contrast():
     """"5 vowel qualities × short/long" (Krishnamurti 2003): *paal keeps the long
     vowel distinct from *pal."""
-    g = G2P("ta-x-proto-dravidian")
+    g = G2P("ta-x-proto-dravidia")
     assert g.transcribe_word("pal") == "pal"
     assert g.transcribe_word("paːl") == "paːl"
 
@@ -222,7 +222,7 @@ def test_proto_dravidian_vowel_length_contrast():
 def test_proto_dravidian_medial_stops_are_voiced_allophones():
     """"two stop series (initial: unaspirated; medial: voiced allophones)"
     (Krishnamurti 2003) — medial *t should surface voiced."""
-    assert G2P("ta-x-proto-dravidian").transcribe_word("katu") == "kadu"
+    assert G2P("ta-x-proto-dravidia").transcribe_word("katu") == "kadu"
 
 
 # ═══════════════════════════════════════════════════════════════════════════

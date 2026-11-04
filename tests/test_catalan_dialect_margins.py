@@ -1,5 +1,5 @@
 """Catalan dialect-margins wave: the two Romance rows that still lost to a
-rules-only espeak-ng, ca-x-balear and ca-x-occidental, on the 4catac expert
+rules-only espeak-ng, ca-x-balear and ca-x-occident, on the 4catac expert
 gold (n=160 sentences per row).
 
 Every rule below was FOUND by a per-sentence differential against
@@ -25,9 +25,9 @@ import pytest
 from orthography2ipa import G2P, get
 
 
-WESTERN = ["ca-x-occidental", "ca-x-valencia"]
+WESTERN = ["ca-x-occident", "ca-x-valencia"]
 EASTERN = ["ca", "ca-x-balear", "ca-x-nord"]
-ALL_CA = ["ca", "ca-x-nord", "ca-x-balear", "ca-x-occidental",
+ALL_CA = ["ca", "ca-x-nord", "ca-x-balear", "ca-x-occident",
           "ca-x-valencia", "ca-x-alguer", "ca-x-medieval"]
 
 
@@ -84,9 +84,9 @@ def test_eastern_mainland_keeps_the_coda_trill():
     not a pan-Catalan one: Central and North-Western keep the coda trill
     (Recasens 1993 ch. 5), and the 4catac Central/North-Western gold
     transcribes it that way. Flipping them too was measured and regressed
-    both rows (ca 0.0643 -> 0.0752, ca-x-occidental 0.0944 -> 0.1037)."""
+    both rows (ca 0.0643 -> 0.0752, ca-x-occident 0.0944 -> 0.1037)."""
     assert G2P("ca").transcribe_word("carn") == "ˈkarn"
-    assert G2P("ca-x-occidental").transcribe_word("carn") == "ˈkarn"
+    assert G2P("ca-x-occident").transcribe_word("carn") == "ˈkarn"
 
 
 @pytest.mark.parametrize("lang", ALL_CA)
@@ -177,7 +177,7 @@ def test_the_accented_ia_class_keeps_its_written_accent(lang, word,
     states that stress outright (IEC 2016 ch. 3), so no PER gain justifies
     contradicting it.
 
-    Cost of the removal, measured on the 4catac rows: ca-x-occidental
+    Cost of the removal, measured on the 4catac rows: ca-x-occident
     0.0795 -> 0.0824 (still beats espeak rules-only at 0.0832) and
     ca-x-valencia 0.0653 -> 0.0646, which is BETTER. These counter-cases
     are pinned so a future glide rule cannot reintroduce the defect
@@ -214,26 +214,26 @@ def test_north_western_initial_atonic_e_lowers_to_a(word):
     the Valencian scope was withdrawn — see
     test_valencian_scope_was_withdrawn_for_want_of_a_citation.
     """
-    assert G2P("ca-x-occidental").transcribe_word(word).startswith("a")
+    assert G2P("ca-x-occident").transcribe_word(word).startswith("a")
 
 
 def test_the_nasal_or_s_must_be_implosive():
     """Counter-case inside the same prefix: enorme keeps [e], because its
     /n/ is the onset of the next syllable and not a coda. Without the
     ``followed_by_2: consonant`` gate this word lowers too."""
-    assert G2P("ca-x-occidental").transcribe_word("enorme").startswith("e")
+    assert G2P("ca-x-occident").transcribe_word("enorme").startswith("e")
 
 
 @pytest.mark.parametrize("word", ["este", "esta", "estos", "estes"])
 def test_stressed_initial_e_is_untouched(word):
     """The stress gate, and the reason the demonstrative paradigm needs no
     word list: their initial ⟨e⟩ is stressed."""
-    assert G2P("ca-x-occidental").transcribe_word(word).startswith("ˈe")
+    assert G2P("ca-x-occident").transcribe_word(word).startswith("ˈe")
 
 
 def test_word_internal_atonic_e_is_untouched():
     """Counter-case for the word_initial gate."""
-    assert "a" not in G2P("ca-x-occidental").transcribe_word("temperatura")[:4]
+    assert "a" not in G2P("ca-x-occident").transcribe_word("temperatura")[:4]
 
 
 def test_valencian_scope_was_withdrawn_for_want_of_a_citation():
@@ -373,7 +373,7 @@ def test_eastern_still_palatalises_before_its_fricative(lang):
 def test_unstressed_u_before_a_vowel_does_not_glide(lang):
     """REFUTED. The back counterpart of WESTERN_GLIDE_I was written,
     shipped into a measurement run, and REMOVED: it made both Western rows
-    worse (ca-x-occidental 0.0885 -> 0.0895, ca-x-valencia 0.0736 ->
+    worse (ca-x-occident 0.0885 -> 0.0895, ca-x-valencia 0.0736 ->
     0.0743). Wheeler 2005 §2.5 states glide formation for /i/ far more
     strongly than for /u/, and the gold agrees — the /u/ hiatus survives.
     Pinned so a later wave does not re-run the experiment."""
@@ -387,7 +387,7 @@ def test_the_stressed_mid_vowel_remainder_is_left_alone():
 
     The single largest remaining error class on BOTH Western rows is the
     aperture of an unmarked stressed mid vowel — 99 [o]-for-[ɔ]
-    substitutions on ca-x-occidental alone. It is not closed here, and it
+    substitutions on ca-x-occident alone. It is not closed here, and it
     is not a rule: the sources that decide aperture categorically
     (Mascaró 2009 §1's opening contexts, the written accent, the -or/-ió
     endings) are already shipped by the wave-2 Catalan work, and Mascaró

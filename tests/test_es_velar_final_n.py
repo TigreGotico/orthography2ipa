@@ -17,7 +17,7 @@ from orthography2ipa.g2p import G2P
 
 VELARIZING = ["es-CO-x-pacifico", "es-EC-x-costa", "es-PE-x-lima", "es-HN",
               "es-SV", "es-GT", "es-CR", "es-ES-x-canarias",
-              "es-VE-x-maracucho"]
+              "es-VE-x-zulia"]
 
 
 @pytest.mark.parametrize("code", VELARIZING)

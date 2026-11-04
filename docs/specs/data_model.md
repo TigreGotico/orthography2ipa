@@ -94,7 +94,7 @@ len(ine.phonemes)                  # 30 reconstructed phonemes, declared
 import orthography2ipa
 orthography2ipa.get("zh").orthography_kind                   # OrthographyKind.ROMANIZATION
 orthography2ipa.get("zh-Hani").orthography_kind              # OrthographyKind.NATIVE
-orthography2ipa.get("ar-Latn-buckwalter").orthography_kind   # OrthographyKind.TRANSLITERATION
+orthography2ipa.get("ar-Latn-x-buckwalt").orthography_kind   # OrthographyKind.TRANSLITERATION
 ```
 
 #### A romanization is an orthography
@@ -110,19 +110,19 @@ The conversion of Han text to Pinyin is a dictionary lookup (CC-CEDICT and simil
 
 #### Buckwalter cannot recover the vowels
 
-A transliteration that changed the pronunciation would not be a transliteration. `ar` and `ar-Latn-buckwalter` write the same word in two encodings and give one IPA:
+A transliteration that changed the pronunciation would not be a transliteration. `ar` and `ar-Latn-x-buckwalt` write the same word in two encodings and give one IPA:
 
 ```python
 from orthography2ipa import G2P
 G2P("ar").transcribe("كَتَبَ")                    # 'ˈkataba': vocalised Arabic
-G2P("ar-Latn-buckwalter").transcribe("kataba")   # 'ˈkataba': the same IPA
+G2P("ar-Latn-x-buckwalt").transcribe("kataba")   # 'ˈkataba': the same IPA
 ```
 
 A re-encoding cannot recover what the script never wrote. Unvocalised Buckwalter is as hard to read as unvocalised Arabic. Both omit the short vowels, and nothing puts them back:
 
 ```python
 from orthography2ipa import G2P
-g = G2P("ar-Latn-buckwalter")
+g = G2P("ar-Latn-x-buckwalt")
 g.transcribe("kataba")   # 'ˈkataba'
 g.transcribe("ktb")      # 'ˈktb': the bare form has no vowels
 ```

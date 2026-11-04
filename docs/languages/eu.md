@@ -7,13 +7,14 @@ Basque is a language isolate: it has no demonstrated genetic relationship to any
 | Code | Variety | Quality tier |
 |:---|:---|:---|
 | `eu` | Euskara Batua (standard) | production |
-| `eu-x-bizkaiera` | Biscayan (Western) | research |
-| `eu-x-gipuzkera` | Gipuzkoan (Central) | research |
+| `eu-biscayan
+` | Biscayan (Western) | research |
+| `eu-x-gipuzkoa` | Gipuzkoan (Central) | research |
 | `eu-x-nafarra-garaia` | Upper (High) Navarrese | research |
 | `eu-x-nafarra-beherea` | Lower Navarrese | research |
-| `eu-x-lapurtera` | Lapurdian | research |
+| `eu-x-lapurdi` | Lapurdian | research |
 | `eu-x-zuberera` | Souletin (Zuberoan) | research |
-| `eu-x-erronkariera` | Roncalese (Eastern Navarrese, extinct) | research |
+| `eu-x-roncal` | Roncalese (Eastern Navarrese, extinct) | research |
 
 The claims on this page come from sources that were read directly, with page numbers. Two open-access *Illustrations of the IPA* are the most useful references. One describes Goizueta, a conservative High Navarrese variety. The other describes Markina, a Biscayan variety. Together they document the two ends of the west-to-east continuum of sound change.
 
@@ -54,7 +55,8 @@ The specs follow the modern classification of Koldo Zuazo. Western is Biscayan, 
 
 Every dialect spec takes its graphemes, allophones and positional graphemes from `eu` (`graphemes_base`, `allophones_base` and `positional_graphemes_base`). It then states only its own differences.
 
-### Biscayan: `eu-x-bizkaiera` (Western)
+### Biscayan: `eu-biscayan
+` (Western)
 
 The Biscayan spec follows Markina Basque (Bedialauneta & Hualde 2023). Western Basque has merged sibilant contrasts that the base keeps. The apico-alveolar `s̺` and the lamino-alveolar `s̻` merge to one apico-alveolar `s̺`. The affricates `ts̺` and `ts̻` merge to one denti-alveolar `ts̻` (2023: 1098). So the spec reads both ⟨s⟩ and ⟨z⟩ as /s̺/, and both ⟨ts⟩ and ⟨tz⟩ as /ts̻/. The palatal stop `c` (⟨tt⟩) merges with `tʃ` (2023: 1098), and the spec reads ⟨tt⟩ as [tʃ].
 
@@ -62,7 +64,7 @@ After /i/, the dialect palatalises /s/ to [ʃ], /t/ to [tʃ], /n/ to [ɲ] and /l
 
 The spec does not model the Biscayan raising of the article /-a/ to [-e] after a high vowel (*baso+a* > *basue*, 2023: 1107-1108). This is a morphophonological process on the article, and a context-free grapheme rule cannot state it.
 
-### Gipuzkoan: `eu-x-gipuzkera` (Central)
+### Gipuzkoan: `eu-x-gipuzkoa` (Central)
 
 Gipuzkoan is the living dialect that is closest to Batua, and its spec adds nothing to the base. Eastern Gipuzkoan keeps the three-way sibilant contrast. In western areas the contrast varies and neutralises, because the Western merger intrudes (Bedialauneta & Hualde 2023: 1098). Gipuzkoan has no /h/ (Hualde 2018: 2). In the westernmost towns, the palatal stop `c` is merging with `tʃ` (Hualde et al. 2010: 118).
 
@@ -78,7 +80,7 @@ The spec contradicts its own source on /h/. Its `notes` say that /h/ is absent, 
 
 Lower Navarrese is an eastern variety with aspiration. With Lapurdian it forms the Navarro-Lapurdian dialect of Zuazo. /h/ is a productive phoneme (Hualde 2018: 1-3), and the spec reads ⟨h⟩ as [h]. Voiceless stops have aspirated variants [pʰ tʰ kʰ] in the onset of a stressed syllable near the start of the word (Hualde 2018: 5-6, reporting Michelena FHV). They are less systematically phonemic than in Souletin. The spec lists [pʰ tʰ kʰ] as second candidates for /p t k/, because a grapheme rule cannot state the stress window.
 
-### Lapurdian: `eu-x-lapurtera`
+### Lapurdian: `eu-x-lapurdi`
 
 Lapurdian is the classical literary dialect, as in Axular's *Gero* (1643). Classical Lapurdian had both /h/ and aspirated stops (Hualde 2018: 5, list (1)). Coastal French Basque lost aspiration by the 19th century (Hualde 2018: 2). So modern coastal Lapurdian keeps /h/ only residually. The spec reads ⟨h⟩ as [h] and lists silence as the second candidate.
 
@@ -95,7 +97,7 @@ Souletin is the most divergent variety, and it is in contact with Gascon Occitan
 
 Standard orthography does not write vowel nasality or the aspiration contrast on ⟨p t k⟩. So the spec documents both and emits neither as a first candidate.
 
-### Roncalese (Eastern Navarrese): `eu-x-erronkariera` (extinct)
+### Roncalese (Eastern Navarrese): `eu-x-roncal` (extinct)
 
 Roncalese is the Basque of the Roncal valley in easternmost Navarre. With Salazarese it forms the Eastern Navarrese dialect of Zuazo. It is extinct, and its last fluent speakers were gone by about 1991 (Egurtzegi 2013: 127). Bonaparte and Michelena's FHV document it. It has these features:
 

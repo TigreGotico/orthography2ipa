@@ -50,7 +50,7 @@ def _all_codes(exclude_proto=False):
         # TODO - add script+graphemes where available
         codes = [c for c in codes if c not in [
             "ine", "ine-x-italic",
-            "cel", "cel-x-gallaecia", "xce", "xaq", "txr", "xlg", "xib",
+            "cel", "cel-x-gallaeci", "xce", "xaq", "txr", "xlg", "xib",
             "gem", "got", "xpa", "gem-x-suebi", "xcg", "xtg",
             "pnb-PK",
             "sem", "sem-x-central", "sem-x-west",

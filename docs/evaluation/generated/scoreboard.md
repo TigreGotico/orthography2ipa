@@ -79,10 +79,10 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | an | wikipron | 902 | 0.0580 | - | - | 0.0229 | 0.0207 | 0.8570 | 0.8703 | [0.0523, 0.0637] | 0.6630 | research | crowd-scraped |
 | an-x-ansotano | spain_romance_tts | 20 | 0.0649‡ | - | - | - | - | - | - | [0.0424, 0.0910] | 0.2000 | skeleton | llm-corrected |
 | an-x-belsetan | spain_romance_tts | 20 | 0.0633‡ | - | - | - | - | - | - | [0.0444, 0.0837] | 0.2000 | research | llm-corrected |
-| an-x-benasques | spain_romance_tts | 20 | 0.0510‡ | - | - | - | - | - | - | [0.0322, 0.0734] | 0.2000 | research | llm-corrected |
+| an-x-benasque | spain_romance_tts | 20 | 0.0510‡ | - | - | - | - | - | - | [0.0322, 0.0734] | 0.2000 | research | llm-corrected |
 | an-x-cheso | spain_romance_tts | 20 | 0.0520‡ | - | - | - | - | - | - | [0.0332, 0.0712] | 0.2500 | research | llm-corrected |
-| an-x-chistabin | spain_romance_tts | 20 | 0.0555‡ | - | - | - | - | - | - | [0.0359, 0.0761] | 0.3000 | research | llm-corrected |
-| an-x-occidental | spain_romance_tts | 20 | 0.0550‡ | - | - | - | - | - | - | [0.0376, 0.0739] | 0.2000 | research | llm-corrected |
+| an-x-chistau | spain_romance_tts | 20 | 0.0555‡ | - | - | - | - | - | - | [0.0359, 0.0761] | 0.3000 | research | llm-corrected |
+| an-x-occident | spain_romance_tts | 20 | 0.0550‡ | - | - | - | - | - | - | [0.0376, 0.0739] | 0.2000 | research | llm-corrected |
 | an-x-oriental | spain_romance_tts | 20 | 0.0858‡ | - | - | - | - | - | - | [0.0655, 0.1073] | 0.1000 | skeleton | llm-corrected |
 | an-x-tensino | spain_romance_tts | 20 | 0.0611‡ | - | - | - | - | - | - | [0.0424, 0.0801] | 0.2000 | skeleton | llm-corrected |
 | ang | wikipron | 54696 | 0.2103 | - | - | 0.1588 | 0.1512 | 0.2471 | 0.2632 | [0.2092, 0.2116] | 0.1545 | research | crowd-scraped |
@@ -124,8 +124,8 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | ar-x-maghrebi | gold20_arabic | 20 | 0.1788‡ | - | - | - | - | - | - | [0.1527, 0.2069] | 0.0000 | research | llm-corrected |
 | ar-x-mashriqi | arabic_tts | 20 | 0.0568‡ | - | - | - | - | - | - | [0.0428, 0.0689] | 0.0500 | research | llm-corrected |
 | ar-x-mashriqi | gold20_arabic | 20 | 0.0550‡ | - | - | - | - | - | - | [0.0425, 0.0661] | 0.0500 | research | llm-corrected |
-| ar-x-peninsular | arabic_tts | 20 | 0.0403‡ | - | - | - | - | - | - | [0.0220, 0.0578] | 0.4000 | research | llm-corrected |
-| ar-x-peninsular | gold20_arabic | 20 | 0.0405‡ | - | - | - | - | - | - | [0.0220, 0.0583] | 0.4000 | research | llm-corrected |
+| ar-x-peninsul | arabic_tts | 20 | 0.0403‡ | - | - | - | - | - | - | [0.0220, 0.0578] | 0.4000 | research | llm-corrected |
+| ar-x-peninsul | gold20_arabic | 20 | 0.0405‡ | - | - | - | - | - | - | [0.0220, 0.0583] | 0.4000 | research | llm-corrected |
 | arb | arabic_tts | 20 | 0.0688‡ | - | - | - | - | - | - | [0.0529, 0.0843] | 0.0000 | research | llm-corrected |
 | arb | gold20_arabic | 20 | 0.0688‡ | - | - | - | - | - | - | [0.0529, 0.0843] | 0.0000 | research | llm-corrected |
 | arn | wold | 1269 | 0.0112 | - | - | 0.0112 | 0.0112 | 0.9511 | 0.9511 | [0.0084, 0.0143] | 0.9511 | research | lexicon-derived |
@@ -151,12 +151,12 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | ast | spain_romance_tts | 20 | 0.0334‡ | - | - | - | - | - | - | [0.0202, 0.0481] | 0.4000 | research | llm-corrected |
 | ast | wikipron | 4169 | 0.0696 | - | - | 0.0696 | 0.0696 | 0.6004 | 0.6004 | [0.0665, 0.0725] | 0.6004 | research | crowd-scraped |
 | ast-ES-x-leon | spain_romance_tts | 20 | 0.0503‡ | - | - | - | - | - | - | [0.0341, 0.0662] | 0.2000 | research | llm-corrected |
-| ast-PT-x-guadramil | portuguese_tts | 20 | 0.1491‡ | - | - | - | - | - | - | [0.1148, 0.1848] | 0.0500 | research | llm-corrected |
+| ast-PT-x-guadrami | portuguese_tts | 20 | 0.1491‡ | - | - | - | - | - | - | [0.1148, 0.1848] | 0.0500 | research | llm-corrected |
 | ast-PT-x-medieval | portuguese_tts | 20 | 0.0442‡ | - | - | - | - | - | - | [0.0266, 0.0652] | 0.3500 | research | llm-corrected |
 | ast-PT-x-rionor | portuguese_tts | 20 | 0.2429‡ | - | - | - | - | - | - | [0.2083, 0.2745] | 0.0000 | research | llm-corrected |
-| ast-x-cantabrian | spain_romance_tts | 20 | 0.0140‡ | - | - | - | - | - | - | [0.0043, 0.0245] | 0.7000 | research | llm-corrected |
+| ast-x-cantabri | spain_romance_tts | 20 | 0.0140‡ | - | - | - | - | - | - | [0.0043, 0.0245] | 0.7000 | research | llm-corrected |
 | ast-x-leon | spain_romance_tts | 20 | 0.0856‡ | - | - | - | - | - | - | [0.0662, 0.1051] | 0.0500 | research | llm-corrected |
-| ast-x-occidental | spain_romance_tts | 20 | 0.0656‡ | - | - | - | - | - | - | [0.0495, 0.0820] | 0.1000 | research | llm-corrected |
+| ast-x-occident | spain_romance_tts | 20 | 0.0656‡ | - | - | - | - | - | - | [0.0495, 0.0820] | 0.1000 | research | llm-corrected |
 | ast-x-oriental | spain_romance_tts | 20 | 0.0612‡ | - | - | - | - | - | - | [0.0452, 0.0771] | 0.1000 | research | llm-corrected |
 | ast-x-pasiego | spain_romance_tts | 20 | 0.1364‡ | - | - | - | - | - | - | [0.0955, 0.1786] | 0.1000 | skeleton | llm-corrected |
 | ast-x-sanabria | spain_romance_tts | 20 | 0.1236‡ | - | - | - | - | - | - | [0.0997, 0.1515] | 0.0500 | research | llm-corrected |
@@ -191,8 +191,8 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | ca-x-balear | 4catac | 160 | 0.1360 | - | - | - | - | - | - | [0.1283, 0.1446] | 0.0062 | research | expert-human |
 | ca-x-balear | spain_romance_tts | 20 | 0.0775‡ | - | - | - | - | - | - | [0.0596, 0.0950] | 0.0500 | research | llm-corrected |
 | ca-x-medieval | spain_romance_tts | 20 | 0.0762‡ | - | - | - | - | - | - | [0.0561, 0.0970] | 0.1000 | research | llm-corrected |
-| ca-x-occidental | 4catac | 160 | 0.0822 | - | - | - | - | - | - | [0.0761, 0.0886] | 0.0125 | research | expert-human |
-| ca-x-occidental | spain_romance_tts | 20 | 0.0724‡ | - | - | - | - | - | - | [0.0507, 0.0933] | 0.1500 | research | llm-corrected |
+| ca-x-occident | 4catac | 160 | 0.0822 | - | - | - | - | - | - | [0.0761, 0.0886] | 0.0125 | research | expert-human |
+| ca-x-occident | spain_romance_tts | 20 | 0.0724‡ | - | - | - | - | - | - | [0.0507, 0.0933] | 0.1500 | research | llm-corrected |
 | ca-x-valencia | 4catac | 160 | 0.0677 | - | - | - | - | - | - | [0.0620, 0.0733] | 0.0312 | research | expert-human |
 | ca-x-valencia | spain_romance_tts | 20 | 0.0624‡ | - | - | - | - | - | - | [0.0464, 0.0769] | 0.1000 | research | llm-corrected |
 | car | wikipron | 232 | 0.3116 | - | - | 0.3116 | 0.3116 | 0.1336 | 0.1336 | [0.2848, 0.3372] | 0.1336 | research | crowd-scraped |
@@ -224,7 +224,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | de | wikipron | 53010 | 0.2103 | - | - | 0.1567 | 0.1414 | 0.3150 | 0.3453 | [0.2089, 0.2118] | 0.2343 | research | crowd-scraped |
 | de-DE | ipa_childes | 24857 | 0.3948‡ | - | - | 0.2845 | 0.2632 | 0.1080 | 0.1251 | [0.3926, 0.3971] | 0.0513 | research | epitran-derived |
 | de-DE | ipadict | 777785 | 0.2303 | 0.6092 | - | 0.1862 | 0.1724 | 0.1886 | 0.2104 | [0.2300, 0.2307] | 0.1390 | research | crowd-scraped |
-| de-x-alemannic | wikipron | 448 | 0.1736 | - | - | 0.1382 | 0.1291 | 0.5402 | 0.5580 | [0.1561, 0.1940] | 0.4554 | research | crowd-scraped |
+| de-x-alemanni | wikipron | 448 | 0.1736 | - | - | 0.1382 | 0.1291 | 0.5402 | 0.5580 | [0.1561, 0.1940] | 0.4554 | research | crowd-scraped |
 | dga | primary_sources | 35 | 0.1143 | - | - | 0.0500 | 0.0429 | 0.8571 | 0.8857 | [0.0476, 0.1810] | 0.7429 | research | expert-human |
 | dlm | wikipron | 180 | 0.2476 | - | - | 0.2476 | 0.2476 | 0.2000 | 0.2000 | [0.2193, 0.2770] | 0.2000 | research | crowd-scraped |
 | dng | wikipron | 269 | 0.4087 | - | 0.0244† (tone) | 0.4087 | 0.4087 | 0.0000 | 0.0000 | [0.4003, 0.4181] | 0.0000 | research | crowd-scraped |
@@ -237,7 +237,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | egy | wikipron | 2185 | 0.0183 | - | - | 0.0178 | 0.0178 | 0.8993 | 0.8993 | [0.0155, 0.0210] | 0.8989 | research | crowd-scraped |
 | el | vox_communis | 5983 | 0.2653‡ | - | - | 0.2394 | 0.2375 | 0.1339 | 0.1342 | [0.2613, 0.2690] | 0.1190 | research | epitran-derived |
 | el | wikipron | 19108 | 0.0327 | - | - | 0.0174 | 0.0160 | 0.8972 | 0.9104 | [0.0316, 0.0337] | 0.7909 | research | crowd-scraped |
-| en | wikipron | 80985 | 0.2656 | - | - | 0.2217 | 0.2015 | 0.2570 | 0.2842 | [0.2642, 0.2670] | 0.2078 | research | crowd-scraped |
+| en | wikipron | 80985 | 0.2655 | - | - | 0.2216 | 0.2014 | 0.2571 | 0.2843 | [0.2641, 0.2669] | 0.2079 | research | crowd-scraped |
 | en-GB | ipa_childes | 11445 | 0.3000‡ | - | - | 0.2478 | 0.2283 | 0.2016 | 0.2226 | [0.2963, 0.3034] | 0.1542 | research | espeak-derived |
 | en-GB | ipadict | 65117 | 0.2221‡ | 0.6260 | - | 0.1706 | 0.1490 | 0.3554 | 0.3920 | [0.2205, 0.2235] | 0.2643 | research | espeak-derived |
 | en-GB | wikipron | 81535 | 0.2327 | - | - | 0.1799 | 0.1567 | 0.3548 | 0.3973 | [0.2313, 0.2341] | 0.2739 | research | crowd-scraped |
@@ -259,7 +259,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | es-AR-x-cuyo | spain_romance_tts | 20 | 0.0872‡ | - | - | - | - | - | - | [0.0717, 0.1061] | 0.0000 | stub | llm-corrected |
 | es-AR-x-litoral | spain_romance_tts | 20 | 0.0530‡ | - | - | - | - | - | - | [0.0401, 0.0651] | 0.1000 | stub | llm-corrected |
 | es-AR-x-norte | spain_romance_tts | 20 | 0.0671‡ | - | - | - | - | - | - | [0.0433, 0.0937] | 0.2000 | stub | llm-corrected |
-| es-AR-x-patagonia | spain_romance_tts | 20 | 0.1332‡ | - | - | - | - | - | - | [0.1070, 0.1625] | 0.0500 | stub | llm-corrected |
+| es-AR-x-patagoni | spain_romance_tts | 20 | 0.1332‡ | - | - | - | - | - | - | [0.1070, 0.1625] | 0.0500 | stub | llm-corrected |
 | es-BO | spain_romance_tts | 20 | 0.0817‡ | - | - | - | - | - | - | [0.0607, 0.1035] | 0.1000 | skeleton | llm-corrected |
 | es-BO-x-andino | spain_romance_tts | 20 | 0.0734‡ | - | - | - | - | - | - | [0.0575, 0.0907] | 0.0000 | stub | llm-corrected |
 | es-BO-x-camba | spain_romance_tts | 20 | 0.0573‡ | - | - | - | - | - | - | [0.0417, 0.0726] | 0.1000 | stub | llm-corrected |
@@ -271,7 +271,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | es-CO-x-llanero | spain_romance_tts | 20 | 0.0808‡ | - | - | - | - | - | - | [0.0648, 0.0988] | 0.0500 | stub | llm-corrected |
 | es-CO-x-pacifico | spain_romance_tts | 20 | 0.1524‡ | - | - | - | - | - | - | [0.1194, 0.1844] | 0.0000 | stub | llm-corrected |
 | es-CO-x-paisa | spain_romance_tts | 20 | 0.0291‡ | - | - | - | - | - | - | [0.0121, 0.0499] | 0.6000 | skeleton | llm-corrected |
-| es-CO-x-santander | spain_romance_tts | 20 | 0.0794‡ | - | - | - | - | - | - | [0.0585, 0.1034] | 0.1000 | stub | llm-corrected |
+| es-CO-x-santande | spain_romance_tts | 20 | 0.0794‡ | - | - | - | - | - | - | [0.0585, 0.1034] | 0.1000 | stub | llm-corrected |
 | es-CO-x-valluno | spain_romance_tts | 20 | 0.1078‡ | - | - | - | - | - | - | [0.0845, 0.1302] | 0.0500 | stub | llm-corrected |
 | es-CR | spain_romance_tts | 20 | 0.1380‡ | - | - | - | - | - | - | [0.1131, 0.1629] | 0.0000 | skeleton | llm-corrected |
 | es-CU | spain_romance_tts | 20 | 0.0409‡ | - | - | - | - | - | - | [0.0267, 0.0570] | 0.2500 | research | llm-corrected |
@@ -283,11 +283,11 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | es-ES | ipadict | 595896 | 0.0180 | 0.9969 | - | 0.0151 | 0.0124 | 0.8486 | 0.8746 | [0.0179, 0.0181] | 0.8217 | production | machine-generated |
 | es-ES | primary_sources | 41 | 0.0232 | 1.0000 | - | 0.0232 | 0.0232 | 0.9024 | 0.9024 | [0.0041, 0.0476] | 0.9024 | production | expert-human |
 | es-ES | spain_romance_tts | 20 | 0.0015‡ | - | - | - | - | - | - | [0.0000, 0.0044] | 0.9500 | production | llm-corrected |
-| es-ES-x-andalusia-e | spain_romance_tts | 20 | 0.0924‡ | - | - | - | - | - | - | [0.0610, 0.1222] | 0.1500 | research | llm-corrected |
-| es-ES-x-andalusia-w | spain_romance_tts | 20 | 0.0621‡ | - | - | - | - | - | - | [0.0441, 0.0801] | 0.1500 | research | llm-corrected |
+| es-ES-x-andalusi-e | spain_romance_tts | 20 | 0.0924‡ | - | - | - | - | - | - | [0.0610, 0.1222] | 0.1500 | research | llm-corrected |
+| es-ES-x-andalusi-w | spain_romance_tts | 20 | 0.0621‡ | - | - | - | - | - | - | [0.0441, 0.0801] | 0.1500 | research | llm-corrected |
 | es-ES-x-canarias | spain_romance_tts | 20 | 0.0050‡ | - | - | - | - | - | - | [0.0000, 0.0100] | 0.8500 | research | llm-corrected |
-| es-ES-x-cantabria | spain_romance_tts | 20 | 0.0377‡ | - | - | - | - | - | - | [0.0247, 0.0506] | 0.3000 | research | llm-corrected |
-| es-ES-x-extremadura | spain_romance_tts | 20 | 0.0098‡ | - | - | - | - | - | - | [0.0033, 0.0167] | 0.7000 | research | llm-corrected |
+| es-ES-x-cantabri | spain_romance_tts | 20 | 0.0377‡ | - | - | - | - | - | - | [0.0247, 0.0506] | 0.3000 | research | llm-corrected |
+| es-ES-x-extremad | spain_romance_tts | 20 | 0.0098‡ | - | - | - | - | - | - | [0.0033, 0.0167] | 0.7000 | research | llm-corrected |
 | es-ES-x-medieval | spain_romance_tts | 20 | 0.0438‡ | - | - | - | - | - | - | [0.0236, 0.0641] | 0.4000 | research | llm-corrected |
 | es-ES-x-murcia | spain_romance_tts | 20 | 0.0957‡ | - | - | - | - | - | - | [0.0602, 0.1336] | 0.2500 | research | llm-corrected |
 | es-GQ | spain_romance_tts | 20 | 0.0713‡ | - | - | - | - | - | - | [0.0547, 0.0899] | 0.0500 | skeleton | llm-corrected |
@@ -301,7 +301,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | es-NI | spain_romance_tts | 20 | 0.0416‡ | - | - | - | - | - | - | [0.0297, 0.0538] | 0.2000 | research | llm-corrected |
 | es-PA | spain_romance_tts | 20 | 0.0852‡ | - | - | - | - | - | - | [0.0648, 0.1082] | 0.0000 | research | llm-corrected |
 | es-PE | spain_romance_tts | 20 | 0.0788‡ | - | - | - | - | - | - | [0.0530, 0.1071] | 0.1000 | skeleton | llm-corrected |
-| es-PE-x-amazonico | spain_romance_tts | 20 | 0.0656‡ | - | - | - | - | - | - | [0.0455, 0.0861] | 0.1000 | stub | llm-corrected |
+| es-PE-x-amazonia | spain_romance_tts | 20 | 0.0656‡ | - | - | - | - | - | - | [0.0455, 0.0861] | 0.1000 | stub | llm-corrected |
 | es-PE-x-andino | spain_romance_tts | 20 | 0.0990‡ | - | - | - | - | - | - | [0.0835, 0.1150] | 0.0000 | stub | llm-corrected |
 | es-PE-x-lima | spain_romance_tts | 20 | 0.0120‡ | - | - | - | - | - | - | [0.0043, 0.0205] | 0.6500 | skeleton | llm-corrected |
 | es-PR | spain_romance_tts | 20 | 0.0546‡ | - | - | - | - | - | - | [0.0392, 0.0718] | 0.1500 | research | llm-corrected |
@@ -311,7 +311,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | es-VE | spain_romance_tts | 20 | 0.0172‡ | - | - | - | - | - | - | [0.0083, 0.0275] | 0.5500 | research | llm-corrected |
 | es-VE-x-andino | spain_romance_tts | 20 | 0.0745‡ | - | - | - | - | - | - | [0.0614, 0.0881] | 0.0000 | stub | llm-corrected |
 | es-VE-x-llanero | spain_romance_tts | 20 | 0.0909‡ | - | - | - | - | - | - | [0.0728, 0.1086] | 0.0000 | stub | llm-corrected |
-| es-VE-x-maracucho | spain_romance_tts | 20 | 0.0634‡ | - | - | - | - | - | - | [0.0449, 0.0791] | 0.1000 | stub | llm-corrected |
+| es-VE-x-zulia | spain_romance_tts | 20 | 0.0634‡ | - | - | - | - | - | - | [0.0449, 0.0791] | 0.1000 | stub | llm-corrected |
 | ess | northeuralex | 814 | 0.1074 | - | - | 0.1074 | 0.1074 | 0.4730 | 0.4730 | [0.0987, 0.1171] | 0.4730 | research | lexicon-derived |
 | et | ipa_childes | 11040 | 0.2769‡ | - | - | 0.2194 | 0.2119 | 0.1951 | 0.2024 | [0.2736, 0.2803] | 0.1369 | research | espeak-derived |
 | et | vox_communis | 35140 | 0.2121‡ | - | - | 0.1593 | 0.1491 | 0.1869 | 0.2026 | [0.2104, 0.2139] | 0.1141 | research | epitran-derived |
@@ -322,19 +322,19 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | eu | spain_romance_tts | 26 | 0.0436‡ | - | - | - | - | - | - | [0.0249, 0.0648] | 0.5000 | production | llm-corrected |
 | eu | vox_communis | 63415 | 0.0429‡ | - | - | 0.0395 | 0.0395 | 0.6841 | 0.6841 | [0.0424, 0.0434] | 0.6617 | production | epitran-derived |
 | eu | wikipron | 12008 | 0.0546 | - | - | 0.0545 | 0.0545 | 0.6084 | 0.6084 | [0.0532, 0.0561] | 0.6081 | production | crowd-scraped |
-| eu-x-bizkaiera | spain_romance_tts | 20 | 0.0935‡ | - | - | - | - | - | - | [0.0642, 0.1280] | 0.1000 | research | llm-corrected |
-| eu-x-erronkariera | spain_romance_tts | 20 | 0.0453‡ | - | - | - | - | - | - | [0.0327, 0.0580] | 0.2000 | research | llm-corrected |
-| eu-x-gipuzkera | spain_romance_tts | 20 | 0.0250‡ | - | - | - | - | - | - | [0.0129, 0.0409] | 0.5500 | research | llm-corrected |
-| eu-x-lapurtera | spain_romance_tts | 20 | 0.0654‡ | - | - | - | - | - | - | [0.0469, 0.0857] | 0.1500 | research | llm-corrected |
+| eu-biscayan | spain_romance_tts | 20 | 0.0935‡ | - | - | - | - | - | - | [0.0642, 0.1280] | 0.1000 | research | llm-corrected |
+| eu-x-gipuzkoa | spain_romance_tts | 20 | 0.0250‡ | - | - | - | - | - | - | [0.0129, 0.0409] | 0.5500 | research | llm-corrected |
+| eu-x-lapurdi | spain_romance_tts | 20 | 0.0654‡ | - | - | - | - | - | - | [0.0469, 0.0857] | 0.1500 | research | llm-corrected |
 | eu-x-nafarra-beherea | spain_romance_tts | 20 | 0.0226‡ | - | - | - | - | - | - | [0.0126, 0.0341] | 0.5000 | research | llm-corrected |
 | eu-x-nafarra-garaia | spain_romance_tts | 20 | 0.1107‡ | - | - | - | - | - | - | [0.0829, 0.1370] | 0.0500 | research | llm-corrected |
+| eu-x-roncal | spain_romance_tts | 20 | 0.0453‡ | - | - | - | - | - | - | [0.0327, 0.0580] | 0.2000 | research | llm-corrected |
 | eu-x-zuberera | spain_romance_tts | 20 | 0.0226‡ | - | - | - | - | - | - | [0.0092, 0.0377] | 0.6000 | research | llm-corrected |
 | evn | northeuralex | 1132 | 0.0970 | - | - | 0.0970 | 0.0970 | 0.5088 | 0.5088 | [0.0904, 0.1043] | 0.5088 | research | lexicon-derived |
 | evn | wikipron | 145 | 0.2447 | - | - | 0.2447 | 0.2447 | 0.1241 | 0.1241 | [0.2197, 0.2710] | 0.1241 | research | crowd-scraped |
 | ext | spain_romance_tts | 20 | 0.0607‡ | - | - | - | - | - | - | [0.0429, 0.0835] | 0.1500 | research | llm-corrected |
-| ext-PT-x-barrancos | barranquenho_dict | 1508 | 0.0567‡ | 0.9137 | - | 0.0272 | 0.0204 | 0.8329 | 0.8740 | [0.0516, 0.0622] | 0.6989 | research | llm-corrected |
-| ext-PT-x-barrancos | portuguese_tts | 20 | 0.0665‡ | - | - | - | - | - | - | [0.0436, 0.0921] | 0.2500 | research | llm-corrected |
-| ext-PT-x-barrancos | primary_sources | 10† | 0.2801‡ | - | - | 0.2241 | 0.2241 | 0.4000 | 0.4000 | n too small | 0.3000 | research | expert-human |
+| ext-PT-x-barranco | barranquenho_dict | 1508 | 0.0567‡ | 0.9137 | - | 0.0272 | 0.0204 | 0.8329 | 0.8740 | [0.0516, 0.0622] | 0.6989 | research | llm-corrected |
+| ext-PT-x-barranco | portuguese_tts | 20 | 0.0665‡ | - | - | - | - | - | - | [0.0436, 0.0921] | 0.2500 | research | llm-corrected |
+| ext-PT-x-barranco | primary_sources | 10† | 0.2801‡ | - | - | 0.2241 | 0.2241 | 0.4000 | 0.4000 | n too small | 0.3000 | research | expert-human |
 | fa | ipadict | 7695 | 0.2540 | - | - | 0.2309 | 0.2253 | 0.1193 | 0.1220 | [0.2507, 0.2574] | 0.1077 | research | machine-generated |
 | fa | wikipron | 9279 | 0.3943 | - | - | 0.3742 | 0.3702 | 0.0177 | 0.0178 | [0.3911, 0.3971] | 0.0170 | research | crowd-scraped |
 | fa-x-enp | wikipron | 9279 | 0.2381 | - | - | 0.2121 | 0.2064 | 0.1230 | 0.1258 | [0.2352, 0.2410] | 0.1024 | research | crowd-scraped |
@@ -359,9 +359,9 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | gl-ES | wikipron | 8091 | 0.0801 | - | - | 0.0351 | 0.0286 | 0.8067 | 0.8453 | [0.0775, 0.0825] | 0.5967 | research | crowd-scraped |
 | gl-ES-x-central | spain_romance_tts | 20 | 0.1143‡ | - | - | - | - | - | - | [0.0890, 0.1429] | 0.0500 | research | llm-corrected |
 | gl-ES-x-eonavia | spain_romance_tts | 20 | 0.1015‡ | - | - | - | - | - | - | [0.0729, 0.1309] | 0.0500 | research | llm-corrected |
-| gl-ES-x-occidental | spain_romance_tts | 20 | 0.0734‡ | - | - | - | - | - | - | [0.0487, 0.1043] | 0.1000 | research | llm-corrected |
+| gl-ES-x-occident | spain_romance_tts | 20 | 0.0734‡ | - | - | - | - | - | - | [0.0487, 0.1043] | 0.1000 | research | llm-corrected |
 | gl-ES-x-oriental | spain_romance_tts | 20 | 0.0690‡ | - | - | - | - | - | - | [0.0425, 0.0966] | 0.2500 | research | llm-corrected |
-| gl-ES-x-reintegrado | spain_romance_tts | 20 | 0.1368‡ | - | - | - | - | - | - | [0.1165, 0.1600] | 0.0000 | research | llm-corrected |
+| gl-ES-x-reintegr | spain_romance_tts | 20 | 0.1368‡ | - | - | - | - | - | - | [0.1165, 0.1600] | 0.0000 | research | llm-corrected |
 | gld | northeuralex | 887 | 0.1532 | - | - | 0.1532 | 0.1532 | 0.3574 | 0.3574 | [0.1431, 0.1624] | 0.3574 | research | lexicon-derived |
 | gmh | wikipron | 1516 | 0.1022 | - | - | · | · | · | · | [0.0965, 0.1078] | 0.4769 | research | crowd-scraped |
 | gml | wikipron | 143 | 0.2771 | - | - | 0.2727 | 0.2717 | 0.1189 | 0.1189 | [0.2500, 0.3042] | 0.1189 | research | crowd-scraped |
@@ -585,7 +585,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | pt-BR-x-caipira | portuguese_unified | 31 | 0.3261 | 1.0000 | - | 0.3146 | 0.2987 | 0.0000 | 0.0323 | [0.2717, 0.3773] | 0.0000 | research | lexicon-derived |
 | pt-BR-x-carioca | portuguese_unified | 111 | 0.2917 | 0.9904 | - | 0.2855 | 0.2649 | 0.0180 | 0.0360 | [0.2620, 0.3250] | 0.0090 | production | lexicon-derived |
 | pt-BR-x-ce | portuguese_tts | 20 | 0.1293‡ | - | - | - | - | - | - | [0.1050, 0.1511] | 0.0000 | research | llm-corrected |
-| pt-BR-x-fluminense | portuguese_tts | 20 | 0.0791‡ | - | - | - | - | - | - | [0.0565, 0.1044] | 0.1500 | research | llm-corrected |
+| pt-BR-x-fluminen | portuguese_tts | 20 | 0.0791‡ | - | - | - | - | - | - | [0.0565, 0.1044] | 0.1500 | research | llm-corrected |
 | pt-BR-x-mg | portuguese_tts | 20 | 0.1263‡ | - | - | - | - | - | - | [0.1033, 0.1490] | 0.0000 | research | llm-corrected |
 | pt-BR-x-norte | portuguese_tts | 20 | 0.1713‡ | - | - | - | - | - | - | [0.1379, 0.2069] | 0.0000 | research | llm-corrected |
 | pt-BR-x-pr | portuguese_tts | 20 | 0.0988‡ | - | - | - | - | - | - | [0.0713, 0.1271] | 0.1000 | research | llm-corrected |
@@ -648,8 +648,8 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | pt-PT-x-sao-miguel | primary_sources | 12† | 0.3917‡ | - | - | 0.3917 | 0.3917 | 0.0833 | 0.0833 | n too small | 0.0833 | research | expert-human |
 | pt-PT-x-terceira | portuguese_tts | 20 | 0.1074‡ | - | - | - | - | - | - | [0.0735, 0.1454] | 0.2000 | research | llm-corrected |
 | pt-PT-x-terceira | primary_sources | 10† | 0.2179‡ | - | - | 0.1369 | 0.1369 | 0.4000 | 0.4000 | n too small | 0.3000 | research | expert-human |
-| pt-PT-x-trasosmontes | clup_dialect | 6† | 0.3170‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
-| pt-PT-x-trasosmontes | portuguese_tts | 20 | 0.1279‡ | - | - | - | - | - | - | [0.0925, 0.1690] | 0.1000 | research | llm-corrected |
+| pt-PT-x-tras-os-montes | clup_dialect | 6† | 0.3170‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
+| pt-PT-x-tras-os-montes | portuguese_tts | 20 | 0.1279‡ | - | - | - | - | - | - | [0.0925, 0.1690] | 0.1000 | research | llm-corrected |
 | pt-PT-x-viana | clup_dialect | 4† | 0.3443‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
 | pt-PT-x-viana | portuguese_tts | 20 | 0.1144‡ | - | - | - | - | - | - | [0.0872, 0.1465] | 0.0500 | research | llm-corrected |
 | pt-ST | portuguese_tts | 20 | 0.2879‡ | - | - | - | - | - | - | [0.2530, 0.3233] | 0.0000 | research | llm-corrected |
@@ -664,7 +664,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | ro | wikipron | 8977 | 0.0198 | - | - | 0.0192 | 0.0189 | 0.8852 | 0.8865 | [0.0186, 0.0212] | 0.8830 | production | crowd-scraped |
 | ro-RO | ipa_childes | 2311 | 0.2644‡ | - | - | 0.2617 | 0.2616 | 0.1939 | 0.1943 | [0.2562, 0.2721] | 0.1900 | production | espeak-derived |
 | ro-RO | ipadict | 72375 | 0.0359 | - | - | 0.0354 | 0.0352 | 0.7367 | 0.7376 | [0.0354, 0.0364] | 0.7344 | production | lexicon-derived |
-| roa-x-galaicopt | portuguese_tts | 20 | 0.1283‡ | - | - | - | - | - | - | [0.0923, 0.1672] | 0.0500 | research | llm-corrected |
+| roa-x-galaico-pt | portuguese_tts | 20 | 0.1283‡ | - | - | - | - | - | - | [0.0923, 0.1672] | 0.0500 | research | llm-corrected |
 | ru | alphacep_ru_book | 6175 | 0.2391 | 0.4936 | - | 0.1252 | 0.0859 | 0.3153 | 0.5015 | [0.2362, 0.2419] | 0.0646 | research | machine-generated |
 | ru | coruss_ru | 9527 | 0.3572 | 0.5178 | - | 0.2795 | 0.2653 | 0.1480 | 0.1685 | [0.3530, 0.3614] | 0.0639 | research | expert-human |
 | ru | primary_sources | 36 | 0.1867 | - | - | 0.1267 | 0.1267 | 0.5833 | 0.5833 | [0.1265, 0.2463] | 0.3611 | research | expert-human |

@@ -24,7 +24,7 @@ EP_INHERITING = [
     "pt-PT", "pt-PT-x-lisbon", "pt-PT-x-coimbra", "pt-PT-x-acores",
     "pt-PT-x-madeira", "pt-PT-x-alentejo", "pt-PT-x-beira", "pt-PT-x-aveiro",
     "pt-PT-x-sao-miguel", "pt-PT-x-algarve", "pt-PT-x-alfena",
-    "pt-PT-x-minho", "pt-PT-x-trasosmontes", "pt-PT-x-viana",
+    "pt-PT-x-minho", "pt-PT-x-tras-os-montes", "pt-PT-x-viana",
 ]
 
 # Infopédia readings, spec notation.
@@ -146,7 +146,7 @@ PINNED = {
     "pt-MZ": {"rapidez": "rɐpiˈdɛz", "beleza": "beˈlɛzɐ", "mesa": "ˈmɛzɐ", "tema": "ˈtɛmɐ", "chileno": "ʃiˈlɛnu", "pena": "ˈpɛnɐ", "dantesco": "dɐ̃ˈtɛsku", "trabalhador": "trɐbɐʎɐˈdɔɾ", "amor": "ɐˈmɔɾ", "senhor": "seˈɲɔɾ", "famoso": "fɐˈmozu", "zona": "ˈzɔnɐ", "risonho": "riˈzɔɲu", "melhor": "meˈʎɔɾ", "pior": "piˈɔɾ", "reza": "ˈrɛzɐ"},
     "pt-ST": {"rapidez": "ʁɐpiˈdɛs", "beleza": "beˈlɛzɐ", "mesa": "ˈmɛsɐ", "tema": "ˈtɛmɐ", "chileno": "ʃiˈlɛnu", "pena": "ˈpɛnɐ", "dantesco": "dɐ̃ˈtɛsku", "trabalhador": "trɐbɐʎɐˈdɔr", "amor": "ɐˈmɔr", "senhor": "seˈɲɔr", "famoso": "fɐˈmosu", "zona": "ˈzɔnɐ", "risonho": "ʁiˈsɔɲu", "melhor": "meˈʎɔr", "pior": "piˈɔr", "reza": "ˈʁɛzɐ"},
     "pt-TL": {"rapidez": "rapiˈdɛz", "beleza": "beˈlɛza", "mesa": "ˈmɛza", "tema": "ˈtɛma", "chileno": "ʃiˈlɛno", "pena": "ˈpɛna", "dantesco": "dɐ̃ˈtɛsko", "trabalhador": "trabalaˈdɔɾ", "amor": "aˈmɔɾ", "senhor": "seˈnɔɾ", "famoso": "faˈmozo", "zona": "ˈzɔna", "risonho": "riˈzɔno", "melhor": "meˈlɔɾ", "pior": "piˈɔɾ", "reza": "ˈrɛza"},
-    "ext-PT-x-barrancos": {"rapidez": "rɐpiˈdɛʃ", "beleza": "bɨˈlɛzɐ", "mesa": "ˈmɛzɐ", "tema": "ˈtemɐ", "chileno": "ʃiˈlenu", "pena": "ˈpenɐ", "dantesco": "dɐ̃ˈtɛhku", "trabalhador": "tɾɐbɐˈʎadu", "amor": "ˈɐmu", "senhor": "ˈsɛɲu", "famoso": "fɐˈmozu", "zona": "ˈzɔnɐ", "risonho": "riˈzɔɲu", "melhor": "ˈmɛʎu", "pior": "ˈpiɔ", "reza": "ˈrɛzɐ"},
+    "ext-PT-x-barranco": {"rapidez": "rɐpiˈdɛʃ", "beleza": "bɨˈlɛzɐ", "mesa": "ˈmɛzɐ", "tema": "ˈtemɐ", "chileno": "ʃiˈlenu", "pena": "ˈpenɐ", "dantesco": "dɐ̃ˈtɛhku", "trabalhador": "tɾɐbɐˈʎadu", "amor": "ˈɐmu", "senhor": "ˈsɛɲu", "famoso": "fɐˈmozu", "zona": "ˈzɔnɐ", "risonho": "riˈzɔɲu", "melhor": "ˈmɛʎu", "pior": "ˈpiɔ", "reza": "ˈrɛzɐ"},
     "kea": {"rapidez": "ʀaˈpideʒ", "beleza": "beˈleza", "mesa": "ˈmesa", "tema": "ˈtema", "chileno": "iˈleno", "pena": "ˈpena", "dantesco": "dãˈteso", "trabalhador": "tɾabaˈʎadoɾ", "amor": "ˈamoɾ", "senhor": "ˈseɲoɾ", "famoso": "faˈmoso", "zona": "ˈzona", "risonho": "ʀiˈsoɲo", "melhor": "ˈmeʎoɾ", "pior": "ˈpioɾ", "reza": "ˈʀeza"},
     "pap": {"rapidez": "rapideʒ", "beleza": "beleza", "mesa": "mesa", "tema": "tema", "chileno": "tʃileno", "pena": "pena", "dantesco": "danteso", "trabalhador": "trabaɫhador", "amor": "amor", "senhor": "senhor", "famoso": "famoso", "zona": "zona", "risonho": "risonho", "melhor": "meɫhor", "pior": "pior", "reza": "reza"},
     "cri": {"rapidez": "ɾapidɛz", "beleza": "bɛlɛza", "mesa": "mɛsa", "tema": "tɛma", "chileno": "ilɛnɔ", "pena": "pɛna", "dantesco": "dãtɛsɔ", "trabalhador": "tɾabaʎadɔɾ", "amor": "amɔɾ", "senhor": "sɛɲɔɾ", "famoso": "famɔsɔ", "zona": "zɔna", "risonho": "ɾisɔɲɔ", "melhor": "mɛʎɔɾ", "pior": "piɔɾ", "reza": "ɾɛza"},

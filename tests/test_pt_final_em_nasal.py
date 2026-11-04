@@ -26,11 +26,11 @@ from orthography2ipa import G2P
 
 LISBON_TYPE = ["pt-PT", "pt-PT-x-lisbon", "pt-PT-x-coimbra", "pt-PT-x-acores",
                "pt-PT-x-madeira", "pt-PT-x-alentejo"]
-NORTH = ["pt-PT-x-porto", "pt-PT-x-alfena", "pt-PT-x-trasosmontes",
+NORTH = ["pt-PT-x-porto", "pt-PT-x-alfena", "pt-PT-x-tras-os-montes",
          "pt-PT-x-minho", "pt-PT-x-braga", "pt-PT-x-viana"]
 MINHO = ["pt-PT-x-minho", "pt-PT-x-braga", "pt-PT-x-viana"]
 NOT_MINHO = LISBON_TYPE + ["pt-PT-x-porto", "pt-PT-x-alfena",
-                           "pt-PT-x-trasosmontes", "pt-PT-x-algarve",
+                           "pt-PT-x-tras-os-montes", "pt-PT-x-algarve",
                            "pt-PT-x-beira", "pt-PT-x-aveiro"]
 
 FINAL_EM = ["homem", "viagem", "bem", "cem", "também", "vendem", "nuvem"]

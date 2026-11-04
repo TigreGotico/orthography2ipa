@@ -136,7 +136,7 @@ Castilian Spanish separates ⟨c z⟩ /θ/ from ⟨s⟩ /s/ (distinción). Latin
 | Variety | ⟨c⟩ and ⟨z⟩ before e, i | Spec output for `cero` |
 |:---|:---:|:---|
 | Castilian (Spain) | [θ] (dental fricative) | `ˈθeɾo` (`es-ES`) |
-| Latin American, Andalusian | [s] | `ˈseɾo` (`es-419`, `es-ES-x-andalusia-w`) |
+| Latin American, Andalusian | [s] | `ˈseɾo` (`es-419`, `es-ES-x-andalusi-w`) |
 
 In connected speech, the Spanish voiced stops become fricatives or approximants between vowels. The `es-ES` spec states this as `intervocalic` entries on ⟨b v d g⟩ in `positional_graphemes`:
 

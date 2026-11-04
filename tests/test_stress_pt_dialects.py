@@ -245,7 +245,7 @@ class TestStressPtPTRegional:
         "pt-PT-x-beira",
         "pt-PT-x-aveiro",
         "pt-PT-x-viana",
-        "pt-PT-x-trasosmontes",
+        "pt-PT-x-tras-os-montes",
         "pt-PT-x-alfena",
     ])
     def test_paroxytone_amor(self, lang):
@@ -264,7 +264,7 @@ class TestStressPtPTRegional:
         "pt-PT-x-beira",
         "pt-PT-x-aveiro",
         "pt-PT-x-viana",
-        "pt-PT-x-trasosmontes",
+        "pt-PT-x-tras-os-montes",
         "pt-PT-x-alfena",
     ])
     def test_paroxytone_casa(self, lang):
@@ -282,7 +282,7 @@ class TestStressPtPTRegional:
 
     def test_trasosmontes_retroflex_sibilant_coda(self):
         """Transmontano: coda /s/ → [ʂ] (notes fix: retroflex in all positions)."""
-        ipa = _transcribe("pt-PT-x-trasosmontes", "paz")
+        ipa = _transcribe("pt-PT-x-tras-os-montes", "paz")
         assert "ʂ" in ipa or "ʃ" in ipa, (
             f"Transmontano coda should be retroflex/palatal: {ipa!r}"
         )
@@ -305,7 +305,7 @@ class TestStressPtBRRegional:
         "pt-BR-x-brasilia",
         "pt-BR-x-caipira",
         "pt-BR-x-ce",
-        "pt-BR-x-fluminense",
+        "pt-BR-x-fluminen",
         "pt-BR-x-mg",
         "pt-BR-x-norte",
         "pt-BR-x-pr",
@@ -324,7 +324,7 @@ class TestStressPtBRRegional:
         "pt-BR-x-brasilia",
         "pt-BR-x-caipira",
         "pt-BR-x-ce",
-        "pt-BR-x-fluminense",
+        "pt-BR-x-fluminen",
         "pt-BR-x-mg",
         "pt-BR-x-norte",
         "pt-BR-x-pr",

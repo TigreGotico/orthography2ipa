@@ -113,9 +113,9 @@ def test_basque_mark_does_not_split_s_stop():
     assert orthography2ipa.transcribe("txistularia", "eu") == "tʃis̺ˈtulaɾia"
 
 
-@pytest.mark.parametrize("code", ["eu-x-zuberera", "eu-x-lapurtera",
+@pytest.mark.parametrize("code", ["eu-x-zuberera", "eu-x-lapurdi",
                                   "eu-x-nafarra-beherea",
-                                  "eu-x-erronkariera"])
+                                  "eu-x-roncal"])
 def test_eastern_basque_is_penultimate(code):
     # Hualde 2022: 92: "East of the Bidasoa river, the most common pattern is
     # penultimate accentuation, [–2]".
@@ -130,10 +130,10 @@ def test_souletin_penultimate_word():
 
 def test_central_basque_dialect_keeps_second_syllable():
     # Gipuzkoan is the General Central [+2] system (Hualde 2022: 84, Table 2).
-    assert get("eu-x-gipuzkera").stress.default_position == 2
+    assert get("eu-x-gipuzkoa").stress.default_position == 2
 
 
-@pytest.mark.parametrize("code,word", [("eu-x-bizkaiera", "gizona"),
+@pytest.mark.parametrize("code,word", [("eu-biscayan", "gizona"),
                                        ("eu-x-nafarra-garaia", "mendia")])
 def test_mixed_accent_dialect_prints_no_stress(code, word):
     # Bizkaia mixes the Western phrase-accent systems with Central ones

@@ -96,14 +96,14 @@ def _assert_allophone_null(spec, phoneme: str) -> None:
 
 @pytest.mark.iberian
 class TestSpanishWesternAndalusian:
-    """Western Andalusian Spanish — es-ES-x-andalusia-w.
+    """Western Andalusian Spanish — es-ES-x-andalusi-w.
 
     Most phonologically innovative Castilian variety: seseo/ceceo variation,
     extreme coda-/s/ aspiration and deletion, /x/→[h], universal yeísmo,
     consonant lenition with deletion, liquid neutralisation.
     """
 
-    LANGUAGE_CODE = "es-ES-x-andalusia-w"
+    LANGUAGE_CODE = "es-ES-x-andalusi-w"
 
     @pytest.fixture(autouse=True, scope="class")
     def spec(self, request):
@@ -766,13 +766,13 @@ class TestCatalanNord:
 
 @pytest.mark.iberian
 class TestCatalanOccidental:
-    """Western/Occidental Catalan — ca-x-occidental.
+    """Western/Occidental Catalan — ca-x-occident.
 
     Spoken in Lleida and Valencia hinterland. Full vowels preserved in
     unstressed position (no central vowel reduction): ə → [a, e].
     """
 
-    LANGUAGE_CODE = "ca-x-occidental"
+    LANGUAGE_CODE = "ca-x-occident"
 
     @pytest.fixture(autouse=True, scope="class")
     def spec(self, request):
@@ -788,11 +788,11 @@ class TestCatalanOccidental:
         """
         import orthography2ipa
         for word in ["casa", "dona", "tenir", "porta", "comú"]:
-            out = orthography2ipa.transcribe(word, "ca-x-occidental")
+            out = orthography2ipa.transcribe(word, "ca-x-occident")
             assert "ə" not in out, f"occidental {word!r}: {out!r} has schwa"
         # a word-final unstressed ⟨-a⟩ opens to the lleidatà [ɛ] — NOT the
         # Central [ə] and not the Valencian [a] (Veny 1982 ch. 3).
-        assert orthography2ipa.transcribe("casa", "ca-x-occidental") == "ˈkazɛ"
+        assert orthography2ipa.transcribe("casa", "ca-x-occident") == "ˈkazɛ"
         assert orthography2ipa.transcribe("casa", "ca-x-valencia") == "ˈkaza"
 
     def test_parent_is_old_catalan(self):
@@ -843,7 +843,7 @@ class TestGalicianStandard:
 
     def test_g_velar_only(self):
         """gl-ES ⟨g⟩ → /ɡ/ only; there is no [ʃ] realisation (that was an error).
-        Gheada gives [h~x~χ] and only in western dialect (gl-ES-x-occidental), never [ʃ]."""
+        Gheada gives [h~x~χ] and only in western dialect (gl-ES-x-occident), never [ʃ]."""
         vals = _grapheme(self.spec, "g")
         assert vals == ["ɡ"], f"gl-ES g: expected [ɡ] only, got {vals}"
 
@@ -934,7 +934,7 @@ class TestGalicianOriental:
 
 @pytest.mark.iberian
 class TestBasqueBizkaiera:
-    """Bizkaian Basque — eu-x-bizkaiera.
+    """Bizkaian Basque — eu-biscayan.
 
     Western dialect: sibilants include [ʃ], h aspirate lost (→ ∅).
     The Biscayan raising of the article /-a/ → [-e] after a high vowel is
@@ -943,7 +943,7 @@ class TestBasqueBizkaiera:
     allophone (Bedialauneta & Hualde 2023: 1107-1108).
     """
 
-    LANGUAGE_CODE = "eu-x-bizkaiera"
+    LANGUAGE_CODE = "eu-biscayan"
 
     @pytest.fixture(autouse=True, scope="class")
     def spec(self, request):
@@ -988,13 +988,13 @@ class TestBasqueBizkaiera:
 
 @pytest.mark.iberian
 class TestBasqueGipuzkera:
-    """Gipuzkoan Basque — eu-x-gipuzkera.
+    """Gipuzkoan Basque — eu-x-gipuzkoa.
 
     Central dialect: h is optional [h, ∅] (intermediate between Basque
     h-preserving varieties and Bizkaian h-loss).
     """
 
-    LANGUAGE_CODE = "eu-x-gipuzkera"
+    LANGUAGE_CODE = "eu-x-gipuzkoa"
 
     @pytest.fixture(autouse=True, scope="class")
     def spec(self, request):
@@ -1018,13 +1018,13 @@ class TestBasqueGipuzkera:
 
 @pytest.mark.iberian
 class TestAsturianOccidental:
-    """Western Asturian — ast-x-occidental.
+    """Western Asturian — ast-x-occident.
 
     Phonemic /h/ (unique in Iberian Romance), ḷḷ/l.l → [tʃ] (che vaqueira),
     F-initial aspiration (Leonese substrate).
     """
 
-    LANGUAGE_CODE = "ast-x-occidental"
+    LANGUAGE_CODE = "ast-x-occident"
 
     @pytest.fixture(autouse=True, scope="class")
     def spec(self, request):
@@ -1034,7 +1034,7 @@ class TestAsturianOccidental:
         """h → silent (inherited from base ast; Western Asturian preserves /f/, not aspirates it)."""
         g = _grapheme(self.spec, "h")
         # h is silent in base ast (inherited); no local h override in occidental
-        assert g is None or g == [""], f"ast-x-occidental h should be silent, got {g}"
+        assert g is None or g == [""], f"ast-x-occident h should be silent, got {g}"
 
     def test_h_allophone_inherited(self):
         """h allophone is inherited from base ast (not locally overridden)."""
@@ -1060,7 +1060,7 @@ class TestAsturianOccidental:
         """f word-initial → [f] (Western Asturian preserves Latin F-, does not aspirate)."""
         wi = _positional(self.spec, "f", GraphemePosition.WORD_INITIAL)
         # No positional override in occidental — inherited default [f] from base ast
-        assert wi is None or "f" in wi, f"ast-x-occidental f/WORD_INITIAL should be [f] or absent, got {wi}"
+        assert wi is None or "f" in wi, f"ast-x-occident f/WORD_INITIAL should be [f] or absent, got {wi}"
 
     def test_parent_is_ast(self):
         assert self.spec.parent == "ast"
@@ -1092,13 +1092,13 @@ class TestAsturianOriental:
 
 @pytest.mark.iberian
 class TestAsturianCantabrian:
-    """Cantabrian Asturian — ast-x-cantabrian.
+    """Cantabrian Asturian — ast-x-cantabri.
 
     Transitional variety: ll → [j, ʝ, ʎ] (variable), s → [s, s̺, h] (aspiration),
     Castilian-contact features (g before e/i → x).
     """
 
-    LANGUAGE_CODE = "ast-x-cantabrian"
+    LANGUAGE_CODE = "ast-x-cantabri"
 
     @pytest.fixture(autouse=True, scope="class")
     def spec(self, request):
@@ -1335,13 +1335,13 @@ class TestMiraneseIfanes:
 
 @pytest.mark.iberian
 class TestAragonesOccidental:
-    """Western Aragonese — an-x-occidental (stub).
+    """Western Aragonese — an-x-occident (stub).
 
     No additional grapheme/allophone data — inherits all from Aragonese (an).
     Smoke test: spec loads and is not empty.
     """
 
-    LANGUAGE_CODE = "an-x-occidental"
+    LANGUAGE_CODE = "an-x-occident"
 
     @pytest.fixture(autouse=True, scope="class")
     def spec(self, request):
