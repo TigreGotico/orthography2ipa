@@ -223,7 +223,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | ddo | northeuralex | 871 | 0.1090 | - | - | 0.1090 | 0.1090 | 0.5649 | 0.5649 | [0.0978, 0.1201] | 0.5649 | research | lexicon-derived |
 | de | wikipron | 53010 | 0.2103 | - | - | 0.1567 | 0.1414 | 0.3150 | 0.3453 | [0.2089, 0.2118] | 0.2343 | research | crowd-scraped |
 | de-DE | ipa_childes | 24857 | 0.3948‡ | - | - | 0.2845 | 0.2632 | 0.1080 | 0.1251 | [0.3926, 0.3971] | 0.0513 | research | epitran-derived |
-| de-DE | ipadict | 777785 | 0.2303 | 0.6092 | - | 0.1862 | 0.1724 | 0.1886 | 0.2104 | [0.2300, 0.2307] | 0.1390 | research | crowd-scraped |
+| de-DE | ipadict | 777785 | 0.2303 | 0.6106 | - | 0.1862 | 0.1724 | 0.1886 | 0.2104 | [0.2300, 0.2307] | 0.1390 | research | crowd-scraped |
 | de-x-alemannic | wikipron | 448 | 0.1736 | - | - | 0.1382 | 0.1291 | 0.5402 | 0.5580 | [0.1561, 0.1940] | 0.4554 | research | crowd-scraped |
 | dga | primary_sources | 35 | 0.1143 | - | - | 0.0500 | 0.0429 | 0.8571 | 0.8857 | [0.0476, 0.1810] | 0.7429 | research | expert-human |
 | dlm | wikipron | 180 | 0.2476 | - | - | 0.2476 | 0.2476 | 0.2000 | 0.2000 | [0.2193, 0.2770] | 0.2000 | research | crowd-scraped |
@@ -353,7 +353,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | fy | wikipron | 1091 | 0.2182 | - | - | 0.2043 | 0.2032 | 0.3327 | 0.3355 | [0.2075, 0.2295] | 0.3071 | research | crowd-scraped |
 | ga | ipa_childes | 1611 | 0.2989‡ | - | - | 0.2651 | 0.2410 | 0.1924 | 0.2216 | [0.2885, 0.3088] | 0.1620 | research | espeak-derived |
 | ga | wikipron | 9616 | 0.1834 | - | - | 0.1593 | 0.1498 | 0.3716 | 0.3906 | [0.1798, 0.1869] | 0.3100 | research | crowd-scraped |
-| gd | wikipron | 3719 | 0.2775 | - | - | 0.2296 | 0.2074 | 0.2740 | 0.3192 | [0.2707, 0.2844] | 0.2124 | research | crowd-scraped |
+| gd | wikipron | 3719 | 0.2774 | - | - | 0.2296 | 0.2074 | 0.2740 | 0.3192 | [0.2707, 0.2844] | 0.2124 | research | crowd-scraped |
 | gl-ES | spain_romance_tts | 20 | 0.0986‡ | - | - | - | - | - | - | [0.0708, 0.1286] | 0.1000 | research | llm-corrected |
 | gl-ES | vox_communis | 47512 | 0.0648‡ | - | - | 0.0497 | 0.0452 | 0.6759 | 0.6979 | [0.0640, 0.0657] | 0.6082 | research | epitran-derived |
 | gl-ES | wikipron | 8091 | 0.0801 | - | - | 0.0351 | 0.0286 | 0.8067 | 0.8453 | [0.0775, 0.0825] | 0.5967 | research | crowd-scraped |
@@ -515,9 +515,9 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | my | wikipron | 7941 | 0.1926 | - | - | 0.1899 | 0.1898 | 0.4440 | 0.4440 | [0.1878, 0.1974] | 0.4381 | research | crowd-scraped |
 | myv | vox_communis | 6442 | 0.0944‡ | - | - | 0.0944 | 0.0944 | 0.3890 | 0.3890 | [0.0923, 0.0965] | 0.3890 | research | epitran-derived |
 | nap | wikipron | 198 | 0.2792 | - | - | 0.2387 | 0.2307 | 0.1263 | 0.1263 | [0.2544, 0.3033] | 0.1162 | research | crowd-scraped |
-| nb | ipa_childes | 3176 | 0.3550‡ | - | - | 0.2881 | 0.2810 | 0.1747 | 0.1810 | [0.3467, 0.3634] | 0.1329 | research | espeak-derived |
-| nb | ipadict | 10169 | 0.2991 | 0.6352 | 0.2096† (vowel length + consonant gemination) | 0.2389 | 0.2275 | 0.1823 | 0.1941 | [0.2952, 0.3028] | 0.1350 | research | machine-generated |
-| nb | wikipron | 2725 | 0.3601 | - | 0.2995 (vowel length + consonant gemination + toneme) | 0.2949 | 0.2850 | 0.1615 | 0.1695 | [0.3509, 0.3688] | 0.1347 | research | crowd-scraped |
+| nb | ipa_childes | 3176 | 0.3501‡ | - | - | 0.2873 | 0.2806 | 0.1747 | 0.1814 | [0.3420, 0.3584] | 0.1385 | research | espeak-derived |
+| nb | ipadict | 10169 | 0.2942 | 0.6357 | 0.2096† (vowel length + consonant gemination) | 0.2391 | 0.2276 | 0.1826 | 0.1945 | [0.2904, 0.2978] | 0.1418 | research | machine-generated |
+| nb | wikipron | 2725 | 0.3580 | - | 0.2995 (vowel length + consonant gemination + toneme) | 0.2951 | 0.2850 | 0.1611 | 0.1695 | [0.3489, 0.3663] | 0.1369 | research | crowd-scraped |
 | nci | wikipron | 839 | 0.1198 | - | - | 0.1197 | 0.1197 | 0.2896 | 0.2896 | [0.1128, 0.1270] | 0.2896 | research | crowd-scraped |
 | nds | wikipron | 308 | 0.2231 | - | - | 0.1674 | 0.1503 | 0.5065 | 0.5292 | [0.1969, 0.2487] | 0.4091 | research | crowd-scraped |
 | ne | kaikki | 2052 | 0.1191 | - | - | 0.1178 | 0.1178 | 0.5210 | 0.5210 | [0.1121, 0.1256] | 0.5195 | research | crowd-scraped |
@@ -533,8 +533,8 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | nl | vox_communis | 25904 | 0.2706‡ | - | - | 0.2288 | 0.2073 | 0.1625 | 0.1917 | [0.2687, 0.2724] | 0.0998 | research | epitran-derived |
 | nl | wikipron | 45872 | 0.0902 | - | - | 0.0701 | 0.0587 | 0.6416 | 0.6836 | [0.0891, 0.0914] | 0.5554 | research | crowd-scraped |
 | nmy | wikipron | 354 | 0.1091 | - | - | 0.1088 | 0.1088 | 0.5989 | 0.5989 | [0.0921, 0.1291] | 0.5989 | research | crowd-scraped |
-| nn | wikipron | 3829 | 0.2648 | - | - | 0.2118 | 0.2043 | 0.3842 | 0.3964 | [0.2569, 0.2729] | 0.3155 | research | crowd-scraped |
-| nn | wikipron_nor | 1093 | 0.1826 | - | - | 0.1519 | 0.1466 | 0.5261 | 0.5380 | [0.1699, 0.1949] | 0.4657 | research | crowd-scraped |
+| nn | wikipron | 3829 | 0.2596 | - | - | 0.2058 | 0.1983 | 0.3949 | 0.4074 | [0.2515, 0.2679] | 0.3249 | research | crowd-scraped |
+| nn | wikipron_nor | 1093 | 0.1705 | - | - | 0.1398 | 0.1344 | 0.5517 | 0.5645 | [0.1582, 0.1827] | 0.4904 | research | crowd-scraped |
 | non | wikipron | 270 | 0.2365 | - | - | 0.2213 | 0.2213 | 0.3111 | 0.3111 | [0.2148, 0.2616] | 0.2815 | research | crowd-scraped |
 | nrf | wikipron | 143 | 0.2557 | - | - | 0.2120 | 0.2026 | 0.4266 | 0.4406 | [0.2087, 0.3017] | 0.3636 | research | crowd-scraped |
 | nup | wikipron | 393 | 0.3979 | - | - | 0.3979 | 0.3979 | 0.1501 | 0.1501 | [0.3787, 0.4165] | 0.1501 | research | crowd-scraped |
@@ -711,10 +711,10 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | srs | wikipron | 137 | 0.1765 | - | - | 0.1765 | 0.1765 | 0.2847 | 0.2847 | [0.1515, 0.2027] | 0.2847 | research | crowd-scraped |
 | stq | wikipron | 818 | 0.1959 | - | - | 0.1475 | 0.1417 | 0.4401 | 0.4548 | [0.1840, 0.2085] | 0.3313 | research | crowd-scraped |
 | su | kaikki | 399 | 0.0978 | 0.0000 | - | 0.0978 | 0.0978 | 0.6366 | 0.6366 | [0.0835, 0.1133] | 0.6366 | skeleton | crowd-scraped |
-| sv | ipa_childes | 5202 | 0.3458‡ | - | - | 0.2536 | 0.2452 | 0.2637 | 0.2784 | [0.3397, 0.3526] | 0.1745 | research | espeak-derived |
-| sv | ipadict | 21094 | 0.2405 | 0.5696 | - | 0.1737 | 0.1617 | 0.2929 | 0.3115 | [0.2379, 0.2431] | 0.2110 | research | lexicon-derived |
-| sv | vox_communis | 19492 | 0.3695‡ | - | - | 0.2123 | 0.2026 | 0.2500 | 0.2730 | [0.3671, 0.3722] | 0.0813 | research | epitran-derived |
-| sv | wikipron | 5076 | 0.2384 | - | - | 0.1641 | 0.1525 | 0.4271 | 0.4490 | [0.2320, 0.2450] | 0.3369 | research | crowd-scraped |
+| sv | ipa_childes | 5202 | 0.3412‡ | - | - | 0.2524 | 0.2447 | 0.2649 | 0.2785 | [0.3349, 0.3477] | 0.1788 | research | espeak-derived |
+| sv | ipadict | 21094 | 0.2377 | 0.5701 | - | 0.1735 | 0.1617 | 0.2936 | 0.3117 | [0.2351, 0.2402] | 0.2163 | research | lexicon-derived |
+| sv | vox_communis | 19492 | 0.3658‡ | - | - | 0.2102 | 0.2014 | 0.2541 | 0.2749 | [0.3632, 0.3685] | 0.0846 | research | epitran-derived |
+| sv | wikipron | 5076 | 0.2336 | - | - | 0.1639 | 0.1524 | 0.4279 | 0.4496 | [0.2276, 0.2404] | 0.3469 | research | crowd-scraped |
 | sw | ipadict | 48308 | 0.1608 | - | - | 0.1422 | 0.1416 | 0.3999 | 0.4013 | [0.1594, 0.1623] | 0.3458 | research | machine-generated |
 | sw | vox_communis | 48334 | 0.1286‡ | - | - | 0.1149 | 0.1144 | 0.4321 | 0.4335 | [0.1273, 0.1298] | 0.3853 | research | epitran-derived |
 | sw | wikipron | 307 | 0.2539 | - | - | 0.2486 | 0.2486 | 0.2117 | 0.2117 | [0.2346, 0.2738] | 0.2085 | research | crowd-scraped |
