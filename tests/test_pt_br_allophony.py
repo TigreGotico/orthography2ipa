@@ -117,7 +117,7 @@ def test_br_declares_the_nasal_raise_rules():
     ("sim", "ˈsĩ"),
     ("bom", "ˈbõ"),
     ("mundo", "ˈmũdu"),
-    ("cantar", "kɐ̃ˈtaɾ"),
+    ("cantar", "kɐ̃ˈta"),
     ("fim", "ˈfĩ"),
     ("tempo", "ˈtẽpu"),
 ])
@@ -290,7 +290,7 @@ def test_w_is_not_deleted(word):
 @pytest.mark.parametrize("word,expected", [
     # Barbosa & Albano (2004: 229): coda /S/ "tends to assimilate the voicing
     # of the following sound".
-    ("mesmo", "ˈmezmu"), ("desde", "ˈdezd͡ʒi"), ("rasgar", "ʁazˈɡaɾ"),
+    ("mesmo", "ˈmezmu"), ("desde", "ˈdezd͡ʒi"), ("rasgar", "ʁazˈɡa"),
     ("festa", "ˈfestɐ"),
 ])
 def test_br_coda_s_voices_before_voiced_consonant(word, expected):
@@ -313,7 +313,7 @@ def test_br_onset_cluster_keeps_tap():
 @pytest.mark.parametrize("word,expected", [
     # Barbosa & Albano (2004: 227): epenthesis breaks two-obstruent sequences
     # with [i]; Collischonn (2004: 67-68): pretonic 69 %, advogado type 89 %.
-    ("advogado", "ad͡ʒivoˈɡadu"), ("obter", "obiˈteɾ"), ("absurdo", "abiˈsuɾdu"),
+    ("advogado", "ad͡ʒivoˈɡadu"), ("obter", "obiˈte"), ("absurdo", "abiˈsuɾdu"),
 ])
 def test_br_pretonic_epenthesis(word, expected):
     assert G2P("pt-BR").transcribe_word(word) == expected
@@ -378,10 +378,10 @@ def _assert_epenthesis_words(g2p):
     # citing Monaretto 1997: 188), so a doubled letter stays unbroken.
     for word in FF_LOANS:
         assert re.search(r"f[ˈˌ]?f", g2p.transcribe_word(word)), word
-    # The final /R/ is the lect's own, so buffer ends as comer does.
-    comer = g2p.transcribe_word("comer")
-    assert comer.startswith("koˈme")
-    assert g2p.transcribe_word("buffer") == "bufˈfe" + comer[len("koˈme"):]
+    # The final /R/ of a noun is the lect's own, so buffer ends as mulher does.
+    mulher = g2p.transcribe_word("mulher")
+    assert re.fullmatch(r"muˈ[ʎj]e.?", mulher), mulher
+    assert g2p.transcribe_word("buffer") == "bufˈfe" + mulher[mulher.rindex("e") + 1:]
 
 
 @pytest.mark.parametrize("lang", BR_CHILDREN)

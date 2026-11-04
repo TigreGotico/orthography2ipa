@@ -63,6 +63,8 @@ The read sources do not quantify the fine pretonic vowels or any nasal-vowel det
 
 No source for ⟨-en⟩ or the plural ⟨-ens⟩ in this variety was read. So the spec limits `BR_FINAL_EM_GLIDE` to a final ⟨m⟩ and switches off `BR_FINAL_ENS_GLIDE`: `bem` [ˈbẽj̃], but `hífen` [ˈifẽ] and `homens` [ˈomẽs].
 
+No source on the final /R/ of this variety was read. So the spec switches off the `pt-BR` rules `BR_FINAL_R_NONVERB`, `BR_INFINITIVE_R_DROP` and `BR_INFINITIVE_R_DROP_POR`, and an infinitive keeps the tap: `falar` [faˈlaɾ].
+
 ## Input contract
 
 Input is standard Portuguese orthography, as the literature and written *portuñol* use it for the variety. The spec transcribes the focused rural local norm that Rona, Hensey and Carvalho describe. The urban Brazilian variants, with palatalisation and the uvular r, are the diffusion pole of the continuum. The spec records them in its notes and does not produce them by default.
