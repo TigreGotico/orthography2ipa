@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.114.25a1](https://github.com/TigreGotico/orthography2ipa/tree/7.114.25a1) (2026-11-04)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.114.24a1...7.114.25a1)
+
+**Merged pull requests:**
+
+- fix\(nl\): make nl-NL the Netherlands Dutch standard spec [\#1999](https://github.com/TigreGotico/orthography2ipa/pull/1999) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.114.24a1](https://github.com/TigreGotico/orthography2ipa/tree/7.114.24a1) (2026-11-04)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.114.23a1...7.114.24a1)
@@ -380,10 +388,6 @@
 ## [7.111.24a1](https://github.com/TigreGotico/orthography2ipa/tree/7.111.24a1) (2026-11-03)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.111.23a1...7.111.24a1)
-
-**Merged pull requests:**
-
-- fix: drop grapheme keys the tokenizer can never match [\#1857](https://github.com/TigreGotico/orthography2ipa/pull/1857) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.111.23a1](https://github.com/TigreGotico/orthography2ipa/tree/7.111.23a1) (2026-11-02)
 
