@@ -27,7 +27,7 @@ Each file is tab-separated UTF-8 with a header row. The columns are the `FIELDS`
 | `id` | `<lect>-NNN`, numbered from `001` |
 | `sentence` | The sentence in the input orthography of the lect. This is the text a TTS voice receives, and the text the engine transcribes. |
 | `raw` | Arabic only. The sentence with the ḥarakāt removed, which is what a TTS normally receives. |
-| `ipa` | The output of `transcribe(sentence, lect)`, audited against the cited sources of the lect |
+| `ipa` | The engine draft from `transcribe(sentence, lect)`, audited against the cited sources of the lect |
 | `gloss_en` | An English translation |
 | `features` | Coverage tags, separated by semicolons (see [Feature tags](#feature-tags)) |
 | `notes` | Corrections to the engine output, and the source ids from the spec's `sources` that justify the row |
@@ -36,17 +36,13 @@ All columns except `notes` must be non-empty. The `notes` column must carry at l
 
 Only the Arabic set has a `raw` column. Arabic orthography leaves short vowels unwritten, and the engine takes fully vocalized text as its Arabic input. In the other four sets the spelling already writes every segment a speaker needs, so the sentence is the TTS input as it stands.
 
-## The engine-pin contract
+## The engine draft and the corrected label
 
-The `ipa` column is exactly what the engine emits for `sentence` under the lect. `validate` computes it again and fails on any difference. That makes each file a regression pin on the spec.
+`draft` writes the `ipa` column from the engine output for `sentence` under the lect. The author then audits each row against the lect's `sources` and records every correction in `notes`, with the source id that grounds it. `validate` does not compare the `ipa` column with the engine.
 
-Never edit the `ipa` column by hand. A set that is patched to hide a spec bug is worse than no set. When the engine is wrong, fix the spec, with a citation from the lect's `sources`. You can also change the sentence to a word that the literature attests and that the spec transcribes correctly. Record every correction in `notes`, with the source id that grounds it.
+The board does not score the `ipa` column. It scores the label that [`scripts/correct_silver_ipa.py`](../contributing/silver_correction.md) wrote for each row, in `orthography2ipa/data/gold/<set>.llm-corrected.jsonl`. `tests/test_llm_corrected_sets.py` checks that each such file holds exactly the rows of its source set. A row that you add to, or change in, a source file therefore needs a correction run before the suite passes again.
 
-When a spec change alters a stored transcription, `validate` prints the stored and the computed IPA. Reconcile the two on purpose:
-
-1. If the changed transcription is more accurate against the cited sources, the set pinned an older, less correct output. Regenerate the `ipa` column from the engine with `draft`, or copy the `got:` line. Check the feature tags against the changed IPA, and note the spec change with its source id.
-2. If the changed transcription is wrong, the set caught a regression. Fix the spec and leave the set as it is.
-3. If the engine cannot yet produce the attested form, state the gap at the top of the pull request description. Change the sentence to a form that the spec transcribes correctly and the literature attests, and keep the gap on record.
+Never edit the `ipa` column, or a corrected label, to hide a spec bug. When the engine is wrong, fix the spec, with a citation from the lect's `sources`.
 
 ## What `validate` checks
 
@@ -58,7 +54,6 @@ When a spec change alters a stored transcription, `validate` prints the stored a
 | Required fields | `id`, `sentence`, `ipa`, `gloss_en` or `features` is empty (`raw` too, in the Arabic set) |
 | Row minimum | a lect file has fewer than `MIN_ROWS` rows. `MIN_ROWS` is 20 in the Kabyle builder and 5 in the other four. |
 | Duplicates | two rows of one lect have the same sentence |
-| Engine pin | `transcribe(sentence, lect)` differs from `ipa` |
 | Feature tags | a tag is unknown, or its predicate is false on the row |
 | Citations | `notes` names an id that is not in the lect's `sources`, holds an author-year citation in free text, or holds no resolvable id |
 | Arabic vocalization | `raw` differs from `sentence` with the ḥarakāt removed, or a consonant has no diacritic outside the allowed cases |
@@ -134,7 +129,7 @@ The builders share three subcommands. Run them from the root of a checkout. Each
    ```
 
 4. Write the gloss, the shape tags and the `notes` yourself, with a source id in the notes.
-5. Check the IPA against the phoneme mappings and the sources of the spec. If the engine is wrong, fix the spec as described in [The engine-pin contract](#the-engine-pin-contract).
+5. Check the IPA against the phoneme mappings and the sources of the spec. If the engine is wrong, fix the spec as described in [The engine draft and the corrected label](#the-engine-draft-and-the-corrected-label).
 6. Run `python scripts/kabyle_tts_gold.py validate` and confirm that it prints `all green`. The test file of the set runs the same command in CI.
 
 The `checklist` docstrings mention an optional TSV argument, but the parser accepts only the lect code.
@@ -170,7 +165,7 @@ Both sets are also written to be rich in sandhi. Word junctions are where these 
 
 A language model wrote the sentences of all five sets. For `arabic_tts` and `portuguese_tts` it also drafted each transcription. Each draft was then pinned to the engine and audited row by row against the literature cited in `notes`. The `spain_romance_tts` transcriptions are drafted by `transcribe` itself. Each row of every set names in `notes` the spec sources that ground it, and `validate` checks that each id resolves.
 
-The scoreboard scores `arabic_tts`, `portuguese_tts` and `spain_romance_tts` at the `llm-generated` tier, which can never gate a quality decision. The `ipa` column is the engine's own output by contract, so each row scores a PER of zero by construction. The rows measure drift from the pinned output, not accuracy. The `PROVENANCE` comment on `spain_romance_tts` in `scripts/benchmark.py` states that a set pinned to the system under test must never gate anything.
+The scoreboard scores `arabic_tts`, `portuguese_tts` and `spain_romance_tts` against their corrected labels, at the `llm-corrected` tier. That tier is silver and can never gate a quality decision. Two blind model passes wrote each label, and a third pass decided where they differed, with the engine output in view. The label is still a language model's. A PER on these rows measures distance from that label. It is not an accuracy, and a row is never evidence for a phonetic value. The `kabyle_tts` and `iberian_creole_tts` sets have corrected labels too, but the board does not register them.
 
 The citation audit in `notes` raises confidence in the sentences and their grounding. It does not raise the tier of the IPA, and it does not make a silver set gold. [Gold defects](gold_defects.md#circular) records these sets as circular, and [benchmarks.md](benchmarks.md#provenance-and-reliability-read-this-before-trusting-any-number) explains the tiers.
 
@@ -180,9 +175,9 @@ The Arabic set covers Classical Arabic (`arb`), Modern Standard Arabic (`ar`), t
 
 ### Grouping nodes
 
-The grouping nodes are `ar-x-gulf`, `ar-x-levantine`, `ar-x-maghrebi`, `ar-x-mashriqi` and `ar-x-peninsular`. Their register is pan-group. A sentence uses only words that the leaves of the group share. Examples are Gulf `šlon` and `wāyid`, Levantine `qaddēsh` and `baddi`, and pan-Maghrebi `bzzāf` and `shri` in the sense of Heath and Marçais.
+The grouping nodes are `afb`, `apc`, `ar-x-maghrebi`, `ar-x-mashriqi` and `ar-x-peninsular`. Their register is pan-group. A sentence uses only words that the leaves of the group share. Examples are Gulf `šlon` and `wāyid`, Levantine `qaddēsh` and `baddi`, and pan-Maghrebi `bzzāf` and `shri` in the sense of Heath and Marçais.
 
-Where the leaves of a group differ, the node does not choose a reflex. The set shows the rank-1 candidate of the node instead. `ar-x-maghrebi` keeps /q/ and puts ʒ first for ǧīm. `ar-x-peninsular` puts the fricative interdentals first and keeps the diphthongs. `ar-x-gulf` and `ar-x-levantine` change ay and aw to ē and ō. That is the documented behaviour of the node, and each row notes it.
+Where the leaves of a group differ, the node does not choose a reflex. The set shows the rank-1 candidate of the node instead. `ar-x-maghrebi` keeps /q/ and puts ʒ first for ǧīm. `ar-x-peninsular` puts the fricative interdentals first and keeps the diphthongs. `afb` and `apc` change ay and aw to ē and ō. That is the documented behaviour of the node, and each row notes it.
 
 ### Tags
 
@@ -212,7 +207,7 @@ The Arabic `draft` vocalizes each line with text2tashkeel (`rawi-ensemble`) befo
 `scripts/_gold_build.py` is a second way to write an Arabic file. It takes a lect code and a Python file that defines `ROWS` as a list of `(sentence, gloss_en, shape_tags, notes)` tuples. It computes `raw`, the IPA and the machine tags, warns about bare consonants, and overwrites `<lect>.tsv`:
 
 ```bash
-python scripts/_gold_build.py ar-EG rows_ar_eg.py
+python scripts/_gold_build.py arz-EG rows_ar_eg.py
 ```
 
 If a fix to the spec changes a letter mapping, run `scripts/gen_arabic_orthography_keys.py` again.
@@ -227,31 +222,31 @@ The set follows the conventions for vocalized text that `scripts/gen_arabic_orth
 |---|---|---|
 | `arb` | Sībawayhi's lateral emphatic ض [ɮˤ] | spec notes |
 | `ar` | the merged stop [dˤ] for ض | Versteegh 2001 |
-| `ar-EG` | ج /ɡ/, ق /ʔ/, stop interdentals, the article `اِلْ‍` | Badawi and Hinds 1986, Mitchell 1956 |
-| `ar-SY`, `ar-LB`, `ar-JO`, `ar-PS` | ق /ʔ/ (/g/ in the Jordanian koine), ج /ʒ/ (/dʒ/ in Jordan), ay and aw to ē and ō, final imāla -e written `ِة`. Beirut fronting of ā to ē is frequent, from an `ar-LB` spec rule. | Cowell 1964, Almbark and Hellmuth 2015, Al-Wer 2020, Cotter 2016 |
-| `ar-IQ` | gilit Iraqi: ق /ɡ/ written گ, ك to چ /tʃ/, interdentals kept, ay and aw to ē and ō | Erwin 1963 |
+| `arz-EG` | ج /ɡ/, ق /ʔ/, stop interdentals, the article `اِلْ‍` | Badawi and Hinds 1986, Mitchell 1956 |
+| `apc-SY`, `apc-LB`, `apc-JO`, `apc-PS` | ق /ʔ/ (/g/ in the Jordanian koine), ج /ʒ/ (/dʒ/ in Jordan), ay and aw to ē and ō, final imāla -e written `ِة`. Beirut fronting of ā to ē is frequent, from an `apc-LB` spec rule. | Cowell 1964, Almbark and Hellmuth 2015, Al-Wer 2020, Cotter 2016 |
+| `acm-IQ` | gilit Iraqi: ق /ɡ/ written گ, ك to چ /tʃ/, interdentals kept, ay and aw to ē and ō | Erwin 1963 |
 | `ar-IQ-x-qeltu` | /q/ and plain /k/ kept. The qeltu and gilit split is the diagnostic of the pair. | Blanc 1964 |
-| `ar-SD` | ج /ɟ/, a palatal stop, ق /ɡ/, and the words zōl and dāyir | Dickins 2007 |
-| `ar-TD`, `ar-NG` | g-dialect qāf, and frames with an n- first person singular imperfect | Owens 1993 |
-| `ar-AE`, `ar-BH`, `ar-KW`, `ar-QA` | ق /ɡ/, affricated kāf چ /tʃ/, interdentals kept, ē and ō from `ar-x-gulf` | Holes 2004, Alshammari 2026 |
-| `ar-OM` | the sedentary control: /q/, plain /k/, diphthongs kept | Al-Balushi 2016 |
-| `ar-SA-x-najd` | the epenthesis of the gahawa syndrome (gahawa, aḥamar) | Ingham 1994 |
-| `ar-SA-x-hejaz` | urban stop interdentals, and a register close to Cairene | Omar 1975, Abdoh 2010 |
-| `ar-YE` | the verb aští, diphthongs and interdentals kept | Watson 2002 |
-| `ar-SA-x-qassim` | the Najdi velar affricates [ts] and [dz], and /aj aw/ to [eː oː] (loːnak, joːm, bureːda), which central Najdi does not have | Alhoody 2019:42, Al-Rojaie 2013 |
+| `apd-SD` | ج /ɟ/, a palatal stop, ق /ɡ/, and the words zōl and dāyir | Dickins 2007 |
+| `shu-TD`, `shu-NG` | g-dialect qāf, and frames with an n- first person singular imperfect | Owens 1993 |
+| `afb-AE`, `afb-BH`, `afb-KW`, `afb-QA` | ق /ɡ/, affricated kāf چ /tʃ/, interdentals kept, ē and ō from `afb` | Holes 2004, Alshammari 2026 |
+| `acx-OM` | the sedentary control: /q/, plain /k/, diphthongs kept | Al-Balushi 2016 |
+| `ars-SA` | the epenthesis of the gahawa syndrome (gahawa, aḥamar) | Ingham 1994 |
+| `acw-SA` | urban stop interdentals, and a register close to Cairene | Omar 1975, Abdoh 2010 |
+| `ayn-YE` | the verb aští, diphthongs and interdentals kept | Watson 2002 |
+| `ars-SA-x-qassim` | the Najdi velar affricates [ts] and [dz], and /aj aw/ to [eː oː] (loːnak, joːm, bureːda), which central Najdi does not have | Alhoody 2019:42, Al-Rojaie 2013 |
 | `ar-SA-x-rijal-alma` | the old lateral emphatics, ض as voiced [ɮˤ] and ظ as voiceless [ɬˤ], kept apart, and [q] for qāf | Watson and Al-Azraqi 2011, Asiri 2009, Al-Azraqi 2010 |
-| `ar-SA-x-sharqiyya` | Baḥārna ج to [j], affricated kāf [tʃ], qāf [ɡ] | Johnstone 1967, Holes 2004, Al-Taisan 2022 |
-| `ar-MA` | heavy initial clusters, ma-...-š negation, n- first person singular, and the words ma-ṭīša, zwīn and bzzāf | Harrell 1962, Heath 2020 |
-| `ar-TN` | barša and bāhi, with the interdentals kept | Gibson 2009 |
-| `ar-DZ` | mlīḥ and wāš rāk, attested in PADIC | Boucherit 2002 |
+| `afb-SA-x-sharqiya` | Baḥārna ج to [j], affricated kāf [tʃ], qāf [ɡ] | Johnstone 1967, Holes 2004, Al-Taisan 2022 |
+| `ary-MA` | heavy initial clusters, ma-...-š negation, n- first person singular, and the words ma-ṭīša, zwīn and bzzāf | Harrell 1962, Heath 2020 |
+| `aeb-TN` | barša and bāhi, with the interdentals kept | Gibson 2009 |
+| `arq-DZ` | mlīḥ and wāš rāk, attested in PADIC | Boucherit 2002 |
 | `ar-LY` | halba and nibbi, with ق /ɡ/ | Pereira 2008 |
-| `ar-MR` | Ḥassāniyya keeps the interdentals | Taine-Cheikh 2007 |
+| `mey-MR` | Ḥassāniyya keeps the interdentals | Taine-Cheikh 2007 |
 
 The lexical attestation also draws on the PADIC, QADI, EDC and SDC corpora. The sentences are written for the set, never copied from a corpus.
 
 ### Limits
 
-The specs of `ar-TD`, `ar-NG`, `ar-TN`, `ar-DZ`, `ar-LY` and `ar-MR` have thinner grounding. Their sentences keep to well-attested features shared across the region. No dialect vocalization is text2tashkeel output as it stands: each draft is corrected against the sources of the lect. The IPA is broad, and the pre-pausal tanwīn is kept, as in full style.
+The specs of `shu-TD`, `shu-NG`, `aeb-TN`, `arq-DZ`, `ar-LY` and `mey-MR` have thinner grounding. Their sentences keep to well-attested features shared across the region. No dialect vocalization is text2tashkeel output as it stands: each draft is corrected against the sources of the lect. The IPA is broad, and the pre-pausal tanwīn is kept, as in full style.
 
 ## `kabyle_tts`
 
@@ -354,7 +349,7 @@ The ISO 639-3 code does not always name the variety that the spec models. The sp
 | `aoa` | Angolar (Ngola) | the community spelling of the Gulf of Guinea, with circumflex nasality and no written tone |
 | `cri` | Sãotomense (Forro, Santome) | ALUSTP, a seven-vowel system where bare ⟨e o⟩ are [ɛ ɔ] |
 | `pap` | Papiamento (Curaçao) | the phonemic spelling of Curaçao: ⟨k⟩ for ⟨c⟩, grave ⟨ò⟩ |
-| `cbk-zam` | Chavacano (Zamboangueño) | the practical spelling of Zamboanga |
+| `cbk-PH` | Chavacano (Zamboangueño) | the practical spelling of Zamboanga |
 | `pln` | Palenquero (San Basilio de Palenque) | a practical spelling based on Spanish, with prenasal ⟨nd ng⟩ and postposed `nu` |
 
 ### Tags
@@ -390,13 +385,13 @@ The shape tags are `statement`, `question`, `negation`, `imperative` and `number
 
 ### Axes that do not apply
 
-The Spanish- and Portuguese-lexified creoles do not share the axes of Iberian Romance. Those axes are distinción, seseo and ceceo, yeísmo, Romance ⟨ie ue⟩ diphthongs, gheada, and coda /s/ aspiration as a variable that separates lects. They do not apply to these languages and the set does not model them. The `pap`, `cbk-zam` and `pln` rows carry only the creole tags that their IPA shows. Coda /s/ to [ʃ] in `pap` is `postalveolar` and `coda_sibilant`, and the prenasal ⟨nd ng⟩ of Palenquero is `prenasal_stop`.
+The Spanish- and Portuguese-lexified creoles do not share the axes of Iberian Romance. Those axes are distinción, seseo and ceceo, yeísmo, Romance ⟨ie ue⟩ diphthongs, gheada, and coda /s/ aspiration as a variable that separates lects. They do not apply to these languages and the set does not model them. The `pap`, `cbk-PH` and `pln` rows carry only the creole tags that their IPA shows. Coda /s/ to [ʃ] in `pap` is `postalveolar` and `coda_sibilant`, and the prenasal ⟨nd ng⟩ of Palenquero is `prenasal_stop`.
 
 ## `spain_romance_tts`
 
 The Spain-Romance set covers the Romance lects of Spain and the peripheral Romance of the Iberian west. It also covers Latin American and Equatoguinean Spanish, and Basque. Basque is not Romance, but it is an Iberian language, and its rows use their own `eu_` tags.
 
-Each lect uses its own orthography. Galician uses the RAG standard or the reintegrationist spelling, Asturian uses ALLA, and Aragonese uses its Academia. Catalan and Valencian use IEC or AVL, and Aranese uses its attested convention. The medieval stages use period spelling, and Ladino uses its Latin convention. The Spanish-lexified creoles `pap`, `cbk-zam` and `pln` are not Iberian Romance. They are in the [`iberian_creole_tts`](#iberian_creole_tts) set.
+Each lect uses its own orthography. Galician uses the RAG standard or the reintegrationist spelling, Asturian uses ALLA, and Aragonese uses its Academia. Catalan and Valencian use IEC or AVL, and Aranese uses its attested convention. The medieval stages use period spelling, and Ladino uses its Latin convention. The Spanish-lexified creoles `pap`, `cbk-PH` and `pln` are not Iberian Romance. They are in the [`iberian_creole_tts`](#iberian_creole_tts) set.
 
 ### Tags
 

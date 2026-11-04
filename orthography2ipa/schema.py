@@ -327,6 +327,15 @@ class ToneRulesModel(_Strict):
         return v
 
 
+class ClosedHiatusModel(_Strict):
+    """A diphthong split by a closing consonant (``stress.closed_hiatus``).
+    Mirrors ``ClosedHiatus``."""
+
+    pairs: List[str] = Field(min_length=1)
+    onsets: List[str] = Field(default_factory=list)
+    codas: List[str] = Field(default_factory=list)
+
+
 class StressRulesModel(_Strict):
     """Declarative stress placement (``stress``). Mirrors ``StressRules``."""
 
@@ -340,6 +349,7 @@ class StressRulesModel(_Strict):
     accent2_final_letters: Optional[List[str]] = None
     diphthongs: Optional[List[str]] = None
     ipa_diphthongs: Optional[List[str]] = None
+    closed_hiatus: Optional[ClosedHiatusModel] = None
     vowel_letters: Optional[List[str]] = None
     quantity_sensitive: bool = False
     superheavy_final_attracts: bool = True

@@ -82,4 +82,4 @@ No linter or type checker is configured. The code uses
 `from __future__ import annotations` and typed dataclasses.
 
 ---
-[← Board regeneration](board.md) · [Home](../index.md) · [Benchmarks →](../evaluation/benchmarks.md)
+[← Board regeneration](board.md) · [Home](../index.md) · [Silver IPA correction →](silver_correction.md)

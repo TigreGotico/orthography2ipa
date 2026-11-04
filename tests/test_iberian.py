@@ -2283,7 +2283,7 @@ class TestSpanishPhonologicalRules:
     @pytest.mark.parametrize("word,expected", [
         ("naci\u00f3n", "na\u02c8\u03b8jon"),
         ("asunci\u00f3n", "asun\u02c8\u03b8jon"),
-        ("adri\u00e1n", "a\u02c8dɾjan"),
+        ("adri\u00e1n", "a\u02c8ðɾjan"),  # /d/ after a vowel is [ð] (Navarro Tomás 1918, § 101)
         ("despu\u00e9s", "des\u02c8pwes"),
         ("cu\u00e1nto", "\u02c8kwanto"),
     ])
@@ -2313,7 +2313,8 @@ class TestSpanishPhonologicalRules:
     @pytest.mark.parametrize("word,expected", [
         ("enrique", "en\u02c8rike"),
         ("honra", "\u02c8onra"),
-        ("israel", "is\u02c8rael"),
+        # Is-ra-el, two open vowels in hiatus, an aguda in -l.
+        ("israel", "isra\u02c8el"),
         ("alrededor", "alre\u00f0e\u02c8\u00f0o\u027e"),
     ])
     def test_trill_after_coronal(self, word, expected):

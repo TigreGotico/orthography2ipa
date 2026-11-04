@@ -26,9 +26,7 @@ draft <lect> <textfile>
     citation ids are authored by hand against the lect's spec sources).
 
 validate [lect ...]
-    CI gate over the gold TSVs: schema, per-lect row minimum, o2i transcription
-    regression (``transcribe(sentence, lect) == ipa``), feature-tag
-    verifiability, in-lect duplicate detection and citation-id resolution
+    CI gate over the gold TSVs: schema, per-lect row minimum, feature-tag verifiability, in-lect duplicate detection and citation-id resolution
     against the lect's spec sources. Lects with no gold file yet are reported
     as pending, not failed — this is a growing set.
 
@@ -92,7 +90,7 @@ LECTS = [
     # Colombian Spanish (Americas extension): bogotano + regional accents
     "es-CO", "es-CO-x-costa", "es-CO-x-llanero", "es-CO-x-pacifico",
     "es-CO-x-paisa", "es-CO-x-santander", "es-CO-x-valluno",
-    # (The Spanish-lexified creoles cbk-zam, pap and pln are NOT Iberian
+    # (The Spanish-lexified creoles cbk-PH, pap and pln are NOT Iberian
     # Romance; they moved to the unified creole harness —
     # scripts/iberian_creole_tts_gold.py — with the rest of the creole roster.)
     # Basque (mega-set): Euskara Batua + the dialect specs. Not Romance, but an
@@ -512,9 +510,6 @@ def cmd_validate(args):
             if r["sentence"] in seen:
                 failures.append(f"{rid}: duplicate sentence within {lect}")
             seen.add(r["sentence"])
-            got = orthography2ipa.transcribe(r["sentence"], lect)
-            if got != r["ipa"]:
-                failures.append(f"{rid}: o2i regression\n    stored: {r['ipa']}\n    got:    {got}")
             for tag in [t for t in r["features"].split(";") if t]:
                 if tag in SHAPE_TAGS:
                     continue

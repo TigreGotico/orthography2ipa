@@ -175,7 +175,7 @@ def test_af_uvular_r():
 
 
 # ===========================================================================
-# de-AT / de-CH / de-x-bavarian — German varieties
+# de-AT / de-CH / bar-AT — German varieties
 # ===========================================================================
 
 
@@ -229,28 +229,28 @@ def test_de_ch_alveolar_trill_r():
 def test_de_bavarian_pf_cluster_preserved():
     """pf- cluster fully preserved.
 
-    de-x-bavarian notes: "pf- cluster fully preserved."
+    bar-AT notes: "pf- cluster fully preserved."
     Source: König & van der Auwera (1994).
     """
-    assert _bare("de-x-bavarian", "Pfand").startswith("pf")
+    assert _bare("bar-AT", "Pfand").startswith("pf")
 
 
 @pytest.mark.xfail(
     strict=True,
     reason="König & van der Auwera (1994) claim r-vocalisation to [ɐ] before a "
-    "consonant; de-x-bavarian produces [vɔʁt] for Wort — the consonantal [ʁ] is "
+    "consonant; bar-AT produces [vɔʁt] for Wort — the consonantal [ʁ] is "
     "kept",
 )
 def test_de_bavarian_r_vocalisation_before_consonant():
     """r-vocalisation [ɐ] before consonants is common.
 
-    de-x-bavarian notes: "r-vocalisation [ɐ] before consonants common."
+    bar-AT notes: "r-vocalisation [ɐ] before consonants common."
     Source: König & van der Auwera (1994).
 
     Isolated on the pre-consonantal ⟨r⟩ of Wort, where the onset ⟨r⟩ of a word
     like rot is untouched by the rule.
     """
-    assert "ɐ" in _t("de-x-bavarian", "Wort")
+    assert "ɐ" in _t("bar-AT", "Wort")
 
 
 # ===========================================================================

@@ -43,4 +43,4 @@ The spec switches off the coda rules `PT_CODA_S_HUSH` and `PT_CODA_Z_HUSH` by re
 Input is standard Portuguese orthography (Acordo Ortográfico 1990). The spec uses the written accents for stress, and the input needs no special preparation.
 
 ---
-[← Brazilian Portuguese dialects](pt-BR-dialects.md) · [Home](../index.md) · [Cape Verdean Portuguese →](pt-CV.md)
+[← Cuiabano Portuguese](pt-BR-x-cuiaba.md) · [Home](../index.md) · [Cape Verdean Portuguese →](pt-CV.md)

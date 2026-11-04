@@ -47,11 +47,13 @@ The language check resolves a row tag the way the engine does. A wikipron row re
 
 ### Which gold can gate
 
-Three provenance tiers can never gate a promotion: `espeak-derived`, `epitran-derived` and `llm-generated`. `can_gate_promotion()` is the single source of truth for this rule, and `tests/test_competitor_derived_gold.py` tests it. The reasons differ by tier:
+Four provenance tiers can never gate a promotion: `espeak-derived`, `epitran-derived`, `llm-corrected` and `llm-generated`. `can_gate_promotion()` is the single source of truth for this rule, and `tests/test_competitor_derived_gold.py` tests it. The reasons differ by tier:
 
 - A gold that a competing G2P system generated (`espeak-derived`, `epitran-derived`) measures agreement with that competitor, not correctness. This project benchmarks itself against both systems ([comparison](../evaluation/generated/comparison.md)), so their output cannot also be the truth.
 
 - A gold that a large language model generated (`llm-generated`) has no lexicon and no rules, so it has no error model. A disagreement with it says nothing about the spec, so it can certify nothing.
+
+- A silver label that a model corrected (`llm-corrected`) is still a language model's label. Several passes do not give it an error model, so it can certify nothing either.
 
 A language whose only gold of 500 words or more sits in one of these tiers has no usable gold, and it stays at `research`. A poor score on one of these tiers never disqualifies a language that clears the bar on a trusted gold. A cited source can require exactly the divergence from espeak, epitran or a model output that such a row counts as error. The tiers of every dataset are in [benchmarks](../evaluation/benchmarks.md#reliability-tiers).
 
