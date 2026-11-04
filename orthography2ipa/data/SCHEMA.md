@@ -845,16 +845,27 @@ Each entry of `ancestors` is one link from this language to an ancestor.
 
 ## Minting a private-use lect code
 
+A variety with an ISO 639-3 individual code of its own is keyed by that code,
+not by a private-use tag. The key is `{iso}-{REGION}`, where the region is the
+country where the variety is spoken, or the CLDR likely region when the spec
+names no country: `ars-SA` for Najdi Arabic, `arz-EG` for Egyptian Arabic. An
+abstract node that groups the varieties of several countries takes the bare
+code: `afb` for Gulf Arabic, `apc` for Levantine Arabic.
+
 A variety with no ISO 639-3 code of its own is keyed as a private-use extension
-of the language it descends from: `{parent-tag}-x-{slug}`, where the slug names
-the place or the variety in lowercase ASCII. The prefix is not a label of
-convenience: it must agree with the spec's own `parent` and with the
-heaviest-weighted entry in `ancestors`. A spec whose `parent` is `pt-PT` cannot
-be keyed under a Castilic prefix, and a mismatch between the code and those two
-fields is a defect in the code, not in the fields. A parentless mixed language is
-the one exception: its private-use key takes its prefix from its documented
-external classification and need not match its heaviest-weighted ancestor, and
-the loader's `family_path` is empty for it, so the spec sets `family` itself.
+of the language it descends from: `{parent-language}-{REGION}-x-{slug}`. The
+language subtag comes from the parent's key, and the region is the country
+where the variety is spoken: `ars-SA-x-qassim` under `ars-SA`,
+`apc-TR-x-cukurova` under `apc-SY`. The slug names the place or the variety in
+lowercase ASCII and has 1 to 8 characters, the BCP 47 limit for a private-use
+subtag. The prefix is not a label of convenience: it must agree with the spec's
+own `parent` and with the heaviest-weighted entry in `ancestors`. A spec whose
+`parent` is `pt-PT` cannot be keyed under a Castilic prefix, and a mismatch
+between the code and those two fields is a defect in the code, not in the
+fields. A parentless mixed language is the one exception: its private-use key
+takes its prefix from its documented external classification and need not
+match its heaviest-weighted ancestor, and the loader's `family_path` is empty
+for it, so the spec sets `family` itself.
 
 Glottolog is the authority consulted for the genealogy. Where it carries a
 languoid for the variety, its code goes in `glottolog_code` and its classification
@@ -867,9 +878,13 @@ the variety, so that a code belonging to a different language is never claimed
 twice. With no languoid available, the prefix is decided from the cited
 descriptive literature and recorded in `notes`.
 
-Renaming a lect keeps the old code resolvable. The retired code is added to the
-alias table in `orthography2ipa/registry.py`, pointing at the canonical one, and
-is kept for one stable cycle so downstream packages that pin it keep working.
+Renaming a lect keeps the old code resolvable. The old code goes in the alias
+table in `orthography2ipa/registry.py`, pointing at the canonical one, and it
+stays there with no removal date, so downstream packages that pin it keep
+working. The bare ISO 639-3 code also points at the canonical key. One old code
+is not kept: a code that is the ISO 639-3 code of another living language. That
+code resolves to its own language or to nothing, because an alias would send
+that language's users to the wrong spec.
 
 ## File Organisation
 

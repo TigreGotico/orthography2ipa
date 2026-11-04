@@ -144,7 +144,7 @@ PLACES: dict[str, dict] = {
         note="the geographic centre of the United States. General American is a "
              "media/education reference accent with NO regional home at all — this "
              "is the weakest point in the dataset and should be read as such."),
-    "ar-NG": dict(
+    "shu-NG": dict(
         qid="Q130626", label="Borno State", country="Nigeria",
         note="Borno State — the Nigerian heartland of Shuwa Arabic, which also "
              "reaches Yobe, Cameroon and Niger."),
@@ -688,29 +688,29 @@ PLACES: dict[str, dict] = {
              "dialect was spoken in."),
 
     # ── Arabic ────────────────────────────────────────────────────────────────
-    "ar-JO": dict(
+    "apc-JO": dict(
         qid="Q3805", label="Amman", country="Jordan",
         note="Amman — the city the Ammani koine is named for."),
-    "ar-LB": dict(
+    "apc-LB": dict(
         qid="Q3820", label="Beirut", country="Lebanon",
         note="Beirut — the city the Beiruti variety is named for."),
-    "ar-SY": dict(
+    "apc-SY": dict(
         qid="Q3766", label="Damascus", country="Syria",
         note="Damascus — the city the Damascene variety is named for."),
-    "ar-PS": dict(
+    "apc-PS": dict(
         qid="Q158119", label="Ramallah", country=None,
         note="Ramallah — a representative city of the Palestinian area."),
-    "ar-AE": dict(
+    "afb-AE": dict(
         qid="Q1519", label="Abu Dhabi", country="United Arab Emirates",
         note="Abu Dhabi. A national variety within the Gulf continuum: the capital "
              "stands in for the country."),
-    "ar-BH": dict(
+    "afb-BH": dict(
         qid="Q3882", label="Manama", country="Bahrain",
         note="Manama. A national variety within the Gulf continuum."),
-    "ar-KW": dict(
+    "afb-KW": dict(
         qid="Q35178", label="Kuwait City", country="Kuwait",
         note="Kuwait City. A national variety within the Gulf continuum."),
-    "ar-QA": dict(
+    "afb-QA": dict(
         qid="Q3861", label="Doha", country="Qatar",
         note="Doha. A national variety within the Gulf continuum."),
 
