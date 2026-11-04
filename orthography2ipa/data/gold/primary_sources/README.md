@@ -45,34 +45,34 @@ This table lists each source under the spec code its rows carry. A source that c
 
 | Language code | Source | What it gives |
 |---|---|---|
-| `ar-DZ` | Guerrero (2019), *Arabica* 66(1-2) | The Tlemcen reflex of Old Arabic *ǧ. |
-| `ar-EG` | Watson (2002), *The Phonology and Morphology of Arabic* | Cairene examples. |
-| `ar-IQ` | Jasim (2020), Newcastle PhD | Baghdadi Gilit: qāf and kāf reflexes, epenthesis, emphasis, monophthongs. |
+| `arq-DZ` | Guerrero (2019), *Arabica* 66(1-2) | The Tlemcen reflex of Old Arabic *ǧ. |
+| `arz-EG` | Watson (2002), *The Phonology and Morphology of Arabic* | Cairene examples. |
+| `acm-IQ` | Jasim (2020), Newcastle PhD | Baghdadi Gilit: qāf and kāf reflexes, epenthesis, emphasis, monophthongs. |
 | `ar-IQ-x-qeltu` | Jasim (2020), Newcastle PhD | Muslawi Qəltu: retained qāf, the rhotic [ɣ], emphasis harmony, monophthongs. |
-| `ar-JO` | Fadda (2016), MA thesis | Ammani: monophthongs, emphasis spread, final imāla, interdental reflexes of the "bi'ul" group. |
+| `apc-JO` | Fadda (2016), MA thesis | Ammani: monophthongs, emphasis spread, final imāla, interdental reflexes of the "bi'ul" group. |
 | `ar-LY` | Guerrero (2019), *Arabica* 66(1-2) | Tripoli reflexes of *ǧ. |
 | `ar-LY` | Benkato (2020), in Lucas & Manfredi (eds.) | Libyan examples from Tripoli and Benghazi. |
-| `ar-MA` | Guerrero (2019), *Arabica* 66(1-2) | Reflexes of *ǧ in Tangiers, Fez and northern Taza or Chefchaouen. |
-| `ar-MA` | Watson (2002), *The Phonology and Morphology of Arabic* | One Moroccan (Lmnabha) form, as quoted from Elmedlaoui. |
-| `ar-MR` | Taine-Cheikh (2007), EALL "Ḥassāniyya Arabic" | Ḥassāniyya of the Gǝbla (Mauritania). |
-| `ar-NG` | Owens (2006), *A Linguistic History of Arabic* | Nigerian (Shuwa) Arabic. |
-| `ar-NG` | Procházka (2026), *Journal of Semitic Studies* | A gahawa example from Lake Chad Arabic. |
-| `ar-PS` | Cotter (2016), *JAIS* 16 | Gaza City Arabic, with the interdentals of MSA-register borrowings. |
-| `ar-SA-x-dawasir` | Alaodini (2019), Essex PhD | Dawāsir Arabic of Dammam. |
-| `ar-SA-x-hejaz` | Omar (1975), FSI *Saudi Arabic, Urban Hijazi Dialect* | The pronunciation guide (pp. xi-xvi): qāf as [ɡ], the interdental merger, the eight vowels, monophthongs. Omar is the base source of the spec. |
-| `ar-SA-x-hejaz` | Almalky (2020), Essex PhD | Urban Hijazi pronouns, from a study of the active participle. |
-| `ar-SA-x-najd` | Algethami (2023), ICPhS | Najdi vowel acoustics, with monophthong tokens. |
-| `ar-SA-x-najd` | Mahzari (2023), *TPLS* 13(3) | Riyadh reflexes of /k/ and /q/, with velar affrication. |
-| `ar-SA-x-najd` | Alshammari (2026), *JLTR* 17(4) | Northern Najdi (Ḥāʾil) velar affrication and its loanword exceptions. |
-| `ar-SA-x-qassim` | Alhoody (2019), Newcastle PhD | Qassimi Arabic of the Qaṣīm, with its monophthongs. |
+| `ary-MA` | Guerrero (2019), *Arabica* 66(1-2) | Reflexes of *ǧ in Tangiers, Fez and northern Taza or Chefchaouen. |
+| `ary-MA` | Watson (2002), *The Phonology and Morphology of Arabic* | One Moroccan (Lmnabha) form, as quoted from Elmedlaoui. |
+| `mey-MR` | Taine-Cheikh (2007), EALL "Ḥassāniyya Arabic" | Ḥassāniyya of the Gǝbla (Mauritania). |
+| `shu-NG` | Owens (2006), *A Linguistic History of Arabic* | Nigerian (Shuwa) Arabic. |
+| `shu-NG` | Procházka (2026), *Journal of Semitic Studies* | A gahawa example from Lake Chad Arabic. |
+| `apc-PS` | Cotter (2016), *JAIS* 16 | Gaza City Arabic, with the interdentals of MSA-register borrowings. |
+| `afb-SA-x-dawasir` | Alaodini (2019), Essex PhD | Dawāsir Arabic of Dammam. |
+| `acw-SA` | Omar (1975), FSI *Saudi Arabic, Urban Hijazi Dialect* | The pronunciation guide (pp. xi-xvi): qāf as [ɡ], the interdental merger, the eight vowels, monophthongs. Omar is the base source of the spec. |
+| `acw-SA` | Almalky (2020), Essex PhD | Urban Hijazi pronouns, from a study of the active participle. |
+| `ars-SA` | Algethami (2023), ICPhS | Najdi vowel acoustics, with monophthong tokens. |
+| `ars-SA` | Mahzari (2023), *TPLS* 13(3) | Riyadh reflexes of /k/ and /q/, with velar affrication. |
+| `ars-SA` | Alshammari (2026), *JLTR* 17(4) | Northern Najdi (Ḥāʾil) velar affrication and its loanword exceptions. |
+| `ars-SA-x-qassim` | Alhoody (2019), Newcastle PhD | Qassimi Arabic of the Qaṣīm, with its monophthongs. |
 | `ar-SA-x-rijal-alma` | Watson & Al-Azraqi (2011), *PSAS* 41 | Lateral reflexes of *ḍ and *ẓ in Rijāl Almaʿ. |
 | `ar-SA-x-rijal-alma` | Alfaifi (2024), OBP *Diversity across the Arabian Peninsula*, ch. 5 | Rijāl Almaʿ examples quoted from Asiri (2008): qāf as [ɡ], retained diphthongs. |
-| `ar-SA-x-sharqiyya` | Al-Taisan (2022), Essex PhD | Hasawi Arabic of al-Hasa (Eastern Province). |
+| `afb-SA-x-sharqiya` | Al-Taisan (2022), Essex PhD | Hasawi Arabic of al-Hasa (Eastern Province). |
 | `ar-SA-x-tihama-qahtan` | Alqahtani (2015), Essex PhD | Tihami Qahtani. |
-| `ar-SY` | Almbark & Hellmuth (2015), ICPhS | Damascene vowels. |
-| `ar-TN` | Guerrero (2019), *Arabica* 66(1-2) | Tunis reflexes of *ǧ. |
-| `ar-TN` | La Rosa (2021), *Languages* 6:145 | Tunisian Sahel (Mahdia, Msaken). |
-| `ar-YE` | Watson (2002), *The Phonology and Morphology of Arabic* | Ṣanʿānī examples. |
+| `apc-SY` | Almbark & Hellmuth (2015), ICPhS | Damascene vowels. |
+| `aeb-TN` | Guerrero (2019), *Arabica* 66(1-2) | Tunis reflexes of *ǧ. |
+| `aeb-TN` | La Rosa (2021), *Languages* 6:145 | Tunisian Sahel (Mahdia, Msaken). |
+| `ayn-YE` | Watson (2002), *The Phonology and Morphology of Arabic* | Ṣanʿānī examples. |
 | `cri` | Araujo & Agostinho (2010), *Revista de Letras* 26 | Santome (Forro) in the ALUSTP standard orthography. |
 | `dga` | Angsongna & Akinbo (2022), *JIPA* 52(2) | Central Dàgáárè (Sombo, Nadowli-Kaleo). Pages 343 and 345 print a consonant table and a vowel table, each with a phonetic and an orthographic column. |
 | `es-AR` | Coloma (2018), *JIPA* | Buenos Aires (River Plate) Spanish, with an allophone column. |
@@ -97,7 +97,7 @@ This table lists each source under the spec code its rows carry. A source that c
 | `null` | Davis, Alshammari, Alahmari & Alhuwaykim (2024), OBP ch. 4 | A southwest Saudi (Northern Tihāmah) variety, after Alahmari (2018). |
 | `null` | Alqarni (2025), Essex PhD | Qarni (Balqarn), which has no o2i spec. |
 
-The Bedouin Hijazi rows of Al Solami and Al-Rohili carry `lang: null` on purpose. They document the iambic stress, retained interdentals and palatalisation that the urban `ar-SA-x-hejaz` koine does not have. That split is the reason that the bare `ar-SA` code has no spec.
+The Bedouin Hijazi rows of Al Solami and Al-Rohili carry `lang: null` on purpose. They document the iambic stress, retained interdentals and palatalisation that the urban `acw-SA` koine does not have. That split is the reason that the bare `ar-SA` code has no spec.
 
 ## Notation decisions
 
@@ -127,7 +127,7 @@ The thesis gives both `[simatʃ]` (p. 23) and `[simaʃ]` (p. 25) for the Gilit w
 
 In `jasim2020-017` (بَارِد), the phonemic form `/baɾid/` of the thesis has a short first vowel, but the standard spelling بارد writes a long one.
 
-The rows `fadda2016-011` to `fadda2016-013` carry the label of the source's own group, "bi'ul" (the urban Palestinian type). Fadda says this group is the base of Western Amman speech. The rows are tagged `ar-JO`, but `ar-PS` is equally defensible.
+The rows `fadda2016-011` to `fadda2016-013` carry the label of the source's own group, "bi'ul" (the urban Palestinian type). Fadda says this group is the base of Western Amman speech. The rows are tagged `apc-JO`, but `apc-PS` is equally defensible.
 
 The row `cotter2016-004` is described under notation decisions.
 
@@ -137,9 +137,9 @@ A disagreement between a source and a spec is a signal, so this section records 
 
 ### Iraqi Arabic
 
-In `ar-IQ`, kāf affrication is not conditioned by a front vowel. The rules `IQ_GILIT_AFFRIC_K_BEFORE` and `IQ_GILIT_AFFRIC_K_AFTER` fire only next to `i iː j e eː`. Jasim (2020: 25) gives `/kalb/ → [tʃalib]` 'dog', `/kabiːr/ → [tʃibiːr]` 'big', `/ʃubbaːk/ → [ʃubbaːtʃ]` 'window' and `/samak/ → [simatʃ]` 'fish'. In each word the affricate is next to a non-front vowel, and in `ʃubbaːtʃ` it follows a long back vowel. Gilit kāf affrication is lexicalised, not a live front-vowel allophony. o2i gives `ˈkalb`, `kaˈbiːr`, `ʃubˈbaːk` and `ˈsamak`.
+In `acm-IQ`, kāf affrication is not conditioned by a front vowel. The rules `IQ_GILIT_AFFRIC_K_BEFORE` and `IQ_GILIT_AFFRIC_K_AFTER` fire only next to `i iː j e eː`. Jasim (2020: 25) gives `/kalb/ → [tʃalib]` 'dog', `/kabiːr/ → [tʃibiːr]` 'big', `/ʃubbaːk/ → [ʃubbaːtʃ]` 'window' and `/samak/ → [simatʃ]` 'fish'. In each word the affricate is next to a non-front vowel, and in `ʃubbaːtʃ` it follows a long back vowel. Gilit kāf affrication is lexicalised, not a live front-vowel allophony. o2i gives `ˈkalb`, `kaˈbiːr`, `ʃubˈbaːk` and `ˈsamak`.
 
-The `ar-IQ` spec does not model epenthesis or u-colouring. `/qalb/ → [ɡalˤʊb]`, `/kalb/ → [tʃalib]` and `[χʊbʊz]` 'bread' (pp. 24-25) split the final cluster with a vowel whose quality comes from the consonants around it. o2i gives `ˈɡalb` and `ˈxubz`. The spec also does not derive the emphatic /lˤ/ of `[ɡalˤʊb]` or the emphatic /rˤ/ of `[rˤabiːʕ]`.
+The `acm-IQ` spec does not model epenthesis or u-colouring. `/qalb/ → [ɡalˤʊb]`, `/kalb/ → [tʃalib]` and `[χʊbʊz]` 'bread' (pp. 24-25) split the final cluster with a vowel whose quality comes from the consonants around it. o2i gives `ˈɡalb` and `ˈxubz`. The spec also does not derive the emphatic /lˤ/ of `[ɡalˤʊb]` or the emphatic /rˤ/ of `[rˤabiːʕ]`.
 
 Near an emphatic, Jasim prints /a/ as [ʊ]: `/basˤal/ → [bʊsˤal]` (p. 25). The `IQ_EMPH_A_*` rules back /a/ to `[ɑ]` instead, and o2i gives `ˈbɑsˤɑl`. The spec cites Jasim for both.
 
@@ -147,29 +147,29 @@ The `ar-IQ-x-qeltu` spec leaves /r/ → [ɣ] unmodelled on purpose, because the 
 
 ### Levantine Arabic
 
-In `ar-JO`, emphasis spreads to the final /t/: Fadda (2016: 29) writes `sˤawt → [sˤoːtˤ]`. o2i gives `ˈsˤoːt`. The `ar-JO` spec cites this example as "Fadda 2016:30", but the table is on printed page 29.
+In `apc-JO`, emphasis spreads to the final /t/: Fadda (2016: 29) writes `sˤawt → [sˤoːtˤ]`. o2i gives `ˈsˤoːt`. The `apc-JO` spec cites this example as "Fadda 2016:30", but the table is on printed page 29.
 
 Fadda (2016: 30) gives the minimal contrast `[ħɪlwɛ]` 'beautiful' and `[bɪʃʕa]` 'ugly'. Tā marbūṭa raises to `[ɛ]` except after a velar, a pharyngeal or an emphatic. o2i gives `ˈħilwa` and `ˈbiʃʕa`, with [a] in both.
 
-The `ar-PS` spec merges the interdentals. Cotter (2016: 157) shows `θānawiyya` and `ḥadīθ` with `[θ]`, because they are formal-register borrowings. Grapheme rules cannot see this lexical-stratum effect. It belongs in a lexicon, not in a rule.
+The `apc-PS` spec merges the interdentals. Cotter (2016: 157) shows `θānawiyya` and `ḥadīθ` with `[θ]`, because they are formal-register borrowings. Grapheme rules cannot see this lexical-stratum effect. It belongs in a lexicon, not in a rule.
 
 ### Najdi Arabic
 
-The `ar-SA-x-najd` spec keeps the diphthongs: o2i gives `بَيْت → [bajt]`. Algethami (2023: 3385) records `[beːt]` 'home' and `[soːt]` 'sound' for his 15 Najdi speakers. Ingham (1994: 15), reproduced in Algethami's Fig. 1, lists /eː oː/ in the Najdi inventory, and the Riyadh inventory of Mahzari has five vowels (`i u eː oː a`).
+The `ars-SA` spec keeps the diphthongs: o2i gives `بَيْت → [bajt]`. Algethami (2023: 3385) records `[beːt]` 'home' and `[soːt]` 'sound' for his 15 Najdi speakers. Ingham (1994: 15), reproduced in Algethami's Fig. 1, lists /eː oː/ in the Najdi inventory, and the Riyadh inventory of Mahzari has five vowels (`i u eː oː a`).
 
-The Algethami rows with [eː] and [oː] score as errors against the spec. The spec follows the diphthong retention of central Najdi on purpose. Alhoody (2019) gives `/bajt/ → [beːt]` as the feature that sets Qassimi apart from central Najdi (`alhoody2019-002`). The `ar-SA-x-qassim` monophthong rules are "the defining vocalic delta from central Najdi", so a monophthong rule in the parent would erase that contrast. The tension is a real split inside Najd or between registers. `algethami2023-006` records the monophthong at `medium` confidence and does not resolve it.
+The Algethami rows with [eː] and [oː] score as errors against the spec. The spec follows the diphthong retention of central Najdi on purpose. Alhoody (2019) gives `/bajt/ → [beːt]` as the feature that sets Qassimi apart from central Najdi (`alhoody2019-002`). The `ars-SA-x-qassim` monophthong rules are "the defining vocalic delta from central Najdi", so a monophthong rule in the parent would erase that contrast. The tension is a real split inside Najd or between registers. `algethami2023-006` records the monophthong at `medium` confidence and does not resolve it.
 
 The `NAJD_AFFRIC_G_BEFORE` and `NAJD_AFFRIC_G_AFTER` rules fire next to `/i iː/` only. Alshammari (2026: §V, p. 1337) and Mahzari (2023: Table 4, p. 803) restrict the voiced velar affrication to the high front vowels. This is a voicing asymmetry: /k/ affricates in a wider set of contexts.
 
 In Northern Najdi, `/k/ → [ts]` reaches central /a/ (`[tsalb]`, `[simats]`). Central Najd and Qaṣīm do not have this extension, so those rows carry `lang: null`.
 
-Some MSA and foreign borrowings resist /k/ affrication even next to a front vowel. Alshammari (2026: ex. 4, p. 1336) gives تذكرة `[taðkirah]` 'ticket', not *[taðtsirah], and مكينة `[mikiːnah]` 'machine', not *[mitsiːnah]. Grapheme rules cannot see this lexical-stratum effect, as with the `ar-PS` borrowings.
+Some MSA and foreign borrowings resist /k/ affrication even next to a front vowel. Alshammari (2026: ex. 4, p. 1336) gives تذكرة `[taðkirah]` 'ticket', not *[taðtsirah], and مكينة `[mikiːnah]` 'machine', not *[mitsiːnah]. Grapheme rules cannot see this lexical-stratum effect, as with the `apc-PS` borrowings.
 
 The spec carries these words in its `word_exceptions` (`alshammari2026-009` and `alshammari2026-010`). The Table 3 exceptions of Mahzari (2023: 802), such as `kursi`, are spelled with a back vowel after the kāf. o2i keeps `[k]` for them without an exception.
 
 ### Hijazi Arabic
 
-The `ar-SA-x-hejaz` spec applies qāf → [ɡ] to classicisms too. Omar (1975: xiii) says that /q/ "occurs only in classicized words" and that "it often alternates with /g/". Inherited words have [ɡ], and learned or borrowed words keep [q]. o2i has no lexical stratum, so قُرآن 'Quran' and اِقتِصاد 'economy' come out as `ɡurˈʔaːn` and `ʔiɡtɪˈsˤɑːd`. The source keeps `[qurʔaːn]` and `[iqtisˤaːd]`. This is the same class of fact as the `ar-PS` borrowings, and the rows stay so that the cost is visible.
+The `acw-SA` spec applies qāf → [ɡ] to classicisms too. Omar (1975: xiii) says that /q/ "occurs only in classicized words" and that "it often alternates with /g/". Inherited words have [ɡ], and learned or borrowed words keep [q]. o2i has no lexical stratum, so قُرآن 'Quran' and اِقتِصاد 'economy' come out as `ɡurˈʔaːn` and `ʔiɡtɪˈsˤɑːd`. The source keeps `[qurʔaːn]` and `[iqtisˤaːd]`. This is the same class of fact as the `apc-PS` borrowings, and the rows stay so that the cost is visible.
 
 The spec has no [s] reflex for the interdental ث. Omar (1975: xiv) gives both reflexes of the voiceless interdental: θalaaθa → talaata with [t], and maθalan → masalan with [s]. The spec models only ث → [t, θ], so مَثَلا comes out as `ˈmatalaː`, not `[masalan]`. The sibilant reflexes [s] and [z] are the older, minority urban pattern. The rows record an attested reflex that the spec does not model.
 

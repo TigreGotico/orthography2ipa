@@ -144,7 +144,7 @@ PLACES: dict[str, dict] = {
         note="the geographic centre of the United States. General American is a "
              "media/education reference accent with NO regional home at all — this "
              "is the weakest point in the dataset and should be read as such."),
-    "ar-NG": dict(
+    "shu-NG": dict(
         qid="Q130626", label="Borno State", country="Nigeria",
         note="Borno State — the Nigerian heartland of Shuwa Arabic, which also "
              "reaches Yobe, Cameroon and Niger."),
@@ -443,11 +443,7 @@ PLACES: dict[str, dict] = {
         note="Fortaleza — the centre of the Cearense area."),
     "pt-BR-x-norte": dict(
         qid="Q12829733", label="Belém", country="Brazil",
-        note="Belém — the reference city of the Nortista/Amazônico area (with "
-             "Manaus, 1,300 km west: a single point is a poor summary of Amazonia)."),
-    "pt-BR-x-brasilia": dict(
-        qid="Q2844", label="Brasília", country="Brazil",
-        note="Brasília — the planned capital whose migration koiné this spec models."),
+        note="Belém — the city this spec models. Manaus differs in its coda /S/."),
     "pt-BR-x-caipira": dict(
         qid="Q330175", label="Piracicaba", country="Brazil",
         note="Piracicaba — a representative locality of the caipira area, whose "
@@ -459,6 +455,12 @@ PLACES: dict[str, dict] = {
     "pt-BR-x-sul": dict(
         qid="Q40269", label="Porto Alegre", country="Brazil",
         note="Porto Alegre — the centre of the Sulista/Gaúcho area."),
+    "pt-BR-x-floripa": dict(
+        qid="Q132997", label="Florianópolis", country="Brazil",
+        note="Florianópolis — the island city whose native 'manezinho' speech this spec models."),
+    "pt-BR-x-cuiaba": dict(
+        qid="Q170762", label="Cuiabá", country="Brazil",
+        note="Cuiabá — the centre of the Baixada Cuiabana, the river valley this spec models."),
 
     # ── Portuguese beyond Europe and Brazil ───────────────────────────────────
     "pt-AO": dict(
@@ -686,29 +688,29 @@ PLACES: dict[str, dict] = {
              "dialect was spoken in."),
 
     # ── Arabic ────────────────────────────────────────────────────────────────
-    "ar-JO": dict(
+    "apc-JO": dict(
         qid="Q3805", label="Amman", country="Jordan",
         note="Amman — the city the Ammani koine is named for."),
-    "ar-LB": dict(
+    "apc-LB": dict(
         qid="Q3820", label="Beirut", country="Lebanon",
         note="Beirut — the city the Beiruti variety is named for."),
-    "ar-SY": dict(
+    "apc-SY": dict(
         qid="Q3766", label="Damascus", country="Syria",
         note="Damascus — the city the Damascene variety is named for."),
-    "ar-PS": dict(
+    "apc-PS": dict(
         qid="Q158119", label="Ramallah", country=None,
         note="Ramallah — a representative city of the Palestinian area."),
-    "ar-AE": dict(
+    "afb-AE": dict(
         qid="Q1519", label="Abu Dhabi", country="United Arab Emirates",
         note="Abu Dhabi. A national variety within the Gulf continuum: the capital "
              "stands in for the country."),
-    "ar-BH": dict(
+    "afb-BH": dict(
         qid="Q3882", label="Manama", country="Bahrain",
         note="Manama. A national variety within the Gulf continuum."),
-    "ar-KW": dict(
+    "afb-KW": dict(
         qid="Q35178", label="Kuwait City", country="Kuwait",
         note="Kuwait City. A national variety within the Gulf continuum."),
-    "ar-QA": dict(
+    "afb-QA": dict(
         qid="Q3861", label="Doha", country="Qatar",
         note="Doha. A national variety within the Gulf continuum."),
 

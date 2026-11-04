@@ -27,14 +27,14 @@ DATA = os.path.join(os.path.dirname(orthography2ipa.__file__), "data")
 # first version of this change did. A guard whose assertion is inside an `if` that
 # the defect does not satisfy is not a guard.
 FIXED = {
-    "ayh": ("ar-YE", "x-clade-afro1255"),
+    "ayh": ("ayn-YE", "x-clade-afro1255"),
     # acq (Ta'izzi-Adeni) was one of these and is no longer. Its description has been
     # read in and it declares cited reflexes of its own, so the assertions here --
     # that the table is the base's untouched, and that nothing is asserted about the
     # variety -- are exactly what it must now fail. A spec leaves this map when it
     # stops being a placeholder; that is the map's meaning, not an exemption.
-    "jye": ("ar-YE", "x-clade-afro1255"),
-    "aao": ("ar-DZ", "x-clade-afro1255"),
+    "jye": ("ayn-YE", "x-clade-afro1255"),
+    "aao": ("arq-DZ", "x-clade-afro1255"),
     "yud": ("ar-LY", "x-clade-afro1255"),
     "ayp": ("ar-IQ-x-qeltu", "x-clade-afro1255"),
     "abh": ("ar-x-mashriqi", "x-clade-afro1255"),
@@ -46,9 +46,9 @@ FIXED = {
     # stops being a placeholder; that is the map's meaning, not an exemption.
     # these four already named an Arabic parent on dev and keep it
     "jrb": ("arb", "arb"),
-    "ajt": ("ar-TN", "ar-TN"),
-    "aju": ("ar-MA", "ar-MA"),
-    "yhd": ("ar-IQ", "ar-IQ"),
+    "ajt": ("aeb-TN", "aeb-TN"),
+    "aju": ("ary-MA", "ary-MA"),
+    "yhd": ("acm-IQ", "acm-IQ"),
 }
 
 

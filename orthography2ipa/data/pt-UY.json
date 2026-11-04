@@ -198,6 +198,150 @@
       "phonemes": [],
       "surface": "̃j̃",
       "notes": "DISABLED for Uruguayan Portuguese (fronteiriço). No source for the plural ⟨-ens⟩ in this variety was read, so it keeps its output; the pt-BR rule rests on Brazilian sources."
+    },
+    {
+      "id": "BR_NASAL_STRESSED_A",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Switched off. The pt-BR rule of this id describes the São Paulo variety of Barbosa & Albano (2004). No source on the border variety that this spec cites states the process, so the spec keeps its output until one does."
+    },
+    {
+      "id": "BR_NASAL_STRESSED_E",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Switched off. The pt-BR rule of this id describes the São Paulo variety of Barbosa & Albano (2004). No source on the border variety that this spec cites states the process, so the spec keeps its output until one does."
+    },
+    {
+      "id": "BR_NASAL_STRESSED_O",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Switched off. The pt-BR rule of this id describes the São Paulo variety of Barbosa & Albano (2004). No source on the border variety that this spec cites states the process, so the spec keeps its output until one does."
+    },
+    {
+      "id": "BR_NASAL_STRESSED_I",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Switched off. The pt-BR rule of this id describes the São Paulo variety of Barbosa & Albano (2004). No source on the border variety that this spec cites states the process, so the spec keeps its output until one does."
+    },
+    {
+      "id": "BR_NASAL_STRESSED_U",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Switched off. The pt-BR rule of this id describes the São Paulo variety of Barbosa & Albano (2004). No source on the border variety that this spec cites states the process, so the spec keeps its output until one does."
+    },
+    {
+      "id": "BR_NASAL_PRETONIC_A_NH",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Switched off. The pt-BR rule of this id describes the São Paulo variety of Barbosa & Albano (2004). No source on the border variety that this spec cites states the process, so the spec keeps its output until one does."
+    },
+    {
+      "id": "BR_NASAL_PRETONIC_E_NH",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Switched off. The pt-BR rule of this id describes the São Paulo variety of Barbosa & Albano (2004). No source on the border variety that this spec cites states the process, so the spec keeps its output until one does."
+    },
+    {
+      "id": "BR_NASAL_PRETONIC_O_NH",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Switched off. The pt-BR rule of this id describes the São Paulo variety of Barbosa & Albano (2004). No source on the border variety that this spec cites states the process, so the spec keeps its output until one does."
+    },
+    {
+      "id": "BR_NASAL_PRETONIC_I_NH",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Switched off. The pt-BR rule of this id describes the São Paulo variety of Barbosa & Albano (2004). No source on the border variety that this spec cites states the process, so the spec keeps its output until one does."
+    },
+    {
+      "id": "BR_NASAL_PRETONIC_U_NH",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Switched off. The pt-BR rule of this id describes the São Paulo variety of Barbosa & Albano (2004). No source on the border variety that this spec cites states the process, so the spec keeps its output until one does."
+    },
+    {
+      "id": "BR_CODA_S_VOICED",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Switched off. The pt-BR rule of this id describes the São Paulo variety of Barbosa & Albano (2004). No source on the border variety that this spec cites states the process, so the spec keeps its output until one does."
+    },
+    {
+      "id": "BR_CODA_SH_VOICED",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Switched off. The pt-BR rule of this id describes the São Paulo variety of Barbosa & Albano (2004). No source on the border variety that this spec cites states the process, so the spec keeps its output until one does."
+    },
+    {
+      "id": "BR_STRONG_R_AFTER_CODA",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Switched off. The pt-BR rule of this id describes the São Paulo variety of Barbosa & Albano (2004). No source on the border variety that this spec cites states the process, so the spec keeps its output until one does."
+    },
+    {
+      "id": "BR_GEMINATE_P",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Switched off with BR_EPENTHESIS, which this rule gates."
+    },
+    {
+      "id": "BR_GEMINATE_B",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Switched off with BR_EPENTHESIS, which this rule gates."
+    },
+    {
+      "id": "BR_GEMINATE_T",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Switched off with BR_EPENTHESIS, which this rule gates."
+    },
+    {
+      "id": "BR_GEMINATE_D",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Switched off with BR_EPENTHESIS, which this rule gates."
+    },
+    {
+      "id": "BR_GEMINATE_C",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Switched off with BR_EPENTHESIS, which this rule gates."
+    },
+    {
+      "id": "BR_GEMINATE_K",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Switched off with BR_EPENTHESIS, which this rule gates."
+    },
+    {
+      "id": "BR_GEMINATE_G",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Switched off with BR_EPENTHESIS, which this rule gates."
+    },
+    {
+      "id": "BR_GEMINATE_F",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Switched off with BR_EPENTHESIS, which this rule gates."
+    },
+    {
+      "id": "BR_GEMINATE_V",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Switched off with BR_EPENTHESIS, which this rule gates."
+    },
+    {
+      "id": "BR_EPENTHESIS",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Switched off. The pt-BR rule of this id describes the São Paulo variety of Barbosa & Albano (2004). No source on the border variety that this spec cites states the process, so the spec keeps its output until one does."
+    },
+    {
+      "id": "BR_REDUCE_FINAL_AS",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Switched off. The pt-BR rule of this id describes the São Paulo variety of Barbosa & Albano (2004). No source on the border variety that this spec cites states the process, so the spec keeps its output until one does."
     }
   ]
 }

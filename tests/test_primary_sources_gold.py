@@ -109,8 +109,8 @@ def test_loader_is_registered_and_classified():
 
 def test_loader_returns_word_ipa_pairs_for_a_registered_language():
     loader, langs = DATASETS["primary_sources"]
-    assert "ar-IQ" in langs
-    pairs = loader("ar-IQ", 100)
+    assert "acm-IQ" in langs
+    pairs = loader("acm-IQ", 100)
     assert pairs
     assert ("قَلْب", "ɡalˤʊb") in pairs
 
@@ -118,13 +118,13 @@ def test_loader_returns_word_ipa_pairs_for_a_registered_language():
 def test_loader_prefers_the_vocalized_arabic_orthography():
     """o2i's Arabic input contract is diacritized text; the bare printed form
     would score the engine on input it cannot vowelize."""
-    word, _ipa = load_primary_sources("ar-SY", 1)[0]
+    word, _ipa = load_primary_sources("apc-SY", 1)[0]
     assert word == "فِيد"
 
 
 def test_loader_respects_the_limit_and_filters_by_language():
-    assert len(load_primary_sources("ar-IQ", 3)) == 3
-    assert load_primary_sources("ar-IQ", 100) != load_primary_sources("ar-JO", 100)
+    assert len(load_primary_sources("acm-IQ", 3)) == 3
+    assert load_primary_sources("acm-IQ", 100) != load_primary_sources("apc-JO", 100)
 
 
 def test_loader_returns_nothing_for_an_unrepresented_language():

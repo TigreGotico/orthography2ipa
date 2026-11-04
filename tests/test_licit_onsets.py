@@ -122,6 +122,21 @@ def test_french_obstruent_plus_liquid_stays_together():
     assert syllables("fr-FR", "table") == ["ta", "ble"]
 
 
+@pytest.mark.parametrize("word,expected", [
+    ("pacto", ["pac", "to"]), ("opção", ["op", "ção"]),
+    ("pasta", ["pas", "ta"]), ("escola", ["es", "co", "la"]),
+    ("advogado", ["ad", "vo", "ga", "do"]), ("palavra", ["pa", "la", "vra"]),
+    ("aglomerar", ["a", "glo", "me", "rar"]),
+])
+def test_declared_onset_inventory_decides_the_split(word, expected):
+    """pt-BR declares its complex onsets in ``stress.onset_clusters``: an
+    obstruent and a non-nasal sonorant. That list, and not the built-in
+    shapes, decides: the shapes license ⟨st⟩ and ⟨dv⟩, Portuguese does not.
+    No plugin is asked (*lang* is ``None``), so this is the bundled splitter."""
+    spec = get("pt-BR")
+    assert _syllables_for(word, None, spec.stress.diphthongs, spec=spec) == expected
+
+
 def test_french_silent_h_does_not_form_a_cluster():
     assert syllables("fr-FR", "malheur") == ["mal", "heur"]
 
@@ -371,7 +386,7 @@ def test_constrain_onsets_is_inherited_along_the_grapheme_base():
     Without this, ``de-AT`` read ``de-DE``'s graphemes while syllabifying them
     by a different rule — a language-feature parity gap, which is a bug."""
     for code in ("nl", "nl-NL", "nl-BE", "de-DE", "de-AT", "de-CH",
-                 "de-x-bavarian", "de-x-alemannic", "fr-FR"):
+                 "bar-AT", "de-x-alemannic", "fr-FR"):
         assert get(code).constrain_onsets is True, code
     # …and it does not leak to a language that never asked for it
     for code in ("el", "is", "sv", "ru", "pl", "pt-PT", "en", "ar"):
@@ -379,19 +394,19 @@ def test_constrain_onsets_is_inherited_along_the_grapheme_base():
 
 
 def test_inheritance_is_transitive_and_overridable():
-    """``de-x-bavarian`` resolves through ``de-AT`` to ``de-DE``; a spec that
+    """``bar-AT`` resolves through ``de-AT`` to ``de-DE``; a spec that
     states the field either way wins over what it would inherit."""
     from orthography2ipa.types import FIELD_INHERITANCE, InheritanceMode
     assert (FIELD_INHERITANCE["constrain_onsets"]
             is InheritanceMode.BASE_SCALAR)
-    assert get("de-x-bavarian").constrain_onsets is True   # via de-AT
+    assert get("bar-AT").constrain_onsets is True   # via de-AT
     assert get("nl-NL").constrain_onsets is True           # stated: no base
 
 
 def test_a_variant_syllabifies_exactly_like_its_base():
     """The parity the inheritance exists to guarantee."""
     for variant, base in (("nl-BE", "nl"), ("nl-NL", "nl"),
-                          ("de-AT", "de-DE"), ("de-x-bavarian", "de-DE")):
+                          ("de-AT", "de-DE"), ("bar-AT", "de-DE")):
         for word in ("elektronisch", "Abmeldung", "wandelen", "misschien"):
             assert syllables(variant, word) == syllables(base, word), (
                 variant, word)

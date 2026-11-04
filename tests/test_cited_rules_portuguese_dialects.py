@@ -510,15 +510,15 @@ def test_rj_coda_r_final_aspiration():
 # ===========================================================================
 
 
-def test_fluminense_coda_r_velar():
-    """FLU_CODA_R_VELAR: a non-final coda /R/ is the velar fricative [x].
+def test_fluminense_coda_r_glottal():
+    """FLU_CODA_R_GLOTTAL: a non-final coda /R/ is the glottal fricative [h].
 
-    Rule notes: "Non-final coda /R/ -> velar fricative [x] in the coastal
-    prestige norm (Callou 2010:138)."
+    Rule notes: Silva (2023: 68, ALiB): 'no Rio de Janeiro, registramos 793
+    róticos, sendo 80% de glotal'.
 
     Minimal pair against the pt-BR base, whose coda /R/ is the tap [ɾ].
     """
-    assert _bare("pt-BR-x-fluminense", "porta") == "poxtɐ"
+    assert _bare("pt-BR-x-fluminense", "porta") == "pohtɐ"
     assert _bare("pt-BR", "porta") == "poɾtɐ"
 
 
@@ -537,13 +537,6 @@ def test_fluminense_coda_r_final_aspiration():
 # ===========================================================================
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="pt-BR-x-caipira cites Amaral (1920) §25 'Vocaliza-se em i ... muié' "
-    "and §6e 'lh não existe no dialeto'; engine produces [muˈʎeɻ] for mulher and "
-    "[ˈoʎu] for olho — the palatal lateral survives intact. DATA gap: no rule or "
-    "map entry vocalises /ʎ/ (contrast pt-UY, which does model exactly this)",
-)
 def test_caipira_palatal_lateral_vocalises_to_glide():
     """/ʎ/ vocalises to [j]: mulher → muié, olho → oio.
 

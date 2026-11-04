@@ -67,18 +67,20 @@ class TestAliases:
 
     @pytest.mark.parametrize("alias,canonical", [
         ("por", "pt-PT"),
-        ("acx", "ar-OM"),
-        ("apd", "ar-SD"),
-        ("ayn", "ar-YE"),
-        ("mey", "ar-MR"),
-        ("ars", "ar-SA-x-najd"),
-        ("shu", "ar-TD"),
-        ("pnb", "pa-PK"),
-        ("ajg", "aja"),
-        ("gej", "gen"),
+        ("acx", "acx-OM"),
+        ("apd", "apd-SD"),
+        ("ayn", "ayn-YE"),
+        ("mey", "mey-MR"),
+        ("ars", "ars-SA"),
+        ("shu", "shu-TD"),
+        ("pnb", "pnb-PK"),
+        ("ajg", "ajg-BJ"),
+        ("gej", "gej-TG"),
         ("xdc", "xda"),
-        ("cbk", "cbk-zam"),
-        ("bar", "de-x-bavarian"),
+        ("cbk", "cbk-PH"),
+        ("bar", "bar-AT"),
+        ("haz", "haz-AF"),
+        ("twi", "tw"),
     ])
     def test_iso639_3_aliases(self, alias, canonical):
         spec_alias = get(alias)
@@ -111,7 +113,8 @@ class TestPrivateUseSpellings:
         assert get(spelling) is get(canonical)
 
     @pytest.mark.parametrize("spelling,canonical", [
-        ("ar-sa-x-najd", "ar-SA-x-najd"),
+        ("ar-sa-x-najd", "ars-SA"),
+        ("ars-sa-x-qassim", "ars-SA-x-qassim"),
         ("PT-PT-X-PORTO", "pt-PT-x-porto"),
         ("eu-X-bizkaiera", "eu-x-bizkaiera"),
     ])
@@ -441,7 +444,7 @@ class TestDeclaredIsoCodesResolve:
             "UNRESOLVED_ISO_DECLARATIONS:\n" + "\n".join(fixed)
         )
 
-    @pytest.mark.parametrize("iso, spec", [("aeb", "ar-TN"), ("arq", "ar-DZ")])
+    @pytest.mark.parametrize("iso, spec", [("aeb", "aeb-TN"), ("arq", "arq-DZ")])
     def test_maghrebi_codes_reach_their_spec_without_guessing(self, iso, spec):
         """aeb (Tunisian) and arq (Algerian) are named by the alias table.
 

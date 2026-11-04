@@ -95,16 +95,16 @@ def test_latam_stub_yeismo(code):
 
 
 def test_es_mx_yucatan_seseo_against_parent():
-    """The Yucatán stub's cited seseo is a genuine delta from its parent es-MX.
+    """The Yucatán stub and its parent es-MX both have seseo; es-ES does not.
 
     es-MX-x-yucatan notes: "Only the pan-Latin-American baseline (seseo:
-    c/z->/s/ ...; Lipski 1994) is modelled here."
-
-    Same word, dialect vs parent: es-MX still gives the Castilian [θ] for ⟨c⟩
-    before a front vowel, so the stub's seseo is what changes the segment.
+    c/z->/s/ ...; Lipski 1994) is modelled here." Lipski (2011, p. 4): the
+    /s/-/θ/ opposition is found "nor in any part of Latin America", so es-MX
+    gives [s] for ⟨c⟩ before a front vowel too. es-ES keeps the Castilian [θ].
     """
     assert _bare("es-MX-x-yucatan", "cielo").startswith("s")
-    assert _bare("es-MX", "cielo").startswith("θ")
+    assert _bare("es-MX", "cielo").startswith("s")
+    assert _bare("es-ES", "cielo").startswith("θ")
 
 
 def test_es_ar_litoral_yeismo_against_parent_sheismo():
