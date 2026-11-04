@@ -542,6 +542,8 @@ def load_json_spec(code: str) -> LanguageSpec:
             penult_stress_endings=tuple(raw_stress.get("penult_stress_endings", ())),
             antepenult_stress_endings=tuple(
                 raw_stress.get("antepenult_stress_endings", ())),
+            unstressed_prefixes=tuple(
+                raw_stress.get("unstressed_prefixes", ())),
             marked_vowels=tuple(raw_stress.get("marked_vowels", ())),
             stress_mark=raw_stress.get("stress_mark", "ˈ"),
             accent2_mark=raw_stress.get("accent2_mark", ""),

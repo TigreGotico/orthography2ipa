@@ -351,6 +351,7 @@ class StressRulesModel(_Strict):
     final_stress_endings: Optional[List[str]] = None
     penult_stress_endings: Optional[List[str]] = None
     antepenult_stress_endings: Optional[List[str]] = None
+    unstressed_prefixes: Optional[List[str]] = None
     marked_vowels: Optional[List[str]] = None
     stress_mark: str = "ˈ"
     accent2_mark: str = ""
@@ -386,7 +387,7 @@ class StressRulesModel(_Strict):
         return v
 
     @field_validator("final_stress_endings", "penult_stress_endings",
-                     "antepenult_stress_endings",
+                     "antepenult_stress_endings", "unstressed_prefixes",
                      "marked_vowels", "cliticless_words")
     @classmethod
     def _non_empty_entries(cls, v: Optional[List[str]]) -> Optional[List[str]]:

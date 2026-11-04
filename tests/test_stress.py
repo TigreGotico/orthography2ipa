@@ -128,6 +128,52 @@ class TestDetectStress:
                             antepenult_stress_endings=("ability",))
         assert detect_stress("ability", rules) == 2
 
+    def test_a_default_inside_an_unstressed_prefix_moves_past_it(self):
+        """``unstressed_prefixes``: the default penult of ge-broek falls on a
+        syllable wholly inside ⟨ge⟩, so the stress moves to the stem."""
+        rules = StressRules(default_position=-2, unstressed_prefixes=("ge", "ver"))
+        assert detect_stress("gebroek", rules, syllables=["ge", "broek"]) == 1
+        assert detect_stress("verstand", rules, syllables=["ver", "stand"]) == 1
+        # ⟨ve⟩ lies wholly inside ⟨ver⟩ although the split leaves ⟨r⟩ outside
+        assert detect_stress("verstand", rules, syllables=["ve", "rstand"]) == 1
+
+    def test_unstressed_prefixes_default_empty_changes_nothing(self):
+        rules = StressRules(default_position=-2)
+        assert rules.unstressed_prefixes == ()
+        assert detect_stress("gebroek", rules, syllables=["ge", "broek"]) == 0
+
+    def test_a_default_outside_the_prefix_is_kept(self):
+        rules = StressRules(default_position=-2, unstressed_prefixes=("ge",))
+        # ge-beu-re: the penult ⟨beu⟩ is not in the prefix
+        assert detect_stress("gebeure", rules, syllables=["ge", "beu", "re"]) == 1
+
+    def test_a_syllable_that_crosses_the_prefix_is_not_inside_it(self):
+        rules = StressRules(default_position=-2, unstressed_prefixes=("ge",))
+        assert detect_stress("gennep", rules, syllables=["gen", "nep"]) == 0
+
+    def test_the_stress_never_moves_onto_a_final_open_syllable(self):
+        rules = StressRules(default_position=-2, unstressed_prefixes=("ge", "be"))
+        assert detect_stress("geve", rules, syllables=["ge", "ve"]) == 0
+        assert detect_stress("beste", rules, syllables=["be", "ste"]) == 0
+
+    def test_written_accents_and_endings_outrank_the_prefix(self):
+        accent = StressRules(default_position=-2, unstressed_prefixes=("ge",),
+                             marked_vowels=("é",))
+        assert detect_stress("gébroek", accent, syllables=["gé", "broek"]) == 0
+        ending = StressRules(default_position=-1, unstressed_prefixes=("be",),
+                             penult_stress_endings=("ek",))
+        assert detect_stress("besek", ending, syllables=["be", "sek"]) == 0
+
+    def test_the_longest_matching_prefix_decides(self):
+        rules = StressRules(default_position=1, unstressed_prefixes=("ge", "gebe"))
+        # ⟨gebe⟩ holds two syllables, so the stress moves past both
+        assert detect_stress("gebetaal", rules,
+                             syllables=["ge", "be", "taal"]) == 2
+
+    def test_the_loader_reads_unstressed_prefixes(self):
+        assert get("li").stress.unstressed_prefixes == ("ge", "be", "ver")
+        assert get("li-x-rheindok").stress.unstressed_prefixes == ("ge\u0329", "be\u0329", "ve\u0329r")
+
     def test_default_clamped_on_short_words(self):
         rules = StressRules(default_position=-3)
         assert detect_stress("casa", rules) == 0

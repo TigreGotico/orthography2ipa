@@ -1218,7 +1218,10 @@ def detect_stress(
 
     Precedence: written accents (``rules.marked_vowels``) →
     ``final_stress_endings`` → ``penult_stress_endings`` →
-    ``antepenult_stress_endings`` → ``rules.default_position``.
+    ``antepenult_stress_endings`` → ``rules.default_position``. A default
+    position that falls on a syllable lying wholly inside one of
+    ``rules.unstressed_prefixes`` at the start of the word moves to the first
+    syllable after the prefix, unless that is a final open syllable.
     Monosyllables are inherently stressed.
 
     Parameters
@@ -1280,9 +1283,27 @@ def detect_stress(
     #    Positive values anchor from the start (1 = first syllable).
     #    Negative values anchor from the end (existing behaviour).
     pos = rules.default_position
-    if pos >= 1:
-        return min(pos - 1, n - 1)
-    return max(0, n + pos)
+    index = min(pos - 1, n - 1) if pos >= 1 else max(0, n + pos)
+
+    # 6. a default that lands inside an unstressed prefix moves to the first
+    #    syllable after it (Dutch-type ge-, be-, ver-), but never onto a final
+    #    open syllable: there the "prefix" is the start of an unprefixed
+    #    disyllable with a final schwa (⟨geve⟩, ⟨beste⟩).
+    for prefix in sorted(rules.unstressed_prefixes, key=len, reverse=True):
+        if lowered.startswith(prefix):
+            inside = end = 0
+            for syll in sylls:
+                end += len(syll)
+                if end > len(prefix):
+                    break
+                inside += 1
+            final_letters = [ch for ch in sylls[-1] if ch.isalpha()]
+            final_open = bool(final_letters) and is_orthographic_vowel(
+                final_letters[-1])
+            if index < inside < n and not (inside == n - 1 and final_open):
+                return inside
+            break
+    return index
 
 
 # ═══════════════════════════════════════════════════════════════════════════
