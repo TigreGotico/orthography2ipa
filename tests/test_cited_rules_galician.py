@@ -298,6 +298,73 @@ def test_gl_qu_plus_i_is_not_a_falling_diphthong(word, expected):
     assert stressed(word) == expected
 
 
+@pytest.mark.parametrize("word,expected", [
+    ("Uruguai", "uɾuˈɣwaj"),       # U-ru-GUAI
+    ("Paraguai", "paɾaˈɣwaj"),     # Pa-ra-GUAI
+    ("apaziguou", "apaθiˈɣwow"),   # a-pa-zi-GUOU
+    ("iguais", "iˈɣwajs"),         # i-GUAIS; Regueira 2010: igual iˈɣwal
+    ("especiais", "espeˈθjajs"),   # es-pe-CIAIS; Regueira 2010: especial espeˈθjal
+])
+def test_gl_falling_diphthong_after_a_rising_one_is_one_stressed_syllable(
+        word, expected):
+    """A falling diphthong after ⟨gu⟩ or a rising diphthong stays one
+    syllable: "Se hai tres ou máis vogais xuntas pode separarse a primeira
+    sempre que non forme parte dun ditongo ou dun tritongo: [...] cor-/diais,
+    so-/ciais" (RAG/ILG Normas §3.2.6, p. 34), and ⟨gu⟩ keeps the vowel
+    after it (§3.2.5, pp. 33-34: ambi-/guo, lin-/gua). Unaccented, the word
+    is an aguda (§2.2, p. 24), so the mark stands before that last syllable,
+    and its offglide is the glide the spec writes in every falling diphthong
+    ([aj ow]). The comment gives the written syllables, the stressed one in
+    capitals."""
+    assert stressed(word) == expected
+
+
+@pytest.mark.parametrize("word,expected_tail", [
+    ("sociais", "θjajs"),          # so-CIAIS; Regueira 2010: social sɔˈθjal
+    ("cordiais", "ðjajs"),         # cor-DIAIS; Regueira 2010: cordial kɔɾˈðjal
+])
+def test_gl_rag_triphthong_examples_take_the_mark_on_the_last_syllable(
+        word, expected_tail):
+    """The two §3.2.6 (p. 34) examples whose last syllable holds ⟨iai⟩. The
+    onset is the one Regueira 2010 gives for the singular. Regueira writes an
+    open [ɔ] in the pretonic syllable, a vowel quality this section does not
+    test, so the assertion checks the stressed syllable only."""
+    assert tail(word) == expected_tail
+
+
+@pytest.mark.parametrize("word,expected_rhyme", [
+    ("vieiras", "ejɾas"),     # Regueira 2010: vieira biˈejɾa̝
+    ("amieiros", "ejɾos"),    # Regueira 2010: amieiro amiˈejɾo̝
+    ("crioulos", "owlos"),    # Regueira 2010: crioulo kɾiˈowlo̝
+])
+def test_gl_plural_keeps_the_stress_on_a_medial_triphthong(
+        word, expected_rhyme):
+    """The plural ⟨-s⟩ does not move the stress (RAG/ILG Normas §2.3, p. 24:
+    a grave in vowel + s takes no accent), so the plural keeps the stressed
+    falling diphthong of the singular Regueira 2010 gives. The mark opens
+    the syllable of that diphthong: the tail holds no vowel before the
+    rhyme. Regueira divides a hiatus before the diphthong ([bi.ˈej]), where
+    the map writes the glide of ⟨ie io⟩ ([ˈbjej]); the onset is therefore
+    not asserted."""
+    rest = tail(word)
+    assert rest.endswith(expected_rhyme), rest
+    onset = rest[:-len(expected_rhyme)]
+    assert not any(ch in "aeiouɛɔ" for ch in onset), rest
+
+
+@pytest.mark.parametrize("lang", [
+    "gl-ES-x-central", "gl-ES-x-occident", "gl-ES-x-oriental",
+    "gl-ES-x-reintegr",
+])
+def test_gl_falling_diphthong_after_a_rising_one_is_inherited(lang):
+    """The varieties that write the RAG norm take the gl-ES grapheme map and
+    stress block, so Uruguai is U-ru-GUAI there too (§2.2, §3.2.6). The
+    onset of the last syllable is not asserted: gl-ES-x-occident has the
+    gheada there."""
+    out = stressed("Uruguai", lang)
+    assert out.startswith("uɾuˈ") and out.endswith("waj"), out
+
+
 def test_gl_final_y_after_a_vowel_is_an_oxytone_diphthong():
     """RAG/ILG Normas §2.6 (p. 26): words ending in ⟨-y⟩ have the treatment of
     words ending in ⟨-i⟩: playboy, spray, like convoi. Regueira 2010 gives
