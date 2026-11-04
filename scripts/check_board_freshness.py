@@ -441,8 +441,9 @@ def judge_board(rel_path: str, entries: Optional[List[dict]],
               f"skipped (gold unavailable here, see stderr) and NOT "
               f"verified", file=sys.stderr)
     elif not missing:
-        print(f"{rel_path}: {verified} row(s) owned by the touched spec(s) "
-              f"match what the current checkout measures")
+        fresh = sum(not r["stale"] for r in got)
+        print(f"{rel_path}: {fresh} of {verified} row(s) owned by the "
+              f"touched spec(s) match what the current checkout measures")
 
     if report_stale(rel_path, got):
         rc = 1

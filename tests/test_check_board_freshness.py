@@ -475,7 +475,7 @@ class TestShardedRun:
         out, rcs = self._run_shards(tmp_path, planned, range(3))
         assert rcs == [0, 0, 0]
         assert cbf.aggregate(planned, str(out)) == 0
-        assert "3 row(s) owned by the touched spec(s) match" in \
+        assert "3 of 3 row(s) owned by the touched spec(s) match" in \
             capsys.readouterr().out
 
     def test_stale_row_in_one_shard_fails_the_aggregate(
@@ -486,7 +486,8 @@ class TestShardedRun:
         assert sorted(rcs) == [0, 0, 1]
         capsys.readouterr()
         assert cbf.aggregate(planned, str(out)) == 1
-        err = capsys.readouterr().err
+        stdout, err = capsys.readouterr()
+        assert "2 of 3 row(s) owned by the touched spec(s) match" in stdout
         assert "STALE BOARD (benchmarks/results.json)" in err
         assert "de/wikipron: committed per=0.3 but the current spec " \
                "measures 0.31" in err
