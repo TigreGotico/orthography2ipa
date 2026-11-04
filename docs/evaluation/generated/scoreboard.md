@@ -456,7 +456,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | lbe | northeuralex | 1048 | 0.0387 | - | - | 0.0387 | 0.0387 | 0.8340 | 0.8340 | [0.0325, 0.0455] | 0.8340 | research | lexicon-derived |
 | lez | northeuralex | 969 | 0.1329 | - | - | 0.0528 | 0.0384 | 0.7606 | 0.8266 | [0.1206, 0.1440] | 0.5294 | research | lexicon-derived |
 | lg | vox_communis | 103344 | 0.1107‡ | - | - | 0.1107 | 0.1107 | 0.3384 | 0.3384 | [0.1100, 0.1114] | 0.3384 | research | epitran-derived |
-| li | wikipron | 987 | 0.3110 | - | - | 0.2717 | 0.2572 | 0.1935 | 0.2026 | [0.2989, 0.3242] | 0.1631 | research | crowd-scraped |
+| li | wikipron | 987 | 0.3101 | - | - | 0.2713 | 0.2571 | 0.1925 | 0.2016 | [0.2984, 0.3231] | 0.1621 | research | crowd-scraped |
 | lij | vox_communis | 3416 | 0.0844‡ | - | - | 0.0821 | 0.0821 | 0.5928 | 0.5928 | [0.0806, 0.0885] | 0.5887 | research | epitran-derived |
 | lij | wikipron | 817 | 0.1157 | - | - | 0.1115 | 0.1115 | 0.4884 | 0.4884 | [0.1063, 0.1267] | 0.4847 | research | crowd-scraped |
 | liv | northeuralex | 1042 | 0.0752 | - | - | 0.0712 | 0.0712 | 0.6823 | 0.6823 | [0.0681, 0.0830] | 0.6823 | research | lexicon-derived |

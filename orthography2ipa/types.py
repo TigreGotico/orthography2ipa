@@ -490,6 +490,10 @@ class StressRules:
     4. A word ending in one of ``antepenult_stress_endings`` is
        proparoxytone.
     5. Otherwise ``default_position`` applies.
+    6. Where that default falls on a syllable lying wholly inside one of
+       ``unstressed_prefixes`` at the start of the word, the stress moves to
+       the first syllable after the prefix, unless that is a final open
+       syllable.
 
     Parameters
     ----------
@@ -517,6 +521,18 @@ class StressRules:
         Word-Stress*, ch. 3-4, on pre-stressed suffix classes). Clamped into
         the word, so a disyllable that matches falls back to its first
         syllable.
+    unstressed_prefixes : Tuple[str, ...]
+        Word-initial prefixes that never take the default stress, such as the
+        schwa prefixes of the Dutch type (``ge-``, ``be-``, ``ver-``). When
+        :attr:`default_position` puts the stress on a syllable that lies
+        wholly inside a listed prefix, the stress moves to the first syllable
+        after the prefix; a word that is the prefix alone keeps it. The stress
+        never moves onto a final syllable that ends in a vowel letter, so an
+        unprefixed disyllable with a final schwa (Limburgish ⟨geve⟩,
+        ⟨beste⟩) keeps its default. Written accents and the ending lists
+        still win. The match is on the lowercased spelling only, so a word
+        that is not prefixed but starts with the same letters moves too.
+        Empty (the default) leaves every spec unchanged.
     marked_vowels : Tuple[str, ...]
         Vowel characters whose written accent marks the stressed
         syllable (``á é í ó ú â ê ô ã õ``).
@@ -786,6 +802,7 @@ class StressRules:
     final_stress_endings: Tuple[str, ...] = ()
     penult_stress_endings: Tuple[str, ...] = ()
     antepenult_stress_endings: Tuple[str, ...] = ()
+    unstressed_prefixes: Tuple[str, ...] = ()
     marked_vowels: Tuple[str, ...] = ()
     stress_mark: str = "ˈ"
     diphthongs: Tuple[str, ...] = ()
