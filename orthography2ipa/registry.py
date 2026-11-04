@@ -174,7 +174,6 @@ _ALIASES: Dict[str, str] = {
     # Codes with exactly one declaring spec, whose name is the same language as
     # the code's, and no file of their own to shadow them.
     "xdc": "xda",             # Dacian/Thracian
-    "tmg": "cbk-x-ternate",   # Ternateño (Ternate Chabacano)
     # Dialects named in a private-use subtag. langcodes ignores private-use
     # content when it measures tag distance, so ``ar-x-najdi`` would otherwise
     # fall to the nearest bare match (``ar``); pin the spoken adjective to the
@@ -217,7 +216,9 @@ _ALIASES: Dict[str, str] = {
 #: the old key, so a tag that adds an unknown subtag to it (``ar-MA-x-fes``)
 #: lands on the same spec as before the rename. An old key that is the ISO
 #: 639-3 code of another language is not kept: ``aja``, the old key of
-#: ``ajg-BJ``, is the code of Aja (South Sudan).
+#: ``ajg-BJ``, is the code of Aja (South Sudan). For the same reason ``tmg``
+#: (Ternateño, the extinct creole of the Moluccas) does not name the Cavite
+#: spec ``cbk-PH-x-ternate``.
 _RENAMED: Dict[str, str] = {
     "ar-EG":                "arz-EG",
     "ar-EG-x-fayyum":       "arz-EG-x-fayyum",
@@ -262,6 +263,7 @@ _RENAMED: Dict[str, str] = {
     "gen":                  "gej-TG",
     "cbk-zam":              "cbk-PH",
     "cbk-x-cavite":         "cbk-PH-x-cavite",
+    "cbk-x-ternate":        "cbk-PH-x-ternate",
 }
 _ALIASES.update(_RENAMED)
 

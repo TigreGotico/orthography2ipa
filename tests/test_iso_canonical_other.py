@@ -26,6 +26,7 @@ CANONICAL = {
     "gej-TG": ["gen"],
     "cbk-PH": ["cbk-zam"],
     "cbk-PH-x-cavite": ["cbk-x-cavite"],
+    "cbk-PH-x-ternate": ["cbk-x-ternate"],
 }
 
 #: bare ISO 639-3 code -> the spec that declares it.
@@ -35,9 +36,11 @@ BARE = {
     "twi": "tw",
 }
 
-#: Old keys that are the ISO 639-3 code of another language. ``aja`` is SIL
-#: Aja (South Sudan); the spec it keyed is Aja (Benin), ``ajg``.
-NOT_KEPT = ["aja"]
+#: ISO 639-3 codes of another language that once named one of these specs.
+#: ``aja`` is SIL Aja (South Sudan); the spec it keyed is Aja (Benin), ``ajg``.
+#: ``tmg`` is SIL Ternateño, the extinct creole of the Moluccas; the spec it
+#: named is Ternate Chabacano of Cavite, ``cbk-PH-x-ternate``.
+NOT_KEPT = ["aja", "tmg"]
 
 _PRIVATE_SUBTAG = re.compile(r"-x-(.+)$")
 
@@ -79,7 +82,7 @@ def test_another_languages_code_is_not_an_alias(old):
         get(old)
 
 
-@pytest.mark.parametrize("child", ["cbk-PH-x-cavite", "cbk-x-ternate"])
+@pytest.mark.parametrize("child", ["cbk-PH-x-cavite", "cbk-PH-x-ternate"])
 def test_chavacano_children_take_the_canonical_parent(child):
     spec = get(child)
     assert spec.parent == "cbk-PH"
