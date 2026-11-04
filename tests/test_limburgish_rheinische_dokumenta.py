@@ -91,12 +91,35 @@ def test_stress_comes_from_li_through_parent():
     """Rheinische Dokumenta writes the same Limburgish material as `li`.
 
     A second notation is not a second lect, so the place of the stress is
-    the same, and the entry takes the `li` block through ``parent``. A
-    one-syllable word takes the stress (Peters 2006, JIPA 36(1), p. 119).
+    the same. The entry states the `li` block with the unstressed prefixes
+    in its own signs: schwa is ⟨e̩⟩ here, so ⟨ge⟩ is ⟨ge̩⟩. A one-syllable
+    word takes the stress (Peters 2006, JIPA 36(1), p. 119).
     """
+    from dataclasses import replace
+
     from orthography2ipa import G2P
 
     li_rules = G2P("li").spec.stress
-    assert li_rules is not None
-    assert G2P("li-x-rheindok").spec.stress == li_rules
+    rd_rules = G2P("li-x-rheindok").spec.stress
+    assert li_rules is not None and rd_rules is not None
+    respelled = tuple(p.replace("e", "e\u0329") for p in li_rules.unstressed_prefixes)
+    assert rd_rules.unstressed_prefixes == respelled
+    assert replace(rd_rules, notes=li_rules.notes) == replace(li_rules, unstressed_prefixes=respelled)
     assert transcribe("Mǫǫnt", "li-x-rheindok") == "ˈmɔːnt"
+
+
+def test_the_stress_skips_a_prefix_written_with_e_vertical_line():
+    """⟨be̩⟩, ⟨ge̩⟩ and ⟨ve̩r⟩ are the schwa prefixes that `li` writes ⟨be⟩, ⟨ge⟩, ⟨ver⟩.
+
+    The words are wikipron headwords; the gold carries no stress mark, so
+    the place comes from the `li` sources (Peters 2006, p. 123, bəˈɣɔs).
+    """
+    assert transcribe("Be̩schǫǫt", "li-x-rheindok") == "bəˈʃɔːt"
+    assert transcribe("ve̩rstand", "li-x-rheindok").startswith("vəʁˈ")
+    assert transcribe("ge̩broek", "li-x-rheindok").startswith("ɡəˈ")
+
+
+def test_a_plain_e_is_not_a_prefix():
+    """Plain ⟨e⟩ is [e] here, so ⟨ge⟩ and ⟨be⟩ keep the default stress."""
+    assert transcribe("gebroek", "li-x-rheindok").startswith("ˈɡe")
+    assert transcribe("Gele̩", "li-x-rheindok") == "ˈɡelə"

@@ -93,6 +93,35 @@ def test_a_schwa_prefix_is_not_stressed():
     assert out.split("ˈ")[1].startswith("l"), out
 
 
+# Unstressed prefixes. Peters 2006, p. 119, and Heijmans & Gussenhoven 1998,
+# p. 111: the stress follows the standard language. Schultink 1976, p. 475:
+# 'be-, er-, ge-, ont- en ver-' are 'altijd accentloos'. Spelling 2003,
+# printed p. 27, §8 i: the tone signs are 'de middele óm de
+# lettergreepbetoning aan te gaeve', and the marked sentence writes
+# 'gebroe~k'. The words are from Spelling 2003: gebroek p. 27, gevatj p. 23,
+# gesjpeld p. 27, gesjtump p. 19, besjteit p. 26, versjtandj p. 26,
+# verplich p. 27.
+
+@pytest.mark.parametrize("word", [
+    "gebroek", "gebroe~k", "gevatj", "gesjpeld", "gesjtump",
+    "besjteit", "versjtandj", "verplich",
+])
+def test_the_stress_skips_an_unstressed_prefix(word):
+    out = LI.transcribe_word(word)
+    assert out.count("ˈ") == 1, out
+    assert _vowels(out.split("ˈ")[0]) == ["ə"], out
+
+
+# Peters 2006, p. 119: 'In stressed syllables, short vowels are followed by a
+# coda consonant', so Gen-nep and Bel-vend start with a closed syllable, not
+# with a prefix syllable, and keep the default penult. The place names are
+# wikipron headwords.
+
+@pytest.mark.parametrize("word", ["Gennep", "Belvend"])
+def test_a_closed_first_syllable_is_not_a_prefix(word):
+    assert LI.transcribe_word(word).startswith("ˈ"), LI.transcribe_word(word)
+
+
 # The vowel of ⟨e⟩. Spelling 2003, printed p. 10: short ⟨e⟩ beside 'àè (de e
 # van Ned. pet maar dan lang)', the long 'e (Limb. sjpele)' in the row of
 # 'ee (Ned. beest)', and "e of ' = onbeklemtoonde klinker". Printed p. 16,
