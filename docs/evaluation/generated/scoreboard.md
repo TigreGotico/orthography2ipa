@@ -277,7 +277,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | es-CU | spain_romance_tts | 20 | 0.0409‡ | - | - | - | - | - | - | [0.0267, 0.0570] | 0.2500 | research | llm-corrected |
 | es-DO | spain_romance_tts | 20 | 0.0512‡ | - | - | - | - | - | - | [0.0354, 0.0678] | 0.1500 | research | llm-corrected |
 | es-EC | spain_romance_tts | 20 | 0.0561‡ | - | - | - | - | - | - | [0.0402, 0.0725] | 0.1500 | skeleton | llm-corrected |
-| es-EC-x-andino | spain_romance_tts | 20 | 0.0441‡ | - | - | - | - | - | - | [0.0296, 0.0614] | 0.2000 | stub | llm-corrected |
+| es-EC-x-andino | spain_romance_tts | 20 | 0.0391‡ | - | - | - | - | - | - | [0.0270, 0.0529] | 0.2000 | stub | llm-corrected |
 | es-EC-x-costa | spain_romance_tts | 20 | 0.0231‡ | - | - | - | - | - | - | [0.0134, 0.0341] | 0.4500 | stub | llm-corrected |
 | es-ES | ipa_childes | 13155 | 0.0833‡ | - | - | 0.0777 | 0.0756 | 0.6017 | 0.6103 | [0.0812, 0.0852] | 0.5827 | production | epitran-derived |
 | es-ES | ipadict | 595896 | 0.0180 | 0.9969 | - | 0.0151 | 0.0124 | 0.8486 | 0.8746 | [0.0179, 0.0181] | 0.8217 | production | machine-generated |
