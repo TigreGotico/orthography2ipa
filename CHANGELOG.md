@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.114.31a1](https://github.com/TigreGotico/orthography2ipa/tree/7.114.31a1) (2026-11-04)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.114.30a1...7.114.31a1)
+
+**Merged pull requests:**
+
+- fix\(li\): read ⟨ew⟩ before a vowel as ⟨e⟩ + ⟨w⟩ [\#2021](https://github.com/TigreGotico/orthography2ipa/pull/2021) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.114.30a1](https://github.com/TigreGotico/orthography2ipa/tree/7.114.30a1) (2026-11-04)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.114.29a1...7.114.30a1)
@@ -131,10 +139,6 @@
 ## [7.114.18a1](https://github.com/TigreGotico/orthography2ipa/tree/7.114.18a1) (2026-11-04)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.114.17a1...7.114.18a1)
-
-**Merged pull requests:**
-
-- fix\(vowels\): hold every IPA chart vowel in the vowel sets [\#1878](https://github.com/TigreGotico/orthography2ipa/pull/1878) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.114.17a1](https://github.com/TigreGotico/orthography2ipa/tree/7.114.17a1) (2026-11-04)
 
@@ -1303,11 +1307,7 @@
 
 ## [7.82.41a2](https://github.com/TigreGotico/orthography2ipa/tree/7.82.41a2) (2026-08-26)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.40a5...7.82.41a2)
-
-## [7.82.40a5](https://github.com/TigreGotico/orthography2ipa/tree/7.82.40a5) (2026-08-26)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.40a6...7.82.40a5)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.40a6...7.82.41a2)
 
 ## [7.82.40a6](https://github.com/TigreGotico/orthography2ipa/tree/7.82.40a6) (2026-08-26)
 
@@ -1315,7 +1315,11 @@
 
 ## [7.82.41a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.41a1) (2026-08-26)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.40a4...7.82.41a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.40a5...7.82.41a1)
+
+## [7.82.40a5](https://github.com/TigreGotico/orthography2ipa/tree/7.82.40a5) (2026-08-26)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.40a4...7.82.40a5)
 
 ## [7.82.40a4](https://github.com/TigreGotico/orthography2ipa/tree/7.82.40a4) (2026-08-26)
 
