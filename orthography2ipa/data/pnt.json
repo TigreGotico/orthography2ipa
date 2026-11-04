@@ -469,9 +469,13 @@
         "ντ",
         "ντζ",
         "β̇",
-        "δ̇"
+        "δ̇",
+        "κ̇",
+        "τ̇",
+        "π̇",
+        "τ̇σ̇"
       ],
-      "notes": "Oeconomides (1908: 25, § 13): 'Vor den Vocalen und den weichen Consonanten β, γ, δ, ζ, λ, μ, ν, ρ wird das υ des Diphthonges αυ wie β (= w), sonst wie φ (= f) gesprochen. Dasselbe gilt auch für ευ.' The vowel table (p. 2) gives 'αυ = aw, af' and 'ευ = ew, ef'. The letter groups that begin with one of these letters (γκ γγ νγκ μπ ντ ντζ, and β̇ δ̇) count as that letter."
+      "notes": "Oeconomides (1908: 25, § 13): 'Vor den Vocalen und den weichen Consonanten β, γ, δ, ζ, λ, μ, ν, ρ wird das υ des Diphthonges αυ wie β (= w), sonst wie φ (= f) gesprochen. Dasselbe gilt auch für ευ.' The vowel table (p. 2) gives 'αυ = aw, af' and 'ευ = ew, ef'. The letter groups that begin with one of these letters (γκ γγ νγκ μπ ντ ντζ, and β̇ δ̇) count as that letter. Oeconomides' dotted letters for a soft consonant (κ̇ 'velar. = g', p. 2; τ̇ 'd', π̇ 'b' and τ̇σ̇ 'dsch', p. 3) are soft consonants too, so ⟨αυ ευ⟩ keeps [v] before them."
     },
     {
       "id": "PNT_AU_FINAL",
@@ -505,7 +509,11 @@
         "ντ",
         "ντζ",
         "β̇",
-        "δ̇"
+        "δ̇",
+        "κ̇",
+        "τ̇",
+        "π̇",
+        "τ̇σ̇"
       ],
       "notes": "Oeconomides (1908: 25, § 13): 'Dasselbe gilt auch für ευ.' See PNT_AU_VOICELESS."
     },

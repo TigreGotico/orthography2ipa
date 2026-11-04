@@ -358,6 +358,13 @@ class TestUpsilonOfAuEu:
         assert _segments(f"ευβ{DOT_ABOVE}α")[:2] == "ev"
         assert _segments(f"ευδ{DOT_ABOVE}α")[:2] == "ev"
         assert _segments("ευα")[:2] == "ev"
+
+    @pytest.mark.parametrize("dotted", ["κ", "τ", "π", "τ\u0307σ"])
+    @pytest.mark.parametrize("diphthong,vowel", [("αυ", "a"), ("ευ", "e")])
+    def test_dotted_soft_consonant(self, diphthong, vowel, dotted):
+        """κ̇ 'g' (p. 2), τ̇ 'd', π̇ 'b' and τ̇σ̇ 'dsch' (p. 3) are soft."""
+        word = f"{diphthong}{dotted}{DOT_ABOVE}α"
+        assert _segments(word)[:2] == f"{vowel}v"
         assert _segments("ευτα")[:2] == "ef"
 
 
