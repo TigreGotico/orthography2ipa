@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.114.23a1](https://github.com/TigreGotico/orthography2ipa/tree/7.114.23a1) (2026-11-04)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.114.22a1...7.114.23a1)
+
+**Merged pull requests:**
+
+- fix\(es\): velarize a syllable-final nasal before a velar inside a word [\#1971](https://github.com/TigreGotico/orthography2ipa/pull/1971) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.114.22a1](https://github.com/TigreGotico/orthography2ipa/tree/7.114.22a1) (2026-11-04)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.114.21a1...7.114.22a1)
@@ -385,10 +393,6 @@
 ## [7.111.21a1](https://github.com/TigreGotico/orthography2ipa/tree/7.111.21a1) (2026-11-02)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.111.20a2...7.111.21a1)
-
-**Merged pull requests:**
-
-- fix\(lattice\_per\): build the lattice with beam search so beam\_width applies [\#1853](https://github.com/TigreGotico/orthography2ipa/pull/1853) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.111.20a2](https://github.com/TigreGotico/orthography2ipa/tree/7.111.20a2) (2026-11-02)
 
