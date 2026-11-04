@@ -10,7 +10,9 @@ from orthography2ipa.registry import UnknownVariantWarning
 
 @pytest.mark.parametrize("tag, chosen, discarded", [
     ("gmh-x-typo123", "gmh", "typo123"),
-    ("pt-x-doesnotexist", "pt-AO", "doesnotexist"),
+    # The default-region ruling: a bare tag goes to the region where the
+    # language first appeared, so pt reads pt-PT.
+    ("pt-x-doesnotexist", "pt-PT", "doesnotexist"),
     ("pt-TL-x-dili", "pt-TL", "dili"),
     ("en-gb-x-rp", "en-GB", "rp"),
     ("pt-PT-X-typo", "pt-PT", "typo"),
@@ -42,7 +44,8 @@ def test_warning_is_a_user_warning_and_exported():
 @pytest.mark.parametrize("tag, chosen", [
     ("pt-BR-x-sp", "pt-BR-x-sp"),
     ("pt-BR-x-sao-paulo", "pt-BR-x-sp"),
-    ("ar-sa-x-najd", "ar-SA-x-najd"),
+    ("ar-sa-x-najd", "ars-SA"),
+    ("ars-sa-x-qassim", "ars-SA-x-qassim"),
     ("pt", "pt-PT"),
     ("en-NZ", "en-GB"),
     ("PT-PT-X-PORTO", "pt-PT-x-porto"),

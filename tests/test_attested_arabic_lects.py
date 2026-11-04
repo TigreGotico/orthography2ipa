@@ -18,11 +18,11 @@ from orthography2ipa.registry import get
 DATA = os.path.join(os.path.dirname(orthography2ipa.__file__), "data")
 
 ATTESTED = {
-    "ar-YE-x-manakha": "ar-YE",
-    "ar-YE-x-highland": "ar-YE",
-    "ar-TR-x-cukurova": "ar-SY",
+    "ayn-YE-x-manakha": "ayn-YE",
+    "ayn-YE-x-highland": "ayn-YE",
+    "apc-TR-x-cukurova": "apc-SY",
     "ar-TR-x-kinderib": "ar-IQ-x-qeltu",
-    "ar-EG-x-fayyum": "ar-EG",
+    "arz-EG-x-fayyum": "arz-EG",
     "ar-SA-x-janubi": "ar-x-peninsular",
 }
 
