@@ -27,7 +27,7 @@ def test_vox_communis_is_an_audit_not_a_ceiling():
     # long vowel there for every vowel letter (titel [ˈtiːtɛl]), and ⟨y⟩ does
     # the same: [ˈsyːɕɛl].
     pytest.param("cykel", "ˈsʏɕɛl", marks=pytest.mark.xfail(
-        strict=True, reason="sv lengthens the lexically short vowel of cykel")),
+        strict=True, reason="sv lengthens the lexically short vowel of cykel (#1882)")),
     ("cancer", "ˈkansɛr"),      # ⟨c⟩ before a back vowel stays [k]
     ("scen", "ˈseːn"),
     ("lögn", "ˈlœŋn"),

@@ -33,7 +33,7 @@ def test_ipa_childes_is_an_audit_not_a_ceiling():
     # vowel before ⟨ng⟩, so every vowel there comes out long (ring [ˈɾiːŋ],
     # sang [ˈsɑːŋ]), and ⟨y⟩ does the same: [ˈjyːŋə].
     pytest.param("gynge", "ˈjʏŋə", marks=pytest.mark.xfail(
-        strict=True, reason="nb lengthens a stressed vowel before ⟨ng⟩")),
+        strict=True, reason="nb lengthens a stressed vowel before ⟨ng⟩ (#1881)")),
 ])
 def test_velar_softening_is_word_initial_only(word, expected):
     assert G2P("nb").transcribe_word(word) == expected
