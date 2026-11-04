@@ -49,7 +49,7 @@ from orthography2ipa.vowels import (
 
 __all__ = [
     "syllabify",
-    "closed_hiatus_positions",
+    "hiatus_positions",
     "syllabify_for_mark",
     "syllabify_ipa",
     "syllable_weight",
@@ -841,7 +841,7 @@ def _split_nuclei(run: str, diphthongs: Sequence[str],
     decided by :func:`syllabify` before this is reached.
 
     *hiatus* holds offsets into *run* of letters that open a nucleus of
-    their own (:func:`closed_hiatus_positions`): no listed sequence is
+    their own (:func:`hiatus_positions`): no listed sequence is
     consumed across one.
     """
     if len(run) < 2:
@@ -918,7 +918,7 @@ def syllabify(
 
     *hiatus* holds the indices of letters of *word* that open a nucleus of
     their own although a listed diphthong would take them
-    (:func:`closed_hiatus_positions`). Read with *diphthongs* only.
+    (:func:`hiatus_positions`). Read with *diphthongs* only.
     """
     is_vowel_char = (lambda c: c.lower() in vowels) if vowels is not None else _is_vowel_char
     if not word:
@@ -1064,7 +1064,7 @@ def _syllables_for(
                     type(plugin).__name__, word, exc)
     if spec is None and lang:
         spec = _spec_for(lang)
-    hiatus = (closed_hiatus_positions(word, spec) if spec is not None
+    hiatus = (hiatus_positions(word, spec) if spec is not None
               else frozenset())
     return _bundled_syllables(word, spec, diphthongs, hiatus)
 
@@ -1132,21 +1132,48 @@ def _closed_hiatus_candidates(
     return found
 
 
-def closed_hiatus_positions(word: str, spec: LanguageSpec) -> FrozenSet[int]:
-    """Indices of the letters of *word* that open a stressed nucleus of their
-    own under the spec's ``stress.closed_hiatus``.
+def _final_diphthong_candidates(word: str, rules: StressRules) -> List[int]:
+    """Indices of the letters of *word* that ``rules.final_diphthongs`` splits
+    from the vowel before them, before the stress is known.
 
-    A candidate (:func:`_closed_hiatus_candidates`) is kept only when it
-    starts the syllable the stress rules stress, over the division that
-    splits every candidate. Portuguese ⟨rainha⟩ divides ra-i-nha and the
-    paroxytone default stresses the ⟨i⟩, so it is kept; the ⟨i⟩ of
-    ⟨ruindade⟩ is not stressed, and that word keeps its diphthong
-    (Acordo Ortográfico 1990, Base X, 2.º and Base XIV, 1.º).
+    The letter starts one of the rule's ``diphthongs``, the diphthong ends the
+    word alone or before one of its ``finals``, and a vowel letter stands
+    before it. Portuguese ⟨distraiu⟩ gives the ⟨i⟩ of the final ⟨iu⟩.
+    """
+    rule = rules.final_diphthongs
+    lowered = word.lower()
+    found: List[int] = []
+    for diphthong in rule.diphthongs:
+        for final in ("", *rule.finals):
+            k = len(lowered) - len(diphthong) - len(final)
+            if (k >= 1 and lowered.endswith(diphthong + final)
+                    and is_orthographic_vowel(lowered[k - 1])):
+                found.append(k)
+    return found
+
+
+def hiatus_positions(word: str, spec: LanguageSpec) -> FrozenSet[int]:
+    """Indices of the letters of *word* that open a stressed nucleus of their
+    own under the spec's ``stress.closed_hiatus`` and
+    ``stress.final_diphthongs``.
+
+    A candidate (:func:`_closed_hiatus_candidates`,
+    :func:`_final_diphthong_candidates`) is kept only when it starts the
+    syllable the stress rules stress, over the division that splits every
+    candidate. Portuguese ⟨rainha⟩ divides ra-i-nha and the paroxytone default
+    stresses the ⟨i⟩, so it is kept; the ⟨i⟩ of ⟨ruindade⟩ is not stressed,
+    and that word keeps its diphthong (Acordo Ortográfico 1990, Base X, 2.º
+    and Base XIV, 1.º). ⟨saiu⟩ divides sa-iu, and its final ⟨u⟩ stresses the
+    ⟨iu⟩ (Base X, 6.º).
     """
     rules = spec.stress
-    if rules is None or rules.closed_hiatus is None:
+    if rules is None:
         return frozenset()
-    found = _closed_hiatus_candidates(word, rules, spec.graphemes)
+    found: List[int] = []
+    if rules.closed_hiatus is not None:
+        found += _closed_hiatus_candidates(word, rules, spec.graphemes)
+    if rules.final_diphthongs is not None:
+        found += _final_diphthong_candidates(word, rules)
     if not found:
         return frozenset()
     sylls = _bundled_syllables(word, spec, rules.diphthongs, frozenset(found))

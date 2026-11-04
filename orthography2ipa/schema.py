@@ -336,6 +336,14 @@ class ClosedHiatusModel(_Strict):
     codas: List[str] = Field(default_factory=list)
 
 
+class FinalDiphthongsModel(_Strict):
+    """Diphthongs that end a word after a vowel (``stress.final_diphthongs``).
+    Mirrors ``FinalDiphthongs``."""
+
+    diphthongs: List[str] = Field(min_length=1)
+    finals: List[str] = Field(default_factory=list)
+
+
 class StressRulesModel(_Strict):
     """Declarative stress placement (``stress``). Mirrors ``StressRules``."""
 
@@ -350,6 +358,7 @@ class StressRulesModel(_Strict):
     diphthongs: Optional[List[str]] = None
     ipa_diphthongs: Optional[List[str]] = None
     closed_hiatus: Optional[ClosedHiatusModel] = None
+    final_diphthongs: Optional[FinalDiphthongsModel] = None
     vowel_letters: Optional[List[str]] = None
     quantity_sensitive: bool = False
     superheavy_final_attracts: bool = True

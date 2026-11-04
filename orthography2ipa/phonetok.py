@@ -1328,18 +1328,20 @@ class PhonetokTokenizer:
         }
         self._codas: FrozenSet[str] = frozenset(spec.codas)
         self._inherent_vowel_final: Optional[str] = spec.inherent_vowel_final
-        self._closed_hiatus: bool = bool(
-            spec.stress is not None and spec.stress.closed_hiatus)
+        self._hiatus: bool = spec.stress is not None and bool(
+            spec.stress.closed_hiatus or spec.stress.final_diphthongs)
         self._hiatus_by_word: Dict[str, FrozenSet[int]] = {}
 
-    def _closed_hiatus_prefix(self, text: str, pos: int, gkey: str) -> str:
+    def _hiatus_prefix(self, text: str, pos: int, gkey: str) -> str:
         """*gkey*, cut before a letter that opens a nucleus of its own.
 
         The spec's ``stress.closed_hiatus`` makes the second vowel of a
         written diphthong a stressed nucleus where a consonant closes its
-        syllable (:func:`~orthography2ipa.stress.closed_hiatus_positions`).
-        Portuguese ⟨rainha⟩ is ra-i-nha, so its ⟨ai⟩ is two graphemes and the
-        ⟨i⟩ is read as a vowel, not as the glide of the digraph.
+        syllable, and ``stress.final_diphthongs`` makes a final diphthong one
+        stressed nucleus after a vowel
+        (:func:`~orthography2ipa.stress.hiatus_positions`). Portuguese
+        ⟨rainha⟩ is ra-i-nha and ⟨saiu⟩ is sa-iu, so each ⟨ai⟩ is two
+        graphemes and the ⟨i⟩ is not read as the glide of the digraph.
         """
         is_letter = lambda c: unicodedata.category(c)[0] in "LM"
         start = pos
@@ -1351,8 +1353,8 @@ class PhonetokTokenizer:
         word = text[start:end]
         hiatus = self._hiatus_by_word.get(word)
         if hiatus is None:
-            from orthography2ipa.stress import closed_hiatus_positions
-            hiatus = closed_hiatus_positions(word, self.spec)
+            from orthography2ipa.stress import hiatus_positions
+            hiatus = hiatus_positions(word, self.spec)
             self._hiatus_by_word[word] = hiatus
         for cut in range(1, len(gkey)):
             if (pos - start + cut in hiatus
@@ -2013,9 +2015,9 @@ class PhonetokTokenizer:
                 # single-grapheme handling below, which reads gkey normally.
 
             if gkey is not None:
-                if (self._closed_hiatus and len(gkey) > 1
+                if (self._hiatus and len(gkey) > 1
                         and is_orthographic_vowel(gkey[0])):
-                    gkey = self._closed_hiatus_prefix(text, pos, gkey)
+                    gkey = self._hiatus_prefix(text, pos, gkey)
                 # Vowel-gated digraph. A consonant-initial digraph ending in a
                 # high glide letter ⟨u⟩/⟨i⟩ (Romance ⟨gu qu gi ci⟩ …) uses that
                 # letter as a mute/glide marker only when a vowel follows —
