@@ -380,3 +380,177 @@ class TestProgressAndInterruption:
         assert "en-GB/cmudict" in err
         assert "en-GB/ipadict" in err and "en-GB/wikipron" in err
         assert "NOT evidence the board is fresh" in err
+
+
+class TestAssignShards:
+    def test_heaviest_row_first_onto_the_lightest_shard(self):
+        """18 word pairs at 6 per shard is 3 shards. Placing 5, 4, 3, 3, 2, 1
+        heaviest first onto the lightest shard gives shards 0, 1, 2, 2, 1, 0,
+        which loads every shard with exactly 6."""
+        count, shards = cbf.assign_shards([5, 4, 3, 3, 2, 1], shard_words=6)
+        assert count == 3
+        assert shards == [0, 1, 2, 2, 1, 0]
+
+    def test_shard_count_is_capped(self):
+        count, shards = cbf.assign_shards([5, 4, 3, 3, 2, 1], shard_words=1,
+                                          max_shards=2)
+        assert count == 2
+        assert sorted(set(shards)) == [0, 1]
+
+    def test_never_more_shards_than_rows(self):
+        assert cbf.assign_shards([900_000], shard_words=1) == (1, [0])
+
+    def test_no_rows_means_no_shards(self):
+        assert cbf.assign_shards([]) == (0, [])
+
+
+class TestShardedRun:
+    """CI splits the owned rows into shards that run as separate jobs, then
+    judges them together. The split must check exactly the rows one process
+    would, and a shard that never reports must fail the check, never shrink
+    it."""
+
+    ROWS = ('[{"lang": "lmo", "dataset": "wikipron", "per": 0.2892, '
+            '"limit": null, "n": 300}, '
+            '{"lang": "lmo", "dataset": "cmudict", "per": 0.10, '
+            '"limit": null, "n": 200}, '
+            '{"lang": "de", "dataset": "wikipron", "per": 0.30, '
+            '"limit": null, "n": 100}]')
+
+    def _stub(self, monkeypatch, tmp_path, touched={"lmo", "de"},
+              stale_lang=None):
+        results = tmp_path / "results.json"
+        results.write_text(self.ROWS)
+        sample = tmp_path / "results_ci_sample.json"
+        sample.write_text("[]")
+        monkeypatch.setattr(cbf, "SCOREBOARD_JSON", str(results))
+        monkeypatch.setattr(cbf, "CI_SAMPLE_JSON", str(sample))
+        monkeypatch.setattr(cbf, "touched_specs",
+                            lambda base, head, repo=None: touched)
+        monkeypatch.setattr(cbf, "spec_ancestors",
+                            lambda lang, repo=None: {lang})
+        committed = {"lmo/wikipron": 0.2892, "lmo/cmudict": 0.10,
+                     "de/wikipron": 0.30}
+
+        def loader(dataset):
+            return lambda lang, limit: [(lang, dataset)]
+
+        monkeypatch.setattr(cbf, "DATASETS", {
+            "wikipron": (loader("wikipron"), ["lmo", "de"]),
+            "cmudict": (loader("cmudict"), ["lmo"]),
+        })
+
+        def evaluate(pairs, lang, strip_stress, broad, stress=None):
+            (lang, dataset), = pairs
+            per = committed[f"{lang}/{dataset}"]
+            if lang == stale_lang:
+                per += 0.01
+            return 10, 10, [], per, 0.5
+
+        monkeypatch.setattr(cbf, "evaluate_words", evaluate)
+
+    def _run_shards(self, tmp_path, planned, shards):
+        out = tmp_path / "shard-results"
+        out.mkdir()
+        rcs = [cbf.run_shard(planned, k, str(out / f"shard-{k}.json"))
+               for k in shards]
+        return out, rcs
+
+    def test_shards_cover_every_owned_row_exactly_once(
+            self, tmp_path, monkeypatch):
+        self._stub(monkeypatch, tmp_path)
+        planned = cbf.plan("origin/dev", shard_words=250)
+        assert planned["shards"] == 3
+        tasks = [cbf._tasks(planned, k) for k in range(planned["shards"])]
+        keys = sorted((row["lang"], row["dataset"])
+                      for shard in tasks for _, row in shard)
+        assert keys == [("de", "wikipron"), ("lmo", "cmudict"),
+                        ("lmo", "wikipron")]
+        assert all(len(shard) == 1 for shard in tasks)
+
+    def test_fresh_rows_pass_across_shards(self, tmp_path, monkeypatch,
+                                           capsys):
+        self._stub(monkeypatch, tmp_path)
+        planned = cbf.plan("origin/dev", shard_words=250)
+        out, rcs = self._run_shards(tmp_path, planned, range(3))
+        assert rcs == [0, 0, 0]
+        assert cbf.aggregate(planned, str(out)) == 0
+        assert "3 row(s) owned by the touched spec(s) match" in \
+            capsys.readouterr().out
+
+    def test_stale_row_in_one_shard_fails_the_aggregate(
+            self, tmp_path, monkeypatch, capsys):
+        self._stub(monkeypatch, tmp_path, stale_lang="de")
+        planned = cbf.plan("origin/dev", shard_words=250)
+        out, rcs = self._run_shards(tmp_path, planned, range(3))
+        assert sorted(rcs) == [0, 0, 1]
+        capsys.readouterr()
+        assert cbf.aggregate(planned, str(out)) == 1
+        err = capsys.readouterr().err
+        assert "STALE BOARD (benchmarks/results.json)" in err
+        assert "de/wikipron: committed per=0.3 but the current spec " \
+               "measures 0.31" in err
+        assert "lmo/" not in err
+
+    def test_sharded_verdict_matches_one_process(self, tmp_path,
+                                                 monkeypatch):
+        self._stub(monkeypatch, tmp_path, stale_lang="lmo")
+        planned = cbf.plan("origin/dev", shard_words=250)
+        out, _ = self._run_shards(tmp_path, planned, range(3))
+        assert cbf.aggregate(planned, str(out)) == cbf.check("origin/dev") == 1
+
+    def test_a_lost_shard_fails_and_names_its_rows(self, tmp_path,
+                                                   monkeypatch, capsys):
+        """Shard 2 never ran (cancelled, crashed or timed out): its row was
+        never checked, and the verdict must say so instead of passing on the
+        rows that did report."""
+        self._stub(monkeypatch, tmp_path)
+        planned = cbf.plan("origin/dev", shard_words=250)
+        lost = cbf._tasks(planned, 2)[0][1]
+        out, _ = self._run_shards(tmp_path, planned, [0, 1])
+        capsys.readouterr()
+        assert cbf.aggregate(planned, str(out)) == 1
+        err = capsys.readouterr().err
+        assert "UNVERIFIED benchmarks/results.json: 1 of 3" in err
+        assert (f"UNVERIFIED: benchmarks/results.json "
+                f"{lost['lang']}/{lost['dataset']}") in err
+
+    def test_no_results_at_all_fails(self, tmp_path, monkeypatch, capsys):
+        self._stub(monkeypatch, tmp_path)
+        planned = cbf.plan("origin/dev", shard_words=250)
+        assert cbf.aggregate(planned, str(tmp_path / "missing")) == 1
+        assert "UNVERIFIED benchmarks/results.json: 3 of 3" in \
+            capsys.readouterr().err
+
+    def test_a_row_reported_twice_fails(self, tmp_path, monkeypatch):
+        self._stub(monkeypatch, tmp_path)
+        planned = cbf.plan("origin/dev", shard_words=250)
+        out, _ = self._run_shards(tmp_path, planned, range(3))
+        (out / "copy.json").write_text((out / "shard-0.json").read_text())
+        assert cbf.aggregate(planned, str(out)) == 1
+
+    def test_shard_refuses_a_plan_made_on_another_commit(
+            self, tmp_path, monkeypatch, capsys):
+        self._stub(monkeypatch, tmp_path)
+        planned = cbf.plan("origin/dev", shard_words=250)
+        planned["head"] = "0" * 40
+        assert cbf.run_shard(planned, 0, str(tmp_path / "r.json")) == 1
+        assert not (tmp_path / "r.json").exists()
+        assert "plan was made on" in capsys.readouterr().err
+
+    def test_aggregate_refuses_results_from_another_commit(
+            self, tmp_path, monkeypatch):
+        self._stub(monkeypatch, tmp_path)
+        planned = cbf.plan("origin/dev", shard_words=250)
+        out, _ = self._run_shards(tmp_path, planned, range(3))
+        planned["head"] = "0" * 40
+        assert cbf.aggregate(planned, str(out)) == 1
+
+    def test_no_touched_spec_plans_no_shard_and_passes(
+            self, tmp_path, monkeypatch, capsys):
+        self._stub(monkeypatch, tmp_path, touched=set())
+        planned = cbf.plan("origin/dev")
+        assert planned["shards"] == 0
+        assert cbf.aggregate(planned, str(tmp_path / "missing")) == 0
+        assert "no orthography2ipa/data/*.json spec changed" in \
+            capsys.readouterr().out
