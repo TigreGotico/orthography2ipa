@@ -7684,7 +7684,7 @@
     "limit": 1000
   },
   {
-    "lang": "nl",
+    "lang": "nl-NL",
     "dataset": "ipa_childes",
     "n": 1000,
     "per": 0.2043,
@@ -7699,7 +7699,7 @@
     "limit": 1000
   },
   {
-    "lang": "nl",
+    "lang": "nl-NL",
     "dataset": "ipadict",
     "n": 989,
     "per": 0.1489,
@@ -7714,7 +7714,7 @@
     "limit": 1000
   },
   {
-    "lang": "nl",
+    "lang": "nl-NL",
     "dataset": "vox_communis",
     "n": 1000,
     "per": 0.2376,
@@ -7729,7 +7729,7 @@
     "limit": 1000
   },
   {
-    "lang": "nl",
+    "lang": "nl-NL",
     "dataset": "wikipron",
     "n": 828,
     "per": 0.0712,

@@ -76,7 +76,7 @@ SOURCES: Dict[str, Tuple] = {
     "ast": (benchmark.load_wikipron, "ast", None),  # espeak has no Asturian
     "oc": (benchmark.load_wikipron, "oc", None),  # espeak has no Occitan
     "de": (benchmark.load_wikipron, "de", "de"),
-    "nl": (benchmark.load_wikipron, "nl", "nl"),
+    "nl-NL": (benchmark.load_wikipron, "nl-NL", "nl"),
     "sv": (benchmark.load_wikipron, "sv", "sv"),
     "da": (benchmark.load_wikipron, "da", "da"),
     "nb": (benchmark.load_wikipron, "nb", "nb"),

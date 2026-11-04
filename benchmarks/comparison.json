@@ -3702,7 +3702,7 @@
     "sampled": false
   },
   {
-    "lang": "nl",
+    "lang": "nl-NL",
     "dataset": "ipa_childes",
     "n": 8108,
     "o2i_per": 0.2137,
@@ -3736,7 +3736,7 @@
     "sampled": false
   },
   {
-    "lang": "nl",
+    "lang": "nl-NL",
     "dataset": "ipadict",
     "n": 117869,
     "o2i_per": 0.1767,
@@ -3770,7 +3770,7 @@
     "sampled": false
   },
   {
-    "lang": "nl",
+    "lang": "nl-NL",
     "dataset": "vox_communis",
     "n": 26137,
     "o2i_per": 0.2925,
@@ -3804,7 +3804,7 @@
     "sampled": false
   },
   {
-    "lang": "nl",
+    "lang": "nl-NL",
     "dataset": "wikipron",
     "n": 45872,
     "o2i_per": 0.0902,

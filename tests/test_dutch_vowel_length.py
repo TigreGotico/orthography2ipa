@@ -32,7 +32,7 @@ def syllables(lang, word):
 
 @pytest.fixture(scope="module")
 def nl():
-    return G2P("nl")
+    return G2P("nl-NL")
 
 
 # ── open-syllable lengthening / tensing (Booij 1995, ch. 2) ──────────────
@@ -59,16 +59,16 @@ def test_aperture_beats_the_single_consonant_heuristic(nl):
     of them and calls the syllable closed. Reading the syllabification says
     otherwise, because /br/ is a legal Dutch onset (Booij 1995, ch. 2).
     """
-    assert syllables("nl", "abrikoos") == ["a", "bri", "koos"]
+    assert syllables("nl-NL", "abrikoos") == ["a", "bri", "koos"]
     assert nl.transcribe("abrikoos") == "ˈaːbrikoːs"
 
 
 # ── the velar nasal heads no syllable (Booij 1995, ch. 2) ────────────────
 
 @pytest.mark.parametrize("lang,word,sylls", [
-    ("nl", "angel", ["ang", "el"]),
-    ("nl", "zingen", ["zing", "en"]),
-    ("nl", "ankum", ["ank", "um"]),      # ⟨nk⟩ /ŋk/ — a cluster grapheme
+    ("nl-NL", "angel", ["ang", "el"]),
+    ("nl-NL", "zingen", ["zing", "en"]),
+    ("nl-NL", "ankum", ["ank", "um"]),      # ⟨nk⟩ /ŋk/ — a cluster grapheme
     ("de-DE", "singen", ["sing", "en"]),
 ])
 def test_velar_nasal_is_never_an_onset(lang, word, sylls):
@@ -76,7 +76,7 @@ def test_velar_nasal_is_never_an_onset(lang, word, sylls):
 
 
 def test_onset_judge_rejects_the_velar_nasal_directly():
-    judge = _OnsetJudge(get("nl"))
+    judge = _OnsetJudge(get("nl-NL"))
     assert judge.licit("ng") is False
     assert judge.licit("nk") is False
     assert judge.licit("n") is True       # the plain coronal nasal is fine

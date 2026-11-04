@@ -535,7 +535,7 @@ def test_injected_alternatives_field_follows_the_flag_not_the_spec():
     bench = _benchmark_module()
     assert bench._injected_alternatives("fr", False) == ["fr-FR ent"]
     assert bench._injected_alternatives("fr", True) == []
-    assert bench._injected_alternatives("nl", False) == []
+    assert bench._injected_alternatives("nl-NL", False) == []
 
 
 def test_scoreboard_row_records_excluded_injections():

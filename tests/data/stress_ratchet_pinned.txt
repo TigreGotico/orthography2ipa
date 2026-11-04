@@ -239,7 +239,6 @@ nhx
 nia
 nio
 niv
-nl-NL
 nmy
 no
 nog

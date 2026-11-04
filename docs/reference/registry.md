@@ -90,7 +90,7 @@ The alias table maps these ISO 639-3 codes of major languages to a spec:
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `por` | `pt-PT` | `eng` | `en-GB` | `spa` | `es-ES` |
 | `fra` | `fr-FR` | `deu` | `de-DE` | `ita` | `it-IT` |
-| `nld` | `nl` | `swe` | `sv` | `dan` | `da` |
+| `nld` | `nl-NL` | `swe` | `sv` | `dan` | `da` |
 | `nor` | `no` | `rus` | `ru` | `ukr` | `uk` |
 | `ara` | `ar` | `fas` | `fa` | `hin` | `hi` |
 | `zho` | `zh` | `jpn` | `ja` | `kor` | `ko` |
@@ -111,6 +111,8 @@ The table holds five other kinds of entry:
 | A private-use tag, mapped to the spec that holds the variety | `pt-PT-x-barrancos` to `ext-PT-x-barranco`, `pt-BR-x-sao-paulo` to `pt-BR-x-sp`, `ar-x-hijazi` to `acw-SA` |
 
 Galician has one standard spec, `gl-ES`, and the bare tag `gl` resolves to it. The variety codes `gl-x-central`, `gl-x-occidental`, `gl-x-oriental`, `gl-x-eonavia` and `gl-x-reintegrado` resolve to the `gl-ES-x-*` spec of the same variety. `_ALIASES` in `registry.py` holds the full table.
+
+Dutch has one Netherlands standard spec, `nl-NL`. The bare tag `nl`, the ISO 639-3 code `nld` and the ISO 639-2/B code `dut` resolve to it exactly. `nl-BE`, `af` and `vls` take `nl-NL` as their parent.
 
 An old key that is the ISO 639-3 code of another language is not kept as an alias. `aja` was the key of Aja (Benin), now `ajg-BJ`, and it is the code of Aja (South Sudan), so `aja` names no spec. In the same way, `tmg` is the code of Ternateño, the extinct creole of the Moluccas, and does not name `cbk-PH-x-ternate`, the spec of Ternate Chabacano of Cavite.
 

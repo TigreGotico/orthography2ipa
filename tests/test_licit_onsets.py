@@ -78,26 +78,26 @@ def test_sibilants_are_the_appendix_class():
 def test_dutch_elektronisch_does_not_invent_a_ktr_onset():
     """⟨ktr⟩ falls in sonority (stop-stop-liquid) and opens no syllable in any
     language. Only ⟨tr⟩ does, so the ⟨k⟩ closes the preceding syllable."""
-    assert syllables("nl", "elektronisch") == ["e", "lek", "tro", "nisch"]
+    assert syllables("nl-NL", "elektronisch") == ["e", "lek", "tro", "nisch"]
 
 
 def test_dutch_nasal_plus_stop_is_no_onset():
     """⟨nd⟩ FALLS in sonority — a nasal cannot head a rising onset."""
-    assert syllables("nl", "wandelen") == ["wan", "de", "len"]
-    assert syllables("nl", "kinderen") == ["kin", "de", "ren"]
+    assert syllables("nl-NL", "wandelen") == ["wan", "de", "len"]
+    assert syllables("nl-NL", "kinderen") == ["kin", "de", "ren"]
 
 
 def test_dutch_s_plus_stop_stays_an_onset():
     """The sibilant appendix: /s/ is adjoined outside the rising core, which
     is why ⟨st-⟩ opens words (Vennemann 1988, ch. 1; Blevins 1995, § 3.2).
     be-staan, never bes-taan."""
-    assert syllables("nl", "bestaan") == ["be", "staan"]
+    assert syllables("nl-NL", "bestaan") == ["be", "staan"]
 
 
 def test_dutch_glide_before_consonant_closes_the_syllable():
     """⟨schrijven⟩: ⟨j⟩ is more sonorous than ⟨v⟩, so ⟨jv⟩ cannot rise into
     the nucleus and the ⟨j⟩ closes the first syllable."""
-    assert syllables("nl", "schrijven") == ["schrij", "ven"]
+    assert syllables("nl-NL", "schrijven") == ["schrij", "ven"]
 
 
 # ── French: the ⟨e⟩/⟨o⟩ aperture blocker ─────────────────────────────────
@@ -144,11 +144,11 @@ def test_french_silent_h_does_not_form_a_cluster():
 # ── words that were already right and must not move ──────────────────────
 
 @pytest.mark.parametrize("lang,word,expected", [
-    ("nl", "water", ["wa", "ter"]),
-    ("nl", "moeder", ["moe", "der"]),
-    ("nl", "tafel", ["ta", "fel"]),
-    ("nl", "sterk", ["sterk"]),       # one syllable, word-initial cluster
-    ("nl", "herfst", ["herfst"]),     # a coda the rule must never touch
+    ("nl-NL", "water", ["wa", "ter"]),
+    ("nl-NL", "moeder", ["moe", "der"]),
+    ("nl-NL", "tafel", ["ta", "fel"]),
+    ("nl-NL", "sterk", ["sterk"]),       # one syllable, word-initial cluster
+    ("nl-NL", "herfst", ["herfst"]),     # a coda the rule must never touch
     ("fr-FR", "paris", ["pa", "ris"]),
     ("de-DE", "Zeitung", ["Zei", "tung"]),
 ])
@@ -159,7 +159,7 @@ def test_correct_cases_do_not_move(lang, word, expected):
 def test_word_initial_cluster_is_licit_by_definition():
     """The first syllable's onset is never re-judged: a cluster that begins a
     word of the language IS a licit onset of that language."""
-    assert syllables("nl", "strand") == ["strand"]
+    assert syllables("nl-NL", "strand") == ["strand"]
     assert syllables("fr-FR", "structure")[0] == "struc"
 
 
@@ -168,23 +168,23 @@ def test_word_initial_cluster_is_licit_by_definition():
 def test_a_declared_max_onset_is_not_the_default_one():
     """The default ``max_onset`` is a placeholder, not a declaration. Applying
     it as a cap would split ⟨tr⟩ in every language on earth."""
-    assert get("nl").stress.max_onset_declared is False
+    assert get("nl-NL").stress.max_onset_declared is False
     assert get("ar").stress.max_onset_declared is True
 
 
 def test_a_multigraph_is_never_cut_in_half():
     """Onsets are judged over the spec's own graphemes, so ⟨sch⟩ ⟨ch⟩ ⟨ng⟩
     stay whole no matter where the boundary falls."""
-    assert syllables("nl", "lachen") == ["la", "chen"]
+    assert syllables("nl-NL", "lachen") == ["la", "chen"]
     # ⟨ssch⟩ is two sibilants; the appendix is ONE. Standard Dutch mis-schien
     # (Booij, *The Phonology of Dutch*, OUP 1995, ch. 2).
-    assert syllables("nl", "misschien") == ["mis", "schien"]
+    assert syllables("nl-NL", "misschien") == ["mis", "schien"]
     assert any("sch" in s for s in syllables("de-DE", "waschen"))
 
 
 def test_syllabification_is_lossless():
     """Every rebalancing move is a move, never an edit."""
-    for lang in ("nl", "fr-FR", "de-DE", "sv", "pt-PT", "ca", "ru"):
+    for lang in ("nl-NL", "fr-FR", "de-DE", "sv", "pt-PT", "ca", "ru"):
         spec = get(lang)
         for word in ("elektronisch", "constant", "abstract", "wandelen",
                      "instrument", "prompt"):
@@ -207,10 +207,10 @@ def test_aperture_follows_the_corrected_boundary():
     vowel-aperture and the French loi de position could not be written against
     it. Constrained, it sits in ``lek``: CLOSED, which is what it is."""
     from orthography2ipa.positional import _is_open_syllable
-    sylls = syllables("nl", "elektronisch")
+    sylls = syllables("nl-NL", "elektronisch")
     assert sylls[1] == "lek"
-    assert _is_open_syllable(sylls[1], spec=get("nl")) is False
-    assert _is_open_syllable("le", spec=get("nl")) is True
+    assert _is_open_syllable(sylls[1], spec=get("nl-NL")) is False
+    assert _is_open_syllable("le", spec=get("nl-NL")) is True
 
 
 def test_french_closed_syllables_the_loi_de_position_needs():
@@ -271,7 +271,7 @@ def test_sibilant_appendix_is_voiceless_only():
     split at the seam the appendix cannot cross."""
     assert syllables("de-DE", "Ausdruck") == ["Aus", "druck"]
     assert syllables("de-DE", "Hausbau") == ["Haus", "bau"]
-    assert syllables("nl", "bestaan") == ["be", "staan"]
+    assert syllables("nl-NL", "bestaan") == ["be", "staan"]
 
 
 def test_obstruent_plus_nasal_is_not_blanket_licit():
@@ -279,7 +279,7 @@ def test_obstruent_plus_nasal_is_not_blanket_licit():
     (Wiese, *The Phonology of German*, OUP 1996, ch. 2)."""
     assert syllables("de-DE", "Abmeldung") == ["Ab", "mel", "dung"]
     assert syllables("de-DE", "Aufnahme") == ["Auf", "nah", "me"]
-    assert syllables("nl", "ritme") == ["rit", "me"]
+    assert syllables("nl-NL", "ritme") == ["rit", "me"]
 
 
 def test_szcz_is_one_appendix():
@@ -400,12 +400,12 @@ def test_inheritance_is_transitive_and_overridable():
     assert (FIELD_INHERITANCE["constrain_onsets"]
             is InheritanceMode.BASE_SCALAR)
     assert get("bar-AT").constrain_onsets is True   # via de-AT
-    assert get("nl-NL").constrain_onsets is True           # stated: no base
+    assert get("nl-NL").constrain_onsets is True    # stated: no base
 
 
 def test_a_variant_syllabifies_exactly_like_its_base():
     """The parity the inheritance exists to guarantee."""
-    for variant, base in (("nl-BE", "nl"), ("nl-NL", "nl"),
+    for variant, base in (("nl-BE", "nl-NL"),
                           ("de-AT", "de-DE"), ("bar-AT", "de-DE")):
         for word in ("elektronisch", "Abmeldung", "wandelen", "misschien"):
             assert syllables(variant, word) == syllables(base, word), (
@@ -421,14 +421,14 @@ def test_a_glottal_never_heads_a_complex_onset():
     word-initial and never re-judged."""
     assert syllables("de-DE", "jährige") == ["jäh", "ri", "ge"]
     assert not judge("de-DE").licit("hr")
-    assert not judge("nl").licit("hl")
+    assert not judge("nl-NL").licit("hl")
 
 
 def test_no_homorganic_coronal_stop_plus_lateral():
     """*/tl dl/ is the systematic gap in the Germanic and Romance onset
     inventories. Without it every ⟨-land⟩ compound resyllabified."""
     assert syllables("de-DE", "Gotland") == ["Got", "land"]
-    for lang in ("de-DE", "nl", "fr-FR"):
+    for lang in ("de-DE", "nl-NL", "fr-FR"):
         assert not judge(lang).licit("tl"), lang
         assert not judge(lang).licit("dl"), lang
         # …while the non-coronal ⟨pl kl bl gl fl⟩ stay licit onsets
@@ -443,8 +443,8 @@ def test_german_cw_onsets():
 
 def test_the_appendix_sibilant_is_voiceless():
     """The extrasyllabic appendix is /s/, not /z/."""
-    assert judge("nl").licit("st")
-    assert not judge("nl").licit("zd")
+    assert judge("nl-NL").licit("st")
+    assert not judge("nl-NL").licit("zd")
     assert syllables("de-DE", "Ausdruck") == ["Aus", "druck"]
 
 
@@ -453,7 +453,7 @@ def test_a_geminate_never_joins_a_complex_onset():
     grapheme the spec declared — *Wa·sser* is unchanged — but it never joins
     a complex onset."""
     assert not judge("de-DE").licit("ssk")
-    assert not judge("nl").licit("ssch")
+    assert not judge("nl-NL").licit("ssch")
     assert syllables("de-DE", "Wasser") == ["Wa", "sser"]
 
 
