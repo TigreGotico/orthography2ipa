@@ -1566,6 +1566,51 @@ def _glide_anchored_index(
     return shifted
 
 
+def _glide_to_diphthong(
+    syllables: Sequence[str],
+    ipa_sylls: List[str],
+    stress_index: int,
+    rules: StressRules,
+) -> List[str]:
+    """*ipa_sylls* with the glide of a written diphthong moved back into the
+    syllable before the stress, under ``rules.tonic_after_diphthong``.
+
+    The IPA division puts the glide of a diphthong in the onset of a
+    following vowel, so Portuguese [bajukɐ] is divided ba-ju-kɐ and the mark
+    splits the diphthong: [baˈjukɐ]. The spelling says the stressed vowel is
+    a syllable of its own after the diphthong: baiuca is bai-u-ca (Acordo
+    Ortográfico 1990, Base X, 4.º), and the mark goes after the glide:
+    [bajˈukɐ].
+
+    The move is made only where the two divisions have the same number of
+    syllables, the stressed written syllable starts with one of the declared
+    vowel letters, the written syllable before it ends in one of the spec's
+    ``diphthongs``, and the stressed IPA syllable starts with an oral glide
+    before a vowel, after a syllable that ends in a vowel.
+    """
+    letters = rules.tonic_after_diphthong
+    if not letters or len(ipa_sylls) != len(syllables):
+        return ipa_sylls
+    i = stress_index if stress_index >= 0 else len(syllables) + stress_index
+    if not 1 <= i < len(syllables):
+        return ipa_sylls
+    stressed = unicodedata.normalize("NFC", syllables[i]).lower()
+    before = unicodedata.normalize("NFC", syllables[i - 1]).lower()
+    if not stressed or stressed[0] not in letters:
+        return ipa_sylls
+    if not any(len(d) > 1 and before.endswith(d.lower())
+               for d in rules.diphthongs):
+        return ipa_sylls
+    head, prev = ipa_sylls[i], ipa_sylls[i - 1]
+    if (len(head) < 2 or head[0] not in "jw" or not _is_vowel_char(head[1])
+            or not prev or not _is_vowel_char(prev[-1])):
+        return ipa_sylls
+    out = list(ipa_sylls)
+    out[i - 1] = prev + head[0]
+    out[i] = head[1:]
+    return out
+
+
 def apply_stress_mark(
     ipa: str,
     rules: StressRules,
@@ -1629,6 +1674,9 @@ def apply_stress_mark(
                  else syllabify_for_mark(ipa, rules))
     if not ipa_sylls:
         return ipa
+    if syllables is not None:
+        ipa_sylls = _glide_to_diphthong(syllables, ipa_sylls, stress_index,
+                                        rules)
     aligned = (_align_written_syllables(syllables, ipa_sylls, rules, spec)
                if syllables is not None and len(ipa_sylls) < len(syllables)
                and -len(syllables) <= stress_index < len(syllables)

@@ -558,6 +558,8 @@ def load_json_spec(code: str) -> LanguageSpec:
                 diphthongs=tuple(raw_final.get("diphthongs", ())),
                 finals=tuple(raw_final.get("finals", ())))
                 if raw_final else None),
+            tonic_after_diphthong=tuple(
+                raw_stress.get("tonic_after_diphthong", ())),
             vowel_letters=tuple(raw_stress.get("vowel_letters", ())),
             quantity_sensitive=bool(raw_stress.get("quantity_sensitive", False)),
             superheavy_final_attracts=bool(

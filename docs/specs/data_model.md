@@ -365,6 +365,16 @@ undeclared = dataclasses.replace(pt, stress=dataclasses.replace(pt.stress, final
 G2P("pt-PT", spec=undeclared).transcribe("distraiu")   # 'diʃtɾaˈju'
 ```
 
+`tonic_after_diphthong` keeps the glide of a diphthong in its own syllable before a stressed ⟨i u⟩. Portuguese writes no acute on such a vowel in a paroxytone (Acordo Ortográfico 1990, Base X, 4.º: baiuca, boiuno), and writes one on a final one (Base X, 5.º: Piauí, teiú). Either way the vowel is a syllable of its own after the diphthong, so *baiuca* is bai-u-ca and the mark follows the glide:
+
+```python
+pt.stress.tonic_after_diphthong          # ('i', 'u', 'í', 'ú')
+G2P("pt-PT").transcribe("baiuca")        # 'bajˈukɐ'
+G2P("pt-PT").transcribe("tuiuiú")        # 'tujujˈu'
+undeclared = dataclasses.replace(pt, stress=dataclasses.replace(pt.stress, tonic_after_diphthong=()))
+G2P("pt-PT", spec=undeclared).transcribe("baiuca")   # 'baˈjukɐ'
+```
+
 ## Lexicon overlay (sidecar `word_exceptions` at scale)
 
 A caller-registered lexicon extends `word_exceptions` to thousands of words, and [lexicon.md](../guide/lexicon.md) describes its contract.
