@@ -87,33 +87,33 @@ def test_hi_dental_vs_retroflex_contrast():
 
 
 # ═══════════════════════════════════════════════════════════════════════════
-# sa-x-vedic — Vedic Sanskrit (Macdonell 1910, *Vedic Grammar*)
+# vsn — Vedic Sanskrit (Macdonell 1910, *Vedic Grammar*)
 # ═══════════════════════════════════════════════════════════════════════════
 
 def test_sa_x_vedic_retains_the_retroflex_lateral():
     """'Includes retroflex lateral ⟨ळ⟩ /ɭ/ lost in Classical Sanskrit.'
-    (sa-x-vedic notes; Macdonell 1910)
+    (vsn notes; Macdonell 1910)
 
     Minimal pair against the Classical parent: the same spelling, the same
     engine, one letter's worth of difference.
     """
-    assert "ɭ" in G2P("sa-x-vedic").transcribe_word("देवळ")
+    assert "ɭ" in G2P("vsn").transcribe_word("देवळ")
     assert "ɭ" not in G2P("sa").transcribe_word("देवळ")
 
 
 @pytest.mark.xfail(strict=True, reason=(
-    "sa-x-vedic notes: 'Retains pitch accent system (udātta/anudātta/svarita)' "
+    "vsn notes: 'Retains pitch accent system (udātta/anudātta/svarita)' "
     "— the accent marks ॑ (U+0951) and ॒ (U+0952) are not graphemes; अ॒ग्नि॑ "
     "transcribes to [əɡn̪i], identical to the unaccented spelling"
 ))
 def test_sa_x_vedic_pitch_accent_is_realised():
     """'Retains pitch accent system (udātta/anudātta/svarita).'
-    (sa-x-vedic notes; Macdonell 1910, *Vedic Grammar*)
+    (vsn notes; Macdonell 1910, *Vedic Grammar*)
 
     An accented and an unaccented spelling of the same word must not
     transcribe alike if the accent is realised.
     """
-    g2p = G2P("sa-x-vedic")
+    g2p = G2P("vsn")
     assert g2p.transcribe_word("अ॒ग्नि॑") != g2p.transcribe_word("अग्नि")
 
 

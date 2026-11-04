@@ -386,7 +386,7 @@ def test_constrain_onsets_is_inherited_along_the_grapheme_base():
     Without this, ``de-AT`` read ``de-DE``'s graphemes while syllabifying them
     by a different rule — a language-feature parity gap, which is a bug."""
     for code in ("nl", "nl-NL", "nl-BE", "de-DE", "de-AT", "de-CH",
-                 "de-x-bavarian", "de-x-alemannic", "fr-FR"):
+                 "bar-AT", "de-x-alemannic", "fr-FR"):
         assert get(code).constrain_onsets is True, code
     # …and it does not leak to a language that never asked for it
     for code in ("el", "is", "sv", "ru", "pl", "pt-PT", "en", "ar"):
@@ -394,19 +394,19 @@ def test_constrain_onsets_is_inherited_along_the_grapheme_base():
 
 
 def test_inheritance_is_transitive_and_overridable():
-    """``de-x-bavarian`` resolves through ``de-AT`` to ``de-DE``; a spec that
+    """``bar-AT`` resolves through ``de-AT`` to ``de-DE``; a spec that
     states the field either way wins over what it would inherit."""
     from orthography2ipa.types import FIELD_INHERITANCE, InheritanceMode
     assert (FIELD_INHERITANCE["constrain_onsets"]
             is InheritanceMode.BASE_SCALAR)
-    assert get("de-x-bavarian").constrain_onsets is True   # via de-AT
+    assert get("bar-AT").constrain_onsets is True   # via de-AT
     assert get("nl-NL").constrain_onsets is True           # stated: no base
 
 
 def test_a_variant_syllabifies_exactly_like_its_base():
     """The parity the inheritance exists to guarantee."""
     for variant, base in (("nl-BE", "nl"), ("nl-NL", "nl"),
-                          ("de-AT", "de-DE"), ("de-x-bavarian", "de-DE")):
+                          ("de-AT", "de-DE"), ("bar-AT", "de-DE")):
         for word in ("elektronisch", "Abmeldung", "wandelen", "misschien"):
             assert syllables(variant, word) == syllables(base, word), (
                 variant, word)

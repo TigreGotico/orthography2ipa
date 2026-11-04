@@ -800,45 +800,45 @@ def test_ada_ny_is_a_palatal_nasal():
 
 
 # ---------------------------------------------------------------------------
-# gen — Gen/Mina (Wikipedia "Gen language"; Omniglot)
+# gej-TG — Gen/Mina (Wikipedia "Gen language"; Omniglot)
 # ---------------------------------------------------------------------------
 
 def test_gen_gb_is_a_labial_velar_stop():
     """Gbe orthographic convention shared with Ewe/Fon: ⟨gb⟩ = /ɡ͡b/.
     gbe 'language' opens with the single doubly-articulated stop, matching
     the Gbe-family name itself (Ewegbe, Genɛgbe, Fongbe)."""
-    assert G2P("gen").transcribe_word("gbe") == "ɡ͡be"
+    assert G2P("gej-TG").transcribe_word("gbe") == "ɡ͡be"
 
 
 def test_gen_ny_is_a_palatal_nasal():
     """Africa-Alphabet convention shared with `ee`: ⟨ny⟩ = /ɲ/."""
-    assert G2P("gen").transcribe_word("nya") == "ɲa"
+    assert G2P("gej-TG").transcribe_word("nya") == "ɲa"
 
 
 def test_gen_ƒ_is_a_bilabial_fricative_distinct_from_f():
     """Gen keeps the Ewe/Gbe contrast between ⟨ƒ⟩ /ɸ/ (bilabial) and ⟨f⟩ /f/
     (labiodental), inherited from the shared Africa-Alphabet orthography."""
-    assert G2P("gen").transcribe_word("ƒe") == "ɸe"
+    assert G2P("gej-TG").transcribe_word("ƒe") == "ɸe"
 
 
 # ---------------------------------------------------------------------------
-# aja — Aja/Adja (Wikipedia "Aja language (Benin)")
+# ajg-BJ — Aja/Adja (Wikipedia "Aja language (Benin)")
 # ---------------------------------------------------------------------------
 
 def test_aja_gb_is_a_labial_velar_stop():
     """Gbe orthographic convention shared with Ewe/Gen/Fon: ⟨gb⟩ = /ɡ͡b/."""
-    assert G2P("aja").transcribe_word("gbe") == "ɡ͡be"
+    assert G2P("ajg-BJ").transcribe_word("gbe") == "ɡ͡be"
 
 
 def test_aja_ɖ_is_a_retroflex_implosive_stop():
     """Africa-Alphabet convention shared with `ee`: ⟨ɖ⟩ is its own letter,
     distinct from plain ⟨d⟩."""
-    assert G2P("aja").transcribe_word("ɖo") == "ɖo"
+    assert G2P("ajg-BJ").transcribe_word("ɖo") == "ɖo"
 
 
 def test_aja_ny_is_a_palatal_nasal():
-    """Africa-Alphabet convention shared with `ee`/`gen`: ⟨ny⟩ = /ɲ/."""
-    assert G2P("aja").transcribe_word("nya") == "ɲa"
+    """Africa-Alphabet convention shared with `ee`/`gej-TG`: ⟨ny⟩ = /ɲ/."""
+    assert G2P("ajg-BJ").transcribe_word("nya") == "ɲa"
 
 
 # ---------------------------------------------------------------------------

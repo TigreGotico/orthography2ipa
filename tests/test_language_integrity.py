@@ -52,7 +52,7 @@ def _all_codes(exclude_proto=False):
             "ine", "ine-x-italic",
             "cel", "cel-x-gallaecia", "xce", "xaq", "txr", "xlg", "xib",
             "gem", "got", "xpa", "gem-x-suebi", "xcg", "xtg",
-            "pa-PK",
+            "pnb-PK",
             "sem", "sem-x-central", "sem-x-west",
             "la", "la-x-archaic", "la-x-late", "la-x-hispania", "la-x-gallia", "mxi",
             "oc"

@@ -275,7 +275,7 @@ sjd | Uralic > Saami | 52 | 49 | 5 | 0.4% | yes | 0 | sia 0.75 | 2 | 1765 | 0.25
 sl | Indo-European > Balto-Slavic > Slavic > South Slavic | 32 | 30 | 5 | 0.1% | no | 0 | hr 0.875 | 2 | 11742 | 0.3555
 slr | Turkic | 32 | 35 | 5 | 31.6% | yes | 0 | klj 0.909 | 1 | 752 | 0.285
 sw | Atlantic-Congo > Bantu | 35 | 28 | 5 | 0.5% | yes | 0 | rw 0.771 | 3 | 96949 | 0.3494
-ur | Indo-European > Indo-Iranian > Indo-Aryan | 62 | 47 | 5 | 0.4% | no | 0 | pa-PK 0.629 | 1 | 6296 | 0.3077
+ur | Indo-European > Indo-Iranian > Indo-Aryan | 62 | 47 | 5 | 0.4% | no | 0 | pnb-PK 0.629 | 1 | 6296 | 0.3077
 uz | Turkic | 30 | 30 | 5 | 0.2% | yes | 0 | wes 0.833 | 2 | 78228 | 0.2458
 aa | Afro-Asiatic > Cushitic | 31 | 26 | 4 | 0.3% | no | 0 | hay 0.774 | 1 | 1713 | 0.2151
 acm | Afro-Asiatic > Semitic > Central Semitic | 44 | 34 | 4 | 26.9% | no | 0 | ayl 1.0 | 1 | 97 | 0.4249
@@ -421,7 +421,7 @@ co | Indo-European > Italic > Romance > Italo-Romance | 48 | 28 | 1 | 0.2% | no 
 dsb | Indo-European > Balto-Slavic > Slavic > West Slavic | 37 | 35 | 1 | 0.0% | yes | 0 | hsb 0.919 | 1 | 2010 | 0.1487
 dum | Indo-European > Germanic > Northwest Germanic > West Germanic | 37 | 24 | 1 | 0.4% | yes | 0 | gml 0.622 | 1 | 197 | 0.2776
 eo | Constructed | 28 | 29 | 1 | 0.0% | yes | 0 | ist 0.75 | 2 | 64490 | 0.0328
-fro | Indo-European > Italic > Romance | 39 | 29 | 1 | 0.1% | no | 0 | cbk-zam 0.59 | 1 | 663 | 0.2738
+fro | Indo-European > Italic > Romance | 39 | 29 | 1 | 0.1% | no | 0 | cbk-PH 0.59 | 1 | 663 | 0.2738
 gd | Indo-European > Celtic > Goidelic | 40 | 26 | 1 | 0.3% | yes | 0 | ga 0.356 | 1 | 3719 | 0.3202
 gv | Indo-European > Celtic > Goidelic | 40 | 26 | 1 | 2.2% | no | 0 | aot 0.6 | 1 | 690 | 0.3631
 huu | Huitotoan | 30 | 25 | 1 | 0.2% | no | 0 | ctd 0.613 | 1 | 437 | 0.035
@@ -489,16 +489,16 @@ cv | Turkic | 37 | 27 | 0 |  | yes | 0 | alt 0.703 | 1 | 6779 | 0.1264
 dng | Sino-Tibetan > Sinitic | 56 | 36 | 0 |  | no | 0 | bua 0.286 | 1 | 269 | 0.4087
 dv | Indo-European > Indo-Iranian > Indo-Aryan | 51 | 50 | 0 |  | no | 0 |  | 2 | 18309 | 0.0891
 dz | Sino-Tibetan | 132 | 53 | 0 |  | no | 0 |  | 1 | 230 | 0.3392
-ee | Atlantic-Congo | 126 | 36 | 0 |  | no | 0 | gen 0.262 | 1 | 247 | 0.4445
+ee | Atlantic-Congo | 126 | 36 | 0 |  | no | 0 | gej-TG 0.262 | 1 | 247 | 0.4445
 egy | Afro-Asiatic > Egyptian | 25 | 25 | 0 |  | no | 0 | khq 0.538 | 1 | 2185 | 0.0183
 es-AR | Indo-European > Italic > Romance > Ibero-Romance | 4 | 22 | 0 |  | yes | 0 |  | 1 | 29 | 0.0138
 es-MX | Indo-European > Italic > Romance > Ibero-Romance | 3 | 29 | 0 |  | yes | 0 |  | 1 | 595885 | 0.0397
 ett | Tyrsenian | 26 | 26 | 0 |  | no | 0 |  | 1 | 207 | 0.1444
 gmh | Indo-European > Germanic > Northwest Germanic | 42 | 29 | 0 |  | yes | 0 | enm 0.523 | 1 | 1516 | 0.2938
 gml | Indo-European > Germanic > Northwest Germanic > West Germanic | 31 | 22 | 0 |  | yes | 0 | rhg 0.719 | 1 | 143 | 0.4547
-gn | Tupian | 39 | 36 | 0 |  | yes | 0 | tpw 0.59 | 2 | 4611 | 0.1675
+gn | Tupian | 39 | 36 | 0 |  | yes | 0 | tpn 0.59 | 2 | 4611 | 0.1675
 got | Indo-European > Germanic > East Germanic | 32 | 24 | 0 |  | no | 0 |  | 1 | 1816 | 0.0667
-gwc | Indo-European > Indo-Iranian > Indo-Aryan | 68 | 34 | 0 |  | no | 0 | pa-PK 0.544 | 1 | 165 | 0.417
+gwc | Indo-European > Indo-Iranian > Indo-Aryan | 68 | 34 | 0 |  | no | 0 | pnb-PK 0.544 | 1 | 165 | 0.417
 hrx | Indo-European > Germanic > Northwest Germanic | 75 | 29 | 0 |  | yes | 0 | nds 0.453 | 1 | 2002 | 0.0821
 hts | Hadza | 64 | 30 | 0 |  | no | 0 | lus 0.375 | 1 | 329 | 0.0224
 ia | Constructed | 30 | 25 | 0 |  | no | 0 | io 0.833 | 1 | 443 | 0.0646
@@ -571,7 +571,7 @@ tew | Kiowa-Tanoan | 115 | 31 | 0 |  | no | 0 | ee 0.175 | 1 | 106 | 0.0
 tft | North Halmahera | 23 | 22 | 0 |  | no | 0 | mqs 1.0 | 1 | 293 | 0.1041
 th | Tai-Kadai | 165 | 70 | 0 |  | no | 0 |  | 2 | 40641 | 0.4581
 tkl | Austronesian > Malayo-Polynesian | 20 | 20 | 0 |  | no | 0 | to 0.864 | 1 | 340 | 0.0497
-tpw | Tupian | 38 | 33 | 0 |  | yes | 0 | gn 0.59 | 1 | 372 | 0.0951
+tpn | Tupian | 38 | 33 | 0 |  | yes | 0 | gn 0.59 | 1 | 372 | 0.0951
 tt | Turkic | 39 | 36 | 0 |  | yes | 0 | kk 0.875 | 1 | 22220 | 0.3708
 twf | Kiowa-Tanoan | 118 | 48 | 0 |  | no | 0 | kwk 0.169 | 1 | 135 | 0.024
 uby | Abkhaz-Adyge | 90 | 45 | 0 |  | no | 0 | ab 0.378 | 1 | 1317 | 0.0247

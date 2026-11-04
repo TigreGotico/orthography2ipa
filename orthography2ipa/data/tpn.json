@@ -1,5 +1,5 @@
 {
- "code": "tpw",
+ "code": "tpn",
  "name": "Old Tupi (Tupinambá)",
  "parent": "x-clade-tupi1275",
  "script": "Latin",
@@ -231,7 +231,7 @@
  "notes": "Old Tupi (Tupinambá), the língua geral of colonial Brazil, written in the normalised orthography of modern editions. Six oral vowels /a ɛ i ɔ u ɨ/ and their nasal counterparts; stops /p t k ʔ/, fricatives /β s ʃ h/, nasals /m n ŋ ɲ/, tap /ɾ/, the velar fricative /ɣ/ and the semivowels /j w ɨ̯/. ⟨b⟩ is the bilabial fricative [β], ⟨x⟩ is [ʃ], ⟨g⟩ is the velar fricative [ɣ], ⟨h⟩ is [h], ⟨ng⟩ is [ŋ], ⟨nh⟩ is [ɲ], ⟨gû⟩ is [ɡw] and ⟨'⟩ is the glottal stop. ⟨mb⟩ and ⟨nd⟩ are /m/ and /n/ before an oral vowel, realised as the prenasalised stops [ᵐb ⁿd]. Bare ⟨d⟩ is not a letter of this orthography — ⁿd is only ever spelled ⟨nd⟩ — but bare ⟨g⟩ and ⟨h⟩ are, distinct from the digraphs ⟨gû⟩ and ⟨ng⟩. The language is also the indigenous substrate node that Brazilian Portuguese resolves to for toponyms and loans (abacaxi, mandioca, capim, jacaré).",
  "quality": "research",
  "script_type": "alphabet",
- "iso639_3": "tpw",
+ "iso639_3": "tpn",
  "glottolog_code": "tupi1273",
  "wikipedia": [
   "https://en.wikipedia.org/wiki/Old_Tupi_language"

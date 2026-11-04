@@ -349,7 +349,7 @@ The ISO 639-3 code does not always name the variety that the spec models. The sp
 | `aoa` | Angolar (Ngola) | the community spelling of the Gulf of Guinea, with circumflex nasality and no written tone |
 | `cri` | Sãotomense (Forro, Santome) | ALUSTP, a seven-vowel system where bare ⟨e o⟩ are [ɛ ɔ] |
 | `pap` | Papiamento (Curaçao) | the phonemic spelling of Curaçao: ⟨k⟩ for ⟨c⟩, grave ⟨ò⟩ |
-| `cbk-zam` | Chavacano (Zamboangueño) | the practical spelling of Zamboanga |
+| `cbk-PH` | Chavacano (Zamboangueño) | the practical spelling of Zamboanga |
 | `pln` | Palenquero (San Basilio de Palenque) | a practical spelling based on Spanish, with prenasal ⟨nd ng⟩ and postposed `nu` |
 
 ### Tags
@@ -385,13 +385,13 @@ The shape tags are `statement`, `question`, `negation`, `imperative` and `number
 
 ### Axes that do not apply
 
-The Spanish- and Portuguese-lexified creoles do not share the axes of Iberian Romance. Those axes are distinción, seseo and ceceo, yeísmo, Romance ⟨ie ue⟩ diphthongs, gheada, and coda /s/ aspiration as a variable that separates lects. They do not apply to these languages and the set does not model them. The `pap`, `cbk-zam` and `pln` rows carry only the creole tags that their IPA shows. Coda /s/ to [ʃ] in `pap` is `postalveolar` and `coda_sibilant`, and the prenasal ⟨nd ng⟩ of Palenquero is `prenasal_stop`.
+The Spanish- and Portuguese-lexified creoles do not share the axes of Iberian Romance. Those axes are distinción, seseo and ceceo, yeísmo, Romance ⟨ie ue⟩ diphthongs, gheada, and coda /s/ aspiration as a variable that separates lects. They do not apply to these languages and the set does not model them. The `pap`, `cbk-PH` and `pln` rows carry only the creole tags that their IPA shows. Coda /s/ to [ʃ] in `pap` is `postalveolar` and `coda_sibilant`, and the prenasal ⟨nd ng⟩ of Palenquero is `prenasal_stop`.
 
 ## `spain_romance_tts`
 
 The Spain-Romance set covers the Romance lects of Spain and the peripheral Romance of the Iberian west. It also covers Latin American and Equatoguinean Spanish, and Basque. Basque is not Romance, but it is an Iberian language, and its rows use their own `eu_` tags.
 
-Each lect uses its own orthography. Galician uses the RAG standard or the reintegrationist spelling, Asturian uses ALLA, and Aragonese uses its Academia. Catalan and Valencian use IEC or AVL, and Aranese uses its attested convention. The medieval stages use period spelling, and Ladino uses its Latin convention. The Spanish-lexified creoles `pap`, `cbk-zam` and `pln` are not Iberian Romance. They are in the [`iberian_creole_tts`](#iberian_creole_tts) set.
+Each lect uses its own orthography. Galician uses the RAG standard or the reintegrationist spelling, Asturian uses ALLA, and Aragonese uses its Academia. Catalan and Valencian use IEC or AVL, and Aranese uses its attested convention. The medieval stages use period spelling, and Ladino uses its Latin convention. The Spanish-lexified creoles `pap`, `cbk-PH` and `pln` are not Iberian Romance. They are in the [`iberian_creole_tts`](#iberian_creole_tts) set.
 
 ### Tags
 
