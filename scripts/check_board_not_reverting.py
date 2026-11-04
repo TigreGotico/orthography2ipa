@@ -244,17 +244,10 @@ def check_ratchets(base, merged, repo="."):
     A set that grew is a resolution that took the branch's older, longer copy:
     every restored entry silences a test again, so the suite cannot notice.
     A base entry that names a file the merge renames is compared under its
-    new path, so moving a listed page does not read as growth. A base entry
-    that names a spec code follows the spec file the same way, so re-keying
-    a listed spec does not read as growth either.
+    new path, so moving a listed page does not read as growth.
     """
     failed = False
     renames = renamed_paths(base, merged, repo=repo)
-    spec = re.compile(rf"{re.escape(SPEC_DIR)}/([^/]+)\.json")
-    for old, new in list(renames.items()):
-        old_spec, new_spec = spec.fullmatch(old), spec.fullmatch(new)
-        if old_spec and new_spec:
-            renames[old_spec.group(1)] = new_spec.group(1)
     for path, name in RATCHETS:
         base_set = read_ratchet(base, path, name, repo=repo)
         merged_set = read_ratchet(merged, path, name, repo=repo)
