@@ -262,7 +262,7 @@ _PUNCT_MARKS = "|‖,.;:!?¡¿\"«»—–-"
 #: registered spec's phoneme inventory contains "*" — verified across all
 #: 7658 data/*.json inventories, and across every phoneme-valued field
 #: (grapheme outputs, allophone surfaces, word exceptions) as well. The one
-#: "*" that does appear as a spec KEY is ar-Latn-buckwalter's grapheme for
+#: "*" that does appear as a spec KEY is ar-Latn-x-buckwalt's grapheme for
 #: ⟨ذ⟩ ð, which is INPUT orthography and never passes through this function.
 #:
 #: What the mark annotates varies, and the fold flattens that difference —
@@ -478,8 +478,8 @@ _WIKIPRON_FILES = {
     "az":        "aze_latn_broad.tsv",              # Azerbaijani, ~513 rows
     # ISO 639-3 gsw. The words are Alemannic DIALECT (Chatz, Angscht, Bueb,
     # Chilbi) in Dieth-style spelling, not Schweizerhochdeutsch, so the row
-    # belongs to the spec that declares iso639_3 "gsw" — de-x-alemannic.
-    "de-x-alemannic": "gsw_latn_broad.tsv",        # Alemannic German, ~511 rows
+    # belongs to the spec that declares iso639_3 "gsw" — de-x-alemanni.
+    "de-x-alemanni": "gsw_latn_broad.tsv",        # Alemannic German, ~511 rows
     "pdc":       "pdc_latn_broad.tsv",              # Pennsylvania German, ~510 rows
     "lt":        "lit_latn_broad.tsv",              # Lithuanian, ~507 rows
     "co":        "cos_latn_broad.tsv",              # Corsican, ~492 rows
@@ -815,7 +815,7 @@ _4CATAC_BASE = (
 # 4catac file name  →  orthography2ipa language tag
 # Balear     → ca-x-balear    (Balearic)
 # Central    → ca             (Central/standard Catalan)
-# Nord-Occ   → ca-x-occidental (Northwestern/Lleidatà; 4catac's "North-Western"
+# Nord-Occ   → ca-x-occident (Northwestern/Lleidatà; 4catac's "North-Western"
 #                                accent — NOT ca-x-nord, which is Northern
 #                                Catalan/Rossellonès, a distinct dialect spoken
 #                                in France and not covered by this dataset)
@@ -823,7 +823,7 @@ _4CATAC_BASE = (
 _4CATAC_FILES: Dict[str, str] = {
     "ca": "Projecte BSC frases - Central.tsv",
     "ca-x-balear": "Projecte BSC frases - Balear.tsv",
-    "ca-x-occidental": "Projecte BSC frases - Nord-Occ.tsv",
+    "ca-x-occident": "Projecte BSC frases - Nord-Occ.tsv",
     "ca-x-valencia": "Projecte BSC frases - Val.tsv",
 }
 _HITZ_BASQUE_ROWS_URL = (
@@ -854,10 +854,10 @@ _CLUP_DISTRICT_MAP: Dict[str, str] = {
     "Aveiro": "pt-PT-x-aveiro",
     "Lisboa": "pt-PT-x-lisbon",
     "Faro": "pt-PT-x-algarve",
-    "Bragança": "pt-PT-x-trasosmontes",
+    "Bragança": "pt-PT-x-tras-os-montes",
     "Viseu": "pt-PT-x-beira",
     "Coimbra": "pt-PT-x-beira",
-    "Vila Real": "pt-PT-x-trasosmontes",
+    "Vila Real": "pt-PT-x-tras-os-montes",
     "Funchal": "pt-PT-x-madeira",
     "Portalegre": "pt-PT-x-alentejo",
     "Ribeira Brava": "pt-PT-x-madeira",
@@ -1872,7 +1872,7 @@ def load_mirandese(lang: str, limit: int) -> List[Tuple[str, str]]:
 def load_barranquenho_dict(lang: str, limit: int) -> List[Tuple[str, str]]:
     """Barranquenho IPA dictionary (TigreGotico/barranquenho-ipa-dict-synthetic
     on Hugging Face) — 319 entries for the Barranquenho contact variety
-    (``ext-PT-x-barrancos``), a Portuguese–Spanish border speech of Barrancos.
+    (``ext-PT-x-barranco``), a Portuguese–Spanish border speech of Barrancos.
 
     PROVENANCE — the upstream dataset regrew to ~1.8k rows with a per-row
     ``provenance_tier`` column. Rows tagged ``engine-verified-convention``
@@ -2795,7 +2795,7 @@ _GOLD20_ARABIC_FILES = {
     "apc-SY": "ar-SY", "shu-TD": "ar-TD", "aeb-TN": "ar-TN", "ayn-YE": "ar-YE",
     "afb": "ar-x-gulf", "apc": "ar-x-levantine",
     "ar-x-maghrebi": "ar-x-maghrebi", "ar-x-mashriqi": "ar-x-mashriqi",
-    "ar-x-peninsular": "ar-x-peninsular",
+    "ar-x-peninsul": "ar-x-peninsular",
 }
 _GOLD20_ARABIC_LANGS = sorted(_GOLD20_ARABIC_FILES)
 
@@ -3334,7 +3334,7 @@ DATASETS: Dict[str, Tuple[DatasetLoader, List[str]]] = {
     "mirandese_g2p": (load_mirandese, sorted(_MIRANDESE_DIALECTS)),
     "barranquenho_dict": (functools.partial(load_llm_corrected,
                                             "barranquenho_dict"),
-                          ["ext-PT-x-barrancos"]),
+                          ["ext-PT-x-barranco"]),
     "mirandese_dict": (functools.partial(load_llm_corrected, "mirandese_dict"),
                        sorted(_MIRANDESE_DICT_DIALECTS)),
     "portuguese_unified": (load_portuguese_unified, sorted(_PT_UNIFIED_REGIONS)),

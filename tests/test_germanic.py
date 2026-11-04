@@ -4,8 +4,8 @@ Covers:
 - German: Standard (de-DE), Austrian (de-AT), Bavarian (bar-AT)
 - Dutch: Standard (nl-NL), Belgian (nl-BE)
 - Afrikaans: af
-- Swedish: sv, Stockholm (sv-x-rikssvenska), Scanian (sv-x-skanska)
-- Danish: da, Copenhagen (da-x-copenhagen)
+- Swedish: sv, Stockholm (sv-x-rikssven), Scanian (sv-x-skanska)
+- Danish: da, Copenhagen (da-x-copenhag)
 - Norwegian Bokmål: nb
 - Icelandic: is
 - Faroese: fo
@@ -1999,7 +1999,7 @@ class TestOldFrisian:
     # --- Ancestry ---
 
     def test_ancestry_ingvaeonic(self):
-        assert "gem-x-ingvaeonic" in _ancestor_codes(self._spec), \
+        assert "gem-x-ingvaeon" in _ancestor_codes(self._spec), \
             "ofs should descend from Proto-Ingvaeonic"
 
 

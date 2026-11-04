@@ -2,7 +2,7 @@
 
 **Code**: `lij` | **Family**: Indo-European > Romance > Gallo-Italic | **Script**: Latin (alphabet) | **Quality tier**: research | **Reference variety**: Genoese (*Zeneise*)
 
-Ligurian is a Gallo-Italic language of Liguria and was the historical lingua franca of Mediterranean maritime trade. The `lij` spec models Genoese. It inherits its grapheme and allophone base from the Gallo-Italic Vulgar Latin spec `la-x-galloitalic` and overrides it with the Genoese values.
+Ligurian is a Gallo-Italic language of Liguria and was the historical lingua franca of Mediterranean maritime trade. The `lij` spec models Genoese. It inherits its grapheme and allophone base from the Gallo-Italic Vulgar Latin spec `la-x-gallo-italic` and overrides it with the Genoese values.
 
 ## Input contract
 

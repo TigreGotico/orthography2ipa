@@ -57,7 +57,7 @@ def test_bare_tag_resolves_to_reference_variety(bare, variety):
 @pytest.mark.parametrize("tag,spec", [
     ("arb-x-zzz", "ar"),
     ("cbk-zam-x-zzz", "cbk-PH"),
-    ("ext-PT-x-zzz", "ext-PT-x-barrancos"),
+    ("ext-PT-x-zzz", "ext-PT-x-barranco"),
 ])
 def test_unknown_variant_falls_back_to_the_standard_variety(tag, spec):
     with pytest.warns(UnknownVariantWarning):
@@ -65,7 +65,7 @@ def test_unknown_variant_falls_back_to_the_standard_variety(tag, spec):
 
 
 def test_unknown_variant_between_tied_sibling_lects_takes_the_first():
-    tied = ["ast-PT-x-guadramil", "ast-PT-x-medieval", "ast-PT-x-rionor"]
+    tied = ["ast-PT-x-guadrami", "ast-PT-x-medieval", "ast-PT-x-rionor"]
     assert all(lang_distance("ast-PT-x-zzz", lect) == 0 for lect in tied)
     with pytest.warns(UnknownVariantWarning):
         assert resolve("ast-PT-x-zzz") == tied[0]

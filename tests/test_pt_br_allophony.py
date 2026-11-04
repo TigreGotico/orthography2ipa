@@ -223,7 +223,7 @@ def test_br_affricating_dialects_affricate_before_raised_plural():
 # BP has a single plain alveolar sibilant pair /s z/ (Barbosa & Albano 2004:
 # 228, consonant chart: saca [ˈsakɐ] / zaca [ˈzakɐ], Alveolar column). The
 # apico-alveolar [s̺ z̺] belongs to the Galician-Portuguese four-sibilant
-# system that ``roa-x-galaicopt`` and ``pt-PT-x-medieval`` model, and to the
+# system that ``roa-x-galaico-pt`` and ``pt-PT-x-medieval`` model, and to the
 # northern EP dialects that retain it (``pt-PT-x-minho`` and siblings). It
 # must not reach a modern spec through inheritance.
 
@@ -244,7 +244,7 @@ def test_no_apicoalveolar_sibilant(word):
 @pytest.mark.parametrize("lang,word", [
     ("pt-PT-x-medieval", "cidade"),   # the ancestor the value belongs to
     ("pt-PT-x-minho", "cidade"),      # declares positional ⟨c⟩ → [s̺]
-    ("pt-PT-x-trasosmontes", "isso"), # declares ⟨ss⟩ → [s̺]
+    ("pt-PT-x-tras-os-montes", "isso"), # declares ⟨ss⟩ → [s̺]
 ])
 def test_northern_ep_keeps_apicoalveolar(lang, word):
     # The northern EP dialects declare the apico-alveolar deliberately

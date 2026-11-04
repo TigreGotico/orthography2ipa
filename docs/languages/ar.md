@@ -5,7 +5,7 @@
 
 The `ar` spec transcribes Modern Standard Arabic (MSA). It takes its grapheme and allophone tables from Classical Arabic (`arb`) through `graphemes_base` and `allophones_base`, and it overrides a small set of entries at the leaf. The main override is ض: MSA reads it as the emphatic stop [dˤ], while `arb` keeps the Classical lateral fricative [ɮˤ] (Watson 2002).
 
-`ar` is also the grapheme base of every spoken Arabic spec. The three regional nodes `ar-x-mashriqi`, `ar-x-peninsular` and `ar-x-maghrebi` set `graphemes_base` to `ar`, so a change to a bare-letter reading here moves every dialect. The dialect specs have their own page: [Arabic dialects](ar-dialects.md).
+`ar` is also the grapheme base of every spoken Arabic spec. The three regional nodes `ar-x-mashriqi`, `ar-x-peninsul` and `ar-x-maghrebi` set `graphemes_base` to `ar`, so a change to a bare-letter reading here moves every dialect. The dialect specs have their own page: [Arabic dialects](ar-dialects.md).
 
 ## Input contract: fully diacritized text
 

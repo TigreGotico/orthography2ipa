@@ -98,9 +98,9 @@ After a coda consonant, /r/ is the strong rhotic, not the tap (Cristófaro Silva
 
 ## Sibilants, digraphs and ⟨w⟩
 
-Brazilian Portuguese has one sibilant pair, the plain alveolar /s z/ (Barbosa & Albano 2004: 228, consonant chart, alveolar column: `saca` [ˈsakɐ] against `zaca` [ˈzakɐ]). The apico-alveolar [s̺ z̺] belongs to a different system. Galician-Portuguese has it, and `roa-x-galaicopt` and `pt-PT-x-medieval` model it with four sibilants. Some northern European dialects keep it, and each of their specs declares it for itself (see [pt-PT-dialects.md](pt-PT-dialects.md#northern-sibilant-systems)).
+Brazilian Portuguese has one sibilant pair, the plain alveolar /s z/ (Barbosa & Albano 2004: 228, consonant chart, alveolar column: `saca` [ˈsakɐ] against `zaca` [ˈzakɐ]). The apico-alveolar [s̺ z̺] belongs to a different system. Galician-Portuguese has it, and `roa-x-galaico-pt` and `pt-PT-x-medieval` model it with four sibilants. Some northern European dialects keep it, and each of their specs declares it for itself (see [pt-PT-dialects.md](pt-PT-dialects.md#northern-sibilant-systems)).
 
-The base `pt-PT-x-medieval` maps ⟨ce ci⟩ to [s̺], and `roa-x-galaicopt` maps ⟨ss⟩ to [s̺]. So `pt-BR` declares the ⟨ss⟩ digraph and a positional ⟨c⟩ before ⟨e i⟩ with the plain [s]: `isso` [ˈisu], `cidade` [siˈdad͡ʒi].
+The base `pt-PT-x-medieval` maps ⟨ce ci⟩ to [s̺], and `roa-x-galaico-pt` maps ⟨ss⟩ to [s̺]. So `pt-BR` declares the ⟨ss⟩ digraph and a positional ⟨c⟩ before ⟨e i⟩ with the plain [s]: `isso` [ˈisu], `cidade` [siˈdad͡ʒi].
 
 ⟨ss⟩ and ⟨rr⟩ are digraphs, not geminates. Portuguese has no contrastive consonant length. The digraph ⟨ss⟩ spells /s/ between vowels, where a single ⟨s⟩ is /z/. The digraph ⟨rr⟩ spells the strong rhotic, which contrasts with the tap (`carro` [ˈkaʁu] against `caro` [ˈkaɾu], Barbosa & Albano 2004: 228). Neither gives a doubled segment, so `collapse_geminates` stays unset.
 

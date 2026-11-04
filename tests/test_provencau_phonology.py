@@ -1,4 +1,4 @@
-"""Provençal (oc-x-provencau) — the letters that diverge from Lengadocian,
+"""Provençal (oc-provenc) — the letters that diverge from Lengadocian,
 and the letters that must NOT.
 
 The spec is a child of ``oc`` and writes only the values the Lo Congrès
@@ -24,7 +24,7 @@ import pytest
 from orthography2ipa import get, transcribe
 
 
-PROV = "oc-x-provencau"
+PROV = "oc-provenc"
 LENG = "oc"
 
 

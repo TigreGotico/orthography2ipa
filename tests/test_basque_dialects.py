@@ -30,13 +30,13 @@ from orthography2ipa.g2p import G2P
 from orthography2ipa.distance import ancestry_similarity, phonological_distance
 
 DIALECTS = [
-    "eu-x-bizkaiera",
-    "eu-x-gipuzkera",
+    "eu-biscayan",
+    "eu-x-gipuzkoa",
     "eu-x-nafarra-garaia",
     "eu-x-nafarra-beherea",
-    "eu-x-lapurtera",
+    "eu-x-lapurdi",
     "eu-x-zuberera",
-    "eu-x-erronkariera",
+    "eu-x-roncal",
 ]
 
 
@@ -99,7 +99,7 @@ class TestBaseInventory:
 # Biscayan — Western mergers (Bedialauneta & Hualde 2023: 1098)
 # ───────────────────────────────────────────────────────────────────────
 class TestBiscayan:
-    CODE = "eu-x-bizkaiera"
+    CODE = "eu-biscayan"
 
     def test_sibilant_merger_to_apical(self):
         g = _spec(self.CODE).graphemes
@@ -129,7 +129,7 @@ class TestBiscayan:
 # Gipuzkoan — Central; base sibilants retained, no /h/
 # ───────────────────────────────────────────────────────────────────────
 class TestGipuzkoan:
-    CODE = "eu-x-gipuzkera"
+    CODE = "eu-x-gipuzkoa"
 
     def test_base_sibilants_retained(self):
         g = _spec(self.CODE).graphemes
@@ -185,7 +185,7 @@ class TestLowerNavarrese:
 # Lapurdian — aspiration receding (Hualde 2018)
 # ───────────────────────────────────────────────────────────────────────
 class TestLapurdian:
-    CODE = "eu-x-lapurtera"
+    CODE = "eu-x-lapurdi"
 
     def test_h_variable(self):
         assert _spec(self.CODE).allophones.get("h") == ["h", ""]
@@ -220,7 +220,7 @@ class TestSouletin:
 # Roncalese (new) — Eastern Navarrese, extinct
 # ───────────────────────────────────────────────────────────────────────
 class TestRoncalese:
-    CODE = "eu-x-erronkariera"
+    CODE = "eu-x-roncal"
 
     def test_registered_with_parent_eu(self):
         assert _spec(self.CODE).parent == "eu"
@@ -254,13 +254,13 @@ class TestDistance:
         assert ancestry_similarity(_spec("eu"), _spec(code)) == pytest.approx(0.9)
 
     def test_siblings_share_grandparent(self):
-        sim = ancestry_similarity(_spec("eu-x-bizkaiera"), _spec("eu-x-zuberera"))
+        sim = ancestry_similarity(_spec("eu-biscayan"), _spec("eu-x-zuberera"))
         assert sim == pytest.approx(0.81)
 
     def test_phonological_distance_nonzero_for_diverging_dialects(self):
         # Both diverge from the base; Biscayan via grapheme mergers, Souletin
         # via the added /y/ grapheme and aspiration allophones.
-        d_biz = phonological_distance(_spec("eu"), _spec("eu-x-bizkaiera"))
+        d_biz = phonological_distance(_spec("eu"), _spec("eu-biscayan"))
         d_zub = phonological_distance(_spec("eu"), _spec("eu-x-zuberera"))
         assert d_biz.combined > 0.0
         assert d_zub.combined > 0.0

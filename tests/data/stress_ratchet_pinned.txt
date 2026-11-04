@@ -43,7 +43,7 @@ bss
 bxr
 cay
 cbk-PH
-cdo-Latn-buc
+cdo-Latn-x-buc
 ce
 ceb
 ch
@@ -80,7 +80,7 @@ eml
 enf
 ess
 ett
-eu-x-bizkaiera
+eu-biscayan
 eu-x-nafarra-garaia
 ewo
 fa
@@ -111,7 +111,7 @@ gv
 gwc
 gwd
 ha
-hak-Latn-phak-fa-su
+hak-Latn-x-phak-fa-su
 haw
 hi
 hil
@@ -228,7 +228,7 @@ mww
 my
 myv
 mzs
-nan-Latn-poj
+nan-Latn-pehoeji
 nap
 nci
 nd

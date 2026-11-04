@@ -249,7 +249,7 @@ class TestNasalDiphthongIsOneNucleus:
     "pt-PT-x-alentejo",
     "pt-PT-x-acores",
     "pt-AO",
-    "ext-PT-x-barrancos",
+    "ext-PT-x-barranco",
 ])
 def test_ss_is_the_plain_alveolar_outside_the_apical_zone(lang):
     assert "s̺" not in _t(lang, "isso")
@@ -261,7 +261,7 @@ def test_ss_is_the_plain_alveolar_outside_the_apical_zone(lang):
     "pt-PT-x-porto",
     "pt-PT-x-braga",
     "pt-PT-x-viana",
-    "pt-PT-x-trasosmontes",
+    "pt-PT-x-tras-os-montes",
     "pt-PT-x-minho",
     "pt-PT-x-beira",
     "pt-PT-x-aveiro",

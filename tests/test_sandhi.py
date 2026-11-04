@@ -158,7 +158,7 @@ class TestBasqueNegationSandhi:
         assert self._transcribe("naiz da") == "nai̯s̻ da"
 
     def test_rules_inherit_to_dialects(self):
-        for lect in ("eu-x-gipuzkera", "eu-x-lapurtera", "eu-x-nafarra-garaia"):
+        for lect in ("eu-x-gipuzkoa", "eu-x-lapurdi", "eu-x-nafarra-garaia"):
             assert self._transcribe("ez dut", lect) == "es̻ tut"
             assert self._transcribe("ez zen", lect) == "e ts̻en"
 

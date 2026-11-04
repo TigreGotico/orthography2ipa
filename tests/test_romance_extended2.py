@@ -4,11 +4,11 @@ Covers:
 - Italian regional dialects: Tuscan (it-IT-x-toscana), Roman (it-IT-x-roma),
   Calabrian (it-IT-x-calabria)
 - Romanian (ro-RO)
-- Sardinian: Standard (sc), Logudorese (sc-x-logudorese), Campidanese (sc-x-campidanese)
+- Sardinian: Standard (sc), Logudorese (sc-x-logudoro), Campidanese (sc-x-campidan)
 - Occitan Aranese (oc-x-aranes)
 - Spanish Caribbean/Central: Cuban (es-CU), Puerto Rican (es-PR), Dominican (es-DO)
 - Spanish medieval (es-ES-x-medieval)
-- Spanish Cantabrian (es-ES-x-cantabria)
+- Spanish Cantabrian (es-ES-x-cantabri)
 - Portuguese Brazilian dialects: Caipira (pt-BR-x-caipira), Bahian (pt-BR-x-bahia)
 - Portuguese European dialects: Azorean (pt-PT-x-acores), Alentejo (pt-PT-x-alentejo),
   Minho (pt-PT-x-minho)
@@ -579,14 +579,14 @@ class TestSardinian:
 
 @pytest.mark.linguistic
 class TestLogudoreseSardinian:
-    """Logudorese Sardinian — sc-x-logudorese.
+    """Logudorese Sardinian — sc-x-logudoro.
 
     Logudorese is a northern Sardinian dialect with a partial gorgia-like
     feature: intervocalic /t/ weakens to [θ].  The dialect otherwise inherits
     the conservative Sardinian inventory from the parent code <sc>.
     """
 
-    LANGUAGE_CODE = "sc-x-logudorese"
+    LANGUAGE_CODE = "sc-x-logudoro"
 
     @pytest.fixture(autouse=True, scope="class")
     def spec(self, request: pytest.FixtureRequest) -> None:
@@ -621,14 +621,14 @@ class TestLogudoreseSardinian:
 
 @pytest.mark.linguistic
 class TestCampidaneseSardinian:
-    """Campidanese Sardinian — sc-x-campidanese.
+    """Campidanese Sardinian — sc-x-campidan.
 
     Campidanese is a southern Sardinian dialect with stronger lenition than
     Logudorese: all three voiceless stops /p t k/ have fricative allophones
     (p→β, t→ð, k→ɣ) in weak positions, creating a more extreme lenition system.
     """
 
-    LANGUAGE_CODE = "sc-x-campidanese"
+    LANGUAGE_CODE = "sc-x-campidan"
 
     @pytest.fixture(autouse=True, scope="class")
     def spec(self, request: pytest.FixtureRequest) -> None:
@@ -686,7 +686,7 @@ class TestCampidaneseSardinian:
 class TestLogudoreseISOCode:
     """Logudorese Sardinian under its ISO 639-3 code — src.
 
-    Mirrors sc-x-logudorese but filed under the primary ISO 639-3 identifier
+    Mirrors sc-x-logudoro but filed under the primary ISO 639-3 identifier
     'src', wired as a graphemes_base dialect of sc (Sardinian).
     """
 
@@ -714,7 +714,7 @@ class TestLogudoreseISOCode:
 class TestCampidaneseISOCode:
     """Campidanese Sardinian under its ISO 639-3 code — sro.
 
-    Mirrors sc-x-campidanese but filed under the primary ISO 639-3 identifier
+    Mirrors sc-x-campidan but filed under the primary ISO 639-3 identifier
     'sro', wired as a graphemes_base dialect of sc (Sardinian).
     """
 
@@ -1135,14 +1135,14 @@ class TestMedievalSpanish:
 
 @pytest.mark.iberian
 class TestCantabrianSpanish:
-    """Cantabrian Spanish — es-ES-x-cantabria.
+    """Cantabrian Spanish — es-ES-x-cantabri.
 
     Cantabrian Spanish is a conservative Northern Castilian variety
     distinguished primarily by its apical /s/ ([s̺]), linking it to the Asturian
     family.  It otherwise inherits standard Castilian features from es-ES.
     """
 
-    LANGUAGE_CODE = "es-ES-x-cantabria"
+    LANGUAGE_CODE = "es-ES-x-cantabri"
 
     @pytest.fixture(autouse=True, scope="class")
     def spec(self, request: pytest.FixtureRequest) -> None:

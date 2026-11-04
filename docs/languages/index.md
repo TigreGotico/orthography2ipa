@@ -65,7 +65,7 @@ differences over one of them.
 | [pt-MO.md](pt-MO.md) | Macau Portuguese, which is not the Patuá creole |
 | [pt-TL.md](pt-TL.md) | East Timorese Portuguese, which is not the Bidau creole |
 | [pt-UY.md](pt-UY.md) | Uruguayan Portuguese of the Brazilian border |
-| [ext-PT-x-barrancos.md](ext-PT-x-barrancos.md) | Barranquenho, the Portuguese and Spanish contact variety of Barrancos |
+| [ext-PT-x-barranco.md](ext-PT-x-barranco.md) | Barranquenho, the Portuguese and Spanish contact variety of Barrancos |
 
 ### Asturleonese
 

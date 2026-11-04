@@ -25,7 +25,7 @@ The table gives the features that set each lect apart from `pt-BR`. The lects ru
 | Lect | Region | Features that set it apart | Example |
 |:---|:---|:---|:---|
 | [`pt-BR-x-rj`](#carioca-pt-br-x-rj) | Rio de Janeiro city | coda /s/ [ʃ], [ʒ] before a voiced consonant<br>coda /r/ [x], final /r/ [h]<br>onset /r/ [χ] | `festa` [ˈfeʃtɐ], `mesmo` [ˈmeʒmu], `porta` [ˈpoxtɐ], `mar` [ˈmah] |
-| [`pt-BR-x-fluminense`](#fluminense-pt-br-x-fluminense) | Rio de Janeiro state interior | coda /r/ [h]<br>onset /r/ [x] | `porta` [ˈpohtɐ], `paz` [ˈpas], `rato` [ˈxatu] |
+| [`pt-BR-x-fluminen`](#fluminense-pt-br-x-fluminen) | Rio de Janeiro state interior | coda /r/ [h]<br>onset /r/ [x] | `porta` [ˈpohtɐ], `paz` [ˈpas], `rato` [ˈxatu] |
 | [`pt-BR-x-sp`](#paulistano-pt-br-x-sp) | São Paulo city | strong /r/ [x], [ɣ] between vowels<br>yod before a final /s/ | `rato` [ˈxatu], `carro` [ˈkaɣu], `arroz` [aˈɣojs] |
 | [`pt-BR-x-caipira`](#caipira-pt-br-x-caipira) | São Paulo interior | coda /r/ and coda /l/ [ɻ]<br>⟨lh⟩ [j] | `porta` [ˈpoɻtɐ], `alma` [ˈaɻmɐ], `filho` [ˈfiju] |
 | [`pt-BR-x-mg`](#mineiro-pt-br-x-mg) | Belo Horizonte | pretonic /e/ [i] before a high vowel and word-initially<br>coda /r/ [h] | `pedido` [piˈd͡ʒidu], `escola` [isˈkolɐ], `porta` [ˈpohtɐ] |
@@ -58,7 +58,7 @@ Known gaps:
 
 - The spec writes a word-final /R/ as the aspirate [h] in every word. The source finds deletion in most verbs.
 
-## Fluminense (pt-BR-x-fluminense)
+## Fluminense (pt-BR-x-fluminen)
 
 Fluminense is the Portuguese of the state of Rio de Janeiro outside the capital. Its coda sibilant is alveolar. In the North-Northwest of the state, "há predomínio das realizações alveolares, ao contrário do que acontece na capital do Estado" (Hora 1999: 34-35, reporting Brandão). Its coda /R/ is glottal: ALiB counts 80 % glottal tokens in the state (Silva 2023: 68).
 

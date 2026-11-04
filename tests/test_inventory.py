@@ -173,7 +173,7 @@ KNOWN_DEAD_RULES = {
     # Dead only because the spec inherits a grapheme table without its
     # positional readings, so the vowel the rule targets is never emitted.
     # Fixed by the positional-inheritance default in #348, which revives it.
-    "da-x-copenhagen": {"DA_SHORTEN_A"},
+    "da-x-copenhag": {"DA_SHORTEN_A"},
     # The southern Russian lects used to be listed here, on the reading that
     # they had "their own unstressed-vowel system". They did not: they had no
     # positional table at all, because the spec carried a standalone grapheme
@@ -182,7 +182,7 @@ KNOWN_DEAD_RULES = {
     # again. The okanje North is the real case of this shape.
     "ru-x-northern": _RU_OKANJE_DEAD,
     "ru-x-vologda": _RU_OKANJE_DEAD,
-    "ru-x-arkhangelsk": _RU_OKANJE_DEAD,
+    "ru-x-arkhange": _RU_OKANJE_DEAD,
     # Sendinês monophthongises the Leonese rising diphthongs (⟨ie⟩→[i],
     # ⟨uo⟩→[u]), so the [jɪ]/[ʊ] nuclei and the [je]/[wo] second candidates
     # that the inherited Mirandese nasalisation rules target never surface

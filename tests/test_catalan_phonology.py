@@ -175,7 +175,7 @@ def test_cross_word_spirantization():
     ("dos savis", "ˈdo ˈsaβis"),
     ("és seca", "ˈe ˈsɛkə"),
 ])
-@pytest.mark.parametrize("lang", ["ca", "ca-x-occidental", "ca-x-valencia",
+@pytest.mark.parametrize("lang", ["ca", "ca-x-occident", "ca-x-valencia",
                                   "ca-x-nord"])
 def test_cross_word_sibilant_degemination(lang, phrase, expected):
     """A coda sibilant is deleted before an IDENTICAL word-initial one.
@@ -324,7 +324,7 @@ def test_balearic_affrication_is_cross_word_only():
     assert "t͡s" not in transcribe("cap sol", "ca-x-balear")
 
 
-@pytest.mark.parametrize("lang", ["ca", "ca-x-occidental", "ca-x-valencia",
+@pytest.mark.parametrize("lang", ["ca", "ca-x-occident", "ca-x-valencia",
                                   "ca-x-nord", "ca-x-medieval"])
 def test_affrication_does_not_leak_to_other_catalan(lang):
     """DIALECT-SPECIFIC — declared on ca-x-balear only, never on an ancestor."""
@@ -464,7 +464,7 @@ def test_elision_never_destroys_a_words_only_vowel():
     # article — ⟨en⟩ — so the guard is still exercised there. ⟨el⟩ cannot be
     # the Western probe any more; see
     # test_the_western_article_is_the_one_licensed_vowelless_clitic.
-    assert transcribe("estava en oració", "ca-x-occidental").split()[1] == "en"
+    assert transcribe("estava en oració", "ca-x-occident").split()[1] == "en"
     # ... and a word that is only a vowel is never consumed
     assert transcribe("va a casa", "ca") == "ˈba ə ˈkazə"
 
@@ -490,7 +490,7 @@ def test_the_western_article_is_the_one_licensed_vowelless_clitic():
     its nucleus in the Western specs too, which the ⟨en⟩ probe above
     pins.
     """
-    assert transcribe("que el", "ca-x-occidental").split()[1] == "l"
+    assert transcribe("que el", "ca-x-occident").split()[1] == "l"
     assert transcribe("que el", "ca-x-valencia").split()[1] == "l"
     # and the Eastern specs, where the rule is NOT declared, keep the vowel
     assert transcribe("que el", "ca").split()[1] == "əl"
@@ -538,7 +538,7 @@ def test_final_schwa_elision_is_not_declared_in_the_western_block():
     """Valencian and North-Western have no word-final [ə], so the schwa half
     is not declared on them at all — only the initial-vowel elision and the
     two glide rules are."""
-    for lang in ("ca-x-valencia", "ca-x-occidental"):
+    for lang in ("ca-x-valencia", "ca-x-occident"):
         assert transcribe("troba entre", lang).split()[0][-1] in "aeɛ"
         ids = {r.id for r in get(lang).sandhi_rules}
         assert "CA_ELIDE_FINAL_SCHWA" not in ids
@@ -609,7 +609,7 @@ def test_dialect_vowels_and_final_r(word, central, valencia, occidental, balear)
         return transcribe(word, code).replace("ˈ", "")
     assert ipa("ca") == central
     assert ipa("ca-x-valencia") == valencia
-    assert ipa("ca-x-occidental") == occidental
+    assert ipa("ca-x-occident") == occidental
     assert ipa("ca-x-balear") == balear
 
 
@@ -637,7 +637,7 @@ def test_final_cluster_isogloss_is_not_the_east_west_line():
     pan-Catalan pre-consonantal rule, not this one.
     """
     assert transcribe("molt", "ca") == "ˈmol"
-    assert transcribe("molt", "ca-x-occidental") == "ˈmol"
+    assert transcribe("molt", "ca-x-occident") == "ˈmol"
     assert transcribe("molt", "ca-x-valencia") == "ˈmolt"
     assert transcribe("molt", "ca-x-balear") == "ˈmolt"
     assert transcribe("camp", "ca") == "ˈkam"
@@ -649,7 +649,7 @@ def test_final_cluster_isogloss_is_not_the_east_west_line():
     # ⟨ny⟩ is not a stress ending: ⟨any⟩ is [ˈaɲ], not *[ˈəɲ]
     assert transcribe("any", "ca") == "ˈaɲ"
     # The PLURAL (pre-⟨-s⟩) deletion is pan-Catalan
-    for code in ["ca", "ca-x-valencia", "ca-x-occidental", "ca-x-balear"]:
+    for code in ["ca", "ca-x-valencia", "ca-x-occident", "ca-x-balear"]:
         assert transcribe("importants", code).endswith("ns"), code
 
 
@@ -669,7 +669,7 @@ def test_valencian_affricate_and_western_x():
     assert transcribe("germana", "ca-x-valencia").replace("ˈ", "") == "dʒeɾmana"
     assert transcribe("caixa", "ca-x-valencia") == "ˈkajʃa"
     assert transcribe("caixa", "ca") == "ˈkaʃə"
-    assert transcribe("marxar", "ca-x-occidental").endswith("tʃa")
+    assert transcribe("marxar", "ca-x-occident").endswith("tʃa")
 
 
 def test_majorcan_reduces_unstressed_o_to_o_not_u():
@@ -699,7 +699,7 @@ def test_stress_mark_placement_is_onset_maximising():
 
 # ─── Genealogy: the Old-Catalan common core ────────────────────────────────
 
-_MODERN = ["ca", "ca-x-valencia", "ca-x-balear", "ca-x-occidental",
+_MODERN = ["ca", "ca-x-valencia", "ca-x-balear", "ca-x-occident",
            "ca-x-nord"]
 
 
@@ -735,7 +735,7 @@ def test_central_innovations_do_not_leak_into_the_other_varieties():
     # Vowel reduction: Central and the Eastern block only.
     assert "ə" in transcribe("casa", "ca")
     assert "ə" not in transcribe("casa", "ca-x-valencia")
-    assert "ə" not in transcribe("casa", "ca-x-occidental")
+    assert "ə" not in transcribe("casa", "ca-x-occident")
     # Betacism and the fricative ⟨j⟩: Central, not Valencian.
     assert transcribe("vaca", "ca").startswith("ˈb")
     assert transcribe("vaca", "ca-x-valencia").startswith("ˈv")

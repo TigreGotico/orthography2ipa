@@ -51,13 +51,13 @@ LECTS = [
     # European mainland + insular
     "pt-PT-x-lisbon", "pt-PT-x-porto", "pt-PT-x-braga", "pt-PT-x-minho",
     "pt-PT-x-viana", "pt-PT-x-aveiro", "pt-PT-x-coimbra", "pt-PT-x-beira",
-    "pt-PT-x-trasosmontes", "pt-PT-x-alentejo", "pt-PT-x-algarve",
+    "pt-PT-x-tras-os-montes", "pt-PT-x-alentejo", "pt-PT-x-algarve",
     "pt-PT-x-alfena", "pt-PT-x-medieval",
     "pt-PT-x-acores", "pt-PT-x-sao-miguel", "pt-PT-x-terceira",
     "pt-PT-x-madeira",
     # Brazilian
     "pt-BR-x-bahia", "pt-BR-x-caipira", "pt-BR-x-ce",
-    "pt-BR-x-fluminense", "pt-BR-x-mg", "pt-BR-x-norte", "pt-BR-x-pr",
+    "pt-BR-x-fluminen", "pt-BR-x-mg", "pt-BR-x-norte", "pt-BR-x-pr",
     "pt-BR-x-recife", "pt-BR-x-rj", "pt-BR-x-sp", "pt-BR-x-sul",
     # African + Asian
     "pt-AO", "pt-CV", "pt-GW", "pt-MZ", "pt-ST", "pt-MO", "pt-TL",
@@ -66,13 +66,13 @@ LECTS = [
     # this gold set because they share the Portuguese-contact sandhi surface
     # the harness checks. (Sanabrese, ast-x-sanabria, is a Spain-territory lect
     # and lives in the Spain-Romance gold set / harness instead.)
-    "ast-PT-x-rionor", "ast-PT-x-guadramil", "ast-PT-x-medieval",
+    "ast-PT-x-rionor", "ast-PT-x-guadrami", "ast-PT-x-medieval",
     # Mirandese (Asturleonese) — the other Portugal-territory language and its
     # subdialects, gated by the same harness (their gold uses genuine Mirandese
     # orthography per the Convenção Ortográfica, not Portuguese).
     "mwl", "mwl-x-ifanes", "mwl-x-sendim",
-    "ext-PT-x-barrancos",
-    "roa-x-galaicopt",
+    "ext-PT-x-barranco",
+    "roa-x-galaico-pt",
 ]
 MIN_ROWS = 5
 FIELDS = ["id", "sentence", "ipa", "gloss_en", "features", "notes"]

@@ -39,13 +39,13 @@ SKELETON_ADSTRATES = ["quc"]
 RESEARCH_ADSTRATES = ["arn", "gn"]
 
 REGIONAL_STUBS = [
-    "es-AR-x-cordoba", "es-AR-x-cuyo", "es-AR-x-norte", "es-AR-x-patagonia",
+    "es-AR-x-cordoba", "es-AR-x-cuyo", "es-AR-x-norte", "es-AR-x-patagoni",
     "es-AR-x-litoral",
     "es-MX-x-norte",
-    "es-CO-x-santander", "es-CO-x-valluno", "es-CO-x-llanero", "es-CO-x-pacifico",
-    "es-PE-x-andino", "es-PE-x-amazonico",
+    "es-CO-x-santande", "es-CO-x-valluno", "es-CO-x-llanero", "es-CO-x-pacifico",
+    "es-PE-x-andino", "es-PE-x-amazonia",
     "es-CL-x-andino", "es-CL-x-chilote",
-    "es-VE-x-maracucho", "es-VE-x-andino", "es-VE-x-llanero",
+    "es-VE-x-zulia", "es-VE-x-andino", "es-VE-x-llanero",
     "es-BO-x-andino", "es-BO-x-camba",
     "es-EC-x-andino", "es-EC-x-costa",
 ]
@@ -65,7 +65,7 @@ NEW_NATIONALS = ["es-HN", "es-SV"]
 # region code -> expected indigenous adstrate codes
 REGION_ADSTRATE = {
     "es-AR-x-norte": {"qu"},
-    "es-AR-x-patagonia": {"arn"},
+    "es-AR-x-patagoni": {"arn"},
     "es-AR-x-litoral": {"gn"},
     "es-MX-x-yucatan": {"yua"},
     "es-PE-x-andino": {"qu", "ay"},

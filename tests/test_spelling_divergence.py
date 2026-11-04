@@ -19,7 +19,7 @@ def test_spelling_divergence_sees_what_reading_divergence_cannot():
     Spelling: given the same SOUND, do these write it alike?
     """
     rag = o2i.get("gl-ES")
-    reint = o2i.get("gl-ES-x-reintegrado")
+    reint = o2i.get("gl-ES-x-reintegr")
     pt = o2i.get("pt-PT")
 
     # /ɲ/ is written <ñ> by the RAG norm (a Castilian convention) and <nh> by the
@@ -39,7 +39,7 @@ def test_spelling_divergence_sees_what_reading_divergence_cannot():
 def test_reintegrationist_galician_spells_more_like_portuguese_than_rag_does():
     """The reintegrationist claim, made measurable."""
     to_pt_reint = spelling_divergence(
-        o2i.get("gl-ES-x-reintegrado"), o2i.get("pt-PT")).mean_distance
+        o2i.get("gl-ES-x-reintegr"), o2i.get("pt-PT")).mean_distance
     to_pt_rag = spelling_divergence(
         o2i.get("gl-ES"), o2i.get("pt-PT")).mean_distance
     assert to_pt_reint < to_pt_rag
@@ -59,7 +59,7 @@ def test_the_two_norms_are_phonologically_the_same_language():
     phonology from the same source, so their phoneme inventories and allophony
     are identical — only the spelling differs."""
     rag = o2i.get("gl-ES")
-    reint = o2i.get("gl-ES-x-reintegrado")
+    reint = o2i.get("gl-ES-x-reintegr")
     pt = o2i.get("pt-PT")
 
     assert reint.allophones == rag.allophones

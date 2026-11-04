@@ -83,7 +83,7 @@ MANUAL = {
     "eu": "Basque",
     # Romance varieties whose o2i parent is a Vulgar Latin stage: inheriting the Latin node's
     # "Italic" branch would mislabel them.
-    "roa-x-galaicopt": "Indo-European > Romance > Ibero-Romance",
+    "roa-x-galaico-pt": "Indo-European > Romance > Ibero-Romance",
     "it-IT-x-abruzzo": "Indo-European > Romance > Italo-Romance",
     "it-IT-x-calabria": "Indo-European > Romance > Italo-Romance",
     "it-IT-x-puglia": "Indo-European > Romance > Italo-Romance",

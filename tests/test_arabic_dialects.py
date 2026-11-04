@@ -570,7 +570,7 @@ class TestNajdiArabic:
         assert self.spec.quality == "research"
 
     def test_parent(self):
-        assert self.spec.parent == "ar-x-peninsular"
+        assert self.spec.parent == "ar-x-peninsul"
 
 
 # ═══════════════════════════════════════════════════════════════════════════

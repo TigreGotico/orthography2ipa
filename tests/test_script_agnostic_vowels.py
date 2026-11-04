@@ -158,7 +158,7 @@ def test_latin_and_greek_vowels_stay_vowels_without_any_ipa(grapheme):
 def test_transliteration_symbols_are_never_vowels():
     """Buckwalter presses ASCII symbols into service (⟨>⟩ = hamza). A symbol is
     neither a letter nor a mark, so it can never be a written vowel."""
-    spec = get("ar-Latn-buckwalter")
+    spec = get("ar-Latn-x-buckwalt")
     for grapheme, ipa in spec.graphemes.items():
         if not grapheme[0].isalpha():
             assert not grapheme_is_vowel(grapheme, ipa), grapheme

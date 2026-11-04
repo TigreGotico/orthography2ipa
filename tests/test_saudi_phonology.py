@@ -42,7 +42,7 @@ def test_no_dead_allophone_rules(lang):
 # ── Ancestry: each leaf hangs off the RIGHT group, and there is no ar-SA ──────
 def test_leaves_parent_the_correct_group():
     assert get("ars-SA-x-qassim").parent == "ars-SA"        # Najdi sub-variety
-    assert get("ar-SA-x-rijal-alma").parent == "ar-x-peninsular"  # SW archaic type
+    assert get("ar-SA-x-rijal-alma").parent == "ar-x-peninsul"  # SW archaic type
     assert get("afb-SA-x-sharqiya").parent == "afb"         # Gulf type
 
 
