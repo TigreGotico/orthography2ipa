@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.114.11a1](https://github.com/TigreGotico/orthography2ipa/tree/7.114.11a1) (2026-11-04)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.114.10a1...7.114.11a1)
+
+**Merged pull requests:**
+
+- fix\(es\): merge ⟨ll⟩ and ⟨y⟩ into \[ʃ\] in Argentina and Uruguay [\#1894](https://github.com/TigreGotico/orthography2ipa/pull/1894) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.114.10a1](https://github.com/TigreGotico/orthography2ipa/tree/7.114.10a1) (2026-11-04)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.114.9a1...7.114.10a1)
@@ -334,10 +342,6 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.111.15a3...7.111.15a4)
 
-**Merged pull requests:**
-
-- Configure Renovate [\#1792](https://github.com/TigreGotico/orthography2ipa/pull/1792) ([renovate[bot]](https://github.com/apps/renovate))
-
 ## [7.111.15a3](https://github.com/TigreGotico/orthography2ipa/tree/7.111.15a3) (2026-11-02)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.111.15a2...7.111.15a3)
@@ -385,10 +389,6 @@
 ## [7.111.13a1](https://github.com/TigreGotico/orthography2ipa/tree/7.111.13a1) (2026-11-02)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.111.12a1...7.111.13a1)
-
-**Merged pull requests:**
-
-- fix\(ast\): follow the ALLA Normes Ortográfiques and Gramática for letter values, allophones and stress [\#1793](https://github.com/TigreGotico/orthography2ipa/pull/1793) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.111.12a1](https://github.com/TigreGotico/orthography2ipa/tree/7.111.12a1) (2026-11-02)
 
