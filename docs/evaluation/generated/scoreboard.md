@@ -254,12 +254,12 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | es-419 | spain_romance_tts | 20 | 0.0072‡ | - | - | - | - | - | - | [0.0023, 0.0135] | 0.7500 | skeleton | llm-corrected |
 | es-419 | wikipron | 132188 | 0.0733 | - | - | 0.0731 | 0.0731 | 0.4865 | 0.4866 | [0.0728, 0.0738] | 0.4863 | skeleton | crowd-scraped |
 | es-AR | primary_sources | 29 | 0.0138 | 0.9655 | - | 0.0069 | 0.0069 | 0.9655 | 0.9655 | [0.0000, 0.0345] | 0.9310 | research | expert-human |
-| es-AR | spain_romance_tts | 20 | 0.0610‡ | - | - | - | - | - | - | [0.0422, 0.0788] | 0.2000 | research | llm-corrected |
+| es-AR | spain_romance_tts | 20 | 0.0574‡ | - | - | - | - | - | - | [0.0379, 0.0754] | 0.2500 | research | llm-corrected |
 | es-AR-x-cordoba | spain_romance_tts | 20 | 0.0185‡ | - | - | - | - | - | - | [0.0084, 0.0316] | 0.6000 | stub | llm-corrected |
-| es-AR-x-cuyo | spain_romance_tts | 20 | 0.0732‡ | - | - | - | - | - | - | [0.0624, 0.0839] | 0.0000 | stub | llm-corrected |
-| es-AR-x-litoral | spain_romance_tts | 20 | 0.0644‡ | - | - | - | - | - | - | [0.0449, 0.0839] | 0.1000 | stub | llm-corrected |
+| es-AR-x-cuyo | spain_romance_tts | 20 | 0.0872‡ | - | - | - | - | - | - | [0.0717, 0.1061] | 0.0000 | stub | llm-corrected |
+| es-AR-x-litoral | spain_romance_tts | 20 | 0.0530‡ | - | - | - | - | - | - | [0.0401, 0.0651] | 0.1000 | stub | llm-corrected |
 | es-AR-x-norte | spain_romance_tts | 20 | 0.0671‡ | - | - | - | - | - | - | [0.0433, 0.0937] | 0.2000 | stub | llm-corrected |
-| es-AR-x-patagonia | spain_romance_tts | 20 | 0.1461‡ | - | - | - | - | - | - | [0.1160, 0.1764] | 0.0500 | stub | llm-corrected |
+| es-AR-x-patagonia | spain_romance_tts | 20 | 0.1332‡ | - | - | - | - | - | - | [0.1070, 0.1625] | 0.0500 | stub | llm-corrected |
 | es-BO | spain_romance_tts | 20 | 0.0817‡ | - | - | - | - | - | - | [0.0607, 0.1035] | 0.1000 | skeleton | llm-corrected |
 | es-BO-x-andino | spain_romance_tts | 20 | 0.0734‡ | - | - | - | - | - | - | [0.0575, 0.0907] | 0.0000 | stub | llm-corrected |
 | es-BO-x-camba | spain_romance_tts | 20 | 0.0573‡ | - | - | - | - | - | - | [0.0417, 0.0726] | 0.1000 | stub | llm-corrected |

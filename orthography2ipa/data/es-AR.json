@@ -35,7 +35,7 @@
   },
   "positional_graphemes_base": "es-ES",
   "parent": "es-ES",
-  "notes": "Buenos Aires / Rioplatense: žeísmo/šeísmo for ⟨ll⟩/⟨y⟩. Word-initial ⟨hie-, hia-, hio-⟩ keeps the GLIDE [j] here and does not join the rehilamiento: coloma2018 p.244 prints hielo [ˈjelo] in the same word list that prints llama [ˈʃama], so the ⟨hi⟩ words are demonstrably not merged with ⟨ll⟩/⟨y⟩ in this variety. The override is needed because the es-ES parent strengthens word-initial ⟨hi⟩ to its own palatal obstruent.",
+  "notes": "Buenos Aires / Rioplatense: žeísmo/šeísmo for ⟨ll⟩/⟨y⟩. Word-initial ⟨hie-, hia-, hio-⟩ keeps the GLIDE [j] here and does not join the rehilamiento: coloma2018 p.244 prints hielo [ˈjelo] in the same word list that prints llama [ˈʃama], so the ⟨hi⟩ words are demonstrably not merged with ⟨ll⟩/⟨y⟩ in this variety. The override is needed because the es-ES parent strengthens word-initial ⟨hi⟩ to its own palatal obstruent. ⟨y⟩ before a vowel is the same sound as ⟨ll⟩ ([ʃ], with the older voiced [ʒ]): yo [ˈʃo], mayo [ˈmaʃo], calle [ˈkaʃe]. Lipski (2018, p. 502): «In most of Argentina and Uruguay, /j/ has traditionally been realized as a voiced fricative, [ʒ], but devoicing to [ʃ] has extended from Buenos Aires and Montevideo to much of the remaining territory.»",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -89,6 +89,16 @@
       "url": null,
       "pages": null,
       "notes": "The comprehensive dialect survey underlying the zone classification (cited via the author's own overview, geo.pdf, which was read)."
+    },
+    {
+      "id": "lipski2018_dialects",
+      "author": "Lipski, John M.",
+      "year": 2018,
+      "title": "Dialects of Spanish and Portuguese",
+      "publisher": "In C. Boberg, J. Nerbonne & D. Watt (eds.), The Handbook of Dialectology, ch. 30, Wiley-Blackwell",
+      "url": null,
+      "pages": "p. 502",
+      "notes": "READ (papers/iberian/lipski_dialects-spanish-portuguese-chapter.pdf). p. 502: «In most of Argentina and Uruguay, /j/ has traditionally been realized as a voiced fricative, [ʒ], but devoicing to [ʃ] has extended from Buenos Aires and Montevideo to much of the remaining territory.»"
     }
   ],
   "wikipedia": [
@@ -157,6 +167,15 @@
       ],
       "default": [
         "jo"
+      ]
+    },
+    "y": {
+      "before_vowel": [
+        "ʃ",
+        "ʒ"
+      ],
+      "default": [
+        "i"
       ]
     }
   },
