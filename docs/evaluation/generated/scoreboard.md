@@ -355,8 +355,8 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | ga | wikipron | 9616 | 0.1834 | - | - | 0.1593 | 0.1498 | 0.3716 | 0.3906 | [0.1798, 0.1869] | 0.3100 | research | crowd-scraped |
 | gd | wikipron | 3719 | 0.2774 | - | - | 0.2296 | 0.2074 | 0.2740 | 0.3192 | [0.2707, 0.2844] | 0.2124 | research | crowd-scraped |
 | gl-ES | spain_romance_tts | 20 | 0.0986‡ | - | - | - | - | - | - | [0.0708, 0.1286] | 0.1000 | research | llm-corrected |
-| gl-ES | vox_communis | 47512 | 0.0648‡ | - | - | 0.0497 | 0.0452 | 0.6759 | 0.6979 | [0.0640, 0.0657] | 0.6082 | research | epitran-derived |
-| gl-ES | wikipron | 8091 | 0.0801 | - | - | 0.0351 | 0.0286 | 0.8067 | 0.8453 | [0.0775, 0.0825] | 0.5967 | research | crowd-scraped |
+| gl-ES | vox_communis | 47512 | 0.0653‡ | - | - | 0.0502 | 0.0457 | 0.6758 | 0.6979 | [0.0644, 0.0662] | 0.6082 | research | epitran-derived |
+| gl-ES | wikipron | 8091 | 0.0799 | - | - | 0.0349 | 0.0283 | 0.8069 | 0.8455 | [0.0773, 0.0822] | 0.5970 | research | crowd-scraped |
 | gl-ES-x-central | spain_romance_tts | 20 | 0.1143‡ | - | - | - | - | - | - | [0.0890, 0.1429] | 0.0500 | research | llm-corrected |
 | gl-ES-x-eonavia | spain_romance_tts | 20 | 0.1015‡ | - | - | - | - | - | - | [0.0729, 0.1309] | 0.0500 | research | llm-corrected |
 | gl-ES-x-occident | spain_romance_tts | 20 | 0.0734‡ | - | - | - | - | - | - | [0.0487, 0.1043] | 0.1000 | research | llm-corrected |
