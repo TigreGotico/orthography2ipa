@@ -243,3 +243,158 @@ class TestPolytonic:
                                                    vowels_after):
         assert _segments(word) == _segments(plain)
         assert _vowels_after_mark(_pnt(word)) == vowels_after
+
+
+class TestNasalBeforeGammaKappa:
+    """⟨νγκ⟩ is one nasal and the stop, and the nasal takes the stop's place.
+
+    Armostis et al. (2020: 335): "the nasal /n/ assimilates to their place of
+    articulation, as mentioned above, e.g. [ˈeŋga] ένγκα 'I brought', but
+    [ˈeɲɟen] ένγκεν 's/he brought'"; p. 334: [eneˈŋgasta] ενενγκάστα.
+    """
+
+    @pytest.mark.parametrize("word,source", [
+        ("ένγκα", "ˈeŋɡa"),
+        ("ένγκεν", "ˈeɲɟen"),
+        ("ενενγκάστα", "eneˈŋɡasta"),
+        ("ΕΝΓΚΑ", "ˈeŋɡa"),
+    ])
+    def test_armostis(self, word, source):
+        assert _pnt(word) == source
+
+
+class TestPalatalDorsals:
+    """The dorsals are palatal before a front vowel phoneme.
+
+    Armostis et al. (2020: 335): the velar [k g x ɣ] and the palatal
+    [c ɟ ç ʝ] are in complementary distribution; "the palatals appear before
+    front vowels /i e/, while velars appear everywhere else, e.g. [ˈlikon]
+    λύκον 'wolf.NOM' vs. [ˈlice] λύκε 'wolf.VOC'", and [ˈçile] χείλε 'lips'.
+    The narrow transcription (p. 339) has [paraˈðeçete] παραδέχεται and [ce]
+    for και, where ⟨αι⟩ is the front vowel [e].
+    """
+
+    def test_lykon_against_lyke(self):
+        assert (_pnt("λύκον"), _pnt("λύκε")) == ("ˈlikon", "ˈlice")
+
+    @pytest.mark.parametrize("word,source", [
+        ("χείλε", "ˈçile"),
+        ("παραδέχεται", "paraˈðeçete"),
+        ("ένγκεν", "ˈeɲɟen"),
+    ])
+    def test_armostis(self, word, source):
+        assert _pnt(word) == source
+
+    def test_digraph_front_vowel(self):
+        """και is [ce] in the narrow transcription (p. 339)."""
+        assert _segments("και") == "ce"
+
+
+class TestNasalStopWordInitial:
+    """⟨μπ ντ⟩ are [b d] at the start of a word and [mb nd] inside it.
+
+    Armostis et al. (2020): μπαλόν’ [baˈlon], ντολμάδε [dolˈmaðe] and ζαντόν
+    [zanˈdon] (p. 331); [do] ντο 'what' with "a word-initial voiced [d] with
+    substantial prevoicing" (p. 332). ⟨ντζ⟩ keeps the nasal: [ˈnd͡zid͡zifa]
+    ντζίτζιφα has "a fully-fledged word-initial nasal" (p. 332).
+    """
+
+    @pytest.mark.parametrize("word,source", [
+        ("μπαλόν’", "balon"),
+        ("ντολμάδε", "dolmaðe"),
+        ("ντο", "do"),
+        ("Ντο", "do"),
+    ])
+    def test_word_initial(self, word, source):
+        assert _segments(word) == source
+
+    def test_word_internal_keeps_the_nasal(self):
+        assert (_segments("ντο"), _segments("ζαντόν")) == ("do", "zandon")
+
+    def test_nasal_before_affricate(self):
+        assert (_segments("ντο"), _segments("ντζίτζιφα")) == ("do",
+                                                             "ndzidzifa")
+
+
+DOT_ABOVE, DIAERESIS = "\u0307", "\u0308"
+
+
+class TestUpsilonOfAuEu:
+    """The υ of ⟨αυ ευ⟩ is [v] before a vowel and a soft consonant, else [f].
+
+    Oeconomides (1908: 25, § 13): "Vor den Vocalen und den weichen
+    Consonanten β, γ, δ, ζ, λ, μ, ν, ρ wird das υ des Diphthonges αυ wie β
+    (= w), sonst wie φ (= f) gesprochen. Dasselbe gilt auch für ευ." The
+    expected value of each word is the diphthong's value by that rule and the
+    letter's value in the pnt table.
+    """
+
+    @pytest.mark.parametrize("letter,value", [
+        ("κ", "k"), ("π", "p"), ("τ", "t"), ("θ", "θ"),
+        ("σ", "s"), ("ξ", "ks"), ("ψ", "ps"),
+    ])
+    @pytest.mark.parametrize("diphthong,vowel", [("αυ", "a"), ("ευ", "e")])
+    def test_voiceless_consonant(self, diphthong, vowel, letter, value):
+        assert _segments(f"{diphthong}{letter}α") == f"{vowel}f{value}a"
+
+    @pytest.mark.parametrize("word,source", [
+        ("εὐχή", "efxi"),
+        ("εύκολα", "efkola"),
+        ("αὐτός", "aftos"),
+    ])
+    def test_words(self, word, source):
+        """χ before ⟨η⟩ is the palatal of p. 335 in εὐχή."""
+        assert _segments(word) == source.replace("xi", "çi")
+
+    @pytest.mark.parametrize("word,source", [("ταυ", "taf"), ("τευ", "tef")])
+    def test_word_final(self, word, source):
+        """"sonst wie φ": no vowel and no soft consonant follows."""
+        assert _segments(word) == source
+
+    def test_soft_consonant_and_vowel_against_voiceless(self):
+        soft = [_segments(f"ευ{c}α")[:2] for c in "βγδζλμνρ"]
+        assert soft == ["ev"] * 8
+        # Oeconomides' β̇ and δ̇ (p. 3) are β and δ with a dot.
+        assert _segments(f"ευβ{DOT_ABOVE}α")[:2] == "ev"
+        assert _segments(f"ευδ{DOT_ABOVE}α")[:2] == "ev"
+        assert _segments("ευα")[:2] == "ev"
+        assert _segments("ευτα")[:2] == "ef"
+
+
+class TestOeconomidesLetters:
+    """Oeconomides' own letters (1908: 2-3).
+
+    p. 2: "α̈ = deutsches ä", "ο̈, ω̈ = deutsches ö", "α̈υ = äw", and
+    "κ̇ velar. = g". p. 3: τ̇ and δ̇ = d, π̇ and β̇ = b, σ̇ and χ̇ = sch,
+    ψ̇ = psch, τσ̇ = tsch, τ̇σ̇ = dsch.
+    """
+
+    @pytest.mark.parametrize("letter,value", [
+        ("α" + DIAERESIS, "æ"),
+        ("ο" + DIAERESIS, "ø"),
+        ("ω" + DIAERESIS, "ø"),
+    ])
+    def test_vowel(self, letter, value):
+        assert _segments(f"τ{letter}τ") == f"t{value}t"
+
+    def test_a_umlaut_upsilon(self):
+        assert _segments(f"τα{DIAERESIS}υτ")[:3] == "tæv"
+
+    @pytest.mark.parametrize("letter,value", [
+        ("κ" + DOT_ABOVE, "ɡ"),
+        ("τ" + DOT_ABOVE, "d"),
+        ("δ" + DOT_ABOVE, "d"),
+        ("π" + DOT_ABOVE, "b"),
+        ("β" + DOT_ABOVE, "b"),
+        ("σ" + DOT_ABOVE, "ʃ"),
+        ("χ" + DOT_ABOVE, "ʃ"),
+        ("ψ" + DOT_ABOVE, "pʃ"),
+        ("τσ" + DOT_ABOVE, "tʃ"),
+        ("τ" + DOT_ABOVE + "σ" + DOT_ABOVE, "dʒ"),
+    ])
+    def test_dotted_consonant(self, letter, value):
+        assert _segments(f"α{letter}α") == f"a{value}a"
+
+    def test_dotted_kappa_stays_velar(self):
+        """p. 2 writes the palatal κ̇ with a second mark, so κ̇ε is [ɡe]."""
+        assert _segments(f"κ{DOT_ABOVE}ε") == "ɡe"
