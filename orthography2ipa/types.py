@@ -2099,7 +2099,7 @@ class LanguageSpec:
     (:attr:`InheritanceMode.BASE_SCALAR`): whether a grapheme table's onsets
     are constrained is a property of that table, so a variety that pulls the
     table in gets the judgement with it — ``nl-BE`` from ``nl``, ``de-AT`` and
-    ``de-CH`` from ``de-DE``, ``de-x-bavarian`` from ``de-AT`` in turn. A
+    ``de-CH`` from ``de-DE``, ``bar-AT`` from ``de-AT`` in turn. A
     variety that must NOT inherit says so with an explicit ``false``.
     ``nl-NL`` is a standalone spec with no ``graphemes_base``, so it declares
     the flag itself.

@@ -1,11 +1,11 @@
 {
-  "code": "cbk-x-cavite",
+  "code": "cbk-PH-x-cavite",
   "name": "Chavacano (Caviteño / Chabacano de Cavite)",
   "family": "Spanish Creole",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "stub",
-  "parent": "cbk-zam",
+  "parent": "cbk-PH",
   "ancestors": [
     {
       "code": "es-ES",
@@ -20,11 +20,11 @@
       "notes": "Tagalog substrate (Manila Bay area): phonology and grammar."
     }
   ],
-  "graphemes_base": "cbk-zam",
+  "graphemes_base": "cbk-PH",
   "graphemes": {},
-  "allophones_base": "cbk-zam",
+  "allophones_base": "cbk-PH",
   "allophones": {},
-  "notes": "Caviteño Chabacano (Chabacano de Cavite), a Manila-Bay Spanish-lexifier creole of Cavite City, Luzon, Philippines, distinct from Zamboangueño (cbk-zam). Sippola (2013, §4 Phonology) states that the usual orthography is based on Spanish and uses ⟨c, qu⟩ for /k/, ⟨j⟩ for /h/, ⟨y⟩ for /j/ and ⟨ch⟩ for /tʃ/, and transcribes casa as [kása] 'house'. These are the readings of the Spanish-based cbk-zam table, so the spec takes its table over `graphemes_base: cbk-zam` and states no letter of its own. The other letter values (⟨c⟩ and ⟨g⟩ before a front vowel, ⟨ll⟩, ⟨ñ⟩, ⟨r⟩ against ⟨rr⟩, ⟨v⟩ = [b], ⟨z⟩ = [s]) and the non-lenited allophone map are inherited from cbk-zam with no Cavite source that states them. Table 2 has /h/ and no /x/, so the inherited [x] reading of ⟨g⟩ before a front vowel has no phoneme in the inventory; the chapter does not state the value of that ⟨g⟩. The chapter writes hombre 'male' with an etymological ⟨h⟩ and gives no reading for it; ⟨h⟩ keeps the cbk-zam reading [h]. Sippola states that /f/, /v/, /ʃ/ and /dʒ/ occur in loanwords from English; the spelling of those loanwords is not described, so ⟨v⟩ keeps the cbk-zam reading [b]. The close realisation of unstressed and word-final mid vowels that Sippola reports is a variant and is not encoded. Stress is not marked: cbk-zam carries no stress block, and casa against casá is contrastive (Sippola 2013, §4). The described lect is almost entirely written Cavite Chabacano produced by language activists, and there is no standardized orthography (Sippola 2013, §3). The variety is moribund. Documented differences from Zamboangueño (the TMA particles ta, ya and di, and a Tagalog rather than Visayan substrate) are not encoded.",
+  "notes": "Caviteño Chabacano (Chabacano de Cavite), a Manila-Bay Spanish-lexifier creole of Cavite City, Luzon, Philippines, distinct from Zamboangueño (cbk-PH). Sippola (2013, §4 Phonology) states that the usual orthography is based on Spanish and uses ⟨c, qu⟩ for /k/, ⟨j⟩ for /h/, ⟨y⟩ for /j/ and ⟨ch⟩ for /tʃ/, and transcribes casa as [kása] 'house'. These are the readings of the Spanish-based cbk-PH table, so the spec takes its table over `graphemes_base: cbk-PH` and states no letter of its own. The other letter values (⟨c⟩ and ⟨g⟩ before a front vowel, ⟨ll⟩, ⟨ñ⟩, ⟨r⟩ against ⟨rr⟩, ⟨v⟩ = [b], ⟨z⟩ = [s]) and the non-lenited allophone map are inherited from cbk-PH with no Cavite source that states them. Table 2 has /h/ and no /x/, so the inherited [x] reading of ⟨g⟩ before a front vowel has no phoneme in the inventory; the chapter does not state the value of that ⟨g⟩. The chapter writes hombre 'male' with an etymological ⟨h⟩ and gives no reading for it; ⟨h⟩ keeps the cbk-PH reading [h]. Sippola states that /f/, /v/, /ʃ/ and /dʒ/ occur in loanwords from English; the spelling of those loanwords is not described, so ⟨v⟩ keeps the cbk-PH reading [b]. The close realisation of unstressed and word-final mid vowels that Sippola reports is a variant and is not encoded. Stress is not marked: cbk-PH carries no stress block, and casa against casá is contrastive (Sippola 2013, §4). The described lect is almost entirely written Cavite Chabacano produced by language activists, and there is no standardized orthography (Sippola 2013, §3). The variety is moribund. Documented differences from Zamboangueño (the TMA particles ta, ya and di, and a Tagalog rather than Visayan substrate) are not encoded.",
   "iso639_3": "cbk",
   "glottolog_code": "cavi1254",
   "wikidata_qid": "Q33281",

@@ -104,13 +104,15 @@ The table holds five other kinds of entry:
 
 | Kind | Examples |
 | :--- | :--- |
-| The bare ISO 639-3 code of an Arabic variety, mapped to the spec keyed by that code | `arz` to `arz-EG`, `ars` to `ars-SA`, and `ajp`, which SIL retired into `apc`, to `apc-JO` |
-| A key that a spec had before it took its ISO 639-3 code, mapped to that spec | `ar-EG` to `arz-EG`, `ar-SA-x-najd` to `ars-SA`, `ar-x-gulf` to `afb` |
+| The bare ISO 639-3 code of a variety, mapped to the spec keyed by that code | `arz` to `arz-EG`, `bar` to `bar-AT`, `pnb` to `pnb-PK`, and `ajp`, which SIL retired into `apc`, to `apc-JO` |
+| A key that a spec had before it took its canonical key, mapped to that spec | `ar-EG` to `arz-EG`, `ar-SA-x-najd` to `ars-SA`, `de-x-bavarian` to `bar-AT`, `cbk-x-ternate` to `cbk-PH-x-ternate` |
 | An individual-language code that `macro=True` standardisation would collapse into its macrolanguage, mapped to itself | `quz`, which would otherwise become `qu`, and `diq`, which would become `zza` |
-| An ISO 639-3 code whose variety has its spec under another key | `pnb` to `pa-PK`, `bar` to `de-x-bavarian` |
+| An ISO 639-3 code whose variety has its spec under another key | `twi` to `tw` |
 | A private-use tag, mapped to the spec that holds the variety | `pt-PT-x-barrancos` to `ext-PT-x-barrancos`, `pt-BR-x-sao-paulo` to `pt-BR-x-sp`, `ar-x-hijazi` to `acw-SA` |
 
 Galician has one standard spec, `gl-ES`, and the bare tag `gl` resolves to it. The variety codes `gl-x-central`, `gl-x-occidental`, `gl-x-oriental`, `gl-x-eonavia` and `gl-x-reintegrado` resolve to the `gl-ES-x-*` spec of the same variety. `_ALIASES` in `registry.py` holds the full table.
+
+An old key that is the ISO 639-3 code of another language is not kept as an alias. `aja` was the key of Aja (Benin), now `ajg-BJ`, and it is the code of Aja (South Sudan), so `aja` names no spec. In the same way, `tmg` is the code of Ternateño, the extinct creole of the Moluccas, and does not name `cbk-PH-x-ternate`, the spec of Ternate Chabacano of Cavite.
 
 ## Plugin discovery
 

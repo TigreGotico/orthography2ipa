@@ -1,7 +1,7 @@
 """Per-language accuracy tests for Germanic languages.
 
 Covers:
-- German: Standard (de-DE), Austrian (de-AT), Bavarian (de-x-bavarian)
+- German: Standard (de-DE), Austrian (de-AT), Bavarian (bar-AT)
 - Dutch: Standard (nl-NL), Belgian (nl-BE)
 - Afrikaans: af
 - Swedish: sv, Stockholm (sv-x-rikssvenska), Scanian (sv-x-skanska)
@@ -372,12 +372,12 @@ class TestAustrianGerman:
 
 
 # ═══════════════════════════════════════════════════════════════════════════
-# BAVARIAN GERMAN  (de-x-bavarian)
+# BAVARIAN GERMAN  (bar-AT)
 # ═══════════════════════════════════════════════════════════════════════════
 
 @pytest.mark.linguistic
 class TestBavarianGerman:
-    """Accuracy tests for Bavarian German (de-x-bavarian).
+    """Accuracy tests for Bavarian German (bar-AT).
 
     Bavarian is a Southern German dialect cluster spoken in Bavaria and
     Austria. Key features: preservation of /r/ as a tapped/trilled consonant
@@ -385,43 +385,43 @@ class TestBavarianGerman:
     converge.
     """
 
-    LANGUAGE_CODE = "de-x-bavarian"
+    LANGUAGE_CODE = "bar-AT"
 
     @pytest.fixture(autouse=True, scope="class")
     def spec(self, request):
-        """Load the de-x-bavarian LanguageSpec once for the entire class."""
-        request.cls._spec = _load("de-x-bavarian")
+        """Load the bar-AT LanguageSpec once for the entire class."""
+        request.cls._spec = _load("bar-AT")
 
     def test_code(self):
-        """The spec code must round-trip to de-x-bavarian."""
-        assert self._spec.code == "de-x-bavarian"
+        """The spec code must round-trip to bar-AT."""
+        assert self._spec.code == "bar-AT"
 
     def test_parent_is_austrian_german(self):
-        """de-x-bavarian declares de-AT as its parent (Bavarian ← Austrian ← Standard)."""
+        """bar-AT declares de-AT as its parent (Bavarian ← Austrian ← Standard)."""
         assert self._spec.parent == "de-AT"
 
     def test_diphthong_aI_includes_oI_variant(self):
         """BAVARIAN FEATURE: /aɪ/ allophone table includes /ɔɪ/ (diphthong merger)."""
         a = _allophone(self._spec, "aɪ")
-        assert a is not None, "de-x-bavarian: aɪ should be in allophone table"
-        _assert_contains(a, "aɪ", "ɔɪ", label="de-x-bavarian aɪ→ɔɪ")
+        assert a is not None, "bar-AT: aɪ should be in allophone table"
+        _assert_contains(a, "aɪ", "ɔɪ", label="bar-AT aɪ→ɔɪ")
 
     def test_rhotic_is_apical(self):
         """BAVARIAN FEATURE: rhotic is apical /r/ (not uvular /ʁ/)."""
         a = _allophone(self._spec, "ʁ")
-        assert a is not None, "de-x-bavarian: ʁ should be in allophone table"
-        _assert_contains(a, "r", label="de-x-bavarian allophone ʁ includes apical r")
+        assert a is not None, "bar-AT: ʁ should be in allophone table"
+        _assert_contains(a, "r", label="bar-AT allophone ʁ includes apical r")
 
     def test_ae_long_unchanged(self):
         """Bavarian retains /ɛː/ without the Austrian eː merger."""
         a = _allophone(self._spec, "ɛː")
-        assert a is not None, "de-x-bavarian: ɛː should be in allophone table"
-        _assert_contains(a, "ɛː", label="de-x-bavarian ɛː retained")
+        assert a is not None, "bar-AT: ɛː should be in allophone table"
+        _assert_contains(a, "ɛː", label="bar-AT ɛː retained")
 
     def test_inherits_umlaut_oe(self):
-        """de-x-bavarian inherits <ö>→[œ, øː] from de-DE."""
+        """bar-AT inherits <ö>→[œ, øː] from de-DE."""
         g = _grapheme(self._spec, "ö")
-        _assert_contains(g, "œ", "øː", label="de-x-bavarian inherits ö")
+        _assert_contains(g, "œ", "øː", label="bar-AT inherits ö")
 
 
 # ═══════════════════════════════════════════════════════════════════════════

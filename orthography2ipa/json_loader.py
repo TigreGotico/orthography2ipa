@@ -284,7 +284,7 @@ def load_json_spec(code: str) -> LanguageSpec:
     # BASE_SCALAR fields follow the graphemes_base edge: a spec that does not
     # state one takes the value of the spec whose grapheme table it pulls in.
     # Resolution is transitive because the base spec was itself resolved when
-    # it was loaded (de-x-bavarian → de-AT → de-DE).
+    # it was loaded (bar-AT → de-AT → de-DE).
     base_scalars: Dict[str, object] = {}
     _grapheme_base_lang = base_field_langs.get("graphemes")
     for field in _BASE_SCALAR_FIELDS:

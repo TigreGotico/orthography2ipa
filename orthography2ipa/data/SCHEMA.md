@@ -849,9 +849,12 @@ Each entry of `ancestors` is one link from this language to an ancestor.
 A variety with an ISO 639-3 individual code of its own is keyed by that code,
 not by a private-use tag. The key is `{iso}-{REGION}`, where the region is the
 country where the variety is spoken, or the CLDR likely region when the spec
-names no country: `ars-SA` for Najdi Arabic, `arz-EG` for Egyptian Arabic. An
+names no country: `ars-SA` for Najdi Arabic, `bar-AT` for Bavarian. An
 abstract node that groups the varieties of several countries takes the bare
-code: `afb` for Gulf Arabic, `apc` for Levantine Arabic.
+code: `afb` for Gulf Arabic, `apc` for Levantine Arabic. A historical or
+extinct variety that is spoken in no country also takes the bare code: `vsn`
+for Vedic Sanskrit, `tpn` for Tupinambá. A code that SIL retired is not a key:
+the key takes the code SIL names in its place, as `tpn` replaces `tpw`.
 
 A variety with no ISO 639-3 code of its own is keyed as a private-use extension
 of the language it descends from: `{parent-language}-{REGION}-x-{slug}`. The
@@ -885,7 +888,10 @@ stays there with no removal date, so downstream packages that pin it keep
 working. The bare ISO 639-3 code also points at the canonical key. One old code
 is not kept: a code that is the ISO 639-3 code of another living language. That
 code resolves to its own language or to nothing, because an alias would send
-that language's users to the wrong spec.
+that language's users to the wrong spec. `aja`, the old key of Aja (Benin),
+is the code of Aja (South Sudan), so it is not kept for `ajg-BJ`. When
+`langcodes` folds the bare code into a macrolanguage, as it folds `pnb` into
+`lah`, the alias of the bare code is what keeps it on the spec.
 
 ## File Organisation
 

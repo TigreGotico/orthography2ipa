@@ -122,9 +122,6 @@ _ALIASES: Dict[str, str] = {
     # collision as bxr/diq above.
     "oji": "oji",
     "mnk": "mnk",
-    # ``haz`` (Hazaragi) has no own spec; the modelled variety lives at
-    # ``fa-x-hazaragi`` (Persian dialect continuum, Mongolic substrate).
-    "haz": "fa-x-hazaragi",
     # ``kas`` (Kashmiri) is an ISO 639-3 individual code that langcodes'
     # macro=True standardisation collapses into its macrolanguage tag ``ks``
     # (Kashmiri, ISO 639-1) — same collision class as bxr/diq above. ``ks``
@@ -161,28 +158,22 @@ _ALIASES: Dict[str, str] = {
     "acw": "acw-SA",          # Hijazi Arabic
     # SIL retired ``ajp`` (South Levantine Arabic) into ``apc``.
     "ajp": "apc-JO",
-    # ``pnb`` (Western Panjabi) is an ISO 639-3 individual code that resolved to
-    # ``lah``, its macrolanguage, which carries no graphemes at all -- so the
-    # code reached a spec that produces nothing while ``pa-PK`` describes the
-    # same variety with 57 keys and declares the code.
-    "pnb": "pa-PK",           # Western Punjabi (Shahmukhi)
+    # Other varieties keyed by their ISO 639-3 individual code. A bare code
+    # resolves to the spec of that code.
+    "haz": "haz-AF",          # Hazaragi
+    "bar": "bar-AT",          # Bavarian
+    # langcodes folds ``pnb`` into its macrolanguage ``lah``, a spec with no
+    # graphemes, so the bare code is pinned.
+    "pnb": "pnb-PK",          # Western Panjabi (Shahmukhi)
+    "ajg": "ajg-BJ",          # Aja (Benin)
+    "gej": "gej-TG",          # Gen (Mina)
+    "cbk": "cbk-PH",          # Chavacano (Zamboangueño)
+    # langcodes folds ``twi`` into its macrolanguage ``ak``; ``tw`` is the spec
+    # that declares the code.
+    "twi": "tw",              # Twi
     # Codes with exactly one declaring spec, whose name is the same language as
     # the code's, and no file of their own to shadow them.
-    "ajg": "aja",             # Aja (Adja)
-    "gej": "gen",             # Gen (Mina)
     "xdc": "xda",             # Dacian/Thracian
-    "tmg": "cbk-x-ternate",   # Ternateño (Ternate Chabacano)
-    # ``cbk`` resolved to ``cbk-x-cavite``, the Manila-Bay variety, while
-    # ``cbk-zam`` describes Zamboangueño, the main Chavacano variety, and
-    # declares the code. ``cbk-x-cavite`` takes its table from ``cbk-zam``.
-    "cbk": "cbk-zam",         # Chavacano (Zamboangueño)
-    # ``bar`` resolved to ``bar.json``, a placeholder with no graphemes and no
-    # base, while ``de-x-bavarian`` declares the code and inherits a table
-    # through ``graphemes_base: de-AT``. Deleting the placeholder rather than
-    # leaving it to shadow the real spec is the same call this batch makes for
-    # aec, avl and adf, and the placeholder's own notes already describe
-    # Bavarian as "an Upper German variety of Bavaria, Austria and South Tyrol".
-    "bar": "de-x-bavarian",   # Bavarian (Boarisch)
     # Dialects named in a private-use subtag. langcodes ignores private-use
     # content when it measures tag distance, so ``ar-x-najdi`` would otherwise
     # fall to the nearest bare match (``ar``); pin the spoken adjective to the
@@ -223,7 +214,11 @@ _ALIASES: Dict[str, str] = {
 #: The keys a spec had before it took its canonical key, mapped to that key.
 #: Each is an exact alias. The nearest-match step still measures a tag against
 #: the old key, so a tag that adds an unknown subtag to it (``ar-MA-x-fes``)
-#: lands on the same spec as before the rename.
+#: lands on the same spec as before the rename. An old key that is the ISO
+#: 639-3 code of another language is not kept: ``aja``, the old key of
+#: ``ajg-BJ``, is the code of Aja (South Sudan). For the same reason ``tmg``
+#: (Ternateño, the extinct creole of the Moluccas) does not name the Cavite
+#: spec ``cbk-PH-x-ternate``.
 _RENAMED: Dict[str, str] = {
     "ar-EG":                "arz-EG",
     "ar-EG-x-fayyum":       "arz-EG-x-fayyum",
@@ -260,6 +255,15 @@ _RENAMED: Dict[str, str] = {
     "ar-SA-x-qassim":       "ars-SA-x-qassim",
     "ar-SA-x-shamali":      "ars-SA-x-shamali",
     "ar-SA-x-hejaz":        "acw-SA",
+    "fa-x-hazaragi":        "haz-AF",
+    "de-x-bavarian":        "bar-AT",
+    "pa-PK":                "pnb-PK",
+    "sa-x-vedic":           "vsn",
+    "tpw":                  "tpn",
+    "gen":                  "gej-TG",
+    "cbk-zam":              "cbk-PH",
+    "cbk-x-cavite":         "cbk-PH-x-cavite",
+    "cbk-x-ternate":        "cbk-PH-x-ternate",
 }
 _ALIASES.update(_RENAMED)
 

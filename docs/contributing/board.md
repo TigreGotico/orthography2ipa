@@ -109,6 +109,11 @@ The CI workflow `.github/workflows/benchmark-regression.yml` runs the first
 four guards. `board-not-reverting` runs the copy of the script on the base
 branch, so a branch cannot weaken the guard that judges it.
 
+CI splits the board-freshness guard into shards. A plan job lists the rows
+that the touched specs own, parallel jobs measure one shard each, and the
+`board-freshness` job fails on a stale row or on a planned row that no shard
+measured. The local command above measures every owned row in one process.
+
 ## Never carry the board backwards
 
 A branch rescores only its own rows. Every other row is a copy of `dev` from

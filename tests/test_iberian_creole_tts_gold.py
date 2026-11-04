@@ -4,7 +4,7 @@
 Runs the validate subcommand of scripts/iberian_creole_tts_gold.py over every
 Iberian-lexified creole lect that has a gold TSV — the whole roster across the
 three shelves (Asian Portuguese mcm/idb/vkp, Atlantic kea/pov/pre/aoa/cri,
-Spanish-lexified Caribbean/Philippine pap/cbk-zam/pln); the rest report as
+Spanish-lexified Caribbean/Philippine pap/cbk-PH/pln); the rest report as
 pending. Checks schema, row minimum, feature-tag verifiability, duplicate
 detection and citation-id resolution.
 

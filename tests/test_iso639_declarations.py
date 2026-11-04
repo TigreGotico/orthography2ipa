@@ -31,7 +31,6 @@ ISO639_5 = _codes("iso639_5_codes.txt")
 KNOWN_INVALID = {
     "ajt": "ajt",
     "bbz": "bbz",
-    "tpw": "tpw",
     "yol": "yol",
 }
 
@@ -82,7 +81,7 @@ def test_known_invalid_declarations_are_still_present():
     ("bo", "bod"),
     ("sc-x-campidanese", "sro"),
     ("sc-x-logudorese", "src"),
-    ("sa-x-vedic", "vsn"),
+    ("vsn", "vsn"),
 ])
 def test_declares_the_individual_code(key, code):
     assert get(key).iso639_3 == code
