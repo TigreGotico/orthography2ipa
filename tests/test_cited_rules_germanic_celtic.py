@@ -902,23 +902,21 @@ def test_li_mouillering_j_digraphs():
     Each digraph must be one palatal/postalveolar segment, not a consonant plus a
     [j] glide.
     """
-    assert _t("li", "sjoon").startswith("ʃ")
-    assert _t("li", "zjoon").startswith("ʒ")
-    assert _t("li", "tjeun").startswith("tʃ")
-    assert _t("li", "djoon").startswith("dʒ")
-    assert _t("li", "njoon").startswith("ɲ")
-    assert _t("li", "ljoon").startswith("ʎ")
+    assert _bare("li", "sjoon").startswith("ʃ")
+    assert _bare("li", "zjoon").startswith("ʒ")
+    assert _bare("li", "tjeun").startswith("tʃ")
+    assert _bare("li", "djoon").startswith("dʒ")
+    assert _bare("li", "njoon").startswith("ɲ")
+    assert _bare("li", "ljoon").startswith("ʎ")
 
 
-def test_li_tone_is_not_emitted():
-    """TONE IS NOT REPRESENTED: no tonal information is emitted.
+def test_li_unmarked_word_has_no_accent_digit():
+    """A word written without a tone sign gets no accent digit.
 
-    li notes: "TONE IS NOT REPRESENTED: Limburgish contrasts sleeptoon (dragging
-    tone, Accent 1) with stoottoon (push tone, Accent 2); Spelling 2003 does not
-    write the contrast, so no tonal information can be recovered from the
-    orthography and none is emitted."
-
-    A declared omission, pinned so no tone mark can appear by accident.
+    li notes: "A word written without either sign gets no digit. Its accent
+    cannot be read from the spelling, because the same letters spell both
+    accents (haas 'haas' and 'handschoen')." Spelling 2003, printed p. 27,
+    §8 h-i, writes the accent only with the optional signs ⟨~⟩ and ⟨\\⟩.
     """
     out = _t("li", "haas")
     assert not any(c in out for c in "˥˦˧˨˩¹²ˊˋ")
