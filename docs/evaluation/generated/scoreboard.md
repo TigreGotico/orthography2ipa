@@ -528,10 +528,10 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | nio | northeuralex | 1024 | 0.0972 | - | - | 0.0887 | 0.0886 | 0.4834 | 0.4834 | [0.0900, 0.1045] | 0.4678 | research | lexicon-derived |
 | niv | northeuralex | 833 | 0.0695 | - | - | 0.0695 | 0.0695 | 0.7215 | 0.7215 | [0.0604, 0.0786] | 0.7215 | research | lexicon-derived |
 | niv | wikipron | 624 | 0.2246 | - | - | 0.2246 | 0.2246 | 0.3413 | 0.3413 | [0.2085, 0.2405] | 0.3413 | research | crowd-scraped |
-| nl-NL | ipa_childes | 8108 | 0.2137‡ | - | - | 0.1918 | 0.1802 | 0.3305 | 0.3410 | [0.2093, 0.2181] | 0.3030 | research | espeak-derived |
-| nl-NL | ipadict | 117869 | 0.1767 | 0.6268 | - | 0.1507 | 0.1400 | 0.2722 | 0.2933 | [0.1759, 0.1776] | 0.2141 | research | machine-generated |
-| nl-NL | vox_communis | 25904 | 0.2706‡ | - | - | 0.2288 | 0.2073 | 0.1625 | 0.1917 | [0.2687, 0.2724] | 0.0998 | research | epitran-derived |
-| nl-NL | wikipron | 45872 | 0.0902 | - | - | 0.0701 | 0.0587 | 0.6416 | 0.6836 | [0.0891, 0.0914] | 0.5554 | research | crowd-scraped |
+| nl-NL | ipa_childes | 8108 | 0.2119‡ | - | - | 0.1899 | 0.1783 | 0.3291 | 0.3395 | [0.2077, 0.2161] | 0.3017 | research | espeak-derived |
+| nl-NL | ipadict | 117869 | 0.1779 | 0.6268 | - | 0.1518 | 0.1411 | 0.2679 | 0.2887 | [0.1770, 0.1787] | 0.2107 | research | machine-generated |
+| nl-NL | vox_communis | 25904 | 0.2697‡ | - | - | 0.2280 | 0.2065 | 0.1622 | 0.1914 | [0.2679, 0.2716] | 0.0996 | research | epitran-derived |
+| nl-NL | wikipron | 45872 | 0.0876 | - | - | 0.0672 | 0.0558 | 0.6552 | 0.6978 | [0.0865, 0.0888] | 0.5659 | research | crowd-scraped |
 | nmy | wikipron | 354 | 0.1091 | - | - | 0.1088 | 0.1088 | 0.5989 | 0.5989 | [0.0921, 0.1291] | 0.5989 | research | crowd-scraped |
 | nn | wikipron | 3829 | 0.2596 | - | - | 0.2058 | 0.1983 | 0.3949 | 0.4074 | [0.2515, 0.2679] | 0.3249 | research | crowd-scraped |
 | nn | wikipron_nor | 1093 | 0.1705 | - | - | 0.1398 | 0.1344 | 0.5517 | 0.5645 | [0.1582, 0.1827] | 0.4904 | research | crowd-scraped |
