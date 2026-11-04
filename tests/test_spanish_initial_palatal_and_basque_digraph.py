@@ -20,8 +20,8 @@ def _t(word, code="es"):
 @pytest.mark.parametrize("word,expected", [
     ("hielo", "ʝelo"),
     ("hierro", "ʝero"),
-    ("hierba", "ʝeɾba"),
-    ("hiedra", "ʝedɾa"),
+    ("hierba", "ʝeɾβa"),  # /b/ after /ɾ/ is fricative (Navarro Tomás 1918, § 82)
+    ("hiedra", "ʝeðɾa"),  # /d/ after a vowel is fricative (§ 101)
     ("hiena", "ʝena"),
     ("hiato", "ʝato"),
     ("hialino", "ʝalino"),
@@ -33,7 +33,7 @@ def test_initial_hi_strengthens_to_palatal_obstruent(word, expected):
 
 @pytest.mark.parametrize("word,expected", [
     ("antihielo", "antijelo"),
-    ("contrahierba", "kontɾajeɾba"),
+    ("contrahierba", "kontɾajeɾβa"),
     ("isohieta", "isojeta"),
 ])
 def test_post_vocalic_hi_stays_a_glide(word, expected):
@@ -90,7 +90,7 @@ def test_tx_entry_does_not_disturb_native_x(word, expected):
 @pytest.mark.parametrize("word,expected", [
     ("Aýna", "aina"),
     ("Almatý", "almati"),
-    ("Ýñiguez", "iɲiɡeθ"),
+    ("Ýñiguez", "iɲiɣeθ"),  # /ɡ/ after a vowel is fricative (§ 129)
 ])
 def test_accented_y_is_transcribed_not_deleted(word, expected):
     assert _t(word) == expected
