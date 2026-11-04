@@ -382,7 +382,7 @@
     "access": "open",
     "pagination": "Printed folios 7-24 map to PDF pages 1-18 (offset +6: printed p.9 = PDF p.3). `page` records the printed folio.",
     "notation": "ipa",
-    "describes": "BEDOUIN Hijazi (Bani Sulaim, Wadi Starah north of Jeddah). Iambic stress and interdental retention — the CONTRAST case for the urban ar-SA-x-hejaz node; rows carry lang=null (no o2i Bedouin-Hijazi node)."
+    "describes": "BEDOUIN Hijazi (Bani Sulaim, Wadi Starah north of Jeddah). Iambic stress and interdental retention — the CONTRAST case for the urban acw-SA node; rows carry lang=null (no o2i Bedouin-Hijazi node)."
   },
   "alrohili2019": {
     "authors": "Al-Rohili, Mohammad Awad",

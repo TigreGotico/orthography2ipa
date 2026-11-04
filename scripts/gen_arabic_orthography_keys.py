@@ -67,14 +67,14 @@ DATA = REPO_ROOT / "orthography2ipa" / "data"
 
 LECTS = [
     "arb", "ar",
-    "ar-EG", "ar-IQ", "ar-IQ-x-qeltu", "ar-SD", "ar-TD", "ar-NG",
-    "ar-SY", "ar-LB", "ar-JO", "ar-PS",
-    "ar-AE", "ar-BH", "ar-KW", "ar-QA", "ar-OM",
-    "ar-SA-x-najd", "ar-SA-x-hejaz", "ar-YE",
-    "ar-SA-x-qassim", "ar-SA-x-rijal-alma", "ar-SA-x-sharqiyya",
-    "ar-MA", "ar-TN", "ar-DZ", "ar-LY", "ar-MR",
+    "arz-EG", "acm-IQ", "ar-IQ-x-qeltu", "apd-SD", "shu-TD", "shu-NG",
+    "apc-SY", "apc-LB", "apc-JO", "apc-PS",
+    "afb-AE", "afb-BH", "afb-KW", "afb-QA", "acx-OM",
+    "ars-SA", "acw-SA", "ayn-YE",
+    "ars-SA-x-qassim", "ar-SA-x-rijal-alma", "afb-SA-x-sharqiya",
+    "ary-MA", "aeb-TN", "arq-DZ", "ar-LY", "mey-MR",
     # abstract ancestors: keys placed here benefit every descendant
-    "ar-x-mashriqi", "ar-x-maghrebi", "ar-x-peninsular", "ar-x-levantine", "ar-x-gulf",
+    "ar-x-mashriqi", "ar-x-maghrebi", "ar-x-peninsular", "apc", "afb",
 ]
 
 SUN = "تثدذرزسشصضطظلن"
@@ -252,7 +252,7 @@ VOWELS = {"\u064e": "a", "\u064f": "u", "\u0650": "i"}
 # guttural, does not). Only concrete leaves are listed so the pan-group
 # grouping nodes are untouched.
 ARTICLE_VOWEL = {
-    "ar-LB": "i",
+    "apc-LB": "i",
 }
 # Lects that also raise the vowel of the SUN-assimilated article (اِسّوق /issuːʔ/,
 # اِدّكّان /iddukkaːn/). Beiruti and Emirati keep /a/ before a sun letter even

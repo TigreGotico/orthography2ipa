@@ -30,8 +30,6 @@ ISO639_5 = _codes("iso639_5_codes.txt")
 # moves the spec and its declaration together. This set may only shrink.
 KNOWN_INVALID = {
     "ajt": "ajt",
-    "ar-JO": "ajp",
-    "ar-PS": "ajp",
     "bbz": "bbz",
     "tpw": "tpw",
     "yol": "yol",
