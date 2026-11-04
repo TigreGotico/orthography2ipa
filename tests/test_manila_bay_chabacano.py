@@ -1,6 +1,6 @@
-"""Cavite (cbk-x-cavite) and Ternate (cbk-x-ternate) Chabacano transcribe.
+"""Cavite (cbk-PH-x-cavite) and Ternate (cbk-x-ternate) Chabacano transcribe.
 
-Both specs take the Spanish-based cbk-zam table over ``graphemes_base``.
+Both specs take the Spanish-based cbk-PH table over ``graphemes_base``.
 Every expected value below comes from Sippola's APiCS survey chapters, not
 from engine output:
 
@@ -50,7 +50,7 @@ TERNATE = [
 
 @pytest.mark.parametrize("word,expected", CAVITE)
 def test_cavite_reads_its_spanish_based_spelling(word, expected):
-    assert _transcribe(word, "cbk-x-cavite") == expected
+    assert _transcribe(word, "cbk-PH-x-cavite") == expected
 
 
 @pytest.mark.parametrize("word,expected", TERNATE)
@@ -58,7 +58,7 @@ def test_ternate_reads_sippola_transcription(word, expected):
     assert _transcribe(word, "cbk-x-ternate") == expected
 
 
-@pytest.mark.parametrize("code,word", [("cbk-x-cavite", "mujer"),
+@pytest.mark.parametrize("code,word", [("cbk-PH-x-cavite", "mujer"),
                                        ("cbk-x-ternate", "muhér")])
 def test_woman_has_glottal_fricative(code, word):
     # Cavite writes /h/ as <j> (mujer), Ternate as <h> (muhér). The rhotic

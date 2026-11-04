@@ -493,7 +493,7 @@ _WIKIPRON_FILES = {
     "jam":       "jam_latn_broad.tsv",              # Jamaican Creole English, ~415 rows
     "si":        "sin_sinh_broad.tsv",              # Sinhala, ~393 rows
     "war":       "war_latn_broad.tsv",              # Waray (Philippines), ~383 rows
-    "tpw":       "tpw_latn_broad.tsv",              # Tupí, ~375 rows
+    "tpn":       "tpw_latn_broad.tsv",              # Tupí, ~375 rows
     "sw":        "swa_latn_broad.tsv",              # Swahili (macrolanguage), ~370 rows
     "gn":        "gug_latn_broad.tsv",              # Paraguayan Guaraní, ~348 rows
     "uz":        "uzb_latn_broad.tsv",              # Uzbek, ~345 rows
