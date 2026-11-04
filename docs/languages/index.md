@@ -33,6 +33,7 @@ nothing about either.
 | [comparative.md](comparative.md) | Comparative tables for the Germanic, Romance and Slavic families |
 | [en-GB.md](en-GB.md) | British RP (`en-GB`) and General American (`en-US`) |
 | [de-DE.md](de-DE.md) | Standard German |
+| [nl-NL-regional.md](nl-NL-regional.md) | The regional Standard Dutch specs of the Netherlands, starting with Dutch Limburg |
 | [fo.md](fo.md) | Faroese: Hammershaimb's etymological orthography and the positional rules it needs |
 
 ### Romance
