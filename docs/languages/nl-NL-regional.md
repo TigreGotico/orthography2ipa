@@ -1,6 +1,6 @@
 # Regional Standard Dutch of the Netherlands (nl-NL-x-*)
 
-The `nl-NL-x-*` specs model the regional accents of Standard Dutch in the Netherlands. They describe the standard language as educated speakers from one region speak it. They do not describe the traditional dialects, which have specs of their own, such as `li` for Limburgish. Each regional spec is a delta spec over `nl-NL`: it inherits the whole standard and declares only what its region changes. This page first explains how the inheritance works. One table then compares the defining features of every regional spec. Each spec then has its own section, with its sources, its rules and their conditions, and its known gaps.
+The `nl-NL-x-*` specs model the regional and social accents of Standard Dutch in the Netherlands. A regional spec describes the standard language as educated speakers from one region speak it. Polder Dutch (`nl-NL-x-polder`) is a sociolect, not a region: it describes the standard language of a social group. The specs do not describe the traditional dialects, which have specs of their own, such as `li` for Limburgish. Each spec is a delta spec over `nl-NL`: it inherits the whole standard and declares only what its region or group changes. This page first explains how the inheritance works. One table then compares the defining features of every regional spec. Each spec then has its own section, with its sources, its rules and their conditions, and its known gaps.
 
 Every transcription on this page is real output of `orthography2ipa.transcribe(text, code)`.
 
@@ -10,17 +10,18 @@ Every spec on this page sets `parent` to `nl-NL`. It also sets the four base key
 
 The dictionary fields `graphemes`, `allophones`, `positional_graphemes` and `word_exceptions` merge key by key. An own entry replaces the `nl-NL` entry with the same key, and every other key is inherited. In `positional_graphemes` the key is the grapheme. So an own map for ⟨g⟩ replaces the whole ⟨g⟩ map of `nl-NL`, and the spec must state every position it needs.
 
-A regional spec states a value itself when `nl-NL` could change that value later. The Limburg spec gives ⟨g⟩ the velar [x] and ⟨v⟩ the voiced [v] in its own positional maps. So a change to the dorsal fricative or to the initial ⟨v⟩ of `nl-NL` does not reach Limburg through the inheritance.
+A spec states a value itself when `nl-NL` could change that value later. The Limburg spec gives ⟨g⟩ the velar [x] and ⟨v⟩ the voiced [v] in its own positional maps. So a change to the dorsal fricative or to the initial ⟨v⟩ of `nl-NL` does not reach Limburg through the inheritance. The Polder spec gives its eight diphthong graphemes their values in its own `graphemes` map for the same reason.
 
 The rule list `allophone_rules` merges by id (see [../engine/allophony.md](../engine/allophony.md#inheritance)). The `nl-NL` rules keep their order. An own rule with the same id replaces the inherited rule in place. An own rule with a new id goes to the end of the list.
 
-The data for these specs come from the teacher corpus of Van Hout et al. (1999). It holds 160 teachers of Dutch from four regions of the Netherlands and four regions of Flanders. The teachers read word lists and carrier sentences. van der Harst (2011, p. 53) states the reason for the choice: teachers "are professional language users who are assumed to speak the standard language on a daily basis". The Netherlands regions are the Randstad, the Middle (south Gelderland), the North (Groningen and north Drenthe) and the South (Dutch Limburg).
+The data for the Limburg spec come from the teacher corpus of Van Hout et al. (1999). It holds 160 teachers of Dutch from four regions of the Netherlands and four regions of Flanders. The teachers read word lists and carrier sentences. van der Harst (2011, p. 53) states the reason for the choice: teachers "are professional language users who are assumed to speak the standard language on a daily basis". The Netherlands regions are the Randstad, the Middle (south Gelderland), the North (Groningen and north Drenthe) and the South (Dutch Limburg).
 
 ## Defining features
 
-| Spec | Region | Features that set it apart from `nl-NL` | Example |
+| Spec | Region or group | Features that set it apart from `nl-NL` | Example |
 |:---|:---|:---|:---|
 | [`nl-NL-x-limburg`](#limburg-nl-nl-x-limburg) | Dutch Limburg: Sittard, Geleen, Roermond | /ɣ/ as the voiceless velar [x], the soft g<br>word-initial ⟨v⟩ stays [v] | `guize` [ˈxœyzə], `liegen` [ˈlixən], `vier` [ˈviːr] |
+| [`nl-NL-x-polder`](#polder-dutch-nl-nl-x-polder) | A sociolect, not a region: younger women in public speech | ⟨ei ij⟩ as [aːi]<br>⟨ui⟩ as [ɑy]<br>⟨ou au⟩ as [aːu] | `tijd` [ˈtaːit], `huis` [ˈɦɑys], `vrouw` [ˈvraːu] |
 
 ## Limburg (nl-NL-x-limburg)
 
@@ -67,6 +68,59 @@ So the voiced [v] is the majority value in Limburg. The spec states ⟨v⟩ as [
 - /r/ takes the `nl-NL` value. Van Bezooijen & van den Berg (2004, p. 94) call South Limburg *"een gebied met vrijwel uitsluitend huig-r"*. That is a background remark about where a group of listeners lives, with no measurement.
 - The long mid vowels and the diphthongs take the `nl-NL` values. Voeten (2021, p. 166) finds that the non-Randstad regions "diphthongize less strongly" for /eː/, and that for /øː oː œy/ "Netherlands-Limburg goes along with the Flemish regions". He adds (p. 171) that "there are no regions which categorically do not diphthongize their vowels". These are gradient differences, with no change of category.
 - Tone and pitch accent belong to the Limburgish dialects. No opened source measures them in regional Standard Dutch.
+
+---
+
+## Polder Dutch (nl-NL-x-polder)
+
+`nl-NL-x-polder` models Polder Dutch (*Poldernederlands*). Polder Dutch is a sociolect, not a region. Stroop (1998) names it and defines its speakers by age, sex and job, not by place. He estimates that about half of the guests of one radio programme are younger women, and that these women speak the variety (p. 16):
+
+> *"Ongeveer de helft van hen zijn - naar mijn schatting - jongere vrouwen en het zijn juist deze vrouwen die dat aparte soort Nederlands spreken. Ze zijn doorgaans zo tussen de 25 en 40 jaar oud."*
+
+Most of his speakers did not grow up in the Randstad (p. 51):
+
+> *"De anderen komen uit Utrecht, Groningen, Heerlen, Zwolle, Den Bosch, enzovoort. De meesten zijn pas na hun middelbare school naar de Randstad gekomen."*
+
+So the spec has no `location`. The data are the observations of the author, which colleagues checked (p. 25), and the book gives no frequencies. Sources: Stroop (1998), Sebregts (2014).
+
+### The lowered diphthongs
+
+Stroop calls the lowering of the diphthongs "hét kenmerk van het Poldernederlands" (p. 29). He describes three changes. The spec states each one in its own `graphemes` map.
+
+⟨ei ij⟩ becomes [aːi] (p. 25):
+
+> *"Het opvallendste kenmerk van het Poldernederlands is - zoals gezegd - de uitspraak van de tweeklank (diftong) die als ei of ij gespeld wordt, namelijk: aai [a:i]."*
+
+⟨ui⟩ becomes [ɑy] (p. 26):
+
+> *"De uitspraak die in het Poldernederlands terrein wint, is die van een lage, geronde achterdiftong: in fonetisch schrift [ɑy] of gewoon gespeld: au."*
+
+⟨ou au⟩ becomes [aːu] (p. 27). Stroop separates it from the new ui: it is "meer midden, lager en (dus) niet gerond".
+
+> *"De oorspronkelijke ou wordt opvallend wijder en lager en klinkt nu als aau [a:u]."*
+
+The spec gives [aːu] to the five `nl-NL` graphemes of this diphthong: ⟨ou au ouw auw aauw⟩. Stroop's examples *jaauw* (jou), *vraauw* (vrouw) and *Paaul* (Paul) spell ⟨ou ouw au⟩. The rest of each word is inherited from `nl-NL`.
+
+| Word | `nl-NL` | `nl-NL-x-polder` |
+|:---|:---|:---|
+| `tijd` (taaid, p. 25) | [ˈtɛit] | [ˈtaːit] |
+| `twijfelen` (twaaifelen, p. 25) | [ˈtʋɛifələn] | [ˈtʋaːifələn] |
+| `huis` (haus, p. 26) | [ˈɦœys] | [ˈɦɑys] |
+| `buiten` (bauten, p. 26) | [ˈbœytən] | [ˈbɑytən] |
+| `Muiden` (Mauden, p. 26) | [ˈmœydən] | [ˈmɑydən] |
+| `jou` (jaauw, p. 27) | [ˈjɑu] | [ˈjaːu] |
+| `vrouw` (vraauw, p. 27) | [ˈvrɑu] | [ˈvraːu] |
+| `Paul` (Paaul, p. 27) | [ˈpɑul] | [ˈpaːul] |
+
+The new [aːi] is the `nl-NL` value of ⟨aai⟩, so `kraai` [ˈkraːi] and the ⟨ij⟩ of `tijd` [ˈtaːit] have the same diphthong. Stroop's spelling *aai* states the same merger.
+
+### Known gaps
+
+- Coda ⟨r⟩ takes the `nl-NL` value. Stroop (p. 34) finds the Gooise r in Polder Dutch *"ook weer niet bij alle spreeksters van het Poldernederlands"*. Sebregts (2014) samples city accents, not this group. In his corpus the retroflex or bunched approximant is 31.8% of all coda tokens (Table 3-9, p. 75), "well over 80%" of the coda /r/ in Leiden (p. 114) and "just under 75%" in The Hague (p. 119). No source gives a share for the speakers of Polder Dutch.
+- ⟨ee eu oo⟩ take the `nl-NL` values: `fee` [ˈfeː], `beuk` [ˈbøːk], `boot` [ˈboːt]. Stroop (pp. 30, 33) describes a drift towards *ei*, *ui* and *ou*, with no endpoint for the sociolect.
+- ⟨e⟩ before ⟨l⟩ keeps the `nl-NL` value. Stroop (p. 32) finds the raising to *opbillen* and *vertillen* *"uitsluitend bij jongere vrouwen"*.
+- The fricatives keep the `nl-NL` voicing. Stroop (p. 34) finds the devoicing *"meestal afwezig"* with Polder speakers from outside the Randstad.
+- The suffix ⟨-lijk⟩ takes the full diphthong of `nl-NL`: `eigenlijk` [ˈaːiɣənlaːik], where `nl-NL` gives [ˈɛiɣənlɛik]. The Wikipron Dutch data give [lək] for 342 of their 350 ⟨-lijk⟩ rows. That is an `nl-NL` limit, and the spec does not correct it.
 
 ---
 

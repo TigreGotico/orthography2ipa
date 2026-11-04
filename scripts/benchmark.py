@@ -96,6 +96,7 @@ import json
 import os
 import random
 import re
+import socket
 import sys
 import time
 import unicodedata
@@ -1574,6 +1575,10 @@ _IPADICT_PROVENANCE: Dict[str, str] = {
 
 _FETCH_ATTEMPTS = 3
 _FETCH_BACKOFF_SECONDS = 1.5
+# Seconds a gold server may stay silent on connect or on one read before the
+# attempt fails. urlretrieve takes no timeout of its own and otherwise blocks
+# forever on a server that accepts the connection and never answers.
+_FETCH_TIMEOUT_SECONDS = 60
 
 # When true, :func:`_fetch_file` re-downloads a gold file it already holds.
 # Off by default: scoring must not depend on the network, and a board row
@@ -1607,6 +1612,8 @@ def _fetch_file(url: str, name: str) -> str:
         tmp_dest = dest + f".part-{os.getpid()}"
         last_exc: Optional[Exception] = None
         for attempt in range(1, _FETCH_ATTEMPTS + 1):
+            previous_timeout = socket.getdefaulttimeout()
+            socket.setdefaulttimeout(_FETCH_TIMEOUT_SECONDS)
             try:
                 urllib.request.urlretrieve(url, tmp_dest)
                 if cached:
@@ -1620,6 +1627,8 @@ def _fetch_file(url: str, name: str) -> str:
                     os.remove(tmp_dest)
                 if attempt < _FETCH_ATTEMPTS:
                     time.sleep(_FETCH_BACKOFF_SECONDS * attempt)
+            finally:
+                socket.setdefaulttimeout(previous_timeout)
         if last_exc is not None:
             if cached:
                 print(f"cache refresh failed for {name}, keeping the cached "
