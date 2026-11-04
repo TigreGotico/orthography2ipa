@@ -1,7 +1,8 @@
 """Cited-claim tests for the Limburgish (``li``) benchmark ceiling.
 
 Limburgish is a pitch-accent language whose orthography (Spelling 2003,
-the "Veldekespelling") does not write the sleeptoon/stoottoon contrast.
+the "Veldekespelling") writes the sleeptoon/stoottoon contrast only with
+two optional signs, and the gold headwords do not use them.
 The natural hypothesis is that tone marking in the li/wikipron gold is
 the dominant driver of the shipped PER, the way it was for Hausa and
 Kikuyu (see ``test_kikuyu_tone_ceiling.py``). That hypothesis does NOT

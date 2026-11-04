@@ -15,6 +15,11 @@ from orthography2ipa import transcribe
 from orthography2ipa.json_loader import load_json_spec
 
 
+def _bare(word, code="li-x-rheindok"):
+    """Transcription without the primary-stress mark."""
+    return transcribe(word, code).replace("ˈ", "")
+
+
 def test_diacritic_signs_are_distinct_from_their_plain_counterparts():
     """The nine diacritic signs carry the system and must not collapse.
 
@@ -40,8 +45,8 @@ def test_postalveolar_fricative_is_written_sch_not_sj():
     and it is where `li` fails hardest on this part of the gold: reading
     ⟨sch⟩ as ⟨s⟩ + ⟨ch⟩ yields two segments where the word has one.
     """
-    assert transcribe("Be̩schǫǫt", "li-x-rheindok") == "bəʃɔːt"
-    assert transcribe("Kie̩sch", "li-x-rheindok") == "kiəʃ"
+    assert _bare("Be̩schǫǫt") == "bəʃɔːt"
+    assert _bare("Kie̩sch") == "kiəʃ"
 
 
 def test_vowel_length_comes_from_doubling_not_from_quality():
@@ -53,9 +58,9 @@ def test_vowel_length_comes_from_doubling_not_from_quality():
     "boot" [uː] — matching the canonical Germanic short=lax/long=tense
     pairing (ɪ/iː, ʊ/uː, ʏ/yː). ⟨o⟩ and ⟨oo⟩ pattern the same way.
     """
-    assert transcribe("Lue̩k", "li-x-rheindok") == "lʊək"
-    assert transcribe("Me̩luun", "li-x-rheindok") == "məlʊːn"
-    assert transcribe("Mǫǫnt", "li-x-rheindok") == "mɔːnt"
+    assert _bare("Lue̩k") == "lʊək"
+    assert _bare("Me̩luun") == "məlʊːn"
+    assert _bare("Mǫǫnt") == "mɔːnt"
 
 
 def test_entry_models_a_convention_li_does_not():
@@ -80,3 +85,18 @@ def test_li_records_the_gold_convention_mismatch():
     """The `li` row's audit verdict is in the tree, not only in a PR body."""
     spec = load_json_spec("li")
     assert spec.audit["wikipron"].conclusion.value == "mislabeled_gold"
+
+
+def test_stress_comes_from_li_through_parent():
+    """Rheinische Dokumenta writes the same Limburgish material as `li`.
+
+    A second notation is not a second lect, so the place of the stress is
+    the same, and the entry takes the `li` block through ``parent``. A
+    one-syllable word takes the stress (Peters 2006, JIPA 36(1), p. 119).
+    """
+    from orthography2ipa import G2P
+
+    li_rules = G2P("li").spec.stress
+    assert li_rules is not None
+    assert G2P("li-x-rheindok").spec.stress == li_rules
+    assert transcribe("Mǫǫnt", "li-x-rheindok") == "ˈmɔːnt"
