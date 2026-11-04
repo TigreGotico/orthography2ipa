@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.114.20a2](https://github.com/TigreGotico/orthography2ipa/tree/7.114.20a2) (2026-11-04)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.114.20a1...7.114.20a2)
+
+**Merged pull requests:**
+
+- docs\(pt-BR\): match four examples to the pt-BR output and label the Moraes & Wetzels variant [\#1975](https://github.com/TigreGotico/orthography2ipa/pull/1975) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.114.20a1](https://github.com/TigreGotico/orthography2ipa/tree/7.114.20a1) (2026-11-04)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.114.19a1...7.114.20a1)
@@ -377,10 +385,6 @@
 ## [7.111.17a2](https://github.com/TigreGotico/orthography2ipa/tree/7.111.17a2) (2026-11-02)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.111.17a1...7.111.17a2)
-
-**Merged pull requests:**
-
-- docs: group the documentation into folders by reader [\#1812](https://github.com/TigreGotico/orthography2ipa/pull/1812) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.111.17a1](https://github.com/TigreGotico/orthography2ipa/tree/7.111.17a1) (2026-11-02)
 
