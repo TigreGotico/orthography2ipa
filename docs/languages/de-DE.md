@@ -144,4 +144,4 @@ Careful Standard German often puts a glottal stop [ʔ] before a vowel at the sta
 - Wikipedia: [German orthography](https://en.wikipedia.org/wiki/German_orthography)
 
 ---
-[← English](en-GB.md) · [Home](../index.md) · [Faroese →](fo.md)
+[← English](en-GB.md) · [Home](../index.md) · [Regional Standard Dutch of the Netherlands →](nl-NL-regional.md)
