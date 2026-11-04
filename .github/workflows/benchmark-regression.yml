@@ -28,6 +28,10 @@ on:
 jobs:
   benchmark-regression:
     runs-on: ubuntu-latest
+    # A passing run takes about 18 minutes. The limit is about 2.5 times
+    # that, so a hang fails the job instead of holding the runner for the
+    # 360-minute platform default.
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v7
 
