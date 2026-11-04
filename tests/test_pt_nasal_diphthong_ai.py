@@ -7,7 +7,7 @@ vocábulos anoxítonos e derivados), ão e õe. Exemplos: cães, Guimarães, mã
 mãezinha; cãibas, cãibeiro, cãibra, zãibo; [...]"
 
 So the ⟨ãi⟩ of cãibra is one syllable nucleus, and the stress of the
-paroxytone falls on it. Cruz-Ferreira (1999: 128) lists one nasal diphthong
+paroxytone falls on it. Cruz-Ferreira (1999: 128) lists the nasal diphthong
 [ɐ̃i] for European Portuguese (cem), and the Portal da Língua Portuguesa
 Dicionário fonético writes cãibra [ˈkɐ̃jbɾɐ] and zãibo [ˈzɐ̃jbu], with the
 nucleus of mãe [ˈmɐ̃j]. Barbosa & Albano (2004: 230) form the Brazilian
@@ -101,3 +101,38 @@ def test_specs_outside_the_standard_do_not_read_ai():
     # Base VII, 3 a) speaks of "a língua padrão contemporânea".
     for code in ("pt-PT-x-medieval", "gl-ES", "mwl"):
         assert "ãi" not in get(code).graphemes, code
+
+
+# A coda ⟨m n⟩ before a consonant is no consonant of its own: it marks the
+# nasality of the vowel before it. Cruz-Ferreira (1999: 127) writes vim [vĩ],
+# entro [ˈẽtɾu], antro [ˈɐ̃tɾu], som [sõ] and mundo [ˈmũdu]; Barbosa & Albano
+# (2004: 229) say the coda /N/ "triggers the nasalisation of a preceding
+# vowel". After the nasal diphthong of cãimbra (a spelling outside Base VII,
+# 3 a), which writes cãibra) the ⟨m⟩ adds nothing, so cãimbra reads as cãibra.
+CODA_NASAL_AFTER_AI = [("cãimbra", "cãibra"), ("cãimbras", "cãibras")]
+
+
+@pytest.mark.parametrize("lang", LANGS)
+@pytest.mark.parametrize("word,base", CODA_NASAL_AFTER_AI)
+def test_coda_nasal_after_ai_is_no_consonant(lang, word, base):
+    ipa = G2P(lang).transcribe_word(word)
+    assert "m" not in ipa, ipa
+    assert ipa == G2P(lang).transcribe_word(base), ipa
+
+
+@pytest.mark.parametrize("word,expected", [
+    ("vim", "ˈvĩ"), ("entro", "ˈẽtɾu"), ("antro", "ˈɐ̃tɾu"),
+    ("som", "ˈsõ"), ("mundo", "ˈmũdu"),
+])
+def test_coda_nasal_after_an_oral_vowel(word, expected):
+    assert G2P("pt-PT").transcribe_word(word) == expected
+
+
+# The same coda ⟨m⟩ ends the nasal diphthong of põem. The Portal da Língua
+# Portuguesa Dicionário fonético has no entry for põem (0 resultados), so the
+# test asserts only what the coda reading gives: no oral [m].
+@pytest.mark.parametrize("lang", LANGS)
+@pytest.mark.parametrize("word", ["põem", "compõem", "propõem"])
+def test_final_coda_nasal_after_oe_is_no_consonant(lang, word):
+    ipa = G2P(lang).transcribe_word(word)
+    assert "m" not in ipa, ipa
