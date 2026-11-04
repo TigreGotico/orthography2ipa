@@ -5,6 +5,11 @@ contacto con estas mismas consonantes iniciales de palabra, la n final de una
 palabra anterior se pronuncia también m": un buen baile [um bwem baile], en
 pie [em pjé].
 
+Navarro Tomás (1918), § 133, pp. 111-112: "La n final de sílaba, en contacto
+con una consonante velar siguiente, se asimila [...] a la articulación de dicha
+consonante velar": en casa [eŋ kása], sin gana [siŋ gána], un huerto [uŋ
+wérto].
+
 Lipski, "Reduction of Spanish Word-Final /s/ and /n/" (1986), p. 140 writes
 velarization as n → ŋ / __ # [−cons], and pp. 146-147 give word-final
 preconsonantal /n/ "the normal process of homorganic assimilation of nasal
@@ -33,11 +38,22 @@ def test_word_final_n_before_a_consonant_takes_its_place(code, text, expected):
     assert G2P(code).transcribe(text) == expected
 
 
+@pytest.mark.parametrize("code", NON_VELARIZING + VELARIZING)
+@pytest.mark.parametrize("text, expected", [
+    ("en casa", "eŋ ˈkasa"),
+    ("sin gana", "siŋ ˈɡana"),
+    ("un huerto", "uŋ ˈweɾto"),
+    ("un gato", "uŋ ˈɡato"),
+])
+def test_word_final_n_before_a_velar_is_velar(code, text, expected):
+    assert G2P(code).transcribe(text) == expected
+
+
 @pytest.mark.parametrize("code", NON_VELARIZING)
-def test_word_final_n_before_a_vowel_or_a_velar_stays_n(code):
+def test_word_final_n_before_a_vowel_or_a_pause_stays_n(code):
     g2p = G2P(code)
     assert g2p.transcribe("un otro") == "un ˈotɾo"
-    assert g2p.transcribe("un gato") == "un ˈɡato"
+    assert g2p.transcribe("tren. Pero") == "ˈtɾen ˈpeɾo"
 
 
 @pytest.mark.parametrize("code", VELARIZING)

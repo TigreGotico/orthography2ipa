@@ -364,7 +364,7 @@
       "right_context": "^[ˈˌ]?[pbβm]",
       "transform": "\\1",
       "obligatory": true,
-      "notes": "NOT ASSERTED for this creole, for the same reason as ES_NASAL_LABIAL: the cross-word place assimilation of a word-final nasal is cited for Castilian (Navarro Tomás 1918, § 87), not for this creole's phonology. Replaced by id with a rule that keeps the nasal; replace it with a cited rule to change that."
+      "notes": "NOT ASSERTED for this creole, for the same reason as ES_NASAL_LABIAL: the cross-word place assimilation of a word-final nasal is cited for Castilian (Navarro Tomás 1918, §§ 87, 133), not for this creole's phonology. Replaced by id with a rule that keeps the nasal; replace it with a cited rule to change that."
     },
     {
       "id": "ES_EXT_FINAL_N_CORONAL",
@@ -373,7 +373,16 @@
       "right_context": "^[ˈˌ]?[tdðθszlɾrnɲʎʝʃʒf]",
       "transform": "\\1",
       "obligatory": true,
-      "notes": "NOT ASSERTED for this creole, for the same reason as ES_NASAL_LABIAL: the cross-word place assimilation of a word-final nasal is cited for Castilian (Navarro Tomás 1918, § 87), not for this creole's phonology. Replaced by id with a rule that keeps the nasal; replace it with a cited rule to change that."
+      "notes": "NOT ASSERTED for this creole, for the same reason as ES_NASAL_LABIAL: the cross-word place assimilation of a word-final nasal is cited for Castilian (Navarro Tomás 1918, §§ 87, 133), not for this creole's phonology. Replaced by id with a rule that keeps the nasal; replace it with a cited rule to change that."
+    },
+    {
+      "id": "ES_EXT_FINAL_N_VELAR",
+      "name": "word-final nasal keeps its place",
+      "left_context": "([nŋ])$",
+      "right_context": "^[ˈˌ]?[kɡɣxw]",
+      "transform": "\\1",
+      "obligatory": true,
+      "notes": "NOT ASSERTED for this creole, for the same reason as ES_NASAL_LABIAL: the cross-word place assimilation of a word-final nasal is cited for Castilian (Navarro Tomás 1918, §§ 87, 133), not for this creole's phonology. Replaced by id with a rule that keeps the nasal; replace it with a cited rule to change that."
     }
   ]
 }
