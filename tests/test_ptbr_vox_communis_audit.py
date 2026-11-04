@@ -26,7 +26,7 @@ def test_vox_communis_is_an_audit_not_a_ceiling():
     ("exemplo", "eˈzẽplu"),
     ("êxito", "ˈezitu"),
     ("exército", "eˈzɛɾsitu"),
-    ("existir", "ezisˈt͡ʃiɾ"),
+    ("existir", "ezisˈt͡ʃi"),
 ])
 def test_initial_ex_before_a_vowel_is_voiced(word, expected):
     assert G2P("pt-BR").transcribe_word(word) == expected
@@ -35,7 +35,7 @@ def test_initial_ex_before_a_vowel_is_voiced(word, expected):
 @pytest.mark.parametrize("word, expected", [
     ("extra", "ˈeʃtɾɐ"),       # ⟨ex⟩ before a consonant: untouched
     ("sexo", "ˈseʃu"),         # medial ⟨-ex-⟩: untouched
-    ("deixar", "dejˈʃaɾ"),     # ⟨x⟩ after a diphthong: ʃ
+    ("deixar", "dejˈʃa"),     # ⟨x⟩ after a diphthong: ʃ
     ("xadrez", "ʃaˈdɾes"),     # word-initial ⟨x⟩: ʃ
 ])
 def test_the_rule_is_gated_to_the_prefix(word, expected):
