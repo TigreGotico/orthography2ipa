@@ -23,7 +23,7 @@ The library models pronunciation as two maps (see [../engine/allophony.md](../en
 |:---|:---|:---|
 | /t d/ affrication | ⟨t d⟩ give [t͡ʃ d͡ʒ] before ⟨i⟩ | `tio` [ˈt͡ʃiu], `dia` [ˈd͡ʒiɐ] |
 | Coda /l/ vocalisation | ⟨l⟩ gives [w] before a consonant and at the end of a word | `sal` [ˈsaw], `alto` [ˈawtu] |
-| Coda /s/ | ⟨s⟩ stays alveolar [s] in the coda | `mesmo` [ˈmesmu], `paz` [ˈpas] |
+| Coda /s/ | ⟨s⟩ stays alveolar in the coda: [s], or [z] before a voiced consonant (`BR_CODA_S_VOICED`) | `paz` [ˈpas], `mesmo` [ˈmezmu] |
 | Coda nasal | ⟨m n⟩ before a consonant or at the end of a word give a combining tilde (U+0303) | `campo` [ˈkɐ̃pu], `sim` [ˈsĩ], `mundo` [ˈmũdu] |
 | Final unstressed vowels | ⟨a⟩ gives [ɐ], ⟨e o⟩ give the near-close [ɪ ʊ] | `capa` [ˈkapɐ] |
 | Strong rhotic | word-initial ⟨r⟩ and ⟨rr⟩ give [ʁ] | `rato` [ˈʁatu], `carro` [ˈkaʁu] |
@@ -49,7 +49,7 @@ The *chiado* (coda /s/ to [ʃ]) belongs to Rio de Janeiro and some other regions
 | `BR_AFFRIC_T_RAISED`, `BR_AFFRIC_D_RAISED` | /t d/ give [t͡ʃ d͡ʒ] before a raised [i ɪ] | `dente` [ˈdẽt͡ʃi], `tarde` [ˈtaɾd͡ʒi] |
 | `BR_FINAL_EM_GLIDE`, `BR_FINAL_ENS_GLIDE` | final ⟨-em -en -ens⟩ give the diphthong [ẽj̃] | `bem` [ˈbẽj̃], `hífen` [ˈifẽj̃], `homens` [ˈõmẽj̃s] |
 | `BR_FINAL_AM_GLIDE` | final ⟨-am⟩ gives [ɐ̃w̃] | `falam` [ˈfalɐ̃w̃] |
-| `PT_LEX_CLOSE_O`, `PT_LEX_CLOSE_E`, `PT_LEX_OPEN_O`, `PT_LEX_OPEN_E` | stressed mid-vowel height for listed words | `como` [ˈkomu], `forte` [ˈfɔɾt͡ʃi], `terra` [ˈtɛʁɐ] |
+| `PT_LEX_CLOSE_O`, `PT_LEX_CLOSE_E`, `PT_LEX_OPEN_O`, `PT_LEX_OPEN_E` | stressed mid-vowel height for listed words | `como` [ˈkõmu], `forte` [ˈfɔɾt͡ʃi], `terra` [ˈtɛʁɐ] |
 | `PT_LEX_X_S` | ⟨x⟩ is [s] in the stem ⟨troux-⟩ | `trouxe` [ˈtɾowsi] |
 | `PT_INITIAL_EX_VOICED` | word-initial ⟨ex-⟩ before a vowel gives [ez] | `exame` [eˈzɐ̃mi] |
 
@@ -61,7 +61,7 @@ A vowel before a coda ⟨m n⟩ nasalises, and the nasal consonant goes (Barbosa
 
 A stressed vowel before an onset ⟨m n nh⟩ nasalises too. Barbosa & Albano (2004: 229) list "(em) cima sĩmɐ [...] sama sɐ̃mɐ [...] soma sõmɐ", and Mendonça & Oliveira (2019: 45) call this context categorical. The `BR_NASAL_STRESSED_*` rules give `cama` [ˈkɐ̃mɐ], `ano` [ˈɐ̃nu] and `banho` [ˈbɐ̃ɲu]. Only five nasal vowels exist, so an open [ɛ ɔ] gives the close-mid [ẽ õ]. A pretonic vowel stays oral before /m n/ (`camada` [kaˈmadɐ]) and nasalises before /ɲ/ (`senhor` [sẽˈɲoɾ]; Barbosa & Albano 2004: 229 print ganhar [ɡɐ̃ˈɲaɾ]).
 
-Moraes & Wetzels (1992: 155), citing Abaurre (1973), report that São Paulo speakers often keep a stressed vowel oral in this context (`cama` ['kɐma]). The spec follows the two sources that give the nasal vowel as the norm.
+Moraes & Wetzels (1992: 155), citing Abaurre (1973), report that São Paulo speakers often keep a stressed vowel oral in this context. Their own transcription of *cama* is [ˈkɐma], not [ˈkãma]. That form is a reported variant, not output of the spec. The spec follows the two sources that give the nasal vowel as the norm, so `pt-BR` gives `cama` [ˈkɐ̃mɐ].
 
 The nasal diphthongs ⟨ão ãe õe⟩ are whole graphemes, and these rules do not touch them. The high vowels ⟨i u⟩ need no quality rule, because [ĩ ũ] share the oral bases [i u]. Brazilian Portuguese does not reduce an unstressed ⟨o⟩ to [u], so its ⟨o⟩ before a coda nasal is already [o] (`contar` [kõˈta], `bondade` [bõˈdad͡ʒi]). The European rule `PT_NASAL_O_UNRED` is therefore not part of this spec.
 
@@ -84,7 +84,7 @@ G2P("pt-BR", apply_allophony=False).transcribe_word("gato")  # ˈɡatʊ (broad)
 
 ## What the base does not model
 
-Brazilian pretonic reduction is much weaker than the European one. The base keeps distinct pretonic /e o/ (`menino` [meˈninu]), so only the final position raises. The Minas Gerais and Northeastern specs change the pretonic vowels for their regions.
+Brazilian pretonic reduction is much weaker than the European one. The base keeps distinct pretonic /e o/ (`menino` [meˈnĩnu]), so only the final position raises. The Minas Gerais and Northeastern specs change the pretonic vowels for their regions.
 
 A word-final /r/ in an infinitive drops: "In infinitives, however, this sound usually drops word-finally except if followed by a vowel" (Barbosa & Albano 2004: 228-229). The infinitive and the future subjunctive carry the final R and the stress on its syllable (Callou, Moraes & Leite 1998: 66), so `BR_INFINITIVE_R_DROP` reads a word-final ⟨r⟩ after an unaccented ⟨a e i⟩ in the stressed syllable (`falar` [faˈla], `fizer` [fiˈze]). `BR_INFINITIVE_R_DROP_POR` names pôr, its compounds and the future subjunctive *for* (`compor` [kõˈpo]). A non-verb of the same shape keeps the tap: `BR_FINAL_R_NONVERB` stands before the drop and lists the words that the English Wiktionary gives with no infinitive reading, and the noun-verb homographs whose non-verb tokens outnumber the verb tokens in the UD Portuguese treebanks (`lugar` [luˈɡaɾ], `quer` [ˈkeɾ], `poder` [poˈdeɾ]). A word with a written accent on an earlier syllable keeps the tap (`açúcar` [aˈsukaɾ]). The rule reads one word, so it does not see a vowel at the start of the next one. Careful speech keeps the tap too: Barbosa & Albano print it in their citation forms (pagar, acabar, ganhar, pp. 227-229) and in the read passage (soprar com, p. 231). A word-initial pretonic /eN/ is often [ĩ] (`então`, Barbosa & Albano 2004: 231); the base keeps [ẽ].
 

@@ -17,6 +17,7 @@ The [README](../../README.md#install) gives the install command. The runtime dep
 | Extra | Adds | Use it for |
 | :--- | :--- | :--- |
 | `hf` | `huggingface_hub` | Lexicons fetched from a Hugging Face dataset id ([lexicon.md](lexicon.md)) |
+| `lexicons` | `o2i-lexicons` | Packaged lexicons that the caller enables with `use_packaged_lexicons()` ([lexicon.md](lexicon.md#packaged-lexicons)) |
 | `validation` | `pydantic` | `orthography2ipa validate` on spec JSON files |
 | `portuguese` | `silabificador` | A real Portuguese syllabifier in place of the bundled vowel-group splitter |
 | `test` | `pytest` and the tools that the gold-set loaders need | The test suite of a clone ([CONTRIBUTING.md](../../CONTRIBUTING.md#tests)) |

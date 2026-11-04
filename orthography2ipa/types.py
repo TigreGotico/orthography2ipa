@@ -563,6 +563,16 @@ class StressRules:
         vowel before the diphthong take its first letter as a glide. The
         bundled syllabifier and the grapheme tokenizer read it, as they read
         :attr:`closed_hiatus`.
+    tonic_after_diphthong : Tuple[str, ...]
+        Vowel letters that open a stressed syllable of their own after a
+        written diphthong, lowercase, with their accented forms. Where the
+        stressed written syllable starts with one of them and the syllable
+        before it ends in one of :attr:`diphthongs`, the glide of that
+        diphthong stays in the syllable before, and the mark is written after
+        it. Portuguese ⟨baiuca⟩ is bai-u-ca (Acordo Ortográfico 1990, Base X,
+        4.º) and [bajˈukɐ], not [baˈjukɐ]. Empty (the default) puts the glide
+        in the onset of the stressed syllable, as the IPA division puts any
+        consonant before a vowel.
     vowel_letters : Tuple[str, ...]
         The letters this orthography uses as syllable NUCLEI, for the bundled
         syllabifier. Left empty (the default) the splitter falls back to a
@@ -782,6 +792,7 @@ class StressRules:
     ipa_diphthongs: Optional[Tuple[str, ...]] = None
     closed_hiatus: Optional[ClosedHiatus] = None
     final_diphthongs: Optional[FinalDiphthongs] = None
+    tonic_after_diphthong: Tuple[str, ...] = ()
     vowel_letters: Tuple[str, ...] = ()
     quantity_sensitive: bool = False
     superheavy_final_attracts: bool = True

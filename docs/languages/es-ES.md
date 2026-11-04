@@ -8,7 +8,7 @@ separate specs under `es-419` and country tags.
 ## Orthographic depth and production threshold
 
 **Shallow (phonemic) orthography, the ≤ 0.15 PER production threshold
-applies** (see [quality tiers](../quality_tiers.md)). Spanish spelling
+applies** (see [quality tiers](../specs/quality_tiers.md)). Spanish spelling
 is regular given a small closed set of contextual rules (⟨c⟩/⟨g⟩ before
 front vowels, ⟨gu⟩/⟨qu⟩ digraphs, silent ⟨h⟩, ⟨y⟩ as consonant/vowel).
 

@@ -69,8 +69,8 @@ A private-use tag that names no spec, such as `pt-x-typo`, still resolves to the
 import warnings, orthography2ipa
 with warnings.catch_warnings(record=True) as w:
     warnings.simplefilter("always")
-    orthography2ipa.resolve("pt-x-typo")    # 'pt-BR'
-    str(w[0].message)  # "unknown variant subtag 'typo' in 'pt-x-typo'; using 'pt-BR' instead"
+    orthography2ipa.resolve("pt-x-typo")    # 'pt-PT'
+    str(w[0].message)  # "unknown variant subtag 'typo' in 'pt-x-typo'; using 'pt-PT' instead"
 ```
 
 To get the behaviour of the base language without the warning, ask for the base tag. `get(code, strict=True)` refuses the nearest-language guess and raises `KeyError` instead. The alias table, case folding, BCP-47 standardisation and the curated defaults still apply under `strict`, because each of them names a spec on purpose.

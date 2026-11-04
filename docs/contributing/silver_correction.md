@@ -218,6 +218,4 @@ For a full set, remove `--limit` and `--sync`. Add `--no-wait` to send the
 batches and exit, then run the same command again to collect them.
 
 ---
-
----
 [← Engine changes](engine.md) · [Home](../index.md) · [Benchmarks →](../evaluation/benchmarks.md)

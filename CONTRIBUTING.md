@@ -8,7 +8,7 @@ the hard rules and the checks to run before a push. The detail pages are in
 
 Specs live in `orthography2ipa/data/*.json`. Read
 [docs/contributing/spec_authoring.md](docs/contributing/spec_authoring.md) and
-[docs/contributing/spec_authoring.md](docs/contributing/spec_authoring.md)
+[docs/contributing/citations.md](docs/contributing/citations.md)
 before you add or change a grapheme map, an allophone rule or a dialect. The
 fields are in [`orthography2ipa/data/SCHEMA.md`](orthography2ipa/data/SCHEMA.md).
 

@@ -359,6 +359,7 @@ class StressRulesModel(_Strict):
     ipa_diphthongs: Optional[List[str]] = None
     closed_hiatus: Optional[ClosedHiatusModel] = None
     final_diphthongs: Optional[FinalDiphthongsModel] = None
+    tonic_after_diphthong: Optional[List[str]] = None
     vowel_letters: Optional[List[str]] = None
     quantity_sensitive: bool = False
     superheavy_final_attracts: bool = True

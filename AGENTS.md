@@ -87,7 +87,8 @@ and not an installed package.
    gold, and they gate nothing
    ([citations.md](docs/contributing/citations.md#silver-labels-are-never-gold)).
 7. The package ships no corpus: no lexicon, no gold set in the wheel, no
-   weights. The caller supplies a lexicon
+   weights. The caller supplies a lexicon, or enables one that a separate
+   package such as `o2i-lexicons` ships
    ([spec_authoring.md](docs/contributing/spec_authoring.md#supply-a-lexicon-never-bundle-one)).
 8. The library does not normalise text. Normalisation, diacritic restoration
    and script conversion belong downstream.
