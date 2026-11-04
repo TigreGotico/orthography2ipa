@@ -7,8 +7,8 @@ pie [em pjé].
 
 Navarro Tomás (1918), § 133, pp. 111-112: "La n final de sílaba, en contacto
 con una consonante velar siguiente, se asimila [...] a la articulación de dicha
-consonante velar": en casa [eŋ kása], sin gana [siŋ gána], un huerto [uŋ
-wérto].
+consonante velar": en casa [eŋ kása], sin gana [siŋ gána]. Before w the [ŋ]
+"con frecuencia" reduces to a nasal vowel (p. 112): un huerto [ũ wérto].
 
 Lipski, "Reduction of Spanish Word-Final /s/ and /n/" (1986), p. 140 writes
 velarization as n → ŋ / __ # [−cons], and pp. 146-147 give word-final
