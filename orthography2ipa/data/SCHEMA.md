@@ -422,6 +422,7 @@ states its whole block, and its `notes` say how it differs.
 | `stress_mark` | string | no | IPA mark to insert (default `"ˈ"`) |
 | `diphthongs` | array | no | Orthographic vowel sequences that form ONE syllable nucleus. The bundled syllabifier splits a vowel run into nuclei with this list, longest first, and every other vowel letter is a nucleus of its own, so Catalan ⟨tenia⟩ is te-ni-a and ⟨ciutat⟩ keeps ciu-tat. Empty (the default) merges each vowel run into one nucleus |
 | `ipa_diphthongs` | array | no | IPA vowel sequences that form ONE nucleus in the TRANSCRIPTION, read only where the stress mark is placed. Left undeclared, the transcription is split with `diphthongs`. Declare it where the spelling writes a diphthong as two vowel letters but the transcription writes it with a glide: Portuguese ⟨ui⟩ is [uj], so an IPA [ui] comes only from a hiatus such as ⟨uí⟩, and the orthographic entry would merge ⟨proíbe⟩ into two syllables. An empty list makes every IPA vowel its own nucleus |
+| `closed_hiatus` | object | no | Where a written vowel pair is two nuclei because a consonant closes the syllable of its second letter. Keys: `pairs` (the written vowel pairs the rule splits; the second letter becomes a nucleus of its own), `onsets` (consonant graphemes that split the pair wherever they follow it) and `codas` (consonant letters that split it when no vowel letter follows them and they do not start a longer grapheme). The split holds only where the split-off vowel is the stressed one. Both the bundled syllabifier and the grapheme tokenizer read it, so the vowel is a nucleus in the transcription too. Portuguese declares `{"pairs": ["ai", "au", "ei", "eu", "iu", "oi", "ui"], "onsets": ["nh"], "codas": ["l", "m", "n", "r", "z"]}` for Acordo Ortográfico 1990, Base X, 2.º: ra-i-nha, Ra-ul, ju-iz. Absent (the default), every listed pair is one nucleus |
 | `vowel_letters` | array | no | The letters this orthography uses as syllable NUCLEI, for the bundled syllabifier. Left undeclared, the splitter uses a cross-linguistic test that reads a letter's shape, and it reads ⟨y⟩ and ⟨w⟩ from the spec's grapheme table: a letter that writes only a vowel is a nucleus, one that writes only a consonant or a glide is not, and one that writes both is a nucleus only where no vowel letter is beside it (Spanish ⟨y⟩ /ʝ i/: ma-yo, rey, ru-gby). Declaring the set states the language's own answer: the listed letters are nuclei, no other letter is. Inert for any spec that does not declare it |
 | `accent2_mark` | string | no | Scandinavian pitch-accent 2 marker (e.g. `"²"`). When set, a penult-stressed word ending in one of `accent2_final_letters` takes this mark instead of `stress_mark` (Riad 2014); empty = no pitch accent |
 | `accent2_final_letters` | array | no | Final orthographic letters selecting `accent2_mark` (e.g. `["a", "e"]`) |
@@ -845,16 +846,27 @@ Each entry of `ancestors` is one link from this language to an ancestor.
 
 ## Minting a private-use lect code
 
+A variety with an ISO 639-3 individual code of its own is keyed by that code,
+not by a private-use tag. The key is `{iso}-{REGION}`, where the region is the
+country where the variety is spoken, or the CLDR likely region when the spec
+names no country: `ars-SA` for Najdi Arabic, `arz-EG` for Egyptian Arabic. An
+abstract node that groups the varieties of several countries takes the bare
+code: `afb` for Gulf Arabic, `apc` for Levantine Arabic.
+
 A variety with no ISO 639-3 code of its own is keyed as a private-use extension
-of the language it descends from: `{parent-tag}-x-{slug}`, where the slug names
-the place or the variety in lowercase ASCII. The prefix is not a label of
-convenience: it must agree with the spec's own `parent` and with the
-heaviest-weighted entry in `ancestors`. A spec whose `parent` is `pt-PT` cannot
-be keyed under a Castilic prefix, and a mismatch between the code and those two
-fields is a defect in the code, not in the fields. A parentless mixed language is
-the one exception: its private-use key takes its prefix from its documented
-external classification and need not match its heaviest-weighted ancestor, and
-the loader's `family_path` is empty for it, so the spec sets `family` itself.
+of the language it descends from: `{parent-language}-{REGION}-x-{slug}`. The
+language subtag comes from the parent's key, and the region is the country
+where the variety is spoken: `ars-SA-x-qassim` under `ars-SA`,
+`apc-TR-x-cukurova` under `apc-SY`. The slug names the place or the variety in
+lowercase ASCII and has 1 to 8 characters, the BCP 47 limit for a private-use
+subtag. The prefix is not a label of convenience: it must agree with the spec's
+own `parent` and with the heaviest-weighted entry in `ancestors`. A spec whose
+`parent` is `pt-PT` cannot be keyed under a Castilic prefix, and a mismatch
+between the code and those two fields is a defect in the code, not in the
+fields. A parentless mixed language is the one exception: its private-use key
+takes its prefix from its documented external classification and need not
+match its heaviest-weighted ancestor, and the loader's `family_path` is empty
+for it, so the spec sets `family` itself.
 
 Glottolog is the authority consulted for the genealogy. Where it carries a
 languoid for the variety, its code goes in `glottolog_code` and its classification
@@ -867,9 +879,13 @@ the variety, so that a code belonging to a different language is never claimed
 twice. With no languoid available, the prefix is decided from the cited
 descriptive literature and recorded in `notes`.
 
-Renaming a lect keeps the old code resolvable. The retired code is added to the
-alias table in `orthography2ipa/registry.py`, pointing at the canonical one, and
-is kept for one stable cycle so downstream packages that pin it keep working.
+Renaming a lect keeps the old code resolvable. The old code goes in the alias
+table in `orthography2ipa/registry.py`, pointing at the canonical one, and it
+stays there with no removal date, so downstream packages that pin it keep
+working. The bare ISO 639-3 code also points at the canonical key. One old code
+is not kept: a code that is the ISO 639-3 code of another living language. That
+code resolves to its own language or to nothing, because an alias would send
+that language's users to the wrong spec.
 
 ## File Organisation
 

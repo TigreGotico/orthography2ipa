@@ -152,7 +152,7 @@ PYTHONPATH=$PWD .venv/bin/python scripts/gen_reference_docs.py --check
 ## Gotchas
 
 - `pyproject.toml` reads the version from `orthography2ipa/version.py` and
-  the dependencies from `requirements.txt`.
+  lists the dependencies itself.
 - Check `spec.quality` before you rely on a mapping. Most specs are `stub`.
 - `graphemes` maps a spelling to the phonemes it can stand for, and
   `allophones` maps a phoneme to its surface forms. Keep them apart.

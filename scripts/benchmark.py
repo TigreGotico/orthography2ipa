@@ -90,6 +90,7 @@ from __future__ import annotations
 import argparse
 import contextlib
 import csv
+import functools
 import glob
 import json
 import os
@@ -524,19 +525,20 @@ _WIKIPRON_FILES = {
     "shn":       "shn_mymr_broad.tsv",              # Shan (Myanmar script), ~2607 rows
     # --- Arabic spoken dialects (ISO 639-3 codes → o2i lect) ---
     #     WikiPron scrapes six spoken Arabic dialects under their ISO 639-3
-    #     codes; each maps onto an existing o2i ``ar-XX`` dialect spec (the
-    #     registry alias table resolves the ISO code too). Like the MSA ``ar``
+    #     codes; each maps onto the o2i dialect spec keyed by that code (the
+    #     South Levantine ``ajp`` file onto ``apc-JO``, because SIL merged
+    #     ``ajp`` into ``apc``). Like the MSA ``ar``
     #     row, these Wiktionary headwords are UNPOINTED consonantal skeletons —
     #     short vowels are orthographically absent, so a substantial PER floor
     #     from unvowelized input is expected (see the ``ar`` note above); the
     #     signal is consonant/long-vowel accuracy against the dialect spec, not
     #     a full-vowel score. Same crowd-scraped Wiktionary tier as the rest.
-    "ar-EG":         "arz_arab_broad.tsv",          # Egyptian Arabic (arz), ~800 rows
-    "ar-MA":         "ary_arab_broad.tsv",          # Moroccan Arabic (ary), ~2168 rows
-    "ar-SY":         "apc_arab_broad.tsv",          # North Levantine (apc), ~618 rows
-    "ar-JO":         "ajp_arab_broad.tsv",          # South Levantine (ajp), ~3182 rows
-    "ar-x-gulf":     "afb_arab_broad.tsv",          # Gulf Arabic (afb), ~763 rows
-    "ar-SA-x-hejaz": "acw_arab_broad.tsv",          # Hijazi Arabic (acw), ~2640 rows
+    "arz-EG":        "arz_arab_broad.tsv",          # Egyptian Arabic (arz), ~800 rows
+    "ary-MA":        "ary_arab_broad.tsv",          # Moroccan Arabic (ary), ~2168 rows
+    "apc-SY":        "apc_arab_broad.tsv",          # North Levantine (apc), ~618 rows
+    "apc-JO":        "ajp_arab_broad.tsv",          # South Levantine (ajp), ~3182 rows
+    "afb":           "afb_arab_broad.tsv",          # Gulf Arabic (afb), ~763 rows
+    "acw-SA":        "acw_arab_broad.tsv",          # Hijazi Arabic (acw), ~2640 rows
     # --- new skeleton-tier specs, wired to their upstream WikiPron gold ---
     #     Each has a fresh skeleton spec added in this round (orthography kind,
     #     base grapheme inventory, cited ancestry). Smoke-checked to engage;
@@ -2640,13 +2642,16 @@ _EP_DIALECT_LANGS = sorted(_EP_DIALECT_MAP.values())
 #
 # Two sibling gold sets of full sentences, one TSV per lect, each row an
 # orthographic sentence paired with a hand-written broad IPA transcription.
+# The loaders below read the source rows, which scripts/correct_silver_ipa.py
+# corrects; the board scores the llm-corrected file (see load_llm_corrected).
 # They are LLM-authored (see the provenance note on ``arabic_tts`` /
 # ``portuguese_tts`` in ``PROVENANCE`` and docs/evaluation/benchmarks.md): every
 # transcription was drafted by a language model, then engine-pinned and
 # audited row-by-row against the cited phonological literature recorded in
 # each row's ``notes`` column (docs/evaluation/silver_sets.md). Citation-audited is not expert-authored, so
-# the honest tier is ``llm-generated``: it has no error model and can gate no
-# quality decision — a directional signal only.
+# the honest tier of the source rows is ``llm-generated``. The corrected
+# label is ``llm-corrected``, which is also silver. Neither has an error model
+# and neither can gate a quality decision — a directional signal only.
 #
 # Both are sentence-level, so the scorer routes each row through
 # ``engine.transcribe`` (see ``_is_multiword`` / ``evaluate_words``) and PER
@@ -2729,19 +2734,12 @@ def load_spain_romance_tts(lang: str, limit: int) -> List[Tuple[str, str]]:
     broad IPA ``ipa`` column as gold. Each lect is written in its OWN
     orthographic convention, so a row is the sentence a TTS receives.
 
-    This gold is ENGINE-PINNED and therefore o2i same-source. Its authoring
-    tool drafts each row with ``transcribe(sentence, lect)``, and its CI gate
-    (``scripts/spain_romance_tts_gold.py validate``) asserts
-    ``transcribe(sentence, lect) == ipa`` for every row. Scoring o2i against
-    it can only return PER 0, which measures nothing about o2i and is not a
-    quality claim: the number says the regression gate holds, and nothing
-    else. ``compare_systems._O2I_SAME_SOURCE_DATASETS`` carries the flag that
-    keeps these rows out of every ranking and every "beats espeak" claim.
-
-    What the rows ARE for: a per-lect regression tripwire that moves the
-    moment a rule change alters a shipped sentence, and a registered slot so
-    an INDEPENDENT engine can be scored on these lects, where its PER is a
-    real measurement.
+    The ``ipa`` column of these source rows is ENGINE-PINNED: the authoring
+    tool drafts each row with ``transcribe(sentence, lect)``. Scored against
+    it, o2i can only return PER 0. The board therefore scores the set
+    against its llm-corrected file (:func:`load_llm_corrected`), and this
+    loader feeds the correction tool. ``compare_systems._O2I_SAME_SOURCE_DATASETS``
+    keeps the rows out of every ranking and every "beats espeak" claim.
     """
     return _load_sentence_tts(_SPAIN_ROMANCE_TTS_DIR, lang, limit)
 
@@ -2763,7 +2761,7 @@ _SPAIN_ROMANCE_TTS_LANGS = _sentence_tts_langs(_SPAIN_ROMANCE_TTS_DIR)
 # maintainer asked for this specific published dataset by URL — it is not a
 # vendored copy of ``arabic_tts``, whose local TSVs have since been hand
 # re-audited and diverge from the upstream file row-by-row (see e.g. the
-# ar-EG-020 delta note in ``orthography2ipa/data/gold/arabic_tts/ar-EG.tsv``).
+# ar-EG-020 delta note in ``orthography2ipa/data/gold/arabic_tts/arz-EG.tsv``).
 #
 # PROVENANCE — semi-synthetic: every ``sentence``/``ipa`` pair was drafted
 # by an LLM (the same Claude lineage that authored the o2i Arabic dialect
@@ -2781,20 +2779,25 @@ _GOLD20_ARABIC_BASE = (
     "https://huggingface.co/datasets/Salesteq/arabic-dialects-gold20"
     "/resolve/main/{lang}.tsv"
 )
-# Upstream file stems that are already valid orthography2ipa lect codes
-# (verified 1:1 against orthography2ipa/data/*.json — every file here has a
-# matching registered spec; nothing was force-mapped and nothing was
-# rejected).
-_GOLD20_ARABIC_LANGS = sorted([
-    "ar", "arb",
-    "ar-AE", "ar-BH", "ar-DZ", "ar-EG", "ar-IQ", "ar-IQ-x-qeltu", "ar-JO",
-    "ar-KW", "ar-LB", "ar-LY", "ar-MA", "ar-MR", "ar-NG", "ar-OM", "ar-PS",
-    "ar-QA", "ar-SA-x-hejaz", "ar-SA-x-najd", "ar-SA-x-qassim",
-    "ar-SA-x-rijal-alma", "ar-SA-x-sharqiyya", "ar-SD", "ar-SY", "ar-TD",
-    "ar-TN", "ar-YE",
-    "ar-x-gulf", "ar-x-levantine", "ar-x-maghrebi", "ar-x-mashriqi",
-    "ar-x-peninsular",
-])
+# Upstream file stems, each the o2i lect code the file was published under.
+# The board scores each file under the spec's canonical key; the stem stays
+# the name the file has upstream. Every stem resolves exactly to its key.
+_GOLD20_ARABIC_FILES = {
+    "ar": "ar", "arb": "arb",
+    "afb-AE": "ar-AE", "afb-BH": "ar-BH", "arq-DZ": "ar-DZ", "arz-EG": "ar-EG",
+    "acm-IQ": "ar-IQ", "ar-IQ-x-qeltu": "ar-IQ-x-qeltu", "apc-JO": "ar-JO",
+    "afb-KW": "ar-KW", "apc-LB": "ar-LB", "ar-LY": "ar-LY", "ary-MA": "ar-MA",
+    "mey-MR": "ar-MR", "shu-NG": "ar-NG", "acx-OM": "ar-OM", "apc-PS": "ar-PS",
+    "afb-QA": "ar-QA", "acw-SA": "ar-SA-x-hejaz", "ars-SA": "ar-SA-x-najd",
+    "ars-SA-x-qassim": "ar-SA-x-qassim",
+    "ar-SA-x-rijal-alma": "ar-SA-x-rijal-alma",
+    "afb-SA-x-sharqiya": "ar-SA-x-sharqiyya", "apd-SD": "ar-SD",
+    "apc-SY": "ar-SY", "shu-TD": "ar-TD", "aeb-TN": "ar-TN", "ayn-YE": "ar-YE",
+    "afb": "ar-x-gulf", "apc": "ar-x-levantine",
+    "ar-x-maghrebi": "ar-x-maghrebi", "ar-x-mashriqi": "ar-x-mashriqi",
+    "ar-x-peninsular": "ar-x-peninsular",
+}
+_GOLD20_ARABIC_LANGS = sorted(_GOLD20_ARABIC_FILES)
 
 
 def load_gold20_arabic(lang: str, limit: int) -> List[Tuple[str, str]]:
@@ -2808,8 +2811,9 @@ def load_gold20_arabic(lang: str, limit: int) -> List[Tuple[str, str]]:
     other gold exists at all. See the ``gold20_arabic`` provenance note:
     ``llm-generated``, gates no quality decision.
     """
-    fname = f"{lang}.tsv"
-    text = _fetch(_GOLD20_ARABIC_BASE.format(lang=lang), f"gold20_arabic_{fname}")
+    stem = _GOLD20_ARABIC_FILES[lang]
+    text = _fetch(_GOLD20_ARABIC_BASE.format(lang=stem),
+                  f"gold20_arabic_{stem}.tsv")
     pairs: List[Tuple[str, str]] = []
     reader = csv.DictReader(text.splitlines(), delimiter="\t")
     for row in reader:
@@ -3252,6 +3256,49 @@ def load_coruss_ru(lang: str, limit: int) -> List[Tuple[str, str]]:
     return pairs
 
 
+# ─── llm-corrected silver sets ──────────────────────────────────────────────
+#
+# The LLM-generated sets score against the label that
+# scripts/correct_silver_ipa.py wrote for each row, one
+# ``orthography2ipa/data/gold/<set>.llm-corrected.jsonl`` per set
+# (docs/contributing/silver_correction.md). Two blind model passes transcribe
+# the sentence from its text and the lect's cited sources. A third pass sees
+# both and the engine output, and decides where they differ. The label is
+# still a language model's: no lexicon and no rule system stand behind it,
+# so its tier is ``llm-corrected``, which is silver and gates nothing. The
+# source loaders above stay as they are, because the correction tool reads
+# its input rows through them.
+_GOLD_DIR = os.path.join(os.path.dirname(__file__), "..", "orthography2ipa",
+                         "data", "gold")
+
+#: The registered sets that score against their llm-corrected file.
+LLM_CORRECTED_DATASETS = ("arabic_tts", "gold20_arabic", "portuguese_tts",
+                          "spain_romance_tts", "barranquenho_dict",
+                          "mirandese_dict")
+
+
+def llm_corrected_path(dataset: str) -> str:
+    return os.path.join(_GOLD_DIR, f"{dataset}.llm-corrected.jsonl")
+
+
+@functools.lru_cache(maxsize=None)
+def _llm_corrected_rows(dataset: str) -> Dict[str, Tuple[GoldPair, ...]]:
+    by_lang: Dict[str, List[GoldPair]] = {}
+    with open(llm_corrected_path(dataset), encoding="utf-8") as fh:
+        for line in fh:
+            row = json.loads(line)
+            by_lang.setdefault(row["lect"], []).append(
+                (row["sentence"], row["ipa"]))
+    return {lang: tuple(rows) for lang, rows in by_lang.items()}
+
+
+def load_llm_corrected(dataset: str, lang: str,
+                       limit: int) -> List[GoldPair]:
+    """The ``(sentence, ipa)`` rows of *lang* in the llm-corrected file of
+    *dataset*, in file order (lect, then id). Tier ``llm-corrected``."""
+    return list(_llm_corrected_rows(dataset).get(lang, ())[:limit])
+
+
 #: A dataset loader: ``loader(lang, limit) -> [GoldPair, ...]``. ``limit``
 #: is a row cap (``sys.maxsize`` for "no cap"); a loader that cannot serve
 #: *lang* returns an empty list rather than raising.
@@ -3266,10 +3313,18 @@ DatasetLoader = Callable[[str, int], List[GoldPair]]
 #: no recorded provenance cannot be read honestly.
 DATASETS: Dict[str, Tuple[DatasetLoader, List[str]]] = {
     "primary_sources": (load_primary_sources, _primary_source_langs()),
-    "arabic_tts": (load_arabic_tts, _ARABIC_TTS_LANGS),
-    "gold20_arabic": (load_gold20_arabic, _GOLD20_ARABIC_LANGS),
-    "portuguese_tts": (load_portuguese_tts, _PORTUGUESE_TTS_LANGS),
-    "spain_romance_tts": (load_spain_romance_tts, _SPAIN_ROMANCE_TTS_LANGS),
+    "arabic_tts": (functools.partial(load_llm_corrected,
+                                     "arabic_tts"),
+                   _ARABIC_TTS_LANGS),
+    "gold20_arabic": (functools.partial(load_llm_corrected,
+                                        "gold20_arabic"),
+                      _GOLD20_ARABIC_LANGS),
+    "portuguese_tts": (functools.partial(load_llm_corrected,
+                                         "portuguese_tts"),
+                       _PORTUGUESE_TTS_LANGS),
+    "spain_romance_tts": (functools.partial(load_llm_corrected,
+                                            "spain_romance_tts"),
+                          _SPAIN_ROMANCE_TTS_LANGS),
     "ep_dialects": (load_ep_dialects, _EP_DIALECT_LANGS),
     "wikipron": (load_wikipron, sorted(_WIKIPRON_FILES)),
     "wikipron_ar_diacritized": (load_wikipron_ar_diacritized, ["ar"]),
@@ -3277,8 +3332,11 @@ DATASETS: Dict[str, Tuple[DatasetLoader, List[str]]] = {
     "wikipron_restored": (load_wikipron_restored,
                           sorted(_WIKIPRON_RESTORED_LANGS)),
     "mirandese_g2p": (load_mirandese, sorted(_MIRANDESE_DIALECTS)),
-    "barranquenho_dict": (load_barranquenho_dict, ["ext-PT-x-barrancos"]),
-    "mirandese_dict": (load_mirandese_dict, sorted(_MIRANDESE_DICT_DIALECTS)),
+    "barranquenho_dict": (functools.partial(load_llm_corrected,
+                                            "barranquenho_dict"),
+                          ["ext-PT-x-barrancos"]),
+    "mirandese_dict": (functools.partial(load_llm_corrected, "mirandese_dict"),
+                       sorted(_MIRANDESE_DICT_DIALECTS)),
     "portuguese_unified": (load_portuguese_unified, sorted(_PT_UNIFIED_REGIONS)),
     "portuguese_unified_corrected": (load_portuguese_unified_corrected,
                                      PT_UNIFIED_CORRECTED_LANGS),
@@ -3352,6 +3410,14 @@ DATASETS: Dict[str, Tuple[DatasetLoader, List[str]]] = {
 #                      a disagreement is not even diagnostic: you cannot
 #                      attribute it to anything. Certifies nothing, diagnoses
 #                      nothing. Directional curiosity only; never gate on it.
+#   llm-corrected    — silver. The label of an LLM-generated set after
+#                      scripts/correct_silver_ipa.py: two blind model passes
+#                      and a third that decides where they differ, with the
+#                      engine output in view. It is still a language model's
+#                      label with no error model, so it gates nothing, like
+#                      llm-generated. A silver row is never evidence for a
+#                      phonetic value. Its place before llm-generated says
+#                      only that the label had a second and third reading.
 RELIABILITY_TIERS = (
     "expert-human",
     "lexicon-derived",
@@ -3359,6 +3425,7 @@ RELIABILITY_TIERS = (
     "machine-generated",
     "espeak-derived",
     "epitran-derived",
+    "llm-corrected",
     "llm-generated",
 )
 
@@ -3426,40 +3493,21 @@ PROVENANCE: Dict[str, str] = {
     # editor-supplied Arabic ḥarakāt: see the dataset README), so it diagnoses
     # rules rather than certifying a language on its own.
     "primary_sources": "expert-human",
-    # Arabic + Portuguese sentence-level TTS gold. LLM-authored: every IPA
-    # transcription was drafted by a large language model, then engine-pinned
-    # and audited row-by-row against the phonological literature cited in each
-    # row's `notes` column (docs/evaluation/silver_sets.md).
-    # Citation-auditing raises confidence but does NOT change the error model:
-    # there is still no lexicon, no G2P, no rule system behind the gold, so a
-    # disagreement cannot be attributed to anything. The honest tier is
-    # `llm-generated` (never `expert-human`) — directional signal only, gates
-    # no quality decision (docs/specs/quality_tiers.md).
-    "arabic_tts": "llm-generated",
-    "gold20_arabic": "llm-generated",   # Salesteq/arabic-dialects-gold20 (HF):
-    # semi-synthetic (same Claude lineage that authored the o2i Arabic dialect
-    # specs — near-circular), native-speaker spot-checked but that raises
-    # confidence, not tier: no lexicon/rules behind it, so it stays the
-    # lowest, non-gating tier, same as its arabic_tts sibling.
-    "portuguese_tts": "llm-generated",
-    # spain_romance_tts is ENGINE-PINNED, which is a step BELOW its two
-    # sentence-TTS siblings above. Their rows were drafted by a language
-    # model, so the draft was at least independent of the engine. This set is
-    # drafted by ``transcribe`` itself, and its CI gate asserts the row still
-    # equals the engine's output.
-    #
-    # It takes the LOWEST, non-qualifying tier for that reason, and NOT
-    # `machine-generated`, which the ladder above reserves for an independent
-    # machine ("machine-generated gold is nobody's scoreline") and which CAN
-    # gate a promotion. A gold pinned to the system under test must never gate
-    # anything: its PER is 0 by construction, and a 0 that cannot be anything
-    # else is not a result. The ladder has no tier that says "this system's
-    # own output", so the honest placement is the tier that gates nothing.
-    #
-    # The sentences and the per-row citation notes are hand-authored against
-    # each lect's spec sources, which is why the set is worth shipping. That
-    # audit raises confidence in the SENTENCES, never the tier of the IPA.
-    "spain_romance_tts": "llm-generated",
+    # The LLM-generated sets score against their llm-corrected file (see
+    # load_llm_corrected). The source rows were drafted by a language model,
+    # and spain_romance_tts was also pinned to the engine's own output. The
+    # correction tool wrote a new label for every row: two blind passes from
+    # the text and the lect's cited sources, and a third that decides where
+    # they differ, with the engine output in view. The label is still a
+    # language model's, with no lexicon and no rule system behind it, so a
+    # disagreement cannot be attributed to anything. The tier is
+    # `llm-corrected`: silver, never `expert-human`, and it gates no quality
+    # decision (docs/specs/quality_tiers.md). gold20_arabic was also
+    # spot-checked by a native speaker, which raises confidence, not tier.
+    "arabic_tts": "llm-corrected",
+    "gold20_arabic": "llm-corrected",
+    "portuguese_tts": "llm-corrected",
+    "spain_romance_tts": "llm-corrected",
     # phonetician / native-speaker / expert-annotator curated IPA
     "ep_dialects": "expert-human",       # TigreGotico team, manual, unvalidated, small-n
     "mirandese_g2p": "expert-human",     # TigreGotico/mirandese_g2p; native-speaker collected; small-n
@@ -3534,12 +3582,12 @@ PROVENANCE: Dict[str, str] = {
     # unclassified one is assumed competitor-derived and cannot gate.
     "ipa_childes": "epitran-derived",
     "hitz_basque_ipa": "machine-generated",     # HiTZ ahoNT automatic phonemizer
-    # LLM-generated (Claude, research-conditioned) IPA dictionaries. Not
-    # circular (no G2P system produced them) but they have NO ERROR MODEL: an
-    # LLM has no lexicon and no rules, so a disagreement cannot be attributed to
-    # anything. Lowest tier; can never gate a promotion.
-    "barranquenho_dict": "llm-generated",
-    "mirandese_dict": "llm-generated",
+    # LLM-generated (Claude, research-conditioned) IPA dictionaries, scored
+    # against their llm-corrected file like the sentence sets above. NO ERROR
+    # MODEL: an LLM has no lexicon and no rules, so a disagreement cannot be
+    # attributed to anything. Silver; can never gate a promotion.
+    "barranquenho_dict": "llm-corrected",
+    "mirandese_dict": "llm-corrected",
     # Lexibank/CLDF wordlists: every row is compiled from, and cites, a
     # published source dictionary (the CLDF `Source` column) — human
     # lexicographers via a published notation, the same class of gold as

@@ -38,6 +38,7 @@ Start with AGENTS.md before you change anything. Every spec is a file in orthogr
 - [Citation honesty](docs/contributing/citations.md)
 - [Board regeneration](docs/contributing/board.md)
 - [Engine changes](docs/contributing/engine.md)
+- [Silver IPA correction](docs/contributing/silver_correction.md)
 - [Benchmarks](docs/evaluation/benchmarks.md)
 - [Benchmark gold datasets](docs/evaluation/datasets.md)
 - [The pinned WikiPron mirror](docs/evaluation/wikipron_mirror.md)

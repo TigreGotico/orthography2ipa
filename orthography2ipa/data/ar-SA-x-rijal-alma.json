@@ -178,7 +178,7 @@
     "start_year": 1400,
     "end_year": null
   },
-  "iso639_3": "ars",
+  "iso639_3": null,
   "allophone_rules": [],
   "location": {
     "latitude": 18.1846,
@@ -204,7 +204,7 @@
     "superheavy_final_attracts": true,
     "max_onset": 1,
     "stress_mark": "ˈ",
-    "notes": "Quantity-sensitive Arabic stress, inherited from the peninsular parent; see ar-SA-x-najd for the cascade and input contract. Prosodic clitics: monosyllabic function words (negator maː, prepositions fiː/min/ʕan/ʕa/li/bi, vocative jaː, copula-negator muː/miʃ, conditional law/loː, wa-proclitic combinations) attach to a host and fall inside the host's stress domain, so they carry no word stress (Watson 2002, The Phonology and Morphology of Arabic, OUP, ch.3). Pan-Arabic class; the per-lect form list reflects the function words attested in this lect. Orthographic test — a clitic homograph (e.g. verb yā 'came') is destressed in every occurrence.",
+    "notes": "Quantity-sensitive Arabic stress, inherited from the peninsular parent; see ars-SA for the cascade and input contract. Prosodic clitics: monosyllabic function words (negator maː, prepositions fiː/min/ʕan/ʕa/li/bi, vocative jaː, copula-negator muː/miʃ, conditional law/loː, wa-proclitic combinations) attach to a host and fall inside the host's stress domain, so they carry no word stress (Watson 2002, The Phonology and Morphology of Arabic, OUP, ch.3). Pan-Arabic class; the per-lect form list reflects the function words attested in this lect. Orthographic test — a clitic homograph (e.g. verb yā 'came') is destressed in every occurrence.",
     "cliticless_words": [
       "فِي",
       "مَا",

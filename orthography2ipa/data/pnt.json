@@ -11,6 +11,59 @@
     "end_year": null
   },
   "graphemes": {
+    "αί": [
+      "e"
+    ],
+    "εί": [
+      "i"
+    ],
+    "οί": [
+      "i"
+    ],
+    "ού": [
+      "u"
+    ],
+    "αύ": [
+      "av",
+      "af"
+    ],
+    "εύ": [
+      "ev",
+      "ef"
+    ],
+    "ά": [
+      "a"
+    ],
+    "έ": [
+      "e"
+    ],
+    "ή": [
+      "i"
+    ],
+    "ί": [
+      "i"
+    ],
+    "ό": [
+      "o"
+    ],
+    "ύ": [
+      "i"
+    ],
+    "ώ": [
+      "o"
+    ],
+    "ϊ": [
+      "i"
+    ],
+    "ϋ": [
+      "i"
+    ],
+    "ΐ": [
+      "i"
+    ],
+    "ΰ": [
+      "i"
+    ],
     "αι": [
       "e"
     ],
@@ -131,6 +184,23 @@
   },
   "allophones": {},
   "positional_graphemes": {},
+  "stress": {
+    "constrain_mark_onsets": false,
+    "default_position": -2,
+    "marked_vowels": [
+      "ά",
+      "έ",
+      "ή",
+      "ί",
+      "ό",
+      "ύ",
+      "ώ",
+      "ΐ",
+      "ΰ"
+    ],
+    "stress_mark": "ˈ",
+    "notes": "Pontic Greek has lexical stress, and stress is contrastive: [kaˈla] καλά 'well' against [ˈkala] κάλλα 'better' (Armostis et al. 2020: 337). The authors write the stressed vowel with the acute accent (tonos) of the Modern Greek monotonic orthography. In their orthographic version of 'The North Wind and the Sun' (p. 339), the tonos is on the vowel that the broad transcription (p. 338) stresses, in every word that the transcription stresses. The monotonic rule writes an accent mark on each word of two or more syllables and no mark on a monosyllable (Petrounias 1999, §3.1, the official Οδηγίες nos. 3 and 4 in the author's short wording). Some function words carry the tonos in the text but no stress in the transcription (ότι, από, ασούς, p. 338-339; p. 337: stress applies 'with the exception of clitics and some functional words'). This block marks the written accent. The engine marks each monosyllable as stressed, as it does for el. marked_vowels are the seven accented vowels and the dialytika-tonos letters ΐ ΰ. default_position -2 has no Pontic source: it applies only to input with no accent mark, such as text in capitals. The secondary stress on long clitic groups (p. 337) is not marked. constrain_mark_onsets is false, as in el: with true, 3 of 44 words of the source text get the mark inside a cluster (polˈla for [poˈla])."
+  },
   "ancestors": [
     {
       "code": "el",
@@ -140,7 +210,7 @@
     }
   ],
   "parent": "el",
-  "notes": "Pontic Greek (Ποντιακά), archaic Greek dialect originally spoken along the Black Sea (Pontic) coast of Anatolia. Now spoken mainly in Greece. Retains many features of Ancient and Medieval Greek lost in standard Modern Greek. Uses standard Greek orthography. /i/ represented by η, ι, υ, ει, οι.",
+  "notes": "Pontic Greek (Ποντιακά), archaic Greek dialect originally spoken along the Black Sea (Pontic) coast of Anatolia. Now spoken mainly in Greece. Retains many features of Ancient and Medieval Greek lost in standard Modern Greek. Uses standard Greek orthography. /i/ represented by η, ι, υ, ει, οι. An accented vowel (ά έ ή ί ό ύ ώ, and αί εί οί ού αύ εύ) has the value of the plain vowel, because the tonos marks only the stressed syllable; ϊ ϋ ΐ ΰ write a vowel that is not part of a digraph. Polytonic letters (breathings, grave, circumflex) have no key.",
   "sources": [
     {
       "id": "wiki-pnt",
@@ -157,13 +227,25 @@
       "publisher": "Journal of the International Phonetic Association 52(2), 328-340 (free access)",
       "url": "https://doi.org/10.1017/S0025100320000201",
       "wikipedia_url": null,
-      "pages": "330-331, 338",
-      "notes": "Consonant table with Greek-spelled example words (pp. 330-331) and the note on the writing system (p. 338), read in full. Twenty-three consonants including the postalveolars ʃ tʃ dʒ and the affricates ts dz; five vowels a e i o u. The source states that Pontic Greek has no codified writing system and that its own orthographic version follows Papadopoulos 1955 with a diacritic over consonant letters for the postalveolars and the rough breathing for aspirates. That is the gap this map carries: it reads standard Greek letters only, so ʃ tʃ dʒ and the aspirates have no key, and the Pontic-specific letters some writers use (⟨σ̆ τσ̆ ντζ̆⟩, ⟨ä ö⟩ for the front rounded vowels of other Pontic varieties) are unread. Recorded here, not changed."
+      "pages": "330-331, 337-339",
+      "notes": "Consonant table with Greek-spelled example words (pp. 330-331) and the note on the writing system (p. 338), read in full. Twenty-three consonants including the postalveolars ʃ tʃ dʒ and the affricates ts dz; five vowels a e i o u. The source states that Pontic Greek has no codified writing system and that its own orthographic version follows Papadopoulos 1955 with a diacritic over consonant letters for the postalveolars and the rough breathing for aspirates. That is the gap this map carries: it reads standard Greek letters only, so ʃ tʃ dʒ and the aspirates have no key, and the Pontic-specific letters some writers use (⟨σ̆ τσ̆ ντζ̆⟩, ⟨ä ö⟩ for the front rounded vowels of other Pontic varieties) are unread. Recorded here, not changed. The stress section (p. 337) and the broad transcription (p. 338) with the orthographic version (p. 339) of 'The North Wind and the Sun' were read for the stress block."
+    },
+    {
+      "id": "petrounias1999",
+      "author": "Petrounias, Evangelos",
+      "year": 1999,
+      "title": "Κριτική του «μονοτονικού» ορθογραφικού συστήματος [A critique of the monotonic orthographic system]",
+      "publisher": "Κέντρο Ελληνικής Γλώσσας, Πύλη για την ελληνική γλώσσα (Θέματα ιστορίας της ελληνικής γλώσσας)",
+      "url": "https://www.greek-language.gr/greekLang/el/studies/history/thema_16/01.html",
+      "wikipedia_url": null,
+      "pages": "§3.1",
+      "notes": "Quotes the official rule (Οδηγίες, nos. 3 and 4) in the author's short wording: 'Oι μονοσύλλαβες λέξεις γράφονται χωρίς τονικό σημάδι, οι υπερμονοσύλλαβες γράφονται με τονικό σημάδι.'"
     }
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Pontic_Greek",
-    "https://pnt.wikipedia.org/wiki/%CE%A0%CE%BF%CE%BD%CF%84%CE%B9%CE%B1%CE%BA%CF%8C%CE%BD_%CE%BB%CE%B1%CE%BB%CE%AF%CE%B1%CE%BD"
+    "https://pnt.wikipedia.org/wiki/%CE%A0%CE%BF%CE%BD%CF%84%CE%B9%CE%B1%CE%BA%CF%8C%CE%BD_%CE%BB%CE%B1%CE%BB%CE%AF%CE%B1%CE%BD",
+    "https://en.wikipedia.org/wiki/Greek_diacritics"
   ],
   "wikidata_qid": "Q36748",
   "location": {

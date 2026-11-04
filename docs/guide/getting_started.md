@@ -12,7 +12,7 @@ This design has a consequence that you must know first. For an ambiguous spellin
 
 ## Install
 
-The [README](../../README.md#install) gives the install command. The runtime dependencies are `numpy`, `langcodes` and `ovos-spec-tools`, as `requirements.txt` lists them. The distinctive-feature matrix that the distance metrics use is part of the package (`orthography2ipa/feats.py`). These optional extras add features:
+The [README](../../README.md#install) gives the install command. The runtime dependencies are `numpy`, `langcodes` and `linguatag`, as `pyproject.toml` lists them. The distinctive-feature matrix that the distance metrics use is part of the package (`orthography2ipa/feats.py`). These optional extras add features:
 
 | Extra | Adds | Use it for |
 | :--- | :--- | :--- |

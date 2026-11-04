@@ -7,8 +7,8 @@ import pytest
 
 from orthography2ipa import get, transcribe
 
-PARENT = "ar-SA-x-najd"
-SHAMALI = "ar-SA-x-shamali"
+PARENT = "ars-SA"
+SHAMALI = "ars-SA-x-shamali"
 
 
 @pytest.mark.parametrize("word,parent_ipa,shamali_ipa,why", [
@@ -35,7 +35,7 @@ def test_the_spec_carries_only_the_delta():
     import os
 
     import orthography2ipa as o2i
-    path = os.path.join(os.path.dirname(o2i.__file__), "data", "ar-SA-x-shamali.json")
+    path = os.path.join(os.path.dirname(o2i.__file__), "data", "ars-SA-x-shamali.json")
     with open(path, encoding="utf-8") as fh:
         raw = json.load(fh)
     assert raw["graphemes"] == {} and raw["allophones"] == {}
@@ -70,7 +70,7 @@ def test_the_unattested_cells_are_left_alone():
     import os
 
     import orthography2ipa as o2i
-    path = os.path.join(os.path.dirname(o2i.__file__), "data", "ar-SA-x-shamali.json")
+    path = os.path.join(os.path.dirname(o2i.__file__), "data", "ars-SA-x-shamali.json")
     with open(path, encoding="utf-8") as fh:
         rules = {r["id"]: r for r in json.load(fh)["allophone_rules"]}
 

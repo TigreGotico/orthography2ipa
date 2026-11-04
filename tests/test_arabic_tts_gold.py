@@ -1,10 +1,11 @@
-"""Regression gate for the Arabic TTS gold set (docs/evaluation/silver_sets.md#arabic_tts).
+"""Source-file gate for the Arabic TTS gold set (docs/evaluation/silver_sets.md#arabic_tts).
 
 Runs the validate subcommand of scripts/arabic_tts_gold.py over all 25 lects:
-schema, row minimum, diacritization completeness, o2i transcription
-regression, feature-tag verifiability and duplicate detection. If a spec
-change alters a gold transcription this fails, forcing a deliberate
-reconciliation of the spec and the gold (cited accuracy wins).
+schema, row minimum, diacritization completeness, feature-tag verifiability
+and duplicate detection.
+
+The board scores the set against its llm-corrected file, which
+tests/test_llm_corrected_sets.py checks. Nothing here pins engine output.
 """
 import subprocess
 import sys

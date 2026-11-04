@@ -38,8 +38,8 @@
       "title": "Manual de pronunciación española",
       "publisher": "Centro de Estudios Históricos, Madrid",
       "url": "https://archive.org/details/manualdepronunci00navauoft",
-      "pages": "§ 47 p. 39; § 50 p. 41; § 122 pp. 100-102",
-      "notes": "First edition, read in the archive.org scan. § 47: written y in the diphthongs ay, ey, oy is the semivowel [i̯]. § 122: y in syllable onset is the palatal fricative (cayado, ayer, bueyes, hoyo, ayuda)."
+      "pages": "§ 47 p. 39; § 50 p. 41; § 122 pp. 100-102; § 156 p. 140",
+      "notes": "First edition, read in the archive.org scan. § 47: written y in the diphthongs ay, ey, oy is the semivowel [i̯]. § 122: y in syllable onset is the palatal fricative (cayado, ayer, bueyes, hoyo, ayuda). § 156: an unaccented word of two or more syllables that ends in a consonant other than n or s is oxytone (vivac, querub)."
     },
     {
       "id": "rae_dpd_tilde",
@@ -105,6 +105,15 @@
       "title": "Tratado de fonología y fonética españolas",
       "publisher": "Gredos",
       "notes": "Instrumental description of the same phenomena; used here to corroborate nasal assimilation and the vibrant distribution."
+    },
+    {
+      "id": "rae2010ortografia",
+      "author": "Real Academia Española & Asociación de Academias de la Lengua Española",
+      "year": 2010,
+      "title": "Ortografía de la lengua española",
+      "publisher": "Espasa",
+      "pages": "225, 235, 237",
+      "notes": "Read through the summary 'Nueva ortografía de la lengua española' (papers/iberian/rae_ortografia_2010_nueva.pdf), which quotes these pages on pp. JMIM-8 and JMIM-16. The full text was not opened. Cited for the orthographic diphthongs, triphthongs and hiatus, and for the silent ⟨h⟩ between vowels."
     },
     {
       "id": "hualde2003basque",
@@ -693,7 +702,12 @@
       "x",
       "k",
       "f",
-      "ión",
+      "t",
+      "c",
+      "b",
+      "p",
+      "g",
+      "m",
       "ión",
       "ad",
       "or",
@@ -715,8 +729,9 @@
       "ó",
       "ú"
     ],
+    "diphthongs": ["ai", "ái", "ia", "iá", "au", "áu", "ua", "uá", "ei", "éi", "ie", "ié", "eu", "éu", "ue", "ué", "oi", "ói", "io", "ió", "ou", "óu", "uo", "uó", "iu", "ui", "iú", "uí", "iai", "iái", "iau", "iáu", "iei", "iéi", "ieu", "iéu", "ioi", "iói", "iou", "ióu", "uai", "uái", "uau", "uáu", "uei", "uéi", "ueu", "uéu", "uoi", "uói", "uou", "uóu", "üe", "üé", "üi", "üí", "üei", "üéi"],
     "stress_mark": "ˈ",
-    "notes": "RAE accentuation rules: written accent wins (á é í ó ú). Default paroxytone for words ending in a vowel, -n, or -s. Words ending in any other consonant (r, l, d, z, j, x, k, f, and consonant clusters) are oxytone. The final_stress_endings list encodes the oxytone-attracting consonant endings; penult_stress_endings encodes -n/-s/-ns as explicit paroxytone attractors (overriding the default for coda -n/-s when stress position is ambiguous). Proparoxytones (esdrújulas) always carry a written accent so marked_vowels captures them. CLITICS: cliticless_words lists the Spanish prosodic clitics (palabras atonas) — definite articles, atonic indefinite article, al/del contractions, monosyllabic prepositions plus para, the atonic conjunctions y/e/o/u/ni/que and conditional si, the weak object pronouns me/te/se/le/les/nos/os and the prenominal possessives mi/tu/su(+plurals) — which lean on their host and carry no word stress (Navarro Tomas 1977, Manual de pronunciacion espanola, palabras inacentuadas; Hualde 2005, The Sounds of Spanish, prosody; RAE-ASALE Nueva gramatica, prosodia). Tonic homographs written with an accent (si 'yes', el 'he', mi/tu 'me/you', se 'I know') and the negation 'no' are excluded. Final -y after a vowel: the letter writes the off-glide of a falling diphthong, 'en los diptongos ai, ei, oi, que a veces se escriben en la forma ay, ey, oy, la i (y) se pronuncia ... más corta' (ley [ˈlei̯], buey, soy; Navarro Tomás 1918, Manual de pronunciación española, § 47, p. 39), and § 50, p. 41 repeats that the written y of ley, rey, doy, soy 'se pronuncia como i'. For accentuation such a word counts as consonant-final: oxytones ending in -y take no tilde (guirigay, virrey, convoy, estoy) and paroxytones ending in -y do (yérsey, yóquey) (RAE-ASALE, Diccionario panhispánico de dudas, 2nd ed., s.v. tilde, § 1.2.1-1.2.2). The endings ay, ey, oy, uy encode that rule. A consonant+y ending is not a Spanish spelling: rugby and sexy are unadapted English forms whose adaptations are rugbi and sexi (DPD s.v. rugbi, sexi), so they keep the default paroxytone."
+    "notes": "RAE accentuation rules: written accent wins (á é í ó ú). Default paroxytone for words ending in a vowel, -n, or -s. Words ending in any other consonant (r, l, d, z, j, x, k, f, t, c, b, p, g, m, and consonant clusters) are oxytone. Navarro Tomás 1918, § 156 p. 140: «Se pronuncia aguda, con acento sobre la última sílaba, toda palabra de dos o más sílabas escrita sin acento y terminada en cualquier consonante que no sea n ni s», with vivac and querub among its examples. The final_stress_endings list encodes the oxytone-attracting consonant endings; penult_stress_endings encodes -n/-s/-ns as explicit paroxytone attractors (overriding the default for coda -n/-s when stress position is ambiguous). Proparoxytones (esdrújulas) always carry a written accent so marked_vowels captures them. CLITICS: cliticless_words lists the Spanish prosodic clitics (palabras atonas) — definite articles, atonic indefinite article, al/del contractions, monosyllabic prepositions plus para, the atonic conjunctions y/e/o/u/ni/que and conditional si, the weak object pronouns me/te/se/le/les/nos/os and the prenominal possessives mi/tu/su(+plurals) — which lean on their host and carry no word stress (Navarro Tomas 1977, Manual de pronunciacion espanola, palabras inacentuadas; Hualde 2005, The Sounds of Spanish, prosody; RAE-ASALE Nueva gramatica, prosodia). Tonic homographs written with an accent (si 'yes', el 'he', mi/tu 'me/you', se 'I know') and the negation 'no' are excluded. Final -y after a vowel: the letter writes the off-glide of a falling diphthong, 'en los diptongos ai, ei, oi, que a veces se escriben en la forma ay, ey, oy, la i (y) se pronuncia ... más corta' (ley [ˈlei̯], buey, soy; Navarro Tomás 1918, Manual de pronunciación española, § 47, p. 39), and § 50, p. 41 repeats that the written y of ley, rey, doy, soy 'se pronuncia como i'. For accentuation such a word counts as consonant-final: oxytones ending in -y take no tilde (guirigay, virrey, convoy, estoy) and paroxytones ending in -y do (yérsey, yóquey) (RAE-ASALE, Diccionario panhispánico de dudas, 2nd ed., s.v. tilde, § 1.2.1-1.2.2). The endings ay, ey, oy, uy encode that rule. A consonant+y ending is not a Spanish spelling: rugby and sexy are unadapted English forms whose adaptations are rugbi and sexi (DPD s.v. rugbi, sexi), so they keep the default paroxytone. DIPHTHONGS: the list holds the orthographic diphthongs and triphthongs of the RAE/ASALE Ortografía (2010), as the JMIM summary of its changes quotes them (rae_ortografia_2010_nueva.pdf, p. JMIM-8): 'se consideran siempre diptongos a efectos ortográficos las combinaciones de vocal abierta (/a/, /e/, /o/) seguida o precedida de vocal cerrada átona (/i/, /u/): diario, pie…, y de dos vocales cerradas distintas (/i/, /u/): huir, muy…' (Ort. 2010, p. 235), and 'buey, fiais, lieis… son monosílabas a efectos ortográficos' (Ort. 2010, p. 237). Every other vowel sequence is a hiatus: two equal vowels (Rociito, leer), two open vowels (tea-tro, p. JMIM-16), and an open vowel next to a stressed closed one, which always takes the accent: 'país, había, reír, oír, Raúl, fíe, río, dúo, prohíben, vehículo' (Ort. 1999, p. 46, quoted on p. JMIM-8). A silent ⟨h⟩ does not divide the vowels: 'Las palabras que tienen h muda intercalada se separan como si dicha letra no existiera: al- / cohol, no *alco- /hol; prohi- / bir, no *pro- / hibir' (p. JMIM-16). ⟨ü⟩ is the closed vowel /u/ of güe, güi. Word-final ⟨y⟩ is not listed, because the syllabifier reads ⟨y⟩ by its role."
   },
   "wikidata_qid": "Q1321",
   "wals_code": "spa",

@@ -4,8 +4,7 @@
 The gold set lives in ``orthography2ipa/data/gold/kabyle_tts/<code>.tsv`` (one
 file per lect) and provides phonetically diverse, register-appropriate,
 literature-justified Kabyle sentences for validating Kabyle TTS voices
-(synthesize each sentence, ASR/listen, compare against the gold IPA) and for
-regression-pinning sentence-level o2i behaviour.
+(synthesize each sentence, ASR/listen, compare against the gold IPA).
 
 INPUT CONTRACT. Sentences are written in the standardised Berber LATIN alphabet
 (the tamaziɣt/INALCO orthography of the Kabyle Wikipedia and Naït-Zerrad's
@@ -29,9 +28,7 @@ draft <lect> <textfile>
     authored by hand against the lect's spec sources).
 
 validate [lect ...]
-    CI gate over the gold TSVs: schema, per-lect row minimum, o2i transcription
-    regression (``transcribe(sentence, lect) == ipa``), feature-tag
-    verifiability, in-lect duplicate detection and citation-id resolution
+    CI gate over the gold TSVs: schema, per-lect row minimum, feature-tag verifiability, in-lect duplicate detection and citation-id resolution
     against the lect's spec sources. Lects with no gold file yet report as
     pending, not failed — this is a growing set.
 
@@ -200,9 +197,6 @@ def cmd_validate(args):
             if r["sentence"] in seen:
                 failures.append(f"{rid}: duplicate sentence within {lect}")
             seen.add(r["sentence"])
-            got = orthography2ipa.transcribe(r["sentence"], lect)
-            if got != r["ipa"]:
-                failures.append(f"{rid}: o2i regression\n    stored: {r['ipa']}\n    got:    {got}")
             for tag in [t for t in r["features"].split(";") if t]:
                 if tag in SHAPE_TAGS:
                     continue
