@@ -71,7 +71,7 @@ LECTS = [
     "cri",  # Forro / Santome (Gulf of Guinea), ALUSTP
     # Spanish-lexified Iberian creoles of the Caribbean and the Philippines
     "pap",  # Papiamento (Curaçao)
-    "cbk-zam",  # Chavacano (Zamboangueno)
+    "cbk-PH",  # Chavacano (Zamboangueno)
     "pln",  # Palenquero
 ]
 MIN_ROWS = 5
@@ -192,7 +192,7 @@ def _token_final_sibilant(ipa: str) -> bool:
 # The unified creole roster spans three shelves — the South/Southeast-Asian
 # Portuguese creoles (mcm idb vkp), the Upper- and Gulf-of-Guinea Atlantic
 # creoles (kea pov pre aoa cri) and the Spanish-lexified Caribbean/Philippine
-# creoles (pln cbk-zam pap). Most axes are witnessed directly on the realised
+# creoles (pln cbk-PH pap). Most axes are witnessed directly on the realised
 # IPA (kind "ipa"); the position-tied Atlantic axes (`prenasal_stop`,
 # `labial_velar`) are kind "both": an orthographic trigger AND the predicted
 # ipa, so a tag proves the row genuinely exercises the axis. Every tag stays

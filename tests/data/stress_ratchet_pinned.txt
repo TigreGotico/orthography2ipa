@@ -7,7 +7,7 @@ acy
 ada
 ady
 aii
-aja
+ajg-BJ
 ak
 als
 alt
@@ -42,7 +42,7 @@ bs
 bss
 bxr
 cay
-cbk-zam
+cbk-PH
 cdo-Latn-buc
 ce
 ceb
@@ -98,7 +98,7 @@ fur
 fuv
 gaa
 gag
-gen
+gej-TG
 gld
 gor
 grt
@@ -261,7 +261,6 @@ or
 os
 ota
 pa
-pa-PK
 pag
 pam
 pap
@@ -275,6 +274,7 @@ pis
 pjt
 pln
 pms
+pnb-PK
 pov
 pox
 ppl

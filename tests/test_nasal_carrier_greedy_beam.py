@@ -53,7 +53,7 @@ HAMZA_WAW_PLURALS = (
 TILDE_ONLY_LANGS = (
     "as", "awa", "bal", "bgc", "bho", "bn", "doi", "gom", "gu", "gwc",
     "hi", "hne", "hno", "kas", "kok", "kru", "mag", "mai", "mr", "ne",
-    "new", "or", "pa", "pa-PK", "sa", "skr", "ur",
+    "new", "or", "pa", "pnb-PK", "sa", "skr", "ur",
 )
 
 

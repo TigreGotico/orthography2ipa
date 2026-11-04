@@ -707,6 +707,32 @@ class TestBurnDownRatchet:
         git(repo, "commit", "-qm", "chore: grow the list")
         assert guard.check("dev", "HEAD", repo=repo) == 1
 
+    def test_an_entry_that_follows_its_rekeyed_spec_does_not_grow(self, tmp_path):
+        """Re-keying a listed spec renames its entry. The set holds the same
+        spec, so the guard must not read the new code as an addition."""
+        repo = str(tmp_path / "rekey")
+        spec_dir = os.path.join(repo, "orthography2ipa", "data")
+        os.makedirs(spec_dir)
+        git(repo, "init", "-q", "-b", "dev")
+        git(repo, "config", "user.email", "t@example.com")
+        git(repo, "config", "user.name", "t")
+        with open(os.path.join(spec_dir, "aja.json"), "w") as fh:
+            fh.write('{\n  "code": "aja",\n' + '  "notes": "Aja.",\n' * 20 + '  "x": 1\n}\n')
+        write_ratchet(repo, ["aja", "bb"])
+        git(repo, "add", "-A")
+        git(repo, "commit", "-qm", "base")
+        git(repo, "checkout", "-q", "-b", "rekey")
+        git(repo, "mv", "orthography2ipa/data/aja.json",
+            "orthography2ipa/data/ajg-BJ.json")
+        write_ratchet(repo, ["ajg-BJ", "bb"])
+        git(repo, "add", "-A")
+        git(repo, "commit", "-qm", "fix: re-key the spec")
+        assert guard.check("dev", "HEAD", repo=repo) == 0
+        write_ratchet(repo, ["ajg-BJ", "bb", "cc"])
+        git(repo, "add", "-A")
+        git(repo, "commit", "-qm", "chore: grow the list")
+        assert guard.check("dev", "HEAD", repo=repo) == 1
+
     def test_the_real_burndown_is_readable(self):
         """The guard is worthless if it cannot find the live list, and it
         fails open when it cannot — so the wiring is asserted here."""
