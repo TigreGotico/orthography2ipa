@@ -311,18 +311,21 @@ def test_es_silent_h():
 
 
 def test_es_intervocalic_lenition():
-    """INTERVOCALIC LENITION: /b d ɡ/ → [β ð ɣ] between vowels only.
+    """LENITION: /b d ɡ/ → [β ð ɣ] everywhere except after a pause or a nasal.
 
-    es-ES notes: "(7) INTERVOCALIC LENITION: voiced stops /b, d, ɡ/ → spirants
-    [β, ð, ɣ] between vowels." Sources: Quilis (1999), Hualde (2014).
+    es-ES notes: "(7) LENITION: voiced stops /b, d, ɡ/ → spirants [β, ð, ɣ]
+    everywhere except after a pause and after a nasal, and /d/ also after /l/"
+    (Navarro Tomás 1918, § 82 p. 63, § 101 p. 75, § 129 p. 109).
 
-    Minimal pair on /d/: nada (intervocalic → [ð]) vs padre (post-consonantal,
-    stays the stop [d]).
+    padre has the spirant between a vowel and /ɾ/ (Navarro's madre, § 102);
+    falda keeps the stop after /l/ and hombre after the nasal.
     """
     assert _bare("es-ES", "nada") == "naða"
     assert _bare("es-ES", "sabe") == "saβe"
     assert _bare("es-ES", "lago") == "laɣo"
-    assert _bare("es-ES", "padre") == "padɾe"
+    assert _bare("es-ES", "padre") == "paðɾe"
+    assert _bare("es-ES", "falda") == "falda"
+    assert _bare("es-ES", "hombre") == "ombɾe"
 
 
 def test_es_final_d_lenites():
@@ -330,7 +333,7 @@ def test_es_final_d_lenites():
 
     es-ES notes: "(8) Word-final /d/ → [ð] or [∅]: verdad [berˈdað]."
     """
-    assert _t("es-ES", "verdad") == "beɾˈdað"
+    assert _t("es-ES", "verdad") == "beɾˈðað"
 
 
 # ===========================================================================

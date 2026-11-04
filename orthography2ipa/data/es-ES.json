@@ -29,7 +29,7 @@
   "name": "Castilian Spanish",
   "script": "Latin",
   "parent": "es-ES-x-medieval",
-  "notes": "Standard Peninsular Castilian Spanish (español castellano) per the Real Academia Española (RAE) and Asociación de Academias de la Lengua Española. Spoken natively by ~47 million in Spain; ~500 million worldwide as a first or second language. KEY FEATURES of Standard Castilian (distinción variety): (1) DISTINCIÓN: /θ/ ≠ /s/ — ⟨c⟩ before e/i and ⟨z⟩ = /θ/ (interdental fricative); absent in Latin American Spanish and in Andalusian/Canarian (seseo). (2) APICO-ALVEOLAR /s/ [s̺]: the standard Castilian s is produced with the tongue tip (apex) touching the upper alveolar ridge — a conservative feature shared with Asturian and Galician but absent from Portuguese (predorsal). (3) YEÍSMO: ⟨ll⟩ = ⟨y⟩ = /ʝ/ in modern standard (RAE 2010 norm); the historical /ʎ/ distinction is preserved in some regions (NW Spain, Río de la Plata). (4) BETACISM: ⟨b⟩ = ⟨v⟩ = /b/ (complete, unlike Portuguese). (5) VELAR FRICATIVE /x/: ⟨j⟩ and ⟨g+e,i⟩ = /x/ (or [χ] before back vowels in some varieties). (6) SILENT ⟨h⟩: etymological F- underwent F→H→∅ change: FILIU→hijo, FACERE→hacer. (7) INTERVOCALIC LENITION: voiced stops /b, d, ɡ/ → spirants [β, ð, ɣ] between vowels. (8) Word-final /d/ → [ð] or [∅]: verdad [berˈdað]/[berˈda]. (9) DIPHTHONGS ARE ASYMMETRIC: a rising diphthong has a consonantal onglide ([j w] — nación [naˈθjon], cuando [ˈkwando]) while a falling diphthong has a non-syllabic VOWEL offglide ([i̯ u̯] — aire [ˈai̯ɾe], causa [ˈkau̯sa]), per Hualde (2005 ch. 4) and RAE/ASALE NGLE Fonética y fonología (2011 ch. 8). The written accent marks stress, not hiatus: a tilde on the OPEN vowel leaves the rising diphthong intact (⟨ió⟩ in nación, ⟨iá⟩ in Adrián, ⟨ué⟩ in después), and only a tilde on the HIGH vowel signals hiatus (día, búho, continúo) — which is why ⟨iá ié ió uá ué uó⟩ are graphemes here and ⟨ía íe úa …⟩ deliberately are not. (10) VIBRANTE MÚLTIPLE: the /r/–/ɾ/ contrast is intervocalic only; in onset after a heterosyllabic /l n s/ only the trill occurs (alrededor, honra, Israel). (11) NASAL ASSIMILATION: a coda nasal is bilabial [m] before a labial (inmaculada [immakuˈlaða]). (12) WORD-INITIAL ⟨hie-, hia-, hio-⟩: the etymological silent ⟨h⟩ leaves a prevocalic high front vocoid in absolute word-initial position, where Spanish strengthens it to the palatal obstruent /ʝ/ rather than the glide [j]: hielo [ˈʝelo], hierba [ˈʝeɾba], hierro [ˈʝero], hiato [ˈʝato]. The orthography itself records this: the RAE admits the doublets yerba/hierba, yedra/hiedra and yero/hiero, i.e. the same word spelt with ⟨ye-⟩, which can only be /ʝe/. The strengthening is positional, not lexical — after a vowel the vocoid stays a glide (antihielo [antiˈjelo], contrahierba [kontɾaˈjeɾba]), which is why these are word-initial positional graphemes and not plain graphemes (Hualde 2005; Navarro Tomás 1977; RAE/ASALE NGLE Fonética y fonología 2011). (13) ⟨tx⟩ = /tʃ/: an unassimilated Basque graphotactic sequence that Spanish keeps in Basque-origin lexis and proper names — pintxo, txakolí, txapela, Arantxa, Getxo, Etxebarria. ⟨tx⟩ is not a native Spanish sequence, so no Spanish word is affected; without the entry ⟨x⟩ takes its own /ks/ value and yields the impossible *[ˈpintkso]. The value is Basque ⟨tx⟩ = /tʃ/ (Hualde & Ortiz de Urbina 2003), confirmed from the Spanish side by the RAE hispanicisation chapela ← Basque txapela, which renders the same sequence as ⟨ch⟩. (14) ⟨ý⟩: not modern RAE orthography, but it occurs in Spanish toponyms and surnames (Aýna, Ýñiguez) and in transliterated names (Almatý). It is listed with the vocalic value of ⟨y⟩ purely so the letter is not dropped; it makes no claim about accentuation and is deliberately absent from marked_vowels. Sources: Quilis (1999), Penny (2002), Hualde (2014).",
+  "notes": "Standard Peninsular Castilian Spanish (español castellano) per the Real Academia Española (RAE) and Asociación de Academias de la Lengua Española. Spoken natively by ~47 million in Spain; ~500 million worldwide as a first or second language. KEY FEATURES of Standard Castilian (distinción variety): (1) DISTINCIÓN: /θ/ ≠ /s/ — ⟨c⟩ before e/i and ⟨z⟩ = /θ/ (interdental fricative); absent in Latin American Spanish and in Andalusian/Canarian (seseo). (2) APICO-ALVEOLAR /s/ [s̺]: the standard Castilian s is produced with the tongue tip (apex) touching the upper alveolar ridge — a conservative feature shared with Asturian and Galician but absent from Portuguese (predorsal). (3) YEÍSMO: ⟨ll⟩ = ⟨y⟩ = /ʝ/ in modern standard (RAE 2010 norm); the historical /ʎ/ distinction is preserved in some regions (NW Spain, Río de la Plata). (4) BETACISM: ⟨b⟩ = ⟨v⟩ = /b/ (complete, unlike Portuguese). (5) VELAR FRICATIVE /x/: ⟨j⟩ and ⟨g+e,i⟩ = /x/ (or [χ] before back vowels in some varieties). (6) SILENT ⟨h⟩: etymological F- underwent F→H→∅ change: FILIU→hijo, FACERE→hacer. (7) LENITION: voiced stops /b, d, ɡ/ → spirants [β, ð, ɣ] everywhere except after a pause and after a nasal, and /d/ also after /l/; the rule holds across a word boundary (Navarro Tomás 1918, § 82 p. 63, § 101 p. 75, § 129 p. 109): cabra [ˈkaβɾa], barba [ˈbaɾβa], algo [ˈalɣo], verde [ˈbeɾðe], la boca [la ˈβoka], against hombre, caldo, un día, el domingo. (8) Word-final /d/ → [ð] or [∅]: verdad [berˈdað]/[berˈda]. (9) DIPHTHONGS ARE ASYMMETRIC: a rising diphthong has a consonantal onglide ([j w] — nación [naˈθjon], cuando [ˈkwando]) while a falling diphthong has a non-syllabic VOWEL offglide ([i̯ u̯] — aire [ˈai̯ɾe], causa [ˈkau̯sa]), per Hualde (2005 ch. 4) and RAE/ASALE NGLE Fonética y fonología (2011 ch. 8). The written accent marks stress, not hiatus: a tilde on the OPEN vowel leaves the rising diphthong intact (⟨ió⟩ in nación, ⟨iá⟩ in Adrián, ⟨ué⟩ in después), and only a tilde on the HIGH vowel signals hiatus (día, búho, continúo) — which is why ⟨iá ié ió uá ué uó⟩ are graphemes here and ⟨ía íe úa …⟩ deliberately are not. (10) VIBRANTE MÚLTIPLE: the /r/–/ɾ/ contrast is intervocalic only; in onset after a heterosyllabic /l n s/ only the trill occurs (alrededor, honra, Israel). (11) NASAL ASSIMILATION: a coda nasal is bilabial [m] before a labial (inmaculada [immakuˈlaða]). (12) WORD-INITIAL ⟨hie-, hia-, hio-⟩: the etymological silent ⟨h⟩ leaves a prevocalic high front vocoid in absolute word-initial position, where Spanish strengthens it to the palatal obstruent /ʝ/ rather than the glide [j]: hielo [ˈʝelo], hierba [ˈʝeɾba], hierro [ˈʝero], hiato [ˈʝato]. The orthography itself records this: the RAE admits the doublets yerba/hierba, yedra/hiedra and yero/hiero, i.e. the same word spelt with ⟨ye-⟩, which can only be /ʝe/. The strengthening is positional, not lexical — after a vowel the vocoid stays a glide (antihielo [antiˈjelo], contrahierba [kontɾaˈjeɾba]), which is why these are word-initial positional graphemes and not plain graphemes (Hualde 2005; Navarro Tomás 1977; RAE/ASALE NGLE Fonética y fonología 2011). (13) ⟨tx⟩ = /tʃ/: an unassimilated Basque graphotactic sequence that Spanish keeps in Basque-origin lexis and proper names — pintxo, txakolí, txapela, Arantxa, Getxo, Etxebarria. ⟨tx⟩ is not a native Spanish sequence, so no Spanish word is affected; without the entry ⟨x⟩ takes its own /ks/ value and yields the impossible *[ˈpintkso]. The value is Basque ⟨tx⟩ = /tʃ/ (Hualde & Ortiz de Urbina 2003), confirmed from the Spanish side by the RAE hispanicisation chapela ← Basque txapela, which renders the same sequence as ⟨ch⟩. (14) ⟨ý⟩: not modern RAE orthography, but it occurs in Spanish toponyms and surnames (Aýna, Ýñiguez) and in transliterated names (Almatý). It is listed with the vocalic value of ⟨y⟩ purely so the letter is not dropped; it makes no claim about accentuation and is deliberately absent from marked_vowels. Sources: Quilis (1999), Penny (2002), Hualde (2014).",
   "sources": [
     {
       "id": "navarro1918",
@@ -38,8 +38,8 @@
       "title": "Manual de pronunciación española",
       "publisher": "Centro de Estudios Históricos, Madrid",
       "url": "https://archive.org/details/manualdepronunci00navauoft",
-      "pages": "§ 47 p. 39; § 50 p. 41; § 122 pp. 100-102; § 156 p. 140",
-      "notes": "First edition, read in the archive.org scan. § 47: written y in the diphthongs ay, ey, oy is the semivowel [i̯]. § 122: y in syllable onset is the palatal fricative (cayado, ayer, bueyes, hoyo, ayuda). § 156: an unaccented word of two or more syllables that ends in a consonant other than n or s is oxytone (vivac, querub)."
+      "pages": "§ 47 p. 39; § 50 p. 41; § 82 pp. 63-64; § 101-102 pp. 75-77; § 122 pp. 100-102; § 128-129 pp. 108-109; § 156 p. 140",
+      "notes": "First edition, read in the archive.org scan. § 47: written y in the diphthongs ay, ey, oy is the semivowel [i̯]. § 122: y in syllable onset is the palatal fricative (cayado, ayer, bueyes, hoyo, ayuda). §§ 82, 101-102, 128-129: b, d, g are stops only after a pause and after a nasal (d also after l), and fricatives everywhere else, across words too. § 156: an unaccented word of two or more syllables that ends in a consonant other than n or s is oxytone (vivac, querub)."
     },
     {
       "id": "rae_dpd_tilde",
@@ -768,6 +768,171 @@
         "m"
       ],
       "notes": "Asimilación de las nasales — a coda nasal takes the point of articulation of the following consonant (Navarro Tomás 1977; Hualde 2005 ch. 3; Quilis 1993; RAE/ASALE NGLE Fonética y fonología 2011). Before a labial the surface nasal is bilabial [m], whatever the spelling: inmaculada [immakuˈlaða], envase [emˈbase], ONPE [ˈompe], un peso [um ˈpeso]. Only the LABIAL branch is asserted here. The velar branch before /k ɡ/ was already carried by positional_graphemes n (before_consonant → [n, ŋ]), and the dental/palatal branches are sub-phonemic diacritic detail ([n̪] ante /t d/, [ɲ] ante /tʃ/) that every gold set in the board strips."
+    },
+    {
+      "id": "ES_SPIRANT_B",
+      "phonemes": [
+        "b"
+      ],
+      "surface": "β",
+      "preceded_by_phoneme": [
+        "a",
+        "e",
+        "i",
+        "o",
+        "u",
+        "ɛ",
+        "ɔ",
+        "æ",
+        "i̯",
+        "u̯",
+        "j",
+        "w",
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "θ",
+        "s",
+        "z",
+        "x",
+        "χ",
+        "h",
+        "ʝ",
+        "ʃ",
+        "ʒ",
+        "tʃ",
+        "β",
+        "ð",
+        "ɣ",
+        "ɾ",
+        "r",
+        "l",
+        "ʎ"
+      ],
+      "notes": "Fricative /b/ after any segment but a nasal. Navarro Tomás 1918, § 82 p. 63: «Se pronuncia, pues, fricativa toda b que no se halle en posición inicial absoluta ni precedida de m o n», with alba, arboleda, estorbo (p. 63) and esbelto, albañil (p. 64). The rule covers ⟨v⟩, which is the same /b/. A word-initial /b/ has no preceding segment in its word, so it keeps the stop here; ES_EXT_SPIRANT_B decides it from the preceding word."
+    },
+    {
+      "id": "ES_SPIRANT_D",
+      "phonemes": [
+        "d"
+      ],
+      "surface": "ð",
+      "preceded_by_phoneme": [
+        "a",
+        "e",
+        "i",
+        "o",
+        "u",
+        "ɛ",
+        "ɔ",
+        "æ",
+        "i̯",
+        "u̯",
+        "j",
+        "w",
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "θ",
+        "s",
+        "z",
+        "x",
+        "χ",
+        "h",
+        "ʝ",
+        "ʃ",
+        "ʒ",
+        "tʃ",
+        "β",
+        "ð",
+        "ɣ",
+        "ɾ",
+        "r"
+      ],
+      "notes": "Fricative /d/ after any segment but a nasal or /l/. Navarro Tomás 1918, § 101 p. 75: the stop occurs «cuando va en posición inicial absoluta o en contacto con una n o l precedentes. … En todo otro caso la d ortográfica toma el sonido đ», restated in § 102 p. 76. Examples: madre, piedra, cuadro, perdón (p. 77); the stop stays in falda, toldo, conde, mundo (p. 75)."
+    },
+    {
+      "id": "ES_SPIRANT_G",
+      "phonemes": [
+        "ɡ"
+      ],
+      "surface": "ɣ",
+      "preceded_by_phoneme": [
+        "a",
+        "e",
+        "i",
+        "o",
+        "u",
+        "ɛ",
+        "ɔ",
+        "æ",
+        "i̯",
+        "u̯",
+        "j",
+        "w",
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "θ",
+        "s",
+        "z",
+        "x",
+        "χ",
+        "h",
+        "ʝ",
+        "ʃ",
+        "ʒ",
+        "tʃ",
+        "β",
+        "ð",
+        "ɣ",
+        "ɾ",
+        "r",
+        "l",
+        "ʎ"
+      ],
+      "notes": "Fricative /ɡ/ after any segment but a nasal. Navarro Tomás 1918, § 128 p. 108: the stop appears in absolute initial position and «en contacto con una nasal precedente»; § 129 p. 109: «Resulta, pues, normalmente fricativa toda g ortográfica … que en la pronunciación no se halle inicial absoluta ni precedida de n», with cargo, colgar, rasguño, siglo, alegre, digno. The segment rule also reaches the /ɡ/ of ⟨gu ante a o⟩ and ⟨güe güi⟩."
+    }
+  ],
+  "sandhi_rules": [
+    {
+      "id": "ES_EXT_SPIRANT_B",
+      "name": "initial b after a non-nasal word end",
+      "left_context": "[^mnŋɲ̃]$",
+      "right_context": "^([ˈˌ]?)b",
+      "right_transform": "\\1β",
+      "obligatory": true,
+      "notes": "Phrase-level spirantization: the rule of § 82, § 101 and § 129 is stated on the phrase, not the word, so a word-initial stop after a word that ends in another segment is fricative. Navarro Tomás 1918 gives the cross-word cases himself: la boca, su boda, la brocha (§ 82 p. 63), el bollo, las bocas, por bailar (§ 83 p. 64); tu dinero, lo dicho, dos docenas (§ 102 pp. 76-77). The stop stays after a nasal (un día, un grado) and, for /d/, after /l/ (el domingo, § 101 p. 75). A pause between the words blocks the rule."
+    },
+    {
+      "id": "ES_EXT_SPIRANT_D",
+      "name": "initial d after a word end other than a nasal or l",
+      "left_context": "[^mnŋɲ̃lʎ]$",
+      "right_context": "^([ˈˌ]?)d",
+      "right_transform": "\\1ð",
+      "obligatory": true,
+      "notes": "Phrase-level spirantization: the rule of § 82, § 101 and § 129 is stated on the phrase, not the word, so a word-initial stop after a word that ends in another segment is fricative. Navarro Tomás 1918 gives the cross-word cases himself: la boca, su boda, la brocha (§ 82 p. 63), el bollo, las bocas, por bailar (§ 83 p. 64); tu dinero, lo dicho, dos docenas (§ 102 pp. 76-77). The stop stays after a nasal (un día, un grado) and, for /d/, after /l/ (el domingo, § 101 p. 75). A pause between the words blocks the rule."
+    },
+    {
+      "id": "ES_EXT_SPIRANT_G",
+      "name": "initial g after a non-nasal word end",
+      "left_context": "[^mnŋɲ̃]$",
+      "right_context": "^([ˈˌ]?)ɡ",
+      "right_transform": "\\1ɣ",
+      "obligatory": true,
+      "notes": "Phrase-level spirantization: the rule of § 82, § 101 and § 129 is stated on the phrase, not the word, so a word-initial stop after a word that ends in another segment is fricative. Navarro Tomás 1918 gives the cross-word cases himself: la boca, su boda, la brocha (§ 82 p. 63), el bollo, las bocas, por bailar (§ 83 p. 64); tu dinero, lo dicho, dos docenas (§ 102 pp. 76-77). The stop stays after a nasal (un día, un grado) and, for /d/, after /l/ (el domingo, § 101 p. 75). A pause between the words blocks the rule."
     }
   ],
   "phonemes": [
