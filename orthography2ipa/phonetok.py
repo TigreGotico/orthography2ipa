@@ -203,7 +203,7 @@ def _arabic_script_letters() -> str:
     A shadda geminates any consonant, and the Arabic script did not stop at yeh:
     the Perso-Arabic letters (پ چ ڤ گ, and the wider set behind Urdu, Pashto,
     Kurdish, Balochi and Kashmiri) are ordinary consonants in the specs that
-    declare them. ``ar-x-gulf`` lists پ and ڤ among its own defining features.
+    declare them. ``afb`` lists پ and ڤ among its own defining features.
     Selecting on the Unicode letter category rather than on a codepoint range
     keeps the class and the specs in step as either grows.
     """

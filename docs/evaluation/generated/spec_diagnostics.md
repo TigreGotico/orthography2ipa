@@ -100,16 +100,16 @@ The character count above treats a rare loan letter and a missing nasal vowel se
 - **ale** (Aleut) / `northeuralex` — 62.3% of 896 scanned words lose at least one character; unmapped `' b c f p r v í ǵ ́`; worst per 0.3993
 - **shn** (Shan) / `wikipron` — 62.0% of 2607 scanned words lose at least one character; unmapped `ဵ ် ျ ြ ွ ႀ ႂ ႃ ႅ ႆ`; worst per 0.3348
 - **cnk** (Khumi Chin) / `wikipron` — 61.1% of 350 scanned words lose at least one character; unmapped `c q x ä ö ü`; worst per 0.502
-- **ar-TN** (Tunisian Arabic) / `arabic_tts` — 60.0% of 20 scanned words lose at least one character; unmapped `، ؟`; worst per 0.3059
-- **ar-TN** (Tunisian Arabic) / `gold20_arabic` — 60.0% of 20 scanned words lose at least one character; unmapped `، ؟`; worst per 0.3059
-- **ar-JO** (Jordanian Arabic (Ammani)) / `arabic_tts` — 55.0% of 20 scanned words lose at least one character; unmapped `، ؟`; worst per 0.3718
-- **ar-JO** (Jordanian Arabic (Ammani)) / `gold20_arabic` — 55.0% of 20 scanned words lose at least one character; unmapped `، ؟`; worst per 0.3718
-- **ar-SD** (Sudanese Arabic) / `arabic_tts` — 55.0% of 20 scanned words lose at least one character; unmapped `، ؟`; worst per 0.0274
-- **ar-SD** (Sudanese Arabic) / `gold20_arabic` — 55.0% of 20 scanned words lose at least one character; unmapped `، ؟`; worst per 0.0274
+- **aeb-TN** (Tunisian Arabic) / `arabic_tts` — 60.0% of 20 scanned words lose at least one character; unmapped `، ؟`; worst per 0.3059
+- **aeb-TN** (Tunisian Arabic) / `gold20_arabic` — 60.0% of 20 scanned words lose at least one character; unmapped `، ؟`; worst per 0.3059
+- **apc-JO** (Jordanian Arabic (Ammani)) / `arabic_tts` — 55.0% of 20 scanned words lose at least one character; unmapped `، ؟`; worst per 0.3718
+- **apc-JO** (Jordanian Arabic (Ammani)) / `gold20_arabic` — 55.0% of 20 scanned words lose at least one character; unmapped `، ؟`; worst per 0.3718
+- **apd-SD** (Sudanese Arabic) / `arabic_tts` — 55.0% of 20 scanned words lose at least one character; unmapped `، ؟`; worst per 0.0274
+- **apd-SD** (Sudanese Arabic) / `gold20_arabic` — 55.0% of 20 scanned words lose at least one character; unmapped `، ؟`; worst per 0.0274
 - **pox** (Polabian) / `wikipron` — 53.3% of 321 scanned words lose at least one character; unmapped `x ă ď ŕ ť ʒ ́ ̇ ̯ ḿ ṕ ’`; worst per 0.3204
 - **ady** (Adyghe) / `northeuralex` — 50.3% of 928 scanned words lose at least one character; unmapped `́ в ь`; worst per 0.1684
-- **ar-AE** (Emirati Arabic) / `arabic_tts` — 50.0% of 20 scanned words lose at least one character; unmapped `، ؟`; worst per 0.0441
-- **ar-AE** (Emirati Arabic) / `gold20_arabic` — 50.0% of 20 scanned words lose at least one character; unmapped `، ؟`; worst per 0.0441
+- **afb-AE** (Emirati Arabic) / `arabic_tts` — 50.0% of 20 scanned words lose at least one character; unmapped `، ؟`; worst per 0.0441
+- **afb-AE** (Emirati Arabic) / `gold20_arabic` — 50.0% of 20 scanned words lose at least one character; unmapped `، ؟`; worst per 0.0441
 - **cic** (Chickasaw) / `wikipron` — 48.7% of 394 scanned words lose at least one character; unmapped `e v á í ó ̠ ̱ ꞌ`; worst per 0.1028
 
 ## Tables asserted from another language
@@ -281,8 +281,8 @@ aa | Afro-Asiatic > Cushitic | 31 | 26 | 4 | 0.3% | no | 0 | hay 0.774 | 1 | 171
 acm | Afro-Asiatic > Semitic > Central Semitic | 44 | 34 | 4 | 26.9% | no | 0 | ayl 1.0 | 1 | 97 | 0.4249
 af | Indo-European > Germanic > Northwest Germanic > West Germanic | 57 | 35 | 4 | 0.5% | no | 0 | nl-NL 0.649 | 1 | 2076 | 0.3615
 ar | Afro-Asiatic > Semitic > Central Semitic | 16 | 48 | 4 | 0.1% | yes | 0 | acm 0.023 | 5 | 885708 | 0.3774
-ar-SA-x-hejaz | Afro-Asiatic > Semitic > Central Semitic | 44 | 45 | 4 | 0.6% | yes | 0 | ayl 0.068 | 4 | 1959 | 0.3412
-ar-SY | Afro-Asiatic > Semitic > Central Semitic | 4 | 48 | 4 | 3.7% | yes | 0 |  | 4 | 461 | 0.3895
+acw-SA | Afro-Asiatic > Semitic > Central Semitic | 44 | 45 | 4 | 0.6% | yes | 0 | ayl 0.068 | 4 | 1959 | 0.3412
+apc-SY | Afro-Asiatic > Semitic > Central Semitic | 4 | 48 | 4 | 3.7% | yes | 0 |  | 4 | 461 | 0.3895
 ckb | Indo-European > Indo-Iranian > Iranian | 35 | 38 | 4 | 0.3% | no | 0 | sdh 0.8 | 2 | 27112 | 0.2607
 de-DE | Indo-European > Germanic > Northwest Germanic > West Germanic | 61 | 34 | 4 | 1.3% | yes | 0 | nds 0.736 | 2 | 802642 | 0.3948
 fo | Indo-European > Germanic > Northwest Germanic > North Germanic | 62 | 33 | 4 | 0.1% | yes | 0 | no 0.274 | 1 | 2957 | 0.1674
@@ -309,9 +309,9 @@ wa | Indo-European > Italic > Romance | 54 | 39 | 4 | 0.3% | no | 0 | pcd 0.556 
 yi | Indo-European > Germanic > Northwest Germanic > West Germanic | 50 | 39 | 4 | 8.4% | yes | 0 | he 0.212 | 1 | 4051 | 0.2042
 ace | Austronesian | 29 | 28 | 3 | 29.4% | no | 0 | mad 0.733 | 1 | 267 | 0.1102
 ady | Abkhaz-Adyge | 64 | 34 | 3 | 50.3% | no | 0 | kbd 0.812 | 1 | 928 | 0.1684
-ar-EG | Afro-Asiatic > Semitic > Central Semitic | 25 | 47 | 3 | 2.2% | yes | 0 | acm 0.023 | 4 | 648 | 0.3692
-ar-MA | Afro-Asiatic > Semitic > Central Semitic | 13 | 45 | 3 | 1.3% | yes | 0 | sdh 0.029 | 4 | 1877 | 0.3026
-ar-x-gulf | Afro-Asiatic > Semitic > Central Semitic | 44 | 43 | 3 | 1.9% | yes | 0 | ug 0.159 | 3 | 654 | 0.4273
+arz-EG | Afro-Asiatic > Semitic > Central Semitic | 25 | 47 | 3 | 2.2% | yes | 0 | acm 0.023 | 4 | 648 | 0.3692
+ary-MA | Afro-Asiatic > Semitic > Central Semitic | 13 | 45 | 3 | 1.3% | yes | 0 | sdh 0.029 | 4 | 1877 | 0.3026
+afb | Afro-Asiatic > Semitic > Central Semitic | 44 | 43 | 3 | 1.9% | yes | 0 | ug 0.159 | 3 | 654 | 0.4273
 as | Indo-European > Indo-Iranian > Indo-Aryan | 64 | 64 | 3 | 1.9% | no | 0 | ctg 0.375 | 2 | 8309 | 0.2436
 bn | Indo-European > Indo-Iranian > Indo-Aryan | 61 | 61 | 3 | 0.0% | no | 0 | as 0.625 | 2 | 36788 | 0.3162
 ca-x-balear | Indo-European > Italic > Romance | 3 | 40 | 3 | 1.9% | yes | 0 |  | 1 | 160 | 0.136
@@ -348,29 +348,29 @@ wau | Arawakan | 24 | 19 | 3 | 37.7% | no | 0 | ulw 0.625 | 1 | 146 | 0.2968
 yux | Yukaghir | 34 | 27 | 3 | 11.8% | no | 0 | sia 0.769 | 1 | 242 | 0.2975
 zza | Indo-European > Indo-Iranian > Iranian | 34 | 34 | 3 | 0.9% | no | 0 | diq 0.765 | 1 | 196 | 0.3606
 ang | Indo-European > Germanic > Northwest Germanic > West Germanic | 55 | 26 | 2 | 1.6% | no | 0 | ofs 0.745 | 1 | 54696 | 0.2103
-ar-AE | Afro-Asiatic > Semitic > Central Semitic | 0 | 40 | 2 | 50.0% | yes | 0 |  | 2 | 40 | 0.0441
-ar-BH | Afro-Asiatic > Semitic > Central Semitic | 0 | 40 | 2 | 45.0% | yes | 0 |  | 2 | 40 | 0.041
-ar-DZ | Afro-Asiatic > Semitic > Central Semitic | 23 | 40 | 2 | 29.3% | yes | 0 | sdh 0.029 | 3 | 41 | 0.7143
-ar-IQ | Afro-Asiatic > Semitic > Central Semitic | 37 | 40 | 2 | 30.8% | yes | 0 | arb 0.126 | 3 | 52 | 0.2907
+afb-AE | Afro-Asiatic > Semitic > Central Semitic | 0 | 40 | 2 | 50.0% | yes | 0 |  | 2 | 40 | 0.0441
+afb-BH | Afro-Asiatic > Semitic > Central Semitic | 0 | 40 | 2 | 45.0% | yes | 0 |  | 2 | 40 | 0.041
+arq-DZ | Afro-Asiatic > Semitic > Central Semitic | 23 | 40 | 2 | 29.3% | yes | 0 | sdh 0.029 | 3 | 41 | 0.7143
+acm-IQ | Afro-Asiatic > Semitic > Central Semitic | 37 | 40 | 2 | 30.8% | yes | 0 | arb 0.126 | 3 | 52 | 0.2907
 ar-IQ-x-qeltu | Afro-Asiatic > Semitic > Central Semitic | 1 | 38 | 2 | 23.1% | yes | 0 |  | 3 | 52 | 0.3417
-ar-JO | Afro-Asiatic > Semitic > Central Semitic | 2 | 46 | 2 | 0.7% | yes | 0 |  | 4 | 2566 | 0.3718
-ar-KW | Afro-Asiatic > Semitic > Central Semitic | 0 | 40 | 2 | 30.0% | yes | 0 |  | 2 | 40 | 0.0237
-ar-LB | Afro-Asiatic > Semitic > Central Semitic | 71 | 36 | 2 | 30.0% | yes | 0 | arb 0.004 | 2 | 40 | 0.0258
+apc-JO | Afro-Asiatic > Semitic > Central Semitic | 2 | 46 | 2 | 0.7% | yes | 0 |  | 4 | 2566 | 0.3718
+afb-KW | Afro-Asiatic > Semitic > Central Semitic | 0 | 40 | 2 | 30.0% | yes | 0 |  | 2 | 40 | 0.0237
+apc-LB | Afro-Asiatic > Semitic > Central Semitic | 71 | 36 | 2 | 30.0% | yes | 0 | arb 0.004 | 2 | 40 | 0.0258
 ar-LY | Afro-Asiatic > Semitic > Central Semitic | 37 | 35 | 2 | 39.1% | yes | 0 | sdh 0.027 | 3 | 46 | 0.2042
-ar-MR | Afro-Asiatic > Semitic > Central Semitic | 45 | 37 | 2 | 27.6% | yes | 0 | arb 0.126 | 3 | 54 | 0.3988
-ar-NG | Afro-Asiatic > Semitic > Central Semitic | 33 | 33 | 2 | 30.4% | yes | 0 | acm 0.023 | 3 | 46 | 0.2444
-ar-OM | Afro-Asiatic > Semitic > Central Semitic | 34 | 38 | 2 | 45.0% | yes | 0 | ayl 0.136 | 2 | 40 | 0.0077
-ar-PS | Afro-Asiatic > Semitic > Central Semitic | 3 | 39 | 2 | 31.8% | yes | 0 |  | 3 | 44 | 0.1667
-ar-QA | Afro-Asiatic > Semitic > Central Semitic | 0 | 39 | 2 | 25.0% | yes | 0 |  | 2 | 40 | 0.0264
-ar-SA-x-najd | Afro-Asiatic > Semitic > Central Semitic | 22 | 40 | 2 | 18.9% | yes | 0 | ayl 0.068 | 3 | 65 | 0.1491
-ar-SA-x-qassim | Afro-Asiatic > Semitic > Central Semitic | 2 | 41 | 2 | 26.9% | yes | 0 |  | 3 | 52 | 0.1327
+mey-MR | Afro-Asiatic > Semitic > Central Semitic | 45 | 37 | 2 | 27.6% | yes | 0 | arb 0.126 | 3 | 54 | 0.3988
+shu-NG | Afro-Asiatic > Semitic > Central Semitic | 33 | 33 | 2 | 30.4% | yes | 0 | acm 0.023 | 3 | 46 | 0.2444
+acx-OM | Afro-Asiatic > Semitic > Central Semitic | 34 | 38 | 2 | 45.0% | yes | 0 | ayl 0.136 | 2 | 40 | 0.0077
+apc-PS | Afro-Asiatic > Semitic > Central Semitic | 3 | 39 | 2 | 31.8% | yes | 0 |  | 3 | 44 | 0.1667
+afb-QA | Afro-Asiatic > Semitic > Central Semitic | 0 | 39 | 2 | 25.0% | yes | 0 |  | 2 | 40 | 0.0264
+ars-SA | Afro-Asiatic > Semitic > Central Semitic | 22 | 40 | 2 | 18.9% | yes | 0 | ayl 0.068 | 3 | 65 | 0.1491
+ars-SA-x-qassim | Afro-Asiatic > Semitic > Central Semitic | 2 | 41 | 2 | 26.9% | yes | 0 |  | 3 | 52 | 0.1327
 ar-SA-x-rijal-alma | Afro-Asiatic > Semitic > Central Semitic | 21 | 40 | 2 | 29.2% | yes | 0 | arb 0.042 | 3 | 48 | 0.2454
-ar-SA-x-sharqiyya | Afro-Asiatic > Semitic > Central Semitic | 1 | 38 | 2 | 34.8% | yes | 0 |  | 3 | 46 | 0.1944
-ar-SD | Afro-Asiatic > Semitic > Central Semitic | 26 | 37 | 2 | 55.0% | yes | 0 | ayl 0.045 | 2 | 40 | 0.0274
-ar-TD | Afro-Asiatic > Semitic > Central Semitic | 36 | 36 | 2 | 30.0% | yes | 0 | ayl 0.136 | 2 | 40 | 0.0346
-ar-TN | Afro-Asiatic > Semitic > Central Semitic | 33 | 37 | 2 | 49.0% | yes | 0 | arb 0.13 | 3 | 49 | 0.3059
-ar-YE | Afro-Asiatic > Semitic > Central Semitic | 42 | 39 | 2 | 32.7% | yes | 0 | arb 0.13 | 3 | 55 | 0.1802
-ar-x-levantine | Afro-Asiatic > Semitic > Central Semitic | 38 | 37 | 2 | 35.0% | yes | 0 | ayl 0.045 | 2 | 40 | 0.0105
+afb-SA-x-sharqiya | Afro-Asiatic > Semitic > Central Semitic | 1 | 38 | 2 | 34.8% | yes | 0 |  | 3 | 46 | 0.1944
+apd-SD | Afro-Asiatic > Semitic > Central Semitic | 26 | 37 | 2 | 55.0% | yes | 0 | ayl 0.045 | 2 | 40 | 0.0274
+shu-TD | Afro-Asiatic > Semitic > Central Semitic | 36 | 36 | 2 | 30.0% | yes | 0 | ayl 0.136 | 2 | 40 | 0.0346
+aeb-TN | Afro-Asiatic > Semitic > Central Semitic | 33 | 37 | 2 | 49.0% | yes | 0 | arb 0.13 | 3 | 49 | 0.3059
+ayn-YE | Afro-Asiatic > Semitic > Central Semitic | 42 | 39 | 2 | 32.7% | yes | 0 | arb 0.13 | 3 | 55 | 0.1802
+apc | Afro-Asiatic > Semitic > Central Semitic | 38 | 37 | 2 | 35.0% | yes | 0 | ayl 0.045 | 2 | 40 | 0.0105
 ar-x-maghrebi | Afro-Asiatic > Semitic > Central Semitic | 44 | 36 | 2 | 35.0% | yes | 0 | sdh 0.068 | 2 | 40 | 0.0044
 ar-x-mashriqi | Afro-Asiatic > Semitic > Central Semitic | 43 | 39 | 2 | 35.0% | yes | 0 | ckb 0.07 | 2 | 40 | 0.0175
 ar-x-peninsular | Afro-Asiatic > Semitic > Central Semitic | 42 | 40 | 2 | 35.0% | yes | 0 | acm 0.114 | 2 | 40 | 0.0122
@@ -471,7 +471,7 @@ ykg | Yukaghir | 45 | 28 | 1 | 0.4% | no | 0 | bua 0.556 | 1 | 813 | 0.3616
 za | Tai-Kadai | 37 | 27 | 1 | 0.7% | no | 0 | zom 0.378 | 1 | 1682 | 0.2124
 aii | Afro-Asiatic > Semitic > Central Semitic | 22 | 22 | 0 |  | no | 0 | syc 0.864 | 1 | 4836 | 0.3765
 aot | Sino-Tibetan | 33 | 21 | 0 |  | no | 0 | cnk 0.912 | 1 | 181 | 0.1367
-ar-SA-x-dawasir | Afro-Asiatic > Semitic > Central Semitic | 1 | 16 | 0 |  | yes | 0 |  | 1 | 5 | 0.08
+afb-SA-x-dawasir | Afro-Asiatic > Semitic > Central Semitic | 1 | 16 | 0 |  | yes | 0 |  | 1 | 5 | 0.08
 ar-SA-x-tihama-qahtan | Afro-Asiatic > Semitic > Central Semitic | 4 | 25 | 0 |  | yes | 0 |  | 1 | 16 | 0.1084
 ast-PT-x-guadramil | Indo-European > Italic > Romance > Ibero-Romance > Asturleonese | 0 | 24 | 0 |  | yes | 0 |  | 1 | 20 | 0.0
 ast-PT-x-medieval | Indo-European > Italic > Romance > Ibero-Romance > Asturleonese | 15 | 24 | 0 |  | yes | 0 | pov 0.2 | 1 | 20 | 0.0

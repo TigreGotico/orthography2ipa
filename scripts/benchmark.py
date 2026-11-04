@@ -525,19 +525,20 @@ _WIKIPRON_FILES = {
     "shn":       "shn_mymr_broad.tsv",              # Shan (Myanmar script), ~2607 rows
     # --- Arabic spoken dialects (ISO 639-3 codes → o2i lect) ---
     #     WikiPron scrapes six spoken Arabic dialects under their ISO 639-3
-    #     codes; each maps onto an existing o2i ``ar-XX`` dialect spec (the
-    #     registry alias table resolves the ISO code too). Like the MSA ``ar``
+    #     codes; each maps onto the o2i dialect spec keyed by that code (the
+    #     South Levantine ``ajp`` file onto ``apc-JO``, because SIL merged
+    #     ``ajp`` into ``apc``). Like the MSA ``ar``
     #     row, these Wiktionary headwords are UNPOINTED consonantal skeletons —
     #     short vowels are orthographically absent, so a substantial PER floor
     #     from unvowelized input is expected (see the ``ar`` note above); the
     #     signal is consonant/long-vowel accuracy against the dialect spec, not
     #     a full-vowel score. Same crowd-scraped Wiktionary tier as the rest.
-    "ar-EG":         "arz_arab_broad.tsv",          # Egyptian Arabic (arz), ~800 rows
-    "ar-MA":         "ary_arab_broad.tsv",          # Moroccan Arabic (ary), ~2168 rows
-    "ar-SY":         "apc_arab_broad.tsv",          # North Levantine (apc), ~618 rows
-    "ar-JO":         "ajp_arab_broad.tsv",          # South Levantine (ajp), ~3182 rows
-    "ar-x-gulf":     "afb_arab_broad.tsv",          # Gulf Arabic (afb), ~763 rows
-    "ar-SA-x-hejaz": "acw_arab_broad.tsv",          # Hijazi Arabic (acw), ~2640 rows
+    "arz-EG":        "arz_arab_broad.tsv",          # Egyptian Arabic (arz), ~800 rows
+    "ary-MA":        "ary_arab_broad.tsv",          # Moroccan Arabic (ary), ~2168 rows
+    "apc-SY":        "apc_arab_broad.tsv",          # North Levantine (apc), ~618 rows
+    "apc-JO":        "ajp_arab_broad.tsv",          # South Levantine (ajp), ~3182 rows
+    "afb":           "afb_arab_broad.tsv",          # Gulf Arabic (afb), ~763 rows
+    "acw-SA":        "acw_arab_broad.tsv",          # Hijazi Arabic (acw), ~2640 rows
     # --- new skeleton-tier specs, wired to their upstream WikiPron gold ---
     #     Each has a fresh skeleton spec added in this round (orthography kind,
     #     base grapheme inventory, cited ancestry). Smoke-checked to engage;
@@ -2760,7 +2761,7 @@ _SPAIN_ROMANCE_TTS_LANGS = _sentence_tts_langs(_SPAIN_ROMANCE_TTS_DIR)
 # maintainer asked for this specific published dataset by URL — it is not a
 # vendored copy of ``arabic_tts``, whose local TSVs have since been hand
 # re-audited and diverge from the upstream file row-by-row (see e.g. the
-# ar-EG-020 delta note in ``orthography2ipa/data/gold/arabic_tts/ar-EG.tsv``).
+# ar-EG-020 delta note in ``orthography2ipa/data/gold/arabic_tts/arz-EG.tsv``).
 #
 # PROVENANCE — semi-synthetic: every ``sentence``/``ipa`` pair was drafted
 # by an LLM (the same Claude lineage that authored the o2i Arabic dialect
@@ -2778,20 +2779,25 @@ _GOLD20_ARABIC_BASE = (
     "https://huggingface.co/datasets/Salesteq/arabic-dialects-gold20"
     "/resolve/main/{lang}.tsv"
 )
-# Upstream file stems that are already valid orthography2ipa lect codes
-# (verified 1:1 against orthography2ipa/data/*.json — every file here has a
-# matching registered spec; nothing was force-mapped and nothing was
-# rejected).
-_GOLD20_ARABIC_LANGS = sorted([
-    "ar", "arb",
-    "ar-AE", "ar-BH", "ar-DZ", "ar-EG", "ar-IQ", "ar-IQ-x-qeltu", "ar-JO",
-    "ar-KW", "ar-LB", "ar-LY", "ar-MA", "ar-MR", "ar-NG", "ar-OM", "ar-PS",
-    "ar-QA", "ar-SA-x-hejaz", "ar-SA-x-najd", "ar-SA-x-qassim",
-    "ar-SA-x-rijal-alma", "ar-SA-x-sharqiyya", "ar-SD", "ar-SY", "ar-TD",
-    "ar-TN", "ar-YE",
-    "ar-x-gulf", "ar-x-levantine", "ar-x-maghrebi", "ar-x-mashriqi",
-    "ar-x-peninsular",
-])
+# Upstream file stems, each the o2i lect code the file was published under.
+# The board scores each file under the spec's canonical key; the stem stays
+# the name the file has upstream. Every stem resolves exactly to its key.
+_GOLD20_ARABIC_FILES = {
+    "ar": "ar", "arb": "arb",
+    "afb-AE": "ar-AE", "afb-BH": "ar-BH", "arq-DZ": "ar-DZ", "arz-EG": "ar-EG",
+    "acm-IQ": "ar-IQ", "ar-IQ-x-qeltu": "ar-IQ-x-qeltu", "apc-JO": "ar-JO",
+    "afb-KW": "ar-KW", "apc-LB": "ar-LB", "ar-LY": "ar-LY", "ary-MA": "ar-MA",
+    "mey-MR": "ar-MR", "shu-NG": "ar-NG", "acx-OM": "ar-OM", "apc-PS": "ar-PS",
+    "afb-QA": "ar-QA", "acw-SA": "ar-SA-x-hejaz", "ars-SA": "ar-SA-x-najd",
+    "ars-SA-x-qassim": "ar-SA-x-qassim",
+    "ar-SA-x-rijal-alma": "ar-SA-x-rijal-alma",
+    "afb-SA-x-sharqiya": "ar-SA-x-sharqiyya", "apd-SD": "ar-SD",
+    "apc-SY": "ar-SY", "shu-TD": "ar-TD", "aeb-TN": "ar-TN", "ayn-YE": "ar-YE",
+    "afb": "ar-x-gulf", "apc": "ar-x-levantine",
+    "ar-x-maghrebi": "ar-x-maghrebi", "ar-x-mashriqi": "ar-x-mashriqi",
+    "ar-x-peninsular": "ar-x-peninsular",
+}
+_GOLD20_ARABIC_LANGS = sorted(_GOLD20_ARABIC_FILES)
 
 
 def load_gold20_arabic(lang: str, limit: int) -> List[Tuple[str, str]]:
@@ -2805,8 +2811,9 @@ def load_gold20_arabic(lang: str, limit: int) -> List[Tuple[str, str]]:
     other gold exists at all. See the ``gold20_arabic`` provenance note:
     ``llm-generated``, gates no quality decision.
     """
-    fname = f"{lang}.tsv"
-    text = _fetch(_GOLD20_ARABIC_BASE.format(lang=lang), f"gold20_arabic_{fname}")
+    stem = _GOLD20_ARABIC_FILES[lang]
+    text = _fetch(_GOLD20_ARABIC_BASE.format(lang=stem),
+                  f"gold20_arabic_{stem}.tsv")
     pairs: List[Tuple[str, str]] = []
     reader = csv.DictReader(text.splitlines(), delimiter="\t")
     for row in reader:

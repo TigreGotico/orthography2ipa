@@ -9,7 +9,7 @@ import pytest
 from orthography2ipa import get
 from orthography2ipa.g2p import G2P
 
-SAIDI, BEDAWI, CAIRENE = "ar-EG-x-saidi", "ar-EG-x-bedawi", "ar-EG"
+SAIDI, BEDAWI, CAIRENE = "aec-EG", "avl-EG", "arz-EG"
 
 
 @pytest.mark.parametrize("code", [SAIDI, BEDAWI])
@@ -73,7 +73,7 @@ def test_cairene_itself_is_untouched():
 # placeholder kept only so the ancestry graph covers every living ISO 639-3
 # code. Without an alias, ``get("aec")``/``get("avl")`` return that empty
 # stub instead of the spec tested above, the same class of regression as
-# ``acm`` resolving to a 44-key skeleton instead of ``ar-IQ``
+# ``acm`` resolving to a 44-key skeleton instead of ``acm-IQ``
 # (test_arabic_iraqi.py).
 
 @pytest.mark.parametrize("code,expected", [("aec", SAIDI), ("avl", BEDAWI)])

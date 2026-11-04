@@ -44,16 +44,16 @@ GOLD_DIR = REPO_ROOT / "orthography2ipa" / "data" / "gold" / "arabic_tts"
 
 LECTS = [
     "arb", "ar",
-    "ar-EG", "ar-IQ", "ar-IQ-x-qeltu", "ar-SD", "ar-TD", "ar-NG",
-    "ar-SY", "ar-LB", "ar-JO", "ar-PS",
-    "ar-AE", "ar-BH", "ar-KW", "ar-QA", "ar-OM",
-    "ar-SA-x-najd", "ar-SA-x-hejaz", "ar-YE",
-    "ar-SA-x-qassim", "ar-SA-x-rijal-alma", "ar-SA-x-sharqiyya",
-    "ar-MA", "ar-TN", "ar-DZ", "ar-LY", "ar-MR",
+    "arz-EG", "acm-IQ", "ar-IQ-x-qeltu", "apd-SD", "shu-TD", "shu-NG",
+    "apc-SY", "apc-LB", "apc-JO", "apc-PS",
+    "afb-AE", "afb-BH", "afb-KW", "afb-QA", "acx-OM",
+    "ars-SA", "acw-SA", "ayn-YE",
+    "ars-SA-x-qassim", "ar-SA-x-rijal-alma", "afb-SA-x-sharqiya",
+    "ary-MA", "aeb-TN", "arq-DZ", "ar-LY", "mey-MR",
     # Historical: Andalusi Arabic (medieval al-Andalus), Arabic-script gold
     "xaa",
     # Grouping (proto/koine) nodes — pan-group register, node-level rankings.
-    "ar-x-gulf", "ar-x-levantine", "ar-x-maghrebi", "ar-x-mashriqi", "ar-x-peninsular",
+    "afb", "apc", "ar-x-maghrebi", "ar-x-mashriqi", "ar-x-peninsular",
 ]
 MIN_ROWS = 5
 FIELDS = ["id", "sentence", "raw", "ipa", "gloss_en", "features", "notes"]
