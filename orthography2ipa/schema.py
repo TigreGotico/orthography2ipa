@@ -451,6 +451,7 @@ class LanguageSpecModel(_Strict):
     dependent_vowels: Optional[List[str]] = None
     preposed_vowels: Optional[List[str]] = None
     trailing_vowel_axis_digraphs: Optional[List[str]] = None
+    prevocalic_glide_backoff: Optional[List[str]] = None
     coda_no_inherent_vowel: Optional[bool] = None
     consonant_nuclei: Optional[Dict[str, str]] = None
     codas: Optional[List[str]] = None

@@ -640,6 +640,8 @@ def load_json_spec(code: str) -> LanguageSpec:
         preposed_vowels=tuple(raw.get("preposed_vowels", ()) or ()),
         trailing_vowel_axis_digraphs=tuple(
             raw.get("trailing_vowel_axis_digraphs", ()) or ()),
+        prevocalic_glide_backoff=tuple(
+            raw.get("prevocalic_glide_backoff", ()) or ()),
         coda_no_inherent_vowel=bool(raw.get("coda_no_inherent_vowel", False)),
         consonant_nuclei=raw.get("consonant_nuclei"),
         codas=tuple(raw.get("codas") or ()),
