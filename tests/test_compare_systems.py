@@ -937,14 +937,14 @@ class TestBarranquenhoLazyImport:
             return real_import(name, *a, **k)
 
         monkeypatch.setattr(builtins, "__import__", fake_import)
-        assert cs.barranquenho_transcribe("casa", "ext-PT-x-barrancos") is None
+        assert cs.barranquenho_transcribe("casa", "ext-PT-x-barranco") is None
 
     def test_present_module_transcribes(self, monkeypatch):
         fake_pkg = type(sys)("g2p_barranquenho")
         fake_pkg.transcribe = lambda word: ["k", "a", "z", "ɐ"]
         monkeypatch.setitem(sys.modules, "g2p_barranquenho", fake_pkg)
 
-        assert (cs.barranquenho_transcribe("casa", "ext-PT-x-barrancos")
+        assert (cs.barranquenho_transcribe("casa", "ext-PT-x-barranco")
                 == "kazɐ")
 
     def test_exception_during_transcribe_yields_none(self, monkeypatch):
@@ -955,7 +955,7 @@ class TestBarranquenhoLazyImport:
         fake_pkg.transcribe = boom
         monkeypatch.setitem(sys.modules, "g2p_barranquenho", fake_pkg)
 
-        assert cs.barranquenho_transcribe("x", "ext-PT-x-barrancos") is None
+        assert cs.barranquenho_transcribe("x", "ext-PT-x-barranco") is None
 
 
 class TestMwlPhonemizerLazyImport:
@@ -1408,17 +1408,17 @@ class TestCompareLangWithFamilySystems:
         monkeypatch.setattr(
             cs.benchmark, "DATASETS",
             {"barranquenho_dict": (lambda lang, limit: pairs,
-                                    ["ext-PT-x-barrancos"])})
+                                    ["ext-PT-x-barranco"])})
         monkeypatch.setitem(
-            cs.LANGS, "ext-PT-x-barrancos",
-            {"dataset": ("barranquenho_dict", "ext-PT-x-barrancos"),
+            cs.LANGS, "ext-PT-x-barranco",
+            {"dataset": ("barranquenho_dict", "ext-PT-x-barranco"),
              "espeak": None, "epitran": None, "gruut": None,
-             "barranquenho": "ext-PT-x-barrancos"})
+             "barranquenho": "ext-PT-x-barranco"})
         self._install_o2i(monkeypatch, {"casa": "ˈkazɐ"})
         monkeypatch.setattr(cs, "barranquenho_transcribe",
                              lambda word, lang: "ˈkazɐ")
 
-        row = cs.compare_lang("ext-PT-x-barrancos", limit=10)[0]
+        row = cs.compare_lang("ext-PT-x-barranco", limit=10)[0]
         assert row["barranquenho_per"] is None
         assert row["barranquenho_same_source"] is True
 
@@ -1596,7 +1596,7 @@ class TestDiscoverCatalanDialectVoices:
         voices = cs.discover_catalan_dialect_voices()
         assert voices == {
             "ca": "ca", "ca-x-balear": "ca-ba",
-            "ca-x-occidental": "ca-nw", "ca-x-valencia": "ca-va",
+            "ca-x-occident": "ca-nw", "ca-x-valencia": "ca-va",
         }
 
     def test_missing_dialect_voices_fall_back_to_generic_ca(
@@ -1615,7 +1615,7 @@ class TestDiscoverCatalanDialectVoices:
         voices = cs.discover_catalan_dialect_voices()
         assert voices["ca"] == "ca"
         assert voices["ca-x-balear"] == "ca"
-        assert voices["ca-x-occidental"] == "ca"
+        assert voices["ca-x-occident"] == "ca"
         assert voices["ca-x-valencia"] == "ca"
 
     def test_no_catalan_voice_at_all_yields_none(self, monkeypatch):
@@ -1640,17 +1640,17 @@ class TestDiscoverCatalanDialectVoices:
         monkeypatch.setattr(
             cs, "discover_catalan_dialect_voices",
             lambda: {"ca": "ca", "ca-x-balear": "ca",
-                     "ca-x-occidental": None, "ca-x-valencia": "ca-va"})
+                     "ca-x-occident": None, "ca-x-valencia": "ca-va"})
         langs = {
             "ca": {"espeak": "placeholder"},
             "ca-x-balear": {"espeak": "placeholder"},
-            "ca-x-occidental": {"espeak": "placeholder"},
+            "ca-x-occident": {"espeak": "placeholder"},
             "ca-x-valencia": {"espeak": "placeholder"},
         }
         voices = cs.apply_catalan_dialect_voices(langs)
         assert langs["ca"]["espeak"] == "ca"
         assert langs["ca-x-balear"]["espeak"] == "ca"
-        assert langs["ca-x-occidental"]["espeak"] is None
+        assert langs["ca-x-occident"]["espeak"] is None
         assert langs["ca-x-valencia"]["espeak"] == "ca-va"
         assert voices["ca-x-valencia"] == "ca-va"
 
@@ -1662,13 +1662,13 @@ class TestCatalanDialectTableSection:
              "o2i_per": 0.41, "espeak_per": 0.18},
             {"lang": "ca-x-balear", "dataset": "4catac", "n": 160,
              "o2i_per": 0.38, "espeak_per": 0.21},
-            {"lang": "ca-x-occidental", "dataset": "4catac", "n": 160,
+            {"lang": "ca-x-occident", "dataset": "4catac", "n": 160,
              "o2i_per": 0.56, "espeak_per": 0.19},
             {"lang": "ca-x-valencia", "dataset": "4catac", "n": 160,
              "o2i_per": 0.30, "espeak_per": 0.18},
         ]
         voices = {"ca": "ca", "ca-x-balear": "ca-ba",
-                  "ca-x-occidental": "ca-nw", "ca-x-valencia": "ca-va"}
+                  "ca-x-occident": "ca-nw", "ca-x-valencia": "ca-va"}
         lines = cs._catalan_dialect_table_lines(rows, voices)
         text = "\n".join(lines)
         assert "All three BSC dialect voices" in text
@@ -1683,12 +1683,12 @@ class TestCatalanDialectTableSection:
              "o2i_per": 0.38, "espeak_per": 0.25},
         ]
         voices = {"ca": "ca", "ca-x-balear": "ca",
-                  "ca-x-occidental": None, "ca-x-valencia": None}
+                  "ca-x-occident": None, "ca-x-valencia": None}
         lines = cs._catalan_dialect_table_lines(rows, voices)
         text = "\n".join(lines)
         assert "not** found" in text
         assert "ca (fallback, no dialect voice found)" in text
-        assert "| occidental (nord-occidental) | ca-x-occidental | n/a | 0 | n/a | n/a |" in text
+        assert "| occidental (nord-occidental) | ca-x-occident | n/a | 0 | n/a | n/a |" in text
 
 
 class TestEspeakBatchTranscribe:
@@ -2715,7 +2715,7 @@ cs.write_comparison(rows)
                 r["espeak_voice"] = voice
             return r
         rows = [row("ca", "ca"), row("ca-x-balear", "ca-ba"),
-                row("ca-x-valencia", None), row("ca-x-occidental", "ca")]
+                row("ca-x-valencia", None), row("ca-x-occident", "ca")]
         for r in rows:
             monkeypatch.setitem(cs.LANGS, r["lang"], {"dataset": ("4catac", r["lang"])})
         md_path = tmp_path / "comparison.md"
@@ -2725,7 +2725,7 @@ cs.write_comparison(rows)
         text = md_path.read_text(encoding="utf-8")
         assert "| balear | ca-x-balear | ca-ba |" in text
         assert "| valencian | ca-x-valencia | n/a |" in text
-        assert "| occidental (nord-occidental) | ca-x-occidental | ca (fallback, no dialect voice found) |" in text
+        assert "| occidental (nord-occidental) | ca-x-occident | ca (fallback, no dialect voice found) |" in text
         assert "were **not** found" in text
 
 

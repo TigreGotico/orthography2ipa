@@ -62,7 +62,7 @@ def test_gl_distincion():
     strict=True,
     reason="gl notes claim an apico-alveolar /s/ [s̺]; engine produces a plain "
     "unmarked [s] in casa — the apical diacritic the spec's own prose asserts is "
-    "never emitted (contrast mwl/pt-PT-x-trasosmontes, which do mark it)",
+    "never emitted (contrast mwl/pt-PT-x-tras-os-montes, which do mark it)",
 )
 def test_gl_apico_alveolar_s():
     """Galician /s/ is the apico-alveolar [s̺], not the Portuguese predorsal [s̻].
@@ -219,14 +219,14 @@ def test_gl_es_keeps_unstressed_a_open():
 
 
 # ===========================================================================
-# gl-ES-x-occidental — Western Galician
+# gl-ES-x-occident — Western Galician
 # ===========================================================================
 
 
 def test_gl_occidental_gheada_word_initial():
     """GHEADA: word-initial /ɡ/ is replaced by the voiceless fricative [h].
 
-    gl-ES-x-occidental notes: "KEY FEATURE — GHEADA: the defining hallmark of
+    gl-ES-x-occident notes: "KEY FEATURE — GHEADA: the defining hallmark of
     western Galician, a substitution of /ɡ/ by a voiceless fricative [h] ...
     'galego' → [haˈlɛho], 'gato' → [ˈhato]. The gheada affects: word-initial /ɡ/,
     intervocalic /ɡ/." Sources: Fernández Rei (1990), Dubert García (2006).
@@ -234,47 +234,47 @@ def test_gl_occidental_gheada_word_initial():
     Minimal pair against the sister dialect gl-ES-x-oriental, whose notes state
     "(5) No gheada (characteristic of the western coast, absent in the east)".
     """
-    assert _bare("gl-ES-x-occidental", "gato").startswith("h")
+    assert _bare("gl-ES-x-occident", "gato").startswith("h")
     assert _bare("gl-ES-x-oriental", "gato").startswith("ɡ")
 
 
 def test_gl_occidental_gheada_intervocalic():
     """GHEADA also affects intervocalic /ɡ/.
 
-    gl-ES-x-occidental notes: "The gheada affects: word-initial /ɡ/, intervocalic
+    gl-ES-x-occident notes: "The gheada affects: word-initial /ɡ/, intervocalic
     /ɡ/." Fernández Rei (1990).
     """
-    assert _bare("gl-ES-x-occidental", "amigo") == "amiho"
+    assert _bare("gl-ES-x-occident", "amigo") == "amiho"
     assert _bare("gl-ES-x-oriental", "amigo").endswith("ɣo")
 
 
 def test_gl_occidental_gu_digraph_keeps_the_stop():
     """The ⟨gu⟩ digraph before e/i is exempt from the gheada.
 
-    gl-ES-x-occidental notes: "the ⟨gu⟩ digraph before e/i typically retains /ɡ/."
+    gl-ES-x-occident notes: "the ⟨gu⟩ digraph before e/i typically retains /ɡ/."
     Fernández Rei (1990).
 
     This is the environment that isolates the gheada: guerra keeps [ɡ] where the
     bare ⟨g⟩ of gato becomes [h].
     """
-    assert _bare("gl-ES-x-occidental", "guerra").startswith("ɡ")
-    assert _bare("gl-ES-x-occidental", "gato").startswith("h")
+    assert _bare("gl-ES-x-occident", "guerra").startswith("ɡ")
+    assert _bare("gl-ES-x-occident", "gato").startswith("h")
 
 
 @pytest.mark.xfail(
     strict=True,
-    reason="gl-ES-x-occidental cites galego → [haˈlɛho]; engine produces [haleho] — "
+    reason="gl-ES-x-occident cites galego → [haˈlɛho]; engine produces [haleho] — "
     "the gheada itself fires, but the spec carries no stress block (no stress "
     "mark is emitted at all, unlike its parent gl) and the tonic ⟨e⟩ is the "
     "close [e], not the cited open [ɛ]",
 )
 def test_gl_occidental_cited_galego_transcription():
-    """gl-ES-x-occidental cites galego as [haˈlɛho].
+    """gl-ES-x-occident cites galego as [haˈlɛho].
 
-    gl-ES-x-occidental notes: "a substitution of /ɡ/ by a voiceless fricative [h]
+    gl-ES-x-occident notes: "a substitution of /ɡ/ by a voiceless fricative [h]
     ...: 'galego' → [haˈlɛho], 'gato' → [ˈhato]." Fernández Rei (1990).
     """
-    assert _t("gl-ES-x-occidental", "galego") == "haˈlɛho"
+    assert _t("gl-ES-x-occident", "galego") == "haˈlɛho"
 
 
 # ===========================================================================
@@ -304,14 +304,14 @@ def test_gl_oriental_no_yeismo():
 
 
 # ===========================================================================
-# roa-x-galaicopt — Galaico-Portuguese (~9th–14th c.)
+# roa-x-galaico-pt — Galaico-Portuguese (~9th–14th c.)
 # ===========================================================================
 
 
 def test_galaicopt_medieval_four_way_sibilant_contrast():
     """The medieval 4-way sibilant contrast: /ts/ ⟨ç⟩, /dz/ ⟨z⟩, /s/ ⟨ss⟩, /z/ ⟨-s-⟩.
 
-    roa-x-galaicopt notes: "(1) Medieval 4-way sibilant contrast: /ts/ ⟨ç⟩ vs
+    roa-x-galaico-pt notes: "(1) Medieval 4-way sibilant contrast: /ts/ ⟨ç⟩ vs
     /d͡z/ ⟨z⟩ vs /s/ ⟨ss⟩ vs /z/ ⟨-s-⟩." Sources: Maia (1986), Castro (2006),
     Teyssier (1982).
 
@@ -319,10 +319,10 @@ def test_galaicopt_medieval_four_way_sibilant_contrast():
     for ⟨ç/c⟩ and ⟨z⟩, and the plain fricative pair for ⟨ss⟩ and intervocalic
     ⟨-s-⟩ (which the spec writes with the apical diacritic).
     """
-    ceo = _bare("roa-x-galaicopt", "ceo")          # ⟨c⟩ before e = ⟨ç⟩ series
-    fazer = _bare("roa-x-galaicopt", "fazer")      # ⟨z⟩
-    passo = _bare("roa-x-galaicopt", "passo")      # ⟨ss⟩
-    casa = _bare("roa-x-galaicopt", "casa")        # intervocalic ⟨-s-⟩
+    ceo = _bare("roa-x-galaico-pt", "ceo")          # ⟨c⟩ before e = ⟨ç⟩ series
+    fazer = _bare("roa-x-galaico-pt", "fazer")      # ⟨z⟩
+    passo = _bare("roa-x-galaico-pt", "passo")      # ⟨ss⟩
+    casa = _bare("roa-x-galaico-pt", "casa")        # intervocalic ⟨-s-⟩
     assert ceo.startswith("t͡s")
     assert "d͡z" in fazer
     assert "s̺" in passo and "t͡s" not in passo
@@ -332,46 +332,46 @@ def test_galaicopt_medieval_four_way_sibilant_contrast():
 def test_galaicopt_preserves_b_v_distinction():
     """/b/ ≠ /v/ is preserved — no betacism.
 
-    roa-x-galaicopt notes: "(3) /b/ ≠ /v/ preserved." Maia (1986).
+    roa-x-galaico-pt notes: "(3) /b/ ≠ /v/ preserved." Maia (1986).
 
     Minimal pair on the same word against its Galician descendant, whose notes
     claim "(3) BETACISM: ⟨b⟩ = ⟨v⟩ = /b/".
     """
-    assert _bare("roa-x-galaicopt", "vaca").startswith("v")
+    assert _bare("roa-x-galaico-pt", "vaca").startswith("v")
     assert _bare("gl-ES", "vaca").startswith("b")
 
 
 def test_galaicopt_lh_and_nh_digraphs():
     """⟨lh⟩ = /ʎ/ and ⟨nh⟩ = /ɲ/ — the Occitan digraph convention.
 
-    roa-x-galaicopt notes: "(2) /ʎ/ ⟨lh⟩, /ɲ/ ⟨nh⟩ digraph convention from
+    roa-x-galaico-pt notes: "(2) /ʎ/ ⟨lh⟩, /ɲ/ ⟨nh⟩ digraph convention from
     Occitan." Castro (2006), Teyssier (1982).
     """
-    assert _bare("roa-x-galaicopt", "filho") == "fiʎo"
-    assert _bare("roa-x-galaicopt", "vinho") == "viɲo"
+    assert _bare("roa-x-galaico-pt", "filho") == "fiʎo"
+    assert _bare("roa-x-galaico-pt", "vinho") == "viɲo"
 
 
 def test_galaicopt_initial_f_preserved():
     """Initial F- is preserved: filho, not the Castilian hijo.
 
-    roa-x-galaicopt notes: "(4) F- preserved (filho, not hijo)." Maia (1986).
+    roa-x-galaico-pt notes: "(4) F- preserved (filho, not hijo)." Maia (1986).
 
     Minimal pair against es-ES, whose own notes cite the F→H→∅ change
     ("FILIU→hijo") and which transcribes hijo with no labial at all.
     """
-    assert _bare("roa-x-galaicopt", "filho").startswith("f")
+    assert _bare("roa-x-galaico-pt", "filho").startswith("f")
     assert not _bare("es-ES", "hijo").startswith("f")
 
 
 def test_galaicopt_ou_is_still_a_true_diphthong():
     """⟨ou⟩ is still a true diphthong [ow], not yet monophthongised.
 
-    roa-x-galaicopt notes: "(5) /ou/ still a true diphthong." Teyssier (1982).
+    roa-x-galaico-pt notes: "(5) /ou/ still a true diphthong." Teyssier (1982).
 
     Minimal pair against pt-PT-x-lisbon, where the central-southern standard has
     completed the monophthongisation to [o].
     """
-    assert "ow" in _bare("roa-x-galaicopt", "cousa")
+    assert "ow" in _bare("roa-x-galaico-pt", "cousa")
     assert "ow" not in _bare("pt-PT-x-lisbon", "ouro")
 
 
@@ -387,13 +387,13 @@ def test_medieval_sibilant_deaffrication():
     4-way contrast collapses to 2 (~14th–15th c.)." Sources: Williams (1962),
     Mattos e Silva (2006), Castro (2006).
 
-    Minimal pair against the ancestor roa-x-galaicopt on the same words, which
+    Minimal pair against the ancestor roa-x-galaico-pt on the same words, which
     still has the affricates: this isolates exactly the change being claimed.
     """
     assert "t͡s" not in _bare("pt-PT-x-medieval", "ceo")
     assert "d͡z" not in _bare("pt-PT-x-medieval", "fazer")
-    assert "t͡s" in _bare("roa-x-galaicopt", "ceo")
-    assert "d͡z" in _bare("roa-x-galaicopt", "fazer")
+    assert "t͡s" in _bare("roa-x-galaico-pt", "ceo")
+    assert "d͡z" in _bare("roa-x-galaico-pt", "fazer")
 
 
 def test_medieval_four_sibilants_collapse_to_two():
@@ -407,7 +407,7 @@ def test_medieval_four_sibilants_collapse_to_two():
     """
     assert _t("pt-PT-x-medieval", "passo") == _t("pt-PT-x-medieval", "paço")
     assert _t("pt-PT-x-medieval", "coser") == _t("pt-PT-x-medieval", "cozer")
-    assert _t("roa-x-galaicopt", "passo") != _t("roa-x-galaicopt", "paço")
+    assert _t("roa-x-galaico-pt", "passo") != _t("roa-x-galaico-pt", "paço")
 
 
 def test_medieval_dj_simplifies_to_zh():
@@ -416,10 +416,10 @@ def test_medieval_dj_simplifies_to_zh():
     pt-PT-x-medieval notes: "(4) /dʒ/→/ʒ/ simplification." Williams (1962),
     Mattos e Silva (2006).
 
-    Minimal pair against roa-x-galaicopt, which still has the affricate [d͡ʒ].
+    Minimal pair against roa-x-galaico-pt, which still has the affricate [d͡ʒ].
     """
     assert _bare("pt-PT-x-medieval", "jogar").startswith("ʒ")
-    assert _bare("roa-x-galaicopt", "jogar").startswith("d͡ʒ")
+    assert _bare("roa-x-galaico-pt", "jogar").startswith("d͡ʒ")
 
 
 def test_medieval_soft_g_simplifies_to_zh():
@@ -506,7 +506,7 @@ def test_rj_coda_r_final_aspiration():
 
 
 # ===========================================================================
-# pt-BR-x-fluminense — Fluminense
+# pt-BR-x-fluminen — Fluminense
 # ===========================================================================
 
 
@@ -518,7 +518,7 @@ def test_fluminense_coda_r_glottal():
 
     Minimal pair against the pt-BR base, whose coda /R/ is the tap [ɾ].
     """
-    assert _bare("pt-BR-x-fluminense", "porta") == "pohtɐ"
+    assert _bare("pt-BR-x-fluminen", "porta") == "pohtɐ"
     assert _bare("pt-BR", "porta") == "poɾtɐ"
 
 
@@ -528,7 +528,7 @@ def test_fluminense_coda_r_final_aspiration():
     Rule notes: "Word-final coda /R/ -> aspiration [h]/deletion, as in the Carioca
     norm (Callou 2010:138)."
     """
-    assert _bare("pt-BR-x-fluminense", "mar") == "mah"
+    assert _bare("pt-BR-x-fluminen", "mar") == "mah"
     assert _bare("pt-BR", "mar") == "maɾ"
 
 

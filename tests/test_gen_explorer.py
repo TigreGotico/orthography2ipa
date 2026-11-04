@@ -94,7 +94,7 @@ def test_is_family_flags_ended_ancestor_stages_not_living_languages():
     sub-variety is not."""
     langs = gen_explorer.build_data()["languages"]
     # Ended proto/medieval stages that are someone's parent → family.
-    assert langs["roa-x-galaicopt"]["is_family"] is True   # Galaico-Portuguese
+    assert langs["roa-x-galaico-pt"]["is_family"] is True   # Galaico-Portuguese
     assert langs["pt-PT-x-medieval"]["is_family"] is True
     # Living languages (open-ended timespan) → not family, even when they
     # parent a sub-variety or their gold is keyed under a bare code.

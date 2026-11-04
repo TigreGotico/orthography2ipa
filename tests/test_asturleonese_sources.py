@@ -76,12 +76,12 @@ class TestLeonesePrimaryGraphemes:
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-# Western Leonese — ast-x-occidental
+# Western Leonese — ast-x-occident
 # ══════════════════════════════════════════════════════════════════════════════
 
 @pytest.fixture(scope="module")
 def occidental():
-    return orthography2ipa.get("ast-x-occidental")
+    return orthography2ipa.get("ast-x-occident")
 
 
 class TestWesternLeoneseDiphthongs:
@@ -101,12 +101,12 @@ class TestWesternLeoneseDiphthongs:
         """⟨gu⟩ + e/i = /g/ — guerra standard Hispanic convention.
         Source B §2.1. Against institutional *gerra* variant. The /g/ is the
         fricative [ɣ] after a pause (Gramática de la Llingua Asturiana III.1.8)."""
-        assert G2P("ast-x-occidental").transcribe("guerra") == "ˈɣera"
+        assert G2P("ast-x-occident").transcribe("guerra") == "ˈɣera"
 
     def test_gu_umlaut_maps_to_gw(self, occidental):
         """⟨gü⟩ = /gw/ — güerta, güeyu; diéresis obligatory.
         Source B §2.1, §6.3; Source A p. 25. CONFIDENCE: HIGH."""
-        assert G2P("ast-x-occidental").transcribe("güerta") == "ˈɣweɾta"
+        assert G2P("ast-x-occident").transcribe("güerta") == "ˈɣweɾta"
 
     def test_che_vaqueira_l_dot_l(self, occidental):
         """⟨l.l⟩ = /ts/ (che vaqueira) — Laciana/Alto Sil only.
@@ -123,7 +123,7 @@ class TestWesternLeoneseDiphthongs:
         """Word-final ⟨o⟩ → [u] in western Leonese — *casu, xeitu, territoriu*.
         Source A p. 10; Source B §2.4. CONFIDENCE: HIGH. Only an unstressed
         final vowel closes, so the stressed ⟨o⟩ of yo keeps its quality."""
-        engine = G2P("ast-x-occidental")
+        engine = G2P("ast-x-occident")
         assert engine.transcribe("cabo") == "ˈkaβu"
         assert engine.transcribe("yo") == "ˈɟ͡ʝo"
 
@@ -242,12 +242,12 @@ class TestRionorescePrimaryFeatures:
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-# Barranquenho — ext-PT-x-barrancos (Convenção 2025)
+# Barranquenho — ext-PT-x-barranco (Convenção 2025)
 # ══════════════════════════════════════════════════════════════════════════════
 
 @pytest.fixture(scope="module")
 def barrancos():
-    return orthography2ipa.get("ext-PT-x-barrancos")
+    return orthography2ipa.get("ext-PT-x-barranco")
 
 
 class TestBarranquenhoConvencaoSignatures:
@@ -281,7 +281,7 @@ class TestBarranquenhoConvencaoSignatures:
         from orthography2ipa.g2p import G2P
 
         def ipa(word):
-            out = G2P("ext-PT-x-barrancos").transcribe_word(word)
+            out = G2P("ext-PT-x-barranco").transcribe_word(word)
             return unicodedata.normalize("NFC", out).replace("ˈ", "")
 
         for word, expected in (("tempu", "tẽpu"), ("quen", "kẽ"), ("bem", "bẽ")):

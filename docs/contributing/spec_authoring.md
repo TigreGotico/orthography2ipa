@@ -184,7 +184,7 @@ These forms do not belong in it:
 
 Put the citation form first: the form of slow, careful speech or of a dictionary recording. The contextual variants follow it. The English /t/ of `en-US` is `"t": ["t", "tʰ", "ɾ", "ʔ", "t̚"]`. A list that starts with `tʰ` has no citation form at its head.
 
-An allophone list marks a deletion with an empty string, as `es-ES-x-andalusia-w` does for coda /s/ (`"s": ["s", "h", ""]`). The distance code also reads `∅` as no phone.
+An allophone list marks a deletion with an empty string, as `es-ES-x-andalusi-w` does for coda /s/ (`"s": ["s", "h", ""]`). The distance code also reads `∅` as no phone.
 
 ### Express a context
 

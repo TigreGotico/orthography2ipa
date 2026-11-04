@@ -77,7 +77,7 @@ This table lists each source under the spec code its rows carry. A source that c
 | `dga` | Angsongna & Akinbo (2022), *JIPA* 52(2) | Central Dàgáárè (Sombo, Nadowli-Kaleo). Pages 343 and 345 print a consonant table and a vowel table, each with a phonetic and an orthographic column. |
 | `es-AR` | Coloma (2018), *JIPA* | Buenos Aires (River Plate) Spanish, with an allophone column. |
 | `es-ES` | Martínez-Celdrán, Fernández-Planas & Carrera-Sabaté (2003), *JIPA* | Formal Castilian Spanish. |
-| `ext-PT-x-barrancos` | Navas Sánchez-Élez (2011), *El barranqueño* | Barranquenho of Barrancos (Baixo Alentejo). |
+| `ext-PT-x-barranco` | Navas Sánchez-Élez (2011), *El barranqueño* | Barranquenho of Barrancos (Baixo Alentejo). |
 | `he` | Laufer (1999), *Handbook of the IPA* | Modern Israeli Hebrew, Non-Oriental and Oriental. |
 | `mcm` | Baxter (1988), *Pacific Linguistics* B-95 | Kristang (Malacca Creole Portuguese), chapter 2 phonology. |
 | `pt-BR` | Barbosa & Albano (2004), *JIPA* | Brazilian Portuguese with dental affrication before [i]. |

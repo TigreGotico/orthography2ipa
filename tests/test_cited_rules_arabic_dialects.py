@@ -35,7 +35,7 @@ def _bare(code, word):
 
 
 # ---------------------------------------------------------------------------
-# ar-x-peninsular — the shared Peninsular emphasis-spreading rules
+# ar-x-peninsul — the shared Peninsular emphasis-spreading rules
 # ---------------------------------------------------------------------------
 
 
@@ -50,7 +50,7 @@ def test_pen_emph_back_a_after():
     صَبَاح: the /a/ right after ص backs; the /aː/ two slots away, after plain ب,
     does not — the rule is strictly adjacency-scoped.
     """
-    assert _bare("ar-x-peninsular", "صَبَاح") == "sˤɑbaːħ"
+    assert _bare("ar-x-peninsul", "صَبَاح") == "sˤɑbaːħ"
 
 
 def test_pen_emph_back_a_before():
@@ -63,7 +63,7 @@ def test_pen_emph_back_a_before():
     سَطْح /satˤħ/ — the /a/ precedes ط and nothing follows it; only the leftward
     rule can back it.
     """
-    assert _bare("ar-x-peninsular", "سَطْح") == "sɑtˤħ"
+    assert _bare("ar-x-peninsul", "سَطْح") == "sɑtˤħ"
 
 
 def test_pen_emph_back_aa_after():
@@ -72,7 +72,7 @@ def test_pen_emph_back_aa_after():
     Rule notes: "Emphasis spreading: long /aː/ backs to [ɑː] after an adjacent
     emphatic. Watson 2002 ... pp. 267-286."
     """
-    assert _bare("ar-x-peninsular", "طَالِب") == "tˤɑːlib"
+    assert _bare("ar-x-peninsul", "طَالِب") == "tˤɑːlib"
 
 
 def test_pen_emph_back_aa_before():
@@ -86,14 +86,14 @@ def test_pen_emph_back_aa_before():
     [ɪ] after an emphatic (AR_EMPHASIS_SPREAD_I_AFTER, Watson 2002; Davis
     1995), so two segments move here.
     """
-    assert _bare("ar-x-peninsular", "بَاطِل") == "bɑːtˤɪl"
+    assert _bare("ar-x-peninsul", "بَاطِل") == "bɑːtˤɪl"
 
 
 # --- the quantity-sensitive stress cascade, on the nodes whose ONLY cited claim
 # --- it is (each restates the same Ryding 2005 §2.3 / Watson 2002 ch.3 rule).
 
 _STRESS_ONLY_NODES = [
-    "ar-x-peninsular", "ar-x-mashriqi", "ar-x-maghrebi",
+    "ar-x-peninsul", "ar-x-mashriqi", "ar-x-maghrebi",
     "ar-BH", "ar-DZ", "ar-MR", "ar-TD",
 ]
 

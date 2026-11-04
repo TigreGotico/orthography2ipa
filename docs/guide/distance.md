@@ -126,7 +126,7 @@ The function inverts each grapheme map into `phoneme → {graphemes that write i
 from orthography2ipa.distance import spelling_divergence
 
 gl = orthography2ipa.get("gl-ES")                  # RAG norm, /ɲ/ is ⟨ñ⟩
-glr = orthography2ipa.get("gl-ES-x-reintegrado")   # reintegrationist norm, /ɲ/ is ⟨nh⟩
+glr = orthography2ipa.get("gl-ES-x-reintegr")   # reintegrationist norm, /ɲ/ is ⟨nh⟩
 
 round(grapheme_divergence(gl, glr).mean_ipa_distance, 4)   # 0.0189
 round(spelling_divergence(gl, glr).mean_distance, 4)       # 0.0782

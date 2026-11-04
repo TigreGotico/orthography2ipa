@@ -11,7 +11,7 @@ Every dialect spec descends from Classical Arabic (`arb`) through one of three r
 ```
 arb → ar (grapheme base)
   ├─ ar-x-mashriqi   → arz-EG, acm-IQ → ar-IQ-x-qeltu, apd-SD, shu-TD, apc → apc-SY, apc-LB, apc-JO, apc-PS
-  ├─ ar-x-peninsular → ars-SA, acw-SA, acx-OM, ayn-YE, afb → afb-AE, afb-BH, afb-KW, afb-QA
+  ├─ ar-x-peninsul → ars-SA, acw-SA, acx-OM, ayn-YE, afb → afb-AE, afb-BH, afb-KW, afb-QA
   └─ ar-x-maghrebi   → ary-MA, arq-DZ, aeb-TN, ar-LY, mey-MR
 ```
 
@@ -79,7 +79,7 @@ Further specs hang off the same tree. Each one documents its own phonology in it
 | `aec-EG`, `avl-EG`, `arz-EG-x-fayyum` | Upper Egyptian, Eastern Egyptian Bedawi, Eastern Fayyum | `arz-EG` |
 | `ars-SA-x-qassim`, `ars-SA-x-shamali` | Qassimi, Northern Najdi | `ars-SA` |
 | `afb-SA-x-sharqiya`, `afb-SA-x-dawasir` | Eastern Saudi, Dawāsir | `afb`, `afb-SA-x-sharqiya` |
-| `ar-SA-x-janubi`, `ar-SA-x-rijal-alma`, `ar-SA-x-tihama-qahtan` | Janūbi, Rijāl Almaʿ, Tihāmi Qaḥtāni | `ar-x-peninsular` |
+| `ar-SA-x-janubi`, `ar-SA-x-rijal-alma`, `ar-SA-x-tihama-qahtan` | Janūbi, Rijāl Almaʿ, Tihāmi Qaḥtāni | `ar-x-peninsul` |
 | `abv-BH` | Bahārna Arabic of Bahrain | `afb-BH` |
 | `adf-OM` | Coastal Dhofari | `acx-OM` |
 | `ayn-YE-x-highland`, `ayn-YE-x-manakha` | Central Highland Yemeni, Manākhi | `ayn-YE` |
@@ -94,7 +94,7 @@ Cairene has wide emphasis spreading, and the `AR_EG_EMPH_BACK_*` rules back /a a
 
 ## Najdi (`ars-SA`)
 
-Najdi covers central Arabia, Riyadh included, and inherits `ar-x-peninsular` with its emphatic-spreading rules `AR_PEN_EMPH_BACK_*`. The primary reference is Ingham (1994).
+Najdi covers central Arabia, Riyadh included, and inherits `ar-x-peninsul` with its emphatic-spreading rules `AR_PEN_EMPH_BACK_*`. The primary reference is Ingham (1994).
 
 ق is [ɡ] in Bedouin and traditional speech, with [q] in MSA loans and proper names such as القرآن. The interdentals are kept. Najdi neutralises the old ض and ظ contrast to one emphatic interdental, so ض reads [ðˤ]: ضَرَب is `ˈðˤɑrab`.
 
@@ -104,13 +104,13 @@ The gahawa syndrome inserts /a/ after a guttural /h x ɣ ħ ʕ/ in a low vowel, 
 
 ## Hejazi (`acw-SA`)
 
-Hejazi is the urban speech of Mecca, Medina and Jeddah (Omar 1975, and Abdoh 2010), and inherits `ar-x-peninsular`. ق is [ɡ] in inherited words, so قَلْب is `ˈɡalb`. The [ʔ] reflex sometimes given for Hejazi belongs to Levantine and Egyptian. [q] occurs only in learned borrowings. ج stays the affricate [dʒ].
+Hejazi is the urban speech of Mecca, Medina and Jeddah (Omar 1975, and Abdoh 2010), and inherits `ar-x-peninsul`. ق is [ɡ] in inherited words, so قَلْب is `ˈɡalb`. The [ʔ] reflex sometimes given for Hejazi belongs to Levantine and Egyptian. [q] occurs only in learned borrowings. ج stays the affricate [dʒ].
 
 The urban koine merges the interdentals to stops: ث [t], ذ [d], ظ [dˤ]. The emphatics are /sˤ dˤ tˤ zˤ/, and Hejazi has no velar affrication. The rules `HEJ_MONO_AY` and `HEJ_MONO_AW` give the Classical diphthongs as [eː oː]: بَيْت is `ˈbeːt` and يَوْم is `ˈjoːm`. The result is the eight-vowel system /a i u aː iː uː eː oː/.
 
 ## Gulf, Khaleeji (`afb`, `afb-AE`, `afb-BH`, `afb-KW`, `afb-QA`)
 
-`afb` is an abstract node that inherits `ar-x-peninsular`. Emirati, Bahraini, Kuwaiti and Qatari inherit it, so the shared Gulf features live on the node once. The four country specs declare no grapheme overrides of their own. Omani is a Gulf-region dialect, but it is Peninsular and inherits `ar-x-peninsular` directly.
+`afb` is an abstract node that inherits `ar-x-peninsul`. Emirati, Bahraini, Kuwaiti and Qatari inherit it, so the shared Gulf features live on the node once. The four country specs declare no grapheme overrides of their own. Omani is a Gulf-region dialect, but it is Peninsular and inherits `ar-x-peninsul` directly.
 
 The node gives ق as [ɡ], with [q] as the formal alternate: قَلَم is `ˈɡalam`. The interdentals are kept, Bedouin-type, unlike sedentary Levantine and Egyptian: ثَلاثَة is `θaˈlaːθa` and ذَهَب is `ˈðahab`. ج varies between [dʒ] and [j]. The loan phonemes /p/ and /v/ are integrated, spelt پ and ڤ.
 
@@ -129,13 +129,13 @@ The Gulf article is /il-/. The sandhi rule `AR_GULF_WASL_IL_ARTICLE` elides its 
 
 ## Omani (`acx-OM`)
 
-Omani inherits `ar-x-peninsular` directly. The prestige sedentary speech of Muscat and Ṣalālah keeps qāf as [q], so ق lists [q] first: قَلْب is `ˈqalb`. Bedouin varieties have [ɡ], the northern mountain sedentary speech [k], and Sur and Ṣoḥār [dʒ] (Al-Balushi 2016, p. 88). ج is [dʒ], a free variant of /ɡ/ in most words (Glover 1988, p. 38, in Al-Balushi 2016, p. 89).
+Omani inherits `ar-x-peninsul` directly. The prestige sedentary speech of Muscat and Ṣalālah keeps qāf as [q], so ق lists [q] first: قَلْب is `ˈqalb`. Bedouin varieties have [ɡ], the northern mountain sedentary speech [k], and Sur and Ṣoḥār [dʒ] (Al-Balushi 2016, p. 88). ج is [dʒ], a free variant of /ɡ/ in most words (Glover 1988, p. 38, in Al-Balushi 2016, p. 89).
 
 The spec applies `OM_K_AFFRICATION`, so كِتَاب is `tʃiˈtaːb`. The rule notes record that this affrication is a Bedouin and interior feature, and that the sedentary Muscat norm does not affricate productively. The coastal Dhofari variety has its own spec, `adf-OM`.
 
 ## Ṣanʿānī Yemeni (`ayn-YE`)
 
-The reference variety is highland Ṣanʿānī, per Watson (2002). It inherits `ar-x-peninsular`. Two of its reflexes are the opposite of a "conservative Peninsular" guess, and Watson is explicit about both.
+The reference variety is highland Ṣanʿānī, per Watson (2002). It inherits `ar-x-peninsul`. Two of its reflexes are the opposite of a "conservative Peninsular" guess, and Watson is explicit about both.
 
 | Feature | Ṣanʿānī reflex | Example | Source |
 |:--|:--|:--|:--|

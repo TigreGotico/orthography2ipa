@@ -44,14 +44,14 @@ def _bare(code, word):
 LATAM_STUBS = [
     "es-HN", "es-SV",
     "es-AR-x-cordoba", "es-AR-x-cuyo", "es-AR-x-litoral", "es-AR-x-norte",
-    "es-AR-x-patagonia",
+    "es-AR-x-patagoni",
     "es-BO-x-andino", "es-BO-x-camba",
     "es-CL-x-andino", "es-CL-x-chilote",
-    "es-CO-x-llanero", "es-CO-x-pacifico", "es-CO-x-santander", "es-CO-x-valluno",
+    "es-CO-x-llanero", "es-CO-x-pacifico", "es-CO-x-santande", "es-CO-x-valluno",
     "es-EC-x-andino", "es-EC-x-costa",
     "es-MX-x-norte", "es-MX-x-yucatan",
-    "es-PE-x-amazonico", "es-PE-x-andino",
-    "es-VE-x-andino", "es-VE-x-llanero", "es-VE-x-maracucho",
+    "es-PE-x-amazonia", "es-PE-x-andino",
+    "es-VE-x-andino", "es-VE-x-llanero", "es-VE-x-zulia",
 ]
 
 
@@ -79,7 +79,7 @@ def test_latam_stub_seseo(code):
 YEISTA_STUBS = [c for c in LATAM_STUBS
                 if c not in ("es-AR-x-norte", "es-AR-x-litoral",
                              "es-EC-x-andino", "es-AR-x-cordoba",
-                             "es-AR-x-cuyo", "es-AR-x-patagonia")]
+                             "es-AR-x-cuyo", "es-AR-x-patagoni")]
 
 
 @pytest.mark.parametrize("code", YEISTA_STUBS)
@@ -975,75 +975,75 @@ def test_la_gallia_v_is_a_voiced_fricative():
 
 
 # ===========================================================================
-# la-x-galloitalic — Gallo-Italic Vulgar Latin (Hull 1982, Pellegrini 1975)
+# la-x-gallo-italic — Gallo-Italic Vulgar Latin (Hull 1982, Pellegrini 1975)
 # ===========================================================================
 
 
 def test_la_galloitalic_u_fronts_to_y():
     """/u/ → /y/ fronting.
 
-    la-x-galloitalic notes: "(1) /u/ -> /y/ fronting."
+    la-x-gallo-italic notes: "(1) /u/ -> /y/ fronting."
     Hull (1982), Pellegrini (1975).
 
     murum isolates it; la-x-italia, on the other side of the La Spezia-Rimini
     line, keeps the back vowel.
     """
-    assert _bare("la-x-galloitalic", "murum").startswith("my")
+    assert _bare("la-x-gallo-italic", "murum").startswith("my")
     assert "y" not in _bare("la-x-italia", "lupus")
 
 
 @pytest.mark.xfail(
     strict=True,
-    reason="la-x-galloitalic cites Degemination; engine produces [bella] for "
+    reason="la-x-gallo-italic cites Degemination; engine produces [bella] for "
     "bella and [annys] for annus — the doubled consonant survives as two "
     "segments, so the spec is not degeminated relative to la-x-italia [anːus]",
 )
 def test_la_galloitalic_degemination():
     """Degemination — the La Spezia-Rimini hallmark.
 
-    la-x-galloitalic notes: "(2) Degemination. ... The La Spezia-Rimini line
+    la-x-gallo-italic notes: "(2) Degemination. ... The La Spezia-Rimini line
     marks the boundary." Hull (1982), Pellegrini (1975).
 
     bella isolates it: exactly one [l] should surface, against la-x-italia,
     whose notes claim "Gemination PRESERVED (hallmark feature: ... bello)".
     """
-    assert _bare("la-x-galloitalic", "bella").count("l") == 1
+    assert _bare("la-x-gallo-italic", "bella").count("l") == 1
     assert "lː" in _bare("la-x-italia", "bella")
 
 
 @pytest.mark.xfail(
     strict=True,
-    reason="la-x-galloitalic cites 'Nasal vowels'; engine produces [myrym] for "
+    reason="la-x-gallo-italic cites 'Nasal vowels'; engine produces [myrym] for "
     "murum — the final ⟨m⟩ surfaces as a full [m], where the sister spec "
     "la-x-gallia, citing the same innovation, gives the nasalised [myrỹ]",
 )
 def test_la_galloitalic_nasal_vowels():
     """Nasal vowels develop.
 
-    la-x-galloitalic notes: "(5) Nasal vowels."
+    la-x-gallo-italic notes: "(5) Nasal vowels."
     Hull (1982), Pellegrini (1975).
 
     murum isolates it on the final vowel; la-x-gallia is the minimal pair on
     the same word.
     """
-    assert _bare("la-x-galloitalic", "murum") == "myrỹ"
+    assert _bare("la-x-gallo-italic", "murum") == "myrỹ"
 
 
 @pytest.mark.xfail(
     strict=True,
-    reason="la-x-galloitalic cites 'Final vowel loss/reduction'; engine "
+    reason="la-x-gallo-italic cites 'Final vowel loss/reduction'; engine "
     "produces [vita] for vita — the final vowel is the full Classical [a], "
     "where the sister spec la-x-gallia reduces it to [ə] ([witə])",
 )
 def test_la_galloitalic_final_vowel_reduces():
     """Final vowel loss/reduction.
 
-    la-x-galloitalic notes: "(4) Final vowel loss/reduction."
+    la-x-gallo-italic notes: "(4) Final vowel loss/reduction."
     Hull (1982), Pellegrini (1975).
 
     vita isolates it on the final vowel — either lost, or reduced from [a].
     """
-    assert not _bare("la-x-galloitalic", "vita").endswith("a")
+    assert not _bare("la-x-gallo-italic", "vita").endswith("a")
 
 
 # ===========================================================================

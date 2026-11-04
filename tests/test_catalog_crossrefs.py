@@ -153,7 +153,7 @@ def test_orthography_standard_is_a_first_class_field():
 
     # A language with no official norm (or a dialect following its parent's)
     # simply has none — the field is not fabricated.
-    assert o2i.get("roa-x-galaicopt").orthography_standard is None
+    assert o2i.get("roa-x-galaico-pt").orthography_standard is None
 
 
 # ── Glottolog languoid guard ────────────────────────────────────────────────
@@ -182,16 +182,16 @@ _FAMILY_LEVEL_OK = {
     "oji",
     # Family / grouping / proto specs — these ARE family nodes by design.
     "afa", "ber", "iir", "ira", "khi", "nic", "sla", "xbr",
-    "ta-x-proto-dravidian", "mni-x-proto-kuki-chin",
+    "ta-x-proto-dravidia", "mni-x-proto-kuki-chin",
     # Dialect-group nodes whose Glottolog counterpart is a subfamily.
-    "ber-x-kabyle-atlas", "de-x-alemannic", "gem-x-ingvaeonic",
-    "roa-x-galaicopt",
+    "ber-x-kabyle-atlas", "de-x-alemanni", "gem-x-ingvaeon",
+    "roa-x-galaico-pt",
     # Reconstructed stages and regional Latin/Arabic groupings. Glottolog has no
     # language-level node for a proto-stage or a dialect continuum's ancestor —
     # the subfamily IS the node, so a family languoid is the only correct answer.
-    "sat-x-proto-munda", "kha-x-proto-mon-khmer", "gem-x-northwest",
-    "la-x-hispania", "la-x-italia", "la-x-galloitalic", "la-x-balkans",
-    "ar-x-peninsular", "ar-x-maghrebi",
+    "sat-x-proto-munda", "kha-x-proto-mon-khmer", "gem-x-north-west",
+    "la-x-hispania", "la-x-italia", "la-x-gallo-italic", "la-x-balkans",
+    "ar-x-peninsul", "ar-x-maghrebi",
 }
 
 

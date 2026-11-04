@@ -65,7 +65,7 @@ Source: Holes 1990; Qafisheh 1977; Al Taisan 2019 (ʁ, χ, ðˤɑʁtˤ); Al-Balu
 
 The short vowels are i a u, never ɪ ʊ ə. The long vowels are iː eː aː oː uː. a/aː are written ɑ/ɑː only when the immediately preceding or following consonant is tˤ, sˤ or ðˤ: sˤɑˈbaːħ, tˤɑːħ, ðˤɑʁtˤ.
 
-Source: Holes 1990 phonemic five-long/three-short system (edition not consulted); spec emphatic spreading inherited from ar-x-peninsular (AR_PEN_EMPH_*); Wikipedia 'Gulf Arabic' ðˤ/ɡɑhwɑ examples. The spec writes the article vowel as ɪ in its gold; this transcription writes i.
+Source: Holes 1990 phonemic five-long/three-short system (edition not consulted); spec emphatic spreading inherited from ar-x-peninsul (AR_PEN_EMPH_*); Wikipedia 'Gulf Arabic' ðˤ/ɡɑhwɑ examples. The spec writes the article vowel as ɪ in its gold; this transcription writes i.
 
 ### Word-final long vowels
 

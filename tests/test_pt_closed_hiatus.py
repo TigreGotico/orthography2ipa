@@ -145,7 +145,7 @@ def test_unstressed_closed_vowel_is_left_as_it_was(lang):
 
 def test_ext_barrancos_and_galician_do_not_declare_the_rule():
     from orthography2ipa import get
-    for code in ("gl-ES", "ext-PT-x-barrancos", "mwl", "pt-PT-x-medieval"):
+    for code in ("gl-ES", "ext-PT-x-barranco", "mwl", "pt-PT-x-medieval"):
         stress = get(code).stress
         assert stress is None or stress.closed_hiatus is None, code
 

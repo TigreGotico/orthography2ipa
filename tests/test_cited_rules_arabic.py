@@ -471,7 +471,7 @@ def test_najd_emphatic_spreading_inherited_from_peninsular():
     """Emphatic backing reaches Najdi by inheritance, not restatement.
 
     ar-SA-x-najd notes: "(5) emphatic (pharyngealization) spreading backs low
-    vowels to [ɑ]/[ɑː] — inherited from the ar-x-peninsular parent
+    vowels to [ɑ]/[ɑː] — inherited from the ar-x-peninsul parent
     (AR_PEN_EMPH_*), not restated here."
 
     طَيِّب: the /a/ adjacent to the emphatic ط backs, exactly as the parent's

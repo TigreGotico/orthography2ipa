@@ -1,9 +1,9 @@
-"""Proto-Peninsular Arabic (``ar-x-peninsular``): the shared phonology of the
+"""Proto-Peninsular Arabic (``ar-x-peninsul``): the shared phonology of the
 Arabian Peninsula group, and — just as important for a GROUPING (glue) node —
 the reflexes that are deliberately NOT asserted group-wide because the
 literature shows them splitting inside the Peninsula.
 
-``ar-x-peninsular`` is the grouping node above the Gulf subtree (ar-x-gulf →
+``ar-x-peninsul`` is the grouping node above the Gulf subtree (ar-x-gulf →
 ar-AE/ar-BH/ar-KW/ar-QA), Najdi (ar-SA-x-najd), Hejazi (ar-SA-x-hejaz),
 Yemeni (ar-YE) and Omani (ar-OM). It declares only what is shared across the
 whole Peninsula and serves as the data-inheritance root the leaves build on.
@@ -36,7 +36,7 @@ from orthography2ipa import transcribe, get
 from orthography2ipa.types import QualityTier
 
 
-NODE = "ar-x-peninsular"
+NODE = "ar-x-peninsul"
 
 
 # ─── The group node is a research-tier glue node with the right sources ─────

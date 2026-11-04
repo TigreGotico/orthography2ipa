@@ -74,7 +74,7 @@ LECTS = [
     "ars-SA-x-qassim", "ar-SA-x-rijal-alma", "afb-SA-x-sharqiya",
     "ary-MA", "aeb-TN", "arq-DZ", "ar-LY", "mey-MR",
     # abstract ancestors: keys placed here benefit every descendant
-    "ar-x-mashriqi", "ar-x-maghrebi", "ar-x-peninsular", "apc", "afb",
+    "ar-x-mashriqi", "ar-x-maghrebi", "ar-x-peninsul", "apc", "afb",
 ]
 
 SUN = "تثدذرزسشصضطظلن"

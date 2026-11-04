@@ -223,11 +223,11 @@ ca.transcribe_word("casa")   # 'ˈkazə'
 ca.transcribe_word("dona")   # 'ˈdɔnə'
 ```
 
-The Western block does not reduce in this way (Recasens 1996, Veny 1982). Valencian (`ca-x-valencia`) keeps full ⟨a⟩ in unstressed syllables. Northwestern Catalan (`ca-x-occidental`) has its own word-final [ɛ] for ⟨a⟩.
+The Western block does not reduce in this way (Recasens 1996, Veny 1982). Valencian (`ca-x-valencia`) keeps full ⟨a⟩ in unstressed syllables. Northwestern Catalan (`ca-x-occident`) has its own word-final [ɛ] for ⟨a⟩.
 
 ```python
 G2P("ca-x-valencia").transcribe_word("casa")     # 'ˈkaza'
-G2P("ca-x-occidental").transcribe_word("casa")   # 'ˈkazɛ'
+G2P("ca-x-occident").transcribe_word("casa")   # 'ˈkazɛ'
 ```
 
 ## Worked example: Brazilian Portuguese
@@ -297,7 +297,7 @@ br.transcribe_word("gatos")                                     # 'ˈɡatus'
 G2P("pt-BR", apply_allophony=False).transcribe_word("estes")    # 'ˈestes'
 ```
 
-The count is fixed, so a rule set cannot loop. The field is `NOT_INHERITED`. A second pass can fire a rule that is not idempotent again, so each spec states its own count and checks it against its own gold. `pt-BR` and its affricating urban dialects (`pt-BR-x-bahia`, `pt-BR-x-brasilia`, `pt-BR-x-fluminense`, `pt-BR-x-mg`, `pt-BR-x-rj`, `pt-BR-x-sp`) declare 2. The dialects that keep dental stops, such as `pt-BR-x-caipira` and `pt-BR-x-sul`, keep 1, because their raising needs no second pass.
+The count is fixed, so a rule set cannot loop. The field is `NOT_INHERITED`. A second pass can fire a rule that is not idempotent again, so each spec states its own count and checks it against its own gold. `pt-BR` and its affricating urban dialects (`pt-BR-x-bahia`, `pt-BR-x-brasilia`, `pt-BR-x-fluminen`, `pt-BR-x-mg`, `pt-BR-x-rj`, `pt-BR-x-sp`) declare 2. The dialects that keep dental stops, such as `pt-BR-x-caipira` and `pt-BR-x-sul`, keep 1, because their raising needs no second pass.
 
 ## Worked example: Arabic emphasis spread
 

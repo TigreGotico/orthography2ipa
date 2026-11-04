@@ -36,7 +36,7 @@ def bare(s: str) -> str:
 
 
 ALL_BR = [
-    "pt-BR", "pt-BR-x-sp", "pt-BR-x-rj", "pt-BR-x-fluminense",
+    "pt-BR", "pt-BR-x-sp", "pt-BR-x-rj", "pt-BR-x-fluminen",
     "pt-BR-x-caipira", "pt-BR-x-mg", "pt-BR-x-sul", "pt-BR-x-pr",
     "pt-BR-x-recife", "pt-BR-x-norte", "pt-BR-x-bahia", "pt-BR-x-ce",
     "pt-BR-x-brasilia",
@@ -163,29 +163,29 @@ class TestRJ:
         assert "t͡ʃ" in bare(_g("pt-BR-x-rj").transcribe_word("tia"))
 
 
-# ─── pt-BR-x-fluminense ─────────────────────────────────────────────────────
+# ─── pt-BR-x-fluminen ─────────────────────────────────────────────────────
 
 
 class TestFluminense:
     def test_coda_s_alveolar(self):
         """Hora 1999: 34-35: the North-Northwest of the state keeps the
         alveolar, unlike the capital."""
-        r = bare(_g("pt-BR-x-fluminense").transcribe_word("mesmo"))
+        r = bare(_g("pt-BR-x-fluminen").transcribe_word("mesmo"))
         assert "ʃ" not in r and "ʒ" not in r
-        assert bare(_g("pt-BR-x-fluminense").transcribe_word("paz")).endswith("s")
+        assert bare(_g("pt-BR-x-fluminen").transcribe_word("paz")).endswith("s")
 
     def test_coda_r_glottal(self):
         """Silva 2023: 68: Rio de Janeiro state coda /R/ is 80 % glottal."""
-        assert bare(_g("pt-BR-x-fluminense").transcribe_word("porta")) == "pohtɐ"
+        assert bare(_g("pt-BR-x-fluminen").transcribe_word("porta")) == "pohtɐ"
 
     def test_palatalisation_present(self):
-        assert "t͡ʃ" in bare(_g("pt-BR-x-fluminense").transcribe_word("tia"))
+        assert "t͡ʃ" in bare(_g("pt-BR-x-fluminen").transcribe_word("tia"))
 
     def test_dorsal_onset_r(self):
-        assert _g("pt-BR-x-fluminense").transcribe_word("rio").lstrip("ˈ").startswith("x")
+        assert _g("pt-BR-x-fluminen").transcribe_word("rio").lstrip("ˈ").startswith("x")
 
     def test_l_vocalisation(self):
-        assert bare(_g("pt-BR-x-fluminense").transcribe_word("mal")).endswith("w")
+        assert bare(_g("pt-BR-x-fluminen").transcribe_word("mal")).endswith("w")
 
 
 # ─── pt-BR-x-caipira ────────────────────────────────────────────────────────
@@ -437,7 +437,7 @@ class TestBrasilia:
 
 @pytest.mark.parametrize("code, word, expected", [
     ("pt-BR-x-rj", "carro", "kaχu"), ("pt-BR-x-rj", "honra", "õχɐ"),
-    ("pt-BR-x-fluminense", "carro", "kaxu"), ("pt-BR-x-fluminense", "honra", "õxɐ"),
+    ("pt-BR-x-fluminen", "carro", "kaxu"), ("pt-BR-x-fluminen", "honra", "õxɐ"),
     ("pt-BR-x-sp", "honra", "õɣɐ"), ("pt-BR-x-sp", "genro", "ʒẽɣu"),
     ("pt-BR-x-sul", "honra", "õxɐ"), ("pt-BR-x-sul", "genro", "ʒẽxu"),
 ])
@@ -448,7 +448,7 @@ def test_strong_r_same_in_every_context(code, word, expected):
 
 
 @pytest.mark.parametrize("code, expected", [
-    ("pt-BR-x-rj", "iʃχaew"), ("pt-BR-x-fluminense", "isxaew"), ("pt-BR-x-sul", "isxaew"),
+    ("pt-BR-x-rj", "iʃχaew"), ("pt-BR-x-fluminen", "isxaew"), ("pt-BR-x-sul", "isxaew"),
 ])
 def test_coda_s_before_voiceless_strong_r_stays_voiceless(code, expected):
     """Barbosa & Albano (2004: 229): coda /S/ 'tends to assimilate the voicing

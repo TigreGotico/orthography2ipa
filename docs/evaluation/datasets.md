@@ -242,7 +242,7 @@ The gold is sentence-level phonetics, with connected-speech reductions, liaison 
 | Braga | `pt-PT-x-minho` |
 | Viseu, Coimbra | `pt-PT-x-beira` |
 | Aveiro | `pt-PT-x-aveiro` |
-| Bragança, Vila Real | `pt-PT-x-trasosmontes` |
+| Bragança, Vila Real | `pt-PT-x-tras-os-montes` |
 | Lisboa | `pt-PT-x-lisbon` |
 | Funchal, Ribeira Brava, Porto Santo | `pt-PT-x-madeira` |
 | Viana do Castelo | `pt-PT-x-viana` |
@@ -267,7 +267,7 @@ Its native-speaker provenance makes it the reference gold and the most trustwort
 
 ## Barranquenho synthetic IPA dictionary (`barranquenho_dict`)
 
-[TigreGotico/barranquenho-ipa-dict-synthetic](https://huggingface.co/datasets/TigreGotico/barranquenho-ipa-dict-synthetic) holds word and IPA entries for Barranquenho, the Portuguese-Spanish contact variety of Barrancos, scored against the `ext-PT-x-barrancos` spec. Each row also carries a part of speech, the Portuguese and Spanish equivalents, and a phonological note. Only the orthography and IPA columns are scored.
+[TigreGotico/barranquenho-ipa-dict-synthetic](https://huggingface.co/datasets/TigreGotico/barranquenho-ipa-dict-synthetic) holds word and IPA entries for Barranquenho, the Portuguese-Spanish contact variety of Barrancos, scored against the `ext-PT-x-barranco` spec. Each row also carries a part of speech, the Portuguese and Spanish equivalents, and a phonological note. Only the orthography and IPA columns are scored.
 
 A large language model (Claude) wrote the IPA, conditioned on the published *Convenção Ortográfica do Barranquenho* and descriptive research on the variety. No phonemizer, no part of this engine and no consumer of it produced the IPA, so scoring against it is not circular. No phonetician verified it, and it can be wrong. The tier is `llm-generated`, so the row gates nothing and is a [direction only](benchmarks.md#provenance-discipline).
 
@@ -291,7 +291,7 @@ The provenance is the same as for `barranquenho_dict`. A large language model (C
 |---|---|---|
 | `Projecte BSC frases - Central.tsv` | `ca` | Central, the standard |
 | `Projecte BSC frases - Balear.tsv` | `ca-x-balear` | Balearic |
-| `Projecte BSC frases - Nord-Occ.tsv` | `ca-x-occidental` | North-Western (Lleidatà), not `ca-x-nord`. Northern Catalan (Rossellonès) is a separate dialect of France that 4catac does not cover. |
+| `Projecte BSC frases - Nord-Occ.tsv` | `ca-x-occident` | North-Western (Lleidatà), not `ca-x-nord`. Northern Catalan (Rossellonès) is a separate dialect of France that 4catac does not cover. |
 | `Projecte BSC frases - Val.tsv` | `ca-x-valencia` | Valencian |
 
 The authors "intentionally wrote" the sentences "to showcase various phonetic phenomena", so the set is targeted, not a random sample. The gold is sentence-level, so PER includes connected-speech phonology on top of the grapheme rules and is higher than on the lexicon benchmarks. A low exact match there reflects notation and connected speech, not total failure. No rows are excluded.

@@ -140,7 +140,7 @@ def test_the_arabic_specs_opt_in():
     # authoring its own orthography — mt Maltese, acy Cypriot Arabic — falls outside
     # it, correctly. A test on the code name would be wrong in both directions: this
     # repo ships arc Aramaic, arn Mapudungun, arp Arapaho, arr Karo, arv Arbore and
-    # arw Arawak, none of them Arabic, while bbz Babalia Creole and sqr Siculo are
+    # arw Arawak, none of them Arabic, while ar-TD-x-babalia Babalia Creole and sqr Siculo are
     # Arabic and look like neither.
     _data = _os.path.join(_os.path.dirname(_o2i.__file__), "data")
 
@@ -159,7 +159,7 @@ def test_the_arabic_specs_opt_in():
         return code
 
     inherits_from_arabic = {c for c in available_codes() if _graphemes_root(c) == "arb"}
-    assert {"bbz", "sqr", "xaa"} <= inherits_from_arabic
+    assert {"ar-TD-x-babalia", "sqr", "xaa"} <= inherits_from_arabic
     assert not {"mt", "acy"} & inherits_from_arabic, (
         "a genetic parent is not a graphemes base")
 
@@ -169,9 +169,9 @@ def test_the_arabic_specs_opt_in():
     # the long-vowel syllable and otherwise initially (Cardoso, APiCS 41); cic
     # Chickasaw puts the primary accent on the rightmost heavy CVV/CVC syllable
     # (Munro & Willmond 1994, *Chickasaw: An Analytical Dictionary*); and
-    # ar-Latn-buckwalter is Arabic transliterated into Latin, so it declares the
+    # ar-Latn-x-buckwalt is Arabic transliterated into Latin, so it declares the
     # block without sharing an Arabic grapheme table to inherit it from.
-    _cited_outside_the_lineage = {"idb", "cic", "ar-Latn-buckwalter"}
+    _cited_outside_the_lineage = {"idb", "cic", "ar-Latn-x-buckwalt"}
     assert opted_in <= inherits_from_arabic | _cited_outside_the_lineage, sorted(
         opted_in - inherits_from_arabic - _cited_outside_the_lineage)
 

@@ -206,13 +206,13 @@ class TestCaExternalNasalAssimilation:
     """
 
     @pytest.mark.parametrize(
-        "lang", ["ca", "ca-x-balear", "ca-x-occidental", "ca-x-valencia"]
+        "lang", ["ca", "ca-x-balear", "ca-x-occident", "ca-x-valencia"]
     )
     def test_labial_assimilation(self, lang):
         assert phrase(lang, "un peu")[0] == "um"
 
     @pytest.mark.parametrize(
-        "lang", ["ca", "ca-x-balear", "ca-x-occidental", "ca-x-valencia"]
+        "lang", ["ca", "ca-x-balear", "ca-x-occident", "ca-x-valencia"]
     )
     def test_velar_assimilation(self, lang):
         assert phrase(lang, "un gat")[0] == "uŋ"
@@ -251,7 +251,7 @@ def test_eu_three_way_sibilant_contrast_surfaces():
     assert bare("eu", "zezen").startswith("s̻")
     assert bare("eu", "sagar").startswith("s̺")
     assert bare("eu", "xarma").startswith("ʃ")
-    assert bare("eu-x-bizkaiera", "zezen").startswith("s̺")
+    assert bare("eu-biscayan", "zezen").startswith("s̺")
 
 
 def test_eu_intervocalic_voiced_stops_are_approximants():
@@ -281,7 +281,7 @@ def test_eu_bizkaiera_palatal_stop_merged_into_the_affricate():
 
     Minimal pair by variety: the same ⟨tt⟩ is the palatal stop in Batua.
     """
-    assert "tʃ" in bare("eu-x-bizkaiera", "tturru")
+    assert "tʃ" in bare("eu-biscayan", "tturru")
     assert "c" in bare("eu", "ttantta")
 
 
@@ -323,7 +323,7 @@ def test_ast_western_raises_final_o_where_eastern_keeps_it():
 
     Same word, sister dialects: the final vowel is the only segment that moves.
     """
-    assert bare("ast-x-occidental", "poco") == "poku"
+    assert bare("ast-x-occident", "poco") == "poku"
     assert bare("ast-x-oriental", "poco") == "poko"
 
 

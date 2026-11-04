@@ -8,7 +8,7 @@ four Gulf country specs via ``graphemes_base`` / OVERLAY_BY_ID:
   [dʒ] (``GULF_G_AFFRICATION``) adjacent to a high front vowel /i, iː/;
 * interdentals /θ ð ðˤ/ RETAINED (Bedouin-type), not merged to stops.
 
-Omani (``ar-OM``) is genetically Peninsular (inherits ``ar-x-peninsular``
+Omani (``ar-OM``) is genetically Peninsular (inherits ``ar-x-peninsul``
 directly), keeps *q as [q], and carries only /k/-affrication
 (``OM_K_AFFRICATION``) as a Bedouin/interior feature.
 
@@ -43,7 +43,7 @@ def test_gulf_countries_inherit_affrication_rules():
 
 
 def test_gulf_countries_inherit_peninsular_emphatic_spreading():
-    # AR_PEN_EMPH_* comes from ar-x-peninsular, two nodes up.
+    # AR_PEN_EMPH_* comes from ar-x-peninsul, two nodes up.
     for code in GULF:
         ids = [r.id for r in get(code).allophone_rules]
         assert any(i.startswith("AR_PEN_EMPH") for i in ids), code
@@ -97,7 +97,7 @@ def test_interdentals_retained():
 
 def test_omani_is_peninsular_not_gulf():
     om = get("ar-OM")
-    assert om.parent == "ar-x-peninsular"
+    assert om.parent == "ar-x-peninsul"
     ids = [r.id for r in om.allophone_rules]
     # Omani carries only /k/-affrication, NOT the Gulf *q→[ɡ] g-affrication.
     assert "OM_K_AFFRICATION" in ids

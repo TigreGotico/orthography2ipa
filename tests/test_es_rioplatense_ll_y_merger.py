@@ -15,7 +15,7 @@ import pytest
 from orthography2ipa.g2p import G2P
 
 MERGED = ["es-AR", "es-UY", "es-AR-x-cordoba", "es-AR-x-cuyo",
-          "es-AR-x-patagonia"]
+          "es-AR-x-patagoni"]
 
 
 @pytest.mark.parametrize("code", MERGED)

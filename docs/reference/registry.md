@@ -26,9 +26,9 @@ codes = orthography2ipa.available_codes()                    # every registered 
 all_codes = orthography2ipa.available_codes(include_clades=True)   # adds the clade nodes
 families = orthography2ipa.available_families()              # codes grouped by derived family path
 families["Indo-European > Italic > Romance > Ibero-Romance"][:4]
-# ['an', 'an-x-ansotano', 'an-x-belsetan', 'an-x-benasques']
+# ['an', 'an-x-ansotano', 'an-x-belsetan', 'an-x-benasque']
 orthography2ipa.ancestry_chain("pt-BR")[:5]                  # the parent chain, nearest first
-# ['pt-PT-x-medieval', 'roa-x-galaicopt', 'x-clade-iberrom', 'la-x-hispania', 'x-clade-roma1334']
+# ['pt-PT-x-medieval', 'roa-x-galaico-pt', 'x-clade-iberrom', 'la-x-hispania', 'x-clade-roma1334']
 orthography2ipa.resolve("en-NZ")                             # the code get() would load
 # 'en-GB'
 ```
@@ -108,7 +108,7 @@ The table holds five other kinds of entry:
 | A key that a spec had before it took its canonical key, mapped to that spec | `ar-EG` to `arz-EG`, `ar-SA-x-najd` to `ars-SA`, `de-x-bavarian` to `bar-AT`, `cbk-x-ternate` to `cbk-PH-x-ternate` |
 | An individual-language code that `macro=True` standardisation would collapse into its macrolanguage, mapped to itself | `quz`, which would otherwise become `qu`, and `diq`, which would become `zza` |
 | An ISO 639-3 code whose variety has its spec under another key | `twi` to `tw` |
-| A private-use tag, mapped to the spec that holds the variety | `pt-PT-x-barrancos` to `ext-PT-x-barrancos`, `pt-BR-x-sao-paulo` to `pt-BR-x-sp`, `ar-x-hijazi` to `acw-SA` |
+| A private-use tag, mapped to the spec that holds the variety | `pt-PT-x-barrancos` to `ext-PT-x-barranco`, `pt-BR-x-sao-paulo` to `pt-BR-x-sp`, `ar-x-hijazi` to `acw-SA` |
 
 Galician has one standard spec, `gl-ES`, and the bare tag `gl` resolves to it. The variety codes `gl-x-central`, `gl-x-occidental`, `gl-x-oriental`, `gl-x-eonavia` and `gl-x-reintegrado` resolve to the `gl-ES-x-*` spec of the same variety. `_ALIASES` in `registry.py` holds the full table.
 

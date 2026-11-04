@@ -48,7 +48,7 @@ def _raw(code):
     return json.loads((_DATA / f"{code}.json").read_text(encoding="utf-8"))
 
 DIALECTS = [
-    "ru-x-moscow", "ru-x-northern", "ru-x-vologda", "ru-x-arkhangelsk",
+    "ru-x-moscow", "ru-x-northern", "ru-x-vologda", "ru-x-arkhange",
     "ru-x-pskov", "ru-x-siberian", "ru-x-ural", "ru-x-southern",
     "ru-x-don", "ru-x-kursk-orel",
 ]
@@ -96,7 +96,7 @@ def test_ogo_desinence_reaches_every_dialect(code):
 # ===========================================================================
 
 @pytest.mark.parametrize("code", [
-    "ru-x-moscow", "ru-x-northern", "ru-x-vologda", "ru-x-arkhangelsk",
+    "ru-x-moscow", "ru-x-northern", "ru-x-vologda", "ru-x-arkhange",
     "ru-x-pskov", "ru-x-siberian", "ru-x-ural",
 ])
 def test_non_southern_zones_keep_the_v_genitive(code):
@@ -153,7 +153,7 @@ def test_southern_genitive_is_not_reachable_by_the_g_grapheme():
 # ===========================================================================
 
 @pytest.mark.parametrize("code", ["ru-x-northern", "ru-x-vologda",
-                                  "ru-x-arkhangelsk", "ru-x-siberian"])
+                                  "ru-x-arkhange", "ru-x-siberian"])
 @pytest.mark.parametrize("word", ["голова", "вода", "город", "много"])
 def test_okanje_keeps_unstressed_o(code, word):
     """Полное оканье: unstressed non-high vowels stay distinct after hard
@@ -181,7 +181,7 @@ def test_northern_ekanje_after_soft_consonants():
 
 
 @pytest.mark.parametrize("code", ["ru-x-northern", "ru-x-vologda",
-                                  "ru-x-arkhangelsk"])
+                                  "ru-x-arkhange"])
 def test_soft_tsokanje_merges_c_and_ch_in_one_soft_affricate(code):
     """Цоканье in the Northern zone is the SOFT type — one affricate
     [tsʲ] — not the hard [ts] this family emitted before. ⟨ч⟩ and ⟨ц⟩ must
@@ -357,7 +357,7 @@ def test_standard_aliases_match_ru_exactly(code, word):
     assert t(code, word) == t("ru", word)
 
 
-@pytest.mark.parametrize("code", ["ru-x-vologda", "ru-x-arkhangelsk"])
+@pytest.mark.parametrize("code", ["ru-x-vologda", "ru-x-arkhange"])
 @pytest.mark.parametrize("word", PROBE)
 def test_northern_subtypes_match_their_parent_exactly(code, word):
     """Vologda and Arkhangelsk (Pomor) both have полное оканье and soft

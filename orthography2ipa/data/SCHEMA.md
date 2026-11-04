@@ -202,7 +202,7 @@ Han characters, Pinyin and Buckwalter ASCII are three different claims:
 
 So `zh` is a **romanization** (it reads Pinyin, not Hanzi), `zh-Hani` is the
 **native** spec with an empty grapheme map and a declared phonology, and
-`ar-Latn-buckwalter` is a **transliteration**. See
+`ar-Latn-x-buckwalt` is a **transliteration**. See
 [orthography kind](../../docs/orthography_kind.md).
 
 ## Inheritance
@@ -214,7 +214,7 @@ The `*_base` fields support data inheritance. When set, the loader:
 
 ```json
 {
-  "code": "es-ES-x-andalusia-w",
+  "code": "es-ES-x-andalusi-w",
   "graphemes_base": "es-ES",
   "graphemes": {
     "c": [
@@ -862,7 +862,15 @@ language subtag comes from the parent's key, and the region is the country
 where the variety is spoken: `ars-SA-x-qassim` under `ars-SA`,
 `apc-TR-x-cukurova` under `apc-SY`. The slug names the place or the variety in
 lowercase ASCII and has 1 to 8 characters, the BCP 47 limit for a private-use
-subtag. The prefix is not a label of convenience: it must agree with the spec's
+subtag. A variety that IANA registers as a variant takes the variant subtag
+in place of a slug (`eu-biscayan`, `oc-provenc`). When the name is longer than
+8 characters, the slug is its standard short or local form if that has 8
+characters or fewer (`gipuzkoa`, `roncal`). A name of several words becomes
+several subtags (`pt-PT-x-tras-os-montes`). A name with no short form is cut to
+its first 8 characters (`ext-PT-x-barranco`). A transliteration or
+romanization after the script subtag is a variant that IANA registers
+(`nan-Latn-pehoeji`), or it goes after the `x` (`ar-Latn-x-buckwalt`). The
+prefix is not a label of convenience: it must agree with the spec's
 own `parent` and with the heaviest-weighted entry in `ancestors`. A spec whose
 `parent` is `pt-PT` cannot be keyed under a Castilic prefix, and a mismatch
 between the code and those two fields is a defect in the code, not in the
@@ -899,7 +907,7 @@ is the code of Aja (South Sudan), so it is not kept for `ajg-BJ`. When
 data/
 ├── SCHEMA.md  (this file)
 ├── es-ES.json
-├── es-ES-x-andalusia-w.json
+├── es-ES-x-andalusi-w.json
 ├── fr-FR.json
 ├── pt-PT.json
 ├── en-GB.json

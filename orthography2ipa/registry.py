@@ -181,11 +181,11 @@ _ALIASES: Dict[str, str] = {
     "ar-x-najdi": "ars-SA",       # Najdi Arabic
     "ar-x-hejazi": "acw-SA",      # Hejazi Arabic
     "ar-x-hijazi": "acw-SA",      # Hejazi Arabic (alternate romanization)
-    # Barranquenho is keyed ``ext-PT-x-barrancos``: a language of its own spoken
+    # Barranquenho is keyed ``ext-PT-x-barranco``: a language of its own spoken
     # in Portugal, not a Portuguese dialect. ``pt-PT-x-barrancos`` is a retired
     # spelling of the same lect; without the alias ``closest_lang`` resolves it
     # to ``pt-AO`` and returns Angolan Portuguese.
-    "pt-PT-x-barrancos": "ext-PT-x-barrancos",
+    "pt-PT-x-barrancos": "ext-PT-x-barranco",
     # Spellings the downstream Portuguese front-end uses for three lects
     # whose spec keys are shorter; without these the tags fall to the bare
     # region and lose the lect.
@@ -199,10 +199,10 @@ _ALIASES: Dict[str, str] = {
     # Galician has one standard spec, ``gl-ES``, and its varieties carry the
     # region. These are the retired codes of the same varieties.
     "gl-x-central": "gl-ES-x-central",
-    "gl-x-occidental": "gl-ES-x-occidental",
+    "gl-x-occidental": "gl-ES-x-occident",
     "gl-x-oriental": "gl-ES-x-oriental",
     "gl-x-eonavia": "gl-ES-x-eonavia",
-    "gl-x-reintegrado": "gl-ES-x-reintegrado",
+    "gl-x-reintegrado": "gl-ES-x-reintegr",
     # The Cantonese spec reads Han text in either script. A bare ``yue`` is
     # mainland Cantonese in Simplified script, so the Hong Kong, Macau and
     # Traditional tags are too far from it to match without these.
@@ -264,6 +264,55 @@ _RENAMED: Dict[str, str] = {
     "cbk-zam":              "cbk-PH",
     "cbk-x-cavite":         "cbk-PH-x-cavite",
     "cbk-x-ternate":        "cbk-PH-x-ternate",
+    # Keys that were not well-formed BCP 47 (RFC 5646 section 2.1): a private-use
+    # subtag longer than 8 characters, or a subtag after the script that is
+    # neither a region nor a variant.
+    "an-x-benasques":       "an-x-benasque",
+    "an-x-chistabin":       "an-x-chistau",
+    "an-x-occidental":      "an-x-occident",
+    "ar-Latn-buckwalter":   "ar-Latn-x-buckwalt",
+    "ar-x-peninsular":      "ar-x-peninsul",
+    "ast-PT-x-guadramil":   "ast-PT-x-guadrami",
+    "ast-x-cantabrian":     "ast-x-cantabri",
+    "ast-x-occidental":     "ast-x-occident",
+    "ca-x-occidental":      "ca-x-occident",
+    "cdo-Latn-buc":         "cdo-Latn-x-buc",
+    "cel-x-gallaecia":      "cel-x-gallaeci",
+    "da-x-copenhagen":      "da-x-copenhag",
+    "de-x-alemannic":       "de-x-alemanni",
+    "es-AR-x-patagonia":    "es-AR-x-patagoni",
+    "es-CO-x-santander":    "es-CO-x-santande",
+    "es-ES-x-andalusia-e":  "es-ES-x-andalusi-e",
+    "es-ES-x-andalusia-w":  "es-ES-x-andalusi-w",
+    "es-ES-x-cantabria":    "es-ES-x-cantabri",
+    "es-ES-x-extremadura":  "es-ES-x-extremad",
+    "es-PE-x-amazonico":    "es-PE-x-amazonia",
+    "es-VE-x-maracucho":    "es-VE-x-zulia",
+    "eu-x-bizkaiera":       "eu-biscayan",
+    "eu-x-erronkariera":    "eu-x-roncal",
+    "eu-x-gipuzkera":       "eu-x-gipuzkoa",
+    "eu-x-lapurtera":       "eu-x-lapurdi",
+    "ext-PT-x-barrancos":   "ext-PT-x-barranco",
+    "fa-x-khorasani":       "fa-x-khorasan",
+    "gem-x-ingvaeonic":     "gem-x-ingvaeon",
+    "gem-x-northwest":      "gem-x-north-west",
+    "gl-ES-x-occidental":   "gl-ES-x-occident",
+    "gl-ES-x-reintegrado":  "gl-ES-x-reintegr",
+    "hak-Latn-phak-fa-su":  "hak-Latn-x-phak-fa-su",
+    "la-x-galloitalic":     "la-x-gallo-italic",
+    "nan-Latn-poj":         "nan-Latn-pehoeji",
+    "oc-x-provencau":       "oc-provenc",
+    "pt-BR-x-fluminense":   "pt-BR-x-fluminen",
+    "pt-PT-x-trasosmontes": "pt-PT-x-tras-os-montes",
+    "roa-x-galaicopt":      "roa-x-galaico-pt",
+    "ru-x-arkhangelsk":     "ru-x-arkhange",
+    "sc-x-campidanese":     "sc-x-campidan",
+    "sc-x-logudorese":      "sc-x-logudoro",
+    "sv-x-rikssvenska":     "sv-x-rikssven",
+    "ta-x-proto-dravidian": "ta-x-proto-dravidia",
+    # SIL retired ``bbz`` as non-existent and names no replacement, so Babalia
+    # Creole Arabic takes a private-use key. ``bbz`` is no other language's code.
+    "bbz":                  "ar-TD-x-babalia",
 }
 _ALIASES.update(_RENAMED)
 

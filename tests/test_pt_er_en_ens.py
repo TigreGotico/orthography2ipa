@@ -28,13 +28,13 @@ EP_STANDARD = [
     "pt-PT", "pt-PT-x-lisbon", "pt-PT-x-coimbra", "pt-PT-x-acores",
     "pt-PT-x-madeira", "pt-PT-x-alentejo", "pt-PT-x-beira", "pt-PT-x-aveiro",
     "pt-PT-x-sao-miguel", "pt-PT-x-terceira", "pt-PT-x-algarve",
-    "pt-PT-x-alfena", "pt-PT-x-minho", "pt-PT-x-trasosmontes",
+    "pt-PT-x-alfena", "pt-PT-x-minho", "pt-PT-x-tras-os-montes",
     "pt-PT-x-viana",
 ]
 EP_DIPHTHONGISING = ["pt-PT-x-porto", "pt-PT-x-braga"]
 EP_ALL = EP_STANDARD + EP_DIPHTHONGISING
 BR_DIPHTHONG_CHILDREN = [
-    "pt-BR-x-brasilia", "pt-BR-x-caipira", "pt-BR-x-fluminense",
+    "pt-BR-x-brasilia", "pt-BR-x-caipira", "pt-BR-x-fluminen",
     "pt-BR-x-pr", "pt-BR-x-rj", "pt-BR-x-sp", "pt-BR-x-sul",
 ]
 # These five reduce a post-stressed nasal ⟨e⟩ to [ɪ̃] in ⟨-em⟩ already, so
@@ -214,7 +214,7 @@ UNCHANGED = {
               "pólen": "ˈpɔlẽ", "homens": "ˈɔmẽj̃s", "bens": "ˈbẽj̃s"},
     "pt-UY": {"comer": "koˈmeɾ", "mulher": "muˈjeɾ", "hífen": "ˈifẽ",
               "pólen": "ˈpɔlẽ", "homens": "ˈomẽs", "bens": "ˈbẽs"},
-    "ext-PT-x-barrancos": {"comer": "ˈkɔmɨ", "mulher": "ˈmuʎɨ",
+    "ext-PT-x-barranco": {"comer": "ˈkɔmɨ", "mulher": "ˈmuʎɨ",
                            "hífen": "ˈhifɨ̃", "pólen": "ˈpɔlɨ̃",
                            "homens": "huˈmẽ", "bens": "ˈbẽ"},
     "kea": {"comer": "ˈomeɾ", "mulher": "ˈmuʎeɾ", "hífen": "ˈifẽ",

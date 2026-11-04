@@ -254,7 +254,7 @@ def test_de_bavarian_r_vocalisation_before_consonant():
 
 
 # ===========================================================================
-# sv-FI / sv-x-rikssvenska / sv-x-skanska — Swedish varieties
+# sv-FI / sv-x-rikssven / sv-x-skanska — Swedish varieties
 # ===========================================================================
 
 
@@ -307,23 +307,23 @@ def test_sv_fi_sj_sound_is_not_the_mainland_sound():
 def test_sv_rikssvenska_retroflexion():
     """RETROFLEXION: rn rd rt rs → ɳ ɖ ʈ ʂ (Central Swedish).
 
-    sv-x-rikssvenska notes: "RETROFLEXION: rn rd rt rs → ɳ ɖ ʈ ʂ (Central
+    sv-x-rikssven notes: "RETROFLEXION: rn rd rt rs → ɳ ɖ ʈ ʂ (Central
     Swedish)." Source: Elert (1994), Wells (1982).
 
     Isolated on the coda cluster: ⟨rn⟩ → [ɳ], ⟨rs⟩ → [ʂ].
     """
-    assert "ɳ" in _t("sv-x-rikssvenska", "barn")
-    assert _t("sv-x-rikssvenska", "fars").endswith("ʂ")
+    assert "ɳ" in _t("sv-x-rikssven", "barn")
+    assert _t("sv-x-rikssven", "fars").endswith("ʂ")
 
 
 def test_sv_rikssvenska_sj_sound():
     """/ɧ/ (sj-sound) is realised as [ɧ].
 
-    sv-x-rikssvenska notes: "/ɧ/ (sj-sound): the most debated phoneme in Swedish;
+    sv-x-rikssven notes: "/ɧ/ (sj-sound): the most debated phoneme in Swedish;
     realised as [ɧ], [ʃ], [ɕ], or [x] depending on speaker/region."
     Source: Elert (1994).
     """
-    assert _t("sv-x-rikssvenska", "sjö").startswith("ˈɧ")
+    assert _t("sv-x-rikssven", "sjö").startswith("ˈɧ")
 
 
 @pytest.mark.xfail(
@@ -360,58 +360,58 @@ def test_sv_skanska_no_retroflexion():
 
 
 # ===========================================================================
-# da-x-copenhagen — Copenhagen Danish
+# da-x-copenhag — Copenhagen Danish
 # ===========================================================================
 
 
 @pytest.mark.xfail(
     strict=True,
     reason="Grønnum (1998) claims stød on sonorant-final syllables, hund "
-    "[hɔnˀ]; da-x-copenhagen produces [hun] — stød is suprasegmental and the da "
+    "[hɔnˀ]; da-x-copenhag produces [hun] — stød is suprasegmental and the da "
     "parent explicitly does not encode it",
 )
 def test_da_cph_stod():
     """STØD: glottalisation on etymologically long vowels and sonorant-final syllables.
 
-    da-x-copenhagen notes: "STØD: glottalisation / laryngealisation on
+    da-x-copenhag notes: "STØD: glottalisation / laryngealisation on
     etymologically long vowels and sonorant-final syllables — replaces the Nordic
     pitch accent ... hund [hɔnˀ]." Source: Grønnum (1998).
 
     Isolated on the very word the citation transcribes.
     """
-    assert "ˀ" in _t("da-x-copenhagen", "hund")
+    assert "ˀ" in _t("da-x-copenhag", "hund")
 
 
 @pytest.mark.xfail(
     strict=True,
     reason="Grønnum (1998) claims the Copenhagen soft d is the very weak "
-    "approximant [ð̞], bide [ˈb̥iˀð̞ə]; da-x-copenhagen produces [biðɛ] — the "
+    "approximant [ð̞], bide [ˈb̥iˀð̞ə]; da-x-copenhag produces [biðɛ] — the "
     "plain [ð] inherited from da",
 )
 def test_da_cph_soft_d_is_weak_approximant():
     """SOFT D: /d/ → [ð̞] (very weak approximant) in common words.
 
-    da-x-copenhagen notes: "SOFT D: /d/ → [ð̞] (very weak approximant, almost
+    da-x-copenhag notes: "SOFT D: /d/ → [ð̞] (very weak approximant, almost
     zero) in common words: bide [ˈb̥iˀð̞ə]." Source: Grønnum (1998).
     """
-    assert "ð̞" in _t("da-x-copenhagen", "bide")
+    assert "ð̞" in _t("da-x-copenhag", "bide")
 
 
 @pytest.mark.xfail(
     strict=True,
     reason="Grønnum (1998) claims /r/ → [ɐ] before consonants; "
-    "da-x-copenhagen produces [kɔʁt] for kort — the consonantal uvular [ʁ] "
+    "da-x-copenhag produces [kɔʁt] for kort — the consonantal uvular [ʁ] "
     "inherited from da, whose notes state coda r-vocalisation is not encoded",
 )
 def test_da_cph_r_vocalisation_before_consonant():
     """/r/ → [ɐ] before consonants; often deleted.
 
-    da-x-copenhagen notes: "/r/ → [ɐ] before consonants; often deleted."
+    da-x-copenhag notes: "/r/ → [ɐ] before consonants; often deleted."
     Source: Grønnum (1998).
 
     Isolated on the pre-consonantal ⟨r⟩ of kort; the onset ⟨r⟩ is not affected.
     """
-    assert "ɐ" in _t("da-x-copenhagen", "kort")
+    assert "ɐ" in _t("da-x-copenhag", "kort")
 
 
 # ===========================================================================
@@ -2118,22 +2118,22 @@ def test_grc_pitch_accent_is_ignored_not_destructive():
 
 
 # ===========================================================================
-# de-x-alemannic — Alemannic German (Schwyzerdütsch), ISO 639-3 gsw
+# de-x-alemanni — Alemannic German (Schwyzerdütsch), ISO 639-3 gsw
 # ===========================================================================
 
 
 def test_alemannic_ch_is_always_ach_laut():
     """⟨ch⟩ is the Ach-Laut in every position; the Ich-Laut [ç] is absent.
 
-    de-x-alemannic notes cite Wikipedia "Swiss German" ("Swiss German /x/
+    de-x-alemanni notes cite Wikipedia "Swiss German" ("Swiss German /x/
     does not have the allophone [ç] but is typically [x], with allophones
     [ʁ̥ – χ]") and "Alemannic German" ("High Alemannic, Lake Constance
     Alemannic and Highest Alemannic dialects exclusively use the
     Ach-Laut"). de-DE splits ⟨ch⟩ into [ç] after front vowels and [x]
     after back vowels; Alemannic does not.
     """
-    assert "ç" not in _t("de-x-alemannic", "Chilbi")
-    assert "ç" not in _t("de-x-alemannic", "Chueche")
+    assert "ç" not in _t("de-x-alemanni", "Chilbi")
+    assert "ç" not in _t("de-x-alemanni", "Chueche")
     # the de-DE parent is the contrast case
     assert "ç" in _t("de-DE", "ich")
 
@@ -2146,7 +2146,7 @@ def test_alemannic_initial_ch_is_fricative_not_stop():
     ⟨ch⟩ to [k] (the Greek-loan value, Chor), which is wrong for the
     Alemannic lexicon (Chatz, Chilbi, Chueche).
     """
-    assert _t("de-x-alemannic", "Chatz").lstrip("ˈ").startswith("x")
+    assert _t("de-x-alemanni", "Chatz").lstrip("ˈ").startswith("x")
 
 
 def test_alemannic_k_is_affricated():
@@ -2155,7 +2155,7 @@ def test_alemannic_k_is_affricated():
     Wikipedia "Swiss German": "⟨k⟩ (and ⟨ck⟩) are used for the affricate
     /kx/."
     """
-    assert "kx" in _t("de-x-alemannic", "Brocki")
+    assert "kx" in _t("de-x-alemanni", "Brocki")
 
 
 def test_alemannic_has_no_voiced_s():
@@ -2165,7 +2165,7 @@ def test_alemannic_has_no_voiced_s():
     Swiss German dialects have no voiced obstruents." de-DE voices
     word-initial and intervocalic ⟨s⟩ to [z].
     """
-    assert "z" not in _t("de-x-alemannic", "sii")
+    assert "z" not in _t("de-x-alemanni", "sii")
     assert "z" in _t("de-DE", "Sie")
 
 
@@ -2175,9 +2175,9 @@ def test_alemannic_doubled_vowel_is_long():
     de.wikipedia "Dieth-Schreibung": "Kurze Vokale werden einfach
     geschrieben, lange Vokale doppelt."
     """
-    assert "uː" in _t("de-x-alemannic", "Huus")
-    assert "iː" in _t("de-x-alemannic", "Wii")
-    assert "yː" in _t("de-x-alemannic", "Füür")
+    assert "uː" in _t("de-x-alemanni", "Huus")
+    assert "iː" in _t("de-x-alemanni", "Wii")
+    assert "yː" in _t("de-x-alemanni", "Füür")
 
 
 def test_alemannic_r_is_alveolar_trill():
@@ -2187,7 +2187,7 @@ def test_alemannic_r_is_alveolar_trill():
     alveolar trill [r] in many dialects." Standard German ⟨-er⟩ → [ɐ]
     has no Alemannic counterpart.
     """
-    out = _t("de-x-alemannic", "Mueter")
+    out = _t("de-x-alemanni", "Mueter")
     assert "ɐ" not in out and "ʁ" not in out
     assert out.endswith("r")
 
@@ -2196,7 +2196,7 @@ def test_alemannic_isolated_from_its_german_siblings():
     """The Alemannic table must not leak into de / de-DE / de-AT / de-CH.
 
     de-CH is Schweizerhochdeutsch (Standard German with Swiss features);
-    de-x-alemannic is the dialect. They are different targets and only the
+    de-x-alemanni is the dialect. They are different targets and only the
     dialect spec carries the dialect rules.
     """
     for code in ("de", "de-DE", "de-AT", "de-CH"):

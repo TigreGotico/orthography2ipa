@@ -60,7 +60,7 @@ def test_majorcan_o_non_raising_does_not_touch_the_other_reductions():
     ("ca", "ʃukuˈlatə"),
     ("ca-x-nord", "ʃukuˈlatə"),
     ("ca-x-valencia", "tʃokoˈlata"),
-    ("ca-x-occidental", "tʃokoˈlatɛ"),
+    ("ca-x-occident", "tʃokoˈlatɛ"),
 ])
 def test_majorcan_o_non_raising_does_not_leak_to_other_varieties(lang, expected):
     """COUNTER-CASE — the change is declared on ca-x-balear, never on the
@@ -97,7 +97,7 @@ def test_majorcan_stressed_schwa_is_a_ranking_not_a_blanket_rewrite():
 
 
 @pytest.mark.parametrize("lang", ["ca", "ca-x-nord", "ca-x-valencia",
-                                  "ca-x-occidental", "ca-x-medieval"])
+                                  "ca-x-occident", "ca-x-medieval"])
 def test_stressed_schwa_does_not_leak_to_other_varieties(lang):
     """COUNTER-CASE — stressed [ə] is Balearic only; no other Catalan variety
     has it as a stressed vowel (Wheeler 2005 §2.3)."""
@@ -147,7 +147,7 @@ def test_total_assimilation_needs_a_following_consonant():
 
 
 @pytest.mark.parametrize("lang", ["ca", "ca-x-nord", "ca-x-valencia",
-                                  "ca-x-occidental", "ca-x-medieval"])
+                                  "ca-x-occident", "ca-x-medieval"])
 def test_total_assimilation_does_not_leak_to_other_catalan(lang):
     """COUNTER-CASE — declared on ca-x-balear only, never on an ancestor:
     Central and the Western dialects keep the coda stop distinct."""
@@ -159,7 +159,7 @@ def test_total_assimilation_does_not_leak_to_other_catalan(lang):
 # ── Pan-Catalan labiodental nasal ─────────────────────────────────────────
 
 @pytest.mark.parametrize("lang", ["ca", "ca-x-balear", "ca-x-valencia",
-                                  "ca-x-occidental", "ca-x-nord",
+                                  "ca-x-occident", "ca-x-nord",
                                   "ca-x-medieval"])
 @pytest.mark.parametrize("word", ["enfadar", "confortable", "àmfora"])
 def test_nasal_is_labiodental_before_f(lang, word):
@@ -205,7 +205,7 @@ def test_labiodental_rule_is_declared_once_on_the_ancestor():
     data = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
                         "orthography2ipa", "data")
     owners = []
-    for code in ["ca", "ca-x-balear", "ca-x-valencia", "ca-x-occidental",
+    for code in ["ca", "ca-x-balear", "ca-x-valencia", "ca-x-occident",
                  "ca-x-nord", "ca-x-medieval"]:
         with open(os.path.join(data, code + ".json"), encoding="utf-8") as fh:
             spec = json.load(fh)
