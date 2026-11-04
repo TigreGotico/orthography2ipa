@@ -68,7 +68,7 @@ def test_accent_digit_closes_its_syllable(word, next_onset):
     digit = next(i for i, c in enumerate(out) if c in "¹²")
     assert out[digit + 1:digit + 2] == next_onset, out
     if next_onset:
-        assert is_ipa_vowel(out[digit - 1]), out
+        assert is_ipa_vowel(out[:digit].rstrip("ː")[-1]), out
 
 
 # Stress. Peters 2006, p. 119: Hasselt 'Stress location is as in Standard
@@ -91,3 +91,67 @@ def test_a_schwa_prefix_is_not_stressed():
     out = LI.transcribe_word("verlange")
     assert out.count("ˈ") == 1, out
     assert out.split("ˈ")[1].startswith("l"), out
+
+
+# The vowel of ⟨e⟩. Spelling 2003, printed p. 10: short ⟨e⟩ beside 'àè (de e
+# van Ned. pet maar dan lang)', the long 'e (Limb. sjpele)' in the row of
+# 'ee (Ned. beest)', and "e of ' = onbeklemtoonde klinker". Printed p. 16,
+# §14 b: at the end of a syllable 'maar één a, e, u, o'. Printed p. 14, §8 f:
+# a sign of two letters for one sound after a short vowel 'werkt als twee
+# aparte tekens'. Printed p. 13, §8 a: a short word-final vowel is written
+# with ⟨h⟩ (deh, meh). Peters 2006, p. 118, gives the symbols: short 'æ mæs²
+# ‘knife’' below 'ɛ dɛk ‘often’', long 'eː', and ə 'restricted to unstressed
+# syllables'; Spelling 2003, p. 11, puts ⟨è⟩ above ⟨e⟩, so ⟨e⟩ is [æ].
+# The words are from Spelling 2003: pp. 10, 13, 24 and 27.
+
+def _vowels(ipa):
+    out = []
+    for c in ipa:
+        if is_ipa_vowel(c):
+            out.append(c)
+        elif c == "ː" and out:
+            out[-1] += c
+    return out
+
+
+@pytest.mark.parametrize("word", [
+    "berg", "be~rg", "be\\rg", "det", "we~rk", "me~r",
+    "bed", "vet", "mes", "wet", "Wessem",
+])
+def test_stressed_e_in_a_closed_syllable_is_short(word):
+    out = LI.transcribe_word(word)
+    assert _vowels(out)[0] == "æ", out
+
+
+def test_a_doubled_consonant_letter_closes_the_syllable():
+    out = LI.transcribe_word("oplette")
+    assert _vowels(out) == ["ɔ", "æ", "ə"], out
+
+
+def test_a_consonant_digraph_closes_the_syllable():
+    out = LI.transcribe_word("henjig")
+    assert _vowels(out)[0] == "æ", out
+
+
+@pytest.mark.parametrize("word", ["zeve", "ze~ve", "ze\\ve", "sjpele"])
+def test_stressed_e_that_ends_its_syllable_is_long(word):
+    out = LI.transcribe_word(word)
+    assert _vowels(out) == ["eː", "ə"], out
+
+
+@pytest.mark.parametrize("word", ["deh", "meh"])
+def test_word_final_h_keeps_the_e_short(word):
+    out = LI.transcribe_word(word)
+    assert _vowels(out) == ["æ"], out
+
+
+# A word-final full vowel is written with two signs: ⟨eh⟩ for the short one
+# (p. 13, §8 a) and ⟨ee⟩ for the long one (p. 16, §14 b: 'het basiswoord
+# eindigt op die noodzakelijke dubbele ee'). A final single ⟨e⟩ is [ə]: p. 10
+# gives 'de' for the unstressed vowel, and p. 27 writes 'mót me ze'. The dev
+# table already reads these as [ə]; the test keeps nucleus_stressed off them.
+
+@pytest.mark.parametrize("word", ["de", "me", "ze"])
+def test_word_final_e_is_schwa(word):
+    out = LI.transcribe_word(word)
+    assert _vowels(out) == ["ə"], out
