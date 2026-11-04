@@ -334,7 +334,7 @@ _WIKIPRON_FILES = {
     "oc": "oci_latn_broad.tsv",          # ~750 rows
     # --- Germanic ---
     "de": "deu_latn_broad.tsv",          # ~60k rows
-    "nl": "nld_latn_broad.tsv",          # ~59k rows
+    "nl-NL": "nld_latn_broad.tsv",       # ~59k rows
     "sv": "swe_latn_broad.tsv",          # ~6k rows
     "da": "dan_latn_broad.tsv",          # ~5k rows
     "nb": "nob_latn_broad.tsv",          # ~3k rows
@@ -748,7 +748,7 @@ _VOX_COMMUNIS_FILES: Dict[str, str] = {
         "ab", "am", "as", "ba", "be", "bg", "bn", "ca", "ckb", "cs", "cv",
         "cy", "dv", "el", "et", "eu", "fi", "gn", "ha", "hi", "hsb",
         "hu", "id", "ja", "ka", "kab", "kk", "ko", "ky", "lg", "lij", "lt",
-        "mk", "ml", "mn", "mr", "mt", "myv", "nl", "or", "pl", "ru", "rw",
+        "mk", "ml", "mn", "mr", "mt", "myv", "or", "pl", "ru", "rw",
         "sah", "sk", "sl", "sq", "sr", "sw", "ta", "th", "tk", "tn", "tr",
         "tt", "ug", "uk", "uz", "vi", "yo",
     )
@@ -757,6 +757,7 @@ _VOX_COMMUNIS_FILES.update({
     "es": "es", "it": "it", "ro": "ro",       # bare tags resolve via registry
     "pt-BR": "pt",                            # region-untagged; see note above
     "gl-ES": "gl",
+    "nl-NL": "nl",
     "sv": "sv-se", "hy": "hy-am",
     "fy": "fy-nl", "pa": "pa-in",
 })
@@ -920,7 +921,7 @@ _IPA_CHILDES_FOLDERS: Dict[str, str] = {
     "is": "is-IS",
     "it-IT": "it-IT",
     "nb": "nb-NO",
-    "nl": "nl-NL",
+    "nl-NL": "nl-NL",
     "pl": "pl-PL",
     "pt-BR": "pt-BR",
     "pt-PT": "pt-PT",
@@ -990,7 +991,7 @@ _IPA_CHILDES_TOOL: Dict[str, str] = {
     "is": "phonemizer (espeak-ng), is",
     "it-IT": "phonemizer (espeak-ng), it",
     "nb": "phonemizer (espeak-ng), nb",
-    "nl": "phonemizer (espeak-ng), nl",
+    "nl-NL": "phonemizer (espeak-ng), nl",
     "pl": "phonemizer (espeak-ng), pl",
     "pt-BR": "phonemizer (espeak-ng), pt-br",
     "pt-PT": "phonemizer (espeak-ng), pt",
@@ -1502,7 +1503,7 @@ _IPADICT_FILES = {
     "km": "km.txt",
     "ms": "ma.txt",          # ipa-dict `ma` = "Malay (Malaysian and Indonesian)"
     "nb": "nb.txt",
-    "nl": "nl.txt",
+    "nl-NL": "nl.txt",
     "or": "or.txt",
     "pt-BR": "pt_BR.txt",
     "ro-RO": "ro.txt",
@@ -1556,7 +1557,7 @@ _IPADICT_PROVENANCE: Dict[str, str] = {
     "es-MX": "machine-generated",  # same script; the file is near-identical to es_ES
     "fa": "machine-generated",     # Wiktionary + PersPred + "a great deal of guesswork"; README: "extremely experimental"
     "fi": "machine-generated",     # prosodic1b (rule-based) over the Kotus wordlist
-    "nl": "machine-generated",     # INT: "automated conversion … no manual correction or revision"
+    "nl-NL": "machine-generated",  # INT: "automated conversion … no manual correction or revision"
     "or": "machine-generated",     # OdiaWikimedia Converter (IPA-Romanization) over Wikimedia dumps
     "vi": "machine-generated",     # vPhon converter over Ho Ngoc Duc's wordlist
     # ─ tool output, base source UNDOCUMENTED (never upgraded on a guess) ─

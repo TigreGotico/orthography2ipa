@@ -29,42 +29,42 @@ def _bare(code, word):
 
 
 # ===========================================================================
-# nl / nl-NL / nl-BE — Dutch
+# nl-NL / nl-BE — Dutch
 # ===========================================================================
 
 
 def test_nl_final_devoicing():
     """FINAL DEVOICING: b/d/g/v/z devoiced in coda and word-finally.
 
-    nl notes: "FINAL DEVOICING: b/d/g/v/z devoiced in coda and word-finally."
+    nl-NL notes: "FINAL DEVOICING: b/d/g/v/z devoiced in coda and word-finally."
     Sources: van Oostendorp (2000), Gussenhoven (1992), Booij (1995).
 
     Minimal pair on the same ⟨d⟩: hond (word-final → [t]) vs honden (the same
     ⟨d⟩ now medial, staying [d]).
     """
-    assert _t("nl", "hond").endswith("t")
-    assert "nd" in _t("nl", "honden")
+    assert _t("nl-NL", "hond").endswith("t")
+    assert "nd" in _t("nl-NL", "honden")
 
 
 def test_nl_g_onset_voiced_coda_voiceless():
     """G: voiced [ɣ] in the onset, voiceless [x] in the coda — northern Dutch.
 
-    nl notes: "G: voiced [ɣ] onset, voiceless [x] coda — northern Dutch."
+    nl-NL notes: "G: voiced [ɣ] onset, voiceless [x] coda — northern Dutch."
     Booij (1995).
 
     Minimal pair on ⟨g⟩ alone: gaan (onset) vs dag (coda).
     """
-    assert _bare("nl", "gaan").startswith("ɣ")
-    assert _t("nl", "dag").endswith("x")
+    assert _bare("nl-NL", "gaan").startswith("ɣ")
+    assert _t("nl-NL", "dag").endswith("x")
 
 
 def test_nl_h_is_breathy():
     """H: breathy voiced [ɦ], not [h].
 
-    nl notes: "H: breathy [ɦ]; fully silent in southern dialects."
+    nl-NL notes: "H: breathy [ɦ]; fully silent in southern dialects."
     van Oostendorp (2000).
     """
-    assert _bare("nl", "huis").startswith("ɦ")
+    assert _bare("nl-NL", "huis").startswith("ɦ")
 
 
 def test_nl_nl_northern_g_is_voiced_fricative():
@@ -74,13 +74,13 @@ def test_nl_nl_northern_g_is_voiced_fricative():
     Flanders." Source: Booij, G. (1995). The Phonology of Dutch; Gussenhoven, C.
     (1999).
     """
-    assert _t("nl-NL", "goed").startswith("ɣ")
+    assert _bare("nl-NL", "goed").startswith("ɣ")
 
 
 def test_nl_nl_final_devoicing():
     """Final obstruent devoicing, same as German Auslautverhärtung.
 
-    nl-NL notes: "Final obstruent devoicing (same as German Auslautverhärtung)."
+    nl-NL notes: "FINAL DEVOICING: b/d/g/v/z devoiced in coda and word-finally."
     Booij (1995).
     """
     assert _t("nl-NL", "goed").endswith("t")
@@ -94,7 +94,7 @@ def test_nl_nl_final_devoicing():
 def test_nl_be_flemish_g_is_voiceless():
     """⟨g⟩ is [x] in southern NL / Flanders.
 
-    nl notes: "⟨g⟩ realisation is [ɣ] in northern NL and [x] in southern NL /
+    nl-NL notes: "⟨g⟩ realisation is [ɣ] in northern NL and [x] in southern NL /
     Flanders." Booij (1995).
 
     nl-BE is the Flemish spec, so the same ⟨g⟩ that is [ɣ] in nl-NL must be [x].
@@ -142,7 +142,7 @@ def test_af_diphthong_oey():
     symbol Dutch uses, so the claimed af-vs-nl contrast does not stand.
     """
     assert "œy" in _t("af", "huis")
-    assert "œy" in _t("nl", "huis")
+    assert "œy" in _t("nl-NL", "huis")
 
 
 @pytest.mark.xfail(
@@ -815,7 +815,7 @@ def test_fy_onset_g_is_a_stop():
     The contrast the citation draws: fy goed [ɡ] vs nl goed [ɣ].
     """
     assert _t("fy", "goed").lstrip("ˈˌ").startswith("ɡ")
-    assert _t("nl", "goed").lstrip("ˈˌ").startswith("ɣ")
+    assert _t("nl-NL", "goed").lstrip("ˈˌ").startswith("ɣ")
 
 
 def test_fy_circumflex_a_e_o():
@@ -902,23 +902,21 @@ def test_li_mouillering_j_digraphs():
     Each digraph must be one palatal/postalveolar segment, not a consonant plus a
     [j] glide.
     """
-    assert _t("li", "sjoon").startswith("ʃ")
-    assert _t("li", "zjoon").startswith("ʒ")
-    assert _t("li", "tjeun").startswith("tʃ")
-    assert _t("li", "djoon").startswith("dʒ")
-    assert _t("li", "njoon").startswith("ɲ")
-    assert _t("li", "ljoon").startswith("ʎ")
+    assert _bare("li", "sjoon").startswith("ʃ")
+    assert _bare("li", "zjoon").startswith("ʒ")
+    assert _bare("li", "tjeun").startswith("tʃ")
+    assert _bare("li", "djoon").startswith("dʒ")
+    assert _bare("li", "njoon").startswith("ɲ")
+    assert _bare("li", "ljoon").startswith("ʎ")
 
 
-def test_li_tone_is_not_emitted():
-    """TONE IS NOT REPRESENTED: no tonal information is emitted.
+def test_li_unmarked_word_has_no_accent_digit():
+    """A word written without a tone sign gets no accent digit.
 
-    li notes: "TONE IS NOT REPRESENTED: Limburgish contrasts sleeptoon (dragging
-    tone, Accent 1) with stoottoon (push tone, Accent 2); Spelling 2003 does not
-    write the contrast, so no tonal information can be recovered from the
-    orthography and none is emitted."
-
-    A declared omission, pinned so no tone mark can appear by accident.
+    li notes: "A word written without either sign gets no digit. Its accent
+    cannot be read from the spelling, because the same letters spell both
+    accents (haas 'haas' and 'handschoen')." Spelling 2003, printed p. 27,
+    §8 h-i, writes the accent only with the optional signs ⟨~⟩ and ⟨\\⟩.
     """
     out = _t("li", "haas")
     assert not any(c in out for c in "˥˦˧˨˩¹²ˊˋ")

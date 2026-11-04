@@ -49,7 +49,7 @@ One line per language: the best system on its primary gold, and where o2i lands.
 - **mfe (Morisyen)** — o2i #1 (beats africa-g2p)
 - **mwl** — tie (mwl_phonemizer, o2i) #1
 - **ngh (Nǁng)** — o2i #1 (beats africa-g2p)
-- **nl (Dutch)** — o2i #1 (beats espeak rules-only)
+- **nl-NL (Dutch)** — o2i #1 (beats espeak rules-only)
 - **nup (Nupe)** — o2i #1 (beats africa-g2p)
 - **pl (Polish)** — o2i #1 (beats epitran)
 - **pt-PT (European Portuguese)** — o2i #1 (beats espeak rules-only) (tugaphone with its lexicon scores 0.1887 — informational)
@@ -325,7 +325,7 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 |---|---|---|---|---|
 | wikipron | 263 | 0.2616 | 0.3958 | o2i |
 
-### nl (Dutch)
+### nl-NL (Dutch)
 
 | Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | Winner |
 |---|---|---|---|---|---|---|
@@ -466,7 +466,7 @@ A system winning on one gold and losing on another for the SAME language is real
 - **`it`** (wins on all golds):
   - `vox_communis` (n=48570, tier=epitran-derived): o2i 0.1031 vs espeak 0.1368 — o2i wins
   - `wikipron` (n=82280, tier=crowd-scraped): o2i 0.0441 vs espeak 0.0722 — o2i wins
-- **`nl`** (MIXED — wins on some golds, loses on others):
+- **`nl-NL`** (MIXED — wins on some golds, loses on others):
   - `ipadict` (n=117869, tier=machine-generated): o2i 0.1767 vs espeak 0.1607 — o2i loses
   - `vox_communis` (n=26137, tier=epitran-derived): o2i 0.2925 vs espeak 0.3054 — o2i wins
   - `wikipron` (n=45872, tier=crowd-scraped): o2i 0.0902 vs espeak 0.1099 — o2i wins
@@ -539,9 +539,9 @@ The table above conflates espeak-ng's letter-to-sound RULES with its hand-curate
 | hi | wikipron | 30379 | 0.1277 | n/a | 0.2815 | 0.2819 |
 | it | vox_communis | 48570 | 0.1031 | n/a | 0.1368 | 0.1445 |
 | it | wikipron | 82280 | 0.0441 | n/a | 0.0722 | 0.0767 |
-| nl | ipadict | 117869 | 0.1767 | n/a | 0.1607 | 0.1653 |
-| nl | vox_communis | 26137 | 0.2925 | n/a | 0.3054 | 0.2986 |
-| nl | wikipron | 45872 | 0.0902 | n/a | 0.1099 | 0.1160 |
+| nl-NL | ipadict | 117869 | 0.1767 | n/a | 0.1607 | 0.1653 |
+| nl-NL | vox_communis | 26137 | 0.2925 | n/a | 0.3054 | 0.2986 |
+| nl-NL | wikipron | 45872 | 0.0902 | n/a | 0.1099 | 0.1160 |
 | pl | vox_communis | 47615 | 0.0194 | n/a | 0.0793 | 0.0782 |
 | pl | wikipron | 148992 | 0.0480 | n/a | 0.1132 | 0.1136 |
 | pt-PT | ep_dialects | 30 | 0.1140 | n/a | 0.3192 | 0.3225 |

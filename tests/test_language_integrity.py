@@ -474,7 +474,7 @@ class TestFamilyConsistency:
 
     def test_germanic_languages_share_protogermanic(self):
         """Germanic languages should trace to Proto-Germanic (gem)."""
-        germanic_codes = ["de-DE", "nl"]
+        germanic_codes = ["de-DE", "nl-NL"]
         for code in germanic_codes:
             try:
                 spec = get(code)

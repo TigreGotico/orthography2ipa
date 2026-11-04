@@ -2901,12 +2901,12 @@ class TestScoreboardLangScoping:
             return [{"lang": lang, "dataset": "d", "o2i_per": 0.1}]
 
         monkeypatch.setattr(cs, "compare_lang", fake_compare_lang)
-        rows = cs.build_comparison(None, only_langs=["nl"])
+        rows = cs.build_comparison(None, only_langs=["nl-NL"])
 
-        assert called == ["nl"], (
-            f"only_langs=['nl'] must score nl alone, scored: {called}"
+        assert called == ["nl-NL"], (
+            f"only_langs=['nl-NL'] must score nl-NL alone, scored: {called}"
         )
-        assert [r["lang"] for r in rows] == ["nl"]
+        assert [r["lang"] for r in rows] == ["nl-NL"]
 
     def test_build_comparison_without_only_langs_runs_everything(
             self, monkeypatch):
@@ -2923,16 +2923,16 @@ class TestScoreboardLangScoping:
 
     def test_merge_keeps_every_other_language_untouched(self):
         old = [
-            {"lang": "nl", "dataset": "wikipron", "o2i_per": 0.1262},
+            {"lang": "nl-NL", "dataset": "wikipron", "o2i_per": 0.1262},
             {"lang": "de", "dataset": "wikipron", "o2i_per": 0.2092},
             {"lang": "fr", "dataset": "wikipron", "o2i_per": 0.1189},
         ]
-        new = [{"lang": "nl", "dataset": "wikipron", "o2i_per": 0.0902}]
+        new = [{"lang": "nl-NL", "dataset": "wikipron", "o2i_per": 0.0902}]
 
         merged = cs.merge_comparison_rows(old, new)
 
         by_key = {(r["lang"], r["dataset"]): r for r in merged}
-        assert by_key[("nl", "wikipron")]["o2i_per"] == 0.0902
+        assert by_key[("nl-NL", "wikipron")]["o2i_per"] == 0.0902
         assert by_key[("de", "wikipron")]["o2i_per"] == 0.2092
         assert by_key[("fr", "wikipron")]["o2i_per"] == 0.1189
         assert len(merged) == 3
@@ -2940,16 +2940,16 @@ class TestScoreboardLangScoping:
     def test_merge_appends_a_language_with_no_committed_row(self):
         merged = cs.merge_comparison_rows(
             [{"lang": "de", "dataset": "wikipron", "o2i_per": 0.2}],
-            [{"lang": "nl", "dataset": "wikipron", "o2i_per": 0.09}],
+            [{"lang": "nl-NL", "dataset": "wikipron", "o2i_per": 0.09}],
         )
         assert [(r["lang"], r["dataset"]) for r in merged] == [
-            ("de", "wikipron"), ("nl", "wikipron")]
+            ("de", "wikipron"), ("nl-NL", "wikipron")]
 
     def test_merge_replaces_a_row_wholesale_not_field_by_field(self):
         """Half-refreshing a row would mix two live runs' numbers."""
-        old = [{"lang": "nl", "dataset": "wikipron",
+        old = [{"lang": "nl-NL", "dataset": "wikipron",
                 "o2i_per": 0.1262, "espeak_per": 0.1099, "stale_key": 1}]
-        new = [{"lang": "nl", "dataset": "wikipron",
+        new = [{"lang": "nl-NL", "dataset": "wikipron",
                 "o2i_per": 0.0902, "espeak_per": 0.1099}]
 
         merged = cs.merge_comparison_rows(old, new)

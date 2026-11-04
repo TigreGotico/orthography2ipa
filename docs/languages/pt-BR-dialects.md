@@ -56,7 +56,7 @@ The positional map gives the strong onset ⟨r⟩ as [χ], with [x] and [h] as f
 
 Known gaps:
 
-- The spec writes a word-final /R/ as the aspirate [h] in every word. The source finds deletion in most verbs.
+- The spec writes a word-final /R/ as the aspirate [h] in every word (`falar` [faˈlah]). The source finds deletion in most verbs. The spec switches off the base rules `BR_FINAL_R_NONVERB`, `BR_INFINITIVE_R_DROP` and `BR_INFINITIVE_R_DROP_POR`, because they stand before `RJ_CODA_R_FINAL` and would decide every final /R/.
 
 ## Fluminense (pt-BR-x-fluminen)
 
@@ -67,7 +67,7 @@ Fluminense is the Portuguese of the state of Rio de Janeiro outside the capital.
 | `FLU_CODA_R_GLOTTAL` | a coda /R/ before a consonant gives [h] | `porta` [ˈpohtɐ] |
 | `FLU_CODA_R_FINAL` | a word-final /R/ gives [h] | `mar` [ˈmah] |
 
-The strong onset ⟨r⟩ is [x] (`rato` [ˈxatu]). One R-forte class covers the start of a word (rio), ⟨rr⟩ (carro) and the onset after a consonant (Israel) (Cristófaro Silva 2025: 240), so ⟨rr⟩ and the rule `BR_STRONG_R_AFTER_CODA` give the same [x] (`carro` [ˈkaxu], `honra` [ˈõxɐ]). A coda /s/ takes the voicing of the next sound (Barbosa & Albano 2004: 229), so it is [z] before a voiced consonant and stays [s] before this voiceless rhotic (`mesmo` [ˈmezmu], `desrespeito` [desxesˈpejtu]). The coda sibilant keeps the base values (`festa` [ˈfestɐ], `paz` [ˈpas]).
+The strong onset ⟨r⟩ is [x] (`rato` [ˈxatu]). One R-forte class covers the start of a word (rio), ⟨rr⟩ (carro) and the onset after a consonant (Israel) (Cristófaro Silva 2025: 240), so ⟨rr⟩ and the rule `BR_STRONG_R_AFTER_CODA` give the same [x] (`carro` [ˈkaxu], `honra` [ˈõxɐ]). A coda /s/ takes the voicing of the next sound (Barbosa & Albano 2004: 229), so it is [z] before a voiced consonant and stays [s] before this voiceless rhotic (`mesmo` [ˈmezmu], `desrespeito` [desxesˈpejtu]). The coda sibilant keeps the base values (`festa` [ˈfestɐ], `paz` [ˈpas]). Like `pt-BR-x-rj`, the spec writes every word-final /R/ as [h] (`falar` [faˈlah]) and switches off the three base rules on the final tap.
 
 ## Paulistano (pt-BR-x-sp)
 

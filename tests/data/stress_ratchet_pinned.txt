@@ -180,8 +180,6 @@ lb
 lbe
 lez
 lg
-li
-li-x-rheindok
 lkt
 lld
 lmo
@@ -241,7 +239,6 @@ nhx
 nia
 nio
 niv
-nl-NL
 nmy
 no
 nog

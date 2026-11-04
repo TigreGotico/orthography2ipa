@@ -183,11 +183,11 @@ ess | Eskimo-Aleut | 29 | 36 | 12 | 27.4% | no | 0 | ckt 0.483 | 1 | 814 | 0.107
 fi | Uralic > Finnic | 62 | 38 | 12 | 0.5% | yes | 0 | ang 0.468 | 3 | 274968 | 0.0609
 kok | Indo-European > Indo-Iranian > Indo-Aryan | 70 | 65 | 12 | 0.4% | no | 0 | kru 0.729 | 1 | 830 | 0.224
 kw | Indo-European > Celtic > Brythonic | 31 | 35 | 12 | 4.2% | no | 0 | yol 0.706 | 1 | 602 | 0.2521
-li | Indo-European > Germanic | 114 | 41 | 12 | 33.6% | no | 0 | nl 0.289 | 1 | 987 | 0.3819
+li | Indo-European > Germanic | 114 | 41 | 12 | 33.6% | no | 0 | nl-NL 0.289 | 1 | 987 | 0.3819
 pox | Indo-European > Balto-Slavic > Slavic > West Slavic | 40 | 46 | 12 | 53.3% | no | 0 | dsb 0.7 | 1 | 314 | 0.3204
 eu | Vasconic | 35 | 33 | 11 | 1.9% | no | 0 | lad 0.6 | 4 | 82505 | 0.0984
 my | Sino-Tibetan | 231 | 59 | 11 | 2.9% | no | 0 |  | 1 | 7941 | 0.1926
-nl | Indo-European > Germanic > Northwest Germanic > West Germanic | 60 | 43 | 11 | 0.7% | yes | 0 | af 0.783 | 4 | 197753 | 0.2706
+nl-NL | Indo-European > Germanic > Northwest Germanic > West Germanic | 60 | 43 | 11 | 0.7% | yes | 0 | af 0.783 | 4 | 197753 | 0.2706
 phl | Indo-European > Indo-Iranian | 46 | 43 | 11 | 29.6% | no | 0 | snk 0.565 | 1 | 2173 | 0.3287
 ale | Eskimo-Aleut | 30 | 29 | 10 | 56.4% | no | 0 | ctd 0.581 | 2 | 1014 | 0.3993
 lad | Indo-European > Italic > Romance > Ibero-Romance | 35 | 33 | 10 | 15.2% | no | 0 | aot 0.686 | 1 | 131 | 0.1397

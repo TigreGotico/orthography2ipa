@@ -2,8 +2,8 @@
   "code": "nl-BE",
   "name": "Belgian Dutch (Flemish)",
   "script": "Latin",
-  "graphemes_base": "nl",
-  "allophones_base": "nl",
+  "graphemes_base": "nl-NL",
+  "allophones_base": "nl-NL",
   "allophones": {
     "ɣ": [
       "ɣ",
@@ -14,7 +14,7 @@
       "ɾ"
     ]
   },
-  "parent": "nl",
+  "parent": "nl-NL",
   "notes": "Flemish / Belgian Dutch (Vlaams). Alveolar /r/ [r] in most varieties (vs. NL uvular [ʀ]). /ɣ/ (voiced velar fricative) more robust than in NL Dutch. Considered more conservative than Netherlands Dutch in some features. Strong dialect continuum from West-Flemish to Limburgish. Source: König & van der Auwera (1994).",
   "quality": "skeleton",
   "script_type": "alphabet",

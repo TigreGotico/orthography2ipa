@@ -45,7 +45,7 @@ def test_post_vocalic_hi_stays_a_glide(word, expected):
     ("hijo", "ixo"),
     ("hilo", "ilo"),
     ("historia", "istoɾja"),
-    ("hincar", "inkaɾ"),
+    ("hincar", "iŋkaɾ"),
 ])
 def test_initial_hi_before_a_consonant_is_a_plain_vowel(word, expected):
     """⟨hi⟩ + consonant is silent ⟨h⟩ + the vowel /i/, never /ʝ/."""
