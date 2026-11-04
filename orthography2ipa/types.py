@@ -415,6 +415,39 @@ class ToneRules:
 # ═══════════════════════════════════════════════════════════════════════════
 
 @dataclass(frozen=True)
+class ClosedHiatus:
+    """Where a written diphthong is two nuclei because a consonant closes it.
+
+    An orthography may leave a hiatus unmarked where its syllable shape
+    already shows it. Portuguese writes the acute on a tonic ⟨i u⟩ after a
+    vowel (saída, baú), but not when the ⟨i u⟩ "constituem sílaba com a
+    consoante seguinte, como é o caso de nh, l, m, n, r e z" (Acordo
+    Ortográfico 1990, Base X, 2.º): ra-i-nha, Ra-ul, ju-iz.
+
+    Parameters
+    ----------
+    pairs : Tuple[str, ...]
+        The written vowel pairs the rule splits, lowercase: the second letter
+        becomes a nucleus of its own (Portuguese ⟨ai au ei eu iu oi ui⟩).
+    onsets : Tuple[str, ...]
+        Consonant graphemes that split the pair wherever they follow it
+        (Portuguese ⟨nh⟩).
+    codas : Tuple[str, ...]
+        Consonant letters that split the pair when they close its syllable:
+        no vowel letter follows them, and they do not start a longer
+        grapheme of the spec (⟨lh rr⟩ are onsets of the next syllable).
+
+    The split holds only where the split-off vowel is the stressed one, as
+    the stress rules place it over the split syllables. Base X, 2.º is about
+    tonic vowels, and the spelling does not tell an atonic ⟨i u⟩ in hiatus
+    from a diphthong (Base XIV, 1.º: arruinar, faiscar).
+    """
+    pairs: Tuple[str, ...] = ()
+    onsets: Tuple[str, ...] = ()
+    codas: Tuple[str, ...] = ()
+
+
+@dataclass(frozen=True)
 class StressRules:
     """Declarative rules for primary word-stress placement.
 
@@ -491,6 +524,13 @@ class StressRules:
 
         A declared tuple replaces :attr:`diphthongs` for the transcription. An
         empty tuple makes every IPA vowel its own nucleus.
+    closed_hiatus : Optional[ClosedHiatus]
+        Written vowel pairs that are two nuclei where a following consonant
+        closes the syllable of the second letter (see
+        :class:`ClosedHiatus`). ``None`` (the default) leaves every listed
+        pair one nucleus. Both the bundled syllabifier and the grapheme
+        tokenizer read it, so the split vowel is a nucleus in the
+        transcription too, and not the glide of a vowel digraph.
     vowel_letters : Tuple[str, ...]
         The letters this orthography uses as syllable NUCLEI, for the bundled
         syllabifier. Left empty (the default) the splitter falls back to a
@@ -708,6 +748,7 @@ class StressRules:
     stress_mark: str = "ˈ"
     diphthongs: Tuple[str, ...] = ()
     ipa_diphthongs: Optional[Tuple[str, ...]] = None
+    closed_hiatus: Optional[ClosedHiatus] = None
     vowel_letters: Tuple[str, ...] = ()
     quantity_sensitive: bool = False
     superheavy_final_attracts: bool = True
