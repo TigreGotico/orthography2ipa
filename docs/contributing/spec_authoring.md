@@ -140,7 +140,7 @@ A key in `graphemes` must be a unit that the writing system treats as one symbol
 
 2. It spells one phonological unit: one segment or one syllable nucleus. This covers diphthongs (Finnish ⟨ai⟩), affricates (⟨dž⟩), prenasalized stops (Bantu ⟨mb⟩), clicks (⟨gc⟩) and aspirates (Urdu ⟨پھ⟩). It also covers geminates (⟨tt⟩ /tː/) and the letter-plus-diacritic units of an abjad or an abugida. A vowel sequence earns a key only when the language treats it as one unit for prosody or phonology.
 
-3. It blocks a wrong maximal-munch match. The tokenizer is greedy, so a key can earn its place when it defeats a wrong neighbour. Mirandese ⟨anh⟩ /aɲ/ exists because without it the nasal-vowel digraph ⟨an⟩ wins, and ⟨danho⟩ reads /dɐ̃u/. Say so in `notes`.
+3. It blocks a wrong maximal-munch match. The tokenizer is greedy, so a key can earn its place when it defeats a wrong neighbour. Scottish Gaelic ⟨ngh⟩ /n̪ˠɣ/ exists because without it the digraph ⟨ng⟩ /ŋk/ wins, and the ⟨h⟩ of lenited ⟨gh⟩ is left on its own. Say so in `notes`.
 
 A key that fails all three tests is noise. ⟨bl⟩→/bl/ fails because b+l already gives /bl/. Russian ⟨бь⟩→/bʲ/ fails because the engine already reads ь as /ʲ/. The tokenizer always takes the longest key that matches, so the order of the keys in the file has no effect on the match.
 
