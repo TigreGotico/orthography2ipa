@@ -176,7 +176,7 @@ The coda sibilant is alveolar (`festa` [ˈfestɐ]). ALiB gives 49 % alveolar in 
 
 ## Cearense (pt-BR-x-ce)
 
-Cearense here is the speech of Fortaleza. ALiB rates its /t d/ palatalisation as categorical (Battisti & Dornelles Filho 2015: 226), so `gente` is [ˈʒẽt͡ʃi]. The coda sibilant is alveolar "em qualquer contexto" (Marins & Margotti 2012: 257, quoting Jesus & Mota 2007), so `costas` is [ˈkostas].
+Cearense here is the speech of Fortaleza. ALiB rates its /t d/ palatalisation as categorical (Battisti & Dornelles Filho 2015: 226), so `gente` is [ˈʒẽt͡ʃi]. The coda sibilant is alveolar "em qualquer contexto" (Marins & Margotti 2012: 257, quoting Jesus & Mota 2007), so `costas` is [ˈkostɐs].
 
 | Rule id | Rule | Example |
 |:---|:---|:---|
