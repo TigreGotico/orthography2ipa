@@ -448,6 +448,32 @@ class ClosedHiatus:
 
 
 @dataclass(frozen=True)
+class FinalDiphthongs:
+    """Written diphthongs that end a word as one nucleus after a vowel.
+
+    Portuguese writes no acute on a tonic ⟨iu ui⟩ after a vowel:
+    "Prescinde-se do acento agudo nos ditongos tónicos/tônicos grafados iu e
+    ui, quando precedidos de vogal: distraiu, instruiu, pauis" (Acordo
+    Ortográfico 1990, Base X, 6.º). So distraiu is dis-tra-iu: the ⟨a⟩ before
+    the diphthong is a nucleus of its own, and ⟨ai⟩ is not a diphthong there.
+
+    Parameters
+    ----------
+    diphthongs : Tuple[str, ...]
+        The written diphthongs, lowercase (Portuguese ⟨iu ui⟩). The diphthong
+        is the last nucleus of the word, and a vowel letter stands before it.
+    finals : Tuple[str, ...]
+        Letters that may follow the diphthong at the end of the word
+        (Portuguese ⟨s⟩: pauis).
+
+    The split holds only where the diphthong is the stressed syllable, as the
+    stress rules place it over the split syllables.
+    """
+    diphthongs: Tuple[str, ...] = ()
+    finals: Tuple[str, ...] = ()
+
+
+@dataclass(frozen=True)
 class StressRules:
     """Declarative rules for primary word-stress placement.
 
@@ -531,6 +557,12 @@ class StressRules:
         pair one nucleus. Both the bundled syllabifier and the grapheme
         tokenizer read it, so the split vowel is a nucleus in the
         transcription too, and not the glide of a vowel digraph.
+    final_diphthongs : Optional[FinalDiphthongs]
+        Written diphthongs that end a word as one stressed nucleus after a
+        vowel (see :class:`FinalDiphthongs`). ``None`` (the default) lets the
+        vowel before the diphthong take its first letter as a glide. The
+        bundled syllabifier and the grapheme tokenizer read it, as they read
+        :attr:`closed_hiatus`.
     vowel_letters : Tuple[str, ...]
         The letters this orthography uses as syllable NUCLEI, for the bundled
         syllabifier. Left empty (the default) the splitter falls back to a
@@ -749,6 +781,7 @@ class StressRules:
     diphthongs: Tuple[str, ...] = ()
     ipa_diphthongs: Optional[Tuple[str, ...]] = None
     closed_hiatus: Optional[ClosedHiatus] = None
+    final_diphthongs: Optional[FinalDiphthongs] = None
     vowel_letters: Tuple[str, ...] = ()
     quantity_sensitive: bool = False
     superheavy_final_attracts: bool = True
