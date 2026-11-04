@@ -74,4 +74,4 @@ Danish loanwords keep plain velars and plain [a] where a native word would palat
 - Lockwood, W. B. *An Introduction to Modern Faroese*. Munksgaard, 1955.
 
 ---
-[← German](de-DE.md) · [Home](../index.md) · [Spanish →](es-ES.md)
+[← Regional Standard Dutch of the Netherlands](nl-NL-regional.md) · [Home](../index.md) · [Spanish →](es-ES.md)
