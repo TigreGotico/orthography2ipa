@@ -345,6 +345,16 @@ undeclared = dataclasses.replace(pt, stress=dataclasses.replace(pt.stress, ipa_d
 G2P("pt-PT", spec=undeclared).transcribe("proíbe")   # 'ˈpɾuibɨ'
 ```
 
+`closed_hiatus` splits a written vowel pair where a consonant closes the syllable of its second letter. Portuguese writes no acute on a tonic ⟨i u⟩ that forms a syllable with ⟨nh⟩ or with a following l, m, n, r or z (Acordo Ortográfico 1990, Base X, 2.º), so *rainha* is ra-i-nha and not rai-nha. The split holds only where the split-off vowel is stressed. The tokenizer reads the field too, so the ⟨ai⟩ of *rainha* is two graphemes and the ⟨i⟩ is a vowel, not a glide:
+
+```python
+pt.stress.closed_hiatus                  # ClosedHiatus(pairs=('ai', 'au', 'ei', 'eu', 'iu', 'oi', 'ui'), onsets=('nh',), codas=('l', 'm', 'n', 'r', 'z'))
+G2P("pt-PT").transcribe("rainha")        # 'ʁɐˈiɲɐ'
+G2P("pt-PT").transcribe("animais")       # 'ɐniˈmajʃ'
+undeclared = dataclasses.replace(pt, stress=dataclasses.replace(pt.stress, closed_hiatus=None))
+G2P("pt-PT", spec=undeclared).transcribe("rainha")   # 'ˈʁajɲɐ'
+```
+
 ## Lexicon overlay (sidecar `word_exceptions` at scale)
 
 A caller-registered lexicon extends `word_exceptions` to thousands of words, and [lexicon.md](../guide/lexicon.md) describes its contract.

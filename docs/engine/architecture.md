@@ -58,7 +58,7 @@ The stage turns the phoneme lattice into an allophone lattice. It needs the stre
 
 ### Stress and syllabification
 
-`stress.syllabify` is the bundled syllabifier, a splitter by vowel groups that maximises the onset. A spec that sets `constrain_onsets` maximises the onset only as far as the language allows. The allowed shapes come from `_OnsetJudge`, which reads the grapheme table of the spec through the sonority scale in `vowels.py`. A `stress.max_onset` cap in the spec limits the onset further. The shapes fit Germanic and Romance, so the flag is opt-in.
+`stress.syllabify` is the bundled syllabifier, a splitter by vowel groups that maximises the onset. A spec that sets `constrain_onsets` maximises the onset only as far as the language allows. The allowed shapes come from `_OnsetJudge`, which reads the grapheme table of the spec through the sonority scale in `vowels.py`. A `stress.max_onset` cap in the spec limits the onset further. A declared `stress.onset_clusters` list decides every complex onset in place of the shapes, so `pt-BR` divides *pasta* as `pas.ta` and *advogado* as `ad.vo.ga.do`. The shapes fit Germanic and Romance, so the flag is opt-in.
 
 Modern Greek leaves it off, because ⟨σμ κτ πτ γν μν βγ βδ⟩ all begin words and never split. The flag follows the `graphemes_base` edge, so a variety that uses a constrained table syllabifies it as its base does.
 

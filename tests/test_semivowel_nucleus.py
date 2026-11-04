@@ -117,14 +117,15 @@ def test_catalan_y_is_never_a_nucleus():
 
 
 @pytest.mark.parametrize("word,reading", [
-    # Wikipedia, Interlingue: "y is a consonant after a vowel or beginning a
-    # word before a vowel, otherwise is pronounced as i".
-    ("yo", "j"), ("loyal", "j"), ("system", "i"), ("type", "i"),
+    # Janotta 1929, Cosmoglotta 64, p. 152: "y vocalic es pronunciat quam
+    # german ü o frances u ... Pos un vocal e in comensa de un parol anc ante
+    # un vocal, y es consonant". The vowel is IPA [y], the consonant [j].
+    ("yo", "j"), ("loyal", "j"), ("system", "y"), ("type", "y"),
 ])
 def test_interlingue_y_reading(word, reading):
     out = transcribe(word, "ie")
     assert ("j" in out) == (reading == "j")
-    assert ("i" in out) == (reading == "i")
+    assert ("y" in out) == (reading == "y")
 
 
 @pytest.mark.parametrize("readings,role", [

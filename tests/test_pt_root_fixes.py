@@ -8,6 +8,7 @@ sets; the fixes live in the base ``roa-x-galaicopt`` / ``pt-PT-x-medieval``
 specs, the per-lect override tables, and the shared positional engine — never
 in per-word patches.
 """
+import re
 import unicodedata
 
 import pytest
@@ -117,7 +118,7 @@ def test_medieval_coda_nasalisation_and_stress():
 def test_gu_qu_digraph_only_before_front_vowels(code):
     assert "u" in _t(code, "agudo")          # a.gu.do — u is the stressed vowel
     assert "w" in _t(code, "água")           # á.gua — [ˈaɡwɐ]
-    assert "u" in _t(code, "legumes")        # le.gu.mes — pretonic u survives
+    assert re.search("[uũ]", _t(code, "legumes"))  # le.gu.mes — the u survives
     assert "w" in _t(code, "quatro")         # qua → [kwa]
     assert _bare(code, "aquele").count("k") == 1  # que → [k], silent u
 

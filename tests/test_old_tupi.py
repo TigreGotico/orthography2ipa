@@ -19,13 +19,13 @@ def segments(word):
     headwords, not just ⟨atatinga⟩. The claims below are about segments,
     not about that.
     """
-    return o2i.G2P("tpw").transcribe_word(word).replace("\u02c8", "")
+    return o2i.G2P("tpn").transcribe_word(word).replace("\u02c8", "")
 
 
 def test_the_six_vowels_use_the_open_mid_qualities():
     """The inventory is /a ɛ i ɔ u ɨ/ with matching nasals; ⟨y⟩ is /ɨ/, a
     seventeenth-century convention Navarro's orthography keeps."""
-    g = o2i.get("tpw").graphemes
+    g = o2i.get("tpn").graphemes
     assert g["y"] == ["ɨ"]
     assert g["e"][0] == "ɛ" and g["o"][0] == "ɔ"
     assert g["ã"] == ["ã"] and g["ỹ"] == ["ɨ̃"]
@@ -34,11 +34,11 @@ def test_the_six_vowels_use_the_open_mid_qualities():
 def test_the_acute_accent_is_stress_only():
     """⟨á é í ó ú⟩ mark the stressed syllable and carry no segmental value,
     so they read exactly as their unaccented counterparts."""
-    g = o2i.get("tpw").graphemes
+    g = o2i.get("tpn").graphemes
     for plain, marked in (("a", "á"), ("e", "é"), ("i", "í"),
                           ("o", "ó"), ("u", "ú"), ("y", "ý")):
         assert g[marked] == g[plain]
-    assert o2i.get("tpw").stress.default_position == -1
+    assert o2i.get("tpn").stress.default_position == -1
 
 
 def test_b_is_a_bilabial_fricative_and_x_is_postalveolar():

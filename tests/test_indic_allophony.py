@@ -86,7 +86,7 @@ def test_sanskrit_preserves_the_inherent_vowel(word, expected):
 
 def test_only_hindi_declares_schwa_deletion():
     """Neither Sanskrit nor Vedic carries a schwa-deletion rule…"""
-    for code in ("sa", "sa-x-vedic"):
+    for code in ("sa", "vsn"):
         ids = [r.id for r in get(code).allophone_rules]
         assert not [i for i in ids if i.startswith("HI_SCHWA")], code
     assert [r.id for r in get("hi").allophone_rules

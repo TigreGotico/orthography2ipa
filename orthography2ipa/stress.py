@@ -32,7 +32,8 @@ from __future__ import annotations
 import logging
 import unicodedata
 from collections import OrderedDict
-from typing import Dict, List, Optional, Sequence, Tuple
+from typing import (Collection, Dict, FrozenSet, List, Optional, Sequence,
+                    Tuple)
 
 from orthography2ipa.allophony import segment_ipa
 from orthography2ipa.phonetok import lower_str
@@ -41,13 +42,14 @@ from orthography2ipa.vowels import (
     SONORITY_FRICATIVE, SONORITY_GLIDE, SONORITY_LIQUID, SONORITY_NASAL,
     SONORITY_STOP,
     SONORITY_UNKNOWN, SEMIVOWEL_CONTEXTUAL, SEMIVOWEL_LETTERS,
-    SEMIVOWEL_NUCLEUS, is_basic_vowel_letter, is_ipa_vowel,
+    SEMIVOWEL_NUCLEUS, is_basic_vowel_letter, is_ipa_vowel, is_vowel_phone,
     is_labial_approximant, is_orthographic_vowel, is_affricate, is_glottal,
     is_lateral, is_palatal_glide, is_sibilant, is_voiced, place_class,
     semivowel_role, sonority_class)
 
 __all__ = [
     "syllabify",
+    "closed_hiatus_positions",
     "syllabify_for_mark",
     "syllabify_ipa",
     "syllable_weight",
@@ -265,7 +267,11 @@ def _capture_coda_liquids(
 #       everything below it: Arabic says one, so one it is. It is applied
 #       FIRST, before any well-formedness reasoning, because a cap the spec
 #       wrote cannot be argued out of by the engine.
-#   (b) the universal shapes below, read off the spec's own grapheme→IPA
+#   (b) the spec's own ``stress.onset_clusters``, when the spec declares
+#       them. The graphemes of a run are read as IPA through the spec's
+#       table, and the list decides every complex onset: Portuguese opens no
+#       syllable with ⟨st⟩ or ⟨dv⟩, which the shapes below license.
+#   (c) the universal shapes below, read off the spec's own grapheme→IPA
 #       table through :mod:`orthography2ipa.vowels`.
 #
 # An earlier revision had a third tier between them: onsets harvested from
@@ -368,6 +374,10 @@ class _OnsetJudge:
             if len(g) > 1 and not _is_vowel_char(g[0])
             and _is_vowel_char(g[-1]) and v
             and all(r and not any(_is_vowel_char(c) for c in r) for r in v))
+        #: The spec's own complex onsets, in IPA (``stress.onset_clusters``).
+        #: Declared, they decide every complex onset in place of the shapes.
+        self._onsets = frozenset(
+            spec.stress.onset_clusters if spec.stress else ())
         #: Verdicts, keyed by the consonant run asked about. The runs come
         #: from words the caller supplies, so the key space is unbounded and
         #: the cache is bounded to match.
@@ -487,6 +497,8 @@ class _OnsetJudge:
             return False    # coda-only segment — see the module comment
         if len(units) == 1:
             return True   # every language licenses a simple onset
+        if self._onsets:
+            return self._declared(units)
         if len(units) > self.MAX_MEMBERS:
             return False
         if any(self._is_geminate(u) for u in units):
@@ -497,6 +509,22 @@ class _OnsetJudge:
                 return True     # ⟨brj⟩ ⟨glj⟩ — Árnason 2011, ch. 5
             return self._appendix_on(units[0], units[1:])
         return self._two_member(units[0], units[1])
+
+    def _declared(self, units: List[str]) -> bool:
+        """Whether the graphemes *units* spell an onset the spec declares.
+
+        The shapes below license an /s/ + stop appendix and an obstruent +
+        /v/ onset for every language, and Ibero-Romance has neither: Spanish
+        and Portuguese ⟨pasta⟩ ⟨escola⟩ ⟨advogado⟩ split before the stop and
+        after the ⟨d⟩. A spec that declares ``stress.onset_clusters`` has
+        stated its inventory, so that list decides. A final glide rides on the
+        onset before it, as in :class:`_IpaOnsetJudge`.
+        """
+        last = self._segment(units[-1])
+        if last is not None and sonority_class(last) == SONORITY_GLIDE:
+            return len(units) == 2 or self.licit("".join(units[:-1]))
+        segments = [self._segment(u) for u in units]
+        return None not in segments and "".join(segments) in self._onsets
 
     # ---- the four shapes --------------------------------------------------
     def _two_member(self, first: str, second: str) -> bool:
@@ -802,7 +830,8 @@ def syllabify_for_mark(ipa: str, rules: StressRules) -> List[str]:
     return sylls
 
 
-def _split_nuclei(run: str, diphthongs: Sequence[str]) -> List[str]:
+def _split_nuclei(run: str, diphthongs: Sequence[str],
+                  hiatus: FrozenSet[int] = frozenset()) -> List[str]:
     """Split a vowel *run* into nuclei using the spec's *diphthongs*.
 
     Greedy longest-first: a run position that starts a listed sequence
@@ -810,6 +839,10 @@ def _split_nuclei(run: str, diphthongs: Sequence[str]) -> List[str]:
     own, so an empty *diphthongs* makes every vowel a nucleus. Merging the
     whole run, the behaviour of a spec that declares no diphthongs, is
     decided by :func:`syllabify` before this is reached.
+
+    *hiatus* holds offsets into *run* of letters that open a nucleus of
+    their own (:func:`closed_hiatus_positions`): no listed sequence is
+    consumed across one.
     """
     if len(run) < 2:
         return [run]
@@ -819,7 +852,8 @@ def _split_nuclei(run: str, diphthongs: Sequence[str]) -> List[str]:
     i = 0
     while i < len(run):
         for diph in ordered:
-            if lowered.startswith(diph, i):
+            if lowered.startswith(diph, i) and not any(
+                    i < h < i + len(diph) for h in hiatus):
                 nuclei.append(run[i:i + len(diph)])
                 i += len(diph)
                 break
@@ -848,6 +882,7 @@ def syllabify(
     max_onset: Optional[int] = None,
     semivowels: Optional[Dict[str, str]] = None,
     onset_graphemes: Sequence[str] = (),
+    hiatus: FrozenSet[int] = frozenset(),
 ) -> List[str]:
     """Split *word* into syllables by vowel groups.
 
@@ -880,6 +915,10 @@ def syllabify(
     *onset_graphemes* are the consonant graphemes that end in a vowel letter
     (Spanish ⟨qu gu⟩). With *diphthongs*, that letter stays in the onset
     before another vowel, so ⟨quieres⟩ is quie-res and ⟨acequia⟩ a-ce-quia.
+
+    *hiatus* holds the indices of letters of *word* that open a nucleus of
+    their own although a listed diphthong would take them
+    (:func:`closed_hiatus_positions`). Read with *diphthongs* only.
     """
     is_vowel_char = (lambda c: c.lower() in vowels) if vowels is not None else _is_vowel_char
     if not word:
@@ -888,7 +927,7 @@ def syllabify(
     judge = _judge_for(spec, max_onset)
     if diphthongs:
         sylls = _syllabify_with_diphthongs(word, nucleus, diphthongs,
-                                           onset_graphemes)
+                                           onset_graphemes, hiatus)
         if judge is not None:
             sylls = _rebalance_onsets(sylls, nucleus, judge)
         if coda_liquid_capture:
@@ -943,6 +982,7 @@ def _syllabify_with_diphthongs(
     nucleus: Sequence[bool],
     diphthongs: Sequence[str],
     onset_graphemes: Sequence[str] = (),
+    hiatus: FrozenSet[int] = frozenset(),
 ) -> List[str]:
     """:func:`syllabify` with a vowel run split into nuclei by *diphthongs*.
 
@@ -980,7 +1020,9 @@ def _syllabify_with_diphthongs(
                 nucleus[j] or unicodedata.combining(word[j])
                 or word[j] == _LENGTH):
             j += 1
-        for k, piece in enumerate(_split_nuclei(word[i:j], diphthongs)):
+        run_hiatus = frozenset(h - i for h in hiatus if i < h < j)
+        for k, piece in enumerate(_split_nuclei(word[i:j], diphthongs,
+                                                run_hiatus)):
             syllables.append((onset if k == 0 else "") + piece)
         onset = ""
         i = j
@@ -1022,6 +1064,18 @@ def _syllables_for(
                     type(plugin).__name__, word, exc)
     if spec is None and lang:
         spec = _spec_for(lang)
+    hiatus = (closed_hiatus_positions(word, spec) if spec is not None
+              else frozenset())
+    return _bundled_syllables(word, spec, diphthongs, hiatus)
+
+
+def _bundled_syllables(
+    word: str,
+    spec: Optional[LanguageSpec],
+    diphthongs: Sequence[str],
+    hiatus: FrozenSet[int] = frozenset(),
+) -> List[str]:
+    """The bundled splitter's division of *word*, read from *spec*."""
     # Read before the phonotactics guard below can drop the spec: which
     # letters are nuclei is the language's own statement and is independent
     # of whether its onset inventory has been checked.
@@ -1046,7 +1100,59 @@ def _syllables_for(
         max_onset = spec.stress.max_onset
     return syllabify(word, vowels=vowels, diphthongs=diphthongs, spec=spec,
                      max_onset=max_onset, semivowels=semivowels,
-                     onset_graphemes=onset_graphemes)
+                     onset_graphemes=onset_graphemes, hiatus=hiatus)
+
+
+def _closed_hiatus_candidates(
+    word: str,
+    rules: StressRules,
+    graphemes: Collection[str],
+) -> List[int]:
+    """Indices of the letters of *word* that ``rules.closed_hiatus`` splits
+    from the vowel before them, before the stress is known.
+
+    The letter and the vowel before it spell one of the rule's ``pairs``,
+    and the letters after it spell one of its ``onsets``, or one of its
+    ``codas`` that closes the syllable: no vowel letter follows it, and it
+    does not start a longer grapheme of *graphemes* (Portuguese ⟨lh rr⟩).
+    """
+    rule = rules.closed_hiatus
+    lowered = word.lower()
+    found: List[int] = []
+    for k in range(1, len(lowered)):
+        if lowered[k - 1:k + 1] not in rule.pairs:
+            continue
+        rest = lowered[k + 1:]
+        if any(rest.startswith(onset) for onset in rule.onsets) or (
+                rest[:1] in rule.codas
+                and not (len(rest) > 1 and is_orthographic_vowel(rest[1]))
+                and not any(len(g) > 1 and rest.startswith(g)
+                            for g in graphemes)):
+            found.append(k)
+    return found
+
+
+def closed_hiatus_positions(word: str, spec: LanguageSpec) -> FrozenSet[int]:
+    """Indices of the letters of *word* that open a stressed nucleus of their
+    own under the spec's ``stress.closed_hiatus``.
+
+    A candidate (:func:`_closed_hiatus_candidates`) is kept only when it
+    starts the syllable the stress rules stress, over the division that
+    splits every candidate. Portuguese ⟨rainha⟩ divides ra-i-nha and the
+    paroxytone default stresses the ⟨i⟩, so it is kept; the ⟨i⟩ of
+    ⟨ruindade⟩ is not stressed, and that word keeps its diphthong
+    (Acordo Ortográfico 1990, Base X, 2.º and Base XIV, 1.º).
+    """
+    rules = spec.stress
+    if rules is None or rules.closed_hiatus is None:
+        return frozenset()
+    found = _closed_hiatus_candidates(word, rules, spec.graphemes)
+    if not found:
+        return frozenset()
+    sylls = _bundled_syllables(word, spec, rules.diphthongs, frozenset(found))
+    stressed = detect_stress(word, rules, syllables=sylls)
+    start = sum(len(syll) for syll in sylls[:stressed])
+    return frozenset(k for k in found if k == start)
 
 
 def _spec_for(lang: str) -> Optional[LanguageSpec]:
@@ -1640,6 +1746,10 @@ def apply_stress_mark(
 #: Length mark; a nucleus carrying it is long.
 _LENGTH = "ː"
 
+#: Glide letters. After a vowel letter in one atom, a glide is the second half
+#: of a diphthong (``aj``, ``aw``), unless a vowel follows it as its nucleus.
+_OFFGLIDES = frozenset("jwɥɰ")
+
 LIGHT, HEAVY, SUPERHEAVY = "light", "heavy", "superheavy"
 
 
@@ -1751,6 +1861,16 @@ def syllabify_ipa(
     return syllables
 
 
+def _holds_diphthong(segment: str) -> bool:
+    """Whether one segment holds a vowel letter followed by a second vowel
+    letter, or by a glide letter that no vowel letter follows."""
+    letters = [c for c in segment if not unicodedata.combining(c)]
+    vowel = [is_ipa_vowel(c) or is_vowel_phone(c) for c in letters]
+    vowel.append(False)
+    return any(vowel[i] and (vowel[i + 1] or (c in _OFFGLIDES and not vowel[i + 2]))
+               for i, c in enumerate(letters[1:]))
+
+
 def syllable_weight(syllable: str, atoms: Sequence[str] = ()) -> str:
     """Classify one IPA syllable as ``light``, ``heavy`` or ``superheavy``.
 
@@ -1783,8 +1903,14 @@ def syllable_weight(syllable: str, atoms: Sequence[str] = ()) -> str:
     nucleus = segs[start:end]
     coda = segs[end:]
 
-    # A long vowel or a diphthong is a branching (heavy) nucleus.
-    long_vowel = any(_LENGTH in s for s in nucleus) or len(nucleus) > 1
+    # A long vowel or a diphthong is a branching (heavy) nucleus. A diphthong
+    # the spec declares as one atom is one segment that holds a vowel letter
+    # and, next to it, a second vowel letter (``ai``, ``œʏ``) or a glide letter
+    # with no vowel after it (``aj``, ``aw``). The vowel table also lists the
+    # combining tilde and the non-syllabic mark, which are not vowel letters
+    # of their own, and it leaves out ``ʏ``, which the feature table holds.
+    long_vowel = (any(_LENGTH in s for s in nucleus) or len(nucleus) > 1
+                  or any(_holds_diphthong(s) for s in nucleus))
 
     if long_vowel and coda:
         return SUPERHEAVY
