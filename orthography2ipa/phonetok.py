@@ -2727,12 +2727,13 @@ class PhonetokTokenizer:
         (U+0303 emitted by a coda ⟨m/n⟩ → nasalised-vowel slot) is only a
         valid segment when it attaches to a preceding *oral vowel or glide*.
         If the phoneme it would land on is a consonant (e.g. a ⟨gu⟩→[ɡ]
-        vowel-drop artefact: *algum* → [ɡ̃]) or an already-nasalised nucleus
-        (double tilde: *inn* → [ĩ̃]), the tilde would produce invalid IPA, so
-        that branch is dropped and the slot's oral fallback (the coda nasal
-        as a plain consonant) wins instead. This suppresses only the invalid
-        tilde-on-consonant / double-tilde; every branch that lands on a vowel
-        is untouched, so all pre-existing behaviour is byte-identical.
+        vowel-drop artefact: *algum* → [ɡ̃]), the tilde would produce invalid
+        IPA, so that branch is dropped and the slot's oral fallback (the coda
+        nasal as a plain consonant) wins instead. When the segment before it
+        already ends in the tilde (the nasal diphthong of Portuguese
+        *cãimbra* [ˈkɐ̃j̃bɾɐ]), the coda nasal still only marks nasality, which
+        is already written: the branch is kept as an empty segment, so no
+        second tilde stacks and no oral consonant appears.
 
         A valid tilde branch is not appended as its own trailing segment:
         :func:`_splice_nasal_tilde` inserts it into the carrier segment
@@ -2750,6 +2751,9 @@ class PhonetokTokenizer:
                         if seg:
                             tail = _carrier_tail(seg)
                             break
+                    if tail == _NASAL_TILDE:
+                        new_beam.append((segs + [""], sc + cost))
+                        continue
                     if tail not in _NASAL_CARRIERS:
                         continue
                     new_beam.append((_splice_nasal_tilde(segs), sc + cost))
