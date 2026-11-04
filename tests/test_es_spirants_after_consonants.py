@@ -90,8 +90,8 @@ def test_cross_word_spirant(phrase, expected):
 @pytest.mark.parametrize("phrase,expected", [
     ("un día", "un ˈdia"),
     ("el domingo", "el doˈminɡo"),
-    ("un grado", "un ˈɡɾaðo"),
-    ("con gusto", "kon ˈɡusto"),
+    ("un grado", "uŋ ˈɡɾaðo"),
+    ("con gusto", "koŋ ˈɡusto"),
 ])
 def test_cross_word_stop_after_nasal_and_d_after_l(phrase, expected):
     assert G2P("es-ES").transcribe(phrase) == expected
