@@ -204,7 +204,7 @@ def test_empty_spec_does_not_claim_to_inherit_from_its_parent(code):
     notes tell the reader it therefore uses the parent's system is describing
     a mechanism that does not exist: it silently transcribes every input to
     the empty string. Either declare the ``graphemes_base`` edge, or say in
-    the notes that the table is empty. cbk-PH-x-cavite and cbk-x-ternate both
+    the notes that the table is empty. cbk-PH-x-cavite and cbk-PH-x-ternate both
     made this claim against cbk-PH and returned silence for every word.
 
     A negated sentence ("nothing is inherited from cbk-PH") is the honest
