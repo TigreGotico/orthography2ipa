@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.115.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.115.1a1) (2026-11-04)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.115.0a1...7.115.1a1)
+
+**Merged pull requests:**
+
+- fix\(ci\): time out a stalled gold download and cap benchmark-regression [\#2027](https://github.com/TigreGotico/orthography2ipa/pull/2027) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.115.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.115.0a1) (2026-11-04)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.114.31a1...7.115.0a1)
@@ -388,10 +396,6 @@
 ## [7.113.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.113.1a1) (2026-11-03)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.113.0a1...7.113.1a1)
-
-**Merged pull requests:**
-
-- fix: match IPA atoms longest-first in any order [\#1886](https://github.com/TigreGotico/orthography2ipa/pull/1886) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.113.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.113.0a1) (2026-11-03)
 
