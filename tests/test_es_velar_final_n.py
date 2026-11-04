@@ -40,3 +40,27 @@ def test_word_internal_n_before_vowel_stays_alveolar(code):
 @pytest.mark.parametrize("code", ["es-ES", "es-CO", "es-MX", "es-AR"])
 def test_non_velarizing_varieties_keep_n(code):
     assert G2P(code).transcribe("pan") == "ˈpan"
+
+
+# Before a consonant of the next word the nasal takes that consonant's place.
+# Lipski (1986, pp. 146-147): word-final preconsonantal /n/ follows "the normal
+# process of homorganic assimilation of nasal consonants to following
+# obstruents". Navarro Tomás (1918, § 87, p. 66): "la n final de una palabra
+# anterior se pronuncia también m" before p and b: un buen baile [um bwem
+# baile], en pie [em pjé].
+@pytest.mark.parametrize("code", VELARIZING)
+@pytest.mark.parametrize("text, expected", [
+    ("un peso", "um ˈpeso"),
+    ("en pie", "em ˈpje"),
+    ("un buen baile", "um ˈbwem ˈbai̯le"),
+    ("en la casa", "en la ˈkasa"),
+    ("en chile", "en ˈtʃile"),
+    ("un gato", "uŋ ˈɡato"),
+])
+def test_word_final_n_before_a_consonant_takes_its_place(code, text, expected):
+    assert G2P(code).transcribe(text) == expected
+
+
+@pytest.mark.parametrize("code", VELARIZING)
+def test_word_final_n_before_a_pause_stays_velar(code):
+    assert G2P(code).transcribe("tren. Pero") == "ˈtɾeŋ ˈpeɾo"
