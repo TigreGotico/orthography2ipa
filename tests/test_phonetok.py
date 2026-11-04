@@ -453,3 +453,43 @@ class TestPositionalOnlyGraphemes:
             t for t in tokens if t.kind == TokenKind.GRAPHEME
         ]
         assert [t.grapheme for t in grapheme_tokens] == ["c", "en"]
+
+
+class TestPrevocalicGlideBackoff:
+    """A multigraph listed in ``prevocalic_glide_backoff`` gives its last
+    letter to the next syllable when a vowel letter follows, and stays whole
+    before a consonant or at the end of the word."""
+
+    @staticmethod
+    def _tok(backoff, graphemes=None) -> PhonetokTokenizer:
+        spec = LanguageSpec(
+            code="test-glide-backoff",
+            name="Test Glide Backoff",
+            family="Test",
+            script="Latin",
+            graphemes=graphemes or {
+                "a": ["a"], "e": ["ə"], "k": ["k"], "w": ["w"], "ew": ["ɛw"],
+            },
+            allophones={},
+            prevocalic_glide_backoff=backoff,
+        )
+        return PhonetokTokenizer(spec)
+
+    def test_before_a_vowel_letter_the_glide_starts_the_next_grapheme(self):
+        tok = self._tok(("ew",))
+        assert tok.graphemes("kewa") == ["k", "e", "w", "a"]
+
+    def test_before_a_consonant_or_word_end_the_multigraph_is_kept(self):
+        tok = self._tok(("ew",))
+        assert tok.graphemes("kewk") == ["k", "ew", "k"]
+        assert tok.graphemes("kew") == ["k", "ew"]
+
+    def test_an_unlisted_multigraph_is_kept(self):
+        assert self._tok(()).graphemes("kewa") == ["k", "ew", "a"]
+
+    def test_the_match_ignores_case(self):
+        assert self._tok(("EW",)).graphemes("KEWA") == ["k", "e", "w", "a"]
+
+    def test_no_backoff_when_a_part_has_no_reading(self):
+        tok = self._tok(("ew",), {"a": ["a"], "k": ["k"], "w": ["w"], "ew": ["ɛw"]})
+        assert tok.graphemes("kewa") == ["k", "ew", "a"]

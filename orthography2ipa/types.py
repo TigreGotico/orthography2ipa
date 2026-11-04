@@ -527,9 +527,11 @@ class StressRules:
         :attr:`default_position` puts the stress on a syllable that lies
         wholly inside a listed prefix, the stress moves to the first syllable
         after the prefix; a word that is the prefix alone keeps it. The stress
-        never moves onto a final syllable that ends in a vowel letter, so an
-        unprefixed disyllable with a final schwa (Limburgish ⟨geve⟩,
-        ⟨beste⟩) keeps its default. Written accents and the ending lists
+        never moves onto a final syllable that ends in a vowel letter. This
+        guards against a false match on the spelling, not a claim about the
+        language: an unprefixed disyllable with a final schwa (Limburgish
+        ⟨geve⟩, ⟨beste⟩) starts with the letters of a prefix and keeps its
+        default. Written accents and the ending lists
         still win. The match is on the lowercased spelling only, so a word
         that is not prefixed but starts with the same letters moves too.
         Empty (the default) leaves every spec unchanged.
@@ -1904,6 +1906,7 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "phoible_id": InheritanceMode.OWN_ONLY,
     "wals_code": InheritanceMode.OWN_ONLY,
     "trailing_vowel_axis_digraphs": InheritanceMode.OWN_ONLY,
+    "prevocalic_glide_backoff": InheritanceMode.OWN_ONLY,
     "sandhi_rules": InheritanceMode.OVERLAY_BY_ID,
     "allophone_rules": InheritanceMode.OVERLAY_BY_ID,
     "allophone_passes": InheritanceMode.NOT_INHERITED,
@@ -2409,6 +2412,20 @@ class LanguageSpec:
     (``grapheme[0]``) reading — German ⟨eu äu⟩ before ⟨ch⟩ still take the
     ach-Laut off the back vowel ⟨u⟩, and Modern Irish ⟨ae⟩ still leaves the
     following consonant broad, both flanked by their opening letter's axis.
+    Default empty leaves every spec byte-for-byte unaffected."""
+
+    prevocalic_glide_backoff: Tuple[str, ...] = ()
+    """Multigraphs whose last letter is a glide that opens the next syllable
+    when a vowel letter follows (matched case-insensitively).
+
+    Maximal munch takes a vowel + glide sign such as Limburgish ⟨ew⟩ whole.
+    Before a vowel letter the glide belongs to the next syllable instead:
+    ⟨geweun⟩ is ⟨g·e·w·eu·n⟩, not ⟨g·ew·eu·n⟩. For a listed multigraph the
+    tokenizer then backs off to the multigraph without its last letter, when
+    both that shorter key and the last letter are in the grapheme table.
+    Before a consonant or at the end of a word the multigraph is kept.
+
+    This is an opt-in per spec: a multigraph that is not listed is never cut.
     Default empty leaves every spec byte-for-byte unaffected."""
 
     allophone_rules: Tuple["AllophoneRule", ...] = ()

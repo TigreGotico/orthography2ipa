@@ -184,3 +184,30 @@ def test_word_final_h_keeps_the_e_short(word):
 def test_word_final_e_is_schwa(word):
     out = LI.transcribe_word(word)
     assert _vowels(out) == ["ə"], out
+
+
+# ⟨ew⟩ before a vowel. Spelling 2003, printed p. 10, lists ⟨ew⟩ as a vowel +
+# glide sign ('met naslag (ë, è, j of w)'). Printed p. 12, §6 g: these signs
+# stay 'binnen de lettergreepgrens', and two syllables take a glide letter
+# ('–ieje'). Printed p. 13, §6 h, puts that ⟨j⟩ at a syllable edge between two
+# vowels. The quotes name ⟨j⟩; reading ⟨w⟩ the same way is an analogy. Printed
+# p. 27 writes geweu\n with the tone sign after ⟨eu⟩, the stressed nucleus.
+# The words: geweu\n p. 27, bewaar p. 29, eweg p. 30.
+
+@pytest.mark.parametrize("word, tokens", [
+    ("geweu\\n", ["g", "e", "w", "eu", "\\", "n"]),
+    ("bewaar", ["b", "e", "w", "aa", "r"]),
+    ("eweg", ["e", "w", "e", "g"]),
+])
+def test_ew_before_a_vowel_gives_its_glide_to_the_next_syllable(word, tokens):
+    assert LI._tokenizer.graphemes(word) == tokens
+
+
+def test_ew_alone_stays_one_sign():
+    assert LI._tokenizer.graphemes("ew") == ["ew"]
+
+
+@pytest.mark.parametrize("word", ["geweu\\n", "bewaar"])
+def test_the_prefix_before_a_glide_is_schwa(word):
+    out = LI.transcribe_word(word)
+    assert out.split("ˈ")[0] in ("ʝə", "bə") and out.split("ˈ")[1][0] == "w", out
