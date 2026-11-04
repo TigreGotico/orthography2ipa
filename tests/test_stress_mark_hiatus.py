@@ -41,7 +41,7 @@ def _ipa(lang: str, word: str) -> str:
 SILENT_H_HIATUS = [
     ("ahorrábamos", "aoˈraβamos"),    # a-ho-RRÁ-ba-mos
     ("ahí", "aˈi"),                   # a-HÍ
-    ("ahínco", "aˈinko"),             # a-HÍN-co
+    ("ahínco", "aˈiŋko"),             # a-HÍN-co
     ("prohíbe", "pɾoˈiβe"),           # pro-HÍ-be
     ("rehúso", "reˈuso"),             # re-HÚ-so
     ("vahído", "baˈiðo"),             # va-HÍ-do

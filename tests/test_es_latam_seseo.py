@@ -19,7 +19,7 @@ FIXED = ["es-MX", "es-MX-x-costa", "es-GT", "es-NI", "es-PA", "es-PE",
 @pytest.mark.parametrize("code", FIXED)
 @pytest.mark.parametrize("word,expected", [
     ("cielo", "ˈsjelo"),
-    ("cinco", "ˈsinko"),
+    ("cinco", "ˈsiŋko"),
 ])
 def test_c_before_front_vowel_is_s(code, word, expected):
     assert G2P(code).transcribe_word(word) == expected

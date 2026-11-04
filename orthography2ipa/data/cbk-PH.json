@@ -312,6 +312,12 @@
       "notes": "NOT ASSERTED for this creole, for the same reason as ES_TRILL_AFTER_CORONAL above: nasal place assimilation before a labial is cited for Castilian (Navarro Tomas 1977; Hualde 2005 ch. 3), not for this creole's phonology. Disabled by empty 'phonemes'; re-enable with a citation."
     },
     {
+      "id": "ES_NASAL_VELAR",
+      "phonemes": [],
+      "surface": "ŋ",
+      "notes": "NOT ASSERTED for this creole, for the same reason as ES_NASAL_LABIAL: nasal place assimilation before a velar is cited for Castilian (Navarro Tomás 1918, § 133, pp. 111-112), not for this creole's phonology. Disabled by empty 'phonemes'; re-enable with a citation."
+    },
+    {
       "id": "ES_SPIRANT_B",
       "phonemes": [],
       "surface": "β",

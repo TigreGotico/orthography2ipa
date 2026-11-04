@@ -69,7 +69,7 @@ def test_spirant_after_s_and_r(word, segment):
     ("toldo", "ˈtoldo"),
     ("conde", "ˈkonde"),
     ("mundo", "ˈmundo"),
-    ("tengo", "ˈtenɡo"),
+    ("tengo", "ˈteŋɡo"),
 ])
 def test_stop_after_nasal_and_d_after_l(word, expected):
     assert G2P("es-ES").transcribe_word(word) == expected
@@ -89,7 +89,7 @@ def test_cross_word_spirant(phrase, expected):
 
 @pytest.mark.parametrize("phrase,expected", [
     ("un día", "un ˈdia"),
-    ("el domingo", "el doˈminɡo"),
+    ("el domingo", "el doˈmiŋɡo"),
     ("un grado", "uŋ ˈɡɾaðo"),
     ("con gusto", "koŋ ˈɡusto"),
 ])
