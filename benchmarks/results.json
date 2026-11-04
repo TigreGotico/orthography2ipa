@@ -10957,7 +10957,7 @@
   "oracle_scored_words": 624
  },
  {
-  "lang": "nl",
+  "lang": "nl-NL",
   "dataset": "ipa_childes",
   "n": 8108,
   "per": 0.2137,
@@ -10979,7 +10979,7 @@
   "oracle_scored_words": 8108
  },
  {
-  "lang": "nl",
+  "lang": "nl-NL",
   "dataset": "ipadict",
   "n": 117869,
   "per": 0.1767,
@@ -11001,7 +11001,7 @@
   "oracle_scored_words": 117869
  },
  {
-  "lang": "nl",
+  "lang": "nl-NL",
   "dataset": "vox_communis",
   "n": 25904,
   "per": 0.2706,
@@ -11023,7 +11023,7 @@
   "oracle_scored_words": 25904
  },
  {
-  "lang": "nl",
+  "lang": "nl-NL",
   "dataset": "wikipron",
   "n": 45872,
   "per": 0.0902,

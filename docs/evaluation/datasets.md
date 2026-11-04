@@ -322,7 +322,7 @@ A file for which the Credits name no source is `machine-generated`, marked as un
 | `es-MX` | `es_MX.txt` | machine-generated | The same script. The file is near-identical to `es_ES`, so the two rows are not independent evidence. |
 | `fa` | `fa.txt` | machine-generated | Wiktionary, [PersPred](http://perspred.cnrs.fr/perspred-project) and "a great deal of guesswork". The README calls it "extremely experimental", so an improvement against this row is no evidence about Persian. |
 | `fi` | `fi.txt` | machine-generated | [prosodic1b](https://github.com/jsfalk/prosodic1b), a rule-based tool, over the Kotus word list, GPL 2.0. |
-| `nl` | `nl.txt` | machine-generated | Instituut voor de Nederlandse Taal, CC BY. The README says that "no manual correction or revision has been done". |
+| `nl-NL` | `nl.txt` | machine-generated | Instituut voor de Nederlandse Taal, CC BY. The README says that "no manual correction or revision has been done". |
 | `or` | `or.txt` | machine-generated | [OdiaWikimedia Converter](https://github.com/OdiaWikimedia/Converter/tree/master/IPA-Romanization) over Wikimedia dumps. |
 | `vi` | `vi_N.txt` | machine-generated | The [vPhon](https://github.com/kirbyj/vPhon) converter over the word list of Ho Ngoc Duc. Northern (Hanoi) is the standard that the `vi` spec targets. |
 | `nb` | `nb.txt` | machine-generated | The generation method is not documented. A credit for correcting and updating the file is not evidence of expert authorship. |
@@ -464,7 +464,7 @@ The [IPA-CHILDES dataset card](https://huggingface.co/datasets/phonemetransforme
 | `is` | `is-IS` | `phonemizer` (espeak-ng), `is` | espeak-derived |
 | `it-IT` | `it-IT` | `phonemizer` (espeak-ng), `it` | espeak-derived |
 | `nb` | `nb-NO` | `phonemizer` (espeak-ng), `nb` | espeak-derived |
-| `nl` | `nl-NL` | `phonemizer` (espeak-ng), `nl` | espeak-derived |
+| `nl-NL` | `nl-NL` | `phonemizer` (espeak-ng), `nl` | espeak-derived |
 | `pl` | `pl-PL` | `phonemizer` (espeak-ng), `pl` | espeak-derived |
 | `pt-BR` | `pt-BR` | `phonemizer` (espeak-ng), `pt-br` | espeak-derived |
 | `pt-PT` | `pt-PT` | `phonemizer` (espeak-ng), `pt` | espeak-derived |

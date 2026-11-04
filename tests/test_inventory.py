@@ -281,13 +281,13 @@ KNOWN_DEAD_RULES = {
     # grapheme table this spec is deliberately missing; revisit once yej gains
     # a sourced Hebrew-abjad grapheme table.
     "yej": {"EL_S_VOICING", "EL_GAMMA_FRONTING"},
-    # vls (West Flemish) declares parent="nl" with its own "graphemes": {} to
-    # inherit nl's table wholesale, but (pre-existing, unrelated to the
+    # vls (West Flemish) declares parent="nl-NL" with its own "graphemes": {} to
+    # inherit nl-NL's table wholesale, but (pre-existing, unrelated to the
     # Germanic beat-espeak campaign that added these rules) that inheritance
     # does not actually populate the plain vowel letters a/e/i/o/u for this
     # spec -- G2P('vls').transcribe(...) already returns empty output for
     # ordinary words before and after this change. With no 'a'/'e'/'i'/'o'/'u'
-    # slot at all, the open-syllable-lengthening rules inherited from nl can
+    # slot at all, the open-syllable-lengthening rules inherited from nl-NL can
     # never fire here.
     # Same pre-existing "graphemes": {} inheritance gap accounts for the
     # three rules the beat-espeak Dutch wave added: no 'g' slot means
@@ -301,7 +301,7 @@ KNOWN_DEAD_RULES = {
             "NL_HIGH_TENSE_LENGTHENING_BEFORE_R_Y"},
     # Afrikaans has no /z/ (Donaldson, *A Grammar of Afrikaans*, Mouton de
     # Gruyter 1993, ch. 1: ⟨z⟩ is not part of the inventory, and ⟨s⟩ is
-    # voiceless everywhere), so the /z/ member of nl's coda-devoicing series
+    # voiceless everywhere), so the /z/ member of nl-NL's coda-devoicing series
     # has no target here. The other members are live.
     "af": {"NL_CODA_DEVOICE_Z"},
     # pnb-PK (Shahmukhi abjad, no inherent vowel): the inherent-vowel half

@@ -52,7 +52,7 @@ def _warn_unknown_variant(code: str, resolved: str, stacklevel: int) -> None:
 # Private-use subtags (e.g. ``ast-PT-x-rionor``) always use this table.
 _ALIASES: Dict[str, str] = {
     "por": "pt-PT", "eng": "en-GB", "spa": "es-ES", "fra": "fr-FR", "deu": "de-DE",
-    "ita": "it-IT", "nld": "nl", "swe": "sv", "dan": "da", "nor": "no",
+    "ita": "it-IT", "nld": "nl-NL", "swe": "sv", "dan": "da", "nor": "no",
     "rus": "ru", "ukr": "uk", "ara": "ar", "fas": "fa", "hin": "hi",
     "zho": "zh", "jpn": "ja", "kor": "ko", "eus": "eu", "cat": "ca",
     "glg": "gl-ES", "oci": "oc", "tur": "tr", "fin": "fi", "ell": "el",
@@ -264,6 +264,9 @@ _RENAMED: Dict[str, str] = {
     "cbk-zam":              "cbk-PH",
     "cbk-x-cavite":         "cbk-PH-x-cavite",
     "cbk-x-ternate":        "cbk-PH-x-ternate",
+    # Netherlands Dutch is the Dutch standard spec, keyed by its region like
+    # ``pt-PT`` and ``gl-ES``.
+    "nl":                   "nl-NL",
     # Keys that were not well-formed BCP 47 (RFC 5646 section 2.1): a private-use
     # subtag longer than 8 characters, or a subtag after the script that is
     # neither a region nor a variant.

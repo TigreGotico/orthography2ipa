@@ -17,7 +17,7 @@ The specs state the rule where the literature has it, and leave it out elsewhere
 | Language | Code | Quality tier | Word-final rule in the spec | Spec output |
 |:---|:---:|:---|:---|:---|
 | German | `de-DE` | research | Yes, on ⟨b d g v⟩ | `Tag` `ˈtak` |
-| Dutch | `nl` | research | Yes, on ⟨b d g v z⟩, and ⟨g⟩ also before a voiceless obstruent (`NL_CODA_DEVOICE_G`) | `dag` `ˈdɑx`, `hond` `ˈɦɔnt` |
+| Dutch | `nl-NL` | research | Yes, on ⟨b d g v z⟩, and ⟨g⟩ also before a voiceless obstruent (`NL_CODA_DEVOICE_G`) | `dag` `ˈdɑx`, `hond` `ˈɦɔnt` |
 | Afrikaans | `af` | research | Yes, on ⟨b d v z⟩ | `hond` `ˈɦɔnt` |
 | Swedish | `sv` | research | No. The spec notes state that Swedish keeps final /b d ɡ/ | `god` `ˈɡuːd` |
 | Norwegian (Bokmål) | `nb` | research | No | `dag` `ˈdɑːɡ` |
@@ -26,11 +26,11 @@ The specs state the rule where the literature has it, and leave it out elsewhere
 | English | `en-GB`, `en-US` | research | No | `dog` `ˈdɒɡ` (en-GB) |
 | Yiddish | `yi` | research | No | `טאָג` `ˈtɔɡ` |
 
-The `af` spec states its own rule, because positional rules do not pass from `nl` to `af` through the parent link.
+The `af` spec states its own rule, because positional rules do not pass from `nl-NL` to `af` through the parent link.
 
 ### German and Dutch consonants
 
-| Feature | German (`de-DE`) | Dutch (`nl`) |
+| Feature | German (`de-DE`) | Dutch (`nl-NL`) |
 |:---|:---:|:---:|
 | ⟨g⟩ | [ɡ] in the onset, [k] in the coda | [ɣ] in the onset, [x] in the coda (fricatives) |
 | ⟨h⟩ | [h] | [ɦ] (breathy) |
@@ -76,7 +76,7 @@ Dutch has a vowel system with contrasts of length and quality (Booij 1995, Gusse
 | o | oo | [ɔ] | [oː] | `bof` [bɔf] | `boot` [boːt] |
 | u | uu | [ʏ] | [yː] | `bus` [bʏs] | `buut` [byːt] |
 
-The other vowels are ⟨eu⟩ [øː], ⟨oe⟩ [uː], ⟨ui⟩ [œy], ⟨ij⟩ and ⟨ei⟩ [ɛi], and ⟨au⟩ and ⟨ou⟩ [ɑu]. The `nl` spec writes ⟨ie uu oe⟩ without a length mark, so it gives `ˈbit` for `biet`, `ˈbyt` for `buut` and `ˈbuk` for `boek`. Its other values agree with the table, as in `ˈkaːs`, `ˈrøːs` for `reus` and `ˈʋɛin` for `wijn`.
+The other vowels are ⟨eu⟩ [øː], ⟨oe⟩ [uː], ⟨ui⟩ [œy], ⟨ij⟩ and ⟨ei⟩ [ɛi], and ⟨au⟩ and ⟨ou⟩ [ɑu]. The `nl-NL` spec writes ⟨ie uu oe⟩ without a length mark, so it gives `ˈbit` for `biet`, `ˈbyt` for `buut` and `ˈbuk` for `boek`. Its other values agree with the table, as in `ˈkaːs`, `ˈrøːs` for `reus` and `ˈʋɛin` for `wijn`.
 
 ### Afrikaans
 

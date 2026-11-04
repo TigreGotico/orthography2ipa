@@ -496,15 +496,18 @@ class TestDutch:
         """<oo> is the long /oː/ (e.g., *boot*, *roos*)."""
         _assert_first(_grapheme(self._spec, "oo"), "oː", label="nl-NL oo")
 
-    def test_uu_long(self):
-        """<uu> is the long /yː/ (e.g., *muur*, *uur*)."""
-        _assert_first(_grapheme(self._spec, "uu"), "yː", label="nl-NL uu")
+    def test_uu_tense_short(self):
+        """<uu> is the tense but short /y/ (e.g., *buut*, *muur*); it lengthens
+        only before /r/ (Booij 1995, ch. 2; Gussenhoven 1999)."""
+        _assert_first(_grapheme(self._spec, "uu"), "y", label="nl-NL uu")
 
     # --- Special digraphs ---
 
     def test_ie_is_high_front(self):
-        """<ie> → /iː/ (e.g., *dier*, *mier*); distinct from short /ɪ/."""
-        _assert_first(_grapheme(self._spec, "ie"), "iː", label="nl-NL ie")
+        """<ie> → tense but short /i/ (e.g., *biet*, *dier*), distinct from lax
+        /ɪ/; it lengthens only before /r/ (Booij 1995, ch. 2; Gussenhoven
+        1999)."""
+        _assert_first(_grapheme(self._spec, "ie"), "i", label="nl-NL ie")
 
     def test_oe_is_high_back(self):
         """<oe> → /u/ (e.g., *boek*, *moeder*); the Dutch spelling of /u/."""
@@ -588,13 +591,13 @@ class TestDutch:
 
 
 class TestDutchBeatEspeakWave:
-    """Booij 1995-cited classes added by the beat-espeak Dutch wave (bare
-    ``nl`` spec: compound-final secondary stress, regressive devoicing
+    """Booij 1995-cited classes added by the beat-espeak Dutch wave
+    (``nl-NL`` spec: compound-final secondary stress, regressive devoicing
     assimilation, unstressed tense ⟨i⟩)."""
 
     def _t(self, word):
         from orthography2ipa import G2P
-        return G2P("nl").transcribe(word)
+        return G2P("nl-NL").transcribe(word)
 
     def test_compound_final_secondary_stress_unreduced(self):
         """⟨berg⟩/⟨veld⟩/⟨kerk⟩/⟨brecht⟩ compound-final members keep [ɛ],
@@ -747,8 +750,8 @@ class TestFlemish:
         assert self._spec.code == "nl-BE"
 
     def test_parent_is_dutch(self):
-        """nl-BE inherits from nl (pan-Dutch), not nl-NL directly."""
-        assert self._spec.parent == "nl"
+        """nl-BE inherits from nl-NL, the Dutch standard spec."""
+        assert self._spec.parent == "nl-NL"
 
     def test_gamma_includes_palatal_variant(self):
         """FLEMISH FEATURE: /ɣ/ can surface as palatal /ʝ/ in onset (softer G)."""
@@ -1633,7 +1636,7 @@ class TestWestFrisian:
     def test_ancestry_dutch_adstrate(self):
         """Dutch is a significant adstrate for West Frisian."""
         codes = [getattr(a, "code", None) or (a.get("code") if isinstance(a, dict) else str(a)) for a in self._spec.ancestors]
-        assert "nl" in codes, f"fy: expected 'nl' in ancestors, got {codes}"
+        assert "nl-NL" in codes, f"fy: expected 'nl-NL' in ancestors, got {codes}"
 
     # --- Key isoglosses vs Dutch ---
 

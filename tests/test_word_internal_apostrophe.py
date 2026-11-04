@@ -73,7 +73,7 @@ def test_no_other_spec_opts_in():
     ("pt-PT", "d'água", "ˈd ˈaɡwɐ"),
     ("af", "'n man", "ˈə ˈman"),
     ("de-DE", "geht's", "ˈɡeːt ˈz"),
-    ("nl-NL", "zo'n", "zɔ n"),
+    ("nl-NL", "zo'n", "ˈzoː ˈn"),
 ])
 def test_an_elision_or_boundary_apostrophe_still_separates(lang, text, expected):
     # Values measured on the tree before the field existed.
