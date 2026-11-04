@@ -1,14 +1,14 @@
 # Pyrenean-valley Aragonese subdialects: Phonology Reference
 
-**Codes**: `an-x-ansotano`, `an-x-cheso`, `an-x-chistabin`, `an-x-belsetan`, `an-x-tensino` | **Family**: Indo-European > Romance | **Script**: Latin (alphabet) | **Parent**: `an` (Aragonese)
+**Codes**: `an-x-ansotano`, `an-x-cheso`, `an-x-chistau`, `an-x-belsetan`, `an-x-tensino` | **Family**: Indo-European > Romance | **Script**: Latin (alphabet) | **Parent**: `an` (Aragonese)
 
-These five specs model the classic High Aragonese (*altoaragonés*) varieties of the Pyrenean valleys. Each one is a thin delta spec over the base Aragonese spec [`an`](../../orthography2ipa/data/an.json). The two regional specs `an-x-occidental` (Western) and `an-x-oriental` (Ribagorçan) cover different cuts of the dialect continuum, outside the valleys.
+These five specs model the classic High Aragonese (*altoaragonés*) varieties of the Pyrenean valleys. Each one is a thin delta spec over the base Aragonese spec [`an`](../../orthography2ipa/data/an.json). The two regional specs `an-x-occident` (Western) and `an-x-oriental` (Ribagorçan) cover different cuts of the dialect continuum, outside the valleys.
 
 | Valley | Code | Quality tier |
 |:---|:---|:---|
 | Ansó | `an-x-ansotano` | skeleton |
 | Hecho | `an-x-cheso` | research |
-| Gistaín (Chistau) | `an-x-chistabin` | research |
+| Gistaín (Chistau) | `an-x-chistau` | research |
 | Bielsa | `an-x-belsetan` | research |
 | Tena | `an-x-tensino` | skeleton |
 
@@ -29,7 +29,7 @@ The Belsetán word *feto* (from FACTU, against general *feito*) is an example. I
 | Cheso `an-x-cheso` | ⟨ix⟩ is [ʃ] with no epenthesis. The base offers [ʃ iʃ jʃ] for ⟨ix⟩, and Cheso keeps only [ʃ] | `graphemes` | Kuhn 1935 (through es.wikipedia, secondary) |
 | Ansotano `an-x-ansotano` | Word-final ⟨r⟩ is deleted in Ansó. Fago and Hecho keep it | `positional_graphemes`, `r.word_final` | Barcos 2007 (secondary) |
 | Belsetán `an-x-belsetan` | Geminates stay: ⟨l·l⟩ is [lː] and ⟨n·n⟩ is [nː] | `graphemes` | Badía Margarit 1950 (secondary) |
-| Chistabín `an-x-chistabin` | Geminates stay, and word-final ⟨r⟩ is deleted | `graphemes`, `positional_graphemes` | Blas Gabarda & Romanos 2008, Mott 1989 |
+| Chistabín `an-x-chistau` | Geminates stay, and word-final ⟨r⟩ is deleted | `graphemes`, `positional_graphemes` | Blas Gabarda & Romanos 2008, Mott 1989 |
 | Tensino `an-x-tensino` | The article forms *ro, ra, ros, ras* have the tap [ɾ], not the trill [r] that the base gives at the start of a word | `word_exceptions` | Vázquez Obrador 2021 (read directly) |
 
 The Cheso delta does not change the top candidate for *buixo*, which is `ˈbwiʃo` in both `an` and `an-x-cheso`. It removes the [iʃ] and [jʃ] alternatives from the candidate set.
@@ -42,8 +42,8 @@ G2P("an-x-cheso").transcribe_word("buixo")      # ˈbwiʃo
 G2P("an-x-ansotano").transcribe_word("fablar")  # faˈbla
 G2P("an-x-belsetan").transcribe_word("bel·la")  # ˈbelːa
 G2P("an-x-belsetan").transcribe_word("pen·na")  # ˈpenːa
-G2P("an-x-chistabin").transcribe_word("comer")  # koˈme
-G2P("an-x-chistabin").transcribe_word("bel·lota")  # beˈlːota
+G2P("an-x-chistau").transcribe_word("comer")  # koˈme
+G2P("an-x-chistau").transcribe_word("bel·lota")  # beˈlːota
 G2P("an-x-tensino").transcribe_word("ro")       # ˈɾo
 ```
 

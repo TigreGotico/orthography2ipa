@@ -162,4 +162,4 @@ The gold writes the nasal vowel without the nasal consonant. It writes [wo] and 
 - Cunha, C. & Cintra, L. F. L. (1984). *Nova Gramática do Português Contemporâneo*. Listed in the spec sources.
 
 ---
-[← Barranquenho](ext-PT-x-barrancos.md) · [Home](../index.md) · [Russian →](ru.md)
+[← Barranquenho](ext-PT-x-barranco.md) · [Home](../index.md) · [Russian →](ru.md)

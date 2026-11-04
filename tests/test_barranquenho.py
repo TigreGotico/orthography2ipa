@@ -1,4 +1,4 @@
-"""Barranquenho (ext-PT-x-barrancos) — contact-variety allophony.
+"""Barranquenho (ext-PT-x-barranco) — contact-variety allophony.
 
 Barranquenho is a Portuguese–Spanish contact variety (Alentejo Portuguese
 base + Extremaduran/Andalusian Spanish adstrate). It inherits pt-PT via
@@ -21,12 +21,12 @@ from orthography2ipa.g2p import G2P
 
 @pytest.fixture(scope="module")
 def barrancos():
-    return orthography2ipa.get("ext-PT-x-barrancos")
+    return orthography2ipa.get("ext-PT-x-barranco")
 
 
 @pytest.fixture(scope="module")
 def g2p():
-    return G2P("ext-PT-x-barrancos")
+    return G2P("ext-PT-x-barranco")
 
 
 def _rule(spec, rule_id):
@@ -227,7 +227,7 @@ class TestMonosyllableFinalLiquids:
 
 
 class TestLectCodeAndAlias:
-    """``ext-PT-x-barrancos`` is the canonical code: a private-use tag marking
+    """``ext-PT-x-barranco`` is the canonical code: a private-use tag marking
     Barranquenho as a language of its own spoken in Portugal, not a lect of
     ``pt-PT``. ``pt-PT-x-barrancos`` is a retired spelling of the same lect and
     stays resolvable. Neither may fall through to the Extremaduran spec, whose
@@ -235,21 +235,21 @@ class TestLectCodeAndAlias:
 
     def test_alias_resolves_to_the_same_spec(self):
         assert orthography2ipa.get("pt-PT-x-barrancos") is orthography2ipa.get(
-            "ext-PT-x-barrancos")
+            "ext-PT-x-barranco")
 
     def test_alias_reports_the_canonical_code(self):
-        assert orthography2ipa.get("pt-PT-x-barrancos").code == "ext-PT-x-barrancos"
+        assert orthography2ipa.get("pt-PT-x-barrancos").code == "ext-PT-x-barranco"
 
     def test_alias_transcribes_identically(self):
         assert (orthography2ipa.transcribe("Barrancos", "pt-PT-x-barrancos")
-                == orthography2ipa.transcribe("Barrancos", "ext-PT-x-barrancos"))
+                == orthography2ipa.transcribe("Barrancos", "ext-PT-x-barranco"))
 
     def test_toponym_reads_barranquenho_not_extremaduran(self):
         # Coda ⟨n⟩ nasalises the preceding vowel and is absorbed, absolute
         # final ⟨s⟩ deletes, unstressed final ⟨o⟩ raises to [u], stress is
         # paroxytone: ⟨Barrancos⟩ -> [bɐˈrɐ̃ku]. Extremaduran reads the same
         # spelling with an oral vowel, a plain nasal and an aspirated plural.
-        out = orthography2ipa.transcribe("Barrancos", "ext-PT-x-barrancos")
+        out = orthography2ipa.transcribe("Barrancos", "ext-PT-x-barranco")
         assert out == "bɐˈrɐ̃ku"
         assert out != orthography2ipa.transcribe("Barrancos", "ext")
 

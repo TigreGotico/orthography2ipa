@@ -23,7 +23,7 @@ The table gives the features that set each lect apart from `pt-PT`. The lects ru
 | Lect | Region | Features that set it apart | Example |
 |:---|:---|:---|:---|
 | [`pt-PT-x-viana`](#alto-minhoto-pt-pt-x-viana) | Alto Minho | four sibilants, apical ⟨s ss⟩ [s̺ z̺] against laminal ⟨c ç z⟩ [s z]<br>/v/ to [b]<br>⟨ch⟩ [tʃ]<br>⟨-em⟩ [ẽj̃] | `passo` [ˈpas̺u], `paço` [ˈpasu], `chave` [ˈtʃabɨ] |
-| [`pt-PT-x-trasosmontes`](#transmontano-pt-pt-x-trasosmontes) | Trás-os-Montes e Alto Douro | the same as Alto Minho | `casa` [ˈkaz̺ɐ], `vinho` [ˈbiɲu] |
+| [`pt-PT-x-tras-os-montes`](#transmontano-pt-pt-x-tras-os-montes) | Trás-os-Montes e Alto Douro | the same as Alto Minho | `casa` [ˈkaz̺ɐ], `vinho` [ˈbiɲu] |
 | [`pt-PT-x-minho`](#minhoto-pt-pt-x-minho) | Baixo-Minho | apical-only sibilants [s̺ z̺]<br>/v/ to [b], [β] between vowels<br>pretonic ⟨en⟩ [ɨ̃]<br>⟨-em⟩ [ẽj̃] | `cedo` [ˈs̺ɛdu], `uva` [ˈuβɐ], `pensar` [pɨ̃ˈsaɾ] |
 | [`pt-PT-x-braga`](#bracarense-pt-pt-x-braga) | Braga | /v/ to [b]<br>stressed mid vowels to rising diphthongs<br>⟨ou⟩ [ow], ⟨ei⟩ [ej]<br>⟨ss⟩ [s̺] | `mês` [ˈmjeʃ], `café` [kɐˈfjɛ], `pouco` [ˈpowku] |
 | [`pt-PT-x-porto`](#portuense-pt-pt-x-porto) | Porto, Douro Litoral | /v/ to [b]<br>stressed mid vowels to rising diphthongs<br>⟨ou⟩ [ow], ⟨ei⟩ [ej]<br>⟨ss⟩ [s̺] | `avô` [ɐˈbwo], `Porto` [ˈpwɔɾtu], `leite` [ˈlejtɨ] |
@@ -49,7 +49,7 @@ The specs model three systems:
 
 | System | Specs | ⟨s ss⟩ | ⟨c ç z⟩ |
 |:---|:---|:---|:---|
-| four sibilants | `pt-PT-x-viana`, `pt-PT-x-trasosmontes` | apical [s̺ z̺] | laminal [s z] |
+| four sibilants | `pt-PT-x-viana`, `pt-PT-x-tras-os-montes` | apical [s̺ z̺] | laminal [s z] |
 | apical only | `pt-PT-x-minho`, `pt-PT-x-alfena`, `pt-PT-x-aveiro`, `pt-PT-x-beira` | apical [s̺ z̺] | apical [s̺ z̺] |
 | laminal only | `pt-PT` and the other specs | laminal [s z] | laminal [s z] |
 
@@ -71,7 +71,7 @@ The specs encode the merger in two ways:
 
 | Specs | Mechanism | Example |
 |:---|:---|:---|
-| `pt-PT-x-viana`, `pt-PT-x-trasosmontes` | allophone rule `PT_NORTH_BETACISM` (/v/ to [b]), [β] as a variant | `estava` [eʃˈtabɐ] |
+| `pt-PT-x-viana`, `pt-PT-x-tras-os-montes` | allophone rule `PT_NORTH_BETACISM` (/v/ to [b]), [β] as a variant | `estava` [eʃˈtabɐ] |
 | `pt-PT-x-porto` | allophone rule `PT_PORTO_BETACISM` (/v/ to [b]) | `vinho` [ˈbiɲu] |
 | `pt-PT-x-braga` | allophone rule `BRA_BETACISM` (/v/ to [b]), [β] as a variant | `vou` [ˈbow] |
 | `pt-PT-x-minho`, `pt-PT-x-alfena`, `pt-PT-x-aveiro`, `pt-PT-x-beira` | grapheme ⟨v⟩ to [b], and [β] between vowels | `vaca` [ˈbakɐ], `uva` [ˈuβɐ] |
@@ -110,7 +110,7 @@ A word-final /s/ before a vowel-initial word is [z] in `pt-PT` (rule `PT_FINAL_S
 | `pt-PT-x-algarve` | [ʒ] in every word-final position | [eʃˈtaʒ ɐ ˈveɾ] | positional `word_final` [ʒ] for ⟨s⟩ |
 | `pt-PT-x-acores` | [ʒ] before a vowel only | [eʃˈtaʒ ɐ ˈveɾ] | rule redeclared with transform `ʒ` |
 | `pt-PT-x-sao-miguel` | [ʒ] before a vowel only | [eʃˈtaʒ ɐ ˈveɾ] | rule redeclared with transform `ʒ` |
-| `pt-PT-x-viana`, `pt-PT-x-trasosmontes` | [s̺] | [eʃˈtas̺ ɐ ˈbeɾ] | the rule matches a final [ʃ] only |
+| `pt-PT-x-viana`, `pt-PT-x-tras-os-montes` | [s̺] | [eʃˈtas̺ ɐ ˈbeɾ] | the rule matches a final [ʃ] only |
 
 The other specs inherit [z]. The Algarve gives [ʒ] in every word-final position, so it also gives [ʒ] alone (`estás` [eʃˈtaʒ]). The Azores and São Miguel restrict [ʒ] to the position before a vowel. Before a voiceless consonant or a pause the sibilant stays [ʃ] (`estás só` [eʃˈtaʃ ˈsɔ]), and before a voiced consonant the inherited `PT_CODA_S_VOICING` gives [ʒ] (`estás bem` [eʃˈtaʒ ˈbɐ̃j̃]).
 
@@ -120,7 +120,7 @@ The southern and island [ʒ] comes from a native-speaker source that is not acad
 
 No page-pinned academic source for this sandhi value was found. The feature sits inside the documented southern and island behaviour of the final sibilant, [ʃ] or [z] or [ʒ]. The sources for that behaviour are Cintra (1971), Brissos (2014) and Segura da Cruz (1989) for the Algarve, and Rogers (1948) for the islands. The spec notes of `pt-PT-x-acores` and `pt-PT-x-algarve` state this limit. Cintra's primary North/South isogloss is a different matter: it is the place of the sibilant (apico-alveolar or predorsodental), not this [z] and [ʒ] contrast.
 
-There is counter-evidence that is recorded but not modelled. The Trás-os-Montes speaker from Chaves (*Portuguese With Leo*) also uses [ʒ] before a vowel, and says it is "muito espalhado" in the North. This contradicts the [z] for the North. The `pt-PT-x-trasosmontes` notes record it, but the spec does not model it. The evidence is a single casual attestation, against the academic [z].
+There is counter-evidence that is recorded but not modelled. The Trás-os-Montes speaker from Chaves (*Portuguese With Leo*) also uses [ʒ] before a vowel, and says it is "muito espalhado" in the North. This contradicts the [z] for the North. The `pt-PT-x-tras-os-montes` notes record it, but the spec does not model it. The evidence is a single casual attestation, against the academic [z].
 
 ## Alto-Minhoto (pt-PT-x-viana)
 
@@ -151,9 +151,9 @@ Known gaps:
 - Porto's diphthongisation of the stressed close vowels is a Baixo-Minho and Douro-Litoral feature. Cintra (1971, p. 93) puts it in the other northern group, so this spec does not apply it.
 - The `clup_dialect` gold for this spec is small, sentence-level and of undocumented IPA provenance. It writes the apico-alveolar series in several ways ([ʃ], [ʂ], plain [s]). So correctness rests on the cited sources, not on the score.
 
-## Transmontano (pt-PT-x-trasosmontes)
+## Transmontano (pt-PT-x-tras-os-montes)
 
-`pt-PT-x-trasosmontes` models Trás-os-Montes e Alto Douro (Bragança, Chaves, Valpaços). It is in the same *grupo transmontano-alto-minhoto* as [Alto-Minhoto](#alto-minhoto-pt-pt-x-viana), and it has the same four-sibilant map, the same rule `PT_NORTH_BETACISM` and the same ⟨ch⟩ [tʃ]. Sources: Cintra (1971), Álvarez Pérez (2014), Mateus & d'Andrade (2000). The spec also cites a native-speaker video, *Sotaque e expressões de Trás-os-Montes* (*Portuguese With Leo*, with Rui from Chaves).
+`pt-PT-x-tras-os-montes` models Trás-os-Montes e Alto Douro (Bragança, Chaves, Valpaços). It is in the same *grupo transmontano-alto-minhoto* as [Alto-Minhoto](#alto-minhoto-pt-pt-x-viana), and it has the same four-sibilant map, the same rule `PT_NORTH_BETACISM` and the same ⟨ch⟩ [tʃ]. Sources: Cintra (1971), Álvarez Pérez (2014), Mateus & d'Andrade (2000). The spec also cites a native-speaker video, *Sotaque e expressões de Trás-os-Montes* (*Portuguese With Leo*, with Rui from Chaves).
 
 Examples: `sal` [ˈs̺aɫ], `passo` [ˈpas̺u], `paço` [ˈpasu], `casa` [ˈkaz̺ɐ], `coser` [kuˈz̺eɾ], `cozer` [kuˈzeɾ], `vinho` [ˈbiɲu], `chave` [ˈtʃabɨ]. The CLUP gold attests the betacism (`vir` as `biɾ`, `vou` as `bow`, `voltar` as `buɫˈtaɾ`) and the affricate (`chaves` as `ˈtʃaβɨʃ`). The spec gives `chaves` [ˈtʃabɨs̺].
 

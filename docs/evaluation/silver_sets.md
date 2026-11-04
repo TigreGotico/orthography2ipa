@@ -175,9 +175,9 @@ The Arabic set covers Classical Arabic (`arb`), Modern Standard Arabic (`ar`), t
 
 ### Grouping nodes
 
-The grouping nodes are `afb`, `apc`, `ar-x-maghrebi`, `ar-x-mashriqi` and `ar-x-peninsular`. Their register is pan-group. A sentence uses only words that the leaves of the group share. Examples are Gulf `šlon` and `wāyid`, Levantine `qaddēsh` and `baddi`, and pan-Maghrebi `bzzāf` and `shri` in the sense of Heath and Marçais.
+The grouping nodes are `afb`, `apc`, `ar-x-maghrebi`, `ar-x-mashriqi` and `ar-x-peninsul`. Their register is pan-group. A sentence uses only words that the leaves of the group share. Examples are Gulf `šlon` and `wāyid`, Levantine `qaddēsh` and `baddi`, and pan-Maghrebi `bzzāf` and `shri` in the sense of Heath and Marçais.
 
-Where the leaves of a group differ, the node does not choose a reflex. The set shows the rank-1 candidate of the node instead. `ar-x-maghrebi` keeps /q/ and puts ʒ first for ǧīm. `ar-x-peninsular` puts the fricative interdentals first and keeps the diphthongs. `afb` and `apc` change ay and aw to ē and ō. That is the documented behaviour of the node, and each row notes it.
+Where the leaves of a group differ, the node does not choose a reflex. The set shows the rank-1 candidate of the node instead. `ar-x-maghrebi` keeps /q/ and puts ʒ first for ǧīm. `ar-x-peninsul` puts the fricative interdentals first and keeps the diphthongs. `afb` and `apc` change ay and aw to ē and ō. That is the documented behaviour of the node, and each row notes it.
 
 ### Tags
 

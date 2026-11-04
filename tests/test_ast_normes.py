@@ -18,7 +18,7 @@ from orthography2ipa import G2P
 @pytest.fixture(scope="module")
 def engines():
     return {code: G2P(code)
-            for code in ("ast", "ast-x-occidental", "ast-x-oriental")}
+            for code in ("ast", "ast-x-occident", "ast-x-oriental")}
 
 
 def _check(engines, code, word, expected):
@@ -36,8 +36,8 @@ CH_VAQUEIRA = [
     ("ast", "L.luarca", "ˈʎwaɾka"),
     ("ast-x-oriental", "ḷḷobu", "ˈʎoβu"),
     ("ast-x-oriental", "l.lobu", "ˈʎoβu"),
-    ("ast-x-occidental", "ḷḷobu", "ˈt͡soβu"),
-    ("ast-x-occidental", "l.lobu", "ˈt͡soβu"),
+    ("ast-x-occident", "ḷḷobu", "ˈt͡soβu"),
+    ("ast-x-occident", "l.lobu", "ˈt͡soβu"),
 ]
 
 
@@ -66,10 +66,10 @@ LETTER_Y = [
     ("ast", "pioyu", "ˈpjoʝu"),
     ("ast", "paya", "ˈpaʝa"),
     ("ast", "díxoye", "ˈdiʃoʝe"),
-    ("ast-x-occidental", "mayu", "ˈmaʝu"),
+    ("ast-x-occident", "mayu", "ˈmaʝu"),
     ("ast-x-oriental", "paya", "ˈpaʝa"),
     ("ast-x-oriental", "y", "i"),
-    ("ast-x-occidental", "dio-y", "ˈdjo i"),
+    ("ast-x-occident", "dio-y", "ˈdjo i"),
 ]
 
 
@@ -181,9 +181,9 @@ def test_consonants(engines, code, word, expected):
 # Western final -o closes to [u] only when unstressed (Normes §1.4 treats the
 # alternation under the unstressed final vowels).
 OCCIDENTAL_FINAL_O = [
-    ("ast-x-occidental", "falo", "ˈfalu"),
-    ("ast-x-occidental", "yo", "ˈɟ͡ʝo"),
-    ("ast-x-occidental", "dio", "ˈdjo"),
+    ("ast-x-occident", "falo", "ˈfalu"),
+    ("ast-x-occident", "yo", "ˈɟ͡ʝo"),
+    ("ast-x-occident", "dio", "ˈdjo"),
 ]
 
 

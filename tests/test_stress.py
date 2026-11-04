@@ -350,11 +350,11 @@ class TestMirandeseStress:
 
 
 class TestBarranquenhoStress:
-    """Gold stress placements for Barranquenho (ext-PT-x-barrancos)."""
+    """Gold stress placements for Barranquenho (ext-PT-x-barranco)."""
 
     @pytest.fixture
     def rules(self):
-        return get("ext-PT-x-barrancos").stress
+        return get("ext-PT-x-barranco").stress
 
     def test_barrancos_carries_stress_block(self, rules):
         assert rules is not None

@@ -64,7 +64,7 @@ class TestNearestMatch:
         assert isinstance(get(requested), LanguageSpec)
 
     def test_existing_codes_resolve_to_themselves(self):
-        for code in ("pt-PT", "ast-PT-x-rionor", "eu-x-bizkaiera", "ar"):
+        for code in ("pt-PT", "ast-PT-x-rionor", "eu-x-bizkaia", "ar"):
             assert resolve(code) == code
 
     def test_iso639_3_aliases_still_resolve(self):

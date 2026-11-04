@@ -261,7 +261,7 @@ sia | Uralic > Saami | 39 | 40 | 6 | 7.7% | no | 0 | evn 0.821 | 1 | 179 | 0.368
 su | Austronesian > Malayo-Polynesian | 27 | 29 | 6 | 0.5% | no | 0 | kge 0.893 | 1 | 396 | 0.0969
 bjb | Pama-Nyungan | 26 | 17 | 5 | 2.2% | no | 0 | kld 0.615 | 1 | 136 | 0.1021
 bo | Sino-Tibetan | 146 | 57 | 5 | 0.2% | no | 0 | dz 0.479 | 1 | 1564 | 0.3785
-de-x-alemannic | Indo-European > Germanic > Northwest Germanic > West Germanic | 34 | 33 | 5 | 2.1% | yes | 0 | gwr 0.324 | 1 | 448 | 0.1734
+de-x-alemanni | Indo-European > Germanic > Northwest Germanic > West Germanic | 34 | 33 | 5 | 2.1% | yes | 0 | gwr 0.324 | 1 | 448 | 0.1734
 ga | Indo-European > Celtic > Goidelic | 45 | 28 | 5 | 1.0% | yes | 0 | gd 0.356 | 2 | 11227 | 0.2989
 hu | Uralic | 60 | 36 | 5 | 1.2% | yes | 0 | non 0.55 | 2 | 79325 | 0.0996
 id | Austronesian | 32 | 30 | 5 | 0.2% | yes | 0 | min 0.906 | 3 | 41129 | 0.1312
@@ -373,7 +373,7 @@ ayn-YE | Afro-Asiatic > Semitic > Central Semitic | 42 | 39 | 2 | 32.7% | yes | 
 apc | Afro-Asiatic > Semitic > Central Semitic | 38 | 37 | 2 | 35.0% | yes | 0 | ayl 0.045 | 2 | 40 | 0.0105
 ar-x-maghrebi | Afro-Asiatic > Semitic > Central Semitic | 44 | 36 | 2 | 35.0% | yes | 0 | sdh 0.068 | 2 | 40 | 0.0044
 ar-x-mashriqi | Afro-Asiatic > Semitic > Central Semitic | 43 | 39 | 2 | 35.0% | yes | 0 | ckb 0.07 | 2 | 40 | 0.0175
-ar-x-peninsular | Afro-Asiatic > Semitic > Central Semitic | 42 | 40 | 2 | 35.0% | yes | 0 | acm 0.114 | 2 | 40 | 0.0122
+ar-x-peninsul | Afro-Asiatic > Semitic > Central Semitic | 42 | 40 | 2 | 35.0% | yes | 0 | acm 0.114 | 2 | 40 | 0.0122
 arb | Afro-Asiatic > Semitic > Central Semitic | 239 | 45 | 2 | 25.0% | yes | 0 | ayl 0.163 | 2 | 40 | 0.019
 av | Nakh-Daghestanian | 56 | 36 | 2 | 2.5% | no | 0 | lbe 0.786 | 1 | 954 | 0.099
 br | Indo-European > Celtic > Brythonic | 43 | 29 | 2 | 0.8% | yes | 0 | mfe 0.628 | 1 | 803 | 0.3499
@@ -383,7 +383,7 @@ da | Indo-European > Germanic > Northwest Germanic > North Germanic | 63 | 31 | 
 dar | Nakh-Daghestanian | 53 | 34 | 2 | 5.8% | no | 0 | av 0.714 | 1 | 1056 | 0.0691
 enf | Uralic | 57 | 34 | 2 | 0.5% | no | 0 | sel 0.702 | 1 | 838 | 0.0892
 evn | Tungusic | 39 | 36 | 2 | 4.5% | yes | 0 | sia 0.821 | 2 | 1277 | 0.2447
-ext-PT-x-barrancos | Indo-European > Italic > Romance > Ibero-Romance | 25 | 36 | 2 | 1.4% | yes | 0 | aoa 0.167 | 3 | 1538 | 0.2801
+ext-PT-x-barranco | Indo-European > Italic > Romance > Ibero-Romance | 25 | 36 | 2 | 1.4% | yes | 0 | aoa 0.167 | 3 | 1538 | 0.2801
 fax | Indo-European > Italic > Romance > Ibero-Romance | 58 | 31 | 2 | 1.2% | no | 0 | pt-BR-x-sul 0.81 | 1 | 655 | 0.1044
 gul | Indo-European > Germanic > Northwest Germanic > West Germanic | 33 | 25 | 2 | 4.9% | no | 0 | yol 0.676 | 1 | 207 | 0.4674
 he | Afro-Asiatic > Semitic > Central Semitic | 113 | 40 | 2 | 1.3% | yes | 0 |  | 2 | 2905 | 0.362
@@ -473,14 +473,14 @@ aii | Afro-Asiatic > Semitic > Central Semitic | 22 | 22 | 0 |  | no | 0 | syc 0
 aot | Sino-Tibetan | 33 | 21 | 0 |  | no | 0 | cnk 0.912 | 1 | 181 | 0.1367
 afb-SA-x-dawasir | Afro-Asiatic > Semitic > Central Semitic | 1 | 16 | 0 |  | yes | 0 |  | 1 | 5 | 0.08
 ar-SA-x-tihama-qahtan | Afro-Asiatic > Semitic > Central Semitic | 4 | 25 | 0 |  | yes | 0 |  | 1 | 16 | 0.1084
-ast-PT-x-guadramil | Indo-European > Italic > Romance > Ibero-Romance > Asturleonese | 0 | 24 | 0 |  | yes | 0 |  | 1 | 20 | 0.0
+ast-PT-x-guadrami | Indo-European > Italic > Romance > Ibero-Romance > Asturleonese | 0 | 24 | 0 |  | yes | 0 |  | 1 | 20 | 0.0
 ast-PT-x-medieval | Indo-European > Italic > Romance > Ibero-Romance > Asturleonese | 15 | 24 | 0 |  | yes | 0 | pov 0.2 | 1 | 20 | 0.0
 ast-PT-x-rionor | Indo-European > Italic > Romance > Ibero-Romance > Asturleonese | 52 | 24 | 0 |  | yes | 0 | pt-BR-x-sul 0.684 | 1 | 20 | 0.0
 ayl | Afro-Asiatic > Semitic > Central Semitic | 44 | 28 | 0 |  | no | 0 | acm 1.0 | 1 | 156 | 0.3799
 ba | Turkic | 60 | 41 | 0 |  | yes | 0 | kk 0.6 | 2 | 70699 | 0.4047
 bbn | Austronesian > Malayo-Polynesian | 22 | 18 | 0 |  | no | 0 | lmy 0.909 | 1 | 194 | 0.0689
 be | Indo-European > Balto-Slavic > Slavic > East Slavic | 110 | 33 | 0 |  | no | 0 | mhr 0.309 | 2 | 160758 | 0.1276
-ca-x-occidental | Indo-European > Italic > Romance | 1 | 37 | 0 |  | yes | 0 |  | 1 | 160 | 0.0822
+ca-x-occident | Indo-European > Italic > Romance | 1 | 37 | 0 |  | yes | 0 |  | 1 | 160 | 0.0822
 ca-x-valencia | Indo-European > Italic > Romance | 0 | 36 | 0 |  | yes | 0 |  | 1 | 160 | 0.0677
 crk | Algic | 17 | 17 | 0 |  | yes | 0 | atj 0.789 | 1 | 159 | 0.3174
 cs | Indo-European > Balto-Slavic > Slavic > West Slavic | 56 | 37 | 0 |  | yes | 0 | sk 0.639 | 1 | 44148 | 0.068
@@ -535,7 +535,7 @@ pqm | Algic | 18 | 18 | 0 |  | no | 0 | yua 0.778 | 1 | 151 | 0.1759
 pt-BR-x-bahia | Indo-European > Italic > Romance > Ibero-Romance | 57 | 29 | 0 |  | yes | 0 | fax 0.793 | 1 | 20 | 0.0
 pt-BR-x-brasilia | Indo-European > Italic > Romance > Ibero-Romance | 57 | 29 | 0 |  | yes | 0 | fax 0.793 | 1 | 20 | 0.0
 pt-BR-x-ce | Indo-European > Italic > Romance > Ibero-Romance | 57 | 29 | 0 |  | yes | 0 | fax 0.793 | 1 | 20 | 0.0
-pt-BR-x-fluminense | Indo-European > Italic > Romance > Ibero-Romance | 57 | 31 | 0 |  | yes | 0 | fax 0.793 | 1 | 20 | 0.0
+pt-BR-x-fluminen | Indo-European > Italic > Romance > Ibero-Romance | 57 | 31 | 0 |  | yes | 0 | fax 0.793 | 1 | 20 | 0.0
 pt-BR-x-mg | Indo-European > Italic > Romance > Ibero-Romance | 57 | 33 | 0 |  | yes | 0 | fax 0.793 | 1 | 20 | 0.0
 pt-BR-x-norte | Indo-European > Italic > Romance > Ibero-Romance | 57 | 32 | 0 |  | yes | 0 | fax 0.793 | 1 | 20 | 0.0
 pt-BR-x-pr | Indo-European > Italic > Romance > Ibero-Romance | 57 | 31 | 0 |  | yes | 0 | fax 0.793 | 1 | 20 | 0.0
@@ -556,10 +556,10 @@ pt-PT-x-madeira | Indo-European > Italic > Romance > Ibero-Romance | 3 | 36 | 0 
 pt-PT-x-medieval | Indo-European > Italic > Romance > Ibero-Romance | 23 | 24 | 0 |  | yes | 0 | lfn 0.348 | 1 | 20 | 0.0
 pt-PT-x-sao-miguel | Indo-European > Italic > Romance > Ibero-Romance | 3 | 33 | 0 |  | yes | 0 |  | 2 | 32 | 0.3917
 pt-PT-x-terceira | Indo-European > Italic > Romance > Ibero-Romance | 0 | 30 | 0 |  | yes | 0 |  | 2 | 30 | 0.2345
-pt-PT-x-trasosmontes | Indo-European > Italic > Romance > Ibero-Romance | 2 | 33 | 0 |  | yes | 0 |  | 2 | 26 | 0.3317
+pt-PT-x-tras-os-montes | Indo-European > Italic > Romance > Ibero-Romance | 2 | 33 | 0 |  | yes | 0 |  | 2 | 26 | 0.3317
 pt-ST | Indo-European > Italic > Romance > Ibero-Romance | 4 | 29 | 0 |  | yes | 0 |  | 1 | 20 | 0.0
 pt-UY | Indo-European > Italic > Romance > Ibero-Romance | 4 | 30 | 0 |  | yes | 0 |  | 1 | 20 | 0.0
-roa-x-galaicopt | Indo-European > Italic > Romance > Ibero-Romance | 54 | 23 | 0 |  | yes | 0 | pt-BR-x-sul 0.737 | 1 | 20 | 0.0
+roa-x-galaico-pt | Indo-European > Italic > Romance > Ibero-Romance | 54 | 23 | 0 |  | yes | 0 | pt-BR-x-sul 0.737 | 1 | 20 | 0.0
 sel | Uralic | 55 | 33 | 0 |  | no | 0 | enf 0.702 | 1 | 886 | 0.0342
 skr | Indo-European > Indo-Iranian > Indo-Aryan | 51 | 36 | 0 |  | no | 0 | bal 0.706 | 1 | 309 | 0.2869
 so | Afro-Asiatic > Cushitic | 34 | 24 | 0 |  | no | 0 | rhg 0.794 | 1 | 230 | 0.5567

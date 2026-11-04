@@ -48,7 +48,7 @@ def rionor():
 
 @pytest.fixture(scope="module")
 def guadramil():
-    return G2P("ast-PT-x-guadramil")
+    return G2P("ast-PT-x-guadrami")
 
 
 @pytest.fixture(scope="module")

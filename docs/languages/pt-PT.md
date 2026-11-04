@@ -6,7 +6,7 @@
 | Family | Indo-European > Romance > Ibero-Romance |
 | Script | Latin (alphabet) |
 | Quality tier | research |
-| Base spec | `pt-PT-x-medieval` (Old Portuguese), which takes its own base from `roa-x-galaicopt` |
+| Base spec | `pt-PT-x-medieval` (Old Portuguese), which takes its own base from `roa-x-galaico-pt` |
 | Sources | Mateus & d'Andrade (2000), Cruz-Ferreira (1995, *JIPA* 25(2)), Cruz-Ferreira (1999), Cunha & Cintra (1984), Mateus et al. (2003), Vigário (2003) |
 
 The `pt-PT` spec models the broad standard of European Portuguese (EP). Its two defining traits are strong reduction of unstressed vowels and a large set of coda consonant realisations. This page gives what the spec models and the place in the pipeline where each process runs.
@@ -51,7 +51,7 @@ A vowel before a nasal ⟨m⟩ or ⟨n⟩ in the same syllable becomes nasal. Th
 | ⟨om on⟩ | [ɔ] to [o] | [õ] | `bom` [ˈbõ], `onde` [ˈõdɨ] |
 | ⟨um un⟩ | [u] | [ũ] | `mundo` [ˈmũdu], `um` [ˈũ] |
 
-The process uses both maps, as in the [Barranquenho](ext-PT-x-barrancos.md) spec.
+The process uses both maps, as in the [Barranquenho](ext-PT-x-barranco.md) spec.
 
 The pre-lexical map makes the vowel nasal. The `positional_graphemes` entries for ⟨m⟩ and ⟨n⟩ map the coda positions (`before_consonant`, `word_final`) to one combining tilde, U+0303. The tilde replaces the nasal consonant and attaches to the vowel before it. An ⟨m⟩ or ⟨n⟩ between vowels matches no coda key, so it stays a consonant and the vowel stays oral: `cama` [ˈkamɐ], `ano` [ˈɐnu], `nome` [ˈnɔmɨ].
 

@@ -705,7 +705,7 @@
     "limit": 1000
   },
   {
-    "lang": "an-x-benasques",
+    "lang": "an-x-benasque",
     "dataset": "spain_romance_tts",
     "n": 20,
     "per": 0.051,
@@ -737,7 +737,7 @@
     "limit": 1000
   },
   {
-    "lang": "an-x-chistabin",
+    "lang": "an-x-chistau",
     "dataset": "spain_romance_tts",
     "n": 20,
     "per": 0.0555,
@@ -753,7 +753,7 @@
     "limit": 1000
   },
   {
-    "lang": "an-x-occidental",
+    "lang": "an-x-occident",
     "dataset": "spain_romance_tts",
     "n": 20,
     "per": 0.055,
@@ -1410,7 +1410,7 @@
     "limit": 1000
   },
   {
-    "lang": "ar-x-peninsular",
+    "lang": "ar-x-peninsul",
     "dataset": "arabic_tts",
     "n": 20,
     "per": 0.0403,
@@ -1426,7 +1426,7 @@
     "limit": 1000
   },
   {
-    "lang": "ar-x-peninsular",
+    "lang": "ar-x-peninsul",
     "dataset": "gold20_arabic",
     "n": 20,
     "per": 0.0405,
@@ -1832,7 +1832,7 @@
     "limit": 1000
   },
   {
-    "lang": "ast-PT-x-guadramil",
+    "lang": "ast-PT-x-guadrami",
     "dataset": "portuguese_tts",
     "n": 20,
     "per": 0.1491,
@@ -1880,7 +1880,7 @@
     "limit": 1000
   },
   {
-    "lang": "ast-x-cantabrian",
+    "lang": "ast-x-cantabri",
     "dataset": "spain_romance_tts",
     "n": 20,
     "per": 0.0351,
@@ -1912,7 +1912,7 @@
     "limit": 1000
   },
   {
-    "lang": "ast-x-occidental",
+    "lang": "ast-x-occident",
     "dataset": "spain_romance_tts",
     "n": 20,
     "per": 0.0656,
@@ -2470,7 +2470,7 @@
     "limit": 1000
   },
   {
-    "lang": "ca-x-occidental",
+    "lang": "ca-x-occident",
     "dataset": "4catac",
     "n": 160,
     "per": 0.0822,
@@ -2485,7 +2485,7 @@
     "limit": 1000
   },
   {
-    "lang": "ca-x-occidental",
+    "lang": "ca-x-occident",
     "dataset": "spain_romance_tts",
     "n": 20,
     "per": 0.0724,
@@ -2968,7 +2968,7 @@
     "limit": 1000
   },
   {
-    "lang": "de-x-alemannic",
+    "lang": "de-x-alemanni",
     "dataset": "wikipron",
     "n": 448,
     "per": 0.1736,
@@ -3512,7 +3512,7 @@
     "limit": 1000
   },
   {
-    "lang": "es-AR-x-patagonia",
+    "lang": "es-AR-x-patagoni",
     "dataset": "spain_romance_tts",
     "n": 20,
     "per": 0.1085,
@@ -3704,7 +3704,7 @@
     "limit": 1000
   },
   {
-    "lang": "es-CO-x-santander",
+    "lang": "es-CO-x-santande",
     "dataset": "spain_romance_tts",
     "n": 20,
     "per": 0.0514,
@@ -3893,7 +3893,7 @@
     "limit": 1000
   },
   {
-    "lang": "es-ES-x-andalusia-e",
+    "lang": "es-ES-x-andalusi-e",
     "dataset": "spain_romance_tts",
     "n": 20,
     "per": 0.1321,
@@ -3909,7 +3909,7 @@
     "limit": 1000
   },
   {
-    "lang": "es-ES-x-andalusia-w",
+    "lang": "es-ES-x-andalusi-w",
     "dataset": "spain_romance_tts",
     "n": 20,
     "per": 0.1085,
@@ -3941,7 +3941,7 @@
     "limit": 1000
   },
   {
-    "lang": "es-ES-x-cantabria",
+    "lang": "es-ES-x-cantabri",
     "dataset": "spain_romance_tts",
     "n": 20,
     "per": 0.0781,
@@ -3957,7 +3957,7 @@
     "limit": 1000
   },
   {
-    "lang": "es-ES-x-extremadura",
+    "lang": "es-ES-x-extremad",
     "dataset": "spain_romance_tts",
     "n": 20,
     "per": 0.0478,
@@ -4180,7 +4180,7 @@
     "limit": 1000
   },
   {
-    "lang": "es-PE-x-amazonico",
+    "lang": "es-PE-x-amazonia",
     "dataset": "spain_romance_tts",
     "n": 20,
     "per": 0.0293,
@@ -4340,7 +4340,7 @@
     "limit": 1000
   },
   {
-    "lang": "es-VE-x-maracucho",
+    "lang": "es-VE-x-zulia",
     "dataset": "spain_romance_tts",
     "n": 20,
     "per": 0.1155,
@@ -4507,7 +4507,7 @@
     "limit": 1000
   },
   {
-    "lang": "eu-x-bizkaiera",
+    "lang": "eu-x-bizkaia",
     "dataset": "spain_romance_tts",
     "n": 20,
     "per": 0.0935,
@@ -4523,23 +4523,7 @@
     "limit": 1000
   },
   {
-    "lang": "eu-x-erronkariera",
-    "dataset": "spain_romance_tts",
-    "n": 20,
-    "per": 0.0453,
-    "per_ci_low": 0.0327,
-    "per_ci_high": 0.058,
-    "stress_acc": null,
-    "n_stress": 0,
-    "exact_match": 0.2,
-    "quality_tier": "research",
-    "provenance": "llm-corrected",
-    "gating": false,
-    "harness_version": "1.1",
-    "limit": 1000
-  },
-  {
-    "lang": "eu-x-gipuzkera",
+    "lang": "eu-x-gipuzkoa",
     "dataset": "spain_romance_tts",
     "n": 20,
     "per": 0.025,
@@ -4555,7 +4539,7 @@
     "limit": 1000
   },
   {
-    "lang": "eu-x-lapurtera",
+    "lang": "eu-x-lapurdi",
     "dataset": "spain_romance_tts",
     "n": 20,
     "per": 0.0654,
@@ -4596,6 +4580,22 @@
     "stress_acc": null,
     "n_stress": 0,
     "exact_match": 0.05,
+    "quality_tier": "research",
+    "provenance": "llm-corrected",
+    "gating": false,
+    "harness_version": "1.1",
+    "limit": 1000
+  },
+  {
+    "lang": "eu-x-roncal",
+    "dataset": "spain_romance_tts",
+    "n": 20,
+    "per": 0.0453,
+    "per_ci_low": 0.0327,
+    "per_ci_high": 0.058,
+    "stress_acc": null,
+    "n_stress": 0,
+    "exact_match": 0.2,
     "quality_tier": "research",
     "provenance": "llm-corrected",
     "gating": false,
@@ -4665,7 +4665,7 @@
     "limit": 1000
   },
   {
-    "lang": "ext-PT-x-barrancos",
+    "lang": "ext-PT-x-barranco",
     "dataset": "barranquenho_dict",
     "n": 1000,
     "per": 0.0588,
@@ -4681,7 +4681,7 @@
     "limit": 1000
   },
   {
-    "lang": "ext-PT-x-barrancos",
+    "lang": "ext-PT-x-barranco",
     "dataset": "portuguese_tts",
     "n": 20,
     "per": 0.0665,
@@ -4697,7 +4697,7 @@
     "limit": 1000
   },
   {
-    "lang": "ext-PT-x-barrancos",
+    "lang": "ext-PT-x-barranco",
     "dataset": "primary_sources",
     "n": 10,
     "per": 0.2801,
@@ -5083,7 +5083,7 @@
     "limit": 1000
   },
   {
-    "lang": "gl-ES-x-occidental",
+    "lang": "gl-ES-x-occident",
     "dataset": "spain_romance_tts",
     "n": 20,
     "per": 0.0734,
@@ -5115,7 +5115,7 @@
     "limit": 1000
   },
   {
-    "lang": "gl-ES-x-reintegrado",
+    "lang": "gl-ES-x-reintegr",
     "dataset": "spain_romance_tts",
     "n": 20,
     "per": 0.1368,
@@ -8559,7 +8559,7 @@
     "limit": 1000
   },
   {
-    "lang": "pt-BR-x-fluminense",
+    "lang": "pt-BR-x-fluminen",
     "dataset": "portuguese_tts",
     "n": 20,
     "per": 0.0791,
@@ -9567,7 +9567,7 @@
     "limit": 1000
   },
   {
-    "lang": "pt-PT-x-trasosmontes",
+    "lang": "pt-PT-x-tras-os-montes",
     "dataset": "clup_dialect",
     "n": 6,
     "per": 0.317,
@@ -9583,7 +9583,7 @@
     "limit": 1000
   },
   {
-    "lang": "pt-PT-x-trasosmontes",
+    "lang": "pt-PT-x-tras-os-montes",
     "dataset": "portuguese_tts",
     "n": 20,
     "per": 0.1279,
@@ -9816,7 +9816,7 @@
     "limit": 1000
   },
   {
-    "lang": "roa-x-galaicopt",
+    "lang": "roa-x-galaico-pt",
     "dataset": "portuguese_tts",
     "n": 20,
     "per": 0.1283,

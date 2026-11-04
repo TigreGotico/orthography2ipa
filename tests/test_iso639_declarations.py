@@ -79,8 +79,8 @@ def test_known_invalid_declarations_are_still_present():
     ("bxr", "bxr"),
     ("diq", "diq"),
     ("bo", "bod"),
-    ("sc-x-campidanese", "sro"),
-    ("sc-x-logudorese", "src"),
+    ("sc-x-campidan", "sro"),
+    ("sc-x-logudoro", "src"),
     ("vsn", "vsn"),
 ])
 def test_declares_the_individual_code(key, code):

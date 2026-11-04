@@ -20,7 +20,7 @@ One line per language: the best system on its primary gold, and where o2i lands.
 - **arb (Classical Arabic)** — o2i not scored: this gold was drafted by o2i's own lineage — see same-source (africa-g2p #1 among the rest)
 - **ca (Catalan)** — o2i #1 (beats espeak rules-only) (espeak with its lexicon scores 0.0403 — informational)
 - **ca-x-balear (Balearic Catalan)** — o2i #1 (beats espeak rules-only) (espeak with its lexicon scores 0.0797 — informational)
-- **ca-x-occidental (North-Western Catalan)** — o2i #1 (beats espeak rules-only) (espeak with its lexicon scores 0.0497 — informational)
+- **ca-x-occident (North-Western Catalan)** — o2i #1 (beats espeak rules-only) (espeak with its lexicon scores 0.0497 — informational)
 - **ca-x-valencia (Valencian)** — o2i #1 (beats espeak rules-only) (espeak with its lexicon scores 0.0439 — informational)
 - **cop (Coptic (Sahidic))** — o2i #1 (beats africa-g2p)
 - **cy (Welsh)** — o2i #1 (beats epitran)
@@ -33,7 +33,7 @@ One line per language: the best system on its primary gold, and where o2i lands.
 - **es (Spanish)** — epitran #1, o2i #2
 - **eu (Basque (Euskara))** — o2i #1 (beats espeak rules-only)
 - **eu-wikipron (Basque (Euskara), wikipron-primary variant)** — o2i #1 (beats espeak rules-only)
-- **ext-PT-x-barrancos** — primary gold has no comparable systems (same-source); see the per-language table below for a comparison on a secondary gold
+- **ext-PT-x-barranco** — primary gold has no comparable systems (same-source); see the per-language table below for a comparison on a secondary gold
 - **fi (Finnish)** — o2i #1 (beats epitran)
 - **fr (French)** — o2i #1 (beats espeak rules-only)
 - **ga (Irish)** — o2i #1 (beats espeak rules-only)
@@ -67,7 +67,7 @@ orthography2ipa is a shared lattice — a grapheme table plus allophone/sandhi r
 
 - **[arbtok](https://github.com/TigreGotico/arbtok)** — adds Arabic diacritization, dialect lexicons, nativized loanwords, and code-switch handling on top of the shared `ar`/`arb` lattice (the RANKED `arbtok` column below runs with both bundled lexicons off for a fair lexicon-free comparison — see `arbtok (lexicon)` for the full-featured stock number).
 - **[tugaphone](https://github.com/TigreGotico/tugaphone)** — adds the curated `tugalex` pronunciation lexicon, sense-based homograph marking, and cross-dialect contact-language handling on top of the Portuguese-family lattice.
-- **[g2p_barranquenho](https://github.com/TigreGotico/g2p_barranquenho)** — adds the Barranquenho (Spanish/Portuguese contact variety) rule layer on top of the `ext-PT-x-barrancos` lattice.
+- **[g2p_barranquenho](https://github.com/TigreGotico/g2p_barranquenho)** — adds the Barranquenho (Spanish/Portuguese contact variety) rule layer on top of the `ext-PT-x-barranco` lattice.
 - **[mwl_phonemizer](https://github.com/TigreGotico/mwl_phonemizer)** — adds Mirandese dialect selection, an optional native-speaker lexicon overlay, and CRF correction on top of the `mwl` lattice.
 - **[udarnik](https://github.com/TigreGotico/udarnik)** — adds a stressonnx-placed lexical accent on top of the `ru` lattice — Russian stress is free and unwritten, and the spec's own notes name its positional guess as the main source of its error, so supplying the real stress is what conditions akanje and ikanje correctly (no word->IPA lexicon: udarnik defaults to none. Its stressonnx `ruaccent` backend does consult a 110,826-entry accent dictionary and a 19,740-entry omograph dictionary before its models — 11.21% and 4.89% of unique `alphacep_ru_book` words respectively — but those hold STRESS POSITIONS, not pronunciations, so the column is ranked as effectively lexicon-free with the exception documented, the same treatment ahotts-g2p gets).
 
@@ -123,7 +123,7 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 |---|---|---|---|---|---|---|
 | 4catac | 160 | 0.1360 | 0.0797 | 0.1419 | 0.4998 | o2i |
 
-### ca-x-occidental (North-Western Catalan)
+### ca-x-occident (North-Western Catalan)
 
 | Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | Winner |
 |---|---|---|---|---|---|---|
@@ -217,7 +217,7 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 | vox_communis | 63415 | 0.0429 | 0.0948 | 0.0945 | same-source | 0.1039 | o2i |
 | wikipron | 12022 | 0.0546 | 0.1019 | 0.0986 | n/a | 0.1507 | o2i |
 
-### ext-PT-x-barrancos
+### ext-PT-x-barranco
 
 | Dataset | N | o2i | arbtok | arbtok (lexicon) | tugaphone (lexicon) | g2p_barranquenho | mwl_phonemizer | Winner |
 |---|---|---|---|---|---|---|---|---|
@@ -509,7 +509,7 @@ The table above conflates espeak-ng's letter-to-sound RULES with its hand-curate
 | ca | vox_communis | 141624 | 0.1317 | n/a | 0.1231 | 0.1217 |
 | ca | wikipron | 106 | 0.2565 | n/a | 0.2221 | 0.2798 |
 | ca-x-balear | 4catac | 160 | 0.1360 | n/a | 0.0797 | 0.1419 |
-| ca-x-occidental | 4catac | 160 | 0.0822 | n/a | 0.0497 | 0.0832 |
+| ca-x-occident | 4catac | 160 | 0.0822 | n/a | 0.0497 | 0.0832 |
 | ca-x-valencia | 4catac | 160 | 0.0677 | n/a | 0.0439 | 0.0762 |
 | cy | vox_communis | 18701 | 0.1172 | n/a | 0.3005 | 0.3016 |
 | cy | wikipron | 14811 | 0.1822 | n/a | 0.2799 | 0.2709 |
@@ -615,7 +615,7 @@ All three BSC dialect voices (`ca-ba`, `ca-nw`, `ca-va`) were found on this mach
 | central | ca | ca | 106 | 0.2565 | 0.2221 |
 | balear | ca-x-balear | ca-ba | 160 | 0.1360 | 0.0797 |
 | valencian | ca-x-valencia | ca-va | 160 | 0.0677 | 0.0439 |
-| occidental (nord-occidental) | ca-x-occidental | ca-nw | 160 | 0.0822 | 0.0497 |
+| occidental (nord-occidental) | ca-x-occident | ca-nw | 160 | 0.0822 | 0.0497 |
 
 <details>
 <summary>Coverage, staleness notes, and how to regenerate this table</summary>

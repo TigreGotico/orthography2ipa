@@ -58,7 +58,7 @@ PLACES: dict[str, dict] = {
         qid="Q1766550", label="Valle de Hecho", country="Spain",
         note="the Echo/Hecho valley (Huesca) — the valley the variety is named "
              "for and confined to."),
-    "an-x-chistabin": dict(
+    "an-x-chistau": dict(
         qid="Q3102588", label="Gistau Valley", country="Spain",
         note="the Gistaín/Chistau valley (Sobrarbe, Huesca) — the valley the "
              "variety is named for and confined to."),
@@ -72,7 +72,7 @@ PLACES: dict[str, dict] = {
         qid="Q71140", label="León Province", country="Spain",
         note="the province of León — the core of the Leonese area, which also "
              "reaches into Zamora and Salamanca. A province-wide point, not a town."),
-    "ast-PT-x-guadramil": dict(
+    "ast-PT-x-guadrami": dict(
         qid="Q8965253", label="Guadramil, Aveleda e Rio de Onor, Bragança",
         country="Portugal",
         note="Guadramil (Bragança) — the single border village the variety is "
@@ -92,7 +92,7 @@ PLACES: dict[str, dict] = {
              "which continues across the border into Guadramil and Rio de Onor."),
 
     # ── Historical / superstrate ──────────────────────────────────────────────
-    "cel-x-gallaecia": dict(
+    "cel-x-gallaeci": dict(
         qid="Q369692", label="Gallaecia", country=None,
         note="the Roman province of Gallaecia — the NW-Iberian territory the "
              "Gallaecian Celtic epigraphic and toponymic record comes from. A "
@@ -117,10 +117,10 @@ PLACES: dict[str, dict] = {
              "come from. A province-wide point for a fragmentarily attested language."),
 
     # ── Standard national varieties (weak points — a nation is not a place) ───
-    "da-x-copenhagen": dict(
+    "da-x-copenhag": dict(
         qid="Q1748", label="Copenhagen", country="Denmark",
         note="Copenhagen — the city rigsdansk is the speech of."),
-    "sv-x-rikssvenska": dict(
+    "sv-x-rikssven": dict(
         qid="Q1754", label="Stockholm", country="Sweden",
         note="Stockholm — Rikssvenska is the Central Swedish standard of the "
              "Stockholm area."),
@@ -160,7 +160,7 @@ PLACES: dict[str, dict] = {
              "area."),
 
     # ── Galician ──────────────────────────────────────────────────────────────
-    "gl-ES-x-occidental": dict(
+    "gl-ES-x-occident": dict(
         qid="Q12411", label="Pontevedra", country="Spain",
         note="Pontevedra — a representative locality of the western Galician block "
              "(Pontevedra province and coastal A Coruña), the gheada heartland."),
@@ -173,16 +173,16 @@ PLACES: dict[str, dict] = {
         note="A Fonsagrada (eastern Lugo, on the Asturian border) — a representative "
              "locality of the eastern Galician block, where Asturleonese contact is "
              "strongest."),
-    "gl-ES-x-reintegrado": dict(
+    "gl-ES-x-reintegr": dict(
         qid="Q3908", label="Galicia", country="Spain",
         note="Galicia. This spec is an ORTHOGRAPHY, not a speech variety — it shares "
              "its phonology and its territory with `gl-ES`, so it shares its point."),
 
     # ── Spanish: Iberia ───────────────────────────────────────────────────────
-    "es-ES-x-cantabria": dict(
+    "es-ES-x-cantabri": dict(
         qid="Q3946", label="Cantabria", country="Spain",
         note="Cantabria — the autonomous community the Montañés variety is spoken in."),
-    "es-ES-x-extremadura": dict(
+    "es-ES-x-extremad": dict(
         qid="Q5777", label="Extremadura", country="Spain",
         note="Extremadura (Cáceres and Badajoz) — the autonomous community the "
              "variety is spoken in."),
@@ -206,11 +206,11 @@ PLACES: dict[str, dict] = {
         qid="Q996581", label="Buenaventura", country="Colombia",
         note="Buenaventura — the principal city of the Colombian Pacific coast "
              "(Chocó–Valle littoral)."),
-    "es-CO-x-santander": dict(
+    "es-CO-x-santande": dict(
         qid="Q243766", label="Bucaramanga", country="Colombia",
         note="Bucaramanga — the capital of Santander and centre of the "
              "Santandereano area."),
-    "es-VE-x-maracucho": dict(
+    "es-VE-x-zulia": dict(
         qid="Q171632", label="Maracaibo", country="Venezuela",
         note="Maracaibo — the centre of the Maracucho/Zuliano area."),
     "es-VE-x-andino": dict(
@@ -240,7 +240,7 @@ PLACES: dict[str, dict] = {
     "es-PE-x-lima": dict(
         qid="Q2868", label="Lima", country="Peru",
         note="Lima — the coastal capital whose speech this spec models."),
-    "es-PE-x-amazonico": dict(
+    "es-PE-x-amazonia": dict(
         qid="Q193289", label="Iquitos", country="Peru",
         note="Iquitos — the principal city of the Peruvian Amazon (Loreto/Ucayali)."),
     "es-BO-x-camba": dict(
@@ -265,7 +265,7 @@ PLACES: dict[str, dict] = {
     "es-AR-x-norte": dict(
         qid="Q36307", label="Salta", country="Argentina",
         note="Salta — the principal city of the Argentine Andean northwest."),
-    "es-AR-x-patagonia": dict(
+    "es-AR-x-patagoni": dict(
         qid="Q1507", label="Patagonia", country=None,
         note="Patagonia — a region-level centroid spanning Argentina and Chile; the "
              "spec is the Argentine side. A weak point."),
@@ -375,7 +375,7 @@ PLACES: dict[str, dict] = {
     "pt-PT-x-viana": dict(
         qid="Q208158", label="Viana do Castelo", country="Portugal",
         note="Viana do Castelo — the centre of the Alto Minho."),
-    "pt-PT-x-trasosmontes": dict(
+    "pt-PT-x-tras-os-montes": dict(
         qid="Q369458", label="Trás-os-Montes e Alto Douro", country="Portugal",
         note="the centre of the Trás-os-Montes e Alto Douro dialect area (Bragança, "
              "Chaves, Valpaços) — a province-level point, not a town."),
@@ -413,7 +413,7 @@ PLACES: dict[str, dict] = {
         qid="Q26253", label="Madeira", country="Portugal",
         note="Madeira (Funchal reference) — the autonomous region the variety is "
              "named for."),
-    "ext-PT-x-barrancos": dict(
+    "ext-PT-x-barranco": dict(
         qid="Q368867", label="Barrancos", country="Portugal",
         note="Barrancos (Baixo Alentejo) — the single border municipality "
              "Barranquenho is spoken in."),
@@ -425,7 +425,7 @@ PLACES: dict[str, dict] = {
     "pt-BR-x-rj": dict(
         qid="Q8678", label="Rio de Janeiro", country="Brazil",
         note="Rio de Janeiro city — the Carioca variety."),
-    "pt-BR-x-fluminense": dict(
+    "pt-BR-x-fluminen": dict(
         qid="Q41428", label="Rio de Janeiro", country="Brazil",
         note="the state of Rio de Janeiro — this spec is the state BEYOND the "
              "capital, so the point is the state's centroid, not the city's."),
@@ -505,7 +505,7 @@ PLACES: dict[str, dict] = {
         note="Vologda Oblast — a representative point in the Northern Russian "
              "dialect zone (Arkhangelsk–Vologda–Kostroma). A dialect GROUP: the "
              "point is a stand-in for a very large area."),
-    "ru-x-arkhangelsk": dict(
+    "ru-x-arkhange": dict(
         qid="Q1851", label="Arkhangelsk", country="Russia",
         note="Arkhangelsk — the city the Northern subtype is named for."),
     "ru-x-vologda": dict(
@@ -593,10 +593,10 @@ PLACES: dict[str, dict] = {
     "es-CO-x-valluno": dict(
         qid="Q51103", label="Cali", country="Colombia",
         note="Cali — the centre of the Valle del Cauca."),
-    "es-ES-x-andalusia-w": dict(
+    "es-ES-x-andalusi-w": dict(
         qid="Q8717", label="Seville", country="Spain",
         note="Seville — the centre of the western Andalusian area."),
-    "es-ES-x-andalusia-e": dict(
+    "es-ES-x-andalusi-e": dict(
         qid="Q8810", label="Granada", country="Spain",
         note="Granada — a representative city of the eastern Andalusian area "
              "(with Almería and Jaén)."),
@@ -635,7 +635,7 @@ PLACES: dict[str, dict] = {
     "ca-x-balear": dict(
         qid="Q8826", label="Palma", country="Spain",
         note="Palma — the centre of the Balearic islands."),
-    "ca-x-occidental": dict(
+    "ca-x-occident": dict(
         qid="Q15090", label="Lleida", country="Spain",
         note="Lleida — the centre of the north-western (Lleidatà) area."),
     "ca-x-nord": dict(
@@ -644,13 +644,13 @@ PLACES: dict[str, dict] = {
              "Catalan variety spoken in France."),
 
     # ── Asturian ──────────────────────────────────────────────────────────────
-    "ast-x-occidental": dict(
+    "ast-x-occident": dict(
         qid="Q737421", label="Cangas del Narcea", country="Spain",
         note="Cangas del Narcea — a representative locality of western Asturias."),
     "ast-x-oriental": dict(
         qid="Q503094", label="Llanes", country="Spain",
         note="Llanes — a representative locality of eastern Asturias."),
-    "ast-x-cantabrian": dict(
+    "ast-x-cantabri": dict(
         qid="Q3946", label="Cantabria", country="Spain",
         note="Cantabria — the community the Cantabrian variety is spoken in."),
     "ast-x-leon": dict(
@@ -661,7 +661,7 @@ PLACES: dict[str, dict] = {
     "an-x-ansotano": dict(
         qid="Q570484", label="Ansó", country="Spain",
         note="the Ansó valley (Huesca) — the valley the variety is named for."),
-    "an-x-occidental": dict(
+    "an-x-occident": dict(
         qid="Q49581", label="Jaca", country="Spain",
         note="Jaca — a representative locality of the western Aragonese area."),
     "an-x-oriental": dict(
@@ -670,19 +670,19 @@ PLACES: dict[str, dict] = {
              "transitional to Catalan."),
 
     # ── Basque ────────────────────────────────────────────────────────────────
-    "eu-x-bizkaiera": dict(
+    "eu-x-bizkaia": dict(
         qid="Q93366", label="Biscay", country="Spain",
         note="Bizkaia — the province the dialect is named for."),
-    "eu-x-gipuzkera": dict(
+    "eu-x-gipuzkoa": dict(
         qid="Q95010", label="Gipuzkoa", country="Spain",
         note="Gipuzkoa — the province the dialect is named for."),
-    "eu-x-lapurtera": dict(
+    "eu-x-lapurdi": dict(
         qid="Q671023", label="Labourd", country="France",
         note="Lapurdi (Labourd) — the historical province the dialect is named for."),
     "eu-x-zuberera": dict(
         qid="Q673040", label="Soule", country="France",
         note="Zuberoa (Soule) — the historical province the dialect is named for."),
-    "eu-x-erronkariera": dict(
+    "eu-x-roncal": dict(
         qid="Q2165565", label="Roncal-Erronkari Valley", country="Spain",
         note="the Roncal/Erronkari valley (Navarre) — the valley the extinct "
              "dialect was spoken in."),
@@ -715,7 +715,7 @@ PLACES: dict[str, dict] = {
         note="Doha. A national variety within the Gulf continuum."),
 
     # ── Other over-broad Glottolog points ─────────────────────────────────────
-    "fa-x-khorasani": dict(
+    "fa-x-khorasan": dict(
         qid="Q587090", label="Razavi Khorasan Province", country="Iran",
         note="Razavi Khorasan — the province the Khorasani variety is named for. "
              "Glottolog's point for it is the generic Persian point in central Iran."),

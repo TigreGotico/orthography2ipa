@@ -169,9 +169,9 @@ def test_the_arabic_specs_opt_in():
     # the long-vowel syllable and otherwise initially (Cardoso, APiCS 41); cic
     # Chickasaw puts the primary accent on the rightmost heavy CVV/CVC syllable
     # (Munro & Willmond 1994, *Chickasaw: An Analytical Dictionary*); and
-    # ar-Latn-buckwalter is Arabic transliterated into Latin, so it declares the
+    # ar-Latn-x-buckwalt is Arabic transliterated into Latin, so it declares the
     # block without sharing an Arabic grapheme table to inherit it from.
-    _cited_outside_the_lineage = {"idb", "cic", "ar-Latn-buckwalter"}
+    _cited_outside_the_lineage = {"idb", "cic", "ar-Latn-x-buckwalt"}
     assert opted_in <= inherits_from_arabic | _cited_outside_the_lineage, sorted(
         opted_in - inherits_from_arabic - _cited_outside_the_lineage)
 

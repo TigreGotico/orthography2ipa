@@ -1102,8 +1102,8 @@ class TestGalician:
     def test_script(self):
         assert self._spec.script == "Latin"
 
-    def test_parent_galaicopt(self):
-        assert "galaicopt" in self._spec.parent
+    def test_parent_galaico_pt(self):
+        assert "galaico-pt" in self._spec.parent
 
     # --- Vowels ---
 
@@ -1547,7 +1547,7 @@ class TestBasqueEU:
     def test_isogloss_h_southern_silent_continental_phonemic(self):
         # southern/standard eu drops ⟨h⟩; the continental dialects keep it
         assert _grapheme(self._spec, "h") == [""], "eu h: southern norm is silent"
-        assert _grapheme(_load("eu-x-lapurtera"), "h") == ["h"], \
+        assert _grapheme(_load("eu-x-lapurdi"), "h") == ["h"], \
             "continental Lapurdian keeps phonemic [h]"
 
 
@@ -2382,16 +2382,16 @@ class TestSpanishPhonologicalRules:
 # ═══════════════════════════════════════════════════════════════════════════
 
 class TestSpanishAndalusianEast:
-    """Tests for Eastern Andalusian Spanish (es-ES-x-andalusia-e)."""
+    """Tests for Eastern Andalusian Spanish (es-ES-x-andalusi-e)."""
 
-    LANGUAGE_CODE = "es-ES-x-andalusia-e"
+    LANGUAGE_CODE = "es-ES-x-andalusi-e"
 
     @pytest.fixture(autouse=True, scope="class")
     def spec(self, request):
-        request.cls._spec = _load("es-ES-x-andalusia-e")
+        request.cls._spec = _load("es-ES-x-andalusi-e")
 
     def test_code(self):
-        assert self._spec.code == "es-ES-x-andalusia-e"
+        assert self._spec.code == "es-ES-x-andalusi-e"
 
     def test_family(self):
         assert {"Indo-European", "Romance", "Ibero-Romance"} <= set(self._spec.family_path)
@@ -2406,7 +2406,7 @@ class TestSpanishAndalusianEast:
         """Eastern Andalusian MAINTAINS distinción (/θ/ vs /s/) unlike western varieties."""
         p = _positional(self._spec, "c", GraphemePosition.BEFORE_E)
         if p:  # only check if positional rule defined
-            assert "θ" in p, f"es-ES-x-andalusia-e c/before_e: expected θ (distinción), got {p}"
+            assert "θ" in p, f"es-ES-x-andalusi-e c/before_e: expected θ (distinción), got {p}"
 
     def test_closer_to_spanish_than_arabic(self):
         from orthography2ipa.distance import phonological_distance
@@ -2552,16 +2552,16 @@ class TestPortugueseBrazilian:
 # ═══════════════════════════════════════════════════════════════════════════
 
 class TestGalicianWestern:
-    """Tests for Western Galician (gl-ES-x-occidental)."""
+    """Tests for Western Galician (gl-ES-x-occident)."""
 
-    LANGUAGE_CODE = "gl-ES-x-occidental"
+    LANGUAGE_CODE = "gl-ES-x-occident"
 
     @pytest.fixture(autouse=True, scope="class")
     def spec(self, request):
-        request.cls._spec = _load("gl-ES-x-occidental")
+        request.cls._spec = _load("gl-ES-x-occident")
 
     def test_code(self):
-        assert self._spec.code == "gl-ES-x-occidental"
+        assert self._spec.code == "gl-ES-x-occident"
 
     def test_family(self):
         assert {"Indo-European", "Romance", "Ibero-Romance"} <= set(self._spec.family_path)

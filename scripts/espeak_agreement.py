@@ -102,7 +102,7 @@ SOURCES: Dict[str, Tuple] = {
     # --- 4catac-sourced (Catalan regional accents) ---
     "ca": (benchmark.load_4catac, "ca", "ca"),
     "ca-x-balear": (benchmark.load_4catac, "ca-x-balear", "ca-ba"),
-    "ca-x-occidental": (benchmark.load_4catac, "ca-x-occidental", "ca-nw"),
+    "ca-x-occident": (benchmark.load_4catac, "ca-x-occident", "ca-nw"),
     "ca-x-valencia": (benchmark.load_4catac, "ca-x-valencia", "ca-va"),
     # --- ep_dialects-sourced (European Portuguese regional accents);
     # espeak-ng has no per-region EP voice, so all compare against its

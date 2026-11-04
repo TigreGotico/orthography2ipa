@@ -105,8 +105,8 @@ class TestSwedishScandinavian:
         # [kaɭ]).
         assert _ipa("sv", "sorl") == "sɔɭ"
         assert _ipa("sv", "pärla") == "²pæɭa"
-        assert _ipa("sv-x-rikssvenska", "barn").endswith("ɳ")
-        assert _ipa("sv-x-rikssvenska", "fars").endswith("ʂ")
+        assert _ipa("sv-x-rikssven", "barn").endswith("ɳ")
+        assert _ipa("sv-x-rikssven", "fars").endswith("ʂ")
 
     def test_retroflexion_spreads_through_the_coronal_cluster(self):
         # Riad 2014 ch. 4: every dental after the /r/ retroflexes, not just

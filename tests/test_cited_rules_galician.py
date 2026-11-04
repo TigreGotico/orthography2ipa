@@ -427,7 +427,7 @@ def test_gl_qu_gu_before_ei_in_a_plural_keeps_the_stress(word, expected_tail):
 # ═══════════════════════════════════════════════════════════════════════════
 
 @pytest.mark.parametrize("lang", [
-    "gl-ES-x-central", "gl-ES-x-occidental", "gl-ES-x-oriental",
+    "gl-ES-x-central", "gl-ES-x-occident", "gl-ES-x-oriental",
 ])
 @pytest.mark.parametrize("word,expected_tail", [
     ("cantou", "tow"),
@@ -482,10 +482,10 @@ def test_every_galician_tag_reaches_the_one_standard(code, word, expected):
 
 @pytest.mark.parametrize("old,new", [
     ("gl-x-central", "gl-ES-x-central"),
-    ("gl-x-occidental", "gl-ES-x-occidental"),
+    ("gl-x-occidental", "gl-ES-x-occident"),
     ("gl-x-oriental", "gl-ES-x-oriental"),
     ("gl-x-eonavia", "gl-ES-x-eonavia"),
-    ("gl-x-reintegrado", "gl-ES-x-reintegrado"),
+    ("gl-x-reintegrado", "gl-ES-x-reintegr"),
 ])
 def test_retired_galician_variety_codes_reach_their_spec(old, new):
     """The varieties carry the region of the standard they derive from. Their

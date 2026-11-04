@@ -1,4 +1,4 @@
-"""Archaic Northern European Portuguese — Transmontano (pt-PT-x-trasosmontes)
+"""Archaic Northern European Portuguese — Transmontano (pt-PT-x-tras-os-montes)
 and Alto-Minhoto (pt-PT-x-viana).
 
 Cintra's (1971, Boletim de Filologia 22:81-116) conservative
@@ -27,7 +27,7 @@ def _bare(s: str) -> str:
     return s.replace("ˈ", "").replace("ˌ", "")
 
 
-NORTH = ["pt-PT-x-trasosmontes", "pt-PT-x-viana"]
+NORTH = ["pt-PT-x-tras-os-montes", "pt-PT-x-viana"]
 
 
 @pytest.fixture(params=NORTH)

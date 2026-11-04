@@ -54,32 +54,32 @@ GOLD_DIR = REPO_ROOT / "orthography2ipa" / "data" / "gold" / "spain_romance_tts"
 LECTS = [
     # Castilian and its peninsular / insular accents
     "es-ES",
-    "es-ES-x-andalusia-e", "es-ES-x-andalusia-w",
-    "es-ES-x-canarias", "es-ES-x-cantabria", "es-ES-x-extremadura",
+    "es-ES-x-andalusi-e", "es-ES-x-andalusi-w",
+    "es-ES-x-canarias", "es-ES-x-cantabri", "es-ES-x-extremad",
     "es-ES-x-medieval", "es-ES-x-murcia",
     # Galician (RAG and reintegrado registers, dialect blocks)
-    "gl-ES", "gl-ES-x-central", "gl-ES-x-occidental", "gl-ES-x-oriental",
-    "gl-ES-x-reintegrado", "gl-ES-x-eonavia",
+    "gl-ES", "gl-ES-x-central", "gl-ES-x-occident", "gl-ES-x-oriental",
+    "gl-ES-x-reintegr", "gl-ES-x-eonavia",
     # Asturleonese
     "ast", "ast-ES-x-leon",
-    "ast-x-leon", "ast-x-cantabrian", "ast-x-occidental", "ast-x-oriental",
+    "ast-x-leon", "ast-x-cantabri", "ast-x-occident", "ast-x-oriental",
     "ast-x-pasiego", "ast-x-sanabria",
     # Aragonese and its high-valley varieties
-    "an", "an-x-ansotano", "an-x-belsetan", "an-x-benasques", "an-x-cheso",
-    "an-x-chistabin", "an-x-occidental", "an-x-oriental", "an-x-tensino",
+    "an", "an-x-ansotano", "an-x-belsetan", "an-x-benasque", "an-x-cheso",
+    "an-x-chistau", "an-x-occident", "an-x-oriental", "an-x-tensino",
     # Catalan / Valencian
-    "ca", "ca-x-balear", "ca-x-occidental", "ca-x-valencia", "ca-x-medieval",
+    "ca", "ca-x-balear", "ca-x-occident", "ca-x-valencia", "ca-x-medieval",
     # Aranese Occitan, Fala, Extremaduran, mixed, Ladino
     "oc-x-aranes", "ext", "fax", "mxi", "lad",
     # Caribbean Spanish (Americas extension)
-    "es-VE", "es-VE-x-andino", "es-VE-x-llanero", "es-VE-x-maracucho",
+    "es-VE", "es-VE-x-andino", "es-VE-x-llanero", "es-VE-x-zulia",
     "es-CU", "es-DO", "es-PR",
     # Andean Spanish (Americas extension): Peru and Ecuador
-    "es-PE", "es-PE-x-lima", "es-PE-x-andino", "es-PE-x-amazonico",
+    "es-PE", "es-PE-x-lima", "es-PE-x-andino", "es-PE-x-amazonia",
     "es-EC", "es-EC-x-andino", "es-EC-x-costa",
     # Rioplatense family (Argentina / Uruguay / Paraguay)
     "es-AR", "es-AR-x-cordoba", "es-AR-x-cuyo", "es-AR-x-litoral",
-    "es-AR-x-norte", "es-AR-x-patagonia", "es-UY", "es-PY",
+    "es-AR-x-norte", "es-AR-x-patagoni", "es-UY", "es-PY",
     # American Spanish — Bolivian and Chilean varieties (own morphosyntax/lexicon)
     "es-BO", "es-BO-x-andino", "es-BO-x-camba",
     "es-CL", "es-CL-x-andino", "es-CL-x-chilote",
@@ -89,15 +89,15 @@ LECTS = [
     "es-419", "es-MX", "es-MX-x-norte", "es-MX-x-yucatan", "es-MX-x-costa",
     # Colombian Spanish (Americas extension): bogotano + regional accents
     "es-CO", "es-CO-x-costa", "es-CO-x-llanero", "es-CO-x-pacifico",
-    "es-CO-x-paisa", "es-CO-x-santander", "es-CO-x-valluno",
+    "es-CO-x-paisa", "es-CO-x-santande", "es-CO-x-valluno",
     # (The Spanish-lexified creoles cbk-PH, pap and pln are NOT Iberian
     # Romance; they moved to the unified creole harness —
     # scripts/iberian_creole_tts_gold.py — with the rest of the creole roster.)
     # Basque (mega-set): Euskara Batua + the dialect specs. Not Romance, but an
     # Iberian language sharing the harness; its rows use the eu_* feature axes.
-    "eu", "eu-x-bizkaiera", "eu-x-gipuzkera", "eu-x-lapurtera",
+    "eu", "eu-x-bizkaia", "eu-x-gipuzkoa", "eu-x-lapurdi",
     "eu-x-nafarra-garaia", "eu-x-nafarra-beherea", "eu-x-zuberera",
-    "eu-x-erronkariera",
+    "eu-x-roncal",
 ]
 MIN_ROWS = 5
 FIELDS = ["id", "sentence", "ipa", "gloss_en", "features", "notes"]

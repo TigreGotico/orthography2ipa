@@ -23,7 +23,7 @@ ATTESTED = {
     "apc-TR-x-cukurova": "apc-SY",
     "ar-TR-x-kinderib": "ar-IQ-x-qeltu",
     "arz-EG-x-fayyum": "arz-EG",
-    "ar-SA-x-janubi": "ar-x-peninsular",
+    "ar-SA-x-janubi": "ar-x-peninsul",
 }
 
 
@@ -79,6 +79,6 @@ def test_janubi_claims_a_label_rather_than_a_languoid():
     raw = _raw("ar-SA-x-janubi")
     assert raw["sources"] == []
     assert "NOT AS A LANGUOID" in raw["notes"]
-    assert raw["parent"] == "ar-x-peninsular", (
+    assert raw["parent"] == "ar-x-peninsul", (
         "parenting it to rijal-alma or tihama-qahtan would assert a grouping no "
         "source supports")

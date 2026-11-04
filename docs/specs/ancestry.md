@@ -27,7 +27,7 @@ The loader splices the clade nodes into the parent chain and never puts one in p
 from orthography2ipa.registry import ancestry_chain
 
 ancestry_chain("pt-PT")
-# ['pt-PT-x-medieval', 'roa-x-galaicopt', 'x-clade-iberrom', 'la-x-hispania',
+# ['pt-PT-x-medieval', 'roa-x-galaico-pt', 'x-clade-iberrom', 'la-x-hispania',
 #  'x-clade-roma1334', 'la-x-late', 'la', 'la-x-archaic', 'ine-x-italic',
 #  'x-clade-ital1284', 'ine', 'x-clade-indo1319']
 ```

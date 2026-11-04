@@ -49,7 +49,7 @@ def test_warning_is_a_user_warning_and_exported():
     ("pt", "pt-PT"),
     ("en-NZ", "en-GB"),
     ("PT-PT-X-PORTO", "pt-PT-x-porto"),
-    ("eu-X-bizkaiera", "eu-x-bizkaiera"),
+    ("eu-X-bizkaiera", "eu-x-bizkaia"),
 ])
 def test_resolvable_tags_stay_silent(tag, chosen):
     with warnings.catch_warnings():

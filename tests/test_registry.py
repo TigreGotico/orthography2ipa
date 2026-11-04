@@ -116,7 +116,7 @@ class TestPrivateUseSpellings:
         ("ar-sa-x-najd", "ars-SA"),
         ("ars-sa-x-qassim", "ars-SA-x-qassim"),
         ("PT-PT-X-PORTO", "pt-PT-x-porto"),
-        ("eu-X-bizkaiera", "eu-x-bizkaiera"),
+        ("eu-X-bizkaiera", "eu-x-bizkaia"),
     ])
     def test_private_use_tags_match_case_insensitively(self, spelling, canonical):
         assert registry.resolve(spelling) == canonical
@@ -261,7 +261,7 @@ class TestCachedSpecIsImmutable:
     """
 
     def test_grapheme_key_assignment_is_blocked(self):
-        spec = get("ext-PT-x-barrancos")
+        spec = get("ext-PT-x-barranco")
         with pytest.raises(TypeError):
             spec.graphemes["aqui"] = ["x"]
 
@@ -286,7 +286,7 @@ class TestCachedSpecIsImmutable:
         """The regression: mutate a fetched spec, then a fresh get() is
         unaffected. Even a mutation that slips past the guard must not leak
         into the next caller's spec."""
-        first = get("ext-PT-x-barrancos")
+        first = get("ext-PT-x-barranco")
         before = dict(first.graphemes)
         # attempts to corrupt the shared instance
         for attempt in (
@@ -297,7 +297,7 @@ class TestCachedSpecIsImmutable:
                 attempt()
             except TypeError:
                 pass
-        second = get("ext-PT-x-barrancos")
+        second = get("ext-PT-x-barranco")
         assert second is first          # identity: shared cached instance
         assert dict(second.graphemes) == before
         assert "aqui" not in second.graphemes
@@ -322,9 +322,9 @@ class TestCachedSpecIsImmutable:
 # from the spec owner rather than a guess, so they are named here instead of
 # being silently tolerated, and this set may only shrink.
 #
-#   gsw   declared by de-x-alemannic (Alemannic German), reaches de-CH, which
+#   gsw   declared by de-x-alemanni (Alemannic German), reaches de-CH, which
 #         is named Swiss Standard German and declares deu -- a different code
-#         and arguably a different language. But de-x-alemannic's own parent is
+#         and arguably a different language. But de-x-alemanni's own parent is
 #         de-CH, so the registry already treats Alemannic as a child of it, and
 #         which of those two readings is intended is the owner's call
 UNRESOLVED_ISO_DECLARATIONS = frozenset(

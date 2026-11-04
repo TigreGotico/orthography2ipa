@@ -2,7 +2,7 @@
   "code": "ayn-YE",
   "name": "Yemeni Arabic (Ṣanʿānī)",
   "script": "Arabic",
-  "graphemes_base": "ar-x-peninsular",
+  "graphemes_base": "ar-x-peninsul",
   "graphemes": {
     "ث": [
       "θ"
@@ -143,7 +143,7 @@
       "wiðˤðˤ"
     ]
   },
-  "allophones_base": "ar-x-peninsular",
+  "allophones_base": "ar-x-peninsul",
   "allophones": {
     "k": [
       "k"
@@ -178,10 +178,10 @@
       "eː"
     ]
   },
-  "parent": "ar-x-peninsular",
+  "parent": "ar-x-peninsul",
   "ancestors": [
     {
-      "code": "ar-x-peninsular",
+      "code": "ar-x-peninsul",
       "role": "parent",
       "weight": 0.9,
       "notes": "Peninsular Arabic base"

@@ -16,7 +16,7 @@ P2  The coordinating conjunction ``e`` is raised to [i] in modern Portuguese
     (EP and BP alike; and verbatim [i] in Barrancos per Navas), but keeps its
     unraised [e] in the medieval / Galician-Portuguese stages. Data:
     ``word_exceptions {"e": "i"}`` on pt-PT and pt-BR (inherited by their
-    modern children), absent from pt-PT-x-medieval and roa-x-galaicopt.
+    modern children), absent from pt-PT-x-medieval and roa-x-galaico-pt.
 
 P3  North-western tonic-mid diphthongisation ([e]→[je], [o]→[wo]; Brissos 2018,
     Cintra 1971) must fire only on lexically stressed ORAL mids, never on an
@@ -57,7 +57,7 @@ CLITICS = ["o", "a", "os", "as", "de", "em", "por", "da", "na", "ao", "às",
 P1_LECTS = ["pt-PT", "pt-BR", "pt-PT-x-lisbon", "pt-PT-x-porto",
             "pt-PT-x-braga", "pt-PT-x-alentejo", "pt-PT-x-acores",
             "pt-BR-x-sp", "pt-AO", "pt-MZ", "pt-PT-x-medieval",
-            "roa-x-galaicopt", "ext-PT-x-barrancos"]
+            "roa-x-galaico-pt", "ext-PT-x-barranco"]
 
 
 @pytest.mark.parametrize("lect", P1_LECTS)
@@ -86,12 +86,12 @@ def test_indefinite_article_um_keeps_stress():
 
 @pytest.mark.parametrize("lect", ["pt-PT", "pt-BR", "pt-PT-x-lisbon",
                                   "pt-PT-x-braga", "pt-BR-x-sp", "pt-AO",
-                                  "pt-UY", "ext-PT-x-barrancos"])
+                                  "pt-UY", "ext-PT-x-barranco"])
 def test_conjunction_e_raises_to_i_modern(lect):
     assert transcribe("e", lect) == "i", lect
 
 
-@pytest.mark.parametrize("lect", ["pt-PT-x-medieval", "roa-x-galaicopt"])
+@pytest.mark.parametrize("lect", ["pt-PT-x-medieval", "roa-x-galaico-pt"])
 def test_conjunction_e_stays_e_historical(lect):
     # Pre-raising stage: ⟨e⟩ keeps [e] (no /e/ > /i/ raising yet).
     assert transcribe("e", lect) == "e", lect

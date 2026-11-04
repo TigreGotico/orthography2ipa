@@ -62,7 +62,7 @@ import pytest
 from orthography2ipa import get, transcribe
 
 
-CA_VARIETIES = ["ca", "ca-x-nord", "ca-x-balear", "ca-x-occidental",
+CA_VARIETIES = ["ca", "ca-x-nord", "ca-x-balear", "ca-x-occident",
                 "ca-x-valencia", "ca-x-alguer", "ca-x-medieval"]
 
 
@@ -127,7 +127,7 @@ def test_coda_nd_is_not_coda_nt(word, expected):
 
 
 @pytest.mark.parametrize("lang,word", [
-    ("ca-x-valencia", "dent"), ("ca-x-occidental", "dent"),
+    ("ca-x-valencia", "dent"), ("ca-x-occident", "dent"),
     ("ca-x-balear", "dent"),
 ])
 def test_coda_nt_rule_does_not_leak_to_varieties_that_opt_out(lang, word):
@@ -225,7 +225,7 @@ def test_que_survives_before_a_consonant():
     assert transcribe("que no", "ca").split()[0] == "kə"
 
 
-@pytest.mark.parametrize("lang", ["ca-x-valencia", "ca-x-occidental"])
+@pytest.mark.parametrize("lang", ["ca-x-valencia", "ca-x-occident"])
 def test_que_elision_is_eastern_only(lang):
     """The Western block does not reduce: its ⟨que⟩ is [ke], not [kə], and
     the 4catac Valencian and North-Western expert transcriptions keep it
@@ -246,7 +246,7 @@ def test_que_elision_covers_the_whole_eastern_block():
 # ── 5. The monosyllabic clitics ⟨i⟩ ⟨hi⟩ ⟨ho⟩ glide before a vowel ────────
 
 @pytest.mark.parametrize("lang", ["ca", "ca-x-nord", "ca-x-balear",
-                                  "ca-x-occidental", "ca-x-valencia"])
+                                  "ca-x-occident", "ca-x-valencia"])
 @pytest.mark.parametrize("phrase,index", [
     ("on hi ha", 1),
     ("príncep i arriba", 1),
@@ -275,7 +275,7 @@ def test_clitic_i_glides_before_a_vowel_in_every_dialect(lang, phrase, index):
 
 
 @pytest.mark.parametrize("lang", ["ca", "ca-x-nord", "ca-x-balear",
-                                  "ca-x-occidental", "ca-x-valencia"])
+                                  "ca-x-occident", "ca-x-valencia"])
 def test_clitic_i_stays_syllabic_before_a_consonant(lang):
     """COUNTER-CASE — no following vowel, no glide."""
     assert transcribe("pins i coberts", lang).split()[1] == "i"
@@ -295,7 +295,7 @@ def test_the_matching_ho_glide_is_deliberately_not_shipped():
     assert transcribe("no ho abastes", "ca").split()[1] == "u"
     assert transcribe("O Anna o Eva", "ca").split()[0] == "u"
     for lang in ("ca", "ca-x-nord", "ca-x-balear", "ca-x-valencia",
-                 "ca-x-occidental"):
+                 "ca-x-occident"):
         ids = {r.id for r in get(lang).sandhi_rules}
         assert "CA_CLITIC_GLIDE_U_BEFORE_VOWEL" not in ids
 

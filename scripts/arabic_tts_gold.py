@@ -53,7 +53,7 @@ LECTS = [
     # Historical: Andalusi Arabic (medieval al-Andalus), Arabic-script gold
     "xaa",
     # Grouping (proto/koine) nodes — pan-group register, node-level rankings.
-    "afb", "apc", "ar-x-maghrebi", "ar-x-mashriqi", "ar-x-peninsular",
+    "afb", "apc", "ar-x-maghrebi", "ar-x-mashriqi", "ar-x-peninsul",
 ]
 MIN_ROWS = 5
 FIELDS = ["id", "sentence", "raw", "ipa", "gloss_en", "features", "notes"]

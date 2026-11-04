@@ -80,4 +80,4 @@ The only board row for `pt-UY` comes from a silver gold, `portuguese_tts` at the
 - Sturza, Eliana Rosa (2021). "Português do Uruguai e Português de Missões: língua, território e fronteira". *Línguas e Instrumentos Linguísticos* 24(48), 177-198. <https://doi.org/10.20396/lil.v24i48.8667912>
 
 ---
-[← East Timorese Portuguese](pt-TL.md) · [Home](../index.md) · [Barranquenho →](ext-PT-x-barrancos.md)
+[← East Timorese Portuguese](pt-TL.md) · [Home](../index.md) · [Barranquenho →](ext-PT-x-barranco.md)
