@@ -2366,7 +2366,7 @@ class TestSpanishPhonologicalRules:
         assert _ES().transcribe_word(word) == expected
 
     @pytest.mark.parametrize("word,expected", [
-        ("distingui\u00f3", "distin\u02c8\u0261jo"),
+        ("distingui\u00f3", "disti\u014b\u02c8\u0261jo"),
         ("guiones", "\u02c8\u0261jones"),
         ("guion", "\u02c8\u0261jon"),
     ])
