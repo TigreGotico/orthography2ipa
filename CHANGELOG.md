@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.114.21a1](https://github.com/TigreGotico/orthography2ipa/tree/7.114.21a1) (2026-11-04)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.114.20a5...7.114.21a1)
+
+**Merged pull requests:**
+
+- fix\(pt\): keep the diphthong glide before a stressed ⟨i u⟩ \(AO 1990 Base X 4.º, 5.º\) [\#1985](https://github.com/TigreGotico/orthography2ipa/pull/1985) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.114.20a5](https://github.com/TigreGotico/orthography2ipa/tree/7.114.20a5) (2026-11-04)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.114.20a4...7.114.20a5)
@@ -333,10 +341,6 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.112.1a1...7.112.2a1)
 
-**Merged pull requests:**
-
-- fix: place the stress mark across a written hiatus [\#1819](https://github.com/TigreGotico/orthography2ipa/pull/1819) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [7.112.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.112.1a1) (2026-11-03)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.112.0a1...7.112.1a1)
@@ -385,10 +389,6 @@
 ## [7.111.20a2](https://github.com/TigreGotico/orthography2ipa/tree/7.111.20a2) (2026-11-02)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.111.20a1...7.111.20a2)
-
-**Merged pull requests:**
-
-- ci: board guard reads the live PR body [\#1820](https://github.com/TigreGotico/orthography2ipa/pull/1820) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.111.20a1](https://github.com/TigreGotico/orthography2ipa/tree/7.111.20a1) (2026-11-02)
 
