@@ -168,7 +168,7 @@ The tier is `crowd-scraped`, so the row gates.
 
 The `li` spec implements *Spelling 2003 voor de Limburgse dialecten*, the Veldeke spelling. It states that ad-hoc spellings based on Dutch or German are out of scope. The gold mixes headwords from the Veldeke spelling with alternative forms from Wiktionary. These come from the German-based spelling, from Rheinische Dokumenta and from the Eupen dialect.
 
-The file holds 1,128 gold lines over 989 headwords. 123 headwords are homographs with two or more readings. The spelling underdetermines the pronunciation, partly through dialect variation, and partly because Spelling 2003 does not write the contrast of sleeptoon and stoottoon. 90 gold lines, over 55 words, carry an IPA tone letter that the spelling cannot supply.
+The file holds 1,128 gold lines over 989 headwords. 123 headwords are homographs with two or more readings. The spelling underdetermines the pronunciation, partly through dialect variation, and partly because the contrast of sleeptoon and stoottoon is not written. Spelling 2003 has two optional signs for it, and the headwords do not use them. 90 gold lines, over 55 words, carry an IPA tone letter that the spelling cannot supply.
 
 Tone is not the main source of error here, unlike the Hausa and Kikuyu tone folds. Folding the tone letters out of both sides barely moves the PER of the row. The `li` spec notes record the figures, and `tests/test_li_gold_composition.py` checks them. The main driver is the mix of spelling conventions. Mistranscribing an out-of-contract spelling is the documented behaviour of the spec, not a defect in it.
 
