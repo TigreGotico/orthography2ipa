@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.114.29a1](https://github.com/TigreGotico/orthography2ipa/tree/7.114.29a1) (2026-11-04)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.114.28a1...7.114.29a1)
+
+**Merged pull requests:**
+
+- fix\(nl\): read the w of ⟨ouw auw⟩ as silent and of ⟨ieuw eeuw uw⟩ as a u offglide [\#2009](https://github.com/TigreGotico/orthography2ipa/pull/2009) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.114.28a1](https://github.com/TigreGotico/orthography2ipa/tree/7.114.28a1) (2026-11-04)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.114.27a1...7.114.28a1)
@@ -267,10 +275,6 @@
 ## [7.114.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.114.0a1) (2026-11-03)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.113.13a1...7.114.0a1)
-
-**Merged pull requests:**
-
-- feat\(pt-BR\): add Florianópolis and Cuiabá regional specs [\#1868](https://github.com/TigreGotico/orthography2ipa/pull/1868) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.113.13a1](https://github.com/TigreGotico/orthography2ipa/tree/7.113.13a1) (2026-11-03)
 
@@ -859,15 +863,15 @@
 
 ## [7.93.16a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.16a1) (2026-09-17)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.14a1...7.93.16a1)
-
-## [7.93.14a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.14a1) (2026-09-17)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.15a1...7.93.14a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.15a1...7.93.16a1)
 
 ## [7.93.15a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.15a1) (2026-09-17)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.13a1...7.93.15a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.14a1...7.93.15a1)
+
+## [7.93.14a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.14a1) (2026-09-17)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.13a1...7.93.14a1)
 
 ## [7.93.13a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.13a1) (2026-09-17)
 
