@@ -116,7 +116,7 @@ class TestSwedishScandinavian:
         # /s/ cascades like the stops: barnsben /²bɑːɳʂbeːn/,
         # blyerts /²blyːɛʈʂ/, bortse /²bɔʈʂeːr/.
         assert _ipa("sv", "barnsben") == "baɳʂbɛn"
-        assert _ipa("sv", "blyerts") == "blʏæʈʂ"
+        assert _ipa("sv", "blyerts") == "blyːæʈʂ"
 
     def test_retroflexion_needs_a_single_r_and_a_coronal(self):
         # Counter-cases the rule must NOT touch.
