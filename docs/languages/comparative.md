@@ -127,7 +127,7 @@ The Romance languages share the palatal softening of Latin ⟨c⟩ and ⟨g⟩ b
 | Spanish | [θ] (Castilian), [s] (Latin American) | [x] | | `cero` `ˈθeɾo`, `gente` `ˈxente` |
 | Portuguese | [s] | [ʒ] | | `cedo` `ˈsɛdu`, `gente` `ˈʒẽtɨ` (pt-PT) |
 | Catalan | [s] | [dʒ] or [ʒ] | | `cel` `ˈsɛl`, `gent` `ˈʒen` |
-| Romanian | [tʃ] | [dʒ] | | `cer` `tʃer`, `ger` `dʒer` |
+| Romanian | [tʃ] | [dʒ] | | `cer` `ˈtʃer`, `ger` `ˈdʒer` |
 
 ### Spanish
 
@@ -153,7 +153,7 @@ Spanish contrasts a tap and a trill. The spec gives ⟨r⟩ the trill at the sta
 | r (single) | [ɾ] (tap) | Between vowels | `pero` `ˈpeɾo` 'but' |
 | rr (double) | [r] (trill) | Between vowels | `perro` `ˈpero` 'dog' |
 | r | [r] (trill) | Word-initial | `rosa` `ˈrosa` |
-| r | [r] (trill) | After n, l, s | `Israel` `isˈrael`, `honra` `ˈonra` |
+| r | [r] (trill) | After n, l, s | `Israel` `israˈel`, `honra` `ˈonra` |
 
 For the details of the Spanish spec, see [Spanish](es-ES.md).
 
@@ -163,7 +163,7 @@ European and Brazilian Portuguese differ in the reduction of unstressed vowels, 
 
 | Feature | pt-PT (Lisbon) | pt-BR (standard) | Spec output, pt-PT | Spec output, pt-BR |
 |:---|:---:|:---:|:---|:---|
-| Unstressed e | [ɨ] | [e] or [i] | `pequeno` `pɨˈkɛnu` | `pequeno` `peˈkenu` |
+| Unstressed e | [ɨ] | [e] or [i] | `pequeno` `pɨˈkɛnu` | `pequeno` `peˈkẽnu` |
 | Unstressed o | [u] | [o] or [u] | `tomate` `tuˈmatɨ` | `tomate` `toˈmat͡ʃi` |
 | Word-final -al, -el | [l] (velarised) | [w] (l-vocalisation) | `animal` `ɐniˈmaɫ`, `papel` `pɐˈpɛɫ` | `animal` `aniˈmaw`, `papel` `paˈpew` |
 | r (initial, rr) | [ʁ] (uvular) | [h] or [x] | `rato` `ˈʁatu` | `rato` `ˈʁatu` |
@@ -202,15 +202,15 @@ Romanian kept features that Western Romance lost. It has a case system, with a n
 
 | Grapheme | IPA | Spec output |
 |:---:|:---:|:---|
-| ă | [ə] | `mamă` `mamə` |
-| â, î | [ɨ] | `înainte` `ɨnajnte` |
-| e | [je] at the start of some pronoun and verb forms | `este` `jeste`, `el` `jel` |
-| c before e, i | [tʃ] | `cer` `tʃer` |
-| g before e, i | [dʒ] | `ger` `dʒer` |
-| ch | [k] | `cheie` `keje` |
-| gh | [ɡ] | `gheață` `ɡe̯atsə` |
+| ă | [ə] | `mamă` `ˈmamə` |
+| â, î | [ɨ] | `înainte` `ɨˈnajnte` |
+| e | [je] at the start of some pronoun and verb forms | `este` `ˈjeste`, `el` `ˈjel` |
+| c before e, i | [tʃ] | `cer` `ˈtʃer` |
+| g before e, i | [dʒ] | `ger` `ˈdʒer` |
+| ch | [k] | `cheie` `ˈkeje` |
+| gh | [ɡ] | `gheață` `ˈɡe̯atsə` |
 
-The spec gives [je] only for a closed list in `word_exceptions` (*e, el, ea, ei, ele, este, ești, eu* and forms of *era*). Other words keep [e] at the start, as in `elev` `elev`. The spec maps the comma-below letters ⟨ș ț⟩. It has no mapping for the cedilla forms ⟨ş ţ⟩, which older texts use. The engine drops each of them with an `UnmappedGraphemeWarning`, so `gheaţă` comes out as `ɡe̯aə`. For the details, see [Romanian](ro-RO.md).
+The spec gives [je] only for a closed list in `word_exceptions` (*e, el, ea, ei, ele, este, ești, eu* and forms of *era*). Other words keep [e] at the start, as in `elev` `eˈlev`. The spec maps the comma-below letters ⟨ș ț⟩. It has no mapping for the cedilla forms ⟨ş ţ⟩, which older texts use. The engine drops each of them with an `UnmappedGraphemeWarning`, so `gheaţă` comes out as `ˈɡe̯aə`. For the details, see [Romanian](ro-RO.md).
 
 ### Catalan
 

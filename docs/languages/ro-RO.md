@@ -12,13 +12,13 @@ Romanian has a shallow (phonemic) orthography, so the 0.15 PER production target
 
 Romanian has seven vowels, /a e i o u ə ɨ/. The orthography writes each central vowel with a letter of its own, so the spec reads them without ambiguity. The spec declares ⟨ă⟩ in `vowel_graphemes`, because the engine's closed inventory of Latin vowel letters does not include it. Without that declaration, a rule that tests for a neighbouring vowel would fail next to ⟨ă⟩, as in ⟨băieți⟩.
 
-The rules `RO_SOFT_C` and `RO_SOFT_G` make ⟨c⟩ /tʃ/ and ⟨g⟩ /dʒ/ before ⟨e⟩ and ⟨i⟩. The digraphs ⟨ch⟩ and ⟨gh⟩ are graphemes of their own and keep /k/ and /ɡ/. The spec gives ⟨cer⟩ as `tʃer` and ⟨cheie⟩ as `keje`. Romanian has no intervocalic lenition, so the spec maps ⟨p t c⟩ to plain stops in every position (⟨lup⟩ gives `lup`).
+The rules `RO_SOFT_C` and `RO_SOFT_G` make ⟨c⟩ /tʃ/ and ⟨g⟩ /dʒ/ before ⟨e⟩ and ⟨i⟩. The digraphs ⟨ch⟩ and ⟨gh⟩ are graphemes of their own and keep /k/ and /ɡ/. The spec gives ⟨cer⟩ as `ˈtʃer` and ⟨cheie⟩ as `ˈkeje`. Romanian has no intervocalic lenition, so the spec maps ⟨p t c⟩ to plain stops in every position (⟨lup⟩ gives `ˈlup`).
 
-The diphthongs ⟨ea⟩ /e̯a/ and ⟨oa⟩ /o̯a/ are graphemes, so ⟨soare⟩ gives `so̯are`. Two rules make ⟨i⟩ the glide [j]: `RO_I_GLIDE_INITIAL` before a vowel at the start of a word, and `RO_I_GLIDE_POSTVOCALIC` after a vowel. The plural ⟨copii⟩ gives `kopij`.
+The diphthongs ⟨ea⟩ /e̯a/ and ⟨oa⟩ /o̯a/ are graphemes, so ⟨soare⟩ gives `ˈso̯are`. Two rules make ⟨i⟩ the glide [j]: `RO_I_GLIDE_INITIAL` before a vowel at the start of a word, and `RO_I_GLIDE_POSTVOCALIC` after a vowel. The plural ⟨copii⟩ gives `koˈpij`.
 
-The word-final ⟨i⟩ of a plural or a second-person singular is asyllabic. The rule `RO_FINAL_I_ASYLLABIC` deletes it and palatalises the consonant before it, so ⟨lupi⟩ gives `lupʲ`. The rule `RO_FINAL_I_ASYLLABIC_LIQUID` does the same after ⟨l⟩ or ⟨r⟩, but only where the liquid is not the second member of an obstruent-liquid onset. Both rules apply only when the word keeps another vowel nucleus (Chițoran 2002, ch. 5).
+The word-final ⟨i⟩ of a plural or a second-person singular is asyllabic. The rule `RO_FINAL_I_ASYLLABIC` deletes it and palatalises the consonant before it, so ⟨lupi⟩ gives `ˈlupʲ`. The rule `RO_FINAL_I_ASYLLABIC_LIQUID` does the same after ⟨l⟩ or ⟨r⟩, but only where the liquid is not the second member of an obstruent-liquid onset. Both rules apply only when the word keeps another vowel nucleus (Chițoran 2002, ch. 5).
 
-Word-initial ⟨e⟩ is [je] only in a closed set. That set holds the personal pronouns ⟨eu el ea ei ele⟩ and the present and imperfect forms of ⟨a fi⟩, such as ⟨este⟩ and ⟨era⟩. These words are in `word_exceptions`, so ⟨este⟩ gives `jeste` and ⟨elev⟩ gives `elev` (DOOM3, Chițoran 2002 ch. 2).
+Word-initial ⟨e⟩ is [je] only in a closed set. That set holds the personal pronouns ⟨eu el ea ei ele⟩ and the present and imperfect forms of ⟨a fi⟩, such as ⟨este⟩ and ⟨era⟩. These words are in `word_exceptions`, so ⟨este⟩ gives `ˈjeste` and ⟨elev⟩ gives `eˈlev` (DOOM3, Chițoran 2002 ch. 2).
 
 ## Stress
 
@@ -34,11 +34,11 @@ The stress default misses the lexically marked words. These have penultimate str
 
 Inflectional endings keep the stress of the stem (Franzén & Horne 1997: 75). The engine reads the whole word, so *lupul*, *trenuri* and *caselor* take the mark one syllable late. The definite article on a noun in *-e* also writes ⟨ea⟩, so *cartea* and *mintea* take the mark on the article. The spec does not resolve homographs that differ only in stress, such as *cópii* 'copies' and *copíi* 'children'.
 
-After ⟨c⟩ or ⟨g⟩, an ⟨i⟩ before a vowel is silent in the inherited vocabulary and syllabic in the learned layer. Examples are ⟨cioban⟩ [tʃoˈban] and ⟨Dacia⟩ [ˈdatʃi.a]. The split is lexical, not orthographic. The spec emits the syllabic reading for both, so ⟨cioban⟩ gives `tʃioban`. A caller-supplied lexicon can correct the inherited words.
+After ⟨c⟩ or ⟨g⟩, an ⟨i⟩ before a vowel is silent in the inherited vocabulary and syllabic in the learned layer. Examples are ⟨cioban⟩ [tʃoˈban] and ⟨Dacia⟩ [ˈdatʃi.a]. The split is lexical, not orthographic. The spec emits the syllabic reading for both, so ⟨cioban⟩ gives `tʃioˈban`. A caller-supplied lexicon can correct the inherited words.
 
 The spelling before 1993 used ⟨î⟩ inside words where the standard writes ⟨â⟩. That spelling is a variant of the orthographic norm. The spec does not cover it, because orthography2ipa does not normalise its input.
 
-The spec maps only the comma-below letters ⟨ș⟩ and ⟨ț⟩. Much Romanian text uses the cedilla letters ⟨ş⟩ (U+015F) and ⟨ţ⟩ (U+0163) in their place. The spec has no mapping for them, so the engine drops them with an `UnmappedGraphemeWarning`. So ⟨şase⟩ gives `ase` where ⟨șase⟩ gives `ʃase`. A caller must convert the cedilla letters to comma-below before transcription.
+The spec maps only the comma-below letters ⟨ș⟩ and ⟨ț⟩. Much Romanian text uses the cedilla letters ⟨ş⟩ (U+015F) and ⟨ţ⟩ (U+0163) in their place. The spec has no mapping for them, so the engine drops them with an `UnmappedGraphemeWarning`. So ⟨şase⟩ gives `ˈase` where ⟨șase⟩ gives `ˈʃase`. A caller must convert the cedilla letters to comma-below before transcription.
 
 ## Sources
 

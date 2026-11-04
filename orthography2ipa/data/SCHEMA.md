@@ -60,7 +60,7 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
 | `script`                    | string | yes      | Primary writing script                       |
 | `family`                    | string | no       | **Do not author this.** `family` is DERIVED from the clade nodes on the ancestry chain (see [Clade nodes](#clade-nodes-and-the-derived-family)). It stays accepted as an override only for groupings that are not genetic clades: creoles, constructed languages, isolates, unclassified languages. |
 | `clade`                     | bool   | no       | This spec is a classification-only node: a family, not a language (default: `false`). See [Clade nodes](#clade-nodes-and-the-derived-family). |
-| `graphemes`                 | object | see note | Grapheme → IPA mapping. Each value is either a plain IPA list `[str]` **or** a weighted object `{"ipa": [str], "weights": [float]}` (candidate frequencies). Both normalise to the same internal shape; absent weights == rank ordering. See [candidate scoring](../../docs/candidate_scoring.md). |
+| `graphemes`                 | object | see note | Grapheme → IPA mapping. Each value is either a plain IPA list `[str]` **or** a weighted object `{"ipa": [str], "weights": [float]}` (candidate frequencies). Both normalise to the same internal shape; absent weights == rank ordering. See [candidate scoring](../../docs/engine/lattice.md#how-cost-works). |
 | `allophones`                | object | see note | Phoneme → allophone mapping (`{str: [str]}`). Derived as an identity map from `graphemes` when absent. |
 | `phonemes`                  | array  | see note | The phoneme inventory, stated directly and independently of `graphemes` (`["p", "t", "k", ...]`). **A spec must declare `graphemes` or `phonemes`; it may not be silent about both.** See [The inventory](#phonemes-the-inventory-stated-directly). |
 | `orthography_kind`          | string | no       | What kind of writing the graphemes are: `"native"` (default), `"romanization"`, `"transliteration"`. See [Orthography kind](#orthography-kind). |
@@ -78,7 +78,7 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
 | `inherent_vowel`            | string | no       | For abugidas: vowel assumed when no vowel mark (e.g. `"ə"`) |
 | `inherent_vowel_final`      | string | no       | What `inherent_vowel` becomes on a word-final consonant letter. Several Indo-Aryan orthographies write the inherent vowel on every consonant letter but do not pronounce it at the end of a word: Assamese ⟨বছৰ⟩ is /bɔsɔɹ/, not \*/bɔsɔɹɔ/ (Roy & Mahanta 2018). `""` deletes it; any other string substitutes that vowel. Unset (default) leaves it standing. The substitution is skipped unless the syllable being closed already has a nucleus, so it neither empties a word of its only syllable (⟨ক⟩ stays /kɔ/) nor manufactures a complex coda (⟨অংক⟩ stays /ɔŋkɔ/): the floor `requires_other_nucleus` puts under a vowel-deleting rule, applied where the vowel is unwritten and so has no slot to target |
 | `virama_final_vowel`        | string | no       | What an ABSOLUTE word-final virama-marked consonant is realised with, instead of true deletion. A virama elsewhere still deletes the inherent vowel to form its conjunct (C+virama+C). Malayalam's word-final consonant+chandrakkala is not mute but carries the non-phonemic "enunciative" [ɨ] (samvrutokaram): ⟨അത്⟩ /ɐd̪ɨ/ 'that', not */ɐd̪/ (Valentine 1976; Mohanan 1986; Asher & Kumari 1997; Namboodiripad & Garellek 2017: 115). Unset (default) leaves virama-final deletion in place. |
-| `vowel_graphemes`           | array  | no       | Whole grapheme strings this spec declares vowel letters, overriding the closed Latin/Greek/harakat inventory (e.g. `["w"]` for Hmong RPA ⟨w⟩ = /ɨ/). Empty (default) keeps the closed-inventory answer. See [data_model.md](../../docs/data_model.md#vowel_graphemes-overriding-a-closed-inventory-consonant-letter). |
+| `vowel_graphemes`           | array  | no       | Whole grapheme strings this spec declares vowel letters, overriding the closed Latin/Greek/harakat inventory (e.g. `["w"]` for Hmong RPA ⟨w⟩ = /ɨ/). Empty (default) keeps the closed-inventory answer. See [data_model.md](../../docs/specs/data_model.md#vowel_graphemes-overriding-a-closed-inventory-consonant-letter). |
 | `trailing_vowel_axis_digraphs` | array | no    | Multi-letter vowel graphemes (matched case-insensitively) for which the AFTER_FRONT_VOWEL/AFTER_BACK_VOWEL axis for a FOLLOWING grapheme is read off the digraph's trailing letter rather than its opening one, e.g. `["ía", "úa"]` for Old Irish, where quality under *caol le caol* is set by the digraph's closing letter. Empty (default) keeps the opening-letter (`grapheme[0]`) reading every other spec uses. |
 | `consonant_nuclei`          | object | no       | Consonant letters that spell a syllable's nucleus, mapped to that nucleus (`{"ว": "uːa"}` for Thai ⟨กรวด⟩ /kruːat̚/). A listed letter is read as the nucleus only when the syllable has no nucleus yet, the next letter is a consonant, and nothing after that consonant supplies a vowel; elsewhere it keeps its ordinary reading. The consonant before it then takes no inherent vowel, and a cluster key ending in the letter backs off to its head. Unset (default) changes nothing |
 | `word_internal_apostrophe`  | bool   | no       | An apostrophe (`'` or `’`) between two letters is part of the written word, as in English `doesn't` and `that's`. The whole token is then the unit looked up in `word_exceptions` and a registered lexicon, and the unit transcribed. Default `false`: the mark is an elision or a boundary (French `l'homme`) and splits two words. An apostrophe at a token edge is unaffected. Inherited along `graphemes_base`; a spec states `false` to opt out. |
@@ -95,9 +95,9 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
 | `iso639_3`                  | string | no       | ISO 639-3 three-letter code for cross-referencing |
 | `sandhi_rules`              | array  | no       | Cross-word-boundary phonological rules       |
 | `stress`                    | object or `false` | no | Declarative stress placement (see [Stress Schema](#stress-schema)); `false` opts out of an inherited block |
-| `word_exceptions`           | object | no       | Whole-word overrides for a closed irregular set (`{"one": "wʌn"}`); beats rules, beats a bundled lexicon |
+| `word_exceptions`           | object | no       | Whole-word overrides for a closed irregular set (`{"one": "wʌn"}`); beats a caller-registered lexicon, an enabled packaged lexicon and the rules ([lexicon.md](../../docs/guide/lexicon.md)) |
 | `grammatical_endings`       | object | no       | Suffix morphology: orthographic ending → IPA at the effective word end (`{"tion": "ʃən"}`), or an ordered candidate list for an ending that is genuinely ambiguous (`{"ent": [null, ""]}`); see [Grammatical endings](#grammatical-endings) |
-| `allophone_rules`          | array  | no       | Post-lexical `phoneme → surface` rewrites (see [Allophone Rule Schema](#allophone-rule-schema) and [allophony](../../docs/allophony.md)) |
+| `allophone_rules`          | array  | no       | Post-lexical `phoneme → surface` rewrites (see [Allophone Rule Schema](#allophone-rule-schema) and [allophony](../../docs/engine/allophony.md)) |
 | `tone_rules`                | object | no       | Tone the orthography spells with the SHAPE of the syllable rather than with a tone letter (see [Tone Rules Schema](#tone-rules-schema)) |
 | `tone_inventory`            | object | no       | IPA tone mark → label (e.g. `{"˥": "high"}`) |
 | `tone_marks_syllable_final` | bool   | no       | Dock every tone mark at the end of its syllable. Set it when the orthography writes tone on the nucleus letter, so that ⟨ōng⟩ comes out `oŋ³³` and not `o³³ŋ` |
@@ -113,7 +113,7 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
 | `timespan`                  | object | no       | Attestation period (see [Timespan Schema](#timespan-schema)) |
 | `valid_ceiling`             | object | no       | Measured PER floors once an orthographically-unwritten contrast is folded out of both sides, keyed by the gold **dataset** each was measured against (see [Valid Ceiling Schema](#valid-ceiling-schema)) |
 | `audit`                     | object | no       | Machine-readable audit conclusions, keyed by the gold **dataset** each was reached against (see [Audit Schema](#audit-schema)) |
-| *(lexicon)*                 | n/a | n/a | **Not a spec field, and never bundled.** A word lexicon is a corpus, not a description of a language. Supply one at runtime from a local file, a URL or a Hugging Face id: `orthography2ipa.register_lexicon("en-GB", "hf://TigreGotico/en-lexicon/en-GB.tsv")`, or point at a directory of `{code}.tsv` with `set_lexicon_dir()` / `$ORTHOGRAPHY2IPA_LEXICON_DIR`. |
+| *(lexicon)*                 | n/a | n/a | **Not a spec field, and never bundled.** A word lexicon is a corpus, not a description of a language. Supply one at runtime from a local file, a URL or a Hugging Face id: `orthography2ipa.register_lexicon("en-GB", "hf://TigreGotico/en-lexicon/en-GB.tsv")`, or point at a directory of `{code}.tsv` with `set_lexicon_dir()` / `$ORTHOGRAPHY2IPA_LEXICON_DIR`. A separate package such as `o2i-lexicons` (the `lexicons` extra) can supply one through the `orthography2ipa.lexicons` entry points, and the caller enables it with `use_packaged_lexicons()`. |
 
 ## Clade Nodes and the Derived `family`
 
@@ -203,7 +203,7 @@ Han characters, Pinyin and Buckwalter ASCII are three different claims:
 So `zh` is a **romanization** (it reads Pinyin, not Hanzi), `zh-Hani` is the
 **native** spec with an empty grapheme map and a declared phonology, and
 `ar-Latn-x-buckwalt` is a **transliteration**. See
-[orthography kind](../../docs/orthography_kind.md).
+[orthography kind](../../docs/specs/data_model.md#orthography_kind-native-scripts-romanizations-and-transliterations).
 
 ## Inheritance
 
@@ -305,7 +305,7 @@ list of declarative, context-conditioned `phoneme → surface` rewrites (the
 mirror of `positional_graphemes`, on the phoneme side). They compile into a
 lattice rescorer the engine applies after phoneme selection and before
 stress/sandhi. Empty by default → no-op: the rules alone decide the output. See
-[allophony](../../docs/allophony.md).
+[allophony](../../docs/engine/allophony.md).
 
 ```json
 {
@@ -333,12 +333,12 @@ stress/sandhi. Empty by default → no-op: the rules alone decide the output. Se
 | `id` | string | yes | Unique rule identifier (id-keyed inheritance overlay, like `sandhi_rules`) |
 | `phonemes` | string \| array | yes | Target underlying phoneme(s); a bare string is accepted |
 | `surface` | string | yes, unless `append` | Surface realisation the matched phoneme is rewritten to |
-| `append` | string | no | IPA inserted AFTER the matched phoneme, which is otherwise left alone, so one rule states an insertion for a whole class of targets: what epenthesis needs, since a fixed `surface` can only name one target's output. Mutually exclusive with `surface`. See [allophony](../../docs/allophony.md#inserting-instead-of-rewriting-append) and the Egyptian (`egy`) reading convention |
+| `append` | string | no | IPA inserted AFTER the matched phoneme, which is otherwise left alone, so one rule states an insertion for a whole class of targets: what epenthesis needs, since a fixed `surface` can only name one target's output. Mutually exclusive with `surface`. See [allophony](../../docs/engine/allophony.md#inserting-instead-of-rewriting-append) and the Egyptian (`egy`) reading convention |
 | `word_initial` | bool | no | Require (or, if `false`, forbid) word-initial position |
 | `word_final` | bool | no | Require (or forbid) word-final position |
 | `stress` | string | no | `"stressed"` / `"unstressed"`: engine path only (needs stress context) |
 | `syllable_position` | string | no | `"onset"` / `"coda"` / `"nucleus"` (maximal-onset heuristic) |
-| `preceded_by` | string | no | Previous-grapheme class: `vowel`, `consonant`, `consonant_cluster`, `coda`, `coda_nasal`, `front_vowel`, `back_vowel`, `palatal`, `emphatic`, `word_boundary`. `consonant_cluster` = the neighbour begins two or more consonant segments counting away from this grapheme (a geminate, a multi-consonant grapheme such as ⟨x⟩ /ks/, or a consonant whose own neighbour is a consonant) (the context closed-syllable shortening and complementary quantity need. `coda` = the neighbour is in coda position; `coda_nasal` = a coda nasal) what a vowel nasalises before (⟨bon⟩ [bɔ̃] vs ⟨bonne⟩ [bɔn]). `emphatic` = a pharyngealized ("emphatic") consonant, decided by the neighbour's IPA carrying the `ˤ` diacritic (`orthography2ipa.vowels.is_pharyngealized_consonant`): a generic feature class (not Arabic-specific) that backs emphasis-spread/tafkhim vowel backing (Watson 2002; Davis 1995). **Never enumerate clusters or nasal vowels as grapheme keys** (⟨an⟩ is not a digraph); see [allophony](../../docs/allophony.md#consonant_cluster) |
+| `preceded_by` | string | no | Previous-grapheme class: `vowel`, `consonant`, `consonant_cluster`, `coda`, `coda_nasal`, `front_vowel`, `back_vowel`, `palatal`, `emphatic`, `word_boundary`. `consonant_cluster` = the neighbour begins two or more consonant segments counting away from this grapheme (a geminate, a multi-consonant grapheme such as ⟨x⟩ /ks/, or a consonant whose own neighbour is a consonant) (the context closed-syllable shortening and complementary quantity need. `coda` = the neighbour is in coda position; `coda_nasal` = a coda nasal) what a vowel nasalises before (⟨bon⟩ [bɔ̃] vs ⟨bonne⟩ [bɔn]). `emphatic` = a pharyngealized ("emphatic") consonant, decided by the neighbour's IPA carrying the `ˤ` diacritic (`orthography2ipa.vowels.is_pharyngealized_consonant`): a generic feature class (not Arabic-specific) that backs emphasis-spread/tafkhim vowel backing (Watson 2002; Davis 1995). **Never enumerate clusters or nasal vowels as grapheme keys** (⟨an⟩ is not a digraph); see [allophony](../../docs/engine/allophony.md#consonant_cluster) |
 | `followed_by` | string | no | Next-grapheme class (same value set) |
 | `preceded_by_phoneme` | array | no | Previous slot's chosen phoneme must be one of these |
 | `followed_by_phoneme` | array | no | Next slot's chosen phoneme must be one of these |
@@ -358,7 +358,7 @@ stress/sandhi. Empty by default → no-op: the rules alone decide the output. Se
 | `followed_by_nucleus` | bool | no | Require (or, if `false`, forbid) that a syllable nucleus occurs LATER in the word than this slot: the final-syllable predicate. `false` selects the last nucleus of the word, `true` every earlier one. Unlike `requires_other_nucleus`, which is direction-blind, this one carries the direction that non-final reduction and final-syllable strengthening both need |
 | `grapheme` | array | no | The slot's own source grapheme must be one of these (case-insensitive). Portuguese reduced ⟨o⟩ and lexical ⟨u⟩ are both [u], and only the source letter tells them apart |
 | `word` | array | no | The whole source word must be one of these (case-insensitive). A lexeme-level condition for facts that only the word decides, such as Portuguese ⟨sopa⟩ [ˈsopɐ] against ⟨sova⟩ [ˈsɔvɐ]. Unlike `word_exceptions`, it changes one segment and leaves the rest to the rules |
-| `mutates_neighbor` | string | no | An IPA modifier (e.g. `"ʲ"`) this rule ADDS to an adjacent slot's candidate when it fires: paired with `surface: ""` this is the "marker grapheme" pattern: a letter that deletes itself while palatalising (or otherwise mutating) a neighbour, atomically. Requires `mutates_neighbor_side`. See [allophony](../../docs/allophony.md#marker-graphemes-delete-a-vowel-while-mutating-a-neighbour) and the Manx (`gv`) slender-marking rules. |
+| `mutates_neighbor` | string | no | An IPA modifier (e.g. `"ʲ"`) this rule ADDS to an adjacent slot's candidate when it fires: paired with `surface: ""` this is the "marker grapheme" pattern: a letter that deletes itself while palatalising (or otherwise mutating) a neighbour, atomically. Requires `mutates_neighbor_side`. See [allophony](../../docs/engine/allophony.md#marker-graphemes-delete-a-vowel-while-mutating-a-neighbour) and the Manx (`gv`) slender-marking rules. |
 | `mutates_neighbor_side` | string | no | `"preceding"` / `"following"`, which adjacent slot, relative to THIS rule's own anchor grapheme, receives `mutates_neighbor`'s feature. Required together with `mutates_neighbor`. |
 | `notes` | string | no | Provenance / convention notes |
 
@@ -755,7 +755,7 @@ not price a mispronounced *vent*. The consequence is deliberate: oracle@k
 improves and 1-best does not move. That is the intended shape of the change,
 not a disappointing result, and the oracle movement it causes is kept OUT of
 the published scoreboard entirely, because that board defines `PER − Oracle@k`
-as ranking error. See [benchmark_methodology.md](../../docs/benchmark_methodology.md#injected-alternatives-do-not-count-as-ranking-error).
+as ranking error. See [benchmarks.md](../../docs/evaluation/benchmarks.md#injected-alternatives-do-not-count-as-ranking-error).
 
 #### Admissibility: a proven lattice hole, never a guess
 
@@ -772,7 +772,7 @@ top 10.
 Declaring a list because a reading "also exists", or "might help", or to raise
 an oracle column, is **forbidden**. An unproven alternative costs beam width and
 inflates our own diagnostic while fixing nothing (see
-[benchmark_methodology.md](../../docs/benchmark_methodology.md#injected-alternatives-do-not-count-as-ranking-error)). If the reading is already
+[benchmarks.md](../../docs/evaluation/benchmarks.md#injected-alternatives-do-not-count-as-ranking-error)). If the reading is already
 reachable at any *k*, the fix belongs in weights or in a downstream rescorer,
 not here.
 
