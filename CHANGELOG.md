@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.114.19a1](https://github.com/TigreGotico/orthography2ipa/tree/7.114.19a1) (2026-11-04)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.114.18a1...7.114.19a1)
+
+**Merged pull requests:**
+
+- fix: pnt nasal clusters, palatal dorsals, αυ ευ and Oeconomides letters [\#1966](https://github.com/TigreGotico/orthography2ipa/pull/1966) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.114.18a1](https://github.com/TigreGotico/orthography2ipa/tree/7.114.18a1) (2026-11-04)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.114.17a1...7.114.18a1)
@@ -346,10 +354,6 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.111.19a1...7.111.20a1)
 
-**Merged pull requests:**
-
-- fix: cited stress blocks for ro-RO and eu, stress coverage ratchet [\#1807](https://github.com/TigreGotico/orthography2ipa/pull/1807) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [7.111.19a1](https://github.com/TigreGotico/orthography2ipa/tree/7.111.19a1) (2026-11-02)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.111.18a1...7.111.19a1)
@@ -389,10 +393,6 @@
 ## [7.111.15a3](https://github.com/TigreGotico/orthography2ipa/tree/7.111.15a3) (2026-11-02)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.111.15a2...7.111.15a3)
-
-**Merged pull requests:**
-
-- docs: merge, split and rewrite the documentation set [\#1808](https://github.com/TigreGotico/orthography2ipa/pull/1808) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.111.15a2](https://github.com/TigreGotico/orthography2ipa/tree/7.111.15a2) (2026-11-02)
 

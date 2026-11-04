@@ -355,6 +355,16 @@ undeclared = dataclasses.replace(pt, stress=dataclasses.replace(pt.stress, close
 G2P("pt-PT", spec=undeclared).transcribe("rainha")   # 'ˈʁajɲɐ'
 ```
 
+`final_diphthongs` keeps a word-final diphthong whole after a vowel. Portuguese writes no acute on a tonic ⟨iu ui⟩ after a vowel (Acordo Ortográfico 1990, Base X, 6.º), so *distraiu* is dis-tra-iu and not dis-trai-u. The vowel before the diphthong is a nucleus of its own, and the split holds only where the diphthong is stressed:
+
+```python
+pt.stress.final_diphthongs               # FinalDiphthongs(diphthongs=('iu', 'ui'), finals=('s',))
+G2P("pt-PT").transcribe("distraiu")      # 'diʃtɾɐˈiw'
+G2P("pt-PT").transcribe("pauis")         # 'pɐˈujʃ'
+undeclared = dataclasses.replace(pt, stress=dataclasses.replace(pt.stress, final_diphthongs=None))
+G2P("pt-PT", spec=undeclared).transcribe("distraiu")   # 'diʃtɾaˈju'
+```
+
 ## Lexicon overlay (sidecar `word_exceptions` at scale)
 
 A caller-registered lexicon extends `word_exceptions` to thousands of words, and [lexicon.md](../guide/lexicon.md) describes its contract.

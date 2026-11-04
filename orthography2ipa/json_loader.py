@@ -28,6 +28,7 @@ from orthography2ipa.types import (
     AuditConclusion,
     AuditRecord,
     ClosedHiatus,
+    FinalDiphthongs,
     FIELD_INHERITANCE,
     GraphemePosition,
     InheritanceMode,
@@ -534,6 +535,7 @@ def load_json_spec(code: str) -> LanguageSpec:
     raw_stress = raw.get("stress")
     if raw_stress and isinstance(raw_stress, dict):
         raw_hiatus = raw_stress.get("closed_hiatus")
+        raw_final = raw_stress.get("final_diphthongs")
         stress = StressRules(
             default_position=int(raw_stress.get("default_position", -2)),
             final_stress_endings=tuple(raw_stress.get("final_stress_endings", ())),
@@ -552,6 +554,10 @@ def load_json_spec(code: str) -> LanguageSpec:
                 onsets=tuple(raw_hiatus.get("onsets", ())),
                 codas=tuple(raw_hiatus.get("codas", ())))
                 if raw_hiatus else None),
+            final_diphthongs=(FinalDiphthongs(
+                diphthongs=tuple(raw_final.get("diphthongs", ())),
+                finals=tuple(raw_final.get("finals", ())))
+                if raw_final else None),
             vowel_letters=tuple(raw_stress.get("vowel_letters", ())),
             quantity_sensitive=bool(raw_stress.get("quantity_sensitive", False)),
             superheavy_final_attracts=bool(
