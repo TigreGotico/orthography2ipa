@@ -261,6 +261,18 @@
   },
   "allophone_rules": [
     {
+      "id": "PT_LEX_NASAL_UI",
+      "phonemes": [],
+      "surface": "ũ",
+      "notes": "DISABLED for Sãotomense (Forro / Santome). PT_LEX_NASAL_UI and PT_LEX_NASAL_UI_GLIDE give the pt-PT and pt-BR words muito, muita, muitos, muitas and mui the nasal diphthong [ũj̃]. No source for these words in this language was read, so its output stays what it was."
+    },
+    {
+      "id": "PT_LEX_NASAL_UI_GLIDE",
+      "phonemes": [],
+      "surface": "j̃",
+      "notes": "DISABLED for Sãotomense (Forro / Santome). PT_LEX_NASAL_UI and PT_LEX_NASAL_UI_GLIDE give the pt-PT and pt-BR words muito, muita, muitos, muitas and mui the nasal diphthong [ũj̃]. No source for these words in this language was read, so its output stays what it was."
+    },
+    {
       "id": "CRI_NASAL_A",
       "phonemes": [
         "a"
