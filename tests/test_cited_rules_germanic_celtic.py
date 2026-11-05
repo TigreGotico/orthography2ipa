@@ -61,7 +61,8 @@ def test_nl_g_is_uvular_in_onset_and_coda():
 def test_nl_h_is_breathy():
     """H: breathy voiced [ɦ], not [h].
 
-    nl-NL notes: "H: breathy [ɦ]; fully silent in southern dialects."
+    nl-NL notes: "H: breathy [ɦ]. The dialects that drop it lie in the
+    south-west, not the whole south" (De Wulf 2003, pp. 217-218).
     van Oostendorp (2000).
     """
     assert _bare("nl-NL", "huis").startswith("ɦ")

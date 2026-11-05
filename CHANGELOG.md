@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.118.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.118.1a1) (2026-11-05)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.118.0a1...7.118.1a1)
+
+**Merged pull requests:**
+
+- fix\(pt-PT\): read the article o, os with the reduced vowel \[u\] [\#2116](https://github.com/TigreGotico/orthography2ipa/pull/2116) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.118.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.118.0a1) (2026-11-05)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.117.23a1...7.118.0a1)
@@ -305,10 +313,6 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.114.25a1...7.114.26a1)
 
-**Merged pull requests:**
-
-- fix\(pt-BR\): drop the word-final tap of an infinitive [\#1967](https://github.com/TigreGotico/orthography2ipa/pull/1967) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [7.114.25a1](https://github.com/TigreGotico/orthography2ipa/tree/7.114.25a1) (2026-11-04)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.114.24a1...7.114.25a1)
@@ -384,10 +388,6 @@
 ## [7.114.20a1](https://github.com/TigreGotico/orthography2ipa/tree/7.114.20a1) (2026-11-04)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.114.19a1...7.114.20a1)
-
-**Merged pull requests:**
-
-- fix\(pt\): keep a final ⟨iu ui⟩ after a vowel one stressed diphthong [\#1970](https://github.com/TigreGotico/orthography2ipa/pull/1970) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.114.19a1](https://github.com/TigreGotico/orthography2ipa/tree/7.114.19a1) (2026-11-04)
 
