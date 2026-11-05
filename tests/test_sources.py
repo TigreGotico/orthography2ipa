@@ -181,7 +181,7 @@ def test_source_wikipedia_urls_point_to_wikipedia(code: str, path: str) -> None:
 # script's RATCHETS.
 _WIKIPEDIA_ONLY_SOURCES_BURNDOWN = frozenset({
     'aae', 'ace', 'aju', 'aln', 'als', 'ami', 'anp', 'av', 'ban',
-    'bar', 'bpy', 'btm', 'cay', 'ce', 'chm', 'cnr', 'cpg', 'crh', 'csb',
+    'bar', 'bpy', 'btm', 'cay', 'ce', 'chm', 'cpg', 'crh', 'csb',
     'dsb', 'dtp', 'dty', 'el-CY', 'fj', 'gmy', 'gnc', 'hif', 'hsb', 'iba',
     'ig', 'jv', 'kaa', 'koi', 'kv', 'ky', 'lah', 'lua', 'mnw', 'na', 'nr',
     'pcd', 'pfl', 'quy', 'rki', 'rup', 'sah', 'se', 'sgs', 'ss', 'su', 'ti',
