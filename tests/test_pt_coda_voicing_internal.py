@@ -18,12 +18,15 @@ import orthography2ipa
 from orthography2ipa import G2P, get
 
 #: Specs whose coda /s/ is [ʃ] and that take the rule.
-HUSHED = ["pt-PT", "pt-PT-x-lisbon", "pt-PT-x-porto", "pt-PT-x-coimbra",
-          "pt-PT-x-alfena", "pt-PT-x-minho", "pt-PT-x-viana",
-          "pt-PT-x-acores", "pt-PT-x-algarve", "pt-MO"]
+HUSHED = ["pt-PT", "pt-PT-x-acores", "pt-PT-x-alentejo", "pt-PT-x-alfena",
+          "pt-PT-x-algarve", "pt-PT-x-aveiro", "pt-PT-x-beira", "pt-PT-x-braga",
+          "pt-PT-x-coimbra", "pt-PT-x-lisbon", "pt-PT-x-madeira",
+          "pt-PT-x-minho", "pt-PT-x-porto", "pt-PT-x-sao-miguel",
+          "pt-PT-x-terceira", "pt-PT-x-tras-os-montes", "pt-PT-x-viana",
+          "pt-MO"]
 #: Specs whose coda /s/ is [s] or [h] and that disable the rule.
 DISABLED = ["pt-AO", "pt-CV", "pt-GW", "pt-MZ", "pt-ST", "pt-TL",
-            "ext-PT-x-barranco", "mcm"]
+            "ext-PT-x-barranco", "idb", "mcm", "vkp"]
 #: Creoles whose coda /s/ is [ʃ]. The rules have no source for them, so they
 #: disable both rules and keep their own reading.
 CREOLES = ["aoa", "cri", "kea", "mzs", "pap", "pov", "pre"]
@@ -39,6 +42,7 @@ BEFORE_ZH = [("desgelo", "dɨˈʒ"), ("desjejum", "dɨʒɨˈʒ"), ("disjunto", "
 VOICELESS = [("pasta", "t"), ("mesquita", "k"), ("esfera", "f")]
 
 DATA = Path(orthography2ipa.__file__).parent / "data"
+RULE_IDS = ["PT_CODA_S_VOICING_INTERNAL", "PT_CODA_S_BEFORE_ZH_INTERNAL"]
 
 
 def _sibilant_before(ipa: str, consonant: str) -> str:
@@ -90,24 +94,32 @@ def test_an_onset_sibilant_is_not_voiced():
     assert G2P("pt-PT").transcribe_word("chmm").startswith("ˈʃ")
 
 
-@pytest.mark.parametrize("lang", sorted(p.stem for p in DATA.glob("*.json")))
-@pytest.mark.parametrize("rule_id", ["PT_CODA_S_VOICING_INTERNAL",
-                                     "PT_CODA_S_BEFORE_ZH_INTERNAL"])
+@pytest.mark.parametrize("lang", HUSHED + DISABLED)
+@pytest.mark.parametrize("rule_id", RULE_IDS)
 def test_the_rule_follows_the_coda_sibilant(lang, rule_id):
     # The rule is active exactly where the spec's own coda /s/ in pasta is [ʃ].
     rule = _rule(lang, rule_id)
-    if rule is None:
-        return
-    if lang in CREOLES:
-        assert not rule.phonemes, (lang, rule.phonemes)
-        return
     coda = _sibilant_before(G2P(lang).transcribe_word("pasta"), "t")
     assert bool(rule.phonemes) == (coda == "ʃ"), (lang, coda, rule.phonemes)
 
 
+@pytest.mark.parametrize("lang", CREOLES)
+@pytest.mark.parametrize("rule_id", RULE_IDS)
+def test_the_creoles_disable_the_rule(lang, rule_id):
+    assert not _rule(lang, rule_id).phonemes
+
+
+def test_no_other_spec_carries_the_rules():
+    # A new child of pt-PT inherits both rules, so it fails here until it is
+    # sorted into one of the lists above.
+    carriers = {p.stem for p in DATA.glob("*.json")
+                if any(_rule(p.stem, rule_id) for rule_id in RULE_IDS)}
+    assert carriers == set(HUSHED + DISABLED + CREOLES)
+
+
 @pytest.mark.parametrize("lang", DISABLED + CREOLES)
 def test_disabled_specs_keep_their_coda(lang):
-    for rule_id in ("PT_CODA_S_VOICING_INTERNAL", "PT_CODA_S_BEFORE_ZH_INTERNAL"):
+    for rule_id in RULE_IDS:
         assert _rule(lang, rule_id) is not None and not _rule(lang, rule_id).phonemes
     g = G2P(lang)
     coda = _sibilant_before(g.transcribe_word("pasta"), "t")
