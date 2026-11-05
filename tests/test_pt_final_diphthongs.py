@@ -82,17 +82,17 @@ def test_bundled_syllabifier_keeps_the_final_diphthong_whole(
     assert sylls[-1] == tail, sylls
 
 
-#: European Portuguese, letter for letter. The infinitive in the Portal da
-#: Língua Portuguesa Dicionário fonético gives the pretonic syllables and the
-#: stressed [i] of the hiatus; the preterite ends in the falling diphthong
-#: [iu] of Cruz-Ferreira (1999: 128) where the infinitive ends in [iɾ]. This
-#: library writes the offglide of a diphthong as [w] (viu [ˈviw]).
+#: European Portuguese, letter for letter. The infinitive in Infopédia gives
+#: the pretonic syllables and the stressed [i] of the hiatus; the preterite
+#: ends in the falling diphthong [iu] of Cruz-Ferreira (1999: 128) where the
+#: infinitive ends in [ir]. This library writes the offglide of a diphthong as
+#: [w] (viu [ˈviw]).
 PT_PT = [
-    ("saiu", "sɐˈiw"),            # sair [sɐˈiɾ]
-    ("caiu", "kɐˈiw"),            # cair [kɐˈiɾ]
-    ("distraiu", "diʃtɾɐˈiw"),    # distrair [diʃtɾɐˈiɾ]
-    ("atraiu", "ɐtɾɐˈiw"),        # atrair [ɐtɾɐˈiɾ]
-    ("instruiu", "ĩʃtɾuˈiw"),     # instruir [ĩʃtɾuˈiɾ]
+    ("saiu", "sɐˈiw"),            # sair [sɐˈir]
+    ("caiu", "kɐˈiw"),            # cair [kɐˈir]
+    ("distraiu", "diʃtɾɐˈiw"),    # distrair [diʃtrɐˈir]
+    ("atraiu", "ɐtɾɐˈiw"),        # atrair [ɐtrɐˈir]
+    ("instruiu", "ĩʃtɾuˈiw"),     # instruir [ĩʃtruˈir]
     ("pauis", "pɐˈujʃ"),          # paul [pɐˈuɫ]; anuis [ɐˈnuiʃ]
 ]
 
