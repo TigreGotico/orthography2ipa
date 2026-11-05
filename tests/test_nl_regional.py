@@ -276,14 +276,11 @@ def test_groningen_words_without_g_or_initial_v_equal_the_standard(nl, groningen
     assert groningen.transcribe(word) == nl.transcribe(word)
 
 
-def test_groningen_keeps_its_values_when_nl_nl_moves(groningen, tmp_path, monkeypatch):
-    # An nl-NL with the velar [ɣ x] of the south and a devoiced ⟨v⟩ in every
-    # position. The Groningen values must not follow it.
+def test_groningen_keeps_its_v_when_nl_nl_moves(groningen, tmp_path, monkeypatch):
+    # An nl-NL with a devoiced ⟨v⟩ in every position. The Groningen ⟨v⟩
+    # must not follow it. Its ⟨g⟩ is the nl-NL [χ] and is not restated.
     raw = json.loads((DATA / "nl-NL.json").read_text(encoding="utf-8"))
-    pos = raw["positional_graphemes"]
-    pos["g"] = {"word_final": ["x"], "default": ["x"]}
-    pos["berg"] = {"word_final": ["bɛrx"], "default": ["bɛrx"]}
-    pos["v"] = {"word_final": ["f"], "default": ["f"]}
+    raw["positional_graphemes"]["v"] = {"word_final": ["f"], "default": ["f"]}
     moved_file = tmp_path / "nl-NL.json"
     moved_file.write_text(json.dumps(raw, ensure_ascii=False), encoding="utf-8")
     index = dict(json_loader._index, **{"nl-NL": moved_file})
@@ -294,7 +291,14 @@ def test_groningen_keeps_its_values_when_nl_nl_moves(groningen, tmp_path, monkey
 
     moved = G2P("nl-NL", spec=json_loader.load_json_spec("nl-NL"))
     child = G2P(GRONINGEN, spec=json_loader.load_json_spec(GRONINGEN))
-    assert moved.transcribe("gaan").startswith("ˈx")
     assert "f" in moved.transcribe("over")
-    for word in ("gaan", "liegen", "dag", "bergen", "vier", "over", "geven"):
+    for word in ("vier", "over", "leven", "avond"):
         assert child.transcribe(word) == groningen.transcribe(word)
+    assert "v" in child.transcribe("over")
+
+
+def test_groningen_inherits_the_uvular_g_of_nl_nl():
+    raw = json.loads((DATA / f"{GRONINGEN}.json").read_text(encoding="utf-8"))
+    assert "g" not in raw.get("positional_graphemes", {})
+    assert "berg" not in raw.get("positional_graphemes", {})
+    assert "allophone_rules" not in raw
