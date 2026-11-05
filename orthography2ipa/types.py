@@ -2203,9 +2203,10 @@ class LanguageSpec:
     *running*, ⟨pp⟩ in *happy* each spell a SINGLE consonant (the doubling marks
     the preceding vowel, historically). Without this the engine reads two, and
     *summer* comes out /sʌmmə/ for /sʌmə/. A language that CONTRASTS gemination —
-    Italian, Finnish, Arabic — must leave this off; it is inherited, so a family
-    turns it on once. Cruttenden (2014); Carney, *A Survey of English Spelling*
-    (1994)."""
+    Italian, Finnish, Arabic — must leave this off. The field is ``OWN_ONLY``
+    in ``FIELD_INHERITANCE``, so every spec that needs it states it, including
+    a spec that takes its tables through ``graphemes_base``. Cruttenden (2014);
+    Carney, *A Survey of English Spelling* (1994)."""
 
     fold_diacritics: Tuple[str, ...] = ()
     """Combining marks stripped from the input before it is read — a broad
