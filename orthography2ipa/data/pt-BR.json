@@ -2475,6 +2475,44 @@
       "notes": "The ⟨x⟩ of the trazer preterite/subjunctive stem ⟨troux-⟩ is [s], not the default [ʃ] (trouxe [ˈtɾo(w)sɨ] / BP [ˈtɾosi]; Cunha & Cintra 1984, §on ⟨x⟩; the value of orthographic ⟨x⟩ is lexically unpredictable — [ʃ] peixe, [s] trouxe/próximo, [ks] fixo, [z] exame). Keyed on the lexeme because no phonological context separates the trouxe ⟨x⟩=[s] from the luxo ⟨x⟩=[ʃ]; gated on grapheme ⟨x⟩ so it never touches a ⟨ch⟩ or lexical [ʃ]. Pins only the consonant, so vowel reduction and the surrounding processes run normally and it inherits to every pt child. SEED — the broader ⟨x⟩=[s]/[ks]/[z] lexicon (próximo, máximo, fixo, exame) is documented residual."
     },
     {
+      "id": "PT_LEX_NASAL_UI",
+      "phonemes": [
+        "u"
+      ],
+      "surface": "ũ",
+      "followed_by_phoneme": [
+        "j"
+      ],
+      "word": [
+        "muito",
+        "muita",
+        "muitos",
+        "muitas",
+        "muitíssimo",
+        "mui"
+      ],
+      "notes": "The words muito, muita, muitos, muitas, muitíssimo and mui have the nasal diphthong [ũj̃], although no nasal letter is written. No general rule gives this nasality, so the rule names the words. It changes only the vowel and the glide, so each child keeps its own consonants and final vowel. Barbosa & Albano (2004, JIPA 34, p. 231) transcribe com muita as [kõ ˈmũĩ̯ta]. pt.wiktionary gives muito /ˈmũj.tu/, muitíssimo /mũjˈtʃisimʊ/ and mui /ˈmũj/ for Brazil."
+    },
+    {
+      "id": "PT_LEX_NASAL_UI_GLIDE",
+      "phonemes": [
+        "j"
+      ],
+      "surface": "j̃",
+      "preceded_by_phoneme": [
+        "u"
+      ],
+      "word": [
+        "muito",
+        "muita",
+        "muitos",
+        "muitas",
+        "muitíssimo",
+        "mui"
+      ],
+      "notes": "The nasal glide of [ũj̃] in muito, muita, muitos, muitas, muitíssimo, mui. See PT_LEX_NASAL_UI."
+    },
+    {
       "id": "PT_INITIAL_EX_VOICED",
       "phonemes": [
         "ʃ"

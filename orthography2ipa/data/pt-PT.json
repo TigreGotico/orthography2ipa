@@ -575,6 +575,42 @@
       "notes": "⟨porque⟩, the conjunction and adverb, is [ˈpuɾkɨ]: the stressed ⟨o⟩ is the reduced [u], not the default stressed [ɔ]. The WikiPron pt-PT gold has porque p u ɾ k ɨ; it is the output of the en.wiktionary {{pt-IPA}} module from the human respelling pt=purque. The CLUP dialect transcriptions, which are speech data, write ˈpuɾkɨ in all 13 tokens, and pt.wiktionary gives Portugal /ˈpuɾ.kɨ/. The Portal da Língua Portuguesa Dicionário fonético (index.php?action=pronunciation) agrees, with por·que advérbio 'puɾkɨ and por·que conjunção 'puɾkɨ, but it is a resource with no documented provenance. The Portal's other resource, the Dicionário Fonético 'Pronúncia indicativa' (index.php?action=fonetica, entry 24295), gives Lisboa padrão pˈoɾ.kɨ. That page is marked 'Recurso em teste' and its readings come from the rule-based generator of Ashby et al. (2012, 'A Rule Based Pronunciation Generator and Regional Accent Databank for Portuguese', Interspeech 2012), so it is not lexicographic evidence. The [u] is the vowel that an unstressed ⟨o⟩ reduces to in this spec (positional map: pretonic and unstressed-nucleus ⟨o⟩ [u]). A child that keeps an unstressed ⟨o⟩ as [o] disables this rule. The rule changes only the vowel, so each child keeps its own consonants. porquê is a different word with its own stress, /puɾ.ˈke/ in pt.wiktionary and p u ɾ k e in WikiPron pt-PT, and the rule does not reach it."
     },
     {
+      "id": "PT_LEX_NASAL_UI",
+      "phonemes": [
+        "u"
+      ],
+      "surface": "ũ",
+      "followed_by_phoneme": [
+        "j"
+      ],
+      "word": [
+        "muito",
+        "muita",
+        "muitos",
+        "muitas",
+        "muitíssimo"
+      ],
+      "notes": "The words muito, muita, muitos, muitas and muitíssimo have the nasal diphthong [ũj̃], although no nasal letter is written. No general rule gives this nasality, so the rule names the words. It changes only the vowel and the glide, so each child keeps its own consonants and final vowel. Cruz-Ferreira (1999, Handbook of the IPA, p. 128) lists the nasal diphthong [ũi] with the example muita [ˈmũitɐ]. Infopédia gives muito [ˈmũj̃tu] and muitíssimo [mũj̃ˈtisimu]. Infopédia gives mui with an oral [ˈmuj], so mui is not on the list. en.wiktionary gives an Azores pronunciation of muito, [ˈmỹt], without naming an island; no Azores spec encodes it."
+    },
+    {
+      "id": "PT_LEX_NASAL_UI_GLIDE",
+      "phonemes": [
+        "j"
+      ],
+      "surface": "j̃",
+      "preceded_by_phoneme": [
+        "u"
+      ],
+      "word": [
+        "muito",
+        "muita",
+        "muitos",
+        "muitas",
+        "muitíssimo"
+      ],
+      "notes": "The nasal glide of [ũj̃] in muito, muita, muitos, muitas, muitíssimo. See PT_LEX_NASAL_UI."
+    },
+    {
       "id": "PT_LEX_OPEN_O",
       "phonemes": [
         "o",
