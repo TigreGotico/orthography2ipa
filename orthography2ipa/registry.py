@@ -348,7 +348,9 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
     2. Exact match against the registered spec codes, then
        ``langcodes.standardize_tag()`` when the library is available and the
        code is not a private-use subtag (``x-`` extension).
-    3. Exact match of the standardized code.
+    3. Exact match of the standardized code. A private-use tag matches
+       without regard to case, and also with a Suppress-Script subtag
+       dropped (``pt-Latn-BR-x-sp`` → ``pt-BR-x-sp``).
     4. The default region of a bare primary-language tag, when that
        spec is registered (``pt`` → ``pt-PT``), or the curated default
        variant of a region tag with only sub-regional specs
@@ -379,13 +381,27 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
         # private-use tag (step 2), so fold the case here; otherwise
         # ``ar-sa-x-najd`` misses ``ar-SA-x-najd`` and the distance match
         # below lands it on a sibling lect.
-        folded = code.lower()
-        for known in _ALIASES:
-            if known.lower() == folded:
-                return _ALIASES[known]
-        for known in available:
-            if known.lower() == folded:
-                return known
+        folded = [code.lower()]
+        if _HAS_LANGCODES:
+            # A script subtag that is the language's IANA Suppress-Script adds
+            # no information (RFC 5646 §3.1.9), so ``pt-Latn-BR-x-sp`` names
+            # ``pt-BR-x-sp``. Only the part before the private use goes to
+            # langcodes, unnormalized, so no macrolanguage folding happens.
+            head, private = _PRIVATE_USE.split(code, maxsplit=1)
+            try:
+                bare = _langcodes.Language.get(
+                    head, normalize=False).simplify_script().to_tag()
+            except Exception:
+                bare = None
+            if bare and bare.lower() != head.lower():
+                folded.append(f"{bare}-x-{private}".lower())
+        for candidate in folded:
+            for known in _ALIASES:
+                if known.lower() == candidate:
+                    return _ALIASES[known]
+            for known in available:
+                if known.lower() == candidate:
+                    return known
     # A bare tag names its motherland variety, not the most-populous region
     # langcodes would pick: ``pt`` is ``pt-PT``, not ``pt-BR``.
     if "-" not in code and (default := with_default_region(code)) in available:
