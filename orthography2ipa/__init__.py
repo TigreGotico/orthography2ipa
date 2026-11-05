@@ -55,6 +55,8 @@ from orthography2ipa.lexicon import (
     available_lexicon_codes,
     clear_lexicons,
     get_lexicon,
+    load_lexicon,
+    packaged_lexicon,
     is_ipa_string,
     register_lexicon,
     resolve_lexicon_source,
@@ -131,6 +133,7 @@ from orthography2ipa.stress import (
     syllabify,
     syllabify_ipa,
 )
+from orthography2ipa.pipeline import Pipeline
 from orthography2ipa.syllabifier_plugin import SyllabifierPlugin
 from orthography2ipa.script_distance import (
     SCRIPT_REGISTRY,
@@ -148,6 +151,7 @@ from orthography2ipa.types import (
 __all__ = [
     "transcribe",
     "G2P",
+    "Pipeline",
     "ConfidenceBreakdown",
     "TranscriptionResult",
     "WordTranscription",
@@ -166,6 +170,8 @@ __all__ = [
     "clear_lexicons",
     "available_lexicon_codes",
     "use_packaged_lexicons",
+    "load_lexicon",
+    "packaged_lexicon",
     "packaged_lexicon_sources",
     "is_ipa_string",
     "validate_lexicon_text",

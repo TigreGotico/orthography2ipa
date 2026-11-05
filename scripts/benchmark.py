@@ -5018,15 +5018,15 @@ def _lexicon_disabled() -> Iterator[None]:
     from orthography2ipa import lexicon as _lex
     from orthography2ipa import g2p as _g2p
 
-    orig = _lex.get_lexicon
+    orig_lex, orig_g2p = _lex.get_lexicon, _g2p.get_lexicon
     stub = lambda code: {}  # noqa: E731 — trivial, local
     _lex.get_lexicon = stub
     _g2p.get_lexicon = stub
     try:
         yield
     finally:
-        _lex.get_lexicon = orig
-        _g2p.get_lexicon = orig
+        _lex.get_lexicon = orig_lex
+        _g2p.get_lexicon = orig_g2p
 
 
 def _score_pairs(pairs: Sequence[GoldPair], lang: str) -> Tuple[int, float]:
