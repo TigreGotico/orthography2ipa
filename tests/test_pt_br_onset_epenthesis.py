@@ -1,4 +1,5 @@
-"""pt-BR epenthesis in an obstruent cluster that opens a stressed word.
+"""pt-BR epenthesis in a cluster of a stop and an obstruent or a nasal that
+opens a stressed word.
 
 Barbosa & Albano (2004: 227) state the vowel for "most two-obstruent
 sequences" and break a word-initial one: "psicologia pisɪkoloʒiɐ". The
@@ -24,13 +25,20 @@ def test_an_unstressed_word_initial_cluster_keeps_its_rule():
     assert transcribe("psicologia", "pt-BR").startswith("pisi")
 
 
-@pytest.mark.xfail(strict=True, reason=(
-    "A nasal after the stop is outside the obstruent scope of the "
-    "BR_EPENTHESIS rules. Romano & Seabra (2017: 284-285) find the vowel "
-    "of pneu in every ALiB response from Paraná and São Paulo."))
 def test_a_stop_before_a_nasal_is_broken():
-    """Romano & Seabra (2017: 286) count [e] in 80.37 % of the pneu responses."""
+    """Romano & Seabra (2017: 284-285) find the vowel of pneu in every ALiB
+    response from Paraná and São Paulo, [e] in 80.37 % of them (p. 286)."""
     assert transcribe("pneu", "pt-BR")[1] in "ie"
+
+
+def test_the_vowel_before_a_nasal_is_oral_and_pretonic():
+    """Collischonn (1996: 151), reported by Nascimento (2015: 62-63): "pneu [pi'new]"."""
+    assert transcribe("pneu", "pt-BR") == "piˈnew"
+
+
+def test_a_written_stressed_i_before_a_nasal_stays_nasal():
+    """Barbosa & Albano (2004: 229): "(em) cima sĩmɐ"."""
+    assert transcribe("cima", "pt-BR") == "ˈsĩmɐ"
 
 
 @pytest.mark.parametrize("code", [
