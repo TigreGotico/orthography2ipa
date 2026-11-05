@@ -610,10 +610,10 @@ class TestDutchBeatEspeakWave:
         stress). ⟨veld⟩ here is NOT the word's final grapheme (⟨en⟩
         follows), so its coda ⟨d⟩ stays voiced -- only the vowel is
         pinned, the devoicing positional split (below) still applies."""
-        assert self._t("Aalstervelden") == "ˈaːlstərvɛldən"
-        assert self._t("Almkerk") == "ˈɑlmkɛrk"
+        assert self._t("Aalstervelden") == "ˈaːlstəɹvɛldən"
+        assert self._t("Almkerk") == "ˈɑlmkɛɹk"
         assert self._t("Aalbrecht") == "ˈaːlbrɛχt"
-        assert self._t("berg") == "ˈbɛrχ"
+        assert self._t("berg") == "ˈbɛɹχ"
 
     def test_berg_veld_positional_scoping_not_maximal_munch(self):
         """Regression (adversarial review round 1): ⟨berg⟩/⟨veld⟩ must be
@@ -629,7 +629,7 @@ class TestDutchBeatEspeakWave:
         assert be.transcribe("bergen") == "ˈbɛrɣən"
         assert be.transcribe("Bergen") == "ˈbɛrɣən"
         assert be.transcribe("berg") == "ˈbɛrx"
-        assert self._t("bergen") == "ˈbɛrχən"
+        assert self._t("bergen") == "ˈbɛɹχən"
         assert self._t("velden") == "ˈvɛldən"
         assert self._t("veld") == "ˈvɛlt"
 
@@ -673,7 +673,7 @@ class TestDutchBeatEspeakWave:
         """An unstressed ⟨i⟩ directly before another vowel letter is
         tense-but-short [i], not lax [ɪ] -- the hiatus blocks the
         closed-syllable laxing a following consonant would trigger."""
-        assert self._t("Ariër") == "ˈaːriər"
+        assert self._t("Ariër") == "ˈaːriəɹ"
         assert self._t("Adriaan") == "ˈaːdriaːn"
 
     def test_stressed_closed_syllable_i_stays_lax(self):
@@ -686,10 +686,10 @@ class TestDutchBeatEspeakWave:
     def test_open_syllable_length_and_baseline_words_unaffected(self):
         """Guard: pre-existing open-syllable lengthening and unrelated
         words are unaffected by the new rules."""
-        assert self._t("water") == "ˈʋaːtər"
+        assert self._t("water") == "ˈʋaːtəɹ"
         assert self._t("maken") == "ˈmaːkən"
         assert self._t("bakken") == "ˈbɑkən"
-        assert self._t("verhaal") == "ˈvɛrɦaːl"
+        assert self._t("verhaal") == "ˈvɛɹɦaːl"
         assert self._t("gedaan") == "ˈχeidaːn"
 
     def test_heteromorphemic_tj_stays_two_segments(self):
@@ -726,7 +726,7 @@ class TestDutchBeatEspeakWave:
         Tjerkgaast [tʃɛrkɣaːst], which nl-NL writes with its uvular [χ]."""
         assert self._t("tjap") == "ˈtʃɑp"
         assert self._t("tjokvol") == "ˈtʃɔkfɔl"
-        assert self._t("Tjerkgaast") == "ˈtʃɛrkχaːst"
+        assert self._t("Tjerkgaast") == "ˈtʃɛɹkχaːst"
 
     def test_ambiguous_tjalk_and_ketjap_left_on_general_rule(self):
         """Guard: 'tjalk' is genuinely ambiguous at the same lowercased

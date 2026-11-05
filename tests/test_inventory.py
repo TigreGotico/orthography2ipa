@@ -294,7 +294,7 @@ KNOWN_DEAD_RULES = {
     # NL_CODA_DEVOICE_G's /ɣ/ target can't fire, and no 'i' slot means
     # NL_UNSTRESSED_TENSE_I_FINAL / NL_UNSTRESSED_TENSE_I_HIATUS's /ɪ/
     # target can't either. The same gap leaves no /eː øː oː/ slot for the six
-    # NL_MID_TENSE_* rules.
+    # NL_MID_TENSE_* rules, and no /r/ slot for NL_CODA_R_APPROXIMANT.
     "vls": {"NL_CODA_DEVOICE_B", "NL_CODA_DEVOICE_D", "NL_CODA_DEVOICE_G",
             "NL_CODA_DEVOICE_V", "NL_CODA_DEVOICE_Z",
             "NL_UNSTRESSED_TENSE_I_FINAL", "NL_UNSTRESSED_TENSE_I_HIATUS",
@@ -302,7 +302,8 @@ KNOWN_DEAD_RULES = {
             "NL_HIGH_TENSE_LENGTHENING_BEFORE_R_Y",
             "NL_MID_TENSE_CENTRING_BEFORE_R_E", "NL_MID_TENSE_CENTRING_BEFORE_R_OE",
             "NL_MID_TENSE_CENTRING_BEFORE_R_O", "NL_MID_TENSE_CLOSING_DIPHTHONG_E",
-            "NL_MID_TENSE_CLOSING_DIPHTHONG_OE", "NL_MID_TENSE_CLOSING_DIPHTHONG_O"},
+            "NL_MID_TENSE_CLOSING_DIPHTHONG_OE", "NL_MID_TENSE_CLOSING_DIPHTHONG_O",
+            "NL_CODA_R_APPROXIMANT"},
     # Afrikaans has no /z/ (Donaldson, *A Grammar of Afrikaans*, Mouton de
     # Gruyter 1993, ch. 1: ⟨z⟩ is not part of the inventory, and ⟨s⟩ is
     # voiceless everywhere), so the /z/ member of nl-NL's coda-devoicing series
