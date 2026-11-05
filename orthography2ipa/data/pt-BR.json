@@ -388,6 +388,24 @@
       "notes": "A word-initial pretonic ⟨en em⟩ is the raised nasal vowel [ĩ]: então [ĩˈtɐ̃w̃], embrulhava, envolto. Barbosa & Albano (2004: 231): 'Second, the sequence /eN/ is often pronounced as [ɪ̃], in pre-stressed, word-initial position, as in the words ɪ̃ˈtɐ̃ʊ̯ and ɪ̃ᵐbɾuʎavɐ (first and second passages).' The two transcribed passages on the same page have no word-initial pretonic [ẽ]: então is [ɪ̃] in both, and envolto is [ĩ] in both. This spec writes the close [ĩ], as BR_RAISE_FINAL_E writes the close [i] for the near-close [ɪ] of the same source. Carmo (2019, Estudos Linguísticos 48(2): 811) measures the raising of a word-initial pretonic /e/ before a coda nasal in north-western São Paulo state: Table 2 gives 'V/N/ 79,2% (773/976)', and the text says 'Cabe destacar, contudo, a frequência relativamente alta de aplicação do fenômeno nesse contexto: 79,2%'. Carmo writes the raised vowel [i]: '[i]n.tu.piu' (p. 811), '[i]ntortou' (p. 816). Carmo (2019: 803) quotes Battisti (1993: 95) for Rio Grande do Sul: 'a vogal e, em sílaba sem ataque, seguida de /S/ ou nasalizada (seguida de /N/), eleva-se quase que categoricamente'. Battisti (1993) was not opened. The raised vowel is the majority form, so it is the only output, and the [ẽ] of the other tokens is not in the lattice, as with BR_INFINITIVE_R_DROP. The rule takes an ⟨e⟩ that is the first grapheme of the word, in an unstressed syllable, before a coda nasal. An ⟨e⟩ after an onset keeps [ẽ] (temporal [tẽᵐpoˈɾaʊ̯], Barbosa & Albano 2004: 229), and so does a stressed one, whose nasal vowel is [ẽ] (sento [sẽⁿtʊ], p. 229). A nasal in the onset is not the archiphoneme /N/, so enorme and emoção keep an oral vowel, and Carmo (2019: 812) finds the raising blocked before a coda /R/ ('[e]r.guer', PR 0.007). The rule needs a consonant after the nasal, so the preposition em, a clitic with a word-final nasal, keeps the diphthong of BR_FINAL_EM_GLIDE. It stands before PT_NASAL_E_RAISE, so it also takes the open candidate of ⟨e⟩."
     },
     {
+      "id": "BR_INITIAL_ES_RAISE",
+      "phonemes": [
+        "e",
+        "ɛ"
+      ],
+      "surface": "i",
+      "word_initial": true,
+      "stress": "unstressed",
+      "followed_by_phoneme": [
+        "s",
+        "z",
+        "ʃ",
+        "ʒ"
+      ],
+      "followed_by_2": "consonant",
+      "notes": "A word-initial pretonic ⟨e⟩ before a coda sibilant is [i]: estar [isˈta], esplendor [isplẽˈdoɾ], esmola [izˈmolɐ]. Carmo (2019, Estudos Linguísticos 48(2): 811) measures the raising of a word-initial pretonic /e/ in north-western São Paulo state. Table 2 gives 'V/S/ 99,5% (1449/1457)' with relative weight 0.881, and the text says 'o contexto de pretônica seguida por consoante sibilante em coda, como em [i]s.co.la e [i]s.fa.re.la, favorece a aplicação do processo, com PR 0.881'. Barbosa & Albano (2004: 231) transcribe todo o esplendor as 'todʊɪspleⁿˈdoɾ', with the raised vowel. This spec writes the close [i], as BR_INITIAL_EN_RAISE does for the same source. The rule takes an ⟨e⟩ that is the first grapheme of the word, in an unstressed syllable, before a sibilant that a consonant follows, so the sibilant is a coda. A sibilant in the onset keeps the vowel (essencial, Esaú), and so does a stressed ⟨e⟩ (este, esse). The sibilant list holds the palatal [ʃ ʒ] for the regional specs that write the coda that way."
+    },
+    {
       "id": "PT_NASAL_E_RAISE",
       "phonemes": [
         "ɛ"
@@ -2465,7 +2483,7 @@
       "publisher": "Estudos Linguísticos 48(2): 800-821",
       "url": "https://doi.org/10.21165/el.v48i2.2355",
       "pages": "803, 811",
-      "notes": "Raising of a word-initial pretonic /e/ before a coda nasal (BR_INITIAL_EN_RAISE)."
+      "notes": "Raising of a word-initial pretonic /e/ before a coda nasal (BR_INITIAL_EN_RAISE) and before a coda sibilant (BR_INITIAL_ES_RAISE)."
     }
   ],
   "wikipedia": [
