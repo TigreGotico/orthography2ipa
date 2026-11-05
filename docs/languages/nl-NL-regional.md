@@ -86,7 +86,7 @@ So the voiced [v] is the majority value in Limburg. The spec states ⟨v⟩ as [
 
 > *"Het zuiden van Limburg, met een concentratie in Geleen. Dit is een gebied met vrijwel uitsluitend huig-r. De Gooise r komt hier nauwelijks of niet voor, evenmin als de tongpunt-r."*
 
-So the spec switches the rule off by its id, and a coda /r/ keeps the consonantal [r] of the onset. `nl-NL` uses [r] for the uvular of most speakers, so the symbol does not state a place. The spec also restates the `nl-NL` entries that write [ɹ] in their own values.
+So the spec switches the rule off by its id, and a coda /r/ keeps the [r] of the onset. Gussenhoven (1992, p. 46) adds that *"the majority of speakers have a uvular, rather than alveolar, realization of /r/"*. The `nl-NL` notes declare the symbol: *"the [r] of the onset stands for the uvular of most speakers as well"*. So the Limburg [r] stands for the uvular that the source names, in the onset and in the coda. The spec also restates the `nl-NL` entries that write [ɹ] in their own values.
 
 | Word | `nl-NL` | `nl-NL-x-limburg` |
 |:---|:---|:---|
