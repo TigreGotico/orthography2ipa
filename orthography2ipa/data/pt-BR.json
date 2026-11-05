@@ -597,7 +597,7 @@
         "ɾ",
         "ʁ"
       ],
-      "notes": "A coda /S/ takes the voicing of a following voiced consonant: mesmo [ˈmezmu], desde [ˈdezd͡ʒi], Lisboa [lizˈboɐ]. Barbosa & Albano (2004: 229): 'The archiphoneme /S/ surfaces either as a voiced or as a voiceless alveolar fricative. As in most varieties, it tends to assimilate the voicing of the following sound.' The rule reads the next slot's phoneme inside the word. Across a word boundary the same assimilation is a sandhi process and this rule does not reach it."
+      "notes": "A coda /S/ takes the voicing of a following voiced consonant: mesmo [ˈmezmu], desde [ˈdezd͡ʒi], Lisboa [lizˈboɐ]. Barbosa & Albano (2004: 229): 'The archiphoneme /S/ surfaces either as a voiced or as a voiceless alveolar fricative. As in most varieties, it tends to assimilate the voicing of the following sound.' The rule reads the next slot's phoneme inside the word. Across a word boundary the same assimilation is the sandhi rule BR_FINAL_S_VOICING."
     },
     {
       "id": "BR_CODA_SH_VOICED",
@@ -2467,6 +2467,26 @@
   "quality": "production",
   "script_type": "alphabet",
   "notes": "Brazilian Portuguese. Based directly on late Old Portuguese diaspora phonology. Key innovations: (1) Loss of coda R (ɾ→∅; later urban ɦ/ʁ in some dialects). (2) Coda sibilants remain alveolar (s, z), no universal palato-alveolar outcome. (3) L-vocalisation (l→w) strong and categorical in coda. (4) Palatalisation of /t, d/ > [t͡ʃ, d͡ʒ] before /i/. (5) Much weaker vowel reduction; loss of ɨ. (6) Final /e/→/i/ and /o/→/u/. (7) /rr/ is a posterior fricative, written [ʁ] (Barbosa & Albano 2004: 228 describe a velar fricative, voiced between voiced sounds). (8) Nasal vowel system preserved but with characteristic BR realisation. POST-LEXICAL ALLOPHONY (allophone_rules, base for the BR dialect specs via OVERLAY_BY_ID): final unstressed vowel raising — the near-close [ɪ]/[ʊ] selected word-finally by the positional map is realised as the standard BP close [i]/[u] (gato→[ˈɡatu], leite→[ˈlejt͡ʃi]). Targeting the reduced [ɪ]/[ʊ] (not underlying /e o/) leaves conservative dialects that retain a final [e]/[o] untouched, so the rule inherits cleanly. Deliberately kept in the positional map, NOT duplicated as allophone_rules to avoid double-application: /t d/ affrication before front vowels (grapheme-⟨i⟩ handled by the before_i positional rule) and coda /l/ vocalisation (l→w). The phoneme-conditioned refinement of affrication before a raised final ⟨e⟩ (dente→[ˈdẽt͡ʃi]) is left to the dialect-delta wave, where the non-palatalising nordeste varieties (recife/norte/ce) can opt out by rule id — expressing it in the base would silently re-impose affrication on those inheritors. Deliberately NOT modelled in the base: strong EP-style pretonic reduction (BP keeps distinct pretonic /e o/); coda /s/→[ʃ] chiado (a carioca/RJ dialect delta, not general BP — base stays alveolar [s]/[z]); coda /r/→[h~x] weak fricative (highly variable and, since the broad wikipron pt-BR gold transcribes coda /r/ as [ʁ], adding [h~x] regresses the only pt-BR gold — held as a dialect delta rather than shipped in the base). SIBILANTS ARE PLAIN ALVEOLAR. BP has one sibilant pair /s z/ (Barbosa & Albano 2004: 228, consonant chart, Alveolar column: saca [ˈsakɐ] / zaca [ˈzakɐ]). The apico-alveolar [s̺ z̺] belongs to the Galician-Portuguese four-sibilant system that roa-x-galaico-pt and pt-PT-x-medieval model, and to the northern EP dialects that retain it; it reached BP only by inheritance, because the base declared ⟨s c ç z⟩ but not the ⟨ss⟩ digraph and not positional ⟨c⟩ before ⟨e i⟩, so galaicopt ⟨ss⟩→[s̺] and medieval ⟨ce ci⟩→[s̺] fell through. Both are now declared here, matching the value all twelve pt-BR-x-* dialects already carry. ⟨ss⟩ and ⟨rr⟩ are DIGRAPHS, not geminates: Portuguese has no contrastive consonant length, ⟨ss⟩ spells /s/ where an intervocalic single ⟨s⟩ would be /z/ (isso [ˈisu]) and ⟨rr⟩ spells the strong rhotic (carro [ˈkaʁu] vs caro [ˈkaɾu], Barbosa & Albano 2004: 228), so there is no geminate for a collapse pass to remove and collapse_geminates stays unset. ⟨w⟩ occurs only in loans and names but is not silent — [w] in English loans, [v] in Germanic names — and without an entry the letter was deleted outright (web→[ˈeb], show→[ˈsu]).",
+  "sandhi_rules": [
+    {
+      "id": "BR_FINAL_S_VOICING",
+      "name": "final-s-voicing-before-voiced-consonant",
+      "left_context": "s$",
+      "right_context": "^[ˈˌ]?[bdɡvzʒmnɲlʎɾʁ]",
+      "transform": "z",
+      "obligatory": true,
+      "notes": "A word-final /S/ takes the voicing of a voiced consonant at the start of the next word: os dois [uz ˈdojs], as mesas [az ˈmezɐs]. Barbosa & Albano (2004: 229): 'The archiphoneme /S/ surfaces either as a voiced or as a voiceless alveolar fricative. As in most varieties, it tends to assimilate the voicing of the following sound.' Their transcribed passage writes 'duz doɪ̯z ɛɾɐ' for dos dois era, and keeps [s] before a voiceless consonant in 'maɪ̯s fɔɾtʃɪ' for mais forte (Barbosa & Albano 2004: 231). The voiced class is the class of BR_CODA_S_VOICED, which voices a coda /S/ inside a word. A regional spec that writes the strong rhotic voiceless ([x], [χ]) is outside the class, so the sibilant before it stays [s]. The rule matches the alveolar [s] only; a spec that writes the coda as [ʃ] keeps its output."
+    },
+    {
+      "id": "BR_FINAL_S_PREVOCALIC_VOICE",
+      "name": "final-s-voicing-before-vowel",
+      "left_context": "s$",
+      "right_context": "^[ˈˌ]?[aeiouɛɔɐɪʊãẽĩõũ]",
+      "transform": "z",
+      "obligatory": true,
+      "notes": "A word-final /S/ before a word that starts with a vowel is [z]: dez anos [ˈdɛz ˈɐ̃nus], os amigos [uz aˈmiɡus]. Barbosa & Albano (2004: 229): 'it tends to assimilate the voicing of the following sound'. The transcribed passage writes 'doɪ̯z ɛɾɐ' for dois era and 'maɪ̯z u viaˈʒẽⁿt' for mais o viajante (Barbosa & Albano 2004: 231)."
+    }
+  ],
   "sources": [
     {
       "id": "barbosa_albano2004",

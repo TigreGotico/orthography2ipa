@@ -425,4 +425,5 @@ def test_br_clitic_as_is_not_reduced(lang, word):
 
 
 def test_br_clitic_as_in_a_sentence():
-    assert G2P("pt-BR").transcribe("as casas às três") == "as ˈkazɐs as ˈtɾes"
+    """casas takes [z] before the vowel of às (BR_FINAL_S_PREVOCALIC_VOICE)."""
+    assert G2P("pt-BR").transcribe("as casas às três") == "as ˈkazɐz as ˈtɾes"

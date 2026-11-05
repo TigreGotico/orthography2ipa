@@ -15,7 +15,7 @@ Every transcription on this page is real output of `orthography2ipa.transcribe(t
 
 ## The two maps
 
-The library models pronunciation as two maps (see [../engine/allophony.md](../engine/allophony.md)). The pre-lexical map goes from spelling to phoneme, in `positional_graphemes`. The post-lexical map goes from phoneme to surface allophone, in `allophone_rules`. `pt-BR` runs the post-lexical rules in two passes (`allophone_passes: 2`).
+The library models pronunciation as two maps (see [../engine/allophony.md](../engine/allophony.md)). The pre-lexical map goes from spelling to phoneme, in `positional_graphemes`. The post-lexical map goes from phoneme to surface allophone, in `allophone_rules`. `pt-BR` runs the post-lexical rules in two passes (`allophone_passes: 2`). Cross-word changes are in `sandhi_rules`.
 
 ### Pre-lexical map
 
@@ -101,6 +101,8 @@ A coda /r/ as [h] or [x] is very variable across Brazil. The base keeps the tap 
 ## Coda sibilant voicing, strong /r/ and epenthesis
 
 A coda /S/ "tends to assimilate the voicing of the following sound" (Barbosa & Albano 2004: 229). `BR_CODA_S_VOICED` gives [z] before a voiced consonant (`mesmo` [ˈmezmu], `rasgar` [ʁazˈɡa]), and the sibilant stays [s] before a voiceless one (`festa` [ˈfestɐ]). `BR_CODA_SH_VOICED` does the same for a palatal [ʃ] in the regional specs.
+
+The same assimilation applies across a word boundary. The transcribed passage writes `duz doɪ̯z ɛɾɐ` for *dos dois era* and `maɪ̯z u` for *mais o*, but `maɪ̯s fɔɾtʃɪ` for *mais forte* (Barbosa & Albano 2004: 231). `BR_FINAL_S_VOICING` gives a word-final [s] as [z] before a voiced consonant in the next word (`os dois` [uz ˈdojs], `as mesas` [az ˈmezɐs]). `BR_FINAL_S_PREVOCALIC_VOICE` does the same before a vowel (`dez anos` [ˈdɛz ˈɐ̃nus]). Before a voiceless consonant the sibilant stays [s] (`mais forte` [ˈmajs ˈfɔɾt͡ʃi]), and a pause stops both rules. The voiced class is the class of `BR_CODA_S_VOICED`. A regional spec that writes the strong rhotic voiceless keeps [s] before it (`pt-BR-x-sp` `os ratos` [us ˈxatus]). The rules match the alveolar [s] only, so a spec that writes the coda as [ʃ] keeps its output.
 
 After a coda consonant, /r/ is the strong rhotic, not the tap (Cristófaro Silva 2025: 240, 243: honra, Israel, desrespeito). `BR_STRONG_R_AFTER_CODA` gives `honra` [ˈõʁɐ] and `genro` [ˈʒẽʁu]. A tap in an onset cluster stays a tap (`três` [ˈtɾes]).
 
