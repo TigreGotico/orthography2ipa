@@ -49,12 +49,12 @@ def test_nl_nl_open_syllable_e_eu_o_is_a_closing_diphthong(nl, word, ipa):
 
 
 @pytest.mark.parametrize("word, ipa", [
-    ("meer", "ˈmeᵊr"),
-    ("deur", "ˈdøᵊr"),
-    ("door", "ˈdoᵊr"),
+    ("meer", "ˈmeᵊɹ"),
+    ("deur", "ˈdøᵊɹ"),
+    ("door", "ˈdoᵊɹ"),
     ("leren", "ˈleᵊrən"),
-    ("veertig", "ˈveᵊrtɪχ"),
-    ("ingenieur", "ˈɪŋənjøᵊr"),
+    ("veertig", "ˈveᵊɹtɪχ"),
+    ("ingenieur", "ˈɪŋənjøᵊɹ"),
 ])
 def test_nl_nl_long_mid_vowel_before_r_has_a_centring_glide(nl, word, ipa):
     assert nl.transcribe(word) == ipa
@@ -82,8 +82,8 @@ def test_nl_nl_ee_stays_apart_from_ij(nl):
     ("neus", "ˈnøːs"),
     ("boot", "ˈboːt"),
     ("beten", "ˈbeːtən"),
-    ("meer", "ˈmeːr"),
-    ("door", "ˈdoːr"),
+    ("meer", "ˈmeːr̥"),
+    ("door", "ˈdoːr̥"),
 ])
 def test_nl_be_long_mid_vowel_is_a_monophthong(be, word, ipa):
     assert be.transcribe(word) == ipa

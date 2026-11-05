@@ -46,7 +46,7 @@ def test_netherlandic_g_is_uvular(nl, word, ipa):
     ("zich", "ˈzɪχ"),
     ("macht", "ˈmɑχt"),
     ("slechts", "ˈslɛχts"),
-    ("dichter", "ˈdɪχtər"),
+    ("dichter", "ˈdɪχtəɹ"),
 ])
 def test_netherlandic_ch_is_uvular(nl, word, ipa):
     assert nl.transcribe(word) == ipa

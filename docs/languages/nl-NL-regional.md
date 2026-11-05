@@ -20,8 +20,8 @@ The data for the Limburg and Groningen specs come from the teacher corpus of Van
 
 | Spec | Region or group | Features that set it apart from `nl-NL` | Example |
 |:---|:---|:---|:---|
-| [`nl-NL-x-limburg`](#limburg-nl-nl-x-limburg) | Dutch Limburg: Sittard, Geleen, Roermond | /ɣ/ as the voiceless velar [x], the soft g<br>⟨ch⟩ as the same velar [x]<br>word-initial ⟨v⟩ stays [v] | `guize` [ˈxœyzə], `lachen` [ˈlaːxən], `vier` [ˈviːr] |
-| [`nl-NL-x-groninge`](#groningen-nl-nl-x-groninge) | Groningen and north Drenthe: Assen, Veendam, Winschoten | word-initial ⟨v⟩ as [f] | `vier` [ˈfiːr], `vader` [ˈfaːdər] |
+| [`nl-NL-x-limburg`](#limburg-nl-nl-x-limburg) | Dutch Limburg: Sittard, Geleen, Roermond | /ɣ/ as the voiceless velar [x], the soft g<br>⟨ch⟩ as the same velar [x]<br>word-initial ⟨v⟩ stays [v] | `guize` [ˈxœyzə], `lachen` [ˈlaːxən], `vier` [ˈviːɹ] |
+| [`nl-NL-x-groninge`](#groningen-nl-nl-x-groninge) | Groningen and north Drenthe: Assen, Veendam, Winschoten | word-initial ⟨v⟩ as [f] | `vier` [ˈfiːɹ], `vader` [ˈfaːdəɹ] |
 | [`nl-NL-x-polder`](#polder-dutch-nl-nl-x-polder) | A sociolect, not a region: younger women in public speech | ⟨ei ij⟩ as [aːi]<br>⟨ui⟩ as [ɑy]<br>⟨ou au⟩ as [aːu] | `tijd` [ˈtaːit], `huis` [ˈɦɑys], `vrouw` [ˈvraːu] |
 
 ## Limburg (nl-NL-x-limburg)
@@ -48,7 +48,7 @@ The spec gives ⟨g⟩ the velar [x] in every position. The word-final [x] combi
 | `liegen` | [ˈliχən] | [ˈlixən] |
 | `dagen` | [ˈdaːχən] | [ˈdaːxən] |
 | `dag` (word-final) | [ˈdɑχ] | [ˈdɑx] |
-| `bergen` (⟨berg⟩) | [ˈbɛrχən] | [ˈbɛrxən] |
+| `bergen` (⟨berg⟩) | [ˈbɛɹχən] | [ˈbɛɹxən] |
 
 The inherited rules of `nl-NL` apply to the new [x]. The regressive devoicing rules `NL_CODA_DEVOICE_*` make a coda obstruent voiceless before it: `zandgrond` [ˈzɑntxrɔnt], where `nl-NL` gives [ˈzɑntχrɔnt]. Where ⟨g⟩ meets ⟨ch⟩, the two velars merge in one [x], as the two uvulars of `nl-NL` merge in one [χ]: `lachgas` [ˈlɑxɑs], where `nl-NL` gives [ˈlɑχɑs].
 
@@ -70,7 +70,7 @@ So the spec gives ⟨ch⟩ the voiceless velar [x] of ⟨g⟩. It also restates 
 | `logisch` (word-final ⟨sch⟩) | [ˈlouχis] | [ˈlouxis] |
 | `Albrecht` (⟨brecht⟩) | [ˈɑlbrɛχt] | [ˈɑlbrɛxt] |
 | `Egchel` (⟨g⟩ + ⟨ch⟩) | [ˈɛχəl] | [ˈɛxəl] |
-| `tjerkgaast` (word exception) | [ˈtʃɛrkχaːst] | [ˈtʃɛrkxaːst] |
+| `tjerkgaast` (word exception) | [ˈtʃɛɹkχaːst] | [ˈtʃɛɹkxaːst] |
 
 ### Word-initial ⟨v⟩
 
@@ -78,7 +78,7 @@ Van de Velde (2016, p. 10) gives the rate of voiced word-initial v in the same c
 
 > *"In de Randstad gebruikt 41% die v aan het begin van een woord, in de middenregio 53% en in het zuiden 65%."*
 
-So the voiced [v] is the majority value in Limburg. The spec states ⟨v⟩ as [v], and as [f] at the end of a word, in its own positional map: `vier` [ˈviːr] against `fier` [ˈfiːr]. The output is the same as `nl-NL` gives. The map keeps the voiced value if `nl-NL` devoices the initial ⟨v⟩ in its positional map. If `nl-NL` uses an allophone rule for that instead, the Limburg spec must switch the rule off by its id.
+So the voiced [v] is the majority value in Limburg. The spec states ⟨v⟩ as [v], and as [f] at the end of a word, in its own positional map: `vier` [ˈviːɹ] against `fier` [ˈfiːɹ]. The output is the same as `nl-NL` gives. The map keeps the voiced value if `nl-NL` devoices the initial ⟨v⟩ in its positional map. If `nl-NL` uses an allophone rule for that instead, the Limburg spec must switch the rule off by its id.
 
 ### Known gaps
 
@@ -86,7 +86,7 @@ So the voiced [v] is the majority value in Limburg. The spec states ⟨v⟩ as [
 - The value of ⟨ch⟩ is an inference from the shared norm for /ɣ/. No opened source measures /x/ in Dutch Limburg.
 - The ⟨berg⟩, ⟨sch⟩ and ⟨brecht⟩ entries and the `tjerkgaast` exception copy the other segments of the `nl-NL` entries. A change to one of those entries in `nl-NL` must be copied here. The tests fail when `nl-NL` adds a key or an exception with the uvular [χ] that the Limburg spec does not restate.
 - The `nl-NL` grapheme ⟨veld⟩ blocks the regressive devoicing before the new [x]: `veldgrijs` [ˈvɛldxrɛis].
-- /r/ takes the `nl-NL` value. Van Bezooijen & van den Berg (2004, p. 94) call South Limburg *"een gebied met vrijwel uitsluitend huig-r"*. That is a background remark about where a group of listeners lives, with no measurement.
+- /r/ takes the `nl-NL` value: [r] in the onset and the approximant [ɹ] in the coda (Gussenhoven 1992, p. 46), as in `bergen` [ˈbɛɹxən]. Van Bezooijen & van den Berg (2004, p. 94) call South Limburg *"een gebied met vrijwel uitsluitend huig-r"*. That is a background remark about where a group of listeners lives, with no measurement.
 - The long mid vowels and the diphthongs take the `nl-NL` values. Voeten (2021, p. 166) finds that the non-Randstad regions "diphthongize less strongly" for /eː/, and that for /øː oː œy/ "Netherlands-Limburg goes along with the Flemish regions". He adds (p. 171) that "there are no regions which categorically do not diphthongize their vowels". These are gradient differences, with no change of category.
 - Tone and pitch accent belong to the Limburgish dialects. No opened source measures them in regional Standard Dutch.
 
@@ -104,15 +104,15 @@ Van de Velde (2016, p. 10) gives the rate of voiced word-initial v in the north:
 
 > *"Op die manier ontdekten we dat in het noorden van Nederland de v aan het begin van een woord in slechts 9% van de gevallen als een v wordt uitgesproken. Ze zeggen in het noorden dus meestal 'fier' als het cijfer vier is bedoeld."*
 
-So the voiceless [f] is the majority value, with 91% of the tokens. The spec gives ⟨v⟩ the value [f] at the start and at the end of a word in its own positional map. The source measures the start of the word only, so a ⟨v⟩ inside a word keeps the `nl-NL` value: `over` [ˈouvər].
+So the voiceless [f] is the majority value, with 91% of the tokens. The spec gives ⟨v⟩ the value [f] at the start and at the end of a word in its own positional map. The source measures the start of the word only, so a ⟨v⟩ inside a word keeps the `nl-NL` value: `over` [ˈouvəɹ].
 
 | Word | `nl-NL` | `nl-NL-x-groninge` |
 |:---|:---|:---|
-| `vier` (the source's example) | [ˈviːr] | [ˈfiːr] |
-| `fier` | [ˈfiːr] | [ˈfiːr] |
-| `vader` | [ˈvaːdər] | [ˈfaːdər] |
-| `voorvader` | [ˈvoᵊrvaːdər] | [ˈfoᵊrvaːdər] |
-| `over` | [ˈouvər] | [ˈouvər] |
+| `vier` (the source's example) | [ˈviːɹ] | [ˈfiːɹ] |
+| `fier` | [ˈfiːɹ] | [ˈfiːɹ] |
+| `vader` | [ˈvaːdəɹ] | [ˈfaːdəɹ] |
+| `voorvader` | [ˈvoᵊɹvaːdəɹ] | [ˈfoᵊɹvaːdəɹ] |
+| `over` | [ˈouvəɹ] | [ˈouvəɹ] |
 
 ### The uvular g
 
@@ -180,7 +180,7 @@ The new [aːi] is the `nl-NL` value of ⟨aai⟩, so `kraai` [ˈkraːi] and the 
 
 ### Known gaps
 
-- Coda ⟨r⟩ takes the `nl-NL` value. Stroop (p. 34) finds the Gooise r in Polder Dutch *"ook weer niet bij alle spreeksters van het Poldernederlands"*. Sebregts (2014) samples city accents, not this group. In his corpus the retroflex or bunched approximant is 31.8% of all coda tokens (Table 3-9, p. 75), "well over 80%" of the coda /r/ in Leiden (p. 114) and "just under 75%" in The Hague (p. 119). No source gives a share for the speakers of Polder Dutch.
+- Coda ⟨r⟩ takes the `nl-NL` approximant [ɹ] (Gussenhoven 1992, p. 46), as in `vaart` [ˈvaːɹt]. Stroop (p. 34) finds the Gooise r in Polder Dutch *"ook weer niet bij alle spreeksters van het Poldernederlands"*. Sebregts (2014) samples city accents, not this group. In his corpus the retroflex or bunched approximant is 31.8% of all coda tokens (Table 3-9, p. 75), "well over 80%" of the coda /r/ in Leiden (p. 114) and "just under 75%" in The Hague (p. 119). No source gives a share for the speakers of Polder Dutch.
 - ⟨ee eu oo⟩ take the `nl-NL` closing diphthongs: `fee` [ˈfei], `beuk` [ˈbøyk], `boot` [ˈbout]. Stroop (pp. 30, 33) describes a drift beyond them, towards *aai* and *au*, with no endpoint for the sociolect.
 - ⟨e⟩ before ⟨l⟩ keeps the `nl-NL` value. Stroop (p. 32) finds the raising to *opbillen* and *vertillen* *"uitsluitend bij jongere vrouwen"*.
 - The fricatives keep the `nl-NL` voicing. Stroop (p. 34) finds the devoicing *"meestal afwezig"* with Polder speakers from outside the Randstad.
