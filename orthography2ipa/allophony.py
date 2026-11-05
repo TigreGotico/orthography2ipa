@@ -37,8 +37,8 @@ position and neighbour conditions work on both paths.
 from __future__ import annotations
 
 import unicodedata
-from dataclasses import dataclass
-from typing import List, Optional, Sequence, Tuple
+from dataclasses import dataclass, replace
+from typing import AbstractSet, List, Optional, Sequence, Tuple
 
 from orthography2ipa.phonetok import Candidate, GraphemeContext, SegmentSlot, _is_a_mark
 from orthography2ipa.rescorer import LatticeRescorer, RescoreContext
@@ -325,13 +325,17 @@ class AllophoneRescorer(LatticeRescorer):
     can skip it cheaply.
     """
 
-    __slots__ = ("rules", "_atoms", "_doubling_is_geminate")
+    __slots__ = ("rules", "_atoms", "_doubling_is_geminate",
+                 "_positional_vowel_graphemes")
 
     def __init__(self, rules: Sequence[AllophoneRule],
-                 doubled_letters_geminate: bool = True) -> None:
+                 doubled_letters_geminate: bool = True,
+                 positional_vowel_graphemes: AbstractSet[str] = frozenset(),
+                 ) -> None:
         self.rules = tuple(rules)
         self._atoms = _rule_atoms(self.rules)
         self._doubling_is_geminate = doubled_letters_geminate
+        self._positional_vowel_graphemes = frozenset(positional_vowel_graphemes)
 
     def rescore(
         self, slot: "SegmentSlot", context: RescoreContext,
@@ -394,6 +398,7 @@ class AllophoneRescorer(LatticeRescorer):
                 grapheme=marker_g,
                 syll_idx=context.syll_idx,
                 stressed_syll_idx=context.stressed_syll_idx,
+                syll_indices=context.syll_indices,
             )
             ipa = marker_slot.top.ipa
             for rule in self.rules:
@@ -486,18 +491,64 @@ class AllophoneRescorer(LatticeRescorer):
     def _realize_segments(
         self, segments: List[str], context: RescoreContext,
     ) -> Optional[str]:
-        """Apply the first matching rule to each segment; ``None`` = no-op."""
+        """Apply the first matching rule to each segment; ``None`` = no-op.
+
+        A vowel in a slot whose grapheme reads no vowel was inserted by a
+        rule (an ``append`` epenthesis). It is matched in its own unstressed
+        syllable (:meth:`_inserted_vowel_context`), not with the stress of
+        the consonant's slot.
+        """
         changed = False
         out: List[str] = []
+        inserted_ctx: Optional[RescoreContext] = None
         for i, seg in enumerate(segments):
             seg_ctx = _segment_context(segments, i, context, self._atoms)
-            surface = self._realize_one_segment(seg, seg_ctx, context)
+            slot_ctx = context
+            if is_ipa_vowel(seg[0]) and not self._holds_vowel(context.grapheme):
+                if inserted_ctx is None:
+                    inserted_ctx = self._inserted_vowel_context(context)
+                slot_ctx = inserted_ctx
+            surface = self._realize_one_segment(seg, seg_ctx, slot_ctx)
             if surface is not None and surface != seg:
                 changed = True
                 out.append(surface)
             else:
                 out.append(seg)
         return "".join(out) if changed else None
+
+    def _holds_vowel(self, gctx: GraphemeContext) -> bool:
+        """Whether a reading of *gctx* holds a vowel: a value of its grapheme
+        table entry, or a positional value. The test is the one the stress
+        mark uses to find an inserted nucleus (``G2P._fold_inserted_nuclei``).
+        """
+        return any(is_ipa_vowel(c) for reading in gctx.ipa for c in reading) \
+            or gctx.grapheme in self._positional_vowel_graphemes
+
+    def _inserted_vowel_context(self, context: RescoreContext) -> RescoreContext:
+        """*context* with the syllable of a vowel a rule inserted into the slot.
+
+        The inserted vowel and the consonant before it make a syllable that
+        the spelling does not write, and that syllable never takes the stress:
+        Câmara Jr., reported by Collischonn (2004: 66), gives pt-BR *rapto*
+        and *rápido* the same prosody, and the constraint HEAD-DEP-IO keeps
+        the accent off a syllable absent from the input (Collischonn 2004:
+        73). The syllable stands after the syllable of the nearest earlier
+        grapheme that holds a vowel, so the context numbers it as a syllable
+        of its own there and moves the later syllables, the stressed one
+        among them, one place on. pt-BR ⟨pacto⟩ [ˈpakitu] has a post-tonic
+        [i], ⟨advogado⟩ [ad͡ʒivoˈɡadu] and ⟨pneu⟩ [piˈnew] a pretonic one.
+        """
+        if context.syll_indices is None or context.stressed_syll_idx is None:
+            return context
+        before = -1
+        for step in range(1, context.index + 1):
+            earlier = context.grapheme.at(-step)
+            if earlier is not None and self._holds_vowel(earlier):
+                before = context.syll_indices[context.index - step]
+                break
+        stressed = context.stressed_syll_idx
+        return replace(context, syll_idx=before + 1,
+                       stressed_syll_idx=stressed + 1 if stressed > before else stressed)
 
     def _realize_one_segment(
         self, seg: str, seg_ctx: SegmentContext, context: RescoreContext,
@@ -824,13 +875,18 @@ def _rule_atoms(rules: Sequence[AllophoneRule]) -> Tuple[str, ...]:
 def compile_allophone_rescorer(
     rules: Sequence[AllophoneRule],
     doubled_letters_geminate: bool = True,
+    positional_vowel_graphemes: AbstractSet[str] = frozenset(),
 ) -> Optional[AllophoneRescorer]:
     """Compile ``allophone_rules`` into a rescorer, or ``None`` if empty.
 
     ``None`` lets a caller treat "no rules" as "no post-lexical pass" with a
     plain truthiness check, keeping the default engine path byte-identical.
+    *positional_vowel_graphemes* names the graphemes that read a vowel only
+    in a positional value, so a vowel they give is not taken for an
+    inserted one.
     """
     rules = tuple(rules or ())
     if not rules:
         return None
-    return AllophoneRescorer(rules, doubled_letters_geminate)
+    return AllophoneRescorer(rules, doubled_letters_geminate,
+                             positional_vowel_graphemes)
