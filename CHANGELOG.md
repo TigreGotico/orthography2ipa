@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.117.14a1](https://github.com/TigreGotico/orthography2ipa/tree/7.117.14a1) (2026-11-05)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.117.13a1...7.117.14a1)
+
+**Merged pull requests:**
+
+- fix\(ca\): delete a lone sibilant word with its stress mark [\#2087](https://github.com/TigreGotico/orthography2ipa/pull/2087) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.117.13a1](https://github.com/TigreGotico/orthography2ipa/tree/7.117.13a1) (2026-11-05)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.117.12a1...7.117.13a1)
@@ -384,10 +392,6 @@
 ## [7.114.4a2](https://github.com/TigreGotico/orthography2ipa/tree/7.114.4a2) (2026-11-04)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.114.4a1...7.114.4a2)
-
-**Merged pull requests:**
-
-- perf\(registry\): cache available\_codes\(\), which loaded every spec on each call [\#1941](https://github.com/TigreGotico/orthography2ipa/pull/1941) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.114.4a1](https://github.com/TigreGotico/orthography2ipa/tree/7.114.4a1) (2026-11-04)
 
