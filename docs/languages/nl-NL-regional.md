@@ -206,4 +206,4 @@ The new [aːi] is the `nl-NL` value of ⟨aai⟩, so `kraai` [ˈkraːi] and the 
 ---
 
 ---
-[← German](de-DE.md) · [Home](../index.md) · [Faroese →](fo.md)
+[← German](de-DE.md) · [Home](../index.md) · [Regional Standard Dutch of Belgium →](nl-BE-regional.md)
