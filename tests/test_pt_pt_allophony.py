@@ -47,7 +47,8 @@ def test_pt_pt_declares_the_coda_rules():
         "PT_FINAL_EN_NUCLEUS", "PT_FINAL_EN_CODA",
         "PT_NASAL_A_RAISE", "PT_NASAL_E_RAISE", "PT_NASAL_O_RAISE",
         "PT_NASAL_O_UNRED", "PT_NASAL_E_UNRED",
-        "PT_CODA_L_DARK", "PT_CODA_S_HUSH", "PT_CODA_Z_HUSH",
+        "PT_CODA_L_DARK", "PT_CODA_S_BEFORE_ZH_INTERNAL",
+        "PT_CODA_S_VOICING_INTERNAL", "PT_CODA_S_HUSH", "PT_CODA_Z_HUSH",
         "PT_LEX_OPEN_ER", "PT_ER_CLOSE",
         "PT_LEX_CLOSE_O", "PT_LEX_CLOSE_E", "PT_LEX_REDUCED_O",
         "PT_LEX_NASAL_UI", "PT_LEX_NASAL_UI_GLIDE",
@@ -91,7 +92,8 @@ def test_onset_l_stays_clear():
 def test_coda_s_hushes():
     # word-final and pre-voiceless-consonant coda /s/ → [ʃ]
     assert "ʃ" in _t("pt-PT", "pasta")
-    assert "ʃ" in _t("pt-PT", "mesmo")  # → [ʒ] after voicing sandhi, still hushed
+    # The hushed coda is voiced to [ʒ] before /m/ (PT_CODA_S_VOICING_INTERNAL).
+    assert "ʒ" in _t("pt-PT", "mesmo")
 
 
 def test_onset_and_intervocalic_s_not_hushed():
