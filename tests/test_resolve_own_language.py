@@ -14,7 +14,7 @@ the tag to.
 import langcodes
 import pytest
 
-from orthography2ipa import UnknownVariantWarning, get, resolve, resolves_exactly
+from orthography2ipa import G2P, UnknownVariantWarning, get, resolve, resolves_exactly
 from orthography2ipa.registry import available_json_codes
 
 
@@ -80,12 +80,14 @@ def test_an_unresolved_tag_stays_unresolved():
     "cnr-Cyrl", "cnr-Cyrl-BA", "cnr-Cyrl-HR", "cnr-Cyrl-ME", "cnr-Cyrl-RS",
     "cnr-Cyrl-XK",
 ])
-def test_montenegrin_cyrillic_reads_with_serbian(tag):
-    # cnr reads the Latin alphabet only; sr reads Cyrillic.
-    assert "Cyrillic" not in get("cnr").script
-    assert any("Ѐ" <= ch <= "ӿ" for ch in get("sr").graphemes)
-    assert resolve(tag) == "sr"
+def test_montenegrin_cyrillic_names_its_own_spec(tag):
+    # An alias names the spec, so a strict lookup answers as well.
+    assert resolve(tag) == "cnr"
     assert resolves_exactly(tag)
+    assert get(tag, strict=True).code == "cnr"
+    latin = G2P("cnr").transcribe("ljubav voda")
+    assert latin
+    assert G2P(tag).transcribe("љубав вода") == latin
 
 
 @pytest.mark.parametrize("tag,code", [
