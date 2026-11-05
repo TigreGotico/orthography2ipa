@@ -68,7 +68,7 @@ def test_no_spec_names_the_bare_dutch_code():
 
 
 @pytest.mark.parametrize("word,ipa", [
-    ("geven", "ˈχeːvən"),     # open ge-: tense [eː]; unstressed ⟨e⟩ [ə]
+    ("geven", "ˈχeivən"),     # open ge-: tense [ei]; unstressed ⟨e⟩ [ə]
     ("water", "ˈʋaːtər"),     # open wa-: tense [aː]
     ("liegen", "ˈliχən"),     # ⟨ie⟩ tense but short [i]
     ("schip", "ˈsχɪp"),       # ⟨sch⟩ [sχ]; closed syllable: lax [ɪ]
