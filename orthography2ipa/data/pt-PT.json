@@ -835,11 +835,11 @@
     {
       "id": "PT_CODA_S_BEFORE_ZH",
       "name": "coda-s-deletion-before-zh",
-      "left_context": "[ʃ]$",
+      "left_context": "([aeiouyɛɔəɨʉɯæɐʌɒœøɪʏʊɤɵɞɑɘɚɜɝɶãõẽĩũ].*)[ʃ]$",
       "right_context": "^[ˈˌ]?ʒ",
-      "transform": "",
+      "transform": "\\1",
       "obligatory": true,
-      "notes": "A word-final coda sibilant is deleted before a word that starts with /ʒ/: \"Syllable-final /ʃ/ occurs as [ʒ] before a voiced consonant (except before /ʒ/ itself, where it is deleted)\" (Cruz-Ferreira 1999: 128). So os jogos is [u ˈʒɔɡuʃ] and mais giro is [ˈmaj ˈʒiɾu], not [uʒ ˈʒɔɡuʃ]. The article is unstressed [uʃ]: the same page writes qual dos dois era o as [kṷal duʒ doiz ˈɛɾɔ]. PT_CODA_S_VOICING leaves /ʒ/ out of its voiced class, so the two rules never compete. Only the cross-word case is encoded here; a word-internal coda sibilant before /ʒ/ (desgelo, desjejum) is not voiced by any rule of this spec either."
+      "notes": "A word-final coda sibilant is deleted before a word that starts with /ʒ/: \"Syllable-final /ʃ/ occurs as [ʒ] before a voiced consonant (except before /ʒ/ itself, where it is deleted)\" (Cruz-Ferreira 1999: 128). So os jogos is [u ˈʒɔɡuʃ] and mais giro is [ˈmaj ˈʒiɾu], not [uʒ ˈʒɔɡuʃ]. The article is unstressed [uʃ]: the same page writes qual dos dois era o as [kṷal duʒ doiz ˈɛɾɔ]. PT_CODA_S_VOICING leaves /ʒ/ out of its voiced class, so the two rules never compete. Only the cross-word case is encoded here; a word-internal coda sibilant before /ʒ/ (desgelo, desjejum) is not voiced by any rule of this spec either. The source speaks of a syllable-final /ʃ/, so the left context requires a vowel before the [ʃ] in the same word, and the group keeps that part of the word. A word that is only [ʃ], such as the letter s or an abbreviation, has no syllable, and the rule leaves it: s jogos keeps its [ʃ], where a deletion would leave a word with no segment."
     },
     {
       "id": "PT_CODA_S_VOICING",

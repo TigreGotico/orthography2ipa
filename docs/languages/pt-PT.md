@@ -133,16 +133,19 @@ The coda sibilant values are the standard (Lisbon) realisation. Some northern an
 
 ## External /s/-sandhi
 
-A word-final coda /s/ is [ʃ] alone and before a voiceless consonant. Across a word boundary it changes with the next word. Two `sandhi_rules` set the value:
+A word-final coda /s/ is [ʃ] alone and before a voiceless consonant. Across a word boundary it changes with the next word. Three `sandhi_rules` set the value:
 
 | Rule id | Context | Value | Example |
 |:---|:---|:---|:---|
 | `PT_FINAL_S_PREVOCALIC_VOICE` | `…s#` + `#V…` | [z] | `estás a ver` [eʃˈtaz ɐ ˈveɾ], `os amigos` [oz ɐˈmiɡuʃ] |
 | `PT_CODA_S_VOICING` | `…s#` + `#[voiced C]…` | [ʒ] | `estás bem` [eʃˈtaʒ ˈbɐ̃j̃], `as bocas` [ɐʒ ˈbɔkɐʃ], `os dois` [oʒ ˈdojʃ] |
+| `PT_CODA_S_BEFORE_ZH` | `…Vs#` + `#ʒ…` | deleted | `mais giro` [ˈmaj ˈʒiɾu], `as janelas` [ɐ ʒɐˈnɛlɐʃ] |
 
 Before a vowel, the final sibilant joins the next syllable and is voiced to the alveolar [z]. Before a voiced consonant, it takes the voicing of that consonant and is the post-alveolar [ʒ] (Mateus & d'Andrade 2000, ch. 2). Before a voiceless consonant it stays [ʃ]: `estás feliz` [eʃˈtaʃ fɨˈliʃ]. A single word does not change: `estás` [eʃˈtaʃ].
 
-The `right_context` of `PT_CODA_S_VOICING` is `^[ˈˌ]?[bdɡvzʒmnɲɾʁlʎ]`. The optional stress mark lets it fire on a next word that starts with a stressed syllable, such as `bocas` [ˈbɔkɐʃ]. The velar in the class is IPA ɡ (U+0261), the code point the engine emits, so `os gatos` gives [oʒ ˈɡatuʃ]. An ASCII g (U+0067) in its place never matches.
+The `right_context` of `PT_CODA_S_VOICING` is `^[ˈˌ]?[bdɡvzmnɲɾʁlʎ]`. The optional stress mark lets it fire on a next word that starts with a stressed syllable, such as `bocas` [ˈbɔkɐʃ]. The velar in the class is IPA ɡ (U+0261), the code point the engine emits, so `os gatos` gives [oʒ ˈɡatuʃ]. An ASCII g (U+0067) in its place never matches.
+
+Before /ʒ/ the sibilant is deleted: "Syllable-final /ʃ/ occurs as [ʒ] before a voiced consonant (except before /ʒ/ itself, where it is deleted)" (Cruz-Ferreira 1999: 128). The voiced class of `PT_CODA_S_VOICING` leaves /ʒ/ out, so the two rules never compete. The source speaks of a syllable-final /ʃ/, so the `left_context` of `PT_CODA_S_BEFORE_ZH` needs a vowel before the [ʃ] in the same word. A word that is only [ʃ], such as the letter s, has no syllable and keeps its sibilant: `s jogos` [ˈʃ ˈʒɔɡuʃ], `S João` [ˈʃ ʒuˈɐ̃w̃].
 
 The standard [z] before a vowel is well documented (Mateus & d'Andrade 2000, ch. 2). Wikipedia, *Portuguese phonology*, section Consonant sandhi, gives `bons amigos` [bõz ɐˈmiɣuʃ]. Every `pt-PT-x-*` spec inherits both rules by id. Some dialects use [ʒ] before a vowel as well. The [dialect page](pt-PT-dialects.md#s-sandhi-before-a-vowel) gives the value of each spec and its sources.
 
