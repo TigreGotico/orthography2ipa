@@ -556,7 +556,7 @@ class TestDutch:
         """
         from orthography2ipa.g2p import transcribe
 
-        assert transcribe("school", "nl-NL").replace("ˈ", "") == "sχoːl"
+        assert transcribe("school", "nl-NL").replace("ˈ", "") == "sχoul"
         assert transcribe("schip", "nl-NL").replace("ˈ", "") == "sχɪp"
         assert "sch" not in self._spec.graphemes
 
@@ -690,7 +690,7 @@ class TestDutchBeatEspeakWave:
         assert self._t("maken") == "ˈmaːkən"
         assert self._t("bakken") == "ˈbɑkən"
         assert self._t("verhaal") == "ˈvɛrɦaːl"
-        assert self._t("gedaan") == "ˈχeːdaːn"
+        assert self._t("gedaan") == "ˈχeidaːn"
 
     def test_heteromorphemic_tj_stays_two_segments(self):
         """⟨tj⟩ is not a palatalized/affricate single segment: the

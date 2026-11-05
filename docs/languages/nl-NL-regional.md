@@ -66,8 +66,8 @@ So the spec gives ⟨ch⟩ the voiceless velar [x] of ⟨g⟩. It also restates 
 |:---|:---|:---|
 | `lachen` | [ˈlaːχən] | [ˈlaːxən] |
 | `acht` | [ˈɑχt] | [ˈɑxt] |
-| `school` (⟨sch⟩) | [ˈsχoːl] | [ˈsxoːl] |
-| `logisch` (word-final ⟨sch⟩) | [ˈloːχis] | [ˈloːxis] |
+| `school` (⟨sch⟩) | [ˈsχoul] | [ˈsxoul] |
+| `logisch` (word-final ⟨sch⟩) | [ˈlouχis] | [ˈlouxis] |
 | `Albrecht` (⟨brecht⟩) | [ˈɑlbrɛχt] | [ˈɑlbrɛxt] |
 | `Egchel` (⟨g⟩ + ⟨ch⟩) | [ˈɛχəl] | [ˈɛxəl] |
 | `tjerkgaast` (word exception) | [ˈtʃɛrkχaːst] | [ˈtʃɛrkxaːst] |
@@ -104,15 +104,15 @@ Van de Velde (2016, p. 10) gives the rate of voiced word-initial v in the north:
 
 > *"Op die manier ontdekten we dat in het noorden van Nederland de v aan het begin van een woord in slechts 9% van de gevallen als een v wordt uitgesproken. Ze zeggen in het noorden dus meestal 'fier' als het cijfer vier is bedoeld."*
 
-So the voiceless [f] is the majority value, with 91% of the tokens. The spec gives ⟨v⟩ the value [f] at the start and at the end of a word in its own positional map. The source measures the start of the word only, so a ⟨v⟩ inside a word keeps the `nl-NL` value: `over` [ˈoːvər].
+So the voiceless [f] is the majority value, with 91% of the tokens. The spec gives ⟨v⟩ the value [f] at the start and at the end of a word in its own positional map. The source measures the start of the word only, so a ⟨v⟩ inside a word keeps the `nl-NL` value: `over` [ˈouvər].
 
 | Word | `nl-NL` | `nl-NL-x-groninge` |
 |:---|:---|:---|
 | `vier` (the source's example) | [ˈviːr] | [ˈfiːr] |
 | `fier` | [ˈfiːr] | [ˈfiːr] |
 | `vader` | [ˈvaːdər] | [ˈfaːdər] |
-| `voorvader` | [ˈvoːrvaːdər] | [ˈfoːrvaːdər] |
-| `over` | [ˈoːvər] | [ˈoːvər] |
+| `voorvader` | [ˈvoᵊrvaːdər] | [ˈfoᵊrvaːdər] |
+| `over` | [ˈouvər] | [ˈouvər] |
 
 ### The uvular g
 
@@ -124,13 +124,13 @@ Their Table 4 (p. 184) gives 90.0% voiceless tokens for the region. The paper na
 
 > *"In de regio's boven de rivieren (N-M, N-N en N-R) is de sterk geschraapte stemloze uvulair de norm"*
 
-`nl-NL` gives ⟨g⟩ and ⟨ch⟩ the voiceless uvular [χ] in every position (Gussenhoven 1992, p. 45). That is the norm the paper names, so the spec takes ⟨g⟩, ⟨berg⟩ and the regressive devoicing rules `NL_CODA_DEVOICE_*` from `nl-NL` and states no delta for them: `gaan` [ˈχaːn], `dag` [ˈdɑχ], `zandgrond` [ˈzɑntχrɔnt], `geven` [ˈχeːvən]. The scraping is a voice quality, and the IPA value does not show it.
+`nl-NL` gives ⟨g⟩ and ⟨ch⟩ the voiceless uvular [χ] in every position (Gussenhoven 1992, p. 45). That is the norm the paper names, so the spec takes ⟨g⟩, ⟨berg⟩ and the regressive devoicing rules `NL_CODA_DEVOICE_*` from `nl-NL` and states no delta for them: `gaan` [ˈχaːn], `dag` [ˈdɑχ], `zandgrond` [ˈzɑntχrɔnt], `geven` [ˈχeivən]. The scraping is a voice quality, and the IPA value does not show it.
 
 ### Known gaps
 
-- ⟨ch⟩ keeps the `nl-NL` value: `lachen` [ˈlaːχən], `school` [ˈsχoːl]. The source measures /ɣ/ only.
+- ⟨ch⟩ keeps the `nl-NL` value: `lachen` [ˈlaːχən], `school` [ˈsχoul]. The source measures /ɣ/ only.
 - Initial ⟨z⟩ keeps the `nl-NL` value. No opened source measures it in the regional standard of the north. In the dialects, Taeldeman (2006, p. 185) finds *"enkel z-"* in Westerwolde and *"alleen s-vormen"* in the Westerkwartier.
-- Final ⟨-en⟩ needs no delta. The north keeps the [n] most often: Van de Velde & van Hout (2001, Table 3, p. 96) count 347 tokens with [n] against 130 without. `nl-NL` already gives `lopen` [ˈloːpən].
+- Final ⟨-en⟩ needs no delta. The north keeps the [n] most often: Van de Velde & van Hout (2001, Table 3, p. 96) count 347 tokens with [n] against 130 without. `nl-NL` already gives `lopen` [ˈloupən].
 - The diphthongs take the `nl-NL` values. Voeten (2021, p. 166) finds that /œy/ "diphthongizes significantly more than in the Randstad" and that /εi/ has "a significantly lower F1". These are gradient differences, with no change of category.
 
 ---
@@ -181,7 +181,7 @@ The new [aːi] is the `nl-NL` value of ⟨aai⟩, so `kraai` [ˈkraːi] and the 
 ### Known gaps
 
 - Coda ⟨r⟩ takes the `nl-NL` value. Stroop (p. 34) finds the Gooise r in Polder Dutch *"ook weer niet bij alle spreeksters van het Poldernederlands"*. Sebregts (2014) samples city accents, not this group. In his corpus the retroflex or bunched approximant is 31.8% of all coda tokens (Table 3-9, p. 75), "well over 80%" of the coda /r/ in Leiden (p. 114) and "just under 75%" in The Hague (p. 119). No source gives a share for the speakers of Polder Dutch.
-- ⟨ee eu oo⟩ take the `nl-NL` values: `fee` [ˈfeː], `beuk` [ˈbøːk], `boot` [ˈboːt]. Stroop (pp. 30, 33) describes a drift towards *ei*, *ui* and *ou*, with no endpoint for the sociolect.
+- ⟨ee eu oo⟩ take the `nl-NL` closing diphthongs: `fee` [ˈfei], `beuk` [ˈbøyk], `boot` [ˈbout]. Stroop (pp. 30, 33) describes a drift beyond them, towards *aai* and *au*, with no endpoint for the sociolect.
 - ⟨e⟩ before ⟨l⟩ keeps the `nl-NL` value. Stroop (p. 32) finds the raising to *opbillen* and *vertillen* *"uitsluitend bij jongere vrouwen"*.
 - The fricatives keep the `nl-NL` voicing. Stroop (p. 34) finds the devoicing *"meestal afwezig"* with Polder speakers from outside the Randstad.
 - The suffix ⟨-lijk⟩ takes the full diphthong of `nl-NL`: `eigenlijk` [ˈaːiχənlaːik], where `nl-NL` gives [ˈɛiχənlɛik]. The Wikipron Dutch data give [lək] for 342 of their 350 ⟨-lijk⟩ rows. That is an `nl-NL` limit, and the spec does not correct it.
