@@ -40,9 +40,9 @@ class TestSpecOverride:
         """The sandhi engine is compiled from the spec during construction,
         which is why the spec has to arrive as an argument."""
         no_sandhi = replace(get("pt-PT"), sandhi_rules=())
-        assert G2P("pt-PT").transcribe("os amigos") == "oz ɐˈmiɡuʃ"
+        assert G2P("pt-PT").transcribe("os amigos") == "uz ɐˈmiɡuʃ"
         assert G2P("pt-PT", spec=no_sandhi).transcribe("os amigos") == (
-            "oʃ ɐˈmiɡuʃ")
+            "uʃ ɐˈmiɡuʃ")
 
     def test_lang_still_names_the_language(self):
         spec = _acute_aware(get("uk"))

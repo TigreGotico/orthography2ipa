@@ -32,10 +32,13 @@ def test_the_southern_specs_inherit_it(code):
     assert "pin" in _bare("hipnose", code)
 
 
-@pytest.mark.parametrize("word, part", [("ritmo", "tm"), ("Edna", "dn")])
-def test_a_post_tonic_cluster_stays(word, part):
-    """Collischonn (2004: 67): 24 % post-tonic; the rule holds to a pretonic stop."""
-    assert part in _bare(word)
+@pytest.mark.parametrize("code", ["pt-BR-x-sul", "pt-BR-x-floripa", "pt-BR-x-pr"])
+def test_the_southern_specs_keep_the_post_tonic_cluster(code):
+    """Collischonn (2004: 75): the optimum for mogno has the syllables g.no,
+    without the vowel, and the optimum for the pretonic magnata is
+    "ma.gi.(ná.ta)"."""
+    assert "ɡn" in _bare("mogno", code)
+    assert "ɡin" in _bare("magnata", code)
 
 
 def test_two_nasals_keep_the_cluster():
