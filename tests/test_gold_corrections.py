@@ -393,8 +393,6 @@ from build_gold_corrections import (  # noqa: E402
     PT_UNIFIED_DECISIONS,
     build_pt_unified_rows,
     pt_broad_from_narrow,
-    pt_ie_mark,
-    pt_ie_stressed,
 )
 
 PT_FIELDS = {"dataset", "source", "region", "word", "pos", "field",
@@ -402,7 +400,7 @@ PT_FIELDS = {"dataset", "source", "region", "word", "pos", "field",
              "authority"}
 PT_KINDS = {"accent_contradiction", "unaccented_stress", "missing_mark",
             "wrong_headword", "mojibake"}
-PT_SOURCES = {"infopedia", "infopedia+wiktionary", "wiktionary", "portal"}
+PT_SOURCES = {"infopedia", "infopedia+wiktionary", "wiktionary"}
 
 
 def _marks_removed(reading):
@@ -506,34 +504,30 @@ def test_pt_unified_source_is_read_from_the_row():
         _upstream_row("a", "r", "a", source="infopedia+wiktionary")) == "infopedia+wiktionary"
 
 
-def test_pt_ie_rule_reads_the_stress_from_the_spelling():
-    # paroxytone in -e/-a/-o with <ie>/<ee> as the next-to-last vowel group
-    for word in ("paciente", "frieza", "ambiente", "guineense", "geena", "lamuriento"):
-        assert pt_ie_stressed(word), word
-    # <iê>: the circumflex settles it
-    assert pt_ie_stressed("ciência") and pt_ie_stressed("biênio")
-    # not the next-to-last group, another accent, or an oxytone ending
-    for word in ("dieta-a", "variedade", "ciências-x", "paciência-mente",
-                 "piedoso", "série", "quietar", "dieese"):
-        assert not pt_ie_stressed(word), word
-    assert pt_ie_mark("pɐsjẽtɨ") == "pɐsjˈẽtɨ"
-    # decomposed nasal vowel: the mark goes before the base vowel
-    assert pt_ie_mark("pɐsjẽtɨ") == "pɐsjˈẽtɨ"
-    assert pt_ie_mark("pɐsjˈẽtɨ") is None           # already marked
-    assert pt_ie_mark("sjẽsjẽ") is None             # two candidates
-    assert pt_ie_mark("sjẽ") is None                # one nucleus
+def test_pt_overlay_never_corrects_a_portal_row():
+    """The Portal rows are LUPo generator output, scored as a competitor
+    (portal_lupo). A competitor's output is not corrected."""
+    rows = read_pt_unified_corrections()
+    assert [r for r in rows if r["source"] == "portal"] == []
+    assert [d for d in PT_UNIFIED_DECISIONS + PT_UNIFIED_BROAD_DECISIONS
+            if d[2] == "portal"] == []
 
 
-def test_pt_broad_follows_the_narrow_nucleus_and_the_source_convention():
-    # Infopédia writes the mark before the onset, the Portal before the vowel
-    assert pt_broad_from_narrow("buziˈliʃ", "buˈziliʃ", "infopedia") == "buˈziliʃ"
-    assert pt_broad_from_narrow("klimˈaks", "klˈimaks", "portal") == "klˈimaks"
-    assert pt_broad_from_narrow("aniˈdridu", "aˈnidridu", "infopedia") == "aˈnidridu"
+def test_pt_overlay_cites_no_portal_reading():
+    """No authority rests on a reading of the Portal Dicionário Fonético."""
+    for row in read_pt_unified_corrections():
+        assert "fonetica" not in row["authority"], row["word"]
+
+
+def test_pt_broad_follows_the_narrow_nucleus():
+    # Infopédia and pt.wiktionary write the mark before the onset
+    assert pt_broad_from_narrow("buziˈliʃ", "buˈziliʃ") == "buˈziliʃ"
+    assert pt_broad_from_narrow("aniˈdridu", "aˈnidridu") == "aˈnidridu"
     # a hiatus keeps its place: li-a-na
-    assert pt_broad_from_narrow("liãna", "liˈɐ̃nɐ", "wiktionary") == "liˈãna"
+    assert pt_broad_from_narrow("liãna", "liˈɐ̃nɐ") == "liˈãna"
     # already right, or nuclei that do not line up: no broad correction
-    assert pt_broad_from_narrow("buˈziliʃ", "buˈziliʃ", "infopedia") is None
-    assert pt_broad_from_narrow("buzliʃ", "buˈziliʃ", "infopedia") is None
+    assert pt_broad_from_narrow("buˈziliʃ", "buˈziliʃ") is None
+    assert pt_broad_from_narrow("buzliʃ", "buˈziliʃ") is None
 
 
 def test_pt_build_corrects_drops_and_leaves_alone():
@@ -541,12 +535,13 @@ def test_pt_build_corrects_drops_and_leaves_alone():
         # a decision in the table
         _upstream_row("busílis", "pt-PT", "buziˈliʃ", "buziˈliʃ",
                       source="infopedia+wiktionary", pos="NOUN"),
-        # the <ie> rule
-        _upstream_row("paciente", "pt-PT-x-lisboa", "pɐsjẽtɨ", "pasjẽte", pos="NOUN"),
         # mojibake
+        _upstream_row("sundae", "pt", "'sÃndej", "'sÃndej", source="wiktionary",
+                      pos="NOUN"),
+        # left alone: a Portal row, even with mis-encoded text
         _upstream_row("alagem", "pt-MZ-x-maputo", "ɐlˈaʒẽçollins-nÃ£o-tem",
                       "alˈaʒẽçollins-nÃ£o-tem", pos="NOUN"),
-        # left alone: the <ie> rule needs a Portal row, and this row is marked
+        # left alone: a marked human row
         _upstream_row("paciente", "pt-PT", "pɐˈsjẽtɨ", "paˈsjẽte", source="infopedia"),
     ]
     decisions_used = [d for d in PT_UNIFIED_DECISIONS if d[0] == "busílis"]
@@ -562,11 +557,10 @@ def test_pt_build_corrects_drops_and_leaves_alone():
     assert got == {
         ("busílis", "pt-PT", "ipa_narrow"): "buˈziliʃ",
         ("busílis", "pt-PT", "ipa_broad"): "buˈziliʃ",
-        ("paciente", "pt-PT-x-lisboa", "ipa_narrow"): "pɐsjˈẽtɨ",
-        ("paciente", "pt-PT-x-lisboa", "ipa_broad"): "pasjˈẽte",
-        ("alagem", "pt-MZ-x-maputo", "ipa_narrow"): None,
+        ("sundae", "pt", "ipa_narrow"): None,
     }
-    assert stats["rows_in"] == 4 and stats["overlay_rows"] == 5
+    assert stats["rows_in"] == 4 and stats["portal_rows_skipped"] == 1
+    assert stats["overlay_rows"] == 3
 
 
 def test_pt_build_refuses_a_decision_that_matches_nothing():
@@ -592,7 +586,7 @@ def test_pt_decisions_place_the_mark_on_a_vowel_the_letter_can_spell():
 
 
 def test_pt_engine_never_enters_the_derivation():
-    """The decision table, the <ie> rule and the broad derivation take
+    """The decision table and the broad derivation take
     spellings and readings only. The table is a literal: no entry is a call."""
     path = os.path.join(os.path.dirname(__file__), "..", "scripts",
                         "build_gold_corrections.py")

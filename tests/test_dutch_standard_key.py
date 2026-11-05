@@ -10,7 +10,8 @@ The forms below follow the rules the spec cites: initial stress, the tense
 vowel of an open syllable and the lax vowel of a closed one (Booij, *The
 Phonology of Dutch*, 1995, ch. 2; Gussenhoven, "Dutch", *Handbook of the
 IPA*, 1999), [ə] for an unstressed ⟨e⟩, the short tense high vowels of
-⟨ie⟩ (same sources), ⟨sch⟩ [sx], and final devoicing (Booij 1995, § 2.5).
+⟨ie⟩ (same sources), the uvular [χ] of ⟨g⟩ and ⟨sch⟩ (Gussenhoven,
+"Dutch", *JIPA* 22, 1992, p. 45), and final devoicing (Booij 1995, § 2.5).
 """
 import json
 from pathlib import Path
@@ -67,10 +68,10 @@ def test_no_spec_names_the_bare_dutch_code():
 
 
 @pytest.mark.parametrize("word,ipa", [
-    ("geven", "ˈɣeːvən"),     # open ge-: tense [eː]; unstressed ⟨e⟩ [ə]
+    ("geven", "ˈχeivən"),     # open ge-: tense [ei]; unstressed ⟨e⟩ [ə]
     ("water", "ˈʋaːtər"),     # open wa-: tense [aː]
-    ("liegen", "ˈliɣən"),     # ⟨ie⟩ tense but short [i]
-    ("schip", "ˈsxɪp"),       # ⟨sch⟩ [sx]; closed syllable: lax [ɪ]
+    ("liegen", "ˈliχən"),     # ⟨ie⟩ tense but short [i]
+    ("schip", "ˈsχɪp"),       # ⟨sch⟩ [sχ]; closed syllable: lax [ɪ]
     ("hond", "ˈɦɔnt"),        # final devoicing
 ])
 @pytest.mark.parametrize("tag", ["nl-NL", "nl", "nld", "dut"])

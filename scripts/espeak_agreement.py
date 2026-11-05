@@ -64,9 +64,9 @@ SOURCES: Dict[str, Tuple] = {
     "pt": (benchmark.load_wikipron, "pt", "pt"),
     "pt-PT": (benchmark.load_portuguese_unified, "pt-PT", "pt"),
     "pt-BR": (benchmark.load_portuguese_unified, "pt-BR", "pt-br"),
-    "pt-AO": (benchmark.load_portuguese_unified, "pt-AO", "pt"),
-    "pt-MZ": (benchmark.load_portuguese_unified, "pt-MZ", "pt"),
-    "pt-TL": (benchmark.load_portuguese_unified, "pt-TL", "pt"),
+    "pt-AO": (benchmark.load_portal_lupo, "pt-AO", "pt"),
+    "pt-MZ": (benchmark.load_portal_lupo, "pt-MZ", "pt"),
+    "pt-TL": (benchmark.load_portal_lupo, "pt-TL", "pt"),
     "mwl": (benchmark.load_mirandese, "mwl", None),  # espeak has no Mirandese
     "mwl-x-sendim": (benchmark.load_mirandese, "mwl-x-sendim", None),
     # --- wikipron-sourced, espeak-ng voice available ---

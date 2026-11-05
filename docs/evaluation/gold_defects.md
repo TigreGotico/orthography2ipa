@@ -33,7 +33,7 @@ The gating does not run the way a reader expects. `machine-generated` gold gates
 | `vox_communis` | Vietnamese (`vi`) | Merged contrast | [ngang and huyền share ˨˨](#vietnamese-vox_communis), and the tone letter sits inside the rime | `epitran-derived`, cannot gate. `vox_communis_corrected` repairs the huyền side. |
 | `vox_communis` | Abkhaz (`ab`) | Missing data | [no labialization symbol](#abkhaz-vox_communis), and eight letters always `spn` | `epitran-derived`, cannot gate. Only exclusion helps. |
 | `ipa_childes` | Danish (`da`) | Structurally impossible marking | [stød on a short vowel before a voiceless stop](#danish-ipa_childes), and double stød in one stress group | `espeak-derived`, cannot gate. The fix is upstream. |
-| `portuguese_unified` | East Timorese Portuguese (`pt-TL`) | Wrong variety | [the `pt-TL-x-dili` region is Lisbon Portuguese with other symbols](#east-timorese-portuguese-portuguese_unified) | `machine-generated`, gates. Needs a gold from Timorese speakers. |
+| `portal_lupo` | East Timorese Portuguese (`pt-TL`) | Wrong variety | [the `pt-TL-x-dili` region is Lisbon Portuguese with other symbols](#east-timorese-portuguese-portal_lupo) | `lupo-derived`, cannot gate. Needs a gold from Timorese speakers. |
 | `wikipron` | Persian (`fa`) | Wrong variety | [Classical Persian markers dominate](#persian-wikipron) | `crowd-scraped`, gates. Relabel or replace. |
 | `primary_sources` | Algerian Arabic (`arq-DZ`) | Wrong variety | [one Tlemcen word scored against an Algiers spec](#algerian-arabic-primary_sources) | Below `THIN_ROW_N`, so it does not gate. |
 | `wikipron` | Middle English (`enm`) | Mixed conventions | [vowel length differs between readings of one headword](#middle-english-wikipron) | `crowd-scraped`, gates. The spec records the length fold as a ceiling. |
@@ -87,9 +87,9 @@ The fix belongs to espeak-ng and G2P+, not to this project. The tier is `espeak-
 
 ## Wrong variety
 
-### East Timorese Portuguese, `portuguese_unified`
+### East Timorese Portuguese, `portal_lupo`
 
-The `pt-TL` row reads the `pt-TL-x-dili` region of the unified lexicon. That region is not independent Timorese lexicography. A word-by-word diff against `pt-PT-x-lisboa` finds 53,147 shared words, and 3,076 of them are byte-identical in the two regions.
+The `pt-TL` row reads the `pt-TL-x-dili` region of the Portal da Língua Portuguesa Dicionário Fonético. The LUPo generator writes that region from the same mother lexicon as every other region ([`portal_lupo`](datasets.md#portal-da-língua-portuguesa-dicionário-fonético-portal_lupo)), so it is not independent Timorese lexicography. A word-by-word diff against `pt-PT-x-lisboa` finds 53,147 shared words, and 3,076 of them are byte-identical in the two regions.
 
 The diff then keeps the 35,800 shared entries whose transcriptions have the same length, where a positional diff means something. Six substitutions account for 90.6% of the 63,189 character differences:
 
@@ -106,7 +106,7 @@ Further down come d to ð (223) and ɡ to ɣ (150). These counts are over the fi
 
 Another symbol for the reduced unstressed vowel of European Portuguese does not remove the vowel. 60% of `pt-TL-x-dili` entries still have a reduced [ə], and 31% still end in a reduced [ʊ]. Coda /s/ still surfaces as the Lisbon hush: gold *instrumentista* is `ĩʃtɾumẽntˈiʃtə`, and Lisbon has `ĩʃtɾumẽtˈiʃtɐ`. Albuquerque (2010:275 fn. 7, 277), the source of the `pt-TL` spec, documents the opposite for this variety. It has no reduction of unstressed vowels and an alveolar coda /s/ with no hush. The row therefore measures agreement with European Portuguese in other symbols, not with the East Timorese acrolect that the spec models.
 
-This entry matters most, because the row gates. `_PT_UNIFIED_PROVENANCE` already lowers `pt-TL` from the dataset tier `lexicon-derived` to `machine-generated`, so a low PER here cannot mean that the spec is right. The tier order still lets the row block a promotion, and such a block is not phonological. No transcription work fixes the defect. It needs a gold collected from Timorese speakers.
+The row has the tier `lupo-derived`, so it can neither qualify nor block a promotion. A low PER here cannot mean that the spec is right, and a high PER cannot mean that it is wrong. No transcription work fixes the defect. The spec needs a gold collected from Timorese speakers.
 
 ### Persian, `wikipron`
 

@@ -57,6 +57,8 @@ A word-initial ⟨r⟩ and ⟨rr⟩ are the alveolar trill [r], not the uvular [
 
 The coda /s/ stays the alveolar [s] of `pt-BR` (`mesmo` [ˈmesmu]). Carvalho's quantitative work on /s/ aspiration concerns border Spanish, and it is not clear that it applies to the Portuguese variety. So the spec imposes no [h] without a primary source for the Portuguese.
 
+The `pt-BR` raising of a word-initial pretonic ⟨en em⟩ (`BR_INITIAL_EN_RAISE`) rests on a study of the northwest of São Paulo state. No source on the border variety states it, so the spec switches it off: `então` [ẽˈtɐ̃w̃]. The same holds for the raising before a coda sibilant (`BR_INITIAL_ES_RAISE`): `estar` [esˈtaɾ].
+
 The variety has no betacism, unlike Barranquenho, and it keeps /v/ (`vida` [ˈvidɐ]).
 
 The read sources do not quantify the fine pretonic vowels or any nasal-vowel detail beyond the inherited `pt-BR` set. The spec leaves them inherited.

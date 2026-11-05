@@ -454,13 +454,6 @@ def test_medieval_nasal_vowels_are_phonemicised():
 # ===========================================================================
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="pt-BR-x-sp cites então → [ĩˈtɐ̃w̃]; engine produces [ẽtɐ̃ˈw̃] — the "
-    "word-initial pretonic /eN/ → [ĩ] raising is asserted in the notes but no "
-    "rule or map entry implements it, and the output is identical to the pt-BR "
-    "base. DATA gap",
-)
 def test_sp_word_initial_pretonic_en_raises_to_i():
     """Word-initial pretonic /eN/ raises to [ĩ]: então → [ĩˈtɐ̃w̃].
 

@@ -1,6 +1,6 @@
 # Regional Standard Dutch of the Netherlands (nl-NL-x-*)
 
-The `nl-NL-x-*` specs model the regional and social accents of Standard Dutch in the Netherlands. A regional spec describes the standard language as educated speakers from one region speak it. Polder Dutch (`nl-NL-x-polder`) is a sociolect, not a region: it describes the standard language of a social group. The specs do not describe the traditional dialects, which have specs of their own, such as `li` for Limburgish. Each spec is a delta spec over `nl-NL`: it inherits the whole standard and declares only what its region or group changes. This page first explains how the inheritance works. One table then compares the defining features of every regional spec. Each spec then has its own section, with its sources, its rules and their conditions, and its known gaps.
+The `nl-NL-x-*` specs model the regional and social accents of Standard Dutch in the Netherlands. A regional spec describes the standard language as educated speakers from one region speak it. Polder Dutch (`nl-NL-x-polder`) is a sociolect, not a region: it describes the standard language of a social group. The specs do not describe the traditional dialects, which have specs of their own, such as `li` for Limburgish and `gos` for Gronings. Each spec is a delta spec over `nl-NL`: it inherits the whole standard and declares only what its region or group changes. This page first explains how the inheritance works. One table then compares the defining features of every regional spec. Each spec then has its own section, with its sources, its rules and their conditions, and its known gaps.
 
 Every transcription on this page is real output of `orthography2ipa.transcribe(text, code)`.
 
@@ -10,22 +10,23 @@ Every spec on this page sets `parent` to `nl-NL`. It also sets the four base key
 
 The dictionary fields `graphemes`, `allophones`, `positional_graphemes` and `word_exceptions` merge key by key. An own entry replaces the `nl-NL` entry with the same key, and every other key is inherited. In `positional_graphemes` the key is the grapheme. So an own map for ⟨g⟩ replaces the whole ⟨g⟩ map of `nl-NL`, and the spec must state every position it needs.
 
-A spec states a value itself when `nl-NL` could change that value later. The Limburg spec gives ⟨g⟩ the velar [x] and ⟨v⟩ the voiced [v] in its own positional maps. So a change to the dorsal fricative or to the initial ⟨v⟩ of `nl-NL` does not reach Limburg through the inheritance. The Polder spec gives its eight diphthong graphemes their values in its own `graphemes` map for the same reason.
+A spec states a value itself when `nl-NL` could change that value later. The Limburg spec gives ⟨g⟩ and ⟨sch⟩ the velar [x] and ⟨v⟩ the voiced [v] in its own positional maps, and ⟨ch⟩ the velar [x] in its own `graphemes` map. So a change to the dorsal fricative or to the initial ⟨v⟩ of `nl-NL` does not reach Limburg through the inheritance. A word exception bypasses the grapheme map and the allophone rules. So the Limburg spec also restates the `nl-NL` exception `tjerkgaast` with the velar [x]. The Groningen spec states its voiceless initial ⟨v⟩ in the same way. The Polder spec gives its eight diphthong graphemes their values in its own `graphemes` map for the same reason.
 
 The rule list `allophone_rules` merges by id (see [../engine/allophony.md](../engine/allophony.md#inheritance)). The `nl-NL` rules keep their order. An own rule with the same id replaces the inherited rule in place. An own rule with a new id goes to the end of the list.
 
-The data for the Limburg spec come from the teacher corpus of Van Hout et al. (1999). It holds 160 teachers of Dutch from four regions of the Netherlands and four regions of Flanders. The teachers read word lists and carrier sentences. van der Harst (2011, p. 53) states the reason for the choice: teachers "are professional language users who are assumed to speak the standard language on a daily basis". The Netherlands regions are the Randstad, the Middle (south Gelderland), the North (Groningen and north Drenthe) and the South (Dutch Limburg).
+The data for the Limburg and Groningen specs come from the teacher corpus of Van Hout et al. (1999). It holds 160 teachers of Dutch from four regions of the Netherlands and four regions of Flanders. The teachers read word lists and carrier sentences. van der Harst (2011, p. 53) states the reason for the choice: teachers "are professional language users who are assumed to speak the standard language on a daily basis". The Netherlands regions are the Randstad, the Middle (south Gelderland), the North (Groningen and north Drenthe) and the South (Dutch Limburg).
 
 ## Defining features
 
 | Spec | Region or group | Features that set it apart from `nl-NL` | Example |
 |:---|:---|:---|:---|
-| [`nl-NL-x-limburg`](#limburg-nl-nl-x-limburg) | Dutch Limburg: Sittard, Geleen, Roermond | /ɣ/ as the voiceless velar [x], the soft g<br>word-initial ⟨v⟩ stays [v] | `guize` [ˈxœyzə], `liegen` [ˈlixən], `vier` [ˈviːr] |
+| [`nl-NL-x-limburg`](#limburg-nl-nl-x-limburg) | Dutch Limburg: Sittard, Geleen, Roermond | /ɣ/ as the voiceless velar [x], the soft g<br>⟨ch⟩ as the same velar [x]<br>word-initial ⟨v⟩ stays [v] | `guize` [ˈxœyzə], `lachen` [ˈlaːxən], `vier` [ˈviːr] |
+| [`nl-NL-x-groninge`](#groningen-nl-nl-x-groninge) | Groningen and north Drenthe: Assen, Veendam, Winschoten | word-initial ⟨v⟩ as [f] | `vier` [ˈfiːr], `vader` [ˈfaːdər] |
 | [`nl-NL-x-polder`](#polder-dutch-nl-nl-x-polder) | A sociolect, not a region: younger women in public speech | ⟨ei ij⟩ as [aːi]<br>⟨ui⟩ as [ɑy]<br>⟨ou au⟩ as [aːu] | `tijd` [ˈtaːit], `huis` [ˈɦɑys], `vrouw` [ˈvraːu] |
 
 ## Limburg (nl-NL-x-limburg)
 
-`nl-NL-x-limburg` models the Standard Dutch of the province of Limburg. The teacher-corpus towns are Sittard, Geleen and Roermond (van der Harst 2011, p. 55). van der Harst (2011, p. 200) finds that in the vowels "N-S differs more from the other Dutch regions than it does from the Flemish regions". Sources: van der Harst & Van de Velde (2007), Van de Velde (2016), van der Harst (2011), Voeten (2021), Van Bezooijen & van den Berg (2004).
+`nl-NL-x-limburg` models the Standard Dutch of the province of Limburg. The teacher-corpus towns are Sittard, Geleen and Roermond (van der Harst 2011, p. 55). van der Harst (2011, p. 200) finds that in the vowels "N-S differs more from the other Dutch regions than it does from the Flemish regions". Sources: van der Harst & Van de Velde (2007), Verhoeven (2005), Gussenhoven & Aarts (1999), Van de Velde (2016), van der Harst (2011), Voeten (2021), Van Bezooijen & van den Berg (2004).
 
 ### The soft g
 
@@ -41,15 +42,35 @@ The spec gives ⟨g⟩ the velar [x] in every position. The word-final [x] combi
 
 | Word | `nl-NL` | `nl-NL-x-limburg` |
 |:---|:---|:---|
-| `guize` (the carrier word) | [ˈɣœyzə] | [ˈxœyzə] |
-| `gaan` | [ˈɣaːn] | [ˈxaːn] |
-| `gras` | [ˈɣrɑs] | [ˈxrɑs] |
-| `liegen` | [ˈliɣən] | [ˈlixən] |
-| `dagen` | [ˈdaːɣən] | [ˈdaːxən] |
-| `dag` (word-final) | [ˈdɑx] | [ˈdɑx] |
-| `bergen` (⟨berg⟩) | [ˈbɛrɣən] | [ˈbɛrxən] |
+| `guize` (the carrier word) | [ˈχœyzə] | [ˈxœyzə] |
+| `gaan` | [ˈχaːn] | [ˈxaːn] |
+| `gras` | [ˈχrɑs] | [ˈxrɑs] |
+| `liegen` | [ˈliχən] | [ˈlixən] |
+| `dagen` | [ˈdaːχən] | [ˈdaːxən] |
+| `dag` (word-final) | [ˈdɑχ] | [ˈdɑx] |
+| `bergen` (⟨berg⟩) | [ˈbɛrχən] | [ˈbɛrxən] |
 
-The inherited rules of `nl-NL` apply to the new [x]. The regressive devoicing rules `NL_CODA_DEVOICE_*` make a coda obstruent voiceless before it: `zandgrond` [ˈzɑntxrɔnt], where `nl-NL` gives [ˈzɑndɣrɔnt]. The degemination of `collapse_geminates` merges it with an [x] before it: `lachgas` [ˈlɑxɑs], where `nl-NL` gives [ˈlɑxɣɑs].
+The inherited rules of `nl-NL` apply to the new [x]. The regressive devoicing rules `NL_CODA_DEVOICE_*` make a coda obstruent voiceless before it: `zandgrond` [ˈzɑntxrɔnt], where `nl-NL` gives [ˈzɑntχrɔnt]. Where ⟨g⟩ meets ⟨ch⟩, the two velars merge in one [x], as the two uvulars of `nl-NL` merge in one [χ]: `lachgas` [ˈlɑxɑs], where `nl-NL` gives [ˈlɑχɑs].
+
+### ⟨ch⟩ as the velar [x]
+
+No opened source measures /x/ in Dutch Limburg. The value of ⟨ch⟩ rests on the regional norm that van der Harst & Van de Velde (2007, p. 192) name:
+
+> *"Limburg onttrekt zich echter volledig aan dit patroon en heeft een eigen uitspraaknorm. Daar komen vooral stemloze velairen en palato-velairen voor. Nederlands-Limburg deelt die uitspraaknorm voor /γ/ met Vlaanderen"*
+
+In the Flemish standard that shares this norm, ⟨ch⟩ is the voiceless velar. Verhoeven (2005, p. 244) writes: *"Belgian Dutch has a voiced and voiceless velar fricative: these are absent in the Netherlands. The Netherlands has a voiceless uvular fricative which does not occur in Belgian Dutch"*. His word list gives x for ⟨ch⟩ in *chijl*. The dialect of Maastricht has the same velar pair and no uvular fricative (Gussenhoven & Aarts 1999, pp. 155-156). That is dialect data, and the spec cites it as background only.
+
+So the spec gives ⟨ch⟩ the voiceless velar [x] of ⟨g⟩. It also restates the `nl-NL` entries that spell ⟨ch⟩ inside one key: ⟨sch⟩, ⟨brecht⟩ and the word exception `tjerkgaast`.
+
+| Word | `nl-NL` | `nl-NL-x-limburg` |
+|:---|:---|:---|
+| `lachen` | [ˈlaːχən] | [ˈlaːxən] |
+| `acht` | [ˈɑχt] | [ˈɑxt] |
+| `school` (⟨sch⟩) | [ˈsχoul] | [ˈsxoul] |
+| `logisch` (word-final ⟨sch⟩) | [ˈlouχis] | [ˈlouxis] |
+| `Albrecht` (⟨brecht⟩) | [ˈɑlbrɛχt] | [ˈɑlbrɛxt] |
+| `Egchel` (⟨g⟩ + ⟨ch⟩) | [ˈɛχəl] | [ˈɛxəl] |
+| `tjerkgaast` (word exception) | [ˈtʃɛrkχaːst] | [ˈtʃɛrkxaːst] |
 
 ### Word-initial ⟨v⟩
 
@@ -62,12 +83,55 @@ So the voiced [v] is the majority value in Limburg. The spec states ⟨v⟩ as [
 ### Known gaps
 
 - The palato-velar realisation of /ɣ/ (42.5%) has no rule. The paper scores it as a category, but it gives no conditioning context.
-- ⟨ch⟩ keeps the `nl-NL` value: `lachen` [ˈlaːxən], `school` [ˈsxoːl]. The source measures /ɣ/ only, and no opened source measures /x/ in Dutch Limburg.
-- The ⟨berg⟩ entry of the spec copies the [r] of the `nl-NL` entry. A change to that entry in `nl-NL` must be copied here.
+- The value of ⟨ch⟩ is an inference from the shared norm for /ɣ/. No opened source measures /x/ in Dutch Limburg.
+- The ⟨berg⟩, ⟨sch⟩ and ⟨brecht⟩ entries and the `tjerkgaast` exception copy the other segments of the `nl-NL` entries. A change to one of those entries in `nl-NL` must be copied here. The tests fail when `nl-NL` adds a key or an exception with the uvular [χ] that the Limburg spec does not restate.
 - The `nl-NL` grapheme ⟨veld⟩ blocks the regressive devoicing before the new [x]: `veldgrijs` [ˈvɛldxrɛis].
 - /r/ takes the `nl-NL` value. Van Bezooijen & van den Berg (2004, p. 94) call South Limburg *"een gebied met vrijwel uitsluitend huig-r"*. That is a background remark about where a group of listeners lives, with no measurement.
 - The long mid vowels and the diphthongs take the `nl-NL` values. Voeten (2021, p. 166) finds that the non-Randstad regions "diphthongize less strongly" for /eː/, and that for /øː oː œy/ "Netherlands-Limburg goes along with the Flemish regions". He adds (p. 171) that "there are no regions which categorically do not diphthongize their vowels". These are gradient differences, with no change of category.
 - Tone and pitch accent belong to the Limburgish dialects. No opened source measures them in regional Standard Dutch.
+
+---
+
+## Groningen (nl-NL-x-groninge)
+
+`nl-NL-x-groninge` models the Standard Dutch of the province of Groningen and the north of Drenthe. It is not Gronings. Gronings is a Low Saxon dialect group with its own ISO 639-3 code, and the spec for it is `gos`. The data come from the teachers of the region N-N in the teacher corpus. van der Harst (2011, p. 54) defines the region as "the Groningen province and the north of the Drenthe province", and its towns are Assen, Veendam and Winschoten (p. 55). Sources: Van de Velde (2016), van der Harst & Van de Velde (2007), van der Harst (2011), Taeldeman (2006), Van de Velde & van Hout (2001), Voeten (2021).
+
+The code follows the rule for private-use lect codes in `orthography2ipa/data/SCHEMA.md`. The slug names the place, and "A name with no short form is cut to its first 8 characters". So *Groningen* becomes `groninge`. The slug is not `gronings`, because that word names the dialect, and the dialect is keyed by its own code.
+
+### Word-initial ⟨v⟩
+
+Van de Velde (2016, p. 10) gives the rate of voiced word-initial v in the north:
+
+> *"Op die manier ontdekten we dat in het noorden van Nederland de v aan het begin van een woord in slechts 9% van de gevallen als een v wordt uitgesproken. Ze zeggen in het noorden dus meestal 'fier' als het cijfer vier is bedoeld."*
+
+So the voiceless [f] is the majority value, with 91% of the tokens. The spec gives ⟨v⟩ the value [f] at the start and at the end of a word in its own positional map. The source measures the start of the word only, so a ⟨v⟩ inside a word keeps the `nl-NL` value: `over` [ˈouvər].
+
+| Word | `nl-NL` | `nl-NL-x-groninge` |
+|:---|:---|:---|
+| `vier` (the source's example) | [ˈviːr] | [ˈfiːr] |
+| `fier` | [ˈfiːr] | [ˈfiːr] |
+| `vader` | [ˈvaːdər] | [ˈfaːdər] |
+| `voorvader` | [ˈvoᵊrvaːdər] | [ˈfoᵊrvaːdər] |
+| `over` | [ˈouvər] | [ˈouvər] |
+
+### The uvular g
+
+van der Harst & Van de Velde (2007, p. 184) find only uvular realisations of /ɣ/ in the north:
+
+> *"Uit tabel 3 blijkt dat in de Randstad (N-R) en in het noorden (N-N) enkel uvulaire realisaties voorkomen."*
+
+Their Table 4 (p. 184) gives 90.0% voiceless tokens for the region. The paper names the norm of the regions north of the rivers (p. 189):
+
+> *"In de regio's boven de rivieren (N-M, N-N en N-R) is de sterk geschraapte stemloze uvulair de norm"*
+
+`nl-NL` gives ⟨g⟩ and ⟨ch⟩ the voiceless uvular [χ] in every position (Gussenhoven 1992, p. 45). That is the norm the paper names, so the spec takes ⟨g⟩, ⟨berg⟩ and the regressive devoicing rules `NL_CODA_DEVOICE_*` from `nl-NL` and states no delta for them: `gaan` [ˈχaːn], `dag` [ˈdɑχ], `zandgrond` [ˈzɑntχrɔnt], `geven` [ˈχeivən]. The scraping is a voice quality, and the IPA value does not show it.
+
+### Known gaps
+
+- ⟨ch⟩ keeps the `nl-NL` value: `lachen` [ˈlaːχən], `school` [ˈsχoul]. The source measures /ɣ/ only.
+- Initial ⟨z⟩ keeps the `nl-NL` value. No opened source measures it in the regional standard of the north. In the dialects, Taeldeman (2006, p. 185) finds *"enkel z-"* in Westerwolde and *"alleen s-vormen"* in the Westerkwartier.
+- Final ⟨-en⟩ needs no delta. The north keeps the [n] most often: Van de Velde & van Hout (2001, Table 3, p. 96) count 347 tokens with [n] against 130 without. `nl-NL` already gives `lopen` [ˈloupən].
+- The diphthongs take the `nl-NL` values. Voeten (2021, p. 166) finds that /œy/ "diphthongizes significantly more than in the Randstad" and that /εi/ has "a significantly lower F1". These are gradient differences, with no change of category.
 
 ---
 
@@ -117,10 +181,10 @@ The new [aːi] is the `nl-NL` value of ⟨aai⟩, so `kraai` [ˈkraːi] and the 
 ### Known gaps
 
 - Coda ⟨r⟩ takes the `nl-NL` value. Stroop (p. 34) finds the Gooise r in Polder Dutch *"ook weer niet bij alle spreeksters van het Poldernederlands"*. Sebregts (2014) samples city accents, not this group. In his corpus the retroflex or bunched approximant is 31.8% of all coda tokens (Table 3-9, p. 75), "well over 80%" of the coda /r/ in Leiden (p. 114) and "just under 75%" in The Hague (p. 119). No source gives a share for the speakers of Polder Dutch.
-- ⟨ee eu oo⟩ take the `nl-NL` values: `fee` [ˈfeː], `beuk` [ˈbøːk], `boot` [ˈboːt]. Stroop (pp. 30, 33) describes a drift towards *ei*, *ui* and *ou*, with no endpoint for the sociolect.
+- ⟨ee eu oo⟩ take the `nl-NL` closing diphthongs: `fee` [ˈfei], `beuk` [ˈbøyk], `boot` [ˈbout]. Stroop (pp. 30, 33) describes a drift beyond them, towards *aai* and *au*, with no endpoint for the sociolect.
 - ⟨e⟩ before ⟨l⟩ keeps the `nl-NL` value. Stroop (p. 32) finds the raising to *opbillen* and *vertillen* *"uitsluitend bij jongere vrouwen"*.
 - The fricatives keep the `nl-NL` voicing. Stroop (p. 34) finds the devoicing *"meestal afwezig"* with Polder speakers from outside the Randstad.
-- The suffix ⟨-lijk⟩ takes the full diphthong of `nl-NL`: `eigenlijk` [ˈaːiɣənlaːik], where `nl-NL` gives [ˈɛiɣənlɛik]. The Wikipron Dutch data give [lək] for 342 of their 350 ⟨-lijk⟩ rows. That is an `nl-NL` limit, and the spec does not correct it.
+- The suffix ⟨-lijk⟩ takes the full diphthong of `nl-NL`: `eigenlijk` [ˈaːiχənlaːik], where `nl-NL` gives [ˈɛiχənlɛik]. The Wikipron Dutch data give [lək] for 342 of their 350 ⟨-lijk⟩ rows. That is an `nl-NL` limit, and the spec does not correct it.
 
 ---
 
