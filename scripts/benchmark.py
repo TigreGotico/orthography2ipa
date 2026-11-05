@@ -18,10 +18,10 @@ Dataset access:
 
 - ``cmudict`` needs the ``scriptconv`` package for ARPABET→IPA.
 - ``wikipron`` and ``mirandese_g2p`` download TSVs directly (stdlib only).
-- ``portuguese_unified`` downloads a JSONL gold file directly and samples it with
-  a fixed seed (stdlib only).
-  (It merges the former separate infopedia / wiktionary / Portal-lexicon
-  golds; one region is scored per registered language tag.)
+- ``portuguese_unified`` and ``portal_lupo`` download one JSONL file directly
+  and sample it with a fixed seed (stdlib only). ``portuguese_unified`` scores
+  its Infopédia and pt.wiktionary rows, and ``portal_lupo`` its Portal da
+  Língua Portuguesa rows. One region is scored per registered language tag.
 - ``hitz_basque_ipa`` pages the HiTZ/wikipedia_basque_ipa Hugging Face
   dataset through the datasets-server "rows" REST API (stdlib only,
   no full-parquet download).
@@ -717,21 +717,26 @@ _PT_UNIFIED_URL = (
     "portuguese-unified-pronunciation-lexicon"
     "/resolve/main/portuguese_pronunciation_lexicon.jsonl"
 )
-#: orthography2ipa language tag -> unified-dataset region tag. Only regions
-#: with a matching o2i spec AND a usable row count are scored; the tiny
-#: paulistano/paulista registers (~50 words each) and untagged "pt" rows
-#: are deliberately left out.
+#: orthography2ipa language tag -> dataset region tag, for the human rows
+#: (Infopédia and pt.wiktionary). Only regions with a matching o2i spec AND a
+#: usable row count are scored. The paulistano and paulista registers (under
+#: 30 rows each), the untagged "pt" rows and the Wiktionary rows of pt-AO (3),
+#: pt-MZ (2) and pt-TL (1) are left out.
 _PT_UNIFIED_REGIONS: Dict[str, str] = {
-    "pt-PT": "pt-PT",                       # Infopedia + Wiktionary EP, ~116k rows
-    "pt-PT-x-lisbon": "pt-PT-x-lisboa",     # Portal lexicon Lisbon, ~62k rows
-    "pt-BR": "pt-BR",                       # Wiktionary BR, ~3.6k rows
-    "pt-BR-x-sp": "pt-BR-x-saopaulo",       # Portal lexicon Sao Paulo, ~92k rows
-    "pt-BR-x-rj": "pt-BR-x-riodejaneiro",   # Portal lexicon Rio, ~64k rows
-    "pt-BR-x-carioca": "pt-BR-x-carioca",   # Wiktionary carioca, ~566 words
-    "pt-BR-x-caipira": "pt-BR-x-caipira",   # Wiktionary caipira, ~83 words
-    "pt-AO": "pt-AO",                       # Portal lexicon Luanda, ~53k rows
-    "pt-MZ": "pt-MZ-x-maputo",              # Portal lexicon Maputo, ~95k rows
-    "pt-TL": "pt-TL-x-dili",                # Portal lexicon Dili, ~53k rows
+    "pt-PT": "pt-PT",                       # Infopédia + Wiktionary, 127k rows
+    "pt-BR": "pt-BR",                       # Wiktionary, 3.6k rows
+    "pt-BR-x-carioca": "pt-BR-x-carioca",   # Wiktionary, 111 rows
+    "pt-BR-x-caipira": "pt-BR-x-caipira",   # Wiktionary, 31 rows
+}
+#: orthography2ipa language tag -> dataset region tag, for the Portal da Língua
+#: Portuguesa rows. These six regions hold no human rows. See load_portal_lupo.
+_PORTAL_LUPO_REGIONS: Dict[str, str] = {
+    "pt-PT-x-lisbon": "pt-PT-x-lisboa",     # 62k rows
+    "pt-BR-x-sp": "pt-BR-x-saopaulo",       # 92k rows
+    "pt-BR-x-rj": "pt-BR-x-riodejaneiro",   # 64k rows
+    "pt-AO": "pt-AO",                       # 53k rows (Luanda)
+    "pt-MZ": "pt-MZ-x-maputo",              # 96k rows
+    "pt-TL": "pt-TL-x-dili",                # 53k rows
 }
 _VOX_COMMUNIS_BASE = (
     "https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p"
@@ -1967,28 +1972,27 @@ def load_mirandese_dict(lang: str, limit: int) -> List[Tuple[str, str]]:
 
 
 def load_portuguese_unified(lang: str, limit: int) -> List[Tuple[str, str]]:
-    """Portuguese unified pronunciation lexicon, one REGION per language tag
-    (TigreGotico/portuguese-unified-pronunciation-lexicon on Hugging Face,
-    ~598k rows / 122k words, CC BY-SA 4.0).
+    """The human rows of the Portuguese unified pronunciation lexicon, one
+    REGION per language tag (TigreGotico/portuguese-unified-pronunciation-lexicon
+    on Hugging Face, 552k rows, CC BY-SA 4.0).
 
-    Merges the three previous TigreGotico Portuguese golds into one
-    convention-normalized dataset — Infopedia (Porto Editora dictionary),
-    pt.wiktionary.org, and the Portal da Lingua Portuguesa 10-region
-    lexicon — and REPLACES their separate loaders here. Each JSONL row is a
-    word x region x source x POS tuple carrying both a broad phonemic and a
-    narrow phonetic transcription normalized across sources.
+    The dataset merges three sources into one notation: Infopédia (the Porto
+    Editora dictionary), pt.wiktionary.org, and the Portal da Língua
+    Portuguesa Dicionário Fonético. Each JSONL row is a word x region x source
+    x POS tuple with a broad phonemic and a narrow phonetic transcription.
+    This loader reads only the Infopédia and pt.wiktionary rows, which people
+    transcribed. The Portal rows are the output of the LUPo rule-based
+    generator, and ``load_portal_lupo`` scores them as a competitor's output.
 
     ``ipa_narrow`` is scored: it matches the transcription depth of the
-    o2i pt specs and of the previous gold (explicit [ɐ ɨ ɾ ʀ ɫ]).
-    Untagged plain-"pt" rows are excluded from every regional row: they are
-    the pan-Portuguese subset and would dilute regional contrasts. See
-    ``_PT_UNIFIED_REGIONS`` for the spec -> region mapping.
+    o2i pt specs (explicit [ɐ ɨ ɾ ʀ ɫ]). Untagged plain-"pt" rows are excluded
+    from every regional row: they are the pan-Portuguese subset and would
+    dilute regional contrasts. See ``_PT_UNIFIED_REGIONS`` for the spec ->
+    region mapping.
 
-    PROVENANCE — classified ``lexicon-derived``: the bulk of the rows come
-    from published-dictionary extractions (Infopedia) and the Portal's
-    semi-automated lexicon; the Wiktionary minority is crowd-scraped. Both
-    tiers may gate regressions, so the mixed classification is safe (only
-    competitor-derived/LLM tiers are exempt from gating).
+    PROVENANCE — per region (``_PT_UNIFIED_PROVENANCE``): pt-PT is
+    ``lexicon-derived``, because 94% of its rows are Infopédia entries; the
+    Brazilian regions are pt.wiktionary only, so they are ``crowd-scraped``.
 
     SAMPLING — the file is grouped by word, so the first ``limit`` lines
     would be a biased alphabetical slice; the whole file is read and a
@@ -1998,12 +2002,37 @@ def load_portuguese_unified(lang: str, limit: int) -> List[Tuple[str, str]]:
     return _sample_portuguese_unified(lang, limit)
 
 
+def load_portal_lupo(lang: str, limit: int) -> List[Tuple[str, str]]:
+    """The Portal da Língua Portuguesa rows of the unified lexicon, one REGION
+    per language tag (``_PORTAL_LUPO_REGIONS``).
+
+    The Portal Dicionário Fonético (``index.php?action=fonetica``) is the
+    output of LUPo, a rule-based pronunciation generator (ILTEC; Ashby et al.
+    2012, "A Rule Based Pronunciation Generator and Regional Accent Databank
+    for Portuguese", Interspeech 2012). Its description page says that a set
+    of rules was applied to a hand-coded mother lexicon of 55,000 words
+    (abstract "metaformas") to generate the transcription of each dialect.
+    The regional rows are therefore one generator's output, not
+    transcriptions of speakers of that region.
+
+    PROVENANCE — ``lupo-derived``: the row measures agreement with another
+    rule-based G2P system, as an ``espeak-derived`` row does. It never gates.
+    A divergence can mean that o2i is right, so judge it against a cited
+    source. No corrections overlay applies to it.
+
+    The six regions hold no human rows, so ``load_portuguese_unified`` does
+    not score them. Sampling is as in ``load_portuguese_unified``.
+    """
+    return _sample_portuguese_unified(lang, limit, portal=True)
+
+
 def pt_unified_source(row: Dict) -> str:
     """The source of one ``portuguese_unified`` row, read from its fields.
 
     The dataset has no source column. A Portal row is the only kind with a
     ``phones`` value, an Infopédia row has an ``infopedia_url``, and a row
-    merged from both dictionaries has both URLs.
+    merged from both dictionaries has both URLs. Every row with neither is a
+    pt.wiktionary row.
     """
     if row.get("phones"):
         return "portal"
@@ -2015,16 +2044,19 @@ def pt_unified_source(row: Dict) -> str:
 def _sample_portuguese_unified(
     lang: str, limit: int,
     overlay: Optional[Dict[Tuple[str, str, str, str, str, str], Optional[str]]] = None,
+    portal: bool = False,
 ) -> List[Tuple[str, str]]:
     """The fixed-seed word sample of one region, with *overlay* applied.
 
-    The sample is drawn from the UNCORRECTED words, so the corrected and the
-    uncorrected rows score the same words: a dropped source row removes a
+    *portal* selects the Portal rows of a ``_PORTAL_LUPO_REGIONS`` region;
+    otherwise only the human rows of a ``_PT_UNIFIED_REGIONS`` region are
+    read. The sample is drawn from the UNCORRECTED words, so the corrected and
+    the uncorrected rows score the same words: a dropped source row removes a
     reading, never shifts which words are sampled. *overlay* maps a source-row
     key ``(word, region, source, pos, field, original_reading)`` to the
     corrected reading, or to ``None`` for a dropped row.
     """
-    region = _PT_UNIFIED_REGIONS[lang]
+    region = (_PORTAL_LUPO_REGIONS if portal else _PT_UNIFIED_REGIONS)[lang]
     text = _fetch(_PT_UNIFIED_URL, "portuguese_pronunciation_lexicon.jsonl")
     by_word: Dict[str, List[str]] = {}
     corrected: Dict[str, List[str]] = {}
@@ -2033,7 +2065,7 @@ def _sample_portuguese_unified(
         if not line.strip():
             continue
         row = json.loads(line)
-        if row.get("region") != region:
+        if row.get("region") != region or (pt_unified_source(row) == "portal") != portal:
             continue
         word = row.get("word")
         ipa = (row.get("ipa_narrow") or "").strip()
@@ -2223,10 +2255,7 @@ PT_UNIFIED_CORRECTIONS = "portuguese_unified_pt"
 
 #: The o2i language tags whose region the overlay corrects at least one
 #: ``ipa_narrow`` reading of (a test derives the same list from the file).
-PT_UNIFIED_CORRECTED_LANGS = [
-    "pt-AO", "pt-BR", "pt-BR-x-rj", "pt-BR-x-sp", "pt-MZ", "pt-PT",
-    "pt-PT-x-lisbon", "pt-TL",
-]
+PT_UNIFIED_CORRECTED_LANGS = ["pt-BR", "pt-PT"]
 
 
 def read_gold_corrections(dataset: str, lang: str) -> List[Dict[str, str]]:
@@ -3350,6 +3379,7 @@ DATASETS: Dict[str, Tuple[DatasetLoader, List[str]]] = {
     "portuguese_unified": (load_portuguese_unified, sorted(_PT_UNIFIED_REGIONS)),
     "portuguese_unified_corrected": (load_portuguese_unified_corrected,
                                      PT_UNIFIED_CORRECTED_LANGS),
+    "portal_lupo": (load_portal_lupo, sorted(_PORTAL_LUPO_REGIONS)),
     "4catac": (load_4catac, sorted(_4CATAC_FILES)),
     "hitz_basque_ipa": (load_hitz_basque, ["eu"]),
     "clup_dialect": (load_clup_dialect, _CLUP_LANGS),
@@ -3399,7 +3429,7 @@ DATASETS: Dict[str, Tuple[DatasetLoader, List[str]]] = {
 #                      compete with). Scoring against it measures AGREEMENT
 #                      WITH THAT TOOL, not correctness.
 #
-# A GOLD SET'S VALUE IS ITS ERROR MODEL. The three tiers below are ordered by
+# A GOLD SET'S VALUE IS ITS ERROR MODEL. The tiers below are ordered by
 # how much a disagreement tells you:
 #
 #   espeak-derived   — the gold is espeak-ng's own output (directly, or via
@@ -3413,6 +3443,12 @@ DATASETS: Dict[str, Tuple[DatasetLoader, List[str]]] = {
 #                      and diverging from them may be exactly right. But it can
 #                      never CERTIFY us: it can neither qualify a language for
 #                      promotion nor block one (docs/specs/quality_tiers.md).
+#   lupo-derived     — the output of LUPo, the rule-based pronunciation
+#                      generator of the Portal da Língua Portuguesa
+#                      Dicionário Fonético (Ashby et al. 2012, Interspeech).
+#                      Another G2P system scored as a competitor: the row
+#                      measures agreement with its rules, exactly as an
+#                      espeak-derived row does, and never gates.
 #   llm-generated    — the gold was produced by a large language model. Worst
 #                      of all: no lexicon, no G2P model, no rules — therefore
 #                      NO ERROR MODEL. The output is plausible-looking IPA that
@@ -3435,6 +3471,7 @@ RELIABILITY_TIERS = (
     "machine-generated",
     "espeak-derived",
     "epitran-derived",
+    "lupo-derived",
     "llm-corrected",
     "llm-generated",
 )
@@ -3445,7 +3482,8 @@ RELIABILITY_TIERS = (
 # to interpret the row: an espeak-derived row on English and an epitran-derived
 # row on Spanish are non-comparable evidence, and the circularity warning for
 # each points at a different column of docs/evaluation/generated/comparison.md.
-COMPETITOR_DERIVED_TIERS = frozenset({"espeak-derived", "epitran-derived"})
+COMPETITOR_DERIVED_TIERS = frozenset(
+    {"espeak-derived", "epitran-derived", "lupo-derived"})
 
 # The last tier in RELIABILITY_TIERS that may gate a quality decision. Gating
 # power is DERIVED from tuple position rather than listed separately, so the
@@ -3535,12 +3573,17 @@ PROVENANCE: Dict[str, str] = {
     "ipadict": "machine-generated",
     # community-scraped Wiktionary
     "wikipron": "crowd-scraped",
-    "portuguese_unified": "lexicon-derived",  # Infopedia + Portal lexicon + Wiktionary, convention-normalized
+    # Infopédia + pt.wiktionary, classified per region in
+    # _PT_UNIFIED_PROVENANCE. The fallback is the more pessimistic tier.
+    "portuguese_unified": "crowd-scraped",
     # The SAME gold with the committed stress and headword overlay applied
     # (see load_portuguese_unified_corrected). It keeps the base tier, per
     # language through PROVENANCE_BY_LANG as the base does, and never gates
     # because it is in CORRECTED_DATASETS.
-    "portuguese_unified_corrected": "lexicon-derived",
+    "portuguese_unified_corrected": "crowd-scraped",
+    # The Portal da Língua Portuguesa Dicionário Fonético rows: the output of
+    # the LUPo rule-based generator (Ashby et al. 2012). See load_portal_lupo.
+    "portal_lupo": "lupo-derived",
     # SAME crowd-scraped WikiPron ar gold; only the INPUT word is
     # machine-diacritized (text2tashkeel, ~2% DER), which adds a small
     # machine noise floor on top of the gold's own tier. Diagnostic for
@@ -3554,7 +3597,6 @@ PROVENANCE: Dict[str, str] = {
     # instead of the page title. No new annotator and no machine
     # transcription enter, so the tier does not move.
     "wikipron_restored": "crowd-scraped",
-    # Portal da Língua Portuguesa scrape; semi-automated IPA, not hand-verified
     # A COMPETITOR'S OUTPUT reused as a reference. These phonemes come from the
     # espeak-ng-backed phonemizer, so this row measures AGREEMENT WITH ESPEAK,
     # not correctness — and espeak is a system we benchmark ourselves *against*
@@ -3617,32 +3659,12 @@ PROVENANCE: Dict[str, str] = {
     "coruss_ru": "expert-human",
 }
 
-# The dataset-wide "lexicon-derived" tier for portuguese_unified is earned by
-# its Infopedia/Portal/Wiktionary majority, but the ``pt-TL-x-dili`` region
-# (the ONLY gold this row draws on, per `_PT_UNIFIED_REGIONS`) is not
-# independent Timorese lexicography: diffed word-for-word against
-# ``pt-PT-x-lisboa`` (measured 2026-08, cached
-# portuguese_pronunciation_lexicon.jsonl, 53,147 shared words), the two
-# columns are near-total 1:1 CHARACTER substitutions — ɐ→ə (28,713
-# occurrences), u→ʊ (11,653), ʀ→r (3,994), ɫ→w (1,681), d→ð (212), g→ɣ
-# (146) — not independently collected phonetic fieldwork. Substituting a
-# symbol for European Portuguese's centralised unstressed vowel does not
-# remove it: 60% of ``pt-TL-x-dili`` rows still contain a reduced [ə] and
-# 31% a reduced final [ʊ], and coda /s/ still surfaces as the Lisbon
-# "chiado" [ʃ] (e.g. gold ``instrumentista`` → [ĩʃtɾumẽntˈiʃtə]). Albuquerque
-# (2010:275, fn.7; 277), the spec's primary source, documents the opposite
-# for this variety — no unstressed-vowel reduction and an alveolar (non-hush)
-# coda /s/ — so this gold measures conformity to a re-symbolized European
-# Portuguese, not to the acrolectal East Timorese Portuguese the spec
-# models. Downgraded from the dataset default so a low PER here can never be
-# read as "the spec is wrong". Note that `machine-generated` still gates
-# (GATING_CUTOFF_TIER): the downgrade records that the reference is a
-# re-symbolized European Portuguese rather than independent Timorese
-# lexicography, it does not exempt the row from the promotion and regression
-# gates. Exempting it would need a tier below the cutoff, and none of those
-# describe this gold honestly.
+# portuguese_unified reads Infopédia and pt.wiktionary rows, and the mix differs
+# by region. 94% of the pt-PT rows are Infopédia entries (a published
+# dictionary), so pt-PT is lexicon-derived. The Brazilian regions hold
+# pt.wiktionary rows only, so they keep the crowd-scraped fallback.
 _PT_UNIFIED_PROVENANCE: Dict[str, str] = {
-    "pt-TL": "machine-generated",
+    "pt-PT": "lexicon-derived",
 }
 
 # Per-LANGUAGE provenance overrides, for datasets that are not one source but a
@@ -4770,8 +4792,8 @@ def write_scoreboard(rows: List[dict]) -> None:
         "**crowd-scraped** (Wiktionary) > "
         "**machine-generated** (some other tool's output; agreement-with-tool, "
         "not correctness) > "
-        "**espeak-derived** / **epitran-derived** (a COMPETITOR's output: "
-        "measures agreement with a system we benchmark ourselves against, so it "
+        "**espeak-derived** / **epitran-derived** / **lupo-derived** (a "
+        "COMPETITOR's output: measures agreement with another G2P system, so it "
         "can neither qualify a language for `production` nor block one) > "
         "**llm-generated** (an LLM's output: no lexicon, no rules, therefore no "
         "error model — a disagreement is not even diagnostic; never gate on "

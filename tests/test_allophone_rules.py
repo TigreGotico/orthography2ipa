@@ -487,6 +487,31 @@ class TestFollowedByNucleus:
         assert _ipa("xsl", "dihcho") == "tɪ̀ʰtʃʰò"
 
 
+class TestAMarkAloneIsNoNucleus:
+    """A slot whose value is only a combining mark is not a syllable.
+
+    pt-BR writes the coda nasal of ⟨em⟩ as a bare tilde on the ⟨m⟩ slot, so
+    ⟨em⟩ is one syllable. The tilde must not count as a later or an other
+    nucleus for the vowel before it.
+    """
+
+    GRAPHEMES = {"e": ["e"], "m": ["\u0303"], "k": ["k"], "a": ["a"]}
+
+    def test_followed_by_nucleus_skips_a_bare_tilde(self):
+        rule = AllophoneRule(id="RAISE_E", phonemes=("e",), surface="i",
+                             followed_by_nucleus=True)
+        spec = _spec(self.GRAPHEMES, (rule,))
+        assert _tok_best(spec, "em") == "e\u0303"
+        assert _tok_best(spec, "eka") == "ika"
+
+    def test_requires_other_nucleus_skips_a_bare_tilde(self):
+        rule = AllophoneRule(id="DROP_E", phonemes=("e",), surface="",
+                             requires_other_nucleus=True)
+        spec = _spec(self.GRAPHEMES, (rule,))
+        assert _tok_best(spec, "em") == "e\u0303"
+        assert _tok_best(spec, "eka") == "ka"
+
+
 class TestStressConditionedRulesReachTheEngine:
     """A ``stress`` rule needs the beam that carries stress context.
 
