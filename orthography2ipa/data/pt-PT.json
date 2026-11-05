@@ -878,6 +878,28 @@
         "os"
       ],
       "notes": "The article and clitic pronoun ⟨o os⟩ have the reduced vowel [u]: Cruz-Ferreira (1999, Handbook of the IPA, p. 130) transcribes O vento norte e o sol as [u ˈvẽtu ˈnɔɾt i u sɔl], and obrigar o viajante, o mais forte as [ɔbɾiˈɡaɾ u viɐˈʒẽtɯ], [u maiʃ ˈfɔɾt]. On p. 129 she gives [ˈɛɾɔ] as the contraction of /ˈɛɾɐ u/ (era o), and on p. 128 qual dos dois era o as [kṷal duʒ doiz ˈɛɾɔ]. The rules give the word-initial ⟨o⟩ [o], so pt-PT read o as [o] and os as [oʃ]. The rule names the two words and changes only the vowel, so each child keeps its own sibilant. The [u] is the vowel that an unstressed ⟨o⟩ reduces to in this spec (positional map: pretonic and unstressed-nucleus ⟨o⟩ [u]). A child that keeps an unstressed ⟨o⟩ as [o] disables this rule. pt.wiktionary gives the article o as /u/ (SAMPA /O/ for the noun, /u/ for the other senses); its entry for os has only a Brazilian (Carioca) pronunciation line. The Portal da Língua Portuguesa Dicionário fonético has no entry for os."
+    },
+    {
+      "id": "PT_LEX_AO_A",
+      "phonemes": [
+        "ɐ"
+      ],
+      "surface": "a",
+      "word": [
+        "ao"
+      ],
+      "notes": "The contraction ao (a + o) is the falling diphthong [aw], with a full [a]: Cruz-Ferreira (1999, Handbook of the IPA, p. 130) transcribes Ao vê-lo as [au ˈvelu], and on p. 128 she states that diphthong end-points are transcribed [i] and [u] (mau [mau]). Infopédia gives ao [aw]. The rules reduced the unstressed ⟨a⟩ to [ɐ] and read ⟨o⟩ as a separate [u], so pt-PT read ao as [ɐu]. The rule names the word and changes only its two segments. aos has no Infopédia or Cruz-Ferreira reading, so it is not on the list."
+    },
+    {
+      "id": "PT_LEX_AO_GLIDE",
+      "phonemes": [
+        "u"
+      ],
+      "surface": "w",
+      "word": [
+        "ao"
+      ],
+      "notes": "The offglide [w] of the diphthong [aw] in ao. See PT_LEX_AO_A."
     }
   ],
   "sandhi_rules": [

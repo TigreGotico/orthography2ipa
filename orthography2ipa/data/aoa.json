@@ -350,6 +350,18 @@
       "notes": "DISABLED for Angolar. PT_LEX_NASAL_UI and PT_LEX_NASAL_UI_GLIDE give the pt-PT and pt-BR words muito, muita, muitos, muitas and mui the nasal diphthong [ũj̃]. No source for these words in this language was read, so its output stays what it was."
     },
     {
+      "id": "PT_LEX_AO_A",
+      "phonemes": [],
+      "surface": "a",
+      "notes": "DISABLED for Angolar. PT_LEX_AO_A and PT_LEX_AO_GLIDE give the pt-PT contraction ao the diphthong [aw]. No source for ao in this language was read, so its output stays what it was."
+    },
+    {
+      "id": "PT_LEX_AO_GLIDE",
+      "phonemes": [],
+      "surface": "w",
+      "notes": "DISABLED for Angolar. PT_LEX_AO_A and PT_LEX_AO_GLIDE give the pt-PT contraction ao the diphthong [aw]. No source for ao in this language was read, so its output stays what it was."
+    },
+    {
       "id": "PT_LEX_OPEN_E_SUFFIX",
       "phonemes": [],
       "surface": "e",
