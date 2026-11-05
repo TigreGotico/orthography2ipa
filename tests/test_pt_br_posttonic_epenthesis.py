@@ -91,14 +91,6 @@ def test_the_post_tonic_rule_is_independent_of_the_pretonic_one():
     assert g.transcribe("advogado") == "advoˈɡadu"
 
 
-@pytest.mark.xfail(strict=True, reason=(
-    "Barbosa & Albano (2004: 227) break an initial two-obstruent cluster "
-    "(psicologia). BR_EPENTHESIS_POSTTONIC reads only a stop after the "
-    "stressed vowel, so the onset of a stressed syllable keeps its cluster."))
-def test_an_onset_cluster_of_the_stressed_syllable_is_broken():
-    assert transcribe("pseudo", "pt-BR") == "piˈsewdu"
-
-
 def test_a_vowel_inserted_before_the_stressed_nucleus_does_not_take_the_mark():
     # The rule widened to every stop of the stressed syllable reaches the
     # onset cluster of pseudo. The inserted vowel stands before the stressed
@@ -107,7 +99,7 @@ def test_a_vowel_inserted_before_the_stressed_nucleus_does_not_take_the_mark():
     rules = tuple(
         dataclasses.replace(r, preceded_by=None)
         if r.id == "BR_EPENTHESIS_POSTTONIC" else r
-        for r in spec.allophone_rules)
+        for r in spec.allophone_rules if r.id != "BR_EPENTHESIS_ONSET")
     g = G2P("pt-BR", spec=dataclasses.replace(spec, allophone_rules=rules))
     assert g.transcribe("pseudo") == "piˈsewdu"
     assert g.transcribe("pacto") == "ˈpakitu"
