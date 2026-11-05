@@ -41,7 +41,7 @@ A clade node is for classification only. It carries no phoneme data, no spec inh
 
 1. The alias table `_ALIASES`, which holds ISO 639-3 codes and private-use tags that `langcodes` does not round-trip.
 2. `langcodes.standardize_tag(code, macro=True)`, for a code with no private-use subtag. The result goes through the alias table again.
-3. An exact match against the registered spec codes. A private-use tag also matches without regard to case, so `ars-sa-x-qassim` finds `ars-SA-x-qassim`.
+3. An exact match against the registered spec codes. A private-use tag also matches without regard to case, so `ars-sa-x-qassim` finds `ars-SA-x-qassim`. It also matches with a script subtag dropped when that script is the language's IANA Suppress-Script, so `pt-Latn-BR-x-sp` finds `pt-BR-x-sp`. The Suppress-Script "adds no distinguishing information to a language tag" (RFC 5646, section 3.1.9). Only the part before `-x-` goes to `langcodes`, because `langcodes` rejects a private-use subtag longer than 8 characters, such as the alias `ar-x-levantine`.
 4. For a bare language tag, the spec of its default region (`linguatag.with_default_region`), when that spec is registered. For a region that has only sub-regional specs, a curated default variant.
 5. The nearest registered code by language distance (`linguatag.closest_lang`), so `en-NZ` gives `en-GB`. A private-use subtag counts for nothing in the distance, so an unknown variant ties with the sibling lects of its language. The call passes `lects="standard"`, which breaks the tie toward the standard variety: `arb-x-zzz` gives `ar`, not an Arabic dialect. With no usable match, the code stays as it is, and `get()` raises `KeyError`.
 
