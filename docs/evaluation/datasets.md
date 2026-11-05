@@ -23,8 +23,9 @@ The tier column is the value of `provenance_for()`. "Per language" means that `P
 | `mirandese_g2p` | Mirandese, with its Sendinese and Raiano varieties | expert-human | [TigreGotico/mirandese_g2p](https://huggingface.co/datasets/TigreGotico/mirandese_g2p) | - | The best Mirandese signal. Small. |
 | `barranquenho_dict` | Barranquenho | llm-corrected | [TigreGotico/barranquenho-ipa-dict-synthetic](https://huggingface.co/datasets/TigreGotico/barranquenho-ipa-dict-synthetic), with the [corrected label](../contributing/silver_correction.md) | - | Silver. Direction only. |
 | `mirandese_dict` | Mirandese varieties | llm-corrected | [TigreGotico/mirandese-ipa-dict-synthetic](https://huggingface.co/datasets/TigreGotico/mirandese-ipa-dict-synthetic), with the [corrected label](../contributing/silver_correction.md) | - | Silver. Direction only. |
-| `portuguese_unified` | Portuguese of Portugal, Brazil, Angola, Mozambique and Timor-Leste | lexicon-derived, `pt-TL` machine-generated | [TigreGotico/portuguese-unified-pronunciation-lexicon](https://huggingface.co/datasets/TigreGotico/portuguese-unified-pronunciation-lexicon) | CC BY-SA 4.0 | The main Portuguese gold. |
-| `portuguese_unified_corrected` | The same, without the carioca and caipira regions | as the base | `portuguese_unified` with an overlay that fixes stress marks and drops mis-keyed rows | CC BY-SA 4.0 | Reading the base defect. Never gates. |
+| `portuguese_unified` | Portuguese of Portugal and Brazil | per language: `pt-PT` lexicon-derived, the Brazilian tags crowd-scraped | The Infopédia and pt.wiktionary rows of [TigreGotico/portuguese-unified-pronunciation-lexicon](https://huggingface.co/datasets/TigreGotico/portuguese-unified-pronunciation-lexicon) | CC BY-SA 4.0 | The main Portuguese gold. |
+| `portuguese_unified_corrected` | `pt-PT` and `pt-BR` | as the base | `portuguese_unified` with an overlay that fixes stress marks and drops mis-keyed rows | CC BY-SA 4.0 | Reading the base defect. Never gates. |
+| `portal_lupo` | Lisbon, São Paulo, Rio de Janeiro, Angola, Mozambique and Timor-Leste | lupo-derived | The Portal da Língua Portuguesa rows of the same file | CC BY-SA 4.0 | Agreement with the LUPo generator. Never gates. |
 | `4catac` | Central, Balearic, North-Western and Valencian Catalan | expert-human | [projecte-aina/4catac](https://huggingface.co/datasets/projecte-aina/4catac) | - | Accent rules, at sentence level. |
 | `hitz_basque_ipa` | Basque | machine-generated | [HiTZ/wikipedia_basque_ipa](https://huggingface.co/datasets/HiTZ/wikipedia_basque_ipa) | - | Agreement with the ahoNT phonemizer. |
 | `clup_dialect` | European Portuguese dialects | expert-human | [TigreGotico/ArquivoDialetalCLUP_ipa](https://huggingface.co/datasets/TigreGotico/ArquivoDialetalCLUP_ipa) | - | Hints. Most rows are tiny. |
@@ -65,40 +66,57 @@ That check is context, not a tier upgrade. It is not a per-row audit against cit
 
 ## Portuguese unified pronunciation lexicon (`portuguese_unified`)
 
-[TigreGotico/portuguese-unified-pronunciation-lexicon](https://huggingface.co/datasets/TigreGotico/portuguese-unified-pronunciation-lexicon) merges three Portuguese golds into one dataset with one notation, and it replaces their separate loaders. The three sources are these:
+[TigreGotico/portuguese-unified-pronunciation-lexicon](https://huggingface.co/datasets/TigreGotico/portuguese-unified-pronunciation-lexicon) merges three Portuguese sources into one dataset with one notation. The three sources are these:
 
-| Source | Content |
-|---|---|
-| Infopédia (Porto Editora) | Dictionary extractions of European Portuguese, broad phonemic. |
-| Portal da Língua Portuguesa (INESC-ID) | A semi-automated phonetic lexicon in ten regions. |
-| pt.wiktionary.org | Community transcriptions with explicit region tags. |
+| Source | Content | Scored as |
+|---|---|---|
+| Infopédia (Porto Editora) | Dictionary entries of European Portuguese, broad phonemic, written by lexicographers. | `portuguese_unified` |
+| pt.wiktionary.org | Transcriptions that editors type by hand, with region tags. | `portuguese_unified` |
+| Portal da Língua Portuguesa, Dicionário Fonético (ILTEC) | The output of LUPo, a rule-based pronunciation generator, in ten regions. | [`portal_lupo`](#portal-da-língua-portuguesa-dicionário-fonético-portal_lupo) |
 
-Each row is a tuple of word, region, source and part of speech. It carries a broad phonemic `ipa_broad` and a narrow phonetic `ipa_narrow`, normalized across the three source conventions (`ə/ɨ`, `r/ɾ/ʀ`, `a/ɐ`, optional segments and syllable markers). The harness scores `ipa_narrow`, because its depth matches the Portuguese specs, with explicit [ɐ ɨ ɾ ʀ ɫ]. The Infopédia and Portal majority is dictionary or semi-automated lexicography, and the Wiktionary minority is crowd-scraped. Read the row as a direction, not as peer-validated truth.
+Each row is a tuple of word, region, source and part of speech. It carries a broad phonemic `ipa_broad` and a narrow phonetic `ipa_narrow`, normalized across the source conventions (`ə/ɨ`, `r/ɾ/ʀ`, `a/ɐ`, optional segments and syllable markers). The harness scores `ipa_narrow`, because its depth matches the Portuguese specs, with explicit [ɐ ɨ ɾ ʀ ɫ].
+
+The dataset has no source column. `pt_unified_source()` reads the source from the fields of a row. A Portal row is the only kind with a `phones` value. `portuguese_unified` reads only the Infopédia and pt.wiktionary rows, which people transcribed. o2i does not score these specs against the Portal rows as a gold.
 
 One region is scored per registered tag (`_PT_UNIFIED_REGIONS`):
 
-| Tag | Region in the dataset |
-|---|---|
-| `pt-PT` | `pt-PT` |
-| `pt-PT-x-lisbon` | `pt-PT-x-lisboa` |
-| `pt-BR` | `pt-BR` |
-| `pt-BR-x-sp` | `pt-BR-x-saopaulo` |
-| `pt-BR-x-rj` | `pt-BR-x-riodejaneiro` |
-| `pt-BR-x-carioca` | `pt-BR-x-carioca` |
-| `pt-BR-x-caipira` | `pt-BR-x-caipira` |
-| `pt-AO` | `pt-AO` |
-| `pt-MZ` | `pt-MZ-x-maputo` |
-| `pt-TL` | `pt-TL-x-dili` |
+| Tag | Region in the dataset | Source | Tier |
+|---|---|---|---|
+| `pt-PT` | `pt-PT` | Infopédia for 94% of the rows, pt.wiktionary for the rest | lexicon-derived |
+| `pt-BR` | `pt-BR` | pt.wiktionary | crowd-scraped |
+| `pt-BR-x-carioca` | `pt-BR-x-carioca` | pt.wiktionary | crowd-scraped |
+| `pt-BR-x-caipira` | `pt-BR-x-caipira` | pt.wiktionary | crowd-scraped |
 
-Rows tagged only `pt`, with no region, are excluded from every regional row. The loader reads the whole file and draws a random sample of words per region with a fixed seed (`SAMPLE_SEED`), because the first words in alphabetical order would bias the sample.
+`PROVENANCE_BY_LANG["portuguese_unified"]` gives `pt-PT` its tier. The dataset-wide fallback is `crowd-scraped`, the more pessimistic tier of the two sources. Both tiers gate.
 
-`pt-TL` carries its own tier, `machine-generated`, in `PROVENANCE_BY_LANG["portuguese_unified"]`. Its `pt-TL-x-dili` region is the Lisbon entries written with other symbols, not Timorese lexicography. [Gold defects](gold_defects.md#east-timorese-portuguese-portuguese_unified) gives the measured substitutions and the source that contradicts them. The `machine-generated` tier still gates. The downgrade records the problem and does not exempt the row from the gates. See [languages/pt-TL.md](../languages/pt-TL.md).
+Rows tagged only `pt`, with no region, are excluded from every regional row. The `pt-BR-x-paulista` and `pt-BR-x-paulistano` regions hold under 30 rows each, and they are not scored. The pt.wiktionary rows of `pt-AO` (3), `pt-MZ` (2) and `pt-TL` (1) are too few to score, so those tags have no `portuguese_unified` row. The loader reads the whole file and draws a random sample of words per region with a fixed seed (`SAMPLE_SEED`), because the first words in alphabetical order would bias the sample.
 
 ### Stress overlay (`portuguese_unified_corrected`)
 
 `portuguese_unified_corrected` sits beside `portuguese_unified` on the board. Its overlay, `portuguese_unified_pt.jsonl`, is keyed on the source row of the dataset: source, region, word, part of speech, field and the reading the row ships. The overlay moves or adds a primary stress mark where the spelling settles the stressed syllable. A written accent settles it, and so do the accent rules of the Acordo Ortográfico 1990. It also drops rows that transcribe another headword or that end in mis-encoded text.
 
 The corrected row scores the same sampled words as the base row, so the two numbers compare. It covers only the regions where the overlay corrects at least one reading, which leaves out `pt-BR-x-carioca` and `pt-BR-x-caipira`. [Corrections overlays](benchmarks.md#corrections-overlays) gives the rules that every overlay follows.
+
+The overlay corrects only Infopédia and pt.wiktionary rows. A correction rests on the orthography, on the Acordo Ortográfico 1990, or on a human source with a verbatim quote, such as the syllable template of a pt.wiktionary page. No correction rests on a reading of the Portal Dicionário Fonético.
+
+## Portal da Língua Portuguesa Dicionário Fonético (`portal_lupo`)
+
+The Portal rows of the unified lexicon are not transcriptions of speakers. They are the output of LUPo (Léxico Unisyn do Português), a rule-based pronunciation generator that ILTEC built from 2010 to 2013. The [description page of the dictionary](http://www.portaldalinguaportuguesa.org/index.php?action=fonetica&region=lbx&page=present) says that a set of rules "foram aplicadas a um léxico-mãe (neste caso, um conjunto de palavras e respetiva codificação semelhante a uma transcrição fonológica abstrata – metaformas) para gerar transcrições fonéticas de dialetos específicos". The mother lexicon holds 55,000 words. Each entry page marks the dictionary "Recurso em teste" and asks users to cite Ashby, S. et al. (2012), "A Rule Based Pronunciation Generator and Regional Accent Databank for Portuguese", Proceedings of Interspeech 2012.
+
+`portal_lupo` therefore measures agreement with another G2P system, as an `espeak-derived` or `epitran-derived` row does. Its tier is `lupo-derived`, and `can_gate_promotion()` refuses it. A row on it can neither qualify a language for `production` nor block one, and the regression gate ignores it. A divergence from it can mean that o2i is right. Judge a divergence against a cited source, never against the row. No corrections overlay applies to it, because a competitor's output is not corrected.
+
+One region is scored per registered tag (`_PORTAL_LUPO_REGIONS`). These six regions hold only Portal rows, apart from the three pt.wiktionary rows of `pt-AO`:
+
+| Tag | Region in the dataset |
+|---|---|
+| `pt-PT-x-lisbon` | `pt-PT-x-lisboa` |
+| `pt-BR-x-sp` | `pt-BR-x-saopaulo` |
+| `pt-BR-x-rj` | `pt-BR-x-riodejaneiro` |
+| `pt-AO` | `pt-AO` |
+| `pt-MZ` | `pt-MZ-x-maputo` |
+| `pt-TL` | `pt-TL-x-dili` |
+
+LUPo writes every region from the same mother lexicon, and the regions show it. The `pt-TL-x-dili` region is the Lisbon entries written with other symbols, not Timorese lexicography. [Gold defects](gold_defects.md#east-timorese-portuguese-portal_lupo) gives the measured substitutions and the source that contradicts them. See [languages/pt-TL.md](../languages/pt-TL.md).
 
 ## WikiPron
 
