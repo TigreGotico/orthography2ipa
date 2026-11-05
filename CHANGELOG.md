@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.117.6a1](https://github.com/TigreGotico/orthography2ipa/tree/7.117.6a1) (2026-11-05)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.117.5a1...7.117.6a1)
+
+**Merged pull requests:**
+
+- fix\(pt-PT, pt-BR\): read ⟨ã⟩ as the central nasal vowel \[ɐ̃\] [\#2073](https://github.com/TigreGotico/orthography2ipa/pull/2073) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.117.5a1](https://github.com/TigreGotico/orthography2ipa/tree/7.117.5a1) (2026-11-05)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.117.4a1...7.117.5a1)
@@ -391,10 +399,6 @@
 ## [7.113.10a1](https://github.com/TigreGotico/orthography2ipa/tree/7.113.10a1) (2026-11-03)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.113.9a1...7.113.10a1)
-
-**Merged pull requests:**
-
-- fix\(it-IT-x\): inherit the it-IT readings of c, g, i and u [\#1916](https://github.com/TigreGotico/orthography2ipa/pull/1916) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.113.9a1](https://github.com/TigreGotico/orthography2ipa/tree/7.113.9a1) (2026-11-03)
 
