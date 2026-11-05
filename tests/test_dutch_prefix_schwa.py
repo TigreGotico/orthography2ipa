@@ -18,7 +18,7 @@ from orthography2ipa import G2P
 from orthography2ipa.stress import detect_stress
 from orthography2ipa.types import StressRules
 
-CHILDREN = ["nl-NL-x-polder", "nl-NL-x-groninge", "nl-NL-x-limburg"]
+CHILDREN = ["nl-NL-x-polder", "nl-NL-x-groninge", "nl-NL-x-limburg", "nl-BE-x-antwerp"]
 
 
 @pytest.mark.parametrize("lang, word, ipa", [
