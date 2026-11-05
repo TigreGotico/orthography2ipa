@@ -2129,6 +2129,24 @@
       "notes": "See BR_GEMINATE_P."
     },
     {
+      "id": "BR_TCH_AFFRICATE",
+      "phonemes": [
+        "t"
+      ],
+      "surface": "t",
+      "grapheme": [
+        "t"
+      ],
+      "followed_by_grapheme": [
+        "ch"
+      ],
+      "followed_by_phoneme": [
+        "ʃ",
+        "t͡ʃ"
+      ],
+      "notes": "Blocks the BR_EPENTHESIS rules inside the loan spelling ⟨tch⟩, which writes the affricate [tʃ] before any vowel: tchau [ˈtʃaw], tchê, tcheco. The rule rewrites the [t] to itself, and it stands before BR_EPENTHESIS, as the BR_GEMINATE rules do. pt.wiktionary gives tchau as '{{AFI|/tʃaʊ/|pt}}', one syllable with no vowel between [t] and [ʃ]. Barbosa & Albano (2004: 228) list [t͡ʃ] in the row 'Affricates' of their consonant chart. ⟨tch⟩ writes that one segment, not a two-obstruent sequence. The spec writes it as [t] and [ʃ] in a row, because ⟨t⟩ and ⟨ch⟩ are two graphemes. The phoneme list holds [t͡ʃ] for pt-BR-x-cuiaba, which reads ⟨ch⟩ as [t͡ʃ]."
+    },
+    {
       "id": "BR_EPENTHESIS",
       "phonemes": [
         "p",
@@ -2194,6 +2212,40 @@
         "d͡ʒ"
       ],
       "notes": "Vowel epenthesis after the stressed vowel: capto [ˈkapitu], pacto [ˈpakitu], rapto [ˈʁapitu]. It is BR_EPENTHESIS for a stop or a labiodental fricative after the stressed vowel, before an obstruent, with a nucleus after it. A word-final cluster (chips, blitz) has no nucleus after it and stays as spelled. A cluster at the start of the stressed syllable (pseudo, psique) has no vowel before it, so it is outside this rule and stays as spelled. Curioletti & Sandri (2019, Cadernos do IL 59, PDF p. 6): 'Daí decorre a epêntese, que só se aplica em sequências não-homorgânicas, como em capto [kapitu], e não em geminadas subjacentes (carro) ou de superfície (carta) (MONARETTO, 1997, p. 188)'. Monaretto (1997) was not opened. Collischonn (2004: 66) reports Câmara Jr.: 'Como observa Câmara Jr. (1969, p. 28), na posição postônica a vogal se reduz, da mesma forma que ocorre com a vogal da penúltima sílaba de proparoxítonas, sendo, portanto, idênticas as pautas prosódicas de rapto e rápido.' Câmara Jr. was not opened. Barbosa & Albano (2004: 227) state the epenthesis for 'most two-obstruent sequences' and do not restrict it by position. The rate after the stress is lower than before it. Collischonn (2004: 67, Tabela 1) counts 49 of 206 post-tonic tokens (24 %) against 225 of 325 pretonic tokens (69 %) in the speech of Porto Alegre, Florianópolis and Curitiba, and reads the post-tonic grammar without epenthesis as the preferred one (p. 76: 'na pauta postônica: ALINH-PÉ-DIR >> CODA-COND NÃO HÁ EPÊNTESE Ordenação preferida'). Silveira & Seara (2009, Revista do GEL 6(2): 22, Tabela 6) count 77 of 100 post-tonic tokens for the two women and 49 of 100 for the two men of a Florianópolis reading task. No source measures the rate in São Paulo, so the base follows the statement of Barbosa & Albano and the forms of Curioletti & Sandri and Câmara Jr. pt-BR-x-sul, pt-BR-x-floripa and pt-BR-x-pr switch the rule off by id on Collischonn's count. The stress count folds a syllable whose only vowel a rule inserted into the syllable before it, so the mark stays on the stressed syllable."
+    },
+    {
+      "id": "BR_EPENTHESIS_ONSET",
+      "phonemes": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v"
+      ],
+      "append": "i",
+      "stress": "stressed",
+      "word_initial": true,
+      "followed_by_nucleus": true,
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "t͡ʃ",
+        "d͡ʒ"
+      ],
+      "notes": "Vowel epenthesis in a two-obstruent cluster that opens a stressed word-initial syllable: pseudo [piˈsewdu], psique [piˈsiki]. It is BR_EPENTHESIS for the first consonant of the word when that consonant stands in the stressed syllable. Barbosa & Albano (2004: 227): 'BP exhibits vowel epenthesis, breaking most two-obstruent sequences. For phonotactic reasons common to both BP and EP, one of the consonants is always an apical: psicologia pisɪkoloʒiɐ or pɪsikoloʒiɐ ‘psychology’ in BP vs. psɪkoloʒiɐ in EP. The epenthetic vowel is always [i] or [ɪ]'. The statement does not restrict the process by stress, and its example breaks a word-initial cluster. Nascimento (2015, Epêntese vocálica em encontros consonantais por falantes brasileiros de inglês como língua estrangeira, master's thesis, UNESP Araraquara, pp. 62-63) reports the analysis of Collischonn (1996: 151-155): a word-initial consonant that the syllable cannot hold takes the vowel to its right, with the forms 'pneu [pi'new], Ptolomeu [pitolo'mew]'. The vowel of pneu stands before a stressed nucleus. Collischonn (1996) was not opened. Romano & Seabra (2017, Signum 20(1), pp. 284-285) find the vowel in every ALiB response to aftosa, pneu and advogado from 220 speakers of Paraná and São Paulo: 'houve a ocorrência da vogal epentética em todos os inquéritos, seja com a realização da vogal alta anterior [i] ou da vogal média anterior [e], tratando-se, portanto, de uma regra categórica no corpus analisado'. pneu has a nasal after the stop, so it is outside this rule, which keeps the obstruent scope of BR_EPENTHESIS. Collischonn (2004: 65) codes the position of the lost consonant as a factor ('inicial (psicólogo) ou medial (opção)') and gives no rate for the word-initial position, so the regional specs inherit the rule. A cluster inside the word is split by the syllabifier and reads BR_EPENTHESIS or BR_EPENTHESIS_POSTTONIC. The stress count keeps the mark after the inserted vowel, before the stressed nucleus."
     },
     {
       "id": "BR_RAISE_FINAL_ES",
@@ -2496,6 +2548,26 @@
       "url": "https://revistadogel.emnuvens.com.br/rg/article/view/94",
       "pages": "22",
       "notes": "Epenthesis rates by position in a Florianópolis reading task (BR_EPENTHESIS_POSTTONIC)."
+    },
+    {
+      "id": "romano_seabra2017",
+      "author": "Romano, V.P. & Seabra, R.D.",
+      "year": 2017,
+      "title": "“P[e]neu”, “Ad[e]vogado” e “Af[e]tosa”: o abaixamento das vogais suarabácticas nos dados do Projeto Atlas Linguístico do Brasil",
+      "publisher": "Signum: Estudos da Linguagem 20(1): 276-306",
+      "url": "https://doi.org/10.5433/2237-4876.2017v20n1p276",
+      "pages": "284-286",
+      "notes": "The epenthetic vowel in ALiB data from Paraná and São Paulo (BR_EPENTHESIS_ONSET)."
+    },
+    {
+      "id": "nascimento2015",
+      "author": "Nascimento, G.C.A.",
+      "year": 2015,
+      "title": "Epêntese vocálica em encontros consonantais por falantes brasileiros de inglês como língua estrangeira",
+      "publisher": "Master's thesis, UNESP Araraquara",
+      "url": "https://agendapos.fclar.unesp.br/agenda-pos/linguistica_lingua_portuguesa/3463.pdf",
+      "pages": "62-63",
+      "notes": "Reports the forms of Collischonn (1996: 151), which was not opened (BR_EPENTHESIS_ONSET)."
     }
   ],
   "wikipedia": [

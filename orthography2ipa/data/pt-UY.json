@@ -344,6 +344,12 @@
       "notes": "Switched off with BR_EPENTHESIS, for the same reason."
     },
     {
+      "id": "BR_EPENTHESIS_ONSET",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Switched off with BR_EPENTHESIS, for the same reason."
+    },
+    {
       "id": "BR_REDUCE_FINAL_AS",
       "phonemes": [],
       "surface": "",
