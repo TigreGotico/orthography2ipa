@@ -1,12 +1,14 @@
 """⟨porque⟩ is [ˈpuɾkɨ] in European Portuguese.
 
-The Portal da Língua Portuguesa Dicionário fonético
-(index.php?action=pronunciation) has two entries for the word:
-por·que, advérbio, 'puɾkɨ, and por·que, conjunção, 'puɾkɨ. It writes porquê
-puɾ'ke. The rules alone give the default stressed ⟨o⟩ [ɔ], so PT_LEX_REDUCED_O
-names the word. It changes only the vowel, so each spec keeps its own
-consonants. The [u] is the vowel an unstressed ⟨o⟩ reduces to, so a spec
-that keeps an unstressed ⟨o⟩ as [o] disables the rule.
+The CLUP dialect transcriptions, which are speech data, write ˈpuɾkɨ in all
+13 tokens. pt.wiktionary gives Portugal /ˈpuɾ.kɨ/. The WikiPron pt-PT gold
+has p u ɾ k ɨ, the en.wiktionary {{pt-IPA}} output from the respelling
+pt=purque. The Portal da Língua Portuguesa Dicionário fonético agrees
+('puɾkɨ), but it has no documented provenance. The rules alone give the
+default stressed ⟨o⟩ [ɔ], so PT_LEX_REDUCED_O names the word. It changes
+only the vowel, so each spec keeps its own consonants. The [u] is the vowel
+an unstressed ⟨o⟩ reduces to, so a spec that keeps an unstressed ⟨o⟩ as [o]
+disables the rule.
 """
 from __future__ import annotations
 
@@ -54,7 +56,8 @@ def test_only_the_vowel_changes(lang):
 
 @pytest.mark.parametrize("lang", PT_PT)
 def test_porque_stays_a_different_word(lang):
-    # Dicionário fonético: porquê puɾ'ke, stressed on the last syllable.
+    # porquê is stressed on the last syllable: pt.wiktionary /puɾ.ˈke/,
+    # WikiPron pt-PT p u ɾ k e.
     ipa = G2P(lang).transcribe_word("porquê")
     assert ipa.startswith("puɾˈk"), ipa
 
