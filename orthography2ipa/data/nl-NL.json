@@ -393,7 +393,7 @@
       "title": "ABN-uitspraakgids",
       "publisher": "Heideland-Orbis",
       "url": "https://www.dbnl.org/tekst/paar001abnu01_01/",
-      "pages": "VIII, X, XVIII",
+      "pages": "VIII, X, XV, XVIII",
       "notes": "Second, fully revised edition, Antwerpen; first edition 1978"
     },
     {
@@ -435,6 +435,16 @@
       "url": null,
       "pages": "138-151",
       "notes": "Nederlandse Taalkunde 12(2)"
+    },
+    {
+      "id": "trommelen_zonneveld1989",
+      "author": "Trommelen, M. & Zonneveld, W.",
+      "year": 1989,
+      "title": "Klemtoon en metrische fonologie",
+      "publisher": "Dick Coutinho, Muiderberg",
+      "url": "https://www.dbnl.org/tekst/trom001klem01_01/",
+      "pages": "131-138",
+      "notes": "Chapter 8, De rol van de schwa in Nederlandse woordklemtoon"
     }
   ],
   "wikipedia": [
@@ -603,7 +613,11 @@
     "tjaptjoi": "ˈtʃɑptʃɔi",
     "tjauwmin": "ˈtʃɑumɪn",
     "tjetten": "ˈtʃɛtən",
-    "tjokvol": "ˈtʃɔkfɔl"
+    "tjokvol": "ˈtʃɔkfɔl",
+    "bevel": "bəˈvɛl",
+    "gestel": "χəˈstɛl",
+    "gezel": "χəˈzɛl",
+    "gezwel": "χəˈzʋɛl"
   },
   "timespan": {
     "start_year": 1500,
@@ -632,7 +646,13 @@
       "ver",
       "ont"
     ],
-    "notes": "Germanic initial stress default (Booij 1995, ch. 5); the -e(n) verbal/plural ending is unstressed, which is what the open/closed-syllable vowel-length rule and the e -> schwa reduction below need. UNSTRESSED PREFIXES (unstressed_prefixes): Schultink (1976, Spektator 6, p. 475): \"Van een tweede categorie maken prefixen deel uit die altijd accentloos zijn en de accentuering van de afleiding niet beïnvloeden: be-, er-, ge-, ont- en ver-, bijv. in be'zien, er'kennen, ge'sar, ont'kennen en ver'vuilen\". So a default stress that falls on ⟨be ge ver ont⟩ at the start of the word moves to the first syllable after it, and the unstressed ⟨e⟩ of the prefix reads [ə]: betalen [bəˈtaːlən], geloven [χəˈlouvən], verkopen [vəɹˈkoupən]; ⟨ont⟩ keeps [ɔ] (ontkennen [ɔntˈkɛnən]). The stress does not move onto a final open syllable (geve, beste). er- is left out, although Schultink lists it: the spelling is ambiguous, because ⟨er⟩ also starts unprefixed words (the ere- compounds such as ereburger, and eren), and the prefix keeps a full vowel, so the reduction would give [ə] where the gold writes [ɛr] (erkennen). KNOWN GAP: the prefix test reads the spelling only, so roots that start with the same letters take the stress on their second syllable (beter, beker, beten, gelen, geven, veren, verder), and so does the nominal ver- that takes the main stress (verkoop). No opened source lists these roots, so the spec states no list."
+    "schwa_rimes": [
+      "en",
+      "er",
+      "el",
+      "em"
+    ],
+    "notes": "Germanic initial stress default (Booij 1995, ch. 5); the -e(n) verbal/plural ending is unstressed, which is what the open/closed-syllable vowel-length rule and the e -> schwa reduction below need. UNSTRESSED PREFIXES (unstressed_prefixes): Schultink (1976, Spektator 6, p. 475): \"Van een tweede categorie maken prefixen deel uit die altijd accentloos zijn en de accentuering van de afleiding niet beïnvloeden: be-, er-, ge-, ont- en ver-, bijv. in be'zien, er'kennen, ge'sar, ont'kennen en ver'vuilen\". So a default stress that falls on ⟨be ge ver ont⟩ at the start of the word moves to the first syllable after it, and the unstressed ⟨e⟩ of the prefix reads [ə]: betalen [bəˈtaːlən], geloven [χəˈlouvən], verkopen [vəɹˈkoupən]; ⟨ont⟩ keeps [ɔ] (ontkennen [ɔntˈkɛnən]). The stress does not move onto a final open syllable (geve, beste). er- is left out, although Schultink lists it: the spelling is ambiguous, because ⟨er⟩ also starts unprefixed words (the ere- compounds such as ereburger, and eren), and the prefix keeps a full vowel, so the reduction would give [ə] where the gold writes [ɛr] (erkennen). SCHWA RIMES (schwa_rimes): a schwa takes no stress. Trommelen & Zonneveld (1989, Klemtoon en metrische fonologie, p. 132): \"de schwa nooit, in welke positie dan ook, klemtoon kan hebben in het Nederlands\". Their table of final schwa syllables (p. 138) writes the schwa for the spellings ⟨-er -el -em -en -e⟩: keln-∂r, morm-∂l, bliks-∂m, vark-∂n, hetz-∂. Paardekooper (1987, p. XV) names the \"woorden op een ə (gespeld als en)\". So when the rest of the word after ⟨be ge ver ont⟩ is one final syllable with the rime ⟨en er el em⟩, that syllable cannot take the stress, and the word has no prefix: geven [ˈχeivən], beter [ˈbeitəɹ], bezem [ˈbeizəm], verder [ˈvɛɹdəɹ]. The final open syllable test above covers ⟨-e⟩. KNOWN GAP: the test reads the spelling only. A prefixed word whose stem is one syllable with a full vowel spelt like a schwa rime takes the stress on the prefix. ipadict nl has seven such headwords, all with ⟨el⟩ or ⟨er⟩. Paardekooper writes four of them with the stress after the prefix, and they are word exceptions: bevel bə'vɛl (p. 23), gestel gə'stɛl (p. 73), gezel gə'zɛl (p. 74), gezwel gə'zwɛl (p. 75). bestel, gebel and gebler are not in the guide and stay a gap. A schwa rime with a further consonant (gevels, bezems) is not in the list. The nominal ver- that takes the main stress (verkoop) is not modelled."
   },
   "allophone_rules": [
     {

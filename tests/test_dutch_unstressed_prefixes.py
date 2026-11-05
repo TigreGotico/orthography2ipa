@@ -76,16 +76,9 @@ def test_inheriting_specs(lang, word, ipa):
 
 
 
-@pytest.mark.xfail(strict=True, reason="known gap: the root reads as the unstressed prefix")
+@pytest.mark.xfail(strict=True, reason="known gap: the nominal ver- takes the main stress")
 @pytest.mark.parametrize("word, ipa", [
-    ("beter", "ˈbeitəɹ"),
-    ("beker", "ˈbeikəɹ"),
-    ("gelen", "ˈχeilən"),
-    ("geven", "ˈχeivən"),
-    ("beten", "ˈbeitən"),
-    ("veren", "ˈveᵊrən"),
-    ("verder", "ˈvɛɹdəɹ"),
     ("verkoop", "ˈvɛɹkoup"),
 ])
-def test_known_gap_roots_with_the_prefix_spelling(nl, word, ipa):
+def test_known_gap_nominal_ver(nl, word, ipa):
     assert nl.transcribe(word) == ipa

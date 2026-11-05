@@ -493,7 +493,7 @@ class StressRules:
     6. Where that default falls on a syllable lying wholly inside one of
        ``unstressed_prefixes`` at the start of the word, the stress moves to
        the first syllable after the prefix, unless that is a final open
-       syllable.
+       syllable or a final syllable whose rime is one of ``schwa_rimes``.
 
     Parameters
     ----------
@@ -535,6 +535,15 @@ class StressRules:
         still win. The match is on the lowercased spelling only, so a word
         that is not prefixed but starts with the same letters moves too.
         Empty (the default) leaves every spec unchanged.
+    schwa_rimes : Tuple[str, ...]
+        Spelt rimes (the letters from the vowel on) of a word-final syllable
+        whose vowel is a schwa, such as Dutch ⟨en er el em⟩. A schwa takes
+        no stress, so a word whose rest after an
+        :attr:`unstressed_prefixes` match is one such syllable has no
+        prefix and keeps its default: ⟨geven⟩ is ge+ven, not a prefixed
+        stem. The match is on the spelling only, so a prefixed word whose
+        stem has a full vowel spelt like a schwa rime (⟨gezel⟩) keeps the
+        default too. Empty (the default) leaves the prefix test unchanged.
     marked_vowels : Tuple[str, ...]
         Vowel characters whose written accent marks the stressed
         syllable (``á é í ó ú â ê ô ã õ``).
@@ -805,6 +814,7 @@ class StressRules:
     penult_stress_endings: Tuple[str, ...] = ()
     antepenult_stress_endings: Tuple[str, ...] = ()
     unstressed_prefixes: Tuple[str, ...] = ()
+    schwa_rimes: Tuple[str, ...] = ()
     marked_vowels: Tuple[str, ...] = ()
     stress_mark: str = "ˈ"
     diphthongs: Tuple[str, ...] = ()

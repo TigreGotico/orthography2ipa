@@ -1221,7 +1221,8 @@ def detect_stress(
     ``antepenult_stress_endings`` → ``rules.default_position``. A default
     position that falls on a syllable lying wholly inside one of
     ``rules.unstressed_prefixes`` at the start of the word moves to the first
-    syllable after the prefix, unless that is a final open syllable.
+    syllable after the prefix, unless that is a final open syllable or a
+    final syllable whose rime is one of ``rules.schwa_rimes``.
     Monosyllables are inherently stressed.
 
     Parameters
@@ -1288,7 +1289,9 @@ def detect_stress(
     # 6. a default that lands inside an unstressed prefix moves to the first
     #    syllable after it (Dutch-type ge-, be-, ver-), but never onto a final
     #    open syllable: there the "prefix" is the start of an unprefixed
-    #    disyllable with a final schwa (⟨geve⟩, ⟨beste⟩).
+    #    disyllable with a final schwa (⟨geve⟩, ⟨beste⟩). Nor does it move
+    #    onto a final syllable whose rime is one of ``schwa_rimes``: a schwa
+    #    takes no stress, so ⟨geven⟩ and ⟨beter⟩ have no prefix.
     for prefix in sorted(rules.unstressed_prefixes, key=len, reverse=True):
         if lowered.startswith(prefix):
             inside = end = 0
@@ -1300,10 +1303,20 @@ def detect_stress(
             final_letters = [ch for ch in sylls[-1] if ch.isalpha()]
             final_open = bool(final_letters) and is_orthographic_vowel(
                 final_letters[-1])
-            if index < inside < n and not (inside == n - 1 and final_open):
+            final_schwa = _rime(sylls[-1].lower()) in rules.schwa_rimes
+            if (index < inside < n
+                    and not (inside == n - 1 and (final_open or final_schwa))):
                 return inside
             break
     return index
+
+
+def _rime(syllable: str) -> str:
+    """Return the letters of *syllable* from its first vowel letter on."""
+    for i, ch in enumerate(syllable):
+        if is_orthographic_vowel(ch):
+            return syllable[i:]
+    return ""
 
 
 # ═══════════════════════════════════════════════════════════════════════════
