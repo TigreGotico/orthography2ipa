@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.118.8a1](https://github.com/TigreGotico/orthography2ipa/tree/7.118.8a1) (2026-11-05)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.118.7a1...7.118.8a1)
+
+**Merged pull requests:**
+
+- fix: bring the pt-BR conventions sheet in line with the spec [\#2135](https://github.com/TigreGotico/orthography2ipa/pull/2135) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.118.7a1](https://github.com/TigreGotico/orthography2ipa/tree/7.118.7a1) (2026-11-05)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.118.6a1...7.118.7a1)
