@@ -245,7 +245,7 @@ class TestBackfilledRecordsRoundTrip:
 
     @pytest.mark.parametrize("code,dataset,conclusion", [
         ("yol", "wikipron", AuditConclusion.MISLABELED_GOLD),
-        ("pt-TL", "portuguese_unified", AuditConclusion.MISLABELED_GOLD),
+        ("pt-TL", "portal_lupo", AuditConclusion.MISLABELED_GOLD),
         ("arq-DZ", "primary_sources", AuditConclusion.SAMPLE_TOO_SMALL),
         ("se", "wikipron", AuditConclusion.CHANGE_REFUSED_UNCITED),
         ("ja", "ipadict", AuditConclusion.LOGOGRAPHIC),

@@ -535,26 +535,29 @@ class TestDutch:
 
     # --- Consonants ---
 
-    def test_g_is_velar_fricative(self):
-        """<g> → /ɣ/ (voiced) and /x/ (voiceless) in Dutch; the famous Dutch G."""
-        g = _grapheme(self._spec, "g")
-        _assert_contains(g, "ɣ", "x", label="nl-NL g")
+    def test_g_is_uvular_fricative(self):
+        """<g> is the phoneme /ɣ/, realised as [χ] in every position: the one
+        dorsal fricative of Netherlandic Dutch (Gussenhoven 1992, JIPA 22,
+        p. 45: "χ gat 'hole'")."""
+        _assert_first(_grapheme(self._spec, "g"), "ɣ", label="nl-NL g")
+        for position in ("default", "word_final"):
+            assert list(_positional(self._spec, "g", position)) == ["χ"]
 
-    def test_ch_is_voiceless_velar_fricative(self):
-        """<ch> → /x/ (e.g., *acht*, *lach*)."""
-        _assert_first(_grapheme(self._spec, "ch"), "x", label="nl-NL ch")
+    def test_ch_is_voiceless_uvular_fricative(self):
+        """<ch> → /χ/ (e.g., *acht*, *lach*; Gussenhoven 1992, p. 47: zich [zɪχ])."""
+        _assert_first(_grapheme(self._spec, "ch"), "χ", label="nl-NL ch")
 
     def test_sch_onset(self):
-        """⟨sch⟩ → /sx/ (e.g. *school*, *schip*) — note reversed from German.
+        """⟨sch⟩ → /sχ/ (e.g. *school*, *schip*) — note reversed from German.
 
         It needs no grapheme key of its own: ⟨s⟩ + ⟨ch⟩ already compose to
-        /sx/, unlike German ⟨sch⟩ → /ʃ/, which does earn one. Assert the
+        /sχ/, unlike German ⟨sch⟩ → /ʃ/, which does earn one. Assert the
         pronunciation, not the spelling table.
         """
         from orthography2ipa.g2p import transcribe
 
-        assert transcribe("school", "nl-NL").replace("ˈ", "") == "sxoːl"
-        assert transcribe("schip", "nl-NL").replace("ˈ", "") == "sxɪp"
+        assert transcribe("school", "nl-NL").replace("ˈ", "") == "sχoːl"
+        assert transcribe("schip", "nl-NL").replace("ˈ", "") == "sχɪp"
         assert "sch" not in self._spec.graphemes
 
     def test_w_is_labiodental_approximant(self):
@@ -577,11 +580,12 @@ class TestDutch:
 
     # --- Allophones ---
 
-    def test_gamma_allophone(self):
-        """The /ɣ/ phoneme alternates with /x/ (voiceless) in coda and loanwords."""
-        a = _allophone(self._spec, "ɣ")
-        assert a is not None, "nl-NL: /ɣ/ should be in allophone table"
-        _assert_contains(a, "ɣ", "x", label="nl-NL allophone ɣ")
+    def test_gamma_is_realised_uvular(self):
+        """Netherlandic Dutch has no velar fricative (Verhoeven 2005, JIPA
+        35(2), p. 244: the velar pair is "absent in the Netherlands"), so
+        the phoneme /ɣ/ surfaces only as [χ]."""
+        assert list(_allophone(self._spec, "ɣ")) == ["χ"]
+        assert _allophone(self._spec, "x") is None
 
     def test_r_allophone_includes_uvular(self):
         """The /r/ phoneme can surface as uvular /ʁ/ — both alveolar and uvular r used in NL."""
@@ -608,8 +612,8 @@ class TestDutchBeatEspeakWave:
         pinned, the devoicing positional split (below) still applies."""
         assert self._t("Aalstervelden") == "ˈaːlstərvɛldən"
         assert self._t("Almkerk") == "ˈɑlmkɛrk"
-        assert self._t("Aalbrecht") == "ˈaːlbrɛxt"
-        assert self._t("berg") == "ˈbɛrx"
+        assert self._t("Aalbrecht") == "ˈaːlbrɛχt"
+        assert self._t("berg") == "ˈbɛrχ"
 
     def test_berg_veld_positional_scoping_not_maximal_munch(self):
         """Regression (adversarial review round 1): ⟨berg⟩/⟨veld⟩ must be
@@ -617,29 +621,40 @@ class TestDutchBeatEspeakWave:
         grapheme would maximal-munch match inside ordinary inflected forms
         like *bergen* (mountains) and *velden* (fields) and wrongly force
         the word-final devoiced [x]/[t], when these forms are not
-        word-final and gold keeps the intervocalic-onset voiced [ɣ]/[d]."""
-        assert self._t("bergen") == "ˈbɛrɣən"
-        assert self._t("Bergen") == "ˈbɛrɣən"
+        word-final and gold keeps the intervocalic-onset voiced [d].
+        nl-NL ⟨berg⟩ has the uvular [χ] in every position, so the split for
+        ⟨berg⟩ lives in nl-BE, where ⟨g⟩ is the voiced velar [ɣ]."""
+        from orthography2ipa import G2P
+        be = G2P("nl-BE")
+        assert be.transcribe("bergen") == "ˈbɛrɣən"
+        assert be.transcribe("Bergen") == "ˈbɛrɣən"
+        assert be.transcribe("berg") == "ˈbɛrx"
+        assert self._t("bergen") == "ˈbɛrχən"
         assert self._t("velden") == "ˈvɛldən"
         assert self._t("veld") == "ˈvɛlt"
 
     def test_coda_devoicing_extends_to_pre_obstruent(self):
         """⟨g⟩ devoices to [x] before a following voiceless obstruent
         within the word, not only word-finally (Booij 1995, ch. 2 sec.
-        2.5: regressive devoicing assimilation)."""
-        assert self._t("zegt") == "ˈzɛxt"
+        2.5: regressive devoicing assimilation). The rule acts on the
+        voiced velar of nl-BE; the uvular of nl-NL is voiceless anyway."""
+        from orthography2ipa import G2P
+        be = G2P("nl-BE")
+        assert be.transcribe("zegt") == "ˈzɛxt"
         # WikiPron gold has no *liegt*; [i] (not [iː]) is the tense-but-SHORT
         # high vowel of Booij 1995, ch. 2 — long only before /r/ (bier).
-        assert self._t("liegt") == "ˈlixt"
-        assert self._t("hoogte") == "ˈɦoːxtə"
+        assert be.transcribe("liegt") == "ˈlixt"
+        assert be.transcribe("hoogte") == "ˈɦoːxtə"
+        assert self._t("zegt") == "ˈzɛχt"
 
     def test_devoicing_does_not_fire_before_sonorant(self):
-        """⟨g⟩ before a sonorant (not an obstruent) stays voiced [ɣ] --
-        the devoicing trigger is specifically a following voiceless
-        obstruent, not any consonant."""
-        assert self._t("dagje") == "ˈdɑɣjə"
-        assert self._t("zeggen") == "ˈzɛɣən"
-        assert self._t("vogel") == "ˈvoːɣəl"
+        """⟨g⟩ before a sonorant (not an obstruent) stays voiced [ɣ] in
+        nl-BE -- the devoicing trigger is specifically a following
+        voiceless obstruent, not any consonant."""
+        from orthography2ipa import G2P
+        be = G2P("nl-BE")
+        assert be.transcribe("dagje") == "ˈdɑɣjə"
+        assert be.transcribe("vogel") == "ˈvoːɣəl"
 
     def test_isch_suffix_is_tense_i_not_lax(self):
         """The closed adjectival/toponymic suffix ⟨isch⟩ is [-is]
@@ -675,7 +690,7 @@ class TestDutchBeatEspeakWave:
         assert self._t("maken") == "ˈmaːkən"
         assert self._t("bakken") == "ˈbɑkən"
         assert self._t("verhaal") == "ˈvɛrɦaːl"
-        assert self._t("gedaan") == "ˈɣeːdaːn"
+        assert self._t("gedaan") == "ˈχeːdaːn"
 
     def test_heteromorphemic_tj_stays_two_segments(self):
         """⟨tj⟩ is not a palatalized/affricate single segment: the
@@ -698,7 +713,7 @@ class TestDutchBeatEspeakWave:
         wi-tje), the stem vowel must stay short: witje [ʋɪtjə], not
         [ʋiːtʲə]."""
         assert self._t("witje") == "ˈʋɪtjə"
-        assert self._t("achtjarig") == "ˈɑxtjaːrɪx"
+        assert self._t("achtjarig") == "ˈɑχtjaːrɪχ"
 
     def test_tautomorphemic_tj_loanwords_pinned_as_exceptions(self):
         """A small closed set of Malay/Indonesian loanwords and
@@ -708,10 +723,10 @@ class TestDutchBeatEspeakWave:
         per AGENTS.md 2 (closed irregular set), not the rule layer,
         since generalizing [tʃ] would break the diminutive/placename
         majority. WikiPron gold: tjap [tʃɑp], tjokvol [tʃɔkfɔl],
-        Tjerkgaast [tʃɛrkɣaːst]."""
+        Tjerkgaast [tʃɛrkɣaːst], which nl-NL writes with its uvular [χ]."""
         assert self._t("tjap") == "ˈtʃɑp"
         assert self._t("tjokvol") == "ˈtʃɔkfɔl"
-        assert self._t("Tjerkgaast") == "ˈtʃɛrkɣaːst"
+        assert self._t("Tjerkgaast") == "ˈtʃɛrkχaːst"
 
     def test_ambiguous_tjalk_and_ketjap_left_on_general_rule(self):
         """Guard: 'tjalk' is genuinely ambiguous at the same lowercased
