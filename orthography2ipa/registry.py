@@ -196,9 +196,11 @@ _ALIASES: Dict[str, str] = {
     # code reads the base.
     "pt-BR-x-brasilia": "pt-BR",
     "pt-PT-x-lisboa": "pt-PT-x-lisbon",
-    # The cnr spec reads Latin only; sr reads the same Cyrillic alphabet.
-    "cnr-Cyrl": "sr", "cnr-Cyrl-BA": "sr", "cnr-Cyrl-HR": "sr",
-    "cnr-Cyrl-ME": "sr", "cnr-Cyrl-RS": "sr", "cnr-Cyrl-XK": "sr",
+    # The cnr spec reads both Montenegrin alphabets. Standardization folds
+    # cnr into sr, so only an alias names it without a nearest match, and
+    # these tags keep resolving under ``strict=True``.
+    "cnr-Cyrl": "cnr", "cnr-Cyrl-BA": "cnr", "cnr-Cyrl-HR": "cnr",
+    "cnr-Cyrl-ME": "cnr", "cnr-Cyrl-RS": "cnr", "cnr-Cyrl-XK": "cnr",
     # Galician has one standard spec, ``gl-ES``, and its varieties carry the
     # region. These are the retired codes of the same varieties.
     "gl-x-central": "gl-ES-x-central",
