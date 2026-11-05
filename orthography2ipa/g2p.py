@@ -489,10 +489,15 @@ class G2P:
         self.apply_allophony = apply_allophony
         user_rescorers: Tuple[LatticeRescorer, ...] = normalize_rescorers(
             rescorer)
+        positional_vowel_graphemes = frozenset(
+            grapheme
+            for grapheme, positions in (self.spec.positional_graphemes or {}).items()
+            if any(_vowel_offsets(r) for rs in positions.values() for r in rs or ()))
         allophone_rescorer = (
             compile_allophone_rescorer(
                 self.spec.allophone_rules,
-                self.spec.doubled_letters_geminate)
+                self.spec.doubled_letters_geminate,
+                positional_vowel_graphemes)
             if apply_allophony else None
         )
         self._allophone_rescorer = allophone_rescorer
