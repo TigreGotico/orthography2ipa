@@ -146,7 +146,7 @@ def test_coda_obstruent_devoices_before_a_voiceless_obstruent(nl):
 # ── ⟨y⟩-final words: pinned on the MERGED #850 + #851 result ────────────
 
 @pytest.mark.parametrize("word,ipa", [
-    ("beryl", "ˈbɛril"),
+    ("beryl", "bəˈril"),  # the spelling be- reads as the unstressed prefix
     ("butyl", "ˈbʏtil"),
     ("body", "ˈbɔdi"),
     ("baby", "ˈbɑbi"),

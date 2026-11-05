@@ -626,7 +626,13 @@
     "penult_stress_endings": [],
     "marked_vowels": [],
     "stress_mark": "ˈ",
-    "notes": "Germanic initial stress default (Booij 1995, ch. 5); the -e(n) verbal/plural ending is unstressed, which is what the open/closed-syllable vowel-length rule and the e -> schwa reduction below need."
+    "unstressed_prefixes": [
+      "be",
+      "ge",
+      "ver",
+      "ont"
+    ],
+    "notes": "Germanic initial stress default (Booij 1995, ch. 5); the -e(n) verbal/plural ending is unstressed, which is what the open/closed-syllable vowel-length rule and the e -> schwa reduction below need. UNSTRESSED PREFIXES (unstressed_prefixes): Schultink (1976, Spektator 6, p. 475): \"Van een tweede categorie maken prefixen deel uit die altijd accentloos zijn en de accentuering van de afleiding niet beïnvloeden: be-, er-, ge-, ont- en ver-, bijv. in be'zien, er'kennen, ge'sar, ont'kennen en ver'vuilen\". So a default stress that falls on ⟨be ge ver ont⟩ at the start of the word moves to the first syllable after it, and the unstressed ⟨e⟩ of the prefix reads [ə]: betalen [bəˈtaːlən], geloven [χəˈlouvən], verkopen [vəɹˈkoupən]; ⟨ont⟩ keeps [ɔ] (ontkennen [ɔntˈkɛnən]). The stress does not move onto a final open syllable (geve, beste). er- is left out, although Schultink lists it: the spelling is ambiguous, because ⟨er⟩ also starts unprefixed words (the ere- compounds such as ereburger, and eren), and the prefix keeps a full vowel, so the reduction would give [ə] where the gold writes [ɛr] (erkennen). KNOWN GAP: the prefix test reads the spelling only, so roots that start with the same letters take the stress on their second syllable (beter, beker, beten, gelen, geven, veren, verder), and so does the nominal ver- that takes the main stress (verkoop). No opened source lists these roots, so the spec states no list."
   },
   "allophone_rules": [
     {

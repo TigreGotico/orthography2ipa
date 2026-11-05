@@ -689,8 +689,9 @@ class TestDutchBeatEspeakWave:
         assert self._t("water") == "ˈʋaːtəɹ"
         assert self._t("maken") == "ˈmaːkən"
         assert self._t("bakken") == "ˈbɑkən"
-        assert self._t("verhaal") == "ˈvɛɹɦaːl"
-        assert self._t("gedaan") == "ˈχeidaːn"
+        # be- ge- ver- ont- take no stress (Schultink 1976, Spektator 6, p. 475).
+        assert self._t("verhaal") == "vəɹˈɦaːl"
+        assert self._t("gedaan") == "χəˈdaːn"
 
     def test_heteromorphemic_tj_stays_two_segments(self):
         """⟨tj⟩ is not a palatalized/affricate single segment: the
