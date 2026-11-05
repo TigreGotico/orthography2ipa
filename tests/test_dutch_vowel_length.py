@@ -44,9 +44,9 @@ def nl():
     ("wonen", "ˈʋounən"),
     ("lip", "ˈlɪp"),           # closed: i stays ɪ
     ("ik", "ˈɪk"),
-    ("liter", "ˈlitər"),       # open: i → tense-but-short i, NOT iː
+    ("liter", "ˈlitəɹ"),       # open: i → tense-but-short i, NOT iː
     ("tafel", "ˈtaːfəl"),
-    ("water", "ˈʋaːtər"),
+    ("water", "ˈʋaːtəɹ"),
 ])
 def test_open_syllable_alternation(nl, word, ipa):
     assert nl.transcribe(word) == ipa
@@ -105,8 +105,8 @@ def test_high_tense_vowels_are_short(nl, word, ipa):
 
 
 @pytest.mark.parametrize("word,ipa", [
-    ("banier", "ˈbaːniːr"),
-    ("bankier", "ˈbɑŋkiːr"),
+    ("banier", "ˈbaːniːɹ"),
+    ("bankier", "ˈbɑŋkiːɹ"),
     ("aanvuren", "ˈaːnvyːrən"),
     ("afsturen", "ˈɑfstyːrən"),
 ])
@@ -118,9 +118,9 @@ def test_high_tense_i_and_y_lengthen_before_r(nl, word, ipa):
 
 
 @pytest.mark.parametrize("word,ipa", [
-    ("boer", "ˈbur"),
-    ("aanvoer", "ˈaːnvur"),
-    ("armsnoer", "ˈɑrmsnur"),
+    ("boer", "ˈbuɹ"),
+    ("aanvoer", "ˈaːnvuɹ"),
+    ("armsnoer", "ˈɑɹmsnuɹ"),
 ])
 def test_u_does_not_lengthen_before_r(nl, word, ipa):
     """Booij 1995 states pre-/r/ lengthening for the whole /i y u/ series,
