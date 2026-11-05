@@ -43,7 +43,7 @@ from typing import List, Optional, Sequence, Tuple
 from orthography2ipa.phonetok import Candidate, GraphemeContext, SegmentSlot, _is_a_mark
 from orthography2ipa.rescorer import LatticeRescorer, RescoreContext
 from orthography2ipa.types import AllophoneRule
-from orthography2ipa.vowels import is_ipa_vowel, SYLLABIC_MARKS
+from orthography2ipa.vowels import IPA_VOWEL_SYMBOLS, is_ipa_vowel, SYLLABIC_MARKS
 
 __all__ = [
     "AllophoneRescorer",
@@ -262,8 +262,7 @@ def _has_other_nucleus(ctx: RescoreContext) -> bool:
         ipa = slot.top.ipa
         if not ipa:
             continue
-        if any(is_ipa_vowel(seg[0]) or any(m in seg for m in SYLLABIC_MARKS)
-               for seg in segment_ipa(ipa)):
+        if any(_is_nucleus_segment(seg) for seg in segment_ipa(ipa)):
             return True
     return False
 
@@ -298,9 +297,14 @@ def _is_nucleus_segment(seg: str) -> bool:
     first character is not the vowel letter ``i`` at all. Testing the
     composed first character silently answers "not a vowel" for every
     accented nucleus.
+
+    The base letter must be a vowel symbol, not a combining mark. pt-BR
+    writes the coda nasal of ⟨em⟩ as a bare tilde on the ⟨m⟩ slot, and
+    :data:`~orthography2ipa.vowels._IPA_VOWELS` holds the tilde so that a
+    nucleus run keeps its marks; a slot of marks alone is no syllable.
     """
     base = unicodedata.normalize("NFD", seg)
-    return bool(base) and (is_ipa_vowel(base[0])
+    return bool(base) and (base[0] in IPA_VOWEL_SYMBOLS
                            or any(m in seg for m in SYLLABIC_MARKS))
 
 
