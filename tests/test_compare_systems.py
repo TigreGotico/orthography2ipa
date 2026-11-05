@@ -3573,6 +3573,39 @@ class TestTugaphoneLexiconKeys:
                           lexicon_region=lambda lect: None))
         assert cs.tugaphone_lexicon_keys("pt-XX", {"tugaphone": "pt-XX"}) is None
 
+    def _packaged(self, monkeypatch, tmp_path, lect):
+        # A tugaphone with packaged lexicons registers no tugalex map, so a
+        # tugalex headword in the key set would be a wrong count.
+        class FakeLexicon:
+            def get_ipa_map(self, region):
+                return {"casa": "ˈka·zɐ"}
+
+        monkeypatch.setitem(sys.modules, "tugalex",
+                            _fake_module("tugalex", TugaLexicon=FakeLexicon))
+        monkeypatch.setitem(
+            sys.modules, "tugaphone.registry",
+            _fake_module("tugaphone.registry",
+                          resolve_lect=lambda lang: lect,
+                          PACKAGED_LEXICON_LECTS=frozenset({"pt-PT"}),
+                          lexicon_region=lambda lect: "lbx"))
+        tsv = tmp_path / "pt-PT.tsv"
+        tsv.write_text("Muitíssimo\tmũj̃ˈtisimu\nantidumping\tɐ̃tiˈdɐ̃pĩɡ\n", encoding="utf-8")
+        import orthography2ipa.lexicon as o2i_lexicon
+        monkeypatch.setattr(o2i_lexicon, "packaged_lexicon_sources", lambda: {"pt-PT": tsv})
+
+    def test_reads_the_packaged_lexicon_of_a_packaged_lect(self, monkeypatch, tmp_path):
+        self._packaged(monkeypatch, tmp_path, "pt-PT")
+
+        keys = cs.tugaphone_lexicon_keys("pt-PT", {"tugaphone": "pt-PT"})
+
+        assert keys.keys == frozenset({"muitíssimo", "antidumping"})
+        assert keys.provenance["engine"] == "tugaphone (packaged lexicon)"
+        assert keys.provenance["count"] == 2
+
+    def test_a_lect_outside_the_packaged_set_has_no_key_set(self, monkeypatch, tmp_path):
+        self._packaged(monkeypatch, tmp_path, "pt-BR")
+        assert cs.tugaphone_lexicon_keys("pt-BR", {"tugaphone": "pt-BR"}) is None
+
 
 class TestArbtokStockLexiconKeys:
     def _install(self, monkeypatch, stems, dialect, source_path="/tmp/x.tsv"):

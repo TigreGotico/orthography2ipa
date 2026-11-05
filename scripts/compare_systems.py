@@ -1722,19 +1722,51 @@ def gruut_lexicon_keys(lang: str, cfg: dict) -> Optional[LexiconKeys]:
 
 
 def tugaphone_lexicon_keys(lang: str, cfg: dict) -> Optional[LexiconKeys]:
-    """tugaphone's always-on ``tugalex`` headwords for *lang*.
+    """tugaphone's always-on lexicon headwords for *lang*.
 
-    Source: ``tugalex.TugaLexicon().get_ipa_map(region=...)`` for the
-    region ``tugaphone.registry.lexicon_region`` maps this lect to — the
-    SAME call ``tugaphone.lattice_core._write_lexicon`` makes to
-    materialise the TSV it then hands to ``register_lexicon``, so these
-    are literally the keys tugaphone registers. Normalization:
+    A tugaphone that exports ``registry.PACKAGED_LEXICON_LECTS`` enables the
+    installed packaged orthography2ipa lexicon for those lects and for no
+    other, so the keys are those of the file that
+    :func:`orthography2ipa.lexicon.packaged_lexicon_sources` lists for the
+    lect. An older tugaphone registers
+    ``tugalex.TugaLexicon().get_ipa_map(region=...)`` for the region that
+    ``registry.lexicon_region`` maps the lect to. Normalization:
     :func:`_o2i_lexicon_key`, because the lookup that consumes them is
     o2i's own ``_override_for``.
     """
     tugaphone_lang = cfg.get("tugaphone")
     if tugaphone_lang is None:
         return None
+    try:
+        from tugaphone.registry import PACKAGED_LEXICON_LECTS, resolve_lect
+    except ImportError:
+        return _tugalex_lexicon_keys(tugaphone_lang)
+    from orthography2ipa.lexicon import packaged_lexicon_sources, parse_lexicon_text
+    try:
+        lect = resolve_lect(tugaphone_lang)
+        if lect not in PACKAGED_LEXICON_LECTS:
+            return None
+        path = packaged_lexicon_sources().get(lect)
+        if path is None:
+            return None
+        ipa_map = parse_lexicon_text(path.read_text(encoding="utf-8"))
+    except Exception:
+        return None
+    if not ipa_map:
+        return None
+    return LexiconKeys(
+        frozenset(_o2i_lexicon_key(w, lect) for w in ipa_map), {
+            "engine": "tugaphone (packaged lexicon)",
+            "source": f"orthography2ipa.lexicon.packaged_lexicon_sources()[{lect!r}]",
+            "version": _installed_version("o2i-lexicons"),
+            "count": len(ipa_map),
+            "normalization": "o2i lexicon key (NFC + language-aware lower)",
+        })
+
+
+def _tugalex_lexicon_keys(tugaphone_lang: str) -> Optional[LexiconKeys]:
+    """The ``tugalex`` headwords that a tugaphone without
+    ``registry.PACKAGED_LEXICON_LECTS`` registers for *tugaphone_lang*."""
     try:
         from tugalex import TugaLexicon
         from tugaphone.registry import lexicon_region, resolve_lect
