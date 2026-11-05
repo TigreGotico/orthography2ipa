@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.119.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.119.1a1) (2026-11-05)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.119.0a1...7.119.1a1)
+
+**Merged pull requests:**
+
+- fix\(nl\): read ⟨qu⟩ as \[kʋ\], and as \[k\] in the French loans the guide lists [\#2142](https://github.com/TigreGotico/orthography2ipa/pull/2142) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.119.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.119.0a1) (2026-11-05)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.118.11a1...7.119.0a1)
@@ -385,17 +393,9 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.114.28a1...7.114.29a1)
 
-**Merged pull requests:**
-
-- fix\(nl\): read the w of ⟨ouw auw⟩ as silent and of ⟨ieuw eeuw uw⟩ as a u offglide [\#2009](https://github.com/TigreGotico/orthography2ipa/pull/2009) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [7.114.28a1](https://github.com/TigreGotico/orthography2ipa/tree/7.114.28a1) (2026-11-04)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.114.27a1...7.114.28a1)
-
-**Merged pull requests:**
-
-- fix\(li\): keep the stress off the prefixes ge-, be- and ver- [\#2011](https://github.com/TigreGotico/orthography2ipa/pull/2011) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.114.27a1](https://github.com/TigreGotico/orthography2ipa/tree/7.114.27a1) (2026-11-04)
 
@@ -1067,15 +1067,15 @@
 
 ## [7.93.16a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.16a1) (2026-09-17)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.14a1...7.93.16a1)
-
-## [7.93.14a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.14a1) (2026-09-17)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.15a1...7.93.14a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.15a1...7.93.16a1)
 
 ## [7.93.15a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.15a1) (2026-09-17)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.13a1...7.93.15a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.14a1...7.93.15a1)
+
+## [7.93.14a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.14a1) (2026-09-17)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.13a1...7.93.14a1)
 
 ## [7.93.13a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.13a1) (2026-09-17)
 
