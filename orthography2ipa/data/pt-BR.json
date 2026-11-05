@@ -2398,7 +2398,8 @@
         "catorze",
         "saboroso",
         "gostoso",
-        "famoso"
+        "famoso",
+        "gol"
       ],
       "notes": "Lexically CLOSE stressed ⟨o⟩ = [o] for this curated set of frequent lexemes, overriding the pre-lexical default (which is the open [ɔ] in the European standard and, by inheritance, ambiguous elsewhere). Portuguese stressed mid-vowel height is lexically/etymologically fixed and not predictable from spelling — ⟨sopa⟩ [ˈsopɐ] (close, < Gmc *suppa) vs ⟨sova⟩ [ˈsɔvɐ] (open) are spelled and stressed alike (Mateus & d'Andrade 2000: ch.3 'The vowels'; Vigário 2003). This rule pins ONLY the stressed-vowel height and lets reduction, rhotics, sandhi and affrication run normally, so it inherits cleanly to every pt-PT / pt-BR dialect child. Includes the ⟨-oso⟩ masculine adjectival suffix (saboroso, gostoso, famoso), which is regularly close [o] against its open [ɔ] feminine ⟨-osa⟩ (PT_LEX_OPEN_O). SEED LIST — the arbitration-confirmed frequent lexemes; the long tail of Portuguese mid-vowel lexemes is documented residual, to be extended from Mateus & d'Andrade / a pronouncing dictionary."
     },
@@ -2452,6 +2453,32 @@
         "serra"
       ],
       "notes": "Lexically OPEN stressed ⟨e⟩ = [ɛ] for this curated set, overriding the pre-lexical default where a close [e] is selected (Brazilian and non-reducing inheritors). Includes items whose open height is etymological (Latin short ĕ: terra, serra), morphological (3sg present espera; the copula era) or simply lexical (dez). Mateus & d'Andrade 2000: ch.3; Vigário 2003. Pins only the vowel height and inherits cleanly. SEED LIST — documented residual for the tail."
+    },
+    {
+      "id": "BR_FINAL_EL_OPEN",
+      "phonemes": [
+        "e"
+      ],
+      "surface": "ɛ",
+      "stress": "stressed",
+      "followed_by_grapheme": [
+        "l"
+      ],
+      "followed_by_2": "word_boundary",
+      "notes": "A stressed word-final ⟨el⟩ has the open [ɛ]. Bagno (2012: 191): 'Como no PB o [l] final se vocalizou completamente na maioria das variedades em /ʊ/, a pronúncia das palavras terminadas em -éu e -el se tornou idêntica', and Base VIII, 1.º d) of the Acordo Ortográfico 1990 writes the open ⟨éu⟩ of chapéu, céu, véu. Bagno (2012: 148) transcribes mel [mɛʊ] and, for the rural varieties that keep the lateral, papel [pa'pɛli], so the vowel does not depend on the vocalisation. Battisti & Moras (2016: 100, Quadro 1) class the vowel the same way: 'Vogal média-baixa anterior: papel, aluguel'. Their next line, 'Vogal média-alta anterior: maleável, horrível', is the reason the rule reads the stress: an unstressed final ⟨el⟩ keeps the close [e]. The positional table of pt-BR has no nucleus_stressed entry for ⟨e⟩, so a stressed ⟨e⟩ takes the first reading of the grapheme table, the close [e]. pt-PT has the open vowel from its own nucleus_stressed entry, which this spec does not inherit."
+    },
+    {
+      "id": "BR_FINAL_OL_OPEN",
+      "phonemes": [
+        "o"
+      ],
+      "surface": "ɔ",
+      "stress": "stressed",
+      "followed_by_grapheme": [
+        "l"
+      ],
+      "followed_by_2": "word_boundary",
+      "notes": "A stressed word-final ⟨ol⟩ has the open [ɔ]. Battisti & Moras (2016: 100, Quadro 1): 'Vogal média baixa posterior: futebol, lençol', against 'Vogal média-alta posterior: voltar, moldura'. Bagno (2012: 148) transcribes [sɔli] for sol. Base VIII, 1.º d) of the Acordo Ortográfico 1990 writes the plural with the open diphthong: 'os ditongos abertos grafados -éi, éu ou ói [...] herói(s) [...] sóis'. The rule stands after PT_LEX_CLOSE_O, which lists gol: Bagno (2012: 148) transcribes gol [goʊ]. The rule reads the stress, so unstressed álcool keeps its close [o]. The same reasoning as BR_FINAL_EL_OPEN explains the close default. This rule rests on word classes: the sources list the words above and give no general statement for final ⟨ol⟩, as Bagno (2012: 191) does for final ⟨el⟩."
     },
     {
       "id": "PT_LEX_X_S",
@@ -2708,6 +2735,26 @@
       "url": "https://agendapos.fclar.unesp.br/agenda-pos/linguistica_lingua_portuguesa/3463.pdf",
       "pages": "62-63",
       "notes": "Reports the forms of Collischonn (1996: 151), which was not opened (BR_EPENTHESIS_ONSET)."
+    },
+    {
+      "id": "bagno2012",
+      "author": "Bagno, M.",
+      "year": 2012,
+      "title": "Gramática pedagógica do português brasileiro",
+      "publisher": "Parábola Editorial",
+      "url": null,
+      "pages": "148, 191",
+      "notes": "p. 148: coda /l/ and the transcriptions of mel, gol, sol and papel. p. 191: final ⟨-el⟩ and ⟨-éu⟩ read alike. Read from the scan of the first edition, second reprint (2016)."
+    },
+    {
+      "id": "battisti_moras2016",
+      "author": "Battisti, E. & Moras, V.T.",
+      "year": 2016,
+      "title": "A vocalização da consoante lateral em coda silábica em uma variedade de português brasileiro: análise sociolinguística em tempo real",
+      "publisher": "Gragoatá 40, pp. 90-112",
+      "url": "https://periodicos.uff.br/gragoata/article/view/33376",
+      "pages": "100",
+      "notes": "Quadro 1 classes the vowel before coda /l/ by height, with example words. Moras & Battisti (2015, Caderno de Letras 24: 43) give the same classes."
     }
   ],
   "wikipedia": [

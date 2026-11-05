@@ -7,7 +7,7 @@
 | Script | Latin (alphabet) |
 | Quality tier | production |
 | Parent | `pt-PT-x-medieval` |
-| Sources | Barbosa & Albano (2004, JIPA), Cristófaro Silva (2025), Mendonça & Oliveira (2019), Moraes & Wetzels (1992), Collischonn (2004), Romano & Seabra (2017), Nascimento (2015); also listed: Câmara Jr. (1970), Mateus & d'Andrade (2000), Callou & Leite (2001), Cunha & Cintra (1984), Vigário (2003) |
+| Sources | Barbosa & Albano (2004, JIPA), Cristófaro Silva (2025), Mendonça & Oliveira (2019), Moraes & Wetzels (1992), Collischonn (2004), Romano & Seabra (2017), Nascimento (2015), Bagno (2012), Battisti & Moras (2016); also listed: Câmara Jr. (1970), Mateus & d'Andrade (2000), Callou & Leite (2001), Cunha & Cintra (1984), Vigário (2003) |
 
 `pt-BR` models the general Brazilian standard. It takes its grapheme, allophone and positional maps from `pt-PT-x-medieval` through the three `*_base` keys. Its `ancestors` add Old Tupi (`tpn`) as a substrate and Kimbundu (`kmb`) as an adstrate, for the lexicon. The regional Brazilian specs inherit from `pt-BR` and change only what their region changes. [pt-BR-dialects.md](pt-BR-dialects.md) describes them. Uruguayan Portuguese ([pt-UY.md](pt-UY.md)) is also a child of `pt-BR`. For a comparison with the other Romance languages, see [comparative.md](comparative.md).
 
@@ -40,7 +40,7 @@ The *chiado* (coda /s/ to [ʃ]) belongs to Rio de Janeiro and some other regions
 | `BR_NASAL_STRESSED_A`, `_E`, `_O`, `_I`, `_U` | a stressed vowel before an onset nasal is nasal | `cama` [ˈkɐ̃mɐ], `cima` [ˈsĩmɐ], `fome` [ˈfõmi] |
 | `BR_NASAL_PRETONIC_A_NH` and the other vowels | a pretonic vowel before /ɲ/ is nasal | `ganhar` [ɡɐ̃ˈɲa], `senhor` [sẽˈɲoɾ] |
 | `BR_CODA_S_VOICED`, `BR_CODA_SH_VOICED` | a coda sibilant is voiced before a voiced consonant | `mesmo` [ˈmezmu], `desde` [ˈdezd͡ʒi] |
-| `BR_STRONG_R_AFTER_CODA` | /r/ after a coda nasal or sibilant is the strong rhotic | `honra` [ˈõʁɐ], `Israel` [izʁaˈew] |
+| `BR_STRONG_R_AFTER_CODA` | /r/ after a coda nasal or sibilant is the strong rhotic | `honra` [ˈõʁɐ], `Israel` [izʁaˈɛw] |
 | `BR_FINAL_R_NONVERB` | a listed non-verb keeps its final tap | `mar` [ˈmaɾ], `mulher` [muˈʎeɾ] |
 | `BR_INFINITIVE_R_DROP`, `BR_INFINITIVE_R_DROP_POR` | the final tap of an infinitive or a future subjunctive drops | `falar` [faˈla], `partir` [paɾˈt͡ʃi], `pôr` [ˈpo] |
 | `BR_EPENTHESIS` | [i] breaks two obstruents, or a stop and a nasal, before an unstressed syllable | `advogado` [ad͡ʒivoˈɡadu], `hipnose` [ipiˈnozi] |
@@ -56,6 +56,7 @@ The *chiado* (coda /s/ to [ʃ]) belongs to Rio de Janeiro and some other regions
 | `BR_FINAL_EM_GLIDE`, `BR_FINAL_ENS_GLIDE` | final ⟨-em -en -ens⟩ give the diphthong [ẽj̃] | `bem` [ˈbẽj̃], `hífen` [ˈifẽj̃], `homens` [ˈõmẽj̃s] |
 | `BR_FINAL_AM_GLIDE` | final ⟨-am⟩ gives [ɐ̃w̃] | `falam` [ˈfalɐ̃w̃] |
 | `PT_LEX_CLOSE_O`, `PT_LEX_CLOSE_E`, `PT_LEX_OPEN_O`, `PT_LEX_OPEN_E` | stressed mid-vowel height for listed words | `como` [ˈkõmu], `forte` [ˈfɔɾt͡ʃi], `terra` [ˈtɛʁɐ] |
+| `BR_FINAL_EL_OPEN`, `BR_FINAL_OL_OPEN` | a stressed word-final ⟨el ol⟩ has the open [ɛ ɔ]; `gol` is listed close | `papel` [paˈpɛw], `futebol` [futeˈbɔw], `gol` [ˈɡow] |
 | `PT_LEX_X_S` | ⟨x⟩ is [s] in the stem ⟨troux-⟩ | `trouxe` [ˈtɾowsi] |
 | `PT_INITIAL_EX_VOICED` | word-initial ⟨ex-⟩ before a vowel gives [ez] | `exame` [eˈzɐ̃mi] |
 
@@ -84,6 +85,12 @@ Word-final unstressed /e o/ raise to a high vowel. Barbosa & Albano (2004: 229-2
 The positional map affricates /t d/ only before a written ⟨i⟩. A final ⟨e⟩ becomes [i] only after the post-lexical raising, so the positional map cannot see it. The rules `BR_AFFRIC_T_RAISED` and `BR_AFFRIC_D_RAISED` affricate /t d/ before the raised vowel (Barbosa & Albano 2004: 228). The regional specs with dental /t d/ switch these two rules off by id.
 
 Word-final ⟨-em⟩, ⟨-en⟩ and the plural ⟨-ens⟩ are the nasal diphthong [ẽj̃], with the close-mid nucleus kept.
+
+### Stressed final ⟨el ol⟩
+
+A stressed mid vowel is close unless a rule or a list opens it, because the positional map of `pt-BR` has no entry for a stressed ⟨e o⟩. A stressed word-final ⟨el ol⟩ is open. "Como no PB o [l] final se vocalizou completamente na maioria das variedades em /ʊ/, a pronúncia das palavras terminadas em -éu e -el se tornou idêntica" (Bagno 2012: 191). Battisti & Moras (2016: 100) class the vowel of `papel` and `aluguel` as "média-baixa anterior" and the vowel of `futebol` and `lençol` as "média baixa posterior". `BR_FINAL_EL_OPEN` and `BR_FINAL_OL_OPEN` give `papel` [paˈpɛw] and `lençol` [lẽˈsɔw]. The ⟨ol⟩ rule rests on these word classes, because the sources give no general statement for final ⟨ol⟩.
+
+An unstressed final ⟨el ol⟩ is outside the rules: `nível` [ˈnivew], `móvel` [ˈmɔvew]. Battisti & Moras class `maleável` and `horrível` as "média-alta anterior". `gol` is close (Bagno 2012: 148, [goʊ]), so `PT_LEX_CLOSE_O` lists it. `pt-UY` switches both rules off, because its sources do not give this vowel.
 
 ```python
 from orthography2ipa import G2P

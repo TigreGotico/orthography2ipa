@@ -166,7 +166,7 @@ European and Brazilian Portuguese differ in the reduction of unstressed vowels, 
 |:---|:---:|:---:|:---|:---|
 | Unstressed e | [ɨ] | [e] or [i] | `pequeno` `pɨˈkɛnu` | `pequeno` `peˈkẽnu` |
 | Unstressed o | [u] | [o] or [u] | `tomate` `tuˈmatɨ` | `tomate` `toˈmat͡ʃi` |
-| Word-final -al, -el | [l] (velarised) | [w] (l-vocalisation) | `animal` `ɐniˈmaɫ`, `papel` `pɐˈpɛɫ` | `animal` `aniˈmaw`, `papel` `paˈpew` |
+| Word-final -al, -el | [l] (velarised) | [w] (l-vocalisation) | `animal` `ɐniˈmaɫ`, `papel` `pɐˈpɛɫ` | `animal` `aniˈmaw`, `papel` `paˈpɛw` |
 | r (initial, rr) | [ʁ] (uvular) | [h] or [x] | `rato` `ˈʁatu` | `rato` `ˈʁatu` |
 | s, z word-final | [ʃ], [ʒ] (Lisbon) | [s], [z] | `gatos` `ˈɡatuʃ` | `gatos` `ˈɡatus` |
 
