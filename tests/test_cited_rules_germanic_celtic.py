@@ -46,16 +46,16 @@ def test_nl_final_devoicing():
     assert "nd" in _t("nl-NL", "honden")
 
 
-def test_nl_g_onset_voiced_coda_voiceless():
-    """G: voiced [ɣ] in the onset, voiceless [x] in the coda — northern Dutch.
+def test_nl_g_is_uvular_in_onset_and_coda():
+    """⟨g⟩ is the voiceless uvular [χ] in the onset and in the coda.
 
-    nl-NL notes: "G: voiced [ɣ] onset, voiceless [x] coda — northern Dutch."
-    Booij (1995).
+    nl-NL notes: "⟨g⟩ and ⟨ch⟩ are the voiceless uvular [χ]." Gussenhoven
+    (1992, JIPA 22, p. 45): "χ gat 'hole'"; p. 47: vraag [fraːχ].
 
-    Minimal pair on ⟨g⟩ alone: gaan (onset) vs dag (coda).
+    Onset and coda ⟨g⟩: gaan vs dag.
     """
-    assert _bare("nl-NL", "gaan").startswith("ɣ")
-    assert _t("nl-NL", "dag").endswith("x")
+    assert _bare("nl-NL", "gaan").startswith("χ")
+    assert _t("nl-NL", "dag").endswith("χ")
 
 
 def test_nl_h_is_breathy():
@@ -67,14 +67,13 @@ def test_nl_h_is_breathy():
     assert _bare("nl-NL", "huis").startswith("ɦ")
 
 
-def test_nl_nl_northern_g_is_voiced_fricative():
-    """⟨g⟩ is [ɣ] in northern NL.
+def test_nl_nl_ch_is_uvular():
+    """⟨ch⟩ is the same uvular [χ] as ⟨g⟩.
 
-    nl-NL notes: "⟨g⟩ realisation is [ɣ] in northern NL and [x] in southern NL /
-    Flanders." Source: Booij, G. (1995). The Phonology of Dutch; Gussenhoven, C.
-    (1999).
+    nl-NL notes: "⟨g⟩ and ⟨ch⟩ are the voiceless uvular [χ]." Gussenhoven
+    (1992, JIPA 22, p. 47): zich [zɪχ], dichter [dɪχtər].
     """
-    assert _bare("nl-NL", "goed").startswith("ɣ")
+    assert _t("nl-NL", "zich").endswith("χ")
 
 
 def test_nl_nl_final_devoicing():
@@ -86,20 +85,15 @@ def test_nl_nl_final_devoicing():
     assert _t("nl-NL", "goed").endswith("t")
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="⟨g⟩ is claimed to be [x] in Flanders; nl-BE produces [ɣuːt] for goed "
-    "— the Flemish spec inherits the northern voiced [ɣ] unchanged",
-)
-def test_nl_be_flemish_g_is_voiceless():
-    """⟨g⟩ is [x] in southern NL / Flanders.
+def test_nl_be_g_and_ch_are_velar():
+    """Belgian Dutch has the velar pair: ⟨g⟩ [ɣ], ⟨ch⟩ [x].
 
-    nl-NL notes: "⟨g⟩ realisation is [ɣ] in northern NL and [x] in southern NL /
-    Flanders." Booij (1995).
-
-    nl-BE is the Flemish spec, so the same ⟨g⟩ that is [ɣ] in nl-NL must be [x].
+    Verhoeven (2005, JIPA 35(2), p. 244): "Belgian Dutch has a voiced and
+    voiceless velar fricative: these are absent in the Netherlands." The word
+    list gives "x xɛil chijl" and "ɣ ɣɛil geil".
     """
-    assert _t("nl-BE", "goed").startswith("x")
+    assert _bare("nl-BE", "geil").startswith("ɣ")
+    assert _bare("nl-BE", "chijl").startswith("x")
 
 
 def test_nl_be_alveolar_r():
@@ -812,10 +806,11 @@ def test_fy_onset_g_is_a_stop():
     fy notes: "(3) /ɡ/ not /ɣ/: West Frisian has a voiced stop /ɡ/ in onset (not
     the fricative [ɣ] of Dutch)." Source: Tiersma (1999).
 
-    The contrast the citation draws: fy goed [ɡ] vs nl goed [ɣ].
+    The contrast the citation draws: fy goed [ɡ] vs the Dutch fricative, which
+    nl-NL writes as the uvular [χ] (Gussenhoven 1992, p. 45).
     """
     assert _t("fy", "goed").lstrip("ˈˌ").startswith("ɡ")
-    assert _t("nl-NL", "goed").lstrip("ˈˌ").startswith("ɣ")
+    assert _t("nl-NL", "goed").lstrip("ˈˌ").startswith("χ")
 
 
 def test_fy_circumflex_a_e_o():

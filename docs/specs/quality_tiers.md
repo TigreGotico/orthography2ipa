@@ -47,9 +47,11 @@ The language check resolves a row tag the way the engine does. A wikipron row re
 
 ### Which gold can gate
 
-Four provenance tiers can never gate a promotion: `espeak-derived`, `epitran-derived`, `llm-corrected` and `llm-generated`. `can_gate_promotion()` is the single source of truth for this rule, and `tests/test_competitor_derived_gold.py` tests it. The reasons differ by tier:
+Five provenance tiers can never gate a promotion: `espeak-derived`, `epitran-derived`, `lupo-derived`, `llm-corrected` and `llm-generated`. `can_gate_promotion()` is the single source of truth for this rule, and `tests/test_competitor_derived_gold.py` tests it. The reasons differ by tier:
 
 - A gold that a competing G2P system generated (`espeak-derived`, `epitran-derived`) measures agreement with that competitor, not correctness. This project benchmarks itself against both systems ([comparison](../evaluation/generated/comparison.md)), so their output cannot also be the truth.
+
+- The Portal da Língua Portuguesa Dicionário Fonético (`lupo-derived`, the `portal_lupo` dataset) is the output of LUPo, a rule-based pronunciation generator. Its [description page](http://www.portaldalinguaportuguesa.org/index.php?action=fonetica&region=lbx&page=present) says that rules applied to a hand-coded mother lexicon generate the transcription of each dialect. Its entries ask users to cite Ashby et al. (2012), "A Rule Based Pronunciation Generator and Regional Accent Databank for Portuguese", Interspeech 2012. A row on it measures agreement with that generator, as an espeak-ng row does. A divergence can mean that o2i is right.
 
 - A gold that a large language model generated (`llm-generated`) has no lexicon and no rules, so it has no error model. A disagreement with it says nothing about the spec, so it can certify nothing.
 
