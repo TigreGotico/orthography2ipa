@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.118.4a1](https://github.com/TigreGotico/orthography2ipa/tree/7.118.4a1) (2026-11-05)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.118.3a2...7.118.4a1)
+
+**Merged pull requests:**
+
+- fix\(nl\): keep the stress on a root whose rest is one schwa syllable [\#2117](https://github.com/TigreGotico/orthography2ipa/pull/2117) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.118.3a2](https://github.com/TigreGotico/orthography2ipa/tree/7.118.3a2) (2026-11-05)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.118.3a1...7.118.3a2)
@@ -388,10 +396,6 @@
 ## [7.114.20a3](https://github.com/TigreGotico/orthography2ipa/tree/7.114.20a3) (2026-11-04)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.114.20a2...7.114.20a3)
-
-**Merged pull requests:**
-
-- docs\(languages\): match the engine-output examples to the engine [\#1977](https://github.com/TigreGotico/orthography2ipa/pull/1977) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.114.20a2](https://github.com/TigreGotico/orthography2ipa/tree/7.114.20a2) (2026-11-04)
 
