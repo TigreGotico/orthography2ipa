@@ -817,10 +817,19 @@
   ],
   "sandhi_rules": [
     {
+      "id": "PT_CODA_S_BEFORE_ZH",
+      "name": "coda-s-deletion-before-zh",
+      "left_context": "[ʃ]$",
+      "right_context": "^[ˈˌ]?ʒ",
+      "transform": "",
+      "obligatory": true,
+      "notes": "A word-final coda sibilant is deleted before a word that starts with /ʒ/: \"Syllable-final /ʃ/ occurs as [ʒ] before a voiced consonant (except before /ʒ/ itself, where it is deleted)\" (Cruz-Ferreira 1999: 128). So os jogos is [o ˈʒɔɡuʃ] and mais giro is [ˈmaj ˈʒiɾu], not [oʒ ˈʒɔɡuʃ]. PT_CODA_S_VOICING leaves /ʒ/ out of its voiced class, so the two rules never compete. Only the cross-word case is encoded here; a word-internal coda sibilant before /ʒ/ (desgelo, desjejum) is not voiced by any rule of this spec either."
+    },
+    {
       "id": "PT_CODA_S_VOICING",
       "name": "coda-s-voicing",
       "left_context": "[ʃ]$",
-      "right_context": "^[ˈˌ]?[bdɡvzʒmnɲɾʁlʎ]",
+      "right_context": "^[ˈˌ]?[bdɡvzmnɲɾʁlʎ]",
       "transform": "ʒ",
       "obligatory": true,
       "notes": "External (cross-word) VOICING ASSIMILATION of coda /s/: a word-final coda /s/ — which surfaces [ʃ] in isolation and before a voiceless consonant via the coda 'chiado' PT_CODA_S_HUSH — assimilates in voicing to a following VOICED consonant across the word boundary, surfacing as the post-alveolar [ʒ]: as bocas → [ˈɐʒ ˈbɔkɐʃ], os dois → [ˈoʒ ˈdojʃ], os meus → [uʒ ˈmewʃ]. This is the regular European Portuguese sandhi of coda sibilants (Mateus & d'Andrade 2000: ch.2; Cruz-Ferreira 1999: 128, 'Syllable-final /ʃ/ occurs as [ʒ] before a voiced consonant (except before /ʒ/ itself, where it is deleted)'; Wikipedia 'Portuguese phonology', Consonant-sandhi section: a coda sibilant is [ʒ] before a voiced consonant, [ʃ] before a voiceless one, and [z] before a vowel). The class writes the voiced velar plosive as IPA ɡ (U+0261), the code point the engine emits; ASCII g (U+0067) never matches it. Only VOICED consonants trigger it — a following voiceless consonant keeps [ʃ] (estás feliz → [eˈʃtaʃ fɨˈliʃ]). The right_context matches an OPTIONAL leading primary/secondary stress mark [ˈˌ] then a voiced consonant, because the engine's per-word IPA carries a leading stress mark on a stress-initial word (bocas → ˈbɔkɐʃ), so a bare consonant class would never fire on the real word forms."
