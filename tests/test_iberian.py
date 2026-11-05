@@ -737,6 +737,19 @@ class TestPortuguesePT:
         ids = {r.id for r in self._spec.sandhi_rules}
         assert "PT_ELISION" in ids
 
+    def test_sandhi_schwa_elision_note_example_fires(self):
+        note = next(r.notes for r in self._spec.sandhi_rules if r.id == "PT_ELISION")
+        text, ipa = note.split("; ")[0].split(" → ")
+        assert orthography2ipa.G2P("pt-PT").transcribe(text) == ipa
+
+    @pytest.mark.parametrize("text, ipa", [
+        ("norte e", "ˈnɔɾt i"),
+        ("de amanhã", "dɨ ɐmɐˈɲɐ̃"),
+        ("de ouro", "dɨ ˈoɾu"),
+    ])
+    def test_sandhi_schwa_elision_reach(self, text, ipa):
+        assert orthography2ipa.G2P("pt-PT").transcribe(text) == ipa
+
     # --- Isogloss: PT ≠ Spanish ---
 
     def test_isogloss_ch_not_affricate(self):
