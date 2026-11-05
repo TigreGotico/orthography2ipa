@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.117.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.117.2a1) (2026-11-05)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.117.1a1...7.117.2a1)
+
+**Merged pull requests:**
+
+- fix\(nl\): read Netherlandic ⟨g ch⟩ as the uvular \[χ\] [\#2059](https://github.com/TigreGotico/orthography2ipa/pull/2059) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.117.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.117.1a1) (2026-11-05)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.117.0a1...7.117.1a1)
@@ -387,10 +395,6 @@
 ## [7.113.6a1](https://github.com/TigreGotico/orthography2ipa/tree/7.113.6a1) (2026-11-03)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.113.5a1...7.113.6a1)
-
-**Merged pull requests:**
-
-- fix\(data\): cite the Duanmu preprint by its own title [\#1908](https://github.com/TigreGotico/orthography2ipa/pull/1908) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.113.5a1](https://github.com/TigreGotico/orthography2ipa/tree/7.113.5a1) (2026-11-03)
 
