@@ -32,6 +32,12 @@ def test_a_sibilant_in_the_onset_keeps_the_vowel(word):
     assert _first_vowel("pt-BR", word) == "e"
 
 
+@pytest.mark.parametrize("word", ["explicar", "extrair", "excluir"])
+def test_an_ex_before_a_consonant_keeps_the_vowel(word):
+    """No opened source counts ⟨ex⟩: Carmo (2019: 807, 815) gives only ⟨es⟩ examples."""
+    assert _first_vowel("pt-BR", word) == "e"
+
+
 @pytest.mark.parametrize("word", ["pestana", "festival"])
 def test_a_pretonic_e_after_an_onset_keeps_the_vowel(word):
     """Carmo (2019) measures the word-initial vowel only."""
