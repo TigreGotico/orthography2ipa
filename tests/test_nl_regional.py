@@ -89,11 +89,59 @@ def test_limburg_keeps_word_initial_v_voiced(limburg, word, onset):
 
 
 @pytest.mark.parametrize("word", [
-    "water", "ziek", "lachen", "school", "huis", "fee", "beuk", "boot",
-    "bakker", "zitten",
+    "water", "ziek", "huis", "fee", "beuk", "boot", "bakker", "zitten",
 ])
-def test_limburg_words_without_g_or_v_equal_the_standard(nl, limburg, word):
+def test_limburg_words_without_g_ch_or_v_equal_the_standard(nl, limburg, word):
     assert limburg.transcribe(word) == nl.transcribe(word)
+
+
+@pytest.mark.parametrize("word", [
+    "lachen", "acht", "nacht", "licht", "school", "schip", "logisch",
+    "mensch", "Utrecht", "Albrecht", "Maastricht",
+])
+def test_limburg_ch_is_velar_x_like_g(nl, limburg, word):
+    # Dutch Limburg shares its /ɣ/ norm with Flanders (van der Harst & Van de
+    # Velde 2007, p. 192), where ⟨ch⟩ is the voiceless velar (Verhoeven 2005,
+    # p. 244). ⟨sch⟩ and ⟨brecht⟩ are nl-NL keys that spell the same ⟨ch⟩.
+    assert limburg.transcribe(word) == _velar(nl.transcribe(word))
+    assert "χ" not in limburg.transcribe(word)
+
+
+@pytest.mark.parametrize("word", ["lachgas", "Egchel", "juichgeroep"])
+def test_limburg_g_next_to_ch_is_one_velar(nl, limburg, word):
+    # ⟨g⟩ and ⟨ch⟩ take one value, so collapse_geminates merges them as it
+    # merges the two [χ] of nl-NL.
+    assert limburg.transcribe(word) == _velar(nl.transcribe(word))
+
+
+def test_limburg_word_exception_gets_the_velar(nl, limburg):
+    # A word exception bypasses the grapheme layer, so the child states its
+    # own copy of the nl-NL entry.
+    assert "χ" in nl.transcribe("tjerkgaast")
+    assert limburg.transcribe("tjerkgaast") == "ˈtʃɛɹkxaːst"
+
+
+def _uvular_entries():
+    """Every nl-NL grapheme key and word exception whose value holds [χ]."""
+    raw = json.loads((DATA / "nl-NL.json").read_text(encoding="utf-8"))
+    keys = {k for k, v in raw["graphemes"].items() if "χ" in "".join(v)}
+    keys |= {k for k, v in raw["positional_graphemes"].items()
+             if "χ" in json.dumps(v, ensure_ascii=False)}
+    words = {k for k, v in raw.get("word_exceptions", {}).items() if "χ" in v}
+    return sorted(keys), sorted(words)
+
+
+@pytest.mark.parametrize("key", _uvular_entries()[0])
+def test_limburg_restates_every_nl_nl_key_that_writes_the_uvular(nl, limburg, key):
+    # A new nl-NL key with [χ] reaches the child unless the child restates it.
+    word = f"a{key}en"
+    assert "χ" in nl.transcribe(word)
+    assert limburg.transcribe(word) == _velar(nl.transcribe(word))
+
+
+@pytest.mark.parametrize("word", _uvular_entries()[1])
+def test_limburg_restates_every_nl_nl_exception_with_the_uvular(nl, limburg, word):
+    assert limburg.transcribe(word) == _velar(nl.transcribe(word))
 
 
 def test_limburg_keeps_its_values_when_nl_nl_moves(tmp_path, monkeypatch):
@@ -103,8 +151,12 @@ def test_limburg_keeps_its_values_when_nl_nl_moves(tmp_path, monkeypatch):
     raw = json.loads((DATA / "nl-NL.json").read_text(encoding="utf-8"))
     pos = raw["positional_graphemes"]
     pos["g"] = {"word_final": ["χ"], "default": ["χ"]}
-    pos["berg"] = {"word_final": ["bɛrχ"], "default": ["bɛrχ"]}
+    pos["berg"] = {"word_final": ["bɛɹχ"], "default": ["bɛɹχ"]}
     pos["v"] = {"word_final": ["f"], "default": ["f"]}
+    pos["sch"] = {"word_final": ["s"], "default": ["sh"]}
+    raw["graphemes"]["ch"] = ["h"]
+    raw["graphemes"]["brecht"] = ["brɛht"]
+    raw["word_exceptions"]["tjerkgaast"] = "ˈtʃɛɹkhaːst"
     moved_file = tmp_path / "nl-NL.json"
     moved_file.write_text(json.dumps(raw, ensure_ascii=False), encoding="utf-8")
     index = dict(json_loader._index, **{"nl-NL": moved_file})
@@ -120,6 +172,11 @@ def test_limburg_keeps_its_values_when_nl_nl_moves(tmp_path, monkeypatch):
     for word in ("guize", "gaan", "liegen", "dag", "bergen"):
         assert child.transcribe(word) == _velar(moved.transcribe(word))
     assert child.transcribe("vier").startswith("ˈv")
+    assert moved.transcribe("lachen") == "ˈlaːhən"
+    assert child.transcribe("lachen") == "ˈlaːxən"
+    assert child.transcribe("school") == "ˈsxoul"
+    assert child.transcribe("Albrecht") == "ˈɑlbrɛxt"
+    assert child.transcribe("tjerkgaast") == "ˈtʃɛɹkxaːst"
 
 
 # Stroop (1998): the nl-NL diphthong and its Polder value.
@@ -276,14 +333,11 @@ def test_groningen_words_without_g_or_initial_v_equal_the_standard(nl, groningen
     assert groningen.transcribe(word) == nl.transcribe(word)
 
 
-def test_groningen_keeps_its_values_when_nl_nl_moves(groningen, tmp_path, monkeypatch):
-    # An nl-NL with the velar [ɣ x] of the south and a devoiced ⟨v⟩ in every
-    # position. The Groningen values must not follow it.
+def test_groningen_keeps_its_v_when_nl_nl_moves(groningen, tmp_path, monkeypatch):
+    # An nl-NL with a devoiced ⟨v⟩ in every position. The Groningen ⟨v⟩
+    # must not follow it. Its ⟨g⟩ is the nl-NL [χ] and is not restated.
     raw = json.loads((DATA / "nl-NL.json").read_text(encoding="utf-8"))
-    pos = raw["positional_graphemes"]
-    pos["g"] = {"word_final": ["x"], "default": ["x"]}
-    pos["berg"] = {"word_final": ["bɛrx"], "default": ["bɛrx"]}
-    pos["v"] = {"word_final": ["f"], "default": ["f"]}
+    raw["positional_graphemes"]["v"] = {"word_final": ["f"], "default": ["f"]}
     moved_file = tmp_path / "nl-NL.json"
     moved_file.write_text(json.dumps(raw, ensure_ascii=False), encoding="utf-8")
     index = dict(json_loader._index, **{"nl-NL": moved_file})
@@ -294,7 +348,14 @@ def test_groningen_keeps_its_values_when_nl_nl_moves(groningen, tmp_path, monkey
 
     moved = G2P("nl-NL", spec=json_loader.load_json_spec("nl-NL"))
     child = G2P(GRONINGEN, spec=json_loader.load_json_spec(GRONINGEN))
-    assert moved.transcribe("gaan").startswith("ˈx")
     assert "f" in moved.transcribe("over")
-    for word in ("gaan", "liegen", "dag", "bergen", "vier", "over", "geven"):
+    for word in ("vier", "over", "leven", "avond"):
         assert child.transcribe(word) == groningen.transcribe(word)
+    assert "v" in child.transcribe("over")
+
+
+def test_groningen_inherits_the_uvular_g_of_nl_nl():
+    raw = json.loads((DATA / f"{GRONINGEN}.json").read_text(encoding="utf-8"))
+    assert "g" not in raw.get("positional_graphemes", {})
+    assert "berg" not in raw.get("positional_graphemes", {})
+    assert "allophone_rules" not in raw

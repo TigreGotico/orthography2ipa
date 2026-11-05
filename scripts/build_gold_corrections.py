@@ -472,19 +472,22 @@ def write_overlay(name: str, rows: List[Dict]) -> str:
 # ─── portuguese_unified ─────────────────────────────────────────────────────
 #
 # TigreGotico/portuguese-unified-pronunciation-lexicon merges Infopédia,
-# pt.wiktionary.org and the Portal da Língua Portuguesa lexicon. Its rows carry
-# four defects that the orthography or a fetched citation settles:
+# pt.wiktionary.org and the Portal da Língua Portuguesa Dicionário Fonético.
+# The overlay corrects only the Infopédia and pt.wiktionary rows. The Portal
+# rows are the output of the LUPo rule-based generator, which the benchmark
+# scores as a competitor (``portal_lupo``), and a competitor's output is not
+# corrected. The human rows carry four defects that the orthography or a
+# fetched citation settles:
 #
 # * a primary mark on a syllable other than the one a written acute or
 #   circumflex marks (Infopédia *busílis* ``buziˈliʃ``);
 # * a primary mark on an unaccented word that the Acordo Ortográfico 1990
 #   accent rules place elsewhere (an unaccented -ar infinitive is oxytone: the
 #   Infopédia row for *malucar* reads ``mɐˈlukar``);
-# * no primary mark at all (the Portal Lisbon rows lose it on a stressed vowel
-#   after [j]: *paciente* ``pɐsjẽt``);
-# * a reading of another headword (*tração* rows that read *seleto*, Infopédia
-#   rows of a neighbouring entry), and Maputo rows that end in mis-encoded
-#   text.
+# * no primary mark at all (pt.wiktionary *coitado* ``koitádu``);
+# * a reading of another headword (Infopédia rows of a neighbouring entry,
+#   the pt.wiktionary *halo* row that reads the English word), and rows with
+#   mis-encoded text (pt.wiktionary *sundae* ``'sÃndej``).
 #
 # Each overlay row is keyed on the SOURCE row, not on an o2i language tag:
 # dataset, source, region, word, POS and field, plus the reading the row
@@ -495,9 +498,8 @@ def write_overlay(name: str, rows: List[Dict]) -> str:
 # variant or a row. It never changes a segment, except where a stray symbol
 # stands in for the mark (``koitádu``, ``traveˡsejru``). A mark is placed only
 # where the vowel at the new stressed position is one the stressed letter can
-# spell; where it is not (Lisbon *sêxtuplo* ``sɨʃtˈuplu``: a stressed [ɨ]
-# cannot spell ⟨ê⟩) the row needs a segment fix that no rule here settles, and
-# it is left alone.
+# spell; where it is not (a stressed [ɨ] cannot spell ⟨ê⟩) the row needs a
+# segment fix that no rule here settles, and it is left alone.
 
 PT_UNIFIED_DATASET = "portuguese_unified"
 PT_UNIFIED_OVERLAY = "portuguese_unified_pt"
@@ -534,41 +536,25 @@ PT_AUTHORITY = {
     ),
 }
 
-#: Portal da Língua Portuguesa readings fetched for these corrections
-#: (portaldalinguaportuguesa.org, ``action=fonetica``, exact headword match),
-#: keyed on ``(word, Portal region code)``.
-PT_PORTAL_QUOTES = {
-    ("enfezar", "lbx"): "en·fe·zar [verbo] ẽ.fɛ.zˈaɾ",
-    ("malucar", "lbx"): "ma·lu·car [verbo] mɐ.lu.kˈaɾ",
-    ("unir", "lbx"): "u·nir [verbo] u.nˈiɾ",
-    ("almargem", "lbx"): "al·mar·gem [nome masculino] aɫ.mˈaɾ.ʒɐ̃j",
-    ("miopia", "lbx"): "mi·o·pi·a [nome feminino] mju.pˈi.ɐ",
-    ("apartadamente", "lbx"): "a·par·ta·da·men·te [advérbio] ɐ.pɐɾ.tɐ.dɐ.mˈẽ.tɨ",
-    ("desgraçar", "rjx"): "des·gra·çar [verbo] deʒ.gɾa.sˈaɾ",
-    ("abalroa", "rjx"): "a·bal·ro·a [nome feminino] a.baw.ɦˈo.ɐ",
-    ("telegrafista", "rjx"): "te·le·gra·fis·ta [nome masculino] te.le.gɾa.fˈiʃ.tɐ",
-    ("delegacia", "rjx"): "de·le·ga·ci·a [nome feminino] de.le.ga.sˈi.ɐ",
-    ("halo", "rjx"): "ha·lo [nome masculino] ˈa.lʊ",
-    ("psicadélico", "rjx"): "psi·ca·dé·li·co [adjetivo] psi.ka.dˈɛ.li.kʊ",
-    ("boticário", "rjx"): "bo·ti·cá·ri·o [nome masculino] bo.tʃi.kˈa.ɾjʊ",
-    ("pseudoetimologia", "rjx"): (
-        "pseu·do·e·ti·mo·lo·gi·a [nome feminino] psew.dɔ.e.tʃĩ.mo.lo.ʒˈi.ɐ"),
-    ("tração", "lbx"): "tra·ção tɾɐ.sˈɐ̃w",
-    ("tração", "rjx"): "tra·ção tɾa.sˈɐ̃w",
-    ("tração", "spx"): "tra·ção tɾa.sˈə̃w",
-    ("tração", "lda"): "tra·ção tɾa.sˈɐ̃w",
-    ("tração", "mpx"): "tra·ção tra.sˈãw",
-    ("tração", "dli"): "tra·ção tɾək.sˈə̃w",
-    ("microfarad", "lbx"): "mi·cro·fa·rad [nome masculino] mi.kɾɔ.",
-    ("microvolt", "spx"): "mi·cro·volt [nome masculino] mi.kɾo.",
-}
-
-#: Dataset region -> Portal region code, for the quote lookup. The pt-BR and
-#: pt-PT Wiktionary rows are checked against the Rio and Lisbon Portal entries.
-PT_PORTAL_REGION = {
-    "pt-PT": "lbx", "pt-PT-x-lisboa": "lbx", "pt-BR": "rjx",
-    "pt-BR-x-riodejaneiro": "rjx", "pt-BR-x-saopaulo": "spx", "pt-AO": "lda",
-    "pt-MZ-x-maputo": "mpx", "pt-TL-x-dili": "dli",
+#: pt.wiktionary.org syllable templates that state the stressed syllable of a
+#: corrected word, fetched with ``action=raw`` at the revision given. An editor
+#: types the syllables and picks the template (``oxítona``, ``paroxítona``,
+#: ``proparoxítona``) by hand, so the template is a human statement of the
+#: stress, apart from the AFI line of the same page.
+PT_WIKTIONARY_QUOTES = {
+    "abalroa": (3152166, "{{paroxítona|a|bal|ro|a}}"),
+    "almargem": (3221772, "{{paroxítona|al|mar|gem}}"),
+    "boticário": (2502722, "{{proparoxítona aparente|bo|ti|cá|ri|o}}"),
+    "delegacia": (3274189, "{{paroxítona|de|le|ga|ci|a}}"),
+    "desgraçar": (2616065, "{{oxítona|des|gra|çar}}"),
+    "enfezar": (2617547, "{{oxítona|en|fe|zar}}"),
+    "halo": (2786552, "{{paroxítona|ha|lo}}"),
+    "malucar": (2528805, "{{oxítona|ma|lu|car}}"),
+    "miopia": (3068065, "{{paroxítona|mi|o|pi|a}}"),
+    "pseudoetimologia": (3213978, "{{paroxítona|pseu|do|e|ti|mo|lo|gi|a}}"),
+    "psicadélico": (3265365, "{{proparoxítona|psi|ca|dé|li|co}}"),
+    "telegrafista": (3213982, "{{paroxítona|te|le|gra|fis|ta}}"),
+    "unir": (3160228, "{{oxítona|u|nir}}"),
 }
 
 PT_MOJIBAKE_REASON = (
@@ -579,17 +565,6 @@ PT_MOJIBAKE_AUTHORITY = (
     "the reading itself: 'Ã' is not an IPA symbol. It is the first byte of a "
     "two-byte UTF-8 character such as 'ã' (C3 A3) read as Latin-1"
 )
-PT_MOJIBAKE_NOTE_AUTHORITY = PT_MOJIBAKE_AUTHORITY + (
-    ". The reading ends in the note 'çollins-nÃ£o-tem', with 'não' read that "
-    "way, and the Portal da Língua Portuguesa serves the same string, fonetica "
-    "region mpx: 'a·ben·cer·ra·gem ɐ.bẽ.se.rˈa.ʒẽçollins-nÃ£o-tem'"
-)
-PT_IE_REASON = (
-    "the reading has no primary stress mark; the stressed vowel is the e of "
-    "⟨ie⟩ or ⟨ee⟩, read as [e] after the glide [j] or [w], and the mark is "
-    "written before it"
-)
-
 #: Hand-checked corrections of the ``ipa_narrow`` field:
 #: ``(word, region, source, original, corrected, kind, basis)``. ``corrected``
 #: ``None`` drops the source row. ``basis`` is a written accent letter, a key
@@ -610,14 +585,6 @@ PT_UNIFIED_DECISIONS: Tuple[Tuple[str, str, str, str, Optional[str], str, str], 
     ("boticário", "pt-BR", "wiktionary", "boʧikaˈɾju", "boʧiˈkaɾju", "accent_contradiction", "á"),
     ("busílis", "pt-PT", "infopedia+wiktionary", "buziˈliʃ", "buˈziliʃ", "accent_contradiction", "í"),
     ("báratro", "pt-BR", "wiktionary", "baˈɾatɾu", "ˈbaɾatɾu", "accent_contradiction", "á"),
-    ("clímax", "pt-AO", "portal", "klimˈaks", "klˈimaks", "accent_contradiction", "í"),
-    ("clímax", "pt-BR-x-riodejaneiro", "portal", "klĩmˈaks", "klˈĩmaks", "accent_contradiction", "í"),
-    ("clímax", "pt-BR-x-saopaulo", "portal", "klimˈaks", "klˈimaks", "accent_contradiction", "í"),
-    ("clímax", "pt-BR-x-saopaulo", "portal", "kɽimˈaks", "kɽˈimaks", "accent_contradiction", "í"),
-    ("clímax", "pt-MZ-x-maputo", "portal", "klimˈaks", "klˈimaks", "accent_contradiction", "í"),
-    ("clímax", "pt-MZ-x-maputo", "portal", "klĩmˈaks", "klˈĩmaks", "accent_contradiction", "í"),
-    ("clímax", "pt-PT-x-lisboa", "portal", "klimˈaks", "klˈimaks", "accent_contradiction", "í"),
-    ("clímax", "pt-TL-x-dili", "portal", "klimˈaks", "klˈimaks", "accent_contradiction", "í"),
     ("daimió", "pt-PT", "infopedia", "ˈdajmjɔ", "dajˈmjɔ", "accent_contradiction", "ó"),
     ("efípio", "pt-PT", "infopedia", "ɛfiˈpju", "ɛˈfipju", "accent_contradiction", "í"),
     ("egagrópilo", "pt-PT", "infopedia", "ɛɡɐɡrɔˈpilu", "ɛɡɐˈɡrɔpilu", "accent_contradiction", "ó"),
@@ -649,28 +616,7 @@ PT_UNIFIED_DECISIONS: Tuple[Tuple[str, str, str, str, Optional[str], str, str], 
     ("profícuo", "pt-PT", "infopedia+wiktionary", "prufiˈkwu", "pruˈfikwu", "accent_contradiction", "í"),
     ("pêntodo", "pt-PT", "infopedia", "pẽˈtudu", "ˈpẽtudu", "accent_contradiction", "ê"),
     ("raticídio", "pt-PT", "infopedia", "ʀɐtisiˈdju", "ʀɐtiˈsidju", "accent_contradiction", "í"),
-    ("subsêxtuplo", "pt-AO", "portal", "subseʃtˈuplʊ", "subsˈeʃtuplʊ", "accent_contradiction", "ê"),
-    ("subsêxtuplo", "pt-BR-x-riodejaneiro", "portal", "subseʃtˈuplʊ", "subsˈeʃtuplʊ", "accent_contradiction", "ê"),
-    ("subsêxtuplo", "pt-BR-x-riodejaneiro", "portal", "sʊbseʃtˈuplʊ", "sʊbsˈeʃtuplʊ", "accent_contradiction", "ê"),
-    ("subsêxtuplo", "pt-BR-x-saopaulo", "portal", "subsestˈuplʊ", "subsˈestuplʊ", "accent_contradiction", "ê"),
-    ("subsêxtuplo", "pt-BR-x-saopaulo", "portal", "subsestˈupɽʊ", "subsˈestupɽʊ", "accent_contradiction", "ê"),
-    ("subsêxtuplo", "pt-MZ-x-maputo", "portal", "subsɛʃtˈuplu", "subsˈɛʃtuplu", "accent_contradiction", "ê"),
-    ("subsêxtuplo", "pt-MZ-x-maputo", "portal", "sʊbsɛʃθˈuplʊ", "sʊbsˈɛʃθuplʊ", "accent_contradiction", "ê"),
     ("sudorífico", "pt-PT", "infopedia", "suduriˈfiku", "suduˈrifiku", "accent_contradiction", "í"),
-    ("sânscrito", "pt-AO", "portal", "sɐ̃ʃkɾˈitʊ", "sˈɐ̃ʃkɾitʊ", "accent_contradiction", "â"),
-    ("sânscrito", "pt-BR-x-riodejaneiro", "portal", "sɐ̃ʃkɾˈitʊ", "sˈɐ̃ʃkɾitʊ", "accent_contradiction", "â"),
-    ("sânscrito", "pt-BR-x-saopaulo", "portal", "sə̃skɽˈitʊ", "sˈə̃skɽitʊ", "accent_contradiction", "â"),
-    ("sânscrito", "pt-BR-x-saopaulo", "portal", "sə̃skɾˈitʊ", "sˈə̃skɾitʊ", "accent_contradiction", "â"),
-    ("sânscrito", "pt-MZ-x-maputo", "portal", "saʃkrˈitʰʊ", "sˈaʃkritʰʊ", "accent_contradiction", "â"),
-    ("sânscrito", "pt-MZ-x-maputo", "portal", "sãʃkrˈitu", "sˈãʃkritu", "accent_contradiction", "â"),
-    ("sânscrito", "pt-PT-x-lisboa", "portal", "sɐ̃ʃkɾˈitu", "sˈɐ̃ʃkɾitu", "accent_contradiction", "â"),
-    ("sânscrito", "pt-TL-x-dili", "portal", "sãʃkɾˈitʊ", "sˈãʃkɾitʊ", "accent_contradiction", "â"),
-    ("sêxtuplo", "pt-AO", "portal", "seʃtˈuplʊ", "sˈeʃtuplʊ", "accent_contradiction", "ê"),
-    ("sêxtuplo", "pt-BR-x-riodejaneiro", "portal", "seʃtˈuplʊ", "sˈeʃtuplʊ", "accent_contradiction", "ê"),
-    ("sêxtuplo", "pt-BR-x-saopaulo", "portal", "sestˈuplʊ", "sˈestuplʊ", "accent_contradiction", "ê"),
-    ("sêxtuplo", "pt-BR-x-saopaulo", "portal", "sestˈupɽʊ", "sˈestupɽʊ", "accent_contradiction", "ê"),
-    ("sêxtuplo", "pt-MZ-x-maputo", "portal", "sɛʃtˈuplu", "sˈɛʃtuplu", "accent_contradiction", "ê"),
-    ("sêxtuplo", "pt-MZ-x-maputo", "portal", "sɛʃθˈuplʊ", "sˈɛʃθuplʊ", "accent_contradiction", "ê"),
     ("táurida", "pt-PT", "infopedia", "tawˈridɐ", "ˈtawridɐ", "accent_contradiction", "á"),
     ("vagínula", "pt-PT", "infopedia", "vɐʒiˈnulɐ", "vɐˈʒinulɐ", "accent_contradiction", "í"),
     ("álefe", "pt-PT", "infopedia", "aˈlɛf", "ˈalɛf", "accent_contradiction", "á"),
@@ -687,37 +633,19 @@ PT_UNIFIED_DECISIONS: Tuple[Tuple[str, str, str, str, Optional[str], str, str], 
     ("Onofre", "pt-BR", "wiktionary", "onɔfɾi", "oˈnɔfɾi", "missing_mark", "paroxy"),
     ("Onofre", "pt-PT", "wiktionary", "ɔnɔfɾɨ", "ɔˈnɔfɾɨ", "missing_mark", "paroxy"),
     ("Rafa", "pt-BR", "wiktionary", "ʀafɐ", "ˈʀafɐ", "missing_mark", "paroxy"),
-    ("reexperiência", "pt-PT-x-lisboa", "portal", "ʀɨiʃpɨɾjẽsjɐ", "ʀɨiʃpɨɾjˈẽsjɐ", "missing_mark", "ê"),
-    ("circum-ambiente", "pt-PT-x-lisboa", "portal", "siɾkũɐ̃bjẽt", "siɾkũɐ̃bjˈẽt", "missing_mark", "paroxy"),
-    ("circum-ambiente", "pt-PT-x-lisboa", "portal", "siɾkũɐ̃bjẽtɨ", "siɾkũɐ̃bjˈẽtɨ", "missing_mark", "paroxy"),
-    ("pré-consciente", "pt-PT-x-lisboa", "portal", "pɾɛkõʃsjẽt", "pɾɛkõʃsjˈẽt", "missing_mark", "paroxy"),
-    ("pré-consciente", "pt-PT-x-lisboa", "portal", "pɾɛkõʃsjẽtɨ", "pɾɛkõʃsjˈẽtɨ", "missing_mark", "paroxy"),
-    ("semi-inconsciente", "pt-PT-x-lisboa", "portal", "sɨmɨĩkõʃsjẽt", "sɨmɨĩkõʃsjˈẽt", "missing_mark", "paroxy"),
-    ("semi-inconsciente", "pt-PT-x-lisboa", "portal", "sɨmɨĩkõʃsjẽtɨ", "sɨmɨĩkõʃsjˈẽtɨ", "missing_mark", "paroxy"),
     ("Violeta", "pt-BR", "wiktionary", "vjuletɐ", "vjuˈletɐ", "missing_mark", "paroxy"),
     ("abada", "pt-PT", "infopedia", "ɐbadɐ", "ɐˈbadɐ", "missing_mark", "paroxy"),
     ("abecásio", "pt-PT", "infopedia", "abekazju", "abeˈkazju", "missing_mark", "á"),
     ("acontraltado", "pt-PT", "infopedia", "ɐkõtrɐɫtadu", "ɐkõtrɐɫˈtadu", "missing_mark", "paroxy"),
     ("acá", "pt-PT", "infopedia", "ɐka", "ɐˈka", "missing_mark", "á"),
-    ("aftoso", "pt-BR-x-riodejaneiro", "portal", "afətozʊ", "afətˈozʊ", "missing_mark", "paroxy"),
-    ("aftoso", "pt-BR-x-saopaulo", "portal", "afətozʊ", "afətˈozʊ", "missing_mark", "paroxy"),
     ("alimentar", "pt-BR", "wiktionary", "aˌlimẽtaχ", "aˌlimẽˈtaχ", "missing_mark", "oxy_r"),
     ("ana", "pt-PT", "infopedia", "ɐnɐ", "ˈɐnɐ", "missing_mark", "paroxy"),
     ("antagonista", "pt-BR", "wiktionary", "ɐ̃tagoniʃtɐ", "ɐ̃tagoˈniʃtɐ", "missing_mark", "paroxy"),
     ("antevieiro", "pt-PT", "infopedia", "ɐ̃təvjɐjru", "ɐ̃təˈvjɐjru", "missing_mark", "paroxy"),
-    ("antidiftérico", "pt-BR-x-riodejaneiro", "portal", "ɐ̃tʃidʒifitɛrikʊ", "ɐ̃tʃidʒifitˈɛrikʊ", "missing_mark", "é"),
-    ("antidiftérico", "pt-BR-x-saopaulo", "portal", "ə̃tidifitɛrikʊ", "ə̃tidifitˈɛrikʊ", "missing_mark", "é"),
-    ("antidiftérico", "pt-BR-x-saopaulo", "portal", "ə̃tʃidʒifitɛrikʊ", "ə̃tʃidʒifitˈɛrikʊ", "missing_mark", "é"),
     ("avintense", "pt-PT", "infopedia", "ɐvĩtẽs", "ɐvĩˈtẽs", "missing_mark", "paroxy"),
     ("avintense", "pt-PT", "infopedia", "ɐvĩtẽsə", "ɐvĩˈtẽsə", "missing_mark", "paroxy"),
     ("azar", "pt-BR", "wiktionary", "ɐzaɾ", "ɐˈzaɾ", "missing_mark", "oxy_r"),
     ("banza", "pt-BR", "wiktionary", "bɐ̃zɐ", "ˈbɐ̃zɐ", "missing_mark", "paroxy"),
-    ("bime", "pt-AO", "portal", "bimɨ", "bˈimɨ", "missing_mark", "paroxy"),
-    ("bime", "pt-BR-x-riodejaneiro", "portal", "bimɪ", "bˈimɪ", "missing_mark", "paroxy"),
-    ("bime", "pt-BR-x-saopaulo", "portal", "bimi", "bˈimi", "missing_mark", "paroxy"),
-    ("bime", "pt-MZ-x-maputo", "portal", "bimɨ", "bˈimɨ", "missing_mark", "paroxy"),
-    ("bime", "pt-PT-x-lisboa", "portal", "bimɨ", "bˈimɨ", "missing_mark", "paroxy"),
-    ("bime", "pt-TL-x-dili", "portal", "bimɨ", "bˈimɨ", "missing_mark", "paroxy"),
     ("bora", "pt-PT", "infopedia", "bɔrɐ", "ˈbɔrɐ", "missing_mark", "paroxy"),
     ("breque", "pt-PT", "infopedia", "brɛk", "ˈbrɛk", "missing_mark", "paroxy"),
     ("breque", "pt-PT", "infopedia", "brɛkə", "ˈbrɛkə", "missing_mark", "paroxy"),
@@ -734,93 +662,29 @@ PT_UNIFIED_DECISIONS: Tuple[Tuple[str, str, str, str, Optional[str], str, str], 
     ("encravo", "pt", "wiktionary", "ẽkɾavʊ", "ẽˈkɾavʊ", "missing_mark", "paroxy"),
     ("excrementoso", "pt-PT", "infopedia", "ɐjʃkrəmẽˈtozu,iʃkrəmẽtozu", "ɐjʃkrəmẽˈtozu,iʃkrəmẽˈtozu", "missing_mark", "paroxy"),
     ("excrementoso", "pt-PT", "infopedia", "ɐjʃkrəmẽˈtozu,ʃkrəmẽtozu", "ɐjʃkrəmẽˈtozu,ʃkrəmẽˈtozu", "missing_mark", "paroxy"),
-    ("extrapor", "pt-AO", "portal", "ɨʃtɾapoɾ", "ɨʃtɾapˈoɾ", "missing_mark", "oxy_r"),
-    ("extrapor", "pt-BR-x-riodejaneiro", "portal", "eʃtɾapoɾ", "eʃtɾapˈoɾ", "missing_mark", "oxy_r"),
-    ("extrapor", "pt-BR-x-saopaulo", "portal", "estɽapo", "estɽapˈo", "missing_mark", "oxy_r"),
-    ("extrapor", "pt-BR-x-saopaulo", "portal", "estɾapoɾ", "estɾapˈoɾ", "missing_mark", "oxy_r"),
-    ("extrapor", "pt-MZ-x-maputo", "portal", "eʃtrɐpoɾ", "eʃtrɐpˈoɾ", "missing_mark", "oxy_r"),
-    ("extrapor", "pt-MZ-x-maputo", "portal", "ɛʃθrɐpoɾ", "ɛʃθrɐpˈoɾ", "missing_mark", "oxy_r"),
-    ("extrapor", "pt-TL-x-dili", "portal", "ʃtɾapoɾ", "ʃtɾapˈoɾ", "missing_mark", "oxy_r"),
     ("faroense", "pt-PT", "infopedia", "fɐrwẽs", "fɐˈrwẽs", "missing_mark", "paroxy"),
     ("faroense", "pt-PT", "infopedia", "fɐrwẽsə", "fɐˈrwẽsə", "missing_mark", "paroxy"),
-    ("filode", "pt-AO", "portal", "filɔdɨ", "filˈɔdɨ", "missing_mark", "paroxy"),
-    ("filode", "pt-BR-x-riodejaneiro", "portal", "filodʒɪ", "filˈodʒɪ", "missing_mark", "paroxy"),
-    ("filode", "pt-BR-x-saopaulo", "portal", "filodi", "filˈodi", "missing_mark", "paroxy"),
-    ("filode", "pt-BR-x-saopaulo", "portal", "filodʒi", "filˈodʒi", "missing_mark", "paroxy"),
-    ("filode", "pt-MZ-x-maputo", "portal", "filɔdɨ", "filˈɔdɨ", "missing_mark", "paroxy"),
-    ("filode", "pt-PT-x-lisboa", "portal", "filɔdɨ", "filˈɔdɨ", "missing_mark", "paroxy"),
-    ("filode", "pt-TL-x-dili", "portal", "filɔdɨ", "filˈɔdɨ", "missing_mark", "paroxy"),
     ("galveense", "pt-PT", "infopedia", "ɡaɫvjẽs", "ɡaɫˈvjẽs", "missing_mark", "paroxy"),
     ("galveense", "pt-PT", "infopedia", "ɡaɫvjẽsə", "ɡaɫˈvjẽsə", "missing_mark", "paroxy"),
     ("iatismo", "pt-BR", "wiktionary", "jat͡ʃizmʊ", "jaˈt͡ʃizmʊ", "missing_mark", "paroxy"),
     ("inadimplência", "pt-BR", "wiktionary", "ɪnɐdĩplẽⁿsjɐ", "ɪnɐdĩˈplẽⁿsjɐ", "missing_mark", "ê"),
     ("indenização", "pt-BR", "wiktionary", "ĩjdenizasãw", "ĩjdenizaˈsãw", "missing_mark", "oxy_ao"),
-    ("indo", "pt-AO", "portal", "ĩdʊ", "ˈĩdʊ", "missing_mark", "paroxy"),
-    ("indo", "pt-BR-x-riodejaneiro", "portal", "ĩdʊ", "ˈĩdʊ", "missing_mark", "paroxy"),
-    ("indo", "pt-BR-x-saopaulo", "portal", "ĩdʊ", "ˈĩdʊ", "missing_mark", "paroxy"),
-    ("indo", "pt-MZ-x-maputo", "portal", "ĩdu", "ˈĩdu", "missing_mark", "paroxy"),
-    ("indo", "pt-MZ-x-maputo", "portal", "ĩdʊ", "ˈĩdʊ", "missing_mark", "paroxy"),
-    ("indo", "pt-PT-x-lisboa", "portal", "ĩdu", "ˈĩdu", "missing_mark", "paroxy"),
-    ("indo", "pt-TL-x-dili", "portal", "ĩdʊ", "ˈĩdʊ", "missing_mark", "paroxy"),
     ("iídiche", "pt-BR", "wiktionary", "jidʒiʃe", "ˈjidʒiʃe", "missing_mark", "í"),
     ("jequitibá", "pt-BR", "wiktionary", "ʒekitʃiba", "ʒekitʃiˈba", "missing_mark", "á"),
     ("liana", "pt", "wiktionary", "liɐ̃nɐ", "liˈɐ̃nɐ", "missing_mark", "paroxy"),
     ("manquitolar", "pt-PT", "infopedia", "mɐ̃kitɔlar", "mɐ̃kitɔˈlar", "missing_mark", "oxy_r"),
-    ("maxite", "pt-AO", "portal", "maksitɨ", "maksˈitɨ", "missing_mark", "paroxy"),
-    ("maxite", "pt-BR-x-riodejaneiro", "portal", "maksitʃɪ", "maksˈitʃɪ", "missing_mark", "paroxy"),
-    ("maxite", "pt-BR-x-saopaulo", "portal", "makisiti", "makisˈiti", "missing_mark", "paroxy"),
-    ("maxite", "pt-BR-x-saopaulo", "portal", "makisitʃi", "makisˈitʃi", "missing_mark", "paroxy"),
-    ("maxite", "pt-MZ-x-maputo", "portal", "maksitɨ", "maksˈitɨ", "missing_mark", "paroxy"),
-    ("maxite", "pt-PT-x-lisboa", "portal", "mɐksitɨ", "mɐksˈitɨ", "missing_mark", "paroxy"),
-    ("maxite", "pt-TL-x-dili", "portal", "məksitɨ", "məksˈitɨ", "missing_mark", "paroxy"),
     ("moucarrice", "pt-PT", "infopedia", "mokɐʀis", "mokɐˈʀis", "missing_mark", "paroxy"),
     ("moucarrice", "pt-PT", "infopedia", "mowkɐʀisə", "mowkɐˈʀisə", "missing_mark", "paroxy"),
-    ("oba", "pt-AO", "portal", "ɔbɐ", "ˈɔbɐ", "missing_mark", "paroxy"),
-    ("oba", "pt-BR-x-riodejaneiro", "portal", "obɐ", "ˈobɐ", "missing_mark", "paroxy"),
-    ("oba", "pt-BR-x-saopaulo", "portal", "obə", "ˈobə", "missing_mark", "paroxy"),
-    ("oba", "pt-MZ-x-maputo", "portal", "ɔbɐ", "ˈɔbɐ", "missing_mark", "paroxy"),
-    ("oba", "pt-PT-x-lisboa", "portal", "ɔbɐ", "ˈɔbɐ", "missing_mark", "paroxy"),
-    ("oba", "pt-TL-x-dili", "portal", "ɔbə", "ˈɔbə", "missing_mark", "paroxy"),
-    ("oftálmica", "pt-BR-x-riodejaneiro", "portal", "ofətaɫmikɐ", "ofətˈaɫmikɐ", "missing_mark", "á"),
-    ("oftálmica", "pt-BR-x-saopaulo", "portal", "ofətaɫmikə", "ofətˈaɫmikə", "missing_mark", "á"),
-    ("oftálmico", "pt-BR-x-riodejaneiro", "portal", "ofətaɫmikʊ", "ofətˈaɫmikʊ", "missing_mark", "á"),
-    ("oftálmico", "pt-BR-x-saopaulo", "portal", "ofətaɫmikʊ", "ofətˈaɫmikʊ", "missing_mark", "á"),
     ("parafusar", "pt", "wiktionary", "paɾafuzaɾ", "paɾafuˈzaɾ", "missing_mark", "oxy_r"),
     ("parecerista", "pt-BR", "wiktionary", "paɾeseɾistɐ", "paɾeseˈɾistɐ", "missing_mark", "paroxy"),
     ("poldra", "pt-PT", "infopedia", "poɫdrɐ", "ˈpoɫdrɐ", "missing_mark", "paroxy"),
-    ("reda", "pt-AO", "portal", "χedɐ", "χˈedɐ", "missing_mark", "paroxy"),
-    ("reda", "pt-BR-x-riodejaneiro", "portal", "ɦedɐ", "ɦˈedɐ", "missing_mark", "paroxy"),
-    ("reda", "pt-BR-x-saopaulo", "portal", "xedə", "xˈedə", "missing_mark", "paroxy"),
-    ("reda", "pt-BR-x-saopaulo", "portal", "ʁedə", "ʁˈedə", "missing_mark", "paroxy"),
-    ("reda", "pt-MZ-x-maputo", "portal", "redɐ", "rˈedɐ", "missing_mark", "paroxy"),
     ("sanduicheria", "pt-BR", "wiktionary", "sɐ̃ɴduiʃeɾiɐ", "sɐ̃ɴduiʃeˈɾiɐ", "missing_mark", "paroxy"),
-    ("semisse", "pt-AO", "portal", "semisɨ", "semˈisɨ", "missing_mark", "paroxy"),
-    ("semisse", "pt-BR-x-riodejaneiro", "portal", "sẽmisɪ", "sẽmˈisɪ", "missing_mark", "paroxy"),
-    ("semisse", "pt-BR-x-saopaulo", "portal", "semisi", "semˈisi", "missing_mark", "paroxy"),
-    ("semisse", "pt-MZ-x-maputo", "portal", "semisɨ", "semˈisɨ", "missing_mark", "paroxy"),
-    ("semisse", "pt-MZ-x-maputo", "portal", "sẽmisɨ", "sẽmˈisɨ", "missing_mark", "paroxy"),
-    ("semisse", "pt-PT-x-lisboa", "portal", "sɨmisɨ", "sɨmˈisɨ", "missing_mark", "paroxy"),
-    ("semisse", "pt-TL-x-dili", "portal", "sɨmisɨ", "sɨmˈisɨ", "missing_mark", "paroxy"),
-    ("superpor", "pt-AO", "portal", "supɛrpoɾ", "supɛrpˈoɾ", "missing_mark", "oxy_r"),
-    ("superpor", "pt-BR-x-riodejaneiro", "portal", "superpoɾ", "superpˈoɾ", "missing_mark", "oxy_r"),
-    ("superpor", "pt-BR-x-riodejaneiro", "portal", "sʊperpoɾ", "sʊperpˈoɾ", "missing_mark", "oxy_r"),
-    ("superpor", "pt-BR-x-saopaulo", "portal", "superpo", "superpˈo", "missing_mark", "oxy_r"),
-    ("superpor", "pt-BR-x-saopaulo", "portal", "superpoɾ", "superpˈoɾ", "missing_mark", "oxy_r"),
-    ("superpor", "pt-MZ-x-maputo", "portal", "supɛrpoɾ", "supɛrpˈoɾ", "missing_mark", "oxy_r"),
-    ("superpor", "pt-MZ-x-maputo", "portal", "sʊpɛrpoɾ", "sʊpɛrpˈoɾ", "missing_mark", "oxy_r"),
-    ("superpor", "pt-TL-x-dili", "portal", "supɛrpoɾ", "supɛrpˈoɾ", "missing_mark", "oxy_r"),
     ("texugueira", "pt", "wiktionary", "teʃugeɾa", "teʃuˈgeɾa", "missing_mark", "paroxy"),
     ("travesseiro", "pt-BR", "wiktionary", "traveˡsejru", "traveˈsejru", "missing_mark", "paroxy"),
     ("tágico", "pt-PT", "infopedia", "taʒiku", "ˈtaʒiku", "missing_mark", "á"),
     ("vexilologia", "pt-BR", "wiktionary", "veksiloloʒiɐ", "veksiloloˈʒiɐ", "missing_mark", "paroxy"),
     ("íbis", "pt-BR", "wiktionary", "ibiʃ", "ˈibiʃ", "missing_mark", "í"),
     ("abalroa", "pt-BR", "wiktionary", "abawxoˈa", "abawˈxoa", "unaccented_stress", "paroxy"),
-    ("sagui", "pt-AO", "portal", "sˈagwi", "sagwˈi", "unaccented_stress", "oxy_ao"),
-    ("sagui", "pt-BR-x-riodejaneiro", "portal", "sˈagwɪ", "sagwˈɪ", "unaccented_stress", "oxy_ao"),
-    ("sagui", "pt-BR-x-saopaulo", "portal", "sˈagwi", "sagwˈi", "unaccented_stress", "oxy_ao"),
-    ("sagui", "pt-MZ-x-maputo", "portal", "sˈagwi", "sagwˈi", "unaccented_stress", "oxy_ao"),
-    ("sagui", "pt-PT-x-lisboa", "portal", "sˈagwi", "sagwˈi", "unaccented_stress", "oxy_ao"),
-    ("sagui", "pt-TL-x-dili", "portal", "sˈagwi", "sagwˈi", "unaccented_stress", "oxy_ao"),
     ("almargem", "pt-PT", "infopedia", "aɫmarˈʒɐ̃j̃", "aɫˈmarʒɐ̃j̃", "unaccented_stress", "paroxy"),
     ("arrinconar", "pt-PT", "infopedia", "ɐʀĩˈkunar", "ɐʀĩkuˈnar", "unaccented_stress", "oxy_r"),
     ("açougagem", "pt-PT", "infopedia", "ɐsowɡaˈʒɐ̃j̃", "ɐsowˈɡaʒɐ̃j̃", "unaccented_stress", "paroxy"),
@@ -855,37 +719,15 @@ PT_UNIFIED_DECISIONS: Tuple[Tuple[str, str, str, str, Optional[str], str, str], 
     ("emetólogo", "pt-PT", "infopedia", "ɛmɛtuluˈʒiʃtɐ", None, "wrong_headword", "emetologista: the reading ends in -ista, the word in -ogo"),
     ("esculhambo", "pt-PT", "infopedia", "iʃkuʎɐ̃bɐˈsɐ̃w̃", None, "wrong_headword", "esculhambação: the reading ends in -ção, the word in -o"),
     ("esculhambo", "pt-PT", "infopedia", "ʃkuʎɐ̃bɐˈsɐ̃w̃", None, "wrong_headword", "esculhambação: the reading ends in -ção, the word in -o"),
-    ("hacker", "pt", "portal", "ou", None, "wrong_headword", "the reading is [ou], the conjunction ou"),
     ("halo", "pt-BR", "wiktionary", "'heɪloʊ", None, "wrong_headword", "the English word halo: [eɪ] and [oʊ] are not Portuguese"),
     ("locustídeos", "pt-PT", "infopedia", "lukuʃtiˈdju", None, "wrong_headword", "the singular locustídeo: no reading of the final -s"),
     ("matutagem", "pt-PT", "infopedia", "mɐtutɐˈsɐ̃w̃", None, "wrong_headword", "matutação: the reading ends in -ção, the word in -gem"),
-    ("microfarad", "pt-AO", "portal", "mikɾɔ", None, "wrong_headword", "micro: the reading stops after micro-"),
-    ("microfarad", "pt-BR-x-riodejaneiro", "portal", "mikɾo", None, "wrong_headword", "micro: the reading stops after micro-"),
-    ("microfarad", "pt-BR-x-saopaulo", "portal", "mikɽo", None, "wrong_headword", "micro: the reading stops after micro-"),
-    ("microfarad", "pt-BR-x-saopaulo", "portal", "mikɾo", None, "wrong_headword", "micro: the reading stops after micro-"),
-    ("microfarad", "pt-MZ-x-maputo", "portal", "mikrɔ", None, "wrong_headword", "micro: the reading stops after micro-"),
-    ("microfarad", "pt-PT-x-lisboa", "portal", "mikɾɔ", None, "wrong_headword", "micro: the reading stops after micro-"),
-    ("microfarad", "pt-TL-x-dili", "portal", "mikɾɔ", None, "wrong_headword", "micro: the reading stops after micro-"),
-    ("microvolt", "pt-AO", "portal", "mikɾɔ", None, "wrong_headword", "micro: the reading stops after micro-"),
-    ("microvolt", "pt-BR-x-riodejaneiro", "portal", "mikɾo", None, "wrong_headword", "micro: the reading stops after micro-"),
-    ("microvolt", "pt-BR-x-saopaulo", "portal", "mikɽo", None, "wrong_headword", "micro: the reading stops after micro-"),
-    ("microvolt", "pt-BR-x-saopaulo", "portal", "mikɾo", None, "wrong_headword", "micro: the reading stops after micro-"),
-    ("microvolt", "pt-MZ-x-maputo", "portal", "mikrɔ", None, "wrong_headword", "micro: the reading stops after micro-"),
-    ("microvolt", "pt-PT-x-lisboa", "portal", "mikɾɔ", None, "wrong_headword", "micro: the reading stops after micro-"),
-    ("microvolt", "pt-TL-x-dili", "portal", "mikɾɔ", None, "wrong_headword", "micro: the reading stops after micro-"),
     ("nanomédico", "pt-PT", "infopedia", "nɐnɔməˈliɐ", None, "wrong_headword", "a word in -melia: the reading ends in -ia, the word in -dico"),
     ("patrónimo", "pt-PT", "infopedia", "pɐtruˈnimiku", None, "wrong_headword", "patronímico: the reading ends in -ico, the word in -imo"),
     ("peruíce", "pt-PT", "infopedia", "pɐrˈvwis", None, "wrong_headword", "parvoíce: the reading has [v] and no [e] of pe-ru"),
     ("peruíce", "pt-PT", "infopedia", "pɐrˈvwisə", None, "wrong_headword", "parvoíce: the reading has [v] and no [e] of pe-ru"),
     ("proxenético", "pt-PT", "infopedia", "prɔksəˈnɛtiku,prɔʃə", "prɔksəˈnɛtiku", "wrong_headword", "the second variant [prɔʃə] covers only proxe-"),
     ("psicadélico", "pt-BR", "wiktionary", "psɪkɐdeˈliɐ", None, "wrong_headword", "psicadelia: the reading ends in -ia, the word in -ico"),
-    ("tração", "pt-AO", "portal", "selˈɛtʊ", None, "wrong_headword", "seleto: three syllables se-le-to; the Portal lists only the reading of tra·ção"),
-    ("tração", "pt-BR-x-riodejaneiro", "portal", "selˈɛtʊ", None, "wrong_headword", "seleto: three syllables se-le-to; the Portal lists only the reading of tra·ção"),
-    ("tração", "pt-BR-x-saopaulo", "portal", "selˈɛtʊ", None, "wrong_headword", "seleto: three syllables se-le-to; the Portal lists only the reading of tra·ção"),
-    ("tração", "pt-MZ-x-maputo", "portal", "selˈetu", None, "wrong_headword", "seleto: three syllables se-le-to; the Portal lists only the reading of tra·ção"),
-    ("tração", "pt-MZ-x-maputo", "portal", "selˈɛːkθʊ", None, "wrong_headword", "seleto: three syllables se-le-to; the Portal lists only the reading of tra·ção"),
-    ("tração", "pt-PT-x-lisboa", "portal", "sɨlˈɛtu", None, "wrong_headword", "seleto: three syllables se-le-to; the Portal lists only the reading of tra·ção"),
-    ("tração", "pt-TL-x-dili", "portal", "sɨlˈɛktʊ", None, "wrong_headword", "seleto: three syllables se-le-to; the Portal lists only the reading of tra·ção"),
 )
 
 
@@ -991,13 +833,13 @@ def _pt_onset_start(reading: str, start: int) -> int:
     return i
 
 
-def pt_broad_from_narrow(broad: str, narrow: str, source: str) -> Optional[str]:
+def pt_broad_from_narrow(broad: str, narrow: str) -> Optional[str]:
     """The ``ipa_broad`` correction that matches a corrected ``ipa_narrow``.
 
-    The mark goes on the broad nucleus with the same index, before the vowel
-    in a Portal reading and before the onset elsewhere, as each source writes
-    it. ``None`` when the broad reading already has the mark there, or when
-    its nuclei do not line up with the narrow reading's.
+    The mark goes on the broad nucleus with the same index, before its onset,
+    as Infopédia and pt.wiktionary write it. ``None`` when the broad reading
+    already has the mark there, or when its nuclei do not line up with the
+    narrow reading's.
     """
     k = _pt_stressed_nucleus(narrow)
     bare = _pt_strip_marks(unicodedata.normalize("NFD", broad))
@@ -1007,43 +849,9 @@ def pt_broad_from_narrow(broad: str, narrow: str, source: str) -> Optional[str]:
         return None
     if _pt_stressed_nucleus(broad) == k:
         return None
-    start = spans[k][0]
-    at = start if source == "portal" else _pt_onset_start(bare, start)
+    at = _pt_onset_start(bare, spans[k][0])
     mark = "'" if "'" in broad else "ˈ"
     return _pt_same_form(bare[:at] + mark + bare[at:], broad)
-
-
-def pt_ie_stressed(word: str) -> bool:
-    """Whether the spelling puts the stress on the e of its one ⟨ie⟩/⟨ee⟩.
-
-    True when that e is ⟨ê⟩, or when the word has no other accent, ends in
-    -a, -e, -o (-s), -em or -ens (so it is paroxytone), and the ⟨ie⟩/⟨ee⟩ is
-    its next-to-last vowel group, as in *pa·ci·en·te*, *fri·e·za*,
-    *gui·ne·en·se*.
-    """
-    w = word.lower()
-    if " " in w or "-" in w or len(re.findall("[ie][eê]", w)) != 1:
-        return False
-    if any(c in "áéíóúâôãõ" for c in w):
-        return False
-    if "iê" in w or "eê" in w:
-        return True
-    groups = re.findall("[aeiouáéíóúâêôãõ]+", w)
-    return (re.search("([aeo]s?|em|ens)$", w) is not None
-            and len(groups) >= 2 and groups[-2] in ("ie", "ee"))
-
-
-def pt_ie_mark(reading: str) -> Optional[str]:
-    """Insert the primary mark before the one e-vowel that follows [j] or [w]
-    in an unmarked reading; ``None`` when there is not exactly one."""
-    if any(c in PT_MARKS for c in reading) or "$" in reading or "," in reading:
-        return None
-    nfd = unicodedata.normalize("NFD", reading)
-    hits = list(re.finditer("[jw](?=[eɛ])", nfd))
-    if len(hits) != 1 or len(_pt_nuclei(nfd)) < 2:
-        return None
-    at = hits[0].end()
-    return _pt_same_form(nfd[:at] + "ˈ" + nfd[at:], reading)
 
 
 def _pt_authority(kind: str, basis: str, word: str, region: str) -> str:
@@ -1053,10 +861,10 @@ def _pt_authority(kind: str, basis: str, word: str, region: str) -> str:
         text = PT_AUTHORITY[basis]
     else:
         text = PT_AUTHORITY["accent"].format(letter=basis)
-    quote = PT_PORTAL_QUOTES.get((word, PT_PORTAL_REGION.get(region, "")))
-    if quote:
-        text += ("; Portal da Língua Portuguesa, fonetica, region "
-                 f"{PT_PORTAL_REGION[region]}: '{quote}'")
+    if word in PT_WIKTIONARY_QUOTES:
+        revision, template = PT_WIKTIONARY_QUOTES[word]
+        text += (f"; pt.wiktionary.org, {word}, revision {revision}, syllable "
+                 f"template: '{template}'")
     return text
 
 
@@ -1074,23 +882,25 @@ def _pt_reason(kind: str, basis: str, original: str, corrected: Optional[str]) -
 def build_pt_unified_rows(rows: List[Dict]) -> Tuple[List[Dict], Dict[str, int]]:
     """Overlay rows for the unified Portuguese gold, plus the counts.
 
-    *rows* are the dataset's JSONL rows in file order. Three sources of
-    correction run over them: the hand-checked :data:`PT_UNIFIED_DECISIONS`,
-    the drop of every row whose reading ends in mis-encoded text, and the
-    ⟨ie⟩/⟨ee⟩ mark on Portal rows with no primary mark. Each corrected
-    ``ipa_narrow`` brings a matching ``ipa_broad`` correction where the broad
-    reading shows the same defect. A decision that matches no row raises:
-    a silent no-op would ship a ledger that claims a correction it never made.
+    *rows* are the dataset's JSONL rows in file order. The Portal rows are
+    skipped. Two sources of correction run over the rest: the hand-checked
+    :data:`PT_UNIFIED_DECISIONS`, and the drop of every row whose reading
+    carries mis-encoded text. Each corrected ``ipa_narrow`` brings a matching
+    ``ipa_broad`` correction where the broad reading shows the same defect. A
+    decision that matches no row raises: a silent no-op would ship a ledger
+    that claims a correction it never made.
     """
     from benchmark import pt_unified_source  # the source rule only
 
+    stats = {"rows_in": len(rows)}
+    rows = [row for row in rows if pt_unified_source(row) != "portal"]
+    stats["portal_rows_skipped"] = stats["rows_in"] - len(rows)
     index: Dict[Tuple[str, str, str, str], List[Dict]] = {}
     for row in rows:
         key = (row["word"], row["region"], pt_unified_source(row),
                unicodedata.normalize("NFC", row["ipa_narrow"]))
         index.setdefault(key, []).append(row)
     out: List[Dict] = []
-    stats = {"rows_in": len(rows)}
     seen = set()
 
     def emit(row, field, original, corrected, kind, reason, authority):
@@ -1113,7 +923,7 @@ def build_pt_unified_rows(rows: List[Dict]) -> Tuple[List[Dict], Dict[str, int]]
         if (corrected is None or "," in row["ipa_narrow"] or not row["ipa_broad"]
                 or _pt_strip_marks(corrected) != _pt_strip_marks(row["ipa_narrow"])):
             return
-        broad = pt_broad_from_narrow(row["ipa_broad"], corrected, pt_unified_source(row))
+        broad = pt_broad_from_narrow(row["ipa_broad"], corrected)
         if broad is not None:
             emit(row, "ipa_broad", row["ipa_broad"], broad, kind, reason, authority)
 
@@ -1145,20 +955,8 @@ def build_pt_unified_rows(rows: List[Dict]) -> Tuple[List[Dict], Dict[str, int]]
                  _pt_authority(kind, basis, word, region))
     for row in rows:
         if "Ã" in row["ipa_narrow"]:
-            authority = (PT_MOJIBAKE_NOTE_AUTHORITY if "nÃ£o" in row["ipa_narrow"]
-                         else PT_MOJIBAKE_AUTHORITY)
             emit(row, "ipa_narrow", row["ipa_narrow"], None, "mojibake",
-                 PT_MOJIBAKE_REASON, authority)
-    for row in rows:
-        if pt_unified_source(row) != "portal" or not pt_ie_stressed(row["word"]):
-            continue
-        basis = "accent" if re.search("[ie]ê", row["word"].lower()) else "paroxy"
-        authority = (PT_AUTHORITY["accent"].format(letter="ê") if basis == "accent"
-                     else PT_AUTHORITY["paroxy"])
-        for field in ("ipa_narrow", "ipa_broad"):
-            fixed = pt_ie_mark(row[field])
-            if fixed is not None:
-                emit(row, field, row[field], fixed, "missing_mark", PT_IE_REASON, authority)
+                 PT_MOJIBAKE_REASON, PT_MOJIBAKE_AUTHORITY)
     out.sort(key=lambda r: (r["word"], r["region"], r["source"], r["pos"],
                             r["field"], r["original_reading"]))
     stats["overlay_rows"] = len(out)

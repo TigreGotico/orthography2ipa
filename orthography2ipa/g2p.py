@@ -91,7 +91,7 @@ from orthography2ipa.sentence import (
 from orthography2ipa.stress import (
     SECONDARY_MARK, _syllables_for, apply_iambic_length, apply_stress_mark,
     cliticless_keys, detect_stress, detect_stress_by_weight,
-    secondary_stress_positions, syllabify, syllabify_ipa,
+    secondary_stress_positions, syllabify, syllabify_for_mark, syllabify_ipa,
 )
 from orthography2ipa.tone import assign_computed_tones, dock_tone_marks
 from orthography2ipa.transforms import apply_transform
@@ -140,6 +140,11 @@ _PAUSE_PUNCTUATION = frozenset(PAUSE_PUNCTUATION)
 #: suppressed separately in ``_transcribe_word`` (Vigário 2003, *The Prosodic
 #: Word in European Portuguese*, on clitics as non-prosodic-words).
 _CLITIC_NO_STRESS = -1
+
+def _vowel_offsets(ipa: str) -> List[int]:
+    """The offsets of the vowel characters in *ipa*."""
+    return [i for i, c in enumerate(ipa) if is_ipa_vowel(c)]
+
 
 #: Vowels never collapse — ⟨ee⟩/⟨oo⟩ are real long vowels, not doubled letters.
 #: Length and stress marks are not segments, so a run is identical across them.
@@ -1437,11 +1442,63 @@ class G2P:
                         mark = rules.accent2_mark
                 ipa = apply_stress_mark(
                     ipa, self.spec.stress, idx, syllables=sylls, mark=mark,
+                    ipa_syllables=self._fold_inserted_nuclei(word, ipa, path),
                     secondary_indices=sorted(secondary_stress_positions(
                         len(sylls), idx, self.spec.stress)),
                     spec=self.spec)
         # NOT NFC-composed: see the note in _transcribe_word.
         return ipa
+
+    def _fold_inserted_nuclei(
+        self, word: str, ipa: str, path: Optional[IPAPath],
+    ) -> Optional[List[str]]:
+        """The syllables of *ipa* with each inserted nucleus folded into the
+        syllable before it, or ``None``.
+
+        The stress mark counts syllables from the end of the word, written
+        against transcribed. A rule that inserts a nucleus the spelling does
+        not write (an ``append`` epenthesis) adds a transcribed syllable with
+        no written one. When the insertion follows the stressed nucleus, the
+        count lands the mark one syllable late: pt-BR ⟨pacto⟩ [ˈpakitu] came
+        out [paˈkitu]. The path records the grapheme of each segment, so a
+        vowel is inserted when no value the grapheme table or the positional
+        table gives that grapheme holds a vowel (Catalan ⟨gu⟩ is [ɡu] before a
+        consonant in the positional table only). The transcription is divided as
+        :func:`~orthography2ipa.stress.syllabify_for_mark` divides it, and a
+        syllable whose only vowels are inserted joins the syllable before it,
+        so the count sees the written syllables again: ``pa|ki|tu`` is counted
+        as ``paki|tu``. A word where nothing folds returns ``None`` and keeps
+        the plain count.
+        """
+        if path is None or not path.graphemes or path.ipa != ipa:
+            return None
+        tokens = self._tokenizer.grapheme_tokens(word)
+        inserted: Set[int] = set()
+        offset = t = 0
+        for grapheme, segment in zip(path.graphemes, path.segments):
+            while t < len(tokens) and tokens[t].grapheme != grapheme:
+                t += 1
+            if t == len(tokens):
+                return None
+            positional = (self.spec.positional_graphemes or {}).get(grapheme, {})
+            readings = [*tokens[t].ipa, *(r for rs in positional.values() for r in rs or ())]
+            if not any(map(_vowel_offsets, readings)):
+                inserted.update(offset + i for i in _vowel_offsets(segment))
+            offset += len(segment)
+            t += 1
+        if not inserted:
+            return None
+        syllables = syllabify_for_mark(ipa, self.spec.stress)
+        folded: List[str] = []
+        offset = 0
+        for syllable in syllables:
+            nuclei = [offset + i for i in _vowel_offsets(syllable)]
+            if folded and nuclei and inserted.issuperset(nuclei):
+                folded[-1] += syllable
+            else:
+                folded.append(syllable)
+            offset += len(syllable)
+        return folded if len(folded) < len(syllables) else None
 
     def word_candidates(self, word: str, *, k: int = 5,
                         beam_width: Optional[int] = None) -> List[str]:

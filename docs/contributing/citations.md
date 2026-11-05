@@ -77,7 +77,7 @@ Some reference sets have no error model. Call these sets silver labels, never go
 
 - Sets that are pinned to the output of this engine. A score near zero on an engine-pinned set shows that the output did not change. It does not show that the output is correct.
 
-- Sets that another phonemizer produced, such as the `espeak-derived` and `epitran-derived` rows. These measure agreement with that tool.
+- Sets that another phonemizer produced, such as the `espeak-derived`, `epitran-derived` and `lupo-derived` rows. These measure agreement with that tool.
 
 The board marks these sets with the tiers that never gate, which [benchmarks](../evaluation/benchmarks.md#reliability-tiers) and [quality tiers](../specs/quality_tiers.md) define.
 

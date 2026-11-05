@@ -2230,8 +2230,8 @@ _GOLD_TIERS = frozenset({"expert-human", "lexicon-derived", "crowd-scraped"})
 #: another automatic phonemizer's output (e.g. HiTZ's ahoNT for
 #: ``hitz_basque_ipa``) rather than a human- or corpus-derived reference.
 _AGREEMENT_TIERS = frozenset({
-    "machine-generated", "espeak-derived", "epitran-derived", "llm-corrected",
-    "llm-generated",
+    "machine-generated", "espeak-derived", "epitran-derived", "lupo-derived",
+    "llm-corrected", "llm-generated",
 })
 
 

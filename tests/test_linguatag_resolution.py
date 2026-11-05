@@ -55,7 +55,7 @@ def test_bare_tag_resolves_to_reference_variety(bare, variety):
 
 
 @pytest.mark.parametrize("tag,spec", [
-    ("arb-x-zzz", "ar"),
+    ("ar-x-zzz", "ar"),
     ("cbk-zam-x-zzz", "cbk-PH"),
     ("ext-PT-x-zzz", "ext-PT-x-barranco"),
 ])
