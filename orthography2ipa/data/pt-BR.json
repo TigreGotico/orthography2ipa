@@ -2156,9 +2156,11 @@
         "ʃ",
         "ʒ",
         "t͡ʃ",
-        "d͡ʒ"
+        "d͡ʒ",
+        "m",
+        "n"
       ],
-      "notes": "Vowel epenthesis between two obstruents: advogado [ad͡ʒivoˈɡadu], absurdo [abiˈsuɾdu], opção [opiˈsɐ̃w̃], obter [obiˈteɾ], psicologia [pisikoloˈʒiɐ]. Barbosa & Albano (2004: 227): 'By contrast, BP exhibits vowel epenthesis, breaking most two-obstruent sequences. For phonotactic reasons common to both BP and EP, one of the consonants is always an apical: psicologia pisɪkoloʒiɐ or pɪsikoloʒiɐ ‘psychology’ in BP vs. psɪkoloʒiɐ in EP. The epenthetic vowel is always [i] or [ɪ]'. The inserted vowel is [i], so a preceding /t d/ affricates on the second allophone pass (advogado). Scope: a stop or labiodental fricative before an obstruent. A coda sibilant is an archiphoneme /S/ and is not a target (festa). A nasal or liquid after the stop is not an obstruent, so ritmo and pneu are outside the source's statement and stay as spelled. The rule is held to an unstressed syllable that has a nucleus after it. The stress mark is placed by counting IPA syllables from the end of the word, and an inserted vowel after the stressed syllable would move the mark (pacto, bíceps). Those words keep the cluster, which is a documented gap. The process varies with position and context. Collischonn (2004: 66-67), on southern Brazilian speech, measures epenthesis in 69% of pretonic and 24% of post-tonic tokens, and by following consonant 89% before a non-sibilant fricative (advogado), 77% before a nasal (mogno), 44% before a stop (rapto) and 34% before a sibilant (opção). The base follows the São Paulo description of Barbosa & Albano."
+      "notes": "Vowel epenthesis after a stop or labiodental fricative, before an obstruent or a nasal: advogado [ad͡ʒivoˈɡadu], absurdo [abiˈsuɾdu], opção [opiˈsɐ̃w̃], obter [obiˈteɾ], psicologia [pisikoloˈʒiɐ], hipnose [ipiˈnozi], etnia [et͡ʃiˈniɐ]. Barbosa & Albano (2004: 227): 'By contrast, BP exhibits vowel epenthesis, breaking most two-obstruent sequences. For phonotactic reasons common to both BP and EP, one of the consonants is always an apical: psicologia pisɪkoloʒiɐ or pɪsikoloʒiɐ ‘psychology’ in BP vs. psɪkoloʒiɐ in EP. The epenthetic vowel is always [i] or [ɪ]'. The inserted vowel is [i], so a preceding /t d/ affricates on the second allophone pass (advogado). Scope: a stop or labiodental fricative before an obstruent or /m n/. A coda sibilant is an archiphoneme /S/ and is not a target (festa). Collischonn (2004: 68, Tabela 2) measures the nasal context on VARSUL speech of Porto Alegre, Florianópolis and Curitiba: 'Oclusiva Nasal (mogno) 116/151 77 0,74' against 'Oclusiva não nasal (rapto) 34/78 44 0,47'. She writes that 'a nasal favorece significativamente mais a epêntese do que a oclusiva não-nasal' (p. 68), and her hypothesis names hipnose: 'quando a consoante seguinte for uma oclusiva, como em espectro, ou uma nasal, como em hipnose, esperamos maiores taxas de ocorrência da epêntese' (p. 66). The vowel is [i], as Barbosa & Albano state for every epenthetic vowel. Romano & Seabra (2017: 286) find [e] in pneu in most ALiB responses from Paraná and São Paulo: 'em pneu, no qual se verifica a predominância da vogal média alta anterior [e] em 80,37% das respostas'. The spec keeps [i]. A nasal before the nasal is not a target (amnésia): Collischonn (2004: 69, note 7) found no token of it, 'Não houve ocorrência de forma em que a consoante perdida fosse uma nasal labial, como em amnésia ou Kremlin'. A liquid after the stop is outside both statements. The rule is held to an unstressed syllable that has a nucleus after it. The stress mark is placed by counting IPA syllables from the end of the word, and an inserted vowel after the stressed syllable would move the mark (pacto, bíceps, ritmo). Those words keep the cluster, which is a documented gap. The process varies with position and context. Collischonn (2004: 67-68), on southern Brazilian speech, measures epenthesis in 69% of pretonic and 24% of post-tonic tokens, and by following consonant 89% before a non-sibilant fricative (advogado), 77% before a nasal (mogno), 44% before a stop (rapto) and 34% before a sibilant (opção). The base follows the São Paulo description of Barbosa & Albano."
     },
     {
       "id": "BR_RAISE_FINAL_ES",
@@ -2440,7 +2442,17 @@
       "publisher": "Signum: Estudos Linguísticos 7(1): 61-78",
       "url": null,
       "pages": "66-68",
-      "notes": "Epenthesis rates by position (BR_EPENTHESIS)."
+      "notes": "Epenthesis rates by position and by the following consonant, the nasal context included (BR_EPENTHESIS)."
+    },
+    {
+      "id": "romano_seabra2017",
+      "author": "Romano, V.P. & Seabra, R.D.",
+      "year": 2017,
+      "title": "“P[e]neu”, “Ad[e]vogado” e “Af[e]tosa”: o abaixamento das vogais suarabácticas nos dados do Projeto Atlas Linguístico do Brasil",
+      "publisher": "Signum: Estudos da Linguagem 20(1): 276-306",
+      "url": "https://doi.org/10.5433/2237-4876.2017v20n1p276",
+      "pages": "286",
+      "notes": "The vowel quality of the epenthetic vowel in ALiB data from Paraná and São Paulo; pneu has [e] in most responses (BR_EPENTHESIS note)."
     }
   ],
   "wikipedia": [
