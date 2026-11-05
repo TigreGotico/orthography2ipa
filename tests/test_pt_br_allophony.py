@@ -319,9 +319,10 @@ def test_br_pretonic_epenthesis(word, expected):
     assert G2P("pt-BR").transcribe_word(word) == expected
 
 
-def test_br_no_epenthesis_after_stressed_vowel():
-    # Collischonn (2004: 67): post-tonic epenthesis is a minority (24 %).
-    assert G2P("pt-BR").transcribe_word("pacto") == "ˈpaktu"
+def test_br_epenthesis_after_stressed_vowel():
+    # Curioletti & Sandri (2019, PDF p. 6): capto [kapitu]. The inserted vowel
+    # leaves the mark on the stressed syllable (BR_EPENTHESIS_POSTTONIC).
+    assert G2P("pt-BR").transcribe_word("pacto") == "ˈpakitu"
 
 
 @pytest.mark.parametrize("word,expected", [
@@ -365,11 +366,11 @@ FF_LOANS = (
 
 
 def _assert_epenthesis_words(g2p):
-    # The cluster after the stressed vowel keeps its consonants, and the mark
-    # stays on the stressed syllable: pacto [ˈpaktu], not [paˈkitu].
-    assert re.fullmatch(r"ˈpak.?tu", g2p.transcribe_word("pacto"))
-    assert re.fullmatch(r"ˈap.?tu", g2p.transcribe_word("apto"))
-    assert re.search(r"ˈpaktɐ$", g2p.transcribe_word("compacta"))
+    # The mark stays on the stressed syllable whether or not the lect breaks
+    # the cluster after it: pacto [ˈpakitu] or [ˈpaktu], never [paˈkitu].
+    assert re.fullmatch(r"ˈpaki?tu", g2p.transcribe_word("pacto"))
+    assert re.fullmatch(r"ˈapi?tu", g2p.transcribe_word("apto"))
+    assert re.search(r"ˈpaki?tɐ$", g2p.transcribe_word("compacta"))
     # The pretonic cluster takes the epenthetic [i], which is unstressed:
     # opção [opiˈsɐ̃w̃], adverso [ad͡ʒiˈvɛɾsu] (Barbosa & Albano 2004: 227).
     assert re.fullmatch(r"[oɔu]piˈsɐ̃w̃", g2p.transcribe_word("opção"))
