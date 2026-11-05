@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.117.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.117.0a1) (2026-11-05)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.116.3a1...7.117.0a1)
+
+**Merged pull requests:**
+
+- feat\(nl\): add nl-NL-x-groninge regional Standard Dutch spec [\#2047](https://github.com/TigreGotico/orthography2ipa/pull/2047) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.116.3a1](https://github.com/TigreGotico/orthography2ipa/tree/7.116.3a1) (2026-11-05)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.116.2a1...7.116.3a1)
@@ -383,15 +391,10 @@
 **Merged pull requests:**
 
 - fix\(data\): cite the Duanmu preprint by its own title [\#1908](https://github.com/TigreGotico/orthography2ipa/pull/1908) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-- fix\(data\): write the ejective mark as U+02BC, not U+2019 [\#1901](https://github.com/TigreGotico/orthography2ipa/pull/1901) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.113.5a1](https://github.com/TigreGotico/orthography2ipa/tree/7.113.5a1) (2026-11-03)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.113.4a1...7.113.5a1)
-
-**Merged pull requests:**
-
-- fix\(stress\): weigh a one-atom diphthong as heavy [\#1900](https://github.com/TigreGotico/orthography2ipa/pull/1900) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.113.4a1](https://github.com/TigreGotico/orthography2ipa/tree/7.113.4a1) (2026-11-03)
 
