@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.117.10a1](https://github.com/TigreGotico/orthography2ipa/tree/7.117.10a1) (2026-11-05)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.117.9a1...7.117.10a1)
+
+**Merged pull requests:**
+
+- fix\(pt-PT\): keep PT\_CODA\_S\_BEFORE\_ZH off a word that is only \[ʃ\] [\#2080](https://github.com/TigreGotico/orthography2ipa/pull/2080) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.117.9a1](https://github.com/TigreGotico/orthography2ipa/tree/7.117.9a1) (2026-11-05)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.117.8a1...7.117.9a1)
@@ -368,10 +376,6 @@
 ## [7.114.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.114.2a1) (2026-11-03)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.114.1a1...7.114.2a1)
-
-**Merged pull requests:**
-
-- fix\(deps\): require o2i-lexicons 0.1.0a1 in the lexicons extra [\#1930](https://github.com/TigreGotico/orthography2ipa/pull/1930) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.114.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.114.1a1) (2026-11-03)
 
