@@ -40,8 +40,8 @@ def nl():
 @pytest.mark.parametrize("word,ipa", [
     ("maken", "ˈmaːkən"),      # open: a → aː
     ("makken", "ˈmɑkən"),      # closed by a geminate: a stays ɑ
-    ("lopen", "ˈloːpən"),      # open: o → oː
-    ("wonen", "ˈʋoːnən"),
+    ("lopen", "ˈloupən"),      # open: o → oː, realised [ou]
+    ("wonen", "ˈʋounən"),
     ("lip", "ˈlɪp"),           # closed: i stays ɪ
     ("ik", "ˈɪk"),
     ("liter", "ˈlitər"),       # open: i → tense-but-short i, NOT iː
@@ -60,7 +60,7 @@ def test_aperture_beats_the_single_consonant_heuristic(nl):
     otherwise, because /br/ is a legal Dutch onset (Booij 1995, ch. 2).
     """
     assert syllables("nl-NL", "abrikoos") == ["a", "bri", "koos"]
-    assert nl.transcribe("abrikoos") == "ˈaːbrikoːs"
+    assert nl.transcribe("abrikoos") == "ˈaːbrikous"
 
 
 # ── the velar nasal heads no syllable (Booij 1995, ch. 2) ────────────────

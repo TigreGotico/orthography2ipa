@@ -174,7 +174,7 @@ def test_limburg_keeps_its_values_when_nl_nl_moves(tmp_path, monkeypatch):
     assert child.transcribe("vier").startswith("ˈv")
     assert moved.transcribe("lachen") == "ˈlaːhən"
     assert child.transcribe("lachen") == "ˈlaːxən"
-    assert child.transcribe("school") == "ˈsxoːl"
+    assert child.transcribe("school") == "ˈsxoul"
     assert child.transcribe("Albrecht") == "ˈɑlbrɛxt"
     assert child.transcribe("tjerkgaast") == "ˈtʃɛrkxaːst"
 
