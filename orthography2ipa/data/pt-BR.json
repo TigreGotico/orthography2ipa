@@ -27,6 +27,9 @@
   "allophones_base": "pt-PT-x-medieval",
   "positional_graphemes_base": "pt-PT-x-medieval",
   "graphemes": {
+    "ã": [
+      "ɐ̃"
+    ],
     "ãi": [
       "ɐ̃j̃"
     ],
@@ -370,7 +373,43 @@
       "followed_by_phoneme": [
         "̃"
       ],
-      "notes": "Coda-conditioned vowel nasalisation, general Portuguese, retained in Brazilian Portuguese (Barbosa & Albano 2004: 229: 'The archiphoneme /N/, in words such as canta /kaNta/ ‘(s/he) sings’ or irmã /iRˈmaN/ ‘sister’, triggers the nasalisation of a preceding vowel'; the nasalised [ɐ̃] is in the vowel table, santo [ˈsɐ̃ⁿtʊ]; Mateus & d'Andrade 2000 and Câmara Jr. 1970 not consulted): a vowel followed by a tautosyllabic (coda) nasal ⟨m/n⟩ nasalises and the nasal consonant is absorbed (campo, canto, ambos). The nasalisation is modelled pre-lexically by the positional 'm'/'n' before_consonant/word_final → [̃] (U+0303 combining tilde) map. This rule supplies only the VOWEL-QUALITY shift for ⟨a⟩: BP nasal /a/ is the raised central [ɐ̃] (campo [ˈkɐ̃pu]), so the oral [a] selected by the positional map raises to the ORAL base [ɐ] before the tilde — [ɐ]+[̃] = [ɐ̃]. The tilde comes only from the m/n slot, so no vowel is double-tilded. Fires only when the next slot is the tilde. A stressed vowel before an onset ⟨m n nh⟩ is nasalised by BR_NASAL_STRESSED_* (cama [ˈkɐ̃mɐ]); a pretonic one stays oral (camada [kaˈmadɐ])."
+      "notes": "Coda-conditioned vowel nasalisation, general Portuguese, retained in Brazilian Portuguese (Barbosa & Albano 2004: 229: 'The archiphoneme /N/, in words such as canta /kaNta/ ‘(s/he) sings’ or irmã /iRˈmaN/ ‘sister’, triggers the nasalisation of a preceding vowel'; the nasalised [ɐ̃] is in the vowel table, santo [ˈsɐ̃ⁿtʊ]; Mateus & d'Andrade 2000 and Câmara Jr. 1970 not consulted): a vowel followed by a tautosyllabic (coda) nasal ⟨m/n⟩ nasalises and the nasal consonant is absorbed (campo, canto, ambos). The nasalisation is modelled pre-lexically by the positional 'm'/'n' before_consonant/word_final → [̃] (U+0303 combining tilde) map. This rule supplies only the VOWEL-QUALITY shift for ⟨a⟩: BP nasal /a/ is the raised central [ɐ̃] (campo [ˈkɐ̃pu]), so the oral [a] selected by the positional map raises to the ORAL base [ɐ] before the tilde — [ɐ]+[̃] = [ɐ̃]. The tilde comes only from the m/n slot, so no vowel is double-tilded. Fires only when the next slot is the tilde. A stressed vowel before an onset ⟨m n nh⟩ is nasalised by BR_NASAL_STRESSED_* (cama [ˈkɐ̃mɐ]); a pretonic one stays oral (camada [kaˈmadɐ]). The letter ⟨ã⟩ writes the same nasal vowel, so graphemes maps ⟨ã⟩ to [ɐ̃] (maçã [maˈsɐ̃], lã [ˈlɐ̃]). Barbosa & Albano (2004: 230) transcribe ímã as [ˈimɐ̃] 'magnet', and list the five nasalised vowels as [ĩ ẽ ɐ̃ õ ũ] (p. 229)."
+    },
+    {
+      "id": "BR_INITIAL_EN_RAISE",
+      "phonemes": [
+        "e",
+        "ɛ"
+      ],
+      "surface": "i",
+      "word_initial": true,
+      "stress": "unstressed",
+      "followed_by_phoneme": [
+        "̃"
+      ],
+      "followed_by_2": "consonant",
+      "notes": "A word-initial pretonic ⟨en em⟩ is the raised nasal vowel [ĩ]: então [ĩˈtɐ̃w̃], embrulhava, envolto. Barbosa & Albano (2004: 231): 'Second, the sequence /eN/ is often pronounced as [ɪ̃], in pre-stressed, word-initial position, as in the words ɪ̃ˈtɐ̃ʊ̯ and ɪ̃ᵐbɾuʎavɐ (first and second passages).' The two transcribed passages on the same page have no word-initial pretonic [ẽ]: então is [ɪ̃] in both, and envolto is [ĩ] in both. This spec writes the close [ĩ], as BR_RAISE_FINAL_E writes the close [i] for the near-close [ɪ] of the same source. Carmo (2019, Estudos Linguísticos 48(2): 811) measures the raising of a word-initial pretonic /e/ before a coda nasal in north-western São Paulo state: Table 2 gives 'V/N/ 79,2% (773/976)', and the text says 'Cabe destacar, contudo, a frequência relativamente alta de aplicação do fenômeno nesse contexto: 79,2%'. Carmo writes the raised vowel [i]: '[i]n.tu.piu' (p. 811), '[i]ntortou' (p. 816). Carmo (2019: 803) quotes Battisti (1993: 95) for Rio Grande do Sul: 'a vogal e, em sílaba sem ataque, seguida de /S/ ou nasalizada (seguida de /N/), eleva-se quase que categoricamente'. Battisti (1993) was not opened. The raised vowel is the majority form, so it is the only output, and the [ẽ] of the other tokens is not in the lattice, as with BR_INFINITIVE_R_DROP. The rule takes an ⟨e⟩ that is the first grapheme of the word, in an unstressed syllable, before a coda nasal. An ⟨e⟩ after an onset keeps [ẽ] (temporal [tẽᵐpoˈɾaʊ̯], Barbosa & Albano 2004: 229), and so does a stressed one, whose nasal vowel is [ẽ] (sento [sẽⁿtʊ], p. 229). A nasal in the onset is not the archiphoneme /N/, so enorme and emoção keep an oral vowel, and Carmo (2019: 812) finds the raising blocked before a coda /R/ ('[e]r.guer', PR 0.007). The rule needs a consonant after the nasal, so the preposition em, a clitic with a word-final nasal, keeps the diphthong of BR_FINAL_EM_GLIDE. It stands before PT_NASAL_E_RAISE, so it also takes the open candidate of ⟨e⟩."
+    },
+    {
+      "id": "BR_INITIAL_ES_RAISE",
+      "phonemes": [
+        "e",
+        "ɛ"
+      ],
+      "surface": "i",
+      "word_initial": true,
+      "stress": "unstressed",
+      "followed_by_phoneme": [
+        "s",
+        "z",
+        "ʃ",
+        "ʒ"
+      ],
+      "followed_by_2": "consonant",
+      "followed_by_grapheme": [
+        "s"
+      ],
+      "notes": "A word-initial pretonic ⟨e⟩ before a coda sibilant is [i]: estar [isˈta], esplendor [isplẽˈdoɾ], esmola [izˈmolɐ]. Carmo (2019, Estudos Linguísticos 48(2): 811) measures the raising of a word-initial pretonic /e/ in north-western São Paulo state. Table 2 gives 'V/S/ 99,5% (1449/1457)' with relative weight 0.881, and the text says 'o contexto de pretônica seguida por consoante sibilante em coda, como em [i]s.co.la e [i]s.fa.re.la, favorece a aplicação do processo, com PR 0.881'. Barbosa & Albano (2004: 231) transcribe todo o esplendor as 'todʊɪspleⁿˈdoɾ', with the raised vowel. This spec writes the close [i], as BR_INITIAL_EN_RAISE does for the same source. The rule takes an ⟨e⟩ that is the first grapheme of the word, in an unstressed syllable, before a sibilant that a consonant follows, so the sibilant is a coda. A sibilant in the onset keeps the vowel (essencial, Esaú), and so does a stressed ⟨e⟩ (este, esse). The sibilant list holds the palatal [ʃ ʒ] for the regional specs that write the coda that way. The sibilant must be the letter ⟨s⟩. A pretonic ⟨ex⟩ before a consonant (explicar, extrair) has the same coda /S/, but no opened source states its raising. Carmo (2019: 807, 815) names the prefixes 'ex-/es-' and gives only ⟨es⟩ examples ('[i]sclareci', '[i]spalma'), so the ⟨ex⟩ words keep [e] until a source counts them."
     },
     {
       "id": "PT_NASAL_E_RAISE",
@@ -482,6 +521,30 @@
       "notes": "Pretonic nasalisation before the palatal nasal: ganhar [ɡɐ̃ˈɲaɾ], senhor [sẽˈɲoɾ]. Barbosa & Albano (2004: 229): 'In pre-stressed position, there is a ten-vowel phonetic contrast, where the quality of the corresponding stressed vowel is roughly preserved: [i e a o u ĩ ẽ ɐ̃ õ ũ]. Nasalised vowels in this position surface either before /N/ (e.g. temporal tẽᵐpoˈɾaʊ̯ ‘temporal’) or before /ɲ/ (e.g. ganhar gɐ̃ˈɲaɾ ‘(to) win’).' A pretonic vowel before /m n/ is not in that list and stays oral."
     },
     {
+      "id": "BR_EPENTHETIC_I_ORAL",
+      "phonemes": [
+        "i"
+      ],
+      "surface": "i",
+      "stress": "stressed",
+      "grapheme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "c",
+        "k",
+        "g",
+        "f",
+        "v"
+      ],
+      "followed_by_phoneme": [
+        "m",
+        "n"
+      ],
+      "notes": "The vowel that BR_EPENTHESIS_ONSET inserts after a consonant before /m n/ stays oral: pneu [piˈnew]. The inserted vowel opens a syllable of its own before the stressed nucleus, so it is pretonic, but the engine reads it in the slot of the consonant, which carries the stress of its syllable. Without this rule, BR_NASAL_STRESSED_I nasalises it as if it were the stressed vowel of cima. Nascimento (2015: 62-63) reports the analysis of Collischonn (1996: 151-155) with an oral vowel: 'pneu [pi'new], Ptolomeu [pitolo'mew]'. Barbosa & Albano (2004: 227): 'The epenthetic vowel is always [i] or [ɪ]'. The spec nasalises a pretonic vowel only before /ɲ/ (BR_NASAL_PRETONIC_I_NH). The rule keys on the consonant letter of the slot, so a written ⟨i⟩ before a nasal keeps BR_NASAL_STRESSED_I: cima [ˈsĩmɐ] (Barbosa & Albano 2004: 229)."
+    },
+    {
       "id": "BR_NASAL_STRESSED_I",
       "phonemes": [
         "i"
@@ -558,7 +621,7 @@
         "ɾ",
         "ʁ"
       ],
-      "notes": "A coda /S/ takes the voicing of a following voiced consonant: mesmo [ˈmezmu], desde [ˈdezd͡ʒi], Lisboa [lizˈboɐ]. Barbosa & Albano (2004: 229): 'The archiphoneme /S/ surfaces either as a voiced or as a voiceless alveolar fricative. As in most varieties, it tends to assimilate the voicing of the following sound.' The rule reads the next slot's phoneme inside the word. Across a word boundary the same assimilation is a sandhi process and this rule does not reach it."
+      "notes": "A coda /S/ takes the voicing of a following voiced consonant: mesmo [ˈmezmu], desde [ˈdezd͡ʒi], Lisboa [lizˈboɐ]. Barbosa & Albano (2004: 229): 'The archiphoneme /S/ surfaces either as a voiced or as a voiceless alveolar fricative. As in most varieties, it tends to assimilate the voicing of the following sound.' The rule reads the next slot's phoneme inside the word. Across a word boundary the same assimilation is the sandhi rule BR_FINAL_S_VOICING."
     },
     {
       "id": "BR_CODA_SH_VOICED",
@@ -2058,12 +2121,13 @@
         "c"
       ],
       "followed_by_grapheme": [
-        "c"
+        "c",
+        "k"
       ],
       "followed_by_phoneme": [
         "k"
       ],
-      "notes": "See BR_GEMINATE_P."
+      "notes": "See BR_GEMINATE_P. The loan spelling ⟨ck⟩ (hockey, jockey) writes two [k] in a row, a homorganic sequence like ⟨cc⟩ before ⟨a o u⟩, so the gate covers it too."
     },
     {
       "id": "BR_GEMINATE_K",
@@ -2128,6 +2192,24 @@
       "notes": "See BR_GEMINATE_P."
     },
     {
+      "id": "BR_TCH_AFFRICATE",
+      "phonemes": [
+        "t"
+      ],
+      "surface": "t",
+      "grapheme": [
+        "t"
+      ],
+      "followed_by_grapheme": [
+        "ch"
+      ],
+      "followed_by_phoneme": [
+        "ʃ",
+        "t͡ʃ"
+      ],
+      "notes": "Blocks the BR_EPENTHESIS rules inside the loan spelling ⟨tch⟩, which writes the affricate [tʃ] before any vowel: tchau [ˈtʃaw], tchê, tcheco. The rule rewrites the [t] to itself, and it stands before BR_EPENTHESIS, as the BR_GEMINATE rules do. pt.wiktionary gives tchau as '{{AFI|/tʃaʊ/|pt}}', one syllable with no vowel between [t] and [ʃ]. Barbosa & Albano (2004: 228) list [t͡ʃ] in the row 'Affricates' of their consonant chart. ⟨tch⟩ writes that one segment, not a two-obstruent sequence. The spec writes it as [t] and [ʃ] in a row, because ⟨t⟩ and ⟨ch⟩ are two graphemes. The phoneme list holds [t͡ʃ] for pt-BR-x-cuiaba, which reads ⟨ch⟩ as [t͡ʃ]."
+    },
+    {
       "id": "BR_EPENTHESIS",
       "phonemes": [
         "p",
@@ -2157,10 +2239,80 @@
         "ʒ",
         "t͡ʃ",
         "d͡ʒ",
-        "m",
-        "n"
+      "m",
+      "n"
       ],
-      "notes": "Vowel epenthesis after a stop or labiodental fricative, before an obstruent or a nasal: advogado [ad͡ʒivoˈɡadu], absurdo [abiˈsuɾdu], opção [opiˈsɐ̃w̃], obter [obiˈteɾ], psicologia [pisikoloˈʒiɐ], hipnose [ipiˈnozi], etnia [et͡ʃiˈniɐ]. Barbosa & Albano (2004: 227): 'By contrast, BP exhibits vowel epenthesis, breaking most two-obstruent sequences. For phonotactic reasons common to both BP and EP, one of the consonants is always an apical: psicologia pisɪkoloʒiɐ or pɪsikoloʒiɐ ‘psychology’ in BP vs. psɪkoloʒiɐ in EP. The epenthetic vowel is always [i] or [ɪ]'. The inserted vowel is [i], so a preceding /t d/ affricates on the second allophone pass (advogado). Scope: a stop or labiodental fricative before an obstruent or /m n/. A coda sibilant is an archiphoneme /S/ and is not a target (festa). Collischonn (2004: 68, Tabela 2) measures the nasal context on VARSUL speech of Porto Alegre, Florianópolis and Curitiba: 'Oclusiva Nasal (mogno) 116/151 77 0,74' against 'Oclusiva não nasal (rapto) 34/78 44 0,47'. She writes that 'a nasal favorece significativamente mais a epêntese do que a oclusiva não-nasal' (p. 68), and her hypothesis names hipnose: 'quando a consoante seguinte for uma oclusiva, como em espectro, ou uma nasal, como em hipnose, esperamos maiores taxas de ocorrência da epêntese' (p. 66). The vowel is [i], as Barbosa & Albano state for every epenthetic vowel. Romano & Seabra (2017: 286) find [e] in pneu in most ALiB responses from Paraná and São Paulo: 'em pneu, no qual se verifica a predominância da vogal média alta anterior [e] em 80,37% das respostas'. The spec keeps [i]. A nasal before the nasal is not a target (amnésia): Collischonn (2004: 69, note 7) found no token of it, 'Não houve ocorrência de forma em que a consoante perdida fosse uma nasal labial, como em amnésia ou Kremlin'. A liquid after the stop is outside both statements. The rule is held to an unstressed syllable that has a nucleus after it. The stress mark is placed by counting IPA syllables from the end of the word, and an inserted vowel after the stressed syllable would move the mark (pacto, bíceps, ritmo). Those words keep the cluster, which is a documented gap. The process varies with position and context. Collischonn (2004: 67-68), on southern Brazilian speech, measures epenthesis in 69% of pretonic and 24% of post-tonic tokens, and by following consonant 89% before a non-sibilant fricative (advogado), 77% before a nasal (mogno), 44% before a stop (rapto) and 34% before a sibilant (opção). The base follows the São Paulo description of Barbosa & Albano."
+      "notes": "Vowel epenthesis after a stop or labiodental fricative, before an obstruent or a nasal: advogado [ad͡ʒivoˈɡadu], absurdo [abiˈsuɾdu], opção [opiˈsɐ̃w̃], obter [obiˈteɾ], psicologia [pisikoloˈʒiɐ], hipnose [ipiˈnozi], etnia [et͡ʃiˈniɐ]. Barbosa & Albano (2004: 227): 'By contrast, BP exhibits vowel epenthesis, breaking most two-obstruent sequences. For phonotactic reasons common to both BP and EP, one of the consonants is always an apical: psicologia pisɪkoloʒiɐ or pɪsikoloʒiɐ ‘psychology’ in BP vs. psɪkoloʒiɐ in EP. The epenthetic vowel is always [i] or [ɪ]'. The inserted vowel is [i], so a preceding /t d/ affricates on the second allophone pass (advogado). Scope: a stop or labiodental fricative before an obstruent or /m n/. A coda sibilant is an archiphoneme /S/ and is not a target (festa). Collischonn (2004: 68, Tabela 2) measures the nasal context on VARSUL speech of Porto Alegre, Florianópolis and Curitiba: 'Oclusiva Nasal (mogno) 116/151 77 0,74' against 'Oclusiva não nasal (rapto) 34/78 44 0,47'. She writes that 'a nasal favorece significativamente mais a epêntese do que a oclusiva não-nasal' (p. 68), and her hypothesis names hipnose: 'quando a consoante seguinte for uma oclusiva, como em espectro, ou uma nasal, como em hipnose, esperamos maiores taxas de ocorrência da epêntese' (p. 66). The vowel is [i], as Barbosa & Albano state for every epenthetic vowel. Romano & Seabra (2017: 286) find [e] in pneu in most ALiB responses from Paraná and São Paulo: 'em pneu, no qual se verifica a predominância da vogal média alta anterior [e] em 80,37% das respostas'. The spec keeps [i]. A nasal before the nasal is not a target (amnésia): Collischonn (2004: 69, note 7) found no token of it, 'Não houve ocorrência de forma em que a consoante perdida fosse uma nasal labial, como em amnésia ou Kremlin'. A liquid after the stop is outside both statements. The rule is held to an unstressed syllable that has a nucleus after it. A stop after the stressed vowel is BR_EPENTHESIS_POSTTONIC, which keeps the obstruent scope (ritmo), and a word-initial cluster before the stressed nucleus is BR_EPENTHESIS_ONSET. The process varies with position and context. Collischonn (2004: 67-68), on southern Brazilian speech, measures epenthesis in 69% of pretonic and 24% of post-tonic tokens, and by following consonant 89% before a non-sibilant fricative (advogado), 77% before a nasal (mogno), 44% before a stop (rapto) and 34% before a sibilant (opção). The base follows the São Paulo description of Barbosa & Albano."
+    },
+    {
+      "id": "BR_EPENTHESIS_POSTTONIC",
+      "phonemes": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v"
+      ],
+      "append": "i",
+      "stress": "stressed",
+      "preceded_by": "vowel",
+      "followed_by_nucleus": true,
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "t͡ʃ",
+        "d͡ʒ"
+      ],
+      "notes": "Vowel epenthesis after the stressed vowel: capto [ˈkapitu], pacto [ˈpakitu], rapto [ˈʁapitu]. It is BR_EPENTHESIS for a stop or a labiodental fricative after the stressed vowel, before an obstruent, with a nucleus after it. A word-final cluster (chips, blitz) has no nucleus after it and stays as spelled. A cluster at the start of the stressed syllable (pseudo, psique) has no vowel before it, so it is outside this rule and stays as spelled. Curioletti & Sandri (2019, Cadernos do IL 59, PDF p. 6): 'Daí decorre a epêntese, que só se aplica em sequências não-homorgânicas, como em capto [kapitu], e não em geminadas subjacentes (carro) ou de superfície (carta) (MONARETTO, 1997, p. 188)'. Monaretto (1997) was not opened. Collischonn (2004: 66) reports Câmara Jr.: 'Como observa Câmara Jr. (1969, p. 28), na posição postônica a vogal se reduz, da mesma forma que ocorre com a vogal da penúltima sílaba de proparoxítonas, sendo, portanto, idênticas as pautas prosódicas de rapto e rápido.' Câmara Jr. was not opened. Barbosa & Albano (2004: 227) state the epenthesis for 'most two-obstruent sequences' and do not restrict it by position. The rate after the stress is lower than before it. Collischonn (2004: 67, Tabela 1) counts 49 of 206 post-tonic tokens (24 %) against 225 of 325 pretonic tokens (69 %) in the speech of Porto Alegre, Florianópolis and Curitiba, and reads the post-tonic grammar without epenthesis as the preferred one (p. 76: 'na pauta postônica: ALINH-PÉ-DIR >> CODA-COND NÃO HÁ EPÊNTESE Ordenação preferida'). Silveira & Seara (2009, Revista do GEL 6(2): 22, Tabela 6) count 77 of 100 post-tonic tokens for the two women and 49 of 100 for the two men of a Florianópolis reading task. No source measures the rate in São Paulo, so the base follows the statement of Barbosa & Albano and the forms of Curioletti & Sandri and Câmara Jr. pt-BR-x-sul, pt-BR-x-floripa and pt-BR-x-pr switch the rule off by id on Collischonn's count. The stress count folds a syllable whose only vowel a rule inserted into the syllable before it, so the mark stays on the stressed syllable."
+    },
+    {
+      "id": "BR_EPENTHESIS_ONSET",
+      "phonemes": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v"
+      ],
+      "append": "i",
+      "stress": "stressed",
+      "word_initial": true,
+      "followed_by_nucleus": true,
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "t͡ʃ",
+        "d͡ʒ",
+      "m",
+      "n"
+      ],
+      "notes": "Vowel epenthesis in a cluster of a stop or labiodental fricative and an obstruent or /m n/ that opens a stressed word-initial syllable: pseudo [piˈsewdu], psique [piˈsiki], pneu [piˈnew]. It is BR_EPENTHESIS for the first consonant of the word when that consonant stands in the stressed syllable. Barbosa & Albano (2004: 227): 'BP exhibits vowel epenthesis, breaking most two-obstruent sequences. For phonotactic reasons common to both BP and EP, one of the consonants is always an apical: psicologia pisɪkoloʒiɐ or pɪsikoloʒiɐ ‘psychology’ in BP vs. psɪkoloʒiɐ in EP. The epenthetic vowel is always [i] or [ɪ]'. The statement does not restrict the process by stress, and its example breaks a word-initial cluster. Nascimento (2015, Epêntese vocálica em encontros consonantais por falantes brasileiros de inglês como língua estrangeira, master's thesis, UNESP Araraquara, pp. 62-63) reports the analysis of Collischonn (1996: 151-155): a word-initial consonant that the syllable cannot hold takes the vowel to its right, with the forms 'pneu [pi'new], Ptolomeu [pitolo'mew]'. The vowel of pneu stands before a stressed nucleus. Collischonn (1996) was not opened. Romano & Seabra (2017, Signum 20(1), pp. 284-285) find the vowel in every ALiB response to aftosa, pneu and advogado from 220 speakers of Paraná and São Paulo: 'houve a ocorrência da vogal epentética em todos os inquéritos, seja com a realização da vogal alta anterior [i] ou da vogal média anterior [e], tratando-se, portanto, de uma regra categórica no corpus analisado'. The rule has the scope of BR_EPENTHESIS, a nasal included, so pneu is [piˈnew], the form of Collischonn (1996). Romano & Seabra (2017: 286) find [e] in most pneu responses: 'em pneu, no qual se verifica a predominância da vogal média alta anterior [e] em 80,37% das respostas'. The spec keeps the [i] of Barbosa & Albano. Collischonn (2004: 65) codes the position of the lost consonant as a factor ('inicial (psicólogo) ou medial (opção)') and gives no rate for the word-initial position, so the regional specs inherit the rule. A cluster inside the word is split by the syllabifier and reads BR_EPENTHESIS or BR_EPENTHESIS_POSTTONIC. The stress count keeps the mark after the inserted vowel, before the stressed nucleus."
     },
     {
       "id": "BR_RAISE_FINAL_ES",
@@ -2343,6 +2495,26 @@
   "quality": "production",
   "script_type": "alphabet",
   "notes": "Brazilian Portuguese. Based directly on late Old Portuguese diaspora phonology. Key innovations: (1) Loss of coda R (ɾ→∅; later urban ɦ/ʁ in some dialects). (2) Coda sibilants remain alveolar (s, z), no universal palato-alveolar outcome. (3) L-vocalisation (l→w) strong and categorical in coda. (4) Palatalisation of /t, d/ > [t͡ʃ, d͡ʒ] before /i/. (5) Much weaker vowel reduction; loss of ɨ. (6) Final /e/→/i/ and /o/→/u/. (7) /rr/ is a posterior fricative, written [ʁ] (Barbosa & Albano 2004: 228 describe a velar fricative, voiced between voiced sounds). (8) Nasal vowel system preserved but with characteristic BR realisation. POST-LEXICAL ALLOPHONY (allophone_rules, base for the BR dialect specs via OVERLAY_BY_ID): final unstressed vowel raising — the near-close [ɪ]/[ʊ] selected word-finally by the positional map is realised as the standard BP close [i]/[u] (gato→[ˈɡatu], leite→[ˈlejt͡ʃi]). Targeting the reduced [ɪ]/[ʊ] (not underlying /e o/) leaves conservative dialects that retain a final [e]/[o] untouched, so the rule inherits cleanly. Deliberately kept in the positional map, NOT duplicated as allophone_rules to avoid double-application: /t d/ affrication before front vowels (grapheme-⟨i⟩ handled by the before_i positional rule) and coda /l/ vocalisation (l→w). The phoneme-conditioned refinement of affrication before a raised final ⟨e⟩ (dente→[ˈdẽt͡ʃi]) is left to the dialect-delta wave, where the non-palatalising nordeste varieties (recife/norte/ce) can opt out by rule id — expressing it in the base would silently re-impose affrication on those inheritors. Deliberately NOT modelled in the base: strong EP-style pretonic reduction (BP keeps distinct pretonic /e o/); coda /s/→[ʃ] chiado (a carioca/RJ dialect delta, not general BP — base stays alveolar [s]/[z]); coda /r/→[h~x] weak fricative (highly variable and, since the broad wikipron pt-BR gold transcribes coda /r/ as [ʁ], adding [h~x] regresses the only pt-BR gold — held as a dialect delta rather than shipped in the base). SIBILANTS ARE PLAIN ALVEOLAR. BP has one sibilant pair /s z/ (Barbosa & Albano 2004: 228, consonant chart, Alveolar column: saca [ˈsakɐ] / zaca [ˈzakɐ]). The apico-alveolar [s̺ z̺] belongs to the Galician-Portuguese four-sibilant system that roa-x-galaico-pt and pt-PT-x-medieval model, and to the northern EP dialects that retain it; it reached BP only by inheritance, because the base declared ⟨s c ç z⟩ but not the ⟨ss⟩ digraph and not positional ⟨c⟩ before ⟨e i⟩, so galaicopt ⟨ss⟩→[s̺] and medieval ⟨ce ci⟩→[s̺] fell through. Both are now declared here, matching the value all twelve pt-BR-x-* dialects already carry. ⟨ss⟩ and ⟨rr⟩ are DIGRAPHS, not geminates: Portuguese has no contrastive consonant length, ⟨ss⟩ spells /s/ where an intervocalic single ⟨s⟩ would be /z/ (isso [ˈisu]) and ⟨rr⟩ spells the strong rhotic (carro [ˈkaʁu] vs caro [ˈkaɾu], Barbosa & Albano 2004: 228), so there is no geminate for a collapse pass to remove and collapse_geminates stays unset. ⟨w⟩ occurs only in loans and names but is not silent — [w] in English loans, [v] in Germanic names — and without an entry the letter was deleted outright (web→[ˈeb], show→[ˈsu]).",
+  "sandhi_rules": [
+    {
+      "id": "BR_FINAL_S_VOICING",
+      "name": "final-s-voicing-before-voiced-consonant",
+      "left_context": "s$",
+      "right_context": "^[ˈˌ]?[bdɡvzʒmnɲlʎɾʁ]",
+      "transform": "z",
+      "obligatory": true,
+      "notes": "A word-final /S/ takes the voicing of a voiced consonant at the start of the next word: os dois [uz ˈdojs], as mesas [az ˈmezɐs]. Barbosa & Albano (2004: 229): 'The archiphoneme /S/ surfaces either as a voiced or as a voiceless alveolar fricative. As in most varieties, it tends to assimilate the voicing of the following sound.' Their transcribed passage writes 'duz doɪ̯z ɛɾɐ' for dos dois era, and keeps [s] before a voiceless consonant in 'maɪ̯s fɔɾtʃɪ' for mais forte (Barbosa & Albano 2004: 231). The voiced class is the class of BR_CODA_S_VOICED, which voices a coda /S/ inside a word. A regional spec that writes the strong rhotic voiceless ([x], [χ]) is outside the class, so the sibilant before it stays [s]. The rule matches the alveolar [s] only; a spec that writes the coda as [ʃ] keeps its output."
+    },
+    {
+      "id": "BR_FINAL_S_PREVOCALIC_VOICE",
+      "name": "final-s-voicing-before-vowel",
+      "left_context": "s$",
+      "right_context": "^[ˈˌ]?[aeiouɛɔɐɪʊãẽĩõũ]",
+      "transform": "z",
+      "obligatory": true,
+      "notes": "A word-final /S/ before a word that starts with a vowel is [z]: dez anos [ˈdɛz ˈɐ̃nus], os amigos [uz aˈmiɡus]. Barbosa & Albano (2004: 229): 'it tends to assimilate the voicing of the following sound'. The transcribed passage writes 'doɪ̯z ɛɾɐ' for dois era and 'maɪ̯z u viaˈʒẽⁿt' for mais o viajante (Barbosa & Albano 2004: 231)."
+    }
+  ],
   "sources": [
     {
       "id": "barbosa_albano2004",
@@ -2442,7 +2614,37 @@
       "publisher": "Signum: Estudos Linguísticos 7(1): 61-78",
       "url": null,
       "pages": "66-68",
-      "notes": "Epenthesis rates by position and by the following consonant, the nasal context included (BR_EPENTHESIS)."
+      "notes": "Epenthesis rates by position and by the following consonant, the nasal context included (BR_EPENTHESIS, BR_EPENTHESIS_POSTTONIC)."
+    },
+    {
+      "id": "carmo2019",
+      "author": "Carmo, M.C.",
+      "year": 2019,
+      "title": "Alçamento vocálico das vogais médias pretônicas iniciais na variedade do noroeste paulista",
+      "publisher": "Estudos Linguísticos 48(2): 800-821",
+      "url": "https://doi.org/10.21165/el.v48i2.2355",
+      "pages": "803, 811",
+      "notes": "Raising of a word-initial pretonic /e/ before a coda nasal (BR_INITIAL_EN_RAISE) and before a coda sibilant (BR_INITIAL_ES_RAISE)."
+    },
+    {
+      "id": "curioletti_sandri2019",
+      "author": "Curioletti, D.S.S. & Sandri, M.M.",
+      "year": 2019,
+      "title": "A representação fonológica da vibrante no português brasileiro",
+      "publisher": "Cadernos do IL 59: 149-168",
+      "url": "https://seer.ufrgs.br/cadernosdoil/article/view/92720",
+      "pages": "PDF p. 6",
+      "notes": "Epenthesis only in non-homorganic sequences (BR_GEMINATE_*, BR_EPENTHESIS_POSTTONIC)."
+    },
+    {
+      "id": "silveira_seara2009",
+      "author": "Silveira, F. & Seara, I.C.",
+      "year": 2009,
+      "title": "A vogal epentética em encontros consonantais heterossilábicos no português brasileiro: um estudo experimental",
+      "publisher": "Revista do GEL 6(2): 9-35",
+      "url": "https://revistadogel.emnuvens.com.br/rg/article/view/94",
+      "pages": "22",
+      "notes": "Epenthesis rates by position in a Florianópolis reading task (BR_EPENTHESIS_POSTTONIC)."
     },
     {
       "id": "romano_seabra2017",
@@ -2451,8 +2653,18 @@
       "title": "“P[e]neu”, “Ad[e]vogado” e “Af[e]tosa”: o abaixamento das vogais suarabácticas nos dados do Projeto Atlas Linguístico do Brasil",
       "publisher": "Signum: Estudos da Linguagem 20(1): 276-306",
       "url": "https://doi.org/10.5433/2237-4876.2017v20n1p276",
-      "pages": "286",
-      "notes": "The vowel quality of the epenthetic vowel in ALiB data from Paraná and São Paulo; pneu has [e] in most responses (BR_EPENTHESIS note)."
+      "pages": "284-286",
+      "notes": "The epenthetic vowel and its quality in ALiB data from Paraná and São Paulo; pneu has [e] in most responses (BR_EPENTHESIS, BR_EPENTHESIS_ONSET)."
+    },
+    {
+      "id": "nascimento2015",
+      "author": "Nascimento, G.C.A.",
+      "year": 2015,
+      "title": "Epêntese vocálica em encontros consonantais por falantes brasileiros de inglês como língua estrangeira",
+      "publisher": "Master's thesis, UNESP Araraquara",
+      "url": "https://agendapos.fclar.unesp.br/agenda-pos/linguistica_lingua_portuguesa/3463.pdf",
+      "pages": "62-63",
+      "notes": "Reports the forms of Collischonn (1996: 151), which was not opened (BR_EPENTHESIS_ONSET)."
     }
   ],
   "wikipedia": [

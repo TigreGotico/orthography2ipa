@@ -40,7 +40,7 @@ The table gives the features that set each lect apart from `pt-BR`. The lects ru
 
 ## Carioca (pt-BR-x-rj)
 
-Carioca is the speech of the city of Rio de Janeiro. Its defining feature is the *chiado*: a coda sibilant surfaces as the palatal [ʃ] or [ʒ]. Brito (2016: 148) finds that "[ʃ] or [ʒ] account for 85.3% of the occurrences". The palatal takes the voicing of the next consonant: it is "[z] or [ʒ] in syllable-final position followed by voiced consonant" (p. 142), as in `mesmo` [ˈmeʒmu]. The ALiB map gives a palatal rate above 76 % only in Rio de Janeiro, Belém and Florianópolis (Borges & Mendonça 2019: 58). Before a vowel in the next word, the sibilant is [z] (Nanini: 17).
+Carioca is the speech of the city of Rio de Janeiro. Its defining feature is the *chiado*: a coda sibilant surfaces as the palatal [ʃ] or [ʒ]. Brito (2016: 148) finds that "[ʃ] or [ʒ] account for 85.3% of the occurrences". The palatal takes the voicing of the next consonant: it is "[z] or [ʒ] in syllable-final position followed by voiced consonant" (p. 142), as in `mesmo` [ˈmeʒmu]. The ALiB map gives a palatal rate above 76 % only in Rio de Janeiro, Belém and Florianópolis (Borges & Mendonça 2019: 58). Across a word boundary the final sibilant takes the voicing of the next sound. Before a voiced consonant it is [ʒ], the more frequent voiced value in Copacabana ("[ʒ] meus neto" against "[z] os barros", Nanini 2022: 19). Before a vowel it is [z]: "categoricamente, a fricativa alveolar sonora [z]" (p. 17). The sandhi rules `RJ_FINAL_SH_VOICING` and `RJ_FINAL_SH_PREVOCALIC_VOICE` give `os dois` [uʒ ˈdojʃ] and `dez anos` [ˈdɛz ˈɐ̃nuʃ].
 
 The Carioca rhotic is posterior. Callou, Moraes & Leite (1998: 62-63) describe the coda /R/ as a range that "vai de uma vibrante, alveolar ou uvular, a uma fricativa, velar ou glotal, chegando a seu total apagamento". Word-final deletion reaches 73-82 % in verbs and 32 % in other words (p. 67).
 
@@ -127,11 +127,13 @@ Known gaps:
 - The plural ending raises as in the base (`dentes` [ˈdẽtis]), while the singular keeps [e]. No opened source gives the plural rate.
 - Silva (2023: 67) places Paraná in the retroflex zone of the coda /R/. The spec keeps the tap, and the opened sources do not settle the value for the capital.
 
+The epenthetic vowel after the stressed syllable is switched off, as in the other southern specs: Collischonn (2004: 67) counts it in 24 % of post-tonic tokens in Porto Alegre, Florianópolis and Curitiba (`capto` [ˈkaptu]). The pretonic vowel stays (`opção` [opiˈsɐ̃w̃]).
+
 ## Sulista (pt-BR-x-sul)
 
 Sulista here is the speech of Porto Alegre. The strong /r/ is the velar fricative. In Porto Alegre the trill fell "de 30,9% nos anos 1990 para apenas 0,4%" (Corrêa 2020: 87), and ALiB shows "o predomínio do uso da fricativa velar [x] nos estados do Rio Grande do Sul e Santa Catarina" (Comiotto & Margotti 2019: PDF p. 6). The positional map gives a word-initial ⟨r⟩ as [x], and ⟨rr⟩ is [x] (`rato` [ˈxatu], `carro` [ˈkaxu]). The rule `BR_STRONG_R_AFTER_CODA` gives the same [x] after a coda consonant (`honra` [ˈõxɐ]; Cristófaro Silva 2025: 240). A coda /s/ takes the voicing of the next sound (Barbosa & Albano 2004: 229), so it is [z] before a voiced consonant and stays [s] before this voiceless rhotic (`mesmo` [ˈmezmu], `desrespeito` [desxesˈpejtu]).
 
-The other features follow the base. ALiB rates Porto Alegre palatalisation as categorical (Battisti & Dornelles Filho 2015: 226), so `tia` is [ˈt͡ʃiɐ] and `dentes` is [ˈdẽt͡ʃis]. Final /o/ raises in 97 % of Porto Alegre tokens (Franceschini & Loregian-Penkal 2023: 2), and no opened source gives final [e] for the capital (`verde` [ˈveɾd͡ʒi]). The coda /R/ is the tap, "from São Paulo southwards" (Barbosa & Albano 2004: 228).
+The other features follow the base. ALiB rates Porto Alegre palatalisation as categorical (Battisti & Dornelles Filho 2015: 226), so `tia` is [ˈt͡ʃiɐ] and `dentes` is [ˈdẽt͡ʃis]. Final /o/ raises in 97 % of Porto Alegre tokens (Franceschini & Loregian-Penkal 2023: 2), and no opened source gives final [e] for the capital (`verde` [ˈveɾd͡ʒi]). The coda /R/ is the tap, "from São Paulo southwards" (Barbosa & Albano 2004: 228). The epenthetic vowel after the stressed syllable is switched off, on the 24 % post-tonic rate of Collischonn (2004: 67), and the pretonic one stays (`capto` [ˈkaptu], `opção` [opiˈsɐ̃w̃]).
 
 Known gap: the trill and the low palatalisation rates belong to the Italian, German and border interior of the state (Dutra 2008: 48; Comiotto & Margotti 2019). This spec does not model the interior.
 

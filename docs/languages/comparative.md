@@ -34,7 +34,7 @@ The `af` spec states its own rule, because positional rules do not pass from `nl
 |:---|:---:|:---:|
 | ⟨g⟩ | [ɡ] in the onset, [k] in the coda | the voiceless uvular fricative [χ] |
 | ⟨h⟩ | [h] | [ɦ] (breathy) |
-| ⟨r⟩ | [ʁ] (uvular) | [r] or [ʁ], by region |
+| ⟨r⟩ | [ʁ] (uvular) | [r] in the onset, the approximant [ɹ] in the coda; most speakers have a uvular /r/ (Gussenhoven 1992, p. 46) |
 | ⟨w⟩ | [v] | [ʋ] (labiodental approximant) |
 | ⟨ch⟩ word-final | [x] or [ç] | always [χ] |
 
@@ -76,7 +76,7 @@ Dutch has a vowel system with contrasts of length and quality (Booij 1995, Gusse
 | o | oo | [ɔ] | [oː] | `bof` [bɔf] | `boot` [boːt] |
 | u | uu | [ʏ] | [yː] | `bus` [bʏs] | `buut` [byːt] |
 
-The other vowels are ⟨eu⟩ [øː], ⟨oe⟩ [uː], ⟨ui⟩ [œy], ⟨ij⟩ and ⟨ei⟩ [ɛi], and ⟨au⟩ and ⟨ou⟩ [ɑu]. The `nl-NL` spec writes ⟨ie uu oe⟩ without a length mark, so it gives `ˈbit` for `biet`, `ˈbyt` for `buut` and `ˈbuk` for `boek`. Its other values agree with the table, as in `ˈkaːs`, `ˈrøːs` for `reus` and `ˈʋɛin` for `wijn`.
+The other vowels are ⟨eu⟩ [øː], ⟨oe⟩ [uː], ⟨ui⟩ [œy], ⟨ij⟩ and ⟨ei⟩ [ɛi], and ⟨au⟩ and ⟨ou⟩ [ɑu]. The `nl-NL` spec writes ⟨ie uu oe⟩ without a length mark, so it gives `ˈbit` for `biet`, `ˈbyt` for `buut` and `ˈbuk` for `boek`. It writes ⟨ee eu oo⟩ and the open-syllable ⟨e o⟩ as the narrow closing diphthongs [ei øy ou], and as [eᵊ øᵊ oᵊ] before /r/ in the same word (Gussenhoven 1992, p. 46): `ˈbout` for `boot`, `ˈrøys` for `reus`, `ˈdoᵊɹ` for `door`. The `nl-BE` spec keeps [eː øː oː], because in Belgian Dutch "they are always monophthongs" (Verhoeven 2005, pp. 245-246). The other values agree with the table, as in `ˈkaːs` and `ˈʋɛin` for `wijn`.
 
 ### Afrikaans
 

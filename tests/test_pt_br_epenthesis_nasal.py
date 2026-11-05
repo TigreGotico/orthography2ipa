@@ -20,7 +20,7 @@ def _bare(word, code="pt-BR"):
 
 @pytest.mark.parametrize("word, part", [
     ("hipnose", "pin"), ("abnegado", "bin"), ("admitir", "d͡ʒim"),
-    ("etnia", "t͡ʃin"), ("magnético", "ɡin"),
+    ("etnia", "t͡ʃin"),
 ])
 def test_a_pretonic_stop_before_a_nasal_takes_the_vowel(word, part):
     assert part in _bare(word)

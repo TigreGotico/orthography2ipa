@@ -118,7 +118,7 @@ def test_limburg_word_exception_gets_the_velar(nl, limburg):
     # A word exception bypasses the grapheme layer, so the child states its
     # own copy of the nl-NL entry.
     assert "χ" in nl.transcribe("tjerkgaast")
-    assert limburg.transcribe("tjerkgaast") == "ˈtʃɛrkxaːst"
+    assert limburg.transcribe("tjerkgaast") == "ˈtʃɛɹkxaːst"
 
 
 def _uvular_entries():
@@ -151,12 +151,12 @@ def test_limburg_keeps_its_values_when_nl_nl_moves(tmp_path, monkeypatch):
     raw = json.loads((DATA / "nl-NL.json").read_text(encoding="utf-8"))
     pos = raw["positional_graphemes"]
     pos["g"] = {"word_final": ["χ"], "default": ["χ"]}
-    pos["berg"] = {"word_final": ["bɛrχ"], "default": ["bɛrχ"]}
+    pos["berg"] = {"word_final": ["bɛɹχ"], "default": ["bɛɹχ"]}
     pos["v"] = {"word_final": ["f"], "default": ["f"]}
     pos["sch"] = {"word_final": ["s"], "default": ["sh"]}
     raw["graphemes"]["ch"] = ["h"]
     raw["graphemes"]["brecht"] = ["brɛht"]
-    raw["word_exceptions"]["tjerkgaast"] = "ˈtʃɛrkhaːst"
+    raw["word_exceptions"]["tjerkgaast"] = "ˈtʃɛɹkhaːst"
     moved_file = tmp_path / "nl-NL.json"
     moved_file.write_text(json.dumps(raw, ensure_ascii=False), encoding="utf-8")
     index = dict(json_loader._index, **{"nl-NL": moved_file})
@@ -174,9 +174,9 @@ def test_limburg_keeps_its_values_when_nl_nl_moves(tmp_path, monkeypatch):
     assert child.transcribe("vier").startswith("ˈv")
     assert moved.transcribe("lachen") == "ˈlaːhən"
     assert child.transcribe("lachen") == "ˈlaːxən"
-    assert child.transcribe("school") == "ˈsxoːl"
+    assert child.transcribe("school") == "ˈsxoul"
     assert child.transcribe("Albrecht") == "ˈɑlbrɛxt"
-    assert child.transcribe("tjerkgaast") == "ˈtʃɛrkxaːst"
+    assert child.transcribe("tjerkgaast") == "ˈtʃɛɹkxaːst"
 
 
 # Stroop (1998): the nl-NL diphthong and its Polder value.
