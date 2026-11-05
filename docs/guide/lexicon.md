@@ -5,15 +5,14 @@ Some words cannot be transcribed from their spelling, and no rule can change tha
 ## The precedence ladder
 
 ```
-<phoneme ph="…">  >  spec word_exceptions  >  caller's lexicon  >  enabled packaged lexicon  >  the rules
+<phoneme ph="…">  >  spec word_exceptions  >  the engine's lexicon  >  the rules
 ```
 
 | Tier | Scope | Who supplies it |
 | :--- | :--- | :--- |
 | `<phoneme>` markup | One occurrence of a word in the input text | The caller, in the text |
 | `word_exceptions` | A small, closed set of irregular words | The spec author, in the JSON |
-| Lexicon | Thousands of words in a `word<TAB>ipa` file | The caller, by registration |
-| Packaged lexicon | The words the rules get wrong, in a `word<TAB>ipa` file | An installed package, such as `o2i-lexicons`, that the caller enables in code |
+| Lexicon | Thousands of words in a `word<TAB>ipa` file, for one engine | The caller, in `Pipeline(lexicon=...)`, from a file, a URL, a dataset or an installed package such as `o2i-lexicons` |
 | Rules | Every other word | The spec: graphemes, positional overrides, allophone and stress rules |
 
 Each tier answers the same question: what is the IPA of this word? The stages after it do not depend on which tier answered. Cross-word sandhi still applies, and the word reports `confidence == 1.0`. An entry from `word_exceptions` or from a lexicon also gets the stress mark of the spec. A forced `<phoneme>` reading does not, as the next section explains.
@@ -48,7 +47,7 @@ The engine reads the markup before the normalize step. A normalize plugin, such 
 
 ### The inventory check
 
-The engine checks `ph` against the phoneme inventory of the spec. That inventory is `phoneme_inventory(spec)`: each segment the spec can emit. A symbol outside it raises `MarkupError`. The check makes the feature safe. A TTS frontend builds its embedding table from the inventory before it trains. A symbol that appears only at inference has no vector, so each word that carries it is mispronounced, permanently and without a sign.
+The engine checks `ph` against the phoneme inventory of the spec. That inventory is `phoneme_inventory(spec, lexicon)`: each segment the spec and the lexicon of the engine can emit. A symbol outside it raises `MarkupError`. The check makes the feature safe. A TTS frontend builds its embedding table from the inventory before it trains. A symbol that appears only at inference has no vector, so each word that carries it is mispronounced, permanently and without a sign.
 
 A loanword is the case that matters. In Arabic, English *meeting* is nativised and does not keep its English sounds. Modern Standard Arabic has /q/ and /dʒ/ and no /ɡ/, so the `ar` spec refuses a reading with [ɡ]:
 
@@ -88,19 +87,26 @@ The field does not scale to thousands of entries. Deep orthographies such as Eng
 
 ## Supplying a lexicon
 
-The package ships no lexicon. A lexicon is a word list, not a description of a language, so it is not part of the payload. The wheel holds only `data/*.json` and `data/SCHEMA.md`, and `available_lexicon_codes()` returns an empty list on a fresh install, with or without a lexicon package. The caller supplies a lexicon from a local file, a URL or a Hugging Face dataset:
+The package ships no lexicon. A lexicon is a word list, not a description of a language, so it is not part of the payload. The wheel holds only `data/*.json` and `data/SCHEMA.md`. The caller reads a lexicon into a mapping and gives it to one engine through a `Pipeline`:
 
 ```python
-import orthography2ipa as o2i
-o2i.register_lexicon("en-GB", "/data/en-GB.tsv")                  # a local file
-o2i.register_lexicon("en-GB", "https://example.org/en-GB.tsv")    # a URL
-o2i.register_lexicon("en-GB", "hf://<owner>/<repo>/<file>.tsv")   # needs the hf extra
-o2i.set_lexicon_dir("~/lexicons")   # a directory of {code}.tsv files
+from orthography2ipa import G2P, Pipeline, load_lexicon
+
+lexicon = load_lexicon("/data/en-GB.tsv")                  # a local file
+lexicon = load_lexicon("https://example.org/en-GB.tsv")    # a URL
+lexicon = load_lexicon("hf://<owner>/<repo>/<file>.tsv")   # needs the hf extra
+engine = G2P("en-GB", pipeline=Pipeline(lexicon=lexicon))
 ```
 
-The environment variable `ORTHOGRAPHY2IPA_LEXICON_DIR` sets the directory too, and `set_lexicon_dir()` overrides it. A Hugging Face id has the form `hf://<owner>/<repo>/<path>`, with an optional `@<revision>`. The library fetches it from a dataset repository with `huggingface_hub`. A URL or a Hugging Face file downloads once into `$XDG_CACHE_HOME/orthography2ipa/lexicons`, which is `~/.cache/orthography2ipa/lexicons` by default.
+The lexicon belongs to that engine. `load_lexicon` sets no state, so another engine in the process keeps its own output, and two engines with different lexicons run side by side. A mapping that you build in code works too. Its keys are lowercase and NFC, the same as the keys of a file:
 
-`register_lexicon(code, source)` resolves `code` to the spec that `get()` returns for it. So two tags that resolve to the same spec share one slot, and the later registration replaces the earlier one. A file in the lexicon directory belongs to the spec that its name resolves to, so `en.tsv` serves `en-GB`. A file named for the exact resolved code wins over the others. A registered lexicon wins over a file in the directory.
+```python
+engine = G2P("en-GB", pipeline=Pipeline(lexicon={"colonel": "ˈkɜːnəl"}))
+```
+
+`Pipeline(lexicon={})` is a lexicon with no entries, so that engine takes the rules. With `Pipeline()` or with no pipeline, the engine reads the [process-wide lexicon](#the-process-wide-api), which is deprecated.
+
+A Hugging Face id has the form `hf://<owner>/<repo>/<path>`, with an optional `@<revision>`. The library fetches it from a dataset repository with `huggingface_hub`. A URL or a Hugging Face file downloads once into `$XDG_CACHE_HOME/orthography2ipa/lexicons`, which is `~/.cache/orthography2ipa/lexicons` by default.
 
 ### Packaged lexicons
 
@@ -110,17 +116,16 @@ A package can supply a lexicon for a language. [o2i-lexicons](https://github.com
 uv pip install 'orthography2ipa[lexicons]'
 ```
 
-The install changes no output. The transcription is a function of the spec and the input, never of the environment, so the caller enables a packaged lexicon in code:
+The install changes no output. The transcription is a function of the spec, the input and the explicit configuration of the caller, never of the environment. So the caller reads a packaged lexicon in code and gives it to the engine that wants it:
 
 ```python
-import orthography2ipa as o2i
-o2i.packaged_lexicon_sources()          # {'en-GB': PosixPath('…/wikipron.tsv')}: lists, enables nothing
-o2i.use_packaged_lexicons()             # enable every installed packaged lexicon
-o2i.use_packaged_lexicons(["en-GB"])    # enable only these
-o2i.clear_lexicons()                    # disable them again, with every registration
+from orthography2ipa import G2P, Pipeline, packaged_lexicon, packaged_lexicon_sources
+
+packaged_lexicon_sources()       # {'en-GB': PosixPath('…/wikipron.tsv')}: lists, reads nothing
+engine = G2P("en-GB", pipeline=Pipeline(lexicon=packaged_lexicon("en-GB")))
 ```
 
-`use_packaged_lexicons()` raises `LookupError` for a code that no installed package serves. A request for an absent lexicon is an error, not a quiet fall back to the rules.
+`packaged_lexicon()` raises `LookupError` when no installed package supplies a file for the code. A request for an absent lexicon is an error, not a quiet fall back to the rules. The same error comes from a provider that raises or that returns a path that is not a file, and the library logs the reason as a warning.
 
 A provider declares one entry point per language code in the group `orthography2ipa.lexicons`. The entry point loads a callable. The library calls it with the name of the entry point, and the callable returns the path of a local `word<TAB>ipa` file:
 
@@ -129,9 +134,7 @@ A provider declares one entry point per language code in the group `orthography2
 "en-GB" = "o2i_lexicons:tsv_path"
 ```
 
-Only `use_packaged_lexicons()` and `packaged_lexicon_sources()` read the entry points, once per process. Import, `get()` and transcription never read them. The library loads a provider only on the first transcription for its language after the caller enabled it. The name of the entry point must name a registered spec exactly. The library skips an entry point that only a nearest-language guess would place, and it logs a warning. It also logs a warning and uses the rules when a provider raises or returns a path that is not a file.
-
-An enabled packaged lexicon has the lowest rank of the lexicon sources. A lexicon from `register_lexicon()` or from the lexicon directory replaces it for that language. The two lexicons do not merge. When two packages serve one spec, the entry point named for the exact resolved code wins. Then the first by distribution name wins, and the library logs a warning.
+Only `packaged_lexicon()`, `packaged_lexicon_sources()` and `use_packaged_lexicons()` read the entry points, once per process. Import, `get()` and transcription never read them. The name of the entry point must name a registered spec exactly. The library skips an entry point that only a nearest-language guess would place, and it logs a warning. When two packages serve one spec, the entry point named for the exact resolved code wins. Then the first by distribution name wins, and the library logs a warning.
 
 The benchmark never enables a packaged lexicon, so the board stays rules-only whatever is installed.
 
@@ -139,9 +142,9 @@ The benchmark never enables a packaged lexicon, so the board stays rules-only wh
 
 A lexicon is a UTF-8 TSV with one `word<TAB>ipa` pair per line. The words are lowercase, and both columns are NFC-normalised. Sort the file, because the first entry for a word wins. The parser skips blank lines and lines that do not have exactly two fields.
 
-### Loading is lazy
+### Reading a lexicon
 
-Import of the package reads no lexicon and does not use the network. A call to `get()` does not read one either. The engine reads a lexicon, and fetches it if it is remote, on the first transcription for that language through `get_lexicon(code)`. It then caches the result for the life of the process. `register_lexicon`, `set_lexicon_dir` and `clear_lexicons` clear that cache. A language with no lexicon gets an empty mapping, and its output is the same as with no lexicon module at all.
+Import of the package reads no lexicon and does not use the network. A call to `get()` does not read one either. `load_lexicon` and `packaged_lexicon` read the file when you call them, and return a new mapping each time. Build the mapping once and share it between the engines that want it.
 
 ### Checking a lexicon before you use it
 
@@ -165,12 +168,10 @@ Write the lexicon in the same broad IPA that the `graphemes` of the spec use. Th
 
 | Function | Top-level | Purpose |
 | :--- | :--- | :--- |
-| `register_lexicon(code, source)` | yes | Use `source` as the lexicon for `code` |
-| `set_lexicon_dir(path)` | yes | Use a directory of `{code}.tsv` files, or `None` to unset it |
-| `clear_lexicons()` | yes | Forget every registration and the directory, and disable the packaged lexicons |
-| `use_packaged_lexicons(codes=None)` | yes | Enable the installed packaged lexicons, for every code or for `codes` |
-| `packaged_lexicon_sources()` | yes | The installed packaged lexicons, as `{code: path}`. Enables nothing |
-| `get_lexicon(code)` | yes | The `{word: ipa}` map for a resolved code, or `{}` |
+| `Pipeline(lexicon=None, syllabifier=None)` | yes | The lexicon and the syllabifier of one engine |
+| `load_lexicon(source)` | yes | The `{word: ipa}` map at a file, a URL or a dataset id |
+| `packaged_lexicon(code)` | yes | The `{word: ipa}` map an installed package supplies for a code |
+| `packaged_lexicon_sources()` | yes | The installed packaged lexicons, as `{code: path}`. Reads no entry |
 | `available_lexicon_codes()` | yes | The registered codes, the file stems in the directory, and the enabled packaged codes |
 | `resolve_lexicon_source(source)` | yes | The local file for a source, fetched if remote |
 | `validate_lexicon_text(text)` | yes | The list of problems in a lexicon body |
@@ -178,7 +179,7 @@ Write the lexicon in the same broad IPA that the `graphemes` of the spec use. Th
 | `lexicon_path(code)` | `orthography2ipa.lexicon` only | The local file behind the lexicon of a code, or `None` |
 | `parse_lexicon_text(text)` | `orthography2ipa.lexicon` only | Parse a TSV body, first entry winning |
 
-`examples/08_lexicon_overlay.py` registers a two-word lexicon and shows the overlay win over the rules:
+`examples/08_lexicon_overlay.py` gives an engine a two-word lexicon and shows the overlay win over the rules:
 
 ```
 colonel -> 'ˈkɒlənəl'                     # rules only
@@ -186,9 +187,24 @@ colonel -> 'ˈkɜːnəl'   confidence=1.0     # with the lexicon
 choir   -> 'ˈkwaɪə'    confidence=1.0
 ```
 
+### The process-wide API
+
+These names act on the whole process: each engine with no lexicon in its pipeline reads them. A call made for one engine therefore changes the output of every other engine in the process. They are deprecated. They keep working for one stable cycle, and each one raises a `DeprecationWarning` that names the release that removes it.
+
+| Deprecated name | Purpose | Use in its place |
+| :--- | :--- | :--- |
+| `register_lexicon(code, source)` | Use `source` as the lexicon for `code` | `Pipeline(lexicon=load_lexicon(source))` |
+| `set_lexicon_dir(path)` | Use a directory of `{code}.tsv` files, or `None` to unset it | `Pipeline(lexicon=load_lexicon(path))` with the file of the language |
+| `$ORTHOGRAPHY2IPA_LEXICON_DIR` | The same directory, from the environment. `set_lexicon_dir()` overrides it | `Pipeline(lexicon=load_lexicon(path))` with the file of the language |
+| `use_packaged_lexicons(codes=None)` | Enable the installed packaged lexicons, for every code or for `codes` | `Pipeline(lexicon=packaged_lexicon(code))` |
+| `clear_lexicons()` | Forget every registration and the directory, and disable the packaged lexicons | Nothing: the lexicon of an engine ends with the engine |
+| `get_lexicon(code)` | The `{word: ipa}` map for a resolved code, or `{}` | `Pipeline.lexicon` |
+
+Their precedence is `register_lexicon()`, then the directory, then an enabled packaged lexicon, and the sources do not merge. `register_lexicon()` resolves `code` to the spec that `get()` returns for it, so two tags that resolve to the same spec share one slot. A file in the directory belongs to the spec that its name resolves to, and a file named for the exact resolved code wins over the others. The engine reads a process-wide lexicon on the first transcription for that language, and caches it for the life of the process.
+
 ## Building an English lexicon from CMUdict
 
-`scripts/build_en_lexicon.py` builds an English lexicon that you can register. Run it from a checkout:
+`scripts/build_en_lexicon.py` builds an English lexicon that you can load. Run it from a checkout:
 
 ```bash
 O2I_LEXICON_OUT=/data/en-GB.tsv python scripts/build_en_lexicon.py

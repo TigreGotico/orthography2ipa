@@ -8,28 +8,26 @@ accuracy from grapheme rules alone.
 **Nothing is bundled.** A lexicon is a word list, not a description of a
 language, so it is not this library's payload — shipping one would bloat the
 wheel and freeze a corpus into a release. The caller supplies it, from a local
-file, a URL, or a Hugging Face dataset id::
+file, a URL, or a Hugging Face dataset id, and gives it to one engine::
 
-    import orthography2ipa as o2i
+    from orthography2ipa import G2P, Pipeline, load_lexicon
 
-    o2i.register_lexicon("en-GB", "/data/en-GB.tsv")               # local file
-    o2i.register_lexicon("en-GB", "https://example.org/en.tsv")    # URL
-    o2i.register_lexicon("en-GB", "hf://TigreGotico/en-lexicon/en-GB.tsv")
+    lexicon = load_lexicon("/data/en-GB.tsv")                    # local file
+    lexicon = load_lexicon("https://example.org/en.tsv")         # URL
+    lexicon = load_lexicon("hf://TigreGotico/en-lexicon/en-GB.tsv")
+    engine = G2P("en-GB", pipeline=Pipeline(lexicon=lexicon))
 
-Or point at a directory of ``{code}.tsv`` files, once::
-
-    o2i.set_lexicon_dir("~/lexicons")                 # or $ORTHOGRAPHY2IPA_LEXICON_DIR
-
-Remote sources are fetched lazily on first use and cached under
-``$XDG_CACHE_HOME/orthography2ipa``. A language with no registered lexicon gets
-an empty mapping and behaves exactly as if this module did not exist.
+Remote sources are fetched on the first read and cached under
+``$XDG_CACHE_HOME/orthography2ipa``. An engine with no lexicon takes the rules,
+exactly as if this module did not exist.
 
 A package can also supply default lexicons, such as ``o2i-lexicons``
-(``pip install orthography2ipa[lexicons]``). Installing it changes nothing:
-the caller enables its lexicons in code, for every language or for some::
+(``pip install orthography2ipa[lexicons]``). Installing it changes nothing: the
+caller reads a lexicon in code and gives it to the engine that wants it::
 
-    o2i.use_packaged_lexicons()            # every installed packaged lexicon
-    o2i.use_packaged_lexicons(["en-GB"])   # only these
+    from orthography2ipa import G2P, Pipeline, packaged_lexicon
+
+    engine = G2P("en-GB", pipeline=Pipeline(lexicon=packaged_lexicon("en-GB")))
 
 Such a package declares one entry point per language code in the group
 ``orthography2ipa.lexicons``. The entry point loads a callable that takes the
@@ -41,37 +39,43 @@ code and returns the path of a local ``word<TAB>ipa`` file::
 Design contract
 ---------------
 
-- **Lazy.** Importing :mod:`orthography2ipa` (and even loading a
-  :class:`~orthography2ipa.types.LanguageSpec`) reads **no** lexicon file, and
-  never touches the network. A lexicon is read (and, if remote, fetched) once,
-  on the first :func:`get_lexicon` call for that code, and cached for the
-  process lifetime.
-- **Never implicit.** No lexicon is consulted unless the caller registered one,
-  set a lexicon dir, or enabled a packaged one with
-  :func:`use_packaged_lexicons`. Installing a provider package only makes its
-  lexicons discoverable (:func:`packaged_lexicon_sources`): the transcription
-  is a function of the spec and the input, never of the environment. The
-  library does not download anything on its own, and a provider returns a
-  local file.
+- **Per engine.** :func:`load_lexicon` and :func:`packaged_lexicon` return a
+  mapping and set no state. The engine that holds the mapping uses it, and
+  another engine in the process does not see it.
+- **Never implicit.** No lexicon is consulted unless the caller named one.
+  Installing a provider package only makes its lexicons discoverable
+  (:func:`packaged_lexicon_sources`): the transcription is a function of the
+  spec, the input and the caller's explicit configuration, never of the
+  environment. The library does not download anything on its own, and a
+  provider returns a local file.
 - **Same pathway as ``word_exceptions``.** :class:`~orthography2ipa.g2p.G2P`
   folds a lexicon hit into the *exact* override path that
   ``spec.word_exceptions`` uses — so a lexicon entry still routes through
   stress-mark insertion and cross-word sandhi, and is reported with the same
   ``confidence == 1.0`` (a certain answer).
-- **Precedence.** inline ``spec.word_exceptions`` > the caller's lexicon
-  (:func:`register_lexicon`, then :func:`set_lexicon_dir`) > an enabled
-  packaged lexicon > rules. An inline exception always wins over the sidecar; the
-  sidecar always wins over the grapheme/positional beam.
-- **Absent lexicon → byte-identical.** A language with no registered lexicon
-  and no enabled packaged lexicon gets an empty mapping and behaves exactly as
-  it did before this module existed, whatever is installed.
-- **Discovery is lazy too.** The ``orthography2ipa.lexicons`` entry points are
-  read only by :func:`use_packaged_lexicons` and
-  :func:`packaged_lexicon_sources`, once per process, never at import and
-  never by :func:`get_lexicon`.
+- **Precedence.** inline ``spec.word_exceptions`` > the engine's lexicon >
+  rules. An inline exception always wins over the sidecar; the sidecar always
+  wins over the grapheme/positional beam.
+- **Discovery is lazy.** The ``orthography2ipa.lexicons`` entry points are read
+  only by :func:`packaged_lexicon`, :func:`packaged_lexicon_sources` and
+  :func:`use_packaged_lexicons`, once per process, never at import and never
+  during transcription.
+
+Deprecated process-wide API
+---------------------------
+
+:func:`register_lexicon`, :func:`set_lexicon_dir`,
+``$ORTHOGRAPHY2IPA_LEXICON_DIR``, :func:`use_packaged_lexicons`,
+:func:`clear_lexicons` and :func:`get_lexicon` act on the whole process: every
+engine that has no :attr:`~orthography2ipa.pipeline.Pipeline.lexicon` reads
+them. They keep working for one stable cycle and warn with the release that
+removes them. Their precedence is :func:`register_lexicon`, then
+:func:`set_lexicon_dir`, then an enabled packaged lexicon. A process-wide
+lexicon is read once per code, on first use, and cached for the process
+lifetime.
 
 ``scripts/build_en_lexicon.py`` builds a CMUdict-derived ``en-GB.tsv`` you can
-register; see ``docs/guide/lexicon.md``.
+load; see ``docs/guide/lexicon.md``.
 """
 from __future__ import annotations
 
@@ -79,12 +83,14 @@ import logging
 import os
 import unicodedata
 import urllib.request
+import warnings
 from functools import lru_cache
 from importlib.metadata import EntryPoint, entry_points
 from pathlib import Path
-from typing import Dict, Iterable, List, Optional, Set, Tuple
+from typing import Dict, Iterable, List, Optional, Set, Tuple, Union
 
 from orthography2ipa.registry import resolve, resolves_exactly
+from orthography2ipa.version import VERSION_MAJOR
 
 _LOG = logging.getLogger(__name__)
 
@@ -96,6 +102,8 @@ __all__ = [
     "resolve_lexicon_source",
     "available_lexicon_codes",
     "use_packaged_lexicons",
+    "load_lexicon",
+    "packaged_lexicon",
     "packaged_lexicon_sources",
     "lexicon_path",
     "parse_lexicon_text",
@@ -109,6 +117,9 @@ LEXICON_DIR_ENV = "ORTHOGRAPHY2IPA_LEXICON_DIR"
 #: Entry-point group through which an installed package supplies default
 #: lexicons, one entry point per language code.
 ENTRY_POINT_GROUP = "orthography2ipa.lexicons"
+
+#: The release that removes the process-wide lexicon API.
+_REMOVAL_VERSION = f"{VERSION_MAJOR + 1}.0.0"
 
 #: Where fetched remote lexicons are cached.
 CACHE_DIR = Path(
@@ -135,6 +146,15 @@ _IPA_MODIFIERS = frozenset(
     ".|‖"         # syllable / prosodic boundaries (tolerated, not required)
     "˥˦˧˨˩"        # tone letters
 )
+
+
+def _warn_deprecated(name: str, replacement: str) -> None:
+    warnings.warn(
+        f"{name} is deprecated and will be removed in {_REMOVAL_VERSION}; "
+        f"use {replacement}.",
+        DeprecationWarning,
+        stacklevel=3,
+    )
 
 
 def _is_ipa_char(ch: str) -> bool:
@@ -165,7 +185,10 @@ def is_ipa_string(ipa: str) -> bool:
 
 
 def register_lexicon(code: str, source: str) -> None:
-    """Register the lexicon *source* to use for language *code*.
+    """Deprecated: register the lexicon *source* to use for language *code*.
+
+    Every engine with no lexicon of its own reads the registration. Use
+    ``G2P(code, pipeline=Pipeline(lexicon=load_lexicon(source)))``.
 
     *source* is a local path, an ``http(s)://`` URL, or a Hugging Face id
     (``hf://<repo_id>/<path>``, optionally ``@<revision>``). Nothing is read
@@ -176,34 +199,48 @@ def register_lexicon(code: str, source: str) -> None:
     and the lexicon belongs to that spec. Two tags that resolve to the same
     spec share one slot; the later registration replaces the earlier.
     """
+    _warn_deprecated("register_lexicon", "Pipeline(lexicon=load_lexicon(source))")
     _REGISTERED[resolve(code)] = source
-    get_lexicon.cache_clear()
+    _process_lexicon.cache_clear()
 
 
 def set_lexicon_dir(path) -> None:
-    """Use *path* as a directory of ``{code}.tsv`` lexicons (``None`` to unset).
+    """Deprecated: use *path* as a directory of ``{code}.tsv`` lexicons (``None`` to unset).
+
+    Every engine with no lexicon of its own reads the directory. Use
+    ``Pipeline(lexicon=load_lexicon(path))`` with the one file the engine needs.
 
     A lexicon registered with :func:`register_lexicon` still wins for its code.
     A file belongs to the spec its name resolves to, so ``en.tsv`` serves
     ``en-GB``; a file named exactly for the resolved code wins over the others.
     """
+    _warn_deprecated("set_lexicon_dir", "Pipeline(lexicon=load_lexicon(path))")
     global _LEXICON_DIR
     _LEXICON_DIR = Path(path).expanduser() if path is not None else None
-    get_lexicon.cache_clear()
+    _process_lexicon.cache_clear()
 
 
 def clear_lexicons() -> None:
-    """Forget every registered lexicon, the lexicon dir and the enabled packaged lexicons."""
+    """Deprecated: forget every registered lexicon, the lexicon dir and the enabled packaged lexicons.
+
+    An engine's :attr:`~orthography2ipa.pipeline.Pipeline.lexicon` needs no
+    clearing: it ends with the engine.
+    """
+    _warn_deprecated("clear_lexicons", "Pipeline(lexicon=...), which needs no clearing")
     global _LEXICON_DIR, _PACKAGED
     _REGISTERED.clear()
     _LEXICON_DIR = None
     _PACKAGED = None
     _ENABLED.clear()
-    get_lexicon.cache_clear()
+    _process_lexicon.cache_clear()
 
 
 def use_packaged_lexicons(codes: Optional[Iterable[str]] = None) -> List[str]:
-    """Enable the installed packaged lexicons for *codes*, or for all of them.
+    """Deprecated: enable the installed packaged lexicons for *codes*, or for all of them.
+
+    Every engine with no lexicon of its own reads an enabled lexicon, so this
+    changes the output of engines the caller did not name. Use
+    ``G2P(code, pipeline=Pipeline(lexicon=packaged_lexicon(code)))``.
 
     A packaged lexicon comes from an installed package that declares an entry
     point in the ``orthography2ipa.lexicons`` group. It ranks below
@@ -216,6 +253,7 @@ def use_packaged_lexicons(codes: Optional[Iterable[str]] = None) -> List[str]:
         A code in *codes* has no installed provider. Asking for a lexicon that
         is absent is an error, never a quiet fall back to the rules.
     """
+    _warn_deprecated("use_packaged_lexicons", "Pipeline(lexicon=packaged_lexicon(code))")
     providers = _packaged_providers()
     if codes is None:
         wanted = set(providers)
@@ -227,8 +265,47 @@ def use_packaged_lexicons(codes: Optional[Iterable[str]] = None) -> List[str]:
                 f"no installed package provides a lexicon for {missing}; "
                 f"installed: {sorted(providers) or 'nothing'}")
     _ENABLED.update(wanted)
-    get_lexicon.cache_clear()
+    _process_lexicon.cache_clear()
     return sorted(_ENABLED)
+
+
+def load_lexicon(source: Union[str, os.PathLike]) -> Dict[str, str]:
+    """Read the lexicon at *source* into a ``{word: ipa}`` mapping.
+
+    *source* is a local path, an ``http(s)://`` URL, or a Hugging Face id
+    (``hf://<repo_id>/<path>``, optionally ``@<revision>``). The mapping is the
+    caller's to give to :class:`~orthography2ipa.pipeline.Pipeline`, and this
+    call sets no state.
+
+    Raises
+    ------
+    FileNotFoundError
+        A local source that does not exist.
+    """
+    path = resolve_lexicon_source(os.fspath(source))
+    return parse_lexicon_text(path.read_text(encoding="utf-8"))
+
+
+def packaged_lexicon(code: str) -> Dict[str, str]:
+    """The ``{word: ipa}`` mapping an installed package supplies for *code*.
+
+    The mapping is the caller's to give to
+    :class:`~orthography2ipa.pipeline.Pipeline`, and this call sets no state.
+
+    Raises
+    ------
+    LookupError
+        No installed package supplies a lexicon file for *code*. Asking for a
+        lexicon that is absent is an error, never a quiet fall back to the
+        rules.
+    """
+    resolved = resolve(code)
+    path = _packaged_path(resolved)
+    if path is None:
+        raise LookupError(
+            f"no installed package supplies a lexicon file for {resolved!r}; "
+            f"installed: {sorted(_packaged_providers()) or 'nothing'}")
+    return load_lexicon(path)
 
 
 def packaged_lexicon_sources() -> Dict[str, Path]:
@@ -299,7 +376,10 @@ def _lexicon_dir() -> Optional[Path]:
     if _LEXICON_DIR is not None:
         return _LEXICON_DIR
     env = os.environ.get(LEXICON_DIR_ENV)
-    return Path(env).expanduser() if env else None
+    if not env:
+        return None
+    _warn_deprecated(f"${LEXICON_DIR_ENV}", "Pipeline(lexicon=load_lexicon(path))")
+    return Path(env).expanduser()
 
 
 def resolve_lexicon_source(source: str) -> Path:
@@ -459,8 +539,8 @@ def validate_lexicon_text(text: str) -> List[Tuple[int, str]]:
 
 
 @lru_cache(maxsize=None)
-def get_lexicon(code: str) -> Dict[str, str]:
-    """Return the ``{word: ipa}`` overlay for *code*, or ``{}`` if none is set.
+def _process_lexicon(code: str) -> Dict[str, str]:
+    """The process-wide ``{word: ipa}`` overlay for *code*, or ``{}`` if none is set.
 
     Reads (and, for a remote source, fetches) the lexicon on first call for
     *code*, then caches it. Nothing is bundled: this returns ``{}`` unless the
@@ -476,3 +556,17 @@ def get_lexicon(code: str) -> Dict[str, str]:
     if path is None or not path.is_file():
         return {}
     return parse_lexicon_text(path.read_text(encoding="utf-8"))
+
+
+def get_lexicon(code: str) -> Dict[str, str]:
+    """Deprecated: return the process-wide ``{word: ipa}`` overlay for *code*.
+
+    An engine's lexicon is the mapping the caller built, held in
+    :attr:`~orthography2ipa.pipeline.Pipeline.lexicon`.
+    """
+    _warn_deprecated("get_lexicon", "Pipeline.lexicon")
+    return _process_lexicon(code)
+
+
+get_lexicon.cache_clear = _process_lexicon.cache_clear
+get_lexicon.cache_info = _process_lexicon.cache_info
