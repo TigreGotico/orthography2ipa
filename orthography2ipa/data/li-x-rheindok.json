@@ -401,6 +401,14 @@
       "ve̩r"
     ]
   },
+  "allophone_rules": [
+    {
+      "id": "LI_FINAL_H_LENGTH_SIGN",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Off here. The rule reads a Spelling 2003 convention (printed p. 13, §8 a). Rheinische Dokumenta is a sound notation in which ⟨h⟩ writes [h], so a written ⟨h⟩ is pronounced."
+    }
+  ],
   "location": {
     "latitude": 51.015,
     "longitude": 5.87705,

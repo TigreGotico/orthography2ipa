@@ -707,6 +707,16 @@
       "notes": "Dutch, not Limburgish. p. 475: the prefixes be-, er-, ge-, ont- and ver- 'altijd accentloos'. Read for li through the Peters 2006 and Heijmans & Gussenhoven 1998 statements that the stress follows the standard language."
     },
     {
+      "id": "trommelen_zonneveld1997",
+      "author": "Trommelen, Mieke & Zonneveld, Wim",
+      "year": 1997,
+      "title": "Ha! Een analyse!",
+      "publisher": "Nederlandse Taalkunde 2",
+      "url": "https://www.dbnl.org/tekst/_ned020199701_01/_ned020199701_01_0027.php",
+      "pages": "pp. 318-332",
+      "notes": "Dutch, not Limburgish. p. 320, (7): 'In een syllabe komt h nooit voor in postvocalische positie, alleen in prevocalische positie.' Read for li through Spelling 2003 p. 13, which compares the Limburgish final ⟨h⟩ with the Dutch ⟨h⟩ of bah, oh, eh."
+    },
+    {
       "id": "wells_sampa_dutch",
       "author": "Wells, J. C.",
       "year": 1996,
@@ -798,6 +808,30 @@
       "followed_by_2": "consonant",
       "followed_by_3": "vowel",
       "notes": "LI_OPEN_SYLLABLE_E when a tone sign stands after the ⟨e⟩. The sign is not a consonant: printed p. 27, §8 h, '~ (inkel tilde) is ’t teiken wo me sjleiptoon mit kan aangaeve. Det teiken mót me zitte vlak nao de klinker dae de sjleiptoon haet', with the pair ze~ve / ze\\ve."
+    },
+    {
+      "id": "LI_FINAL_H_LENGTH_SIGN",
+      "phonemes": [
+        "h",
+        "ɦ"
+      ],
+      "surface": "",
+      "grapheme": [
+        "h"
+      ],
+      "word_final": true,
+      "preceded_by_grapheme": [
+        "a",
+        "á",
+        "e",
+        "è",
+        "i",
+        "o",
+        "ó",
+        "ö",
+        "u"
+      ],
+      "notes": "Spelling 2003, printed p. 13, §8 a, 'de h die een klinker kort kan houden op het woordeinde': 'In het Limburgs komen vaak korte klinkers op het einde van een woord voor. Om die kortheid aan te geven, moeten ze gevolgd worden door een h: deh, meh, nih ‘daar, maar, niet’.' The same paragraph compares the Dutch use of the letter: 'In het Nederlands wordt de h gebruikt als teken dat kan wijzen op kortheid van de voorafgaande klinker: bah, oh, eh.' The ⟨h⟩ is a sign for the length of the vowel, and it has no sound. For Dutch, Trommelen & Zonneveld 1997 (Nederlandse Taalkunde 2, p. 320) state: 'In een syllabe komt h nooit voor in postvocalische positie, alleen in prevocalische positie.' The rule covers what the quote names: a word-final ⟨h⟩ right after a single vowel letter of the 'kort' column of printed p. 10 (i, è, e, u, ö, ó, o, a, á). The source does not say what a final ⟨h⟩ after a long vowel sign or a consonant is, so those keep [h]."
     }
   ],
   "constrain_onsets": true,
