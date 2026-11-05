@@ -12,8 +12,8 @@ of the language (see :class:`_OnsetJudge`).
 Languages with a real syllabifier ship it as an
 ``orthography2ipa.syllabify`` entry-point plugin (``silabificador`` for
 Portuguese, ``pycotovia`` for Galician) — pass ``lang=`` and the plugin
-is used automatically. Alternatively pass a pre-computed syllable list;
-every function accepts one.
+is used automatically. A caller can pass its own ``syllabifier=``, which wins
+over discovery, or a pre-computed syllable list, which every function accepts.
 
 Usage
 ─────
@@ -37,6 +37,7 @@ from typing import (Collection, Dict, FrozenSet, List, Optional, Sequence,
 
 from orthography2ipa.allophony import segment_ipa
 from orthography2ipa.phonetok import lower_str
+from orthography2ipa.syllabifier_plugin import SyllabifierPlugin
 from orthography2ipa.types import LanguageSpec, StressRules
 from orthography2ipa.vowels import (
     SONORITY_FRICATIVE, SONORITY_GLIDE, SONORITY_LIQUID, SONORITY_NASAL,
@@ -1039,8 +1040,14 @@ def _syllables_for(
     lang: Optional[str],
     diphthongs: Sequence[str] = (),
     spec: Optional[LanguageSpec] = None,
+    syllabifier: Optional[SyllabifierPlugin] = None,
 ) -> List[str]:
-    """Syllabify *word*: registered plugin for *lang* first, naive fallback.
+    """Syllabify *word*: the caller's plugin, else the one registered for
+    *lang*, else the bundled splitter.
+
+    *syllabifier* is the plugin the caller named. It replaces discovery, so a
+    word it cannot split goes to the bundled splitter and not to a registered
+    plugin.
 
     *diphthongs* reaches the bundled splitter only; a language that ships a
     real syllabifier plugin does not need it.
@@ -1050,18 +1057,19 @@ def _syllables_for(
     but *lang* is, the spec is looked up. Without either, the split is
     unconstrained (the historical behaviour).
     """
-    if lang:
+    plugin = syllabifier
+    if plugin is None and lang:
         from orthography2ipa.registry import get_syllabifier
         plugin = get_syllabifier(lang)
-        if plugin is not None:
-            try:
-                sylls = plugin.syllabify(word, lang)
-                if sylls and "".join(sylls) == word:
-                    return list(sylls)
-            except Exception as exc:
-                logging.getLogger(__name__).warning(
-                    "syllabifier plugin %r failed on word %r: %s",
-                    type(plugin).__name__, word, exc)
+    if plugin is not None:
+        try:
+            sylls = plugin.syllabify(word, lang)
+            if sylls and "".join(sylls) == word:
+                return list(sylls)
+        except Exception as exc:
+            logging.getLogger(__name__).warning(
+                "syllabifier plugin %r failed on word %r: %s",
+                type(plugin).__name__, word, exc)
     if spec is None and lang:
         spec = _spec_for(lang)
     hiatus = (hiatus_positions(word, spec) if spec is not None
@@ -1213,6 +1221,7 @@ def detect_stress(
     rules: StressRules,
     syllables: Optional[Sequence[str]] = None,
     lang: Optional[str] = None,
+    syllabifier: Optional[SyllabifierPlugin] = None,
 ) -> int:
     """Return the 0-based index of the stressed syllable of *word*.
 
@@ -1238,9 +1247,12 @@ def detect_stress(
         ``orthography2ipa.syllabify`` plugin (``silabificador`` for
         Portuguese, ``pycotovia`` for Galician). The naive
         :func:`syllabify` is the fallback.
+    syllabifier : Optional[SyllabifierPlugin]
+        The caller's syllabifier. It wins over the plugin *lang* looks up.
     """
     sylls = (list(syllables) if syllables is not None
-             else _syllables_for(word, lang, rules.diphthongs))
+             else _syllables_for(word, lang, rules.diphthongs,
+                                 syllabifier=syllabifier))
     n = len(sylls)
     if n <= 1:
         return 0

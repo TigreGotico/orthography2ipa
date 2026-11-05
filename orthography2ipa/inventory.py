@@ -34,10 +34,10 @@ it, and a TTS consumer downstream is what would otherwise pay.
 from __future__ import annotations
 
 import re
-from typing import Dict, FrozenSet, List, Sequence, Set, Tuple
+from typing import Dict, FrozenSet, List, Mapping, Optional, Sequence, Set, Tuple
 
 from orthography2ipa.allophony import segment_ipa
-from orthography2ipa.lexicon import get_lexicon
+from orthography2ipa.lexicon import _process_lexicon
 from orthography2ipa.positional import normalize_ending_value
 from orthography2ipa.types import LanguageSpec
 
@@ -83,7 +83,10 @@ def _transform_literals(transform: str) -> str:
     return _BACKREF.sub("", transform).replace("\\", "")
 
 
-def _base_emissions(spec: LanguageSpec) -> Set[str]:
+def _base_emissions(
+    spec: LanguageSpec,
+    lexicon: Optional[Mapping[str, str]] = None,
+) -> Set[str]:
     """Every IPA string the *within-word* tables can place on a slot."""
     emissions: Set[str] = set()
 
@@ -119,7 +122,8 @@ def _base_emissions(spec: LanguageSpec) -> Set[str]:
         if rank1 is not None:
             emissions.add(rank1)
         emissions.update(alternatives)
-    emissions.update(get_lexicon(spec.code).values())
+    emissions.update(
+        (_process_lexicon(spec.code) if lexicon is None else lexicon).values())
 
     if spec.stress:
         emissions.update(STRESS_MARKS)
@@ -159,7 +163,10 @@ def _sandhi_emissions(spec: LanguageSpec, base: Set[str]) -> Set[str]:
     return out
 
 
-def emission_inventory(spec: LanguageSpec) -> FrozenSet[str]:
+def emission_inventory(
+    spec: LanguageSpec,
+    lexicon: Optional[Mapping[str, str]] = None,
+) -> FrozenSet[str]:
     """Every IPA string *spec* can place on a slot.
 
     The union of **every** source the engine can take IPA from:
@@ -172,18 +179,23 @@ def emission_inventory(spec: LanguageSpec) -> FrozenSet[str]:
       after the tables, so a linking tie or an assimilated segment it inserts is
       a source the within-word tables never carried;
     * the word-level overrides — inline ``word_exceptions`` and the sidecar
-      lexicon (caller-registered, never bundled) — which carry arbitrary IPA per
-      word and bypass the tables completely;
+      lexicon (never bundled) — which carry arbitrary IPA per word and bypass
+      the tables completely. The sidecar is *lexicon*, the mapping an engine
+      holds in :attr:`~orthography2ipa.pipeline.Pipeline.lexicon`, and the
+      process-wide lexicon when *lexicon* is ``None``;
     * the stress marks, when the spec declares stress rules.
 
     The empty string is excluded: a deleted slot emits nothing, which is the
     absence of a symbol rather than a symbol.
     """
-    base = _base_emissions(spec)
+    base = _base_emissions(spec, lexicon)
     return frozenset(base | _sandhi_emissions(spec, base))
 
 
-def phoneme_inventory(spec: LanguageSpec) -> FrozenSet[str]:
+def phoneme_inventory(
+    spec: LanguageSpec,
+    lexicon: Optional[Mapping[str, str]] = None,
+) -> FrozenSet[str]:
     """The **token set**: :func:`emission_inventory`, cut into segments.
 
     An emission is what one slot carries, and it is not always one phoneme —
@@ -198,12 +210,15 @@ def phoneme_inventory(spec: LanguageSpec) -> FrozenSet[str]:
     affricate gets it as a token, and one that does not, does not.
     """
     tokens: set = set()
-    for emission in emission_inventory(spec):
-        tokens.update(tokenize(emission, spec))
+    for emission in emission_inventory(spec, lexicon):
+        tokens.update(tokenize(emission, spec, lexicon))
     return frozenset(tokens)
 
 
-def phoneme_atoms(spec: LanguageSpec) -> List[str]:
+def phoneme_atoms(
+    spec: LanguageSpec,
+    lexicon: Optional[Mapping[str, str]] = None,
+) -> List[str]:
     """The multi-character segments *this spec declares*, longest first.
 
     Public because segmentation is not only a tokenizer concern: syllable
@@ -212,12 +227,15 @@ def phoneme_atoms(spec: LanguageSpec) -> List[str]:
     derived from the spec's own tables, so what counts as a segment is decided
     by the *data*, exactly as in :func:`phoneme_inventory`.
     """
-    return _atoms(spec)
+    return _atoms(spec, lexicon)
 
 
-def _atoms(spec: LanguageSpec) -> List[str]:
+def _atoms(
+    spec: LanguageSpec,
+    lexicon: Optional[Mapping[str, str]] = None,
+) -> List[str]:
     """The segments that must never be split, longest first."""
-    emissions = emission_inventory(spec)
+    emissions = emission_inventory(spec, lexicon)
     return sorted(
         {p for p in (spec.phonemes or ()) if p}
         | {e for e in emissions if len(e) > 1 and e not in STRESS_MARKS},
@@ -226,7 +244,11 @@ def _atoms(spec: LanguageSpec) -> List[str]:
     )
 
 
-def tokenize(ipa: str, spec: LanguageSpec) -> List[str]:
+def tokenize(
+    ipa: str,
+    spec: LanguageSpec,
+    lexicon: Optional[Mapping[str, str]] = None,
+) -> List[str]:
     """Cut a transcription into the tokens a TTS model consumes.
 
     The counterpart to :func:`phoneme_inventory`: that function says what the
@@ -241,7 +263,7 @@ def tokenize(ipa: str, spec: LanguageSpec) -> List[str]:
     in no inventory and that a model would have to learn separately from ``ɐ``.
     Whitespace is dropped; a word boundary is the caller's concern.
     """
-    atoms = _atoms(spec)
+    atoms = _atoms(spec, lexicon)
     tokens: List[str] = []
     for chunk in _split_on_stress(ipa):
         if chunk in STRESS_MARKS:

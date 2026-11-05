@@ -74,6 +74,16 @@ text and it ships no weights. The spec describes the language; the engine decide
 the pipeline. A spec should only name a plugin when the language is not
 transcribable without it.
 
+A lexicon and a syllabifier travel in a :class:`~orthography2ipa.pipeline.Pipeline`,
+which the caller builds and hands to one engine as an object, with no entry-point
+name::
+
+    G2P("pt-PT", pipeline=Pipeline(lexicon=lexicon, syllabifier=syllabifier))
+
+Another engine in the process does not see them. A pipeline syllabifier wins over
+the one discovery finds, and it is an explicit choice, so the neutrality check does
+not bind it: the caller who passes it has decided the output.
+
 A plugin is identified by its **entry-point name**, which is what the spec or the
 caller names. That makes the declaration readable and greppable, and it means two
 packages cannot fight over a language — something already said which one it
