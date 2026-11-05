@@ -124,7 +124,7 @@ Their Table 4 (p. 184) gives 90.0% voiceless tokens for the region. The paper na
 
 > *"In de regio's boven de rivieren (N-M, N-N en N-R) is de sterk geschraapte stemloze uvulair de norm"*
 
-`nl-NL` gives ⟨g⟩ and ⟨ch⟩ the voiceless uvular [χ] in every position (Gussenhoven 1992, p. 45). That is the norm the paper names, so the spec takes ⟨g⟩, ⟨berg⟩ and the regressive devoicing rules `NL_CODA_DEVOICE_*` from `nl-NL` and states no delta for them: `gaan` [ˈχaːn], `dag` [ˈdɑχ], `zandgrond` [ˈzɑntχrɔnt], `geven` [ˈχeivən]. The scraping is a voice quality, and the IPA value does not show it.
+`nl-NL` gives ⟨g⟩ and ⟨ch⟩ the voiceless uvular [χ] in every position (Gussenhoven 1992, p. 45). That is the norm the paper names, so the spec takes ⟨g⟩, ⟨berg⟩ and the regressive devoicing rules `NL_CODA_DEVOICE_*` from `nl-NL` and states no delta for them: `gaan` [ˈχaːn], `dag` [ˈdɑχ], `zandgrond` [ˈzɑntχrɔnt], `ogen` [ˈouχən]. The scraping is a voice quality, and the IPA value does not show it.
 
 ### Known gaps
 
