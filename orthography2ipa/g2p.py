@@ -49,7 +49,8 @@ from orthography2ipa.features import (
 )
 from orthography2ipa.inventory import phoneme_inventory
 from orthography2ipa.inventory import tokenize as inventory_tokenize
-from orthography2ipa.lexicon import get_lexicon
+# scripts/benchmark.py and o2i-lexicons patch this module's ``get_lexicon``.
+from orthography2ipa.lexicon import _process_lexicon as get_lexicon
 from orthography2ipa.markup import MarkupError, parse_markup
 from orthography2ipa.phonetok import (
     PAUSE_PUNCTUATION,
@@ -67,6 +68,7 @@ from orthography2ipa.phonetok import (
 )
 from orthography2ipa.phonetok import _VIRAMA_COMBINING_CLASS
 from orthography2ipa.phonetok import _PUNCT_RE as _WORD_PUNCT_RE
+from orthography2ipa.pipeline import Pipeline
 from orthography2ipa.vowels import is_ipa_vowel
 from orthography2ipa.allophony import compile_allophone_rescorer
 from orthography2ipa.positional import (match_grammatical_ending,
@@ -406,6 +408,10 @@ class G2P:
     normalizer : Optional[Callable[[str], str]]
         Pre-G2P text preparation (diacritization, number expansion);
         identity when omitted.
+    pipeline : Optional[Pipeline]
+        The lexicon and the syllabifier for this engine alone (see
+        :class:`~orthography2ipa.pipeline.Pipeline`). Another engine in the
+        same process does not see them.
     on_unmapped : str
         How to react when a word contains characters absent from the
         spec's grapheme table (e.g. feeding Hanzi to a pinyin-only spec,
@@ -442,6 +448,7 @@ class G2P:
         apply_allophony: bool = True,
         normalizer: Optional[Callable[[str], str]] = None,
         plugins: Optional[dict] = None,
+        pipeline: Optional[Pipeline] = None,
         on_unmapped: str = "warn",
         rescorer: RescorerArg = None,
         sentence_rescorer: SentenceRescorerArg = None,
@@ -449,6 +456,7 @@ class G2P:
         expose_ambiguous_endings: bool = True,
     ) -> None:
         self.allow_undeclared_phonemes = allow_undeclared_phonemes
+        self.pipeline: Pipeline = pipeline or Pipeline()
         #: Whether a list-valued ``grammatical_endings`` entry contributes
         #: its lower-ranked readings to the beam (see
         #: :attr:`~orthography2ipa.types.LanguageSpec.grammatical_endings`).
@@ -1107,8 +1115,10 @@ class G2P:
         ipa = ipa.strip()
         if self.allow_undeclared_phonemes:
             return ipa
-        declared = phoneme_inventory(self.spec)
-        outside = [t for t in inventory_tokenize(ipa, self.spec) if t not in declared]
+        lexicon = self.pipeline.lexicon
+        declared = phoneme_inventory(self.spec, lexicon)
+        outside = [t for t in inventory_tokenize(ipa, self.spec, lexicon)
+                   if t not in declared]
         if outside:
             raise MarkupError(
                 f"<phoneme ph={ipa!r}> uses {outside!r}, which the {self.spec.code} "
@@ -1226,18 +1236,20 @@ class G2P:
     def _override_for(self, word: str) -> Optional[str]:
         """Whole-word IPA override for *word*, or ``None`` to fall to rules.
 
-        Precedence — inline ``spec.word_exceptions`` > sidecar lexicon
-        (caller-registered; see :mod:`orthography2ipa.lexicon`) > ``None``. Both are matched on the same
+        Precedence — inline ``spec.word_exceptions`` > sidecar lexicon >
+        ``None``. The sidecar is ``pipeline.lexicon`` when the caller set it,
+        and the process-wide lexicon otherwise (see
+        :mod:`orthography2ipa.lexicon`). Both are matched on the same
         language-aware lowercased key, so a lexicon hit rejoins the *identical*
         override pathway an inline exception uses (stress-mark insertion,
-        cross-word sandhi and ``confidence == 1.0`` all apply unchanged). The
-        lexicon is read lazily on first use per language (see
-        :mod:`orthography2ipa.lexicon`); a language with no sidecar gets an
-        empty map here, so its behaviour is byte-identical to before E3.
+        cross-word sandhi and ``confidence == 1.0`` all apply unchanged). A
+        language with no sidecar gets an empty map here and takes the rules.
         """
         key = lower_str(self._unmarked(word), self.spec.code)
         exceptions = self.spec.word_exceptions
-        lex = get_lexicon(self.lang)
+        lex = self.pipeline.lexicon
+        if lex is None:
+            lex = get_lexicon(self.lang)
         # Two keys, tried in order: the word as given, then the word with
         # the punctuation that clings to it in raw text stripped from both
         # ends (``I,`` ``is.`` ``"I``). The grapheme layer never sees that
@@ -1278,7 +1290,8 @@ class G2P:
         sylls = self._syll_cache.get(word)
         if sylls is None:
             diph = self.spec.stress.diphthongs if self.spec.stress else ()
-            sylls = _syllables_for(word, self.lang, diph, spec=self.spec)
+            sylls = _syllables_for(word, self.lang, diph, spec=self.spec,
+                                   syllabifier=self.pipeline.syllabifier)
             self._syll_cache[word] = sylls
         return list(sylls)
 
