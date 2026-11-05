@@ -69,3 +69,8 @@ def test_the_rule_stands_before_the_nasal_e_raise():
 @pytest.mark.parametrize("code", ["pt-BR-x-sp", "pt-BR-x-sul", "pt-BR-x-rj"])
 def test_children_inherit_the_raising(code):
     assert transcribe("então", code).startswith("ĩ")
+
+
+def test_uruguayan_portuguese_keeps_its_output():
+    """pt-UY switches the rule off: no source on the border variety states it."""
+    assert transcribe("então", "pt-UY").startswith("ẽ")
