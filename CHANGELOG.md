@@ -389,10 +389,6 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.114.19a1...7.114.20a1)
 
-**Merged pull requests:**
-
-- fix\(pt\): keep a final ⟨iu ui⟩ after a vowel one stressed diphthong [\#1970](https://github.com/TigreGotico/orthography2ipa/pull/1970) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [7.114.19a1](https://github.com/TigreGotico/orthography2ipa/tree/7.114.19a1) (2026-11-04)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.114.18a1...7.114.19a1)
