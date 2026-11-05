@@ -138,6 +138,8 @@ G2P("egy").transcribe_word("nfr")   # 'nɛfɛr'
 
 `append` and `surface` are mutually exclusive. A rule either rewrites its target or inserts next to it.
 
+An inserted vowel has a syllable of its own, and that syllable takes no stress. A vowel counts as inserted when no value of its grapheme, in the grapheme table or in a positional value, holds a vowel. On a later pass, a rule keyed on `stress` reads the inserted vowel in that syllable, not in the syllable of the consonant it follows. The syllable stands after the syllable of the nearest earlier grapheme that holds a vowel. So the [i] that pt-BR inserts in `pneu` [piˈnew] is pretonic, and the one in `pacto` [ˈpakitu] is post-tonic.
+
 ## Doubled letters that are not geminates
 
 The pass protects a geminate from being split. A rule that material outside the geminate triggers may not rewrite one half and leave a heterorganic cluster. This protection assumes that the orthography writes gemination by doubling the letter, and most orthographies do. A consonantal skeleton does not. Egyptological ⟨bbr⟩ is the root b-b-r, and the reading convention puts a vowel between the two ⟨b⟩. The `egy` spec sets `doubled_letters_geminate: false`, which turns the protection off:

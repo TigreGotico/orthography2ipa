@@ -182,6 +182,7 @@ The `RescoreContext` gives the rescorer these members:
 | `is_word_initial` | True for the first grapheme of the word |
 | `is_word_final` | True when every later grapheme of the word is silent, so it marks the last pronounced grapheme |
 | `syll_idx`, `stressed_syll_idx`, `is_stressed` | Syllable and stress information, or `None` where it is not available |
+| `syll_indices` | The syllable index of every slot of the word, aligned with `slots`, or `None` where it is not available |
 
 The context never crosses a word boundary, on either entry path. Stress information depends on the entry path. The engine methods `G2P.transcribe` and `G2P.ipa_lattice` compute syllables and stress, so they fill the stress members. The tokenizer methods `PhonetokTokenizer.ipa_beam` and `ipa_lattice` have no stress detection, so these members are `None` there. A rescorer that needs stress must check for `None`, and it can do nothing when stress is absent.
 
