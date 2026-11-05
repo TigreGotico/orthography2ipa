@@ -196,6 +196,9 @@ _ALIASES: Dict[str, str] = {
     # code reads the base.
     "pt-BR-x-brasilia": "pt-BR",
     "pt-PT-x-lisboa": "pt-PT-x-lisbon",
+    # The cnr spec reads Latin only; sr reads the same Cyrillic alphabet.
+    "cnr-Cyrl": "sr", "cnr-Cyrl-BA": "sr", "cnr-Cyrl-HR": "sr",
+    "cnr-Cyrl-ME": "sr", "cnr-Cyrl-RS": "sr", "cnr-Cyrl-XK": "sr",
     # Galician has one standard spec, ``gl-ES``, and its varieties carry the
     # region. These are the retired codes of the same varieties.
     "gl-x-central": "gl-ES-x-central",
@@ -338,6 +341,17 @@ except ImportError:
     _HAS_LANGCODES = False
 
 
+def _casefold_lookup(folded: str) -> Optional[str]:
+    """The alias target or registered code whose lower case is *folded*."""
+    for known, target in _ALIASES.items():
+        if known.lower() == folded:
+            return target
+    for known in available_json_codes():
+        if known.lower() == folded:
+            return known
+    return None
+
+
 @lru_cache(maxsize=None)
 def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
     """Normalise common aliases to canonical BCP-47 codes.
@@ -345,18 +359,21 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
     Resolution order:
     1. Manual alias table (handles private-use subtags and ISO 639-3 codes
        that ``langcodes`` may not round-trip cleanly).
-    2. Exact match against the registered spec codes, then
+    2. Exact match against the alias keys and registered spec codes, without
+       regard to case (``MNK`` → ``mnk``), then
        ``langcodes.standardize_tag()`` when the library is available and the
        code is not a private-use subtag (``x-`` extension).
-    3. Exact match of the standardized code. A private-use tag matches
-       without regard to case, and also with a Suppress-Script subtag
-       dropped (``pt-Latn-BR-x-sp`` → ``pt-BR-x-sp``).
+    3. Exact match of the standardized code. A private-use tag also matches
+       with a Suppress-Script subtag dropped (``pt-Latn-BR-x-sp`` →
+       ``pt-BR-x-sp``).
     4. The default region of a bare primary-language tag, when that
        spec is registered (``pt`` → ``pt-PT``), or the curated default
        variant of a region tag with only sub-regional specs
        (``ar-SA`` → ``ars-SA``).
     5. Nearest registered code by language distance
-       (``en-NZ`` → ``en-GB``); no usable match leaves *code* unchanged.
+       (``en-NZ`` → ``en-GB``), among the codes of the tag's own language
+       first (``sr-Latn-RS`` → ``sr``, not ``cnr``); no usable match leaves
+       *code* unchanged.
     """
     if code in _ALIASES:
         return _ALIASES[code]
@@ -366,6 +383,11 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
     # ``bcl`` → ``bik``), which would miss the spec.
     if code in available:
         return code
+    requested = code
+    # BCP-47 tags are case-insensitive (RFC 5646 §2.1.1), so ``MNK`` names
+    # ``mnk`` before macrolanguage folding can turn it into ``man``.
+    if (known := _casefold_lookup(code.lower())) is not None:
+        return known
     if (_HAS_LANGCODES and not _PRIVATE_USE.search(code)
             and not code.startswith("x-")):
         try:
@@ -376,32 +398,21 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
             return _ALIASES[code]
     if code in available:
         return code
-    if _PRIVATE_USE.search(code):
-        # BCP-47 tags are case-insensitive, and langcodes never sees a
-        # private-use tag (step 2), so fold the case here; otherwise
-        # ``ar-sa-x-najd`` misses ``ar-SA-x-najd`` and the distance match
-        # below lands it on a sibling lect.
-        folded = [code.lower()]
-        if _HAS_LANGCODES:
-            # A script subtag that is the language's IANA Suppress-Script adds
-            # no information (RFC 5646 §3.1.9), so ``pt-Latn-BR-x-sp`` names
-            # ``pt-BR-x-sp``. Only the part before the private use goes to
-            # langcodes, unnormalized, so no macrolanguage folding happens.
-            head, private = _PRIVATE_USE.split(code, maxsplit=1)
-            try:
-                bare = _langcodes.Language.get(
-                    head, normalize=False).simplify_script().to_tag()
-            except Exception:
-                bare = None
-            if bare and bare.lower() != head.lower():
-                folded.append(f"{bare}-x-{private}".lower())
-        for candidate in folded:
-            for known in _ALIASES:
-                if known.lower() == candidate:
-                    return _ALIASES[known]
-            for known in available:
-                if known.lower() == candidate:
-                    return known
+    if _HAS_LANGCODES and _PRIVATE_USE.search(code):
+        # A script subtag that is the language's IANA Suppress-Script adds
+        # no information (RFC 5646 §3.1.9), so ``pt-Latn-BR-x-sp`` names
+        # ``pt-BR-x-sp``. Only the part before the private use goes to
+        # langcodes, unnormalized, so no macrolanguage folding happens.
+        head, private = _PRIVATE_USE.split(code, maxsplit=1)
+        try:
+            bare = _langcodes.Language.get(
+                head, normalize=False).simplify_script().to_tag()
+        except Exception:
+            bare = None
+        if (bare and bare.lower() != head.lower() and (
+                known := _casefold_lookup(f"{bare}-x-{private}".lower()))
+                is not None):
+            return known
     # A bare tag names its motherland variety, not the most-populous region
     # langcodes would pick: ``pt`` is ``pt-PT``, not ``pt-BR``.
     if "-" not in code and (default := with_default_region(code)) in available:
@@ -412,7 +423,25 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
         return code
     # An unknown variant falls back to the standard variety, not to whichever
     # sibling lect ties with it: private use counts for nothing in the distance.
-    match = closest_lang(code, sorted({*available, *_RENAMED}), lects="standard")
+    candidates = sorted({*available, *_RENAMED})
+    # The primary language subtag names the language. When that language has
+    # a spec, the match stays inside it: ``sr-Latn-RS`` is Serbian, and
+    # langcodes would otherwise pick ``cnr``, whose likely subtags are
+    # ``sr-Latn-ME``. The requested subtag comes first, because the
+    # standardization above folds ``als-AL`` into ``sq``; the standardized
+    # one serves a tag whose own language has no spec, such as ``sh``
+    # (``sr-Latn``). A one-letter subtag (``x-``, ``i-``) is a singleton.
+    # With no own-language spec near enough, the search is as wide as
+    # before, so no tag that resolved stops resolving.
+    own: List[str] = []
+    for language in dict.fromkeys(
+            tag.split("-")[0].lower() for tag in (requested, code)):
+        own = [c for c in candidates
+               if len(language) > 1 and c.split("-")[0].lower() == language]
+        if own:
+            break
+    match = ((own and closest_lang(code, own, lects="standard"))
+             or closest_lang(code, candidates, lects="standard"))
     if match:
         match = _RENAMED.get(match, match)
         _LOG.debug("resolved language code %r to nearest registered %r",
