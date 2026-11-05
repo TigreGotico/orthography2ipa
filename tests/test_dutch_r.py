@@ -12,6 +12,10 @@ Sources:
   distributed", and "The alveolar/uvular trill is voiced in all positions,
   except word-finally as in [doːʀ̥] 'through' and when followed by a
   voiceless stop in consonant clusters as in [vaːʀ̥t] 'sails'."
+- R. van Bezooijen & R. van den Berg, *Taal en Tongval* themanummer 17,
+  2004, p. 94, on South Limburg: "Dit is een gebied met vrijwel uitsluitend
+  huig-r. De Gooise r komt hier nauwelijks of niet voor". The Gooise r is
+  "the approximant realisation of postvocalic r" (p. 86).
 
 The other segments keep the values the specs state elsewhere.
 """
@@ -90,12 +94,19 @@ def test_af_keeps_its_own_r():
 @pytest.mark.parametrize("spec, word, ipa", [
     ("nl-NL-x-polder", "vaart", "ˈvaːɹt"),
     ("nl-NL-x-groninge", "vader", "ˈfaːdəɹ"),
-    ("nl-NL-x-limburg", "bergen", "ˈbɛɹxən"),
-    ("nl-NL-x-limburg", "tjerkgaast", "ˈtʃɛɹkxaːst"),
 ])
 def test_netherlandic_children_take_the_coda_approximant(spec, word, ipa):
     # The children state no coda /r/ of their own, so the nl-NL value reaches them.
     assert G2P(spec).transcribe(word) == ipa
+
+
+@pytest.mark.parametrize("word, ipa", [
+    ("bergen", "ˈbɛrxən"),
+    ("tjerkgaast", "ˈtʃɛrkxaːst"),
+])
+def test_limburg_coda_r_is_not_the_approximant(word, ipa):
+    # Limburg switches the nl-NL approximant off and keeps the onset [r].
+    assert G2P("nl-NL-x-limburg").transcribe(word) == ipa
 
 
 @pytest.mark.parametrize("word, ipa", [
