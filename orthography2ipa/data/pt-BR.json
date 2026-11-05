@@ -521,6 +521,30 @@
       "notes": "Pretonic nasalisation before the palatal nasal: ganhar [ɡɐ̃ˈɲaɾ], senhor [sẽˈɲoɾ]. Barbosa & Albano (2004: 229): 'In pre-stressed position, there is a ten-vowel phonetic contrast, where the quality of the corresponding stressed vowel is roughly preserved: [i e a o u ĩ ẽ ɐ̃ õ ũ]. Nasalised vowels in this position surface either before /N/ (e.g. temporal tẽᵐpoˈɾaʊ̯ ‘temporal’) or before /ɲ/ (e.g. ganhar gɐ̃ˈɲaɾ ‘(to) win’).' A pretonic vowel before /m n/ is not in that list and stays oral."
     },
     {
+      "id": "BR_EPENTHETIC_I_ORAL",
+      "phonemes": [
+        "i"
+      ],
+      "surface": "i",
+      "stress": "stressed",
+      "grapheme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "c",
+        "k",
+        "g",
+        "f",
+        "v"
+      ],
+      "followed_by_phoneme": [
+        "m",
+        "n"
+      ],
+      "notes": "The vowel that BR_EPENTHESIS_ONSET inserts after a consonant before /m n/ stays oral: pneu [piˈnew]. The inserted vowel opens a syllable of its own before the stressed nucleus, so it is pretonic, but the engine reads it in the slot of the consonant, which carries the stress of its syllable. Without this rule, BR_NASAL_STRESSED_I nasalises it as if it were the stressed vowel of cima. Nascimento (2015: 62-63) reports the analysis of Collischonn (1996: 151-155) with an oral vowel: 'pneu [pi'new], Ptolomeu [pitolo'mew]'. Barbosa & Albano (2004: 227): 'The epenthetic vowel is always [i] or [ɪ]'. The spec nasalises a pretonic vowel only before /ɲ/ (BR_NASAL_PRETONIC_I_NH). The rule keys on the consonant letter of the slot, so a written ⟨i⟩ before a nasal keeps BR_NASAL_STRESSED_I: cima [ˈsĩmɐ] (Barbosa & Albano 2004: 229)."
+    },
+    {
       "id": "BR_NASAL_STRESSED_I",
       "phonemes": [
         "i"
@@ -2214,9 +2238,11 @@
         "ʃ",
         "ʒ",
         "t͡ʃ",
-        "d͡ʒ"
+        "d͡ʒ",
+      "m",
+      "n"
       ],
-      "notes": "Vowel epenthesis between two obstruents: advogado [ad͡ʒivoˈɡadu], absurdo [abiˈsuɾdu], opção [opiˈsɐ̃w̃], obter [obiˈteɾ], psicologia [pisikoloˈʒiɐ]. Barbosa & Albano (2004: 227): 'By contrast, BP exhibits vowel epenthesis, breaking most two-obstruent sequences. For phonotactic reasons common to both BP and EP, one of the consonants is always an apical: psicologia pisɪkoloʒiɐ or pɪsikoloʒiɐ ‘psychology’ in BP vs. psɪkoloʒiɐ in EP. The epenthetic vowel is always [i] or [ɪ]'. The inserted vowel is [i], so a preceding /t d/ affricates on the second allophone pass (advogado). Scope: a stop or labiodental fricative before an obstruent. A coda sibilant is an archiphoneme /S/ and is not a target (festa). A nasal or liquid after the stop is not an obstruent, so ritmo and pneu are outside the source's statement and stay as spelled. The rule is held to an unstressed syllable that has a nucleus after it. A stop after the stressed vowel is BR_EPENTHESIS_POSTTONIC. The process varies with position and context. Collischonn (2004: 66-67), on southern Brazilian speech, measures epenthesis in 69% of pretonic and 24% of post-tonic tokens, and by following consonant 89% before a non-sibilant fricative (advogado), 77% before a nasal (mogno), 44% before a stop (rapto) and 34% before a sibilant (opção). The base follows the São Paulo description of Barbosa & Albano."
+      "notes": "Vowel epenthesis after a stop or labiodental fricative, before an obstruent or a nasal: advogado [ad͡ʒivoˈɡadu], absurdo [abiˈsuɾdu], opção [opiˈsɐ̃w̃], obter [obiˈteɾ], psicologia [pisikoloˈʒiɐ], hipnose [ipiˈnozi], etnia [et͡ʃiˈniɐ]. Barbosa & Albano (2004: 227): 'By contrast, BP exhibits vowel epenthesis, breaking most two-obstruent sequences. For phonotactic reasons common to both BP and EP, one of the consonants is always an apical: psicologia pisɪkoloʒiɐ or pɪsikoloʒiɐ ‘psychology’ in BP vs. psɪkoloʒiɐ in EP. The epenthetic vowel is always [i] or [ɪ]'. The inserted vowel is [i], so a preceding /t d/ affricates on the second allophone pass (advogado). Scope: a stop or labiodental fricative before an obstruent or /m n/. A coda sibilant is an archiphoneme /S/ and is not a target (festa). Collischonn (2004: 68, Tabela 2) measures the nasal context on VARSUL speech of Porto Alegre, Florianópolis and Curitiba: 'Oclusiva Nasal (mogno) 116/151 77 0,74' against 'Oclusiva não nasal (rapto) 34/78 44 0,47'. She writes that 'a nasal favorece significativamente mais a epêntese do que a oclusiva não-nasal' (p. 68), and her hypothesis names hipnose: 'quando a consoante seguinte for uma oclusiva, como em espectro, ou uma nasal, como em hipnose, esperamos maiores taxas de ocorrência da epêntese' (p. 66). The vowel is [i], as Barbosa & Albano state for every epenthetic vowel. Romano & Seabra (2017: 286) find [e] in pneu in most ALiB responses from Paraná and São Paulo: 'em pneu, no qual se verifica a predominância da vogal média alta anterior [e] em 80,37% das respostas'. The spec keeps [i]. A nasal before the nasal is not a target (amnésia): Collischonn (2004: 69, note 7) found no token of it, 'Não houve ocorrência de forma em que a consoante perdida fosse uma nasal labial, como em amnésia ou Kremlin'. A liquid after the stop is outside both statements. The rule is held to an unstressed syllable that has a nucleus after it. A stop after the stressed vowel is BR_EPENTHESIS_POSTTONIC, which keeps the obstruent scope (ritmo), and a word-initial cluster before the stressed nucleus is BR_EPENTHESIS_ONSET. The process varies with position and context. Collischonn (2004: 67-68), on southern Brazilian speech, measures epenthesis in 69% of pretonic and 24% of post-tonic tokens, and by following consonant 89% before a non-sibilant fricative (advogado), 77% before a nasal (mogno), 44% before a stop (rapto) and 34% before a sibilant (opção). The base follows the São Paulo description of Barbosa & Albano."
     },
     {
       "id": "BR_EPENTHESIS_POSTTONIC",
@@ -2282,9 +2308,11 @@
         "ʃ",
         "ʒ",
         "t͡ʃ",
-        "d͡ʒ"
+        "d͡ʒ",
+      "m",
+      "n"
       ],
-      "notes": "Vowel epenthesis in a two-obstruent cluster that opens a stressed word-initial syllable: pseudo [piˈsewdu], psique [piˈsiki]. It is BR_EPENTHESIS for the first consonant of the word when that consonant stands in the stressed syllable. Barbosa & Albano (2004: 227): 'BP exhibits vowel epenthesis, breaking most two-obstruent sequences. For phonotactic reasons common to both BP and EP, one of the consonants is always an apical: psicologia pisɪkoloʒiɐ or pɪsikoloʒiɐ ‘psychology’ in BP vs. psɪkoloʒiɐ in EP. The epenthetic vowel is always [i] or [ɪ]'. The statement does not restrict the process by stress, and its example breaks a word-initial cluster. Nascimento (2015, Epêntese vocálica em encontros consonantais por falantes brasileiros de inglês como língua estrangeira, master's thesis, UNESP Araraquara, pp. 62-63) reports the analysis of Collischonn (1996: 151-155): a word-initial consonant that the syllable cannot hold takes the vowel to its right, with the forms 'pneu [pi'new], Ptolomeu [pitolo'mew]'. The vowel of pneu stands before a stressed nucleus. Collischonn (1996) was not opened. Romano & Seabra (2017, Signum 20(1), pp. 284-285) find the vowel in every ALiB response to aftosa, pneu and advogado from 220 speakers of Paraná and São Paulo: 'houve a ocorrência da vogal epentética em todos os inquéritos, seja com a realização da vogal alta anterior [i] ou da vogal média anterior [e], tratando-se, portanto, de uma regra categórica no corpus analisado'. pneu has a nasal after the stop, so it is outside this rule, which keeps the obstruent scope of BR_EPENTHESIS. Collischonn (2004: 65) codes the position of the lost consonant as a factor ('inicial (psicólogo) ou medial (opção)') and gives no rate for the word-initial position, so the regional specs inherit the rule. A cluster inside the word is split by the syllabifier and reads BR_EPENTHESIS or BR_EPENTHESIS_POSTTONIC. The stress count keeps the mark after the inserted vowel, before the stressed nucleus."
+      "notes": "Vowel epenthesis in a cluster of a stop or labiodental fricative and an obstruent or /m n/ that opens a stressed word-initial syllable: pseudo [piˈsewdu], psique [piˈsiki], pneu [piˈnew]. It is BR_EPENTHESIS for the first consonant of the word when that consonant stands in the stressed syllable. Barbosa & Albano (2004: 227): 'BP exhibits vowel epenthesis, breaking most two-obstruent sequences. For phonotactic reasons common to both BP and EP, one of the consonants is always an apical: psicologia pisɪkoloʒiɐ or pɪsikoloʒiɐ ‘psychology’ in BP vs. psɪkoloʒiɐ in EP. The epenthetic vowel is always [i] or [ɪ]'. The statement does not restrict the process by stress, and its example breaks a word-initial cluster. Nascimento (2015, Epêntese vocálica em encontros consonantais por falantes brasileiros de inglês como língua estrangeira, master's thesis, UNESP Araraquara, pp. 62-63) reports the analysis of Collischonn (1996: 151-155): a word-initial consonant that the syllable cannot hold takes the vowel to its right, with the forms 'pneu [pi'new], Ptolomeu [pitolo'mew]'. The vowel of pneu stands before a stressed nucleus. Collischonn (1996) was not opened. Romano & Seabra (2017, Signum 20(1), pp. 284-285) find the vowel in every ALiB response to aftosa, pneu and advogado from 220 speakers of Paraná and São Paulo: 'houve a ocorrência da vogal epentética em todos os inquéritos, seja com a realização da vogal alta anterior [i] ou da vogal média anterior [e], tratando-se, portanto, de uma regra categórica no corpus analisado'. The rule has the scope of BR_EPENTHESIS, a nasal included, so pneu is [piˈnew], the form of Collischonn (1996). Romano & Seabra (2017: 286) find [e] in most pneu responses: 'em pneu, no qual se verifica a predominância da vogal média alta anterior [e] em 80,37% das respostas'. The spec keeps the [i] of Barbosa & Albano. Collischonn (2004: 65) codes the position of the lost consonant as a factor ('inicial (psicólogo) ou medial (opção)') and gives no rate for the word-initial position, so the regional specs inherit the rule. A cluster inside the word is split by the syllabifier and reads BR_EPENTHESIS or BR_EPENTHESIS_POSTTONIC. The stress count keeps the mark after the inserted vowel, before the stressed nucleus."
     },
     {
       "id": "BR_RAISE_FINAL_ES",
@@ -2586,7 +2614,7 @@
       "publisher": "Signum: Estudos Linguísticos 7(1): 61-78",
       "url": null,
       "pages": "66-68",
-      "notes": "Epenthesis rates by position (BR_EPENTHESIS, BR_EPENTHESIS_POSTTONIC)."
+      "notes": "Epenthesis rates by position and by the following consonant, the nasal context included (BR_EPENTHESIS, BR_EPENTHESIS_POSTTONIC)."
     },
     {
       "id": "carmo2019",
@@ -2626,7 +2654,7 @@
       "publisher": "Signum: Estudos da Linguagem 20(1): 276-306",
       "url": "https://doi.org/10.5433/2237-4876.2017v20n1p276",
       "pages": "284-286",
-      "notes": "The epenthetic vowel in ALiB data from Paraná and São Paulo (BR_EPENTHESIS_ONSET)."
+      "notes": "The epenthetic vowel and its quality in ALiB data from Paraná and São Paulo; pneu has [e] in most responses (BR_EPENTHESIS, BR_EPENTHESIS_ONSET)."
     },
     {
       "id": "nascimento2015",
