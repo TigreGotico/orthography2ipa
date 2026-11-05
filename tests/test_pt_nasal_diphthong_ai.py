@@ -8,9 +8,8 @@ mãezinha; cãibas, cãibeiro, cãibra, zãibo; [...]"
 
 So the ⟨ãi⟩ of cãibra is one syllable nucleus, and the stress of the
 paroxytone falls on it. Cruz-Ferreira (1999: 128) lists the nasal diphthong
-[ɐ̃i] for European Portuguese (cem), and the Portal da Língua Portuguesa
-Dicionário fonético writes cãibra [ˈkɐ̃jbɾɐ] and zãibo [ˈzɐ̃jbu], with the
-nucleus of mãe [ˈmɐ̃j]. Barbosa & Albano (2004: 230) form the Brazilian
+[ɐ̃i] for European Portuguese (cem), and Infopédia gives cãibra [ˈkɐ̃j̃brɐ] and
+zãibo [ˈzɐ̃j̃bu], with the nucleus of mãe [ˈmɐ̃j̃]. Barbosa & Albano (2004: 230) form the Brazilian
 Portuguese nasalised diphthongs from [ẽ ɐ̃ õ ũ] and the offglide [ɪ̯̃].
 This library writes that offglide [j̃] (mãe [ˈmɐ̃j̃]).
 """
@@ -75,9 +74,9 @@ def test_ai_reads_as_ae(lang):
     assert graphemes["ãi"] == graphemes["ãe"]
 
 
-#: European Portuguese, letter for letter: the Portal da Língua Portuguesa
-#: Dicionário fonético, with the offglide written [j̃]. The plural ⟨s⟩ is
-#: syllable-final [ʃ] (Cruz-Ferreira 1999: 128).
+#: European Portuguese, letter for letter: Infopédia, with its ⟨r⟩ written [ɾ].
+#: Infopédia has no row for the plural. Its ⟨s⟩ is syllable-final [ʃ]
+#: (Cruz-Ferreira 1999: 128).
 PT_PT = [
     ("cãibra", "ˈkɐ̃j̃bɾɐ"),
     ("cãibras", "ˈkɐ̃j̃bɾɐʃ"),

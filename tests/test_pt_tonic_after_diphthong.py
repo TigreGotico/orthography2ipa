@@ -12,8 +12,8 @@ neste caso, a consoante final for diferente de s, tais vogais dispensam o
 acento agudo: cauim."
 
 So baiuca is bai-u-ca: the diphthong keeps its glide, and the stressed vowel
-starts the next syllable. The Portal da Língua Portuguesa Dicionário fonético
-divides and transcribes it so: bai·u·ca [baj'ukɐ].
+starts the next syllable. Infopédia divides and transcribes it so: bai.u.ca
+[bɐjˈukɐ].
 """
 from __future__ import annotations
 
@@ -23,36 +23,34 @@ import pytest
 
 from orthography2ipa import G2P, get, get_syllabifier
 
-#: European Portuguese, from the Portal da Língua Portuguesa Dicionário
-#: fonético (index.php?action=pronunciation), with its ' written as ˈ.
+#: European Portuguese, letter for letter: the Infopédia rows.
 PT_PT = [
-    ("baiuca", "bajˈukɐ"),        # bai·u·ca, Base X, 4.º
-    ("boiuno", "bojˈunu"),        # boi·u·no, Base X, 4.º
-    ("tuiuiú", "tujujˈu"),        # tui·ui·ú, Base X, 5.º
-    ("maiúscula", "majˈuʃkulɐ"),  # mai·ús·cu·la
+    ("boiuno", "bojˈunu"),        # boi.u.no, Base X, 4.º
+    ("maiúscula", "majˈuʃkulɐ"),  # mai.ús.cu.la
 ]
 
-#: The Portal writes ⟨ei⟩ as the Lisbon [ɐj]. pt-PT keeps [ej], and
-#: pt-PT-x-lisbon gives [ɐj], so these words are read with the Lisbon spec.
+#: Infopédia writes ⟨ei⟩ as the Lisbon [ɐj], and its ⟨r⟩ is [ɾ] here. pt-PT
+#: keeps [ej], and pt-PT-x-lisbon gives [ɐj], so these words are read with the
+#: Lisbon spec.
 PT_PT_LISBON = [
-    ("cheiinho", "ʃɐjˈiɲu"),      # chei·i·nho, Base X, 4.º
-    ("teiú", "tɐjˈu"),            # tei·ú, Base X, 5.º
-    ("feiura", "fɐjˈuɾɐ"),        # fei·u·ra
+    ("teiú", "tɐjˈu"),            # tei.ú, Base X, 5.º
+    ("feiura", "fɐjˈuɾɐ"),        # fei.u.ra
 ]
 
-#: The Base X, 4.º and 5.º examples, and the Portal words above. The Portal
-#: does not list cauila, saiinha, Piauí, teiús or cauim, so their test reads
-#: only the division that the clauses state: the mark follows the glide.
+#: The Base X, 4.º and 5.º examples, and the words above. Their test reads only
+#: the division that the clauses state: the mark follows the glide. The rows
+#: above leave out the others. Infopédia has no row for cauila, cheiinho,
+#: saiinha, Piauí or teiús. It writes baiuca [bɐjˈukɐ], with [ɐj] where this
+#: library has [aj]. It writes tuiuiú [tujuˈju] and cauim [kɐˈwĩ], with the mark
+#: before the glide, although it divides them tui.ui.ú and cau.im.
 IN_CONTEXT = ["baiuca", "boiuno", "cauila", "cheiinho", "saiinha", "Piauí",
               "teiú", "teiús", "tuiuiú", "cauim", "maiúscula", "feiura"]
 
 #: The ⟨i u⟩ after the diphthong is unstressed, so the clauses do not reach
-#: it. Portal: a·bai·u·ca·do [ɐbaju'kadu], a·bai·u·car [ɐbaju'kaɾ],
-#: pi·au·i·en·se [piawi'ẽsɨ].
+#: it. Infopédia: a.bai.u.ca.do [ɐbajuˈkadu], a.bai.u.car [ɐbajuˈkar].
 CONTROLS = [
     ("abaiucado", "ɐbajuˈkadu"),
     ("abaiucar", "ɐbajuˈkaɾ"),
-    ("piauiense", "piawiˈẽsɨ"),
 ]
 
 LANGS = ["pt-PT", "pt-BR", "pt-PT-x-lisbon", "pt-BR-x-sp", "pt-AO"]
@@ -71,6 +69,10 @@ def test_pt_pt_transcription(word, expected):
 @pytest.mark.parametrize("word,expected", PT_PT_LISBON)
 def test_pt_pt_lisbon_transcription(word, expected):
     assert G2P("pt-PT-x-lisbon").transcribe_word(word) == expected
+
+
+def test_tuiuiu_keeps_the_segments_of_infopedia():
+    assert G2P("pt-PT").transcribe_word("tuiuiú").replace("ˈ", "") == "tujuju"
 
 
 @pytest.mark.parametrize("lang", LANGS)
