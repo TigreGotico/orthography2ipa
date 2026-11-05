@@ -116,8 +116,8 @@ def test_stressed_oral_mid_still_diphthongises(lect):
 def test_proclitic_mid_does_not_diphthongise(lect):
     # Unstressed clitics must escape the rule (no [ˈwo]/[ˈje]/[ˈjẽ]).
     eng = G2P(lect)
-    assert eng.transcribe("o") == "o"     # article, not [ˈwo]
-    assert eng.transcribe("os") == "oʃ"   # not [ˈwoʃ]
+    assert eng.transcribe("o") == "u"     # article, not [ˈwo]
+    assert eng.transcribe("os") == "uʃ"   # not [ˈwoʃ]
     assert eng.transcribe("e") == "i"     # conjunction (raised), not [ˈje]
     # ⟨em⟩ is word-final, so it is the FALLING nasal diphthong, with the
     # northern close-mid nucleus [ẽj̃] (offglide AFTER the nucleus); what this
