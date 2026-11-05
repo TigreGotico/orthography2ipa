@@ -75,3 +75,6 @@ The values for Limburg and East Flanders are 123 and 97 ms for [i], and 104 and 
 - ⟨h⟩ dropping is dialect data (De Wulf 2003, pp. 217-218).
 - The engine does not know compound boundaries. So a coda obstruent before /n w/ takes no schwa: `werknemer` [ˈwɛr̥knəmər̥], `erfwoord` [ˈɛrfwoːr̥t].
 - The length rules read the inherited stress block. A word that the block stresses on the wrong syllable gets its long vowel there too: `minuut` [ˈmiːnyt].
+
+---
+[← Regional Standard Dutch of the Netherlands](nl-NL-regional.md) · [Home](../index.md) · [Faroese →](fo.md)
