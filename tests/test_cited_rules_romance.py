@@ -139,7 +139,7 @@ def test_pt_pt_final_s_voices_before_vowel():
     Note the outcome is alveolar [z], not the palatal [ʒ] of the pre-consonantal
     voicing rule above — that contrast is the whole point of having two rules.
     """
-    assert _s("pt-PT", "os amigos").startswith("oz ")
+    assert _s("pt-PT", "os amigos").startswith("uz ")
 
 
 def test_pt_pt_preserves_b_v_distinction():

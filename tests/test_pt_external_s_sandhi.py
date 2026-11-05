@@ -36,7 +36,7 @@ class TestStandardZ:
         assert G2P("pt-PT").transcribe("estás a ver") == "eʃˈtaz ɐ ˈveɾ"
 
     def test_base_os_amigos_z(self):
-        assert G2P("pt-PT").transcribe("os amigos") == "oz ɐˈmiɡuʃ"
+        assert G2P("pt-PT").transcribe("os amigos") == "uz ɐˈmiɡuʃ"
 
     def test_porto_z(self):
         # Northern [z]; v→b is the inherited Porto betacism; the stressed open
@@ -69,7 +69,7 @@ class TestStandardZ:
         assert G2P("pt-PT").transcribe("as bocas") == "ɐʒ ˈbɔkɐʃ"
 
     def test_os_dois_voices_before_d(self):
-        assert G2P("pt-PT").transcribe("os dois") == "oʒ ˈdojʃ"
+        assert G2P("pt-PT").transcribe("os dois") == "uʒ ˈdojʃ"
 
     def test_voiceless_initial_does_not_voice(self):
         assert G2P("pt-PT").transcribe("estás feliz") == "eʃˈtaʃ fɨˈliʃ"
