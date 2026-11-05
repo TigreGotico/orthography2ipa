@@ -24,6 +24,7 @@ SHEET = Path(__file__).resolve().parent.parent / "orthography2ipa/data/gold/conv
     ("número", "ˈnũmeɾu"),         # BR_NASAL_STRESSED_U
     ("vinho", "ˈvĩɲu"),
     ("homem", "ˈõmẽj̃"),
+    ("papel", "paˈpɛw"),           # BR_FINAL_EL_OPEN
 ])
 def test_the_sheet_and_the_spec_give_one_reading(word, ipa):
     assert f"{word} [{ipa}]" in SHEET.read_text(encoding="utf-8")

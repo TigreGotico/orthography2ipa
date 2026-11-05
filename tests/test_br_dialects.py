@@ -448,7 +448,7 @@ def test_strong_r_same_in_every_context(code, word, expected):
 
 
 @pytest.mark.parametrize("code, expected", [
-    ("pt-BR-x-rj", "iʃχaew"), ("pt-BR-x-fluminen", "isxaew"), ("pt-BR-x-sul", "isxaew"),
+    ("pt-BR-x-rj", "iʃχaɛw"), ("pt-BR-x-fluminen", "isxaɛw"), ("pt-BR-x-sul", "isxaɛw"),
 ])
 def test_coda_s_before_voiceless_strong_r_stays_voiceless(code, expected):
     """Barbosa & Albano (2004: 229): coda /S/ 'tends to assimilate the voicing
