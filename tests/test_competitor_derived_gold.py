@@ -3,11 +3,12 @@
 A gold set's value is its ERROR MODEL:
 
 - human / lexicon gold is trustworthy;
-- rule-system gold (espeak, epitran) measures agreement with a system this
-  project benchmarks itself AGAINST (docs/evaluation/generated/comparison.md scores both
-  ``espeak_per`` and ``epitran_per``), so it is diagnostic — a deterministic
-  rule system's disagreements can be traced to a rule and adjudicated — but it
-  can never CERTIFY us;
+- rule-system gold (espeak, epitran, the LUPo generator behind the Portal da
+  Língua Portuguesa Dicionário Fonético) measures agreement with another G2P
+  system this project scores itself AGAINST (docs/evaluation/generated/comparison.md
+  scores ``espeak_per`` and ``epitran_per``; ``portal_lupo`` scores o2i against
+  LUPo), so it is diagnostic — a deterministic rule system's disagreements can
+  be traced to a rule and adjudicated — but it can never CERTIFY us;
 - LLM gold has no lexicon, no rules and therefore no error model at all: a
   disagreement is not even attributable, so it certifies nothing and diagnoses
   nothing.
@@ -58,11 +59,14 @@ def _promotable(rows) -> bool:
 
 
 def test_competitor_tiers_exist_and_are_ordered_last():
-    """espeak/epitran/LLM gold are the least trustworthy tiers, in that order."""
-    assert COMPETITOR_DERIVED_TIERS == {"espeak-derived", "epitran-derived"}
-    assert RELIABILITY_TIERS[-4:] == (
+    """espeak/epitran/LUPo/LLM gold are the least trustworthy tiers, in that
+    order."""
+    assert COMPETITOR_DERIVED_TIERS == {
+        "espeak-derived", "epitran-derived", "lupo-derived"}
+    assert RELIABILITY_TIERS[-5:] == (
         "espeak-derived",
         "epitran-derived",
+        "lupo-derived",
         "llm-corrected",
         "llm-generated",
     )
@@ -74,9 +78,35 @@ def test_can_gate_promotion_refuses_competitor_and_llm_gold():
     for tier in ("expert-human", "lexicon-derived", "crowd-scraped",
                  "machine-generated"):
         assert can_gate_promotion(tier) is True
-    for tier in ("espeak-derived", "epitran-derived", "llm-corrected",
-                 "llm-generated"):
+    for tier in ("espeak-derived", "epitran-derived", "lupo-derived",
+                 "llm-corrected", "llm-generated"):
         assert can_gate_promotion(tier) is False
+
+
+def test_portal_lupo_rows_are_lupo_derived_and_never_gate():
+    """The Portal da Língua Portuguesa Dicionário Fonético is LUPo output
+    (Ashby et al. 2012), so every portal_lupo row is a competitor row: it can
+    neither qualify nor block a language, at any size, and it has no
+    corrections overlay."""
+    _loader, langs = DATASETS["portal_lupo"]
+    assert langs == ["pt-AO", "pt-BR-x-rj", "pt-BR-x-sp", "pt-MZ",
+                     "pt-PT-x-lisbon", "pt-TL"]
+    for lang in langs:
+        tier = provenance_for("portal_lupo", lang)
+        assert tier == "lupo-derived"
+        assert row_gates(tier, 10 ** 6, "portal_lupo") is False
+        assert not _promotable([{"n": 10 ** 6, "provenance": tier,
+                                 "dataset": "portal_lupo"}])
+    assert "portal_lupo_corrected" not in DATASETS
+    assert not [d for d in CORRECTED_DATASETS if d.startswith("portal_lupo")]
+
+
+def test_unified_gold_holds_no_generator_language():
+    """No language is scored against LUPo output under a human tier."""
+    _loader, lupo_langs = DATASETS["portal_lupo"]
+    for dataset in ("portuguese_unified", "portuguese_unified_corrected"):
+        _loader, langs = DATASETS[dataset]
+        assert not set(langs) & set(lupo_langs), dataset
 
 
 def test_gating_power_is_monotonic_in_tier_order():
@@ -285,12 +315,16 @@ class TestGatingFieldDerivedAndRendered:
         It was 742 before ``portuguese_unified_corrected`` was registered,
         and that overlay adds one row for each of its eight languages.
         It was 750 before ``pt-BR-x-brasilia`` became an alias of ``pt-BR``,
-        which removes its ``portuguese_tts`` row."""
+        which removes its ``portuguese_tts`` row. It was 749 before the
+        Portal da Língua Portuguesa rows left ``portuguese_unified`` for
+        ``portal_lupo``: that removes the twelve ``portuguese_unified`` and
+        ``portuguese_unified_corrected`` rows of the six Portal regions and
+        adds one ``portal_lupo`` row for each region."""
         path = os.path.join(
             os.path.dirname(__file__), "..", "benchmarks", "results.json")
         with open(path, encoding="utf-8") as fh:
             rows = json.load(fh)
-        assert len(rows) == 749
+        assert len(rows) == 743
         mismatched = [
             (r["lang"], r["dataset"]) for r in rows
             if r.get("gating")

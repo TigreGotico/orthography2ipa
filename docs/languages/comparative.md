@@ -17,7 +17,7 @@ The specs state the rule where the literature has it, and leave it out elsewhere
 | Language | Code | Quality tier | Word-final rule in the spec | Spec output |
 |:---|:---:|:---|:---|:---|
 | German | `de-DE` | research | Yes, on ⟨b d g v⟩ | `Tag` `ˈtak` |
-| Dutch | `nl-NL` | research | Yes, on ⟨b d g v z⟩, and ⟨g⟩ also before a voiceless obstruent (`NL_CODA_DEVOICE_G`) | `dag` `ˈdɑx`, `hond` `ˈɦɔnt` |
+| Dutch | `nl-NL` | research | Yes, on ⟨b d g v z⟩, and ⟨g⟩ also before a voiceless obstruent (`NL_CODA_DEVOICE_G`) | `dag` `ˈdɑχ`, `hond` `ˈɦɔnt` |
 | Afrikaans | `af` | research | Yes, on ⟨b d v z⟩ | `hond` `ˈɦɔnt` |
 | Swedish | `sv` | research | No. The spec notes state that Swedish keeps final /b d ɡ/ | `god` `ˈɡuːd` |
 | Norwegian (Bokmål) | `nb` | research | No | `dag` `ˈdɑːɡ` |
@@ -32,13 +32,13 @@ The `af` spec states its own rule, because positional rules do not pass from `nl
 
 | Feature | German (`de-DE`) | Dutch (`nl-NL`) |
 |:---|:---:|:---:|
-| ⟨g⟩ | [ɡ] in the onset, [k] in the coda | [ɣ] in the onset, [x] in the coda (fricatives) |
+| ⟨g⟩ | [ɡ] in the onset, [k] in the coda | the voiceless uvular fricative [χ] |
 | ⟨h⟩ | [h] | [ɦ] (breathy) |
 | ⟨r⟩ | [ʁ] (uvular) | [r] or [ʁ], by region |
 | ⟨w⟩ | [v] | [ʋ] (labiodental approximant) |
-| ⟨ch⟩ word-final | [x] or [ç] | always [x] |
+| ⟨ch⟩ word-final | [x] or [ç] | always [χ] |
 
-Dutch ⟨g⟩ is a velar fricative, not a plosive. It is voiced [ɣ] in the onset, as in `gaan` [ɣaːn] 'to go', and voiceless [x] in the coda, as in `dag` [dax] 'day'. The realisation varies by region. The spec gives `ˈɣaːn` and `ˈdɑx`, and writes ⟨r⟩ as [r] (`groot` `ˈɣroːt`). For the details of the German spec, see [German](de-DE.md).
+Dutch ⟨g⟩ is a fricative, not a plosive. In the Netherlands it is the voiceless uvular [χ] in every position (Gussenhoven 1992, p. 45), and Belgian Dutch keeps the velar pair [ɣ] and [x] (Verhoeven 2005, p. 244). The `nl-NL` spec gives `gaan` `ˈχaːn` and `dag` `ˈdɑχ`, and writes ⟨r⟩ as [r] (`groot` `ˈχroːt`). The `nl-BE` spec gives `ˈɣaːn` and `ˈdɑx`. For the details of the German spec, see [German](de-DE.md).
 
 ### Swedish
 
@@ -99,6 +99,7 @@ Afrikaans also has no grammatical gender.
 - Riad, T. (2014). *The Phonology of Swedish*. OUP.
 - Engstrand, O. (1999). *Swedish*. JIPA 29(1), 140-145.
 - Gussenhoven, C. (1992). *Dutch*. JIPA 22, 45-47.
+- Verhoeven, J. (2005). *Belgian Standard Dutch*. JIPA 35(2), 243-247.
 
 ## Romance languages
 
