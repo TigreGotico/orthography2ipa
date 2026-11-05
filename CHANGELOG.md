@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.118.6a1](https://github.com/TigreGotico/orthography2ipa/tree/7.118.6a1) (2026-11-05)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.118.5a1...7.118.6a1)
+
+**Merged pull requests:**
+
+- fix\(nl\): devoice the coda obstruent inside the ⟨veld⟩ and ⟨berg⟩ keys [\#2131](https://github.com/TigreGotico/orthography2ipa/pull/2131) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.118.5a1](https://github.com/TigreGotico/orthography2ipa/tree/7.118.5a1) (2026-11-05)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.118.4a1...7.118.5a1)
@@ -376,10 +384,6 @@
 ## [7.114.22a1](https://github.com/TigreGotico/orthography2ipa/tree/7.114.22a1) (2026-11-04)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.114.21a1...7.114.22a1)
-
-**Merged pull requests:**
-
-- fix\(gl\): write a falling diphthong after a rising one as one syllable [\#1983](https://github.com/TigreGotico/orthography2ipa/pull/1983) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.114.21a1](https://github.com/TigreGotico/orthography2ipa/tree/7.114.21a1) (2026-11-04)
 
