@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.116.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.116.2a1) (2026-11-05)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.116.1a1...7.116.2a1)
+
+**Merged pull requests:**
+
+- fix\(li\): read a word-final ⟨h⟩ after a short vowel as a length sign [\#2029](https://github.com/TigreGotico/orthography2ipa/pull/2029) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.116.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.116.1a1) (2026-11-04)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.116.0a1...7.116.1a1)
@@ -211,10 +219,6 @@
 ## [7.114.13a1](https://github.com/TigreGotico/orthography2ipa/tree/7.114.13a1) (2026-11-04)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.114.12a1...7.114.13a1)
-
-**Merged pull requests:**
-
-- fix\(es\): velarize word-final /n/ where velarization is the rule [\#1897](https://github.com/TigreGotico/orthography2ipa/pull/1897) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.114.12a1](https://github.com/TigreGotico/orthography2ipa/tree/7.114.12a1) (2026-11-04)
 
