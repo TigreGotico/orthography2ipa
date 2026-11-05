@@ -201,6 +201,12 @@
       "phonemes": [],
       "surface": "e",
       "notes": "DISABLED for Macanese Portuguese. No source for a learned word-final ⟨-en⟩ in this variety was read, so its output stays what it was; the pt-PT rule rests on Infopédia and Priberam entries for standard European Portuguese."
+    },
+    {
+      "id": "PT_STRESSED_A_BEFORE_NASAL",
+      "phonemes": [],
+      "surface": "ɐ",
+      "notes": "DISABLED for Macau Portuguese. PT_STRESSED_A_BEFORE_NASAL raises the stressed /a/ of the mainland standard. Lao, Rodrigues & Brissos (2020) covers mainland Portugal only, and no other source read gives this context, so the /a/ stays as the spec gives it."
     }
   ]
 }
