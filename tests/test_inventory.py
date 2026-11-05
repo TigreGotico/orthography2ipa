@@ -294,7 +294,8 @@ KNOWN_DEAD_RULES = {
     # NL_CODA_DEVOICE_G's /ɣ/ target can't fire, and no 'i' slot means
     # NL_UNSTRESSED_TENSE_I_FINAL / NL_UNSTRESSED_TENSE_I_HIATUS's /ɪ/
     # target can't either. The same gap leaves no /eː øː oː/ slot for the six
-    # NL_MID_TENSE_* rules, and no /r/ slot for NL_CODA_R_APPROXIMANT.
+    # NL_MID_TENSE_* rules, no /r/ slot for NL_CODA_R_APPROXIMANT, and no
+    # ⟨veld⟩ slot for NL_CODA_DEVOICE_VELD.
     "vls": {"NL_CODA_DEVOICE_B", "NL_CODA_DEVOICE_D", "NL_CODA_DEVOICE_G",
             "NL_CODA_DEVOICE_V", "NL_CODA_DEVOICE_Z",
             "NL_UNSTRESSED_TENSE_I_FINAL", "NL_UNSTRESSED_TENSE_I_HIATUS",
@@ -303,13 +304,13 @@ KNOWN_DEAD_RULES = {
             "NL_MID_TENSE_CENTRING_BEFORE_R_E", "NL_MID_TENSE_CENTRING_BEFORE_R_OE",
             "NL_MID_TENSE_CENTRING_BEFORE_R_O", "NL_MID_TENSE_CLOSING_DIPHTHONG_E",
             "NL_MID_TENSE_CLOSING_DIPHTHONG_OE", "NL_MID_TENSE_CLOSING_DIPHTHONG_O",
-            "NL_CODA_R_APPROXIMANT", "NL_QU_FRENCH_K"},
+            "NL_CODA_R_APPROXIMANT", "NL_CODA_DEVOICE_VELD", "NL_QU_FRENCH_K"},
     # Afrikaans has no /z/ (Donaldson, *A Grammar of Afrikaans*, Mouton de
     # Gruyter 1993, ch. 1: ⟨z⟩ is not part of the inventory, and ⟨s⟩ is
     # voiceless everywhere), so the /z/ member of nl-NL's coda-devoicing series
-    # has no target here. The other members are live. af has no ⟨qu⟩ key, so
-    # NL_QU_FRENCH_K finds no [kʋ] slot.
-    "af": {"NL_CODA_DEVOICE_Z", "NL_QU_FRENCH_K"},
+    # has no target here. The other members are live. af has no ⟨veld⟩ or ⟨qu⟩
+    # key, so NL_CODA_DEVOICE_VELD and NL_QU_FRENCH_K have no slot to match.
+    "af": {"NL_CODA_DEVOICE_Z", "NL_CODA_DEVOICE_VELD", "NL_QU_FRENCH_K"},
     # pnb-PK (Shahmukhi abjad, no inherent vowel): the inherent-vowel half
     # of each word-initial *DH rule pair has no ``Cə`` slot to match.
     "pnb-PK": {"PA_DH_INITIAL_ɡ˩_0", "PA_DH_INITIAL_dʒ˩_0", "PA_DH_INITIAL_ɖ˩_0", "PA_DH_INITIAL_d̪˩_0", "PA_DH_INITIAL_b˩_0"},

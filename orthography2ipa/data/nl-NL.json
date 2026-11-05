@@ -842,6 +842,27 @@
       "notes": "Regressive devoicing assimilation (Booij 1995, ch. 2 sec. 2.5): a Dutch obstruent in coda devoices before a following voiceless obstruent, not only word-finally -- raad-sel [raːtsəl], web-site, lief-st, rei-zt. The rule is stated for the whole obstruent series; ⟨g⟩ already had it (NL_CODA_DEVOICE_G) and the remaining voiced obstruents ⟨b d v z⟩ follow the same generalisation."
     },
     {
+      "id": "NL_CODA_DEVOICE_VELD",
+      "phonemes": [
+        "d"
+      ],
+      "surface": "t",
+      "syllable_position": "coda",
+      "followed_by_phoneme": [
+        "t",
+        "k",
+        "s",
+        "f",
+        "p",
+        "x",
+        "χ"
+      ],
+      "grapheme": [
+        "veld"
+      ],
+      "notes": "⟨veld⟩ is one grapheme slot, and NL_CODA_DEVOICE_D names the grapheme ⟨d⟩, so it does not reach the [d] of the slot. This rule names the grapheme ⟨veld⟩ and devoices the last segment of the slot in the same context. Gussenhoven (1992, JIPA 22, p. 46): \"Voiced obstruents and /ɦ/ do not occur in the coda\". So veldkeuken is [ˈvɛltkøykən] and veldslag [ˈvɛltslɑχ]. Before a vowel the [d] is an onset and stays: velden [ˈvɛldən]. Before /b d/ it stays voiced, as in the other NL_CODA_DEVOICE_* rules (veldbed): the same page says that \"obstruents may be voiced before /b, d/\"."
+    },
+    {
       "id": "NL_CODA_DEVOICE_V",
       "phonemes": [
         "v"
