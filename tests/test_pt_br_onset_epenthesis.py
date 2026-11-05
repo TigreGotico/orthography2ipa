@@ -63,7 +63,23 @@ def test_tch_takes_no_vowel_where_ch_is_an_affricate(word):
 
 def test_dj_is_broken():
     """Collischonn (1996: 151), reported by Nascimento (2015: 63): "Djavan [dʒiʒa'vã]"."""
-    assert transcribe("Djavan", "pt-BR").replace("ˈ", "").startswith("d͡ʒiʒ")
+    assert transcribe("Djavan", "pt-BR") == "d͡ʒiʒaˈvɐ̃"
+
+
+@pytest.mark.parametrize("spec, ipa", [
+    ("pt-BR-x-floripa", "diʒaˈvɐ̃"),
+    ("pt-BR-x-recife", "diʒaˈvɐ̃"),
+    ("pt-BR-x-cuiaba", "did͡ʒaˈvɐ̃"),
+    ("pt-UY", "dʒaˈvɐ̃"),
+])
+def test_final_stress_on_djavan_keeps_the_segments_of_each_spec(spec, ipa):
+    """Only the stress moves: these specs read the onset by their own rules."""
+    assert transcribe("Djavan", spec) == ipa
+
+
+def test_final_an_is_not_a_stress_class():
+    """Dicionário Priberam: "barman |bárman|". Final ⟨an⟩ does not draw the stress by itself."""
+    assert transcribe("barman", "pt-BR").startswith("ˈbaɾ")
 
 
 def test_uruguayan_portuguese_keeps_its_output():
