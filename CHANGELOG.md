@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.119.3a1](https://github.com/TigreGotico/orthography2ipa/tree/7.119.3a1) (2026-11-05)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.119.2a1...7.119.3a1)
+
+**Merged pull requests:**
+
+- fix\(pt-BR\): read a stressed final ⟨el ol⟩ with an open vowel [\#2154](https://github.com/TigreGotico/orthography2ipa/pull/2154) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.119.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.119.2a1) (2026-11-05)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.119.1a1...7.119.2a1)
@@ -388,10 +396,6 @@
 ## [7.114.31a1](https://github.com/TigreGotico/orthography2ipa/tree/7.114.31a1) (2026-11-04)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.114.30a1...7.114.31a1)
-
-**Merged pull requests:**
-
-- fix\(li\): read ⟨ew⟩ before a vowel as ⟨e⟩ + ⟨w⟩ [\#2021](https://github.com/TigreGotico/orthography2ipa/pull/2021) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.114.30a1](https://github.com/TigreGotico/orthography2ipa/tree/7.114.30a1) (2026-11-04)
 
