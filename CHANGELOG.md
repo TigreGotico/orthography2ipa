@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.118.11a1](https://github.com/TigreGotico/orthography2ipa/tree/7.118.11a1) (2026-11-05)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.118.10a1...7.118.11a1)
+
+**Merged pull requests:**
+
+- fix\(pt-BR\): state what sources give for a post-tonic stop before a nasal [\#2148](https://github.com/TigreGotico/orthography2ipa/pull/2148) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.118.10a1](https://github.com/TigreGotico/orthography2ipa/tree/7.118.10a1) (2026-11-05)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.118.9a2...7.118.10a1)
@@ -388,10 +396,6 @@
 ## [7.114.27a1](https://github.com/TigreGotico/orthography2ipa/tree/7.114.27a1) (2026-11-04)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.114.26a1...7.114.27a1)
-
-**Merged pull requests:**
-
-- fix\(li\): read stressed ⟨e⟩ as \[æ\], or \[eː\] where it ends the syllable [\#2003](https://github.com/TigreGotico/orthography2ipa/pull/2003) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.114.26a1](https://github.com/TigreGotico/orthography2ipa/tree/7.114.26a1) (2026-11-04)
 
