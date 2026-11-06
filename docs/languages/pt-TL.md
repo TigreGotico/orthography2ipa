@@ -34,6 +34,7 @@ Every feature comes from Albuquerque (2010).
 | Alveolar rhotic | ⟨r rr⟩ give [r]. The tap [ɾ] stays between vowels and word-finally. No [ʁ] | *perguntar* [peˈgun.ta] (p. 278) |
 | Digraph simplification | ⟨lh nh⟩ give [l n] first. [ʎ ɲ] are second, for speakers near the European norm | *olho* [ˈo.liu], *espelho* [esˈpe.lu], *vinho* [ˈbi.niu], *rascunho* [rasˈku.niu] (p. 276) |
 | Alveolar coda /s/ | coda /s z/ stay alveolar, as overrides of `PT_CODA_S_HUSH` and `PT_CODA_Z_HUSH` by id | *escola* [isˈkɔ.la] ~ [iʃˈkɔ.la], variable (p. 277) |
+| Initial ⟨es⟩ + consonant | `PT_INITIAL_ES_RAISE` is off, so the spec keeps [e]. The [i] of *escola* sits in a list of traits shared with the Asian creoles | *espelho* [es.ˈpe.lu] (p. 276), *escola* [is.ˈkɔ.la] ~ [iʃ.kɔ.la] (p. 277) |
 | Paroxytone stress | stress from the spelling. The notes record the Austronesian stress on the penult | *"o acento primário predominantemente na penúltima sílaba … quase completa ausência de proparoxítonas"* (pp. 279-280) |
 
 The main feature is the absence of vowel reduction. The parent `pt-PT` gives `bate` [ˈbatɨ] and `roda` [ˈʁɔdɐ]. The spec `pt-TL` gives `bate` [ˈbate] and `roda` [ˈrɔda], with full vowels. The stressed open vowels stay open: `roda` [ˈrɔda], `mesa` [ˈmɛza]. Albuquerque describes this trait of the Tetum and Austronesian substrate as the most consistent property of PTL.

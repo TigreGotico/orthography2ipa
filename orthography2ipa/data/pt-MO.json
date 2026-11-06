@@ -201,6 +201,12 @@
       "phonemes": [],
       "surface": "e",
       "notes": "DISABLED for Macanese Portuguese. No source for a learned word-final ⟨-en⟩ in this variety was read, so its output stays what it was; the pt-PT rule rests on Infopédia and Priberam entries for standard European Portuguese."
+    },
+    {
+      "id": "PT_INITIAL_ES_RAISE",
+      "phonemes": [],
+      "surface": "i",
+      "notes": "DISABLED for Macau Portuguese. PT_INITIAL_ES_RAISE follows a statement about European Portuguese. No source read writes this vowel for this variety, so it stays as the spec gives it."
     }
   ]
 }
