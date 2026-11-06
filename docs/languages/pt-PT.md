@@ -53,11 +53,17 @@ A vowel before a nasal ⟨m⟩ or ⟨n⟩ in the same syllable becomes nasal. Th
 
 The process uses both maps, as in the [Barranquenho](ext-PT-x-barranco.md) spec.
 
-The pre-lexical map makes the vowel nasal. The `positional_graphemes` entries for ⟨m⟩ and ⟨n⟩ map the coda positions (`before_consonant`, `word_final`) to one combining tilde, U+0303. The tilde replaces the nasal consonant and attaches to the vowel before it. An ⟨m⟩ or ⟨n⟩ between vowels matches no coda key, so it stays a consonant and the vowel stays oral: `cama` [ˈkamɐ], `ano` [ˈɐnu], `nome` [ˈnɔmɨ].
+The pre-lexical map makes the vowel nasal. The `positional_graphemes` entries for ⟨m⟩ and ⟨n⟩ map the coda positions (`before_consonant`, `word_final`) to one combining tilde, U+0303. The tilde replaces the nasal consonant and attaches to the vowel before it. An ⟨m⟩ or ⟨n⟩ between vowels matches no coda key, so it stays a consonant and the vowel stays oral: `cama` [ˈkɐmɐ], `ano` [ˈɐnu], `nome` [ˈnɔmɨ].
 
 The post-lexical map sets the vowel quality. Five rules move the vowel to the oral base of its nasal vowel when the next segment is the tilde. The rule `PT_NASAL_A_RAISE` changes a to ɐ, `PT_NASAL_E_RAISE` changes ɛ to e and `PT_NASAL_O_RAISE` changes ɔ to o.
 
-The rules `PT_NASAL_O_UNRED` and `PT_NASAL_E_UNRED` undo the reduction of an unstressed ⟨o⟩ and ⟨e⟩ (see below). An oral vowel before an onset nasal does not change. The tilde comes only from the ⟨m n⟩ slot, so a vowel never gets two tildes. A lexical ⟨i⟩ or ⟨u⟩ needs no rule, because [ĩ ũ] have the same oral base as [i u].
+The rules `PT_NASAL_O_UNRED` and `PT_NASAL_E_UNRED` undo the reduction of an unstressed ⟨o⟩ and ⟨e⟩ (see below). The tilde comes only from the ⟨m n⟩ slot, so a vowel never gets two tildes. A lexical ⟨i⟩ or ⟨u⟩ needs no rule, because [ĩ ũ] have the same oral base as [i u].
+
+### Stressed ⟨a⟩ before an onset nasal
+
+The rule `PT_STRESSED_A_BEFORE_NASAL` raises a stressed plain ⟨a⟩ to [ɐ] before an onset /m n ɲ/: `cama` [ˈkɐmɐ], `banho` [ˈbɐɲu], present `falamos` [fɐˈlɐmuʃ]. A written ⟨á⟩ keeps [a], so preterite `falámos` is [fɐˈlamuʃ]. Cunha & Cintra (7th ed., p. 49) give both facts. Other oral vowels before an onset nasal do not change.
+
+The value varies by region. Lao, Rodrigues & Brissos (2020, p. 308) give [a] and [ã] in the Northwest, [ɐ] in Trás-os-Montes, Beira Alta, Beira Litoral and Estremadura, and [ɐ̃] elsewhere. So the Minho, Braga, Viana, Porto and Alfena specs disable the rule, and the Alentejo and Algarve specs give [ɐ̃]. The Terceira spec disables the rule too, because its a-metaphony gives [ɔ] in `ramo`. The paper covers the mainland only, so the Azores, Madeira and Macau specs disable the rule for lack of a source, as do the African specs.
 
 ### Reduced ⟨o⟩ and ⟨e⟩ before a nasal
 

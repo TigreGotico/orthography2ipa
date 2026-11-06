@@ -47,7 +47,7 @@ def test_pt_pt_coda_l_dark():
     apart in realisation.
     """
     assert _bare("pt-PT", "sol") == "sɔɫ"
-    assert _bare("pt-PT", "alto") == "ɐɫtu"
+    assert _bare("pt-PT", "alto") == "aɫtu"
     assert _bare("pt-PT", "lua") == "luɐ"
 
 
