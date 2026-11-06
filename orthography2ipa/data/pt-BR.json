@@ -575,6 +575,36 @@
       "notes": "Pretonic nasalisation before the palatal nasal: ganhar [ɡɐ̃ˈɲaɾ], senhor [sẽˈɲoɾ]. Barbosa & Albano (2004: 229): 'In pre-stressed position, there is a ten-vowel phonetic contrast, where the quality of the corresponding stressed vowel is roughly preserved: [i e a o u ĩ ẽ ɐ̃ õ ũ]. Nasalised vowels in this position surface either before /N/ (e.g. temporal tẽᵐpoˈɾaʊ̯ ‘temporal’) or before /ɲ/ (e.g. ganhar gɐ̃ˈɲaɾ ‘(to) win’).' A pretonic vowel before /m n/ is not in that list and stays oral."
     },
     {
+      "id": "BR_XC_ONE_S",
+      "phonemes": [
+        "ʃ"
+      ],
+      "surface": "",
+      "grapheme": [
+        "x"
+      ],
+      "followed_by_grapheme": [
+        "c"
+      ],
+      "followed_by_phoneme": [
+        "s"
+      ],
+      "notes": "⟨xc⟩ before a front vowel is one /s/: exceção [eseˈsɐ̃w̃], excesso [eˈsesu]. Vasilévski (2012: 55, Table 1) gives 'xc /s/ exceção'. Foigel & Roos list ⟨xc⟩ under [S]: 'em palavras com o dígrafo ”XC”: excelente, exceção, exceto'. LIMIT: Table 1 is the rule set of the Nhenhém decoder, which targets the phonological level. It is not a study of speech. ⟨c⟩ before a consonant or a back vowel is [k], so excluir has no digraph and BR_CODA_X reads its ⟨x⟩. pt-BR-x-rj, pt-BR-x-norte, pt-BR-x-recife, pt-BR-x-floripa and pt-BR-x-cuiaba switch this rule off: the table gives /s/ and no opened source gives the value of ⟨xc⟩ in a spec with a palatal coda."
+    },
+    {
+      "id": "BR_CODA_X",
+      "phonemes": [
+        "ʃ"
+      ],
+      "surface": "s",
+      "grapheme": [
+        "x"
+      ],
+      "syllable_position": "coda",
+      "followed_by": "consonant",
+      "notes": "⟨x⟩ before a consonant is the coda sibilant of the spec, so the base reads [s]: texto [ˈtestu], explicar [espliˈka]. Vasilévski (2012: 55, Table 1) gives 'x |S| expor' beside 's |S| mosca, lesma', and writes '/ˈteS.tu/' on p. 56, so coda ⟨x⟩ and coda ⟨s⟩ share one archiphoneme. Foigel & Roos list the class under '[S]: Fricativa, alveolar, surda', and add: 'Em palavras com “X” no final de sílaba seguido de consoante surda: experiência, externo, extintor, que dependendo da variante também tem o valor de /∫/'. LIMIT: Table 1 is the rule set of the Nhenhém decoder, which targets the phonological level. It is not a study of speech. It gives the archiphoneme and no surface value, so each spec keeps its own coda value. pt-BR-x-rj, pt-BR-x-norte, pt-BR-x-recife, pt-BR-x-floripa and pt-BR-x-cuiaba read a coda ⟨s⟩ as [ʃ], so they switch this rule off. ⟨x⟩ stays [ʃ], or [ʒ] before a voiced consonant (Vixnu [viʒˈnu]). A word-final ⟨x⟩ (tórax) has no consonant after it and is outside this rule."
+    },
+    {
       "id": "BR_CODA_S_VOICED",
       "phonemes": [
         "s"
