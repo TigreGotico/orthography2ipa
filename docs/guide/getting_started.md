@@ -223,6 +223,14 @@ engine = G2P("pt-PT", pipeline=Pipeline(
 
 `normalizer=` and `plugins={"normalize": ...}` cannot run with these fields, and `G2P` raises `ValueError` if a caller passes both. A field replaces a `normalize` plugin that the spec names.
 
+## Rescorers and sandhi in a pipeline
+
+`Pipeline(rescore=...)` holds the rescorers of one engine, in order. They run in every word path, before the allophone rules of the spec.
+
+`Pipeline(sandhi=...)` holds a `SandhiPlugin` instance. Its `apply` method gets the IPA, the spelling and the pause flag of each word, after the `sandhi_rules` of the spec, and it returns one IPA string per word. A different length raises `ValueError`. `apply_sandhi=False` turns off the rules of the spec, not this field.
+
+`rescorer=` or `plugins={"rescore": ...}` with `rescore`, and `sentence_rescorer=` or `plugins={"sandhi": ...}` with `sandhi`, raise `ValueError`. A field replaces a plugin of that stage that the spec names.
+
 ## Installing and writing a plugin
 
 A plugin takes over one stage of the pipeline for the languages that it claims. [architecture.md](../engine/architecture.md#pluggable-steps) lists the stages and their base classes. An install of a package changes no transcription, because the spec or the caller must name each plugin. The `portuguese` extra installs `silabificador`:
