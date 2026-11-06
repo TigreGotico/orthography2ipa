@@ -341,6 +341,30 @@ def _as_names(plugins: dict) -> dict:
     }
 
 
+def _field_stages(pipeline: Pipeline, named: dict, normalizer, rescorer,
+                  sentence_rescorer) -> Tuple[str, ...]:
+    """The plugin stages that *pipeline*'s fields take over.
+
+    Raises :class:`ValueError` when a caller also passes the old argument for a
+    stage, because either order would silently drop one of the two.
+    """
+    pairs = (
+        ("normalize", pipeline.expand is not None or pipeline.mark is not None,
+         "Pipeline(expand=...) or Pipeline(mark=...)", "normalizer=",
+         normalizer is not None),
+        ("rescore", bool(pipeline.rescore), "Pipeline(rescore=...)", "rescorer=",
+         rescorer is not None),
+        ("sandhi", pipeline.sandhi is not None, "Pipeline(sandhi=...)",
+         "sentence_rescorer=", sentence_rescorer is not None),
+    )
+    for stage, field_set, field, old, old_set in pairs:
+        if field_set and (old_set or named.get(stage)):
+            raise ValueError(
+                f"{old} and plugins={{{stage!r}: ...}} cannot run with {field}: "
+                f"pass the field")
+    return tuple(stage for stage, field_set, *_ in pairs if field_set)
+
+
 class _StagePlugins:
     """The plugins this engine runs, resolved once, per stage.
 
@@ -456,6 +480,9 @@ class G2P:
     ) -> None:
         self.allow_undeclared_phonemes = allow_undeclared_phonemes
         self.pipeline: Pipeline = pipeline or Pipeline()
+        named = _as_names(plugins or {})
+        field_stages = _field_stages(
+            self.pipeline, named, normalizer, rescorer, sentence_rescorer)
         #: Whether a list-valued ``grammatical_endings`` entry contributes
         #: its lower-ranked readings to the beam (see
         #: :attr:`~orthography2ipa.types.LanguageSpec.grammatical_endings`).
@@ -495,7 +522,7 @@ class G2P:
         # default path is byte-identical.
         self.apply_allophony = apply_allophony
         user_rescorers: Tuple[LatticeRescorer, ...] = normalize_rescorers(
-            rescorer)
+            self.pipeline.rescore or rescorer)
         positional_vowel_graphemes = frozenset(
             grapheme
             for grapheme, positions in (self.spec.positional_graphemes or {}).items()
@@ -542,14 +569,9 @@ class G2P:
         #
         # Either way it is a DECLARATION. What is never allowed is for discovery
         # alone to decide: `pip install` must not change a transcription.
-        named = _as_names(plugins or {})
         self.plugins = {**(self.spec.plugins or {}), **named}
-        if self.pipeline.expand is not None or self.pipeline.mark is not None:
-            if normalizer is not None or named.get("normalize"):
-                raise ValueError(
-                    "normalizer= and plugins={'normalize': ...} cannot run with "
-                    "Pipeline(expand=...) or Pipeline(mark=...): pass the fields")
-            self.plugins.pop("normalize", None)
+        for stage in field_stages:
+            self.plugins.pop(stage, None)
         self._stage_plugins = _StagePlugins(self.spec, self.plugins)
 
         declared_rescorers = tuple(
@@ -697,7 +719,9 @@ class G2P:
         # removes. The plugin sees each word's SPELLING as well as its IPA — whether
         # a word ends in a case ending is a fact about the page, and guessing it
         # from the last characters of the IPA confuses an ending with a stem.
-        for plugin in self._stage_plugins.get("sandhi"):
+        sandhi = self.pipeline.sandhi
+        for plugin in ([sandhi] if sandhi is not None
+                       else self._stage_plugins.get("sandhi")):
             surfaces = [w.surface for w in words]
             # The pause has to be HANDED to the plugin: punctuation is stripped
             # during word splitting, so by now it is gone from the input — and a
