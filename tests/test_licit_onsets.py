@@ -346,13 +346,9 @@ def test_a_spec_that_has_not_opted_in_is_untouched(lang):
     begin words and so never split — would have every one of them broken.
     Those specs do not set ``constrain_onsets`` and get the unconstrained
     split, byte-identical to before."""
-    from orthography2ipa.registry import get_syllabifier
     from orthography2ipa.stress import syllabify
     spec = get(lang)
     assert spec.constrain_onsets is False
-    if get_syllabifier(lang) is not None:
-        pytest.skip(f"{lang} ships a syllabifier plugin; the bundled splitter "
-                    f"is not what it uses")
     diph = spec.stress.diphthongs if spec.stress is not None else ()
     for word in ("elektronisch", "constant", "abstract", "instrument"):
         assert syllables(lang, word) == syllabify(word, diphthongs=diph)

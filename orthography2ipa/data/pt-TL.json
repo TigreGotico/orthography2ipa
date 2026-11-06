@@ -369,6 +369,12 @@
       "phonemes": [],
       "surface": "i",
       "notes": "DISABLED for East Timorese Portuguese. Albuquerque (2010, ReVEL 8(15)) writes 'espelho [es.ˈpe.lu]' on p. 276 and lists 'escola [is.ˈkɔ.la] ~ [iʃ.kɔ.la]' under 'e > i' on p. 277. The p. 277 list holds traits shared with the Asian creoles, and raising outside the acrolect is basilectal, so the spec keeps [e]."
+    },
+    {
+      "id": "PT_STRESSED_A_BEFORE_NASAL",
+      "phonemes": [],
+      "surface": "ɐ",
+      "notes": "DISABLED for East Timorese Portuguese. No source read covers a stressed /a/ before an onset nasal in this variety. The reading is the spec default and makes no claim about this context."
     }
   ],
   "wikidata_qid": "Q4373396",

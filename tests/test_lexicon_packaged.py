@@ -15,7 +15,6 @@ from pathlib import Path
 import pytest
 
 import orthography2ipa
-from orthography2ipa import g2p as g2p_module
 from orthography2ipa import lexicon as lexmod
 from orthography2ipa.registry import available_json_codes
 
@@ -85,15 +84,14 @@ def installed_en(providers, tmp_path):
     return ep, calls, path
 
 
-def rules_only(monkeypatch, words, code="en-GB"):
-    with monkeypatch.context() as m:
-        m.setattr(g2p_module, "get_lexicon", lambda c: {})
-        return [orthography2ipa.G2P(code).transcribe_word(w) for w in words]
+def rules_only(words, code="en-GB"):
+    engine = orthography2ipa.G2P(code, pipeline=orthography2ipa.Pipeline(lexicon={}))
+    return [engine.transcribe_word(w) for w in words]
 
 
 # ─── installed, not enabled: nothing changes ────────────────────────────────
 
-def test_installed_provider_changes_no_output(installed_en, monkeypatch):
+def test_installed_provider_changes_no_output(installed_en):
     ep, calls, _ = installed_en
     got = [orthography2ipa.G2P("en-GB").transcribe_word(w) for w in WORDS]
     assert lexmod.available_lexicon_codes() == []
@@ -101,7 +99,7 @@ def test_installed_provider_changes_no_output(installed_en, monkeypatch):
             if lexmod.get_lexicon(c)} == {}
     assert calls == []            # transcription never reads the entry points
     assert ep.loads == 0
-    assert got == rules_only(monkeypatch, WORDS)
+    assert got == rules_only(WORDS)
     assert got[0] != "ˈ" + YACHT
 
 
@@ -155,13 +153,13 @@ def test_provider_is_called_with_its_entry_point_name(providers, tmp_path):
     assert asked == ["en-GB"]
 
 
-def test_clear_disables_the_packaged_lexicon(installed_en, monkeypatch):
+def test_clear_disables_the_packaged_lexicon(installed_en):
     orthography2ipa.use_packaged_lexicons()
     assert orthography2ipa.G2P("en-GB").transcribe_word("yacht") == "ˈ" + YACHT
     lexmod.clear_lexicons()
     assert lexmod.available_lexicon_codes() == []
     assert [orthography2ipa.G2P("en-GB").transcribe_word(w) for w in WORDS] == \
-        rules_only(monkeypatch, WORDS)
+        rules_only(WORDS)
 
 
 # ─── precedence: word_exceptions > register / dir > packaged > rules ────────

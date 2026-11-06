@@ -115,7 +115,7 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
 | `timespan`                  | object | no       | Attestation period (see [Timespan Schema](#timespan-schema)) |
 | `valid_ceiling`             | object | no       | Measured PER floors once an orthographically-unwritten contrast is folded out of both sides, keyed by the gold **dataset** each was measured against (see [Valid Ceiling Schema](#valid-ceiling-schema)) |
 | `audit`                     | object | no       | Machine-readable audit conclusions, keyed by the gold **dataset** each was reached against (see [Audit Schema](#audit-schema)) |
-| *(lexicon)*                 | n/a | n/a | **Not a spec field, and never bundled.** A word lexicon is a corpus, not a description of a language. Supply one at runtime from a local file, a URL or a Hugging Face id: `orthography2ipa.register_lexicon("en-GB", "hf://TigreGotico/en-lexicon/en-GB.tsv")`, or point at a directory of `{code}.tsv` with `set_lexicon_dir()` / `$ORTHOGRAPHY2IPA_LEXICON_DIR`. A separate package such as `o2i-lexicons` (the `lexicons` extra) can supply one through the `orthography2ipa.lexicons` entry points, and the caller enables it with `use_packaged_lexicons()`. |
+| *(lexicon)*                 | n/a | n/a | **Not a spec field, and never bundled.** A word lexicon is a corpus, not a description of a language. Supply one at runtime from a local file, a URL or a Hugging Face id: `G2P("en-GB", pipeline=Pipeline(lexicon=load_lexicon("hf://TigreGotico/en-lexicon/en-GB.tsv")))`. A separate package such as `o2i-lexicons` (the `lexicons` extra) can supply one through the `orthography2ipa.lexicons` entry points, and the caller reads it with `packaged_lexicon()`. |
 
 ## Clade Nodes and the Derived `family`
 

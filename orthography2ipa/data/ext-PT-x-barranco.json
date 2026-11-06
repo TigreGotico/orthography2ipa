@@ -99,6 +99,27 @@
   ]
  },
  "positional_graphemes": {
+  "a": {
+   "nucleus_stressed": [
+    "a"
+   ],
+   "nucleus_unstressed": [
+    "ɐ"
+   ],
+   "word_initial": [
+    "ɐ",
+    "a"
+   ],
+   "word_final": [
+    "ɐ"
+   ],
+   "pretonic": [
+    "ɐ"
+   ],
+   "posttonic": [
+    "ɐ"
+   ]
+  },
   "r": {
    "word_initial": [
     "r"
@@ -369,6 +390,12 @@
       "phonemes": [],
       "surface": "i",
       "notes": "DISABLED for Barranquenho. PT_INITIAL_ES_RAISE follows a statement about European Portuguese. No source read writes this vowel for this variety, so it stays as the spec gives it."
+    },
+    {
+      "id": "PT_STRESSED_A_BEFORE_NASAL",
+      "phonemes": [],
+      "surface": "ɐ",
+      "notes": "DISABLED for Barranquenho. No source read covers a stressed /a/ before an onset nasal in this variety. The reading is the spec default and makes no claim about this context. The `a` row keeps the `word_initial` values for the same reason."
     }
   ],
  "ancestors": [

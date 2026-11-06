@@ -9,11 +9,9 @@ The bundled syllabifier is a vowel-group splitter, good enough for end-anchored
 stress systems (final / penultimate / antepenultimate). A spec that sets
 ``constrain_onsets`` has its onset maximisation constrained by the licit onsets
 of the language (see :class:`_OnsetJudge`).
-Languages with a real syllabifier ship it as an
-``orthography2ipa.syllabify`` entry-point plugin (``silabificador`` for
-Portuguese, ``pycotovia`` for Galician) — pass ``lang=`` and the plugin
-is used automatically. A caller can pass its own ``syllabifier=``, which wins
-over discovery, or a pre-computed syllable list, which every function accepts.
+A caller with a real syllabifier passes it as ``syllabifier=``, or passes a
+pre-computed syllable list, which every function accepts. Nothing installed
+replaces the bundled splitter on its own.
 
 Usage
 ─────
@@ -1042,34 +1040,27 @@ def _syllables_for(
     spec: Optional[LanguageSpec] = None,
     syllabifier: Optional[SyllabifierPlugin] = None,
 ) -> List[str]:
-    """Syllabify *word*: the caller's plugin, else the one registered for
-    *lang*, else the bundled splitter.
+    """Syllabify *word*: the caller's plugin, else the bundled splitter.
 
-    *syllabifier* is the plugin the caller named. It replaces discovery, so a
-    word it cannot split goes to the bundled splitter and not to a registered
-    plugin.
+    *syllabifier* is the plugin the caller named. A word it cannot split goes
+    to the bundled splitter.
 
-    *diphthongs* reaches the bundled splitter only; a language that ships a
-    real syllabifier plugin does not need it.
+    *diphthongs* reaches the bundled splitter only.
 
     *spec* is the language spec the bundled splitter reads its phonotactics
     from — which consonant clusters may open a syllable. When it is not passed
     but *lang* is, the spec is looked up. Without either, the split is
     unconstrained (the historical behaviour).
     """
-    plugin = syllabifier
-    if plugin is None and lang:
-        from orthography2ipa.registry import get_syllabifier
-        plugin = get_syllabifier(lang)
-    if plugin is not None:
+    if syllabifier is not None:
         try:
-            sylls = plugin.syllabify(word, lang)
+            sylls = syllabifier.syllabify(word, lang)
             if sylls and "".join(sylls) == word:
                 return list(sylls)
         except Exception as exc:
             logging.getLogger(__name__).warning(
                 "syllabifier plugin %r failed on word %r: %s",
-                type(plugin).__name__, word, exc)
+                type(syllabifier).__name__, word, exc)
     if spec is None and lang:
         spec = _spec_for(lang)
     hiatus = (hiatus_positions(word, spec) if spec is not None
@@ -1241,14 +1232,13 @@ def detect_stress(
     rules : StressRules
         The language's declarative stress system.
     syllables : Optional[Sequence[str]]
-        Pre-computed syllables; takes precedence over plugin lookup.
+        Pre-computed syllables; takes precedence over *syllabifier*.
     lang : Optional[str]
-        Language code used to look up a registered
-        ``orthography2ipa.syllabify`` plugin (``silabificador`` for
-        Portuguese, ``pycotovia`` for Galician). The naive
-        :func:`syllabify` is the fallback.
+        Language code. It selects the spec the bundled splitter reads, and it
+        reaches *syllabifier* and a declared stress plugin.
     syllabifier : Optional[SyllabifierPlugin]
-        The caller's syllabifier. It wins over the plugin *lang* looks up.
+        The caller's syllabifier. Without it the bundled splitter divides
+        *word*.
     """
     sylls = (list(syllables) if syllables is not None
              else _syllables_for(word, lang, rules.diphthongs,
@@ -1612,6 +1602,35 @@ def _glide_anchored_index(
     return shifted
 
 
+def _lost_after_stress(
+    ipa: str,
+    syllables: Sequence[str],
+    ipa_sylls: Sequence[str],
+    stress_index: int,
+) -> bool:
+    """Whether a shorter consonant-final *ipa* lost its syllables after the
+    stress, so that the stress index still counts from the start.
+
+    The answer is no when written vowels that the transcription merged account
+    for every missing syllable and none of them stands after the stress:
+    dis-tri-bu-i-do-ras has one such site and [d͡ʒistɾibujdoɾɐs] has one syllable
+    less, so the loss is before the stress. A site whose second vowel still
+    opens a syllable did not merge: Catalan ⟨redueixin⟩ keeps the hiatus in
+    [rəðuəʃjn], Alentejo ⟨teatro⟩ keeps it in [tɨatɾ], and Alentejo ⟨havaiano⟩
+    keeps two syllables in [ɐvajan], with [j] as the onset of the second.
+    """
+    if _ends_in_vowel(ipa):
+        return False
+    merged: List[int] = []
+    for site in _hiatus_merge_sites(syllables):
+        slot = site - len(merged)
+        if slot >= len(ipa_sylls) or not (_is_vowel_char(ipa_sylls[slot][0])
+                                          or ipa_sylls[slot][0] in _GLIDES):
+            merged.append(site)
+    return (len(syllables) - len(merged) != len(ipa_sylls)
+            or any(site > stress_index for site in merged))
+
+
 def _glide_to_diphthong(
     syllables: Sequence[str],
     ipa_sylls: List[str],
@@ -1787,7 +1806,7 @@ def apply_stress_mark(
                     merged.append(syll)
             ipa_sylls = merged
         elif (overflow < 0 and stress_index <= len(ipa_sylls) - 1
-              and (not _ends_in_vowel(ipa)
+              and (_lost_after_stress(ipa, syllables, ipa_sylls, stress_index)
                    or _glide_anchored_index(
                        syllables, ipa_sylls, stress_index,
                        rules) is not None)):
@@ -1803,7 +1822,10 @@ def apply_stress_mark(
             # orthographic OVER-count of a digraph (⟨linya⟩ → [ˈliɲa], IPA
             # still vowel-final): the latter falls through to end-anchoring,
             # which lands correctly. A loss BEFORE the stress (initial/medial
-            # syncope) overshoots the end and also falls through.
+            # syncope) overshoots the end and also falls through, and so does
+            # a loss the spelling places before the stress: the division
+            # dis-tri-bu-i-do-ras counts a syllable that the transcription
+            # writes with a glide (see `_lost_after_stress`).
             #
             # The second licensed cause is glide formation, which merges two
             # written syllables into one and can do it AFTER the stress. There
@@ -1812,8 +1834,8 @@ def apply_stress_mark(
             # vowel-final, which is what the apocope guard above refuses.
             glide_index = _glide_anchored_index(
                 syllables, ipa_sylls, stress_index, rules)
-            target_index = (stress_index if not _ends_in_vowel(ipa)
-                            else glide_index)
+            target_index = (stress_index if _lost_after_stress(
+                ipa, syllables, ipa_sylls, stress_index) else glide_index)
             for sec in secondary_indices:
                 if 0 <= sec < len(ipa_sylls) and sec != target_index:
                     ipa_sylls[sec] = _prefix_mark(ipa_sylls[sec],

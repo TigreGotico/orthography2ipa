@@ -318,6 +318,12 @@
       "phonemes": [],
       "surface": "i",
       "notes": "DISABLED for Angolan Portuguese. Undolo (2014: 184) writes the palatal mid vowel in pretonic position: 'a palatal média é predominante no PA quando, por oposição ao PE, substitui a central fechada em posição pretónica'. He names no word-initial case, so the spec keeps [e]."
+    },
+    {
+      "id": "PT_STRESSED_A_BEFORE_NASAL",
+      "phonemes": [],
+      "surface": "ɐ",
+      "notes": "DISABLED for Angolan Portuguese. No source read covers a stressed /a/ before an onset nasal in this variety. The reading is the spec default and makes no claim about this context."
     }
   ],
   "wikidata_qid": "Q2994901",

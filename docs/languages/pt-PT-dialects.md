@@ -133,7 +133,7 @@ The four sibilants come from a positional map for ⟨s⟩ and a grapheme ⟨ss�
 | Grapheme (position) | Sibilant | IPA | Example |
 |:---|:---|:---|:---|
 | ⟨s⟩ initial, ⟨ss⟩ | voiceless apico-alveolar | [s̺] | `sal` [ˈs̺aɫ], `passo` [ˈpas̺u] |
-| ⟨s⟩ word-final | voiceless apico-alveolar | [s̺] | `anos` [ˈɐnus̺] |
+| ⟨s⟩ word-final | voiceless apico-alveolar | [s̺] | `anos` [ˈanus̺] |
 | ⟨-s-⟩ between vowels | voiced apico-alveolar | [z̺] | `casa` [ˈkaz̺ɐ], `coser` [kuˈz̺eɾ] |
 | ⟨c⟩ before ⟨e i⟩, ⟨ç⟩ | voiceless laminal | [s] | `paço` [ˈpasu], `cinco` [ˈsĩku] |
 | ⟨z⟩ | voiced laminal | [z] | `cozer` [kuˈzeɾ] |
@@ -357,7 +357,7 @@ The spec declares its own positional maps for ⟨a⟩ and ⟨o⟩. They keep the
 
 Known gaps and features not modelled:
 
-- The own ⟨a⟩ and ⟨o⟩ maps replace the whole `pt-PT` maps for those graphemes. A stressed ⟨o⟩ then takes the close [o] of the grapheme table, and a stressed ⟨a⟩ before a nasal stays [a]. So `bola` gives [ˈbolɐ] and `anos` gives [ˈanuʃ], where `pt-PT` gives [ˈbɔlɐ] and [ˈɐnuʃ].
+- The own ⟨a⟩ and ⟨o⟩ maps replace the whole `pt-PT` maps for those graphemes. A stressed ⟨o⟩ then takes the close [o] of the grapheme table. So `bola` gives [ˈbolɐ], where `pt-PT` gives [ˈbɔlɐ].
 - Spirantisation of the voiced stops between vowels is a general EP process, not a Lisbon one. Every available `pt` gold is broad and writes the stops (see [pt-PT](pt-PT.md#not-modelled)).
 - The place of the sibilant (apico-alveolar or predorsodental), Cintra's primary North/South isogloss, is not encoded. Lisbon uses the predorsodental value that the base produces.
 - The `ep_dialects` and `clup_dialect` gold sets for Lisbon are small and unvalidated. They are not consistent in the pre-palatal context (they write `venho` with a plain front vowel), so they cannot reward the pre-palatal rule. The rule ships on the documented phonology.

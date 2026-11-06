@@ -4,29 +4,30 @@ The bundled splitter counts nuclei; it does not draw boundaries a phonologist
 would sign off on. That is enough for the end-anchored stress systems it exists
 to serve, and it is not enough for everything.
 
-So a language may supply a real one. This module holds the plugins
+So a caller may supply a real one. This module holds the plugins
 orthography2ipa itself can offer when the underlying package is present —
 installed via an extra, never a hard dependency, because a G2P library has no
 business pulling a Portuguese syllabifier into an Arabic install::
 
     pip install orthography2ipa[portuguese]
 
-## What a syllabifier is allowed to change, and what it is not
+Installing the extra changes no transcription. The caller builds the plugin and
+passes it to one engine::
+
+    G2P("pt-PT", pipeline=Pipeline(syllabifier=SilabificadorSyllabifier()))
+
+## What a syllabifier supplies
 
 A plugin supplies **syllables**. It does not supply stress.
 
-That distinction matters more than it looks. Stress here is declarative — it
-comes from the spec's :class:`~orthography2ipa.types.StressRules`, which is data
-a language owner wrote and can be read, cited and diffed. If a plugin could also
-place the stress, then installing an optional package would change the
-transcription, and the same word would have two answers depending on what
-happened to be in the environment. That is not hypothetical: it is the bug this
-library just had, and the syllable count was how it got in.
+Stress here is declarative — it comes from the spec's
+:class:`~orthography2ipa.types.StressRules`, which is data a language owner wrote
+and can be read, cited and diffed. The syllable count still reaches the stress
+step, so a syllabifier can move the output of the engine it was passed to.
 
 ``silabificador`` *does* compute stress (2.x), and on its own 500-word held-out
 gold its answer agrees with the spec's declarative rules on **every word**. So
-nothing is lost by not asking it — and what is gained is that the answer does not
-depend on whether it is installed.
+nothing is lost by not asking it.
 """
 
 from __future__ import annotations
@@ -42,10 +43,10 @@ class SilabificadorSyllabifier(SyllabifierPlugin):
     """Portuguese syllables from ``silabificador``, a rule-based phonotactic
     syllabifier.
 
-    Optional: ``pip install orthography2ipa[portuguese]``. When the package is
-    absent this plugin fails to load and discovery simply carries on without it,
-    which is why the bundled splitter must still be right on its own — see
-    ``pt-PT``'s declared ``diphthongs``.
+    Optional: ``pip install orthography2ipa[portuguese]``. Building it raises
+    :class:`ModuleNotFoundError` when the package is absent. An engine that gets
+    no syllabifier uses the bundled splitter, which must be right on its own —
+    see ``pt-PT``'s declared ``diphthongs``.
     """
 
     def __init__(self) -> None:
@@ -67,8 +68,3 @@ class SilabificadorSyllabifier(SyllabifierPlugin):
             "pt-BR-x-mg", "pt-BR-x-norte", "pt-BR-x-pr", "pt-BR-x-recife",
             "pt-BR-x-rj", "pt-BR-x-sp", "pt-BR-x-sul",
         ]
-
-    @property
-    def priority(self) -> int:
-        # Neutral. A downstream plugin that knows better should win by saying so.
-        return 50

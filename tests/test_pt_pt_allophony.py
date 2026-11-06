@@ -45,7 +45,7 @@ def test_pt_pt_declares_the_coda_rules():
         "PT_FINAL_EM_NUCLEUS", "PT_FINAL_EM_GLIDE", "PT_FINAL_AM_GLIDE",
         "PT_FINAL_ENS_NUCLEUS", "PT_FINAL_ENS_GLIDE",
         "PT_FINAL_EN_NUCLEUS", "PT_FINAL_EN_CODA",
-        "PT_NASAL_A_RAISE", "PT_NASAL_E_RAISE", "PT_NASAL_O_RAISE",
+        "PT_NASAL_A_RAISE", "PT_STRESSED_A_BEFORE_NASAL", "PT_NASAL_E_RAISE", "PT_NASAL_O_RAISE",
         "PT_NASAL_O_UNRED", "PT_NASAL_E_UNRED", "PT_INITIAL_ES_RAISE",
         "PT_CODA_L_DARK", "PT_CODA_S_BEFORE_ZH_INTERNAL",
         "PT_CODA_S_VOICING_INTERNAL", "PT_CODA_S_HUSH", "PT_CODA_Z_HUSH",
@@ -185,7 +185,7 @@ def test_reduced_o_before_nasal_lowers_to_o():
     # ch.2). Regression guard for contar → [kũˈtaɾ] (wrong) vs [kõˈtaɾ].
     assert _t("pt-PT", "contar") == _n("kõˈtaɾ")
     assert _t("pt-PT", "comprar") == _n("kõˈpɾaɾ")
-    assert _t("pt-PT", "montanha") == _n("mõˈtaɲɐ")
+    assert _t("pt-PT", "montanha") == _n("mõˈtɐɲɐ")
     assert _t("pt-PT", "bondade") == _n("bõˈdadɨ")
     assert _t("pt-PT", "pombal") == _n("põˈbaɫ")
     assert _t("pt-PT", "bombom") == _n("bõˈbõ")

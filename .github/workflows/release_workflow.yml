@@ -24,5 +24,7 @@ jobs:
       publish_prerelease: true
       propose_release: true
       changelog_max_issues: 100
-      publish_pypi: true
+      # Each PyPI release holds 19 MB against the project limit, so a merge bumps,
+      # tags and logs, and publish_alpha_daily.yml dispatches this workflow to publish.
+      publish_pypi: ${{ github.event_name == 'workflow_dispatch' }}
       notify_matrix: true

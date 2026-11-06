@@ -202,7 +202,7 @@ class TestApplyStressMark:
 
 
 class TestSyllabifierPlugins:
-    """Per-language syllabifier plugins supersede the naive splitter."""
+    """A syllabifier the caller passes supersedes the naive splitter."""
 
     class _FakeSyllabifier:
         def syllabify(self, word, lang=None):
@@ -219,41 +219,30 @@ class TestSyllabifierPlugins:
         def priority(self):
             return 50
 
-    def _install(self, monkeypatch):
-        from orthography2ipa import registry
-        monkeypatch.setattr(
-            registry, "_syllabifiers", {"pt-PT": self._FakeSyllabifier()})
-
-    def test_plugin_used_for_lang(self, monkeypatch):
+    def test_plugin_used_for_lang(self):
         from orthography2ipa import get
-        self._install(monkeypatch)
         rules = get("pt-PT").stress
         # viagem is paroxytone over three syllables (vi-A-gem)
+        assert detect_stress("viagem", rules, lang="pt-PT",
+                             syllabifier=self._FakeSyllabifier()) == 1
+
+    def test_no_plugin_falls_back_to_naive(self):
+        """Because pt-PT declares its diphthongs, the naive splitter separates
+        the hiatus and agrees with the plugin here (vi-A-gem)."""
+        from orthography2ipa import get
+        rules = get("pt-PT").stress
         assert detect_stress("viagem", rules, lang="pt-PT") == 1
 
-    def test_no_plugin_falls_back_to_naive(self, monkeypatch):
-        """The plugin is registered for pt-PT only, so en-GB uses the naive
-        splitter — which, because pt-PT declares its diphthongs, separates the
-        hiatus and agrees with the plugin here (vi-A-gem)."""
+    def test_explicit_syllables_beat_plugin(self):
         from orthography2ipa import get
-        self._install(monkeypatch)
-        rules = get("pt-PT").stress
-        assert detect_stress("viagem", rules, lang="en-GB") == 1
-
-    def test_explicit_syllables_beat_plugin(self, monkeypatch):
-        from orthography2ipa import get
-        self._install(monkeypatch)
         rules = get("pt-PT").stress
         assert detect_stress(
-            "viagem", rules, syllables=["via", "gem"], lang="pt-PT") == 0
+            "viagem", rules, syllables=["via", "gem"], lang="pt-PT",
+            syllabifier=self._FakeSyllabifier()) == 0
 
-    def test_get_syllabifier_unknown_lang(self):
-        from orthography2ipa import get_syllabifier
-        assert get_syllabifier("zz-ZZ") is None
-
-    def test_broken_plugin_output_rejected(self, monkeypatch):
+    def test_broken_plugin_output_rejected(self):
         """A plugin whose syllables don't rebuild the word is ignored."""
-        from orthography2ipa import get, registry
+        from orthography2ipa import get
 
         class Broken:
             def syllabify(self, word, lang=None):
@@ -267,15 +256,14 @@ class TestSyllabifierPlugins:
             def priority(self):
                 return 50
 
-        monkeypatch.setattr(registry, "_syllabifiers", {"pt-PT": Broken()})
         rules = get("pt-PT").stress
         # falls back to the naive splitter instead of trusting garbage
-        assert detect_stress("casa", rules, lang="pt-PT") == 0
+        assert detect_stress("casa", rules, lang="pt-PT", syllabifier=Broken()) == 0
 
-    def test_raising_plugin_falls_back_and_logs(self, monkeypatch, caplog):
+    def test_raising_plugin_falls_back_and_logs(self, caplog):
         """A plugin that raises is logged and the naive splitter is used."""
         import logging
-        from orthography2ipa import get, registry
+        from orthography2ipa import get
 
         class Raising:
             def syllabify(self, word, lang=None):
@@ -289,11 +277,10 @@ class TestSyllabifierPlugins:
             def priority(self):
                 return 50
 
-        monkeypatch.setattr(registry, "_syllabifiers", {"pt-PT": Raising()})
         rules = get("pt-PT").stress
         with caplog.at_level(logging.WARNING):
             # falls back to the naive splitter and still returns a valid result
-            assert detect_stress("casa", rules, lang="pt-PT") == 0
+            assert detect_stress("casa", rules, lang="pt-PT", syllabifier=Raising()) == 0
         assert len(caplog.records) == 1
         message = caplog.records[0].getMessage()
         assert caplog.records[0].levelno == logging.WARNING

@@ -1,0 +1,33 @@
+name: Publish Alpha Daily
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 3 * * *'
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: dev
+      - name: Dispatch the release workflow if dev holds an unpublished version
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version=$(python -c "
+          import runpy
+          print(runpy.run_path('orthography2ipa/version.py')['VERSION_STR'])
+          ")
+          status=$(curl -s -o /dev/null -w '%{http_code}' "https://pypi.org/pypi/orthography2ipa/$version/json")
+          echo "dev is at $version, PyPI answers $status"
+          case "$status" in
+            200) echo "already published" ;;
+            404) gh workflow run release_workflow.yml --ref dev ;;
+            *) echo "::error::PyPI answered $status"; exit 1 ;;
+          esac

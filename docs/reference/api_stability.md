@@ -20,7 +20,6 @@ The inventory comes from the Python imports on the `dev` branch of each downstre
 | `WordContext` | `sentence` | arbtok, g2p_barranquenho, mwl_phonemizer, tugaphone |
 | `get` | `registry` | arbtok, g2p_barranquenho, tugaphone |
 | `available_codes` | `registry` | arbtok, tugaphone |
-| `get_syllabifier` | `registry` | tugaphone |
 | `who_answers` | `registry` | tugaphone |
 | `register_lexicon` | `lexicon` | arbtok, tugaphone |
 | `clear_lexicons`, `validate_lexicon_text` | `lexicon` | arbtok |
@@ -47,13 +46,12 @@ Downstream code also imports these public names straight from their submodules. 
 
 | Name | Module | Used by |
 | :--- | :--- | :--- |
-| `registry` | the module itself | tugaphone (tests) |
 | `detect_stress_by_weight`, `is_cliticless` | `stress` | arbtok |
 | `is_ipa_vowel` | `vowels` | arbtok |
 | `is_front_vowel`, `is_orthographic_vowel` | `vowels` | tugaphone |
 | `lexicon_path` | `lexicon` | arbtok |
 
-Two downstream imports reach private names: `phonetok._expand_arabic_gemination` in arbtok and `registry._syllabifiers` in the tugaphone tests. A private name has no guarantee, and it can change in any release.
+One downstream import reaches a private name: `phonetok._expand_arabic_gemination` in arbtok. A private name has no guarantee, and it can change in any release.
 
 ## Other names in `__all__`
 
@@ -62,7 +60,7 @@ These names are public and importable, but no downstream repository uses them. T
 | Module | Names |
 | :--- | :--- |
 | `g2p` | `transcribe`, `TranscriptionResult`, `WordTranscription`, `ConfidenceBreakdown` |
-| `registry` | `resolve`, `resolves_exactly`, `ancestry_chain`, `available_families`, `get_rescorers`, `get_stress_plugin`, `MissingPlugin`, `UnknownVariantWarning` |
+| `registry` | `resolve`, `resolves_exactly`, `ancestry_chain`, `available_families`, `get_rescorers`, `get_stress_plugin`, `get_syllabifier`, `MissingPlugin`, `UnknownVariantWarning` |
 | `lexicon` | `get_lexicon`, `set_lexicon_dir`, `resolve_lexicon_source`, `available_lexicon_codes`, `use_packaged_lexicons`, `packaged_lexicon_sources`, `is_ipa_string` |
 | `types` | `Grapheme2IPA`, `AllophoneMap`, `PositionalGrapheme2IPA`, `Ancestor`, `AncestorRole`, `QualityTier`, `ScriptType`, `OrthographyKind`, `OrthographyStandard`, `Location`, `SandhiRule`, `AllophoneRule`, `StressRules` |
 | `phonetok` | `Token`, `IPAPath`, `GraphemeContext`, `TokenSequence` |
