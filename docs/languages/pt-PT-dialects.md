@@ -30,7 +30,7 @@ The table gives the features that set each lect apart from `pt-PT`. The lects ru
 | [`pt-PT-x-alfena`](#alfena-pt-pt-x-alfena) | Alfena, Valongo | apical-only sibilants<br>/v/ to [b]<br>vowel breaking as an allophone variant only | `zebra` [ˈz̺ɛbɾɐ], `vaca` [ˈbakɐ] |
 | [`pt-PT-x-aveiro`](#beira-litoral-pt-pt-x-aveiro) | Aveiro coast | apical-only sibilants<br>/v/ to [b]<br>[ɭ] as an allophone variant only | `praça` [ˈpɾas̺ɐ], `vaca` [ˈbakɐ] |
 | [`pt-PT-x-beira`](#beira-pt-pt-x-beira) | Beira Litoral, Alta and Baixa | apical-only sibilants<br>/v/ to [b]<br>stressed /u/ to [y] | `tudo` [ˈtydu], `sul` [ˈs̺yɫ] |
-| [`pt-PT-x-coimbra`](#conimbricense-pt-pt-x-coimbra) | Coimbra | the standard values, plus [ʒ] for a final /s/ before a vowel | `os olhos` [oʒ ˈoʎuʃ] |
+| [`pt-PT-x-coimbra`](#conimbricense-pt-pt-x-coimbra) | Coimbra | the standard values, plus [ʒ] for a final /s/ before a vowel | `os olhos` [uʒ ˈɔʎuʃ] |
 | [`pt-PT-x-lisbon`](#lisbon-pt-pt-x-lisbon) | Lisbon, Estremadura | stressed ⟨e⟩ to [ɐ] before a palatal<br>⟨ei⟩ [ɐj]<br>⟨ou⟩ [o] | `espelho` [eʃˈpɐʎu], `leite` [ˈlɐjtɨ] |
 | [`pt-PT-x-alentejo`](#alentejano-pt-pt-x-alentejo) | Alto Alentejo | stressed /u/ to [y]<br>final unstressed high vowels deleted<br>⟨-d-⟩ deleted<br>⟨ei ou⟩ monophthongs | `sul` [ˈsyɫ], `gosto` [ˈɡɔʃt], `nada` [ˈnaɐ] |
 | [`pt-PT-x-algarve`](#algarvio-pt-pt-x-algarve) | Algarve | stressed /u/ to [y]<br>word-final /s/ [ʒ]<br>⟨ei ou⟩ monophthongs<br>unstressed ⟨e o⟩ kept | `tudo` [ˈtydu], `mas` [ˈmaʒ], `pedir` [peˈdiɾ] |
@@ -306,7 +306,7 @@ The one delta is [ʒ] for a final /s/ before a vowel. The spec declares `PT_FINA
 
 | Phrase | `pt-PT` | `pt-PT-x-coimbra` |
 |:---|:---|:---|
-| `os olhos` | [oz ˈoʎuʃ] | [oʒ ˈoʎuʃ] |
+| `os olhos` | [uz ˈɔʎuʃ] | [uʒ ˈɔʎuʃ] |
 | `estás a ver` | [eʃˈtaz ɐ ˈveɾ] | [eʃˈtaʒ ɐ ˈveɾ] |
 
 The centre varies between [z] and [ʒ]. Lúcio (*conimbricense de gema*) is asked how he links "os olhos". He says: *"Nós faríamos a junção com o som de J"*, while the Lisbon host uses [z].
@@ -499,7 +499,7 @@ The diphthongs ⟨oi ói ou⟩ become the front rounded [ø] (Silva 2008, p. 4):
 
 The rule `SM_L_PALATALISATION` changes an /l/ after /i/ and before a vowel to [ʎ], in the same context as [Madeiran](#madeiran-pt-pt-x-madeira): `quilo` [ˈkiʎu], `Filipa` [fiˈʎipɐ], `mochila` [muˈʃiʎɐ]. The condition is exact, so an /l/ after another front vowel does not change (`teleférico` [tɨlɨˈfɛɾiku]). This feature comes from the "8 accents" overview, which groups São Miguel with Madeira (*Filipa* as "Flhipa"). The São Miguel video itself does not show it. The Madeira video supports it (*quilómetro* as "quilhómetro"), and Segura (2013) gives it for the Atlantic islands.
 
-A final /s/ before a vowel is [ʒ], shared with the Algarve: `estás a ver` [eʃˈtaʒ ɐ ˈveɾ], `os olhos` [uʒ ˈoʎuʃ]. The spec declares `PT_FINAL_S_PREVOCALIC_VOICE` again with the transform `ʒ`. The "8 accents" overview gives the shared Algarve and Azores J (*"quijentrar"*, *"Todojos"*, *"Éjunúmerúm"*).
+A final /s/ before a vowel is [ʒ], shared with the Algarve: `estás a ver` [eʃˈtaʒ ɐ ˈveɾ], `os olhos` [uʒ ˈɔʎuʃ]. The spec declares `PT_FINAL_S_PREVOCALIC_VOICE` again with the transform `ʒ`. The "8 accents" overview gives the shared Algarve and Azores J (*"quijentrar"*, *"Todojos"*, *"Éjunúmerúm"*).
 
 São Miguel keeps the mid vowel before a palatal ("coêlho"), which the spec inherits: `coelho` [kuˈɛʎu]. Lisbon centralises it to [ɐ] ("coâlho", `pt-PT-x-lisbon` [kuˈɐʎu]), and Madeira has "coâlho" too. The São Miguel "coêlho" against the Madeiran "coâlho" is the classic contrast between the islands (8 accents overview).
 
