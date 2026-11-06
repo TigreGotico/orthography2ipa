@@ -314,6 +314,12 @@
       "notes": "DISABLED for Angolan Portuguese. PT_LEX_CLITIC_O gives the article ⟨o os⟩ the [u] that an unstressed ⟨o⟩ reduces to in pt-PT. This spec keeps an unstressed ⟨o⟩ as [o]: its positional map gives pretonic and unstressed-nucleus ⟨o⟩ [o]. So the reduced vowel does not apply, and o and os keep the reading of this spec. The vowel of the article in this variety has no variety-specific source."
     },
     {
+      "id": "PT_INITIAL_ES_RAISE",
+      "phonemes": [],
+      "surface": "i",
+      "notes": "DISABLED for Angolan Portuguese. Undolo (2014: 184) writes the palatal mid vowel in pretonic position: 'a palatal média é predominante no PA quando, por oposição ao PE, substitui a central fechada em posição pretónica'. He names no word-initial case, so the spec keeps [e]."
+    },
+    {
       "id": "PT_STRESSED_A_BEFORE_NASAL",
       "phonemes": [],
       "surface": "ɐ",
