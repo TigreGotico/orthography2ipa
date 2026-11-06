@@ -332,7 +332,7 @@ Coimbra prefers *toiro, loiça, loiro*, where Lisbon prefers *touro, louça*. Th
 
 The status of Lisbon against the standard is contested. Cintra (1971) argues that the prestige standard of European Portuguese broadly matches the Central-Southern (Estremenho and Lisbon) type. The conservative teaching norm, however, often rests on central (Coimbra) speech, which lacks several of the Lisbon changes. So the spec does not treat Lisbon as identical to that norm.
 
-The spec inherits from `pt-PT` the dark coda /l/ (`PT_CODA_L_DARK`) and the coda *chiado* (`PT_CODA_S_HUSH`, `PT_CODA_Z_HUSH`) with the coda /s/ voicing. It also inherits the standard [z] of the prevocalic sandhi (`estás a ver` [eʃˈtaz ɐ ˈveɾ]). The southern and island [ʒ] is not a Lisbon feature. Unstressed /e/ reduces to [ɨ] through the inherited positional map.
+The spec inherits from `pt-PT` the dark coda /l/ (`PT_CODA_L_DARK`) and the coda *chiado* (`PT_CODA_S_HUSH`, `PT_CODA_Z_HUSH`) with the coda /s/ voicing. It also inherits the standard [z] of the prevocalic sandhi (`estás a ver` [eʃˈtaz ɐ ˈveɾ]). The southern and island [ʒ] is not a Lisbon feature. Unstressed /e/ reduces to [ɨ] through the inherited positional map. That map also gives an unmarked stressed ⟨o⟩ the open default: `porta` [ˈpɔɾtɐ], `nova` [ˈnɔvɐ].
 
 | Feature | Value | Example | Source |
 |:---|:---|:---|:---|
