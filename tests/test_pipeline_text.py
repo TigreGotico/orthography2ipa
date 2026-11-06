@@ -14,6 +14,10 @@ from orthography2ipa.registry import MissingPlugin
 
 FORCED = 'o <phoneme ph="ˈɡatu">gato</phoneme> bebe água'
 
+# These tests check that a deprecated G2P argument still works.
+OLD_ARGUMENT = pytest.mark.filterwarnings(
+    r"ignore:G2P\(\w+=\.\.\.\) is deprecated:DeprecationWarning")
+
 
 class Recorder:
     """A stage that records its input and applies *rewrite*."""
@@ -53,6 +57,7 @@ def test_expand_runs_before_mark():
     assert ipa == G2P("pt-PT").transcribe("tenho sêde")
 
 
+@OLD_ARGUMENT
 def test_mark_runs_once_on_the_sentence_and_normalizer_once_per_run():
     mark, normalizer = Recorder(), Recorder()
 
@@ -176,6 +181,7 @@ def test_word_methods_run_neither_field(call):
     assert mark.calls == []
 
 
+@OLD_ARGUMENT
 def test_a_compound_word_keeps_normalizer_and_runs_neither_field():
     """``transcribe_word`` reads a compound's elements through the word splitter.
     That reaches the old argument, and it does not reach the fields."""
@@ -203,6 +209,7 @@ def test_sentence_lattice_and_features_read_the_prepared_text():
     assert mark.calls == ["tenho sede", "tenho sede"]
 
 
+@OLD_ARGUMENT
 @pytest.mark.parametrize("field", ["expand", "mark"])
 @pytest.mark.parametrize("old", [
     {"normalizer": str},

@@ -18,6 +18,10 @@ from orthography2ipa.types import AllophoneRule, LanguageSpec
 
 CATALAN = "els amics, de casa"
 
+# These tests check that a deprecated G2P argument still works.
+OLD_ARGUMENT = pytest.mark.filterwarnings(
+    r"ignore:G2P\(\w+=\.\.\.\) is deprecated:DeprecationWarning")
+
 
 class Promote(LatticeRescorer):
     """Make *grapheme* read as *ipa*."""
@@ -53,6 +57,7 @@ def plain_beam_spec(*rules):
                         allophone_rules=tuple(rules))
 
 
+@OLD_ARGUMENT
 def test_rescore_equals_rescorer_on_the_plain_beam():
     spec = plain_beam_spec()
     rescorer = Promote("c", "k")
@@ -64,6 +69,7 @@ def test_rescore_equals_rescorer_on_the_plain_beam():
     assert field.transcribe_word("ac") != G2P("es-ES", spec=spec).transcribe_word("ac")
 
 
+@OLD_ARGUMENT
 def test_rescore_equals_rescorer_on_the_positional_beam():
     rescorer = Promote("s", "ʃ")
     field = G2P("es-ES", pipeline=Pipeline(rescore=(rescorer,)))
@@ -153,6 +159,7 @@ class Sentence(SentenceRescorer):
         return word.ipa
 
 
+@OLD_ARGUMENT
 @pytest.mark.parametrize("field, old", [
     ({"rescore": (Promote("c", "k"),)}, {"rescorer": Promote("c", "k")}),
     ({"rescore": (Promote("c", "k"),)}, {"plugins": {"rescore": "anything"}}),

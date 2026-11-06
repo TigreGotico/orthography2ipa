@@ -137,11 +137,11 @@ A caller that assumes `word_candidates` returns only readings that the grapheme 
 
 ### Sentence-context seam
 
-`G2P` and the `orthography2ipa.sentence` module give a cross-word surface. A downstream engine uses it in place of a sentence orchestrator of its own. The seam runs only when a caller passes `sentence_rescorer=`.
+`G2P` and the `orthography2ipa.sentence` module give a cross-word surface. A downstream engine uses it in place of a sentence orchestrator of its own. The seam runs only when a caller calls `sentence_lattice`, or passes the deprecated `sentence_rescorer=`.
 
 | Name | Meaning |
 | :--- | :--- |
-| `G2P(..., sentence_rescorer=None)` | A `SentenceRescorer`, an iterable of them, or `None` (the default). Rescorers run before the declarative `sandhi_rules` of the spec |
+| `G2P(..., sentence_rescorer=None)` | Deprecated: use `Pipeline(sandhi=...)`. A `SentenceRescorer`, an iterable of them, or `None` (the default). Rescorers run before the declarative `sandhi_rules` of the spec |
 | `G2P.sentence_lattice(text, *, search="greedy", beam_width=8) -> SentenceLattice` | A pure read of the lattice, IPA, and phrase and utterance position of each word, in order |
 | `SentenceLattice`, `WordSlot`, `Position`, `SentenceRescorer`, `SentenceRescoreContext` | The shape a cross-word rule reads and rewrites, re-exported from `orthography2ipa` |
 
