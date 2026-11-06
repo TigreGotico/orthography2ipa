@@ -186,7 +186,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | ca | 4catac | 160 | 0.0641 | - | - | - | - | - | - | [0.0587, 0.0695] | 0.0437 | research | expert-human |
 | ca | ipa_childes | 3813 | 0.2562‡ | - | - | 0.1674 | 0.1456 | 0.3677 | 0.4317 | [0.2498, 0.2631] | 0.2213 | research | espeak-derived |
 | ca | spain_romance_tts | 20 | 0.0562‡ | - | - | - | - | - | - | [0.0382, 0.0768] | 0.2000 | research | llm-corrected |
-| ca | vox_communis | 141623 | 0.1317‡ | 0.9531 | - | 0.1171 | 0.1065 | 0.5131 | 0.5498 | [0.1306, 0.1329] | 0.4724 | research | epitran-derived |
+| ca | vox_communis | 141623 | 0.1317‡ | 0.9534 | - | 0.1171 | 0.1065 | 0.5131 | 0.5498 | [0.1306, 0.1329] | 0.4724 | research | epitran-derived |
 | ca | wikipron | 106 | 0.2565 | - | - | 0.1488 | 0.1289 | 0.5094 | 0.5660 | [0.2121, 0.3003] | 0.3396 | research | crowd-scraped |
 | ca-x-balear | 4catac | 160 | 0.1360 | - | - | - | - | - | - | [0.1283, 0.1446] | 0.0062 | research | expert-human |
 | ca-x-balear | spain_romance_tts | 20 | 0.0775‡ | - | - | - | - | - | - | [0.0596, 0.0950] | 0.0500 | research | llm-corrected |
@@ -568,11 +568,11 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | ppl | wikipron | 185 | 0.1322 | - | - | 0.1322 | 0.1322 | 0.4486 | 0.4486 | [0.1104, 0.1534] | 0.4486 | research | crowd-scraped |
 | pqm | wikipron | 151 | 0.1759 | - | - | 0.1759 | 0.1759 | 0.1589 | 0.1589 | [0.1596, 0.1937] | 0.1589 | research | crowd-scraped |
 | ps | wikipron | 1075 | 0.2453 | - | - | 0.1938 | 0.1840 | 0.3265 | 0.3433 | [0.2341, 0.2554] | 0.2558 | research | crowd-scraped |
-| pt-AO | portal_lupo | 53148 | 0.2495‡ | 0.9956 | - | 0.1865 | 0.1699 | 0.1757 | 0.2149 | [0.2484, 0.2506] | 0.0863 | research | lupo-derived |
+| pt-AO | portal_lupo | 53148 | 0.2495‡ | 0.9957 | - | 0.1865 | 0.1699 | 0.1757 | 0.2149 | [0.2484, 0.2506] | 0.0863 | research | lupo-derived |
 | pt-AO | portuguese_tts | 20 | 0.1910‡ | - | - | - | - | - | - | [0.1621, 0.2250] | 0.0000 | research | llm-corrected |
 | pt-BR | ipa_childes | 2116 | 0.2099‡ | - | - | 0.1825 | 0.1705 | 0.2798 | 0.3162 | [0.2025, 0.2171] | 0.2391 | production | espeak-derived |
-| pt-BR | ipadict | 95933 | 0.2329 | 0.9893 | - | 0.2286 | 0.2219 | 0.0496 | 0.0512 | [0.2319, 0.2339] | 0.0471 | production | machine-generated |
-| pt-BR | ipadict_corrected | 95933 | 0.2329‡ | 0.9961 | - | 0.2286 | 0.2219 | 0.0496 | 0.0512 | [0.2319, 0.2339] | 0.0471 | production | machine-generated |
+| pt-BR | ipadict | 95933 | 0.2329 | 0.9903 | - | 0.2286 | 0.2219 | 0.0496 | 0.0512 | [0.2319, 0.2339] | 0.0471 | production | machine-generated |
+| pt-BR | ipadict_corrected | 95933 | 0.2329‡ | 0.9972 | - | 0.2286 | 0.2219 | 0.0496 | 0.0512 | [0.2319, 0.2339] | 0.0471 | production | machine-generated |
 | pt-BR | portuguese_tts | 20 | 0.0585‡ | - | - | - | - | - | - | [0.0410, 0.0774] | 0.1500 | production | llm-corrected |
 | pt-BR | portuguese_unified | 3552 | 0.1575 | 0.9788 | - | 0.1458 | 0.1336 | 0.4198 | 0.4631 | [0.1502, 0.1658] | 0.3910 | production | crowd-scraped |
 | pt-BR | portuguese_unified_corrected | 3548 | 0.1547‡ | 0.9819 | - | 0.1429 | 0.1307 | 0.4202 | 0.4636 | [0.1481, 0.1612] | 0.3915 | production | crowd-scraped |
@@ -597,7 +597,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | pt-CV | portuguese_tts | 20 | 0.2571‡ | - | - | - | - | - | - | [0.2050, 0.3063] | 0.0500 | skeleton | llm-corrected |
 | pt-GW | portuguese_tts | 20 | 0.3218‡ | - | - | - | - | - | - | [0.2941, 0.3512] | 0.0000 | research | llm-corrected |
 | pt-MO | portuguese_tts | 20 | 0.1146‡ | - | - | - | - | - | - | [0.0878, 0.1401] | 0.1000 | skeleton | llm-corrected |
-| pt-MZ | portal_lupo | 53147 | 0.1688‡ | 0.9980 | - | 0.1441 | 0.1276 | 0.3253 | 0.3823 | [0.1676, 0.1701] | 0.2573 | research | lupo-derived |
+| pt-MZ | portal_lupo | 53147 | 0.1688‡ | 0.9981 | - | 0.1441 | 0.1276 | 0.3253 | 0.3823 | [0.1676, 0.1701] | 0.2573 | research | lupo-derived |
 | pt-MZ | portuguese_tts | 20 | 0.2075‡ | - | - | - | - | - | - | [0.1883, 0.2279] | 0.0000 | research | llm-corrected |
 | pt-PT | ep_dialects | 30 | 0.0804 | - | - | - | - | - | - | [0.0587, 0.1024] | 0.2333 | research | expert-human |
 | pt-PT | ipa_childes | 3846 | 0.2377‡ | - | - | 0.1792 | 0.1667 | 0.3731 | 0.3976 | [0.2307, 0.2447] | 0.2686 | research | espeak-derived |
