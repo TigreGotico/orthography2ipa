@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.119.9a1](https://github.com/TigreGotico/orthography2ipa/tree/7.119.9a1) (2026-11-06)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.119.8a1...7.119.9a1)
+
+**Merged pull requests:**
+
+- fix\(pt-PT\): read a stressed ⟨a⟩ as \[a\], and as \[ɐ\] before an onset nasal [\#2167](https://github.com/TigreGotico/orthography2ipa/pull/2167) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.119.8a1](https://github.com/TigreGotico/orthography2ipa/tree/7.119.8a1) (2026-11-06)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.119.7a1...7.119.8a1)
@@ -384,10 +392,6 @@
 ## [7.116.3a1](https://github.com/TigreGotico/orthography2ipa/tree/7.116.3a1) (2026-11-05)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.116.2a1...7.116.3a1)
-
-**Merged pull requests:**
-
-- fix\(li\): read the Spelling 2003 sign ⟨àè⟩ as long \[ɛː\] [\#2037](https://github.com/TigreGotico/orthography2ipa/pull/2037) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.116.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.116.2a1) (2026-11-05)
 
