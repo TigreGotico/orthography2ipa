@@ -30,16 +30,15 @@ version = {attr = "orthography2ipa.version.VERSION_STR"}
 [project.optional-dependencies]
 hf = ["huggingface_hub"]
 # Residual lexicons, found through the orthography2ipa.lexicons entry points.
-# Installing this extra changes no output: the caller enables them with
-# use_packaged_lexicons(). 0.0.1a1 ships no lexicon and no entry point.
+# Installing this extra changes no output: the caller reads one with
+# packaged_lexicon() and passes it in a Pipeline.
 lexicons = ["o2i-lexicons>=0.1.0a1"]
 validation = ["pydantic>=2"]
 # A real Portuguese syllabifier. Optional: the bundled splitter is correct on its
-# own (pt-PT declares its diphthongs), and this only draws better boundaries.
+# own (pt-PT declares its diphthongs). Installing this extra changes no output:
+# the caller passes SilabificadorSyllabifier() in a Pipeline.
 portuguese = ["silabificador>=2.1.0a1"]
-# The gold sets and the benchmark baselines pin engine output produced WITH the
-# Portuguese syllabifier loaded, so the test environment must carry it or the
-# pinned rows cannot be reproduced.
+# The tests that pass SilabificadorSyllabifier to an engine need silabificador.
 # rarfile reads the CoRuSS dictionaries, which the corpus publishes only as a
 # RAR archive. It needs an extraction backend on PATH, and in practice that
 # means unrar or unar: the bsdtar backend truncates its read of this archive,
@@ -61,9 +60,6 @@ compare = ["epitran", "gruut", "pycotovia", "ahotts-g2p"]
 # LLM-generated silver sets with Claude; never a runtime dependency. The test
 # extra also lists the SDK, because some tests map its real error classes.
 silver-correction = ["anthropic>=2.0.0"]
-
-[project.entry-points."orthography2ipa.syllabify"]
-silabificador = "orthography2ipa.syllabifiers:SilabificadorSyllabifier"
 
 [project.urls]
 Homepage = "https://github.com/TigreGotico/orthography2ipa"

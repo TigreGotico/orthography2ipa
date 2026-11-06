@@ -111,7 +111,7 @@ The [`primary_sources`](../../orthography2ipa/data/gold/primary_sources/README.m
 
 ## Lexicon sources
 
-The sources of a caller-registered lexicon, such as CMUdict for English, are on the [lexicon](../guide/lexicon.md) page.
+The sources of a caller-supplied lexicon, such as CMUdict for English, are on the [lexicon](../guide/lexicon.md) page.
 
 ---
 [← IPA Reference](ipa_reference.md) · [Home](../index.md) · [Writing a language spec →](../contributing/spec_authoring.md)

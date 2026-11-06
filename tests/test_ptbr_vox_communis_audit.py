@@ -33,7 +33,7 @@ def test_initial_ex_before_a_vowel_is_voiced(word, expected):
 
 
 @pytest.mark.parametrize("word, expected", [
-    ("extra", "ˈeʃtɾɐ"),       # ⟨ex⟩ before a consonant: untouched
+    ("extra", "ˈestɾɐ"),       # ⟨ex⟩ before a consonant: a coda, not voiced
     ("sexo", "ˈseʃu"),         # medial ⟨-ex-⟩: untouched
     ("deixar", "dejˈʃa"),     # ⟨x⟩ after a diphthong: ʃ
     ("xadrez", "ʃaˈdɾes"),     # word-initial ⟨x⟩: ʃ

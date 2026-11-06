@@ -118,7 +118,7 @@ def test_acores_prevocalic_s_sandhi_is_palatal():
     """The shared Algarvean-Azorean external sandhi: a word-final /s/ is [ʒ]
     before a vowel-initial word (estás a ver → [eˈʃtaʒ …]), where the base has
     [z]. The clitic article o is pinned to [u]: os olhos → [uʒ ˈoʎuʃ]."""
-    assert _t("pt-PT-x-acores", "estás a ver").startswith("eʃˈtaʒ")
+    assert _t("pt-PT-x-acores", "estás a ver").startswith("iʃˈtaʒ")
     assert _t("pt-PT-x-acores", "os olhos") == "uʒ ˈoʎuʃ"
 
 
