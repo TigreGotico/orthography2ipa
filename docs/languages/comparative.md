@@ -179,9 +179,9 @@ In Lisbon Portuguese, the value of ⟨s⟩ depends on its position:
 | Word-initial | [s] | `sol` `ˈsɔɫ` |
 | Between vowels | [z] | `casa` `ˈkazɐ` |
 | Before a voiced consonant | [ʒ] | `mesmo` `ˈmɛʃmu` |
-| Before a voiceless consonant | [ʃ] | `estar` `eʃˈtaɾ` |
+| Before a voiceless consonant | [ʃ] | `estar` `iʃˈtaɾ` |
 | Word-final | [ʃ] | `gatos` `ˈɡatuʃ` |
-| Word-final before a vowel in the next word | [z] (standard, North, Lisbon), [ʒ] (Algarve, Azores) | `os amigos` `oz ɐˈmiɡuʃ`, `estás a ver` `eʃˈtaz ɐ ˈveɾ` |
+| Word-final before a vowel in the next word | [z] (standard, North, Lisbon), [ʒ] (Algarve, Azores) | `os amigos` `oz ɐˈmiɡuʃ`, `estás a ver` `iʃˈtaz ɐ ˈveɾ` |
 
 The `pt-PT` spec states the word-initial, intervocalic, word-final and cross-word values in `positional_graphemes`. It does not voice ⟨s⟩ before a voiced consonant, so it gives [ʃ] in `mesmo`, `desde` and `Lisboa`. The dialect specs `pt-PT-x-algarve` and `pt-PT-x-acores` give `eʃˈtaʒ ɐ ˈveɾ` for the cross-word case. For the details, see [European Portuguese](pt-PT.md).
 
