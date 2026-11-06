@@ -11,9 +11,12 @@ pipelines side by side, and an engine that gets no pipeline does not see them::
 """
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Mapping, Optional
+import unicodedata
+from dataclasses import dataclass, replace
+from itertools import zip_longest
+from typing import Callable, List, Mapping, Optional
 
+from orthography2ipa.markup import Chunk
 from orthography2ipa.syllabifier_plugin import SyllabifierPlugin
 
 __all__ = ["Pipeline"]
@@ -34,7 +37,64 @@ class Pipeline:
         syllabifier: the syllabifier for this engine. ``None`` uses the
             bundled splitter. A word this syllabifier cannot split goes to the
             bundled splitter too.
+        expand: writes out one plain run of the input. It takes a string and
+            returns a string, and the words may change. It runs once per plain
+            run, so it never sees a ``<phoneme>`` tag or a forced word. The
+            caller binds the language and composes several jobs into one
+            callable.
+        mark: adds marks to the whole sentence after ``expand``. It takes a
+            string and returns a string with the same words, and it sees a
+            forced word as spelled. It runs once per call. Removing the
+            combining marks from its output must give its input back, or the
+            engine raises :class:`ValueError`. A marked forced word keeps its
+            written surface. The engine runs ``expand`` and ``mark`` for
+            ``transcribe``, ``transcribe_detailed``, ``sentence_lattice`` and
+            ``features``. A word method takes a prepared word and runs neither.
+
+    A pipeline makes no promise to be hashable: a dict lexicon is not, and a
+    callable compares by identity. Key a cache on what builds the pipeline.
     """
 
     lexicon: Optional[Mapping[str, str]] = None
     syllabifier: Optional[SyllabifierPlugin] = None
+    expand: Optional[Callable[[str], str]] = None
+    mark: Optional[Callable[[str], str]] = None
+
+
+def _letters(text: str) -> str:
+    """*text* in NFD, without its combining marks."""
+    return "".join(ch for ch in unicodedata.normalize("NFD", text)
+                   if unicodedata.category(ch) != "Mn")
+
+
+def _check_mark(before: str, after: str) -> None:
+    """Raise :class:`ValueError` unless *after* holds the words of *before*."""
+    if _letters(before) == _letters(after):
+        return
+    was, got = next(
+        ((old, new) for old, new
+         in zip_longest(before.split(), after.split(), fillvalue="")
+         if _letters(old) != _letters(new)),
+        (before, after))
+    raise ValueError(
+        f"the mark stage changed {was!r} to {got!r}. A mark stage keeps the "
+        f"words: removing its marks must give the input back")
+
+
+def _cut_marked(marked: str, chunks: List[Chunk]) -> List[Chunk]:
+    """Put *marked*, the marked text of *chunks* joined, back into *chunks*.
+
+    A cut counts letters, and it takes the combining marks that follow them. A
+    forced chunk keeps its text, so a mark on a forced word goes.
+    """
+    out: List[Chunk] = []
+    pos = 0
+    for chunk in chunks:
+        start = pos
+        remaining = len(_letters(chunk.text))
+        while pos < len(marked) and (remaining > 0 or not _letters(marked[pos])):
+            remaining -= len(_letters(marked[pos]))
+            pos += 1
+        out.append(chunk if chunk.is_forced
+                   else replace(chunk, text=marked[start:pos]))
+    return out

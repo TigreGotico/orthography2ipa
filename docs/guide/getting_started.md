@@ -200,6 +200,29 @@ for anc in es.get_ancestors():
 
 The loader derives `family`, and no spec author writes it. It is the chain of clade nodes above the spec in the ancestry graph, joined with `" > "`. A clade node (`Romance`, `West Germanic`) is a spec for classification only, and `available_codes()` leaves it out unless you pass `include_clades=True`. [ancestry.md](../specs/ancestry.md#clade-nodes-and-the-derived-family) explains the chain.
 
+## Preparing text before the lattice
+
+A `Pipeline` holds two roles that prepare the text. The caller supplies each one, and the library depends on neither.
+
+```python
+from functools import partial
+
+from orthography2ipa import G2P, Pipeline
+
+engine = G2P("pt-PT", pipeline=Pipeline(
+    expand=write_out_numbers,
+    mark=partial(add_extra_diacritics, lang="pt-PT"),
+))
+```
+
+`expand` takes a string and returns a string, and the words may change. It runs once per plain run of the input, so it never sees a `<phoneme>` tag or a forced word.
+
+`mark` takes the whole sentence after `expand` and returns the same words with marks. It runs once per call, and it sees a forced word as spelled. A forced word keeps its written surface. Removing the combining marks from the output must give the input back. If it does not, the engine raises `ValueError` and names the first word that differs.
+
+`transcribe`, `transcribe_detailed`, `sentence_lattice` and `features` run both roles. A word method such as `transcribe_word` takes a prepared word and runs neither.
+
+`normalizer=` and `plugins={"normalize": ...}` cannot run with these fields, and `G2P` raises `ValueError` if a caller passes both. A field replaces a `normalize` plugin that the spec names.
+
 ## Installing and writing a plugin
 
 A plugin takes over one stage of the pipeline for the languages that it claims. [architecture.md](../engine/architecture.md#pluggable-steps) lists the stages and their base classes. An install of a package changes no transcription, because the spec or the caller must name each plugin. The `portuguese` extra installs `silabificador`:

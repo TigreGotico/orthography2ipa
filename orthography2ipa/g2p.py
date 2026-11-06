@@ -50,7 +50,7 @@ from orthography2ipa.features import (
 from orthography2ipa.inventory import phoneme_inventory
 from orthography2ipa.inventory import tokenize as inventory_tokenize
 from orthography2ipa.lexicon import _process_lexicon
-from orthography2ipa.markup import MarkupError, parse_markup
+from orthography2ipa.markup import Chunk, MarkupError, parse_markup
 from orthography2ipa.phonetok import (
     PAUSE_PUNCTUATION,
     Candidate,
@@ -67,7 +67,7 @@ from orthography2ipa.phonetok import (
 )
 from orthography2ipa.phonetok import _VIRAMA_COMBINING_CLASS
 from orthography2ipa.phonetok import _PUNCT_RE as _WORD_PUNCT_RE
-from orthography2ipa.pipeline import Pipeline
+from orthography2ipa.pipeline import Pipeline, _check_mark, _cut_marked
 from orthography2ipa.vowels import is_ipa_vowel
 from orthography2ipa.allophony import compile_allophone_rescorer
 from orthography2ipa.positional import (match_grammatical_ending,
@@ -542,7 +542,14 @@ class G2P:
         #
         # Either way it is a DECLARATION. What is never allowed is for discovery
         # alone to decide: `pip install` must not change a transcription.
-        self.plugins = {**(self.spec.plugins or {}), **_as_names(plugins or {})}
+        named = _as_names(plugins or {})
+        self.plugins = {**(self.spec.plugins or {}), **named}
+        if self.pipeline.expand is not None or self.pipeline.mark is not None:
+            if normalizer is not None or named.get("normalize"):
+                raise ValueError(
+                    "normalizer= and plugins={'normalize': ...} cannot run with "
+                    "Pipeline(expand=...) or Pipeline(mark=...): pass the fields")
+            self.plugins.pop("normalize", None)
         self._stage_plugins = _StagePlugins(self.spec, self.plugins)
 
         declared_rescorers = tuple(
@@ -1063,8 +1070,26 @@ class G2P:
         runs and nothing else, which is the only text it has any business
         rewriting: the caller who wrote ``ph`` has already said what that word is.
         """
+        return self._split_chunks(self._prepared(parse_markup(text)))
+
+    def _prepared(self, chunks: List[Chunk]) -> List[Chunk]:
+        """*chunks* after the pipeline's ``expand`` and ``mark``."""
+        expand, mark = self.pipeline.expand, self.pipeline.mark
+        if expand is not None:
+            chunks = [chunk if chunk.is_forced
+                      else replace(chunk, text=expand(chunk.text))
+                      for chunk in chunks]
+        if mark is None:
+            return chunks
+        text = "".join(chunk.text for chunk in chunks)
+        marked = mark(text)
+        _check_mark(text, marked)
+        return _cut_marked(marked, chunks)
+
+    def _split_chunks(self, chunks: List[Chunk]) -> List[_Word]:
+        """Group *chunks* into words, forced pronunciations included."""
         words: List[_Word] = []
-        for chunk in parse_markup(text):
+        for chunk in chunks:
             if chunk.is_forced:
                 words.append(_Word(surface=chunk.text.strip(),
                                    forced_ipa=self._check_forced(chunk.forced_ipa)))
@@ -1083,7 +1108,7 @@ class G2P:
                 or not _HYPHENS.intersection(word)
                 or self._override_for(word) is not None):
             return None
-        elements = self._split_words(word)
+        elements = self._split_chunks(parse_markup(word))
         if len(elements) < 2 or not all(w.hyphen_joined
                                         for w in elements[1:]):
             return None
