@@ -1,14 +1,14 @@
 """Lattice plugins: an external tool contributing phonology to one language.
 
-A syllabifier answers a question the engine already asks, and answers it better.
-A **rescorer** does something categorically different: it changes what the engine
+A syllabifier answers a question the engine already asks, and a caller hands it to
+one engine. A **rescorer** does something categorically different: it changes what the engine
 *says*. That is its entire purpose — a rescorer exists to make ⟨ِي⟩ read as a
 consonant before a vowel, to back /a/ next to an emphatic, to assimilate the lām
 of the article into a sun letter.
 
-So the two cannot share a contract. "Installing this must not change the output"
-is the whole point of a syllabifier plugin and the exact opposite of the point of
-a rescorer plugin, and pretending both are just "plugins" is how the extension
+So the two cannot share a contract. "This must not change the output" is what the
+syllabifier check asserts and the exact opposite of the point of a rescorer
+plugin, and pretending both are just "plugins" is how the extension
 system stopped making sense.
 
 ## The contract for phonology

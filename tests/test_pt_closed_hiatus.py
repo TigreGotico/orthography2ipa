@@ -26,7 +26,7 @@ import unicodedata
 
 import pytest
 
-from orthography2ipa import G2P, get_syllabifier
+from orthography2ipa import G2P
 
 AO_BASE_X_2 = [
     "bainha", "moinho", "rainha",
@@ -49,12 +49,6 @@ def _hiatus_stressed(ipa: str) -> bool:
 LANGS = ["pt-PT", "pt-BR", "pt-PT-x-lisbon", "pt-BR-x-sp", "pt-AO", "pt-UY"]
 
 
-@pytest.fixture
-def without_syllabifier_plugin(monkeypatch):
-    from orthography2ipa import registry
-    monkeypatch.setattr(registry, "_syllabifiers", {})
-
-
 @pytest.mark.parametrize("lang", LANGS)
 @pytest.mark.parametrize("word", AO_BASE_X_2)
 def test_closed_hiatus_vowel_is_stressed(lang, word):
@@ -64,17 +58,14 @@ def test_closed_hiatus_vowel_is_stressed(lang, word):
 
 @pytest.mark.parametrize("lang", ["pt-PT", "pt-BR"])
 @pytest.mark.parametrize("word", AO_BASE_X_2)
-def test_closed_hiatus_without_the_plugin(lang, word,
-                                          without_syllabifier_plugin):
-    assert get_syllabifier(lang) is None
-    ipa = G2P(lang).transcribe_word(word)
+def test_closed_hiatus_with_the_plugin(lang, word, plugin_engine):
+    ipa = plugin_engine(lang).transcribe_word(word)
     assert _hiatus_stressed(ipa), ipa
 
 
 @pytest.mark.parametrize("lang", ["pt-PT", "pt-BR"])
 @pytest.mark.parametrize("word", AO_BASE_X_2)
-def test_bundled_syllabifier_splits_the_hiatus(lang, word,
-                                               without_syllabifier_plugin):
+def test_bundled_syllabifier_splits_the_hiatus(lang, word):
     # The ⟨i u⟩ after the vowel opens a syllable of its own: ra-i-nha, ra-ul.
     g2p = G2P(lang)
     sylls = g2p._syllables_cached(word.lower())
@@ -89,11 +80,8 @@ def test_bundled_syllabifier_splits_the_hiatus(lang, word,
 
 @pytest.mark.parametrize("lang", ["pt-PT", "pt-BR"])
 @pytest.mark.parametrize("word", AO_BASE_X_2)
-def test_plugin_and_bundled_paths_agree(lang, word, monkeypatch):
-    with_plugin = G2P(lang).transcribe_word(word)
-    from orthography2ipa import registry
-    monkeypatch.setattr(registry, "_syllabifiers", {})
-    assert G2P(lang).transcribe_word(word) == with_plugin
+def test_plugin_and_bundled_paths_agree(lang, word, plugin_engine):
+    assert G2P(lang).transcribe_word(word) == plugin_engine(lang).transcribe_word(word)
 
 
 #: Falling diphthongs the rule does not reach, with the stressed syllable
@@ -118,18 +106,17 @@ def test_diphthongs_outside_the_rule_keep_the_glide(lang, word, stressed):
 
 @pytest.mark.parametrize("lang", ["pt-PT", "pt-BR"])
 @pytest.mark.parametrize("word,stressed", CONTROLS)
-def test_controls_without_the_plugin(lang, word, stressed,
-                                     without_syllabifier_plugin):
-    assert re.search(stressed, G2P(lang).transcribe_word(word))
+def test_controls_with_the_plugin(lang, word, stressed, plugin_engine):
+    assert re.search(stressed, plugin_engine(lang).transcribe_word(word))
 
 
 @pytest.mark.parametrize("lang", ["pt-PT", "pt-BR"])
 @pytest.mark.parametrize("word", ["lourdes", "gourmet"])
-def test_ou_is_outside_the_rule(lang, word, without_syllabifier_plugin):
+def test_ou_is_outside_the_rule(lang, word):
     # Base X, 2.º gives no ⟨ou⟩ example, and the words of this shape are
     # loans and foreign names. The bundled path keeps ⟨ou⟩ one nucleus and
-    # stresses it. The silabificador plugin divides lo-ur-des, which is why
-    # this control runs without it.
+    # stresses it. The silabificador plugin divides lo-ur-des, so this
+    # control holds for the bundled splitter only.
     ipa = G2P(lang).transcribe_word(word)
     assert re.match(r"ˈ(l|ɡ)o", ipa), ipa
 

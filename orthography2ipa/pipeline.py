@@ -31,9 +31,9 @@ class Pipeline:
             rules. An empty mapping is a lexicon with no entries. ``None``
             leaves the choice to the process-wide lexicon API, which is
             deprecated.
-        syllabifier: the syllabifier for this engine. It replaces the plugin
-            that discovery finds for the language. A word it cannot split goes
-            to the bundled splitter, and never to a discovered plugin.
+        syllabifier: the syllabifier for this engine. ``None`` uses the
+            bundled splitter. A word this syllabifier cannot split goes to the
+            bundled splitter too.
     """
 
     lexicon: Optional[Mapping[str, str]] = None

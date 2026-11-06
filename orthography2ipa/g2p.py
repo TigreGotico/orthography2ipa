@@ -19,7 +19,7 @@ data-driven pipeline:
    whole-sentence beams.
 4. **stress** — when the spec declares
    :class:`~orthography2ipa.types.StressRules`, the stressed syllable is
-   detected (per-language syllabifier plugins are honoured) and marked.
+   detected (with the syllabifier the caller passed, if any) and marked.
 5. **sandhi** — the spec's cross-word rules via
    :class:`~orthography2ipa.sandhi.SandhiEngine`.
 6. **dialect transform** — :func:`~orthography2ipa.transforms.apply_transform`
@@ -49,8 +49,7 @@ from orthography2ipa.features import (
 )
 from orthography2ipa.inventory import phoneme_inventory
 from orthography2ipa.inventory import tokenize as inventory_tokenize
-# scripts/benchmark.py and o2i-lexicons patch this module's ``get_lexicon``.
-from orthography2ipa.lexicon import _process_lexicon as get_lexicon
+from orthography2ipa.lexicon import _process_lexicon
 from orthography2ipa.markup import MarkupError, parse_markup
 from orthography2ipa.phonetok import (
     PAUSE_PUNCTUATION,
@@ -571,8 +570,8 @@ class G2P:
         self._sentence_rescorers: Tuple[SentenceRescorer, ...] = (
             normalize_sentence_rescorers(sentence_rescorer))
         # Per-engine memo of two pure, spec-only computations that the profiler
-        # showed dominate the front-end path: syllabification (the silabificador
-        # plugin is not cheap) and the rules-only pronunciation lattice the
+        # showed dominate the front-end path: syllabification (a caller's plugin
+        # is not cheap) and the rules-only pronunciation lattice the
         # confidence read rebuilds. Both are deterministic functions of the word
         # and this engine's immutable spec — they never consult the runtime-
         # mutable lexicon — so a fresh engine gets fresh caches and the results
@@ -1254,7 +1253,7 @@ class G2P:
         exceptions = self.spec.word_exceptions
         lex = self.pipeline.lexicon
         if lex is None:
-            lex = get_lexicon(self.lang)
+            lex = _process_lexicon(self.lang)
         # Two keys, tried in order: the word as given, then the word with
         # the punctuation that clings to it in raw text stripped from both
         # ends (``I,`` ``is.`` ``"I``). The grapheme layer never sees that

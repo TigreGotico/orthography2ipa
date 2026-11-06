@@ -14,10 +14,10 @@ The top level of `orthography2ipa` exports each of these functions.
 | `available_codes(include_clades=False)` | A sorted list of the registered language codes. The clade nodes are in it only with `include_clades=True`. |
 | `available_families()` | A dict from each family path to the list of its language codes. |
 | `ancestry_chain(code)` | The list of `parent` codes above the spec, nearest first, with the clade nodes that the chain passes through. |
-| `get_syllabifier(code)` | The `SyllabifierPlugin` that answers for the code, or `None`. |
+| `get_syllabifier(code)` | Deprecated. `None` for every code, because discovery finds no syllabifier. A caller passes one in `Pipeline(syllabifier=...)`. |
 | `get_rescorers(code)` | The list of `LatticeRescorer` objects that the installed rescorer plugins contribute for the code. |
 | `get_stress_plugin(code)` | The `StressPlugin` registered for the code, or `None`. |
-| `who_answers(code)` | A dict with the resolved `code`, the `syllabify` class name and the `rescore` list. |
+| `who_answers(code)` | A dict with the resolved `code`, `syllabify` (always `built-in`) and the `rescore` list. |
 
 ```python
 import orthography2ipa
@@ -120,38 +120,39 @@ An old key that is the ISO 639-3 code of another language is not kept as an alia
 
 ## Plugin discovery
 
-The registry finds plugins through `importlib.metadata` entry points, with one group for each pluggable stage. Discovery runs once per stage, on the first call that needs it, and the result stays cached at module scope. A plugin that fails to load logs a `WARNING` and is skipped. A bundled plugin whose optional dependency is absent logs at `DEBUG` instead, and names the extra that would enable it.
+The registry finds plugins through `importlib.metadata` entry points, with one group for each pluggable stage except `syllabify`. Discovery runs once per stage, on the first call that needs it, and the result stays cached at module scope. A plugin that fails to load logs a `WARNING` and is skipped.
 
 | Group | Lookup | When several plugins claim one code |
 | :--- | :--- | :--- |
-| `orthography2ipa.syllabify` | `get_syllabifier(code)` | The highest `priority` wins |
 | `orthography2ipa.rescore` | `get_rescorers(code)` | All of them run, lowest `priority` first, so the highest has the last word |
 | `orthography2ipa.stress` | `get_stress_plugin(code)` | The highest `priority` wins |
 | `orthography2ipa.normalize`, `orthography2ipa.sandhi` | by entry-point name | The spec or the caller names one, so no contest arises |
 
 The default `priority` of each plugin base class is `50`.
 
-Discovery alone selects only a syllabifier, because a syllabifier must not change the transcription. The engine runs a normalize, stress, rescore or sandhi plugin only when the spec or the caller names it by entry-point name ([architecture.md](../engine/architecture.md#pluggable-steps)). `get_rescorers(code)` lists what the installed rescorer plugins contribute, but `G2P` runs only the declared ones. A stress plugin runs only when the spec sets `stress.source` to `"plugin"`. If none is installed, the engine raises `MissingStressPlugin`, which `orthography2ipa.registry` defines. A named plugin that is not installed raises `MissingPlugin`.
+Discovery alone selects nothing. A caller passes a syllabifier in `Pipeline(syllabifier=...)`. The engine runs a normalize, stress, rescore or sandhi plugin only when the spec or the caller names it by entry-point name ([architecture.md](../engine/architecture.md#pluggable-steps)). `get_rescorers(code)` lists what the installed rescorer plugins contribute, but `G2P` runs only the declared ones. A stress plugin runs only when the spec sets `stress.source` to `"plugin"`. If none is installed, the engine raises `MissingStressPlugin`, which `orthography2ipa.registry` defines. A named plugin that is not installed raises `MissingPlugin`.
 
-`who_answers(code)` reports which syllabifier and which rescorers answer for a code:
+`who_answers(code)` reports which rescorers answer for a code:
 
 ```python
 orthography2ipa.who_answers("pt-PT")
 # {'code': 'pt-PT',
-#  'syllabify': 'orthography2ipa.syllabifiers.SilabificadorSyllabifier',
+#  'syllabify': 'built-in',
 #  'rescore': ['built-in (spec allophone_rules only)']}
 ```
 
-### The bundled syllabifier entry point
+### The bundled syllabifier plugin
 
-The package declares one entry point of its own in `pyproject.toml`:
+`orthography2ipa.syllabifiers.SilabificadorSyllabifier` wraps the `silabificador` package, which the `portuguese` extra installs. A caller builds it and passes it to one engine:
 
-```toml
-[project.entry-points."orthography2ipa.syllabify"]
-silabificador = "orthography2ipa.syllabifiers:SilabificadorSyllabifier"
+```python
+from orthography2ipa import G2P, Pipeline
+from orthography2ipa.syllabifiers import SilabificadorSyllabifier
+
+engine = G2P("pt-PT", pipeline=Pipeline(syllabifier=SilabificadorSyllabifier()))
 ```
 
-It loads only when the `silabificador` package is installed, through the `portuguese` extra. It claims the Portuguese codes: `pt`, `pt-PT`, `pt-BR`, `pt-AO` and the other national varieties, and the regional `pt-BR-x-*` specs, which read the `pt-BR` grapheme table. With no syllabifier installed, `get_syllabifier()` returns `None` for every code, and the engine uses the bundled vowel-group splitter.
+It claims the Portuguese codes: `pt`, `pt-PT`, `pt-BR`, `pt-AO` and the other national varieties, and the regional `pt-BR-x-*` specs, which read the `pt-BR` grapheme table. An engine that gets no syllabifier uses the bundled vowel-group splitter, whether or not the package is installed.
 
 ---
 [← Command line](cli.md) · [Home](../index.md) · [Public API stability →](api_stability.md)

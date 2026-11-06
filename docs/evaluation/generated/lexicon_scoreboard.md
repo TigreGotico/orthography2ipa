@@ -1,9 +1,9 @@
 # Lexicon-overlay scoreboard
 
-Rules-only against with-lexicon PER for each language with a caller-registered lexicon. The package bundles no lexicon: see [`docs/guide/lexicon.md`](../../guide/lexicon.md) and `orthography2ipa/lexicon.py`. Each gold set is scored twice, once with `get_lexicon` stubbed to `{}` (rules-only) and once with the lexicon active. A lexicon must lower PER, and the rules-only column shows whether the grapheme rules still hold up without it. Regenerate with:
+Rules-only against with-lexicon PER for each language with a caller-supplied lexicon. The package bundles no lexicon: see [`docs/guide/lexicon.md`](../../guide/lexicon.md) and `orthography2ipa/lexicon.py`. Each gold set is scored twice, once by an engine with an empty `Pipeline.lexicon` (rules-only) and once by an engine with the lexicon. A lexicon must lower PER, and the rules-only column shows whether the grapheme rules still hold up without it. Regenerate with:
 
 ```bash
-PYTHONPATH=$PWD python scripts/benchmark.py --lexicon-report
+PYTHONPATH=$PWD python scripts/benchmark.py --lexicon-report /data/lexicons
 ```
 
 The `covered` columns score only the gold words that the lexicon holds, where the overlay can act. Their delta is the accuracy of the lexicon against the rules on the same words. The `full` columns score every gold word, so the words outside the capped, top-frequency pilot lexicon dilute the delta. A full production lexicon belongs downstream (see [`docs/guide/lexicon.md`](../../guide/lexicon.md)).

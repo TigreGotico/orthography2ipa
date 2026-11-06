@@ -170,7 +170,7 @@ optional columns isolate the dictionary's contribution:
   from espeak-ng's OWN word-exception list for that language — i.e. o2i
   gets the same per-word dictionary espeak-ng has, added via o2i's
   existing (unbundled) lexicon overlay capability
-  (:mod:`orthography2ipa.lexicon`, ``register_lexicon``). The word list
+  (:func:`orthography2ipa.load_lexicon`, ``Pipeline.lexicon``). The word list
   is extracted from ``dictsource/<lang>_list``/``_listx``/``_extra``
   (the words only — NOT the phoneme column, which is espeak-ng's
   internal ASCII notation, not IPA); each word's IPA is then obtained by
@@ -1049,10 +1049,10 @@ def ghana_g2p_transcribe(word: str, lang: str) -> Optional[str]:
 #   reported separately and purely informationally as ``arbtok_stock``
 #   (board column "arbtok (lexicon)") — never ranked, exactly like stock
 #   ``espeak``/``gruut``/``tugaphone``.
-# - **tugaphone** — ``TugaPhonemizer`` always registers the curated
-#   ``tugalex`` lexicon for the target lect before phonemizing
-#   (``lattice_core._ensure_lexicon``, called unconditionally from
-#   ``phonemize_sentence``); there is no public toggle to disable it. Same
+# - **tugaphone** — ``TugaPhonemizer`` always builds its engine with the
+#   packaged lexicon of the target lect (``lattice_core.engine``, for the
+#   lects in ``registry.PACKAGED_LEXICON_LECTS``); there is no public
+#   toggle to disable it. Same
 #   disposition as stock ``espeak``: reported "(lexicon)", left on the board
 #   for information, excluded from the lexicon-free Winner/leaderboard
 #   ranking (see ``_LEXICON_EXCLUDED_FROM_RANKING`` below) rather than
@@ -1561,20 +1561,12 @@ def _nfc_lower(word: str) -> str:
     return unicodedata.normalize("NFC", word).lower()
 
 
-def _o2i_lexicon_code(engine: Any, fallback: str) -> str:
-    """The code an o2i sidecar lexicon must be registered/looked up under:
-    the engine's RESOLVED lect. ``G2P("en").lang`` is ``en-GB``, and that
-    is the code ``_override_for`` consults — see :func:`_o2i_lex_pass` for
-    the bug this exists to prevent."""
-    return getattr(engine, "lang", None) or fallback
-
-
 def _o2i_lexicon_key(word: str, lect: str) -> str:
     """The key o2i itself uses for a sidecar-lexicon lookup:
     ``NFC(lower_str(word, code))`` — see ``G2P._override_for``. Used for
     BOTH o2i-lexicon-driven columns (``o2i_lex``, and ``tugaphone``,
-    whose tugalex entries are registered through the very same
-    ``register_lexicon`` pathway), so the filter matches what those
+    whose packaged lexicon reaches the same lookup through
+    ``Pipeline.lexicon``), so the filter matches what those
     engines really look up, language-aware casing included."""
     try:
         from orthography2ipa.phonetok import lower_str
@@ -1724,13 +1716,11 @@ def gruut_lexicon_keys(lang: str, cfg: dict) -> Optional[LexiconKeys]:
 def tugaphone_lexicon_keys(lang: str, cfg: dict) -> Optional[LexiconKeys]:
     """tugaphone's always-on lexicon headwords for *lang*.
 
-    A tugaphone that exports ``registry.PACKAGED_LEXICON_LECTS`` enables the
-    installed packaged orthography2ipa lexicon for those lects and for no
-    other, so the keys are those of the file that
+    tugaphone reads the installed packaged orthography2ipa lexicon for the
+    lects in ``registry.PACKAGED_LEXICON_LECTS`` and for no other, so the
+    keys are those of the file that
     :func:`orthography2ipa.lexicon.packaged_lexicon_sources` lists for the
-    lect. An older tugaphone registers
-    ``tugalex.TugaLexicon().get_ipa_map(region=...)`` for the region that
-    ``registry.lexicon_region`` maps the lect to. Normalization:
+    lect. Normalization:
     :func:`_o2i_lexicon_key`, because the lookup that consumes them is
     o2i's own ``_override_for``.
     """
@@ -1740,7 +1730,7 @@ def tugaphone_lexicon_keys(lang: str, cfg: dict) -> Optional[LexiconKeys]:
     try:
         from tugaphone.registry import PACKAGED_LEXICON_LECTS, resolve_lect
     except ImportError:
-        return _tugalex_lexicon_keys(tugaphone_lang)
+        return None
     from orthography2ipa.lexicon import packaged_lexicon_sources, parse_lexicon_text
     try:
         lect = resolve_lect(tugaphone_lang)
@@ -1759,34 +1749,6 @@ def tugaphone_lexicon_keys(lang: str, cfg: dict) -> Optional[LexiconKeys]:
             "engine": "tugaphone (packaged lexicon)",
             "source": f"orthography2ipa.lexicon.packaged_lexicon_sources()[{lect!r}]",
             "version": _installed_version("o2i-lexicons"),
-            "count": len(ipa_map),
-            "normalization": "o2i lexicon key (NFC + language-aware lower)",
-        })
-
-
-def _tugalex_lexicon_keys(tugaphone_lang: str) -> Optional[LexiconKeys]:
-    """The ``tugalex`` headwords that a tugaphone without
-    ``registry.PACKAGED_LEXICON_LECTS`` registers for *tugaphone_lang*."""
-    try:
-        from tugalex import TugaLexicon
-        from tugaphone.registry import lexicon_region, resolve_lect
-    except ImportError:
-        return None
-    try:
-        lect = resolve_lect(tugaphone_lang)
-        region = lexicon_region(lect)
-        if region is None:
-            return None
-        ipa_map = TugaLexicon().get_ipa_map(region=region)
-    except Exception:
-        return None
-    if not ipa_map:
-        return None
-    return LexiconKeys(
-        frozenset(_o2i_lexicon_key(w, lect) for w in ipa_map), {
-            "engine": "tugaphone (tugalex)",
-            "source": f"tugalex.TugaLexicon().get_ipa_map(region={region!r})",
-            "version": _installed_version("tugalex"),
             "count": len(ipa_map),
             "normalization": "o2i lexicon key (NFC + language-aware lower)",
         })
@@ -1883,9 +1845,9 @@ def o2i_lex_lexicon_keys(lang: str, cfg: dict) -> Optional[LexiconKeys]:
     path = build_espeak_lexicon_tsv(lang)
     if path is None:
         return None
-    # The SAME resolved lect the overlay is registered under (see
-    # _o2i_lexicon_code): keying the filter on the alias would normalize
-    # with a different lect's casing rules than the lookup uses.
+    # The resolved lect that the engine looks words up under: keying the
+    # filter on the alias would normalize with a different lect's casing
+    # rules than the lookup uses.
     g2p_code = _resolved_o2i_lect(cfg.get("g2p", lang))
     words = []
     try:
@@ -1998,7 +1960,7 @@ def _lexicon_keys_fingerprint(spec: LexiconTierEngine, lang: str) -> str:
         _installed_version(f"gruut_lang_{lang.split('-')[0]}") or "",
         _installed_version("gruut") or "",
         _installed_version("arbtok") or "",
-        _installed_version("tugalex") or "",
+        _installed_version("o2i-lexicons") or "",
         _running_o2i_version() or "",
     ])
     return hashlib.sha1(material.encode("utf-8")).hexdigest()[:12]
@@ -2432,10 +2394,6 @@ class PerWordEngine(NamedTuple):
         ``fn(cfg_value)``, beyond "the language has a mapping at all".
         Resolved by name at call time for the same reason
         ``transcribe_name`` is.
-    ``deferred``
-        Run in a SEPARATE pass after the o2i pass has finished, instead of
-        interleaved into it. Only ``tugaphone`` needs this, and the reason
-        is a real measured contamination bug — see :func:`_run_deferred`.
     """
 
     key: str
@@ -2443,19 +2401,11 @@ class PerWordEngine(NamedTuple):
     transcribe_name: str
     same_source_key: Optional[str] = None
     available_name: Optional[str] = None
-    deferred: bool = False
 
 
 #: Every per-word comparison engine, in the order they are called for each
-#: word. That relative order is preserved from the pre-registry code.
-#:
-#: One ordering change IS made here, deliberately: o2i now runs as ONE
-#: COMPLETE PASS before this loop, where the pre-registry code interleaved it
-#: word by word with the engines below. Numerically inert today — of the
-#: engines here only tugaphone mutates the process-global o2i lexicon
-#: registry, and it is already ``deferred`` for exactly that reason (see
-#: :func:`_run_deferred`) — and it removes the contamination surface
-#: entirely rather than relying on one engine staying correctly flagged.
+#: word. o2i runs as one complete pass before this loop. Each engine holds its
+#: own lexicon, so no engine here can reach the o2i scores.
 PER_WORD_ENGINES: List[PerWordEngine] = [
     PerWordEngine("epitran", "epitran", "epitran_transcribe",
                   same_source_key="epitran"),
@@ -2480,7 +2430,7 @@ PER_WORD_ENGINES: List[PerWordEngine] = [
     PerWordEngine("arbtok_stock", "arbtok", "arbtok_stock_transcribe",
                   same_source_key="arbtok_stock"),
     PerWordEngine("tugaphone", "tugaphone", "tugaphone_transcribe",
-                  same_source_key="tugaphone", deferred=True),
+                  same_source_key="tugaphone"),
     PerWordEngine("barranquenho", "barranquenho", "barranquenho_transcribe",
                   same_source_key="barranquenho"),
     PerWordEngine("mwl_phonemizer", "mwl_phonemizer", "mwl_transcribe",
@@ -2554,54 +2504,15 @@ def _o2i_pass(engine: Any, words: Sequence[str],
     return out
 
 
-def _run_deferred(spec: PerWordEngine, cfg: dict, words: Sequence[str],
-                  refs: Dict[str, List[str]], o2i_module: Any) -> ScoredPairs:
-    """Run a ``deferred`` engine in its OWN pass, then clear the lexicon
-    registry.
-
-    POLICY, and the bug this prevents: ``tugaphone_transcribe`` ->
-    ``TugaPhonemizer.phonemize_sentence`` -> ``tugaphone.lattice_core.
-    _ensure_lexicon()`` calls ``orthography2ipa.register_lexicon(lect, ...)``
-    — a PROCESS-GLOBAL mutation keyed on the SAME lect code o2i's own engine
-    uses. Interleaving tugaphone into the o2i loop (the original bug) meant
-    every o2i score from word 2 onward was secretly o2i+tugalex, not bare
-    o2i — measured contamination: pt-PT/ep_dialects o2i PER dropped from
-    0.1185 (clean) to 0.1072 (with tugalex leaking in). Running strictly
-    AFTER the o2i pass has collected every entry, and clearing the registry
-    immediately after, keeps the mutation out of o2i's scoring.
-    """
-    fn = globals()[spec.transcribe_name]
-    cfg_value = cfg[spec.cfg_key]
-    out: ScoredPairs = [(fn(word, cfg_value), refs[word]) for word in words]
-    o2i_module.clear_lexicons()
-    return out
-
-
-def _o2i_lex_pass(o2i_module: Any, engine: Any, g2p_code: str,
-                  lexicon_tsv: str, words: Sequence[str],
+def _o2i_lex_pass(g2p_code: str, lexicon_tsv: str, words: Sequence[str],
                   refs: Dict[str, List[str]]) -> ScoredPairs:
-    """Re-score every word with espeak-ng's own wordlist registered as an
-    o2i lexicon — the ``o2i_lex`` half of the fair-comparison 2x2 (see the
-    module docstring). The registry is cleared again afterwards so the
-    overlay cannot leak into the next language.
+    """Re-score every word with an engine that holds espeak-ng's own wordlist
+    as its lexicon — the ``o2i_lex`` half of the fair-comparison 2x2 (see the
+    module docstring)."""
+    from orthography2ipa import G2P, Pipeline, load_lexicon
 
-    Registered under the engine's RESOLVED lect (``engine.lang``), not the
-    configured *g2p_code*: ``G2P("en")`` resolves to ``en-GB``, and
-    ``G2P._override_for`` looks the sidecar up with ``get_lexicon(self.lang)``
-    — i.e. under the resolved code. Registering under the alias made the
-    overlay unreachable, so every published ``o2i_lex`` number was silently
-    plain o2i (measured: the ``en``/``wikipron`` row was identical to
-    ``o2i_per`` to four decimals). This affects every alias where
-    ``G2P(code).lang != code`` — en, fr, de, es, it.
-    """
-    # register_lexicon() calls get_lexicon.cache_clear() itself, so the
-    # engine picks up the sidecar on the very next transcribe call —
-    # no need for a fresh G2P instance.
-    o2i_module.register_lexicon(_o2i_lexicon_code(engine, g2p_code),
-                                lexicon_tsv)
-    out = _o2i_pass(engine, words, refs)
-    o2i_module.clear_lexicons()
-    return out
+    engine = G2P(g2p_code, pipeline=Pipeline(lexicon=load_lexicon(lexicon_tsv)))
+    return _o2i_pass(engine, words, refs)
 
 
 def _r(per: Optional[float]) -> Optional[float]:
@@ -2614,9 +2525,8 @@ def _compare_lang_dataset(lang: str, cfg: dict, dataset_name: str,
     """Score *lang* against ONE gold dataset (see ``compare_lang`` for the
     multi-dataset iteration this backs).
 
-    Runs, in this order: the o2i pass, then every enabled interleaved
-    per-word engine (:data:`PER_WORD_ENGINES`), then the deferred engines,
-    then the ``o2i_lex`` pass. The espeak columns are precomputed in batch
+    Runs, in this order: the o2i pass, then every enabled per-word engine
+    (:data:`PER_WORD_ENGINES`), then the ``o2i_lex`` pass. The espeak columns are precomputed in batch
     before any of it. Returns one board row — see :func:`_build_row` for
     the key schema.
     """
@@ -2624,10 +2534,8 @@ def _compare_lang_dataset(lang: str, cfg: dict, dataset_name: str,
     refs = _load_gold_refs(lang, cfg, dataset_name, loader_lang, limit)
     words = sorted(refs)
 
-    import orthography2ipa
     from orthography2ipa import G2P
     g2p_code = cfg.get("g2p", lang)
-    orthography2ipa.clear_lexicons()  # defensive: no leftover lexicon from a prior lang
     engine = G2P(g2p_code)
 
     # Every LANGS entry MUST declare these three explicitly, even as None.
@@ -2665,23 +2573,17 @@ def _compare_lang_dataset(lang: str, cfg: dict, dataset_name: str,
     # ── the passes ──
     enabled = [s for s in PER_WORD_ENGINES
                if _engine_enabled(s, cfg, same_source)]
-    interleaved = [s for s in enabled if not s.deferred]
     results: Dict[str, ScoredPairs] = {s.key: [] for s in enabled}
 
     results["o2i"] = _o2i_pass(engine, words, refs)
     for word in words:
         golds = refs[word]
-        for spec in interleaved:
+        for spec in enabled:
             fn = globals()[spec.transcribe_name]
             results[spec.key].append((fn(word, cfg[spec.cfg_key]), golds))
 
-    for spec in (s for s in enabled if s.deferred):
-        results[spec.key] = _run_deferred(spec, cfg, words, refs,
-                                          orthography2ipa)
-
     if lexicon_tsv is not None:
-        results["o2i_lex"] = _o2i_lex_pass(orthography2ipa, engine, g2p_code,
-                                           lexicon_tsv, words, refs)
+        results["o2i_lex"] = _o2i_lex_pass(g2p_code, lexicon_tsv, words, refs)
 
     results["espeak"] = [(espeak_out.get(w), refs[w]) for w in words] \
         if use_espeak else []

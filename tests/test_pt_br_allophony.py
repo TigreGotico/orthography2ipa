@@ -22,8 +22,8 @@ from pathlib import Path
 import pytest
 
 import orthography2ipa
-from orthography2ipa import get_syllabifier
 from orthography2ipa.g2p import G2P
+from orthography2ipa.syllabifiers import SilabificadorSyllabifier
 
 
 # ─── Final unstressed vowel raising ────────────────────────────────────
@@ -351,10 +351,10 @@ def test_br_children_are_found():
 
 
 @pytest.mark.parametrize("lang", BR_CHILDREN)
-def test_br_child_uses_the_pt_br_syllabifier(lang):
-    # A child reads the pt-BR grapheme table, so it takes the pt-BR syllables
-    # from the same syllabifier, whether or not the plugin is installed.
-    assert get_syllabifier(lang) is get_syllabifier("pt-BR")
+def test_br_child_is_claimed_by_the_syllabifier(lang):
+    # A child reads the pt-BR grapheme table, so a caller can pass it the same
+    # syllabifier as pt-BR.
+    assert lang in SilabificadorSyllabifier().language_codes
 
 
 #: Every ⟨ff⟩ loan of the owned board rows' gold entries.
@@ -390,18 +390,9 @@ def test_br_child_epenthesis_follows_the_parent(lang):
     _assert_epenthesis_words(G2P(lang))
 
 
-@pytest.fixture
-def without_syllabifier_plugin(monkeypatch):
-    # The plugin is an optional extra. Discovery that finds none leaves the
-    # bundled splitter, which must give the same answer.
-    from orthography2ipa import registry
-    monkeypatch.setattr(registry, "_syllabifiers", {})
-
-
 @pytest.mark.parametrize("lang", ["pt-BR", *BR_CHILDREN])
-def test_br_epenthesis_without_the_plugin(lang, without_syllabifier_plugin):
-    assert get_syllabifier(lang) is None
-    _assert_epenthesis_words(G2P(lang))
+def test_br_epenthesis_with_the_plugin(lang, plugin_engine):
+    _assert_epenthesis_words(plugin_engine(lang))
 
 
 # ─── pt-UY keeps final ⟨-as⟩ ────────────────────────────────────────────
