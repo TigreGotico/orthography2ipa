@@ -457,6 +457,12 @@
       "notes": "DISABLED for Guinea-Bissau Creole (Kriol). PT_CODA_S_VOICING_INTERNAL voices the pt-PT coda [ʃ] to [ʒ] before a voiced consonant inside a word. The voicing of a word-internal coda sibilant in this language has no variety-specific source, so the coda keeps the reading of this spec."
     },
     {
+      "id": "PT_INITIAL_ES_RAISE",
+      "phonemes": [],
+      "surface": "i",
+      "notes": "DISABLED for Guinea-Bissau Creole (Kriol). PT_INITIAL_ES_RAISE describes European Portuguese, and no source for this language was read."
+    },
+    {
       "id": "PT_STRESSED_A_BEFORE_NASAL",
       "phonemes": [],
       "surface": "ɐ",

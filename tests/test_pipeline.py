@@ -9,7 +9,9 @@ from __future__ import annotations
 
 import json
 import logging
+import os
 import re
+import subprocess
 import sys
 import warnings
 from dataclasses import FrozenInstanceError
@@ -30,9 +32,7 @@ from orthography2ipa import (
     packaged_lexicon,
     phoneme_inventory,
 )
-from orthography2ipa import g2p as g2p_module
 from orthography2ipa import lexicon as lexmod
-from orthography2ipa import registry
 from orthography2ipa.inventory import phoneme_atoms, tokenize
 from orthography2ipa.markup import MarkupError
 
@@ -170,26 +170,25 @@ def test_pipeline_without_a_lexicon_reads_the_process_lexicon(tmp_path):
     assert G2P("pt-PT").transcribe_word("gato") == GATO_OTHER
 
 
-def test_a_patched_module_lookup_still_reaches_a_plain_engine(monkeypatch):
-    """scripts/benchmark.py and o2i-lexicons replace ``g2p.get_lexicon``."""
-    monkeypatch.setattr(g2p_module, "get_lexicon", lambda code: {"gato": GATO_OTHER})
-
-    assert G2P("pt-PT").transcribe_word("gato") == GATO_OTHER
-    assert G2P("pt-PT", pipeline=Pipeline(lexicon={})).transcribe_word("gato") == GATO_RULES
-
-
-def test_the_benchmark_restores_the_module_lookup_it_patched():
+def test_the_lexicon_report_scores_rules_and_lexicon_on_separate_engines(tmp_path, monkeypatch):
     sys.path.insert(0, str(PACKAGE.parent / "scripts"))
     try:
         import benchmark
     finally:
         sys.path.pop(0)
-    original = g2p_module.get_lexicon
+    tsv(tmp_path, "pt-PT.tsv", ("gato", GATO_OTHER))
+    monkeypatch.setitem(benchmark._WIKIPRON_FILES, "pt-PT", "unused")
+    monkeypatch.setattr(benchmark, "load_wikipron",
+                        lambda tag, limit: [("gato", GATO_OTHER), ("rato", "ˈʁatu")])
 
-    with benchmark._lexicon_disabled():
-        assert g2p_module.get_lexicon("pt-PT") == {}
+    (row,) = benchmark.build_lexicon_report(str(tmp_path), None)
 
-    assert g2p_module.get_lexicon is original
+    assert (row["lexicon"], row["lang"], row["lexicon_entries"]) == ("pt-PT", "pt-PT", 1)
+    assert row["n_covered"] == 1
+    assert row["per_with_lexicon_covered"] == 0.0
+    # ɡ a t u against ɡ ɔ t ɔ: two of the four phones differ.
+    assert row["per_rules_only_covered"] == 0.5
+    assert lexmod.available_lexicon_codes() == []
 
 
 # ─── a hit takes the same path as a word exception ──────────────────────────
@@ -320,31 +319,47 @@ ONE_SYLLABLE = ["cantaba"]
 RULES_DIVISION = ["can", "ta", "ba"]
 
 
-@pytest.fixture
-def discovered(monkeypatch):
-    """A plugin discovery finds for es-ES, drawing the division of the rules."""
-    plugin = _Fixed(RULES_DIVISION)
-    monkeypatch.setattr(registry, "_syllabifiers", {"es-ES": plugin})
-    return plugin
+def test_an_installed_syllabifier_changes_no_transcription(tmp_path):
+    """A distribution on the path declares the entry point, and a fresh process
+    is where discovery would find it."""
+    (tmp_path / "one_syllable.py").write_text(
+        "from orthography2ipa import SyllabifierPlugin\n"
+        "class OneSyllable(SyllabifierPlugin):\n"
+        "    language_codes = ['es-ES']\n"
+        "    def syllabify(self, word, lang=None):\n"
+        "        return [word]\n", encoding="utf-8")
+    info = tmp_path / "one_syllable-1.0.dist-info"
+    info.mkdir()
+    (info / "METADATA").write_text(
+        "Metadata-Version: 2.1\nName: one-syllable\nVersion: 1.0\n", encoding="utf-8")
+    (info / "entry_points.txt").write_text(
+        "[orthography2ipa.syllabify]\none = one_syllable:OneSyllable\n", encoding="utf-8")
+    code = "from orthography2ipa import G2P; print(G2P('es-ES').transcribe_word('cantaba'))"
+
+    done = subprocess.run(
+        [sys.executable, "-c", code], capture_output=True, text=True, check=True,
+        env={**os.environ, "PYTHONPATH": os.pathsep.join([str(tmp_path), str(PACKAGE.parent)])})
+
+    assert done.stdout.strip() == CANTABA_RULES
 
 
-def test_pipeline_syllabifier_wins_over_discovery(discovered):
+def test_pipeline_syllabifier_answers_for_its_engine():
     mine = _Fixed(ONE_SYLLABLE)
     engine = G2P("es-ES", pipeline=Pipeline(syllabifier=mine))
 
     assert engine.transcribe_word("cantaba") == CANTABA_ONE_SYLLABLE
     assert mine.calls == [("cantaba", "es-ES")]
-    assert discovered.calls == []
 
 
-def test_engine_with_no_syllabifier_keeps_discovery(discovered):
-    G2P("es-ES", pipeline=Pipeline(syllabifier=_Fixed(ONE_SYLLABLE))).transcribe_word("cantaba")
+def test_engine_with_no_syllabifier_uses_the_bundled_splitter():
+    mine = _Fixed(ONE_SYLLABLE)
+    G2P("es-ES", pipeline=Pipeline(syllabifier=mine)).transcribe_word("cantaba")
 
     assert G2P("es-ES").transcribe_word("cantaba") == CANTABA_RULES
-    assert discovered.calls == [("cantaba", "es-ES")]
+    assert mine.calls == [("cantaba", "es-ES")]
 
 
-def test_engines_with_different_syllabifiers_run_side_by_side(discovered):
+def test_engines_with_different_syllabifiers_run_side_by_side():
     first = G2P("es-ES", pipeline=Pipeline(syllabifier=_Fixed(ONE_SYLLABLE)))
     second = G2P("es-ES", pipeline=Pipeline(syllabifier=_Fixed(RULES_DIVISION)))
 
@@ -354,16 +369,15 @@ def test_engines_with_different_syllabifiers_run_side_by_side(discovered):
 
 
 @pytest.mark.parametrize("division", [["x"], [], None])
-def test_a_word_the_syllabifier_cannot_split_goes_to_the_bundled_splitter(discovered, division):
+def test_a_word_the_syllabifier_cannot_split_goes_to_the_bundled_splitter(division):
     mine = _Fixed(division)
     engine = G2P("es-ES", pipeline=Pipeline(syllabifier=mine))
 
     assert engine.transcribe_word("cantaba") == CANTABA_RULES
     assert mine.calls == [("cantaba", "es-ES")]
-    assert discovered.calls == []
 
 
-def test_detect_stress_takes_the_syllabifier(discovered):
+def test_detect_stress_takes_the_syllabifier():
     rules = get("es-ES").stress
     mine = _Fixed(ONE_SYLLABLE)
 
@@ -428,6 +442,11 @@ def test_clear_lexicons_warns_and_works(tmp_path):
     with _warns("clear_lexicons"):
         lexmod.clear_lexicons()
     assert G2P("pt-PT").transcribe_word("gato") == GATO_RULES
+
+
+def test_get_syllabifier_warns_and_finds_nothing():
+    with _warns("get_syllabifier"):
+        assert orthography2ipa.get_syllabifier("pt-PT") is None
 
 
 def test_get_lexicon_warns_and_works(tmp_path):

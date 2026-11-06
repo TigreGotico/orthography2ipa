@@ -255,19 +255,19 @@ The oracle costs about 1.6 times the 1-best run, measured on French `wikipron` w
 
 ## Rules-only vs with-lexicon PER (lexicon overlay)
 
-A language with a registered lexicon overlay is scored twice on the same gold. The overlay is a TSV that the caller registers and that the library never bundles (see [lexicon.md](../guide/lexicon.md)). The first score is the rules-only PER, with `get_lexicon` replaced by a stub that returns `{}`. The second is the with-lexicon PER, with the overlay active. Inline `word_exceptions` stay active in both runs.
+A language with a lexicon overlay is scored twice on the same gold. The overlay is a TSV that the caller supplies and that the library never bundles (see [lexicon.md](../guide/lexicon.md)). The first score is the rules-only PER, from an engine with an empty `Pipeline.lexicon`. The second is the with-lexicon PER, from an engine that holds the overlay. Inline `word_exceptions` stay active in both runs.
 
 The comparison keeps rule quality honest: the overlay must improve PER, and the grapheme rules must not decay behind lexicon coverage. The results go to a separate report and leave the main scoreboard unchanged.
 
 ```bash
-python scripts/benchmark.py --lexicon-report
+python scripts/benchmark.py --lexicon-report /data/lexicons
 ```
 
 This writes [`lexicon_scoreboard.md`](generated/lexicon_scoreboard.md) and `benchmarks/lexicon_results.json`. Each row reports the delta on the full slice and on the covered subset, which is the gold words that the lexicon contains. The covered-subset delta is the honest measure of the lexicon's own accuracy against the rules on the same words. The full-slice delta is diluted by every gold word outside the lexicon. The `en-GB` pilot lexicon, built from CMUdict by `scripts/build_en_lexicon.py`, holds a capped set of the most frequent words. It proves the mechanism, and a full production lexicon belongs downstream.
 
 ## Board environment
 
-A whole-board `--scoreboard` run writes `benchmarks/results_environment.json`. It lists the resolved version of every registered plugin entry point and of every optional scorer package, or `null` for one that is not installed. When a row moves with no spec change, diff this file first. A package with a floor pin, such as `silabificador`, resolves to the newest release on each machine.
+A whole-board `--scoreboard` run writes `benchmarks/results_environment.json`. It lists the resolved version of every registered plugin entry point and of every optional scorer package, or `null` for one that is not installed. When a row moves with no spec change, diff this file first. A package with a floor pin, such as `scriptconv`, resolves to the newest release on each machine.
 
 A whole-board run exits non-zero and writes nothing when it cannot score a row that the committed board carries. The message names each row as `dataset/lang`. A run scoped with `--lang` or `--dataset` prints the same names as a warning and keeps the committed values. A row whose scorer package no CI job installs carries `"ci_reproducible": false`, and the scoreboard shows `(not CI-reproducible)` in its `Provenance` cell.
 

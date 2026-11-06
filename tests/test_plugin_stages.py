@@ -12,7 +12,7 @@ import pytest
 from orthography2ipa import get, registry
 from orthography2ipa.g2p import G2P
 from orthography2ipa.plugins import (
-    NormalizePlugin, OUTPUT_CHANGING_STAGES, STAGES, SandhiPlugin,
+    ENTRY_POINT_GROUPS, NormalizePlugin, OUTPUT_CHANGING_STAGES, STAGES, SandhiPlugin,
 )
 from orthography2ipa.registry import MissingPlugin
 
@@ -92,9 +92,13 @@ def test_the_error_says_what_it_wanted_and_what_it_found(registered):
 
 # ─── the taxonomy itself ────────────────────────────────────────────────
 
-def test_syllabify_is_the_only_undeclared_stage():
-    """Because it is the only one that must not change the transcription."""
-    assert set(STAGES) - set(OUTPUT_CHANGING_STAGES) == {"syllabify"}
+def test_every_stage_must_be_named():
+    assert set(OUTPUT_CHANGING_STAGES) == set(STAGES)
+
+
+def test_syllabify_is_the_only_stage_with_no_entry_point_group():
+    """A caller passes a syllabifier as an object, so nothing can discover one."""
+    assert set(STAGES) - set(ENTRY_POINT_GROUPS) == {"syllabify"}
 
 
 def test_no_shipped_spec_names_a_plugin():

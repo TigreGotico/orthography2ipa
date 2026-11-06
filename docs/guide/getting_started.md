@@ -17,9 +17,9 @@ The [README](../../README.md#install) gives the install command. The runtime dep
 | Extra | Adds | Use it for |
 | :--- | :--- | :--- |
 | `hf` | `huggingface_hub` | Lexicons fetched from a Hugging Face dataset id ([lexicon.md](lexicon.md)) |
-| `lexicons` | `o2i-lexicons` | Packaged lexicons that the caller enables with `use_packaged_lexicons()` ([lexicon.md](lexicon.md#packaged-lexicons)) |
+| `lexicons` | `o2i-lexicons` | Packaged lexicons that the caller reads with `packaged_lexicon()` ([lexicon.md](lexicon.md#packaged-lexicons)) |
 | `validation` | `pydantic` | `orthography2ipa validate` on spec JSON files |
-| `portuguese` | `silabificador` | A real Portuguese syllabifier in place of the bundled vowel-group splitter |
+| `portuguese` | `silabificador` | A real Portuguese syllabifier that a caller can pass in place of the bundled vowel-group splitter |
 | `test` | `pytest` and the tools that the gold-set loaders need | The test suite of a clone ([CONTRIBUTING.md](../../CONTRIBUTING.md#tests)) |
 
 ## Your first transcription
@@ -200,22 +200,54 @@ for anc in es.get_ancestors():
 
 The loader derives `family`, and no spec author writes it. It is the chain of clade nodes above the spec in the ancestry graph, joined with `" > "`. A clade node (`Romance`, `West Germanic`) is a spec for classification only, and `available_codes()` leaves it out unless you pass `include_clades=True`. [ancestry.md](../specs/ancestry.md#clade-nodes-and-the-derived-family) explains the chain.
 
+## Preparing text before the lattice
+
+A `Pipeline` holds two roles that prepare the text. The caller supplies each one, and the library depends on neither.
+
+```python
+from functools import partial
+
+from orthography2ipa import G2P, Pipeline
+
+engine = G2P("pt-PT", pipeline=Pipeline(
+    expand=write_out_numbers,
+    mark=partial(add_extra_diacritics, lang="pt-PT"),
+))
+```
+
+`expand` takes a string and returns a string, and the words may change. It runs once per plain run of the input, so it never sees a `<phoneme>` tag or a forced word.
+
+`mark` takes the whole sentence after `expand` and returns the same words with marks. It runs once per call, and it sees a forced word as spelled. A forced word keeps its written surface. Removing the combining marks from the output must give the input back. If it does not, the engine raises `ValueError` and names the first word that differs.
+
+`transcribe`, `transcribe_detailed`, `sentence_lattice` and `features` run both roles. A word method such as `transcribe_word` takes a prepared word and runs neither.
+
+`normalizer=` and `plugins={"normalize": ...}` cannot run with these fields, and `G2P` raises `ValueError` if a caller passes both. A field replaces a `normalize` plugin that the spec names.
+
 ## Installing and writing a plugin
 
-A plugin takes over one stage of the pipeline for the languages that it claims. [architecture.md](../engine/architecture.md#pluggable-steps) lists the stages and their base classes. To install a plugin, install the package that ships it. The `portuguese` extra installs `silabificador`, and the bundled entry point then gives the Portuguese codes a real syllabifier:
+A plugin takes over one stage of the pipeline for the languages that it claims. [architecture.md](../engine/architecture.md#pluggable-steps) lists the stages and their base classes. An install of a package changes no transcription, because the spec or the caller must name each plugin. The `portuguese` extra installs `silabificador`:
 
 ```bash
 uv pip install --prerelease=allow 'orthography2ipa[portuguese]'
 ```
 
-`orthography2ipa.who_answers(code)` then reports which syllabifier and which rescorers answer for a code.
+The caller then passes the syllabifier to one engine:
+
+```python
+from orthography2ipa import G2P, Pipeline
+from orthography2ipa.syllabifiers import SilabificadorSyllabifier
+
+engine = G2P("pt-PT", pipeline=Pipeline(syllabifier=SilabificadorSyllabifier()))
+```
+
+`orthography2ipa.who_answers(code)` reports which rescorers answer for a code.
 
 To write a plugin, do these steps:
 
-1. Subclass the base class of the stage. Set `language_codes`, and set `priority` if another plugin claims the same codes.
+1. Subclass the base class of the stage. Set `language_codes`. For a stage other than `syllabify`, set `priority` if another plugin claims the same codes.
 2. Check the class with the contract checks in `orthography2ipa.conformance`. `assert_syllabifier_conforms` fails if a syllabifier does not join back to the word or if it changes the transcription. `assert_rescorer_conforms` checks a rescorer.
-3. Declare the class as an entry point in the `pyproject.toml` of your package, in the group of the stage.
-4. For a stage other than `syllabify`, name the plugin by its entry-point name in the `plugins` field of the spec, or pass `G2P(code, plugins={"<stage>": "<name>"})`.
+3. For a syllabifier, pass an instance in `Pipeline(syllabifier=...)`. This stage has no entry point.
+4. For another stage, declare the class as an entry point in the `pyproject.toml` of your package, in the group of the stage. Then name the plugin by its entry-point name in the `plugins` field of the spec, or pass `G2P(code, plugins={"<stage>": "<name>"})`.
 
 A syllabifier for Italian that closes a syllable after each vowel run passes the check:
 
@@ -237,11 +269,12 @@ plugin.syllabify("amore")    # ['a', 'mo', 're']
 assert_syllabifier_conforms(plugin, words=["amore", "casa", "parlare"])   # passes, returns None
 ```
 
-The package that ships it declares the entry point:
+A caller passes it to one engine:
 
-```toml
-[project.entry-points."orthography2ipa.syllabify"]
-italian = "my_package.syllabifier:ItalianSyllabifier"
+```python
+from orthography2ipa import G2P, Pipeline
+
+engine = G2P("it-IT", pipeline=Pipeline(syllabifier=plugin))
 ```
 
 ## Browsing the specs in the explorer

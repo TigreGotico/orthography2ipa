@@ -19,7 +19,7 @@ data-driven pipeline:
    whole-sentence beams.
 4. **stress** — when the spec declares
    :class:`~orthography2ipa.types.StressRules`, the stressed syllable is
-   detected (per-language syllabifier plugins are honoured) and marked.
+   detected (with the syllabifier the caller passed, if any) and marked.
 5. **sandhi** — the spec's cross-word rules via
    :class:`~orthography2ipa.sandhi.SandhiEngine`.
 6. **dialect transform** — :func:`~orthography2ipa.transforms.apply_transform`
@@ -49,9 +49,8 @@ from orthography2ipa.features import (
 )
 from orthography2ipa.inventory import phoneme_inventory
 from orthography2ipa.inventory import tokenize as inventory_tokenize
-# scripts/benchmark.py and o2i-lexicons patch this module's ``get_lexicon``.
-from orthography2ipa.lexicon import _process_lexicon as get_lexicon
-from orthography2ipa.markup import MarkupError, parse_markup
+from orthography2ipa.lexicon import _process_lexicon
+from orthography2ipa.markup import Chunk, MarkupError, parse_markup
 from orthography2ipa.phonetok import (
     PAUSE_PUNCTUATION,
     Candidate,
@@ -68,7 +67,7 @@ from orthography2ipa.phonetok import (
 )
 from orthography2ipa.phonetok import _VIRAMA_COMBINING_CLASS
 from orthography2ipa.phonetok import _PUNCT_RE as _WORD_PUNCT_RE
-from orthography2ipa.pipeline import Pipeline
+from orthography2ipa.pipeline import Pipeline, _check_mark, _cut_marked
 from orthography2ipa.vowels import is_ipa_vowel
 from orthography2ipa.allophony import compile_allophone_rescorer
 from orthography2ipa.positional import (match_grammatical_ending,
@@ -543,7 +542,14 @@ class G2P:
         #
         # Either way it is a DECLARATION. What is never allowed is for discovery
         # alone to decide: `pip install` must not change a transcription.
-        self.plugins = {**(self.spec.plugins or {}), **_as_names(plugins or {})}
+        named = _as_names(plugins or {})
+        self.plugins = {**(self.spec.plugins or {}), **named}
+        if self.pipeline.expand is not None or self.pipeline.mark is not None:
+            if normalizer is not None or named.get("normalize"):
+                raise ValueError(
+                    "normalizer= and plugins={'normalize': ...} cannot run with "
+                    "Pipeline(expand=...) or Pipeline(mark=...): pass the fields")
+            self.plugins.pop("normalize", None)
         self._stage_plugins = _StagePlugins(self.spec, self.plugins)
 
         declared_rescorers = tuple(
@@ -571,8 +577,8 @@ class G2P:
         self._sentence_rescorers: Tuple[SentenceRescorer, ...] = (
             normalize_sentence_rescorers(sentence_rescorer))
         # Per-engine memo of two pure, spec-only computations that the profiler
-        # showed dominate the front-end path: syllabification (the silabificador
-        # plugin is not cheap) and the rules-only pronunciation lattice the
+        # showed dominate the front-end path: syllabification (a caller's plugin
+        # is not cheap) and the rules-only pronunciation lattice the
         # confidence read rebuilds. Both are deterministic functions of the word
         # and this engine's immutable spec — they never consult the runtime-
         # mutable lexicon — so a fresh engine gets fresh caches and the results
@@ -1064,8 +1070,26 @@ class G2P:
         runs and nothing else, which is the only text it has any business
         rewriting: the caller who wrote ``ph`` has already said what that word is.
         """
+        return self._split_chunks(self._prepared(parse_markup(text)))
+
+    def _prepared(self, chunks: List[Chunk]) -> List[Chunk]:
+        """*chunks* after the pipeline's ``expand`` and ``mark``."""
+        expand, mark = self.pipeline.expand, self.pipeline.mark
+        if expand is not None:
+            chunks = [chunk if chunk.is_forced
+                      else replace(chunk, text=expand(chunk.text))
+                      for chunk in chunks]
+        if mark is None:
+            return chunks
+        text = "".join(chunk.text for chunk in chunks)
+        marked = mark(text)
+        _check_mark(text, marked)
+        return _cut_marked(marked, chunks)
+
+    def _split_chunks(self, chunks: List[Chunk]) -> List[_Word]:
+        """Group *chunks* into words, forced pronunciations included."""
         words: List[_Word] = []
-        for chunk in parse_markup(text):
+        for chunk in chunks:
             if chunk.is_forced:
                 words.append(_Word(surface=chunk.text.strip(),
                                    forced_ipa=self._check_forced(chunk.forced_ipa)))
@@ -1084,7 +1108,7 @@ class G2P:
                 or not _HYPHENS.intersection(word)
                 or self._override_for(word) is not None):
             return None
-        elements = self._split_words(word)
+        elements = self._split_chunks(parse_markup(word))
         if len(elements) < 2 or not all(w.hyphen_joined
                                         for w in elements[1:]):
             return None
@@ -1254,7 +1278,7 @@ class G2P:
         exceptions = self.spec.word_exceptions
         lex = self.pipeline.lexicon
         if lex is None:
-            lex = get_lexicon(self.lang)
+            lex = _process_lexicon(self.lang)
         # Two keys, tried in order: the word as given, then the word with
         # the punctuation that clings to it in raw text stripped from both
         # ends (``I,`` ``is.`` ``"I``). The grapheme layer never sees that

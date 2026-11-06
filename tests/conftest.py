@@ -2,6 +2,8 @@
 import pytest
 
 import orthography2ipa
+from orthography2ipa import G2P, Pipeline
+from orthography2ipa.syllabifiers import SilabificadorSyllabifier
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -18,6 +20,13 @@ def all_codes():
 def all_families():
     """All language families (session-scoped)."""
     return orthography2ipa.available_families()
+
+
+@pytest.fixture(scope="session")
+def plugin_engine():
+    """Build an engine whose caller passed the Portuguese syllabifier."""
+    pipeline = Pipeline(syllabifier=SilabificadorSyllabifier())
+    return lambda lang: G2P(lang, pipeline=pipeline)
 
 
 # Core language fixtures (session-scoped to avoid repeated loading)
