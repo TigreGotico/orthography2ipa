@@ -14,12 +14,10 @@ new one:
 :func:`install_fake_o2i`
     Puts a ``FakeEngine`` (or any stub engine) into ``sys.modules`` as the
     ``orthography2ipa`` module, which is what ``compare_lang`` actually
-    imports. Its ``on_register``/``on_clear`` hooks observe the
-    process-global lexicon registry for the contamination-ordering tests.
+    imports.
 
-The remaining hand-rolled fake modules are the cases those hooks cannot
-express — capturing the language code ``G2P`` was constructed with, and
-accumulating registered lexicons on the class itself.
+The remaining hand-rolled fake modules are the cases that helper cannot
+express — capturing the language code ``G2P`` was constructed with.
 
 Individual comparison engines are stubbed by monkeypatching the module-level
 ``cs.<engine>_transcribe`` function. That works because
@@ -36,6 +34,8 @@ import pytest
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
 
 import compare_systems as cs  # noqa: E402
+from orthography2ipa import G2P, Pipeline, load_lexicon  # noqa: E402
+from orthography2ipa.lexicon import available_lexicon_codes  # noqa: E402
 
 
 class FakeEngine:
@@ -87,7 +87,7 @@ def _install_fake_udarnik(monkeypatch, transcribe, **kw):
     return module
 
 
-def install_fake_o2i(monkeypatch, engine, *, on_register=None, on_clear=None):
+def install_fake_o2i(monkeypatch, engine):
     """Swap the real ``orthography2ipa`` module for a stub whose ``G2P``
     returns *engine*.
 
@@ -96,16 +96,13 @@ def install_fake_o2i(monkeypatch, engine, *, on_register=None, on_clear=None):
     so replacing the entry in ``sys.modules`` is the only way to pin o2i to a
     known, fixed set of hypotheses and get a PER we can assert exactly.
 
-    *on_register* / *on_clear* observe the process-global lexicon registry
-    calls. Tests use them to assert the ORDER of operations — notably the
-    tugaphone contamination regression, where the bug was not a wrong number
-    but a lexicon being registered too early.
+    An engine built with a ``Pipeline`` is the same *engine*: a test that
+    needs the lexicon to reach it reads it from a real ``G2P``.
     """
     class FakeModule:
-        G2P = staticmethod(lambda lang: engine)
-        clear_lexicons = staticmethod(on_clear or (lambda: None))
-        register_lexicon = staticmethod(
-            on_register or (lambda code, src: None))
+        G2P = staticmethod(lambda lang, pipeline=None: engine)
+        Pipeline = Pipeline
+        load_lexicon = staticmethod(load_lexicon)
 
     monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
     return FakeModule
@@ -603,8 +600,6 @@ class TestCompareLangWithPycotoviaAndAhotts:
             def G2P(lang):
                 seen["lang"] = lang
                 return FakeEngine({"bat": "bat"})
-            clear_lexicons = staticmethod(lambda: None)
-            register_lexicon = staticmethod(lambda code, src: None)
         monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
 
         row = cs.compare_lang("eu-wikipron", limit=10)[0]
@@ -1244,33 +1239,27 @@ class TestUdarnikStrictAgainstRealStressonnx:
 
 
 class TestTugaphoneLexiconContaminationRegression:
-    """C1 regression: ``tugaphone_transcribe`` -> ``TugaPhonemizer.
-    phonemize_sentence`` -> ``tugaphone.lattice_core._ensure_lexicon()``
-    calls ``orthography2ipa.register_lexicon()`` — a PROCESS-GLOBAL
-    mutation keyed on the SAME lect code o2i's own engine uses. Before the
-    fix, tugaphone was scored INSIDE the same per-word loop as o2i, so
-    from word 2 onward o2i's own column was secretly o2i+tugalex, not
-    bare o2i.
+    """Scoring tugaphone must not reach o2i's own column.
+
+    tugaphone and o2i run the same engine, keyed on the same lect, and
+    tugaphone holds a lexicon. If that lexicon reached a plain ``G2P``, o2i's
+    column would read o2i plus the lexicon.
 
     Uses REAL ``tugaphone`` and REAL ``orthography2ipa`` (skipped, not
-    mocked, if either is unavailable) — the bug lives one layer BELOW
-    ``compare_systems.py``'s own code, in tugaphone's global lexicon
-    registration, so a mocked ``tugaphone_transcribe`` cannot exercise it
-    at all; every other test in this file mocks the family transcribe
-    functions and is structurally blind to this class of bug."""
+    mocked, if either is unavailable): a mocked ``tugaphone_transcribe``
+    cannot exercise this at all, and every other test in this file mocks the
+    family transcribe functions."""
 
     def test_o2i_per_identical_with_and_without_tugaphone_wired(
             self, monkeypatch):
         pytest.importorskip("tugaphone")
         import orthography2ipa
-        orthography2ipa.clear_lexicons()
 
-        # Words picked to include cases tugalex covers (so the pre-fix
-        # bug actually changes o2i's transcription, not just risks it).
+        # Words picked to include cases the lexicon covers, so a leak changes
+        # o2i's transcription.
         words = ["esquisito", "campanário", "obrigado", "cristão", "gato"]
         engine = orthography2ipa.G2P("pt-PT")
         gold_pairs = [(w, engine.transcribe_word(w)) for w in words]
-        orthography2ipa.clear_lexicons()
 
         monkeypatch.setattr(
             cs.benchmark, "DATASETS",
@@ -1287,16 +1276,11 @@ class TestTugaphoneLexiconContaminationRegression:
             dict(base_cfg, tugaphone="pt-PT"))
         wired_row = cs.compare_lang("pt-PT", limit=10)[0]
 
-        # The bug this guards: with tugaphone wired, o2i's own column
-        # measurably changed (0.0 clean -> nonzero contaminated) because
-        # tugaphone's global register_lexicon() call leaked into o2i's
-        # own engine mid-loop.
         assert clean_row["o2i_per"] == 0.0
         assert wired_row["o2i_per"] == clean_row["o2i_per"], (
             f"o2i_per changed from {clean_row['o2i_per']} (no tugaphone) "
             f"to {wired_row['o2i_per']} (tugaphone wired) — tugaphone's "
-            f"register_lexicon() call is leaking into o2i's own scoring")
-        orthography2ipa.clear_lexicons()
+            f"lexicon is leaking into o2i's own scoring")
 
 
 class TestCompareLangWithFamilySystems:
@@ -1423,7 +1407,7 @@ class TestCompareLangWithFamilySystems:
         assert row["barranquenho_same_source"] is True
 
     def test_tugaphone_excluded_from_lexicon_free_ranking(self):
-        # tugaphone's tugalex lexicon has no public disable toggle (see the
+        # tugaphone's packaged lexicon has no public disable toggle (see the
         # module note by tugaphone_transcribe), so — the espeak discipline —
         # it must never contribute to the lexicon-free Winner/leaderboard
         # ranking even when it has a real, non-same-source PER.
@@ -2076,16 +2060,9 @@ class TestCompareLangFairComparison2x2:
                 return "bato"  # exact o2i hit, PER 0
 
         class FakeModule:
-            G2P = staticmethod(lambda lang: FakeEngine())
-            registered = {}
-
-            @staticmethod
-            def register_lexicon(code, src):
-                FakeModule.registered[code] = src
-
-            @staticmethod
-            def clear_lexicons():
-                FakeModule.registered.clear()
+            G2P = staticmethod(lambda lang, pipeline=None: FakeEngine())
+            Pipeline = Pipeline
+            load_lexicon = staticmethod(lambda path: {})
 
         monkeypatch.setitem(sys.modules, "orthography2ipa", FakeModule)
         monkeypatch.setattr(cs, "espeak_available", lambda: True)
@@ -2118,7 +2095,6 @@ class TestCompareLangFairComparison2x2:
         assert row["espeak_per"] == 0.0
         assert row["espeak_rules_per"] > 0.0
         assert row["o2i_lex_per"] == 0.0
-        assert FakeModule.registered == {}  # cleared after o2i_lex scoring
 
     def test_missing_env_vars_yield_n_a_for_both_new_columns(self, monkeypatch):
         pairs = [("bat", "bato")]
@@ -3539,55 +3515,12 @@ class TestGruutLexiconKeys:
 
 
 class TestTugaphoneLexiconKeys:
-    def test_extracts_tugalex_headwords_for_the_lects_region(
-            self, monkeypatch):
-        class FakeLexicon:
-            def get_ipa_map(self, region):
-                assert region == "lbx"
-                return {"Casa": "ˈka·zɐ", "pão": "ˈpɐ̃w"}
-
-        monkeypatch.setitem(sys.modules, "tugalex",
-                            _fake_module("tugalex", TugaLexicon=FakeLexicon))
-        monkeypatch.setitem(
-            sys.modules, "tugaphone.registry",
-            _fake_module("tugaphone.registry",
-                          resolve_lect=lambda lang: "pt-PT",
-                          lexicon_region=lambda lect: "lbx"))
-
-        keys = cs.tugaphone_lexicon_keys("pt-PT", {"tugaphone": "pt-PT"})
-
-        # Matched on o2i's OWN lexicon key (NFC + language-aware lower) —
-        # tugalex entries are consumed through register_lexicon, so a
-        # case-sensitive match would readmit every capitalised headword.
-        assert "casa" in keys.keys
-        assert "pão" in keys.keys
-        assert keys.provenance["count"] == 2
-
-    def test_lect_without_a_region_has_no_key_set(self, monkeypatch):
-        monkeypatch.setitem(sys.modules, "tugalex",
-                            _fake_module("tugalex", TugaLexicon=object))
-        monkeypatch.setitem(
-            sys.modules, "tugaphone.registry",
-            _fake_module("tugaphone.registry",
-                          resolve_lect=lambda lang: "pt-XX",
-                          lexicon_region=lambda lect: None))
-        assert cs.tugaphone_lexicon_keys("pt-XX", {"tugaphone": "pt-XX"}) is None
-
     def _packaged(self, monkeypatch, tmp_path, lect):
-        # A tugaphone with packaged lexicons registers no tugalex map, so a
-        # tugalex headword in the key set would be a wrong count.
-        class FakeLexicon:
-            def get_ipa_map(self, region):
-                return {"casa": "ˈka·zɐ"}
-
-        monkeypatch.setitem(sys.modules, "tugalex",
-                            _fake_module("tugalex", TugaLexicon=FakeLexicon))
         monkeypatch.setitem(
             sys.modules, "tugaphone.registry",
             _fake_module("tugaphone.registry",
                           resolve_lect=lambda lang: lect,
-                          PACKAGED_LEXICON_LECTS=frozenset({"pt-PT"}),
-                          lexicon_region=lambda lect: "lbx"))
+                          PACKAGED_LEXICON_LECTS=frozenset({"pt-PT"})))
         tsv = tmp_path / "pt-PT.tsv"
         tsv.write_text("Muitíssimo\tmũj̃ˈtisimu\nantidumping\tɐ̃tiˈdɐ̃pĩɡ\n", encoding="utf-8")
         import orthography2ipa.lexicon as o2i_lexicon
@@ -3853,8 +3786,8 @@ class TestLexiconTierRendering:
                      "espeak": {"engine": "espeak-ng", "source": "dictsource",
                                  "version": "1.52.0", "count": 500,
                                  "normalization": "NFC + lowercase"},
-                     "tugaphone": {"engine": "tugaphone (tugalex)",
-                                    "source": "tugalex", "version": "0.9",
+                     "tugaphone": {"engine": "tugaphone (packaged lexicon)",
+                                    "source": "o2i-lexicons", "version": "0.9",
                                     "count": 90000,
                                     "normalization": "o2i lexicon key"},
                  },
@@ -3962,11 +3895,8 @@ class TestLexiconTierSentenceGold:
 
 
 class TestO2iLexOverlayIsActuallyConsulted:
-    """C1 regression: the ``o2i_lex`` overlay was registered under the
-    CONFIGURED code while ``G2P._override_for`` looks it up under the
-    RESOLVED lect (``G2P("en").lang == "en-GB"``), so the overlay was
-    never consulted and every published ``o2i_lex`` number was silently
-    plain o2i."""
+    """``G2P("en")`` resolves to ``en-GB``, and the ``o2i_lex`` column must
+    read the lexicon through that alias and stay out of plain o2i."""
 
     def test_o2i_lex_differs_from_o2i_when_the_overlay_covers_gold(
             self, monkeypatch, tmp_path):
@@ -3978,24 +3908,6 @@ class TestO2iLexOverlayIsActuallyConsulted:
             cs.LANGS, "en",
             {"dataset": ("fake_en", "en"), "espeak": None, "epitran": None,
              "gruut": None})
-
-        registered = {}
-
-        class AliasEngine:
-            """A G2P whose configured code ("en") resolves to "en-GB" —
-            the exact alias shape the bug hid in."""
-
-            lang = "en-GB"
-
-            def transcribe_word(self, word):
-                entry = registered.get(self.lang, {}).get(word)
-                return entry if entry is not None else "WRONG"
-
-        def on_register(code, source):
-            registered[code] = {"colonel": "ˈkɜːnəl"}
-
-        install_fake_o2i(monkeypatch, AliasEngine(), on_register=on_register,
-                          on_clear=lambda: registered.clear())
         tsv = tmp_path / "en.tsv"
         tsv.write_text("colonel\tˈkɜːnəl\n", encoding="utf-8")
         monkeypatch.setattr(cs, "build_espeak_lexicon_tsv",
@@ -4003,17 +3915,19 @@ class TestO2iLexOverlayIsActuallyConsulted:
 
         row = cs.compare_lang("en", limit=10)[0]
 
-        # Registered under the RESOLVED lect, so the overlay is reachable.
         assert row["o2i_lex_per"] == 0.0
         assert row["o2i_per"] > 0.0
-        assert row["o2i_lex_per"] != row["o2i_per"]
 
-    def test_lexicon_code_is_the_engines_resolved_lect(self):
-        class Engine:
-            lang = "en-GB"
+    def test_the_lexicon_stays_in_its_own_engine(self, tmp_path):
+        tsv = tmp_path / "en.tsv"
+        tsv.write_text("colonel\tˈkɜːnəl\n", encoding="utf-8")
+        gold = ["ˈkɜːnəl"]
 
-        assert cs._o2i_lexicon_code(Engine(), "en") == "en-GB"
-        assert cs._o2i_lexicon_code(object(), "en") == "en"
+        pairs = cs._o2i_lex_pass("en", str(tsv), ["colonel"], {"colonel": gold})
+
+        assert pairs == [("ˈkɜːnəl", gold)]
+        assert available_lexicon_codes() == []
+        assert G2P("en").transcribe_word("colonel") != "ˈkɜːnəl"
 
 
 class TestEspeakWordlistLeadingConditionals:

@@ -6,15 +6,13 @@ import re
 import warnings
 from functools import lru_cache
 from importlib.metadata import entry_points
-from typing import TYPE_CHECKING, Dict, List, Optional
+from typing import Dict, List, Optional
 
 from linguatag import closest_lang, with_default_region
 
 from orthography2ipa.json_loader import available_json_codes, load_json_spec
 from orthography2ipa.types import LanguageSpec
-
-if TYPE_CHECKING:
-    from orthography2ipa.syllabifier_plugin import SyllabifierPlugin
+from orthography2ipa.version import VERSION_MAJOR
 
 _cache: Dict[str, LanguageSpec] = {}
 
@@ -573,56 +571,19 @@ def available_families() -> Dict[str, List[str]]:
     return fam
 
 
-_syllabifiers: Optional[Dict[str, "SyllabifierPlugin"]] = None
+def get_syllabifier(code: str) -> None:
+    """Deprecated: return ``None``, because no syllabifier is discovered.
 
-
-def _discover_syllabifiers() -> Dict[str, "SyllabifierPlugin"]:
-    """Discover syllabifier plugins via importlib entry_points.
-
-    When several plugins claim the same language code, the one with the
-    highest :attr:`SyllabifierPlugin.priority` wins.
-
-    A bundled plugin's own optional third-party dependency being absent is the
-    normal case for an ordinary install (see :mod:`orthography2ipa.syllabifiers`)
-    — it is logged at DEBUG, naming the extra that would enable it. Anything
-    else that goes wrong loading or instantiating a plugin is a real problem
-    and is logged at WARNING.
+    The caller names a syllabifier in
+    :attr:`~orthography2ipa.pipeline.Pipeline.syllabifier`.
     """
-    plugins: Dict[str, "SyllabifierPlugin"] = {}
-    eps = entry_points(group="orthography2ipa.syllabify")
-    for ep in eps:
-        try:
-            cls = ep.load()
-        except Exception as exc:
-            _LOG.warning(
-                "failed to load syllabifier plugin %r: %s", ep.name, exc)
-            continue
-        try:
-            instance = cls()
-        except ModuleNotFoundError as exc:
-            _LOG.debug(
-                "syllabifier plugin %r is disabled: its optional dependency is "
-                "not installed (%s). Install the matching extra to enable it.",
-                ep.name, exc)
-            continue
-        except Exception as exc:
-            _LOG.warning(
-                "failed to load syllabifier plugin %r: %s", ep.name, exc)
-            continue
-        for code in instance.language_codes:
-            incumbent = plugins.get(code)
-            if incumbent is None or instance.priority > incumbent.priority:
-                plugins[code] = instance
-    return plugins
-
-
-def get_syllabifier(code: str) -> Optional["SyllabifierPlugin"]:
-    """Return the syllabifier plugin for *code*, if one is registered."""
-    global _syllabifiers
-    if _syllabifiers is None:
-        _syllabifiers = _discover_syllabifiers()
-    code = _resolve_code(code)
-    return _syllabifiers.get(code)
+    warnings.warn(
+        f"get_syllabifier is deprecated and will be removed in "
+        f"{VERSION_MAJOR + 1}.0.0; use Pipeline(syllabifier=...).",
+        DeprecationWarning,
+        stacklevel=2,
+    )
+    return None
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -672,19 +633,17 @@ def who_answers(code: str) -> Dict[str, object]:
 
     The first question anyone debugging a plugin asks, given an API. A
     transcription that depends on what is installed should at least be able to say
-    what is installed.
+    what is installed. ``syllabify`` is always ``"built-in"``: discovery finds no
+    syllabifier, and one that a caller passes lives in that engine's
+    :class:`~orthography2ipa.pipeline.Pipeline`.
     """
     resolved = _resolve_code(code)
-    syllabifier = get_syllabifier(resolved)
     global _rescorer_plugins
     if _rescorer_plugins is None:
         _rescorer_plugins = _discover_rescorer_plugins()
     return {
         "code": resolved,
-        "syllabify": (
-            f"{type(syllabifier).__module__}.{type(syllabifier).__name__}"
-            if syllabifier is not None else "built-in"
-        ),
+        "syllabify": "built-in",
         "rescore": [
             f"{type(p).__module__}.{type(p).__name__} (priority {p.priority})"
             for p in _rescorer_plugins.get(resolved, ())

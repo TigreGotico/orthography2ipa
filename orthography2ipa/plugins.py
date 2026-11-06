@@ -7,26 +7,25 @@ could plausibly beat the built-in answer:
 stage            the question it answers                              contract
 ===============  ===================================================  ===========
 ``normalize``    what IS the input, canonically?                      declared
-``syllabify``    where are the syllable boundaries?                   **neutral**
+``syllabify``    where are the syllable boundaries?                   **caller**
 ``stress``       which syllable carries it?                           declared
 ``rescore``      which allophone surfaces here?                       declared
 ``sandhi``       what happens between words?                          declared
 ===============  ===================================================  ===========
 
-Four of them change the transcription. One does not. That difference is the whole
-design, and it comes from a single rule:
+All five can change the transcription. One rule governs them:
 
-    **The transcription is a function of the SPEC and the INPUT.
-    Never of the environment.**
+    **The transcription is a function of the SPEC, the INPUT and the caller's
+    explicit configuration. Never of the environment.**
 
 So:
 
-* **``syllabify`` is neutral.** A better syllabifier draws better boundaries and
-  reaches the *same answer*; nothing downstream can tell it was installed. It
-  needs no declaration, and it is checked by
-  :func:`~orthography2ipa.conformance.assert_syllabifier_conforms`, which fails if
-  installing it moves the output. (If it does move the output, the built-in answer
-  is wrong — that is how ``coelho`` was found.)
+* **``syllabify`` is declared by the caller.** Nothing discovers a syllabifier and
+  no spec names one. The bundled splitter answers until a caller passes a
+  syllabifier in a :class:`~orthography2ipa.pipeline.Pipeline`. The syllable count
+  reaches the stress step, so that syllabifier can move the output, and the caller
+  has chosen that. :func:`~orthography2ipa.conformance.assert_syllabifier_conforms`
+  tells the author of a syllabifier whether it does.
 
 * **The other four are declared.** They change what the engine says, so the spec
   must *name* the plugin it wants. Then the output still depends only on the spec
@@ -80,9 +79,8 @@ name::
 
     G2P("pt-PT", pipeline=Pipeline(lexicon=lexicon, syllabifier=syllabifier))
 
-Another engine in the process does not see them. A pipeline syllabifier wins over
-the one discovery finds, and it is an explicit choice, so the neutrality check does
-not bind it: the caller who passes it has decided the output.
+Another engine in the process does not see them. A syllabifier has no entry-point
+group, so this object is the only way one reaches an engine.
 
 A plugin is identified by its **entry-point name**, which is what the spec or the
 caller names. That makes the declaration readable and greppable, and it means two
@@ -106,13 +104,14 @@ __all__ = [
 #: Every pluggable stage.
 STAGES = ("normalize", "syllabify", "stress", "rescore", "sandhi")
 
-#: The stages that change the transcription — and must therefore be named by the
-#: spec. ``syllabify`` is absent on purpose: it is a refinement, not a decision.
-OUTPUT_CHANGING_STAGES = ("normalize", "stress", "rescore", "sandhi")
+#: The stages that change the transcription, so the spec or the caller must name
+#: them.
+OUTPUT_CHANGING_STAGES = STAGES
 
-#: entry-point group per stage.
+#: entry-point group per stage. ``syllabify`` has none: the caller passes a
+#: syllabifier as an object.
 ENTRY_POINT_GROUPS: Dict[str, str] = {
-    stage: f"orthography2ipa.{stage}" for stage in STAGES
+    stage: f"orthography2ipa.{stage}" for stage in STAGES if stage != "syllabify"
 }
 
 

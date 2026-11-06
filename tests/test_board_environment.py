@@ -115,9 +115,8 @@ class _EntryPoint:
 
 
 def test_environment_records_plugin_and_scorer_versions(monkeypatch):
-    eps = {"orthography2ipa.syllabify": [_EntryPoint(
-        "silabificador", "orthography2ipa.syllabifiers:SilabificadorSyllabifier",
-        _Dist("silabificador", "2.1.1a1"))]}
+    eps = {"orthography2ipa.rescore": [_EntryPoint(
+        "arbtok", "arbtok.plugin:Rescorer", _Dist("arbtok", "2.1.1a1"))]}
     monkeypatch.setattr(benchmark, "entry_points",
                         lambda group: eps.get(group, []))
     installed = {"text2tashkeel": "0.3.0a2"}
@@ -129,15 +128,15 @@ def test_environment_records_plugin_and_scorer_versions(monkeypatch):
 
     monkeypatch.setattr(benchmark, "package_version", fake_version)
     env = benchmark.board_environment()
-    assert env["plugins"]["orthography2ipa.syllabify"] == {
-        "silabificador": {
-            "target": "orthography2ipa.syllabifiers:SilabificadorSyllabifier",
-            "distribution": "silabificador", "version": "2.1.1a1"}}
+    assert env["plugins"]["orthography2ipa.rescore"] == {
+        "arbtok": {
+            "target": "arbtok.plugin:Rescorer",
+            "distribution": "arbtok", "version": "2.1.1a1"}}
     assert env["scorers"]["text2tashkeel"] == "0.3.0a2"
     assert env["scorers"]["rarfile"] is None
     assert set(env["plugins"]) == {
         f"orthography2ipa.{s}" for s in
-        ("normalize", "syllabify", "stress", "rescore", "sandhi")}
+        ("normalize", "stress", "rescore", "sandhi")}
 
 
 def test_whole_board_run_writes_environment_beside_the_board(

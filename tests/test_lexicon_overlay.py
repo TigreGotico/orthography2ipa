@@ -18,7 +18,6 @@ import unicodedata
 import pytest
 
 import orthography2ipa
-from orthography2ipa import g2p as g2p_module
 from orthography2ipa import lexicon as lexmod
 
 
@@ -104,7 +103,7 @@ def test_a_registered_lexicon_is_used(en_lexicon):
 
 # ─── precedence: inline > lexicon > rules ───────────────────────────────────
 
-def test_lexicon_beats_rules(monkeypatch, en_lexicon):
+def test_lexicon_beats_rules(en_lexicon):
     """A word only in the lexicon (not inline word_exceptions) uses the lexicon
     IPA, and that differs from the pure-rules output."""
     eng = orthography2ipa.G2P("en-GB")
@@ -113,21 +112,20 @@ def test_lexicon_beats_rules(monkeypatch, en_lexicon):
     assert word not in (eng.spec.word_exceptions or {})
     with_lex = eng.transcribe_word(word)
     assert with_lex == lex[word]
-    # disable the lexicon → rules-only path, which is different here
-    monkeypatch.setattr(g2p_module, "get_lexicon", lambda code: {})
-    rules_only = orthography2ipa.G2P("en-GB").transcribe_word(word)
+    # an empty lexicon → rules-only path, which is different here
+    rules_only = orthography2ipa.G2P(
+        "en-GB", pipeline=orthography2ipa.Pipeline(lexicon={})).transcribe_word(word)
     assert rules_only != with_lex
 
 
-def test_inline_word_exceptions_beat_lexicon(monkeypatch):
+def test_inline_word_exceptions_beat_lexicon():
     """When a word is in BOTH inline word_exceptions and the lexicon, the
     inline value wins."""
     eng = orthography2ipa.G2P("en-GB")
     assert eng.spec.word_exceptions.get("the") == "ðə"
     # force a conflicting lexicon entry for the same word
-    monkeypatch.setattr(
-        g2p_module, "get_lexicon", lambda code: {"the": "ZZZ"})
-    assert orthography2ipa.G2P("en-GB").transcribe_word("the") == "ðə"
+    pipeline = orthography2ipa.Pipeline(lexicon={"the": "ZZZ"})
+    assert orthography2ipa.G2P("en-GB", pipeline=pipeline).transcribe_word("the") == "ðə"
 
 
 def test_no_override_falls_to_rules():
@@ -142,16 +140,15 @@ def test_no_override_falls_to_rules():
 
 # ─── stress: lexicon hits route through the word_exceptions pathway ─────────
 
-def test_lexicon_entry_gets_stress_applied(monkeypatch):
+def test_lexicon_entry_gets_stress_applied():
     """A lexicon hit for a STRESSED-language spec still gets the stress mark
     inserted — proving it rejoins the same override pathway inline exceptions
     use (which also stress-mark their output)."""
     eng = orthography2ipa.G2P("pt-PT")
     assert eng.spec.stress is not None
     # inject a lexicon entry with no stress mark for a paroxytone word
-    monkeypatch.setattr(
-        g2p_module, "get_lexicon", lambda code: {"casa": "kaza"})
-    out = orthography2ipa.G2P("pt-PT").transcribe_word("casa")
+    pipeline = orthography2ipa.Pipeline(lexicon={"casa": "kaza"})
+    out = orthography2ipa.G2P("pt-PT", pipeline=pipeline).transcribe_word("casa")
     assert "ˈ" in out, f"stress mark not applied to lexicon entry: {out!r}"
     assert out == "ˈkaza"
 
@@ -167,13 +164,13 @@ def test_lexicon_hit_has_full_confidence(en_lexicon):
 # ─── byte-identical for languages with no lexicon ───────────────────────────
 
 @pytest.mark.parametrize("lang", ["pt-PT", "es-ES", "fr-FR"])
-def test_non_lexicon_language_unchanged(lang, monkeypatch):
+def test_non_lexicon_language_unchanged(lang):
     """For a language shipping no lexicon, output with the feature is identical
     to the rules-only path (its override map is empty either way)."""
     text = "casa branca mundo"
     baseline = orthography2ipa.G2P(lang).transcribe(text)
-    monkeypatch.setattr(g2p_module, "get_lexicon", lambda code: {})
-    disabled = orthography2ipa.G2P(lang).transcribe(text)
+    pipeline = orthography2ipa.Pipeline(lexicon={})
+    disabled = orthography2ipa.G2P(lang, pipeline=pipeline).transcribe(text)
     assert baseline == disabled
 
 
