@@ -1,5 +1,9 @@
 # Changelog
 
+## [7.119.10a3](https://github.com/TigreGotico/orthography2ipa/tree/7.119.10a3) (2026-11-06)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.119.10a2...7.119.10a3)
+
 ## [7.119.10a2](https://github.com/TigreGotico/orthography2ipa/tree/7.119.10a2) (2026-11-06)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.119.10a1...7.119.10a2)
@@ -284,10 +288,6 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.117.14a1...7.117.15a1)
 
-**Merged pull requests:**
-
-- fix\(pt-BR\): epenthesis after the stressed vowel, and no vowel inside ⟨ck⟩ [\#2048](https://github.com/TigreGotico/orthography2ipa/pull/2048) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [7.117.14a1](https://github.com/TigreGotico/orthography2ipa/tree/7.117.14a1) (2026-11-05)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.117.13a1...7.117.14a1)
@@ -399,10 +399,6 @@
 ## [7.117.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.117.0a1) (2026-11-05)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.116.3a1...7.117.0a1)
-
-**Merged pull requests:**
-
-- feat\(nl\): add nl-NL-x-groninge regional Standard Dutch spec [\#2047](https://github.com/TigreGotico/orthography2ipa/pull/2047) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.116.3a1](https://github.com/TigreGotico/orthography2ipa/tree/7.116.3a1) (2026-11-05)
 
@@ -1118,15 +1114,15 @@
 
 ## [7.93.16a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.16a1) (2026-09-17)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.14a1...7.93.16a1)
-
-## [7.93.14a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.14a1) (2026-09-17)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.15a1...7.93.14a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.15a1...7.93.16a1)
 
 ## [7.93.15a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.15a1) (2026-09-17)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.13a1...7.93.15a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.14a1...7.93.15a1)
+
+## [7.93.14a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.14a1) (2026-09-17)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.13a1...7.93.14a1)
 
 ## [7.93.13a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.13a1) (2026-09-17)
 
