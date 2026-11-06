@@ -34,7 +34,7 @@ orthography2ipa.transcribe("bona nuèit", "oc")     # 'ˈbunɔ ˈnɥɛit'
 
 `transcribe()` runs a fixed pipeline. It tokenizes each word into graphemes with the spec of the target language. It then picks the most likely IPA for each grapheme, with greedy search by default. Next it applies the spec's allophone rules and stress rules, and the cross-word sandhi rules if the language has any. Data in the language's `LanguageSpec` drives each step, and no hidden model sits behind it. [architecture.md](../engine/architecture.md) gives the full order of the stages.
 
-The library does not normalise text. A caller that needs number expansion or diacritic restoration passes a `normalizer` to `G2P` or installs a normalize plugin.
+The library does not normalise text. A caller that needs number expansion or diacritic restoration passes it in a `Pipeline` ([Preparing text before the lattice](#preparing-text-before-the-lattice)).
 
 ## The two maps: graphemes and allophones
 
@@ -231,6 +231,19 @@ engine = G2P("pt-PT", pipeline=Pipeline(
 
 `rescorer=` or `plugins={"rescore": ...}` with `rescore`, and `sentence_rescorer=` or `plugins={"sandhi": ...}` with `sandhi`, raise `ValueError`. A field replaces a plugin of that stage that the spec names.
 
+## The deprecated stage arguments
+
+The `G2P` arguments `normalizer=`, `rescorer=`, `sentence_rescorer=` and `plugins=` are deprecated. They keep working for one stable cycle. Each one raises a `DeprecationWarning` that names the release that removes it and the field to use.
+
+| Deprecated argument | Use in its place |
+| :--- | :--- |
+| `normalizer=` | `Pipeline(expand=...)`, and `Pipeline(mark=...)` for the marks that it adds |
+| `plugins={"normalize": name}` | `Pipeline(expand=...)` or `Pipeline(mark=...)`, by what the plugin does |
+| `rescorer=`, `plugins={"rescore": name}` | `Pipeline(rescore=...)` |
+| `sentence_rescorer=`, `plugins={"sandhi": name}` | `Pipeline(sandhi=...)` |
+
+A `SentenceRescorer` runs before the `sandhi_rules` of the spec, and `Pipeline(sandhi=...)` runs after them. A `SandhiPlugin` gets the spelling and the pause flag of each word, which a cross-word rule needs.
+
 ## Installing and writing a plugin
 
 A plugin takes over one stage of the pipeline for the languages that it claims. [architecture.md](../engine/architecture.md#pluggable-steps) lists the stages and their base classes. An install of a package changes no transcription, because the spec or the caller must name each plugin. The `portuguese` extra installs `silabificador`:
@@ -255,7 +268,8 @@ To write a plugin, do these steps:
 1. Subclass the base class of the stage. Set `language_codes`. For a stage other than `syllabify`, set `priority` if another plugin claims the same codes.
 2. Check the class with the contract checks in `orthography2ipa.conformance`. `assert_syllabifier_conforms` fails if a syllabifier does not join back to the word or if it changes the transcription. `assert_rescorer_conforms` checks a rescorer.
 3. For a syllabifier, pass an instance in `Pipeline(syllabifier=...)`. This stage has no entry point.
-4. For another stage, declare the class as an entry point in the `pyproject.toml` of your package, in the group of the stage. Then name the plugin by its entry-point name in the `plugins` field of the spec, or pass `G2P(code, plugins={"<stage>": "<name>"})`.
+4. For a rescorer, pass `tuple(plugin.rescorers(code))` in `Pipeline(rescore=...)`. For a sandhi plugin, pass the instance in `Pipeline(sandhi=...)`.
+5. For a spec to name the plugin, declare the class as an entry point in the `pyproject.toml` of your package, in the group of the stage. Then name the plugin by its entry-point name in the `plugins` field of the spec.
 
 A syllabifier for Italian that closes a syllable after each vowel run passes the check:
 

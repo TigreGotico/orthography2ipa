@@ -49,7 +49,7 @@ from orthography2ipa.features import (
 )
 from orthography2ipa.inventory import phoneme_inventory
 from orthography2ipa.inventory import tokenize as inventory_tokenize
-from orthography2ipa.lexicon import _process_lexicon
+from orthography2ipa.lexicon import _process_lexicon, _warn_deprecated
 from orthography2ipa.markup import Chunk, MarkupError, parse_markup
 from orthography2ipa.phonetok import (
     PAUSE_PUNCTUATION,
@@ -341,6 +341,14 @@ def _as_names(plugins: dict) -> dict:
     }
 
 
+#: The :class:`Pipeline` field that replaces the old argument of each stage.
+_STAGE_FIELDS = {
+    "normalize": "Pipeline(expand=...) or Pipeline(mark=...)",
+    "rescore": "Pipeline(rescore=...)",
+    "sandhi": "Pipeline(sandhi=...)",
+}
+
+
 def _field_stages(pipeline: Pipeline, named: dict, normalizer, rescorer,
                   sentence_rescorer) -> Tuple[str, ...]:
     """The plugin stages that *pipeline*'s fields take over.
@@ -350,18 +358,16 @@ def _field_stages(pipeline: Pipeline, named: dict, normalizer, rescorer,
     """
     pairs = (
         ("normalize", pipeline.expand is not None or pipeline.mark is not None,
-         "Pipeline(expand=...) or Pipeline(mark=...)", "normalizer=",
-         normalizer is not None),
-        ("rescore", bool(pipeline.rescore), "Pipeline(rescore=...)", "rescorer=",
-         rescorer is not None),
-        ("sandhi", pipeline.sandhi is not None, "Pipeline(sandhi=...)",
-         "sentence_rescorer=", sentence_rescorer is not None),
+         "normalizer=", normalizer is not None),
+        ("rescore", bool(pipeline.rescore), "rescorer=", rescorer is not None),
+        ("sandhi", pipeline.sandhi is not None, "sentence_rescorer=",
+         sentence_rescorer is not None),
     )
-    for stage, field_set, field, old, old_set in pairs:
+    for stage, field_set, old, old_set in pairs:
         if field_set and (old_set or named.get(stage)):
             raise ValueError(
-                f"{old} and plugins={{{stage!r}: ...}} cannot run with {field}: "
-                f"pass the field")
+                f"{old} and plugins={{{stage!r}: ...}} cannot run with "
+                f"{_STAGE_FIELDS[stage]}: pass the field")
     return tuple(stage for stage, field_set, *_ in pairs if field_set)
 
 
@@ -429,8 +435,13 @@ class G2P:
         Insert stress marks when the spec declares stress rules
         (default).
     normalizer : Optional[Callable[[str], str]]
+        Deprecated: use ``Pipeline(expand=...)`` or ``Pipeline(mark=...)``.
         Pre-G2P text preparation (diacritization, number expansion);
         identity when omitted.
+    rescorer, sentence_rescorer, plugins
+        Deprecated: use ``Pipeline(rescore=...)``, ``Pipeline(sandhi=...)``
+        and the ``Pipeline`` field of each stage. Each old argument that is
+        not ``None`` raises :class:`DeprecationWarning`.
     pipeline : Optional[Pipeline]
         The lexicon and the syllabifier for this engine alone (see
         :class:`~orthography2ipa.pipeline.Pipeline`). Another engine in the
@@ -478,6 +489,14 @@ class G2P:
         allow_undeclared_phonemes: bool = False,
         expose_ambiguous_endings: bool = True,
     ) -> None:
+        for name, value, stage in (("normalizer", normalizer, "normalize"),
+                                   ("rescorer", rescorer, "rescore"),
+                                   ("sentence_rescorer", sentence_rescorer, "sandhi")):
+            if value is not None:
+                _warn_deprecated(f"G2P({name}=...)", _STAGE_FIELDS[stage])
+        if plugins is not None:
+            _warn_deprecated("G2P(plugins=...)", ", ".join(
+                f"{field} for {stage!r}" for stage, field in _STAGE_FIELDS.items()))
         self.allow_undeclared_phonemes = allow_undeclared_phonemes
         self.pipeline: Pipeline = pipeline or Pipeline()
         named = _as_names(plugins or {})

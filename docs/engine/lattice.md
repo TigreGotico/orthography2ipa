@@ -191,7 +191,7 @@ The context never crosses a word boundary, on either entry path. Stress informat
 Final-obstruent devoicing makes a voiced obstruent voiceless at the end of a word, as in German, Dutch, Russian and Catalan. The whole rule fits in a short rescorer. English has no such rule, so the example applies it to en-GB to show the effect:
 
 ```python
-from orthography2ipa import G2P, LatticeRescorer, Candidate
+from orthography2ipa import G2P, LatticeRescorer, Candidate, Pipeline
 
 class FinalDevoicing(LatticeRescorer):
     VOICED = {"b": "p", "d": "t", "ɡ": "k", "z": "s", "v": "f", "ʒ": "ʃ"}
@@ -203,7 +203,7 @@ class FinalDevoicing(LatticeRescorer):
                 for c in slot.candidates]
 
 print(G2P("en-GB").transcribe("dog"))
-print(G2P("en-GB", rescorer=FinalDevoicing()).transcribe("dog"))
+print(G2P("en-GB", pipeline=Pipeline(rescore=(FinalDevoicing(),))).transcribe("dog"))
 ```
 
 ```text
@@ -410,7 +410,7 @@ A phrase is a run of words between two pauses, or between a pause and an utteran
 These two rescorers are toys that show the seam. The library does not ship them as language data. They show that the seam gives the cross-word view and the phrase position that an Arabic engine needs.
 
 ```python
-from orthography2ipa.sentence import SentenceRescorer
+from orthography2ipa.sentence import SentenceRescorer, apply_sentence_rescorers
 
 class WaslElision(SentenceRescorer):        # rewrites the right word of a boundary
     def rescore(self, word, context):
@@ -429,7 +429,8 @@ class PausalForm(SentenceRescorer):         # driven by phrase position
 
 text = "الكتاب الجديد"
 print(G2P("ar").transcribe(text))
-print(G2P("ar", sentence_rescorer=[WaslElision(), PausalForm()]).transcribe(text))
+lattice = G2P("ar").sentence_lattice(text)
+print(" ".join(apply_sentence_rescorers(lattice, [WaslElision(), PausalForm()])))
 ```
 
 ```text
@@ -458,7 +459,8 @@ class FrenchLiaison(SentenceRescorer):
         return ipa
 
 print(G2P("fr").transcribe("nous avons"))
-print(G2P("fr", sentence_rescorer=FrenchLiaison()).transcribe("nous avons"))
+lattice = G2P("fr").sentence_lattice("nous avons")
+print(" ".join(apply_sentence_rescorers(lattice, [FrenchLiaison()])))
 ```
 
 ```text
@@ -472,13 +474,13 @@ The latent final consonant of *nous* becomes the onset of *avons*. The right wor
 
 The sentence seam sits above the word lattice. Each `WordSlot.slots` is the word's `ipa_lattice`. A `SentenceRescorer` reads the edge slots and rewrites at the level of the word's IPA.
 
-In `transcribe`, the sentence rescorers run first, with a view of the whole utterance. The spec's declarative `sandhi_rules` then run through `SandhiEngine`, and the two coexist. A list of sentence rescorers composes like lattice rescorers: each pass sees the rewrites of the pass before it. Inside one pass, every word reads the same snapshot taken before the pass, so the order of the words does not change the result.
+`apply_sentence_rescorers` returns the IPA of each word, and it runs no `sandhi_rules`. The deprecated `G2P(sentence_rescorer=...)` runs the same rescorers in `transcribe`, with a view of the whole utterance, and then the spec's declarative `sandhi_rules` run through `SandhiEngine`. In `transcribe`, a cross-word rule goes in `Pipeline(sandhi=...)`, which runs after the `sandhi_rules`. A list of sentence rescorers composes like lattice rescorers: each pass sees the rewrites of the pass before it. Inside one pass, every word reads the same snapshot taken before the pass, so the order of the words does not change the result.
 
 The engine passes `SandhiEngine.apply` the pause flag of each word, so a declarative rule stays inside its prosodic domain. No rule joins two words that a pause separates (Nespor & Vogel 1986, *Prosodic Phonology*). The blocked boundary is the intonational phrase, which is what punctuation writes. Some rules have the smaller phonological phrase as their real domain. Such a rule still applies at a phonological-phrase edge inside a clause, so the pause flags give a lower bound only. A sentence rescorer sees the same positions through `WordSlot.phrase_position`.
 
 ### Off by default
 
-Nothing in this seam runs unless a caller passes `sentence_rescorer=` to `G2P`, or calls `sentence_lattice`. Without a sentence rescorer, `transcribe` does not use the seam, and the scoring of single words and the benchmark board do not change. A spec's `sandhi_rules` work the same either way. The seam adds no spec field: cross-word rules are plugin objects that the caller supplies, so the spec data surface stays the same.
+Nothing in this seam runs unless a caller calls `sentence_lattice`, or passes the deprecated `sentence_rescorer=` to `G2P`. Without a sentence rescorer, `transcribe` does not use the seam, and the scoring of single words and the benchmark board do not change. A spec's `sandhi_rules` work the same either way. The seam adds no spec field: cross-word rules are plugin objects that the caller supplies, so the spec data surface stays the same.
 
 ### Still downstream: semantic and part-of-speech disambiguation
 

@@ -57,9 +57,10 @@ discovery alone is never one of them:
 
        "plugins": {"sandhi": "arbtok"}
 
-2. **The caller names it** — which overrides the spec::
+2. **The caller passes it** in a :class:`~orthography2ipa.pipeline.Pipeline`,
+   which overrides the spec::
 
-       G2P("ar", plugins={"normalize": "text2tashkeel"})
+       G2P("ar", pipeline=Pipeline(mark=diacritize))
 
 The second is how a downstream engine works, and it is the normal case. **arbtok**
 is not editing orthography2ipa's shipped ``ar.json`` to announce that it wants a

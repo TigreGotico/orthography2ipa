@@ -16,6 +16,10 @@ from orthography2ipa.plugins import (
 )
 from orthography2ipa.registry import MissingPlugin
 
+# This module tests a deprecated G2P argument, which still works.
+pytestmark = pytest.mark.filterwarnings(
+    r"ignore:G2P\(\w+=\.\.\.\) is deprecated:DeprecationWarning")
+
 
 class _Diacritizer(NormalizePlugin):
     """Stands in for text2tashkeel: puts the vowels back before anything reads."""
