@@ -221,10 +221,10 @@ CMUdict describes General American, so this file helps most on the General Ameri
 
 ## Measuring the effect of a lexicon
 
-`scripts/benchmark.py --lexicon-report` scores each language that has a lexicon twice on the same WikiPron gold: once with the rules only and once with the lexicon. It writes `docs/evaluation/generated/lexicon_scoreboard.md` and `benchmarks/lexicon_results.json`. The benchmark runs in its own process, so give it the lexicon through the directory variable:
+`scripts/benchmark.py --lexicon-report DIR` scores each `{code}.tsv` file in `DIR` twice on the same WikiPron gold: once with the rules only and once with the lexicon. It writes `docs/evaluation/generated/lexicon_scoreboard.md` and `benchmarks/lexicon_results.json`.
 
 ```bash
-ORTHOGRAPHY2IPA_LEXICON_DIR=/data/lexicons PYTHONPATH=$PWD python scripts/benchmark.py --lexicon-report
+PYTHONPATH=$PWD python scripts/benchmark.py --lexicon-report /data/lexicons
 ```
 
 The report has two sets of columns. The full columns score every gold word, so each gold word outside the lexicon dilutes the gain. The covered columns score only the gold words that the lexicon contains, where the overlay can act. The delta on the covered subset compares the lexicon with the rules on the same words. The report also keeps the rules honest: a lexicon must lower PER without hiding a regression in the grapheme rules behind it. [lexicon_scoreboard.md](../evaluation/generated/lexicon_scoreboard.md) holds the last report.

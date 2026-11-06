@@ -14,6 +14,8 @@ The rule lists `allophone_rules` and `sandhi_rules` merge by id (`InheritanceMod
 
 A spec switches off an inherited rule when it declares the same id with an empty `phonemes` list. Such a rule matches no phoneme. Porto, Braga and Terceira switch off the suffix rules and word lists of `pt-PT` (`PT_SUFFIX_*`, `PT_LEX_*`), because their own stressed-vowel rules must reach the vowel first. The Algarve switches off `PT_FINAL_EM_NUCLEUS`, `PT_FINAL_ENS_NUCLEUS` and `PT_FINAL_ENS_GLIDE`.
 
+Every spec on this page inherits `PT_INITIAL_ES_RAISE`, so a word-initial unstressed ⟨e⟩ before a coda sibilant is [i], and each spec keeps its own coda sibilant. Vázquez Diéguez (2015: 242) makes this statement for Europe as a whole. No source read covers a regional variety on its own.
+
 The specs `pt-PT-x-sao-miguel` and `pt-PT-x-terceira` name `pt-PT-x-acores` as an adstrate in `ancestors`. That entry records the relation only. Both specs take their data from `pt-PT`, so they do not inherit the rules of `pt-PT-x-acores`. The spec `pt-PT-x-medieval` (Old Portuguese) has the same code prefix. It is the base of `pt-PT`, not a dialect of it, so this page does not cover it.
 
 ## Defining features
@@ -31,9 +33,9 @@ The table gives the features that set each lect apart from `pt-PT`. The lects ru
 | [`pt-PT-x-aveiro`](#beira-litoral-pt-pt-x-aveiro) | Aveiro coast | apical-only sibilants<br>/v/ to [b]<br>[ɭ] as an allophone variant only | `praça` [ˈpɾas̺ɐ], `vaca` [ˈbakɐ] |
 | [`pt-PT-x-beira`](#beira-pt-pt-x-beira) | Beira Litoral, Alta and Baixa | apical-only sibilants<br>/v/ to [b]<br>stressed /u/ to [y] | `tudo` [ˈtydu], `sul` [ˈs̺yɫ] |
 | [`pt-PT-x-coimbra`](#conimbricense-pt-pt-x-coimbra) | Coimbra | the standard values, plus [ʒ] for a final /s/ before a vowel | `os olhos` [uʒ ˈɔʎuʃ] |
-| [`pt-PT-x-lisbon`](#lisbon-pt-pt-x-lisbon) | Lisbon, Estremadura | stressed ⟨e⟩ to [ɐ] before a palatal<br>⟨ei⟩ [ɐj]<br>⟨ou⟩ [o] | `espelho` [eʃˈpɐʎu], `leite` [ˈlɐjtɨ] |
+| [`pt-PT-x-lisbon`](#lisbon-pt-pt-x-lisbon) | Lisbon, Estremadura | stressed ⟨e⟩ to [ɐ] before a palatal<br>⟨ei⟩ [ɐj]<br>⟨ou⟩ [o] | `espelho` [iʃˈpɐʎu], `leite` [ˈlɐjtɨ] |
 | [`pt-PT-x-alentejo`](#alentejano-pt-pt-x-alentejo) | Alto Alentejo | stressed /u/ to [y]<br>final unstressed high vowels deleted<br>⟨-d-⟩ deleted<br>⟨ei ou⟩ monophthongs | `sul` [ˈsyɫ], `gosto` [ˈɡɔʃt], `nada` [ˈnaɐ] |
-| [`pt-PT-x-algarve`](#algarvio-pt-pt-x-algarve) | Algarve | stressed /u/ to [y]<br>word-final /s/ [ʒ]<br>⟨ei ou⟩ monophthongs<br>unstressed ⟨e o⟩ kept | `tudo` [ˈtydu], `mas` [ˈmaʒ], `pedir` [peˈdiɾ] |
+| [`pt-PT-x-algarve`](#algarvio-pt-pt-x-algarve) | Algarve | stressed /u/ to [y]<br>word-final /s/ [ʒ]<br>⟨ei ou⟩ monophthongs | `tudo` [ˈtydu], `mas` [ˈmaʒ], `leite` [ˈletɨ] |
 | [`pt-PT-x-madeira`](#madeiran-pt-pt-x-madeira) | Madeira | /l/ to [ʎ] after /i/<br>⟨-ões -ães -ãos⟩ as a nasal vowel plus [n] | `quilo` [ˈkiʎu], `cães` [ˈkɐ̃ns] |
 | [`pt-PT-x-acores`](#azorean-pt-pt-x-acores) | Azores, general node | stressed /u/ to [y] before an onset consonant only<br>⟨ou⟩ [ow]<br>[ʒ] for a final /s/ before a vowel | `número` [ˈnymɨɾu], `azul` [ɐˈzuɫ] |
 | [`pt-PT-x-sao-miguel`](#micaelense-pt-pt-x-sao-miguel) | São Miguel | every stressed /u/ to [y]<br>⟨oi ou⟩ [ø]<br>/l/ to [ʎ] after /i/<br>[ʒ] for a final /s/ before a vowel | `azul` [ɐˈzyɫ], `pouco` [ˈpøku], `quilo` [ˈkiʎu] |
@@ -71,7 +73,7 @@ The specs encode the merger in two ways:
 
 | Specs | Mechanism | Example |
 |:---|:---|:---|
-| `pt-PT-x-viana`, `pt-PT-x-tras-os-montes` | allophone rule `PT_NORTH_BETACISM` (/v/ to [b]), [β] as a variant | `estava` [eʃˈtabɐ] |
+| `pt-PT-x-viana`, `pt-PT-x-tras-os-montes` | allophone rule `PT_NORTH_BETACISM` (/v/ to [b]), [β] as a variant | `estava` [iʃˈtabɐ] |
 | `pt-PT-x-porto` | allophone rule `PT_PORTO_BETACISM` (/v/ to [b]) | `vinho` [ˈbiɲu] |
 | `pt-PT-x-braga` | allophone rule `BRA_BETACISM` (/v/ to [b]), [β] as a variant | `vou` [ˈbow] |
 | `pt-PT-x-minho`, `pt-PT-x-alfena`, `pt-PT-x-aveiro`, `pt-PT-x-beira` | grapheme ⟨v⟩ to [b], and [β] between vowels | `vaca` [ˈbakɐ], `uva` [ˈuβɐ] |
@@ -104,15 +106,15 @@ A word-final /s/ before a vowel-initial word is [z] in `pt-PT` (rule `PT_FINAL_S
 
 | Spec | Value | `estás a ver` | Mechanism |
 |:---|:---|:---|:---|
-| `pt-PT-x-porto` | [z] | [eʃˈtaz ɐ ˈbjeɾ] | inherited |
-| `pt-PT-x-lisbon` | [z] | [eʃˈtaz ɐ ˈveɾ] | inherited |
-| `pt-PT-x-coimbra` | [ʒ], the marked pole of a variable [z] and [ʒ] | [eʃˈtaʒ ɐ ˈveɾ] | rule redeclared with transform `ʒ` |
-| `pt-PT-x-algarve` | [ʒ] in every word-final position | [eʃˈtaʒ ɐ ˈveɾ] | positional `word_final` [ʒ] for ⟨s⟩ |
-| `pt-PT-x-acores` | [ʒ] before a vowel only | [eʃˈtaʒ ɐ ˈveɾ] | rule redeclared with transform `ʒ` |
-| `pt-PT-x-sao-miguel` | [ʒ] before a vowel only | [eʃˈtaʒ ɐ ˈveɾ] | rule redeclared with transform `ʒ` |
-| `pt-PT-x-viana`, `pt-PT-x-tras-os-montes` | [s̺] | [eʃˈtas̺ ɐ ˈbeɾ] | the rule matches a final [ʃ] only |
+| `pt-PT-x-porto` | [z] | [iʃˈtaz ɐ ˈbjeɾ] | inherited |
+| `pt-PT-x-lisbon` | [z] | [iʃˈtaz ɐ ˈveɾ] | inherited |
+| `pt-PT-x-coimbra` | [ʒ], the marked pole of a variable [z] and [ʒ] | [iʃˈtaʒ ɐ ˈveɾ] | rule redeclared with transform `ʒ` |
+| `pt-PT-x-algarve` | [ʒ] in every word-final position | [iʃˈtaʒ ɐ ˈveɾ] | positional `word_final` [ʒ] for ⟨s⟩ |
+| `pt-PT-x-acores` | [ʒ] before a vowel only | [iʃˈtaʒ ɐ ˈveɾ] | rule redeclared with transform `ʒ` |
+| `pt-PT-x-sao-miguel` | [ʒ] before a vowel only | [iʃˈtaʒ ɐ ˈveɾ] | rule redeclared with transform `ʒ` |
+| `pt-PT-x-viana`, `pt-PT-x-tras-os-montes` | [s̺] | [iʃˈtas̺ ɐ ˈbeɾ] | the rule matches a final [ʃ] only |
 
-The other specs inherit [z]. The Algarve gives [ʒ] in every word-final position, so it also gives [ʒ] alone (`estás` [eʃˈtaʒ]). The Azores and São Miguel restrict [ʒ] to the position before a vowel. Before a voiceless consonant or a pause the sibilant stays [ʃ] (`estás só` [eʃˈtaʃ ˈsɔ]), and before a voiced consonant the inherited `PT_CODA_S_VOICING` gives [ʒ] (`estás bem` [eʃˈtaʒ ˈbɐ̃j̃]).
+The other specs inherit [z]. The Algarve gives [ʒ] in every word-final position, so it also gives [ʒ] alone (`estás` [iʃˈtaʒ]). The Azores and São Miguel restrict [ʒ] to the position before a vowel. Before a voiceless consonant or a pause the sibilant stays [ʃ] (`estás só` [iʃˈtaʃ ˈsɔ]), and before a voiced consonant the inherited `PT_CODA_S_VOICING` gives [ʒ] (`estás bem` [iʃˈtaʒ ˈbɐ̃j̃]).
 
 The standard [z] is well documented (Mateus & d'Andrade 2000, ch. 2).
 
@@ -138,7 +140,7 @@ The four sibilants come from a positional map for ⟨s⟩ and a grapheme ⟨ss�
 
 The minimal pairs stay apart: `passo` [ˈpas̺u] against `paço` [ˈpasu], and `coser` [kuˈz̺eɾ] against `cozer` [kuˈzeɾ]. Note 29 of Cintra (1971), a footnote to p. 93, fixes the positions: *"[s̺] ápico-alveolar (correspondente a s inicial e final e ss interior) … [z̺] ápicoalveolar (correspondente ao s intervocálico)"*. Álvarez Pérez (2014, p. 37, §4) confirms from ALEPG data that this system belongs to *"the group of dialects that Cintra called Transmontanos and Alto-Minhotos"*, with the same grapheme mapping.
 
-Betacism is the rule `PT_NORTH_BETACISM` (see [Northern betacism](#northern-betacism)): `vinho` [ˈbiɲu], `vaca` [ˈbakɐ], `estava` [eʃˈtabɐ]. The CLUP Alto-Minho gold attests it (`vou` as `bow`, `ver` as `beɾ`).
+Betacism is the rule `PT_NORTH_BETACISM` (see [Northern betacism](#northern-betacism)): `vinho` [ˈbiɲu], `vaca` [ˈbakɐ], `estava` [iʃˈtabɐ]. The CLUP Alto-Minho gold attests it (`vou` as `bow`, `ver` as `beɾ`).
 
 The archaic ⟨ch⟩ affricate stays apart from ⟨x⟩ (Cintra 1971, p. 87): *"a permanência da distinção fonológica em posição inicial de sílaba entre o fonema /tʃ/, representado pelo grafema ch e o fonema /ʃ/ representado pelo grafema x"*. The grapheme ⟨ch⟩ is [tʃ]: `chave` [ˈtʃabɨ].
 
@@ -147,7 +149,7 @@ Two nasal rules follow the northern values. Word-final ⟨-em⟩ keeps the close
 Known gaps:
 
 - A preconsonantal coda ⟨s⟩ keeps the inherited *chiado* [ʃ]: `festa` [ˈfɛʃtɐ], `gosto` [ˈɡɔʃtu]. Cintra's note 29 lists the [s̺] positions as *"s inicial e final e ss interior"* only.
-- The word-final [s̺] does not match the inherited prevocalic sandhi rule, which expects [ʃ]. So the sibilant stays [s̺] before a vowel: `estás a ver` [eʃˈtas̺ ɐ ˈbeɾ].
+- The word-final [s̺] does not match the inherited prevocalic sandhi rule, which expects [ʃ]. So the sibilant stays [s̺] before a vowel: `estás a ver` [iʃˈtas̺ ɐ ˈbeɾ].
 - Porto's diphthongisation of the stressed close vowels is a Baixo-Minho and Douro-Litoral feature. Cintra (1971, p. 93) puts it in the other northern group, so this spec does not apply it.
 - The `clup_dialect` gold for this spec is small, sentence-level and of undocumented IPA provenance. It writes the apico-alveolar series in several ways ([ʃ], [ʂ], plain [s]). So correctness rests on the cited sources, not on the score.
 
@@ -161,7 +163,7 @@ Word-final ⟨-em⟩ is [ẽj̃] (`bem` [ˈbẽj̃]). This spec does not overrid
 
 The Chaves speaker keeps the mid vowel before a palatal ("vermelho eu digo vermelho, Lisboa vermalho"). The spec gives `vermelho` [bɨɾˈmɛʎu]. He also uses [ʒ] for a final /s/ before a vowel, which the spec records but does not model (see [/s/-sandhi before a vowel](#s-sandhi-before-a-vowel)).
 
-The known gaps are those of Alto-Minhoto. A preconsonantal ⟨s⟩ stays [ʃ] (`festa` [ˈfɛʃtɐ]), and a final [s̺] stays before a vowel (`estás a ver` [eʃˈtas̺ ɐ ˈbeɾ]). Porto's diphthongisation is not applied, and the `clup_dialect` gold is small and inconsistent.
+The known gaps are those of Alto-Minhoto. A preconsonantal ⟨s⟩ stays [ʃ] (`festa` [ˈfɛʃtɐ]), and a final [s̺] stays before a vowel (`estás a ver` [iʃˈtas̺ ɐ ˈbeɾ]). Porto's diphthongisation is not applied, and the `clup_dialect` gold is small and inconsistent.
 
 ## Minhoto (pt-PT-x-minho)
 
@@ -221,7 +223,7 @@ Known gaps and features not modelled:
 
 `pt-PT-x-porto` models Porto, Greater Porto and the Baixo-Minho and Douro-Litoral zone. Cintra calls this variety one of strong linguistic personality (*"forte personalidade linguística"*). Sources: Cintra (1971), Segura (2013), Brissos (2018), Brissos & Rodrigues (2016), Mateus & d'Andrade (2000). The spec also cites the native-speaker video *Sotaque e expressões do Porto* (*Portuguese With Leo*, with Bárbara).
 
-Betacism is the rule `PT_PORTO_BETACISM` (/v/ to [b], no condition). Because it is an allophone rule, the merger applies to every /v/ that the inherited grapheme map produces: `vinho` [ˈbiɲu], `vaca` [ˈbakɐ], `estava` [eʃˈtabɐ]. Cintra (1971) calls it the primary trait that separates the North from the Centre-South. He writes: *"o desaparecimento da oposição fonológica entre os fonemas /v/ e /b/ e a sua fusão num fonema único /b/"*.
+Betacism is the rule `PT_PORTO_BETACISM` (/v/ to [b], no condition). Because it is an allophone rule, the merger applies to every /v/ that the inherited grapheme map produces: `vinho` [ˈbiɲu], `vaca` [ˈbakɐ], `estava` [iʃˈtabɐ]. Cintra (1971) calls it the primary trait that separates the North from the Centre-South. He writes: *"o desaparecimento da oposição fonológica entre os fonemas /v/ e /b/ e a sua fusão num fonema único /b/"*.
 
 Cintra (1971) names diphthongisation of the stressed close vowels as the defining feature of the region. He writes: *"a ditongação, tão caracterizadora, das vogais tónicas fechadas [e] em [je], [o] em [wo] (por vezes [wɔ])"*. Segura (2013) also names diphthongisation of stressed vowels as the characteristic trait of the north-western variety. Four rules apply to the stressed nucleus:
 
@@ -240,7 +242,7 @@ Northern EP keeps the falling diphthongs where Lisbon changes them (Cintra's fea
 
 Cintra (1971, pp. 11-13 of the Instituto Camões reprint) draws the main North/South isogloss on the sibilant of ⟨s⟩ and ⟨ss⟩. He puts the Baixo-Minho and the Douro Litoral north of the southern limit of the apical sibilant. The spec declares ⟨ss⟩ as [s̺] (`passo` [ˈpas̺u]). It lists [ʂ ʐ] only as allophone variants of /ʃ ʒ/. Word-final ⟨-em⟩ is [ẽj̃] (`bem` [ˈbẽj̃]).
 
-The rest is inherited from `pt-PT`. That includes the dark coda /l/ (`alto` [ˈɐɫtu]) and the coda *chiado* (`véspera` [ˈbjɛʃpɨɾɐ]). It also includes the standard [z] of the prevocalic sandhi (`estás a ver` [eʃˈtaz ɐ ˈbjeɾ]).
+The rest is inherited from `pt-PT`. That includes the dark coda /l/ (`alto` [ˈɐɫtu]) and the coda *chiado* (`véspera` [ˈbjɛʃpɨɾɐ]). It also includes the standard [z] of the prevocalic sandhi (`estás a ver` [iʃˈtaz ɐ ˈbjeɾ]).
 
 Known gaps and features not modelled:
 
@@ -307,7 +309,7 @@ The one delta is [ʒ] for a final /s/ before a vowel. The spec declares `PT_FINA
 | Phrase | `pt-PT` | `pt-PT-x-coimbra` |
 |:---|:---|:---|
 | `os olhos` | [uz ˈɔʎuʃ] | [uʒ ˈɔʎuʃ] |
-| `estás a ver` | [eʃˈtaz ɐ ˈveɾ] | [eʃˈtaʒ ɐ ˈveɾ] |
+| `estás a ver` | [iʃˈtaz ɐ ˈveɾ] | [iʃˈtaʒ ɐ ˈveɾ] |
 
 The centre varies between [z] and [ʒ]. Lúcio (*conimbricense de gema*) is asked how he links "os olhos". He says: *"Nós faríamos a junção com o som de J"*, while the Lisbon host uses [z].
 
@@ -332,11 +334,11 @@ Coimbra prefers *toiro, loiça, loiro*, where Lisbon prefers *touro, louça*. Th
 
 The status of Lisbon against the standard is contested. Cintra (1971) argues that the prestige standard of European Portuguese broadly matches the Central-Southern (Estremenho and Lisbon) type. The conservative teaching norm, however, often rests on central (Coimbra) speech, which lacks several of the Lisbon changes. So the spec does not treat Lisbon as identical to that norm.
 
-The spec inherits from `pt-PT` the dark coda /l/ (`PT_CODA_L_DARK`) and the coda *chiado* (`PT_CODA_S_HUSH`, `PT_CODA_Z_HUSH`) with the coda /s/ voicing. It also inherits the standard [z] of the prevocalic sandhi (`estás a ver` [eʃˈtaz ɐ ˈveɾ]). The southern and island [ʒ] is not a Lisbon feature. Unstressed /e/ reduces to [ɨ] through the inherited positional map.
+The spec inherits from `pt-PT` the dark coda /l/ (`PT_CODA_L_DARK`) and the coda *chiado* (`PT_CODA_S_HUSH`, `PT_CODA_Z_HUSH`) with the coda /s/ voicing. It also inherits the standard [z] of the prevocalic sandhi (`estás a ver` [iʃˈtaz ɐ ˈveɾ]). The southern and island [ʒ] is not a Lisbon feature. Unstressed /e/ reduces to [ɨ] through the inherited positional map.
 
 | Feature | Value | Example | Source |
 |:---|:---|:---|:---|
-| stressed ⟨e⟩ before a palatal | /e ɛ/ to [ɐ] before [ʎ ɲ ʃ ʒ] | `coelho` [kuˈɐʎu], `fecho` [ˈfɐʃu], `venho` [ˈvɐɲu], `espelho` [eʃˈpɐʎu], `abelha` [ɐˈbɐʎɐ] | Hristovsky 2008, p. 239<br>Mateus & d'Andrade 2000, p. 19 |
+| stressed ⟨e⟩ before a palatal | /e ɛ/ to [ɐ] before [ʎ ɲ ʃ ʒ] | `coelho` [kuˈɐʎu], `fecho` [ˈfɐʃu], `venho` [ˈvɐɲu], `espelho` [iʃˈpɐʎu], `abelha` [ɐˈbɐʎɐ] | Hristovsky 2008, p. 239<br>Mateus & d'Andrade 2000, p. 19 |
 | ⟨ei⟩ lowered and centralised | ⟨ei⟩ to [ɐj] | `leite` [ˈlɐjtɨ], `primeiro` [pɾiˈmɐjɾu], `reino` [ˈʁɐjnu], `seis` [ˈsɐjʃ] | Cintra 1971<br>Segura 2013<br>Mateus & d'Andrade 2000 |
 | ⟨ou⟩ monophthong | ⟨ou⟩ to [o] | `ouro` [ˈoɾu] | Segura 2013<br>Cintra 1971 |
 | rhotic | allophones of /ʁ/ limited to the uvular fricative [ʁ] | `carro` [ˈkaʁu] | Mateus & d'Andrade 2000 |
@@ -410,18 +412,18 @@ So `no mar` gives [nu ˈmaɾ].
 |:---|:---|:---|
 | ⟨ei⟩ to [e] | `graphemes` | `leite` [ˈletɨ] |
 | ⟨ou⟩ to [o] | `graphemes` | `outro` [ˈotɾu] |
-| word-final ⟨s⟩ to [ʒ] | `positional_graphemes` | `mas` [ˈmaʒ], `estás` [eʃˈtaʒ], `muitos amigos` [ˈmujtoʒ ɐˈmiɡoʒ] |
-| unstressed ⟨e o⟩ kept as [e o] | `positional_graphemes` | `pedir` [peˈdiɾ], `telefone` [teleˈfɔnɨ] |
+| word-final ⟨s⟩ to [ʒ] | `positional_graphemes` | `mas` [ˈmaʒ], `estás` [iʃˈtaʒ], `muitos amigos` [ˈmũj̃tuʒ ɐˈmiɡuʒ] |
+| unstressed ⟨e o⟩ to [ɨ u] | inherited `positional_graphemes` | `pedir` [pɨˈdiɾ], `telefone` [tɨlɨˈfɔnɨ], `comida` [kuˈmidɐ] |
 | word-final ⟨-em⟩ to [ẽj̃] | `PT_FINAL_EM_*` switched off | `bem` [ˈbẽj̃], `homens` [ˈɔmẽʒ] |
 | dark coda /l/ | inherited `allophone_rules` | `sol` [ˈsɔɫ] |
 | coda /s/ to [ʃ] before a consonant | inherited `allophone_rules` | `gosto` [ˈɡɔʃtu] |
-| open stressed vowels [ɛ ɔ] | `positional_graphemes` | `forte` [ˈfɔɾtɨ] |
+| open stressed vowels [ɛ ɔ] | inherited `positional_graphemes` | `forte` [ˈfɔɾtɨ] |
 
 The Algarve has the strongest form of the southern [ʒ] for a final /s/ (see [/s/-sandhi before a vowel](#s-sandhi-before-a-vowel)). The value holds in every word-final position, so the positional map gives it and no separate sandhi rule is needed. For word-final ⟨-em⟩, Leite de Vasconcellos (1901, §44n, p. 93) writes: *"Dans le Baixo-Alemtejo et dans l'Algarve, on dit -ẽi en syllabe découverte, et -ẽ en syllabe couverte"*. He also heard [ẽ] in open final syllables at Lagos, a local variant that the spec does not model.
 
 Known gaps and features not modelled:
 
-- The spec notes give no source for the unstressed [e] and [o].
+- The evidence for the unstressed vowels is thin. Brissos (2014, p. 79) writes [ɨ] in the pretonic ⟨e⟩ of `debulham` and in the pretonic ⟨o⟩ of `coruja`, for Praia da Salema. These are two words, and they are side forms in a paper on stressed vowels. `coruja` does not show [u], so the [u] of ⟨o⟩ is the `pt-PT` default and no measured value. Cunha & Cintra (7th ed., p. 29) say only that the unstressed vowel spelled ⟨o⟩ *"cai ou se reduz"*, and their examples are word-final.
 - Brissos (2014) documents a wider central-southern chain shift: a stressed [a] to [ɛ] in high-vowel and palatal contexts, and [ɔ] to [o̝]. These changes depend on context and are only variably categorical. Modelling them next to the /u/ fronting risks a collapse of the vowel space, so only /u/ to [y] is encoded.
 - Older and rural speakers have an apico-alveolar [s̺]. It is an articulatory distinction with no phonemic contrast here, and Cintra (1971) marks this class of feature as not simulable at the phoneme level.
 - The Algarve has no betacism: /v/ and /b/ stay apart.
@@ -469,7 +471,7 @@ The fronting rule needs a following onset consonant, which a bare `o`, `do`, `no
 
 The ⟨ou⟩ digraph keeps the falling diphthong [ow] where Lisbon has [o]: `touradas` [towˈɾadɐʃ].
 
-A final /s/ before a vowel is [ʒ], as in the Algarve but only in that position (see [/s/-sandhi before a vowel](#s-sandhi-before-a-vowel)). The spec declares `PT_FINAL_S_PREVOCALIC_VOICE` again with the transform `ʒ`: `estás a ver` [eʃˈtaʒ ɐ ˈveɾ], `estás` [eʃˈtaʃ], `estás só` [eʃˈtaʃ ˈsɔ], `estás bem` [eʃˈtaʒ ˈbɐ̃j̃]. The "8 accents" video reports the shared J of the Algarve and the Azores ("quijentrar", "Todojos", "Éjunúmerúm" for *és o número um*). The feature sits inside the documented island behaviour of the final sibilant (Rogers 1948), but no page-pinned academic source for this value was found.
+A final /s/ before a vowel is [ʒ], as in the Algarve but only in that position (see [/s/-sandhi before a vowel](#s-sandhi-before-a-vowel)). The spec declares `PT_FINAL_S_PREVOCALIC_VOICE` again with the transform `ʒ`: `estás a ver` [iʃˈtaʒ ɐ ˈveɾ], `estás` [iʃˈtaʃ], `estás só` [iʃˈtaʃ ˈsɔ], `estás bem` [iʃˈtaʒ ˈbɐ̃j̃]. The "8 accents" video reports the shared J of the Algarve and the Azores ("quijentrar", "Todojos", "Éjunúmerúm" for *és o número um*). The feature sits inside the documented island behaviour of the final sibilant (Rogers 1948), but no page-pinned academic source for this value was found.
 
 The dark coda /l/ (`sol` [ˈsɔɫ]), the *chiado*, the vowel reduction and the coda /s/ voicing before a consonant are inherited.
 
@@ -499,7 +501,7 @@ The diphthongs ⟨oi ói ou⟩ become the front rounded [ø] (Silva 2008, p. 4):
 
 The rule `SM_L_PALATALISATION` changes an /l/ after /i/ and before a vowel to [ʎ], in the same context as [Madeiran](#madeiran-pt-pt-x-madeira): `quilo` [ˈkiʎu], `Filipa` [fiˈʎipɐ], `mochila` [muˈʃiʎɐ]. The condition is exact, so an /l/ after another front vowel does not change (`teleférico` [tɨlɨˈfɛɾiku]). This feature comes from the "8 accents" overview, which groups São Miguel with Madeira (*Filipa* as "Flhipa"). The São Miguel video itself does not show it. The Madeira video supports it (*quilómetro* as "quilhómetro"), and Segura (2013) gives it for the Atlantic islands.
 
-A final /s/ before a vowel is [ʒ], shared with the Algarve: `estás a ver` [eʃˈtaʒ ɐ ˈveɾ], `os olhos` [uʒ ˈɔʎuʃ]. The spec declares `PT_FINAL_S_PREVOCALIC_VOICE` again with the transform `ʒ`. The "8 accents" overview gives the shared Algarve and Azores J (*"quijentrar"*, *"Todojos"*, *"Éjunúmerúm"*).
+A final /s/ before a vowel is [ʒ], shared with the Algarve: `estás a ver` [iʃˈtaʒ ɐ ˈveɾ], `os olhos` [uʒ ˈɔʎuʃ]. The spec declares `PT_FINAL_S_PREVOCALIC_VOICE` again with the transform `ʒ`. The "8 accents" overview gives the shared Algarve and Azores J (*"quijentrar"*, *"Todojos"*, *"Éjunúmerúm"*).
 
 São Miguel keeps the mid vowel before a palatal ("coêlho"), which the spec inherits: `coelho` [kuˈɛʎu]. Lisbon centralises it to [ɐ] ("coâlho", `pt-PT-x-lisbon` [kuˈɐʎu]), and Madeira has "coâlho" too. The São Miguel "coêlho" against the Madeiran "coâlho" is the classic contrast between the islands (8 accents overview).
 

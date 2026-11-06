@@ -21,7 +21,7 @@ import dataclasses
 
 import pytest
 
-from orthography2ipa import G2P, get, get_syllabifier
+from orthography2ipa import G2P, get
 
 #: European Portuguese, letter for letter: the Infopédia rows.
 PT_PT = [
@@ -84,14 +84,10 @@ def test_mark_follows_the_glide_of_the_diphthong(lang, word):
 
 @pytest.mark.parametrize("lang", ["pt-PT", "pt-BR"])
 @pytest.mark.parametrize("word", IN_CONTEXT)
-def test_without_the_plugin_both_paths_agree(lang, word, monkeypatch):
-    with_plugin = G2P(lang).transcribe_word(word)
-    from orthography2ipa import registry
-    monkeypatch.setattr(registry, "_syllabifiers", {})
-    assert get_syllabifier(lang) is None
-    ipa = G2P(lang).transcribe_word(word)
+def test_plugin_and_bundled_paths_agree(lang, word, plugin_engine):
+    ipa = plugin_engine(lang).transcribe_word(word)
     assert _mark_after_glide(ipa), ipa
-    assert ipa == with_plugin
+    assert ipa == G2P(lang).transcribe_word(word)
 
 
 @pytest.mark.parametrize("word,expected", CONTROLS)

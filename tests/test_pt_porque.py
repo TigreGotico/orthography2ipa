@@ -39,7 +39,7 @@ def test_the_stressed_vowel_is_u(lang):
 #: Specs that inherit the rule and keep it, outside pt-PT and its dialects.
 KEEP = ["pt-MO", "pt-CV", "ext-PT-x-barranco"]
 #: Specs that keep an unstressed ⟨o⟩ as [o] and disable the rule.
-DISABLED = ["pt-AO", "pt-MZ", "pt-TL", "pt-GW", "pt-ST", "pt-PT-x-algarve"]
+DISABLED = ["pt-AO", "pt-MZ", "pt-TL", "pt-GW", "pt-ST"]
 
 DATA = Path(orthography2ipa.__file__).parent / "data"
 

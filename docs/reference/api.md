@@ -124,7 +124,7 @@ These are the names `import orthography2ipa` exports, from `orthography2ipa.__al
 | `get` | function | Return the `LanguageSpec` for *code*, loading lazily. |
 | `get_rescorers` | function | The rescorers every registered plugin contributes for *code*, in order. |
 | `get_stress_plugin` | function | The stress plugin registered for *code*, if any. |
-| `get_syllabifier` | function | Return the syllabifier plugin for *code*, if one is registered. |
+| `get_syllabifier` | function | Deprecated: return `None`, because no syllabifier is discovered. |
 | `resolve` | function | Return the registered spec code that *code* resolves to. |
 | `resolves_exactly` | function | True when *code* names a spec without nearest-language guessing. |
 | `who_answers` | function | Who is answering for *code*, and from where. |

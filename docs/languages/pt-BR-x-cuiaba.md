@@ -26,6 +26,8 @@ The stops /t d/ stay stops before /i/. Almeida (2004: 151-152) finds an *"articu
 
 The palatal fricatives are often affricates. The fricatives *"comumente são pronunciadas, respectivamente, como africadas surda /tS/ e sonora /dZ/"* (pp. 154-155), as in *chegar*, *peixe*, *gente* and *hoje* (p. 155). The rules `CUIABA_AFFRIC_SH` and `CUIABA_AFFRIC_ZH` apply in the onset: `chegar` [t͡ʃeˈɡa], `puxa` [ˈput͡ʃɐ], `gente` [ˈd͡ʒẽti], `hoje` [ˈod͡ʒi]. The ⟨ch⟩ of ⟨tch⟩ stays [ʃ] by `CUIABA_TCH_SH`, so the ⟨t⟩ and the ⟨ch⟩ give one affricate: `tchau` [ˈtʃaw], as pt.wiktionary gives it (/tʃaʊ/).
 
+The spec switches off `BR_CODA_X` and `BR_XC_ONE_S`, so ⟨x⟩ keeps the [ʃ] of the coda (`texto` [ˈteʃtu]).
+
 A coda /S/ is palato-alveolar, *"principalmente quando se encontra em final de vocábulo"* (p. 153). The rules `CUIABA_CODA_S` and `CUIABA_CODA_Z` give [ʃ ʒ] in the coda. A coda [ʃ] is not an onset, so it does not become an affricate: `mas` [ˈmaʃ], `três` [ˈtɾeʃ], `dez` [ˈdɛʃ]. *"O recuo do ponto de articulação também ocorre com a sonora [z] > [Z]"* (p. 154), as in *rasga* and *várzea*. The rule `BR_CODA_SH_VOICED` gives [ʒ] before a voiced consonant: `rasga` [ˈraʒɡɐ], `mesmo` [ˈmeʒmu].
 
 A coda /l/ is retroflex: *"Travando sílaba ou em final de vocábulo, a tendência é pela realização da retroflexa"* (p. 157). The positional map gives [ɻ] first and [w] second: `mal` [ˈmaɻ], `igual` [iˈɡwaɻ].

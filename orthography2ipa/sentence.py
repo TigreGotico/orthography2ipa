@@ -45,7 +45,9 @@ Opt-in and byte-identical when unused
 -------------------------------------
 Nothing here runs unless a caller passes ``sentence_rescorer=`` to
 :class:`~orthography2ipa.g2p.G2P` (or calls
-:meth:`~orthography2ipa.g2p.G2P.sentence_lattice` explicitly). With no
+:meth:`~orthography2ipa.g2p.G2P.sentence_lattice` explicitly).
+``sentence_rescorer=`` is deprecated: a cross-word rule that
+``transcribe`` runs goes in ``Pipeline(sandhi=...)``. With no
 sentence rescorer, :meth:`~orthography2ipa.g2p.G2P.transcribe` is byte-for-byte
 what it was — including the spec's declarative ``sandhi_rules`` via
 :class:`~orthography2ipa.sandhi.SandhiEngine`, which keep working exactly as

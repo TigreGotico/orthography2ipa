@@ -105,22 +105,16 @@ def test_a_vowel_inserted_before_the_stressed_nucleus_does_not_take_the_mark():
     assert g.transcribe("pacto") == "ˈpakitu"
 
 
-@pytest.fixture
-def without_syllabifier_plugin(monkeypatch):
-    from orthography2ipa import registry
-    monkeypatch.setattr(registry, "_syllabifiers", {})
-
-
 @pytest.mark.parametrize("word,start", [
     ("capto", "ˈkapitu"), ("pacto", "ˈpakitu"), ("egípcio", "eˈʒipi"),
 ])
-def test_without_the_syllabifier_plugin(word, start, without_syllabifier_plugin):
+def test_without_the_syllabifier_plugin(word, start):
     out = G2P("pt-BR").transcribe_word(word)
     assert out.startswith(start), out
 
 
 @pytest.mark.parametrize("word", ["hockey", "jockey"])
-def test_ck_without_the_syllabifier_plugin(word, without_syllabifier_plugin):
+def test_ck_without_the_syllabifier_plugin(word):
     out = G2P("pt-BR").transcribe_word(word)
     assert "kik" not in out.replace("ˈ", ""), out
 

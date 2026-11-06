@@ -104,7 +104,7 @@ import urllib.parse
 import urllib.request
 from importlib.metadata import PackageNotFoundError, entry_points
 from importlib.metadata import version as package_version
-from typing import (Callable, Dict, Iterator, List, NamedTuple, Optional,
+from typing import (Callable, Dict, List, Mapping, NamedTuple, Optional,
                     Sequence, Tuple)
 
 #: A gold entry: (orthographic word or sentence, reference IPA). Every
@@ -4189,16 +4189,18 @@ def assert_oracle_self_check(dataset: str, lang: str, per: float,
 
 def evaluate_words(pairs: Sequence[GoldPair], lang: str, strip_stress: bool,
                    broad: bool, stress: Optional[StressTally] = None,
+                   lexicon: Optional[Mapping[str, str]] = None,
                    ) -> Tuple[int, int, List[float], float, float]:
     """Like :func:`evaluate` but also returns the per-word PER list, so
     callers (e.g. :func:`bootstrap_per_ci`) can resample it. The point
     estimates returned here (``n``, ``covered``, ``per``, ``wer``) are
     computed the exact same way as :func:`evaluate` — byte-identical
-    scoreboard numbers. *stress* is passed through to
+    scoreboard numbers. *stress* and *lexicon* are passed through to
     :func:`evaluate_words_oracle`.
     """
     n, covered, pers, per, wer, _oracle = evaluate_words_oracle(
-        pairs, lang, strip_stress, broad, oracle_ks=(), stress=stress)
+        pairs, lang, strip_stress, broad, oracle_ks=(), stress=stress,
+        lexicon=lexicon)
     return n, covered, pers, per, wer
 
 
@@ -4207,6 +4209,7 @@ def evaluate_words_oracle(pairs: Sequence[GoldPair], lang: str,
                           oracle_ks: Sequence[int] = ORACLE_KS,
                           expose_ambiguous_endings: bool = False,
                           stress: Optional[StressTally] = None,
+                          lexicon: Optional[Mapping[str, str]] = None,
                           ) -> Tuple[int, int, List[float], float, float,
                                      Optional["OracleResult"]]:
     """:func:`evaluate_words` plus the top-k oracle PER.
@@ -4227,9 +4230,13 @@ def evaluate_words_oracle(pairs: Sequence[GoldPair], lang: str,
     1-best transcriptions (see :func:`stress_matches`). It reads the
     transcriptions before normalization and cannot change PER.
 
+    *lexicon* is the engine's :attr:`Pipeline.lexicon
+    <orthography2ipa.pipeline.Pipeline.lexicon>`. The board passes none and
+    scores the rules.
+
     Returns ``(n, covered, pers, per, wer, oracle_or_None)``.
     """
-    from orthography2ipa import G2P
+    from orthography2ipa import G2P, Pipeline
 
     # ``expose_ambiguous_endings=False``: the board's oracle columns are a
     # RANKING diagnostic (``PER - Oracle@k`` is defined as ranking error),
@@ -4241,7 +4248,8 @@ def evaluate_words_oracle(pairs: Sequence[GoldPair], lang: str,
     # as REACHABILITY and under its own heading: see docs/evaluation/benchmarks.md,
     # "Injected alternatives do not count as ranking error". 1-best is
     # identical either way, so the PER columns are unaffected.
-    engine = G2P(lang, expose_ambiguous_endings=expose_ambiguous_endings)
+    engine = G2P(lang, expose_ambiguous_endings=expose_ambiguous_endings,
+                 pipeline=Pipeline(lexicon=lexicon))
     # gold sets may carry several valid transcriptions per word
     # (dialect variants); score against all, keep the best
     refs: Dict[str, List[str]] = {}
@@ -4631,15 +4639,11 @@ def build_scoreboard(limit: Optional[int], oracle: bool = False,
 
 
 #: Distribution names of the optional packages that shape a row: those a
-#: dataset loader imports, and ``silabificador``, which the registered
-#: Portuguese syllabifier entry point loads (the entry point itself is
-#: declared by this package, so its version says nothing about the
-#: syllabifier). A floor-pinned package resolves to whatever is newest, so
-#: its version belongs beside the numbers it produced.
+#: dataset loader imports. A floor-pinned package resolves to whatever is
+#: newest, so its version belongs beside the numbers it produced.
 #: ``test_board_environment`` checks every import in this file is listed.
 OPTIONAL_SCORER_PACKAGES = (
-    "huggingface_hub", "rarfile", "scriptconv", "silabificador",
-    "text2tashkeel")
+    "huggingface_hub", "rarfile", "scriptconv", "text2tashkeel")
 
 #: Datasets whose scorer package no CI job installs, mapped to that package.
 #: Their rows are reproducible only on a box that carries it.
@@ -4992,7 +4996,7 @@ def write_scoreboard(rows: List[dict]) -> None:
 # how much of a language's accuracy comes from the *rules* versus the shipped
 # sidecar TSV. This report re-scores the same gold twice — once with the
 # lexicon disabled ("rules-only PER") and once with it on ("with-lexicon PER")
-# — for every language with a registered lexicon (none are bundled), so a regression
+# — for every language with a lexicon the caller supplies (none are bundled), so a regression
 # in rule quality can't hide behind lexicon coverage. It is a SEPARATE artifact
 # from the main scoreboard (docs/evaluation/generated/scoreboard.md is left untouched): languages
 # with no lexicon are byte-identical with or without this feature.
@@ -5005,50 +5009,29 @@ _LEXICON_REPORT_TAGS: Dict[str, List[str]] = {
 }
 
 
-@contextlib.contextmanager
-def _lexicon_disabled() -> Iterator[None]:
-    """Temporarily force every G2P engine onto the rules-only path.
-
-    Swaps ``get_lexicon`` (bound both in ``orthography2ipa.lexicon`` and, by
-    ``from``-import, in ``orthography2ipa.g2p``) for a stub returning ``{}``,
-    so ``_override_for`` sees no sidecar and falls straight to the beam. The
-    inline ``word_exceptions`` path is untouched — this isolates the lexicon's
-    contribution, not the whole override mechanism.
-    """
-    from orthography2ipa import lexicon as _lex
-    from orthography2ipa import g2p as _g2p
-
-    orig_lex, orig_g2p = _lex.get_lexicon, _g2p.get_lexicon
-    stub = lambda code: {}  # noqa: E731 — trivial, local
-    _lex.get_lexicon = stub
-    _g2p.get_lexicon = stub
-    try:
-        yield
-    finally:
-        _lex.get_lexicon = orig_lex
-        _g2p.get_lexicon = orig_g2p
-
-
-def _score_pairs(pairs: Sequence[GoldPair], lang: str) -> Tuple[int, float]:
+def _score_pairs(pairs: Sequence[GoldPair], lang: str,
+                 lexicon: Mapping[str, str]) -> Tuple[int, float]:
     n, covered, _pers, per, _wer = evaluate_words(
-        pairs, lang, strip_stress=True, broad=True)
+        pairs, lang, strip_stress=True, broad=True, lexicon=lexicon)
     return covered, per
 
 
-def build_lexicon_report(limit: Optional[int]) -> List[dict]:
-    """Rules-only vs with-lexicon PER for every shipped lexicon language.
+def build_lexicon_report(lexicon_dir: str, limit: Optional[int]) -> List[dict]:
+    """Rules-only vs with-lexicon PER for every lexicon in *lexicon_dir*.
 
-    For each registered lexicon (see ``orthography2ipa.register_lexicon``) and each wikipron gold tag that
-    resolves to it, reports PER on the full ``limit`` slice AND on just the
-    subset of gold words the lexicon actually covers (where the overlay can
-    possibly act) — the covered-subset delta is the honest measure of the
-    lexicon's own accuracy versus the rules on the same words.
+    Each ``{code}.tsv`` file names the spec it belongs to. For each file and
+    each wikipron gold tag that resolves to it, reports PER on the full
+    ``limit`` slice AND on just the subset of gold words the lexicon actually
+    covers (where the overlay can possibly act) — the covered-subset delta is
+    the honest measure of the lexicon's own accuracy versus the rules on the
+    same words.
     """
-    from orthography2ipa import lexicon as _lex
+    from orthography2ipa import get, load_lexicon
 
     rows: List[dict] = []
-    for code in _lex.available_lexicon_codes():
-        lex = _lex.get_lexicon(code)
+    for path in sorted(glob.glob(os.path.join(lexicon_dir, "*.tsv"))):
+        code = get(os.path.basename(path)[:-len(".tsv")]).code
+        lex = load_lexicon(path)
         for tag in _LEXICON_REPORT_TAGS.get(code, [code]):
             if tag not in _WIKIPRON_FILES:
                 continue
@@ -5060,11 +5043,10 @@ def build_lexicon_report(limit: Optional[int]) -> List[dict]:
                 continue
             covered_pairs = [(w, g) for (w, g) in pairs if w.lower() in lex]
 
-            with _lexicon_disabled():
-                full_n, full_rules = _score_pairs(pairs, tag)
-                sub_n, sub_rules = _score_pairs(covered_pairs, tag)
-            full_cov, full_lex = _score_pairs(pairs, tag)
-            sub_cov, sub_lex = _score_pairs(covered_pairs, tag)
+            _, full_rules = _score_pairs(pairs, tag, {})
+            _, sub_rules = _score_pairs(covered_pairs, tag, {})
+            full_cov, full_lex = _score_pairs(pairs, tag, lex)
+            sub_cov, sub_lex = _score_pairs(covered_pairs, tag, lex)
 
             rows.append({
                 "lexicon": code,
@@ -5094,15 +5076,16 @@ def write_lexicon_report(rows: List[dict]) -> None:
         "# Lexicon-overlay scoreboard",
         "",
         "Rules-only against with-lexicon PER for each language with a "
-        "caller-registered lexicon. The package bundles no lexicon: see "
+        "caller-supplied lexicon. The package bundles no lexicon: see "
         "[`docs/guide/lexicon.md`](../../guide/lexicon.md) and `orthography2ipa/lexicon.py`. "
-        "Each gold set is scored twice, once with `get_lexicon` stubbed to "
-        "`{}` (rules-only) and once with the lexicon active. A lexicon must "
+        "Each gold set is scored twice, once by an engine with an empty "
+        "`Pipeline.lexicon` (rules-only) and once by an engine with the "
+        "lexicon. A lexicon must "
         "lower PER, and the rules-only column shows whether the grapheme rules "
         "still hold up without it. Regenerate with:",
         "",
         "```bash",
-        "PYTHONPATH=$PWD python scripts/benchmark.py --lexicon-report",
+        "PYTHONPATH=$PWD python scripts/benchmark.py --lexicon-report /data/lexicons",
         "```",
         "",
         "The `covered` columns score only the gold words that the lexicon "
@@ -5173,9 +5156,9 @@ def main() -> None:
                          "oracle is a lattice-quality diagnostic for THIS "
                          "engine only and is never valid input to a "
                          "cross-system comparison.")
-    ap.add_argument("--lexicon-report", action="store_true",
+    ap.add_argument("--lexicon-report", metavar="DIR",
                     help="Score rules-only vs with-lexicon PER for every "
-                         "language with a registered lexicon and "
+                         "{code}.tsv file in DIR and "
                          "write docs/evaluation/generated/lexicon_scoreboard.md + "
                          "benchmarks/lexicon_results.json")
     args = ap.parse_args()
@@ -5184,7 +5167,7 @@ def main() -> None:
     REFRESH_CACHE = args.refresh_cache
 
     if args.lexicon_report:
-        rows = build_lexicon_report(args.limit)
+        rows = build_lexicon_report(args.lexicon_report, args.limit)
         write_lexicon_report(rows)
         print(f"wrote {len(rows)} rows to "
               f"{os.path.relpath(LEXICON_SCOREBOARD_MD, REPO_ROOT)} and "

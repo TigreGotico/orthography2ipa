@@ -19,7 +19,7 @@ data-driven pipeline:
    whole-sentence beams.
 4. **stress** — when the spec declares
    :class:`~orthography2ipa.types.StressRules`, the stressed syllable is
-   detected (per-language syllabifier plugins are honoured) and marked.
+   detected (with the syllabifier the caller passed, if any) and marked.
 5. **sandhi** — the spec's cross-word rules via
    :class:`~orthography2ipa.sandhi.SandhiEngine`.
 6. **dialect transform** — :func:`~orthography2ipa.transforms.apply_transform`
@@ -49,9 +49,8 @@ from orthography2ipa.features import (
 )
 from orthography2ipa.inventory import phoneme_inventory
 from orthography2ipa.inventory import tokenize as inventory_tokenize
-# scripts/benchmark.py and o2i-lexicons patch this module's ``get_lexicon``.
-from orthography2ipa.lexicon import _process_lexicon as get_lexicon
-from orthography2ipa.markup import MarkupError, parse_markup
+from orthography2ipa.lexicon import _process_lexicon, _warn_deprecated
+from orthography2ipa.markup import Chunk, MarkupError, parse_markup
 from orthography2ipa.phonetok import (
     PAUSE_PUNCTUATION,
     Candidate,
@@ -68,7 +67,7 @@ from orthography2ipa.phonetok import (
 )
 from orthography2ipa.phonetok import _VIRAMA_COMBINING_CLASS
 from orthography2ipa.phonetok import _PUNCT_RE as _WORD_PUNCT_RE
-from orthography2ipa.pipeline import Pipeline
+from orthography2ipa.pipeline import Pipeline, _check_mark, _cut_marked
 from orthography2ipa.vowels import is_ipa_vowel
 from orthography2ipa.allophony import compile_allophone_rescorer
 from orthography2ipa.positional import (match_grammatical_ending,
@@ -342,6 +341,36 @@ def _as_names(plugins: dict) -> dict:
     }
 
 
+#: The :class:`Pipeline` field that replaces the old argument of each stage.
+_STAGE_FIELDS = {
+    "normalize": "Pipeline(expand=...) or Pipeline(mark=...)",
+    "rescore": "Pipeline(rescore=...)",
+    "sandhi": "Pipeline(sandhi=...)",
+}
+
+
+def _field_stages(pipeline: Pipeline, named: dict, normalizer, rescorer,
+                  sentence_rescorer) -> Tuple[str, ...]:
+    """The plugin stages that *pipeline*'s fields take over.
+
+    Raises :class:`ValueError` when a caller also passes the old argument for a
+    stage, because either order would silently drop one of the two.
+    """
+    pairs = (
+        ("normalize", pipeline.expand is not None or pipeline.mark is not None,
+         "normalizer=", normalizer is not None),
+        ("rescore", bool(pipeline.rescore), "rescorer=", rescorer is not None),
+        ("sandhi", pipeline.sandhi is not None, "sentence_rescorer=",
+         sentence_rescorer is not None),
+    )
+    for stage, field_set, old, old_set in pairs:
+        if field_set and (old_set or named.get(stage)):
+            raise ValueError(
+                f"{old} and plugins={{{stage!r}: ...}} cannot run with "
+                f"{_STAGE_FIELDS[stage]}: pass the field")
+    return tuple(stage for stage, field_set, *_ in pairs if field_set)
+
+
 class _StagePlugins:
     """The plugins this engine runs, resolved once, per stage.
 
@@ -406,8 +435,13 @@ class G2P:
         Insert stress marks when the spec declares stress rules
         (default).
     normalizer : Optional[Callable[[str], str]]
+        Deprecated: use ``Pipeline(expand=...)`` or ``Pipeline(mark=...)``.
         Pre-G2P text preparation (diacritization, number expansion);
         identity when omitted.
+    rescorer, sentence_rescorer, plugins
+        Deprecated: use ``Pipeline(rescore=...)``, ``Pipeline(sandhi=...)``
+        and the ``Pipeline`` field of each stage. Each old argument that is
+        not ``None`` raises :class:`DeprecationWarning`.
     pipeline : Optional[Pipeline]
         The lexicon and the syllabifier for this engine alone (see
         :class:`~orthography2ipa.pipeline.Pipeline`). Another engine in the
@@ -455,8 +489,19 @@ class G2P:
         allow_undeclared_phonemes: bool = False,
         expose_ambiguous_endings: bool = True,
     ) -> None:
+        for name, value, stage in (("normalizer", normalizer, "normalize"),
+                                   ("rescorer", rescorer, "rescore"),
+                                   ("sentence_rescorer", sentence_rescorer, "sandhi")):
+            if value is not None:
+                _warn_deprecated(f"G2P({name}=...)", _STAGE_FIELDS[stage])
+        if plugins is not None:
+            _warn_deprecated("G2P(plugins=...)", ", ".join(
+                f"{field} for {stage!r}" for stage, field in _STAGE_FIELDS.items()))
         self.allow_undeclared_phonemes = allow_undeclared_phonemes
         self.pipeline: Pipeline = pipeline or Pipeline()
+        named = _as_names(plugins or {})
+        field_stages = _field_stages(
+            self.pipeline, named, normalizer, rescorer, sentence_rescorer)
         #: Whether a list-valued ``grammatical_endings`` entry contributes
         #: its lower-ranked readings to the beam (see
         #: :attr:`~orthography2ipa.types.LanguageSpec.grammatical_endings`).
@@ -496,7 +541,7 @@ class G2P:
         # default path is byte-identical.
         self.apply_allophony = apply_allophony
         user_rescorers: Tuple[LatticeRescorer, ...] = normalize_rescorers(
-            rescorer)
+            self.pipeline.rescore or rescorer)
         positional_vowel_graphemes = frozenset(
             grapheme
             for grapheme, positions in (self.spec.positional_graphemes or {}).items()
@@ -543,7 +588,9 @@ class G2P:
         #
         # Either way it is a DECLARATION. What is never allowed is for discovery
         # alone to decide: `pip install` must not change a transcription.
-        self.plugins = {**(self.spec.plugins or {}), **_as_names(plugins or {})}
+        self.plugins = {**(self.spec.plugins or {}), **named}
+        for stage in field_stages:
+            self.plugins.pop(stage, None)
         self._stage_plugins = _StagePlugins(self.spec, self.plugins)
 
         declared_rescorers = tuple(
@@ -571,8 +618,8 @@ class G2P:
         self._sentence_rescorers: Tuple[SentenceRescorer, ...] = (
             normalize_sentence_rescorers(sentence_rescorer))
         # Per-engine memo of two pure, spec-only computations that the profiler
-        # showed dominate the front-end path: syllabification (the silabificador
-        # plugin is not cheap) and the rules-only pronunciation lattice the
+        # showed dominate the front-end path: syllabification (a caller's plugin
+        # is not cheap) and the rules-only pronunciation lattice the
         # confidence read rebuilds. Both are deterministic functions of the word
         # and this engine's immutable spec — they never consult the runtime-
         # mutable lexicon — so a fresh engine gets fresh caches and the results
@@ -691,7 +738,9 @@ class G2P:
         # removes. The plugin sees each word's SPELLING as well as its IPA — whether
         # a word ends in a case ending is a fact about the page, and guessing it
         # from the last characters of the IPA confuses an ending with a stem.
-        for plugin in self._stage_plugins.get("sandhi"):
+        sandhi = self.pipeline.sandhi
+        for plugin in ([sandhi] if sandhi is not None
+                       else self._stage_plugins.get("sandhi")):
             surfaces = [w.surface for w in words]
             # The pause has to be HANDED to the plugin: punctuation is stripped
             # during word splitting, so by now it is gone from the input — and a
@@ -1064,8 +1113,26 @@ class G2P:
         runs and nothing else, which is the only text it has any business
         rewriting: the caller who wrote ``ph`` has already said what that word is.
         """
+        return self._split_chunks(self._prepared(parse_markup(text)))
+
+    def _prepared(self, chunks: List[Chunk]) -> List[Chunk]:
+        """*chunks* after the pipeline's ``expand`` and ``mark``."""
+        expand, mark = self.pipeline.expand, self.pipeline.mark
+        if expand is not None:
+            chunks = [chunk if chunk.is_forced
+                      else replace(chunk, text=expand(chunk.text))
+                      for chunk in chunks]
+        if mark is None:
+            return chunks
+        text = "".join(chunk.text for chunk in chunks)
+        marked = mark(text)
+        _check_mark(text, marked)
+        return _cut_marked(marked, chunks)
+
+    def _split_chunks(self, chunks: List[Chunk]) -> List[_Word]:
+        """Group *chunks* into words, forced pronunciations included."""
         words: List[_Word] = []
-        for chunk in parse_markup(text):
+        for chunk in chunks:
             if chunk.is_forced:
                 words.append(_Word(surface=chunk.text.strip(),
                                    forced_ipa=self._check_forced(chunk.forced_ipa)))
@@ -1084,7 +1151,7 @@ class G2P:
                 or not _HYPHENS.intersection(word)
                 or self._override_for(word) is not None):
             return None
-        elements = self._split_words(word)
+        elements = self._split_chunks(parse_markup(word))
         if len(elements) < 2 or not all(w.hyphen_joined
                                         for w in elements[1:]):
             return None
@@ -1254,7 +1321,7 @@ class G2P:
         exceptions = self.spec.word_exceptions
         lex = self.pipeline.lexicon
         if lex is None:
-            lex = get_lexicon(self.lang)
+            lex = _process_lexicon(self.lang)
         # Two keys, tried in order: the word as given, then the word with
         # the punctuation that clings to it in raw text stripped from both
         # ends (``I,`` ``is.`` ``"I``). The grapheme layer never sees that
@@ -1689,9 +1756,10 @@ class G2P:
         """Return (unmapped_chars, coverage) for *word*.
 
         ``unmapped_chars`` are the surface characters of any ``UNKNOWN``
-        token the tokenizer produced for *word* — characters the spec's
-        grapheme table does not cover. ``coverage`` is the fraction of
-        ``GRAPHEME``/``UNKNOWN`` characters that mapped successfully.
+        or ``DIGIT`` token the tokenizer produced for *word* — characters the
+        spec's grapheme table does not cover, so the transcription drops them.
+        ``coverage`` is the fraction of ``GRAPHEME``/``UNKNOWN``/``DIGIT``
+        characters that mapped successfully.
         Punctuation/whitespace never reach this method (already stripped
         by :meth:`_split_words`), so it is not part of the calculation.
         """
@@ -1704,6 +1772,9 @@ class G2P:
             elif tok.kind == TokenKind.UNKNOWN:
                 unmapped.append(tok.grapheme)
                 total_chars += tok.length
+            elif tok.kind == TokenKind.DIGIT:
+                unmapped.extend(tok.grapheme)
+                total_chars += tok.length
         if total_chars == 0:
             return (), 1.0
         coverage = (total_chars - len(unmapped)) / total_chars
@@ -1712,7 +1783,7 @@ class G2P:
     def _handle_unmapped(self, word: str, unmapped: Tuple[str, ...]) -> None:
         if self.on_unmapped == "warn" and not self.is_stub:
             for ch in unmapped:
-                if (unicodedata.category(ch)[0] not in "LM"
+                if (unicodedata.category(ch)[0] not in "LMN"
                         or ch in self._warned_graphemes):
                     continue
                 self._warned_graphemes.add(ch)
