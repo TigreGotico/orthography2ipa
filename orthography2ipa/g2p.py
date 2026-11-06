@@ -1737,9 +1737,10 @@ class G2P:
         """Return (unmapped_chars, coverage) for *word*.
 
         ``unmapped_chars`` are the surface characters of any ``UNKNOWN``
-        token the tokenizer produced for *word* — characters the spec's
-        grapheme table does not cover. ``coverage`` is the fraction of
-        ``GRAPHEME``/``UNKNOWN`` characters that mapped successfully.
+        or ``DIGIT`` token the tokenizer produced for *word* — characters the
+        spec's grapheme table does not cover, so the transcription drops them.
+        ``coverage`` is the fraction of ``GRAPHEME``/``UNKNOWN``/``DIGIT``
+        characters that mapped successfully.
         Punctuation/whitespace never reach this method (already stripped
         by :meth:`_split_words`), so it is not part of the calculation.
         """
@@ -1752,6 +1753,9 @@ class G2P:
             elif tok.kind == TokenKind.UNKNOWN:
                 unmapped.append(tok.grapheme)
                 total_chars += tok.length
+            elif tok.kind == TokenKind.DIGIT:
+                unmapped.extend(tok.grapheme)
+                total_chars += tok.length
         if total_chars == 0:
             return (), 1.0
         coverage = (total_chars - len(unmapped)) / total_chars
@@ -1760,7 +1764,7 @@ class G2P:
     def _handle_unmapped(self, word: str, unmapped: Tuple[str, ...]) -> None:
         if self.on_unmapped == "warn" and not self.is_stub:
             for ch in unmapped:
-                if (unicodedata.category(ch)[0] not in "LM"
+                if (unicodedata.category(ch)[0] not in "LMN"
                         or ch in self._warned_graphemes):
                     continue
                 self._warned_graphemes.add(ch)
