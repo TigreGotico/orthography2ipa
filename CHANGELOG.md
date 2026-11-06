@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.119.7a1](https://github.com/TigreGotico/orthography2ipa/tree/7.119.7a1) (2026-11-06)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.119.6a1...7.119.7a1)
+
+**Merged pull requests:**
+
+- fix\(pt\): read ⟨uei⟩ with the diphthong of ⟨ei⟩ [\#2159](https://github.com/TigreGotico/orthography2ipa/pull/2159) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.119.6a1](https://github.com/TigreGotico/orthography2ipa/tree/7.119.6a1) (2026-11-06)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.119.5a1...7.119.6a1)
@@ -388,10 +396,6 @@
 ## [7.116.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.116.0a1) (2026-11-04)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.115.2a1...7.116.0a1)
-
-**Merged pull requests:**
-
-- feat\(nl\): add nl-NL-x-polder Polder Dutch spec [\#2031](https://github.com/TigreGotico/orthography2ipa/pull/2031) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.115.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.115.2a1) (2026-11-04)
 
