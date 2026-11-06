@@ -66,7 +66,7 @@ def test_pt_pt_porque_with_circumflex():
     assert G2P("pt-PT").transcribe_word("porquê") == "puɾˈke"
 
 
-@pytest.mark.parametrize("word", ["porco", "porta", "forte"])
+@pytest.mark.parametrize("word", ["porte", "porta", "forte"])
 def test_other_stressed_o_words_keep_their_vowel(word):
     assert G2P("pt-PT").transcribe_word(word).startswith(
         "ˈ" + word[0] + "ɔ")
@@ -98,5 +98,5 @@ def test_the_rule_follows_unstressed_o_reduction(lang):
 def test_specs_without_reduction_keep_the_stressed_vowel(lang):
     assert not _rule(lang).phonemes
     porque = G2P(lang).transcribe_word("porque")
-    porco = G2P(lang).transcribe_word("porco")
-    assert porque[:3] == porco[:3] and porque[2] != "u", (porque, porco)
+    porta = G2P(lang).transcribe_word("porta")
+    assert porque[:3] == porta[:3] and porque[2] != "u", (porque, porta)
