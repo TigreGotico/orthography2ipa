@@ -35,7 +35,7 @@ The table gives the features that set each lect apart from `pt-PT`. The lects ru
 | [`pt-PT-x-coimbra`](#conimbricense-pt-pt-x-coimbra) | Coimbra | the standard values, plus [ʒ] for a final /s/ before a vowel | `os olhos` [oʒ ˈoʎuʃ] |
 | [`pt-PT-x-lisbon`](#lisbon-pt-pt-x-lisbon) | Lisbon, Estremadura | stressed ⟨e⟩ to [ɐ] before a palatal<br>⟨ei⟩ [ɐj]<br>⟨ou⟩ [o] | `espelho` [iʃˈpɐʎu], `leite` [ˈlɐjtɨ] |
 | [`pt-PT-x-alentejo`](#alentejano-pt-pt-x-alentejo) | Alto Alentejo | stressed /u/ to [y]<br>final unstressed high vowels deleted<br>⟨-d-⟩ deleted<br>⟨ei ou⟩ monophthongs | `sul` [ˈsyɫ], `gosto` [ˈɡɔʃt], `nada` [ˈnaɐ] |
-| [`pt-PT-x-algarve`](#algarvio-pt-pt-x-algarve) | Algarve | stressed /u/ to [y]<br>word-final /s/ [ʒ]<br>⟨ei ou⟩ monophthongs<br>unstressed ⟨e o⟩ kept | `tudo` [ˈtydu], `mas` [ˈmaʒ], `pedir` [peˈdiɾ] |
+| [`pt-PT-x-algarve`](#algarvio-pt-pt-x-algarve) | Algarve | stressed /u/ to [y]<br>word-final /s/ [ʒ]<br>⟨ei ou⟩ monophthongs | `tudo` [ˈtydu], `mas` [ˈmaʒ], `leite` [ˈletɨ] |
 | [`pt-PT-x-madeira`](#madeiran-pt-pt-x-madeira) | Madeira | /l/ to [ʎ] after /i/<br>⟨-ões -ães -ãos⟩ as a nasal vowel plus [n] | `quilo` [ˈkiʎu], `cães` [ˈkɐ̃ns] |
 | [`pt-PT-x-acores`](#azorean-pt-pt-x-acores) | Azores, general node | stressed /u/ to [y] before an onset consonant only<br>⟨ou⟩ [ow]<br>[ʒ] for a final /s/ before a vowel | `número` [ˈnymɨɾu], `azul` [ɐˈzuɫ] |
 | [`pt-PT-x-sao-miguel`](#micaelense-pt-pt-x-sao-miguel) | São Miguel | every stressed /u/ to [y]<br>⟨oi ou⟩ [ø]<br>/l/ to [ʎ] after /i/<br>[ʒ] for a final /s/ before a vowel | `azul` [ɐˈzyɫ], `pouco` [ˈpøku], `quilo` [ˈkiʎu] |
@@ -412,18 +412,18 @@ So `no mar` gives [nu ˈmaɾ].
 |:---|:---|:---|
 | ⟨ei⟩ to [e] | `graphemes` | `leite` [ˈletɨ] |
 | ⟨ou⟩ to [o] | `graphemes` | `outro` [ˈotɾu] |
-| word-final ⟨s⟩ to [ʒ] | `positional_graphemes` | `mas` [ˈmaʒ], `estás` [iʃˈtaʒ], `muitos amigos` [ˈmujtoʒ ɐˈmiɡoʒ] |
-| unstressed ⟨e o⟩ kept as [e o] | `positional_graphemes` | `pedir` [peˈdiɾ], `telefone` [teleˈfɔnɨ] |
+| word-final ⟨s⟩ to [ʒ] | `positional_graphemes` | `mas` [ˈmaʒ], `estás` [iʃˈtaʒ], `muitos amigos` [ˈmũj̃tuʒ ɐˈmiɡuʒ] |
+| unstressed ⟨e o⟩ to [ɨ u] | inherited `positional_graphemes` | `pedir` [pɨˈdiɾ], `telefone` [tɨlɨˈfɔnɨ], `comida` [kuˈmidɐ] |
 | word-final ⟨-em⟩ to [ẽj̃] | `PT_FINAL_EM_*` switched off | `bem` [ˈbẽj̃], `homens` [ˈɔmẽʒ] |
 | dark coda /l/ | inherited `allophone_rules` | `sol` [ˈsɔɫ] |
 | coda /s/ to [ʃ] before a consonant | inherited `allophone_rules` | `gosto` [ˈɡɔʃtu] |
-| open stressed vowels [ɛ ɔ] | `positional_graphemes` | `forte` [ˈfɔɾtɨ] |
+| open stressed vowels [ɛ ɔ] | inherited `positional_graphemes` | `forte` [ˈfɔɾtɨ] |
 
 The Algarve has the strongest form of the southern [ʒ] for a final /s/ (see [/s/-sandhi before a vowel](#s-sandhi-before-a-vowel)). The value holds in every word-final position, so the positional map gives it and no separate sandhi rule is needed. For word-final ⟨-em⟩, Leite de Vasconcellos (1901, §44n, p. 93) writes: *"Dans le Baixo-Alemtejo et dans l'Algarve, on dit -ẽi en syllabe découverte, et -ẽ en syllabe couverte"*. He also heard [ẽ] in open final syllables at Lagos, a local variant that the spec does not model.
 
 Known gaps and features not modelled:
 
-- The spec notes give no source for the unstressed [e] and [o].
+- The evidence for the unstressed vowels is thin. Brissos (2014, p. 79) writes [ɨ] in the pretonic ⟨e⟩ of `debulham` and in the pretonic ⟨o⟩ of `coruja`, for Praia da Salema. These are two words, and they are side forms in a paper on stressed vowels. `coruja` does not show [u], so the [u] of ⟨o⟩ is the `pt-PT` default and no measured value. Cunha & Cintra (7th ed., p. 29) say only that the unstressed vowel spelled ⟨o⟩ *"cai ou se reduz"*, and their examples are word-final.
 - Brissos (2014) documents a wider central-southern chain shift: a stressed [a] to [ɛ] in high-vowel and palatal contexts, and [ɔ] to [o̝]. These changes depend on context and are only variably categorical. Modelling them next to the /u/ fronting risks a collapse of the vowel space, so only /u/ to [y] is encoded.
 - Older and rural speakers have an apico-alveolar [s̺]. It is an articulatory distinction with no phonemic contrast here, and Cintra (1971) marks this class of feature as not simulable at the phoneme level.
 - The Algarve has no betacism: /v/ and /b/ stay apart.

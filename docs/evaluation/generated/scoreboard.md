@@ -614,9 +614,9 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | pt-PT-x-alentejo | primary_sources | 5† | 0.3000‡ | - | - | 0.2333 | 0.2333 | 0.2000 | 0.2000 | n too small | 0.0000 | research | expert-human |
 | pt-PT-x-alfena | clup_dialect | 1† | 0.3173‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
 | pt-PT-x-alfena | portuguese_tts | 20 | 0.0509‡ | - | - | - | - | - | - | [0.0306, 0.0726] | 0.3000 | research | llm-corrected |
-| pt-PT-x-algarve | clup_dialect | 3† | 0.3617‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
-| pt-PT-x-algarve | ep_dialects | 30 | 0.1405 | - | - | - | - | - | - | [0.1080, 0.1710] | 0.1333 | research | expert-human |
-| pt-PT-x-algarve | portuguese_tts | 20 | 0.1174‡ | - | - | - | - | - | - | [0.0931, 0.1462] | 0.0000 | research | llm-corrected |
+| pt-PT-x-algarve | clup_dialect | 3† | 0.3364‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
+| pt-PT-x-algarve | ep_dialects | 30 | 0.1013 | - | - | - | - | - | - | [0.0749, 0.1292] | 0.2333 | research | expert-human |
+| pt-PT-x-algarve | portuguese_tts | 20 | 0.0878‡ | - | - | - | - | - | - | [0.0693, 0.1119] | 0.0000 | research | llm-corrected |
 | pt-PT-x-aveiro | clup_dialect | 6† | 0.2855‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
 | pt-PT-x-aveiro | portuguese_tts | 20 | 0.0574‡ | - | - | - | - | - | - | [0.0369, 0.0799] | 0.3000 | research | llm-corrected |
 | pt-PT-x-beira | clup_dialect | 8† | 0.3092‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |

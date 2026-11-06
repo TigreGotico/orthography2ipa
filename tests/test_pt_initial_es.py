@@ -111,12 +111,12 @@ def test_european_specs_take_the_vowel_and_keep_their_coda(lang):
     assert G2P(lang).transcribe("esbelto").startswith("iʒ")
 
 
-def test_algarve_keeps_its_pretonic_row():
-    assert G2P("pt-PT-x-algarve").transcribe("menino") == "meˈninu"
+def test_algarve_takes_the_pt_pt_pretonic_row():
+    assert G2P("pt-PT-x-algarve").transcribe("menino") == "mɨˈninu"
 
 
-@pytest.mark.parametrize("lang, ipa", [("pt-PT-x-algarve", "peʃˈkaɾ"), ("pt-TL", "pesˈkaɾ")])
-def test_medial_es_stays_out_where_the_pretonic_row_gives_e(lang, ipa):
+@pytest.mark.parametrize("lang, ipa", [("pt-PT-x-algarve", "pɨʃˈkaɾ"), ("pt-TL", "pesˈkaɾ")])
+def test_medial_es_stays_out_of_algarve_and_timor(lang, ipa):
     assert G2P(lang).transcribe("pescar") == ipa
 
 
