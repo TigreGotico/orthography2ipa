@@ -24,7 +24,7 @@ A coda /S/ is palato-alveolar. Brescancini (2015: 82) finds *"a variante palato-
 
 The stops /t d/ stay stops before /i/. Dias (2010: 2) writes: *"Uma das características mais evidentes no falar 'manezinho' é ausência da africação de /t,d/"*, so *tipo* is [tipu]. The positional map gives the plain stop before ⟨i⟩, and the spec switches off `BR_AFFRIC_T_RAISED` and `BR_AFFRIC_D_RAISED`: `tipo` [ˈtipu], `dia` [ˈdiɐ], `leite` [ˈlejti], `dentes` [ˈdẽtiʃ].
 
-The spec switches off `BR_EPENTHESIS_POSTTONIC`, so a cluster after the stressed vowel stays (`capto` [ˈkaptu]). Collischonn (2004: 67) counts the vowel in 24 % of post-tonic tokens in the speech of the three southern capitals. Silveira & Seara (2009: 22) count 126 of 200 post-tonic tokens for four speakers born in the city, in a reading task. The spec follows the count from conversation.
+The spec switches off `BR_EPENTHESIS_POSTTONIC`, `BR_EPENTHESIS_POSTTONIC_T_NASAL` and `BR_EPENTHESIS_POSTTONIC_K_N`, so a cluster after the stressed vowel stays (`capto` [ˈkaptu], `técnico` [ˈtɛkniku]). Collischonn (2004: 67) counts the vowel in 24 % of post-tonic tokens in the speech of the three southern capitals. Silveira & Seara (2009: 22) count 126 of 200 post-tonic tokens for four speakers born in the city, in a reading task. The spec follows the count from conversation.
 
 | Spelling | IPA | Feature |
 |:---|:---|:---|

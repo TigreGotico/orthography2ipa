@@ -37,7 +37,7 @@ Reduction is the most diagnostic EP feature. Unstressed vowels raise or move to 
 
 The positional rows of ⟨a⟩, ⟨e⟩ and ⟨o⟩ carry the reduction. They are `nucleus_stressed`, `nucleus_unstressed`, `pretonic` and `word_final`, plus `posttonic` for ⟨a⟩. Each row sets the vowel by stress and position. The `allophone_rules` layer does not repeat the reduction, because a second rule for the same change would never fire.
 
-Speakers often delete a word-final [ɨ]. The spec writes the vowel. The optional sandhi rule `PT_ELISION` deletes a final [ɨ] before a vowel (`de amanhã` → [d‿ɐmɐɲã]), but the default transcription keeps it: `de amor` gives [dɨ ɐˈmoɾ]. A word exception maps the conjunction `e` to [i].
+Speakers often delete a word-final [ɨ]. The spec writes the vowel in most contexts. The sandhi rule `PT_ELISION` deletes it when the next word starts with [a e i o u ɛ ɔ]: `norte e` gives [ˈnɔɾt i]. The engine applies this rule by default. A next word that starts with [ɐ] or a stress mark keeps the vowel: `de amor` gives [dɨ ɐˈmoɾ], and `de ouro` gives [dɨ ˈoɾu]. A word exception maps the conjunction `e` to [i].
 
 ## Coda vowel nasalisation
 
