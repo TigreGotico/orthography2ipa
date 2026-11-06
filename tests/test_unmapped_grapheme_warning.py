@@ -6,8 +6,10 @@ string a word without the ⟨ڨ⟩ gives. The engine now emits
 :class:`~orthography2ipa.exceptions.UnmappedGraphemeWarning` once per
 (spec, character), and the transcription string does not change.
 
-Only Unicode letters (``L*``) and marks (``M*``) warn. Punctuation, digits,
-symbols and spaces are not part of a spelling the spec has to cover.
+Unicode letters (``L*``), marks (``M*``) and digits (``N*``) warn. A digit
+the spec does not spell with is dropped from the transcription, so it warns
+like a letter. Punctuation, symbols and spaces are not part of a spelling
+the spec has to cover.
 
 ⟨ڨ⟩ U+06A8 is the issue #1644 case: ``ar-MA`` declares it (Saadane & Habash
 2015, quoted in that spec's notes) and ``ar`` does not.
@@ -104,9 +106,9 @@ def test_mapped_word_in_unrelated_languages_does_not_warn(lang, word):
 @pytest.mark.parametrize("text", [
     "ب€ب",    # U+20AC, category Sc
     "ب😀ب",   # U+1F600, category So
-    "بب، ١٢٣ !",
+    "بب، !",
 ])
-def test_symbols_digits_punctuation_and_spaces_do_not_warn(text):
+def test_symbols_punctuation_and_spaces_do_not_warn(text):
     with warnings.catch_warnings():
         warnings.simplefilter("error", UnmappedGraphemeWarning)
         G2P("ar").transcribe(text)
