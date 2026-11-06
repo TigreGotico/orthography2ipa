@@ -54,7 +54,7 @@ class Pipeline:
             ``features``. A word method takes a prepared word and runs neither.
         rescore: the rescorers of this engine, in order. They run in every word
             path, before the spec's allophone rules. A single rescorer or a list
-            also works, as for ``rescorer=``.
+            also works.
         sandhi: what happens between the words of a sentence. ``apply`` runs in
             ``transcribe`` and ``transcribe_detailed``, after the spec's
             ``sandhi_rules``, and it returns one IPA string per word.

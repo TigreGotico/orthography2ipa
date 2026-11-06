@@ -53,7 +53,6 @@ from __future__ import annotations
 
 from typing import List, Optional, Sequence
 
-from orthography2ipa import registry
 from orthography2ipa.g2p import G2P
 from orthography2ipa.pipeline import Pipeline
 from orthography2ipa.syllabifier_plugin import SyllabifierPlugin
@@ -197,23 +196,14 @@ def assert_rescorer_conforms(
     spec = get(lang)
     declared = phoneme_inventory(spec)
 
-    # Declared, not discovered. A rescorer changes the transcription, so it only
-    # ever runs because something NAMED it — here, the caller, which is exactly how
-    # a downstream engine composes its own pipeline.
-    saved = registry._declared.get("rescore")
-    try:
-        registry._declared["rescore"] = {"__conformance__": plugin}
-        engine = G2P(lang, plugins={"rescore": "__conformance__"})
-        first = {w: engine.transcribe_word(w) for w in words}
-        second = {
-            w: G2P(lang, plugins={"rescore": "__conformance__"}).transcribe_word(w)
-            for w in words
-        }
-    finally:
-        if saved is None:
-            registry._declared.pop("rescore", None)
-        else:
-            registry._declared["rescore"] = saved
+    # Passed, not discovered. A rescorer changes the transcription, so it only
+    # ever runs because the caller put it in the pipeline of one engine.
+    def engine() -> G2P:
+        return G2P(lang, pipeline=Pipeline(rescore=tuple(plugin.rescorers(lang))))
+
+    first_engine = engine()
+    first = {w: first_engine.transcribe_word(w) for w in words}
+    second = {w: engine().transcribe_word(w) for w in words}
 
     unstable = {w: (first[w], second[w]) for w in words if first[w] != second[w]}
     if unstable:
