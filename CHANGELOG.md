@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.119.10a2](https://github.com/TigreGotico/orthography2ipa/tree/7.119.10a2) (2026-11-06)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.119.10a1...7.119.10a2)
+
+**Merged pull requests:**
+
+- ci: publish orthography2ipa alphas once a day [\#2171](https://github.com/TigreGotico/orthography2ipa/pull/2171) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.119.10a1](https://github.com/TigreGotico/orthography2ipa/tree/7.119.10a1) (2026-11-06)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.119.9a1...7.119.10a1)
