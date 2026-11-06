@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.122.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.122.2a1) (2026-11-06)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.122.1a1...7.122.2a1)
+
+**Merged pull requests:**
+
+- fix\(pt-PT-x-algarve\): take the unstressed ⟨e o⟩ of pt-PT [\#2185](https://github.com/TigreGotico/orthography2ipa/pull/2185) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.122.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.122.1a1) (2026-11-06)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.122.0a2...7.122.1a1)
@@ -301,10 +309,6 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.117.16a2...7.117.17a1)
 
-**Merged pull requests:**
-
-- fix\(pt-BR\): epenthesis in an obstruent cluster that opens a stressed word [\#2064](https://github.com/TigreGotico/orthography2ipa/pull/2064) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [7.117.16a2](https://github.com/TigreGotico/orthography2ipa/tree/7.117.16a2) (2026-11-05)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.117.16a1...7.117.16a2)
@@ -392,10 +396,6 @@
 ## [7.117.5a1](https://github.com/TigreGotico/orthography2ipa/tree/7.117.5a1) (2026-11-05)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.117.4a1...7.117.5a1)
-
-**Merged pull requests:**
-
-- fix\(nl\): give nl-NL-x-limburg the velar \[x\] for ⟨ch⟩ and tjerkgaast [\#2065](https://github.com/TigreGotico/orthography2ipa/pull/2065) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.117.4a1](https://github.com/TigreGotico/orthography2ipa/tree/7.117.4a1) (2026-11-05)
 
