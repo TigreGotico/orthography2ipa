@@ -127,7 +127,7 @@ Known gaps:
 - The plural ending raises as in the base (`dentes` [ˈdẽtis]), while the singular keeps [e]. No opened source gives the plural rate.
 - Silva (2023: 67) places Paraná in the retroflex zone of the coda /R/. The spec keeps the tap, and the opened sources do not settle the value for the capital.
 
-The epenthetic vowel after the stressed syllable is switched off, as in the other southern specs: Collischonn (2004: 67) counts it in 24 % of post-tonic tokens in Porto Alegre, Florianópolis and Curitiba (`capto` [ˈkaptu]). The pretonic vowel stays (`opção` [opiˈsɐ̃w̃]).
+The epenthetic vowel after the stressed syllable is switched off, as in the other southern specs: Collischonn (2004: 67) counts it in 24 % of post-tonic tokens in Porto Alegre, Florianópolis and Curitiba (`capto` [ˈkaptu]). The two rules for a post-tonic stop before a nasal are off with it (`técnico` [ˈtɛkniku]). The pretonic vowel stays (`opção` [opiˈsɐ̃w̃]).
 
 ## Sulista (pt-BR-x-sul)
 
