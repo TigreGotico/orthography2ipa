@@ -14,9 +14,11 @@ from __future__ import annotations
 import unicodedata
 from dataclasses import dataclass, replace
 from itertools import zip_longest
-from typing import Callable, List, Mapping, Optional
+from typing import Callable, List, Mapping, Optional, Tuple
 
 from orthography2ipa.markup import Chunk
+from orthography2ipa.plugins import SandhiPlugin
+from orthography2ipa.rescorer import LatticeRescorer
 from orthography2ipa.syllabifier_plugin import SyllabifierPlugin
 
 __all__ = ["Pipeline"]
@@ -50,6 +52,13 @@ class Pipeline:
             written surface. The engine runs ``expand`` and ``mark`` for
             ``transcribe``, ``transcribe_detailed``, ``sentence_lattice`` and
             ``features``. A word method takes a prepared word and runs neither.
+        rescore: the rescorers of this engine, in order. They run in every word
+            path, before the spec's allophone rules. A single rescorer or a list
+            also works, as for ``rescorer=``.
+        sandhi: what happens between the words of a sentence. ``apply`` runs in
+            ``transcribe`` and ``transcribe_detailed``, after the spec's
+            ``sandhi_rules``, and it returns one IPA string per word.
+            ``apply_sandhi=False`` turns off the spec's rules, not this field.
 
     A pipeline makes no promise to be hashable: a dict lexicon is not, and a
     callable compares by identity. Key a cache on what builds the pipeline.
@@ -59,6 +68,8 @@ class Pipeline:
     syllabifier: Optional[SyllabifierPlugin] = None
     expand: Optional[Callable[[str], str]] = None
     mark: Optional[Callable[[str], str]] = None
+    rescore: Tuple[LatticeRescorer, ...] = ()
+    sandhi: Optional[SandhiPlugin] = None
 
 
 def _letters(text: str) -> str:
