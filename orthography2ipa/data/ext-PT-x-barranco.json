@@ -389,7 +389,7 @@
       "id": "PT_STRESSED_A_BEFORE_NASAL",
       "phonemes": [],
       "surface": "ɐ",
-      "notes": "DISABLED for Barranquenho. PT_STRESSED_A_BEFORE_NASAL raises the stressed /a/ of the pt-PT standard. No source for this variety was read, so the /a/ stays as the spec gives it. The `a` row keeps the `word_initial` values for the same reason."
+      "notes": "DISABLED for Barranquenho. No source read covers a stressed /a/ before an onset nasal in this variety. The reading is the spec default and makes no claim about this context. The `a` row keeps the `word_initial` values for the same reason."
     }
   ],
  "ancestors": [

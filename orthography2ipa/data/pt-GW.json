@@ -289,7 +289,7 @@
       "id": "PT_STRESSED_A_BEFORE_NASAL",
       "phonemes": [],
       "surface": "ɐ",
-      "notes": "DISABLED for Guinea-Bissau Portuguese. PT_STRESSED_A_BEFORE_NASAL raises the stressed /a/ of the pt-PT standard. No source for this variety was read, so the /a/ stays as the spec gives it."
+      "notes": "DISABLED for Guinea-Bissau Portuguese. No source read covers a stressed /a/ before an onset nasal in this variety. The reading is the spec default and makes no claim about this context."
     }
   ],
   "location": {

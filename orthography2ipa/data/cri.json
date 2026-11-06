@@ -445,7 +445,7 @@
       "id": "PT_STRESSED_A_BEFORE_NASAL",
       "phonemes": [],
       "surface": "ɐ",
-      "notes": "DISABLED for Sãotomense (Forro / Santome). PT_STRESSED_A_BEFORE_NASAL describes pt-PT, and no source for this language was read."
+      "notes": "DISABLED for Sãotomense (Forro / Santome). No source read covers a stressed /a/ before an onset nasal in this variety. The reading is the spec default and makes no claim about this context."
     }
   ],
   "ancestors": [

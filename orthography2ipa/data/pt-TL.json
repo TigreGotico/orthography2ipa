@@ -368,7 +368,7 @@
       "id": "PT_STRESSED_A_BEFORE_NASAL",
       "phonemes": [],
       "surface": "ɐ",
-      "notes": "DISABLED for East Timorese Portuguese. The `a` row of this spec gives [a] in every position, and no source for this variety gives [ɐ] before a nasal."
+      "notes": "DISABLED for East Timorese Portuguese. No source read covers a stressed /a/ before an onset nasal in this variety. The reading is the spec default and makes no claim about this context."
     }
   ],
   "wikidata_qid": "Q4373396",

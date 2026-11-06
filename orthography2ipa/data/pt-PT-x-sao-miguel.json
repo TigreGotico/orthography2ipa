@@ -59,7 +59,7 @@
       "id": "PT_STRESSED_A_BEFORE_NASAL",
       "phonemes": [],
       "surface": "ɐ",
-      "notes": "DISABLED for Micaelense Portuguese. PT_STRESSED_A_BEFORE_NASAL raises the stressed /a/ of the mainland standard. Lao, Rodrigues & Brissos (2020) covers mainland Portugal only, and no other source read gives this context, so the /a/ stays as the spec gives it."
+      "notes": "DISABLED for Micaelense Portuguese. No source read covers a stressed /a/ before an onset nasal in this variety. The reading is the spec default and makes no claim about this context."
     }
   ],
   "sandhi_rules": [
