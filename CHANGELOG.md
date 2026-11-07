@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.122.4a1](https://github.com/TigreGotico/orthography2ipa/tree/7.122.4a1) (2026-11-07)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.122.3a1...7.122.4a1)
+
+**Merged pull requests:**
+
+- fix\(pt-PT\): read the nouns that keep the close ⟨o⟩ in the plural [\#2192](https://github.com/TigreGotico/orthography2ipa/pull/2192) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.122.3a1](https://github.com/TigreGotico/orthography2ipa/tree/7.122.3a1) (2026-11-06)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.122.2a3...7.122.3a1)
@@ -285,10 +293,6 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.117.22a1...7.117.23a1)
 
-**Merged pull requests:**
-
-- fix\(pt-BR\): break a pretonic stop and a nasal with the epenthetic \[i\] [\#2076](https://github.com/TigreGotico/orthography2ipa/pull/2076) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [7.117.22a1](https://github.com/TigreGotico/orthography2ipa/tree/7.117.22a1) (2026-11-05)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.117.21a1...7.117.22a1)
@@ -396,10 +400,6 @@
 ## [7.117.7a1](https://github.com/TigreGotico/orthography2ipa/tree/7.117.7a1) (2026-11-05)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.117.6a1...7.117.7a1)
-
-**Merged pull requests:**
-
-- fix\(pt-BR-x-cuiaba\): read ⟨tch⟩ as one affricate [\#2075](https://github.com/TigreGotico/orthography2ipa/pull/2075) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.117.6a1](https://github.com/TigreGotico/orthography2ipa/tree/7.117.6a1) (2026-11-05)
 
