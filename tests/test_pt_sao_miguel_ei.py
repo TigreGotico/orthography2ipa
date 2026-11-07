@@ -29,6 +29,8 @@ MONOPHTHONG = {
     "deixar": "deˈʃaɾ",
     "beijinho": "beˈʒiɲu",
     "enxaguei": "ẽʃɐˈɡe",
+    "cajueiro": "kɐˈʒweɾu",
+    "atueira": "ɐˈtweɾɐ",
 }
 
 #: ⟨ei⟩ before a vowel keeps the glide, as in pt-PT.
@@ -57,6 +59,20 @@ def test_monophthong_is_the_standard_without_the_glide(word: str, ipa: str) -> N
 
 @pytest.mark.parametrize("word,ipa", sorted(HIATUS.items()))
 def test_ei_before_a_vowel_keeps_the_glide(word: str, ipa: str) -> None:
+    assert G2P(SPEC).transcribe_word(word) == ipa
+    assert G2P("pt-PT").transcribe_word(word) == ipa
+
+
+#: A plain ⟨e⟩ before a vowel is not the diphthong, so it takes no glide.
+PLAIN_E_BEFORE_VOWEL = {
+    "eolítico": "euˈlitiku",
+    "eanismo": "eɐˈniʒmu",
+    "Eoceno": "euˈsɛnu",
+}
+
+
+@pytest.mark.parametrize("word,ipa", sorted(PLAIN_E_BEFORE_VOWEL.items()))
+def test_plain_e_before_a_vowel_takes_no_glide(word: str, ipa: str) -> None:
     assert G2P(SPEC).transcribe_word(word) == ipa
     assert G2P("pt-PT").transcribe_word(word) == ipa
 
