@@ -38,7 +38,7 @@ The table gives the features that set each lect apart from `pt-PT`. The lects ru
 | [`pt-PT-x-algarve`](#algarvio-pt-pt-x-algarve) | Algarve | stressed /u/ to [y]<br>word-final /s/ [ʒ]<br>⟨ei ou⟩ monophthongs | `tudo` [ˈtydu], `mas` [ˈmaʒ], `leite` [ˈletɨ] |
 | [`pt-PT-x-madeira`](#madeiran-pt-pt-x-madeira) | Madeira | /l/ to [ʎ] after /i/<br>⟨-ões -ães -ãos⟩ as a nasal vowel plus [n] | `quilo` [ˈkiʎu], `cães` [ˈkɐ̃ns] |
 | [`pt-PT-x-acores`](#azorean-pt-pt-x-acores) | Azores, general node | stressed /u/ to [y] before an onset consonant only<br>⟨ou⟩ [ow]<br>[ʒ] for a final /s/ before a vowel | `número` [ˈnymɨɾu], `azul` [ɐˈzuɫ] |
-| [`pt-PT-x-sao-miguel`](#micaelense-pt-pt-x-sao-miguel) | São Miguel | every stressed /u/ to [y]<br>⟨oi ou⟩ [ø]<br>/l/ to [ʎ] after /i/<br>[ʒ] for a final /s/ before a vowel | `azul` [ɐˈzyɫ], `pouco` [ˈpøku], `quilo` [ˈkiʎu] |
+| [`pt-PT-x-sao-miguel`](#micaelense-pt-pt-x-sao-miguel) | São Miguel | every stressed /u/ to [y]<br>⟨oi ou⟩ [ø]<br>⟨ei⟩ [e]<br>/l/ to [ʎ] after /i/<br>[ʒ] for a final /s/ before a vowel | `azul` [ɐˈzyɫ], `pouco` [ˈpøku], `leite` [ˈletɨ], `quilo` [ˈkiʎu] |
 | [`pt-PT-x-terceira`](#terceirense-pt-pt-x-terceira) | Terceira | stressed /a/ to [ɔ] before final ⟨-o⟩<br>[w] on-glide after a labial<br>no /u/ fronting | `gato` [ˈɡɔtu], `bola` [ˈbwɔlɐ], `tudo` [ˈtudu] |
 
 ## Northern sibilant systems
@@ -498,6 +498,8 @@ The rule `SM_U_FRONTING` fronts every stressed /u/ to [y]. This trait makes the 
 The rule applies to the stressed nucleus only. The clitics are pinned in `word_exceptions` (`o` [u], `os` [uʒ], `do` [du], `no` [nu], `ao` [aw], `pelo` [ˈpelu], `um` [ˈũ], `tu` [ˈty]), so a clitic `o`, `do`, `no` or `ao` is [u], never [y].
 
 The diphthongs ⟨oi ói ou⟩ become the front rounded [ø] (Silva 2008, p. 4): `oito` [ˈøtu], `noite` [ˈnøtɨ], `pouco` [ˈpøku].
+
+The falling diphthong ⟨ei⟩ becomes [e]: `leite` [ˈletɨ], `peixe` [ˈpeʃɨ], `primeiro` [pɾiˈmeɾu]. Cunha & Cintra (7th ed., p. 31) write of the islands that the reduction of [ej] to [e] *"só ocorre como norma na ilha de São Miguel"*. So the other island specs keep [ej]. Before a vowel the glide begins the next syllable, and the source does not cover that position. There the rule `SM_EI_GLIDE_BEFORE_VOWEL` keeps the `pt-PT` value: `cheia` [ˈʃejɐ], `ideia` [iˈdejɐ].
 
 The rule `SM_L_PALATALISATION` changes an /l/ after /i/ and before a vowel to [ʎ], in the same context as [Madeiran](#madeiran-pt-pt-x-madeira): `quilo` [ˈkiʎu], `Filipa` [fiˈʎipɐ], `mochila` [muˈʃiʎɐ]. The condition is exact, so an /l/ after another front vowel does not change (`teleférico` [tɨlɨˈfɛɾiku]). This feature comes from the "8 accents" overview, which groups São Miguel with Madeira (*Filipa* as "Flhipa"). The São Miguel video itself does not show it. The Madeira video supports it (*quilómetro* as "quilhómetro"), and Segura (2013) gives it for the Atlantic islands.
 

@@ -12,6 +12,12 @@
     ],
     "ou": [
       "ø"
+    ],
+    "ei": [
+      "e"
+    ],
+    "uei": [
+      "we"
     ]
   },
   "allophones_base": "pt-PT",
@@ -60,6 +66,18 @@
       "phonemes": [],
       "surface": "ɐ",
       "notes": "DISABLED for Micaelense Portuguese. No source read covers a stressed /a/ before an onset nasal in this variety. The reading is the spec default and makes no claim about this context."
+    },
+    {
+      "id": "SM_EI_GLIDE_BEFORE_VOWEL",
+      "phonemes": [
+        "e"
+      ],
+      "surface": "ej",
+      "grapheme": [
+        "ei"
+      ],
+      "followed_by": "vowel",
+      "notes": "Micaelense reduces the falling diphthong ⟨ei⟩ to [e]: the graphemes ei and uei give [e] and [we] (leite [ˈletɨ], peixe [ˈpeʃɨ], primeiro [pɾiˈmeɾu]). Cunha & Cintra, Nova Gramática do Português Contemporâneo, 7th ed., p. 31, on the Atlantic islands: 'o ditongo [ow] reduz-se normalmente a [o], mas a redução de [ej] a [e] é fenômeno esporádico; só ocorre como norma na ilha de São Miguel.' The source names the falling diphthong. Before a vowel the glide begins the next syllable (cheia, ideia), and no source covers that position, so this rule keeps the pt-PT value [ej] there."
     }
   ],
   "sandhi_rules": [
@@ -153,6 +171,16 @@
       "url": null,
       "pages": null,
       "notes": "Reference phonology for the inherited EP reduction, dark coda /l/ [ɫ] and coda sibilants. Standard EP gives word-final /s/ -> [z] before a vowel; the São-Miguel [ʒ] prevocalic sandhi is a dialect delta over this base."
+    },
+    {
+      "id": "cunha_cintra",
+      "author": "Cunha, Celso & Cintra, Luís F. Lindley",
+      "year": 2017,
+      "title": "Nova Gramática do Português Contemporâneo",
+      "publisher": "Lexikon Editora Digital, 7th ed.",
+      "url": null,
+      "pages": "31",
+      "notes": "Page 31 gives the reduction of [ej] to [e] as the norm on São Miguel only, the source for SM_EI_GLIDE_BEFORE_VOWEL and the ei and uei graphemes."
     }
   ],
   "wikipedia": [
