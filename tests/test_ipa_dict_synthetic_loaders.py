@@ -1,13 +1,14 @@
 """Tests for scripts/benchmark.py's synthetic IPA-dictionary loaders:
 ``load_barranquenho_dict`` (TigreGotico/barranquenho-ipa-dict-synthetic,
-``ext-PT-x-barrancos``) and ``load_mirandese_dict``
+``ext-PT-x-barranco``) and ``load_mirandese_dict``
 (TigreGotico/mirandese-ipa-dict-synthetic, ``mwl`` and sub-dialects).
 
 Both golds are LLM-generated (research-conditioned), classified at the
-``machine-generated`` reliability tier — see docs/benchmarks.md. Network
+``machine-generated`` reliability tier — see docs/evaluation/benchmarks.md. Network
 access is mocked out via benchmark._fetch so these run offline and
 deterministically, mirroring the other loader tests.
 """
+import json
 import os
 import sys
 
@@ -37,7 +38,7 @@ _MIR_CSV = (
 
 def test_load_barranquenho_dict_extracts_pairs(monkeypatch):
     monkeypatch.setattr(benchmark, "_fetch", lambda url, name: _BARR_CSV)
-    pairs = benchmark.load_barranquenho_dict("ext-PT-x-barrancos", 100)
+    pairs = benchmark.load_barranquenho_dict("ext-PT-x-barranco", 100)
     assert ("abanicu", "ɐbɐˈniku") in pairs
     assert ("casa", "ˈkaza") in pairs
     # malformed empty row is skipped
@@ -47,7 +48,7 @@ def test_load_barranquenho_dict_extracts_pairs(monkeypatch):
 
 def test_load_barranquenho_dict_respects_limit(monkeypatch):
     monkeypatch.setattr(benchmark, "_fetch", lambda url, name: _BARR_CSV)
-    pairs = benchmark.load_barranquenho_dict("ext-PT-x-barrancos", 1)
+    pairs = benchmark.load_barranquenho_dict("ext-PT-x-barranco", 1)
     assert pairs == [("abanicu", "ɐbɐˈniku")]
 
 
@@ -68,20 +69,27 @@ def test_load_mirandese_dict_respects_limit(monkeypatch):
     assert benchmark.load_mirandese_dict("mwl", 1) == [("l", "l")]
 
 
-def test_synthetic_dict_loaders_registered():
-    assert benchmark.DATASETS["barranquenho_dict"][0] is \
-        benchmark.load_barranquenho_dict
-    assert benchmark.DATASETS["barranquenho_dict"][1] == ["ext-PT-x-barrancos"]
+def test_synthetic_dicts_score_their_llm_corrected_file():
+    for dataset, langs in [("barranquenho_dict", ["ext-PT-x-barranco"]),
+                           ("mirandese_dict",
+                            ["mwl", "mwl-x-ifanes", "mwl-x-sendim"])]:
+        loader, registered = benchmark.DATASETS[dataset]
+        assert registered == langs
+        with open(benchmark.llm_corrected_path(dataset),
+                  encoding="utf-8") as fh:
+            rows = [json.loads(line) for line in fh]
+        for lang in langs:
+            expected = [(r["sentence"], r["ipa"]) for r in rows
+                        if r["lect"] == lang]
+            assert expected
+            assert loader(lang, sys.maxsize) == expected
+            assert loader(lang, 1) == expected[:1]
 
-    loader, langs = benchmark.DATASETS["mirandese_dict"]
-    assert loader is benchmark.load_mirandese_dict
-    assert langs == ["mwl", "mwl-x-ifanes", "mwl-x-sendim"]
 
-
-def test_synthetic_dict_loaders_are_llm_generated():
-    # LLM-generated golds must sit at the lowest reliability tier: an LLM has
-    # no lexicon and no rules, so its IPA has no error model at all and can
-    # never gate a promotion (docs/quality_tiers.md).
-    assert benchmark.PROVENANCE["barranquenho_dict"] == "llm-generated"
-    assert benchmark.PROVENANCE["mirandese_dict"] == "llm-generated"
-    assert not benchmark.can_gate_promotion("llm-generated")
+def test_synthetic_dicts_are_silver():
+    # An LLM-written gold, corrected or not, has no lexicon and no rules, so
+    # its IPA has no error model and can never gate a promotion
+    # (docs/specs/quality_tiers.md).
+    assert benchmark.PROVENANCE["barranquenho_dict"] == "llm-corrected"
+    assert benchmark.PROVENANCE["mirandese_dict"] == "llm-corrected"
+    assert not benchmark.can_gate_promotion("llm-corrected")

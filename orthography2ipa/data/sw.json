@@ -22,12 +22,14 @@
       "u"
     ],
     "b": [
+      "ɓ",
       "b"
     ],
     "ch": [
       "tʃ"
     ],
     "d": [
+      "ɗ",
       "d"
     ],
     "dh": [
@@ -37,6 +39,7 @@
       "f"
     ],
     "g": [
+      "ɠ",
       "ɡ"
     ],
     "gh": [
@@ -46,10 +49,14 @@
       "h"
     ],
     "j": [
+      "ʄ",
       "dʒ"
     ],
     "k": [
       "k"
+    ],
+    "kh": [
+      "x"
     ],
     "l": [
       "l"
@@ -85,6 +92,7 @@
       "p"
     ],
     "r": [
+      "ɾ",
       "r"
     ],
     "s": [
@@ -113,59 +121,14 @@
     ]
   },
   "positional_graphemes": {
-    "mb": {
-      "word_initial": [
-        "mb"
-      ]
-    },
-    "mv": {
-      "word_initial": [
-        "mv"
-      ]
-    },
-    "nd": {
-      "word_initial": [
-        "nd"
-      ]
-    },
-    "ng'": {
-      "word_initial": [
-        "ŋ"
-      ],
-      "word_final": [
-        "ŋ"
-      ]
-    },
-    "nj": {
-      "word_initial": [
-        "ndʒ"
-      ]
-    },
     "m": {
-      "word_initial": [
-        "m",
+      "before_consonant": [
         "m̩"
       ]
     },
     "n": {
-      "word_initial": [
-        "n",
+      "before_consonant": [
         "n̩"
-      ]
-    },
-    "k": {
-      "word_final": [
-        "k"
-      ]
-    },
-    "t": {
-      "word_final": [
-        "t"
-      ]
-    },
-    "p": {
-      "word_final": [
-        "p"
       ]
     }
   },
@@ -259,9 +222,32 @@
     ],
     "z": [
       "z"
+    ],
+    "ɓ": [
+      "ɓ",
+      "b"
+    ],
+    "ɗ": [
+      "ɗ",
+      "d"
+    ],
+    "ɠ": [
+      "ɠ",
+      "ɡ"
+    ],
+    "ʄ": [
+      "ʄ",
+      "dʒ"
+    ],
+    "ɾ": [
+      "ɾ",
+      "r"
+    ],
+    "x": [
+      "x"
     ]
   },
-  "notes": "Swahili (Kiswahili). Bantu lingua franca of East Africa; official language of Tanzania, Kenya, Uganda, DRC, Rwanda. ~200 million total speakers. KEY FEATURES: (1) FIVE-VOWEL SYSTEM: a/e/i/o/u; e=[ɛ], o=[ɔ] (fully open). (2) PRENASALIZED STOPS: mb/nd/nj/ng are single phonemes, may appear word-initially. (3) SYLLABIC NASALS: m- and n- prefixes are syllabic in noun classes (e.g., mtu /m̩.tu/). (4) NG vs NG': <ng'> = [ŋ] (velar nasal alone), <ng> = [ŋɡ] (prenasalized stop). (5) ARABIC LOANS: dh=[ð], th=[θ], gh=[ɣ] from Arabic via coastal contact (Swahili Coast trade). (6) NO TONES: Standard Swahili (Kiunguja/Zanzibar-based) is not tonal, unlike many other Bantu languages. (7) NOUN CLASS SYSTEM: prefixes (m-/wa-, ki-/vi-, n-, etc.) mark noun class but do not affect grapheme-phoneme mapping.",
+  "notes": "Swahili (Kiswahili). Bantu lingua franca of East Africa; official in Tanzania, Kenya, Uganda and the DRC. KEY FEATURES: (1) FIVE-VOWEL SYSTEM a/e/i/o/u, of the cross-linguistically ordinary evenly-dispersed type (Maddieson 2003 §2 reports Nchimbi's 1997 formant study placing Swahili with Xhosa, Spanish and Hawaiian) — written here /a ɛ i ɔ u/. (2) IMPLOSIVE VOICED STOPS: the voiced stop series is implosive [ɓ ɗ ʄ ɠ]; Polomé (1967: 38-40), reported in Alsamaani (2023) Table 3, gives four laryngeal categories of Swahili stops and lists /b ɓ d ɗ g ɠ/ alongside /p pʰ t tʰ k kʰ/. The pulmonic plosive is kept as a second candidate for Arabic and English loans. (3) POST-NASAL PLOSIVES: after a homorganic nasal the voiced stop is a pulmonic plosive, not an implosive (Hayward, Omar & Goesche 1989 on Kimvita, reported in Alsamaani 2023), which is why <mb nd nj ng> keep [mb nd ndʒ ŋɡ]. (4) FLAP /ɾ/: <r> is a flap, listed as such in Alsamaani (2023) Table 3. (5) SYLLABIC NASALS: <m n> before a consonant letter form a syllable of their own (mtu [m̩tu]) — declared on before_consonant, so <m> before a vowel (mama) stays plain [m]. (6) NG vs NG': <ng'> is [ŋ] and <ng> is [ŋɡ]. (7) ARABIC LOAN GRAPHEMES: <dh th gh> = [ð θ ɣ] and <kh> = [x] (Awino et al. 2022 §2: '/kh/ = kheri'; Mgullu 1999, cited there, lists /x (kh)/ in the consonant inventory). (8) NO TONE. NOT MODELLED, deliberately: Swahili has an aspiration contrast /p pʰ t tʰ k kʰ/ (Polomé 1967: 39-40 treats the aspirates as independent phonemes) which the orthography does not write, so no grapheme can predict it; and vowel length arising from vowel sequences is likewise unwritten.",
   "sources": [
     {
       "id": "nurse_hinnebusch1993",
@@ -292,6 +278,36 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "alsamaani2023",
+      "author": "Alsamaani, M.",
+      "year": 2023,
+      "title": "The Voice-Onset Time of Arabic Loanwords in Swahili",
+      "publisher": "Migration Letters 20(8): 1225-1238",
+      "url": "https://migrationletters.com/index.php/ml/article/download/5957/4047/16356",
+      "pages": "1225-1238",
+      "notes": "Table 3 gives the Swahili consonant inventory with the implosive series ɓ ɗ ɠ ʄ and <r> among the flaps; summarises Polomé (1967: 38-40) and Hayward et al. (1989) on post-nasal plosives."
+    },
+    {
+      "id": "awino2022",
+      "author": "Awino, E., Wanzare, L., Muchemi, L., Wanjawa, B., Ombui, E., Indede, F., McOnyango, O. & Okal, B.",
+      "year": 2022,
+      "title": "Phonemic Representation and Transcription for Speech to Text Applications for Under-resourced Indigenous African Languages: The Case of Kiswahili",
+      "publisher": "arXiv:2210.16537",
+      "url": "https://arxiv.org/pdf/2210.16537",
+      "pages": null,
+      "notes": "Surveys the Kiswahili phoneme inventories of Ashton 1951 through Akidah 2013; source for <kh> = [x] in Arabic loans."
+    },
+    {
+      "id": "maddieson2003",
+      "author": "Maddieson, I.",
+      "year": 2003,
+      "title": "The sounds of the Bantu languages (Chapter 2 of The Bantu Languages)",
+      "publisher": "Routledge",
+      "url": "https://escholarship.org/content/qt7j1054t9/qt7j1054t9_noSplash_90db4831887d3125030fcfa443d2027e.pdf",
+      "pages": null,
+      "notes": "Places Swahili's five-vowel system with the evenly-dispersed /i e a o u/ type, and describes implosives as usual in the eastern coastal Bantu area."
     }
   ],
   "wikipedia": [

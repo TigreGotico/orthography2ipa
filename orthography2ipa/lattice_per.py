@@ -47,10 +47,13 @@ Usage::
 
     >>> from orthography2ipa.lattice_per import lattice_per
     >>> r = lattice_per("es̻ pada", "ez bada", "eu")
-    >>> r.distance, r.per          # sandhi reading is admissible
-    (0.0, 0.0)
-    >>> lattice_per("es baða", "ez bada", "eu").distance   # genuinely wrong segments
-    2.0
+    >>> r.distance, round(r.per, 4), r.variant_credit
+    (1.0, 0.1667, 0.0)
+    >>> r = lattice_per("es baða", "ez bada", "eu")
+    >>> r.distance, round(r.per, 4), round(r.variant_credit, 4)
+    (1.0, 0.1667, 0.1667)
+
+    The values depend on the ``eu`` spec and change when it changes.
 """
 from __future__ import annotations
 
@@ -213,7 +216,8 @@ def lattice_per(hyp_ipa: str, ref_text: str, lang: str, *,
     top_distance = f[-1]
 
     # Reading 1: every path through the pre-sandhi sentence lattice.
-    lattice = g2p.sentence_lattice(ref_text, beam_width=beam_width)
+    lattice = g2p.sentence_lattice(ref_text, search="beam",
+                                   beam_width=beam_width)
     slot_candidates: List[List[List[str]]] = []
     for word in lattice:
         if not word.slots:

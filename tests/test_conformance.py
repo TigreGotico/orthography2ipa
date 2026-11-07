@@ -131,5 +131,6 @@ def test_a_rescorer_that_invents_a_symbol_is_caught():
 def test_who_answers_says_who_is_answering():
     """The first question anyone debugging a plugin asks, given an API."""
     answer = who_answers("pt-PT")
-    assert "syllabify" in answer and "rescore" in answer
+    assert answer["syllabify"] == "built-in"
+    assert "rescore" in answer
     assert answer["code"] == "pt-PT"

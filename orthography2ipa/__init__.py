@@ -1,5 +1,16 @@
 """orthography2ipa - Linguistically motivated grapheme→IPA and allophone maps.
 
+The engine (:class:`G2P`, :func:`transcribe`) turns orthographic text into
+IPA by resolving each language's declarative :class:`LanguageSpec` — grapheme
+tables, allophone rules, stress rules, sandhi rules — through a per-word
+candidate lattice (:mod:`~orthography2ipa.phonetok`) that a
+:class:`LatticeRescorer` may re-rank, and, optionally, a cross-word
+:class:`SentenceRescorer` for sandhi that reaches across word boundaries.
+:func:`get` / :func:`resolve` look up a language's spec by code; a lexicon
+overlay, dialect transforms and a battery of phonological distance metrics
+(:mod:`~orthography2ipa.distance`) sit alongside the engine as optional
+tools, not dependencies of it.
+
 Quick start::
 
     >>> import orthography2ipa
@@ -7,7 +18,7 @@ Quick start::
     >>> en.graphemes["th"]
     ['θ', 'ð']
     >>> en.allophones["t"]
-    ['t', 'tʰ', 'ɾ', 'ʔ', 't̚']
+    ['t', 'tʰ', 'ʔ', 'ɾ']
 
     >>> pt = orthography2ipa.get("pt-BR")
     >>> pt.graphemes["lh"]
@@ -44,10 +55,14 @@ from orthography2ipa.lexicon import (
     available_lexicon_codes,
     clear_lexicons,
     get_lexicon,
+    load_lexicon,
+    packaged_lexicon,
     is_ipa_string,
     register_lexicon,
     resolve_lexicon_source,
+    packaged_lexicon_sources,
     set_lexicon_dir,
+    use_packaged_lexicons,
     validate_lexicon_text,
 )
 from orthography2ipa.phonetok import (
@@ -80,6 +95,7 @@ from orthography2ipa.registry import (
     get,
     get_syllabifier,
     resolve,
+    resolves_exactly,
 )
 from orthography2ipa.sandhi import SandhiEngine
 from orthography2ipa.transforms import (
@@ -97,7 +113,7 @@ from orthography2ipa.registry import get_rescorers, who_answers
 from orthography2ipa.rescorer_plugin import RescorerPlugin
 from orthography2ipa.stress_plugin import StressPlugin
 from orthography2ipa.plugins import NormalizePlugin, SandhiPlugin, STAGES
-from orthography2ipa.registry import MissingPlugin
+from orthography2ipa.registry import MissingPlugin, UnknownVariantWarning
 from orthography2ipa.registry import get_stress_plugin
 from orthography2ipa.inventory import (
     STRESS_MARKS,
@@ -111,7 +127,13 @@ from orthography2ipa.underspecification import (
     mark_density,
     underdetermined_positions,
 )
-from orthography2ipa.stress import apply_stress_mark, detect_stress, syllabify
+from orthography2ipa.stress import (
+    apply_stress_mark,
+    detect_stress,
+    syllabify,
+    syllabify_ipa,
+)
+from orthography2ipa.pipeline import Pipeline
 from orthography2ipa.syllabifier_plugin import SyllabifierPlugin
 from orthography2ipa.script_distance import (
     SCRIPT_REGISTRY,
@@ -129,6 +151,7 @@ from orthography2ipa.types import (
 __all__ = [
     "transcribe",
     "G2P",
+    "Pipeline",
     "ConfidenceBreakdown",
     "TranscriptionResult",
     "WordTranscription",
@@ -136,6 +159,7 @@ __all__ = [
     "GraphemeFeatures",
     "get",
     "resolve",
+    "resolves_exactly",
     "ancestry_chain",
     "available_codes",
     "available_families",
@@ -145,6 +169,10 @@ __all__ = [
     "register_lexicon",
     "clear_lexicons",
     "available_lexicon_codes",
+    "use_packaged_lexicons",
+    "load_lexicon",
+    "packaged_lexicon",
+    "packaged_lexicon_sources",
     "is_ipa_string",
     "validate_lexicon_text",
     "WordContext",
@@ -172,6 +200,7 @@ __all__ = [
     "NormalizePlugin",
     "SandhiPlugin",
     "MissingPlugin",
+    "UnknownVariantWarning",
     "STAGES",
     "get_stress_plugin",
     "emission_inventory",
@@ -185,6 +214,7 @@ __all__ = [
     "detect_stress",
     "apply_stress_mark",
     "syllabify",
+    "syllabify_ipa",
     "SyllabifierPlugin",
     "get_syllabifier",
     "ScriptFeatures",

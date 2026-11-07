@@ -262,8 +262,7 @@ class TestFieldInheritanceManifest:
         assert not missing, (
             f"LanguageSpec field(s) {sorted(missing)} have no registered "
             f"InheritanceMode in FIELD_INHERITANCE (orthography2ipa/types.py). "
-            f"Every field must explicitly declare BASE_MERGE, OVERLAY_BY_ID, "
-            f"NOT_INHERITED or OWN_ONLY."
+            f"Every field must explicitly declare one InheritanceMode."
         )
 
     def test_no_stale_manifest_entries(self):
@@ -280,10 +279,10 @@ class TestFieldInheritanceManifest:
         a tuple of rule objects."""
         assert FIELD_INHERITANCE["sandhi_rules"] is InheritanceMode.OVERLAY_BY_ID
 
-    def test_stress_stays_not_inherited(self):
-        """Per the documented modeling intent (types.py docstrings), stress
-        is deliberately own-file-only."""
-        assert FIELD_INHERITANCE["stress"] is InheritanceMode.NOT_INHERITED
+    def test_stress_is_a_base_block(self):
+        """A spec states its whole stress block or takes one from its
+        graphemes_base, else from a same-language parent."""
+        assert FIELD_INHERITANCE["stress"] is InheritanceMode.BASE_BLOCK
 
     def test_word_exceptions_is_base_merge(self):
         """A dialect child that pulls graphemes from the standard must see

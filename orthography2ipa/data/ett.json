@@ -3,7 +3,7 @@
   "name": "Etruscan",
   "script": "Old Italic",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "𐌀": [
       "a"

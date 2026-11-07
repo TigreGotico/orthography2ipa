@@ -4,7 +4,7 @@ Round 2 fills the remaining un-enriched *standard* Indo-European specs with a
 weighted ``ancestors`` tuple (proto -> historical -> modern parent chain plus
 textbook contact strata) and roots them consistently at the shared IE proto
 nodes.  It also adds three metadata-only structural nodes referenced as
-substrate/adstrate: Old Tupi (tpw), Kimbundu (kmb) and Proto-Dravidian (dra).
+substrate/adstrate: Old Tupi (tpn), Kimbundu (kmb) and Proto-Dravidian (dra).
 
 The test proves the added metadata resolves cleanly:
 
@@ -27,7 +27,7 @@ ENRICHED = [
     # Indo-Aryan / Iranian
     "hi", "fa",
     # new metadata-only structural nodes
-    "tpw", "kmb", "dra",
+    "tpn", "kmb", "dra",
 ]
 
 

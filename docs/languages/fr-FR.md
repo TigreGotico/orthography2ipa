@@ -1,157 +1,174 @@
-# French (fr-FR) — Phonology Reference
+# French (fr-FR): Phonology Reference
 
-**Code**: `fr-FR` | **Family**: Indo-European > Romance > Gallo-Romance | **Script**: Latin (alphabet)
-**Quality tier**: research | **Orthographic depth**: deep (production threshold ≤ 0.25 PER)
-**Sources**: Fouché (1959), Tranel (1987), Ladefoged & Maddieson (1996), Fougeron & Smith (1993), Tranel (1995)
-**Benchmark**: wikipron `fra_latn_broad.tsv`, `fr` tag, n=279, PER=0.1559 (see `benchmarks/results.json`)
+**Code**: `fr-FR` | **Family**: Indo-European > Romance > Gallo-Romance | **Script**: Latin (alphabet) | **Quality tier**: research
 
----
+The `fr-FR` spec describes Standard Metropolitan French, as spoken in Paris and the north. That is the variety the WikiPron gold transcribes. The registry resolves the bare tag `fr` to this spec. French has a deep orthography, so the 0.25 PER threshold applies to a promotion (see [quality tiers](../specs/quality_tiers.md#the-per-threshold)).
 
-## Consonant System
+The sources are Fouché (1959), Tranel (1987), Fougeron & Smith (1993), Tranel (1995), Ladefoged & Maddieson (1996), Divay & Vitale (1997) and Walker (2001).
 
-### Key Consonant Rules
+## Benchmark
 
-#### Softening: C and G Before Front Vowels
+The `wikipron` row under the tag `fr` is crowd-scraped, and the `ipadict` row under `fr-FR` is machine-generated. Both can gate a promotion. The `ipa_childes` row is espeak-derived, so it measures agreement with espeak and cannot gate. The scores are on the [scoreboard](../evaluation/generated/scoreboard.md).
 
-| Grapheme | Before e/i/y | Elsewhere | Examples |
+## Consonants
+
+### C and G softening
+
+The letter ⟨c⟩ is [s] before ⟨e i y⟩ and [k] elsewhere. The letter ⟨g⟩ is [ʒ] before the same vowels and [ɡ] elsewhere. The letter ⟨ç⟩ is always [s], and ⟨gu⟩ is a grapheme of its own that keeps [ɡ].
+
+| Grapheme | Before ⟨e i y⟩ | Elsewhere | Spec output |
 |:---:|:---:|:---:|:---|
-| c | [s] | [k] | `ceci` [səsi], `cœur` [kœʁ] |
-| g | [ʒ] | [ɡ] | `général` [ʒeneʁal], `gâteau` [ɡɑto] |
+| c | s | k | ⟨ceci⟩ `səsi`, ⟨cœur⟩ `kœʁ` |
+| g | ʒ | ɡ | ⟨général⟩ `ʒeneʁal`, ⟨gâteau⟩ `ɡɑto` |
+| ç | s | s | ⟨ça⟩ `sa` |
 
-The digraphs ⟨ç⟩ always → [s]; ⟨gu⟩ before e/i → [ɡ] (overrides softening); ⟨ge⟩/⟨gi⟩ digraphs → [ʒ].
+### Silent final consonants
 
-#### Silent Word-Final Consonants
+Most written word-final consonants are silent when a word stands alone. The spec gives ⟨t d p s x⟩ an empty `word_final` entry in `positional_graphemes`. For ⟨r⟩ the `word_final` entry ranks [ʁ] first and the empty reading second. Monosyllables and loanwords that keep a final consonant, such as ⟨fils⟩ and ⟨bus⟩, are in `word_exceptions`.
 
-In modern French, **most written word-final consonants are not pronounced** in isolation. They may surface in liaison before a vowel-initial word.
+Within a word, a single ⟨s⟩ between vowels is [z], so ⟨maison⟩ gives `mɛzɔ̃` and ⟨rose⟩ gives `ʁoz`. The digraph ⟨ss⟩ is always [s], as in ⟨passer⟩ `pase`.
 
-| Grapheme | Word-final | Liaison (before vowel) | Examples |
-|:---:|:---:|:---:|:---|
-| s | [∅] | [z] | `les amis` [le‿z‿ami] |
-| t | [∅] | [t] | `petit enfant` [pəti‿t‿ɑ̃fɑ̃] |
-| d | [∅] | [t] | `grand homme` [ɡʁɑ̃‿t‿ɔm] |
-| p | [∅] | rare | `trop aimable` |
-| x | [∅] | [z] | `deux enfants` [dø‿z‿ɑ̃fɑ̃] |
-| r | [∅] | [ʁ] | infinitives: `parler` [paʁle] (r silent) |
-| n | [∅] | [n] | `bon ami` [bɔ‿n‿ami] |
+### Doubled consonants
 
-**Exceptions**: `cher` [ʃɛʁ], `mer` [mɛʁ], monosyllables, borrowed words.
+The doubled letters ⟨bb dd ff gg ll mm nn pp rr tt⟩ are graphemes that map to one consonant, the modern French default (Fouché 1959, Tranel 1987). So ⟨Allier⟩ gives `alje`. The grapheme ⟨ill⟩ is longer than ⟨ll⟩, so longest-match tokenisation reads it first. Its default is [ij], as in ⟨fille⟩ `fij`.
 
-Liaison is encoded as `intervocalic_cross_word` in `positional_graphemes`:
-```json
-"s": {"intervocalic_cross_word": ["z"], "word_final": [""], "default": ["s"]}
-```
+A closed set of words keeps ⟨ill⟩ as [il]: ⟨ville⟩, ⟨mille⟩, ⟨tranquille⟩, ⟨tranquillement⟩ and the place name ⟨Lille⟩. These words are in `word_exceptions` (Tranel 1987, §4.3), so ⟨ville⟩ gives `vil`.
 
-#### Intervocalic S
+### The endings ⟨-er⟩ and ⟨-ez⟩
 
-Within a word, ⟨s⟩ between two vowels is voiced [z]:
+The word-final ⟨-er⟩ of infinitives and agent nouns is [e], and so is the second-person plural ⟨-ez⟩ (Fouché 1959, Tranel 1987 §3). The spec states both in `grammatical_endings`, not as graphemes. So ⟨parler⟩ gives `paʁle`, ⟨boulanger⟩ gives `bulɑ̃ʒe` and ⟨chez⟩ gives `ʃe`. The same letters inside a word are ordinary graphemes, as in ⟨personne⟩ `pɛʁsɔn` and ⟨version⟩ `vɛʁsjɔ̃`. The ending still matches behind the plural ⟨-s⟩, so ⟨boulangers⟩ gives `bulɑ̃ʒe`.
 
-| Environment | Realization | Examples |
-|:---|:---:|:---|
-| Intervocalic | [z] | `maison` [mɛzɔ̃], `rose` [ʁoz] |
-| Elsewhere | [s] | `sac` [sak], `masse` [mas] |
+A closed set of words keeps /ɛʁ/. It holds ⟨mer fer cher ver hier hiver enfer cancer amer super⟩ and the loanwords in ⟨-er⟩, such as ⟨leader⟩ and ⟨poker⟩. These words and their plurals are in `word_exceptions`, which outranks the endings. So ⟨hiver⟩ gives `ivɛʁ`.
 
-Note: ⟨ss⟩ → [s] (voiceless): `passer` [pase].
+### The ambiguous ending ⟨-ent⟩
 
-#### Doubled Consonants
+The third-person plural ⟨-ent⟩ is silent, as in ⟨parlent⟩ [paʁl]. The ⟨-ent⟩ of nouns and adjectives is [ɑ̃], as in ⟨vent⟩, ⟨dent⟩ and ⟨moment⟩. The spelling does not separate the two. The difference is one of part of speech (Fouché 1959, Tranel 1987 §3, Divay & Vitale 1997), and this library takes no part-of-speech input.
 
-Doubled consonant letters (`bb`, `dd`, `ff`, `gg`, `ll`, `mm`, `nn`, `pp`, `rr`, `tt`) degeminate to a single consonant, the modern-French default (Fouché 1959; Tranel 1987): `Abbeville` [abvil], `Allier` [alje], `Abdallah` [abdala]. The `ill` digraph (after a vowel) keeps its special [ij]/[il] treatment ahead of the generic `ll` digraph via maximal-munch tokenization.
+The spec therefore declares the ending as a list of candidates, `"ent": [null, ""]`. The `null` in the first place keeps the rank-1 reading from the grapheme tables, a nasal vowel plus a silent ⟨t⟩. So ⟨vent⟩ gives `vɑ̃`, ⟨moment⟩ gives `mɔmɑ̃` and ⟨parlent⟩ gives `paʁlɑ̃`. The silent reading comes second. There `word_candidates`, an oracle@k score or a downstream rescorer that knows the part of speech can reach it. The spec does not declare ⟨-ment⟩ on its own, because it has the same ambiguity: ⟨dorment⟩ is silent and ⟨moment⟩ is not.
 
----
+### Glide formation
 
-## Vowel System
+Inside a word, an ⟨i⟩ before another vowel letter becomes the glide [j] through the `before_vowel` entry (Tranel 1987, §5 and §6). So ⟨fiacre⟩ gives `fjakʁ`. The digraphs ⟨y⟩, ⟨ien⟩ and ⟨oui⟩ carry [j] or [w] on their own.
 
-### Oral Vowels
+Some learned and prefixed words keep the hiatus [iV] in careful speech and in the WikiPron gold. Examples are compounds in ⟨anti-⟩, ⟨bi-⟩ and ⟨archi-⟩, and nouns such as ⟨lion⟩, ⟨ion⟩ and ⟨chiite⟩. Tranel (1987, §5) describes this variation. The rule glides these words too, so ⟨lion⟩ gives `ljɔ̃`. A finer split needs syllable-count or morpheme-boundary knowledge that the spelling does not hold.
 
-| Grapheme | IPA | Example |
+The glide does not apply when the next vowel is the last audible slot of the word. The engine marks that slot with the `before_final_vowel` position. So a word-final unmarked ⟨ie⟩ stays [i]: ⟨vie⟩ gives `vi`, ⟨folie⟩ gives `fɔli` and ⟨Algérie⟩ gives `alʒeʁi`. The plural ⟨vies⟩ also gives `vi`, because the silent suffix ⟨s⟩ does not count as more of the word (Tranel 1987, §3).
+
+## Oral vowels
+
+| Grapheme | IPA | Spec output |
 |:---:|:---:|:---|
-| a | [a] | `chat` [ʃa] |
-| â | [ɑ] | `pâte` [pɑt] |
-| é | [e] | `été` [ete] |
-| è, ê, ë | [ɛ] | `mère` [mɛʁ] |
-| e (unstressed, non-final) | [ə] | `le` [lə] |
-| e (word-final) | silent | `Adèle` [adɛl] (not [adɛlə]) |
-| i, î, ï | [i] | `île` [il] |
-| o (closed) | [o] | `pot` [po] |
-| o (open) | [ɔ] | `sort` [sɔʁ] |
-| ô | [o] | `côte` [kot] |
-| u, û | [y] | `lune` [lyn] |
-| ou | [u] | `tour` [tuʁ] |
-| eu (closed) | [ø] | `feu` [fø] |
-| eu (open) | [œ] | `peur` [pœʁ] |
+| a | a | ⟨chat⟩ `ʃa` |
+| â | ɑ | ⟨pâte⟩ `pɑt` |
+| é | e | ⟨été⟩ `ete` |
+| è, ê, ë | ɛ | ⟨mère⟩ `mɛʁ` |
+| e, word-final | silent | ⟨Adèle⟩ `adɛl` |
+| i, î, ï | i | ⟨île⟩ `il` |
+| o, word-final | o | ⟨pot⟩ `po` |
+| o, elsewhere | ɔ | ⟨sort⟩ `sɔʁ` |
+| ô | o | ⟨côte⟩ `kot` |
+| u, û | y | ⟨lune⟩ `lyn` |
+| ou | u | ⟨tour⟩ `tuʁ` |
+| eu, open syllable | ø | ⟨feu⟩ `fø` |
+| eu, closed syllable | œ | ⟨peur⟩ `pœʁ` |
 
-Word-final unstressed ⟨e⟩ (e caduc) defaults to silent via a `positional_graphemes` `word_final` override, matching the modern colloquial elision of the mute e (`Abbeville` [abvil], not [abvilə]). This is correct for polysyllabic words but is a known engine-limit exception for monosyllabic function words (`le`, `que`, `de`), where the schwa is the only syllable nucleus and is grammatically obligatory.
+The word-final unstressed ⟨e⟩ (e caduc) is silent by default through the `word_final` entry of ⟨e⟩. This matches the modern elision of the mute e. The monosyllabic function words whose only vowel is that ⟨e⟩ keep their schwa through `word_exceptions`: ⟨le de que ce ne se je me te⟩. So ⟨le⟩ gives `lə`.
 
-### Nasal Vowels
+### Mid-vowel aperture: the loi de position
 
-| Grapheme | IPA | Example | Note |
-|:---:|:---:|:---|:---|
-| an, am, en, em | [ɑ̃] | `blanc` [blɑ̃] | Denasalizes before vowel in same word |
-| in, im, ain, ein | [ɛ̃] | `vin` [vɛ̃] | |
-| on, om | [ɔ̃] | `bon` [bɔ̃] | |
-| un, um | [œ̃] | `lundi` [lœ̃di] | Merges with [ɛ̃] for many Parisian speakers |
+The three mid-vowel pairs /e ɛ/, /ø œ/ and /o ɔ/ follow the syllable. The close-mid vowel occurs in an open syllable (syllabe libre, no coda) and the open-mid vowel in a closed one (syllabe entravée). Fougeron & Smith (1993) state the law in these terms. Tranel (1987, ch. 3 and 4) and Walker (2001, ch. 3) give it with its limits.
 
-**Denasalization**: Before a vowel within the same word, nasal vowels denasalize and the nasal consonant resurfaces, encoded via `positional_graphemes` `before_vowel` branches: `an`→[an] (`analyse` [analiz]), `am`→[am] (`amateur` [amatœʁ]), `en`→[ɛn], `em`→[ɛm], `in`→[in] (`inutile` [inytil]), `im`→[im] (`imaginer` [imaʒine]), `on`→[ɔn] (`bonasse` [bɔnas]), `om`→[ɔm], `un`→[yn] (`unanime` [ynanim]), `um`→[ym]. The doubled-consonant trigger for denasalization (`immense`, `ennemi`) is not modelled this way because the doubled letter is consumed by the `mm`/`nn` digraph before the positional check on the nasal grapheme runs — a known engine-limit gap, not a missing rule.
+| Pair | Open syllable | Closed syllable |
+|:---|:---|:---|
+| /ø œ/ | ⟨heureux⟩ `øʁø`, ⟨jeudi⟩ `ʒødi` | ⟨jeune⟩ `ʒœn`, ⟨heure⟩ `œʁ`, ⟨seule⟩ `sœl` |
+| /o ɔ/ | ⟨mot⟩ `mo`, ⟨numéro⟩ `nymeʁo` | ⟨bord⟩ `bɔʁ`, ⟨botte⟩ `bɔt` |
+| /e ɛ/ | ⟨été⟩ `ete`, ⟨numéro⟩ `nymeʁo` | ⟨sel⟩ `sɛl`, ⟨Abel⟩ `abɛl` |
 
-**ɛ̃/œ̃ merger**: Fougeron & Smith (1993) document that many speakers, especially in and around Paris, merge /œ̃/ into /ɛ̃/ (`brun`/`brin`, `un`/`hein` become homophonous), while conservative Standard French retains the distinction. Both realizations are kept as allophones of `œ̃` in `allophones` rather than collapsing the phoneme inventory, since Fougeron & Smith still treat /œ̃/ as phonemically distinct for their reference (young Parisian female) speaker.
+The law is about a pronounced coda, but the engine has only letters. So it asks a spelling question instead. It removes the graphemes that this spec declares silent at the end of a word, and then looks at how the syllable ends. Two consequences follow, and a reader must know them before trusting an aperture value.
 
----
+First, a final syllable whose only vowel letter is a mute ⟨e⟩ has no nucleus. The function `positional.merge_nucleusless_final_syllable` joins it to the syllable before it. So ⟨jeune⟩ becomes one syllable, which ends in ⟨n⟩ and is closed, and it gives `ʒœn`. The same applies to ⟨heure⟩, ⟨veuve⟩ `vœv` and ⟨seule⟩.
 
-## Liaison
+Second, the strip then runs a second time on the merged string, on letters that are not final in speech. That is why ⟨meute⟩ gives `møt` and ⟨heureuse⟩ gives `øʁøz`. Both strip back to an open syllable because the spec calls final ⟨t⟩ and ⟨s⟩ silent, yet the /t/ and the /z/ are pronounced. The close-mid vowel is right in both words, but for another reason: /z/ keeps the vowel close (see below).
 
-Liaison is a cross-word sandhi process where a normally silent final consonant is pronounced before a vowel-initial word.
+The proxy fails in two places. An obstruent plus liquid coda does not close the syllable for the law, but the engine treats it as closed: ⟨neutre⟩ gives `nœtʁ` and ⟨feutre⟩ gives `fœtʁ`, where the gold has [ø]. A /z/ spelled ⟨z⟩ cannot be stripped, and the `FR_EU_BEFORE_Z` rule exists for that case.
 
-**Obligatory** (grammatically conditioned):
-- Determiner + noun: `les amis` [le‿z‿ami]
-- Adjective + noun: `petit ami` [pəti‿t‿ami]
-- Subject pronoun + verb: `nous avons` [nu‿z‿avɔ̃]
+Two rules state the standard exceptions to the law:
 
-**Forbidden** (liaison blocked):
-- After conjunction `et`
-- Before aspirate-h words: `les haricots` [le.aʁiko] (no liaison)
-- Singular noun + adjective: `un étudiant américain` (no liaison after étudiant)
+| Rule | Effect | Spec output | Source |
+|:---|:---|:---|:---|
+| `FR_O_BEFORE_Z`, `FR_EU_BEFORE_Z` | /z/ keeps the vowel close in a closed syllable | ⟨chose⟩ `ʃoz`, ⟨Deleuze⟩ `dəløz` | Fouché 1959, Tranel 1987 §3, Walker 2001 ch. 3 |
+| `FR_AU_BEFORE_R` | /ʁ/ opens ⟨au⟩, the one systematic exception to ⟨au⟩ = [o] | ⟨Laure⟩ `lɔʁ`, ⟨aurore⟩ `ɔʁɔʁ`, ⟨dinosaure⟩ `dinozɔʁ` | Fouché 1959, Tranel 1987 ch. 3, Walker 2001 ch. 3 |
 
-Tranel (1995) formalises liaison and elision within Optimality Theory as both driven by ONSET satisfaction (syllables prefer an onset consonant): linking consonants and eliding vowels are underlyingly "floating" segments that surface only when doing so yields a better-formed syllable for the following vowel-initial word. Aspirate-h words (`hibou` [ibu]) are lexically vowel-initial but block both liaison (`les hiboux` *[lezibu]) and elision (`le hibou` *[libu]) because they require left-edge alignment between the word boundary and the syllable boundary (ALIGN-LEFT ≫ ONSET), unlike regular vowel-initial words where ONSET dominates alignment.
+The ⟨eu⟩ half of the /z/ rule is needed only where ⟨z⟩ spells the /z/. The common ⟨euse⟩ words, such as ⟨heureuse⟩ and ⟨chanteuse⟩, already reach [ø] through the strip. Learned and foreign spellings resist the ⟨au⟩ rule, so ⟨Saurat⟩ and ⟨vaurien⟩ keep [o] in the gold.
 
-**Elision** (`le`/`la`/`je`/`de`/`que`/`ne`/`ce`/`se` + vowel-initial word → `l'`/`j'`/`d'`/`qu'`/`n'`/`c'`/`s'`) is already resolved in standard written French — the apostrophe form is the orthographic input — so it requires no additional G2P transform. Liaison is a genuine cross-word sandhi phenomenon and is encoded in `sandhi_rules` (`FR_LIAISON_Z`, `FR_LIAISON_T`, `FR_LIAISON_N`, `FR_LIAISON_R`, `FR_LIAISON_P`, `FR_ENCHAÎNEMENT`). Blocking liaison before h-aspiré words is not currently modelled: `h` maps to the empty string identically for both h-muet (`l'homme`, liaison/elision apply) and h-aspiré (`le héros`, liaison/elision blocked) words, so distinguishing them requires a lexical h-aspiré wordlist, which is out of scope for this pass.
+### What the spec does not model
 
----
+The spec does not read ⟨o⟩ from syllable aperture. Open [o] in every open syllable is the southern French pattern (Walker 2001, ch. 3). Standard French keeps [ɔ] in a non-final open syllable, as in ⟨homophone⟩ `ɔmɔfɔn` and ⟨obole⟩ `ɔbɔl`. So ⟨o⟩ keeps the `FR_O_FINAL_OPEN` and `FR_O_BEFORE_Z` rules. A test of the aperture reading raised the PER on the WikiPron gold.
+
+The spec does not read ⟨e⟩ from syllable aperture either. French ⟨e⟩ is [ɛ] in a syllable that the spelling closes, whether or not the coda is pronounced. So ⟨met⟩ and ⟨mets⟩ both give `mɛ`. The rules `FR_E_CLOSED_CLUSTER` and `FR_E_CLOSED_FINAL` state this from the spelling.
+
+The spec does not open ⟨eu⟩ before /ʁ/, as it opens ⟨au⟩. In an open syllable the quality is lexical: ⟨heureux⟩ and ⟨euro⟩ have [ø], but ⟨fleurette⟩ has [œ]. Walker (2001, ch. 3) says the same of non-final syllables.
+
+## Nasal vowels
+
+| Spelling | IPA | Spec output |
+|:---:|:---:|:---|
+| an, am, en, em | ɑ̃ | ⟨plan⟩ `plɑ̃`, ⟨temps⟩ `tɑ̃` |
+| in, im, ain, ein | ɛ̃ | ⟨vin⟩ `vɛ̃`, ⟨pain⟩ `pɛ̃` |
+| on, om | ɔ̃ | ⟨bon⟩ `bɔ̃`, ⟨ombre⟩ `ɔ̃bʁ` |
+| un, um | œ̃ | ⟨lundi⟩ `lœ̃di`, ⟨brun⟩ `bʁœ̃` |
+
+Most nasal spellings are not graphemes. The rules `FR_NASAL_a`, `FR_NASAL_ə`, `FR_NASAL_i`, `FR_NASAL_ɔ` and `FR_NASAL_y` nasalise a vowel before a nasal consonant in the coda. Then `FR_NASAL_ABSORB` deletes that coda nasal. The digraphs ⟨ain⟩ and ⟨ein⟩ are graphemes with the value [ɛ̃].
+
+Before a vowel in the same word, the nasal consonant is an onset, so no nasal vowel forms. So ⟨amateur⟩ gives `amatœʁ`, ⟨inutile⟩ gives `inytil` and ⟨unanime⟩ gives `ynanim`. For the nasal graphemes ⟨ain aim ein ien oin⟩, the `FR_NASAL_BLOCK_PREVOCALIC_*` rules remove the nasal vowel before a vowel. The `FR_NASAL_BLOCK_GEMINATE_*` rules remove it before ⟨n m nn mm⟩, so ⟨plaine⟩ gives `plɛn` and ⟨chienne⟩ gives `ʃjɛn`.
+
+Many speakers in and around Paris merge /œ̃/ into /ɛ̃/, so ⟨brun⟩ and ⟨brin⟩ sound the same (Fougeron & Smith 1993). Conservative Standard French keeps the contrast. The spec keeps both values as allophones of `œ̃` and does not reduce the inventory, because Fougeron & Smith still treat /œ̃/ as a phoneme for their reference speaker.
+
+## Liaison and elision
+
+Liaison is a cross-word process. A final consonant that is silent elsewhere is pronounced before a word that starts with a vowel. It is obligatory after a determiner and between a subject pronoun and its verb, as in [le.z‿ami] ⟨les amis⟩ and [nu.z‿avɔ̃] ⟨nous avons⟩. It is blocked after the conjunction ⟨et⟩, before an aspirate-h word, and between a singular noun and its adjective.
+
+Tranel (1995) treats liaison and elision in Optimality Theory, with both driven by ONSET: a syllable prefers an onset consonant. A linking consonant and an eliding vowel are floating segments that surface only when the next syllable gains an onset from them. Aspirate-h words, such as ⟨hibou⟩, start with a vowel but block both liaison and elision. They require the word boundary and the syllable boundary to align at the left edge (ALIGN-LEFT outranks ONSET).
+
+Elision needs no rule. Standard spelling already writes the elided form with an apostrophe, as in ⟨l'homme⟩, so the input carries it.
+
+The spec declares liaison in `sandhi_rules` as `FR_LIAISON_Z`, `FR_LIAISON_T`, `FR_LIAISON_N`, `FR_LIAISON_R`, `FR_LIAISON_P` and `FR_ENCHAÎNEMENT`. These rules match the final IPA of the left word, and the spec has already silenced that consonant. So the liaison rules do not fire, and `transcribe("les amis", "fr-FR")` gives `l ami`.
 
 ## Digraphs
 
-| Grapheme | IPA | Examples |
+| Grapheme | IPA | Spec output |
 |:---:|:---:|:---|
-| ch | [ʃ] | `chat` [ʃa] |
-| gn | [ɲ] | `vigne` [viɲ] |
-| ph | [f] | `photo` [foto] |
-| ill (after vowel) | [ij] | `fille` [fij] |
-| oi | [wa] | `moi` [mwa] |
-| ou | [u] | `ou` [u] |
-| ui | [ɥi] | `nuit` [nɥi] |
-| eu | [ø/œ] | `feu` [fø] / `peur` [pœʁ] |
-| bb, dd, ff, gg, ll, mm, nn, pp, rr, tt | single consonant | `Abbeville` [abvil], `Allier` [alje] |
+| ch | ʃ | ⟨chat⟩ `ʃa` |
+| gn | ɲ | ⟨vigne⟩ `viɲ` |
+| ph | f | ⟨photo⟩ `fɔto` |
+| ill | ij | ⟨fille⟩ `fij` |
+| oi | wa | ⟨moi⟩ `mwa` |
+| ui | ɥi | ⟨nuit⟩ `nɥi` |
+| eu | ø or œ | ⟨feu⟩ `fø`, ⟨peur⟩ `pœʁ` |
+| bb, dd, ff, gg, ll, mm, nn, pp, rr, tt | one consonant | ⟨Allier⟩ `alje` |
 
----
+## Known limitations
 
-## Known Engine-Limit Exceptions
+| Limitation | Spec output | Cause |
+|:---|:---|:---|
+| Liaison does not surface | ⟨les amis⟩ `l ami` | The sandhi rules match a final consonant that the spec has already silenced |
+| `FR_ENCHAÎNEMENT` deletes the consonant it should link | ⟨des amis⟩ `‿ ami`, ⟨j'aime⟩ `‿ ɛm` | Its `transform` replaces the final voiced consonant with the link mark |
+| Plural determiners lose their vowel | ⟨les⟩ `l`, ⟨des⟩ `d`, ⟨mes⟩ `m` | Only the singular function words are in `word_exceptions` |
+| Aspirate-h does not block liaison or elision | ⟨le héros⟩ `lə eʁo` | ⟨h⟩ maps to nothing for both mute and aspirate h, and the spec has no aspirate-h word list |
+| ⟨e⟩ before a doubled nasal letter reads as schwa | ⟨femme⟩ `fəm`, ⟨ennemi⟩ `ənəmi` | The `FR_NASAL_BLOCK_GEMINATE_*` rules cover only ⟨ain aim ein ien oin⟩ |
 
-- **h-aspiré blocking**: not modelled (see Liaison section above) — needs a lexical wordlist, not encodable purely from orthography.
-- **Word-final schwa in monosyllables**: `positional_graphemes` silences word-final `e` by default (e caduc), which is correct for polysyllabic words but incorrectly silences the vowel of one-syllable function words (`le`, `que`, `de`).
-- **Denasalization before doubled nasal letters**: `immense`, `ennemi`-type denasalization (nasal digraph followed by its own doubled consonant) is not triggered because `mm`/`nn` are tokenized as their own digraphs, not exposed as `before_consonant` context on the nasal vowel grapheme.
-- **Loanword/proper-noun irregularity**: transliterated foreign names (`Amsterdam`, `Akram`) and acronyms spelled letter-by-letter dominate the residual wikipron mismatches; these are lexical exceptions rather than encodable grapheme rules.
-
----
+Foreign names, such as ⟨Amsterdam⟩, and acronyms that are read letter by letter are lexical exceptions. A grapheme rule cannot encode them.
 
 ## References
 
 - Fouché, P. (1959). *Traité de prononciation française*. Klincksieck.
 - Tranel, B. (1987). *The Sounds of French*. Cambridge University Press.
-- Ladefoged, P. & Maddieson, I. (1996). *The Sounds of the World's Languages*. Blackwell.
-- Fougeron, C. & Smith, C.L. (1993). Illustrations of the IPA: French. *Journal of the International Phonetic Association*, 23(2), 73–76.
+- Fougeron, C. & Smith, C.L. (1993). Illustrations of the IPA: French. *Journal of the International Phonetic Association*, 23(2), 73-76.
 - Tranel, B. (1995). French liaison and elision revisited: A unified account within Optimality Theory. Rutgers Optimality Archive, ROA-15.
+- Ladefoged, P. & Maddieson, I. (1996). *The Sounds of the World's Languages*. Blackwell.
+- Divay, M. & Vitale, A.J. (1997). Algorithms for grapheme-phoneme translation for English and French: applications for database searches and speech synthesis. *Computational Linguistics*, 23(4), 495-523.
+- Walker, D.C. (2001). *French Sound Structure*. University of Calgary Press.
 - Wikipedia: [French phonology](https://en.wikipedia.org/wiki/French_phonology)
 
 ---
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
-
-*Related: [romance](romance.md), [it-IT](it-IT.md), [pt-PT](pt-PT.md)*
+[← Romanian](ro-RO.md) · [Home](../index.md) · [Italian →](it-IT.md)

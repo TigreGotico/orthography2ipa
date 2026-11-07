@@ -1,6 +1,6 @@
-"""Research-grounded Levantine Arabic dialects: Damascene (ar-SY), Beiruti
-(ar-LB), Ammani (ar-JO) and Palestinian (ar-PS), plus the shared proto-parent
-(ar-x-levantine).
+"""Research-grounded Levantine Arabic dialects: Damascene (apc-SY), Beiruti
+(apc-LB), Ammani (apc-JO) and Palestinian (apc-PS), plus the shared proto-parent
+(apc).
 
 Every assertion is whole-word IPA via the data-driven engine and traces to a
 cited, actually-read source:
@@ -34,11 +34,11 @@ def _ipa(code: str, word: str) -> str:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Shared proto-parent — ar-x-levantine
+# Shared proto-parent — apc
 # ─────────────────────────────────────────────────────────────────────────────
 @pytest.mark.linguistic
 class TestLevantineProtoRules:
-    CODE = "ar-x-levantine"
+    CODE = "apc"
 
     @pytest.fixture(autouse=True, scope="class")
     def spec(self, request):
@@ -72,11 +72,11 @@ class TestLevantineProtoRules:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Damascene — ar-SY
+# Damascene — apc-SY
 # ─────────────────────────────────────────────────────────────────────────────
 @pytest.mark.linguistic
 class TestSyrianDamascene:
-    CODE = "ar-SY"
+    CODE = "apc-SY"
 
     @pytest.fixture(autouse=True, scope="class")
     def spec(self, request):
@@ -105,15 +105,15 @@ class TestSyrianDamascene:
         assert _ipa(self.CODE, "بَاب") == "ˈbaːb"
 
     def test_parent(self):
-        assert self.spec.parent == "ar-x-levantine"
+        assert self.spec.parent == "apc"
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Beiruti — ar-LB : strong imāla
+# Beiruti — apc-LB : strong imāla
 # ─────────────────────────────────────────────────────────────────────────────
 @pytest.mark.linguistic
 class TestLebaneseBeiruti:
-    CODE = "ar-LB"
+    CODE = "apc-LB"
 
     @pytest.fixture(autouse=True, scope="class")
     def spec(self, request):
@@ -189,15 +189,15 @@ class TestLebaneseBeiruti:
         assert _ipa(self.CODE, "الْيَوم") == "alˈjoːm"
 
     def test_parent(self):
-        assert self.spec.parent == "ar-x-levantine"
+        assert self.spec.parent == "apc"
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Ammani — ar-JO
+# Ammani — apc-JO
 # ─────────────────────────────────────────────────────────────────────────────
 @pytest.mark.linguistic
 class TestJordanianAmmani:
-    CODE = "ar-JO"
+    CODE = "apc-JO"
 
     @pytest.fixture(autouse=True, scope="class")
     def spec(self, request):
@@ -224,15 +224,15 @@ class TestJordanianAmmani:
         assert _ipa(self.CODE, "بَيْت") == "ˈbeːt"
 
     def test_parent(self):
-        assert self.spec.parent == "ar-x-levantine"
+        assert self.spec.parent == "apc"
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Palestinian — ar-PS
+# Palestinian — apc-PS
 # ─────────────────────────────────────────────────────────────────────────────
 @pytest.mark.linguistic
 class TestPalestinian:
-    CODE = "ar-PS"
+    CODE = "apc-PS"
 
     @pytest.fixture(autouse=True, scope="class")
     def spec(self, request):
@@ -262,4 +262,4 @@ class TestPalestinian:
         assert _ipa(self.CODE, "صَوْت") == "ˈsˤoːt"
 
     def test_parent(self):
-        assert self.spec.parent == "ar-x-levantine"
+        assert self.spec.parent == "apc"

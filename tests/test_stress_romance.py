@@ -231,10 +231,11 @@ class TestAsturian:
         idx = stress_index("ast", "páxaru")
         assert idx == -3
 
-    def test_ast_n_final_oxytone(self):
-        # Asturian: n-final is oxytone (unlike Spanish)
+    def test_ast_n_final_paroxytone(self):
+        # An oxytone ending in -n carries a written accent (caxón, manguán),
+        # so an unaccented -n word is paroxytone (Normes Ortográfiques §1.9.1.1 a).
         idx = stress_index("ast", "xoven")
-        assert idx == -1
+        assert idx == -2
 
 
 # ---------------------------------------------------------------------------
@@ -265,10 +266,19 @@ class TestOccitanStress:
         idx = stress_index("oc", "portas")
         assert idx == -2
 
-    def test_oc_marked_wins(self):
-        # cantar → in penult list (infinitive -ar) → -2
+    def test_oc_infinitive_is_oxytone(self):
+        # An Occitan infinitive is OXYTONE: ⟨cantar⟩ is [kanˈta]. The
+        # ⟨-r⟩ is not pronounced, but it does not move the accent either:
+        # a word ending in a consonant other than ⟨-s⟩ is oxytone (Wikipédia,
+        # Prononciation de l'occitan), and ⟨corrir⟩ is listed among those
+        # oxytones by fr.wiktionary, Annexe:Prononciation/occitan.
         idx = stress_index("oc", "cantar")
-        assert idx == -2
+        assert idx == -1
+
+    def test_oc_marked_wins(self):
+        # A written accent outranks every ending rule: ⟨república⟩ is a
+        # proparoxytone, which no ending could give it.
+        assert stress_index("oc", "república") == -3
 
     def test_oc_aranes_block(self):
         spec = get("oc-x-aranes")

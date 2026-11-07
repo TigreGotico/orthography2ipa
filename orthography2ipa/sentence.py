@@ -1,4 +1,4 @@
-"""sentence — the cross-word (utterance-scope) seam (Workstream C4).
+"""sentence — the cross-word (utterance-scope) seam.
 
 The per-word lattice (:mod:`orthography2ipa.phonetok`) and its
 :class:`~orthography2ipa.rescorer.LatticeRescorer` are, by design, strictly
@@ -45,7 +45,9 @@ Opt-in and byte-identical when unused
 -------------------------------------
 Nothing here runs unless a caller passes ``sentence_rescorer=`` to
 :class:`~orthography2ipa.g2p.G2P` (or calls
-:meth:`~orthography2ipa.g2p.G2P.sentence_lattice` explicitly). With no
+:meth:`~orthography2ipa.g2p.G2P.sentence_lattice` explicitly).
+``sentence_rescorer=`` is deprecated: a cross-word rule that
+``transcribe`` runs goes in ``Pipeline(sandhi=...)``. With no
 sentence rescorer, :meth:`~orthography2ipa.g2p.G2P.transcribe` is byte-for-byte
 what it was — including the spec's declarative ``sandhi_rules`` via
 :class:`~orthography2ipa.sandhi.SandhiEngine`, which keep working exactly as
@@ -61,8 +63,8 @@ order, and each pass sees the previous pass's rewritten IPA (via
 every word reads the pre-pass snapshot so the pass is order-independent and
 deterministic. A rescorer that returns ``word.ipa`` unchanged is a no-op.
 
-What is still downstream (C5)
------------------------------
+What is still downstream
+------------------------
 This seam supplies **position and cross-word adjacency**, not **meaning**.
 Homograph disambiguation that needs part-of-speech or semantics (English
 *read* /riːd/ vs /rɛd/, Portuguese *sede* 'thirst' vs 'headquarters') is not

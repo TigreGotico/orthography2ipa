@@ -3,6 +3,13 @@
   "name": "Swedish (Scanian / Skånska)",
   "script": "Latin",
   "graphemes_base": "sv",
+  "graphemes": {
+    "rn": ["ɳ"],
+    "rd": ["ɖ"],
+    "rt": ["ʈ"],
+    "rl": ["ɭ"],
+    "rs": ["ʂ"]
+  },
   "allophones_base": "sv",
   "allophones": {
     "l": [
@@ -35,7 +42,7 @@
       "notes": "Danish adstrate — Scania was Danish until 1658; uvular /r/ shared with Danish"
     }
   ],
-  "notes": "Scanian (Skånska) — southernmost Swedish province. UVULAR /r/ [ʀ] or [ʁ] — shared with Danish (historical Danish territory). Scania belonged to Denmark until 1658 (Treaty of Roskilde). No retroflexion (uvular r doesn't trigger it). Tonal accent present but with different realisation. Source: Wells (1982), Elert (1994).",
+  "notes": "Scanian (Skånska) — southernmost Swedish province. UVULAR /r/ [ʀ] or [ʁ] — shared with Danish (historical Danish territory). Scania belonged to Denmark until 1658 (Treaty of Roskilde). No retroflexion (uvular r doesn't trigger it) is the documented linguistic claim, but the engine does not yet implement it (the 'allophones' override below pre-dates and is dead against this spec's own grapheme table; kept, with a 'graphemes' override reproducing the base sv spec's OLD unconditional retroflexion, as an explicit, still-open engine-limit gap -- see the strict xfail test in test_cited_rules_germanic_celtic.py). Tonal accent present but with different realisation. Source: Wells (1982), Elert (1994).",
   "quality": "skeleton",
   "script_type": "alphabet",
   "sources": [

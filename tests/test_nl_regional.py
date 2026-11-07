@@ -1,0 +1,407 @@
+"""Regional Standard Dutch: the ``nl-NL-x-*`` delta specs.
+
+Each spec is a delta over ``nl-NL``. It inherits the whole standard and
+states only what its region changes. The expected values come from the
+sources the specs cite, never from the engine:
+
+- Dutch Limburg (``nl-NL-x-limburg``). van der Harst & Van de Velde (2007,
+  *Taal en Tongval* 59, pp. 184, 189) measure word-initial /ɣ/ in the carrier
+  word *guize*: in Dutch Limburg the norm is "de stemloze velair", with 77.5%
+  voiceless tokens and 5% uvular ones. Van de Velde (2016, *Onze Taal*, p. 10)
+  gives 65% voiced word-initial v in the south (*vier* against *fier*).
+  Van Bezooijen & van den Berg (2004, *Taal en Tongval* 56, p. 94) call
+  South Limburg "een gebied met vrijwel uitsluitend huig-r", so coda /r/ is
+  the consonantal [r] and not the Gooise r approximant [ɹ] of nl-NL. nl-NL
+  writes the uvular of most speakers as [r] too.
+- Polder Dutch (``nl-NL-x-polder``), a sociolect and not a region. Stroop
+  (1998, *Poldernederlands*, pp. 25-27) gives the lowered diphthongs: ⟨ei ij⟩
+  "aai [a:i]", ⟨ui⟩ "[ɑy]" and ⟨ou⟩ "aau [a:u]", with the examples *taaid*,
+  *haus*, *Mauden*, *jaauw*, *vraauw* and *Paaul*.
+- Groningen and north Drenthe (``nl-NL-x-groninge``), regional Standard
+  Dutch, not the Low Saxon dialect Gronings (``gos``). Van de Velde (2016,
+  p. 10) gives only 9% voiced word-initial v in the north: "Ze zeggen in het
+  noorden dus meestal 'fier' als het cijfer vier is bedoeld". van der Harst &
+  Van de Velde (2007, pp. 184, 189) find /ɣ/ 100% uvular and 90% voiceless
+  in the north, with "de sterk geschraapte stemloze uvulair" as the norm.
+  No opened source measures coda /r/ in the north, so it keeps the nl-NL
+  approximant [ɹ].
+
+A word with none of the features of its spec must come out exactly as
+``nl-NL`` gives it.
+A regional spec states its own value for a feature that ``nl-NL`` may still
+change, so a moved parent must not move the child.
+"""
+import json
+from pathlib import Path
+
+import pytest
+
+from orthography2ipa import G2P, json_loader
+from orthography2ipa.registry import resolves_exactly
+
+DATA = Path(__file__).parents[1] / "orthography2ipa" / "data"
+LIMBURG = "nl-NL-x-limburg"
+POLDER = "nl-NL-x-polder"
+GRONINGEN = "nl-NL-x-groninge"
+
+
+@pytest.fixture(scope="module")
+def nl():
+    return G2P("nl-NL")
+
+
+@pytest.fixture(scope="module")
+def limburg():
+    assert resolves_exactly(LIMBURG), f"{LIMBURG} names no spec"
+    return G2P(LIMBURG)
+
+
+@pytest.fixture(scope="module")
+def polder():
+    assert resolves_exactly(POLDER), f"{POLDER} names no spec"
+    return G2P(POLDER)
+
+
+def _velar(ipa: str) -> str:
+    """The nl-NL transcription with every dorsal fricative made velar [x]."""
+    return "".join("x" if ch in "ɣχ" else ch for ch in ipa)
+
+
+def _limburg(ipa: str) -> str:
+    """The nl-NL transcription with the velar [x] and the coda [r].
+
+    nl-NL writes [ɹ] for coda /r/ only, so every [ɹ] becomes [r].
+    """
+    return _velar(ipa).replace("ɹ", "r")
+
+
+def test_limburg_resolves_to_its_own_spec():
+    assert resolves_exactly(LIMBURG)
+
+
+def test_limburg_g_of_the_carrier_word_is_the_voiceless_velar(limburg):
+    # 'in de guize horen we g' (van der Harst & Van de Velde 2007, p. 179).
+    assert limburg.transcribe("guize").startswith("ˈx")
+
+
+@pytest.mark.parametrize("word", [
+    "guize", "gaan", "goed", "gras", "liegen", "dagen", "egel", "dag", "oog",
+    "bergen",
+])
+def test_limburg_g_is_velar_x_and_nothing_else_moves(nl, limburg, word):
+    # Onset /ɣ/: voiceless velar norm (pp. 184, 189). Word-final ⟨g⟩: the
+    # velar place of /ɣ/ with the final devoicing nl-NL applies. ⟨berg⟩ is
+    # an nl-NL grapheme that spells the same ⟨g⟩. The words hold no ⟨ch⟩
+    # and no ⟨v⟩, so every other segment is inherited.
+    assert limburg.transcribe(word) == _limburg(nl.transcribe(word))
+
+
+@pytest.mark.parametrize("word,onset", [("vier", "v"), ("fier", "f")])
+def test_limburg_keeps_word_initial_v_voiced(limburg, word, onset):
+    # 'in het zuiden 65%' voiced word-initial v (Van de Velde 2016, p. 10).
+    assert limburg.transcribe(word).lstrip("ˈ")[0] == onset
+
+
+@pytest.mark.parametrize("word", [
+    "ziek", "huis", "fee", "beuk", "boot", "zitten", "rood", "praten", "lopen",
+])
+def test_limburg_words_without_g_ch_v_or_coda_r_equal_the_standard(nl, limburg, word):
+    # ⟨r⟩ in the onset keeps the nl-NL [r].
+    assert limburg.transcribe(word) == nl.transcribe(word)
+
+
+@pytest.mark.parametrize("word,expected", [
+    ("door", "ˈdoᵊr"), ("vaart", "ˈvaːrt"), ("kerk", "ˈkɛrk"),
+    ("berg", "ˈbɛrx"), ("water", "ˈʋaːtər"), ("bakker", "ˈbɑkər"),
+    ("tjerkgaast", "ˈtʃɛrkxaːst"),
+])
+def test_limburg_coda_r_is_the_consonantal_r(nl, limburg, word, expected):
+    # "een gebied met vrijwel uitsluitend huig-r" (Van Bezooijen & van den
+    # Berg 2004, p. 94). The approximant of nl-NL is the Gooise r (p. 86).
+    assert "ɹ" in nl.transcribe(word)
+    assert limburg.transcribe(word) == expected
+
+
+@pytest.mark.parametrize("word", [
+    "lachen", "acht", "nacht", "licht", "school", "schip", "logisch",
+    "mensch", "Utrecht", "Albrecht", "Maastricht",
+])
+def test_limburg_ch_is_velar_x_like_g(nl, limburg, word):
+    # Dutch Limburg shares its /ɣ/ norm with Flanders (van der Harst & Van de
+    # Velde 2007, p. 192), where ⟨ch⟩ is the voiceless velar (Verhoeven 2005,
+    # p. 244). ⟨sch⟩ and ⟨brecht⟩ are nl-NL keys that spell the same ⟨ch⟩.
+    assert limburg.transcribe(word) == _limburg(nl.transcribe(word))
+    assert "χ" not in limburg.transcribe(word)
+
+
+@pytest.mark.parametrize("word", ["lachgas", "Egchel", "juichgeroep"])
+def test_limburg_g_next_to_ch_is_one_velar(nl, limburg, word):
+    # ⟨g⟩ and ⟨ch⟩ take one value, so collapse_geminates merges them as it
+    # merges the two [χ] of nl-NL.
+    assert limburg.transcribe(word) == _limburg(nl.transcribe(word))
+
+
+def test_limburg_word_exception_gets_the_velar(nl, limburg):
+    # A word exception bypasses the grapheme layer, so the child states its
+    # own copy of the nl-NL entry.
+    assert "χ" in nl.transcribe("tjerkgaast")
+    assert limburg.transcribe("tjerkgaast") == "ˈtʃɛrkxaːst"
+
+
+def _restated_entries():
+    """Every nl-NL grapheme key and word exception whose value holds [χ] or [ɹ]."""
+    raw = json.loads((DATA / "nl-NL.json").read_text(encoding="utf-8"))
+
+    def holds(value) -> bool:
+        text = json.dumps(value, ensure_ascii=False)
+        return "χ" in text or "ɹ" in text
+
+    keys = {k for k, v in raw["graphemes"].items() if holds(v)}
+    keys |= {k for k, v in raw["positional_graphemes"].items() if holds(v)}
+    words = {k for k, v in raw.get("word_exceptions", {}).items() if holds(v)}
+    return sorted(keys), sorted(words)
+
+
+@pytest.mark.parametrize("key", _restated_entries()[0])
+def test_limburg_restates_every_nl_nl_key_with_the_uvular_or_the_approximant(nl, limburg, key):
+    # A new nl-NL key with [χ] or [ɹ] reaches the child unless the child
+    # restates it. The allophone rule does not reach a key's own value.
+    word = f"a{key}en"
+    assert any(ch in nl.transcribe(word) for ch in "χɹ")
+    assert limburg.transcribe(word) == _limburg(nl.transcribe(word))
+
+
+@pytest.mark.parametrize("word", _restated_entries()[1])
+def test_limburg_restates_every_nl_nl_exception_with_the_uvular_or_the_approximant(nl, limburg, word):
+    assert limburg.transcribe(word) == _limburg(nl.transcribe(word))
+
+
+def test_limburg_keeps_its_values_when_nl_nl_moves(tmp_path, monkeypatch):
+    # An nl-NL with the uvular [χ] for ⟨g⟩ and a devoiced initial ⟨v⟩, the
+    # parent values Gussenhoven (1992) and Van de Velde (2016) give for the
+    # western standard, and a fricative coda /r/. The Limburg values must not
+    # follow them.
+    raw = json.loads((DATA / "nl-NL.json").read_text(encoding="utf-8"))
+    pos = raw["positional_graphemes"]
+    pos["g"] = {"word_final": ["χ"], "default": ["χ"]}
+    pos["berg"] = {"word_final": ["bɛɹχ"], "default": ["bɛɹχ"]}
+    pos["v"] = {"word_final": ["f"], "default": ["f"]}
+    pos["sch"] = {"word_final": ["s"], "default": ["sh"]}
+    raw["graphemes"]["ch"] = ["h"]
+    raw["graphemes"]["brecht"] = ["brɛht"]
+    raw["word_exceptions"]["tjerkgaast"] = "ˈtʃɛɹkhaːst"
+    for rule in raw["allophone_rules"]:
+        if rule["id"] == "NL_CODA_R_APPROXIMANT":
+            rule["surface"] = "ʁ"
+    moved_file = tmp_path / "nl-NL.json"
+    moved_file.write_text(json.dumps(raw, ensure_ascii=False), encoding="utf-8")
+    index = dict(json_loader._index, **{"nl-NL": moved_file})
+    specs = {k: v for k, v in json_loader._specs.items()
+             if k not in ("nl-NL", LIMBURG)}
+    monkeypatch.setattr(json_loader, "_index", index)
+    monkeypatch.setattr(json_loader, "_specs", specs)
+
+    moved = G2P("nl-NL", spec=json_loader.load_json_spec("nl-NL"))
+    child = G2P(LIMBURG, spec=json_loader.load_json_spec(LIMBURG))
+    assert moved.transcribe("gaan").startswith("ˈχ")
+    assert moved.transcribe("vier").startswith("ˈf")
+    assert moved.transcribe("door") == "ˈdoᵊʁ"
+    for word in ("guize", "gaan", "liegen", "dag"):
+        assert child.transcribe(word) == _velar(moved.transcribe(word))
+    assert child.transcribe("bergen") == "ˈbɛrxən"
+    assert child.transcribe("door") == "ˈdoᵊr"
+    assert child.transcribe("vier").startswith("ˈv")
+    assert moved.transcribe("lachen") == "ˈlaːhən"
+    assert child.transcribe("lachen") == "ˈlaːxən"
+    assert child.transcribe("school") == "ˈsxoul"
+    assert child.transcribe("Albrecht") == "ˈɑlbrɛxt"
+    assert child.transcribe("tjerkgaast") == "ˈtʃɛrkxaːst"
+
+
+# Stroop (1998): the nl-NL diphthong and its Polder value.
+_POLDER_DIPHTHONGS = {"ɛi": "aːi", "œy": "ɑy", "ɑu": "aːu"}
+
+
+def _lowered(ipa: str, standard: dict[str, str] | None = None) -> str:
+    """The nl-NL transcription with each diphthong replaced by its Polder value."""
+    for old, new in (standard or _POLDER_DIPHTHONGS).items():
+        ipa = ipa.replace(old, new)
+    return ipa
+
+
+def test_polder_resolves_to_its_own_spec():
+    assert resolves_exactly(POLDER)
+
+
+def test_polder_is_a_sociolect_with_no_location(polder):
+    # Stroop (pp. 16, 51) defines the speakers by age, sex and job, and
+    # most of them grew up outside the Randstad: no point on a map.
+    assert polder.spec.location is None
+
+
+@pytest.mark.parametrize("word,diphthong", [
+    ("tijd", "aːi"),     # taaid (p. 25)
+    ("twijfelen", "aːi"),  # twaaifelen (p. 25)
+    ("vrijheid", "aːi"),   # vraaihaaid (p. 25)
+    ("huis", "ɑy"),      # haus (p. 26)
+    ("buiten", "ɑy"),    # bauten (p. 26)
+    ("Muiden", "ɑy"),    # Mauden (p. 26)
+    ("jou", "aːu"),      # jaauw (p. 27)
+    ("vrouw", "aːu"),    # vraauw (p. 27)
+    ("Paul", "aːu"),     # Paaul (p. 27)
+])
+def test_polder_lowers_the_diphthong_of_stroops_examples(polder, word, diphthong):
+    assert diphthong in polder.transcribe(word)
+
+
+@pytest.mark.parametrize("word", [
+    "tijd", "wijn", "ijs", "reis", "trein", "twijfelen", "vrijheid", "huis",
+    "buiten", "uit", "ruim", "Muiden", "vrouw", "jou", "koud", "zout", "blauw",
+    "gauw", "Paul", "paus", "flaauw",
+])
+def test_polder_changes_only_the_diphthong(nl, polder, word):
+    # ⟨ei ij⟩ [a:i] (p. 25), ⟨ui⟩ [ɑy] (p. 26), ⟨ou au⟩ [a:u] (p. 27); the
+    # other segments are inherited from nl-NL.
+    assert polder.transcribe(word) == _lowered(nl.transcribe(word))
+
+
+@pytest.mark.parametrize("word", [
+    "water", "ziek", "school", "fee", "beuk", "boot", "bakker", "kraai",
+    "mooi", "groei", "leeuw", "nieuw", "ruw", "gaan", "vier", "kerk",
+])
+def test_polder_words_without_the_diphthongs_equal_the_standard(nl, polder, word):
+    # ⟨ee eu oo⟩, ⟨r⟩ and the fricatives stay as in nl-NL: Stroop gives no
+    # endpoint or no majority for them (pp. 30-34).
+    assert polder.transcribe(word) == nl.transcribe(word)
+
+
+def test_polder_keeps_its_values_when_nl_nl_moves(polder, tmp_path, monkeypatch):
+    # An nl-NL that gives the diphthongs their alternative surfaces [ɛɪ œʏ ʌu].
+    # The Polder values must not follow them.
+    raw = json.loads((DATA / "nl-NL.json").read_text(encoding="utf-8"))
+    moved_values = {"ɛi": "ɛɪ", "œy": "œʏ", "ɑu": "ʌu"}
+    for key in ("ei", "ij", "ui", "ou", "au", "ouw", "auw", "aauw"):
+        raw["graphemes"][key] = [moved_values[raw["graphemes"][key][0]]]
+    moved_file = tmp_path / "nl-NL.json"
+    moved_file.write_text(json.dumps(raw, ensure_ascii=False), encoding="utf-8")
+    index = dict(json_loader._index, **{"nl-NL": moved_file})
+    specs = {k: v for k, v in json_loader._specs.items()
+             if k not in ("nl-NL", POLDER)}
+    monkeypatch.setattr(json_loader, "_index", index)
+    monkeypatch.setattr(json_loader, "_specs", specs)
+
+    moved = G2P("nl-NL", spec=json_loader.load_json_spec("nl-NL"))
+    child = G2P(POLDER, spec=json_loader.load_json_spec(POLDER))
+    for word, moved_diphthong in (("tijd", "ɛɪ"), ("huis", "œʏ"), ("vrouw", "ʌu"),
+                                  ("blauw", "ʌu"), ("koud", "ʌu")):
+        assert moved_diphthong in moved.transcribe(word)
+        assert child.transcribe(word) == polder.transcribe(word)
+
+
+@pytest.fixture(scope="module")
+def groningen():
+    assert resolves_exactly(GRONINGEN), f"{GRONINGEN} names no spec"
+    return G2P(GRONINGEN)
+
+
+def _uvular(ipa: str) -> str:
+    """The nl-NL transcription with every dorsal fricative made uvular [χ]."""
+    return "".join("χ" if ch in "ɣx" else ch for ch in ipa)
+
+
+def _initial_f(ipa: str) -> str:
+    """The nl-NL transcription with a word-initial [v] made [f]."""
+    stress = ipa[0] if ipa[:1] in "ˈˌ" else ""
+    body = ipa[len(stress):]
+    return stress + ("f" + body[1:] if body.startswith("v") else body)
+
+
+def test_groningen_resolves_to_its_own_spec():
+    assert resolves_exactly(GRONINGEN)
+
+
+def test_groningen_is_regional_standard_dutch_not_gronings(groningen):
+    # Gronings has an ISO 639-3 code of its own, so it is keyed `gos`; this
+    # spec descends from the standard and inherits its ISO code.
+    assert groningen.spec.parent == "nl-NL"
+    assert groningen.spec.iso639_3 == "nld"
+
+
+@pytest.mark.parametrize("word,onset", [("vier", "f"), ("fier", "f")])
+def test_groningen_says_fier_for_vier(groningen, word, onset):
+    # "Ze zeggen in het noorden dus meestal 'fier' als het cijfer vier is
+    # bedoeld" (Van de Velde 2016, p. 10).
+    assert groningen.transcribe(word).lstrip("ˈ")[0] == onset
+
+
+@pytest.mark.parametrize("word", [
+    "vier", "vis", "vader", "van", "vuur", "voor", "vaak", "veel",
+])
+def test_groningen_devoices_only_the_initial_v(nl, groningen, word):
+    assert groningen.transcribe(word) == _initial_f(nl.transcribe(word))
+
+
+@pytest.mark.parametrize("word", ["over", "avond", "duivel", "leven"])
+def test_groningen_keeps_a_word_internal_v(nl, groningen, word):
+    # The source measures the word-initial ⟨v⟩ only.
+    assert groningen.transcribe(word) == nl.transcribe(word)
+
+
+@pytest.mark.parametrize("word", [
+    "gaan", "goed", "gras", "liegen", "dagen", "egel", "dag", "oog", "bergen",
+])
+def test_groningen_g_is_the_voiceless_uvular(nl, groningen, word):
+    # N-N: 100% uvular (Table 3) and 90% voiceless (Table 4), p. 184. The
+    # words hold no ⟨ch⟩ and no ⟨v⟩, so every other segment is inherited.
+    assert groningen.transcribe(word) == _uvular(nl.transcribe(word))
+
+
+@pytest.mark.parametrize("word", ["zandgrond", "hoofdgebouw", "handgranaat", "Landgraaf"])
+def test_groningen_devoices_a_coda_obstruent_before_the_uvular(limburg, groningen, word):
+    # The inherited NL_CODA_DEVOICE_* rules devoice a coda obstruent before a
+    # voiceless fricative. Limburg gets the same words with the velar [x], so
+    # its output with [x] made [χ] is the expected Groningen value.
+    assert groningen.transcribe(word) == _uvular(limburg.transcribe(word))
+
+
+@pytest.mark.parametrize("word", ["door", "vaart", "kerk", "water", "bakker"])
+def test_groningen_keeps_the_coda_approximant_of_nl_nl(nl, groningen, word):
+    # No opened source measures coda /r/ in the north.
+    assert "ɹ" in groningen.transcribe(word)
+    assert groningen.transcribe(word) == _initial_f(nl.transcribe(word))
+
+
+@pytest.mark.parametrize("word", [
+    "water", "ziek", "lachen", "school", "huis", "fee", "beuk", "boot",
+    "bakker", "zitten", "lopen",
+])
+def test_groningen_words_without_g_or_initial_v_equal_the_standard(nl, groningen, word):
+    assert groningen.transcribe(word) == nl.transcribe(word)
+
+
+def test_groningen_keeps_its_v_when_nl_nl_moves(groningen, tmp_path, monkeypatch):
+    # An nl-NL with a devoiced ⟨v⟩ in every position. The Groningen ⟨v⟩
+    # must not follow it. Its ⟨g⟩ is the nl-NL [χ] and is not restated.
+    raw = json.loads((DATA / "nl-NL.json").read_text(encoding="utf-8"))
+    raw["positional_graphemes"]["v"] = {"word_final": ["f"], "default": ["f"]}
+    moved_file = tmp_path / "nl-NL.json"
+    moved_file.write_text(json.dumps(raw, ensure_ascii=False), encoding="utf-8")
+    index = dict(json_loader._index, **{"nl-NL": moved_file})
+    specs = {k: v for k, v in json_loader._specs.items()
+             if k not in ("nl-NL", GRONINGEN)}
+    monkeypatch.setattr(json_loader, "_index", index)
+    monkeypatch.setattr(json_loader, "_specs", specs)
+
+    moved = G2P("nl-NL", spec=json_loader.load_json_spec("nl-NL"))
+    child = G2P(GRONINGEN, spec=json_loader.load_json_spec(GRONINGEN))
+    assert "f" in moved.transcribe("over")
+    for word in ("vier", "over", "leven", "avond"):
+        assert child.transcribe(word) == groningen.transcribe(word)
+    assert "v" in child.transcribe("over")
+
+
+def test_groningen_inherits_the_uvular_g_of_nl_nl():
+    raw = json.loads((DATA / f"{GRONINGEN}.json").read_text(encoding="utf-8"))
+    assert "g" not in raw.get("positional_graphemes", {})
+    assert "berg" not in raw.get("positional_graphemes", {})
+    assert "allophone_rules" not in raw

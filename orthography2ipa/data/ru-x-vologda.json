@@ -4,8 +4,10 @@
   "script": "Cyrillic",
   "graphemes_base": "ru-x-northern",
   "allophones_base": "ru-x-northern",
+  "word_exceptions_base": "ru-x-northern",
+  "grammatical_endings_base": "ru-x-northern",
   "parent": "ru-x-northern",
-  "notes": "Northern Russian, Vologda region. Оканье, strong consonantism.",
+  "notes": "Northern Russian, Vologda group. Полное оканье and soft цоканье — one affricate [tsʲ] for both ⟨ч⟩ and ⟨ц⟩ ('для значительной части вологодских говоров характерно употребление одной аффрикаты [ц']'), which is exactly the Northern-group system, so this spec adds no tables of its own and inherits `ru-x-northern` whole. Retained as a named code because the Vologda group is one of the two subtypes the Northern spec generalises over, and because the group's other diagnostics (strong consonantism, ⟨бм⟩/⟨дн⟩ assimilations, the -ой/-ей endings) are lexical and morphological rather than grapheme-level; encoding them would need sources not consulted for this spec. NEEDS SOURCING before this file diverges from its parent.",
   "quality": "stub",
   "script_type": "alphabet",
   "sources": [

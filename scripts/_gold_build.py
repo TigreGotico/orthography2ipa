@@ -3,7 +3,7 @@
 ROWS = [(sentence, gloss_en, shape_tags, notes), ...] and a lect code,
 computes raw / o2i IPA / auto feature tags, and (re)writes the lect's gold
 TSV. Complements scripts/arabic_tts_gold.py (checklist/draft/validate) —
-see docs/arabic-tts-gold.md for the full procedure."""
+see docs/evaluation/silver_sets.md for the full procedure."""
 import csv, importlib.util, sys
 from pathlib import Path
 

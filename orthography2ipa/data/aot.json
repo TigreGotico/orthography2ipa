@@ -3,7 +3,7 @@
   "name": "Atong (India)",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "ch": [
       "tʃ"
@@ -114,7 +114,7 @@
       "notes": "Descent per Glottolog classification of Atong (India) (aton1241)."
     }
   ],
-  "notes": "Skeleton. Atong is a Bodo-Garo (Sino-Tibetan) language of Meghalaya, India, written in a Latin-based orthography. Base Latin consonants and vowels plus digraphs ch/sh/ng/ny and aspirates kh/ph/th are mapped. Atong is only marginally tonal; any tone, plus vowel-length distinctions, are left unencoded, raising the PER floor.",
+  "notes": "Skeleton. Atong is a Bodo-Garo (Sino-Tibetan) language of Meghalaya, India, written in a Latin-based orthography. Base Latin consonants and vowels plus digraphs ch/sh/ng/ny and aspirates kh/ph/th are mapped. Atong is only marginally tonal; any tone, plus vowel-length distinctions, are left unencoded, raising the PER floor. Atong stress/prominence is not distinctively marked in the orthography and is left unencoded (documented exemption).",
   "iso639_3": "aot",
   "glottolog_code": null,
   "sources": [
@@ -139,6 +139,16 @@
       "pages": null,
       "notes": "Orthography/phonology reference for a skeleton-tier entry.",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Atong_language_(India)"
+    },
+    {
+      "id": "aot_vanbreugel2014",
+      "author": "van Breugel, Seino",
+      "year": 2014,
+      "title": "A Grammar of Atong",
+      "publisher": "Brill",
+      "url": "https://www.academia.edu/508408/A_Grammar_of_Atong",
+      "pages": null,
+      "notes": "Reference grammar of Atong (Bodo-Garo, Meghalaya); the first comprehensive linguistic description, consulted to check the practical Latin orthography and consonant/vowel inventory used in this spec."
     }
   ],
   "wikipedia": [

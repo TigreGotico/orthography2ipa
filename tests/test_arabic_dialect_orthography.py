@@ -8,7 +8,7 @@ affrication) on top.
 
 Two mechanisms make that true, and both are asserted here:
 
-* the three proto nodes (``ar-x-peninsular`` / ``ar-x-mashriqi`` /
+* the three proto nodes (``ar-x-peninsul`` / ``ar-x-mashriqi`` /
   ``ar-x-maghrebi``) take their grapheme layer from ``ar``, not from Classical
   ``arb``, which has none of those readings;
 * a spec that declares ``graphemes_base`` but no ``positional_graphemes_base``
@@ -22,7 +22,7 @@ from orthography2ipa import get
 
 #: Every modern spoken variety written in Arabic script.
 DIALECTS = [
-    "ar-x-peninsular", "ar-x-mashriqi", "ar-x-maghrebi", "ar-x-gulf",
+    "ar-x-peninsul", "ar-x-mashriqi", "ar-x-maghrebi", "ar-x-gulf",
     "ar-x-levantine", "ar-SA-x-najd", "ar-SA-x-hejaz", "ar-EG", "ar-IQ",
     "ar-SY", "ar-LB", "ar-JO", "ar-PS", "ar-MA", "ar-DZ", "ar-TN", "ar-LY",
     "ar-AE", "ar-BH", "ar-KW", "ar-QA", "ar-OM", "ar-YE", "ar-SD",

@@ -1,138 +1,158 @@
-# Brazilian Portuguese (pt-BR) — Phonology Reference
+# Brazilian Portuguese (pt-BR)
 
-**Code**: `pt-BR` | **Family**: Indo-European > Romance > Ibero-Romance | **Script**: Latin (alphabet)
-**Quality tier**: research | **Sources**: Barbosa & Albano (2004, JIPA),
-Câmara Jr. (1970), Mateus & d'Andrade (2000), Callou & Leite (2001)
+| Field | Value |
+|:---|:---|
+| Code | `pt-BR` |
+| Family | Indo-European > Italic > Romance > Ibero-Romance |
+| Script | Latin (alphabet) |
+| Quality tier | production |
+| Parent | `pt-PT-x-medieval` |
+| Sources | Barbosa & Albano (2004, JIPA), Cristófaro Silva (2025), Mendonça & Oliveira (2019), Moraes & Wetzels (1992), Collischonn (2004), Romano & Seabra (2017), Nascimento (2015), Bagno (2012), Battisti & Moras (2016); also listed: Câmara Jr. (1970), Mateus & d'Andrade (2000), Callou & Leite (2001), Cunha & Cintra (1984), Vigário (2003) |
 
-`pt-BR` is the base spec for twelve regional Brazilian dialect specs
-(`pt-BR-x-sp`, `-rj`, `-caipira`, `-mg`, `-sul`, `-recife`, …), which
-inherit its maps via `graphemes_base` and refine them by delta. See
-[romance.md](romance.md) for the pt-PT ↔ pt-BR comparison.
+`pt-BR` models the general Brazilian standard. It takes its grapheme, allophone and positional maps from `pt-PT-x-medieval` through the three `*_base` keys. Its `ancestors` add Old Tupi (`tpn`) as a substrate and Kimbundu (`kmb`) as an adstrate, for the lexicon. The regional Brazilian specs inherit from `pt-BR` and change only what their region changes. [pt-BR-dialects.md](pt-BR-dialects.md) describes them. Uruguayan Portuguese ([pt-UY.md](pt-UY.md)) is also a child of `pt-BR`. For a comparison with the other Romance languages, see [comparative.md](comparative.md).
 
-## The two maps for BP
+Every transcription on this page is real output of `orthography2ipa.transcribe(text, "pt-BR")`. For the scores of the spec, see [../evaluation/generated/scoreboard.md](../evaluation/generated/scoreboard.md).
 
-The library models pronunciation as two maps (see
-[../allophony.md](../allophony.md)): the **pre-lexical** map
-(orthography → phoneme, in `positional_graphemes`) and the **post-lexical**
-map (phoneme → surface allophone, in `allophone_rules`).
+## The two maps
 
-### Pre-lexical (positional_graphemes)
+The library models pronunciation as two maps (see [../engine/allophony.md](../engine/allophony.md)). The pre-lexical map goes from spelling to phoneme, in `positional_graphemes`. The post-lexical map goes from phoneme to surface allophone, in `allophone_rules`. `pt-BR` runs the post-lexical rules in two passes (`allophone_passes: 2`). Cross-word changes are in `sandhi_rules`.
+
+### Pre-lexical map
 
 | Process | Rule | Example |
 |:---|:---|:---|
-| /t d/ affrication | ⟨t d⟩ → [t͡ʃ d͡ʒ] before ⟨i⟩ | `tio` [ˈt͡ʃiu], `dia` [ˈd͡ʒiɐ] |
-| Coda /l/ vocalisation | ⟨l⟩ → [w] in coda / word-final | `sol` [ˈsɔw], `sal` [ˈsaw] |
-| Coda /s/ | stays alveolar [s]/[z] (no chiado) | `mesmo` [ˈmezmu] |
-| Coda ⟨m/n⟩ nasalisation | ⟨m/n⟩ → [̃] (U+0303) in coda / word-final | `campo` [ˈkɐ̃pu], `sim` [ˈsĩ], `mundo` [ˈmũdu] |
-| Unstressed /a/ | → [ɐ] final/posttonic | `capa` [ˈkapɐ] |
+| /t d/ affrication | ⟨t d⟩ give [t͡ʃ d͡ʒ] before ⟨i⟩ | `tio` [ˈt͡ʃiu], `dia` [ˈd͡ʒiɐ] |
+| Coda /l/ vocalisation | ⟨l⟩ gives [w] before a consonant and at the end of a word | `sal` [ˈsaw], `alto` [ˈawtu] |
+| Coda /s/ | ⟨s⟩ stays alveolar in the coda: [s], or [z] before a voiced consonant (`BR_CODA_S_VOICED`) | `paz` [ˈpas], `mesmo` [ˈmezmu] |
+| Coda nasal | ⟨m n⟩ before a consonant or at the end of a word give a combining tilde (U+0303) | `campo` [ˈkɐ̃pu], `sim` [ˈsĩ], `mundo` [ˈmũdu] |
+| Final unstressed vowels | ⟨a⟩ gives [ɐ], ⟨e o⟩ give the near-close [ɪ ʊ] | `capa` [ˈkapɐ] |
+| Strong rhotic | word-initial ⟨r⟩ and ⟨rr⟩ give [ʁ] | `rato` [ˈʁatu], `carro` [ˈkaʁu] |
 
-The chiado (coda /s/ → [ʃ]) is a **carioca/RJ dialect delta**, not general
-BP, so the base keeps alveolar [s]/[z].
+The *chiado* (coda /s/ to [ʃ]) belongs to Rio de Janeiro and some other regions, not to the general standard. So the base keeps an alveolar coda [s z], and the regional specs add the *chiado* where their sources report it.
 
-### Post-lexical allophony (allophone_rules)
+### Post-lexical rules
 
-Two rules make the second map live for BP:
+| Rule ids | Process | Example |
+|:---|:---|:---|
+| `PT_NASAL_A_RAISE`, `PT_NASAL_E_RAISE`, `PT_NASAL_O_RAISE` | [a ɛ ɔ] give [ɐ e o] before the nasal tilde | `campo` [ˈkɐ̃pu], `tempo` [ˈtẽpu], `bom` [ˈbõ] |
+| `BR_INITIAL_EN_RAISE` | a word-initial pretonic ⟨en em⟩ before a consonant gives [ĩ] | `então` [ĩˈtɐ̃w̃], `envolto` [ĩˈvowtu] |
+| `BR_INITIAL_ES_RAISE` | a word-initial pretonic ⟨e⟩ before a coda sibilant gives [i] | `estar` [isˈta], `esmola` [izˈmolɐ] |
+| `BR_NASAL_STRESSED_A`, `_E`, `_O`, `_I`, `_U` | a stressed vowel before an onset nasal is nasal | `cama` [ˈkɐ̃mɐ], `cima` [ˈsĩmɐ], `fome` [ˈfõmi] |
+| `BR_NASAL_PRETONIC_A_NH` and the other vowels | a pretonic vowel before /ɲ/ is nasal | `ganhar` [ɡɐ̃ˈɲa], `senhor` [sẽˈɲoɾ] |
+| `BR_XC_ONE_S` | ⟨xc⟩ before a front vowel is one [s] | `exceção` [eseˈsɐ̃w̃], `excesso` [eˈsesu] |
+| `BR_CODA_X` | ⟨x⟩ before a consonant is the coda [s] | `texto` [ˈtestu], `explicar` [espliˈka] |
+| `BR_CODA_S_VOICED`, `BR_CODA_SH_VOICED` | a coda sibilant is voiced before a voiced consonant | `mesmo` [ˈmezmu], `desde` [ˈdezd͡ʒi] |
+| `BR_STRONG_R_AFTER_CODA` | /r/ after a coda nasal or sibilant is the strong rhotic | `honra` [ˈõʁɐ], `Israel` [izʁaˈɛw] |
+| `BR_FINAL_R_NONVERB` | a listed non-verb keeps its final tap | `mar` [ˈmaɾ], `mulher` [muˈʎeɾ] |
+| `BR_INFINITIVE_R_DROP`, `BR_INFINITIVE_R_DROP_POR` | the final tap of an infinitive or a future subjunctive drops | `falar` [faˈla], `partir` [paɾˈt͡ʃi], `pôr` [ˈpo] |
+| `BR_EPENTHESIS` | [i] breaks two obstruents, or a stop and a nasal, before an unstressed syllable | `advogado` [ad͡ʒivoˈɡadu], `hipnose` [ipiˈnozi] |
+| `BR_EPENTHESIS_POSTTONIC` | [i] breaks two obstruents after the stressed vowel | `capto` [ˈkapitu], `pacto` [ˈpakitu] |
+| `BR_EPENTHESIS_POSTTONIC_T_NASAL` | [i] breaks a [t] and a nasal after the stressed vowel | `ritmo` [ˈʁit͡ʃimu], `étnico` [ˈɛt͡ʃiniku] |
+| `BR_EPENTHESIS_POSTTONIC_K_N` | [i] breaks a [k] and an [n] after the stressed vowel | `técnica` [ˈtɛkinikɐ], `acne` [ˈakini] |
+| `BR_EPENTHESIS_ONSET` | [i] breaks two obstruents, or a stop and a nasal, that open a stressed word | `pseudo` [piˈsewdu], `pneu` [piˈnew] |
+| `BR_GEMINATE_*` | A doubled consonant letter, or ⟨ck⟩, takes no epenthetic vowel | `buffer` [bufˈfeɾ], `Zotti` [zotˈt͡ʃi] |
+| `BR_RAISE_FINAL_E`, `BR_RAISE_FINAL_O` | final [ɪ ʊ] give [i u] | `leite` [ˈlejt͡ʃi], `gato` [ˈɡatu] |
+| `BR_RAISE_FINAL_ES`, `BR_RAISE_FINAL_OS` | unstressed ⟨e o⟩ give [i u] before a final ⟨-s⟩ | `leites` [ˈlejt͡ʃis], `gatos` [ˈɡatus] |
+| `BR_REDUCE_FINAL_AS` | post-stressed ⟨a⟩ gives [ɐ] before a final ⟨-s⟩ (Barbosa & Albano 2004: 229-230); the clitics `as` and `às` keep [a] | `casas` [ˈkazɐs], `festas` [ˈfestɐs] |
+| `BR_AFFRIC_T_RAISED`, `BR_AFFRIC_D_RAISED` | /t d/ give [t͡ʃ d͡ʒ] before a raised [i ɪ] | `dente` [ˈdẽt͡ʃi], `tarde` [ˈtaɾd͡ʒi] |
+| `BR_FINAL_EM_GLIDE`, `BR_FINAL_ENS_GLIDE` | final ⟨-em -en -ens⟩ give the diphthong [ẽj̃] | `bem` [ˈbẽj̃], `hífen` [ˈifẽj̃], `homens` [ˈõmẽj̃s] |
+| `BR_FINAL_AM_GLIDE` | final ⟨-am⟩ gives [ɐ̃w̃] | `falam` [ˈfalɐ̃w̃] |
+| `PT_LEX_CLOSE_O`, `PT_LEX_CLOSE_E`, `PT_LEX_OPEN_O`, `PT_LEX_OPEN_E` | stressed mid-vowel height for listed words | `como` [ˈkõmu], `forte` [ˈfɔɾt͡ʃi], `terra` [ˈtɛʁɐ] |
+| `BR_FINAL_EL_OPEN`, `BR_FINAL_OL_OPEN` | a stressed word-final ⟨el ol⟩ has the open [ɛ ɔ]; `gol` is listed close | `papel` [paˈpɛw], `futebol` [futeˈbɔw], `gol` [ˈɡow] |
+| `PT_LEX_X_S` | ⟨x⟩ is [s] in the stem ⟨troux-⟩ | `trouxe` [ˈtɾowsi] |
+| `PT_INITIAL_EX_VOICED` | word-initial ⟨ex-⟩ before a vowel gives [ez] | `exame` [eˈzɐ̃mi] |
 
-| id | Process | Rule | Example |
-|:---|:---|:---|:---|
-| `PT_NASAL_A_RAISE` | Nasal vowel quality | [a] → [ɐ] / _[̃] | `campo` [ˈkɐ̃pu] |
-| `PT_NASAL_E_RAISE` | Nasal vowel quality | [ɛ] → [e] / _[̃] | `tempo` [ˈtẽpu] |
-| `PT_NASAL_O_RAISE` | Nasal vowel quality | [ɔ] → [o] / _[̃] | `bom` [ˈbõ] |
-| `BR_RAISE_FINAL_E` | Final vowel raising | [ɪ] → [i] / _# | `leite` [ˈlejti] |
-| `BR_RAISE_FINAL_O` | Final vowel raising | [ʊ] → [u] / _# | `gato` [ˈɡatu] |
+Each rule cites its sources in its `notes` field in `orthography2ipa/data/pt-BR.json`. The spec also has one word exception: the conjunction `e` is [i].
 
-**Coda vowel nasalisation.** BP retains the general-Portuguese process by which
-a vowel before a **coda** ⟨m/n⟩ (word-finally or before a consonant) nasalises,
-the nasal consonant being absorbed (Mateus & d'Andrade 2000: ch. 2; Barbosa &
-Albano 2004). The nasalisation itself is pre-lexical — the `positional_graphemes`
-`m`/`n` coda positions map to a **U+0303 combining tilde**, deleting the nasal and
-nasalising the preceding vowel — while the three `PT_NASAL_*_RAISE` rules supply
-only the vowel *quality* (the **oral** base of the nasal vowel, so the tilde is
-never doubled), conditioned on a following tilde. An **onset** (intervocalic)
-⟨m/n⟩ leaves the vowel oral (`cama` [ˈkamɐ], `ano` [ˈanu]); ⟨nh⟩ tokenises first
-so `banho` [ˈbaɲu] is untouched; the nasal diphthongs ⟨ão ãe õe⟩ are whole
-graphemes and unaffected. The high vowels ⟨i u⟩ need no quality rule ([ĩ ũ] share
-the oral bases [i u]): `sim` [ˈsĩ], `mundo` [ˈmũdu]. Unlike EP, BP does **not**
-reduce unstressed ⟨o⟩ to [u], so its ⟨o⟩ before a coda nasal is already [o]
-([õ] with the tilde) and the EP-only `PT_NASAL_O_UNRED` rule is not needed here
-(`contar` [kõˈtaɾ], `bondade` [bõˈdadi]).
+### Coda nasalisation
 
-A shared engine guard (`_expand_beam`) emits the nasalisation tilde **only when
-it attaches to a vowel or a nasal-diphthong glide**, falling back to the oral
-consonant otherwise. This keeps BP output valid IPA where the pre-existing
-⟨gu⟩→[ɡ] vowel-drop strands a consonant in the coda-nasal slot (`algum`
-[ˈawɡm], `segundo` [ˈseɡndu] — no stray tilde on [ɡ]) and prevents a doubled
-tilde on ⟨nn⟩ loans (`inn`, `Finn`).
+A vowel before a coda ⟨m n⟩ nasalises, and the nasal consonant goes (Barbosa & Albano 2004: 229). The positional map writes the coda ⟨m n⟩ as a combining tilde on the vowel before it. The three `PT_NASAL_*_RAISE` rules then set the vowel quality. They change the oral vowel under the tilde, so the tilde never doubles.
 
-Word-final unstressed /e o/ raise to the close vowels [i]/[u] (Barbosa &
-Albano 2004: 229; Câmara Jr. 1970). The positional map selects the
-near-close [ɪ]/[ʊ] word-finally; these rules realise the standard BP close
-surface form. They target the **reduced** [ɪ]/[ʊ] only — never the
-underlying /e o/ — so a conservative dialect that retains a final [e]/[o]
-inherits the rules harmlessly (they simply do not fire).
+A stressed vowel before an onset ⟨m n nh⟩ nasalises too. Barbosa & Albano (2004: 229) list "(em) cima sĩmɐ [...] sama sɐ̃mɐ [...] soma sõmɐ", and Mendonça & Oliveira (2019: 45) call this context categorical. The `BR_NASAL_STRESSED_*` rules give `cama` [ˈkɐ̃mɐ], `ano` [ˈɐ̃nu] and `banho` [ˈbɐ̃ɲu]. Only five nasal vowels exist, so an open [ɛ ɔ] gives the close-mid [ẽ õ]. A pretonic vowel stays oral before /m n/ (`camada` [kaˈmadɐ]) and nasalises before /ɲ/ (`senhor` [sẽˈɲoɾ]; Barbosa & Albano 2004: 229 print ganhar [ɡɐ̃ˈɲaɾ]).
+
+A word-initial pretonic ⟨en em⟩ before a consonant raises to [ĩ]. Barbosa & Albano (2004: 231) write that "the sequence /eN/ is often pronounced as [ɪ̃], in pre-stressed, word-initial position", and Carmo (2019: 811) counts the raising in 79.2 % of tokens before a coda nasal. The rule `BR_INITIAL_EN_RAISE` stands before `PT_NASAL_E_RAISE` and gives `então` [ĩˈtɐ̃w̃] and `embrulhava` [ĩbɾuˈʎavɐ]. The spec writes the close [ĩ] for the near-close vowel of the source, as it does for a final [i]. An onset after the vowel (`temporal` [tẽpoˈɾaw]), a stressed vowel (`entre` [ˈẽtɾi]) and an onset nasal (`enorme`) keep [ẽ] or the oral vowel. The clitic `em` keeps the diphthong [ẽj̃].
+
+A word-initial pretonic ⟨e⟩ before a coda sibilant raises to [i] in nearly every token. Carmo (2019: 811) counts 99.5 % (1,449 of 1,457) in the northwest of São Paulo state, with the examples [i]s.co.la and [i]s.fa.re.la. Barbosa & Albano (2004: 231) write *esplendor* with the raised vowel. The rule `BR_INITIAL_ES_RAISE` gives `estar` [isˈta], `esplendor` [isplẽˈdoɾ] and `esmola` [izˈmolɐ]. A sibilant in the onset (`essencial` [esẽsiˈaw]) and a stressed vowel (`este` [ˈest͡ʃi]) keep [e]. The rule takes the letter ⟨s⟩ only. A pretonic ⟨ex⟩ before a consonant (`explicar`) has the same coda /S/, but no read source counts it: Carmo (2019: 807, 815) groups the prefixes "ex-/es-" and gives only ⟨es⟩ examples, so `explicar` keeps [e].
+
+Moraes & Wetzels (1992: 155), citing Abaurre (1973), report that São Paulo speakers often keep a stressed vowel oral in this context. Their own transcription of *cama* is [ˈkɐma], not [ˈkãma]. That form is a reported variant, not output of the spec. The spec follows the two sources that give the nasal vowel as the norm, so `pt-BR` gives `cama` [ˈkɐ̃mɐ].
+
+The nasal diphthongs ⟨ão ãe õe⟩ are whole graphemes, and these rules do not touch them. The high vowels ⟨i u⟩ need no quality rule, because [ĩ ũ] share the oral bases [i u]. Brazilian Portuguese does not reduce an unstressed ⟨o⟩ to [u], so its ⟨o⟩ before a coda nasal is already [o] (`contar` [kõˈta], `bondade` [bõˈdad͡ʒi]). The European rule `PT_NASAL_O_UNRED` is therefore not part of this spec.
+
+A guard in `PhonetokTokenizer._expand_beam` (`orthography2ipa/phonetok.py`) keeps a tilde only when it falls on an oral vowel or a glide. On any other segment, the tokenizer drops that branch and keeps the nasal consonant. This stops a doubled tilde on ⟨nn⟩ in loans: `inn` [ˈĩn], `Finn` [ˈfĩn].
+
+### Final vowels and affrication
+
+Word-final unstressed /e o/ raise to a high vowel. Barbosa & Albano (2004: 229-230) write the near-close [ɪ ʊ]; the spec writes the broad [i u]. The positional map selects the near-close [ɪ ʊ] at the end of the word, and `BR_RAISE_FINAL_E` and `BR_RAISE_FINAL_O` raise them. The rules target the reduced [ɪ ʊ] only, never the underlying /e o/. So a regional spec that keeps a final [e] or [o] inherits the rules, and they do not fire there.
+
+The positional map affricates /t d/ only before a written ⟨i⟩. A final ⟨e⟩ becomes [i] only after the post-lexical raising, so the positional map cannot see it. The rules `BR_AFFRIC_T_RAISED` and `BR_AFFRIC_D_RAISED` affricate /t d/ before the raised vowel (Barbosa & Albano 2004: 228). The regional specs with dental /t d/ switch these two rules off by id.
+
+Word-final ⟨-em⟩, ⟨-en⟩ and the plural ⟨-ens⟩ are the nasal diphthong [ẽj̃], with the close-mid nucleus kept.
+
+### Stressed final ⟨el ol⟩
+
+A stressed mid vowel is close unless a rule or a list opens it, because the positional map of `pt-BR` has no entry for a stressed ⟨e o⟩. A stressed word-final ⟨el ol⟩ is open. "Como no PB o [l] final se vocalizou completamente na maioria das variedades em /ʊ/, a pronúncia das palavras terminadas em -éu e -el se tornou idêntica" (Bagno 2012: 191). Battisti & Moras (2016: 100) class the vowel of `papel` and `aluguel` as "média-baixa anterior" and the vowel of `futebol` and `lençol` as "média baixa posterior". `BR_FINAL_EL_OPEN` and `BR_FINAL_OL_OPEN` give `papel` [paˈpɛw] and `lençol` [lẽˈsɔw]. The ⟨ol⟩ rule rests on these word classes, because the sources give no general statement for final ⟨ol⟩.
+
+An unstressed final ⟨el ol⟩ is outside the rules: `nível` [ˈnivew], `móvel` [ˈmɔvew]. Battisti & Moras class `maleável` and `horrível` as "média-alta anterior". `gol` is close (Bagno 2012: 148, [goʊ]), so `PT_LEX_CLOSE_O` lists it. `pt-UY` switches both rules off, because its sources do not give this vowel.
 
 ```python
 from orthography2ipa import G2P
 G2P("pt-BR").transcribe_word("gato")   # ˈɡatu
-G2P("pt-BR").transcribe_word("leite")  # ˈlejti
+G2P("pt-BR").transcribe_word("leite")  # ˈlejt͡ʃi
 G2P("pt-BR", apply_allophony=False).transcribe_word("gato")  # ˈɡatʊ (broad)
 ```
 
-## What the base deliberately does NOT model
+## What the base does not model
 
-Honest limits, each a documented decision rather than an omission:
+Brazilian pretonic reduction is much weaker than the European one. The base keeps distinct pretonic /e o/ (`menino` [meˈnĩnu]), so only the final position raises. The Minas Gerais and Northeastern specs change the pretonic vowels for their regions.
 
-- **Strong pretonic reduction** — BP reduction is markedly weaker than EP;
-  BP keeps distinct pretonic /e o/, so only the final position raises.
-- **/t d/ affrication before a raised final ⟨e⟩** (e.g. `dente` →
-  [ˈdẽt͡ʃi]) — expressible as a phoneme-conditioned allophone rule, but it
-  would silently re-impose affrication on the non-palatalising nordeste
-  varieties (recife/norte/ce) that inherit the base. It is deferred to the
-  dialect-delta wave, where those varieties opt out by rule id. Grapheme-⟨i⟩
-  affrication (the common case) is already handled pre-lexically.
-- **Coda /r/ → [h~x]** — the general BP weak fricative is highly variable,
-  and the broad wikipron pt-BR gold transcribes coda /r/ as [ʁ], so
-  shipping [h~x] in the base regresses the only pt-BR gold. Held as a
-  dialect delta.
+A word-final /r/ in an infinitive drops: "In infinitives, however, this sound usually drops word-finally except if followed by a vowel" (Barbosa & Albano 2004: 228-229). The infinitive and the future subjunctive carry the final R and the stress on its syllable (Callou, Moraes & Leite 1998: 66), so `BR_INFINITIVE_R_DROP` reads a word-final ⟨r⟩ after an unaccented ⟨a e i⟩ in the stressed syllable (`falar` [faˈla], `fizer` [fiˈze]). `BR_INFINITIVE_R_DROP_POR` names pôr, its compounds and the future subjunctive *for* (`compor` [kõˈpo]). A non-verb of the same shape keeps the tap: `BR_FINAL_R_NONVERB` stands before the drop and lists the words that the English Wiktionary gives with no infinitive reading, and the noun-verb homographs whose non-verb tokens outnumber the verb tokens in the UD Portuguese treebanks (`lugar` [luˈɡaɾ], `quer` [ˈkeɾ], `poder` [poˈdeɾ]). A word with a written accent on an earlier syllable keeps the tap (`açúcar` [aˈsukaɾ]). The rule reads one word, so it does not see a vowel at the start of the next one. Careful speech keeps the tap too: Barbosa & Albano print it in their citation forms (pagar, acabar, ganhar, pp. 227-229) and in the read passage (soprar com, p. 231).
 
-## Benchmark effect (honest)
+A coda /r/ as [h] or [x] is very variable across Brazil. The base keeps the tap [ɾ] (`porta` [ˈpoɾtɐ], `mar` [ˈmaɾ]). The wikipron pt-BR gold writes a final ⟨r⟩ most often as [ʁ] and almost never as [h]. The regional specs add a posterior coda rhotic where their sources report it.
 
-Measured on the committed gold set (PER, lower is better):
+## Coda sibilant voicing, strong /r/ and epenthesis
 
-| Row | Gold | Before | After | Δ |
-|:---|:---|---:|---:|---:|
-| pt-BR | wikipron (n=124) | 0.1535 | 0.1083 | **−0.0452** |
-| pt-BR | portuguese_lexicon (n=300) | 0.2458 | 0.1877 | **−0.0581** |
-| pt-BR | portuguese_phonetic_lexicon (n=300) | 0.2754 | 0.2226 | **−0.0528** |
+A ⟨x⟩ before a consonant is the coda sibilant. Vasilévski (2012: 55, Table 1) gives "x |S| expor" beside "s |S| mosca, lesma", and p. 56 writes /ˈteS.tu/. `BR_CODA_X` takes the [s] of the base (`texto` [ˈtestu]). Table 1 also gives "xc /s/ exceção", and `BR_XC_ONE_S` writes one [s] (`excesso` [eˈsesu]). The table is the rule set of a decoder that targets the phonological level, not a study of speech. The specs with a palatal coda switch both rules off: ⟨x⟩ keeps the [ʃ] of their coda ⟨s⟩, and ⟨xc⟩ keeps [ʃs] because no opened source gives its value there.
 
-Coda vowel nasalisation is the dominant driver of these gains — it applies to a
-large fraction of BP words and every measured `pt-BR` gold rewards absorbing the
-coda nasal into the nasal vowel. Final-vowel raising to [i]/[u] both matches the
-gold's transcription and is the cited BP realisation. The `pt` styletts2 row
-resolves to `pt-PT`, a different spec (its small +0.005 movement is discussed in
-the [pt-PT](pt-PT.md) reference).
+A coda /S/ "tends to assimilate the voicing of the following sound" (Barbosa & Albano 2004: 229). `BR_CODA_S_VOICED` gives [z] before a voiced consonant (`mesmo` [ˈmezmu], `rasgar` [ʁazˈɡa]), and the sibilant stays [s] before a voiceless one (`festa` [ˈfestɐ]). `BR_CODA_SH_VOICED` does the same for a palatal [ʃ] in the regional specs.
+
+The same assimilation applies across a word boundary. The transcribed passage writes `duz doɪ̯z ɛɾɐ` for *dos dois era* and `maɪ̯z u` for *mais o*, but `maɪ̯s fɔɾtʃɪ` for *mais forte* (Barbosa & Albano 2004: 231). `BR_FINAL_S_VOICING` gives a word-final [s] as [z] before a voiced consonant in the next word (`os dois` [uz ˈdojs], `as mesas` [az ˈmezɐs]). `BR_FINAL_S_PREVOCALIC_VOICE` does the same before a vowel (`dez anos` [ˈdɛz ˈɐ̃nus]). Before a voiceless consonant the sibilant stays [s] (`mais forte` [ˈmajs ˈfɔɾt͡ʃi]), and a pause stops both rules. The voiced class is the class of `BR_CODA_S_VOICED`. A regional spec that writes the strong rhotic voiceless keeps [s] before it (`pt-BR-x-sp` `os ratos` [us ˈxatus]). The rules match the alveolar [s] only, so a spec that writes the coda as [ʃ] keeps its output.
+
+After a coda consonant, /r/ is the strong rhotic, not the tap (Cristófaro Silva 2025: 240, 243: honra, Israel, desrespeito). `BR_STRONG_R_AFTER_CODA` gives `honra` [ˈõʁɐ] and `genro` [ˈʒẽʁu]. A tap in an onset cluster stays a tap (`três` [ˈtɾes]).
+
+"BP exhibits vowel epenthesis, breaking most two-obstruent sequences", and "the epenthetic vowel is always [i] or [ɪ]" (Barbosa & Albano 2004: 227). The rate depends on the position: 69 % pretonic and 24 % post-tonic in the southern capitals (Collischonn 2004: 67). `BR_EPENTHESIS` inserts [i] in an unstressed syllable (`advogado` [ad͡ʒivoˈɡadu], `obter` [obiˈte]). The rule also breaks a stop and a following nasal /m n/ (`hipnose` [ipiˈnozi], `admitir` [ad͡ʒimiˈt͡ʃi]). Collischonn (2004: 68) counts the vowel in 77 % of tokens before a nasal (*mogno*) and in 44 % before a stop (*rapto*), with both positions counted together, and writes that "a nasal favorece significativamente mais a epêntese do que a oclusiva não-nasal". Romano & Seabra (2017: 286) find [e] in *pneu* in 80.37 % of the responses from Paraná and São Paulo. The spec keeps the [i] of Barbosa & Albano. Two nasals (`amnésia`) keep the cluster: Collischonn found no token of that sequence (p. 69, note 7). `BR_EPENTHESIS_POSTTONIC` inserts it after the stressed vowel (`capto` [ˈkapitu], the example of Curioletti & Sandri 2019). Câmara Jr., reported by Collischonn (2004: 66), gives rapto and rápido the same prosody, so the inserted vowel does not take the stress: the stress count folds a syllable whose only vowel a rule inserted into the syllable before it, and the mark stays on the stressed one (`rapto` [ˈʁapitu]). `BR_EPENTHESIS_POSTTONIC` reads only an obstruent after the stop, the scope of the statement of Barbosa & Albano. Sources give a vowel for a post-tonic stop before a nasal. Collischonn (2004: 67) names *étnico* and *ritmo* among the post-tonic words of her 24 %. Câmara Jr. (1989 [1970]: 56-57), Cagliari (1981: 107) and Bisol (1999: 729-730) also give one, as reported by Nascimento (2015: 57-60). `BR_EPENTHESIS_POSTTONIC_T_NASAL` and `BR_EPENTHESIS_POSTTONIC_K_N` write that vowel for the two classes those sources name (`ritmo` [ˈʁit͡ʃimu], `técnico` [ˈtɛkiniku]). Collischonn's 24 % is a rate of the southern capitals, and no dataset gives a rate for this variety, so the spec claims none. The rules write the vowel for consistency with `pacto`. Cagliari (1981: 108), reported by Nascimento (2015: 57), writes [ə] after a velar (*acne*), and the spec keeps [i]. No source gives a value for ⟨cm gm gn⟩, so `dracma`, `dogma` and `digno` keep their cluster. Collischonn's nasal row counts both positions together (p. 68), and her analysis of the southern capitals prefers the form without the vowel for *mogno* (p. 75). `BR_EPENTHESIS_ONSET` inserts it when two obstruents, or a stop and a nasal, open a stressed word (`pseudo` [piˈsewdu], `pneu` [piˈnew]). The statement of Barbosa & Albano does not restrict the process by stress, and Collischonn (1996: 151), reported by Nascimento (2015: 62-63), puts the vowel after a word-initial stop before a stressed nucleus (`pneu` [pi'new]). The inserted vowel opens a syllable of its own before the stressed one, so it is pretonic, and the nasalisation of a stressed vowel before an onset nasal does not apply to it. A word-final cluster (`chips`) has no nucleus after it and is outside these rules. The rule reads the syllable of the first stop, so the split must put that stop in the coda (`pac.to`, `op.ção`). The spec sets `constrain_onsets`, and its `stress.onset_clusters` list names the complex onsets: an obstruent and a non-nasal sonorant (Curioletti & Sandri 2019, citing Bisol 2013). The bundled splitter then gives the same split as the optional `silabificador` plugin. The regional `pt-BR-x-*` specs read the `pt-BR` grapheme table and take the same split. In the spellings that keep the trema, ⟨ü⟩ and the next vowel are one syllable (`tran.qüi.lo`, `lin.güis.ta`), because the combinations ⟨gu qu⟩ "em que o u se pronuncia" never separate from that vowel (Acordo Ortográfico 1990, Base XX, 5.º). The epenthesis does not apply to geminates: "a epêntese, que só se aplica em sequências não-homorgânicas, como em capto [kapitu], e não em geminadas subjacentes (carro) ou de superfície (carta)" (Curioletti & Sandri 2019, citing Monaretto 1997: 188, not opened). The `BR_GEMINATE_*` rules stand before `BR_EPENTHESIS` and keep a doubled consonant letter of a loan unbroken (`buffer` [bufˈfeɾ], `Zotti` [zotˈt͡ʃi]). A doubled ⟨c g⟩ before ⟨e i⟩ spells two different obstruents, so the rule still breaks it (`occipital` [okisipiˈtaw]). The loan spelling ⟨tch⟩ writes the one affricate [tʃ] (pt.wiktionary `tchau` /tʃaʊ/), and `BR_TCH_AFFRICATE` keeps it unbroken in the same way (`tchau` [ˈtʃaw], `tchauzinho` [tʃawˈzĩɲu]).
+
+## Sibilants, digraphs and ⟨w⟩
+
+Brazilian Portuguese has one sibilant pair, the plain alveolar /s z/ (Barbosa & Albano 2004: 228, consonant chart, alveolar column: `saca` [ˈsakɐ] against `zaca` [ˈzakɐ]). The apico-alveolar [s̺ z̺] belongs to a different system. Galician-Portuguese has it, and `roa-x-galaico-pt` and `pt-PT-x-medieval` model it with four sibilants. Some northern European dialects keep it, and each of their specs declares it for itself (see [pt-PT-dialects.md](pt-PT-dialects.md#northern-sibilant-systems)).
+
+The base `pt-PT-x-medieval` maps ⟨ce ci⟩ to [s̺], and `roa-x-galaico-pt` maps ⟨ss⟩ to [s̺]. So `pt-BR` declares the ⟨ss⟩ digraph and a positional ⟨c⟩ before ⟨e i⟩ with the plain [s]: `isso` [ˈisu], `cidade` [siˈdad͡ʒi].
+
+⟨ss⟩ and ⟨rr⟩ are digraphs, not geminates. Portuguese has no contrastive consonant length. The digraph ⟨ss⟩ spells /s/ between vowels, where a single ⟨s⟩ is /z/. The digraph ⟨rr⟩ spells the strong rhotic, which contrasts with the tap (`carro` [ˈkaʁu] against `caro` [ˈkaɾu], Barbosa & Albano 2004: 228). Neither gives a doubled segment, so `collapse_geminates` stays unset.
+
+The only doubled segments come from loans and names that keep their spelling (`watts` [ˈwatts], `reddit` [ˈʁedd͡ʒit]), and the gold sets double them too.
+
+The letter ⟨w⟩ is rare but not silent. It is [w] in English loans and [v] in Germanic names, as in `pt-PT`: `web` [ˈweb], `show` [ˈsow].
+
+## Reading the vox_communis row
+
+The `vox_communis` row of `pt-BR` measures the gold, not this spec. Its phone tier is Epitran output over the Common Voice `pt` locale, which has no region tag. That output is European Portuguese. `scripts/fold_pt_br_notation.py` counts the features that define Brazilian Portuguese over the whole file, and none of them appears:
+
+| Feature | Attested in the gold |
+|:---|---:|
+| final ⟨-l⟩ vocalised to [w] | 0 / 948 |
+| ⟨t⟩ affricated before /i/ | 0 / 2378 |
+| ⟨d⟩ affricated before /i/ | 5 / 1637 |
+| final unstressed ⟨-e⟩ raised to [i] | 0 / 2956 |
+| final unstressed ⟨-o⟩ raised to [u] | 0 / 7429 |
+| final ⟨-s⟩ alveolar, not the European [ʃ] | 0 / 7429 |
+
+The gold is also wrong about Portuguese of any variety. Its symbol inventory has neither ⟨ʎ⟩ nor ⟨ɲ⟩, so every ⟨lh⟩ and ⟨nh⟩ word loses its digraph (`gatilho` gives [ɡɐtilo], `tinha` gives [tinɐ]). It also applies the European coda-sibilant rule inside the ⟨ss⟩ digraph and writes [ʃs] on almost every ⟨ss⟩ word (`isso` gives [iʃso]).
+
+The script folds ten conventions of the gold out of both sides, one at a time, and scores again after each fold. The `audit.vox_communis` entry in the spec records each step. The row is classified `epitran-derived` and cannot gate anything. Read it as a measurement of Epitran's European map, not as evidence about the Brazilian spec.
+
+## Tier
+
+`pt-BR` is at the production tier. Portuguese spelling is deep: vowel quality depends on stress, nasality and the word. So the deep-orthography threshold of [quality tiers](../specs/quality_tiers.md) applies, PER at most 0.25 on a gate-eligible gold of at least 500 entries. The qualifying row is `wikipron` (crowd-scraped). The other rows use other transcription conventions, and [../evaluation/datasets.md](../evaluation/datasets.md) describes them. For the figures, see [../evaluation/generated/scoreboard.md](../evaluation/generated/scoreboard.md).
 
 ---
-
-## Production tier: orthographic depth, threshold, and benchmark
-
-**Deep orthography — the ≤ 0.25 PER production threshold applies**
-([quality tiers](../quality_tiers.md)): Portuguese spelling is
-morphophonemic with substantial contextual vowel quality (pretonic
-reduction, nasalization) that the page's rules encode but gold sets
-disagree on at the margins.
-
-| dataset | provenance | n | PER |
-|---|---|---:|---:|
-| `wikipron` | crowd-scraped (gate-eligible) | 57 814 | **0.0662** |
-| `portuguese_phonetic_lexicon` | crowd-scraped | 53 346 | 0.2199 |
-| `ipadict` | machine-generated (cannot certify) | 95 933 | 0.2436 |
-
-The qualifying row is `wikipron`, which in fact clears even the shallow
-0.15 bar; the Portal lexicon row reflects that source's semi-automated,
-region-coded transcription conventions (see benchmarks.md) rather than
-spec drift — the divergence is documented, not hidden.
-
-**Navigation:** [← All languages](index.md) · [Docs home](../index.md) · [Benchmarks](../benchmarks.md) · [Scoreboard](../scoreboard.md)
-
-*Related: [pt-PT](pt-PT.md), [romance](romance.md), [pt-BR-x-sp](pt-BR-x-sp.md), [pt-BR-x-rj](pt-BR-x-rj.md)*
+[← European Portuguese dialects](pt-PT-dialects.md) · [Home](../index.md) · [Brazilian Portuguese dialects →](pt-BR-dialects.md)

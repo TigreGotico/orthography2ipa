@@ -198,3 +198,16 @@ def test_ipa_best_still_matches_default_beam_head():
     tok = PhonetokTokenizer(get("en-GB"))
     for word in ["weather", "the", "cough"]:
         assert tok.ipa_best(word) == tok.ipa_beam(word, beam_width=1)[0].ipa
+
+
+# ─── graphemes stays parallel to segments ──────────────────────────────
+
+def test_graphemes_stays_parallel_to_segments_with_special_tokens():
+    # IPAPath.graphemes is documented as "parallel to segments"; special
+    # tokens (whitespace, punctuation, digits) must contribute their own
+    # grapheme entry when include_special=True, or the two arrays drift
+    # out of lock-step for any caller that zips them together (e.g.
+    # assign_computed_tones).
+    tok = PhonetokTokenizer(get("pt-PT"))
+    path = tok.ipa_beam("ola mundo!", include_special=True)[0]
+    assert len(path.graphemes) == len(path.segments)

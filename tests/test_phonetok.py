@@ -232,6 +232,42 @@ class TestVocabEncoding:
         assert 3 in ids  # <unk> = 3
 
 
+class TestEveryVocabularyGraphemeRoundTrips:
+    """decode(encode(g)) == g for each key of the tokenizer's vocabulary.
+
+    mh writes ⟨ņ ļ⟩ in NFC and again as n/l + U+0327. grc writes the
+    smooth-breathing vowels ⟨ἀ ἐ …⟩ and folds U+0313. nhx writes ⟨u⟩ only
+    inside the digraphs ⟨cu hu qu⟩.
+    """
+
+    @pytest.mark.parametrize("code", ["mh", "grc", "nhx"])
+    def test_round_trip(self, code):
+        tok = PhonetokTokenizer(orthography2ipa.get(code))
+        broken = {g: tok.decode(tok.encode(g)) for g in tok._grapheme_ipa
+                  if tok.decode(tok.encode(g)) != g}
+        assert broken == {}
+
+    def test_keys_take_the_form_the_text_takes(self):
+        import unicodedata
+        tok = PhonetokTokenizer(orthography2ipa.get("mh"))
+        nfd = "n\u0327"
+        assert unicodedata.normalize("NFC", nfd) == "\u0146"
+        assert nfd not in tok._grapheme_ipa
+        assert tok.encode(nfd) == tok.encode("\u0146")
+
+    def test_folded_twin_is_not_a_key(self):
+        tok = PhonetokTokenizer(orthography2ipa.get("grc"))
+        assert "\u1f00" not in tok._grapheme_ipa
+        assert tok.encode("\u1f00") == tok.encode("\u03b1")
+
+    @pytest.mark.parametrize("word", ["cu", "tecu", "cuc"])
+    def test_a_digraph_letter_without_a_reading_stays_in_the_digraph(
+            self, word):
+        tok = PhonetokTokenizer(orthography2ipa.get("nhx"))
+        assert "u" not in orthography2ipa.get("nhx").graphemes
+        assert tok.decode(tok.encode(word)) == word
+
+
 # ═══════════════════════════════════════════════════════════════════════════
 # Token dataclass
 # ═══════════════════════════════════════════════════════════════════════════
@@ -417,3 +453,43 @@ class TestPositionalOnlyGraphemes:
             t for t in tokens if t.kind == TokenKind.GRAPHEME
         ]
         assert [t.grapheme for t in grapheme_tokens] == ["c", "en"]
+
+
+class TestPrevocalicGlideBackoff:
+    """A multigraph listed in ``prevocalic_glide_backoff`` gives its last
+    letter to the next syllable when a vowel letter follows, and stays whole
+    before a consonant or at the end of the word."""
+
+    @staticmethod
+    def _tok(backoff, graphemes=None) -> PhonetokTokenizer:
+        spec = LanguageSpec(
+            code="test-glide-backoff",
+            name="Test Glide Backoff",
+            family="Test",
+            script="Latin",
+            graphemes=graphemes or {
+                "a": ["a"], "e": ["ə"], "k": ["k"], "w": ["w"], "ew": ["ɛw"],
+            },
+            allophones={},
+            prevocalic_glide_backoff=backoff,
+        )
+        return PhonetokTokenizer(spec)
+
+    def test_before_a_vowel_letter_the_glide_starts_the_next_grapheme(self):
+        tok = self._tok(("ew",))
+        assert tok.graphemes("kewa") == ["k", "e", "w", "a"]
+
+    def test_before_a_consonant_or_word_end_the_multigraph_is_kept(self):
+        tok = self._tok(("ew",))
+        assert tok.graphemes("kewk") == ["k", "ew", "k"]
+        assert tok.graphemes("kew") == ["k", "ew"]
+
+    def test_an_unlisted_multigraph_is_kept(self):
+        assert self._tok(()).graphemes("kewa") == ["k", "ew", "a"]
+
+    def test_the_match_ignores_case(self):
+        assert self._tok(("EW",)).graphemes("KEWA") == ["k", "e", "w", "a"]
+
+    def test_no_backoff_when_a_part_has_no_reading(self):
+        tok = self._tok(("ew",), {"a": ["a"], "k": ["k"], "w": ["w"], "ew": ["ɛw"]})
+        assert tok.graphemes("kewa") == ["k", "ew", "a"]

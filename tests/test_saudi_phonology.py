@@ -6,9 +6,10 @@ Hejazi, Gulf and Southwestern groups, so there is deliberately **no** ``ar-SA``
 umbrella node (lang-code accuracy: null beats wrong). This module covers the
 three leaves that fill out that spread:
 
-* **ar-SA-x-qassim** — Qassimi, the Qaṣīm sub-variety of Najdi. Deepest source:
+* **ars-SA-x-qassim** — Qassimi, the Qaṣīm sub-variety of Najdi. Deepest source:
   Alhoody, M.M.A. (2019) *Phonological adaptation of English loanwords into
-  Qassimi Arabic* (PhD, Newcastle), §3.1.2-3.1.4, pp.41-43; Al-Rojaie, Y. (2013)
+  Qassimi Arabic* (PhD, Newcastle), §3.1.2-3.1.4, pp.41-43 (inventories) and
+  §5.1.1-5.1.6, pp.62-66 (loanword adaptation); Al-Rojaie, Y. (2013)
   "Regional dialect levelling in Najdi Arabic: the deaffrication of [ts] in the
   Qaṣīmī dialect", *Language Variation and Change* 25(1):43-63.
 * **ar-SA-x-rijal-alma** — Rijāl Almaʿ (SW ʿAsīr/Tihāmah), which preserves the
@@ -16,7 +17,7 @@ three leaves that fill out that spread:
   fricatives and lateral emphatics in southern Saudi Arabia and Mehri", *PSAS*
   41:425-432, pp.427-428; Asiri, Y.M. (2009) PhD, Salford; Al-Azraqi, M. (2010)
   "The ancient Ḍād in southwest Saudi Arabia", *Arabica* 57:57-67.
-* **ar-SA-x-sharqiyya** — Eastern Province (al-Hasa/Qatif), a Gulf dialect.
+* **afb-SA-x-sharqiya** — Eastern Province (al-Hasa/Qatif), a Gulf dialect.
   Al-Taisan, H. (2022) PhD, Essex; Johnstone, T.M. (1967) *Eastern Arabian
   Dialect Studies*; Holes, C. (2004) *Modern Arabic*.
 
@@ -27,12 +28,12 @@ import pytest
 from orthography2ipa import G2P, get
 from orthography2ipa.inventory import dead_allophone_rules, phoneme_inventory
 
-QAS = G2P("ar-SA-x-qassim")
+QAS = G2P("ars-SA-x-qassim")
 RIJ = G2P("ar-SA-x-rijal-alma")
-SHQ = G2P("ar-SA-x-sharqiyya")
+SHQ = G2P("afb-SA-x-sharqiya")
 
 
-@pytest.mark.parametrize("lang", ["ar-SA-x-qassim", "ar-SA-x-rijal-alma", "ar-SA-x-sharqiyya"])
+@pytest.mark.parametrize("lang", ["ars-SA-x-qassim", "ar-SA-x-rijal-alma", "afb-SA-x-sharqiya"])
 def test_no_dead_allophone_rules(lang):
     """Every declared/inherited rule targets a phoneme the spec can produce."""
     assert dead_allophone_rules(G2P(lang).spec) == ()
@@ -40,9 +41,9 @@ def test_no_dead_allophone_rules(lang):
 
 # ── Ancestry: each leaf hangs off the RIGHT group, and there is no ar-SA ──────
 def test_leaves_parent_the_correct_group():
-    assert get("ar-SA-x-qassim").parent == "ar-SA-x-najd"        # Najdi sub-variety
-    assert get("ar-SA-x-rijal-alma").parent == "ar-x-peninsular"  # SW archaic type
-    assert get("ar-SA-x-sharqiyya").parent == "ar-x-gulf"         # Gulf type
+    assert get("ars-SA-x-qassim").parent == "ars-SA"        # Najdi sub-variety
+    assert get("ar-SA-x-rijal-alma").parent == "ar-x-peninsul"  # SW archaic type
+    assert get("afb-SA-x-sharqiya").parent == "afb"         # Gulf type
 
 
 def test_no_ar_sa_umbrella_node():
@@ -51,7 +52,7 @@ def test_no_ar_sa_umbrella_node():
     country code falls BACK to a leaf rather than resolving a genuine umbrella
     spec — the resolved code is never ``ar-SA`` itself."""
     assert get("ar-SA").code != "ar-SA"
-    assert "no ar-sa umbrella" in get("ar-SA-x-najd").notes.lower()
+    assert "no ar-sa umbrella" in get("ars-SA").notes.lower()
 
 
 # ── Qassimi: monophthongization is the delta from central Najdi ──────────────
@@ -63,7 +64,7 @@ def test_no_ar_sa_umbrella_node():
 def test_qassimi_monophthongizes_where_najdi_keeps_diphthong(word, expected, why):
     assert QAS.transcribe_word(word) == expected, why
     # the central-Najdi parent keeps the diphthong — this is the discriminator
-    assert G2P("ar-SA-x-najd").transcribe_word(word) != expected
+    assert G2P("ars-SA").transcribe_word(word) != expected
 
 
 @pytest.mark.parametrize("word,expected,why", [
@@ -87,18 +88,29 @@ def test_qassimi_qaf_merger_and_gahawa_inherited():
 # ── Rijāl Almaʿ: the archaic lateral emphatics, kept DISTINCT ────────────────
 def test_rijal_alma_dad_is_a_voiced_lateral_emphatic():
     """Watson & Al-Azraqi 2011:428; Asiri 2009: *ḍ (ض) → voiced lateralized
-    pharyngealized fricative [ɮˤ], the sound that made Arabic lughat al-ḍād."""
-    assert RIJ.transcribe_word("ضَرَبَ") == "ˈɮˤaraba"
-    assert RIJ.transcribe_word("ضَان") == "ˈɮˤaːn"
+    pharyngealized fricative [ɮˤ], the sound that made Arabic lughat al-ḍād.
+
+    The following low vowel backs to [ɑ] after this lateral emphatic too —
+    the engine-generic ``"emphatic"`` allophone-rule class fires on ANY IPA
+    carrying the ˤ diacritic (is_pharyngealized_consonant), so a lateral
+    emphatic triggers emphasis spread exactly like the coronal ones (Watson
+    2002; Davis 1995) — a case the old hardcoded ``preceded_by_phoneme=[tˤ,
+    dˤ, sˤ, ðˤ, zˤ]`` lists elsewhere in the codebase could not reach.
+    """
+    assert RIJ.transcribe_word("ضَرَبَ") == "ˈɮˤɑraba"
+    assert RIJ.transcribe_word("ضَان") == "ˈɮˤɑːn"
     assert RIJ.transcribe_word("أَرْض") == "ˈʔarɮˤ"
 
 
 def test_rijal_alma_dha_is_a_voiceless_lateral_emphatic():
     """Watson & Al-Azraqi 2011:428: *ẓ (ظ) → VOICELESS lateralized pharyngealized
     fricative [ɬˤ] — and it is kept DISTINCT from *ḍ, which every other modern
-    dialect merges."""
-    assert RIJ.transcribe_word("ظَهْر") == "ˈɬˤahr"
-    assert RIJ.transcribe_word("ظِل") == "ˈɬˤil"
+    dialect merges.
+
+    /a/ backs to [ɑ] and /i/ backs to [ɪ] after this lateral emphatic (the
+    generic ``"emphatic"`` neighbour class; Watson 2002; Davis 1995)."""
+    assert RIJ.transcribe_word("ظَهْر") == "ˈɬˤɑhr"
+    assert RIJ.transcribe_word("ظِل") == "ˈɬˤɪl"
     # the *ḍ/*ẓ contrast: ض is voiced [ɮˤ], ظ is voiceless [ɬˤ]
     assert RIJ.transcribe_word("ضَرَبَ")[1] == "ɮˤ"[0]
     assert RIJ.transcribe_word("ظَهْر")[1] == "ɬˤ"[0]
@@ -129,7 +141,7 @@ def test_sharqiyya_jim_is_the_affricate():
     Arabian dialects, never attested in Hasawi. In the Gulf sect isogloss [dʒ]
     is the Šiʿi Baḥārna reflex (the majority in al-Qaṭīf/al-Hasa) while [j] is
     the Sunni ʕArab/Dawāsir reflex (Holes 1980/2016, in Alaodini 2019:94). So
-    the sedentary Eastern leaf has [dʒ] primary; [j] moves to ar-SA-x-dawasir."""
+    the sedentary Eastern leaf has [dʒ] primary; [j] moves to afb-SA-x-dawasir."""
     assert SHQ.transcribe_word("جَمَل") == "ˈdʒamal"
     assert SHQ.transcribe_word("جِيب") == "ˈdʒiːb"
 
@@ -138,7 +150,7 @@ def test_dawasir_jim_is_the_traditional_glide():
     """Alaodini 2019: the Dawāsir (Sunni, Najdi-origin, Dammam) carry the
     traditional [j] reflex acquired under Bahraini Sunni prestige — the mirror
     image of the sedentary Baḥārna [dʒ], and receding back toward [dʒ]."""
-    DAW = G2P("ar-SA-x-dawasir")
+    DAW = G2P("afb-SA-x-dawasir")
     assert DAW.transcribe_word("جَمَل") == "ˈjamal"
     assert DAW.transcribe_word("جِيب") == "ˈjiːb"
 
@@ -150,3 +162,88 @@ def test_sharqiyya_is_gulf_type():
     assert SHQ.transcribe_word("كِيس") == "ˈtʃiːs"          # GULF_K_AFFRICATION before front /iː/
     assert SHQ.transcribe_word("كَلْب") == "ˈkalb"          # no affrication before /a/
     assert SHQ.transcribe_word("ثَلَاثَة") == "θaˈlaːθa"    # interdental retained
+
+# ── Qassimi: the loan graphemes read as adaptations, not as donor phones ─────
+#
+# Alhoody 2019 measures English loanword adaptation into Qassimi and gives the
+# frequencies, which is what orders the candidates. §3.1.2 Table 1 p.41 lists the
+# 27 QA consonants: /p/, /v/ and /tʃ/ are absent; /b/, /f/ and /ʃ/ are present.
+
+@pytest.mark.parametrize("word,expected,why", [
+    ("كَپْتِن", "ˈkabtin",
+     "Alhoody 2019 Table 4 p.63: */p/ → [b], 89 of 89 (100%); the thesis's own "
+     "QA transcription of 'captain' is [ˈkab.tin]"),
+    ("كَرَڤَان", "karaˈfaːn",
+     "Table 5 p.63: */v/ → [f], 30 of 31 (96.8%); thesis 'caravan' [ka.raˈfaːn]"),
+    ("چَاي", "ˈʃaːj",
+     "Table 9 p.66: */tʃ/ → [ʃ], 8 of 13 (61.5%)"),
+])
+def test_qassimi_loan_graphemes_read_as_their_qassimi_adaptations(word, expected, why):
+    assert QAS.transcribe_word(word) == expected, why
+
+
+@pytest.mark.parametrize("word,expected,english", [
+    ("أَلْبُوم", "ʔalˈbuːm", "album"),
+    ("كَفِين", "kaˈfiːn", "caffeine"),
+])
+def test_qassimi_reproduces_alhoodys_published_loanword_transcriptions(word, expected, english):
+    """The strongest form of the citation: the spec returns the transcription the
+    source printed for the same loanword (Alhoody 2019 examples (37) and (38),
+    pp.63). These two carry no loan grapheme and pin the surrounding vowels, so a
+    later change to پ or ڤ cannot be masked by a shift elsewhere in the word."""
+    assert QAS.transcribe_word(word) == expected, english
+
+
+@pytest.mark.parametrize("word,qassimi,gulf", [
+    ("كَپْتِن", "ˈkabtin", "ˈkaptin"),
+    ("كَرَڤَان", "karaˈfaːn", "karaˈvaːn"),
+    ("چَاي", "ˈʃaːj", "ˈtʃaːj"),
+])
+def test_khaliji_keeps_the_donor_phone_where_qassimi_nativises(word, qassimi, gulf):
+    """The discriminator, and both sides are cited. afb declares *"integrated
+    /p/, /v/ from loanwords (پ, ڤ)"* in its own notes; Qassimi's inventory has
+    neither, so the same spelling separates the two dialects."""
+    assert QAS.transcribe_word(word) == qassimi
+    assert G2P("afb").transcribe_word(word) == gulf
+
+
+@pytest.mark.parametrize("phone", ["p", "v", "tʃ"])
+def test_the_loan_graphemes_add_no_phone_to_the_qassimi_inventory(phone):
+    """The inventory is DERIVED from the graphemes, so a donor reading here would
+    silently enlarge Qassimi. A phone outside a spec's inventory has no embedding
+    at synthesis time and the word carrying it is mispronounced silently."""
+    assert phone not in phoneme_inventory(QAS.spec)
+
+
+def test_veh_second_reading_carries_its_condition_in_the_notes():
+    """[b] for ڤ is ONE occurrence in one word. Alhoody p.64 reads it as a
+    dissimilation — 'valve' holds /v/ twice and the first is adapted as [b] to avoid
+    two [f] in one word. A grapheme key cannot see the rest of the word, so the
+    candidate is offered at every ڤ while the environment that produced it holds at
+    one in thirty-one. The spec has to say so, or the second reading reads as free
+    variation."""
+    notes = get('ars-SA-x-qassim').notes
+    assert get('ars-SA-x-qassim').graphemes['ڤ'] == ['f', 'b']
+    assert 'dissimilation' in notes
+    assert 'valve' in notes
+
+
+def test_cha_does_not_carry_the_retained_affricate_as_a_second_candidate():
+    """Alhoody records [tʃ] retained in 5 of 13 (38.5%) and attributes it to *"the
+    orthography effect"* — the English digraph <t> leads speakers to treat the
+    affricate as two segments [t] and [ʃ] across a syllable boundary. That is a
+    property of the English spelling, not of the single letter چ, so the retained
+    affricate is deliberately not a candidate here and /tʃ/ stays out.
+
+    Asserted as the absence of [tʃ] and the rank of [ʃ], not as the whole list. The
+    list itself is not this test's claim: the native reflex [t͡s] was appended later
+    on its own sources, which is a different reading from the retained loan affricate
+    and leaves this one untouched. Pinning the exact list conflated "the retained
+    affricate is not a candidate" with "no reading may ever be added", which the
+    docstring never claimed and no source supports.
+    """
+    readings = get("ars-SA-x-qassim").graphemes["چ"]
+    assert "tʃ" not in readings
+    assert readings[0] == "ʃ"
+    assert "tʃ" not in phoneme_inventory(get("ars-SA-x-qassim"))
+    assert "orthography effect" in get("ars-SA-x-qassim").notes
