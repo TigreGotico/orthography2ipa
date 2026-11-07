@@ -56,8 +56,8 @@ class TestStressPtAO:
         assert _has_stress(ipa), f"Expected stress mark in {ipa!r}"
 
     def test_stressed_vowel_open(self):
-        """'povo' stressed o → ɔ (open vowel in AO stressed nucleus)."""
-        ipa = _transcribe(self.LANG, "povo")
+        """'porta' stressed o → ɔ (open vowel in AO stressed nucleus)."""
+        ipa = _transcribe(self.LANG, "porta")
         assert "ɔ" in ipa, f"Expected open-o in {ipa!r}"
 
 

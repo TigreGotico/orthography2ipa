@@ -39,6 +39,14 @@ The positional rows of ⟨a⟩, ⟨e⟩ and ⟨o⟩ carry the reduction. They ar
 
 Speakers often delete a word-final [ɨ]. The spec writes the vowel in most contexts. The sandhi rule `PT_ELISION` deletes it when the next word starts with [a e i o u ɛ ɔ]: `norte e` gives [ˈnɔɾt i]. The engine applies this rule by default. A next word that starts with [ɐ] or a stress mark keeps the vowel: `de amor` gives [dɨ ɐˈmoɾ], and `de ouro` gives [dɨ ˈoɾu]. A word exception maps the conjunction `e` to [i].
 
+## Word-initial ⟨es⟩ before a consonant
+
+A word-initial unstressed ⟨e⟩ before a coda sibilant is [i]. `PT_INITIAL_ES_RAISE` gives `estar` [iʃˈtaɾ], `escola` [iʃˈkɔlɐ] and `esmola` [iʒˈmɔlɐ]. Vázquez Diéguez (2015: 242) gives [i] for Europe and lists the series "esc- [(i)ʃk]" and "est- [(i)ʃt]" on p. 250.
+
+The vowel can drop. Vázquez writes "pode desaparecer, p. ex. [iʃˈtaɾ / ʃˈtaɾ]" (p. 265), and Teyssier (1989: 28, quoted on Vázquez's p. 244) writes "o [i] quase não se ouve". Mateus & d'Andrade (1998) state that the vowel is deleted before a coda /S/; the page inside 13-32 is not confirmed. Cruz-Ferreira (1999: 130) writes `todo o esplendor` as ['todu ʃplẽ'dor], a narrow transcription of connected speech. The spec writes the vowel and does not model the drop.
+
+The rule stays off for double ⟨ss⟩, for a stressed ⟨e⟩, and for ⟨es⟩ before a vowel. `essência` is [eˈsẽsiɐ], `este` is [ˈeʃtɨ] and `esotérico` is [ezuˈtɛɾiku]. Initial ⟨ex⟩ has a separate reading. The `word_initial` value of the `e` row stays [e], because other initial ⟨e⟩ splits between [e], [i] and [ɛ] by word: `elefante`, `ermida`.
+
 ## Coda vowel nasalisation
 
 A vowel before a nasal ⟨m⟩ or ⟨n⟩ in the same syllable becomes nasal. This happens word-finally or before another consonant. The nasal consonant joins the vowel and is not a separate segment (Mateus & d'Andrade 2000, ch. 2, *Nasality*). Portuguese has five nasal vowels, /ɐ̃ ẽ ĩ õ ũ/:
@@ -119,7 +127,7 @@ The endings ⟨-eno -ena⟩ and ⟨-ona⟩ have no rule. Infopédia gives their 
 
 The feminine and the plural of ⟨-oso⟩ keep the open vowel, because only the masculine singular closes it. The gate of `PT_SUFFIX_OSO_CLOSE` is the word-final ⟨o⟩, so these forms do not match: `famosa` [fɐˈmɔzɐ], `famosos` [fɐˈmɔzuʃ].
 
-Other word lists set the height of frequent words outside the suffix classes. The lists `PT_LEX_CLOSE_O` and `PT_LEX_CLOSE_E` pin a close vowel (`sopa`, `como`, `fresco`). The lists `PT_LEX_OPEN_O` and `PT_LEX_OPEN_E` pin an open vowel (`sol`, `forte`, `terra`, `dez`). The rule `PT_LEX_X_S` gives the ⟨x⟩ of the stem ⟨troux-⟩ of *trazer* as [s].
+Other word lists set the height of frequent words outside the suffix classes. The lists `PT_LEX_CLOSE_O` and `PT_LEX_CLOSE_E` pin a close vowel (`sopa`, `como`, `fresco`). `PT_LEX_CLOSE_O` also holds the 25 single words in ⟨-orto⟩, because Infopédia writes [o] in all of them: `porto` [ˈpoɾtu], `desporto` [dɨʃˈpoɾtu], `morto` [ˈmoɾtu], `conforto` [kõˈfoɾtu]. A suffix rule would also catch verb forms such as `suporto`, so the words stay in a list. The list also holds words of the Cunha and Cintra class of close-vowel nouns that open in the plural, where Infopédia writes [o]: `corpo` [ˈkoɾpu], `povo` [ˈpovu], `jogo` [ˈʒoɡu]. Their plurals keep the open vowel: `corpos` [ˈkɔɾpuʃ]. The same page lists nouns that keep the close vowel in the plural, and the list holds both forms: `bolo` [ˈbolu], `bolos` [ˈboluʃ]. A word-initial ⟨o⟩ takes the close first value of its row, so `PT_LEX_OPEN_O` names `olhos`, `ossos` and `ovos`. The lists `PT_LEX_OPEN_O` and `PT_LEX_OPEN_E` pin an open vowel (`sol`, `forte`, `terra`, `dez`). The rule `PT_LEX_X_S` gives the ⟨x⟩ of the stem ⟨troux-⟩ of *trazer* as [s].
 
 Porto, Braga and Terceira have their own process for the stressed mid vowels, so they switch these rules off. The African and Asian varieties, Barranquenho and the creoles also switch them off, because no source for them was read.
 
@@ -143,11 +151,11 @@ A word-final coda /s/ is [ʃ] alone and before a voiceless consonant. Across a w
 
 | Rule id | Context | Value | Example |
 |:---|:---|:---|:---|
-| `PT_FINAL_S_PREVOCALIC_VOICE` | `…s#` + `#V…` | [z] | `estás a ver` [eʃˈtaz ɐ ˈveɾ], `os amigos` [oz ɐˈmiɡuʃ] |
-| `PT_CODA_S_VOICING` | `…s#` + `#[voiced C]…` | [ʒ] | `estás bem` [eʃˈtaʒ ˈbɐ̃j̃], `as bocas` [ɐʒ ˈbɔkɐʃ], `os dois` [oʒ ˈdojʃ] |
+| `PT_FINAL_S_PREVOCALIC_VOICE` | `…s#` + `#V…` | [z] | `estás a ver` [iʃˈtaz ɐ ˈveɾ], `os amigos` [oz ɐˈmiɡuʃ] |
+| `PT_CODA_S_VOICING` | `…s#` + `#[voiced C]…` | [ʒ] | `estás bem` [iʃˈtaʒ ˈbɐ̃j̃], `as bocas` [ɐʒ ˈbɔkɐʃ], `os dois` [oʒ ˈdojʃ] |
 | `PT_CODA_S_BEFORE_ZH` | `…Vs#` + `#ʒ…` | deleted | `mais giro` [ˈmaj ˈʒiɾu], `as janelas` [ɐ ʒɐˈnɛlɐʃ] |
 
-Before a vowel, the final sibilant joins the next syllable and is voiced to the alveolar [z]. Before a voiced consonant, it takes the voicing of that consonant and is the post-alveolar [ʒ] (Mateus & d'Andrade 2000, ch. 2). Before a voiceless consonant it stays [ʃ]: `estás feliz` [eʃˈtaʃ fɨˈliʃ]. A single word does not change: `estás` [eʃˈtaʃ].
+Before a vowel, the final sibilant joins the next syllable and is voiced to the alveolar [z]. Before a voiced consonant, it takes the voicing of that consonant and is the post-alveolar [ʒ] (Mateus & d'Andrade 2000, ch. 2). Before a voiceless consonant it stays [ʃ]: `estás feliz` [iʃˈtaʃ fɨˈliʃ]. A single word does not change: `estás` [iʃˈtaʃ].
 
 The `right_context` of `PT_CODA_S_VOICING` is `^[ˈˌ]?[bdɡvzmnɲɾʁlʎ]`. The optional stress mark lets it fire on a next word that starts with a stressed syllable, such as `bocas` [ˈbɔkɐʃ]. The velar in the class is IPA ɡ (U+0261), the code point the engine emits, so `os gatos` gives [oʒ ˈɡatuʃ]. An ASCII g (U+0067) in its place never matches.
 

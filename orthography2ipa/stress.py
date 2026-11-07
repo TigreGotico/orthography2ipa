@@ -9,11 +9,9 @@ The bundled syllabifier is a vowel-group splitter, good enough for end-anchored
 stress systems (final / penultimate / antepenultimate). A spec that sets
 ``constrain_onsets`` has its onset maximisation constrained by the licit onsets
 of the language (see :class:`_OnsetJudge`).
-Languages with a real syllabifier ship it as an
-``orthography2ipa.syllabify`` entry-point plugin (``silabificador`` for
-Portuguese, ``pycotovia`` for Galician) — pass ``lang=`` and the plugin
-is used automatically. A caller can pass its own ``syllabifier=``, which wins
-over discovery, or a pre-computed syllable list, which every function accepts.
+A caller with a real syllabifier passes it as ``syllabifier=``, or passes a
+pre-computed syllable list, which every function accepts. Nothing installed
+replaces the bundled splitter on its own.
 
 Usage
 ─────
@@ -1042,34 +1040,27 @@ def _syllables_for(
     spec: Optional[LanguageSpec] = None,
     syllabifier: Optional[SyllabifierPlugin] = None,
 ) -> List[str]:
-    """Syllabify *word*: the caller's plugin, else the one registered for
-    *lang*, else the bundled splitter.
+    """Syllabify *word*: the caller's plugin, else the bundled splitter.
 
-    *syllabifier* is the plugin the caller named. It replaces discovery, so a
-    word it cannot split goes to the bundled splitter and not to a registered
-    plugin.
+    *syllabifier* is the plugin the caller named. A word it cannot split goes
+    to the bundled splitter.
 
-    *diphthongs* reaches the bundled splitter only; a language that ships a
-    real syllabifier plugin does not need it.
+    *diphthongs* reaches the bundled splitter only.
 
     *spec* is the language spec the bundled splitter reads its phonotactics
     from — which consonant clusters may open a syllable. When it is not passed
     but *lang* is, the spec is looked up. Without either, the split is
     unconstrained (the historical behaviour).
     """
-    plugin = syllabifier
-    if plugin is None and lang:
-        from orthography2ipa.registry import get_syllabifier
-        plugin = get_syllabifier(lang)
-    if plugin is not None:
+    if syllabifier is not None:
         try:
-            sylls = plugin.syllabify(word, lang)
+            sylls = syllabifier.syllabify(word, lang)
             if sylls and "".join(sylls) == word:
                 return list(sylls)
         except Exception as exc:
             logging.getLogger(__name__).warning(
                 "syllabifier plugin %r failed on word %r: %s",
-                type(plugin).__name__, word, exc)
+                type(syllabifier).__name__, word, exc)
     if spec is None and lang:
         spec = _spec_for(lang)
     hiatus = (hiatus_positions(word, spec) if spec is not None
@@ -1241,14 +1232,13 @@ def detect_stress(
     rules : StressRules
         The language's declarative stress system.
     syllables : Optional[Sequence[str]]
-        Pre-computed syllables; takes precedence over plugin lookup.
+        Pre-computed syllables; takes precedence over *syllabifier*.
     lang : Optional[str]
-        Language code used to look up a registered
-        ``orthography2ipa.syllabify`` plugin (``silabificador`` for
-        Portuguese, ``pycotovia`` for Galician). The naive
-        :func:`syllabify` is the fallback.
+        Language code. It selects the spec the bundled splitter reads, and it
+        reaches *syllabifier* and a declared stress plugin.
     syllabifier : Optional[SyllabifierPlugin]
-        The caller's syllabifier. It wins over the plugin *lang* looks up.
+        The caller's syllabifier. Without it the bundled splitter divides
+        *word*.
     """
     sylls = (list(syllables) if syllables is not None
              else _syllables_for(word, lang, rules.diphthongs,

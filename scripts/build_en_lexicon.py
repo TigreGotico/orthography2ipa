@@ -1,15 +1,14 @@
 #!/usr/bin/env python3
-"""Build an English lexicon TSV (``word<TAB>ipa``) for callers to register.
+"""Build an English lexicon TSV (``word<TAB>ipa``) for callers to load.
 
-The library bundles no lexicon. Write the file wherever you like and point
-``orthography2ipa.register_lexicon("en-GB", <path>)`` at it (or drop it in a
-directory and use ``set_lexicon_dir()`` / ``$ORTHOGRAPHY2IPA_LEXICON_DIR``).
+The library bundles no lexicon. Write the file wherever you like and pass
+``Pipeline(lexicon=load_lexicon(<path>))`` to the engine that needs it.
 
 The E3 lexicon-overlay mechanism (see ``orthography2ipa/lexicon.py`` and
 ``docs/guide/lexicon.md``) reads an optional per-language sidecar
-a ``{code}.tsv`` (``word<TAB>ipa``) the caller registers, folded into the
+a ``{code}.tsv`` (``word<TAB>ipa``) the caller loads, folded into the
 engine's ``word_exceptions`` override pathway. This script builds a pilot
-English lexicon that a caller registers; the package ships no lexicon.
+English lexicon that a caller loads; the package ships no lexicon.
 
 Provenance (see ``docs/guide/lexicon.md``):
 

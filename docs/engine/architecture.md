@@ -7,16 +7,16 @@
 `G2P` in `g2p.py` is the full engine, and `transcribe()` wraps it. For each call, it runs these stages in order:
 
 1. Markup. `markup.parse_markup` splits out each `<phoneme ph="…">` element. A forced word keeps its IPA through the word stages and gets no stress mark ([lexicon.md](../guide/lexicon.md)).
-2. Normalize. The normalize plugin that the spec or the caller names runs first, and then the `normalizer` callable of the caller. With neither, the text passes through unchanged, because the library does not normalise text.
-3. Word override. Each word looks up `word_exceptions` and then a registered lexicon. A hit replaces the rules for that word.
+2. Prepare the text. `Pipeline.expand` runs on each plain run, and then `Pipeline.mark` runs once on the sentence. With neither field, the normalize plugin that the spec or the deprecated `plugins=` argument names runs, and then the deprecated `normalizer` callable. With none of them, the text passes through unchanged, because the library does not normalise text.
+3. Word override. Each word looks up `word_exceptions` and then the lexicon of the engine. A hit replaces the rules for that word.
 4. Tokenize. `PhonetokTokenizer` cuts the word into grapheme tokens by maximal munch over a trie of the grapheme keys.
 5. Select. Each grapheme slot gets its candidates and their costs from the positional overrides and the weights. A grammatical ending can rewrite the end of the word.
-6. Rescore. The rescorers re-cost each slot in the context of its neighbours. The order is the rescorers of the caller, then the rescorers of declared plugins, then the allophone rules of the spec.
+6. Rescore. The rescorers re-cost each slot in the context of its neighbours. The order is the rescorers of `Pipeline.rescore`, then the rescorers of declared plugins, then the allophone rules of the spec.
 7. Beam select. Greedy search keeps one path, and beam search keeps `beam_width` paths. The best path wins.
 8. Finalize the word. Computed tone, geminate collapse, the word-final virama vowel, iambic lengthening and the stress mark apply in that order.
 9. Compound stress. A spec with `compound_stress == "last"` marks hyphen-joined compounds.
-10. Sentence rescorers. A `SentenceRescorer` that the caller passes sees the whole utterance and can rewrite across words.
-11. Sandhi. The declarative `sandhi_rules` of the spec run, and then any declared sandhi plugin.
+10. Sentence rescorers. A `SentenceRescorer` that the caller passes in the deprecated `sentence_rescorer=` argument sees the whole utterance and can rewrite across words.
+11. Sandhi. The declarative `sandhi_rules` of the spec run, and then `Pipeline.sandhi`. With no field, a declared sandhi plugin runs in its place.
 12. Dialect transform. An optional `dialect_profile` rewrites the final IPA.
 13. NFC. The engine normalises the output to NFC.
 
@@ -78,17 +78,17 @@ A caller that is sensitive to quantity has already divided the transcription, be
 
 ## Pluggable steps
 
-Five stages accept a plugin. Four of them change the transcription, so the spec or the caller must name the plugin. Discovery alone never selects one of these, because an install of a package must not change a transcription. The syllabify stage is neutral: a better syllabifier draws better boundaries and gives the same answer.
+Five stages accept a plugin. All of them can change the transcription, so the spec or the caller must name the plugin. Discovery alone never selects one, because an install of a package must not change a transcription. The syllabify stage has no entry point: a caller passes a syllabifier as an object, in `Pipeline(syllabifier=...)`.
 
 | Stage | Base class | Entry-point group | Contract |
 | :--- | :--- | :--- | :--- |
 | `normalize` | `NormalizePlugin` (`plugins.py`) | `orthography2ipa.normalize` | Declared |
-| `syllabify` | `SyllabifierPlugin` (`syllabifier_plugin.py`) | `orthography2ipa.syllabify` | Neutral |
+| `syllabify` | `SyllabifierPlugin` (`syllabifier_plugin.py`) | None | Caller |
 | `stress` | `StressPlugin` (`stress_plugin.py`) | `orthography2ipa.stress` | Declared |
 | `rescore` | `RescorerPlugin` (`rescorer_plugin.py`) | `orthography2ipa.rescore` | Declared |
 | `sandhi` | `SandhiPlugin` (`plugins.py`) | `orthography2ipa.sandhi` | Declared |
 
-The spec names a plugin in its `plugins` field by entry-point name, such as `{"sandhi": "arbtok"}`. The caller overrides it with `G2P(lang, plugins={...})`. A declared plugin that is not installed raises `MissingPlugin`, and the engine never falls back to the built-in answer. `plugins.py` states the contract of each stage. `conformance.py` holds the contract checks: `assert_syllabifier_conforms` fails if an installed syllabifier moves the output, and `assert_rescorer_conforms` checks a rescorer. [registry.md](../reference/registry.md#plugin-discovery) describes how the registry finds plugins and which one wins.
+The spec names a plugin in its `plugins` field by entry-point name, such as `{"sandhi": "arbtok"}`. The caller overrides it with the `Pipeline` field of the stage, and the engine then does not resolve the name. The caller can also name a plugin with `G2P(lang, plugins={...})`, which is deprecated. A declared plugin that is not installed raises `MissingPlugin`, and the engine never falls back to the built-in answer. `plugins.py` states the contract of each stage. `conformance.py` holds the contract checks: `assert_syllabifier_conforms` fails if an installed syllabifier moves the output, and `assert_rescorer_conforms` checks a rescorer. [registry.md](../reference/registry.md#plugin-discovery) describes how the registry finds plugins and which one wins.
 
 ## Modules
 
@@ -105,7 +105,8 @@ The spec names a plugin in its `plugins` field by entry-point name, such as `{"s
 | `rescorer.py`, `allophony.py` | The rescorer seam and the allophone rules compiled onto it | `LatticeRescorer`, `RescoreContext`, `AllophoneRescorer`, `compile_allophone_rescorer` |
 | `stress.py`, `tone.py` | Syllabification, stress placement and tone marks | `syllabify`, `syllabify_ipa`, `detect_stress`, `apply_stress_mark` |
 | `sandhi.py`, `sentence.py` | Cross-word rules and the sentence lattice | `SandhiEngine`, `SentenceLattice`, `SentenceRescorer`, `WordContext` |
-| `lexicon.py`, `markup.py` | The lexicon overlay and the `<phoneme>` markup | `register_lexicon`, `get_lexicon`, `MarkupError` |
+| `pipeline.py` | The configuration that a caller gives to one engine | `Pipeline` |
+| `lexicon.py`, `markup.py` | The lexicon overlay and the `<phoneme>` markup | `load_lexicon`, `packaged_lexicon`, `MarkupError` |
 | `features.py` | Feature export for ML and CRF G2P ([feature export](lattice.md#feature-export-for-a-learned-model)) | `WordFeatures`, `GraphemeFeatures` |
 | `inventory.py`, `underspecification.py` | Emission and phoneme inventories, TTS tokens, and the places where the spelling leaves a reading open | `phoneme_inventory`, `emission_inventory`, `is_underdetermined` |
 | `distance.py` | The relational distance metrics ([distance.md](../guide/distance.md)) | See below |
@@ -114,7 +115,7 @@ The spec names a plugin in its `plugins` field by entry-point name, such as `{"s
 | `lattice_per.py` | Phone error rate against a lattice ([lattice_per.md](lattice_per.md)) | |
 | `transforms.py` | IPA dialect transforms for Portuguese and Ibero-Romance | `DialectTransform`, `IPARule`, `IPAChainShift`, `IPALexicalRule`, `apply_transform`, `debias_lisbon`, `available_profiles`, `load_clup_profile`, `DIALECT_PROFILES` |
 | `lm.py` | Phoneme n-gram language model utilities | `phoneme_embeddings`, `build_ngram_lm`, `perplexity` |
-| `plugins.py`, `*_plugin.py`, `syllabifiers.py`, `conformance.py` | The pluggable steps, the bundled `silabificador` entry point and the contract checks | `NormalizePlugin`, `SandhiPlugin`, `STAGES`, `SyllabifierPlugin`, `RescorerPlugin`, `StressPlugin` |
+| `plugins.py`, `*_plugin.py`, `syllabifiers.py`, `conformance.py` | The pluggable steps, the bundled `silabificador` plugin and the contract checks | `NormalizePlugin`, `SandhiPlugin`, `STAGES`, `SyllabifierPlugin`, `RescorerPlugin`, `StressPlugin` |
 | `exceptions.py` | Exception and warning types | `UnmappedScriptError`, `UnmappedGraphemeWarning`, `StubSpecWarning` |
 | `cli.py` | The `orthography2ipa` command ([reference/cli.md](../reference/cli.md)) | `main` |
 | `version.py` | The version, which the release workflow sets | `VERSION_STR` |

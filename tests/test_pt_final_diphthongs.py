@@ -21,7 +21,7 @@ import unicodedata
 
 import pytest
 
-from orthography2ipa import G2P, get, get_syllabifier
+from orthography2ipa import G2P, get
 
 #: The Base X, 6.º examples and the 3rd-person preterites of ⟨-air -uir⟩
 #: verbs. ⟨-air⟩ and ⟨-uir⟩ are the conjugations Base VII, 2 a) names.
@@ -40,12 +40,6 @@ def _nfd(ipa: str) -> str:
     return unicodedata.normalize("NFD", ipa)
 
 
-@pytest.fixture
-def without_syllabifier_plugin(monkeypatch):
-    from orthography2ipa import registry
-    monkeypatch.setattr(registry, "_syllabifiers", {})
-
-
 @pytest.mark.parametrize("lang", LANGS)
 @pytest.mark.parametrize("word", FINAL_IU)
 def test_final_iu_after_a_vowel_is_a_stressed_diphthong(lang, word):
@@ -62,20 +56,15 @@ def test_final_ui_after_a_vowel_is_a_stressed_diphthong(lang, word):
 
 @pytest.mark.parametrize("lang", ["pt-PT", "pt-BR"])
 @pytest.mark.parametrize("word", FINAL_IU + FINAL_UI)
-def test_without_the_plugin_and_paths_agree(lang, word, monkeypatch):
-    with_plugin = G2P(lang).transcribe_word(word)
-    from orthography2ipa import registry
-    monkeypatch.setattr(registry, "_syllabifiers", {})
-    assert get_syllabifier(lang) is None
-    ipa = G2P(lang).transcribe_word(word)
+def test_plugin_and_bundled_paths_agree(lang, word, plugin_engine):
+    ipa = plugin_engine(lang).transcribe_word(word)
     assert (_UI if word in FINAL_UI else _IU).search(_nfd(ipa)), ipa
-    assert ipa == with_plugin
+    assert ipa == G2P(lang).transcribe_word(word)
 
 
 @pytest.mark.parametrize("lang", ["pt-PT", "pt-BR"])
 @pytest.mark.parametrize("word", FINAL_IU + FINAL_UI)
-def test_bundled_syllabifier_keeps_the_final_diphthong_whole(
-        lang, word, without_syllabifier_plugin):
+def test_bundled_syllabifier_keeps_the_final_diphthong_whole(lang, word):
     # dis-tra-iu, pa-uis: the last syllable starts at the diphthong.
     sylls = G2P(lang)._syllables_cached(word)
     tail = "uis" if word.endswith("uis") else "iu"

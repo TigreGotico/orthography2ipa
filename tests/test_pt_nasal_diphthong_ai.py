@@ -17,7 +17,7 @@ from __future__ import annotations
 
 import pytest
 
-from orthography2ipa import G2P, get, get_syllabifier
+from orthography2ipa import G2P, get
 
 AO_BASE_VII_3A = ["cãibas", "cãibra", "zãibo"]
 
@@ -33,12 +33,6 @@ def _head(word: str) -> str:
 LANGS = ["pt-PT", "pt-BR", "pt-PT-x-lisbon", "pt-BR-x-sp", "pt-AO", "pt-UY"]
 
 
-@pytest.fixture
-def without_syllabifier_plugin(monkeypatch):
-    from orthography2ipa import registry
-    monkeypatch.setattr(registry, "_syllabifiers", {})
-
-
 @pytest.mark.parametrize("lang", LANGS)
 @pytest.mark.parametrize("word", AO_BASE_VII_3A)
 def test_ai_is_one_stressed_nasal_diphthong(lang, word):
@@ -50,19 +44,14 @@ def test_ai_is_one_stressed_nasal_diphthong(lang, word):
 
 @pytest.mark.parametrize("lang", ["pt-PT", "pt-BR"])
 @pytest.mark.parametrize("word", AO_BASE_VII_3A)
-def test_without_the_plugin_and_paths_agree(lang, word, monkeypatch):
-    with_plugin = G2P(lang).transcribe_word(word)
-    from orthography2ipa import registry
-    monkeypatch.setattr(registry, "_syllabifiers", {})
-    assert get_syllabifier(lang) is None
-    ipa = G2P(lang).transcribe_word(word)
+def test_plugin_and_bundled_paths_agree(lang, word, plugin_engine):
+    ipa = plugin_engine(lang).transcribe_word(word)
     assert ipa.startswith(_head(word)), ipa
-    assert ipa == with_plugin
+    assert ipa == G2P(lang).transcribe_word(word)
 
 
 @pytest.mark.parametrize("lang", ["pt-PT", "pt-BR"])
-def test_bundled_syllabifier_keeps_ai_in_one_syllable(
-        lang, without_syllabifier_plugin):
+def test_bundled_syllabifier_keeps_ai_in_one_syllable(lang):
     assert G2P(lang)._syllables_cached("cãibra") == ["cãi", "bra"]
 
 
