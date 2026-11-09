@@ -1,9 +1,9 @@
 # Tests
 
-The suite runs with pytest from the repository root. `tests/pytest.ini` sets
-the markers (`slow`, `linguistic`) and turns an unknown variant subtag
-warning into an error. `tests/conftest.py` holds session fixtures for common
-specs.
+The suite runs with pytest from the repository root. The
+`[tool.pytest.ini_options]` table in `pyproject.toml` sets the markers (`slow`,
+`linguistic`) and turns an unknown variant subtag warning into an error.
+`tests/conftest.py` holds session fixtures for common specs.
 
 ```bash
 PYTHONPATH=$PWD .venv/bin/python -m pytest tests

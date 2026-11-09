@@ -73,3 +73,19 @@ include = ["orthography2ipa*"]
 
 [tool.setuptools.package-data]
 "orthography2ipa" = ["data/*.json", "data/SCHEMA.md"]
+
+# pytest reads this table whether it runs from the repository root or from
+# tests/, so every run turns an unknown variant subtag warning into an error.
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "linguistic: marks linguistically-critical spot checks",
+]
+filterwarnings = [
+    "error:unknown variant subtag:UserWarning",
+]
