@@ -51,10 +51,9 @@ test = ["pytest", "pytest-timeout", "pytest-cov", "pydantic>=2", "hypothesis",
         "silabificador>=2.1.0a1", "huggingface_hub", "rarfile", "scriptconv",
         "anthropic>=2.0.0"]
 # dev-only extra for scripts/compare_systems.py; never a runtime dependency.
-# africa-g2p is NOT listed here: it isn't published on PyPI, so it can't be
-# a pip extra. Install it from a locally built wheel of the upstream
-# checkout (https://github.com/AfriSpeech/africa-g2p) before regenerating the
-# comparison table — see scripts/compare_systems.py's module docstring.
+# africa-g2p is published on PyPI but is not listed here. Install it into the
+# run environment before regenerating the comparison table, as
+# scripts/compare_systems.py's module docstring says.
 compare = ["epitran", "gruut", "pycotovia", "ahotts-g2p"]
 # dev-only extra for scripts/correct_silver_ipa.py, which corrects the
 # LLM-generated silver sets with Claude; never a runtime dependency. The test
@@ -73,3 +72,19 @@ include = ["orthography2ipa*"]
 
 [tool.setuptools.package-data]
 "orthography2ipa" = ["data/*.json", "data/SCHEMA.md"]
+
+# pytest reads this table whether it runs from the repository root or from
+# tests/, so every run turns an unknown variant subtag warning into an error.
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "linguistic: marks linguistically-critical spot checks",
+]
+filterwarnings = [
+    "error:unknown variant subtag:UserWarning",
+]

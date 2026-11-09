@@ -71,8 +71,8 @@ render. Each section carries a ``# ─── name ───`` header:
 ``provenance / reliability tiers``
     :data:`RELIABILITY_TIERS`, :data:`PROVENANCE`, and
     :func:`can_gate_promotion` — which golds are trustworthy enough to FAIL
-    a build on, and which may only report drift. A gold that is another
-    tool's output can never gate.
+    a build on, and which may only report drift. A gold that is the output
+    of a competitor or of a language model can never gate.
 ``metric``
     :func:`normalize` (the one comparison space every system is scored in),
     :func:`levenshtein`, :func:`align`, and the :func:`evaluate` family.
@@ -3025,8 +3025,11 @@ def load_alphacep_ru_book(lang: str, limit: int) -> List[Tuple[str, str]]:
 
     PROVENANCE — classified ``machine-generated``: the phone tier is an
     automatic accentuator/G2P annotation over its5Q/biggest-ru-book, not a
-    hand-transcribed or lexicon-derived gold. Directional signal only; see
-    ``docs/specs/quality_tiers.md`` — this tier cannot gate a promotion.
+    hand-transcribed or lexicon-derived gold. A low PER means agreement with
+    that annotation, not correctness. The tier still gates a promotion:
+    ``can_gate_promotion("machine-generated")`` is True, because the
+    annotation tool is not a competitor (see :data:`GATING_CUTOFF_TIER` and
+    ``docs/evaluation/benchmarks.md``, "Reliability tiers").
     """
     if lang != "ru":
         return []
