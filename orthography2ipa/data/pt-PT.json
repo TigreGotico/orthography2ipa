@@ -1418,6 +1418,118 @@
         "n"
       ],
       "notes": "The fourth lattice candidate of an unstressed word-initial ⟨e⟩ before another coda consonant is the [ɨ] of the general reduction. The rule does not change the transcription. See PT_INITIAL_E_CODA_CANDIDATE_OPEN."
+    },
+    {
+      "id": "PT_CODA_L_A_OPEN",
+      "phonemes": [
+        "ɐ"
+      ],
+      "surface": "a",
+      "grapheme": [
+        "a"
+      ],
+      "stress": "unstressed",
+      "followed_by": "coda",
+      "followed_by_grapheme": [
+        "l"
+      ],
+      "notes": "An unstressed ⟨a⟩ before a coda ⟨l⟩ is [a], not the reduced [ɐ]: altar [aɫˈtaɾ], calçado [kaɫˈsadu], falcão [faɫˈkɐ̃w̃]. Cunha & Cintra (7th ed., p. 53) list among the unstressed vowels that do not reduce 'as vogais [a], [ɛ], [o] protegidas por l implosivo de altar, delgado, soldado, colchão, Setúbal e amável'. The rule takes an ⟨l⟩ before a consonant and a word-final ⟨l⟩. A word-final ⟨l⟩ is in a coda, so it is implosive, and the clause names the ⟨l⟩, not a position in the word. Two examples of the source, Setúbal and amável, have a word-final ⟨l⟩. A digraph ⟨lh⟩ is not a coda ⟨l⟩. Infopédia writes [a] first in 2,720 of the 2,726 single words that this rule changes and [ɐ] in 5. Infopédia carries the Lisbon assumption. This rule and PT_CODA_L_A_CANDIDATE_REDUCED rank the slot [a], [ɐ]. The PT_CODA_L rules come after the word lists and the word-initial rules, which keep their values."
+    },
+    {
+      "id": "PT_CODA_L_A_CANDIDATE_REDUCED",
+      "phonemes": [
+        "a"
+      ],
+      "surface": "ɐ",
+      "grapheme": [
+        "a"
+      ],
+      "stress": "unstressed",
+      "followed_by": "coda",
+      "followed_by_grapheme": [
+        "l"
+      ],
+      "notes": "The second lattice candidate of an unstressed ⟨a⟩ before a coda ⟨l⟩ is the reduced [ɐ]. The rule does not change the transcription. See PT_CODA_L_A_OPEN."
+    },
+    {
+      "id": "PT_CODA_L_E_OPEN",
+      "phonemes": [
+        "ɨ"
+      ],
+      "surface": "ɛ",
+      "grapheme": [
+        "e"
+      ],
+      "stress": "unstressed",
+      "followed_by": "coda",
+      "followed_by_grapheme": [
+        "l"
+      ],
+      "notes": "An unstressed ⟨e⟩ before a coda ⟨l⟩ is [ɛ], not the reduced [ɨ]: delgado [dɛɫˈɡadu], amável [ɐˈmavɛɫ], móvel [ˈmɔvɛɫ]. Cunha & Cintra (7th ed., p. 53) list among the unstressed vowels that do not reduce 'as vogais [a], [ɛ], [o] protegidas por l implosivo de altar, delgado, soldado, colchão, Setúbal e amável'. The rule takes an ⟨l⟩ before a consonant and a word-final ⟨l⟩. A word-final ⟨l⟩ is in a coda, so it is implosive, and the clause names the ⟨l⟩, not a position in the word. Two examples of the source, Setúbal and amável, have a word-final ⟨l⟩. A digraph ⟨lh⟩ is not a coda ⟨l⟩. Infopédia writes [ɛ] first in 213 of the 217 single words with a medial ⟨el⟩ + consonant that this rule changes, and in 1,852 of the 1,858 with a word-final ⟨el⟩. Infopédia carries the Lisbon assumption. This rule and PT_CODA_L_E_CANDIDATE_REDUCED rank the slot [ɛ], [e], [ɨ]."
+    },
+    {
+      "id": "PT_CODA_L_E_CANDIDATE_REDUCED",
+      "phonemes": [
+        "ɛ"
+      ],
+      "surface": "ɨ",
+      "grapheme": [
+        "e"
+      ],
+      "stress": "unstressed",
+      "followed_by": "coda",
+      "followed_by_grapheme": [
+        "l"
+      ],
+      "notes": "The third lattice candidate of an unstressed ⟨e⟩ before a coda ⟨l⟩ is the reduced [ɨ]. The rule does not change the transcription. See PT_CODA_L_E_OPEN."
+    },
+    {
+      "id": "PT_CODA_L_O_CLOSE",
+      "phonemes": [
+        "u"
+      ],
+      "surface": "o",
+      "grapheme": [
+        "o"
+      ],
+      "stress": "unstressed",
+      "followed_by": "coda",
+      "followed_by_grapheme": [
+        "l"
+      ],
+      "notes": "An unstressed ⟨o⟩ before a coda ⟨l⟩ is [o], not the reduced [u]: soldado [soɫˈdadu], colchão [koɫˈʃɐ̃w̃], soltar [soɫˈtaɾ]. Cunha & Cintra (7th ed., p. 53) list among the unstressed vowels that do not reduce 'as vogais [a], [ɛ], [o] protegidas por l implosivo de altar, delgado, soldado, colchão, Setúbal e amável'. The rule takes an ⟨l⟩ before a consonant and a word-final ⟨l⟩. A word-final ⟨l⟩ is in a coda, so it is implosive, and the clause names the ⟨l⟩, not a position in the word. Two examples of the source, Setúbal and amável, have a word-final ⟨l⟩. A digraph ⟨lh⟩ is not a coda ⟨l⟩. Infopédia writes [o] first in 279 of the 360 single words with a medial ⟨ol⟩ + consonant that this rule changes, [ɔ] in 56 and [u] in 25. In the 4 words with a word-final ⟨ol⟩, such as álcool and brístol, it writes [ɔ]. Infopédia carries the Lisbon assumption. This rule, PT_CODA_L_O_CANDIDATE_OPEN and PT_CODA_L_O_CANDIDATE_REDUCED rank the slot [o], [ɔ], [u]. A word-initial ⟨o⟩ keeps the PT_INITIAL_O ranking."
+    },
+    {
+      "id": "PT_CODA_L_O_CANDIDATE_OPEN",
+      "phonemes": [
+        "o"
+      ],
+      "surface": "ɔ",
+      "grapheme": [
+        "o"
+      ],
+      "stress": "unstressed",
+      "followed_by": "coda",
+      "followed_by_grapheme": [
+        "l"
+      ],
+      "notes": "The second lattice candidate of an unstressed ⟨o⟩ before a coda ⟨l⟩ is [ɔ]. The rule does not change the transcription. See PT_CODA_L_O_CLOSE."
+    },
+    {
+      "id": "PT_CODA_L_O_CANDIDATE_REDUCED",
+      "phonemes": [
+        "ɔ"
+      ],
+      "surface": "u",
+      "grapheme": [
+        "o"
+      ],
+      "stress": "unstressed",
+      "followed_by": "coda",
+      "followed_by_grapheme": [
+        "l"
+      ],
+      "notes": "The third lattice candidate of an unstressed ⟨o⟩ before a coda ⟨l⟩ is the reduced [u]. The rule does not change the transcription. See PT_CODA_L_O_CLOSE."
     }
   ],
   "sandhi_rules": [

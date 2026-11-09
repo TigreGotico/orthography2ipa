@@ -323,6 +323,48 @@
       "notes": "DISABLED for Macau Portuguese. The PT_INITIAL_E rules follow the pt-PT default for European Portuguese. No source read writes this vowel for this variety, so it stays as the spec gives it."
     },
     {
+      "id": "PT_CODA_L_A_OPEN",
+      "phonemes": [],
+      "surface": "a",
+      "notes": "DISABLED for Macau Portuguese. The PT_CODA_L rules follow the pt-PT default for European Portuguese. No source read writes this vowel for this variety, so it stays as the spec gives it."
+    },
+    {
+      "id": "PT_CODA_L_A_CANDIDATE_REDUCED",
+      "phonemes": [],
+      "surface": "ɐ",
+      "notes": "DISABLED for Macau Portuguese. The PT_CODA_L rules follow the pt-PT default for European Portuguese. No source read writes this vowel for this variety, so it stays as the spec gives it."
+    },
+    {
+      "id": "PT_CODA_L_E_OPEN",
+      "phonemes": [],
+      "surface": "ɛ",
+      "notes": "DISABLED for Macau Portuguese. The PT_CODA_L rules follow the pt-PT default for European Portuguese. No source read writes this vowel for this variety, so it stays as the spec gives it."
+    },
+    {
+      "id": "PT_CODA_L_E_CANDIDATE_REDUCED",
+      "phonemes": [],
+      "surface": "ɨ",
+      "notes": "DISABLED for Macau Portuguese. The PT_CODA_L rules follow the pt-PT default for European Portuguese. No source read writes this vowel for this variety, so it stays as the spec gives it."
+    },
+    {
+      "id": "PT_CODA_L_O_CLOSE",
+      "phonemes": [],
+      "surface": "o",
+      "notes": "DISABLED for Macau Portuguese. The PT_CODA_L rules follow the pt-PT default for European Portuguese. No source read writes this vowel for this variety, so it stays as the spec gives it."
+    },
+    {
+      "id": "PT_CODA_L_O_CANDIDATE_OPEN",
+      "phonemes": [],
+      "surface": "ɔ",
+      "notes": "DISABLED for Macau Portuguese. The PT_CODA_L rules follow the pt-PT default for European Portuguese. No source read writes this vowel for this variety, so it stays as the spec gives it."
+    },
+    {
+      "id": "PT_CODA_L_O_CANDIDATE_REDUCED",
+      "phonemes": [],
+      "surface": "u",
+      "notes": "DISABLED for Macau Portuguese. The PT_CODA_L rules follow the pt-PT default for European Portuguese. No source read writes this vowel for this variety, so it stays as the spec gives it."
+    },
+    {
       "id": "PT_STRESSED_A_BEFORE_NASAL",
       "phonemes": [],
       "surface": "ɐ",
