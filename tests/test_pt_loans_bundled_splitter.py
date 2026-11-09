@@ -28,7 +28,6 @@ VOWEL = [
     ("pt-PT", "apapane-de-laysan", "la", "portuguese_unified ɐpapɐndəlajˈzɐn"),
     ("pt-PT", "braille", "ɾa", "wikipron b ɾ a j l ɨ"),
     ("pt-PT", "centigray", "ɾɐ", "portuguese_unified sẽtiˈɡrɐj"),
-    ("pt-PT", "cockney", "kɔ", "wikipron k ɔ k n i"),
     ("pt-PT", "cosplay", "kɔ", "wikipron k ɔ ʃ p l e"),
     ("pt-PT", "display", "lɐ", "portuguese_unified diʃˈplɐj"),
     ("pt-PT", "joystick", "ʒɔ", "portuguese_unified ʒɔjsˈtik"),

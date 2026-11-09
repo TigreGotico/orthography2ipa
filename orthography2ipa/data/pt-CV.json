@@ -453,6 +453,66 @@
       "notes": "DISABLED for Cape Verdean Portuguese. The PT_STRESSED_E_PREPALATAL rules follow the pt-PT default for European Portuguese. No source read writes this vowel for this variety, so it stays as the spec gives it."
     },
     {
+      "id": "PT_CODA_STOP_INITIAL_E_OPEN",
+      "phonemes": [],
+      "surface": "ɛ",
+      "notes": "DISABLED for Cape Verdean Portuguese. The PT_CODA_STOP rules follow the pt-PT default for European Portuguese. No source read writes this vowel for this variety, so it stays as the spec gives it."
+    },
+    {
+      "id": "PT_CODA_STOP_INITIAL_E_CANDIDATE_E",
+      "phonemes": [],
+      "surface": "e",
+      "notes": "DISABLED for Cape Verdean Portuguese. The PT_CODA_STOP rules follow the pt-PT default for European Portuguese. No source read writes this vowel for this variety, so it stays as the spec gives it."
+    },
+    {
+      "id": "PT_CODA_STOP_INITIAL_E_CANDIDATE_I",
+      "phonemes": [],
+      "surface": "i",
+      "notes": "DISABLED for Cape Verdean Portuguese. The PT_CODA_STOP rules follow the pt-PT default for European Portuguese. No source read writes this vowel for this variety, so it stays as the spec gives it."
+    },
+    {
+      "id": "PT_CODA_STOP_INITIAL_E_CANDIDATE_REDUCED",
+      "phonemes": [],
+      "surface": "ɨ",
+      "notes": "DISABLED for Cape Verdean Portuguese. The PT_CODA_STOP rules follow the pt-PT default for European Portuguese. No source read writes this vowel for this variety, so it stays as the spec gives it."
+    },
+    {
+      "id": "PT_CODA_STOP_E_OPEN",
+      "phonemes": [],
+      "surface": "ɛ",
+      "notes": "DISABLED for Cape Verdean Portuguese. The PT_CODA_STOP rules follow the pt-PT default for European Portuguese. No source read writes this vowel for this variety, so it stays as the spec gives it."
+    },
+    {
+      "id": "PT_CODA_STOP_E_CANDIDATE_REDUCED",
+      "phonemes": [],
+      "surface": "ɨ",
+      "notes": "DISABLED for Cape Verdean Portuguese. The PT_CODA_STOP rules follow the pt-PT default for European Portuguese. No source read writes this vowel for this variety, so it stays as the spec gives it."
+    },
+    {
+      "id": "PT_CODA_STOP_E_CANDIDATE_CLOSE",
+      "phonemes": [],
+      "surface": "e",
+      "notes": "DISABLED for Cape Verdean Portuguese. The PT_CODA_STOP rules follow the pt-PT default for European Portuguese. No source read writes this vowel for this variety, so it stays as the spec gives it."
+    },
+    {
+      "id": "PT_CODA_STOP_O_OPEN",
+      "phonemes": [],
+      "surface": "ɔ",
+      "notes": "DISABLED for Cape Verdean Portuguese. The PT_CODA_STOP rules follow the pt-PT default for European Portuguese. No source read writes this vowel for this variety, so it stays as the spec gives it."
+    },
+    {
+      "id": "PT_CODA_STOP_O_CANDIDATE_REDUCED",
+      "phonemes": [],
+      "surface": "u",
+      "notes": "DISABLED for Cape Verdean Portuguese. The PT_CODA_STOP rules follow the pt-PT default for European Portuguese. No source read writes this vowel for this variety, so it stays as the spec gives it."
+    },
+    {
+      "id": "PT_CODA_STOP_O_CANDIDATE_CLOSE",
+      "phonemes": [],
+      "surface": "o",
+      "notes": "DISABLED for Cape Verdean Portuguese. The PT_CODA_STOP rules follow the pt-PT default for European Portuguese. No source read writes this vowel for this variety, so it stays as the spec gives it."
+    },
+    {
       "id": "PT_STRESSED_A_BEFORE_NASAL",
       "phonemes": [],
       "surface": "ɐ",
