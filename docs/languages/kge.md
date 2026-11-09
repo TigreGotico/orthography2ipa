@@ -40,7 +40,7 @@ No spec names `kge` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 3 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 3 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-komering_wiki"></a>Wikipedia contributors (2025). *Komering language*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Komering_language)
 2. <a id="src-lampung_wiki"></a>Wikipedia contributors (2025). *Lampung language*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Lampung_language)

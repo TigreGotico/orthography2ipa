@@ -41,7 +41,7 @@ No spec names `ie` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 2 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 2 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
 
 1. <a id="src-dewahl1922"></a>de Wahl, Edgar (1922). *Occidental: Die Weltsprache (Radicarium directiv del lingue international Occidental)*. Kosmoglott.
 2. <a id="src-interlingue_wiki"></a>Wikipedia contributors (2026). *Interlingue*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Interlingue)

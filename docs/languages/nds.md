@@ -43,7 +43,7 @@ No spec names `nds` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 5 works. 3 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 5 works. 3 of them have a DOI or a URL. The spec file holds a note on what 4 of them support.
 
 1. <a id="src-sass2018"></a>Thies, Heinrich (Hrsg.) (2018). *SASS Plattdeutsche Schreibregeln*. Wachholtz / Fehrs-Gilde. Cited: §§1, 3, 6, 9, 12, 16, 18, 20, 21, 23, 27. [sass-platt.de](https://sass-platt.de/plattdeutsche-rechtschreibung/)
 2. <a id="src-sassgrammatik"></a>Thies, Heinrich (2011). *SASS Plattdeutsche Grammatik*. Wachholtz. Cited: 1.1.4.1, 1.1.4.5, 1.1.4.6. [sass-platt.de](https://sass-platt.de/plattdeutsche-grammatik/)

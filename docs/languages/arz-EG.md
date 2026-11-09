@@ -49,7 +49,7 @@ These specs name `arz-EG` as their parent. They are sorted by country, and a lec
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 5 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 5 works. 1 of them have a DOI or a URL. The spec file holds a note on what 4 of them support.
 
 1. <a id="src-watson2002"></a>Watson, J.C.E. (2002). *The Phonology and Morphology of Arabic*. Oxford University Press.
 2. <a id="src-mitchell1956"></a>Mitchell, T.F. (1956). *An Introduction to Egyptian Colloquial Arabic*. Oxford University Press.

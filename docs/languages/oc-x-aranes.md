@@ -43,7 +43,7 @@ No spec names `oc-x-aranes` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 0 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 0 of them have a DOI or a URL.
 
 1. <a id="src-alibert1976"></a>Alibert, L. (1976). *Gramatica occitana*. Institut d'Estudis Occitans.
 2. <a id="src-bec1973"></a>Bec, P. (1973). *Manuel pratique d'occitan moderne*. Picard.

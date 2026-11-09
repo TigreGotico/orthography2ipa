@@ -43,7 +43,7 @@ No spec names `br` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 6 works. 3 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 6 works. 3 of them have a DOI or a URL. The spec file holds a note on what 3 of them support.
 
 1. <a id="src-macaulay1992"></a>MacAulay, D. (ed.) (1992). *The Celtic Languages*. Cambridge University Press.
 2. <a id="src-ternes1992"></a>Ternes, E. (1992). *The Breton Language*. in D. MacAulay (ed.), The Celtic Languages.

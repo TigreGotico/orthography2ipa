@@ -108,7 +108,7 @@ No spec names `vi` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-kirby2011"></a>Kirby, J. P. (2011). *Vietnamese (Hanoi Vietnamese)*. Journal of the International Phonetic Association 41(3), 381-392. Cited: 381-392. [doi.org](https://doi.org/10.1017/S0025100311000181)
 2. <a id="src-thompson1965"></a>Thompson, L.C. (1965). *A Vietnamese Grammar*. University of Washington Press.

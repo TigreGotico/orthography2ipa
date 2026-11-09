@@ -42,7 +42,7 @@ No spec names `lez` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 2 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 2 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
 
 1. <a id="src-lez_wiki"></a>Wikipedia contributors (2024). *Lezgian language*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Lezgian_language)
 2. <a id="src-lezgin_alphabets_wiki"></a>Wikipedia contributors (2026). *Lezgin alphabets, comparative table of Arabic / Latin / Cyrillic / IPA*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Lezgin_alphabets)

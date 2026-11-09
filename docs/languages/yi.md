@@ -43,7 +43,7 @@ No spec names `yi` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 4 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 4 works. 1 of them have a DOI or a URL.
 
 1. <a id="src-wiki-yi"></a>Wikipedia contributors (2024). *Yiddish language*.
 2. <a id="src-wiki-yi-phon"></a>Wikipedia contributors (2024). *Yiddish phonology*.

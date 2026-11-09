@@ -43,7 +43,7 @@ No spec names `umb` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 3 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 3 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
 
 1. <a id="src-schadeberg1990umbundu"></a>Schadeberg, Thilo C. (1990). *A Sketch of Umbundu*. Rüdiger Köppe Verlag. [archive.org](https://archive.org/details/rosettaproject_umb_morsyn-4)
 2. <a id="src-umb_wiki"></a>Wikipedia contributors (2025). *Umbundu*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Umbundu)

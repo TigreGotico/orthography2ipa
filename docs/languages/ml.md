@@ -43,7 +43,7 @@ No spec names `ml` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 4 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 4 works. 1 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
 
 1. <a id="src-krishnamurti2003"></a>Krishnamurti, B. (2003). *The Dravidian Languages*. Cambridge University Press.
 2. <a id="src-asher_kumari1997"></a>Asher, R.E. & Kumari, T.C. (1997). *Malayalam*. Routledge. Cited: 405-406.

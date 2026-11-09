@@ -41,7 +41,7 @@ No spec names `nio` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 3 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 3 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
 
 1. <a id="src-wagnernagy2018"></a>Wagner-Nagy, Beáta (2018). *A Grammar of Nganasan*. Studies in Diversity Linguistics 111, Language Science Press. [langsci-press.org](https://langsci-press.org/catalog/book/119)
 2. <a id="src-glottolog2024"></a>Hammarström, Harald, Forkel, Robert, Haspelmath, Martin, Bank, Sebastian (2024). *Glottolog 5.0*. Max Planck Institute for Evolutionary Anthropology. [glottolog.org](https://glottolog.org/)

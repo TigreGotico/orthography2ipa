@@ -43,7 +43,7 @@ No spec names `smn` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-morottaja_sammallahti1993"></a>Sammallahti, Pekka & Morottaja, Matti (1993). *Säämi, suoma sänikirje / Inarinsaamelais-suomalainen sanakirja*. Girjegiisá, Ohcejohka.
 2. <a id="src-inarisami_wiki"></a>Wikipedia contributors (2024). *Inari Sámi language*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Inari_S%C3%A1mi_language)

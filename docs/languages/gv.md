@@ -43,7 +43,7 @@ No spec names `gv` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 5 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 5 works. 1 of them have a DOI or a URL. The spec file holds a note on what 4 of them support.
 
 1. <a id="src-macaulay1992"></a>MacAulay, D. (ed.) (1992). *The Celtic Languages*. Cambridge University Press.
 2. <a id="src-broderick1984"></a>Broderick, G. (1984). *A Handbook of Late Spoken Manx*. Niemeyer.

@@ -44,7 +44,7 @@ No spec names `ja` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 4 works. 0 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 4 works. 0 of them have a DOI or a URL.
 
 1. <a id="src-vance1987"></a>Vance, T.J. (1987). *An Introduction to Japanese Phonology*. SUNY Press.
 2. <a id="src-vance2008"></a>Vance, T.J. (2008). *The Sounds of Japanese*. Cambridge University Press.

@@ -42,7 +42,7 @@ No spec names `eu-x-nafarra-garaia` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 6 works. 3 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 6 works. 3 of them have a DOI or a URL. The spec file holds a note on what 3 of them support.
 
 1. <a id="src-hualde_lujanbio_zubiri2010"></a>Hualde, J.I., Lujanbio, O. & Zubiri, J.J. (2010). *Goizueta Basque (Illustrations of the IPA)*. Journal of the International Phonetic Association 40(1). Cited: 113-127. [doi.org](https://doi.org/10.1017/S0025100309990260)
 2. <a id="src-hualde2018_aspiration"></a>Hualde, J.I. (2018). *Aspiration in Basque*. Papers in Historical Phonology 3. Cited: 1-27. [doi.org](https://doi.org/10.2218/pihph.3.2018.2602)

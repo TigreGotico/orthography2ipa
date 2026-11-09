@@ -43,7 +43,7 @@ No spec names `uz` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 2 works. 1 of them have a DOI or a URL.
 
 1. <a id="src-uzbek_phonology_wiki"></a>Wikipedia contributors (2024). *Uzbek phonology*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Uzbek_language)
 2. <a id="src-johanson_csato1998"></a>Johanson, L. & Csató, É. (1998). *The Turkic Languages*. Routledge.

@@ -41,7 +41,7 @@ No spec names `mwl-x-sendim` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 4 works. 2 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 4 works. 2 of them have a DOI or a URL. The spec file holds a note on what 3 of them support.
 
 1. <a id="src-convencao1999"></a>Ferreira, M.B. & Raposo, D. (coords.) (1999). *Convenção Ortográfica da Língua Mirandesa*. Câmara Municipal de Miranda do Douro / Centro de Linguística da Universidade de Lisboa. Cited: 62. [mirandadodouro.jfreguesia.com](http://mirandadodouro.jfreguesia.com/images/stories/PDF/convencaomirandes.pdf)
 2. <a id="src-aditamento2000"></a>Ferreira, M.B. & Raposo, D. (coords.) (2000). *Primeiro Aditamento à Convenção Ortográfica da Língua Mirandesa*. Câmara Municipal de Miranda do Douro / Centro de Linguística da Universidade de Lisboa.

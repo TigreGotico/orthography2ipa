@@ -43,7 +43,7 @@ No spec names `fax` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 5 works. 2 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 5 works. 2 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
 
 1. <a id="src-grupo_xalima_tesoro"></a>Grupo de Estudo d'A Fala (Grupo Xálima) (2019). *A Fala de Xálima: valverdeiru, lagarteiru, manhegu. Un tesoro luso-extremeño*. Diputación de Cáceres. Cited: 37-56. [archivo.dip-caceres.es](https://archivo.dip-caceres.es/wp-content/uploads/2024/01/05-087-02.pdf)
 2. <a id="src-carrasco_fala2023"></a>Carrasco González, J.M. (2023). *A Fala (do Val de Xálima)*. eHumanista/IVITRA 24. [dehesa.unex.es](https://dehesa.unex.es/)

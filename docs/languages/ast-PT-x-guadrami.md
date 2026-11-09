@@ -42,7 +42,7 @@ No spec names `ast-PT-x-guadrami` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 5 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 5 works. 1 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
 
 1. <a id="src-frias_conde_sanabria"></a>Frías-Conde, Xavier (2005). *El Habla de Sanabria*. CES Don Bosco (UCM), ISR Romania Minor. Cited: p. 3.
 2. <a id="src-ferreira1995"></a>Ferreira, M.B. (1995). *Variação linguística: perspectiva dialectológica*. Universidade de Lisboa.

@@ -42,7 +42,7 @@ No spec names `ady` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 2 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 2 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
 
 1. <a id="src-adyghe_wiki"></a>Wikipedia contributors (2024). *Adyghe language*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Adyghe_language)
 2. <a id="src-adyghe_phonology_wiki"></a>Wikipedia contributors (2026). *Adyghe language, Modern (Cyrillic) alphabet and phonology*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Adyghe_language)

@@ -43,7 +43,7 @@ No spec names `csb` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-wiki-csb"></a>Wikipedia contributors (2024). *Kashubian language*.
 2. <a id="src-hopkins2001"></a>Hopkins, Paul Stanley (2001). *The phonological structure of the Kashubian word*. University of Victoria (PhD thesis). Cited: xi. [dspace.library.uvic.ca](https://dspace.library.uvic.ca/items/3953007f-eb2c-4560-8c93-a003ed8b45be)

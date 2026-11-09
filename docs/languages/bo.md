@@ -43,7 +43,7 @@ No spec names `bo` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 9 works. 7 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 9 works. 7 of them have a DOI or a URL. The spec file holds a note on what 8 of them support.
 
 1. <a id="src-thl_phonetics"></a>Germano, David & Tournadre, Nicolas (2003). *THL Simplified Phonetic Transcription of Standard Tibetan*. Tibetan and Himalayan Library, University of Virginia. [thlib.org](http://www.thlib.org/reference/transliteration/)
 2. <a id="src-tournadre_dorje2003"></a>Tournadre, Nicolas & Sangda Dorje (2003). *Manual of Standard Tibetan: Language and Civilization*. Snow Lion.

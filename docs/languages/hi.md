@@ -140,7 +140,7 @@ These specs name `hi` as their parent. They are sorted by country, and a lect wi
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 6 works. 0 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 6 works. 0 of them have a DOI or a URL. The spec file holds a note on what 3 of them support.
 
 1. <a id="src-shapiro1989"></a>Shapiro, M. (1989). *Hindi*. in B. Comrie (ed.), The World's Major Languages.
 2. <a id="src-masica1991"></a>Masica, C. (1991). *The Indo-Aryan Languages*. Cambridge University Press.

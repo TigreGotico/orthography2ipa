@@ -43,7 +43,7 @@ No spec names `fy` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 4 works. 0 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 4 works. 0 of them have a DOI or a URL. The spec file holds a note on what 3 of them support.
 
 1. <a id="src-tiersma1999"></a>Tiersma, P.M. (1999). *Frisian Reference Grammar*. Fryske Akademy.
 2. <a id="src-hoekstra2001"></a>Hoekstra, J. (2001). *Standard West Frisian*. In: Munske, H.H. (ed.), Handbuch des Friesischen / Handbook of Frisian Studies, Niemeyer. Cited: pp. 83-98.

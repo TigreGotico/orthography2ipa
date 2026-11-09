@@ -43,7 +43,7 @@ No spec names `kha` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 0 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 0 of them have a DOI or a URL.
 
 1. <a id="src-rabel1961"></a>Rabel, L. (1961). *Khasi: A Language of Assam*. Louisiana State University Press.
 2. <a id="src-nagaraja1985"></a>Nagaraja, K.S. (1985). *Khasi: A Descriptive Analysis*. Deccan College.

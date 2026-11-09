@@ -43,7 +43,7 @@ No spec names `nd` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 2 works. 2 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 2 works. 2 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-nde_wiki"></a>Wikipedia contributors (2025). *Northern Ndebele language*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Northern_Ndebele_language)
 2. <a id="src-sibanda2004"></a>Sibanda, Galen (2004). *Verbal Phonology and Morphology of Ndebele*. University of California, Berkeley PhD dissertation (eScholarship). Cited: 4-7. [escholarship.org](https://escholarship.org/uc/item/6cf9w3j2)

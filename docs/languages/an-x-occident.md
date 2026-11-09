@@ -43,7 +43,7 @@ No spec names `an-x-occident` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 0 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 0 of them have a DOI or a URL.
 
 1. <a id="src-penny2002"></a>Penny, R. (2002). *A History of the Spanish Language*. Cambridge University Press.
 2. <a id="src-nagore_lain2001"></a>Nagore Laín, F. (2001). *Gramática de la Lengua Aragonesa*. Librería General.

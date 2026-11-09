@@ -42,7 +42,7 @@ No spec names `haw` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 2 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 2 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-elbert_pukui1979"></a>Elbert, Samuel H. & Pukui, Mary Kawena (1979). *Hawaiian Grammar*. University of Hawaii Press.
 2. <a id="src-hawaiian_language_wiki"></a>Wikipedia contributors (2026). *Hawaiian language*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Hawaiian_language)

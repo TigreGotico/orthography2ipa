@@ -43,7 +43,7 @@ No spec names `zgh` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 3 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 3 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
 
 1. <a id="src-ircam2006"></a>Ameur, M., Bouhjar, A., Boukhris, F., et al. (IRCAM) (2006). *Graphie et orthographe de l'amazighe*. Institut Royal de la Culture Amazighe, Rabat. [ircam.ma](https://www.ircam.ma/)
 2. <a id="src-tifinagh_wiki"></a>Wikipedia contributors (2024). *Tifinagh*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Tifinagh)

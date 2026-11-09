@@ -49,7 +49,7 @@ These specs name `ast` as their parent. They are sorted by country, and a lect w
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 5 works. 0 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 5 works. 0 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
 
 1. <a id="src-garcia_arias2003"></a>García Arias, X.Ll. (2003). *Gramática histórica de la lengua asturiana*. Academia de la Llingua Asturiana.
 2. <a id="src-alarcos_llorach1994"></a>Alarcos Llorach, E. (1994). *Gramática de la Lengua Española*. Espasa.

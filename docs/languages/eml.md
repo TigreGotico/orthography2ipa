@@ -44,7 +44,7 @@ These specs name `eml` as their parent. They are sorted by country, and a lect w
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 4 works. 3 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 4 works. 3 of them have a DOI or a URL. The spec file holds a note on what 3 of them support.
 
 1. <a id="src-eml_wiki"></a>Wikipedia contributors (2024). *Emilian, Romagnol*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Emilian%E2%80%93Romagnol)
 2. <a id="src-bolognese_wiki"></a>Wikipedia contributors (2026). *Bolognese dialect*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Bolognese_dialect)

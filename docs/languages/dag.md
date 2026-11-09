@@ -42,7 +42,7 @@ No spec names `dag` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 2 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 2 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
 
 1. <a id="src-dagbani_language_wiki"></a>Wikipedia contributors (2026). *Dagbani language*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Dagbani_language)
 2. <a id="src-olawsky1999"></a>Olawsky, Knut J. (1999). *Aspects of Dagbani Grammar, with special emphasis on phonology and morphology*. LINCOM Europa. [user.phil.hhu.de](https://user.phil.hhu.de/~olawsky/hp-ortin.htm)

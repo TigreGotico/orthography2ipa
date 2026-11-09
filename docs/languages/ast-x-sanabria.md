@@ -41,7 +41,7 @@ No spec names `ast-x-sanabria` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 2 works. 0 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 2 works. 0 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-frias_conde_sanabria"></a>Frías-Conde, Xavier (2005). *El Habla de Sanabria*. CES Don Bosco (UCM), ISR Romania Minor (conference/seminar handout, 7 pp.). Cited: 1-7.
 2. <a id="src-garcia_arias2003"></a>García Arias, X.Ll. (2003). *Gramática histórica de la lengua asturiana*. Academia de la Llingua Asturiana.

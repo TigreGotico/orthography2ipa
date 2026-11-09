@@ -43,7 +43,7 @@ No spec names `ps` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 0 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 0 of them have a DOI or a URL.
 
 1. <a id="src-windfuhr1979"></a>Windfuhr, G. (1979). *Persian Grammar: History and State of Its Study*. Mouton.
 2. <a id="src-tegey_robson1996"></a>Tegey, H. & Robson, B. (1996). *A Reference Grammar of Pashto*. Center for Applied Linguistics.

@@ -116,7 +116,7 @@ No spec names `lij` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 6 works. 2 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 6 works. 2 of them have a DOI or a URL. The spec file holds a note on what 5 of them support.
 
 1. <a id="src-academia_grafia_oficia"></a>Académia Ligùstica do Brénno (2008). *Grafia ofiçiâ: grafia moderna do zeneize*. Académia Ligùstica do Brénno. [zeneize.net](http://www.zeneize.net/)
 2. <a id="src-omniglot_genoese"></a>Omniglot (2024). *Genoese (Zeneize) language and pronunciation*. Omniglot. [omniglot.com](https://www.omniglot.com/writing/genoese.htm)

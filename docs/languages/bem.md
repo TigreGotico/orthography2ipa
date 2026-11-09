@@ -43,7 +43,7 @@ No spec names `bem` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 2 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 2 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
 
 1. <a id="src-hamann_kula2015"></a>Hamann, Silke & Kula, Nancy C. (2015). *Bemba (Illustrations of the IPA)*. Journal of the International Phonetic Association 45(1), 61-69. Cited: 61-69. DOI [10.1017/S0025100314000371](https://doi.org/10.1017/S0025100314000371) · [fon.hum.uva.nl](https://www.fon.hum.uva.nl/silke/articles/Hamann&Kula_2015.pdf)
 2. <a id="src-givon1972"></a>Givón, T. (1972). *Studies in ChiBemba and Bantu Grammar*. Studies in African Linguistics, Supplement 3.

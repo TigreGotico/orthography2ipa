@@ -43,7 +43,7 @@ No spec names `is` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 1 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-einarsson1945"></a>Einarsson, S. (1945). *Icelandic: Grammar, Texts, Glossary*. Johns Hopkins Press.
 2. <a id="src-arnason2011"></a>Árnason, K. (2011). *The Phonology of Icelandic and Faroese*. Oxford University Press.

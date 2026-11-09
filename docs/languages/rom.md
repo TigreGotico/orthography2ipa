@@ -46,7 +46,7 @@ These specs name `rom` as their parent. They are sorted by country, and a lect w
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-wiki-rom"></a>Wikipedia contributors (2024). *Romani language*.
 2. <a id="src-matras2011"></a>Matras, Yaron (2011). *Romani. In Kortmann & van der Auwera (eds.), The Languages and Linguistics of Europe: A Comprehensive Guide, 257-268*. De Gruyter Mouton, author's manuscript on yaronmatras.org. Cited: 257-268 (chapter), §2.1 is the third page of the manuscript, which carries no printed numbers. [yaronmatras.org](https://yaronmatras.org/wp-content/uploads/2021/10/matras-y.-2011.-romani.pdf)

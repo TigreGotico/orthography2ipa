@@ -49,7 +49,7 @@ These specs name `ayn-YE` as their parent. They are sorted by country, and a lec
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 0 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 0 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-watson2002"></a>Watson, J.C.E. (2002). *The Phonology and Morphology of Arabic*. Oxford University Press. Cited: 11, 14-16, 19-20.
 2. <a id="src-holes2004"></a>Holes, C. (2004). *Modern Arabic: Structures, Functions, and Varieties*. Georgetown University Press.

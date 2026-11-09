@@ -43,7 +43,7 @@ No spec names `brx` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 0 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 0 of them have a DOI or a URL.
 
 1. <a id="src-joseph_burling2006"></a>Joseph, U.V. & Burling, R. (2006). *Comparative Grammar of the Boro-Garo Languages*. CIIL.
 2. <a id="src-ladefoged_maddieson1996"></a>Ladefoged, P. & Maddieson, I. (1996). *The Sounds of the World's Languages*. Blackwell.

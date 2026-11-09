@@ -42,7 +42,7 @@ No spec names `sn` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 1 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
 
 1. <a id="src-doke1931"></a>Doke, Clement M. (1931). *Report on the Unification of the Shona Dialects*. Government of Southern Rhodesia.
 2. <a id="src-fortune1985"></a>Fortune, George (1985). *Shona Grammatical Constructions*. Mercury Press, Harare.

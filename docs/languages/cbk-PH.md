@@ -48,7 +48,7 @@ These specs name `cbk-PH` as their parent. They are sorted by country, and a lec
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 4 works. 3 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 4 works. 3 of them have a DOI or a URL. The spec file holds a note on what 3 of them support.
 
 1. <a id="src-chavacano_wiki"></a>Wikipedia contributors (2024). *Chavacano*. Wikipedia. Cited: Alphabet, seseo, non-lenition of intervocalic /b d ɡ/, yeísmo. [en.wikipedia.org](https://en.wikipedia.org/wiki/Chavacano)
 2. <a id="src-lipski1987"></a>Lipski, John M. (1987). *Modern Spanish once-removed in Philippine creole Spanish: the case of Zamboangueño*. Language in Society 16(1), pp. 91-108. Cited: pp. 93-99: seseo throughout, no /θ/, ⟨j⟩ and ⟨g⟩ before front vowels realised [h], yeísmo (⟨ll⟩ = [j]), ⟨v⟩ = [b], non-lenition of intervocalic /b d ɡ/ (retained stops, unlike peninsular Spanish). [jstor.org](https://www.jstor.org/stable/4167859)

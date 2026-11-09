@@ -43,7 +43,7 @@ No spec names `pnt` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 4 works. 3 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 4 works. 3 of them have a DOI or a URL. The spec file holds a note on what 3 of them support.
 
 1. <a id="src-wiki-pnt"></a>Wikipedia contributors (2024). *Pontic Greek*.
 2. <a id="src-armostis_etal2020"></a>Armostis, Spyros, Voniati, Louiza, Drosos, Konstantinos, Tafiadis, Dionysios (2020). *Trapezountian Pontic Greek in Etoloakarnania. Illustrations of the IPA*. Journal of the International Phonetic Association 52(2), 328-340 (free access). Cited: 330-339. [doi.org](https://doi.org/10.1017/S0025100320000201)

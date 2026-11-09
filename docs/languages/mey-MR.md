@@ -44,7 +44,7 @@ No spec names `mey-MR` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 7 works. 3 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 7 works. 3 of them have a DOI or a URL. The spec file holds a note on what 6 of them support.
 
 1. <a id="src-tainecheikh2007"></a>Taine-Cheikh, C. (2007). *Ḥassāniyya Arabic (Encyclopedia of Arabic Language and Linguistics, vol. 2, Eg-Lan)*. Brill. Cited: 240-250. [shs.hal.science](https://shs.hal.science/halshs-00563853)
 2. <a id="src-cohen1963"></a>Cohen, D. & el Chennafi, M. (1963). *Le dialecte arabe ḥassānīya de Mauritanie (parler de la Gǝbla)*. Klincksieck, Paris.

@@ -42,7 +42,7 @@ No spec names `es-NI` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 5 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 5 works. 1 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
 
 1. <a id="src-hualde2005"></a>Hualde, J.I. (2005). *The Sounds of Spanish*. Cambridge University Press.
 2. <a id="src-fontanella_de_weinberg1992"></a>Fontanella de Weinberg, M.B. (1992). *El español de América*. MAPFRE.

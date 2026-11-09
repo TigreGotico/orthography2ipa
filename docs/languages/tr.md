@@ -47,7 +47,7 @@ These specs name `tr` as their parent. They are sorted by country, and a lect wi
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 4 works. 2 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 4 works. 2 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
 
 1. <a id="src-goksel_kerslake2005"></a>Göksel, A. & Kerslake, C. (2005). *Turkish: A Comprehensive Grammar*. Routledge. Cited: 1-39 (Part I: Phonology and orthography). [routledge.com](https://www.routledge.com/Turkish-A-Comprehensive-Grammar/Goksel-Kerslake/p/book/9781138350533)
 2. <a id="src-zimmer_orgun1992"></a>Zimmer, K. & Orgun, O. (1992). *Turkish (Illustrations of the IPA)*. Journal of the International Phonetic Association, 22(1-2), 43-45. Cited: 43-45. [doi.org](https://doi.org/10.1017/S0025100300004588)

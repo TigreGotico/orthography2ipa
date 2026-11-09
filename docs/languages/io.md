@@ -42,7 +42,7 @@ No spec names `io` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-beaufront1925"></a>de Beaufront, Louis (1925). *Kompleta Gramatiko Detaloza di la Linguo Internaciona Ido*. Uniono por la Linguo Internaciona.
 2. <a id="src-ido_wiki"></a>Wikipedia contributors (2024). *Ido*. Wikipedia. Cited: Alphabet/IPA table and stress rule. [en.wikipedia.org](https://en.wikipedia.org/wiki/Ido)

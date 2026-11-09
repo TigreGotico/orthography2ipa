@@ -47,7 +47,7 @@ These specs name `ary-MA` as their parent. They are sorted by country, and a lec
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 9 works. 4 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 9 works. 4 of them have a DOI or a URL. The spec file holds a note on what 8 of them support.
 
 1. <a id="src-watson2002"></a>Watson, J.C.E. (2002). *The Phonology and Morphology of Arabic*. Oxford University Press. Cited: 13, 15-17.
 2. <a id="src-noamane2020"></a>Noamane, A. (2020). *Consonant Gemination in Moroccan Arabic: A Constraint-Based Analysis*. Journal of Applied Language and Culture Studies 3: 37-68. Cited: 45, 49. [roa.rutgers.edu](http://roa.rutgers.edu/content/article/files/1814_noamane_2.pdf)

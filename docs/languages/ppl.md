@@ -43,7 +43,7 @@ No spec names `ppl` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 4 works. 2 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 4 works. 2 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
 
 1. <a id="src-campbell1985"></a>Campbell, Lyle (1985). *The Pipil Language of El Salvador*. Mouton de Gruyter.
 2. <a id="src-king2004"></a>King, Alan R. (2004). *Gramática elemental del náhuat*. IRIN, El Salvador.

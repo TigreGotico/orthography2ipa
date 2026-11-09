@@ -48,7 +48,7 @@ These specs name `no` as their parent. They are sorted by country, and a lect wi
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 2 works. 0 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 2 works. 0 of them have a DOI or a URL.
 
 1. <a id="src-haugen1976"></a>Haugen, E. (1976). *The Scandinavian Languages: An Introduction to their History*. Faber and Faber.
 2. <a id="src-kristoffersen2000"></a>Kristoffersen, G. (2000). *The Phonology of Norwegian*. Oxford University Press.

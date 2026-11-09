@@ -43,7 +43,7 @@ No spec names `az` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 2 works. 1 of them have a DOI or a URL.
 
 1. <a id="src-azerbaijani_phonology_wiki"></a>Wikipedia contributors (2024). *Azerbaijani phonology*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Azerbaijani_phonology)
 2. <a id="src-comrie1997"></a>Comrie, B. (1997). *The World's Major Languages*. Oxford University Press.

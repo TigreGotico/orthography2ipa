@@ -43,7 +43,7 @@ No spec names `shy` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 2 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 2 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-shawiya_wiki"></a>Wikipedia contributors (2024). *Shawiya language*. Wikipedia. Cited: Three-vowel system /i a u/ plus /ə/, consonant inventory with emphatics, gemination-triggered spirant→plosive alternation, Latin (Berber Latin alphabet) and Tifinagh in use. [en.wikipedia.org](https://en.wikipedia.org/wiki/Shawiya_language)
 2. <a id="src-berber_latin_wiki"></a>Wikipedia contributors (2024). *Berber Latin alphabet*. Wikipedia. Cited: The Northern-Berber Latin alphabet whose letter values this spec follows (shared with Kabyle). [en.wikipedia.org](https://en.wikipedia.org/wiki/Berber_Latin_alphabet)

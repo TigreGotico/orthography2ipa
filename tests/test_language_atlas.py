@@ -333,3 +333,17 @@ def test_rule_change_caps_a_long_letter_list():
     shown = rule.preceded_by_grapheme[:8]
     assert "after " + " ".join(f"⟨{g}⟩" for g in shown) in change
     assert f"⟨{shown[-1]}⟩ and {len(rule.preceded_by_grapheme) - 8} more" in change
+
+
+def test_sources_block_claims_notes_only_where_the_spec_has_them(atlas):
+    # es-ES notes some of its sources, ka all of them, abv-BH none.
+    for code in ("es-ES", "ka", "abv-BH"):
+        spec = orthography2ipa.get(code)
+        noted = sum(1 for s in spec.sources if s.notes)
+        block = atlas_gen.block_sources(atlas, spec)
+        if noted == len(spec.sources):
+            assert "note on what each work supports" in block
+        elif noted:
+            assert f"note on what {noted} of them support" in block
+        else:
+            assert "note on what" not in block

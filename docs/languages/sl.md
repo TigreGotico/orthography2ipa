@@ -43,7 +43,7 @@ No spec names `sl` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 4 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 4 works. 1 of them have a DOI or a URL.
 
 1. <a id="src-comrie_corbett1993"></a>Comrie, B. & Corbett, G. (eds.) (1993). *The Slavonic Languages*. Routledge.
 2. <a id="src-priestly1993"></a>Priestly, T.M.S. (1993). *Slovenian*. in B. Comrie & G. Corbett (eds.), The Slavonic Languages.

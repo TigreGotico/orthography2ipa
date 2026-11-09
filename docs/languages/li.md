@@ -45,7 +45,7 @@ These specs name `li` as their parent. They are sorted by country, and a lect wi
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 14 works. 13 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 14 works. 13 of them have a DOI or a URL. The spec file holds a note on what 13 of them support.
 
 1. <a id="src-limburgish_wiki"></a>Wikipedia contributors (2025). *Limburgish*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Limburgish)
 2. <a id="src-gussenhoven1999"></a>Gussenhoven, Carlos & Aarts, Flor (1999). *The dialect of Maastricht*. Journal of the International Phonetic Association 29(2). Cited: pp. 155-166.

@@ -42,7 +42,7 @@ No spec names `min` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-minangkabau_wiki"></a>Wikipedia contributors (2024). *Minangkabau language*. Wikipedia. Cited: Consonant/vowel inventory and Latin orthography (c=/tʃ/, j=/dʒ/, ny=/ɲ/, ng=/ŋ/, final k=[ʔ]). [en.wikipedia.org](https://en.wikipedia.org/wiki/Minangkabau_language)
 2. <a id="src-moussay1981"></a>Moussay, Gérard (1981). *La langue minangkabau*. Association Archipel.

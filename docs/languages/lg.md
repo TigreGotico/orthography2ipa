@@ -41,7 +41,7 @@ No spec names `lg` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-ashton1954"></a>Ashton, E. O., Mulira, E. M. K., Ndawula, E. G. M., Tucker, A. N. (1954). *A Luganda Grammar*. Longmans, Green & Co.
 2. <a id="src-luganda_wiki"></a>Wikipedia contributors (2024). *Luganda*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Luganda)

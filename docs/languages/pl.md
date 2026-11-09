@@ -44,7 +44,7 @@ No spec names `pl` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 0 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 0 of them have a DOI or a URL.
 
 1. <a id="src-comrie_corbett1993"></a>Comrie, B. & Corbett, G. (eds.) (1993). *The Slavonic Languages*. Routledge.
 2. <a id="src-swan2002"></a>Swan, O. (2002). *A Grammar of Contemporary Polish*. Slavica Publishers.

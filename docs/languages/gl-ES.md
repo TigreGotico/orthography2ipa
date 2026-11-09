@@ -52,7 +52,7 @@ These specs name `gl-ES` as their parent. They are sorted by country, and a lect
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 9 works. 3 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 9 works. 3 of them have a DOI or a URL. The spec file holds a note on what 6 of them support.
 
 1. <a id="src-freixeiro_mato1998"></a>Freixeiro Mato, X.R. (1998). *Gramática da Lingua Galega*. A Nosa Terra.
 2. <a id="src-mateus_dandrade2000"></a>Mateus, M.H.M. & d'Andrade, E. (2000). *The Phonology of Portuguese*. Oxford University Press.

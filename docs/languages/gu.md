@@ -43,7 +43,7 @@ No spec names `gu` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 4 works. 0 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 4 works. 0 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-masica1991"></a>Masica, C. (1991). *The Indo-Aryan Languages*. Cambridge University Press.
 2. <a id="src-cardona_jain2003"></a>Cardona, G. & Jain, D. (eds.) (2003). *The Indo-Aryan Languages*. Routledge.

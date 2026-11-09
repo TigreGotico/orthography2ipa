@@ -46,7 +46,7 @@ These specs name `mni` as their parent. They are sorted by country, and a lect w
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 0 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 0 of them have a DOI or a URL.
 
 1. <a id="src-chelliah1997"></a>Chelliah, S.L. (1997). *A Grammar of Meithei*. Mouton de Gruyter.
 2. <a id="src-ladefoged_maddieson1996"></a>Ladefoged, P. & Maddieson, I. (1996). *The Sounds of the World's Languages*. Blackwell.

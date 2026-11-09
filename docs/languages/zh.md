@@ -47,7 +47,7 @@ These specs name `zh` as their parent. They are sorted by country, and a lect wi
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 7 works. 3 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 7 works. 3 of them have a DOI or a URL. The spec file holds a note on what 3 of them support.
 
 1. <a id="src-duanmu2007"></a>Duanmu, S. (2007). *The Phonology of Standard Chinese (2nd ed.)*. Oxford University Press.
 2. <a id="src-chao1968"></a>Chao, Y.R. (1968). *A Grammar of Spoken Chinese*. University of California Press.

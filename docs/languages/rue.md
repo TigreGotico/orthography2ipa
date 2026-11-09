@@ -43,7 +43,7 @@ No spec names `rue` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-wiki-rue"></a>Wikipedia contributors (2024). *Rusyn language*.
 2. <a id="src-baptie2011"></a>Baptie, Gavin (2011). *Issues in Rusyn language standardisation*. University of Glasgow MPhil thesis (Enlighten Theses). Cited: 16, 106-107, 127. [theses.gla.ac.uk](https://theses.gla.ac.uk/2781/)

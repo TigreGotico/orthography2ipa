@@ -43,7 +43,7 @@ No spec names `aa` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-bliese1981"></a>Bliese, Loren F. (1981). *A Generative Grammar of Afar*. Summer Institute of Linguistics / University of Texas at Arlington.
 2. <a id="src-afar_wiki"></a>Wikipedia contributors (2024). *Afar language*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Afar_language)

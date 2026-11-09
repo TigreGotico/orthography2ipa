@@ -43,7 +43,7 @@ No spec names `lld` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 0 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 0 of them have a DOI or a URL.
 
 1. <a id="src-maiden_parry1997"></a>Maiden, M. & Parry, M. (eds.) (1997). *The Dialects of Italy*. Routledge.
 2. <a id="src-craffonara1977"></a>Craffonara, L. (1977). *Zur Stellung des Ladinischen*. Ladinia.

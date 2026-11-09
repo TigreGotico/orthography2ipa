@@ -43,7 +43,7 @@ No spec names `bs` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 2 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 2 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-halilovic1996"></a>Halilović, Senahid (1996). *Pravopis bosanskoga jezika*. Preporod, Sarajevo.
 2. <a id="src-scr_phon_wiki"></a>Wikipedia contributors (2025). *Serbo-Croatian phonology*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Serbo-Croatian_phonology)

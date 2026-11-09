@@ -42,7 +42,7 @@ No spec names `ia` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 1 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
 
 1. <a id="src-gode_blair1951"></a>Gode, Alexander & Blair, Hugh E. (1951). *Interlingua: A Grammar of the International Language*. Storm Publishers (IALA).
 2. <a id="src-gode1951_dict"></a>Gode, Alexander (1951). *Interlingua-English: A Dictionary of the International Language*. Storm Publishers (IALA).

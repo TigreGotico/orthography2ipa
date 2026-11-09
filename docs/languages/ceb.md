@@ -42,7 +42,7 @@ No spec names `ceb` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-wolff1972"></a>Wolff, John U. (1972). *A Dictionary of Cebuano Visayan*. Cornell University Southeast Asia Program.
 2. <a id="src-cebuano_language_wiki"></a>Wikipedia contributors (2026). *Cebuano language*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Cebuano_language)

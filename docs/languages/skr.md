@@ -42,7 +42,7 @@ No spec names `skr` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 4 works. 3 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 4 works. 3 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
 
 1. <a id="src-skr_wiki"></a>Wikipedia contributors (2024). *Saraiki language*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Saraiki_language)
 2. <a id="src-phoible"></a>Moran, Steven & McCloy, Daniel (eds.) (2019). *PHOIBLE 2.0*. Max Planck Institute for the Science of Human History. [phoible.org](https://phoible.org/)

@@ -43,7 +43,7 @@ No spec names `hsb` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 1 works. 0 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 1 works. 0 of them have a DOI or a URL.
 
 1. <a id="src-wiki-hsb"></a>Wikipedia contributors (2024). *Upper Sorbian language*.
 <!-- atlas:sources end -->

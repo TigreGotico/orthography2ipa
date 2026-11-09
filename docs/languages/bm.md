@@ -43,7 +43,7 @@ No spec names `bm` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-dumestre2003"></a>Dumestre, Gérard (2003). *Grammaire fondamentale du bambara*. Karthala.
 2. <a id="src-bambara_language_wiki"></a>Wikipedia contributors (2026). *Bambara language*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Bambara_language)

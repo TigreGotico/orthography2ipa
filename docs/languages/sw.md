@@ -43,7 +43,7 @@ No spec names `sw` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 6 works. 3 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 6 works. 3 of them have a DOI or a URL. The spec file holds a note on what 4 of them support.
 
 1. <a id="src-nurse_hinnebusch1993"></a>Nurse, D. & Hinnebusch, T.J. (1993). *Swahili and Sabaki: A Linguistic History*. University of California Press.
 2. <a id="src-ashton1944"></a>Ashton, E.O. (1944). *Swahili Grammar*. Longmans.

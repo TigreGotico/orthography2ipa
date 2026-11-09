@@ -43,7 +43,7 @@ No spec names `cnh` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 0 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 0 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-peterson2003"></a>Peterson, D.A. (2003). *Hakha Lai*. In G. Thurgood & R. LaPolla (eds.), The Sino-Tibetan Languages, Routledge.
 2. <a id="src-baclawski2012"></a>Baclawski, K. (2012). *Tone Marking and Orthography in Hakha Lai*. UC Berkeley Working Papers.

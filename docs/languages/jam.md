@@ -41,7 +41,7 @@ No spec names `jam` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 4 works. 2 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 4 works. 2 of them have a DOI or a URL. The spec file holds a note on what 3 of them support.
 
 1. <a id="src-cassidy_lepage1980"></a>Cassidy, Frederic G. & Le Page, Robert B. (1980). *Dictionary of Jamaican English (2nd ed.)*. Cambridge University Press.
 2. <a id="src-jlu2002"></a>Jamaican Language Unit, University of the West Indies (2002). *Writing Jamaican the Jamaican Way / Ou fi Rait Jamiekan*. University of the West Indies, Mona.

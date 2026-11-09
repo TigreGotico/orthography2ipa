@@ -41,7 +41,7 @@ No spec names `dar` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 4 works. 2 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 4 works. 2 of them have a DOI or a URL. The spec file holds a note on what 3 of them support.
 
 1. <a id="src-glottolog2024"></a>Hammarström, Harald, Forkel, Robert, Haspelmath, Martin, Bank, Sebastian (2024). *Glottolog 5.0*. Max Planck Institute for Evolutionary Anthropology. [glottolog.org](https://glottolog.org/)
 2. <a id="src-dargwa_language_wiki"></a>Wikipedia contributors (2024). *Dargwa language*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Dargwa_language)

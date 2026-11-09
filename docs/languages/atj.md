@@ -43,7 +43,7 @@ No spec names `atj` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-beland1978"></a>Béland, Jean-Pierre (1978). *Atikamekw Morphology and Lexicon*. University of California, Berkeley (PhD thesis).
 2. <a id="src-atikamekw_wiki"></a>Wikipedia contributors (2025). *Atikamekw language*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Atikamekw_language)

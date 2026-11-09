@@ -43,7 +43,7 @@ No spec names `ce` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 2 works. 2 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 2 works. 2 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-chechen_wiki"></a>Wikipedia contributors (2024). *Chechen language*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Chechen_language)
 2. <a id="src-dotton_wagner_chechen"></a>Dotton, Zura & Wagner, John Doyle (2017). *A Grammar of Chechen*. Duke University, Slavic and Eurasian Language Resource Center. Cited: 5-7. [slaviccenters.duke.edu](https://slaviccenters.duke.edu/sites/slaviccenters.duke.edu/files/file-attachments/chechen-grammar.original.pdf)

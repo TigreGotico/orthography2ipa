@@ -43,7 +43,7 @@ No spec names `lua` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 1 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 1 works. 1 of them have a DOI or a URL.
 
 1. <a id="src-lua_wiki"></a>Wikipedia contributors (2025). *Luba-Kasai language*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Tshiluba_language)
 <!-- atlas:sources end -->

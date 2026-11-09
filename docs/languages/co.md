@@ -46,7 +46,7 @@ These specs name `co` as their parent. They are sorted by country, and a lect wi
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 0 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 0 of them have a DOI or a URL.
 
 1. <a id="src-maiden_parry1997"></a>Maiden, M. & Parry, M. (eds.) (1997). *The Dialects of Italy*. Routledge.
 2. <a id="src-dalbera_stefanaggi1991"></a>Dalbera-Stefanaggi, M.-J. (1991). *Langues corses*. Édisud.

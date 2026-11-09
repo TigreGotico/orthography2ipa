@@ -43,7 +43,7 @@ No spec names `grt` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 2 works. 0 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 2 works. 0 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-burling2004"></a>Burling, R. (2004). *The Language of the Modhupur Mandi (Garo)*. Bibliophile South Asia.
 2. <a id="src-burling1961"></a>Burling, R. (1961). *A Garo Grammar*. Deccan College.

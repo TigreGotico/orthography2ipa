@@ -41,7 +41,7 @@ No spec names `ssh` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 1 works. 0 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 1 works. 0 of them have a DOI or a URL.
 
 1. <a id="src-bernabela2011"></a>Bernabela, R.S. (2011). *A Phonology and Morphology Sketch of the Šiḥḥi Arabic Dialect of əlǦēdih, Musandam (Oman)*. Leiden University, MA thesis.
 <!-- atlas:sources end -->

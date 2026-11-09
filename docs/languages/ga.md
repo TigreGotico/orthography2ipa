@@ -43,7 +43,7 @@ No spec names `ga` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 6 works. 2 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 6 works. 2 of them have a DOI or a URL. The spec file holds a note on what 3 of them support.
 
 1. <a id="src-odochartaigh1992"></a>Ó Dochartaigh, C. (1992). *The Irish Language*. Dublin Institute for Advanced Studies.
 2. <a id="src-macaulay1992"></a>MacAulay, D. (ed.) (1992). *The Celtic Languages*. Cambridge University Press.

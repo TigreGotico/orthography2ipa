@@ -42,7 +42,7 @@ No spec names `tay` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 3 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 3 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
 
 1. <a id="src-atayal_language_wiki"></a>Wikipedia contributors (2026). *Atayal language*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Atayal_language)
 2. <a id="src-cip2005_writing"></a>Council of Indigenous Peoples, Ministry of Education (Republic of China) (2005). *原住民族語言書寫系統 (Writing Systems for the Indigenous Languages)*. Ministry of Education, Taipei. Cited: 9. [ws.moe.tw](https://ws.moe.tw/001/Upload/6/RelFile/6508/7828/aboriginal.pdf)

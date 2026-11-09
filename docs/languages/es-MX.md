@@ -47,7 +47,7 @@ These specs name `es-MX` as their parent. They are sorted by country, and a lect
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 5 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 5 works. 1 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
 
 1. <a id="src-hualde2005"></a>Hualde, J.I. (2005). *The Sounds of Spanish*. Cambridge University Press.
 2. <a id="src-lope_blanch1972"></a>Lope Blanch, J.M. (1972). *El concepto del prestigio y la norma lingüística del español*. UNAM.

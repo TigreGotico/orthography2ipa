@@ -43,7 +43,7 @@ No spec names `lo` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-enfield2007"></a>Enfield, N.J. (2007). *A Grammar of Lao*. Mouton de Gruyter.
 2. <a id="src-lao_wiki"></a>Wikipedia contributors (2024). *Lao language*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Lao_language)

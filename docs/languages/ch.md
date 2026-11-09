@@ -42,7 +42,7 @@ No spec names `ch` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-topping1973"></a>Topping, Donald M. (1973). *Chamorro Reference Grammar*. University of Hawaii Press.
 2. <a id="src-chamorro_wiki"></a>Wikipedia contributors (2024). *Chamorro language*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Chamorro_language)

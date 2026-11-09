@@ -43,7 +43,7 @@ No spec names `af` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-donaldson1993"></a>Donaldson, B.C. (1993). *A Grammar of Afrikaans*. Mouton de Gruyter.
 2. <a id="src-wissing2020"></a>Wissing, Daan P. (2020). *Afrikaans (Illustrations of the IPA)*. Journal of the International Phonetic Association 50(1), 127-140. Cited: 127-140. [doi.org](https://doi.org/10.1017/S0025100318000269)

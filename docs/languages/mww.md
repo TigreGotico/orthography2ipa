@@ -41,7 +41,7 @@ No spec names `mww` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 5 works. 2 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 5 works. 2 of them have a DOI or a URL. The spec file holds a note on what 3 of them support.
 
 1. <a id="src-glottolog2024"></a>Hammarström, Harald, Forkel, Robert, Haspelmath, Martin, Bank, Sebastian (2024). *Glottolog 5.0*. Max Planck Institute for Evolutionary Anthropology. [glottolog.org](https://glottolog.org/)
 2. <a id="src-ratliff2010"></a>Ratliff, Martha (2010). *Hmong-Mien Language History*. Pacific Linguistics, Australian National University.

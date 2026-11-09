@@ -63,7 +63,7 @@ These specs name `sa` as their parent. They are sorted by country, and a lect wi
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 4 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 4 works. 1 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-coulson1992"></a>Coulson, M. (1992). *Sanskrit: An Introduction to the Classical Language*. Hodder & Stoughton.
 2. <a id="src-masica1991"></a>Masica, C. (1991). *The Indo-Aryan Languages*. Cambridge University Press.

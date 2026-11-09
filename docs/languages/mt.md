@@ -43,7 +43,7 @@ No spec names `mt` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 1 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-wiki-mt"></a>Wikipedia contributors (2024). *Maltese language*.
 2. <a id="src-wiki-mt-phon"></a>Wikipedia contributors (2024). *Maltese phonology*.

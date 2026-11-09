@@ -43,7 +43,7 @@ No spec names `acy` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 5 works. 0 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 5 works. 0 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
 
 1. <a id="src-borg1985"></a>Borg, A. (1985). *Cypriot Arabic: A Historical and Comparative Investigation into the Phonology and Morphology of the Arabic Vernacular Spoken by the Maronites of Kormakiti Village in the Kyrenia District of North-Western Cyprus*. Deutsche Morgenländische Gesellschaft / Franz Steiner, Stuttgart.
 2. <a id="src-borg2004"></a>Borg, A. (2004). *A Comparative Glossary of Cypriot Maronite Arabic (Arabic-English)*. Brill (Handbook of Oriental Studies), Leiden.

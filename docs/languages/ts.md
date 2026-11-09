@@ -43,7 +43,7 @@ No spec names `ts` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 0 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 0 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
 
 1. <a id="src-cuenod1967"></a>Cuenod, R. (1967). *Tsonga-English Dictionary*. Swiss Mission.
 2. <a id="src-baumbach1987"></a>Baumbach, E.J.M. (1987). *Analytical Tsonga Grammar*. University of South Africa.

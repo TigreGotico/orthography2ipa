@@ -47,7 +47,7 @@ These specs name `ff` as their parent. They are sorted by country, and a lect wi
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 0 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 0 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
 
 1. <a id="src-arnott1970"></a>Arnott, D.W. (1970). *The Nominal and Verbal System of Fula*. Oxford University Press.
 2. <a id="src-westermann_bryan1952"></a>Westermann, D. & Bryan, M.A. (1952). *Languages of West Africa*. Oxford University Press / International African Institute.

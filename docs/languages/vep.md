@@ -43,7 +43,7 @@ No spec names `vep` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-zaitseva1981"></a>Zaitseva, Maria I. (1981). *Грамматика вепсского языка (Grammar of the Veps Language)*. Nauka.
 2. <a id="src-veps_language_wiki"></a>Wikipedia contributors (2026). *Veps language*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Veps_language)

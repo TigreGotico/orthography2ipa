@@ -48,7 +48,7 @@ These specs name `ars-SA` as their parent. They are sorted by country, and a lec
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 11 works. 7 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 11 works. 7 of them have a DOI or a URL. The spec file holds a note on what 8 of them support.
 
 1. <a id="src-ingham1994"></a>Ingham, B. (1994). *Najdi Arabic: Central Arabian*. John Benjamins (Library of Arabic Linguistics 1). Cited: 13-16.
 2. <a id="src-almahmoud2020"></a>Al Mahmoud, M.S. (2020). *A Constraint-based Analysis of Velar Affrication in Najdi vs. Hijazi Arabic*. Education and Linguistics Research 6(2), 62-72. doi:10.5296/elr.v6i2.17551. Cited: 62-72. DOI [10.5296/elr.v6i2.17551](https://doi.org/10.5296/elr.v6i2.17551)

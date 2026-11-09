@@ -43,7 +43,7 @@ No spec names `ky` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 1 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 1 works. 1 of them have a DOI or a URL.
 
 1. <a id="src-kyrgyz_wiki"></a>Wikipedia contributors (2024). *Kyrgyz language*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Kyrgyz_language)
 <!-- atlas:sources end -->

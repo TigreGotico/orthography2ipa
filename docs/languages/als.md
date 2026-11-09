@@ -43,7 +43,7 @@ No spec names `als` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 2 works. 0 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 2 works. 0 of them have a DOI or a URL.
 
 1. <a id="src-wiki-als"></a>Wikipedia contributors (2026). *Tosk Albanian*.
 2. <a id="src-wiki-sq-phon"></a>Wikipedia contributors (2024). *Albanian phonology*.

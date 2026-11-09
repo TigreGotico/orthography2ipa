@@ -170,7 +170,7 @@ These specs name `de-DE` as their parent. They are sorted by country, and a lect
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 6 works. 2 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 6 works. 2 of them have a DOI or a URL. The spec file holds a note on what 3 of them support.
 
 1. <a id="src-wiese1996"></a>Wiese, R. (1996). *The Phonology of German*. Oxford University Press.
 2. <a id="src-hall2003"></a>Hall, T.A. (2003). *Phonologie des Deutschen: eine Einführung*. de Gruyter.

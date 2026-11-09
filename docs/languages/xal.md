@@ -42,7 +42,7 @@ No spec names `xal` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 3 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 3 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
 
 1. <a id="src-xal_wiki"></a>Wikipedia contributors (2024). *Kalmyk language*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Kalmyk_Oirat)
 2. <a id="src-kalmyk_alphabet_ipa_wiki"></a>Wikipedia contributors (2026). *Kalmyk Oirat, Alphabet matching table and Phonology*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Kalmyk_Oirat)

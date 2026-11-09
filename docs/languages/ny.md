@@ -43,7 +43,7 @@ No spec names `ny` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 4 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 4 works. 1 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
 
 1. <a id="src-downing_mtenje2017"></a>Downing, L.J. & Mtenje, A. (2017). *The Phonology of Chichewa*. Oxford University Press (The Phonology of the World's Languages). [api.pageplace.de](https://api.pageplace.de/preview/DT0400.9780191037733_A30389705/preview-9780191037733_A30389705.pdf)
 2. <a id="src-mtenje1987"></a>Mtenje, A. (1987). *Tone Shift as a Morphological Phenomenon in Chichewa*. Lingua 72.

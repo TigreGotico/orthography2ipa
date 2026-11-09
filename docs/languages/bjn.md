@@ -42,7 +42,7 @@ No spec names `bjn` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-banjar_wiki"></a>Wikipedia contributors (2024). *Banjarese language*. Wikipedia. Cited: 19-consonant inventory, vowels /i ɛ a o u/ with [ə] as an allophone of /ɛ/, final /k/ → [ʔ]. [en.wikipedia.org](https://en.wikipedia.org/wiki/Banjarese_language)
 2. <a id="src-abdul_djebar1977"></a>Abdul Djebar Hapip (1977). *Kamus Banjar-Indonesia*. Pusat Pembinaan dan Pengembangan Bahasa.

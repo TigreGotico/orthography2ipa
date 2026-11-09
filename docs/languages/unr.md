@@ -43,7 +43,7 @@ No spec names `unr` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 0 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 0 of them have a DOI or a URL.
 
 1. <a id="src-evans2001"></a>Evans, N. (2001). *Mundari*. in J. Garry & C. Rubino (eds.), Facts About the World's Languages.
 2. <a id="src-masica1991"></a>Masica, C. (1991). *The Indo-Aryan Languages*. Cambridge University Press.

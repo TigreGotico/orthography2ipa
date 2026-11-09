@@ -201,7 +201,7 @@ These specs name `en-GB` as their parent. They are sorted by country, and a lect
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 13 works. 3 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 13 works. 3 of them have a DOI or a URL. The spec file holds a note on what 9 of them support.
 
 1. <a id="src-wells1982_vol1"></a>Wells, J.C. (1982). *Accents of English, Vol. 1: An Introduction*. Cambridge University Press.
 2. <a id="src-wells1982_vol2"></a>Wells, J.C. (1982). *Accents of English, Vol. 2: The British Isles*. Cambridge University Press.

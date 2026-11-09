@@ -43,7 +43,7 @@ No spec names `ne` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 6 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 6 works. 1 of them have a DOI or a URL. The spec file holds a note on what 3 of them support.
 
 1. <a id="src-khatiwada2009"></a>Khatiwada, R. (2009). *Nepali (Illustrations of the IPA)*. Journal of the International Phonetic Association 39(3). Cited: 373-380. [doi.org](https://doi.org/10.1017/S0025100309990181)
 2. <a id="src-bandhu1971"></a>Bandhu, C., Dahal, B. M., Holzhausen, A. & Hale, A. (1971). *Nepali segmental phonology*. Summer Institute of Linguistics / Tribhuvan University.

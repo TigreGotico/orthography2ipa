@@ -44,7 +44,7 @@ No spec names `acw-SA` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 15 works. 6 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 15 works. 6 of them have a DOI or a URL. The spec file holds a note on what 12 of them support.
 
 1. <a id="src-omar1975"></a>Omar, Margaret K. (1975). *Saudi Arabic, Urban Hijazi Dialect: A Basic Course*. Foreign Service Institute, Washington DC. Cited: xi-xvi.
 2. <a id="src-abdoh2010"></a>Abdoh, E. (2010). *A Study of the Phonology and Morphology of Urban Meccan Arabic (PhD dissertation)*. University of Kansas.

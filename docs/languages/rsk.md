@@ -40,7 +40,7 @@ No spec names `rsk` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 3 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 3 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
 
 1. <a id="src-rsk_wiki"></a>Wikipedia contributors (2024). *Pannonian Rusyn Wikipedia*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Pannonian_Rusyn_Wikipedia)
 2. <a id="src-pannonian_rusyn_wikipedia"></a>Wikipedia contributors (2026). *Pannonian Rusyn, Alphabet, Phonology (consonants, vowels), Prosody and Voicing*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Pannonian_Rusyn)

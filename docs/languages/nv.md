@@ -43,7 +43,7 @@ No spec names `nv` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 4 works. 2 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 4 works. 2 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
 
 1. <a id="src-young_morgan1987"></a>Young, Robert W. & Morgan, William (1987). *The Navajo Language: A Grammar and Colloquial Dictionary (rev. ed.)*. University of New Mexico Press.
 2. <a id="src-mcdonough2003"></a>McDonough, Joyce (2003). *The Navajo Sound System*. Kluwer Academic Publishers.

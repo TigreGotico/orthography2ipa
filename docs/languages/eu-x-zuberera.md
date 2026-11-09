@@ -43,7 +43,7 @@ No spec names `eu-x-zuberera` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 8 works. 5 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 8 works. 5 of them have a DOI or a URL. The spec file holds a note on what 5 of them support.
 
 1. <a id="src-hualde2018_aspiration"></a>Hualde, J.I. (2018). *Aspiration in Basque*. Papers in Historical Phonology 3. Cited: 1-27. [doi.org](https://doi.org/10.2218/pihph.3.2018.2602)
 2. <a id="src-egurtzegi2013"></a>Egurtzegi, A. (2013). *Phonetics and Phonology (ch. 4). In M. Martínez-Areta (ed.), Basque and Proto-Basque*. Peter Lang. Cited: 119-183 (esp. 126-130). [phonetik.uni-muenchen.de](https://www.phonetik.uni-muenchen.de/personen/assoziierte_wissenschaftler/egurtzegi_ander/2013_protobasque_phonology.pdf)

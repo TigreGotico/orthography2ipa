@@ -52,7 +52,7 @@ These specs name `nl-NL` as their parent. They are sorted by country, and a lect
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 9 works. 6 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 9 works. 6 of them have a DOI or a URL. The spec file holds a note on what 8 of them support.
 
 1. <a id="src-gussenhoven1999"></a>Gussenhoven, C. (1999). *Dutch*. Cambridge University Press.
 2. <a id="src-vdHulst_ritter1999"></a>van der Hulst, H. & Ritter, N.A. (eds.) (1999). *The Syllable: Views and Facts*. Mouton de Gruyter.

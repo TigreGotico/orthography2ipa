@@ -43,7 +43,7 @@ No spec names `am` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 2 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 2 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
 
 1. <a id="src-leslau1995"></a>Leslau, W. (1995). *Reference Grammar of Amharic*. Harrassowitz.
 2. <a id="src-ado2021labialised"></a>Ado, Derib (2020). *Revisiting the status of labialised consonants in contemporary Amharic*. Oslo Studies in Language 11(2), 47-58. Cited: 47-58. [doi.org](https://doi.org/10.5617/osla.8487)

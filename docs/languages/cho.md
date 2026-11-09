@@ -43,7 +43,7 @@ No spec names `cho` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-broadwell2006"></a>Broadwell, George Aaron (2006). *A Choctaw Reference Grammar*. University of Nebraska Press.
 2. <a id="src-choctaw_wiki"></a>Wikipedia contributors (2025). *Choctaw language*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Choctaw_language)

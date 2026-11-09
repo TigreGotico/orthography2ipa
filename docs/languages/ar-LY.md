@@ -43,7 +43,7 @@ No spec names `ar-LY` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 6 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 6 works. 1 of them have a DOI or a URL. The spec file holds a note on what 5 of them support.
 
 1. <a id="src-pereira2010"></a>Pereira, C. (2010). *Le parler arabe de Tripoli (Libye)*. Instituto de Estudios Islámicos y del Oriente Próximo, Zaragoza.
 2. <a id="src-pereira2011eall"></a>Pereira, C. (2011). *Tripoli Arabic (Encyclopedia of Arabic Language and Linguistics, vol. 4)*. Brill. Cited: 548-556.

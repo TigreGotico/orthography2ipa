@@ -42,7 +42,7 @@ No spec names `gor` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 4 works. 2 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 4 works. 2 of them have a DOI or a URL. The spec file holds a note on what 3 of them support.
 
 1. <a id="src-gorontalo_wiki"></a>Wikipedia contributors (2025). *Gorontalo language*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Gorontalo_language)
 2. <a id="src-steinhauer1991"></a>Steinhauer, Hein (1991). *Sentence-initial elements in Gorontalo*. Pacific Linguistics.

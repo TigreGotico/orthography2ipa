@@ -41,7 +41,7 @@ No spec names `acq` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 4 works. 3 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 4 works. 3 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
 
 1. <a id="src-alathwary2025"></a>Al-Athwary, Anwar A. H. (2025). *Phonological Adaptation of Hindi-Urdu Loanwords in Adeni Arabic: A Constraint-based Account*. PSYCHOLINGUISTICS 38(1): 6-40. [doi.org](https://doi.org/10.31470/2309-1797-2025-38-1-6-40)
 2. <a id="src-feghali1991"></a>Feghali, Habaka J. (1991). *Arabic Adeni Textbook*. Dunwoody Press.

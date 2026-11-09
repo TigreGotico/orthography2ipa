@@ -43,7 +43,7 @@ No spec names `nso` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 1 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
 
 1. <a id="src-nso_wiki"></a>Wikipedia contributors (2024). *Northern Sotho*. Wikipedia. Cited: Seven-vowel system /i e ɛ a ɔ o u/, consonant inventory (ejective vs aspirated series, ɬ, kx), and the Latin orthography (š = [ʃ], tš, kg, hl). [en.wikipedia.org](https://en.wikipedia.org/wiki/Northern_Sotho)
 2. <a id="src-ziervogel1969"></a>Ziervogel, D. & Mokgokong, P. C. (1969). *Groot Noord-Sotho-woordeboek / Comprehensive Northern Sotho Dictionary*. Van Schaik.

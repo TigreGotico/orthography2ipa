@@ -45,7 +45,7 @@ These specs name `os` as their parent. They are sorted by country, and a lect wi
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-abaev1964"></a>Abaev, V. I. (1964). *A Grammatical Sketch of Ossetic*. Indiana University.
 2. <a id="src-ossetian_wiki"></a>Wikipedia contributors (2025). *Ossetian language*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Ossetian_language)

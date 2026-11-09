@@ -43,7 +43,7 @@ No spec names `ii` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 6 works. 5 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 6 works. 5 of them have a DOI or a URL. The spec file holds a note on what 4 of them support.
 
 1. <a id="src-nuosu_wiki"></a>Wikipedia contributors (2025). *Nuosu language*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Nuosu_language)
 2. <a id="src-yi_script_wiki"></a>Wikipedia contributors (2025). *Yi script*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Yi_script)

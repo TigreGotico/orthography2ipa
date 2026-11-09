@@ -43,7 +43,7 @@ No spec names `tcy` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 0 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 0 of them have a DOI or a URL.
 
 1. <a id="src-krishnamurti2003"></a>Krishnamurti, B. (2003). *The Dravidian Languages*. Cambridge University Press.
 2. <a id="src-bhat1967"></a>Bhat, D.N.S. (1967). *Tulu Verb Morphology*. Deccan College Postgraduate and Research Institute.

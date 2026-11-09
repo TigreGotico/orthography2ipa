@@ -41,7 +41,7 @@ No spec names `ykg` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 4 works. 4 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 4 works. 4 of them have a DOI or a URL. The spec file holds a note on what 3 of them support.
 
 1. <a id="src-maslova2003tundra"></a>Maslova, Elena (2003). *Tundra Yukaghir*. Languages of the World/Materials 372, LINCOM Europa. [lincom-shop.eu](https://lincom-shop.eu/LWM-372-Tundra-Yukaghir/en)
 2. <a id="src-schmalz2013"></a>Schmalz, Mark (2013). *Aspects of the Grammar of Tundra Yukaghir*. PhD dissertation, University of Amsterdam. [pure.uva.nl](https://pure.uva.nl/ws/files/1518096/130869_thesis.pdf)

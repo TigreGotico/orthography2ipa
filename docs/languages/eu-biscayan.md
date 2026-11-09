@@ -44,7 +44,7 @@ No spec names `eu-biscayan` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 4 works. 3 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 4 works. 3 of them have a DOI or a URL. The spec file holds a note on what 3 of them support.
 
 1. <a id="src-bedialauneta_hualde2023"></a>Bedialauneta Txurruka, I. & Hualde, J.I. (2023). *Markina Basque (Illustration of the IPA)*. Journal of the International Phonetic Association 53(3). Cited: 1095-1122. [doi.org](https://doi.org/10.1017/S0025100322000032)
 2. <a id="src-hualde2018_aspiration"></a>Hualde, J.I. (2018). *Aspiration in Basque*. Papers in Historical Phonology 3. Cited: 1-27. [doi.org](https://doi.org/10.2218/pihph.3.2018.2602)

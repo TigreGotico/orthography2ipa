@@ -43,7 +43,7 @@ No spec names `cv` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 2 works. 2 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 2 works. 2 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-chuvash_wiki"></a>Wikipedia contributors (2024). *Chuvash language*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Chuvash_language)
 2. <a id="src-dobrovolsky1999"></a>Dobrovolsky, Michael (1999). *The phonetics of Chuvash stress: implications for phonology*. Proceedings of the 14th International Congress of Phonetic Sciences (ICPhS99), San Francisco. Cited: 539-542. [internationalphoneticassociation.org](https://www.internationalphoneticassociation.org/icphs-proceedings/ICPhS1999/papers/p14_0539.pdf)

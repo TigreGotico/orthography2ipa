@@ -43,7 +43,7 @@ No spec names `eu-x-lapurdi` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 5 works. 3 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 5 works. 3 of them have a DOI or a URL. The spec file holds a note on what 4 of them support.
 
 1. <a id="src-hualde2018_aspiration"></a>Hualde, J.I. (2018). *Aspiration in Basque*. Papers in Historical Phonology 3. Cited: 1-27. [doi.org](https://doi.org/10.2218/pihph.3.2018.2602)
 2. <a id="src-hualde_ortiz_de_urbina2003"></a>Hualde, J.I. & Ortiz de Urbina, J. (eds.) (2003). *A Grammar of Basque*. Mouton de Gruyter. Cited: 15-65 (Hualde, 'Segmental phonology').

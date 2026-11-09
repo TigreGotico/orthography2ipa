@@ -41,7 +41,7 @@ No spec names `ars-SA-x-shamali` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 2 works. 1 of them have a DOI or a URL.
 
 1. <a id="src-alshammari2026"></a>Alshammari, Khalid K. (2026). *An Optimality-Theoretic Account of Velar Affrication in Northern Najdi Arabic*. Journal of Language Teaching and Research 17(4): 1333-1341. [doi.org](https://doi.org/10.17507/jltr.1704.19)
 2. <a id="src-ingham1994"></a>Ingham, Bruce (1994). *Najdi Arabic: Central Arabian*. John Benjamins.

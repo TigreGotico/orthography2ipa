@@ -43,7 +43,7 @@ No spec names `ms` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 0 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 0 of them have a DOI or a URL.
 
 1. <a id="src-adelaar_himmelmann2005"></a>Adelaar, A. & Himmelmann, N. (eds.) (2005). *The Austronesian Languages of Asia and Madagascar*. Routledge.
 2. <a id="src-clynes_deterding2011"></a>Clynes, A. & Deterding, D. (2011). *Standard Malay (Brunei)*. Journal of the International Phonetic Association. Cited: 259-268.

@@ -43,7 +43,7 @@ No spec names `tl` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 2 works. 1 of them have a DOI or a URL.
 
 1. <a id="src-schachter_otanes1972"></a>Schachter, P. & Otanes, F.T. (1972). *Tagalog Reference Grammar*. University of California Press.
 2. <a id="src-tagalog_phonology_wiki"></a>Wikipedia contributors (2024). *Tagalog phonology*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Tagalog_phonology)

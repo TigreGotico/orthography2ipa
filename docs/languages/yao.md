@@ -43,7 +43,7 @@ No spec names `yao` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 2 works. 2 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 2 works. 2 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-ngunga2000yao"></a>Ngunga, Armindo (2000). *Phonology and Morphology of the Ciyao Verb*. CSLI Publications. [escholarship.org](https://escholarship.org/content/qt3xw7j0c2/qt3xw7j0c2.pdf)
 2. <a id="src-yao_wiki"></a>Wikipedia contributors (2025). *Yao language*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Yao_language)

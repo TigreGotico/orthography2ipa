@@ -42,7 +42,7 @@ No spec names `krc` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-seegmiller1996"></a>Seegmiller, Steve (1996). *Karachay (Languages of the World/Materials 109)*. Lincom Europa.
 2. <a id="src-krc_wiki"></a>Wikipedia contributors (2024). *Karachay-Balkar*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Karachay-Balkar)

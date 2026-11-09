@@ -43,7 +43,7 @@ No spec names `mus` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-martin2011"></a>Martin, Jack B. (2011). *A Grammar of Creek (Muskogee)*. University of Nebraska Press.
 2. <a id="src-muscogee_wiki"></a>Wikipedia contributors (2025). *Muscogee language*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Muscogee_language)

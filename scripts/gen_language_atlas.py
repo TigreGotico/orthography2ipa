@@ -543,9 +543,16 @@ def block_sources(atlas: Atlas, spec) -> str:
     if not sources:
         return "\n".join(lines + ["The spec cites no source."])
     linked = sum(1 for s in sources if s.doi or s.url)
+    noted = sum(1 for s in sources if s.notes)
+    if noted == len(sources):
+        notes = " The spec file holds a note on what each work supports."
+    elif noted:
+        notes = (f" The spec file holds a note on what {noted} of them "
+                 "support.")
+    else:
+        notes = ""
     lines += [f"The spec cites {len(sources)} works. {linked} of them have a "
-              "DOI or a URL. The spec file holds a note on what each work "
-              "supports.", ""]
+              f"DOI or a URL.{notes}", ""]
     for n, source in enumerate(sources, 1):
         lines.append(f"{n}. <a id=\"src-{source.id}\"></a>{_source_line(source)}")
     return "\n".join(lines)

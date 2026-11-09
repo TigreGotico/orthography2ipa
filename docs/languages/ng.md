@@ -42,7 +42,7 @@ No spec names `ng` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 5 works. 4 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 5 works. 4 of them have a DOI or a URL. The spec file holds a note on what 4 of them support.
 
 1. <a id="src-ndonga_wiki"></a>Wikipedia contributors (2026). *Ndonga*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Ndonga)
 2. <a id="src-omniglot_ndonga"></a>Ager, S. (2024). *Ndonga language, alphabet and pronunciation*. Omniglot. [omniglot.com](https://www.omniglot.com/writing/ndonga.htm)

@@ -41,7 +41,7 @@ No spec names `ast-ES-x-leon` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 0 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 0 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
 
 1. <a id="src-morala_egido2009"></a>Morala Rodríguez, J.R. & Egido Fernández, M.C. (2009). *A vueltas con una norma para el leonés*. Instituto Castellano y Leonés de la Lengua, Colección Beltenebros 23. Cited: 209-241.
 2. <a id="src-propuesta_norma_ortografica"></a>Anonymous (2010). *Propuesta de Norma Ortográfica para el Leonés*. Unpublished markdown document.

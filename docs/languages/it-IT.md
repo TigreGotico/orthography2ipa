@@ -105,7 +105,7 @@ These specs name `it-IT` as their parent. They are sorted by country, and a lect
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 6 works. 0 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 6 works. 0 of them have a DOI or a URL. The spec file holds a note on what 3 of them support.
 
 1. <a id="src-lepschy_lepschy1988"></a>Lepschy, A.L. & Lepschy, G. (1988). *The Italian Language Today*. Hutchinson.
 2. <a id="src-rogers_derosa2004"></a>Rogers, D. & d'Arcangeli, L. (2004). *Italian*. Journal of the International Phonetic Association. Cited: 117-121.

@@ -43,7 +43,7 @@ No spec names `sg` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 1 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
 
 1. <a id="src-samarin1967"></a>Samarin, William J. (1967). *A Grammar of Sango*. Mouton.
 2. <a id="src-sango_orth_1984"></a>République Centrafricaine (1984). *Décret fixant l'orthographe officielle du sango*. Government of the Central African Republic.

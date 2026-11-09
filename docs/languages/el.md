@@ -50,7 +50,7 @@ These specs name `el` as their parent. They are sorted by country, and a lect wi
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 0 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 0 of them have a DOI or a URL.
 
 1. <a id="src-arvaniti1999"></a>Arvaniti, A. (1999). *Greek*. Journal of the International Phonetic Association. Cited: 167-172.
 2. <a id="src-holton_mackridge_philippaki1997"></a>Holton, D., Mackridge, P. & Philippaki-Warburton, I. (1997). *Greek: A Comprehensive Grammar of the Modern Language*. Routledge.

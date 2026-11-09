@@ -42,7 +42,7 @@ No spec names `rn` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-kirundi_wiki"></a>Wikipedia contributors (2024). *Kirundi*. Wikipedia. Cited: Consonant and vowel inventory, orthographic correspondences (c=/tʃ/, j=/ɟ/, sh=/ʃ/, ny=/ɲ/, y=/j/), phonemic vowel length and H/L tone. [en.wikipedia.org](https://en.wikipedia.org/wiki/Kirundi)
 2. <a id="src-meeussen1959"></a>Meeussen, A. E. (1959). *Essai de grammaire rundi*. Musée Royal du Congo Belge.

@@ -42,7 +42,7 @@ No spec names `sm` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-mosel_hovdhaugen1992"></a>Mosel, Ulrike & Hovdhaugen, Even (1992). *Samoan Reference Grammar*. Scandinavian University Press.
 2. <a id="src-samoan_language_wiki"></a>Wikipedia contributors (2026). *Samoan language*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Samoan_language)

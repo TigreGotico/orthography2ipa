@@ -43,7 +43,7 @@ No spec names `es-ES-x-canarias` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 6 works. 2 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 6 works. 2 of them have a DOI or a URL. The spec file holds a note on what 3 of them support.
 
 1. <a id="src-hualde2005"></a>Hualde, J.I. (2005). *The Sounds of Spanish*. Cambridge University Press.
 2. <a id="src-penny2002"></a>Penny, R. (2002). *A History of the Spanish Language*. Cambridge University Press.

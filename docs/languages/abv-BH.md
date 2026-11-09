@@ -41,7 +41,7 @@ No spec names `abv-BH` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 2 works. 0 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 2 works. 0 of them have a DOI or a URL.
 
 1. <a id="src-holes2016"></a>Holes, C. (2016). *Dialect, Culture, and Society in Eastern Arabia, Volume III: Phonology, Morphology, Syntax, Style*. Leiden: Brill.
 2. <a id="src-altajir1982"></a>Al-Tajir, M.A. (1982). *Language and Linguistic Origins in Baḥrain: The Baḥārnah Dialect of Arabic*. London: Kegan Paul.

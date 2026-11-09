@@ -43,7 +43,7 @@ No spec names `wa` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 1 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
 
 1. <a id="src-orjuela2025"></a>Espinosa Orjuela, J.F., Boula de Mareüil, P. & Evrard, M. (2025). *Speech synthesis for Walloon, an under-resourced minority language*. Proc. 13th Speech Synthesis Workshop (SSW 2025), ISCA. Cited: 189-193. [isca-archive.org](https://www.isca-archive.org/ssw_2025/orjuela25_ssw.pdf)
 2. <a id="src-wiki-wa-orthography"></a>Wikipedia contributors (2024). *Walloon orthography*.

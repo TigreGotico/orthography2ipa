@@ -43,7 +43,7 @@ No spec names `sah` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 3 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 3 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-yakut_language_wiki"></a>Wikipedia contributors (2026). *Yakut language*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Yakut_language)
 2. <a id="src-yakut_scripts_wiki"></a>Wikipedia contributors (2026). *Yakut scripts*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Yakut_scripts)

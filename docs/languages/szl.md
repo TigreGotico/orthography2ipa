@@ -43,7 +43,7 @@ No spec names `szl` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-wiki-szl"></a>Wikipedia contributors (2024). *Silesian language*.
 2. <a id="src-jaroszewicz2023"></a>Jaroszewicz, Henryk (2023). *Standardization of the Silesian Language: The Current Status and Prospects for Development*. Poznańskie Studia Polonistyczne. Seria Językoznawcza 30(1), 57-72 (open access). Cited: 61, 65. [doi.org](https://doi.org/10.14746/pspsj.2023.30.1.4)

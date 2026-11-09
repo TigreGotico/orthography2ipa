@@ -42,7 +42,7 @@ No spec names `vo` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 1 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
 
 1. <a id="src-schleyer1880"></a>Schleyer, Johann Martin (1880). *Volapük: die Weltsprache*. self-published.
 2. <a id="src-dejong1931"></a>de Jong, Arie (1931). *Gramat Volapüka*. Brill.

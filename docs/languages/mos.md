@@ -42,7 +42,7 @@ No spec names `mos` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 4 works. 2 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 4 works. 2 of them have a DOI or a URL. The spec file holds a note on what 3 of them support.
 
 1. <a id="src-moore_language_wiki"></a>Wikipedia contributors (2026). *Moore language*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Moor%C3%A9)
 2. <a id="src-moore_fr_wiki"></a>Wikipédia contributors (2026). *Mooré (Écriture / alphabet national burkinabè)*. Wikipédia (French). [fr.wikipedia.org](https://fr.wikipedia.org/wiki/Moor%C3%A9)

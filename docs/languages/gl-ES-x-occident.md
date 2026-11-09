@@ -42,7 +42,7 @@ No spec names `gl-ES-x-occident` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 4 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 4 works. 1 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-freixeiro_mato1998"></a>Freixeiro Mato, X.R. (1998). *Gramática da Lingua Galega*. A Nosa Terra.
 2. <a id="src-mateus_dandrade2000"></a>Mateus, M.H.M. & d'Andrade, E. (2000). *The Phonology of Portuguese*. Oxford University Press.

@@ -43,7 +43,7 @@ No spec names `rmy` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 2 works. 0 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 2 works. 0 of them have a DOI or a URL.
 
 1. <a id="src-wiki-rmy"></a>Wikipedia contributors (2026). *Vlax Romani*.
 2. <a id="src-matras2002"></a>Matras, Yaron (2002). *Romani: A Linguistic Introduction*. Cambridge University Press.

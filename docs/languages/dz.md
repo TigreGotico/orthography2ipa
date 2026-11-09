@@ -42,7 +42,7 @@ No spec names `dz` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 5 works. 3 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 5 works. 3 of them have a DOI or a URL. The spec file holds a note on what 4 of them support.
 
 1. <a id="src-dz_wiki"></a>Wikipedia contributors (2024). *Dzongkha language*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Dzongkha)
 2. <a id="src-vandriem1998"></a>van Driem, George (1998). *Dzongkha*. Research School CNWS, Leiden University.

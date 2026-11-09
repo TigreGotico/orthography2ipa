@@ -42,7 +42,7 @@ No spec names `nov` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-jespersen1928"></a>Jespersen, Otto (1928). *An International Language*. George Allen & Unwin.
 2. <a id="src-novial_wiki"></a>Wikipedia contributors (2025). *Novial*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Novial)

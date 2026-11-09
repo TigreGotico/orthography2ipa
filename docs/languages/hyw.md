@@ -42,7 +42,7 @@ No spec names `hyw` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 2 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 2 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
 
 1. <a id="src-vaux1998"></a>Vaux, Bert (1998). *The Phonology of Armenian*. Oxford University Press.
 2. <a id="src-hyw_wiki"></a>Wikipedia contributors (2024). *Western Armenian*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Western_Armenian)

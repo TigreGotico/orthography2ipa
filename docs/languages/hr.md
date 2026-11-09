@@ -43,7 +43,7 @@ No spec names `hr` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 4 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 4 works. 1 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-comrie_corbett1993"></a>Comrie, B. & Corbett, G. (eds.) (1993). *The Slavonic Languages*. Routledge.
 2. <a id="src-browne_1993"></a>Browne, W. (1993). *Serbo-Croat*. in B. Comrie & G. Corbett (eds.), The Slavonic Languages.

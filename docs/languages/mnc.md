@@ -40,7 +40,7 @@ No spec names `mnc` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 1 of them have a DOI or a URL.
 
 1. <a id="src-moellendorff1892"></a>von Moellendorff, Paul Georg (1892). *A Manchu Grammar, with Analysed Texts*. Shanghai: American Presbyterian Mission Press.
 2. <a id="src-gorelova2002"></a>Gorelova, Liliya M. (2002). *Manchu Grammar*. Brill (Handbook of Oriental Studies).

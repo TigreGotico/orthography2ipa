@@ -45,7 +45,7 @@ These specs name `iu` as their parent. They are sorted by country, and a lect wi
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 6 works. 6 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 6 works. 6 of them have a DOI or a URL. The spec file holds a note on what 4 of them support.
 
 1. <a id="src-inuktitut_wiki"></a>Wikipedia contributors (2026). *Inuktitut*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Inuktitut)
 2. <a id="src-inuktitut_syllabics_wiki"></a>Wikipedia contributors (2026). *Inuktitut syllabics*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Inuktitut_syllabics)

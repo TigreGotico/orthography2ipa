@@ -42,7 +42,7 @@ No spec names `an-x-cheso` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 1 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
 
 1. <a id="src-kuhn1935"></a>Kuhn, A. (1935). *Der hocharagonesische Dialekt*. Revue de Linguistique Romane XI, pp. 1-312.
 2. <a id="src-varvaro_afa"></a>Várvaro, A. (1991). *De la escritura al habla: la diptongación de O breve tónica en el Alto Aragón*. Archivo de Filología Aragonesa XLVI-XLVII. Cited: 245-268. [ifc.dpz.es](https://ifc.dpz.es/recursos/publicaciones/15/72/12varvaro.pdf)

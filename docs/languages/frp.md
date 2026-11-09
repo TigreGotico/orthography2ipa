@@ -43,7 +43,7 @@ No spec names `frp` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 0 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 0 of them have a DOI or a URL.
 
 1. <a id="src-fouche1959"></a>Fouché, P. (1959). *Traité de prononciation française*. Klincksieck.
 2. <a id="src-martin1990"></a>Martin, J.-B. (1990). *Le francoprovençal: langue oubliée*. in G. Vermes (ed.), Vingt-cinq communautés linguistiques de la France.

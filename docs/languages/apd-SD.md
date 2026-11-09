@@ -44,7 +44,7 @@ No spec names `apd-SD` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 5 works. 2 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 5 works. 2 of them have a DOI or a URL. The spec file holds a note on what 3 of them support.
 
 1. <a id="src-leddycecere2021"></a>Leddy-Cecere, T.A. (2021). *Interrogating the Egypto-Sudanic Arabic Connection*. Languages 6(3): 123. [doi.org](https://doi.org/10.3390/languages6030123)
 2. <a id="src-youssef2021"></a>Youssef, I. (2021). *Contrastive Feature Typologies of Arabic Consonant Reflexes*. Languages 6(3): 141. [doi.org](https://doi.org/10.3390/languages6030141)

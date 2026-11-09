@@ -46,7 +46,7 @@ These specs name `sat` as their parent. They are sorted by country, and a lect w
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 0 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 0 of them have a DOI or a URL.
 
 1. <a id="src-zide1972"></a>Zide, N.H. (1972). *Santali*. in T. Sebeok (ed.), Current Trends in Linguistics 5.
 2. <a id="src-masica1991"></a>Masica, C. (1991). *The Indo-Aryan Languages*. Cambridge University Press.

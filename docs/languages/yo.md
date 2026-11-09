@@ -101,7 +101,7 @@ No spec names `yo` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 5 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 5 works. 1 of them have a DOI or a URL. The spec file holds a note on what 4 of them support.
 
 1. <a id="src-adesola_gs"></a>Adesola, Oluseye (2005). *Yoruba: A Grammar Sketch, Version 1.0*. Afranaph Project. Cited: §2.1.1 charts 2-3, §2.1.2, p. 2 n. 4. [afranaphproject.afranaphdatabase.com](https://afranaphproject.afranaphdatabase.com/images/stories/downloads/casefiles/YorubaGS.pdf)
 2. <a id="src-akinlabi2004"></a>Akinlabi, A. (2004). *Yoruba*. Cambridge University Press.

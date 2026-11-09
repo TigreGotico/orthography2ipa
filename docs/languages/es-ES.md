@@ -100,7 +100,7 @@ These specs name `es-ES` as their parent. They are sorted by country, and a lect
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 12 works. 3 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 12 works. 3 of them have a DOI or a URL. The spec file holds a note on what 9 of them support.
 
 1. <a id="src-navarro1918"></a>Navarro Tomás, T. (1918). *Manual de pronunciación española*. Centro de Estudios Históricos, Madrid. Cited: § 47 p. 39, § 50 p. 41, § 82 pp. 63-64, § 87 p. 66, § 101-102 pp. 75-77, § 111 p. 86, § 122 pp. 100-102, § 128-129 pp. 108-109, § 133 pp. 111-112, § 149 p. 134, § 156 p. 140. [archive.org](https://archive.org/details/manualdepronunci00navauoft)
 2. <a id="src-rae_dpd_tilde"></a>Real Academia Española & Asociación de Academias de la Lengua Española (2026). *Diccionario panhispánico de dudas, 2nd ed. (online), s.v. tilde*. RAE-ASALE. Cited: § 1.2.1-1.2.2. [rae.es](https://www.rae.es/dpd/tilde)

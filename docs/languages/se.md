@@ -43,7 +43,7 @@ No spec names `se` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 1 works. 0 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 1 works. 0 of them have a DOI or a URL.
 
 1. <a id="src-wiki-se"></a>Wikipedia contributors (2024). *Northern Sami*.
 <!-- atlas:sources end -->

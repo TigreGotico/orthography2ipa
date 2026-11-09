@@ -44,7 +44,7 @@ No spec names `de-x-alemanni` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 4 works. 0 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 4 works. 0 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
 
 1. <a id="src-wiese1996"></a>Wiese, R. (1996). *The Phonology of German*. Oxford University Press.
 2. <a id="src-russ1994"></a>Russ, C. (1994). *The Dialects of Modern German*. Routledge.

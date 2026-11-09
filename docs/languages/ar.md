@@ -178,7 +178,7 @@ These specs name `ar` as their parent. They are sorted by country, and a lect wi
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 5 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 5 works. 1 of them have a DOI or a URL. The spec file holds a note on what 3 of them support.
 
 1. <a id="src-watson2002"></a>Watson, J.C.E. (2002). *The Phonology and Morphology of Arabic*. Oxford University Press.
 2. <a id="src-thelwall1990"></a>Thelwall, R. and Sa'Adeddin, M.A. (1990). *Illustrations of the IPA: Arabic*. Journal of the International Phonetic Association, 20(2), 37-39. Cited: 37-39. [phoible.org](https://phoible.org/sources/arb_thelwall1990)

@@ -42,7 +42,7 @@ No spec names `lad` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 0 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 0 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
 
 1. <a id="src-harris1994"></a>Harris, T.K. (1994). *Death of a Language: The History of Judeo-Spanish*. University of Delaware Press.
 2. <a id="src-penny2002"></a>Penny, R. (2002). *A History of the Spanish Language*. Cambridge University Press. Cited: pp. 16, 18, 276, 280.

@@ -46,7 +46,7 @@ These specs name `shu-TD` as their parent. They are sorted by country, and a lec
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 9 works. 2 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 9 works. 2 of them have a DOI or a URL. The spec file holds a note on what 7 of them support.
 
 1. <a id="src-owens1993"></a>Owens, Jonathan (1993). *A Grammar of Nigerian Arabic*. Harrassowitz.
 2. <a id="src-owens2006"></a>Owens, Jonathan (2006). *A Linguistic History of Arabic*. Oxford University Press. Cited: 13-14, 19, 25. [archive.org](https://archive.org/stream/TheLinguisticHistoryOfArabic/Owens-Linguistic_History_of_Arabic_djvu.txt)

@@ -43,7 +43,7 @@ No spec names `gd` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 6 works. 3 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 6 works. 3 of them have a DOI or a URL. The spec file holds a note on what 3 of them support.
 
 1. <a id="src-macaulay1992"></a>MacAulay, D. (ed.) (1992). *The Celtic Languages*. Cambridge University Press.
 2. <a id="src-oftedal1956"></a>Oftedal, M. (1956). *The Gaelic of Leurbost, Isle of Lewis*. Norsk Tidsskrift for Sprogvidenskap.

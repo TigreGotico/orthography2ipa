@@ -43,7 +43,7 @@ No spec names `pnb-PK` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 4 works. 0 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 4 works. 0 of them have a DOI or a URL. The spec file holds a note on what 3 of them support.
 
 1. <a id="src-shackle2003"></a>Shackle, C. (2003). *Panjabi*. Routledge (in Cardona & Jain, The Indo-Aryan Languages). Cited: 581, 621.
 2. <a id="src-bhatia1993"></a>Bhatia, T.K. (1993). *Punjabi: A Cognitive-Descriptive Grammar*. Routledge.

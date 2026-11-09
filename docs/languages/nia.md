@@ -42,7 +42,7 @@ No spec names `nia` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-brown2001"></a>Brown, Lea (2001). *A Grammar of Nias Selatan*. PhD thesis, University of Sydney.
 2. <a id="src-nias_wiki"></a>Wikipedia contributors (2024). *Nias language*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Nias_language)

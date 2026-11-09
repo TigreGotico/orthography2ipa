@@ -43,7 +43,7 @@ No spec names `kn` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 5 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 5 works. 1 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
 
 1. <a id="src-krishnamurti2003"></a>Krishnamurti, B. (2003). *The Dravidian Languages*. Cambridge University Press.
 2. <a id="src-sridhar1990"></a>Sridhar, S.N. (1990). *Kannada*. Routledge.

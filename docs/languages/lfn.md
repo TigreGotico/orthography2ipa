@@ -42,7 +42,7 @@ No spec names `lfn` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 2 works. 2 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 2 works. 2 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-boeree1998"></a>Boeree, C. George (1998). *Lingua Franca Nova*. Shippensburg University. [elefen.org](https://elefen.org/)
 2. <a id="src-lingua_franca_nova_wiki"></a>Wikipedia contributors (2026). *Lingua Franca Nova*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Lingua_Franca_Nova)
