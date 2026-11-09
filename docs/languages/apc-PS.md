@@ -46,7 +46,7 @@ No spec names `apc-PS` as its parent.
 The spec cites 4 works. 4 of them have a DOI or a URL. The spec file holds a note on what each work supports.
 
 1. <a id="src-cotter2016"></a>Cotter, W.M. (2016). *One Piece of the Puzzle: Notes on the Historic Interdental Fricatives /θ, ð, ðˤ/ in the Arabic Dialect of Gaza City*. Journal of Arabic and Islamic Studies 16. Cited: 149-162. [lancaster.ac.uk](https://www.lancaster.ac.uk/jais/volume/docs/vol16/v16_05_cotter_149-162.pdf)
-2. <a id="src-fadda2016"></a>Fadda, H. (2016). *Language Variation in Western Amman*. MA thesis, Canada Institute of Linguistics (CanIL). Cited: 27-30. [canil.ca](https://www.canil.ca/wordpress/wp-content/uploads/2019/11/Fadda-Language-Variation-in-Western-Amman.pdf)
+2. <a id="src-fadda2016"></a>Fadda, H. (2016). *Language Variation in Western Amman*. MA thesis, Canada Institute of Linguistics (CanIL). Cited: 27-30. [web.archive.org](https://web.archive.org/web/20250210163657/https://www.canil.ca/wordpress/wp-content/uploads/2019/11/Fadda-Language-Variation-in-Western-Amman.pdf)
 3. <a id="src-almbark2015"></a>Almbark, R. & Hellmuth, S. (2015). *Acoustic analysis of the Syrian Arabic vowel system*. Proceedings of ICPhS 2015 (paper 0612), Glasgow. Cited: 1-4. [internationalphoneticassociation.org](https://www.internationalphoneticassociation.org/icphs-proceedings/ICPhS2015/Papers/ICPHS0612.pdf)
 4. <a id="src-cowell1964"></a>Cowell, M.W. (1964). *A Reference Grammar of Syrian Arabic (Based on the Dialect of Damascus)*. Georgetown University Press. [archive.org](https://archive.org/details/referencegrammar0000cowe)
 <!-- atlas:sources end -->

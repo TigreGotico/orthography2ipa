@@ -47,7 +47,7 @@ No spec names `apc-JO` as its parent.
 The spec cites 5 works. 5 of them have a DOI or a URL. The spec file holds a note on what each work supports.
 
 1. <a id="src-alwer2020"></a>Al-Wer, E. (2020). *New-dialect formation: The Amman dialect*. In: Lucas & Manfredi (eds.), Arabic and contact-induced change, 551-566. Berlin: Language Science Press. Cited: 551-566. [langsci-press.org](https://langsci-press.org/catalog/book/235)
-2. <a id="src-fadda2016"></a>Fadda, H. (2016). *Language Variation in Western Amman*. MA thesis, Canada Institute of Linguistics (CanIL). Cited: 27-30. [canil.ca](https://www.canil.ca/wordpress/wp-content/uploads/2019/11/Fadda-Language-Variation-in-Western-Amman.pdf)
+2. <a id="src-fadda2016"></a>Fadda, H. (2016). *Language Variation in Western Amman*. MA thesis, Canada Institute of Linguistics (CanIL). Cited: 27-30. [web.archive.org](https://web.archive.org/web/20250210163657/https://www.canil.ca/wordpress/wp-content/uploads/2019/11/Fadda-Language-Variation-in-Western-Amman.pdf)
 3. <a id="src-almbark2015"></a>Almbark, R. & Hellmuth, S. (2015). *Acoustic analysis of the Syrian Arabic vowel system*. Proceedings of ICPhS 2015 (paper 0612), Glasgow. Cited: 1-4. [internationalphoneticassociation.org](https://www.internationalphoneticassociation.org/icphs-proceedings/ICPhS2015/Papers/ICPHS0612.pdf)
 4. <a id="src-cowell1964"></a>Cowell, M.W. (1964). *A Reference Grammar of Syrian Arabic (Based on the Dialect of Damascus)*. Georgetown University Press. [archive.org](https://archive.org/details/referencegrammar0000cowe)
 5. <a id="src-levantine_arabic_wiki"></a>Wikipedia contributors (2026). *Levantine Arabic*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Levantine_Arabic)
@@ -429,7 +429,7 @@ The next table sets the engine output against worked examples printed in a cited
 | ذَنْب | [ðənb] → [zəmb] | [ˈdanb] | Fadda 2016, p. 15 | no |
 | ثُلْث | [θʊlθ] → [tʊlt] | [ˈtult] | Fadda 2016, p. 15 | no |
 
-Source: Fadda, H. (2016). *Language Variation in Western Amman*. MA thesis, Canada Institute of Linguistics. [canil.ca](https://www.canil.ca/wordpress/wp-content/uploads/2019/11/Fadda-Language-Variation-in-Western-Amman.pdf)
+Source: Fadda, H. (2016). *Language Variation in Western Amman*. MA thesis, Canada Institute of Linguistics. [web.archive.org](https://web.archive.org/web/20250210163657/https://www.canil.ca/wordpress/wp-content/uploads/2019/11/Fadda-Language-Variation-in-Western-Amman.pdf)
 <!-- atlas:examples end -->
 
 <!-- atlas:related begin -->
