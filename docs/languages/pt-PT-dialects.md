@@ -24,6 +24,8 @@ Every spec on this page also inherits the `PT_CODA_L` rules, so an unstressed �
 
 Every spec on this page also inherits the `PT_CODA_STOP` rules, so an unstressed ⟨e o⟩ before a stop letter and another consonant is [ɛ], [ɔ]: `aspectável` [ɐʃpɛkˈtavɛɫ], `noctâmbulo` [nɔkˈtɐ̃bulu], `etnia` [ɛtˈniɐ]. Cunha & Cintra (7th ed., pp. 53 and 88) describe the standard. No source read gives a regional value.
 
+The specs on this page also inherit the pt-PT function-word rules, so `cada` is [ˈkɐdɐ] and `para` is [ˈpɐɾɐ] (see [Function words](pt-PT.md#function-words)). Porto, Braga and Terceira switch off the rules that set a stressed mid vowel, because their own stressed mid-vowel process must reach the vowel first.
+
 Every spec on this page except Lisbon, Porto and Braga also inherits the `PT_STRESSED_E_PREPALATAL` rules, so a stressed ⟨e⟩ before ⟨lh nh j ch⟩ is [e]: `fecho` [ˈfeʃu], `telha` [ˈteʎɐ]. Cunha & Cintra (7th ed., p. 431) describe the standard. Lisbon keeps its own [ɐ], and Porto and Braga keep their rising diphthong.
 
 The specs `pt-PT-x-sao-miguel` and `pt-PT-x-terceira` name `pt-PT-x-acores` as an adstrate in `ancestors`. That entry records the relation only. Both specs take their data from `pt-PT`, so they do not inherit the rules of `pt-PT-x-acores`. The spec `pt-PT-x-medieval` (Old Portuguese) has the same code prefix. It is the base of `pt-PT`, not a dialect of it, so this page does not cover it.
@@ -36,7 +38,7 @@ The table gives the features that set each lect apart from `pt-PT`. The lects ru
 |:---|:---|:---|:---|
 | [`pt-PT-x-viana`](#alto-minhoto-pt-pt-x-viana) | Alto Minho | four sibilants, apical ⟨s ss⟩ [s̺ z̺] against laminal ⟨c ç z⟩ [s z]<br>/v/ to [b]<br>⟨ch⟩ [tʃ]<br>⟨-em⟩ [ẽj̃] | `passo` [ˈpas̺u], `paço` [ˈpasu], `chave` [ˈtʃabɨ] |
 | [`pt-PT-x-tras-os-montes`](#transmontano-pt-pt-x-tras-os-montes) | Trás-os-Montes e Alto Douro | the same as Alto Minho | `casa` [ˈkaz̺ɐ], `vinho` [ˈbiɲu] |
-| [`pt-PT-x-minho`](#minhoto-pt-pt-x-minho) | Baixo-Minho | apical-only sibilants [s̺ z̺]<br>/v/ to [b], [β] between vowels<br>pretonic ⟨en⟩ [ɨ̃]<br>⟨-em⟩ [ẽj̃] | `cedo` [ˈs̺ɛdu], `uva` [ˈuβɐ], `pensar` [pɨ̃ˈsaɾ] |
+| [`pt-PT-x-minho`](#minhoto-pt-pt-x-minho) | Baixo-Minho | apical-only sibilants [s̺ z̺]<br>/v/ to [b], [β] between vowels<br>pretonic ⟨en⟩ [ɨ̃]<br>⟨-em⟩ [ẽj̃] | `cedo` [ˈs̺edu], `uva` [ˈuβɐ], `pensar` [pɨ̃ˈsaɾ] |
 | [`pt-PT-x-braga`](#bracarense-pt-pt-x-braga) | Braga | /v/ to [b]<br>stressed mid vowels to rising diphthongs<br>⟨ou⟩ [ow], ⟨ei⟩ [ej]<br>⟨ss⟩ [s̺] | `mês` [ˈmjeʃ], `café` [kɐˈfjɛ], `pouco` [ˈpowku] |
 | [`pt-PT-x-porto`](#portuense-pt-pt-x-porto) | Porto, Douro Litoral | /v/ to [b]<br>stressed mid vowels to rising diphthongs<br>⟨ou⟩ [ow], ⟨ei⟩ [ej]<br>⟨ss⟩ [s̺] | `avô` [ɐˈbwo], `Porto` [ˈpwɔɾtu], `leite` [ˈlejtɨ] |
 | [`pt-PT-x-alfena`](#alfena-pt-pt-x-alfena) | Alfena, Valongo | apical-only sibilants<br>/v/ to [b]<br>vowel breaking as an allophone variant only | `zebra` [ˈz̺ɛbɾɐ], `vaca` [ˈbakɐ] |
@@ -185,7 +187,7 @@ The spec has the apical-only sibilants (see [Northern sibilant systems](#norther
 |:---|:---|:---|
 | `sol` (⟨s-⟩) | [ˈsɔɫ] | [ˈs̺ɔɫ] |
 | `casa` (⟨-s-⟩) | [ˈkazɐ] | [ˈkaz̺ɐ] |
-| `cedo` (⟨c⟩ before ⟨e⟩) | [ˈsɛdu] | [ˈs̺ɛdu] |
+| `cedo` (⟨c⟩ before ⟨e⟩) | [ˈsedu] | [ˈs̺edu] |
 | `cinco` (⟨c⟩ before ⟨i⟩) | [ˈsĩku] | [ˈs̺ĩku] |
 | `praça` (⟨ç⟩) | [ˈpɾasɐ] | [ˈpɾas̺ɐ] |
 | `zebra` (⟨z⟩) | [ˈzɛbɾɐ] | [ˈz̺ɛbɾɐ] |
@@ -266,7 +268,7 @@ Known gaps and features not modelled:
 
 `pt-PT-x-alfena` models Alfena and Valongo in Greater Porto, in Cintra's Duriense zone of the Douro Litoral. The spec name is "Alfena Portuguese (vowel-breaking)", and its location is the single locality for which the vowel-breaking variety is described. Sources: Cintra (1971, pp. 88, 92-93), Álvarez Pérez (2014, pp. 35-39), Mateus & d'Andrade (2000), Cunha & Cintra (1984), Boléo (1974).
 
-The spec has the apical-only sibilants and the grapheme betacism of the [Minhoto](#minhoto-pt-pt-x-minho) table: `sol` [ˈs̺ɔɫ], `cedo` [ˈs̺ɛdu], `zebra` [ˈz̺ɛbɾɐ], `vaca` [ˈbakɐ], `uva` [ˈuβɐ]. Word-final ⟨-em⟩ is [ẽj̃] (`bem` [ˈbẽj̃]). The rule note cites Leite de Vasconcellos (1901, §44n) and Viana & Rocha (2006) for the northern close-mid nucleus. A pretonic ⟨en⟩ is [ẽ] as in `pt-PT` (`pensar` [pẽˈsaɾ]).
+The spec has the apical-only sibilants and the grapheme betacism of the [Minhoto](#minhoto-pt-pt-x-minho) table: `sol` [ˈs̺ɔɫ], `cedo` [ˈs̺edu], `zebra` [ˈz̺ɛbɾɐ], `vaca` [ˈbakɐ], `uva` [ˈuβɐ]. Word-final ⟨-em⟩ is [ẽj̃] (`bem` [ˈbẽj̃]). The rule note cites Leite de Vasconcellos (1901, §44n) and Viana & Rocha (2006) for the northern close-mid nucleus. A pretonic ⟨en⟩ is [ẽ] as in `pt-PT` (`pensar` [pẽˈsaɾ]).
 
 The local vowel breaking (*Brechung*) of stressed mid vowels comes from regional dialect literature, not from Cintra or Álvarez Pérez. The spec lists it only as allophone variants ([e͜ɐ], [ɛ͜ɐ], [o͜ɐ], [ɔ͜ɐ]), not as default output. It also lists [χ] as a variant of /ʁ/. Porto's diphthongisation is not applied, and the spec has no retroflex sibilants (see the [Minhoto](#minhoto-pt-pt-x-minho) section).
 

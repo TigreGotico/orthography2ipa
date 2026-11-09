@@ -573,9 +573,10 @@
         "uxiquer",
         "salter",
         "xavier",
-        "freezer"
+        "freezer",
+        "sequer"
       ],
-      "notes": "Words in ⟨-er⟩ whose stressed final vowel is open-mid [ɛ] in European Portuguese, listed before PT_ER_CLOSE so they keep the open value. The list holds 40 words. Checked live in Infopédia (web.archive.org snapshot of the entry, IPA beside the syllable division): 'mu.lher muˈʎɛr', 'ta.lher tɐˈʎɛr', 'co.lher kuˈʎɛr' (the noun; the verb colher is 'kuˈʎer', so the homograph stays open), 'qual.quer kwaɫˈkɛr' with the plural 'quaisquer', 'quer ˈkɛr', 'mister miʃˈtɛr', 'a.lu.guer ɐluˈɡɛr', 'chanceler ʃɐ̃səˈlɛr', 'chofer ʃoˈfɛr', 'malmequer maɫməˈkɛr', 'mester məʃˈtɛr', 'cateter kɐtəˈtɛr', 'ureter urəˈtɛr', 'rater ʀaˈtɛr', 'nuer ˈnwɛr'. Priberam marks talher '|lhér|', mister '|tér|' and the noun colher '|é|' (the verb colher '|ê|'). Scraped Infopédia entry (dataset infopedia_pt_ipa, the Infopédia dictionary text; entry not opened live), reading with the stress on the final syllable and open [ɛr]: alquiler 'aɫkiˈlɛr', rocker 'ʀɔˈkɛr', belveder 'bɛɫvəˈdɛr', alcacer 'aɫkɐˈsɛr', alquicer 'aɫkiˈsɛr', alvener 'aɫvəˈnɛr', camber 'kɐ̃ˈbɛr', esmoler '(i)ʒmuˈlɛr', alter 'aɫˈtɛr', clister 'kliʃˈtɛr', ecler 'eˈklɛr', escaler '(i)ʃkɐˈlɛr', sumilher 'sumiˈʎɛr', lucifer 'lusiˈfɛr', coworker 'kowɐrˈkɛr', khmer 'ˈkmɛr', eruer 'ɛˈrwɛr', paguer 'pɐˈɡɛr', mindjer 'mĩˈdʒɛr', uxiquer 'uʃiˈkɛr', salter 'saɫˈtɛr', xavier 'ʃɐvjˈɛr', freezer 'friˈzɛr'. 'requer' is the third person of 'querer' and takes the stem value of 'quer'; its own entry was not opened. The same lexicon holds 601 words with final stress and close [er] (the infinitives). Not listed: compounds whose last element is listed or whose own reading the engine already gives open (ex-mulher, bem-me-quer), 'fecho-ecler' and 'escamónea-de-mompilher' (compounds), and 'africâner' (the engine stresses another syllable). African, Asian and creole varieties disable this rule."
+      "notes": "Words in ⟨-er⟩ whose stressed final vowel is open-mid [ɛ] in European Portuguese, listed before PT_ER_CLOSE so they keep the open value. The list holds 41 words. Checked live in Infopédia (web.archive.org snapshot of the entry, IPA beside the syllable division): 'mu.lher muˈʎɛr', 'ta.lher tɐˈʎɛr', 'co.lher kuˈʎɛr' (the noun; the verb colher is 'kuˈʎer', so the homograph stays open), 'qual.quer kwaɫˈkɛr' with the plural 'quaisquer', 'quer ˈkɛr', 'mister miʃˈtɛr', 'a.lu.guer ɐluˈɡɛr', 'chanceler ʃɐ̃səˈlɛr', 'chofer ʃoˈfɛr', 'malmequer maɫməˈkɛr', 'mester məʃˈtɛr', 'cateter kɐtəˈtɛr', 'ureter urəˈtɛr', 'rater ʀaˈtɛr', 'nuer ˈnwɛr'. Priberam marks talher '|lhér|', mister '|tér|' and the noun colher '|é|' (the verb colher '|ê|'). Scraped Infopédia entry (dataset infopedia_pt_ipa, the Infopédia dictionary text; entry not opened live), reading with the stress on the final syllable and open [ɛr]: alquiler 'aɫkiˈlɛr', rocker 'ʀɔˈkɛr', belveder 'bɛɫvəˈdɛr', alcacer 'aɫkɐˈsɛr', alquicer 'aɫkiˈsɛr', alvener 'aɫvəˈnɛr', camber 'kɐ̃ˈbɛr', esmoler '(i)ʒmuˈlɛr', alter 'aɫˈtɛr', clister 'kliʃˈtɛr', ecler 'eˈklɛr', escaler '(i)ʃkɐˈlɛr', sumilher 'sumiˈʎɛr', lucifer 'lusiˈfɛr', coworker 'kowɐrˈkɛr', khmer 'ˈkmɛr', eruer 'ɛˈrwɛr', paguer 'pɐˈɡɛr', mindjer 'mĩˈdʒɛr', uxiquer 'uʃiˈkɛr', salter 'saɫˈtɛr', xavier 'ʃɐvjˈɛr', freezer 'friˈzɛr'. 'sequer' has no Infopédia row: WikiPron pt-PT gives sɨkɛɾ and pt.wiktionary gives [sɨˈkɛɾ], the open vowel of quer. 'requer' is the third person of 'querer' and takes the stem value of 'quer'; its own entry was not opened. The same lexicon holds 601 words with final stress and close [er] (the infinitives). Not listed: compounds whose last element is listed or whose own reading the engine already gives open (ex-mulher, bem-me-quer), 'fecho-ecler' and 'escamónea-de-mompilher' (compounds), and 'africâner' (the engine stresses another syllable). African, Asian and creole varieties disable this rule."
     },
     {
       "id": "PT_ER_CLOSE",
@@ -836,6 +837,227 @@
         "serra"
       ],
       "notes": "Lexically OPEN stressed ⟨e⟩ = [ɛ] for this curated set, overriding the pre-lexical default where a close [e] is selected (Brazilian and non-reducing inheritors). Includes items whose open height is etymological (Latin short ĕ: terra, serra), morphological (3sg present espera; the copula era) or simply lexical (dez). Mateus & d'Andrade 2000: ch.3; Vigário 2003. Pins only the vowel height and inherits cleanly. SEED LIST — documented residual for the tail."
+    },
+    {
+      "id": "PT_LEX_REDUCED_A",
+      "phonemes": [
+        "a"
+      ],
+      "surface": "ɐ",
+      "stress": "stressed",
+      "grapheme": [
+        "a"
+      ],
+      "word": [
+        "cada",
+        "para",
+        "mas"
+      ],
+      "notes": "The stressed ⟨a⟩ of cada, para and mas is the reduced [ɐ]: cada [ˈkɐdɐ], para [ˈpɐɾɐ], mas [ˈmɐʃ]. Infopédia gives cada [ˈkɐdɐ], mas [ˈmɐʃ], and para [ˈpɐrɐ] first and [ˈparɐ] second. WikiPron pt-PT gives cada kɐdɐ, mas mɐʃ, and para paɾɐ, pɐ, pɐɾɐ, pɾɐ. Cruz-Ferreira (1999, Handbook of the IPA, p. 130) writes mas as [mɐʃ] in 'mas quanto mais soprava'. A native-speaker report gives cada [ˈkɐdɐ] for European Portuguese and calls [ˈkadɐ] the Brazilian reading. Cunha & Cintra (7th ed., p. 87) list para, form of parar, and para, preposition, as homographs with no differential accent. The preposition is the frequent sense and ranks first. PT_LEX_PARA_CANDIDATE_VERB keeps the [a] of the verb as the second candidate. Cunha & Cintra (p. 69) list mas among the atonic monosyllables. The rule keeps the stress mark that Infopédia writes, because every spec that inherits the pt-PT stress block shares stress.cliticless_words, the creoles among them, and a spec can disable a rule but not one entry of that list. The Portal da Língua Portuguesa Lisbon rows give [ˈkadɐ] and [ˈpaɾɐ]. A rule-based generator (LUPo) made those rows, so they are not evidence. Infopédia readings come from the cached rows of the Infopédia dictionary (dataset infopedia_pt_ipa). WikiPron pt-PT readings come from the Portugal pronunciations of en.wiktionary. Infopédia carries the Lisbon assumption. The 18 specs that keep their own vowels disable the rule."
+    },
+    {
+      "id": "PT_LEX_PARA_CANDIDATE_VERB",
+      "phonemes": [
+        "ɐ"
+      ],
+      "surface": "a",
+      "stress": "stressed",
+      "grapheme": [
+        "a"
+      ],
+      "word": [
+        "para"
+      ],
+      "notes": "The second lattice candidate of the stressed ⟨a⟩ of para is [a], the verb form of parar (ele para o carro). Infopédia gives it as the second reading, [ˈparɐ]. The rule does not change the transcription. See PT_LEX_REDUCED_A."
+    },
+    {
+      "id": "PT_LEX_FUNCTION_CLOSE_E",
+      "phonemes": [
+        "e",
+        "ɛ",
+        "ɨ"
+      ],
+      "surface": "e",
+      "stress": "stressed",
+      "grapheme": [
+        "e"
+      ],
+      "word": [
+        "aquele",
+        "aqueles",
+        "daquele",
+        "daqueles",
+        "naquele",
+        "naqueles",
+        "àquele",
+        "àqueles",
+        "deste",
+        "destes",
+        "neste",
+        "nestes",
+        "desse",
+        "desses",
+        "nesse",
+        "nesses",
+        "dele",
+        "deles",
+        "nele",
+        "neles",
+        "mesmo",
+        "mesma",
+        "mesmos",
+        "mesmas",
+        "desde",
+        "menos",
+        "apenas",
+        "cedo"
+      ],
+      "notes": "The stressed ⟨e⟩ of these function words and frequent adverbs is the close [e]. The list holds aquele [ɐˈkelɨ] and aqueles, the contractions of the masculine demonstratives and of the masculine third-person pronoun (deste [ˈdeʃtɨ], desse [ˈdesɨ], daquele [dɐˈkelɨ], dele [ˈdelɨ], and the plurals), mesmo with its inflections, desde, menos, apenas and cedo. Cruz-Ferreira (1999, Handbook of the IPA, p. 130) writes aquele as [ɐˈkel] in 'aquele que primeiro'. Infopédia gives aquele [ɐˈkel(ə)], daquele [dɐˈkel(ə)], naquele [nɐˈkel(ə)], àquele [ˈakel(ə)], deste [ˈdeʃt(ə)], neste [ˈneʃt(ə)], desse [ˈdes(ə)], dele [ˈdel(ə)], nele [ˈnel(ə)], mesmo [ˈmeʒmu], mesma [ˈmeʒmɐ], desde [ˈdeʒd(ə)], menos [ˈmenuʃ], apenas [ɐˈpenɐʃ] and cedo [ˈsedu]. The other forms have no Infopédia row, and WikiPron pt-PT gives [e] first for each of them (aqueles ɐkelɨʃ, destes deʃtɨʃ, nesse nesɨ, deles delɨʃ, mesmos meʒmuʃ). The feminine forms are open: see PT_LEX_FUNCTION_OPEN_E. Cunha & Cintra (7th ed., pp. 291 and 343) list the pronoun and demonstrative forms with no pronunciation, and no source read states the alternation, so the list holds words, not a pattern. este, estes, esse, esses, ele and eles are not in the list. The word-initial ⟨e⟩ row ranks [e] first for them, and it keeps [ɛ] as a candidate, the reading of the noun este, east (Infopédia [ˈeʃt(ə), ˈɛʃt(ə)]). Infopédia readings come from the cached rows of the Infopédia dictionary (dataset infopedia_pt_ipa). WikiPron pt-PT readings come from the Portugal pronunciations of en.wiktionary. Infopédia carries the Lisbon assumption. The 18 specs that keep their own vowels, and pt-PT-x-porto, pt-PT-x-braga and pt-PT-x-terceira, disable the rule."
+    },
+    {
+      "id": "PT_LEX_FUNCTION_OPEN_E",
+      "phonemes": [
+        "e",
+        "ɛ",
+        "ɨ"
+      ],
+      "surface": "ɛ",
+      "stress": "stressed",
+      "grapheme": [
+        "e"
+      ],
+      "word": [
+        "esta",
+        "estas",
+        "desta",
+        "destas",
+        "nesta",
+        "nestas",
+        "essa",
+        "essas",
+        "dessa",
+        "dessas",
+        "nessa",
+        "nessas",
+        "aquela",
+        "aquelas",
+        "daquela",
+        "daquelas",
+        "naquela",
+        "naquelas",
+        "àquela",
+        "àquelas",
+        "ela",
+        "elas",
+        "dela",
+        "delas",
+        "nela",
+        "nelas"
+      ],
+      "notes": "The stressed ⟨e⟩ of the feminine demonstratives and the feminine third-person pronoun, with their contractions, is the open [ɛ]: esta [ˈɛʃtɐ], essa [ˈɛsɐ], aquela [ɐˈkɛlɐ], ela [ˈɛlɐ], desta, nessa, daquela, dela and the plurals. Infopédia gives esta [ˈɛʃtɐ], essa [ˈɛsɐ], aquela [ɐˈkɛlɐ] and ela [ˈɛlɐ]. WikiPron pt-PT gives [ɛ] for every form in the list that it has (estas ɛʃtɐʃ, elas ɛlɐʃ, dessa dɛsɐ, naquela nɐkɛlɐ, nelas nɛlɐʃ). Infopédia's àquela [ˈakelɐ] goes against its own aquela and against WikiPron akɛlɐ, and the list follows aquela. pt.wiktionary gives dela [ˈdelɐ] against WikiPron dɛlɐ, and the list follows ela. The word-initial ⟨e⟩ row ranks [e] first, so without this rule esta, essa and ela read [e]. See PT_LEX_FUNCTION_CLOSE_E. Infopédia readings come from the cached rows of the Infopédia dictionary (dataset infopedia_pt_ipa). WikiPron pt-PT readings come from the Portugal pronunciations of en.wiktionary. Infopédia carries the Lisbon assumption. The 18 specs that keep their own vowels, and pt-PT-x-porto, pt-PT-x-braga and pt-PT-x-terceira, disable the rule."
+    },
+    {
+      "id": "PT_LEX_FUNCTION_CLOSE_O",
+      "phonemes": [
+        "o",
+        "ɔ"
+      ],
+      "surface": "o",
+      "stress": "stressed",
+      "grapheme": [
+        "o"
+      ],
+      "word": [
+        "connosco",
+        "convosco",
+        "hoje"
+      ],
+      "notes": "The stressed ⟨o⟩ of connosco, convosco and hoje is the close [o]. Infopédia gives connosco [kõˈnoʃku], convosco [kõˈvoʃku] and hoje [ˈoʒ(ə)]. WikiPron pt-PT gives kõnoʃku, kõvoʃku and oʒɨ, and pt.wiktionary gives hoje [ˈoʒɨ]. Infopédia readings come from the cached rows of the Infopédia dictionary (dataset infopedia_pt_ipa). WikiPron pt-PT readings come from the Portugal pronunciations of en.wiktionary. Infopédia carries the Lisbon assumption. The 18 specs that keep their own vowels, and pt-PT-x-porto, pt-PT-x-braga and pt-PT-x-terceira, disable the rule."
+    },
+    {
+      "id": "PT_LEX_FUNCTION_OPEN_O",
+      "phonemes": [
+        "o",
+        "ɔ",
+        "u"
+      ],
+      "surface": "ɔ",
+      "stress": "stressed",
+      "grapheme": [
+        "o"
+      ],
+      "word": [
+        "ora"
+      ],
+      "notes": "The stressed ⟨o⟩ of the conjunction and adverb ora is the open [ɔ]: Infopédia gives [ˈɔrɐ] and WikiPron pt-PT gives ɔɾɐ. The word-initial ⟨o⟩ row ranks [o] first, so without this rule ora reads [ˈoɾɐ]. Infopédia readings come from the cached rows of the Infopédia dictionary (dataset infopedia_pt_ipa). WikiPron pt-PT readings come from the Portugal pronunciations of en.wiktionary. Infopédia carries the Lisbon assumption. The 18 specs that keep their own vowels, and pt-PT-x-porto, pt-PT-x-braga and pt-PT-x-terceira, disable the rule."
+    },
+    {
+      "id": "PT_LEX_TODO_CLOSE",
+      "phonemes": [
+        "ɔ"
+      ],
+      "surface": "o",
+      "stress": "stressed",
+      "grapheme": [
+        "o"
+      ],
+      "word": [
+        "todo",
+        "toda",
+        "todos",
+        "todas"
+      ],
+      "notes": "The stressed ⟨o⟩ of the quantifier todo, toda, todos, todas is the close [o]. Cruz-Ferreira (1999, Handbook of the IPA, p. 130) writes todo as [ˈtodu] in 'com todo o esplendor'. Infopédia gives todo [ˈtodu] first and [ˈtɔdu], the noun o todo, second. WikiPron pt-PT gives todo todu, todos toduʃ, toda todɐ then tɔdɐ, and todas todɐʃ then tɔdɐʃ. Infopédia's toda row, [ˈtɔdɐ], has no part of speech. The quantifier is the frequent sense and ranks first. PT_LEX_TODO_CANDIDATE_OPEN keeps [ɔ] as the second candidate. Infopédia readings come from the cached rows of the Infopédia dictionary (dataset infopedia_pt_ipa). WikiPron pt-PT readings come from the Portugal pronunciations of en.wiktionary. Infopédia carries the Lisbon assumption. The 18 specs that keep their own vowels, and pt-PT-x-porto, pt-PT-x-braga and pt-PT-x-terceira, disable the rule."
+    },
+    {
+      "id": "PT_LEX_TODO_CANDIDATE_OPEN",
+      "phonemes": [
+        "o"
+      ],
+      "surface": "ɔ",
+      "stress": "stressed",
+      "grapheme": [
+        "o"
+      ],
+      "word": [
+        "todo",
+        "toda",
+        "todos",
+        "todas"
+      ],
+      "notes": "The second lattice candidate of the stressed ⟨o⟩ of todo, toda, todos, todas is [ɔ], the noun reading. The rule does not change the transcription. See PT_LEX_TODO_CLOSE."
+    },
+    {
+      "id": "PT_LEX_VOCE_OPEN_O",
+      "phonemes": [
+        "u",
+        "o"
+      ],
+      "surface": "ɔ",
+      "stress": "unstressed",
+      "grapheme": [
+        "o"
+      ],
+      "word": [
+        "você",
+        "vocês"
+      ],
+      "notes": "The pretonic ⟨o⟩ of você and vocês is the open [ɔ], not the reduced [u]: Infopédia gives você [vɔˈse], and WikiPron pt-PT gives vɔse and vɔseʃ, with bɔse and bɔseʃ. Infopédia readings come from the cached rows of the Infopédia dictionary (dataset infopedia_pt_ipa). WikiPron pt-PT readings come from the Portugal pronunciations of en.wiktionary. Infopédia carries the Lisbon assumption. The 18 specs that keep their own vowels disable the rule."
+    },
+    {
+      "id": "PT_LEX_SOB_CLOSE_O",
+      "phonemes": [
+        "u",
+        "ɔ"
+      ],
+      "surface": "o",
+      "grapheme": [
+        "o"
+      ],
+      "word": [
+        "sob"
+      ],
+      "notes": "The preposition sob is atonic, and its vowel is [o]. Cunha & Cintra (7th ed., p. 69) list it among the atonic monosyllables: 'd) as preposições a, com, de, em, por, sem, sob'. stress.cliticless_words holds it. Infopédia gives sob [sob] with no stress mark, and WikiPron pt-PT gives sob. pt.wiktionary gives [ˈsob], with a mark. The vowel of an atonic word reduces to [u] in this spec, and the rule gives the [o] of the sources. Infopédia readings come from the cached rows of the Infopédia dictionary (dataset infopedia_pt_ipa). WikiPron pt-PT readings come from the Portugal pronunciations of en.wiktionary. Infopédia carries the Lisbon assumption. The 18 specs that keep their own vowels disable the rule."
     },
     {
       "id": "PT_LEX_OPEN_E_SUFFIX",
@@ -1175,7 +1397,7 @@
         "h"
       ],
       "preceded_by_2": "word_boundary",
-      "notes": "The PT_INITIAL_O_OPEN default for an ⟨o⟩ after a word-initial ⟨h⟩. The ⟨h⟩ has no sound, so the ⟨o⟩ begins the spoken word: hospital [ɔʃpiˈtaɫ], hotel [ɔˈtɛɫ]. Infopédia gives [ɔ] as the first reading in 221 of the 274 single words that this rule changes, [u] in 43 and [o] in 10. In 28 of the other words it gives [ɔ] as the second reading. The positional rows give this slot the candidates [u], [o], [ɔ], because the ⟨h⟩ slot comes first. This rule and PT_INITIAL_HO_CANDIDATE_U and PT_INITIAL_HO_CANDIDATE_O rewrite them in place, so the slot ranks [ɔ], [u], [o] as after PT_INITIAL_O_OPEN. A stressed ⟨ho⟩ keeps its reading: hoje [ˈɔʒɨ], homem [ˈɔmɐ̃j̃]. See PT_INITIAL_O_OPEN for the sources."
+      "notes": "The PT_INITIAL_O_OPEN default for an ⟨o⟩ after a word-initial ⟨h⟩. The ⟨h⟩ has no sound, so the ⟨o⟩ begins the spoken word: hospital [ɔʃpiˈtaɫ], hotel [ɔˈtɛɫ]. Infopédia gives [ɔ] as the first reading in 221 of the 274 single words that this rule changes, [u] in 43 and [o] in 10. In 28 of the other words it gives [ɔ] as the second reading. The positional rows give this slot the candidates [u], [o], [ɔ], because the ⟨h⟩ slot comes first. This rule and PT_INITIAL_HO_CANDIDATE_U and PT_INITIAL_HO_CANDIDATE_O rewrite them in place, so the slot ranks [ɔ], [u], [o] as after PT_INITIAL_O_OPEN. A stressed ⟨ho⟩ keeps its reading: homem [ˈɔmɐ̃j̃], and hoje [ˈoʒɨ] through PT_LEX_FUNCTION_CLOSE_O. See PT_INITIAL_O_OPEN for the sources."
     },
     {
       "id": "PT_INITIAL_HO_CANDIDATE_U",
@@ -2169,7 +2391,7 @@
   "word_exceptions": {"e": "i"},
   "stress": {
     "onset_clusters": ["bl", "br", "bɫ", "bɾ", "bʀ", "bʁ", "bʎ", "bχ", "dr", "dɾ", "dʀ", "dʁ", "dʎ", "dχ", "fl", "fr", "fɫ", "fɾ", "fʀ", "fʁ", "fʎ", "fχ", "kl", "kr", "kɫ", "kɾ", "kʀ", "kʁ", "kʎ", "kχ", "pl", "pr", "pɫ", "pɾ", "pʀ", "pʁ", "pʎ", "pχ", "tr", "tɾ", "tʀ", "tʁ", "tʎ", "tχ", "vl", "vr", "vɫ", "vɾ", "vʀ", "vʁ", "vʎ", "vχ", "ðr", "ðɾ", "ðʀ", "ðʁ", "ðʎ", "ðχ", "ɡl", "ɡr", "ɡɫ", "ɡɾ", "ɡʀ", "ɡʁ", "ɡʎ", "ɡχ", "ɣl", "ɣr", "ɣɫ", "ɣɾ", "ɣʀ", "ɣʁ", "ɣʎ", "ɣχ", "βl", "βr", "βɫ", "βɾ", "βʀ", "βʁ", "βʎ", "βχ"],
-    "cliticless_words": ["o", "a", "os", "as", "de", "do", "da", "dos", "das", "em", "no", "na", "nos", "nas", "por", "pelo", "pela", "pelos", "pelas", "ao", "aos", "à", "às", "com", "sem", "e", "que", "se", "me", "te", "lhe", "lhes", "vos", "lo", "la", "los", "las", "lho", "lha", "lhos", "lhas"],
+    "cliticless_words": ["o", "a", "os", "as", "de", "do", "da", "dos", "das", "em", "no", "na", "nos", "nas", "por", "pelo", "pela", "pelos", "pelas", "ao", "aos", "à", "às", "com", "sem", "e", "que", "se", "me", "te", "lhe", "lhes", "vos", "lo", "la", "los", "las", "lho", "lha", "lhos", "lhas", "sob"],
     "compound_stress": "last",
     "default_position": -2,
     "final_stress_endings": [

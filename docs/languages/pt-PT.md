@@ -31,7 +31,7 @@ Reduction is the most diagnostic EP feature. Unstressed vowels raise or move to 
 
 | Vowel | Stressed | Unstressed | Example |
 |:---:|:---:|:---:|:---|
-| a | [a] | [ɐ] | `cada` [ˈkadɐ] |
+| a | [a] | [ɐ] | `casa` [ˈkazɐ], and `cada` [ˈkɐdɐ] with the [ɐ] of a [function word](#function-words) |
 | e | [ɛ] or [e] | [ɨ] | `pele` [ˈpɛlɨ] |
 | o | [ɔ] or [o] | [u] | `bola` [ˈbɔlɐ], `pomar` [puˈmaɾ] |
 
@@ -101,7 +101,7 @@ The grammar gives two other values. Cunha & Cintra (7th ed., p. 51) reduce an un
 
 Before a coda nasal the vowel stays nasal: `ondular` [õduˈlaɾ]. The guard `PT_INITIAL_O_KEEP_BEFORE_CODA_NASAL` keeps the rule off there. The article `o` stays [u]. A stressed word-initial ⟨o⟩ keeps the `word_initial` row and the word lists: `olho` [ˈoʎu], `olhos` [ˈɔʎuʃ]. Infopédia writes [o] in some stem families, such as `orelha` and `ostra`. These are facts about single words, and the rule does not cover them.
 
-A word-initial ⟨h⟩ has no sound, so the ⟨o⟩ after it begins the spoken word. The `PT_INITIAL_HO` rules give that ⟨o⟩ the same ranking: `hospital` [ɔʃpiˈtaɫ], `hotel` [ɔˈtɛɫ]. Infopédia gives [ɔ] as the first reading in 221 of the 274 single words that these rules change. In 43 it gives [u] first, and 28 of these words list [ɔ] as the second reading (`horrível`, `homenagem`). A stressed ⟨ho⟩ keeps its reading: `hoje` [ˈɔʒɨ], `homem` [ˈɔmɐ̃j̃]. Before a coda nasal the vowel stays nasal: `honrar` [õˈɾaɾ].
+A word-initial ⟨h⟩ has no sound, so the ⟨o⟩ after it begins the spoken word. The `PT_INITIAL_HO` rules give that ⟨o⟩ the same ranking: `hospital` [ɔʃpiˈtaɫ], `hotel` [ɔˈtɛɫ]. Infopédia gives [ɔ] as the first reading in 221 of the 274 single words that these rules change. In 43 it gives [u] first, and 28 of these words list [ɔ] as the second reading (`horrível`, `homenagem`). A stressed ⟨ho⟩ keeps its reading: `homem` [ˈɔmɐ̃j̃], `hora` [ˈɔɾɐ]. `hoje` [ˈoʒɨ] takes its close vowel from a word list (see [Function words](#function-words)). Before a coda nasal the vowel stays nasal: `honrar` [õˈɾaɾ].
 
 ## Coda vowel nasalisation
 
@@ -196,6 +196,31 @@ The rules `PT_STRESSED_E_PREPALATAL_CLOSE`, `PT_STRESSED_E_PREPALATAL_CANDIDATE_
 In the 378 single Infopédia words of this class that no word list holds, Infopédia gives an [e] reading in 325, mostly second after the Lisbon [ɐ]: `fecho` [ˈfɐ(j)ʃu, ˈfeʃu]. It gives [ɛ] first in 27, such as `velho`, `flecha` and `brejo`. Those words are lexical, and the rules give them [e]. Infopédia carries the Lisbon assumption.
 
 `pt-PT-x-lisbon` switches the rules off and keeps `LX_STRESSED_E_PREPALATAL`, which gives [ɐ]. Porto and Braga switch them off, because their diphthongisation of the tonic mid vowels must reach the vowel first.
+
+## Function words
+
+The stressed vowel of a function word or a frequent adverb is a fact of the word. These rules give it, and each word in them has a source:
+
+| Rule | Value | Words |
+|:---|:---|:---|
+| `PT_LEX_REDUCED_A` | [ɐ] | `cada` [ˈkɐdɐ], `para` [ˈpɐɾɐ], `mas` [ˈmɐʃ] |
+| `PT_LEX_FUNCTION_CLOSE_E` | [e] | `aquele` [ɐˈkelɨ], the contractions `deste`, `desse`, `daquele`, `dele` and the others, `mesmo` [ˈmeʒmu], `desde`, `menos`, `apenas`, `cedo` |
+| `PT_LEX_FUNCTION_OPEN_E` | [ɛ] | `esta` [ˈɛʃtɐ], `essa`, `aquela`, `ela` [ˈɛlɐ], their plurals and contractions |
+| `PT_LEX_FUNCTION_CLOSE_O` | [o] | `connosco`, `convosco`, `hoje` [ˈoʒɨ] |
+| `PT_LEX_FUNCTION_OPEN_O` | [ɔ] | `ora` [ˈɔɾɐ] |
+| `PT_LEX_TODO_CLOSE` | [o] | `todo` [ˈtodu], `toda`, `todos`, `todas` |
+| `PT_LEX_VOCE_OPEN_O` | pretonic [ɔ] | `você` [vɔˈse], `vocês` |
+| `PT_LEX_SOB_CLOSE_O` | atonic [o] | `sob` [sob] |
+
+Infopédia gives most of the readings. WikiPron pt-PT gives the plurals and contractions that Infopédia does not list. Cruz-Ferreira (1999, Handbook of the IPA, p. 130) writes `aquele` [ɐˈkel], `mas` [mɐʃ] and `todo` [ˈtodu]. A native-speaker report gives `cada` [ˈkɐdɐ] and calls [ˈkadɐ] the Brazilian reading.
+
+The masculine and feminine forms differ: `aquele` [ɐˈkelɨ] against `aquela` [ɐˈkɛlɐ], `dele` [ˈdelɨ] against `dela` [ˈdɛlɐ]. Cunha & Cintra (7th ed., pp. 291 and 343) list the forms with no pronunciation, and no source read states the alternation, so the rules hold word lists. `este`, `esse` and `ele` and their plurals are not in the lists, because the word-initial ⟨e⟩ row already ranks [e] first. That row ranked [e] first for `esta`, `essa` and `ela` too, which is wrong.
+
+A homograph keeps its other reading as a lattice candidate. `para` ranks [ɐ], [a]: the [a] is the verb form of *parar*, which Cunha & Cintra (p. 87) list with the preposition among the homographs that lost the differential accent. `todo` ranks [o], [ɔ]: the [ɔ] is the noun *o todo* (Infopédia [ˈtodu, ˈtɔdu]).
+
+`sob` is atonic. Cunha & Cintra (p. 69) list it among the atonic monosyllables, and Infopédia writes it [sob] with no stress mark, so `stress.cliticless_words` holds it. The same page lists `mas`, but Infopédia marks `mas`, and every spec that inherits the pt-PT stress block shares that list, the creoles among them. So `mas` keeps its stress mark and takes [ɐ] from a rule that a spec can switch off. `sequer` joins `PT_LEX_OPEN_ER` with the open vowel of `quer` [ˈkɛɾ].
+
+The European dialect specs inherit the rules. Porto, Braga and Terceira switch off the rules that set a stressed mid vowel, as they switch off the other `PT_LEX` lists, because their own stressed mid-vowel process must reach the vowel first. The 18 specs that keep their own vowels switch off all of them. These specs share the pt-PT stress block, so `sob` is atonic there too. `pt-BR` does not inherit them.
 
 ## Coda consonants
 

@@ -528,6 +528,66 @@
       "notes": "DISABLED for São Tomé and Príncipe Portuguese. The PT_CODA_STOP rules follow the pt-PT default for European Portuguese. No source read writes this vowel for this variety, so it stays as the spec gives it."
     },
     {
+      "id": "PT_LEX_REDUCED_A",
+      "phonemes": [],
+      "surface": "ɐ",
+      "notes": "DISABLED for São Tomé and Príncipe Portuguese. The pt-PT function-word rules give the vowels of European Portuguese, from Infopédia and WikiPron pt-PT. No source read gives these vowels for this variety, so it keeps the reading the spec gives."
+    },
+    {
+      "id": "PT_LEX_PARA_CANDIDATE_VERB",
+      "phonemes": [],
+      "surface": "a",
+      "notes": "DISABLED for São Tomé and Príncipe Portuguese. The pt-PT function-word rules give the vowels of European Portuguese, from Infopédia and WikiPron pt-PT. No source read gives these vowels for this variety, so it keeps the reading the spec gives."
+    },
+    {
+      "id": "PT_LEX_FUNCTION_CLOSE_E",
+      "phonemes": [],
+      "surface": "e",
+      "notes": "DISABLED for São Tomé and Príncipe Portuguese. The pt-PT function-word rules give the vowels of European Portuguese, from Infopédia and WikiPron pt-PT. No source read gives these vowels for this variety, so it keeps the reading the spec gives."
+    },
+    {
+      "id": "PT_LEX_FUNCTION_OPEN_E",
+      "phonemes": [],
+      "surface": "ɛ",
+      "notes": "DISABLED for São Tomé and Príncipe Portuguese. The pt-PT function-word rules give the vowels of European Portuguese, from Infopédia and WikiPron pt-PT. No source read gives these vowels for this variety, so it keeps the reading the spec gives."
+    },
+    {
+      "id": "PT_LEX_FUNCTION_CLOSE_O",
+      "phonemes": [],
+      "surface": "o",
+      "notes": "DISABLED for São Tomé and Príncipe Portuguese. The pt-PT function-word rules give the vowels of European Portuguese, from Infopédia and WikiPron pt-PT. No source read gives these vowels for this variety, so it keeps the reading the spec gives."
+    },
+    {
+      "id": "PT_LEX_FUNCTION_OPEN_O",
+      "phonemes": [],
+      "surface": "ɔ",
+      "notes": "DISABLED for São Tomé and Príncipe Portuguese. The pt-PT function-word rules give the vowels of European Portuguese, from Infopédia and WikiPron pt-PT. No source read gives these vowels for this variety, so it keeps the reading the spec gives."
+    },
+    {
+      "id": "PT_LEX_TODO_CLOSE",
+      "phonemes": [],
+      "surface": "o",
+      "notes": "DISABLED for São Tomé and Príncipe Portuguese. The pt-PT function-word rules give the vowels of European Portuguese, from Infopédia and WikiPron pt-PT. No source read gives these vowels for this variety, so it keeps the reading the spec gives."
+    },
+    {
+      "id": "PT_LEX_TODO_CANDIDATE_OPEN",
+      "phonemes": [],
+      "surface": "ɔ",
+      "notes": "DISABLED for São Tomé and Príncipe Portuguese. The pt-PT function-word rules give the vowels of European Portuguese, from Infopédia and WikiPron pt-PT. No source read gives these vowels for this variety, so it keeps the reading the spec gives."
+    },
+    {
+      "id": "PT_LEX_VOCE_OPEN_O",
+      "phonemes": [],
+      "surface": "ɔ",
+      "notes": "DISABLED for São Tomé and Príncipe Portuguese. The pt-PT function-word rules give the vowels of European Portuguese, from Infopédia and WikiPron pt-PT. No source read gives these vowels for this variety, so it keeps the reading the spec gives."
+    },
+    {
+      "id": "PT_LEX_SOB_CLOSE_O",
+      "phonemes": [],
+      "surface": "o",
+      "notes": "DISABLED for São Tomé and Príncipe Portuguese. The pt-PT function-word rules give the vowels of European Portuguese, from Infopédia and WikiPron pt-PT. No source read gives these vowels for this variety, so it keeps the reading the spec gives."
+    },
+    {
       "id": "PT_STRESSED_A_BEFORE_NASAL",
       "phonemes": [],
       "surface": "ɐ",

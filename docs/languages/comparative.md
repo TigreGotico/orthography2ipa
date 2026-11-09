@@ -126,7 +126,7 @@ The Romance languages share the palatal softening of Latin ⟨c⟩ and ⟨g⟩ b
 | French | [s] | [ʒ] | Also before y | `cire` `siʁ`, `gilet` `ʒilɛ`, `cygne` `siɲ` |
 | Italian | [tʃ] | [dʒ] | The digraphs ⟨ch gh⟩ keep the plosive | `cena` `ˈtʃena`, `gelato` `dʒeˈlato`, `chi` `ˈki` |
 | Spanish | [θ] (Castilian), [s] (Latin American) | [x] | | `cero` `ˈθeɾo`, `gente` `ˈxente` |
-| Portuguese | [s] | [ʒ] | | `cedo` `ˈsɛdu`, `gente` `ˈʒẽtɨ` (pt-PT) |
+| Portuguese | [s] | [ʒ] | | `cedo` `ˈsedu`, `gente` `ˈʒẽtɨ` (pt-PT) |
 | Catalan | [s] | [dʒ] or [ʒ] | | `cel` `ˈsɛl`, `gent` `ˈʒen` |
 | Romanian | [tʃ] | [dʒ] | | `cer` `ˈtʃer`, `ger` `ˈdʒer` |
 

@@ -55,7 +55,7 @@ def test_unstressed_value(word: str, ipa: str) -> None:
 @pytest.mark.parametrize("word,ipa", [
     ("tudo", "ˈtydu"),
     ("mudo", "ˈmudu"),
-    ("mas", "ˈmaʒ"),
+    ("mas", "ˈmɐʒ"),
     ("leite", "ˈletɨ"),
     ("outro", "ˈotɾu"),
     ("bem", "ˈbẽj̃"),

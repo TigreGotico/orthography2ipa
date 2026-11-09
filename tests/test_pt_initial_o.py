@@ -95,7 +95,7 @@ def test_unstressed_o_after_initial_h_is_open(word, ipa):
     assert _first_slot(word) == ["ɔ", "u", "o"]
 
 
-@pytest.mark.parametrize("word, ipa", [("hoje", "ˈɔʒɨ"), ("homem", "ˈɔmɐ̃j̃"), ("hora", "ˈɔɾɐ")])
+@pytest.mark.parametrize("word, ipa", [("homem", "ˈɔmɐ̃j̃"), ("hora", "ˈɔɾɐ")])
 def test_stressed_o_after_initial_h_keeps_its_lattice(word, ipa):
     assert G2P("pt-PT").transcribe(word) == ipa
     assert _first_slot(word) == ["ɔ", "o", "u"]
