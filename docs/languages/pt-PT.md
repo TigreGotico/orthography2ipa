@@ -41,7 +41,7 @@ Speakers often delete a word-final [ɨ]. The spec writes the vowel in most conte
 
 ### Unstressed vowels before a coda ⟨l⟩
 
-An implosive ⟨l⟩ stops the reduction. Cunha & Cintra (7th ed., p. 53) list among the unstressed vowels that do not reduce "as vogais [a], [ɛ], [o] protegidas por l implosivo de *altar*, *delgado*, *soldado*, *colchão*". A word-final ⟨l⟩ is in a coda, so it is implosive too, and the clause names the ⟨l⟩, not a position in the word. The `PT_CODA_L` rules give the full vowel and keep the reduced one as a lattice candidate:
+An implosive ⟨l⟩ stops the reduction. Cunha & Cintra (7th ed., p. 53) list among the unstressed vowels that do not reduce "as vogais [a], [ɛ], [o] protegidas por l implosivo de *altar*, *delgado*, *soldado*, *colchão*, *Setúbal* e *amável*". A word-final ⟨l⟩ is in a coda, so it is implosive too, and two examples of the source, *Setúbal* and *amável*, have one. The `PT_CODA_L` rules give the full vowel and keep the reduced one as a lattice candidate:
 
 | Vowel | Rules | Lattice | Example |
 |:---:|:---|:---|:---|

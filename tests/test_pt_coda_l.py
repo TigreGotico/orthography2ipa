@@ -2,9 +2,9 @@
 
 Cunha & Cintra (7th ed., p. 53) list among the unstressed vowels that do not
 reduce "as vogais [a], [ɛ], [o] protegidas por l implosivo de altar, delgado,
-soldado, colchão". A word-final ⟨l⟩ is in a coda, so it is implosive too. The
-reduced value stays in the lattice, and ⟨o⟩ also keeps [ɔ]. A stressed vowel, a
-word-initial ⟨o⟩ and a digraph ⟨lh⟩ keep their readings.
+soldado, colchão, Setúbal e amável". The word-final ⟨l⟩ of Setúbal and amável is
+implosive too. The reduced value stays in the lattice, and ⟨o⟩ also keeps [ɔ]. A
+stressed vowel, a word-initial ⟨o⟩ and a digraph ⟨lh⟩ keep their readings.
 
 Readings without a page come from Infopédia rows.
 """
@@ -47,6 +47,7 @@ def _before_l(word: str, vowel: str) -> list:
 
 @pytest.mark.parametrize("word, ipa", [
     ("altar", "aɫˈtaɾ"), ("calçado", "kaɫˈsadu"), ("falcão", "faɫˈkɐ̃w̃"), ("alguém", "aɫˈɡɐ̃j̃"),
+    ("setúbal", "sɨˈtubaɫ"),
 ])
 def test_a_before_a_coda_l_is_open(word, ipa):
     assert G2P("pt-PT").transcribe(word) == ipa
