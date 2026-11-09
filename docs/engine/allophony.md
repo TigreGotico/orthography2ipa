@@ -4,7 +4,7 @@ The library models pronunciation as two maps. The pre-lexical map takes orthogra
 
 A spec declares an ordered list of `allophone_rules`. Each rule is a declarative `phoneme → surface` rewrite with context conditions. The list compiles into a [lattice rescorer](lattice.md), `orthography2ipa.allophony.AllophoneRescorer`. The rescorer replaces a chosen phoneme with its one context-correct surface form at the same beam cost. It realises the phoneme and does not add beam branches.
 
-The flat `spec.allophones` table is a different thing. It lists the variants of each phoneme with no context. Only `expand_allophones` reads it, and that option puts every variant into the beam at a flat `+0.5` cost.
+The flat `spec.allophones` table is a different thing. It lists the variants of each phoneme with no context. Only `expand_allophones` reads it. That option puts every variant into the beam: the first variant keeps the cost of the phoneme, and each later variant adds 0.5 per place down the list.
 
 ## Where it runs in the pipeline
 
@@ -118,7 +118,7 @@ Neighbour lookups read the original slots, so one rule cannot feed another withi
 
 ### `emphatic`
 
-`emphatic` matches a neighbour whose IPA carries the pharyngealisation diacritic ⟨ˤ⟩ (U+02E4). `orthography2ipa.vowels.is_pharyngealized_consonant` decides it, as the mirror of `is_palatal_consonant`. The class names no language. Any spec that writes a pharyngealised consonant with ⟨ˤ⟩ gets it, including the lateral emphatics ⟨ɬˤ ɮˤ⟩.
+`emphatic` matches a neighbour whose IPA carries the pharyngealisation diacritic ⟨ˤ⟩ (U+02E4, in the Unicode [Spacing Modifier Letters](https://www.unicode.org/charts/PDF/U02B0.pdf) block). `orthography2ipa.vowels.is_pharyngealized_consonant` decides it, as the mirror of `is_palatal_consonant`. The class names no language. Any spec that writes a pharyngealised consonant with ⟨ˤ⟩ gets it, including the lateral emphatics ⟨ɬˤ ɮˤ⟩.
 
 ## Inserting instead of rewriting: `append`
 
@@ -234,7 +234,7 @@ G2P("ca-x-occident").transcribe_word("casa")   # 'ˈkazɛ'
 
 ## Worked example: Brazilian Portuguese
 
-The `pt-BR` spec is the base of the Brazilian dialect specs. Its rules raise the final unstressed vowels (Barbosa & Albano 2004, Câmara Jr. 1970). Word-final /e o/ become the close vowels [i u]:
+The `pt-BR` spec is the base of the Brazilian dialect specs. Its rules raise the final unstressed vowels (Barbosa & Albano 2004, [*Brazilian Portuguese*](https://doi.org/10.1017/S0025100304001756), *JIPA* 34(2), and Câmara Jr. 1970). Word-final /e o/ become the close vowels [i u]:
 
 ```json
 {"id": "BR_RAISE_FINAL_E", "phonemes": ["ɪ"], "surface": "i", "word_final": true}
@@ -248,10 +248,9 @@ G2P("pt-BR", apply_allophony=False).transcribe_word("gato")   # 'ˈɡatʊ'
 G2P("pt-BR", apply_allophony=False).transcribe_word("leite")  # 'ˈlejtɪ'
 ```
 
-The rules show two ways to write a base rule that inherits well:
+The rules show two ways to write a base rule that inherits well. The first way is to target the reduced vowel, not the underlying phoneme. The rule fires on the near-close [ɪ ʊ] that the pre-lexical map already selects word-finally. A conservative dialect that keeps a final [e o] inherits the rule, and the rule never fires there.
 
-1. Target the reduced vowel, not the underlying phoneme. The rule fires on the near-close [ɪ ʊ] that the pre-lexical map already selects word-finally. A conservative dialect that keeps a final [e o] inherits the rule, and the rule never fires there.
-2. Leave a process pre-lexical when a position already states it. The `pt-BR` positional table affricates ⟨t d⟩ before the letter ⟨i⟩ (⟨tia⟩ [ˈt͡ʃiɐ]). The `BR_AFFRIC_T_RAISED` and `BR_AFFRIC_D_RAISED` rules cover only the [i ɪ] that a raised ⟨e⟩ supplies, as in ⟨leite⟩.
+The second way is to leave a process pre-lexical when a position already states it. The `pt-BR` positional table affricates ⟨t d⟩ before the letter ⟨i⟩ (⟨tia⟩ [ˈt͡ʃiɐ]). The `BR_AFFRIC_T_RAISED` and `BR_AFFRIC_D_RAISED` rules cover only the [i ɪ] that a raised ⟨e⟩ supplies, as in ⟨leite⟩.
 
 [languages/pt-BR.md](../languages/pt-BR.md) gives the full description.
 
@@ -261,12 +260,12 @@ The `pt-PT` rules use the `syllable_position` condition for the coda consonants.
 
 ### Dark coda /l/
 
-/l/ becomes [ɫ] in the coda, both word-finally and before a consonant. An onset /l/ stays clear (Mateus & d'Andrade 2000, ch. 2, Cruz-Ferreira 1995, *JIPA* 25(2): 91).
+/l/ becomes [ɫ] in the coda, both word-finally and before a consonant. An onset /l/ stays clear (Mateus & d'Andrade 2000, ch. 2, and Cruz-Ferreira 1995, [*European Portuguese*](https://doi.org/10.1017/S0025100300005223), *JIPA* 25(2): 91).
 
 ```python
 pt = G2P("pt-PT")
 pt.transcribe("sol")    # 'ˈsɔɫ'
-pt.transcribe("alto")   # 'ˈɐɫtu'
+pt.transcribe("alto")   # 'ˈaɫtu'
 pt.transcribe("bola")   # 'ˈbɔlɐ'
 ```
 
@@ -277,7 +276,7 @@ The standard realisation of a coda sibilant is the *chiado*: /s/ becomes [ʃ] an
 ```python
 pt.transcribe("pasta")      # 'ˈpaʃtɐ'
 pt.transcribe("casa")       # 'ˈkazɐ'
-pt.transcribe("os dedos")   # 'oʒ ˈdɛduʃ'
+pt.transcribe("os gatos")   # 'uʒ ˈɡatuʃ'
 ```
 
 The `pt-PT-x-*` dialect specs inherit these rules by id. The varieties that keep an alveolar coda /s/ (`pt-AO`, `pt-CV`, `pt-GW`, `pt-MZ`, `pt-ST`, `pt-TL`) override `PT_CODA_S_HUSH` and `PT_CODA_Z_HUSH` by id with [s] and [z].

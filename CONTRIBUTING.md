@@ -17,15 +17,22 @@ fields are in [`orthography2ipa/data/SCHEMA.md`](orthography2ipa/data/SCHEMA.md)
 - All work targets `dev`. Never commit to `dev` or `master` directly. Open a
   pull request from a feature branch.
 - Releases flow from `dev` to an alpha pre-release to `master` (stable),
-  driven by the shared `gh-automations` reusable workflows.
-- Commit messages follow Conventional Commits (`feat:`, `fix:`, `feat!:`,
+  driven by the shared
+  [gh-automations](https://github.com/OpenVoiceOS/gh-automations) reusable
+  workflows.
+  A merged pull request bumps the version, tags it and updates the changelog.
+  The `publish_alpha_daily.yml` workflow publishes the newest unpublished
+  alpha to PyPI once a day.
+- Commit messages follow
+  [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) (`feat:`, `fix:`, `feat!:`,
   `docs:`, `chore:`). The prefix or the pull request label drives the
   semantic version bump. Never edit `orthography2ipa/version.py` by hand.
 - Open a pull request as a draft. Mark it ready for review when CI is green.
 
 ## Tests
 
-Run the suite in a venv inside the checkout before you open a pull request:
+Run the suite in a venv inside the checkout before you open a pull request.
+The setup uses [uv](https://docs.astral.sh/uv/), never pip:
 
 ```bash
 unset VIRTUAL_ENV

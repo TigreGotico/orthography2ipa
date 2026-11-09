@@ -1,6 +1,6 @@
 # The pronunciation lattice
 
-Most words have one sensible pronunciation, and the hard cases are the words that have several. `orthography2ipa` does not hide that ambiguity behind a single answer. It exposes a lattice: for each grapheme of a word, the ranked IPA options that the grapheme can realise, each with a cost. The rest of the library, and the phonemizers built on it, consume this object.
+Most words have one sensible pronunciation, and the hard cases are the words that have several. `orthography2ipa` does not hide that ambiguity behind a single answer. It exposes a lattice: for each grapheme of a word, the ranked [IPA](https://www.internationalphoneticassociation.org/content/full-ipa-chart) options that the grapheme can realise, each with a cost. The rest of the library, and the phonemizers built on it, consume this object.
 
 This page follows the order in which a phonemizer author meets the lattice. It covers how candidates get their costs, the lattice and its rescorers, the per-word confidence, the cross-word sentence seam and the feature export. The [tokenizer](tokenizer.md) page covers how text becomes graphemes and how the beam search (`ipa_beam`) turns the same search space into whole-word readings.
 
@@ -45,13 +45,7 @@ Both beams take their costs from `weights.candidate_base_costs`, through the sha
 
 ### Malformed weights
 
-Two layers check weights. The pydantic model `WeightedGraphemeModel` in [`orthography2ipa/schema.py`](../../orthography2ipa/schema.py) rejects a weighted value in three cases:
-
-- the `weights` list and the `ipa` list differ in length,
-- a weight is negative or not a number,
-- the weights sum to 0 or less.
-
-`orthography2ipa validate` and the test suite run this model on every shipped spec, so a malformed weight fails validation before it ships.
+Two layers check weights. The pydantic model `WeightedGraphemeModel` in [`orthography2ipa/schema.py`](../../orthography2ipa/schema.py) rejects a weighted value when the `weights` list and the `ipa` list differ in length, when a weight is negative or not a number, or when the weights sum to 0 or less. `orthography2ipa validate` and the test suite run this model on every shipped spec, so a malformed weight fails validation before it ships.
 
 At run time, `candidate_base_costs` checks the same conditions again. If an entry fails, it emits a warning and the whole entry falls back to rank ordering. A bad weight can therefore never stop a transcription or silently drop a candidate.
 
@@ -65,7 +59,7 @@ There are two reasons for this rule. First, candidate frequency is corpus data f
 
 ### Where weights come from
 
-Weights must be candidate frequencies from cited corpora, recorded in the spec's `sources` or `notes`. They are never parameters tuned to lower the PER. The en-GB spec weights ⟨er⟩, ⟨gh⟩ and ⟨ie⟩. Its sources are Gontijo, Gontijo & Shillcock (2003), *Grapheme-phoneme probabilities in British English*, and Berndt, Reggia & Mitchum (1987), *Empirically derived probabilities for grapheme-to-phoneme correspondences in English*. The spec's `notes` give the values and the reasons.
+Weights must be candidate frequencies from cited corpora, recorded in the spec's `sources` or `notes`. They are never parameters tuned to lower the PER. The en-GB spec weights ⟨er⟩, ⟨gh⟩ and ⟨ie⟩. Its sources are Gontijo, Gontijo & Shillcock (2003), [*Grapheme-phoneme probabilities in British English*](https://doi.org/10.3758/BF03195506), and Berndt, Reggia & Mitchum (1987), [*Empirically derived probabilities for grapheme-to-phoneme correspondences in English*](https://doi.org/10.3758/BF03207663). The spec's `notes` give the values and the reasons.
 
 ## What the lattice is
 
@@ -227,11 +221,11 @@ Keep the shared tokenizer and lattice, and add `LatticeRescorer` classes that re
 
 This fits when your rules choose, in context, among the candidates that the shared trie already lists. A coronal-triggered assimilation, a positional sibilant and a silent letter all have that shape. It also needs your IPA to come from candidate selection per grapheme, so `ipa_lattice` or `ipa_best` is, or can become, your generation path. In return you get maximal munch, positional conditioning, candidate weights and the confidence signal for every language. Your rules also compose with the built-in allophone rules and with each other.
 
-Refinement has three limits:
+Refinement has three limits. First, a rescorer sees one slot and its neighbours in the same word. A rule that needs context outside the word does not fit a rescorer: cross-word sandhi, pausal and phrase-final forms, liaison, morphological decomposition, part of speech. The [sentence-context seam](#the-sentence-context-seam) is the shared layer for the cross-word part, so an engine does not need its own sentence orchestrator.
 
-1. A rescorer sees one slot and its neighbours in the same word. A rule that needs context outside the word does not fit a rescorer: cross-word sandhi, pausal and phrase-final forms, liaison, morphological decomposition, part of speech. The [sentence-context seam](#the-sentence-context-seam) is the shared layer for the cross-word part, so an engine does not need its own sentence orchestrator.
-2. A rescorer can only choose among the candidates that the spec offers. If the spec leaves out or mis-states a candidate that a rule needs, re-costing cannot recover it. Examples are a semivowel that must geminate, or a word-final long vowel that competes with a consonant reading. The fix belongs in the spec data, not in a workaround.
-3. If your engine makes IPA some other way, such as a character-level cascade, a rescorer does nothing until your generation goes through `ipa_lattice`.
+Second, a rescorer can only choose among the candidates that the spec offers. If the spec leaves out or mis-states a candidate that a rule needs, re-costing cannot recover it. Examples are a semivowel that must geminate, or a word-final long vowel that competes with a consonant reading. The fix belongs in the spec data, not in a workaround.
+
+Third, a rescorer does nothing for an engine that makes IPA some other way, such as a character-level cascade, until its generation goes through `ipa_lattice`.
 
 ### Fork: a bespoke tokenizer and rule engine
 
@@ -243,7 +237,7 @@ The cost is that you implement and maintain tokenization yourself: the maximal-m
 
 ### In practice: hybrid, and push gaps upstream
 
-Most engines become a hybrid. Phonology inside the word runs as rescorers over the shared lattice. Cross-word sandhi and pausal forms run as sentence rescorers over the shared sentence lattice. Lexical exceptions, and any representation that neither layer expresses, run on a small private layer that calls the lattice. A downstream engine such as [arbtok](https://github.com/TigreGotico/arbtok) can move waṣl, pausal forms and assimilation onto these seams. It then keeps private only the stages that are truly its own.
+Most engines become a hybrid. Phonology inside the word runs as rescorers over the shared lattice. Cross-word sandhi and pausal forms run as sentence rescorers over the shared sentence lattice. Lexical exceptions, and any representation that neither layer expresses, run on a small private layer that calls the lattice. A downstream engine such as [arbtok](https://github.com/TigreGotico/arbtok) can move waṣl, pausal forms and assimilation onto these seams. It then keeps private only the stages that are truly its own. [tugaphone](https://github.com/TigreGotico/tugaphone) (Portuguese) and [euskaphone](https://github.com/TigreGotico/euskaphone) (Basque) build on the same lattice.
 
 Enforce the boundary between the layers in code. A word that needs context must go to the layer that has that context, never silently through a layer that does not.
 
@@ -356,7 +350,7 @@ for w in sl:
 ```
 
 ```text
-olá oˈla initial initial
+olá ɔˈla initial initial
 mundo ˈmũdu final medial
 bonito buˈnitu sole final
 ```
@@ -494,11 +488,11 @@ For each grapheme the library already computes what a sequence model needs: the 
 
 ### The CRF-as-rescorer pattern
 
-The lattice and the learned model work together in three steps:
+The lattice and a learned model work together in three steps. First, the library gives the candidate lattice and the features. For each grapheme you get the ranked `(ipa, cost)` options and a feature record that describes the position.
 
-1. The library gives the candidate lattice and the features. For each grapheme you get the ranked `(ipa, cost)` options and a feature record that describes the position.
-2. A trained model re-costs the candidates. A CRF labels each grapheme with the IPA it should realise. A `LatticeRescorer` then makes the predicted candidate the cheapest option of its slot. The model refines the beam and does not replace it, and the beam stays the fallback wherever the model is unsure.
-3. The confidence signal shows where learned capacity pays off. Every feature record carries the confidence of its word. The base engine already decides the words with confidence near 1.0. The model is useful on the ambiguous words, such as English ⟨ough⟩ and ⟨th⟩. You can weight training, or gate inference, on that signal.
+Second, a trained model re-costs the candidates. A [conditional random field](https://en.wikipedia.org/wiki/Conditional_random_field) (CRF) labels each grapheme with the IPA it should realise. A `LatticeRescorer` then makes the predicted candidate the cheapest option of its slot. The model refines the beam and does not replace it, and the beam stays the fallback wherever the model is unsure.
+
+Third, the confidence signal shows where learned capacity pays off. Every feature record carries the confidence of its word. The base engine already decides the words with confidence near 1.0. The model is useful on the ambiguous words, such as English ⟨ough⟩ and ⟨th⟩. You can weight training, or gate inference, on that signal.
 
 ### A feature record
 
@@ -542,7 +536,7 @@ The `candidates` field of the dataclass holds the full ranked lattice of the slo
 
 ### Feeding a CRF
 
-The output of `WordFeatures.as_dicts()` is already the per-token feature sequence that CRF libraries read. sklearn-crfsuite takes one such sequence per word as `X` in `CRF().fit(X, y)`, with `y` the aligned gold IPA per grapheme. python-crfsuite takes it as the `xseq` of `Trainer.append(xseq, yseq)`. The library does not depend on either package.
+The output of `WordFeatures.as_dicts()` is already the per-token feature sequence that CRF libraries read. [sklearn-crfsuite](https://sklearn-crfsuite.readthedocs.io/) takes one such sequence per word as `X` in `CRF().fit(X, y)`, with `y` the aligned gold IPA per grapheme. [python-crfsuite](https://python-crfsuite.readthedocs.io/) takes it as the `xseq` of `Trainer.append(xseq, yseq)`. The library does not depend on either package.
 
 At inference, map the model's prediction back onto the lattice as a rescorer. The rescorer needs only `orthography2ipa`. In the example below, a toy function takes the place of the trained tagger:
 

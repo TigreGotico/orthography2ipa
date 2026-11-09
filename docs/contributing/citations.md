@@ -18,7 +18,7 @@ Every spec carries its bibliography in `sources`. Every mapping that is not obvi
 
 2. Record the page in `pages` only when you read that page. If you did not check a page, leave `pages` out. Do not take a number from a table of contents.
 
-3. Quote the passage that supports the rule in the spec's `notes`, with the author, the year and the page, such as "Kirby (2011: 386)".
+3. Quote the passage that supports the rule in the spec's `notes`, with the author, the year and the page, such as "Kirby (2011: 386)". That citation in `vi.json` points to Kirby's [Illustration of Vietnamese (Hanoi)](https://doi.org/10.1017/S0025100311000181) in the *Journal of the International Phonetic Association*.
 
 4. Mark a data table `# ATTESTED` only when you checked each marked form against the source. A form that you inferred is not attested.
 
@@ -33,13 +33,13 @@ These sources are open to every reader, so a claim that cites them can be checke
 | Source | What it is good for | Its limit |
 |---|---|---|
 | [Language Science Press](https://langsci-press.org) | Open-access reference grammars and phonology monographs, with the full text | Search its catalogue for the language family first |
-| JIPA *Illustrations of the IPA* | Short, authoritative phoneme-inventory articles, one per language | Some sit behind the Cambridge paywall. Say in the source entry whether you read it in full |
-| University repositories and theses (DSpace and similar) | Dissertations that no commercial publisher took | Quality varies with the thesis |
+| [JIPA](https://www.cambridge.org/core/journals/journal-of-the-international-phonetic-association) *Illustrations of the IPA* | Short, authoritative phoneme-inventory articles, one per language | Some sit behind the Cambridge paywall. Say in the source entry whether you read it in full |
+| University repositories and theses ([DSpace@MIT](https://dspace.mit.edu) and similar) | Dissertations that no commercial publisher took | Quality varies with the thesis |
 | [archive.org](https://archive.org) | Full scans of grammars old enough to be out of copyright | The description is as old as the scan |
-| PHOIBLE | Phoneme inventories, coded the same way across languages | It says nothing about allophony or orthography |
-| Glottolog | A path to the references published on a language | It is not a phonological source of its own |
+| [PHOIBLE](https://phoible.org) | Phoneme inventories, coded the same way across languages | It says nothing about allophony or orthography |
+| [Glottolog](https://glottolog.org) | A path to the references published on a language | It is not a phonological source of its own |
 
-Two specs show the open sources at work. The Mi'kmaq spec (`mic.json`) cites Fidelholtz's 1968 dissertation on Micmac phonology at MIT's DSpace, handle `1721.1/13001`. The full text is open, and it is the source of the open-mid vowel values that the spec ships. The Mirandese vowel question was settled from archive.org. Leite de Vasconcelos's *Estudos de Philologia Mirandesa*, volume I, identifier `estudosdephilolo01vascuoft`, gives the forms directly and in full text.
+Two specs show the open sources at work. The Mi'kmaq spec (`mic.json`) cites Fidelholtz's 1968 dissertation on Micmac phonology at MIT's DSpace, handle [`1721.1/13001`](https://hdl.handle.net/1721.1/13001). The full text is open, and it is the source of the open-mid vowel values that the spec ships. The Mirandese vowel question was settled from archive.org. Leite de Vasconcelos's *Estudos de Philologia Mirandesa*, volume I, identifier [`estudosdephilolo01vascuoft`](https://archive.org/details/estudosdephilolo01vascuoft), gives the forms directly and in full text.
 
 A `phoible_id` answers "which phonemes does this language have", and nothing more. A phone inventory never settles which letter spells which phone ([writing a language spec](spec_authoring.md#looking-for-a-source-what-a-phone-inventory-cannot-tell-you)). Glottolog has no entry for some of the varieties that this project models. For those, `glottolog_code: null` is the honest state. Do not fill the field with the code of a nearby languoid.
 
@@ -47,11 +47,11 @@ A `phoible_id` answers "which phonemes does this language have", and nothing mor
 
 Wikipedia and Wiktionary are pointers, never sources. Put a Wikipedia article in the `wikipedia` field, and cite the reference grammar or paper that the article cites. Open that reference, and make sure it says what the article claims. Do not cite the paraphrase of Wikipedia. Do not cite an author whose name you took from a `<ref>` tag and whose work you did not read. Keep the Wikipedia link next to the citation, and do not remove it.
 
-A Wiktionary rewrite module such as `Module:crk-IPA` is a parser that someone wrote, and it encodes the decisions of its author. Its output is not evidence of what a reference grammar says.
+A Wiktionary rewrite module such as [`Module:crk-IPA`](https://en.wiktionary.org/wiki/Module:crk-IPA) is a parser that someone wrote, and it encodes the decisions of its author. Its output is not evidence of what a reference grammar says.
 
 A spec whose only source is Wikipedia fails `tests/test_sources.py`. The specs on its `_WIKIPEDIA_ONLY_SOURCES_BURNDOWN` list fail the rule from before the test existed. The list may only get shorter.
 
-Ciberdúvidas da Língua Portuguesa answers questions about Portuguese usage. It is an extra source in the same way. Cite the grammar that a Ciberdúvidas answer quotes, with its page, and give the Ciberdúvidas URL as the reading path. An answer that quotes no grammar can support a note, but it cannot be the only source for a rule.
+[Ciberdúvidas da Língua Portuguesa](https://ciberduvidas.iscte-iul.pt) answers questions about Portuguese usage. It is an extra source in the same way. Cite the grammar that a Ciberdúvidas answer quotes, with its page, and give the Ciberdúvidas URL as the reading path. An answer that quotes no grammar can support a note, but it cannot be the only source for a rule.
 
 ## Which source wins
 
@@ -71,13 +71,13 @@ Fidelholtz's dissertation gives the open-mid values that the spec already ships,
 
 ## Silver labels are never gold
 
-Some reference sets have no error model. Call these sets silver labels, never gold, in spec notes, in documentation and in pull request text:
+Some reference sets have no error model. Call these sets silver labels, never gold, in spec notes, in documentation and in pull request text. Three kinds of set are silver.
 
-- Sets that a large language model wrote, such as `mirandese_dict`, `barranquenho_dict` and the [TTS silver sets](../evaluation/silver_sets.md). An audit against the literature makes them more reliable, but it does not give them an error model.
+A set that a large language model wrote is silver. `mirandese_dict`, `barranquenho_dict` and the [TTS silver sets](../evaluation/silver_sets.md) are examples. An audit against the literature makes such a set more reliable, but it does not give it an error model.
 
-- Sets that are pinned to the output of this engine. A score near zero on an engine-pinned set shows that the output did not change. It does not show that the output is correct.
+A set pinned to the output of this engine is silver. A score near zero on an engine-pinned set shows that the output did not change. It does not show that the output is correct.
 
-- Sets that another phonemizer produced, such as the `espeak-derived`, `epitran-derived` and `lupo-derived` rows. These measure agreement with that tool.
+A set that another phonemizer produced is silver too. The `espeak-derived`, `epitran-derived` and `lupo-derived` rows come from [espeak-ng](https://github.com/espeak-ng/espeak-ng), [epitran](https://github.com/dmort27/epitran) and the LUPo rule engine of the [Portal da Língua Portuguesa](http://www.portaldalinguaportuguesa.org/). These rows measure agreement with that tool.
 
 The board marks these sets with the tiers that never gate, which [benchmarks](../evaluation/benchmarks.md#reliability-tiers) and [quality tiers](../specs/quality_tiers.md) define.
 
@@ -87,7 +87,7 @@ A correction overlay repairs a defect in an upstream gold set and leaves the ups
 
 ## AI-written specs
 
-Large language models wrote most specs, under the direction of a human maintainer. A model reads the sources and encodes them as JSON under these rules. A cited spec that a model wrote is still not the judgment of a native speaker, and the `quality` tier records that. If you speak a language and a spec is wrong, open an issue with a citation or a native-speaker judgment. Corrections from speakers have priority over all other work in this repository.
+Large language models wrote most specs, under the direction of a human maintainer. A model reads the sources and encodes them as JSON under these rules. A cited spec that a model wrote is still not the judgment of a native speaker, and the `quality` tier records that. If you speak a language and a spec is wrong, [open an issue](https://github.com/TigreGotico/orthography2ipa/issues) with a citation or a native-speaker judgment. Corrections from speakers have priority over all other work in this repository.
 
 ---
 [← Writing a language spec](spec_authoring.md) · [Home](../index.md) · [Board regeneration →](board.md)

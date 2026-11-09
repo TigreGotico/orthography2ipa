@@ -18,12 +18,9 @@ The effect is systematic. Speakers of non-standard lects score worse because the
 
 The candidate lattice of a reference text, under a lect spec, is the set of pronunciations that a speaker of that lect could validly produce. The function therefore computes the oracle edit distance: the minimum, over all admissible readings, of the segment-level edit distance to the hypothesis. A hypothesis pays only for segments that are wrong on every valid reading.
 
-Two kinds of reading are admissible:
+Two kinds of reading are admissible. The first kind is every path through the beam sentence lattice of the reference, `G2P.sentence_lattice(ref_text, search="beam", beam_width=beam_width)`. A path takes one candidate per grapheme slot, in order, before sandhi. The second kind is the engine's final reading, `G2P(lang).transcribe(ref_text)`. It includes the cross-word sandhi and the sentence rescorers that the lattice does not apply. The caveats below call them reading 1 and reading 2.
 
-1. Every path through the beam sentence lattice of the reference (`G2P.sentence_lattice(ref_text, search="beam", beam_width=beam_width)`), which takes one candidate per grapheme slot, in order, before sandhi.
-2. The engine's final reading, `G2P(lang).transcribe(ref_text)`. It includes the cross-word sandhi and the sentence rescorers that the lattice does not apply.
-
-The oracle does not enumerate paths. It pushes a Levenshtein frontier through the lattice, slot by slot, and takes the element-wise minimum over the candidates of each slot. This is the edit-distance transducer composed with the acyclic lattice. The cost is linear in the lattice size times the hypothesis length.
+The oracle does not enumerate paths. It pushes a [Levenshtein](https://en.wikipedia.org/wiki/Levenshtein_distance) frontier through the lattice, slot by slot, and takes the element-wise minimum over the candidates of each slot. This is the edit-distance transducer composed with the acyclic lattice. The cost is linear in the lattice size times the hypothesis length.
 
 ## Usage
 
@@ -52,7 +49,7 @@ The engine's final reading of *ez bada* is `es̻ paða`, with sandhi, and the la
 | `weighted` | With `True`, a substitution costs the articulatory feature distance in [0, 1], and insertions and deletions still cost 1 |
 | `beam_width` | The number of candidates per slot for the sentence lattice |
 
-With `weighted=True`, the metric becomes a graded phonological error rate. A laminal against apical sibilant confusion costs a fraction of a stop against vowel confusion. A segment outside the feature table compares by its base character, plus a penalty of one feature flip (1/16) for the diacritic. A substitution never costs more than 1.
+With `weighted=True`, the metric becomes a graded phonological error rate. A substitution then costs `feats.phonetic_distance` between the two segments, so a laminal against apical sibilant confusion costs a fraction of a stop against vowel confusion. A segment outside the feature table compares by its base character, plus a fixed penalty of 1/16 for the diacritic. A substitution never costs more than 1.
 
 ```python
 print(lattice_per("es pada", "ez bada", "eu").distance)
@@ -93,7 +90,7 @@ The lattice that `lattice_per` builds keeps up to `beam_width` candidates in eac
 
 The lattice path before sandhi and the final reading do not cover every combination of sandhi. An optional sandhi that the final reading applied is admissible through reading 2, and its absence is admissible through reading 1. A mixture, with one contraction applied and another not in the same utterance, is covered only when the lattice itself carries it.
 
-Scoring is per IPA segment: a base character with its combining marks, with affricate ties kept. A hypothesis in another notation must first be folded to the spec's conventions, as the cross-engine benchmarks do.
+Scoring is per IPA segment: a base character with its combining marks, with affricate ties kept. The [IPA chart](https://www.internationalphoneticassociation.org/content/full-ipa-chart) lists the diacritics, such as the laminal ⟨◌̻⟩ of `s̻`. A hypothesis in another notation must first be folded to the spec's conventions, as the cross-engine benchmarks do.
 
 ---
 [← The pronunciation lattice](lattice.md) · [Home](../index.md) · [Allophony →](allophony.md)

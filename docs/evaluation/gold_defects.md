@@ -2,7 +2,7 @@
 
 A [provenance tier](benchmarks.md#reliability-tiers) says where a gold transcription came from, not whether it is right about the language. This page is the registry of measured defects in individual gold rows. In each case the gold merges a contrast, marks something impossible, describes another lect, mixes conventions, or comes from the system it scores.
 
-The figures were measured against the cached gold in `.benchmark_cache/`, with the loaders that the scoreboard uses, so each one can be reproduced. They count words and symbols in the gold files, which the harness pins.
+The figures were measured against the cached gold in `.benchmark_cache/`, with the loaders that the scoreboard uses, so each one can be reproduced. They count words and symbols in the gold files that the harness reads. Where a figure is a count of raw file lines, the text says so, because the board's `N` counts distinct words.
 
 These findings decide what a reader may conclude from a score. A high PER on a row whose gold merges two tones says nothing about the spec. A spec change toward such a gold is gold-fitting, and the harness rules forbid it.
 
@@ -51,9 +51,9 @@ The sections below give the evidence that does not fit in a table cell.
 
 ### Vietnamese, `vox_communis`
 
-The row loads 2,475 word types, and 2,468 of them carry at least one tone letter. The gold writes ⟨˨˨⟩ for two contrastive tones. Vietnamese writes tone without ambiguity, so the tone of each headword can be read off its diacritic. Ngang, with no diacritic, takes ⟨˨˨⟩ in 584 of its 590 types. Huyền, with a grave accent, takes it in all 406 of its 406 types. No other tone class uses the symbol, apart from one stray hỏi type.
+The row reads the Vietnamese file of [fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p) (CC0), the G2P release of the [VoxCommunis corpus](https://aclanthology.org/2022.lrec-1.566/). It loads 2,475 word types, and 2,468 of them carry at least one tone letter. The gold writes ⟨˨˨⟩ for two contrastive tones. Vietnamese writes tone without ambiguity, so the tone of each headword can be read off its diacritic. Ngang, with no diacritic, takes ⟨˨˨⟩ in 584 of its 590 types. Huyền, with a grave accent, takes it in all 406 of its 406 types. No other tone class uses the symbol, apart from one stray hỏi type.
 
-That puts ⟨˨˨⟩ in 991 types, and in 967 of them it is the only tone. That is 39.1% of the row. Ngang is a level tone and huyền is a low falling tone, often breathy. They form a minimal contrast, and the gold gives them one Chao letter. About two fifths of the row therefore cannot tell a correct tone from a wrong one.
+That puts ⟨˨˨⟩ in 991 types, and in 967 of them it is the only tone. That is 39.1% of the row. Ngang is a level tone and huyền is a low falling tone, often breathy ([Kirby 2011](https://doi.org/10.1017/S0025100311000181), the source of the `vi` spec). They form a minimal contrast, and the gold gives them one Chao tone letter. About two fifths of the row therefore cannot tell a correct tone from a wrong one.
 
 The row also places tone in the wrong spot. In 1,957 of the 2,468 toned types (79.3%) the tone letter sits inside the rime, with segments after it. An example is `t oː˨˨ j` for *tôi*. Tone belongs to the whole syllable and is written after it by convention. A spec that writes tone at the end of the syllable mismatches those 1,957 types on position alone, even when the tone is right.
 
@@ -77,9 +77,9 @@ Nothing can be recovered. A missing symbol cannot be inferred from a file that n
 
 Danish stød is a laryngealization tied to a stressed syllable. Two rules of the language apply to the gold. A stress group carries at most one stød. Stød also needs a stødbasis, which is a long vowel or a sonorant coda. A short vowel before a voiceless stop cannot carry it.
 
-The scored column (`ipa_g2p_plus`) writes stød as ⟨ˤ⟩, not ⟨ʔ⟩. Of 2,233 word types, 1,302 carry the mark, and 328 carry it twice or more. 224 put it on a short vowel directly before a voiceless stop: *op* `ɔˤp`, *ikke* `eˤkə`, *nok* `nɔˤk`, *lidt* `leˤt`. The types with more than one stød are ordinary words of two morphemes, not compounds with two stress groups: *hedder* `heˤðɔˤ`, *holder* `hɔˤlɔˤ`, *flere* `fleˤɔˤ`.
+The row reads [fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split) (CC BY 4.0), a split of [IPA-CHILDES](https://huggingface.co/datasets/phonemetransformers/IPA-CHILDES). Its scored column (`ipa_g2p_plus`) comes from the [G2P+](https://github.com/codebyzeb/g2p-plus) phonemizer, and it writes stød as ⟨ˤ⟩, not ⟨ʔ⟩. Of 2,233 word types, 1,302 carry the mark, and 328 carry it twice or more. 224 put it on a short vowel directly before a voiceless stop: *op* `ɔˤp`, *ikke* `eˤkə`, *nok* `nɔˤk`, *lidt* `leˤt`. The types with more than one stød are ordinary words of two morphemes, not compounds with two stress groups: *hedder* `heˤðɔˤ`, *holder* `hɔˤlɔˤ`, *flere* `fleˤɔˤ`.
 
-The two IPA columns of the file show the mechanism. The raw `ipa_espeak` column marks 1,297 types with ⟨ʔ⟩, and 110 of those marks are word-initial. A word-initial ⟨ʔ⟩ is not stød. It is the glottal onset that espeak-ng puts before a word that starts with a vowel. 106 of the 110 come back in the scored column with ⟨ˤ⟩ on the vowel: *op* `ʔʌp` to `ɔˤp`, *også* `ʔʌsə` to `ɔˤsə`, *ikke* `ʔekə` to `eˤkə`, *en* `ʔen` to `eˤn`.
+The two IPA columns of the file show the mechanism. The raw `ipa_espeak` column marks 1,297 types with ⟨ʔ⟩, and 110 of those marks are word-initial. A word-initial ⟨ʔ⟩ is not stød. It is the glottal onset that [espeak-ng](https://github.com/espeak-ng/espeak-ng) puts before a word that starts with a vowel. 106 of the 110 come back in the scored column with ⟨ˤ⟩ on the vowel: *op* `ʔʌp` to `ɔˤp`, *også* `ʔʌsə` to `ɔˤsə`, *ikke* `ʔekə` to `eˤkə`, *en* `ʔen` to `eˤn`.
 
 espeak-ng uses one symbol for two unrelated things, and the G2P+ conversion reads every one of them as stød. That one confusion produces the cases without stødbasis and inflates the count of double stød. The scored data holds no ⟨ʔ⟩ at all. The fault shows as ⟨ˤ⟩ in the scored column and as ⟨ʔ⟩ in the espeak column.
 
@@ -89,7 +89,7 @@ The fix belongs to espeak-ng and G2P+, not to this project. The tier is `espeak-
 
 ### East Timorese Portuguese, `portal_lupo`
 
-The `pt-TL` row reads the `pt-TL-x-dili` region of the Portal da Língua Portuguesa Dicionário Fonético. The LUPo generator writes that region from the same mother lexicon as every other region ([`portal_lupo`](datasets.md#portal-da-língua-portuguesa-dicionário-fonético-portal_lupo)), so it is not independent Timorese lexicography. A word-by-word diff against `pt-PT-x-lisboa` finds 53,147 shared words, and 3,076 of them are byte-identical in the two regions.
+The `pt-TL` row reads the `pt-TL-x-dili` region of the [Portal da Língua Portuguesa](http://www.portaldalinguaportuguesa.org/) Dicionário Fonético, through [TigreGotico/portuguese-unified-pronunciation-lexicon](https://huggingface.co/datasets/TigreGotico/portuguese-unified-pronunciation-lexicon) (CC BY-SA 4.0). The LUPo generator writes that region from the same mother lexicon as every other region ([`portal_lupo`](datasets.md#portal-da-língua-portuguesa-dicionário-fonético-portal_lupo)), so it is not independent Timorese lexicography. A word-by-word diff against `pt-PT-x-lisboa` finds 53,147 shared words, and 3,076 of them are byte-identical in the two regions.
 
 The diff then keeps the 35,800 shared entries whose transcriptions have the same length, where a positional diff means something. Six substitutions account for 90.6% of the 63,189 character differences:
 
@@ -104,13 +104,13 @@ The diff then keeps the 35,800 shared entries whose transcriptions have the same
 
 Further down come d to ð (223) and ɡ to ɣ (150). These counts are over the first-variant pairs of equal length.
 
-Another symbol for the reduced unstressed vowel of European Portuguese does not remove the vowel. 60% of `pt-TL-x-dili` entries still have a reduced [ə], and 31% still end in a reduced [ʊ]. Coda /s/ still surfaces as the Lisbon hush: gold *instrumentista* is `ĩʃtɾumẽntˈiʃtə`, and Lisbon has `ĩʃtɾumẽtˈiʃtɐ`. Albuquerque (2010:275 fn. 7, 277), the source of the `pt-TL` spec, documents the opposite for this variety. It has no reduction of unstressed vowels and an alveolar coda /s/ with no hush. The row therefore measures agreement with European Portuguese in other symbols, not with the East Timorese acrolect that the spec models.
+Another symbol for the reduced unstressed vowel of European Portuguese does not remove the vowel. 60% of `pt-TL-x-dili` entries still have a reduced [ə], and 31% still end in a reduced [ʊ]. Coda /s/ still surfaces as the Lisbon hush: gold *instrumentista* is `ĩʃtɾumẽntˈiʃtə`, and Lisbon has `ĩʃtɾumẽtˈiʃtɐ`. [Albuquerque (2010:275 fn. 7, 277)](http://www.revel.inf.br/files/artigos/revel_15_peculiaridades_prosodicas_do_portugues_falado_em_timor_leste.pdf), the source of the `pt-TL` spec, documents the opposite for this variety. It has no reduction of unstressed vowels and an alveolar coda /s/ with no hush. The row therefore measures agreement with European Portuguese in other symbols, not with the East Timorese acrolect that the spec models.
 
 The row has the tier `lupo-derived`, so it can neither qualify nor block a promotion. A low PER here cannot mean that the spec is right, and a high PER cannot mean that it is wrong. No transcription work fixes the defect. The spec needs a gold collected from Timorese speakers.
 
 ### Persian, `wikipron`
 
-The WikiPron `fa` set is mostly Classical or Early New Persian, not the modern Iranian Persian that the `fa` tag names. Over the 62,914 gold segments of the file, the classical reading wins on every diagnostic:
+The [WikiPron](https://github.com/CUNY-CL/wikipron) `fa` set (`fas_arab_broad.tsv`, CC BY-SA) is mostly Classical or Early New Persian, not the modern Iranian Persian that the `fa` tag names. Over the 62,914 gold segments of the file, the classical reading wins on every diagnostic:
 
 | Classical | Count | Modern | Count |
 |---|---:|---|---:|
@@ -126,7 +126,7 @@ A better description of Persian cannot improve this row. The only way to lower i
 
 ### Algerian Arabic, `primary_sources`
 
-The `arq-DZ` row on `primary_sources` has one gold pair: id `guerrero2019-010`, زَوْجَتُه "his wife". It is filed against Guerrero (2019), who quotes the 1908 description of Tlemcen Arabic by W. Marçais. *Le dialecte arabe parlé à Tlemcen* (1902) is the earlier monograph of the same author on the same city. The row is far below `THIN_ROW_N`, so `per_ci_low` and `per_ci_high` in `benchmarks/results.json` are null, and the scoreboard shows `n too small`. The `PROVENANCE` comment in `scripts/benchmark.py` warns that `primary_sources` rows "diagnose rules rather than certify a language on their own."
+The `arq-DZ` row on `primary_sources` has one gold pair: id `guerrero2019-010`, زَوْجَتُه "his wife". It is filed against [Guerrero (2019)](https://hal.science/hal-03516978), who quotes the 1908 description of Tlemcen Arabic by W. Marçais. [*Le dialecte arabe parlé à Tlemcen*](https://archive.org/details/arabe_tlemcen) (1902) is the earlier monograph of the same author on the same city. The row is far below `THIN_ROW_N`, so `per_ci_low` and `per_ci_high` in `benchmarks/results.json` are null, and the scoreboard shows `n too small`. The `PROVENANCE` comment in `scripts/benchmark.py` warns that `primary_sources` rows "diagnose rules rather than certify a language on their own."
 
 The `arq-DZ` spec models old urban Algiers, after Boucherit (2002). It cites the Tlemcen material of Marçais only for the isogloss of the interdental stops. Guerrero's example is Algerian, but it is western Tlemcen speech. It also carries a construct-state contraction that the spec was never built to produce. In Marçais the word surfaces as *zūžtăh* ['zuːʃtah]. The short /a/ of the possessive syncopates, /aw/ contracts to /uː/, and /ʒ/ devoices to [ʃ] before /t/. The spec reads the vocalized input as it is written, `ˈzawʒatuh`, with no syncope, contraction or devoicing.
 
@@ -166,7 +166,7 @@ The tier is `crowd-scraped`, so the row gates.
 
 ### Limburgish, `wikipron`
 
-The `li` spec implements *Spelling 2003 voor de Limburgse dialecten*, the Veldeke spelling. It states that ad-hoc spellings based on Dutch or German are out of scope. The gold mixes headwords from the Veldeke spelling with alternative forms from Wiktionary. These come from the German-based spelling, from Rheinische Dokumenta and from the Eupen dialect.
+The `li` spec implements [*Spelling 2003 voor de Limburgse dialecten*](https://www.veldeke.net/wp-content/uploads/2024/02/Spelling-2003.pdf), the Veldeke spelling. It states that ad-hoc spellings based on Dutch or German are out of scope. The gold mixes headwords from the Veldeke spelling with alternative forms from Wiktionary. These come from the German-based spelling, from Rheinische Dokumenta and from the Eupen dialect.
 
 The file holds 1,128 gold lines over 989 headwords. 123 headwords are homographs with two or more readings. The spelling underdetermines the pronunciation, partly through dialect variation, and partly because the contrast of sleeptoon and stoottoon is not written. Spelling 2003 has two optional signs for it, and the headwords do not use them. 90 gold lines, over 55 words, carry an IPA tone letter that the spelling cannot supply.
 
@@ -174,7 +174,7 @@ Tone is not the main source of error here, unlike the Hausa and Kikuyu tone fold
 
 The gold's own spelling measures the mix. Of the 140 headwords whose IPA has a postalveolar fricative, 130 write it `sch` and 7 write it `sj`, the Spelling 2003 form. `ae` occurs in 10 headwords and `ao` in 14, against 114 with `ä` and 34 with `ü`. The Veldeke convention that the row is scored against is a small minority of the file.
 
-Two other conventions separate cleanly. 89 headwords carry a sign that belongs only to Rheinische Dokumenta (`e̩`, `ǫ`, `ṣ`, `c͜h`). 222 carry the acute and diaeresis signs of the Eupen spelling. No headword carries both. Rheinische Dokumenta is a published standard, the transcription system of the Landschaftsverband Rheinland for the dialects of the Rhineland (Honnen 1987). It therefore has its own spec, `li-x-rheindok`, because a distinct written convention for one language gets its own entry. `li-x-rheindok` scores those 89 headwords far better than `li` does, and 58 of them come out exactly right.
+Two other conventions separate cleanly. 89 headwords carry a sign that belongs only to Rheinische Dokumenta (`e̩`, `ǫ`, `ṣ`, `c͜h`). 222 carry the acute and diaeresis signs of the Eupen spelling. No headword carries both. [Rheinische Dokumenta](https://en.wikipedia.org/wiki/Rheinische_Dokumenta) is a published standard, the transcription system of the Landschaftsverband Rheinland for the dialects of the Rhineland (Honnen 1987). It therefore has its own spec, `li-x-rheindok`, because a distinct written convention for one language gets its own entry. `li-x-rheindok` scores those 89 headwords far better than `li` does, and 58 of them come out exactly right.
 
 `li` still targets Spelling 2003. The Eupen block stays unmodelled. No published orthography for it was found, and a sign table inferred from the gold that then scores it would be fitting, not description. The board still scores the whole file against `li`. Splitting the gold by convention is upstream work at Wiktionary, or a local exclusion, not a spec change. The tier is `crowd-scraped`, so the row gates. The `li` spec carries the verdict as a machine-readable `mislabeled_gold` audit record.
 
@@ -182,7 +182,7 @@ Two other conventions separate cleanly. 89 headwords carry a sign that belongs o
 
 The `gd` gold has 3,720 headwords over 6,000 lines. It mixes two things that the spec cannot follow at once.
 
-The first is a notation split for the plain stops ⟨b d g⟩. The modern instrumental analysis finds "very little or no closure voicing even in word-medial stops which are orthographically b d g". It writes the series as an aspiration contrast, /pʰ/ against /p/ (Nance and Stuart-Smith 2013, summarized in Nance and Ó Maolalaigh 2020). The spec follows that analysis. 185 of the 3,720 headwords use the older devoicing convention of Borgstrøm (1940) and Oftedal (1956), /b̥ d̥ ɡ̊/, for the same sounds.
+The first is a notation split for the plain stops ⟨b d g⟩. The modern instrumental analysis finds "very little or no closure voicing even in word-medial stops which are orthographically b d g". It writes the series as an aspiration contrast, /pʰ/ against /p/ ([Nance and Stuart-Smith 2013](https://doi.org/10.1017/S0025100313000042), summarized in the JIPA illustration of [Nance and Ó Maolalaigh 2021](https://doi.org/10.1017/S002510031900015X)). The spec follows that analysis. 185 of the 3,720 headwords use the older devoicing convention of Borgstrøm (1940) and Oftedal (1956), /b̥ d̥ ɡ̊/, for the same sounds.
 
 The second is dialect mixing. 986 of the 3,720 headwords carry two or more pronunciations that cannot both be right. They differ in the quality of the stressed vowel, or in whether preaspiration occurs. That fits the crowd-scraped origin of WikiPron, with many contributors, not one variety.
 
@@ -192,11 +192,13 @@ The fix is to normalize the two devoicing conventions in the IPA normalizer of t
 
 ### Middle High German, `wikipron`
 
-The `gmh` spec targets the normalized orthography of Karl Lachmann. It writes long vowels with a circumflex (â ê î ô û) and the umlaut reflexes as ⟨æ œ⟩ (Paul, *Mittelhochdeutsche Grammatik*, revised by Klein, Solms and Wegera, 2007). The gold has 1,724 source words, and 1,516 are scored after the tokenizer filter. It does not use that convention. None of the 1,724 words carries a circumflex vowel or ⟨ë⟩, while 115 carry ⟨æ⟩ or ⟨œ⟩ and 130 carry ⟨ä ö ü⟩.
+The `gmh` spec targets the normalized orthography of Karl Lachmann. It writes long vowels with a circumflex (â ê î ô û) and the umlaut reflexes as ⟨æ œ⟩ (Paul, *Mittelhochdeutsche Grammatik*, revised by Klein, Solms and Wegera, 2007). The gold has 1,724 lines over 1,516 distinct headwords, and the board row scores the 1,516 headwords. It does not use that convention. None of the 1,724 lines spells a circumflex vowel or ⟨ë⟩, while 115 spell ⟨æ⟩ or ⟨œ⟩ and 130 spell ⟨ä ö ü⟩.
 
-That is a second, real spelling convention, not a defect. The English Wiktionary style page (*Wiktionary:About Middle High German*) explains it. It says that "certain letters with diacritics (ë ā ē ī ō ū ȥ) are not used in article titles, but are used when displaying the word". It adds that "this does not apply to the umlauted vowels ä, ö, ü, æ, œ". WikiPron scrapes the page title, not the displayed headword, so the policy predicts the counts above exactly.
+That is a second, real spelling convention, not a defect. The English Wiktionary style page [*Wiktionary:Middle High German entry guidelines*](https://en.wiktionary.org/wiki/Wiktionary:Middle_High_German_entry_guidelines) explains it. It says that "certain letters with diacritics (ë ā ē ī ō ū ȥ) are not used in article titles, but are used when displaying the word". It adds that "this does not apply to the umlauted vowels ä, ö, ü, æ, œ". WikiPron scrapes the page title, not the displayed headword, so the policy predicts the counts above.
 
-A distinct written convention for one language gets its own spec, as `cdo-Latn-x-buc` beside `cdo` and `zh-Hani` beside `zh`. This one is `gmh-x-wikt`. It takes the phonology of `gmh` whole through `graphemes_base` and nulls only the circumflex length graphemes, which this convention never writes. `gmh` keeps Lachmann's convention, which is correct for edited text in scholarly normalization. Score the `wikipron` gold against `gmh-x-wikt`, not `gmh`.
+A distinct written convention for one language gets its own spec, as `cdo-Latn-x-buc` beside `cdo` and `zh-Hani` beside `zh`. This one is `gmh-x-wikt`. It takes the phonology of `gmh` whole through `graphemes_base` and nulls only the circumflex length graphemes, which this convention never writes. `gmh` keeps Lachmann's convention, which is correct for edited text in scholarly normalization. The board row scores the `wikipron` gold against `gmh`. To measure the rules on the spelling this gold uses, score it against `gmh-x-wikt`.
+
+The `wikipron_restored` dataset takes the third route. It keeps the same gold IPA and puts back the displayed headword, with the diacritics the title drops, from the mirror [TigreGotico/wikipron-restored-orthography](https://huggingface.co/datasets/TigreGotico/wikipron-restored-orthography). That input is scored against `gmh`, never against `gmh-x-wikt`. A word with no restorable headword is left out, so that row covers a subset of the `wikipron` row.
 
 The bare ⟨z⟩ is a narrower case that cannot be recovered, and it affects both specs. Middle High German ⟨z⟩ continues two outcomes of the High German consonant shift. One is the affricate [t͡s] ("herze", "heizen", "gezogen"). The other is a fricative [s] ("az", "biz", "daz"). Only the doubled spellings settle it: ⟨tz⟩ is the geminate affricate and ⟨zz⟩ the geminate fricative, and the spec maps both. Some editions mark the fricative with a special z (ȝ or ȥ), but this gold does not. The bare ⟨z⟩ split is therefore limited by the input, and the spec keeps the affricate default rather than fit it to this gold.
 
@@ -204,7 +206,7 @@ The tier is `crowd-scraped`, so the row gates. Schwa reduction, apical ⟨s⟩ a
 
 ### Kapampangan, `wikipron`
 
-The `pam` spec writes its mid front vowel as open-mid /ɛ/. It follows the phonology summary of the Wikipedia article on the language, which cites Forman 1971, *Kapampangan Grammar Notes*, pages 28 and 29, for stress. The gold never writes that symbol. None of its 926 headwords carries ⟨ɛ⟩, and 119 carry plain ⟨e⟩.
+The `pam` spec writes its mid front vowel as open-mid /ɛ/. It follows the phonology summary of the Wikipedia article on the language, which cites Forman 1971, *Kapampangan Grammar Notes*, pages 28 and 29, for stress. The gold never writes that symbol. Its 926 lines cover 860 headwords, and none of the lines writes ⟨ɛ⟩, while 119 write plain ⟨e⟩.
 
 Both write the same vowel letter, and only the IPA symbol differs. This is a mismatch of notation, not an unwritten contrast. It is left as it is. Changing the spec to /e/ to match one gold's convention would be gold-fitting against an analysis sourced from Forman. Folding ⟨ɛ⟩ to ⟨e⟩ on both sides lowers the PER of the row. The fold does not count toward `valid_ceiling` in `pam.json`. That ceiling is for what the spelling cannot write: the glottal stop, and the unmarked lexical stress behind the /a/~[ə], /i/~[ɪ] and /u/~[ʊ] alternation.
 
@@ -226,7 +228,7 @@ All three are `llm-corrected`, so none can gate, and the tier is correct. A PER 
 
 ### Abkhaz, `vox_communis`
 
-The `ab` row carries the tier `epitran-derived`, and epitran cannot have produced it. epitran 1.35.2 ships 161 grapheme-to-phoneme maps in `epitran/data/map/`, and none is Abkhaz. It has no `abk` map and no `ab` map in any script. Another tool of the VoxCommunis pipeline built the Abkhaz phone tier: XPF, Charsiu or a custom dictionary.
+The `ab` row carries the tier `epitran-derived`, and [epitran](https://github.com/dmort27/epitran) cannot have produced it. The epitran 1.35.2 wheel ships 158 grapheme-to-phoneme maps as CSV files in [`epitran/data/map/`](https://github.com/dmort27/epitran/tree/master/epitran/data/map), and none is Abkhaz. It has no `abk` map and no `ab` map in any script. Another tool of the VoxCommunis pipeline built the Abkhaz phone tier: the [XPF Corpus](https://cohenpr-xpf.github.io/XPF/), [CharsiuG2P](https://github.com/lingjzhu/CharsiuG2P) or a custom dictionary.
 
 The dataset-wide tier `epitran-derived` is a reasonable default for VoxCommunis. Its lexicons come from a mix of tools, and the tier is pessimistic on purpose. For this row, though, the label names a competitor that was not used. The name of the competitor is exactly what the tier exists to tell a reader. The reader is told to read the row as divergence from epitran, and no epitran output exists to diverge from.
 
@@ -265,7 +267,7 @@ PYTHONPATH=. python scripts/gold_composition.py --max-n 5000
 | `--start N`, `--end N` | score only the board rows `[start:end]`, so a full sweep can run in batches |
 | `--max-n N` | skip a row whose board `n` is above `N`, without loading its gold |
 
-The script prints one JSON object. `rows_scored` and `rows_skipped_no_cache` count the rows it scored and skipped, and the `skipped` list names the skipped rows. A row is skipped when its gold is not in the cache, when it is above `--max-n`, or when its loader fails. The script blocks network access, so it never downloads gold. Its output depends only on what is in the cache. `most_flattered` lists the ten rows with the largest positive `gap`, and `rows` lists every scored row.
+The script prints one JSON object. `rows_scored` and `rows_skipped_no_cache` count the rows it scored and skipped, and the `skipped` list names the skipped rows. A row is skipped when its gold is not in the cache, when it is above `--max-n`, or when its loader fails. The script patches `urllib.request.urlretrieve`, the download route of the gold cache, so a row with no cached gold is skipped and nothing is downloaded. The one exception is `alphacep_ru_book`, whose loader reads the Hugging Face cache through `hf_hub_download`, which still downloads on a miss. `most_flattered` lists the ten rows with the largest positive `gap`, and `rows` lists every scored row.
 
 The `--max-n` skip has a known bound. A spec's alphabet has a few dozen graphemes. Even if every grapheme appears as a headword, a gold of `N` words has a trivial share below about `alphabet_size / N`. That bound fails for a script that writes one character per morpheme. A spot check of `ja` on `ipadict` found a large trivial share far above the cutoff. A CJK row skipped by `--max-n` can therefore hold a real finding, so check such rows with a higher bound or with none.
 

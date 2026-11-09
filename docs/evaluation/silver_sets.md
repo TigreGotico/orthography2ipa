@@ -1,6 +1,10 @@
 # TTS silver sets
 
-The TTS silver sets are full sentences with a broad IPA transcription, one TSV file per lect. A large language model wrote them, and each IPA cell is the output of this engine. They are therefore [silver labels, never gold](../contributing/citations.md#silver-labels-are-never-gold). They have two uses. First, they check a TTS voice for a lect. Synthesize each sentence, listen to it or run ASR on it, and compare the result with the stored IPA. Second, they pin the sentence-level behaviour of the engine, so a spec change that alters a transcription fails CI.
+The TTS silver sets are full sentences with a broad IPA transcription, one TSV file per lect. A large language model wrote the sentences. Each IPA cell starts as a draft from this engine and is then audited against the sources of the lect. The sets are therefore [silver labels, never gold](../contributing/citations.md#silver-labels-are-never-gold).
+
+The main use is to check a TTS voice for a lect, such as a [phoonnx](https://github.com/TigreGotico/phoonnx) voice. Synthesize each sentence, listen to it or run ASR on it, and compare the result with the stored IPA. The sets also give each lect a fixed list of sentences that exercises its phonetic axes, with a citation for every row.
+
+The sets do not pin engine output. The tests check the source files, the tags and the citations, and nothing in the suite compares the `ipa` column with the engine. A spec change that alters a transcription therefore leaves CI green. Run `draft` on a sentence to see what the engine writes after the change.
 
 Five sets share one design. This page describes the design once, then lists what each set adds.
 
@@ -8,15 +12,15 @@ Five sets share one design. This page describes the design once, then lists what
 
 | Set | Lects covered | Builder | Test | Benchmark tier |
 |---|---|---|---|---|
-| [`arabic_tts`](#arabic_tts) | Classical Arabic, Modern Standard Arabic, the spoken dialects from Mauritania to Oman, Andalusi Arabic, and the five Arabic grouping nodes | `scripts/arabic_tts_gold.py`, with `scripts/_gold_build.py` | `tests/test_arabic_tts_gold.py` | `llm-generated` |
+| [`arabic_tts`](#arabic_tts) | Classical Arabic, Modern Standard Arabic, the spoken dialects from Mauritania to Oman, Andalusi Arabic, and the five Arabic grouping nodes | `scripts/arabic_tts_gold.py`, with `scripts/_gold_build.py` | `tests/test_arabic_tts_gold.py` | `llm-corrected` |
 | [`kabyle_tts`](#kabyle_tts) | Kabyle | `scripts/kabyle_tts_gold.py` | `tests/test_kabyle_tts_gold.py` | not a benchmark dataset |
-| [`portuguese_tts`](#portuguese_tts) | European, Brazilian, African and Asian Portuguese, medieval Portuguese and Galician-Portuguese, Mirandese, the Asturleonese speech of Trás-os-Montes, and Barranquenho | `scripts/portuguese_tts_gold.py` | `tests/test_portuguese_tts_gold.py` | `llm-generated` |
+| [`portuguese_tts`](#portuguese_tts) | European, Brazilian, African and Asian Portuguese, medieval Portuguese and Galician-Portuguese, Mirandese, the Asturleonese speech of Trás-os-Montes, and Barranquenho | `scripts/portuguese_tts_gold.py` | `tests/test_portuguese_tts_gold.py` | `llm-corrected` |
 | [`iberian_creole_tts`](#iberian_creole_tts) | The Portuguese creoles of Asia and the Gulf of Guinea, the Upper Guinea creoles, and the Spanish creoles of the Caribbean and the Philippines | `scripts/iberian_creole_tts_gold.py` | `tests/test_iberian_creole_tts_gold.py` | not a benchmark dataset |
-| [`spain_romance_tts`](#spain_romance_tts) | Castilian and its accents, Galician, Asturleonese, Aragonese, Catalan and Valencian, Aranese, Fala, Extremaduran, Ladino, Latin American and Equatoguinean Spanish, and Basque | `scripts/spain_romance_tts_gold.py` | `tests/test_spain_romance_tts_gold.py` | `llm-generated` |
+| [`spain_romance_tts`](#spain_romance_tts) | Castilian and its accents, Galician, Asturleonese, Aragonese, Catalan and Valencian, Aranese, Fala, Extremaduran, Ladino, Latin American and Equatoguinean Spanish, and Basque | `scripts/spain_romance_tts_gold.py` | `tests/test_spain_romance_tts_gold.py` | `llm-corrected` |
 
 The files live in `orthography2ipa/data/gold/<set>/<code>.tsv`. List that directory for the lects that have a file. The `LECTS` list at the top of each builder is the full roster that `validate` checks.
 
-The benchmark tier comes from `PROVENANCE` in `scripts/benchmark.py`. `kabyle_tts` and `iberian_creole_tts` are not in the dataset registry, so the scoreboard does not score them. See [What a score on these sets means](#what-a-score-on-these-sets-means).
+The benchmark tier comes from `PROVENANCE` in `scripts/benchmark.py`. The [dataset catalogue](datasets.md#summary) gives the scored sets beside every other gold. The files are part of this repository and fall under its Apache-2.0 licence. `kabyle_tts` and `iberian_creole_tts` are not in the dataset registry, so the scoreboard does not score them. See [What a score on these sets means](#what-a-score-on-these-sets-means).
 
 ## Schema
 
@@ -58,7 +62,7 @@ Never edit the `ipa` column, or a corrected label, to hide a spec bug. When the 
 | Citations | `notes` names an id that is not in the lect's `sources`, holds an author-year citation in free text, or holds no resolvable id |
 | Arabic vocalization | `raw` differs from `sentence` with the ḥarakāt removed, or a consonant has no diacritic outside the allowed cases |
 
-A source id is lowercase letters and a four-digit year, with an optional suffix, such as `naitzerrad2001` or `kossmann_stroomer1997`. `validate` rejects a free-text citation such as "Watson 2002", because a name in prose cannot be resolved against the spec.
+A source id is a lowercase name, which can hold underscores or hyphens, then a four-digit year and an optional letter suffix, such as `naitzerrad2001` or `kossmann_stroomer1997`. `validate` rejects a free-text citation such as "Watson 2002", because a name in prose cannot be resolved against the spec.
 
 The Arabic vocalization check allows a bare consonant in word-final position, where the pausal form drops the vowel. It also allows the bare lām of the definite article.
 
@@ -163,7 +167,7 @@ Both sets are also written to be rich in sandhi. Word junctions are where these 
 
 ## What a score on these sets means
 
-A language model wrote the sentences of all five sets. For `arabic_tts` and `portuguese_tts` it also drafted each transcription. Each draft was then pinned to the engine and audited row by row against the literature cited in `notes`. The `spain_romance_tts` transcriptions are drafted by `transcribe` itself. Each row of every set names in `notes` the spec sources that ground it, and `validate` checks that each id resolves.
+A language model wrote the sentences of all five sets. The `ipa` column holds the engine transcription of each sentence, audited row by row against the literature cited in `notes`. Each row of every set names in `notes` the spec sources that ground it, and `validate` checks that each id resolves.
 
 The scoreboard scores `arabic_tts`, `portuguese_tts` and `spain_romance_tts` against their corrected labels, at the `llm-corrected` tier. That tier is silver and can never gate a quality decision. Two blind model passes wrote each label, and a third pass decided where they differed, with the engine output in view. The label is still a language model's. A PER on these rows measures distance from that label. It is not an accuracy, and a row is never evidence for a phonetic value. The `kabyle_tts` and `iberian_creole_tts` sets have corrected labels too, but the board does not register them.
 
@@ -202,7 +206,7 @@ The shape tags are `statement`, `question`, `negation`, `imperative` and `number
 
 ### Authoring differences
 
-The Arabic `draft` vocalizes each line with text2tashkeel (`rawi-ensemble`) before it transcribes. text2tashkeel models Modern Standard Arabic only. For a dialect its output is out of domain, so `draft` marks each row for correction against the lect's sources. Classical and Modern Standard Arabic drafts still need a review of case endings and waṣl. The Arabic `draft` stops with an import error when the `text2tashkeel` package is not installed. When the package is installed but vocalization fails on a line, the draft keeps the line as written and records the error in `notes`.
+The Arabic `draft` vocalizes each line with [text2tashkeel](https://github.com/TigreGotico/text2tashkeel) (its default `rawi-ensemble` model) before it transcribes. text2tashkeel models Modern Standard Arabic only. For a dialect its output is out of domain, so `draft` marks each row for correction against the lect's sources. Classical and Modern Standard Arabic drafts still need a review of case endings and waṣl. The Arabic `draft` stops with an import error when the `text2tashkeel` package is not installed. When the package is installed but vocalization fails on a line, the draft keeps the line as written and records the error in `notes`.
 
 `scripts/_gold_build.py` is a second way to write an Arabic file. It takes a lect code and a Python file that defines `ROWS` as a list of `(sentence, gloss_en, shape_tags, notes)` tuples. It computes `raw`, the IPA and the machine tags, warns about bare consonants, and overwrites `<lect>.tsv`:
 
@@ -250,7 +254,7 @@ The specs of `shu-TD`, `shu-NG`, `aeb-TN`, `arq-DZ`, `ar-LY` and `mey-MR` have t
 
 ## `kabyle_tts`
 
-The Kabyle set is written in the standard Berber Latin alphabet. That is the Tamaziɣt orthography of INALCO, which the Kabyle Wikipedia and the grammars of Naït-Zerrad use. It is the input contract of the `kab` spec. Tifinagh is a secondary script for Kabyle and the set does not cover it. Transliterate a Tifinagh text to the Latin orthography first.
+The Kabyle set is written in the standard Berber Latin alphabet. That is the Tamaziɣt orthography of INALCO, which the [Kabyle Wikipedia](https://kab.wikipedia.org/) and the grammars of Naït-Zerrad use. It is the input contract of the `kab` spec. Tifinagh is a secondary script for Kabyle and the set does not cover it. Transliterate a Tifinagh text to the Latin orthography first.
 
 ### Tags
 
@@ -288,9 +292,9 @@ These transcriptions come from the `kab` spec:
 | `meqqer` | `məqːər` | the tense counterpart stays a stop |
 | `nteddu` | `ntədːu` | the stop survives after a homorganic nasal |
 
-Kossmann and Stroomer 1997 (pages 466 to 469) describe spirantization and the stops that resist it. The rules `KAB_BLOCK_SPIRANT_T_AFTER_N`, `KAB_BLOCK_SPIRANT_D_AFTER_N` and `KAB_BLOCK_SPIRANT_B_AFTER_M` model the block after a nasal.
+Kossmann and Stroomer 1997, [*Berber Phonology*](https://hdl.handle.net/1887/4150) (pages 466 to 469), describe spirantization and the stops that resist it. The rules `KAB_BLOCK_SPIRANT_T_AFTER_N`, `KAB_BLOCK_SPIRANT_D_AFTER_N` and `KAB_BLOCK_SPIRANT_B_AFTER_M` model the block after a nasal.
 
-A lax stop can also stay a stop after other consonants. In `argaz` the spec gives `ærɡæz`, because /ʝ/ becomes a stop after r, l and n (Bedar, Quellec and Tifrit 2022). The emphatic and pharyngeal series, the affricates, the uvulars, [ɣ], nasal assimilation to [ŋ] and the epenthetic [ə] each occur in at least one row.
+A lax stop can also stay a stop after other consonants. In `argaz` the spec gives `ærɡæz`, because /ʝ/ becomes a stop after r, l and n (Bedar, Quellec and Tifrit 2022, [*Post-sonorant occlusivization in Kabyle*](https://hal.science/hal-03691265)). The emphatic and pharyngeal series, the affricates, the uvulars, [ɣ], nasal assimilation to [ŋ] and the epenthetic [ə] each occur in at least one row.
 
 ## `portuguese_tts`
 
@@ -325,12 +329,12 @@ Reuse words that the primary-source gold of the spec attests (`orthography2ipa/d
 
 | Lect | What the rows show | Sources |
 |---|---|---|
-| `pt-PT` | heavy reduction of unstressed vowels to [ɨ ɐ u], coda sibilant [ʃ ʒ], dark coda [ɫ], the open-close mid contrast, nasal vowels and nasal diphthongs [ɐ̃w̃ ɐ̃j̃ õj̃], palatals [ʎ ɲ], uvular strong R [ʁ] | Cruz-Ferreira 1995, Mateus and d'Andrade 2000, Cunha and Cintra 1984 |
+| `pt-PT` | heavy reduction of unstressed vowels to [ɨ ɐ u], coda sibilant [ʃ ʒ], dark coda [ɫ], the open-close mid contrast, nasal vowels and nasal diphthongs [ɐ̃w̃ ɐ̃j̃ õj̃], palatals [ʎ ɲ], uvular strong R [ʁ] | [Cruz-Ferreira 1995](https://doi.org/10.1017/S0025100300005223), Mateus and d'Andrade 2000, Cunha and Cintra 1984 |
 | `pt-PT-x-lisbon` | the `pt-PT` profile with the article `o` raised to [u] and the fullest reduction. Coverage rows reuse the words of the Cruz-Ferreira IPA illustration (`gato`, `rato`, `mundo`, `chato`, `pilha`), so they witness the primary-source gold directly. | Cintra 1971, Segura 2013, Cruz-Ferreira 1995 |
 
 ## `iberian_creole_tts`
 
-The creole set holds the Portuguese- and Spanish-lexified creoles that go back to the Iberian expansion. The sentences carry real creole morphosyntax: TMA particles before the verb, creole pronoun sets, reduced verb paradigms and substrate vocabulary. They are never Portuguese or Spanish sentences with creole words put in. Attested example forms from the sources (the APiCS surveys 40 to 42, Baxter, Cardoso, Clements) are used as given wherever possible.
+The creole set holds the Portuguese- and Spanish-lexified creoles that go back to the Iberian expansion. The sentences carry real creole morphosyntax: TMA particles before the verb, creole pronoun sets, reduced verb paradigms and substrate vocabulary. They are never Portuguese or Spanish sentences with creole words put in. Attested example forms from the sources are used as given wherever possible. The sources are Baxter, Cardoso and Clements, and the [APiCS Online](https://apics-online.info/) surveys of [Korlai](https://apics-online.info/surveys/40) (40), [Sri Lanka Portuguese](https://apics-online.info/surveys/41) (41) and [Papiá Kristang](https://apics-online.info/surveys/42) (42).
 
 Each lect uses its own written convention. Where a community orthography is stable, the set uses it, as for Kristang. Where no stable written form exists, the set uses the scholarly Latin transcription of the documentation.
 
@@ -449,7 +453,7 @@ Each lect uses its own attested words, never Castilian spoken with an accent. Ga
 | Lect | What the rows show | Sources |
 |---|---|---|
 | `es-ES` | distinción ⟨c z⟩ [θ], yeísmo ⟨ll y⟩ [ʝ], Romance diphthongs from Ĕ and Ŏ, palatal nasal [ɲ], the trill and tap contrast, sandhi | Hualde 2005, Penny 2002, Harris 1969 |
-| `gl-ES` | distinción without seseo, [ʎ] without yeísmo, the open mids [ɛ ɔ], velar nasal [ŋ] in coda -n and ⟨nh⟩ (`unha`), [ʃ] from the old sibilants, and no gheada in the standard | Regueira 1996, Freixeiro Mato 1998, Carballo Calero 1979 |
+| `gl-ES` | distinción without seseo, [ʎ] without yeísmo, the open mids [ɛ ɔ], velar nasal [ŋ] in coda -n and ⟨nh⟩ (`unha`), [ʃ] from the old sibilants, and no gheada in the standard | [Regueira 1996](https://www.cambridge.org/core/journals/journal-of-the-international-phonetic-association/article/galician/12F7CB857C4D8CD3B8634FBD250580CF), Freixeiro Mato 1998, Carballo Calero 1979 |
 | `ast-x-sanabria` | stressed Ŏ to /wo/ (`cuostan`, `buonas`), initial L- to [ʎ] and N- to [ɲ], distinción [θ], final -o to -u, and four sibilants | Frías Conde, García Arias 2003 |
 
 ---

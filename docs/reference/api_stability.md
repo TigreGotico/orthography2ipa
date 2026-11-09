@@ -4,25 +4,32 @@ This page lists the names that downstream code imports from `orthography2ipa`, a
 
 ## The stability commitment
 
-No covered name is renamed or removed in one step. A rename or a removal follows the semver and conventional-commit flow. The commit announces the change as breaking (`feat!:` or `BREAKING CHANGE:`), and a documented replacement supersedes the name. The name goes only after the major version passes the one that announced the deprecation. The removal version comes from `orthography2ipa/version.py` (`VERSION_MAJOR + 1`) at deprecation time, and no comment or page writes it by hand.
+No covered name is renamed or removed in one step. A rename or a removal follows the [semver](https://semver.org/) and [conventional-commit](https://www.conventionalcommits.org/) flow. The commit announces the change as breaking (`feat!:` or `BREAKING CHANGE:`), and a documented replacement supersedes the name. The name goes only after the major version passes the one that announced the deprecation. The removal version comes from `orthography2ipa/version.py` (`VERSION_MAJOR + 1`) at deprecation time, and no comment or page writes it by hand.
 
 The commitment covers each name in the two tables of the next section. It also covers the names of the sentence-context seam and of the feature export, which the sections below describe.
 
 ## Names that downstream code imports
 
-The inventory comes from the Python imports on the `dev` branch of each downstream repository: [arbtok](https://github.com/TigreGotico/arbtok), [tugaphone](https://github.com/TigreGotico/tugaphone), [g2p_barranquenho](https://github.com/TigreGotico/g2p_barranquenho) and [mwl_phonemizer](https://github.com/TigreGotico/mwl_phonemizer). The scan reads the library code, the tests, the scripts and the examples. [phonematcher](https://github.com/TigreGotico/phonematcher) and [sotaque_forcado](https://github.com/TigreGotico/sotaque_forcado) import nothing from `orthography2ipa`. A name imported from a submodule and also re-exported at the top level is one name, and both import paths are covered.
+The inventory comes from the Python imports on the `dev` branch of each downstream repository: [arbtok](https://github.com/TigreGotico/arbtok), [euskaphone](https://github.com/TigreGotico/euskaphone), [tugaphone](https://github.com/TigreGotico/tugaphone), [g2p_barranquenho](https://github.com/TigreGotico/g2p_barranquenho) and [mwl_phonemizer](https://github.com/TigreGotico/mwl_phonemizer). The scan parses every Python file of each repository, so it covers the library code, the tests, the scripts and the examples. It counts both `from orthography2ipa import X` and attribute access such as `orthography2ipa.get`. [phonematcher](https://github.com/TigreGotico/phonematcher) and [sotaque_forcado](https://github.com/TigreGotico/sotaque_forcado) import nothing from `orthography2ipa`.
+
+A name imported from a submodule and also re-exported at the top level is one name, and both import paths are covered.
 
 ### Names in `__all__`
 
 | Name | Module | Used by |
 | :--- | :--- | :--- |
-| `G2P` | `g2p` | arbtok, g2p_barranquenho, mwl_phonemizer, tugaphone |
-| `WordContext` | `sentence` | arbtok, g2p_barranquenho, mwl_phonemizer, tugaphone |
+| `G2P` | `g2p` | arbtok, euskaphone, g2p_barranquenho, mwl_phonemizer, tugaphone |
+| `WordContext` | `sentence` | arbtok, euskaphone, g2p_barranquenho, mwl_phonemizer, tugaphone |
+| `Pipeline` | `pipeline` | arbtok, euskaphone, tugaphone |
 | `get` | `registry` | arbtok, g2p_barranquenho, tugaphone |
-| `available_codes` | `registry` | arbtok, tugaphone |
+| `resolve` | `registry` | arbtok, euskaphone, g2p_barranquenho, tugaphone |
+| `resolves_exactly` | `registry` | arbtok, tugaphone |
+| `available_codes` | `registry` | arbtok, euskaphone, tugaphone |
 | `who_answers` | `registry` | tugaphone |
-| `register_lexicon` | `lexicon` | arbtok, tugaphone |
-| `clear_lexicons`, `validate_lexicon_text` | `lexicon` | arbtok |
+| `register_lexicon`, `clear_lexicons` | `lexicon` | arbtok, euskaphone, tugaphone |
+| `validate_lexicon_text` | `lexicon` | arbtok, euskaphone |
+| `get_lexicon`, `available_lexicon_codes` | `lexicon` | euskaphone |
+| `packaged_lexicon` | `lexicon` | tugaphone |
 | `PhonetokTokenizer`, `TokenKind` | `phonetok` | arbtok, tugaphone |
 | `Candidate`, `SegmentSlot` | `phonetok` | arbtok |
 | `LatticeRescorer`, `RescoreContext` | `rescorer` | arbtok |
@@ -35,10 +42,11 @@ The inventory comes from the Python imports on the `dev` branch of each downstre
 | `detect_stress` | `stress` | arbtok, mwl_phonemizer, tugaphone |
 | `apply_stress_mark` | `stress` | arbtok, mwl_phonemizer |
 | `syllabify_ipa` | `stress` | arbtok |
+| `syllabify` | `stress` | euskaphone |
 | `SyllabifierPlugin` | `syllabifier_plugin` | tugaphone |
 | `LanguageSpec` | `types` | tugaphone |
 
-`WordContext` is the shared cross-word vocabulary of the downstream engines. A downstream phonological rule cascade (sun-letter assimilation, silent ⟨e⟩, reduction) belongs in a `LatticeRescorer` over the shared lattice, not in a forked tokenizer ([lattice.md](../engine/lattice.md#rescoring-the-lattice)). `SyllabifierPlugin` is the matching contract for a syllabifier, and tugaphone implements one.
+`WordContext` is the shared cross-word vocabulary of the downstream engines. A downstream phonological rule cascade (sun-letter assimilation, silent ⟨e⟩, reduction) belongs in a `LatticeRescorer` over the shared lattice, not in a forked tokenizer ([lattice.md](../engine/lattice.md#rescoring-the-lattice)). `SyllabifierPlugin` is the matching contract for a syllabifier, and tugaphone implements one. `Pipeline` is how each of these engines passes its own steps to `G2P`.
 
 ### Names outside `__all__`
 
@@ -50,6 +58,7 @@ Downstream code also imports these public names straight from their submodules. 
 | `is_ipa_vowel` | `vowels` | arbtok |
 | `is_front_vowel`, `is_orthographic_vowel` | `vowels` | tugaphone |
 | `lexicon_path` | `lexicon` | arbtok |
+| `parse_lexicon_text` | `lexicon` | euskaphone, tugaphone |
 
 One downstream import reaches a private name: `phonetok._expand_arabic_gemination` in arbtok. A private name has no guarantee, and it can change in any release.
 
@@ -60,12 +69,12 @@ These names are public and importable, but no downstream repository uses them. T
 | Module | Names |
 | :--- | :--- |
 | `g2p` | `transcribe`, `TranscriptionResult`, `WordTranscription`, `ConfidenceBreakdown` |
-| `registry` | `resolve`, `resolves_exactly`, `ancestry_chain`, `available_families`, `get_rescorers`, `get_stress_plugin`, `get_syllabifier`, `MissingPlugin`, `UnknownVariantWarning` |
-| `lexicon` | `get_lexicon`, `set_lexicon_dir`, `resolve_lexicon_source`, `available_lexicon_codes`, `use_packaged_lexicons`, `packaged_lexicon_sources`, `is_ipa_string` |
+| `registry` | `ancestry_chain`, `available_families`, `get_rescorers`, `get_stress_plugin`, `get_syllabifier`, `MissingPlugin`, `UnknownVariantWarning` |
+| `lexicon` | `load_lexicon`, `set_lexicon_dir`, `resolve_lexicon_source`, `use_packaged_lexicons`, `packaged_lexicon_sources`, `is_ipa_string` |
 | `types` | `Grapheme2IPA`, `AllophoneMap`, `PositionalGrapheme2IPA`, `Ancestor`, `AncestorRole`, `QualityTier`, `ScriptType`, `OrthographyKind`, `OrthographyStandard`, `Location`, `SandhiRule`, `AllophoneRule`, `StressRules` |
 | `phonetok` | `Token`, `IPAPath`, `GraphemeContext`, `TokenSequence` |
 | `allophony`, `sandhi` | `AllophoneRescorer`, `SandhiEngine` |
-| `stress`, `stress_plugin`, `plugins` | `syllabify`, `StressPlugin`, `STAGES` |
+| `stress_plugin`, `plugins` | `StressPlugin`, `STAGES` |
 | `inventory` | `emission_inventory`, `dead_allophone_rules`, `STRESS_MARKS` |
 | `distance` | `inventory_distance`, `grapheme_divergence`, `spelling_divergence`, `allophone_overlap`, `phonological_distance`, `ancestry_similarity`, `geographic_distance`, `full_distance`, `pairwise_distances`, `feature_vector`, `InventoryDistance`, `GraphemeDivergence`, `SpellingDivergence`, `PhonologicalDistance` |
 | `script_distance` | `ScriptFeatures`, `SCRIPT_REGISTRY`, `script_distance`, `script_distance_by_name` |
@@ -157,7 +166,7 @@ A caller that assumes `word_candidates` returns only readings that the grapheme 
 | `WordFeatures` | Frozen dataclass: `word`, `code`, `script`, `confidence`, `graphemes`, and `as_dicts()` for the CRF feature sequence |
 | `GraphemeFeatures` | Frozen record per grapheme: `grapheme`, `span`, `index`, `position`, `prev`, `next`, `prev2`, `next2`, `is_vowel`, `is_consonant`, `is_front`, `is_back`, `candidates`, `top1_ipa`, `top1_cost`, `margin`, `n_candidates`, `confidence`, `script`, `code`, and `as_dict()` |
 
-`margin` is `None` for a slot with one candidate. `as_dict()` returns a flat dict of scalars that `json.dumps` accepts, ready for python-crfsuite or sklearn-crfsuite. The stability commitment covers these names, and the export adds no `LanguageSpec` field. [../engine/lattice.md](../engine/lattice.md#feature-export-for-a-learned-model) documents the export.
+`margin` is `None` for a slot with one candidate. `as_dict()` returns a flat dict of scalars that `json.dumps` accepts, ready for [python-crfsuite](https://github.com/scrapinghub/python-crfsuite) or [sklearn-crfsuite](https://github.com/TeamHG-Memex/sklearn-crfsuite). The stability commitment covers these names, and the export adds no `LanguageSpec` field. [../engine/lattice.md](../engine/lattice.md#feature-export-for-a-learned-model) documents the export.
 
 ---
 [← Language Registry](registry.md) · [Home](../index.md) · [Architecture →](../engine/architecture.md)

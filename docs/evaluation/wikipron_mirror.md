@@ -2,6 +2,8 @@
 
 [TigreGotico/wikipron-restored-orthography](https://huggingface.co/datasets/TigreGotico/wikipron-restored-orthography) is a snapshot of every pronunciation scrape in [CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron) at one commit. A second orthography column holds the headword that English Wiktionary displays. The `wikipron_restored` benchmark row reads it (see [its section in the dataset catalogue](datasets.md#wikipron-with-the-display-headword-restored-wikipron_restored)). This page is the maintainer procedure that refreshes it.
 
+The mirror is published under CC BY-SA 4.0. Its rows come from Wiktionary, so they also keep the [Wiktionary licence terms](https://en.wiktionary.org/wiki/Wiktionary:Copyrights).
+
 The mirror exists for two reasons.
 
 The first is reproducibility. WikiPron publishes its scrapes on a branch that it keeps editing. A benchmark that reads that branch scores against other data from one week to the next, with no code change. An upstream edit then looks the same as an engine regression. The mirror pins one commit and records the upstream SHA-256 of each file, so a refresh gives a diff and not a mystery. The plain `wikipron` row still reads the upstream branch, so only the restored row has this protection.
@@ -18,13 +20,13 @@ The build also writes `manifest.json` and the dataset card `README.md`. The mani
 
 Restoration costs one page render per word, so no language is restored before it is screened. The screen has two halves, and a language passes only if both agree.
 
-The policy half fetches `Wiktionary:About <Language>` once per language and looks for a statement about diacritics in titles against display. The data half counts the marks that the statement names in the scraped orthography. A policy that says macrons never reach titles predicts zero macrons. Where macrons occur in quantity, the policy does not reach this dataset.
+The policy half fetches `Wiktionary:About <Language>` once per language, such as [Wiktionary:About Latin](https://en.wiktionary.org/wiki/Wiktionary:About_Latin), and looks for a statement about diacritics in titles against display. The data half counts the marks that the statement names in the scraped orthography. A policy that says macrons never reach titles predicts zero macrons. Where macrons occur in quantity, the policy does not reach this dataset.
 
-Latin is why the data half is required. Its policy says that the page name "should not contain diacritical marks", in almost the same words as the policy of Old English. Its scraped words still carry more than one macron per row on average, and the Old English words carry almost none. One of the two is a real defect and the other is not, and only the data says which. Latin is curated `not_affected` for that reason.
+Latin is why the data half is required. Its policy says that the page name "should not contain diacritical marks", in almost the same words as the policy of [Old English](https://en.wiktionary.org/wiki/Wiktionary:About_Old_English). Its scraped words still carry more than one macron per row on average, and the Old English words carry almost none. One of the two is a real defect and the other is not, and only the data says which. Latin is curated `not_affected` for that reason.
 
 The automatic downgrade covers the next such language. A `confirmed` verdict whose data carries the marks of the policy above `STRAY_RATE` (0.01 marks per row) becomes `not_affected`, and the rate that overturned it is recorded with it.
 
-A verdict is a snapshot of a live wiki, and the wiki changes. The published manifest records Mandarin as `no_policy_page`, but `Wiktionary:About Mandarin` redirects to `Wiktionary:Chinese entry guidelines`, which exists. That page describes no split between title and headword, so the verdict stands, and the mismatch shows what drift looks like. Expect some `no_policy_page` languages to gain a page, and screen again before you trust an old negative. Only the pinned scrape is stable.
+A verdict is a snapshot of a live wiki, and the wiki changes. The published manifest records Mandarin as `no_policy_page`, but `Wiktionary:About Mandarin` redirects to [Wiktionary:Chinese entry guidelines](https://en.wiktionary.org/wiki/Wiktionary:Chinese_entry_guidelines), which exists. That page describes no split between title and headword, so the verdict stands, and the mismatch shows what drift looks like. Expect some `no_policy_page` languages to gain a page, and screen again before you trust an old negative. Only the pinned scrape is stable.
 
 `manifest.json` records one of these verdicts per language:
 
@@ -54,7 +56,7 @@ The screen records negative results on purpose. A language recorded as `not_affe
 
 ## Refreshing the mirror
 
-Run the refresh from a checkout of the repository, with the repository venv. It needs network access, a Hugging Face write token for the dataset, and hours of MediaWiki renders for each language whose scrape changed. Before the first step, read `df -h` for the disk that holds the clone and the cache. A large restoration run fills gigabytes.
+Run the refresh from a checkout of the repository, with the repository venv. It needs network access, a Hugging Face write token for the dataset, and hours of [MediaWiki API](https://www.mediawiki.org/wiki/API:Main_page) renders for each language whose scrape changed. The download and upload steps use the `hf` command of [huggingface_hub](https://huggingface.co/docs/huggingface_hub/guides/cli). Before the first step, read `df -h` for the disk that holds the clone and the cache. A large restoration run fills gigabytes.
 
 1. Clone the upstream scrape into a new directory. Use a fresh directory for each refresh. `pin` on an existing clone fetches `master` but does not move `HEAD`, so it reports the old commit.
 

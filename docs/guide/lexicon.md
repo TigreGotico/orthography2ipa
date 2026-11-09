@@ -1,6 +1,6 @@
 # Lexicons and forced pronunciations
 
-Some words cannot be transcribed from their spelling, and no rule can change that. Brand names, proper nouns, acronyms and loanwords are the usual cases. For these words the caller already knows the answer and needs a way to give it. The engine has three tiers that override the rules, and this page describes each one.
+Some words cannot be transcribed from their spelling, and no rule can change that. Brand names, proper nouns, acronyms and loanwords are the usual cases. For these words the caller already knows the answer and needs a way to give it. The engine has three tiers that override the rules: inline markup, the exceptions of the spec, and a lexicon that the caller supplies. This page describes each one.
 
 ## The precedence ladder
 
@@ -21,21 +21,21 @@ Each tier answers the same question: what is the IPA of this word? The stages af
 
 ## Forcing one occurrence: `<phoneme>`
 
-SSML's `<phoneme>` element sets the IPA of one word in the input text. TTS frontends already use it:
+The `<phoneme>` element of [SSML 1.1](https://www.w3.org/TR/speech-synthesis11/#S3.1.10), the W3C markup language for speech synthesis, sets the IPA of one word in the input text. TTS frontends already accept it, so a caller can reuse the markup it already writes:
 
 ```python
 >>> from orthography2ipa import G2P
 >>> G2P("pt-PT").transcribe('olá <phoneme ph="ˈɡuɡɫ">Google</phoneme> mundo')
-'oˈla ˈɡuɡɫ ˈmũdu'
+'ɔˈla ˈɡuɡɫ ˈmũdu'
 ```
 
-The `alphabet` attribute is optional. If you give it, it must be `ipa`, and any other value raises `MarkupError`. This library reads no other alphabet, and a reading of X-SAMPA as IPA would mispronounce the word without a sign. An unclosed tag also raises `MarkupError`. Text with no markup passes through unchanged, so a caller that never writes `<phoneme>` sees no difference.
+The `alphabet` attribute is optional. If you give it, it must be `ipa`, and any other value raises `MarkupError`. This library reads no other alphabet, and a reading of X-SAMPA as IPA would mispronounce the word without a sign. A caller with X-SAMPA or ARPABET converts it to IPA first, for example with [scriptconv](https://github.com/TigreGotico/scriptconv). An unclosed tag also raises `MarkupError`. Text with no markup passes through unchanged, so a caller that never writes `<phoneme>` sees no difference.
 
 ### Both halves carry information
 
 The `ph` attribute is the IPA. It replaces the rules for that word, and the engine derives nothing from the spelling.
 
-The text of the element is the spelling, and it is not decoration. Cross-word rules read the orthography, because a case ending is a fact about the written word that its IPA does not show. The ⟨-in⟩ of قَاضٍ is an ending, and the ⟨-in⟩ of مُؤْمِن is part of the stem. A bare bracket escape that held only the IPA would lose the spelling and break sandhi.
+The text of the element is the spelling, and it is not decoration. Cross-word rules read the orthography, because a case ending is a fact about the written word that its IPA does not show. In Arabic, the ⟨-in⟩ of قَاضٍ (*qāḍin*, "a judge") is the indefinite ending, and the ⟨-in⟩ of مُؤْمِن (*muʔmin*, "believer") is part of the stem. A bare bracket escape that held only the IPA would lose the spelling and break sandhi.
 
 ### The engine does not re-stress a forced reading
 
@@ -49,7 +49,7 @@ The engine reads the markup before the normalize step. A normalize plugin, such 
 
 The engine checks `ph` against the phoneme inventory of the spec. That inventory is `phoneme_inventory(spec, lexicon)`: each segment the spec and the lexicon of the engine can emit. A symbol outside it raises `MarkupError`. The check makes the feature safe. A TTS frontend builds its embedding table from the inventory before it trains. A symbol that appears only at inference has no vector, so each word that carries it is mispronounced, permanently and without a sign.
 
-A loanword is the case that matters. In Arabic, English *meeting* is nativised and does not keep its English sounds. Modern Standard Arabic has /q/ and /dʒ/ and no /ɡ/, so the `ar` spec refuses a reading with [ɡ]:
+A loanword is the case that matters. In Arabic, English *meeting* is nativised and does not keep its English sounds. Modern Standard Arabic has /q/ and /dʒ/ and no /ɡ/. The `ar` spec takes that inventory from Watson (2002), *The Phonology and Morphology of Arabic*, and checks it against the JIPA illustration of Arabic by Thelwall and Sa'Adeddin (1990, [doi:10.1017/S0025100300004266](https://doi.org/10.1017/S0025100300004266)). So the `ar` spec refuses a reading with [ɡ]:
 
 ```python
 >>> G2P("ar").transcribe('<phoneme ph="ˈmiːtinɡ">meeting</phoneme>')
@@ -59,7 +59,7 @@ orthography2ipa.markup.MarkupError: <phoneme ph='ˈmiːtinɡ'> uses ['ɡ'], whic
 ...
 ```
 
-In Najdi Arabic, /ɡ/ is the Gulf reflex of qāf, and the `ars-SA` spec has it. The same reading then passes:
+In Najdi Arabic, which is spoken in central Arabia, qāf ⟨ق⟩ is /ɡ/ (Ingham 1994, *Najdi Arabic: Central Arabian*). The `ars-SA` spec has /ɡ/, so the same reading passes:
 
 ```python
 >>> G2P("ars-SA").transcribe(
@@ -87,7 +87,7 @@ The field does not scale to thousands of entries. Deep orthographies such as Eng
 
 ## Supplying a lexicon
 
-The package ships no lexicon. A lexicon is a word list, not a description of a language, so it is not part of the payload. The wheel holds only `data/*.json` and `data/SCHEMA.md`. The caller reads a lexicon into a mapping and gives it to one engine through a `Pipeline`:
+The package ships no lexicon. A lexicon is a word list, not a description of a language, so it is not part of the payload. The wheel holds only `data/*.json` and `data/SCHEMA.md` as data files. The caller reads a lexicon into a mapping and gives it to one engine through a `Pipeline`:
 
 ```python
 from orthography2ipa import G2P, Pipeline, load_lexicon
@@ -106,7 +106,7 @@ engine = G2P("en-GB", pipeline=Pipeline(lexicon={"colonel": "ˈkɜːnəl"}))
 
 `Pipeline(lexicon={})` is a lexicon with no entries, so that engine takes the rules. With `Pipeline()` or with no pipeline, the engine reads the [process-wide lexicon](#the-process-wide-api), which is deprecated.
 
-A Hugging Face id has the form `hf://<owner>/<repo>/<path>`, with an optional `@<revision>`. The library fetches it from a dataset repository with `huggingface_hub`. A URL or a Hugging Face file downloads once into `$XDG_CACHE_HOME/orthography2ipa/lexicons`, which is `~/.cache/orthography2ipa/lexicons` by default.
+A Hugging Face id has the form `hf://<owner>/<repo>/<path>`, with an optional `@<revision>`. The library fetches it from a dataset repository on the [Hugging Face Hub](https://huggingface.co/docs/huggingface_hub/index) with `huggingface_hub.hf_hub_download`, which keeps the file in the Hub's own cache. A plain URL downloads once into `$XDG_CACHE_HOME/orthography2ipa/lexicons`, which is `~/.cache/orthography2ipa/lexicons` when `XDG_CACHE_HOME` is not set ([XDG Base Directory specification](https://specifications.freedesktop.org/basedir-spec/latest/)).
 
 ### Packaged lexicons
 
@@ -127,7 +127,7 @@ engine = G2P("en-GB", pipeline=Pipeline(lexicon=packaged_lexicon("en-GB")))
 
 `packaged_lexicon()` raises `LookupError` when no installed package supplies a file for the code. A request for an absent lexicon is an error, not a quiet fall back to the rules. The same error comes from a provider that raises or that returns a path that is not a file, and the library logs the reason as a warning.
 
-A provider declares one entry point per language code in the group `orthography2ipa.lexicons`. The entry point loads a callable. The library calls it with the name of the entry point, and the callable returns the path of a local `word<TAB>ipa` file:
+A provider declares one [entry point](https://packaging.python.org/en/latest/specifications/entry-points/) per language code in the group `orthography2ipa.lexicons`. The entry point loads a callable. The library calls it with the name of the entry point, and the callable returns the path of a local `word<TAB>ipa` file:
 
 ```toml
 [project.entry-points."orthography2ipa.lexicons"]
@@ -187,7 +187,7 @@ Write the lexicon in the same broad IPA that the `graphemes` of the spec use. Th
 
 | Function | Top-level | Purpose |
 | :--- | :--- | :--- |
-| `Pipeline(lexicon=None, syllabifier=None)` | yes | The lexicon and the syllabifier of one engine |
+| `Pipeline(lexicon=None, syllabifier=None, ...)` | yes | The lexicon, the syllabifier and the other stages of one engine ([getting_started.md](getting_started.md#preparing-text-before-the-lattice)) |
 | `load_lexicon(source)` | yes | The `{word: ipa}` map at a file, a URL or a dataset id |
 | `packaged_lexicon(code, patches=False)` | yes | The `{word: ipa}` map of exceptions an installed package supplies for a code. With `patches=True`, the patches too |
 | `packaged_lexicon_sources(patches=False)` | yes | The installed packaged lexicons, as `{code: path}`. With `patches=True`, the patch files. Reads no entry |
@@ -236,11 +236,11 @@ The script downloads its two sources, keeps the 5,000 most frequent words that C
 | [CMU Pronouncing Dictionary](https://github.com/cmusphinx/cmudict), Carnegie Mellon University Speech Group | BSD-style, free for any use | The pronunciations. The script converts each hand-curated ARPABET entry to broad, non-rhotic IPA that leans to RP, with ⟨ɡ⟩ as U+0261 to match the `en-GB` inventory. |
 | [google-10000-english](https://github.com/first20hours/google-10000-english), Josh Kaufman, from the Google Web Trillion Word Corpus | MIT | The frequency order only, to select the words. None of its content goes into the file. |
 
-CMUdict describes General American, so this file helps most on the General American evaluation. A full RP or `en-GB` lexicon belongs in a downstream package or a dataset of its own, not in this library.
+CMUdict describes General American, so this file helps most on the General American evaluation. A full RP or `en-GB` lexicon belongs in a downstream package or a dataset of its own, not in this library. [o2i-lexicons](https://github.com/TigreGotico/o2i-lexicons) is the package for residual lexicons, and [WikiPron](https://github.com/CUNY-CL/wikipron) is the usual source of per-language pronunciation lists.
 
 ## Measuring the effect of a lexicon
 
-`scripts/benchmark.py --lexicon-report DIR` scores each `{code}.tsv` file in `DIR` twice on the same WikiPron gold: once with the rules only and once with the lexicon. It writes `docs/evaluation/generated/lexicon_scoreboard.md` and `benchmarks/lexicon_results.json`.
+`scripts/benchmark.py --lexicon-report DIR` scores each `{code}.tsv` file in `DIR` twice on the same [WikiPron](https://github.com/CUNY-CL/wikipron) gold: once with the rules only and once with the lexicon. It writes `docs/evaluation/generated/lexicon_scoreboard.md` and `benchmarks/lexicon_results.json`.
 
 ```bash
 PYTHONPATH=$PWD python scripts/benchmark.py --lexicon-report /data/lexicons

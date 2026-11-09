@@ -43,7 +43,8 @@ uv venv --python 3.11 .venv
 uv pip install --python .venv --prerelease=allow -e '.[test]'
 ```
 
-Use uv, never pip. Build the venv inside the checkout. The `test` extra
+Use [uv](https://docs.astral.sh/uv/), never pip. Build the venv inside the
+checkout. The `test` extra
 carries `silabificador`, because the board and the gold sets pin output that
 was produced with it. The CoRuSS gold needs `unar` or `unrar` on `PATH`.
 
@@ -88,12 +89,12 @@ and not an installed package.
    ([citations.md](docs/contributing/citations.md#silver-labels-are-never-gold)).
 7. The package ships no corpus: no lexicon, no gold set in the wheel, no
    weights. The caller supplies a lexicon, or enables one that a separate
-   package such as `o2i-lexicons` ships
+   package such as [o2i-lexicons](https://github.com/TigreGotico/o2i-lexicons) ships
    ([spec_authoring.md](docs/contributing/spec_authoring.md#supply-a-lexicon-never-bundle-one)).
 8. The library does not normalise text. Normalisation, diacritic restoration
    and script conversion belong downstream.
 9. Leave no holes in the ancestry graph. A referenced ancestor with no file
-   gets a cited stub.
+   gets a cited stub ([ancestry.md](docs/specs/ancestry.md)).
 10. A new spec field lands in `types.py`, `schema.py`, `json_loader.py` and
     `SCHEMA.md`, or it does not land
     ([engine.md](docs/contributing/engine.md#add-a-capability)).
@@ -133,8 +134,9 @@ PYTHONPATH=$PWD .venv/bin/python scripts/gen_reference_docs.py --check
    rows it does not own, add a `Board-Rows:` line to the pull request.
 5. If you changed engine code, answer the review gate in
    [engine.md](docs/contributing/engine.md#the-review-gate-for-engine-code).
-6. Squash to one commit with a conventional-commit message (`fix:`, `feat:`,
-   `docs:`). Open the pull request against `dev`, as a draft, and fill in
+6. Squash to one commit with a
+   [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
+   message (`fix:`, `feat:`, `docs:`). Open the pull request against `dev`, as a draft, and fill in
    `.github/pull_request_template.md`.
 
 ## Conventions
@@ -142,12 +144,14 @@ PYTHONPATH=$PWD .venv/bin/python scripts/gen_reference_docs.py --check
 - `dev` is the work branch and `master` is the stable branch. There is no
   `main`.
 - Commit identity: `JarbasAi <jarbasai@mailfence.com>`.
-- Reusable workflows from `OpenVoiceOS/gh-automations` are referenced at
-  `@dev`.
+- Reusable workflows from
+  [OpenVoiceOS/gh-automations](https://github.com/OpenVoiceOS/gh-automations)
+  are referenced at `@dev`.
 - No Neon packages or references.
 - Documentation states what is. It carries no dates, no history and no
   "design mistake" framing.
-- Documentation prose follows ASD-STE100 in its flavoured mode.
+- Documentation prose follows [ASD-STE100](https://www.asd-ste100.org) in
+  its flavoured mode.
   `scripts/ste_lint.py` checks every page under `docs/`.
 
 ## Gotchas
@@ -157,6 +161,7 @@ PYTHONPATH=$PWD .venv/bin/python scripts/gen_reference_docs.py --check
 - Check `spec.quality` before you rely on a mapping. Most specs are `stub`.
 - `graphemes` maps a spelling to the phonemes it can stand for, and
   `allophones` maps a phoneme to its surface forms. Keep them apart.
-- espeak-ng data is GPL. The comparison harness builds it in
+- [espeak-ng](https://github.com/espeak-ng/espeak-ng) data is
+  [GPL-3.0](https://www.gnu.org/licenses/gpl-3.0.html). The comparison harness builds it in
   `.espeak_rules_only/` and `.o2i_lex_cache/`, which git ignores. Never commit
   it.

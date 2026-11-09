@@ -1,25 +1,25 @@
 # Getting Started
 
-This page starts from one call, `transcribe()`, and works out to the rest of the API. It covers the specs and their two maps, beam search, language lookup, the command line, plugins and the data explorer.
+This page starts from one call, `transcribe()`, and works out to the rest of the API. It covers the specs and their two maps, beam search, language lookup, the command line, plugins and the data explorer. Every output on this page is IPA, the alphabet of the [International Phonetic Association](https://www.internationalphoneticassociation.org/content/full-ipa-chart); [ipa_reference.md](../specs/ipa_reference.md) lists the symbols that the specs use.
 
 ## Why the library has no model weights
 
-Most G2P (grapheme-to-phoneme) tools take one of two forms. One form is a hand-tuned rule set that serves one TTS engine. The other form is a trained sequence model per language, which needs data collection and retraining.
+Most G2P (grapheme-to-phoneme) tools take one of two forms. One form is a hand-tuned rule set that serves one TTS engine, such as the rules inside [espeak-ng](https://github.com/espeak-ng/espeak-ng). The other form is a trained sequence model, for one language or for many at once as in the multilingual [CharsiuG2P](https://github.com/lingjzhu/CharsiuG2P), which needs data collection and retraining. [comparison.md](../evaluation/generated/comparison.md) scores this library against both kinds on the same gold sets.
 
-`orthography2ipa` is data. Each language is a JSON file that states which graphemes map to which IPA phonemes. A grapheme is a letter, a digraph or a trigraph. The same file states how those phonemes surface as allophones in context. To add a language, you write data, not a model or code.
+`orthography2ipa` is data. Each language is a JSON file that states which graphemes map to which IPA phonemes. A grapheme is a letter, a digraph or a trigraph. The same file states how those phonemes surface as allophones in context, and it cites the grammars and phonologies behind its mappings. To add a language, you write data, not a model or code.
 
 This design has a consequence that you must know first. For an ambiguous spelling, the engine picks the most common reading in the language, not the reading that the context requires. No language model scores the candidates against the neighbouring words. Read the [limitations](../index.md#honest-limitations-read-this-before-you-trust-a-tier) before you use the output where a mistake is costly.
 
 ## Install
 
-The [README](../../README.md#install) gives the install command. The runtime dependencies are `numpy`, `langcodes` and `linguatag`, as `pyproject.toml` lists them. The distinctive-feature matrix that the distance metrics use is part of the package (`orthography2ipa/feats.py`). These optional extras add features:
+The [README](../../README.md#install) gives the install command. The runtime dependencies are [`numpy`](https://numpy.org), [`langcodes`](https://github.com/georgkrause/langcodes) and [`linguatag`](https://github.com/TigreGotico/linguatag), as `pyproject.toml` lists them. The distinctive-feature matrix that the distance metrics use is part of the package (`orthography2ipa/feats.py`). Each optional extra in this table adds one feature, and none of them changes a transcription on install:
 
 | Extra | Adds | Use it for |
 | :--- | :--- | :--- |
-| `hf` | `huggingface_hub` | Lexicons fetched from a Hugging Face dataset id ([lexicon.md](lexicon.md)) |
-| `lexicons` | `o2i-lexicons` | Packaged lexicons that the caller reads with `packaged_lexicon()` ([lexicon.md](lexicon.md#packaged-lexicons)) |
-| `validation` | `pydantic` | `orthography2ipa validate` on spec JSON files |
-| `portuguese` | `silabificador` | A real Portuguese syllabifier that a caller can pass in place of the bundled vowel-group splitter |
+| `hf` | [`huggingface_hub`](https://huggingface.co/docs/huggingface_hub/index) | Lexicons fetched from a Hugging Face dataset id ([lexicon.md](lexicon.md)) |
+| `lexicons` | [`o2i-lexicons`](https://github.com/TigreGotico/o2i-lexicons) | Packaged lexicons that the caller reads with `packaged_lexicon()` ([lexicon.md](lexicon.md#packaged-lexicons)) |
+| `validation` | [`pydantic`](https://docs.pydantic.dev) | `orthography2ipa validate` on spec JSON files |
+| `portuguese` | [`silabificador`](https://github.com/TigreGotico/silabificador) | A real Portuguese syllabifier that a caller can pass in place of the bundled vowel-group splitter |
 | `test` | `pytest` and the tools that the gold-set loaders need | The test suite of a clone ([CONTRIBUTING.md](../../CONTRIBUTING.md#tests)) |
 
 ## Your first transcription
@@ -34,11 +34,11 @@ orthography2ipa.transcribe("bona nuèit", "oc")     # 'ˈbunɔ ˈnɥɛit'
 
 `transcribe()` runs a fixed pipeline. It tokenizes each word into graphemes with the spec of the target language. It then picks the most likely IPA for each grapheme, with greedy search by default. Next it applies the spec's allophone rules and stress rules, and the cross-word sandhi rules if the language has any. Data in the language's `LanguageSpec` drives each step, and no hidden model sits behind it. [architecture.md](../engine/architecture.md) gives the full order of the stages.
 
-The library does not normalise text. A caller that needs number expansion or diacritic restoration passes it in a `Pipeline` ([Preparing text before the lattice](#preparing-text-before-the-lattice)).
+The library does not normalise text. Number expansion, diacritic restoration and script conversion belong to separate packages, such as [text2spoken](https://github.com/TigreGotico/text2spoken) for numbers and dates and [scriptconv](https://github.com/TigreGotico/scriptconv) for script and notation conversion. A caller passes such a step in a `Pipeline` ([Preparing text before the lattice](#preparing-text-before-the-lattice)).
 
 ## The two maps: graphemes and allophones
 
-Each language spec keeps two maps apart. The grapheme map says which phonemes a spelling can stand for. The allophone map says how a phoneme surfaces in context. Transcription, from text to phonemes, reads the grapheme map. A model of pronunciation, from phoneme to surface form, reads the allophone map. G2P systems that mix the two get bugs from it, so this library keeps them apart.
+Each language spec keeps two maps apart, because a G2P system that mixes them gets bugs from it. The grapheme map says which phonemes a spelling can stand for. The allophone map says how a phoneme surfaces in context. Transcription, from text to phonemes, reads the grapheme map. A model of pronunciation, from phoneme to surface form, reads the allophone map.
 
 ### The grapheme map
 
@@ -56,11 +56,11 @@ pt_br = orthography2ipa.get("pt-BR")
 pt_br.graphemes["lh"]   # ['ʎ']
 ```
 
-Digraphs and trigraphs are keys of their own. The tokenizer matches the longest key first (maximal munch). [tokenizer.md](../engine/tokenizer.md) explains the match.
+Digraphs and trigraphs are keys of their own. The tokenizer matches the longest key first, which is the [maximal-munch](https://en.wikipedia.org/wiki/Maximal_munch) rule of lexical analysis. [tokenizer.md](../engine/tokenizer.md) explains the match.
 
 ### The allophone map
 
-The allophone map lists the surface forms of a phoneme after the engine chooses it:
+The allophone map lists the surface forms of a phoneme after the engine chooses it. The map is an inventory, not a rule: the `allophone_rules` of the spec choose the form in context ([allophony.md](../engine/allophony.md)).
 
 ```python
 en.allophones["t"]      # ['t', 'tʰ', 'ʔ', 'ɾ']
@@ -83,7 +83,7 @@ pt_br = orthography2ipa.get("pt-BR")  # a regional variety
 
 ## Finding a language code
 
-Codes are BCP-47 tags (`pt-BR`, `en-GB`, `zh`), and ISO 639-3 codes work as aliases. The set of specs changes with each data change, so no page lists it by hand. Use one of these live sources:
+Codes are [BCP 47](https://www.rfc-editor.org/info/bcp47) tags (`pt-BR`, `en-GB`, `zh`), and [ISO 639-3](https://iso639-3.sil.org/) codes work as aliases. The set of specs changes with each data change, so no page lists it by hand. Use one of these live sources:
 
 | Source | What it gives |
 | :--- | :--- |
@@ -114,7 +114,7 @@ An unregistered regional tag such as `en-NZ` reaches the nearest registered vari
 
 ## Ranking ambiguous spellings with beam search
 
-`transcribe()` uses greedy search, so it takes the best candidate at each grapheme. For the full ranked list, use `PhonetokTokenizer`. The list helps you debug a bad transcription or rescore the output downstream.
+`transcribe()` uses greedy search, so it takes the best candidate at each grapheme. For the full ranked list, use `PhonetokTokenizer`, which runs a [beam search](https://en.wikipedia.org/wiki/Beam_search) over the candidates. The list helps you debug a bad transcription or rescore the output downstream.
 
 ```python
 from orthography2ipa import get
@@ -146,11 +146,11 @@ result.words[1].candidates[:3]
 # (IPAPath('kɐfɛ', score=0.0), IPAPath('kafɛ', score=1.0), IPAPath('sɐfɛ', score=1.0))
 ```
 
-To re-cost the candidates with your own rules, write a `LatticeRescorer`. [lattice.md](../engine/lattice.md) explains when to write one and when to keep a separate tokenizer.
+To re-cost the candidates with your own rules, write a `LatticeRescorer`. [lattice.md](../engine/lattice.md) explains when to write one and when to keep a separate tokenizer. The downstream engines [tugaphone](https://github.com/TigreGotico/tugaphone) (Portuguese), [arbtok](https://github.com/TigreGotico/arbtok) (Arabic) and [euskaphone](https://github.com/TigreGotico/euskaphone) (Basque) are worked examples: each one adds the context that this library leaves out.
 
 ## Measuring distance between languages
 
-The `orthography2ipa.distance` module compares two languages, or two dialects of one language, on several independent axes. [distance.md](distance.md) describes each metric and its limits, and [ancestry.md](../specs/ancestry.md) gives the variants that descent weights. The command line gives the phonological distance of two specs:
+The `orthography2ipa.distance` module compares two languages, or two dialects of one language, on several independent axes. [distance.md](distance.md) describes each metric and its limits, and [ancestry.md](../specs/ancestry.md) gives the variants that descent weights. The command line gives the phonological distance of two specs. The figures below are one run on the specs as they stand, and they move when a spec changes:
 
 ```bash
 orthography2ipa distance pt-BR pt-PT
@@ -161,7 +161,7 @@ Brazilian Portuguese (pt-BR) ↔ European Portuguese (pt-PT)
   combined:   0.0511
   inventory:  0.0172
   allophone:  0.8980
-  grapheme:   0.0238   (orthography — not part of combined)
+  grapheme:   0.0235   (orthography — not part of combined)
 ```
 
 ## The command line
@@ -198,7 +198,9 @@ for anc in es.get_ancestors():
 # Ancestor('xaa', adstrate, w=0.06)
 ```
 
-The loader derives `family`, and no spec author writes it. It is the chain of clade nodes above the spec in the ancestry graph, joined with `" > "`. A clade node (`Romance`, `West Germanic`) is a spec for classification only, and `available_codes()` leaves it out unless you pass `include_clades=True`. [ancestry.md](../specs/ancestry.md#clade-nodes-and-the-derived-family) explains the chain.
+The loader derives `family`, and no spec author writes it. It is the chain of clade nodes above the spec in the ancestry graph, joined with `" > "`. A clade node (`Romance`, `West Germanic`) is a spec for classification only, and `available_codes()` leaves it out unless you pass `include_clades=True`. Each clade node cites its [Glottolog](https://glottolog.org) languoid where one exists, and [ancestry.md](../specs/ancestry.md#clade-nodes-and-the-derived-family) explains the chain.
+
+`location` is one representative point for the language, with the source that gave it. Most points come from Glottolog. A point from [Wikidata](https://www.wikidata.org) cites its item and property in `notes`, as the `es-ES` point above does.
 
 ## Preparing text before the lattice
 
@@ -261,7 +263,12 @@ from orthography2ipa.syllabifiers import SilabificadorSyllabifier
 engine = G2P("pt-PT", pipeline=Pipeline(syllabifier=SilabificadorSyllabifier()))
 ```
 
-`orthography2ipa.who_answers(code)` reports which rescorers answer for a code.
+`orthography2ipa.who_answers(code)` reports which plugins answer for a code. It returns the resolved code, the syllabifier (always `"built-in"`, because discovery finds no syllabifier) and the list of installed rescorer plugins with their priority:
+
+```python
+orthography2ipa.who_answers("pt-PT")
+# {'code': 'pt-PT', 'syllabify': 'built-in', 'rescore': ['built-in (spec allophone_rules only)']}
+```
 
 To write a plugin, do these steps:
 
@@ -269,7 +276,7 @@ To write a plugin, do these steps:
 2. Check the class with the contract checks in `orthography2ipa.conformance`. `assert_syllabifier_conforms` fails if a syllabifier does not join back to the word or if it changes the transcription. `assert_rescorer_conforms` checks a rescorer.
 3. For a syllabifier, pass an instance in `Pipeline(syllabifier=...)`. This stage has no entry point.
 4. For a rescorer, pass `tuple(plugin.rescorers(code))` in `Pipeline(rescore=...)`. For a sandhi plugin, pass the instance in `Pipeline(sandhi=...)`.
-5. For a spec to name the plugin, declare the class as an entry point in the `pyproject.toml` of your package, in the group of the stage. Then name the plugin by its entry-point name in the `plugins` field of the spec.
+5. For a spec to name the plugin, declare the class as an [entry point](https://packaging.python.org/en/latest/specifications/entry-points/) in the `pyproject.toml` of your package, in the group `orthography2ipa.<stage>`. Then name the plugin by its entry-point name in the `plugins` field of the spec.
 
 A syllabifier for Italian that closes a syllable after each vowel run passes the check:
 
@@ -301,7 +308,7 @@ engine = G2P("it-IT", pipeline=Pipeline(syllabifier=plugin))
 
 ## Browsing the specs in the explorer
 
-The language data explorer is one HTML page that shows each registered `LanguageSpec`. It is published at <https://tigregotico.pt/orthography2ipa/>. The page needs no network after it loads, so you can also open a local copy from disk.
+The language data explorer is one HTML page that shows each registered `LanguageSpec`. It is published at [tigregotico.pt/orthography2ipa](https://tigregotico.pt/orthography2ipa/). The page needs no network after it loads, so you can also open a local copy from disk.
 
 The sidebar lists each code. You can search it, and filter it by family, script or quality tier. The page for one language shows these sections:
 
