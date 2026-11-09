@@ -1,8 +1,32 @@
-# Yoruba (yo)
+# Yoruba (`yo`)
 
-**Code**: `yo` | **Family**: Niger-Congo > Volta-Niger (Defoid) | **Script**: Latin (alphabet) | **Quality tier**: research
+<!-- atlas:summary begin -->
+Yoruba is an Atlantic-Congo language, written in the Latin script. Glottolog places it in Benin and Nigeria. The `yo` spec is at the research tier. It cites 5 sources and has 2 scored datasets.
+<!-- atlas:summary end -->
+
+<!-- atlas:header begin -->
+| Field | Value |
+|:--|:--|
+| Code | `yo` |
+| ISO 639-3 | [yor](https://iso639-3.sil.org/code/yor), Yoruba |
+| Glottolog | [yoru1245](https://glottolog.org/resource/languoid/id/yoru1245), Yoruba |
+| Wikidata | [Q34311](https://www.wikidata.org/wiki/Q34311) |
+| Wikipedia | [Yoruba language](https://en.wikipedia.org/wiki/Yoruba_language) |
+| Family | [Atlantic-Congo](by-family.md#atlantic-congo) |
+| Region | [Africa](by-region.md#africa) > [Benin](by-region.md#benin), [Nigeria](by-region.md#nigeria) |
+| Script | [Latin](by-script.md#latin) (alphabet) |
+| Tier | [research](../specs/quality_tiers.md#research) |
+| Attested | from 1800, living |
+| Parent | [Niger-Congo (family node)](https://tigregotico.github.io/orthography2ipa/#nic) `nic` |
+| Explorer | [`yo` in the data explorer](https://tigregotico.github.io/orthography2ipa/#yo) |
+| Spec file | [`yo.json`](../../orthography2ipa/data/yo.json) |
+<!-- atlas:header end -->
+
+## Overview
 
 Yoruba is a tonal language whose orthography gives a phonemizer almost everything it needs. The spelling writes tone on the vowel and vowel nasalisation with a following ⟨n⟩. A subdot marks the two vowel qualities that a bare Latin alphabet cannot tell apart. The `yo` spec reads all of this from the page and does not treat it as unrecoverable.
+
+The page places Yoruba in the Volta-Niger (Defoid) group of Niger-Congo.
 
 ## Segments
 
@@ -68,5 +92,175 @@ The `vox_communis` row is epitran-derived. Its orthography is real, fully accent
 
 The `audit` entry for `vox_communis` records the fold as `at_ceiling_documented`. It is not a `valid_ceiling`, because Yoruba spelling writes tone: the gap is the gold's notation, not a contrast the orthography cannot signal. An epitran-derived tier never gates a promotion.
 
+<!-- atlas:lects begin -->
+## Related lects
+
+No spec names `yo` as its parent.
+<!-- atlas:lects end -->
+
+<!-- atlas:sources begin -->
+## Sources
+
+The spec cites 5 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+
+1. <a id="src-adesola_gs"></a>Adesola, Oluseye (2005). *Yoruba: A Grammar Sketch, Version 1.0*. Afranaph Project. Cited: §2.1.1 charts 2-3, §2.1.2, p. 2 n. 4. [afranaphproject.afranaphdatabase.com](https://afranaphproject.afranaphdatabase.com/images/stories/downloads/casefiles/YorubaGS.pdf)
+2. <a id="src-akinlabi2004"></a>Akinlabi, A. (2004). *Yoruba*. Cambridge University Press.
+3. <a id="src-bamgbose1969"></a>Bamgboṣe, Ayọ (1969). *Yoruba. In Elizabeth Dunstan (ed.), Twelve Nigerian Languages*. Africana Publishing Corp. Cited: p. 166.
+4. <a id="src-abraham1958"></a>Abraham, Roy Clive (1958). *Dictionary of Modern Yoruba*. University of London Press.
+5. <a id="src-sachnine1997"></a>Sachnine, Michka (1997). *Dictionnaire yorùbá-français, suivi d'un index français-yorùbá*. Karthala/IFRA.
+<!-- atlas:sources end -->
+
+<!-- atlas:datasets begin -->
+## Datasets
+
+Every row of the board that scores this spec. PER is the phoneme error rate against the dataset. A gold row is human work, a silver row is a language model's label, and a generated row is the output of another tool. Only a row marked as gating can promote or block the spec. The [dataset catalogue](../evaluation/datasets.md) describes each set.
+
+| Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
+|:--|:--|:--|:--|:--|--:|--:|:--|
+| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `yo` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 4065 | 0.3828 | yes |
+| `vox_communis` ([fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p)) | `yo` | generated | epitran-derived | CC0 1.0 | 5263 | 0.6392 | no |
+<!-- atlas:datasets end -->
+
+<!-- atlas:inventory begin -->
+## Inventory
+
+The spec can emit 75 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+
+| Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar | Glottal |
+|:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| Plosive | b |  | d t |  |  | k ɡ |  |
+| Affricate |  |  |  | dʒ |  |  |  |
+| Nasal | m |  | n ń̩ ǹ̩ |  |  | ŋ̩̀ ŋ̩́ ŋ̩̄ |  |
+| Tap |  |  | ɾ |  |  |  |  |
+| Fricative |  | f | s | ʃ |  |  | h |
+| Approximant |  |  |  |  | j |  |  |
+| Lateral approximant |  |  | l |  |  |  |  |
+
+| Vowels | Front | Back |
+|:--|:-:|:-:|
+| Close | ì í ĩ̀ ĩ́ ĩ̄ ī | ù ú ũ̀ ũ̄ ū ṹ |
+| Close-mid | è é ē | ò ó ō |
+| Open-mid | ɛ̀ ɛ́ ɛ̃̀ ɛ̃́ ɛ̃̄ ɛ̄ | ɔ̀ ɔ́ ɔ̃̀ ɔ̃́ ɔ̃̄ ɔ̄ |
+| Open | à á ã̀ ã́ ã̄ ā |  |
+
+Sequences that the spec writes as one unit: [kp] [k͡p] [w] [àn] [án] [ìn] [ín] [ùn] [ún] [ān] [īn] [ūn] [ɔ̀n] [ɔ́n] [ɔ̄n] [ɛ̀n] [ɛ́n] [ɛ̄n] [ɡ͡b].
+
+Tones: [◌́] high, [◌̀] low, [◌̄] mid, [unmarked] mid.
+<!-- atlas:inventory end -->
+
+<!-- atlas:spelling begin -->
+## Spelling
+
+Each letter or letter group of the spec with its readings. The first reading is the default, and the others stay in the lattice as lower-ranked candidates. The last column gives the readings that depend on the position in the word.
+
+| Spelling | Readings | By position |
+|:--|:--|:--|
+| ⟨a⟩ | [ā] |  |
+| ⟨an⟩ | [ã̄] | before vowel [ān] |
+| ⟨b⟩ | [b] |  |
+| ⟨d⟩ | [d] |  |
+| ⟨e⟩ | [ē] |  |
+| ⟨f⟩ | [f] |  |
+| ⟨g⟩ | [ɡ] |  |
+| ⟨gb⟩ | [ɡ͡b] |  |
+| ⟨h⟩ | [h] |  |
+| ⟨i⟩ | [ī] |  |
+| ⟨in⟩ | [ĩ̄] | before vowel [īn] |
+| ⟨j⟩ | [dʒ] |  |
+| ⟨k⟩ | [k] |  |
+| ⟨l⟩ | [l] |  |
+| ⟨m⟩ | [m] |  |
+| ⟨n⟩ | [n] | before consonant [ŋ̩̄] |
+| ⟨o⟩ | [ō] |  |
+| ⟨p⟩ | [kp] |  |
+| ⟨r⟩ | [ɾ] |  |
+| ⟨s⟩ | [s] |  |
+| ⟨t⟩ | [t] |  |
+| ⟨u⟩ | [ū] |  |
+| ⟨un⟩ | [ũ̄] | before vowel [ūn] |
+| ⟨w⟩ | [w] |  |
+| ⟨y⟩ | [j] |  |
+| ⟨à⟩ | [à] |  |
+| ⟨àn⟩ | [ã̀] | before vowel [àn] |
+| ⟨á⟩ | [á] |  |
+| ⟨án⟩ | [ã́] | before vowel [án] |
+| ⟨è⟩ | [è] |  |
+| ⟨é⟩ | [é] |  |
+| ⟨ì⟩ | [ì] |  |
+| ⟨ìn⟩ | [ĩ̀] | before vowel [ìn] |
+| ⟨í⟩ | [í] |  |
+| ⟨ín⟩ | [ĩ́] | before vowel [ín] |
+| ⟨ò⟩ | [ò] |  |
+| ⟨ó⟩ | [ó] |  |
+| ⟨ù⟩ | [ù] |  |
+| ⟨ùn⟩ | [ũ̀] | before vowel [ùn] |
+| ⟨ú⟩ | [ú] |  |
+| ⟨ún⟩ | [ṹ] | before vowel [ún] |
+| ⟨ń⟩ | [ń̩] | before consonant [ŋ̩́] |
+| ⟨ǹ⟩ | [ǹ̩] | before consonant [ŋ̩̀] |
+| ⟨ṣ⟩ | [ʃ] |  |
+| ⟨ẹ⟩ | [ɛ̄] |  |
+| ⟨ẹn⟩ | [ɛ̃̄] | before vowel [ɛ̄n] |
+| ⟨ẹ̀⟩ | [ɛ̀] |  |
+| ⟨ẹ̀n⟩ | [ɛ̃̀] | before vowel [ɛ̀n] |
+| ⟨ẹ́⟩ | [ɛ́] |  |
+| ⟨ẹ́n⟩ | [ɛ̃́] | before vowel [ɛ́n] |
+| ⟨ọ⟩ | [ɔ̄] |  |
+| ⟨ọn⟩ | [ɔ̃̄] | before vowel [ɔ̄n] |
+| ⟨ọ̀⟩ | [ɔ̀] |  |
+| ⟨ọ̀n⟩ | [ɔ̃̀] | before vowel [ɔ̀n] |
+| ⟨ọ́⟩ | [ɔ́] |  |
+| ⟨ọ́n⟩ | [ɔ̃́] | before vowel [ɔ́n] |
+
+The spec declares no stress rule.
+<!-- atlas:spelling end -->
+
+<!-- atlas:rules begin -->
+## Rules
+
+The spec applies 12 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
+
+| Rule | Change | Example | Cited |
+|:--|:--|:--|:--|
+| `YO_NASAL_AFTER_NASAL_ONSET_I_MID` | /ī/ → [ĩ̄], after [m] [n] | - | [Bamgboṣe 1969](#src-bamgbose1969), [Abraham 1958](#src-abraham1958), [Sachnine 1997](#src-sachnine1997) |
+| `YO_NASAL_AFTER_NASAL_ONSET_I_HIGH` | /í/ → [ĩ́], after [m] [n] | - | - |
+| `YO_NASAL_AFTER_NASAL_ONSET_I_LOW` | /ì/ → [ĩ̀], after [m] [n] | - | - |
+| `YO_NASAL_AFTER_NASAL_ONSET_A_MID` | /ā/ → [ã̄], after [m] [n] | - | - |
+| `YO_NASAL_AFTER_NASAL_ONSET_A_HIGH` | /á/ → [ã́], after [m] [n] | - | - |
+| `YO_NASAL_AFTER_NASAL_ONSET_A_LOW` | /à/ → [ã̀], after [m] [n] | - | - |
+| `YO_NASAL_AFTER_NASAL_ONSET_OPEN_O_MID` | /ɔ̄/ → [ɔ̃̄], after [m] [n] | - | - |
+| `YO_NASAL_AFTER_NASAL_ONSET_OPEN_O_HIGH` | /ɔ́/ → [ɔ̃́], after [m] [n] | - | - |
+| `YO_NASAL_AFTER_NASAL_ONSET_OPEN_O_LOW` | /ɔ̀/ → [ɔ̃̀], after [m] [n] | - | - |
+| `YO_NASAL_AFTER_NASAL_ONSET_U_MID` | /ū/ → [ũ̄], after [m] [n] | - | - |
+| `YO_NASAL_AFTER_NASAL_ONSET_U_HIGH` | /ú/ → [ṹ], after [m] [n] | - | - |
+| `YO_NASAL_AFTER_NASAL_ONSET_U_LOW` | /ù/ → [ũ̀], after [m] [n] | - | - |
+<!-- atlas:rules end -->
+
+<!-- atlas:examples begin words="Abiọdun|Aderonkẹ|ana|ẹni|inú|mi|mọ|mu|nkọ|ọkọ|òrombó" -->
+## Examples
+
+The engine wrote every transcription in this section with `orthography2ipa.transcribe(text, "yo")`. They are engine output, not reference transcriptions.
+
+| Spelling | Engine output |
+|:--|:--|
+| Abiọdun | [ābīɔ̄dũ̄] |
+| Aderonkẹ | [ādēɾōŋ̩̄kɛ̄] |
+| ana | [ānã̄] |
+| ẹni | [ɛ̄nĩ̄] |
+| inú | [īnṹ] |
+| mi | [mĩ̄] |
+| mọ | [mɔ̃̄] |
+| mu | [mũ̄] |
+| nkọ | [ŋ̩̄kɔ̄] |
+| ọkọ | [ɔ̄kɔ̄] |
+| òrombó | [òɾōmbó] |
+<!-- atlas:examples end -->
+
+<!-- atlas:related begin -->
+## Related repositories
+
+No downstream repository of the TigreGotico organisation covers this spec. The [o2i-lexicons](https://github.com/TigreGotico/o2i-lexicons) package ships no lexicon for it.
+<!-- atlas:related end -->
+
 ---
-[← Standard Thai](th.md) · [Home](../index.md) · [Esperanto →](eo.md)
+[← Yiddish](yi.md) · [Home](../index.md) · [Yucatec Mexican Spanish →](es-MX-x-yucatan.md)

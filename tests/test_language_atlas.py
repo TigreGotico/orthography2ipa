@@ -260,3 +260,76 @@ def test_a_new_atlas_page_gets_the_footer_of_its_az_place(monkeypatch):
     if at + 1 < len(names):
         after = os.path.basename(names[at + 1])
         assert out.splitlines()[-1].endswith(f"]({after})")
+
+
+def test_overview_block_quotes_the_opening_of_the_notes(atlas):
+    spec = orthography2ipa.get("sw")
+    with open(os.path.join(os.path.dirname(orthography2ipa.__file__), "data",
+                           "sw.json"), encoding="utf-8") as fh:
+        notes = json.load(fh)["notes"]
+    first = notes.split(". ")[0] + "."
+    block = atlas_gen.block_overview(atlas, spec)
+    assert f"> {first}" in block
+    assert "[research](../specs/quality_tiers.md#research)" in block
+    assert f"It cites {len(spec.sources)} works" in block
+
+
+def test_overview_block_names_the_base_of_the_letter_table(atlas):
+    with open(os.path.join(os.path.dirname(orthography2ipa.__file__), "data",
+                           "es-AR.json"), encoding="utf-8") as fh:
+        raw = json.load(fh)
+    spec = orthography2ipa.get("es-AR")
+    block = atlas_gen.block_overview(atlas, spec)
+    own, total = len(raw["graphemes"]), len(spec.graphemes)
+    assert raw["graphemes_base"] == "es-ES" and 0 < own < total
+    assert (f"writes {own} of the {total} spellings of its letter table and "
+            f"takes the other {total - own} from") in block
+    assert "`es-ES`" in block
+
+
+def test_hand_overview_and_overview_block_break_the_template(atlas):
+    text = _page("es-ES").replace(
+        "<!-- atlas:header end -->\n",
+        "<!-- atlas:header end -->\n\n<!-- atlas:overview begin -->\n"
+        "<!-- atlas:overview end -->\n", 1)
+    with pytest.raises(atlas_gen.TemplateError, match="hand-written Overview"):
+        atlas_gen.render_page(atlas, "es-ES", text)
+
+
+def test_scaffold_carries_every_block(atlas):
+    page = atlas_gen.scaffold(atlas, "sw")
+    names = re.findall(r"<!-- atlas:(\w+) begin", page)
+    assert names == list(atlas_gen.BLOCKS)
+    assert "## Weak points" not in page
+
+
+@pytest.mark.parametrize("raw, expected", [
+    ({"quality": "research"}, True),
+    ({"quality": "production"}, True),
+    ({"quality": "skeleton"}, False),
+    ({"quality": "stub"}, False),
+    ({}, True),
+    ({"quality": "research", "clade": True}, False),
+    ({"quality": "research", "timespan": {"start_year": 900, "end_year": 1500}}, False),
+    ({"quality": "research", "timespan": {"start_year": 1500, "end_year": None}}, True),
+])
+def test_cut_is_living_research_and_production(raw, expected):
+    assert atlas_gen.in_cut(raw) is expected
+
+
+def test_az_pages_with_one_name_are_ordered_by_code(atlas, monkeypatch):
+    # ks and kas are both named Kashmiri. Their order must not depend on
+    # the order the page set yields them in.
+    assert atlas.raw["ks"]["name"] == atlas.raw["kas"]["name"]
+    monkeypatch.setattr(atlas, "pages", ["ks", "kas"])
+    table = atlas_gen.index_az(atlas).split("## Pages", 1)[1].split("\n\n[A]", 1)[0]
+    assert re.findall(r"^\| \[[^\]]+\]\(([^)]+)\)", table, re.M) == ["kas.md", "ks.md"]
+
+
+def test_rule_change_caps_a_long_letter_list():
+    rule = next(r for r in orthography2ipa.get("bo").allophone_rules
+                if r.preceded_by_grapheme and len(r.preceded_by_grapheme) > 8)
+    change = atlas_gen._change(rule)
+    shown = rule.preceded_by_grapheme[:8]
+    assert "after " + " ".join(f"⟨{g}⟩" for g in shown) in change
+    assert f"⟨{shown[-1]}⟩ and {len(rule.preceded_by_grapheme) - 8} more" in change

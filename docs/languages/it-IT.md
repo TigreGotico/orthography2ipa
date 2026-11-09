@@ -1,6 +1,30 @@
-# Italian (it-IT): Phonology Reference
+# Italian (`it-IT`)
 
-**Code**: `it-IT` | **Family**: Indo-European > Romance > Italo-Romance | **Script**: Latin (alphabet) | **Quality tier**: research
+<!-- atlas:summary begin -->
+Italian is an Italo-Romance language, written in the Latin script. Its code names Italy. The `it-IT` spec is at the research tier. It cites 6 sources and has 3 scored datasets.
+<!-- atlas:summary end -->
+
+<!-- atlas:header begin -->
+| Field | Value |
+|:--|:--|
+| Code | `it-IT` |
+| Aliases | `ita` |
+| ISO 639-3 | [ita](https://iso639-3.sil.org/code/ita), Italian |
+| Glottolog | [ital1282](https://glottolog.org/resource/languoid/id/ital1282), Italian |
+| Wikidata | [Q652](https://www.wikidata.org/wiki/Q652) |
+| Wikipedia | [Italian language](https://en.wikipedia.org/wiki/Italian_language) |
+| Family | [Indo-European](by-family.md#indo-european) > [Italic > Romance > Italo-Romance](by-family.md#indo-european--italic--romance--italo-romance) |
+| Region | [Eurasia](by-region.md#eurasia) > [Italy](by-region.md#italy) |
+| Script | [Latin](by-script.md#latin) (alphabet) |
+| Tier | [research](../specs/quality_tiers.md#research) |
+| Attested | from 1300, living |
+| Parent | [Italo-Romance](https://tigregotico.github.io/orthography2ipa/#x-clade-italorom) `x-clade-italorom` |
+| Child lects | 4, see [Related lects](#related-lects) |
+| Explorer | [`it-IT` in the data explorer](https://tigregotico.github.io/orthography2ipa/#it-IT) |
+| Spec file | [`it-IT.json`](../../orthography2ipa/data/it-IT.json) |
+<!-- atlas:header end -->
+
+## Overview
 
 The `it-IT` spec describes Standard Italian, which rests on Florentine and Tuscan usage. Where the regional varieties disagree, it writes the Standard Northern value. The sources are Lepschy & Lepschy (1988), Maiden (1995), Rogers & d'Arcangeli (2004), Bertinetto & Loporcaro (2005), Krämer (2009) and Canepari (2009).
 
@@ -67,15 +91,200 @@ The spec cannot recover these contrasts from the spelling, and a downstream lexi
 
 The spec `notes` give the share of the remaining error that each contrast causes on the WikiPron gold. The scores are on the [scoreboard](../evaluation/generated/scoreboard.md).
 
-## References
+<!-- atlas:lects begin -->
+## Related lects
 
-- Lepschy, A.L. & Lepschy, G. (1988). *The Italian Language Today* (2nd ed.). Routledge.
+These specs name `it-IT` as their parent. They are sorted by country, and a lect with no recorded country comes last.
+
+- [Marchigiano](it-IT-x-marche.md) `it-IT-x-marche`: Italy, research tier
+- [Romanesco](it-IT-x-roma.md) `it-IT-x-roma`: Italy, research tier
+- [Tuscan](it-IT-x-toscana.md) `it-IT-x-toscana`: Italy, research tier
+- [Umbrian dialect](it-IT-x-umbria.md) `it-IT-x-umbria`: Italy, research tier
+<!-- atlas:lects end -->
+
+<!-- atlas:sources begin -->
+## Sources
+
+The spec cites 6 works. 0 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+
+1. <a id="src-lepschy_lepschy1988"></a>Lepschy, A.L. & Lepschy, G. (1988). *The Italian Language Today*. Hutchinson.
+2. <a id="src-rogers_derosa2004"></a>Rogers, D. & d'Arcangeli, L. (2004). *Italian*. Journal of the International Phonetic Association. Cited: 117-121.
+3. <a id="src-maiden_parry1997"></a>Maiden, M. & Parry, M. (eds.) (1997). *The Dialects of Italy*. Routledge.
+4. <a id="src-kramer2009"></a>Krämer, M. (2009). *The Phonology of Italian*. Oxford University Press.
+5. <a id="src-bertinetto_loporcaro2005"></a>Bertinetto, P.M. & Loporcaro, M. (2005). *The sound pattern of Standard Italian, as compared with the varieties spoken in Florence, Milan and Rome*. Journal of the International Phonetic Association. Cited: 131-151.
+6. <a id="src-canepari2009"></a>Canepari, L. (2009). *Dizionario di pronuncia italiana (DiPI)*. Zanichelli.
+<!-- atlas:sources end -->
+
+### Notes on the sources
+
+The page also draws on two works that the spec does not cite:
+
 - Maiden, M. (1995). *A Linguistic History of Italian*. Longman.
-- Rogers, D. & d'Arcangeli, L. (2004). *Italian*. Journal of the IPA, 34(1), 117-121.
-- Bertinetto, P.M. & Loporcaro, M. (2005). The sound pattern of Standard Italian, as compared with the varieties spoken in Florence, Milan and Rome. *Journal of the International Phonetic Association*.
-- Krämer, M. (2009). *The Phonology of Italian*. Oxford University Press.
-- Canepari, L. (2009). *Dizionario di pronuncia italiana* (DiPI). Zanichelli.
 - Wikipedia: [Italian phonology](https://en.wikipedia.org/wiki/Italian_phonology)
 
+<!-- atlas:datasets begin -->
+## Datasets
+
+Every row of the board that scores this spec. PER is the phoneme error rate against the dataset. A gold row is human work, a silver row is a language model's label, and a generated row is the output of another tool. Only a row marked as gating can promote or block the spec. The [dataset catalogue](../evaluation/datasets.md) describes each set.
+
+| Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
+|:--|:--|:--|:--|:--|--:|--:|:--|
+| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `it` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 82276 | 0.0441 | yes |
+| `ipa_childes` ([fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split)) | `it-IT` | generated | espeak-derived | CC BY 4.0 | 4583 | 0.2341 | no |
+| `vox_communis` ([fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p)) | `it` | generated | epitran-derived | CC0 1.0 | 48570 | 0.1031 | no |
+<!-- atlas:datasets end -->
+
+<!-- atlas:inventory begin -->
+## Inventory
+
+The spec can emit 80 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+
+| Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar |
+|:--|:-:|:-:|:-:|:-:|:-:|:-:|
+| Plosive | b bː p pː |  | d dː d̪ t tː t̪ |  |  | k kː ɡ ɡː |
+| Affricate |  |  | dz dːz ts tːs | dʒ dːʒ tʃ tːʃ |  |  |
+| Nasal | m mː | ɱ | n nː |  | ɲ | ŋ |
+| Trill |  |  | r rː |  |  |  |
+| Tap |  |  | ɾ |  |  |  |
+| Fricative |  | f fː v | s sː z | ʃ |  |  |
+| Approximant |  |  |  |  | j |  |
+| Lateral approximant |  |  | l lː |  | ʎ |  |
+
+| Vowels | Front | Back |
+|:--|:-:|:-:|
+| Close | i | u |
+| Close-mid | e | o |
+| Open-mid | ɛ | ɔ |
+| Open | a |  |
+
+Sequences that the spec writes as one unit: [aj] [aw] [ddz] [dʒi] [dːʒi] [ej] [ew] [ja] [je] [jo] [ju] [ks] [kw] [oj] [sk] [tts] [tʃi] [tːʃi] [uj] [w] [wa] [we] [wo] [ɡl] [ɡw] [ɲɲ] [ʃi] [ʃʃ] [ʎi] [ʎʎ].
+<!-- atlas:inventory end -->
+
+<!-- atlas:spelling begin -->
+## Spelling
+
+Each letter or letter group of the spec with its readings. The first reading is the default, and the others stay in the lattice as lower-ranked candidates. The last column gives the readings that depend on the position in the word.
+
+| Spelling | Readings | By position |
+|:--|:--|:--|
+| ⟨a⟩ | [a] |  |
+| ⟨ai⟩ | [aj] |  |
+| ⟨au⟩ | [aw] |  |
+| ⟨b⟩ | [b] |  |
+| ⟨bb⟩ | [bː] |  |
+| ⟨c⟩ | [k] [tʃ] | before e [tʃ] · before i [tʃ] · default [k] |
+| ⟨cc⟩ | [kː] [tːʃ] | before e [tːʃ] · before i [tːʃ] · default [kː] |
+| ⟨cci⟩ | [tːʃ] [tːʃi] | before vowel [tːʃ] · default [tːʃi] |
+| ⟨ch⟩ | [k] |  |
+| ⟨ci⟩ | [tʃ] [tʃi] | before vowel [tʃ] · default [tʃi] |
+| ⟨d⟩ | [d] |  |
+| ⟨dd⟩ | [dː] |  |
+| ⟨e⟩ | [e] [ɛ] |  |
+| ⟨ei⟩ | [ej] |  |
+| ⟨eu⟩ | [ew] |  |
+| ⟨f⟩ | [f] |  |
+| ⟨ff⟩ | [fː] |  |
+| ⟨g⟩ | [ɡ] [dʒ] | before e [dʒ] · before i [dʒ] · default [ɡ] |
+| ⟨gg⟩ | [ɡː] [dːʒ] | before e [dːʒ] · before i [dːʒ] · default [ɡː] |
+| ⟨ggi⟩ | [dːʒ] [dːʒi] | before vowel [dːʒ] · default [dːʒi] |
+| ⟨gh⟩ | [ɡ] |  |
+| ⟨gi⟩ | [dʒ] [dʒi] | before vowel [dʒ] · default [dʒi] |
+| ⟨gl⟩ | [ʎ] [ɡl] | before i [ʎ] · default [ɡl] |
+| ⟨gli⟩ | [ʎ] [ʎi] | before vowel [ʎ] · default [ʎi] |
+| ⟨gn⟩ | [ɲ] |  |
+| ⟨gu⟩ | [ɡw] | before vowel [ɡw] |
+| ⟨h⟩ | ∅ |  |
+| ⟨i⟩ | [i] |  |
+| ⟨ia⟩ | [ja] |  |
+| ⟨ie⟩ | [je] |  |
+| ⟨io⟩ | [jo] |  |
+| ⟨iu⟩ | [ju] |  |
+| ⟨j⟩ | [j] |  |
+| ⟨k⟩ | [k] |  |
+| ⟨l⟩ | [l] |  |
+| ⟨ll⟩ | [lː] |  |
+| ⟨m⟩ | [m] |  |
+| ⟨mm⟩ | [mː] |  |
+| ⟨n⟩ | [n] |  |
+| ⟨nn⟩ | [nː] |  |
+| ⟨o⟩ | [o] [ɔ] |  |
+| ⟨oi⟩ | [oj] |  |
+| ⟨p⟩ | [p] |  |
+| ⟨pp⟩ | [pː] |  |
+| ⟨qu⟩ | [kw] |  |
+| ⟨r⟩ | [r] |  |
+| ⟨rr⟩ | [rː] |  |
+| ⟨s⟩ | [s] [z] | default [s] · intervocalic [z] · word initial [s] |
+| ⟨sc⟩ | [ʃ] [sk] | before e [ʃ] · before i [ʃ] · default [sk] |
+| ⟨sci⟩ | [ʃ] [ʃi] | before vowel [ʃ] · default [ʃi] |
+| ⟨ss⟩ | [sː] |  |
+| ⟨t⟩ | [t] |  |
+| ⟨tt⟩ | [tː] |  |
+| ⟨u⟩ | [u] |  |
+| ⟨ua⟩ | [wa] |  |
+| ⟨ue⟩ | [we] |  |
+| ⟨ui⟩ | [uj] |  |
+| ⟨uo⟩ | [wo] |  |
+| ⟨v⟩ | [v] |  |
+| ⟨w⟩ | [v] [w] |  |
+| ⟨x⟩ | [ks] |  |
+| ⟨y⟩ | [i] [j] |  |
+| ⟨z⟩ | [ts] [dz] | after consonant [ts] [dz] · default [ts] · word initial [dz] |
+| ⟨zz⟩ | [tːs] [dːz] |  |
+| ⟨à⟩ | [a] |  |
+| ⟨è⟩ | [ɛ] |  |
+| ⟨é⟩ | [e] |  |
+| ⟨ì⟩ | [i] |  |
+| ⟨ò⟩ | [ɔ] |  |
+| ⟨ó⟩ | [o] |  |
+| ⟨ù⟩ | [u] |  |
+
+Stress falls on the penult by default. A written ⟨à⟩ ⟨è⟩ ⟨é⟩ ⟨ì⟩ ⟨ò⟩ ⟨ó⟩ ⟨ù⟩ marks the stressed vowel.
+<!-- atlas:spelling end -->
+
+<!-- atlas:rules begin -->
+## Rules
+
+The spec applies 6 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
+
+| Rule | Change | Example | Cited |
+|:--|:--|:--|:--|
+| `IT_INHERENT_GEMINATE_GN` | /ɲ/ → [ɲɲ], after a vowel, before a vowel | ⟨bagno⟩ [baɲɲo] | [Krämer 2009](#src-kramer2009) |
+| `IT_INHERENT_GEMINATE_GLI` | /ʎ/ → [ʎʎ], after a vowel, before a vowel | ⟨aglio⟩ [aʎʎo] | [Krämer 2009](#src-kramer2009) |
+| `IT_INHERENT_GEMINATE_SC` | /ʃ/ → [ʃʃ], after a vowel, before a vowel | ⟨pesce⟩ [peʃʃe] | [Krämer 2009](#src-kramer2009) |
+| `IT_INHERENT_GEMINATE_TS` | /ts/ → [tts], after a vowel, before a vowel | ⟨vizio⟩ [vittsjo] | [Krämer 2009](#src-kramer2009) |
+| `IT_INHERENT_GEMINATE_DZ` | /dz/ → [ddz], after a vowel, before a vowel | - | [Krämer 2009](#src-kramer2009) |
+| `IT_S_VOICING_BEFORE_VOICED_C` | /s/ → [z], before [b] [d] [ɡ] [v] [m] [n] [ɲ] [l] and 4 more | ⟨sbagliare⟩ [zbaʎʎare] | [Krämer 2009](#src-kramer2009), [Bertinetto 2005](#src-bertinetto_loporcaro2005) |
+<!-- atlas:rules end -->
+
+<!-- atlas:examples begin words="azzurro|pizza|Adriana|piano|bello|buono|cielo|figlio|gente|guerra|legge|nazione|scena|svelto" -->
+## Examples
+
+The engine wrote every transcription in this section with `orthography2ipa.transcribe(text, "it-IT")`. They are engine output, not reference transcriptions.
+
+| Spelling | Engine output |
+|:--|:--|
+| azzurro | [aˈtːsurːo] |
+| pizza | [ˈpitːsa] |
+| Adriana | [aˈdrjana] |
+| piano | [ˈpjano] |
+| bello | [ˈbelːo] |
+| buono | [ˈbwono] |
+| cielo | [ˈtʃelo] |
+| figlio | [ˈfiʎʎo] |
+| gente | [ˈdʒente] |
+| guerra | [ˈɡwerːa] |
+| legge | [ˈledːʒe] |
+| nazione | [natˈtsjone] |
+| scena | [ˈʃena] |
+| svelto | [ˈzvelto] |
+<!-- atlas:examples end -->
+
+<!-- atlas:related begin -->
+## Related repositories
+
+No downstream repository of the TigreGotico organisation covers this spec. The [o2i-lexicons](https://github.com/TigreGotico/o2i-lexicons) package ships no lexicon for it.
+<!-- atlas:related end -->
+
 ---
-[← French](fr-FR.md) · [Home](../index.md) · [Ligurian / Genoese →](lij.md)
+[← Isthmus-Mecayapan Nahuatl](nhx.md) · [Home](../index.md) · [Itelmen →](itl.md)

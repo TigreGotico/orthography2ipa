@@ -171,8 +171,8 @@ The rules and this page cite Wright (1896) for the matres lectionis, the jazma a
 
 These specs name `ar` as their parent. They are sorted by country, and a lect with no recorded country comes last.
 
-- [Maltese](https://tigregotico.github.io/orthography2ipa/#mt) `mt`: Malta, research tier
-- [Arabic (Buckwalter transliteration)](https://tigregotico.github.io/orthography2ipa/#ar-Latn-x-buckwalt) `ar-Latn-x-buckwalt`: research tier
+- [Maltese](mt.md) `mt`: Malta, research tier
+- [Arabic (Buckwalter transliteration)](ar-Latn-x-buckwalt.md) `ar-Latn-x-buckwalt`: research tier
 <!-- atlas:lects end -->
 
 <!-- atlas:sources begin -->
@@ -563,4 +563,4 @@ The engine wrote every transcription in this section with `orthography2ipa.trans
 <!-- atlas:related end -->
 
 ---
-[← Languages from A to Z](a-z.md) · [Home](../index.md) · [Castilian Spanish →](es-ES.md)
+[← Apulian](it-IT-x-puglia.md) · [Home](../index.md) · [Arabic →](ar-Latn-x-buckwalt.md)

@@ -251,10 +251,10 @@ A stub has a name, a code and a place in the family tree, but no phonology yet. 
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Abkhaz](https://tigregotico.github.io/orthography2ipa/#ab) | `ab` | research | Cyrillic |
-| [Adyghe](https://tigregotico.github.io/orthography2ipa/#ady) | `ady` | research | Cyrillic |
-| [Kabardian](https://tigregotico.github.io/orthography2ipa/#kbd) | `kbd` | research | Cyrillic |
-| [Ubykh](https://tigregotico.github.io/orthography2ipa/#uby) | `uby` | research | Cyrillic |
+| [Abkhaz](ab.md) (page) | `ab` | research | Cyrillic |
+| [Adyghe](ady.md) (page) | `ady` | research | Cyrillic |
+| [Kabardian](kbd.md) (page) | `kbd` | research | Cyrillic |
+| [Ubykh](uby.md) (page) | `uby` | research | Cyrillic |
 
 Stubs (1): Abaza `abq`.
 
@@ -276,10 +276,10 @@ Stubs (1): Abaza `abq`.
 | [Ghomara](https://tigregotico.github.io/orthography2ipa/#gho) | `gho` | skeleton | Latin |
 | [Gavar](https://tigregotico.github.io/orthography2ipa/#gou) | `gou` | skeleton | Latin |
 | [Taznatit](https://tigregotico.github.io/orthography2ipa/#grr) | `grr` | skeleton | Latin |
-| [Gawwada](https://tigregotico.github.io/orthography2ipa/#gwd) | `gwd` | research | Latin |
+| [Gawwada](gwd.md) (page) | `gwd` | research | Latin |
 | [Harari](https://tigregotico.github.io/orthography2ipa/#har) | `har` | skeleton | Latin |
 | [Hadiyya](https://tigregotico.github.io/orthography2ipa/#hdy) | `hdy` | skeleton | Latin |
-| [Iraqw](https://tigregotico.github.io/orthography2ipa/#irk) | `irk` | research | Latin |
+| [Iraqw](irk.md) (page) | `irk` | research | Latin |
 | [Kera](https://tigregotico.github.io/orthography2ipa/#ker) | `ker` | skeleton | Latin |
 | [Lele (Chad)](https://tigregotico.github.io/orthography2ipa/#lln) | `lln` | skeleton | Latin |
 | [Wandala](https://tigregotico.github.io/orthography2ipa/#mfi) | `mfi` | skeleton | Latin |
@@ -311,12 +311,12 @@ Stubs (253): Afade `aal`, Algerian Saharan Arabic `aao`, Aasáx `aas`, Tajiki Ar
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
 | [Berber (Proto-Berber / Common Tamazight)](https://tigregotico.github.io/orthography2ipa/#ber) | `ber` | research | Latin |
-| [Kabyle](https://tigregotico.github.io/orthography2ipa/#kab) | `kab` | research | Latin |
-| [Tarifit (Riffian Berber)](https://tigregotico.github.io/orthography2ipa/#rif) | `rif` | research | Latin |
-| [Shawiya (Tacawit)](https://tigregotico.github.io/orthography2ipa/#shy) | `shy` | research | Latin |
-| [Senhaja de Srair (Berber)](https://tigregotico.github.io/orthography2ipa/#sjs) | `sjs` | research | Latin |
-| [Central Atlas Tamazight](https://tigregotico.github.io/orthography2ipa/#tzm) | `tzm` | research | Tifinagh |
-| [Standard Moroccan Tamazight](https://tigregotico.github.io/orthography2ipa/#zgh) | `zgh` | research | Tifinagh |
+| [Kabyle](kab.md) (page) | `kab` | research | Latin |
+| [Tarifit (Riffian Berber)](rif.md) (page) | `rif` | research | Latin |
+| [Shawiya (Tacawit)](shy.md) (page) | `shy` | research | Latin |
+| [Senhaja de Srair (Berber)](sjs.md) (page) | `sjs` | research | Latin |
+| [Central Atlas Tamazight](tzm.md) (page) | `tzm` | research | Tifinagh |
+| [Standard Moroccan Tamazight](zgh.md) (page) | `zgh` | research | Tifinagh |
 
 Stubs (3): Kabyle-Atlas Berber `ber-x-kabyle-atlas`, Guanche `gnc`, Tashelhit `shi`.
 
@@ -324,7 +324,7 @@ Stubs (3): Kabyle-Atlas Berber `ber-x-kabyle-atlas`, Guanche `gnc`, Tashelhit `s
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Hausa](https://tigregotico.github.io/orthography2ipa/#ha) | `ha` | research | Latin |
+| [Hausa](ha.md) (page) | `ha` | research | Latin |
 
 Stubs (2): Proto-Chadic (family node) `cdc`, Karekare `kai`.
 
@@ -332,10 +332,10 @@ Stubs (2): Proto-Chadic (family node) `cdc`, Karekare `kai`.
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Afar](https://tigregotico.github.io/orthography2ipa/#aa) | `aa` | research | Latin |
-| [Oromo](https://tigregotico.github.io/orthography2ipa/#om) | `om` | research | Latin |
-| [Sidamo](https://tigregotico.github.io/orthography2ipa/#sid) | `sid` | research | Latin |
-| [Somali](https://tigregotico.github.io/orthography2ipa/#so) | `so` | research | Latin |
+| [Afar](aa.md) (page) | `aa` | research | Latin |
+| [Oromo](om.md) (page) | `om` | research | Latin |
+| [Sidamo](sid.md) (page) | `sid` | research | Latin |
+| [Somali](so.md) (page) | `so` | research | Latin |
 
 Stubs (1): Proto-Cushitic (family node) `cus`.
 
@@ -344,14 +344,14 @@ Stubs (1): Proto-Cushitic (family node) `cus`.
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
 | [Coptic (Sahidic)](https://tigregotico.github.io/orthography2ipa/#cop) | `cop` | research | Coptic |
-| [Ancient Egyptian](https://tigregotico.github.io/orthography2ipa/#egy) | `egy` | research | Latin |
+| [Ancient Egyptian](egy.md) (page) | `egy` | research | Latin |
 
 ### Afro-Asiatic > Semitic
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
 | [Akkadian](https://tigregotico.github.io/orthography2ipa/#akk) | `akk` | research | Latin |
-| [Amharic](https://tigregotico.github.io/orthography2ipa/#am) | `am` | research | Ethiopic |
+| [Amharic](am.md) (page) | `am` | research | Ethiopic |
 | [Phoenician/Punic](https://tigregotico.github.io/orthography2ipa/#phn) | `phn` | research | Latin |
 | [Proto-Semitic](https://tigregotico.github.io/orthography2ipa/#sem) | `sem` | research | IPA-reconstruction |
 | [Proto-West-Semitic](https://tigregotico.github.io/orthography2ipa/#sem-x-west) | `sem-x-west` | research | IPA-reconstruction |
@@ -364,56 +364,56 @@ Stubs (4): Geʽez (Classical Ethiopic) `gez`, Proto-Ethiopian-Semitic (family no
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Bahārna Arabic (B dialects of Bahrain)](https://tigregotico.github.io/orthography2ipa/#abv-BH) | `abv-BH` | research | Arabic |
-| [Iraqi Arabic (Baghdad / gilit)](https://tigregotico.github.io/orthography2ipa/#acm-IQ) | `acm-IQ` | research | Arabic |
-| [Ta'izzi-Adeni Arabic](https://tigregotico.github.io/orthography2ipa/#acq) | `acq` | research | Zyyy |
-| [Hejazi Arabic](https://tigregotico.github.io/orthography2ipa/#acw-SA) | `acw-SA` | research | Arabic |
-| [Omani Arabic](https://tigregotico.github.io/orthography2ipa/#acx-OM) | `acx-OM` | research | Arabic |
-| [Cypriot Maronite Arabic](https://tigregotico.github.io/orthography2ipa/#acy) | `acy` | research | Latin |
-| [Coastal Dhofari Arabic](https://tigregotico.github.io/orthography2ipa/#adf-OM) | `adf-OM` | research | Arabic |
-| [Tunisian Arabic](https://tigregotico.github.io/orthography2ipa/#aeb-TN) | `aeb-TN` | research | Arabic |
-| [Saʿīdi Arabic (Upper Egyptian)](https://tigregotico.github.io/orthography2ipa/#aec-EG) | `aec-EG` | research | Arabic |
-| [Proto-Gulf Arabic](https://tigregotico.github.io/orthography2ipa/#afb) | `afb` | research | Arabic |
-| [Emirati Arabic](https://tigregotico.github.io/orthography2ipa/#afb-AE) | `afb-AE` | research | Arabic |
-| [Bahraini Arabic](https://tigregotico.github.io/orthography2ipa/#afb-BH) | `afb-BH` | research | Arabic |
-| [Kuwaiti Arabic](https://tigregotico.github.io/orthography2ipa/#afb-KW) | `afb-KW` | research | Arabic |
-| [Qatari Arabic](https://tigregotico.github.io/orthography2ipa/#afb-QA) | `afb-QA` | research | Arabic |
-| [Eastern Saudi (Sharqiyya) Arabic](https://tigregotico.github.io/orthography2ipa/#afb-SA-x-sharqiya) | `afb-SA-x-sharqiya` | research | Arabic |
-| [Assyrian Neo-Aramaic](https://tigregotico.github.io/orthography2ipa/#aii) | `aii` | research | Syriac |
-| [Proto-Levantine Arabic](https://tigregotico.github.io/orthography2ipa/#apc) | `apc` | research | Arabic |
-| [Jordanian Arabic (Ammani)](https://tigregotico.github.io/orthography2ipa/#apc-JO) | `apc-JO` | research | Arabic |
-| [Lebanese Arabic (Beiruti)](https://tigregotico.github.io/orthography2ipa/#apc-LB) | `apc-LB` | research | Arabic |
-| [Palestinian Arabic](https://tigregotico.github.io/orthography2ipa/#apc-PS) | `apc-PS` | research | Arabic |
-| [Syrian Arabic (Damascene)](https://tigregotico.github.io/orthography2ipa/#apc-SY) | `apc-SY` | research | Arabic |
-| [Sudanese Arabic](https://tigregotico.github.io/orthography2ipa/#apd-SD) | `apd-SD` | research | Arabic |
+| [Bahārna Arabic (B dialects of Bahrain)](abv-BH.md) (page) | `abv-BH` | research | Arabic |
+| [Iraqi Arabic (Baghdad / gilit)](acm-IQ.md) (page) | `acm-IQ` | research | Arabic |
+| [Ta'izzi-Adeni Arabic](acq.md) (page) | `acq` | research | Zyyy |
+| [Hejazi Arabic](acw-SA.md) (page) | `acw-SA` | research | Arabic |
+| [Omani Arabic](acx-OM.md) (page) | `acx-OM` | research | Arabic |
+| [Cypriot Maronite Arabic](acy.md) (page) | `acy` | research | Latin |
+| [Coastal Dhofari Arabic](adf-OM.md) (page) | `adf-OM` | research | Arabic |
+| [Tunisian Arabic](aeb-TN.md) (page) | `aeb-TN` | research | Arabic |
+| [Saʿīdi Arabic (Upper Egyptian)](aec-EG.md) (page) | `aec-EG` | research | Arabic |
+| [Proto-Gulf Arabic](afb.md) (page) | `afb` | research | Arabic |
+| [Emirati Arabic](afb-AE.md) (page) | `afb-AE` | research | Arabic |
+| [Bahraini Arabic](afb-BH.md) (page) | `afb-BH` | research | Arabic |
+| [Kuwaiti Arabic](afb-KW.md) (page) | `afb-KW` | research | Arabic |
+| [Qatari Arabic](afb-QA.md) (page) | `afb-QA` | research | Arabic |
+| [Eastern Saudi (Sharqiyya) Arabic](afb-SA-x-sharqiya.md) (page) | `afb-SA-x-sharqiya` | research | Arabic |
+| [Assyrian Neo-Aramaic](aii.md) (page) | `aii` | research | Syriac |
+| [Proto-Levantine Arabic](apc.md) (page) | `apc` | research | Arabic |
+| [Jordanian Arabic (Ammani)](apc-JO.md) (page) | `apc-JO` | research | Arabic |
+| [Lebanese Arabic (Beiruti)](apc-LB.md) (page) | `apc-LB` | research | Arabic |
+| [Palestinian Arabic](apc-PS.md) (page) | `apc-PS` | research | Arabic |
+| [Syrian Arabic (Damascene)](apc-SY.md) (page) | `apc-SY` | research | Arabic |
+| [Sudanese Arabic](apd-SD.md) (page) | `apd-SD` | research | Arabic |
 | [Arabic](ar.md) (page) | `ar` | research | Arabic |
-| [Iraqi Arabic (Northern / qəltu)](https://tigregotico.github.io/orthography2ipa/#ar-IQ-x-qeltu) | `ar-IQ-x-qeltu` | research | Arabic |
-| [Libyan Arabic](https://tigregotico.github.io/orthography2ipa/#ar-LY) | `ar-LY` | research | Arabic |
-| [Arabic (Buckwalter transliteration)](https://tigregotico.github.io/orthography2ipa/#ar-Latn-x-buckwalt) | `ar-Latn-x-buckwalt` | research | Latin |
-| [Rijāl Almaʿ Arabic](https://tigregotico.github.io/orthography2ipa/#ar-SA-x-rijal-alma) | `ar-SA-x-rijal-alma` | research | Arabic |
-| [Tihāmi Qaḥtāni Arabic](https://tigregotico.github.io/orthography2ipa/#ar-SA-x-tihama-qahtan) | `ar-SA-x-tihama-qahtan` | research | Arabic |
-| [Proto-Maghrebi Arabic](https://tigregotico.github.io/orthography2ipa/#ar-x-maghrebi) | `ar-x-maghrebi` | research | Arabic |
-| [Proto-Mashriqi Arabic](https://tigregotico.github.io/orthography2ipa/#ar-x-mashriqi) | `ar-x-mashriqi` | research | Arabic |
-| [Proto-Peninsular Arabic](https://tigregotico.github.io/orthography2ipa/#ar-x-peninsul) | `ar-x-peninsul` | research | Arabic |
+| [Iraqi Arabic (Northern / qəltu)](ar-IQ-x-qeltu.md) (page) | `ar-IQ-x-qeltu` | research | Arabic |
+| [Libyan Arabic](ar-LY.md) (page) | `ar-LY` | research | Arabic |
+| [Arabic (Buckwalter transliteration)](ar-Latn-x-buckwalt.md) (page) | `ar-Latn-x-buckwalt` | research | Latin |
+| [Rijāl Almaʿ Arabic](ar-SA-x-rijal-alma.md) (page) | `ar-SA-x-rijal-alma` | research | Arabic |
+| [Tihāmi Qaḥtāni Arabic](ar-SA-x-tihama-qahtan.md) (page) | `ar-SA-x-tihama-qahtan` | research | Arabic |
+| [Proto-Maghrebi Arabic](ar-x-maghrebi.md) (page) | `ar-x-maghrebi` | research | Arabic |
+| [Proto-Mashriqi Arabic](ar-x-mashriqi.md) (page) | `ar-x-mashriqi` | research | Arabic |
+| [Proto-Peninsular Arabic](ar-x-peninsul.md) (page) | `ar-x-peninsul` | research | Arabic |
 | [Classical Arabic](https://tigregotico.github.io/orthography2ipa/#arb) | `arb` | research | Arabic |
-| [Algerian Arabic](https://tigregotico.github.io/orthography2ipa/#arq-DZ) | `arq-DZ` | research | Arabic |
-| [Najdi Arabic](https://tigregotico.github.io/orthography2ipa/#ars-SA) | `ars-SA` | research | Arabic |
-| [Qassimi Arabic](https://tigregotico.github.io/orthography2ipa/#ars-SA-x-qassim) | `ars-SA-x-qassim` | research | Arabic |
-| [Northern Najdi Arabic (Shamali)](https://tigregotico.github.io/orthography2ipa/#ars-SA-x-shamali) | `ars-SA-x-shamali` | research | Arabic |
-| [Moroccan Arabic (Darija)](https://tigregotico.github.io/orthography2ipa/#ary-MA) | `ary-MA` | research | Arabic |
-| [Egyptian Arabic (Cairene)](https://tigregotico.github.io/orthography2ipa/#arz-EG) | `arz-EG` | research | Arabic |
-| [Eastern Egyptian Bedawi Arabic](https://tigregotico.github.io/orthography2ipa/#avl-EG) | `avl-EG` | research | Arabic |
-| [Libyan Arabic](https://tigregotico.github.io/orthography2ipa/#ayl) | `ayl` | research | Arabic |
-| [Yemeni Arabic (Ṣanʿānī)](https://tigregotico.github.io/orthography2ipa/#ayn-YE) | `ayn-YE` | research | Arabic |
-| [Hebrew](https://tigregotico.github.io/orthography2ipa/#he) | `he` | research | Hebrew |
-| [Hassaniya Arabic (Mauritanian)](https://tigregotico.github.io/orthography2ipa/#mey-MR) | `mey-MR` | research | Arabic |
-| [Maltese](https://tigregotico.github.io/orthography2ipa/#mt) | `mt` | research | Latin |
+| [Algerian Arabic](arq-DZ.md) (page) | `arq-DZ` | research | Arabic |
+| [Najdi Arabic](ars-SA.md) (page) | `ars-SA` | research | Arabic |
+| [Qassimi Arabic](ars-SA-x-qassim.md) (page) | `ars-SA-x-qassim` | research | Arabic |
+| [Northern Najdi Arabic (Shamali)](ars-SA-x-shamali.md) (page) | `ars-SA-x-shamali` | research | Arabic |
+| [Moroccan Arabic (Darija)](ary-MA.md) (page) | `ary-MA` | research | Arabic |
+| [Egyptian Arabic (Cairene)](arz-EG.md) (page) | `arz-EG` | research | Arabic |
+| [Eastern Egyptian Bedawi Arabic](avl-EG.md) (page) | `avl-EG` | research | Arabic |
+| [Libyan Arabic](ayl.md) (page) | `ayl` | research | Arabic |
+| [Yemeni Arabic (Ṣanʿānī)](ayn-YE.md) (page) | `ayn-YE` | research | Arabic |
+| [Hebrew](he.md) (page) | `he` | research | Hebrew |
+| [Hassaniya Arabic (Mauritanian)](mey-MR.md) (page) | `mey-MR` | research | Arabic |
+| [Maltese](mt.md) (page) | `mt` | research | Latin |
 | [Proto-Central-Semitic](https://tigregotico.github.io/orthography2ipa/#sem-x-central) | `sem-x-central` | research | IPA-reconstruction |
-| [Nigerian Arabic (Shuwa)](https://tigregotico.github.io/orthography2ipa/#shu-NG) | `shu-NG` | research | Arabic |
-| [Chadian Arabic](https://tigregotico.github.io/orthography2ipa/#shu-TD) | `shu-TD` | research | Arabic |
-| [Shihhi Arabic](https://tigregotico.github.io/orthography2ipa/#ssh) | `ssh` | research | Zyyy |
-| [Classical Syriac](https://tigregotico.github.io/orthography2ipa/#syc) | `syc` | research | Syriac |
-| [Turoyo](https://tigregotico.github.io/orthography2ipa/#tru) | `tru` | research | Syriac |
+| [Nigerian Arabic (Shuwa)](shu-NG.md) (page) | `shu-NG` | research | Arabic |
+| [Chadian Arabic](shu-TD.md) (page) | `shu-TD` | research | Arabic |
+| [Shihhi Arabic](ssh.md) (page) | `ssh` | research | Zyyy |
+| [Classical Syriac](syc.md) (page) | `syc` | research | Syriac |
+| [Turoyo](tru.md) (page) | `tru` | research | Syriac |
 | [Andalusi Arabic](https://tigregotico.github.io/orthography2ipa/#xaa) | `xaa` | research | Arabic |
 | [Proto-Arabic (Old Arabic)](https://tigregotico.github.io/orthography2ipa/#xpa) | `xpa` | research | IPA-reconstruction |
 
@@ -423,27 +423,27 @@ Stubs (14): Dawāsir Arabic (Dammam, Eastern Province) `afb-SA-x-dawasir`, Judeo
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Ki-Nubi (Nubi)](https://tigregotico.github.io/orthography2ipa/#kcn) | `kcn` | research | Latin |
-| [Juba Arabic (Árabi Júba)](https://tigregotico.github.io/orthography2ipa/#pga) | `pga` | research | Latin |
+| [Ki-Nubi (Nubi)](kcn.md) (page) | `kcn` | research | Latin |
+| [Juba Arabic (Árabi Júba)](pga.md) (page) | `pga` | research | Latin |
 
 ## Ainu
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Ainu](https://tigregotico.github.io/orthography2ipa/#ain) | `ain` | research | Latin |
+| [Ainu](ain.md) (page) | `ain` | research | Latin |
 
 ## Algic
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Atikamekw](https://tigregotico.github.io/orthography2ipa/#atj) | `atj` | research | Latin |
-| [Cheyenne](https://tigregotico.github.io/orthography2ipa/#chy) | `chy` | research | Latin |
-| [Cree](https://tigregotico.github.io/orthography2ipa/#cr) | `cr` | research | Canadian Aboriginal Syllabics |
-| [Plains Cree](https://tigregotico.github.io/orthography2ipa/#crk) | `crk` | research | Latin |
-| [Mi'kmaq](https://tigregotico.github.io/orthography2ipa/#mic) | `mic` | research | Latin |
-| [Ojibwe](https://tigregotico.github.io/orthography2ipa/#oji) | `oji` | research | Latin |
-| [Malecite-Passamaquoddy](https://tigregotico.github.io/orthography2ipa/#pqm) | `pqm` | research | Latin |
-| [Wiyot](https://tigregotico.github.io/orthography2ipa/#wiy) | `wiy` | research | Latin |
+| [Atikamekw](atj.md) (page) | `atj` | research | Latin |
+| [Cheyenne](chy.md) (page) | `chy` | research | Latin |
+| [Cree](cr.md) (page) | `cr` | research | Canadian Aboriginal Syllabics |
+| [Plains Cree](crk.md) (page) | `crk` | research | Latin |
+| [Mi'kmaq](mic.md) (page) | `mic` | research | Latin |
+| [Ojibwe](oji.md) (page) | `oji` | research | Latin |
+| [Malecite-Passamaquoddy](pqm.md) (page) | `pqm` | research | Latin |
+| [Wiyot](wiy.md) (page) | `wiy` | research | Latin |
 
 Stubs (26): Western Abnaki `abe`, Algonquin `alq`, Arapaho `arp`, Gros Ventre `ats`, Siksika `bla`, Chippewa `ciw`, Michif `crg`, Southern East Cree `crj`, Northern East Cree `crl`, Moose Cree `crm`, Swampy Cree `csw`, Kickapoo `kic`, Menominee `mez`, Miami `mia`, Innu `moe`, Naskapi `nsk`, Northwestern Ojibwa `ojb`, Central Ojibwa `ojc`, Eastern Ojibwa `ojg`, Severn Ojibwa `ojs`, Western Ojibwa `ojw`, Ottawa `otw`, Potawatomi `pot`, Meskwaki `sac`, Shawnee `sjw`, Munsee `umu`.
 
@@ -467,7 +467,7 @@ Stubs (3): Andai `afd`, Nanubae `afk`, Tapei `afp`.
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Mapudungun](https://tigregotico.github.io/orthography2ipa/#arn) | `arn` | research | Latin |
+| [Mapudungun](arn.md) (page) | `arn` | research | Latin |
 
 Stubs (1): Huilliche `huh`.
 
@@ -476,8 +476,8 @@ Stubs (1): Huilliche `huh`.
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
 | [Garifuna](https://tigregotico.github.io/orthography2ipa/#cab) | `cab` | skeleton | Latin |
-| [Wayuu](https://tigregotico.github.io/orthography2ipa/#guc) | `guc` | research | Latin |
-| [Waurá](https://tigregotico.github.io/orthography2ipa/#wau) | `wau` | research | Latin |
+| [Wayuu](guc.md) (page) | `guc` | research | Latin |
+| [Waurá](wau.md) (page) | `wau` | research | Latin |
 
 Stubs (42): Achagua `aca`, Yanesha' `ame`, Atorada `aox`, Apurinã `apu`, Arawak `arw`, Baure `brg`, Baniwa `bwi`, Cabiyarí `cbb`, Chamicuro `ccc`, Ashéninka Pajonal `cjo`, Asháninka `cni`, Caquinte `cot`, Nanti `cox`, Ucayali-Yurúa Ashéninka `cpb`, Ajyíninka Apurucayali `cpc`, Pichis Ashéninka `cpu`, South Ucayali Ashéninka `cpy`, Mashco Piro `cuj`, Guarequena `gae`, Ignaciano `ign`, Iñapari `inp`, Curripaco `kpc`, Machiguenga `mcb`, Mandahuaca `mht`, Mehináku `mmh`, Machinere `mpd`, Mapidian `mpw`, Nomatsiguenga `not`, Parecís `pab`, Yine `pib`, Piapoco `pio`, Palikúr `plu`, Paunaka `pnk`, Ashéninka Perené `prq`, Resígaro `rgr`, Tariana `tae`, Tereno `ter`, Trinitario `trn`, Enawené-Nawé `unk`, Wapishana `wap`, Yawalapití `yaw`, Yucuna `ycn`.
 
@@ -493,10 +493,10 @@ Stubs (1): Eskayan `esy`.
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Western Apache](https://tigregotico.github.io/orthography2ipa/#apw) | `apw` | research | Latin |
-| [Navajo](https://tigregotico.github.io/orthography2ipa/#nv) | `nv` | research | Latin |
-| [Sarsi](https://tigregotico.github.io/orthography2ipa/#srs) | `srs` | research | Latin |
-| [South Slavey](https://tigregotico.github.io/orthography2ipa/#xsl) | `xsl` | research | Latin |
+| [Western Apache](apw.md) (page) | `apw` | research | Latin |
+| [Navajo](nv.md) (page) | `nv` | research | Latin |
+| [Sarsi](srs.md) (page) | `srs` | research | Latin |
+| [South Slavey](xsl.md) (page) | `xsl` | research | Latin |
 
 Stubs (32): Ahtena `aht`, Jicarilla Apache `apj`, Kiowa Apache `apk`, Lipan Apache `apl`, Mescalero-Chiricahua Apache `apm`, Babine `bcr`, Beaver `bea`, Southern Carrier `caf`, Chipewyan `chp`, Chilcotin `clc`, Carrier `crx`, Tlicho `dgr`, Gwichʼin `gwi`, Hän `haa`, Holikachuk `hoi`, Hupa `hup`, Degexit'an `ing`, Kaska `kkz`, Koyukon `koy`, Upper Kuskokwim `kuu`, North Slavey `scs`, Sekani `sek`, Lower Tanana `taa`, Upper Tanana `tau`, Tanacross `tcb`, Southern Tutchone `tce`, Tanaina `tfn`, Tagish `tgx`, Tahltan `tht`, Tlingit `tli`, Northern Tutchone `ttm`, Tututni `tuu`.
 
@@ -506,14 +506,14 @@ Stubs (32): Ahtena `aht`, Jicarilla Apache `apj`, Kiowa Apache `apk`, Lipan Apac
 |:--|:--|:--|:--|
 | [Abidji](https://tigregotico.github.io/orthography2ipa/#abi) | `abi` | skeleton | Latin |
 | [Gikyode](https://tigregotico.github.io/orthography2ipa/#acd) | `acd` | skeleton | Latin |
-| [Dangme (Adangme)](https://tigregotico.github.io/orthography2ipa/#ada) | `ada` | research | Latin |
+| [Dangme (Adangme)](ada.md) (page) | `ada` | research | Latin |
 | [Adele](https://tigregotico.github.io/orthography2ipa/#ade) | `ade` | skeleton | Latin |
 | [Adioukrou](https://tigregotico.github.io/orthography2ipa/#adj) | `adj` | skeleton | Latin |
 | [Ambele](https://tigregotico.github.io/orthography2ipa/#ael) | `ael` | skeleton | Latin |
 | [Esimbi](https://tigregotico.github.io/orthography2ipa/#ags) | `ags` | skeleton | Latin |
 | [Ahanta](https://tigregotico.github.io/orthography2ipa/#aha) | `aha` | skeleton | Latin |
-| [Aja (Adja)](https://tigregotico.github.io/orthography2ipa/#ajg-BJ) | `ajg-BJ` | research | Latin |
-| [Akan (Twi-Fante)](https://tigregotico.github.io/orthography2ipa/#ak) | `ak` | research | Latin |
+| [Aja (Adja)](ajg-BJ.md) (page) | `ajg-BJ` | research | Latin |
+| [Akan (Twi-Fante)](ak.md) (page) | `ak` | research | Latin |
 | [Siwu](https://tigregotico.github.io/orthography2ipa/#akp) | `akp` | skeleton | Latin |
 | [Akaselem](https://tigregotico.github.io/orthography2ipa/#aks) | `aks` | skeleton | Latin |
 | [Akum](https://tigregotico.github.io/orthography2ipa/#aku) | `aku` | skeleton | Latin |
@@ -561,8 +561,8 @@ Stubs (32): Ahtena `aht`, Jicarilla Apache `apj`, Kiowa Apache `apk`, Lipan Apac
 | [Chokwe](https://tigregotico.github.io/orthography2ipa/#cjk) | `cjk` | skeleton | Latin |
 | [Anufo](https://tigregotico.github.io/orthography2ipa/#cko) | `cko` | skeleton | Latin |
 | [Cerma](https://tigregotico.github.io/orthography2ipa/#cme) | `cme` | skeleton | Latin |
-| [Dagbani](https://tigregotico.github.io/orthography2ipa/#dag) | `dag` | research | Latin |
-| [Southern Dagaare](https://tigregotico.github.io/orthography2ipa/#dga) | `dga` | research | Latin |
+| [Dagbani](dag.md) (page) | `dag` | research | Latin |
+| [Southern Dagaare](dga.md) (page) | `dga` | research | Latin |
 | [Dagaari Dioula](https://tigregotico.github.io/orthography2ipa/#dgd) | `dgd` | skeleton | Latin |
 | [Lukpa](https://tigregotico.github.io/orthography2ipa/#dop) | `dop` | skeleton | Latin |
 | [Doyayo](https://tigregotico.github.io/orthography2ipa/#dow) | `dow` | skeleton | Latin |
@@ -570,36 +570,36 @@ Stubs (32): Ahtena `aht`, Jicarilla Apache `apj`, Kiowa Apache `apk`, Lipan Apac
 | [Jola-Fonyi](https://tigregotico.github.io/orthography2ipa/#dyo) | `dyo` | skeleton | Latin |
 | [Teke-Ebo](https://tigregotico.github.io/orthography2ipa/#ebo) | `ebo` | skeleton | Latin |
 | [Ebrié](https://tigregotico.github.io/orthography2ipa/#ebr) | `ebr` | skeleton | Latin |
-| [Ewe](https://tigregotico.github.io/orthography2ipa/#ee) | `ee` | research | Latin |
+| [Ewe](ee.md) (page) | `ee` | research | Latin |
 | [Efik](https://tigregotico.github.io/orthography2ipa/#efi) | `efi` | skeleton | Latin |
 | [Emai-Iuleha-Ora](https://tigregotico.github.io/orthography2ipa/#ema) | `ema` | skeleton | Latin |
 | [Engenni](https://tigregotico.github.io/orthography2ipa/#enn) | `enn` | skeleton | Latin |
 | [Eton (Cameroon)](https://tigregotico.github.io/orthography2ipa/#eto) | `eto` | skeleton | Latin |
 | [Fang (Cameroon)](https://tigregotico.github.io/orthography2ipa/#fak) | `fak` | skeleton | Latin |
-| [Fante](https://tigregotico.github.io/orthography2ipa/#fat) | `fat` | research | Latin |
-| [Fula (Fulah / Fulfulde / Pular)](https://tigregotico.github.io/orthography2ipa/#ff) | `ff` | research | Latin |
+| [Fante](fat.md) (page) | `fat` | research | Latin |
+| [Fula (Fulah / Fulfulde / Pular)](ff.md) (page) | `ff` | research | Latin |
 | [Maasina Fulfulde](https://tigregotico.github.io/orthography2ipa/#ffm) | `ffm` | skeleton | Latin |
 | [Fuliiru](https://tigregotico.github.io/orthography2ipa/#flr) | `flr` | skeleton | Latin |
 | [Fe'fe'](https://tigregotico.github.io/orthography2ipa/#fmp) | `fmp` | skeleton | Latin |
 | [Foodo](https://tigregotico.github.io/orthography2ipa/#fod) | `fod` | skeleton | Latin |
-| [Fon](https://tigregotico.github.io/orthography2ipa/#fon) | `fon` | research | Latin |
+| [Fon](fon.md) (page) | `fon` | research | Latin |
 | [Borgu Fulfulde](https://tigregotico.github.io/orthography2ipa/#fue) | `fue` | skeleton | Latin |
-| [Pular (Fula, Guinea)](https://tigregotico.github.io/orthography2ipa/#fuf) | `fuf` | research | Latin |
-| [Nigerian Fulfulde](https://tigregotico.github.io/orthography2ipa/#fuv) | `fuv` | research | Latin |
-| [Ga](https://tigregotico.github.io/orthography2ipa/#gaa) | `gaa` | research | Latin |
-| [Gen (Mina)](https://tigregotico.github.io/orthography2ipa/#gej-TG) | `gej-TG` | research | Latin |
+| [Pular (Fula, Guinea)](fuf.md) (page) | `fuf` | research | Latin |
+| [Nigerian Fulfulde](fuv.md) (page) | `fuv` | research | Latin |
+| [Ga](gaa.md) (page) | `gaa` | research | Latin |
+| [Gen (Mina)](gej-TG.md) (page) | `gej-TG` | research | Latin |
 | [Gonja](https://tigregotico.github.io/orthography2ipa/#gjn) | `gjn` | skeleton | Latin |
 | [Ngangam](https://tigregotico.github.io/orthography2ipa/#gng) | `gng` | skeleton | Latin |
 | [Gogo](https://tigregotico.github.io/orthography2ipa/#gog) | `gog` | skeleton | Latin |
-| [Farefare (Frafra)](https://tigregotico.github.io/orthography2ipa/#gur) | `gur` | research | Latin |
-| [Gun (Gungbe)](https://tigregotico.github.io/orthography2ipa/#guw) | `guw` | research | Latin |
+| [Farefare (Frafra)](gur.md) (page) | `gur` | research | Latin |
+| [Gun (Gungbe)](guw.md) (page) | `guw` | research | Latin |
 | [Gourmanchéma](https://tigregotico.github.io/orthography2ipa/#gux) | `gux` | skeleton | Latin |
 | [Gusii](https://tigregotico.github.io/orthography2ipa/#guz) | `guz` | skeleton | Latin |
 | [Mbato](https://tigregotico.github.io/orthography2ipa/#gwa) | `gwa` | skeleton | Latin |
 | [Gwere](https://tigregotico.github.io/orthography2ipa/#gwr) | `gwr` | skeleton | Latin |
 | [Hanga](https://tigregotico.github.io/orthography2ipa/#hag) | `hag` | skeleton | Latin |
 | [Haya](https://tigregotico.github.io/orthography2ipa/#hay) | `hay` | skeleton | Latin |
-| [Herero](https://tigregotico.github.io/orthography2ipa/#hz) | `hz` | research | Latin |
+| [Herero](hz.md) (page) | `hz` | research | Latin |
 | [Ibibio](https://tigregotico.github.io/orthography2ipa/#ibb) | `ibb` | skeleton | Latin |
 | [Igbo](https://tigregotico.github.io/orthography2ipa/#ig) | `ig` | skeleton | Latin |
 | [Ebira](https://tigregotico.github.io/orthography2ipa/#igb) | `igb` | skeleton | Latin |
@@ -607,27 +607,27 @@ Stubs (32): Ahtena `aht`, Jicarilla Apache `apj`, Kiowa Apache `apk`, Lipan Apac
 | [Ikwere](https://tigregotico.github.io/orthography2ipa/#ikw) | `ikw` | skeleton | Latin |
 | [Isoko](https://tigregotico.github.io/orthography2ipa/#iso) | `iso` | skeleton | Latin |
 | [Jibu](https://tigregotico.github.io/orthography2ipa/#jib) | `jib` | skeleton | Latin |
-| [Kabiye](https://tigregotico.github.io/orthography2ipa/#kbp) | `kbp` | research | Latin |
-| [Tyap](https://tigregotico.github.io/orthography2ipa/#kcg) | `kcg` | research | Latin |
+| [Kabiye](kbp.md) (page) | `kbp` | research | Latin |
+| [Tyap](kcg.md) (page) | `kcg` | research | Latin |
 | [Makonde](https://tigregotico.github.io/orthography2ipa/#kde) | `kde` | skeleton | Latin |
 | [Tem](https://tigregotico.github.io/orthography2ipa/#kdh) | `kdh` | skeleton | Latin |
 | [Kunda](https://tigregotico.github.io/orthography2ipa/#kdn) | `kdn` | skeleton | Latin |
 | [Kam](https://tigregotico.github.io/orthography2ipa/#kdx) | `kdx` | skeleton | Latin |
 | [Kele (Democratic Republic of Congo)](https://tigregotico.github.io/orthography2ipa/#khy) | `khy` | skeleton | Latin |
-| [Kikuyu](https://tigregotico.github.io/orthography2ipa/#ki) | `ki` | research | Latin |
+| [Kikuyu](ki.md) (page) | `ki` | research | Latin |
 | [Kisi](https://tigregotico.github.io/orthography2ipa/#kiz) | `kiz` | skeleton | Latin |
 | [Mankanya](https://tigregotico.github.io/orthography2ipa/#knf) | `knf` | skeleton | Latin |
 | [Konzo](https://tigregotico.github.io/orthography2ipa/#koo) | `koo` | skeleton | Latin |
 | [Northern Kissi](https://tigregotico.github.io/orthography2ipa/#kqs) | `kqs` | skeleton | Latin |
 | [Shambala](https://tigregotico.github.io/orthography2ipa/#ksb) | `ksb` | skeleton | Latin |
 | [Kuria](https://tigregotico.github.io/orthography2ipa/#kuj) | `kuj` | skeleton | Latin |
-| [Kusaal](https://tigregotico.github.io/orthography2ipa/#kus) | `kus` | research | Latin |
+| [Kusaal](kus.md) (page) | `kus` | research | Latin |
 | [Lambya](https://tigregotico.github.io/orthography2ipa/#lai) | `lai` | skeleton | Latin |
 | [Luchazi](https://tigregotico.github.io/orthography2ipa/#lch) | `lch` | skeleton | Latin |
 | [Logba](https://tigregotico.github.io/orthography2ipa/#lgq) | `lgq` | skeleton | Latin |
 | [East Limba](https://tigregotico.github.io/orthography2ipa/#lma) | `lma` | skeleton | Latin |
 | [Limbum](https://tigregotico.github.io/orthography2ipa/#lmp) | `lmp` | skeleton | Latin |
-| [Lingala](https://tigregotico.github.io/orthography2ipa/#ln) | `ln` | research | Latin |
+| [Lingala](ln.md) (page) | `ln` | research | Latin |
 | [Lamnso'](https://tigregotico.github.io/orthography2ipa/#lns) | `lns` | skeleton | Latin |
 | [Loma (Côte d'Ivoire)](https://tigregotico.github.io/orthography2ipa/#loi) | `loi` | skeleton | Latin |
 | [Mongo](https://tigregotico.github.io/orthography2ipa/#lol) | `lol` | skeleton | Latin |
@@ -643,7 +643,7 @@ Stubs (32): Ahtena `aht`, Jicarilla Apache `apj`, Kiowa Apache `apk`, Lipan Apac
 | [Makhuwa-Meetto](https://tigregotico.github.io/orthography2ipa/#mgh) | `mgh` | skeleton | Latin |
 | [Kituba (Congo)](https://tigregotico.github.io/orthography2ipa/#mkw) | `mkw` | skeleton | Latin |
 | [Mundani](https://tigregotico.github.io/orthography2ipa/#mnf) | `mnf` | skeleton | Latin |
-| [Mooré](https://tigregotico.github.io/orthography2ipa/#mos) | `mos` | research | Latin |
+| [Mooré](mos.md) (page) | `mos` | research | Latin |
 | [Mwera (Chimwera)](https://tigregotico.github.io/orthography2ipa/#mwe) | `mwe` | skeleton | Latin |
 | [Mamara Senoufo](https://tigregotico.github.io/orthography2ipa/#myk) | `myk` | skeleton | Latin |
 | [Masaaba](https://tigregotico.github.io/orthography2ipa/#myx) | `myx` | skeleton | Latin |
@@ -653,7 +653,7 @@ Stubs (32): Ahtena `aht`, Jicarilla Apache `apj`, Kiowa Apache `apk`, Lipan Apac
 | [Chumburung](https://tigregotico.github.io/orthography2ipa/#ncu) | `ncu` | skeleton | Latin |
 | [Kenswei Nsei](https://tigregotico.github.io/orthography2ipa/#ndb) | `ndb` | skeleton | Latin |
 | [Nafaanra](https://tigregotico.github.io/orthography2ipa/#nfr) | `nfr` | skeleton | Latin |
-| [Ndonga](https://tigregotico.github.io/orthography2ipa/#ng) | `ng` | research | Latin |
+| [Ndonga](ng.md) (page) | `ng` | research | Latin |
 | [Ngbaka](https://tigregotico.github.io/orthography2ipa/#nga) | `nga` | skeleton | Latin |
 | [Northern Ngbandi](https://tigregotico.github.io/orthography2ipa/#ngb) | `ngb` | skeleton | Latin |
 | [Noone](https://tigregotico.github.io/orthography2ipa/#nhu) | `nhu` | skeleton | Latin |
@@ -663,7 +663,7 @@ Stubs (32): Ahtena `aht`, Jicarilla Apache `apj`, Kiowa Apache `apk`, Lipan Apac
 | [Ngiemboon](https://tigregotico.github.io/orthography2ipa/#nnh) | `nnh` | skeleton | Latin |
 | [Southern Nuni](https://tigregotico.github.io/orthography2ipa/#nnw) | `nnw` | skeleton | Latin |
 | [Nyole](https://tigregotico.github.io/orthography2ipa/#nuj) | `nuj` | skeleton | Latin |
-| [Nupe](https://tigregotico.github.io/orthography2ipa/#nup) | `nup` | research | Latin |
+| [Nupe](nup.md) (page) | `nup` | research | Latin |
 | [Nyamwezi](https://tigregotico.github.io/orthography2ipa/#nym) | `nym` | skeleton | Latin |
 | [Nzadi](https://tigregotico.github.io/orthography2ipa/#nzd) | `nzd` | skeleton | Latin |
 | [Nzima](https://tigregotico.github.io/orthography2ipa/#nzi) | `nzi` | skeleton | Latin |
@@ -675,18 +675,18 @@ Stubs (32): Ahtena `aht`, Jicarilla Apache `apj`, Kiowa Apache `apk`, Lipan Apac
 | [Ronga](https://tigregotico.github.io/orthography2ipa/#rng) | `rng` | skeleton | Latin |
 | [Saafi-Saafi](https://tigregotico.github.io/orthography2ipa/#sav) | `sav` | skeleton | Latin |
 | [Cebaara Senoufo](https://tigregotico.github.io/orthography2ipa/#sef) | `sef` | skeleton | Latin |
-| [Sango](https://tigregotico.github.io/orthography2ipa/#sg) | `sg` | research | Latin |
+| [Sango](sg.md) (page) | `sg` | research | Latin |
 | [Paasaal](https://tigregotico.github.io/orthography2ipa/#sig) | `sig` | skeleton | Latin |
 | [Sissala](https://tigregotico.github.io/orthography2ipa/#sld) | `sld` | skeleton | Latin |
 | [Songe](https://tigregotico.github.io/orthography2ipa/#sop) | `sop` | skeleton | Latin |
-| [Serer (Seereer)](https://tigregotico.github.io/orthography2ipa/#srr) | `srr` | research | Latin |
+| [Serer (Seereer)](srr.md) (page) | `srr` | research | Latin |
 | [Western Sisaala](https://tigregotico.github.io/orthography2ipa/#ssl) | `ssl` | skeleton | Latin |
 | [Sukuma](https://tigregotico.github.io/orthography2ipa/#suk) | `suk` | skeleton | Latin |
 | [Maore Comorian](https://tigregotico.github.io/orthography2ipa/#swb) | `swb` | skeleton | Latin |
 | [Sengele](https://tigregotico.github.io/orthography2ipa/#szg) | `szg` | skeleton | Latin |
 | [Tembo (Kitembo)](https://tigregotico.github.io/orthography2ipa/#tbt) | `tbt` | skeleton | Latin |
 | [Ditammari](https://tigregotico.github.io/orthography2ipa/#tbz) | `tbz` | skeleton | Latin |
-| [Temne](https://tigregotico.github.io/orthography2ipa/#tem) | `tem` | research | Latin |
+| [Temne](tem.md) (page) | `tem` | research | Latin |
 | [Tikar](https://tigregotico.github.io/orthography2ipa/#tik) | `tik` | skeleton | Latin |
 | [Tiv](https://tigregotico.github.io/orthography2ipa/#tiv) | `tiv` | skeleton | Latin |
 | [Ménik](https://tigregotico.github.io/orthography2ipa/#tnr) | `tnr` | skeleton | Latin |
@@ -696,16 +696,16 @@ Stubs (32): Ahtena `aht`, Jicarilla Apache `apj`, Kiowa Apache `apk`, Lipan Apac
 | [Northern Toussian](https://tigregotico.github.io/orthography2ipa/#tsp) | `tsp` | skeleton | Latin |
 | [Tupuri](https://tigregotico.github.io/orthography2ipa/#tui) | `tui` | skeleton | Latin |
 | [Turka](https://tigregotico.github.io/orthography2ipa/#tuz) | `tuz` | skeleton | Latin |
-| [Twi](https://tigregotico.github.io/orthography2ipa/#tw) | `tw` | research | Latin |
+| [Twi](tw.md) (page) | `tw` | research | Latin |
 | [Ubang](https://tigregotico.github.io/orthography2ipa/#uba) | `uba` | skeleton | Latin |
 | [Urhobo](https://tigregotico.github.io/orthography2ipa/#urh) | `urh` | skeleton | Latin |
 | [Vagla](https://tigregotico.github.io/orthography2ipa/#vag) | `vag` | skeleton | Latin |
-| [Venda](https://tigregotico.github.io/orthography2ipa/#ve) | `ve` | research | Latin |
+| [Venda](ve.md) (page) | `ve` | research | Latin |
 | [Makhuwa](https://tigregotico.github.io/orthography2ipa/#vmw) | `vmw` | skeleton | Latin |
 | [Vute](https://tigregotico.github.io/orthography2ipa/#vut) | `vut` | skeleton | Latin |
 | [Southern Toussian](https://tigregotico.github.io/orthography2ipa/#wib) | `wib` | skeleton | Latin |
 | [Mwani](https://tigregotico.github.io/orthography2ipa/#wmw) | `wmw` | skeleton | Latin |
-| [Wolof](https://tigregotico.github.io/orthography2ipa/#wo) | `wo` | research | Latin |
+| [Wolof](wo.md) (page) | `wo` | research | Latin |
 | [Waama](https://tigregotico.github.io/orthography2ipa/#wwa) | `wwa` | skeleton | Latin |
 | [Soga](https://tigregotico.github.io/orthography2ipa/#xog) | `xog` | skeleton | Latin |
 | [Konkomba](https://tigregotico.github.io/orthography2ipa/#xon) | `xon` | skeleton | Latin |
@@ -715,7 +715,7 @@ Stubs (32): Ahtena `aht`, Jicarilla Apache `apj`, Kiowa Apache `apk`, Lipan Apac
 | [Yambeta](https://tigregotico.github.io/orthography2ipa/#yat) | `yat` | skeleton | Latin |
 | [Yemba](https://tigregotico.github.io/orthography2ipa/#ybb) | `ybb` | skeleton | Latin |
 | [Iyasa](https://tigregotico.github.io/orthography2ipa/#yko) | `yko` | skeleton | Latin |
-| [Yoruba](https://tigregotico.github.io/orthography2ipa/#yo) | `yo` | research | Latin |
+| [Yoruba](yo.md) (page) | `yo` | research | Latin |
 | [Bena (Nigeria)](https://tigregotico.github.io/orthography2ipa/#yun) | `yun` | skeleton | Latin |
 | [Zigula](https://tigregotico.github.io/orthography2ipa/#ziw) | `ziw` | skeleton | Latin |
 | [Zande (individual language)](https://tigregotico.github.io/orthography2ipa/#zne) | `zne` | skeleton | Latin |
@@ -726,32 +726,32 @@ Stubs (1119): Ghotuo `aaa`, Alumu-Tesu `aab`, Abé `aba`, Bankon `abb`, Abanyom 
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Basaa](https://tigregotico.github.io/orthography2ipa/#bas) | `bas` | research | Latin |
-| [Bemba](https://tigregotico.github.io/orthography2ipa/#bem) | `bem` | research | Latin |
-| [Akoose](https://tigregotico.github.io/orthography2ipa/#bss) | `bss` | research | Latin |
-| [Duala](https://tigregotico.github.io/orthography2ipa/#dua) | `dua` | research | Latin |
-| [Ewondo](https://tigregotico.github.io/orthography2ipa/#ewo) | `ewo` | research | Latin |
-| [Kongo](https://tigregotico.github.io/orthography2ipa/#kg) | `kg` | research | Latin |
+| [Basaa](bas.md) (page) | `bas` | research | Latin |
+| [Bemba](bem.md) (page) | `bem` | research | Latin |
+| [Akoose](bss.md) (page) | `bss` | research | Latin |
+| [Duala](dua.md) (page) | `dua` | research | Latin |
+| [Ewondo](ewo.md) (page) | `ewo` | research | Latin |
+| [Kongo](kg.md) (page) | `kg` | research | Latin |
 | [Kwanyama](https://tigregotico.github.io/orthography2ipa/#kj) | `kj` | skeleton | Latin |
-| [Luganda](https://tigregotico.github.io/orthography2ipa/#lg) | `lg` | research | Latin |
-| [Luba-Katanga (Kiluba)](https://tigregotico.github.io/orthography2ipa/#lu) | `lu` | research | Latin |
-| [Luba-Kasai (Tshiluba)](https://tigregotico.github.io/orthography2ipa/#lua) | `lua` | research | Latin |
-| [Northern Ndebele](https://tigregotico.github.io/orthography2ipa/#nd) | `nd` | research | Latin |
-| [Northern Sotho (Sepedi)](https://tigregotico.github.io/orthography2ipa/#nso) | `nso` | research | Latin |
-| [Chichewa (Nyanja)](https://tigregotico.github.io/orthography2ipa/#ny) | `ny` | research | Latin |
-| [Kirundi (Rundi)](https://tigregotico.github.io/orthography2ipa/#rn) | `rn` | research | Latin |
-| [Kinyarwanda](https://tigregotico.github.io/orthography2ipa/#rw) | `rw` | research | Latin |
-| [Sena](https://tigregotico.github.io/orthography2ipa/#seh) | `seh` | research | Latin |
-| [Shona](https://tigregotico.github.io/orthography2ipa/#sn) | `sn` | research | Latin |
-| [Southern Sotho (Sesotho)](https://tigregotico.github.io/orthography2ipa/#st) | `st` | research | Latin |
-| [Swahili](https://tigregotico.github.io/orthography2ipa/#sw) | `sw` | research | Latin |
-| [Tswana](https://tigregotico.github.io/orthography2ipa/#tn) | `tn` | research | Latin |
-| [Tsonga (Xitsonga)](https://tigregotico.github.io/orthography2ipa/#ts) | `ts` | research | Latin |
-| [Tumbuka](https://tigregotico.github.io/orthography2ipa/#tum) | `tum` | research | Latin |
-| [Umbundu](https://tigregotico.github.io/orthography2ipa/#umb) | `umb` | research | Latin |
-| [Xhosa](https://tigregotico.github.io/orthography2ipa/#xh) | `xh` | research | Latin |
-| [Yao (Chiyao)](https://tigregotico.github.io/orthography2ipa/#yao) | `yao` | research | Latin |
-| [Zulu](https://tigregotico.github.io/orthography2ipa/#zu) | `zu` | research | Latin |
+| [Luganda](lg.md) (page) | `lg` | research | Latin |
+| [Luba-Katanga (Kiluba)](lu.md) (page) | `lu` | research | Latin |
+| [Luba-Kasai (Tshiluba)](lua.md) (page) | `lua` | research | Latin |
+| [Northern Ndebele](nd.md) (page) | `nd` | research | Latin |
+| [Northern Sotho (Sepedi)](nso.md) (page) | `nso` | research | Latin |
+| [Chichewa (Nyanja)](ny.md) (page) | `ny` | research | Latin |
+| [Kirundi (Rundi)](rn.md) (page) | `rn` | research | Latin |
+| [Kinyarwanda](rw.md) (page) | `rw` | research | Latin |
+| [Sena](seh.md) (page) | `seh` | research | Latin |
+| [Shona](sn.md) (page) | `sn` | research | Latin |
+| [Southern Sotho (Sesotho)](st.md) (page) | `st` | research | Latin |
+| [Swahili](sw.md) (page) | `sw` | research | Latin |
+| [Tswana](tn.md) (page) | `tn` | research | Latin |
+| [Tsonga (Xitsonga)](ts.md) (page) | `ts` | research | Latin |
+| [Tumbuka](tum.md) (page) | `tum` | research | Latin |
+| [Umbundu](umb.md) (page) | `umb` | research | Latin |
+| [Xhosa](xh.md) (page) | `xh` | research | Latin |
+| [Yao (Chiyao)](yao.md) (page) | `yao` | research | Latin |
+| [Zulu](zu.md) (page) | `zu` | research | Latin |
 
 Stubs (4): Proto-Bantu (family node) `bnt`, Kimbundu (Mbundu) `kmb`, Southern Ndebele `nr`, Swazi `ss`.
 
@@ -759,17 +759,17 @@ Stubs (4): Proto-Bantu (family node) `bnt`, Kimbundu (Mbundu) `kmb`, Southern Nd
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Bahnar](https://tigregotico.github.io/orthography2ipa/#bdq) | `bdq` | research | Latin |
-| [Khasi](https://tigregotico.github.io/orthography2ipa/#kha) | `kha` | research | Latin |
+| [Bahnar](bdq.md) (page) | `bdq` | research | Latin |
+| [Khasi](kha.md) (page) | `kha` | research | Latin |
 | [Proto-Mon-Khmer (reconstructed)](https://tigregotico.github.io/orthography2ipa/#kha-x-proto-mon-khmer) | `kha-x-proto-mon-khmer` | research | Latin |
-| [Khmer](https://tigregotico.github.io/orthography2ipa/#km) | `km` | research | Khmer |
-| [Muong](https://tigregotico.github.io/orthography2ipa/#mtq) | `mtq` | research | Latin |
-| [Pnar](https://tigregotico.github.io/orthography2ipa/#pbv) | `pbv` | research | Latin |
-| [Santali](https://tigregotico.github.io/orthography2ipa/#sat) | `sat` | research | Latin |
+| [Khmer](km.md) (page) | `km` | research | Khmer |
+| [Muong](mtq.md) (page) | `mtq` | research | Latin |
+| [Pnar](pbv.md) (page) | `pbv` | research | Latin |
+| [Santali](sat.md) (page) | `sat` | research | Latin |
 | [Santali (Ol Chiki script)](https://tigregotico.github.io/orthography2ipa/#sat-Olck) | `sat-Olck` | skeleton | Ol Chiki |
 | [Proto-Munda (reconstructed)](https://tigregotico.github.io/orthography2ipa/#sat-x-proto-munda) | `sat-x-proto-munda` | research | Latin |
-| [Mundari](https://tigregotico.github.io/orthography2ipa/#unr) | `unr` | research | Latin |
-| [Vietnamese](https://tigregotico.github.io/orthography2ipa/#vi) | `vi` | research | Latin |
+| [Mundari](unr.md) (page) | `unr` | research | Latin |
+| [Vietnamese](vi.md) (page) | `vi` | research | Latin |
 
 Stubs (146): Arem `aem`, Alak `alk`, War-Jaintia `aml`, Asuri `asr`, Bugan `bbh`, Bondo `bfw`, Bit `bgk`, Bo (Laos) `bgl`, Bijori `bix`, Birhor `biy`, Blang `blr`, Brao `brb`, Eastern Bru `bru`, Western Bru `brv`, Batek `btq`, Car Nicobarese `caq`, Nyahkur `cbn`, Koda `cdz`, Maa `cma`, Central Mnong `cmo`, Chong `cog`, Chaura `crv`, Chrau `crw`, Cua `cua`, Chewong `cwg`, Danau `dnu`, Kol (Bangladesh) `ekl`, Gata' `gaq`, Bodo Gadaba `gbj`, Halang `hal`, Mel-Khaonh `hkn`, Halang Doan `hld`, Hung `hnu`, Ho `hoc`, Hre `hre`, Hu `huo`, Jah Hut `jah`, Jeh `jeh`, Jehai `jhi`, Juang `jun`, Juray `juy`, Kuy `kdt`, Korwa `kfp`, Korku `kfq`, Khuen `khf`, Kharia `khr`, Khmu `kjg`, Kháng `kjm`, Kintaq `knq`, Kensiu `kns`, Koho `kpm`, Krung `krr`, Kavet `krv`, Kodaku `ksz`, Katua `kta`, Eastern Katu `ktv`, Western Katu `kuf`, Northern Khmer `kxm`, Kayong `kxy`, Rmeet `lbn`, Laven `lbo`, Western Lawa `lcp`, Lanoh `lnh`, Lavi `lvi`, Eastern Lawa `lwl`, Lyngngam `lyg`, Megam `mef`, Besisi `mhe`, Mahali `mjx`, Mal `mlf`, Majhwar `mmj`, Man Met `mml`, Eastern Mnong `mng`, Southern Mnong `mnn`, Minriq `mnq`, Mon `mnw`, Monom `moo`, Mok `mqt`, Mlabri `mra`, Mintil `mzt`, Central Nicobarese `ncb`, Northern Katang `ncq`, Nyaheun `nev`, Kriang `ngt`, Southern Nicobarese `nik`, Nguôn `nuo`, Nyeu `nyl`, Ong `oog`, Oy `oyb`, Pacoh `pac`, Pear `pcb`, Ruching Palaung `pce`, Parenga `pcj`, Phuong `phg`, Maleng `pkt`, Shwe Palaung `pll`, Bolyu `ply`, Phong-Kniang `pnx`, Parauk `prk`, Phai `prt`, Puoc `puo`, Rumai Palaung `rbb`, Rengao `ren`, Riang Lang `ril`, Kraol `rka`, Romam `rmx`, Sabüm `sbo`, Chut `scb`, Sa'och `scq`, Southern Katang `sct`, Semai `sea`, Sedang `sed`, Sapuan `spu`, Sou `sqq`, Sora `srb`, Semnam `ssm`, Sô `sss`, Trieng `stg`, Bulo Stieng `sti`, Budeh Stieng `stt`, Samtao `stu`, Suoy `syo`, Semelai `sza`, Semaq Beri `szc`, Talieng `tdf`, Todrah `tdr`, Temiar `tea`, Teressa `tef`, Aheu `thm`, Takua `tkz`, Tai Loi `tlq`, Temoq `tmo`, Ten'edn `tnz`, Tho `tou`, Tampuan `tpu`, Turi `trd`, Upper Ta'oih `tth`, Lower Ta'oih `tto`, O'du `tyh`, Muak Sa-aak `ukk`, U `uuu`, Awa (China) `vwa`, Wa `wbm`, Kachok `xkk`, Riang Lai `yin`, Mang `zng`.
 
@@ -777,33 +777,33 @@ Stubs (146): Arem `aem`, Alak `alk`, War-Jaintia `aml`, Asuri `asr`, Bugan `bbh`
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Acehnese](https://tigregotico.github.io/orthography2ipa/#ace) | `ace` | research | Latin |
-| [Amis](https://tigregotico.github.io/orthography2ipa/#ami) | `ami` | research | Latin |
-| [Balinese](https://tigregotico.github.io/orthography2ipa/#ban) | `ban` | research | Latin |
-| [West Coast Bajau](https://tigregotico.github.io/orthography2ipa/#bdr) | `bdr` | research | Latin |
+| [Acehnese](ace.md) (page) | `ace` | research | Latin |
+| [Amis](ami.md) (page) | `ami` | research | Latin |
+| [Balinese](ban.md) (page) | `ban` | research | Latin |
+| [West Coast Bajau](bdr.md) (page) | `bdr` | research | Latin |
 | [Bushi](https://tigregotico.github.io/orthography2ipa/#buc) | `buc` | skeleton | Latin |
 | [Bugis](https://tigregotico.github.io/orthography2ipa/#bug) | `bug` | skeleton | Lontara |
-| [Chamorro](https://tigregotico.github.io/orthography2ipa/#ch) | `ch` | research | Latin |
+| [Chamorro](ch.md) (page) | `ch` | research | Latin |
 | [Eton (Vanuatu)](https://tigregotico.github.io/orthography2ipa/#etn) | `etn` | skeleton | Latin |
-| [Gorontalo](https://tigregotico.github.io/orthography2ipa/#gor) | `gor` | research | Latin |
-| [Hiri Motu](https://tigregotico.github.io/orthography2ipa/#ho) | `ho` | research | Latin |
-| [Indonesian (Bahasa Indonesia)](https://tigregotico.github.io/orthography2ipa/#id) | `id` | research | Latin |
+| [Gorontalo](gor.md) (page) | `gor` | research | Latin |
+| [Hiri Motu](ho.md) (page) | `ho` | research | Latin |
+| [Indonesian (Bahasa Indonesia)](id.md) (page) | `id` | research | Latin |
 | [Javanese](https://tigregotico.github.io/orthography2ipa/#jv) | `jv` | skeleton | Latin |
 | [Kawi (Old Javanese)](https://tigregotico.github.io/orthography2ipa/#kaw) | `kaw` | research | Latin |
-| [Komering](https://tigregotico.github.io/orthography2ipa/#kge) | `kge` | research | Latin |
-| [Makasar](https://tigregotico.github.io/orthography2ipa/#mak) | `mak` | research | Latin |
+| [Komering](kge.md) (page) | `kge` | research | Latin |
+| [Makasar](mak.md) (page) | `mak` | research | Latin |
 | [Bangka](https://tigregotico.github.io/orthography2ipa/#mfb) | `mfb` | skeleton | Latin |
-| [Marshallese](https://tigregotico.github.io/orthography2ipa/#mh) | `mh` | research | Latin |
+| [Marshallese](mh.md) (page) | `mh` | research | Latin |
 | [Mangga Buang](https://tigregotico.github.io/orthography2ipa/#mmo) | `mmo` | skeleton | Latin |
-| [Malay](https://tigregotico.github.io/orthography2ipa/#ms) | `ms` | research | Latin |
-| [Nias](https://tigregotico.github.io/orthography2ipa/#nia) | `nia` | research | Latin |
-| [Paiwan](https://tigregotico.github.io/orthography2ipa/#pwn) | `pwn` | research | Latin |
-| [Rejang](https://tigregotico.github.io/orthography2ipa/#rej) | `rej` | research | Latin |
-| [Sasak](https://tigregotico.github.io/orthography2ipa/#sas) | `sas` | research | Latin |
-| [Sakizaya](https://tigregotico.github.io/orthography2ipa/#szy) | `szy` | research | Latin |
-| [Atayal](https://tigregotico.github.io/orthography2ipa/#tay) | `tay` | research | Latin |
-| [Tagalog](https://tigregotico.github.io/orthography2ipa/#tl) | `tl` | research | Latin |
-| [Seediq](https://tigregotico.github.io/orthography2ipa/#trv) | `trv` | research | Latin |
+| [Malay](ms.md) (page) | `ms` | research | Latin |
+| [Nias](nia.md) (page) | `nia` | research | Latin |
+| [Paiwan](pwn.md) (page) | `pwn` | research | Latin |
+| [Rejang](rej.md) (page) | `rej` | research | Latin |
+| [Sasak](sas.md) (page) | `sas` | research | Latin |
+| [Sakizaya](szy.md) (page) | `szy` | research | Latin |
+| [Atayal](tay.md) (page) | `tay` | research | Latin |
+| [Tagalog](tl.md) (page) | `tl` | research | Latin |
+| [Seediq](trv.md) (page) | `trv` | research | Latin |
 | [Tausug](https://tigregotico.github.io/orthography2ipa/#tsg) | `tsg` | skeleton | Latin |
 
 Stubs (1184): Arifama-Miniafia `aai`, Solong `aaw`, Amarasi `aaz`, Ambala Ayta `abc`, Manide `abd`, Abai Sungai `abf`, Lampung Nyo `abl`, Abellen Ayta `abp`, Ambonese Malay `abs`, Inabaknon `abx`, Adonara `adr`, Adzera `adz`, Haeke `aek`, Arguni `agf`, Isarog Agta `agk`, Agutaynen `agn`, Central Cagayan Agta `agt`, Remontado Dumagat `agv`, Kahua `agw`, Southern Alta `agy`, Mt. Iriga Agta `agz`, Axamb `ahb`, Arosi `aia`, Amara `aie`, Aighon `aix`, Ajië `aji`, Batak Angkola `akb`, Anakalangu `akg`, Aklanon `akl`, Araki `akr`, Akolet `akt`, Alangan `alj`, Amblong `alm`, Larike-Wakasihu `alo`, Alune `alp`, 'Are'are `alu`, Ambai `amk`, Amahai `amq`, Ambelau `amv`, Ansus `and`, Xârâcùù `ane`, Andra-Hus `anx`, Arhö `aok`, Alor `aol`, Uab Meto `aoz`, Sa'a `apb`, Pahanan Agta `apf`, Ampanang `apg`, Ambul `apo`, Apma `app`, Arop-Lokep `apr`, Arop-Sissano `aps`, Aputai `apx`, Northern Alta `aqn`, Arhâ `aqr`, Asilulu `asl`, As `asz`, Ata Manobo `atd`, Ati `atk`, Mt. Iraya Agta `atl`, Ata `atm`, Pudtol Atta `atp`, Aralle-Tabulahan `atq`, Pamplona Atta `att`, Aneityum `aty`, Arta `atz`, Asumboa `aua`, Anuta `aud`, Anuki `aui`, Aulua `aul`, Anus `auq`, Austral `aut`, Avau `avb`, Xârâgurè `axx`, Magbukun Ayta `ayt`, Faire Atta `azt`, Babatana `baa`, Barakai `baj`, Batuley `bay`, Toba Batak `bbc`, Karnai `bbv`, North Babar `bcd`, Bariai `bch`, Bannoni `bcm`, Awad Bing `bcu`, Basap `bdb`, Bunama `bdd`, Bonggi `bdg`, Indonesian Bajau `bdl`, Budong-Budong `bdx`, Bedoanas `bed`, Belait `beg`, Bekati' `bei`, Bebeli `bek`, Besoa `bep`, Betawi `bew`, Busang Kayan `bfg`, Bantayanon `bfx`, Bobongko `bgb`, Giangan `bgi`, Tagabawa `bgs`, Bughotu `bgt`, Benggoi `bgy`, Banggai `bgz`, Biga `bhc`, Bima `bhp`, Tukang Besi South `bhq`, Bara Malagasy `bhr`, Bahau `bhv`, Biak `bhw`, Bada (Indonesia) `bhz`, Bipi `biq`, Barok `bjk`, Bulu (Papua New Guinea) `bjl`, Fanamaket `bjp`, Banao Itneg `bjx`, Binukid `bkd`, Baki `bki`, Bukitan `bkn`, Bakumpai `bkr`, Northern Sorsoganon `bks`, Buhid `bku`, Baikeno `bkx`, Bungku `bkz`, Bolango `bld`, Buol `blf`, Bolongan `blj`, Southern Catanduanes Bikol `bln`, Blablanga `blp`, Baluan-Pam `blq`, Balaesang `bls`, Balangao `blw`, Mag-Indi Ayta `blx`, Balantak `blz`, Biem `bmc`, Ghayavi `bmk`, Northern Betsimisaraka Malagasy `bmm`, Bonerate `bna`, Bookan `bnb`, Banda (Indonesia) `bnd`, Bintauna `bne`, Masiwang `bnf`, Eastern Tawbuid `bnj`, Bierebo `bnk`, Bunun `bnn`, Bantoanon `bno`, Bola `bnp`, Bantik `bnq`, Butmas-Tur `bnr`, Bentong `bnu`, Bintulu `bny`, Daakaka `bpa`, Bonggo `bpg`, Orowe `bpk`, Banda Malay `bpq`, Koronadal Blaan `bpr`, Sarangani Blaan `bps`, Bilba `bpz`, Burusu `bqr`, Bieria `brj`, Birao `brr`, Baras `brs`, Bilbil `brz`, Brunei Bisaya `bsb`, Busami `bsm`, Bahonsuai `bsu`, Sabah Bisaya `bsy`, Batak Dairi `btd`, Biatah Bidayuh `bth`, Bacanese Malay `btj`, Mandailing Batak `btm`, Ratagnon `btn`, Rinconada Bikol `bto`, Budibud `btp`, Baetora `btr`, Batak Simalungun `bts`, Butuanon `btw`, Batak Karo `btx`, Bobot `bty`, Batak Alas-Kluet `btz`, Bugawac `buk`, Busoa `bup`, Baelelea `bvc`, Baeggu `bvd`, Berau Malay `bve`, Bukat `bvk`, Bati (Indonesia) `bvt`, Bukit Malay `bvu`, Baybayanon `bvy`, Bwatoo `bwa`, Namosi-Naitasiri-Serua `bwb`, Bwaidoka `bwd`, Boselewa `bwf`, Tairaha `bxa`, Bilur `bxf`, Buhutu `bxh`, Batak `bya`, Benyadu' `byd`, Andio `bzb`, Southern Betsimisaraka Malagasy `bzc`, Babuza `bzg`, Mapos Buang `bzh`, Boano (Sulawesi) `bzl`, Boano (Maluku) `bzn`, Buli (Indonesia) `bzq`, Carolinian `cal`, Cemuhî `cam`, Kinabalian `cbw`, Malaccan Creole Malay `ccm`, Kagayanen `cgc`, Chuukese `chk`, Cia-Cia `cia`, Tiri `cir`, Western Cham `cja`, Chru `cje`, Eastern Cham `cjm`, Kavalan `ckv`, Caluyanun `clu`, Campalagian `cml`, Cocos Islands Malay `coa`, Capiznon `cps`, Lonwolwol `crc`, Northern Catanduanes Bikol `cts`, Cuyonon `cyo`, Dambi `dac`, Marik `dad`, Davawenyo `daw`, Ida'an `dbj`, West Goodenough `ddi`, Dawera-Daweloor `ddw`, Casiguran Dumagat Agta `dgc`, Doga `dgg`, Dehu `dhv`, Dai `dij`, Dixon Reef `dix`, Jangkang `djo`, Dakka `dkk`, Kuijau `dkr`, Upper Kinabatangan `dmg`, East Damar `dmr`, Dampelas `dms`, Dumpas `dmv`, Dengka `dnk`, Dobu `dob`, Dondo `dok`, Toura (Papua New Guinea) `don`, Dori'o `dor`, Papar `dpp`, Rungus `drg`, West Damar `drn`, Daro-Matu Melanau `dro`, Rukai `dru`, Labuk-Kinabatangan Kadazan `dtb`, Kadazandusun `dtp`, Lotud `dtr`, Umiray Dumaget Agta `due`, Dumbea `duf`, Alabat Island Agta `dul`, Dusun Deyah `dun`, Dupaninan Agta `duo`, Duano `dup`, Dusun Malang `duq`, Dusun Witu `duw`, Duau `dva`, Dawawa `dww`, Beginci `ebc`, Eastern Bontok `ebk`, Elu `elu`, Embaloh `emb`, Mussau-Emira `emi`, Emplawas `emw`, Ende `end`, Enggano `eno`, Sie `erg`, South Efate `erk`, Erokwanas `erw`, Fagani `faf`, Fataleka `far`, West Albay Bikol `fbl`, Fanbak `fnb`, Fordata `frd`, Fortsenal `frt`, East Futuna `fud`, Futuna-Aniwa `fut`, Fwâi `fwa`, Gaddang `gad`, Galolen `gal`, Galeya `gar`, Gayo `gay`, Gedaged `gdd`, Ga'dang `gdg`, Gerai `gef`, Gebe `gei`, Geser-Gorom `ges`, Patpatar `gfk`, Gao `gga`, Gitua `ggt`, Ghanongga `ghn`, Gilbertese `gil`, Gimi (West New Britain) `gip`, Gula'alaa `gmb`, Gana `gnq`, Gorakor `goc`, Gone Dau `goo`, Yeretuar `gop`, Gorap `goq`, Ghari `gri`, Kota Marudu Talantang `grm`, Gweda `grw`, Guramalum `grz`, Duwet `gve`, Gumawana `gvs`, Gane `gzn`, Hahon `hah`, Hakö `hao`, Habu `hbu`, Helong `heg`, Haigwai `hgw`, Seit-Kaitetu `hik`, Hiw `hiw`, Haji `hji`, Halia `hla`, Hanunoo `hnn`, Hoava `hoa`, Mari (Madang Province) `hob`, Hote `hot`, Hovongan `hov`, Niwer Mil `hrc`, Haruku `hrk`, Haroi `hro`, Warwar Feni `hrw`, Hitu `htu`, Huaulu `hud`, Hula `hul`, Tsat `huq`, Haveke `hvk`, Sabu `hvn`, Iaai `iai`, Ibanag `ibg`, Bih `ibh`, Ibaloi `ibl`, Idaté `idt`, Amganad Ifugao `ifa`, Batad Ifugao `ifb`, Tuwali Ifugao `ifk`, Mayoyao Ifugao `ifu`, Keley-I Kallahan `ify`, Ile Ape `ila`, Ilongot `ilk`, Iranun (Malaysia) `ilm`, Iranun (Philippines) `ilp`, Ili'uun `ilu`, Imroing `imr`, Isinai `inn`, Iresim `ire`, Irarutu `irh`, Iraya `iry`, Isnag `isd`, Masimasi `ism`, Binongan Itneg `itb`, Southern Tidung `itd`, Inlaod Itneg `iti`, Maeng Itneg `itt`, Itawit `itv`, Moyadan Itneg `ity`, Ibatan `ivb`, Ivatan `ivv`, I-Wak `iwk`, Yabem `jae`, Zazao `jaj`, Jakun `jak`, Yalahatan `jal`, New Caledonian Javanese `jas`, Yaur `jau`, Jambi Malay `jax`, Jawe `jaz`, Yamdena `jmd`, Jarai `jra`, Caribbean Javanese `jvn`, Kajaman `kag`, Kalanguya `kak`, Kaptiau `kbi`, Iwal `kbm`, Abadi `kbt`, Kaiep `kbw`, Kela (Papua New Guinea) `kcl`, Mamusi `kdf`, Numèè `kdk`, Kei `kei`, Kemak `kem`, Kawe `kgb`, Kamaru `kgx`, Tukang Besi North `khc`, Lusi `khl`, Keapara `khz`, Kilivila `kij`, Kis `kis`, Coastal Konjo `kjc`, Kisar `kje`, Zabana `kji`, Highland Konjo `kjk`, Kurudu `kjr`, Mabaka Valley Kalinga `kkg`, Kokota `kkk`, Kangean `kkv`, Kohin `kkx`, Tagakaulo `klg`, Kalumpang `kli`, Kagan Kalagan `kll`, Maskelynes `klv`, Tado `klw`, Koluwawa `klx`, Kalao `kly`, Majukayang Kalinga `kmd`, Limos Kalinga `kmk`, Tanudan Kalinga `kml`, Lubuagan Kalinga `knb`, Kankanaey `kne`, Keninjal `knl`, Kendayan `knx`, Konomala `koa`, Kodi `kod`, Kosraean `kos`, Koba `kpd`, Kapingamarangi `kpg`, Kalagan `kqe`, Kakabai `kqf`, Kimaragang `kqr`, Klias River Kadazan `kqt`, Okolod `kqv`, Kandas `kqw`, Kairui-Midiki `krd`, Koro (Vanuatu) `krf`, Kinaray-A `krj`, Southern Kalinga `ksc`, Kuanua `ksd`, Kuni `kse`, Kusaghe `ksg`, Kumalu `ksl`, Kasiguranin `ksn`, Kedang `ksx`, Kurti `ktm`, 'Auhelawa `kud`, Kepo' `kuk`, Kur `kuv`, Kubu `kvb`, Kove `kvc`, Kalabakan `kve`, Komodo `kvh`, Dobel `kvo`, Kompane `kvp`, Kerinci `kvr`, Kola `kvv`, Kwaio `kwd`, Kwara'ae `kwf`, Kowiai `kwh`, Kairiru `kxa`, Keningau Murut `kxi`, Kanowit-Tanjong Melanau `kxn`, Koro (Papua New Guinea) `kxr`, Butbut Kalinga `kyb`, Karey `kyd`, Kiput `kyi`, Karao `kyj`, Kamayo `kyk`, Northern Binukidnon `kyn`, Baram Kayan `kys`, Kaibobo `kzb`, Kadai `kzd`, Da'a Kaili `kzf`, Kelabit `kzi`, Kayeli `kzl`, Kaidipang `kzp`, Sugut Dusun `kzs`, Kayupulau `kzu`, Southern Subanen `laa`, Lauje `law`, Label `lbb`, Central Bontok `lbk`, Libon Bikol `lbl`, Wampar `lbq`, Labu `lbu`, Lavatbura-Lamusong `lbv`, Tolaki `lbw`, Lawangan `lbx`, Legenyem `lcc`, Lola `lcd`, Loncong `lce`, Lubu `lcf`, Lisela `lcl`, Tungag `lcm`, Luhu `lcq`, Lisabata-Nuniali `lcs`, Leipon `lek`, Lenkau `ler`, Lesing-Gelimi `let`, Kara (Papua New Guinea) `leu`, Ledo Kaili `lew`, Luang `lex`, Lemolang `ley`, Lungga `lga`, Laghu `lgb`, Lengilu `lgi`, Lingarak `lgk`, Wala `lgl`, Lengo `lgr`, Longgu `lgu`, Laha (Indonesia) `lhh`, Lahanan `lhn`, Lo-Toga `lht`, Likum `lib`, Nyindrou `lid`, Lihir `lih`, Liki `lio`, Col `liw`, Liabuku `lix`, Rampi `lje`, Laiyolo `lji`, Li'o `ljl`, Lampung Api `ljp`, Lakalei `lka`, Remun `lkj`, Lakon `lkn`, Lele (Papua New Guinea) `lle`, Lole `llg`, Lasalimu `llm`, North Efate `llp`, Lolak `llq`, Lau `llu`, Lauan `llx`, Merei `lmb`, South Lembata `lmf`, Lamogai `lmg`, West Lembata `lmj`, Hano `lml`, Lamatuka `lmq`, Lamalera `lmr`, Lamenu `lmu`, Lomaiviti `lmv`, Lundayeh `lnd`, Lorediakarkar `lnn`, Inonhan `loc`, Saluan `loe`, Lou `loj`, Loniu `los`, Tampias Lobu `low`, Loun `lox`, Lelepa `lpa`, Rara Bakati' `lra`, Lorang `lrn`, Larantuka Malay `lrt`, Larevat `lrv`, Lemerig `lrz`, Leti (Indonesia) `lti`, Latu `ltu`, Laura `lur`, Maku'a `lva`, Levuka `lvu`, Lewo Eleng `lwe`, Lewotobi `lwt`, Lewo `lww`, Lakurumau `lxm`, Litzlitz `lzl`, North Moluccan Malay `max`, Higaonon `mba`, Western Bukidnon Manobo `mbb`, Dibabawon Manobo `mbd`, Baba Malay `mbf`, Mangseng `mbh`, Ilianen Manobo `mbi`, Malol `mbk`, Maisin `mbq`, Sarangani Manobo `mbs`, Matigsalug Manobo `mbt`, South Watut `mcy`, Mandar `mdr`, Mengen `mee`, Mekeo `mek`, Central Melanau `mel`, Kedah Malay `meo`, Mato `met`, Motu `meu`, Pattani Malay `mfa`, Makassar Malay `mfp`, Mokerang `mft`, Maleu-Kilenge `mgl`, Mambae `mgm`, Balinese Malay `mhp`, Buru (Indonesia) `mhs`, Ma'anyan `mhy`, Mor (Mor Islands) `mhz`, Matukar `mjk`, Medebur `mjm`, Mokilese `mkj`, Moklen `mkm`, Kupang Malay `mkn`, Vamale `mkt`, Mafea `mkv`, Kinamiging Manobo `mkx`, East Makian `mky`, Malo `mla`, Malimpung `mli`, Malua Bay `mll`, Malango `mln`, To'abaita `mlu`, Motlav `mlv`, Malfaxal `mlx`, Malaynon `mlz`, Mae `mme`, North Ambrym `mmg`, Maii `mmm`, Mamanwa `mmn`, Malalamai `mmt`, Emae `mmw`, Madak `mmx`, Mbula `mna`, Muna `mnb`, Tiale `mnl`, Rennell-Bellona `mnv`, Mongondow `mog`, Molima `mox`, Middle Watut `mpl`, Mindiri `mpn`, Miu `mpo`, Vangunu `mpr`, Misima-Panaeati `mpx`, Mapia `mpy`, Maba (Indonesia) `mqa`, Mangole `mqc`, Kota Bangun Kutai Malay `mqg`, Mariri `mqi`, Mamasa `mqj`, Rajah Kabunsuwan Manobo `mqk`, South Marquesan `mqm`, Moronene `mqn`, Manipa `mqp`, Minokok `mqq`, Mamuju `mqx`, Manggarai `mqy`, Pano `mqz`, Marino `mrb`, Hmwaveke `mrk`, Mortlockese `mrl`, Merlav `mrm`, Cheke Holo `mrn`, Morouas `mrp`, North Marquesan `mrq`, Maragus `mrs`, Mangareva `mrv`, Maranao `mrw`, Mandaya `mry`, Masbatenyo `msb`, Masikoro Malagasy `msh`, Sabah Malay `msi`, Mansaka `msk`, Agusan Manobo `msm`, Vurës `msn`, Caac `msq`, West Masela `mss`, Musom `msu`, Cotabato Manobo `mta`, Mualang `mtd`, Mono (Solomon Islands) `mte`, Munggui `mth`, Mota `mtt`, Southern Binukidnon `mtw`, Musi `mui`, Maiwala `mum`, Manam `mva`, Mamboru `mvd`, Minaveha `mvn`, Marovo `mvo`, Duri `mvp`, Marau `mvr`, Mpotovoro `mvt`, Tagal Murut `mvv`, Meoswar `mvx`, Mwatebu `mwa`, Are `mwc`, Aiklep `mwg`, Mouk-Aria `mwh`, Labo `mwi`, Central Maewo `mwo`, Moken `mwt`, Mentawai `mwv`, Modang `mxd`, Mele-Fila `mxe`, Meramera `mxm`, Murik (Malaysia) `mxr`, Central Masela `mxz`, Moma `myl`, Muyuw `myw`, Mori Atas `mzq`, Maiadomu `mzz`, Nauruan `na`, Nakanai `nak`, Nalik `nal`, Kuri `nbn`, Ponam `ncc`, Notsi `ncf`, Nauna `ncn`, Eastern Ngad'a `nea`, Nêlêmwa-Nixumwak `nee`, Neku `nek`, Nemi `nem`, Nengone `nen`, Dhao `nfa`, Ayiwo `nfl`, Engdewu `ngr`, Takuu `nho`, Ngaju `nij`, Nila `nil`, Niuean `niu`, Duke `nke`, Nokuku `nkk`, Nukuoro `nkr`, Gela `nlg`, Nalögo `nlz`, Big Nambas `nmb`, Namakura `nmk`, Letemboi `nms`, Namonuito `nmt`, Nimoa `nmw`, West Ambae `nnd`, North Nuaulu `nni`, Mondropolon `npn`, Noipx `npx`, Napu `npy`, Narango `nrg`, Lala `nrz`, Nehan `nsn`, Nali `nss`, Navut `nsw`, Nasal `nsy`, Northern Tidung `ntd`, Natügu `ntu`, Yuanga `nua`, Niuafo'ou `num`, Nukumanu `nuq`, Nukuria `nur`, Nguluwan `nuw`, Nasarian `nvh`, Southwest Tanna `nwi`, Nauete `nxa`, Nage `nxe`, Ngad'a `nxg`, South Nuaulu `nxl`, Southern Bontok `obk`, Obo Manobo `obo`, Ontong Java `ojv`, Olrat `olr`, East Ambae `omb`, Onin `oni`, Unua `onu`, Oroha `ora`, Orang Kanaq `orn`, Orang Seletar `ors`, Ormu `orz`, Osing `osi`, Ot Danum `otd`, Oya'oya `oyy`, Palauan `pau`, Podena `pdn`, Padoe `pdo`, Peranakan Indonesian `pea`, Taje `pee`, Penchal `pek`, Pekal `pel`, Petats `pex`, Eastern Penan `pez`, Pááfang `pfa`, Rerep `pgk`, Pingelapese `pif`, Pileni `piv`, Piu `pix`, Pije `piz`, Pak-Tong `pkg`, Pukapuka `pkp`, Paku `pku`, Polonombauk `plb`, Central Palawano `plc`, Palu'e `ple`, Paulohi `plh`, Southwest Palawano `plv`, Brooke's Point Palawano `plw`, Paluan `plz`, Paama `pma`, Pwaamei `pme`, Pamona `pmf`, Pom `pmo`, Tuamotuan `pmt`, Papuan Malay `pmy`, Punan Bah-Biau `pna`, Pannei `pnc`, Western Penan `pne`, Penrhyn `pnh`, Aoheng `pni`, Punan Batu 1 `pnm`, Pancana `pnp`, Ponosakan `pns`, Pohnpeian `pon`, Pwapwâ `pop`, Proto-Malayo-Polynesian (family node) `poz`, Uma `ppk`, Papuma `ppm`, Papapana `ppn`, Paranan `prf`, Porohanon `prh`, Paicî `pri`, Central Malay `pse`, Panasuan `psn`, Kaulong `pss`, Port Sandwich `psw`, Patani `ptn`, Patep `ptp`, Piamatsina `ptr`, Enrekang `ptt`, Bambam `ptu`, Port Vato `ptv`, Punan Aput `pud`, Punan Merah `puf`, Punan Tubu `puj`, Puluwatese `puw`, Gapapaiwa `pwg`, Molbog `pwm`, Puyuma `pyu`, Pazeh `pzh`, Rade `rad`, Ramoaaina `rai`, Tulu-Bohuai `rak`, Rapanui `rap`, Rarotongan `rar`, Rapa `ray`, Rahambuu `raz`, Northern Bontok `rbk`, Miraya Bikol `rbl`, Rembong `reb`, Rejang Kayan `ree`, Roria `rga`, Southern Roglai `rgs`, Ringgou `rgu`, Ribun `rir`, Riung `riu`, Rajong `rjg`, Rakahanga-Manihiki `rkh`, Roma `rmm`, Roon `rnn`, Tae' `rob`, Cacgia Roglai `roc`, Ronji `roe`, Northern Roglai `rog`, Romblomanon `rol`, Rongga `ror`, Dela-Oenale `row`, Repanbitip `rpn`, Ririo `rri`, Waima `rro`, Ratahan `rth`, Rotuman `rtm`, Roviana `rug`, Lanas Lobu `ruu`, Saleman `sau`, Sa `sax`, Simbo `sbb`, Kele (Papua New Guinea) `sbc`, Saliba `sbe`, Sori-Harengan `sbh`, Botolan Sambal `sbl`, Sembakung Murut `sbr`, Seberuang `sbx`, Sanggau `scg`, Sri Lankan Creole Malay `sci`, Toraja-Sa'dan `sda`, Bukar-Sadung Bidayuh `sdo`, Semandang `sdq`, Sarudu `sdu`, Sibu Melanau `sdx`, Serui-Laut `seu`, Sewa Bay `sew`, Eastern Subanen `sfe`, Mag-antsi Ayta `sgb`, Surigaonon `sgd`, Segai `sge`, Salas `sgu`, Sursurunga `sgz`, Sebop `sib`, Zire `sih`, Numbami `sij`, Sajau Basap `sjb`, Mapun `sjm`, Siar-Lak `sjr`, Seke (Vanuatu) `ske`, Sakalava Malagasy `skg`, Sikule `skh`, Sika `ski`, Kolibugan Subanon `skn`, Seko Tengah `sko`, Sekapan `skp`, Sakao `sku`, Seko Padang `skx`, Sikaiana `sky`, Sekar `skz`, Selungai Murut `slg`, Pangutaran Sama `slm`, Lamaholot `slp`, Selaru `slu`, Selayar `sly`, Ma'ya `slz`, Bolinao `smk`, Central Sama `sml`, Simeulue `smr`, Sumbawa `smw`, Sinaugoro `snc`, Bau Bidayuh `sne`, Sangil `snl`, South West Bay `sns`, Sa'ban `snv`, Sobei `sob`, Solos `sol`, Sonsorol `sov`, Sepa (Indonesia) `spb`, Sepa (Papua New Guinea) `spe`, Sian `spg`, Saparua `spr`, Saposa `sps`, Sara `sre`, Nafi `srf`, Sulod `srg`, Serudung Murut `srk`, Southern Sorsoganon `srv`, Serua `srw`, Sera `sry`, Southern Sama `ssb`, Balangingi `sse`, Thao `ssf`, Seimat `ssg`, Sissano `sso`, So'a `ssq`, Shark Bay `ssv`, Sengseng `ssz`, Northern Subanen `stb`, Liana-Seti `ste`, Owa `stn`, Satawalese `stw`, Western Subanon `suc`, Ulau-Suain `svb`, Serili `sve`, Suau `swp`, Seluwasan `sws`, Suwawa `swu`, Sangir `sxn`, Saaroa `sxr`, Siang `sya`, Central Subanen `syb`, Sula `szn`, Sawai `szw`, Yami `tao`, Takia `tbc`, Tanimbili `tbe`, Mandara `tbf`, Tiang `tbj`, Calamian Tagbanwa `tbk`, Tboli `tbl`, Tawala `tbo`, Tagbanwa `tbw`, Kapin `tbx`, Tomadino `tdi`, Tajio `tdj`, Tondano `tdn`, Tetun Dili `tdt`, Tandroy-Mahafaly Malagasy `tdx`, Tadyawan `tdy`, Tengger `tes`, Teor `tev`, Tobilung `tgb`, Tigak `tgc`, Lawunuia `tgi`, Tandaganon `tgn`, Sudest `tgo`, Tangoa `tgp`, Tring `tgq`, Nume `tgs`, Central Tagbanwa `tgt`, Timugon Murut `tih`, Teop `tio`, Masadiit Itneg `tis`, Adasen `tiu`, Tiruray `tiy`, Tunjung `tjg`, Tukudede `tkd`, Tesaka Malagasy `tkg`, Tikopia `tkp`, Mur Pano `tkv`, Teanu `tkw`, Talaud `tld`, Taloki `tlk`, Tolomako `tlm`, Talondo' `tln`, Talise `tlr`, Tambotalo `tls`, Sou Nama `tlt`, Tulehu `tlu`, Taliabu `tlv`, Khehek `tlx`, Katbol `tmb`, Tutuba `tmi`, Taman (Indonesia) `tmn`, Tumleo `tmq`, Tasmate `tmt`, Temuan `tmw`, Tami `tmy`, Tandia `tni`, Kwamera `tnk`, Lenakel `tnl`, North Tanna `tnn`, Whitesands `tnp`, Tenis `tns`, Tontemboan `tnt`, Tonsawang `tnw`, Tanema `tnx`, Tombulu `tom`, Tobian `tox`, Topoiyo `toy`, Taupota `tpa`, Tarpia `tpf`, Tanapag `tpv`, Tinputz `tpz`, Lehali `tql`, Tomoip `tqp`, Terebu `trb`, East Tarangan `tre`, Tringgus-Sembaan Bidayuh `trx`, Akei `tsr`, Tsou `tsu`, Bwanabwana `tte`, Tutong `ttg`, Tobati `tti`, Tombelala `ttp`, Torau `ttu`, Titan `ttv`, Long Wat `ttw`, Mutu `tuc`, Vaghua `tva`, Te'un `tve`, Southeast Ambrym `tvk`, Tuvalu `tvl`, Tela-Masbuar `tvm`, Sedoa `tvw`, Western Tawbuid `twb`, Ere `twp`, Termanu `twu`, Tawoyan `twy`, Tombonuo `txa`, Totoli `txe`, Tomini `txm`, West Tarangan `txn`, Tii `txq`, Tonsea `txs`, Tatana `txx`, Tanosy Malagasy `txy`, Tugun `tzn`, Buhi'non Bikol `ubl`, Ubir `ubr`, Ujir `udj`, Kioko `ues`, Ughele `uge`, Ulithian `uli`, Ulumanda' `ulm`, Uma' Lung `ulu`, Ukit `umi`, Pendau `ums`, North Watut `una`, Unubahe `unu`, Unde Kaili `unz`, Uripiv-Wala-Rano-Atchin `upv`, Uruangnirin `urn`, Lehalurup `urr`, Amba (Solomon Islands) `utp`, Ura (Vanuatu) `uur`, West Uvean `uve`, Lote `uvl`, Vehes `val`, Vao `vao`, Southeast Babar `vbb`, Southwestern Bontok `vbk`, Iduna `viv`, Kaur `vkk`, Kulisusu `vkl`, Kodeoha `vko`, Tenggarong Kutai Malay `vkt`, Valpei `vlp`, East Masela `vme`, Lungalunga `vmg`, Vano `vnk`, Vinmavis `vnm`, Vunapu `vnp`, Vera'a `vra`, Varisi `vrs`, Burmbar `vrt`, Yote `wab`, Wamesa `wad`, Wa'ema `wag`, Watubela `wah`, Kaninuwa `wat`, Wampur `waz`, Wabo `wbb`, Woi `wbw`, Wedau `wed`, Wemale `weo`, Perai `wet`, Wejewa `wew`, Wagawaga `wgb`, Waigeo `wgo`, Sou Upaa `wha`, Wahau Kenyah `whk`, Vitu `wiv`, Wakde `wkd`, Welaun `wlh`, Wolio `wlo`, Wailapa `wlr`, Wallisian `wls`, Waima'a `wmh`, Maiwa (Indonesia) `wmm`, Wanukaka `wnk`, Wogeo `woc`, Woleaian `woe`, Manombai `woo`, Wawonii `wow`, Waropen `wrp`, Waru `wru`, Wae Rana `wrx`, Warembori `wsa`, Wusi `wsi`, Wotu `wtw`, Wuvulu-Aua `wuv`, Wauyai `wuy`, Wetamut `wwo`, Western Fijian `wyy`, Kayan Mahakam `xay`, Malayic Dayak `xdy`, Kembayan `xem`, Mendalam Kayan `xkd`, Kereho `xke`, Mainstream Kenyah `xkl`, Kayan River Kayan `xkn`, Koroni `xkq`, Kumbewaha `xks`, Karore `xkx`, Uma' Lasan `xky`, Manado Malay `xmm`, Matbat `xmt`, Antankarana Malagasy `xmv`, Tsimihety Malagasy `xmw`, Salawati `xmx`, Mori Bawah `xmz`, Kanakanabu `xnb`, Northern Kankanay `xnn`, Sambal `xsb`, Sio `xsi`, Saisiyat `xsy`, Ke'o `xxk`, Yapese `yap`, Yakan `yka`, Yoke `yki`, Yakaikeke `ykk`, Kap `ykm`, Yaleba `ylb`, Aribwaung `ylu`, Nyâlayu `yly`, Iamalele `yml`, Yamna `ymn`, Yamap `ymp`, Yogad `yog`, Central Berawan `zbc`, East Berawan `zbe`, Batui `zbt`, West Berawan `zbw`, Zenag `zeg`, Magori `zgr`, Kaimbulawa `zka`, Malay (individual language) `zlm`, Negeri Sembilan Malay `zmi`, Sarasira `zsa`, Sukurum `zsu`.
@@ -812,32 +812,32 @@ Stubs (1184): Arifama-Miniafia `aai`, Solong `aaw`, Amarasi `aaz`, Ambala Ayta `
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Uneapa](https://tigregotico.github.io/orthography2ipa/#bbn) | `bbn` | research | Latin |
-| [Central Bikol](https://tigregotico.github.io/orthography2ipa/#bcl) | `bcl` | research | Latin |
-| [Banjar](https://tigregotico.github.io/orthography2ipa/#bjn) | `bjn` | research | Latin |
-| [Cebuano](https://tigregotico.github.io/orthography2ipa/#ceb) | `ceb` | research | Latin |
-| [Fijian](https://tigregotico.github.io/orthography2ipa/#fj) | `fj` | research | Latin |
-| [Hawaiian](https://tigregotico.github.io/orthography2ipa/#haw) | `haw` | research | Latin |
-| [Hiligaynon](https://tigregotico.github.io/orthography2ipa/#hil) | `hil` | research | Latin |
-| [Iban](https://tigregotico.github.io/orthography2ipa/#iba) | `iba` | research | Latin |
-| [Ilocano](https://tigregotico.github.io/orthography2ipa/#ilo) | `ilo` | research | Latin |
-| [Brunei](https://tigregotico.github.io/orthography2ipa/#kxd) | `kxd` | research | Latin |
-| [Lamboya](https://tigregotico.github.io/orthography2ipa/#lmy) | `lmy` | research | Latin |
-| [Madurese](https://tigregotico.github.io/orthography2ipa/#mad) | `mad` | research | Latin |
-| [Maguindanaon](https://tigregotico.github.io/orthography2ipa/#mdh) | `mdh` | research | Latin |
-| [Malagasy](https://tigregotico.github.io/orthography2ipa/#mg) | `mg` | research | Latin |
-| [Māori](https://tigregotico.github.io/orthography2ipa/#mi) | `mi` | research | Latin |
-| [Minangkabau](https://tigregotico.github.io/orthography2ipa/#min) | `min` | research | Latin |
-| [Pangasinan](https://tigregotico.github.io/orthography2ipa/#pag) | `pag` | research | Latin |
-| [Kapampangan](https://tigregotico.github.io/orthography2ipa/#pam) | `pam` | research | Latin |
-| [Samoan](https://tigregotico.github.io/orthography2ipa/#sm) | `sm` | research | Latin |
+| [Uneapa](bbn.md) (page) | `bbn` | research | Latin |
+| [Central Bikol](bcl.md) (page) | `bcl` | research | Latin |
+| [Banjar](bjn.md) (page) | `bjn` | research | Latin |
+| [Cebuano](ceb.md) (page) | `ceb` | research | Latin |
+| [Fijian](fj.md) (page) | `fj` | research | Latin |
+| [Hawaiian](haw.md) (page) | `haw` | research | Latin |
+| [Hiligaynon](hil.md) (page) | `hil` | research | Latin |
+| [Iban](iba.md) (page) | `iba` | research | Latin |
+| [Ilocano](ilo.md) (page) | `ilo` | research | Latin |
+| [Brunei](kxd.md) (page) | `kxd` | research | Latin |
+| [Lamboya](lmy.md) (page) | `lmy` | research | Latin |
+| [Madurese](mad.md) (page) | `mad` | research | Latin |
+| [Maguindanaon](mdh.md) (page) | `mdh` | research | Latin |
+| [Malagasy](mg.md) (page) | `mg` | research | Latin |
+| [Māori](mi.md) (page) | `mi` | research | Latin |
+| [Minangkabau](min.md) (page) | `min` | research | Latin |
+| [Pangasinan](pag.md) (page) | `pag` | research | Latin |
+| [Kapampangan](pam.md) (page) | `pam` | research | Latin |
+| [Samoan](sm.md) (page) | `sm` | research | Latin |
 | [Sundanese](https://tigregotico.github.io/orthography2ipa/#su) | `su` | skeleton | Latin |
-| [Tetum (Tetun Dili / Tetun Prasa)](https://tigregotico.github.io/orthography2ipa/#tet) | `tet` | research | Latin |
+| [Tetum (Tetun Dili / Tetun Prasa)](tet.md) (page) | `tet` | research | Latin |
 | [Tetun Terik (conservative rural Tetun)](https://tigregotico.github.io/orthography2ipa/#tet-x-terik) | `tet-x-terik` | skeleton | Latin |
-| [Tokelau](https://tigregotico.github.io/orthography2ipa/#tkl) | `tkl` | research | Latin |
-| [Tongan](https://tigregotico.github.io/orthography2ipa/#to) | `to` | research | Latin |
-| [Tahitian](https://tigregotico.github.io/orthography2ipa/#ty) | `ty` | research | Latin |
-| [Waray](https://tigregotico.github.io/orthography2ipa/#war) | `war` | research | Latin |
+| [Tokelau](tkl.md) (page) | `tkl` | research | Latin |
+| [Tongan](to.md) (page) | `to` | research | Latin |
+| [Tahitian](ty.md) (page) | `ty` | research | Latin |
+| [Waray](war.md) (page) | `war` | research | Latin |
 
 Stubs (2): Badui `bac`, Urak Lawoi' `urk`.
 
@@ -913,8 +913,8 @@ Stubs (2): Chayahuita `cbt`, Jebero `jeb`.
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Galibi Carib](https://tigregotico.github.io/orthography2ipa/#car) | `car` | research | Latin |
-| [Maquiritari](https://tigregotico.github.io/orthography2ipa/#mch) | `mch` | research | Latin |
+| [Galibi Carib](car.md) (page) | `car` | research | Latin |
+| [Maquiritari](mch.md) (page) | `mch` | research | Latin |
 
 Stubs (24): Pará Arára `aap`, Akawaio `ake`, Akurio `ako`, Pemon `aoc`, Apalaí `apy`, Waimiri-Atroari `atr`, Bakairí `bkq`, Carijona `cbd`, Chaima `ciy`, Hixkaryána `hix`, Japrería `jru`, Kuikúro-Kalapálo `kui`, Macushi `mbc`, Mapoyo `mcg`, Patamona `pbc`, E'ñapa Woromaipu `pbh`, Pémono `pev`, Sikiana `sik`, Trió `tri`, Ikpeng `txi`, Waiwai `waw`, Wayana `way`, Yabarana `yar`, Yukpa `yup`.
 
@@ -945,7 +945,7 @@ Stubs (2): Oro Win `orw`, Pakaásnovos `pav`.
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Chibcha](https://tigregotico.github.io/orthography2ipa/#chb) | `chb` | research | Latin |
+| [Chibcha](chb.md) (page) | `chb` | research | Latin |
 
 Stubs (20): Arhuaco `arh`, Boruca `brn`, Bribri `bzd`, Chimila `cbg`, Cabécar `cjp`, San Blas Kuna `cuk`, Maléku Jaíka `gut`, Ngäbere `gym`, Cogui `kog`, Border Kuna `kvn`, Malayo `mbp`, Barí `mot`, Pech `pay`, Rama `rma`, Buglere `sab`, Barro Negro Tunebo `tbn`, Teribe `tfr`, Western Tunebo `tnb`, Angosturas Tunebo `tnd`, Central Tunebo `tuf`.
 
@@ -977,8 +977,8 @@ Stubs (2): Ona `ona`, Tehuelche `teh`.
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Chukot](https://tigregotico.github.io/orthography2ipa/#ckt) | `ckt` | research | Cyrl |
-| [Itelmen](https://tigregotico.github.io/orthography2ipa/#itl) | `itl` | research | Cyrl |
+| [Chukot](ckt.md) (page) | `ckt` | research | Cyrl |
+| [Itelmen](itl.md) (page) | `itl` | research | Cyrl |
 
 Stubs (2): Alutor `alr`, Koryak `kpy`.
 
@@ -990,17 +990,17 @@ Stubs (8): Cocopa `coc`, Kumiai `dih`, Kiliwa `klb`, Mohave `mov`, Maricopa `mrc
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Kotava](https://tigregotico.github.io/orthography2ipa/#avk) | `avk` | research | Latin |
+| [Kotava](avk.md) (page) | `avk` | research | Latin |
 | [Esperanto](https://tigregotico.github.io/orthography2ipa/#eo) | `eo` | production | Latin |
-| [Interlingua](https://tigregotico.github.io/orthography2ipa/#ia) | `ia` | research | Latin |
-| [Interlingue (Occidental)](https://tigregotico.github.io/orthography2ipa/#ie) | `ie` | research | Latin |
-| [Ido](https://tigregotico.github.io/orthography2ipa/#io) | `io` | research | Latin |
-| [Interslavic](https://tigregotico.github.io/orthography2ipa/#isv) | `isv` | research | Latin |
-| [Lojban](https://tigregotico.github.io/orthography2ipa/#jbo) | `jbo` | research | Latin |
-| [Lingua Franca Nova](https://tigregotico.github.io/orthography2ipa/#lfn) | `lfn` | research | Latin |
-| [Novial](https://tigregotico.github.io/orthography2ipa/#nov) | `nov` | research | Latin |
-| [Toki Pona](https://tigregotico.github.io/orthography2ipa/#tok) | `tok` | research | Latin |
-| [Volapük](https://tigregotico.github.io/orthography2ipa/#vo) | `vo` | research | Latin |
+| [Interlingua](ia.md) (page) | `ia` | research | Latin |
+| [Interlingue (Occidental)](ie.md) (page) | `ie` | research | Latin |
+| [Ido](io.md) (page) | `io` | research | Latin |
+| [Interslavic](isv.md) (page) | `isv` | research | Latin |
+| [Lojban](jbo.md) (page) | `jbo` | research | Latin |
+| [Lingua Franca Nova](lfn.md) (page) | `lfn` | research | Latin |
+| [Novial](nov.md) (page) | `nov` | research | Latin |
+| [Toki Pona](tok.md) (page) | `tok` | research | Latin |
+| [Volapük](vo.md) (page) | `vo` | research | Latin |
 
 ## Coosan
 
@@ -1010,7 +1010,7 @@ Stubs (1): Coos `csz`.
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Nigerian Pidgin (Naijá)](https://tigregotico.github.io/orthography2ipa/#pcm) | `pcm` | research | Latin |
+| [Nigerian Pidgin (Naijá)](pcm.md) (page) | `pcm` | research | Latin |
 
 Stubs (3): Guianese Creole `gcr`, Ghanaian Pidgin English `gpe`, Pitkern-Norfolk `pih`.
 
@@ -1042,13 +1042,13 @@ Stubs (2): Doso `dol`, Turumsa `tqm`.
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Kannada](https://tigregotico.github.io/orthography2ipa/#kn) | `kn` | research | Kannada |
-| [Kurukh](https://tigregotico.github.io/orthography2ipa/#kru) | `kru` | research | Devanagari |
-| [Malayalam](https://tigregotico.github.io/orthography2ipa/#ml) | `ml` | research | Malayalam |
-| [Tamil](https://tigregotico.github.io/orthography2ipa/#ta) | `ta` | research | Tamil |
+| [Kannada](kn.md) (page) | `kn` | research | Kannada |
+| [Kurukh](kru.md) (page) | `kru` | research | Devanagari |
+| [Malayalam](ml.md) (page) | `ml` | research | Malayalam |
+| [Tamil](ta.md) (page) | `ta` | research | Tamil |
 | [Proto-Dravidian](https://tigregotico.github.io/orthography2ipa/#ta-x-proto-dravidia) | `ta-x-proto-dravidia` | research | Latin |
-| [Tulu](https://tigregotico.github.io/orthography2ipa/#tcy) | `tcy` | research | Latin |
-| [Telugu](https://tigregotico.github.io/orthography2ipa/#te) | `te` | research | Telugu |
+| [Tulu](tcy.md) (page) | `tcy` | research | Latin |
+| [Telugu](te.md) (page) | `te` | research | Telugu |
 
 Stubs (74): Aranadan `aaf`, Allar `all`, Badaga `bfq`, Brahui `brh`, Bellari `brw`, Chenchu `cde`, Wayanad Chetti `ctt`, Moundadan Chetty `cty`, Dandami Maria `daq`, Proto-Dravidian (family node) `dra`, Eastern Muria `emu`, Eravallan `era`, Aheri Gondi `esg`, Far Western Muria `fmu`, Mudhili Gadaba `gau`, Pottangi Ollar Gadaba `gdb`, Northern Gondi `gno`, Holiya `hoy`, Mala Malasar `ima`, Irula `iru`, Kadar `kej`, Kaikadi `kep`, Kanikkaran `kev`, Kodava `kfa`, Northwestern Kolami `kfb`, Konda-Dora `kfc`, Korra Koraga `kfd`, Kota (India) `kfe`, Koya `kff`, Kudiya `kfg`, Kurichiya `kfh`, Kumarbhag Paharia `kmj`, Mullu Kurumba `kpb`, Khirwar `kwx`, Kuvi `kxv`, Manda (India) `mha`, Malankuravan `mjo`, Malapandaram `mjp`, Malavedan `mjr`, Sauria Paharia `mjt`, Manna-Dora `mju`, Mannan `mjv`, Mukha-Dora `mmk`, Maria (India) `mrr`, Western Muria `mut`, Muthuvan `muv`, Southeastern Kolami `nit`, Paliyan `pcf`, Paniya `pcg`, Duruwa `pci`, Pengo `peg`, Attapady Kurumba `pkr`, Pattapu `ptq`, Pathiya `pty`, Sholaga `sle`, Toda `tcx`, Thachanadan `thn`, Muduga `udg`, Kui (India) `uki`, Ullatan `ull`, Urali `url`, Vishavan `vis`, Mudu Koraga `vmd`, Waddar `wbq`, Kalanadi `wkl`, Kunduvadi `wku`, Adilabad Gondi `wsg`, Kisan `xis`, Alu Kurumba `xua`, Betta Kurumba `xub`, Jennu Kurumba `xuj`, Ravula `yea`, Yerukula `yeu`, Malasar `ymr`.
 
@@ -1080,23 +1080,23 @@ Stubs (5): Opao `opo`, Orokolo `oro`, Toaripi `tqo`, Tairuma `uar`, Keoru-Ahia `
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Bislama](https://tigregotico.github.io/orthography2ipa/#bi) | `bi` | research | Latin |
-| [Jamaican Patois](https://tigregotico.github.io/orthography2ipa/#jam) | `jam` | research | Latin |
-| [Pijin](https://tigregotico.github.io/orthography2ipa/#pis) | `pis` | research | Latin |
-| [Sranan Tongo](https://tigregotico.github.io/orthography2ipa/#srn) | `srn` | research | Latin |
-| [Tok Pisin](https://tigregotico.github.io/orthography2ipa/#tpi) | `tpi` | research | Latin |
+| [Bislama](bi.md) (page) | `bi` | research | Latin |
+| [Jamaican Patois](jam.md) (page) | `jam` | research | Latin |
+| [Pijin](pis.md) (page) | `pis` | research | Latin |
+| [Sranan Tongo](srn.md) (page) | `srn` | research | Latin |
+| [Tok Pisin](tpi.md) (page) | `tpi` | research | Latin |
 
 ## Eskimo-Aleut
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
 | [Aleut](https://tigregotico.github.io/orthography2ipa/#ale) | `ale` | skeleton | Latin |
-| [Central Siberian Yupik](https://tigregotico.github.io/orthography2ipa/#ess) | `ess` | research | Cyrl |
-| [Iñupiaq](https://tigregotico.github.io/orthography2ipa/#ik) | `ik` | research | Latin |
+| [Central Siberian Yupik](ess.md) (page) | `ess` | research | Cyrl |
+| [Iñupiaq](ik.md) (page) | `ik` | research | Latin |
 | [Inuinnaqtun](https://tigregotico.github.io/orthography2ipa/#ikt) | `ikt` | skeleton | Latin |
-| [Inuktitut](https://tigregotico.github.io/orthography2ipa/#iu) | `iu` | research | Canadian Aboriginal Syllabics |
+| [Inuktitut](iu.md) (page) | `iu` | research | Canadian Aboriginal Syllabics |
 | [Inuktitut, Eastern Canadian (Latin script)](https://tigregotico.github.io/orthography2ipa/#iu-Latn) | `iu-Latn` | skeleton | Latin |
-| [Greenlandic (Kalaallisut)](https://tigregotico.github.io/orthography2ipa/#kl) | `kl` | research | Latin |
+| [Greenlandic (Kalaallisut)](kl.md) (page) | `kl` | research | Latin |
 
 Stubs (5): Pacific Gulf Yupik `ems`, North Alaskan Inupiatun `esi`, Central Yupik `esu`, Mednyj Aleut `mud`, Naukan Yupik `ynk`.
 
@@ -1104,7 +1104,7 @@ Stubs (5): Pacific Gulf Yupik `ems`, North Alaskan Inupiatun `esi`, Central Yupi
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Haitian Creole](https://tigregotico.github.io/orthography2ipa/#ht) | `ht` | research | Latin |
+| [Haitian Creole](ht.md) (page) | `ht` | research | Latin |
 
 ## Furan
 
@@ -1150,7 +1150,7 @@ Stubs (7): Anindilyakwa `aoi`, Jawoyn `djn`, Gunwinggu `gup`, Dalabon `ngk`, Nun
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Hadza](https://tigregotico.github.io/orthography2ipa/#hts) | `hts` | research | Latin |
+| [Hadza](hts.md) (page) | `hts` | research | Latin |
 
 ## Haida
 
@@ -1172,7 +1172,7 @@ Stubs (10): Ko `fuj`, Heiban `hbn`, Koalib `kib`, Logol `lof`, Laro `lro`, Moro 
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Hmong Daw](https://tigregotico.github.io/orthography2ipa/#mww) | `mww` | research | Latin |
+| [Hmong Daw](mww.md) (page) | `mww` | research | Latin |
 
 Stubs (38): Biao-Jiao Mien `bje`, Biao Mon `bmt`, Dzao Min `bpn`, Younuo Bunu `buh`, Wunai Bunu `bwn`, Bu-Nao Bunu `bwx`, Chuanqiandian Cluster Miao `cqd`, Northern Qiandong Miao `hea`, Southern Mashan Hmong `hma`, Central Huishui Hmong `hmc`, Large Flowery Miao `hmd`, Eastern Huishui Hmong `hme`, Hmong Don `hmf`, Southwestern Guiyang Hmong `hmg`, Southwestern Huishui Hmong `hmh`, Northern Huishui Hmong `hmi`, Ge `hmj`, Luopohe Hmong `hml`, Central Mashan Hmong `hmm`, Northern Mashan Hmong `hmp`, Eastern Qiandong Miao `hmq`, Southern Qiandong Miao `hms`, Hmong Dô `hmv`, Western Mashan Hmong `hmw`, Southern Guiyang Hmong `hmy`, Hmong Shua `hmz`, Hmong Njua `hnj`, Horned Miao `hrm`, Northern Guiyang Hmong `huj`, Iu Mien `ium`, Kim Mun `mji`, Western Xiangxi Miao `mmr`, Eastern Xiangxi Miao `muq`, Ná-Meo `neo`, Pa-Hng `pha`, Jiongnai Bunu `pnu`, Small Flowery Miao `sfm`, She `shx`.
 
@@ -1184,7 +1184,7 @@ Stubs (4): San Francisco Del Mar Huave `hue`, San Mateo Del Mar Huave `huv`, San
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Murui Huitoto](https://tigregotico.github.io/orthography2ipa/#huu) | `huu` | research | Latin |
+| [Murui Huitoto](huu.md) (page) | `huu` | research | Latin |
 
 Stubs (4): Minica Huitoto `hto`, Nüpode Huitoto `hux`, Nonuya `noj`, Ocaina `oca`.
 
@@ -1215,8 +1215,8 @@ Stubs (306): Saint Lucian Creole French `acf`, Achterhoeks `act`, Northeast Pash
 |:--|:--|:--|:--|
 | [Arbëresh Albanian](https://tigregotico.github.io/orthography2ipa/#aae) | `aae` | skeleton | Latin |
 | [Gheg Albanian](https://tigregotico.github.io/orthography2ipa/#aln) | `aln` | skeleton | Latin |
-| [Tosk Albanian](https://tigregotico.github.io/orthography2ipa/#als) | `als` | research | Latin |
-| [Albanian](https://tigregotico.github.io/orthography2ipa/#sq) | `sq` | research | Latin |
+| [Tosk Albanian](als.md) (page) | `als` | research | Latin |
+| [Albanian](sq.md) (page) | `sq` | research | Latin |
 
 Stubs (1): Arvanitika `aat`.
 
@@ -1231,44 +1231,44 @@ Stubs (1): Arvanitika `aat`.
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Armenian](https://tigregotico.github.io/orthography2ipa/#hy) | `hy` | research | Armenian |
-| [Western Armenian](https://tigregotico.github.io/orthography2ipa/#hyw) | `hyw` | research | Armenian |
+| [Armenian](hy.md) (page) | `hy` | research | Armenian |
+| [Western Armenian](hyw.md) (page) | `hyw` | research | Armenian |
 
 ### Indo-European > Balto-Slavic
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Latgalian](https://tigregotico.github.io/orthography2ipa/#ltg) | `ltg` | research | Latin |
-| [Samogitian](https://tigregotico.github.io/orthography2ipa/#sgs) | `sgs` | research | Latin |
+| [Latgalian](ltg.md) (page) | `ltg` | research | Latin |
+| [Samogitian](sgs.md) (page) | `sgs` | research | Latin |
 
 ### Indo-European > Balto-Slavic > Eastern Baltic
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Lithuanian](https://tigregotico.github.io/orthography2ipa/#lt) | `lt` | research | Latin |
-| [Latvian](https://tigregotico.github.io/orthography2ipa/#lv) | `lv` | research | Latin |
+| [Lithuanian](lt.md) (page) | `lt` | research | Latin |
+| [Latvian](lv.md) (page) | `lv` | research | Latin |
 
 ### Indo-European > Balto-Slavic > Slavic
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Bosnian](https://tigregotico.github.io/orthography2ipa/#bs) | `bs` | research | Latin |
+| [Bosnian](bs.md) (page) | `bs` | research | Latin |
 | [Old East Slavic (Old Russian)](https://tigregotico.github.io/orthography2ipa/#orv) | `orv` | research | Cyrillic |
-| [Pannonian Rusyn](https://tigregotico.github.io/orthography2ipa/#rsk) | `rsk` | research | Cyrillic |
+| [Pannonian Rusyn](rsk.md) (page) | `rsk` | research | Cyrillic |
 | [Proto-Slavic](https://tigregotico.github.io/orthography2ipa/#sla) | `sla` | research | Latin |
 
 ### Indo-European > Balto-Slavic > Slavic > East Slavic
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Belarusian](https://tigregotico.github.io/orthography2ipa/#be) | `be` | research | Cyrillic |
-| [Russian](https://tigregotico.github.io/orthography2ipa/#ru) | `ru` | research | Cyrillic |
-| [Northern Russian](https://tigregotico.github.io/orthography2ipa/#ru-x-northern) | `ru-x-northern` | research | Cyrillic |
+| [Belarusian](be.md) (page) | `be` | research | Cyrillic |
+| [Russian](ru.md) (page) | `ru` | research | Cyrillic |
+| [Northern Russian](ru-x-northern.md) (page) | `ru-x-northern` | research | Cyrillic |
 | [Pskov Russian](https://tigregotico.github.io/orthography2ipa/#ru-x-pskov) | `ru-x-pskov` | skeleton | Cyrillic |
 | [Siberian Russian](https://tigregotico.github.io/orthography2ipa/#ru-x-siberian) | `ru-x-siberian` | skeleton | Cyrillic |
-| [Southern Russian](https://tigregotico.github.io/orthography2ipa/#ru-x-southern) | `ru-x-southern` | research | Cyrillic |
-| [Rusyn](https://tigregotico.github.io/orthography2ipa/#rue) | `rue` | research | Cyrillic |
-| [Ukrainian](https://tigregotico.github.io/orthography2ipa/#uk) | `uk` | research | Cyrillic |
+| [Southern Russian](ru-x-southern.md) (page) | `ru-x-southern` | research | Cyrillic |
+| [Rusyn](rue.md) (page) | `rue` | research | Cyrillic |
+| [Ukrainian](uk.md) (page) | `uk` | research | Cyrillic |
 
 Stubs (6): Arkhangelsk Russian `ru-x-arkhange`, Don Cossack Russian `ru-x-don`, Kursk-Orel Russian `ru-x-kursk-orel`, Moscow Russian `ru-x-moscow`, Ural Russian `ru-x-ural`, Vologda Russian `ru-x-vologda`.
 
@@ -1276,26 +1276,26 @@ Stubs (6): Arkhangelsk Russian `ru-x-arkhange`, Don Cossack Russian `ru-x-don`, 
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Bulgarian](https://tigregotico.github.io/orthography2ipa/#bg) | `bg` | research | Cyrillic |
+| [Bulgarian](bg.md) (page) | `bg` | research | Cyrillic |
 | [Montenegrin](https://tigregotico.github.io/orthography2ipa/#cnr) | `cnr` | skeleton | Latin |
 | [Old Church Slavonic](https://tigregotico.github.io/orthography2ipa/#cu) | `cu` | research | Cyrillic |
-| [Croatian](https://tigregotico.github.io/orthography2ipa/#hr) | `hr` | research | Latin |
-| [Macedonian](https://tigregotico.github.io/orthography2ipa/#mk) | `mk` | research | Cyrillic |
-| [Slovenian](https://tigregotico.github.io/orthography2ipa/#sl) | `sl` | research | Latin |
-| [Serbian](https://tigregotico.github.io/orthography2ipa/#sr) | `sr` | research | Cyrillic |
+| [Croatian](hr.md) (page) | `hr` | research | Latin |
+| [Macedonian](mk.md) (page) | `mk` | research | Cyrillic |
+| [Slovenian](sl.md) (page) | `sl` | research | Latin |
+| [Serbian](sr.md) (page) | `sr` | research | Cyrillic |
 
 ### Indo-European > Balto-Slavic > Slavic > West Slavic
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Czech](https://tigregotico.github.io/orthography2ipa/#cs) | `cs` | research | Latin |
-| [Kashubian](https://tigregotico.github.io/orthography2ipa/#csb) | `csb` | research | Latin |
-| [Lower Sorbian](https://tigregotico.github.io/orthography2ipa/#dsb) | `dsb` | research | Latin |
-| [Upper Sorbian](https://tigregotico.github.io/orthography2ipa/#hsb) | `hsb` | research | Latin |
-| [Polish](https://tigregotico.github.io/orthography2ipa/#pl) | `pl` | research | Latin |
-| [Polabian](https://tigregotico.github.io/orthography2ipa/#pox) | `pox` | research | Latin |
-| [Slovak](https://tigregotico.github.io/orthography2ipa/#sk) | `sk` | research | Latin |
-| [Silesian](https://tigregotico.github.io/orthography2ipa/#szl) | `szl` | research | Latin |
+| [Czech](cs.md) (page) | `cs` | research | Latin |
+| [Kashubian](csb.md) (page) | `csb` | research | Latin |
+| [Lower Sorbian](dsb.md) (page) | `dsb` | research | Latin |
+| [Upper Sorbian](hsb.md) (page) | `hsb` | research | Latin |
+| [Polish](pl.md) (page) | `pl` | research | Latin |
+| [Polabian](pox.md) (page) | `pox` | research | Latin |
+| [Slovak](sk.md) (page) | `sk` | research | Latin |
+| [Silesian](szl.md) (page) | `szl` | research | Latin |
 
 ### Indo-European > Celtic
 
@@ -1315,10 +1315,10 @@ Stubs (1): Gallaecian Celtic `cel-x-gallaeci`.
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Breton](https://tigregotico.github.io/orthography2ipa/#br) | `br` | research | Latin |
-| [Welsh](https://tigregotico.github.io/orthography2ipa/#cy) | `cy` | research | Latin |
-| [Cornish](https://tigregotico.github.io/orthography2ipa/#kw) | `kw` | research | Latin |
-| [Middle Welsh](https://tigregotico.github.io/orthography2ipa/#wlm) | `wlm` | research | Latin |
+| [Breton](br.md) (page) | `br` | research | Latin |
+| [Welsh](cy.md) (page) | `cy` | research | Latin |
+| [Cornish](kw.md) (page) | `kw` | research | Latin |
+| [Middle Welsh](wlm.md) (page) | `wlm` | research | Latin |
 | [Common Brythonic](https://tigregotico.github.io/orthography2ipa/#xbr) | `xbr` | research | Latin |
 
 ### Indo-European > Celtic > Goidelic
@@ -1326,19 +1326,19 @@ Stubs (1): Gallaecian Celtic `cel-x-gallaeci`.
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
 | [Proto-Goidelic (reconstructed)](https://tigregotico.github.io/orthography2ipa/#cel-x-goidelic) | `cel-x-goidelic` | research | IPA-reconstruction |
-| [Irish](https://tigregotico.github.io/orthography2ipa/#ga) | `ga` | research | Latin |
-| [Scottish Gaelic](https://tigregotico.github.io/orthography2ipa/#gd) | `gd` | research | Latin |
-| [Manx](https://tigregotico.github.io/orthography2ipa/#gv) | `gv` | research | Latin |
-| [Middle Irish (900-1200)](https://tigregotico.github.io/orthography2ipa/#mga) | `mga` | research | Latin |
+| [Irish](ga.md) (page) | `ga` | research | Latin |
+| [Scottish Gaelic](gd.md) (page) | `gd` | research | Latin |
+| [Manx](gv.md) (page) | `gv` | research | Latin |
+| [Middle Irish (900-1200)](mga.md) (page) | `mga` | research | Latin |
 
 ### Indo-European > Germanic
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
 | [Proto-Germanic (reconstructed)](https://tigregotico.github.io/orthography2ipa/#gem) | `gem` | research | IPA-reconstruction |
-| [Limburgish](https://tigregotico.github.io/orthography2ipa/#li) | `li` | research | Latin |
-| [Limburgish (Rheinische Dokumenta notation)](https://tigregotico.github.io/orthography2ipa/#li-x-rheindok) | `li-x-rheindok` | research | Latin |
-| [Pennsylvania German (Pennsylvania Dutch)](https://tigregotico.github.io/orthography2ipa/#pdc) | `pdc` | research | Latin |
+| [Limburgish](li.md) (page) | `li` | research | Latin |
+| [Limburgish (Rheinische Dokumenta notation)](li-x-rheindok.md) (page) | `li-x-rheindok` | research | Latin |
+| [Pennsylvania German (Pennsylvania Dutch)](pdc.md) (page) | `pdc` | research | Latin |
 
 Stubs (3): Colognian (Kölsch) `ksh`, Palatine German `pfl`, Zeelandic `zea`.
 
@@ -1356,22 +1356,22 @@ Stubs (3): Colognian (Kölsch) `ksh`, Palatine German `pfl`, Zeelandic `zea`.
 | [Middle High German](https://tigregotico.github.io/orthography2ipa/#gmh) | `gmh` | research | Latin |
 | [Middle High German (Wiktionary title-form spelling)](https://tigregotico.github.io/orthography2ipa/#gmh-x-wikt) | `gmh-x-wikt` | research | Latin |
 | [Old High German](https://tigregotico.github.io/orthography2ipa/#goh) | `goh` | research | Latin |
-| [Hunsrik (Riograndenser Hunsrückisch)](https://tigregotico.github.io/orthography2ipa/#hrx) | `hrx` | research | Latin |
+| [Hunsrik (Riograndenser Hunsrückisch)](hrx.md) (page) | `hrx` | research | Latin |
 
 ### Indo-European > Germanic > Northwest Germanic > North Germanic
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Danish](https://tigregotico.github.io/orthography2ipa/#da) | `da` | research | Latin |
+| [Danish](da.md) (page) | `da` | research | Latin |
 | [Danish (Copenhagen / Rigsdansk)](https://tigregotico.github.io/orthography2ipa/#da-x-copenhag) | `da-x-copenhag` | skeleton | Latin |
 | [Faroese](https://tigregotico.github.io/orthography2ipa/#fo) | `fo` | production | Latin |
 | [Proto-North Germanic (Proto-Norse)](https://tigregotico.github.io/orthography2ipa/#gem-x-north) | `gem-x-north` | research | IPA-reconstruction |
-| [Icelandic](https://tigregotico.github.io/orthography2ipa/#is) | `is` | research | Latin |
-| [Norwegian Bokmål](https://tigregotico.github.io/orthography2ipa/#nb) | `nb` | research | Latin |
-| [Norwegian Nynorsk](https://tigregotico.github.io/orthography2ipa/#nn) | `nn` | research | Latin |
-| [Norwegian](https://tigregotico.github.io/orthography2ipa/#no) | `no` | research | Latin |
+| [Icelandic](is.md) (page) | `is` | research | Latin |
+| [Norwegian Bokmål](nb.md) (page) | `nb` | research | Latin |
+| [Norwegian Nynorsk](nn.md) (page) | `nn` | research | Latin |
+| [Norwegian](no.md) (page) | `no` | research | Latin |
 | [Old Norse](https://tigregotico.github.io/orthography2ipa/#non) | `non` | research | Latin |
-| [Swedish](https://tigregotico.github.io/orthography2ipa/#sv) | `sv` | research | Latin |
+| [Swedish](sv.md) (page) | `sv` | research | Latin |
 | [Swedish (Finland-Swedish)](https://tigregotico.github.io/orthography2ipa/#sv-FI) | `sv-FI` | skeleton | Latin |
 | [Swedish (Rikssvenska)](https://tigregotico.github.io/orthography2ipa/#sv-x-rikssven) | `sv-x-rikssven` | skeleton | Latin |
 | [Swedish (Scanian / Skånska)](https://tigregotico.github.io/orthography2ipa/#sv-x-skanska) | `sv-x-skanska` | skeleton | Latin |
@@ -1380,41 +1380,41 @@ Stubs (3): Colognian (Kölsch) `ksh`, Palatine German `pfl`, Zeelandic `zea`.
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Afrikaans](https://tigregotico.github.io/orthography2ipa/#af) | `af` | research | Latin |
+| [Afrikaans](af.md) (page) | `af` | research | Latin |
 | [Old English (Anglo-Saxon)](https://tigregotico.github.io/orthography2ipa/#ang) | `ang` | research | Latin |
 | [Bavarian German](https://tigregotico.github.io/orthography2ipa/#bar-AT) | `bar-AT` | skeleton | Latin |
 | [Austrian German](https://tigregotico.github.io/orthography2ipa/#de-AT) | `de-AT` | skeleton | Latin |
-| [Swiss Standard German (Hochdeutsch)](https://tigregotico.github.io/orthography2ipa/#de-CH) | `de-CH` | research | Latin |
-| [German](https://tigregotico.github.io/orthography2ipa/#de-DE) | `de-DE` | research | Latin |
-| [Alemannic German](https://tigregotico.github.io/orthography2ipa/#de-x-alemanni) | `de-x-alemanni` | research | Latin |
-| [Middle Dutch (ca. 1050-1350)](https://tigregotico.github.io/orthography2ipa/#dum) | `dum` | research | Latin |
+| [Swiss Standard German (Hochdeutsch)](de-CH.md) (page) | `de-CH` | research | Latin |
+| [German](de-DE.md) (page) | `de-DE` | research | Latin |
+| [Alemannic German](de-x-alemanni.md) (page) | `de-x-alemanni` | research | Latin |
+| [Middle Dutch (ca. 1050-1350)](dum.md) (page) | `dum` | research | Latin |
 | [Australian English](https://tigregotico.github.io/orthography2ipa/#en-AU) | `en-AU` | skeleton | Latin |
 | [Canadian English](https://tigregotico.github.io/orthography2ipa/#en-CA) | `en-CA` | skeleton | Latin |
-| [British English (RP)](https://tigregotico.github.io/orthography2ipa/#en-GB) | `en-GB` | research | Latin |
+| [British English (RP)](en-GB.md) (page) | `en-GB` | research | Latin |
 | [Scottish English](https://tigregotico.github.io/orthography2ipa/#en-GB-x-scotland) | `en-GB-x-scotland` | skeleton | Latin |
 | [Irish English (Hiberno-English)](https://tigregotico.github.io/orthography2ipa/#en-IE) | `en-IE` | skeleton | Latin |
-| [American English (General American)](https://tigregotico.github.io/orthography2ipa/#en-US) | `en-US` | research | Latin |
+| [American English (General American)](en-US.md) (page) | `en-US` | research | Latin |
 | [South African English](https://tigregotico.github.io/orthography2ipa/#en-ZA) | `en-ZA` | skeleton | Latin |
 | [Middle English](https://tigregotico.github.io/orthography2ipa/#enm) | `enm` | research | Latin |
-| [Fernando Po Creole English](https://tigregotico.github.io/orthography2ipa/#fpe) | `fpe` | research | Latin |
-| [North Frisian](https://tigregotico.github.io/orthography2ipa/#frr) | `frr` | research | Latin |
-| [West Frisian](https://tigregotico.github.io/orthography2ipa/#fy) | `fy` | research | Latin |
+| [Fernando Po Creole English](fpe.md) (page) | `fpe` | research | Latin |
+| [North Frisian](frr.md) (page) | `frr` | research | Latin |
+| [West Frisian](fy.md) (page) | `fy` | research | Latin |
 | [Proto-Ingvaeonic (North Sea Germanic)](https://tigregotico.github.io/orthography2ipa/#gem-x-ingvaeon) | `gem-x-ingvaeon` | research | Latin |
-| [Middle Low German](https://tigregotico.github.io/orthography2ipa/#gml) | `gml` | research | Latin |
-| [Sea Island Creole English](https://tigregotico.github.io/orthography2ipa/#gul) | `gul` | research | Latin |
-| [Krio](https://tigregotico.github.io/orthography2ipa/#kri) | `kri` | research | Latin |
-| [Luxembourgish](https://tigregotico.github.io/orthography2ipa/#lb) | `lb` | research | Latin |
-| [Low German (Plattdeutsch)](https://tigregotico.github.io/orthography2ipa/#nds) | `nds` | research | Latin |
+| [Middle Low German](gml.md) (page) | `gml` | research | Latin |
+| [Sea Island Creole English](gul.md) (page) | `gul` | research | Latin |
+| [Krio](kri.md) (page) | `kri` | research | Latin |
+| [Luxembourgish](lb.md) (page) | `lb` | research | Latin |
+| [Low German (Plattdeutsch)](nds.md) (page) | `nds` | research | Latin |
 | [Belgian Dutch (Flemish)](https://tigregotico.github.io/orthography2ipa/#nl-BE) | `nl-BE` | skeleton | Latin |
 | [Antwerp Standard Dutch (Belgium)](https://tigregotico.github.io/orthography2ipa/#nl-BE-x-antwerp) | `nl-BE-x-antwerp` | skeleton | Latin |
-| [Dutch](https://tigregotico.github.io/orthography2ipa/#nl-NL) | `nl-NL` | research | Latin |
+| [Dutch](nl-NL.md) (page) | `nl-NL` | research | Latin |
 | [Groningen Standard Dutch (Netherlands)](https://tigregotico.github.io/orthography2ipa/#nl-NL-x-groninge) | `nl-NL-x-groninge` | skeleton | Latin |
 | [Limburg Standard Dutch (Netherlands)](https://tigregotico.github.io/orthography2ipa/#nl-NL-x-limburg) | `nl-NL-x-limburg` | skeleton | Latin |
 | [Polder Dutch (Netherlands)](https://tigregotico.github.io/orthography2ipa/#nl-NL-x-polder) | `nl-NL-x-polder` | skeleton | Latin |
 | [Old Frisian](https://tigregotico.github.io/orthography2ipa/#ofs) | `ofs` | research | Latin |
 | [Old Saxon](https://tigregotico.github.io/orthography2ipa/#osx) | `osx` | research | Latin |
-| [Saterland Frisian](https://tigregotico.github.io/orthography2ipa/#stq) | `stq` | research | Latin |
-| [Yiddish](https://tigregotico.github.io/orthography2ipa/#yi) | `yi` | research | Hebrew |
+| [Saterland Frisian](stq.md) (page) | `stq` | research | Latin |
+| [Yiddish](yi.md) (page) | `yi` | research | Hebrew |
 | [Yola](https://tigregotico.github.io/orthography2ipa/#yol) | `yol` | research | Latin |
 
 Stubs (4): Suebi (Germanic) `gem-x-suebi`, Scots `sco`, Shaetlan `scz`, West Flemish `vls`.
@@ -1424,10 +1424,10 @@ Stubs (4): Suebi (Germanic) `gem-x-suebi`, Scots `sco`, Shaetlan `scz`, West Fle
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
 | [Cappadocian Greek](https://tigregotico.github.io/orthography2ipa/#cpg) | `cpg` | skeleton | Greek |
-| [Modern Greek](https://tigregotico.github.io/orthography2ipa/#el) | `el` | research | Greek |
-| [Cypriot Greek](https://tigregotico.github.io/orthography2ipa/#el-CY) | `el-CY` | research | Greek |
+| [Modern Greek](el.md) (page) | `el` | research | Greek |
+| [Cypriot Greek](el-CY.md) (page) | `el-CY` | research | Greek |
 | [Classical Greek (Attic)](https://tigregotico.github.io/orthography2ipa/#grc) | `grc` | research | Greek |
-| [Pontic Greek](https://tigregotico.github.io/orthography2ipa/#pnt) | `pnt` | research | Greek |
+| [Pontic Greek](pnt.md) (page) | `pnt` | research | Greek |
 
 Stubs (2): Mycenaean Greek `gmy`, Yevanic `yej`.
 
@@ -1442,8 +1442,8 @@ Stubs (2): Mycenaean Greek `gmy`, Yevanic `yej`.
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
 | [Proto-Indo-Iranian](https://tigregotico.github.io/orthography2ipa/#iir) | `iir` | research | Latin |
-| [Phalura](https://tigregotico.github.io/orthography2ipa/#phl) | `phl` | research | Latin |
-| [Waigali](https://tigregotico.github.io/orthography2ipa/#wbk) | `wbk` | research | Latin |
+| [Phalura](phl.md) (page) | `phl` | research | Latin |
+| [Waigali](wbk.md) (page) | `wbk` | research | Latin |
 
 ### Indo-European > Indo-Iranian > Indo-Aryan
 
@@ -1452,33 +1452,33 @@ Stubs (2): Mycenaean Greek `gmy`, Yevanic `yej`.
 | [Assamese](https://tigregotico.github.io/orthography2ipa/#as) | `as` | production | Bengali |
 | [Awadhi](https://tigregotico.github.io/orthography2ipa/#awa) | `awa` | skeleton | Devanagari |
 | [Haryanvi](https://tigregotico.github.io/orthography2ipa/#bgc) | `bgc` | skeleton | Devanagari |
-| [Bhojpuri](https://tigregotico.github.io/orthography2ipa/#bho) | `bho` | research | Devanagari |
-| [Bengali](https://tigregotico.github.io/orthography2ipa/#bn) | `bn` | research | Bengali |
+| [Bhojpuri](bho.md) (page) | `bho` | research | Devanagari |
+| [Bengali](bn.md) (page) | `bn` | research | Bengali |
 | [Dogri](https://tigregotico.github.io/orthography2ipa/#doi) | `doi` | skeleton | Devanagari |
-| [Maldivian (Dhivehi)](https://tigregotico.github.io/orthography2ipa/#dv) | `dv` | research | Thaana |
+| [Maldivian (Dhivehi)](dv.md) (page) | `dv` | research | Thaana |
 | [Goan Konkani](https://tigregotico.github.io/orthography2ipa/#gom) | `gom` | skeleton | Devanagari |
-| [Gujarati](https://tigregotico.github.io/orthography2ipa/#gu) | `gu` | research | Gujarati |
-| [Gawri](https://tigregotico.github.io/orthography2ipa/#gwc) | `gwc` | research | Arabic |
-| [Hindi](https://tigregotico.github.io/orthography2ipa/#hi) | `hi` | research | Devanagari |
+| [Gujarati](gu.md) (page) | `gu` | research | Gujarati |
+| [Gawri](gwc.md) (page) | `gwc` | research | Arabic |
+| [Hindi](hi.md) (page) | `hi` | research | Devanagari |
 | [Chhattisgarhi](https://tigregotico.github.io/orthography2ipa/#hne) | `hne` | skeleton | Devanagari |
-| [Kashmiri](https://tigregotico.github.io/orthography2ipa/#kas) | `kas` | research | Arabic |
-| [Konkani](https://tigregotico.github.io/orthography2ipa/#kok) | `kok` | research | Devanagari |
-| [Kashmiri](https://tigregotico.github.io/orthography2ipa/#ks) | `ks` | research | Latin |
+| [Kashmiri](kas.md) (page) | `kas` | research | Arabic |
+| [Konkani](kok.md) (page) | `kok` | research | Devanagari |
+| [Kashmiri](ks.md) (page) | `ks` | research | Latin |
 | [Magahi](https://tigregotico.github.io/orthography2ipa/#mag) | `mag` | skeleton | Devanagari |
-| [Maithili](https://tigregotico.github.io/orthography2ipa/#mai) | `mai` | research | Devanagari |
-| [Marathi](https://tigregotico.github.io/orthography2ipa/#mr) | `mr` | research | Devanagari |
-| [Nepali](https://tigregotico.github.io/orthography2ipa/#ne) | `ne` | research | Devanagari |
-| [Odia](https://tigregotico.github.io/orthography2ipa/#or) | `or` | research | Odia |
-| [Punjabi](https://tigregotico.github.io/orthography2ipa/#pa) | `pa` | research | Gurmukhi |
+| [Maithili](mai.md) (page) | `mai` | research | Devanagari |
+| [Marathi](mr.md) (page) | `mr` | research | Devanagari |
+| [Nepali](ne.md) (page) | `ne` | research | Devanagari |
+| [Odia](or.md) (page) | `or` | research | Odia |
+| [Punjabi](pa.md) (page) | `pa` | research | Gurmukhi |
 | [Pali](https://tigregotico.github.io/orthography2ipa/#pi) | `pi` | research | Latin |
-| [Western Punjabi (Shahmukhi)](https://tigregotico.github.io/orthography2ipa/#pnb-PK) | `pnb-PK` | research | Arabic |
-| [Vlax Romani](https://tigregotico.github.io/orthography2ipa/#rmy) | `rmy` | research | Latin |
-| [Romani](https://tigregotico.github.io/orthography2ipa/#rom) | `rom` | research | Latin |
-| [Sanskrit](https://tigregotico.github.io/orthography2ipa/#sa) | `sa` | research | Devanagari |
-| [Sindhi](https://tigregotico.github.io/orthography2ipa/#sd) | `sd` | research | Latin |
-| [Sinhala](https://tigregotico.github.io/orthography2ipa/#si) | `si` | research | Sinhala |
-| [Saraiki](https://tigregotico.github.io/orthography2ipa/#skr) | `skr` | research | Arabic |
-| [Urdu](https://tigregotico.github.io/orthography2ipa/#ur) | `ur` | research | Arabic |
+| [Western Punjabi (Shahmukhi)](pnb-PK.md) (page) | `pnb-PK` | research | Arabic |
+| [Vlax Romani](rmy.md) (page) | `rmy` | research | Latin |
+| [Romani](rom.md) (page) | `rom` | research | Latin |
+| [Sanskrit](sa.md) (page) | `sa` | research | Devanagari |
+| [Sindhi](sd.md) (page) | `sd` | research | Latin |
+| [Sinhala](si.md) (page) | `si` | research | Sinhala |
+| [Saraiki](skr.md) (page) | `skr` | research | Arabic |
+| [Urdu](ur.md) (page) | `ur` | research | Arabic |
 | [Vedic Sanskrit](https://tigregotico.github.io/orthography2ipa/#vsn) | `vsn` | research | Devanagari |
 
 Stubs (13): Angika `anp`, Andh `anr`, Bishnupriya Manipuri `bpy`, Deccan `dcc`, Doteli `dty`, Fiji Hindi `hif`, Lahnda (Western Punjabi macrolanguage) `lah`, Noakhali `oak`, Rajasthani (macrolanguage) `raj`, Romano-Serbian `rsb`, Surgujia `sgj`, Sylheti `syl`, Bajjika `vjk`.
@@ -1489,9 +1489,9 @@ Stubs (13): Angika `anp`, Andh `anr`, Bishnupriya Manipuri `bpy`, Deccan `dcc`, 
 |:--|:--|:--|:--|
 | [Avestan](https://tigregotico.github.io/orthography2ipa/#ae) | `ae` | research | Latin |
 | [Balochi](https://tigregotico.github.io/orthography2ipa/#bal) | `bal` | skeleton | Arabic |
-| [Central Kurdish (Sorani)](https://tigregotico.github.io/orthography2ipa/#ckb) | `ckb` | research | Arabic |
-| [Zazaki](https://tigregotico.github.io/orthography2ipa/#diq) | `diq` | research | Latin |
-| [Persian (Farsi)](https://tigregotico.github.io/orthography2ipa/#fa) | `fa` | research | Arabic |
+| [Central Kurdish (Sorani)](ckb.md) (page) | `ckb` | research | Arabic |
+| [Zazaki](diq.md) (page) | `diq` | research | Latin |
+| [Persian (Farsi)](fa.md) (page) | `fa` | research | Arabic |
 | [Dari (Afghan Persian)](https://tigregotico.github.io/orthography2ipa/#fa-AF) | `fa-AF` | skeleton | Arabic |
 | [Early New Persian (Classical Persian)](https://tigregotico.github.io/orthography2ipa/#fa-x-early) | `fa-x-early` | research | Latin |
 | [Early New Persian (Perso-Arabic reading)](https://tigregotico.github.io/orthography2ipa/#fa-x-enp) | `fa-x-enp` | research | Arabic |
@@ -1505,16 +1505,16 @@ Stubs (13): Angika `anp`, Andh `anr`, Bishnupriya Manipuri `bpy`, Deccan `dcc`, 
 | [Gilaki](https://tigregotico.github.io/orthography2ipa/#glk) | `glk` | skeleton | Arabic |
 | [Hazaragi (Afghan Dari, Hazara)](https://tigregotico.github.io/orthography2ipa/#haz-AF) | `haz-AF` | skeleton | Arabic |
 | [Proto-Iranian](https://tigregotico.github.io/orthography2ipa/#ira) | `ira` | research | Latin |
-| [Kurdish (Kurmanji)](https://tigregotico.github.io/orthography2ipa/#ku) | `ku` | research | Latin |
+| [Kurdish (Kurmanji)](ku.md) (page) | `ku` | research | Latin |
 | [Northern Luri](https://tigregotico.github.io/orthography2ipa/#lrc) | `lrc` | skeleton | Arabic |
 | [Mazanderani](https://tigregotico.github.io/orthography2ipa/#mzn) | `mzn` | skeleton | Arabic |
-| [Ossetian](https://tigregotico.github.io/orthography2ipa/#os) | `os` | research | Cyrillic |
+| [Ossetian](os.md) (page) | `os` | research | Cyrillic |
 | [Middle Persian (Pahlavi)](https://tigregotico.github.io/orthography2ipa/#pal) | `pal` | research | Latin |
 | [Old Persian](https://tigregotico.github.io/orthography2ipa/#peo) | `peo` | research | Latin |
-| [Pashto (Standard Afghan)](https://tigregotico.github.io/orthography2ipa/#ps) | `ps` | research | Arabic |
-| [Tajik](https://tigregotico.github.io/orthography2ipa/#tg) | `tg` | research | Cyrillic |
-| [Talysh](https://tigregotico.github.io/orthography2ipa/#tly) | `tly` | research | Latin |
-| [Zaza](https://tigregotico.github.io/orthography2ipa/#zza) | `zza` | research | Latin |
+| [Pashto (Standard Afghan)](ps.md) (page) | `ps` | research | Arabic |
+| [Tajik](tg.md) (page) | `tg` | research | Cyrillic |
+| [Talysh](tly.md) (page) | `tly` | research | Latin |
+| [Zaza](zza.md) (page) | `zza` | research | Latin |
 
 Stubs (5): Khotanese `kho`, Digor Ossetic `osd`, Sogdian `sog`, Median `xme`, Parthian `xpr`.
 
@@ -1535,35 +1535,35 @@ Stubs (1): Sicel `scx`.
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Catalan](https://tigregotico.github.io/orthography2ipa/#ca) | `ca` | research | Latin |
-| [Alguerese (l'alguerès, Catalan of Alghero, Sardinia)](https://tigregotico.github.io/orthography2ipa/#ca-x-alguer) | `ca-x-alguer` | research | Latin |
-| [Balearic Catalan](https://tigregotico.github.io/orthography2ipa/#ca-x-balear) | `ca-x-balear` | research | Latin |
+| [Catalan](ca.md) (page) | `ca` | research | Latin |
+| [Alguerese (l'alguerès, Catalan of Alghero, Sardinia)](ca-x-alguer.md) (page) | `ca-x-alguer` | research | Latin |
+| [Balearic Catalan](ca-x-balear.md) (page) | `ca-x-balear` | research | Latin |
 | [Old Catalan](https://tigregotico.github.io/orthography2ipa/#ca-x-medieval) | `ca-x-medieval` | research | Latin |
-| [Northern Catalan (Rossellonès)](https://tigregotico.github.io/orthography2ipa/#ca-x-nord) | `ca-x-nord` | research | Latin |
-| [North-Western Catalan](https://tigregotico.github.io/orthography2ipa/#ca-x-occident) | `ca-x-occident` | research | Latin |
-| [Valencian](https://tigregotico.github.io/orthography2ipa/#ca-x-valencia) | `ca-x-valencia` | research | Latin |
-| [Dalmatian](https://tigregotico.github.io/orthography2ipa/#dlm) | `dlm` | research | Latin |
-| [Emilian, Romagnol](https://tigregotico.github.io/orthography2ipa/#eml) | `eml` | research | Latin |
+| [Northern Catalan (Rossellonès)](ca-x-nord.md) (page) | `ca-x-nord` | research | Latin |
+| [North-Western Catalan](ca-x-occident.md) (page) | `ca-x-occident` | research | Latin |
+| [Valencian](ca-x-valencia.md) (page) | `ca-x-valencia` | research | Latin |
+| [Dalmatian](dlm.md) (page) | `dlm` | research | Latin |
+| [Emilian, Romagnol](eml.md) (page) | `eml` | research | Latin |
 | [Old French](https://tigregotico.github.io/orthography2ipa/#fro) | `fro` | research | Latin |
 | [Balkan Romance Vulgar Latin](https://tigregotico.github.io/orthography2ipa/#la-x-balkans) | `la-x-balkans` | research | Latin |
 | [Gallo-Romance Vulgar Latin](https://tigregotico.github.io/orthography2ipa/#la-x-gallia) | `la-x-gallia` | research | Latin |
 | [Hispanic Vulgar Latin](https://tigregotico.github.io/orthography2ipa/#la-x-hispania) | `la-x-hispania` | research | Latin |
 | [Italo-Romance Vulgar Latin](https://tigregotico.github.io/orthography2ipa/#la-x-italia) | `la-x-italia` | research | Latin |
-| [Louisiana Creole](https://tigregotico.github.io/orthography2ipa/#lou) | `lou` | research | Latin |
-| [Morisyen](https://tigregotico.github.io/orthography2ipa/#mfe) | `mfe` | research | Latin |
+| [Louisiana Creole](lou.md) (page) | `lou` | research | Latin |
+| [Morisyen](mfe.md) (page) | `mfe` | research | Latin |
 | [Mozarabic (Andalusi Romance)](https://tigregotico.github.io/orthography2ipa/#mxi) | `mxi` | research | Latin |
-| [Norman](https://tigregotico.github.io/orthography2ipa/#nrm) | `nrm` | research | Latin |
+| [Norman](nrm.md) (page) | `nrm` | research | Latin |
 | [Old Spanish](https://tigregotico.github.io/orthography2ipa/#osp) | `osp` | research | Latin |
-| [Romagnol](https://tigregotico.github.io/orthography2ipa/#rgn) | `rgn` | research | Latin |
-| [Sassarese Sardinian](https://tigregotico.github.io/orthography2ipa/#sdc) | `sdc` | research | Latin |
-| [Walloon](https://tigregotico.github.io/orthography2ipa/#wa) | `wa` | research | Latin |
+| [Romagnol](rgn.md) (page) | `rgn` | research | Latin |
+| [Sassarese Sardinian](sdc.md) (page) | `sdc` | research | Latin |
+| [Walloon](wa.md) (page) | `wa` | research | Latin |
 
 ### Indo-European > Italic > Romance > Eastern Romance
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
 | [Romanian](https://tigregotico.github.io/orthography2ipa/#ro-RO) | `ro-RO` | production | Latin |
-| [Aromanian](https://tigregotico.github.io/orthography2ipa/#rup) | `rup` | research | Latin |
+| [Aromanian](rup.md) (page) | `rup` | research | Latin |
 
 Stubs (1): Istro-Romanian `ruo`.
 
@@ -1571,75 +1571,75 @@ Stubs (1): Istro-Romanian `ruo`.
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Seychellois Creole](https://tigregotico.github.io/orthography2ipa/#crs) | `crs` | research | Latin |
-| [French](https://tigregotico.github.io/orthography2ipa/#fr-FR) | `fr-FR` | research | Latin |
-| [Franco-Provençal (Arpitan)](https://tigregotico.github.io/orthography2ipa/#frp) | `frp` | research | Latin |
-| [Ladin](https://tigregotico.github.io/orthography2ipa/#lld) | `lld` | research | Latin |
-| [Norman](https://tigregotico.github.io/orthography2ipa/#nrf) | `nrf` | research | Latin |
-| [Occitan](https://tigregotico.github.io/orthography2ipa/#oc) | `oc` | research | Latin |
-| [Provençal (Occitan)](https://tigregotico.github.io/orthography2ipa/#oc-provenc) | `oc-provenc` | research | Latin |
-| [Aranese (Gascon Occitan)](https://tigregotico.github.io/orthography2ipa/#oc-x-aranes) | `oc-x-aranes` | research | Latin |
-| [Picard](https://tigregotico.github.io/orthography2ipa/#pcd) | `pcd` | research | Latin |
-| [Romansh](https://tigregotico.github.io/orthography2ipa/#rm) | `rm` | research | Latin |
+| [Seychellois Creole](crs.md) (page) | `crs` | research | Latin |
+| [French](fr-FR.md) (page) | `fr-FR` | research | Latin |
+| [Franco-Provençal (Arpitan)](frp.md) (page) | `frp` | research | Latin |
+| [Ladin](lld.md) (page) | `lld` | research | Latin |
+| [Norman](nrf.md) (page) | `nrf` | research | Latin |
+| [Occitan](oc.md) (page) | `oc` | research | Latin |
+| [Provençal (Occitan)](oc-provenc.md) (page) | `oc-provenc` | research | Latin |
+| [Aranese (Gascon Occitan)](oc-x-aranes.md) (page) | `oc-x-aranes` | research | Latin |
+| [Picard](pcd.md) (page) | `pcd` | research | Latin |
+| [Romansh](rm.md) (page) | `rm` | research | Latin |
 
 ### Indo-European > Italic > Romance > Ibero-Romance
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Aragonese](https://tigregotico.github.io/orthography2ipa/#an) | `an` | research | Latin |
+| [Aragonese](an.md) (page) | `an` | research | Latin |
 | [Ansotano Aragonese (Ansó valley)](https://tigregotico.github.io/orthography2ipa/#an-x-ansotano) | `an-x-ansotano` | skeleton | Latin |
-| [Belsetán Aragonese (Bielsa valley)](https://tigregotico.github.io/orthography2ipa/#an-x-belsetan) | `an-x-belsetan` | research | Latin |
-| [Benasquese (patués, Benasque valley)](https://tigregotico.github.io/orthography2ipa/#an-x-benasque) | `an-x-benasque` | research | Latin |
-| [Cheso Aragonese (Hecho/Echo valley)](https://tigregotico.github.io/orthography2ipa/#an-x-cheso) | `an-x-cheso` | research | Latin |
-| [Chistabín Aragonese (Gistaín/Chistau valley)](https://tigregotico.github.io/orthography2ipa/#an-x-chistau) | `an-x-chistau` | research | Latin |
-| [Western Aragonese](https://tigregotico.github.io/orthography2ipa/#an-x-occident) | `an-x-occident` | research | Latin |
+| [Belsetán Aragonese (Bielsa valley)](an-x-belsetan.md) (page) | `an-x-belsetan` | research | Latin |
+| [Benasquese (patués, Benasque valley)](an-x-benasque.md) (page) | `an-x-benasque` | research | Latin |
+| [Cheso Aragonese (Hecho/Echo valley)](an-x-cheso.md) (page) | `an-x-cheso` | research | Latin |
+| [Chistabín Aragonese (Gistaín/Chistau valley)](an-x-chistau.md) (page) | `an-x-chistau` | research | Latin |
+| [Western Aragonese](an-x-occident.md) (page) | `an-x-occident` | research | Latin |
 | [Eastern Aragonese (Ribagorçan)](https://tigregotico.github.io/orthography2ipa/#an-x-oriental) | `an-x-oriental` | skeleton | Latin |
 | [Tensino Aragonese (Valle de Tena / Panticosa)](https://tigregotico.github.io/orthography2ipa/#an-x-tensino) | `an-x-tensino` | skeleton | Latin |
 | [Angolar](https://tigregotico.github.io/orthography2ipa/#aoa) | `aoa` | research | Latin |
 | [Sãotomense (Forro / Santome)](https://tigregotico.github.io/orthography2ipa/#cri) | `cri` | research | Latin |
 | [Latin American Spanish](https://tigregotico.github.io/orthography2ipa/#es-419) | `es-419` | skeleton | Latin |
-| [Rioplatense Spanish](https://tigregotico.github.io/orthography2ipa/#es-AR) | `es-AR` | research | Latin |
+| [Rioplatense Spanish](es-AR.md) (page) | `es-AR` | research | Latin |
 | [Bolivian Spanish](https://tigregotico.github.io/orthography2ipa/#es-BO) | `es-BO` | skeleton | Latin |
-| [Chilean Spanish](https://tigregotico.github.io/orthography2ipa/#es-CL) | `es-CL` | research | Latin |
+| [Chilean Spanish](es-CL.md) (page) | `es-CL` | research | Latin |
 | [Colombian Spanish (Bogotá)](https://tigregotico.github.io/orthography2ipa/#es-CO) | `es-CO` | skeleton | Latin |
-| [Colombian Spanish (Coastal)](https://tigregotico.github.io/orthography2ipa/#es-CO-x-costa) | `es-CO-x-costa` | research | Latin |
+| [Colombian Spanish (Coastal)](es-CO-x-costa.md) (page) | `es-CO-x-costa` | research | Latin |
 | [Colombian Spanish (Paisa/Medellín)](https://tigregotico.github.io/orthography2ipa/#es-CO-x-paisa) | `es-CO-x-paisa` | skeleton | Latin |
 | [Costa Rican Spanish](https://tigregotico.github.io/orthography2ipa/#es-CR) | `es-CR` | skeleton | Latin |
-| [Cuban Spanish](https://tigregotico.github.io/orthography2ipa/#es-CU) | `es-CU` | research | Latin |
-| [Dominican Spanish](https://tigregotico.github.io/orthography2ipa/#es-DO) | `es-DO` | research | Latin |
+| [Cuban Spanish](es-CU.md) (page) | `es-CU` | research | Latin |
+| [Dominican Spanish](es-DO.md) (page) | `es-DO` | research | Latin |
 | [Ecuadorian Spanish](https://tigregotico.github.io/orthography2ipa/#es-EC) | `es-EC` | skeleton | Latin |
 | [Castilian Spanish](es-ES.md) (page) | `es-ES` | production | Latin |
-| [Eastern Andalusian Spanish](https://tigregotico.github.io/orthography2ipa/#es-ES-x-andalusi-e) | `es-ES-x-andalusi-e` | research | Latin |
-| [Western Andalusian Spanish](https://tigregotico.github.io/orthography2ipa/#es-ES-x-andalusi-w) | `es-ES-x-andalusi-w` | research | Latin |
-| [Canarian Spanish](https://tigregotico.github.io/orthography2ipa/#es-ES-x-canarias) | `es-ES-x-canarias` | research | Latin |
-| [Cantabrian Spanish (Montañés)](https://tigregotico.github.io/orthography2ipa/#es-ES-x-cantabri) | `es-ES-x-cantabri` | research | Latin |
-| [Extremaduran Spanish (Extremeño)](https://tigregotico.github.io/orthography2ipa/#es-ES-x-extremad) | `es-ES-x-extremad` | research | Latin |
+| [Eastern Andalusian Spanish](es-ES-x-andalusi-e.md) (page) | `es-ES-x-andalusi-e` | research | Latin |
+| [Western Andalusian Spanish](es-ES-x-andalusi-w.md) (page) | `es-ES-x-andalusi-w` | research | Latin |
+| [Canarian Spanish](es-ES-x-canarias.md) (page) | `es-ES-x-canarias` | research | Latin |
+| [Cantabrian Spanish (Montañés)](es-ES-x-cantabri.md) (page) | `es-ES-x-cantabri` | research | Latin |
+| [Extremaduran Spanish (Extremeño)](es-ES-x-extremad.md) (page) | `es-ES-x-extremad` | research | Latin |
 | [Castilian](https://tigregotico.github.io/orthography2ipa/#es-ES-x-medieval) | `es-ES-x-medieval` | research | Latin |
-| [Murcian Spanish (Panocho)](https://tigregotico.github.io/orthography2ipa/#es-ES-x-murcia) | `es-ES-x-murcia` | research | Latin |
+| [Murcian Spanish (Panocho)](es-ES-x-murcia.md) (page) | `es-ES-x-murcia` | research | Latin |
 | [Equatoguinean Spanish](https://tigregotico.github.io/orthography2ipa/#es-GQ) | `es-GQ` | skeleton | Latin |
 | [Guatemalan Spanish](https://tigregotico.github.io/orthography2ipa/#es-GT) | `es-GT` | skeleton | Latin |
-| [Mexican Spanish (Highland)](https://tigregotico.github.io/orthography2ipa/#es-MX) | `es-MX` | research | Latin |
-| [Mexican Spanish (Coastal)](https://tigregotico.github.io/orthography2ipa/#es-MX-x-costa) | `es-MX-x-costa` | research | Latin |
-| [Yucatec Mexican Spanish](https://tigregotico.github.io/orthography2ipa/#es-MX-x-yucatan) | `es-MX-x-yucatan` | research | Latin |
-| [Nicaraguan Spanish](https://tigregotico.github.io/orthography2ipa/#es-NI) | `es-NI` | research | Latin |
-| [Panamanian Spanish](https://tigregotico.github.io/orthography2ipa/#es-PA) | `es-PA` | research | Latin |
+| [Mexican Spanish (Highland)](es-MX.md) (page) | `es-MX` | research | Latin |
+| [Mexican Spanish (Coastal)](es-MX-x-costa.md) (page) | `es-MX-x-costa` | research | Latin |
+| [Yucatec Mexican Spanish](es-MX-x-yucatan.md) (page) | `es-MX-x-yucatan` | research | Latin |
+| [Nicaraguan Spanish](es-NI.md) (page) | `es-NI` | research | Latin |
+| [Panamanian Spanish](es-PA.md) (page) | `es-PA` | research | Latin |
 | [Peruvian Spanish (Andean)](https://tigregotico.github.io/orthography2ipa/#es-PE) | `es-PE` | skeleton | Latin |
 | [Peruvian Spanish (Lima)](https://tigregotico.github.io/orthography2ipa/#es-PE-x-lima) | `es-PE-x-lima` | skeleton | Latin |
-| [Puerto Rican Spanish](https://tigregotico.github.io/orthography2ipa/#es-PR) | `es-PR` | research | Latin |
+| [Puerto Rican Spanish](es-PR.md) (page) | `es-PR` | research | Latin |
 | [Paraguayan Spanish](https://tigregotico.github.io/orthography2ipa/#es-PY) | `es-PY` | skeleton | Latin |
 | [Uruguayan Spanish](https://tigregotico.github.io/orthography2ipa/#es-UY) | `es-UY` | skeleton | Latin |
-| [Venezuelan Spanish](https://tigregotico.github.io/orthography2ipa/#es-VE) | `es-VE` | research | Latin |
-| [Extremaduran](https://tigregotico.github.io/orthography2ipa/#ext) | `ext` | research | Latin |
-| [A Fala (Xalimego)](https://tigregotico.github.io/orthography2ipa/#fax) | `fax` | research | Latin |
-| [Galician](https://tigregotico.github.io/orthography2ipa/#gl-ES) | `gl-ES` | research | Latin |
-| [Central Galician](https://tigregotico.github.io/orthography2ipa/#gl-ES-x-central) | `gl-ES-x-central` | research | Latin |
-| [Eonavian (Galician-Asturian, gallego-asturiano)](https://tigregotico.github.io/orthography2ipa/#gl-ES-x-eonavia) | `gl-ES-x-eonavia` | research | Latin |
-| [Western Galician](https://tigregotico.github.io/orthography2ipa/#gl-ES-x-occident) | `gl-ES-x-occident` | research | Latin |
-| [Eastern Galician](https://tigregotico.github.io/orthography2ipa/#gl-ES-x-oriental) | `gl-ES-x-oriental` | research | Latin |
-| [Galician (reintegrationist orthography)](https://tigregotico.github.io/orthography2ipa/#gl-ES-x-reintegr) | `gl-ES-x-reintegr` | research | Latin |
+| [Venezuelan Spanish](es-VE.md) (page) | `es-VE` | research | Latin |
+| [Extremaduran](ext.md) (page) | `ext` | research | Latin |
+| [A Fala (Xalimego)](fax.md) (page) | `fax` | research | Latin |
+| [Galician](gl-ES.md) (page) | `gl-ES` | research | Latin |
+| [Central Galician](gl-ES-x-central.md) (page) | `gl-ES-x-central` | research | Latin |
+| [Eonavian (Galician-Asturian, gallego-asturiano)](gl-ES-x-eonavia.md) (page) | `gl-ES-x-eonavia` | research | Latin |
+| [Western Galician](gl-ES-x-occident.md) (page) | `gl-ES-x-occident` | research | Latin |
+| [Eastern Galician](gl-ES-x-oriental.md) (page) | `gl-ES-x-oriental` | research | Latin |
+| [Galician (reintegrationist orthography)](gl-ES-x-reintegr.md) (page) | `gl-ES-x-reintegr` | research | Latin |
 | [Sri Lanka Portuguese Creole](https://tigregotico.github.io/orthography2ipa/#idb) | `idb` | research | Latin |
 | [Kabuverdianu (Cape Verdean Creole)](https://tigregotico.github.io/orthography2ipa/#kea) | `kea` | research | Latin |
-| [Ladino (Judeo-Spanish)](https://tigregotico.github.io/orthography2ipa/#lad) | `lad` | research | Latin |
+| [Ladino (Judeo-Spanish)](lad.md) (page) | `lad` | research | Latin |
 | [Kristang (Papia Kristang, Malacca Creole Portuguese)](https://tigregotico.github.io/orthography2ipa/#mcm) | `mcm` | research | Latin |
 | [Macanese Creole (Patuá)](https://tigregotico.github.io/orthography2ipa/#mzs) | `mzs` | research | Latin |
 | [Papiamentu (Papiamento)](https://tigregotico.github.io/orthography2ipa/#pap) | `pap` | research | Latin |
@@ -1694,66 +1694,66 @@ Stubs (23): Cordobés Spanish `es-AR-x-cordoba`, Cuyano Spanish `es-AR-x-cuyo`, 
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Asturian](https://tigregotico.github.io/orthography2ipa/#ast) | `ast` | research | Latin |
-| [Leonese](https://tigregotico.github.io/orthography2ipa/#ast-ES-x-leon) | `ast-ES-x-leon` | research | Latin |
-| [Guadramilese](https://tigregotico.github.io/orthography2ipa/#ast-PT-x-guadrami) | `ast-PT-x-guadrami` | research | Latin |
+| [Asturian](ast.md) (page) | `ast` | research | Latin |
+| [Leonese](ast-ES-x-leon.md) (page) | `ast-ES-x-leon` | research | Latin |
+| [Guadramilese](ast-PT-x-guadrami.md) (page) | `ast-PT-x-guadrami` | research | Latin |
 | [Medieval Asturian-Leonese of Portugal](https://tigregotico.github.io/orthography2ipa/#ast-PT-x-medieval) | `ast-PT-x-medieval` | research | Latin |
-| [Rionorese](https://tigregotico.github.io/orthography2ipa/#ast-PT-x-rionor) | `ast-PT-x-rionor` | research | Latin |
-| [Cantabrian](https://tigregotico.github.io/orthography2ipa/#ast-x-cantabri) | `ast-x-cantabri` | research | Latin |
-| [Leonese](https://tigregotico.github.io/orthography2ipa/#ast-x-leon) | `ast-x-leon` | research | Latin |
-| [Western Asturian-Leonese](https://tigregotico.github.io/orthography2ipa/#ast-x-occident) | `ast-x-occident` | research | Latin |
-| [Eastern Asturian-Leonese](https://tigregotico.github.io/orthography2ipa/#ast-x-oriental) | `ast-x-oriental` | research | Latin |
+| [Rionorese](ast-PT-x-rionor.md) (page) | `ast-PT-x-rionor` | research | Latin |
+| [Cantabrian](ast-x-cantabri.md) (page) | `ast-x-cantabri` | research | Latin |
+| [Leonese](ast-x-leon.md) (page) | `ast-x-leon` | research | Latin |
+| [Western Asturian-Leonese](ast-x-occident.md) (page) | `ast-x-occident` | research | Latin |
+| [Eastern Asturian-Leonese](ast-x-oriental.md) (page) | `ast-x-oriental` | research | Latin |
 | [Pasiegu (Pasiego, Montes de Pas)](https://tigregotico.github.io/orthography2ipa/#ast-x-pasiego) | `ast-x-pasiego` | skeleton | Latin |
-| [Sanabrese](https://tigregotico.github.io/orthography2ipa/#ast-x-sanabria) | `ast-x-sanabria` | research | Latin |
+| [Sanabrese](ast-x-sanabria.md) (page) | `ast-x-sanabria` | research | Latin |
 | [Mirandese](mwl.md) (page) | `mwl` | research | Latin |
-| [Ifanês (Mirandese septentrional)](https://tigregotico.github.io/orthography2ipa/#mwl-x-ifanes) | `mwl-x-ifanes` | research | Latin |
-| [Sendinês (Mirandese meridional)](https://tigregotico.github.io/orthography2ipa/#mwl-x-sendim) | `mwl-x-sendim` | research | Latin |
+| [Ifanês (Mirandese septentrional)](mwl-x-ifanes.md) (page) | `mwl-x-ifanes` | research | Latin |
+| [Sendinês (Mirandese meridional)](mwl-x-sendim.md) (page) | `mwl-x-sendim` | research | Latin |
 
 ### Indo-European > Italic > Romance > Italo-Romance
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Corsican](https://tigregotico.github.io/orthography2ipa/#co) | `co` | research | Latin |
+| [Corsican](co.md) (page) | `co` | research | Latin |
 | [Emilian-Romagnol](https://tigregotico.github.io/orthography2ipa/#egl) | `egl` | skeleton | Latin |
-| [Friulian](https://tigregotico.github.io/orthography2ipa/#fur) | `fur` | research | Latin |
+| [Friulian](fur.md) (page) | `fur` | research | Latin |
 | [Istriot](https://tigregotico.github.io/orthography2ipa/#ist) | `ist` | skeleton | Latin |
-| [Italian](https://tigregotico.github.io/orthography2ipa/#it-IT) | `it-IT` | research | Latin |
-| [Abruzzese](https://tigregotico.github.io/orthography2ipa/#it-IT-x-abruzzo) | `it-IT-x-abruzzo` | research | Latin |
-| [Calabrian](https://tigregotico.github.io/orthography2ipa/#it-IT-x-calabria) | `it-IT-x-calabria` | research | Latin |
-| [Marchigiano](https://tigregotico.github.io/orthography2ipa/#it-IT-x-marche) | `it-IT-x-marche` | research | Latin |
-| [Apulian](https://tigregotico.github.io/orthography2ipa/#it-IT-x-puglia) | `it-IT-x-puglia` | research | Latin |
-| [Romanesco](https://tigregotico.github.io/orthography2ipa/#it-IT-x-roma) | `it-IT-x-roma` | research | Latin |
-| [Tuscan](https://tigregotico.github.io/orthography2ipa/#it-IT-x-toscana) | `it-IT-x-toscana` | research | Latin |
-| [Umbrian dialect](https://tigregotico.github.io/orthography2ipa/#it-IT-x-umbria) | `it-IT-x-umbria` | research | Latin |
+| [Italian](it-IT.md) (page) | `it-IT` | research | Latin |
+| [Abruzzese](it-IT-x-abruzzo.md) (page) | `it-IT-x-abruzzo` | research | Latin |
+| [Calabrian](it-IT-x-calabria.md) (page) | `it-IT-x-calabria` | research | Latin |
+| [Marchigiano](it-IT-x-marche.md) (page) | `it-IT-x-marche` | research | Latin |
+| [Apulian](it-IT-x-puglia.md) (page) | `it-IT-x-puglia` | research | Latin |
+| [Romanesco](it-IT-x-roma.md) (page) | `it-IT-x-roma` | research | Latin |
+| [Tuscan](it-IT-x-toscana.md) (page) | `it-IT-x-toscana` | research | Latin |
+| [Umbrian dialect](it-IT-x-umbria.md) (page) | `it-IT-x-umbria` | research | Latin |
 | [Gallo-Italic Vulgar Latin](https://tigregotico.github.io/orthography2ipa/#la-x-gallo-italic) | `la-x-gallo-italic` | skeleton | Latin |
-| [Ligurian](https://tigregotico.github.io/orthography2ipa/#lij) | `lij` | research | Latin |
-| [Lombard](https://tigregotico.github.io/orthography2ipa/#lmo) | `lmo` | research | Latin |
-| [Lombard (classical Milanese orthography)](https://tigregotico.github.io/orthography2ipa/#lmo-x-milanese) | `lmo-x-milanese` | research | Latin |
-| [Neapolitan](https://tigregotico.github.io/orthography2ipa/#nap) | `nap` | research | Latin |
-| [Piedmontese](https://tigregotico.github.io/orthography2ipa/#pms) | `pms` | research | Latin |
-| [Sicilian](https://tigregotico.github.io/orthography2ipa/#scn) | `scn` | research | Latin |
+| [Ligurian](lij.md) (page) | `lij` | research | Latin |
+| [Lombard](lmo.md) (page) | `lmo` | research | Latin |
+| [Lombard (classical Milanese orthography)](lmo-x-milanese.md) (page) | `lmo-x-milanese` | research | Latin |
+| [Neapolitan](nap.md) (page) | `nap` | research | Latin |
+| [Piedmontese](pms.md) (page) | `pms` | research | Latin |
+| [Sicilian](scn.md) (page) | `scn` | research | Latin |
 | [Gallurese](https://tigregotico.github.io/orthography2ipa/#sdn) | `sdn` | skeleton | Latin |
-| [Venetian](https://tigregotico.github.io/orthography2ipa/#vec) | `vec` | research | Latin |
+| [Venetian](vec.md) (page) | `vec` | research | Latin |
 
 ### Indo-European > Italic > Romance > Southern Romance
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Sardinian](https://tigregotico.github.io/orthography2ipa/#sc) | `sc` | research | Latin |
+| [Sardinian](sc.md) (page) | `sc` | research | Latin |
 | [Campidanese Sardinian](https://tigregotico.github.io/orthography2ipa/#sc-x-campidan) | `sc-x-campidan` | skeleton | Latin |
 | [Logudorese Sardinian](https://tigregotico.github.io/orthography2ipa/#sc-x-logudoro) | `sc-x-logudoro` | skeleton | Latin |
-| [Logudorese Sardinian](https://tigregotico.github.io/orthography2ipa/#src) | `src` | research | Latin |
-| [Campidanese Sardinian](https://tigregotico.github.io/orthography2ipa/#sro) | `sro` | research | Latin |
+| [Logudorese Sardinian](src.md) (page) | `src` | research | Latin |
+| [Campidanese Sardinian](sro.md) (page) | `sro` | research | Latin |
 
 ## Iroquoian
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Cayuga](https://tigregotico.github.io/orthography2ipa/#cay) | `cay` | research | Latin |
-| [Cherokee](https://tigregotico.github.io/orthography2ipa/#chr) | `chr` | research | Cherokee |
-| [Mohawk](https://tigregotico.github.io/orthography2ipa/#moh) | `moh` | research | Latin |
-| [Oneida](https://tigregotico.github.io/orthography2ipa/#one) | `one` | research | Latin |
-| [Seneca](https://tigregotico.github.io/orthography2ipa/#see) | `see` | research | Latin |
+| [Cayuga](cay.md) (page) | `cay` | research | Latin |
+| [Cherokee](chr.md) (page) | `chr` | research | Cherokee |
+| [Mohawk](moh.md) (page) | `moh` | research | Latin |
+| [Oneida](one.md) (page) | `one` | research | Latin |
+| [Seneca](see.md) (page) | `see` | research | Latin |
 
 Stubs (4): Onondaga `ono`, Tuscarora `tus`, Wendat `wdt`, Wyandot `wyn`.
 
@@ -1774,7 +1774,7 @@ Stubs (3): Amurdak `amg`, Iwaidja `ibd`, Maung `mph`.
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Japanese](https://tigregotico.github.io/orthography2ipa/#ja) | `ja` | research | Kana |
+| [Japanese](ja.md) (page) | `ja` | research | Kana |
 
 Stubs (14): Southern Amami-Oshima `ams`, Proto-Japonic (family node) `jpx`, Kikai `kzg`, Miyako `mvi`, Old Japanese `ojp`, Oki-No-Erabu `okn`, Northern Amami-Oshima `ryn`, Yaeyama `rys`, Central Okinawan `ryu`, Toku-No-Shima `tkn`, Kunigami `xug`, Yilan Creole `ycr`, Yonaguni `yoi`, Yoron `yox`.
 
@@ -1814,9 +1814,9 @@ Stubs (3): Aekyom `awi`, Pare `ppt`, Kamula `xla`.
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Georgian](https://tigregotico.github.io/orthography2ipa/#ka) | `ka` | research | Georgian |
-| [Laz](https://tigregotico.github.io/orthography2ipa/#lzz) | `lzz` | research | Georgian |
-| [Mingrelian](https://tigregotico.github.io/orthography2ipa/#xmf) | `xmf` | research | Georgian (Mkhedruli) |
+| [Georgian](ka.md) (page) | `ka` | research | Georgian |
+| [Laz](lzz.md) (page) | `lzz` | research | Georgian |
+| [Mingrelian](xmf.md) (page) | `xmf` | research | Georgian (Mkhedruli) |
 
 Stubs (3): Proto-Kartvelian (family node) `ccs`, Judeo-Georgian `jge`, Svan `sva`.
 
@@ -1856,8 +1856,8 @@ Stubs (12): ǁGana `gnk`, ǀGwi `gwj`, Haiǁom `hgm`, Tsoa `hio`, ǁAni `hnh`, K
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Tewa (USA)](https://tigregotico.github.io/orthography2ipa/#tew) | `tew` | research | Latin |
-| [Northern Tiwa](https://tigregotico.github.io/orthography2ipa/#twf) | `twf` | research | Latin |
+| [Tewa (USA)](tew.md) (page) | `tew` | research | Latin |
+| [Northern Tiwa](twf.md) (page) | `twf` | research | Latin |
 
 Stubs (3): Kiowa `kio`, Southern Tiwa `tix`, Jemez `tow`.
 
@@ -1889,7 +1889,7 @@ Stubs (2): Konda `knd`, Yahadian `ner`.
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Korean](https://tigregotico.github.io/orthography2ipa/#ko) | `ko` | research | Hangul |
+| [Korean](ko.md) (page) | `ko` | research | Hangul |
 
 Stubs (3): Jejueo `jje`, Middle Korean (10th-16th cent.) `okm`, Proto-Koreanic (family node) `pko`.
 
@@ -1932,7 +1932,7 @@ Stubs (2): Nai `bio`, Kwomtari `kwo`.
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Juǀʼhoan](https://tigregotico.github.io/orthography2ipa/#ktz) | `ktz` | research | Latin |
+| [Juǀʼhoan](ktz.md) (page) | `ktz` | research | Latin |
 
 Stubs (3): ǂHua `huc`, Kung-Ekoka `knw`, Sekele `vaj`.
 
@@ -1981,23 +1981,23 @@ Stubs (3): Semimi `etz`, Mer `mnu`, Mairasi `zrs`.
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
 | [Bissa](https://tigregotico.github.io/orthography2ipa/#bib) | `bib` | skeleton | Latin |
-| [Bambara](https://tigregotico.github.io/orthography2ipa/#bm) | `bm` | research | Latin |
+| [Bambara](bm.md) (page) | `bm` | research | Latin |
 | [Tiéyaxo Bozo](https://tigregotico.github.io/orthography2ipa/#boz) | `boz` | skeleton | Latin |
 | [Busa](https://tigregotico.github.io/orthography2ipa/#bqp) | `bqp` | skeleton | Latin |
 | [Bandi](https://tigregotico.github.io/orthography2ipa/#bza) | `bza` | skeleton | Latin |
 | [Dan](https://tigregotico.github.io/orthography2ipa/#dnj) | `dnj` | skeleton | Latin |
 | [Dyula](https://tigregotico.github.io/orthography2ipa/#dyu) | `dyu` | skeleton | Latin |
 | [Eastern Maninkakan](https://tigregotico.github.io/orthography2ipa/#emk) | `emk` | skeleton | Latin |
-| [Kpelle](https://tigregotico.github.io/orthography2ipa/#kpe) | `kpe` | research | Latin |
+| [Kpelle](kpe.md) (page) | `kpe` | research | Latin |
 | [Ligbi](https://tigregotico.github.io/orthography2ipa/#lig) | `lig` | skeleton | Latin |
 | [Loko](https://tigregotico.github.io/orthography2ipa/#lok) | `lok` | skeleton | Latin |
-| [Mende](https://tigregotico.github.io/orthography2ipa/#men) | `men` | research | Latin |
+| [Mende](men.md) (page) | `men` | research | Latin |
 | [Mano](https://tigregotico.github.io/orthography2ipa/#mev) | `mev` | skeleton | Latin |
-| [Mandinka](https://tigregotico.github.io/orthography2ipa/#mnk) | `mnk` | research | Latin |
+| [Mandinka](mnk.md) (page) | `mnk` | research | Latin |
 | [Beng](https://tigregotico.github.io/orthography2ipa/#nhb) | `nhb` | skeleton | Latin |
-| [N'Ko (Manding koiné)](https://tigregotico.github.io/orthography2ipa/#nqo) | `nqo` | research | N'Ko |
-| [Soninke](https://tigregotico.github.io/orthography2ipa/#snk) | `snk` | research | Latin |
-| [Susu (Soso)](https://tigregotico.github.io/orthography2ipa/#sus) | `sus` | research | Latin |
+| [N'Ko (Manding koiné)](nqo.md) (page) | `nqo` | research | N'Ko |
+| [Soninke](snk.md) (page) | `snk` | research | Latin |
+| [Susu (Soso)](sus.md) (page) | `sus` | research | Latin |
 | [Maya Samo](https://tigregotico.github.io/orthography2ipa/#sym) | `sym` | skeleton | Latin |
 | [Wan](https://tigregotico.github.io/orthography2ipa/#wan) | `wan` | skeleton | Latin |
 
@@ -2044,7 +2044,7 @@ Stubs (4): Djamindjung `djd`, Jingulu `jig`, Gudanji `nji`, Wambaya `wmb`.
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Ulwa](https://tigregotico.github.io/orthography2ipa/#ulw) | `ulw` | research | Latin |
+| [Ulwa](ulw.md) (page) | `ulw` | research | Latin |
 
 Stubs (2): Mískito `miq`, Mayangna `yan`.
 
@@ -2072,11 +2072,11 @@ Stubs (2): Koneraw `kdw`, Mombum `mso`.
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Buriat](https://tigregotico.github.io/orthography2ipa/#bua) | `bua` | research | Cyrillic |
-| [Buryat (Russia)](https://tigregotico.github.io/orthography2ipa/#bxr) | `bxr` | research | Cyrillic |
-| [Mongolian](https://tigregotico.github.io/orthography2ipa/#mn) | `mn` | research | Cyrillic |
-| [Dongxiang](https://tigregotico.github.io/orthography2ipa/#sce) | `sce` | research | Latin |
-| [Kalmyk](https://tigregotico.github.io/orthography2ipa/#xal) | `xal` | research | Cyrillic |
+| [Buriat](bua.md) (page) | `bua` | research | Cyrillic |
+| [Buryat (Russia)](bxr.md) (page) | `bxr` | research | Cyrillic |
+| [Mongolian](mn.md) (page) | `mn` | research | Cyrillic |
+| [Dongxiang](sce.md) (page) | `sce` | research | Latin |
+| [Kalmyk](xal.md) (page) | `xal` | research | Cyrillic |
 
 Stubs (11): Mongolia Buriat `bxm`, China Buriat `bxu`, Daur `dta`, Kangjia `kxs`, Mogholi `mhj`, Tu `mjg`, Peripheral Mongolian `mvf`, Bonan `peh`, Proto-Mongolic (family node) `xgn`, Khamnigan Mongol `ykh`, East Yugur `yuy`.
 
@@ -2084,9 +2084,9 @@ Stubs (11): Mongolia Buriat `bxm`, China Buriat `bxu`, Daur `dta`, Kangjia `kxs`
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Choctaw](https://tigregotico.github.io/orthography2ipa/#cho) | `cho` | research | Latin |
-| [Chickasaw](https://tigregotico.github.io/orthography2ipa/#cic) | `cic` | research | Latin |
-| [Muscogee](https://tigregotico.github.io/orthography2ipa/#mus) | `mus` | research | Latin |
+| [Choctaw](cho.md) (page) | `cho` | research | Latin |
+| [Chickasaw](cic.md) (page) | `cic` | research | Latin |
+| [Muscogee](mus.md) (page) | `mus` | research | Latin |
 
 Stubs (3): Alabama `akz`, Koasati `cku`, Mikasuki `mik`.
 
@@ -2098,14 +2098,14 @@ Stubs (4): Hupdë `jup`, Dâw `kwa`, Nadëb `mbj`, Yuhup `yab`.
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Avar](https://tigregotico.github.io/orthography2ipa/#av) | `av` | research | Cyrillic |
-| [Bats](https://tigregotico.github.io/orthography2ipa/#bbl) | `bbl` | research | Georgian |
-| [Chechen](https://tigregotico.github.io/orthography2ipa/#ce) | `ce` | research | Cyrillic |
-| [Dargwa](https://tigregotico.github.io/orthography2ipa/#dar) | `dar` | research | Cyrillic |
-| [Dido](https://tigregotico.github.io/orthography2ipa/#ddo) | `ddo` | research | Cyrl |
-| [Ingush](https://tigregotico.github.io/orthography2ipa/#inh) | `inh` | research | Cyrillic |
-| [Lak](https://tigregotico.github.io/orthography2ipa/#lbe) | `lbe` | research | Cyrillic |
-| [Lezgian](https://tigregotico.github.io/orthography2ipa/#lez) | `lez` | research | Cyrillic |
+| [Avar](av.md) (page) | `av` | research | Cyrillic |
+| [Bats](bbl.md) (page) | `bbl` | research | Georgian |
+| [Chechen](ce.md) (page) | `ce` | research | Cyrillic |
+| [Dargwa](dar.md) (page) | `dar` | research | Cyrillic |
+| [Dido](ddo.md) (page) | `ddo` | research | Cyrl |
+| [Ingush](inh.md) (page) | `inh` | research | Cyrillic |
+| [Lak](lbe.md) (page) | `lbe` | research | Cyrillic |
+| [Lezgian](lez.md) (page) | `lez` | research | Cyrillic |
 
 Stubs (23): Aghul `agx`, Akhvakh `akv`, Andi `ani`, Archi `aqc`, Budukh `bdk`, Botlikh `bph`, Chamalal `cji`, Ghodoberi `gdo`, Hinukh `gin`, Hunzib `huz`, Bezhta `kap`, Khvarshi `khv`, Khinalugh `kjj`, Karata `kpt`, Kryts `kry`, Bagvalal `kva`, Rutul `rut`, Tabassaran `tab`, Tindi `tin`, Tsakhur `tkr`, Udi `udi`, Kubachi `ugh`, Kaitag `xdq`.
 
@@ -2139,9 +2139,9 @@ Stubs (13): Ambulas `abt`, Burui `bry`, Boikin `bzf`, Gaikundi `gbf`, Iatmul `ia
 | [Acoli](https://tigregotico.github.io/orthography2ipa/#ach) | `ach` | skeleton | Latin |
 | [Alur](https://tigregotico.github.io/orthography2ipa/#alz) | `alz` | skeleton | Latin |
 | [Bari](https://tigregotico.github.io/orthography2ipa/#bfa) | `bfa` | skeleton | Latin |
-| [Dinka](https://tigregotico.github.io/orthography2ipa/#din) | `din` | research | Latin |
+| [Dinka](din.md) (page) | `din` | research | Latin |
 | [Karamojong](https://tigregotico.github.io/orthography2ipa/#kdj) | `kdj` | skeleton | Latin |
-| [Kanuri](https://tigregotico.github.io/orthography2ipa/#kr) | `kr` | research | Latin |
+| [Kanuri](kr.md) (page) | `kr` | research | Latin |
 | [Lokoya](https://tigregotico.github.io/orthography2ipa/#lky) | `lky` | skeleton | Latin |
 | [Otuho](https://tigregotico.github.io/orthography2ipa/#lot) | `lot` | skeleton | Latin |
 | [Lopit](https://tigregotico.github.io/orthography2ipa/#lpx) | `lpx` | skeleton | Latin |
@@ -2164,7 +2164,7 @@ Stubs (5): Gresi `grs`, Mlap `kja`, Kemtuik `kmt`, Mekwei `msf`, Nimboran `nir`.
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Gilyak](https://tigregotico.github.io/orthography2ipa/#niv) | `niv` | research | Cyrillic |
+| [Gilyak](niv.md) (page) | `niv` | research | Cyrillic |
 
 ## North Bougainville
 
@@ -2174,8 +2174,8 @@ Stubs (4): Askopan `eiv`, Ramopa `kjx`, Rapoisi `kyx`, Rotokas `roo`.
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [West Makian](https://tigregotico.github.io/orthography2ipa/#mqs) | `mqs` | research | Latin |
-| [Ternate](https://tigregotico.github.io/orthography2ipa/#tft) | `tft` | research | Latin |
+| [West Makian](mqs.md) (page) | `mqs` | research | Latin |
+| [Ternate](tft.md) (page) | `tft` | research | Latin |
 
 Stubs (13): Gamkonora `gak`, Galela `gbi`, Ibu `ibu`, Kao `kax`, Loloda `loa`, Modole `mqo`, Pagu `pgu`, Sahu `saj`, Tabaru `tby`, Tobelo `tlb`, Tugutil `tuj`, Tidore `tvo`, Waioli `wli`.
 
@@ -2207,7 +2207,7 @@ Stubs (310): Mandobo Atas `aax`, Abaga `abg`, Pal `abw`, Amele `aey`, Aeka `aez`
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Kaingang](https://tigregotico.github.io/orthography2ipa/#kgp) | `kgp` | research | Latin |
+| [Kaingang](kgp.md) (page) | `kgp` | research | Latin |
 
 Stubs (20): Apinayé `apn`, Arikapú `ark`, Pará Gavião `gvp`, Jabutí `jbt`, Karajá `kpj`, Krenak `kqq`, Panará `kre`, Maxakalí `mbl`, Ofayé `opy`, Canela `ram`, Rikbaktsa `rkb`, Suyá `suy`, Kayapó `txu`, Xavánte `xav`, Xerénte `xer`, Xokleng `xok`, Krahô `xra`, Kreye `xre`, Krikati-Timbira `xri`, Yamben `ynb`.
 
@@ -2239,9 +2239,9 @@ Stubs (2): Achumawi `acv`, Atsugewi `atw`.
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Banggarla](https://tigregotico.github.io/orthography2ipa/#bjb) | `bjb` | research | Latin |
-| [Gamilaraay](https://tigregotico.github.io/orthography2ipa/#kld) | `kld` | research | Latin |
-| [Pitjantjatjara](https://tigregotico.github.io/orthography2ipa/#pjt) | `pjt` | research | Latin |
+| [Banggarla](bjb.md) (page) | `bjb` | research | Latin |
+| [Gamilaraay](kld.md) (page) | `kld` | research | Latin |
+| [Pitjantjatjara](pjt.md) (page) | `pjt` | research | Latin |
 
 Stubs (105): Andegerebinha `adg`, Adnyamathanha `adt`, Eastern Arrernte `aer`, Alyawarr `aly`, Anmatyerre `amx`, Antakarinya `ant`, Western Arrarnta `are`, Bandjalang `bdy`, Badimaya `bia`, Bayungu `bxj`, Burduna `bxn`, Bidjara `bym`, Dayi `dax`, Dyirbal `dbl`, Jaru `ddj`, Dhangu-Djangu `dhg`, Dhalandji `dhl`, Dhargari `dhr`, Dhungaloo `dhx`, Djinba `djb`, Djinang `dji`, Djambarrpuyngu `djr`, Mudburra `dmw`, Paakantyi `drl`, Dhuwal `dwu`, Dhuwaya `dwy`, Dyangadi `dyn`, Djabugay `dyy`, Kaytetye `gbb`, Karajarri `gbd`, Gabi-Gabi `gbw`, Gurdjar `gdj`, Githabul `gih`, Mirning `gmr`, Gumatj `gnn`, Gurindji `gue`, Gupapuyngu `guf`, Kuku-Yalanji `gvn`, Yanyuwa `jao`, Yan-nhangu `jay`, Kanju `kbe`, Yankunytjatjara `kdd`, Kumbainggar `kgs`, Kunjen `kjn`, Gugubera `kkp`, Guugu Yimidhirr `kky`, Kokata `ktd`, Kukatja `kux`, Kuuku-Ya'u `kuy`, Yirandali `ljw`, Martu Wangka `mpj`, Kala Lagaw Ya `mwp`, Ngarinyman `nbj`, Nhanda `nha`, Nhuwala `nhf`, Ngadjunmaya `nju`, Nyamal `nly`, Nyangumarta `nna`, Ngarla `nrk`, Ngarluma `nrl`, Ngaanyatjarra `ntj`, Nyungar `nys`, Pintupi-Luritja `piu`, Pakanha `pkn`, Pinigura `pnv`, Banyjima `pnw`, Pindiini `pti`, Ritharrngu `rit`, Ngardi `rxd`, Kuuk Thaayorre `thd`, Tjungundji `tjj`, Tjupany `tjp`, Djabwurrung `tjw`, Umpila `ump`, Kurnai `unn`, Kuku-Uwanh `uwa`, Kurrama `vku`, Warlpiri `wbp`, Warnman `wbt`, Wajarri `wbv`, Wergaia `weg`, Warrgamay `wgy`, Wik Ngathan `wig`, Wik-Me'anha `wih`, Wik-Iiyanh `wij`, Wikalkan `wik`, Wik-Mungkan `wim`, Keerray-Woorroong `wkr`, Walmajarri `wmt`, Warlmanpa `wrl`, Warumungu `wrm`, Wikngenchera `wua`, Wangaaybuwan-Ngiyambaa `wyb`, Batjala `xby`, Kugu-Muminh `xmh`, Mayaguduna `xmy`, Nyiyaparli `xny`, Yorta Yorta `xyy`, Yinggarda `yia`, Yidiny `yii`, Yindjibarndi `yij`, Yirrk-Mel `yrm`, Yarluyandi `yry`, Yinhawangka `ywg`, Kaurna `zku`.
 
@@ -2277,8 +2277,8 @@ Stubs (3): Kashaya `kju`, Southern Pomo `peq`, Southeastern Pomo `pom`.
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Ayacucho Quechua](https://tigregotico.github.io/orthography2ipa/#quy) | `quy` | research | Latin |
-| [Cusco Quechua](https://tigregotico.github.io/orthography2ipa/#quz) | `quz` | research | Latin |
+| [Ayacucho Quechua](quy.md) (page) | `quy` | research | Latin |
+| [Cusco Quechua](quz.md) (page) | `quz` | research | Latin |
 
 Stubs (43): Inga `inb`, Jungle Inga `inj`, Quechua `qu`, Huallaga Huánuco Quechua `qub`, Calderón Highland Quichua `qud`, Lambayeque Quechua `quf`, Chimborazo Highland Quichua `qug`, South Bolivian Quechua `quh`, Chachapoyas Quechua `quk`, North Bolivian Quechua `qul`, Southern Pastaza Quechua `qup`, Yanahuanca Pasco Quechua `qur`, Santiago del Estero Quichua `qus`, Tena Lowland Quichua `quw`, Yauyos Quechua `qux`, Ambo-Pasco Quechua `qva`, Cajamarca Quechua `qvc`, Eastern Apurímac Quechua `qve`, Huamalíes-Dos de Mayo Huánuco Quechua `qvh`, Imbabura Highland Quichua `qvi`, Loja Highland Quichua `qvj`, Cajatambo North Lima Quechua `qvl`, Margos-Yarowilca-Lauricocha Quechua `qvm`, North Junín Quechua `qvn`, Napo Lowland Quechua `qvo`, Pacaraos Quechua `qvp`, San Martín Quechua `qvs`, Huaylla Wanca Quechua `qvw`, Northern Pastaza Quichua `qvz`, Corongo Ancash Quechua `qwa`, Huaylas Ancash Quechua `qwh`, Sihuas Ancash Quechua `qws`, Chiquián Ancash Quechua `qxa`, Chincha Quechua `qxc`, Panao Huánuco Quechua `qxh`, Salasaca Highland Quichua `qxl`, Northern Conchucos Ancash Quechua `qxn`, Southern Conchucos Ancash Quechua `qxo`, Puno Quechua `qxp`, Cañar Highland Quichua `qxr`, Santa Ana de Tusi Pasco Quechua `qxt`, Arequipa-La Unión Quechua `qxu`, Jauja Wanca Quechua `qxw`.
 
@@ -2311,7 +2311,7 @@ Stubs (3): Piaroa `pid`, Sáliba `slc`, Maco `wpc`.
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Lushootseed](https://tigregotico.github.io/orthography2ipa/#lut) | `lut` | research | Latin |
+| [Lushootseed](lut.md) (page) | `lut` | research | Latin |
 
 Stubs (18): Bella Coola `blc`, Klallam `clm`, Columbia-Wenatchi `col`, Comox `coo`, Coeur d'Alene `crd`, Kalispel-Pend d'Oreille `fla`, Halkomelem `hur`, Lillooet `lil`, Okanagan `oka`, Sechelt `sec`, Shuswap `shs`, Skagit `ska`, Southern Puget Sound Salish `slh`, Snohomish `sno`, Spokane `spo`, Squamish `squ`, Straits Salish `str`, Thompson `thp`.
 
@@ -2335,30 +2335,30 @@ Stubs (156): Adamorobe Sign Language `ads`, Argentine Sign Language `aed`, Armen
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Atong (India)](https://tigregotico.github.io/orthography2ipa/#aot) | `aot` | research | Latin |
-| [Tibetan](https://tigregotico.github.io/orthography2ipa/#bo) | `bo` | research | Tibetan |
-| [Bodo](https://tigregotico.github.io/orthography2ipa/#brx) | `brx` | research | Latin |
+| [Atong (India)](aot.md) (page) | `aot` | research | Latin |
+| [Tibetan](bo.md) (page) | `bo` | research | Tibetan |
+| [Bodo](brx.md) (page) | `brx` | research | Latin |
 | [Proto-Boro-Garo (reconstructed)](https://tigregotico.github.io/orthography2ipa/#brx-x-proto-boro-garo) | `brx-x-proto-boro-garo` | research | Latin |
-| [Hakha Chin (Hakha Lai)](https://tigregotico.github.io/orthography2ipa/#cnh) | `cnh` | research | Latin |
-| [Khumi Chin](https://tigregotico.github.io/orthography2ipa/#cnk) | `cnk` | research | Latin |
+| [Hakha Chin (Hakha Lai)](cnh.md) (page) | `cnh` | research | Latin |
+| [Khumi Chin](cnk.md) (page) | `cnk` | research | Latin |
 | [Tedim Chin](https://tigregotico.github.io/orthography2ipa/#ctd) | `ctd` | skeleton | Latin |
-| [Dzongkha](https://tigregotico.github.io/orthography2ipa/#dz) | `dz` | research | Tibetan |
-| [Garo (A'chik)](https://tigregotico.github.io/orthography2ipa/#grt) | `grt` | research | Latin |
-| [Nuosu](https://tigregotico.github.io/orthography2ipa/#ii) | `ii` | research | Yi |
-| [Jingpho (Kachin, Jinghpaw)](https://tigregotico.github.io/orthography2ipa/#kac) | `kac` | research | Latin |
-| [Khiamniungan Naga](https://tigregotico.github.io/orthography2ipa/#kix) | `kix` | research | Latin |
-| [Lashi](https://tigregotico.github.io/orthography2ipa/#lsi) | `lsi` | research | Latin |
-| [Mizo](https://tigregotico.github.io/orthography2ipa/#lus) | `lus` | research | Latin |
-| [Meitei](https://tigregotico.github.io/orthography2ipa/#mni) | `mni` | research | Latin |
+| [Dzongkha](dz.md) (page) | `dz` | research | Tibetan |
+| [Garo (A'chik)](grt.md) (page) | `grt` | research | Latin |
+| [Nuosu](ii.md) (page) | `ii` | research | Yi |
+| [Jingpho (Kachin, Jinghpaw)](kac.md) (page) | `kac` | research | Latin |
+| [Khiamniungan Naga](kix.md) (page) | `kix` | research | Latin |
+| [Lashi](lsi.md) (page) | `lsi` | research | Latin |
+| [Mizo](lus.md) (page) | `lus` | research | Latin |
+| [Meitei](mni.md) (page) | `mni` | research | Latin |
 | [Meitei/Manipuri (Meetei Mayek script)](https://tigregotico.github.io/orthography2ipa/#mni-Mtei) | `mni-Mtei` | skeleton | Meetei Mayek |
 | [Proto-Kuki-Chin (reconstructed)](https://tigregotico.github.io/orthography2ipa/#mni-x-proto-kuki-chin) | `mni-x-proto-kuki-chin` | research | Latin |
-| [Burmese](https://tigregotico.github.io/orthography2ipa/#my) | `my` | research | Myanmar |
-| [Newar](https://tigregotico.github.io/orthography2ipa/#new) | `new` | research | Devanagari |
-| [Namuyi](https://tigregotico.github.io/orthography2ipa/#nmy) | `nmy` | research | Latin |
+| [Burmese](my.md) (page) | `my` | research | Myanmar |
+| [Newar](new.md) (page) | `new` | research | Devanagari |
+| [Namuyi](nmy.md) (page) | `nmy` | research | Latin |
 | [Kok Borok](https://tigregotico.github.io/orthography2ipa/#trp) | `trp` | skeleton | Latin |
-| [Lolopo](https://tigregotico.github.io/orthography2ipa/#ycl) | `ycl` | research | Latin |
-| [Cantonese, Jyutping](https://tigregotico.github.io/orthography2ipa/#yue-Latn-jyutping) | `yue-Latn-jyutping` | research | Latin |
-| [Zou](https://tigregotico.github.io/orthography2ipa/#zom) | `zom` | research | Latin |
+| [Lolopo](ycl.md) (page) | `ycl` | research | Latin |
+| [Cantonese, Jyutping](yue-Latn-jyutping.md) (page) | `yue-Latn-jyutping` | research | Latin |
+| [Zou](zom.md) (page) | `zom` | research | Latin |
 
 Stubs (400): Achang `acn`, Adi `adi`, Galo `adl`, Amdo Tibetan `adx`, Akeu `aeu`, Akha `ahk`, Aimol `aim`, Amri Karbi `ajz`, Anu-Hkongso Chin `anl`, Anal `anm`, Athpariya `aph`, Apatani `apt`, Zaiwa `atb`, Alugu `aub`, Azha `aza`, Bantawa `bap`, Central Bai `bca`, Byangsi `bee`, Panyi Bai `bfc`, Southern Bai `bfs`, Balti `bft`, Gahri `bfu`, Bugun `bgg`, Bawm Chin `bgr`, Bahing `bhj`, Biete `biu`, Pa'O `blk`, Baima `bqh`, Baraamu `brd`, Brokkat `bro`, Bwe Karen `bwe`, Pela `bxd`, Bhujel `byh`, Biyo `byo`, Belhariya `byw`, Bisu `bzi`, Bualkhaw Chin `cbl`, Choni `cda`, Chiru `cdf`, Chepang `cdm`, Chaudangsi `cdn`, Eastern Khumi Chin `cek`, Laoktu Chin `cey`, Falam Chin `cfm`, Chocangacakha `cgk`, Chantyal `chx`, Chitkuli Kinnauri `cik`, Chak `ckh`, Kaang Chin `ckn`, Idu-Mishmi `clk`, Lautu Chin `clt`, Mro-Khimi Chin `cmr`, Changthang `cna`, Chinbon Chin `cnb`, Côông `cnc`, Northern Qiang `cng`, Northern Ping Chinese `cnp`, Ngawn Chin `cnw`, Asho Chin `csh`, Sumtu Chin `csv`, Siyin Chin `csy`, Chhintange `ctn`, Chhulung `cur`, Chukwa `cuw`, Chug `cvg`, Huizhou Chinese `czh`, Min Zhong Chinese `czo`, Zotung Chin `czt`, Daai Chin `dao`, Deori `der`, Dhimal `dhi`, Dimasa `dis`, Dakpakha `dka`, Darlong `dln`, Danu `dnv`, Darmiya `drd`, Dolpo `dre`, Dumi `dus`, Drung `duu`, Dzalakha `dzl`, Eastern Kayah `eky`, Eastern Meohang `emg`, Eastern Minyag `emq`, Enu `enu`, Horpa `ero`, Ersu `ers`, Southern Ghale `ghe`, Northern Ghale `ghh`, Geko Karen `ghk`, Kuke `ght`, Gangte `gnb`, Gongduk `goe`, Guiqiong `gqi`, Groma `gro`, Gurung `gvr`, Gyalsumdo `gyo`, Hlersu `hle`, Matu Chin `hlt`, Hmar `hmr`, Hani `hni`, Hainanese `hnm`, Honi `how`, Hrangkhol `hra`, Humla `hut`, Intha `int`, Jad `jda`, Jerung `jee`, sTodsde `jih`, Guanyinqiao `jiq`, Youle Jinuo `jiu`, Buyuan Jinuo `jiy`, Mobwa Karen `jkm`, Paku Karen `jkp`, Koro (India) `jkr`, Makuri Naga `jmn`, Jangshung `jna`, Rawat `jnl`, Jirel `jul`, Jiarong `jya`, Katso `kaf`, Khamba `kbg`, Koch `kdq`, Kinnauri `kfk`, Kharam Naga `kfw`, Gamale Kham `kgj`, Kyerung `kgy`, Khams Tibetan `khg`, Eastern Parbate Kham `kif`, Sheshi Kham `kip`, Western Parbate Kham `kjl`, Pwo Eastern Karen `kjp`, Phrae Pwo Karen `kjt`, Bumthangkha `kjz`, Kalaktang Monpa `kkf`, Koi `kkt`, Kulung (Nepal) `kle`, Khaling `klr`, Kom (India) `kmm`, S'gaw Karen `ksw`, Nubri `kte`, Kaduo `ktp`, Kayaw `kvl`, Geba Karen `kvq`, Yinbaw Karen `kvu`, Yintale Karen `kvy`, Manumanaw Karen `kxf`, Zayein Karen `kxk`, Western Kayah `kyu`, Kaike `kzq`, Pattani `lae`, Tiwa `lax`, Tinani `lbf`, Ladakhi `lbj`, Lohorung `lbr`, Lepcha `lep`, Laghuu `lgh`, Lahu Shi `lhi`, Lhomi `lhm`, Lhokpu `lhp`, Lahu `lhu`, Limbu `lif`, Lisu `lis`, Kucong `lkc`, Lakha `lkh`, Lamu `llh`, Lamkang `lmk`, Loke `loy`, Long Phuri Naga `lpn`, Lipo `lpo`, Southern Yamphu `lrr`, Lish `lsh`, Lunanakha `luk`, Laomian `lwm`, Lawu `lwu`, Layakha `lya`, Leinong Naga `lzn`, Magar `mgp`, Digaro-Mishmi `mhu`, Maru `mhx`, Karbi `mjw`, Mpi `mpz`, Mising `mrg`, Mara `mrh`, Mru `mro`, Mugom `muk`, Mün Chin `mwq`, Miju-Mishmi `mxj`, Naaba `nao`, Chang Naga `nbc`, Konyak Naga `nbe`, Mao Naga `nbi`, Na `nbt`, Rongmei Naga `nbu`, Nachering `ncd`, Chothe Naga `nct`, Nyenkha `neh`, Bhoti Kinnauri `nes`, Nocte Naga `njb`, Lotha Naga `njh`, Angami Naga `njm`, Liangmai Naga `njn`, Ao Naga `njo`, Nyishi `njz`, Khoibu Naga `nkb`, Koireng `nkd`, Inpui Naga `nkf`, Khezha Naga `nkh`, Thangal Naga `nki`, Lao Naga `nlq`, Maram Naga `nma`, Mzieme Naga `nme`, Tangkhul Naga (India) `nmf`, Monsang Naga `nmh`, Manangba `nmm`, Moyon Naga `nmo`, Maring Naga `nng`, Northern Rengma Naga `nnl`, Wancho Naga `nnp`, Eastern Nisu `nos`, Nar Phu `npa`, Ponyo-Gongwang Naga `npg`, Phom Naga `nph`, Pochuri Naga `npo`, Kyan-Karyaw Naga `nqq`, Southern Rengma Naga `nre`, Chokri Naga `nri`, Narua `nru`, Sangtam Naga `nsa`, Southern Nisu `nsd`, Northwestern Nisu `nsf`, Sumi Naga `nsm`, Tase Naga `nst`, Mantsi `nty`, Nusu `nuf`, Anong `nun`, Naxi `nxq`, Zeme Naga `nzm`, Walungge `ola`, Olekha `ole`, Sartang `onp`, Paite Chin `pck`, Kayan `pdu`, Phukha `phh`, Pahari `phj`, Phunoi `pho`, Phana' `phq`, Pankhu `pkh`, Northern Pumi `pmi`, Southern Pumi `pmj`, Poumei Naga `pmx`, Purik `prx`, Purum `pub`, Puma `pum`, Pwo Western Karen `pwo`, Pwo Northern Karen `pww`, Pyen `pyy`, Jejara Naga `pzn`, Queyu `qvy`, Southern Qiang `qxs`, Dungmali `raa`, Camling `rab`, Western Meohang `raf`, Rabha `rah`, Ralte `ral`, Saam `raq`, Raute `rau`, Sampang `rav`, Rawang `raw`, Riang (India) `ria`, Raji `rji`, Rakhine `rki`, Marma `rmz`, Ranglong `rnl`, Rongpo `rnp`, Ruga `ruh`, Stod Bhoti `sbu`, Sakachep `sch`, Hyolmo `scp`, Shumcho `scu`, Sherdukpen `sdp`, Senthang Chin `sez`, Sangkong `sgk`, Singpho `sgp`, Brokpake `sgt`, Sikkimese `sip`, Proto-Sino-Tibetan (family node) `sit`, Shaojiang Chinese `sjc`, Sajalong `sjl`, Seke (Nepal) `skj`, Sila `slt`, Samei `smh`, Simte `smt`, Spiti Bhoti `spt`, Sunam `ssk`, Puroik `suv`, Sunwar `suz`, Shuhi `sxg`, Kagate `syw`, Eastern Tamang `taj`, Tichurong `tcn`, Taungyo `tco`, Tawr Chin `tcp`, Thado Chin `tcz`, Western Tamang `tdg`, Thulung `tdh`, Eastern Gorkha Tamang `tge`, Chalikha `tgf`, Tagin `tgj`, Thangmi `thf`, Thakali `ths`, Tilung `tij`, Northern Tujia `tji`, Southern Tujia `tjs`, Tippera `tpe`, Tukpa `tpq`, Tarao Naga `tro`, Tshangla `tsj`, Tseku `tsk`, Tsum `ttz`, Tavoyan `tvn`, Tutsa Naga `tvt`, Toto `txo`, Ugong `ugo`, Makyan Naga `umn`, Usui `usi`, Vaiphei `vap`, Wayu `vay`, Wambule `wme`, Western Minyag `wmg`, Wutunhua `wuh`, Waxianghua `wxa`, Kachari `xac`, Khengkha `xkf`, Kurtokha `xkz`, Kanashi `xns`, Sherpa `xsr`, Yakha `ybh`, Yamphu `ybi`, Bokha `ybk`, Chesu `ych`, Chepya `ycp`, Gepo `ygp`, Hlepho Phowa `yhl`, Ache `yif`, Wusa Nasu `yig`, Dongshanba Lalo `yik`, Yimchungru Naga `yim`, Pholo `yip`, Miqie `yiq`, Eastern Lalu `yit`, Awu `yiu`, Northern Nisu `yiv`, Axi Yi `yix`, Azhe `yiz`, Khlula `ykl`, Kua-nsi `ykn`, Kathu `ykt`, Kuamasi `yku`, Limi `ylm`, Naluo Yi `ylo`, Southern Muji `ymc`, Muda `ymd`, Mili `ymh`, Moji `ymi`, Qila Muji `ymq`, Northern Muji `ymx`, Muzi `ymz`, Aluo `yna`, Phala `ypa`, Labo Phowa `ypb`, Phola `ypg`, Phupha `yph`, Phuma `ypm`, Ani Phowa `ypn`, Alo Phola `ypo`, Phupa `ypp`, Phuza `ypz`, Samatao `ysd`, Sonaga `ysg`, Sani `ysn`, Nisi (China) `yso`, Southern Lolopo `ysp`, Sanie `ysy`, Talu `yta`, Tanglang `ytl`, Thopho `ytp`, Cantonese `yue`, Western Lalu `ywl`, Wuding-Luquan Yi `ywq`, Xishanba Lalo `ywt`, Wumeng Nasu `ywu`, Ayizi `yyz`, Zokhuo `yzk`, Zauzou `zal`, Zangskari `zau`, Zhaba `zhb`, Kadu `zkd`, Kanan `zkn`, Zakhring `zkr`, Zyphe Chin `zyp`.
 
@@ -2366,12 +2366,12 @@ Stubs (400): Achang `acn`, Adi `adi`, Galo `adl`, Amdo Tibetan `adx`, Akeu `aeu`
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Eastern Min (Fuzhou), Bàng-uâ-cê](https://tigregotico.github.io/orthography2ipa/#cdo-Latn-x-buc) | `cdo-Latn-x-buc` | research | Latin |
-| [Dungan](https://tigregotico.github.io/orthography2ipa/#dng) | `dng` | research | Cyrillic |
-| [Hakka Chinese, Phák-fa-sṳ](https://tigregotico.github.io/orthography2ipa/#hak-Latn-x-phak-fa-su) | `hak-Latn-x-phak-fa-su` | research | Latin |
-| [Southern Min (Hokkien / Taiwanese), Pe̍h-ōe-jī](https://tigregotico.github.io/orthography2ipa/#nan-Latn-pehoeji) | `nan-Latn-pehoeji` | research | Latin |
-| [Wu Chinese (Shanghainese), Wugniu](https://tigregotico.github.io/orthography2ipa/#wuu-Latn-wugniu) | `wuu-Latn-wugniu` | research | Latin |
-| [Mandarin Chinese](https://tigregotico.github.io/orthography2ipa/#zh) | `zh` | research | Latin |
+| [Eastern Min (Fuzhou), Bàng-uâ-cê](cdo-Latn-x-buc.md) (page) | `cdo-Latn-x-buc` | research | Latin |
+| [Dungan](dng.md) (page) | `dng` | research | Cyrillic |
+| [Hakka Chinese, Phák-fa-sṳ](hak-Latn-x-phak-fa-su.md) (page) | `hak-Latn-x-phak-fa-su` | research | Latin |
+| [Southern Min (Hokkien / Taiwanese), Pe̍h-ōe-jī](nan-Latn-pehoeji.md) (page) | `nan-Latn-pehoeji` | research | Latin |
+| [Wu Chinese (Shanghainese), Wugniu](wuu-Latn-wugniu.md) (page) | `wuu-Latn-wugniu` | research | Latin |
+| [Mandarin Chinese](zh.md) (page) | `zh` | research | Latin |
 
 Stubs (15): Eastern Min `cdo`, Jinyu Chinese `cjy`, Pu-Xian Chinese `cpx`, Southern Pinghua `csp`, Gan Chinese `gan`, Hakka Chinese `hak`, Xiang Chinese `hsn`, Middle Chinese `ltc`, Leizhou Chinese `luh`, Literary Chinese (Classical Chinese) `lzh`, Min Bei Chinese `mnp`, Southern Min (Minnan) `nan`, Old Chinese `och`, Wu Chinese `wuu`, Chinese (Han script) `zh-Hani`.
 
@@ -2379,8 +2379,8 @@ Stubs (15): Eastern Min `cdo`, Jinyu Chinese `cjy`, Pu-Xian Chinese `cpx`, South
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Dakota](https://tigregotico.github.io/orthography2ipa/#dak) | `dak` | research | Latin |
-| [Lakota](https://tigregotico.github.io/orthography2ipa/#lkt) | `lkt` | research | Latin |
+| [Dakota](dak.md) (page) | `dak` | research | Latin |
+| [Lakota](lkt.md) (page) | `lkt` | research | Latin |
 
 Stubs (10): Assiniboine `asb`, Crow `cro`, Hidatsa `hid`, Kansa `ksk`, Mandan `mhq`, Omaha-Ponca `oma`, Osage `osa`, Quapaw `qua`, Stoney `sto`, Ho-Chunk `win`.
 
@@ -2416,8 +2416,8 @@ Stubs (2): Murrinh-Patha `mwf`, Ngan'gityemerri `nam`.
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Chavacano (Zamboangueño)](https://tigregotico.github.io/orthography2ipa/#cbk-PH) | `cbk-PH` | research | Latin |
-| [Palenquero (Lengua ri Palenge)](https://tigregotico.github.io/orthography2ipa/#pln) | `pln` | research | Latin |
+| [Chavacano (Zamboangueño)](cbk-PH.md) (page) | `cbk-PH` | research | Latin |
+| [Palenquero (Lengua ri Palenge)](pln.md) (page) | `pln` | research | Latin |
 
 Stubs (2): Chavacano (Caviteño / Chabacano de Cavite) `cbk-PH-x-cavite`, Chavacano (Ternateño / Bahra) `cbk-PH-x-ternate`.
 
@@ -2452,11 +2452,11 @@ Stubs (16): Basketo `bst`, Boro (Ethiopia) `bwo`, Chara `cra`, Dorze `doz`, Dawr
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Lao](https://tigregotico.github.io/orthography2ipa/#lo) | `lo` | research | Lao |
-| [Bouyei](https://tigregotico.github.io/orthography2ipa/#pcc) | `pcc` | research | Latin |
-| [Shan](https://tigregotico.github.io/orthography2ipa/#shn) | `shn` | research | Shan (Burmese-derived) |
-| [Thai](https://tigregotico.github.io/orthography2ipa/#th) | `th` | research | Thai |
-| [Zhuang](https://tigregotico.github.io/orthography2ipa/#za) | `za` | research | Latin |
+| [Lao](lo.md) (page) | `lo` | research | Lao |
+| [Bouyei](pcc.md) (page) | `pcc` | research | Latin |
+| [Shan](shn.md) (page) | `shn` | research | Shan (Burmese-derived) |
+| [Thai](th.md) (page) | `th` | research | Thai |
+| [Zhuang](za.md) (page) | `za` | research | Latin |
 
 Stubs (84): Ai-Cham `aih`, Aiton `aio`, A'ou `aou`, Tai Dam `blt`, Biao `byk`, Chadong `cdy`, Cao Miao `cov`, Cun `cuq`, Tai Ya `cuu`, Northern Dong `doc`, E `eee`, En `enc`, Green Gelao `giq`, Red Gelao `gir`, Mulao `giu`, White Gelao `giw`, Qau `gqu`, Jiamao `jio`, Lü `khb`, Khamti `kht`, Khün `kkh`, Southern Dong `kmc`, Khamyang `ksu`, Qabiao `laq`, Lakkia `lbc`, Lachi `lbt`, Laha (Viet Nam) `lha`, Hlai `lic`, White Lachi `lwh`, Mak (China) `mkg`, Cao Lan `mlc`, Mulam `mlm`, Maonan `mmd`, Northern Thai `nod`, Nung (Viet Nam) `nut`, Nyaw `nyw`, Lingao `onb`, Pa Di `pdi`, Phake `phk`, Phu Thai `pht`, Phuan `phu`, Saek `skb`, Thai Song `soa`, Southern Thai `sou`, Sui `swi`, Proto-Tai-Kadai (family node) `tai`, T'en `tct`, Tai Nuea `tdd`, Tai Long `thi`, Tai Hongjin `tiz`, Tai Laing `tjl`, Tai Thanh `tmm`, Tay Khang `tnu`, Tai Pao `tpo`, Ts'ün-Lao `tsl`, Northeastern Thai `tts`, Tai Dón `twh`, Tai Do `tyj`, Tai Daeng `tyr`, Tày Sa Pa `tys`, Tày Tac `tyt`, Tày `tyz`, Kuan `uan`, Baha Buyang `yha`, Langnian Buyang `yln`, Yong `yno`, Yoy `yoy`, Yerong `yrn`, E'ma Buyang `yzg`, Central Hongshuihe Zhuang `zch`, Eastern Hongshuihe Zhuang `zeh`, Guibei Zhuang `zgb`, Minz Zhuang `zgm`, Guibian Zhuang `zgn`, Dai Zhuang `zhd`, Nong Zhuang `zhn`, Liujiang Zhuang `zlj`, Lianshan Zhuang `zln`, Liuqian Zhuang `zlq`, Qiubei Zhuang `zqe`, Yang Zhuang `zyg`, Youjiang Zhuang `zyj`, Yongnan Zhuang `zyn`, Zuojiang Zhuang `zzj`.
 
@@ -2520,9 +2520,9 @@ Stubs (19): Waimaha `bao`, Barasana-Eduria `bsn`, Carapana `cbc`, Koreguaje `coe
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Evenki](https://tigregotico.github.io/orthography2ipa/#evn) | `evn` | research | Cyrillic |
-| [Nanai](https://tigregotico.github.io/orthography2ipa/#gld) | `gld` | research | Cyrl |
-| [Manchu](https://tigregotico.github.io/orthography2ipa/#mnc) | `mnc` | research | Latn |
+| [Evenki](evn.md) (page) | `evn` | research | Cyrillic |
+| [Nanai](gld.md) (page) | `gld` | research | Cyrl |
+| [Manchu](mnc.md) (page) | `mnc` | research | Latn |
 
 Stubs (8): Even `eve`, Negidal `neg`, Orok `oaa`, Oroch `oac`, Oroqen `orh`, Xibe `sjo`, Udihe `ude`, Ulch `ulc`.
 
@@ -2530,9 +2530,9 @@ Stubs (8): Even `eve`, Negidal `neg`, Orok `oaa`, Oroch `oac`, Oroqen `orh`, Xib
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Guaraní](https://tigregotico.github.io/orthography2ipa/#gn) | `gn` | research | Latin |
-| [Old Tupi (Tupinambá)](https://tigregotico.github.io/orthography2ipa/#tpn) | `tpn` | research | Latin |
-| [Nheengatu](https://tigregotico.github.io/orthography2ipa/#yrl) | `yrl` | research | Latin |
+| [Guaraní](gn.md) (page) | `gn` | research | Latin |
+| [Old Tupi (Tupinambá)](tpn.md) (page) | `tpn` | research | Latin |
+| [Nheengatu](yrl.md) (page) | `yrl` | research | Latin |
 
 Stubs (56): Anambé `aan`, Amundava `adw`, Apiaká `api`, Akuntsu `aqz`, Karo (Brazil) `arr`, Aruá (Rodonia State) `arx`, Xingú Asuriní `asn`, Tocantins Asurini `asu`, Avá-Canoeiro `avv`, Awetí `awe`, Araweté `awt`, Cinta Larga `cin`, Cocama-Cocamilla `cod`, Emerillon `eme`, Western Bolivian Guaraní `gnw`, Guajajára `gub`, Eastern Bolivian Guaraní `gui`, Mbyá Guaraní `gun`, Aché `guq`, Guajá `gvj`, Gavião Do Jiparaná `gvo`, Guarayu `gyr`, Júma `jua`, Jurúna `jur`, Kamayurá `kay`, Kaiwá `kgk`, Karitiâna `ktn`, Karipuna `kuq`, Kuruáya `kyr`, Kayabí `kyz`, Sateré-Mawé `mav`, Suruí Do Pará `mdz`, Mondé `mnd`, Makuráp `mpu`, Mundurukú `myu`, Chiripá `nhd`, Omagua `omg`, Wayampi `oym`, Tenharim `pah`, Parakanã `pak`, Pai Tavytera `pta`, Zo'é `pto`, Puruborá `pur`, Sakirabiá `skf`, Sirionó `srq`, Suruí `sru`, Tapirapé `taf`, Tapieté `tpj`, Tuparí `tpr`, Tembé `tqb`, Urubú-Kaapor `urb`, Uru-Eu-Wau-Wau `urz`, Wayoró `wyr`, Xetá `xet`, Xipaya `xiy`, Yuqui `yuq`.
 
@@ -2544,29 +2544,29 @@ Stubs (4): Barikewa `jbk`, Mouwase `jmw`, Rumu `klq`, Ikobi `meb`.
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Southern Altai](https://tigregotico.github.io/orthography2ipa/#alt) | `alt` | research | Cyrillic |
-| [Azerbaijani](https://tigregotico.github.io/orthography2ipa/#az) | `az` | research | Latin |
-| [Bashkir](https://tigregotico.github.io/orthography2ipa/#ba) | `ba` | research | Cyrillic |
-| [Shor](https://tigregotico.github.io/orthography2ipa/#cjs) | `cjs` | research | Cyrillic |
-| [Crimean Tatar](https://tigregotico.github.io/orthography2ipa/#crh) | `crh` | research | Latin |
-| [Chuvash](https://tigregotico.github.io/orthography2ipa/#cv) | `cv` | research | Cyrillic |
-| [Gagauz](https://tigregotico.github.io/orthography2ipa/#gag) | `gag` | research | Latin |
-| [Karakalpak](https://tigregotico.github.io/orthography2ipa/#kaa) | `kaa` | research | Latin |
-| [Khakas](https://tigregotico.github.io/orthography2ipa/#kjh) | `kjh` | research | Cyrillic |
-| [Kazakh](https://tigregotico.github.io/orthography2ipa/#kk) | `kk` | research | Cyrillic |
-| [Khalaj](https://tigregotico.github.io/orthography2ipa/#klj) | `klj` | research | Latin |
-| [Karachay-Balkar](https://tigregotico.github.io/orthography2ipa/#krc) | `krc` | research | Cyrillic |
-| [Kumyk](https://tigregotico.github.io/orthography2ipa/#kum) | `kum` | research | Cyrillic |
-| [Kyrgyz](https://tigregotico.github.io/orthography2ipa/#ky) | `ky` | research | Cyrillic |
-| [Nogai](https://tigregotico.github.io/orthography2ipa/#nog) | `nog` | research | Cyrillic |
-| [Ottoman Turkish (1500-1928)](https://tigregotico.github.io/orthography2ipa/#ota) | `ota` | research | Arabic |
-| [Yakut](https://tigregotico.github.io/orthography2ipa/#sah) | `sah` | research | Cyrillic |
-| [Salar](https://tigregotico.github.io/orthography2ipa/#slr) | `slr` | research | Latin |
-| [Turkmen](https://tigregotico.github.io/orthography2ipa/#tk) | `tk` | research | Latin |
-| [Turkish](https://tigregotico.github.io/orthography2ipa/#tr) | `tr` | research | Latin |
-| [Tatar](https://tigregotico.github.io/orthography2ipa/#tt) | `tt` | research | Cyrillic |
-| [Uyghur](https://tigregotico.github.io/orthography2ipa/#ug) | `ug` | research | Arabic |
-| [Uzbek](https://tigregotico.github.io/orthography2ipa/#uz) | `uz` | research | Latin |
+| [Southern Altai](alt.md) (page) | `alt` | research | Cyrillic |
+| [Azerbaijani](az.md) (page) | `az` | research | Latin |
+| [Bashkir](ba.md) (page) | `ba` | research | Cyrillic |
+| [Shor](cjs.md) (page) | `cjs` | research | Cyrillic |
+| [Crimean Tatar](crh.md) (page) | `crh` | research | Latin |
+| [Chuvash](cv.md) (page) | `cv` | research | Cyrillic |
+| [Gagauz](gag.md) (page) | `gag` | research | Latin |
+| [Karakalpak](kaa.md) (page) | `kaa` | research | Latin |
+| [Khakas](kjh.md) (page) | `kjh` | research | Cyrillic |
+| [Kazakh](kk.md) (page) | `kk` | research | Cyrillic |
+| [Khalaj](klj.md) (page) | `klj` | research | Latin |
+| [Karachay-Balkar](krc.md) (page) | `krc` | research | Cyrillic |
+| [Kumyk](kum.md) (page) | `kum` | research | Cyrillic |
+| [Kyrgyz](ky.md) (page) | `ky` | research | Cyrillic |
+| [Nogai](nog.md) (page) | `nog` | research | Cyrillic |
+| [Ottoman Turkish (1500-1928)](ota.md) (page) | `ota` | research | Arabic |
+| [Yakut](sah.md) (page) | `sah` | research | Cyrillic |
+| [Salar](slr.md) (page) | `slr` | research | Latin |
+| [Turkmen](tk.md) (page) | `tk` | research | Latin |
+| [Turkish](tr.md) (page) | `tr` | research | Latin |
+| [Tatar](tt.md) (page) | `tt` | research | Cyrillic |
+| [Uyghur](ug.md) (page) | `ug` | research | Arabic |
+| [Uzbek](uz.md) (page) | `uz` | research | Latin |
 
 Stubs (18): Ainu (China) `aib`, Northern Altai `atv`, South Azerbaijani `azb`, Balkan Gagauz Turkish `bgx`, Chulym `clw`, Dolgan `dlg`, Ili Turki `ili`, Krymchak `jct`, Karaim `kdr`, Karagas `kim`, Khorasani Turkish `kmz`, Qashqa'i `qxq`, Siberian Tatar `sty`, Proto-Turkic (family node) `trk`, Tuvan `tyv`, Urum `uum`, Southern Uzbek `uzs`, West Yugur `ybe`.
 
@@ -2582,7 +2582,7 @@ Stubs (18): Ainu (China) `aib`, Northern Altai `atv`, South Azerbaijani `azb`, B
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
 | [Etruscan](https://tigregotico.github.io/orthography2ipa/#etr) | `etr` | skeleton | Latin |
-| [Etruscan](https://tigregotico.github.io/orthography2ipa/#ett) | `ett` | research | Old Italic |
+| [Etruscan](ett.md) (page) | `ett` | research | Old Italic |
 
 Stubs (1): Raetic `xrr`.
 
@@ -2603,23 +2603,23 @@ Stubs (8): Bazigar `bfr`, Carabayo `cby`, Gail `gic`, Haitian Vodoun Culture Lan
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Forest Enets](https://tigregotico.github.io/orthography2ipa/#enf) | `enf` | research | Cyrillic |
-| [Hungarian](https://tigregotico.github.io/orthography2ipa/#hu) | `hu` | research | Latin |
-| [Khanty](https://tigregotico.github.io/orthography2ipa/#kca) | `kca` | research | Cyrillic |
-| [Komi-Permyak](https://tigregotico.github.io/orthography2ipa/#koi) | `koi` | research | Cyrillic |
-| [Komi](https://tigregotico.github.io/orthography2ipa/#kv) | `kv` | research | Cyrillic |
-| [Livonian](https://tigregotico.github.io/orthography2ipa/#liv) | `liv` | research | Latin |
-| [Moksha](https://tigregotico.github.io/orthography2ipa/#mdf) | `mdf` | research | Cyrillic |
-| [Mansi](https://tigregotico.github.io/orthography2ipa/#mns) | `mns` | research | Cyrillic |
-| [Erzya](https://tigregotico.github.io/orthography2ipa/#myv) | `myv` | research | Cyrillic |
-| [Nganasan](https://tigregotico.github.io/orthography2ipa/#nio) | `nio` | research | Cyrillic |
-| [Livvi-Karelian](https://tigregotico.github.io/orthography2ipa/#olo) | `olo` | research | Latin |
-| [Selkup](https://tigregotico.github.io/orthography2ipa/#sel) | `sel` | research | Cyrillic |
-| [Inari Sami](https://tigregotico.github.io/orthography2ipa/#smn) | `smn` | research | Latin |
-| [Udmurt](https://tigregotico.github.io/orthography2ipa/#udm) | `udm` | research | Cyrillic |
-| [Veps](https://tigregotico.github.io/orthography2ipa/#vep) | `vep` | research | Latin |
-| [Võro](https://tigregotico.github.io/orthography2ipa/#vro) | `vro` | research | Latin |
-| [Nenets](https://tigregotico.github.io/orthography2ipa/#yrk) | `yrk` | research | Cyrillic |
+| [Forest Enets](enf.md) (page) | `enf` | research | Cyrillic |
+| [Hungarian](hu.md) (page) | `hu` | research | Latin |
+| [Khanty](kca.md) (page) | `kca` | research | Cyrillic |
+| [Komi-Permyak](koi.md) (page) | `koi` | research | Cyrillic |
+| [Komi](kv.md) (page) | `kv` | research | Cyrillic |
+| [Livonian](liv.md) (page) | `liv` | research | Latin |
+| [Moksha](mdf.md) (page) | `mdf` | research | Cyrillic |
+| [Mansi](mns.md) (page) | `mns` | research | Cyrillic |
+| [Erzya](myv.md) (page) | `myv` | research | Cyrillic |
+| [Nganasan](nio.md) (page) | `nio` | research | Cyrillic |
+| [Livvi-Karelian](olo.md) (page) | `olo` | research | Latin |
+| [Selkup](sel.md) (page) | `sel` | research | Cyrillic |
+| [Inari Sami](smn.md) (page) | `smn` | research | Latin |
+| [Udmurt](udm.md) (page) | `udm` | research | Cyrillic |
+| [Veps](vep.md) (page) | `vep` | research | Latin |
+| [Võro](vro.md) (page) | `vro` | research | Latin |
+| [Nenets](yrk.md) (page) | `yrk` | research | Cyrillic |
 
 Stubs (9): Tundra Enets `enh`, Tornedalen Finnish `fit`, Kven Finnish `fkv`, Pite Sami `sje`, Ter Sami `sjt`, Ume Sami `sju`, Southern Sami `sma`, Lule Sami `smj`, Proto-Uralic (family node) `urj`.
 
@@ -2627,28 +2627,28 @@ Stubs (9): Tundra Enets `enh`, Tornedalen Finnish `fit`, Kven Finnish `fkv`, Pit
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Estonian](https://tigregotico.github.io/orthography2ipa/#et) | `et` | research | Latin |
+| [Estonian](et.md) (page) | `et` | research | Latin |
 | [Finnish](https://tigregotico.github.io/orthography2ipa/#fi) | `fi` | production | Latin |
-| [Ingrian](https://tigregotico.github.io/orthography2ipa/#izh) | `izh` | research | Latin |
-| [Karelian](https://tigregotico.github.io/orthography2ipa/#krl) | `krl` | research | Latin |
+| [Ingrian](izh.md) (page) | `izh` | research | Latin |
+| [Karelian](krl.md) (page) | `krl` | research | Latin |
 | [Ludic](https://tigregotico.github.io/orthography2ipa/#lud) | `lud` | skeleton | Latin |
-| [Votic](https://tigregotico.github.io/orthography2ipa/#vot) | `vot` | research | Latin |
+| [Votic](vot.md) (page) | `vot` | research | Latin |
 
 ### Uralic > Mari
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Eastern Mari](https://tigregotico.github.io/orthography2ipa/#mhr) | `mhr` | research | Cyrillic |
-| [Hill Mari (Western Mari)](https://tigregotico.github.io/orthography2ipa/#mrj) | `mrj` | research | Cyrillic |
+| [Eastern Mari](mhr.md) (page) | `mhr` | research | Cyrillic |
+| [Hill Mari (Western Mari)](mrj.md) (page) | `mrj` | research | Cyrillic |
 
 ### Uralic > Saami
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Northern Sami](https://tigregotico.github.io/orthography2ipa/#se) | `se` | research | Latin |
-| [Akkala Sami](https://tigregotico.github.io/orthography2ipa/#sia) | `sia` | research | Cyrillic |
-| [Kildin Sami](https://tigregotico.github.io/orthography2ipa/#sjd) | `sjd` | research | Cyrillic |
-| [Skolt Sami](https://tigregotico.github.io/orthography2ipa/#sms) | `sms` | research | Latin |
+| [Northern Sami](se.md) (page) | `se` | research | Latin |
+| [Akkala Sami](sia.md) (page) | `sia` | research | Cyrillic |
+| [Kildin Sami](sjd.md) (page) | `sjd` | research | Cyrillic |
+| [Skolt Sami](sms.md) (page) | `sms` | research | Latin |
 
 ## Uru-Chipaya
 
@@ -2658,12 +2658,12 @@ Stubs (2): Chipaya `cap`, Uru `ure`.
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Classical Nahuatl](https://tigregotico.github.io/orthography2ipa/#nci) | `nci` | research | Latin |
-| [Tetelcingo Nahuatl](https://tigregotico.github.io/orthography2ipa/#nhg) | `nhg` | research | Latin |
-| [Central Nahuatl](https://tigregotico.github.io/orthography2ipa/#nhn) | `nhn` | research | Latin |
+| [Classical Nahuatl](nci.md) (page) | `nci` | research | Latin |
+| [Tetelcingo Nahuatl](nhg.md) (page) | `nhg` | research | Latin |
+| [Central Nahuatl](nhn.md) (page) | `nhn` | research | Latin |
 | [Western Huasteca Nahuatl](https://tigregotico.github.io/orthography2ipa/#nhw) | `nhw` | skeleton | Latin |
-| [Isthmus-Mecayapan Nahuatl](https://tigregotico.github.io/orthography2ipa/#nhx) | `nhx` | research | Latin |
-| [Nawat](https://tigregotico.github.io/orthography2ipa/#ppl) | `ppl` | research | Latin |
+| [Isthmus-Mecayapan Nahuatl](nhx.md) (page) | `nhx` | research | Latin |
+| [Nawat](ppl.md) (page) | `ppl` | research | Latin |
 
 Stubs (50): Eastern Durango Nahuatl `azd`, Western Durango Nahuatl `azn`, Highland Puebla Nahuatl `azz`, Cahuilla `chl`, Santa Teresa Cora `cok`, Comanche `com`, El Nayar Cora `crn`, Huichol `hch`, Hopi `hop`, Mayo `mfy`, Mono (USA) `mnr`, Nahuatl `nah`, Coatepec Nahuatl `naz`, Central Huasteca Nahuatl `nch`, Northern Puebla Nahuatl `ncj`, Michoacán Nahuatl `ncl`, Central Puebla Nahuatl `ncx`, Guerrero Nahuatl `ngu`, Eastern Huasteca Nahuatl `nhe`, Zacatlán-Ahuacatlán-Tepetzintla Nahuatl `nhi`, Isthmus-Cosoleacaque Nahuatl `nhk`, Morelos Nahuatl `nhm`, Isthmus-Pajapan Nahuatl `nhp`, Huaxcaleca Nahuatl `nhq`, Ometepec Nahuatl `nht`, Temascaltepec Nahuatl `nhv`, Northern Oaxaca Nahuatl `nhy`, Santa María La Alta Nahuatl `nhz`, Orizaba Nahuatl `nlv`, Southeastern Puebla Nahuatl `npl`, Sierra Negra Nahuatl `nsu`, Northern Tepehuan `ntp`, Tlamacazapa Nahuatl `nuz`, Tohono O'odham `ood`, Northern Paiute `pao`, Panamint `par`, Pima Bajo `pia`, Serrano `ser`, Shoshoni `shh`, Southeastern Tepehuan `stp`, Lowland Tarahumara `tac`, Central Tarahumara `tar`, Southeastern Tarahumara `tcu`, Northern Tarahumara `thh`, Southwestern Tepehuan `tla`, Southwestern Tarahumara `twr`, Ute-Southern Paiute `ute`, Huarijio `var`, Kawaiisu `xaw`, Yaqui `yaq`.
 
@@ -2672,20 +2672,20 @@ Stubs (50): Eastern Durango Nahuatl `azd`, Western Durango Nahuatl `azn`, Highla
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
 | [Basque (Euskara)](https://tigregotico.github.io/orthography2ipa/#eu) | `eu` | production | Latin |
-| [Biscayan Basque (Bizkaiera)](https://tigregotico.github.io/orthography2ipa/#eu-biscayan) | `eu-biscayan` | research | Latin |
-| [Gipuzkoan Basque (Gipuzkera)](https://tigregotico.github.io/orthography2ipa/#eu-x-gipuzkoa) | `eu-x-gipuzkoa` | research | Latin |
-| [Lapurdian Basque (Lapurtera)](https://tigregotico.github.io/orthography2ipa/#eu-x-lapurdi) | `eu-x-lapurdi` | research | Latin |
-| [Lower Navarrese Basque](https://tigregotico.github.io/orthography2ipa/#eu-x-nafarra-beherea) | `eu-x-nafarra-beherea` | research | Latin |
-| [Upper Navarrese Basque](https://tigregotico.github.io/orthography2ipa/#eu-x-nafarra-garaia) | `eu-x-nafarra-garaia` | research | Latin |
+| [Biscayan Basque (Bizkaiera)](eu-biscayan.md) (page) | `eu-biscayan` | research | Latin |
+| [Gipuzkoan Basque (Gipuzkera)](eu-x-gipuzkoa.md) (page) | `eu-x-gipuzkoa` | research | Latin |
+| [Lapurdian Basque (Lapurtera)](eu-x-lapurdi.md) (page) | `eu-x-lapurdi` | research | Latin |
+| [Lower Navarrese Basque](eu-x-nafarra-beherea.md) (page) | `eu-x-nafarra-beherea` | research | Latin |
+| [Upper Navarrese Basque](eu-x-nafarra-garaia.md) (page) | `eu-x-nafarra-garaia` | research | Latin |
 | [Roncalese Basque (Erronkariera)](https://tigregotico.github.io/orthography2ipa/#eu-x-roncal) | `eu-x-roncal` | research | Latin |
-| [Souletin Basque (Zuberera)](https://tigregotico.github.io/orthography2ipa/#eu-x-zuberera) | `eu-x-zuberera` | research | Latin |
+| [Souletin Basque (Zuberera)](eu-x-zuberera.md) (page) | `eu-x-zuberera` | research | Latin |
 | [Aquitanian (Proto-Basque)](https://tigregotico.github.io/orthography2ipa/#xaq) | `xaq` | research | Latin |
 
 ## Wakashan
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Kwakiutl](https://tigregotico.github.io/orthography2ipa/#kwk) | `kwk` | research | Latin |
+| [Kwakiutl](kwk.md) (page) | `kwk` | research | Latin |
 
 Stubs (5): Ditidaht `dtd`, Haisla `has`, Heiltsuk `hei`, Makah `myh`, Nuu-chah-nulth `nuk`.
 
@@ -2737,7 +2737,7 @@ Stubs (2): Saweru `swr`, Yawa `yva`.
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Ket](https://tigregotico.github.io/orthography2ipa/#ket) | `ket` | research | Cyrl |
+| [Ket](ket.md) (page) | `ket` | research | Cyrl |
 
 ## Yokutsan
 
@@ -2751,8 +2751,8 @@ Stubs (5): Bun `buv`, Biwat `bwm`, Changriwa `cga`, Kyenele `kql`, Mekmek `mvk`.
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Northern Yukaghir](https://tigregotico.github.io/orthography2ipa/#ykg) | `ykg` | research | Cyrillic |
-| [Southern Yukaghir](https://tigregotico.github.io/orthography2ipa/#yux) | `yux` | research | Cyrillic |
+| [Northern Yukaghir](ykg.md) (page) | `ykg` | research | Cyrillic |
+| [Southern Yukaghir](yux.md) (page) | `yux` | research | Cyrillic |
 
 ## Zamucoan
 

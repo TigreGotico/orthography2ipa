@@ -34,4 +34,4 @@ The spec encodes no register variation, because none is codified.
 - [Esperanto phonology](https://en.wikipedia.org/wiki/Esperanto_phonology) (Wikipedia). An accessible overview, kept on purpose next to the primary source.
 
 ---
-[← Yoruba](yo.md) · [Home](../index.md)
+[← Finnish](fi.md) · [Home](../index.md)

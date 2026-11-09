@@ -61,39 +61,39 @@ Seseo, the degree of yeísmo and the weakening of a coda /s/ belong to the regio
 
 These specs name `es-ES` as their parent. They are sorted by country, and a lect with no recorded country comes last.
 
-- [Rioplatense Spanish](https://tigregotico.github.io/orthography2ipa/#es-AR) `es-AR`: Argentina, research tier
+- [Rioplatense Spanish](es-AR.md) `es-AR`: Argentina, research tier
 - [Bolivian Spanish](https://tigregotico.github.io/orthography2ipa/#es-BO) `es-BO`: Bolivia, skeleton tier
-- [Chilean Spanish](https://tigregotico.github.io/orthography2ipa/#es-CL) `es-CL`: Chile, research tier
+- [Chilean Spanish](es-CL.md) `es-CL`: Chile, research tier
 - [Colombian Spanish (Bogotá)](https://tigregotico.github.io/orthography2ipa/#es-CO) `es-CO`: Colombia, skeleton tier
-- [Colombian Spanish (Coastal)](https://tigregotico.github.io/orthography2ipa/#es-CO-x-costa) `es-CO-x-costa`: Colombia, research tier
+- [Colombian Spanish (Coastal)](es-CO-x-costa.md) `es-CO-x-costa`: Colombia, research tier
 - [Colombian Spanish (Paisa/Medellín)](https://tigregotico.github.io/orthography2ipa/#es-CO-x-paisa) `es-CO-x-paisa`: Colombia, skeleton tier
-- [Palenquero (Lengua ri Palenge)](https://tigregotico.github.io/orthography2ipa/#pln) `pln`: Colombia, research tier
+- [Palenquero (Lengua ri Palenge)](pln.md) `pln`: Colombia, research tier
 - [Costa Rican Spanish](https://tigregotico.github.io/orthography2ipa/#es-CR) `es-CR`: Costa Rica, skeleton tier
-- [Cuban Spanish](https://tigregotico.github.io/orthography2ipa/#es-CU) `es-CU`: Cuba, research tier
-- [Dominican Spanish](https://tigregotico.github.io/orthography2ipa/#es-DO) `es-DO`: Dominican Republic, research tier
+- [Cuban Spanish](es-CU.md) `es-CU`: Cuba, research tier
+- [Dominican Spanish](es-DO.md) `es-DO`: Dominican Republic, research tier
 - [Ecuadorian Spanish](https://tigregotico.github.io/orthography2ipa/#es-EC) `es-EC`: Ecuador, skeleton tier
 - [Salvadoran Spanish](https://tigregotico.github.io/orthography2ipa/#es-SV) `es-SV`: El Salvador, stub tier
 - [Equatoguinean Spanish](https://tigregotico.github.io/orthography2ipa/#es-GQ) `es-GQ`: Equatorial Guinea, skeleton tier
 - [Guatemalan Spanish](https://tigregotico.github.io/orthography2ipa/#es-GT) `es-GT`: Guatemala, skeleton tier
 - [Honduran Spanish](https://tigregotico.github.io/orthography2ipa/#es-HN) `es-HN`: Honduras, stub tier
-- [Mexican Spanish (Highland)](https://tigregotico.github.io/orthography2ipa/#es-MX) `es-MX`: Mexico, research tier
-- [Mexican Spanish (Coastal)](https://tigregotico.github.io/orthography2ipa/#es-MX-x-costa) `es-MX-x-costa`: Mexico, research tier
-- [Nicaraguan Spanish](https://tigregotico.github.io/orthography2ipa/#es-NI) `es-NI`: Nicaragua, research tier
-- [Panamanian Spanish](https://tigregotico.github.io/orthography2ipa/#es-PA) `es-PA`: Panama, research tier
+- [Mexican Spanish (Highland)](es-MX.md) `es-MX`: Mexico, research tier
+- [Mexican Spanish (Coastal)](es-MX-x-costa.md) `es-MX-x-costa`: Mexico, research tier
+- [Nicaraguan Spanish](es-NI.md) `es-NI`: Nicaragua, research tier
+- [Panamanian Spanish](es-PA.md) `es-PA`: Panama, research tier
 - [Paraguayan Spanish](https://tigregotico.github.io/orthography2ipa/#es-PY) `es-PY`: Paraguay, skeleton tier
 - [Peruvian Spanish (Andean)](https://tigregotico.github.io/orthography2ipa/#es-PE) `es-PE`: Peru, skeleton tier
 - [Peruvian Spanish (Lima)](https://tigregotico.github.io/orthography2ipa/#es-PE-x-lima) `es-PE-x-lima`: Peru, skeleton tier
-- [Chavacano (Zamboangueño)](https://tigregotico.github.io/orthography2ipa/#cbk-PH) `cbk-PH`: Philippines, research tier
-- [Extremaduran](https://tigregotico.github.io/orthography2ipa/#ext) `ext`: Portugal, Spain, research tier
-- [Puerto Rican Spanish](https://tigregotico.github.io/orthography2ipa/#es-PR) `es-PR`: Puerto Rico, research tier
-- [Eastern Andalusian Spanish](https://tigregotico.github.io/orthography2ipa/#es-ES-x-andalusi-e) `es-ES-x-andalusi-e`: Spain, research tier
-- [Western Andalusian Spanish](https://tigregotico.github.io/orthography2ipa/#es-ES-x-andalusi-w) `es-ES-x-andalusi-w`: Spain, research tier
-- [Canarian Spanish](https://tigregotico.github.io/orthography2ipa/#es-ES-x-canarias) `es-ES-x-canarias`: Spain, research tier
-- [Cantabrian Spanish (Montañés)](https://tigregotico.github.io/orthography2ipa/#es-ES-x-cantabri) `es-ES-x-cantabri`: Spain, research tier
-- [Extremaduran Spanish (Extremeño)](https://tigregotico.github.io/orthography2ipa/#es-ES-x-extremad) `es-ES-x-extremad`: Spain, research tier
-- [Murcian Spanish (Panocho)](https://tigregotico.github.io/orthography2ipa/#es-ES-x-murcia) `es-ES-x-murcia`: Spain, research tier
+- [Chavacano (Zamboangueño)](cbk-PH.md) `cbk-PH`: Philippines, research tier
+- [Extremaduran](ext.md) `ext`: Portugal, Spain, research tier
+- [Puerto Rican Spanish](es-PR.md) `es-PR`: Puerto Rico, research tier
+- [Eastern Andalusian Spanish](es-ES-x-andalusi-e.md) `es-ES-x-andalusi-e`: Spain, research tier
+- [Western Andalusian Spanish](es-ES-x-andalusi-w.md) `es-ES-x-andalusi-w`: Spain, research tier
+- [Canarian Spanish](es-ES-x-canarias.md) `es-ES-x-canarias`: Spain, research tier
+- [Cantabrian Spanish (Montañés)](es-ES-x-cantabri.md) `es-ES-x-cantabri`: Spain, research tier
+- [Extremaduran Spanish (Extremeño)](es-ES-x-extremad.md) `es-ES-x-extremad`: Spain, research tier
+- [Murcian Spanish (Panocho)](es-ES-x-murcia.md) `es-ES-x-murcia`: Spain, research tier
 - [Uruguayan Spanish](https://tigregotico.github.io/orthography2ipa/#es-UY) `es-UY`: Uruguay, skeleton tier
-- [Venezuelan Spanish](https://tigregotico.github.io/orthography2ipa/#es-VE) `es-VE`: Venezuela, research tier
+- [Venezuelan Spanish](es-VE.md) `es-VE`: Venezuela, research tier
 - [Latin American Spanish](https://tigregotico.github.io/orthography2ipa/#es-419) `es-419`: skeleton tier
 <!-- atlas:lects end -->
 
@@ -306,4 +306,4 @@ No downstream repository of the TigreGotico organisation covers this spec. The [
 <!-- atlas:related end -->
 
 ---
-[← Arabic](ar.md) · [Home](../index.md) · [Mirandese →](mwl.md)
+[← Cantonese](yue-Latn-jyutping.md) · [Home](../index.md) · [Catalan →](ca.md)

@@ -1,8 +1,32 @@
-# Ligurian / Genoese (lij): Phonology Reference
+# Ligurian (`lij`)
 
-**Code**: `lij` | **Family**: Indo-European > Romance > Gallo-Italic | **Script**: Latin (alphabet) | **Quality tier**: research | **Reference variety**: Genoese (*Zeneise*)
+<!-- atlas:summary begin -->
+Ligurian is an Italo-Romance language, written in the Latin script. Glottolog places it in France, Italy and Monaco. The `lij` spec is at the research tier. It cites 6 sources and has 2 scored datasets.
+<!-- atlas:summary end -->
+
+<!-- atlas:header begin -->
+| Field | Value |
+|:--|:--|
+| Code | `lij` |
+| ISO 639-3 | [lij](https://iso639-3.sil.org/code/lij), Ligurian |
+| Glottolog | [ligu1248](https://glottolog.org/resource/languoid/id/ligu1248), Ligurian |
+| Wikidata | [Q36106](https://www.wikidata.org/wiki/Q36106) |
+| Wikipedia | [Ligurian language (Romance)](https://en.wikipedia.org/wiki/Ligurian_language_(Romance)) |
+| Family | [Indo-European](by-family.md#indo-european) > [Italic > Romance > Italo-Romance](by-family.md#indo-european--italic--romance--italo-romance) |
+| Region | [Eurasia](by-region.md#eurasia) > [France](by-region.md#france), [Italy](by-region.md#italy), [Monaco](by-region.md#monaco) |
+| Script | [Latin](by-script.md#latin) (alphabet) |
+| Tier | [research](../specs/quality_tiers.md#research) |
+| Attested | from 1300, living |
+| Ancestor | [Gallo-Italic Vulgar Latin](https://tigregotico.github.io/orthography2ipa/#la-x-gallo-italic) `la-x-gallo-italic` |
+| Explorer | [`lij` in the data explorer](https://tigregotico.github.io/orthography2ipa/#lij) |
+| Spec file | [`lij.json`](../../orthography2ipa/data/lij.json) |
+<!-- atlas:header end -->
+
+## Overview
 
 Ligurian is a Gallo-Italic language of Liguria and was the historical lingua franca of Mediterranean maritime trade. The `lij` spec models Genoese. It inherits its grapheme and allophone base from the Gallo-Italic Vulgar Latin spec `la-x-gallo-italic` and overrides it with the Genoese values.
+
+The reference variety is Genoese (*Zeneise*). The page places Ligurian in the Gallo-Italic group.
 
 ## Input contract
 
@@ -83,13 +107,213 @@ The spec reads `gl` as [ɡl], because Genoese does not have the Italian ⟨gli�
 
 The `wikipron` row is crowd-scraped and can gate a promotion. The `vox_communis` row is epitran-derived, so it measures agreement with epitran and cannot gate. See the [scoreboard](../evaluation/generated/scoreboard.md) for the scores.
 
+<!-- atlas:lects begin -->
+## Related lects
+
+No spec names `lij` as its parent.
+<!-- atlas:lects end -->
+
+<!-- atlas:sources begin -->
 ## Sources
 
-- Académia Ligùstica do Brénno. *Grafia ofiçiâ: grafia moderna do zeneize.* 2008. <http://www.zeneize.net/>
-- Toso, Fiorenzo. *Grammatica del genovese: varietà urbana e di koinè.* Le Mani, 1997.
-- Forner, Werner. *Generative Phonologie des Dialekts von Genua.* Buske, 1975.
-- Maiden, M. & Parry, M. (eds.) *The Dialects of Italy.* Routledge, 1997.
-- Omniglot. *Genoese (Zeneize) language and pronunciation.* <https://www.omniglot.com/writing/genoese.htm> (tertiary cross-check).
+The spec cites 6 works. 2 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+
+1. <a id="src-academia_grafia_oficia"></a>Académia Ligùstica do Brénno (2008). *Grafia ofiçiâ: grafia moderna do zeneize*. Académia Ligùstica do Brénno. [zeneize.net](http://www.zeneize.net/)
+2. <a id="src-omniglot_genoese"></a>Omniglot (2024). *Genoese (Zeneize) language and pronunciation*. Omniglot. [omniglot.com](https://www.omniglot.com/writing/genoese.htm)
+3. <a id="src-toso1997_grammatica"></a>Toso, Fiorenzo (1997). *Grammatica del genovese: varietà urbana e di koinè*. Le Mani.
+4. <a id="src-forner1975"></a>Forner, Werner (1975). *Generative Phonologie des Dialekts von Genua*. Buske.
+5. <a id="src-maiden_parry1997"></a>Maiden, M. & Parry, M. (eds.) (1997). *The Dialects of Italy*. Routledge.
+6. <a id="src-loporcaro2009"></a>Loporcaro, M. (2009). *Profilo linguistico dei dialetti italiani*. Laterza.
+<!-- atlas:sources end -->
+
+### Notes on the sources
+
+Omniglot is a tertiary cross-check only.
+
+<!-- atlas:datasets begin -->
+## Datasets
+
+Every row of the board that scores this spec. PER is the phoneme error rate against the dataset. A gold row is human work, a silver row is a language model's label, and a generated row is the output of another tool. Only a row marked as gating can promote or block the spec. The [dataset catalogue](../evaluation/datasets.md) describes each set.
+
+| Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
+|:--|:--|:--|:--|:--|--:|--:|:--|
+| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `lij` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 817 | 0.1157 | yes |
+| `vox_communis` ([fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p)) | `lij` | generated | epitran-derived | CC0 1.0 | 3416 | 0.0844 | no |
+<!-- atlas:datasets end -->
+
+<!-- atlas:inventory begin -->
+## Inventory
+
+The spec can emit 68 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+
+| Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar |
+|:--|:-:|:-:|:-:|:-:|:-:|:-:|
+| Plosive | b p |  | d t |  |  | k ɡ |
+| Affricate |  |  |  | dʒ tʃ |  |  |
+| Nasal | m |  | n |  | ɲ | ŋ |
+| Trill |  |  | r |  |  |  |
+| Fricative |  | f v | s z | ʃ ʒ |  |  |
+| Approximant |  |  |  |  | j |  |
+| Lateral approximant |  |  | l |  |  |  |
+
+| Vowels | Front | Back |
+|:--|:-:|:-:|
+| Close | i iː y yː ĩ ỹ | u uː ũ |
+| Close-mid | e eː ø øː ø̃ ẽ | o |
+| Open-mid | ɛ ɛː ɛ̃ | ɔ ɔː ɔ̃ |
+| Open | a aː ã |  |
+
+Sequences that the spec writes as one unit: [dʒa] [dʒaː] [dʒu] [dʒuː] [dʒy] [dʒyː] [dʒɔ] [dʒɔː] [ej] [kw] [sk] [tʃa] [tʃaː] [tʃu] [tʃuː] [tʃy] [tʃyː] [tʃɔ] [tʃɔː] [w] [ɔw] [ʃtʃ].
+<!-- atlas:inventory end -->
+
+<!-- atlas:spelling begin -->
+## Spelling
+
+Each letter or letter group of the spec with its readings. The first reading is the default, and the others stay in the lattice as lower-ranked candidates. The last column gives the readings that depend on the position in the word.
+
+| Spelling | Readings | By position |
+|:--|:--|:--|
+| ⟨a⟩ | [a] |  |
+| ⟨b⟩ | [b] |  |
+| ⟨bb⟩ | [b] |  |
+| ⟨c⟩ | [k] | before front vowel [tʃ] · default [k] |
+| ⟨cc⟩ | [k] |  |
+| ⟨ch⟩ | [k] |  |
+| ⟨cia⟩ | [tʃa] |  |
+| ⟨cio⟩ | [tʃu] |  |
+| ⟨ciu⟩ | [tʃy] |  |
+| ⟨cià⟩ | [tʃa] |  |
+| ⟨ciâ⟩ | [tʃaː] |  |
+| ⟨ciä⟩ | [tʃaː] |  |
+| ⟨ciò⟩ | [tʃɔ] |  |
+| ⟨ció⟩ | [tʃu] |  |
+| ⟨ciô⟩ | [tʃuː] |  |
+| ⟨ciö⟩ | [tʃɔː] |  |
+| ⟨ciù⟩ | [tʃy] |  |
+| ⟨ciû⟩ | [tʃyː] |  |
+| ⟨ciü⟩ | [tʃyː] |  |
+| ⟨d⟩ | [d] |  |
+| ⟨dd⟩ | [d] |  |
+| ⟨e⟩ | [e] |  |
+| ⟨ei⟩ | [ej] |  |
+| ⟨eu⟩ | [ø] |  |
+| ⟨f⟩ | [f] |  |
+| ⟨ff⟩ | [f] |  |
+| ⟨g⟩ | [ɡ] | before front vowel [dʒ] · default [ɡ] |
+| ⟨gg⟩ | [ɡ] |  |
+| ⟨gh⟩ | [ɡ] |  |
+| ⟨gia⟩ | [dʒa] |  |
+| ⟨gio⟩ | [dʒu] |  |
+| ⟨giu⟩ | [dʒy] |  |
+| ⟨già⟩ | [dʒa] |  |
+| ⟨giâ⟩ | [dʒaː] |  |
+| ⟨giä⟩ | [dʒaː] |  |
+| ⟨giò⟩ | [dʒɔ] |  |
+| ⟨gió⟩ | [dʒu] |  |
+| ⟨giô⟩ | [dʒuː] |  |
+| ⟨giö⟩ | [dʒɔː] |  |
+| ⟨giù⟩ | [dʒy] |  |
+| ⟨giû⟩ | [dʒyː] |  |
+| ⟨giü⟩ | [dʒyː] |  |
+| ⟨gn⟩ | [ɲ] |  |
+| ⟨h⟩ | ∅ |  |
+| ⟨i⟩ | [i] |  |
+| ⟨j⟩ | [j] |  |
+| ⟨l⟩ | [l] |  |
+| ⟨ll⟩ | [l] |  |
+| ⟨m⟩ | [m] |  |
+| ⟨mm⟩ | [m] |  |
+| ⟨n⟩ | [n] |  |
+| ⟨n-⟩ | [ŋ] |  |
+| ⟨nn⟩ | [n] |  |
+| ⟨nn-⟩ | [ŋ] |  |
+| ⟨o⟩ | [u] |  |
+| ⟨ou⟩ | [ɔw] |  |
+| ⟨p⟩ | [p] |  |
+| ⟨pp⟩ | [p] |  |
+| ⟨q⟩ | [k] |  |
+| ⟨qu⟩ | [kw] |  |
+| ⟨r⟩ | [r] |  |
+| ⟨rr⟩ | [r] |  |
+| ⟨s⟩ | [s] |  |
+| ⟨sc⟩ | [ʃ] | before front vowel [ʃ] · default [sk] |
+| ⟨scc⟩ | [ʃtʃ] |  |
+| ⟨ss⟩ | [s] |  |
+| ⟨t⟩ | [t] |  |
+| ⟨tt⟩ | [t] |  |
+| ⟨u⟩ | [y] |  |
+| ⟨v⟩ | [v] |  |
+| ⟨vv⟩ | [v] |  |
+| ⟨x⟩ | [ʒ] |  |
+| ⟨z⟩ | [z] |  |
+| ⟨zz⟩ | [z] |  |
+| ⟨à⟩ | [a] |  |
+| ⟨â⟩ | [aː] |  |
+| ⟨ä⟩ | [aː] |  |
+| ⟨æ⟩ | [ɛː] |  |
+| ⟨ç⟩ | [s] |  |
+| ⟨è⟩ | [ɛ] |  |
+| ⟨é⟩ | [e] |  |
+| ⟨ê⟩ | [eː] |  |
+| ⟨êu⟩ | [øː] |  |
+| ⟨ë⟩ | [eː] |  |
+| ⟨ëu⟩ | [øː] |  |
+| ⟨ì⟩ | [i] |  |
+| ⟨î⟩ | [iː] |  |
+| ⟨ï⟩ | [iː] |  |
+| ⟨ñ⟩ | [ŋ] |  |
+| ⟨ò⟩ | [ɔ] |  |
+| ⟨òu⟩ | [ɔw] |  |
+| ⟨ó⟩ | [u] |  |
+| ⟨ô⟩ | [uː] |  |
+| ⟨ö⟩ | [ɔː] |  |
+| ⟨ù⟩ | [y] |  |
+| ⟨û⟩ | [yː] |  |
+| ⟨ü⟩ | [yː] |  |
+
+Stress falls on the penult by default. A written ⟨à⟩ ⟨è⟩ ⟨é⟩ ⟨ì⟩ ⟨ò⟩ ⟨ó⟩ ⟨ù⟩ ⟨â⟩ ⟨ê⟩ ⟨î⟩ ⟨ô⟩ ⟨û⟩ ⟨ä⟩ ⟨ë⟩ ⟨ï⟩ ⟨ö⟩ ⟨ü⟩ ⟨æ⟩ marks the stressed vowel.
+<!-- atlas:spelling end -->
+
+<!-- atlas:rules begin -->
+## Rules
+
+The spec applies 9 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
+
+| Rule | Change | Example | Cited |
+|:--|:--|:--|:--|
+| `LIJ_N_VELAR_FINAL` | /n/ → [ŋ], word-finally | ⟨'dog'⟩ [kaŋ] | [Toso 1997](#src-toso1997_grammatica) |
+| `LIJ_N_VELAR_ASSIM` | /n/ → [ŋ], before [k] [ɡ] | - | [Toso 1997](#src-toso1997_grammatica) |
+| `LIJ_N_LABIAL_ASSIM` | /n/ → [m], before [p] [b] [m] [f] | - | [Toso 1997](#src-toso1997_grammatica) |
+| `LIJ_NASAL_A` | /a/ → [ã], before [ŋ] | ⟨'wool'⟩ [ˈlãŋa] | [Toso 1997](#src-toso1997_grammatica), [Forner 1975](#src-forner1975) |
+| `LIJ_NASAL_E` | /e/ → [ẽ], before [ŋ] | - | [Toso 1997](#src-toso1997_grammatica), [Forner 1975](#src-forner1975) |
+| `LIJ_NASAL_I` | /i/ → [ĩ], before [ŋ] | - | [Toso 1997](#src-toso1997_grammatica), [Forner 1975](#src-forner1975) |
+| `LIJ_NASAL_U` | /u/ → [ũ], before [ŋ] | - | [Toso 1997](#src-toso1997_grammatica), [Forner 1975](#src-forner1975) |
+| `LIJ_NASAL_Y` | /y/ → [ỹ], before [ŋ] | - | [Toso 1997](#src-toso1997_grammatica), [Forner 1975](#src-forner1975) |
+| `LIJ_NASAL_O` | /ɔ/ → [ɔ̃], before [ŋ] | - | [Toso 1997](#src-toso1997_grammatica), [Forner 1975](#src-forner1975) |
+<!-- atlas:rules end -->
+
+<!-- atlas:examples begin words="cina|çittæ|ciù|gexa|giornâ|lann-a|can|xatta" -->
+## Examples
+
+The engine wrote every transcription in this section with `orthography2ipa.transcribe(text, "lij")`. They are engine output, not reference transcriptions.
+
+| Spelling | Engine output |
+|:--|:--|
+| cina | [ˈtʃina] |
+| çittæ | [siˈtɛː] |
+| ciù | [ˈtʃy] |
+| gexa | [ˈdʒeʒa] |
+| giornâ | [dʒurˈnaː] |
+| lann-a | [ˈlãŋa] |
+| can | [ˈkaŋ] |
+| xatta | [ˈʒata] |
+<!-- atlas:examples end -->
+
+<!-- atlas:related begin -->
+## Related repositories
+
+No downstream repository of the TigreGotico organisation covers this spec. The [o2i-lexicons](https://github.com/TigreGotico/o2i-lexicons) package ships no lexicon for it.
+<!-- atlas:related end -->
 
 ---
-[← Italian](it-IT.md) · [Home](../index.md) · [Pyrenean-valley Aragonese subdialects →](an-valleys.md)
+[← Libyan Arabic](ayl.md) · [Home](../index.md) · [Limburgish →](li.md)

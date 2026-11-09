@@ -44,7 +44,7 @@ The procedure and the guards are in
 | `docs_nav.py` | Checks (`--check`) or rewrites (`--write`) the navigation footers from the order in `docs/index.md` |
 | `gen_reference_docs.py` | Writes `docs/reference/api.md`, `docs/reference/cli.md` and `llms.txt` from the code (`--write`, `--check`) |
 | `gen_explorer.py` | Writes the self-contained language explorer page |
-| `gen_language_atlas.py` | Writes the generated blocks of the atlas pages in `docs/languages/` and the four atlas indexes (`--write`, `--check`, `--scaffold CODE`). `--refresh-snapshot` rebuilds `atlas_snapshot.json` from Glottolog, SIL and CLDR |
+| `gen_language_atlas.py` | Writes the generated blocks of the atlas pages in `docs/languages/` and the four atlas indexes (`--write`, `--check`, `--scaffold CODE...`, and `--scaffold-cut` for every living research or production spec with no page). `--refresh-snapshot` rebuilds `atlas_snapshot.json` from Glottolog, SIL and CLDR |
 | `ste_lint.py` | The prose linter that `tests/test_docs_prose.py` runs |
 
 ## Other

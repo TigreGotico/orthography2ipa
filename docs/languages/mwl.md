@@ -183,8 +183,8 @@ The letter table inherits keys from `ast-PT-x-medieval` that no Mirandese source
 
 These specs name `mwl` as their parent. They are sorted by country, and a lect with no recorded country comes last.
 
-- [Ifanês (Mirandese septentrional)](https://tigregotico.github.io/orthography2ipa/#mwl-x-ifanes) `mwl-x-ifanes`: research tier
-- [Sendinês (Mirandese meridional)](https://tigregotico.github.io/orthography2ipa/#mwl-x-sendim) `mwl-x-sendim`: research tier
+- [Ifanês (Mirandese septentrional)](mwl-x-ifanes.md) `mwl-x-ifanes`: research tier
+- [Sendinês (Mirandese meridional)](mwl-x-sendim.md) `mwl-x-sendim`: research tier
 <!-- atlas:lects end -->
 
 <!-- atlas:sources begin -->
@@ -418,4 +418,4 @@ No downstream repository of the TigreGotico organisation covers this spec. The [
 <!-- atlas:related end -->
 
 ---
-[← Castilian Spanish](es-ES.md) · [Home](../index.md) · [Comparative phonology →](comparative.md)
+[← Mingrelian](xmf.md) · [Home](../index.md) · [Mizo →](lus.md)
