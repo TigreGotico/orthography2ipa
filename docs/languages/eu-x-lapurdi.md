@@ -17,7 +17,7 @@ Lapurdian Basque (Lapurtera) is a Vasconic variety, written in the Latin script.
 | Region | [Eurasia](by-region.md#eurasia) |
 | Script | [Latin](by-script.md#latin) (alphabet) |
 | Tier | [research](../specs/quality_tiers.md#research) |
-| Parent | [Basque (Euskara)](https://tigregotico.github.io/orthography2ipa/#eu) `eu` |
+| Parent | [Basque (Euskara)](eu.md) `eu` |
 | Explorer | [`eu-x-lapurdi` in the data explorer](https://tigregotico.github.io/orthography2ipa/#eu-x-lapurdi) |
 | Spec file | [`eu-x-lapurdi.json`](../../orthography2ipa/data/eu-x-lapurdi.json) |
 <!-- atlas:header end -->
@@ -29,7 +29,7 @@ The notes of the spec file open with these words:
 
 > Lapurdian Basque (Lapurtera / Labourdian). Spoken in Labourd/Lapurdi, French Basque Country (around Bayonne, Biarritz, Saint-Jean-de-Luz). In Zuazo's classification Lapurdian and Lower Navarrese form the single Navarro-Lapurdian dialect.
 
-The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 5 works, from 1994 to 2022. [Sources](#sources) lists them. The spec file writes 1 of the 35 spellings of its letter table and takes the other 34 from [Basque (Euskara)](https://tigregotico.github.io/orthography2ipa/#eu) `eu`.
+The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 5 works, from 1994 to 2022. [Sources](#sources) lists them. The spec file writes 1 of the 35 spellings of its letter table and takes the other 34 from [Basque (Euskara)](eu.md) `eu`.
 
 The [spec file](../../orthography2ipa/data/eu-x-lapurdi.json) holds the full notes, with the caveats of the spec.
 <!-- atlas:overview end -->

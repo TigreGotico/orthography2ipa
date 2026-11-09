@@ -16,7 +16,7 @@ Upper Navarrese Basque is a Vasconic variety, written in the Latin script. Glott
 | Script | [Latin](by-script.md#latin) (alphabet) |
 | Tier | [research](../specs/quality_tiers.md#research) |
 | Attested | from 1600, living |
-| Parent | [Basque (Euskara)](https://tigregotico.github.io/orthography2ipa/#eu) `eu` |
+| Parent | [Basque (Euskara)](eu.md) `eu` |
 | Explorer | [`eu-x-nafarra-garaia` in the data explorer](https://tigregotico.github.io/orthography2ipa/#eu-x-nafarra-garaia) |
 | Spec file | [`eu-x-nafarra-garaia.json`](../../orthography2ipa/data/eu-x-nafarra-garaia.json) |
 <!-- atlas:header end -->
@@ -28,7 +28,7 @@ The notes of the spec file open with these words:
 
 > Upper (High) Navarrese (Goi-Nafar). Navarrese Basque of the Pamplona basin and northern Navarre. VALIDATED and CORRECTED against Hualde, Lujanbio & Zubiri (2010), an Illustration of the IPA of Goizueta Basque, a conservative High Navarrese variety.
 
-The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 6 works, from 1988 to 2022. [Sources](#sources) lists them. The spec file writes 1 of the 35 spellings of its letter table and takes the other 34 from [Basque (Euskara)](https://tigregotico.github.io/orthography2ipa/#eu) `eu`.
+The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 6 works, from 1988 to 2022. [Sources](#sources) lists them. The spec file writes 1 of the 35 spellings of its letter table and takes the other 34 from [Basque (Euskara)](eu.md) `eu`.
 
 The [spec file](../../orthography2ipa/data/eu-x-nafarra-garaia.json) holds the full notes, with the caveats of the spec.
 <!-- atlas:overview end -->

@@ -28,7 +28,7 @@ The notes of the spec file open with these words:
 
 > Votic (vaďďa tšeeli), a Finnic (Uralic) language of Ingria, closely related to Estonian and Ingrian.
 
-The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 2 works, from 1998 to 2026. 1 of them is a Wikipedia article. [Sources](#sources) lists them. The spec file writes 13 of the 72 spellings of its letter table and takes the other 59 from [Finnish](https://tigregotico.github.io/orthography2ipa/#fi) `fi`.
+The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 2 works, from 1998 to 2026. 1 of them is a Wikipedia article. [Sources](#sources) lists them. The spec file writes 13 of the 72 spellings of its letter table and takes the other 59 from [Finnish](fi.md) `fi`.
 
 The [spec file](../../orthography2ipa/data/vot.json) holds the full notes, with the caveats of the spec.
 <!-- atlas:overview end -->

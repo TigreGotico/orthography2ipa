@@ -1330,7 +1330,7 @@ Stubs (13): Aghul `agx`, South Azerbaijani `azb`, Budukh `bdk`, Judeo-Tat `jdt`,
 
 | Spec | Code | Tier | Family |
 |:--|:--|:--|:--|
-| [Assamese](https://tigregotico.github.io/orthography2ipa/#as) | `as` | production | Indo-European > Indo-Iranian > Indo-Aryan |
+| [Assamese](as.md) (page) | `as` | production | Indo-European > Indo-Iranian > Indo-Aryan |
 | [Bengali](bn.md) (page) | `bn` | research | Indo-European > Indo-Iranian > Indo-Aryan |
 | [Hakha Chin (Hakha Lai)](cnh.md) (page) | `cnh` | research | Sino-Tibetan |
 | [Khumi Chin](cnk.md) (page) | `cnk` | research | Sino-Tibetan |
@@ -1391,7 +1391,7 @@ Stubs (3): Langue des signes de Belgique Francophone `sfb`, Vlaamse Gebarentaal 
 
 | Spec | Code | Tier | Family |
 |:--|:--|:--|:--|
-| [Assamese](https://tigregotico.github.io/orthography2ipa/#as) | `as` | production | Indo-European > Indo-Iranian > Indo-Aryan |
+| [Assamese](as.md) (page) | `as` | production | Indo-European > Indo-Iranian > Indo-Aryan |
 | [Tibetan](bo.md) (page) | `bo` | research | Sino-Tibetan |
 | [Dzongkha](dz.md) (page) | `dz` | research | Sino-Tibetan |
 | [Hindi](hi.md) (page) | `hi` | research | Indo-European > Indo-Iranian > Indo-Aryan |
@@ -1681,7 +1681,7 @@ Stubs (5): Czech Sign Language `cse`, Carpathian Romani `rmc`, Balkan Romani `rm
 | Spec | Code | Tier | Family |
 |:--|:--|:--|:--|
 | [Danish](da.md) (page) | `da` | research | Indo-European > Germanic > Northwest Germanic > North Germanic |
-| [Faroese](https://tigregotico.github.io/orthography2ipa/#fo) | `fo` | production | Indo-European > Germanic > Northwest Germanic > North Germanic |
+| [Faroese](fo.md) (page) | `fo` | production | Indo-European > Germanic > Northwest Germanic > North Germanic |
 | [North Frisian](frr.md) (page) | `frr` | research | Indo-European > Germanic > Northwest Germanic > West Germanic |
 | [Novial](nov.md) (page) | `nov` | research | Constructed |
 | [Swedish](sv.md) (page) | `sv` | research | Indo-European > Germanic > Northwest Germanic > North Germanic |
@@ -1718,7 +1718,7 @@ Stubs (1): Danish Sign Language `dsl`.
 |:--|:--|:--|:--|
 | [Chuvash](cv.md) (page) | `cv` | research | Turkic |
 | [Estonian](et.md) (page) | `et` | research | Uralic > Finnic |
-| [Finnish](https://tigregotico.github.io/orthography2ipa/#fi) | `fi` | production | Uralic > Finnic |
+| [Finnish](fi.md) (page) | `fi` | production | Uralic > Finnic |
 | [Ingrian](izh.md) (page) | `izh` | research | Uralic > Finnic |
 | [Latvian](lv.md) (page) | `lv` | research | Indo-European > Balto-Slavic > Eastern Baltic |
 | [Erzya](myv.md) (page) | `myv` | research | Uralic |
@@ -1733,7 +1733,7 @@ Stubs (1): Estonian Sign Language `eso`.
 | Spec | Code | Tier | Family |
 |:--|:--|:--|:--|
 | [Danish](da.md) (page) | `da` | research | Indo-European > Germanic > Northwest Germanic > North Germanic |
-| [Faroese](https://tigregotico.github.io/orthography2ipa/#fo) | `fo` | production | Indo-European > Germanic > Northwest Germanic > North Germanic |
+| [Faroese](fo.md) (page) | `fo` | production | Indo-European > Germanic > Northwest Germanic > North Germanic |
 
 Stubs (1): Danish Sign Language `dsl`.
 
@@ -1741,7 +1741,7 @@ Stubs (1): Danish Sign Language `dsl`.
 
 | Spec | Code | Tier | Family |
 |:--|:--|:--|:--|
-| [Finnish](https://tigregotico.github.io/orthography2ipa/#fi) | `fi` | production | Uralic > Finnic |
+| [Finnish](fi.md) (page) | `fi` | production | Uralic > Finnic |
 | [Karelian](krl.md) (page) | `krl` | research | Uralic > Finnic |
 | [Norwegian](no.md) (page) | `no` | research | Indo-European > Germanic > Northwest Germanic > North Germanic |
 | [Livvi-Karelian](olo.md) (page) | `olo` | research | Uralic |
@@ -1764,7 +1764,7 @@ Stubs (8): Tornedalen Finnish `fit`, Kven Finnish `fkv`, Finnish Sign Language `
 | [Breton](br.md) (page) | `br` | research | Indo-European > Celtic > Brythonic |
 | [Catalan](ca.md) (page) | `ca` | research | Indo-European > Italic > Romance |
 | [Corsican](co.md) (page) | `co` | research | Indo-European > Italic > Romance > Italo-Romance |
-| [Basque (Euskara)](https://tigregotico.github.io/orthography2ipa/#eu) | `eu` | production | Vasconic |
+| [Basque (Euskara)](eu.md) (page) | `eu` | production | Vasconic |
 | [French](fr-FR.md) (page) | `fr-FR` | research | Indo-European > Italic > Romance > Gallo-Romance |
 | [Franco-Provençal (Arpitan)](frp.md) (page) | `frp` | research | Indo-European > Italic > Romance > Gallo-Romance |
 | [Interlingua](ia.md) (page) | `ia` | research | Constructed |
@@ -1895,7 +1895,7 @@ Stubs (1): Icelandic Sign Language `icl`.
 
 | Spec | Code | Tier | Family |
 |:--|:--|:--|:--|
-| [Assamese](https://tigregotico.github.io/orthography2ipa/#as) | `as` | production | Indo-European > Indo-Iranian > Indo-Aryan |
+| [Assamese](as.md) (page) | `as` | production | Indo-European > Indo-Iranian > Indo-Aryan |
 | [Awadhi](https://tigregotico.github.io/orthography2ipa/#awa) | `awa` | skeleton | Indo-European > Indo-Iranian > Indo-Aryan |
 | [Haryanvi](https://tigregotico.github.io/orthography2ipa/#bgc) | `bgc` | skeleton | Indo-European > Indo-Iranian > Indo-Aryan |
 | [Bhojpuri](bho.md) (page) | `bho` | research | Indo-European > Indo-Iranian > Indo-Aryan |
@@ -2416,7 +2416,7 @@ Stubs (5): Balkan Gagauz Turkish `bgx`, Carpathian Romani `rmc`, Balkan Romani `
 
 | Spec | Code | Tier | Family |
 |:--|:--|:--|:--|
-| [Finnish](https://tigregotico.github.io/orthography2ipa/#fi) | `fi` | production | Uralic > Finnic |
+| [Finnish](fi.md) (page) | `fi` | production | Uralic > Finnic |
 | [Norwegian Bokmål](nb.md) (page) | `nb` | research | Indo-European > Germanic > Northwest Germanic > North Germanic |
 | [Norwegian](no.md) (page) | `no` | research | Indo-European > Germanic > Northwest Germanic > North Germanic |
 | [Old Norse](https://tigregotico.github.io/orthography2ipa/#non) | `non` | research | Indo-European > Germanic > Northwest Germanic > North Germanic |
@@ -2485,7 +2485,7 @@ Stubs (68): Aer `aeq`, Southern Balochi `bcc`, Badeshi `bdz`, Balti `bft`, Weste
 | [Belarusian](be.md) (page) | `be` | research | Indo-European > Balto-Slavic > Slavic > East Slavic |
 | [Czech](cs.md) (page) | `cs` | research | Indo-European > Balto-Slavic > Slavic > West Slavic |
 | [Kashubian](csb.md) (page) | `csb` | research | Indo-European > Balto-Slavic > Slavic > West Slavic |
-| [Esperanto](https://tigregotico.github.io/orthography2ipa/#eo) | `eo` | production | Constructed |
+| [Esperanto](eo.md) (page) | `eo` | production | Constructed |
 | [Lithuanian](lt.md) (page) | `lt` | research | Indo-European > Balto-Slavic > Eastern Baltic |
 | [Polish](pl.md) (page) | `pl` | research | Indo-European > Balto-Slavic > Slavic > West Slavic |
 | [Vlax Romani](rmy.md) (page) | `rmy` | research | Indo-European > Indo-Iranian > Indo-Aryan |
@@ -2564,7 +2564,7 @@ Stubs (2): Minderico `drc`, Portuguese Sign Language `psr`.
 | [Hungarian](hu.md) (page) | `hu` | research | Uralic |
 | [Ladino (Judeo-Spanish)](lad.md) (page) | `lad` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Vlax Romani](rmy.md) (page) | `rmy` | research | Indo-European > Indo-Iranian > Indo-Aryan |
-| [Romanian](https://tigregotico.github.io/orthography2ipa/#ro-RO) | `ro-RO` | production | Indo-European > Italic > Romance > Eastern Romance |
+| [Romanian](ro-RO.md) (page) | `ro-RO` | production | Indo-European > Italic > Romance > Eastern Romance |
 | [Romani](rom.md) (page) | `rom` | research | Indo-European > Indo-Iranian > Indo-Aryan |
 | [Russian](ru.md) (page) | `ru` | research | Indo-European > Balto-Slavic > Slavic > East Slavic |
 | [Rusyn](rue.md) (page) | `rue` | research | Indo-European > Balto-Slavic > Slavic > East Slavic |
@@ -2599,7 +2599,7 @@ Stubs (5): Krymchak `jct`, Carpathian Romani `rmc`, Balkan Romani `rmn`, Sinte R
 | [Forest Enets](enf.md) (page) | `enf` | research | Uralic |
 | [Central Siberian Yupik](ess.md) (page) | `ess` | research | Eskimo-Aleut |
 | [Estonian](et.md) (page) | `et` | research | Uralic > Finnic |
-| [Finnish](https://tigregotico.github.io/orthography2ipa/#fi) | `fi` | production | Uralic > Finnic |
+| [Finnish](fi.md) (page) | `fi` | production | Uralic > Finnic |
 | [Nanai](gld.md) (page) | `gld` | research | Tungusic |
 | [Ingush](inh.md) (page) | `inh` | research | Nakh-Daghestanian |
 | [Itelmen](itl.md) (page) | `itl` | research | Chukotko-Kamchatkan |
@@ -2767,7 +2767,7 @@ Stubs (1): Korean Sign Language `kvk`.
 | [Extremaduran Spanish (Extremeño)](es-ES-x-extremad.md) (page) | `es-ES-x-extremad` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Castilian](https://tigregotico.github.io/orthography2ipa/#es-ES-x-medieval) | `es-ES-x-medieval` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Murcian Spanish (Panocho)](es-ES-x-murcia.md) (page) | `es-ES-x-murcia` | research | Indo-European > Italic > Romance > Ibero-Romance |
-| [Basque (Euskara)](https://tigregotico.github.io/orthography2ipa/#eu) | `eu` | production | Vasconic |
+| [Basque (Euskara)](eu.md) (page) | `eu` | production | Vasconic |
 | [Extremaduran](ext.md) (page) | `ext` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [A Fala (Xalimego)](fax.md) (page) | `fax` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Galician](gl-ES.md) (page) | `gl-ES` | research | Indo-European > Italic > Romance > Ibero-Romance |
@@ -2815,7 +2815,7 @@ Stubs (3): Sri Lankan Creole Malay `sci`, Sri Lankan Sign Language `sqs`, Veddah
 
 | Spec | Code | Tier | Family |
 |:--|:--|:--|:--|
-| [Finnish](https://tigregotico.github.io/orthography2ipa/#fi) | `fi` | production | Uralic > Finnic |
+| [Finnish](fi.md) (page) | `fi` | production | Uralic > Finnic |
 | [Norwegian](no.md) (page) | `no` | research | Indo-European > Germanic > Northwest Germanic > North Germanic |
 | [Vlax Romani](rmy.md) (page) | `rmy` | research | Indo-European > Indo-Iranian > Indo-Aryan |
 | [Romani](rom.md) (page) | `rom` | research | Indo-European > Indo-Iranian > Indo-Aryan |

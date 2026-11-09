@@ -152,4 +152,4 @@ No downstream repository of the TigreGotico organisation covers this spec. The [
 <!-- atlas:related end -->
 
 ---
-[← Farefare](gur.md) · [Home](../index.md) · [Fijian →](fj.md)
+[← Faroese](fo.md) · [Home](../index.md) · [Fijian →](fj.md)

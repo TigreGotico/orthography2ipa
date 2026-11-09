@@ -145,4 +145,4 @@ No downstream repository of the TigreGotico organisation covers this spec. The [
 <!-- atlas:related end -->
 
 ---
-[← Romani](rom.md) · [Home](../index.md) · [Russian →](ru.md)
+[← Romanian](ro-RO.md) · [Home](../index.md) · [Russian →](ru.md)

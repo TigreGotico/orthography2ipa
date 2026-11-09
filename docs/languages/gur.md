@@ -157,4 +157,4 @@ No downstream repository of the TigreGotico organisation covers this spec. The [
 <!-- atlas:related end -->
 
 ---
-[← Fante](fat.md) · [Home](../index.md) · [Fernando Po Creole English →](fpe.md)
+[← Fante](fat.md) · [Home](../index.md) · [Faroese →](fo.md)

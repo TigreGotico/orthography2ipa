@@ -152,4 +152,4 @@ No downstream repository of the TigreGotico organisation covers this spec. The [
 <!-- atlas:related end -->
 
 ---
-[← Romanesco](it-IT-x-roma.md) · [Home](../index.md) · [Romansh →](rm.md)
+[← Romanesco](it-IT-x-roma.md) · [Home](../index.md) · [Romanian →](ro-RO.md)

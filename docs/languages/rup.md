@@ -145,4 +145,4 @@ No downstream repository of the TigreGotico organisation covers this spec. The [
 <!-- atlas:related end -->
 
 ---
-[← Armenian](hy.md) · [Home](../index.md) · [Assyrian Neo-Aramaic →](aii.md)
+[← Armenian](hy.md) · [Home](../index.md) · [Assamese →](as.md)
