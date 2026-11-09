@@ -4141,3 +4141,23 @@ class TestGurIsRegistered:
     def test_wikipron_file_is_registered(self):
         from scripts import benchmark
         assert benchmark._WIKIPRON_FILES["gur"] == "gur_latn_broad.tsv"
+
+
+class TestFamilySectionLinksOnlyPublicRepos:
+    """The family section links a repo only when GitHub serves it publicly.
+
+    Visibility read with ``gh repo view TigreGotico/<repo> --json visibility``:
+    arbtok, tugaphone, g2p_barranquenho and mwl_phonemizer are public;
+    udarnik is private, so a link to it is a 404 for every reader.
+    """
+
+    def test_private_repo_is_named_without_a_link(self):
+        text = "\n".join(cs._o2i_family_section([]))
+        assert "github.com/TigreGotico/udarnik" not in text
+        assert "- **udarnik** — adds " in text
+
+    @pytest.mark.parametrize("repo", ["arbtok", "tugaphone",
+                                      "g2p_barranquenho", "mwl_phonemizer"])
+    def test_public_repo_keeps_its_link(self, repo):
+        text = "\n".join(cs._o2i_family_section([]))
+        assert f"- **[{repo}](https://github.com/TigreGotico/{repo})** — adds " in text

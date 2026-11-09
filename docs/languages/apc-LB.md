@@ -47,7 +47,7 @@ No spec names `apc-LB` as its parent.
 The spec cites 5 works. 3 of them have a DOI or a URL. The spec file holds a note on what each work supports.
 
 1. <a id="src-almbark2015"></a>Almbark, R. & Hellmuth, S. (2015). *Acoustic analysis of the Syrian Arabic vowel system*. Proceedings of ICPhS 2015 (paper 0612), Glasgow. Cited: 1-4. [internationalphoneticassociation.org](https://www.internationalphoneticassociation.org/icphs-proceedings/ICPhS2015/Papers/ICPHS0612.pdf)
-2. <a id="src-fadda2016"></a>Fadda, H. (2016). *Language Variation in Western Amman*. MA thesis, Canada Institute of Linguistics (CanIL). Cited: 27-30. [canil.ca](https://www.canil.ca/wordpress/wp-content/uploads/2019/11/Fadda-Language-Variation-in-Western-Amman.pdf)
+2. <a id="src-fadda2016"></a>Fadda, H. (2016). *Language Variation in Western Amman*. MA thesis, Canada Institute of Linguistics (CanIL). Cited: 27-30. [web.archive.org](https://web.archive.org/web/20250210163657/https://www.canil.ca/wordpress/wp-content/uploads/2019/11/Fadda-Language-Variation-in-Western-Amman.pdf)
 3. <a id="src-cowell1964"></a>Cowell, M.W. (1964). *A Reference Grammar of Syrian Arabic (Based on the Dialect of Damascus)*. Georgetown University Press. [archive.org](https://archive.org/details/referencegrammar0000cowe)
 4. <a id="src-watson2002"></a>Watson, J.C.E. (2002). *The Phonology and Morphology of Arabic*. Oxford University Press.
 5. <a id="src-wikipron_apc_gold"></a>WikiPron / Wiktionary contributors (gold set, crowd-scraped) (2026). *apc_arab_broad, the North Levantine gold this spec is scored against*. CUNY-CL WikiPron scrape, loaded by scripts/benchmark.py. Cited: 7 rows containing ⟨گ⟩.

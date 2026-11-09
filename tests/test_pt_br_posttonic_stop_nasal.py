@@ -1,8 +1,8 @@
 """pt-BR breaks a post-tonic [t] before a nasal and a post-tonic [k] before [n].
 
-Bisol (1999: 730), read only through Nascimento (2015: 60): "O resultado é
+Bisol (1999: 730), read only through Nascimento (2015: 59): "O resultado é
 ri.ti.mo". Collischonn (2004: 67) names étnico and ritmo as post-tonic words.
-Cagliari (1981: 107), read only through Nascimento (2015: 57), lists "técnica",
+Cagliari (1981: 107), read only through Nascimento (2015: 56), lists "técnica",
 and gives "acne". The vowel is [i] (Barbosa & Albano 2004: 227), a /t/ before
 it is the affricate (p. 228), and a final ⟨o⟩ is [u].
 """
