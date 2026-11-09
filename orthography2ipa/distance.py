@@ -618,20 +618,17 @@ def _build_ancestor_graph(
 
 
 @functools.lru_cache(maxsize=256)
-def _get_ancestry_weights_by_code(code: str) -> Dict[str, float]:
-    """Return the ancestry weight map for *code*, cached by language code.
-
-    Delegates to ``_trace_ancestry_weights`` with a default max_depth of 10.
-    """
-    return _trace_ancestry_weights(code)
+def _get_ancestry_weights_by_code(code: str, max_depth: int = 10) -> Dict[str, float]:
+    """Return the ancestry weight map for *code*, cached by code and depth."""
+    return _trace_ancestry_weights(code, max_depth=max_depth)
 
 
-def _get_ancestry_weights(spec: LanguageSpec) -> Dict[str, float]:
+def _get_ancestry_weights(spec: LanguageSpec, max_depth: int = 10) -> Dict[str, float]:
     """Return the ancestry weight map for *spec*.
 
     Thin wrapper over the cached ``_get_ancestry_weights_by_code``.
     """
-    return _get_ancestry_weights_by_code(spec.code)
+    return _get_ancestry_weights_by_code(spec.code, max_depth)
 
 
 def _temporal_decay(
@@ -687,7 +684,9 @@ def ancestry_similarity(
     spec_a, spec_b : LanguageSpec
         Languages to compare.
     max_depth : int
-        Maximum recursion depth for ancestry tracing.
+        Maximum recursion depth for ancestry tracing. ``0`` traces only the
+        direct ancestors of each language, ``1`` adds their ancestors, and
+        so on.
     temporal_decay : bool
         If ``True`` and ``timespan`` data is available, multiply each ancestor
         weight by an exponential decay factor based on the temporal gap between
@@ -710,11 +709,13 @@ def ancestry_similarity(
 
     # Build weighted paths from each language to all reachable ancestors.
     if temporal_decay:
-        paths_a = _trace_ancestry_weights_temporal(spec_a, decay_halflife=decay_halflife)
-        paths_b = _trace_ancestry_weights_temporal(spec_b, decay_halflife=decay_halflife)
+        paths_a = _trace_ancestry_weights_temporal(
+            spec_a, max_depth=max_depth, decay_halflife=decay_halflife)
+        paths_b = _trace_ancestry_weights_temporal(
+            spec_b, max_depth=max_depth, decay_halflife=decay_halflife)
     else:
-        paths_a = _get_ancestry_weights(spec_a)
-        paths_b = _get_ancestry_weights(spec_b)
+        paths_a = _get_ancestry_weights(spec_a, max_depth)
+        paths_b = _get_ancestry_weights(spec_b, max_depth)
 
     # Check if A is a DIRECT parent of B or vice versa
     # (only applies when the path weight is high — not transitive traces)
