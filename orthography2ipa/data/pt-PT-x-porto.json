@@ -112,6 +112,24 @@
       "notes": "Northern betacism: the /v/ ~ /b/ phonological opposition is lost and both merge into a single phoneme /b/, realised [b] in all positions (vinho -> [ˈbiɲu], vaca -> [ˈbakɐ], estava -> [ʃˈtabɐ]). This is the primary trait separating Northern from Central-Southern European Portuguese. Cintra (1971; Boletim de Filologia 22:81-116): 'o desaparecimento da oposição fonológica entre os fonemas /v/ e /b/ e a sua fusão num fonema único /b/'; corroborated by Segura (2013). Modelled as a post-lexical phoneme-side rewrite (the phoneme /v/, produced by the inherited pt-PT grapheme map, is realised [b]) rather than a grapheme substitution, so the merger applies uniformly however /v/ arises."
     },
     {
+      "id": "PT_STRESSED_E_PREPALATAL_CLOSE",
+      "phonemes": [],
+      "surface": "e",
+      "notes": "DISABLED for Porto. Porto has its own stressed mid-vowel process (diphthongisation of the tonic mid vowels), and the PT_STRESSED_E_PREPALATAL rules of pt-PT would set the vowel first and pre-empt it, as the PT_SUFFIX rules are disabled here for the same reason. The pt-PT rules rest on Cunha & Cintra (7th ed., p. 431), who describe the standard."
+    },
+    {
+      "id": "PT_STRESSED_E_PREPALATAL_CANDIDATE_LISBON",
+      "phonemes": [],
+      "surface": "ɐ",
+      "notes": "DISABLED for Porto. Porto has its own stressed mid-vowel process (diphthongisation of the tonic mid vowels), and the PT_STRESSED_E_PREPALATAL rules of pt-PT would set the vowel first and pre-empt it, as the PT_SUFFIX rules are disabled here for the same reason. The pt-PT rules rest on Cunha & Cintra (7th ed., p. 431), who describe the standard."
+    },
+    {
+      "id": "PT_STRESSED_E_PREPALATAL_CANDIDATE_OPEN",
+      "phonemes": [],
+      "surface": "ɛ",
+      "notes": "DISABLED for Porto. Porto has its own stressed mid-vowel process (diphthongisation of the tonic mid vowels), and the PT_STRESSED_E_PREPALATAL rules of pt-PT would set the vowel first and pre-empt it, as the PT_SUFFIX rules are disabled here for the same reason. The pt-PT rules rest on Cunha & Cintra (7th ed., p. 431), who describe the standard."
+    },
+    {
       "id": "PT_PORTO_DIPHTHONGISE_E",
       "phonemes": [
         "e"

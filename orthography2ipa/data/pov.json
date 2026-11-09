@@ -619,6 +619,24 @@
       "notes": "DISABLED for Guinea-Bissau Creole (Kriol). The PT_CODA_L rules describe European Portuguese, and no source for this language was read."
     },
     {
+      "id": "PT_STRESSED_E_PREPALATAL_CLOSE",
+      "phonemes": [],
+      "surface": "e",
+      "notes": "DISABLED for Guinea-Bissau Creole (Kriol). The PT_STRESSED_E_PREPALATAL rules describe European Portuguese, and no source for this language was read."
+    },
+    {
+      "id": "PT_STRESSED_E_PREPALATAL_CANDIDATE_LISBON",
+      "phonemes": [],
+      "surface": "ɐ",
+      "notes": "DISABLED for Guinea-Bissau Creole (Kriol). The PT_STRESSED_E_PREPALATAL rules describe European Portuguese, and no source for this language was read."
+    },
+    {
+      "id": "PT_STRESSED_E_PREPALATAL_CANDIDATE_OPEN",
+      "phonemes": [],
+      "surface": "ɛ",
+      "notes": "DISABLED for Guinea-Bissau Creole (Kriol). The PT_STRESSED_E_PREPALATAL rules describe European Portuguese, and no source for this language was read."
+    },
+    {
       "id": "PT_STRESSED_A_BEFORE_NASAL",
       "phonemes": [],
       "surface": "ɐ",

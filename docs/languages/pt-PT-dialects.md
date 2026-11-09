@@ -22,6 +22,8 @@ Every spec on this page also inherits the `PT_INITIAL_E` rules. An unstressed wo
 
 Every spec on this page also inherits the `PT_CODA_L` rules, so an unstressed ⟨a e o⟩ before a coda ⟨l⟩ is [a], [ɛ], [o]: `altar` [aɫˈtaɾ], `delgado` [dɛɫˈɡadu], `soldado` [soɫˈdadu]. Cunha & Cintra (7th ed., p. 53) describe the standard. No source read gives a regional value.
 
+Every spec on this page except Lisbon, Porto and Braga also inherits the `PT_STRESSED_E_PREPALATAL` rules, so a stressed ⟨e⟩ before ⟨lh nh j ch⟩ is [e]: `fecho` [ˈfeʃu], `telha` [ˈteʎɐ]. Cunha & Cintra (7th ed., p. 431) describe the standard. Lisbon keeps its own [ɐ], and Porto and Braga keep their rising diphthong.
+
 The specs `pt-PT-x-sao-miguel` and `pt-PT-x-terceira` name `pt-PT-x-acores` as an adstrate in `ancestors`. That entry records the relation only. Both specs take their data from `pt-PT`, so they do not inherit the rules of `pt-PT-x-acores`. The spec `pt-PT-x-medieval` (Old Portuguese) has the same code prefix. It is the base of `pt-PT`, not a dialect of it, so this page does not cover it.
 
 ## Defining features
@@ -353,7 +355,7 @@ The most typical Lisbon feature is the centralisation of the stressed front mid 
 
 Mateus & d'Andrade (2000, p. 19) list three contexts for stressed [ɐ]: before a palatal consonant (`telha` [ˈtɐʎɐ]), before the palatal glide, and before a nasal. They treat it as a derived vowel. Cruz-Ferreira (1995, p. 92) notes that all vowels are raised and advanced before palato-alveolar and palatal consonants.
 
-The conservative central norm, which `pt-PT` follows, keeps [e] and [ɛ] here. So the change is a Lisbon delta. The rule `LX_STRESSED_E_PREPALATAL` (`followed_by: "palatal"`) runs after positional reduction. An unstressed /e/ is already [ɨ] at that stage, so the rule fires only on the stressed or word-initial vowel.
+The norm that `pt-PT` follows keeps the close [e] here, through the `PT_STRESSED_E_PREPALATAL` rules (Cunha & Cintra, 7th ed., p. 431). So the change is a Lisbon delta. The Lisbon spec switches the pt-PT rules off, because a slot takes only its first matching rule. The rule `LX_STRESSED_E_PREPALATAL` (`followed_by: "palatal"`) runs after positional reduction. An unstressed /e/ is already [ɨ] at that stage, so the rule fires only on the stressed or word-initial vowel.
 
 Hristovsky (2008, p. 239) reports the change in stressed and unstressed position. The unstressed case is variable and graded by social factors (Barros 1994). In a broad transcription an unstressed pre-palatal /e/ reduces to [ɨ]: `melhor` [mɨˈʎɔɾ], `fechar` [fɨˈʃaɾ], `mexer` [mɨˈʃeɾ]. That is the value of the base and of the gold data, so the spec models only the stressed case.
 

@@ -1530,6 +1530,60 @@
         "l"
       ],
       "notes": "The third lattice candidate of an unstressed ⟨o⟩ before a coda ⟨l⟩ is the reduced [u]. The rule does not change the transcription. See PT_CODA_L_O_CLOSE."
+    },
+    {
+      "id": "PT_STRESSED_E_PREPALATAL_CLOSE",
+      "phonemes": [
+        "ɛ"
+      ],
+      "surface": "e",
+      "grapheme": [
+        "e"
+      ],
+      "stress": "stressed",
+      "followed_by_grapheme": [
+        "lh",
+        "nh",
+        "j",
+        "ch"
+      ],
+      "notes": "A stressed ⟨e⟩ before ⟨lh nh j ch⟩ is the close [e]: fecho [ˈfeʃu], espelho [iʃˈpeʎu], telha [ˈteʎɐ], tenho [ˈteɲu]. Cunha & Cintra (7th ed., p. 431, obs. 1.ª b and c) give a stressed stem ⟨e⟩ before [ɲ] and before a palatal consonant ('fecho, fechas, fecha, etc.; desejo [...]; aparelho [...]') 'no português de Portugal, com [e] ou [ɐ] nas formas rizotônicas'. The same page gives [ɛ] only for 'invejar, embrechar, frechar e vexar'. On p. 49 they place the [ɐ] in Lisbon speech: 'no falar de Lisboa e de outras zonas de Portugal encontra-se [ɐ] em sílaba tônica antes de semivogal ou de consoante palatal: rei, tenho, telha'. p. 431 names verbs, and p. 49 gives nouns (telha), so the rule takes nouns too. The rule takes ⟨lh nh j ch⟩. It leaves out ⟨x⟩, which is often [ks] (complexo), and ⟨g⟩ before ⟨e i⟩. In the 378 single Infopédia words in this context that no word list holds, Infopédia gives an [e] reading in 325, mostly second after the Lisbon [ɐ] (fecho [ˈfɐ(j)ʃu, ˈfeʃu]). It gives [ɛ] first in 27 (velho, flecha, brejo), which are lexical. Infopédia carries the Lisbon assumption. This rule, PT_STRESSED_E_PREPALATAL_CANDIDATE_LISBON and PT_STRESSED_E_PREPALATAL_CANDIDATE_OPEN rank the slot [e], [ɐ], [ɛ]. The word lists come first and keep their values. pt-PT-x-lisbon gives [ɐ] through LX_STRESSED_E_PREPALATAL."
+    },
+    {
+      "id": "PT_STRESSED_E_PREPALATAL_CANDIDATE_LISBON",
+      "phonemes": [
+        "e"
+      ],
+      "surface": "ɐ",
+      "grapheme": [
+        "e"
+      ],
+      "stress": "stressed",
+      "followed_by_grapheme": [
+        "lh",
+        "nh",
+        "j",
+        "ch"
+      ],
+      "notes": "The second lattice candidate of a stressed ⟨e⟩ before ⟨lh nh j ch⟩ is the Lisbon [ɐ] (Cunha & Cintra, p. 49). The rule does not change the transcription. See PT_STRESSED_E_PREPALATAL_CLOSE."
+    },
+    {
+      "id": "PT_STRESSED_E_PREPALATAL_CANDIDATE_OPEN",
+      "phonemes": [
+        "ɨ"
+      ],
+      "surface": "ɛ",
+      "grapheme": [
+        "e"
+      ],
+      "stress": "stressed",
+      "followed_by_grapheme": [
+        "lh",
+        "nh",
+        "j",
+        "ch"
+      ],
+      "notes": "The third lattice candidate of a stressed ⟨e⟩ before ⟨lh nh j ch⟩ is [ɛ], the value of the exceptions on p. 431 of Cunha & Cintra. The rule does not change the transcription. See PT_STRESSED_E_PREPALATAL_CLOSE."
     }
   ],
   "sandhi_rules": [
