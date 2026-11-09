@@ -17,8 +17,8 @@ Mirandese is an Asturleonese language, written in the Latin script. Glottolog pl
 | Script | [Latin](by-script.md#latin) (alphabet) |
 | Tier | [research](../specs/quality_tiers.md#research) |
 | Attested | from 1400, living |
-| Parent | [Medieval Asturian-Leonese of Portugal](https://tigregotico.github.io/orthography2ipa/#ast-PT-x-medieval) `ast-PT-x-medieval` |
-| Child lects | [Ifanês (Mirandese septentrional)](https://tigregotico.github.io/orthography2ipa/#mwl-x-ifanes) `mwl-x-ifanes`, [Sendinês (Mirandese meridional)](https://tigregotico.github.io/orthography2ipa/#mwl-x-sendim) `mwl-x-sendim` |
+| Ancestor | [Medieval Asturian-Leonese of Portugal](https://tigregotico.github.io/orthography2ipa/#ast-PT-x-medieval) `ast-PT-x-medieval` |
+| Child lects | 2, see [Related lects](#related-lects) |
 | Explorer | [`mwl` in the data explorer](https://tigregotico.github.io/orthography2ipa/#mwl) |
 | Spec file | [`mwl.json`](../../orthography2ipa/data/mwl.json) |
 <!-- atlas:header end -->
@@ -177,6 +177,15 @@ The gold writes the nasal vowel without the nasal consonant. It writes [wo] and 
 
 The letter table inherits keys from `ast-PT-x-medieval` that no Mirandese source of the spec gives, such as ⟨yy⟩ [kʲ], ⟨ḥ⟩ [h] and ⟨ñ⟩ [ɲ]. They show in the [spelling table](#spelling) below.
 
+
+<!-- atlas:lects begin -->
+## Related lects
+
+These specs name `mwl` as their parent. They are sorted by country, and a lect with no recorded country comes last.
+
+- [Ifanês (Mirandese septentrional)](https://tigregotico.github.io/orthography2ipa/#mwl-x-ifanes) `mwl-x-ifanes`: research tier
+- [Sendinês (Mirandese meridional)](https://tigregotico.github.io/orthography2ipa/#mwl-x-sendim) `mwl-x-sendim`: research tier
+<!-- atlas:lects end -->
 
 <!-- atlas:sources begin -->
 ## Sources

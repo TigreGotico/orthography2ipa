@@ -18,8 +18,8 @@ Castilian Spanish is an Ibero-Romance language, written in the Latin script. Its
 | Script | [Latin](by-script.md#latin) (alphabet) |
 | Tier | [production](../specs/quality_tiers.md#production) |
 | Attested | from 1500, living |
-| Parent | [Castilian](https://tigregotico.github.io/orthography2ipa/#es-ES-x-medieval) `es-ES-x-medieval` |
-| Child lects | [Chavacano (Zamboangueño)](https://tigregotico.github.io/orthography2ipa/#cbk-PH) `cbk-PH`, [Latin American Spanish](https://tigregotico.github.io/orthography2ipa/#es-419) `es-419`, [Rioplatense Spanish](https://tigregotico.github.io/orthography2ipa/#es-AR) `es-AR`, [Bolivian Spanish](https://tigregotico.github.io/orthography2ipa/#es-BO) `es-BO`, [Chilean Spanish](https://tigregotico.github.io/orthography2ipa/#es-CL) `es-CL`, [Colombian Spanish (Bogotá)](https://tigregotico.github.io/orthography2ipa/#es-CO) `es-CO`, [Colombian Spanish (Coastal)](https://tigregotico.github.io/orthography2ipa/#es-CO-x-costa) `es-CO-x-costa`, [Colombian Spanish (Paisa/Medellín)](https://tigregotico.github.io/orthography2ipa/#es-CO-x-paisa) `es-CO-x-paisa`, [Costa Rican Spanish](https://tigregotico.github.io/orthography2ipa/#es-CR) `es-CR`, [Cuban Spanish](https://tigregotico.github.io/orthography2ipa/#es-CU) `es-CU`, [Dominican Spanish](https://tigregotico.github.io/orthography2ipa/#es-DO) `es-DO`, [Ecuadorian Spanish](https://tigregotico.github.io/orthography2ipa/#es-EC) `es-EC`, [Eastern Andalusian Spanish](https://tigregotico.github.io/orthography2ipa/#es-ES-x-andalusi-e) `es-ES-x-andalusi-e`, [Western Andalusian Spanish](https://tigregotico.github.io/orthography2ipa/#es-ES-x-andalusi-w) `es-ES-x-andalusi-w`, [Canarian Spanish](https://tigregotico.github.io/orthography2ipa/#es-ES-x-canarias) `es-ES-x-canarias`, [Cantabrian Spanish (Montañés)](https://tigregotico.github.io/orthography2ipa/#es-ES-x-cantabri) `es-ES-x-cantabri`, [Extremaduran Spanish (Extremeño)](https://tigregotico.github.io/orthography2ipa/#es-ES-x-extremad) `es-ES-x-extremad`, [Murcian Spanish (Panocho)](https://tigregotico.github.io/orthography2ipa/#es-ES-x-murcia) `es-ES-x-murcia`, [Equatoguinean Spanish](https://tigregotico.github.io/orthography2ipa/#es-GQ) `es-GQ`, [Guatemalan Spanish](https://tigregotico.github.io/orthography2ipa/#es-GT) `es-GT`, [Honduran Spanish](https://tigregotico.github.io/orthography2ipa/#es-HN) `es-HN`, [Mexican Spanish (Highland)](https://tigregotico.github.io/orthography2ipa/#es-MX) `es-MX`, [Mexican Spanish (Coastal)](https://tigregotico.github.io/orthography2ipa/#es-MX-x-costa) `es-MX-x-costa`, [Nicaraguan Spanish](https://tigregotico.github.io/orthography2ipa/#es-NI) `es-NI`, [Panamanian Spanish](https://tigregotico.github.io/orthography2ipa/#es-PA) `es-PA`, [Peruvian Spanish (Andean)](https://tigregotico.github.io/orthography2ipa/#es-PE) `es-PE`, [Peruvian Spanish (Lima)](https://tigregotico.github.io/orthography2ipa/#es-PE-x-lima) `es-PE-x-lima`, [Puerto Rican Spanish](https://tigregotico.github.io/orthography2ipa/#es-PR) `es-PR`, [Paraguayan Spanish](https://tigregotico.github.io/orthography2ipa/#es-PY) `es-PY`, [Salvadoran Spanish](https://tigregotico.github.io/orthography2ipa/#es-SV) `es-SV`, [Uruguayan Spanish](https://tigregotico.github.io/orthography2ipa/#es-UY) `es-UY`, [Venezuelan Spanish](https://tigregotico.github.io/orthography2ipa/#es-VE) `es-VE`, [Extremaduran](https://tigregotico.github.io/orthography2ipa/#ext) `ext`, [Palenquero (Lengua ri Palenge)](https://tigregotico.github.io/orthography2ipa/#pln) `pln` |
+| Ancestor | [Castilian](https://tigregotico.github.io/orthography2ipa/#es-ES-x-medieval) `es-ES-x-medieval` |
+| Child lects | 34, see [Related lects](#related-lects) |
 | Explorer | [`es-ES` in the data explorer](https://tigregotico.github.io/orthography2ipa/#es-ES) |
 | Spec file | [`es-ES.json`](../../orthography2ipa/data/es-ES.json) |
 <!-- atlas:header end -->
@@ -52,7 +52,50 @@ The spec notes describe the apical /s/ of Castilian, [s̺], but the letter table
 
 The letter ⟨x⟩ is [ks] by default. The Mexican place names that keep the old value /x/, such as ⟨México⟩ and ⟨Oaxaca⟩, are not exceptions in this spec, so `México` comes out [ˈmeksiko].
 
+The letter table gives ⟨e⟩ a second reading [ɛ] and ⟨o⟩ a second reading [ɔ]. The lattice offers these readings as candidates, so [ɛ] and [ɔ] appear in the inventory chart. No rule selects them, and the transcription keeps [e] and [o]: `perro` is [ˈpero] and `torre` is [ˈtore]. The spec cites no source for the two readings.
+
 Seseo, the degree of yeísmo and the weakening of a coda /s/ belong to the regional specs, not to `es-ES`. A gold entry that an editor from one of those regions transcribed counts as an error against this spec. So the PER on the crowd-sourced sets is slightly higher than the spec deserves.
+
+<!-- atlas:lects begin -->
+## Related lects
+
+These specs name `es-ES` as their parent. They are sorted by country, and a lect with no recorded country comes last.
+
+- [Rioplatense Spanish](https://tigregotico.github.io/orthography2ipa/#es-AR) `es-AR`: Argentina, research tier
+- [Bolivian Spanish](https://tigregotico.github.io/orthography2ipa/#es-BO) `es-BO`: Bolivia, skeleton tier
+- [Chilean Spanish](https://tigregotico.github.io/orthography2ipa/#es-CL) `es-CL`: Chile, research tier
+- [Colombian Spanish (Bogotá)](https://tigregotico.github.io/orthography2ipa/#es-CO) `es-CO`: Colombia, skeleton tier
+- [Colombian Spanish (Coastal)](https://tigregotico.github.io/orthography2ipa/#es-CO-x-costa) `es-CO-x-costa`: Colombia, research tier
+- [Colombian Spanish (Paisa/Medellín)](https://tigregotico.github.io/orthography2ipa/#es-CO-x-paisa) `es-CO-x-paisa`: Colombia, skeleton tier
+- [Palenquero (Lengua ri Palenge)](https://tigregotico.github.io/orthography2ipa/#pln) `pln`: Colombia, research tier
+- [Costa Rican Spanish](https://tigregotico.github.io/orthography2ipa/#es-CR) `es-CR`: Costa Rica, skeleton tier
+- [Cuban Spanish](https://tigregotico.github.io/orthography2ipa/#es-CU) `es-CU`: Cuba, research tier
+- [Dominican Spanish](https://tigregotico.github.io/orthography2ipa/#es-DO) `es-DO`: Dominican Republic, research tier
+- [Ecuadorian Spanish](https://tigregotico.github.io/orthography2ipa/#es-EC) `es-EC`: Ecuador, skeleton tier
+- [Salvadoran Spanish](https://tigregotico.github.io/orthography2ipa/#es-SV) `es-SV`: El Salvador, stub tier
+- [Equatoguinean Spanish](https://tigregotico.github.io/orthography2ipa/#es-GQ) `es-GQ`: Equatorial Guinea, skeleton tier
+- [Guatemalan Spanish](https://tigregotico.github.io/orthography2ipa/#es-GT) `es-GT`: Guatemala, skeleton tier
+- [Honduran Spanish](https://tigregotico.github.io/orthography2ipa/#es-HN) `es-HN`: Honduras, stub tier
+- [Mexican Spanish (Highland)](https://tigregotico.github.io/orthography2ipa/#es-MX) `es-MX`: Mexico, research tier
+- [Mexican Spanish (Coastal)](https://tigregotico.github.io/orthography2ipa/#es-MX-x-costa) `es-MX-x-costa`: Mexico, research tier
+- [Nicaraguan Spanish](https://tigregotico.github.io/orthography2ipa/#es-NI) `es-NI`: Nicaragua, research tier
+- [Panamanian Spanish](https://tigregotico.github.io/orthography2ipa/#es-PA) `es-PA`: Panama, research tier
+- [Paraguayan Spanish](https://tigregotico.github.io/orthography2ipa/#es-PY) `es-PY`: Paraguay, skeleton tier
+- [Peruvian Spanish (Andean)](https://tigregotico.github.io/orthography2ipa/#es-PE) `es-PE`: Peru, skeleton tier
+- [Peruvian Spanish (Lima)](https://tigregotico.github.io/orthography2ipa/#es-PE-x-lima) `es-PE-x-lima`: Peru, skeleton tier
+- [Chavacano (Zamboangueño)](https://tigregotico.github.io/orthography2ipa/#cbk-PH) `cbk-PH`: Philippines, research tier
+- [Extremaduran](https://tigregotico.github.io/orthography2ipa/#ext) `ext`: Portugal, Spain, research tier
+- [Puerto Rican Spanish](https://tigregotico.github.io/orthography2ipa/#es-PR) `es-PR`: Puerto Rico, research tier
+- [Eastern Andalusian Spanish](https://tigregotico.github.io/orthography2ipa/#es-ES-x-andalusi-e) `es-ES-x-andalusi-e`: Spain, research tier
+- [Western Andalusian Spanish](https://tigregotico.github.io/orthography2ipa/#es-ES-x-andalusi-w) `es-ES-x-andalusi-w`: Spain, research tier
+- [Canarian Spanish](https://tigregotico.github.io/orthography2ipa/#es-ES-x-canarias) `es-ES-x-canarias`: Spain, research tier
+- [Cantabrian Spanish (Montañés)](https://tigregotico.github.io/orthography2ipa/#es-ES-x-cantabri) `es-ES-x-cantabri`: Spain, research tier
+- [Extremaduran Spanish (Extremeño)](https://tigregotico.github.io/orthography2ipa/#es-ES-x-extremad) `es-ES-x-extremad`: Spain, research tier
+- [Murcian Spanish (Panocho)](https://tigregotico.github.io/orthography2ipa/#es-ES-x-murcia) `es-ES-x-murcia`: Spain, research tier
+- [Uruguayan Spanish](https://tigregotico.github.io/orthography2ipa/#es-UY) `es-UY`: Uruguay, skeleton tier
+- [Venezuelan Spanish](https://tigregotico.github.io/orthography2ipa/#es-VE) `es-VE`: Venezuela, research tier
+- [Latin American Spanish](https://tigregotico.github.io/orthography2ipa/#es-419) `es-419`: skeleton tier
+<!-- atlas:lects end -->
 
 <!-- atlas:sources begin -->
 ## Sources

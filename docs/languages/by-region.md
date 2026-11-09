@@ -10,11 +10,11 @@ A stub has a name, a code and a place in the family tree, but no phonology yet. 
 |:--|--:|
 | [Africa](#africa) | 62 |
 | [Australia](#australia) | 1 |
-| [Eurasia](#eurasia) | 144 |
-| [No macroarea](#no-macroarea) | 2 |
+| [Eurasia](#eurasia) | 124 |
+| [No macroarea](#no-macroarea) | 1 |
 | [North America](#north-america) | 39 |
 | [Papunesia](#papunesia) | 39 |
-| [Several macroareas](#several-macroareas) | 35 |
+| [Several macroareas](#several-macroareas) | 32 |
 | [South America](#south-america) | 20 |
 
 ## Africa
@@ -48,6 +48,7 @@ Stubs (11): Algerian Saharan Arabic `aao`, Algerian Jewish Sign Language `ajs`, 
 | [Mbunda](https://tigregotico.github.io/orthography2ipa/#mck) | `mck` | skeleton | Atlantic-Congo |
 | [Nyemba](https://tigregotico.github.io/orthography2ipa/#nba) | `nba` | skeleton | Atlantic-Congo |
 | [Ndonga](https://tigregotico.github.io/orthography2ipa/#ng) | `ng` | research | Atlantic-Congo |
+| [Angolan Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-AO) | `pt-AO` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Umbundu](https://tigregotico.github.io/orthography2ipa/#umb) | `umb` | research | Atlantic-Congo > Bantu |
 
 Stubs (38): Kibala `blv`, Zemba `dhm`, Diriku `diu`, Hungu `hng`, Holu `hol`, Nkhumbi `khu`, Kimbundu (Mbundu) `kmb`, Kung-Ekoka `knw`, Kwangali `kwn`, San Salvador Kongo `kwy`, Laari `ldi`, Luimbi `lum`, Lwalu `lwa`, Luyana `lyn`, Mbwela `mfu`, Mashi (Zambia) `mho`, Mbukushu `mhw`, Mbangala `mxg`, Ndombe `ndq`, Kunyi `njx`, Nkangala `nkn`, Ngandyera `nne`, Ngendelengo `nql`, Nsongo `nsx`, Nyengo `nye`, Nyaneka `nyk`, Kuvale `olu`, Mpinda `pnd`, Ruund `rnd`, Suundi `sdj`, Salampasu `slx`, Sekele `vaj`, Vili `vif`, Kwandu `xdo`, Kxoe `xuu`, Yaka (Democratic Republic of Congo) `yaf`, Yauma `yax`, Yombe `yom`.
@@ -208,6 +209,7 @@ Stubs (239): Afade `aal`, Bankon `abb`, Abon `abo`, Lidzonka `add`, Aghem `agq`,
 | Spec | Code | Tier | Family |
 |:--|:--|:--|:--|
 | [Kabuverdianu (Cape Verdean Creole)](https://tigregotico.github.io/orthography2ipa/#kea) | `kea` | research | Indo-European > Italic > Romance > Ibero-Romance |
+| [Cape Verdean Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-CV) | `pt-CV` | skeleton | Indo-European > Italic > Romance > Ibero-Romance |
 
 ### Central African Republic
 
@@ -246,7 +248,7 @@ Stubs (82): Ali `aiy`, Yaka (Central African Republic) `axk`, West Central Banda
 | [Tedaga](https://tigregotico.github.io/orthography2ipa/#tuq) | `tuq` | skeleton | Saharan |
 | [Zaghawa](https://tigregotico.github.io/orthography2ipa/#zag) | `zag` | skeleton | Saharan |
 
-Stubs (116): Amdang `amj`, Buduma `bdm`, Morom `bdo`, Besme `bes`, Bidiyo `bid`, Bedjond `bjv`, Bagirmi `bmi`, Buso `bso`, Birgit `btf`, Bua `bub`, Boor `bvf`, Bolgo `bvo`, Berakou `bxv`, Chadian Sign Language `cds`, Kajakse `ckq`, Day `dai`, Dar Sila Daju `dau`, Dagba `dgk`, Dar Daju Daju `djc`, Disa `dsi`, Dazaga `dzg`, Fongoro `fgr`, Fania `fni`, Adamawa Fulfulde `fub`, Bagirmi Fulfulde `fui`, Central-Eastern Niger Fulfulde `fuq`, Fur `fvr`, Gabri `gab`, Gadang `gdk`, Laal `gdm`, Gidar `gid`, Bon Gula `glc`, Gula Iro `glj`, Gula (Chad) `glu`, Goundo `goy`, Gor `gqr`, Gulay `gvl`, Herdé `hed`, Jonkor Bourmataguil `jeu`, Jina `jia`, Jaya `jyy`, Kanembu `kbl`, Kim `kia`, Kibet `kie`, Kendeje `klf`, Lagwan `kot`, Koke `kou`, Kimré `kqp`, Mser `kqx`, Tumari Kanuri `krt`, Kaba `ksp`, Karanga `kth`, Kabalai `kvf`, Kwang `kvi`, Sara Kaba Deme `kwg`, Sara Kaba Náà `kwv`, Kulfa `kxj`, Kenga `kyq`, Karang `kzr`, Laka (Chad) `lap`, Pévé `lme`, Masana `mcn`, Mambai `mcs`, Mawa (Chad) `mcw`, Maba (Chad) `mde`, Massalat `mdg`, Masmaje `mes`, Mararit `mgb`, Mango `mge`, Miltu `mlj`, Masalit `mls`, Naba `mne`, Mogum `mou`, Mukulu `moz`, Mpade `mpi`, Mbara (Chad) `mpk`, Maslam `msv`, Mundang `mua`, Mubi `mub`, Musgu `mug`, Mabire `muj`, Mulgi `mvh`, Marfa `mvu`, Sar `mwm`, Malgbe `mxf`, Mbay `myb`, Ndam `ndm`, Lutos `ndy`, Niellim `nie`, Ngam `nmc`, Nancere `nnc`, Ngete `nnn`, Noy `noy`, Nzakambay `nzy`, Pana (Central African Republic) `pnz`, Runga `rou`, Saba `saa`, Ngambay `sba`, Surbakhal `sbj`, Sara Kaba `sbz`, Assangori `sjg`, Somrai `sor`, Sarua `swy`, Sinyar `sys`, Tamki `tax`, Tama (Chad) `tma`, Tobanga `tng`, Toram `trj`, Tunia `tug`, Ubi `ubi`, Kujarge `vkj`, Majera `xmj`, Kuo `xuo`, Mesme `zim`, Zan Gula `zna`, Zerenkel `zrn`.
+Stubs (117): Amdang `amj`, Babalia Creole Arabic `ar-TD-x-babalia`, Buduma `bdm`, Morom `bdo`, Besme `bes`, Bidiyo `bid`, Bedjond `bjv`, Bagirmi `bmi`, Buso `bso`, Birgit `btf`, Bua `bub`, Boor `bvf`, Bolgo `bvo`, Berakou `bxv`, Chadian Sign Language `cds`, Kajakse `ckq`, Day `dai`, Dar Sila Daju `dau`, Dagba `dgk`, Dar Daju Daju `djc`, Disa `dsi`, Dazaga `dzg`, Fongoro `fgr`, Fania `fni`, Adamawa Fulfulde `fub`, Bagirmi Fulfulde `fui`, Central-Eastern Niger Fulfulde `fuq`, Fur `fvr`, Gabri `gab`, Gadang `gdk`, Laal `gdm`, Gidar `gid`, Bon Gula `glc`, Gula Iro `glj`, Gula (Chad) `glu`, Goundo `goy`, Gor `gqr`, Gulay `gvl`, Herdé `hed`, Jonkor Bourmataguil `jeu`, Jina `jia`, Jaya `jyy`, Kanembu `kbl`, Kim `kia`, Kibet `kie`, Kendeje `klf`, Lagwan `kot`, Koke `kou`, Kimré `kqp`, Mser `kqx`, Tumari Kanuri `krt`, Kaba `ksp`, Karanga `kth`, Kabalai `kvf`, Kwang `kvi`, Sara Kaba Deme `kwg`, Sara Kaba Náà `kwv`, Kulfa `kxj`, Kenga `kyq`, Karang `kzr`, Laka (Chad) `lap`, Pévé `lme`, Masana `mcn`, Mambai `mcs`, Mawa (Chad) `mcw`, Maba (Chad) `mde`, Massalat `mdg`, Masmaje `mes`, Mararit `mgb`, Mango `mge`, Miltu `mlj`, Masalit `mls`, Naba `mne`, Mogum `mou`, Mukulu `moz`, Mpade `mpi`, Mbara (Chad) `mpk`, Maslam `msv`, Mundang `mua`, Mubi `mub`, Musgu `mug`, Mabire `muj`, Mulgi `mvh`, Marfa `mvu`, Sar `mwm`, Malgbe `mxf`, Mbay `myb`, Ndam `ndm`, Lutos `ndy`, Niellim `nie`, Ngam `nmc`, Nancere `nnc`, Ngete `nnn`, Noy `noy`, Nzakambay `nzy`, Pana (Central African Republic) `pnz`, Runga `rou`, Saba `saa`, Ngambay `sba`, Surbakhal `sbj`, Sara Kaba `sbz`, Assangori `sjg`, Somrai `sor`, Sarua `swy`, Sinyar `sys`, Tamki `tax`, Tama (Chad) `tma`, Tobanga `tng`, Toram `trj`, Tunia `tug`, Ubi `ubi`, Kujarge `vkj`, Majera `xmj`, Kuo `xuo`, Mesme `zim`, Zan Gula `zna`, Zerenkel `zrn`.
 
 ### Comoros
 
@@ -388,19 +390,22 @@ Stubs (72): Abé `aba`, Abron `abr`, Abure `abu`, Tiagbamrin Aizi `ahi`, Mobumri
 | Spec | Code | Tier | Family |
 |:--|:--|:--|:--|
 | [Saʿīdi Arabic (Upper Egyptian)](https://tigregotico.github.io/orthography2ipa/#aec-EG) | `aec-EG` | research | Afro-Asiatic > Semitic > Central Semitic |
+| [Egyptian Arabic (Cairene)](https://tigregotico.github.io/orthography2ipa/#arz-EG) | `arz-EG` | research | Afro-Asiatic > Semitic > Central Semitic |
+| [Eastern Egyptian Bedawi Arabic](https://tigregotico.github.io/orthography2ipa/#avl-EG) | `avl-EG` | research | Afro-Asiatic > Semitic > Central Semitic |
 | [Beja](https://tigregotico.github.io/orthography2ipa/#bej) | `bej` | skeleton | Afro-Asiatic |
 | [Coptic (Sahidic)](https://tigregotico.github.io/orthography2ipa/#cop) | `cop` | research | Afro-Asiatic > Egyptian |
 | [Ancient Egyptian](https://tigregotico.github.io/orthography2ipa/#egy) | `egy` | research | Afro-Asiatic > Egyptian |
 | [Nobiin](https://tigregotico.github.io/orthography2ipa/#fia) | `fia` | skeleton | Nubian |
 | [Siwi](https://tigregotico.github.io/orthography2ipa/#siz) | `siz` | skeleton | Afro-Asiatic |
 
-Stubs (2): Egypt Sign Language `esl`, Kenzi `xnz`.
+Stubs (3): Eastern Fayyum Arabic `arz-EG-x-fayyum`, Egypt Sign Language `esl`, Kenzi `xnz`.
 
 ### Equatorial Guinea
 
 | Spec | Code | Tier | Family |
 |:--|:--|:--|:--|
 | [Benga](https://tigregotico.github.io/orthography2ipa/#bng) | `bng` | skeleton | Atlantic-Congo |
+| [Equatoguinean Spanish](https://tigregotico.github.io/orthography2ipa/#es-GQ) | `es-GQ` | skeleton | Indo-European > Italic > Romance > Ibero-Romance |
 | [Iyasa](https://tigregotico.github.io/orthography2ipa/#yko) | `yko` | skeleton | Atlantic-Congo |
 
 Stubs (9): Batanga `bnm`, Bube `bvb`, Molengue `bxc`, Fa d'Ambu `fab`, Fang (Equatorial Guinea) `fan`, Gyele `gyi`, Kwasio `nmg`, Ngumbi `nui`, Seki `syi`.
@@ -563,6 +568,7 @@ Stubs (31): Baga Pokur `bcg`, Baga Koga `bgo`, Baga Manduri `bmd`, Baga Sitemu `
 | [Mandinka](https://tigregotico.github.io/orthography2ipa/#mnk) | `mnk` | research | Mande |
 | [N'Ko (Manding koiné)](https://tigregotico.github.io/orthography2ipa/#nqo) | `nqo` | research | Mande |
 | [Guinea-Bissau Creole (Kriol)](https://tigregotico.github.io/orthography2ipa/#pov) | `pov` | research | Indo-European > Italic > Romance > Ibero-Romance |
+| [Guinea-Bissau Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-GW) | `pt-GW` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Soninke](https://tigregotico.github.io/orthography2ipa/#snk) | `snk` | research | Mande |
 | [Susu (Soso)](https://tigregotico.github.io/orthography2ipa/#sus) | `sus` | research | Mande |
 | [Wolof](https://tigregotico.github.io/orthography2ipa/#wo) | `wo` | research | Atlantic-Congo |
@@ -725,6 +731,7 @@ Stubs (5): Algerian Saharan Arabic `aao`, Judeo-Moroccan Arabic `aju`, Judeo-Ber
 | [Kunda](https://tigregotico.github.io/orthography2ipa/#kdn) | `kdn` | skeleton | Atlantic-Congo |
 | [Makhuwa-Meetto](https://tigregotico.github.io/orthography2ipa/#mgh) | `mgh` | skeleton | Atlantic-Congo |
 | [Chichewa (Nyanja)](https://tigregotico.github.io/orthography2ipa/#ny) | `ny` | research | Atlantic-Congo > Bantu |
+| [Mozambican Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-MZ) | `pt-MZ` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Ronga](https://tigregotico.github.io/orthography2ipa/#rng) | `rng` | skeleton | Atlantic-Congo |
 | [Sena](https://tigregotico.github.io/orthography2ipa/#seh) | `seh` | research | Atlantic-Congo > Bantu |
 | [Swahili](https://tigregotico.github.io/orthography2ipa/#sw) | `sw` | research | Atlantic-Congo > Bantu |
@@ -919,6 +926,7 @@ Stubs (9): Boon `bnl`, Aweer `bob`, Dabarre `dbr`, Borana-Arsi-Guji Oromo `gax`,
 | Spec | Code | Tier | Family |
 |:--|:--|:--|:--|
 | [Afrikaans](https://tigregotico.github.io/orthography2ipa/#af) | `af` | research | Indo-European > Germanic > Northwest Germanic > West Germanic |
+| [South African English](https://tigregotico.github.io/orthography2ipa/#en-ZA) | `en-ZA` | skeleton | Indo-European > Germanic > Northwest Germanic > West Germanic |
 | [Fanagalo](https://tigregotico.github.io/orthography2ipa/#fng) | `fng` | skeleton | Pidgin |
 | [Northern Sotho (Sepedi)](https://tigregotico.github.io/orthography2ipa/#nso) | `nso` | research | Atlantic-Congo > Bantu |
 | [Ronga](https://tigregotico.github.io/orthography2ipa/#rng) | `rng` | skeleton | Atlantic-Congo |
@@ -1009,6 +1017,7 @@ Stubs (67): Afitti `aft`, Reel `atu`, Burun `bdi`, Dar Fur Daju `daj`, Dar Sila 
 | [Angolar](https://tigregotico.github.io/orthography2ipa/#aoa) | `aoa` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Sãotomense (Forro / Santome)](https://tigregotico.github.io/orthography2ipa/#cri) | `cri` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Principense (Lung'ie)](https://tigregotico.github.io/orthography2ipa/#pre) | `pre` | research | Indo-European > Italic > Romance > Ibero-Romance |
+| [São Tomé and Príncipe Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-ST) | `pt-ST` | research | Indo-European > Italic > Romance > Ibero-Romance |
 
 ### Tanzania
 
@@ -1075,6 +1084,7 @@ Stubs (23): Adangbe `adq`, Igo `ahl`, Aguna `aug`, Ginyanga `ayg`, Anii `blo`, B
 
 | Spec | Code | Tier | Family |
 |:--|:--|:--|:--|
+| [Tunisian Arabic](https://tigregotico.github.io/orthography2ipa/#aeb-TN) | `aeb-TN` | research | Afro-Asiatic > Semitic > Central Semitic |
 | [Ghadamès](https://tigregotico.github.io/orthography2ipa/#gha) | `gha` | skeleton | Afro-Asiatic |
 | [Shawiya (Tacawit)](https://tigregotico.github.io/orthography2ipa/#shy) | `shy` | research | Afro-Asiatic > Berber |
 
@@ -1182,6 +1192,10 @@ Stubs (13): Birwa `brl`, Dombe `dov`, Tsoa `hio`, Holoholo `hoo`, Kalanga `kck`,
 
 ### Australia
 
+| Spec | Code | Tier | Family |
+|:--|:--|:--|:--|
+| [Australian English](https://tigregotico.github.io/orthography2ipa/#en-AU) | `en-AU` | skeleton | Indo-European > Germanic > Northwest Germanic > West Germanic |
+
 Stubs (174): Andegerebinha `adg`, Adnyamathanha `adt`, Eastern Arrernte `aer`, Andajin `ajn`, Alawa `alh`, Alyawarr `aly`, Amurdak `amg`, Anmatyerre `amx`, Ami `amy`, Antakarinya `ant`, Anindilyakwa `aoi`, Western Arrarnta `are`, Auslan `asf`, Australian Aborigines Sign Language `asw`, Bardi `bcj`, Bunuba `bck`, Bandjalang `bdy`, Badimaya `bia`, Broome Pearling Lugger Pidgin `bpl`, Burarra `bvr`, Bayungu `bxj`, Burduna `bxn`, Bidjara `bym`, Dayi `dax`, Dyirbal `dbl`, Jaru `ddj`, Dhangu-Djangu `dhg`, Dhalandji `dhl`, Dhargari `dhr`, Dhungaloo `dhx`, Djinba `djb`, Djamindjung `djd`, Djinang `dji`, Djeebbana `djj`, Jawoyn `djn`, Djambarrpuyngu `djr`, Mudburra `dmw`, Paakantyi `drl`, Dhuwal `dwu`, Dhuwaya `dwy`, Dyangadi `dyn`, Djabugay `dyy`, Kaytetye `gbb`, Karajarri `gbd`, Gagadu `gbu`, Gabi-Gabi `gbw`, Gadjerawang `gdh`, Gurdjar `gdj`, Gurr-goni `gge`, Kija `gia`, Githabul `gih`, Giyug `giy`, Gurindji Kriol `gjr`, Mirning `gmr`, Gooniyandi `gni`, Gumatj `gnn`, Gurindji `gue`, Gupapuyngu `guf`, Gunwinggu `gup`, Kuku-Yalanji `gvn`, Kwini `gww`, Kayardild `gyd`, Iwaidja `ibd`, Yanyuwa `jao`, Yan-nhangu `jay`, Jingulu `jig`, Kanju `kbe`, Yankunytjatjara `kdd`, Kumbainggar `kgs`, Kunjen `kjn`, Gugubera `kkp`, Guugu Yimidhirr `kky`, Kokata `ktd`, Kukatja `kux`, Kuuku-Ya'u `kuy`, Lardil `lbz`, Yirandali `ljw`, Marra `mec`, Miriwoong `mep`, Marrithiyel `mfr`, Margu `mhg`, Malak Malak `mpb`, Mangarrayi `mpc`, Maung `mph`, Martu Wangka `mpj`, Murrinh-Patha `mwf`, Ngan'gityemerri `nam`, Ngarinyman `nbj`, Na-kara `nck`, Dalabon `ngk`, Nhanda `nha`, Nhuwala `nhf`, Gudanji `nji`, Ngadjunmaya `nju`, Nyamal `nly`, Nyangumarta `nna`, Ngarla `nrk`, Ngarluma `nrl`, Ngaanyatjarra `ntj`, Nunggubuyu `nuy`, Nyikina `nyh`, Nyungar `nys`, Pintupi-Luritja `piu`, Pakanha `pkn`, Pinigura `pnv`, Banyjima `pnw`, Pindiini `pti`, Ritharrngu `rit`, Rembarrnga `rmb`, Kriol `rop`, Miriwoong Sign Language `rsm`, Ngardi `rxd`, Torres Strait Creole `tcs`, Kuuk Thaayorre `thd`, Tiwi `tiw`, Tjungundji `tjj`, Tjupany `tjp`, Djabwurrung `tjw`, Umpila `ump`, Ngarinyin `ung`, Kurnai `unn`, Kuku-Uwanh `uwa`, Kurrama `vku`, Wagiman `waq`, Warlpiri `wbp`, Warnman `wbt`, Wajarri `wbv`, Wadjiginy `wdj`, Wergaia `weg`, Warrgamay `wgy`, Wik Ngathan `wig`, Wik-Me'anha `wih`, Wik-Iiyanh `wij`, Wikalkan `wik`, Wik-Mungkan `wim`, Keerray-Woorroong `wkr`, Kunbarlang `wlg`, Wambaya `wmb`, Walmajarri `wmt`, Wanyi `wny`, Kuwema `woa`, Garrwa `wrk`, Warlmanpa `wrl`, Warumungu `wrm`, Wardaman `wrr`, Wikngenchera `wua`, Wunambal `wub`, Wulna `wux`, Wangaaybuwan-Ngiyambaa `wyb`, Batjala `xby`, Unggumi `xgu`, Kugu-Muminh `xmh`, Mayaguduna `xmy`, Nyiyaparli `xny`, Marriammu `xru`, Yorta Yorta `xyy`, Yolŋu Sign Language `ygs`, Yugul `ygu`, Yinggarda `yia`, Yidiny `yii`, Yindjibarndi `yij`, Yirrk-Mel `yrm`, Yarluyandi `yry`, Yinhawangka `ywg`, Yawuru `ywr`, Kaurna `zku`, Manda (Australia) `zma`, Maridan `zmd`, Marti Ke `zmg`, Maridjabin `zmj`, Marimanindji `zmm`, Maranunggu `zmr`, Maringarr `zmt`, Mariyedi `zmy`.
 
 ## Eurasia
@@ -1235,21 +1249,12 @@ Stubs (4): Carpathian Romani `rmc`, Balkan Romani `rmn`, Sinte Romani `rmo`, Alb
 | [Catalan](https://tigregotico.github.io/orthography2ipa/#ca) | `ca` | research | Indo-European > Italic > Romance |
 | [Occitan](https://tigregotico.github.io/orthography2ipa/#oc) | `oc` | research | Indo-European > Italic > Romance > Gallo-Romance |
 
-### Angola
-
-| Spec | Code | Tier | Family |
-|:--|:--|:--|:--|
-| [Angolan Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-AO) | `pt-AO` | research | Indo-European > Italic > Romance > Ibero-Romance |
-
 ### Argentina
 
 | Spec | Code | Tier | Family |
 |:--|:--|:--|:--|
 | [Welsh](https://tigregotico.github.io/orthography2ipa/#cy) | `cy` | research | Indo-European > Celtic > Brythonic |
-| [Rioplatense Spanish](https://tigregotico.github.io/orthography2ipa/#es-AR) | `es-AR` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Yiddish](https://tigregotico.github.io/orthography2ipa/#yi) | `yi` | research | Indo-European > Germanic > Northwest Germanic > West Germanic |
-
-Stubs (5): Cordobés Spanish `es-AR-x-cordoba`, Cuyano Spanish `es-AR-x-cuyo`, Litoraleño (Guaranític) Spanish `es-AR-x-litoral`, Northwest Argentine Spanish `es-AR-x-norte`, Patagonian Spanish `es-AR-x-patagoni`.
 
 ### Armenia
 
@@ -1267,7 +1272,6 @@ Stubs (2): Armenian Sign Language `aen`, Lomavren `rmi`.
 
 | Spec | Code | Tier | Family |
 |:--|:--|:--|:--|
-| [Australian English](https://tigregotico.github.io/orthography2ipa/#en-AU) | `en-AU` | skeleton | Indo-European > Germanic > Northwest Germanic > West Germanic |
 | [Piedmontese](https://tigregotico.github.io/orthography2ipa/#pms) | `pms` | research | Indo-European > Italic > Romance > Italo-Romance |
 | [Yiddish](https://tigregotico.github.io/orthography2ipa/#yi) | `yi` | research | Indo-European > Germanic > Northwest Germanic > West Germanic |
 
@@ -1396,14 +1400,6 @@ Stubs (3): Langue des signes de Belgique Francophone `sfb`, Vlaamse Gebarentaal 
 
 Stubs (24): Adi `adi`, Brokkat `bro`, Chocangacakha `cgk`, Dakpakha `dka`, Dzalakha `dzl`, Gongduk `goe`, Groma `gro`, Gurung `gvr`, Bumthangkha `kjz`, Kalaktang Monpa `kkf`, Lepcha `lep`, Lhokpu `lhp`, Lakha `lkh`, Lunanakha `luk`, Layakha `lya`, Nyenkha `neh`, Nupbikha `npb`, Olekha `ole`, Brokpake `sgt`, Chalikha `tgf`, Thangmi `thf`, Tshangla `tsj`, Tawang Monpa `twm`, Khengkha `xkf`.
 
-### Bolivia
-
-| Spec | Code | Tier | Family |
-|:--|:--|:--|:--|
-| [Bolivian Spanish](https://tigregotico.github.io/orthography2ipa/#es-BO) | `es-BO` | skeleton | Indo-European > Italic > Romance > Ibero-Romance |
-
-Stubs (2): Andean Bolivian Spanish `es-BO-x-andino`, Camba (Lowland) Bolivian Spanish `es-BO-x-camba`.
-
 ### Bosnia & Herzegovina
 
 | Spec | Code | Tier | Family |
@@ -1422,20 +1418,6 @@ Stubs (3): Carpathian Romani `rmc`, Balkan Romani `rmn`, Sinte Romani `rmo`.
 
 | Spec | Code | Tier | Family |
 |:--|:--|:--|:--|
-| [Brazilian Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR) | `pt-BR` | production | Indo-European > Italic > Romance > Ibero-Romance |
-| [Bahian Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-bahia) | `pt-BR-x-bahia` | research | Indo-European > Italic > Romance > Ibero-Romance |
-| [Caipira Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-caipira) | `pt-BR-x-caipira` | research | Indo-European > Italic > Romance > Ibero-Romance |
-| [Cearense Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-ce) | `pt-BR-x-ce` | research | Indo-European > Italic > Romance > Ibero-Romance |
-| [Cuiabano Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-cuiaba) | `pt-BR-x-cuiaba` | research | Indo-European > Italic > Romance > Ibero-Romance |
-| [Florianópolis Portuguese (manezinho)](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-floripa) | `pt-BR-x-floripa` | research | Indo-European > Italic > Romance > Ibero-Romance |
-| [Fluminense Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-fluminen) | `pt-BR-x-fluminen` | research | Indo-European > Italic > Romance > Ibero-Romance |
-| [Mineiro Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-mg) | `pt-BR-x-mg` | research | Indo-European > Italic > Romance > Ibero-Romance |
-| [Nortista/Amazônico Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-norte) | `pt-BR-x-norte` | research | Indo-European > Italic > Romance > Ibero-Romance |
-| [Curitibano/Paranaense Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-pr) | `pt-BR-x-pr` | research | Indo-European > Italic > Romance > Ibero-Romance |
-| [Pernambucano Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-recife) | `pt-BR-x-recife` | research | Indo-European > Italic > Romance > Ibero-Romance |
-| [Carioca Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-rj) | `pt-BR-x-rj` | research | Indo-European > Italic > Romance > Ibero-Romance |
-| [Paulistano Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-sp) | `pt-BR-x-sp` | research | Indo-European > Italic > Romance > Ibero-Romance |
-| [Sulista/Gaúcho Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-sul) | `pt-BR-x-sul` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Venetian](https://tigregotico.github.io/orthography2ipa/#vec) | `vec` | research | Indo-European > Italic > Romance > Italo-Romance |
 
 ### Brunei
@@ -1478,14 +1460,7 @@ Stubs (23): Brao `brb`, Western Cham `cja`, Central Mnong `cmo`, Chong `cog`, Ca
 
 | Spec | Code | Tier | Family |
 |:--|:--|:--|:--|
-| [Canadian English](https://tigregotico.github.io/orthography2ipa/#en-CA) | `en-CA` | skeleton | Indo-European > Germanic > Northwest Germanic > West Germanic |
 | [Yiddish](https://tigregotico.github.io/orthography2ipa/#yi) | `yi` | research | Indo-European > Germanic > Northwest Germanic > West Germanic |
-
-### Cape Verde
-
-| Spec | Code | Tier | Family |
-|:--|:--|:--|:--|
-| [Cape Verdean Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-CV) | `pt-CV` | skeleton | Indo-European > Italic > Romance > Ibero-Romance |
 
 ### Chad
 
@@ -1493,14 +1468,6 @@ Stubs (23): Brao `brb`, Western Cham `cja`, Central Mnong `cmo`, Chong `cog`, Ca
 |:--|:--|:--|:--|
 | [Arabic](ar.md) (page) | `ar` | research | Afro-Asiatic > Semitic > Central Semitic |
 | [Classical Arabic](https://tigregotico.github.io/orthography2ipa/#arb) | `arb` | research | Afro-Asiatic > Semitic > Central Semitic |
-
-### Chile
-
-| Spec | Code | Tier | Family |
-|:--|:--|:--|:--|
-| [Chilean Spanish](https://tigregotico.github.io/orthography2ipa/#es-CL) | `es-CL` | research | Indo-European > Italic > Romance > Ibero-Romance |
-
-Stubs (2): Northern Andean Chilean Spanish `es-CL-x-andino`, Chilote Spanish `es-CL-x-chilote`.
 
 ### China
 
@@ -1535,16 +1502,6 @@ Stubs (2): Northern Andean Chilean Spanish `es-CL-x-andino`, Chilote Spanish `es
 
 Stubs (301): Achang `acn`, Adi `adi`, Amdo Tibetan `adx`, Akeu `aeu`, Akha `ahk`, Ainu (China) `aib`, Ai-Cham `aih`, A'ou `aou`, Zaiwa `atb`, Alugu `aub`, Azha `aza`, Bugan `bbh`, Central Bai `bca`, Panyi Bai `bfc`, Southern Bai `bfs`, Bit `bgk`, Biao-Jiao Mien `bje`, Blang `blr`, Biao Mon `bmt`, Dzao Min `bpn`, Baima `bqh`, Baraamu `brd`, Younuo Bunu `buh`, Bumang `bvp`, Wunai Bunu `bwn`, Bu-Nao Bunu `bwx`, Pela `bxd`, Mongolia Buriat `bxm`, China Buriat `bxu`, Biao `byk`, Biyo `byo`, Bisu `bzi`, Choni `cda`, Eastern Min `cdo`, Chadong `cdy`, Idu-Mishmi `clk`, Northern Qiang `cng`, Northern Ping Chinese `cnp`, Cao Miao `cov`, Chinese Pidgin English `cpi`, Chuanqiandian Cluster Miao `cqd`, Chinese Sign Language `csl`, Cun `cuq`, Tai Ya `cuu`, Huizhou Chinese `czh`, Min Zhong Chinese `czo`, Northern Dong `doc`, Dolpo `dre`, Daur `dta`, Drung `duu`, Dzalakha `dzl`, E `eee`, Eastern Minyag `emq`, En `enc`, Enu `enu`, Horpa `ero`, Ersu `ers`, Gan Chinese `gan`, Garhwali `gbm`, Green Gelao `giq`, Red Gelao `gir`, Mulao `giu`, White Gelao `giw`, Guiqiong `gqi`, Qau `gqu`, Groma `gro`, Hakka Chinese `hak`, Northern Qiandong Miao `hea`, Hong Kong Sign Language `hks`, Hlersu `hle`, Southern Mashan Hmong `hma`, Central Huishui Hmong `hmc`, Large Flowery Miao `hmd`, Eastern Huishui Hmong `hme`, Southwestern Guiyang Hmong `hmg`, Southwestern Huishui Hmong `hmh`, Northern Huishui Hmong `hmi`, Ge `hmj`, Luopohe Hmong `hml`, Central Mashan Hmong `hmm`, Northern Mashan Hmong `hmp`, Eastern Qiandong Miao `hmq`, Southern Qiandong Miao `hms`, Hmong Dô `hmv`, Western Mashan Hmong `hmw`, Southern Guiyang Hmong `hmy`, Hmong Shua `hmz`, Hani `hni`, Hmong Njua `hnj`, Hainanese `hnm`, Honi `how`, Horned Miao `hrm`, Northern Guiyang Hmong `huj`, Hu `huo`, Tsat `huq`, Humla `hut`, Ili Turki `ili`, Iu Mien `ium`, sTodsde `jih`, Jiamao `jio`, Guanyinqiao `jiq`, Youle Jinuo `jiu`, Buyuan Jinuo `jiy`, Katso `kaf`, Kemiehua `kfj`, Kinnauri `kfk`, Kyerung `kgy`, Khuen `khf`, Khams Tibetan `khg`, Khotanese `kho`, Khmu `kjg`, Kháng `kjm`, Bumthangkha `kjz`, Kon Keu `kkn`, Southern Dong `kmc`, Nubri `kte`, Kaduo `ktp`, Kangjia `kxs`, Kang `kyp`, Qabiao `laq`, Lama Bai `lay`, Lakkia `lbc`, Tinani `lbf`, Ladakhi `lbj`, Lachi `lbt`, Lahu Shi `lhi`, Lhomi `lhm`, Lahu `lhu`, Hlai `lic`, Lisu `lis`, Kucong `lkc`, Lamu `llh`, Lopi `lov`, Lipo `lpo`, Tibetan Sign Language `lsn`, Middle Chinese `ltc`, White Lachi `lwh`, Laomian `lwm`, Lawu `lwu`, Literary Chinese (Classical Chinese) `lzh`, Digaro-Mishmi `mhu`, Maru `mhx`, Tu `mjg`, Kim Mun `mji`, Mak (China) `mkg`, Mulam `mlm`, Maonan `mmd`, Man Met `mml`, Western Xiangxi Miao `mmr`, Mok `mqt`, Mugom `muk`, Eastern Xiangxi Miao `muq`, Peripheral Mongolian `mvf`, Miju-Mishmi `mxj`, Southern Min (Minnan) `nan`, Eastern Nisu `nos`, Narua `nru`, Southern Nisu `nsd`, Northwestern Nisu `nsf`, Southwestern Nisu `nsv`, Nusu `nuf`, Anong `nun`, Nung (Viet Nam) `nut`, Naxi `nxq`, Old Chinese `och`, Lingao `onb`, Oroqen `orh`, Ruching Palaung `pce`, Pa Di `pdi`, Bonan `peh`, Pa-Hng `pha`, Phukha `phh`, Phana' `phq`, Shwe Palaung `pll`, Bolyu `ply`, Northern Pumi `pmi`, Southern Pumi `pmj`, Jiongnai Bunu `pnu`, Parauk `prk`, Queyu `qvy`, Southern Qiang `qxs`, Rawang `raw`, Rumai Palaung `rbb`, Riang Lang `ril`, Small Flowery Miao `sfm`, Sangkong `sgk`, She `shx`, Shaojiang Chinese `sjc`, Xibe `sjo`, Sila `slt`, Samei `smh`, Sarikoli `srh`, Samtao `stu`, Puroik `suv`, Sui `swi`, Shuhi `sxg`, T'en `tct`, Western Tamang `tdg`, Eastern Gorkha Tamang `tge`, Thangmi `thf`, Tai Hongjin `tiz`, Northern Tujia `tji`, Southern Tujia `tjs`, Tshangla `tsj`, Tseku `tsk`, Tsum `ttz`, Tai Dón `twh`, Tawang Monpa `twm`, Tuvan `tyv`, Tày `tyz`, U `uuu`, Awa (China) `vwa`, Wakhi `wbl`, Wa `wbm`, Western Minyag `wmg`, Wutunhua `wuh`, Wu Chinese `wuu`, Waxianghua `wxa`, Kuanhua `xnh`, Sherpa `xsr`, West Yugur `ybe`, Bokha `ybk`, Chesu `ych`, Chepya `ycp`, Gepo `ygp`, Baha Buyang `yha`, Hlepho Phowa `yhl`, Ache `yif`, Wusa Nasu `yig`, Dongshanba Lalo `yik`, Pholo `yip`, Miqie `yiq`, Eastern Lalu `yit`, Awu `yiu`, Northern Nisu `yiv`, Axi Yi `yix`, Azhe `yiz`, Khamnigan Mongol `ykh`, Khlula `ykl`, Kua-nsi `ykn`, Kathu `ykt`, Kuamasi `yku`, Limi `ylm`, Langnian Buyang `yln`, Naluo Yi `ylo`, Southern Muji `ymc`, Muda `ymd`, Mili `ymh`, Moji `ymi`, Qila Muji `ymq`, Northern Muji `ymx`, Muzi `ymz`, Aluo `yna`, Lang'e `yne`, Phala `ypa`, Labo Phowa `ypb`, Phola `ypg`, Phupha `yph`, Phuma `ypm`, Ani Phowa `ypn`, Alo Phola `ypo`, Phupa `ypp`, Phuza `ypz`, Yerong `yrn`, Samatao `ysd`, Sonaga `ysg`, Sani `ysn`, Nisi (China) `yso`, Southern Lolopo `ysp`, Sanie `ysy`, Talu `yta`, Tanglang `ytl`, Thopho `ytp`, Cantonese `yue`, East Yugur `yuy`, Western Lalu `ywl`, Wuding-Luquan Yi `ywq`, Xishanba Lalo `ywt`, Wumeng Nasu `ywu`, Ayizi `yyz`, E'ma Buyang `yzg`, Zokhuo `yzk`, Zauzou `zal`, Central Hongshuihe Zhuang `zch`, Eastern Hongshuihe Zhuang `zeh`, Guibei Zhuang `zgb`, Minz Zhuang `zgm`, Guibian Zhuang `zgn`, Zhaba `zhb`, Dai Zhuang `zhd`, Nong Zhuang `zhn`, Zakhring `zkr`, Liujiang Zhuang `zlj`, Lianshan Zhuang `zln`, Liuqian Zhuang `zlq`, Mang `zng`, Qiubei Zhuang `zqe`, Yang Zhuang `zyg`, Youjiang Zhuang `zyj`, Yongnan Zhuang `zyn`, Zuojiang Zhuang `zzj`.
 
-### Colombia
-
-| Spec | Code | Tier | Family |
-|:--|:--|:--|:--|
-| [Colombian Spanish (Bogotá)](https://tigregotico.github.io/orthography2ipa/#es-CO) | `es-CO` | skeleton | Indo-European > Italic > Romance > Ibero-Romance |
-| [Colombian Spanish (Coastal)](https://tigregotico.github.io/orthography2ipa/#es-CO-x-costa) | `es-CO-x-costa` | research | Indo-European > Italic > Romance > Ibero-Romance |
-| [Colombian Spanish (Paisa/Medellín)](https://tigregotico.github.io/orthography2ipa/#es-CO-x-paisa) | `es-CO-x-paisa` | skeleton | Indo-European > Italic > Romance > Ibero-Romance |
-
-Stubs (4): Llanero (Eastern Plains) Spanish `es-CO-x-llanero`, Pacific Colombian Spanish `es-CO-x-pacifico`, Santandereano Spanish `es-CO-x-santande`, Valluno (Valle del Cauca) Spanish `es-CO-x-valluno`.
-
 ### Comoros
 
 | Spec | Code | Tier | Family |
@@ -1556,7 +1513,6 @@ Stubs (4): Llanero (Eastern Plains) Spanish `es-CO-x-llanero`, Pacific Colombian
 
 | Spec | Code | Tier | Family |
 |:--|:--|:--|:--|
-| [Costa Rican Spanish](https://tigregotico.github.io/orthography2ipa/#es-CR) | `es-CR` | skeleton | Indo-European > Italic > Romance > Ibero-Romance |
 | [Yiddish](https://tigregotico.github.io/orthography2ipa/#yi) | `yi` | research | Indo-European > Germanic > Northwest Germanic > West Germanic |
 
 ### Country not recorded
@@ -1697,12 +1653,6 @@ Stubs (43): Tai Dam `blt`, Nyahkur `cbn`, Proto-Kartvelian (family node) `ccs`, 
 
 Stubs (6): Chakavian `ckm`, Croatia Sign Language `csq`, Carpathian Romani `rmc`, Balkan Romani `rmn`, Sinte Romani `rmo`, Istro-Romanian `ruo`.
 
-### Cuba
-
-| Spec | Code | Tier | Family |
-|:--|:--|:--|:--|
-| [Cuban Spanish](https://tigregotico.github.io/orthography2ipa/#es-CU) | `es-CU` | research | Indo-European > Italic > Romance > Ibero-Romance |
-
 ### Cyprus
 
 | Spec | Code | Tier | Family |
@@ -1745,20 +1695,6 @@ Stubs (1): Danish Sign Language `dsl`.
 | [Arabic](ar.md) (page) | `ar` | research | Afro-Asiatic > Semitic > Central Semitic |
 | [Classical Arabic](https://tigregotico.github.io/orthography2ipa/#arb) | `arb` | research | Afro-Asiatic > Semitic > Central Semitic |
 
-### Dominican Republic
-
-| Spec | Code | Tier | Family |
-|:--|:--|:--|:--|
-| [Dominican Spanish](https://tigregotico.github.io/orthography2ipa/#es-DO) | `es-DO` | research | Indo-European > Italic > Romance > Ibero-Romance |
-
-### Ecuador
-
-| Spec | Code | Tier | Family |
-|:--|:--|:--|:--|
-| [Ecuadorian Spanish](https://tigregotico.github.io/orthography2ipa/#es-EC) | `es-EC` | skeleton | Indo-European > Italic > Romance > Ibero-Romance |
-
-Stubs (2): Andean Ecuadorian Spanish `es-EC-x-andino`, Coastal Ecuadorian Spanish `es-EC-x-costa`.
-
 ### Egypt
 
 | Spec | Code | Tier | Family |
@@ -1767,16 +1703,6 @@ Stubs (2): Andean Ecuadorian Spanish `es-EC-x-andino`, Coastal Ecuadorian Spanis
 | [Classical Arabic](https://tigregotico.github.io/orthography2ipa/#arb) | `arb` | research | Afro-Asiatic > Semitic > Central Semitic |
 | [Modern Greek](https://tigregotico.github.io/orthography2ipa/#el) | `el` | research | Indo-European > Hellenic |
 | [Domari](https://tigregotico.github.io/orthography2ipa/#rmt) | `rmt` | skeleton | Indo-European |
-
-### El Salvador
-
-Stubs (1): Salvadoran Spanish `es-SV`.
-
-### Equatorial Guinea
-
-| Spec | Code | Tier | Family |
-|:--|:--|:--|:--|
-| [Equatoguinean Spanish](https://tigregotico.github.io/orthography2ipa/#es-GQ) | `es-GQ` | skeleton | Indo-European > Italic > Romance > Ibero-Romance |
 
 ### Eritrea
 
@@ -1931,22 +1857,6 @@ Stubs (11): Arvanitika `aat`, Balkan Gagauz Turkish `bgx`, Eteocretan `ecr`, Gre
 | [Danish](https://tigregotico.github.io/orthography2ipa/#da) | `da` | research | Indo-European > Germanic > Northwest Germanic > North Germanic |
 
 Stubs (1): Danish Sign Language `dsl`.
-
-### Guatemala
-
-| Spec | Code | Tier | Family |
-|:--|:--|:--|:--|
-| [Guatemalan Spanish](https://tigregotico.github.io/orthography2ipa/#es-GT) | `es-GT` | skeleton | Indo-European > Italic > Romance > Ibero-Romance |
-
-### Guinea-Bissau
-
-| Spec | Code | Tier | Family |
-|:--|:--|:--|:--|
-| [Guinea-Bissau Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-GW) | `pt-GW` | research | Indo-European > Italic > Romance > Ibero-Romance |
-
-### Honduras
-
-Stubs (1): Honduran Spanish `es-HN`.
 
 ### Hong Kong SAR China
 
@@ -2353,12 +2263,7 @@ Stubs (1): Maltese Sign Language `mdl`.
 
 | Spec | Code | Tier | Family |
 |:--|:--|:--|:--|
-| [Mexican Spanish (Highland)](https://tigregotico.github.io/orthography2ipa/#es-MX) | `es-MX` | research | Indo-European > Italic > Romance > Ibero-Romance |
-| [Mexican Spanish (Coastal)](https://tigregotico.github.io/orthography2ipa/#es-MX-x-costa) | `es-MX-x-costa` | research | Indo-European > Italic > Romance > Ibero-Romance |
-| [Yucatec Mexican Spanish](https://tigregotico.github.io/orthography2ipa/#es-MX-x-yucatan) | `es-MX-x-yucatan` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Venetian](https://tigregotico.github.io/orthography2ipa/#vec) | `vec` | research | Indo-European > Italic > Romance > Italo-Romance |
-
-Stubs (1): Northern Mexican Spanish `es-MX-x-norte`.
 
 ### Moldova
 
@@ -2417,12 +2322,6 @@ Stubs (3): Carpathian Romani `rmc`, Balkan Romani `rmn`, Sinte Romani `rmo`.
 | [Arabic](ar.md) (page) | `ar` | research | Afro-Asiatic > Semitic > Central Semitic |
 | [Classical Arabic](https://tigregotico.github.io/orthography2ipa/#arb) | `arb` | research | Afro-Asiatic > Semitic > Central Semitic |
 | [Ladino (Judeo-Spanish)](https://tigregotico.github.io/orthography2ipa/#lad) | `lad` | research | Indo-European > Italic > Romance > Ibero-Romance |
-
-### Mozambique
-
-| Spec | Code | Tier | Family |
-|:--|:--|:--|:--|
-| [Mozambican Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-MZ) | `pt-MZ` | research | Indo-European > Italic > Romance > Ibero-Romance |
 
 ### Myanmar (Burma)
 
@@ -2484,12 +2383,6 @@ Stubs (107): Aimol `aim`, Angika `anp`, Athpariya `aph`, Bantawa `bap`, Byangsi 
 | [Romani](https://tigregotico.github.io/orthography2ipa/#rom) | `rom` | research | Indo-European > Indo-Iranian > Indo-Aryan |
 
 Stubs (14): Achterhoeks `act`, Drents `drt`, Dutch Sign Language `dse`, Gronings `gos`, Carpathian Romani `rmc`, Balkan Romani `rmn`, Sinte Romani `rmo`, Sallands `sdz`, Stellingwerfs `stl`, Twents `twd`, Veluws `vel`, West Flemish `vls`, Yeniche `yec`, Zeelandic `zea`.
-
-### Nicaragua
-
-| Spec | Code | Tier | Family |
-|:--|:--|:--|:--|
-| [Nicaraguan Spanish](https://tigregotico.github.io/orthography2ipa/#es-NI) | `es-NI` | research | Indo-European > Italic > Romance > Ibero-Romance |
 
 ### North Korea
 
@@ -2583,23 +2476,7 @@ Stubs (68): Aer `aeq`, Southern Balochi `bcc`, Badeshi `bdz`, Balti `bft`, Weste
 
 | Spec | Code | Tier | Family |
 |:--|:--|:--|:--|
-| [Panamanian Spanish](https://tigregotico.github.io/orthography2ipa/#es-PA) | `es-PA` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Yiddish](https://tigregotico.github.io/orthography2ipa/#yi) | `yi` | research | Indo-European > Germanic > Northwest Germanic > West Germanic |
-
-### Paraguay
-
-| Spec | Code | Tier | Family |
-|:--|:--|:--|:--|
-| [Paraguayan Spanish](https://tigregotico.github.io/orthography2ipa/#es-PY) | `es-PY` | skeleton | Indo-European > Italic > Romance > Ibero-Romance |
-
-### Peru
-
-| Spec | Code | Tier | Family |
-|:--|:--|:--|:--|
-| [Peruvian Spanish (Andean)](https://tigregotico.github.io/orthography2ipa/#es-PE) | `es-PE` | skeleton | Indo-European > Italic > Romance > Ibero-Romance |
-| [Peruvian Spanish (Lima)](https://tigregotico.github.io/orthography2ipa/#es-PE-x-lima) | `es-PE-x-lima` | skeleton | Indo-European > Italic > Romance > Ibero-Romance |
-
-Stubs (2): Amazonic Peruvian Spanish `es-PE-x-amazonia`, Andean Peruvian Spanish `es-PE-x-andino`.
 
 ### Poland
 
@@ -2631,6 +2508,7 @@ Stubs (8): Prussian `prg`, Polish Sign Language `pso`, Carpathian Romani `rmc`, 
 | [Medieval Asturian-Leonese of Portugal](https://tigregotico.github.io/orthography2ipa/#ast-PT-x-medieval) | `ast-PT-x-medieval` | research | Indo-European > Italic > Romance > Ibero-Romance > Asturleonese |
 | [Rionorese](https://tigregotico.github.io/orthography2ipa/#ast-PT-x-rionor) | `ast-PT-x-rionor` | research | Indo-European > Italic > Romance > Ibero-Romance > Asturleonese |
 | [Extremaduran](https://tigregotico.github.io/orthography2ipa/#ext) | `ext` | research | Indo-European > Italic > Romance > Ibero-Romance |
+| [Barranquenho](https://tigregotico.github.io/orthography2ipa/#ext-PT-x-barranco) | `ext-PT-x-barranco` | research | Mixed Language |
 | [A Fala (Xalimego)](https://tigregotico.github.io/orthography2ipa/#fax) | `fax` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Mirandese](mwl.md) (page) | `mwl` | research | Indo-European > Italic > Romance > Ibero-Romance > Asturleonese |
 | [European Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-PT) | `pt-PT` | research | Indo-European > Italic > Romance > Ibero-Romance |
@@ -2979,12 +2857,6 @@ Stubs (8): Carpathian Romani `rmc`, Balkan Romani `rmn`, Sinte Romani `rmo`, Swi
 
 Stubs (4): Western Neo-Aramaic `amw`, North Mesopotamian Arabic `ayp`, Chaldean Neo-Aramaic `cld`, Lomavren `rmi`.
 
-### São Tomé & Príncipe
-
-| Spec | Code | Tier | Family |
-|:--|:--|:--|:--|
-| [São Tomé and Príncipe Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-ST) | `pt-ST` | research | Indo-European > Italic > Romance > Ibero-Romance |
-
 ### Taiwan
 
 | Spec | Code | Tier | Family |
@@ -3027,12 +2899,6 @@ Stubs (9): Tajiki Arabic `abh`, Ishkashimi `isk`, Parya `paq`, Southern Pashto `
 | [Thai](https://tigregotico.github.io/orthography2ipa/#th) | `th` | research | Tai-Kadai |
 
 Stubs (63): Akeu `aeu`, Akha `ahk`, Ban Khor Sign Language `bfk`, Pa'O `blk`, Blang `blr`, Western Bru `brv`, Bwe Karen `bwe`, Bisu `bzi`, Western Cham `cja`, Chong `cog`, Chiangmai Sign Language `csd`, Eastern Kayah `eky`, Hmong Njua `hnj`, Iu Mien `ium`, Jehai `jhi`, Kuy `kdt`, Khmu `kjg`, Pwo Eastern Karen `kjp`, Phrae Pwo Karen `kjt`, Khün `kkh`, Kintaq `knq`, Kensiu `kns`, Northern Khmer `kxm`, Rmeet `lbn`, Western Lawa `lcp`, Lahu Shi `lhi`, Lahu `lhu`, Lisu `lis`, Kedah Malay `meo`, Pattani Malay `mfa`, Moklen `mkm`, Mal `mlf`, Mon `mnw`, Mpi `mpz`, Mok `mqt`, Mlabri `mra`, Moken `mwt`, Northern Thai `nod`, Nyeu `nyl`, Nyaw `nyw`, Ruching Palaung `pce`, Kayan `pdu`, Phunoi `pho`, Phu Thai `pht`, Phuan `phu`, Phai `prt`, Pwo Northern Karen `pww`, Sa'och `scq`, Saek `skb`, Thai Song `soa`, Southern Thai `sou`, Sô `sss`, Samtao `stu`, Samre `sxm`, Aheu `thm`, Ten'edn `tnz`, Thai Sign Language `tsq`, Northeastern Thai `tts`, Ugong `ugo`, Yong `yno`, Yoy `yoy`, Malay (individual language) `zlm`, Mang `zng`.
-
-### Timor-Leste
-
-| Spec | Code | Tier | Family |
-|:--|:--|:--|:--|
-| [East Timorese Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-TL) | `pt-TL` | research | Indo-European > Italic > Romance > Ibero-Romance |
 
 ### Togo
 
@@ -3134,6 +3000,8 @@ Stubs (8): Jakati `jat`, Krymchak `jct`, Karaim `kdr`, Carpathian Romani `rmc`, 
 |:--|:--|:--|:--|
 | [Old English (Anglo-Saxon)](https://tigregotico.github.io/orthography2ipa/#ang) | `ang` | research | Indo-European > Germanic > Northwest Germanic > West Germanic |
 | [Welsh](https://tigregotico.github.io/orthography2ipa/#cy) | `cy` | research | Indo-European > Celtic > Brythonic |
+| [British English (RP)](https://tigregotico.github.io/orthography2ipa/#en-GB) | `en-GB` | research | Indo-European > Germanic > Northwest Germanic > West Germanic |
+| [Scottish English](https://tigregotico.github.io/orthography2ipa/#en-GB-x-scotland) | `en-GB-x-scotland` | skeleton | Indo-European > Germanic > Northwest Germanic > West Germanic |
 | [Middle English](https://tigregotico.github.io/orthography2ipa/#enm) | `enm` | research | Indo-European > Germanic > Northwest Germanic > West Germanic |
 | [Irish](https://tigregotico.github.io/orthography2ipa/#ga) | `ga` | research | Indo-European > Celtic > Goidelic |
 | [Scottish Gaelic](https://tigregotico.github.io/orthography2ipa/#gd) | `gd` | research | Indo-European > Celtic > Goidelic |
@@ -3184,14 +3052,6 @@ Stubs (6): Tajiki Arabic `abh`, Uzbeki Arabic `auz`, Bukharic `bhh`, Parya `paq`
 
 Stubs (1): Monastic Sign Language `mzg`.
 
-### Venezuela
-
-| Spec | Code | Tier | Family |
-|:--|:--|:--|:--|
-| [Venezuelan Spanish](https://tigregotico.github.io/orthography2ipa/#es-VE) | `es-VE` | research | Indo-European > Italic > Romance > Ibero-Romance |
-
-Stubs (3): Andean Venezuelan Spanish `es-VE-x-andino`, Venezuelan Llanero Spanish `es-VE-x-llanero`, Maracucho (Zuliano) Spanish `es-VE-x-zulia`.
-
 ### Vietnam
 
 | Spec | Code | Tier | Family |
@@ -3235,12 +3095,6 @@ Stubs (1): Finnish Sign Language `fse`.
 | [Nigerian Pidgin (Naijá)](https://tigregotico.github.io/orthography2ipa/#pcm) | `pcm` | research | Creole |
 | [Aquitanian (Proto-Basque)](https://tigregotico.github.io/orthography2ipa/#xaq) | `xaq` | research | Vasconic |
 
-### Portugal
-
-| Spec | Code | Tier | Family |
-|:--|:--|:--|:--|
-| [Barranquenho](https://tigregotico.github.io/orthography2ipa/#ext-PT-x-barranco) | `ext-PT-x-barranco` | research | Mixed Language |
-
 ## North America
 
 ### Anguilla
@@ -3278,6 +3132,7 @@ Stubs (1): Virgin Islands Creole English `vic`.
 | [Atikamekw](https://tigregotico.github.io/orthography2ipa/#atj) | `atj` | research | Algic |
 | [Cayuga](https://tigregotico.github.io/orthography2ipa/#cay) | `cay` | research | Iroquoian |
 | [Dakota](https://tigregotico.github.io/orthography2ipa/#dak) | `dak` | research | Siouan |
+| [Canadian English](https://tigregotico.github.io/orthography2ipa/#en-CA) | `en-CA` | skeleton | Indo-European > Germanic > Northwest Germanic > West Germanic |
 | [Iñupiaq](https://tigregotico.github.io/orthography2ipa/#ik) | `ik` | research | Eskimo-Aleut |
 | [Inuktitut, Eastern Canadian (Latin script)](https://tigregotico.github.io/orthography2ipa/#iu-Latn) | `iu-Latn` | skeleton | Eskimo-Aleut |
 | [Lakota](https://tigregotico.github.io/orthography2ipa/#lkt) | `lkt` | research | Siouan |
@@ -3298,6 +3153,10 @@ Stubs (1): Virgin Islands Creole English `vic`.
 Stubs (2): Islander Creole English `icr`, Providencia Sign Language `prz`.
 
 ### Costa Rica
+
+| Spec | Code | Tier | Family |
+|:--|:--|:--|:--|
+| [Costa Rican Spanish](https://tigregotico.github.io/orthography2ipa/#es-CR) | `es-CR` | skeleton | Indo-European > Italic > Romance > Ibero-Romance |
 
 Stubs (9): Boruca `brn`, Bribri `bzd`, Cabécar `cjp`, Costa Rican Sign Language `csr`, Maléku Jaíka `gut`, Ngäbere `gym`, Bribri Sign Language `rib`, Brunca Sign Language `rnb`, Teribe `tfr`.
 
@@ -3328,6 +3187,10 @@ Stubs (2): Carrier `crx`, Nahuatl `nah`.
 
 ### Cuba
 
+| Spec | Code | Tier | Family |
+|:--|:--|:--|:--|
+| [Cuban Spanish](https://tigregotico.github.io/orthography2ipa/#es-CU) | `es-CU` | research | Indo-European > Italic > Romance > Ibero-Romance |
+
 Stubs (2): Cuba Sign Language `csf`, Lucumi `luq`.
 
 ### Denmark
@@ -3344,6 +3207,7 @@ Stubs (1): Antigua and Barbuda Creole English `aig`.
 
 | Spec | Code | Tier | Family |
 |:--|:--|:--|:--|
+| [Dominican Spanish](https://tigregotico.github.io/orthography2ipa/#es-DO) | `es-DO` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Haitian Creole](https://tigregotico.github.io/orthography2ipa/#ht) | `ht` | research | French Creole |
 
 Stubs (1): Dominican Sign Language `doq`.
@@ -3354,7 +3218,7 @@ Stubs (1): Dominican Sign Language `doq`.
 |:--|:--|:--|:--|
 | [Nawat](https://tigregotico.github.io/orthography2ipa/#ppl) | `ppl` | research | Uto-Aztecan |
 
-Stubs (3): Salvadoran Sign Language `esn`, Kekchí `kek`, Poqomam `poc`.
+Stubs (4): Salvadoran Spanish `es-SV`, Salvadoran Sign Language `esn`, Kekchí `kek`, Poqomam `poc`.
 
 ### Greenland
 
@@ -3375,6 +3239,7 @@ Stubs (1): Guadeloupean Creole French `gcf`.
 | Spec | Code | Tier | Family |
 |:--|:--|:--|:--|
 | [Garifuna](https://tigregotico.github.io/orthography2ipa/#cab) | `cab` | skeleton | Arawakan |
+| [Guatemalan Spanish](https://tigregotico.github.io/orthography2ipa/#es-GT) | `es-GT` | skeleton | Indo-European > Italic > Romance > Ibero-Romance |
 | [Mam](https://tigregotico.github.io/orthography2ipa/#mam) | `mam` | skeleton | Mayan |
 | [K'iche'](https://tigregotico.github.io/orthography2ipa/#quc) | `quc` | skeleton | Mayan |
 
@@ -3394,7 +3259,7 @@ Stubs (1): Haitian Vodoun Culture Language `hvc`.
 |:--|:--|:--|:--|
 | [Garifuna](https://tigregotico.github.io/orthography2ipa/#cab) | `cab` | skeleton | Arawakan |
 
-Stubs (6): Chortí `caa`, Honduras Sign Language `hds`, Tol `jic`, Mískito `miq`, Pech `pay`, Mayangna `yan`.
+Stubs (7): Chortí `caa`, Honduran Spanish `es-HN`, Honduras Sign Language `hds`, Tol `jic`, Mískito `miq`, Pech `pay`, Mayangna `yan`.
 
 ### Jamaica
 
@@ -3412,6 +3277,9 @@ Stubs (1): Guadeloupean Creole French `gcf`.
 
 | Spec | Code | Tier | Family |
 |:--|:--|:--|:--|
+| [Mexican Spanish (Highland)](https://tigregotico.github.io/orthography2ipa/#es-MX) | `es-MX` | research | Indo-European > Italic > Romance > Ibero-Romance |
+| [Mexican Spanish (Coastal)](https://tigregotico.github.io/orthography2ipa/#es-MX-x-costa) | `es-MX-x-costa` | research | Indo-European > Italic > Romance > Ibero-Romance |
+| [Yucatec Mexican Spanish](https://tigregotico.github.io/orthography2ipa/#es-MX-x-yucatan) | `es-MX-x-yucatan` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Mam](https://tigregotico.github.io/orthography2ipa/#mam) | `mam` | skeleton | Mayan |
 | [Classical Nahuatl](https://tigregotico.github.io/orthography2ipa/#nci) | `nci` | research | Uto-Aztecan |
 | [Central Nahuatl](https://tigregotico.github.io/orthography2ipa/#nhn) | `nhn` | research | Uto-Aztecan |
@@ -3419,7 +3287,7 @@ Stubs (1): Guadeloupean Creole French `gcf`.
 | [K'iche'](https://tigregotico.github.io/orthography2ipa/#quc) | `quc` | skeleton | Mayan |
 | [Copala Triqui](https://tigregotico.github.io/orthography2ipa/#trc) | `trc` | skeleton | Otomanguean |
 
-Stubs (276): Afro-Seminole Creole `afs`, Guerrero Amuzgo `amu`, Eastern Durango Nahuatl `azd`, San Pedro Amuzgos Amuzgo `azg`, Ipalapa Amuzgo `azm`, Western Durango Nahuatl `azn`, Highland Puebla Nahuatl `azz`, Chuj `cac`, Comaltepec Chinantec `cco`, Highland Oaxaca Chontal `chd`, Tabasco Chontal `chf`, Ojitlán Chinantec `chj`, Quiotepec Chinantec `chq`, Ozumacín Chinantec `chz`, Chiapanec `cip`, Lealao Chinantec `cle`, Lowland Oaxaca Chontal `clo`, Eastern Highland Chatino `cly`, Lalana Chinantec `cnl`, Tepetotutla Chinantec `cnt`, Cocopa `coc`, Santa Teresa Cora `cok`, Chochotec `coz`, Palantla Chinantec `cpa`, El Nayar Cora `crn`, Chiltepec Chinantec `csa`, Sochiapam Chinantec `cso`, Tataltepec Chatino `cta`, Tepinapa Chinantec `cte`, Tlacoatzintepec Chinantec `ctl`, Western Highland Chatino `ctp`, Chol `ctu`, Zacatepec Chatino `ctz`, Usila Chinantec `cuc`, Teutila Cuicatec `cut`, Tepeuxila Cuicatec `cux`, Cuitlatec `cuy`, Valle Nacional Chinantec `cvn`, Nopala Chatino `cya`, Zenzontepec Chatino `czn`, Kumiai `dih`, Huichol `hch`, San Francisco Del Mar Huave `hue`, Huastec `hus`, San Mateo Del Mar Huave `huv`, San Dionisio Del Mar Huave `hve`, Santa María Del Mar Huave `hvv`, Ixcatec `ixc`, Popti' `jac`, Western Juxtlahuaca Mixtec `jmx`, Kickapoo `kic`, Kiliwa `klb`, Western Kanjobal `knj`, Lacandon `lac`, Albarradas Sign Language `lsc`, San Jerónimo Tecóatl Mazatec `maa`, Yutanduchi Mixtec `mab`, Jalapa De Díaz Mazatec `maj`, Chiquihuitlán Mazatec `maq`, San Francisco Matlatzinca `mat`, Huautla Mazatec `mau`, Central Mazahua `maz`, Amoltepec Mixtec `mbz`, Itundujia Mixtec `mce`, Coatlán Mixe `mco`, Santa Lucía Monteverde Mixtec `mdv`, Southwestern Tlaxiaco Mixtec `meh`, Mexican Sign Language `mfs`, Mayo `mfy`, Mocho `mhc`, Atatláhuca Mixtec `mib`, Ocotepec Mixtec `mie`, San Miguel El Grande Mixtec `mig`, Chayuco Mixtec `mih`, Chigmecatitlán Mixtec `mii`, Peñoles Mixtec `mil`, Alacatlatzala Mixtec `mim`, Pinotepa Nacional Mixtec `mio`, Apasco-Apoala Mixtec `mip`, Isthmus Mixe `mir`, Southern Puebla Mixtec `mit`, Cacaloxtepec Mixtec `miu`, Mixtepec Mixtec `mix`, Ayutla Mixtec `miy`, Coatzospan Mixtec `miz`, San Juan Colorado Mixtec `mjc`, Silacayoapan Mixtec `mks`, Michoacán Mazahua `mmc`, Yosondúa Mixtec `mpm`, Tlazoyaltepec Mixtec `mqh`, Yucatec Maya Sign Language `msd`, Totontepec Mixe `mto`, Tututepec Mixtec `mtu`, Tidaá Mixtec `mtx`, Yucuañe Mixtec `mvg`, Northwest Oaxaca Mixtec `mxa`, Tezoatlán Mixtec `mxb`, Tlahuitoltepec Mixe `mxp`, Juquila Mixe `mxq`, Huitepec Mixtec `mxs`, Jamiltepec Mixtec `mxt`, Metlatónoc Mixtec `mxv`, Southeastern Nochixtlán Mixtec `mxy`, Santa María Zacatepec Mixtec `mza`, Ixcatlán Mazatec `mzi`, Mazatlán Mixe `mzl`, Coatepec Nahuatl `naz`, Central Huasteca Nahuatl `nch`, Northern Puebla Nahuatl `ncj`, Michoacán Nahuatl `ncl`, Central Puebla Nahuatl `ncx`, North Central Mixe `neq`, Guerrero Nahuatl `ngu`, Eastern Huasteca Nahuatl `nhe`, Zacatlán-Ahuacatlán-Tepetzintla Nahuatl `nhi`, Isthmus-Cosoleacaque Nahuatl `nhk`, Morelos Nahuatl `nhm`, Isthmus-Pajapan Nahuatl `nhp`, Huaxcaleca Nahuatl `nhq`, Ometepec Nahuatl `nht`, Temascaltepec Nahuatl `nhv`, Northern Oaxaca Nahuatl `nhy`, Santa María La Alta Nahuatl `nhz`, Orizaba Nahuatl `nlv`, Southeastern Puebla Nahuatl `npl`, Sierra Negra Nahuatl `nsu`, Northern Tepehuan `ntp`, Tlamacazapa Nahuatl `nuz`, Atzingo Matlatzinca `ocu`, Tohono O'odham `ood`, Mezquital Otomi `ote`, Tilapa Otomi `otl`, Eastern Highland Otomi `otm`, Tenango Otomi `otn`, Querétaro Otomi `otq`, Estado de México Otomi `ots`, Temoaya Otomi `ott`, Texcatepec Otomi `otx`, Ixtenco Otomi `otz`, Mezontla Popoloca `pbe`, Coyotepec Popoloca `pbf`, Puebla Mazatec `pbm`, Central Pame `pbs`, Santa Inés Ahuatempan Popoloca `pca`, Chichimeca-Jonaz `pei`, Pima Bajo `pia`, Oluta Popoluca `plo`, San Marcos Tlacoyalco Popoloca `pls`, Northern Pame `pmq`, San Juan Atzingo Popoloca `poe`, Highland Popoluca `poi`, Texistepec Popoluca `poq`, Sayula Popoluca `pos`, San Felipe Otlaltepec Popoloca `pow`, Paipai `ppi`, San Luís Temalacayuca Popoloca `pps`, Western Highland Purepecha `pua`, Quetzaltepec Mixe `pxm`, Seri `sei`, Southeastern Tepehuan `stp`, Lowland Tarahumara `tac`, Central Tarahumara `tar`, Malinaltepec Me'phaa `tcf`, Southeastern Tarahumara `tcu`, Tecpatlán Totonac `tcw`, Huehuetla Tepehua `tee`, Northern Tarahumara `thh`, Upper Necaxa Totonac `tku`, Southwestern Tepehuan `tla`, Yecuatla Totonac `tlc`, Filomena Mata-Coahuitlán Totonac `tlp`, Coyutla Totonac `toc`, Tojolabal `toj`, Xicotepec De Juárez Totonac `too`, Papantla Totonac `top`, Highland Totonac `tos`, Azoyú Me'phaa `tpc`, Tlacoapa Me'phaa `tpl`, Pisaflores Tepehua `tpp`, Tlachichilco Tepehua `tpt`, Acatepec Me'phaa `tpx`, Western Totonac `tqt`, San Martín Itunyoso Triqui `trq`, Chicahuaxtla Triqui `trs`, Purepecha `tsz`, Tektiteko `ttc`, Southwestern Tarahumara `twr`, Tzeltal `tzh`, Tzotzil `tzo`, Huarijio `var`, Juxtlahuaca Mixtec `vmc`, Ixtayutla Mixtec `vmj`, Mitlatongo Mixtec `vmm`, Soyaltepec Mazatec `vmp`, Soyaltepec Mixtec `vmq`, Tamazola Mixtec `vmx`, Ayautla Mazatec `vmy`, Mazatlán Mazatec `vmz`, Alcozauca Mixtec `xta`, Chazumba Mixtec `xtb`, Diuxi-Tilantongo Mixtec `xtd`, Sinicahua Mixtec `xti`, San Juan Teita Mixtec `xtj`, Tijaltepec Mixtec `xtl`, Magdalena Peñasco Mixtec `xtm`, Northern Tlaxiaco Mixtec `xtn`, San Miguel Piedras Mixtec `xtp`, Sindihui Mixtec `xts`, Tacahua Mixtec `xtt`, Cuyamecalco Mixtec `xtu`, Yoloxochitl Mixtec `xty`, Yaqui `yaq`, Yucatec Maya `yua`, Sierra de Juárez Zapotec `zaa`, Western Tlacolula Valley Zapotec `zab`, Ocotlán Zapotec `zac`, Cajonos Zapotec `zad`, Yareni Zapotec `zae`, Ayoquesco Zapotec `zaf`, Isthmus Zapotec `zai`, Miahuatlán Zapotec `zam`, Ozolotepec Zapotec `zao`, Aloápam Zapotec `zaq`, Rincón Zapotec `zar`, Santo Domingo Albarradas Zapotec `zas`, Tabaa Zapotec `zat`, Yatzachi Zapotec `zav`, Mitla Zapotec `zaw`, Xadani Zapotec `zax`, Coatecas Altas Zapotec `zca`, Las Delicias Zapotec `zcd`, Copainalá Zoque `zoc`, Chimalapa Zoque `zoh`, Asunción Mixtepec Zapotec `zoo`, Tabasco Zoque `zoq`, Rayón Zoque `zor`, Francisco León Zoque `zos`, Lachiguiri Zapotec `zpa`, Yautepec Zapotec `zpb`, Choapan Zapotec `zpc`, Southeastern Ixtlán Zapotec `zpd`, Petapa Zapotec `zpe`, San Pedro Quiatoni Zapotec `zpf`, Guevea De Humboldt Zapotec `zpg`, Totomachapan Zapotec `zph`, Santa María Quiegolani Zapotec `zpi`, Quiavicuzas Zapotec `zpj`, Tlacolulita Zapotec `zpk`, Lachixío Zapotec `zpl`, Mixtepec Zapotec `zpm`, Santa Inés Yatzechi Zapotec `zpn`, Amatlán Zapotec `zpo`, El Alto Zapotec `zpp`, Zoogocho Zapotec `zpq`, Santiago Xanica Zapotec `zpr`, Coatlán Zapotec `zps`, San Vicente Coatlán Zapotec `zpt`, Yalálag Zapotec `zpu`, Chichicapan Zapotec `zpv`, Zaniza Zapotec `zpw`, San Baltazar Loxicha Zapotec `zpx`, Mazaltepec Zapotec `zpy`, Texmelucan Zapotec `zpz`, Southern Rincon Zapotec `zsr`, Elotepec Zapotec `zte`, Xanaguía Zapotec `ztg`, Lapaguía-Guivini Zapotec `ztl`, San Agustín Mixtepec Zapotec `ztm`, Santa Catarina Albarradas Zapotec `ztn`, Loxicha Zapotec `ztp`, Quioquitani-Quierí Zapotec `ztq`, Tilquiapan Zapotec `zts`, Tejalapan Zapotec `ztt`, Güilá Zapotec `ztu`, Zaachila Zapotec `ztx`, Yatee Zapotec `zty`.
+Stubs (277): Afro-Seminole Creole `afs`, Guerrero Amuzgo `amu`, Eastern Durango Nahuatl `azd`, San Pedro Amuzgos Amuzgo `azg`, Ipalapa Amuzgo `azm`, Western Durango Nahuatl `azn`, Highland Puebla Nahuatl `azz`, Chuj `cac`, Comaltepec Chinantec `cco`, Highland Oaxaca Chontal `chd`, Tabasco Chontal `chf`, Ojitlán Chinantec `chj`, Quiotepec Chinantec `chq`, Ozumacín Chinantec `chz`, Chiapanec `cip`, Lealao Chinantec `cle`, Lowland Oaxaca Chontal `clo`, Eastern Highland Chatino `cly`, Lalana Chinantec `cnl`, Tepetotutla Chinantec `cnt`, Cocopa `coc`, Santa Teresa Cora `cok`, Chochotec `coz`, Palantla Chinantec `cpa`, El Nayar Cora `crn`, Chiltepec Chinantec `csa`, Sochiapam Chinantec `cso`, Tataltepec Chatino `cta`, Tepinapa Chinantec `cte`, Tlacoatzintepec Chinantec `ctl`, Western Highland Chatino `ctp`, Chol `ctu`, Zacatepec Chatino `ctz`, Usila Chinantec `cuc`, Teutila Cuicatec `cut`, Tepeuxila Cuicatec `cux`, Cuitlatec `cuy`, Valle Nacional Chinantec `cvn`, Nopala Chatino `cya`, Zenzontepec Chatino `czn`, Kumiai `dih`, Northern Mexican Spanish `es-MX-x-norte`, Huichol `hch`, San Francisco Del Mar Huave `hue`, Huastec `hus`, San Mateo Del Mar Huave `huv`, San Dionisio Del Mar Huave `hve`, Santa María Del Mar Huave `hvv`, Ixcatec `ixc`, Popti' `jac`, Western Juxtlahuaca Mixtec `jmx`, Kickapoo `kic`, Kiliwa `klb`, Western Kanjobal `knj`, Lacandon `lac`, Albarradas Sign Language `lsc`, San Jerónimo Tecóatl Mazatec `maa`, Yutanduchi Mixtec `mab`, Jalapa De Díaz Mazatec `maj`, Chiquihuitlán Mazatec `maq`, San Francisco Matlatzinca `mat`, Huautla Mazatec `mau`, Central Mazahua `maz`, Amoltepec Mixtec `mbz`, Itundujia Mixtec `mce`, Coatlán Mixe `mco`, Santa Lucía Monteverde Mixtec `mdv`, Southwestern Tlaxiaco Mixtec `meh`, Mexican Sign Language `mfs`, Mayo `mfy`, Mocho `mhc`, Atatláhuca Mixtec `mib`, Ocotepec Mixtec `mie`, San Miguel El Grande Mixtec `mig`, Chayuco Mixtec `mih`, Chigmecatitlán Mixtec `mii`, Peñoles Mixtec `mil`, Alacatlatzala Mixtec `mim`, Pinotepa Nacional Mixtec `mio`, Apasco-Apoala Mixtec `mip`, Isthmus Mixe `mir`, Southern Puebla Mixtec `mit`, Cacaloxtepec Mixtec `miu`, Mixtepec Mixtec `mix`, Ayutla Mixtec `miy`, Coatzospan Mixtec `miz`, San Juan Colorado Mixtec `mjc`, Silacayoapan Mixtec `mks`, Michoacán Mazahua `mmc`, Yosondúa Mixtec `mpm`, Tlazoyaltepec Mixtec `mqh`, Yucatec Maya Sign Language `msd`, Totontepec Mixe `mto`, Tututepec Mixtec `mtu`, Tidaá Mixtec `mtx`, Yucuañe Mixtec `mvg`, Northwest Oaxaca Mixtec `mxa`, Tezoatlán Mixtec `mxb`, Tlahuitoltepec Mixe `mxp`, Juquila Mixe `mxq`, Huitepec Mixtec `mxs`, Jamiltepec Mixtec `mxt`, Metlatónoc Mixtec `mxv`, Southeastern Nochixtlán Mixtec `mxy`, Santa María Zacatepec Mixtec `mza`, Ixcatlán Mazatec `mzi`, Mazatlán Mixe `mzl`, Coatepec Nahuatl `naz`, Central Huasteca Nahuatl `nch`, Northern Puebla Nahuatl `ncj`, Michoacán Nahuatl `ncl`, Central Puebla Nahuatl `ncx`, North Central Mixe `neq`, Guerrero Nahuatl `ngu`, Eastern Huasteca Nahuatl `nhe`, Zacatlán-Ahuacatlán-Tepetzintla Nahuatl `nhi`, Isthmus-Cosoleacaque Nahuatl `nhk`, Morelos Nahuatl `nhm`, Isthmus-Pajapan Nahuatl `nhp`, Huaxcaleca Nahuatl `nhq`, Ometepec Nahuatl `nht`, Temascaltepec Nahuatl `nhv`, Northern Oaxaca Nahuatl `nhy`, Santa María La Alta Nahuatl `nhz`, Orizaba Nahuatl `nlv`, Southeastern Puebla Nahuatl `npl`, Sierra Negra Nahuatl `nsu`, Northern Tepehuan `ntp`, Tlamacazapa Nahuatl `nuz`, Atzingo Matlatzinca `ocu`, Tohono O'odham `ood`, Mezquital Otomi `ote`, Tilapa Otomi `otl`, Eastern Highland Otomi `otm`, Tenango Otomi `otn`, Querétaro Otomi `otq`, Estado de México Otomi `ots`, Temoaya Otomi `ott`, Texcatepec Otomi `otx`, Ixtenco Otomi `otz`, Mezontla Popoloca `pbe`, Coyotepec Popoloca `pbf`, Puebla Mazatec `pbm`, Central Pame `pbs`, Santa Inés Ahuatempan Popoloca `pca`, Chichimeca-Jonaz `pei`, Pima Bajo `pia`, Oluta Popoluca `plo`, San Marcos Tlacoyalco Popoloca `pls`, Northern Pame `pmq`, San Juan Atzingo Popoloca `poe`, Highland Popoluca `poi`, Texistepec Popoluca `poq`, Sayula Popoluca `pos`, San Felipe Otlaltepec Popoloca `pow`, Paipai `ppi`, San Luís Temalacayuca Popoloca `pps`, Western Highland Purepecha `pua`, Quetzaltepec Mixe `pxm`, Seri `sei`, Southeastern Tepehuan `stp`, Lowland Tarahumara `tac`, Central Tarahumara `tar`, Malinaltepec Me'phaa `tcf`, Southeastern Tarahumara `tcu`, Tecpatlán Totonac `tcw`, Huehuetla Tepehua `tee`, Northern Tarahumara `thh`, Upper Necaxa Totonac `tku`, Southwestern Tepehuan `tla`, Yecuatla Totonac `tlc`, Filomena Mata-Coahuitlán Totonac `tlp`, Coyutla Totonac `toc`, Tojolabal `toj`, Xicotepec De Juárez Totonac `too`, Papantla Totonac `top`, Highland Totonac `tos`, Azoyú Me'phaa `tpc`, Tlacoapa Me'phaa `tpl`, Pisaflores Tepehua `tpp`, Tlachichilco Tepehua `tpt`, Acatepec Me'phaa `tpx`, Western Totonac `tqt`, San Martín Itunyoso Triqui `trq`, Chicahuaxtla Triqui `trs`, Purepecha `tsz`, Tektiteko `ttc`, Southwestern Tarahumara `twr`, Tzeltal `tzh`, Tzotzil `tzo`, Huarijio `var`, Juxtlahuaca Mixtec `vmc`, Ixtayutla Mixtec `vmj`, Mitlatongo Mixtec `vmm`, Soyaltepec Mazatec `vmp`, Soyaltepec Mixtec `vmq`, Tamazola Mixtec `vmx`, Ayautla Mazatec `vmy`, Mazatlán Mazatec `vmz`, Alcozauca Mixtec `xta`, Chazumba Mixtec `xtb`, Diuxi-Tilantongo Mixtec `xtd`, Sinicahua Mixtec `xti`, San Juan Teita Mixtec `xtj`, Tijaltepec Mixtec `xtl`, Magdalena Peñasco Mixtec `xtm`, Northern Tlaxiaco Mixtec `xtn`, San Miguel Piedras Mixtec `xtp`, Sindihui Mixtec `xts`, Tacahua Mixtec `xtt`, Cuyamecalco Mixtec `xtu`, Yoloxochitl Mixtec `xty`, Yaqui `yaq`, Yucatec Maya `yua`, Sierra de Juárez Zapotec `zaa`, Western Tlacolula Valley Zapotec `zab`, Ocotlán Zapotec `zac`, Cajonos Zapotec `zad`, Yareni Zapotec `zae`, Ayoquesco Zapotec `zaf`, Isthmus Zapotec `zai`, Miahuatlán Zapotec `zam`, Ozolotepec Zapotec `zao`, Aloápam Zapotec `zaq`, Rincón Zapotec `zar`, Santo Domingo Albarradas Zapotec `zas`, Tabaa Zapotec `zat`, Yatzachi Zapotec `zav`, Mitla Zapotec `zaw`, Xadani Zapotec `zax`, Coatecas Altas Zapotec `zca`, Las Delicias Zapotec `zcd`, Copainalá Zoque `zoc`, Chimalapa Zoque `zoh`, Asunción Mixtepec Zapotec `zoo`, Tabasco Zoque `zoq`, Rayón Zoque `zor`, Francisco León Zoque `zos`, Lachiguiri Zapotec `zpa`, Yautepec Zapotec `zpb`, Choapan Zapotec `zpc`, Southeastern Ixtlán Zapotec `zpd`, Petapa Zapotec `zpe`, San Pedro Quiatoni Zapotec `zpf`, Guevea De Humboldt Zapotec `zpg`, Totomachapan Zapotec `zph`, Santa María Quiegolani Zapotec `zpi`, Quiavicuzas Zapotec `zpj`, Tlacolulita Zapotec `zpk`, Lachixío Zapotec `zpl`, Mixtepec Zapotec `zpm`, Santa Inés Yatzechi Zapotec `zpn`, Amatlán Zapotec `zpo`, El Alto Zapotec `zpp`, Zoogocho Zapotec `zpq`, Santiago Xanica Zapotec `zpr`, Coatlán Zapotec `zps`, San Vicente Coatlán Zapotec `zpt`, Yalálag Zapotec `zpu`, Chichicapan Zapotec `zpv`, Zaniza Zapotec `zpw`, San Baltazar Loxicha Zapotec `zpx`, Mazaltepec Zapotec `zpy`, Texmelucan Zapotec `zpz`, Southern Rincon Zapotec `zsr`, Elotepec Zapotec `zte`, Xanaguía Zapotec `ztg`, Lapaguía-Guivini Zapotec `ztl`, San Agustín Mixtepec Zapotec `ztm`, Santa Catarina Albarradas Zapotec `ztn`, Loxicha Zapotec `ztp`, Quioquitani-Quierí Zapotec `ztq`, Tilquiapan Zapotec `zts`, Tejalapan Zapotec `ztt`, Güilá Zapotec `ztu`, Zaachila Zapotec `ztx`, Yatee Zapotec `zty`.
 
 ### Montserrat
 
@@ -3430,6 +3298,7 @@ Stubs (1): Antigua and Barbuda Creole English `aig`.
 | Spec | Code | Tier | Family |
 |:--|:--|:--|:--|
 | [Garifuna](https://tigregotico.github.io/orthography2ipa/#cab) | `cab` | skeleton | Arawakan |
+| [Nicaraguan Spanish](https://tigregotico.github.io/orthography2ipa/#es-NI) | `es-NI` | research | Indo-European > Italic > Romance > Ibero-Romance |
 
 Stubs (5): Nicaragua Creole English `bzk`, Mískito `miq`, Nicaraguan Sign Language `ncs`, Rama `rma`, Mayangna `yan`.
 
@@ -3491,6 +3360,7 @@ Stubs (1): Antigua and Barbuda Creole English `aig`.
 | [Cherokee](https://tigregotico.github.io/orthography2ipa/#chr) | `chr` | research | Iroquoian |
 | [Cheyenne](https://tigregotico.github.io/orthography2ipa/#chy) | `chy` | research | Algic |
 | [Dakota](https://tigregotico.github.io/orthography2ipa/#dak) | `dak` | research | Siouan |
+| [American English (General American)](https://tigregotico.github.io/orthography2ipa/#en-US) | `en-US` | research | Indo-European > Germanic > Northwest Germanic > West Germanic |
 | [Iñupiaq](https://tigregotico.github.io/orthography2ipa/#ik) | `ik` | research | Eskimo-Aleut |
 | [Lojban](https://tigregotico.github.io/orthography2ipa/#jbo) | `jbo` | research | Constructed |
 | [Lingua Franca Nova](https://tigregotico.github.io/orthography2ipa/#lfn) | `lfn` | research | Constructed |
@@ -3751,6 +3621,7 @@ Stubs (10): Kavalan `ckv`, Puyuma `pyu`, Pazeh `pzh`, Thao `ssf`, Saaroa `sxr`, 
 
 | Spec | Code | Tier | Family |
 |:--|:--|:--|:--|
+| [East Timorese Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-TL) | `pt-TL` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Tetum (Tetun Dili / Tetun Prasa)](https://tigregotico.github.io/orthography2ipa/#tet) | `tet` | research | Austronesian > Malayo-Polynesian |
 | [Tetun Terik (conservative rural Tetun)](https://tigregotico.github.io/orthography2ipa/#tet-x-terik) | `tet-x-terik` | skeleton | Austronesian > Malayo-Polynesian |
 
@@ -3822,7 +3693,7 @@ Stubs (1): American Sign Language `ase`.
 
 ### Chad
 
-Stubs (2): Babalia Creole Arabic `ar-TD-x-babalia`, American Sign Language `ase`.
+Stubs (1): American Sign Language `ase`.
 
 ### China
 
@@ -3895,15 +3766,6 @@ Stubs (16): Afroasiatic (family node) `afa`, Obolo `ann`, Betawi `bew`, Suebi (G
 
 Stubs (1): American Sign Language `ase`.
 
-### Egypt
-
-| Spec | Code | Tier | Family |
-|:--|:--|:--|:--|
-| [Egyptian Arabic (Cairene)](https://tigregotico.github.io/orthography2ipa/#arz-EG) | `arz-EG` | research | Afro-Asiatic > Semitic > Central Semitic |
-| [Eastern Egyptian Bedawi Arabic](https://tigregotico.github.io/orthography2ipa/#avl-EG) | `avl-EG` | research | Afro-Asiatic > Semitic > Central Semitic |
-
-Stubs (1): Eastern Fayyum Arabic `arz-EG-x-fayyum`.
-
 ### France
 
 Stubs (1): Judeo-Tunisian Arabic `ajt`.
@@ -3958,12 +3820,6 @@ Stubs (1): American Sign Language `ase`.
 
 Stubs (1): American Sign Language `ase`.
 
-### South Africa
-
-| Spec | Code | Tier | Family |
-|:--|:--|:--|:--|
-| [South African English](https://tigregotico.github.io/orthography2ipa/#en-ZA) | `en-ZA` | skeleton | Indo-European > Germanic > Northwest Germanic > West Germanic |
-
 ### Spain
 
 Stubs (1): Judeo-Tunisian Arabic `ajt`.
@@ -3974,28 +3830,13 @@ Stubs (1): American Sign Language `ase`.
 
 ### Tunisia
 
-| Spec | Code | Tier | Family |
-|:--|:--|:--|:--|
-| [Tunisian Arabic](https://tigregotico.github.io/orthography2ipa/#aeb-TN) | `aeb-TN` | research | Afro-Asiatic > Semitic > Central Semitic |
-
 Stubs (1): Judeo-Tunisian Arabic `ajt`.
 
 ### United Arab Emirates
 
 Stubs (1): Soqotri `sqt`.
 
-### United Kingdom
-
-| Spec | Code | Tier | Family |
-|:--|:--|:--|:--|
-| [British English (RP)](https://tigregotico.github.io/orthography2ipa/#en-GB) | `en-GB` | research | Indo-European > Germanic > Northwest Germanic > West Germanic |
-| [Scottish English](https://tigregotico.github.io/orthography2ipa/#en-GB-x-scotland) | `en-GB-x-scotland` | skeleton | Indo-European > Germanic > Northwest Germanic > West Germanic |
-
 ### United States
-
-| Spec | Code | Tier | Family |
-|:--|:--|:--|:--|
-| [American English (General American)](https://tigregotico.github.io/orthography2ipa/#en-US) | `en-US` | research | Indo-European > Germanic > Northwest Germanic > West Germanic |
 
 Stubs (2): Judeo-Tunisian Arabic `ajt`, American Sign Language `ase`.
 
@@ -4014,9 +3855,10 @@ Stubs (1): American Sign Language `ase`.
 | Spec | Code | Tier | Family |
 |:--|:--|:--|:--|
 | [Mapudungun](https://tigregotico.github.io/orthography2ipa/#arn) | `arn` | research | Araucanian |
+| [Rioplatense Spanish](https://tigregotico.github.io/orthography2ipa/#es-AR) | `es-AR` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Guaraní](https://tigregotico.github.io/orthography2ipa/#gn) | `gn` | research | Tupian |
 
-Stubs (23): Argentine Sign Language `aed`, Southern Aymara `ayc`, Nivaclé `cag`, Iyo'wujwa Chorote `crq`, Iyojwa'ja Chorote `crt`, Western Bolivian Guaraní `gnw`, Eastern Bolivian Guaraní `gui`, Mbyá Guaraní `gun`, Huilliche `huh`, Kaiwá `kgk`, Mocoví `moc`, Wichí Lhamtés Nocten `mtp`, Wichí Lhamtés Güisnay `mzh`, Chiripá `nhd`, Ona `ona`, Pilagá `plg`, South Bolivian Quechua `quh`, Santiago del Estero Quichua `qus`, Tehuelche `teh`, Toba `tob`, Tapieté `tpj`, Vilela `vil`, Wichí Lhamtés Vejoz `wlv`.
+Stubs (28): Argentine Sign Language `aed`, Southern Aymara `ayc`, Nivaclé `cag`, Iyo'wujwa Chorote `crq`, Iyojwa'ja Chorote `crt`, Cordobés Spanish `es-AR-x-cordoba`, Cuyano Spanish `es-AR-x-cuyo`, Litoraleño (Guaranític) Spanish `es-AR-x-litoral`, Northwest Argentine Spanish `es-AR-x-norte`, Patagonian Spanish `es-AR-x-patagoni`, Western Bolivian Guaraní `gnw`, Eastern Bolivian Guaraní `gui`, Mbyá Guaraní `gun`, Huilliche `huh`, Kaiwá `kgk`, Mocoví `moc`, Wichí Lhamtés Nocten `mtp`, Wichí Lhamtés Güisnay `mzh`, Chiripá `nhd`, Ona `ona`, Pilagá `plg`, South Bolivian Quechua `quh`, Santiago del Estero Quichua `qus`, Tehuelche `teh`, Toba `tob`, Tapieté `tpj`, Vilela `vil`, Wichí Lhamtés Vejoz `wlv`.
 
 ### Aruba
 
@@ -4026,12 +3868,30 @@ Stubs (23): Argentine Sign Language `aed`, Southern Aymara `ayc`, Nivaclé `cag`
 
 ### Bolivia
 
-Stubs (42): Araona `aro`, Aymara `ay`, Southern Aymara `ayc`, Ayoreo `ayo`, Baure `brg`, Bolivian Sign Language `bvl`, Nivaclé `cag`, Chácobo `cao`, Chipaya `cap`, Tsimané `cas`, Cavineña `cav`, Callawalla `caw`, Chiquitano `cax`, Chamacoco `ceg`, Iyo'wujwa Chorote `crq`, Ese Ejja `ese`, Western Bolivian Guaraní `gnw`, Eastern Bolivian Guaraní `gui`, Guarayu `gyr`, Ignaciano `ign`, Itonama `ito`, Leco `lec`, Machinere `mpd`, Wichí Lhamtés Nocten `mtp`, Wichí Lhamtés Güisnay `mzh`, Movima `mzp`, Pacahuara `pcp`, Paunaka `pnk`, South Bolivian Quechua `quh`, North Bolivian Quechua `qul`, Reyesano `rey`, Sirionó `srq`, Tacana `tna`, Toromono `tno`, Toba `tob`, Tapieté `tpj`, Trinitario `trn`, Uru `ure`, Wichí Lhamtés Vejoz `wlv`, Yaminahua `yaa`, Yuqui `yuq`, Yuracare `yuz`.
+| Spec | Code | Tier | Family |
+|:--|:--|:--|:--|
+| [Bolivian Spanish](https://tigregotico.github.io/orthography2ipa/#es-BO) | `es-BO` | skeleton | Indo-European > Italic > Romance > Ibero-Romance |
+
+Stubs (44): Araona `aro`, Aymara `ay`, Southern Aymara `ayc`, Ayoreo `ayo`, Baure `brg`, Bolivian Sign Language `bvl`, Nivaclé `cag`, Chácobo `cao`, Chipaya `cap`, Tsimané `cas`, Cavineña `cav`, Callawalla `caw`, Chiquitano `cax`, Chamacoco `ceg`, Iyo'wujwa Chorote `crq`, Andean Bolivian Spanish `es-BO-x-andino`, Camba (Lowland) Bolivian Spanish `es-BO-x-camba`, Ese Ejja `ese`, Western Bolivian Guaraní `gnw`, Eastern Bolivian Guaraní `gui`, Guarayu `gyr`, Ignaciano `ign`, Itonama `ito`, Leco `lec`, Machinere `mpd`, Wichí Lhamtés Nocten `mtp`, Wichí Lhamtés Güisnay `mzh`, Movima `mzp`, Pacahuara `pcp`, Paunaka `pnk`, South Bolivian Quechua `quh`, North Bolivian Quechua `qul`, Reyesano `rey`, Sirionó `srq`, Tacana `tna`, Toromono `tno`, Toba `tob`, Tapieté `tpj`, Trinitario `trn`, Uru `ure`, Wichí Lhamtés Vejoz `wlv`, Yaminahua `yaa`, Yuqui `yuq`, Yuracare `yuz`.
 
 ### Brazil
 
 | Spec | Code | Tier | Family |
 |:--|:--|:--|:--|
+| [Brazilian Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR) | `pt-BR` | production | Indo-European > Italic > Romance > Ibero-Romance |
+| [Bahian Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-bahia) | `pt-BR-x-bahia` | research | Indo-European > Italic > Romance > Ibero-Romance |
+| [Caipira Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-caipira) | `pt-BR-x-caipira` | research | Indo-European > Italic > Romance > Ibero-Romance |
+| [Cearense Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-ce) | `pt-BR-x-ce` | research | Indo-European > Italic > Romance > Ibero-Romance |
+| [Cuiabano Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-cuiaba) | `pt-BR-x-cuiaba` | research | Indo-European > Italic > Romance > Ibero-Romance |
+| [Florianópolis Portuguese (manezinho)](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-floripa) | `pt-BR-x-floripa` | research | Indo-European > Italic > Romance > Ibero-Romance |
+| [Fluminense Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-fluminen) | `pt-BR-x-fluminen` | research | Indo-European > Italic > Romance > Ibero-Romance |
+| [Mineiro Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-mg) | `pt-BR-x-mg` | research | Indo-European > Italic > Romance > Ibero-Romance |
+| [Nortista/Amazônico Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-norte) | `pt-BR-x-norte` | research | Indo-European > Italic > Romance > Ibero-Romance |
+| [Curitibano/Paranaense Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-pr) | `pt-BR-x-pr` | research | Indo-European > Italic > Romance > Ibero-Romance |
+| [Pernambucano Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-recife) | `pt-BR-x-recife` | research | Indo-European > Italic > Romance > Ibero-Romance |
+| [Carioca Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-rj) | `pt-BR-x-rj` | research | Indo-European > Italic > Romance > Ibero-Romance |
+| [Paulistano Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-sp) | `pt-BR-x-sp` | research | Indo-European > Italic > Romance > Ibero-Romance |
+| [Sulista/Gaúcho Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-sul) | `pt-BR-x-sul` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Old Tupi (Tupinambá)](https://tigregotico.github.io/orthography2ipa/#tpn) | `tpn` | research | Tupian |
 | [Nheengatu](https://tigregotico.github.io/orthography2ipa/#yrl) | `yrl` | research | Tupian |
 
@@ -4048,18 +3908,22 @@ Stubs (182): Anambé `aan`, Pará Arára `aap`, Amundava `adw`, Akawaio `ake`, A
 | Spec | Code | Tier | Family |
 |:--|:--|:--|:--|
 | [Mapudungun](https://tigregotico.github.io/orthography2ipa/#arn) | `arn` | research | Araucanian |
+| [Chilean Spanish](https://tigregotico.github.io/orthography2ipa/#es-CL) | `es-CL` | research | Indo-European > Italic > Romance > Ibero-Romance |
 
-Stubs (6): Qawasqar `alc`, Southern Aymara `ayc`, Chilean Sign Language `csg`, Huilliche `huh`, South Bolivian Quechua `quh`, Yámana `yag`.
+Stubs (8): Qawasqar `alc`, Southern Aymara `ayc`, Chilean Sign Language `csg`, Northern Andean Chilean Spanish `es-CL-x-andino`, Chilote Spanish `es-CL-x-chilote`, Huilliche `huh`, South Bolivian Quechua `quh`, Yámana `yag`.
 
 ### Colombia
 
 | Spec | Code | Tier | Family |
 |:--|:--|:--|:--|
+| [Colombian Spanish (Bogotá)](https://tigregotico.github.io/orthography2ipa/#es-CO) | `es-CO` | skeleton | Indo-European > Italic > Romance > Ibero-Romance |
+| [Colombian Spanish (Coastal)](https://tigregotico.github.io/orthography2ipa/#es-CO-x-costa) | `es-CO-x-costa` | research | Indo-European > Italic > Romance > Ibero-Romance |
+| [Colombian Spanish (Paisa/Medellín)](https://tigregotico.github.io/orthography2ipa/#es-CO-x-paisa) | `es-CO-x-paisa` | skeleton | Indo-European > Italic > Romance > Ibero-Romance |
 | [Wayuu](https://tigregotico.github.io/orthography2ipa/#guc) | `guc` | research | Arawakan |
 | [Palenquero (Lengua ri Palenge)](https://tigregotico.github.io/orthography2ipa/#pln) | `pln` | research | Spanish Creole |
 | [Nheengatu](https://tigregotico.github.io/orthography2ipa/#yrl) | `yrl` | research | Tupian |
 
-Stubs (83): Achagua `aca`, Andoque `ano`, Arhuaco `arh`, Waimaha `bao`, Emberá-Baudó `bdc`, Muinane `bmr`, Bora `boa`, Barasana-Eduria `bsn`, Baniwa `bwi`, Cabiyarí `cbb`, Carapana `cbc`, Carijona `cbd`, Chimila `cbg`, Cacua `cbv`, Carabayo `cby`, Emberá-Chamí `cmi`, Cocama-Cocamilla `cod`, Koreguaje `coe`, Cofán `con`, Colombian Sign Language `csn`, Emberá-Catío `cto`, Cubeo `cub`, Cuiba `cui`, San Blas Kuna `cuk`, Desano `des`, Northern Emberá `emp`, Guarequena `gae`, Playero `gob`, Guahibo `guh`, Guambiano `gum`, Guayabero `guo`, Guanano `gvc`, Minica Huitoto `hto`, Nüpode Huitoto `hux`, Inga `inb`, Jungle Inga `inj`, Hupdë `jup`, Camsá `kbh`, Cogui `kog`, Curripaco `kpc`, Border Kuna `kvn`, Awa-Cuaiquer `kwi`, Macaguán `mbn`, Malayo `mbp`, Nukak Makú `mbr`, Mapoyo `mcg`, Mandahuaca `mht`, Barí `mot`, Macuna `myy`, Woun Meu `noa`, Nonuya `noj`, Ocaina `oca`, Páez `pbb`, Piaroa `pid`, Piapoco `pio`, Piratapuyo `pir`, Puinave `pui`, Napo Lowland Quechua `qvo`, Resígaro `rgr`, Secoya `sey`, Epena `sja`, Sáliba `slc`, Siona `snn`, Siriano `sri`, Tariana `tae`, Tatuyo `tav`, Barro Negro Tunebo `tbn`, Ticuna `tca`, Emberá-Tadó `tdc`, Tinigua `tit`, Western Tunebo `tnb`, Tanimuca-Retuarã `tnc`, Angosturas Tunebo `tnd`, Totoro `ttk`, Tuyuca `tue`, Central Tunebo `tuf`, Tucano `tuo`, Yuhup `yab`, Yagua `yad`, Pumé `yae`, Yucuna `ycn`, Yurutí `yui`, Yukpa `yup`.
+Stubs (87): Achagua `aca`, Andoque `ano`, Arhuaco `arh`, Waimaha `bao`, Emberá-Baudó `bdc`, Muinane `bmr`, Bora `boa`, Barasana-Eduria `bsn`, Baniwa `bwi`, Cabiyarí `cbb`, Carapana `cbc`, Carijona `cbd`, Chimila `cbg`, Cacua `cbv`, Carabayo `cby`, Emberá-Chamí `cmi`, Cocama-Cocamilla `cod`, Koreguaje `coe`, Cofán `con`, Colombian Sign Language `csn`, Emberá-Catío `cto`, Cubeo `cub`, Cuiba `cui`, San Blas Kuna `cuk`, Desano `des`, Northern Emberá `emp`, Llanero (Eastern Plains) Spanish `es-CO-x-llanero`, Pacific Colombian Spanish `es-CO-x-pacifico`, Santandereano Spanish `es-CO-x-santande`, Valluno (Valle del Cauca) Spanish `es-CO-x-valluno`, Guarequena `gae`, Playero `gob`, Guahibo `guh`, Guambiano `gum`, Guayabero `guo`, Guanano `gvc`, Minica Huitoto `hto`, Nüpode Huitoto `hux`, Inga `inb`, Jungle Inga `inj`, Hupdë `jup`, Camsá `kbh`, Cogui `kog`, Curripaco `kpc`, Border Kuna `kvn`, Awa-Cuaiquer `kwi`, Macaguán `mbn`, Malayo `mbp`, Nukak Makú `mbr`, Mapoyo `mcg`, Mandahuaca `mht`, Barí `mot`, Macuna `myy`, Woun Meu `noa`, Nonuya `noj`, Ocaina `oca`, Páez `pbb`, Piaroa `pid`, Piapoco `pio`, Piratapuyo `pir`, Puinave `pui`, Napo Lowland Quechua `qvo`, Resígaro `rgr`, Secoya `sey`, Epena `sja`, Sáliba `slc`, Siona `snn`, Siriano `sri`, Tariana `tae`, Tatuyo `tav`, Barro Negro Tunebo `tbn`, Ticuna `tca`, Emberá-Tadó `tdc`, Tinigua `tit`, Western Tunebo `tnb`, Tanimuca-Retuarã `tnc`, Angosturas Tunebo `tnd`, Totoro `ttk`, Tuyuca `tue`, Central Tunebo `tuf`, Tucano `tuo`, Yuhup `yab`, Yagua `yad`, Pumé `yae`, Yucuna `ycn`, Yurutí `yui`, Yukpa `yup`.
 
 ### Country not recorded
 
@@ -4080,7 +3944,11 @@ Stubs (2): Quechua `qu`, Yamben `ynb`.
 
 ### Ecuador
 
-Stubs (22): Achuar-Shiwiar `acu`, Waorani `auc`, Chachi `cbi`, Colorado `cof`, Cofán `con`, Ecuadorian Sign Language `ecs`, Shuar `jiv`, Awa-Cuaiquer `kwi`, Media Lengua `mue`, Calderón Highland Quichua `qud`, Chimborazo Highland Quichua `qug`, Tena Lowland Quichua `quw`, Imbabura Highland Quichua `qvi`, Loja Highland Quichua `qvj`, Napo Lowland Quechua `qvo`, Northern Pastaza Quichua `qvz`, Salasaca Highland Quichua `qxl`, Cañar Highland Quichua `qxr`, Secoya `sey`, Epena `sja`, Siona `snn`, Záparo `zro`.
+| Spec | Code | Tier | Family |
+|:--|:--|:--|:--|
+| [Ecuadorian Spanish](https://tigregotico.github.io/orthography2ipa/#es-EC) | `es-EC` | skeleton | Indo-European > Italic > Romance > Ibero-Romance |
+
+Stubs (24): Achuar-Shiwiar `acu`, Waorani `auc`, Chachi `cbi`, Colorado `cof`, Cofán `con`, Ecuadorian Sign Language `ecs`, Andean Ecuadorian Spanish `es-EC-x-andino`, Coastal Ecuadorian Spanish `es-EC-x-costa`, Shuar `jiv`, Awa-Cuaiquer `kwi`, Media Lengua `mue`, Calderón Highland Quichua `qud`, Chimborazo Highland Quichua `qug`, Tena Lowland Quichua `quw`, Imbabura Highland Quichua `qvi`, Loja Highland Quichua `qvj`, Napo Lowland Quechua `qvo`, Northern Pastaza Quichua `qvz`, Salasaca Highland Quichua `qxl`, Cañar Highland Quichua `qxr`, Secoya `sey`, Epena `sja`, Siona `snn`, Záparo `zro`.
 
 ### French Guiana
 
@@ -4101,12 +3969,17 @@ Stubs (1): Caribbean Hindustani `hns`.
 
 ### Panama
 
+| Spec | Code | Tier | Family |
+|:--|:--|:--|:--|
+| [Panamanian Spanish](https://tigregotico.github.io/orthography2ipa/#es-PA) | `es-PA` | research | Indo-European > Italic > Romance > Ibero-Romance |
+
 Stubs (7): Emberá-Chamí `cmi`, Emberá-Catío `cto`, San Blas Kuna `cuk`, Northern Emberá `emp`, Border Kuna `kvn`, Woun Meu `noa`, Epena `sja`.
 
 ### Paraguay
 
 | Spec | Code | Tier | Family |
 |:--|:--|:--|:--|
+| [Paraguayan Spanish](https://tigregotico.github.io/orthography2ipa/#es-PY) | `es-PY` | skeleton | Indo-European > Italic > Romance > Ibero-Romance |
 | [Guaraní](https://tigregotico.github.io/orthography2ipa/#gn) | `gn` | research | Tupian |
 
 Stubs (24): Angaité `aqt`, Ayoreo `ayo`, Nivaclé `cag`, Chamacoco `ceg`, Iyo'wujwa Chorote `crq`, Iyojwa'ja Chorote `crt`, Enlhet `enl`, Enxet `enx`, Eastern Bolivian Guaraní `gui`, Mbyá Guaraní `gun`, Aché `guq`, Guana (Paraguay) `gva`, Kaiwá `kgk`, Maca `mca`, Wichí Lhamtés Güisnay `mzh`, Chiripá `nhd`, Pilagá `plg`, Pai Tavytera `pta`, Paraguayan Sign Language `pys`, Sanapaná `spn`, Toba-Maskoy `tmf`, Toba `tob`, Tapieté `tpj`, Wichí Lhamtés Vejoz `wlv`.
@@ -4115,10 +3988,12 @@ Stubs (24): Angaité `aqt`, Ayoreo `ayo`, Nivaclé `cag`, Chamacoco `ceg`, Iyo'w
 
 | Spec | Code | Tier | Family |
 |:--|:--|:--|:--|
+| [Peruvian Spanish (Andean)](https://tigregotico.github.io/orthography2ipa/#es-PE) | `es-PE` | skeleton | Indo-European > Italic > Romance > Ibero-Romance |
+| [Peruvian Spanish (Lima)](https://tigregotico.github.io/orthography2ipa/#es-PE-x-lima) | `es-PE-x-lima` | skeleton | Indo-European > Italic > Romance > Ibero-Romance |
 | [Ayacucho Quechua](https://tigregotico.github.io/orthography2ipa/#quy) | `quy` | research | Quechuan |
 | [Cusco Quechua](https://tigregotico.github.io/orthography2ipa/#quz) | `quz` | research | Quechuan |
 
-Stubs (94): Achuar-Shiwiar `acu`, Aguaruna `agr`, Amahuaca `amc`, Yanesha' `ame`, Amarakaeri `amr`, Arabela `arl`, Southern Aymara `ayc`, Bora `boa`, Cahuarano `cah`, Cashibo-Cacataibo `cbr`, Cashinahua `cbs`, Chayahuita `cbt`, Candoshi-Shapra `cbu`, Chamicuro `ccc`, Ashéninka Pajonal `cjo`, Asháninka `cni`, Cocama-Cocamilla `cod`, Caquinte `cot`, Nanti `cox`, Ucayali-Yurúa Ashéninka `cpb`, Ajyíninka Apurucayali `cpc`, Pichis Ashéninka `cpu`, South Ucayali Ashéninka `cpy`, Mashco Piro `cuj`, Culina `cul`, Ese Ejja `ese`, Minica Huitoto `hto`, Huambisa `hub`, Huachipaeri `hug`, Nüpode Huitoto `hux`, Iñapari `inp`, Iquito `iqu`, Isconahua `isc`, Jebero `jeb`, Shuar `jiv`, Jaqaru `jqr`, Capanahua `kaq`, Sivia Sign Language `lsv`, Machiguenga `mcb`, Sharanahua `mcd`, Matsés `mcf`, Yora `mts`, Muniche `myr`, Nonuya `noj`, Nomatsiguenga `not`, Ocaina `oca`, Omagua `omg`, Orejón `ore`, Yine `pib`, Pisabo `pig`, Peruvian Sign Language `prl`, Ashéninka Perené `prq`, Huallaga Huánuco Quechua `qub`, Lambayeque Quechua `quf`, Chachapoyas Quechua `quk`, North Bolivian Quechua `qul`, Southern Pastaza Quechua `qup`, Yanahuanca Pasco Quechua `qur`, Yauyos Quechua `qux`, Ambo-Pasco Quechua `qva`, Cajamarca Quechua `qvc`, Eastern Apurímac Quechua `qve`, Huamalíes-Dos de Mayo Huánuco Quechua `qvh`, Cajatambo North Lima Quechua `qvl`, Margos-Yarowilca-Lauricocha Quechua `qvm`, North Junín Quechua `qvn`, Napo Lowland Quechua `qvo`, Pacaraos Quechua `qvp`, San Martín Quechua `qvs`, Huaylla Wanca Quechua `qvw`, Northern Pastaza Quichua `qvz`, Corongo Ancash Quechua `qwa`, Huaylas Ancash Quechua `qwh`, Sihuas Ancash Quechua `qws`, Chiquián Ancash Quechua `qxa`, Chincha Quechua `qxc`, Panao Huánuco Quechua `qxh`, Northern Conchucos Ancash Quechua `qxn`, Southern Conchucos Ancash Quechua `qxo`, Puno Quechua `qxp`, Santa Ana de Tusi Pasco Quechua `qxt`, Arequipa-La Unión Quechua `qxu`, Jauja Wanca Quechua `qxw`, Resígaro `rgr`, Secoya `sey`, Shipibo-Conibo `shp`, Loreto-Ucayali Spanish `spq`, Ticuna `tca`, Taushiro `trr`, Urarina `ura`, Yaminahua `yaa`, Yagua `yad`, Yucuna `ycn`, Záparo `zro`.
+Stubs (96): Achuar-Shiwiar `acu`, Aguaruna `agr`, Amahuaca `amc`, Yanesha' `ame`, Amarakaeri `amr`, Arabela `arl`, Southern Aymara `ayc`, Bora `boa`, Cahuarano `cah`, Cashibo-Cacataibo `cbr`, Cashinahua `cbs`, Chayahuita `cbt`, Candoshi-Shapra `cbu`, Chamicuro `ccc`, Ashéninka Pajonal `cjo`, Asháninka `cni`, Cocama-Cocamilla `cod`, Caquinte `cot`, Nanti `cox`, Ucayali-Yurúa Ashéninka `cpb`, Ajyíninka Apurucayali `cpc`, Pichis Ashéninka `cpu`, South Ucayali Ashéninka `cpy`, Mashco Piro `cuj`, Culina `cul`, Amazonic Peruvian Spanish `es-PE-x-amazonia`, Andean Peruvian Spanish `es-PE-x-andino`, Ese Ejja `ese`, Minica Huitoto `hto`, Huambisa `hub`, Huachipaeri `hug`, Nüpode Huitoto `hux`, Iñapari `inp`, Iquito `iqu`, Isconahua `isc`, Jebero `jeb`, Shuar `jiv`, Jaqaru `jqr`, Capanahua `kaq`, Sivia Sign Language `lsv`, Machiguenga `mcb`, Sharanahua `mcd`, Matsés `mcf`, Yora `mts`, Muniche `myr`, Nonuya `noj`, Nomatsiguenga `not`, Ocaina `oca`, Omagua `omg`, Orejón `ore`, Yine `pib`, Pisabo `pig`, Peruvian Sign Language `prl`, Ashéninka Perené `prq`, Huallaga Huánuco Quechua `qub`, Lambayeque Quechua `quf`, Chachapoyas Quechua `quk`, North Bolivian Quechua `qul`, Southern Pastaza Quechua `qup`, Yanahuanca Pasco Quechua `qur`, Yauyos Quechua `qux`, Ambo-Pasco Quechua `qva`, Cajamarca Quechua `qvc`, Eastern Apurímac Quechua `qve`, Huamalíes-Dos de Mayo Huánuco Quechua `qvh`, Cajatambo North Lima Quechua `qvl`, Margos-Yarowilca-Lauricocha Quechua `qvm`, North Junín Quechua `qvn`, Napo Lowland Quechua `qvo`, Pacaraos Quechua `qvp`, San Martín Quechua `qvs`, Huaylla Wanca Quechua `qvw`, Northern Pastaza Quichua `qvz`, Corongo Ancash Quechua `qwa`, Huaylas Ancash Quechua `qwh`, Sihuas Ancash Quechua `qws`, Chiquián Ancash Quechua `qxa`, Chincha Quechua `qxc`, Panao Huánuco Quechua `qxh`, Northern Conchucos Ancash Quechua `qxn`, Southern Conchucos Ancash Quechua `qxo`, Puno Quechua `qxp`, Santa Ana de Tusi Pasco Quechua `qxt`, Arequipa-La Unión Quechua `qxu`, Jauja Wanca Quechua `qxw`, Resígaro `rgr`, Secoya `sey`, Shipibo-Conibo `shp`, Loreto-Ucayali Spanish `spq`, Ticuna `tca`, Taushiro `trr`, Urarina `ura`, Yaminahua `yaa`, Yagua `yad`, Yucuna `ycn`, Záparo `zro`.
 
 ### Suriname
 
@@ -4140,10 +4015,11 @@ Stubs (2): Mbyá Guaraní `gun`, Uruguayan Sign Language `ugy`.
 
 | Spec | Code | Tier | Family |
 |:--|:--|:--|:--|
+| [Venezuelan Spanish](https://tigregotico.github.io/orthography2ipa/#es-VE) | `es-VE` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Wayuu](https://tigregotico.github.io/orthography2ipa/#guc) | `guc` | research | Arawakan |
 | [Nheengatu](https://tigregotico.github.io/orthography2ipa/#yrl) | `yrl` | research | Tupian |
 
-Stubs (39): Akawaio `ake`, Pemon `aoc`, Arawak `arw`, Arutani `atx`, Baniwa `bwi`, Chaima `ciy`, Cubeo `cub`, Cuiba `cui`, Guarequena `gae`, Colonia Tovar German `gct`, Playero `gob`, Guahibo `guh`, Yanomamö `guu`, Inga `inb`, Japrería `jru`, Curripaco `kpc`, Macushi `mbc`, Mapoyo `mcg`, Mandahuaca `mht`, Barí `mot`, E'ñapa Woromaipu `pbh`, Pémono `pev`, Piaroa `pid`, Piapoco `pio`, Puinave `pui`, Ninam `shb`, Sikiana `sik`, Sáliba `slc`, Sapé `spc`, Central Tunebo `tuf`, Venezuelan Sign Language `vsl`, Warao `wba`, Yanomámi `wca`, Maco `wpc`, Sanumá `xsu`, Pumé `yae`, Yabarana `yar`, Yuwana `yau`, Yukpa `yup`.
+Stubs (42): Akawaio `ake`, Pemon `aoc`, Arawak `arw`, Arutani `atx`, Baniwa `bwi`, Chaima `ciy`, Cubeo `cub`, Cuiba `cui`, Andean Venezuelan Spanish `es-VE-x-andino`, Venezuelan Llanero Spanish `es-VE-x-llanero`, Maracucho (Zuliano) Spanish `es-VE-x-zulia`, Guarequena `gae`, Colonia Tovar German `gct`, Playero `gob`, Guahibo `guh`, Yanomamö `guu`, Inga `inb`, Japrería `jru`, Curripaco `kpc`, Macushi `mbc`, Mapoyo `mcg`, Mandahuaca `mht`, Barí `mot`, E'ñapa Woromaipu `pbh`, Pémono `pev`, Piaroa `pid`, Piapoco `pio`, Puinave `pui`, Ninam `shb`, Sikiana `sik`, Sáliba `slc`, Sapé `spc`, Central Tunebo `tuf`, Venezuelan Sign Language `vsl`, Warao `wba`, Yanomámi `wca`, Maco `wpc`, Sanumá `xsu`, Pumé `yae`, Yabarana `yar`, Yuwana `yau`, Yukpa `yup`.
 
 ---
 [← Languages by family](by-family.md) · [Home](../index.md) · [Languages by script →](by-script.md)

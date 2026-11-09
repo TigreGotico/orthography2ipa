@@ -17,8 +17,8 @@ Arabic is a Central Semitic language, written in the Arabic script. Glottolog pl
 | Script | [Arabic](by-script.md#arabic) (abjad) |
 | Tier | [research](../specs/quality_tiers.md#research) |
 | Attested | from 1400, living |
-| Parent | [Proto-Arabic (Old Arabic)](https://tigregotico.github.io/orthography2ipa/#xpa) `xpa` |
-| Child lects | [Arabic (Buckwalter transliteration)](https://tigregotico.github.io/orthography2ipa/#ar-Latn-x-buckwalt) `ar-Latn-x-buckwalt`, [Maltese](https://tigregotico.github.io/orthography2ipa/#mt) `mt` |
+| Ancestor | [Proto-Arabic (Old Arabic)](https://tigregotico.github.io/orthography2ipa/#xpa) `xpa` |
+| Child lects | 2, see [Related lects](#related-lects) |
 | Explorer | [`ar` in the data explorer](https://tigregotico.github.io/orthography2ipa/#ar) |
 | Spec file | [`ar.json`](../../orthography2ipa/data/ar.json) |
 <!-- atlas:header end -->
@@ -165,6 +165,15 @@ The spec reads only fully vocalised text, and most Arabic text is not vocalised.
 
 The rules and this page cite Wright (1896) for the matres lectionis, the jazma and hamzat al-waṣl. The `sources` list of `ar.json` does not include that grammar, so the generated [Sources](#sources) list below leaves it out.
 
+
+<!-- atlas:lects begin -->
+## Related lects
+
+These specs name `ar` as their parent. They are sorted by country, and a lect with no recorded country comes last.
+
+- [Maltese](https://tigregotico.github.io/orthography2ipa/#mt) `mt`: Malta, research tier
+- [Arabic (Buckwalter transliteration)](https://tigregotico.github.io/orthography2ipa/#ar-Latn-x-buckwalt) `ar-Latn-x-buckwalt`: research tier
+<!-- atlas:lects end -->
 
 <!-- atlas:sources begin -->
 ## Sources

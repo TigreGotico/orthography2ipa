@@ -7,6 +7,7 @@ text survives a rewrite, the template is enforced, and the values the blocks
 print come from the spec, not from the generator.
 """
 import importlib.util
+import json
 import os
 import re
 
@@ -106,8 +107,43 @@ def test_header_values_come_from_the_spec(atlas):
     header = atlas_gen.block_header(atlas, spec)
     assert f"glottolog.org/resource/languoid/id/{spec.glottolog_code})" in header
     assert f"iso639-3.sil.org/code/{spec.iso639_3})" in header
+    assert "| Child lects | 2, see [Related lects](#related-lects) |" in header
+    lects = atlas_gen.block_lects(atlas, spec)
     for child in ("mwl-x-sendim", "mwl-x-ifanes"):
-        assert f"`{child}`" in header
+        assert f"`{child}`" in lects
+        assert f"`{child}`" not in header
+
+
+def test_lects_block_lists_every_child(atlas):
+    data = os.path.join(os.path.dirname(orthography2ipa.__file__), "data")
+    children = set()
+    for name in os.listdir(data):
+        if name.endswith(".json"):
+            with open(os.path.join(data, name), encoding="utf-8") as fh:
+                spec = json.load(fh)
+            if spec.get("parent") == "es-ES" and not spec.get("clade"):
+                children.add(spec["code"])
+    lects = atlas_gen.block_lects(atlas, orthography2ipa.get("es-ES"))
+    listed = set(re.findall(r"^- \[.*\]\(.*\) `([^`]+)`", lects, re.M))
+    assert listed == children
+    assert len(children) > 30
+
+
+def test_historical_parent_is_an_ancestor(atlas):
+    # es-ES-x-medieval ends in 1500, es-ES is living.
+    header = atlas_gen.block_header(atlas, orthography2ipa.get("es-ES"))
+    assert "| Ancestor | [Castilian]" in header
+    assert "| Parent |" not in header
+    header = atlas_gen.block_header(atlas, orthography2ipa.get("es-AR"))
+    assert "| Parent | [" in header and "`es-ES` |" in header
+    assert "| Ancestor |" not in header
+
+
+@pytest.mark.parametrize("code, area", [
+    ("es-AR", "South America"), ("es-MX", "North America"),
+    ("es-GQ", "Africa"), ("es-ES", "Eurasia")])
+def test_region_subtag_sets_the_macroarea(atlas, code, area):
+    assert atlas.geography(code)[0] == [area]
 
 
 def test_datasets_block_lists_every_board_row(atlas):

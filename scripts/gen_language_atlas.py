@@ -13,8 +13,8 @@ between two markers and is rewritten from the data on every run::
 Every other line of the page is hand-written and is never touched. The blocks
 come in a fixed order, so that a reader learns the page once:
 
-``summary``, ``header``, then the hand-written prose, then ``sources``,
-``datasets``, ``inventory``, ``spelling``, ``rules``, ``examples`` and
+``summary``, ``header``, then the hand-written prose, then ``lects``,
+``sources``, ``datasets``, ``inventory``, ``spelling``, ``rules``, ``examples`` and
 ``related``.
 
 The ``examples`` marker can name the words to transcribe, separated by ``|``::
@@ -59,7 +59,7 @@ import sys
 import unicodedata
 import urllib.parse
 import urllib.request
-from collections import defaultdict
+from collections import Counter, defaultdict
 from typing import Dict, Iterable, List, Optional, Sequence, Tuple
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -86,7 +86,7 @@ INDEXES = {
     "a-z.md": "Languages from A to Z",
 }
 
-BLOCKS = ("summary", "header", "sources", "datasets", "inventory",
+BLOCKS = ("summary", "header", "lects", "sources", "datasets", "inventory",
           "spelling", "rules", "examples", "related")
 _BLOCK = re.compile(
     r"<!-- atlas:(?P<name>\w+) begin(?P<attrs>[^>]*?)-->\n.*?<!-- atlas:(?P=name) end -->",
@@ -188,6 +188,7 @@ class Atlas:
         self.datasets = _dataset_table()
         with open(SNAPSHOT, encoding="utf-8") as fh:
             self.snapshot = json.load(fh)
+        self.country_area = _country_areas(self.snapshot["geography"])
         self.primary_rows: Dict[str, List[dict]] = defaultdict(list)
         with open(PRIMARY_ROWS, encoding="utf-8") as fh:
             for line in fh:
@@ -216,12 +217,13 @@ class Atlas:
     def geography(self, code: str) -> Tuple[List[str], List[str]]:
         """The macroareas and the countries of *code*.
 
-        A region subtag in the code names the country. Otherwise the
-        countries are those of the spec's own Glottolog languoid. A spec
-        with neither takes no country from an ancestor, because a dialect
-        is not spoken in every country of its language. The macroarea comes
-        from the nearest spec on the lineage that has a languoid. A family
-        languoid can span several macroareas.
+        A region subtag in the code names the country, and the macroarea is
+        the one that most Glottolog languoids of that country fall in.
+        Otherwise the countries are those of the spec's own Glottolog
+        languoid. A spec with neither takes no country from an ancestor,
+        because a dialect is not spoken in every country of its language.
+        The macroarea then comes from the nearest spec on the lineage that
+        has a languoid. A family languoid can span several macroareas.
         """
         macroarea, countries = "", []
         for depth, spec in enumerate(self.lineage(code)):
@@ -234,10 +236,22 @@ class Atlas:
         match = _REGION.match(code)
         if match and match.group("region") in self.snapshot["countries"]:
             countries = [match.group("region")]
+            macroarea = self.country_area.get(countries[0], macroarea)
         return [a for a in macroarea.split(";") if a], countries
 
     def country(self, iso: str) -> str:
         return self.snapshot["countries"].get(iso, iso)
+
+
+def _country_areas(geography: Dict[str, str]) -> Dict[str, str]:
+    """The macroarea that most single-macroarea languoids of a country have."""
+    counts: Dict[str, Counter] = defaultdict(Counter)
+    for entry in geography.values():
+        area, _, listed = entry.partition("|")
+        if area and ";" not in area:
+            for country in listed.split():
+                counts[country][area] += 1
+    return {country: c.most_common(1)[0][0] for country, c in counts.items()}
 
 
 def _read(path: str) -> str:
@@ -393,13 +407,14 @@ def block_header(atlas: Atlas, spec) -> str:
                      + (f" to {end}" if end is not None else ", living")))
     if spec.parent and spec.parent in atlas.raw:
         parent = atlas.raw[spec.parent]
-        rows.append(("Parent", f"[{parent['name']}]({atlas.link(spec.parent)})"
-                               f" `{spec.parent}`"))
-    children = [c for c in sorted(atlas.children.get(spec.code, ()))
-                if not atlas.raw[c].get("clade")]
+        historical = (parent.get("timespan") or {}).get("end_year") is not None
+        rows.append(("Ancestor" if historical else "Parent",
+                     f"[{parent['name']}]({atlas.link(spec.parent)})"
+                     f" `{spec.parent}`"))
+    children = _child_lects(atlas, spec.code)
     if children:
-        rows.append(("Child lects", ", ".join(
-            f"[{atlas.raw[c]['name']}]({atlas.link(c)}) `{c}`" for c in children)))
+        rows.append(("Child lects",
+                     f"{len(children)}, see [Related lects](#related-lects)"))
     rows.append(("Explorer", f"[`{spec.code}` in the data explorer]"
                              f"({EXPLORER}#{urllib.parse.quote(spec.code, safe='')})"))
     rows.append(("Spec file", f"[`{spec.code}.json`](../../orthography2ipa/data/"
@@ -946,6 +961,32 @@ def block_examples(atlas: Atlas, spec, words: Sequence[str]) -> str:
         lines += [""] + [f"Source: {ref}" for ref in refs]
     if not words and not rows:
         lines += ["", "No example words are chosen for this page yet."]
+    return "\n".join(lines)
+
+
+def _child_lects(atlas: Atlas, code: str) -> List[str]:
+    return [c for c in sorted(atlas.children.get(code, ()))
+            if not atlas.raw[c].get("clade")]
+
+
+def block_lects(atlas: Atlas, spec) -> str:
+    children = _child_lects(atlas, spec.code)
+    lines = ["## Related lects", ""]
+    if not children:
+        return "\n".join(lines + [f"No spec names `{spec.code}` as its parent."])
+    lines += [f"These specs name `{spec.code}` as their parent. They are "
+              "sorted by country, and a lect with no recorded country "
+              "comes last.", ""]
+
+    def place(code: str) -> str:
+        countries = atlas.geography(code)[1]
+        return ", ".join(sorted(atlas.country(c) for c in countries))
+
+    for code in sorted(children, key=lambda c: (not place(c), place(c), c)):
+        where = place(code)
+        quality = atlas.raw[code].get("quality", "research")
+        lines.append(f"- [{_clean(atlas.raw[code]['name'])}]({atlas.link(code)}) "
+                     f"`{code}`: {where + ', ' if where else ''}{quality} tier")
     return "\n".join(lines)
 
 

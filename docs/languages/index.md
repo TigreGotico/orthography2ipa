@@ -15,7 +15,7 @@ where it does not.
 An atlas page has a fixed shape. A generated summary and a table of names,
 codes and links come first. Hand-written sections follow, with the story of
 the language and the weak points of its spec. Generated sections close the
-page: the sources, the scored datasets, the segment inventory, the spelling
+page: the child lects, the sources, the scored datasets, the segment inventory, the spelling
 table, the rules, engine examples and related repositories.
 `scripts/gen_language_atlas.py` writes every generated section, and CI fails
 when one is stale. [es-ES.md](es-ES.md), [ar.md](ar.md) and [mwl.md](mwl.md)
