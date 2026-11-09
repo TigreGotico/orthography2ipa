@@ -16,6 +16,8 @@ A spec switches off an inherited rule when it declares the same id with an empty
 
 Every spec on this page inherits `PT_INITIAL_ES_RAISE`, so a word-initial unstressed ⟨e⟩ before a coda sibilant is [i], and each spec keeps its own coda sibilant. Vázquez Diéguez (2015: 242) makes this statement for Europe as a whole. No source read covers a regional variety on its own.
 
+Every spec on this page also inherits the `PT_INITIAL_O` rules, so an unstressed word-initial ⟨o⟩ is [ɔ], with [u] and [o] as the other lattice candidates: `obter` [ɔbˈteɾ]. No source read gives a regional value.
+
 The specs `pt-PT-x-sao-miguel` and `pt-PT-x-terceira` name `pt-PT-x-acores` as an adstrate in `ancestors`. That entry records the relation only. Both specs take their data from `pt-PT`, so they do not inherit the rules of `pt-PT-x-acores`. The spec `pt-PT-x-medieval` (Old Portuguese) has the same code prefix. It is the base of `pt-PT`, not a dialect of it, so this page does not cover it.
 
 ## Defining features
