@@ -563,4 +563,4 @@ The engine wrote every transcription in this section with `orthography2ipa.trans
 <!-- atlas:related end -->
 
 ---
-[← Castilian Spanish](es-ES.md) · [Home](../index.md) · [Mirandese →](mwl.md)
+[← Languages from A to Z](a-z.md) · [Home](../index.md) · [Castilian Spanish →](es-ES.md)

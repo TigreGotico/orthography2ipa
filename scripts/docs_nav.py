@@ -3,8 +3,10 @@
 
 ``docs/index.md`` defines the order of the documentation set, and
 ``docs/languages/index.md`` defines the order of the per-language pages inside
-it. This module reads both, so the order lives in one place instead of being
-restated in every page.
+it. The atlas pages follow ``docs/languages/a-z.md`` instead: they come right
+after that index, in the order of its "Pages" table, so a new atlas page joins
+the set when the atlas generator lists it. This module reads the three pages,
+so the order lives in one place instead of being restated in every page.
 
 Every page except ``docs/index.md``, ``docs/README.md`` and the :data:`STUBS`
 ends with a footer:
@@ -34,6 +36,8 @@ import sys
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DOCS = os.path.join(REPO_ROOT, "docs")
 INDEX = "index.md"
+LANGUAGES = "languages/index.md"
+ATLAS_AZ = "languages/a-z.md"
 # Pages that only point to a moved page, kept because other sites link them.
 STUBS = {"benchmarks.md", "scoreboard.md"}
 NOT_IN_ORDER = {INDEX, "README.md"} | STUBS
@@ -48,20 +52,43 @@ def _read(rel: str) -> str:
         return fh.read()
 
 
-def reading_order() -> list[str]:
-    """Every page of the set, in reading order, as paths relative to ``docs/``."""
+def atlas_pages(az_text: str | None = None) -> list[str]:
+    """The atlas pages, in the order of the "Pages" table of ``a-z.md``.
+
+    The atlas generator passes the text it is about to write as *az_text*,
+    because the copy on disk does not list a page it has just added.
+    """
+    text = _read(ATLAS_AZ) if az_text is None else az_text
+    _, found, rest = text.partition("\n## Pages\n")
+    if not found:
+        return []
+    section = rest.split("\n## ", 1)[0]
+    return ["languages/" + name for name in _TABLE_LINK.findall(section)]
+
+
+def reading_order(az_text: str | None = None) -> list[str]:
+    """Every page of the set, in reading order, as paths relative to ``docs/``.
+
+    *az_text* replaces ``docs/languages/a-z.md`` as the list of atlas pages.
+    """
     order: list[str] = []
     for target in _TABLE_LINK.findall(_read(INDEX)):
         if target.startswith("..") or "#" in target or target in order:
             continue
         order.append(target)
 
+    atlas = atlas_pages(az_text)
     languages: list[str] = []
-    for name in _ANY_LINK.findall(_read("languages/index.md")):
+    for name in _ANY_LINK.findall(_read(LANGUAGES)):
         page = "languages/" + name
-        if page != "languages/index.md" and page not in languages:
+        if page != LANGUAGES and page not in languages and page not in atlas:
             languages.append(page)
-    at = order.index("languages/index.md")
+    if ATLAS_AZ in languages:
+        at = languages.index(ATLAS_AZ) + 1
+        languages[at:at] = atlas
+    else:
+        languages += atlas
+    at = order.index(LANGUAGES)
     order = order[: at + 1] + languages + order[at + 1 :]
 
     on_disk = {
@@ -104,7 +131,8 @@ def footer(rel: str, order: list[str] | None = None) -> str:
     return "\n\n---\n" + " · ".join(parts) + "\n"
 
 
-def _with_footer(text: str, rel: str, order: list[str]) -> str:
+def with_footer(text: str, rel: str, order: list[str]) -> str:
+    """*text* with its footer replaced by the footer for ``rel``."""
     return _FOOTER.sub("", text.rstrip()) + footer(rel, order)
 
 
@@ -122,7 +150,7 @@ def main() -> int:
         path = os.path.join(DOCS, rel)
         with open(path, encoding="utf-8") as fh:
             text = fh.read()
-        wanted = _with_footer(text, rel, order)
+        wanted = with_footer(text, rel, order)
         if wanted == text:
             continue
         stale.append(rel)

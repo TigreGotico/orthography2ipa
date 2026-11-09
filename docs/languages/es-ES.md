@@ -306,4 +306,4 @@ No downstream repository of the TigreGotico organisation covers this spec. The [
 <!-- atlas:related end -->
 
 ---
-[← Languages from A to Z](a-z.md) · [Home](../index.md) · [Arabic →](ar.md)
+[← Arabic](ar.md) · [Home](../index.md) · [Mirandese →](mwl.md)

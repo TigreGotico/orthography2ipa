@@ -1308,4 +1308,4 @@ Stubs (160): Yaaku `muu`, Yabarana `yar`, Yabem `jae`, Yaben `ybm`, Yabong `ybo`
 Stubs (52): Zaachila Zapotec `ztx`, Zabana `kji`, Zacatepec Chatino `ctz`, Zacatlán-Ahuacatlán-Tepetzintla Nahuatl `nhi`, Zaiwa `atb`, Zakhring `zkr`, Zambian Sign Language `zsl`, Zan Gula `zna`, Zanaki `zak`, Zangskari `zau`, Zangwal `zah`, Zaniza Zapotec `zpw`, Zaramo `zaj`, Zari `zaz`, Zarma `dje`, Zauzou `zal`, Zay `zwa`, Zayein Karen `kxk`, Zayse-Zergulla `zay`, Zazao `jaj`, Zeelandic `zea`, Zeem `zem`, Zemba `dhm`, Zeme Naga `nzm`, Zenag `zeg`, Zenzontepec Chatino `czn`, Zerenkel `zrn`, Zhaba `zhb`, Zhire `zhi`, Zhoa `zhw`, Zia `zia`, Zialo `zil`, Zimakani `zik`, Zimba `zmb`, Zimbabwe Sign Language `zib`, Zinza `zin`, Zire `sih`, Zizilivakan `ziz`, Zo'é `pto`, Zokhuo `yzk`, Zoogocho Zapotec `zpq`, Zoroastrian Dari `gbz`, Zotung Chin `czt`, Zul `zlu`, Zula `zla`, Zulgo-Gemzek `gnd`, Zumaya `zuy`, Zumbun `jmb`, Zuni `zun`, Zuojiang Zhuang `zzj`, Zyphe Chin `zyp`, Záparo `zro`.
 
 ---
-[← Languages by script](by-script.md) · [Home](../index.md) · [Castilian Spanish →](es-ES.md)
+[← Languages by script](by-script.md) · [Home](../index.md) · [Arabic →](ar.md)

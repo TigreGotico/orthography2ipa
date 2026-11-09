@@ -215,3 +215,48 @@ def test_primary_row_without_a_spelling_is_skipped(atlas):
     block = atlas_gen.block_examples(atlas, orthography2ipa.get("shu-NG"), [])
     assert "| None |" not in block
     assert block.count("\n| ") > 2
+
+
+def _nav():
+    path = os.path.join(_ROOT, "scripts", "docs_nav.py")
+    spec = importlib.util.spec_from_file_location("docs_nav", path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def _names_in_order(atlas, codes):
+    return [f"languages/{c}.md"
+            for c in sorted(codes, key=lambda c: (atlas.raw[c]["name"], c))]
+
+
+def test_reading_order_takes_every_atlas_page_from_the_az_index(atlas):
+    order = _nav().reading_order()
+    at = order.index("languages/a-z.md") + 1
+    expected = _names_in_order(atlas, atlas.pages)
+    assert order[at:at + len(expected)] == expected
+
+
+def test_a_new_atlas_page_gets_the_footer_of_its_az_place(monkeypatch):
+    # A page on disk that is not an atlas page yet, made one by a scaffold.
+    # The atlas is built here, because the test adds a page to it.
+    atlas = atlas_gen.Atlas()
+    code = next(c for c in sorted(atlas.raw)
+                if c not in atlas.pages and not atlas.raw[c].get("clade")
+                and os.path.exists(os.path.join(_ROOT, "docs", "languages",
+                                                f"{c}.md")))
+    atlas.pages.add(code)
+    page = atlas_gen.scaffold(atlas, code)
+    real = atlas_gen._read
+    target = os.path.join("languages", f"{code}.md")
+    monkeypatch.setattr(atlas_gen, "_read",
+                        lambda p: page if p.endswith(target) else real(p))
+    out = atlas_gen.outputs(atlas)[f"docs/languages/{code}.md"]
+    names = _names_in_order(atlas, atlas.pages)
+    at = names.index(f"languages/{code}.md")
+    before = os.path.basename(names[at - 1]) if at else "a-z.md"
+    assert out.splitlines()[-1].startswith("[← ")
+    assert f"]({before}) · [Home](../index.md) · " in out.splitlines()[-1]
+    if at + 1 < len(names):
+        after = os.path.basename(names[at + 1])
+        assert out.splitlines()[-1].endswith(f"]({after})")

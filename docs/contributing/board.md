@@ -72,6 +72,17 @@ its whole board, which takes hours. A whole-board `--scoreboard` run also
 writes the [board environment](../evaluation/benchmarks.md#board-environment)
 file, which you read first when a row moves with no spec change.
 
+The [language atlas](../languages/index.md) prints the board scores of each
+spec in the "Datasets" block of its page, so a board change makes those pages
+stale. After the board files, rewrite the atlas, then the navigation footers
+and `llms.txt`, which read the atlas:
+
+```bash
+PYTHONPATH=$PWD python scripts/gen_language_atlas.py --write
+python scripts/docs_nav.py --write
+PYTHONPATH=$PWD python scripts/gen_reference_docs.py --write
+```
+
 After the run, diff the CI sample against the merge base and count the rows
 that changed. Only your rows may move. The
 [regression gate](../evaluation/benchmarks.md#stale-board-rows) is one-sided,
@@ -112,6 +123,7 @@ in between.
 | Board not reverting | A merge result that puts back a row value `dev` already moved past, or that grows a burn-down list | `PYTHONPATH=$PWD python scripts/check_board_not_reverting.py --base origin/dev --body-file pr-body.md` |
 | Scoreboard in sync | A `docs/evaluation/generated/scoreboard.md` that differs from what `results.json` renders | `PYTHONPATH=$PWD python -m pytest tests/test_thin_row_marker.py` |
 | Docs prose | A generated page that fails the prose lint (fix the generator, then regenerate) | `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py` |
+| Language atlas | An atlas block or index that differs from what the specs and `results.json` render | `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check` |
 
 The CI workflow `.github/workflows/benchmark-regression.yml` runs the first
 four guards. `board-not-reverting` runs the copy of the script on the base
