@@ -49,7 +49,7 @@ portuguese = ["silabificador>=2.1.0a1"]
 # there and not only on a developer's box.
 test = ["pytest", "pytest-timeout", "pytest-cov", "pydantic>=2", "hypothesis",
         "silabificador>=2.1.0a1", "huggingface_hub", "rarfile", "scriptconv",
-        "anthropic>=2.0.0"]
+        "anthropic>=2.6.0"]
 # dev-only extra for scripts/compare_systems.py; never a runtime dependency.
 # africa-g2p is published on PyPI but is not listed here. Install it into the
 # run environment before regenerating the comparison table, as
@@ -58,7 +58,7 @@ compare = ["epitran", "gruut", "pycotovia", "ahotts-g2p"]
 # dev-only extra for scripts/correct_silver_ipa.py, which corrects the
 # LLM-generated silver sets with Claude; never a runtime dependency. The test
 # extra also lists the SDK, because some tests map its real error classes.
-silver-correction = ["anthropic>=2.0.0"]
+silver-correction = ["anthropic>=2.6.0"]
 
 [project.urls]
 Homepage = "https://github.com/TigreGotico/orthography2ipa"
