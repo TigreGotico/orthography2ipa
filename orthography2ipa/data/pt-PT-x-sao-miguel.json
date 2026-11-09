@@ -68,7 +68,8 @@
       ],
       "surface": "ej",
       "grapheme": [
-        "ei"
+        "ei",
+        "êi"
       ],
       "followed_by": "coda_nasal",
       "notes": "Guard for SM_EI_MONOPHTHONG. Before a coda nasal ⟨ei⟩ is nasal (hein, reimplantar), not the oral falling diphthong that the source reduces, so it keeps the pt-PT reading."
@@ -80,10 +81,11 @@
       ],
       "surface": "e",
       "grapheme": [
-        "ei"
+        "ei",
+        "êi"
       ],
       "followed_by": "consonant",
-      "notes": "Micaelense reduces the falling diphthong ⟨ei⟩ to [e]: leite [ˈletɨ], peixe [ˈpeʃɨ], primeiro [pɾiˈmeɾu]. Cunha & Cintra, Nova Gramática do Português Contemporâneo, 7th ed., p. 31, on the Atlantic islands: 'o ditongo [ow] reduz-se normalmente a [o], mas a redução de [ej] a [e] é fenômeno esporádico; só ocorre como norma na ilha de São Miguel.' The rule applies before a consonant, and SM_EI_MONOPHTHONG_FINAL applies at the end of a word. Before a vowel the glide begins the next syllable (cheia, ideia), and no source covers that position, so no rule applies there and the pt-PT [ej] stays."
+      "notes": "Micaelense reduces the falling diphthong [ej], spelled ⟨ei⟩ or ⟨êi⟩, to [e]: leite [ˈletɨ], peixe [ˈpeʃɨ], primeiro [pɾiˈmeɾu], amêijoa [ɐˈmeʒuɐ]. Cunha & Cintra, Nova Gramática do Português Contemporâneo, 7th ed., p. 31, on the Atlantic islands: 'o ditongo [ow] reduz-se normalmente a [o], mas a redução de [ej] a [e] é fenômeno esporádico; só ocorre como norma na ilha de São Miguel.' The rule applies before a consonant, and SM_EI_MONOPHTHONG_FINAL applies at the end of a word. Before a vowel the glide begins the next syllable (cheia, ideia), and no source covers that position, so no rule applies there and the pt-PT [ej] stays."
     },
     {
       "id": "SM_EI_MONOPHTHONG_FINAL",
@@ -92,7 +94,8 @@
       ],
       "surface": "e",
       "grapheme": [
-        "ei"
+        "ei",
+        "êi"
       ],
       "word_final": true,
       "notes": "The word-final case of SM_EI_MONOPHTHONG: lei [ˈle], sei [ˈse]. Cunha & Cintra, Nova Gramática do Português Contemporâneo, 7th ed., p. 31, on the Atlantic islands: 'o ditongo [ow] reduz-se normalmente a [o], mas a redução de [ej] a [e] é fenômeno esporádico; só ocorre como norma na ilha de São Miguel.'"

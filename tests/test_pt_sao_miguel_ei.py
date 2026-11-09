@@ -34,6 +34,8 @@ MONOPHTHONG = {
     "atueira": "ɐˈtweɾɐ",
     "continuei": "kõtiˈnwe",
     "sei": "ˈse",
+    "amêijoa": "ɐˈmeʒuɐ",
+    "gêiser": "ˈʒezɨɾ",
 }
 
 #: ⟨ei⟩ before a vowel keeps the glide, as in pt-PT.
