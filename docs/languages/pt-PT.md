@@ -53,6 +53,24 @@ Infopédia writes [a] first in 2,720 of 2,726 changed words, [ɛ] in 213 of 217 
 
 The rules leave three cases alone. A stressed vowel keeps its reading: `alto` [ˈaɫtu], `selva` [ˈsɛɫvɐ], `solto` [ˈsɔɫtu]. A word-initial ⟨o⟩ or ⟨e⟩ keeps the word-initial ranking: `olfato` [ɔɫˈfatu]. The digraph ⟨lh⟩ is not a coda ⟨l⟩: `molhar` [muˈʎaɾ].
 
+### Unstressed vowels before a stop and another consonant
+
+An unstressed ⟨e⟩ or ⟨o⟩ before a stop letter ⟨p b t d c k g⟩ and another consonant does not reduce. Cunha & Cintra (7th ed., p. 53) write "Também não se reduziram as vogais átonas de cultismos, como o [a] de *actor*; o [ɛ] de *director*; o [ɔ] de *adopção*". On p. 88 they write that Portugal kept the etymological consonant in the spelling "sempre que se seguem às vogais átonas a (aberta), e ou o (semiabertas), como forma de indicar a abertura dessas vogais". The same page calls this the way to distinguish "no português europeu, as pretônicas abertas ou semiabertas das reduzidas", and it names *autóctone*, *compacto*, *apto* and *inepto* as words where the consonant is spoken.
+
+Neither page names a spoken consonant as the cause of the full vowel. The `PT_CODA_STOP` rules take an inference from the two pages: a stop letter before another consonant is the written mark of a learned word, and the unstressed ⟨e⟩ and ⟨o⟩ of a learned word do not reduce. AO90 removes the consonants that are not spoken, so in AO90 spelling the stop letter is spoken. The reduced vowel stays as a lattice candidate:
+
+| Vowel | Rules | Lattice | Example |
+|:---:|:---|:---|:---|
+| e | `PT_CODA_STOP_E_OPEN` and its candidates | [ɛ], [ɨ], [e] | `aspectável` [ɐʃpɛkˈtavɛɫ], `hectare` [ɛkˈtaɾɨ], `bíceps` [ˈbisɛpʃ] |
+| o | `PT_CODA_STOP_O_OPEN` and its candidates | [ɔ], [u], [o] | `noctâmbulo` [nɔkˈtɐ̃bulu], `cocção` [kɔkˈsɐ̃w̃] |
+| word-initial e | `PT_CODA_STOP_INITIAL_E_OPEN` and its candidates | [ɛ], [e], [i], [ɨ] | `etnia` [ɛtˈniɐ], `ecdémico` [ɛkˈdɛmiku] |
+
+In the single Infopédia words that no word list holds, and where Infopédia writes the stop, it gives [ɛ] in 405 of 425 medial ⟨e⟩ slots and [ɔ] in 166 of 178 medial ⟨o⟩ slots. It gives [ɛ] first in 89 of the 91 words with a word-initial ⟨e⟩ in this context. Infopédia carries the Lisbon assumption.
+
+The rules take ⟨gn⟩ and ⟨gm⟩, because the source names no exception for them. Infopédia writes [ɛ] in `segmento` [sɛˈɡmẽtu] and [ɔ] in `dogmático` [dɔˈɡmatiku] and `cognitivo` [kɔɡniˈtivu]. It reduces the vowel in some words where its syllabification puts ⟨gn⟩ or ⟨gm⟩ in the onset: `impregnar` [ĩprəˈɡnar], `apotegmático` [ɐputəˈɡmatiku], `prognóstico` [pruˈɡnɔʃtiku]. Those words are lexical.
+
+The rules leave four cases alone. A stop before ⟨l⟩ or ⟨r⟩ starts the next syllable: `decrescer` [dɨkɾɨʃˈseɾ], `cobrança` [kuˈbɾɐ̃sɐ]. A stressed vowel keeps its reading: `aspecto` [ɐʃˈpɛktu]. A word-initial ⟨o⟩ keeps the `PT_INITIAL_O` ranking: `optar` [ɔpˈtaɾ]. An unstressed ⟨a⟩ keeps [ɐ], with [a] as the second candidate: `captar` [kɐpˈtaɾ]. The p. 53 clause gives [a] for *actor*, but Infopédia writes [ɐ] in 295 of 411 medial ⟨a⟩ slots before a spoken stop, so the spec does not take the clause for ⟨a⟩.
+
 ## Word-initial ⟨es⟩ before a consonant
 
 A word-initial unstressed ⟨e⟩ before a coda sibilant is [i]. `PT_INITIAL_ES_RAISE` gives `estar` [iʃˈtaɾ], `escola` [iʃˈkɔlɐ] and `esmola` [iʒˈmɔlɐ]. Vázquez Diéguez (2015: 242) gives [i] for Europe and lists the series "esc- [(i)ʃk]" and "est- [(i)ʃt]" on p. 250.
@@ -63,16 +81,17 @@ The rule stays off for double ⟨ss⟩, for a stressed ⟨e⟩, and for ⟨es⟩
 
 ## Word-initial ⟨e⟩
 
-The value of an unstressed word-initial ⟨e⟩ depends on its first syllable. Mateus & d'Andrade (1998, D.E.L.T.A. 14(1), p. 26) give the contexts: "Underlying /e/ and /ɛ/ occur as: a) ɛ] when the coda is /L/ (see Elvira); b) as [i] when the rhyme has no coda (see elefante); c) there is some variation between [i], [e] and [E] when the coda is an /R/ (see ermida)". Cunha & Cintra (7th ed., p. 53) write "o [e] inicial absoluto de *enorme*, *erguer*, que se pronuncia geralmente [i]". The spec has four contexts:
+The value of an unstressed word-initial ⟨e⟩ depends on its first syllable. Mateus & d'Andrade (1998, D.E.L.T.A. 14(1), p. 26) give the contexts: "Underlying /e/ and /ɛ/ occur as: a) ɛ] when the coda is /L/ (see Elvira); b) as [i] when the rhyme has no coda (see elefante); c) there is some variation between [i], [e] and [E] when the coda is an /R/ (see ermida)". Cunha & Cintra (7th ed., p. 53) write "o [e] inicial absoluto de *enorme*, *erguer*, que se pronuncia geralmente [i]". The spec has five contexts:
 
 | First syllable | Rules | Lattice | Example |
 |:---|:---|:---|:---|
 | open: ⟨e⟩ + consonant + vowel | `PT_INITIAL_E_OPEN` and its candidates | [i], [e], [ɛ], [ɨ] | `enorme` [iˈnɔɾmɨ], `elefante` [ilɨˈfɐ̃tɨ] |
 | closed by ⟨l⟩ or ⟨r⟩ | `PT_INITIAL_E_LIQUID_CODA` and its candidates | [ɛ], [e], [i], [ɨ] | `ermida` [ɛɾˈmidɐ], `elvense` [ɛɫˈvẽsɨ] |
-| closed by another consonant | `PT_INITIAL_E_CODA_CANDIDATE_*` | [e], [ɛ], [i], [ɨ] | `eclipse` [eˈklipsɨ], `ecdémico` [ekˈdɛmiku] |
+| closed by a stop before a consonant | `PT_CODA_STOP_INITIAL_E_OPEN` and its candidates | [ɛ], [e], [i], [ɨ] | `etnia` [ɛtˈniɐ], `ecdémico` [ɛkˈdɛmiku] |
+| closed by another consonant | `PT_INITIAL_E_CODA_CANDIDATE_*` | [e], [ɛ], [i], [ɨ] | `eclipse` [eˈklipsɨ], `ecler` [eˈklɛɾ] |
 | ⟨es⟩, ⟨ex⟩, ⟨e⟩ + vowel, ⟨e⟩ + coda nasal | other rules | unchanged | `estar` [iʃˈtaɾ], `eólico` [eˈɔliku], `entrar` [ẽˈtɾaɾ] |
 
-The source gives [i] in an open syllable and [ɛ] before a coda /L/. Before a coda /R/ it gives variation between [i], [e] and [ɛ], so Infopédia decides the order. Infopédia writes [ɛ] first in 50 of the 73 single words with a coda ⟨r⟩. No source read names the other codas or an obstruent before a liquid. There the default stays [e], and the [ɛ] candidate rests on Infopédia only. In an open syllable Infopédia writes [i] first in 747 of 1,553 single words, [e] in 496 and [ɛ] in 303. Infopédia carries the Lisbon assumption. A stressed word-initial ⟨e⟩ keeps the `word_initial` row and the word lists: `elmo` [ˈeɫmu]. The conjunction `e` stays [i].
+The source gives [i] in an open syllable and [ɛ] before a coda /L/. Before a coda /R/ it gives variation between [i], [e] and [ɛ], so Infopédia decides the order. Infopédia writes [ɛ] first in 50 of the 73 single words with a coda ⟨r⟩. Before a stop and another consonant the `PT_CODA_STOP` rules give [ɛ] (see the section on unstressed vowels before a stop). No source read names the other codas or an obstruent before a liquid. There the default stays [e], and the [ɛ] candidate rests on Infopédia only. In an open syllable Infopédia writes [i] first in 747 of 1,553 single words, [e] in 496 and [ɛ] in 303. Infopédia carries the Lisbon assumption. A stressed word-initial ⟨e⟩ keeps the `word_initial` row and the word lists: `elmo` [ˈeɫmu]. The conjunction `e` stays [i].
 
 ## Word-initial ⟨o⟩
 

@@ -578,6 +578,66 @@
       "notes": "DISABLED for Korlai Indo-Portuguese (Korlai Creole Portuguese). The PT_STRESSED_E_PREPALATAL rules describe European Portuguese, and no source for this language was read."
     },
     {
+      "id": "PT_CODA_STOP_INITIAL_E_OPEN",
+      "phonemes": [],
+      "surface": "ɛ",
+      "notes": "DISABLED for Korlai Indo-Portuguese (Korlai Creole Portuguese). The PT_CODA_STOP rules describe European Portuguese, and no source for this language was read."
+    },
+    {
+      "id": "PT_CODA_STOP_INITIAL_E_CANDIDATE_E",
+      "phonemes": [],
+      "surface": "e",
+      "notes": "DISABLED for Korlai Indo-Portuguese (Korlai Creole Portuguese). The PT_CODA_STOP rules describe European Portuguese, and no source for this language was read."
+    },
+    {
+      "id": "PT_CODA_STOP_INITIAL_E_CANDIDATE_I",
+      "phonemes": [],
+      "surface": "i",
+      "notes": "DISABLED for Korlai Indo-Portuguese (Korlai Creole Portuguese). The PT_CODA_STOP rules describe European Portuguese, and no source for this language was read."
+    },
+    {
+      "id": "PT_CODA_STOP_INITIAL_E_CANDIDATE_REDUCED",
+      "phonemes": [],
+      "surface": "ɨ",
+      "notes": "DISABLED for Korlai Indo-Portuguese (Korlai Creole Portuguese). The PT_CODA_STOP rules describe European Portuguese, and no source for this language was read."
+    },
+    {
+      "id": "PT_CODA_STOP_E_OPEN",
+      "phonemes": [],
+      "surface": "ɛ",
+      "notes": "DISABLED for Korlai Indo-Portuguese (Korlai Creole Portuguese). The PT_CODA_STOP rules describe European Portuguese, and no source for this language was read."
+    },
+    {
+      "id": "PT_CODA_STOP_E_CANDIDATE_REDUCED",
+      "phonemes": [],
+      "surface": "ɨ",
+      "notes": "DISABLED for Korlai Indo-Portuguese (Korlai Creole Portuguese). The PT_CODA_STOP rules describe European Portuguese, and no source for this language was read."
+    },
+    {
+      "id": "PT_CODA_STOP_E_CANDIDATE_CLOSE",
+      "phonemes": [],
+      "surface": "e",
+      "notes": "DISABLED for Korlai Indo-Portuguese (Korlai Creole Portuguese). The PT_CODA_STOP rules describe European Portuguese, and no source for this language was read."
+    },
+    {
+      "id": "PT_CODA_STOP_O_OPEN",
+      "phonemes": [],
+      "surface": "ɔ",
+      "notes": "DISABLED for Korlai Indo-Portuguese (Korlai Creole Portuguese). The PT_CODA_STOP rules describe European Portuguese, and no source for this language was read."
+    },
+    {
+      "id": "PT_CODA_STOP_O_CANDIDATE_REDUCED",
+      "phonemes": [],
+      "surface": "u",
+      "notes": "DISABLED for Korlai Indo-Portuguese (Korlai Creole Portuguese). The PT_CODA_STOP rules describe European Portuguese, and no source for this language was read."
+    },
+    {
+      "id": "PT_CODA_STOP_O_CANDIDATE_CLOSE",
+      "phonemes": [],
+      "surface": "o",
+      "notes": "DISABLED for Korlai Indo-Portuguese (Korlai Creole Portuguese). The PT_CODA_STOP rules describe European Portuguese, and no source for this language was read."
+    },
+    {
       "id": "PT_STRESSED_A_BEFORE_NASAL",
       "phonemes": [],
       "surface": "ɐ",

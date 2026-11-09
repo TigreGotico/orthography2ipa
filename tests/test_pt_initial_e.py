@@ -9,7 +9,8 @@ de enorme, erguer, que se pronuncia geralmente [i]".
 The spec ranks the slot [i], [e], [ɛ] in an open first syllable and [ɛ], [e],
 [i] before a coda ⟨l⟩ or ⟨r⟩, where Infopédia decides the order. Before
 another coda consonant, which no source read names, it keeps [e] and ranks
-[ɛ] second. Initial ⟨ex⟩, ⟨e⟩ before a vowel, ⟨e⟩ before a coda nasal and
+[ɛ] second. A stop before another consonant takes the coda-stop rules
+(tests/test_pt_coda_stop.py). Initial ⟨ex⟩, ⟨e⟩ before a vowel, ⟨e⟩ before a coda nasal and
 initial ⟨es⟩ before a consonant keep their own readings.
 
 Readings without a page come from Infopédia rows.
@@ -69,7 +70,7 @@ def test_initial_e_before_a_coda_l_or_r_is_open(word, ipa):
 
 
 @pytest.mark.parametrize("word, ipa", [
-    ("eclipse", "eˈklipsɨ"), ("ecdémico", "ekˈdɛmiku"), ("ecler", "eˈklɛɾ"),
+    ("eclipse", "eˈklipsɨ"), ("eclosão", "ekluˈzɐ̃w̃"), ("ecler", "eˈklɛɾ"),
 ])
 def test_initial_e_before_another_coda_keeps_e(word, ipa):
     assert G2P("pt-PT").transcribe(word) == ipa

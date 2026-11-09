@@ -1354,6 +1354,426 @@
       "notes": "The fourth lattice candidate of an unstressed word-initial ⟨e⟩ before a coda ⟨l⟩ or ⟨r⟩ is the [ɨ] of the general reduction. The rule does not change the transcription. See PT_INITIAL_E_LIQUID_CODA."
     },
     {
+      "id": "PT_CODA_STOP_INITIAL_E_OPEN",
+      "phonemes": [
+        "e"
+      ],
+      "surface": "ɛ",
+      "grapheme": [
+        "e"
+      ],
+      "word_initial": true,
+      "stress": "unstressed",
+      "followed_by": "coda",
+      "followed_by_grapheme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "c",
+        "k",
+        "g"
+      ],
+      "followed_by_phoneme_2": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "s̺",
+        "z̺",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ"
+      ],
+      "notes": "An unstressed word-initial ⟨e⟩ before a stop letter and another consonant is [ɛ]: etnia [ɛtˈniɐ], ecdémico [ɛkˈdɛmiku], eczema [ɛkˈzemɐ]. Cunha & Cintra (7th ed., p. 53): 'Também não se reduziram as vogais átonas de cultismos, como o [a] de actor; o [ɛ] de director; o [ɔ] de adopção'. On p. 88 they write that Portugal kept the etymological consonant in the spelling 'sempre que se seguem às vogais átonas a (aberta), e ou o (semiabertas), como forma de indicar a abertura dessas vogais', and that this spelling is the way to distinguish 'no português europeu, as pretônicas abertas ou semiabertas das reduzidas'. The same page names autóctone, compacto, apto and inepto as words where the consonant is spoken. Neither page names a spoken consonant as the cause of the full vowel. The rule takes an inference from the two pages: a stop letter before another consonant is the written mark of a learned word, and the unstressed ⟨e⟩ and ⟨o⟩ of a learned word do not reduce. AO90 removes the consonants that are not spoken, so in AO90 spelling the stop letter is spoken. The rule takes ⟨p b t d c k g⟩ before a consonant other than ⟨l⟩ or ⟨r⟩. A stop before ⟨l⟩ or ⟨r⟩ starts the next syllable (aplicar), and a word-final stop stays out. Infopédia writes [ɛ] first in 89 of the 91 single words that reach these rules and [e] in 2 (ecmófobo, ecmofóbico). Infopédia carries the Lisbon assumption. This rule and the three PT_CODA_STOP_INITIAL_E_CANDIDATE rules rank the slot [ɛ], [e], [i], [ɨ]. They come before the PT_INITIAL_E_CODA rules, which keep the other codas. See PT_INITIAL_E_OPEN for the row candidates."
+    },
+    {
+      "id": "PT_CODA_STOP_INITIAL_E_CANDIDATE_E",
+      "phonemes": [
+        "i"
+      ],
+      "surface": "e",
+      "grapheme": [
+        "e"
+      ],
+      "word_initial": true,
+      "stress": "unstressed",
+      "followed_by": "coda",
+      "followed_by_grapheme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "c",
+        "k",
+        "g"
+      ],
+      "followed_by_phoneme_2": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "s̺",
+        "z̺",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ"
+      ],
+      "notes": "The second lattice candidate of an unstressed word-initial ⟨e⟩ before a stop letter and another consonant is [e]. The rule does not change the transcription. See PT_CODA_STOP_INITIAL_E_OPEN."
+    },
+    {
+      "id": "PT_CODA_STOP_INITIAL_E_CANDIDATE_I",
+      "phonemes": [
+        "ɨ"
+      ],
+      "surface": "i",
+      "grapheme": [
+        "e"
+      ],
+      "word_initial": true,
+      "stress": "unstressed",
+      "followed_by": "coda",
+      "followed_by_grapheme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "c",
+        "k",
+        "g"
+      ],
+      "followed_by_phoneme_2": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "s̺",
+        "z̺",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ"
+      ],
+      "notes": "The third lattice candidate of an unstressed word-initial ⟨e⟩ before a stop letter and another consonant is [i]. The rule does not change the transcription. See PT_CODA_STOP_INITIAL_E_OPEN."
+    },
+    {
+      "id": "PT_CODA_STOP_INITIAL_E_CANDIDATE_REDUCED",
+      "phonemes": [
+        "ɛ"
+      ],
+      "surface": "ɨ",
+      "grapheme": [
+        "e"
+      ],
+      "word_initial": true,
+      "stress": "unstressed",
+      "followed_by": "coda",
+      "followed_by_grapheme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "c",
+        "k",
+        "g"
+      ],
+      "followed_by_phoneme_2": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "s̺",
+        "z̺",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ"
+      ],
+      "notes": "The fourth lattice candidate of an unstressed word-initial ⟨e⟩ before a stop letter and another consonant is the [ɨ] of the general reduction. The rule does not change the transcription. See PT_CODA_STOP_INITIAL_E_OPEN."
+    },
+    {
+      "id": "PT_CODA_STOP_E_OPEN",
+      "phonemes": [
+        "ɨ"
+      ],
+      "surface": "ɛ",
+      "grapheme": [
+        "e"
+      ],
+      "word_initial": false,
+      "stress": "unstressed",
+      "followed_by": "coda",
+      "followed_by_grapheme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "c",
+        "k",
+        "g"
+      ],
+      "followed_by_phoneme_2": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "s̺",
+        "z̺",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ"
+      ],
+      "notes": "An unstressed ⟨e⟩ before a stop letter and another consonant is [ɛ], not the reduced [ɨ]: aspectável [ɐʃpɛkˈtavɛɫ], septicemia [sɛptisɨˈmiɐ], hectare [ɛkˈtaɾɨ], bíceps [ˈbisɛpʃ]. Cunha & Cintra (7th ed., p. 53): 'Também não se reduziram as vogais átonas de cultismos, como o [a] de actor; o [ɛ] de director; o [ɔ] de adopção'. On p. 88 they write that Portugal kept the etymological consonant in the spelling 'sempre que se seguem às vogais átonas a (aberta), e ou o (semiabertas), como forma de indicar a abertura dessas vogais', and that this spelling is the way to distinguish 'no português europeu, as pretônicas abertas ou semiabertas das reduzidas'. The same page names autóctone, compacto, apto and inepto as words where the consonant is spoken. Neither page names a spoken consonant as the cause of the full vowel. The rule takes an inference from the two pages: a stop letter before another consonant is the written mark of a learned word, and the unstressed ⟨e⟩ and ⟨o⟩ of a learned word do not reduce. AO90 removes the consonants that are not spoken, so in AO90 spelling the stop letter is spoken. The rule takes ⟨p b t d c k g⟩ before a consonant other than ⟨l⟩ or ⟨r⟩. A stop before ⟨l⟩ or ⟨r⟩ starts the next syllable (aplicar), and a word-final stop stays out. The rule takes ⟨gn⟩ and ⟨gm⟩, because the source names no exception for them. Before ⟨gm⟩ Infopédia writes [ɛ] in 11 of 18 ⟨e⟩ slots (segmento [sɛˈɡmẽtu]) and [ɔ] in 12 of 12 ⟨o⟩ slots (dogmático [dɔˈɡmatiku]). Before ⟨gn⟩ it writes [ɔ] in 43 of 53 ⟨o⟩ slots. It writes [ə] before ⟨gn⟩ in the 8 pregn- words (impregnar [ĩprəˈɡnar]) and before ⟨gm⟩ in 7 apotegm- and apoflegm- words, and there its syllabification puts ⟨gn⟩ or ⟨gm⟩ in the onset. Those words are lexical. Infopédia writes [ɛ] in 405 of 425 slots, [ə] in 19 and [e] in 1. The counts are slots in the single Infopédia words that no word list holds, where Infopédia writes the stop. Infopédia carries the Lisbon assumption. This rule, PT_CODA_STOP_E_CANDIDATE_REDUCED and PT_CODA_STOP_E_CANDIDATE_CLOSE rank the slot [ɛ], [ɨ], [e]. A word-initial ⟨e⟩ takes the PT_CODA_STOP_INITIAL_E rules."
+    },
+    {
+      "id": "PT_CODA_STOP_E_CANDIDATE_REDUCED",
+      "phonemes": [
+        "e"
+      ],
+      "surface": "ɨ",
+      "grapheme": [
+        "e"
+      ],
+      "word_initial": false,
+      "stress": "unstressed",
+      "followed_by": "coda",
+      "followed_by_grapheme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "c",
+        "k",
+        "g"
+      ],
+      "followed_by_phoneme_2": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "s̺",
+        "z̺",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ"
+      ],
+      "notes": "The second lattice candidate of an unstressed ⟨e⟩ before a stop letter and another consonant is the reduced [ɨ]. The rule does not change the transcription. See PT_CODA_STOP_E_OPEN."
+    },
+    {
+      "id": "PT_CODA_STOP_E_CANDIDATE_CLOSE",
+      "phonemes": [
+        "ɛ"
+      ],
+      "surface": "e",
+      "grapheme": [
+        "e"
+      ],
+      "word_initial": false,
+      "stress": "unstressed",
+      "followed_by": "coda",
+      "followed_by_grapheme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "c",
+        "k",
+        "g"
+      ],
+      "followed_by_phoneme_2": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "s̺",
+        "z̺",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ"
+      ],
+      "notes": "The third lattice candidate of an unstressed ⟨e⟩ before a stop letter and another consonant is [e]. The rule does not change the transcription. See PT_CODA_STOP_E_OPEN."
+    },
+    {
+      "id": "PT_CODA_STOP_O_OPEN",
+      "phonemes": [
+        "u"
+      ],
+      "surface": "ɔ",
+      "grapheme": [
+        "o"
+      ],
+      "word_initial": false,
+      "stress": "unstressed",
+      "followed_by": "coda",
+      "followed_by_grapheme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "c",
+        "k",
+        "g"
+      ],
+      "followed_by_phoneme_2": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "s̺",
+        "z̺",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ"
+      ],
+      "notes": "An unstressed ⟨o⟩ before a stop letter and another consonant is [ɔ], not the reduced [u]: noctâmbulo [nɔkˈtɐ̃bulu], cocção [kɔkˈsɐ̃w̃], dogmático [dɔɡˈmatiku]. Cunha & Cintra (7th ed., p. 53): 'Também não se reduziram as vogais átonas de cultismos, como o [a] de actor; o [ɛ] de director; o [ɔ] de adopção'. On p. 88 they write that Portugal kept the etymological consonant in the spelling 'sempre que se seguem às vogais átonas a (aberta), e ou o (semiabertas), como forma de indicar a abertura dessas vogais', and that this spelling is the way to distinguish 'no português europeu, as pretônicas abertas ou semiabertas das reduzidas'. The same page names autóctone, compacto, apto and inepto as words where the consonant is spoken. Neither page names a spoken consonant as the cause of the full vowel. The rule takes an inference from the two pages: a stop letter before another consonant is the written mark of a learned word, and the unstressed ⟨e⟩ and ⟨o⟩ of a learned word do not reduce. AO90 removes the consonants that are not spoken, so in AO90 spelling the stop letter is spoken. The rule takes ⟨p b t d c k g⟩ before a consonant other than ⟨l⟩ or ⟨r⟩. A stop before ⟨l⟩ or ⟨r⟩ starts the next syllable (aplicar), and a word-final stop stays out. The rule takes ⟨gn⟩ and ⟨gm⟩, because the source names no exception for them. Before ⟨gm⟩ Infopédia writes [ɛ] in 11 of 18 ⟨e⟩ slots (segmento [sɛˈɡmẽtu]) and [ɔ] in 12 of 12 ⟨o⟩ slots (dogmático [dɔˈɡmatiku]). Before ⟨gn⟩ it writes [ɔ] in 43 of 53 ⟨o⟩ slots. It writes [ə] before ⟨gn⟩ in the 8 pregn- words (impregnar [ĩprəˈɡnar]) and before ⟨gm⟩ in 7 apotegm- and apoflegm- words, and there its syllabification puts ⟨gn⟩ or ⟨gm⟩ in the onset. Those words are lexical. Infopédia writes [ɔ] in 166 of 178 slots, [u] in 9 and [o] in 3. The counts are slots in the single Infopédia words that no word list holds, where Infopédia writes the stop. Infopédia carries the Lisbon assumption. This rule, PT_CODA_STOP_O_CANDIDATE_REDUCED and PT_CODA_STOP_O_CANDIDATE_CLOSE rank the slot [ɔ], [u], [o]. A word-initial ⟨o⟩ or ⟨ho⟩ keeps the PT_INITIAL_O or PT_INITIAL_HO ranking."
+    },
+    {
+      "id": "PT_CODA_STOP_O_CANDIDATE_REDUCED",
+      "phonemes": [
+        "o"
+      ],
+      "surface": "u",
+      "grapheme": [
+        "o"
+      ],
+      "word_initial": false,
+      "stress": "unstressed",
+      "followed_by": "coda",
+      "followed_by_grapheme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "c",
+        "k",
+        "g"
+      ],
+      "followed_by_phoneme_2": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "s̺",
+        "z̺",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ"
+      ],
+      "notes": "The second lattice candidate of an unstressed ⟨o⟩ before a stop letter and another consonant is the reduced [u]. The rule does not change the transcription. See PT_CODA_STOP_O_OPEN."
+    },
+    {
+      "id": "PT_CODA_STOP_O_CANDIDATE_CLOSE",
+      "phonemes": [
+        "ɔ"
+      ],
+      "surface": "o",
+      "grapheme": [
+        "o"
+      ],
+      "word_initial": false,
+      "stress": "unstressed",
+      "followed_by": "coda",
+      "followed_by_grapheme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "c",
+        "k",
+        "g"
+      ],
+      "followed_by_phoneme_2": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "s̺",
+        "z̺",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ"
+      ],
+      "notes": "The third lattice candidate of an unstressed ⟨o⟩ before a stop letter and another consonant is [o]. The rule does not change the transcription. See PT_CODA_STOP_O_OPEN."
+    },
+    {
       "id": "PT_INITIAL_E_CODA_CANDIDATE_OPEN",
       "phonemes": [
         "i"
@@ -1373,7 +1793,7 @@
         "m",
         "n"
       ],
-      "notes": "An unstressed word-initial ⟨e⟩ before another coda consonant keeps [e], and its second lattice candidate is [ɛ]: eclipse [eˈklipsɨ], ecdémico [ekˈdɛmiku]. The context includes an obstruent before a liquid. No source read names this context: Mateus & d'Andrade (1998, p. 26) name the codas /L/, /R/ and /S/ only. The [ɛ] candidate rests on Infopédia only. Infopédia writes [ɛ] first in 103 of the 154 single words in this context, [e] in 47 and [i] in 4. Before an obstruent and a liquid it writes [e] first in 45 of 61. This rule and PT_INITIAL_E_CODA_CANDIDATE_I and PT_INITIAL_E_CODA_CANDIDATE_REDUCED rank the slot [e], [ɛ], [i], [ɨ]. The rule does not change the transcription. See PT_INITIAL_E_OPEN for the row candidates."
+      "notes": "An unstressed word-initial ⟨e⟩ before another coda consonant keeps [e], and its second lattice candidate is [ɛ]: eclipse [eˈklipsɨ], ecler [eˈklɛɾ]. The context is mostly an obstruent before a liquid. A stop letter before another consonant takes the PT_CODA_STOP_INITIAL_E rules, which come first. No source read names this context: Mateus & d'Andrade (1998, p. 26) name the codas /L/, /R/ and /S/ only. The [ɛ] candidate rests on Infopédia only. Infopédia writes [e] first in 45 of the 63 single words in this context, [ɛ] in 14 and [i] in 4. Before an obstruent and a liquid it writes [e] first in 45 of 61. This rule and PT_INITIAL_E_CODA_CANDIDATE_I and PT_INITIAL_E_CODA_CANDIDATE_REDUCED rank the slot [e], [ɛ], [i], [ɨ]. The rule does not change the transcription. See PT_INITIAL_E_OPEN for the row candidates."
     },
     {
       "id": "PT_INITIAL_E_CODA_CANDIDATE_I",

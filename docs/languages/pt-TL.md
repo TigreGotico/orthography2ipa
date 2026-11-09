@@ -37,6 +37,7 @@ Every feature comes from Albuquerque (2010).
 | Initial ⟨es⟩ + consonant | `PT_INITIAL_ES_RAISE` is off, so the spec keeps [e]. The [i] of *escola* sits in a list of traits shared with the Asian creoles | *espelho* [es.ˈpe.lu] (p. 276), *escola* [is.ˈkɔ.la] ~ [iʃ.kɔ.la] (p. 277) |
 | Initial ⟨e⟩ | the `PT_INITIAL_E` rules are off, so an unstressed initial ⟨e⟩ keeps [e]: *elefante* [eleˈfɐ̃te] | no lenition of unstressed vowels (p. 275, fn. 7) |
 | Vowel before a coda ⟨l⟩ | the `PT_CODA_L` rules are off. The spec does not reduce, so *soldado* stays [soɫˈdado] | no lenition of unstressed vowels (p. 275, fn. 7) |
+| Vowel before a stop and a consonant | the `PT_CODA_STOP` rules are off. The spec does not reduce, so *aspectável* stays [aspekˈtaveɫ] | no lenition of unstressed vowels (p. 275, fn. 7) |
 | Stressed ⟨e⟩ before a palatal | the `PT_STRESSED_E_PREPALATAL` rules are off, so *fecho* keeps [ˈfɛʃo] | no source for this rule was read for Timor |
 | Initial ⟨o⟩ | the `PT_INITIAL_O` and `PT_INITIAL_HO` rules are off, so an unstressed initial ⟨o⟩ or ⟨ho⟩ keeps [o]: *ovelha* [oˈvɛla] | no lenition of unstressed vowels (p. 275, fn. 7) |
 | Paroxytone stress | stress from the spelling. The notes record the Austronesian stress on the penult | *"o acento primário predominantemente na penúltima sílaba … quase completa ausência de proparoxítonas"* (pp. 279-280) |

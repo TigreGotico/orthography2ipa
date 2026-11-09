@@ -22,6 +22,8 @@ Every spec on this page also inherits the `PT_INITIAL_E` rules. An unstressed wo
 
 Every spec on this page also inherits the `PT_CODA_L` rules, so an unstressed ⟨a e o⟩ before a coda ⟨l⟩ is [a], [ɛ], [o]: `altar` [aɫˈtaɾ], `delgado` [dɛɫˈɡadu], `soldado` [soɫˈdadu]. Cunha & Cintra (7th ed., p. 53) describe the standard. No source read gives a regional value.
 
+Every spec on this page also inherits the `PT_CODA_STOP` rules, so an unstressed ⟨e o⟩ before a stop letter and another consonant is [ɛ], [ɔ]: `aspectável` [ɐʃpɛkˈtavɛɫ], `noctâmbulo` [nɔkˈtɐ̃bulu], `etnia` [ɛtˈniɐ]. Cunha & Cintra (7th ed., pp. 53 and 88) describe the standard. No source read gives a regional value.
+
 Every spec on this page except Lisbon, Porto and Braga also inherits the `PT_STRESSED_E_PREPALATAL` rules, so a stressed ⟨e⟩ before ⟨lh nh j ch⟩ is [e]: `fecho` [ˈfeʃu], `telha` [ˈteʎɐ]. Cunha & Cintra (7th ed., p. 431) describe the standard. Lisbon keeps its own [ɐ], and Porto and Braga keep their rising diphthong.
 
 The specs `pt-PT-x-sao-miguel` and `pt-PT-x-terceira` name `pt-PT-x-acores` as an adstrate in `ancestors`. That entry records the relation only. Both specs take their data from `pt-PT`, so they do not inherit the rules of `pt-PT-x-acores`. The spec `pt-PT-x-medieval` (Old Portuguese) has the same code prefix. It is the base of `pt-PT`, not a dialect of it, so this page does not cover it.
