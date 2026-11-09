@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.122.19a1](https://github.com/TigreGotico/orthography2ipa/tree/7.122.19a1) (2026-11-09)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.122.18a1...7.122.19a1)
+
+**Merged pull requests:**
+
+- fix\(pt-PT\): close vowel in the stressed feminine -dora -tora -sora [\#2251](https://github.com/TigreGotico/orthography2ipa/pull/2251) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.122.18a1](https://github.com/TigreGotico/orthography2ipa/tree/7.122.18a1) (2026-11-09)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.122.17a2...7.122.18a1)
@@ -362,10 +370,6 @@
 ## [7.119.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.119.1a1) (2026-11-05)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.119.0a1...7.119.1a1)
-
-**Merged pull requests:**
-
-- fix\(nl\): read ⟨qu⟩ as \[kʋ\], and as \[k\] in the French loans the guide lists [\#2142](https://github.com/TigreGotico/orthography2ipa/pull/2142) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.119.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.119.0a1) (2026-11-05)
 
