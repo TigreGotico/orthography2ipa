@@ -88,7 +88,7 @@ def test_other_graphemes_stay_out(word, ipa):
 
 @pytest.mark.parametrize("word, ipa", [
     ("hospital", "ɔʃpiˈtaɫ"), ("hotel", "ɔˈtɛɫ"), ("hostil", "ɔʃˈtiɫ"), ("horizonte", "ɔɾiˈzõtɨ"),
-    ("hortelã", "ɔɾtɨˈlɐ̃"), ("horrível", "ɔˈʁivɨɫ"),
+    ("hortelã", "ɔɾtɨˈlɐ̃"), ("horrível", "ɔˈʁivɛɫ"),
 ])
 def test_unstressed_o_after_initial_h_is_open(word, ipa):
     assert G2P("pt-PT").transcribe(word) == ipa

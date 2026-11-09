@@ -39,6 +39,20 @@ The positional rows of ⟨a⟩, ⟨e⟩ and ⟨o⟩ carry the reduction. They ar
 
 Speakers often delete a word-final [ɨ]. The spec writes the vowel in most contexts. The sandhi rule `PT_ELISION` deletes it when the next word starts with [a e i o u ɛ ɔ]: `norte e` gives [ˈnɔɾt i]. The engine applies this rule by default. A next word that starts with [ɐ] or a stress mark keeps the vowel: `de amor` gives [dɨ ɐˈmoɾ], and `de ouro` gives [dɨ ˈoɾu]. A word exception maps the conjunction `e` to [i].
 
+### Unstressed vowels before a coda ⟨l⟩
+
+An implosive ⟨l⟩ stops the reduction. Cunha & Cintra (7th ed., p. 53) list among the unstressed vowels that do not reduce "as vogais [a], [ɛ], [o] protegidas por l implosivo de *altar*, *delgado*, *soldado*, *colchão*". A word-final ⟨l⟩ is in a coda, so it is implosive too, and the clause names the ⟨l⟩, not a position in the word. The `PT_CODA_L` rules give the full vowel and keep the reduced one as a lattice candidate:
+
+| Vowel | Rules | Lattice | Example |
+|:---:|:---|:---|:---|
+| a | `PT_CODA_L_A_OPEN` and its candidate | [a], [ɐ] | `altar` [aɫˈtaɾ], `falcão` [faɫˈkɐ̃w̃] |
+| e | `PT_CODA_L_E_OPEN` and its candidate | [ɛ], [e], [ɨ] | `delgado` [dɛɫˈɡadu], `amável` [ɐˈmavɛɫ] |
+| o | `PT_CODA_L_O_CLOSE` and its candidates | [o], [ɔ], [u] | `soldado` [soɫˈdadu], `soltar` [soɫˈtaɾ] |
+
+Infopédia writes [a] first in 2,720 of 2,726 changed words, [ɛ] in 213 of 217 with a medial ⟨el⟩ and in 1,852 of 1,858 with a word-final ⟨el⟩, and [o] in 279 of 360 with a medial ⟨ol⟩. It writes [ɔ] in 56 of those 360 and in the 4 words with a word-final ⟨ol⟩, such as `álcool`. So [ɔ] is the second candidate of ⟨o⟩. Infopédia carries the Lisbon assumption.
+
+The rules leave three cases alone. A stressed vowel keeps its reading: `alto` [ˈaɫtu], `selva` [ˈsɛɫvɐ], `solto` [ˈsɔɫtu]. A word-initial ⟨o⟩ or ⟨e⟩ keeps the word-initial ranking: `olfato` [ɔɫˈfatu]. The digraph ⟨lh⟩ is not a coda ⟨l⟩: `molhar` [muˈʎaɾ].
+
 ## Word-initial ⟨es⟩ before a consonant
 
 A word-initial unstressed ⟨e⟩ before a coda sibilant is [i]. `PT_INITIAL_ES_RAISE` gives `estar` [iʃˈtaɾ], `escola` [iʃˈkɔlɐ] and `esmola` [iʒˈmɔlɐ]. Vázquez Diéguez (2015: 242) gives [i] for Europe and lists the series "esc- [(i)ʃk]" and "est- [(i)ʃt]" on p. 250.
@@ -160,7 +174,7 @@ EP has three coda consonant processes that the pre-lexical map cannot reach clea
 
 | Rule id | Process | Example |
 |:---|:---|:---|
-| `PT_CODA_L_DARK` | velarised coda /l/ to [ɫ] | `sol` [ˈsɔɫ], `alto` [ˈɐɫtu] |
+| `PT_CODA_L_DARK` | velarised coda /l/ to [ɫ] | `sol` [ˈsɔɫ], `alto` [ˈaɫtu] |
 | `PT_CODA_S_HUSH` | coda /s/ to [ʃ] (*chiado*) | `pasta` [ˈpaʃtɐ] |
 | `PT_CODA_Z_HUSH` | coda /z/ to [ʒ] | the voiced counterpart |
 

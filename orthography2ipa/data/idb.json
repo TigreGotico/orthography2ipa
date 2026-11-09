@@ -514,6 +514,48 @@
       "notes": "DISABLED for Sri Lanka Portuguese Creole. The PT_INITIAL_E rules describe European Portuguese, and no source for this language was read."
     },
     {
+      "id": "PT_CODA_L_A_OPEN",
+      "phonemes": [],
+      "surface": "a",
+      "notes": "DISABLED for Sri Lanka Portuguese Creole. The PT_CODA_L rules describe European Portuguese, and no source for this language was read."
+    },
+    {
+      "id": "PT_CODA_L_A_CANDIDATE_REDUCED",
+      "phonemes": [],
+      "surface": "ɐ",
+      "notes": "DISABLED for Sri Lanka Portuguese Creole. The PT_CODA_L rules describe European Portuguese, and no source for this language was read."
+    },
+    {
+      "id": "PT_CODA_L_E_OPEN",
+      "phonemes": [],
+      "surface": "ɛ",
+      "notes": "DISABLED for Sri Lanka Portuguese Creole. The PT_CODA_L rules describe European Portuguese, and no source for this language was read."
+    },
+    {
+      "id": "PT_CODA_L_E_CANDIDATE_REDUCED",
+      "phonemes": [],
+      "surface": "ɨ",
+      "notes": "DISABLED for Sri Lanka Portuguese Creole. The PT_CODA_L rules describe European Portuguese, and no source for this language was read."
+    },
+    {
+      "id": "PT_CODA_L_O_CLOSE",
+      "phonemes": [],
+      "surface": "o",
+      "notes": "DISABLED for Sri Lanka Portuguese Creole. The PT_CODA_L rules describe European Portuguese, and no source for this language was read."
+    },
+    {
+      "id": "PT_CODA_L_O_CANDIDATE_OPEN",
+      "phonemes": [],
+      "surface": "ɔ",
+      "notes": "DISABLED for Sri Lanka Portuguese Creole. The PT_CODA_L rules describe European Portuguese, and no source for this language was read."
+    },
+    {
+      "id": "PT_CODA_L_O_CANDIDATE_REDUCED",
+      "phonemes": [],
+      "surface": "u",
+      "notes": "DISABLED for Sri Lanka Portuguese Creole. The PT_CODA_L rules describe European Portuguese, and no source for this language was read."
+    },
+    {
       "id": "PT_STRESSED_A_BEFORE_NASAL",
       "phonemes": [],
       "surface": "ɐ",

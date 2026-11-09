@@ -20,6 +20,8 @@ Every spec on this page also inherits the `PT_INITIAL_O` and `PT_INITIAL_HO` rul
 
 Every spec on this page also inherits the `PT_INITIAL_E` rules. An unstressed word-initial ⟨e⟩ is [i] in an open first syllable and [ɛ] before a coda ⟨l⟩ or ⟨r⟩, and it keeps [e] before another coda: `elefante` [ilɨˈfɐ̃tɨ], `ermida` [ɛɾˈmidɐ], `eclipse` [eˈklipsɨ]. Mateus & d'Andrade (1998: 26) describe European Portuguese as a whole. No source read gives a regional value.
 
+Every spec on this page also inherits the `PT_CODA_L` rules, so an unstressed ⟨a e o⟩ before a coda ⟨l⟩ is [a], [ɛ], [o]: `altar` [aɫˈtaɾ], `delgado` [dɛɫˈɡadu], `soldado` [soɫˈdadu]. Cunha & Cintra (7th ed., p. 53) describe the standard. No source read gives a regional value.
+
 The specs `pt-PT-x-sao-miguel` and `pt-PT-x-terceira` name `pt-PT-x-acores` as an adstrate in `ancestors`. That entry records the relation only. Both specs take their data from `pt-PT`, so they do not inherit the rules of `pt-PT-x-acores`. The spec `pt-PT-x-medieval` (Old Portuguese) has the same code prefix. It is the base of `pt-PT`, not a dialect of it, so this page does not cover it.
 
 ## Defining features
