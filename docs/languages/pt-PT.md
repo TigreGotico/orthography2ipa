@@ -168,6 +168,16 @@ Other word lists set the height of frequent words outside the suffix classes. Th
 
 Porto, Braga and Terceira have their own process for the stressed mid vowels, so they switch these rules off. The African and Asian varieties, Barranquenho and the creoles also switch them off, because no source for them was read.
 
+## Stressed ⟨e⟩ before a palatal consonant
+
+A stressed ⟨e⟩ before ⟨lh nh j ch⟩ is the close [e]: `fecho` [ˈfeʃu], `espelho` [iʃˈpeʎu], `telha` [ˈteʎɐ], `tenho` [ˈteɲu]. Cunha & Cintra (7th ed., p. 431, obs. 1.ª b and c) give the verbs of this class "no português de Portugal, com [e] ou [ɐ] nas formas rizotônicas" (`fecho`, `desejo`, `aparelho`, `empenho`). They give [ɛ] only for *invejar*, *embrechar*, *frechar* and *vexar*. On p. 49 they place the [ɐ] in Lisbon speech, with the nouns *rei*, *tenho* and *telha*. So the rules take nouns as well as verbs.
+
+The rules `PT_STRESSED_E_PREPALATAL_CLOSE`, `PT_STRESSED_E_PREPALATAL_CANDIDATE_LISBON` and `PT_STRESSED_E_PREPALATAL_CANDIDATE_OPEN` rank the slot [e], [ɐ], [ɛ]. They leave out ⟨x⟩, which is often [ks] (`complexo`), and ⟨g⟩ before ⟨e i⟩. An unstressed ⟨e⟩ keeps its reduction: `fechar` [fɨˈʃaɾ].
+
+In the 378 single Infopédia words of this class that no word list holds, Infopédia gives an [e] reading in 325, mostly second after the Lisbon [ɐ]: `fecho` [ˈfɐ(j)ʃu, ˈfeʃu]. It gives [ɛ] first in 27, such as `velho`, `flecha` and `brejo`. Those words are lexical, and the rules give them [e]. Infopédia carries the Lisbon assumption.
+
+`pt-PT-x-lisbon` switches the rules off and keeps `LX_STRESSED_E_PREPALATAL`, which gives [ɐ]. Porto and Braga switch them off, because their diphthongisation of the tonic mid vowels must reach the vowel first.
+
 ## Coda consonants
 
 EP has three coda consonant processes that the pre-lexical map cannot reach cleanly at word edges. They are `allophone_rules` keyed on `syllable_position: "coda"`:

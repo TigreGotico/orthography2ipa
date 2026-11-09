@@ -38,7 +38,7 @@ def _first_slot(word: str, lang: str = "pt-PT") -> list:
 
 
 @pytest.mark.parametrize("word, ipa", [
-    ("obter", "ɔbˈteɾ"), ("ovelha", "ɔˈvɛʎɐ"), ("opinião", "ɔpiniˈɐ̃w̃"),
+    ("obter", "ɔbˈteɾ"), ("ovelha", "ɔˈveʎɐ"), ("opinião", "ɔpiniˈɐ̃w̃"),
     ("obrigado", "ɔbɾiˈɡadu"), ("oceano", "ɔsɨˈɐnu"), ("ocidental", "ɔsidẽˈtaɫ"),
     ("omitir", "ɔmiˈtiɾ"), ("oração", "ɔɾɐˈsɐ̃w̃"), ("objecto", "ɔbˈʒɛktu"),
 ])

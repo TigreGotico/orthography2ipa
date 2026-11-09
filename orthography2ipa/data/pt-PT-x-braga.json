@@ -93,6 +93,24 @@
       "notes": "Northern betacism (Cintra's all-Northern trait 1), realised strongly in Braga: the /v/ ~ /b/ opposition is lost and both merge into a single phoneme /b/, surfacing as the stop [b] or the softer spirant [β] (vou -> [bow], vaca -> [ˈbakɐ], vacina -> [bɐˈsinɐ]). Cintra (1971:87): 'o desaparecimento da oposição fonológica entre os fonemas /v/ e /b/ e a sua fusão num fonema único /b/, realizado ora como oclusiva, ora como fricativa (ou espirante) b ou β' — the [β] variant is recorded in the allophones inventory. NATIVE ATTESTATION: the Braga speaker Miguel in Portuguese With Leo, 'Sotaque e expressões de Braga' (native-speaker source, https://www.youtube.com/watch?v=xaen3F8256M): 'pões o B em vez do V ... muitos sons que em português standard seriam Vvvv, mas vocês dizem um B ... às vezes é um B mais pronunciado, outras vezes é um B mais suave tipo Bou' (vou -> bou); and 'no norte diz-se bácina, às vezes assim com um ligeiro B' (vacina). Modelled as a post-lexical phoneme-side rewrite so the merger applies uniformly however /v/ arises from the inherited grapheme map."
     },
     {
+      "id": "PT_STRESSED_E_PREPALATAL_CLOSE",
+      "phonemes": [],
+      "surface": "e",
+      "notes": "DISABLED for Braga. Braga has its own stressed mid-vowel process (diphthongisation of the tonic mid vowels), and the PT_STRESSED_E_PREPALATAL rules of pt-PT would set the vowel first and pre-empt it, as the PT_SUFFIX rules are disabled here for the same reason. The pt-PT rules rest on Cunha & Cintra (7th ed., p. 431), who describe the standard."
+    },
+    {
+      "id": "PT_STRESSED_E_PREPALATAL_CANDIDATE_LISBON",
+      "phonemes": [],
+      "surface": "ɐ",
+      "notes": "DISABLED for Braga. Braga has its own stressed mid-vowel process (diphthongisation of the tonic mid vowels), and the PT_STRESSED_E_PREPALATAL rules of pt-PT would set the vowel first and pre-empt it, as the PT_SUFFIX rules are disabled here for the same reason. The pt-PT rules rest on Cunha & Cintra (7th ed., p. 431), who describe the standard."
+    },
+    {
+      "id": "PT_STRESSED_E_PREPALATAL_CANDIDATE_OPEN",
+      "phonemes": [],
+      "surface": "ɛ",
+      "notes": "DISABLED for Braga. Braga has its own stressed mid-vowel process (diphthongisation of the tonic mid vowels), and the PT_STRESSED_E_PREPALATAL rules of pt-PT would set the vowel first and pre-empt it, as the PT_SUFFIX rules are disabled here for the same reason. The pt-PT rules rest on Cunha & Cintra (7th ed., p. 431), who describe the standard."
+    },
+    {
       "id": "BRA_DIPHTHONGISE_E",
       "phonemes": [
         "e"

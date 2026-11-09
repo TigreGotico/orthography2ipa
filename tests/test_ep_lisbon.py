@@ -135,8 +135,8 @@ class TestStressedEPrePalatal:
         lisbon = G2P(LISBON).transcribe_word("coelho")
         base = G2P(BASE).transcribe_word("coelho")
         assert "ɐʎ" in lisbon          # Lisbon: [ˈkoɐʎu]
-        assert "ɐʎ" not in base        # base keeps [ɛ]: [ˈkɔɛʎu]
-        assert "ɛʎ" in base
+        assert "ɐʎ" not in base        # base keeps the close vowel: [kuˈeʎu]
+        assert "eʎ" in base
         assert lisbon != base
 
     def test_unstressed_pre_palatal_e_not_centralised(self):
@@ -160,6 +160,7 @@ class TestStressedEPrePalatal:
 
     def test_base_pt_pt_untouched(self):
         """The delta lives on Lisbon only; the pt-PT base must not gain the
-        pre-palatal centralisation."""
-        assert G2P(BASE).transcribe_word("fecho") == "ˈfɛʃu"
-        assert G2P(BASE).transcribe_word("venho") == "ˈvɛɲu"
+        pre-palatal centralisation. It gives the close [e] of Cunha & Cintra
+        (7th ed., p. 431)."""
+        assert G2P(BASE).transcribe_word("fecho") == "ˈfeʃu"
+        assert G2P(BASE).transcribe_word("venho") == "ˈveɲu"

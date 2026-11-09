@@ -26,6 +26,24 @@
   },
   "allophone_rules": [
     {
+      "id": "PT_STRESSED_E_PREPALATAL_CLOSE",
+      "phonemes": [],
+      "surface": "e",
+      "notes": "DISABLED for Lisbon Portuguese. LX_STRESSED_E_PREPALATAL gives the Lisbon [ɐ] before a palatal consonant (Cunha & Cintra, 7th ed., p. 49). The PT_STRESSED_E_PREPALATAL rules of pt-PT would rewrite the slot first, and a slot takes only its first matching rule."
+    },
+    {
+      "id": "PT_STRESSED_E_PREPALATAL_CANDIDATE_LISBON",
+      "phonemes": [],
+      "surface": "ɐ",
+      "notes": "DISABLED for Lisbon Portuguese. LX_STRESSED_E_PREPALATAL gives the Lisbon [ɐ] before a palatal consonant (Cunha & Cintra, 7th ed., p. 49). The PT_STRESSED_E_PREPALATAL rules of pt-PT would rewrite the slot first, and a slot takes only its first matching rule."
+    },
+    {
+      "id": "PT_STRESSED_E_PREPALATAL_CANDIDATE_OPEN",
+      "phonemes": [],
+      "surface": "ɛ",
+      "notes": "DISABLED for Lisbon Portuguese. LX_STRESSED_E_PREPALATAL gives the Lisbon [ɐ] before a palatal consonant (Cunha & Cintra, 7th ed., p. 49). The PT_STRESSED_E_PREPALATAL rules of pt-PT would rewrite the slot first, and a slot takes only its first matching rule."
+    },
+    {
       "id": "LX_STRESSED_E_PREPALATAL",
       "phonemes": [
         "e",
