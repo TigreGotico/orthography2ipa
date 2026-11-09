@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.122.13a1](https://github.com/TigreGotico/orthography2ipa/tree/7.122.13a1) (2026-11-09)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.122.12a2...7.122.13a1)
+
+**Merged pull requests:**
+
+- fix: count the packaged lexicon patch keys for tugaphone [\#2228](https://github.com/TigreGotico/orthography2ipa/pull/2228) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.122.12a2](https://github.com/TigreGotico/orthography2ipa/tree/7.122.12a2) (2026-11-09)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.122.12a1...7.122.12a2)
@@ -369,10 +377,6 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.118.3a2...7.118.4a1)
 
-**Merged pull requests:**
-
-- fix\(nl\): keep the stress on a root whose rest is one schwa syllable [\#2117](https://github.com/TigreGotico/orthography2ipa/pull/2117) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [7.118.3a2](https://github.com/TigreGotico/orthography2ipa/tree/7.118.3a2) (2026-11-05)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.118.3a1...7.118.3a2)
@@ -381,25 +385,13 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.118.2a1...7.118.3a1)
 
-**Merged pull requests:**
-
-- fix\(pt-BR\): state the gap for a post-tonic stop before a nasal [\#2118](https://github.com/TigreGotico/orthography2ipa/pull/2118) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [7.118.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.118.2a1) (2026-11-05)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.118.1a1...7.118.2a1)
 
-**Merged pull requests:**
-
-- fix\(compare\): read tugaphone's packaged lexicon lects [\#2119](https://github.com/TigreGotico/orthography2ipa/pull/2119) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [7.118.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.118.1a1) (2026-11-05)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.118.0a1...7.118.1a1)
-
-**Merged pull requests:**
-
-- fix\(pt-PT\): read the article o, os with the reduced vowel \[u\] [\#2116](https://github.com/TigreGotico/orthography2ipa/pull/2116) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.118.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.118.0a1) (2026-11-05)
 
