@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.122.11a3](https://github.com/TigreGotico/orthography2ipa/tree/7.122.11a3) (2026-11-09)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.122.11a2...7.122.11a3)
+
+**Merged pull requests:**
+
+- fix\(pt-PT\): keep a full vowel before a stop and a consonant [\#2218](https://github.com/TigreGotico/orthography2ipa/pull/2218) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.122.11a2](https://github.com/TigreGotico/orthography2ipa/tree/7.122.11a2) (2026-11-09)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.122.11a1...7.122.11a2)
