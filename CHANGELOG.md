@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.122.12a1](https://github.com/TigreGotico/orthography2ipa/tree/7.122.12a1) (2026-11-09)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.122.11a6...7.122.12a1)
+
+**Merged pull requests:**
+
+- fix\(pt-PT\): give function words their European stressed vowels [\#2226](https://github.com/TigreGotico/orthography2ipa/pull/2226) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.122.11a6](https://github.com/TigreGotico/orthography2ipa/tree/7.122.11a6) (2026-11-09)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.122.11a5...7.122.11a6)
@@ -361,10 +369,6 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.118.3a1...7.118.3a2)
 
-**Merged pull requests:**
-
-- docs\(nl\): place the h-less dialects in the south-west [\#2111](https://github.com/TigreGotico/orthography2ipa/pull/2111) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [7.118.3a1](https://github.com/TigreGotico/orthography2ipa/tree/7.118.3a1) (2026-11-05)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.118.2a1...7.118.3a1)
@@ -392,10 +396,6 @@
 ## [7.118.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.118.0a1) (2026-11-05)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.117.23a1...7.118.0a1)
-
-**Merged pull requests:**
-
-- feat\(nl\): add nl-BE-x-antwerp regional Standard Dutch spec [\#2112](https://github.com/TigreGotico/orthography2ipa/pull/2112) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.117.23a1](https://github.com/TigreGotico/orthography2ipa/tree/7.117.23a1) (2026-11-05)
 
