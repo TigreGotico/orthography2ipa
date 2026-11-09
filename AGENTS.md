@@ -106,7 +106,7 @@ and not an installed package.
     `_DOCS_PROSE_RATCHET`) may only shrink. Never add an entry to make a red
     build green.
 13. Never edit a generated file by hand: the board files,
-    `docs/reference/*.md`, `llms.txt`, the navigation footers, the atlas
+    `docs/reference/*.md`, `llms.txt`, `llms-full.txt`, the navigation footers, the atlas
     blocks of a language page and the atlas indexes. Fix the generator and
     run it.
 14. `tests/test_grammatical_endings.py` caps the list-valued endings per

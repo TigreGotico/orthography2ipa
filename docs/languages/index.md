@@ -23,9 +23,11 @@ examples and related repositories. `scripts/gen_language_atlas.py` writes
 every generated section, and CI fails when one is stale.
 
 Every living spec at the research or production tier has an atlas page,
-except the Portuguese specs (`pt-PT`, `pt-BR` and their lects) and the specs
-that take rules from `pt-PT`. The [A to Z index](a-z.md#pages) lists the
-pages. Skeleton, stub and historical specs have no page, and the indexes
+except the specs that `NO_PAGE` in `scripts/gen_language_atlas.py` names, each
+with its reason. A test fails when a spec has neither. The Portuguese specs,
+the creoles that take rules from `pt-PT` and Barranquenho are in that list,
+because the Portuguese pages are written by hand. The
+[A to Z index](a-z.md#pages) lists the pages. Skeleton, stub and historical specs have no page, and the indexes
 link their entries in the data explorer.
 
 Most registered specs have no page of their own. The JSON spec is the source

@@ -24,8 +24,8 @@ page author who writes an overview deletes the block and writes the
 ``## Overview`` section in its place.
 
 The atlas covers every living spec at the research or production tier
-(:func:`in_cut`). ``--scaffold-cut`` creates the page of each one that has no
-page yet.
+(:func:`in_cut`), except the specs that ``NO_PAGE`` names with a reason.
+``--scaffold-cut`` creates the page of each one that has no page yet.
 
 The ``examples`` marker can name the words to transcribe, separated by ``|``::
 
@@ -164,6 +164,42 @@ def in_cut(raw: dict) -> bool:
     return (not raw.get("clade")
             and raw.get("quality", "research") in ("research", "production")
             and (raw.get("timespan") or {}).get("end_year") is None)
+
+
+_PT_CREOLE = "a creole that takes its rules from pt-PT, whose pages are written by hand"
+_HAND = "a hand page that does not use the atlas template"
+
+#: The specs in the cut that have no atlas page, each with its reason. An
+#: entry names one code, or with a final ``-*`` every code that starts with
+#: what comes before the ``*``.
+NO_PAGE = (
+    ("pt-*", "Portuguese and its lects: the Portuguese pages are written by hand"),
+    ("ext-PT-x-barranco", "Barranquenho: a hand page beside the Portuguese pages"),
+    ("aoa", _PT_CREOLE),
+    ("cri", _PT_CREOLE),
+    ("idb", _PT_CREOLE),
+    ("kea", _PT_CREOLE),
+    ("mcm", _PT_CREOLE),
+    ("mzs", _PT_CREOLE),
+    ("pap", _PT_CREOLE),
+    ("pov", _PT_CREOLE),
+    ("pre", _PT_CREOLE),
+    ("vkp", _PT_CREOLE),
+    ("as", _HAND),
+    ("eo", _HAND),
+    ("eu", _HAND),
+    ("fi", _HAND),
+    ("fo", _HAND),
+    ("ro-RO", _HAND),
+)
+
+
+def no_page_reason(code: str) -> Optional[str]:
+    """Why *code* has no atlas page, or None when it must have one."""
+    for entry, reason in NO_PAGE:
+        if code == entry or (entry.endswith("-*") and code.startswith(entry[:-1])):
+            return reason
+    return None
 
 
 # --------------------------------------------------------------------------
@@ -1406,12 +1442,9 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                       help="create the page of each CODE from the template")
     mode.add_argument("--scaffold-cut", action="store_true",
                       help="create the page of every spec in the cut that has "
-                           "no page and no hand-written file")
+                           "no page, no hand-written file and no NO_PAGE entry")
     mode.add_argument("--refresh-snapshot", action="store_true",
                       help="rebuild scripts/atlas_snapshot.json over the network")
-    ap.add_argument("--exclude", metavar="PREFIX", action="append", default=[],
-                    help="with --scaffold-cut, skip the codes that start with "
-                         "PREFIX followed by '-' or that equal it")
     args = ap.parse_args(argv)
 
     if args.refresh_snapshot:
@@ -1424,8 +1457,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         else:
             codes = [c for c in atlas.codes if c in atlas.raw
                      and in_cut(atlas.raw[c]) and c not in atlas.pages
-                     and not any(c == p or c.startswith(p + "-")
-                                 for p in args.exclude)]
+                     and no_page_reason(c) is None]
         made, held = [], []
         for code in codes:
             path = os.path.join(LANG_DIR, f"{code}.md")
