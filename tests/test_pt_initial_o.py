@@ -5,7 +5,8 @@ they name "o [o] inicial absoluto de ovelha, obter, opinião" as an exception,
 which is the careful-speech value. Cruz-Ferreira (1999, Handbook of the IPA,
 p. 130) writes obrigar as [ɔbɾiˈgaɾ] in her Lisbon transcription. The spec reads
 [ɔ] and keeps [u] and [o] as the second and third lattice candidates. A stressed
-word-initial ⟨o⟩ keeps the word_initial row and the word lists.
+word-initial ⟨o⟩ keeps the word_initial row and the word lists. The ⟨h⟩ of a
+word-initial ⟨ho⟩ has no sound, so its ⟨o⟩ takes the same ranking.
 
 Readings without a page come from Infopédia rows.
 """
@@ -16,7 +17,9 @@ import pytest
 from orthography2ipa import G2P, get
 
 RULE_IDS = ("PT_INITIAL_O_KEEP_BEFORE_CODA_NASAL", "PT_INITIAL_O_OPEN",
-            "PT_INITIAL_O_CANDIDATE_U", "PT_INITIAL_O_CANDIDATE_O")
+            "PT_INITIAL_O_CANDIDATE_U", "PT_INITIAL_O_CANDIDATE_O",
+            "PT_INITIAL_HO_KEEP_BEFORE_CODA_NASAL", "PT_INITIAL_HO_OPEN",
+            "PT_INITIAL_HO_CANDIDATE_U", "PT_INITIAL_HO_CANDIDATE_O")
 
 #: The European specs. They take the pt-PT default.
 EUROPE = ["pt-PT"] + [f"pt-PT-x-{d}" for d in (
@@ -29,7 +32,9 @@ CREOLES = ["aoa", "cri", "idb", "kea", "mcm", "mzs", "pap", "pov", "pre", "vkp"]
 
 
 def _first_slot(word: str, lang: str = "pt-PT") -> list:
-    return [c.ipa for c in G2P(lang).ipa_lattice(word)[0].candidates]
+    """The candidates of the first ⟨o⟩ slot, after a silent ⟨h⟩ when there is one."""
+    slot = next(s for s in G2P(lang).ipa_lattice(word) if s.grapheme == "o")
+    return [c.ipa for c in slot.candidates]
 
 
 @pytest.mark.parametrize("word, ipa", [
@@ -76,9 +81,35 @@ def test_article_keeps_the_reduced_vowel(word, ipa):
     assert G2P("pt-PT").transcribe(word) == ipa
 
 
-@pytest.mark.parametrize("word, ipa", [("ouvir", "oˈviɾ"), ("oito", "ˈojtu"), ("horrível", "uˈʁivɨɫ")])
+@pytest.mark.parametrize("word, ipa", [("ouvir", "oˈviɾ"), ("oito", "ˈojtu"), ("hóspede", "ˈɔʃpɨdɨ")])
 def test_other_graphemes_stay_out(word, ipa):
     assert G2P("pt-PT").transcribe(word) == ipa
+
+
+@pytest.mark.parametrize("word, ipa", [
+    ("hospital", "ɔʃpiˈtaɫ"), ("hotel", "ɔˈtɛɫ"), ("hostil", "ɔʃˈtiɫ"), ("horizonte", "ɔɾiˈzõtɨ"),
+    ("hortelã", "ɔɾtɨˈlɐ̃"), ("horrível", "ɔˈʁivɨɫ"),
+])
+def test_unstressed_o_after_initial_h_is_open(word, ipa):
+    assert G2P("pt-PT").transcribe(word) == ipa
+    assert _first_slot(word) == ["ɔ", "u", "o"]
+
+
+@pytest.mark.parametrize("word, ipa", [("hoje", "ˈɔʒɨ"), ("homem", "ˈɔmɐ̃j̃"), ("hora", "ˈɔɾɐ")])
+def test_stressed_o_after_initial_h_keeps_its_lattice(word, ipa):
+    assert G2P("pt-PT").transcribe(word) == ipa
+    assert _first_slot(word) == ["ɔ", "o", "u"]
+
+
+@pytest.mark.parametrize("word, ipa", [("honrar", "õˈɾaɾ"), ("hombridade", "õbɾiˈdadɨ")])
+def test_o_after_initial_h_before_a_coda_nasal_stays_nasal(word, ipa):
+    assert G2P("pt-PT").transcribe(word) == ipa
+    assert _first_slot(word) == ["o", "o", "o"]
+
+
+def test_o_after_a_medial_h_keeps_its_lattice():
+    assert G2P("pt-PT").transcribe("dehoniano") == "dɨuniˈɐnu"
+    assert [c.ipa for c in G2P("pt-PT").ipa_lattice("dehoniano")[3].candidates] == ["u", "o", "ɔ"]
 
 
 def test_second_element_of_a_compound_takes_the_open_vowel():
@@ -98,11 +129,13 @@ def test_word_initial_value_of_the_o_row_is_unchanged():
 def test_european_specs_take_the_default(lang):
     assert G2P(lang).transcribe("obter").startswith("ɔb")
     assert _first_slot("obter", lang) == ["ɔ", "u", "o"]
+    assert _first_slot("hospital", lang) == ["ɔ", "u", "o"]
 
 
 @pytest.mark.parametrize("lang, ipa", NO_SOURCE.items())
 def test_specs_with_no_source_keep_their_value(lang, ipa):
     assert G2P(lang).transcribe("ovelha") == ipa
+    assert not G2P(lang).transcribe("hospital").startswith("ɔ")
 
 
 @pytest.mark.parametrize("lang", [*NO_SOURCE, *CREOLES])
