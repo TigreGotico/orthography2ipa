@@ -105,8 +105,9 @@ and not an installed package.
     `_DOCS_PROSE_RATCHET`) may only shrink. Never add an entry to make a red
     build green.
 13. Never edit a generated file by hand: the board files,
-    `docs/reference/*.md`, `llms.txt` and the navigation footers. Fix the
-    generator and run it.
+    `docs/reference/*.md`, `llms.txt`, the navigation footers, the atlas
+    blocks of a language page and the atlas indexes. Fix the generator and
+    run it.
 14. `tests/test_grammatical_endings.py` caps the list-valued endings per
     spec. Raising the cap is an amendment to this file, argued here first
     ([spec_authoring.md](docs/contributing/spec_authoring.md#ambiguous-grammatical-endings)).
@@ -116,13 +117,15 @@ and not an installed package.
 ## Before you push
 
 1. Run the full test suite.
-2. If you changed `docs/`, a generator, an exported name, its docstring or a
-   CLI option, run the prose test and the two generators:
+2. If you changed `docs/`, a generator, an exported name, its docstring, a
+   CLI option, a spec or a board file, run the prose test and the three
+   generators. A spec or a board change can make an atlas page stale:
 
 ```bash
 PYTHONPATH=$PWD .venv/bin/python -m pytest tests/test_docs_prose.py
 .venv/bin/python scripts/docs_nav.py --check
 PYTHONPATH=$PWD .venv/bin/python scripts/gen_reference_docs.py --check
+PYTHONPATH=$PWD .venv/bin/python scripts/gen_language_atlas.py --check
 ```
 
 3. If you added, removed or moved a page, add it to a table in
