@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.122.7a1](https://github.com/TigreGotico/orthography2ipa/tree/7.122.7a1) (2026-11-09)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.122.6a1...7.122.7a1)
+
+**Merged pull requests:**
+
+- fix\(pt-PT\): read an unstressed word-initial ⟨o⟩ as \[ɔ\] [\#2204](https://github.com/TigreGotico/orthography2ipa/pull/2204) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.122.6a1](https://github.com/TigreGotico/orthography2ipa/tree/7.122.6a1) (2026-11-09)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.122.5a2...7.122.6a1)
@@ -388,10 +396,6 @@
 ## [7.117.12a1](https://github.com/TigreGotico/orthography2ipa/tree/7.117.12a1) (2026-11-05)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.117.11a1...7.117.12a1)
-
-**Merged pull requests:**
-
-- fix\(registry\): resolve a private-use tag that carries its Suppress-Script [\#2082](https://github.com/TigreGotico/orthography2ipa/pull/2082) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.117.11a1](https://github.com/TigreGotico/orthography2ipa/tree/7.117.11a1) (2026-11-05)
 
