@@ -61,9 +61,12 @@ def test_stressed_e_stays_out(word, ipa):
     assert G2P("pt-PT").transcribe(word) == ipa
 
 
-@pytest.mark.parametrize("word", ["esta", "essa", "esca", "esto", "estro"])
-def test_stressed_e_keeps_the_stress_mark(word):
-    assert G2P("pt-PT").transcribe(word).startswith("ˈe")
+@pytest.mark.parametrize("word, start", [
+    ("esta", "ˈɛ"), ("essa", "ˈɛ"), ("esca", "ˈe"), ("esto", "ˈe"), ("estro", "ˈe"),
+])
+def test_stressed_e_keeps_the_stress_mark(word, start):
+    # esta [ˈɛʃtɐ] and essa [ˈɛsɐ] take the open vowel of PT_LEX_FUNCTION_OPEN_E.
+    assert G2P("pt-PT").transcribe(word).startswith(start)
 
 
 @pytest.mark.parametrize("word, ipa", [
@@ -88,7 +91,7 @@ def test_initial_es_before_a_vowel_takes_the_open_syllable_rule(word, ipa):
 
 
 @pytest.mark.parametrize("word, ipa", [
-    ("desde", "ˈdɛʒdɨ"), ("pesca", "ˈpɛʃkɐ"), ("pescar", "pɨʃˈkaɾ"), ("mesquinho", "mɨʃˈkiɲu"),
+    ("desde", "ˈdeʒdɨ"), ("pesca", "ˈpɛʃkɐ"), ("pescar", "pɨʃˈkaɾ"), ("mesquinho", "mɨʃˈkiɲu"),
     ("gestão", "ʒɨʃˈtɐ̃w̃"),
 ])
 def test_medial_es_stays_out(word, ipa):
