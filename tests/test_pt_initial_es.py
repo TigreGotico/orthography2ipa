@@ -67,10 +67,11 @@ def test_stressed_e_keeps_the_stress_mark(word):
 
 
 @pytest.mark.parametrize("word, ipa", [
-    ("essência", "eˈsẽsiɐ"), ("essoutro", "eˈsotɾu"), ("essonite", "esuˈnitɨ"),
+    ("essência", "iˈsẽsiɐ"), ("essoutro", "iˈsotɾu"), ("essonite", "isuˈnitɨ"),
 ])
-def test_double_s_stays_out(word, ipa):
+def test_double_s_takes_the_open_syllable_rule(word, ipa):
     assert G2P("pt-PT").transcribe(word) == ipa
+    assert [c.ipa for c in G2P("pt-PT").ipa_lattice(word)[0].candidates] == ["i", "e", "ɛ", "ɨ"]
 
 
 @pytest.mark.parametrize("word", ["explicar", "exterior", "extensão"])
@@ -79,10 +80,11 @@ def test_initial_ex_stays_with_its_own_rule(word):
 
 
 @pytest.mark.parametrize("word, ipa", [
-    ("esotérico", "ezuˈtɛɾiku"), ("esófago", "eˈzɔfɐɡu"),
+    ("esotérico", "izuˈtɛɾiku"), ("esófago", "iˈzɔfɐɡu"),
 ])
-def test_initial_es_before_a_vowel_stays_out(word, ipa):
+def test_initial_es_before_a_vowel_takes_the_open_syllable_rule(word, ipa):
     assert G2P("pt-PT").transcribe(word) == ipa
+    assert [c.ipa for c in G2P("pt-PT").ipa_lattice(word)[0].candidates] == ["i", "e", "ɛ", "ɨ"]
 
 
 @pytest.mark.parametrize("word, ipa", [
@@ -94,9 +96,9 @@ def test_medial_es_stays_out(word, ipa):
 
 
 @pytest.mark.parametrize("word, ipa", [
-    ("elefante", "elɨˈfɐ̃tɨ"), ("edifício", "ediˈfisiu"), ("ermida", "eɾˈmidɐ"),
+    ("elefante", "ilɨˈfɐ̃tɨ"), ("edifício", "idiˈfisiu"), ("ermida", "ɛɾˈmidɐ"),
 ])
-def test_other_initial_e_keeps_its_value(word, ipa):
+def test_other_initial_e_takes_the_initial_e_rules(word, ipa):
     assert G2P("pt-PT").transcribe(word) == ipa
 
 

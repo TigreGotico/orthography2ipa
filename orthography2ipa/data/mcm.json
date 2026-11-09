@@ -413,6 +413,72 @@
       "notes": "DISABLED for Kristang (Papia Kristang, Malacca Creole Portuguese). The PT_INITIAL_HO rules extend the PT_INITIAL_O rules, which describe European Portuguese, and no source for this language was read."
     },
     {
+      "id": "PT_INITIAL_E_OPEN",
+      "phonemes": [],
+      "surface": "i",
+      "notes": "DISABLED for Kristang (Papia Kristang, Malacca Creole Portuguese). The PT_INITIAL_E rules describe European Portuguese, and no source for this language was read."
+    },
+    {
+      "id": "PT_INITIAL_E_OPEN_CANDIDATE_E",
+      "phonemes": [],
+      "surface": "e",
+      "notes": "DISABLED for Kristang (Papia Kristang, Malacca Creole Portuguese). The PT_INITIAL_E rules describe European Portuguese, and no source for this language was read."
+    },
+    {
+      "id": "PT_INITIAL_E_OPEN_CANDIDATE_OPEN",
+      "phonemes": [],
+      "surface": "ɛ",
+      "notes": "DISABLED for Kristang (Papia Kristang, Malacca Creole Portuguese). The PT_INITIAL_E rules describe European Portuguese, and no source for this language was read."
+    },
+    {
+      "id": "PT_INITIAL_E_OPEN_CANDIDATE_REDUCED",
+      "phonemes": [],
+      "surface": "ɨ",
+      "notes": "DISABLED for Kristang (Papia Kristang, Malacca Creole Portuguese). The PT_INITIAL_E rules describe European Portuguese, and no source for this language was read."
+    },
+    {
+      "id": "PT_INITIAL_E_LIQUID_CODA",
+      "phonemes": [],
+      "surface": "ɛ",
+      "notes": "DISABLED for Kristang (Papia Kristang, Malacca Creole Portuguese). The PT_INITIAL_E rules describe European Portuguese, and no source for this language was read."
+    },
+    {
+      "id": "PT_INITIAL_E_LIQUID_CODA_CANDIDATE_E",
+      "phonemes": [],
+      "surface": "e",
+      "notes": "DISABLED for Kristang (Papia Kristang, Malacca Creole Portuguese). The PT_INITIAL_E rules describe European Portuguese, and no source for this language was read."
+    },
+    {
+      "id": "PT_INITIAL_E_LIQUID_CODA_CANDIDATE_I",
+      "phonemes": [],
+      "surface": "i",
+      "notes": "DISABLED for Kristang (Papia Kristang, Malacca Creole Portuguese). The PT_INITIAL_E rules describe European Portuguese, and no source for this language was read."
+    },
+    {
+      "id": "PT_INITIAL_E_LIQUID_CODA_CANDIDATE_REDUCED",
+      "phonemes": [],
+      "surface": "ɨ",
+      "notes": "DISABLED for Kristang (Papia Kristang, Malacca Creole Portuguese). The PT_INITIAL_E rules describe European Portuguese, and no source for this language was read."
+    },
+    {
+      "id": "PT_INITIAL_E_CODA_CANDIDATE_OPEN",
+      "phonemes": [],
+      "surface": "ɛ",
+      "notes": "DISABLED for Kristang (Papia Kristang, Malacca Creole Portuguese). The PT_INITIAL_E rules describe European Portuguese, and no source for this language was read."
+    },
+    {
+      "id": "PT_INITIAL_E_CODA_CANDIDATE_I",
+      "phonemes": [],
+      "surface": "i",
+      "notes": "DISABLED for Kristang (Papia Kristang, Malacca Creole Portuguese). The PT_INITIAL_E rules describe European Portuguese, and no source for this language was read."
+    },
+    {
+      "id": "PT_INITIAL_E_CODA_CANDIDATE_REDUCED",
+      "phonemes": [],
+      "surface": "ɨ",
+      "notes": "DISABLED for Kristang (Papia Kristang, Malacca Creole Portuguese). The PT_INITIAL_E rules describe European Portuguese, and no source for this language was read."
+    },
+    {
       "id": "PT_STRESSED_A_BEFORE_NASAL",
       "phonemes": [],
       "surface": "ɐ",

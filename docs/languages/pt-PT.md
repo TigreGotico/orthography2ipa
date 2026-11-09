@@ -45,7 +45,20 @@ A word-initial unstressed ⟨e⟩ before a coda sibilant is [i]. `PT_INITIAL_ES_
 
 The vowel can drop. Vázquez writes "pode desaparecer, p. ex. [iʃˈtaɾ / ʃˈtaɾ]" (p. 265), and Teyssier (1989: 28, quoted on Vázquez's p. 244) writes "o [i] quase não se ouve". Mateus & d'Andrade (1998) state that the vowel is deleted before a coda /S/; the page inside 13-32 is not confirmed. Cruz-Ferreira (1999: 130) writes `todo o esplendor` as ['todu ʃplẽ'dor], a narrow transcription of connected speech. The spec writes the vowel and does not model the drop.
 
-The rule stays off for double ⟨ss⟩, for a stressed ⟨e⟩, and for ⟨es⟩ before a vowel. `essência` is [eˈsẽsiɐ], `este` is [ˈeʃtɨ] and `esotérico` is [ezuˈtɛɾiku]. Initial ⟨ex⟩ has a separate reading. The `word_initial` value of the `e` row stays [e], because other initial ⟨e⟩ splits between [e], [i] and [ɛ] by word: `elefante`, `ermida`.
+The rule stays off for double ⟨ss⟩, for a stressed ⟨e⟩, and for ⟨es⟩ before a vowel. A stressed ⟨e⟩ keeps its reading: `este` [ˈeʃtɨ]. Before ⟨ss⟩ or ⟨s⟩ and a vowel the first syllable is open, so the rules of the next section apply: `essência` [iˈsẽsiɐ], `esotérico` [izuˈtɛɾiku]. Initial ⟨ex⟩ has a separate reading.
+
+## Word-initial ⟨e⟩
+
+The value of an unstressed word-initial ⟨e⟩ depends on its first syllable. Mateus & d'Andrade (1998, D.E.L.T.A. 14(1), p. 26) give the contexts: "Underlying /e/ and /ɛ/ occur as: a) ɛ] when the coda is /L/ (see Elvira); b) as [i] when the rhyme has no coda (see elefante); c) there is some variation between [i], [e] and [E] when the coda is an /R/ (see ermida)". Cunha & Cintra (7th ed., p. 53) write "o [e] inicial absoluto de *enorme*, *erguer*, que se pronuncia geralmente [i]". The spec has four contexts:
+
+| First syllable | Rules | Lattice | Example |
+|:---|:---|:---|:---|
+| open: ⟨e⟩ + consonant + vowel | `PT_INITIAL_E_OPEN` and its candidates | [i], [e], [ɛ], [ɨ] | `enorme` [iˈnɔɾmɨ], `elefante` [ilɨˈfɐ̃tɨ] |
+| closed by ⟨l⟩ or ⟨r⟩ | `PT_INITIAL_E_LIQUID_CODA` and its candidates | [ɛ], [e], [i], [ɨ] | `ermida` [ɛɾˈmidɐ], `elvense` [ɛɫˈvẽsɨ] |
+| closed by another consonant | `PT_INITIAL_E_CODA_CANDIDATE_*` | [e], [ɛ], [i], [ɨ] | `eclipse` [eˈklipsɨ], `ecdémico` [ekˈdɛmiku] |
+| ⟨es⟩, ⟨ex⟩, ⟨e⟩ + vowel, ⟨e⟩ + coda nasal | other rules | unchanged | `estar` [iʃˈtaɾ], `eólico` [eˈɔliku], `entrar` [ẽˈtɾaɾ] |
+
+The source gives [i] in an open syllable and [ɛ] before a coda /L/. Before a coda /R/ it gives variation between [i], [e] and [ɛ], so Infopédia decides the order. Infopédia writes [ɛ] first in 50 of the 73 single words with a coda ⟨r⟩. No source read names the other codas or an obstruent before a liquid. There the default stays [e], and the [ɛ] candidate rests on Infopédia only. In an open syllable Infopédia writes [i] first in 747 of 1,553 single words, [e] in 496 and [ɛ] in 303. Infopédia carries the Lisbon assumption. A stressed word-initial ⟨e⟩ keeps the `word_initial` row and the word lists: `elmo` [ˈeɫmu]. The conjunction `e` stays [i].
 
 ## Word-initial ⟨o⟩
 

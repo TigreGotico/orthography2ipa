@@ -1208,6 +1208,216 @@
       ],
       "preceded_by_2": "word_boundary",
       "notes": "The third lattice candidate after a word-initial ⟨h⟩, the [o] of PT_INITIAL_O_CANDIDATE_O. The rule does not change the transcription. See PT_INITIAL_O_OPEN for the sources."
+    },
+    {
+      "id": "PT_INITIAL_E_OPEN",
+      "phonemes": [
+        "e"
+      ],
+      "surface": "i",
+      "grapheme": [
+        "e"
+      ],
+      "word_initial": true,
+      "stress": "unstressed",
+      "followed_by": "consonant",
+      "followed_by_2": "vowel",
+      "followed_by_grapheme_not": [
+        "x"
+      ],
+      "notes": "An unstressed word-initial ⟨e⟩ in an open first syllable is [i] by default: enorme [iˈnɔɾmɨ], educar [iduˈkaɾ], emitir [imiˈtiɾ]. Cunha & Cintra (7th ed., p. 53): 'o [e] inicial absoluto de enorme, erguer, que se pronuncia geralmente [i]'. Mateus & d'Andrade (1998, D.E.L.T.A. 14(1), p. 26): 'Underlying /e/ and /ɛ/ occur as: a) ɛ] when the coda is /L/ (see Elvira); b) as [i] when the rhyme has no coda (see elefante); c) there is some variation between [i], [e] and [E] when the coda is an /R/ (see ermida)'. Infopédia writes [i] first in 747 of the 1,553 single words that this rule changes, [e] in 496 and [ɛ] in 303. Infopédia carries the Lisbon assumption. This rule and the three PT_INITIAL_E_OPEN_CANDIDATE rules rank the lattice of the slot [i], [e], [ɛ], [ɨ]. The word_initial row of ⟨e⟩ and the grapheme table give the candidates [e], [i], [ɨ], [ɛ], and each rule rewrites one of them in place. The [ɛ] candidate rests on Infopédia only. Initial ⟨ex⟩, ⟨e⟩ before a vowel, ⟨e⟩ before a coda nasal and the PT_INITIAL_ES_RAISE context stay outside the PT_INITIAL_E rules."
+    },
+    {
+      "id": "PT_INITIAL_E_OPEN_CANDIDATE_E",
+      "phonemes": [
+        "i"
+      ],
+      "surface": "e",
+      "grapheme": [
+        "e"
+      ],
+      "word_initial": true,
+      "stress": "unstressed",
+      "followed_by": "consonant",
+      "followed_by_2": "vowel",
+      "followed_by_grapheme_not": [
+        "x"
+      ],
+      "notes": "The second lattice candidate of an unstressed word-initial ⟨e⟩ in an open first syllable is [e]. The rule does not change the transcription. See PT_INITIAL_E_OPEN."
+    },
+    {
+      "id": "PT_INITIAL_E_OPEN_CANDIDATE_OPEN",
+      "phonemes": [
+        "ɨ"
+      ],
+      "surface": "ɛ",
+      "grapheme": [
+        "e"
+      ],
+      "word_initial": true,
+      "stress": "unstressed",
+      "followed_by": "consonant",
+      "followed_by_2": "vowel",
+      "followed_by_grapheme_not": [
+        "x"
+      ],
+      "notes": "The third lattice candidate of an unstressed word-initial ⟨e⟩ in an open first syllable is [ɛ]. This candidate rests on Infopédia only. The rule does not change the transcription. See PT_INITIAL_E_OPEN."
+    },
+    {
+      "id": "PT_INITIAL_E_OPEN_CANDIDATE_REDUCED",
+      "phonemes": [
+        "ɛ"
+      ],
+      "surface": "ɨ",
+      "grapheme": [
+        "e"
+      ],
+      "word_initial": true,
+      "stress": "unstressed",
+      "followed_by": "consonant",
+      "followed_by_2": "vowel",
+      "followed_by_grapheme_not": [
+        "x"
+      ],
+      "notes": "The fourth lattice candidate of an unstressed word-initial ⟨e⟩ in an open first syllable is the [ɨ] of the general reduction. The rule does not change the transcription. See PT_INITIAL_E_OPEN."
+    },
+    {
+      "id": "PT_INITIAL_E_LIQUID_CODA",
+      "phonemes": [
+        "e"
+      ],
+      "surface": "ɛ",
+      "grapheme": [
+        "e"
+      ],
+      "word_initial": true,
+      "stress": "unstressed",
+      "followed_by": "coda",
+      "followed_by_grapheme": [
+        "l",
+        "r"
+      ],
+      "notes": "An unstressed word-initial ⟨e⟩ before a coda ⟨l⟩ or ⟨r⟩ is [ɛ] by default: elvense [ɛɫˈvẽsɨ], ermida [ɛɾˈmidɐ], erguer [ɛɾˈɡeɾ]. Mateus & d'Andrade (1998, D.E.L.T.A. 14(1), p. 26): 'Underlying /e/ and /ɛ/ occur as: a) ɛ] when the coda is /L/ (see Elvira); b) as [i] when the rhyme has no coda (see elefante); c) there is some variation between [i], [e] and [E] when the coda is an /R/ (see ermida)'. Before a coda /L/ the source gives [ɛ], and Infopédia writes [ɛ] first in 6 of the 6 single words in this context. Before a coda /R/ the source gives variation between [i], [e] and [ɛ], so it does not rank them. Infopédia decides the order: it writes [ɛ] first in 50 of the 73 single words in this context, [e] in 15 and [i] in 7. Infopédia carries the Lisbon assumption. Cunha & Cintra (7th ed., p. 53) give erguer with [i], and Infopédia writes [e] first there: erguer [eɾˈɡeɾ, iɾˈɡeɾ]. This rule and the three PT_INITIAL_E_LIQUID_CODA_CANDIDATE rules rank the slot [ɛ], [e], [i], [ɨ]. See PT_INITIAL_E_OPEN for the row candidates."
+    },
+    {
+      "id": "PT_INITIAL_E_LIQUID_CODA_CANDIDATE_E",
+      "phonemes": [
+        "i"
+      ],
+      "surface": "e",
+      "grapheme": [
+        "e"
+      ],
+      "word_initial": true,
+      "stress": "unstressed",
+      "followed_by": "coda",
+      "followed_by_grapheme": [
+        "l",
+        "r"
+      ],
+      "notes": "The second lattice candidate of an unstressed word-initial ⟨e⟩ before a coda ⟨l⟩ or ⟨r⟩ is [e]. The rule does not change the transcription. See PT_INITIAL_E_LIQUID_CODA."
+    },
+    {
+      "id": "PT_INITIAL_E_LIQUID_CODA_CANDIDATE_I",
+      "phonemes": [
+        "ɨ"
+      ],
+      "surface": "i",
+      "grapheme": [
+        "e"
+      ],
+      "word_initial": true,
+      "stress": "unstressed",
+      "followed_by": "coda",
+      "followed_by_grapheme": [
+        "l",
+        "r"
+      ],
+      "notes": "The third lattice candidate of an unstressed word-initial ⟨e⟩ before a coda ⟨l⟩ or ⟨r⟩ is [i]. The rule does not change the transcription. See PT_INITIAL_E_LIQUID_CODA."
+    },
+    {
+      "id": "PT_INITIAL_E_LIQUID_CODA_CANDIDATE_REDUCED",
+      "phonemes": [
+        "ɛ"
+      ],
+      "surface": "ɨ",
+      "grapheme": [
+        "e"
+      ],
+      "word_initial": true,
+      "stress": "unstressed",
+      "followed_by": "coda",
+      "followed_by_grapheme": [
+        "l",
+        "r"
+      ],
+      "notes": "The fourth lattice candidate of an unstressed word-initial ⟨e⟩ before a coda ⟨l⟩ or ⟨r⟩ is the [ɨ] of the general reduction. The rule does not change the transcription. See PT_INITIAL_E_LIQUID_CODA."
+    },
+    {
+      "id": "PT_INITIAL_E_CODA_CANDIDATE_OPEN",
+      "phonemes": [
+        "i"
+      ],
+      "surface": "ɛ",
+      "grapheme": [
+        "e"
+      ],
+      "word_initial": true,
+      "stress": "unstressed",
+      "followed_by": "coda",
+      "followed_by_grapheme_not": [
+        "l",
+        "r",
+        "s",
+        "x",
+        "m",
+        "n"
+      ],
+      "notes": "An unstressed word-initial ⟨e⟩ before another coda consonant keeps [e], and its second lattice candidate is [ɛ]: eclipse [eˈklipsɨ], ecdémico [ekˈdɛmiku]. The context includes an obstruent before a liquid. No source read names this context: Mateus & d'Andrade (1998, p. 26) name the codas /L/, /R/ and /S/ only. The [ɛ] candidate rests on Infopédia only. Infopédia writes [ɛ] first in 103 of the 154 single words in this context, [e] in 47 and [i] in 4. Before an obstruent and a liquid it writes [e] first in 45 of 61. This rule and PT_INITIAL_E_CODA_CANDIDATE_I and PT_INITIAL_E_CODA_CANDIDATE_REDUCED rank the slot [e], [ɛ], [i], [ɨ]. The rule does not change the transcription. See PT_INITIAL_E_OPEN for the row candidates."
+    },
+    {
+      "id": "PT_INITIAL_E_CODA_CANDIDATE_I",
+      "phonemes": [
+        "ɨ"
+      ],
+      "surface": "i",
+      "grapheme": [
+        "e"
+      ],
+      "word_initial": true,
+      "stress": "unstressed",
+      "followed_by": "coda",
+      "followed_by_grapheme_not": [
+        "l",
+        "r",
+        "s",
+        "x",
+        "m",
+        "n"
+      ],
+      "notes": "The third lattice candidate of an unstressed word-initial ⟨e⟩ before another coda consonant is [i]. The rule does not change the transcription. See PT_INITIAL_E_CODA_CANDIDATE_OPEN."
+    },
+    {
+      "id": "PT_INITIAL_E_CODA_CANDIDATE_REDUCED",
+      "phonemes": [
+        "ɛ"
+      ],
+      "surface": "ɨ",
+      "grapheme": [
+        "e"
+      ],
+      "word_initial": true,
+      "stress": "unstressed",
+      "followed_by": "coda",
+      "followed_by_grapheme_not": [
+        "l",
+        "r",
+        "s",
+        "x",
+        "m",
+        "n"
+      ],
+      "notes": "The fourth lattice candidate of an unstressed word-initial ⟨e⟩ before another coda consonant is the [ɨ] of the general reduction. The rule does not change the transcription. See PT_INITIAL_E_CODA_CANDIDATE_OPEN."
     }
   ],
   "sandhi_rules": [
