@@ -1103,9 +1103,23 @@
         "chador",
         "salpor",
         "granulomatoso",
-        "mixedematoso"
+        "mixedematoso",
+        "adora",
+        "adoras",
+        "adoram",
+        "atora",
+        "bandora",
+        "desoras",
+        "fedora",
+        "fedoras",
+        "mandora",
+        "nessora",
+        "pandora",
+        "pitora",
+        "pletora",
+        "pletoras"
       ],
-      "notes": "Words whose stressed ⟨o⟩ is open [ɔ] although their ending takes a close-vowel suffix rule (PT_SUFFIX_OR_CLOSE, PT_SUFFIX_OSO_CLOSE). Listed before those rules so they keep the open vowel. The comparatives maior, melhor, menor and pior are the 'comparativos em -or' that Cunha & Cintra, Nova Gramática do Português Contemporâneo, 7.ª ed., Lexikon (archive.org OCR of item novagramaticadoportuguescontemporaneo, accents restored), p. 266, names apart from the adjectives in -or. Infopédia entries checked live (web.archive.org snapshot): 'me.lhor məˈʎɔr'. The other readings are the Infopédia entries of the portuguese-unified lexicon (region pt-PT): maior 'mɐjˈɔr', menor 'məˈnɔr', pior 'ˈpjɔr', pormenor 'purməˈnɔr', suor 'suˈɔr', redor 'ʀəˈdɔr', arredor 'ɐʀəˈdɔr', alfajor 'aɫfɐˈʒɔr', belchior 'bɛɫˈʃjɔr', chador 'ʃaˈdɔr', salpor 'saɫˈpɔr', granulomatoso 'ɡrɐnulumɐˈtɔzu' and mixedematoso 'miksədəmɐˈtɔz'. Porto, Braga and Terceira, the African and Asian varieties and Barrancos disable this rule with the suffix rules."
+      "notes": "Words whose stressed ⟨o⟩ is open [ɔ] although their ending takes a close-vowel suffix rule (PT_SUFFIX_OR_CLOSE, PT_SUFFIX_OSO_CLOSE, PT_SUFFIX_DORA_CLOSE). Listed before those rules so they keep the open vowel. The comparatives maior, melhor, menor and pior are the 'comparativos em -or' that Cunha & Cintra, Nova Gramática do Português Contemporâneo, 7.ª ed., Lexikon (archive.org OCR of item novagramaticadoportuguescontemporaneo, accents restored), p. 266, names apart from the adjectives in -or. Infopédia entries checked live (web.archive.org snapshot): 'me.lhor məˈʎɔr'. The other readings are the Infopédia entries of the portuguese-unified lexicon (region pt-PT): maior 'mɐjˈɔr', menor 'məˈnɔr', pior 'ˈpjɔr', pormenor 'purməˈnɔr', suor 'suˈɔr', redor 'ʀəˈdɔr', arredor 'ɐʀəˈdɔr', alfajor 'aɫfɐˈʒɔr', belchior 'bɛɫˈʃjɔr', chador 'ʃaˈdɔr', salpor 'saɫˈpɔr', granulomatoso 'ɡrɐnulumɐˈtɔzu' and mixedematoso 'miksədəmɐˈtɔz'. In ⟨-dora -tora -sora⟩: fedora 'fəˈdɔrɐ', pandora 'pɐ̃ˈdɔrɐ', bandora 'bɐ̃ˈdɔrɐ', mandora 'mɐ̃ˈdɔrɐ', pletora 'plɛˈtɔrɐ', pitora 'piˈtɔrɐ', atora 'ɐˈtɔrɐ' and nessora 'nɛˈsɔrɐ' (Infopédia), with the plurals fedoras and pletoras; desoras 'dəˈzɔrɐʃ' (Infopédia) is des- and horas, and keeps the [ɔ] of hora; adora, adoras and adoram are the rhizotonic forms of adorar, which follows the lograr model with [ɔ] (Cunha & Cintra, 7.ª ed., pp. 430-431; WikiPron adoras 'ɐ d ɔ ɾ ɐ ʃ'). Porto, Braga and Terceira, the African and Asian varieties and Barrancos disable this rule with the suffix rules."
     },
     {
       "id": "PT_SUFFIX_EZ_CLOSE",
@@ -1251,6 +1265,58 @@
       ],
       "followed_by_3": "word_boundary",
       "notes": "The stressed ⟨o⟩ of the adjective suffix ⟨-onho⟩ and its feminine ⟨-onha⟩ is close [o] (Infopédia: risonho 'ʀiˈzoɲu', medonho 'məˈdoɲu'). Cunha & Cintra, Nova Gramática do Português Contemporâneo, 7.ª ed., Lexikon (archive.org OCR of item novagramaticadoportuguescontemporaneo, accents restored), p. 113, lists '-onho propriedade, hábito constante: enfadonho, risonho'. Measured on the Infopédia (Porto Editora) readings of the portuguese-unified lexicon, region pt-PT: 40 types end in this spelling with this vowel stressed; 40 have the close vowel, 0 do not (none). Precision 1.000, coverage 0.005 of the 7304 unaccented stressed ⟨o⟩ types. Cross-checked on the Wiktionary pt-PT readings of WikiPron (por_latn_po_broad), which include verb forms: 41 unaccented forms end in this spelling; 41 have the close vowel, 0 the open one, and 0 list both readings or another vowel. Precision 1.000, or 1.000 when a form that lists the close vowel among its readings counts as right. The rule reads the spelling of the ending, so it also matches words that are not the suffix; the count above is over every word with the ending. Open or close quality is otherwise lexical (Ciberdúvidas 7872: 'em sílaba tónica, o \"e\" ou é aberto ou fechado, dependendo da etimologia'), and the pre-lexical default stays open. No exception was found. Porto, Braga and Terceira, the African and Asian varieties and Barrancos disable this rule."
+    },
+    {
+      "id": "PT_SUFFIX_DORA_CLOSE",
+      "phonemes": [
+        "ɔ"
+      ],
+      "surface": "o",
+      "stress": "stressed",
+      "grapheme": [
+        "o"
+      ],
+      "preceded_by_grapheme": [
+        "d",
+        "t",
+        "s",
+        "ss"
+      ],
+      "preceded_by_2": "any",
+      "followed_by_grapheme": [
+        "r"
+      ],
+      "followed_by_phoneme_2": [
+        "a",
+        "ɐ"
+      ],
+      "notes": "The stressed ⟨o⟩ of the feminine ⟨-dora -tora -sora⟩ of the agent and instrument suffix is close [o], as in the masculine ⟨-dor -tor -sor⟩ (PT_SUFFIX_OR_CLOSE): calculadora [kaɫkulɐˈdoɾɐ], vendedora [vẽdɨˈdoɾɐ], professora [pɾufɨˈsoɾɐ]. Cunha & Cintra, Nova Gramática do Português Contemporâneo, 7.ª ed., p. 112: 'Em -dor, -tor e -sor [...] os sufixos são propriamente -or'. p. 266, 2.º: adjectives in '-or formam geralmente o feminino acrescentando -a ao masculino: [...] encantador encantadora morador moradora'. The same page, 6.º, lists apart the adjectives whose close [o] opens in the feminine (brioso briosa, formoso formosa, disposto disposta, grosso grossa), and names no ⟨-or⟩ word there. The rule needs a letter before ⟨d t s ss⟩, so the monosyllabic stems dora, tora and sora keep the default, and it takes the plural ⟨-doras⟩. Infopédia (Porto Editora) gives [o] in 66 of the 70 single headwords in ⟨-dora⟩, in 8 of 12 in ⟨-tora⟩ and in 4 of 6 in ⟨-sora⟩; the open ones (fedora, pandora, bandora, mandora, pletora, pitora, atora, nessora) are not agent nouns, and desoras is des- and horas. The Wiktionary pt-PT readings of WikiPron (por_latn_po_broad) give [o] in 225 of 225 ⟨-dora⟩ forms, 55 of 57 ⟨-tora⟩ and 19 of 19 ⟨-sora⟩. The verb forms of adorar keep the [ɔ] of the lograr model (Cunha & Cintra p. 430-431), and they and the open words above are in PT_LEX_OPEN_O_SUFFIX. The rhizotonic forms of other verbs in -dorar, -torar and -sorar keep [ɔ] as the lattice candidate through PT_SUFFIX_DORA_CANDIDATE_OPEN. The rule ranks the slot [o], [ɔ], [u]. Porto, Braga and Terceira, the African and Asian varieties, Barrancos and the creoles disable this rule."
+    },
+    {
+      "id": "PT_SUFFIX_DORA_CANDIDATE_OPEN",
+      "phonemes": [
+        "o"
+      ],
+      "surface": "ɔ",
+      "stress": "stressed",
+      "grapheme": [
+        "o"
+      ],
+      "preceded_by_grapheme": [
+        "d",
+        "t",
+        "s",
+        "ss"
+      ],
+      "preceded_by_2": "any",
+      "followed_by_grapheme": [
+        "r"
+      ],
+      "followed_by_phoneme_2": [
+        "a",
+        "ɐ"
+      ],
+      "notes": "The second lattice candidate of the stressed ⟨o⟩ of ⟨-dora -tora -sora⟩ is [ɔ], the value of the rhizotonic verb forms of the lograr model. The rule does not change the transcription. See PT_SUFFIX_DORA_CLOSE."
     },
     {
       "id": "PT_LEX_OIDAR_CLOSE",

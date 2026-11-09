@@ -242,6 +242,18 @@
       "notes": "DISABLED for Angolan Portuguese. No source for the stressed vowel of this ending in this variety was read, so its output stays what it was; the pt-PT rule rests on Infopédia readings of standard European Portuguese."
     },
     {
+      "id": "PT_SUFFIX_DORA_CLOSE",
+      "phonemes": [],
+      "surface": "o",
+      "notes": "DISABLED for Angolan Portuguese. No source for the stressed vowel of this ending in this variety was read, so its output stays what it was; the pt-PT rule rests on Infopédia readings of standard European Portuguese."
+    },
+    {
+      "id": "PT_SUFFIX_DORA_CANDIDATE_OPEN",
+      "phonemes": [],
+      "surface": "ɔ",
+      "notes": "DISABLED for Angolan Portuguese. No source for the stressed vowel of this ending in this variety was read, so its output stays what it was; the pt-PT rule rests on Infopédia readings of standard European Portuguese."
+    },
+    {
       "id": "PT_SUFFIX_OIDE_OPEN",
       "phonemes": [],
       "surface": "ɔ",
