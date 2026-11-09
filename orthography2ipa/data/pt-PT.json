@@ -456,7 +456,7 @@
       "followed_by_grapheme": [
         "s"
       ],
-      "notes": "A word-initial unstressed ⟨e⟩ before a coda sibilant is [i]: estar [iʃˈtaɾ], escola [iʃˈkɔlɐ], esmola [iʒˈmɔlɐ]. Vázquez Diéguez (2015, Anuario de Estudios Filológicos 38) gives 'estar [i] / —' for Europe on p. 242 and 'esc- [(i)ʃk]', 'est- [(i)ʃt]' on p. 250. His p. 265 adds 'Na sequência <es- + consoante> pode desaparecer'. Teyssier (1989: 28, quoted on his p. 244) writes 'o [i] quase não se ouve, p. ex. estar pron. [(i)ʃ'tar]'. Mateus & d'Andrade (1998, D.E.L.T.A. 14(1), 13-32) say 'they are deleted when the coda is an /S/ (see esperado)'; the page inside that range is not confirmed. Cruz-Ferreira (1999: 130) writes todo o esplendor as ['todu ʃplẽ'dor], which is a narrow transcription of connected speech. This rule writes the vowel and does not model the optional drop. The statement is for Europe as a whole. Vázquez names Lisboa-Coimbra as the standard, and no source read covers another European variety on its own, so the pt-PT-x-* specs inherit the rule. Each spec keeps its own coda sibilant. Double ⟨ss⟩, a stressed ⟨e⟩ and initial ⟨ex⟩ stay outside this rule."
+      "notes": "A word-initial unstressed ⟨e⟩ before a coda sibilant is [i]: estar [iʃˈtaɾ], escola [iʃˈkɔlɐ], esmola [iʒˈmɔlɐ]. Vázquez Diéguez (2015, Anuario de Estudios Filológicos 38) gives 'estar [i] / —' for Europe on p. 242 and 'esc- [(i)ʃk]', 'est- [(i)ʃt]' on p. 250. His p. 265 adds 'Na sequência <es- + consoante> pode desaparecer'. Teyssier (1989: 28, quoted on his p. 244) writes 'o [i] quase não se ouve, p. ex. estar pron. [(i)ʃ'tar]'. Mateus & d'Andrade (1998, D.E.L.T.A. 14(1), p. 26) say 'they are deleted when the coda is an /S/ (see esperado)'. Cruz-Ferreira (1999: 130) writes todo o esplendor as ['todu ʃplẽ'dor], which is a narrow transcription of connected speech. This rule writes the vowel and does not model the optional drop. The statement is for Europe as a whole. Vázquez names Lisboa-Coimbra as the standard, and no source read covers another European variety on its own, so the pt-PT-x-* specs inherit the rule. Each spec keeps its own coda sibilant. Double ⟨ss⟩, a stressed ⟨e⟩ and initial ⟨ex⟩ stay outside this rule."
     },
     {
       "id": "PT_CODA_L_DARK",
@@ -1550,7 +1550,7 @@
       "publisher": "D.E.L.T.A. 14(1), 13-32",
       "url": "https://doi.org/10.1590/S0102-44501998000100002",
       "pages": "13-32",
-      "notes": "Read in the journal's HTML text, which carries no page breaks and drops some phonetic symbols."
+      "notes": "Read in the journal's HTML text, which carries no page breaks and drops some phonetic symbols, and in the scan of the printed issue, which shows section 1.6 on p. 26."
     },
     {
       "id": "teyssier1989",

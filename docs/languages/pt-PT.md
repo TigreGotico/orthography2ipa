@@ -43,7 +43,7 @@ Speakers often delete a word-final [ɨ]. The spec writes the vowel in most conte
 
 A word-initial unstressed ⟨e⟩ before a coda sibilant is [i]. `PT_INITIAL_ES_RAISE` gives `estar` [iʃˈtaɾ], `escola` [iʃˈkɔlɐ] and `esmola` [iʒˈmɔlɐ]. Vázquez Diéguez (2015: 242) gives [i] for Europe and lists the series "esc- [(i)ʃk]" and "est- [(i)ʃt]" on p. 250.
 
-The vowel can drop. Vázquez writes "pode desaparecer, p. ex. [iʃˈtaɾ / ʃˈtaɾ]" (p. 265), and Teyssier (1989: 28, quoted on Vázquez's p. 244) writes "o [i] quase não se ouve". Mateus & d'Andrade (1998) state that the vowel is deleted before a coda /S/; the page inside 13-32 is not confirmed. Cruz-Ferreira (1999: 130) writes `todo o esplendor` as ['todu ʃplẽ'dor], a narrow transcription of connected speech. The spec writes the vowel and does not model the drop.
+The vowel can drop. Vázquez writes "pode desaparecer, p. ex. [iʃˈtaɾ / ʃˈtaɾ]" (p. 265), and Teyssier (1989: 28, quoted on Vázquez's p. 244) writes "o [i] quase não se ouve". Mateus & d'Andrade (1998: 26) state that the vowel is deleted before a coda /S/. Cruz-Ferreira (1999: 130) writes `todo o esplendor` as ['todu ʃplẽ'dor], a narrow transcription of connected speech. The spec writes the vowel and does not model the drop.
 
 The rule stays off for double ⟨ss⟩, for a stressed ⟨e⟩, and for ⟨es⟩ before a vowel. A stressed ⟨e⟩ keeps its reading: `este` [ˈeʃtɨ]. Before ⟨ss⟩ or ⟨s⟩ and a vowel the first syllable is open, so the rules of the next section apply: `essência` [iˈsẽsiɐ], `esotérico` [izuˈtɛɾiku]. Initial ⟨ex⟩ has a separate reading.
 
