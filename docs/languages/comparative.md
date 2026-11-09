@@ -321,4 +321,4 @@ For the details of the Russian spec, see [Russian](ru.md).
 - Short, D. (1993). Czech. In: *The Slavonic Languages*, Routledge.
 
 ---
-[← Language pages](index.md) · [Home](../index.md) · [English →](en-GB.md)
+[← Mirandese](mwl.md) · [Home](../index.md) · [English →](en-GB.md)

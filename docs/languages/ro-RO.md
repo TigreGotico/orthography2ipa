@@ -51,4 +51,4 @@ The spec maps only the comma-below letters ⟨ș⟩ and ⟨ț⟩. Much Romanian 
 - Academia Română (2021). *Dicționarul ortografic, ortoepic și morfologic al limbii române* (DOOM3). Univers Enciclopedic.
 
 ---
-[← Spanish](es-ES.md) · [Home](../index.md) · [French →](fr-FR.md)
+[← Faroese](fo.md) · [Home](../index.md) · [French →](fr-FR.md)

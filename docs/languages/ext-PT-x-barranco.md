@@ -93,4 +93,4 @@ A dedicated downstream engine, `g2p_barranquenho`, uses this spec as its data la
 - Gonçalves, M. F., Navas, M. V. & Ferreira, V. (2025). *Dicionário de Barranquenho*. Universidade de Évora. ISBN 978-972-778-460-8.
 
 ---
-[← Uruguayan Portuguese](pt-UY.md) · [Home](../index.md) · [Mirandese →](mwl.md)
+[← Uruguayan Portuguese](pt-UY.md) · [Home](../index.md) · [Russian →](ru.md)

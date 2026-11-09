@@ -8,7 +8,8 @@ Three files are written from the source and never edited by hand:
 * ``docs/reference/cli.md`` holds the ``--help`` output of the
   ``orthography2ipa`` command and of each subcommand.
 * ``llms.txt`` is the map of the repository for a language model, built from
-  the reading order of ``docs/index.md``.
+  the reading order of ``docs/index.md`` and the summaries of the language
+  atlas pages.
 
 Run it after changing a public name, a docstring summary, a CLI option or the
 documentation index::
@@ -185,6 +186,20 @@ def llms_txt(order: list[str]) -> str:
         lines.append(f"- [{nav._label(rel)}](docs/{rel})")
     lines += [
         "",
+        "## Language atlas",
+        "",
+        "- [Languages by family](docs/languages/by-family.md): every spec by "
+        "family path",
+        "- [Languages by region](docs/languages/by-region.md): every spec by "
+        "Glottolog macroarea and country",
+        "- [Languages by script](docs/languages/by-script.md): every spec by "
+        "script",
+        "- [Languages from A to Z](docs/languages/a-z.md): every spec by name",
+    ]
+    for rel, summary in _atlas_pages():
+        lines.append(f"- [{nav._label(rel)}](docs/{rel}): {summary}")
+    lines += [
+        "",
         "## Optional",
         "",
         "- [Per-language pages](docs/languages/index.md): phonology notes "
@@ -192,6 +207,20 @@ def llms_txt(order: list[str]) -> str:
         "- [Changelog](CHANGELOG.md)",
     ]
     return "\n".join(lines) + "\n"
+
+
+def _atlas_pages() -> list[tuple[str, str]]:
+    """Each atlas page under ``docs/languages/`` with its generated summary."""
+    pages = []
+    pattern = re.compile(
+        r"<!-- atlas:summary begin -->\n(.*?)\n<!-- atlas:summary end -->", re.S)
+    folder = os.path.join(REPO_ROOT, "docs", "languages")
+    for name in sorted(os.listdir(folder)):
+        with open(os.path.join(folder, name), encoding="utf-8") as fh:
+            match = pattern.search(fh.read())
+        if match:
+            pages.append((f"languages/{name}", " ".join(match.group(1).split())))
+    return pages
 
 
 def outputs() -> dict[str, str]:

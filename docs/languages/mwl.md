@@ -1,14 +1,39 @@
-# Mirandese (`mwl`) and its sub-dialects
+# Mirandese (`mwl`)
+
+<!-- atlas:summary begin -->
+Mirandese is an Asturleonese language, written in the Latin script. Glottolog places it in Portugal and Spain. The `mwl` spec is at the research tier. It cites 7 sources and has 3 scored datasets.
+<!-- atlas:summary end -->
+
+<!-- atlas:header begin -->
+| Field | Value |
+|:--|:--|
+| Code | `mwl` |
+| ISO 639-3 | [mwl](https://iso639-3.sil.org/code/mwl), Mirandese |
+| Glottolog | [mira1251](https://glottolog.org/resource/languoid/id/mira1251), Mirandese |
+| Wikidata | [Q13330](https://www.wikidata.org/wiki/Q13330) |
+| Wikipedia | [Mirandese](https://en.wikipedia.org/wiki/Mirandese) |
+| Family | [Indo-European](by-family.md#indo-european) > [Italic > Romance > Ibero-Romance > Asturleonese](by-family.md#indo-european--italic--romance--ibero-romance--asturleonese) |
+| Region | [Eurasia](by-region.md#eurasia) > [Portugal](by-region.md#portugal), [Spain](by-region.md#spain) |
+| Script | [Latin](by-script.md#latin) (alphabet) |
+| Tier | [research](../specs/quality_tiers.md#research) |
+| Attested | from 1400, living |
+| Ancestor | [Medieval Asturian-Leonese of Portugal](https://tigregotico.github.io/orthography2ipa/#ast-PT-x-medieval) `ast-PT-x-medieval` |
+| Child lects | 2, see [Related lects](#related-lects) |
+| Explorer | [`mwl` in the data explorer](https://tigregotico.github.io/orthography2ipa/#mwl) |
+| Spec file | [`mwl.json`](../../orthography2ipa/data/mwl.json) |
+<!-- atlas:header end -->
+
+## Overview
 
 Mirandese (*mirandés*, *lhéngua mirandesa*) is an Asturleonese language of the municipality of Miranda do Douro, in north-eastern Portugal. Portugal has recognised it as a co-official regional language since 1999. It is not a dialect of Portuguese. Its parent in this library is `ast-PT-x-medieval` (Medieval Asturian-Leonese of Portugal), and its features are West Iberian and Leonese, not Portuguese allophony. Modern Mirandese does carry a heavy Portuguese adstrate from schooling and administration, which shows mostly in the reduction of unstressed vowels. The spec `ancestors` list `pt-PT-x-medieval` and `ast-x-sanabria` as adstrates.
 
-Every transcription on this page is real output of `orthography2ipa.transcribe(text, code)`, for the code of its section. Forms in italics are quoted from a source or from the gold. For the scores of the specs, see [../evaluation/generated/scoreboard.md](../evaluation/generated/scoreboard.md).
+Every transcription on this page is real output of `orthography2ipa.transcribe(text, code)`, for the code of its section. Forms in italics are quoted from a source or from the gold.
 
-| Code | Name | Sub-dialect | Tier |
-|:--|:--|:--|:--|
-| `mwl` | Mirandese (Central) | Central, the normal speech | research |
-| `mwl-x-sendim` | Sendinês | Southern (Vila de Sendim) | research |
-| `mwl-x-ifanes` | Ifanês | Northern or Raiano (the border) | research |
+| Code | Name | Sub-dialect |
+|:--|:--|:--|
+| `mwl` | Mirandese (Central) | Central, the normal speech |
+| `mwl-x-sendim` | Sendinês | Southern (Vila de Sendim) |
+| `mwl-x-ifanes` | Ifanês | Northern or Raiano (the border) |
 
 The three sub-dialects are the classical division of Vasconcelos (1900). The Central norm is the base of the orthography. The Northern or Raiano speech belongs to the border of the plateau, and Sendinês to Vila de Sendim.
 
@@ -144,13 +169,41 @@ The attested Raiano traits are lexical and morphosyntactic, not segmental. They 
 
 Input is Mirandese text in the official orthography (Convenção 1999). Give the spec ⟨lh⟩, ⟨nh⟩, ⟨iê uô⟩ and ⟨ç⟩ as spelled. The spec respects the stress accent (´) and the nasal tilde (˜).
 
-## Measuring against the gold
+## Weak points
 
 The `TigreGotico/mirandese_g2p` gold is `expert-human` and small, and its rows for the sub-dialects are very small. Read the confidence interval on [../evaluation/generated/scoreboard.md](../evaluation/generated/scoreboard.md) before you read the PER of a sub-dialect.
 
 The gold writes the nasal vowel without the nasal consonant. It writes [wo] and [je], [ɛ ɔ] in unmarked words, and [d] between vowels. Where it disagrees with Vasconcelos, `mwl` follows Vasconcelos, so its PER is higher than it would be with the modern readings. Some residual error also comes from notation choices of the gold that the rules cannot and should not follow. These are the central final vowel [ʉ] for an unstressed final ⟨-o⟩, and the plain coda [l].
 
+The letter table inherits keys from `ast-PT-x-medieval` that no Mirandese source of the spec gives, such as ⟨yy⟩ [kʲ], ⟨ḥ⟩ [h] and ⟨ñ⟩ [ɲ]. They show in the [spelling table](#spelling) below.
+
+
+<!-- atlas:lects begin -->
+## Related lects
+
+These specs name `mwl` as their parent. They are sorted by country, and a lect with no recorded country comes last.
+
+- [Ifanês (Mirandese septentrional)](https://tigregotico.github.io/orthography2ipa/#mwl-x-ifanes) `mwl-x-ifanes`: research tier
+- [Sendinês (Mirandese meridional)](https://tigregotico.github.io/orthography2ipa/#mwl-x-sendim) `mwl-x-sendim`: research tier
+<!-- atlas:lects end -->
+
+<!-- atlas:sources begin -->
 ## Sources
+
+The spec cites 7 works. 3 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+
+1. <a id="src-ferreira1995"></a>Ferreira, M.B. (1995). *Variação linguística: perspectiva dialectológica*. Universidade de Lisboa.
+2. <a id="src-mateus_dandrade2000"></a>Mateus, M.H.M. & d'Andrade, E. (2000). *The Phonology of Portuguese*. Oxford University Press. Cited: 11.
+3. <a id="src-cunha_cintra1984"></a>Cunha, C. & Cintra, L.F.L. (1984). *Nova Gramática do Português Contemporâneo*. Sá da Costa.
+4. <a id="src-vasconcelos1900"></a>Vasconcelos, J. Leite de (1900). *Estudos de Philologia Mirandesa*. Imprensa Nacional, Lisboa. Cited: 173-180, 187-191, 200-201, 237-239, 265. [archive.org](https://archive.org/details/estudosdephilolo01vascuoft)
+5. <a id="src-convencao1999"></a>Ferreira, M.B. & Raposo, D. (coords.) (1999). *Convenção Ortográfica da Língua Mirandesa*. Câmara Municipal de Miranda do Douro / Centro de Linguística da Universidade de Lisboa. Cited: 62. [mirandadodouro.jfreguesia.com](http://mirandadodouro.jfreguesia.com/images/stories/PDF/convencaomirandes.pdf)
+6. <a id="src-aditamento2000"></a>Ferreira, M.B. & Raposo, D. (coords.) (2000). *Primeiro Aditamento à Convenção Ortográfica da Língua Mirandesa*. Câmara Municipal de Miranda do Douro / Centro de Linguística da Universidade de Lisboa.
+7. <a id="src-ferreira2014"></a>Ferreira, J.P., Chesi, C., Cho, H., Baldewijns, D., Braga, D. & Dias, M. (2014). *On Mirandese Language Resources for Text-To-Speech*. Proceedings of SLTU-2014, St. Petersburg, pp. 87-92. Cited: 88-89. [isca-archive.org](https://www.isca-archive.org/sltu_2014/ferreira14_sltu.html)
+<!-- atlas:sources end -->
+
+### Notes on the sources
+
+The list below adds what each work supports, with the page. It also gives the second volume of Vasconcelos (1901), which the spec file does not list.
 
 - Ferreira, M. B. & Raposo, D. (coords.) (1999). *Convenção Ortográfica da Língua Mirandesa.* Câmara Municipal de Miranda do Douro / Centro de Linguística da Universidade de Lisboa. The official orthography (§ L, § Sibilantes, § Ditongos, § Nasalidade, § Acento).
 - Ferreira, M. B. & Raposo, D. (coords.) (2000). *Primeiro Aditamento à Convenção Ortográfica da Língua Mirandesa.* The provisions for Sendinês.
@@ -161,5 +214,208 @@ The gold writes the nasal vowel without the nasal consonant. It writes [wo] and 
 - Ferreira, M. B. (1995). *Variação linguística: perspectiva dialectológica*. Listed in the spec sources.
 - Cunha, C. & Cintra, L. F. L. (1984). *Nova Gramática do Português Contemporâneo*. Listed in the spec sources.
 
+<!-- atlas:datasets begin -->
+## Datasets
+
+Every row of the board that scores this spec. PER is the phoneme error rate against the dataset. A gold row is human work, a silver row is a language model's label, and a generated row is the output of another tool. Only a row marked as gating can promote or block the spec. The [dataset catalogue](../evaluation/datasets.md) describes each set.
+
+| Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
+|:--|:--|:--|:--|:--|--:|--:|:--|
+| `mirandese_g2p` ([TigreGotico/mirandese_g2p](https://huggingface.co/datasets/TigreGotico/mirandese_g2p)) | `mwl` | gold | expert-human | - | 205 | 0.2289 | yes |
+| `mirandese_dict` ([TigreGotico/mirandese-ipa-dict-synthetic](https://huggingface.co/datasets/TigreGotico/mirandese-ipa-dict-synthetic)) | `mwl` | silver | llm-corrected | - | 990 | 0.0449 | no |
+| `portuguese_tts` | `mwl` | silver | llm-corrected | - | 20 | 0.0304 | no |
+<!-- atlas:datasets end -->
+
+<!-- atlas:inventory begin -->
+## Inventory
+
+The spec can emit 89 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+
+| Consonants | Bilabial | Labiodental | Dental | Alveolar | Postalveolar | Palatal | Velar | Glottal |
+|:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| Plosive | b p |  |  | d t |  |  | k kʲ ɡ |  |
+| Affricate |  |  |  | d͡z ts t͡s | d͡ʒ tʃ |  |  |  |
+| Nasal | m |  |  | n |  | ɲ | ŋ |  |
+| Trill |  |  |  | r |  |  |  |  |
+| Tap |  |  |  | ɾ |  |  |  |  |
+| Fricative | β | f | ð | s s̺ s̻ z z̺ z̻ | ʃ ʒ | ʝ | ɣ | h |
+| Approximant |  |  |  |  |  | j |  |  |
+| Lateral approximant |  |  |  | l ɫ |  | ʎ |  |  |
+
+| Vowels | Front | Central | Back |
+|:--|:-:|:-:|:-:|
+| Close | i i̯ ĩ | ɨ ɨ̃ | u u̯ ũ |
+| Near-close |  |  | ʊ ʊ̃ |
+| Close-mid | e ẽ |  | o õ |
+| Mid |  | ə̃ |  |
+| Open-mid | ɛ |  | ɔ |
+| Near-open |  | ɐ ɐ̃ |  |
+| Open | a |  |  |
+
+Sequences that the spec writes as one unit: [aj] [aw] [ej] [ew] [iu] [iw] [ja] [je] [jo] [ju] [jɪ] [jɪ̃] [jɵ̃w̃] [jẽ] [kw] [oj] [uj] [uu] [w] [wa] [we] [wo] [wõ] [õj̃] [ɐ̃w̃] [ɟ͡ʝ] [ɡw] [ɡwe] [ɡwi] [ɪə] [ɵw] [ɵ̃w̃] [ʊə].
+<!-- atlas:inventory end -->
+
+<!-- atlas:spelling begin -->
+## Spelling
+
+Each letter or letter group of the spec with its readings. The first reading is the default, and the others stay in the lattice as lower-ranked candidates. The last column gives the readings that depend on the position in the word.
+
+| Spelling | Readings | By position |
+|:--|:--|:--|
+| ⟨a⟩ | [a] | nucleus stressed [a] · nucleus unstressed [ɐ] · posttonic [ɐ] · pretonic [ɐ] · word final [ɐ] |
+| ⟨ai⟩ | [aj] |  |
+| ⟨au⟩ | [aw] |  |
+| ⟨b⟩ | [b] | after consonant [b] · intervocalic [b] [β] · word initial [b] |
+| ⟨c⟩ | [k] [s] | before e [s] · before i [s] |
+| ⟨ch⟩ | [tʃ] |  |
+| ⟨d⟩ | [d] | after consonant [d] · intervocalic [ð] [d] · word initial [d] |
+| ⟨e⟩ | [e] | nucleus stressed [e] · nucleus unstressed [ɨ] · pretonic [ɨ] · word final [ɨ] |
+| ⟨ei⟩ | [ej] |  |
+| ⟨eu⟩ | [ew] |  |
+| ⟨f⟩ | [f] | intervocalic [f] · word initial [f] |
+| ⟨g⟩ | [ɡ] [ʒ] | before e [ʒ] · before i [ʒ] · intervocalic [ɣ] |
+| ⟨gu⟩ | [ɡw] [ɡ] | before a [ɡw] · before e [ɡ] · before i [ɡ] |
+| ⟨güe⟩ | [ɡwe] |  |
+| ⟨güi⟩ | [ɡwi] |  |
+| ⟨h⟩ | ∅ |  |
+| ⟨h.⟩ | [h] |  |
+| ⟨i⟩ | [i] |  |
+| ⟨ia⟩ | [ja] |  |
+| ⟨ie⟩ | [jɪ] [je] | word final [ɪə] |
+| ⟨io⟩ | [jo] | word final [iu] |
+| ⟨iu⟩ | [ju] | word final [iw] |
+| ⟨iê⟩ | [jɪ] [je] |  |
+| ⟨j⟩ | [ʒ] |  |
+| ⟨k⟩ | [k] |  |
+| ⟨l⟩ | [l] | onset [l] |
+| ⟨lh⟩ | [ʎ] |  |
+| ⟨ll⟩ | [ʎ] |  |
+| ⟨m⟩ | [m] |  |
+| ⟨n⟩ | [n] |  |
+| ⟨nh⟩ | [ɲ] |  |
+| ⟨o⟩ | [o] | nucleus stressed [o] · nucleus unstressed [u] · posttonic [u] · pretonic [u] · word final [u] |
+| ⟨oi⟩ | [oj] |  |
+| ⟨ou⟩ | [ɵw] |  |
+| ⟨p⟩ | [p] |  |
+| ⟨q⟩ | [k] |  |
+| ⟨qu⟩ | [k] | before e [k] · before i [k] · before vowel [kw] |
+| ⟨r⟩ | [ɾ] | before consonant [ɾ] · intervocalic [ɾ] · word final [ɾ] · word initial [r] |
+| ⟨rr⟩ | [r] |  |
+| ⟨s⟩ | [s̺] [z̺] | intervocalic [z̺] · word initial [s̺] |
+| ⟨ss⟩ | [s̺] |  |
+| ⟨t⟩ | [t] |  |
+| ⟨ts⟩ | [ts] |  |
+| ⟨u⟩ | [u] |  |
+| ⟨ua⟩ | [wa] |  |
+| ⟨ue⟩ | [we] | word final [ʊə] |
+| ⟨ui⟩ | [uj] |  |
+| ⟨uo⟩ | [ʊ] [wo] | word final [uu] |
+| ⟨uô⟩ | [ʊ] [wo] |  |
+| ⟨v⟩ | [b] | after consonant [b] · intervocalic [b] [β] · word initial [b] |
+| ⟨w⟩ | [w] |  |
+| ⟨x⟩ | [ʃ] |  |
+| ⟨y⟩ | [ʝ] [j] | word final [j] |
+| ⟨yy⟩ | [kʲ] |  |
+| ⟨z⟩ | [z] | intervocalic [z] · word final [z] · word initial [z] |
+| ⟨á⟩ | [a] |  |
+| ⟨ã⟩ | [ɐ̃] |  |
+| ⟨ão⟩ | [ɐ̃w̃] |  |
+| ⟨ç⟩ | [s] |  |
+| ⟨é⟩ | [e] [ɛ] |  |
+| ⟨éu⟩ | [ew] |  |
+| ⟨ê⟩ | [e] |  |
+| ⟨í⟩ | [i] |  |
+| ⟨ñ⟩ | [ɲ] |  |
+| ⟨ó⟩ | [o] [ɔ] |  |
+| ⟨õ⟩ | [õ] |  |
+| ⟨õe⟩ | [õj̃] |  |
+| ⟨ú⟩ | [u] |  |
+| ⟨ĩ⟩ | [ĩ] |  |
+| ⟨ũ⟩ | [ũ] |  |
+| ⟨ḥ⟩ | [h] |  |
+| ⟨ẽ⟩ | [ẽ] |  |
+
+Stress falls on the penult by default. A written ⟨á⟩ ⟨é⟩ ⟨í⟩ ⟨ó⟩ ⟨ú⟩ ⟨ã⟩ ⟨ẽ⟩ ⟨ĩ⟩ ⟨õ⟩ ⟨ũ⟩ marks the stressed vowel. These endings take final stress: ⟨-r⟩ ⟨-l⟩ ⟨-z⟩ ⟨-ç⟩ ⟨-in⟩ ⟨-un⟩ ⟨-on⟩ ⟨-is⟩ ⟨-us⟩ ⟨-ns⟩ ⟨-ão⟩ ⟨-ie⟩.
+
+Whole-word exceptions (17): ⟨algũa⟩ [ɐɫˈɣũŋɐ], ⟨algũas⟩ [ɐɫˈɣũŋɐs̺], ⟨die⟩ [ˈdɪə], ⟨frie⟩ [ˈfɾɪə], ⟨l⟩ [l], ⟨la⟩ [lɐ], ⟨las⟩ [lɐs̺], ⟨ls⟩ [ɫs̺], ⟨mie⟩ [ˈmɪə], ⟨non⟩ [ˈno], ⟨pie⟩ [ˈpjɪ], ⟨quien⟩ [ˈkjɪ̃], ⟨sue⟩ [ˈs̺ʊə], ⟨tie⟩ [ˈtɪə], ⟨tue⟩ [ˈtʊə], ⟨ũa⟩ [ˈũŋɐ], ⟨ũas⟩ [ˈũŋɐs̺].
+
+Grammatical endings: ⟨-ion⟩ [jɵ̃w̃], ⟨-on⟩ [ɵ̃w̃] [õ].
+<!-- atlas:spelling end -->
+
+<!-- atlas:rules begin -->
+## Rules
+
+The spec applies 23 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
+
+| Rule | Change | Example | Cited |
+|:--|:--|:--|:--|
+| `AST_NASAL_a` | /a/ → [ɐ̃], before a coda nasal | - | - |
+| `AST_NASAL_e` | /e/ → [ẽ], before a coda nasal | - | [Vasconcelos 1900](#src-vasconcelos1900) |
+| `AST_NASAL_i` | /i/ → [ĩ], before a coda nasal | - | - |
+| `AST_NASAL_o` | /o/ → [õ], before a coda nasal | - | [Vasconcelos 1900](#src-vasconcelos1900) |
+| `AST_NASAL_u` | /u/ → [ũ], before a coda nasal | - | - |
+| `AST_NASAL_ABSORB` | /n m/ → ∅, in the coda, after a vowel, before [f] [s̺] [z̺] [s] [z] [ʃ] [ʒ] [l] and 10 more | ⟨honra⟩ [ˈõɾɐ] | [Vasconcelos 1900](#src-vasconcelos1900), [Convenção Ortográfica 1999](#src-convencao1999) |
+| `MWL_NASAL_ABSORB_FINAL` | /n m/ → ∅, word-finally, in the coda, after a vowel | ⟨pan⟩ [ˈpɐ̃] | [Vasconcelos 1900](#src-vasconcelos1900), [Convenção Ortográfica 1999](#src-convencao1999) |
+| `MWL_NASAL_LABIAL` | /n/ → [m], before [p] [b] [m] | - | [Mateus 2000](#src-mateus_dandrade2000), [Vasconcelos 1900](#src-vasconcelos1900) |
+| `MWL_NASAL_VELAR` | /n/ → [ŋ], before [k] [ɡ] | - | [Mateus 2000](#src-mateus_dandrade2000), [Vasconcelos 1900](#src-vasconcelos1900), [Ferreira 2014](#src-ferreira2014) |
+| `MWL_SPIRANT_B` | /b/ → [β], after a vowel, before a vowel | ⟨rabudo⟩ [rɐˈβudu] | [Vasconcelos 1900](#src-vasconcelos1900), [Convenção Ortográfica 1999](#src-convencao1999) |
+| `MWL_NASAL_A_REDUCED` | /ɐ/ → [ɐ̃], before a coda nasal | ⟨an Miranda⟩ [ɐ̃ miˈɾandɐ] | - |
+| `MWL_NASAL_E_REDUCED` | /ɨ/ → [ɨ̃], before a coda nasal, with more context in the spec | - | [Vasconcelos 1900](#src-vasconcelos1900), [Convenção Ortográfica 1999](#src-convencao1999), [Ferreira 2014](#src-ferreira2014) |
+| `MWL_NASAL_E_REDUCED_FINAL` | /ɨ/ → [ə̃], before a coda nasal, with more context in the spec | - | [Vasconcelos 1900](#src-vasconcelos1900) |
+| `MWL_NASAL_DIPHTHONG_JI` | /jɪ/ → [jɪ̃], before a coda nasal | ⟨bien⟩ [ˈbjɪ̃] | [Vasconcelos 1900](#src-vasconcelos1900) |
+| `MWL_NASAL_U_LAX` | /ʊ/ → [ʊ̃], before a coda nasal | ⟨fuonte⟩ [ˈfʊ̃ntɨ] | [Vasconcelos 1900](#src-vasconcelos1900) |
+| `MWL_NASAL_DIPHTHONG_JE` | /je jɛ/ → [jẽ], before a coda nasal | ⟨bien⟩ [ˈbjẽ] | [Vasconcelos 1900](#src-vasconcelos1900), [Convenção Ortográfica 1999](#src-convencao1999), [Ferreira 2014](#src-ferreira2014) |
+| `MWL_NASAL_DIPHTHONG_WO` | /wo wɔ/ → [wõ], before a coda nasal | ⟨fuonte⟩ [ˈfwõntɨ] | [Vasconcelos 1900](#src-vasconcelos1900), [Convenção Ortográfica 1999](#src-convencao1999), [Ferreira 2014](#src-ferreira2014) |
+| `MWL_NASAL_E_OPEN` | /ɛ/ → [ẽ], before a coda nasal | ⟨lhéngua⟩ [ˈʎẽŋɡwɐ] | [Vasconcelos 1900](#src-vasconcelos1900) |
+| `MWL_S_VOICING` | /s̺/ → [z̺], before [b] [d] [ɡ] [β] [ð] [ɣ] [m] [n] and 7 more | ⟨asno⟩ [ˈaz̺nu] | [Vasconcelos 1900](#src-vasconcelos1900), [Convenção Ortográfica 1999](#src-convencao1999) |
+| `MWL_L_VELAR` | /l/ → [ɫ], in the coda | ⟨caldo⟩ [ˈkaɫdu] | [Vasconcelos 1900](#src-vasconcelos1900) |
+| `MWL_SPIRANT_D` | /d/ → [ð], after [s̺] [z̺] [s] [z] [ɾ] | ⟨tarde⟩ [ˈtaɾðɨ] | [Vasconcelos 1900](#src-vasconcelos1900), [Convenção Ortográfica 1999](#src-convencao1999) |
+| `MWL_SPIRANT_B_AFTER_CONSONANT` | /b/ → [β], after [l] [ɫ] [ʎ] [ɾ] [r] [s̺] [z̺] [z] and 1 more | ⟨silba⟩ [ˈs̺iɫβɐ] | [Vasconcelos 1900](#src-vasconcelos1900), [Convenção Ortográfica 1999](#src-convencao1999) |
+| `MWL_SPIRANT_G` | /ɡ/ → [ɣ], after [s̺] [z̺] [l] [ɫ] [ɾ] | ⟨algo⟩ [ˈaɫɣu] | [Vasconcelos 1900](#src-vasconcelos1900), [Convenção Ortográfica 1999](#src-convencao1999) |
+
+The spec applies 7 rules across a word boundary. The contexts are regular expressions on the IPA of the two words.
+
+| Rule | End of word | Start of next word | Change | Example | Cited |
+|:--|:--|:--|:--|:--|:--|
+| `MWL_FINAL_S_VOICING` | `s̺$` | `^ˈ?[bdɡβðɣmnɲlɫʎɾrʒz]` | left [z̺] | ⟨ls nius⟩ [ɫz̺ ˈnjus̺] | [Vasconcelos 1900](#src-vasconcelos1900) |
+| `MWL_FINAL_C_VOICING` | `(?<!t)s$` | `^ˈ?[bdɡβðɣmnɲlɫʎɾrʒz]` | left [z] | - | [Vasconcelos 1900](#src-vasconcelos1900), [Convenção Ortográfica 1999](#src-convencao1999) |
+| `MWL_ARTICLE_L_VELAR` | `^l$` | `^ˈ?[pbtdkɡfsʃʒzmnɲlʎɾrβðɣ]` | left [ɫ] | ⟨l pai⟩ [ɫ ˈpaj] | [Vasconcelos 1900](#src-vasconcelos1900) |
+| `MWL_NASAL_VELAR_ONSET` | `(?:[ãẽĩõũ]\|[ɐɨɪʊə]̃)$` | `^(ˈ?)(?=[aeiouɐɨɪʊəɵáéíóú])` | right [ŋ] | ⟨bien alto⟩ [ˈbjɪ̃ ˈŋaɫtu] | [Vasconcelos 1900](#src-vasconcelos1900), [Convenção Ortográfica 1999](#src-convencao1999), [Ferreira 2014](#src-ferreira2014) |
+| `MWL_SPIRANT_D_ONSET` | `(?:[sz]̺?\|ɾ\|[aeiouɐɨɪʊəɛɔɵjw])$` | `^(ˈ?)d` | right [ð] | ⟨ls dedos⟩ [ɫz̺ ˈðeðus̺] | [Vasconcelos 1900](#src-vasconcelos1900) |
+| `MWL_SPIRANT_B_ONSET` | `(?:[sz]̺?\|[lɫɾ]\|[aeiouɐɨɪʊəɛɔɵjw])$` | `^(ˈ?)b` | right [β] | ⟨ls bonos⟩ [ɫz̺ ˈβonus̺] | [Vasconcelos 1900](#src-vasconcelos1900) |
+| `MWL_SPIRANT_G_ONSET` | `(?:s̺\|[lɫɾ])$` | `^(ˈ?)ɡ` | right [ɣ] | ⟨l gato⟩ [ɫ ˈɣatu] | [Vasconcelos 1900](#src-vasconcelos1900) |
+
+The spec switches off 16 inherited rules: `AST_GLIDE_I_RISING`, `AST_GLIDE_U_RISING`, `AST_GLIDE_I_FALLING`, `AST_GLIDE_U_FALLING`, `AST_SPIRANT_B`, `AST_SPIRANT_D`, `AST_SPIRANT_G`, `AST_SPIRANT_G_INITIAL`, `AST_AFFRICATE_Y_INITIAL`, `AST_TRILL_AFTER_L_N_S`, `AST_NASAL_LABIAL`, `AST_NASAL_VELAR`, `AST_NASAL_FINAL`, `AST_VOICE_S`, `AST_VOICE_THETA`, `AST_VOICE_SH`.
+<!-- atlas:rules end -->
+
+<!-- atlas:examples begin words="lhéngua|asno|ls nius|lhuç del cielo|vaca|tierra|puorta|touro|coraçon|fazie|pie|bien alto|danho|caldo" -->
+## Examples
+
+The engine wrote every transcription in this section with `orthography2ipa.transcribe(text, "mwl")`. They are engine output, not reference transcriptions.
+
+| Spelling | Engine output |
+|:--|:--|
+| lhéngua | [ˈʎẽŋɡwɐ] |
+| asno | [ˈaz̺nu] |
+| ls nius | [ɫz̺ ˈnjus̺] |
+| lhuç del cielo | [ˈʎuz ðɨɫ ˈsjɪlu] |
+| vaca | [ˈbakɐ] |
+| tierra | [ˈtjɪrɐ] |
+| puorta | [ˈpʊɾtɐ] |
+| touro | [ˈtɵwɾu] |
+| coraçon | [kuɾɐˈsɵ̃w̃] |
+| fazie | [fɐˈzɪə] |
+| pie | [ˈpjɪ] |
+| bien alto | [ˈbjɪ̃ ˈŋaɫtu] |
+| danho | [ˈdaɲu] |
+| caldo | [ˈkaɫdu] |
+<!-- atlas:examples end -->
+
+<!-- atlas:related begin -->
+## Related repositories
+
+No downstream repository of the TigreGotico organisation covers this spec. The [o2i-lexicons](https://github.com/TigreGotico/o2i-lexicons) package ships no lexicon for it.
+<!-- atlas:related end -->
+
 ---
-[← Barranquenho](ext-PT-x-barranco.md) · [Home](../index.md) · [Russian →](ru.md)
+[← Arabic](ar.md) · [Home](../index.md) · [Comparative phonology →](comparative.md)

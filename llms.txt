@@ -51,6 +51,16 @@ Start with AGENTS.md before you change anything. Every spec is a file in orthogr
 - [Spec diagnostics](docs/evaluation/generated/spec_diagnostics.md)
 - [Language pages](docs/languages/index.md)
 
+## Language atlas
+
+- [Languages by family](docs/languages/by-family.md): every spec by family path
+- [Languages by region](docs/languages/by-region.md): every spec by Glottolog macroarea and country
+- [Languages by script](docs/languages/by-script.md): every spec by script
+- [Languages from A to Z](docs/languages/a-z.md): every spec by name
+- [Arabic](docs/languages/ar.md): Arabic is a Central Semitic language, written in the Arabic script. Glottolog places it in 25 countries. The `ar` spec is at the research tier. It cites 5 sources and has 5 scored datasets.
+- [Castilian Spanish](docs/languages/es-ES.md): Castilian Spanish is an Ibero-Romance language, written in the Latin script. Its code names Spain. The `es-ES` spec is at the production tier. It cites 12 sources and has 6 scored datasets.
+- [Mirandese](docs/languages/mwl.md): Mirandese is an Asturleonese language, written in the Latin script. Glottolog places it in Portugal and Spain. The `mwl` spec is at the research tier. It cites 7 sources and has 3 scored datasets.
+
 ## Optional
 
 - [Per-language pages](docs/languages/index.md): phonology notes for single languages and families

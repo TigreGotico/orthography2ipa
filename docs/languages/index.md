@@ -1,5 +1,26 @@
 # Language pages
 
+The language pages form an atlas of the specs. Four indexes list every
+registered spec, and each one links the page of a spec where a page exists,
+or its entry in the [data explorer](https://tigregotico.github.io/orthography2ipa/)
+where it does not.
+
+| Index | Lists |
+| :--- | :--- |
+| [by-family.md](by-family.md) | Every spec by family path, from the top family down to the branch |
+| [by-region.md](by-region.md) | Every spec by Glottolog macroarea and country |
+| [by-script.md](by-script.md) | Every spec by the script it reads |
+| [a-z.md](a-z.md) | Every spec by name, with the atlas pages first |
+
+An atlas page has a fixed shape. A generated summary and a table of names,
+codes and links come first. Hand-written sections follow, with the story of
+the language and the weak points of its spec. Generated sections close the
+page: the child lects, the sources, the scored datasets, the segment inventory, the spelling
+table, the rules, engine examples and related repositories.
+`scripts/gen_language_atlas.py` writes every generated section, and CI fails
+when one is stale. [es-ES.md](es-ES.md), [ar.md](ar.md) and [mwl.md](mwl.md)
+have this shape.
+
 Most registered specs have no page of their own. The JSON spec is the source
 of truth for every language, and it describes itself: its graphemes,
 allophones, rules, sources and `notes`. Read it from Python or from the shell:
@@ -153,4 +174,4 @@ page, follow [../contributing/spec_authoring.md](../contributing/spec_authoring.
 page to a table here.
 
 ---
-[← Spec diagnostics](../evaluation/generated/spec_diagnostics.md) · [Home](../index.md) · [Comparative phonology →](comparative.md)
+[← Spec diagnostics](../evaluation/generated/spec_diagnostics.md) · [Home](../index.md) · [Languages by family →](by-family.md)

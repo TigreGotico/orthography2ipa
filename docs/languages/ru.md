@@ -124,4 +124,4 @@ The `wikipron` row is crowd-scraped and comes from WikiPron's `rus_cyrl_narrow.t
 - [CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron) README. It confirms that WikiPron scraped Russian only in narrow transcription.
 
 ---
-[← Mirandese](mwl.md) · [Home](../index.md) · [Modern Standard Arabic →](ar.md)
+[← Barranquenho](ext-PT-x-barranco.md) · [Home](../index.md) · [Arabic dialects →](ar-dialects.md)

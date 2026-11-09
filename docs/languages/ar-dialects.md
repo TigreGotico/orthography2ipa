@@ -282,4 +282,4 @@ The spec `sources` give the page and section for each claim. The table shows whi
 - Youssef, I. (2021). Contrastive Feature Typologies of Arabic Consonant Reflexes. *Languages* 6(3): 141.
 
 ---
-[← Modern Standard Arabic](ar.md) · [Home](../index.md) · [Kabyle / Taqbaylit →](kab.md)
+[← Russian](ru.md) · [Home](../index.md) · [Kabyle / Taqbaylit →](kab.md)

@@ -36,6 +36,12 @@ on:
       # reads every exported docstring, cli.md the real --help output.
       - "scripts/docs_nav.py"
       - "scripts/gen_reference_docs.py"
+      # The language atlas reads the specs, the board and the snapshot.
+      - "scripts/gen_language_atlas.py"
+      - "scripts/atlas_snapshot.json"
+      - "benchmarks/results.json"
+      - "orthography2ipa/data/gold/primary_sources/**"
+      - "tests/test_language_atlas.py"
       - "orthography2ipa/**"
       - "llms.txt"
       - ".github/workflows/docs-prose.yml"
@@ -73,3 +79,10 @@ jobs:
       - name: Check the generated reference pages and llms.txt
         run: |
           PYTHONPATH=$PWD .venv/bin/python scripts/gen_reference_docs.py --check
+
+      # The atlas blocks print engine output and board scores, so a spec, an
+      # engine or a board change can make a language page stale.
+      - name: Check the language atlas
+        run: |
+          PYTHONPATH=$PWD .venv/bin/python scripts/gen_language_atlas.py --check
+          PYTHONPATH=$PWD .venv/bin/python -m pytest -q tests/test_language_atlas.py
