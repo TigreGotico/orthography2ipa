@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.122.11a5](https://github.com/TigreGotico/orthography2ipa/tree/7.122.11a5) (2026-11-09)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.122.11a4...7.122.11a5)
+
+**Merged pull requests:**
+
+- chore: remove the stale uv.lock [\#2221](https://github.com/TigreGotico/orthography2ipa/pull/2221) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.122.11a4](https://github.com/TigreGotico/orthography2ipa/tree/7.122.11a4) (2026-11-09)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.122.11a3...7.122.11a4)
@@ -388,10 +396,6 @@
 ## [7.117.22a1](https://github.com/TigreGotico/orthography2ipa/tree/7.117.22a1) (2026-11-05)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.117.21a1...7.117.22a1)
-
-**Merged pull requests:**
-
-- fix\(nl-NL-x-limburg\): give coda /r/ the consonantal \[r\], not the approximant [\#2107](https://github.com/TigreGotico/orthography2ipa/pull/2107) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.117.21a1](https://github.com/TigreGotico/orthography2ipa/tree/7.117.21a1) (2026-11-05)
 
