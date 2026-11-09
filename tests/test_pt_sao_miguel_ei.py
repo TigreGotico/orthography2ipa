@@ -4,7 +4,8 @@ Cunha & Cintra (7th ed., p. 31) write of the Atlantic islands that the
 reduction of [ej] to [e] "só ocorre como norma na ilha de São Miguel". The
 other island specs and generic pt-PT keep [ej]. Before a vowel the glide
 begins the next syllable, and the source does not cover that position, so
-there the spec keeps the pt-PT value [ej].
+there the spec keeps the pt-PT value [ej]. A nasal ⟨ei⟩ before a coda nasal
+keeps it too.
 """
 from __future__ import annotations
 
@@ -31,6 +32,8 @@ MONOPHTHONG = {
     "enxaguei": "ẽʃɐˈɡe",
     "cajueiro": "kɐˈʒweɾu",
     "atueira": "ɐˈtweɾɐ",
+    "continuei": "kõtiˈnwe",
+    "sei": "ˈse",
 }
 
 #: ⟨ei⟩ before a vowel keeps the glide, as in pt-PT.
@@ -75,6 +78,17 @@ PLAIN_E_BEFORE_VOWEL = {
 def test_plain_e_before_a_vowel_takes_no_glide(word: str, ipa: str) -> None:
     assert G2P(SPEC).transcribe_word(word) == ipa
     assert G2P("pt-PT").transcribe_word(word) == ipa
+
+
+#: A nasal ⟨ei⟩ before a coda nasal is not the oral diphthong of the source.
+NASAL_EI = ["hein", "holstein", "reimplantar", "reincidente"]
+
+
+@pytest.mark.parametrize("word", NASAL_EI)
+def test_nasal_ei_keeps_the_standard_reading(word: str) -> None:
+    ipa = G2P(SPEC).transcribe_word(word)
+    assert ipa == G2P("pt-PT").transcribe_word(word)
+    assert "ej̃" in ipa
 
 
 def test_open_ei_keeps_its_glide() -> None:
