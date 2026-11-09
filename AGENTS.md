@@ -131,7 +131,9 @@ PYTHONPATH=$PWD .venv/bin/python scripts/gen_language_atlas.py --check
 
 3. If you added, removed or moved a page, add it to a table in
    `docs/index.md`, then run `scripts/docs_nav.py --write` and
-   `scripts/gen_reference_docs.py --write`.
+   `scripts/gen_reference_docs.py --write`. An atlas page needs no table:
+   `gen_language_atlas.py --write` lists it in `docs/languages/a-z.md`, and
+   the navigation takes the order of the atlas pages from there.
 4. If you changed a spec, run the board guards in
    [board.md](docs/contributing/board.md#the-guards). If the change moves board
    rows it does not own, add a `Board-Rows:` line to the pull request.

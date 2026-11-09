@@ -1268,16 +1268,20 @@ def refresh_snapshot() -> None:
 
 def outputs(atlas: Atlas) -> Dict[str, str]:
     """Every file the atlas owns, as path relative to the repository root."""
+    indexes = {"by-family.md": index_family(atlas),
+               "by-region.md": index_region(atlas),
+               "by-script.md": index_script(atlas),
+               "a-z.md": index_az(atlas)}
+    # The reading order lists the atlas pages from the A to Z index, so it
+    # is read off the index about to be written, not the one on disk.
     nav = _docs_nav()
-    order = nav.reading_order()
+    order = nav.reading_order(az_text=indexes["a-z.md"])
     out = {}
     for code in sorted(atlas.pages):
-        rel = f"docs/languages/{code}.md"
-        out[rel] = render_page(atlas, code, _read(os.path.join(REPO_ROOT, rel)))
-    for name, body in (("by-family.md", index_family(atlas)),
-                       ("by-region.md", index_region(atlas)),
-                       ("by-script.md", index_script(atlas)),
-                       ("a-z.md", index_az(atlas))):
+        rel = f"languages/{code}.md"
+        page = render_page(atlas, code, _read(os.path.join(LANG_DIR, f"{code}.md")))
+        out["docs/" + rel] = nav.with_footer(page, rel, order)
+    for name, body in indexes.items():
         rel = f"languages/{name}"
         footer = nav.footer(rel, order) if rel in order else "\n"
         out["docs/" + rel] = body.rstrip() + footer
@@ -1309,8 +1313,9 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         atlas.pages.add(code)
         with open(path, "w", encoding="utf-8") as fh:
             fh.write(scaffold(atlas, code))
-        print(f"wrote {os.path.relpath(path, REPO_ROOT)}. Link it from "
-              "docs/languages/index.md, write the prose, then run --write.")
+        print(f"wrote {os.path.relpath(path, REPO_ROOT)}. Run --write to list "
+              "it in the indexes, then scripts/docs_nav.py --write and "
+              "scripts/gen_reference_docs.py --write.")
         return 0
 
     try:
