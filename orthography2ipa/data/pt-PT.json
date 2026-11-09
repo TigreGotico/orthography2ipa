@@ -386,7 +386,7 @@
         "n",
         "ɲ"
       ],
-      "notes": "Stressed plain ⟨a⟩ before an onset /m n ɲ/ is central [ɐ] (cama [ˈkɐmɐ], ano [ˈɐnu], banho [ˈbɐɲu]). Cunha & Cintra (Nova Gramática do Português Contemporâneo, 7th ed., p. 49): \"No português europeu normal, [ɑ], quando tônico, também aparece, na maioria dos casos, antes de consoante nasal, a exemplo de cama, cana e sanha\". Their [ɑ] is this spec's [ɐ]. Lao, Rodrigues & Brissos (2020, Revista da Associação Portuguesa de Linguística 7, p. 296): \"no padrão existe uma elevação de a para [ɐ]\". The same page of Cunha & Cintra gives the one opposition, the present against the preterite of first-conjugation verbs. pt-PT spells that preterite with ⟨á⟩, so the rule takes plain ⟨a⟩ only: falamos [fɐˈlɐmuʃ], falámos [fɐˈlamuʃ]. Infopédia writes [ɐ] in 1904 of 1933 rows with this shape. The other 29 are mostly loans and -iano derivatives (tsunami tsuˈnami, estoniano (i)ʃtuˈnjanu), while 685 of 696 -iano rows have [ɐ]."
+      "notes": "Stressed plain ⟨a⟩ before an onset /m n ɲ/ is central [ɐ] (cama [ˈkɐmɐ], ano [ˈɐnu], banho [ˈbɐɲu]). Cunha & Cintra (Nova Gramática do Português Contemporâneo, 7th ed., p. 49): \"No português europeu normal, [ɑ], quando tônico, também aparece, na maioria dos casos, antes de consoante nasal, a exemplo de cama, cana e sanha\". Their [ɑ] is this spec's [ɐ]. Lao, Rodrigues & Brissos (2020, Revista da Associação Portuguesa de Linguística 7, p. 296): \"no padrão existe uma elevação de a para [ɐ]\". The same page of Cunha & Cintra gives the one opposition, the present against the preterite of first-conjugation verbs. pt-PT spells that preterite with ⟨á⟩, so the rule takes plain ⟨a⟩ only: falamos [fɐˈlɐmuʃ], falámos [fɐˈlamuʃ]. Infopédia writes [ɐ] in 2085 of 2121 readings whose stressed vowel is a plain ⟨a⟩ before ⟨m n nh⟩ and a vowel letter, as counted by scripts/count_pt_stressed_a_nasal.py over the portuguese_unified rows at Hugging Face commit a8e0934f. The other 36 are mostly loans and -iano derivatives (tsunami tsuˈnami, estoniano (i)ʃtuˈnjanu), while 713 of 725 -iano readings have [ɐ]."
     },
     {
       "id": "PT_NASAL_E_RAISE",
@@ -2307,8 +2307,8 @@
       "title": "Portuguese (European)",
       "publisher": "Handbook of the International Phonetic Association, Cambridge University Press, 126-130 (reprint of the 1995 JIPA Illustration)",
       "url": "https://archive.org/details/rosettaproject_por_phon-1",
-      "pages": "126-129",
-      "notes": "Read directly (page images checked). The illustration is based on the Lisbon dialect. The consonant chart puts plain s and z in the Alveolar column, with caço [ˈkasu] and caso [ˈkazu] as the exemplars. The stress notes cite the diphthong list (pp. 127-128) and the transcription of desistiu (p. 129)."
+      "pages": "126-130",
+      "notes": "Read directly (page images checked). The illustration is based on the Lisbon dialect. The consonant chart puts plain s and z in the Alveolar column, with caço [ˈkasu] and caso [ˈkazu] as the exemplars. The stress notes cite the diphthong list (pp. 127-128) and the transcription of desistiu (p. 129). The notes on connected speech cite the transcription of the passage (p. 130)."
     },
     {
       "id": "cunha_cintra1984",
