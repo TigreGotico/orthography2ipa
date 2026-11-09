@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.122.17a2](https://github.com/TigreGotico/orthography2ipa/tree/7.122.17a2) (2026-11-09)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.122.17a1...7.122.17a2)
+
+**Merged pull requests:**
+
+- docs: take the atlas reading order from the A to Z index [\#2238](https://github.com/TigreGotico/orthography2ipa/pull/2238) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.122.17a1](https://github.com/TigreGotico/orthography2ipa/tree/7.122.17a1) (2026-11-09)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.122.16a2...7.122.17a1)
