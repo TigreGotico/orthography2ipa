@@ -58,6 +58,8 @@ def test_pt_pt_declares_the_coda_rules():
         "PT_SUFFIX_ESCO_CLOSE", "PT_SUFFIX_OR_CLOSE", "PT_SUFFIX_OSO_CLOSE",
         "PT_SUFFIX_ONHO_CLOSE",
         "PT_LEX_X_S", "PT_LEX_CLITIC_O", "PT_LEX_AO_A", "PT_LEX_AO_GLIDE",
+        "PT_INITIAL_O_KEEP_BEFORE_CODA_NASAL", "PT_INITIAL_O_OPEN",
+        "PT_INITIAL_O_CANDIDATE_U", "PT_INITIAL_O_CANDIDATE_O",
     ]
 
 
