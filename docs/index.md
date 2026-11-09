@@ -1,7 +1,8 @@
 # orthography2ipa
 
-`orthography2ipa` converts the spelling of a language into IPA, and it
-measures how languages relate to each other. Each language is a cited JSON
+`orthography2ipa` converts the spelling of a language into the
+[International Phonetic Alphabet](https://www.internationalphoneticassociation.org/content/full-ipa-chart)
+(IPA), and it measures how languages relate to each other. Each language is a cited JSON
 spec. A shared engine with no language-specific code turns the specs into
 transcriptions, ranked pronunciation lattices and distances. The package
 ships no trained weights and no word lists.
@@ -9,7 +10,7 @@ ships no trained weights and no word lists.
 ```python
 >>> import orthography2ipa
 >>> orthography2ipa.transcribe("olá mundo", "pt")
-'oˈla ˈmũdu'
+'ɔˈla ˈmũdu'
 >>> orthography2ipa.transcribe("hello world", "en")
 'ˈhɛləʊ ˈwɔːld'
 ```
@@ -30,10 +31,17 @@ nodes. Run them for the live counts, or run `orthography2ipa list`.
 | Check production readiness | [reference/api_stability.md](reference/api_stability.md) | `specs/quality_tiers.md`, `evaluation/generated/scoreboard.md` |
 | Change the repository | [`AGENTS.md`](../AGENTS.md) | the pages under `contributing/` |
 
-[arbtok](https://github.com/TigreGotico/arbtok) and
-[tugaphone](https://github.com/TigreGotico/tugaphone) are downstream engines.
-They refine the shared lattice with a `LatticeRescorer` or replace one
-pipeline step with a plugin, and keep no tokenizer of their own.
+Downstream engines build on this library for one language each:
+[tugaphone](https://github.com/TigreGotico/tugaphone) for Portuguese,
+[arbtok](https://github.com/TigreGotico/arbtok) for Arabic,
+[euskaphone](https://github.com/TigreGotico/euskaphone) for Basque,
+[g2p_barranquenho](https://github.com/TigreGotico/g2p_barranquenho) for
+Barranquenho and [mwl_phonemizer](https://github.com/TigreGotico/mwl_phonemizer)
+for Mirandese. arbtok and tugaphone refine the shared lattice with a
+`LatticeRescorer` or replace one pipeline step with a plugin, and keep no
+tokenizer of their own. The [README](../README.md#ecosystem) lists the rest of the
+ecosystem: lexicons, a syllabifier, script conversion, a TTS engine and the
+C++ ports.
 
 ## Honest limitations (read this before you trust a tier)
 
@@ -45,9 +53,13 @@ for you. A downstream engine adds that context through a rescorer.
 Some specs read an input that is not plain native text. `zh` reads Pinyin,
 and its `orthography_kind` is `ROMANIZATION`. The native `zh-Hani` spec has no
 grapheme map, because a Han character encodes no sound: its reading is a
-dictionary lookup, which this library does not do. `ko` reads decomposed jamo
-(ㄱ, ㅏ, ㄴ), so a Hangul decomposition step must come first. Read
-`orthography2ipa.get(code).notes` before you send raw native script to a spec.
+dictionary lookup, which this library does not do. `ko` maps Hangul jamo. The
+tokenizer decomposes a precomposed syllable block such as 한 into its
+conjoining jamo by Unicode canonical decomposition, so native Hangul text
+works. The `ko` output is a citation form for each syllable: it does not
+model resyllabification or the other sound changes across a syllable
+boundary. Read `orthography2ipa.get(code).notes` before you send raw native
+script to a spec.
 
 Most specs are `stub` or `skeleton`, and few are `production`. A `production`
 spec passed the volume and accuracy bar of [quality_tiers.md](specs/quality_tiers.md),

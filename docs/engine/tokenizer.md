@@ -6,7 +6,7 @@
 
 ### Maximal munch
 
-At each position the tokenizer takes the longest grapheme key in the spec's table. A digraph or trigraph therefore wins over the single letters it contains. Portuguese ⟨ch⟩ is one grapheme read /ʃ/, not ⟨c⟩ followed by ⟨h⟩:
+At each position the tokenizer takes the longest grapheme key in the spec's table. This is the [maximal munch](https://en.wikipedia.org/wiki/Maximal_munch) rule, and a [trie](https://en.wikipedia.org/wiki/Trie) of the keys finds the match. A digraph or trigraph therefore wins over the single letters it contains. Portuguese ⟨ch⟩ is one grapheme read /ʃ/, not ⟨c⟩ followed by ⟨h⟩:
 
 ```python
 import orthography2ipa
@@ -37,7 +37,7 @@ kew ['k', 'ew'] kæw
 
 ### IPA Ambiguity and Beam Search
 
-Many graphemes map to several IPA values. The number of whole-word readings is the product of the candidate counts of its graphemes, so it grows fast with word length. English ⟨ice⟩ has three candidates for ⟨i⟩, two for ⟨c⟩ and four for ⟨e⟩, which gives 24 readings:
+Many graphemes map to several IPA values. The number of whole-word readings is the product of the candidate counts of its graphemes, so it grows fast with word length. English ⟨ice⟩ has three candidates for ⟨i⟩ and two for ⟨c⟩. The final ⟨e⟩ has four: its silent word-final reading from the positional table, and the three values of the flat table. That gives 24 readings:
 
 ```python
 tok = PhonetokTokenizer(orthography2ipa.get("en-GB"))
@@ -54,7 +54,7 @@ IPAPath('aɪsɛ', score=1.0)
 IPAPath('ɪs', score=1.0)
 ```
 
-The beam search keeps only the `beam_width` cheapest partial readings at each grapheme. Every candidate has a cost, and a reading's score is the sum of the costs of its candidates. Without candidate weights the cost is the rank: the first candidate costs 0, the second 1, and so on. A spec can attach weights to a grapheme, and then the cost is `-log p`. The [lattice page](lattice.md#how-cost-works) explains the two cost regimes, and [lattice.md](lattice.md#how-cost-works) gives the weight format.
+A [beam search](https://en.wikipedia.org/wiki/Beam_search) keeps only the `beam_width` cheapest partial readings at each grapheme. Every candidate has a cost, and a reading's score is the sum of the costs of its candidates. Without candidate weights the cost is the rank: the first candidate costs 0, the second 1, and so on. A spec can attach weights to a grapheme, and then the cost is `-log p`. [How cost works](lattice.md#how-cost-works) explains the two cost regimes and gives the weight format.
 
 The rank comes from the context, not only from the flat grapheme table. The beam resolves each grapheme through the spec's [positional overrides](positional_graphemes.md). In ⟨ice⟩ the flat table lists /k/ first for ⟨c⟩, but the override for a ⟨c⟩ before a front vowel ranks /s/ first. The word-final ⟨e⟩ ranks its silent reading first for the same reason.
 
@@ -207,7 +207,7 @@ score=2.0  /θjudad/
 
 `length_norm=True` divides each score by the number of segments. The beam still prunes on the raw cost. All readings of one word share a segment count, so the order stays the same and only the scale changes. The normalised score lets you compare inputs of different lengths.
 
-`diversity=λ`, with λ above zero, re-ranks the returned readings by Maximal Marginal Relevance. The best reading stays first. Each next pick minimises its score plus λ times its largest segment overlap with a reading already picked. On a long word, the raw beam fills with readings that differ from the best one in a single grapheme. This pass pushes them down. The score values themselves do not change.
+`diversity=λ`, with λ above zero, re-ranks the returned readings by Maximal Marginal Relevance (Carbonell & Goldstein 1998, *The use of MMR, diversity-based reranking for reordering documents and producing summaries*, SIGIR). The best reading stays first. Each next pick minimises its score plus λ times its largest segment overlap with a reading already picked. On a long word, the raw beam fills with readings that differ from the best one in a single grapheme. This pass pushes them down. The score values themselves do not change.
 
 ```python
 tok = PhonetokTokenizer(orthography2ipa.get("en-GB"))
@@ -277,7 +277,7 @@ The full engine counts these characters against the word's coverage, which lower
 
 ### Case
 
-The tokenizer lower-cases text before the trie lookup, so ⟨CH⟩ and ⟨ch⟩ both match the `ch` key. The `grapheme` field of a `GRAPHEME` token holds the lower-case form. For Turkish (`tr` and its subtags) the lower-casing maps the dotted and dotless I explicitly.
+The tokenizer lower-cases text before the trie lookup, so ⟨CH⟩ and ⟨ch⟩ both match the `ch` key. The `grapheme` field of a `GRAPHEME` token holds the lower-case form. For Turkish (`tr` and its subtags) the lower-casing maps the dotted and dotless I explicitly, so ⟨I⟩ becomes ⟨ı⟩ and ⟨İ⟩ becomes ⟨i⟩.
 
 ## Context model
 

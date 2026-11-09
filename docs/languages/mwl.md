@@ -221,9 +221,9 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 
 | Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
 |:--|:--|:--|:--|:--|--:|--:|:--|
-| `mirandese_g2p` ([TigreGotico/mirandese_g2p](https://huggingface.co/datasets/TigreGotico/mirandese_g2p)) | `mwl` | gold | expert-human | - | 205 | 0.2289 | yes |
-| `mirandese_dict` ([TigreGotico/mirandese-ipa-dict-synthetic](https://huggingface.co/datasets/TigreGotico/mirandese-ipa-dict-synthetic)) | `mwl` | silver | llm-corrected | - | 990 | 0.0449 | no |
-| `portuguese_tts` | `mwl` | silver | llm-corrected | - | 20 | 0.0304 | no |
+| `mirandese_g2p` ([TigreGotico/mirandese_g2p](https://huggingface.co/datasets/TigreGotico/mirandese_g2p)) | `mwl` | gold | expert-human | Not stated upstream | 205 | 0.2289 | yes |
+| `mirandese_dict` ([TigreGotico/mirandese-ipa-dict-synthetic](https://huggingface.co/datasets/TigreGotico/mirandese-ipa-dict-synthetic)) | `mwl` | silver | llm-corrected | CC BY-SA 4.0 | 990 | 0.0449 | no |
+| `portuguese_tts` | `mwl` | silver | llm-corrected | Apache-2.0 (this repository) | 20 | 0.0304 | no |
 <!-- atlas:datasets end -->
 
 <!-- atlas:inventory begin -->

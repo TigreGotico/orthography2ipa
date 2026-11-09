@@ -1,8 +1,11 @@
 # Silver IPA correction
 
 `scripts/correct_silver_ipa.py` writes a corrected IPA for each row of the
-LLM-generated gold sets. It asks Claude for each sentence, under rules that
-keep the engine output out of the first two readings. The result stays a
+LLM-generated gold sets. It asks Claude for each sentence through the
+[Anthropic Python SDK](https://github.com/anthropics/anthropic-sdk-python),
+under rules that keep the engine output out of the first two readings. The
+default model is `claude-opus-5-5` (`DEFAULT_MODEL` in the script), and
+`--model` selects another. The result stays a
 silver label. Its tier is `llm-corrected`, and it gates no quality decision.
 
 ## The sets it reads
@@ -126,20 +129,20 @@ Before it sends a request, the tool prints an estimate and compares it with
 request. The cap applies only to new requests: in batch mode, the tool always
 collects the batches that it sent before, because they are already paid for.
 It collects the batches that have ended before it makes the estimate.
-The estimate is an upper bound:
+The estimate is an upper bound. It counts one input token for each UTF-8
+byte of the prompt, plus 1000 tokens for each request
+(`REQUEST_OVERHEAD_TOKENS`). It counts `--max-tokens` output tokens for each
+request, and it counts pass C for each row whose A and B are not known yet.
 
-- It counts one input token for each UTF-8 byte of the prompt, plus 1000
-  tokens for each request.
-- It counts `--max-tokens` output tokens for each request.
-- It counts pass C for each row whose A and B are not known yet.
-
-`--count-tokens` replaces the byte count with the token-counting endpoint of
-the API. In `--sync` mode, the tool also stops before a request that can take
+`--count-tokens` replaces the byte count with the
+[token-counting endpoint](https://platform.claude.com/docs/en/build-with-claude/token-counting)
+of the API. In `--sync` mode, the tool also stops before a request that can take
 the spend of the run past the cap. At the end, the tool prints the tokens and
 the cost that the API reported.
 
-The Message Batches API costs half the price of the synchronous API. The tool
-uses it unless you give `--sync`.
+The [Message Batches API](https://platform.claude.com/docs/en/build-with-claude/batch-processing)
+costs half the price of the synchronous API. The tool uses it unless you give
+`--sync`.
 
 ## Resume
 
@@ -162,11 +165,11 @@ Put each API key in its own file. Set `O2I_ANTHROPIC_KEY_FILE` to the paths
 of the files, with `:` between them. The file names must be different. If
 you have one key, you can set `ANTHROPIC_API_KEY` instead.
 
-The tool divides the work between the keys:
-
-- In `--sync` mode, it sends each request with the next key in the list.
-- In batch mode, it divides the rows equally between the keys and sends one
-  batch for each key. It collects each batch with the key that sent it.
+The tool divides the work between the keys. In `--sync` mode, it sends each
+request with the next key in the list. In batch mode, it divides the rows
+equally between the keys. It sends the share of each key in batches of at
+most 5000 requests (`BATCH_CHUNK`), and it collects each batch with the key
+that sent it.
 
 A key can fail with HTTP 401, 402 or 403, a `billing_error`, or an HTTP 400
 about the credit balance. Then the tool does not use that key again in the
@@ -182,7 +185,7 @@ screen, the log, the cache or the output. A dry run needs no key.
 Install the extra for the API client:
 
 ```bash
-uv pip install -e '.[silver-correction]'
+uv pip install --python .venv --prerelease=allow -e '.[silver-correction]'
 ```
 
 Write the convention sheets first. Read the estimate with `--dry-run`, then

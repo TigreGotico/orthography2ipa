@@ -2,9 +2,21 @@
 
 This page lists the IPA symbols that the specs use, with their code points and the errors to avoid. It ends with notes on how the specs of some major languages encode their phonology. The engine writes its output in Unicode NFC, so the code points below are the NFC forms.
 
+The authority for every symbol is the International Phonetic Association. Its [IPA chart](https://www.internationalphoneticassociation.org/content/full-ipa-chart) is free to download, and the [*Handbook of the International Phonetic Association*](https://doi.org/10.1017/9780511807954) (Cambridge University Press, 1999) defines each symbol and illustrates it with short descriptions of single languages. Later illustrations appear in the [*Journal of the International Phonetic Association*](https://www.cambridge.org/core/journals/journal-of-the-international-phonetic-association), and the specs cite many of them. The code points come from the Unicode blocks [IPA Extensions](https://www.unicode.org/charts/PDF/U0250.pdf), [Spacing Modifier Letters](https://www.unicode.org/charts/PDF/U02B0.pdf) and [Combining Diacritical Marks](https://www.unicode.org/charts/PDF/U0300.pdf).
+
 ## Encoding rules
 
-Spec files are UTF-8 JSON. Every IPA value uses the correct Unicode code point, never an ASCII character that looks the same. A combining diacritic follows its base character, so `t̪` is `t` followed by U+032A. The engine normalises its output to NFC. So a vowel with a tilde that Unicode has as one precomposed character, such as `ã`, comes out as that character.
+Spec files are UTF-8 JSON. Every IPA value uses the correct Unicode code point, never an ASCII character that looks the same. A combining diacritic follows its base character, so `t̪` is `t` followed by U+032A.
+
+The engine normalises its output to NFC ([Unicode Standard Annex #15](https://www.unicode.org/reports/tr15/)). So a vowel with a tilde that Unicode has as one precomposed character, such as `ã`, comes out as that character. `ɐ̃` has no precomposed form, so it stays as two code points.
+
+Python names every code point, so check a symbol before you put it in a spec:
+
+```python
+import unicodedata
+[f"U+{ord(c):04X} {unicodedata.name(c)}" for c in "ɡʃ"]
+# ['U+0261 LATIN SMALL LETTER SCRIPT G', 'U+0283 LATIN SMALL LETTER ESH']
+```
 
 ## Errors to avoid
 
@@ -28,8 +40,8 @@ Spec files are UTF-8 JSON. Every IPA value uses the correct Unicode code point, 
 | `ɡ` | U+0261 | Voiced velar plosive | Most languages |
 | `q` | U+0071 | Voiceless uvular plosive | Arabic |
 | `ʔ` | U+0294 | Glottal stop | English (allophone), Arabic |
-| `t̪` | U+0074 U+032A | Dental t | Spanish (before /θ/) |
-| `d̪` | U+0064 U+032A | Dental d | Spanish (before /θ/) |
+| `t̪` | U+0074 U+032A | Voiceless dental plosive | Spanish, French, Italian |
+| `d̪` | U+0064 U+032A | Voiced dental plosive | Spanish, French, Italian |
 
 ## Fricatives
 
@@ -92,7 +104,7 @@ Spec files are UTF-8 JSON. Every IPA value uses the correct Unicode code point, 
 | `r` | U+0072 | Alveolar trill | Spanish ⟨rr⟩, Italian, Slavic |
 | `ɾ` | U+027E | Alveolar tap | Spanish ⟨r⟩, Portuguese |
 | `ɹ` | U+0279 | Alveolar approximant | English |
-| `ʀ` | U+0280 | Uvular trill | French, German |
+| `ʀ` | U+0280 | Uvular trill | Conservative French and German. The usual rhotic of both is `ʁ` |
 | `ɽ` | U+027D | Retroflex tap | Hindi |
 
 ## Approximants
@@ -180,7 +192,7 @@ Spec files are UTF-8 JSON. Every IPA value uses the correct Unicode code point, 
 | `ˤ` | U+02E4 | Pharyngealised | `ðˤ` in Arabic |
 | `ː` | U+02D0 | Long | `aː` in German *Vater* |
 | `◌̃` | U+0303 | Nasalised (combining) | `ã` in Portuguese |
-| `◌̪` | U+032A | Dental (combining) | `t̪` in Spanish before /θ/ |
+| `◌̪` | U+032A | Dental (combining) | `t̪` in Spanish |
 | `◌̥` | U+0325 | Voiceless (combining) | `d̥` |
 | `◌̊` | U+030A | Voiceless, above a letter with a descender (combining) | `ɡ̊` in English |
 | `◌̈` | U+0308 | Centralised (combining) | `ä` |
@@ -204,6 +216,8 @@ These notes say how the specs of some major languages encode a well-known featur
 
 ### Spanish
 
+The JIPA illustration of Castilian Spanish is [Martínez-Celdrán, Fernández-Planas and Carrera-Sabaté (2003)](https://doi.org/10.1017/S0025100303001373). Spanish /t d/ are dental, which the plosive table above writes as `t̪ d̪`. The specs write plain `t d`, as most transcriptions of Spanish do.
+
 Castilian Spanish contrasts /θ/ and /s/ (distinción). The Latin American varieties and some Iberian dialects, such as those of the Canary Islands and parts of Andalusia, have only /s/ (seseo). The spec `es-ES` maps `c` to `["k", "θ"]` and `z` to `["θ"]`. A positional rule reads its ⟨c⟩ before ⟨e⟩ and ⟨i⟩ as /θ/. The specs `es-AR`, `es-CO` and `es-CL` read ⟨c⟩ before ⟨e⟩ and ⟨i⟩ as /s/, so `cielo` is [ˈsjelo] in `es-AR`.
 
 Traditional Castilian keeps ⟨ll⟩ /ʎ/ apart from ⟨y⟩ /ʝ/ (lleísmo). Most speakers merge both to /ʝ/ (yeísmo), and `es-ES` follows them with `ll` as `["ʝ"]`. Rioplatense Spanish realises both as [ʃ] or [ʒ], so `es-AR` maps `ll` to `["ʃ", "ʒ"]`.
@@ -212,17 +226,17 @@ The voiced stops /b d ɡ/ have the spirant allophones [β ð ɣ] in every positi
 
 ### Portuguese
 
-European Portuguese realises coda /s/ as [ʃ] before a consonant and at the end of a phrase. Brazilian Portuguese mostly keeps [s]. So `pastas` is [ˈpaʃtɐʃ] in `pt-PT` and [ˈpastas] in `pt-BR`.
+European Portuguese realises coda /s/ as [ʃ] before a consonant and at the end of a phrase. Brazilian Portuguese mostly keeps [s]. So `pastas` is [ˈpaʃtɐʃ] in `pt-PT` and [ˈpastɐs] in `pt-BR`.
 
 European Portuguese reduces unstressed vowels strongly. Unstressed ⟨e⟩ becomes [ɨ] and unstressed ⟨a⟩ becomes [ɐ], so `pequeno` begins with [pɨ] in `pt-PT` and with [pe] in `pt-BR`. A European Portuguese dialect spec keeps this reduction, through inheritance or through entries of its own.
 
-Portuguese has the nasal vowels /ã ẽ ĩ õ ũ/, and `pt-PT` writes the first as [ɐ̃]. The tilde letters ⟨ã⟩ and ⟨õ⟩ are grapheme keys. A vowel before ⟨m⟩ or ⟨n⟩ in a closed syllable gets its nasality from a positional rule. Before a consonant, ⟨m⟩ and ⟨n⟩ emit a combining tilde. So `canto` is [ˈkɐ̃tu] in `pt-PT`, with no key for ⟨an⟩.
+Portuguese has the nasal vowels /ã ẽ ĩ õ ũ/, and `pt-PT` writes the first as [ɐ̃]. The tilde letters ⟨ã⟩ and ⟨õ⟩ are grapheme keys. A vowel before ⟨m⟩ or ⟨n⟩ in a closed syllable takes its nasality from the letter after it. The `before_consonant` and `word_final` positional entries of ⟨m⟩ and ⟨n⟩ emit a combining tilde (U+0303) in place of a consonant. So `canto` is [ˈkɐ̃tu] in `pt-PT`, with no key for ⟨an⟩.
 
 ### French
 
 French has the labio-palatal approximant /ɥ/, as in *nuit* and *lui*. It is a separate sound from /j/ and /w/. The spec `fr-FR` maps ⟨ui⟩ to [ɥi], so `nuit` is [nɥi].
 
-Liaison is a process across a word boundary, so the grapheme map holds the base forms only. The spec `fr-FR` declares liaison in `sandhi_rules` as z-, t-, n- and r-liaison, each marked with ‿.
+Liaison is a process across a word boundary, so the grapheme map holds the base forms only. The spec `fr-FR` declares its cross-word rules in `sandhi_rules`: z-, t-, n-, r- and p-liaison, and enchaînement. A liaison is marked with ‿.
 
 French has four nasal vowels: /ɛ̃/ (*vin*), /ɑ̃/ (*vent*), /ɔ̃/ (*bon*) and /œ̃/ (*brun*). Many speakers merge /œ̃/ with /ɛ̃/.
 

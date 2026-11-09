@@ -22,11 +22,19 @@ scoring method is in [benchmarks.md](../evaluation/benchmarks.md).
    reproduce to null. It also drops those rows from the fair-comparison table
    and shrinks the published tally. The directory must contain its
    `rules_only_manifest.tsv`, or the writer marks the cells n/a.
-   `scripts/build_espeak_rules_only.sh` builds the directory from espeak-ng
-   1.52.0 source.
+   `scripts/build_espeak_rules_only.sh` builds the directory from the
+   [espeak-ng 1.52.0](https://github.com/espeak-ng/espeak-ng/releases/tag/1.52.0)
+   source. The `ESPEAK_RULES_TAG` variable selects another tag.
 2. Install the `compare` extra (`uv pip install --python .venv -e '.[compare]'`)
-   before a comparison run. Without epitran and gruut, the writer reports
-   their cells as n/a and drops their columns from the tables.
+   before a comparison run. The extra installs
+   [epitran](https://github.com/dmort27/epitran),
+   [gruut](https://github.com/rhasspy/gruut),
+   [pycotovia](https://github.com/TigreGotico/pycotovia) and
+   [ahotts-g2p](https://github.com/TigreGotico/ahotts-g2p). Without a system,
+   the writer reports its cells as n/a and drops its column from the tables.
+   [africa-g2p](https://github.com/AfriSpeech/africa-g2p) and
+   [ghana-g2p](https://github.com/GhanaNLP/ghana-g2p) are not in the extra.
+   Install them into the venv by name when you rescore an African row.
 3. Write down the rows that your change defends. Every other row that moves
    is drift. Exclude it, or declare it in the pull request.
 4. Run both trees of any differential in one session against one cache. A
@@ -124,7 +132,8 @@ your side. Then `dev`'s newer numbers are lost, and both sides stay green.
 
 Resolve each board file row by row. Keep `dev`'s value for every row you did
 not rescore, then regenerate `docs/evaluation/generated/scoreboard.md`.
-`check_board_not_reverting.py` merges the two sides with `git merge-tree` and
+`check_board_not_reverting.py` merges the two sides with
+[`git merge-tree`](https://git-scm.com/docs/git-merge-tree) and
 fails on an old value, unless the branch edits that language's spec. An edit
 to a parent or clade spec owns the rows of every language that inherits from
 it, through `parent` or a `*_base` table.
@@ -139,23 +148,22 @@ Board-Rows: mr/wikipron, xh/kaikki
 Board-Rows: all - stress placement reworked, every row rescored
 ```
 
-The same guard reads two burn-down lists off the merge result. Each list may
-only shrink:
-
-- `_WIKIPEDIA_ONLY_SOURCES_BURNDOWN` in `tests/test_sources.py` holds specs
-  whose only sources are bare Wikipedia links.
-- `_DOCS_PROSE_RATCHET` in `tests/test_docs_prose.py` holds pages that
-  predate the prose lint.
-
-Both lists are allowlists, so a longer list makes the suite greener. When you
+The same guard reads two burn-down lists off the merge result, and each list
+may only shrink. `_WIKIPEDIA_ONLY_SOURCES_BURNDOWN` in `tests/test_sources.py`
+holds the specs whose only sources are bare Wikipedia links.
+`_DOCS_PROSE_RATCHET` in `tests/test_docs_prose.py` holds the pages that
+predate the prose lint. Both lists are allowlists, so a longer list makes the
+suite greener. When you
 resolve a conflict in one of these files, keep `dev`'s shorter set.
 
 ## Fairness rules for the comparison board
 
-- Every language carries both espeak-ng columns, stock and rules-only.
-- Every engine that carries a lexicon gets a rules-only column.
-- The winner and the ranking use only lexicon-free values.
-- The lexicon-backed tier is a separate table with its own label.
+The comparison board ranks rules against rules. o2i ships no lexicon, so a
+system wins a row only on its lexicon-free value. Every language carries
+both espeak-ng columns, the stock one and the rules-only one, and every
+other engine that carries a lexicon also gets a rules-only column. The
+lexicon-backed values stay on the board for information, in a separate table
+with its own label, and they never count toward the winner or the ranking.
 
 ---
 [← Citation honesty](citations.md) · [Home](../index.md) · [Engine changes →](engine.md)
