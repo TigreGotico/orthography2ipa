@@ -3,16 +3,24 @@
 
 The note of ``PT_STRESSED_A_BEFORE_NASAL`` in ``pt-PT.json`` states how often
 Infopédia writes [ɐ] in that context. This script makes those numbers. It reads
-the ``portuguese_unified`` file that ``scripts/benchmark.py`` caches, keeps the
-``pt-PT`` rows that carry an Infopédia URL, and reads ``ipa_narrow``, because
-``ipa_broad`` folds [ɐ] into [a].
+the ``portuguese_unified`` file at a pinned Hugging Face commit, checks its
+sha256, keeps the ``pt-PT`` rows that carry an Infopédia URL, and reads
+``ipa_narrow``, because ``ipa_broad`` folds [ɐ] into [a].
 
-A reading has the shape when it has a stress mark, then the onset of the
-stressed syllable, then an oral [a] or [ɐ], then [m n ɲ], then a vowel or a
-glide, so that the nasal opens the next syllable. The rule takes plain ⟨a⟩
-only, so a word spelled with ⟨á â à ã⟩ is left out. Some rows hold two
-readings split by a comma, and some words have more than one row, so the
-script counts readings and distinct words.
+A reading counts when the spelling and the transcription agree on the
+context:
+
+- The stressed element is the last hyphen element of the word, because the
+  last stress mark of a compound reading falls on it. It spells no ⟨á â à ã⟩.
+- That element spells a plain ⟨a⟩, then ⟨m n nh⟩, then a vowel letter.
+- After the last stress mark, the reading has the onset of the stressed
+  syllable, then an oral [a] or [ɐ], then [m n ɲ], then a vowel or a glide.
+- The spelled ⟨a⟩ is the stressed vowel: the vowel letters after it make as
+  many groups as the reading has nuclei after the stressed vowel.
+
+Some rows hold two readings split by a comma, and some words have more than
+one row, so the script counts readings and distinct words. It prints how many
+lines, rows and readings it read and how many readings it kept.
 
 Run it from the repository root::
 
@@ -24,6 +32,7 @@ from __future__ import annotations
 
 import argparse
 import collections
+import hashlib
 import json
 import os
 import re
@@ -34,12 +43,51 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 import benchmark as B  # noqa: E402
 
+REVISION = "a8e0934f290e36049bb3edfd616163d121c56a0c"
+SHA256 = "0b4d5e86a94762fc9037f6b415f9100647acd5de2fefa3b47f57086233cc2027"
+URL = B._PT_UNIFIED_URL.replace("/resolve/main/", f"/resolve/{REVISION}/")
+CACHE_NAME = f"portuguese_pronunciation_lexicon-{REVISION[:12]}.jsonl"
+
 REGION = "pt-PT"
-VOWELS = "aɐæɑeɛiɪɨoɔøuʊəy"
+IPA_VOWELS = "aɐæɑeɛiɪɨoɔøuʊəy"
+STRESS = "ˈ'"
 SHAPE = re.compile(
-    "[ˈ'][^" + VOWELS + "ˈ'ˌ.]*?([aɐ])(?!\u0303)\\.?[mnɲ][" + VOWELS + "jw]"
+    "[" + STRESS + "][^" + IPA_VOWELS + STRESS + "ˌ.]*?([aɐ])(?!̃)\\.?[mnɲ]"
+    "[" + IPA_VOWELS + "jw]"
 )
+IPA_NUCLEUS = re.compile("[" + IPA_VOWELS + "]+")
 ACCENTED_A = re.compile("[áâàã]")
+VOWEL_LETTERS = "aeiouáéíóúâêôãõàüy"
+SPELLED_CONTEXT = re.compile("a(?=(?:nh|m|n)[" + VOWEL_LETTERS + "])")
+LETTER_GROUP = re.compile("[" + VOWEL_LETTERS + "]+")
+
+
+def file_sha256(path: str) -> str:
+    digest = hashlib.sha256()
+    with open(path, "rb") as fh:
+        for block in iter(lambda: fh.read(1 << 20), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def stressed_vowel(reading: str) -> tuple[str, int] | None:
+    """The stressed [a] or [ɐ] of *reading* and the nuclei after it, or None."""
+    reading = unicodedata.normalize("NFD", reading)
+    last_mark = max(reading.rfind(mark) for mark in STRESS)
+    match = SHAPE.match(reading, last_mark) if last_mark >= 0 else None
+    if not match:
+        return None
+    return match.group(1), len(IPA_NUCLEUS.findall(reading[match.end(1):]))
+
+
+def spells_stressed_a(word: str, nuclei_after: int) -> bool:
+    """True when the stressed element of *word* spells the stressed vowel as a
+    plain ⟨a⟩ before ⟨m n nh⟩ and a vowel letter."""
+    element = word.lower().split("-")[-1]
+    if ACCENTED_A.search(element):
+        return False
+    return any(len(LETTER_GROUP.findall(element[m.start() + 1:])) == nuclei_after
+               for m in SPELLED_CONTEXT.finditer(element))
 
 
 def main() -> None:
@@ -48,8 +96,12 @@ def main() -> None:
                         help="print this many readings that write [a]")
     args = parser.parse_args()
 
-    path = B._fetch_file(B._PT_UNIFIED_URL, "portuguese_pronunciation_lexicon.jsonl")
-    lines = rows = 0
+    path = B._fetch_file(URL, CACHE_NAME)
+    digest = file_sha256(path)
+    if digest != SHA256:
+        sys.exit(f"{path}: sha256 {digest}, expected {SHA256}")
+
+    lines = rows = readings = 0
     readings_by_vowel = collections.Counter()
     iano_by_vowel = collections.Counter()
     words_by_vowel: dict[str, set[str]] = collections.defaultdict(set)
@@ -68,13 +120,12 @@ def main() -> None:
             if not ipa or not word:
                 continue
             rows += 1
-            if ACCENTED_A.search(word):
-                continue
             for reading in ipa.split(","):
-                match = SHAPE.search(unicodedata.normalize("NFD", reading))
-                if not match:
+                readings += 1
+                found = stressed_vowel(reading)
+                if not found or not spells_stressed_a(word, found[1]):
                     continue
-                vowel = match.group(1)
+                vowel = found[0]
                 readings_by_vowel[vowel] += 1
                 words_by_vowel[vowel].add(word)
                 if word.endswith("iano"):
@@ -83,19 +134,21 @@ def main() -> None:
                 if vowel == "a" and len(examples) < args.examples:
                     examples.append(f"{word}\t{reading}")
 
-    shape_readings = sum(readings_by_vowel.values())
-    iano_readings = sum(iano_by_vowel.values())
+    kept = sum(readings_by_vowel.values())
+    iano_kept = sum(iano_by_vowel.values())
     all_words = set().union(*words_by_vowel.values())
     iano_words = set().union(*iano_words_by_vowel.values())
+    print(f"dataset: {URL}")
+    print(f"sha256: {digest}")
     print(f"lines read: {lines}")
     print(f"Infopédia {REGION} rows with a narrow reading: {rows}")
-    print(f"readings with the shape: {shape_readings}, "
+    print(f"readings in: {readings}, readings out: {kept}, "
           f"[ɐ] {readings_by_vowel['ɐ']}, [a] {readings_by_vowel['a']}")
-    print(f"-iano readings with the shape: {iano_readings}, "
+    print(f"-iano readings out: {iano_kept}, "
           f"[ɐ] {iano_by_vowel['ɐ']}, [a] {iano_by_vowel['a']}")
-    print(f"words with the shape: {len(all_words)}, [ɐ] in {len(words_by_vowel['ɐ'])}, "
+    print(f"words out: {len(all_words)}, [ɐ] in {len(words_by_vowel['ɐ'])}, "
           f"[a] in {len(words_by_vowel['a'])}")
-    print(f"-iano words with the shape: {len(iano_words)}, [ɐ] in {len(iano_words_by_vowel['ɐ'])}, "
+    print(f"-iano words out: {len(iano_words)}, [ɐ] in {len(iano_words_by_vowel['ɐ'])}, "
           f"[a] in {len(iano_words_by_vowel['a'])}")
     for example in examples:
         print(example)
