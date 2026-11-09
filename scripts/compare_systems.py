@@ -1716,11 +1716,12 @@ def gruut_lexicon_keys(lang: str, cfg: dict) -> Optional[LexiconKeys]:
 def tugaphone_lexicon_keys(lang: str, cfg: dict) -> Optional[LexiconKeys]:
     """tugaphone's always-on lexicon headwords for *lang*.
 
-    tugaphone reads the installed packaged orthography2ipa lexicon for the
-    lects in ``registry.PACKAGED_LEXICON_LECTS`` and for no other, so the
-    keys are those of the file that
+    tugaphone reads the installed packaged orthography2ipa lexicon, its
+    exceptions and its patches, for the lects in
+    ``registry.PACKAGED_LEXICON_LECTS`` and for no other. So the keys are
+    those of the files that
     :func:`orthography2ipa.lexicon.packaged_lexicon_sources` lists for the
-    lect. Normalization:
+    lect, with and without ``patches``. Normalization:
     :func:`_o2i_lexicon_key`, because the lookup that consumes them is
     o2i's own ``_override_for``.
     """
@@ -1739,7 +1740,10 @@ def tugaphone_lexicon_keys(lang: str, cfg: dict) -> Optional[LexiconKeys]:
         path = packaged_lexicon_sources().get(lect)
         if path is None:
             return None
-        ipa_map = parse_lexicon_text(path.read_text(encoding="utf-8"))
+        patch_path = packaged_lexicon_sources(patches=True).get(lect)
+        ipa_map = {
+            **(parse_lexicon_text(patch_path.read_text(encoding="utf-8")) if patch_path else {}),
+            **parse_lexicon_text(path.read_text(encoding="utf-8"))}
     except Exception:
         return None
     if not ipa_map:
@@ -1747,7 +1751,9 @@ def tugaphone_lexicon_keys(lang: str, cfg: dict) -> Optional[LexiconKeys]:
     return LexiconKeys(
         frozenset(_o2i_lexicon_key(w, lect) for w in ipa_map), {
             "engine": "tugaphone (packaged lexicon)",
-            "source": f"orthography2ipa.lexicon.packaged_lexicon_sources()[{lect!r}]",
+            "source": (f"orthography2ipa.lexicon.packaged_lexicon_sources()[{lect!r}]"
+                       + (f" + packaged_lexicon_sources(patches=True)[{lect!r}]"
+                          if patch_path else "")),
             "version": _installed_version("o2i-lexicons"),
             "count": len(ipa_map),
             "normalization": "o2i lexicon key (NFC + language-aware lower)",

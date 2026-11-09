@@ -3515,7 +3515,7 @@ class TestGruutLexiconKeys:
 
 
 class TestTugaphoneLexiconKeys:
-    def _packaged(self, monkeypatch, tmp_path, lect):
+    def _packaged(self, monkeypatch, tmp_path, lect, patches=""):
         monkeypatch.setitem(
             sys.modules, "tugaphone.registry",
             _fake_module("tugaphone.registry",
@@ -3523,8 +3523,11 @@ class TestTugaphoneLexiconKeys:
                           PACKAGED_LEXICON_LECTS=frozenset({"pt-PT"})))
         tsv = tmp_path / "pt-PT.tsv"
         tsv.write_text("Muitíssimo\tmũj̃ˈtisimu\nantidumping\tɐ̃tiˈdɐ̃pĩɡ\n", encoding="utf-8")
+        patch_tsv = tmp_path / "pt-PT.patches.tsv"
+        patch_tsv.write_text(patches, encoding="utf-8")
         import orthography2ipa.lexicon as o2i_lexicon
-        monkeypatch.setattr(o2i_lexicon, "packaged_lexicon_sources", lambda: {"pt-PT": tsv})
+        monkeypatch.setattr(o2i_lexicon, "packaged_lexicon_sources",
+                            lambda patches=False: {"pt-PT": patch_tsv if patches else tsv})
 
     def test_reads_the_packaged_lexicon_of_a_packaged_lect(self, monkeypatch, tmp_path):
         self._packaged(monkeypatch, tmp_path, "pt-PT")
@@ -3534,6 +3537,17 @@ class TestTugaphoneLexiconKeys:
         assert keys.keys == frozenset({"muitíssimo", "antidumping"})
         assert keys.provenance["engine"] == "tugaphone (packaged lexicon)"
         assert keys.provenance["count"] == 2
+
+    def test_the_patches_add_their_keys(self, monkeypatch, tmp_path):
+        # tugaphone takes the exceptions and the patches; antidumping is in both.
+        self._packaged(monkeypatch, tmp_path, "pt-PT",
+                       patches="antidumping\tx\nindemnizar\tĩdɨmniˈzaɾ\n")
+
+        keys = cs.tugaphone_lexicon_keys("pt-PT", {"tugaphone": "pt-PT"})
+
+        assert keys.keys == frozenset({"muitíssimo", "antidumping", "indemnizar"})
+        assert keys.provenance["count"] == 3
+        assert "patches=True" in keys.provenance["source"]
 
     def test_a_lect_outside_the_packaged_set_has_no_key_set(self, monkeypatch, tmp_path):
         self._packaged(monkeypatch, tmp_path, "pt-BR")
