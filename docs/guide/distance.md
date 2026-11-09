@@ -14,13 +14,13 @@ Languages relate along several independent axes, and a pair can be close on one 
 | Geographic | Are they spoken in the same place? | `geographic_distance` |
 | Combined | All of these, weighted | `full_distance`, `weighted_full_distance`, `pairwise_distances` |
 
-Reading and spelling are inverses, and Galician shows why both exist. The RAG norm and the reintegrationist norm are one language with one phonology. One writes /ɲ/ as ⟨ñ⟩ and the other as ⟨nh⟩.
+Reading and spelling are inverses, and Galician shows why both exist. The official norm of the [Real Academia Galega](https://academia.gal) (RAG) and the reintegrationist norm of the [Associaçom Galega da Língua](https://www.agal-gz.org) (AGAL) write one language with one phonology. One writes /ɲ/ as ⟨ñ⟩ and the other as ⟨nh⟩, so the two specs read alike and spell apart.
 
 `spelling_divergence` and `geographic_distance` are not in the module's `__all__`, so import them by name.
 
 ## The feature system
 
-The segment metrics use the distinctive features in `orthography2ipa.feats`, a hybrid SPE and IPA system adapted from PyPhone. `feature_names()` returns the 23 features in order:
+The segment metrics use the distinctive features in `orthography2ipa.feats`. The matrix is adapted from [PyPhone](https://github.com/lingz/pyphone) (MIT licence), and it mixes the binary features of [*The Sound Pattern of English*](https://en.wikipedia.org/wiki/The_Sound_Pattern_of_English) (Chomsky and Halle 1968) with IPA categories such as `click` and `nasal_vowel`. `feature_names()` returns the 23 features in order:
 
 ```python
 from orthography2ipa.distance import feature_names
@@ -84,7 +84,7 @@ inventory_distance(orthography2ipa.get("es"), orthography2ipa.get("pt-BR"))
 
 | Field | Type | Meaning |
 |---|---|---|
-| `jaccard` | float | Jaccard distance on the raw phoneme sets, 1 - \|A∩B\| / \|A∪B\| |
+| `jaccard` | float | [Jaccard distance](https://en.wikipedia.org/wiki/Jaccard_index) on the raw phoneme sets, 1 - \|A∩B\| / \|A∪B\| |
 | `feature_mean` | float | mean of the nearest-phoneme feature distances, averaged over both directions |
 | `size_a`, `size_b` | int | the number of phonemes in each language |
 | `shared` | int | the number of phonemes in common |
@@ -128,11 +128,11 @@ from orthography2ipa.distance import spelling_divergence
 gl = orthography2ipa.get("gl-ES")                  # RAG norm, /ɲ/ is ⟨ñ⟩
 glr = orthography2ipa.get("gl-ES-x-reintegr")   # reintegrationist norm, /ɲ/ is ⟨nh⟩
 
-round(grapheme_divergence(gl, glr).mean_ipa_distance, 4)   # 0.0189
-round(spelling_divergence(gl, glr).mean_distance, 4)       # 0.0782
+round(grapheme_divergence(gl, glr).mean_ipa_distance, 4)   # 0.0176
+round(spelling_divergence(gl, glr).mean_distance, 4)       # 0.071
 
 sd = spelling_divergence(gl, glr)
-sd.shared_phonemes, sd.identical_spellings, sd.disjoint_spellings   # (49, 44, 3)
+sd.shared_phonemes, sd.identical_spellings, sd.disjoint_spellings   # (54, 49, 3)
 ```
 
 | Field | Meaning |
@@ -207,7 +207,7 @@ A value of 1.0 means the native language covers every target phoneme, and 0.0 me
 from orthography2ipa.distance import orthographic_distance
 from orthography2ipa.script_distance import script_distance_by_name
 
-round(orthographic_distance(gl, glr), 4)               # 0.0189
+round(orthographic_distance(gl, glr), 4)               # 0.0176
 round(script_distance_by_name("Latin", "Arabic"), 4)   # 0.57
 pt_br, ar = orthography2ipa.get("pt-BR"), orthography2ipa.get("ar")
 round(orthographic_distance(pt_br, ar), 4)             # 0.742
@@ -243,7 +243,7 @@ round(temporal_distance(es, pt), 4)                                          # 0
 
 ## `geographic_distance`
 
-`geographic_distance(spec_a, spec_b, normalize=True)` returns the great-circle distance between the representative points in the two specs' `location` fields (`latitude`, `longitude`, `source`). It returns kilometres when `normalize` is `False`. Otherwise it divides by half the Earth's circumference, the largest distance two points can have.
+`geographic_distance(spec_a, spec_b, normalize=True)` returns the [great-circle distance](https://en.wikipedia.org/wiki/Great-circle_distance) between the representative points in the two specs' `location` fields (`latitude`, `longitude`, `source`). It returns kilometres when `normalize` is `False`. Otherwise it divides by half the Earth's circumference, the largest distance two points can have.
 
 ```python
 from orthography2ipa.distance import geographic_distance
@@ -256,7 +256,7 @@ orthography2ipa.get("ca").location
 #          notes="Glottolog's representative point for Catalan.")
 ```
 
-A point is a rough proxy for an area, and the error is not uniform. For a dialect anchored to a region, the point is a fair summary. That is where the metric is useful: on a dialect continuum, the order of the points follows the order of the isoglosses. For a widespread macrolanguage, one point is arbitrary. Spanish spans two hemispheres, and its distance to anything says more about the point Glottolog chose than about the language. A clade node's point is a computed centroid of its descendants, which is weaker still. Give this axis a low weight, or none, when you compare macrolanguages.
+A point is a rough proxy for an area, and the error is not uniform. For a dialect anchored to a region, the point is a fair summary. That is where the metric is useful: on a dialect continuum, the order of the points follows the order of the isoglosses. For a widespread macrolanguage, one point is arbitrary. Spanish spans two hemispheres, and its distance to anything says more about the point [Glottolog](https://glottolog.org) chose than about the language. A clade node's point is a computed centroid of its descendants, which is weaker still. Give this axis a low weight, or none, when you compare macrolanguages.
 
 The function returns `None`, not 0.0, when either spec has no `location`. Two languages of unknown position are not neighbours. A caller must handle `None` and not fold it into an average.
 
@@ -352,7 +352,7 @@ matrix = pairwise_distances(langs, metric="combined")
 [round(d, 3) for d in matrix[0]]   # [0.0, 0.217, 0.265, 0.256, 0.376]
 ```
 
-The `combined` metric has a narrow range. It gives 0.051 for `pt-BR` against `pt-PT` and 0.394 for `es` against `zh`, rounded. Use the `"ancestry"` metric or `weighted_full_distance` when relatedness matters.
+The `combined` metric has a narrow range. It gives 0.051 for `pt-BR` against `pt-PT` and 0.407 for `es` against `zh`, rounded. Use the `"ancestry"` metric or `weighted_full_distance` when relatedness matters.
 
 ---
 [← Lexicons and forced pronunciations](lexicon.md) · [Home](../index.md) · [Known limitations →](known_limitations.md)

@@ -15,8 +15,10 @@ Never special-case the language in code, and never fake the capability by
 enumerating data.
 
 A closed set in engine code is allowed only when it is a cross-linguistic
-class with a citation at the constant. The transparent-suffix graphemes are
-an example.
+class with a citation at the constant. The transparent-suffix graphemes in
+`positional.py` are an example: the set holds ⟨s⟩ and ⟨x⟩, the French plural
+and agreement markers, and its comment cites Tranel,
+[*The Sounds of French*](https://doi.org/10.1017/CBO9780511620645) (1987), §3.
 
 ## Accuracy outranks the score
 
@@ -51,8 +53,12 @@ loader reads a key that `SCHEMA.md` does not name.
 
 A package can replace one of the five
 [pluggable steps](../engine/architecture.md#pluggable-steps) of the
-pipeline, and that page gives the contract of each step. A downstream engine
-such as arbtok or tugaphone is built on this library, not plugged into it
+pipeline: `normalize`, `syllabify`, `stress`, `rescore` and `sandhi`
+(`STAGES` in `plugins.py`). The architecture page gives the contract of each
+step. A downstream engine
+such as [arbtok](https://github.com/TigreGotico/arbtok) or
+[tugaphone](https://github.com/TigreGotico/tugaphone) is built on this
+library, not plugged into it
 ([downstream engines](../engine/architecture.md#downstream-engines)).
 
 ## The review gate for engine code
@@ -78,8 +84,9 @@ points before it merges. A review that skips them is incomplete.
    meaning, or a conditional longer than 20 lines, clean it or name the smell
    in the pull request.
 
-No linter or type checker is configured. The code uses
-`from __future__ import annotations` and typed dataclasses.
+No linter or type checker runs in CI. The code uses
+`from __future__ import annotations` and typed dataclasses, and new code
+follows that style.
 
 ---
 [← Board regeneration](board.md) · [Home](../index.md) · [Silver IPA correction →](silver_correction.md)

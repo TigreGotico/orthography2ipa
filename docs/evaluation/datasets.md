@@ -2,51 +2,53 @@
 
 This page lists every gold pronunciation dataset that the harness can score against. For each one it says where the data came from and what its numbers can and cannot support. Read [benchmarks.md](benchmarks.md) first for the provenance tiers that this page uses.
 
-The registry is `DATASETS` in [`scripts/benchmark.py`](../../scripts/benchmark.py). `python scripts/benchmark.py --list` prints every registry key with the language tags it covers. Row sizes and scores are on the [scoreboard](generated/scoreboard.md) and in [`benchmarks/results.json`](../../benchmarks/results.json), never on this page.
+The registry is `DATASETS` in [`scripts/benchmark.py`](../../scripts/benchmark.py). `python scripts/benchmark.py --list` prints every registry key with the language tags it covers. Row sizes and scores are on the [scoreboard](generated/scoreboard.md) and in [`benchmarks/results.json`](../../benchmarks/results.json), never on this page. Each section below links the upstream page of its dataset, and the summary table gives the licence of each one.
 
 ## Summary
 
-The tier column is the value of `provenance_for()`. "Per language" means that `PROVENANCE_BY_LANG` gives each language its own tier. A dash in the licence column means that this page does not state one.
+The tier column is the value of `provenance_for()`. "Per language" means that `PROVENANCE_BY_LANG` gives each language its own tier. The licence column gives the licence that the upstream dataset card or repository states. "Not stated upstream" means that the card or repository declares none, so ask the publisher before you redistribute the data. A set kept in this repository falls under the [Apache-2.0](../../LICENSE) licence of the repository.
 
 | Registry key | Languages | Tier | Source | Licence | What it supports |
 |---|---|---|---|---|---|
-| `primary_sources` | Arabic dialects, Portuguese varieties, Spanish, Hebrew, Russian, Ukrainian, Tetun Dili and others | expert-human | Worked examples printed in the sources the specs cite | - | Rule diagnosis. Too small to gate a language alone. |
-| `arabic_tts` | Arabic dialects | llm-corrected | Sentences drafted by a language model and audited against cited literature, with the [corrected label](../contributing/silver_correction.md) | - | Silver. Direction only. |
-| `gold20_arabic` | Arabic dialects | llm-corrected | [Salesteq/arabic-dialects-gold20](https://huggingface.co/datasets/Salesteq/arabic-dialects-gold20), with the [corrected label](../contributing/silver_correction.md) | - | Silver. Direction only. Often the only gold for a dialect. |
-| `portuguese_tts` | Portuguese varieties and the other languages of Portugal | llm-corrected | Sentences drafted by a language model and audited against cited literature, with the [corrected label](../contributing/silver_correction.md) | - | Silver. Direction only. |
-| `spain_romance_tts` | Romance languages and Basque of Spain, with Latin American Spanish | llm-corrected | Sentences transcribed by the engine itself, with the [corrected label](../contributing/silver_correction.md) | - | Silver. Direction only. |
-| `ep_dialects` | European Portuguese regional varieties | expert-human | TigreGotico team annotation | - | Sentence-level dialect rules. Not peer-validated. |
-| `wikipron` | Most languages with Wiktionary pronunciations | crowd-scraped | [CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron) | CC BY-SA | Breadth. Some tags are reproduction tests. |
-| `wikipron_ar_diacritized` | Arabic | crowd-scraped | The `wikipron` gold with machine-restored short vowels in the input | CC BY-SA | The rules for vowelized Arabic. |
-| `wikipron_nor` | Norwegian Nynorsk | crowd-scraped | The WikiPron file under the code `nor` | CC BY-SA | Nynorsk, with a Bokmål minority. |
+| `primary_sources` | Arabic dialects, Portuguese varieties, Spanish, Hebrew, Russian, Ukrainian, Tetun Dili and others | expert-human | Worked examples printed in the sources the specs cite | Apache-2.0 (this repository). Each row quotes and cites a published example. | Rule diagnosis. Too small to gate a language alone. |
+| `arabic_tts` | Arabic dialects | llm-corrected | Sentences by a language model, with the [corrected label](../contributing/silver_correction.md) | Apache-2.0 (this repository) | Silver. Direction only. |
+| `gold20_arabic` | Arabic dialects | llm-corrected | [TigreGotico/arabic-dialects-gold20](https://huggingface.co/datasets/TigreGotico/arabic-dialects-gold20), with the [corrected label](../contributing/silver_correction.md) | CC BY 4.0 | Silver. Direction only. Often the only gold for a dialect. |
+| `portuguese_tts` | Portuguese varieties and the other languages of Portugal | llm-corrected | Sentences by a language model, with the [corrected label](../contributing/silver_correction.md) | Apache-2.0 (this repository) | Silver. Direction only. |
+| `spain_romance_tts` | Romance languages and Basque of Spain, with Latin American Spanish | llm-corrected | Sentences by a language model, transcribed by the engine, with the [corrected label](../contributing/silver_correction.md) | Apache-2.0 (this repository) | Silver. Direction only. |
+| `ep_dialects` | European Portuguese regional varieties | expert-human | TigreGotico team annotation | Apache-2.0 (this repository) | Sentence-level dialect rules. Not peer-validated. |
+| `wikipron` | Most languages with Wiktionary pronunciations | crowd-scraped | [CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron) | Wiktionary terms: CC BY-SA and GFDL | Breadth. Some tags are reproduction tests. |
+| `wikipron_ar_diacritized` | Arabic | crowd-scraped | The `wikipron` gold with machine-restored short vowels in the input | Wiktionary terms: CC BY-SA and GFDL | The rules for vowelized Arabic. |
+| `wikipron_nor` | Norwegian Nynorsk | crowd-scraped | The WikiPron file under the code `nor` | Wiktionary terms: CC BY-SA and GFDL | Nynorsk, with a Bokmål minority. |
 | `wikipron_restored` | Ewe, Middle High German, Yoruba, Hebrew | crowd-scraped | [The pinned WikiPron mirror](wikipron_mirror.md) | CC BY-SA 4.0 | Rules on the displayed spelling. A subset of `wikipron`. |
-| `mirandese_g2p` | Mirandese, with its Sendinese and Raiano varieties | expert-human | [TigreGotico/mirandese_g2p](https://huggingface.co/datasets/TigreGotico/mirandese_g2p) | - | The best Mirandese signal. Small. |
-| `barranquenho_dict` | Barranquenho | llm-corrected | [TigreGotico/barranquenho-ipa-dict-synthetic](https://huggingface.co/datasets/TigreGotico/barranquenho-ipa-dict-synthetic), with the [corrected label](../contributing/silver_correction.md) | - | Silver. Direction only. |
-| `mirandese_dict` | Mirandese varieties | llm-corrected | [TigreGotico/mirandese-ipa-dict-synthetic](https://huggingface.co/datasets/TigreGotico/mirandese-ipa-dict-synthetic), with the [corrected label](../contributing/silver_correction.md) | - | Silver. Direction only. |
+| `mirandese_g2p` | Mirandese, with its Sendinese and Raiano varieties | expert-human | [TigreGotico/mirandese_g2p](https://huggingface.co/datasets/TigreGotico/mirandese_g2p) | Not stated upstream | The best Mirandese signal. Small. |
+| `barranquenho_dict` | Barranquenho | llm-corrected | [TigreGotico/barranquenho-ipa-dict-synthetic](https://huggingface.co/datasets/TigreGotico/barranquenho-ipa-dict-synthetic), with the [corrected label](../contributing/silver_correction.md) | CC BY 4.0 | Silver. Direction only. |
+| `mirandese_dict` | Mirandese varieties | llm-corrected | [TigreGotico/mirandese-ipa-dict-synthetic](https://huggingface.co/datasets/TigreGotico/mirandese-ipa-dict-synthetic), with the [corrected label](../contributing/silver_correction.md) | CC BY-SA 4.0 | Silver. Direction only. |
 | `portuguese_unified` | Portuguese of Portugal and Brazil | per language: `pt-PT` lexicon-derived, the Brazilian tags crowd-scraped | The Infopédia and pt.wiktionary rows of [TigreGotico/portuguese-unified-pronunciation-lexicon](https://huggingface.co/datasets/TigreGotico/portuguese-unified-pronunciation-lexicon) | CC BY-SA 4.0 | The main Portuguese gold. |
 | `portuguese_unified_corrected` | `pt-PT` and `pt-BR` | as the base | `portuguese_unified` with an overlay that fixes stress marks and drops mis-keyed rows | CC BY-SA 4.0 | Reading the base defect. Never gates. |
 | `portal_lupo` | Lisbon, São Paulo, Rio de Janeiro, Angola, Mozambique and Timor-Leste | lupo-derived | The Portal da Língua Portuguesa rows of the same file | CC BY-SA 4.0 | Agreement with the LUPo generator. Never gates. |
-| `4catac` | Central, Balearic, North-Western and Valencian Catalan | expert-human | [projecte-aina/4catac](https://huggingface.co/datasets/projecte-aina/4catac) | - | Accent rules, at sentence level. |
-| `hitz_basque_ipa` | Basque | machine-generated | [HiTZ/wikipedia_basque_ipa](https://huggingface.co/datasets/HiTZ/wikipedia_basque_ipa) | - | Agreement with the ahoNT phonemizer. |
-| `clup_dialect` | European Portuguese dialects | expert-human | [TigreGotico/ArquivoDialetalCLUP_ipa](https://huggingface.co/datasets/TigreGotico/ArquivoDialetalCLUP_ipa) | - | Hints. Most rows are tiny. |
-| `cmudict` | American English | lexicon-derived | [cmusphinx/cmudict](https://github.com/cmusphinx/cmudict) | - | A floor for English spelling. |
+| `4catac` | Central, Balearic, North-Western and Valencian Catalan | expert-human | [projecte-aina/4catac](https://huggingface.co/datasets/projecte-aina/4catac) | CC BY 4.0 | Accent rules, at sentence level. |
+| `hitz_basque_ipa` | Basque | machine-generated | [HiTZ/wikipedia_basque_ipa](https://huggingface.co/datasets/HiTZ/wikipedia_basque_ipa) | CC BY-SA 4.0 | Agreement with the ahoNT phonemizer. |
+| `clup_dialect` | European Portuguese dialects | expert-human | [TigreGotico/ArquivoDialetalCLUP_ipa](https://huggingface.co/datasets/TigreGotico/ArquivoDialetalCLUP_ipa) | Not stated upstream | Hints. Most rows are tiny. |
+| `cmudict` | American English | lexicon-derived | [cmusphinx/cmudict](https://github.com/cmusphinx/cmudict) | BSD-style (CMU) | A floor for English spelling. |
 | `ipadict` | Icelandic, Japanese, Khmer, Korean, Persian, Vietnamese and many European languages | per language | [open-dict-data/ipa-dict](https://github.com/open-dict-data/ipa-dict) | MIT, each file its own | Depends on the file. |
-| `ipadict_corrected` | Brazilian Portuguese | machine-generated | `ipadict` with a stress overlay | as the base | Stress accuracy. Never gates. |
-| `ipa_childes` | Child-directed speech in European languages, Indonesian, Quechua and Mandarin | per language | [fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split) | CC BY 4.0 | Agreement with a competitor. |
-| `vox_communis` | The Common Voice languages | epitran-derived | [fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p) | CC0 | Breadth only. Never gates. |
-| `vox_communis_corrected` | Vietnamese | epitran-derived | `vox_communis` with a tone overlay | CC0 | Reading the base defect. Never gates. |
-| `ipa_babylm` | English | espeak-derived | [phonemetransformers/IPA-BabyLM](https://huggingface.co/datasets/phonemetransformers/IPA-BabyLM) | none declared | Agreement with espeak-ng. |
-| `northeuralex` | Uralic, Caucasian, Tungusic, Paleo-Siberian and other languages of northern Eurasia | lexicon-derived | [lexibank/northeuralex](https://github.com/lexibank/northeuralex) | - | Progress for specs with no other gold. |
-| `wold` | Galibi Carib, Mapudungun, Gawwada, Iraqw, Seychelles Creole, Tarifiyt Berber | lexicon-derived | [lexibank/wold](https://github.com/lexibank/wold) | - | Progress for specs with no other gold. |
-| `kaikki` | Javanese, Sundanese, Lao, Xhosa, Somali, Oromo, Nepali, Konkani | crowd-scraped | [kaikki.org](https://kaikki.org/dictionary/) | - | Gold for specs with no other gold. |
-| `alphacep_ru_book` | Russian | machine-generated | [alphacep/biggest-ru-book-cleanup](https://huggingface.co/datasets/alphacep/biggest-ru-book-cleanup) | - | Agreement with a morphophonemic annotation. |
-| `coruss_ru` | Russian | expert-human | CoRuSS, SPbU phonetics lab | - | Distance to spontaneous speech. |
+| `ipadict_corrected` | Brazilian Portuguese | per language, as the base | `ipadict` with a stress overlay | as the base | Stress accuracy. Never gates. |
+| `ipa_childes` | Child-directed speech in European languages, Turkish, Indonesian, Quechua and Mandarin | per language | [fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split) | CC BY 4.0 | Agreement with a competitor. |
+| `vox_communis` | The Common Voice languages | epitran-derived | [fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p) | CC0 1.0 | Breadth only. Never gates. |
+| `vox_communis_corrected` | Vietnamese | epitran-derived | `vox_communis` with a tone overlay | CC0 1.0 | Reading the base defect. Never gates. |
+| `ipa_babylm` | English | espeak-derived | [phonemetransformers/IPA-BabyLM](https://huggingface.co/datasets/phonemetransformers/IPA-BabyLM) | Not stated upstream | Agreement with espeak-ng. |
+| `northeuralex` | Uralic, Caucasian, Tungusic, Paleo-Siberian and other languages of northern Eurasia | lexicon-derived | [lexibank/northeuralex](https://github.com/lexibank/northeuralex) | CC BY 4.0 | Progress for specs with no other gold. |
+| `wold` | Galibi Carib, Mapudungun, Gawwada, Iraqw, Seychelles Creole, Tarifiyt Berber | lexicon-derived | [lexibank/wold](https://github.com/lexibank/wold) | CC BY 4.0 | Progress for specs with no other gold. |
+| `kaikki` | Javanese, Sundanese, Lao, Xhosa, Somali, Oromo, Nepali, Konkani | crowd-scraped | [kaikki.org](https://kaikki.org/dictionary/) | Wiktionary terms: CC BY-SA and GFDL | Gold for specs with no other gold. |
+| `alphacep_ru_book` | Russian | machine-generated | [alphacep/biggest-ru-book-cleanup](https://huggingface.co/datasets/alphacep/biggest-ru-book-cleanup) | Not stated upstream | Agreement with a morphophonemic annotation. |
+| `coruss_ru` | Russian | expert-human | [CoRuSS](https://russpeech.spbu.ru/), the phonetics lab of Saint Petersburg State University | Not stated upstream | Distance to spontaneous speech. |
+
+The Wiktionary terms are on [Wiktionary:Copyrights](https://en.wiktionary.org/wiki/Wiktionary:Copyrights). The WikiPron code is Apache-2.0, and the scraped data keeps the Wiktionary terms.
 
 [TTS silver sets](silver_sets.md) describes the three TTS sentence sets in this table: `arabic_tts`, `portuguese_tts` and `spain_romance_tts`. It also describes two more that the harness does not score, and the protocol they share. A language model wrote all five, so they are silver labels, not gold. [gold_defects.md](gold_defects.md) records individual rows of these datasets that carry a measured defect.
 
 ## Primary-source gold (`primary_sources`)
 
-The rows live in `orthography2ipa/data/gold/primary_sources/`. Every row is a worked example printed by a linguist in a source that one of the specs cites. The sources include the Arabic dialect studies behind the Arabic specs and the Portuguese dialect monographs. They also include the JIPA *Illustrations of the IPA* for Ukrainian, Russian, European and Brazilian Portuguese, and Castilian and Argentine Spanish. The [dataset README](../../orthography2ipa/data/gold/primary_sources/README.md) lists every source by language.
+The rows live in `orthography2ipa/data/gold/primary_sources/`. Every row is a worked example printed by a linguist in a source that one of the specs cites. The sources include the Arabic dialect studies behind the Arabic specs and the Portuguese dialect monographs. They also include the *Illustrations of the IPA* in the [Journal of the International Phonetic Association](https://www.cambridge.org/core/journals/journal-of-the-international-phonetic-association) (JIPA) for Ukrainian, Russian, European and Brazilian Portuguese, and Castilian and Argentine Spanish. The [dataset README](../../orthography2ipa/data/gold/primary_sources/README.md) lists every source by language.
 
 Each row carries the source id and the printed page, which is not the PDF page index. The two differ, and `sources.json` records the offset per source.
 
@@ -54,25 +56,25 @@ The row also carries the notation of the source verbatim, whether the source wro
 
 The dataset is small and adversarial on purpose. Several rows exist because the source contradicts the spec, and the README lists them. Use it to diagnose rules. Do not gate a language on it.
 
-The Tetun Dili rows are the only gold for that language. They are a faithfulness check only, because the grammar they come from (Williams-van Klinken, Hajek & Nordlinger 2002) is also the source of the `tet` spec. They measure whether the engine reproduces what that grammar says, never whether the grammar is right. Some rows print no spelling, such as the stress inventory, which the grammar gives in transcription only. Their orthography is written out with the conventions of the grammar and flagged `editor-supplied`. Every row was transcribed from a render of the printed page, because the text layer of the PDF mangles the IPA and flattens the trill and tap distinction.
+The Tetun Dili rows are the only gold for that language. They are a faithfulness check only, because the grammar they come from (Williams-van Klinken, Hajek & Nordlinger 2002, [*Tetun Dili: A grammar of an East Timorese language*](https://doi.org/10.15144/PL-528)) is also the source of the `tet` spec. They measure whether the engine reproduces what that grammar says, never whether the grammar is right. Some rows print no spelling, such as the stress inventory, which the grammar gives in transcription only. Their orthography is written out with the conventions of the grammar and flagged `editor-supplied`. Every row was transcribed from a render of the printed page, because the text layer of the PDF mangles the IPA and flattens the trill and tap distinction.
 
 ## Arabic sets from a language model (`gold20_arabic`)
 
-[`Salesteq/arabic-dialects-gold20`](https://huggingface.co/datasets/Salesteq/arabic-dialects-gold20) is a sibling of `arabic_tts` with the same shape: one TSV per lect, a vocalized `sentence` as input and a broad `ipa` gold. The harness fetches it at run time and caches it. It is never vendored.
+[TigreGotico/arabic-dialects-gold20](https://huggingface.co/datasets/TigreGotico/arabic-dialects-gold20) (CC BY 4.0) is a sibling of `arabic_tts` with the same shape: one TSV per lect, a vocalized `sentence` as input and a broad `ipa` gold. The harness fetches it at run time from the `Salesteq/arabic-dialects-gold20` path, which Hugging Face redirects to the TigreGotico repository, and caches it. It is never vendored.
 
 The set is semi-synthetic. The same Claude lineage that wrote the Arabic dialect specs drafted every transcription, so the relation to the specs is close to circular. A native Arabic speaker then spot-checked the set and judged it good.
 
-That check is context, not a tier upgrade. It is not a per-row audit against cited literature, and no lexicon or rule system stands behind the gold. The set is registered because most of these dialects have no other gold at all. The tier stays `llm-generated`, so the row gates nothing and certifies nothing.
+That check is context, not a tier upgrade. It is not a per-row audit against cited literature, and no lexicon or rule system stands behind the gold. The set is registered because most of these dialects have no other gold at all. The board scores the label in `orthography2ipa/data/gold/gold20_arabic.llm-corrected.jsonl`, which [`scripts/correct_silver_ipa.py`](../contributing/silver_correction.md) wrote. Its tier is `llm-corrected`, which is silver, so the row gates nothing and certifies nothing.
 
 ## Portuguese unified pronunciation lexicon (`portuguese_unified`)
 
-[TigreGotico/portuguese-unified-pronunciation-lexicon](https://huggingface.co/datasets/TigreGotico/portuguese-unified-pronunciation-lexicon) merges three Portuguese sources into one dataset with one notation. The three sources are these:
+[TigreGotico/portuguese-unified-pronunciation-lexicon](https://huggingface.co/datasets/TigreGotico/portuguese-unified-pronunciation-lexicon) (CC BY-SA 4.0) merges three Portuguese sources into one dataset with one notation. The sources are the Infopédia dictionary of Porto Editora, the Portuguese [Wiktionary](https://pt.wiktionary.org/), and the Dicionário Fonético of the [Portal da Língua Portuguesa](https://www.portaldalinguaportuguesa.org/):
 
 | Source | Content | Scored as |
 |---|---|---|
 | Infopédia (Porto Editora) | Dictionary entries of European Portuguese, broad phonemic, written by lexicographers. | `portuguese_unified` |
 | pt.wiktionary.org | Transcriptions that editors type by hand, with region tags. | `portuguese_unified` |
-| Portal da Língua Portuguesa, Dicionário Fonético (ILTEC) | The output of LUPo, a rule-based pronunciation generator, in ten regions. | [`portal_lupo`](#portal-da-língua-portuguesa-dicionário-fonético-portal_lupo) |
+| Portal da Língua Portuguesa, Dicionário Fonético (ILTEC) | The output of LUPo, a rule-based pronunciation generator. The dataset holds six of its regions. | [`portal_lupo`](#portal-da-língua-portuguesa-dicionário-fonético-portal_lupo) |
 
 Each row is a tuple of word, region, source and part of speech. It carries a broad phonemic `ipa_broad` and a narrow phonetic `ipa_narrow`, normalized across the source conventions (`ə/ɨ`, `r/ɾ/ʀ`, `a/ɐ`, optional segments and syllable markers). The harness scores `ipa_narrow`, because its depth matches the Portuguese specs, with explicit [ɐ ɨ ɾ ʀ ɫ].
 
@@ -101,7 +103,7 @@ The overlay corrects only Infopédia and pt.wiktionary rows. A correction rests 
 
 ## Portal da Língua Portuguesa Dicionário Fonético (`portal_lupo`)
 
-The Portal rows of the unified lexicon are not transcriptions of speakers. They are the output of LUPo (Léxico Unisyn do Português), a rule-based pronunciation generator that ILTEC built from 2010 to 2013. The [description page of the dictionary](http://www.portaldalinguaportuguesa.org/index.php?action=fonetica&region=lbx&page=present) says that a set of rules "foram aplicadas a um léxico-mãe (neste caso, um conjunto de palavras e respetiva codificação semelhante a uma transcrição fonológica abstrata – metaformas) para gerar transcrições fonéticas de dialetos específicos". The mother lexicon holds 55,000 words. Each entry page marks the dictionary "Recurso em teste" and asks users to cite Ashby, S. et al. (2012), "A Rule Based Pronunciation Generator and Regional Accent Databank for Portuguese", Proceedings of Interspeech 2012.
+The Portal rows of the unified lexicon are not transcriptions of speakers. They are the output of LUPo (Léxico Unisyn do Português), a rule-based pronunciation generator that ILTEC built from 2010 to 2013. The [description page of the dictionary](http://www.portaldalinguaportuguesa.org/index.php?action=fonetica&region=lbx&page=present) says that a set of rules "foram aplicadas a um léxico-mãe (neste caso, um conjunto de palavras e respetiva codificação semelhante a uma transcrição fonológica abstrata – metaformas) para gerar transcrições fonéticas de dialetos específicos". The mother lexicon holds 55,000 words. Each entry page marks the dictionary "Recurso em teste" and asks users to cite Ashby, S. et al. (2012), ["A Rule Based Pronunciation Generator and Regional Accent Databank for Portuguese"](https://www.isca-archive.org/interspeech_2012/ashby12_interspeech.html), Proceedings of Interspeech 2012.
 
 `portal_lupo` therefore measures agreement with another G2P system, as an `espeak-derived` or `epitran-derived` row does. Its tier is `lupo-derived`, and `can_gate_promotion()` refuses it. A row on it can neither qualify a language for `production` nor block one, and the regression gate ignores it. A divergence from it can mean that o2i is right. Judge a divergence against a cited source, never against the row. No corrections overlay applies to it, because a competitor's output is not corrected.
 
@@ -116,11 +118,11 @@ One region is scored per registered tag (`_PORTAL_LUPO_REGIONS`). These six regi
 | `pt-MZ` | `pt-MZ-x-maputo` |
 | `pt-TL` | `pt-TL-x-dili` |
 
-LUPo writes every region from the same mother lexicon, and the regions show it. The `pt-TL-x-dili` region is the Lisbon entries written with other symbols, not Timorese lexicography. [Gold defects](gold_defects.md#east-timorese-portuguese-portal_lupo) gives the measured substitutions and the source that contradicts them. See [languages/pt-TL.md](../languages/pt-TL.md).
+The dataset card describes the Portal as a ten-region lexicon, but the dataset file holds Portal rows for these six regions only, plus a few rows tagged `pt` with no region. LUPo writes every region from the same mother lexicon, and the regions show it. The `pt-TL-x-dili` region is the Lisbon entries written with other symbols, not Timorese lexicography. [Gold defects](gold_defects.md#east-timorese-portuguese-portal_lupo) gives the measured substitutions and the source that contradicts them. See [languages/pt-TL.md](../languages/pt-TL.md).
 
 ## WikiPron
 
-[CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron) (Lee et al. 2020, *WikiPron: Mining Wiktionary for Massively Multilingual Pronunciation Data*, LREC) mines word and IPA pairs from English Wiktionary. Wiktionary editors curate the data, so it is reliable where the editor community is large and uneven where it is small. The gold often carries several valid transcriptions per word, such as the Galician seseo and gheada variants, and [the scorer](benchmarks.md#how-a-score-is-computed) keeps the best match.
+[CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron) (Lee et al. 2020, [*Massively Multilingual Pronunciation Modeling with WikiPron*](https://aclanthology.org/2020.lrec-1.521/), LREC) mines word and IPA pairs from English Wiktionary. The WikiPron code is Apache-2.0, and the scraped data keeps the [Wiktionary licence terms](https://en.wiktionary.org/wiki/Wiktionary:Copyrights). Wiktionary editors curate the data, so it is reliable where the editor community is large and uneven where it is small. The gold often carries several valid transcriptions per word, such as the Galician seseo and gheada variants, and [the scorer](benchmarks.md#how-a-score-is-computed) keeps the best match.
 
 `_WIKIPRON_FILES` maps each tag to one file under `data/scrape/tsv/` of the upstream repository. The loader reads the upstream branch and caches each file. The harness uses the broad file of a language where upstream publishes one. For a language that upstream scraped only narrow, such as Russian (`rus_cyrl_narrow.tsv`), it uses the narrow file. Some mappings need a note:
 
@@ -137,7 +139,7 @@ LUPo writes every region from the same mother lexicon, and the regions show it. 
 
 ### Module-generated WikiPron rows
 
-On a large tag, the IPA column is what Wiktionary editors typed. On a small tag it often is not. Several languages have a Lua generator per language (`Module:<code>-IPA`), and the entries call it through a bare pronunciation template. The gold for such a tag is the output of that module, scraped. A low PER there measures agreement with the generator, not accuracy.
+On a large tag, the IPA column is what Wiktionary editors typed. On a small tag it often is not. Several languages have a Lua generator per language (`Module:<code>-IPA`, such as [Module:th-pron](https://en.wiktionary.org/wiki/Module:th-pron)), and the entries call it through a bare pronunciation template. The gold for such a tag is the output of that module, scraped. A low PER there measures agreement with the generator, not accuracy.
 
 The provenance column does not say so, because the tier is set per dataset and `wikipron` as a whole is crowd-scraped. A `kaikki` row extracts the same Wiktionary source through another pipeline, so the same thing can happen there.
 
@@ -232,7 +234,7 @@ The file stays a row of its own and is not folded into `wikipron` `nn`. It is a 
 
 ## CMU Pronouncing Dictionary
 
-[cmudict](https://github.com/cmusphinx/cmudict) holds American English entries that the CMU Speech Group curated by hand in ARPABET. [scriptconv](https://github.com/TigreGotico/scriptconv) converts them to IPA, and that mechanical transform can add its own errors. English spelling is deeply irregular, so this row is a floor for a rule-driven engine.
+[cmudict](https://github.com/cmusphinx/cmudict) holds American English entries that the CMU Speech Group curated by hand in ARPABET, under a BSD-style licence from Carnegie Mellon University. [scriptconv](https://github.com/TigreGotico/scriptconv) converts them to IPA, and that mechanical transform can add its own errors. English spelling is deeply irregular, so this row is a floor for a rule-driven engine.
 
 ## European Portuguese regional dialect gold set (`ep_dialects`)
 
@@ -252,7 +254,7 @@ The gold is sentence-level phonetics, with connected-speech reductions, liaison 
 
 ## CLUP dialect archive gold set (`clup_dialect`)
 
-[TigreGotico/ArquivoDialetalCLUP_ipa](https://huggingface.co/datasets/TigreGotico/ArquivoDialetalCLUP_ipa) holds sentence-level IPA transcriptions of interview excerpts from the [Arquivo Dialetal](https://cl.up.pt/arquivo/) of the Centro de Linguística da Universidade do Porto (CLUP). The interviews are expert university dialectology. Neither the loader nor the dataset card says who or what produced the IPA column, so read the `expert-human` tier as the best case. Each row carries a `"<locality>, <district>"` label. The loader maps a row to a tag by locality first, on an exact match, and then by district:
+[TigreGotico/ArquivoDialetalCLUP_ipa](https://huggingface.co/datasets/TigreGotico/ArquivoDialetalCLUP_ipa) holds sentence-level IPA transcriptions of interview excerpts from the [Arquivo Dialetal](https://cl.up.pt/arquivo/) of the Centro de Linguística da Universidade do Porto (CLUP). The interviews are expert university dialectology. Neither the loader nor the dataset card says who or what produced the IPA column, so read the `expert-human` tier as the best case. The card states no licence. Each row carries a `"<locality>, <district>"` label. The loader maps a row to a tag by locality first, on an exact match, and then by district:
 
 | District or locality | Tag |
 |---|---|
@@ -273,7 +275,7 @@ Two rows, from Marinha Grande and Amor in the Leiria district, are excluded. Lei
 
 ## Mirandese gold set
 
-[TigreGotico/mirandese_g2p](https://huggingface.co/datasets/TigreGotico/mirandese_g2p) holds word and IPA rows with a `dialect` column, collected by a native speaker of Mirandese ([MdMV](https://commons.wikimedia.org/wiki/User:MdMV_or_Emdy_idk)). Its registry key is `mirandese_g2p`, and it is split by that column:
+[TigreGotico/mirandese_g2p](https://huggingface.co/datasets/TigreGotico/mirandese_g2p) holds word and IPA rows with a `dialect` column, collected by a native speaker of Mirandese ([MdMV](https://commons.wikimedia.org/wiki/User:MdMV_or_Emdy_idk)). The card states no licence. Its registry key is `mirandese_g2p`, and it is split by that column:
 
 | `dialect` | Tag | Variety |
 |---|---|---|
@@ -285,13 +287,15 @@ Its native-speaker provenance makes it the reference gold and the most trustwort
 
 ## Barranquenho synthetic IPA dictionary (`barranquenho_dict`)
 
-[TigreGotico/barranquenho-ipa-dict-synthetic](https://huggingface.co/datasets/TigreGotico/barranquenho-ipa-dict-synthetic) holds word and IPA entries for Barranquenho, the Portuguese-Spanish contact variety of Barrancos, scored against the `ext-PT-x-barranco` spec. Each row also carries a part of speech, the Portuguese and Spanish equivalents, and a phonological note. Only the orthography and IPA columns are scored.
+[TigreGotico/barranquenho-ipa-dict-synthetic](https://huggingface.co/datasets/TigreGotico/barranquenho-ipa-dict-synthetic) (CC BY 4.0) holds word and IPA entries for Barranquenho, the Portuguese-Spanish contact variety of Barrancos, scored against the `ext-PT-x-barranco` spec. Each row also carries a part of speech, the Portuguese and Spanish equivalents, and a phonological note. Only the orthography and IPA columns are scored.
 
-A large language model (Claude) wrote the IPA, conditioned on the published *Convenção Ortográfica do Barranquenho* and descriptive research on the variety. No phonemizer, no part of this engine and no consumer of it produced the IPA, so scoring against it is not circular. No phonetician verified it, and it can be wrong. The tier is `llm-generated`, so the row gates nothing and is a [direction only](benchmarks.md#provenance-discipline).
+A large language model (Claude) wrote the IPA, conditioned on the published *Convenção Ortográfica do Barranquenho* and descriptive research on the variety. No phonemizer, no part of this engine and no consumer of it produced the source IPA. No phonetician verified it, and it can be wrong.
+
+The board does not score the source IPA. It scores the label in `orthography2ipa/data/gold/barranquenho_dict.llm-corrected.jsonl`, which [`scripts/correct_silver_ipa.py`](../contributing/silver_correction.md) wrote: two blind model passes, and a third that decides where they differ with the engine output in view. The tier is `llm-corrected`, which is silver, so the row gates nothing and is a [direction only](benchmarks.md#provenance-discipline).
 
 ## Mirandese synthetic IPA dictionary (`mirandese_dict`)
 
-[TigreGotico/mirandese-ipa-dict-synthetic](https://huggingface.co/datasets/TigreGotico/mirandese-ipa-dict-synthetic) holds word and IPA entries for Mirandese, each with a `dialect` column. It is a separate source from the native-speaker gold above, and it complements it. Each row is scored under exactly one tag:
+[TigreGotico/mirandese-ipa-dict-synthetic](https://huggingface.co/datasets/TigreGotico/mirandese-ipa-dict-synthetic) (CC BY-SA 4.0) holds word and IPA entries for Mirandese, each with a `dialect` column. It is a separate source from the native-speaker gold above, and it complements it. Each row is scored under exactly one tag:
 
 | `dialect` | Tag | Note |
 |---|---|---|
@@ -299,11 +303,11 @@ A large language model (Claude) wrote the IPA, conditioned on the published *Con
 | `sendinês` | `mwl-x-sendim` | Southern Sendinês |
 | `raiano` | `mwl-x-ifanes` | Ifanês is the Northern or Raiano sub-dialect in this spec set. Only a few rows, so read the interval. |
 
-The provenance is the same as for `barranquenho_dict`. A large language model (Claude) wrote the IPA, conditioned on the *Convenção Ortográfica da Língua Mirandesa* and descriptive research on the sub-dialects. The row is not circular, not verified by a phonetician, and possibly wrong. The tier is `llm-generated`, and the row is a direction only.
+The provenance is the same as for `barranquenho_dict`. A large language model (Claude) wrote the IPA, conditioned on the *Convenção Ortográfica da Língua Mirandesa* and descriptive research on the sub-dialects. No phonetician verified it, and it can be wrong. The board scores the corrected label in `orthography2ipa/data/gold/mirandese_dict.llm-corrected.jsonl` at the `llm-corrected` tier, and the row is a direction only.
 
 ## 4catac Catalan accents gold set
 
-[projecte-aina/4catac](https://huggingface.co/datasets/projecte-aina/4catac) holds sentence-level rows in IPA, transcribed by experts to the guidelines of the Institut d'Estudis Catalans and reviewed by several annotators for consensus. The same sentences, with small morphological adaptations, are transcribed separately for four accents, one TSV per accent:
+[projecte-aina/4catac](https://huggingface.co/datasets/projecte-aina/4catac) (CC BY 4.0) holds sentence-level rows in IPA, transcribed by experts to the guidelines of the [Institut d'Estudis Catalans](https://www.iec.cat/) and reviewed by several annotators for consensus. The same sentences, with small morphological adaptations, are transcribed separately for four accents, one TSV per accent:
 
 | File | Tag | Accent |
 |---|---|---|
@@ -338,7 +342,7 @@ A file for which the Credits name no source is `machine-generated`, marked as un
 | `ar` | `ar.txt` | machine-generated | The output of the Arabic Morphological Analyzer of Tim Buckwalter. |
 | `es-ES` | `es_ES.txt` | machine-generated | The [spanish-pronunciation-rules](https://github.com/easypronunciation/spanish-pronunciation-rules-php) PHP script, which its README calls "experimental". |
 | `es-MX` | `es_MX.txt` | machine-generated | The same script. The file is near-identical to `es_ES`, so the two rows are not independent evidence. |
-| `fa` | `fa.txt` | machine-generated | Wiktionary, [PersPred](http://perspred.cnrs.fr/perspred-project) and "a great deal of guesswork". The README calls it "extremely experimental", so an improvement against this row is no evidence about Persian. |
+| `fa` | `fa.txt` | machine-generated | Wiktionary, PersPred (a CNRS Persian lexicon project whose site no longer resolves) and "a great deal of guesswork". The README calls it "extremely experimental", so an improvement against this row is no evidence about Persian. |
 | `fi` | `fi.txt` | machine-generated | [prosodic1b](https://github.com/jsfalk/prosodic1b), a rule-based tool, over the Kotus word list, GPL 2.0. |
 | `nl-NL` | `nl.txt` | machine-generated | Instituut voor de Nederlandse Taal, CC BY. The README says that "no manual correction or revision has been done". |
 | `or` | `or.txt` | machine-generated | [OdiaWikimedia Converter](https://github.com/OdiaWikimedia/Converter/tree/master/IPA-Romanization) over Wikimedia dumps. |
@@ -369,11 +373,11 @@ Those words carry several times the error rate of the words written only in kana
 
 ## HiTZ Basque Wikipedia IPA corpus (`hitz_basque_ipa`)
 
-[HiTZ/wikipedia_basque_ipa](https://huggingface.co/datasets/HiTZ/wikipedia_basque_ipa) holds paragraph-level `text` and `phonemes` rows extracted from the Basque Wikipedia dump. HiTZ Zentroa and AhoLab publish it. AhoLab is the language technology group of the University of the Basque Country (UPV/EHU).
+[HiTZ/wikipedia_basque_ipa](https://huggingface.co/datasets/HiTZ/wikipedia_basque_ipa) (CC BY-SA 4.0) holds paragraph-level `text` and `phonemes` rows extracted from the Basque Wikipedia dump. HiTZ Zentroa and [AhoLab](https://aholab.ehu.eus/) publish it. AhoLab is the language technology group of the University of the Basque Country (UPV/EHU).
 
 ahoNT, the Basque text processing and phonemization tool of HiTZ, produced the IPA, so this is tool output, not human annotation.
 
-This dataset is an explicit exception to the [provenance discipline](benchmarks.md#provenance-discipline), because an academic research group publishes it. The row is additive to the `wikipron` `eu` row, which is the independent gold for Basque. A low PER for AhoTTS on this row only shows that the tool reproduces itself, so compare AhoTTS on the `wikipron` `eu` row instead.
+This dataset is an explicit exception to the [provenance discipline](benchmarks.md#provenance-discipline), because an academic research group publishes it. The row is additive to the `wikipron` `eu` row, which is the independent gold for Basque. A low PER for AhoTTS on this row only shows that the tool reproduces itself, so compare AhoTTS, through its Python port [ahotts-g2p](https://github.com/TigreGotico/ahotts-g2p), on the `wikipron` `eu` row instead.
 
 The source data is paragraph-level, so `load_hitz_basque` pages the dataset through the `rows` REST API of the Hugging Face datasets server and never downloads the full parquet. It splits the `text` and `phonemes` of each paragraph on whitespace in step. The dataset card says ahoNT writes one phoneme token per source word, with punctuation attached. The loader pairs the tokens by position, strips punctuation from both sides, and collects unique single-word pairs.
 
@@ -381,13 +385,13 @@ It stops after `_HITZ_BASQUE_MAX_PARAGRAPHS` (500) paragraphs, a bound that `--l
 
 ## VoxCommunis parallel G2P (`vox_communis`)
 
-[fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p) (CC0) holds Common Voice utterances force-aligned by the VoxCommunis Corpus. Each utterance has a phone string from lexicons built with Epitran, the XPF Corpus, Charsiu and custom dictionaries. VoxCommunis corrected part of them by hand, but no row says which. There is one small TSV per language.
+[fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p) (CC0 1.0) holds [Common Voice](https://commonvoice.mozilla.org/) utterances that the VoxCommunis Corpus (Ahn & Chodroff 2022, [*VoxCommunis: A Corpus for Cross-linguistic Phonetic Analysis*](https://aclanthology.org/2022.lrec-1.566/), LREC) force-aligned. Each utterance has a phone string from lexicons built with [Epitran](https://github.com/dmort27/epitran), the [XPF Corpus](https://cohenpr-xpf.github.io/XPF/), [CharsiuG2P](https://github.com/lingjzhu/CharsiuG2P) and custom dictionaries. VoxCommunis corrected part of them by hand, but no row says which. There is one small TSV per language.
 
-69 language tags are wired: every file with a matching spec, and a few regional aliases. The aliases are `sv-se` to `sv`, `hy-am` to `hy`, `fy-nl` to `fy`, `pa-in` to `pa`, and the `pt` file with no region to `pt-BR`. The `zh-cn` and `yue` files are deliberately not wired (see [Rejected candidates](#rejected-candidates)). The tier is `epitran-derived`, because Epitran is a scored competitor in [comparison.md](generated/comparison.md). A disagreement measures divergence from the output of a competitor. The row is a breadth signal only, and it can never gate a regression or qualify a spec.
+`_VOX_COMMUNIS_FILES` in `scripts/benchmark.py` wires every file with a matching spec, and `tests/test_vox_communis_loader.py` holds the count at 69 tags. Most files map to the tag of the same name. Seven do not: `sv-se` maps to `sv`, `hy-am` to `hy`, `fy-nl` to `fy` and `pa-in` to `pa`. The files with no region map to the regional spec: `gl` to `gl-ES`, `nl` to `nl-NL`, and `pt` to `pt-BR`. The `zh-cn` and `yue` files are deliberately not wired (see [Rejected candidates](#rejected-candidates)). The tier is `epitran-derived`, because Epitran is a scored competitor in [comparison.md](generated/comparison.md). A disagreement measures divergence from the output of a competitor. The row is a breadth signal only, and it can never gate a regression or qualify a spec.
 
 The `phonemized_sentence` column holds phones separated by spaces, with `|` between words, aligned with the whitespace tokens of `aligned_sentence`. The loader splits rows into word pairs like `ipa_childes`. It skips rows whose token counts differ and strips alignment artefacts.
 
-The loader drops `spn` tokens and does not score them. `spn` is the "spoken noise" symbol of the Montreal Forced Aligner, and VoxCommunis reuses it for any word that its lexicon could not cover. It marks a hole in coverage, not a transcription. PER divides by the gold length, so one real long word scored against a three-character `spn` gives a per-word PER above 3, and the error has no bound. Some files lose a large share of their tokens to `spn`, worst of all Kazakh, Abkhaz and Chuvash.
+The loader drops `spn` tokens and does not score them. `spn` is the "spoken noise" symbol of the [Montreal Forced Aligner](https://montreal-forced-aligner.readthedocs.io/), and VoxCommunis reuses it for any word that its lexicon could not cover. It marks a hole in coverage, not a transcription. PER divides by the gold length, so one real long word scored against a three-character `spn` gives a per-word PER above 3, and the error has no bound. Some files lose a large share of their tokens to `spn`, worst of all Kazakh, Abkhaz and Chuvash.
 
 `spn` is the only token filtered. Its siblings `sil`, `sp`, `nsn` and `noise` do occur, but mostly as real transcriptions of real words: Welsh `sul` is /sil/, and Amharic `ሲል`, Bulgarian `сп`, Tamil `ஸ்ப்`, Korean `실` and Punjabi `ਸੀਲ` are similar. Filtering on the phone string would delete real gold.
 
@@ -421,7 +425,7 @@ The row is therefore a sample of the Bashkir that Epitran covers, and no score o
 
 The Abkhaz gold has no symbol for labialization, and more than half of its word types are `spn`. [Gold defects](gold_defects.md#abkhaz-vox_communis) gives the counts and the eight letters that are always `spn`. What survives is the part of Abkhaz without labialization, and most of its remaining distance is convention, not mapping.
 
-Three folds remove most of it. The first maps the undotted ⟨ш ж ҽ ҿ⟩ series of the gold onto the retroflex symbols of the spec. The second removes the aspiration that the gold never writes. The third reads ⟨е о и у⟩ as the underlying /aj aw j w/ of the gold. A small part of real disagreement remains. The spec keeps aspiration and the retroflex series, because the JIPA Illustration of Abkhaz transcribes the name of the language as /apʰsaʃʷa/ ([doi:10.1017/S0025100320000390](https://doi.org/10.1017/S0025100320000390)). The independent `wikipron` `ab` row marks aspiration too.
+Three folds remove most of it. The first maps the undotted ⟨ш ж ҽ ҿ⟩ series of the gold onto the retroflex symbols of the spec. The second removes the aspiration that the gold never writes. The third reads ⟨е о и у⟩ as the underlying /aj aw j w/ of the gold. A small part of real disagreement remains. The spec keeps aspiration and the retroflex series, because the JIPA Illustration "Cwyzhy Abkhaz" transcribes the name of the language as /apʰsaʃʷa/ ([doi:10.1017/S0025100320000390](https://doi.org/10.1017/S0025100320000390)). The independent `wikipron` `ab` row marks aspiration too.
 
 The row gets no `PROVENANCE_BY_LANG` override, on purpose. The tier ladder has no rung below the output of a competitor. An override to `machine-generated` would give the row a gating vote ([reliability tiers](benchmarks.md#reliability-tiers)). The dataset tier stays, and the row stays non-qualifying, although [the `epitran` part of the label is wrong](gold_defects.md#abkhaz-vox_communis-1) for this row.
 
@@ -457,11 +461,11 @@ The row keeps the `machine-generated` tier of the base file and, like every [ove
 
 ## IPA-CHILDES split (`ipa_childes`)
 
-[fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split) is a processed version of IPA-CHILDES, the phonemized CHILDES corpus of child language (CC BY 4.0), split into `train` and `test` CSVs per language. Each row is an utterance with several IPA columns. The harness uses `ipa_g2p_plus`, the column from the G2P+ phonemizer. The dataset writes it with one segment per orthographic word, separated by `" | "`, aligned by position with the whitespace tokens of the sentence. The CHILDES academic-corpus exception admits these tool transcriptions as gold, but which tool made them matters, and it differs per language.
+[fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split) (CC BY 4.0) is a processed version of [IPA-CHILDES](https://huggingface.co/datasets/phonemetransformers/IPA-CHILDES), the phonemized [CHILDES](https://childes.talkbank.org/) corpus of child language, split into `train` and `test` CSVs per language. Each row is an utterance with several IPA columns. The harness uses `ipa_g2p_plus`, the column from the [G2P+](https://github.com/codebyzeb/g2p-plus) phonemizer. The dataset writes it with one segment per orthographic word, separated by `" | "`, aligned by position with the whitespace tokens of the sentence. The CHILDES academic-corpus exception admits these tool transcriptions as gold, but which tool made them matters, and it differs per language.
 
 ### Provenance: one tool per language, and every one of them is a competitor
 
-The [IPA-CHILDES dataset card](https://huggingface.co/datasets/phonemetransformers/IPA-CHILDES) names the phonemizing tool per language. Most languages went through `phonemizer`, whose backend is espeak-ng. Six went through epitran, and Mandarin went through `pinyin_to_ipa`. espeak-ng and epitran are both systems that this project scores itself against ([comparison](generated/comparison.md) has `espeak_per` and `epitran_per` columns). An IPA-CHILDES row therefore measures agreement with a competitor, not correctness. Each row takes the tier of its own tool, from `_IPA_CHILDES_TOOL` through `_IPA_CHILDES_PROVENANCE` in `scripts/benchmark.py`, and a test enforces the mapping. None of the espeak or epitran rows can qualify or block a language for `production` ([quality tiers](../specs/quality_tiers.md)).
+The [IPA-CHILDES dataset card](https://huggingface.co/datasets/phonemetransformers/IPA-CHILDES) names the phonemizing tool per language. Most languages went through [`phonemizer`](https://github.com/bootphon/phonemizer), whose backend is [espeak-ng](https://github.com/espeak-ng/espeak-ng). Six went through [epitran](https://github.com/dmort27/epitran), and Mandarin went through `pinyin_to_ipa`. espeak-ng and epitran are both systems that this project scores itself against ([comparison](generated/comparison.md) has `espeak_per` and `epitran_per` columns). An IPA-CHILDES row therefore measures agreement with a competitor, not correctness. Each row takes the tier of its own tool, from `_IPA_CHILDES_TOOL` through `_IPA_CHILDES_PROVENANCE` in `scripts/benchmark.py`, and a test enforces the mapping. None of the espeak or epitran rows can qualify or block a language for `production` ([quality tiers](../specs/quality_tiers.md)).
 
 | Tag | Dataset folder | Tool, per the card | Tier |
 |---|---|---|---|
@@ -520,7 +524,7 @@ Each of these is a correct, standard description of German, and each reads as an
 
 ## IPA-BabyLM (`ipa_babylm`)
 
-[phonemetransformers/IPA-BabyLM](https://huggingface.co/datasets/phonemetransformers/IPA-BabyLM) holds the BabyLM 2024 pre-training corpora (BNC spoken, CHILDES, Gutenberg, OpenSubtitles, Simple Wikipedia and Switchboard), converted to phonemes with [G2P+](https://github.com/codebyzeb/g2p-plus). It covers English only. The two configs, `strict` and `strict-small`, differ only in their train split and share one `dev` split, so there is one gold set here, not two. The harness reads only the held-out `dev` split, never the train data that the models were trained on.
+[phonemetransformers/IPA-BabyLM](https://huggingface.co/datasets/phonemetransformers/IPA-BabyLM) holds the [BabyLM](https://babylm.github.io/) 2024 pre-training corpora (BNC spoken, CHILDES, Gutenberg, OpenSubtitles, Simple Wikipedia and Switchboard), converted to phonemes with [G2P+](https://github.com/codebyzeb/g2p-plus). It covers English only. The two configs, `strict` and `strict-small`, differ only in their train split and share one `dev` split, so there is one gold set here, not two. The harness reads only the held-out `dev` split, never the train data that the models were trained on.
 
 The provenance is espeak at one remove. G2P+ is a wrapper whose backends are `phonemizer` and `epitran`, and its `phonemizer` backend needs espeak-ng. The notebook that produced this dataset ([codebyzeb/babylm-ipa](https://github.com/codebyzeb/babylm-ipa), `prepare_babylm.ipynb`) calls `transcribe_utterances(..., "phonemizer", language="en-us", ...)`. The gold is therefore espeak-ng output. Its tier is `espeak-derived`, and it can neither qualify nor block English.
 
@@ -530,19 +534,19 @@ The dataset card declares no licence. The underlying BabyLM corpora keep their o
 
 ## Lexibank/CLDF wordlist gold (`northeuralex`, `wold`)
 
-[Lexibank](https://github.com/lexibank) republishes comparative word lists and dictionaries in [CLDF](https://cldf.clld.org/) (Cross-Linguistic Data Format). Each dataset has one `cldf/forms.csv`, keyed by `Language_ID`, which `cldf/languages.csv` resolves to a Glottocode or ISO 639-3 code. The `Value` column holds the word as recorded, in its real orthography or script. The `Segments` column holds phonemic segments separated by spaces, with `+` at a morpheme boundary. The `Source` column cites the dictionary or grammar each row comes from. This is compiled, cited lexicographic data, not phonemizer output, so the tier is `lexicon-derived`, the class of `cmudict` and `portuguese_unified`.
+[Lexibank](https://github.com/lexibank) republishes comparative word lists and dictionaries in [CLDF](https://cldf.clld.org/) (Cross-Linguistic Data Format). Each dataset has one `cldf/forms.csv`, keyed by `Language_ID`, which `cldf/languages.csv` resolves to a Glottocode or ISO 639-3 code. The `Value` column holds the word as recorded, in its real orthography or script. The `Segments` column holds phonemic segments separated by spaces, with `+` at a morpheme boundary. The `Source` column cites the dictionary or grammar each row comes from. This is compiled, cited lexicographic data, not phonemizer output, so the tier is `lexicon-derived`, the class of `cmudict` and `portuguese_unified`. Both wired repositories carry the CC BY 4.0 licence.
 
 These datasets serve specs that have a grapheme table and no other gold. A wired language must have a non-empty grapheme table, and a smoke check must show that the engine gives non-empty output for a large majority of its forms. A low PER here is evidence toward a higher tier in [quality_tiers.md](../specs/quality_tiers.md), not a copy of an existing row. Sample sizes, spec tiers and PER are on the [scoreboard](generated/scoreboard.md) under each dataset.
 
-[NorthEuraLex](https://github.com/lexibank/northeuralex) (Dellert et al. 2020, *NorthEuraLex: a wide-coverage lexical database of Northern Eurasia*) is a comparative word list of more than a hundred languages. The wired tags and their NorthEuraLex IDs are `_NORTHEURALEX_LANGS` in `scripts/benchmark.py`, and `--list` prints them.
+[NorthEuraLex](https://github.com/lexibank/northeuralex) (Dellert et al. 2020, [*NorthEuraLex: a wide-coverage lexical database of Northern Eurasia*](https://doi.org/10.1007/s10579-019-09480-6), Language Resources and Evaluation) is a comparative word list of more than a hundred languages. The wired tags and their NorthEuraLex IDs are `_NORTHEURALEX_LANGS` in `scripts/benchmark.py`, and `--list` prints them.
 
-They cover Uralic languages, such as Livonian, the Sami languages, Mari, Mansi and the Samoyedic languages. They cover Caucasian languages (Adyghe, Avar, Lak, Dargwa, Lezgian, Tsez) and Tungusic languages. They cover Paleo-Siberian languages and isolates (Nivkh, Chukchi, Itelmen, Ket, the Yukaghir languages). Others include Latvian, Buryat, Aleut and Hokkaido Ainu.
+Most wired tags are Uralic: Livonian, Veps, Skolt, Kildin and Inari Sami, Eastern and Hill Mari, Udmurt, Khanty, Mansi, and the Samoyedic Nenets, Forest Enets, Nganasan and Selkup. The Caucasian tags are Adyghe, Avar, Lak, Dargwa, Lezgian and Tsez (Dido), and the Tungusic tags are Evenki, Nanai and Manchu. The Paleo-Siberian languages and isolates are Nivkh, Chukchi, Itelmen, Ket and Northern Yukaghir. The rest are Latvian, Buryat, Aleut, Central Siberian Yupik and Hokkaido Ainu.
 
 Two tags need a code translation. NorthEuraLex identifies Avar as `ava`, not `av`, and Latvian as `lav`, not `lv`. Its `dar` row is North-Central Dargwa, the Akusha-based standard that the `dar` spec targets.
 
 Some languages are excluded despite a code match. `yux` (Southern Yukaghir) has a grapheme table but gave no non-empty output in the smoke check. Its grapheme inventory and the Cyrillic orthography of NorthEuraLex for that variety do not match, and a gold row cannot fix that. The `bsk` (Burushaski) is excluded because its NorthEuraLex `Value` column is the scholarly transcription of Berger (1998), not a community orthography.
 
-[WOLD](https://github.com/lexibank/wold) (Haspelmath & Tadmor 2009, *World Loanword Database*) is a word list for loanword typology. Its wired tags are `car` (Galibi Carib, WOLD `Kalina`), `arn` (Mapudungun), `gwd` (Gawwada), `irk` (Iraqw), `crs` (Seychelles Creole) and `rif` (Tarifiyt Berber), in `_WOLD_LANGS`. The WOLD `KildinSaami` list is excluded. It romanizes Kildin Sami differently from the Cyrillic forms of NorthEuraLex and gave almost no non-empty output, while the NorthEuraLex `sjd` row exercises the grapheme table of the spec.
+[WOLD](https://github.com/lexibank/wold) (Haspelmath & Tadmor 2009, [*World Loanword Database*](https://wold.clld.org/)) is a word list for loanword typology. Its wired tags are `car` (Galibi Carib, WOLD `Kalina`), `arn` (Mapudungun), `gwd` (Gawwada), `irk` (Iraqw), `crs` (Seychelles Creole) and `rif` (Tarifiyt Berber), in `_WOLD_LANGS`. The WOLD `KildinSaami` list is excluded. It romanizes Kildin Sami differently from the Cyrillic forms of NorthEuraLex and gave almost no non-empty output, while the NorthEuraLex `sjd` row exercises the grapheme table of the spec.
 
 Every WOLD language was checked against the registry. Most of the unwired ones already have gold elsewhere, such as English, Dutch, Japanese, Mandarin, Thai, Vietnamese, Indonesian, Hawaiian, White Hmong, Hausa, Lower Sorbian and Kildin Sami. Some have no spec: Kanuri, Zinacantan Tzotzil, Malagasy, Old High German, Selice Romani and Sakha. The rest resolve to stub specs with an empty grapheme table, which gives a gold row nothing to exercise. Those are Archi, Bezhta, Manange, Ket, Oroqen, Ceq Wong, Takia, Gurindji, Yaqui, Qeqchi, Otomi, Saramaccan, Imbabura Quechua, Hup and Wichi.
 
@@ -550,7 +554,7 @@ Other Lexibank datasets were inspected and rejected (see [Rejected candidates](#
 
 ## kaikki.org Wiktextract gold (`kaikki`)
 
-[kaikki.org](https://kaikki.org/dictionary/) republishes the [Wiktextract](https://github.com/tatuylonen/wiktextract) (Ylonen 2022) extraction of Wiktionary as one JSON-lines file per language. Each entry carries a `word` (the headword as written), a `pos`, and a `sounds` list of `{"ipa": "..."}` objects, often with several variants. It draws on the same community edits as `wikipron` through another pipeline, so it is not an independent transcriber, and its tier is `crowd-scraped`.
+[kaikki.org](https://kaikki.org/dictionary/) republishes the [Wiktextract](https://github.com/tatuylonen/wiktextract) extraction of Wiktionary (Ylonen 2022, [*Wiktextract: Wiktionary as Machine-Readable Structured Data*](https://aclanthology.org/2022.lrec-1.140/), LREC) as one JSON-lines file per language, under the Wiktionary terms (CC BY-SA and GFDL). Each entry carries a `word` (the headword as written), a `pos`, and a `sounds` list of `{"ipa": "..."}` objects, often with several variants. It draws on the same community edits as `wikipron` through another pipeline, so it is not an independent transcriber, and its tier is `crowd-scraped`.
 
 The set exists for specs that have a grapheme table and no other gold. Each candidate was looked up in the language index of kaikki.org, with its size checked by a `HEAD` request before any download, and nothing is vendored. The loader keeps entries with a non-empty `sounds[].ipa` and drops `pos: "character"` entries (`_KAIKKI_EXCLUDED_POS`), which gloss a letter or digraph and are not words (Xhosa `hl` gives /ɬ/). Each wired language was sampled by hand and smoke-checked for non-empty output on at least 70% of entries. For `jv`, `so` and `om`, `_KAIKKI_WORD_FILTER` keeps only Latin-script words.
 
@@ -594,11 +598,11 @@ An oracle over the five contrasts that the orthography does not decide (`e`/`ɛ`
 
 ## Russian gold (`alphacep_ru_book`, `coruss_ru`)
 
-`alphacep_ru_book` reads the `dev` split of [alphacep/biggest-ru-book-cleanup](https://huggingface.co/datasets/alphacep/biggest-ru-book-cleanup), a cleaned phone-level annotation of the Russian audiobook data `its5Q/biggest-ru-book`. Each row is `wav|sentence|phones`, with one segment group per word, and the loader splits rows into word pairs as `load_vox_communis` does. An automatic accentuator and G2P made the phone tier, so the tier is `machine-generated`, which gates. The annotation is morphophonemic. It keeps the full quality of unstressed vowels (`молчал` is written with an unreduced [o]), and it writes the genitive ⟨г⟩ as [g], not the spoken [v].
+`alphacep_ru_book` reads the `dev` split (`metadata-phones-ids.csv.dev`) of [alphacep/biggest-ru-book-cleanup](https://huggingface.co/datasets/alphacep/biggest-ru-book-cleanup), a cleaned phone-level annotation of the Russian audiobook data [its5Q/biggest-ru-book](https://huggingface.co/datasets/its5Q/biggest-ru-book). Neither card states a licence. Each row is `wav|sentence|phones`, with one segment group per word, and the loader splits rows into word pairs as `load_vox_communis` does. An automatic accentuator and G2P made the phone tier, so the tier is `machine-generated`, which gates. The annotation is morphophonemic. It keeps the full quality of unstressed vowels (`молчал` is written with an unreduced [o]), and it writes the genitive ⟨г⟩ as [g], not the spoken [v].
 
 This engine writes surface phonetics, so the row disagrees on exactly those two features. That is a mismatch between two legitimate conventions, and it must not be fixed by adding exceptions to the spec.
 
-`coruss_ru` reads the CoRuSS phonetic dictionaries (Kachkovskaia et al. 2016, LREC) of the phonetics lab of Saint Petersburg State University. They are `word [transcription] count` rows over read speech, monologue and dialogue, transcribed by experts from audio with no engine involved. The lab's ASCII notation ([russpeech.spbu.ru/transkrip.htm](https://russpeech.spbu.ru/transkrip.htm)) is mapped to IPA by the loader.
+`coruss_ru` reads the [CoRuSS](https://russpeech.spbu.ru/) phonetic dictionaries (Kachkovskaia et al. 2016, [*CoRuSS - a New Prosodically Annotated Corpus of Russian Spontaneous Speech*](https://aclanthology.org/L16-1309/), LREC) of the phonetics lab of Saint Petersburg State University. The loader fetches the `slovari.rar` archive once and needs `unar` or `unrar` on `PATH` to read it. The site states no licence. They are `word [transcription] count` rows over read speech, monologue and dialogue, transcribed by experts from audio with no engine involved. The lab's ASCII notation ([russpeech.spbu.ru/transkrip.htm](https://russpeech.spbu.ru/transkrip.htm)) is mapped to IPA by the loader.
 
 The transcription is surface-phonetic and colloquial. It records what a speaker said in unscripted speech, syllable deletions included (⟨Александровна⟩ [lʲiksanə], ⟨Волгоград⟩ [vodɡrat]). A G2P cannot reach a low PER here and is not meant to. Read the number as the distance to spontaneous surface forms, and compare it only with other runs on this dataset. The loader keeps every attested realization of a word form, so the row has several references per word.
 
@@ -640,10 +644,10 @@ These datasets were investigated and excluded, because a tool generated the IPA,
 | `vox_communis` `yue.tsv` | Not wired: cannot be transcribed | Han script, and the `yue` spec is a stub. |
 | kaikki.org Occitan | Not wired: same source as the existing row | The `oc` row already reads WikiPron, and kaikki reads the same Wiktionary. A second row would measure one body of transcription twice. VoxCommunis has no Occitan file. |
 | kaikki.org Tetum | Rejected: too thin | Almost no entries carry IPA, and WikiPron has no Tetum. `tet` is scored on the primary-source rows of its own grammar. |
-| Lexique 3.82 (French) | Excluded: notation | Human-curated by Boris New and Christophe Pallier (CNRS), and CC BY-SA 4.0. Its custom notation (`§` for ɔ̃, `5` for ɛ̃, `8` for œ̃, `°` for a schwa variant) is neither X-SAMPA nor IPA, and `scriptconv.notation.xsampa_to_ipa` does not convert it. A dedicated converter would be a clean follow-up. WikiPron `fra` is the French gold meanwhile. |
-| NST lexicons for Swedish, Norwegian and Danish (Språkbanken) | Excluded: no programmatic download | Authoritative human SAMPA lexicons for Swedish, Norwegian Bokmål and Danish from Nasjonalbiblioteket. The portal serves catalogue pages and no stable raw URL. The WikiPron Scandinavian files are used instead. |
-| CELEX2 (German, Dutch, English) | Excluded: proprietary | LDC licence (LDC96L14). |
-| GlobalPhone | Excluded: ELRA licence | Licensed per language, not freely downloadable. |
+| [Lexique 3.82](http://www.lexique.org/) (French) | Excluded: notation | Human-curated by Boris New and Christophe Pallier (CNRS), and CC BY-SA 4.0. Its custom notation (`§` for ɔ̃, `5` for ɛ̃, `8` for œ̃, `°` for a schwa variant) is neither X-SAMPA nor IPA, and `scriptconv.notation.xsampa_to_ipa` does not convert it. A dedicated converter would be a clean follow-up. WikiPron `fra` is the French gold meanwhile. |
+| NST lexicons for Swedish, Norwegian and Danish ([Språkbanken](https://www.nb.no/sprakbanken/)) | Excluded: no programmatic download | Authoritative human SAMPA lexicons for Swedish, Norwegian Bokmål and Danish from Nasjonalbiblioteket. The portal serves catalogue pages and no stable raw URL. The WikiPron Scandinavian files are used instead. |
+| [CELEX2](https://catalog.ldc.upenn.edu/LDC96L14) (German, Dutch, English) | Excluded: proprietary | LDC licence (LDC96L14). |
+| GlobalPhone | Excluded: ELRA licence | Licensed per language through the [ELRA catalogue](https://catalogue.elra.info/), not freely downloadable. |
 
 The `ja` `vox_communis` file stays registered. Its kana rows transcribe, and only the kanji minority give empty output, so the row still carries signal.
 

@@ -26,10 +26,10 @@ pt = G2P("pt-PT")
 pt.transcribe_word("sol")     # 'ˈsɔɫ'
 pt.transcribe_word("casa")    # 'ˈkazɐ'
 pt.transcribe_word("gatos")   # 'ˈɡatuʃ'
-pt.transcribe("os amigos")    # 'oz ɐˈmiɡuʃ'
+pt.transcribe("os amigos")    # 'uz ɐˈmiɡuʃ'
 ```
 
-Not every one of these results comes from the positional table. The coda [ʃ] of ⟨pasta⟩ comes from an allophone rule, and the [z] of ⟨os amigos⟩ comes from a sandhi rule (see [allophony.md](allophony.md)). The `intervocalic_cross_word` key in this spec is one of the positions the engine never emits, as the next section explains.
+Not every one of these results comes from the positional table. In ⟨os amigos⟩, the [z] comes from a sandhi rule across the word boundary, and the [u] of the article comes from the allophone rule `PT_LEX_CLITIC_O` (see [allophony.md](allophony.md)). A coda [ʃ] before a consonant, as in ⟨pasta⟩, also comes from an allophone rule. The `intervocalic_cross_word` key in this spec is one of the positions the engine never emits, as the next section explains.
 
 ## The `GraphemePosition` values
 
@@ -86,17 +86,19 @@ The docstrings in `orthography2ipa/types.py` carry the citations for each positi
 
 `orthography2ipa.positional.grapheme_positions` builds the ordered list for one grapheme. The order runs from the most specific position to the least specific:
 
-1. `before_final_vowel`.
-2. The exact next letter (`before_e`), then the next letter's vowel class (`before_front_vowel` or `before_back_vowel`), then `before_palatal`.
-3. `word_initial`, then `word_final` for the true last grapheme.
-4. `intervocalic`.
-5. The crossed aperture position (`nucleus_stressed_open` and its siblings), then `open_syllable` or `closed_syllable`.
-6. `nucleus_stressed`, or `nucleus_secondary`, or `nucleus_unstressed`. Then `first_pretonic`, `pretonic` or `posttonic`.
-7. `before_mute_e`.
-8. `word_final` for a grapheme that only a silenced plural ⟨-s⟩ or ⟨-x⟩ follows.
-9. The previous letter (`after_e`), its vowel class, `after_palatal` and `after_vowel`. After a consonant, `after_palatal` and `after_consonant`.
-10. `before_vowel` or `before_consonant`.
-11. `nucleus`, then `default`.
+| Rank | Positions tried |
+|---|---|
+| 1 | `before_final_vowel` |
+| 2 | The exact next letter (`before_e`), then the next letter's vowel class (`before_front_vowel` or `before_back_vowel`), then `before_palatal` |
+| 3 | `word_initial`, then `word_final` for the true last grapheme |
+| 4 | `intervocalic` |
+| 5 | The crossed aperture position (`nucleus_stressed_open` and its siblings), then `open_syllable` or `closed_syllable` |
+| 6 | `nucleus_stressed`, `nucleus_secondary` or `nucleus_unstressed`, then `first_pretonic`, `pretonic` or `posttonic` |
+| 7 | `before_mute_e` |
+| 8 | `word_final` for a grapheme that only a silenced plural ⟨-s⟩ or ⟨-x⟩ follows |
+| 9 | The previous letter (`after_e`), its vowel class, `after_palatal` and `after_vowel`; after a consonant, `after_palatal` and `after_consonant` |
+| 10 | `before_vowel` or `before_consonant` |
+| 11 | `nucleus`, then `default` |
 
 `orthography2ipa.positional.positional_candidates` walks this list and returns the candidates of the first position the spec declares. If the grapheme has a positional entry, the winning candidates rank first and the flat candidates follow them. The beam keeps the full search space this way. If no position matches, the flat table and its weights apply.
 
@@ -180,7 +182,7 @@ The class positions do nothing for a spec that does not declare them.
 
 ## Syllable aperture
 
-`open_syllable`, `closed_syllable` and the four crossed positions key a nucleus on whether its syllable has a coda. The Romance *loi de position* is stated in this environment. It gives close-mid /e ø o/ in open syllables and open-mid /ɛ œ ɔ/ in closed ones (Fougeron & Smith 1993, Tranel 1987 ch. 4, both in the `sources` of `fr-FR`). The French spec keys ⟨eu⟩ on aperture:
+`open_syllable`, `closed_syllable` and the four crossed positions key a nucleus on whether its syllable has a coda. The Romance *loi de position* is stated in this environment. It gives close-mid /e ø o/ in open syllables and open-mid /ɛ œ ɔ/ in closed ones (Fougeron & Smith 1993, [*French*](https://doi.org/10.1017/S0025100300004874), *JIPA* 23(2), and Tranel 1987, *The Sounds of French*, ch. 4, both in the `sources` of `fr-FR`). The French spec keys ⟨eu⟩ on aperture:
 
 ```json
 "eu": {"default": ["ø", "œ"], "open_syllable": ["ø", "œ"], "closed_syllable": ["œ", "ø"]}
@@ -236,10 +238,12 @@ pt.resolve_grapheme("a", GraphemePosition.ONSET)          # ['a', 'ɐ']
 pt.has_positional_data()                  # True
 sorted(pt.positional_grapheme_keys())     # ['a', 'c', 'e', 'g', 'gu', 'l', 'm', 'n', 'o', 'qu', 'r', 's', 'z']
 pt.positions_for_grapheme("s")
-# (<GraphemePosition.WORD_FINAL: 'word_final'>, <GraphemePosition.WORD_INITIAL: 'word_initial'>,
-#  <GraphemePosition.INTERVOCALIC: 'intervocalic'>,
-#  <GraphemePosition.INTERVOCALIC_CROSS_WORD: 'intervocalic_cross_word'>)
+# (<GraphemePosition.INTERVOCALIC: 'intervocalic'>,
+#  <GraphemePosition.INTERVOCALIC_CROSS_WORD: 'intervocalic_cross_word'>,
+#  <GraphemePosition.WORD_INITIAL: 'word_initial'>, <GraphemePosition.WORD_FINAL: 'word_final'>)
 ```
+
+`positions_for_grapheme` returns the declared positions in the order of the resolved spec, after inheritance has merged the base entries. That order is not the resolution order, and it can differ from the order of the keys in the spec file.
 
 The type of the field is `PositionalGrapheme2IPA`, which is `Dict[str, Dict[GraphemePosition, List[str]]]`. The loader turns the JSON keys into enum members. The dataclass default is `None`, and `__post_init__` turns it into `{}`.
 
@@ -260,10 +264,12 @@ Give a grapheme a positional entry only when its sound changes with context. A g
 es = G2P("es-ES")
 es.transcribe_word("lobo")     # 'ˈloβo'
 es.transcribe_word("boca")     # 'ˈboka'
-es.transcribe_word("verdad")   # 'beɾˈdað'
+es.transcribe_word("verdad")   # 'beɾˈðað'
 es.transcribe_word("gente")    # 'ˈxente'
 es.transcribe_word("lago")     # 'ˈlaɣo'
 ```
+
+The second ⟨d⟩ of ⟨verdad⟩ is word-final, so the table gives [ð]. The first ⟨d⟩ follows ⟨r⟩ and is not intervocalic, so the table leaves it [d]. The spec's allophone rule `ES_SPIRANT_D` then makes it [ð] after the continuant [ɾ].
 
 The `pt-BR` spec vocalises ⟨l⟩ in the coda with `before_consonant` and `word_final`:
 

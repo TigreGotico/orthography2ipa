@@ -10,7 +10,7 @@ A spec does not declare a `family` string. The family comes from the clade nodes
 
 ## Procedure
 
-1. Create `orthography2ipa/data/<code>.json`. Set `code`, `name`, `script` and an honest `quality`. Use `stub` when the spec is a stub ([quality tiers](../specs/quality_tiers.md)). A variety with no ISO 639-3 code takes a private-use code ([minting a lect code](../../orthography2ipa/data/SCHEMA.md#minting-a-private-use-lect-code)).
+1. Create `orthography2ipa/data/<code>.json`. Set `code`, `name`, `script` and an honest `quality`. Use `stub` when the spec is a stub ([quality tiers](../specs/quality_tiers.md)). A variety with no [ISO 639-3](https://iso639-3.sil.org) code takes a private-use code ([minting a lect code](../../orthography2ipa/data/SCHEMA.md#minting-a-private-use-lect-code)).
 
 2. Declare `graphemes` or `phonemes`.
 
@@ -20,7 +20,7 @@ A spec does not declare a `family` string. The family comes from the clade nodes
 
 5. Cite every claim in `sources`, as [citation honesty](citations.md) describes.
 
-6. Add `glottolog_code`, `wikidata_qid` and `iso639_3` where they exist. Make sure that each identifier resolves to this language. A null code is better than a wrong one.
+6. Add `glottolog_code`, `wikidata_qid` and `iso639_3` where they exist. Look them up in [Glottolog](https://glottolog.org), [Wikidata](https://www.wikidata.org) and the [ISO 639-3 registry](https://iso639-3.sil.org). Make sure that each identifier resolves to this language. A null code is better than a wrong one.
 
 7. Connect the ancestry with `parent` or `ancestors`. Give a new language or dialect the full `ancestors` list, because it carries the most data. A dialect that differs little from its parent can use `parent` alone. The ancestor roles and their typical weights are in [data model](../specs/data_model.md#ancestorrole) and in [`SCHEMA.md`](../../orthography2ipa/data/SCHEMA.md#ancestor-role-values).
 
@@ -94,13 +94,13 @@ The merge is one level deep, and `null` deletes an inherited entry ([`SCHEMA.md`
 
 ## Metadata worth filling in
 
-A spec also records what the language is. Fill in `sources`, `orthography_standard`, `location` and `timespan`. Add the cross-references `glottolog_code`, `wikidata_qid`, `phoible_id`, `wals_code` and `iso639_3`, and the reader links `wikipedia` and `urls`. [`SCHEMA.md`](../../orthography2ipa/data/SCHEMA.md#fields) defines each field and what reads it.
+A spec also records what the language is. Fill in `sources`, `orthography_standard`, `location` and `timespan`. Add the cross-references `glottolog_code` ([Glottolog](https://glottolog.org)), `wikidata_qid` ([Wikidata](https://www.wikidata.org)), `phoible_id` ([PHOIBLE](https://phoible.org)), `wals_code` ([WALS](https://wals.info)) and `iso639_3` ([ISO 639-3](https://iso639-3.sil.org)), and the reader links `wikipedia` and `urls`. [`SCHEMA.md`](../../orthography2ipa/data/SCHEMA.md#fields) defines each field and what reads it.
 
 ## Looking for a source: what a phone inventory cannot tell you
 
 A grapheme table maps a letter to the phones that it can take. A phone inventory lists the phones that a variety has. These are different facts, and the second never settles the first. A variety with both /q/ and /ɡ/ in its inventory still leaves ⟨ق⟩ undecided, and that reflex is the fact a spec records.
 
-The sources that are easiest to reach are inventories. PHOIBLE is the obvious place to look, and the `phoible_id` field points to it. It covers Arabic only at the level of the macrolanguage and the standard variety. A search of the full database by ISO code returns zero segments for `ayh`, `acq`, `abv`, `ssh`, `aao`, `adf`, `aec`, `avl`, `ayp`, `bbz` and `sqr`. Where PHOIBLE has an inventory, it gives phones and no letter mappings.
+The sources that are easiest to reach are inventories. [PHOIBLE](https://phoible.org/languages) is the obvious place to look, and the `phoible_id` field points to it. It covers Arabic only at the level of the macrolanguage and the standard variety. A search of the full database by ISO code returns zero segments for `ayh`, `acq`, `abv`, `ssh`, `aao`, `adf`, `aec`, `avl`, `ayp`, `bbz` and `sqr`. Where PHOIBLE has an inventory, it gives phones and no letter mappings.
 
 A sound-definition list in a phonetic description has the same limit. Dawod's 1952 thesis on the Aden dialect lists "voiced velar plosive" and "voiceless uvular plosive" in readable English, so Aden has both. Its one table that maps letters to those sounds has a symbol column that is not legible on the scan. The inventory is legible, and the reflexes cannot be recovered.
 
@@ -142,7 +142,7 @@ A key in `graphemes` must be a unit that the writing system treats as one symbol
 
 3. It blocks a wrong maximal-munch match. The tokenizer is greedy, so a key can earn its place when it defeats a wrong neighbour. Scottish Gaelic ⟨ngh⟩ /n̪ˠɣ/ exists because without it the digraph ⟨ng⟩ /ŋk/ wins, and the ⟨h⟩ of lenited ⟨gh⟩ is left on its own. Say so in `notes`.
 
-A key that fails all three tests is noise. ⟨bl⟩→/bl/ fails because b+l already gives /bl/. Russian ⟨бь⟩→/bʲ/ fails because the engine already reads ь as /ʲ/. The tokenizer always takes the longest key that matches, so the order of the keys in the file has no effect on the match.
+A key that fails all three tests is noise. ⟨bl⟩→/bl/ fails because b+l already gives /bl/. Russian ⟨бь⟩→/bʲ/ fails because the engine already reads ь as /ʲ/. The tokenizer always takes the longest key that matches, so the order of the keys in the file has no effect on the match ([tokenizer](../engine/tokenizer.md)).
 
 These keys are forbidden:
 
@@ -166,21 +166,9 @@ A grapheme that is always silent maps to an empty string. Spanish ⟨h⟩ is `"h
 
 ### Fill the allophone map
 
-The allophone map lists the phonetically distinct surface forms of each phoneme. These forms belong in it:
+The allophone map lists the phonetically distinct surface forms of each phoneme. It holds the allophones that the context predicts, such as place assimilation, lenition and aspiration. It also holds the stylistic or register variants that a source documents. When the spec is a standard variety that covers several dialects, it holds the variants of each dialect too.
 
-- Allophones that the context predicts, such as place assimilation, lenition and aspiration.
-
-- Stylistic or register variants that a source documents.
-
-- The variants of each dialect, when the spec is a standard variety that covers several dialects.
-
-These forms do not belong in it:
-
-- Free variants with no conditioning. List only the dominant one.
-
-- Variants of one speaker, or very marginal variants.
-
-- Sounds that the literature describes as separate phonemes.
+Some forms stay out of the map. A free variant with no conditioning is left out, and the map lists only the dominant form. The variants of one speaker and very marginal variants are left out. A sound that the literature describes as a separate phoneme is a phoneme, not an allophone, so it is left out as well.
 
 Put the citation form first: the form of slow, careful speech or of a dictionary recording. The contextual variants follow it. The English /t/ of `en-US` is `"t": ["t", "tʰ", "ɾ", "ʔ", "t̚"]`. A list that starts with `tʰ` has no citation form at its head.
 
@@ -288,7 +276,7 @@ The package ships descriptions: grapheme maps, rules, inventories and ancestry. 
 
 Deep orthographies such as English and Danish cannot reach production accuracy from rules alone. The answer is a lexicon that the caller registers at run time, or a separate package that supplies one through the `orthography2ipa.lexicons` entry points and that the caller enables in code. The API, the file format and the precedence are in [lexicon](../guide/lexicon.md#supplying-a-lexicon).
 
-Do not buy accuracy back inside a spec with suffix pseudo-graphemes or a growing `word_exceptions`. Text normalisation, diacritic restoration, script conversion and morphology belong downstream, in a consumer of the lattice. Examples of such consumers are [arbtok](https://github.com/TigreGotico/arbtok), [tugaphone](https://github.com/TigreGotico/tugaphone) and [scriptconv](https://github.com/TigreGotico/scriptconv).
+Do not buy accuracy back inside a spec with suffix pseudo-graphemes or a growing `word_exceptions`. Text normalisation, diacritic restoration, script conversion and morphology belong downstream, in a consumer of the lattice. Examples of such consumers are [arbtok](https://github.com/TigreGotico/arbtok), [tugaphone](https://github.com/TigreGotico/tugaphone) and [scriptconv](https://github.com/TigreGotico/scriptconv). [o2i-lexicons](https://github.com/TigreGotico/o2i-lexicons) is the package that ships residual lexicons through the entry points.
 
 The specs assume normalised input.
 

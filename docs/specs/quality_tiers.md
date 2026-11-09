@@ -1,6 +1,6 @@
 # Quality tiers
 
-`orthography2ipa.types.QualityTier` classifies how mature the data of a spec is. Every spec JSON states its tier in the `quality` field, and [`tests/test_data_quality.py`](../../tests/test_data_quality.py) fails a spec that leaves it out. This page defines what a spec must meet for each tier, so that a reader can check a tier claim against the repository.
+Every spec states how mature its data is, in the `quality` field, as one of the four values of `orthography2ipa.types.QualityTier`. [`tests/test_data_quality.py`](../../tests/test_data_quality.py) fails a spec that leaves the field out. This page defines what a spec must meet for each tier, so that a reader can check a tier claim against the repository before depending on it.
 
 | Tier | What it means | What a test enforces |
 |---|---|---|
@@ -9,27 +9,34 @@
 | `research` | A cited description, with stress and a measured gold | The `skeleton` checks |
 | `production` | Measured on a trusted gold of 500 words or more | The `skeleton` checks and the benchmark bar |
 
+Most specs are stubs, and only a few reach `production`. Count the tiers from the data, because a printed figure goes stale when a spec changes tier:
+
+```python
+import collections
+import orthography2ipa as o2i
+
+collections.Counter(o2i.get(c).quality.value for c in o2i.available_codes())
+```
+
 ## `stub`
 
-A stub holds `code`, `name`, `script` and a `parent`, so that the clade chain resolves and `family` derives from it. A grouping that is not a clade states `family` instead. Its `graphemes` and `allophones` may be empty, and it needs no gold. The tier is for a language that the library does not encode yet. It is also for an extinct language with a metadata-only entry.
+A stub holds `code`, `name`, `script` and a `parent`, so that the clade chain resolves and `family` derives from it. A grouping that is not a clade states `family` instead. Its `graphemes` and `allophones` may be empty, and it needs no gold. The tier is for a language that the library does not encode yet, and for an extinct language with a metadata-only entry.
 
-A stub carries no letter table of its own. A stub dialect may still state a small delta over a base that it inherits a table from (`graphemes_base` or `positional_graphemes_base`). `test_stub_carries_no_table_of_its_own` enforces this. A table on a stub hides the `StubSpecWarning` and makes the engine print IPA that no source supports. A spec whose table a listed source supports is a candidate for promotion, not a stub.
+A stub carries no letter table of its own. A stub dialect may still state a small delta over a base that it inherits a table from (`graphemes_base` or `positional_graphemes_base`), and `test_stub_carries_no_table_of_its_own` enforces this. A table on a stub hides the `StubSpecWarning` and makes the engine print IPA that no source supports. A spec whose table a listed source supports is a candidate for promotion, not a stub.
 
 ## `skeleton`
 
-A skeleton spec resolves, after inheritance, to a grapheme table and an allophone map that are not empty. `test_non_stub_resolves_to_content` enforces this. When a spec states graphemes and no allophones, `LanguageSpec.__post_init__` derives an identity allophone map from the grapheme values. An extinct language with no graphemes and no allophones fails the test, because such a spec must be a stub.
+A skeleton spec resolves, after inheritance, to a grapheme table and an allophone map that are not empty, and `test_non_stub_resolves_to_content` enforces this. When a spec states graphemes and no allophones, `LanguageSpec.__post_init__` derives an identity allophone map from the grapheme values. An extinct language with no graphemes and no allophones fails the test, because such a spec must be a stub.
 
-Every spec above `stub` names at least one real work in `sources`, and `tests/test_sources.py` enforces this. A skeleton spec needs no positional rules, no stress rules and no gold.
+Every spec above `stub` names at least one real work in `sources`, and `test_non_stub_has_sources` in `tests/test_sources.py` enforces this. A skeleton spec needs no positional rules, no stress rules and no gold.
 
 ## `research`
 
-A research spec meets every `skeleton` criterion. It also has these:
+A research spec meets every `skeleton` criterion and adds two more. Reviewers check these two criteria, because no test checks them for every spec.
 
-- A `stress` block, when the language has lexical or predictable word stress. A language without lexical stress is exempt. So is a language whose stress the orthography does not predict. State the exemption in the spec's `notes`.
+The first is a `stress` block, when the language has lexical or predictable word stress. A language without lexical stress is exempt, and so is a language whose stress the orthography does not predict. The spec states the exemption in its `notes`.
 
-- A gold set in the `DATASETS` registry of `scripts/benchmark.py` for at least one of the spec's language tags. The set has a PER in [`benchmarks/results.json`](../../benchmarks/results.json).
-
-Reviewers check these two criteria. No test checks them for every spec.
+The second is a measured gold. A gold set in the `DATASETS` registry of `scripts/benchmark.py` covers at least one of the spec's language tags, and the set has a PER in [`benchmarks/results.json`](../../benchmarks/results.json).
 
 ## `production`
 
@@ -43,21 +50,19 @@ A production spec meets every `research` criterion. It also has a row in `benchm
 | PER | At or below 0.25 | `_PRODUCTION_DEEP_PER_CEILING` in `tests/test_data_quality.py` |
 | Language | The row's language tag resolves to this spec | `test_production_tier_has_qualifying_benchmark` |
 
-The language check resolves a row tag the way the engine does. A wikipron row registered as `es` counts for `es-ES`, because the registry resolves `es` to that spec. A row with no `provenance` field cannot qualify a spec.
+The language check resolves a row tag the way the engine does. A WikiPron row registered as `es` counts for `es-ES`, because the registry resolves `es` to that spec. A row with no `provenance` field cannot qualify a spec.
 
 ### Which gold can gate
 
-Five provenance tiers can never gate a promotion: `espeak-derived`, `epitran-derived`, `lupo-derived`, `llm-corrected` and `llm-generated`. `can_gate_promotion()` is the single source of truth for this rule, and `tests/test_competitor_derived_gold.py` tests it. The reasons differ by tier:
+Five provenance tiers can never gate a promotion: `espeak-derived`, `epitran-derived`, `lupo-derived`, `llm-corrected` and `llm-generated`. They are the tiers that follow `GATING_CUTOFF_TIER` (`machine-generated`) in the ordered `RELIABILITY_TIERS` of `scripts/benchmark.py`. `can_gate_promotion()` is the single source of truth for this rule, and `tests/test_competitor_derived_gold.py` tests it. The reason differs for each tier.
 
-- A gold that a competing G2P system generated (`espeak-derived`, `epitran-derived`) measures agreement with that competitor, not correctness. This project benchmarks itself against both systems ([comparison](../evaluation/generated/comparison.md)), so their output cannot also be the truth.
+A gold that a competing G2P system generated measures agreement with that competitor, not correctness. The `espeak-derived` tier is output of [espeak-ng](https://github.com/espeak-ng/espeak-ng), and the `epitran-derived` tier is output of [epitran](https://github.com/dmort27/epitran). This project benchmarks itself against both systems in the [comparison](../evaluation/generated/comparison.md). Their output cannot also be the truth.
 
-- The Portal da Língua Portuguesa Dicionário Fonético (`lupo-derived`, the `portal_lupo` dataset) is the output of LUPo, a rule-based pronunciation generator. Its [description page](http://www.portaldalinguaportuguesa.org/index.php?action=fonetica&region=lbx&page=present) says that rules applied to a hand-coded mother lexicon generate the transcription of each dialect. Its entries ask users to cite Ashby et al. (2012), "A Rule Based Pronunciation Generator and Regional Accent Databank for Portuguese", Interspeech 2012. A row on it measures agreement with that generator, as an espeak-ng row does. A divergence can mean that o2i is right.
+The `lupo-derived` tier is the `portal_lupo` dataset, from the Dicionário Fonético of the Portal da Língua Portuguesa. Its entries are the output of LUPo, a rule-based pronunciation generator. The [description page](http://www.portaldalinguaportuguesa.org/index.php?action=fonetica&region=lbx&page=present) says that rules applied to a hand-coded mother lexicon generate the transcription of each dialect. Its entries ask users to cite Ashby et al. (2012), "A Rule Based Pronunciation Generator and Regional Accent Databank for Portuguese", Interspeech 2012. A row on it measures agreement with that generator, as an espeak-ng row does, and a divergence can mean that o2i is right.
 
-- A gold that a large language model generated (`llm-generated`) has no lexicon and no rules, so it has no error model. A disagreement with it says nothing about the spec, so it can certify nothing.
+A gold that a large language model generated (`llm-generated`) has no lexicon and no rules, so it has no error model. A disagreement with it says nothing about the spec, so it can certify nothing. A silver label that a model corrected (`llm-corrected`) is still a language model's label. Several passes do not give it an error model, so it can certify nothing either.
 
-- A silver label that a model corrected (`llm-corrected`) is still a language model's label. Several passes do not give it an error model, so it can certify nothing either.
-
-A language whose only gold of 500 words or more sits in one of these tiers has no usable gold, and it stays at `research`. A poor score on one of these tiers never disqualifies a language that clears the bar on a trusted gold. A cited source can require exactly the divergence from espeak, epitran or a model output that such a row counts as error. The tiers of every dataset are in [benchmarks](../evaluation/benchmarks.md#reliability-tiers).
+A language whose only gold of 500 words or more sits in one of these tiers has no usable gold, and it stays at `research`. A poor score on one of these tiers never disqualifies a language that clears the bar on a trusted gold. A cited source can require exactly the divergence that such a row counts as error. The tier of every dataset is in [benchmarks](../evaluation/benchmarks.md#reliability-tiers).
 
 A row on a corrections overlay never gates either, whatever its tier. An automated process applied the corrections, so the row can diagnose and never certify.
 
@@ -74,7 +79,7 @@ The threshold depends on how regular the orthography is:
 
 The spec's page under [`docs/languages/`](../languages) states the threshold and the classification of the language. A page that says nothing gets the deep threshold.
 
-`LanguageSpec` has no field for orthographic depth. So `test_production_tier_has_qualifying_benchmark` cannot look up a threshold for each language, and it applies the 0.25 ceiling to every spec. The 0.15 target for a shallow orthography is a reviewer check. A reviewer compares a promotion of such a language with the 0.15 target before the merge, because the test alone does not prove it.
+`LanguageSpec` has no field for orthographic depth. So `test_production_tier_has_qualifying_benchmark` cannot look up a threshold for each language, and it applies the 0.25 ceiling to every spec. The 0.15 target for a shallow orthography is a reviewer check. Before the merge, a reviewer compares the promotion of such a language with the 0.15 target, because the test alone does not prove it.
 
 ### The language page
 

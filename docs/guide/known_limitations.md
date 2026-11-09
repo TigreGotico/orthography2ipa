@@ -19,7 +19,7 @@ Tone and stress exemptions make up most of the unwritten contrasts.
 
 Ask one question: is the trigger visible in the input string? If it is a letter, a digraph, a diacritic or a position in the word, then "left unencoded" claims a defect. Such a note should carry a measured size. If the trigger is not visible, the note describes a scope decision or an error floor. The honest form of that note is a number, not a promise.
 
-To size a note, count the gold words that contain the trigger. Transcribe them, and count how many the engine gets wrong on account of the note. [benchmarks.md](../evaluation/benchmarks.md#diagnosing-a-language) describes `scripts/error_analysis.py`, which ranks the confusion pairs and the worst words of a gold row. A note that misdescribes the engine is worse than no note. It sends a maintainer to look for a defect that is not there.
+To size a note, count the gold words that contain the trigger. Most gold rows come from [WikiPron](https://github.com/CUNY-CL/wikipron), and [datasets.md](../evaluation/datasets.md) names the source of each row. Transcribe them, and count how many the engine gets wrong on account of the note. [benchmarks.md](../evaluation/benchmarks.md#diagnosing-a-language) describes `scripts/error_analysis.py`, which ranks the confusion pairs and the worst words of a gold row. A note that misdescribes the engine is worse than no note. It sends a maintainer to look for a defect that is not there.
 
 A spec without a gold dataset cannot be sized. Its notes may be right or wrong, and nothing in the repository can tell which. Getting gold for the language comes before any action on such a note.
 
@@ -32,7 +32,7 @@ A spec without a gold dataset cannot be sized. Its notes may be right or wrong, 
 | Plains Cree (`crk`) | The same voicing claim as the sibling spec. | The same result: the gold almost never shows the voicing. | true, cost near nil |
 | Bouyei (`pcc`) | Chinese loans have an apical vowel after ⟨s⟩ and ⟨z⟩, which the spec does not model. | One gold word is in the environment. The engine gives `siyzij` as `si˧tsi˥˧`, with [i]. | true, cost of one word |
 | Zulu (`zu`) | The gold writes a long vowel on the ⟨i-⟩ augment of many nouns in isolation, and nothing separates the two groups. | The engine already writes the penultimate length: `ihhashi` gives `iɦaːʃi`, and the gold has [îːɦáːʃi]. The residue is the extra length on the augment, which the note classes as an effect of citation form. | unwritten contrast |
-| Classical Syriac (`syc`) | Spirantization is left unencoded, because the quššaya and rukkakha dots never appear in the input. | The gold writes a small number of spirantized tokens, and the note counts them by phoneme. | unwritten contrast, measured ceiling |
+| Classical Syriac (`syc`) | Spirantization is left unencoded, because the quššaya and rukkakha dots (Nöldeke, *Compendious Syriac Grammar*, §15 and §23) never appear in the input. | The gold writes a small number of spirantized tokens, and the note counts them by phoneme. Folding the stop and fricative pairs on both sides gives the cost of the gap in PER. | unwritten contrast, measured ceiling |
 | Turoyo (`tru`) | The same alternation, from unpointed Serto text. | A larger share of the gold carries a spirantized reflex that the consonant spelling cannot predict. | unwritten contrast, measured ceiling |
 
 The Syriac and Turoyo ceilings are not defects and should not become issues. They are the honest floor of what the orthography allows.
@@ -59,7 +59,7 @@ The [scoreboard](../evaluation/generated/scoreboard.md) reports a 1-best PER and
 
 #### Verbal ⟨-ent⟩
 
-A `grammatical_endings` entry `"ent": ""` makes the third person plural ending mute, as in *ils parlent* [paʁl]. On the French `wikipron` row it wins 3,844 types and loses 254, and it lowers the PER of the row a long way. It does not ship.
+A `grammatical_endings` entry `"ent": ""` makes the third person plural ending mute, as in *ils parlent* [paʁl]. On the French `wikipron` row it wins 3,844 types and loses 254, and it lowers the PER of the row a long way. It does not ship, because accuracy on real text outranks the score ([engine.md](../contributing/engine.md#accuracy-outranks-the-score)).
 
 The 254 losses are the nouns and adjectives in ⟨-ent⟩: *vent, dent, cent, argent, accent, talent, absent, serpent, Occident, Vincent*. Type PER counts each of them once, like each rare verb form. Running text does not. This library feeds TTS, and saying "v" for *vent* is not paid for by thousands of rare verb forms.
 
@@ -100,7 +100,7 @@ The aperture positions let a spec choose a vowel by whether its syllable is open
 |---|---|---|
 | French loanwords in ⟨-er⟩ | 138 of the 6,211 types that end in ⟨-er⟩ keep a pronounced /ʁ/: *Jupiter, laser, cancer, Esther, Asperger*, and many English and German loans and place names. The ⟨-er⟩ grammatical ending makes the whole ending mute, so the engine gives *Jupiter* as `ʒypite`. | `word_exceptions`, which already lists some (*revolvers*, *leaders*, *pokers*, *laser*), or a layer that knows loanwords |
 | French verbal ⟨-ent⟩ | Verb against noun needs part of speech. o2i exposes both readings and ranks neither well. | a downstream rescorer with part of speech |
-| Boundaries inside compounds | The word-level rules cannot see a boundary inside a compound. French intervocalic ⟨s⟩ in learned compounds (*pléonasme*, *œcuménisme*) goes wrong in both directions. Dutch devoicing at the boundary does not fire: *opvanghuis* gives `ˈoːpvɑŋɦœys` with [v]. | compound segmentation |
+| Boundaries inside compounds | The word-level rules cannot see a boundary inside a compound. French intervocalic ⟨s⟩ in learned compounds (*pléonasme*, *œcuménisme*) goes wrong in both directions. Dutch devoicing at the boundary does not fire: *opvanghuis* gives `ˈoupvɑŋɦœys` with [v]. | compound segmentation |
 
 ---
 [← Distance Metrics](distance.md) · [Home](../index.md) · [Python API →](../reference/api.md)

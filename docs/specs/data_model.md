@@ -62,8 +62,8 @@ A `LanguageSpec` holds all the data for one language, dialect, historical stage 
 
 | Group | Fields | What they hold |
 | :--- | :--- | :--- |
-| Identity | `code`, `name`, `script`, `script_type`, `orthography_kind` | The BCP-47 code, the display name, the script and its type, and what kind of writing the graphemes are |
-| Cross-references | `iso639_3`, `glottolog_code`, `wikidata_qid`, `phoible_id`, `wals_code` | Identifiers in other catalogues |
+| Identity | `code`, `name`, `script`, `script_type`, `orthography_kind` | The [BCP 47](https://www.rfc-editor.org/rfc/rfc5646) code, the display name, the script and its type, and what kind of writing the graphemes are |
+| Cross-references | `iso639_3`, `glottolog_code`, `wikidata_qid`, `phoible_id`, `wals_code` | Identifiers in [ISO 639-3](https://iso639-3.sil.org/), [Glottolog](https://glottolog.org), [Wikidata](https://www.wikidata.org/), [PHOIBLE](https://phoible.org) and [WALS](https://wals.info/) |
 | Classification | `family`, `family_path`, `clade`, `parent`, `ancestors` | The derived family path, the clade flag and the typed ancestry |
 | Sound and spelling | `graphemes`, `allophones`, `phonemes`, `positional_graphemes`, `grapheme_weights` | The two maps, the declared inventory, the context-sensitive overrides and the candidate weights |
 | Whole words and endings | `word_exceptions`, `grammatical_endings` | Overrides for an irregular set of words, and suffix readings at the word end |
@@ -81,7 +81,7 @@ A `LanguageSpec` holds all the data for one language, dialect, historical stage 
 ```python
 import orthography2ipa
 ine = orthography2ipa.get("ine")   # Proto-Indo-European
-len(ine.phonemes)                  # 30 reconstructed phonemes, declared
+len(ine.phonemes) > 0              # True: the reconstructed phonemes, declared
 ```
 
 `distance._extract_phonemes` reads the inventory. It takes the declared `phonemes` when the tuple is not empty. Otherwise it collects each phoneme that a grapheme can produce. Every phonological metric builds on it. The [Han spec](#the-native-han-spec-has-no-grapheme-map) is the case with phonemes and no graphemes.
@@ -99,18 +99,18 @@ orthography2ipa.get("ar-Latn-x-buckwalt").orthography_kind   # OrthographyKind.T
 
 #### A romanization is an orthography
 
-A romanization is a real orthography of the language. Schools teach Pinyin, the law sets it, and ISO 7098 standardises it. A Chinese primary-school child writes it. Rules can transcribe it:
+A romanization is a real orthography of the language. Schools teach Pinyin, the law sets it, and ISO 7098 standardises it as the romanization of Chinese. A Chinese primary-school child writes it. Rules can transcribe it:
 
 ```python
 from orthography2ipa import G2P
 G2P("zh").transcribe("beijing")   # 'peitɕiŋ': Pinyin in, IPA out
 ```
 
-The conversion of Han text to Pinyin is a dictionary lookup (CC-CEDICT and similar), and this library does not do it.
+The conversion of Han text to Pinyin is a dictionary lookup, in a dictionary such as [CC-CEDICT](https://www.mdbg.net/chinese/dictionary?page=cc-cedict), and this library does not do it.
 
 #### Buckwalter cannot recover the vowels
 
-A transliteration that changed the pronunciation would not be a transliteration. `ar` and `ar-Latn-x-buckwalt` write the same word in two encodings and give one IPA:
+[Buckwalter transliteration](http://www.qamus.org/transliteration.htm) writes each Arabic letter as one ASCII character. A transliteration that changed the pronunciation would not be a transliteration. `ar` and `ar-Latn-x-buckwalt` write the same word in two encodings and give one IPA:
 
 ```python
 from orthography2ipa import G2P
@@ -135,7 +135,7 @@ A Han character does not encode sound. Its reading depends on the word it sits i
 import orthography2ipa
 han = orthography2ipa.get("zh-Hani")
 dict(han.graphemes)   # {}: there is no grapheme-to-IPA rule to write
-len(han.phonemes)     # 60: the phonology is declared
+len(han.phonemes) > 0 # True: the phonology is declared
 ```
 
 The input contract for Han text is a dictionary, which is a lexical lookup and not a phonological rule. That is a fact about the writing system, not a defect of the engine. The romanization avoids the problem, because Pinyin is an alphabet that rules can read. `zh-Hani` also shows why the [phoneme inventory](#phonemes-the-inventory-stated-directly) is declared apart from the graphemes. It has no orthography the rules can read, and its phonology is complete.
@@ -260,7 +260,7 @@ A substrate is the language of the original population that took up the incoming
 
 A superstrate is a prestige language whose speakers shift to the local language in the end, but leave phonological and lexical traces. Frankish gave vocabulary, and possibly phonological features, to Old French.
 
-An adstrate is a neighbouring language of about equal social status that keeps up its influence. Arabic was an adstrate on medieval Ibero-Romance and gave more than 4,000 loanwords to Spanish and Portuguese.
+An adstrate is a neighbouring language of about equal social status that keeps up its influence. Arabic was an adstrate on medieval Ibero-Romance and gave Spanish and Portuguese many loanwords, such as *alcohol* and *algodón*.
 
 ## `Ancestor`
 
@@ -345,7 +345,7 @@ undeclared = dataclasses.replace(pt, stress=dataclasses.replace(pt.stress, ipa_d
 G2P("pt-PT", spec=undeclared).transcribe("ruim")     # 'ˈʁuĩ'
 ```
 
-`closed_hiatus` splits a written vowel pair where a consonant closes the syllable of its second letter. Portuguese writes no acute on a tonic ⟨i u⟩ that forms a syllable with ⟨nh⟩ or with a following l, m, n, r or z (Acordo Ortográfico 1990, Base X, 2.º), so *rainha* is ra-i-nha and not rai-nha. The split holds only where the split-off vowel is stressed. The tokenizer reads the field too, so the ⟨ai⟩ of *rainha* is two graphemes and the ⟨i⟩ is a vowel, not a glide:
+`closed_hiatus` splits a written vowel pair where a consonant closes the syllable of its second letter. Portuguese writes no acute on a tonic ⟨i u⟩ that forms a syllable with ⟨nh⟩ or with a following l, m, n, r or z ([Acordo Ortográfico de 1990](https://www.portaldalinguaportuguesa.org/acordo.php?action=acordo&version=1990), Base X, 2.º), so *rainha* is ra-i-nha and not rai-nha. The split holds only where the split-off vowel is stressed. The tokenizer reads the field too, so the ⟨ai⟩ of *rainha* is two graphemes and the ⟨i⟩ is a vowel, not a glide:
 
 ```python
 pt.stress.closed_hiatus                  # ClosedHiatus(pairs=('ai', 'au', 'ei', 'eu', 'iu', 'oi', 'ui'), onsets=('nh',), codas=('l', 'm', 'n', 'r', 'z'))
@@ -362,7 +362,7 @@ pt.stress.final_diphthongs               # FinalDiphthongs(diphthongs=('iu', 'ui
 G2P("pt-PT").transcribe("distraiu")      # 'diʃtɾɐˈiw'
 G2P("pt-PT").transcribe("pauis")         # 'pɐˈujʃ'
 undeclared = dataclasses.replace(pt, stress=dataclasses.replace(pt.stress, final_diphthongs=None))
-G2P("pt-PT", spec=undeclared).transcribe("distraiu")   # 'diʃtɾaˈju'
+G2P("pt-PT", spec=undeclared).transcribe("distraiu")   # 'diʃtɾajˈu'
 ```
 
 `tonic_after_diphthong` keeps the glide of a diphthong in its own syllable before a stressed ⟨i u⟩. Portuguese writes no acute on such a vowel in a paroxytone (Acordo Ortográfico 1990, Base X, 4.º: baiuca, boiuno), and writes one on a final one (Base X, 5.º: Piauí, teiú). Either way the vowel is a syllable of its own after the diphthong, so *baiuca* is bai-u-ca and the mark follows the glide:
