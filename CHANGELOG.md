@@ -1,5 +1,9 @@
 # Changelog
 
+## [7.122.5a2](https://github.com/TigreGotico/orthography2ipa/tree/7.122.5a2) (2026-11-07)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.122.5a1...7.122.5a2)
+
 ## [7.122.5a1](https://github.com/TigreGotico/orthography2ipa/tree/7.122.5a1) (2026-11-07)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.122.4a1...7.122.5a1)
@@ -396,10 +400,6 @@
 ## [7.117.9a1](https://github.com/TigreGotico/orthography2ipa/tree/7.117.9a1) (2026-11-05)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.117.8a1...7.117.9a1)
-
-**Merged pull requests:**
-
-- fix\(nl\): read Netherlandic ⟨ee eu oo⟩ as closing diphthongs [\#2079](https://github.com/TigreGotico/orthography2ipa/pull/2079) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.117.8a1](https://github.com/TigreGotico/orthography2ipa/tree/7.117.8a1) (2026-11-05)
 
@@ -1151,15 +1151,15 @@
 
 ## [7.93.16a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.16a1) (2026-09-17)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.14a1...7.93.16a1)
-
-## [7.93.14a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.14a1) (2026-09-17)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.15a1...7.93.14a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.15a1...7.93.16a1)
 
 ## [7.93.15a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.15a1) (2026-09-17)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.13a1...7.93.15a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.14a1...7.93.15a1)
+
+## [7.93.14a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.14a1) (2026-09-17)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.13a1...7.93.14a1)
 
 ## [7.93.13a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.13a1) (2026-09-17)
 
