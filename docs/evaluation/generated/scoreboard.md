@@ -639,7 +639,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | pt-PT-x-porto | ep_dialects | 40 | 0.1486 | - | - | - | - | - | - | [0.1256, 0.1744] | 0.0750 | research | expert-human |
 | pt-PT-x-porto | portuguese_tts | 20 | 0.0513‡ | - | - | - | - | - | - | [0.0317, 0.0713] | 0.3000 | research | llm-corrected |
 | pt-PT-x-porto | primary_sources | 5† | 0.1000‡ | - | - | 0.0667 | 0.0667 | 0.8000 | 0.8000 | n too small | 0.6000 | research | expert-human |
-| pt-PT-x-sao-miguel | portuguese_tts | 20 | 0.0491‡ | - | - | - | - | - | - | [0.0268, 0.0743] | 0.4000 | research | llm-corrected |
+| pt-PT-x-sao-miguel | portuguese_tts | 20 | 0.0448‡ | - | - | - | - | - | - | [0.0245, 0.0684] | 0.4000 | research | llm-corrected |
 | pt-PT-x-sao-miguel | primary_sources | 12† | 0.3917‡ | - | - | 0.3917 | 0.3917 | 0.0833 | 0.0833 | n too small | 0.0833 | research | expert-human |
 | pt-PT-x-terceira | portuguese_tts | 20 | 0.0727‡ | - | - | - | - | - | - | [0.0460, 0.1046] | 0.3500 | research | llm-corrected |
 | pt-PT-x-terceira | primary_sources | 10† | 0.2179‡ | - | - | 0.1369 | 0.1369 | 0.4000 | 0.4000 | n too small | 0.3000 | research | expert-human |
