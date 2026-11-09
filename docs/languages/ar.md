@@ -204,11 +204,11 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 
 | Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
 |:--|:--|:--|:--|:--|--:|--:|:--|
-| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `ar` | gold | crowd-scraped | CC BY-SA | 14268 | 0.3139 | yes |
-| `wikipron_ar_diacritized` | `ar` | gold | crowd-scraped | CC BY-SA | 14240 | 0.1721 | yes |
+| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `ar` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 14268 | 0.3139 | yes |
+| `wikipron_ar_diacritized` | `ar` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 14240 | 0.1721 | yes |
 | `ipadict` ([open-dict-data/ipa-dict](https://github.com/open-dict-data/ipa-dict)) | `ar` | generated | machine-generated | MIT, each file its own | 857160 | 0.3774 | yes |
-| `arabic_tts` | `ar` | silver | llm-corrected | - | 20 | 0.0707 | no |
-| `gold20_arabic` ([Salesteq/arabic-dialects-gold20](https://huggingface.co/datasets/Salesteq/arabic-dialects-gold20)) | `ar` | silver | llm-corrected | - | 20 | 0.0707 | no |
+| `arabic_tts` | `ar` | silver | llm-corrected | Apache-2.0 (this repository) | 20 | 0.0707 | no |
+| `gold20_arabic` ([TigreGotico/arabic-dialects-gold20](https://huggingface.co/datasets/TigreGotico/arabic-dialects-gold20)) | `ar` | silver | llm-corrected | CC BY 4.0 | 20 | 0.0707 | no |
 <!-- atlas:datasets end -->
 
 <!-- atlas:inventory begin -->

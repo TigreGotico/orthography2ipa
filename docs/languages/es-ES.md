@@ -123,12 +123,12 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 
 | Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
 |:--|:--|:--|:--|:--|--:|--:|:--|
-| `primary_sources` | `es-ES` | gold | expert-human | - | 41 | 0.0232 | yes |
-| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `es` | gold | crowd-scraped | CC BY-SA | 132189 | 0.0774 | yes |
+| `primary_sources` | `es-ES` | gold | expert-human | Apache-2.0 (this repository). Each row quotes and cites a published example. | 41 | 0.0232 | yes |
+| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `es` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 132189 | 0.0774 | yes |
 | `ipadict` ([open-dict-data/ipa-dict](https://github.com/open-dict-data/ipa-dict)) | `es-ES` | generated | machine-generated | MIT, each file its own | 595896 | 0.0127 | yes |
 | `ipa_childes` ([fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split)) | `es-ES` | generated | epitran-derived | CC BY 4.0 | 13155 | 0.0863 | no |
-| `vox_communis` ([fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p)) | `es` | generated | epitran-derived | CC0 | 48067 | 0.0594 | no |
-| `spain_romance_tts` | `es-ES` | silver | llm-corrected | - | 20 | 0.0029 | no |
+| `vox_communis` ([fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p)) | `es` | generated | epitran-derived | CC0 1.0 | 48067 | 0.0594 | no |
+| `spain_romance_tts` | `es-ES` | silver | llm-corrected | Apache-2.0 (this repository) | 20 | 0.0029 | no |
 <!-- atlas:datasets end -->
 
 <!-- atlas:inventory begin -->
