@@ -1,5 +1,9 @@
 # Changelog
 
+## [7.122.9a3](https://github.com/TigreGotico/orthography2ipa/tree/7.122.9a3) (2026-11-09)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.122.9a2...7.122.9a3)
+
 ## [7.122.9a2](https://github.com/TigreGotico/orthography2ipa/tree/7.122.9a2) (2026-11-09)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.122.9a1...7.122.9a2)
@@ -384,10 +388,6 @@
 ## [7.117.16a2](https://github.com/TigreGotico/orthography2ipa/tree/7.117.16a2) (2026-11-05)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.117.16a1...7.117.16a2)
-
-**Merged pull requests:**
-
-- docs\(nl\): state the fricative voicing shares in the nl-NL and nl-BE notes [\#2091](https://github.com/TigreGotico/orthography2ipa/pull/2091) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.117.16a1](https://github.com/TigreGotico/orthography2ipa/tree/7.117.16a1) (2026-11-05)
 
