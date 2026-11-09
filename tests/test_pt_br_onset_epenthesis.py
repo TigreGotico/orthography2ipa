@@ -4,7 +4,7 @@ opens a stressed word.
 Barbosa & Albano (2004: 227) state the vowel for "most two-obstruent
 sequences" and break a word-initial one: "psicologia pisɪkoloʒiɐ". The
 statement does not restrict the process by stress. Collischonn (1996: 151),
-reported by Nascimento (2015: 62-63), puts the vowel after a word-initial
+reported by Nascimento (2015: 61-62), puts the vowel after a word-initial
 consonant before a stressed nucleus: "pneu [pi'new]". The rule and its full
 citation are BR_EPENTHESIS_ONSET in pt-BR.json.
 
@@ -32,7 +32,7 @@ def test_a_stop_before_a_nasal_is_broken():
 
 
 def test_the_vowel_before_a_nasal_is_oral_and_pretonic():
-    """Collischonn (1996: 151), reported by Nascimento (2015: 62-63): "pneu [pi'new]"."""
+    """Collischonn (1996: 151), reported by Nascimento (2015: 62): "pneu [pi'new]"."""
     assert transcribe("pneu", "pt-BR") == "piˈnew"
 
 
@@ -62,7 +62,7 @@ def test_tch_takes_no_vowel_where_ch_is_an_affricate(word):
 
 
 def test_dj_is_broken():
-    """Collischonn (1996: 151), reported by Nascimento (2015: 63): "Djavan [dʒiʒa'vã]"."""
+    """Collischonn (1996: 151), reported by Nascimento (2015: 62): "Djavan [dʒiʒa'vã]"."""
     assert transcribe("Djavan", "pt-BR") == "d͡ʒiʒaˈvɐ̃"
 
 

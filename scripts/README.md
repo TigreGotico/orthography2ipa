@@ -53,3 +53,4 @@ The procedure and the guards are in
 |---|---|
 | `smoke_downstream.py` | Imports a downstream G2P package and transcribes one word with it |
 | `recompute_th_tone_accuracy.py` | Recomputes the tone-accuracy note in `th.json` |
+| `count_pt_stressed_a_nasal.py` | Counts the Infopédia readings in the note of `PT_STRESSED_A_BEFORE_NASAL` in `pt-PT.json` |

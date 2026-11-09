@@ -6,7 +6,7 @@ spelling does not write, and that syllable takes no stress. Collischonn
 sendo, portanto, idênticas as pautas prosódicas de rapto e rápido", so the
 [i] of pt-BR pacto is post-tonic, and she counts egípcios among the
 post-tonic contexts (p. 67). Her tableau for the pretonic magnata gives
-"ma.gi.(ná.ta)" (p. 75), and Nascimento (2015: 62-63) reports Collischonn
+"ma.gi.(ná.ta)" (p. 75), and Nascimento (2015: 62) reports Collischonn
 (1996: 151) for a word-initial cluster: "pneu [pi'new]".
 
 Three probe rules stand before the pt-BR rules and rewrite an inserted [i]
@@ -52,7 +52,7 @@ def test_the_nearest_earlier_vowel_places_the_syllable(probed):
 
 
 def test_pneu_has_an_oral_pretonic_vowel():
-    """Collischonn (1996: 151), reported by Nascimento (2015: 62-63): "pneu [pi'new]"."""
+    """Collischonn (1996: 151), reported by Nascimento (2015: 62): "pneu [pi'new]"."""
     assert G2P("pt-BR").transcribe("pneu") == "piˈnew"
 
 
