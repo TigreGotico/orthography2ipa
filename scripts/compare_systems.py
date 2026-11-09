@@ -80,7 +80,7 @@ comparison target is missing.
   model, which downloads into the standard Hugging Face cache on first
   use; call the column's plugin once before a timed run if that matters.
   Not part of the ``[compare]`` extra while it is unpublished — install
-  it from a checkout the same way ``africa-g2p`` is installed above.
+  it from a local checkout.
   Imported lazily; a missing install degrades the ``udarnik`` column to
   ``n/a``, and so does a missing stress model — but only because the
   column builds its OWN stressonnx injector with ``fallback=False``.

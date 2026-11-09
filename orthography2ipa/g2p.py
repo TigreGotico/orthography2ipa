@@ -4,7 +4,7 @@ One obvious call to transcribe text in any covered language::
 
     >>> import orthography2ipa
     >>> orthography2ipa.transcribe("olá mundo", "pt")
-    'oˈla ˈmundo'
+    'ɔˈla ˈmũdu'
 
 The :class:`G2P` engine composes the package's pieces into a
 data-driven pipeline:
