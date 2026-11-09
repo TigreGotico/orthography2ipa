@@ -3527,6 +3527,8 @@ def _leaderboard_summary(rows: List[dict]) -> List[str]:
 
 #: {system key: (repo name, one-line "what it adds over base o2i")} for
 #: the o2i-downstream family section below. Order is display order.
+#: Only a repo in ``_PUBLIC_FAMILY_REPOS`` gets a link; any other repo is
+#: named as plain text, so the page never links a private repository.
 _O2I_FAMILY_REPOS: List[Tuple[str, str, str]] = [
     ("arbtok", "arbtok",
      "Arabic diacritization, dialect lexicons, nativized loanwords, and "
@@ -3557,6 +3559,19 @@ _O2I_FAMILY_REPOS: List[Tuple[str, str, str]] = [
      "ranked as effectively lexicon-free with the exception documented, "
      "the same treatment ahotts-g2p gets)"),
 ]
+
+
+#: The family repos that are public on GitHub (``gh repo view
+#: TigreGotico/<repo> --json visibility``). udarnik is private.
+_PUBLIC_FAMILY_REPOS = frozenset(
+    {"arbtok", "tugaphone", "g2p_barranquenho", "mwl_phonemizer"})
+
+
+def _family_repo_name(repo: str) -> str:
+    """*repo* as Markdown: a GitHub link when the repo is public, else text."""
+    if repo in _PUBLIC_FAMILY_REPOS:
+        return f"[{repo}](https://github.com/TigreGotico/{repo})"
+    return repo
 
 
 #: {row field: display name} for the family-version pin sentence below —
@@ -3633,7 +3648,7 @@ def _o2i_family_section(rows: List[dict]) -> List[str]:
         lines.extend([version_note, ""])
     for key, repo, delta in _O2I_FAMILY_REPOS:
         lines.append(
-            f"- **[{repo}](https://github.com/TigreGotico/{repo})** — adds "
+            f"- **{_family_repo_name(repo)}** — adds "
             f"{delta}.")
     lines.extend([
         "",
