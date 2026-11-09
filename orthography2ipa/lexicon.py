@@ -36,6 +36,22 @@ code and returns the path of a local ``word<TAB>ipa`` file::
     [project.entry-points."orthography2ipa.lexicons"]
     "en-GB" = "o2i_lexicons:tsv_path"
 
+A package can supply two kinds of lexicon for a code. The **exceptions** are
+the words whose reading the spelling cannot determine, so no rule can reach
+them; :func:`packaged_lexicon` returns them. The **patches** are words that the
+rules get wrong although a rule could reach them. A patch repairs a known gap
+in the rules and leaves the package when a rule takes its word, so a caller
+reads the patches only when it asks for them::
+
+    engine = G2P("pt-PT", pipeline=Pipeline(
+        lexicon=packaged_lexicon("pt-PT", patches=True)))
+
+The patches come through a second group, ``orthography2ipa.lexicon_patches``,
+with the same callable signature::
+
+    [project.entry-points."orthography2ipa.lexicon_patches"]
+    "pt-PT" = "o2i_lexicons:patch_tsv_path"
+
 Design contract
 ---------------
 
@@ -55,11 +71,15 @@ Design contract
   ``confidence == 1.0`` (a certain answer).
 - **Precedence.** inline ``spec.word_exceptions`` > the engine's lexicon >
   rules. An inline exception always wins over the sidecar; the sidecar always
-  wins over the grapheme/positional beam.
+  wins over the grapheme/positional beam. Inside a packaged lexicon read with
+  ``patches=True``, an exception wins over a patch for the same word.
+- **Patches are opt-in.** Only ``packaged_lexicon(code, patches=True)`` reads
+  the patches. :func:`use_packaged_lexicons` never enables them.
 - **Discovery is lazy.** The ``orthography2ipa.lexicons`` entry points are read
   only by :func:`packaged_lexicon`, :func:`packaged_lexicon_sources` and
   :func:`use_packaged_lexicons`, once per process, never at import and never
-  during transcription.
+  during transcription. The ``orthography2ipa.lexicon_patches`` entry points
+  are read only when a call asks for the patches.
 
 Deprecated process-wide API
 ---------------------------
@@ -118,6 +138,10 @@ LEXICON_DIR_ENV = "ORTHOGRAPHY2IPA_LEXICON_DIR"
 #: lexicons, one entry point per language code.
 ENTRY_POINT_GROUP = "orthography2ipa.lexicons"
 
+#: Entry-point group through which an installed package supplies the patches
+#: for a code, read only by ``packaged_lexicon(code, patches=True)``.
+PATCH_ENTRY_POINT_GROUP = "orthography2ipa.lexicon_patches"
+
 #: The release that removes the process-wide lexicon API.
 _REMOVAL_VERSION = f"{VERSION_MAJOR + 1}.0.0"
 
@@ -129,8 +153,9 @@ CACHE_DIR = Path(
 # resolved code -> source (path, URL or hf:// id), set by register_lexicon()
 _REGISTERED: Dict[str, str] = {}
 _LEXICON_DIR: Optional[Path] = None
-# resolved code -> provider entry point; None until the first discovery
-_PACKAGED: Optional[Dict[str, EntryPoint]] = None
+# entry-point group -> {resolved code -> provider entry point}, filled per
+# group on its first discovery
+_PACKAGED: Dict[str, Dict[str, EntryPoint]] = {}
 # resolved codes whose packaged lexicon the caller enabled
 _ENABLED: Set[str] = set()
 
@@ -227,10 +252,10 @@ def clear_lexicons() -> None:
     clearing: it ends with the engine.
     """
     _warn_deprecated("clear_lexicons", "Pipeline(lexicon=...), which needs no clearing")
-    global _LEXICON_DIR, _PACKAGED
+    global _LEXICON_DIR
     _REGISTERED.clear()
     _LEXICON_DIR = None
-    _PACKAGED = None
+    _PACKAGED.clear()
     _ENABLED.clear()
     _process_lexicon.cache_clear()
 
@@ -286,8 +311,13 @@ def load_lexicon(source: Union[str, os.PathLike]) -> Dict[str, str]:
     return parse_lexicon_text(path.read_text(encoding="utf-8"))
 
 
-def packaged_lexicon(code: str) -> Dict[str, str]:
+def packaged_lexicon(code: str, patches: bool = False) -> Dict[str, str]:
     """The ``{word: ipa}`` mapping an installed package supplies for *code*.
+
+    The mapping holds the exceptions: the words whose reading the spelling
+    cannot determine. With *patches* ``True`` it also holds the patches, the
+    words that the rules get wrong although a rule could reach them. An
+    exception wins over a patch for the same word.
 
     The mapping is the caller's to give to
     :class:`~orthography2ipa.pipeline.Pipeline`, and this call sets no state.
@@ -295,9 +325,10 @@ def packaged_lexicon(code: str) -> Dict[str, str]:
     Raises
     ------
     LookupError
-        No installed package supplies a lexicon file for *code*. Asking for a
-        lexicon that is absent is an error, never a quiet fall back to the
-        rules.
+        No installed package supplies a lexicon file for *code*, or *patches*
+        is ``True`` and no installed package supplies a patch file for it.
+        Asking for a lexicon that is absent is an error, never a quiet fall
+        back to the rules.
     """
     resolved = resolve(code)
     path = _packaged_path(resolved)
@@ -305,25 +336,36 @@ def packaged_lexicon(code: str) -> Dict[str, str]:
         raise LookupError(
             f"no installed package supplies a lexicon file for {resolved!r}; "
             f"installed: {sorted(_packaged_providers()) or 'nothing'}")
-    return load_lexicon(path)
+    lexicon = load_lexicon(path)
+    if not patches:
+        return lexicon
+    patch_path = _packaged_path(resolved, PATCH_ENTRY_POINT_GROUP)
+    if patch_path is None:
+        raise LookupError(
+            f"no installed package supplies a patch file for {resolved!r}; "
+            f"installed: "
+            f"{sorted(_packaged_providers(PATCH_ENTRY_POINT_GROUP)) or 'nothing'}")
+    return {**load_lexicon(patch_path), **lexicon}
 
 
-def packaged_lexicon_sources() -> Dict[str, Path]:
+def packaged_lexicon_sources(patches: bool = False) -> Dict[str, Path]:
     """The installed packaged lexicons, as ``{resolved code: local file}``.
 
-    This lists them and enables nothing. A provider that fails is left out and
-    logged at WARNING.
+    With *patches* ``True`` it lists the patch files instead. This lists them
+    and enables nothing. A provider that fails is left out and logged at
+    WARNING.
     """
+    group = PATCH_ENTRY_POINT_GROUP if patches else ENTRY_POINT_GROUP
     found = {}
-    for code in sorted(_packaged_providers()):
-        path = _packaged_path(code)
+    for code in sorted(_packaged_providers(group)):
+        path = _packaged_path(code, group)
         if path is not None:
             found[code] = path
     return found
 
 
-def _packaged_providers() -> Dict[str, EntryPoint]:
-    """The ``orthography2ipa.lexicons`` entry points, by resolved spec code.
+def _packaged_providers(group: str = ENTRY_POINT_GROUP) -> Dict[str, EntryPoint]:
+    """The entry points of *group*, by resolved spec code.
 
     Read once per process. An entry point must name a registered spec exactly;
     one that only a nearest-language guess would place is skipped, so a
@@ -331,11 +373,10 @@ def _packaged_providers() -> Dict[str, EntryPoint]:
     one spec, the one named for the exact resolved code wins, then the first
     by distribution and entry-point name.
     """
-    global _PACKAGED
-    if _PACKAGED is not None:
-        return _PACKAGED
+    if group in _PACKAGED:
+        return _PACKAGED[group]
     candidates = []
-    for ep in entry_points(group=ENTRY_POINT_GROUP):
+    for ep in entry_points(group=group):
         if resolves_exactly(ep.name):
             candidates.append((resolve(ep.name), ep))
         else:
@@ -351,13 +392,13 @@ def _packaged_providers() -> Dict[str, EntryPoint]:
                          found[code].value, ep.value, code, found[code].value)
         else:
             found[code] = ep
-    _PACKAGED = found
+    _PACKAGED[group] = found
     return found
 
 
-def _packaged_path(code: str) -> Optional[Path]:
-    """The file a packaged provider supplies for resolved *code*, or ``None``."""
-    ep = _packaged_providers().get(code)
+def _packaged_path(code: str, group: str = ENTRY_POINT_GROUP) -> Optional[Path]:
+    """The file a provider in *group* supplies for resolved *code*, or ``None``."""
+    ep = _packaged_providers(group).get(code)
     if ep is None:
         return None
     try:

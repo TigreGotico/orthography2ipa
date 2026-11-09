@@ -134,7 +134,26 @@ A provider declares one entry point per language code in the group `orthography2
 "en-GB" = "o2i_lexicons:tsv_path"
 ```
 
-Only `packaged_lexicon()`, `packaged_lexicon_sources()` and `use_packaged_lexicons()` read the entry points, once per process. Import, `get()` and transcription never read them. The name of the entry point must name a registered spec exactly. The library skips an entry point that only a nearest-language guess would place, and it logs a warning. When two packages serve one spec, the entry point named for the exact resolved code wins. Then the first by distribution name wins, and the library logs a warning.
+#### Exceptions and patches
+
+A package can supply two kinds of lexicon for one code. The exceptions are the words whose reading the spelling cannot determine, so no rule can reach them. The patches are words that the rules get wrong although a rule could reach them. A patch repairs a known gap in the rules, and it leaves the package when a rule takes the word.
+
+`packaged_lexicon(code)` returns the exceptions only. The caller reads the patches when it asks for them:
+
+```python
+engine = G2P("pt-PT", pipeline=Pipeline(lexicon=packaged_lexicon("pt-PT", patches=True)))
+```
+
+The mapping then holds the exceptions and the patches. An exception wins over a patch for the same word. When no installed package supplies a patch file for the code, the call raises `LookupError`. `packaged_lexicon_sources(patches=True)` lists the patch files. The deprecated `use_packaged_lexicons()` never enables the patches.
+
+A provider declares its patches in a second group, `orthography2ipa.lexicon_patches`. The callable has the same signature:
+
+```toml
+[project.entry-points."orthography2ipa.lexicon_patches"]
+"pt-PT" = "o2i_lexicons:patch_tsv_path"
+```
+
+Only `packaged_lexicon()`, `packaged_lexicon_sources()` and `use_packaged_lexicons()` read the entry points, once per process. They read the patch group only when the call asks for the patches. Import, `get()` and transcription never read them. The name of the entry point must name a registered spec exactly. The library skips an entry point that only a nearest-language guess would place, and it logs a warning. When two packages serve one spec, the entry point named for the exact resolved code wins. Then the first by distribution name wins, and the library logs a warning.
 
 The benchmark never enables a packaged lexicon, so the board stays rules-only whatever is installed.
 
@@ -170,8 +189,8 @@ Write the lexicon in the same broad IPA that the `graphemes` of the spec use. Th
 | :--- | :--- | :--- |
 | `Pipeline(lexicon=None, syllabifier=None)` | yes | The lexicon and the syllabifier of one engine |
 | `load_lexicon(source)` | yes | The `{word: ipa}` map at a file, a URL or a dataset id |
-| `packaged_lexicon(code)` | yes | The `{word: ipa}` map an installed package supplies for a code |
-| `packaged_lexicon_sources()` | yes | The installed packaged lexicons, as `{code: path}`. Reads no entry |
+| `packaged_lexicon(code, patches=False)` | yes | The `{word: ipa}` map of exceptions an installed package supplies for a code. With `patches=True`, the patches too |
+| `packaged_lexicon_sources(patches=False)` | yes | The installed packaged lexicons, as `{code: path}`. With `patches=True`, the patch files. Reads no entry |
 | `available_lexicon_codes()` | yes | The registered codes, the file stems in the directory, and the enabled packaged codes |
 | `resolve_lexicon_source(source)` | yes | The local file for a source, fetched if remote |
 | `validate_lexicon_text(text)` | yes | The list of problems in a lexicon body |
