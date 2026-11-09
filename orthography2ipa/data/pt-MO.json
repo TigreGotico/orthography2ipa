@@ -233,6 +233,30 @@
       "notes": "DISABLED for Macau Portuguese. The PT_INITIAL_O rules follow the pt-PT default for European Portuguese. No source read writes this vowel for this variety, so it stays as the spec gives it."
     },
     {
+      "id": "PT_INITIAL_HO_KEEP_BEFORE_CODA_NASAL",
+      "phonemes": [],
+      "surface": "o",
+      "notes": "DISABLED for Macau Portuguese. The PT_INITIAL_HO rules extend the PT_INITIAL_O rules, which follow the pt-PT default for European Portuguese. No source read writes this vowel for this variety, so it stays as the spec gives it."
+    },
+    {
+      "id": "PT_INITIAL_HO_OPEN",
+      "phonemes": [],
+      "surface": "ɔ",
+      "notes": "DISABLED for Macau Portuguese. The PT_INITIAL_HO rules extend the PT_INITIAL_O rules, which follow the pt-PT default for European Portuguese. No source read writes this vowel for this variety, so it stays as the spec gives it."
+    },
+    {
+      "id": "PT_INITIAL_HO_CANDIDATE_U",
+      "phonemes": [],
+      "surface": "u",
+      "notes": "DISABLED for Macau Portuguese. The PT_INITIAL_HO rules extend the PT_INITIAL_O rules, which follow the pt-PT default for European Portuguese. No source read writes this vowel for this variety, so it stays as the spec gives it."
+    },
+    {
+      "id": "PT_INITIAL_HO_CANDIDATE_O",
+      "phonemes": [],
+      "surface": "o",
+      "notes": "DISABLED for Macau Portuguese. The PT_INITIAL_HO rules extend the PT_INITIAL_O rules, which follow the pt-PT default for European Portuguese. No source read writes this vowel for this variety, so it stays as the spec gives it."
+    },
+    {
       "id": "PT_STRESSED_A_BEFORE_NASAL",
       "phonemes": [],
       "surface": "ɐ",

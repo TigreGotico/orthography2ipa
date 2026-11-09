@@ -55,6 +55,8 @@ The grammar gives two other values. Cunha & Cintra (7th ed., p. 51) reduce an un
 
 Before a coda nasal the vowel stays nasal: `ondular` [õduˈlaɾ]. The guard `PT_INITIAL_O_KEEP_BEFORE_CODA_NASAL` keeps the rule off there. The article `o` stays [u]. A stressed word-initial ⟨o⟩ keeps the `word_initial` row and the word lists: `olho` [ˈoʎu], `olhos` [ˈɔʎuʃ]. Infopédia writes [o] in some stem families, such as `orelha` and `ostra`. These are facts about single words, and the rule does not cover them.
 
+A word-initial ⟨h⟩ has no sound, so the ⟨o⟩ after it begins the spoken word. The `PT_INITIAL_HO` rules give that ⟨o⟩ the same ranking: `hospital` [ɔʃpiˈtaɫ], `hotel` [ɔˈtɛɫ]. Infopédia gives [ɔ] as the first reading in 221 of the 274 single words that these rules change. In 43 it gives [u] first, and 28 of these words list [ɔ] as the second reading (`horrível`, `homenagem`). A stressed ⟨ho⟩ keeps its reading: `hoje` [ˈɔʒɨ], `homem` [ˈɔmɐ̃j̃]. Before a coda nasal the vowel stays nasal: `honrar` [õˈɾaɾ].
+
 ## Coda vowel nasalisation
 
 A vowel before a nasal ⟨m⟩ or ⟨n⟩ in the same syllable becomes nasal. This happens word-finally or before another consonant. The nasal consonant joins the vowel and is not a separate segment (Mateus & d'Andrade 2000, ch. 2, *Nasality*). Portuguese has five nasal vowels, /ɐ̃ ẽ ĩ õ ũ/:
