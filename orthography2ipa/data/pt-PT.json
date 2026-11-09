@@ -1090,6 +1090,59 @@
         "ao"
       ],
       "notes": "The offglide [w] of the diphthong [aw] in ao. See PT_LEX_AO_A."
+    },
+    {
+      "id": "PT_INITIAL_O_KEEP_BEFORE_CODA_NASAL",
+      "phonemes": [
+        "o"
+      ],
+      "surface": "o",
+      "grapheme": [
+        "o"
+      ],
+      "word_initial": true,
+      "stress": "unstressed",
+      "followed_by": "coda_nasal",
+      "notes": "Guard for PT_INITIAL_O_OPEN. Before a coda nasal a word-initial ⟨o⟩ is the nasal [õ]: ondular [õduˈlaɾ], ombreira [õˈbɾejɾɐ]. The nasal rules give that vowel, so the open default does not apply."
+    },
+    {
+      "id": "PT_INITIAL_O_OPEN",
+      "phonemes": [
+        "o"
+      ],
+      "surface": "ɔ",
+      "grapheme": [
+        "o"
+      ],
+      "word_initial": true,
+      "stress": "unstressed",
+      "notes": "An unstressed word-initial ⟨o⟩ is [ɔ] by default: obter [ɔbˈteɾ], ovelha [ɔˈvɛʎɐ], opinião [ɔpiniˈɐ̃w̃]. The grammar reduces an unstressed back vowel to [u] and names this position as an exception with [o]. Cunha & Cintra (7th ed., p. 51): 'toda a série das vogais posteriores ou velares está hoje reduzida a [u], grafado o ou u'. Cunha & Cintra (7th ed., p. 53): 'e bem assim o [o] inicial absoluto de ovelha, obter, opinião'. That [o] is the careful-speech value of the grammar. Cruz-Ferreira (1999, Handbook of the IPA, p. 130) writes obrigar as [ɔbɾiˈgaɾ] in her Lisbon transcription. Infopédia writes [ɔ] in 1,126 of the 1,195 single words that this rule changes, [o] in 63 and [u] in 3. Infopédia carries the Lisbon assumption. This rule, PT_INITIAL_O_CANDIDATE_U and PT_INITIAL_O_CANDIDATE_O rank the lattice of the slot [ɔ], [u], [o]. The word_initial row of ⟨o⟩ and the grapheme table give the candidates [o], [ɔ], [u], and each rule rewrites one of them in place. A stressed word-initial ⟨o⟩ keeps the row and the word lists. Infopédia writes [o] in the stems orelh-, ostr-, olm-, odr- and odi-, which are word-level facts for a lexicon."
+    },
+    {
+      "id": "PT_INITIAL_O_CANDIDATE_U",
+      "phonemes": [
+        "ɔ"
+      ],
+      "surface": "u",
+      "grapheme": [
+        "o"
+      ],
+      "word_initial": true,
+      "stress": "unstressed",
+      "notes": "The second lattice candidate of an unstressed word-initial ⟨o⟩ is the [u] of the general reduction. Cunha & Cintra (7th ed., p. 51): 'toda a série das vogais posteriores ou velares está hoje reduzida a [u], grafado o ou u'. The rule rewrites the second candidate of the slot and does not change the transcription. See PT_INITIAL_O_OPEN."
+    },
+    {
+      "id": "PT_INITIAL_O_CANDIDATE_O",
+      "phonemes": [
+        "u"
+      ],
+      "surface": "o",
+      "grapheme": [
+        "o"
+      ],
+      "word_initial": true,
+      "stress": "unstressed",
+      "notes": "The third lattice candidate of an unstressed word-initial ⟨o⟩ is the careful-speech [o]. Cunha & Cintra (7th ed., p. 53): 'e bem assim o [o] inicial absoluto de ovelha, obter, opinião'. The rule rewrites the third candidate of the slot and does not change the transcription. See PT_INITIAL_O_OPEN."
     }
   ],
   "sandhi_rules": [
@@ -1182,7 +1235,7 @@
       "publisher": "Sá da Costa",
       "url": null,
       "pages": null,
-      "notes": "Page numbers in the notes of PT_STRESSED_A_BEFORE_NASAL and PT_LEX_CLOSE_O follow the 7th edition (Lexikon, 2017), read as the page image."
+      "notes": "Page numbers in the notes of PT_STRESSED_A_BEFORE_NASAL, PT_LEX_CLOSE_O and the PT_INITIAL_O rules follow the 7th edition (Lexikon, 2017), read as the page image."
     },
     {
       "id": "start_cross2002",

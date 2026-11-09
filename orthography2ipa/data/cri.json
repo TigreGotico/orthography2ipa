@@ -448,6 +448,30 @@
       "notes": "DISABLED for Sãotomense (Forro / Santome). PT_INITIAL_ES_RAISE describes European Portuguese, and no source for this language was read."
     },
     {
+      "id": "PT_INITIAL_O_KEEP_BEFORE_CODA_NASAL",
+      "phonemes": [],
+      "surface": "o",
+      "notes": "DISABLED for Sãotomense (Forro / Santome). The PT_INITIAL_O rules describe European Portuguese, and no source for this language was read."
+    },
+    {
+      "id": "PT_INITIAL_O_OPEN",
+      "phonemes": [],
+      "surface": "ɔ",
+      "notes": "DISABLED for Sãotomense (Forro / Santome). The PT_INITIAL_O rules describe European Portuguese, and no source for this language was read."
+    },
+    {
+      "id": "PT_INITIAL_O_CANDIDATE_U",
+      "phonemes": [],
+      "surface": "u",
+      "notes": "DISABLED for Sãotomense (Forro / Santome). The PT_INITIAL_O rules describe European Portuguese, and no source for this language was read."
+    },
+    {
+      "id": "PT_INITIAL_O_CANDIDATE_O",
+      "phonemes": [],
+      "surface": "o",
+      "notes": "DISABLED for Sãotomense (Forro / Santome). The PT_INITIAL_O rules describe European Portuguese, and no source for this language was read."
+    },
+    {
       "id": "PT_STRESSED_A_BEFORE_NASAL",
       "phonemes": [],
       "surface": "ɐ",

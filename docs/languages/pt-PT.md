@@ -47,6 +47,14 @@ The vowel can drop. Vázquez writes "pode desaparecer, p. ex. [iʃˈtaɾ / ʃˈt
 
 The rule stays off for double ⟨ss⟩, for a stressed ⟨e⟩, and for ⟨es⟩ before a vowel. `essência` is [eˈsẽsiɐ], `este` is [ˈeʃtɨ] and `esotérico` is [ezuˈtɛɾiku]. Initial ⟨ex⟩ has a separate reading. The `word_initial` value of the `e` row stays [e], because other initial ⟨e⟩ splits between [e], [i] and [ɛ] by word: `elefante`, `ermida`.
 
+## Word-initial ⟨o⟩
+
+An unstressed word-initial ⟨o⟩ is [ɔ]. `PT_INITIAL_O_OPEN` gives `obter` [ɔbˈteɾ], `ovelha` [ɔˈvɛʎɐ] and `opinião` [ɔpiniˈɐ̃w̃]. Cruz-Ferreira (1999: 130) writes `obrigar` as [ɔbɾiˈgaɾ] in her Lisbon transcription. Infopédia writes [ɔ] in 1,126 of the 1,195 single words that the rule changes. Infopédia carries the Lisbon assumption.
+
+The grammar gives two other values. Cunha & Cintra (7th ed., p. 51) reduce an unstressed back vowel to [u]. On p. 53 they name the exception "o [o] inicial absoluto de *ovelha*, *obter*, *opinião*", which is the careful-speech value. The lattice keeps both values. The slot ranks [ɔ], then [u], then [o]. The rules `PT_INITIAL_O_CANDIDATE_U` and `PT_INITIAL_O_CANDIDATE_O` set that order and do not change the transcription.
+
+Before a coda nasal the vowel stays nasal: `ondular` [õduˈlaɾ]. The guard `PT_INITIAL_O_KEEP_BEFORE_CODA_NASAL` keeps the rule off there. The article `o` stays [u]. A stressed word-initial ⟨o⟩ keeps the `word_initial` row and the word lists: `olho` [ˈoʎu], `olhos` [ˈɔʎuʃ]. Infopédia writes [o] in some stem families, such as `orelha` and `ostra`. These are facts about single words, and the rule does not cover them.
+
 ## Coda vowel nasalisation
 
 A vowel before a nasal ⟨m⟩ or ⟨n⟩ in the same syllable becomes nasal. This happens word-finally or before another consonant. The nasal consonant joins the vowel and is not a separate segment (Mateus & d'Andrade 2000, ch. 2, *Nasality*). Portuguese has five nasal vowels, /ɐ̃ ẽ ĩ õ ũ/:
@@ -127,7 +135,7 @@ The endings ⟨-eno -ena⟩ and ⟨-ona⟩ have no rule. Infopédia gives their 
 
 The feminine and the plural of ⟨-oso⟩ keep the open vowel, because only the masculine singular closes it. The gate of `PT_SUFFIX_OSO_CLOSE` is the word-final ⟨o⟩, so these forms do not match: `famosa` [fɐˈmɔzɐ], `famosos` [fɐˈmɔzuʃ].
 
-Other word lists set the height of frequent words outside the suffix classes. The lists `PT_LEX_CLOSE_O` and `PT_LEX_CLOSE_E` pin a close vowel (`sopa`, `como`, `fresco`). `PT_LEX_CLOSE_O` also holds the 25 single words in ⟨-orto⟩, because Infopédia writes [o] in all of them: `porto` [ˈpoɾtu], `desporto` [dɨʃˈpoɾtu], `morto` [ˈmoɾtu], `conforto` [kõˈfoɾtu]. A suffix rule would also catch verb forms such as `suporto`, so the words stay in a list. The list also holds words of the Cunha and Cintra class of close-vowel nouns that open in the plural, where Infopédia writes [o]: `corpo` [ˈkoɾpu], `povo` [ˈpovu], `jogo` [ˈʒoɡu]. Their plurals keep the open vowel: `corpos` [ˈkɔɾpuʃ]. The same page lists nouns that keep the close vowel in the plural, and the list holds both forms: `bolo` [ˈbolu], `bolos` [ˈboluʃ]. A word-initial ⟨o⟩ takes the close first value of its row, so `PT_LEX_OPEN_O` names `olhos`, `ossos` and `ovos`. The lists `PT_LEX_OPEN_O` and `PT_LEX_OPEN_E` pin an open vowel (`sol`, `forte`, `terra`, `dez`). The rule `PT_LEX_X_S` gives the ⟨x⟩ of the stem ⟨troux-⟩ of *trazer* as [s].
+Other word lists set the height of frequent words outside the suffix classes. The lists `PT_LEX_CLOSE_O` and `PT_LEX_CLOSE_E` pin a close vowel (`sopa`, `como`, `fresco`). `PT_LEX_CLOSE_O` also holds the 25 single words in ⟨-orto⟩, because Infopédia writes [o] in all of them: `porto` [ˈpoɾtu], `desporto` [dɨʃˈpoɾtu], `morto` [ˈmoɾtu], `conforto` [kõˈfoɾtu]. A suffix rule would also catch verb forms such as `suporto`, so the words stay in a list. The list also holds words of the Cunha and Cintra class of close-vowel nouns that open in the plural, where Infopédia writes [o]: `corpo` [ˈkoɾpu], `povo` [ˈpovu], `jogo` [ˈʒoɡu]. Their plurals keep the open vowel: `corpos` [ˈkɔɾpuʃ]. The same page lists nouns that keep the close vowel in the plural, and the list holds both forms: `bolo` [ˈbolu], `bolos` [ˈboluʃ]. A stressed word-initial ⟨o⟩ takes the close first value of its row, so `PT_LEX_OPEN_O` names `olhos`, `ossos` and `ovos`. The lists `PT_LEX_OPEN_O` and `PT_LEX_OPEN_E` pin an open vowel (`sol`, `forte`, `terra`, `dez`). The rule `PT_LEX_X_S` gives the ⟨x⟩ of the stem ⟨troux-⟩ of *trazer* as [s].
 
 Porto, Braga and Terceira have their own process for the stressed mid vowels, so they switch these rules off. The African and Asian varieties, Barranquenho and the creoles also switch them off, because no source for them was read.
 
