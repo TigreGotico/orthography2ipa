@@ -20,8 +20,9 @@ Dataset access:
 - ``wikipron`` and ``mirandese_g2p`` download TSVs directly (stdlib only).
 - ``portuguese_unified`` and ``portal_lupo`` download one JSONL file directly
   and sample it with a fixed seed (stdlib only). ``portuguese_unified`` scores
-  its Infopédia and pt.wiktionary rows, and ``portal_lupo`` its Portal da
-  Língua Portuguesa rows. One region is scored per registered language tag.
+  its Infopédia, Michaelis and pt.wiktionary rows, and ``portal_lupo`` its
+  Portal da Língua Portuguesa rows. One region is scored per registered
+  language tag.
 - ``hitz_basque_ipa`` pages the HiTZ/wikipedia_basque_ipa Hugging Face
   dataset through the datasets-server "rows" REST API (stdlib only,
   no full-parquet download).
@@ -718,10 +719,10 @@ _PT_UNIFIED_URL = (
     "/resolve/main/portuguese_pronunciation_lexicon.jsonl"
 )
 #: orthography2ipa language tag -> dataset region tag, for the human rows
-#: (Infopédia and pt.wiktionary). Only regions with a matching o2i spec AND a
-#: usable row count are scored. The paulistano and paulista registers (under
-#: 30 rows each), the untagged "pt" rows and the Wiktionary rows of pt-AO (3),
-#: pt-MZ (2) and pt-TL (1) are left out.
+#: (Infopédia, Michaelis and pt.wiktionary). Only regions with a matching o2i
+#: spec AND a usable row count are scored. The paulistano and paulista
+#: registers (under 30 rows each), the untagged "pt" rows and the Wiktionary
+#: rows of pt-AO (3), pt-MZ (2) and pt-TL (1) are left out.
 _PT_UNIFIED_REGIONS: Dict[str, str] = {
     "pt-PT": "pt-PT",                       # Infopédia + Wiktionary, 127k rows
     "pt-BR": "pt-BR",                       # Wiktionary, 3.6k rows
@@ -1976,13 +1977,14 @@ def load_portuguese_unified(lang: str, limit: int) -> List[Tuple[str, str]]:
     REGION per language tag (TigreGotico/portuguese-unified-pronunciation-lexicon
     on Hugging Face, 552k rows, CC BY-SA 4.0).
 
-    The dataset merges three sources into one notation: Infopédia (the Porto
-    Editora dictionary), pt.wiktionary.org, and the Portal da Língua
-    Portuguesa Dicionário Fonético. Each JSONL row is a word x region x source
-    x POS tuple with a broad phonemic and a narrow phonetic transcription.
-    This loader reads only the Infopédia and pt.wiktionary rows, which people
-    transcribed. The Portal rows are the output of the LUPo rule-based
-    generator, and ``load_portal_lupo`` scores them as a competitor's output.
+    The dataset merges four sources into one notation: Infopédia (the Porto
+    Editora dictionary), Michaelis (the Melhoramentos dictionary, pt-BR),
+    pt.wiktionary.org, and the Portal da Língua Portuguesa Dicionário
+    Fonético. Each JSONL row is a word x region x source x POS tuple with a
+    broad phonemic and a narrow phonetic transcription. This loader reads
+    only the dictionary and pt.wiktionary rows, which people transcribed. The
+    Portal rows are the output of the LUPo rule-based generator, and
+    ``load_portal_lupo`` scores them as a competitor's output.
 
     ``ipa_narrow`` is scored: it matches the transcription depth of the
     o2i pt specs (explicit [ɐ ɨ ɾ ʀ ɫ]). Untagged plain-"pt" rows are excluded
@@ -2030,15 +2032,15 @@ def pt_unified_source(row: Dict) -> str:
     """The source of one ``portuguese_unified`` row, read from its fields.
 
     The dataset has no source column. A Portal row is the only kind with a
-    ``phones`` value, an Infopédia row has an ``infopedia_url``, and a row
-    merged from both dictionaries has both URLs. Every row with neither is a
-    pt.wiktionary row.
+    ``phones`` value. Every other row carries the URL of each source that gives
+    its reading: ``infopedia_url``, ``wiktionary_url`` or ``michaelis_url``. A
+    row merged from several sources is named by all of them, joined with
+    ``+`` in that order.
     """
     if row.get("phones"):
         return "portal"
-    if row.get("infopedia_url") and row.get("wiktionary_url"):
-        return "infopedia+wiktionary"
-    return "infopedia" if row.get("infopedia_url") else "wiktionary"
+    return "+".join(name for name in ("infopedia", "wiktionary", "michaelis")
+                    if row.get(f"{name}_url"))
 
 
 def _sample_portuguese_unified(
