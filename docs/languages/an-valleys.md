@@ -79,4 +79,4 @@ Várvaro (1991) is the one primary study read in full for these specs. The synch
 - Várvaro, A. (1991). *De la escritura al habla: la diptongación de O breve tónica en el Alto Aragón.* Archivo de Filología Aragonesa XLVI-XLVII: 245-268, with the valley content on printed pp. 250-251. Read directly.
 
 ---
-[← Romanian](ro-RO.md) · [Home](../index.md) · [European Portuguese →](pt-PT.md)
+[← Regional Standard Dutch of Belgium](nl-BE-regional.md) · [Home](../index.md) · [European Portuguese →](pt-PT.md)

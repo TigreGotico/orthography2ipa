@@ -18,7 +18,7 @@ Biscayan Basque (Bizkaiera) is a Vasconic language, written in the Latin script.
 | Script | [Latin](by-script.md#latin) (alphabet) |
 | Tier | [research](../specs/quality_tiers.md#research) |
 | Attested | from 1600, living |
-| Parent | [Basque (Euskara)](https://tigregotico.github.io/orthography2ipa/#eu) `eu` |
+| Parent | [Basque (Euskara)](eu.md) `eu` |
 | Explorer | [`eu-biscayan` in the data explorer](https://tigregotico.github.io/orthography2ipa/#eu-biscayan) |
 | Spec file | [`eu-biscayan.json`](../../orthography2ipa/data/eu-biscayan.json) |
 <!-- atlas:header end -->
@@ -30,7 +30,7 @@ The notes of the spec file open with these words:
 
 > Biscayan (Bizkaiera/Bizkaia). Western Basque, spoken in Biscay and Araba. VALIDATED and CORRECTED against Bedialauneta Txurruka & Hualde (2023), an Illustration of the IPA of Markina Basque (a representative Biscayan variety).
 
-The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 4 works, from 2003 to 2023. [Sources](#sources) lists them. The spec file writes 5 of the 35 spellings of its letter table and takes the other 30 from [Basque (Euskara)](https://tigregotico.github.io/orthography2ipa/#eu) `eu`.
+The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 4 works, from 2003 to 2023. [Sources](#sources) lists them. The spec file writes 5 of the 35 spellings of its letter table and takes the other 30 from [Basque (Euskara)](eu.md) `eu`.
 
 The [spec file](../../orthography2ipa/data/eu-biscayan.json) holds the full notes, with the caveats of the spec.
 <!-- atlas:overview end -->

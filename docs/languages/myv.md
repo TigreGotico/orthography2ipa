@@ -146,4 +146,4 @@ No downstream repository of the TigreGotico organisation covers this spec. The [
 <!-- atlas:related end -->
 
 ---
-[← Eonavian](gl-ES-x-eonavia.md) · [Home](../index.md) · [Estonian →](et.md)
+[← Eonavian](gl-ES-x-eonavia.md) · [Home](../index.md) · [Esperanto →](eo.md)

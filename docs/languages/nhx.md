@@ -9,7 +9,7 @@ Isthmus-Mecayapan Nahuatl is an Uto-Aztecan language, written in the Latin scrip
 |:--|:--|
 | Code | `nhx` |
 | ISO 639-3 | [nhx](https://iso639-3.sil.org/code/nhx), Isthmus-Mecayapan Nahuatl |
-| Wikipedia | [Mecayapan Nahuatl](https://en.wikipedia.org/wiki/Mecayapan_Nahuatl) |
+| Wikipedia | [Isthmus Nahuatl](https://en.wikipedia.org/wiki/Isthmus_Nahuatl) |
 | Family | [Uto-Aztecan](by-family.md#uto-aztecan) |
 | Region | [North America](by-region.md#north-america) |
 | Script | [Latin](by-script.md#latin) (alphabet) |
@@ -43,7 +43,7 @@ No spec names `nhx` as its parent.
 The spec cites 3 works. 3 of them have a DOI or a URL. The spec file holds a note on what each work supports.
 
 1. <a id="src-nhx_glottolog"></a>Hammarström, H. et al. (Glottolog 5.0) (2024). *Glottolog: Isthmus-Mecayapan Nahuatl (isth1242)*. Max Planck Institute for Evolutionary Anthropology. [glottolog.org](https://glottolog.org/resource/languoid/id/isth1242)
-2. <a id="src-nhx_orthography"></a>Wikipedia contributors (2024). *Mecayapan Nahuatl (Isthmus-Mecayapan), Wikipedia*. Wikimedia Foundation. [en.wikipedia.org](https://en.wikipedia.org/wiki/Mecayapan_Nahuatl)
+2. <a id="src-nhx_orthography"></a>Wikipedia contributors (2024). *Mecayapan Nahuatl (Isthmus-Mecayapan), Wikipedia*. Wikimedia Foundation. [en.wikipedia.org](https://en.wikipedia.org/wiki/Isthmus_Nahuatl)
 3. <a id="src-nhx_wolgemuth2002"></a>Wolgemuth, Carl (2002). *Gramática náhuatl (melaꞌtájto̱l) de los municipios de Mecayapan y Tatahuicapan de Juárez, Veracruz*. Instituto Lingüístico de Verano (SIL Mexico). [mexico.sil.org](https://mexico.sil.org/resources/archives/1919)
 <!-- atlas:sources end -->
 

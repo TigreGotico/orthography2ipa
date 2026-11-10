@@ -18,7 +18,7 @@ Gipuzkoan Basque (Gipuzkera) is a Vasconic variety, written in the Latin script.
 | Script | [Latin](by-script.md#latin) (alphabet) |
 | Tier | [research](../specs/quality_tiers.md#research) |
 | Attested | from 1600, living |
-| Parent | [Basque (Euskara)](https://tigregotico.github.io/orthography2ipa/#eu) `eu` |
+| Parent | [Basque (Euskara)](eu.md) `eu` |
 | Explorer | [`eu-x-gipuzkoa` in the data explorer](https://tigregotico.github.io/orthography2ipa/#eu-x-gipuzkoa) |
 | Spec file | [`eu-x-gipuzkoa.json`](../../orthography2ipa/data/eu-x-gipuzkoa.json) |
 <!-- atlas:header end -->
@@ -30,7 +30,7 @@ The notes of the spec file open with these words:
 
 > Gipuzkoan (Gipuzkera). Central Basque, spoken in Gipuzkoa, the closest living dialect to Euskara Batua and its primary reference variety. VALIDATED against the surrounding Illustration-of-the-IPA literature.
 
-The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 6 works, from 1988 to 2023. [Sources](#sources) lists them. The spec file writes no spelling of its own. It takes all 35 from [Basque (Euskara)](https://tigregotico.github.io/orthography2ipa/#eu) `eu`.
+The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 6 works, from 1988 to 2023. [Sources](#sources) lists them. The spec file writes no spelling of its own. It takes all 35 from [Basque (Euskara)](eu.md) `eu`.
 
 The [spec file](../../orthography2ipa/data/eu-x-gipuzkoa.json) holds the full notes, with the caveats of the spec.
 <!-- atlas:overview end -->

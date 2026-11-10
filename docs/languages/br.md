@@ -43,14 +43,14 @@ No spec names `br` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 6 works. 3 of them have a DOI or a URL. The spec file holds a note on what 3 of them support.
+The spec cites 6 works. 2 of them have a DOI or a URL. The spec file holds a note on what 3 of them support.
 
 1. <a id="src-macaulay1992"></a>MacAulay, D. (ed.) (1992). *The Celtic Languages*. Cambridge University Press.
 2. <a id="src-ternes1992"></a>Ternes, E. (1992). *The Breton Language*. in D. MacAulay (ed.), The Celtic Languages.
 3. <a id="src-favereau1997"></a>Favereau, F. (1997). *Grammaire du breton contemporain*. Skol Vreizh.
 4. <a id="src-hewitt1978"></a>Hewitt, S. (1978). *Breton (Treger dialect)*. Journal of the International Phonetic Association 8(1-2). Cited: p. 80. [doi.org](https://doi.org/10.1017/S0025100300001766)
 5. <a id="src-arbres_accentuation"></a>Jouitteau, M. (ed.) (2026). *ARBRES: wikigrammaire des dialectes du breton, Accentuation*. IKER, CNRS. [arbres.iker.cnrs.fr](https://arbres.iker.cnrs.fr/index.php/Accentuation)
-6. <a id="src-press1986"></a>Press, I. (1986). *A Grammar of Modern Breton*. Mouton de Gruyter (Mouton Grammar Library 2), Berlin. Cited: pp. 21-24, 27-29, 34. [theswissbay.ch](https://theswissbay.ch/pdf/Books/Linguistics/Mega%20linguistics%20pack/Indo-European/Celtic/Breton%2C%20A%20Grammar%20of%20Modern%20%28Press%29.pdf)
+6. <a id="src-press1986"></a>Press, I. (1986). *A Grammar of Modern Breton*. Mouton de Gruyter (Mouton Grammar Library 2), Berlin. Cited: pp. 21-24, 27-29, 34.
 <!-- atlas:sources end -->
 
 <!-- atlas:datasets begin -->

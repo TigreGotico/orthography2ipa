@@ -57,11 +57,17 @@ Start with AGENTS.md before you change anything. Every spec is a file in orthogr
 - [Languages by region](docs/languages/by-region.md): every spec by Glottolog macroarea and country
 - [Languages by script](docs/languages/by-script.md): every spec by script
 - [Languages from A to Z](docs/languages/a-z.md): every spec by name
-- [Every language page](llms-full.txt): this map with all 575 atlas pages, each with its summary
+- [Every language page](llms-full.txt): this map with all 581 atlas pages, each with its summary
 
 ## Production language pages
 
+- [Assamese](docs/languages/as.md): Assamese is an Indo-Aryan language, written in the Bengali script. Glottolog places it in Bangladesh, Bhutan and India. The `as` spec is at the production tier. It cites 4 sources and has 2 scored datasets.
+- [Esperanto](docs/languages/eo.md): Esperanto is a Constructed language, written in the Latin script. Glottolog places it in Poland. The `eo` spec is at the production tier. It cites 2 sources and has 2 scored datasets.
 - [Castilian Spanish](docs/languages/es-ES.md): Castilian Spanish is an Ibero-Romance language, written in the Latin script. Its code names Spain. The `es-ES` spec is at the production tier. It cites 12 sources and has 6 scored datasets.
+- [Basque](docs/languages/eu.md): Basque (Euskara) is a Vasconic language, written in the Latin script. Glottolog places it in France and Spain. The `eu` spec is at the production tier. It cites 10 sources and has 5 scored datasets.
+- [Finnish](docs/languages/fi.md): Finnish is a Finnic language, written in the Latin script. Glottolog places it in 5 countries. The `fi` spec is at the production tier. It cites 3 sources and has 3 scored datasets.
+- [Faroese](docs/languages/fo.md): Faroese is a North Germanic language, written in the Latin script. Glottolog places it in Denmark and Faroe Islands. The `fo` spec is at the production tier. It cites 3 sources and has 1 scored dataset.
+- [Romanian](docs/languages/ro-RO.md): Romanian is an Eastern Romance language, written in the Latin script. Its code names Romania. The `ro-RO` spec is at the production tier. It cites 9 sources and has 4 scored datasets.
 
 ## Optional
 

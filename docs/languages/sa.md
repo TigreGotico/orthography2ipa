@@ -40,7 +40,7 @@ The [spec file](../../orthography2ipa/data/sa.json) holds the full notes, with t
 
 These specs name `sa` as their parent. They are sorted by country, and a lect with no recorded country comes last.
 
-- [Assamese](https://tigregotico.github.io/orthography2ipa/#as) `as`: Bangladesh, Bhutan, India, production tier
+- [Assamese](as.md) `as`: Bangladesh, Bhutan, India, production tier
 - [Hindi](hi.md) `hi`: Bangladesh, Bhutan, India, Nepal, research tier
 - [Bengali](bn.md) `bn`: Bangladesh, India, Nepal, research tier
 - [Gujarati](gu.md) `gu`: Bangladesh, India, Pakistan, research tier

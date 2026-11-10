@@ -137,4 +137,4 @@ No downstream repository of the TigreGotico organisation covers this spec. The [
 <!-- atlas:related end -->
 
 ---
-[← Aromanian](rup.md) · [Home](../index.md) · [Asturian →](ast.md)
+[← Assamese](as.md) · [Home](../index.md) · [Asturian →](ast.md)

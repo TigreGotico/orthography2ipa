@@ -162,7 +162,7 @@ Stubs (2): Toba Batak `bbc`, Mandailing Batak `btm`.
 
 | Spec | Code | Tier | Family |
 |:--|:--|:--|:--|
-| [Assamese](https://tigregotico.github.io/orthography2ipa/#as) | `as` | production | Indo-European > Indo-Iranian > Indo-Aryan |
+| [Assamese](as.md) (page) | `as` | production | Indo-European > Indo-Iranian > Indo-Aryan |
 | [Bengali](bn.md) (page) | `bn` | research | Indo-European > Indo-Iranian > Indo-Aryan |
 | [Chittagonian](https://tigregotico.github.io/orthography2ipa/#ctg) | `ctg` | skeleton | Indo-European |
 
@@ -649,7 +649,7 @@ Stubs (1): Western Kayah `kyu`.
 | [South African English](https://tigregotico.github.io/orthography2ipa/#en-ZA) | `en-ZA` | skeleton | Indo-European > Germanic > Northwest Germanic > West Germanic |
 | [Middle English](https://tigregotico.github.io/orthography2ipa/#enm) | `enm` | research | Indo-European > Germanic > Northwest Germanic > West Germanic |
 | [Engenni](https://tigregotico.github.io/orthography2ipa/#enn) | `enn` | skeleton | Atlantic-Congo |
-| [Esperanto](https://tigregotico.github.io/orthography2ipa/#eo) | `eo` | production | Constructed |
+| [Esperanto](eo.md) (page) | `eo` | production | Constructed |
 | [Latin American Spanish](https://tigregotico.github.io/orthography2ipa/#es-419) | `es-419` | skeleton | Indo-European > Italic > Romance > Ibero-Romance |
 | [Rioplatense Spanish](es-AR.md) (page) | `es-AR` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Bolivian Spanish](https://tigregotico.github.io/orthography2ipa/#es-BO) | `es-BO` | skeleton | Indo-European > Italic > Romance > Ibero-Romance |
@@ -686,7 +686,7 @@ Stubs (1): Western Kayah `kyu`.
 | [Eton (Vanuatu)](https://tigregotico.github.io/orthography2ipa/#etn) | `etn` | skeleton | Austronesian |
 | [Eton (Cameroon)](https://tigregotico.github.io/orthography2ipa/#eto) | `eto` | skeleton | Atlantic-Congo |
 | [Etruscan](https://tigregotico.github.io/orthography2ipa/#etr) | `etr` | skeleton | Tyrsenian |
-| [Basque (Euskara)](https://tigregotico.github.io/orthography2ipa/#eu) | `eu` | production | Vasconic |
+| [Basque (Euskara)](eu.md) (page) | `eu` | production | Vasconic |
 | [Biscayan Basque (Bizkaiera)](eu-biscayan.md) (page) | `eu-biscayan` | research | Vasconic |
 | [Gipuzkoan Basque (Gipuzkera)](eu-x-gipuzkoa.md) (page) | `eu-x-gipuzkoa` | research | Vasconic |
 | [Lapurdian Basque (Lapurtera)](eu-x-lapurdi.md) (page) | `eu-x-lapurdi` | research | Vasconic |
@@ -703,13 +703,13 @@ Stubs (1): Western Kayah `kyu`.
 | [A Fala (Xalimego)](fax.md) (page) | `fax` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Fula (Fulah / Fulfulde / Pular)](ff.md) (page) | `ff` | research | Atlantic-Congo |
 | [Maasina Fulfulde](https://tigregotico.github.io/orthography2ipa/#ffm) | `ffm` | skeleton | Atlantic-Congo |
-| [Finnish](https://tigregotico.github.io/orthography2ipa/#fi) | `fi` | production | Uralic > Finnic |
+| [Finnish](fi.md) (page) | `fi` | production | Uralic > Finnic |
 | [Nobiin](https://tigregotico.github.io/orthography2ipa/#fia) | `fia` | skeleton | Nubian |
 | [Fijian](fj.md) (page) | `fj` | research | Austronesian > Malayo-Polynesian |
 | [Fuliiru](https://tigregotico.github.io/orthography2ipa/#flr) | `flr` | skeleton | Atlantic-Congo |
 | [Fe'fe'](https://tigregotico.github.io/orthography2ipa/#fmp) | `fmp` | skeleton | Atlantic-Congo |
 | [Fanagalo](https://tigregotico.github.io/orthography2ipa/#fng) | `fng` | skeleton | Pidgin |
-| [Faroese](https://tigregotico.github.io/orthography2ipa/#fo) | `fo` | production | Indo-European > Germanic > Northwest Germanic > North Germanic |
+| [Faroese](fo.md) (page) | `fo` | production | Indo-European > Germanic > Northwest Germanic > North Germanic |
 | [Foodo](https://tigregotico.github.io/orthography2ipa/#fod) | `fod` | skeleton | Atlantic-Congo |
 | [Fon](fon.md) (page) | `fon` | research | Atlantic-Congo |
 | [Fernando Po Creole English](fpe.md) (page) | `fpe` | research | Indo-European > Germanic > Northwest Germanic > West Germanic |
@@ -1127,7 +1127,7 @@ Stubs (1): Western Kayah `kyu`.
 | [Vlax Romani](rmy.md) (page) | `rmy` | research | Indo-European > Indo-Iranian > Indo-Aryan |
 | [Kirundi (Rundi)](rn.md) (page) | `rn` | research | Atlantic-Congo > Bantu |
 | [Ronga](https://tigregotico.github.io/orthography2ipa/#rng) | `rng` | skeleton | Atlantic-Congo |
-| [Romanian](https://tigregotico.github.io/orthography2ipa/#ro-RO) | `ro-RO` | production | Indo-European > Italic > Romance > Eastern Romance |
+| [Romanian](ro-RO.md) (page) | `ro-RO` | production | Indo-European > Italic > Romance > Eastern Romance |
 | [Galaico-Portuguese](https://tigregotico.github.io/orthography2ipa/#roa-x-galaico-pt) | `roa-x-galaico-pt` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Romani](rom.md) (page) | `rom` | research | Indo-European > Indo-Iranian > Indo-Aryan |
 | [Aromanian](rup.md) (page) | `rup` | research | Indo-European > Italic > Romance > Eastern Romance |

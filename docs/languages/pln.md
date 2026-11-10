@@ -10,7 +10,7 @@ Palenquero (Lengua ri Palenge) is a Spanish Creole language, written in the Lati
 | Code | `pln` |
 | ISO 639-3 | [pln](https://iso639-3.sil.org/code/pln), Palenquero |
 | Glottolog | [pale1260](https://glottolog.org/resource/languoid/id/pale1260), Palenquero |
-| Wikidata | [Q2657908](https://www.wikidata.org/wiki/Q2657908) |
+| Wikidata | [Q36665](https://www.wikidata.org/wiki/Q36665) |
 | Wikipedia | [Palenquero](https://en.wikipedia.org/wiki/Palenquero) |
 | Family | [Spanish Creole](by-family.md#spanish-creole) |
 | Region | [South America](by-region.md#south-america) > [Colombia](by-region.md#colombia) |
