@@ -7,6 +7,7 @@ notation was silently coerced is worse than worthless. These tests police that.
 """
 import json
 import os
+import re
 import sys
 
 import pytest
@@ -93,13 +94,76 @@ def test_editor_supplied_orthography_is_explained(row):
     assert row["notes"], "an editor-supplied spelling must carry a note"
 
 
-def test_sources_document_their_folio_offset():
-    """pdftotext's page index is not the printed page. Each source must say how
-    the two relate, so a later editor can check a citation."""
-    for key, src in SOURCES.items():
-        assert src["pagination"], key
-        assert src["url"], key
-        assert src["access"] == "open", f"{key}: only open sources can be re-checked"
+DOI = re.compile(r"^10\.\d{4,9}/\S+$")
+
+
+def _isbn13_is_valid(isbn):
+    digits = isbn.replace("-", "")
+    if len(digits) != 13 or not digits.isdigit():
+        return False
+    return sum(int(d) * (3 if i % 2 else 1) for i, d in enumerate(digits)) % 10 == 0
+
+
+def source_defects(src, rows):
+    """Why a reader could not find each of ``rows`` in ``src``.
+
+    An open source links a copy anybody can read. A closed source has no such
+    copy, so it is cited by its DOI or ISBN, and each row must name the printed
+    page that a reader of the book turns to."""
+    defects = []
+    if not src.get("pagination"):
+        defects.append("no pagination note")
+    if src.get("access") == "open":
+        if not src.get("url", "").startswith(("https://", "http://")):
+            defects.append("an open source needs the URL of a copy")
+    elif src.get("access") == "closed":
+        if src.get("url"):
+            defects.append("a closed source is cited by DOI or ISBN, not by a link to a copy")
+        doi, isbn = src.get("doi"), src.get("isbn")
+        if not (doi and DOI.match(doi)) and not (isbn and _isbn13_is_valid(isbn)):
+            defects.append("a closed source needs a DOI or a valid ISBN-13")
+        defects += [f"{row['id']}: no printed page" for row in rows
+                    if not str(row.get("page") or "").isdigit()]
+    else:
+        defects.append(f"access must be open or closed, not {src.get('access')!r}")
+    return defects
+
+
+@pytest.mark.parametrize("key", sorted(SOURCES))
+def test_every_source_can_be_found_by_a_reader(key):
+    rows = [r for r in ROWS if r["source"] == key]
+    assert source_defects(SOURCES[key], rows) == []
+
+
+_CLOSED = {"pagination": "printed page", "access": "closed",
+           "doi": "10.1093/oso/9780199257591.001.0001"}
+_ROW = {"id": "x-001", "page": "17"}
+
+
+@pytest.mark.parametrize("src, rows, defect", [
+    (_CLOSED, [{"id": "x-001", "page": ""}], "x-001: no printed page"),
+    (_CLOSED, [{"id": "x-001"}], "x-001: no printed page"),
+    (_CLOSED, [{"id": "x-001", "page": "17-18"}], "x-001: no printed page"),
+    ({**_CLOSED, "doi": None}, [_ROW], "a closed source needs a DOI or a valid ISBN-13"),
+    ({**_CLOSED, "doi": None, "isbn": "9780199257592"}, [_ROW],
+     "a closed source needs a DOI or a valid ISBN-13"),
+    ({**_CLOSED, "url": "https://example.org/copy.pdf"}, [_ROW],
+     "a closed source is cited by DOI or ISBN, not by a link to a copy"),
+    ({"pagination": "p", "access": "open"}, [_ROW], "an open source needs the URL of a copy"),
+    ({"pagination": "p", "access": "paywalled", "url": "https://x"}, [_ROW],
+     "access must be open or closed, not 'paywalled'"),
+])
+def test_an_unfindable_source_is_refused(src, rows, defect):
+    assert defect in source_defects(src, rows)
+
+
+@pytest.mark.parametrize("src", [
+    _CLOSED,
+    {**_CLOSED, "doi": None, "isbn": "978-0-19-925759-1"},
+    {"pagination": "p", "access": "open", "url": "https://example.org/a.pdf"},
+])
+def test_a_findable_source_passes(src):
+    assert source_defects(src, [_ROW]) == []
 
 
 def test_loader_is_registered_and_classified():

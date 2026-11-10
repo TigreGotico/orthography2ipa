@@ -1093,7 +1093,9 @@ def block_examples(atlas: Atlas, spec, words: Sequence[str]) -> str:
             source = atlas.primary_sources.get(key, {})
             ref = (f"{_clean(source.get('authors', key))} ({source.get('year', '')}). "
                    f"*{_clean(source.get('title', ''))}*. {_clean(source.get('venue', ''))}.")
-            if source.get("url"):
+            if source.get("doi"):
+                ref += f" DOI [{source['doi']}](https://doi.org/{source['doi']})"
+            elif source.get("url"):
                 host = urllib.parse.urlparse(source["url"]).netloc.removeprefix("www.")
                 ref += f" [{host}]({source['url']})"
             refs.append(ref)
