@@ -1,7 +1,7 @@
 # Russian (`ru`)
 
 <!-- atlas:summary begin -->
-Russian is an East Slavic language, written in the Cyrillic script. Glottolog places it in 20 countries. The `ru` spec is at the research tier. It cites 6 sources and has 5 scored datasets.
+Russian is an East Slavic language, written in the Cyrillic script. Glottolog places it in 20 countries. The `ru` spec is at the research tier. It cites 7 sources and has 5 scored datasets.
 <!-- atlas:summary end -->
 
 <!-- atlas:header begin -->
@@ -167,7 +167,7 @@ These specs name `ru` as their parent. They are sorted by country, and a lect wi
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 6 works. 1 of them have a DOI or a URL. The spec file holds a note on what 5 of them support.
+The spec cites 7 works. 2 of them have a DOI or a URL. The spec file holds a note on what 6 of them support.
 
 1. <a id="src-jones_ward1969"></a>Jones, D. & Ward, D. (1969). *The Phonetics of Russian*. Cambridge University Press.
 2. <a id="src-timberlake2004"></a>Timberlake, A. (2004). *A Reference Grammar of Russian*. Cambridge University Press.
@@ -175,6 +175,7 @@ The spec cites 6 works. 1 of them have a DOI or a URL. The spec file holds a not
 4. <a id="src-comrie_corbett1993"></a>Comrie, B. & Corbett, G. (eds.) (1993). *The Slavonic Languages*. Routledge.
 5. <a id="src-wikipron_lee2020"></a>Lee, J. L., Ashby, L. F. E., Garza, M. E., Lee-Sikka, Y., Miller, S., Wong, A., McCarthy, A. D. & Gorman, K. (2020). *WikiPron: Mining Wiktionary for Massively Multilingual Pronunciation Data*. LREC. [github.com](https://github.com/CUNY-CL/wikipron)
 6. <a id="src-avanesov1956"></a>Avanesov, R. I. (1956). *Russkoe literaturnoe proiznoshenie*. Prosveshchenie.
+7. <a id="src-avanesov1988"></a>Borunova, S. N., Vorontsova, V. L. & Es'kova, N. A., Avanesov, R. I. (ed.) (1988). *Orfoepicheskii slovar' russkogo iazyka: proiznoshenie, udarenie, grammaticheskie formy, 4th ed.*. Russkii iazyk, Moscow. Cited: 12, 198, 310, 523, 635-636, 666, 676, 678. [archive.org](https://archive.org/details/20231109_20231109_1822)
 <!-- atlas:sources end -->
 
 ### Notes on the sources
@@ -194,11 +195,11 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 
 | Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
 |:--|:--|:--|:--|:--|--:|--:|:--|
-| `coruss_ru` ([CoRuSS](https://russpeech.spbu.ru/)) | `ru` | gold | expert-human | Not stated upstream | 9527 | 0.3572 | yes |
+| `coruss_ru` ([CoRuSS](https://russpeech.spbu.ru/)) | `ru` | gold | expert-human | Not stated upstream | 9527 | 0.3573 | yes |
 | `primary_sources` | `ru` | gold | expert-human | Apache-2.0 (this repository). Each row quotes and cites a published example. | 36 | 0.1867 | yes |
-| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `ru` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 403870 | 0.1443 | yes |
-| `alphacep_ru_book` ([alphacep/biggest-ru-book-cleanup](https://huggingface.co/datasets/alphacep/biggest-ru-book-cleanup)) | `ru` | generated | machine-generated | Not stated upstream | 6175 | 0.2391 | yes |
-| `vox_communis` ([fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p)) | `ru` | generated | epitran-derived | CC0 1.0 | 50517 | 0.3481 | no |
+| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `ru` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 403870 | 0.1444 | yes |
+| `alphacep_ru_book` ([alphacep/biggest-ru-book-cleanup](https://huggingface.co/datasets/alphacep/biggest-ru-book-cleanup)) | `ru` | generated | machine-generated | Not stated upstream | 6175 | 0.2377 | yes |
+| `vox_communis` ([fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p)) | `ru` | generated | epitran-derived | CC0 1.0 | 50517 | 0.3462 | no |
 <!-- atlas:datasets end -->
 
 <!-- atlas:inventory begin -->
@@ -275,7 +276,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 
 Stress falls on the penult by default. A written ⟨ё⟩ ⟨́⟩ marks the stressed vowel.
 
-Whole-word exceptions (25): ⟨всего⟩ [fsʲɪˈvo], ⟨дорого⟩ [ˈdorəɡə], ⟨его⟩ [jɪˈvo], ⟨кого⟩ [kɐˈvo], ⟨лого⟩ [ˈɫoɡə], ⟨много⟩ [ˈmnoɡə], ⟨моего⟩ [məjɪˈvo], ⟨намного⟩ [nɐˈmnoɡə], ⟨него⟩ [nʲɪˈvo], ⟨недорого⟩ [nʲɪˈdorəɡə], ⟨немного⟩ [nʲɪˈmnoɡə], ⟨никого⟩ [nʲɪkɐˈvo], ⟨ничего⟩ [nʲɪtɕɪˈvo], ⟨ничьего⟩ [nʲɪtɕjɪˈvo], ⟨ого⟩ [ˈoɡo], ⟨одного⟩ [ɐdnɐˈvo], ⟨своего⟩ [svəjɪˈvo], ⟨сего⟩ [sʲɪˈvo], ⟨строго⟩ [ˈstroɡə], ⟨твоего⟩ [tvəjɪˈvo], ⟨того⟩ [tɐˈvo], ⟨убого⟩ [ʊˈboɡə], ⟨чего⟩ [tɕɪˈvo], ⟨чьего⟩ [tɕjɪˈvo], ⟨этого⟩ [ˈɛtəvə].
+Whole-word exceptions (32): ⟨всего⟩ [fsʲɪˈvo], ⟨дорого⟩ [ˈdorəɡə], ⟨его⟩ [jɪˈvo], ⟨итого⟩ [ɪtɐˈvo], ⟨кого⟩ [kɐˈvo], ⟨лого⟩ [ˈɫoɡə], ⟨много⟩ [ˈmnoɡə], ⟨моего⟩ [məjɪˈvo], ⟨намного⟩ [nɐˈmnoɡə], ⟨него⟩ [nʲɪˈvo], ⟨недорого⟩ [nʲɪˈdorəɡə], ⟨немного⟩ [nʲɪˈmnoɡə], ⟨никого⟩ [nʲɪkɐˈvo], ⟨ничего⟩ [nʲɪtɕɪˈvo], ⟨ничто⟩ [nʲɪˈʂto], ⟨ничьего⟩ [nʲɪtɕjɪˈvo], ⟨ого⟩ [ˈoɡo], ⟨одного⟩ [ɐdnɐˈvo], ⟨своего⟩ [svəjɪˈvo], ⟨сего⟩ [sʲɪˈvo], ⟨сегодня⟩ [sʲɪˈvodʲnʲə], ⟨сегодняшний⟩ [sʲɪˈvodʲnʲɪʂnʲɪj], ⟨строго⟩ [ˈstroɡə], ⟨твоего⟩ [tvəjɪˈvo], ⟨того⟩ [tɐˈvo], ⟨убого⟩ [ʊˈboɡə], ⟨чего⟩ [tɕɪˈvo], ⟨что⟩ [ˈʂto], ⟨чтоб⟩ [ˈʂtop], ⟨чтобы⟩ [ˈʂtobɨ], and 2 more in the spec file.
 
 Grammatical endings: ⟨-бьего⟩ [bʲjɪvə], ⟨-вьего⟩ [vʲjɪvə], ⟨-дьего⟩ [dʲjɪvə], ⟨-жего⟩ [ʐɨvə], ⟨-жьего⟩ [ʐjɪvə], ⟨-зьего⟩ [zʲjɪvə], ⟨-льего⟩ [lʲjɪvə], ⟨-мьего⟩ [mʲjɪvə], ⟨-него⟩ [nʲɪvə], ⟨-ньего⟩ [nʲjɪvə], ⟨-ого⟩ [əvə], ⟨-пьего⟩ [pʲjɪvə], ⟨-рьего⟩ [rʲjɪvə], ⟨-сего⟩ [sʲɪvə], ⟨-сьего⟩ [sʲjɪvə], ⟨-тьего⟩ [tʲjɪvə], ⟨-цего⟩ [tsɨvə], ⟨-чего⟩ [tɕɪvə], ⟨-чьего⟩ [tɕjɪvə], ⟨-шего⟩ [ʂɨvə], ⟨-щего⟩ [ɕːɪvə].
 <!-- atlas:spelling end -->
