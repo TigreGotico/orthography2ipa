@@ -481,9 +481,10 @@ class G2P:
 
         - ``"warn"`` (default): the uncovered characters contribute
           nothing to ``ipa``, and each uncovered letter or combining mark
-          (Unicode category ``L*`` or ``M*``) emits
+          (Unicode category ``L*`` or ``M*``) and each uncovered digit
+          (``N*``) emits
           :class:`~orthography2ipa.exceptions.UnmappedGraphemeWarning`
-          once per engine and character. Punctuation, digits, symbols and
+          once per engine and character. Punctuation, symbols and
           spaces do not warn, and a stub spec warns
           :class:`~orthography2ipa.exceptions.StubSpecWarning` once
           instead.

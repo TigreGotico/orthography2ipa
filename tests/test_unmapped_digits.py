@@ -61,3 +61,22 @@ def test_a_spec_that_spells_with_a_digit_stays_silent():
         warnings.simplefilter("error", UnmappedGraphemeWarning)
         result = G2P("zh").transcribe_detailed("ma3")
     assert result.words[0].unmapped == ()
+
+
+def test_the_docs_say_what_the_engine_does_with_a_digit():
+    """The engine warns for a digit (#2183), so no doc may say it never does."""
+    from pathlib import Path
+    import orthography2ipa
+    root = Path(orthography2ipa.__file__).parent
+    texts = {
+        "g2p.py": (root / "g2p.py").read_text(encoding="utf-8"),
+        "exceptions.py": (root / "exceptions.py").read_text(encoding="utf-8"),
+        "api_stability.md": (root.parent / "docs" / "reference"
+                             / "api_stability.md").read_text(encoding="utf-8"),
+    }
+    for name, text in texts.items():
+        flat = " ".join(text.split())
+        assert "digits, symbols and spaces do not warn" not in flat, name
+        assert "digits, symbols and spaces never do" not in flat, name
+    with pytest.warns(UnmappedGraphemeWarning):
+        G2P("fr-FR").transcribe("3")

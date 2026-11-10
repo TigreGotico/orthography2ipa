@@ -104,7 +104,7 @@ A word can hold characters that the grapheme table of the spec does not cover, s
 | `"log"` | One `logging.warning` per distinct `(lang, word)` pair |
 | `"raise"` | `UnmappedScriptError` for that word, in place of a result |
 
-`UnmappedGraphemeWarning` is a `UserWarning` subclass, and its message names the spec code and the code point. Only Unicode letters (`L*`) and marks (`M*`) warn, and punctuation, digits, symbols and spaces do not. A stub spec warns `StubSpecWarning` once instead. To turn the signal off, pass `on_unmapped="ignore"` or filter `UnmappedGraphemeWarning`.
+`UnmappedGraphemeWarning` is a `UserWarning` subclass, and its message names the spec code and the code point. Only Unicode letters (`L*`), marks (`M*`) and digits (`N*`) warn, and punctuation, symbols and spaces do not. A stub spec warns `StubSpecWarning` once instead. To turn the signal off, pass `on_unmapped="ignore"` or filter `UnmappedGraphemeWarning`.
 
 ### Per-word confidence
 

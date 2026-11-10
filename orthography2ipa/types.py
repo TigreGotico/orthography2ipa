@@ -2185,8 +2185,8 @@ class LanguageSpec:
     the unit that is transcribed. An elided clitic is the same case: French
     ``l'homme`` is [lɔm], one phonological word, and the clitic's consonant is
     not word-final. Off by default: in an orthography where the mark is a
-    boundary that the spec does not model as part of one word (Italian
-    ``l'amico``, Catalan ``l'home``) it separates two words. A grapheme that
+    boundary that the spec does not model as part of one word (German
+    ``geht's``, Dutch ``zo'n``) it separates two words. A grapheme that
     the vowel gate reads (a consonant plus ⟨u⟩ or ⟨i⟩) sees the letter after
     an apostrophe inside the word as the one that follows it, whatever this
     field says. An apostrophe at either edge of a token is unaffected.

@@ -195,3 +195,36 @@ def test_a_genuinely_unmapped_letter_still_warns_once_in_a_contraction_spec():
     hits = _unmapped(record)
     assert len(hits) == 1
     assert "U+0628" in str(hits[0].message)
+
+
+def _doc_texts():
+    from pathlib import Path
+    import orthography2ipa.types as types_module
+    root = Path(types_module.__file__).parent
+    return {"types.py": Path(types_module.__file__).read_text(encoding="utf-8"),
+            "SCHEMA.md": (root / "data" / "SCHEMA.md").read_text(encoding="utf-8")}
+
+
+@pytest.mark.parametrize("name", ["types.py", "SCHEMA.md"])
+def test_the_field_docs_name_no_boundary_example_that_is_one_word(name):
+    # it-IT opts in and Catalan reads l'home as one word, so neither is a
+    # case where the apostrophe separates two words.
+    assert load_json_spec("it-IT").word_internal_apostrophe is True
+    text = _doc_texts()[name]
+    window = text
+    assert "l'amico" not in window and "``l'home``" not in window
+    assert "`l'home`" not in window
+    for word, lang in (("geht's", "de-DE"), ("zo'n", "nl-NL")):
+        assert word in window
+        assert " " in o2i.transcribe(word, lang)
+
+
+def test_the_french_sandhi_paragraph_says_the_enchainement_rule_fires():
+    from pathlib import Path
+    page = (Path(__file__).parent.parent / "docs" / "languages" / "fr-FR.md"
+            ).read_text(encoding="utf-8")
+    assert "rules for `z t n ʁ p` do not fire" in page
+    assert "none of them fire" not in page
+    assert "`FR_ENCHAÎNEMENT` does fire" in page
+    assert o2i.transcribe("rouge orange", "fr-FR") == "ʁuʒ‿ ɔʁɑ̃ʒ"
+    assert o2i.transcribe("les amis", "fr-FR") == "le ami"
