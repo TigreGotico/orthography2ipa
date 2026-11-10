@@ -37,7 +37,8 @@ import re
 import unicodedata
 import warnings
 from dataclasses import dataclass, replace
-from typing import Callable, Dict, List, Optional, Set, Tuple
+from functools import cached_property
+from typing import Callable, Dict, FrozenSet, List, Optional, Set, Tuple
 
 from orthography2ipa.exceptions import (StubSpecWarning,
                                          UnmappedGraphemeWarning,
@@ -1204,6 +1205,11 @@ class G2P:
             start = end
         return out
 
+    @cached_property
+    def _declared_inventory(self) -> FrozenSet[str]:
+        """The phoneme inventory of the spec and the pipeline lexicon."""
+        return phoneme_inventory(self.spec, self.pipeline.lexicon)
+
     def _check_forced(self, ipa: str) -> str:
         """Hold forced IPA to the spec's declared inventory.
 
@@ -1215,10 +1221,11 @@ class G2P:
         ipa = ipa.strip()
         if self.allow_undeclared_phonemes:
             return ipa
-        lexicon = self.pipeline.lexicon
-        declared = phoneme_inventory(self.spec, lexicon)
-        outside = [t for t in inventory_tokenize(ipa, self.spec, lexicon)
-                   if t not in declared]
+        # The process-wide lexicon can change between calls; an engine's own
+        # lexicon and its spec cannot, so their inventory is read once.
+        declared = (phoneme_inventory(self.spec) if self.pipeline.lexicon is None
+                    else self._declared_inventory)
+        outside = [t for t in inventory_tokenize(ipa, self.spec) if t not in declared]
         if outside:
             raise MarkupError(
                 f"<phoneme ph={ipa!r}> uses {outside!r}, which the {self.spec.code} "

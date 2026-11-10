@@ -32,6 +32,7 @@ from orthography2ipa import (
     packaged_lexicon,
     phoneme_inventory,
 )
+from orthography2ipa import g2p as g2p_module
 from orthography2ipa import lexicon as lexmod
 from orthography2ipa.inventory import phoneme_atoms, tokenize
 from orthography2ipa.markup import MarkupError
@@ -278,6 +279,18 @@ def test_engine_inventory_ignores_the_process_lexicon(tmp_path):
         engine.transcribe(f'<phoneme ph="{CLICK}">x</phoneme>')
 
 
+def test_an_engine_reads_its_inventory_once(monkeypatch):
+    calls = []
+    real = g2p_module.phoneme_inventory
+    monkeypatch.setattr(g2p_module, "phoneme_inventory",
+                        lambda *args: calls.append(args) or real(*args))
+    engine = G2P("pt-PT", pipeline=Pipeline(lexicon={"gato": "ˈɡatu"}))
+    forced = '<phoneme ph="ˈkazɐ">casa</phoneme> <phoneme ph="ˈɡatu">gato</phoneme>'
+
+    assert engine.transcribe(forced) == engine.transcribe(forced)
+    assert len(calls) == 1
+
+
 def test_inventory_functions_read_the_mapping_they_are_given(tmp_path):
     spec = get("pt-PT")
     lexicon = {"x": f"{CLICK}a"}
@@ -285,8 +298,10 @@ def test_inventory_functions_read_the_mapping_they_are_given(tmp_path):
     assert f"{CLICK}a" in emission_inventory(spec, lexicon)
     assert f"{CLICK}a" not in emission_inventory(spec)
     assert CLICK not in phoneme_inventory(spec)
-    assert f"{CLICK}a" in phoneme_atoms(spec, lexicon)
-    assert tokenize(f"{CLICK}a", spec, lexicon) == [f"{CLICK}a"]
+    # A lexicon reading is a word, so it is cut into segments, never kept whole.
+    assert {CLICK, "a"} <= phoneme_inventory(spec, lexicon)
+    assert f"{CLICK}a" not in phoneme_inventory(spec, lexicon)
+    assert f"{CLICK}a" not in phoneme_atoms(spec)
     assert tokenize(f"{CLICK}a", spec) == [CLICK, "a"]
 
     lexmod.register_lexicon("pt-PT", str(tsv(tmp_path, "global.tsv", ("gato", "ǃ"))))

@@ -11,7 +11,7 @@ import pytest
 from orthography2ipa import available_codes, get
 from orthography2ipa.g2p import G2P
 from orthography2ipa.inventory import (
-    dead_allophone_rules, emission_inventory, phoneme_inventory, tokenize,
+    dead_allophone_rules, emission_inventory, phoneme_atoms, phoneme_inventory, tokenize,
 )
 
 ALL_CODES = sorted(available_codes())
@@ -108,6 +108,35 @@ def test_multi_character_segments_stay_whole():
     """[ts] is one token, not t + s — the affricate is declared, so it holds."""
     assert "ts" in phoneme_inventory(get("ar-SA-x-najd"))
     assert "aː" in phoneme_inventory(get("ar"))
+
+
+def test_a_whole_word_reading_is_cut_into_segments():
+    """The Aragonese of Tena lists ``ros`` [ɾos] as a word exception. A word
+    is not a phoneme: the inventory holds [ɾ], [o] and [s], never [ɾos]."""
+    spec = get("an-x-tensino")
+    assert spec.word_exceptions["ros"] == "ɾos"
+    inventory = phoneme_inventory(spec)
+    assert {"ɾ", "o", "s"} <= inventory
+    assert not {"ɾo", "ɾos", "ɾa", "ɾas"} & inventory
+    assert tokenize("ɾos", spec) == ["ɾ", "o", "s"]
+
+
+def test_a_segment_only_a_word_exception_emits_is_declared():
+    """Qeltu Arabic emits [ʁ] only inside its word exceptions (أَعْرِف
+    [ʔaʕʁif], دُغْرِي [duɣʁiː], بَاكِر [baːkiʁ]). The segment is in the
+    inventory, so a forced reading that uses it is accepted."""
+    spec = get("ar-IQ-x-qeltu")
+    assert spec.word_exceptions["أَعْرِف"] == "ʔaʕʁif"
+    assert "ʁ" in phoneme_inventory(spec)
+    assert G2P("ar-IQ-x-qeltu").transcribe('<phoneme ph="ʁa">x</phoneme>') == "ʁa"
+
+
+def test_the_lexicon_argument_of_tokenize_and_phoneme_atoms_is_deprecated():
+    spec = get("pt-PT")
+    with pytest.warns(DeprecationWarning, match="lexicon argument of tokenize"):
+        assert tokenize("ˈkazɐ", spec, {}) == tokenize("ˈkazɐ", spec)
+    with pytest.warns(DeprecationWarning, match="lexicon argument of phoneme_atoms"):
+        assert phoneme_atoms(spec, {}) == phoneme_atoms(spec)
 
 
 # ─── the dead-rule lint ─────────────────────────────────────────────────

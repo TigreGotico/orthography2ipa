@@ -238,7 +238,7 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 112 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 102 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Dental | Alveolar | Postalveolar | Palatal | Velar | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -259,7 +259,7 @@ The spec can emit 112 segments. They come from the letter table, the positional 
 | Near-open | æ | ɐ |  |
 | Open |  |  | ɑ ɑː ɒ |
 
-Sequences that the spec writes as one unit: [aɪ] [aɪə] [aɪəɹ] [aʊ] [aʊə] [aʊəɹ] [eɪ] [juː] [jʊə] [jʊəɹ] [ks] [kw] [ndʒ] [sk] [stʃəl] [stʃən] [stʃəs] [tʃə] [w] [w̥] [æɹ] [æʊ] [ŋɡ] [ɑɪ] [ɑːɹ] [ɒf] [ɒɹ] [ɔɪ] [ɔːɹ] [əs] [əw] [əɹ] [əʊ] [əʊɪ] [ɚ] [ɛə] [ɛəɹ] [ɛɹ] [ɜːɹ] [ɝː], and 14 more.
+Sequences that the spec writes as one unit: [aɪ] [aɪə] [aɪəɹ] [aʊ] [aʊə] [aʊəɹ] [eɪ] [juː] [jʊə] [jʊəɹ] [ks] [kw] [ndʒ] [sk] [w] [w̥] [æɹ] [æʊ] [ŋɡ] [ɑɪ] [ɑːɹ] [ɒf] [ɒɹ] [ɔɪ] [ɔːɹ] [əw] [əɹ] [əʊ] [əʊɪ] [ɚ] [ɛə] [ɛəɹ] [ɛɹ] [ɜːɹ] [ɝː] [ɡz] [ɪə] [ɪəɹ] [ɪɹ] [ʊə], and 4 more.
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

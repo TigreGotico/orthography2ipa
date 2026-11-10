@@ -61,7 +61,7 @@ No dataset on the board scores this spec. See the [dataset catalogue](../evaluat
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 83 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 62 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Retroflex | Palatal | Velar |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -83,7 +83,7 @@ The spec can emit 83 segments. They come from the letter table, the positional r
 | Near-open |  | ɐ |  |
 | Open | a |  |  |
 
-Sequences that the spec writes as one unit: [bʲjɪɣə] [dʲjɪɣə] [ja] [je] [jo] [ju] [jə] [jɪ] [jɵ] [jʊ] [lʲjɪɣə] [mʲjɪɣə] [nʲjɪɣə] [nʲɪɣə] [pʲjɪɣə] [rʲjɪɣə] [sʲjɪɣə] [sʲɪɣə] [tsɨɣə] [tɕj] [tɕjɪɣə] [tɕɪɣə] [tʲjɪɣə] [vʲjɪɣə] [zʲjɪɣə] [ɕːɪɣə] [əɣə] [ʂj] [ʂɨɣə] [ʐj] [ʐjɪɣə] [ʐɨɣə] [ʲ].
+Sequences that the spec writes as one unit: [ja] [je] [jo] [ju] [jə] [jɪ] [jɵ] [jʊ] [tɕj] [ʂj] [ʐj] [ʲ].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->
