@@ -17,6 +17,16 @@ come in a fixed order, so that a reader learns the page once:
 ``sources``, ``datasets``, ``inventory``, ``spelling``, ``rules``, ``examples`` and
 ``related``.
 
+A page with no hand-written overview carries the ``overview`` block after
+``header``. It quotes the opening of the spec's notes and states the tier,
+the sources and the inheritance of the letter table, all from the data. A
+page author who writes an overview deletes the block and writes the
+``## Overview`` section in its place.
+
+The atlas covers every living spec at the research or production tier
+(:func:`in_cut`), except the specs that ``NO_PAGE`` names with a reason.
+``--scaffold-cut`` creates the page of each one that has no page yet.
+
 The ``examples`` marker can name the words to transcribe, separated by ``|``::
 
     <!-- atlas:examples begin words="cabra|la boca" -->
@@ -38,6 +48,7 @@ Usage::
     PYTHONPATH=$PWD python scripts/gen_language_atlas.py --write
     PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check
     PYTHONPATH=$PWD python scripts/gen_language_atlas.py --scaffold fi
+    PYTHONPATH=$PWD python scripts/gen_language_atlas.py --scaffold-cut
     PYTHONPATH=$PWD python scripts/gen_language_atlas.py --refresh-snapshot
 
 ``--check`` writes nothing and exits 1 when a block or an index is stale, or
@@ -86,8 +97,10 @@ INDEXES = {
     "a-z.md": "Languages from A to Z",
 }
 
-BLOCKS = ("summary", "header", "lects", "sources", "datasets", "inventory",
-          "spelling", "rules", "examples", "related")
+BLOCKS = ("summary", "header", "overview", "lects", "sources", "datasets",
+          "inventory", "spelling", "rules", "examples", "related")
+#: Blocks a page may leave out: a hand-written overview replaces ``overview``.
+OPTIONAL = frozenset({"overview"})
 _BLOCK = re.compile(
     r"<!-- atlas:(?P<name>\w+) begin(?P<attrs>[^>]*?)-->\n.*?<!-- atlas:(?P=name) end -->",
     re.S)
@@ -142,6 +155,50 @@ def _lineage_iso(lineage: Sequence) -> Optional[str]:
     for spec in lineage:
         if spec.iso639_3:
             return spec.iso639_3
+    return None
+
+
+def in_cut(raw: dict) -> bool:
+    """Whether the spec file *raw* gets an atlas page: a living spec, not a
+    clade, at the research or production tier."""
+    return (not raw.get("clade")
+            and raw.get("quality", "research") in ("research", "production")
+            and (raw.get("timespan") or {}).get("end_year") is None)
+
+
+_PT_CREOLE = "a creole that takes its rules from pt-PT, whose pages are written by hand"
+_HAND = "a hand page that does not use the atlas template"
+
+#: The specs in the cut that have no atlas page, each with its reason. An
+#: entry names one code, or with a final ``-*`` every code that starts with
+#: what comes before the ``*``.
+NO_PAGE = (
+    ("pt-*", "Portuguese and its lects: the Portuguese pages are written by hand"),
+    ("ext-PT-x-barranco", "Barranquenho: a hand page beside the Portuguese pages"),
+    ("aoa", _PT_CREOLE),
+    ("cri", _PT_CREOLE),
+    ("idb", _PT_CREOLE),
+    ("kea", _PT_CREOLE),
+    ("mcm", _PT_CREOLE),
+    ("mzs", _PT_CREOLE),
+    ("pap", _PT_CREOLE),
+    ("pov", _PT_CREOLE),
+    ("pre", _PT_CREOLE),
+    ("vkp", _PT_CREOLE),
+    ("as", _HAND),
+    ("eo", _HAND),
+    ("eu", _HAND),
+    ("fi", _HAND),
+    ("fo", _HAND),
+    ("ro-RO", _HAND),
+)
+
+
+def no_page_reason(code: str) -> Optional[str]:
+    """Why *code* has no atlas page, or None when it must have one."""
+    for entry, reason in NO_PAGE:
+        if code == entry or (entry.endswith("-*") and code.startswith(entry[:-1])):
+            return reason
     return None
 
 
@@ -430,6 +487,75 @@ def _wikipedia(spec) -> Optional[str]:
     return (english or pages or [None])[0]
 
 
+_TIER_MEANS = {
+    "research": "a cited description, with stress and a measured gold",
+    "production": "a cited description, measured on a trusted gold of 500 "
+                  "words or more at the benchmark bar",
+}
+
+
+def _notes_lead(notes: str, limit: int = 320) -> str:
+    """The opening sentences of *notes*, up to about *limit* characters.
+
+    Only the first paragraph is read. A sentence that runs past the limit
+    on its own is cut at a comma and closed with an ellipsis.
+    """
+    paragraph = (notes or "").strip().split("\n")[0].strip()
+    lead = ""
+    for sentence in re.split(r"(?<=[.!?])\s+(?=[A-Z⟨(\"'])", paragraph):
+        if lead and len(lead) + len(sentence) > limit:
+            break
+        lead = f"{lead} {sentence}".strip()
+    if len(lead) > limit * 2:
+        cut = lead.rfind(", ", 0, limit)
+        lead = lead[:cut if cut > 0 else limit].rstrip(" ,") + " …"
+    return _clean(lead)
+
+
+def block_overview(atlas: Atlas, spec) -> str:
+    raw = atlas.raw[spec.code]
+    lines = ["## Overview", ""]
+    lead = _notes_lead(raw.get("notes", ""))
+    if lead:
+        lines += ["The notes of the spec file open with these words:", "",
+                  f"> {lead}", ""]
+    tier = _value(spec.quality)
+    text = [f"The spec is at the [{tier}](../specs/quality_tiers.md#{tier}) "
+            f"tier, which asks for {_TIER_MEANS.get(tier, 'its own criteria')}."]
+    if tier == "research" and not atlas.board_by_code.get(spec.code):
+        text.append("No board row scores it yet, so the measured gold of "
+                    "that tier is still missing.")
+    sources = list(spec.sources or ())
+    if sources:
+        years = sorted(s.year for s in sources if s.year)
+        span = (f", from {years[0]} to {years[-1]}" if years and years[0] != years[-1]
+                else f", from {years[0]}" if years else "")
+        wiki = sum(1 for s in sources if "wikipedia.org" in (s.url or ""))
+        text.append(f"It cites {len(sources)} "
+                    f"{'work' if len(sources) == 1 else 'works'}{span}"
+                    + (f". {wiki} of them {'is a' if wiki == 1 else 'are'} "
+                       f"Wikipedia {'article' if wiki == 1 else 'articles'}"
+                       if wiki else "")
+                    + ". [Sources](#sources) lists them.")
+    own = len(raw.get("graphemes") or {})
+    total = len(spec.graphemes or {})
+    base = raw.get("graphemes_base")
+    if base and base in atlas.raw and total > own:
+        source = f"[{_clean(atlas.raw[base]['name'])}]({atlas.link(base)}) `{base}`"
+        text.append(f"The spec file writes {own} of the {total} spellings of "
+                    f"its letter table and takes the other {total - own} from "
+                    f"{source}." if own else
+                    f"The spec file writes no spelling of its own. It takes "
+                    f"all {total} from {source}.")
+    elif total:
+        text.append(f"The spec file writes all {total} spellings of its "
+                    "letter table itself.")
+    lines.append(" ".join(text))
+    lines += ["", f"The [spec file](../../orthography2ipa/data/{spec.code}.json) "
+              "holds the full notes, with the caveats of the spec."]
+    return "\n".join(lines)
+
+
 def _source_line(source) -> str:
     parts = [f"{_clean(source.author)} ({source.year}). *{_clean(source.title)}*."]
     if source.publisher:
@@ -453,9 +579,16 @@ def block_sources(atlas: Atlas, spec) -> str:
     if not sources:
         return "\n".join(lines + ["The spec cites no source."])
     linked = sum(1 for s in sources if s.doi or s.url)
+    noted = sum(1 for s in sources if s.notes)
+    if noted == len(sources):
+        notes = " The spec file holds a note on what each work supports."
+    elif noted:
+        notes = (f" The spec file holds a note on what {noted} of them "
+                 "support.")
+    else:
+        notes = ""
     lines += [f"The spec cites {len(sources)} works. {linked} of them have a "
-              "DOI or a URL. The spec file holds a note on what each work "
-              "supports.", ""]
+              f"DOI or a URL.{notes}", ""]
     for n, source in enumerate(sources, 1):
         lines.append(f"{n}. <a id=\"src-{source.id}\"></a>{_source_line(source)}")
     return "\n".join(lines)
@@ -693,6 +826,12 @@ def _segments(values: Sequence[str], limit: int = 8) -> str:
     return text + (f" and {len(values) - limit} more" if len(values) > limit else "")
 
 
+def _letters(values: Sequence[str], limit: int = 8) -> str:
+    values = list(values)
+    text = " ".join(f"⟨{v}⟩" for v in values[:limit])
+    return text + (f" and {len(values) - limit} more" if len(values) > limit else "")
+
+
 def _change(rule) -> str:
     target = "/" + " ".join(rule.phonemes) + "/"
     if rule.append:
@@ -718,11 +857,11 @@ def _change(rule) -> str:
     if rule.followed_by_phoneme:
         where.append("before " + _segments(rule.followed_by_phoneme))
     if rule.grapheme:
-        where.append("spelled " + " ".join(f"⟨{g}⟩" for g in rule.grapheme))
+        where.append("spelled " + _letters(rule.grapheme))
     if rule.preceded_by_grapheme:
-        where.append("after " + " ".join(f"⟨{g}⟩" for g in rule.preceded_by_grapheme))
+        where.append("after " + _letters(rule.preceded_by_grapheme))
     if rule.followed_by_grapheme:
-        where.append("before " + " ".join(f"⟨{g}⟩" for g in rule.followed_by_grapheme))
+        where.append("before " + _letters(rule.followed_by_grapheme))
     if rule.word:
         where.append(f"in {len(rule.word)} listed words")
     rest = [f.name for f in dataclasses.fields(rule)
@@ -1017,12 +1156,18 @@ def render_page(atlas: Atlas, code: str, text: str) -> str:
     """The page *text* with every generated block rebuilt from the data."""
     spec = atlas.spec(code)
     names = [m.group("name") for m in _BLOCK.finditer(text)]
-    if names != list(BLOCKS):
+    wanted = [b for b in BLOCKS if b in names or b not in OPTIONAL]
+    if names != wanted:
         raise TemplateError(
             f"{code}.md: the atlas blocks are {names}, the template needs "
-            f"{list(BLOCKS)} in that order")
+            f"{wanted} in that order")
     if sum(1 for line in text.splitlines() if line.startswith("# ")) != 1:
         raise TemplateError(f"{code}.md: a page has exactly one H1")
+    hand = _BLOCK.sub("", text)
+    if "overview" in names and re.search(r"^## Overview$", hand, re.M):
+        raise TemplateError(
+            f"{code}.md: a hand-written Overview replaces the overview block. "
+            "Delete one of them")
 
     def fill(match: re.Match) -> str:
         name, attrs = match.group("name"), match.group("attrs")
@@ -1039,16 +1184,15 @@ def render_page(atlas: Atlas, code: str, text: str) -> str:
 
 
 def scaffold(atlas: Atlas, code: str) -> str:
-    """A new page for *code*: every block, and the two hand-written sections."""
-    order = BLOCKS[:2]
+    """A new page for *code*: every block, with the generated overview.
+
+    A page author replaces the overview block with hand-written prose, and
+    adds topic sections and a "Weak points" section after it.
+    """
     parts = [f"# {code}", ""]
-    for name in order:
+    for name in BLOCKS:
         parts += [f"<!-- atlas:{name} begin -->", f"<!-- atlas:{name} end -->", ""]
-    parts += ["## Overview", "", "What is distinctive about this spec.", "",
-              "## Weak points", "", "Where this spec is weak.", ""]
-    for name in BLOCKS[2:]:
-        parts += [f"<!-- atlas:{name} begin -->", f"<!-- atlas:{name} end -->", ""]
-    return render_page(atlas, code, "\n".join(parts))
+    return render_page(atlas, code, "\n".join(parts).rstrip() + "\n")
 
 
 # --------------------------------------------------------------------------
@@ -1175,7 +1319,7 @@ def index_az(atlas: Atlas) -> str:
         INDEXES["a-z.md"],
         "Every spec by name. The pages come first in the list below. Use the "
         "letters to jump.")
-    pages = sorted(atlas.pages, key=lambda c: atlas.raw[c]["name"])
+    pages = sorted(atlas.pages, key=lambda c: (atlas.raw[c]["name"], c))
     lines += ["## Pages", "", "| Page | Code | Tier | Family |", "|:--|:--|:--|:--|"]
     lines += [f"| {_entry(atlas, c)} | `{c}` | {atlas.raw[c].get('quality')} | "
               f"{atlas.spec(c).family or ''} |" for c in pages]
@@ -1294,8 +1438,11 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     mode.add_argument("--write", action="store_true", help="write the files")
     mode.add_argument("--check", action="store_true",
                       help="exit 1 when a file differs from what the data says")
-    mode.add_argument("--scaffold", metavar="CODE",
-                      help="create the page for CODE from the template")
+    mode.add_argument("--scaffold", metavar="CODE", nargs="+",
+                      help="create the page of each CODE from the template")
+    mode.add_argument("--scaffold-cut", action="store_true",
+                      help="create the page of every spec in the cut that has "
+                           "no page, no hand-written file and no NO_PAGE entry")
     mode.add_argument("--refresh-snapshot", action="store_true",
                       help="rebuild scripts/atlas_snapshot.json over the network")
     args = ap.parse_args(argv)
@@ -1304,19 +1451,30 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         refresh_snapshot()
         return 0
     atlas = Atlas()
-    if args.scaffold:
-        code = registry.resolve(args.scaffold)
-        path = os.path.join(LANG_DIR, f"{code}.md")
-        if os.path.exists(path):
-            print(f"{path} exists")
-            return 1
-        atlas.pages.add(code)
-        with open(path, "w", encoding="utf-8") as fh:
-            fh.write(scaffold(atlas, code))
-        print(f"wrote {os.path.relpath(path, REPO_ROOT)}. Run --write to list "
-              "it in the indexes, then scripts/docs_nav.py --write and "
+    if args.scaffold or args.scaffold_cut:
+        if args.scaffold:
+            codes = [registry.resolve(c) for c in args.scaffold]
+        else:
+            codes = [c for c in atlas.codes if c in atlas.raw
+                     and in_cut(atlas.raw[c]) and c not in atlas.pages
+                     and no_page_reason(c) is None]
+        made, held = [], []
+        for code in codes:
+            path = os.path.join(LANG_DIR, f"{code}.md")
+            if os.path.exists(path):
+                held.append(code)
+                continue
+            atlas.pages.add(code)
+            made.append((code, path))
+        for code, path in made:
+            with open(path, "w", encoding="utf-8") as fh:
+                fh.write(scaffold(atlas, code))
+        if held:
+            print(f"left alone, a file exists: {' '.join(held)}")
+        print(f"wrote {len(made)} pages. Run --write to list them in the "
+              "indexes, then scripts/docs_nav.py --write and "
               "scripts/gen_reference_docs.py --write.")
-        return 0
+        return 1 if held and args.scaffold else 0
 
     try:
         wanted = outputs(atlas)

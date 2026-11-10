@@ -1,10 +1,34 @@
-# Hausa (ha): a shallow orthography that hides tone, length and one consonant contrast
+# Hausa (`ha`)
 
-**Code**: `ha` | **Family**: Afro-Asiatic > Chadic > West Chadic | **Script**: Latin (Boko)
-**Quality tier**: research
-**Source read**: Newman, P. (1996), "Hausa Phonology", chapter 27 of A. S. Kaye & P. T. Daniels (eds.), *Phonologies of Asia and Africa*, Eisenbrauns, pp. 537-552 ([full text](https://scholarworks.iu.edu/dspace/bitstreams/f1d4231b-d713-4134-970c-071c5f8485ed/download)). The consonant inventory is Table 27-1 on p. 538, and the segmental discussion is on pp. 539-540. A second description is read alongside it: Schuh, R. G. & Yalwa, L. D. (1999), "Hausa", Illustrations of the IPA, in *Handbook of the International Phonetic Association*, Cambridge University Press, pp. 90-95 ([scan](https://archive.org/details/rosettaproject_hau_phon-4)). It describes the Kano standard and disagrees with Newman on two letters.
+<!-- atlas:summary begin -->
+Hausa is a Chadic language, written in the Latin script. Glottolog places it in 6 countries. The `ha` spec is at the research tier. It cites 2 sources and has 2 scored datasets.
+<!-- atlas:summary end -->
+
+<!-- atlas:header begin -->
+| Field | Value |
+|:--|:--|
+| Code | `ha` |
+| ISO 639-3 | [hau](https://iso639-3.sil.org/code/hau), Hausa |
+| Glottolog | [haus1257](https://glottolog.org/resource/languoid/id/haus1257), Hausa |
+| Wikidata | [Q56475](https://www.wikidata.org/wiki/Q56475) |
+| Wikipedia | [Hausa language](https://en.wikipedia.org/wiki/Hausa_language) |
+| Family | [Afro-Asiatic](by-family.md#afro-asiatic) > [Chadic](by-family.md#afro-asiatic--chadic) |
+| Region | [Africa](by-region.md#africa) > [Benin](by-region.md#benin), [Burkina Faso](by-region.md#burkina-faso), [Cameroon](by-region.md#cameroon), [Chad](by-region.md#chad), [Niger](by-region.md#niger), [Nigeria](by-region.md#nigeria) |
+| Script | [Latin](by-script.md#latin) (alphabet) |
+| Tier | [research](../specs/quality_tiers.md#research) |
+| Attested | from 1900, living |
+| Parent | [Proto-Chadic (family node)](https://tigregotico.github.io/orthography2ipa/#cdc) `cdc` |
+| Explorer | [`ha` in the data explorer](https://tigregotico.github.io/orthography2ipa/#ha) |
+| Spec file | [`ha.json`](../../orthography2ipa/data/ha.json) |
+<!-- atlas:header end -->
+
+## Overview
 
 Boko spells most Hausa consonants one to one, and the spec reads them directly. Three contrasts are absent from the spelling: tone, vowel length, and the two rhotics. No grapheme-driven transcriber can recover tone or length. The spec carries the rhotics as a candidate pair.
+
+Within Chadic, the page places Hausa in West Chadic.
+
+The page reads two sources. The first is Newman, P. (1996), "Hausa Phonology", chapter 27 of A. S. Kaye & P. T. Daniels (eds.), *Phonologies of Asia and Africa*, Eisenbrauns, pp. 537-552 ([full text](https://scholarworks.iu.edu/dspace/bitstreams/f1d4231b-d713-4134-970c-071c5f8485ed/download)). The consonant inventory is Table 27-1 on p. 538, and the segmental discussion is on pp. 539-540. A second description is read alongside it: Schuh, R. G. & Yalwa, L. D. (1999), "Hausa", Illustrations of the IPA, in *Handbook of the International Phonetic Association*, Cambridge University Press, pp. 90-95 ([scan](https://archive.org/details/rosettaproject_hau_phon-4)). It describes the Kano standard and disagrees with Newman on two letters.
 
 ## Input contract
 
@@ -123,5 +147,151 @@ Fold each gold's own notation out of both sides, and the two rows land close tog
 
 One real disagreement between the golds survives all the folding. Schuh & Yalwa say that [ʔ] "occurs predictably before words written in the standard orthography with initial vowels" (p. 91), and the spec writes it. WikiPron writes it too. VoxCommunis writes no initial glottal stop on any vowel-initial headword, which is the largest single part of that row's residual after folding. The spec follows the description and the human-notation gold, and pays those edits against epitran.
 
+<!-- atlas:lects begin -->
+## Related lects
+
+No spec names `ha` as its parent.
+<!-- atlas:lects end -->
+
+<!-- atlas:sources begin -->
+## Sources
+
+The spec cites 2 works. 2 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+
+1. <a id="src-newman1996"></a>Newman, P. (1996). *Hausa Phonology (chapter 27)*. In A. S. Kaye & P. T. Daniels (eds.), Phonologies of Asia and Africa, Eisenbrauns. Cited: 537-552. [scholarworks.iu.edu](https://scholarworks.iu.edu/dspace/bitstreams/f1d4231b-d713-4134-970c-071c5f8485ed/download)
+2. <a id="src-schuh_yalwa1999"></a>Schuh, R. G. & Yalwa, L. D. (1999). *Hausa (Illustrations of the IPA)*. In Handbook of the International Phonetic Association, Cambridge University Press. Cited: 90-95. [archive.org](https://archive.org/details/rosettaproject_hau_phon-4)
+<!-- atlas:sources end -->
+
+<!-- atlas:datasets begin -->
+## Datasets
+
+Every row of the board that scores this spec. PER is the phoneme error rate against the dataset. A gold row is human work, a silver row is a language model's label, and a generated row is the output of another tool. Only a row marked as gating can promote or block the spec. The [dataset catalogue](../evaluation/datasets.md) describes each set.
+
+| Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
+|:--|:--|:--|:--|:--|--:|--:|:--|
+| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `ha` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 1857 | 0.5340 | yes |
+| `vox_communis` ([fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p)) | `ha` | generated | epitran-derived | CC0 1.0 | 3719 | 0.1130 | no |
+<!-- atlas:datasets end -->
+
+<!-- atlas:inventory begin -->
+## Inventory
+
+The spec can emit 58 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+
+| Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Retroflex | Palatal | Velar | Glottal |
+|:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| Plosive | b p |  | d t |  |  |  | k kʲ kʲʼ kʷ kʷʼ kʼ ɡ ɡʲ ɡʷ | ʔ ʔʲ |
+| Affricate |  |  | tsʼ | dʒ tʃ |  |  |  |  |
+| Nasal | m |  | n |  |  |  | ŋ |  |
+| Trill |  |  | r |  |  |  |  |  |
+| Tap |  |  |  |  | ɽ |  |  |  |
+| Fricative | ɸ | f fʲ | s sʼ z | ʃ |  |  |  | h |
+| Approximant |  |  |  |  |  | j j̰ |  |  |
+| Lateral approximant |  |  | l |  |  |  |  |  |
+
+| Vowels | Front | Back |
+|:--|:-:|:-:|
+| Close | i | u |
+| Close-mid | e | o |
+| Open | a |  |
+
+Sequences that the spec writes as one unit: [fʲfʲ] [kʲkʲ] [kʲʼkʲʼ] [kʷkʷ] [kʷʼkʷʼ] [nn] [sʼsʼ] [tsʼtsʼ] [w] [ɓ] [ɗ] [ɡʲɡʲ] [ɡʷɡʷ] [ʃʃ] [ʔa] [ʔe] [ʔi] [ʔo] [ʔu].
+
+Tones: [◌́] high, [◌̀] low, [◌̂] falling.
+<!-- atlas:inventory end -->
+
+<!-- atlas:spelling begin -->
+## Spelling
+
+Each letter or letter group of the spec with its readings. The first reading is the default, and the others stay in the lattice as lower-ranked candidates. The last column gives the readings that depend on the position in the word.
+
+| Spelling | Readings | By position |
+|:--|:--|:--|
+| ⟨'⟩ | [ʔ] |  |
+| ⟨'y⟩ | [j̰] [ʔʲ] |  |
+| ⟨a⟩ | [a] | word initial [ʔa] |
+| ⟨b⟩ | [b] |  |
+| ⟨c⟩ | [tʃ] |  |
+| ⟨d⟩ | [d] |  |
+| ⟨e⟩ | [e] | word initial [ʔe] |
+| ⟨f⟩ | [f] |  |
+| ⟨ffy⟩ | [fʲfʲ] |  |
+| ⟨fy⟩ | [fʲ] |  |
+| ⟨g⟩ | [ɡ] |  |
+| ⟨ggw⟩ | [ɡʷɡʷ] |  |
+| ⟨ggy⟩ | [ɡʲɡʲ] |  |
+| ⟨gw⟩ | [ɡʷ] |  |
+| ⟨gy⟩ | [ɡʲ] |  |
+| ⟨h⟩ | [h] |  |
+| ⟨i⟩ | [i] | word initial [ʔi] |
+| ⟨j⟩ | [dʒ] |  |
+| ⟨k⟩ | [k] |  |
+| ⟨kkw⟩ | [kʷkʷ] |  |
+| ⟨kky⟩ | [kʲkʲ] |  |
+| ⟨kw⟩ | [kʷ] |  |
+| ⟨ky⟩ | [kʲ] |  |
+| ⟨l⟩ | [l] |  |
+| ⟨m⟩ | [m] |  |
+| ⟨n⟩ | [n] | word final [n] [ŋ] |
+| ⟨nn⟩ | [nn] |  |
+| ⟨o⟩ | [o] | word initial [ʔo] |
+| ⟨p⟩ | [p] |  |
+| ⟨r⟩ | [r] [ɽ] | word final [r] |
+| ⟨r̃⟩ | [r] |  |
+| ⟨s⟩ | [s] |  |
+| ⟨sh⟩ | [ʃ] |  |
+| ⟨ssh⟩ | [ʃʃ] |  |
+| ⟨t⟩ | [t] |  |
+| ⟨ts⟩ | [sʼ] [tsʼ] |  |
+| ⟨tts⟩ | [sʼsʼ] [tsʼtsʼ] |  |
+| ⟨u⟩ | [u] | word initial [ʔu] |
+| ⟨w⟩ | [w] |  |
+| ⟨y⟩ | [j] |  |
+| ⟨z⟩ | [z] |  |
+| ⟨ƙ⟩ | [kʼ] |  |
+| ⟨ƙw⟩ | [kʷʼ] |  |
+| ⟨ƙy⟩ | [kʲʼ] |  |
+| ⟨ƙƙw⟩ | [kʷʼkʷʼ] |  |
+| ⟨ƙƙy⟩ | [kʲʼkʲʼ] |  |
+| ⟨ƴ⟩ | [j̰] [ʔʲ] |  |
+| ⟨ɓ⟩ | [ɓ] |  |
+| ⟨ɗ⟩ | [ɗ] |  |
+| ⟨ʼ⟩ | [ʔ] |  |
+| ⟨ʼy⟩ | [j̰] [ʔʲ] |  |
+| ⟨’⟩ | [ʔ] |  |
+| ⟨’y⟩ | [j̰] [ʔʲ] |  |
+
+The spec declares no stress rule.
+<!-- atlas:spelling end -->
+
+<!-- atlas:rules begin -->
+## Rules
+
+The spec has no allophone rule and no cross-word rule.
+<!-- atlas:rules end -->
+
+<!-- atlas:examples begin words="kwana|gadaa|fitoo|nasara|bara|ɗiyaa|gyaɗaa|ʼyaa" -->
+## Examples
+
+The engine wrote every transcription in this section with `orthography2ipa.transcribe(text, "ha")`. They are engine output, not reference transcriptions.
+
+| Spelling | Engine output |
+|:--|:--|
+| kwana | [kʷana] |
+| gadaa | [ɡadaa] |
+| fitoo | [fitoo] |
+| nasara | [nasara] |
+| bara | [bara] |
+| ɗiyaa | [ɗijaa] |
+| gyaɗaa | [ɡʲaɗaa] |
+| ʼyaa | [j̰aa] |
+<!-- atlas:examples end -->
+
+<!-- atlas:related begin -->
+## Related repositories
+
+No downstream repository of the TigreGotico organisation covers this spec. The [o2i-lexicons](https://github.com/TigreGotico/o2i-lexicons) package ships no lexicon for it.
+<!-- atlas:related end -->
+
 ---
-[← Ancient Egyptian](egy.md) · [Home](../index.md) · [Hindi →](hi.md)
+[← Hassaniya Arabic](mey-MR.md) · [Home](../index.md) · [Hawaiian →](haw.md)

@@ -66,7 +66,7 @@ common task.
 | Write a spec, a citation, a board change or an engine change | [docs/contributing/](docs/contributing/spec_authoring.md) |
 | Learn the repository map, the setup and the hard rules | [AGENTS.md](AGENTS.md) |
 | Follow the branch model and the commit messages | [CONTRIBUTING.md](CONTRIBUTING.md) |
-| Give a language model a map of the repository | [llms.txt](llms.txt) |
+| Give a language model a map of the repository | [llms.txt](llms.txt), or [llms-full.txt](llms-full.txt) with every language page |
 
 ## How it compares
 

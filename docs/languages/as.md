@@ -48,4 +48,4 @@ A conjunct inside a word that closes a syllable keeps its inherent vowel. The de
 - Roy, S. & Mahanta, S. (2018). A computational model for Assamese grapheme-to-phoneme conversion. *Interspeech 2018*.
 
 ---
-[← Hindi](hi.md) · [Home](../index.md) · [Mongolian →](mn.md)
+[← Arabic dialects](ar-dialects.md) · [Home](../index.md) · [Basque (Euskara) and its dialects →](eu.md)

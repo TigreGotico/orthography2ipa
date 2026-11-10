@@ -133,4 +133,4 @@ The engine writes the stress mark inside the affricates *ts̻ ts̺* (*beltˈs̻a
 The `wikipron` row is crowd-scraped and is the row that can qualify `eu` for production. The `vox_communis` row is epitran-derived and the `ipa_childes` row is espeak-derived, so neither can gate a promotion. The `hitz_basque_ipa` row is machine-generated, with tool-generated transcriptions in the StyleTTS2 convention. The `spain_romance_tts` rows for `eu` and the dialects are LLM-generated, and an LLM-generated row never gates. See the [scoreboard](../evaluation/generated/scoreboard.md) for the scores.
 
 ---
-[← Mongolian](mn.md) · [Home](../index.md) · [Finnish →](fi.md)
+[← Assamese](as.md) · [Home](../index.md) · [Finnish →](fi.md)

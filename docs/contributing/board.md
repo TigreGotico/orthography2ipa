@@ -75,7 +75,7 @@ file, which you read first when a row moves with no spec change.
 The [language atlas](../languages/index.md) prints the board scores of each
 spec in the "Datasets" block of its page, so a board change makes those pages
 stale. After the board files, rewrite the atlas, then the navigation footers
-and `llms.txt`, which read the atlas:
+and `llms.txt` and `llms-full.txt`, which read the atlas:
 
 ```bash
 PYTHONPATH=$PWD python scripts/gen_language_atlas.py --write

@@ -13,13 +13,22 @@ where it does not.
 | [a-z.md](a-z.md) | Every spec by name, with the atlas pages first |
 
 An atlas page has a fixed shape. A generated summary and a table of names,
-codes and links come first. Hand-written sections follow, with the story of
-the language and the weak points of its spec. Generated sections close the
-page: the child lects, the sources, the scored datasets, the segment inventory, the spelling
-table, the rules, engine examples and related repositories.
-`scripts/gen_language_atlas.py` writes every generated section, and CI fails
-when one is stale. [es-ES.md](es-ES.md), [ar.md](ar.md) and [mwl.md](mwl.md)
-have this shape.
+codes and links come first. An overview follows. Where nobody has written
+one, the generator builds it from the spec: the opening of its notes, its
+tier, its sources and where its letter table comes from. Hand-written
+sections follow, with the story of the language and the weak points of its
+spec. Generated sections close the page: the child lects, the sources, the
+scored datasets, the segment inventory, the spelling table, the rules, engine
+examples and related repositories. `scripts/gen_language_atlas.py` writes
+every generated section, and CI fails when one is stale.
+
+Every living spec at the research or production tier has an atlas page,
+except the specs that `NO_PAGE` in `scripts/gen_language_atlas.py` names, each
+with its reason. A test fails when a spec has neither. The Portuguese specs,
+the creoles that take rules from `pt-PT` and Barranquenho are in that list,
+because the Portuguese pages are written by hand. The
+[A to Z index](a-z.md#pages) lists the pages. Skeleton, stub and historical specs have no page, and the indexes
+link their entries in the data explorer.
 
 Most registered specs have no page of their own. The JSON spec is the source
 of truth for every language, and it describes itself: its graphemes,

@@ -183,14 +183,14 @@ The letter table inherits keys from `ast-PT-x-medieval` that no Mirandese source
 
 These specs name `mwl` as their parent. They are sorted by country, and a lect with no recorded country comes last.
 
-- [Ifanês (Mirandese septentrional)](https://tigregotico.github.io/orthography2ipa/#mwl-x-ifanes) `mwl-x-ifanes`: research tier
-- [Sendinês (Mirandese meridional)](https://tigregotico.github.io/orthography2ipa/#mwl-x-sendim) `mwl-x-sendim`: research tier
+- [Ifanês (Mirandese septentrional)](mwl-x-ifanes.md) `mwl-x-ifanes`: research tier
+- [Sendinês (Mirandese meridional)](mwl-x-sendim.md) `mwl-x-sendim`: research tier
 <!-- atlas:lects end -->
 
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 7 works. 3 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 7 works. 3 of them have a DOI or a URL. The spec file holds a note on what 5 of them support.
 
 1. <a id="src-ferreira1995"></a>Ferreira, M.B. (1995). *Variação linguística: perspectiva dialectológica*. Universidade de Lisboa.
 2. <a id="src-mateus_dandrade2000"></a>Mateus, M.H.M. & d'Andrade, E. (2000). *The Phonology of Portuguese*. Oxford University Press. Cited: 11.
@@ -418,4 +418,4 @@ No downstream repository of the TigreGotico organisation covers this spec. The [
 <!-- atlas:related end -->
 
 ---
-[← Castilian Spanish](es-ES.md) · [Home](../index.md) · [Comparative phonology →](comparative.md)
+[← Mingrelian](xmf.md) · [Home](../index.md) · [Mizo →](lus.md)
