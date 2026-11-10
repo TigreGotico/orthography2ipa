@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.122.22a2](https://github.com/TigreGotico/orthography2ipa/tree/7.122.22a2) (2026-11-10)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.122.22a1...7.122.22a2)
+
+**Merged pull requests:**
+
+- docs: write the production atlas pages for as, eo, eu, fi, fo and ro-RO [\#2248](https://github.com/TigreGotico/orthography2ipa/pull/2248) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.122.22a1](https://github.com/TigreGotico/orthography2ipa/tree/7.122.22a1) (2026-11-10)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.122.21a3...7.122.22a1)
@@ -370,10 +378,6 @@
 ## [7.119.7a1](https://github.com/TigreGotico/orthography2ipa/tree/7.119.7a1) (2026-11-06)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.119.6a1...7.119.7a1)
-
-**Merged pull requests:**
-
-- fix\(pt\): read ⟨uei⟩ with the diphthong of ⟨ei⟩ [\#2159](https://github.com/TigreGotico/orthography2ipa/pull/2159) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.119.6a1](https://github.com/TigreGotico/orthography2ipa/tree/7.119.6a1) (2026-11-06)
 
