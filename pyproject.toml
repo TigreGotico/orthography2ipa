@@ -33,7 +33,7 @@ hf = ["huggingface_hub"]
 # Installing this extra changes no output: the caller reads one with
 # packaged_lexicon() and passes it in a Pipeline.
 lexicons = ["o2i-lexicons>=0.7.0a1"]
-validation = ["pydantic>=2"]
+validation = ["pydantic>=2.14.3"]
 # A real Portuguese syllabifier. Optional: the bundled splitter is correct on its
 # own (pt-PT declares its diphthongs). Installing this extra changes no output:
 # the caller passes SilabificadorSyllabifier() in a Pipeline.
@@ -47,7 +47,7 @@ portuguese = ["silabificador>=2.1.0a1"]
 # skip, exactly as the cmudict row does when scriptconv is absent. The CI
 # workflows install unar so the ru rows and the en-US/cmudict row are gated
 # there and not only on a developer's box.
-test = ["pytest", "pytest-timeout", "pytest-cov", "pydantic>=2", "hypothesis",
+test = ["pytest", "pytest-timeout", "pytest-cov", "pydantic>=2.14.3", "hypothesis",
         "silabificador>=2.1.0a1", "huggingface_hub", "rarfile", "scriptconv",
         "anthropic>=2.0.0"]
 # dev-only extra for scripts/compare_systems.py; never a runtime dependency.
