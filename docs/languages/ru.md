@@ -66,6 +66,22 @@ In the endings -ого and -его, the letter г is [v]. The spec states this i
 ['jɪˈvo', 'kɐˈvo', 'ˈsʲinʲɪvə']
 ```
 
+The ending is declared in its unstressed reading, [əvə]. When the stress falls on the ending, its first vowel is a full [o]: большо́го is [бальшо́въ] and второ́го is [фтаро́въ] (Avanesov 1988, § 151, p. 678). The vowels of the ending follow the stress that the positional tables placed, so the stress never falls on a reduced vowel.
+
+```python
+>>> [o.transcribe(w, "ru") for w in ["большо́го", "ста́рого", "самого́"]]
+['bɐlʲˈʂovə', 'ˈstarəvə', 'səmɐˈvo']
+```
+
+### Words with a lexical reading
+
+In что and the words made from it, ⟨чт⟩ is [ʂt]: что, чтобы, что-то, что-нибудь, кое-что and ничто. Everywhere else ⟨чт⟩ is read as written, as in почта, ничтожный and нечто (Avanesov 1988, § 129, p. 676). The letter г is [v] also in сегодня, сегодняшний and итого (Avanesov 1988, § 151, p. 678), and сегодня has a soft [dʲ] before [nʲ] (§ 53, p. 666). No spelling rule picks out these words, so the spec lists them in `word_exceptions`. The other case forms of сегодняшний are not listed.
+
+```python
+>>> [o.transcribe(w, "ru") for w in ["что", "чтобы", "почта", "сегодня"]]
+['ˈʂto', 'ˈʂtobɨ', 'ˈpotɕtə', 'sʲɪˈvodʲnʲə']
+```
+
 ## Vowel reduction (akanye and ikanye)
 
 Unstressed vowels in Russian reduce in a fixed pattern (Avanesov 1956, Padgett & Tabain 2005). The spec states the pattern with the positions `first_pretonic`, `pretonic` and `posttonic` in `positional_graphemes`.
