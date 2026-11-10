@@ -130,4 +130,4 @@ No downstream repository of the TigreGotico organisation covers this spec. The [
 <!-- atlas:related end -->
 
 ---
-[← Fernando Po Creole English](fpe.md) · [Home](../index.md) · [Fon →](fon.md)
+[← Fernando Po Creole English](fpe.md) · [Home](../index.md) · [Finnish →](fi.md)

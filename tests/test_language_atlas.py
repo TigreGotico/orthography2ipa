@@ -372,7 +372,7 @@ def test_every_no_page_entry_names_specs_in_the_cut_that_have_no_page(atlas):
 @pytest.mark.parametrize("code, expected", [
     ("pt-PT", True), ("pt-PT-x-porto", True), ("kea", True),
     ("ext-PT-x-barranco", True), ("ptx", False), ("es-ES", False),
-    ("eu", True), ("eu-x-lapurdi", False),
+    ("eu", False), ("eu-x-lapurdi", False),
 ])
 def test_no_page_entry_covers_its_code_and_its_hyphenated_children(code, expected):
     assert (atlas_gen.no_page_reason(code) is not None) is expected

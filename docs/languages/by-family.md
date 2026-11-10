@@ -991,7 +991,7 @@ Stubs (8): Cocopa `coc`, Kumiai `dih`, Kiliwa `klb`, Mohave `mov`, Maricopa `mrc
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
 | [Kotava](avk.md) (page) | `avk` | research | Latin |
-| [Esperanto](https://tigregotico.github.io/orthography2ipa/#eo) | `eo` | production | Latin |
+| [Esperanto](eo.md) (page) | `eo` | production | Latin |
 | [Interlingua](ia.md) (page) | `ia` | research | Latin |
 | [Interlingue (Occidental)](ie.md) (page) | `ie` | research | Latin |
 | [Ido](io.md) (page) | `io` | research | Latin |
@@ -1364,7 +1364,7 @@ Stubs (3): Colognian (Kölsch) `ksh`, Palatine German `pfl`, Zeelandic `zea`.
 |:--|:--|:--|:--|
 | [Danish](da.md) (page) | `da` | research | Latin |
 | [Danish (Copenhagen / Rigsdansk)](https://tigregotico.github.io/orthography2ipa/#da-x-copenhag) | `da-x-copenhag` | skeleton | Latin |
-| [Faroese](https://tigregotico.github.io/orthography2ipa/#fo) | `fo` | production | Latin |
+| [Faroese](fo.md) (page) | `fo` | production | Latin |
 | [Proto-North Germanic (Proto-Norse)](https://tigregotico.github.io/orthography2ipa/#gem-x-north) | `gem-x-north` | research | IPA-reconstruction |
 | [Icelandic](is.md) (page) | `is` | research | Latin |
 | [Norwegian Bokmål](nb.md) (page) | `nb` | research | Latin |
@@ -1449,7 +1449,7 @@ Stubs (2): Mycenaean Greek `gmy`, Yevanic `yej`.
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Assamese](https://tigregotico.github.io/orthography2ipa/#as) | `as` | production | Bengali |
+| [Assamese](as.md) (page) | `as` | production | Bengali |
 | [Awadhi](https://tigregotico.github.io/orthography2ipa/#awa) | `awa` | skeleton | Devanagari |
 | [Haryanvi](https://tigregotico.github.io/orthography2ipa/#bgc) | `bgc` | skeleton | Devanagari |
 | [Bhojpuri](bho.md) (page) | `bho` | research | Devanagari |
@@ -1562,7 +1562,7 @@ Stubs (1): Sicel `scx`.
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Romanian](https://tigregotico.github.io/orthography2ipa/#ro-RO) | `ro-RO` | production | Latin |
+| [Romanian](ro-RO.md) (page) | `ro-RO` | production | Latin |
 | [Aromanian](rup.md) (page) | `rup` | research | Latin |
 
 Stubs (1): Istro-Romanian `ruo`.
@@ -2628,7 +2628,7 @@ Stubs (9): Tundra Enets `enh`, Tornedalen Finnish `fit`, Kven Finnish `fkv`, Pit
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
 | [Estonian](et.md) (page) | `et` | research | Latin |
-| [Finnish](https://tigregotico.github.io/orthography2ipa/#fi) | `fi` | production | Latin |
+| [Finnish](fi.md) (page) | `fi` | production | Latin |
 | [Ingrian](izh.md) (page) | `izh` | research | Latin |
 | [Karelian](krl.md) (page) | `krl` | research | Latin |
 | [Ludic](https://tigregotico.github.io/orthography2ipa/#lud) | `lud` | skeleton | Latin |
@@ -2671,7 +2671,7 @@ Stubs (50): Eastern Durango Nahuatl `azd`, Western Durango Nahuatl `azn`, Highla
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Basque (Euskara)](https://tigregotico.github.io/orthography2ipa/#eu) | `eu` | production | Latin |
+| [Basque (Euskara)](eu.md) (page) | `eu` | production | Latin |
 | [Biscayan Basque (Bizkaiera)](eu-biscayan.md) (page) | `eu-biscayan` | research | Latin |
 | [Gipuzkoan Basque (Gipuzkera)](eu-x-gipuzkoa.md) (page) | `eu-x-gipuzkoa` | research | Latin |
 | [Lapurdian Basque (Lapurtera)](eu-x-lapurdi.md) (page) | `eu-x-lapurdi` | research | Latin |

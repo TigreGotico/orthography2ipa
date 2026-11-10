@@ -146,4 +146,4 @@ No downstream repository of the TigreGotico organisation covers this spec. The [
 <!-- atlas:related end -->
 
 ---
-[← Fijian](fj.md) · [Home](../index.md) · [Forest Enets →](enf.md)
+[← Finnish](fi.md) · [Home](../index.md) · [Forest Enets →](enf.md)

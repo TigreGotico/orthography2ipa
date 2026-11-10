@@ -177,4 +177,4 @@ No downstream repository of the TigreGotico organisation covers this spec. The [
 <!-- atlas:related end -->
 
 ---
-[← Basaa](bas.md) · [Home](../index.md) · [Bats →](bbl.md)
+[← Basaa](bas.md) · [Home](../index.md) · [Basque →](eu.md)

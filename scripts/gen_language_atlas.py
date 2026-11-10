@@ -167,7 +167,6 @@ def in_cut(raw: dict) -> bool:
 
 
 _PT_CREOLE = "a creole that takes its rules from pt-PT, whose pages are written by hand"
-_HAND = "a hand page that does not use the atlas template"
 
 #: The specs in the cut that have no atlas page, each with its reason. An
 #: entry names one code, or with a final ``-*`` every code that starts with
@@ -185,12 +184,6 @@ NO_PAGE = (
     ("pov", _PT_CREOLE),
     ("pre", _PT_CREOLE),
     ("vkp", _PT_CREOLE),
-    ("as", _HAND),
-    ("eo", _HAND),
-    ("eu", _HAND),
-    ("fi", _HAND),
-    ("fo", _HAND),
-    ("ro-RO", _HAND),
 )
 
 

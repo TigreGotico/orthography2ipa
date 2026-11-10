@@ -17,7 +17,7 @@ Souletin Basque (Zuberera) is a Vasconic variety, written in the Latin script. G
 | Script | [Latin](by-script.md#latin) (alphabet) |
 | Tier | [research](../specs/quality_tiers.md#research) |
 | Attested | from 1600, living |
-| Parent | [Basque (Euskara)](https://tigregotico.github.io/orthography2ipa/#eu) `eu` |
+| Parent | [Basque (Euskara)](eu.md) `eu` |
 | Explorer | [`eu-x-zuberera` in the data explorer](https://tigregotico.github.io/orthography2ipa/#eu-x-zuberera) |
 | Spec file | [`eu-x-zuberera.json`](../../orthography2ipa/data/eu-x-zuberera.json) |
 <!-- atlas:header end -->
@@ -29,7 +29,7 @@ The notes of the spec file open with these words:
 
 > Souletin (Zuberera/Xiberotarra). Easternmost Basque dialect, spoken in Soule/Zuberoa (Pyrénées-Atlantiques, France), the most phonologically divergent variety, in close contact with Gascon Occitan. VALIDATED and EXTENDED against Hualde (2018) 'Aspiration in Basque' and Egurtzegi (2013) 'Phonetics and Phonology'.
 
-The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 8 works, from 1986 to 2022. [Sources](#sources) lists them. The spec file writes 3 of the 37 spellings of its letter table and takes the other 34 from [Basque (Euskara)](https://tigregotico.github.io/orthography2ipa/#eu) `eu`.
+The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 8 works, from 1986 to 2022. [Sources](#sources) lists them. The spec file writes 3 of the 37 spellings of its letter table and takes the other 34 from [Basque (Euskara)](eu.md) `eu`.
 
 The [spec file](../../orthography2ipa/data/eu-x-zuberera.json) holds the full notes, with the caveats of the spec.
 <!-- atlas:overview end -->

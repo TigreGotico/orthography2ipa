@@ -28,7 +28,7 @@ The notes of the spec file open with these words:
 
 > Ingrian (ižoran keel), a Finnic (Uralic) language of Ingria, south of the Gulf of Finland. The modern Latin orthography is close to Finnish: the same vowel letters (a e i o u y ä ö, doubled for phonemic length) and consonants, plus ⟨š⟩ /ʃ/, ⟨ž⟩ /ʒ/ and ⟨z⟩ /z/ in the sibilant series and ⟨c⟩ /t͡s/.
 
-The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 2 works, from 1998 to 2026. 1 of them is a Wikipedia article. [Sources](#sources) lists them. The spec file writes 6 of the 66 spellings of its letter table and takes the other 60 from [Finnish](https://tigregotico.github.io/orthography2ipa/#fi) `fi`.
+The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 2 works, from 1998 to 2026. 1 of them is a Wikipedia article. [Sources](#sources) lists them. The spec file writes 6 of the 66 spellings of its letter table and takes the other 60 from [Finnish](fi.md) `fi`.
 
 The [spec file](../../orthography2ipa/data/izh.json) holds the full notes, with the caveats of the spec.
 <!-- atlas:overview end -->

@@ -141,4 +141,4 @@ No downstream repository of the TigreGotico organisation covers this spec. The [
 <!-- atlas:related end -->
 
 ---
-[← Erzya](myv.md) · [Home](../index.md) · [Etruscan →](ett.md)
+[← Esperanto](eo.md) · [Home](../index.md) · [Etruscan →](ett.md)

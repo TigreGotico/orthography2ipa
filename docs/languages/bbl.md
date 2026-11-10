@@ -154,4 +154,4 @@ No downstream repository of the TigreGotico organisation covers this spec. The [
 <!-- atlas:related end -->
 
 ---
-[← Bashkir](ba.md) · [Home](../index.md) · [Belarusian →](be.md)
+[← Basque](eu.md) · [Home](../index.md) · [Belarusian →](be.md)
