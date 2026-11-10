@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.122.26a1](https://github.com/TigreGotico/orthography2ipa/tree/7.122.26a1) (2026-11-10)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.122.25a5...7.122.26a1)
+
+**Merged pull requests:**
+
+- fix\(inventory\): cut whole-word readings into segments; read the forced-word inventory once [\#2282](https://github.com/TigreGotico/orthography2ipa/pull/2282) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.122.25a5](https://github.com/TigreGotico/orthography2ipa/tree/7.122.25a5) (2026-11-10)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.122.25a4...7.122.25a5)
@@ -389,7 +397,6 @@
 **Merged pull requests:**
 
 - fix\(pt-PT\): read a word-initial unstressed ⟨es⟩ + consonant with \[i\] [\#2179](https://github.com/TigreGotico/orthography2ipa/pull/2179) ([JarbasAl](https://github.com/JarbasAl))
-- feat: add expand and mark to Pipeline [\#2177](https://github.com/TigreGotico/orthography2ipa/pull/2177) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.120.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.120.0a1) (2026-11-06)
 
