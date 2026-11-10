@@ -725,7 +725,7 @@ _PT_UNIFIED_URL = (
 #: rows of pt-AO (3), pt-MZ (2) and pt-TL (1) are left out.
 _PT_UNIFIED_REGIONS: Dict[str, str] = {
     "pt-PT": "pt-PT",                       # Infopédia + Wiktionary, 127k rows
-    "pt-BR": "pt-BR",                       # Wiktionary, 3.6k rows
+    "pt-BR": "pt-BR",                       # Michaelis + Wiktionary, 24k rows
     "pt-BR-x-carioca": "pt-BR-x-carioca",   # Wiktionary, 111 rows
     "pt-BR-x-caipira": "pt-BR-x-caipira",   # Wiktionary, 31 rows
 }
@@ -1975,7 +1975,7 @@ def load_mirandese_dict(lang: str, limit: int) -> List[Tuple[str, str]]:
 def load_portuguese_unified(lang: str, limit: int) -> List[Tuple[str, str]]:
     """The human rows of the Portuguese unified pronunciation lexicon, one
     REGION per language tag (TigreGotico/portuguese-unified-pronunciation-lexicon
-    on Hugging Face, 552k rows, CC BY-SA 4.0).
+    on Hugging Face, 573k rows, CC BY-SA 4.0).
 
     The dataset merges four sources into one notation: Infopédia (the Porto
     Editora dictionary), Michaelis (the Melhoramentos dictionary, pt-BR),
@@ -1993,8 +1993,10 @@ def load_portuguese_unified(lang: str, limit: int) -> List[Tuple[str, str]]:
     region mapping.
 
     PROVENANCE — per region (``_PT_UNIFIED_PROVENANCE``): pt-PT is
-    ``lexicon-derived``, because 94% of its rows are Infopédia entries; the
-    Brazilian regions are pt.wiktionary only, so they are ``crowd-scraped``.
+    ``lexicon-derived``, because 94% of its rows are Infopédia entries, and
+    pt-BR is ``lexicon-derived``, because 86% of its rows are Michaelis
+    entries. The other Brazilian regions are pt.wiktionary only, so they are
+    ``crowd-scraped``.
 
     SAMPLING — the file is grouped by word, so the first ``limit`` lines
     would be a biased alphabetical slice; the whole file is read and a
@@ -3664,12 +3666,14 @@ PROVENANCE: Dict[str, str] = {
     "coruss_ru": "expert-human",
 }
 
-# portuguese_unified reads Infopédia and pt.wiktionary rows, and the mix differs
-# by region. 94% of the pt-PT rows are Infopédia entries (a published
-# dictionary), so pt-PT is lexicon-derived. The Brazilian regions hold
-# pt.wiktionary rows only, so they keep the crowd-scraped fallback.
+# portuguese_unified reads Infopédia, Michaelis and pt.wiktionary rows, and the
+# mix differs by region. 94% of the pt-PT rows are Infopédia entries and 86% of
+# the pt-BR rows are Michaelis entries (published dictionaries), so both are
+# lexicon-derived. The other Brazilian regions hold pt.wiktionary rows only, so
+# they keep the crowd-scraped fallback.
 _PT_UNIFIED_PROVENANCE: Dict[str, str] = {
     "pt-PT": "lexicon-derived",
+    "pt-BR": "lexicon-derived",
 }
 
 # Per-LANGUAGE provenance overrides, for datasets that are not one source but a

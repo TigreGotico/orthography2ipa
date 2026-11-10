@@ -23,7 +23,7 @@ The tier column is the value of `provenance_for()`. "Per language" means that `P
 | `mirandese_g2p` | Mirandese, with its Sendinese and Raiano varieties | expert-human | [TigreGotico/mirandese_g2p](https://huggingface.co/datasets/TigreGotico/mirandese_g2p) | Not stated upstream | The best Mirandese signal. Small. |
 | `barranquenho_dict` | Barranquenho | llm-corrected | [TigreGotico/barranquenho-ipa-dict-synthetic](https://huggingface.co/datasets/TigreGotico/barranquenho-ipa-dict-synthetic), with the [corrected label](../contributing/silver_correction.md) | CC BY 4.0 | Silver. Direction only. |
 | `mirandese_dict` | Mirandese varieties | llm-corrected | [TigreGotico/mirandese-ipa-dict-synthetic](https://huggingface.co/datasets/TigreGotico/mirandese-ipa-dict-synthetic), with the [corrected label](../contributing/silver_correction.md) | CC BY-SA 4.0 | Silver. Direction only. |
-| `portuguese_unified` | Portuguese of Portugal and Brazil | per language: `pt-PT` lexicon-derived, the Brazilian tags crowd-scraped | The Infopédia and pt.wiktionary rows of [TigreGotico/portuguese-unified-pronunciation-lexicon](https://huggingface.co/datasets/TigreGotico/portuguese-unified-pronunciation-lexicon) | CC BY-SA 4.0 | The main Portuguese gold. |
+| `portuguese_unified` | Portuguese of Portugal and Brazil | per language: `pt-PT` and `pt-BR` lexicon-derived, the other Brazilian tags crowd-scraped | The Infopédia, Michaelis and pt.wiktionary rows of [TigreGotico/portuguese-unified-pronunciation-lexicon](https://huggingface.co/datasets/TigreGotico/portuguese-unified-pronunciation-lexicon) | CC BY-SA 4.0 | The main Portuguese gold. |
 | `portuguese_unified_corrected` | `pt-PT` and `pt-BR` | as the base | `portuguese_unified` with an overlay that fixes stress marks and drops mis-keyed rows | CC BY-SA 4.0 | Reading the base defect. Never gates. |
 | `portal_lupo` | Lisbon, São Paulo, Rio de Janeiro, Angola, Mozambique and Timor-Leste | lupo-derived | The Portal da Língua Portuguesa rows of the same file | CC BY-SA 4.0 | Agreement with the LUPo generator. Never gates. |
 | `4catac` | Central, Balearic, North-Western and Valencian Catalan | expert-human | [projecte-aina/4catac](https://huggingface.co/datasets/projecte-aina/4catac) | CC BY 4.0 | Accent rules, at sentence level. |
@@ -85,11 +85,11 @@ One region is scored per registered tag (`_PT_UNIFIED_REGIONS`):
 | Tag | Region in the dataset | Source | Tier |
 |---|---|---|---|
 | `pt-PT` | `pt-PT` | Infopédia for 94% of the rows, pt.wiktionary for the rest | lexicon-derived |
-| `pt-BR` | `pt-BR` | pt.wiktionary | crowd-scraped |
+| `pt-BR` | `pt-BR` | Michaelis for 86% of the rows, pt.wiktionary for the rest | lexicon-derived |
 | `pt-BR-x-carioca` | `pt-BR-x-carioca` | pt.wiktionary | crowd-scraped |
 | `pt-BR-x-caipira` | `pt-BR-x-caipira` | pt.wiktionary | crowd-scraped |
 
-`PROVENANCE_BY_LANG["portuguese_unified"]` gives `pt-PT` its tier. The dataset-wide fallback is `crowd-scraped`, the more pessimistic tier of the two sources. Both tiers gate.
+`PROVENANCE_BY_LANG["portuguese_unified"]` gives `pt-PT` and `pt-BR` their tier. The dataset-wide fallback is `crowd-scraped`, the more pessimistic tier of the two sources. Both tiers gate.
 
 Rows tagged only `pt`, with no region, are excluded from every regional row. The `pt-BR-x-paulista` and `pt-BR-x-paulistano` regions hold under 30 rows each, and they are not scored. The pt.wiktionary rows of `pt-AO` (3), `pt-MZ` (2) and `pt-TL` (1) are too few to score, so those tags have no `portuguese_unified` row. The loader reads the whole file and draws a random sample of words per region with a fixed seed (`SAMPLE_SEED`), because the first words in alphabetical order would bias the sample.
 
