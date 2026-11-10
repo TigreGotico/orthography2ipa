@@ -258,6 +258,12 @@
       "notes": "DISABLED for São Tomé Portuguese. No source for the vowel of this derivative in this variety was read, so its output stays what it was; the pt-PT rule rests on Infopédia readings of standard European Portuguese."
     },
     {
+      "id": "PT_DERIV_OICIDADE_OPEN",
+      "phonemes": [],
+      "surface": "ɔ",
+      "notes": "DISABLED for São Tomé Portuguese. No source for the vowel of this derivative in this variety was read, so its output stays what it was; the pt-PT rule rests on Infopédia readings of standard European Portuguese."
+    },
+    {
       "id": "PT_CODA_S_BEFORE_ZH_INTERNAL",
       "phonemes": [],
       "surface": "",
