@@ -217,7 +217,7 @@ engine = G2P("pt-PT", pipeline=Pipeline(
 ))
 ```
 
-`expand` takes a string and returns a string, and the words may change. It runs once per plain run of the input, so it never sees a `<phoneme>` tag or a forced word. It keeps the whitespace at both ends of the run, because the engine joins the runs and the forced words with no separator.
+`expand` takes a string and returns a string, and the words may change. It runs once per plain run of the input, so it never sees a `<phoneme>` tag or a forced word. A run that starts or ends with whitespace must still do so after `expand`. When the pipeline has a `mark` stage, the engine joins the runs and the forced words with no separator before `mark` reads the sentence.
 
 `mark` takes the whole sentence after `expand` and returns the same words with marks. It runs once per call, and it sees a forced word as spelled. A forced word keeps its written surface. Removing the combining marks from the output must give the input back. If it does not, the engine raises `ValueError` and names the first word that differs.
 
