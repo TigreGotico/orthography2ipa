@@ -41,7 +41,9 @@ Stress always falls on the penult (Zamenhof 1905, p. 10, rule 10). The `stress` 
 
 ## Reading the datasets
 
-The `wikipron` row is the gating gold. WikiPron ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) scrapes the IPA of English Wiktionary. The Esperanto entries `ĝardeno`, `radio`, `familio` and `hodiaŭ` do not type their IPA. They call the template `{{eo-pr}}`, which runs [Module:eo-pron](https://en.wiktionary.org/wiki/Module:eo-pron). Where an entry does that, the gold is the output of the module. The row then measures agreement with a rule system, like the [module-generated rows](../evaluation/datasets.md#module-generated-wikipron-rows) of the dataset catalogue.
+Five provenance tiers never gate a promotion: the three that name a competing tool (`espeak-derived`, `epitran-derived` and `lupo-derived`) and the two language-model tiers ([which gold can gate](../specs/quality_tiers.md#which-gold-can-gate)). The `Gates` column of the Datasets block below gives the rows that gate.
+
+The `wikipron` row is crowd-scraped. WikiPron ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) scrapes the IPA of English Wiktionary. The Esperanto entries `ĝardeno`, `radio`, `familio` and `hodiaŭ` do not type their IPA. They call the template `{{eo-pr}}`, which runs [Module:eo-pron](https://en.wiktionary.org/wiki/Module:eo-pron). Where an entry does that, the gold is the output of the module. The row then measures agreement with a rule system, like the [module-generated rows](../evaluation/datasets.md#module-generated-wikipron-rows) of the dataset catalogue.
 
 The module and the spec use different symbols for one sound. The module writes the ⟨ŭ⟩ of [`hodiaŭ`](https://en.wiktionary.org/wiki/hodia%C5%AD) as [u̯], in /hoˈdiau̯/, and the spec writes [w]. The scorer counts that difference as an error.
 
@@ -62,7 +64,7 @@ The engine counts two vowels next to each other as one syllable when it places t
 
 Wiktionary gives /famiˈlio/ for [`familio`](https://en.wiktionary.org/wiki/familio) and /hoˈdiau̯/ for `hodiaŭ`, in line with rule 10. Some words have their vowel sequence at the end and only two syllables. Examples are `mia` 'my' [ˈmia] and `fluo` 'flow' [ˈfluo]. These come out right, because the penult is the first syllable in both counts.
 
-The engine reads only the circumflex and breve letters. The *Fundamento* gives a substitute for a printer with no such type (Zamenhof 1905, p. 7). The printer writes ⟨h⟩ after the letter in place of the circumflex. The printer leaves out the breve. The engine reads that ⟨h⟩ as a letter of its own, so `chambro` comes out as [ˈtshambro], not as `ĉambro` [ˈtʃambro]. A second common substitute writes ⟨x⟩ after the letter. The spec has no ⟨x⟩, so the engine drops it, and `cxambro` comes out as [ˈtsambro].
+The engine reads only the circumflex and breve letters. The *Fundamento* gives a substitute for a printer with no such type (Zamenhof 1905, p. 7). The printer writes ⟨h⟩ after the letter in place of the circumflex. The printer leaves out the breve. The engine reads that ⟨h⟩ as a letter of its own, so `chambro` comes out as [ˈtshambro], not as `ĉambro` [ˈtʃambro]. Wiktionary lists a second substitute, the X-system, which writes ⟨x⟩ after the letter, as in [`cxambro`](https://en.wiktionary.org/wiki/cxambro). The spec has no ⟨x⟩, so the engine drops it, and `cxambro` comes out as [ˈtsambro].
 
 In elementary works, the *Fundamento* separates the parts of a compound word with an apostrophe, as in `vapor'ŝip'o` 'steamboat' (Zamenhof 1905, p. 10, rule 11). The engine splits the word at each apostrophe and stresses each part. So `vapor'ŝip'o` comes out as [ˈvapor ˈʃip ˈo], but `vaporŝipo` is [vaporˈʃipo].
 

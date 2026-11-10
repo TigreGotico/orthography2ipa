@@ -48,7 +48,7 @@ The only rhotic is the approximant /ɹ/, written ⟨ৰ⟩, as in ৰাম [ɹ�
 
 Assamese has eight oral vowels, /i e ɛ u ʊ o ɔ ɑ/ (Mahanta 2012, p. 220). The spec reads ⟨ো⟩ as /ʊ/ and ⟨ে⟩ as /ɛ/, not as the /o/ and /e/ of their Bengali cognates. The vowel list gives বোল [bʊl] 'colour' and বেল [bɛl] 'stupid person' (p. 220).
 
-The close-mid vowels [e] and [o] occur mostly before /i/ or /u/ in the next syllable (Mahanta 2012, p. 220). Regressive vowel harmony creates them: before a high vowel, /ɛ ɔ ʊ/ become /e o u/ (p. 221). Roy & Mahanta (2018, p. 2829) state the same rules, with /bɔsɔr/ becoming /bosori/ 'annually'. A nasal next to the trigger vowel blocks the harmony, and so does a coda consonant (Mahanta 2012, p. 221).
+The close-mid vowels [e] and [o] occur mostly before /i/ or /u/ in the next syllable (Mahanta 2012, p. 220). Regressive vowel harmony creates them: before a high vowel, /ɛ ɔ ʊ/ become /e o u/ (p. 221). Roy & Mahanta (2018, p. 2829) state the rules for /ɛ/ and /ɔ/, with /bɔsɔr/ becoming /bosori/ 'annually'. A nasal next to the trigger vowel blocks the harmony, and so does a coda consonant (Mahanta 2012, p. 221).
 
 ## The inherent vowel
 
@@ -62,13 +62,13 @@ The spec marks no stress. Mahanta (2012, p. 222) describes prominence as phoneti
 
 ## Weak points
 
-The engine does not apply vowel harmony. Mahanta (2012, p. 220) prints বেলি 'sun' as [beli], and the engine gives [bɛli]. The spec notes give ⟨চকু⟩ for [sòku] 'eye' (Mahanta 2012, p. 222), and the engine gives [sɔku]. The main target of the harmony is the unwritten inherent vowel, and no rule can address that slot. The rule language also cannot state the blocking by nasals and codas.
+The engine does not apply vowel harmony. Mahanta (2012, p. 220) prints বেলি 'sun' as [beli], and the engine gives [bɛli]. The spec notes give ⟨চকু⟩ for [sòku] 'eye' (Mahanta 2012, p. 222), and the engine gives [sɔku]. The spec has no rule for the harmony, but the rule language can state one step of it. An allophone rule can raise /ɛ/ to [e] and /ɔ/ to [o] when `followed_by_phoneme` lists the consonants other than the nasals and `followed_by_phoneme_2` lists /i u/. Such a rule also reaches the unwritten inherent vowel, and a nasal or a second consonant stops it, as Mahanta (2012, p. 221) describes. In a test copy of the spec, two such rules give বেলি [beli] and চকু [soku], and they leave বেনি [bɛni] and বেস্তি [bɛsti] unchanged.
 
 The engine always reads the inherent vowel as [ɔ]. Mahanta (2012, p. 220) prints বল 'let's go' as [bol], and the engine gives [bɔl]. The [Wikipedia article on Assamese](https://en.wikipedia.org/wiki/Assamese_language) gives the spelling ক'লা for [kola] 'black', against কলা [kɔla] 'deaf'. The engine splits ক'লা at the apostrophe and gives [kɔ la].
 
 The spec writes the low vowel as [a]. Mahanta (2012, pp. 218, 220) prints [ɑ] in every word, so পাল 'to rear' is [pɑl] in the source and [pal] in the engine output. The source prints the voiced aspirates with a superscript [ʰ], as in ভাল [bʰɑl] 'good' (p. 218). The engine writes the breathy-voice mark [bʱ]. This second difference is notation only.
 
-The board golds use three conventions that the sources do not print. They write [ɦ] for the glottal fricative, [ɪ ʊ] for the second element of a diphthong, and, in `vox_communis`, [ʱ] on voiceless stops. Mahanta (2012) prints [h] (p. 218) and the diphthongs /ei oi ai ou au/ (p. 222). The spec follows the source, so these words count as errors on the board. The [WikiPron Assamese list](https://github.com/CUNY-CL/wikipron/blob/master/data/scrape/tsv/asm_beng_broad.tsv) is the qualifying gold. The `vox_communis` row is epitran output, so it measures agreement with epitran, not with Assamese.
+The board golds use three conventions that the sources do not print. They write [ɦ] for the glottal fricative, [ɪ ʊ] for the second element of a diphthong, and, in `vox_communis`, [kʱ] for the velar voiceless aspirate, where the other voiceless aspirates take [ʰ]. Mahanta (2012) prints [h] (p. 218) and the diphthongs /ei oi ai ou au/ (p. 222). The spec follows the source, so these words count as errors on the board. The [WikiPron Assamese list](https://github.com/CUNY-CL/wikipron/blob/master/data/scrape/tsv/asm_beng_broad.tsv) is crowd-scraped. The catalogue gives the `vox_communis` row the tier `epitran-derived`, so that row measures agreement with a tool, not with Assamese. Five provenance tiers never gate a promotion: the three that name a competing tool (`espeak-derived`, `epitran-derived` and `lupo-derived`) and the two language-model tiers ([which gold can gate](../specs/quality_tiers.md#which-gold-can-gate)). The `Gates` column of the Datasets block below gives the rows that gate.
 
 The spec does not encode consonant gemination. Mahanta (2012, p. 219) reports it after Moral (1996), as in [sɑppɔn] 'fifty six'. The spec also has no rule for the gemination before the ya-phala ⟨্য⟩.
 

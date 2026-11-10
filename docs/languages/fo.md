@@ -63,7 +63,7 @@ The spec writes the double stops ⟨pp tt kk⟩ with preaspiration, as [ʰpp ʰt
 
 Before the single vowels ⟨e i y⟩ and the digraph ⟨ey⟩, the letters ⟨k g sk⟩ become palatal. Lockwood gives this for ⟨g⟩ on pp. 17-18, for ⟨k⟩ on p. 19 and for initial ⟨sk⟩ on p. 23. The spec writes the results as [tʃʰ tʃ ʃ]. The digraphs ⟨kj gj sj skj⟩ give the same palatal sounds (pp. 18-19, 23).
 
-The long vowels ⟨í ý⟩ do not palatalise a velar, because they are the back-onset diphthong [ʊi]. Lockwood gives ⟨gýsur⟩ with a velar [ɡ] (p. 17). The diphthong ⟨ei⟩ also keeps the velar, as in ⟨geit⟩ "goat" (p. 17). The digraph ⟨ey⟩ does not keep it, as in ⟨geykur⟩ "cuckoo" and ⟨skeyt⟩ "shot" (pp. 18, 23). The spec has separate entries for ⟨kí gí skí⟩ and their ⟨ý⟩ forms, so that these keep the velar. The spellings ⟨kei koy gei goy skei skoy⟩ have entries of their own for the same reason.
+The long vowels ⟨í ý⟩ do not palatalise a velar. Lockwood reads them as the diphthong [ʊi] (pp. 12, 14), and he gives ⟨gýsur⟩ with a velar [ɡ] (p. 17). The diphthong ⟨ei⟩ also keeps the velar, as in ⟨geit⟩ "goat" (p. 17). The digraph ⟨ey⟩ does not keep it, as in ⟨geykur⟩ "cuckoo" and ⟨skeyt⟩ "shot" (pp. 18, 23). The spec has separate entries for ⟨kí gí skí⟩ and their ⟨ý⟩ forms, so that these keep the velar. The spellings ⟨kei koy gei goy skei skoy⟩ have entries of their own for the same reason.
 
 Lockwood lists the exceptions as mostly foreign words, such as ⟨kilo⟩ and ⟨Kina⟩ (p. 19). Danish loans also keep the plain [a] before ⟨ng nk⟩, as in ⟨banki⟩ "bank" and ⟨sangur⟩ "song" (p. 11). The spec has no loan lexicon that could separate the two layers of vocabulary.
 
@@ -96,7 +96,7 @@ Stress falls on the first syllable of nearly every native word. The second eleme
 
 ## Reading the WikiPron row
 
-The board scores the spec on the broad Faroese file of WikiPron, [`fao_latn_broad.tsv`](https://github.com/CUNY-CL/wikipron/blob/master/data/scrape/tsv/fao_latn_broad.tsv). WikiPron scrapes these transcriptions from Wiktionary. The [Faroese pronunciation appendix](https://en.wiktionary.org/wiki/Appendix:Faroese_pronunciation) of Wiktionary describes the transcription that its editors use. The row is crowd-scraped, and it is the row that qualifies `fo` for production. The gold marks secondary stress and length in compounds, and it varies between the regional forms of ⟨rn⟩ and ⟨rs⟩.
+The board scores the spec on the broad Faroese file of WikiPron, [`fao_latn_broad.tsv`](https://github.com/CUNY-CL/wikipron/blob/master/data/scrape/tsv/fao_latn_broad.tsv). WikiPron scrapes these transcriptions from Wiktionary. The [Faroese pronunciation appendix](https://en.wiktionary.org/wiki/Appendix:Faroese_pronunciation) of Wiktionary describes the transcription that its editors use. The row is crowd-scraped. Five provenance tiers never gate a promotion: the three that name a competing tool (`espeak-derived`, `epitran-derived` and `lupo-derived`) and the two language-model tiers ([which gold can gate](../specs/quality_tiers.md#which-gold-can-gate)). The `Gates` column of the Datasets block below gives the rows that gate. The gold marks vowel length but no stress, and it varies between the regional forms of ⟨rn⟩ and ⟨rs⟩.
 
 An open Faroese speech corpus exists for work beyond single words: the [Ravnursson corpus](https://huggingface.co/datasets/carlosdanielhernandezmena/ravnursson_asr) of recorded speech with transcripts, under CC BY 4.0. Its transcripts are in the orthography, not in IPA, so it is not a gold for this spec.
 
@@ -144,7 +144,7 @@ The spec cites 3 works. 0 of them have a DOI or a URL. The spec file holds a not
 
 ### Notes on the sources
 
-The spec cites Lockwood's *An Introduction to Modern Faroese* without a page. Its description of Faroese sounds is reprinted in G. V. C. Young and C. R. Clewer, *Føroysk-ensk orðabók* (Føroya Fróðskaparfelag, 1985), pp. 7-26, a scan of which is [open on the Internet Archive](https://archive.org/details/bub_gb_XfvZ9J4oABwC). This page cites that reprint by page as "Lockwood, p. N". The reprint states that it comes from the 1964 Munksgaard edition. [Faroese phonology](https://en.wikipedia.org/wiki/Faroese_phonology) on Wikipedia gives a second overview.
+The spec cites Lockwood's *An Introduction to Modern Faroese* without a page. Its description of Faroese sounds is reprinted in G. V. C. Young and C. R. Clewer, *Føroysk-ensk orðabók* (Føroya Fróðskaparfelag, 1985), pp. 7-29, a scan of which is [open on the Internet Archive](https://archive.org/details/bub_gb_XfvZ9J4oABwC). This page cites that reprint by page as "Lockwood, p. N". The reprint states that it comes from the 1964 Munksgaard edition. [Faroese phonology](https://en.wikipedia.org/wiki/Faroese_phonology) on Wikipedia gives a second overview.
 
 <!-- atlas:datasets begin -->
 ## Datasets

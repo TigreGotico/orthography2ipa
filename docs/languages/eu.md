@@ -26,7 +26,7 @@ Basque (Euskara) is a Vasconic language, written in the Latin script. Glottolog 
 
 ## Overview
 
-Basque is a language isolate. No study has shown a genetic relation to another language family. The `eu` spec models Standard Basque, Euskara Batua. Seven child specs model the dialects, from Biscayan in the west to Souletin in the east.
+The `eu` spec models Standard Basque, Euskara Batua. Seven child specs model the dialects, from Biscayan in the west to Souletin in the east.
 
 Batua writes most sounds with one letter or with a fixed digraph. The affricates are ⟨tz ts tx⟩, and the palatals are ⟨tt dd ñ ll⟩. The spelling is regular, so the 0.15 PER threshold for a shallow orthography applies (see [quality tiers](../specs/quality_tiers.md#the-per-threshold)). The spelling does not write the accent. It also does not write the aspirated stops of the eastern dialects or the nasal vowels of Souletin. This page tells what each spec models and what it leaves out.
 
@@ -58,7 +58,7 @@ The voiced stops /b d ɡ/ are approximants after a vowel and in most contexts af
 
 A nasal takes the place of articulation of the next consonant (Hualde et al. 2010: 120). Markina shows this in *kanpo* [kampo] and *ango* [aŋgo] (2023: 1103). The spec has only the labial rule `NASAL_LABIAL_ASSIM`, which changes /n/ to [m] before /b p m/.
 
-After the negative particle *ez*, a voiced stop becomes voiceless. Examples are *ez dakit* [estakit] and *ez dator* [estator] (2023: 1099). The spec writes this sandhi, and *ez dakit* gives [ˈes̻ taˈkit].
+After the negative particle *ez*, a voiced stop becomes voiceless. Examples are *ez dakit* [estakit] and *ez dator* [estator] (2023: 1101). The spec writes this sandhi, and *ez dakit* gives [ˈes̻ taˈkit].
 
 ## Rhotics, vowels and diphthongs
 
@@ -88,7 +88,7 @@ The Biscayan and Upper Navarrese specs state `"stress": false` and print no stre
 
 ## The dialects
 
-The spec notes follow the classification of Koldo Zuazo. Biscayan is the Western dialect, and Gipuzkoan is the Central dialect. Upper Navarrese stands alone. Lapurdian and Lower Navarrese form the Navarro-Lapurdian dialect. Souletin is the easternmost dialect. Roncalese is extinct and belongs to Eastern Navarrese.
+The notes of `eu-x-lapurdi`, `eu-x-nafarra-beherea` and `eu-x-roncal` name the classification of Koldo Zuazo. In the spec notes, Biscayan is the Western dialect and Gipuzkoan is the Central dialect. Lapurdian and Lower Navarrese form the Navarro-Lapurdian dialect. Roncalese is extinct and belongs to Eastern Navarrese.
 
 | Spec | Variety | Main source of the spec |
 |:---|:---|:---|
@@ -112,11 +112,11 @@ After a high vowel, the article *-a* becomes *-e*, as in *basue* 'the forest' (2
 
 ### Gipuzkoan
 
-The Gipuzkoan spec adds nothing to the base. Its notes call Gipuzkoan the living dialect closest to Batua. Many Gipuzkoan varieties merge ⟨s⟩ and ⟨z⟩ as the Western dialect does (Bedialauneta Txurruka & Hualde 2023: 1098, Hualde et al. 2010: 119). Gipuzkoan has no /h/ (Hualde 2018: 2). In western Gipuzkoan areas, /c/ is merging with /tʃ/ (Hualde et al. 2010: 119). General Gipuzkoan has no lexical pitch accent of the Goizueta type, and the spec makes no claim for one.
+The Gipuzkoan spec differs from the base in one value. It gives ⟨h⟩ no [h] candidate, where `eu` lists [h]. Both read ⟨h⟩ as silent first, so *haizea* gives [ai̯ˈs̻ea] in both. Its notes call Gipuzkoan the living dialect closest to Batua. Many Gipuzkoan varieties merge ⟨s⟩ and ⟨z⟩ as the Western dialect does (Bedialauneta Txurruka & Hualde 2023: 1098, Hualde et al. 2010: 119). Gipuzkoan has no /h/ (Hualde 2018: 2). In western Gipuzkoan areas, /c/ is merging with /tʃ/ (Hualde et al. 2010: 119). The spec notes cite Hualde et al. (2010: 113, 123-124) for the absence of a lexical pitch accent of the Goizueta type in general Gipuzkoan.
 
 ### Upper Navarrese
 
-The Upper Navarrese spec follows Goizueta. The three-way sibilant contrast is fully stable there (Hualde et al. 2010: 119). The consonants that Goizueta lost in its history are not in its inventory, and /h/ is one of them (2010: 114, fn. 1). In younger speech, /ʎ/ merges with [j] (2010: 120). The spec lists [ʝ] as a second candidate for /ʎ/.
+The Upper Navarrese spec follows Goizueta. The three-way sibilant contrast is fully stable there (Hualde et al. 2010: 119). The consonants that Goizueta lost in its history are not in its inventory (2010: 114, fn. 1). Example (4) writes the lost consonants in parentheses, and /h/ is one of them, as in *bi(h)ár* [biár] 'tomorrow' (2010: 122). In younger speech, /ʎ/ merges with [j] (2010: 120). The spec lists [ʝ] as a second candidate for /ʎ/.
 
 ### Lower Navarrese
 
@@ -132,22 +132,22 @@ The spec notes say that Lapurdian keeps the full three-way sibilant contrast. Th
 
 Souletin is the easternmost dialect. It has these features:
 
-- A sixth vowel, the front rounded /y/, written ⟨ü⟩. It comes from older /u/ (Egurtzegi 2013: 127-128). The spec maps ⟨ü⟩ to [y].
+- A sixth vowel, the front rounded /y/, written ⟨ü⟩. Egurtzegi (2013: 127-128) derives it from an older /u/. The spec maps ⟨ü⟩ to [y].
 - Three series of stops: voiced, voiceless and aspirated (Hualde 2018: 2, after Lafon). The spec maps ⟨kh⟩ to [kʰ] and lists [pʰ tʰ kʰ] as second candidates for /p t k/.
 - Two aspirates, oral /h/ and nasal /h̃/ (Hualde 2018: 2). The spec reads ⟨h⟩ as [h].
-- Nasal vowels. They occur next to a nasal consonant. They also occur in a stressed final syllable that lost an old /-n/, as in *ardu* [arðũ] from *\*ardano* (Egurtzegi 2013: 127).
+- Nasal vowels. Egurtzegi (2013: 126-127) finds them next to a nasal consonant and in a stressed final syllable that lost an old /-n/, as in *ardu* [arðũ] from *\*ardano*.
 - The accent on the second syllable from the end, and on the last syllable after a contraction, as in *alhabá* (Hualde 2022: 97).
 
 The spelling does not write the nasal vowels or the aspiration on ⟨p t k⟩. So the spec documents both and emits neither as a first candidate.
 
 ### Roncalese
 
-Roncalese is the Basque of the Roncal valley in easternmost Navarre. Its last fluent speakers were gone by about 1991 (Egurtzegi 2013: 127). Bonaparte and Michelena documented it. It has these features:
+Roncalese is the Basque of the Roncal valley in easternmost Navarre. Egurtzegi (2013: 126) states that it disappeared in the 20th century. Bonaparte and Michelena documented it. It has these features:
 
-- Nasal vowels, kept "exactly as … in the modern Souletin dialect" (Egurtzegi 2013: 127).
+- Nasal vowels. Egurtzegi (2013: 126) states that Souletin keeps them "exactly as they were found in the defunct Roncalese variety".
 - A /k-/ in demonstratives where other dialects have /h-/, as in *kaur* 'this' for *haur* and *kori* 'that' for *hori* (Hualde 2018: 13).
-- Metaphony of /i/ to /u/ before /u/, as in *tipula* > *tupla* (Egurtzegi 2013: 131, after Michelena).
-- Strong syncope, with sibilant and tap clusters that no other dialect has, as in *zira* > *zra* 'you are' (Egurtzegi 2013: 135-136).
+- Metaphony of /i/ to /u/ before /u/. Egurtzegi (2013: 131), after Michelena, gives *tipula* > *tupla* 'onion'.
+- Strong syncope. Egurtzegi (2013: 135), after Michelena, gives a syncope between a sibilant and a tap that only Roncalese and Salazarese show, as in *zira* > *zra* 'you are'.
 
 The nasal vowels, the metaphony and the syncope are historical or morphological processes, and the spelling does not show them. The spec emits only the eastern aspiration. It reads ⟨h⟩ as [h] with silence as the second candidate. It lists [pʰ tʰ kʰ] as second candidates for /p t k/.
 
@@ -157,15 +157,17 @@ Every dialect spec declares `parent: eu` with an ancestor weight of 0.9. So `anc
 
 ## Reference data and tools
 
-The `wikipron` row is crowd-scraped Wiktionary data, and it is the row that can qualify `eu` for production. The source of the `hitz_basque_ipa` row is [HiTZ/wikipedia_basque_ipa](https://huggingface.co/datasets/HiTZ/wikipedia_basque_ipa).
+Five provenance tiers never gate a promotion: the three that name a competing tool (`espeak-derived`, `epitran-derived` and `lupo-derived`) and the two language-model tiers ([which gold can gate](../specs/quality_tiers.md#which-gold-can-gate)). The `Gates` column of the Datasets block below gives the rows that gate.
 
-The [dataset catalogue](../evaluation/datasets.md) gives it as the output of the ahoNT phonemizer of HiTZ Zentroa and AhoLab. It is machine-generated, and the board marks it as gating.
+The `wikipron` row is crowd-scraped Wiktionary data. The source of the `hitz_basque_ipa` row is [HiTZ/wikipedia_basque_ipa](https://huggingface.co/datasets/HiTZ/wikipedia_basque_ipa).
 
-The `vox_communis` row comes from Epitran and the `ipa_childes` row from eSpeak, so neither can gate. The `spain_romance_tts` row has 26 words that a language model corrected. It is silver and does not gate.
+The [dataset catalogue](../evaluation/datasets.md) gives it as the output of the ahoNT phonemizer of HiTZ Zentroa and AhoLab. Its tier is `machine-generated`, which can gate.
 
-[TigreGotico/ahotts-g2p](https://github.com/TigreGotico/ahotts-g2p) wraps the front end of [AhoTTS](https://github.com/aholab/AhoTTS). It writes the IPA string that StyleTTS2 and VITS models read. The dataset catalogue compares AhoTTS through it on the `wikipron` row.
+The catalogue gives the `vox_communis` row the tier `epitran-derived` and the `ipa_childes` row the tier `espeak-derived`. The `spain_romance_tts` row is `llm-corrected` silver.
 
-[TigreGotico/euskaphone](https://github.com/TigreGotico/euskaphone) is a Basque TTS front end that knows the dialects and runs over the lattice of this library.
+The README of [TigreGotico/ahotts-g2p](https://github.com/TigreGotico/ahotts-g2p) describes it as a pure-Python port of the [AhoTTS](https://github.com/aholab/AhoTTS) front end. It writes the single-character IPA string that StyleTTS2 and VITS models read. The [dataset catalogue](../evaluation/datasets.md) tells a reader to compare AhoTTS through this port on the `wikipron` row.
+
+The README of [TigreGotico/euskaphone](https://github.com/TigreGotico/euskaphone) describes it as a dialect-aware Basque phonemizer and TTS front end on the lattice of this library, in which each dialect is a Basque lect spec.
 
 ## Weak points
 
@@ -182,7 +184,7 @@ The engine output below comes from `orthography2ipa.transcribe` on the worked ex
 | *talde* | [talðe] (2023: 1104) | [talˈde] | No spirant after a consonant. |
 | *ilargi* | spirant after a consonant (Hualde et al. 2010: 116) | [iˈlarɡi] | Same cause. |
 
-The engine puts the stress mark inside the affricates [ts̻ ts̺] and [tʃ]. Examples are *atzo* [atˈs̻o], *eutsi* [eu̯tˈs̺i] and *bertsolariarekin* [bertˈs̺olaɾiaɾekin]. The IPA segmenter does not read an affricate with a diacritic below it as one segment.
+The engine puts the stress mark inside the affricates [ts̻] and [ts̺]. Examples are *atzo* [atˈs̻o], *eutsi* [eu̯tˈs̺i] and *bertsolariarekin* [bertˈs̺olaɾiaɾekin]. The IPA segmenter does not read an affricate with a diacritic below its second symbol as one segment. [tʃ] has no such diacritic, and *etxe* gives [eˈtʃe].
 
 The spec keeps [+2] in *ate* [aˈte] and *mendi* [menˈdi], where young Donostia speakers have [+1] (Elordieta et al. 1998: 402). This is a choice that the spec notes state. *mina* gives [miˈna], where Markina has /miɲe/ (2023: 1103). This is also a choice, because the spec notes treat the palatalisation as lexical in Batua.
 
@@ -228,12 +230,12 @@ The spec cites 10 works. 7 of them have a DOI or a URL. The spec file holds a no
 The list below adds what each work supports, with the page.
 
 - Hualde, Lujanbio & Zubiri (2010), "Goizueta Basque", *JIPA* 40(1): 113-127. The consonants and their allophones (pp. 114-120), the vowels and diphthongs (pp. 121-122), and the lexical stress and tone (p. 123).
-- Bedialauneta Txurruka & Hualde (2023), "Markina Basque", *JIPA* 53(3): 1095-1122. The Western mergers (p. 1098), the sandhi after *ez* (p. 1099), the palatalisation and assimilation (pp. 1102-1104), and the article after a high vowel (pp. 1107-1108).
+- Bedialauneta Txurruka & Hualde (2023), "Markina Basque", *JIPA* 53(3): 1095-1121. The Western mergers (p. 1098), the sandhi after *ez* (p. 1101), the palatalisation and assimilation (pp. 1102-1104), and the article after a high vowel (pp. 1107-1108).
 - Hualde (2018), "Aspiration in Basque", *Papers in Historical Phonology* 3: 1-27, open access at [journals.ed.ac.uk](https://journals.ed.ac.uk/pihph/article/view/2602). The distribution of /h/ and of the aspirated stops (pp. 1-6), and the Roncalese demonstratives (p. 13).
 - Hualde (1994), *Euskal azentuak eta euskara batua*, *Euskera* 39. The [+2] proposal for Batua and its exceptions (p. 1559).
 - Elordieta, Gaminde & Hualde (1998), *Euskal azentua gaur eta bihar*, *Euskera* 43. The accent of young Batua speakers in Donostia (pp. 402-403).
 - Hualde (2022), ASJU 56(2), open access at [ojs.ehu.eus](https://ojs.ehu.eus/index.php/ASJU/article/view/23983). The accent areas (p. 80), the Western and Central systems (pp. 83-84, Tables 1 and 2), and the Eastern [-2] (pp. 92, 97).
-- Egurtzegi (2013), "Phonetics and Phonology", chapter 4 in Martínez-Areta (ed.), *Basque and Proto-Basque* (Peter Lang): 119-183. The Souletin and Roncalese claims on this page come from the spec notes. This page did not re-open the chapter.
+- Egurtzegi (2013), "Phonetics and Phonology", chapter 4 in Martínez-Areta (ed.), *Basque and Proto-Basque* (Peter Lang): 119-183. An author copy with the page numbers of the book is open at [phonetik.uni-muenchen.de](https://www.phonetik.uni-muenchen.de/personen/assoziierte_wissenschaftler/egurtzegi_ander/2013_protobasque_phonology.pdf). The nasal vowels and the end of Roncalese (pp. 126-127), the Souletin /y/ (pp. 127-128), the metaphony (p. 131) and the syncope (p. 135).
 - Hualde & Ortiz de Urbina (2003), *A Grammar of Basque*. The spec cites it for the off-glide and trill rules. This page did not re-open it.
 - Michelena (1977), *Fonética Histórica Vasca* (FHV). It is cited by page through Egurtzegi (2013) and Hualde (2018). The original was not consulted.
 

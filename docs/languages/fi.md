@@ -27,7 +27,7 @@ Finnish is a Finnic language, written in the Latin script. Glottolog places it i
 
 The `fi` spec transcribes Standard Finnish. Finnish spelling is close to phonemic: each letter stands for one sound, and a doubled letter writes a long sound. Eliot (1890, pp. 1-5) describes this spelling letter by letter, and the examples below come from his grammar. The spec reads each letter, each double letter and each diphthong as one unit, and it puts the stress on the first syllable.
 
-Finnish is a shallow orthography, so the production bar for this spec is a PER of 0.15 ([quality tiers](../specs/quality_tiers.md#the-per-threshold)). The few letters that need a rule are ⟨ng⟩, ⟨nk⟩ and the letters of loanwords.
+Finnish is a shallow orthography, so the production bar for this spec is a PER of 0.15 ([quality tiers](../specs/quality_tiers.md#the-per-threshold)).
 
 ## Length
 
@@ -45,7 +45,7 @@ Eliot (p. 4) adds that only the diphthongs in ⟨i⟩ occur after the first syll
 
 In native words the letter ⟨g⟩ occurs only in ⟨ng⟩, which stands for an older ⟨nk⟩. It has the sound of English ⟨ng⟩ (Eliot 1890, p. 1). The spec reads ⟨ng⟩ as the long velar nasal [ŋː] and ⟨nk⟩ as [ŋk]. So `kenkä` 'shoe' is [ˈkeŋkæ], its plural `kengät` is [ˈkeŋːæt], and `Helsinki` is [ˈhelsiŋki]. Eliot gives no length for ⟨ng⟩, so the length comes from the spec alone.
 
-In native words ⟨d⟩ occurs only inside a word, as the weak grade of ⟨t⟩ (Eliot 1890, p. 1): `sota` 'war' has the genitive `sodan`. The spec reads ⟨d⟩ as [d], the educated pronunciation that Eliot names. The alternation of ⟨t⟩ and ⟨d⟩ is consonant gradation, which the spec notes describe. It changes the spelling of the word, not the reading of a letter, so the spec needs no rule for it. Vowel harmony is the same case: it limits which suffixes occur, and the letters keep their readings.
+In native words ⟨d⟩ occurs only inside a word, as the weak grade of ⟨t⟩ (Eliot 1890, p. 1): `sota` 'war' has the genitive `sodan`. The spec reads ⟨d⟩ as [d], the educated pronunciation that Eliot names. The alternation of ⟨t⟩ and ⟨d⟩ is consonant gradation, which the spec notes describe. It changes the spelling of the word, not the reading of a letter, so the spec needs no rule for it.
 
 The letter ⟨h⟩ is a stronger aspirate than in English (Eliot 1890, p. 2). It is clearest at the end of a syllable, as in `tehdä` 'to do'. The spec writes it as [h] in every position.
 
@@ -55,9 +55,11 @@ The main stress always falls on the first syllable of the word (Eliot 1890, p. 4
 
 ## Reading the datasets
 
-The `wikipron` row is the gating gold. WikiPron ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) scrapes the IPA of English Wiktionary. The Wiktionary entries `kenkä`, `kauppa` and `Helsinki` do not type their IPA. They call the template `{{fi-pronunciation}}`, which runs [Module:fi-pronunciation](https://en.wiktionary.org/wiki/Module:fi-pronunciation). Where an entry does that, the gold is the output of the module. The row then measures agreement with a rule system, like the [module-generated rows](../evaluation/datasets.md#module-generated-wikipron-rows) of the dataset catalogue.
+Five provenance tiers never gate a promotion: the three that name a competing tool (`espeak-derived`, `epitran-derived` and `lupo-derived`) and the two language-model tiers ([which gold can gate](../specs/quality_tiers.md#which-gold-can-gate)). The `Gates` column of the Datasets block below gives the rows that gate.
 
-The `ipadict` row is machine-generated. The dataset catalogue traces it to [prosodic1b](https://github.com/jsfalk/prosodic1b), a rule-based tool, run over the Kotus word list. A machine-generated row can gate, but it also measures agreement with another rule system. The `vox_communis` row is the output of [epitran](https://github.com/dmort27/epitran), so it never gates.
+The `wikipron` row is crowd-scraped. WikiPron ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) scrapes the IPA of English Wiktionary. The Wiktionary entries `kenkä`, `kauppa` and `Helsinki` do not type their IPA. They call the template `{{fi-pronunciation}}`, which runs [Module:fi-pronunciation](https://en.wiktionary.org/wiki/Module:fi-pronunciation). Where an entry does that, the gold is the output of the module. The row then measures agreement with a rule system, like the [module-generated rows](../evaluation/datasets.md#module-generated-wikipron-rows) of the dataset catalogue.
+
+The `ipadict` row is machine-generated. The dataset catalogue traces it to [prosodic1b](https://github.com/jsfalk/prosodic1b), a rule-based tool, run over the Kotus word list. A machine-generated row can gate, but it also measures agreement with another rule system. The catalogue gives the `vox_communis` row the tier `epitran-derived`, so it never gates.
 
 ## Weak points
 
@@ -65,7 +67,7 @@ The spec has no reading for ⟨š⟩, ⟨ž⟩, ⟨å⟩ or ⟨q⟩, so the engi
 
 The engine writes no secondary stress. Eliot (1890, p. 4) marks it on the third, fifth and seventh syllables of *op-pi-mát-to-múu-des-sán-sa* 'in his ability to learn'. The stress notes of the spec state the same rule for odd syllables. The engine gives `oppimattomuudessansa` as [ˈopːimɑtːomuːdesːɑnsɑ], with the main stress only.
 
-Some words end in a slight aspiration that the spelling does not write, as in `vene` 'boat' and `syödä` 'to eat' (Eliot 1890, p. 2). No rule can recover it from the text, so the engine gives `vene` as [ˈʋene]. Gold sets of single words do not test it.
+Some words end in a slight aspiration that the spelling does not write, as in `vene` 'boat' and `syödä` 'to eat' (Eliot 1890, p. 2). No rule can recover it from the text, so the engine gives `vene` as [ˈʋene]. The WikiPron gold writes it as [ˣ], as in /ʋeneˣ/ for `vene`, and the scorer keeps the mark, so these words count as errors on the board.
 
 The letters of loanwords keep their face value. The engine reads ⟨ch⟩ in `Bach` as two letters, [ˈbɑkh].
 
