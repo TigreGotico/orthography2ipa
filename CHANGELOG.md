@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.122.21a1](https://github.com/TigreGotico/orthography2ipa/tree/7.122.21a1) (2026-11-10)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.122.20a2...7.122.21a1)
+
+**Merged pull requests:**
+
+- fix\(deps\): require o2i-lexicons 0.7.0a1 in the lexicons extra [\#2258](https://github.com/TigreGotico/orthography2ipa/pull/2258) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.122.20a2](https://github.com/TigreGotico/orthography2ipa/tree/7.122.20a2) (2026-11-10)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.122.20a1...7.122.20a2)
@@ -386,10 +394,6 @@
 ## [7.119.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.119.0a1) (2026-11-05)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.118.11a1...7.119.0a1)
-
-**Merged pull requests:**
-
-- feat: add Pipeline, one engine's lexicon and syllabifier [\#2149](https://github.com/TigreGotico/orthography2ipa/pull/2149) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.118.11a1](https://github.com/TigreGotico/orthography2ipa/tree/7.118.11a1) (2026-11-05)
 
