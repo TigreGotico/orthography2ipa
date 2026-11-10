@@ -46,7 +46,7 @@ The spec cites 4 works. 1 of them have a DOI or a URL. The spec file holds a not
 1. <a id="src-macias2003"></a>Macias, Dina Rodrigues (2003). *Dialecto rionorês: Contributo para o seu estudo*. Instituto Politécnico de Bragança, Série Estudos 64.
 2. <a id="src-carvalho_dias1955"></a>Carvalho, José Herculano de & Dias, Jorge (1955). *O Falar de Rio de Onor*. I.E.E.D., Faculdade de Letras, Coimbra.
 3. <a id="src-frias_conde_sanabria"></a>Frías-Conde, Xavier (2005). *El Habla de Sanabria*. CES Don Bosco (UCM), ISR Romania Minor. Cited: p. 4.
-4. <a id="src-vasconcelos1900"></a>Vasconcelos, J. Leite de (1900). *Estudos de Philologia Mirandesa (Vol. II)*. Imprensa Nacional, Lisboa. Cited: 54. [archive.org](https://archive.org/details/estudosdephilolo02leit)
+4. <a id="src-vasconcelos1900"></a>Vasconcelos, J. Leite de (1900). *Estudos de Philologia Mirandesa (Vol. II)*. Imprensa Nacional, Lisboa. Cited: 54. [archive.org](https://archive.org/details/estudosdephilolo02vascuoft)
 <!-- atlas:sources end -->
 
 <!-- atlas:datasets begin -->

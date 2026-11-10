@@ -431,7 +431,7 @@ The next table sets the engine output against worked examples printed in a cited
 | وَالله | waḷḷa | [ˈwallh] | Watson 2002, p. 274 | no |
 | طِين | ṭīn | [ˈtˤɪːn] | Watson 2002, p. 274 | no |
 
-Source: Watson, J.C.E. (2002). *The Phonology and Morphology of Arabic*. Oxford University Press (The Phonology of the World's Languages). [coehuman.uodiyala.edu.iq](https://coehuman.uodiyala.edu.iq/uploads/Coehuman%20library%20pdf/English%20library%D9%83%D8%AA%D8%A8%20%D8%A7%D9%84%D8%A7%D9%86%D9%83%D9%84%D9%8A%D8%B2%D9%8A/The%20Phonology%20and%20Morphology%20of%20Arabic%20(The%20Phonology%20of%20the.pdf)
+Source: Watson, J.C.E. (2002). *The Phonology and Morphology of Arabic*. Oxford University Press (The Phonology of the World's Languages). DOI [10.1093/oso/9780199257591.001.0001](https://doi.org/10.1093/oso/9780199257591.001.0001)
 <!-- atlas:examples end -->
 
 <!-- atlas:related begin -->

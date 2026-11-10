@@ -9,7 +9,7 @@ Juǀʼhoan is a Kxa language, written in the Latin script. Glottolog places it i
 |:--|:--|
 | Code | `ktz` |
 | ISO 639-3 | [ktz](https://iso639-3.sil.org/code/ktz), Juǀʼhoan |
-| Wikipedia | [JuǀʼHoan dialect](https://en.wikipedia.org/wiki/Ju%C7%80%CA%BCHoan_dialect) |
+| Wikipedia | [Juǀʼhoan language](https://en.wikipedia.org/wiki/Ju%C7%80%CA%BChoan_language) |
 | Family | [Kxa](by-family.md#kxa) |
 | Region | [Africa](by-region.md#africa) |
 | Script | [Latin](by-script.md#latin) (alphabet) |
@@ -43,7 +43,7 @@ No spec names `ktz` as its parent.
 The spec cites 2 works. 2 of them have a DOI or a URL. The spec file holds a note on what each work supports.
 
 1. <a id="src-ktz_glottolog"></a>Hammarström, H. et al. (Glottolog 5.0) (2024). *Glottolog: South-Eastern Ju (juho1239)*. Max Planck Institute for Evolutionary Anthropology. [glottolog.org](https://glottolog.org/resource/languoid/id/juho1239)
-2. <a id="src-ktz_wikipedia"></a>Wikipedia contributors (2024). *Juǀʼhoan dialect*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Ju%C7%80%CA%BCHoan_dialect)
+2. <a id="src-ktz_wikipedia"></a>Wikipedia contributors (2024). *Juǀʼhoan dialect*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Ju%C7%80%CA%BChoan_language)
 <!-- atlas:sources end -->
 
 <!-- atlas:datasets begin -->

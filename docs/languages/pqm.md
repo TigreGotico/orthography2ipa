@@ -9,7 +9,7 @@ Malecite-Passamaquoddy is an Algic language, written in the Latin script. Glotto
 |:--|:--|
 | Code | `pqm` |
 | ISO 639-3 | [pqm](https://iso639-3.sil.org/code/pqm), Malecite-Passamaquoddy |
-| Wikipedia | [Malecite–Passamaquoddy language](https://en.wikipedia.org/wiki/Malecite%E2%80%93Passamaquoddy_language) |
+| Wikipedia | [Maliseet-Passamaquoddy language](https://en.wikipedia.org/wiki/Maliseet-Passamaquoddy_language) |
 | Family | [Algic](by-family.md#algic) |
 | Region | [North America](by-region.md#north-america) |
 | Script | [Latin](by-script.md#latin) (alphabet) |
@@ -43,7 +43,7 @@ No spec names `pqm` as its parent.
 The spec cites 2 works. 2 of them have a DOI or a URL. The spec file holds a note on what each work supports.
 
 1. <a id="src-pqm_glottolog"></a>Hammarström, H. et al. (Glottolog 5.0) (2024). *Glottolog: Malecite-Passamaquoddy (male1292)*. Max Planck Institute for Evolutionary Anthropology. [glottolog.org](https://glottolog.org/resource/languoid/id/male1292)
-2. <a id="src-pqm_orthography"></a>Wikipedia contributors (2024). *Malecite-Passamaquoddy language, Wikipedia*. Wikimedia Foundation. [en.wikipedia.org](https://en.wikipedia.org/wiki/Malecite%E2%80%93Passamaquoddy_language)
+2. <a id="src-pqm_orthography"></a>Wikipedia contributors (2024). *Malecite-Passamaquoddy language, Wikipedia*. Wikimedia Foundation. [en.wikipedia.org](https://en.wikipedia.org/wiki/Maliseet-Passamaquoddy_language)
 <!-- atlas:sources end -->
 
 <!-- atlas:datasets begin -->
