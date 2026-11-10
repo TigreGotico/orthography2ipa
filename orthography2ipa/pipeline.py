@@ -41,9 +41,12 @@ class Pipeline:
             bundled splitter too.
         expand: writes out one plain run of the input. It takes a string and
             returns a string, and the words may change. It runs once per plain
-            run, so it never sees a ``<phoneme>`` tag or a forced word. The
-            caller binds the language and composes several jobs into one
-            callable.
+            run, so it never sees a ``<phoneme>`` tag or a forced word. A run
+            that starts or ends with whitespace must still do so after
+            ``expand``: when the pipeline has a ``mark`` stage, the engine
+            joins the runs and the forced words with no separator before
+            ``mark`` reads the sentence. The caller binds the language and
+            composes several jobs into one callable.
         mark: adds marks to the whole sentence after ``expand``. It takes a
             string and returns a string with the same words, and it sees a
             forced word as spelled. It runs once per call. Removing the
