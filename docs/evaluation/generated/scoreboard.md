@@ -604,7 +604,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | pt-PT | portuguese_tts | 20 | 0.0284‡ | - | - | - | - | - | - | [0.0132, 0.0439] | 0.5500 | research | llm-corrected |
 | pt-PT | portuguese_unified | 105553 | 0.1877 | 0.9904 | - | 0.1784 | 0.1757 | 0.2150 | 0.2188 | [0.1868, 0.1887] | 0.1981 | research | lexicon-derived |
 | pt-PT | portuguese_unified_corrected | 105534 | 0.1877‡ | 0.9911 | - | 0.1783 | 0.1756 | 0.2151 | 0.2189 | [0.1868, 0.1885] | 0.1982 | research | lexicon-derived |
-| pt-PT | wikipron | 56978 | 0.0590 | - | - | 0.0495 | 0.0465 | 0.6880 | 0.7011 | [0.0582, 0.0598] | 0.6493 | research | crowd-scraped |
+| pt-PT | wikipron | 56978 | 0.0590 | - | - | 0.0495 | 0.0465 | 0.6881 | 0.7011 | [0.0582, 0.0598] | 0.6493 | research | crowd-scraped |
 | pt-PT-x-acores | clup_dialect | 2† | 0.3071‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
 | pt-PT-x-acores | ep_dialects | 29 | 0.0974 | - | - | - | - | - | - | [0.0720, 0.1254] | 0.1724 | research | expert-human |
 | pt-PT-x-acores | portuguese_tts | 20 | 0.1057‡ | - | - | - | - | - | - | [0.0802, 0.1322] | 0.0000 | research | llm-corrected |
@@ -626,7 +626,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | pt-PT-x-coimbra | portuguese_tts | 20 | 0.0578‡ | - | - | - | - | - | - | [0.0374, 0.0767] | 0.3000 | research | llm-corrected |
 | pt-PT-x-lisbon | clup_dialect | 5† | 0.2662‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
 | pt-PT-x-lisbon | ep_dialects | 45 | 0.0575 | - | - | - | - | - | - | [0.0421, 0.0728] | 0.3111 | research | expert-human |
-| pt-PT-x-lisbon | portal_lupo | 53150 | 0.0719‡ | 0.9984 | - | 0.0621 | 0.0594 | 0.5763 | 0.5845 | [0.0711, 0.0727] | 0.5318 | research | lupo-derived |
+| pt-PT-x-lisbon | portal_lupo | 53150 | 0.0719‡ | 0.9984 | - | 0.0621 | 0.0594 | 0.5764 | 0.5845 | [0.0711, 0.0727] | 0.5318 | research | lupo-derived |
 | pt-PT-x-lisbon | portuguese_tts | 20 | 0.0238‡ | - | - | - | - | - | - | [0.0076, 0.0453] | 0.6500 | research | llm-corrected |
 | pt-PT-x-lisbon | primary_sources | 33 | 0.0288 | 1.0000 | - | 0.0288 | 0.0288 | 0.8788 | 0.8788 | [0.0075, 0.0561] | 0.8788 | research | expert-human |
 | pt-PT-x-madeira | clup_dialect | 4† | 0.3003‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |

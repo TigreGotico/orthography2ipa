@@ -1436,6 +1436,26 @@
       "notes": "The stressed ⟨oi⟩ of the ending ⟨-oico⟩ and its inflections ⟨-oica -oicos -oicas⟩ is the open diphthong [ɔj]: heroico, paranoico [pɐɾɐˈnɔjku], estoico, benzoico, mesozoico. The Acordo Ortográfico de 1945, Bases Analíticas, Base XIII, lists 'oi' and 'ói (apenas tónico)' as two diphthongs. Base XVI drops the acute 'no ditongo oi de algumas palavras paroxítonas' only, and names 'comboio (todavia combóio, como flexão de comboiar), dezoito'. Base XXIII writes the grave accent in 'os advérbios em mente que provêm de formas marcadas com acento agudo' (heròicamente) and in derivatives with ⟨z⟩ 'cujas formas básicas são também marcadas com acento agudo' (bòiazinha). So the European spelling before 1990 wrote heróico, paranóico and estóico with the acute of the open vowel. The Acordo Ortográfico de 1990, Base IX, 3.º, drops the accent of paroxytone ⟨oi⟩ 'dado que existe oscilação em muitos casos entre o fechamento e a abertura na sua articulação', and names heroico and paranoico. No source read names the European vowel of the ending directly. Infopédia (Porto Editora) gives [ɔj] first in 37 of 37 single headwords in ⟨-oico⟩ and ⟨-oica⟩. The Wiktionary pt-PT readings of WikiPron (por_latn_po_broad) give [ɔj] in 17 of 21; alantoico, benzoica, benzoicas and benzoicos have [oj] there. The rule needs ⟨c⟩ and a back vowel after the stressed ⟨oi⟩, so foice, coice and oiço do not take it. The rule targets the [o] of the [oj] slot and names the [j] after it. Terceira, the African and Asian varieties, Barrancos and the creoles disable this rule."
     },
     {
+      "id": "PT_DERIV_OICAMENTE_OPEN",
+      "phonemes": [
+        "o"
+      ],
+      "surface": "ɔ",
+      "grapheme": [
+        "oi"
+      ],
+      "followed_by_phoneme": [
+        "j"
+      ],
+      "followed_by_grapheme": [
+        "c"
+      ],
+      "word_contains_grapheme": [
+        "oicamente"
+      ],
+      "notes": "The ⟨oi⟩ of an adverb in ⟨-oicamente⟩ keeps the open diphthong [ɔj] of its adjective in ⟨-oico -oica⟩: heroicamente [iɾɔjkɐˈmẽtɨ], estoicamente [iʃtɔjkɐˈmẽtɨ]. The Acordo Ortográfico de 1945, Bases Analíticas, Base XXIII: 'Escrevem-se com acento grave, na parte anterior ao sufixo, os advérbios em mente que provêm de formas marcadas com acento agudo: [...] heròicamente'. The grave accent wrote the open vowel of the base in the unstressed syllable before the suffix. The European spelling before 1990 wrote the adjective in ⟨-oico -oica⟩ with the acute (heróico, estóico; PT_SUFFIX_OICO_OPEN), so every adverb in ⟨-oicamente⟩ comes from a form marked with the acute. The Acordo Ortográfico de 1990 drops the grave accent of these adverbs. Cunha & Cintra (Nova Gramática do Português Contemporâneo, p. 53) state the same fact for the derivatives in ⟨-mente⟩ and ⟨-inho⟩: 'não sofreram, em geral, redução as vogais tônicas de palavras simples nos vocábulos delas derivados, particularmente com os sufixos -mente ou -inho (-zinho)'. Infopédia (Porto Editora) gives [ɔj] in heroicamente and estoicamente, its two single headwords in ⟨-oicamente⟩, and the Lisbon 'pronúncia indicativa' of the Portal da Língua Portuguesa gives [ɔj] in both. Base XXIII names only the adverbs in mente and the derivatives with an infix ⟨z⟩, so the rule needs ⟨-oicamente⟩ in the word. Other derivatives keep their [oj]: Infopédia gives estoicismo, boicote and moicano with [oj]. Infopédia also gives [ɔj] in heroicidade, estoicidade and monozoicidade, but Base XXIII does not name ⟨-idade⟩ and Cunha & Cintra give no example of it, so the rule leaves them. The rule targets the [o] of the [oj] slot and names the [j] after it. Terceira, the African and Asian varieties, Barrancos and the creoles disable this rule."
+    },
+    {
       "id": "PT_LEX_X_S",
       "phonemes": [
         "ʃ"
