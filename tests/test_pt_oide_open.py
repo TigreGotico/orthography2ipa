@@ -48,7 +48,7 @@ DIPHTHONG_ONLY = {
 OIDAR = ["adoide", "adoides", "adoidem", "endoide", "endoides", "endoidem"]
 # Other ⟨oi⟩ words: the rule needs the ⟨d⟩ and a front vowel after a stressed
 # ⟨oi⟩, so these keep the [oj] of the grapheme table.
-NEIGHBOURS = ["boia", "joia", "heroico", "dezoito", "oito", "noite", "coice", "foice",
+NEIGHBOURS = ["dezoito", "oito", "noite", "coice", "foice",
               "doido", "doida", "sinusoidal", "doideira"]
 
 PINNED = {
@@ -120,7 +120,7 @@ def test_ep_lects_inherit_the_open_diphthong(engines, lang, word):
 
 
 @pytest.mark.parametrize("lang", EP_INHERITING)
-@pytest.mark.parametrize("word", ["endoide", "boia"])
+@pytest.mark.parametrize("word", ["endoide", "doido"])
 def test_ep_lects_keep_the_close_diphthong_outside_the_ending(engines, lang, word):
     assert stressed_diphthong(ipa(engines, lang, word)) == "oj"
 

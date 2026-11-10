@@ -465,6 +465,24 @@
       "notes": "DISABLED for Principense, a creole that inherits the pt-PT rule layer. No source for the stressed vowel of this ending in Principense was read, so its output stays what it was; the pt-PT rule rests on Infopédia readings of standard European Portuguese."
     },
     {
+      "id": "PT_LEX_OIA_CLOSE",
+      "phonemes": [],
+      "surface": "o",
+      "notes": "DISABLED for Principense, a creole that inherits the pt-PT rule layer. No source for the stressed vowel of this ending in Principense was read, so its output stays what it was; the pt-PT rule rests on Infopédia readings of standard European Portuguese."
+    },
+    {
+      "id": "PT_SUFFIX_OIA_OPEN",
+      "phonemes": [],
+      "surface": "ɔ",
+      "notes": "DISABLED for Principense, a creole that inherits the pt-PT rule layer. No source for the stressed vowel of this ending in Principense was read, so its output stays what it was; the pt-PT rule rests on Infopédia readings of standard European Portuguese."
+    },
+    {
+      "id": "PT_SUFFIX_OICO_OPEN",
+      "phonemes": [],
+      "surface": "ɔ",
+      "notes": "DISABLED for Principense, a creole that inherits the pt-PT rule layer. No source for the stressed vowel of this ending in Principense was read, so its output stays what it was; the pt-PT rule rests on Infopédia readings of standard European Portuguese."
+    },
+    {
       "id": "PT_LEX_CLITIC_O",
       "phonemes": [],
       "surface": "u",
