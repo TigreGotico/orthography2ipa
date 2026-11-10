@@ -43,7 +43,7 @@ No spec names `sce` as its parent.
 The spec cites 2 works. 2 of them have a DOI or a URL. The spec file holds a note on what each work supports.
 
 1. <a id="src-sce_glottolog"></a>Hammarström, H. et al. (Glottolog 5.0) (2024). *Glottolog: Dongxiang (dong1285)*. Max Planck Institute for Evolutionary Anthropology. [glottolog.org](https://glottolog.org/resource/languoid/id/dong1285)
-2. <a id="src-sce_kim2003"></a>Kim, Stephen S. (2003). *Santa*. in Janhunen, J. (ed.), The Mongolic Languages, Routledge. Cited: 346-363. [theswissbay.ch](https://theswissbay.ch/pdf/Books/Linguistics/Mega%20linguistics%20pack/Mongolic/Santa%20(Kim).pdf)
+2. <a id="src-sce_kim2003"></a>Kim, Stephen S. (2003). *Santa*. in Janhunen, J. (ed.), The Mongolic Languages, Routledge. Cited: 346-363. DOI [10.4324/9780203987919](https://doi.org/10.4324/9780203987919)
 <!-- atlas:sources end -->
 
 <!-- atlas:datasets begin -->

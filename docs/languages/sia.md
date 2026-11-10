@@ -40,10 +40,10 @@ No spec names `sia` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 3 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 3 works. 2 of them have a DOI or a URL. The spec file holds a note on what each work supports.
 
 1. <a id="src-sia_glottolog"></a>Hammarström, H. et al. (Glottolog 5.0) (2024). *Glottolog: Akkala Saami (akka1237)*. Max Planck Institute for Evolutionary Anthropology. [glottolog.org](https://glottolog.org/resource/languoid/id/akka1237)
-2. <a id="src-sia_zajkov1987"></a>Zajkov, Petr M. (1987). *Babinskij dialekt saamskogo jazyka (fonologo-morfologicheskoe issledovanie)*. Karelian Branch of the USSR Academy of Sciences, Petrozavodsk. Cited: 28-56. [theswissbay.ch](https://theswissbay.ch/pdf/Books/Linguistics/Mega%20linguistics%20pack/Uralic/Saami%20(Akkala);%20%D0%91%D0%B0%D0%B1%D0%B8%D0%BD%D1%81%D0%BA%D0%B8%D0%B9%20%D0%B4%D0%B8%D0%B0%D0%BB%D0%B5%D0%BA%D1%82%20%D1%81%D0%B0%D0%B0%D0%BC%D1%81%D0%BA%D0%BE%D0%B3%D0%BE%20%D1%8F%D0%B7%D1%8B%D0%BA%D0%B0%20(Zajkov).pdf)
+2. <a id="src-sia_zajkov1987"></a>Zajkov, Petr M. (1987). *Babinskij dialekt saamskogo jazyka (fonologo-morfologicheskoe issledovanie)*. Karelian Branch of the USSR Academy of Sciences, Petrozavodsk. Cited: 28-56.
 3. <a id="src-sia_ksdp"></a>Rießler, M. et al. (Kola Saami Documentation Project) (2010). *Kola Saami: the language*. DoBeS / MPI Nijmegen. [dobes.mpi.nl](https://dobes.mpi.nl/projects/sami/language/)
 <!-- atlas:sources end -->
 

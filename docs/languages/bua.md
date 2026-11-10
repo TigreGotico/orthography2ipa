@@ -44,7 +44,7 @@ The spec cites 3 works. 2 of them have a DOI or a URL. The spec file holds a not
 
 1. <a id="src-bua_glottolog"></a>Hammarström, H. et al. (Glottolog 5.0) (2024). *Glottolog: Buriat (buri1258)*. Max Planck Institute for Evolutionary Anthropology. [glottolog.org](https://glottolog.org/resource/languoid/id/buri1258)
 2. <a id="src-poppe1960"></a>Poppe, Nicholas (1960). *Buriat Grammar (Uralic and Altaic Series 2)*. Indiana University Publications.
-3. <a id="src-skribnik2003"></a>Skribnik, E. (2003). *Buryat*. in J. Janhunen (ed.), The Mongolic Languages, Routledge Language Family Series, London. Cited: pp. 102-108. [theswissbay.ch](https://theswissbay.ch/pdf/Books/Linguistics/Mega%20linguistics%20pack/Mongolic/Buryat%20(Skribnik).pdf)
+3. <a id="src-skribnik2003"></a>Skribnik, E. (2003). *Buryat*. in J. Janhunen (ed.), The Mongolic Languages, Routledge Language Family Series, London. Cited: pp. 102-108. DOI [10.4324/9780203987919](https://doi.org/10.4324/9780203987919)
 <!-- atlas:sources end -->
 
 <!-- atlas:datasets begin -->

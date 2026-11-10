@@ -10,7 +10,7 @@ Vlax Romani is an Indo-Aryan language, written in the Latin script. Glottolog pl
 | Code | `rmy` |
 | ISO 639-3 | [rmy](https://iso639-3.sil.org/code/rmy), Vlax Romani |
 | Glottolog | [vlax1238](https://glottolog.org/resource/languoid/id/vlax1238), Vlax Romani |
-| Wikidata | [Q2914435](https://www.wikidata.org/wiki/Q2914435) |
+| Wikidata | [Q2669199](https://www.wikidata.org/wiki/Q2669199) |
 | Wikipedia | [Vlax Romani](https://en.wikipedia.org/wiki/Vlax_Romani) |
 | Family | [Indo-European](by-family.md#indo-european) > [Indo-Iranian > Indo-Aryan](by-family.md#indo-european--indo-iranian--indo-aryan) |
 | Region | [Eurasia](by-region.md#eurasia) > [Albania](by-region.md#albania), [Austria](by-region.md#austria), [Belarus](by-region.md#belarus), [Bosnia & Herzegovina](by-region.md#bosnia--herzegovina), [Bulgaria](by-region.md#bulgaria), [Croatia](by-region.md#croatia), [Czechia](by-region.md#czechia), [Finland](by-region.md#finland) and 24 more |

@@ -215,7 +215,7 @@ The spec cites 10 works. 7 of them have a DOI or a URL. The spec file holds a no
 
 1. <a id="src-hualde_ortiz_de_urbina2003"></a>Hualde, J.I. & Ortiz de Urbina, J. (eds.) (2003). *A Grammar of Basque*. Mouton de Gruyter. Cited: 15-65 (Hualde, 'Segmental phonology').
 2. <a id="src-hualde_lujanbio_zubiri2010"></a>Hualde, J.I., Lujanbio, O. & Zubiri, J.J. (2010). *Goizueta Basque (Illustrations of the IPA)*. Journal of the International Phonetic Association 40(1). Cited: 113-127. [doi.org](https://doi.org/10.1017/S0025100309990260)
-3. <a id="src-bedialauneta_hualde2023"></a>Bedialauneta Txurruka, I. & Hualde, J.I. (2023). *Markina Basque (Illustration of the IPA)*. Journal of the International Phonetic Association 53(3). Cited: 1095-1122. [doi.org](https://doi.org/10.1017/S0025100322000032)
+3. <a id="src-bedialauneta_hualde2023"></a>Bedialauneta Txurruka, I. & Hualde, J.I. (2023). *Markina Basque (Illustration of the IPA)*. Journal of the International Phonetic Association 53(3). Cited: 1095-1121. [doi.org](https://doi.org/10.1017/S0025100322000032)
 4. <a id="src-hualde2018_aspiration"></a>Hualde, J.I. (2018). *Aspiration in Basque*. Papers in Historical Phonology 3. Cited: 1-27. [doi.org](https://doi.org/10.2218/pihph.3.2018.2602)
 5. <a id="src-ladefoged_maddieson1996"></a>Ladefoged, P. & Maddieson, I. (1996). *The Sounds of the World's Languages*. Blackwell.
 6. <a id="src-hualde1991"></a>Hualde, J.I. (1991). *Basque Phonology*. Routledge (Theoretical Linguistics series). Cited: ch. 'The negative particle ez' / consonant assimilation sandhi.
