@@ -21,7 +21,8 @@ Dataset access:
 - ``portuguese_unified`` and ``portal_lupo`` download one JSONL file directly
   and sample it with a fixed seed (stdlib only). ``portuguese_unified`` scores
   its Infopédia, Michaelis and pt.wiktionary rows, and ``portal_lupo`` its
-  Portal da Língua Portuguesa rows. One region is scored per registered language tag.
+  Portal da Língua Portuguesa rows. One region is scored per registered
+  language tag.
 - ``hitz_basque_ipa`` pages the HiTZ/wikipedia_basque_ipa Hugging Face
   dataset through the datasets-server "rows" REST API (stdlib only,
   no full-parquet download).
@@ -718,8 +719,8 @@ _PT_UNIFIED_URL = (
     "/resolve/main/portuguese_pronunciation_lexicon.jsonl"
 )
 #: orthography2ipa language tag -> dataset region tag, for the human rows
-#: (Infopédia, Michaelis and pt.wiktionary). Only regions with a matching o2i spec AND a
-#: usable row count are scored. The paulistano and paulista registers (under
+#: (Infopédia, Michaelis and pt.wiktionary). Only regions with a matching o2i
+#: spec AND a usable row count are scored. The paulistano and paulista registers (under
 #: 30 rows each), the untagged "pt" rows and the Wiktionary rows of pt-AO (3),
 #: pt-MZ (2) and pt-TL (1) are left out.
 _PT_UNIFIED_REGIONS: Dict[str, str] = {
