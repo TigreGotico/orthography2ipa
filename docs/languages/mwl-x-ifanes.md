@@ -81,13 +81,13 @@ The spec can emit 89 segments. They come from the letter table, the positional r
 |:--|:-:|:-:|:-:|
 | Close | i i̯ ĩ | ɨ ɨ̃ | u u̯ ũ |
 | Near-close |  |  | ʊ ʊ̃ |
-| Close-mid | e ẽ |  | o õ |
+| Close-mid | e ẽ | ɵ̃ | o õ |
 | Mid |  | ə̃ |  |
 | Open-mid | ɛ |  | ɔ |
 | Near-open |  | ɐ ɐ̃ |  |
 | Open | a |  |  |
 
-Sequences that the spec writes as one unit: [aj] [aw] [ej] [ew] [iu] [iw] [ja] [je] [jo] [ju] [jɪ] [jɪ̃] [jɵ̃w̃] [jẽ] [kw] [oj] [uj] [uu] [w] [wa] [we] [wo] [wõ] [õj̃] [ɐ̃w̃] [ɟ͡ʝ] [ɡw] [ɡwe] [ɡwi] [ɪə] [ɵw] [ɵ̃w̃] [ʊə].
+Sequences that the spec writes as one unit: [aj] [aw] [ej] [ew] [iu] [iw] [ja] [je] [jo] [ju] [jɪ] [jɪ̃] [jẽ] [kw] [oj] [uj] [uu] [w] [wa] [we] [wo] [wõ] [w̃] [õj̃] [ɐ̃w̃] [ɟ͡ʝ] [ɡw] [ɡwe] [ɡwi] [ɪə] [ɵw] [ʊə].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->
