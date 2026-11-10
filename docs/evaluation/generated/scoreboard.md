@@ -659,11 +659,11 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | ro-RO | ipa_childes | 2311 | 0.2644‡ | - | - | 0.2617 | 0.2616 | 0.1939 | 0.1943 | [0.2562, 0.2721] | 0.1900 | production | espeak-derived |
 | ro-RO | ipadict | 72375 | 0.0359 | - | - | 0.0354 | 0.0352 | 0.7367 | 0.7376 | [0.0354, 0.0364] | 0.7344 | production | lexicon-derived |
 | roa-x-galaico-pt | portuguese_tts | 20 | 0.1283‡ | - | - | - | - | - | - | [0.0923, 0.1672] | 0.0500 | research | llm-corrected |
-| ru | alphacep_ru_book | 6175 | 0.2391 | 0.4936 | - | 0.1252 | 0.0859 | 0.3153 | 0.5015 | [0.2362, 0.2419] | 0.0646 | research | machine-generated |
-| ru | coruss_ru | 9527 | 0.3572 | 0.5178 | - | 0.2795 | 0.2653 | 0.1480 | 0.1685 | [0.3530, 0.3614] | 0.0639 | research | expert-human |
+| ru | alphacep_ru_book | 6175 | 0.2377 | 0.4936 | - | 0.1237 | 0.0835 | 0.3156 | 0.5019 | [0.2349, 0.2403] | 0.0649 | research | machine-generated |
+| ru | coruss_ru | 9527 | 0.3573 | 0.5180 | - | 0.2797 | 0.2653 | 0.1477 | 0.1684 | [0.3531, 0.3615] | 0.0640 | research | expert-human |
 | ru | primary_sources | 36 | 0.1867 | - | - | 0.1267 | 0.1267 | 0.5833 | 0.5833 | [0.1265, 0.2463] | 0.3611 | research | expert-human |
-| ru | vox_communis | 50517 | 0.3481‡ | - | - | 0.2432 | 0.2020 | 0.1251 | 0.2154 | [0.3467, 0.3494] | 0.0235 | research | epitran-derived |
-| ru | wikipron | 403870 | 0.1443 | - | - | 0.1082 | 0.1040 | 0.3695 | 0.3712 | [0.1439, 0.1447] | 0.3365 | research | crowd-scraped |
+| ru | vox_communis | 50517 | 0.3462‡ | - | - | 0.2412 | 0.1989 | 0.1251 | 0.2154 | [0.3449, 0.3475] | 0.0235 | research | epitran-derived |
+| ru | wikipron | 403870 | 0.1444 | - | - | 0.1083 | 0.1041 | 0.3692 | 0.3709 | [0.1440, 0.1448] | 0.3366 | research | crowd-scraped |
 | rw | vox_communis | 381086 | 0.1388‡ | - | - | 0.1388 | 0.1388 | 0.3128 | 0.3128 | [0.1384, 0.1392] | 0.3128 | research | epitran-derived |
 | sa | wikipron | 9796 | 0.0161 | - | - | 0.0161 | 0.0161 | 0.9219 | 0.9219 | [0.0148, 0.0175] | 0.9219 | research | crowd-scraped |
 | sah | vox_communis | 11989 | 0.0862‡ | - | - | 0.0862 | 0.0862 | 0.6330 | 0.6330 | [0.0837, 0.0888] | 0.6330 | research | epitran-derived |
