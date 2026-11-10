@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.122.21a3](https://github.com/TigreGotico/orthography2ipa/tree/7.122.21a3) (2026-11-10)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.122.21a2...7.122.21a3)
+
+**Merged pull requests:**
+
+- docs: give every living research and production spec an atlas page [\#2247](https://github.com/TigreGotico/orthography2ipa/pull/2247) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.122.21a2](https://github.com/TigreGotico/orthography2ipa/tree/7.122.21a2) (2026-11-10)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.122.21a1...7.122.21a2)
@@ -378,10 +386,6 @@
 ## [7.119.4a1](https://github.com/TigreGotico/orthography2ipa/tree/7.119.4a1) (2026-11-05)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.119.3a1...7.119.4a1)
-
-**Merged pull requests:**
-
-- fix\(pt-PT\): voice a word-internal coda sibilant before a voiced consonant [\#2156](https://github.com/TigreGotico/orthography2ipa/pull/2156) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.119.3a1](https://github.com/TigreGotico/orthography2ipa/tree/7.119.3a1) (2026-11-05)
 
