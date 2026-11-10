@@ -43,13 +43,15 @@ DIPHTHONG_ONLY = {
     "epiploico": "epiˈplɔjku", "etanoico": "etɐˈnɔjku",
 }
 # Words whose European spelling before 1990 had no acute keep the close [oj].
-# poia is [ˈpojɐ] in Infopédia.
+# poia is [ˈpojɐ] in Infopédia, and poiar has no acute form in the Portal
+# list of verb forms whose spelling changes with AO90.
 CLOSE = ["apoia", "apoias", "apoiam", "desapoia", "desapoias", "desapoiam",
-         "saloia", "saloias", "poia", "poias", "arroia", "arroias", "arroiam"]
+         "saloia", "saloias", "poia", "poias", "poiam", "arroia", "arroias", "arroiam"]
 # Other ⟨oi⟩ words: the rules need ⟨a⟩, or ⟨c⟩ and a back vowel, after a
 # stressed ⟨oi⟩, so these keep the [oj] of the grapheme table. Infopédia gives
-# [oj] in the unstressed ⟨oi⟩ of boicote [bojˈkɔt(ə)], boicotar and moicano.
-NEIGHBOURS = ["apoio", "comboio", "boina", "dezoito", "foice", "coice", "oiço",
+# [oj] in apoio [ɐˈpoju], oito [ˈojtu] and the unstressed ⟨oi⟩ of boicote
+# [bojˈkɔt(ə)], boicotar and moicano.
+NEIGHBOURS = ["apoio", "oito", "boina", "dezoito", "foice", "coice", "oiço",
               "boiada", "noite", "apoiado", "apoiamos", "aboiar",
               "boicote", "boicotar", "moicano"]
 
@@ -146,7 +148,7 @@ def test_ep_lects_inherit_the_open_diphthong(engines, lang, word):
 
 
 @pytest.mark.parametrize("lang", EP_INHERITING)
-@pytest.mark.parametrize("word", ["saloia", "apoia", "comboio"])
+@pytest.mark.parametrize("word", ["saloia", "apoia", "apoio"])
 def test_ep_lects_keep_the_close_diphthong_of_listed_and_other_words(engines, lang, word):
     assert stressed_diphthong(ipa(engines, lang, word)) == "oj"
 
