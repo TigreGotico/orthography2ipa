@@ -1365,6 +1365,77 @@
       "notes": "The stressed ⟨oi⟩ of the ending ⟨-oide⟩ and its plural ⟨-oides⟩ is the open diphthong [ɔj]: asteroide [ɐʃtɨˈɾɔjdɨ], alcaloide [aɫkɐˈlɔjdɨ], androide [ɐ̃ˈdɾɔjdɨ]. Cunha & Cintra, Nova Gramática do Português Contemporâneo, 7.ª ed., pp. XXX-XXXI, summarise the 1990 orthography for the Brazilian spelling: 'Os ditongos abertos tônicos éi e ói perdem o acento agudo quando caem na penúltima sílaba (portanto, de palavras paroxítonas)', with 'debilóide(s) passa a ser debiloide(s)'. The European spelling before 1990 also wrote the ending with the acute (asteróide, alcalóide), the mark of the open vowel; the Conclusões complementares of the 1945 Acordo, item 23, write the adverb of such an adjective 'heròicamente'. The 1990 Acordo, Base IX, 3.º, drops the accent 'dado que existe oscilação em muitos casos entre o fechamento e a abertura na sua articulação', and names alcaloide. No source read names the European vowel of the ending directly. Infopédia (Porto Editora) gives [ɔj] first in all 198 single headwords in ⟨-oide⟩ and ⟨-oides⟩, and the Wiktionary pt-PT readings of WikiPron (por_latn_po_broad) give [ɔj] in 99 of 102. The ⟨d⟩ and the front vowel after the diphthong keep the rule to the ending: boia, heroico, dezoito do not take it. The rule targets the [o] of the [oj] slot and names the [j] after it, so it works on that one segment and leaves the slot's other rules alone. The verb forms of adoidar and endoidar keep [oj] through PT_LEX_OIDAR_CLOSE. The ⟨oi⟩ slot has the one value [oj] in the grapheme table, so the rule leaves no [oj] lattice candidate. Terceira, the African and Asian varieties, Barrancos and the creoles disable this rule."
     },
     {
+      "id": "PT_LEX_OIA_CLOSE",
+      "phonemes": [
+        "o"
+      ],
+      "surface": "o",
+      "stress": "stressed",
+      "grapheme": [
+        "oi"
+      ],
+      "followed_by_phoneme": [
+        "j"
+      ],
+      "followed_by_grapheme": [
+        "a"
+      ],
+      "word": [
+        "apoia",
+        "apoiam",
+        "apoias",
+        "arroia",
+        "arroiam",
+        "arroias",
+        "desapoia",
+        "desapoiam",
+        "desapoias",
+        "poia",
+        "poiam",
+        "poias",
+        "saloia",
+        "saloias"
+      ],
+      "notes": "Words in ⟨-oia⟩ whose European spelling before 1990 had no acute keep the close diphthong [oj]: saloia (feminine of saloio [sɐˈloju]), poia, arroia, and the forms apoia, apoias, apoiam, desapoia, desapoias, desapoiam and poiam of apoiar, desapoiar and poiar. Under the 1945 Acordo, Base XIII, an unaccented paroxytone ⟨oi⟩ is the close diphthong, and Base XVI names comboio and dezoito as the paroxytones whose ⟨oi⟩ drops the acute. The Vocabulário de Mudança of the Portal da Língua Portuguesa (ILTEC) lists the verb forms whose spelling changes with AO90 (http://www.portaldalinguaportuguesa.org/index.php?action=novoacordo&page=formas). Its only verbs in ⟨-oiar⟩ with an acute before 1990 are aboiar, boiar, comboiar and enjoiar (abóio, bóias, combóiam, enjóie). apoiar, desapoiar, arroiar and poiar are not on that list. Its word search (http://www.portaldalinguaportuguesa.org/index.php?action=novoacordo&act=list&version=pe&search=saloia) gives 'A grafia da palavra saloia não muda com o AO'. Infopédia gives poia [ˈpojɐ]. For apoiar the sources conflict. Cunha & Cintra, Nova Gramática do Português Contemporâneo, 7.ª ed., p. 431, obs. 3.ª a), put a first-conjugation verb with ⟨o⟩ in the stem in the open class of lograr, except where the ⟨o⟩ is part of the diphthong oi 'seguido de consoante'. The ⟨oi⟩ of apoiar comes before a vowel, so their model predicts the open [ɔ] in apoia. This rule follows the 1945 spelling. The rule comes before PT_SUFFIX_OIA_OPEN and leaves the slot as it is. The varieties that disable PT_SUFFIX_OIA_OPEN disable this rule too."
+    },
+    {
+      "id": "PT_SUFFIX_OIA_OPEN",
+      "phonemes": [
+        "o"
+      ],
+      "surface": "ɔ",
+      "stress": "stressed",
+      "grapheme": [
+        "oi"
+      ],
+      "followed_by_phoneme": [
+        "j"
+      ],
+      "followed_by_grapheme": [
+        "a"
+      ],
+      "notes": "The stressed ⟨oi⟩ of the ending ⟨-oia⟩ and its plural ⟨-oias⟩ is the open diphthong [ɔj]: boia [ˈbɔjɐ], joia [ˈʒɔjɐ], jiboia [ʒiˈbɔjɐ], paranoia [pɐɾɐˈnɔjɐ]. The Acordo Ortográfico de 1945, Bases Analíticas, Base XIII, lists 'oi' and 'ói (apenas tónico)' as two diphthongs. Base XVI drops the acute 'no ditongo oi de algumas palavras paroxítonas' only, and names 'comboio (todavia combóio, como flexão de comboiar), dezoito'. Base XXIII writes the grave accent in 'os advérbios em mente que provêm de formas marcadas com acento agudo' (heròicamente) and in derivatives with ⟨z⟩ 'cujas formas básicas são também marcadas com acento agudo' (bòiazinha). So the European spelling before 1990 wrote bóia, jóia, jibóia, paranóia and combóia with the acute of the open vowel. The Acordo Ortográfico de 1990, Base IX, 3.º, drops the accent of paroxytone ⟨oi⟩ 'dado que existe oscilação em muitos casos entre o fechamento e a abertura na sua articulação', and names boia and jiboia. No source read names the European vowel of the ending directly. Infopédia (Porto Editora) gives [ɔj] first in 28 of 29 single headwords in ⟨-oia⟩; poia is the other. The Wiktionary pt-PT readings of WikiPron (por_latn_po_broad) give [ɔj] in 16 of 16. The rule needs the ⟨a⟩ after the stressed ⟨oi⟩, so apoio, comboio, boina and dezoito do not take it. Words whose pre-1990 spelling had no acute keep [oj] through PT_LEX_OIA_CLOSE. The rule targets the [o] of the [oj] slot and names the [j] after it, so it leaves the slot's other rules alone. Terceira, the African and Asian varieties, Barrancos and the creoles disable this rule."
+    },
+    {
+      "id": "PT_SUFFIX_OICO_OPEN",
+      "phonemes": [
+        "o"
+      ],
+      "surface": "ɔ",
+      "stress": "stressed",
+      "grapheme": [
+        "oi"
+      ],
+      "followed_by_phoneme": [
+        "j"
+      ],
+      "followed_by_grapheme": [
+        "c"
+      ],
+      "followed_by_2": "back_vowel",
+      "notes": "The stressed ⟨oi⟩ of the ending ⟨-oico⟩ and its inflections ⟨-oica -oicos -oicas⟩ is the open diphthong [ɔj]: heroico, paranoico [pɐɾɐˈnɔjku], estoico, benzoico, mesozoico. The Acordo Ortográfico de 1945, Bases Analíticas, Base XIII, lists 'oi' and 'ói (apenas tónico)' as two diphthongs. Base XVI drops the acute 'no ditongo oi de algumas palavras paroxítonas' only, and names 'comboio (todavia combóio, como flexão de comboiar), dezoito'. Base XXIII writes the grave accent in 'os advérbios em mente que provêm de formas marcadas com acento agudo' (heròicamente) and in derivatives with ⟨z⟩ 'cujas formas básicas são também marcadas com acento agudo' (bòiazinha). So the European spelling before 1990 wrote heróico, paranóico and estóico with the acute of the open vowel. The Acordo Ortográfico de 1990, Base IX, 3.º, drops the accent of paroxytone ⟨oi⟩ 'dado que existe oscilação em muitos casos entre o fechamento e a abertura na sua articulação', and names heroico and paranoico. No source read names the European vowel of the ending directly. Infopédia (Porto Editora) gives [ɔj] first in 37 of 37 single headwords in ⟨-oico⟩ and ⟨-oica⟩. The Wiktionary pt-PT readings of WikiPron (por_latn_po_broad) give [ɔj] in 17 of 21; alantoico, benzoica, benzoicas and benzoicos have [oj] there. The rule needs ⟨c⟩ and a back vowel after the stressed ⟨oi⟩, so foice, coice and oiço do not take it. The rule targets the [o] of the [oj] slot and names the [j] after it. Terceira, the African and Asian varieties, Barrancos and the creoles disable this rule."
+    },
+    {
       "id": "PT_LEX_X_S",
       "phonemes": [
         "ʃ"
