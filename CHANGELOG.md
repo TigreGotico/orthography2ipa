@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.122.24a1](https://github.com/TigreGotico/orthography2ipa/tree/7.122.24a1) (2026-11-10)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.122.23a2...7.122.24a1)
+
+**Merged pull requests:**
+
+- fix\(pt-PT\): open the ⟨oi⟩ of adverbs in ⟨-oicamente⟩ [\#2270](https://github.com/TigreGotico/orthography2ipa/pull/2270) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.122.23a2](https://github.com/TigreGotico/orthography2ipa/tree/7.122.23a2) (2026-11-10)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.122.23a1...7.122.23a2)
