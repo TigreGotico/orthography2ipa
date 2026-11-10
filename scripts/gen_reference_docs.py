@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 """Generate the reference pages from the code they describe.
 
-Three files are written from the source and never edited by hand:
+Four files are written from the source and never edited by hand:
 
 * ``docs/reference/api.md`` lists every name in ``orthography2ipa.__all__``,
   grouped by the module that defines it, with the first line of its docstring.
 * ``docs/reference/cli.md`` holds the ``--help`` output of the
   ``orthography2ipa`` command and of each subcommand.
 * ``llms.txt`` is the map of the repository for a language model, built from
-  the reading order of ``docs/index.md`` and the summaries of the language
-  atlas pages.
+  the reading order of ``docs/index.md``. Of the language atlas it lists the
+  four indexes and the pages of the production specs.
+* ``llms-full.txt`` is the same map with every atlas page and its summary.
 
 Run it after changing a public name, a docstring summary, a CLI option or the
 documentation index::
@@ -27,6 +28,7 @@ from __future__ import annotations
 import argparse
 import importlib.util
 import inspect
+import json
 import os
 import re
 import subprocess
@@ -37,6 +39,7 @@ REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 API_PAGE = "docs/reference/api.md"
 CLI_PAGE = "docs/reference/cli.md"
 LLMS_TXT = "llms.txt"
+LLMS_FULL_TXT = "llms-full.txt"
 SUBCOMMANDS = ("list", "info", "transcribe", "distance", "validate")
 
 
@@ -151,7 +154,9 @@ def cli_page(order: list[str]) -> str:
     return "\n".join(lines) + _docs_nav().footer("reference/cli.md", order)
 
 
-def llms_txt(order: list[str]) -> str:
+def llms_txt(order: list[str], full: bool = False) -> str:
+    """The language-model map. Without *full*, the atlas section lists only
+    the pages of the production specs and points to ``llms-full.txt``."""
     nav = _docs_nav()
     lines = [
         "# orthography2ipa",
@@ -196,8 +201,22 @@ def llms_txt(order: list[str]) -> str:
         "script",
         "- [Languages from A to Z](docs/languages/a-z.md): every spec by name",
     ]
-    for rel, summary in _atlas_pages():
-        lines.append(f"- [{nav._label(rel)}](docs/{rel}): {summary}")
+    pages = _atlas_pages()
+    if full:
+        lines += [f"- [{nav._label(rel)}](docs/{rel}): {summary}"
+                  for rel, summary in pages]
+    else:
+        lines += [
+            f"- [Every language page]({LLMS_FULL_TXT}): this map with all "
+            f"{len(pages)} atlas pages, each with its summary",
+            "",
+            "## Production language pages",
+            "",
+        ]
+        production = _production_codes()
+        lines += [f"- [{nav._label(rel)}](docs/{rel}): {summary}"
+                  for rel, summary in pages
+                  if rel[len("languages/"):-len(".md")] in production]
     lines += [
         "",
         "## Optional",
@@ -223,12 +242,26 @@ def _atlas_pages() -> list[tuple[str, str]]:
     return pages
 
 
+def _production_codes() -> set[str]:
+    """The codes of the specs at the production tier."""
+    folder = os.path.join(REPO_ROOT, "orthography2ipa", "data")
+    codes = set()
+    for name in os.listdir(folder):
+        if name.endswith(".json"):
+            with open(os.path.join(folder, name), encoding="utf-8") as fh:
+                raw = json.load(fh)
+            if raw.get("quality") == "production":
+                codes.add(raw["code"])
+    return codes
+
+
 def outputs() -> dict[str, str]:
     order = _docs_nav().reading_order()
     return {
         API_PAGE: api_page(order),
         CLI_PAGE: cli_page(order),
         LLMS_TXT: llms_txt(order),
+        LLMS_FULL_TXT: llms_txt(order, full=True),
     }
 
 
