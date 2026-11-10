@@ -78,7 +78,7 @@ That check is context, not a tier upgrade. It is not a per-row audit against cit
 
 Each row is a tuple of word, region, source and part of speech. It carries a broad phonemic `ipa_broad` and a narrow phonetic `ipa_narrow`, normalized across the source conventions (`ə/ɨ`, `r/ɾ/ʀ`, `a/ɐ`, optional segments and syllable markers). The harness scores `ipa_narrow`, because its depth matches the Portuguese specs, with explicit [ɐ ɨ ɾ ʀ ɫ].
 
-The dataset has no source column. `pt_unified_source()` reads the source from the fields of a row. A Portal row is the only kind with a `phones` value. `portuguese_unified` reads only the Infopédia and pt.wiktionary rows, which people transcribed. o2i does not score these specs against the Portal rows as a gold.
+The dataset has no source column. `pt_unified_source()` reads the source from the fields of a row. A Portal row is the only kind with a `phones` value. Every other row has the URL of each source that gives its reading: `infopedia_url`, `wiktionary_url` or `michaelis_url`. `portuguese_unified` reads only the Infopédia, Michaelis and pt.wiktionary rows, which people transcribed. o2i does not score these specs against the Portal rows as a gold.
 
 One region is scored per registered tag (`_PT_UNIFIED_REGIONS`):
 

@@ -493,7 +493,8 @@ def _upstream_row(word, region, ipa_narrow, ipa_broad="", source="portal", pos="
             "ipa_broad": ipa_broad, "pos": pos,
             "phones": "x" if source == "portal" else "",
             "infopedia_url": "u" if "infopedia" in source else "",
-            "wiktionary_url": "u" if "wiktionary" in source else ""}
+            "wiktionary_url": "u" if "wiktionary" in source else "",
+            "michaelis_url": "u" if "michaelis" in source else ""}
 
 
 def test_pt_unified_source_is_read_from_the_row():
@@ -502,6 +503,9 @@ def test_pt_unified_source_is_read_from_the_row():
     assert pt_unified_source(_upstream_row("a", "r", "a", source="wiktionary")) == "wiktionary"
     assert pt_unified_source(
         _upstream_row("a", "r", "a", source="infopedia+wiktionary")) == "infopedia+wiktionary"
+    assert pt_unified_source(_upstream_row("a", "r", "a", source="michaelis")) == "michaelis"
+    assert pt_unified_source(
+        _upstream_row("a", "r", "a", source="wiktionary+michaelis")) == "wiktionary+michaelis"
 
 
 def test_pt_overlay_never_corrects_a_portal_row():

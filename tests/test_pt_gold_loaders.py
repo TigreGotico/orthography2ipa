@@ -140,6 +140,22 @@ def test_portal_lupo_returns_only_portal_rows(monkeypatch):
         assert loader(lang, 100) == [("falar", f"portal-{region}")]
 
 
+def test_michaelis_rows_are_human_pt_br_rows(monkeypatch):
+    """A Michaelis row carries no ``phones`` and no Infopédia or Wiktionary
+    URL. It is a dictionary transcription: the pt-BR human loader reads it and
+    the Portal loader does not."""
+    rows = [
+        {"word": "calva", "region": "pt-BR", "ipa_narrow": "ˈkawvɐ",
+         "michaelis_url": "https://michaelis.uol.com.br/x/calva/"},
+        {"word": "calva", "region": "pt-BR-x-saopaulo", "ipa_narrow": "ˈkaw.və",
+         "phones": "ˈkaw|və"},
+    ]
+    monkeypatch.setattr(benchmark, "_fetch", lambda url, name: _jsonl(rows))
+    assert benchmark.pt_unified_source(rows[0]) == "michaelis"
+    assert benchmark.load_portuguese_unified("pt-BR", 10) == [("calva", "ˈkawvɐ")]
+    assert benchmark.load_portal_lupo("pt-BR-x-sp", 10) == [("calva", "ˈkaw.və")]
+
+
 def test_unified_and_portal_regions_do_not_overlap():
     """A language reads one source kind: human rows or the generator."""
     assert not set(benchmark._PT_UNIFIED_REGIONS) & set(benchmark._PORTAL_LUPO_REGIONS)
