@@ -33,4 +33,4 @@ The spec has no mapping for ⟨š⟩ and ⟨ž⟩, which occur in loans. The eng
 - Ladefoged, P. & Maddieson, I. (1996). *The Sounds of the World's Languages*.
 
 ---
-[← Basque (Euskara) and its dialects](eu.md) · [Home](../index.md) · [Vietnamese →](vi.md)
+[← Basque (Euskara) and its dialects](eu.md) · [Home](../index.md) · [Esperanto →](eo.md)

@@ -1,10 +1,34 @@
-# Standard Thai (`th`)
+# Thai (`th`)
 
-**Code**: `th` | **Family**: Tai-Kadai > Southwestern Tai | **Script**: Thai (abugida) | **Quality tier**: research
+<!-- atlas:summary begin -->
+Thai is a Tai-Kadai language, written in the Thai script. Glottolog places it in Cambodia, Myanmar (Burma) and Thailand. The `th` spec is at the research tier. It cites 3 sources and has 2 scored datasets.
+<!-- atlas:summary end -->
+
+<!-- atlas:header begin -->
+| Field | Value |
+|:--|:--|
+| Code | `th` |
+| ISO 639-3 | [tha](https://iso639-3.sil.org/code/tha), Thai |
+| Glottolog | [thai1261](https://glottolog.org/resource/languoid/id/thai1261), Thai |
+| Wikidata | [Q9217](https://www.wikidata.org/wiki/Q9217) |
+| Wikipedia | [Thai language](https://en.wikipedia.org/wiki/Thai_language) |
+| Family | [Tai-Kadai](by-family.md#tai-kadai) |
+| Region | [Eurasia](by-region.md#eurasia) > [Cambodia](by-region.md#cambodia), [Myanmar (Burma)](by-region.md#myanmar-burma), [Thailand](by-region.md#thailand) |
+| Script | [Thai](by-script.md#thai) (abugida) |
+| Tier | [research](../specs/quality_tiers.md#research) |
+| Attested | from 1283, living |
+| Parent | [Proto-Tai-Kadai (family node)](https://tigregotico.github.io/orthography2ipa/#tai) `tai` |
+| Explorer | [`th` in the data explorer](https://tigregotico.github.io/orthography2ipa/#th) |
+| Spec file | [`th.json`](../../orthography2ipa/data/th.json) |
+<!-- atlas:header end -->
+
+## Overview
 
 The `th` spec describes Standard (Central) Thai in the Thai script. Two facts shape it. Thai does not write tone, so the spec computes it from the shape of the syllable. Thai also writes vowels around the consonant, not only after it.
 
 Thai is a deep orthography, so the 0.25 PER production threshold applies (see [quality tiers](../specs/quality_tiers.md#the-per-threshold)). No part of a Thai syllable is a one-to-one correspondence. Four interacting properties give the tone, and none of them is a tone letter. A vowel can be written before, above, below or after its consonant. The coda inventory neutralises most of the alphabet.
+
+The page places Thai in the Southwestern Tai branch.
 
 ## Tone is computed, not spelled
 
@@ -63,11 +87,279 @@ A consonant with no written vowel always takes the inherent vowel /o/. Thai read
 
 The spec declares ⟨ทร⟩ as an unconditional /s/ digraph for the lexicalised set, such as ⟨ทราย⟩ `saːj˧`. It over-applies to the Indic loans built on ⟨จันทร⟩ 'moon' and ⟨ทร⟩ 'bear, carry', where ⟨ท⟩ and ⟨ร⟩ are a plain cluster: ⟨จันทรา⟩ gives `tɕan˧saː˧`. A fix needs a lexicon overlay or a scoped exception list. The spec `notes` size this gap.
 
+<!-- atlas:lects begin -->
+## Related lects
+
+No spec names `th` as its parent.
+<!-- atlas:lects end -->
+
+<!-- atlas:sources begin -->
 ## Sources
 
-- Slayden, G. (2009). *Survey of Central Thai Phonology*. thai-language.com. <http://www.thai-language.com/resources/slayden-thai-phonology.pdf> (§4.3 compound vowels, §5 phonotactics, §6 tones, Appendix C).
-- Iwasaki, S. & Ingkaphirom, P. (2005). *A Reference Grammar of Thai*. Cambridge University Press.
-- Haas, M.R. (1964). *Thai-English Student's Dictionary*. Stanford University Press.
+The spec cites 3 works. 1 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
+
+1. <a id="src-iwasaki2005"></a>Iwasaki, Shoichi & Ingkaphirom, Preeya (2005). *A Reference Grammar of Thai*. Cambridge University Press.
+2. <a id="src-haas1964"></a>Haas, M.R. (1964). *Thai-English Student's Dictionary*. Stanford University Press.
+3. <a id="src-slayden2009"></a>Slayden, Glenn (2009). *Survey of Central Thai Phonology*. thai-language.com. Cited: §4.3 (compound vowel phonemes), §5 (phonotactics), §6 (tones), Appendix C sets 11, 12, 18, 19. [thai-language.com](http://www.thai-language.com/resources/slayden-thai-phonology.pdf)
+<!-- atlas:sources end -->
+
+<!-- atlas:datasets begin -->
+## Datasets
+
+Every row of the board that scores this spec. PER is the phoneme error rate against the dataset. A gold row is human work, a silver row is a language model's label, and a generated row is the output of another tool. Only a row marked as gating can promote or block the spec. The [dataset catalogue](../evaluation/datasets.md) describes each set.
+
+| Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
+|:--|:--|:--|:--|:--|--:|--:|:--|
+| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `th` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 17221 | 0.1788 | yes |
+| `vox_communis` ([fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p)) | `th` | generated | epitran-derived | CC0 1.0 | 23704 | 0.4281 | no |
+<!-- atlas:datasets end -->
+
+<!-- atlas:inventory begin -->
+## Inventory
+
+The spec can emit 59 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+
+| Consonants | Bilabial | Labiodental | Alveolar | Palatal | Velar | Glottal |
+|:--|:-:|:-:|:-:|:-:|:-:|:-:|
+| Plosive | b p pʰ p̚ |  | d t tʰ t̚ |  | k kʰ k̚ | ʔ |
+| Affricate |  |  |  | tɕ tɕʰ |  |  |
+| Nasal | m |  | n |  | ŋ |  |
+| Trill |  |  | r |  |  |  |
+| Fricative |  | f | s |  |  | h |
+| Approximant |  |  |  | j |  |  |
+| Lateral approximant |  |  | l |  |  |  |
+
+| Vowels | Front | Back |
+|:--|:-:|:-:|
+| Close | i iː | u uː ɯ ɯː |
+| Close-mid | eː | oː |
+| Open-mid | ɛː | ɔ ɔː |
+| Open | a aː |  |
+
+Sequences that the spec writes as one unit: [aj] [am] [iːa] [kl] [kr] [kw] [kʰl] [kʰr] [kʰw] [lɯ] [pl] [pr] [pʰl] [pʰr] [rɯ] [tr] [uːa] [w] [ɯːa] [ʔaj] [ʔeː] [ʔoː] [ʔɛː].
+
+Tones: [˧] mid, [˨˩] low, [˥˩] falling, [˦˥] high, [˩˩˦] rising.
+<!-- atlas:inventory end -->
+
+<!-- atlas:spelling begin -->
+## Spelling
+
+Each letter or letter group of the spec with its readings. The first reading is the default, and the others stay in the lattice as lower-ranked candidates. The last column gives the readings that depend on the position in the word.
+
+| Spelling | Readings | By position |
+|:--|:--|:--|
+| ⟨ก⟩ | [k] | word final [k̚] |
+| ⟨กร⟩ | [kr] |  |
+| ⟨กร์⟩ | ∅ |  |
+| ⟨กล⟩ | [kl] |  |
+| ⟨กล์⟩ | ∅ |  |
+| ⟨กว⟩ | [kw] |  |
+| ⟨กว์⟩ | ∅ |  |
+| ⟨ก์⟩ | ∅ |  |
+| ⟨ข⟩ | [kʰ] | word final [k̚] |
+| ⟨ขร⟩ | [kʰr] |  |
+| ⟨ขร์⟩ | ∅ |  |
+| ⟨ขล⟩ | [kʰl] |  |
+| ⟨ขล์⟩ | ∅ |  |
+| ⟨ขว⟩ | [kʰw] |  |
+| ⟨ขว์⟩ | ∅ |  |
+| ⟨ข์⟩ | ∅ |  |
+| ⟨ฃ⟩ | [kʰ] | word final [k̚] |
+| ⟨ฃ์⟩ | ∅ |  |
+| ⟨ค⟩ | [kʰ] | word final [k̚] |
+| ⟨คร⟩ | [kʰr] |  |
+| ⟨คร์⟩ | ∅ |  |
+| ⟨คล⟩ | [kʰl] |  |
+| ⟨คล์⟩ | ∅ |  |
+| ⟨คว⟩ | [kʰw] |  |
+| ⟨คว์⟩ | ∅ |  |
+| ⟨ค์⟩ | ∅ |  |
+| ⟨ฅ⟩ | [kʰ] | word final [k̚] |
+| ⟨ฅ์⟩ | ∅ |  |
+| ⟨ฆ⟩ | [kʰ] | word final [k̚] |
+| ⟨ฆ์⟩ | ∅ |  |
+| ⟨ง⟩ | [ŋ] |  |
+| ⟨ง์⟩ | ∅ |  |
+| ⟨จ⟩ | [tɕ] | word final [t̚] |
+| ⟨จ์⟩ | ∅ |  |
+| ⟨ฉ⟩ | [tɕʰ] | word final [t̚] |
+| ⟨ฉ์⟩ | ∅ |  |
+| ⟨ช⟩ | [tɕʰ] | word final [t̚] |
+| ⟨ช์⟩ | ∅ |  |
+| ⟨ซ⟩ | [s] | word final [t̚] |
+| ⟨ซ์⟩ | ∅ |  |
+| ⟨ฌ⟩ | [tɕʰ] | word final [t̚] |
+| ⟨ฌ์⟩ | ∅ |  |
+| ⟨ญ⟩ | [j] | word final [n] |
+| ⟨ญ์⟩ | ∅ |  |
+| ⟨ฎ⟩ | [d] | word final [t̚] |
+| ⟨ฎ์⟩ | ∅ |  |
+| ⟨ฏ⟩ | [t] | word final [t̚] |
+| ⟨ฏ์⟩ | ∅ |  |
+| ⟨ฐ⟩ | [tʰ] | word final [t̚] |
+| ⟨ฐ์⟩ | ∅ |  |
+| ⟨ฑ⟩ | [tʰ] | word final [t̚] |
+| ⟨ฑ์⟩ | ∅ |  |
+| ⟨ฒ⟩ | [tʰ] | word final [t̚] |
+| ⟨ฒ์⟩ | ∅ |  |
+| ⟨ณ⟩ | [n] | word final [n] |
+| ⟨ณ์⟩ | ∅ |  |
+| ⟨ด⟩ | [d] | word final [t̚] |
+| ⟨ด์⟩ | ∅ |  |
+| ⟨ต⟩ | [t] | word final [t̚] |
+| ⟨ตร⟩ | [tr] |  |
+| ⟨ตร์⟩ | ∅ |  |
+| ⟨ต์⟩ | ∅ |  |
+| ⟨ถ⟩ | [tʰ] | word final [t̚] |
+| ⟨ถ์⟩ | ∅ |  |
+| ⟨ท⟩ | [tʰ] | word final [t̚] |
+| ⟨ทร⟩ | [s] |  |
+| ⟨ทร์⟩ | ∅ |  |
+| ⟨ท์⟩ | ∅ |  |
+| ⟨ธ⟩ | [tʰ] | word final [t̚] |
+| ⟨ธ์⟩ | ∅ |  |
+| ⟨น⟩ | [n] | word final [n] |
+| ⟨น์⟩ | ∅ |  |
+| ⟨บ⟩ | [b] | word final [p̚] |
+| ⟨บ์⟩ | ∅ |  |
+| ⟨ป⟩ | [p] | word final [p̚] |
+| ⟨ปร⟩ | [pr] |  |
+| ⟨ปร์⟩ | ∅ |  |
+| ⟨ปล⟩ | [pl] |  |
+| ⟨ปล์⟩ | ∅ |  |
+| ⟨ป์⟩ | ∅ |  |
+| ⟨ผ⟩ | [pʰ] | word final [p̚] |
+| ⟨ผล⟩ | [pʰl] |  |
+| ⟨ผล์⟩ | ∅ |  |
+| ⟨ผ์⟩ | ∅ |  |
+| ⟨ฝ⟩ | [f] | word final [p̚] |
+| ⟨ฝ์⟩ | ∅ |  |
+| ⟨พ⟩ | [pʰ] | word final [p̚] |
+| ⟨พร⟩ | [pʰr] |  |
+| ⟨พร์⟩ | ∅ |  |
+| ⟨พล⟩ | [pʰl] |  |
+| ⟨พล์⟩ | ∅ |  |
+| ⟨พ์⟩ | ∅ |  |
+| ⟨ฟ⟩ | [f] | word final [p̚] |
+| ⟨ฟ์⟩ | ∅ |  |
+| ⟨ภ⟩ | [pʰ] | word final [p̚] |
+| ⟨ภ์⟩ | ∅ |  |
+| ⟨ม⟩ | [m] |  |
+| ⟨ม์⟩ | ∅ |  |
+| ⟨ย⟩ | [j] |  |
+| ⟨ย์⟩ | ∅ |  |
+| ⟨ร⟩ | [r] | word final [n] |
+| ⟨ร์⟩ | ∅ |  |
+| ⟨ฤ⟩ | [rɯ] |  |
+| ⟨ฤ์⟩ | ∅ |  |
+| ⟨ล⟩ | [l] | word final [n] |
+| ⟨ล์⟩ | ∅ |  |
+| ⟨ฦ⟩ | [lɯ] |  |
+| ⟨ฦ์⟩ | ∅ |  |
+| ⟨ว⟩ | [w] |  |
+| ⟨ว์⟩ | ∅ |  |
+| ⟨ศ⟩ | [s] | word final [t̚] |
+| ⟨ศ์⟩ | ∅ |  |
+| ⟨ษ⟩ | [s] | word final [t̚] |
+| ⟨ษ์⟩ | ∅ |  |
+| ⟨ส⟩ | [s] | word final [t̚] |
+| ⟨ส์⟩ | ∅ |  |
+| ⟨ห⟩ | [h] |  |
+| ⟨หง⟩ | [ŋ] |  |
+| ⟨หญ⟩ | [j] |  |
+| ⟨หณ⟩ | [n] |  |
+| ⟨หน⟩ | [n] |  |
+| ⟨หม⟩ | [m] |  |
+| ⟨หย⟩ | [j] |  |
+| ⟨หร⟩ | [r] |  |
+| ⟨หล⟩ | [l] |  |
+| ⟨หว⟩ | [w] |  |
+| ⟨หฬ⟩ | [l] |  |
+| ⟨ห์⟩ | ∅ |  |
+| ⟨ฬ⟩ | [l] | word final [n] |
+| ⟨ฬ์⟩ | ∅ |  |
+| ⟨อ⟩ | [ɔː] | word initial [ʔ] |
+| ⟨อย⟩ | [j] |  |
+| ⟨อ์⟩ | ∅ |  |
+| ⟨ฮ⟩ | [h] |  |
+| ⟨ฮ์⟩ | ∅ |  |
+| ⟨ฯ⟩ | ∅ |  |
+| ⟨ะ⟩ | [a] |  |
+| ⟨ั⟩ | [a] |  |
+| ⟨ัว⟩ | [uːa] |  |
+| ⟨า⟩ | [aː] |  |
+| ⟨าะ⟩ | [ɔ] |  |
+| ⟨ำ⟩ | [am] |  |
+| ⟨ิ⟩ | [i] |  |
+| ⟨ี⟩ | [iː] |  |
+| ⟨ีย⟩ | [iːa] |  |
+| ⟨ีย์⟩ | [iː] |  |
+| ⟨ึ⟩ | [ɯ] |  |
+| ⟨ื⟩ | [ɯː] |  |
+| ⟨ือ⟩ | [ɯːa] |  |
+| ⟨ุ⟩ | [u] |  |
+| ⟨ู⟩ | [uː] |  |
+| ⟨ฺ⟩ | ∅ |  |
+| ⟨เ⟩ | [eː] |  |
+| ⟨เอ⟩ | [ʔeː] |  |
+| ⟨แ⟩ | [ɛː] |  |
+| ⟨แอ⟩ | [ʔɛː] |  |
+| ⟨โ⟩ | [oː] |  |
+| ⟨โอ⟩ | [ʔoː] |  |
+| ⟨ใ⟩ | [aj] |  |
+| ⟨ใอ⟩ | [ʔaj] |  |
+| ⟨ไ⟩ | [aj] |  |
+| ⟨ไอ⟩ | [ʔaj] |  |
+| ⟨ๅ⟩ | ∅ |  |
+| ⟨ๆ⟩ | ∅ |  |
+| ⟨็⟩ | ∅ |  |
+| ⟨่⟩ | ∅ |  |
+| ⟨้⟩ | ∅ |  |
+| ⟨๊⟩ | ∅ |  |
+| ⟨๋⟩ | ∅ |  |
+| ⟨์⟩ | ∅ |  |
+
+The spec declares no stress rule.
+<!-- atlas:spelling end -->
+
+<!-- atlas:rules begin -->
+## Rules
+
+The spec applies 3 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
+
+| Rule | Change | Example | Cited |
+|:--|:--|:--|:--|
+| `TH_UNRELEASED_K_CODA` | /k/ → [k̚], word-finally | - | [Iwasaki 2005](#src-iwasaki2005) |
+| `TH_UNRELEASED_T_CODA` | /t/ → [t̚], word-finally | - | [Iwasaki 2005](#src-iwasaki2005) |
+| `TH_UNRELEASED_P_CODA` | /p/ → [p̚], word-finally | - | [Iwasaki 2005](#src-iwasaki2005) |
+<!-- atlas:rules end -->
+
+<!-- atlas:examples begin words="เก็บ|เกาะ|ขนม|ขวด|ขวา|เขา|ครอบครัว|จันทรา|ทราย|เมือง|เรียน|เรือ" -->
+## Examples
+
+The engine wrote every transcription in this section with `orthography2ipa.transcribe(text, "th")`. They are engine output, not reference transcriptions.
+
+| Spelling | Engine output |
+|:--|:--|
+| เก็บ | [keːp̚˨˩] |
+| เกาะ | [kɔ˨˩] |
+| ขนม | [kʰon˩˩˦mo˦˥] |
+| ขวด | [kʰuːat̚˨˩] |
+| ขวา | [kʰwaː˩˩˦] |
+| เขา | [kʰaː˩˩˦] |
+| ครอบครัว | [kʰrɔːb˧kʰruːa˧] |
+| จันทรา | [tɕan˧saː˧] |
+| ทราย | [saːj˧] |
+| เมือง | [mɯːaŋ˧] |
+| เรียน | [riːan˧] |
+| เรือ | [rɯːa˧] |
+<!-- atlas:examples end -->
+
+<!-- atlas:related begin -->
+## Related repositories
+
+No downstream repository of the TigreGotico organisation covers this spec. The [o2i-lexicons](https://github.com/TigreGotico/o2i-lexicons) package ships no lexicon for it.
+<!-- atlas:related end -->
 
 ---
-[← Vietnamese](vi.md) · [Home](../index.md) · [Yoruba →](yo.md)
+[← Tewa](tew.md) · [Home](../index.md) · [Tibetan →](bo.md)

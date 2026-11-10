@@ -171,14 +171,14 @@ The rules and this page cite Wright (1896) for the matres lectionis, the jazma a
 
 These specs name `ar` as their parent. They are sorted by country, and a lect with no recorded country comes last.
 
-- [Maltese](https://tigregotico.github.io/orthography2ipa/#mt) `mt`: Malta, research tier
-- [Arabic (Buckwalter transliteration)](https://tigregotico.github.io/orthography2ipa/#ar-Latn-x-buckwalt) `ar-Latn-x-buckwalt`: research tier
+- [Maltese](mt.md) `mt`: Malta, research tier
+- [Arabic (Buckwalter transliteration)](ar-Latn-x-buckwalt.md) `ar-Latn-x-buckwalt`: research tier
 <!-- atlas:lects end -->
 
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 5 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 5 works. 1 of them have a DOI or a URL. The spec file holds a note on what 3 of them support.
 
 1. <a id="src-watson2002"></a>Watson, J.C.E. (2002). *The Phonology and Morphology of Arabic*. Oxford University Press.
 2. <a id="src-thelwall1990"></a>Thelwall, R. and Sa'Adeddin, M.A. (1990). *Illustrations of the IPA: Arabic*. Journal of the International Phonetic Association, 20(2), 37-39. Cited: 37-39. [phoible.org](https://phoible.org/sources/arb_thelwall1990)
@@ -563,4 +563,4 @@ The engine wrote every transcription in this section with `orthography2ipa.trans
 <!-- atlas:related end -->
 
 ---
-[← Languages from A to Z](a-z.md) · [Home](../index.md) · [Castilian Spanish →](es-ES.md)
+[← Apulian](it-IT-x-puglia.md) · [Home](../index.md) · [Arabic →](ar-Latn-x-buckwalt.md)

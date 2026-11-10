@@ -1,11 +1,34 @@
-# Ancient Egyptian (egy): the Egyptological reading convention
+# Ancient Egyptian (`egy`)
 
-**Code**: `egy` | **Family**: Afro-Asiatic > Egyptian | **Script**: Egyptological transliteration (Latin with diacritics)
-**Quality tier**: research | **Descendant**: Coptic (`cop`), through Demotic
+<!-- atlas:summary begin -->
+Ancient Egyptian is an Egyptian language, written in the Latin script. Glottolog places it in Egypt. The `egy` spec is at the research tier. It cites 5 sources and has 1 scored dataset.
+<!-- atlas:summary end -->
+
+<!-- atlas:header begin -->
+| Field | Value |
+|:--|:--|
+| Code | `egy` |
+| ISO 639-3 | [egy](https://iso639-3.sil.org/code/egy), Egyptian (Ancient) |
+| Glottolog | [egyp1246](https://glottolog.org/resource/languoid/id/egyp1246), Egyptian (Ancient) |
+| Wikidata | [Q50868](https://www.wikidata.org/wiki/Q50868) |
+| Wikipedia | [Egyptian language](https://en.wikipedia.org/wiki/Egyptian_language) |
+| Family | [Afro-Asiatic](by-family.md#afro-asiatic) > [Egyptian](by-family.md#afro-asiatic--egyptian) |
+| Region | [Africa](by-region.md#africa) > [Egypt](by-region.md#egypt) |
+| Script | [Latin](by-script.md#latin) (alphabet) |
+| Tier | [research](../specs/quality_tiers.md#research) |
+| Parent | [Egyptian](https://tigregotico.github.io/orthography2ipa/#x-clade-egyp1245) `x-clade-egyp1245` |
+| Child lects | 1, see [Related lects](#related-lects) |
+| Explorer | [`egy` in the data explorer](https://tigregotico.github.io/orthography2ipa/#egy) |
+| Spec file | [`egy.json`](../../orthography2ipa/data/egy.json) |
+<!-- atlas:header end -->
+
+## Overview
 
 The `egy` spec reads Egyptological transliteration and writes the Egyptological pronunciation: the conventional way Egyptologists read the words aloud. It does not claim to show how Egyptian was spoken.
 
 **Sources read**: the Wiktionary page *Appendix:Egyptian pronunciation*, which publishes the convention. It gives the letter values, the epenthesis constraint, the one-consonant words, the ⟨w⟩ split and the ⟨ꜥnḫ⟩ exception. *Wiktionary:About Egyptian* names Schenkel's *Tübinger Einführung in die klassisch-ägyptische Sprache und Schrift* (1991) as the source of the convention, with reference to Peust (1999). Neither book was consulted. Loprieno (1995) and Allen (2013) are cited for the reconstruction that this spec does not encode.
+
+Its descendant is Coptic (`cop`), through Demotic.
 
 ## Input contract
 
@@ -71,5 +94,137 @@ The causative words are a gap that the convention could close. The Appendix stat
 
 `cop` descends from `egy` and inherits from it. Coptic has its own alphabet, which spells vowels. The `cop` spec therefore redeclares each Egyptian reading rule with no target phonemes, which is how a spec states that a parent's process is absent. Its transcriptions are not affected by those rules.
 
+<!-- atlas:lects begin -->
+## Related lects
+
+These specs name `egy` as their parent. They are sorted by country, and a lect with no recorded country comes last.
+
+- [Coptic (Sahidic)](https://tigregotico.github.io/orthography2ipa/#cop) `cop`: Egypt, research tier
+<!-- atlas:lects end -->
+
+<!-- atlas:sources begin -->
+## Sources
+
+The spec cites 5 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+
+1. <a id="src-loprieno1995"></a>Loprieno, A. (1995). *Ancient Egyptian: A Linguistic Introduction*. Cambridge University Press.
+2. <a id="src-schenkel1991"></a>Schenkel, W. (1991). *Tübinger Einführung in die klassisch-ägyptische Sprache und Schrift*. Tübingen.
+3. <a id="src-peust1999"></a>Peust, C. (1999). *Egyptian Phonology: An Introduction to the Phonology of a Dead Language*. Peust & Gutschmidt.
+4. <a id="src-allen2013"></a>Allen, J. P. (2013). *The Ancient Egyptian Language: An Historical Study*. Cambridge University Press.
+5. <a id="src-wiktionary_egy_appendix"></a>Wiktionary contributors (2026). *Appendix:Egyptian pronunciation*. Wiktionary. [en.wiktionary.org](https://en.wiktionary.org/wiki/Appendix:Egyptian_pronunciation)
+<!-- atlas:sources end -->
+
+<!-- atlas:datasets begin -->
+## Datasets
+
+Every row of the board that scores this spec. PER is the phoneme error rate against the dataset. A gold row is human work, a silver row is a language model's label, and a generated row is the output of another tool. Only a row marked as gating can promote or block the spec. The [dataset catalogue](../evaluation/datasets.md) describes each set.
+
+| Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
+|:--|:--|:--|:--|:--|--:|--:|:--|
+| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `egy` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 2185 | 0.0183 | yes |
+<!-- atlas:datasets end -->
+
+<!-- atlas:inventory begin -->
+## Inventory
+
+The spec can emit 26 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+
+| Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar | Glottal |
+|:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| Plosive | b p |  | d t |  |  | k ɡ | ʔ |
+| Affricate |  |  |  | d͡ʒ t͡ʃ |  |  |  |
+| Nasal | m |  | n |  |  |  |  |
+| Trill |  |  | r |  |  |  |  |
+| Fricative |  | f | s z | ʃ | ç | x | h |
+
+| Vowels | Front | Back |
+|:--|:-:|:-:|
+| Close | i iː | uː |
+| Open-mid | ɛ |  |
+| Open |  | ɑ ɑː |
+
+Sequences that the spec writes as one unit: [w].
+<!-- atlas:inventory end -->
+
+<!-- atlas:spelling begin -->
+## Spelling
+
+Each letter or letter group of the spec with its readings. The first reading is the default, and the others stay in the lattice as lower-ranked candidates. The last column gives the readings that depend on the position in the word.
+
+| Spelling | Readings | By position |
+|:--|:--|:--|
+| ⟨b⟩ | [b] |  |
+| ⟨d⟩ | [d] |  |
+| ⟨f⟩ | [f] |  |
+| ⟨g⟩ | [ɡ] |  |
+| ⟨h⟩ | [h] |  |
+| ⟨j⟩ | [i] |  |
+| ⟨k⟩ | [k] |  |
+| ⟨m⟩ | [m] |  |
+| ⟨n⟩ | [n] |  |
+| ⟨p⟩ | [p] |  |
+| ⟨q⟩ | [k] |  |
+| ⟨r⟩ | [r] |  |
+| ⟨s⟩ | [s] |  |
+| ⟨t⟩ | [t] |  |
+| ⟨w⟩ | [uː] | default [uː] · word initial [w] |
+| ⟨y⟩ | [iː] |  |
+| ⟨z⟩ | [z] |  |
+| ⟨š⟩ | [ʃ] |  |
+| ⟨ḏ⟩ | [d͡ʒ] |  |
+| ⟨ḥ⟩ | [h] |  |
+| ⟨ḫ⟩ | [x] |  |
+| ⟨ṯ⟩ | [t͡ʃ] |  |
+| ⟨ẖ⟩ | [ç] |  |
+| ⟨ꜣ⟩ | [ɑ] |  |
+| ⟨ꜥ⟩ | [ɑː] |  |
+
+The spec declares no stress rule.
+
+Whole-word exceptions (1): ⟨ꜥnḫ⟩ [ɑːnx].
+<!-- atlas:spelling end -->
+
+<!-- atlas:rules begin -->
+## Rules
+
+The spec applies 7 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
+
+| Rule | Change | Example | Cited |
+|:--|:--|:--|:--|
+| `EGY_EPEN_INITIAL` | insert [ɛ] after /b d d͡ʒ f h k m n p r s t t͡ʃ x z ç ɡ ʃ w/, word-initially, before a consonant | ⟨nfr⟩ [nɛfɛr] | - |
+| `EGY_EPEN_RUN_THIRD` | insert [ɛ] after /b d d͡ʒ f h k m n p r s t t͡ʃ x z ç ɡ ʃ w/, after a consonant, before a consonant, with more context in the spec | ⟨mnmnt⟩ [mɛnmɛnɛt] | - |
+| `EGY_EPEN_BEFORE_FINAL` | insert [ɛ] after /b d d͡ʒ f h k m n p r s t t͡ʃ x z ç ɡ ʃ w/, not word-finally, before a consonant, with more context in the spec | ⟨bbr⟩ [bɛbɛr] | - |
+| `EGY_LONE_CONSONANT` | insert [ɛ] after /b d d͡ʒ f h k p s t t͡ʃ x z ç ɡ ʃ w/, word-initially, word-finally | - | - |
+| `EGY_HIATUS_A` | insert [ʔ] after /ɑ ɑː/, before [ɑ] [ɑː] | - | - |
+| `EGY_HIATUS_I` | insert [ʔ] after /i iː/, before [i] [iː] | - | - |
+| `EGY_HIATUS_U` | insert [ʔ] after /uː/, before [uː] | - | - |
+<!-- atlas:rules end -->
+
+<!-- atlas:examples begin words="nfr|bḥdt|mnmnt|nḫbḫb|bbr|wbnt|nfrtj|ꜣꜣ|jj|ꜥnḫ|swḏ" -->
+## Examples
+
+The engine wrote every transcription in this section with `orthography2ipa.transcribe(text, "egy")`. They are engine output, not reference transcriptions.
+
+| Spelling | Engine output |
+|:--|:--|
+| nfr | [nɛfɛr] |
+| bḥdt | [bɛhdɛt] |
+| mnmnt | [mɛnmɛnɛt] |
+| nḫbḫb | [nɛxbɛxɛb] |
+| bbr | [bɛbɛr] |
+| wbnt | [wɛbnɛt] |
+| nfrtj | [nɛfrɛti] |
+| ꜣꜣ | [ɑʔɑ] |
+| jj | [iʔi] |
+| ꜥnḫ | [ɑːnx] |
+| swḏ | [suːd͡ʒ] |
+<!-- atlas:examples end -->
+
+<!-- atlas:related begin -->
+## Related repositories
+
+No downstream repository of the TigreGotico organisation covers this spec. The [o2i-lexicons](https://github.com/TigreGotico/o2i-lexicons) package ships no lexicon for it.
+<!-- atlas:related end -->
+
 ---
-[← Kabyle / Taqbaylit](kab.md) · [Home](../index.md) · [Hausa →](ha.md)
+[← Amis](ami.md) · [Home](../index.md) · [Apulian →](it-IT-x-puglia.md)

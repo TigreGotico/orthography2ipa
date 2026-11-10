@@ -110,10 +110,10 @@ A Hugging Face id has the form `hf://<owner>/<repo>/<path>`, with an optional `@
 
 ### Packaged lexicons
 
-A package can supply a lexicon for a language. [o2i-lexicons](https://github.com/TigreGotico/o2i-lexicons) is such a package. It holds only the words that the rules get wrong, and each entry records the gold it came from. Install it through the extra:
+A package can supply a lexicon for a language. [o2i-lexicons](https://github.com/TigreGotico/o2i-lexicons) is such a package. It holds only the words that the rules get wrong, and the sidecar of each file records the gold that the readings came from. Install it through the extra. Both packages publish alpha releases, so the install needs `--prerelease=allow`:
 
 ```bash
-uv pip install 'orthography2ipa[lexicons]'
+uv pip install --prerelease=allow 'orthography2ipa[lexicons]'
 ```
 
 The install changes no output. The transcription is a function of the spec, the input and the explicit configuration of the caller, never of the environment. So the caller reads a packaged lexicon in code and gives it to the engine that wants it:
@@ -121,7 +121,7 @@ The install changes no output. The transcription is a function of the spec, the 
 ```python
 from orthography2ipa import G2P, Pipeline, packaged_lexicon, packaged_lexicon_sources
 
-packaged_lexicon_sources()       # {'en-GB': PosixPath('…/wikipron.tsv')}: lists, reads nothing
+packaged_lexicon_sources()       # {'en-GB': PosixPath('…/wikipron.tsv'), 'pt-BR': …, 'pt-PT': …}: lists, reads nothing
 engine = G2P("en-GB", pipeline=Pipeline(lexicon=packaged_lexicon("en-GB")))
 ```
 

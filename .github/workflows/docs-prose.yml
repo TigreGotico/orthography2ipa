@@ -44,6 +44,7 @@ on:
       - "tests/test_language_atlas.py"
       - "orthography2ipa/**"
       - "llms.txt"
+      - "llms-full.txt"
       - ".github/workflows/docs-prose.yml"
   workflow_dispatch: {}
 
@@ -76,7 +77,7 @@ jobs:
       # argparse lays out --help differently across Python versions, so the
       # CLI page is checked on the 3.11 this job installs, never in the
       # version matrix of the build tests.
-      - name: Check the generated reference pages and llms.txt
+      - name: Check the generated reference pages, llms.txt and llms-full.txt
         run: |
           PYTHONPATH=$PWD .venv/bin/python scripts/gen_reference_docs.py --check
 
