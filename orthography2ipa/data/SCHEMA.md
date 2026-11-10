@@ -705,6 +705,14 @@ Rules of the match:
 - **A head is required.** At least one token must precede the ending.
 - **Longest match wins.** English ⟨-stion⟩ → /stʃən/ overrides the ⟨-tion⟩ it
   contains, so `question` keeps its /t/.
+- **Reduced vowels follow the stress.** Declare an ending in its unstressed
+  reading. When the value has one vowel for each vowel letter of the tail, a
+  declared vowel that the spec lists for that letter in an unstressed position
+  (`first_pretonic`, `pretonic`, `posttonic`, `nucleus_unstressed*`) gives way
+  to the vowel the positional tables chose for the word's stress. Russian
+  ⟨-ого⟩ is declared [əvə], and большо́го reads [bɐlʲˈʂovə], with a full
+  stressed [o]. A vowel the ending owns, such as French ⟨-er⟩ [e], is not an
+  unstressed reading of its letter and stays as declared.
 
 Precedence: `word_exceptions` **>** `grammatical_endings` **>**
 `graphemes` / `positional_graphemes`. The closed set of French nouns that keep

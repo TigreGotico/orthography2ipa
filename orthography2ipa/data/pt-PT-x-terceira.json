@@ -185,6 +185,24 @@
       "notes": "DISABLED here. Terceira has its own stressed mid-vowel process (the crescent diphthong of a tonic ⟨o⟩ after a labial), and a pt-PT rule that sets the vowel first would pre-empt it, as the PT_LEX_* lists are disabled here for the same reason. The pt-PT rule rests on Infopédia readings of standard European Portuguese."
     },
     {
+      "id": "PT_SUFFIX_DORA_CLOSE",
+      "phonemes": [],
+      "surface": "o",
+      "notes": "DISABLED here. Terceira has its own stressed mid-vowel process (the crescent diphthong of a tonic ⟨o⟩ after a labial), and a pt-PT rule that sets the vowel first would pre-empt it, as the PT_LEX_* lists are disabled here for the same reason. The pt-PT rule rests on Infopédia readings of standard European Portuguese."
+    },
+    {
+      "id": "PT_SUFFIX_DORA_CANDIDATE_OPEN",
+      "phonemes": [],
+      "surface": "ɔ",
+      "notes": "DISABLED here. Terceira has its own stressed mid-vowel process (the crescent diphthong of a tonic ⟨o⟩ after a labial), and a pt-PT rule that sets the vowel first would pre-empt it, as the PT_LEX_* lists are disabled here for the same reason. The pt-PT rule rests on Infopédia readings of standard European Portuguese."
+    },
+    {
+      "id": "PT_SUFFIX_OIDE_OPEN",
+      "phonemes": [],
+      "surface": "ɔ",
+      "notes": "DISABLED here. Terceira has its own stressed mid-vowel process (the crescent diphthong of a tonic ⟨o⟩ after a labial), and a pt-PT rule that sets the vowel first would pre-empt it, as the PT_LEX_* lists are disabled here for the same reason. The pt-PT rule rests on Infopédia readings of standard European Portuguese."
+    },
+    {
       "id": "PT_STRESSED_A_BEFORE_NASAL",
       "phonemes": [],
       "surface": "ɐ",
