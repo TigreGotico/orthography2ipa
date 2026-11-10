@@ -720,9 +720,9 @@ _PT_UNIFIED_URL = (
 )
 #: orthography2ipa language tag -> dataset region tag, for the human rows
 #: (Infopédia, Michaelis and pt.wiktionary). Only regions with a matching o2i
-#: spec AND a usable row count are scored. The paulistano and paulista registers (under
-#: 30 rows each), the untagged "pt" rows and the Wiktionary rows of pt-AO (3),
-#: pt-MZ (2) and pt-TL (1) are left out.
+#: spec AND a usable row count are scored. The paulistano and paulista
+#: registers (under 30 rows each), the untagged "pt" rows and the Wiktionary
+#: rows of pt-AO (3), pt-MZ (2) and pt-TL (1) are left out.
 _PT_UNIFIED_REGIONS: Dict[str, str] = {
     "pt-PT": "pt-PT",                       # Infopédia + Wiktionary, 127k rows
     "pt-BR": "pt-BR",                       # Wiktionary, 3.6k rows
