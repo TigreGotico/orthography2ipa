@@ -133,8 +133,10 @@ def test_southern_fricative_genitive_does_not_eat_a_stem_v(code):
     the standard's table swept the stem consonant up with the desinence and
     produced [ɣʲjɪɣə], putting a segment ([ɣʲ]) into the output that is not
     in this spec's inventory at all. It is the one entry of the 21 where a
-    [v] is not the ⟨г⟩."""
-    out = bare(code, "соловьего")
+    [v] is not the ⟨г⟩. The input marks a stress on the stem so that the
+    desinence stays unstressed: unmarked, the penultimate default stresses
+    the desinence ⟨е⟩, and a stressed ⟨е⟩ is not [ɪ]."""
+    out = bare(code, "соло́вьего")
     assert out.endswith("vʲjɪɣə"), out
     assert "ɣʲ" not in out, out
     assert out.count("ɣ") == 1, out

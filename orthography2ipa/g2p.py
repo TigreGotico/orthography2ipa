@@ -147,6 +147,33 @@ def _vowel_offsets(ipa: str) -> List[int]:
     return [i for i, c in enumerate(ipa) if is_ipa_vowel(c)]
 
 
+def _vowel_runs(ipa: str) -> List[Tuple[int, int]]:
+    """The ``(start, end)`` spans of the vowel runs in *ipa*: each run is a
+    vowel character and every vowel or combining mark that follows it."""
+    runs: List[Tuple[int, int]] = []
+    for i, c in enumerate(ipa):
+        if is_ipa_vowel(c):
+            if runs and runs[-1][1] == i:
+                runs[-1] = (runs[-1][0], i + 1)
+            else:
+                runs.append((i, i + 1))
+        elif runs and runs[-1][1] == i and unicodedata.combining(c):
+            runs[-1] = (runs[-1][0], i + 1)
+    return runs
+
+
+#: Positions that read a vowel letter in an unstressed syllable. A value
+#: listed there is a reduction product of that letter.
+_UNSTRESSED_POSITIONS = frozenset({
+    GraphemePosition.FIRST_PRETONIC,
+    GraphemePosition.PRETONIC,
+    GraphemePosition.POSTTONIC,
+    GraphemePosition.NUCLEUS_UNSTRESSED,
+    GraphemePosition.NUCLEUS_UNSTRESSED_OPEN,
+    GraphemePosition.NUCLEUS_UNSTRESSED_CLOSED,
+})
+
+
 #: Vowels never collapse — ⟨ee⟩/⟨oo⟩ are real long vowels, not doubled letters.
 #: Length and stress marks are not segments, so a run is identical across them.
 _VOWEL_IPA = set("aeiouɑɐɒæɔəɘɛɜɞɤɪɨɯɵøœʊʉʌʏyɶ")
@@ -627,6 +654,7 @@ class G2P:
         # function words heavily, so the hit rate is high.
         self._syll_cache: Dict[str, List[str]] = {}
         self._lattice_cache: Dict[Tuple[str, int], List[SegmentSlot]] = {}
+        self._vowel_readings_cache: Dict[str, Tuple[frozenset, frozenset]] = {}
         #: Does any grapheme in this spec key on syllable APERTURE? If not,
         #: the aperture question is never asked: a stress-less spec skips
         #: syllabification altogether (the most expensive step of the front
@@ -1717,6 +1745,7 @@ class G2P:
             left alone rather than mis-spliced."""
             if len(path.segments) <= match.tokens:
                 return path
+            ipa = self._ending_vowels_follow_stress(path, match.tokens, ipa)
             return IPAPath(
                 segments=path.segments[:-match.tokens] + (ipa,),
                 score=path.score + extra_cost,
@@ -1751,6 +1780,100 @@ class G2P:
             # rank-1 path is strictly cheapest, so element 0 cannot move.
             rewritten.sort(key=lambda p: p.score)
         return rewritten
+
+    def _ending_vowels_follow_stress(
+        self, path: IPAPath, tail: int, ipa: str
+    ) -> str:
+        """*ipa*, the declared reading of the last *tail* tokens of *path*,
+        with each reduced vowel replaced by the vowel the tables give there.
+
+        An ending is declared once, in the reading it has where it is usually
+        found: unstressed. Russian ⟨-ого⟩ is [əvə] because the ending is
+        usually posttonic. The stress can still fall on it (большо́го
+        [bɐlʲˈʂovə]) or just after it (самого́, first pretonic [ɐ]), and
+        there the declared [ə] is wrong: the stress-conditioned vowel belongs
+        to the positional tables, which already chose it for this path.
+
+        A declared vowel yields to the path's vowel only when the tables list
+        it for that letter in an unstressed position. So a vowel the ending
+        itself owns stays: French ⟨-er⟩ [e] is not an unstressed reading of
+        ⟨e⟩, and Hunsrik ⟨-er⟩ [a] is not one either.
+
+        The path's vowel can be the surface of an allophone rule that a
+        consonant of the path conditions, and the ending replaces that
+        consonant. Such a vowel is taken back to the one table reading of
+        the letter that the rule rewrites: a ru-x-pskov path reads ⟨ч⟩ as
+        [ts] and so ⟨е⟩ as [ɛ], but the declared ⟨-чего⟩ has [tɕ], and the
+        stressed vowel is [e]. The declared value and the tail must
+        have the same number of vowels, so each pairs with one letter;
+        English ⟨-tion⟩ [ʃən] spells two vowel letters with one vowel and
+        is left as declared.
+        """
+        if not path.graphemes:
+            return ipa
+        letters: List[Tuple[str, str]] = []
+        for grapheme, segment in zip(path.graphemes[-tail:],
+                                     path.segments[-tail:]):
+            runs = _vowel_runs(segment)
+            if len(runs) > 1:
+                return ipa
+            if runs:
+                start, end = runs[0]
+                letters.append((grapheme.lower(), segment[start:end]))
+        declared = _vowel_runs(ipa)
+        if len(declared) != len(letters):
+            return ipa
+        out: List[str] = []
+        last = 0
+        for (start, end), (grapheme, actual) in zip(declared, letters):
+            written = ipa[start:end]
+            if written == actual:
+                continue
+            reduced, readings = self._vowel_readings(grapheme)
+            if written not in reduced:
+                continue
+            if actual not in readings:
+                actual = self._underlying_vowel(actual, readings)
+            if actual is not None and actual != written:
+                out.append(ipa[last:start])
+                out.append(actual)
+                last = end
+        out.append(ipa[last:])
+        return "".join(out)
+
+    def _vowel_readings(self, grapheme: str) -> Tuple[frozenset, frozenset]:
+        """The vowels the tables give *grapheme* in an unstressed position,
+        and the vowels they give it anywhere."""
+        cached = self._vowel_readings_cache.get(grapheme)
+        if cached is not None:
+            return cached
+        positional = (self.spec.positional_graphemes or {}).get(grapheme) or {}
+        reduced = set()
+        readings = set()
+        for position, values in positional.items():
+            for value in values or ():
+                vowels = {value[s:e] for s, e in _vowel_runs(value)}
+                readings |= vowels
+                if position in _UNSTRESSED_POSITIONS:
+                    reduced |= vowels
+        for value in (self.spec.graphemes or {}).get(grapheme) or ():
+            readings |= {value[s:e] for s, e in _vowel_runs(value)}
+        cached = (frozenset(reduced), frozenset(readings))
+        self._vowel_readings_cache[grapheme] = cached
+        return cached
+
+    def _underlying_vowel(self, surface: str,
+                          readings: frozenset) -> Optional[str]:
+        """The one vowel of *readings* that an allophone rule rewrites to
+        *surface*, or ``None`` when no rule or more than one reading fits."""
+        sources = {
+            phoneme[start:end]
+            for rule in self.spec.allophone_rules
+            if rule.surface == surface
+            for phoneme in rule.phonemes
+            for start, end in _vowel_runs(phoneme)
+        } & readings
+        return next(iter(sources)) if len(sources) == 1 else None
 
     def _unmapped_chars(self, word: str) -> Tuple[Tuple[str, ...], float]:
         """Return (unmapped_chars, coverage) for *word*.

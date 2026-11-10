@@ -224,9 +224,10 @@
     "year": 2002,
     "title": "The Phonology and Morphology of Arabic",
     "venue": "Oxford University Press (The Phonology of the World's Languages)",
-    "url": "https://coehuman.uodiyala.edu.iq/uploads/Coehuman%20library%20pdf/English%20library%D9%83%D8%AA%D8%A8%20%D8%A7%D9%84%D8%A7%D9%86%D9%83%D9%84%D9%8A%D8%B2%D9%8A/The%20Phonology%20and%20Morphology%20of%20Arabic%20(The%20Phonology%20of%20the.pdf",
-    "access": "open",
-    "pagination": "Printed folio in the running head; printed page = PDF page index − 15 (verified on printed pages 9, 12, 16-17, 273-274, 279-280). The PDF text layer is font-mangled, so every row was read from a render of the printed page, never from extracted text.",
+    "doi": "10.1093/oso/9780199257591.001.0001",
+    "isbn": "9780199257591",
+    "access": "closed",
+    "pagination": "Printed page of the Oxford University Press edition (ISBN 978-0-19-925759-1), from the running head. Each row was read from an image of the printed page, never from a text layer.",
     "notation": "arabicist-transliteration",
     "describes": "Cairene (Egyptian) and Ṣanʿānī (Yemeni) Arabic, in a comparative frame that also cites Moroccan (Lmnabha) forms"
   },

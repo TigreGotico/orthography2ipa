@@ -11,7 +11,9 @@ Each row in this set can be checked against a named page of a named document. No
 | File | Content |
 |---|---|
 | `rows.jsonl` | One JSON object per example. |
-| `sources.json` | The bibliography, keyed by the source id that rows use in `source`. Each entry gives the authors, year, title, venue, URL, access status, notation and the variety the source describes. Its `pagination` field tells how the printed folio maps to the page index of the PDF. |
+| `sources.json` | The bibliography, keyed by the source id that rows use in `source`. Each entry gives the authors, year, title, venue, access status, notation and the variety the source describes. Its `pagination` field tells how the printed folio maps to the page index of the PDF. |
+
+A source is `open` or `closed` in its `access` field. An open source gives the `url` of a copy that anybody can read. A closed source has no lawful open copy. It gives a `doi` or an `isbn` and no `url`, and each of its rows must give a printed page. The tests refuse a source that breaks these rules.
 
 The two page counts differ in most sources. The `page` field of a row always holds the printed page. The bibliography can also list a source that no row uses.
 

@@ -22,8 +22,9 @@ Remote sources are fetched on the first read and cached under
 exactly as if this module did not exist.
 
 A package can also supply default lexicons, such as ``o2i-lexicons``
-(``pip install orthography2ipa[lexicons]``). Installing it changes nothing: the
-caller reads a lexicon in code and gives it to the engine that wants it::
+(``uv pip install --prerelease=allow 'orthography2ipa[lexicons]'``).
+Installing it changes nothing: the caller reads a lexicon in code and gives it
+to the engine that wants it::
 
     from orthography2ipa import G2P, Pipeline, packaged_lexicon
 

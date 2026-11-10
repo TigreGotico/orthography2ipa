@@ -384,6 +384,24 @@
       "notes": "DISABLED for Macanese Creole (Patuá), a creole that inherits the pt-PT rule layer. No source for the stressed vowel of this ending in Macanese Creole (Patuá) was read, so its output stays what it was; the pt-PT rule rests on Infopédia readings of standard European Portuguese."
     },
     {
+      "id": "PT_SUFFIX_DORA_CLOSE",
+      "phonemes": [],
+      "surface": "o",
+      "notes": "DISABLED for Macanese Creole (Patuá), a creole that inherits the pt-PT rule layer. No source for the stressed vowel of this ending in Macanese Creole (Patuá) was read, so its output stays what it was; the pt-PT rule rests on Infopédia readings of standard European Portuguese."
+    },
+    {
+      "id": "PT_SUFFIX_DORA_CANDIDATE_OPEN",
+      "phonemes": [],
+      "surface": "ɔ",
+      "notes": "DISABLED for Macanese Creole (Patuá), a creole that inherits the pt-PT rule layer. No source for the stressed vowel of this ending in Macanese Creole (Patuá) was read, so its output stays what it was; the pt-PT rule rests on Infopédia readings of standard European Portuguese."
+    },
+    {
+      "id": "PT_SUFFIX_OIDE_OPEN",
+      "phonemes": [],
+      "surface": "ɔ",
+      "notes": "DISABLED for Macanese Creole (Patuá), a creole that inherits the pt-PT rule layer. No source for the stressed vowel of this ending in Macanese Creole (Patuá) was read, so its output stays what it was; the pt-PT rule rests on Infopédia readings of standard European Portuguese."
+    },
+    {
       "id": "PT_LEX_CLITIC_O",
       "phonemes": [],
       "surface": "u",
