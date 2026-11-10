@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.122.25a4](https://github.com/TigreGotico/orthography2ipa/tree/7.122.25a4) (2026-11-10)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.122.25a3...7.122.25a4)
+
+**Merged pull requests:**
+
+- chore\(benchmark\): read the Michaelis source of the unified pt lexicon [\#2277](https://github.com/TigreGotico/orthography2ipa/pull/2277) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.122.25a3](https://github.com/TigreGotico/orthography2ipa/tree/7.122.25a3) (2026-11-10)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.122.25a2...7.122.25a3)
