@@ -195,8 +195,9 @@ def test_unified_registration_and_provenance():
     loader, langs = benchmark.DATASETS["portuguese_unified"]
     assert loader is benchmark.load_portuguese_unified
     assert langs == sorted(benchmark._PT_UNIFIED_REGIONS)
-    assert benchmark.provenance_for("portuguese_unified", "pt-PT") == "lexicon-derived"
-    for lang in ("pt-BR", "pt-BR-x-carioca", "pt-BR-x-caipira"):
+    for lang in ("pt-PT", "pt-BR"):
+        assert benchmark.provenance_for("portuguese_unified", lang) == "lexicon-derived"
+    for lang in ("pt-BR-x-carioca", "pt-BR-x-caipira"):
         assert benchmark.provenance_for("portuguese_unified", lang) == "crowd-scraped"
     for lang in benchmark._PORTAL_LUPO_REGIONS:
         assert benchmark.provenance_for("portal_lupo", lang) == "lupo-derived"
