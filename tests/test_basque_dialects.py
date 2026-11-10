@@ -6,7 +6,7 @@ west→east continuum of sound changes. Every feature asserted here is
 grounded in a source that was read directly:
 
 - Bedialauneta Txurruka & Hualde (2023), "Markina Basque", JIPA 53(3):
-  1095-1122 (Biscayan sibilant/affricate/palatal mergers, p.1098).
+  1095-1121 (Biscayan sibilant/affricate/palatal mergers, p.1098).
 - Hualde, Lujanbio & Zubiri (2010), "Goizueta Basque", JIPA 40(1):
   113-127 (Upper Navarrese sibilant retention p.119, /h/ loss, yeísmo).
 - Hualde (2018), "Aspiration in Basque", PiHPH 3: 1-27 (east/west
