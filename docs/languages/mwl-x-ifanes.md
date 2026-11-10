@@ -43,8 +43,8 @@ No spec names `mwl-x-ifanes` as its parent.
 
 The spec cites 4 works. 3 of them have a DOI or a URL. The spec file holds a note on what each work supports.
 
-1. <a id="src-vasconcelos1900"></a>Vasconcelos, J. Leite de (1900). *Estudos de Philologia Mirandesa (Vol. I)*. Imprensa Nacional, Lisboa. Cited: 172-173, 219-220. [archive.org](https://archive.org/details/estudosdephilolo01leit)
-2. <a id="src-vasconcelos1900v2"></a>Vasconcelos, J. Leite de (1901). *Estudos de Philologia Mirandesa (Vol. II)*. Imprensa Nacional, Lisboa. Cited: 28-31. [archive.org](https://archive.org/details/estudosdephilolo02leit)
+1. <a id="src-vasconcelos1900"></a>Vasconcelos, J. Leite de (1900). *Estudos de Philologia Mirandesa (Vol. I)*. Imprensa Nacional, Lisboa. Cited: 172-173, 219-220. [archive.org](https://archive.org/details/estudosdephilolo01vascuoft)
+2. <a id="src-vasconcelos1900v2"></a>Vasconcelos, J. Leite de (1901). *Estudos de Philologia Mirandesa (Vol. II)*. Imprensa Nacional, Lisboa. Cited: 28-31. [archive.org](https://archive.org/details/estudosdephilolo02vascuoft)
 3. <a id="src-convencao1999"></a>Ferreira, M.B. & Raposo, D. (coords.) (1999). *Convenção Ortográfica da Língua Mirandesa*. Câmara Municipal de Miranda do Douro / Centro de Linguística da Universidade de Lisboa. Cited: 62. [mirandadodouro.jfreguesia.com](http://mirandadodouro.jfreguesia.com/images/stories/PDF/convencaomirandes.pdf)
 4. <a id="src-mateus_dandrade2000"></a>Mateus, M.H.M. & d'Andrade, E. (2000). *The Phonology of Portuguese*. Oxford University Press.
 <!-- atlas:sources end -->

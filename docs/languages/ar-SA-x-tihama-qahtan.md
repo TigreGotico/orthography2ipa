@@ -40,11 +40,11 @@ No spec names `ar-SA-x-tihama-qahtan` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 5 works. 5 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 5 works. 4 of them have a DOI or a URL. The spec file holds a note on what each work supports.
 
 1. <a id="src-alqahtani2015"></a>Alqahtani, Khairiah (2015). *A sociolinguistic study of the Tihami Qahtani dialect in Asir, Southern Arabia (PhD thesis)*. University of Essex. Cited: 45-52, 149-173. [repository.essex.ac.uk](https://repository.essex.ac.uk/15298/)
 2. <a id="src-watson2011"></a>Watson, J.C.E. & Al-Azraqi, M. (2011). *Lateral fricatives and lateral emphatics in southern Saudi Arabia and Mehri*. Proceedings of the Seminar for Arabian Studies 41, 425-432. Archaeopress, Oxford. Cited: 425-432. [eprints.whiterose.ac.uk](https://eprints.whiterose.ac.uk/id/eprint/75746/)
-3. <a id="src-alazraqi2010"></a>Al-Azraqi, M. (2010). *The ancient Ḍād in southwest Saudi Arabia*. Arabica 57(1), 57-67. Cited: 57-67. [doi.org](https://doi.org/10.1163/057053910X12634522203520)
+3. <a id="src-alazraqi2010"></a>Al-Azraqi, M. (2010). *The ancient Ḍād in southwest Saudi Arabia*. Arabica 57(1), 57-67. Cited: 57-67.
 4. <a id="src-davisetal2024"></a>Davis, S., Alshammari, W., Alahmari, M. & Alhuwaykim, M. (2024). *Aspects of the phonology and morphology of Saudi varieties of Arabic*. In: Gasparini, Russell & Watson (eds.), Diversity across the Arabian Peninsula: Language, Culture, Nature. Semitic Languages and Cultures 28. Open Book Publishers, Cambridge. Cited: 137, 149. [doi.org](https://doi.org/10.11647/OBP.0411.04)
 5. <a id="src-alfaifi2024"></a>Alfaifi, Abdullah (2024). *Distal and proximal relative pronouns in Central Faifi Arabic*. In: Gasparini, Russell & Watson (eds.), Diversity across the Arabian Peninsula: Language, Culture, Nature. Semitic Languages and Cultures 28. Open Book Publishers, Cambridge. Cited: 177-178. [doi.org](https://doi.org/10.11647/OBP.0411.05)
 <!-- atlas:sources end -->

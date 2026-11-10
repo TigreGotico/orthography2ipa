@@ -45,7 +45,7 @@ No spec names `crh` as its parent.
 The spec cites 2 works. 2 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
 
 1. <a id="src-crh_wiki"></a>Wikipedia contributors (2024). *Crimean Tatar language*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Crimean_Tatar_language)
-2. <a id="src-crh_alpha_wiki"></a>Wikipedia contributors (2024). *Crimean Tatar alphabets*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Crimean_Tatar_alphabets)
+2. <a id="src-crh_alpha_wiki"></a>Wikipedia contributors (2024). *Crimean Tatar alphabets*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Crimean_Tatar_alphabet)
 <!-- atlas:sources end -->
 
 <!-- atlas:datasets begin -->

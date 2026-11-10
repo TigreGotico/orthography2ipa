@@ -48,7 +48,7 @@ The spec cites 5 works. 1 of them have a DOI or a URL. The spec file holds a not
 2. <a id="src-ferreira1995"></a>Ferreira, M.B. (1995). *Variação linguística: perspectiva dialectológica*. Universidade de Lisboa.
 3. <a id="src-mateus_dandrade2000"></a>Mateus, M.H.M. & d'Andrade, E. (2000). *The Phonology of Portuguese*. Oxford University Press.
 4. <a id="src-penny2002"></a>Penny, R. (2002). *A History of the Spanish Language*. Cambridge University Press.
-5. <a id="src-vasconcelos1900"></a>Vasconcelos, J. Leite de (1900). *Estudos de Philologia Mirandesa (Vol. II)*. Imprensa Nacional, Lisboa. Cited: 54. [archive.org](https://archive.org/details/estudosdephilolo02leit)
+5. <a id="src-vasconcelos1900"></a>Vasconcelos, J. Leite de (1900). *Estudos de Philologia Mirandesa (Vol. II)*. Imprensa Nacional, Lisboa. Cited: 54. [archive.org](https://archive.org/details/estudosdephilolo02vascuoft)
 <!-- atlas:sources end -->
 
 <!-- atlas:datasets begin -->
