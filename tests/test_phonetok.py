@@ -493,3 +493,41 @@ class TestPrevocalicGlideBackoff:
     def test_no_backoff_when_a_part_has_no_reading(self):
         tok = self._tok(("ew",), {"a": ["a"], "k": ["k"], "w": ["w"], "ew": ["ɛw"]})
         assert tok.graphemes("kewa") == ["k", "ew", "a"]
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Vowel-gated digraph before an apostrophe inside a word
+# ═══════════════════════════════════════════════════════════════════════════
+
+@pytest.fixture
+def tok_gated() -> PhonetokTokenizer:
+    """A spec with a consonant+⟨u⟩ digraph, the shape the vowel gate reads."""
+    spec = LanguageSpec(
+        code="test-gate", name="Test", family="Test", script="Latin",
+        graphemes={"q": ["k"], "u": ["y"], "qu": ["k"], "i": ["i"],
+                   "l": ["l"], "k": ["k"]},
+        allophones={"k": ["k"], "y": ["y"], "i": ["i"], "l": ["l"]},
+    )
+    return PhonetokTokenizer(spec)
+
+
+def _graphemes(tok, text):
+    return [t.grapheme for t in tok.tokenize(text)
+            if t.kind == TokenKind.GRAPHEME]
+
+
+@pytest.mark.parametrize("apostrophe", ["'", "’"])
+def test_a_gated_digraph_sees_the_letter_past_an_inner_apostrophe(
+        tok_gated, apostrophe):
+    # ⟨qu'i⟩: the apostrophe is no segment, so a vowel follows ⟨qu⟩ and the
+    # digraph stays whole, as it does in ⟨qui⟩.
+    assert _graphemes(tok_gated, "qui") == ["qu", "i"]
+    assert _graphemes(tok_gated, f"qu{apostrophe}i") == ["qu", "i"]
+
+
+@pytest.mark.parametrize("text", ["quk", "qu", "qu'", "qu' i", "qu'k"])
+def test_a_gated_digraph_still_backs_off_without_a_vowel_after_it(
+        tok_gated, text):
+    # No vowel letter follows, with or without an apostrophe between: the
+    # letter ⟨u⟩ is read on its own, as before.
+    assert _graphemes(tok_gated, text)[:2] == ["q", "u"]

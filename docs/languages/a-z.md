@@ -723,6 +723,7 @@ Stubs (380): A'ou `aou`, A-Pucikwar `apq`, Aari `aiw`, Aasáx `aas`, Abadi `kbt`
 | [Beja](https://tigregotico.github.io/orthography2ipa/#bej) | `bej` | skeleton | Afro-Asiatic |
 | [Belarusian](be.md) (page) | `be` | research | Indo-European > Balto-Slavic > Slavic > East Slavic |
 | [Belgian Dutch (Flemish)](https://tigregotico.github.io/orthography2ipa/#nl-BE) | `nl-BE` | skeleton | Indo-European > Germanic > Northwest Germanic > West Germanic |
+| [Belgian French](https://tigregotico.github.io/orthography2ipa/#fr-BE) | `fr-BE` | skeleton | Indo-European > Italic > Romance > Gallo-Romance |
 | [Beli (South Sudan)](https://tigregotico.github.io/orthography2ipa/#blm) | `blm` | skeleton | Central Sudanic |
 | [Belsetán Aragonese (Bielsa valley)](an-x-belsetan.md) (page) | `an-x-belsetan` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Bemba](bem.md) (page) | `bem` | research | Atlantic-Congo > Bantu |
@@ -779,6 +780,7 @@ Stubs (510): Baan `bvj`, Baba `bbw`, Baba Malay `mbf`, Babalia Creole Arabic `ar
 | [Campidanese Sardinian](https://tigregotico.github.io/orthography2ipa/#sc-x-campidan) | `sc-x-campidan` | skeleton | Indo-European > Italic > Romance > Southern Romance |
 | [Campidanese Sardinian](sro.md) (page) | `sro` | research | Indo-European > Italic > Romance > Southern Romance |
 | [Canadian English](https://tigregotico.github.io/orthography2ipa/#en-CA) | `en-CA` | skeleton | Indo-European > Germanic > Northwest Germanic > West Germanic |
+| [Canadian French (Laurentian)](https://tigregotico.github.io/orthography2ipa/#fr-CA) | `fr-CA` | skeleton | Indo-European > Italic > Romance > Gallo-Romance |
 | [Canarian Spanish](es-ES-x-canarias.md) (page) | `es-ES-x-canarias` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Cantabrian](ast-x-cantabri.md) (page) | `ast-x-cantabri` | research | Indo-European > Italic > Romance > Ibero-Romance > Asturleonese |
 | [Cantabrian Spanish (Montañés)](es-ES-x-cantabri.md) (page) | `es-ES-x-cantabri` | research | Indo-European > Italic > Romance > Ibero-Romance |
@@ -957,6 +959,7 @@ Stubs (146): E `eee`, E'ma Buyang `yzg`, E'ñapa Woromaipu `pbh`, East Ambae `om
 | [Forest Enets](enf.md) (page) | `enf` | research | Uralic |
 | [Franco-Provençal (Arpitan)](frp.md) (page) | `frp` | research | Indo-European > Italic > Romance > Gallo-Romance |
 | [French](fr-FR.md) (page) | `fr-FR` | research | Indo-European > Italic > Romance > Gallo-Romance |
+| [French with a final-syllable stress mark](https://tigregotico.github.io/orthography2ipa/#fr-FR-x-stress) | `fr-FR-x-stress` | skeleton | Indo-European > Italic > Romance > Gallo-Romance |
 | [Friulian](fur.md) (page) | `fur` | research | Indo-European > Italic > Romance > Italo-Romance |
 | [Fula (Fulah / Fulfulde / Pular)](ff.md) (page) | `ff` | research | Atlantic-Congo |
 | [Fuliiru](https://tigregotico.github.io/orthography2ipa/#flr) | `flr` | skeleton | Atlantic-Congo |
@@ -1087,6 +1090,7 @@ Stubs (145): Ha `haq`, Habu `hbu`, Hadothi `hoj`, Hadrami Arabic `ayh`, Haeke `a
 | [Italian](it-IT.md) (page) | `it-IT` | research | Indo-European > Italic > Romance > Italo-Romance |
 | [Italo-Romance Vulgar Latin](https://tigregotico.github.io/orthography2ipa/#la-x-italia) | `la-x-italia` | research | Indo-European > Italic > Romance |
 | [Itelmen](itl.md) (page) | `itl` | research | Chukotko-Kamchatkan |
+| [Ivorian French](https://tigregotico.github.io/orthography2ipa/#fr-CI) | `fr-CI` | skeleton | Indo-European > Italic > Romance > Gallo-Romance |
 | [Iyasa](https://tigregotico.github.io/orthography2ipa/#yko) | `yko` | skeleton | Atlantic-Congo |
 | [Iñupiaq](ik.md) (page) | `ik` | research | Eskimo-Aleut |
 
@@ -1680,6 +1684,7 @@ Stubs (117): Rabha `rah`, Rade `rad`, Raetic `xrr`, Rahambuu `raz`, Rajah Kabuns
 | [Swedish (Finland-Swedish)](https://tigregotico.github.io/orthography2ipa/#sv-FI) | `sv-FI` | skeleton | Indo-European > Germanic > Northwest Germanic > North Germanic |
 | [Swedish (Rikssvenska)](https://tigregotico.github.io/orthography2ipa/#sv-x-rikssven) | `sv-x-rikssven` | skeleton | Indo-European > Germanic > Northwest Germanic > North Germanic |
 | [Swedish (Scanian / Skånska)](https://tigregotico.github.io/orthography2ipa/#sv-x-skanska) | `sv-x-skanska` | skeleton | Indo-European > Germanic > Northwest Germanic > North Germanic |
+| [Swiss French (Romandy)](https://tigregotico.github.io/orthography2ipa/#fr-CH) | `fr-CH` | skeleton | Indo-European > Italic > Romance > Gallo-Romance |
 | [Swiss Standard German (Hochdeutsch)](de-CH.md) (page) | `de-CH` | research | Indo-European > Germanic > Northwest Germanic > West Germanic |
 | [Syrian Arabic (Damascene)](apc-SY.md) (page) | `apc-SY` | research | Afro-Asiatic > Semitic > Central Semitic |
 | [São Tomé and Príncipe Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-ST) | `pt-ST` | research | Indo-European > Italic > Romance > Ibero-Romance |

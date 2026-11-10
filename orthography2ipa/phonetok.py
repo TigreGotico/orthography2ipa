@@ -1046,6 +1046,11 @@ PAUSE_PUNCTUATION: Dict[str, str] = {
 _PAUSE_CLASS = "".join(re.escape(c) for c in sorted(PAUSE_PUNCTUATION))
 
 # Broad punctuation set covering Latin, CJK, and typographic marks.
+#: The apostrophe marks (U+0027, U+2019) that spell an elision or a
+#: contraction inside a written word. They are not segments, so a lookahead
+#: that asks which letter follows a grapheme steps over one.
+_ELISION_APOSTROPHES = frozenset("'\u2019")
+
 _PUNCT_RE = re.compile(
     r"["
     + _PAUSE_CLASS +
@@ -2053,6 +2058,12 @@ class PhonetokTokenizer:
                 ):
                     after = pos + len(gkey)
                     next_ch = text[after] if after < n else ""
+                    # An apostrophe between two letters is no segment: the
+                    # letter after it is the one that follows the digraph
+                    # (⟨qu'il⟩ is ⟨qu⟩ before ⟨i⟩, not before a boundary).
+                    if (next_ch in _ELISION_APOSTROPHES and after + 1 < n
+                            and text[after + 1].isalpha()):
+                        next_ch = text[after + 1]
                     nlow = _lower(next_ch, self.spec.code) if next_ch else ""
                     if not (next_ch and is_orthographic_vowel(next_ch)):
                         # (1) Before a consonant or word-end the ⟨u⟩/⟨i⟩ may be a

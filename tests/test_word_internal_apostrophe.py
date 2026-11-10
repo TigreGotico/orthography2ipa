@@ -13,6 +13,11 @@ from orthography2ipa.json_loader import load_json_spec
 
 ENTRIES = {"doesn't": "dˈʌzənt", "i'm": "ˈaɪm", "that's": "ðˈæts"}
 ENGLISH = {"en-AU", "en-CA", "en-GB", "en-GB-x-scotland", "en-IE", "en-US", "en-ZA"}
+#: The other families that declare it, each from a source its spec cites:
+#: French and Italian write an elided clitic with its host
+#: (tests/test_french_elision.py, tests/test_elision_romance.py), and the
+#: Portuguese orthographic agreement writes contractions and elisions that way.
+DECLARING_PREFIXES = ("en-", "fr-", "it-IT", "pt-", "ext-PT-x-barranco")
 
 
 @pytest.fixture
@@ -61,16 +66,14 @@ def test_every_english_spec_declares_or_inherits_it(code):
 def test_no_other_spec_opts_in():
     declared = {code for code in o2i.available_codes()
                 if load_json_spec(code).word_internal_apostrophe}
-    assert declared == ENGLISH
+    assert ENGLISH <= declared
+    assert {c for c in declared if not c.startswith(DECLARING_PREFIXES)} == set()
+    assert {"fr-FR", "it-IT", "pt-PT", "pt-BR"} <= declared
 
 
 @pytest.mark.parametrize("lang, text, expected", [
-    ("fr-FR", "l'homme", "l ɔm"),
-    ("fr-FR", "aujourd'hui", "oʒuʁ ɥi"),
-    ("it-IT", "l'amico", "ˈl aˈmiko"),
     ("ca", "l'home", "ˈlɔmə"),
     ("es-ES", "l'a", "ˈl a"),
-    ("pt-PT", "d'água", "ˈd ˈaɡwɐ"),
     ("af", "'n man", "ˈə ˈman"),
     ("de-DE", "geht's", "ˈɡeːt ˈz"),
     ("nl-NL", "zo'n", "ˈzou ˈn"),
@@ -171,6 +174,7 @@ def _unmapped(record):
     ("en-GB", "I'm"),
     ("en-GB", "rock'n'roll"),
     ("fr-FR", "l'homme"),
+    ("fr-FR", "d’accord"),
 ])
 def test_an_apostrophe_is_punctuation_and_never_an_unmapped_letter(lang, text):
     import warnings

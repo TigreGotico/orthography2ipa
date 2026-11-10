@@ -237,7 +237,7 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 
 | Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | Winner |
 |---|---|---|---|---|---|---|
-| wikipron | 85516 | 0.0673 | 0.0740 | 0.0749 | 0.2280 | o2i |
+| wikipron | 85516 | 0.0631 | 0.0740 | 0.0749 | 0.2280 | o2i |
 
 ### ga (Irish)
 
@@ -533,7 +533,7 @@ The table above conflates espeak-ng's letter-to-sound RULES with its hand-curate
 | fi | ipadict | 92836 | 0.0609 | n/a | 0.1995 | 0.1991 |
 | fi | vox_communis | 13324 | 0.0037 | n/a | 0.1843 | 0.1838 |
 | fi | wikipron | 168814 | 0.0184 | n/a | 0.2062 | 0.2059 |
-| fr | wikipron | 85516 | 0.0673 | n/a | 0.0740 | 0.0749 |
+| fr | wikipron | 85516 | 0.0631 | n/a | 0.0740 | 0.0749 |
 | ga | wikipron | 9621 | 0.1834 | n/a | 0.5223 | 0.5100 |
 | hi | vox_communis | 12478 | 0.2765 | n/a | 0.3877 | 0.3880 |
 | hi | wikipron | 30379 | 0.1277 | n/a | 0.2815 | 0.2819 |

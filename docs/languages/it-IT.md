@@ -1,7 +1,7 @@
 # Italian (`it-IT`)
 
 <!-- atlas:summary begin -->
-Italian is an Italo-Romance language, written in the Latin script. Its code names Italy. The `it-IT` spec is at the research tier. It cites 6 sources and has 3 scored datasets.
+Italian is an Italo-Romance language, written in the Latin script. Its code names Italy. The `it-IT` spec is at the research tier. It cites 7 sources and has 3 scored datasets.
 <!-- atlas:summary end -->
 
 <!-- atlas:header begin -->
@@ -105,7 +105,7 @@ These specs name `it-IT` as their parent. They are sorted by country, and a lect
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 6 works. 0 of them have a DOI or a URL. The spec file holds a note on what 3 of them support.
+The spec cites 7 works. 1 of them have a DOI or a URL. The spec file holds a note on what 4 of them support.
 
 1. <a id="src-lepschy_lepschy1988"></a>Lepschy, A.L. & Lepschy, G. (1988). *The Italian Language Today*. Hutchinson.
 2. <a id="src-rogers_derosa2004"></a>Rogers, D. & d'Arcangeli, L. (2004). *Italian*. Journal of the International Phonetic Association. Cited: 117-121.
@@ -113,6 +113,7 @@ The spec cites 6 works. 0 of them have a DOI or a URL. The spec file holds a not
 4. <a id="src-kramer2009"></a>Krämer, M. (2009). *The Phonology of Italian*. Oxford University Press.
 5. <a id="src-bertinetto_loporcaro2005"></a>Bertinetto, P.M. & Loporcaro, M. (2005). *The sound pattern of Standard Italian, as compared with the varieties spoken in Florence, Milan and Rome*. Journal of the International Phonetic Association. Cited: 131-151.
 6. <a id="src-canepari2009"></a>Canepari, L. (2009). *Dizionario di pronuncia italiana (DiPI)*. Zanichelli.
+7. <a id="src-romito2010"></a>Romito, L. (2010). *Elisione*. Enciclopedia dell'Italiano, Istituto della Enciclopedia Italiana Treccani. [treccani.it](https://www.treccani.it/enciclopedia/elisione_(Enciclopedia-dell'Italiano)/)
 <!-- atlas:sources end -->
 
 ### Notes on the sources

@@ -372,7 +372,11 @@ KNOWN_DEAD_RULES = {
 KNOWN_DEAD_PREFIXES = {"ta": ("TA_GEM",), "ml": ("TA_GEM",),
                        "pnb-PK": ("PA_SCHWA_FINAL",),
                        "kri": ("EN_GB_NONRHOTIC", "EN_GB_PREVOCALIC_R"),
-                       "anr": ("MR_",), "dcc": ("MR_",)}
+                       "anr": ("MR_",), "dcc": ("MR_",),
+                       # crs inherits the fr-FR rule set but has no schwa
+                       # slot to match (its parent's open-e rule for ⟨ell⟩,
+                       # ⟨ett⟩, ⟨err⟩ has nothing to rewrite there).
+                       "crs": ("FR_E_BEFORE_DOUBLED_CONSONANT",)}
 
 
 @pytest.mark.parametrize("code", ALL_CODES)

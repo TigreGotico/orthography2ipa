@@ -334,6 +334,19 @@ _REGION_DEFAULTS: Dict[str, str] = {
     "ar-SA": "ars-SA",
 }
 
+# French has a spec for Canada, Belgium, Switzerland and Côte d'Ivoire, each
+# stating one sourced difference from the standard variety. Any other French
+# region has no spec of its own and no sourced difference, so it is read as
+# the standard variety. Without these entries the nearest match would pick
+# ``fr-BE`` for every one of them, which asserts a Belgian feature for
+# Luxembourg, Senegal or Haiti that no source states.
+_REGION_DEFAULTS.update({
+    f"fr-{region}": "fr-FR" for region in (
+        "BF", "BI", "BJ", "CD", "CF", "CG", "CM", "DJ", "DZ", "GA", "GF",
+        "GN", "GP", "HT", "KM", "LB", "LU", "MA", "MC", "MG", "ML", "MQ",
+        "MR", "MU", "NC", "NE", "PF", "PM", "RE", "RW", "SC", "SN", "TD",
+        "TG", "TN", "VU", "WF", "YT")})
+
 try:
     import langcodes as _langcodes
     _HAS_LANGCODES = True

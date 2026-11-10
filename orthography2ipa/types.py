@@ -2182,10 +2182,14 @@ class LanguageSpec:
     the written word. The orthography spells contractions and possessives with
     it inside one word (``doesn't``, ``that's``), so the whole token is the
     unit a ``word_exceptions`` entry or a registered lexicon is keyed on, and
-    the unit that is transcribed. Off by default: in an orthography where the
-    mark is an elision or a boundary (French ``l'homme``, Italian ``l'amico``)
-    it separates two words. An apostrophe at either edge of a token is
-    unaffected.
+    the unit that is transcribed. An elided clitic is the same case: French
+    ``l'homme`` is [lɔm], one phonological word, and the clitic's consonant is
+    not word-final. Off by default: in an orthography where the mark is a
+    boundary that the spec does not model as part of one word (Italian
+    ``l'amico``, Catalan ``l'home``) it separates two words. A grapheme that
+    the vowel gate reads (a consonant plus ⟨u⟩ or ⟨i⟩) sees the letter after
+    an apostrophe inside the word as the one that follows it, whatever this
+    field says. An apostrophe at either edge of a token is unaffected.
 
     It is inherited along the ``graphemes_base`` edge
     (:attr:`InheritanceMode.BASE_SCALAR`), like :attr:`constrain_onsets`.
