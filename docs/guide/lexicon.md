@@ -164,7 +164,7 @@ The benchmark never enables a packaged lexicon, so the board stays rules-only wh
 ```python
 from orthography2ipa import lexicon_revision, spec_revision
 
-spec_revision("pt-PT")                    # 'sha256:…': the spec, its chains and the engine
+spec_revision("pt-PT")                    # 'sha256:…': the spec, its chains, the engine and the Unicode version
 lexicon_revision("pt-PT", patches=True)   # 'sha256:…': the exceptions and the patches
 ```
 
