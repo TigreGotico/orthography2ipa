@@ -444,6 +444,41 @@ def test_a_clade_with_no_parent_follows_its_parent_role_ancestor(monkeypatch, tm
     assert spec_revision("mni-Mtei") != before
 
 
+def test_a_clade_whose_parent_has_no_file_follows_its_parent_role_ancestor(
+        monkeypatch, tmp_path):
+    """The loader drops a ``parent`` with no file, and the spec takes its first parent-role ancestor."""
+    specs = {
+        "qqa": {"code": "qqa", "name": "Data ancestor", "script": "Latin",
+                "graphemes": {"a": ["a"]}, "stress": {"default_position": -1}},
+        "qqb": {"code": "qqb", "name": "Clade", "script": "Latin", "clade": True,
+                "parent": "qqz",
+                "ancestors": [{"code": "qqa", "role": "parent", "weight": 1.0}],
+                "graphemes": {}},
+        "qqc": {"code": "qqc", "name": "Child", "script": "Latin", "parent": "qqb",
+                "graphemes": {"a": ["a"]}},
+    }
+
+    def register():
+        for code, raw in specs.items():
+            path = tmp_path / f"{code}.json"
+            path.write_text(json.dumps(raw), encoding="utf-8")
+            monkeypatch.setitem(json_loader._index, code, path)
+        monkeypatch.setattr(json_loader, "_specs", {})
+        revision._canonical_spec.cache_clear()
+        revision._spec_revision.cache_clear()
+
+    register()
+    assert "qqz" not in json_loader._index
+    assert json_loader.load_json_spec("qqb").parent == "qqa"
+    assert json_loader.load_json_spec("qqc").stress.default_position == -1
+    before = spec_revision("qqc")
+
+    specs["qqa"]["stress"]["default_position"] = -2
+    register()
+    assert json_loader.load_json_spec("qqc").stress.default_position == -2
+    assert spec_revision("qqc") != before
+
+
 # ── lexicon_revision ──────────────────────────────────────────────────────
 
 class _EntryPoint:
