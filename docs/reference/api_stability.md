@@ -10,7 +10,7 @@ The commitment covers each name in the two tables of the next section. It also c
 
 ## Names that downstream code imports
 
-The inventory comes from the Python imports on the `dev` branch of each downstream repository: [arbtok](https://github.com/TigreGotico/arbtok), [euskaphone](https://github.com/TigreGotico/euskaphone), [tugaphone](https://github.com/TigreGotico/tugaphone), [g2p_barranquenho](https://github.com/TigreGotico/g2p_barranquenho) and [mwl_phonemizer](https://github.com/TigreGotico/mwl_phonemizer). The scan parses every Python file of each repository, so it covers the library code, the tests, the scripts and the examples. It counts both `from orthography2ipa import X` and attribute access such as `orthography2ipa.get`. [phonematcher](https://github.com/TigreGotico/phonematcher) and [sotaque_forcado](https://github.com/TigreGotico/sotaque_forcado) import nothing from `orthography2ipa`.
+The inventory comes from the Python imports on the `dev` branch of each downstream repository: [arbtok](https://github.com/TigreGotico/arbtok), [euskaphone](https://github.com/TigreGotico/euskaphone) and [tugaphone](https://github.com/TigreGotico/tugaphone). The scan parses every Python file of each repository, so it covers the library code, the tests, the scripts and the examples. It counts both `from orthography2ipa import X` and attribute access such as `orthography2ipa.get`. [phonematcher](https://github.com/TigreGotico/phonematcher) and [sotaque_forcado](https://github.com/TigreGotico/sotaque_forcado) import nothing from `orthography2ipa`.
 
 A name imported from a submodule and also re-exported at the top level is one name, and both import paths are covered.
 
@@ -18,11 +18,11 @@ A name imported from a submodule and also re-exported at the top level is one na
 
 | Name | Module | Used by |
 | :--- | :--- | :--- |
-| `G2P` | `g2p` | arbtok, euskaphone, g2p_barranquenho, mwl_phonemizer, tugaphone |
-| `WordContext` | `sentence` | arbtok, euskaphone, g2p_barranquenho, mwl_phonemizer, tugaphone |
+| `G2P` | `g2p` | arbtok, euskaphone, tugaphone |
+| `WordContext` | `sentence` | arbtok, euskaphone, tugaphone |
 | `Pipeline` | `pipeline` | arbtok, euskaphone, tugaphone |
-| `get` | `registry` | arbtok, g2p_barranquenho, tugaphone |
-| `resolve` | `registry` | arbtok, euskaphone, g2p_barranquenho, tugaphone |
+| `get` | `registry` | arbtok, tugaphone |
+| `resolve` | `registry` | arbtok, euskaphone, tugaphone |
 | `resolves_exactly` | `registry` | arbtok, tugaphone |
 | `available_codes` | `registry` | arbtok, euskaphone, tugaphone |
 | `who_answers` | `registry` | tugaphone |
@@ -39,8 +39,8 @@ A name imported from a submodule and also re-exported at the top level is one na
 | `segment_distance` | `distance` | arbtok |
 | `phoneme_inventory`, `tokenize` | `inventory` | arbtok |
 | `is_underdetermined`, `underdetermined_positions`, `mark_density` | `underspecification` | arbtok |
-| `detect_stress` | `stress` | arbtok, mwl_phonemizer, tugaphone |
-| `apply_stress_mark` | `stress` | arbtok, mwl_phonemizer |
+| `detect_stress` | `stress` | arbtok, tugaphone |
+| `apply_stress_mark` | `stress` | arbtok |
 | `syllabify_ipa` | `stress` | arbtok |
 | `syllabify` | `stress` | euskaphone |
 | `SyllabifierPlugin` | `syllabifier_plugin` | tugaphone |
