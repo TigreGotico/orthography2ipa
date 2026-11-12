@@ -10,7 +10,7 @@ The commitment covers each name in the two tables of the next section. It also c
 
 ## Names that downstream code imports
 
-The inventory comes from the Python imports on the `dev` branch of each downstream repository: [arbtok](https://github.com/TigreGotico/arbtok), [euskaphone](https://github.com/TigreGotico/euskaphone), [tugaphone](https://github.com/TigreGotico/tugaphone), [g2p_barranquenho](https://github.com/TigreGotico/g2p_barranquenho) and [mwl_phonemizer](https://github.com/TigreGotico/mwl_phonemizer). The scan parses every Python file of each repository, so it covers the library code, the tests, the scripts and the examples. It counts both `from orthography2ipa import X` and attribute access such as `orthography2ipa.get`. [phonematcher](https://github.com/TigreGotico/phonematcher) and [sotaque_forcado](https://github.com/TigreGotico/sotaque_forcado) import nothing from `orthography2ipa`.
+The inventory comes from the Python imports on the `dev` branch of each downstream repository: [arbtok](https://github.com/TigreGotico/arbtok), [euskaphone](https://github.com/TigreGotico/euskaphone) and [tugaphone](https://github.com/TigreGotico/tugaphone). The scan parses every Python file of each repository, so it covers the library code, the tests, the scripts and the examples. It counts both `from orthography2ipa import X` and attribute access such as `orthography2ipa.get`. [phonematcher](https://github.com/TigreGotico/phonematcher) and [sotaque_forcado](https://github.com/TigreGotico/sotaque_forcado) import nothing from `orthography2ipa`.
 
 A name imported from a submodule and also re-exported at the top level is one name, and both import paths are covered.
 
@@ -18,11 +18,11 @@ A name imported from a submodule and also re-exported at the top level is one na
 
 | Name | Module | Used by |
 | :--- | :--- | :--- |
-| `G2P` | `g2p` | arbtok, euskaphone, g2p_barranquenho, mwl_phonemizer, tugaphone |
-| `WordContext` | `sentence` | arbtok, euskaphone, g2p_barranquenho, mwl_phonemizer, tugaphone |
+| `G2P` | `g2p` | arbtok, euskaphone, tugaphone |
+| `WordContext` | `sentence` | arbtok, euskaphone, tugaphone |
 | `Pipeline` | `pipeline` | arbtok, euskaphone, tugaphone |
-| `get` | `registry` | arbtok, g2p_barranquenho, tugaphone |
-| `resolve` | `registry` | arbtok, euskaphone, g2p_barranquenho, tugaphone |
+| `get` | `registry` | arbtok, tugaphone |
+| `resolve` | `registry` | arbtok, euskaphone, tugaphone |
 | `resolves_exactly` | `registry` | arbtok, tugaphone |
 | `available_codes` | `registry` | arbtok, euskaphone, tugaphone |
 | `who_answers` | `registry` | tugaphone |
@@ -39,8 +39,8 @@ A name imported from a submodule and also re-exported at the top level is one na
 | `segment_distance` | `distance` | arbtok |
 | `phoneme_inventory`, `tokenize` | `inventory` | arbtok |
 | `is_underdetermined`, `underdetermined_positions`, `mark_density` | `underspecification` | arbtok |
-| `detect_stress` | `stress` | arbtok, mwl_phonemizer, tugaphone |
-| `apply_stress_mark` | `stress` | arbtok, mwl_phonemizer |
+| `detect_stress` | `stress` | arbtok, tugaphone |
+| `apply_stress_mark` | `stress` | arbtok |
 | `syllabify_ipa` | `stress` | arbtok |
 | `syllabify` | `stress` | euskaphone |
 | `SyllabifierPlugin` | `syllabifier_plugin` | tugaphone |
@@ -81,9 +81,28 @@ These names are public and importable, but no downstream repository uses them. T
 | `distance` | `inventory_distance`, `grapheme_divergence`, `spelling_divergence`, `allophone_overlap`, `phonological_distance`, `ancestry_similarity`, `geographic_distance`, `full_distance`, `pairwise_distances`, `feature_vector`, `InventoryDistance`, `GraphemeDivergence`, `SpellingDivergence`, `PhonologicalDistance` |
 | `script_distance` | `ScriptFeatures`, `SCRIPT_REGISTRY`, `script_distance`, `script_distance_by_name` |
 | `transforms` | `apply_transform`, `debias_lisbon`, `available_profiles`, `DIALECT_PROFILES`, `DialectTransform`, `IPARule`, `IPAChainShift`, `IPALexicalRule`, `load_clup_profile` |
+| `revision` | `spec_revision`, `lexicon_revision`: the format is covered by the commitment, see below |
 | `sentence`, `features` | `SentenceLattice`, `SentenceRescorer`, `SentenceRescoreContext`, `WordSlot`, `Position`, `WordFeatures`, `GraphemeFeatures`: covered by the commitment, see below |
 
-The exception types `UnmappedScriptError`, `UnmappedGraphemeWarning` and `StubSpecWarning` live in `orthography2ipa.exceptions` and are not re-exported at the top level. `slot_confidence` and `lattice_confidence` live in `orthography2ipa.phonetok` only.
+The exception types `UnmappedScriptError`, `UnmappedGraphemeWarning`, `StubSpecWarning` and `EngineSourceUnavailable` live in `orthography2ipa.exceptions` and are not re-exported at the top level. `slot_confidence` and `lattice_confidence` live in `orthography2ipa.phonetok` only.
+
+## Spec revisions
+
+`spec_revision(code)` names the rules that an engine for `code` reads. A consumer records the value when it trains, and compares it with the value of the engine that it runs later.
+
+The value is `"sha256:"` followed by a hex digest. It is a function of three inputs, in this order:
+
+1. The spec-format version, `orthography2ipa.revision.SPEC_FORMAT_VERSION`. The version is `1`.
+2. The spec files that the loader merges into the spec. These are the file of the resolved code, then every file on its `parent` chain and on each `<field>_base` chain, sorted by code. A clade with no `parent` key continues the chain through its first `parent`-role ancestor, because `LanguageSpec` takes its `parent` from there. Each file counts as its parsed JSON with sorted keys and no whitespace, tagged with its code. The other `ancestors` codes do not count, because the loader merges none of their data.
+3. The engine fingerprint. This is a sha256 over the tokens of the modules in `orthography2ipa.revision.ENGINE_MODULES`, the modules on the transcription path. Comments, blank lines and the width of an indent do not count. Statement ends, block edges and docstrings count, so a line that moves into or out of a block changes the value. The package version does not count, because a daily alpha changes it with no change to the engine.
+
+The code resolves as `G2P` resolves it, so an alias and its canonical code give one revision. The value is computed at the first call for a code in a process, and the process keeps it. The engine files are read at that first call. If the package files change on disk before it, the value describes the files on disk and not the code that the process runs. A whitespace-only edit of a spec leaves the revision equal. An edit to a spec that is not on the chains of `code` leaves it equal too.
+
+The engine fingerprint needs the `.py` source of each engine module. An install that ships only byte code still transcribes, but `spec_revision` raises `orthography2ipa.exceptions.EngineSourceUnavailable`, a `RuntimeError`.
+
+The spec-format version goes up when a spec field starts to mean something else. An example is an engine that reads an existing key in a new way. Every spec revision then changes, although no spec file changed. A new optional field does not need a new version, because only the specs that use it change.
+
+`lexicon_revision(code, patches=False)` names the packaged lexicon that `packaged_lexicon(code, patches)` reads. It is a sha256 over the `patches` flag, the bytes of the exceptions file and, with `patches=True`, the bytes of the patch file. The two values of the flag never give one revision. The function raises `LookupError` in the cases where `packaged_lexicon` raises it. A lexicon sits outside the spec, so a consumer that passes one to the engine records both revisions.
 
 ## Surfaces that leave the default output unchanged
 

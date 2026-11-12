@@ -90,7 +90,7 @@ comparison target is missing.
   strict never fires and a substitute accentuator's output would be
   published under udarnik's name. See ``udarnik_transcribe``.
 - **o2i-downstream family** (arbtok, tugaphone, g2p_barranquenho,
-  mwl_phonemizer, udarnik): TigreGotico repos built directly on this repo's own
+  mwl_phonemizer, udarnik): TigreGotico packages built directly on this repo's own
   ``orthography2ipa.G2P`` lattice, imported lazily and scored under the
   SAME lazy-import + n/a-degrade discipline as every optional system
   above. Because they share o2i's lattice, they ALSO share o2i's
@@ -1020,7 +1020,7 @@ def ghana_g2p_transcribe(word: str, lang: str) -> Optional[str]:
 # ─── o2i-downstream family (arbtok, tugaphone, g2p_barranquenho,
 #     mwl_phonemizer, udarnik) — lazy, optional ────────────────────────────────────────
 #
-# All five are TigreGotico repos built directly on this repo's own lattice
+# All five are TigreGotico packages built directly on this repo's own lattice
 # (orthography2ipa.G2P), so they are never a truly independent comparison
 # point against o2i-lineage gold — see the ``_O2I_SAME_SOURCE_DATASETS``
 # additions below for exactly which rows that applies to. They are wired in
@@ -3527,8 +3527,8 @@ def _leaderboard_summary(rows: List[dict]) -> List[str]:
 
 #: {system key: (repo name, one-line "what it adds over base o2i")} for
 #: the o2i-downstream family section below. Order is display order.
-#: Only a repo in ``_PUBLIC_FAMILY_REPOS`` gets a link; any other repo is
-#: named as plain text, so the page never links a private repository.
+#: Only a repo in ``_FAMILY_LINKS`` gets a link; any other repo is named
+#: as plain text, so the page never links a private repository.
 _O2I_FAMILY_REPOS: List[Tuple[str, str, str]] = [
     ("arbtok", "arbtok",
      "Arabic diacritization, dialect lexicons, nativized loanwords, and "
@@ -3561,17 +3561,22 @@ _O2I_FAMILY_REPOS: List[Tuple[str, str, str]] = [
 ]
 
 
-#: The family repos that are public on GitHub (``gh repo view
-#: TigreGotico/<repo> --json visibility``). udarnik is private.
-_PUBLIC_FAMILY_REPOS = frozenset(
-    {"arbtok", "tugaphone", "g2p_barranquenho", "mwl_phonemizer"})
+#: Where a reader finds each family engine. arbtok and tugaphone are public
+#: on GitHub (``gh repo view TigreGotico/<repo> --json visibility``).
+#: g2p_barranquenho and mwl_phonemizer link to PyPI, which holds the
+#: releases the board scores. udarnik has no public page, so it gets no link.
+_FAMILY_LINKS = {
+    "arbtok": "https://github.com/TigreGotico/arbtok",
+    "tugaphone": "https://github.com/TigreGotico/tugaphone",
+    "g2p_barranquenho": "https://pypi.org/project/g2p-barranquenho/",
+    "mwl_phonemizer": "https://pypi.org/project/mwl-phonemizer/",
+}
 
 
 def _family_repo_name(repo: str) -> str:
-    """*repo* as Markdown: a GitHub link when the repo is public, else text."""
-    if repo in _PUBLIC_FAMILY_REPOS:
-        return f"[{repo}](https://github.com/TigreGotico/{repo})"
-    return repo
+    """*repo* as Markdown: a link when the engine has a public page, else text."""
+    url = _FAMILY_LINKS.get(repo)
+    return f"[{repo}]({url})" if url else repo
 
 
 #: {row field: display name} for the family-version pin sentence below —

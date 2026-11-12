@@ -33,15 +33,15 @@ nodes. Run them for the live counts, or run `orthography2ipa list`.
 
 Downstream engines build on this library for one language each:
 [tugaphone](https://github.com/TigreGotico/tugaphone) for Portuguese,
-[arbtok](https://github.com/TigreGotico/arbtok) for Arabic,
-[euskaphone](https://github.com/TigreGotico/euskaphone) for Basque,
-[g2p_barranquenho](https://github.com/TigreGotico/g2p_barranquenho) for
-Barranquenho and [mwl_phonemizer](https://github.com/TigreGotico/mwl_phonemizer)
-for Mirandese. arbtok and tugaphone refine the shared lattice with a
-`LatticeRescorer` or replace one pipeline step with a plugin, and keep no
-tokenizer of their own. The [README](../README.md#ecosystem) lists the rest of the
+[arbtok](https://github.com/TigreGotico/arbtok) for Arabic
+and [euskaphone](https://github.com/TigreGotico/euskaphone) for Basque.
+arbtok and tugaphone refine the shared lattice with a `LatticeRescorer` or
+replace one pipeline step with a plugin, and keep no tokenizer of their own. The [README](../README.md#ecosystem) lists the rest of the
 ecosystem: lexicons, a syllabifier, script conversion, a TTS engine and the
 C++ ports.
+
+For Barranquenho, use `G2P("ext-PT-x-barranco")`. For Mirandese, use
+`G2P("mwl")`, `G2P("mwl-x-sendim")` or `G2P("mwl-x-ifanes")`.
 
 ## Honest limitations (read this before you trust a tier)
 

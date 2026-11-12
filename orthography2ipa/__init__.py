@@ -134,6 +134,7 @@ from orthography2ipa.stress import (
     syllabify_ipa,
 )
 from orthography2ipa.pipeline import Pipeline
+from orthography2ipa.revision import lexicon_revision, spec_revision
 from orthography2ipa.syllabifier_plugin import SyllabifierPlugin
 from orthography2ipa.script_distance import (
     SCRIPT_REGISTRY,
@@ -173,6 +174,8 @@ __all__ = [
     "load_lexicon",
     "packaged_lexicon",
     "packaged_lexicon_sources",
+    "spec_revision",
+    "lexicon_revision",
     "is_ipa_string",
     "validate_lexicon_text",
     "WordContext",
