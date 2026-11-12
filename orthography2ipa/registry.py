@@ -617,7 +617,13 @@ def _discover_rescorer_plugins() -> Dict[str, List["RescorerPlugin"]]:
 
 
 def get_rescorers(code: str) -> List["LatticeRescorer"]:
-    """The rescorers every registered plugin contributes for *code*, in order."""
+    """Deprecated: the rescorers every registered plugin contributes for *code*, in order.
+
+    ``G2P`` does not run them. Pass rescorers in ``Pipeline(rescore=...)``.
+    """
+    from orthography2ipa.lexicon import _warn_deprecated
+
+    _warn_deprecated("get_rescorers", "Pipeline(rescore=...)")
     global _rescorer_plugins
     if _rescorer_plugins is None:
         _rescorer_plugins = _discover_rescorer_plugins()
@@ -629,14 +635,17 @@ def get_rescorers(code: str) -> List["LatticeRescorer"]:
 
 
 def who_answers(code: str) -> Dict[str, object]:
-    """Who is answering for *code*, and from where.
+    """Deprecated: who is answering for *code*, and from where.
 
-    The first question anyone debugging a plugin asks, given an API. A
-    transcription that depends on what is installed should at least be able to say
-    what is installed. ``syllabify`` is always ``"built-in"``: discovery finds no
-    syllabifier, and one that a caller passes lives in that engine's
-    :class:`~orthography2ipa.pipeline.Pipeline`.
+    It reports the installed rescorer plugins, which ``G2P`` does not run.
+    ``syllabify`` is always ``"built-in"``: discovery finds no syllabifier, and
+    one that a caller passes lives in that engine's
+    :class:`~orthography2ipa.pipeline.Pipeline`. Read ``G2P.pipeline`` for the
+    steps of one engine.
     """
+    from orthography2ipa.lexicon import _warn_deprecated
+
+    _warn_deprecated("who_answers", "G2P.pipeline")
     resolved = _resolve_code(code)
     global _rescorer_plugins
     if _rescorer_plugins is None:
@@ -675,7 +684,14 @@ def _discover_stress_plugins() -> Dict[str, "StressPlugin"]:
 
 
 def get_stress_plugin(code: str) -> Optional["StressPlugin"]:
-    """The stress plugin registered for *code*, if any."""
+    """Deprecated: the stress plugin registered for *code*, if any."""
+    from orthography2ipa.lexicon import _warn_deprecated
+
+    _warn_deprecated("get_stress_plugin", "the stress rules of the spec")
+    return _get_stress_plugin(code)
+
+
+def _get_stress_plugin(code: str) -> Optional["StressPlugin"]:
     global _stress_plugins
     if _stress_plugins is None:
         _stress_plugins = _discover_stress_plugins()
@@ -718,10 +734,10 @@ def _discover_stage(stage: str) -> Dict[str, object]:
     declaration readable and greppable — and it means two packages cannot fight
     over a language, because the spec already said which one it wanted.
     """
-    from orthography2ipa.plugins import ENTRY_POINT_GROUPS
+    from orthography2ipa.plugins import _ENTRY_POINT_GROUPS
 
     found: Dict[str, object] = {}
-    for ep in entry_points(group=ENTRY_POINT_GROUPS[stage]):
+    for ep in entry_points(group=_ENTRY_POINT_GROUPS[stage]):
         try:
             found[ep.name] = ep.load()()
         except Exception as exc:
@@ -731,11 +747,18 @@ def _discover_stage(stage: str) -> Dict[str, object]:
 
 
 def get_declared_plugins(stage: str, spec) -> List[object]:
-    """The plugins *spec* names for *stage*, in the order it names them.
+    """Deprecated: the plugins *spec* names for *stage*, in the order it names them.
 
     Raises :class:`MissingPlugin` for a name the spec asks for and nothing
     provides.
     """
+    from orthography2ipa.lexicon import _warn_deprecated
+
+    _warn_deprecated("get_declared_plugins", "the Pipeline field of each stage")
+    return _get_declared_plugins(stage, spec)
+
+
+def _get_declared_plugins(stage: str, spec) -> List[object]:
     names = (spec.plugins or {}).get(stage, ())
     if not names:
         return []

@@ -99,22 +99,23 @@ class _Invents(LatticeRescorer):
         return slot.candidates
 
 
-class _LegalPhonology(RescorerPlugin):
-    def rescorers(self, lang):
-        return [_Backs_a()]
+# RescorerPlugin is deprecated, and a subclass still works.
+with pytest.deprecated_call():
+    class _LegalPhonology(RescorerPlugin):
+        def rescorers(self, lang):
+            return [_Backs_a()]
 
-    @property
-    def language_codes(self):
-        return ["pt-PT"]
+        @property
+        def language_codes(self):
+            return ["pt-PT"]
 
+    class _InventsASymbol(RescorerPlugin):
+        def rescorers(self, lang):
+            return [_Invents()]
 
-class _InventsASymbol(RescorerPlugin):
-    def rescorers(self, lang):
-        return [_Invents()]
-
-    @property
-    def language_codes(self):
-        return ["pt-PT"]
+        @property
+        def language_codes(self):
+            return ["pt-PT"]
 
 
 def test_a_rescorer_MAY_change_the_transcription():
@@ -130,7 +131,8 @@ def test_a_rescorer_that_invents_a_symbol_is_caught():
 
 def test_who_answers_says_who_is_answering():
     """The first question anyone debugging a plugin asks, given an API."""
-    answer = who_answers("pt-PT")
+    with pytest.deprecated_call(match="who_answers"):
+        answer = who_answers("pt-PT")
     assert answer["syllabify"] == "built-in"
     assert "rescore" in answer
     assert answer["code"] == "pt-PT"

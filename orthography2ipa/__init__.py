@@ -24,6 +24,8 @@ Quick start::
     >>> pt.graphemes["lh"]
     ['ʎ']
 """
+from importlib import import_module
+
 from orthography2ipa.distance import (
     GraphemeDivergence,
     SpellingDivergence,
@@ -51,6 +53,7 @@ from orthography2ipa.g2p import (
     transcribe,
 )
 from orthography2ipa.features import GraphemeFeatures, WordFeatures
+from orthography2ipa.lexicon import _warn_deprecated
 from orthography2ipa.lexicon import (
     available_lexicon_codes,
     clear_lexicons,
@@ -110,9 +113,7 @@ from orthography2ipa.transforms import (
     load_clup_profile,
 )
 from orthography2ipa.registry import get_rescorers, who_answers
-from orthography2ipa.rescorer_plugin import RescorerPlugin
-from orthography2ipa.stress_plugin import StressPlugin
-from orthography2ipa.plugins import NormalizePlugin, SandhiPlugin, STAGES
+from orthography2ipa.plugins import SandhiPlugin
 from orthography2ipa.registry import MissingPlugin, UnknownVariantWarning
 from orthography2ipa.registry import get_stress_plugin
 from orthography2ipa.inventory import (
@@ -264,3 +265,21 @@ __all__ = [
 ]
 from orthography2ipa.version import VERSION_STR
 __version__ = VERSION_STR
+
+#: Deprecated names: the submodule and attribute that hold each one, and what
+#: replaces it.
+_DEPRECATED = {
+    "NormalizePlugin": ("plugins", "NormalizePlugin",
+                        "Pipeline(expand=...) or Pipeline(mark=...)"),
+    "RescorerPlugin": ("rescorer_plugin", "RescorerPlugin", "Pipeline(rescore=...)"),
+    "StressPlugin": ("stress_plugin", "StressPlugin", "the stress rules of the spec"),
+    "STAGES": ("plugins", "_STAGES", "the fields of Pipeline"),
+}
+
+
+def __getattr__(name: str):
+    if name not in _DEPRECATED:
+        raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
+    module, attribute, replacement = _DEPRECATED[name]
+    _warn_deprecated(name, replacement)
+    return getattr(import_module(f"orthography2ipa.{module}"), attribute)

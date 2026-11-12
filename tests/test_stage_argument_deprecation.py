@@ -37,11 +37,13 @@ class KeepWords(SandhiPlugin):
         return list(words)
 
 
-class KeepSlots(RescorerPlugin):
-    language_codes = ["pt-PT"]
+# RescorerPlugin is deprecated, and a subclass still works.
+with pytest.deprecated_call():
+    class KeepSlots(RescorerPlugin):
+        language_codes = ["pt-PT"]
 
-    def rescorers(self, lang):
-        return [KeepSlot()]
+        def rescorers(self, lang):
+            return [KeepSlot()]
 
 
 def removal_version() -> str:

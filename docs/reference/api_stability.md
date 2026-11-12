@@ -25,7 +25,6 @@ A name imported from a submodule and also re-exported at the top level is one na
 | `resolve` | `registry` | arbtok, euskaphone, g2p_barranquenho, tugaphone |
 | `resolves_exactly` | `registry` | arbtok, tugaphone |
 | `available_codes` | `registry` | arbtok, euskaphone, tugaphone |
-| `who_answers` | `registry` | tugaphone |
 | `register_lexicon`, `clear_lexicons` | `lexicon` | arbtok, euskaphone, tugaphone |
 | `validate_lexicon_text` | `lexicon` | arbtok, euskaphone |
 | `get_lexicon`, `available_lexicon_codes` | `lexicon` | euskaphone |
@@ -33,8 +32,7 @@ A name imported from a submodule and also re-exported at the top level is one na
 | `PhonetokTokenizer`, `TokenKind` | `phonetok` | arbtok, tugaphone |
 | `Candidate`, `SegmentSlot` | `phonetok` | arbtok |
 | `LatticeRescorer`, `RescoreContext` | `rescorer` | arbtok |
-| `RescorerPlugin` | `rescorer_plugin` | arbtok |
-| `NormalizePlugin`, `SandhiPlugin` | `plugins` | arbtok |
+| `SandhiPlugin` | `plugins` | arbtok |
 | `compile_allophone_rescorer` | `allophony` | arbtok |
 | `segment_distance` | `distance` | arbtok |
 | `phoneme_inventory`, `tokenize` | `inventory` | arbtok |
@@ -69,12 +67,11 @@ These names are public and importable, but no downstream repository uses them. T
 | Module | Names |
 | :--- | :--- |
 | `g2p` | `transcribe`, `TranscriptionResult`, `WordTranscription`, `ConfidenceBreakdown` |
-| `registry` | `ancestry_chain`, `available_families`, `get_rescorers`, `get_stress_plugin`, `get_syllabifier`, `MissingPlugin`, `UnknownVariantWarning` |
+| `registry` | `ancestry_chain`, `available_families`, `get_syllabifier`, `MissingPlugin`, `UnknownVariantWarning` |
 | `lexicon` | `load_lexicon`, `set_lexicon_dir`, `resolve_lexicon_source`, `use_packaged_lexicons`, `packaged_lexicon_sources`, `is_ipa_string` |
 | `types` | `Grapheme2IPA`, `AllophoneMap`, `PositionalGrapheme2IPA`, `Ancestor`, `AncestorRole`, `QualityTier`, `ScriptType`, `OrthographyKind`, `OrthographyStandard`, `Location`, `SandhiRule`, `AllophoneRule`, `StressRules` |
 | `phonetok` | `Token`, `IPAPath`, `GraphemeContext`, `TokenSequence` |
 | `allophony`, `sandhi` | `AllophoneRescorer`, `SandhiEngine` |
-| `stress_plugin`, `plugins` | `StressPlugin`, `STAGES` |
 | `inventory` | `emission_inventory`, `dead_allophone_rules`, `STRESS_MARKS` |
 | `distance` | `inventory_distance`, `grapheme_divergence`, `spelling_divergence`, `allophone_overlap`, `phonological_distance`, `ancestry_similarity`, `geographic_distance`, `full_distance`, `pairwise_distances`, `feature_vector`, `InventoryDistance`, `GraphemeDivergence`, `SpellingDivergence`, `PhonologicalDistance` |
 | `script_distance` | `ScriptFeatures`, `SCRIPT_REGISTRY`, `script_distance`, `script_distance_by_name` |
@@ -82,6 +79,23 @@ These names are public and importable, but no downstream repository uses them. T
 | `sentence`, `features` | `SentenceLattice`, `SentenceRescorer`, `SentenceRescoreContext`, `WordSlot`, `Position`, `WordFeatures`, `GraphemeFeatures`: covered by the commitment, see below |
 
 The exception types `UnmappedScriptError`, `UnmappedGraphemeWarning` and `StubSpecWarning` live in `orthography2ipa.exceptions` and are not re-exported at the top level. `slot_confidence` and `lattice_confidence` live in `orthography2ipa.phonetok` only.
+
+## Deprecated names
+
+These names served plugin discovery by entry point. A caller passes each step to one engine in a `Pipeline` field, so they go in the next major release. Until then they keep working, and the commitment covers them. Each one raises a `DeprecationWarning` that names the release that removes it and the name to use. A function warns when a caller calls it, and a constant warns when a caller reads it. A class warns when a caller reads it from `orthography2ipa`, and when a subclass of it is defined.
+
+| Name | Module | Use in its place | Used by |
+| :--- | :--- | :--- | :--- |
+| `who_answers` | `registry` | `G2P.pipeline` | arbtok (tests) |
+| `get_rescorers` | `registry` | `Pipeline(rescore=...)` | None |
+| `get_stress_plugin` | `registry` | The stress rules of the spec | None |
+| `get_declared_plugins` | `registry` | The `Pipeline` field of each stage | None |
+| `NormalizePlugin` | `plugins` | `Pipeline(expand=...)` or `Pipeline(mark=...)` | arbtok (tests) |
+| `RescorerPlugin` | `rescorer_plugin` | `Pipeline(rescore=...)` | arbtok (tests) |
+| `StressPlugin` | `stress_plugin` | The stress rules of the spec | None |
+| `STAGES`, `OUTPUT_CHANGING_STAGES`, `ENTRY_POINT_GROUPS` | `plugins` | The fields of `Pipeline` | None |
+
+`SyllabifierPlugin` and `SandhiPlugin` stay, because `Pipeline.syllabifier` and `Pipeline.sandhi` take them. Their `language_codes` property defaults to an empty list, and the engine does not read it.
 
 ## Surfaces that leave the default output unchanged
 

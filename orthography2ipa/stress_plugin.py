@@ -51,14 +51,23 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from typing import List, Optional, Sequence
 
+from orthography2ipa.lexicon import _warn_deprecated
+
 __all__ = ["StressPlugin"]
 
 
 class StressPlugin(ABC):
-    """Decides which syllable carries primary stress, for the languages it claims.
+    """Deprecated: decides which syllable carries primary stress, for the languages it claims.
 
     Only consulted when the spec asks for it (``StressRules.source == "plugin"``).
+    A subclass warns when it is defined. The stress rules of the spec place the
+    stress.
     """
+
+    def __init_subclass__(cls, **kwargs) -> None:
+        super().__init_subclass__(**kwargs)
+        # The frames are this method, ABCMeta.__new__ and the class statement.
+        _warn_deprecated("StressPlugin", "the stress rules of the spec", stacklevel=4)
 
     @abstractmethod
     def stressed_index(
