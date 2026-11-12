@@ -47,6 +47,11 @@ A plugin author runs this in their own CI, against their own plugin::
         assert_syllabifier_conforms(MySyllabifier())
 
 It will tell them, in words, which rule they broke and what it means.
+
+Both checks are deprecated, and go in the next major release. Each one raises a
+``DeprecationWarning`` that names that release. A caller passes a syllabifier or a
+rescorer to one engine in a :class:`~orthography2ipa.pipeline.Pipeline`, so the
+caller sees the effect in its own output.
 """
 
 from __future__ import annotations
@@ -54,6 +59,7 @@ from __future__ import annotations
 from typing import List, Optional, Sequence
 
 from orthography2ipa.g2p import G2P
+from orthography2ipa.lexicon import _warn_deprecated
 from orthography2ipa.pipeline import Pipeline
 from orthography2ipa.syllabifier_plugin import SyllabifierPlugin
 
@@ -141,7 +147,10 @@ def assert_syllabifier_conforms(
     words: Optional[Sequence[str]] = None,
     lang: Optional[str] = None,
 ) -> None:
-    """Assert *plugin* keeps the syllabifier contract, or explain what it broke.
+    """Deprecated: assert *plugin* keeps the syllabifier contract, or explain what it broke.
+
+    It goes in the next major release. A caller passes a syllabifier to one
+    engine, so the caller decides whether a moved transcription is wanted.
 
     Args:
         plugin: the syllabifier to check.
@@ -150,6 +159,8 @@ def assert_syllabifier_conforms(
             diphthongs, written accents.
         lang: the code to transcribe under. Defaults to the plugin's first claim.
     """
+    _warn_deprecated("assert_syllabifier_conforms",
+                     "a test of your own that compares G2P(lang) with G2P(lang, pipeline=Pipeline(syllabifier=...))")
     words = list(words or DEFAULT_PROBE_WORDS)
     lang = lang or next(iter(plugin.language_codes), None)
     if lang is None:
@@ -180,11 +191,14 @@ def assert_rescorer_conforms(
     words: Optional[Sequence[str]] = None,
     lang: Optional[str] = None,
 ) -> None:
-    """Assert a rescorer plugin keeps its contract.
+    """Deprecated: assert a rescorer plugin keeps its contract.
 
     It MAY change the transcription — that is what it is for. It may not invent a
-    symbol, wander into another language, or answer differently twice.
+    symbol, wander into another language, or answer differently twice. It goes in
+    the next major release, together with ``RescorerPlugin``.
     """
+    _warn_deprecated("assert_rescorer_conforms",
+                     "a test of your own over G2P(lang, pipeline=Pipeline(rescore=...)) and phoneme_inventory(spec)")
     from orthography2ipa import get
     from orthography2ipa.inventory import phoneme_inventory, tokenize
 

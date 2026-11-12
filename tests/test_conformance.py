@@ -1,6 +1,10 @@
 """The conformance kit: what a plugin may change, and what it may not."""
 import pytest
 
+# The kit is deprecated, and it still runs.
+pytestmark = pytest.mark.filterwarnings(
+    r"ignore:assert_\w+_conforms is deprecated:DeprecationWarning")
+
 from orthography2ipa.conformance import (
     ConformanceError, assert_syllabifier_conforms,
 )

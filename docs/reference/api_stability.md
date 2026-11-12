@@ -62,6 +62,8 @@ Downstream code also imports these public names straight from their submodules. 
 
 One downstream import reaches a private name: `phonetok._expand_arabic_gemination` in arbtok. A private name has no guarantee, and it can change in any release.
 
+`assert_syllabifier_conforms` and `assert_rescorer_conforms` in `orthography2ipa.conformance` are deprecated. No downstream repository calls them. They go in the next major release, and until then each call raises a `DeprecationWarning` that names that release. A caller tests a step in its own suite: it compares `G2P(lang)` with `G2P(lang, pipeline=Pipeline(...))`, and for a rescorer it checks the output against `phoneme_inventory(spec)`.
+
 ## Other names in `__all__`
 
 These names are public and importable, but no downstream repository uses them. They can change more freely. Treat a dependency on them from outside this repository as unsupported until a consumer joins the inventory above.
