@@ -39,19 +39,15 @@ def _arbtok(word: str) -> object:
 
 def _tugaphone(word: str) -> object:
     import tugaphone
+    from orthography2ipa import G2P
 
     output = tugaphone.phonemize(word)
-    # tugaphone.pipeline is the engine contract tugaphone builds on. Releases
-    # before it exist on PyPI, so only the public phonemize path is required.
-    if hasattr(tugaphone, "pipeline"):
-        from orthography2ipa import G2P
-
-        engine_output = G2P("pt-PT", pipeline=tugaphone.pipeline("pt-PT")).transcribe(word)
-        if engine_output != output:
-            raise SystemExit(
-                f"tugaphone: G2P on tugaphone.pipeline gives {engine_output!r}, "
-                f"phonemize gives {output!r}"
-            )
+    engine_output = G2P("pt-PT", pipeline=tugaphone.pipeline("pt-PT")).transcribe(word)
+    if engine_output != output:
+        raise SystemExit(
+            f"tugaphone: G2P on tugaphone.pipeline gives {engine_output!r}, "
+            f"phonemize gives {output!r}"
+        )
     return output
 
 
