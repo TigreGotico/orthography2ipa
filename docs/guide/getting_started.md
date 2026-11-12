@@ -248,7 +248,7 @@ A `SentenceRescorer` runs before the `sandhi_rules` of the spec, and `Pipeline(s
 
 ## Installing and writing a plugin
 
-A plugin takes over one stage of the pipeline for the languages that it claims. [architecture.md](../engine/architecture.md#pluggable-steps) lists the stages and their base classes. An install of a package changes no transcription, because the spec or the caller must name each plugin. The `portuguese` extra installs `silabificador`:
+A plugin is an object that does one step of the pipeline. A caller passes it to one engine in a `Pipeline` field. [architecture.md](../engine/architecture.md#pluggable-steps) lists the steps and their fields. An install of a package changes no transcription. The `portuguese` extra installs `silabificador`:
 
 ```bash
 uv pip install --prerelease=allow 'orthography2ipa[portuguese]'
@@ -276,7 +276,7 @@ G2P("pt-PT").pipeline == Pipeline()     # True: no step, the rules alone
 
 To write a plugin, do these steps:
 
-1. Subclass the base class of the stage. Set `language_codes`. For a stage other than `syllabify`, set `priority` if another plugin claims the same codes.
+1. Write the step. A syllabifier subclasses `SyllabifierPlugin`, and a sandhi step subclasses `SandhiPlugin`. A rescorer is a `LatticeRescorer`, and a text step is a function from text to text. The engine reads no `language_codes` and no `priority`.
 2. Test the class in your own suite. Compare `G2P(lang)` with `G2P(lang, pipeline=Pipeline(...))` over words of your language, and check that a syllabifier joins back to the word. The contract checks `assert_syllabifier_conforms` and `assert_rescorer_conforms` in `orthography2ipa.conformance` are deprecated, and go in the next major release. Each call raises a `DeprecationWarning`.
 3. For a syllabifier, pass an instance in `Pipeline(syllabifier=...)`. This stage has no entry point.
 4. For a rescorer, pass the `LatticeRescorer` objects in `Pipeline(rescore=...)`. For a sandhi plugin, pass the instance in `Pipeline(sandhi=...)`. A text step for `Pipeline(expand=...)` or `Pipeline(mark=...)` is a function from text to text.
