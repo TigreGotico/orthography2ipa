@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.122.26a7](https://github.com/TigreGotico/orthography2ipa/tree/7.122.26a7) (2026-11-12)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.122.26a6...7.122.26a7)
+
+**Merged pull requests:**
+
+- chore: smoke tugaphone without tugaphone.plugin [\#2289](https://github.com/TigreGotico/orthography2ipa/pull/2289) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.122.26a6](https://github.com/TigreGotico/orthography2ipa/tree/7.122.26a6) (2026-11-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.122.26a5...7.122.26a6)
