@@ -30,8 +30,10 @@ from orthography2ipa import lexicon as lexmod
 GROUP = "orthography2ipa.lexicons"
 PATCH_GROUP = "orthography2ipa.lexicon_patches"
 
-# Modules that a transcription imports but that are not on its path. Each
-# entry says why it stays out of revision.ENGINE_MODULES.
+# Modules that ``import orthography2ipa`` loads but that are not on the
+# transcription path. The runtime guard needs this list, because the package
+# imports these for tools. Each entry says why it stays out of
+# revision.ENGINE_MODULES.
 NOT_ENGINE = {
     "distance": "distance metrics between languages; the package imports it, "
                 "transcription never calls it",
@@ -40,6 +42,11 @@ NOT_ENGINE = {
     "revision": "computes the revisions themselves",
     "version": "the release number; an alpha bumps it with no engine change",
 }
+
+# The only module outside revision.ENGINE_MODULES that an engine module may
+# import. lexicon.py and registry.py read VERSION_MAJOR only to write a removal
+# version into a deprecation message, and an alpha bumps it every day.
+ENGINE_MAY_IMPORT = {"version"}
 
 # One spec per script family that reaches different engine code.
 TRANSCRIPTIONS = [
@@ -358,11 +365,38 @@ def import_closure(read) -> set:
     return seen
 
 
+def unlisted_engine_imports(read) -> set:
+    """The modules that the engine reaches and the fingerprint does not hash.
+
+    NOT_ENGINE does not count here. A module that the package imports for tools
+    is on the transcription path as soon as an engine module imports it.
+    """
+    return import_closure(read) - set(revision.ENGINE_MODULES) - ENGINE_MAY_IMPORT
+
+
 def test_every_module_the_engine_imports_is_listed():
     """A static walk reaches imports that no test sentence runs, such as one behind a spec flag."""
-    unlisted = import_closure(lambda name: revision._module_source(name).decode()) - set(
-        revision.ENGINE_MODULES) - set(NOT_ENGINE)
-    assert not unlisted, f"add to revision.ENGINE_MODULES or NOT_ENGINE: {sorted(unlisted)}"
+    unlisted = unlisted_engine_imports(lambda name: revision._module_source(name).decode())
+    assert not unlisted, f"add to revision.ENGINE_MODULES: {sorted(unlisted)}"
+
+
+def test_an_engine_import_of_a_tool_module_is_unlisted():
+    """``distance`` is in NOT_ENGINE, and an engine import of it still fails the guard."""
+    real = revision._module_source("g2p").decode()
+    anchor = "\nclass G2P:"
+    assert real.count(anchor) == 1
+    planted = real.replace(anchor, (
+        "\ndef _planted(ipa):\n"
+        "    from orthography2ipa.distance import segment_distance\n"
+        "    return segment_distance(ipa[0], ipa[0])\n" + anchor), 1)
+
+    def read(name):
+        return planted if name == "g2p" else revision._module_source(name).decode()
+
+    assert "distance" in NOT_ENGINE
+    assert "distance" in unlisted_engine_imports(read)
+    assert "distance" not in unlisted_engine_imports(
+        lambda name: revision._module_source(name).decode())
 
 
 def test_the_static_walk_finds_an_import_behind_a_spec_flag():
