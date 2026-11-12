@@ -3563,8 +3563,8 @@ _O2I_FAMILY_REPOS: List[Tuple[str, str, str]] = [
 
 #: Where a reader finds each family engine. arbtok and tugaphone are public
 #: on GitHub (``gh repo view TigreGotico/<repo> --json visibility``).
-#: g2p_barranquenho and mwl_phonemizer have no public repository, so they
-#: link to PyPI. udarnik has neither, so it gets no link.
+#: g2p_barranquenho and mwl_phonemizer link to PyPI, which holds the
+#: releases the board scores. udarnik has no public page, so it gets no link.
 _FAMILY_LINKS = {
     "arbtok": "https://github.com/TigreGotico/arbtok",
     "tugaphone": "https://github.com/TigreGotico/tugaphone",
