@@ -1047,8 +1047,9 @@ _PAUSE_CLASS = "".join(re.escape(c) for c in sorted(PAUSE_PUNCTUATION))
 
 # Broad punctuation set covering Latin, CJK, and typographic marks.
 #: The apostrophe marks (U+0027, U+2019) that spell an elision or a
-#: contraction inside a written word. They are not segments, so a lookahead
-#: that asks which letter follows a grapheme steps over one.
+#: contraction inside a written word. In a spec with
+#: ``word_internal_apostrophe`` they are not segments, so a lookahead that
+#: asks which letter follows a grapheme steps over one.
 _ELISION_APOSTROPHES = frozenset("'\u2019")
 
 _PUNCT_RE = re.compile(
@@ -1338,6 +1339,13 @@ class PhonetokTokenizer:
         self._hiatus_by_word: Dict[str, FrozenSet[int]] = {}
         self._prevocalic_glide_backoff: FrozenSet[str] = frozenset(
             g.lower() for g in spec.prevocalic_glide_backoff)
+        # The apostrophes the vowel gate steps over: only in a spec whose
+        # words keep an apostrophe inside them, and never one that the spec
+        # spells a sound with (a glottal stop, an ejective).
+        self._elision_apostrophes: FrozenSet[str] = frozenset(
+            mark for mark in _ELISION_APOSTROPHES
+            if spec.word_internal_apostrophe
+            and not any(mark in key for key in self._grapheme_ipa))
 
     def _hiatus_prefix(self, text: str, pos: int, gkey: str) -> str:
         """*gkey*, cut before a letter that opens a nucleus of its own.
@@ -2061,7 +2069,7 @@ class PhonetokTokenizer:
                     # An apostrophe between two letters is no segment: the
                     # letter after it is the one that follows the digraph
                     # (⟨qu'il⟩ is ⟨qu⟩ before ⟨i⟩, not before a boundary).
-                    if (next_ch in _ELISION_APOSTROPHES and after + 1 < n
+                    if (next_ch in self._elision_apostrophes and after + 1 < n
                             and text[after + 1].isalpha()):
                         next_ch = text[after + 1]
                     nlow = _lower(next_ch, self.spec.code) if next_ch else ""

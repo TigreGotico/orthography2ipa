@@ -16,9 +16,13 @@ Sources, all opened:
 * PFC, *Le français expliqué: Prononciation, I. Le système vocalique*, d)
   Variation: pâte ~ patte by length at Neuchâtel and Tournai, by timbre at
   Nyon, merged at Abidjan; faites ~ fête and belle ~ bêle by length at
-  Neuchâtel; brin ~ brun kept at Tournai, Nyon and Abidjan.
+  Neuchâtel; brin ~ brun kept at Tournai, Nyon and Abidjan. For the length
+  points the page says "la distinction entre les deux voyelles est substituée
+  par une différence de longueur", and it lists Tournai under "rat = ras":
+  one timbre, so the long vowel is [aː].
 """
 import json
+import string
 import warnings
 from pathlib import Path
 
@@ -31,6 +35,13 @@ TEXTS = json.loads(Path(__file__).with_name("data").joinpath(
 
 STANDARD_OTHERS = ["fr", "fr-FR", "fr-LU", "fr-MC", "fr-SN", "fr-CD", "fr-CM",
                    "fr-MA", "fr-HT"]
+
+# French locales of CLDR, macro-regions of UN M49 and countries where French
+# is not official: none has a spec, so none may reach a sibling variant.
+UNLISTED_REGIONS = ["fr-BL", "fr-MF", "fr-GQ", "fr-SY", "fr-001", "fr-150",
+                    "fr-155", "fr-029", "fr-US", "fr-AD", "fr-ES", "fr-IT",
+                    "fr-DE"]
+VARIANT_REGIONS = {"FR", "CA", "BE", "CH", "CI"}
 
 
 def _say(text, tag):
@@ -97,8 +108,8 @@ def test_quebec_keeps_the_a_and_open_a_contrast():
 # --- fr-BE, fr-CH, fr-CI ------------------------------------------------
 
 @pytest.mark.parametrize("tag, expected", [
-    ("fr-BE", "pɑːt"),             # length at Tournai (PFC)
-    ("fr-CH", "pɑːt"),             # length at Neuchâtel (PFC)
+    ("fr-BE", "paːt"),             # Tournai: rat = ras, pâte by length (PFC)
+    ("fr-CH", "paːt"),             # Neuchâtel: pâte by length (PFC)
     ("fr-CI", "pat"),              # patte = pâte at Abidjan (PFC)
     ("fr-FR", "pɑt"),
 ])
@@ -133,6 +144,22 @@ def test_every_variant_keeps_brin_and_brun_apart(tag):
 @pytest.mark.parametrize("tag", STANDARD_OTHERS)
 def test_a_region_without_a_sourced_difference_reads_fr_fr(tag):
     assert o2i.resolve(tag) == "fr-FR"
+
+
+@pytest.mark.parametrize("tag", UNLISTED_REGIONS)
+def test_an_unlisted_french_region_reads_fr_fr(tag):
+    assert o2i.resolve(tag) == "fr-FR"
+    assert _say("pâte", tag) == "pɑt"
+
+
+def test_every_two_letter_region_without_a_spec_reads_fr_fr():
+    regions = [a + b for a in string.ascii_uppercase
+               for b in string.ascii_uppercase]
+    elsewhere = {f"fr-{r}": o2i.resolve(f"fr-{r}") for r in regions
+                 if r not in VARIANT_REGIONS}
+    assert len(elsewhere) == 26 * 26 - len(VARIANT_REGIONS)
+    assert {tag: code for tag, code in elsewhere.items()
+            if code != "fr-FR"} == {}
 
 
 @pytest.mark.parametrize("tag", ["fr-CA", "fr-BE", "fr-CH", "fr-CI"])

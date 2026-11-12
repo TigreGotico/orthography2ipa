@@ -1913,6 +1913,7 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "doubled_letters_geminate": InheritanceMode.OWN_ONLY,
     "constrain_onsets": InheritanceMode.BASE_SCALAR,
     "word_internal_apostrophe": InheritanceMode.BASE_SCALAR,
+    "apostrophe_elision": InheritanceMode.BASE_SCALAR,
     "phonemes": InheritanceMode.OWN_ONLY,
     "orthography_kind": InheritanceMode.OWN_ONLY,
     "iso639_3": InheritanceMode.OWN_ONLY,
@@ -2194,10 +2195,30 @@ class LanguageSpec:
     ``l'homme`` is [lɔm], one phonological word, and the clitic's consonant is
     not word-final. Off by default: in an orthography where the mark is a
     boundary that the spec does not model as part of one word (German
-    ``geht's``, Dutch ``zo'n``) it separates two words. A grapheme that
-    the vowel gate reads (a consonant plus ⟨u⟩ or ⟨i⟩) sees the letter after
-    an apostrophe inside the word as the one that follows it, whatever this
-    field says. An apostrophe at either edge of a token is unaffected.
+    ``geht's``, Dutch ``zo'n``) it separates two words. When it is on, a
+    grapheme that the vowel gate reads (a consonant plus ⟨u⟩ or ⟨i⟩) sees the
+    letter after an apostrophe inside the word as the one that follows it,
+    unless the spec spells a sound with that apostrophe. An apostrophe at
+    either edge of a token is unaffected.
+
+    It is inherited along the ``graphemes_base`` edge
+    (:attr:`InheritanceMode.BASE_SCALAR`), like :attr:`constrain_onsets`.
+    """
+
+    apostrophe_elision: bool = False
+    """Whether an apostrophe inside a word ends an elided clitic.
+
+    Elision deletes the final vowel of a clitic before a vowel-initial word,
+    and the orthography writes an apostrophe in its place: French ``l'hiver``,
+    Italian ``dell'uomo``, Portuguese ``d'Os``. When it is on, a word with no
+    whole-word entry of its own takes its host's ``word_exceptions`` or
+    lexicon entry with the clitic's reading in front, and it is a prosodic
+    clitic when its host is one (``d'Os`` reads as ``dos``). An apostrophe
+    counts only with a consonant grapheme before it and a vowel letter or
+    ⟨h⟩ after it. Off by default: English keeps the apostrophe inside a word
+    for contractions and possessives, and ``Chang'an`` or ``Lord's`` holds no
+    elided clitic. It needs :attr:`word_internal_apostrophe`, which keeps the
+    clitic and its host in one word.
 
     It is inherited along the ``graphemes_base`` edge
     (:attr:`InheritanceMode.BASE_SCALAR`), like :attr:`constrain_onsets`.

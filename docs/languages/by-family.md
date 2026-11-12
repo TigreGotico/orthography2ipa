@@ -88,7 +88,7 @@ A stub has a name, a code and a place in the family tree, but no phonology yet. 
 | [Huavean](#huavean) | 4 |
 | [Huitotoan](#huitotoan) | 5 |
 | [Ijoid](#ijoid) | 10 |
-| [Indo-European](#indo-european) | 745 |
+| [Indo-European](#indo-european) | 744 |
 | [Iroquoian](#iroquoian) | 9 |
 | [Isolate](#isolate) | 113 |
 | [Iwaidjan Proper](#iwaidjan-proper) | 3 |
@@ -1577,7 +1577,6 @@ Stubs (1): Istro-Romanian `ruo`.
 | [Swiss French (Romandy)](https://tigregotico.github.io/orthography2ipa/#fr-CH) | `fr-CH` | skeleton | Latin |
 | [Ivorian French](https://tigregotico.github.io/orthography2ipa/#fr-CI) | `fr-CI` | skeleton | Latin |
 | [French](fr-FR.md) (page) | `fr-FR` | research | Latin |
-| [French with a final-syllable stress mark](https://tigregotico.github.io/orthography2ipa/#fr-FR-x-stress) | `fr-FR-x-stress` | skeleton | Latin |
 | [Franco-Provençal (Arpitan)](frp.md) (page) | `frp` | research | Latin |
 | [Ladin](lld.md) (page) | `lld` | research | Latin |
 | [Norman](nrf.md) (page) | `nrf` | research | Latin |

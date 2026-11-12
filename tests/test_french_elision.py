@@ -12,12 +12,31 @@ The expected IPA below is written in the test, never read back from the
 engine. The cases where only the clitic is pinned (``n'est``, ``c'est``) leave
 the reading of the host ⟨est⟩ out: this spec does not make that claim.
 """
+import json
 import warnings
+from pathlib import Path
 
 import pytest
 
 import orthography2ipa as o2i
+from orthography2ipa import G2P, Pipeline
 from orthography2ipa.exceptions import UnmappedGraphemeWarning
+
+#: The fr-FR whole-word entries, read from the spec file and not through the
+#: engine.
+FR_EXCEPTIONS = json.loads(
+    (Path(o2i.__file__).parent / "data" / "fr-FR.json").read_text(
+        encoding="utf-8"))["word_exceptions"]
+#: Letters that open a vowel-initial or mute-h word in French spelling.
+VOWEL_OR_H = set("aàâeéèêëiîïoôuùûüyh")
+#: Every fr-FR entry that can follow an elided clitic.
+VOWEL_INITIAL_EXCEPTIONS = {word: ipa for word, ipa in FR_EXCEPTIONS.items()
+                            if word[0] in VOWEL_OR_H and "'" not in word}
+#: Verb forms that cannot follow l' or d'. After those clitics, est is the
+#: noun 'east' (see test_l_est_is_the_noun).
+VERB_FORMS = {"est", "et", "es"}
+#: The reading of each elided clitic: its consonant, with the vowel elided.
+CLITICS = {"l'": "l", "d'": "d"}
 
 #: Every French tag. The tags with a spec of their own (``fr-CA``, ``fr-BE``,
 #: ``fr-CH``, ``fr-CI``) inherit the elision handling; the rest read ``fr-FR``.
@@ -137,3 +156,47 @@ def test_digits_do_not_crash_and_the_words_around_them_stay():
 @pytest.mark.parametrize("text", ["'", "''", "d'", "'d", "l'l", "l' a"])
 def test_a_stray_apostrophe_does_not_crash(text):
     assert isinstance(o2i.transcribe(text, "fr-FR"), str)
+
+
+def test_every_vowel_initial_exception_is_tested():
+    # 29 entries: 26 content words and the three verb forms.
+    assert len(VOWEL_INITIAL_EXCEPTIONS) == 29
+    assert VERB_FORMS <= set(VOWEL_INITIAL_EXCEPTIONS)
+
+
+@pytest.mark.parametrize("clitic", sorted(CLITICS))
+@pytest.mark.parametrize("host", sorted(set(VOWEL_INITIAL_EXCEPTIONS)
+                                        - VERB_FORMS))
+def test_an_elided_clitic_keeps_the_host_exception(clitic, host):
+    # l'hiver is l + the entry for hiver, [livɛʁ]; the rules alone gave [live].
+    expected = CLITICS[clitic] + VOWEL_INITIAL_EXCEPTIONS[host]
+    assert o2i.transcribe(clitic + host, "fr-FR") == expected
+
+
+@pytest.mark.parametrize("text, expected", [
+    ("L'HIVER", "livɛʁ"),
+    ("l’hiver", "livɛʁ"),           # U+2019
+    ("d’hier", "djɛʁ"),
+    ("l'hiver arrive", "livɛʁ‿ aʁiv"),
+])
+def test_case_and_typographic_apostrophe_keep_the_host_exception(
+        text, expected):
+    assert o2i.transcribe(text, "fr-FR") == expected
+
+
+@pytest.mark.parametrize("text, expected", [
+    # Lexique 3.83: est, NOM, phon Est
+    ("l'est", "lɛst"), ("d'est", "dɛst"), ("à l'est", "a lɛst"),
+])
+def test_l_est_is_the_noun(text, expected):
+    assert o2i.transcribe(text, "fr-FR") == expected
+
+
+def test_an_elided_clitic_keeps_the_host_lexicon_entry():
+    # oignon is [ɔɲɔ̃]; the rules read ⟨oi⟩ as [wa]. A registered lexicon
+    # entry for the host holds after an elided clitic.
+    engine = G2P("fr-FR", pipeline=Pipeline(lexicon={"oignon": "ɔɲɔ̃"}))
+    assert engine.transcribe("oignon") == "ɔɲɔ̃"
+    assert engine.transcribe("l'oignon") == "lɔɲɔ̃"
+    assert engine.transcribe("d’oignon") == "dɔɲɔ̃"
+    assert engine.transcribe("L'OIGNON") == "lɔɲɔ̃"

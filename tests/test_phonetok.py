@@ -499,16 +499,21 @@ class TestPrevocalicGlideBackoff:
 # Vowel-gated digraph before an apostrophe inside a word
 # ═══════════════════════════════════════════════════════════════════════════
 
+def _gated_spec(**fields) -> LanguageSpec:
+    """A spec with a consonant+⟨u⟩ digraph, the shape the vowel gate reads."""
+    graphemes = {"q": ["k"], "u": ["y"], "qu": ["k"], "i": ["i"],
+                 "l": ["l"], "k": ["k"], **fields.pop("graphemes", {})}
+    return LanguageSpec(
+        code="test-gate", name="Test", family="Test", script="Latin",
+        graphemes=graphemes,
+        allophones={"k": ["k"], "y": ["y"], "i": ["i"], "l": ["l"],
+                    "ʔ": ["ʔ"]},
+        **fields)
+
+
 @pytest.fixture
 def tok_gated() -> PhonetokTokenizer:
-    """A spec with a consonant+⟨u⟩ digraph, the shape the vowel gate reads."""
-    spec = LanguageSpec(
-        code="test-gate", name="Test", family="Test", script="Latin",
-        graphemes={"q": ["k"], "u": ["y"], "qu": ["k"], "i": ["i"],
-                   "l": ["l"], "k": ["k"]},
-        allophones={"k": ["k"], "y": ["y"], "i": ["i"], "l": ["l"]},
-    )
-    return PhonetokTokenizer(spec)
+    return PhonetokTokenizer(_gated_spec(word_internal_apostrophe=True))
 
 
 def _graphemes(tok, text):
@@ -531,3 +536,31 @@ def test_a_gated_digraph_still_backs_off_without_a_vowel_after_it(
     # No vowel letter follows, with or without an apostrophe between: the
     # letter ⟨u⟩ is read on its own, as before.
     assert _graphemes(tok_gated, text)[:2] == ["q", "u"]
+
+
+@pytest.mark.parametrize("apostrophe", ["'", "’"])
+def test_the_gate_reads_the_apostrophe_where_words_do_not_keep_it(apostrophe):
+    # Without word_internal_apostrophe the mark ends the word, so no vowel
+    # follows ⟨qu⟩ and the letter ⟨u⟩ is read on its own.
+    tok = PhonetokTokenizer(_gated_spec())
+    assert _graphemes(tok, f"qu{apostrophe}i")[:2] == ["q", "u"]
+
+
+def test_the_gate_reads_an_apostrophe_that_spells_a_sound():
+    # A spec that spells the glottal stop with ⟨'⟩: the mark is a segment
+    # between ⟨u⟩ and ⟨i⟩, whatever word_internal_apostrophe says.
+    tok = PhonetokTokenizer(_gated_spec(word_internal_apostrophe=True,
+                                        graphemes={"'": ["ʔ"]}))
+    assert _graphemes(tok, "qu'i") == ["q", "u", "'", "i"]
+
+
+@pytest.mark.parametrize("code, word, expected", [
+    # The spec maps ⟨'⟩ to [ʔ] and ⟨u⟩, ⟨i⟩ to vowels: the vowel before the
+    # glottal stop is read, not swallowed by a digraph.
+    ("mas", "iwu'ow", "iwuʔow"),
+    ("mas", "nyyi'oŋ", "ɲjiʔoŋ"),
+    ("nhg", "nhu'uc", "nhuʔuk"),
+])
+def test_a_glottal_stop_apostrophe_keeps_the_vowel_before_it(
+        code, word, expected):
+    assert orthography2ipa.transcribe(word, code) == expected

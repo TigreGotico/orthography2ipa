@@ -228,3 +228,30 @@ def test_the_french_sandhi_paragraph_says_the_enchainement_rule_fires():
     assert "`FR_ENCHAÎNEMENT` does fire" in page
     assert o2i.transcribe("rouge orange", "fr-FR") == "ʁuʒ‿ ɔʁɑ̃ʒ"
     assert o2i.transcribe("les amis", "fr-FR") == "le ami"
+
+
+@pytest.mark.parametrize("text", ["ma'am", "o'er", "o'clock", "doesn't",
+                                  "that's", "Chang'an", "Lord'has"])
+def test_an_english_apostrophe_ends_no_elided_clitic(text):
+    # English keeps the apostrophe for contractions, possessives and
+    # syllable breaks, not for elision, so an entry for the part after the
+    # mark leaves the word alone.
+    plain = o2i.G2P("en-GB")
+    with_parts = o2i.G2P("en-GB", pipeline=o2i.Pipeline(lexicon={
+        "am": "æm", "er": "ɜː", "clock": "klɒk", "t": "tiː", "s": "ɛs",
+        "an": "æn", "has": "hæz"}))
+    assert with_parts.transcribe(text) == plain.transcribe(text)
+
+
+@pytest.mark.parametrize("text", ["Chang'an", "s'a"])
+def test_an_english_word_ending_in_a_clitic_keeps_its_stress(text):
+    # an and a take no stress alone; Chang'an is one stressed word.
+    assert "ˈ" in o2i.transcribe(text, "en-GB")
+
+
+@pytest.mark.parametrize("code, elides", [
+    ("fr-FR", True), ("fr-CA", True), ("it-IT", True), ("pt-PT", True),
+    ("pt-BR", True), ("en-GB", False), ("en-US", False), ("ca", False),
+])
+def test_only_the_elision_orthographies_split_a_clitic_off(code, elides):
+    assert o2i.get(code).apostrophe_elision is elides

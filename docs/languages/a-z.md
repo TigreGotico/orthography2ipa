@@ -959,7 +959,6 @@ Stubs (146): E `eee`, E'ma Buyang `yzg`, E'ñapa Woromaipu `pbh`, East Ambae `om
 | [Forest Enets](enf.md) (page) | `enf` | research | Uralic |
 | [Franco-Provençal (Arpitan)](frp.md) (page) | `frp` | research | Indo-European > Italic > Romance > Gallo-Romance |
 | [French](fr-FR.md) (page) | `fr-FR` | research | Indo-European > Italic > Romance > Gallo-Romance |
-| [French with a final-syllable stress mark](https://tigregotico.github.io/orthography2ipa/#fr-FR-x-stress) | `fr-FR-x-stress` | skeleton | Indo-European > Italic > Romance > Gallo-Romance |
 | [Friulian](fur.md) (page) | `fur` | research | Indo-European > Italic > Romance > Italo-Romance |
 | [Fula (Fulah / Fulfulde / Pular)](ff.md) (page) | `ff` | research | Atlantic-Congo |
 | [Fuliiru](https://tigregotico.github.io/orthography2ipa/#flr) | `flr` | skeleton | Atlantic-Congo |

@@ -152,7 +152,7 @@ The spec applies 28 allophone rules after the letters are read. The change colum
 | `FR_EU_BEFORE_Z` | /œ/ → [ø], before [z], spelled ⟨eu⟩ | ⟨Deleuze⟩ [dəløz] | Fouché 1959, Tranel 1987, Walker 2001 |
 | `FR_C_HARD_BEFORE_OEU` | /s/ → [k], spelled ⟨c⟩, before ⟨œu⟩ | ⟨cœur⟩ [kœʁ] | - |
 | `FR_AI_FINAL_CLOSE_MID` | /ɛ/ → [e], before a word boundary, spelled ⟨ai⟩ | ⟨j'ai⟩ [ʒe] | Walker 2001, Fouché 1959 |
-| `FR_E_BEFORE_DOUBLED_CONSONANT` | /ə/ → [ɛ], spelled ⟨e⟩, before ⟨ll⟩ ⟨tt⟩ ⟨rr⟩ | ⟨elle⟩ [ɛl] | Féry 2001, Tranel 1987, New et al. 2004 |
+| `FR_E_BEFORE_DOUBLED_CONSONANT` | /ə/ → [ɛ], spelled ⟨e⟩, before ⟨ll⟩ ⟨tt⟩ ⟨rr⟩, with more context in the spec | ⟨elle⟩ [ɛl] | Féry 2001, New et al. 2004 |
 | `CRS_NASAL_a` | /a/ → [ã], before a coda nasal | - | - |
 | `CRS_NASAL_e` | /e/ → [ɛ̃], before a coda nasal | - | - |
 | `CRS_NASAL_o` | /o/ → [ɔ̃], before a coda nasal | - | - |

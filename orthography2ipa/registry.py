@@ -334,18 +334,12 @@ _REGION_DEFAULTS: Dict[str, str] = {
     "ar-SA": "ars-SA",
 }
 
-# French has a spec for Canada, Belgium, Switzerland and Côte d'Ivoire, each
-# stating one sourced difference from the standard variety. Any other French
-# region has no spec of its own and no sourced difference, so it is read as
-# the standard variety. Without these entries the nearest match would pick
-# ``fr-BE`` for every one of them, which asserts a Belgian feature for
-# Luxembourg, Senegal or Haiti that no source states.
-_REGION_DEFAULTS.update({
-    f"fr-{region}": "fr-FR" for region in (
-        "BF", "BI", "BJ", "CD", "CF", "CG", "CM", "DJ", "DZ", "GA", "GF",
-        "GN", "GP", "HT", "KM", "LB", "LU", "MA", "MC", "MG", "ML", "MQ",
-        "MR", "MU", "NC", "NE", "PF", "PM", "RE", "RW", "SC", "SN", "TD",
-        "TG", "TN", "VU", "WF", "YT")})
+# Languages whose regional specs each state a sourced difference from the
+# motherland variety. A region of one of these with no spec of its own has no
+# sourced difference either, so it is read as the motherland variety. The
+# nearest match would pick a sibling instead, and assert for ``fr-SN``,
+# ``fr-US`` or ``fr-001`` a Belgian feature that no source states.
+_MOTHERLAND_FALLBACK = frozenset({"fr"})
 
 try:
     import langcodes as _langcodes
@@ -382,7 +376,9 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
     4. The default region of a bare primary-language tag, when that
        spec is registered (``pt`` → ``pt-PT``), or the curated default
        variant of a region tag with only sub-regional specs
-       (``ar-SA`` → ``ars-SA``).
+       (``ar-SA`` → ``ars-SA``), or the default region of a language in
+       ``_MOTHERLAND_FALLBACK`` for any region it has no spec for
+       (``fr-SN`` → ``fr-FR``).
     5. Nearest registered code by language distance
        (``en-NZ`` → ``en-GB``), among the codes of the tag's own language
        first (``sr-Latn-RS`` → ``sr``, not ``cnr``); no usable match leaves
@@ -432,6 +428,10 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
         return default
     if code in _REGION_DEFAULTS:
         return _REGION_DEFAULTS[code]
+    language = code.split("-")[0].lower()
+    if (language in _MOTHERLAND_FALLBACK and not _PRIVATE_USE.search(code)
+            and (default := with_default_region(language)) in available):
+        return default
     if not allow_nearest:
         return code
     # An unknown variant falls back to the standard variety, not to whichever
