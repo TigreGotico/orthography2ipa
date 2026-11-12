@@ -353,14 +353,19 @@ def static_imports(source: str) -> set:
 
 
 def import_closure(read) -> set:
-    """Every module that the engine modules import, followed to the end."""
+    """Every module that the engine modules import, followed to the end.
+
+    The walk also reads the modules in ENGINE_MAY_IMPORT, so a module that one of
+    them imports is in the closure.
+    """
+    walked = set(revision.ENGINE_MODULES) | ENGINE_MAY_IMPORT
     seen, stack = set(), list(revision.ENGINE_MODULES)
     while stack:
         name = stack.pop()
         if name in seen:
             continue
         seen.add(name)
-        if name in revision.ENGINE_MODULES:
+        if name in walked:
             stack.extend(static_imports(read(name)))
     return seen
 
@@ -414,6 +419,18 @@ def test_the_static_walk_finds_an_import_behind_a_spec_flag():
 
     assert "planted_rare" in import_closure(read)
     assert "planted_rare" not in import_closure(lambda name: revision._module_source(name).decode())
+
+
+def test_an_import_in_a_module_the_engine_may_import_is_unlisted():
+    """``version`` is outside the fingerprint, so a module it imports is unlisted too."""
+    real = revision._module_source("version").decode()
+    planted = real + "\nfrom orthography2ipa.distance import segment_distance  # noqa: F401\n"
+
+    def read(name):
+        return planted if name == "version" else revision._module_source(name).decode()
+
+    assert "distance" in unlisted_engine_imports(read)
+    assert not unlisted_engine_imports(lambda name: revision._module_source(name).decode())
 
 
 def test_a_clade_with_no_parent_follows_its_parent_role_ancestor(monkeypatch, tmp_path):
