@@ -6,6 +6,7 @@ chain comes from ``ancestry_chain``, which walks ``parent`` on its own.
 """
 from __future__ import annotations
 
+import ast
 import hashlib
 import json
 import os
@@ -239,15 +240,15 @@ def test_an_fstring_is_one_string_token():
     """Python 3.12 splits an f-string into parts. The fingerprint does not."""
     source = 'x = f"a{b!r}{f\'{c}\'}d"\ny = 1\n'
     assert list(revision._source_tokens(source.encode())) == [
-        ("NAME", "x"), ("OP", "="), ("STRING", 'f"a{b!r}{f\'{c}\'}d"'),
-        ("NAME", "y"), ("OP", "="), ("NUMBER", "1"),
+        ("NAME", "x"), ("OP", "="), ("STRING", 'f"a{b!r}{f\'{c}\'}d"'), ("NEWLINE", ""),
+        ("NAME", "y"), ("OP", "="), ("NUMBER", "1"), ("NEWLINE", ""),
     ]
 
 
 def test_a_multiline_fstring_is_one_string_token():
     source = 'x = f"""a\n{b}\nc"""\n'
     assert list(revision._source_tokens(source.encode())) == [
-        ("NAME", "x"), ("OP", "="), ("STRING", 'f"""a\n{b}\nc"""'),
+        ("NAME", "x"), ("OP", "="), ("STRING", 'f"""a\n{b}\nc"""'), ("NEWLINE", ""),
     ]
 
 
@@ -284,6 +285,112 @@ def test_every_module_a_transcription_loads_is_listed():
     assert "g2p" in loaded and "phonetok" in loaded
     unlisted = loaded - set(revision.ENGINE_MODULES) - set(NOT_ENGINE)
     assert not unlisted, f"add to revision.ENGINE_MODULES or NOT_ENGINE: {sorted(unlisted)}"
+
+
+def test_block_structure_changes_the_fingerprint():
+    """A line moved in or out of a block changes behaviour, so it changes the fingerprint."""
+    inside = "def f(xs):\n    out = []\n    for x in xs:\n        out.append(x)\n        return out\n"
+    after = "def f(xs):\n    out = []\n    for x in xs:\n        out.append(x)\n    return out\n"
+    assert fingerprint(inside) != fingerprint(after)
+    assert fingerprint("x = 1\n-1\n") != fingerprint("x = 1 -1\n")
+
+
+def test_a_dedent_in_an_engine_module_changes_the_fingerprint():
+    real = revision._module_source("stress").decode()
+    # stress.py, the for-else of the nucleus count: moving ``i += 1`` out of
+    # the else block changes the Italian reading of "ciao".
+    tail = "\n        # a combining mark, or the length mark"
+    block = "            nuclei.append(run[i])\n            i += 1" + tail
+    assert real.count(block) == 1
+    dedented = real.replace(block, "            nuclei.append(run[i])\n        i += 1" + tail)
+    assert fingerprint(dedented) != fingerprint(real)
+
+
+def test_reindenting_leaves_the_fingerprint_equal():
+    four = "def f(x):\n    if x:\n        return 1\n    return 2\n"
+    two = "def f(x):\n  if x:\n    return 1\n  return 2\n"
+    assert fingerprint(four) == fingerprint(two)
+
+
+def test_a_missing_source_file_raises_engine_source_unavailable(monkeypatch, tmp_path):
+    from orthography2ipa.exceptions import EngineSourceUnavailable
+
+    monkeypatch.setattr(revision, "files", lambda package: tmp_path)
+    with pytest.raises(EngineSourceUnavailable):
+        revision.engine_fingerprint()
+    revision._spec_revision.cache_clear()
+    with pytest.raises(EngineSourceUnavailable):
+        spec_revision("pt-PT")
+
+
+def static_imports(source: str) -> set:
+    """The ``orthography2ipa`` modules that *source* imports, in any scope."""
+    found = set()
+    for node in ast.walk(ast.parse(source)):
+        if isinstance(node, ast.ImportFrom):
+            if node.level:
+                found.add((node.module or "").split(".")[0] or "__init__")
+            elif node.module and node.module.startswith("orthography2ipa."):
+                found.add(node.module.split(".")[1])
+            elif node.module == "orthography2ipa":
+                package = Path(revision.__file__).parent
+                found |= {a.name for a in node.names if (package / f"{a.name}.py").is_file()}
+                found.add("__init__")
+        elif isinstance(node, ast.Import):
+            for alias in node.names:
+                if alias.name.startswith("orthography2ipa."):
+                    found.add(alias.name.split(".")[1])
+                elif alias.name == "orthography2ipa":
+                    found.add("__init__")
+    return found
+
+
+def import_closure(read) -> set:
+    """Every module that the engine modules import, followed to the end."""
+    seen, stack = set(), list(revision.ENGINE_MODULES)
+    while stack:
+        name = stack.pop()
+        if name in seen:
+            continue
+        seen.add(name)
+        if name in revision.ENGINE_MODULES:
+            stack.extend(static_imports(read(name)))
+    return seen
+
+
+def test_every_module_the_engine_imports_is_listed():
+    """A static walk reaches imports that no test sentence runs, such as one behind a spec flag."""
+    unlisted = import_closure(lambda name: revision._module_source(name).decode()) - set(
+        revision.ENGINE_MODULES) - set(NOT_ENGINE)
+    assert not unlisted, f"add to revision.ENGINE_MODULES or NOT_ENGINE: {sorted(unlisted)}"
+
+
+def test_the_static_walk_finds_an_import_behind_a_spec_flag():
+    real = revision._module_source("g2p").decode()
+    anchor = "\nclass G2P:"
+    assert real.count(anchor) == 1
+    planted = real.replace(anchor, (
+        "\ndef _planted(spec):\n"
+        "    if spec.tone_marks_syllable_final:\n"
+        "        from orthography2ipa.planted_rare import nudge\n"
+        "        return nudge\n" + anchor), 1)
+
+    def read(name):
+        return planted if name == "g2p" else revision._module_source(name).decode()
+
+    assert "planted_rare" in import_closure(read)
+    assert "planted_rare" not in import_closure(lambda name: revision._module_source(name).decode())
+
+
+def test_a_clade_with_no_parent_follows_its_parent_role_ancestor(monkeypatch, tmp_path):
+    """The spec gives ``parent`` from its first parent-role ancestor, and the loader walks through a clade by it."""
+    raw = json.loads(json_loader._index["mni"].read_text(encoding="utf-8"))
+    assert "parent" not in raw or raw["parent"] is None
+    ancestor = next(a["code"] for a in raw["ancestors"] if a["role"] == "parent")
+    edit_spec(monkeypatch, tmp_path, "mni", lambda r: r.update(clade=True))
+    before = spec_revision("mni-Mtei")
+    edit_spec(monkeypatch, tmp_path, ancestor, add_grapheme)
+    assert spec_revision("mni-Mtei") != before
 
 
 # ── lexicon_revision ──────────────────────────────────────────────────────

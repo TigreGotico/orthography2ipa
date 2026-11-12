@@ -18,8 +18,9 @@ import json
 import tokenize
 from functools import lru_cache
 from importlib.resources import files
-from typing import Iterable, List, Tuple
+from typing import Iterable, List, Optional, Tuple
 
+from orthography2ipa.exceptions import EngineSourceUnavailable
 from orthography2ipa.json_loader import _BASE_MERGE_FIELDS, _index
 from orthography2ipa.lexicon import (
     ENTRY_POINT_GROUP,
@@ -68,11 +69,13 @@ ENGINE_MODULES: Tuple[str, ...] = (
     "weights",
 )
 
-# Layout and comments change no behaviour. ENCODING and ENDMARKER carry none.
+# Comments and blank lines change no behaviour. ENCODING and ENDMARKER carry none.
 _LAYOUT_TOKENS = frozenset({
-    tokenize.COMMENT, tokenize.NL, tokenize.NEWLINE, tokenize.INDENT,
-    tokenize.DEDENT, tokenize.ENCODING, tokenize.ENDMARKER,
+    tokenize.COMMENT, tokenize.NL, tokenize.ENCODING, tokenize.ENDMARKER,
 })
+# Statement ends and block edges change behaviour. The width of an indent does
+# not, so these tokens count with an empty string.
+_STRUCTURE_TOKENS = frozenset({tokenize.NEWLINE, tokenize.INDENT, tokenize.DEDENT})
 # Python 3.12 splits an f-string into parts. Python 3.11 gives one STRING
 # token. The fingerprint uses the 3.11 form, so it is equal across versions.
 _FSTRING_START = {name for name in ("FSTRING_START", "TSTRING_START")
@@ -82,7 +85,11 @@ _FSTRING_END = {name for name in ("FSTRING_END", "TSTRING_END")
 
 
 def _source_tokens(source: bytes) -> Iterable[Tuple[str, str]]:
-    """The ``(type name, string)`` pairs of *source*, without layout and comments."""
+    """The ``(type name, string)`` pairs of *source*, without comments and blank lines.
+
+    NEWLINE, INDENT and DEDENT count with an empty string, so a line that moves
+    in or out of a block counts and the width of an indent does not.
+    """
     source = source.replace(b"\r\n", b"\n")
     lines = source.decode("utf-8").splitlines(keepends=True)
     depth = 0
@@ -100,7 +107,9 @@ def _source_tokens(source: bytes) -> Iterable[Tuple[str, str]]:
                 if depth == 0:
                     yield "STRING", _span(lines, start, token.end)
             continue
-        if token.type not in _LAYOUT_TOKENS:
+        if token.type in _STRUCTURE_TOKENS:
+            yield name, ""
+        elif token.type not in _LAYOUT_TOKENS:
             yield name, token.string
 
 
@@ -124,16 +133,30 @@ def _fingerprint(sources: Iterable[Tuple[str, bytes]]) -> str:
 
 
 def _module_source(name: str) -> bytes:
-    return (files("orthography2ipa") / f"{name}.py").read_bytes()
+    try:
+        return (files("orthography2ipa") / f"{name}.py").read_bytes()
+    except OSError as e:
+        raise EngineSourceUnavailable(
+            f"cannot read the source of orthography2ipa.{name}: {e}") from e
 
 
 @lru_cache(maxsize=None)
 def engine_fingerprint() -> str:
     """sha256 over the tokens of the :data:`ENGINE_MODULES` source files.
 
-    Comments and layout do not count, and docstrings do. The package version
-    does not count either, because an alpha release changes it with no change
-    to the engine.
+    Comments, blank lines and the width of an indent do not count. Statement
+    ends, block edges and docstrings do. The package version does not count,
+    because an alpha release changes it with no change to the engine.
+
+    The files are read at the first call in a process, and the value is kept.
+    A process whose package files change on disk before that first call
+    reports the files on disk, not the code it runs.
+
+    Raises
+    ------
+    EngineSourceUnavailable
+        The source of an engine module cannot be read, as in an install that
+        ships only byte code.
     """
     return _fingerprint((f"orthography2ipa/{name}.py", _module_source(name))
                         for name in sorted(ENGINE_MODULES))
@@ -148,12 +171,25 @@ def _canonical_spec(code: str) -> bytes:
                       separators=(",", ":")).encode()
 
 
+def _data_parent(raw: dict) -> Optional[str]:
+    """The ``parent`` that the loader walks through when it resolves a child.
+
+    A clade with no ``parent`` key takes its first ``parent``-role ancestor,
+    as :class:`~orthography2ipa.types.LanguageSpec` sets it, and the loader
+    walks through a clade to the nearest spec with data.
+    """
+    if raw.get("parent") or not raw.get("clade"):
+        return raw.get("parent")
+    return next((a.get("code") for a in raw.get("ancestors") or ()
+                 if a.get("role") == "parent"), None)
+
+
 def _spec_dependencies(code: str) -> List[str]:
     """*code*, then every spec the loader merges into it, sorted.
 
     The loader merges data along ``parent`` (inherited rules and stress) and
     each ``<field>_base`` key, and so does this walk, to the end of each chain.
-    The ``ancestors`` codes are left out: the loader reads those specs but
+    Other ``ancestors`` codes are left out: the loader reads those specs but
     merges none of their data. A code with no spec file is skipped, as the
     loader skips it.
     """
@@ -161,7 +197,7 @@ def _spec_dependencies(code: str) -> List[str]:
     stack = [code]
     while stack:
         raw = json.loads(_canonical_spec(stack.pop()))
-        edges = [raw.get("parent"),
+        edges = [_data_parent(raw),
                  *(raw.get(f"{field}_base") for field in _BASE_MERGE_FIELDS)]
         for dep in edges:
             if dep and dep in _index and dep not in seen:
@@ -186,19 +222,23 @@ def spec_revision(code: str) -> str:
     *code* resolves as :class:`~orthography2ipa.g2p.G2P` resolves it, so an
     alias and its canonical code give one revision. The hash input is, in this
     order: :data:`SPEC_FORMAT_VERSION`; the spec of *code*; every other spec
-    the loader merges into it (``parent`` and the ``<field>_base`` keys,
+    the loader merges into it (``parent``, or the first ``parent``-role
+    ancestor of a clade that has no ``parent``, and the ``<field>_base`` keys,
     followed to the end of each chain, sorted by code); and
     :func:`engine_fingerprint`. Each spec counts as its parsed JSON with
     sorted keys and no whitespace, tagged with its code, so a whitespace-only
     edit leaves the revision equal.
 
-    Returns ``"sha256:"`` and the hex digest. The value is computed once per
-    code and process, as the loader reads each spec once per process.
+    Returns ``"sha256:"`` and the hex digest. The value is computed at the
+    first call for a code in a process and kept, as the loader reads each spec
+    once per process.
 
     Raises
     ------
     KeyError
         *code* resolves to no registered spec.
+    EngineSourceUnavailable
+        The source of an engine module cannot be read.
     """
     resolved = resolve(code)
     if resolved not in _index:
