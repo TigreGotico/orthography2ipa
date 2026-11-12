@@ -8,9 +8,11 @@ No covered name is renamed or removed in one step. A rename or a removal follows
 
 The commitment covers each name in the two tables of the next section. It also covers the names of the sentence-context seam and of the feature export, which the sections below describe.
 
+The same rule covers the spec fields that `G2P` reads. The `plugins` field and the value `"plugin"` of `stress.source` are deprecated, and they go in the next major release. `G2P` raises a `DeprecationWarning` when it builds an engine on a spec that sets either one, once per engine. No shipped spec sets them, so `G2P(code)` stays silent for every code. A caller passes each step to one engine in a `Pipeline`.
+
 ## Names that downstream code imports
 
-The inventory comes from the Python imports on the `dev` branch of each downstream repository: [arbtok](https://github.com/TigreGotico/arbtok), [euskaphone](https://github.com/TigreGotico/euskaphone), [tugaphone](https://github.com/TigreGotico/tugaphone), [g2p_barranquenho](https://github.com/TigreGotico/g2p_barranquenho) and [mwl_phonemizer](https://github.com/TigreGotico/mwl_phonemizer). The scan parses every Python file of each repository, so it covers the library code, the tests, the scripts and the examples. It counts both `from orthography2ipa import X` and attribute access such as `orthography2ipa.get`. [phonematcher](https://github.com/TigreGotico/phonematcher) and [sotaque_forcado](https://github.com/TigreGotico/sotaque_forcado) import nothing from `orthography2ipa`.
+The inventory comes from the Python imports on the `dev` branch of each downstream repository: [arbtok](https://github.com/TigreGotico/arbtok), [euskaphone](https://github.com/TigreGotico/euskaphone) and [tugaphone](https://github.com/TigreGotico/tugaphone). The scan parses every Python file of each repository, so it covers the library code, the tests, the scripts and the examples. It counts both `from orthography2ipa import X` and attribute access such as `orthography2ipa.get`. [phonematcher](https://github.com/TigreGotico/phonematcher) and [sotaque_forcado](https://github.com/TigreGotico/sotaque_forcado) import nothing from `orthography2ipa`.
 
 A name imported from a submodule and also re-exported at the top level is one name, and both import paths are covered.
 
@@ -18,14 +20,13 @@ A name imported from a submodule and also re-exported at the top level is one na
 
 | Name | Module | Used by |
 | :--- | :--- | :--- |
-| `G2P` | `g2p` | arbtok, euskaphone, g2p_barranquenho, mwl_phonemizer, tugaphone |
-| `WordContext` | `sentence` | arbtok, euskaphone, g2p_barranquenho, mwl_phonemizer, tugaphone |
+| `G2P` | `g2p` | arbtok, euskaphone, tugaphone |
+| `WordContext` | `sentence` | arbtok, euskaphone, tugaphone |
 | `Pipeline` | `pipeline` | arbtok, euskaphone, tugaphone |
-| `get` | `registry` | arbtok, g2p_barranquenho, tugaphone |
-| `resolve` | `registry` | arbtok, euskaphone, g2p_barranquenho, tugaphone |
+| `get` | `registry` | arbtok, tugaphone |
+| `resolve` | `registry` | arbtok, euskaphone, tugaphone |
 | `resolves_exactly` | `registry` | arbtok, tugaphone |
 | `available_codes` | `registry` | arbtok, euskaphone, tugaphone |
-| `who_answers` | `registry` | tugaphone |
 | `register_lexicon`, `clear_lexicons` | `lexicon` | arbtok, euskaphone, tugaphone |
 | `validate_lexicon_text` | `lexicon` | arbtok, euskaphone |
 | `get_lexicon`, `available_lexicon_codes` | `lexicon` | euskaphone |
@@ -33,14 +34,13 @@ A name imported from a submodule and also re-exported at the top level is one na
 | `PhonetokTokenizer`, `TokenKind` | `phonetok` | arbtok, tugaphone |
 | `Candidate`, `SegmentSlot` | `phonetok` | arbtok |
 | `LatticeRescorer`, `RescoreContext` | `rescorer` | arbtok |
-| `RescorerPlugin` | `rescorer_plugin` | arbtok |
-| `NormalizePlugin`, `SandhiPlugin` | `plugins` | arbtok |
+| `SandhiPlugin` | `plugins` | arbtok |
 | `compile_allophone_rescorer` | `allophony` | arbtok |
 | `segment_distance` | `distance` | arbtok |
 | `phoneme_inventory`, `tokenize` | `inventory` | arbtok |
 | `is_underdetermined`, `underdetermined_positions`, `mark_density` | `underspecification` | arbtok |
-| `detect_stress` | `stress` | arbtok, mwl_phonemizer, tugaphone |
-| `apply_stress_mark` | `stress` | arbtok, mwl_phonemizer |
+| `detect_stress` | `stress` | arbtok, tugaphone |
+| `apply_stress_mark` | `stress` | arbtok |
 | `syllabify_ipa` | `stress` | arbtok |
 | `syllabify` | `stress` | euskaphone |
 | `SyllabifierPlugin` | `syllabifier_plugin` | tugaphone |
@@ -62,6 +62,8 @@ Downstream code also imports these public names straight from their submodules. 
 
 One downstream import reaches a private name: `phonetok._expand_arabic_gemination` in arbtok. A private name has no guarantee, and it can change in any release.
 
+`assert_syllabifier_conforms` and `assert_rescorer_conforms` in `orthography2ipa.conformance` are deprecated. No downstream repository calls them. They go in the next major release, and until then each call raises a `DeprecationWarning` that names that release. A caller tests a step in its own suite: it compares `G2P(lang)` with `G2P(lang, pipeline=Pipeline(...))`, and for a rescorer it checks the output against `phoneme_inventory(spec)`.
+
 ## Other names in `__all__`
 
 These names are public and importable, but no downstream repository uses them. They can change more freely. Treat a dependency on them from outside this repository as unsupported until a consumer joins the inventory above.
@@ -69,19 +71,54 @@ These names are public and importable, but no downstream repository uses them. T
 | Module | Names |
 | :--- | :--- |
 | `g2p` | `transcribe`, `TranscriptionResult`, `WordTranscription`, `ConfidenceBreakdown` |
-| `registry` | `ancestry_chain`, `available_families`, `get_rescorers`, `get_stress_plugin`, `get_syllabifier`, `MissingPlugin`, `UnknownVariantWarning` |
+| `registry` | `ancestry_chain`, `available_families`, `get_syllabifier`, `MissingPlugin`, `UnknownVariantWarning` |
 | `lexicon` | `load_lexicon`, `set_lexicon_dir`, `resolve_lexicon_source`, `use_packaged_lexicons`, `packaged_lexicon_sources`, `is_ipa_string` |
 | `types` | `Grapheme2IPA`, `AllophoneMap`, `PositionalGrapheme2IPA`, `Ancestor`, `AncestorRole`, `QualityTier`, `ScriptType`, `OrthographyKind`, `OrthographyStandard`, `Location`, `SandhiRule`, `AllophoneRule`, `StressRules` |
 | `phonetok` | `Token`, `IPAPath`, `GraphemeContext`, `TokenSequence` |
 | `allophony`, `sandhi` | `AllophoneRescorer`, `SandhiEngine` |
-| `stress_plugin`, `plugins` | `StressPlugin`, `STAGES` |
 | `inventory` | `emission_inventory`, `dead_allophone_rules`, `STRESS_MARKS` |
 | `distance` | `inventory_distance`, `grapheme_divergence`, `spelling_divergence`, `allophone_overlap`, `phonological_distance`, `ancestry_similarity`, `geographic_distance`, `full_distance`, `pairwise_distances`, `feature_vector`, `InventoryDistance`, `GraphemeDivergence`, `SpellingDivergence`, `PhonologicalDistance` |
 | `script_distance` | `ScriptFeatures`, `SCRIPT_REGISTRY`, `script_distance`, `script_distance_by_name` |
 | `transforms` | `apply_transform`, `debias_lisbon`, `available_profiles`, `DIALECT_PROFILES`, `DialectTransform`, `IPARule`, `IPAChainShift`, `IPALexicalRule`, `load_clup_profile` |
+| `revision` | `spec_revision`, `lexicon_revision`: the format is covered by the commitment, see below |
 | `sentence`, `features` | `SentenceLattice`, `SentenceRescorer`, `SentenceRescoreContext`, `WordSlot`, `Position`, `WordFeatures`, `GraphemeFeatures`: covered by the commitment, see below |
 
-The exception types `UnmappedScriptError`, `UnmappedGraphemeWarning` and `StubSpecWarning` live in `orthography2ipa.exceptions` and are not re-exported at the top level. `slot_confidence` and `lattice_confidence` live in `orthography2ipa.phonetok` only.
+The exception types `UnmappedScriptError`, `UnmappedGraphemeWarning`, `StubSpecWarning` and `EngineSourceUnavailable` live in `orthography2ipa.exceptions` and are not re-exported at the top level. `slot_confidence` and `lattice_confidence` live in `orthography2ipa.phonetok` only.
+
+## Spec revisions
+
+`spec_revision(code)` names the rules that an engine for `code` reads. A consumer records the value when it trains, and compares it with the value of the engine that it runs later.
+
+The value is `"sha256:"` followed by a hex digest. It is a function of three inputs, in this order:
+
+1. The spec-format version, `orthography2ipa.revision.SPEC_FORMAT_VERSION`. The version is `1`.
+2. The spec files that the loader merges into the spec. These are the file of the resolved code, then every file on its `parent` chain and on each `<field>_base` chain, sorted by code. A clade with no `parent` key continues the chain through its first `parent`-role ancestor, because `LanguageSpec` takes its `parent` from there. Each file counts as its parsed JSON with sorted keys and no whitespace, tagged with its code. The other `ancestors` codes do not count, because the loader merges none of their data.
+3. The engine fingerprint. This is a sha256 over the tokens of the modules in `orthography2ipa.revision.ENGINE_MODULES`, the modules on the transcription path. Comments, blank lines and the width of an indent do not count. Statement ends, block edges and docstrings count, so a line that moves into or out of a block changes the value. The package version does not count, because a daily alpha changes it with no change to the engine.
+
+The code resolves as `G2P` resolves it, so an alias and its canonical code give one revision. The value is computed at the first call for a code in a process, and the process keeps it. The engine files are read at that first call. If the package files change on disk before it, the value describes the files on disk and not the code that the process runs. A whitespace-only edit of a spec leaves the revision equal. An edit to a spec that is not on the chains of `code` leaves it equal too.
+
+The engine fingerprint needs the `.py` source of each engine module. An install that ships only byte code still transcribes, but `spec_revision` raises `orthography2ipa.exceptions.EngineSourceUnavailable`, a `RuntimeError`.
+
+The spec-format version goes up when a spec field starts to mean something else. An example is an engine that reads an existing key in a new way. Every spec revision then changes, although no spec file changed. A new optional field does not need a new version, because only the specs that use it change.
+
+`lexicon_revision(code, patches=False)` names the packaged lexicon that `packaged_lexicon(code, patches)` reads. It is a sha256 over the `patches` flag, the bytes of the exceptions file and, with `patches=True`, the bytes of the patch file. The two values of the flag never give one revision. The function raises `LookupError` in the cases where `packaged_lexicon` raises it. A lexicon sits outside the spec, so a consumer that passes one to the engine records both revisions.
+
+## Deprecated names
+
+These names served plugin discovery by entry point. A caller passes each step to one engine in a `Pipeline` field, so they go in the next major release. Until then they keep working, and the commitment covers them. Each one raises a `DeprecationWarning` that names the release that removes it and the name to use. A function warns when a caller calls it, and a constant warns when a caller reads it. A class warns when a caller reads it from `orthography2ipa`, and when a subclass of it is defined.
+
+| Name | Module | Use in its place | Used by |
+| :--- | :--- | :--- | :--- |
+| `who_answers` | `registry` | `G2P.pipeline` | arbtok (tests) |
+| `get_rescorers` | `registry` | `Pipeline(rescore=...)` | None |
+| `get_stress_plugin` | `registry` | The stress rules of the spec | None |
+| `get_declared_plugins` | `registry` | The `Pipeline` field of each stage | None |
+| `NormalizePlugin` | `plugins` | `Pipeline(expand=...)` or `Pipeline(mark=...)` | arbtok (tests) |
+| `RescorerPlugin` | `rescorer_plugin` | `Pipeline(rescore=...)` | arbtok (tests) |
+| `StressPlugin` | `stress_plugin` | The stress rules of the spec | None |
+| `STAGES`, `OUTPUT_CHANGING_STAGES`, `ENTRY_POINT_GROUPS` | `plugins` | The fields of `Pipeline` | None |
+
+`SyllabifierPlugin` and `SandhiPlugin` stay, because `Pipeline.syllabifier` and `Pipeline.sandhi` take them. Their `language_codes` property defaults to an empty list, and the engine does not read it.
 
 ## Surfaces that leave the default output unchanged
 

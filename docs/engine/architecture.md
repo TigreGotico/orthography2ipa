@@ -84,19 +84,19 @@ A caller that is sensitive to quantity has already divided the transcription, be
 
 ## Pluggable steps
 
-Five stages accept a plugin. All of them can change the transcription, so the spec or the caller must name the plugin. Discovery alone never selects one, because the install of a package must not change a transcription. The syllabify stage has no entry point: a caller passes a syllabifier as an object, in `Pipeline(syllabifier=...)`.
+Five stages accept a plugin. All of them can change the transcription, so the spec or the caller must name the plugin. Discovery alone never selects one, because the install of a package must not change a transcription. A caller passes each step as an object in a `Pipeline` field, and that step needs no entry point.
 
-| Stage | Base class | Entry-point group | Contract |
+| Stage | `Pipeline` field | Base class | Entry-point group |
 | :--- | :--- | :--- | :--- |
-| `normalize` | `NormalizePlugin` (`plugins.py`) | `orthography2ipa.normalize` | Declared |
-| `syllabify` | `SyllabifierPlugin` (`syllabifier_plugin.py`) | None | Caller |
-| `stress` | `StressPlugin` (`stress_plugin.py`) | `orthography2ipa.stress` | Declared |
-| `rescore` | `RescorerPlugin` (`rescorer_plugin.py`) | `orthography2ipa.rescore` | Declared |
-| `sandhi` | `SandhiPlugin` (`plugins.py`) | `orthography2ipa.sandhi` | Declared |
+| `normalize` | `expand`, `mark` | `NormalizePlugin` (`plugins.py`), deprecated | `orthography2ipa.normalize`, deprecated |
+| `syllabify` | `syllabifier` | `SyllabifierPlugin` (`syllabifier_plugin.py`) | None |
+| `stress` | None: the spec's stress rules | `StressPlugin` (`stress_plugin.py`), deprecated | `orthography2ipa.stress`, deprecated |
+| `rescore` | `rescore` | `RescorerPlugin` (`rescorer_plugin.py`), deprecated | `orthography2ipa.rescore`, deprecated |
+| `sandhi` | `sandhi` | `SandhiPlugin` (`plugins.py`) | `orthography2ipa.sandhi`, deprecated |
 
-The spec names a plugin in its `plugins` field by entry-point name, such as `{"sandhi": "arbtok"}`. The caller overrides it with the `Pipeline` field of the stage, and the engine then does not resolve the name. The caller can also name a plugin with `G2P(lang, plugins={...})`, which is deprecated. A declared plugin that is not installed raises `MissingPlugin`, and the engine never falls back to the built-in answer.
+The spec names a plugin in its `plugins` field by entry-point name, such as `{"sandhi": "arbtok"}`. The caller overrides it with the `Pipeline` field of the stage, and the engine then does not resolve the name. The caller can also name a plugin with `G2P(lang, plugins={...})`, which is deprecated. A declared plugin that is not installed raises `MissingPlugin`, and the engine never falls back to the built-in answer. The discovery by entry point, the three deprecated base classes and the constants `STAGES`, `OUTPUT_CHANGING_STAGES` and `ENTRY_POINT_GROUPS` go in the next major release. Each one raises a `DeprecationWarning` when a caller uses it.
 
-`plugins.py` states the contract of each stage. `conformance.py` holds the contract checks: `assert_syllabifier_conforms` fails if an installed syllabifier moves the output, and `assert_rescorer_conforms` checks a rescorer. Discovery uses Python [entry points](https://packaging.python.org/en/latest/specifications/entry-points/). [registry.md](../reference/registry.md#plugin-discovery) describes how the registry finds plugins and which one wins.
+`plugins.py` states the contract of each stage. `conformance.py` holds the contract checks: `assert_syllabifier_conforms` fails if an installed syllabifier moves the output, and `assert_rescorer_conforms` checks a rescorer. Both checks are deprecated, and go in the next major release. Discovery uses Python [entry points](https://packaging.python.org/en/latest/specifications/entry-points/). [registry.md](../reference/registry.md#plugin-discovery) describes how the registry finds plugins and which one wins.
 
 ## Modules
 
@@ -105,7 +105,7 @@ The spec names a plugin in its `plugins` field by entry-point name, such as `{"s
 | `types.py` | The frozen data model and the inheritance manifest | `LanguageSpec`, `Ancestor`, `AncestorRole`, `QualityTier`, `ScriptType`, `OrthographyKind`, `GraphemePosition`, `SandhiRule`, `AllophoneRule`, `StressRules`, `FIELD_INHERITANCE` |
 | `json_loader.py` | Loads a spec file and resolves its inheritance | `load_json_spec`, `load_all_json_specs`, `available_json_codes` |
 | `schema.py` | Pydantic validation behind `orthography2ipa validate` | |
-| `registry.py` | Code resolution, lazy loading, plugin discovery | `get`, `resolve`, `available_codes`, `available_families`, `ancestry_chain`, `get_syllabifier`, `who_answers`, `MissingPlugin` |
+| `registry.py` | Code resolution, lazy loading, the deprecated plugin discovery | `get`, `resolve`, `available_codes`, `available_families`, `ancestry_chain`, `get_syllabifier`, `MissingPlugin` |
 | `g2p.py` | The pipeline from text to IPA | `G2P`, `transcribe`, `TranscriptionResult`, `WordTranscription`, `ConfidenceBreakdown` |
 | `phonetok.py` | Tokenizer, lattice and beam search | `PhonetokTokenizer`, `Token`, `TokenKind`, `IPAPath`, `Candidate`, `SegmentSlot`, `GraphemeContext`, `TokenSequence` |
 | `positional.py`, `weights.py` | Positional grapheme contexts, grammatical endings, and candidate weights | |
@@ -115,6 +115,7 @@ The spec names a plugin in its `plugins` field by entry-point name, such as `{"s
 | `sandhi.py`, `sentence.py` | Cross-word rules and the sentence lattice | `SandhiEngine`, `SentenceLattice`, `SentenceRescorer`, `WordContext` |
 | `pipeline.py` | The configuration that a caller gives to one engine | `Pipeline` |
 | `lexicon.py`, `markup.py` | The lexicon overlay and the `<phoneme>` markup | `load_lexicon`, `packaged_lexicon`, `MarkupError` |
+| `revision.py` | Content hashes of a spec with its chains and the engine source, and of a packaged lexicon ([api_stability.md](../reference/api_stability.md#spec-revisions)) | `spec_revision`, `lexicon_revision`, `ENGINE_MODULES`, `SPEC_FORMAT_VERSION` |
 | `features.py` | Feature export for ML and CRF G2P ([feature export](lattice.md#feature-export-for-a-learned-model)) | `WordFeatures`, `GraphemeFeatures` |
 | `inventory.py`, `underspecification.py` | Emission and phoneme inventories, TTS tokens, and the places where the spelling leaves a reading open | `phoneme_inventory`, `emission_inventory`, `is_underdetermined` |
 | `distance.py` | The relational distance metrics ([distance.md](../guide/distance.md)) | See below |
@@ -123,7 +124,7 @@ The spec names a plugin in its `plugins` field by entry-point name, such as `{"s
 | `lattice_per.py` | Phone error rate against a lattice ([lattice_per.md](lattice_per.md)) | `lattice_per`, `LatticePER` |
 | `transforms.py` | IPA dialect transforms for Portuguese and Ibero-Romance | `DialectTransform`, `IPARule`, `IPAChainShift`, `IPALexicalRule`, `apply_transform`, `debias_lisbon`, `available_profiles`, `load_clup_profile`, `DIALECT_PROFILES` |
 | `lm.py` | Phoneme n-gram language model utilities | `phoneme_embeddings`, `build_ngram_lm`, `perplexity` |
-| `plugins.py`, `*_plugin.py`, `syllabifiers.py`, `conformance.py` | The pluggable steps, the bundled `silabificador` plugin and the contract checks | `NormalizePlugin`, `SandhiPlugin`, `STAGES`, `SyllabifierPlugin`, `RescorerPlugin`, `StressPlugin` |
+| `plugins.py`, `*_plugin.py`, `syllabifiers.py`, `conformance.py` | The pluggable steps, the bundled `silabificador` plugin and the contract checks | `SandhiPlugin`, `SyllabifierPlugin` |
 | `exceptions.py` | Exception and warning types | `UnmappedScriptError`, `UnmappedGraphemeWarning`, `StubSpecWarning` |
 | `cli.py` | The `orthography2ipa` command ([reference/cli.md](../reference/cli.md)) | `main` |
 | `version.py` | The version, which the release workflow sets | `VERSION_STR` |

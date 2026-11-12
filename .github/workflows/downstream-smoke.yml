@@ -33,8 +33,6 @@ jobs:
           - arbtok
           - tugaphone
           - euskaphone
-          - mwl_phonemizer
-          - g2p_barranquenho
         # udarnik, markovphone and pycotovia-ng consume the engine too but are
         # absent here because none of them is published to PyPI: there is no
         # installable release to smoke, and installing from git is not an

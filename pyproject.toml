@@ -1,11 +1,11 @@
 [build-system]
-requires = ["setuptools>=68.0", "setuptools-scm>=8.0"]
+requires = ["setuptools>=68.0", "setuptools-scm>=10.3.4"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "orthography2ipa"
 dynamic = ["version"]
-dependencies = ["numpy", "langcodes", "linguatag>=0.1.1a1"]
+dependencies = ["numpy", "langcodes", "linguatag>=0.2.1a1"]
 description = "Linguistically motivated grapheme-to-IPA and allophone mappings for thousands of languages, dialects and historical stages"
 readme = "README.md"
 license = {text = "Apache-2.0"}
@@ -33,7 +33,7 @@ hf = ["huggingface_hub"]
 # Installing this extra changes no output: the caller reads one with
 # packaged_lexicon() and passes it in a Pipeline.
 lexicons = ["o2i-lexicons>=0.7.0a1"]
-validation = ["pydantic>=2"]
+validation = ["pydantic>=2.14.3"]
 # A real Portuguese syllabifier. Optional: the bundled splitter is correct on its
 # own (pt-PT declares its diphthongs). Installing this extra changes no output:
 # the caller passes SilabificadorSyllabifier() in a Pipeline.
@@ -47,9 +47,9 @@ portuguese = ["silabificador>=2.1.0a1"]
 # skip, exactly as the cmudict row does when scriptconv is absent. The CI
 # workflows install unar so the ru rows and the en-US/cmudict row are gated
 # there and not only on a developer's box.
-test = ["pytest", "pytest-timeout", "pytest-cov", "pydantic>=2", "hypothesis",
+test = ["pytest", "pytest-timeout", "pytest-cov", "pydantic>=2.14.3", "hypothesis",
         "silabificador>=2.1.0a1", "huggingface_hub", "rarfile", "scriptconv",
-        "anthropic>=2.0.0"]
+        "anthropic>=2.6.0"]
 # dev-only extra for scripts/compare_systems.py; never a runtime dependency.
 # africa-g2p is published on PyPI but is not listed here. Install it into the
 # run environment before regenerating the comparison table, as
@@ -58,7 +58,7 @@ compare = ["epitran", "gruut", "pycotovia", "ahotts-g2p"]
 # dev-only extra for scripts/correct_silver_ipa.py, which corrects the
 # LLM-generated silver sets with Claude; never a runtime dependency. The test
 # extra also lists the SDK, because some tests map its real error classes.
-silver-correction = ["anthropic>=2.0.0"]
+silver-correction = ["anthropic>=2.6.0"]
 
 [project.urls]
 Homepage = "https://github.com/TigreGotico/orthography2ipa"

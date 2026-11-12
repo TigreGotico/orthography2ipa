@@ -7,7 +7,12 @@ from __future__ import annotations
 
 from typing import Tuple
 
-__all__ = ["StubSpecWarning", "UnmappedGraphemeWarning", "UnmappedScriptError"]
+__all__ = [
+    "EngineSourceUnavailable",
+    "StubSpecWarning",
+    "UnmappedGraphemeWarning",
+    "UnmappedScriptError",
+]
 
 
 class UnmappedScriptError(ValueError):
@@ -66,4 +71,14 @@ class UnmappedGraphemeWarning(UserWarning):
     :class:`StubSpecWarning` once instead of once per letter.
     ``G2P(..., on_unmapped="ignore")`` turns the warning off and
     ``on_unmapped="raise"`` turns it into :class:`UnmappedScriptError`.
+    """
+
+
+class EngineSourceUnavailable(RuntimeError):
+    """Raised by :func:`~orthography2ipa.revision.spec_revision` when the
+    source of an engine module cannot be read.
+
+    The engine fingerprint hashes the ``.py`` files of the modules on the
+    transcription path. An install that ships only byte code still
+    transcribes, but it has no source to hash, so it has no spec revision.
     """
