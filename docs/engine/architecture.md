@@ -115,7 +115,7 @@ The spec names a plugin in its `plugins` field by entry-point name, such as `{"s
 | `sandhi.py`, `sentence.py` | Cross-word rules and the sentence lattice | `SandhiEngine`, `SentenceLattice`, `SentenceRescorer`, `WordContext` |
 | `pipeline.py` | The configuration that a caller gives to one engine | `Pipeline` |
 | `lexicon.py`, `markup.py` | The lexicon overlay and the `<phoneme>` markup | `load_lexicon`, `packaged_lexicon`, `MarkupError` |
-| `revision.py` | Content hashes of a spec with its chains and the engine source, and of a packaged lexicon ([api_stability.md](../reference/api_stability.md#spec-revisions)) | `spec_revision`, `lexicon_revision`, `ENGINE_MODULES`, `SPEC_FORMAT_VERSION` |
+| `revision.py` | Content hashes of a spec with its chains, the engine source and the Unicode version, and of a packaged lexicon ([api_stability.md](../reference/api_stability.md#spec-revisions)) | `spec_revision`, `lexicon_revision`, `ENGINE_MODULES`, `SPEC_FORMAT_VERSION` |
 | `features.py` | Feature export for ML and CRF G2P ([feature export](lattice.md#feature-export-for-a-learned-model)) | `WordFeatures`, `GraphemeFeatures` |
 | `inventory.py`, `underspecification.py` | Emission and phoneme inventories, TTS tokens, and the places where the spelling leaves a reading open | `phoneme_inventory`, `emission_inventory`, `is_underdetermined` |
 | `distance.py` | The relational distance metrics ([distance.md](../guide/distance.md)) | See below |
