@@ -1,5 +1,9 @@
 # Changelog
 
+## [7.123.1a2](https://github.com/TigreGotico/orthography2ipa/tree/7.123.1a2) (2026-11-12)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.123.1a1...7.123.1a2)
+
 ## [7.123.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.123.1a1) (2026-11-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.123.0a7...7.123.1a1)
@@ -386,10 +390,6 @@
 ## [7.122.9a1](https://github.com/TigreGotico/orthography2ipa/tree/7.122.9a1) (2026-11-09)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.122.8a1...7.122.9a1)
-
-**Merged pull requests:**
-
-- fix\(pt-PT\): rank word-initial unstressed e by its first syllable [\#2208](https://github.com/TigreGotico/orthography2ipa/pull/2208) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.122.8a1](https://github.com/TigreGotico/orthography2ipa/tree/7.122.8a1) (2026-11-09)
 
