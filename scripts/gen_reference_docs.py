@@ -33,6 +33,7 @@ import os
 import re
 import subprocess
 import sys
+import warnings
 from collections import defaultdict
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -81,7 +82,10 @@ def api_page(order: list[str]) -> str:
 
     groups: dict[str, list[tuple[str, str, str]]] = defaultdict(list)
     for name in orthography2ipa.__all__:
-        obj = getattr(orthography2ipa, name)
+        # A deprecated name warns on access, and the page lists it all the same.
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", DeprecationWarning)
+            obj = getattr(orthography2ipa, name)
         if hasattr(obj, "__origin__"):
             groups["constants and type aliases"].append(
                 (name, "type alias", f"`{_alias(obj)}`"))

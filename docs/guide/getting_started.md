@@ -263,20 +263,24 @@ from orthography2ipa.syllabifiers import SilabificadorSyllabifier
 engine = G2P("pt-PT", pipeline=Pipeline(syllabifier=SilabificadorSyllabifier()))
 ```
 
-`orthography2ipa.who_answers(code)` reports which plugins answer for a code. It returns the resolved code, the syllabifier (always `"built-in"`, because discovery finds no syllabifier) and the list of installed rescorer plugins with their priority:
+`engine.pipeline` holds the steps that this engine runs:
 
 ```python
-orthography2ipa.who_answers("pt-PT")
-# {'code': 'pt-PT', 'syllabify': 'built-in', 'rescore': ['built-in (spec allophone_rules only)']}
+engine.pipeline.syllabifier             # the SilabificadorSyllabifier instance
+G2P("pt-PT").pipeline == Pipeline()     # True: no step, the rules alone
 ```
+
+`orthography2ipa.who_answers(code)` is deprecated. It lists the installed rescorer plugins, and `G2P` does not run them.
+
+`language_codes` is optional on `SyllabifierPlugin` and `SandhiPlugin`, because the caller chooses the engine that runs the step.
 
 To write a plugin, do these steps:
 
 1. Subclass the base class of the stage. Set `language_codes`. For a stage other than `syllabify`, set `priority` if another plugin claims the same codes.
 2. Check the class with the contract checks in `orthography2ipa.conformance`. `assert_syllabifier_conforms` fails if a syllabifier does not join back to the word or if it changes the transcription. `assert_rescorer_conforms` checks a rescorer.
 3. For a syllabifier, pass an instance in `Pipeline(syllabifier=...)`. This stage has no entry point.
-4. For a rescorer, pass `tuple(plugin.rescorers(code))` in `Pipeline(rescore=...)`. For a sandhi plugin, pass the instance in `Pipeline(sandhi=...)`.
-5. For a spec to name the plugin, declare the class as an [entry point](https://packaging.python.org/en/latest/specifications/entry-points/) in the `pyproject.toml` of your package, in the group `orthography2ipa.<stage>`. Then name the plugin by its entry-point name in the `plugins` field of the spec.
+4. For a rescorer, pass the `LatticeRescorer` objects in `Pipeline(rescore=...)`. For a sandhi plugin, pass the instance in `Pipeline(sandhi=...)`. A text step for `Pipeline(expand=...)` or `Pipeline(mark=...)` is a function from text to text.
+5. Do not register an entry point. Discovery by entry point, and the base classes `NormalizePlugin`, `RescorerPlugin` and `StressPlugin`, are deprecated and go in the next major release. A subclass of one of these classes raises a `DeprecationWarning`.
 
 A syllabifier for Italian that closes a syllable after each vowel run passes the check:
 

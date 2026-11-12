@@ -11,25 +11,28 @@ import pytest
 
 from orthography2ipa import get, registry
 from orthography2ipa.g2p import G2P
-from orthography2ipa.plugins import (
-    ENTRY_POINT_GROUPS, NormalizePlugin, OUTPUT_CHANGING_STAGES, STAGES, SandhiPlugin,
-)
+from orthography2ipa.plugins import SandhiPlugin
 from orthography2ipa.registry import MissingPlugin
 
 # This module tests a deprecated G2P argument, which still works.
 pytestmark = pytest.mark.filterwarnings(
     r"ignore:G2P\(\w+=\.\.\.\) is deprecated:DeprecationWarning")
 
+# The stage constants and NormalizePlugin are deprecated, and still work.
+with pytest.deprecated_call():
+    from orthography2ipa.plugins import (
+        ENTRY_POINT_GROUPS, NormalizePlugin, OUTPUT_CHANGING_STAGES, STAGES,
+    )
 
-class _Diacritizer(NormalizePlugin):
-    """Stands in for text2tashkeel: puts the vowels back before anything reads."""
+    class _Diacritizer(NormalizePlugin):
+        """Stands in for text2tashkeel: puts the vowels back before anything reads."""
 
-    def normalize(self, text, lang):
-        return {"كتب": "كَتَبَ"}.get(text, text)
+        def normalize(self, text, lang):
+            return {"كتب": "كَتَبَ"}.get(text, text)
 
-    @property
-    def language_codes(self):
-        return ["ar"]
+        @property
+        def language_codes(self):
+            return ["ar"]
 
 
 class _NunAssimilation(SandhiPlugin):

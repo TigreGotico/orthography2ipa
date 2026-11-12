@@ -15,9 +15,9 @@ The top level of `orthography2ipa` exports each of these functions.
 | `available_families()` | A dict from each family path to the list of its language codes. |
 | `ancestry_chain(code)` | The list of `parent` codes above the spec, nearest first, with the clade nodes that the chain passes through. |
 | `get_syllabifier(code)` | Deprecated. `None` for every code, because discovery finds no syllabifier. A caller passes one in `Pipeline(syllabifier=...)`. |
-| `get_rescorers(code)` | The list of `LatticeRescorer` objects that the installed rescorer plugins contribute for the code. |
-| `get_stress_plugin(code)` | The `StressPlugin` registered for the code, or `None`. |
-| `who_answers(code)` | A dict with the resolved `code`, `syllabify` (always `built-in`) and the `rescore` list. |
+| `get_rescorers(code)` | Deprecated. The list of `LatticeRescorer` objects that the installed rescorer plugins contribute for the code. `G2P` does not run them. A caller passes rescorers in `Pipeline(rescore=...)`. |
+| `get_stress_plugin(code)` | Deprecated. The `StressPlugin` registered for the code, or `None`. |
+| `who_answers(code)` | Deprecated. A dict with the resolved `code`, `syllabify` (always `built-in`) and the `rescore` list of the installed plugins. `G2P.pipeline` holds the steps of one engine. |
 
 ```python
 import orthography2ipa
@@ -120,6 +120,8 @@ An old key that is the ISO 639-3 code of another language is not kept as an alia
 
 ## Plugin discovery
 
+Plugin discovery is deprecated. It goes in the next major release, together with the deprecated `G2P(plugins=...)`. A caller passes each step to one engine in a `Pipeline`, and no step needs an entry point. `get_rescorers`, `get_stress_plugin`, `who_answers`, `get_declared_plugins`, the base classes `NormalizePlugin`, `RescorerPlugin` and `StressPlugin`, and the constants `STAGES`, `OUTPUT_CHANGING_STAGES` and `ENTRY_POINT_GROUPS` raise a `DeprecationWarning` that names the release that removes them.
+
 The registry finds plugins through `importlib.metadata` entry points, with one group for each pluggable stage except `syllabify`. Discovery runs once per stage, on the first call that needs it, and the result stays cached at module scope. A plugin that fails to load logs a `WARNING` and is skipped.
 
 | Group | Lookup | When several plugins claim one code |
@@ -128,14 +130,15 @@ The registry finds plugins through `importlib.metadata` entry points, with one g
 | `orthography2ipa.stress` | `get_stress_plugin(code)` | The highest `priority` wins |
 | `orthography2ipa.normalize`, `orthography2ipa.sandhi` | by entry-point name | The spec or the caller names one, so no contest arises |
 
-`RescorerPlugin`, `StressPlugin` and `SyllabifierPlugin` each have a `priority` property that defaults to `50`. `NormalizePlugin` and `SandhiPlugin` have none, because a caller names them. Nothing reads the priority of a syllabifier, for the same reason.
+`RescorerPlugin`, `StressPlugin` and `SyllabifierPlugin` each have a `priority` property that defaults to `50`. `NormalizePlugin` and `SandhiPlugin` have none, because a caller names them. Nothing reads the priority of a syllabifier, for the same reason. `SyllabifierPlugin` and `SandhiPlugin` have a `language_codes` property that defaults to an empty list, and the engine does not read it.
 
 Discovery alone selects nothing. A caller passes a syllabifier in `Pipeline(syllabifier=...)`. The engine runs a normalize, stress, rescore or sandhi plugin only when the spec or the caller names it by entry-point name ([architecture.md](../engine/architecture.md#pluggable-steps)). `get_rescorers(code)` lists what the installed rescorer plugins contribute, but `G2P` runs only the declared ones. A stress plugin runs only when the spec sets `stress.source` to `"plugin"`. If none is installed, the engine raises `MissingStressPlugin`, which `orthography2ipa.registry` defines. A named plugin that is not installed raises `MissingPlugin`.
 
-`who_answers(code)` reports which rescorers answer for a code:
+`who_answers(code)` reports which installed rescorer plugins claim a code:
 
 ```python
 orthography2ipa.who_answers("pt-PT")
+# DeprecationWarning: who_answers is deprecated ...
 # {'code': 'pt-PT',
 #  'syllabify': 'built-in',
 #  'rescore': ['built-in (spec allophone_rules only)']}

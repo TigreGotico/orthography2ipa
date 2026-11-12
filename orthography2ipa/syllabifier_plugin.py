@@ -37,9 +37,9 @@ class SyllabifierPlugin(ABC):
         """
 
     @property
-    @abstractmethod
     def language_codes(self) -> List[str]:
-        """BCP-47 codes this syllabifier handles."""
+        """BCP-47 codes this syllabifier handles. The engine does not read them."""
+        return []
 
     @property
     def priority(self) -> int:

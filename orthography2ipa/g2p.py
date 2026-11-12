@@ -77,7 +77,7 @@ from orthography2ipa.positional import (match_grammatical_ending,
 from orthography2ipa.rescorer import (
     LatticeRescorer, RescorerArg, apply_rescorers, normalize_rescorers,
 )
-from orthography2ipa.registry import get, get_declared_plugins, resolve
+from orthography2ipa.registry import _get_declared_plugins, get, resolve
 from orthography2ipa.weights import candidate_base_costs
 from orthography2ipa.sandhi import SandhiEngine
 from orthography2ipa.sentence import (
@@ -417,7 +417,7 @@ class _StagePlugins:
             # The caller's choice overrides the spec's, so resolve against the
             # merged view rather than the spec's own block.
             merged = replace(self._spec, plugins=self._declared)
-            self._cache[stage] = get_declared_plugins(stage, merged)
+            self._cache[stage] = _get_declared_plugins(stage, merged)
         return self._cache[stage]
 
 
