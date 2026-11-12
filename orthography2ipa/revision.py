@@ -174,12 +174,14 @@ def _canonical_spec(code: str) -> bytes:
 def _data_parent(raw: dict) -> Optional[str]:
     """The ``parent`` that the loader walks through when it resolves a child.
 
-    A clade with no ``parent`` key takes its first ``parent``-role ancestor,
-    as :class:`~orthography2ipa.types.LanguageSpec` sets it, and the loader
-    walks through a clade to the nearest spec with data.
+    The loader drops a ``parent`` that names a code with no spec file. A clade
+    with no ``parent``, or with a dropped one, then takes its first
+    ``parent``-role ancestor, as :class:`~orthography2ipa.types.LanguageSpec`
+    sets it, and the loader walks through a clade to the nearest spec with data.
     """
-    if raw.get("parent") or not raw.get("clade"):
-        return raw.get("parent")
+    parent = raw.get("parent")
+    if parent in _index or not raw.get("clade"):
+        return parent
     return next((a.get("code") for a in raw.get("ancestors") or ()
                  if a.get("role") == "parent"), None)
 
@@ -223,9 +225,9 @@ def spec_revision(code: str) -> str:
     alias and its canonical code give one revision. The hash input is, in this
     order: :data:`SPEC_FORMAT_VERSION`; the spec of *code*; every other spec
     the loader merges into it (``parent``, or the first ``parent``-role
-    ancestor of a clade that has no ``parent``, and the ``<field>_base`` keys,
-    followed to the end of each chain, sorted by code); and
-    :func:`engine_fingerprint`. Each spec counts as its parsed JSON with
+    ancestor of a clade whose ``parent`` is empty or has no spec file, and the
+    ``<field>_base`` keys, followed to the end of each chain, sorted by code);
+    and :func:`engine_fingerprint`. Each spec counts as its parsed JSON with
     sorted keys and no whitespace, tagged with its code, so a whitespace-only
     edit leaves the revision equal.
 
