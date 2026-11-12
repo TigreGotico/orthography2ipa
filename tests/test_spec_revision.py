@@ -13,6 +13,7 @@ import os
 import subprocess
 import sys
 import textwrap
+import unicodedata
 from pathlib import Path
 
 import pytest
@@ -204,6 +205,20 @@ def test_changes_with_the_spec_format_version(monkeypatch):
     monkeypatch.setattr(revision, "SPEC_FORMAT_VERSION", revision.SPEC_FORMAT_VERSION + 1)
     revision._spec_revision.cache_clear()
     assert spec_revision("pt-PT") != before
+
+
+def test_changes_with_the_unicode_database_version(monkeypatch):
+    """The engine normalises and classifies text with unicodedata, so its version is an input."""
+    def fresh():
+        revision._spec_revision.cache_clear()
+        revision.engine_fingerprint.cache_clear()
+        return spec_revision("pt-PT")
+
+    before = spec_revision("pt-PT")
+    monkeypatch.setattr(unicodedata, "unidata_version", "0.0.0")
+    assert fresh() != before
+    monkeypatch.undo()
+    assert fresh() == before
 
 
 # ── engine fingerprint ────────────────────────────────────────────────────

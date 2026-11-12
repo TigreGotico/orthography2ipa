@@ -5,8 +5,9 @@ configuration of the caller. A revision names the first of these, so that a
 consumer that recorded one when it trained can tell whether the engine it runs
 reads the same rules.
 
-:func:`spec_revision` hashes the spec files that the loader reads for a code
-and the source of the engine modules that interpret them. :func:`lexicon_revision`
+:func:`spec_revision` hashes the spec files that the loader reads for a code,
+the source of the engine modules that interpret them and the version of the
+Unicode database that those modules use. :func:`lexicon_revision`
 hashes the packaged lexicon that :func:`~orthography2ipa.lexicon.packaged_lexicon`
 reads, because a lexicon changes output from outside the spec.
 """
@@ -16,6 +17,7 @@ import hashlib
 import io
 import json
 import tokenize
+import unicodedata
 from functools import lru_cache
 from importlib.resources import files
 from typing import Iterable, List, Optional, Tuple
@@ -142,8 +144,11 @@ def _module_source(name: str) -> bytes:
 
 @lru_cache(maxsize=None)
 def engine_fingerprint() -> str:
-    """sha256 over the tokens of the :data:`ENGINE_MODULES` source files.
+    """sha256 over the Unicode database version and the :data:`ENGINE_MODULES` source.
 
+    The engine normalises and classifies text with :mod:`unicodedata`, so a
+    Python with another ``unicodedata.unidata_version`` can give other output
+    from the same spec. The source counts as the tokens of each module file.
     Comments, blank lines and the width of an indent do not count. Statement
     ends, block edges and docstrings do. The package version does not count,
     because an alpha release changes it with no change to the engine.
@@ -158,8 +163,10 @@ def engine_fingerprint() -> str:
         The source of an engine module cannot be read, as in an install that
         ships only byte code.
     """
-    return _fingerprint((f"orthography2ipa/{name}.py", _module_source(name))
-                        for name in sorted(ENGINE_MODULES))
+    digest = hashlib.sha256(f"unicodedata:{unicodedata.unidata_version}\n".encode())
+    digest.update(_fingerprint((f"orthography2ipa/{name}.py", _module_source(name))
+                               for name in sorted(ENGINE_MODULES)).encode())
+    return digest.hexdigest()
 
 
 @lru_cache(maxsize=None)
@@ -225,9 +232,19 @@ def spec_revision(code: str) -> str:
     the loader merges into it (``parent``, or the first ``parent``-role
     ancestor of a clade that has no ``parent``, and the ``<field>_base`` keys,
     followed to the end of each chain, sorted by code); and
-    :func:`engine_fingerprint`. Each spec counts as its parsed JSON with
-    sorted keys and no whitespace, tagged with its code, so a whitespace-only
-    edit leaves the revision equal.
+    :func:`engine_fingerprint`, which covers the engine source and the
+    ``unicodedata.unidata_version`` of the running Python. Each spec counts as
+    its parsed JSON with sorted keys and no whitespace, tagged with its code,
+    so a whitespace-only edit leaves the revision equal.
+
+    The revision covers the spec and the engine. It does not cover a step that
+    a caller passes in a :class:`~orthography2ipa.pipeline.Pipeline`. It does
+    not cover a third-party plugin that a spec names through the deprecated
+    ``plugins`` field or ``stress.source = "plugin"``: ``G2P`` raises a
+    :class:`DeprecationWarning` for both, and no shipped spec sets either. An
+    installed plugin that no spec names never runs. ``G2P`` does not call
+    :func:`~orthography2ipa.registry.get_rescorers`, and the stress plugin runs
+    only for ``stress.source = "plugin"``.
 
     Returns ``"sha256:"`` and the hex digest. The value is computed at the
     first call for a code in a process and kept, as the loader reads each spec
