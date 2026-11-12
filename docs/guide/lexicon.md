@@ -157,6 +157,19 @@ Only `packaged_lexicon()`, `packaged_lexicon_sources()` and `use_packaged_lexico
 
 The benchmark never enables a packaged lexicon, so the board stays rules-only whatever is installed.
 
+#### Recording which lexicon an engine read
+
+`lexicon_revision(code, patches=False)` returns a `"sha256:"` hash of the files that `packaged_lexicon(code, patches)` reads. A consumer that trains with a packaged lexicon records the value and compares it later, as it does with `spec_revision(code)` for the rules:
+
+```python
+from orthography2ipa import lexicon_revision, spec_revision
+
+spec_revision("pt-PT")                    # 'sha256:…': the spec, its chains and the engine
+lexicon_revision("pt-PT", patches=True)   # 'sha256:…': the exceptions and the patches
+```
+
+The value changes when a file changes, and the `patches` flag is part of it. The function raises `LookupError` in the cases where `packaged_lexicon` raises it. [api_stability.md](../reference/api_stability.md#spec-revisions) gives the hash input of both functions.
+
 ### The file format
 
 A lexicon is a UTF-8 TSV with one `word<TAB>ipa` pair per line. The words are lowercase, and both columns are NFC-normalised. Sort the file, because the first entry for a word wins. The parser skips blank lines and lines that do not have exactly two fields.
@@ -191,6 +204,7 @@ Write the lexicon in the same broad IPA that the `graphemes` of the spec use. Th
 | `load_lexicon(source)` | yes | The `{word: ipa}` map at a file, a URL or a dataset id |
 | `packaged_lexicon(code, patches=False)` | yes | The `{word: ipa}` map of exceptions an installed package supplies for a code. With `patches=True`, the patches too |
 | `packaged_lexicon_sources(patches=False)` | yes | The installed packaged lexicons, as `{code: path}`. With `patches=True`, the patch files. Reads no entry |
+| `lexicon_revision(code, patches=False)` | yes | The `"sha256:"` hash of the files that `packaged_lexicon(code, patches)` reads |
 | `available_lexicon_codes()` | yes | The registered codes, the file stems in the directory, and the enabled packaged codes |
 | `resolve_lexicon_source(source)` | yes | The local file for a source, fetched if remote |
 | `validate_lexicon_text(text)` | yes | The list of problems in a lexicon body |

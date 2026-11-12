@@ -79,9 +79,26 @@ These names are public and importable, but no downstream repository uses them. T
 | `distance` | `inventory_distance`, `grapheme_divergence`, `spelling_divergence`, `allophone_overlap`, `phonological_distance`, `ancestry_similarity`, `geographic_distance`, `full_distance`, `pairwise_distances`, `feature_vector`, `InventoryDistance`, `GraphemeDivergence`, `SpellingDivergence`, `PhonologicalDistance` |
 | `script_distance` | `ScriptFeatures`, `SCRIPT_REGISTRY`, `script_distance`, `script_distance_by_name` |
 | `transforms` | `apply_transform`, `debias_lisbon`, `available_profiles`, `DIALECT_PROFILES`, `DialectTransform`, `IPARule`, `IPAChainShift`, `IPALexicalRule`, `load_clup_profile` |
+| `revision` | `spec_revision`, `lexicon_revision`: the format is covered by the commitment, see below |
 | `sentence`, `features` | `SentenceLattice`, `SentenceRescorer`, `SentenceRescoreContext`, `WordSlot`, `Position`, `WordFeatures`, `GraphemeFeatures`: covered by the commitment, see below |
 
 The exception types `UnmappedScriptError`, `UnmappedGraphemeWarning` and `StubSpecWarning` live in `orthography2ipa.exceptions` and are not re-exported at the top level. `slot_confidence` and `lattice_confidence` live in `orthography2ipa.phonetok` only.
+
+## Spec revisions
+
+`spec_revision(code)` names the rules that an engine for `code` reads. A consumer records the value when it trains, and compares it with the value of the engine that it runs later.
+
+The value is `"sha256:"` followed by a hex digest. It is a function of three inputs, in this order:
+
+1. The spec-format version, `orthography2ipa.revision.SPEC_FORMAT_VERSION`. The version is `1`.
+2. The spec files that the loader merges into the spec. These are the file of the resolved code, then every file on its `parent` chain and on each `<field>_base` chain, sorted by code. Each file counts as its parsed JSON with sorted keys and no whitespace, tagged with its code. The `ancestors` codes do not count, because the loader merges none of their data.
+3. The engine fingerprint. This is a sha256 over the tokens of the modules in `orthography2ipa.revision.ENGINE_MODULES`, the modules on the transcription path. Comments and layout do not count, and docstrings do. The package version does not count, because a daily alpha changes it with no change to the engine.
+
+The code resolves as `G2P` resolves it, so an alias and its canonical code give one revision. A whitespace-only edit of a spec leaves the revision equal. An edit to a spec that is not on the chains of `code` leaves it equal too.
+
+The spec-format version goes up when a spec field starts to mean something else. An example is an engine that reads an existing key in a new way. Every spec revision then changes, although no spec file changed. A new optional field does not need a new version, because only the specs that use it change.
+
+`lexicon_revision(code, patches=False)` names the packaged lexicon that `packaged_lexicon(code, patches)` reads. It is a sha256 over the `patches` flag, the bytes of the exceptions file and, with `patches=True`, the bytes of the patch file. The two values of the flag never give one revision. The function raises `LookupError` in the cases where `packaged_lexicon` raises it. A lexicon sits outside the spec, so a consumer that passes one to the engine records both revisions.
 
 ## Surfaces that leave the default output unchanged
 
