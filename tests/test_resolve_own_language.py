@@ -59,13 +59,32 @@ def test_cnr_maximizes_to_serbian_but_is_not_chosen_for_it():
     assert resolve("sr-Latn-RS") == "sr"
 
 
+# Each code is the spec whose ``iso639_3`` is the tag's language: for afb,
+# ayl and ayp the one with no region or private use, which is also what
+# the bare code names.
 @pytest.mark.parametrize("tag,code", [
-    ("aao-Arab", "ar"), ("acm-Arab", "ar"), ("cdo-Hans", "zh"),
-    ("bs-Cyrl", "sr"), ("hr-Cyrl", "sr"), ("hr-Cyrl-HR", "sr"),
+    ("aao-Arab", "aao"), ("abh-Arab", "abh"), ("abv-Arab", "abv-BH"),
+    ("acm-Arab", "acm-IQ"), ("acq-Arab", "acq"), ("acw-Arab", "acw-SA"),
+    ("acx-Arab", "acx-OM"), ("adf-Arab", "adf-OM"), ("aec-Arab", "aec-EG"),
+    ("afb-Arab", "afb"), ("auz-Arab", "auz"), ("ayh-Arab", "ayh"),
+    ("ayl-Arab", "ayl"), ("ayn-Arab", "ayn-YE"), ("ayp-Arab", "ayp"),
+    ("mey-Arab", "mey-MR"), ("ssh-Arab", "ssh"),
+])
+def test_an_arabic_variety_in_arabic_script_names_its_own_spec(tag, code):
+    # CLDR gives these varieties the likely script Arab, so the script
+    # subtag adds nothing and the own-language spec is near enough.
+    language = _language(tag)
+    assert get(code).iso639_3 == language
+    assert resolve(tag) == code == resolve(language)
+
+
+@pytest.mark.parametrize("tag,code", [
+    ("cdo-Hans", "zh"), ("bs-Cyrl", "sr"), ("hr-Cyrl", "sr"),
+    ("hr-Cyrl-HR", "sr"),
 ])
 def test_with_no_own_spec_near_enough_the_old_target_stays(tag, code):
-    # langcodes guesses Latn for aao and cdo, and the bs and hr specs read
-    # Latin, so no own-language spec is near enough; the wide search runs.
+    # langcodes guesses Latn for cdo, and the bs and hr specs read Latin,
+    # so no own-language spec is near enough; the wide search runs.
     assert resolve(tag) == code
     assert not resolves_exactly(tag)
 
