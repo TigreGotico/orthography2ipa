@@ -273,17 +273,16 @@ orthography2ipa.who_answers("pt-PT")
 To write a plugin, do these steps:
 
 1. Subclass the base class of the stage. Set `language_codes`. For a stage other than `syllabify`, set `priority` if another plugin claims the same codes.
-2. Check the class with the contract checks in `orthography2ipa.conformance`. `assert_syllabifier_conforms` fails if a syllabifier does not join back to the word or if it changes the transcription. `assert_rescorer_conforms` checks a rescorer.
+2. Test the class in your own suite. Compare `G2P(lang)` with `G2P(lang, pipeline=Pipeline(...))` over words of your language, and check that a syllabifier joins back to the word. The contract checks `assert_syllabifier_conforms` and `assert_rescorer_conforms` in `orthography2ipa.conformance` are deprecated, and go in the next major release. Each call raises a `DeprecationWarning`.
 3. For a syllabifier, pass an instance in `Pipeline(syllabifier=...)`. This stage has no entry point.
 4. For a rescorer, pass `tuple(plugin.rescorers(code))` in `Pipeline(rescore=...)`. For a sandhi plugin, pass the instance in `Pipeline(sandhi=...)`.
 5. For a spec to name the plugin, declare the class as an [entry point](https://packaging.python.org/en/latest/specifications/entry-points/) in the `pyproject.toml` of your package, in the group `orthography2ipa.<stage>`. Then name the plugin by its entry-point name in the `plugins` field of the spec.
 
-A syllabifier for Italian that closes a syllable after each vowel run passes the check:
+A syllabifier for Italian that closes a syllable after each vowel run joins back to each word, and moves no transcription of these words:
 
 ```python
 import re
-from orthography2ipa import SyllabifierPlugin
-from orthography2ipa.conformance import assert_syllabifier_conforms
+from orthography2ipa import G2P, Pipeline, SyllabifierPlugin
 
 V = "aeiouàèéìòù"
 
@@ -295,7 +294,10 @@ class ItalianSyllabifier(SyllabifierPlugin):
 
 plugin = ItalianSyllabifier()
 plugin.syllabify("amore")    # ['a', 'mo', 're']
-assert_syllabifier_conforms(plugin, words=["amore", "casa", "parlare"])   # passes, returns None
+words = ["amore", "casa", "parlare"]
+assert all("".join(plugin.syllabify(word)) == word for word in words)
+with_plugin = G2P("it-IT", pipeline=Pipeline(syllabifier=plugin))
+assert [with_plugin.transcribe_word(w) for w in words] == [G2P("it-IT").transcribe_word(w) for w in words]
 ```
 
 A caller passes it to one engine:

@@ -96,7 +96,7 @@ Five stages accept a plugin. All of them can change the transcription, so the sp
 
 The spec names a plugin in its `plugins` field by entry-point name, such as `{"sandhi": "arbtok"}`. The caller overrides it with the `Pipeline` field of the stage, and the engine then does not resolve the name. The caller can also name a plugin with `G2P(lang, plugins={...})`, which is deprecated. A declared plugin that is not installed raises `MissingPlugin`, and the engine never falls back to the built-in answer.
 
-`plugins.py` states the contract of each stage. `conformance.py` holds the contract checks: `assert_syllabifier_conforms` fails if an installed syllabifier moves the output, and `assert_rescorer_conforms` checks a rescorer. Discovery uses Python [entry points](https://packaging.python.org/en/latest/specifications/entry-points/). [registry.md](../reference/registry.md#plugin-discovery) describes how the registry finds plugins and which one wins.
+`plugins.py` states the contract of each stage. `conformance.py` holds the contract checks: `assert_syllabifier_conforms` fails if an installed syllabifier moves the output, and `assert_rescorer_conforms` checks a rescorer. Both checks are deprecated, and go in the next major release. Discovery uses Python [entry points](https://packaging.python.org/en/latest/specifications/entry-points/). [registry.md](../reference/registry.md#plugin-discovery) describes how the registry finds plugins and which one wins.
 
 ## Modules
 
