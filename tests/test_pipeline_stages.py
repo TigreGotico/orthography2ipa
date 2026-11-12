@@ -21,6 +21,9 @@ CATALAN = "els amics, de casa"
 # These tests check that a deprecated G2P argument still works.
 OLD_ARGUMENT = pytest.mark.filterwarnings(
     r"ignore:G2P\(\w+=\.\.\.\) is deprecated:DeprecationWarning")
+# These tests check that the deprecated spec field still works.
+SPEC_FIELD = pytest.mark.filterwarnings(
+    r"ignore:the plugins field of the [\w-]+ spec is deprecated:DeprecationWarning")
 
 
 class Promote(LatticeRescorer):
@@ -171,6 +174,7 @@ def test_an_old_argument_and_a_field_cannot_both_be_set(field, old):
         G2P("es-ES", pipeline=Pipeline(**field), **old)
 
 
+@SPEC_FIELD
 @pytest.mark.parametrize("stage, field", [
     ("rescore", {"rescore": (Promote("c", "k"),)}),
     ("sandhi", {"sandhi": Recording()}),

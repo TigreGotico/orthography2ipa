@@ -8,6 +8,8 @@ No covered name is renamed or removed in one step. A rename or a removal follows
 
 The commitment covers each name in the two tables of the next section. It also covers the names of the sentence-context seam and of the feature export, which the sections below describe.
 
+The same rule covers the spec fields that `G2P` reads. The `plugins` field and the value `"plugin"` of `stress.source` are deprecated, and they go in the next major release. `G2P` raises a `DeprecationWarning` when it builds an engine on a spec that sets either one, once per engine. No shipped spec sets them, so `G2P(code)` stays silent for every code. A caller passes each step to one engine in a `Pipeline`.
+
 ## Names that downstream code imports
 
 The inventory comes from the Python imports on the `dev` branch of each downstream repository: [arbtok](https://github.com/TigreGotico/arbtok), [euskaphone](https://github.com/TigreGotico/euskaphone), [tugaphone](https://github.com/TigreGotico/tugaphone), [g2p_barranquenho](https://github.com/TigreGotico/g2p_barranquenho) and [mwl_phonemizer](https://github.com/TigreGotico/mwl_phonemizer). The scan parses every Python file of each repository, so it covers the library code, the tests, the scripts and the examples. It counts both `from orthography2ipa import X` and attribute access such as `orthography2ipa.get`. [phonematcher](https://github.com/TigreGotico/phonematcher) and [sotaque_forcado](https://github.com/TigreGotico/sotaque_forcado) import nothing from `orthography2ipa`.

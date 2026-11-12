@@ -17,6 +17,9 @@ FORCED = 'o <phoneme ph="ˈɡatu">gato</phoneme> bebe água'
 # These tests check that a deprecated G2P argument still works.
 OLD_ARGUMENT = pytest.mark.filterwarnings(
     r"ignore:G2P\(\w+=\.\.\.\) is deprecated:DeprecationWarning")
+# These tests check that the deprecated spec field still works.
+SPEC_FIELD = pytest.mark.filterwarnings(
+    r"ignore:the plugins field of the [\w-]+ spec is deprecated:DeprecationWarning")
 
 
 class Recorder:
@@ -221,6 +224,7 @@ def test_an_old_argument_and_a_field_cannot_both_be_set(field, old):
         G2P("pt-PT", pipeline=Pipeline(**{field: str}), **old)
 
 
+@SPEC_FIELD
 @pytest.mark.parametrize("field", ["expand", "mark"])
 def test_a_field_stands_in_for_a_spec_named_normalize_plugin(field):
     spec = replace(get("pt-PT"), plugins={"normalize": ("not-installed",)})
