@@ -806,6 +806,10 @@ class StressRules:
         and the input — never of what happens to be installed. If a spec asks for
         a plugin and none is registered, that is an error, not a quiet fallback to
         a different answer.
+
+        ``"plugin"`` is deprecated. ``G2P`` raises a ``DeprecationWarning`` when
+        it builds an engine on a spec that sets it, once per engine. No shipped
+        spec sets it.
     notes : str
         Free-form provenance / convention notes.
     """
@@ -2126,7 +2130,11 @@ class LanguageSpec:
     virama anywhere else keeps deleting the vowel to form its conjunct."""
 
     plugins: Dict[str, Tuple[str, ...]] = field(default_factory=dict)
-    """Which plugin this language wants, per stage — keyed by entry-point name.
+    """Deprecated: which plugin this language wants, per stage — keyed by entry-point name.
+
+    ``G2P`` raises a ``DeprecationWarning`` when it builds an engine on a spec
+    that sets this field, once per engine. No shipped spec sets it. A caller
+    passes each step to one engine in a :class:`~orthography2ipa.pipeline.Pipeline`.
 
     A plugin that CHANGES THE TRANSCRIPTION must be named here. That is what keeps
     the output a function of the spec and the input rather than of whatever

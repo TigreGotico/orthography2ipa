@@ -375,6 +375,7 @@ _STAGE_FIELDS = {
     "rescore": "Pipeline(rescore=...)",
     "sandhi": "Pipeline(sandhi=...)",
 }
+_STAGE_FIELDS_TEXT = ", ".join(f"{field} for {stage!r}" for stage, field in _STAGE_FIELDS.items())
 
 
 def _field_stages(pipeline: Pipeline, named: dict, normalizer, rescorer,
@@ -523,8 +524,7 @@ class G2P:
             if value is not None:
                 _warn_deprecated(f"G2P({name}=...)", _STAGE_FIELDS[stage])
         if plugins is not None:
-            _warn_deprecated("G2P(plugins=...)", ", ".join(
-                f"{field} for {stage!r}" for stage, field in _STAGE_FIELDS.items()))
+            _warn_deprecated("G2P(plugins=...)", _STAGE_FIELDS_TEXT)
         self.allow_undeclared_phonemes = allow_undeclared_phonemes
         self.pipeline: Pipeline = pipeline or Pipeline()
         named = _as_names(plugins or {})
@@ -555,6 +555,11 @@ class G2P:
                 f"got {on_unmapped!r}")
         self.lang: str = resolve(lang)
         self.spec: LanguageSpec = get(self.lang) if spec is None else spec
+        if self.spec.plugins:
+            _warn_deprecated(f"the plugins field of the {self.spec.code} spec", _STAGE_FIELDS_TEXT)
+        if self.spec.stress is not None and self.spec.stress.source == "plugin":
+            _warn_deprecated(f'stress.source = "plugin" in the {self.spec.code} spec',
+                             "the stress rules of the spec")
         if self.is_stub:
             warnings.warn(
                 f"{self.lang}: this spec has no grapheme table; every "
