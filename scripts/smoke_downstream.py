@@ -39,8 +39,16 @@ def _arbtok(word: str) -> object:
 
 def _tugaphone(word: str) -> object:
     import tugaphone
+    from orthography2ipa import G2P
 
-    return tugaphone.phonemize(word)
+    output = tugaphone.phonemize(word)
+    engine_output = G2P("pt-PT", pipeline=tugaphone.pipeline("pt-PT")).transcribe(word)
+    if engine_output != output:
+        raise SystemExit(
+            f"tugaphone: G2P on tugaphone.pipeline gives {engine_output!r}, "
+            f"phonemize gives {output!r}"
+        )
+    return output
 
 
 def _euskaphone(word: str) -> object:
@@ -63,7 +71,7 @@ def _g2p_barranquenho(word: str) -> object:
 
 DOWNSTREAMS = {
     "arbtok": Downstream(("arbtok", "arbtok.plugin", "arbtok.o2i_plugins"), "كتاب", _arbtok),
-    "tugaphone": Downstream(("tugaphone", "tugaphone.plugin"), "olá", _tugaphone),
+    "tugaphone": Downstream(("tugaphone",), "olá", _tugaphone),
     "euskaphone": Downstream(("euskaphone", "euskaphone.plugin"), "kaixo", _euskaphone),
     "mwl_phonemizer": Downstream(("mwl_phonemizer", "mwl_phonemizer.crf"), "lhéngua", _mwl_phonemizer),
     "g2p_barranquenho": Downstream(
