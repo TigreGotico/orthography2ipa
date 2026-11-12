@@ -57,26 +57,10 @@ def _euskaphone(word: str) -> object:
     return EuskaPhonemizer().phonemize_sentence(word)
 
 
-def _mwl_phonemizer(word: str) -> object:
-    import mwl_phonemizer
-
-    return mwl_phonemizer.phonemize(word)
-
-
-def _g2p_barranquenho(word: str) -> object:
-    import g2p_barranquenho
-
-    return g2p_barranquenho.phonemize(word)
-
-
 DOWNSTREAMS = {
     "arbtok": Downstream(("arbtok", "arbtok.plugin", "arbtok.o2i_plugins"), "كتاب", _arbtok),
     "tugaphone": Downstream(("tugaphone",), "olá", _tugaphone),
     "euskaphone": Downstream(("euskaphone", "euskaphone.plugin"), "kaixo", _euskaphone),
-    "mwl_phonemizer": Downstream(("mwl_phonemizer", "mwl_phonemizer.crf"), "lhéngua", _mwl_phonemizer),
-    "g2p_barranquenho": Downstream(
-        ("g2p_barranquenho", "g2p_barranquenho.plugin"), "Barrancos", _g2p_barranquenho
-    ),
 }
 
 
