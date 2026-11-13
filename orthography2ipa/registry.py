@@ -341,6 +341,20 @@ _REGION_DEFAULTS: Dict[str, str] = {
 # ``fr-US`` or ``fr-001`` a Belgian feature that no source states.
 _MOTHERLAND_FALLBACK = frozenset({"fr"})
 
+
+def _region_subtag(code: str) -> Optional[str]:
+    """The region subtag of *code* in upper case, or None (RFC 5646 §2.2.4).
+
+    A region is two letters or three digits after the language and script.
+    A singleton starts the extensions, so nothing after it is a region.
+    """
+    for subtag in code.split("-")[1:]:
+        if len(subtag) == 1:
+            return None
+        if (len(subtag) == 2 and subtag.isalpha()) or (len(subtag) == 3 and subtag.isdigit()):
+            return subtag.upper()
+    return None
+
 try:
     import langcodes as _langcodes
     _HAS_LANGCODES = True
@@ -377,8 +391,10 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
        spec is registered (``pt`` → ``pt-PT``), or the curated default
        variant of a region tag with only sub-regional specs
        (``ar-SA`` → ``ars-SA``), or the default region of a language in
-       ``_MOTHERLAND_FALLBACK`` for any region it has no spec for
-       (``fr-SN`` → ``fr-FR``).
+       ``_MOTHERLAND_FALLBACK``: a tag whose region subtag has a spec reads
+       that spec whatever its variant or extension subtags
+       (``fr-CA-u-mu-celsius`` → ``fr-CA``), and any other tag reads the
+       default region (``fr-SN`` → ``fr-FR``).
     5. Nearest registered code by language distance
        (``en-NZ`` → ``en-GB``), among the codes of the tag's own language
        first (``sr-Latn-RS`` → ``sr``, not ``cnr``); no usable match leaves
@@ -429,9 +445,11 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
     if code in _REGION_DEFAULTS:
         return _REGION_DEFAULTS[code]
     language = code.split("-")[0].lower()
-    if (language in _MOTHERLAND_FALLBACK and not _PRIVATE_USE.search(code)
-            and (default := with_default_region(language)) in available):
-        return default
+    if language in _MOTHERLAND_FALLBACK and not _PRIVATE_USE.search(code):
+        if (region := _region_subtag(code)) and f"{language}-{region}" in available:
+            return f"{language}-{region}"
+        if (default := with_default_region(language)) in available:
+            return default
     if not allow_nearest:
         return code
     # An unknown variant falls back to the standard variety, not to whichever

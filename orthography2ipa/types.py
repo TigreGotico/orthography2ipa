@@ -2195,10 +2195,7 @@ class LanguageSpec:
     ``l'homme`` is [lɔm], one phonological word, and the clitic's consonant is
     not word-final. Off by default: in an orthography where the mark is a
     boundary that the spec does not model as part of one word (German
-    ``geht's``, Dutch ``zo'n``) it separates two words. When it is on, a
-    grapheme that the vowel gate reads (a consonant plus ⟨u⟩ or ⟨i⟩) sees the
-    letter after an apostrophe inside the word as the one that follows it,
-    unless the spec spells a sound with that apostrophe. An apostrophe at
+    ``geht's``, Dutch ``zo'n``) it separates two words. An apostrophe at
     either edge of a token is unaffected.
 
     It is inherited along the ``graphemes_base`` edge
@@ -2218,7 +2215,10 @@ class LanguageSpec:
     ⟨h⟩ after it. Off by default: English keeps the apostrophe inside a word
     for contractions and possessives, and ``Chang'an`` or ``Lord's`` holds no
     elided clitic. It needs :attr:`word_internal_apostrophe`, which keeps the
-    clitic and its host in one word.
+    clitic and its host in one word. When it is on, a grapheme that the vowel
+    gate reads (a consonant plus ⟨u⟩ or ⟨i⟩) sees the letter after the
+    apostrophe as the one that follows it (``qu'il`` is ⟨qu⟩ before ⟨i⟩),
+    unless the spec spells a sound with that apostrophe.
 
     It is inherited along the ``graphemes_base`` edge
     (:attr:`InheritanceMode.BASE_SCALAR`), like :attr:`constrain_onsets`.

@@ -162,6 +162,19 @@ def test_every_two_letter_region_without_a_spec_reads_fr_fr():
             if code != "fr-FR"} == {}
 
 
+# A tag that adds an extension or a variant subtag still names its region
+# (RFC 5646 §2.2.4-2.2.6), so the regional spec answers for it.
+@pytest.mark.parametrize("tag, code", [
+    ("fr-CA-u-mu-celsius", "fr-CA"), ("fr-CA-u-ca-gregory", "fr-CA"),
+    ("fr-CA-1606nict", "fr-CA"), ("fr-Latn-CA-u-nu-latn", "fr-CA"),
+    ("fr-BE-u-co-phonebk", "fr-BE"), ("fr-CH-u-nu-latn", "fr-CH"),
+    ("fr-CI-u-nu-latn", "fr-CI"), ("fr-SN-u-nu-latn", "fr-FR"),
+    ("fr-1606nict", "fr-FR"), ("fr-150-u-nu-latn", "fr-FR"),
+])
+def test_an_extension_or_variant_keeps_the_region(tag, code):
+    assert o2i.resolve(tag) == code
+
+
 @pytest.mark.parametrize("tag", ["fr-CA", "fr-BE", "fr-CH", "fr-CI"])
 def test_a_variant_inherits_fr_fr(tag):
     spec, base = o2i.get(tag), o2i.get("fr-FR")

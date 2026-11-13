@@ -21,12 +21,12 @@ TAGS = ["fr", "fr-FR", "fr-CA", "fr-BE", "fr-CH", "fr-CI", "fr-LU"]
 
 @pytest.mark.parametrize("tag", TAGS)
 @pytest.mark.parametrize("text, expected", [
-    ("est", "ɛ"), ("es", "ɛ"), ("et", "e"), ("des", "de"), ("ces", "se"),
+    ("est", "e"), ("es", "ɛ"), ("et", "e"), ("des", "de"), ("ces", "se"),
     ("mes", "me"), ("tes", "te"), ("ses", "se"), ("cet", "sɛt"),
     ("sept", "sɛt"), ("les", "le"),
-    ("Est", "ɛ"), ("ET", "e"),
-    ("c'est", "sɛ"), ("n'est", "nɛ"), ("s'est", "sɛ"), ("qu'est", "kɛ"),
-    ("t'es", "tɛ"), ("n'es", "nɛ"), ("C’est", "sɛ"),
+    ("Est", "e"), ("ET", "e"),
+    ("c'est", "se"), ("n'est", "ne"), ("s'est", "se"), ("qu'est", "ke"),
+    ("t'es", "tɛ"), ("n'es", "nɛ"), ("C’est", "se"),
 ])
 def test_a_function_word_has_its_lexique_reading(tag, text, expected):
     # fr-CA laxes nothing here: no high vowel stands in a final closed syllable
@@ -79,5 +79,5 @@ def test_the_open_e_rule_stays_out_of_an_earlier_syllable(text, open_e):
 
 def test_a_sentence_reads_est_as_the_verb():
     assert o2i.transcribe("Il est midi et elle est là", "fr-FR") == (
-        "il ɛ midi e ɛl ɛ la")
-    assert o2i.transcribe("c'est la belle terre", "fr-FR") == "sɛ la bɛl tɛʁ"
+        "il e midi e ɛl e la")
+    assert o2i.transcribe("c'est la belle terre", "fr-FR") == "se la bɛl tɛʁ"

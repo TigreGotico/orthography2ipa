@@ -513,7 +513,8 @@ def _gated_spec(**fields) -> LanguageSpec:
 
 @pytest.fixture
 def tok_gated() -> PhonetokTokenizer:
-    return PhonetokTokenizer(_gated_spec(word_internal_apostrophe=True))
+    return PhonetokTokenizer(_gated_spec(word_internal_apostrophe=True,
+                                         apostrophe_elision=True))
 
 
 def _graphemes(tok, text):
@@ -546,10 +547,18 @@ def test_the_gate_reads_the_apostrophe_where_words_do_not_keep_it(apostrophe):
     assert _graphemes(tok, f"qu{apostrophe}i")[:2] == ["q", "u"]
 
 
+def test_the_gate_reads_the_apostrophe_where_it_ends_no_clitic():
+    # English keeps an apostrophe inside a word for contractions, not for
+    # elision, so no vowel follows ⟨qu⟩ in ⟨qu'i⟩ and ⟨u⟩ is read alone.
+    tok = PhonetokTokenizer(_gated_spec(word_internal_apostrophe=True))
+    assert _graphemes(tok, "qu'i")[:2] == ["q", "u"]
+
+
 def test_the_gate_reads_an_apostrophe_that_spells_a_sound():
     # A spec that spells the glottal stop with ⟨'⟩: the mark is a segment
     # between ⟨u⟩ and ⟨i⟩, whatever word_internal_apostrophe says.
     tok = PhonetokTokenizer(_gated_spec(word_internal_apostrophe=True,
+                                        apostrophe_elision=True,
                                         graphemes={"'": ["ʔ"]}))
     assert _graphemes(tok, "qu'i") == ["q", "u", "'", "i"]
 

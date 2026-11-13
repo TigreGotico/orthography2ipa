@@ -24,7 +24,6 @@ from orthography2ipa import G2P, Pipeline
 @pytest.mark.parametrize("text, expected", [
     ("l'amico", "laˈmiko"),
     ("un'amica", "unaˈmika"),
-    ("dell'uomo", "deˈlːwomo"),
     ("nell'aria", "neˈlːarja"),
     ("un'altra", "uˈnaltra"),
     ("senz'altro", "senˈtsaltro"),     # Romito 2010: [senˈʦaltro]
@@ -32,6 +31,13 @@ from orthography2ipa import G2P, Pipeline
 ])
 def test_an_italian_elision_is_one_word_with_one_stress(text, expected):
     assert o2i.transcribe(text, "it-IT") == expected
+
+
+@pytest.mark.xfail(strict=True, reason="the rules read the stressed ⟨o⟩ of uomo as close [o]")
+def test_dell_uomo_has_the_open_o():
+    # Treccani, Vocabolario, "uomo": the headword is uòmo, and the grave
+    # accent marks the open [ɔ].
+    assert o2i.transcribe("dell'uomo", "it-IT") == "deˈlːwɔmo"
 
 
 @pytest.mark.parametrize("tag", ["it-IT-x-toscana", "it-IT-x-roma"])
@@ -88,7 +94,7 @@ def test_a_portuguese_split_contraction_reads_as_the_contraction(
 
 
 def test_an_italian_elision_keeps_the_host_lexicon_entry():
-    # uomo is [ˈwɔmo] with an open ⟨o⟩; the rules write a close [o]. The
+    # uomo is [ˈwɔmo] with an open ⟨o⟩ (Treccani: uòmo); the rules write a close [o]. The
     # clitic's last consonant opens the host's stressed syllable.
     engine = G2P("it-IT", pipeline=Pipeline(lexicon={"uomo": "ˈwɔmo"}))
     assert engine.transcribe("l'uomo") == "ˈlwɔmo"

@@ -17,7 +17,7 @@ Some words cannot be transcribed from their spelling, and no rule can change tha
 
 Each tier answers the same question: what is the IPA of this word? The stages after it do not depend on which tier answered. Cross-word sandhi still applies, and the word reports `confidence == 1.0`. An entry from `word_exceptions` or from a lexicon also gets the stress mark of the spec. A forced `<phoneme>` reading does not, as the next section explains.
 
-`G2P._override_for` looks up `word_exceptions` and the lexicon with the same key. The key is the word in lowercase, with the casing rules of the language (Turkish dotted and dotless i, for example). If the raw word misses, the lookup tries again without the punctuation at its edges, so ⟨I,⟩ finds the entry for ⟨I⟩. For a spec that sets `word_internal_apostrophe`, a typographic apostrophe (U+2019) also matches an entry written with U+0027.
+`G2P._override_for` looks up `word_exceptions` and the lexicon with the same key. The key is the word in lowercase, with the casing rules of the language (Turkish dotted and dotless i, for example). If the raw word misses, the lookup tries again without the punctuation at its edges, so ⟨I,⟩ finds the entry for ⟨I⟩. For a spec that sets `word_internal_apostrophe`, a typographic apostrophe (U+2019) also matches an entry written with U+0027. When the whole word still misses and the spec also sets `apostrophe_elision`, the lookup splits an elided clitic from its host: a consonant before the apostrophe, a vowel or ⟨h⟩ after it. If the host has an entry, the word reads as the clitic's rule reading followed by that entry, so French ⟨l'autobus⟩ gives `lotobys` from the entry ⟨autobus⟩ `otobys`.
 
 ## Forcing one occurrence: `<phoneme>`
 

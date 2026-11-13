@@ -185,6 +185,18 @@ def test_case_and_typographic_apostrophe_keep_the_host_exception(
 
 
 @pytest.mark.parametrize("text, expected", [
+    # Elision drops the vowel of que, puisque and lorsque before a mute ⟨h⟩
+    # (Tranel 1995: 1). Lexique 3.83: hier jER, hiver ivER, puisque p8isk°,
+    # lorsque lORsk°.
+    ("qu'hier", "kjɛʁ"), ("qu'hiver", "kivɛʁ"), ("QU'HIER", "kjɛʁ"),
+    ("qu’hier", "kjɛʁ"), ("puisqu'hier", "pɥiskjɛʁ"),
+    ("lorsqu'hier", "lɔʁskjɛʁ"),
+])
+def test_qu_before_a_mute_h_keeps_the_host_exception(text, expected):
+    assert o2i.transcribe(text, "fr-FR") == expected
+
+
+@pytest.mark.parametrize("text, expected", [
     # Lexique 3.83: est, NOM, phon Est
     ("l'est", "lɛst"), ("d'est", "dɛst"), ("à l'est", "a lɛst"),
 ])
