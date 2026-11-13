@@ -16,6 +16,8 @@ The expected IPA is written here. Before the field was set, the clitic was a
 word of its own with a stress mark on a bare consonant (it-IT ``l'amico`` was
 ``ˈl aˈmiko``).
 """
+import time
+
 import pytest
 
 import orthography2ipa as o2i
@@ -115,3 +117,13 @@ def test_a_consonant_after_the_apostrophe_is_no_host():
     plain = G2P("pt-PT")
     with_entry = G2P("pt-PT", pipeline=Pipeline(lexicon={"djamena": "dʒaˈmenɐ"}))
     assert with_entry.transcribe("N'Djamena") == plain.transcribe("N'Djamena")
+
+
+@pytest.mark.timeout(60)
+@pytest.mark.parametrize("lang", ["fr-FR", "it-IT", "pt-PT"])
+def test_many_elisions_in_one_word_take_linear_time(lang):
+    # Each split looks its host up once. A recursive lookup visited 2^n
+    # host chains: 20 elisions took 11 s in fr-FR.
+    start = time.perf_counter()
+    o2i.transcribe("l'a" * 40, lang)
+    assert time.perf_counter() - start < 20
