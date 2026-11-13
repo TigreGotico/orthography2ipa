@@ -717,6 +717,12 @@
       "phonemes": [],
       "surface": "ɐ",
       "notes": "DISABLED for East Timorese Portuguese. No source read covers a stressed /a/ before an onset nasal in this variety. The reading is the spec default and makes no claim about this context."
+    },
+    {
+      "id": "PT_STRONG_R_AFTER_CODA",
+      "phonemes": [],
+      "surface": "ʁ",
+      "notes": "DISABLED for East Timorese Portuguese. PT_STRONG_R_AFTER_CODA gives an ⟨r⟩ after a coda consonant or a nasal vowel the pt-PT strong rhotic [ʁ]. This spec writes its strong rhotic as [r] (carro [ˈkaro]), not [ʁ]. No source for this context in this language was read, so its output stays what it was."
     }
   ],
   "wikidata_qid": "Q4373396",

@@ -101,7 +101,7 @@ def test_stressed_o_after_initial_h_keeps_its_lattice(word, ipa):
     assert _first_slot(word) == ["ɔ", "o", "u"]
 
 
-@pytest.mark.parametrize("word, ipa", [("honrar", "õˈɾaɾ"), ("hombridade", "õbɾiˈdadɨ")])
+@pytest.mark.parametrize("word, ipa", [("honrar", "õˈʁaɾ"), ("hombridade", "õbɾiˈdadɨ")])
 def test_o_after_initial_h_before_a_coda_nasal_stays_nasal(word, ipa):
     assert G2P("pt-PT").transcribe(word) == ipa
     assert _first_slot(word) == ["o", "o", "o"]

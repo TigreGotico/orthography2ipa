@@ -236,6 +236,12 @@ An onset /l/ or /s/ does not change: `bola` [ˈbɔlɐ], `casa` [ˈkazɐ].
 
 The coda sibilant values are the standard (Lisbon) realisation. Some northern and island dialects keep an apico-alveolar [s̺] in the coda. The `pt-PT-x-*` specs carry those differences. They inherit these three rules by id and override only what differs (see [how the dialect specs inherit](pt-PT-dialects.md#how-the-dialect-specs-inherit-from-pt-pt)).
 
+## The strong rhotic after a coda
+
+An ⟨r⟩ that starts a syllable after a coda consonant or a nasal vowel is the strong rhotic [ʁ], the value of ⟨rr⟩ in `carro` [ˈkaʁu]. `PT_STRONG_R_AFTER_CODA` gives [ʁ] after the nasal tilde of a coda ⟨m n⟩, after a coda sibilant and after the coda lateral: `honra` [ˈõʁɐ], `genro` [ˈʒẽʁu], `Israel` [iʒʁɐˈɛɫ], `melro` [ˈmɛɫʁu], `desrespeito` [dɨʒʁɨʃˈpejtu]. Pereira (2020: 10) lists these contexts and cites Mateus e Andrade (2000: 15) and Mateus, Falé & Freitas (2016: 135-136) for them. Infopédia writes the strong rhotic after ⟨n⟩ in 180 of 182 words, after ⟨l⟩ in 126 of 126 and after ⟨s⟩ in 77 of 77.
+
+The tap stays in a branching onset (`prato` [ˈpɾatu]) and after a diphthong (`feira` [ˈfejɾɐ]). The coda sibilant before the strong rhotic is voiced, because `PT_CODA_S_VOICING_INTERNAL` reads the tap and [ʁ] alike. The `pt-PT-x-*` dialect specs inherit the rule. The specs whose strong rhotic is not [ʁ], and the creoles, disable it by id.
+
 ## External /s/-sandhi
 
 A word-final coda /s/ is [ʃ] alone and before a voiceless consonant. Across a word boundary it changes with the next word. Three `sandhi_rules` set the value:
