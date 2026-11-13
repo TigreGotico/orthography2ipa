@@ -82,6 +82,12 @@ def test_the_tap_between_vowels_and_in_the_coda_stays(word):
 
 
 @pytest.mark.parametrize("lang", EUROPE)
+def test_the_nasal_m_takes_the_strong_rhotic(lang):
+    # wikipron (Wiktionary) pt-PT: amrinona ɐ̃ʁiˈnɔnɐ
+    assert _rhotic_context(_ipa(lang, "amrinona")) == ("̃", "ʁ"), lang
+
+
+@pytest.mark.parametrize("lang", EUROPE)
 @pytest.mark.parametrize("word", ["Christo", "Cochran", "chrétienne"])
 def test_the_tap_after_ch_stays(lang, word):
     # ⟨ch⟩ spells [ʃ] but never closes a syllable, so the ⟨r⟩ after it is no
