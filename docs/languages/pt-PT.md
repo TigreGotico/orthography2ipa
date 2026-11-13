@@ -238,7 +238,7 @@ The coda sibilant values are the standard (Lisbon) realisation. Some northern an
 
 ## The strong rhotic after a coda
 
-An ⟨r⟩ that starts a syllable after a coda consonant or a nasal vowel is the strong rhotic [ʁ], the value of ⟨rr⟩ in `carro` [ˈkaʁu]. `PT_STRONG_R_AFTER_CODA` gives [ʁ] after the nasal tilde of a coda ⟨m n⟩, after a coda sibilant and after the coda lateral: `honra` [ˈõʁɐ], `genro` [ˈʒẽʁu], `Israel` [iʒʁɐˈɛɫ], `melro` [ˈmɛɫʁu], `desrespeito` [dɨʒʁɨʃˈpejtu]. Pereira (2020: 11) lists these contexts and cites Mateus e Andrade (2000: 15) and Mateus, Falé & Freitas (2016: 135-136) for them. Infopédia's readings write the strong rhotic after ⟨n⟩ in 180 of 182, after ⟨l⟩ in 126 of 126 and after ⟨s⟩ in 77 of 77.
+An ⟨r⟩ that starts a syllable after a coda consonant or a nasal vowel is the strong rhotic [ʁ], the value of ⟨rr⟩ in `carro` [ˈkaʁu]. `PT_STRONG_R_AFTER_CODA` gives [ʁ] after the ⟨n⟩ of a nasal vowel, a coda ⟨s⟩ and a coda ⟨l⟩: `honra` [ˈõʁɐ], `genro` [ˈʒẽʁu], `Israel` [iʒʁɐˈɛɫ], `melro` [ˈmɛɫʁu], `desrespeito` [dɨʒʁɨʃˈpejtu]. Pereira (2020: 11) lists these contexts and cites Mateus e Andrade (2000: 15) and Mateus, Falé & Freitas (2016: 135-136) for them. The condition is the letter, so ⟨ch⟩, which also spells [ʃ], keeps the tap after it (`Christo`). Infopédia's readings write the strong rhotic after ⟨n⟩ in 180 of 182, after ⟨l⟩ in 126 of 126 and after ⟨s⟩ in 77 of 77.
 
 The tap stays in a branching onset (`prato` [ˈpɾatu]) and after a diphthong (`feira` [ˈfejɾɐ]). The coda sibilant before the strong rhotic is voiced, because `PT_CODA_S_VOICING_INTERNAL` reads the tap and [ʁ] alike. The `pt-PT-x-*` dialect specs inherit the rule. The specs whose strong rhotic is not [ʁ], and the creoles, disable it by id.
 
