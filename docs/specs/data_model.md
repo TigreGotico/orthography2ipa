@@ -67,7 +67,7 @@ A `LanguageSpec` holds all the data for one language, dialect, historical stage 
 | Classification | `family`, `family_path`, `clade`, `parent`, `ancestors` | The derived family path, the clade flag and the typed ancestry |
 | Sound and spelling | `graphemes`, `allophones`, `phonemes`, `positional_graphemes`, `grapheme_weights` | The two maps, the declared inventory, the context-sensitive overrides and the candidate weights |
 | Whole words and endings | `word_exceptions`, `grammatical_endings` | Overrides for an irregular set of words, and suffix readings at the word end |
-| Script behaviour | `inherent_vowel`, `inherent_vowel_final`, `virama_final_vowel`, `dependent_vowels`, `preposed_vowels`, `coda_no_inherent_vowel`, `codas`, `consonant_nuclei`, `vowel_graphemes`, `fold_diacritics`, `optional_marks`, `word_internal_apostrophe`, `doubled_letters_geminate`, `collapse_geminates`, `trailing_vowel_axis_digraphs`, `prevocalic_glide_backoff`, `constrain_onsets` | How the tokenizer and the syllabifier read the script |
+| Script behaviour | `inherent_vowel`, `inherent_vowel_final`, `virama_final_vowel`, `dependent_vowels`, `preposed_vowels`, `coda_no_inherent_vowel`, `codas`, `consonant_nuclei`, `vowel_graphemes`, `fold_diacritics`, `optional_marks`, `word_internal_apostrophe`, `apostrophe_elision`, `doubled_letters_geminate`, `collapse_geminates`, `trailing_vowel_axis_digraphs`, `prevocalic_glide_backoff`, `constrain_onsets` | How the tokenizer and the syllabifier read the script |
 | Rules | `stress`, `allophone_rules`, `allophone_passes`, `sandhi_rules`, `tone_rules`, `tone_inventory`, `tone_marks_syllable_final`, `plugins` | Stress placement, post-lexical rewrites, cross-word rules, tone and the plugins a stage must use |
 | Provenance | `quality`, `sources`, `wikipedia`, `urls`, `notes`, `audit`, `valid_ceiling` | The quality tier, the citations, the notes and the recorded audit results |
 | Place and time | `location`, `timespan`, `orthography_standard` | A representative point, the attestation period and the official spelling norm |
@@ -207,7 +207,7 @@ A dialect often shares most of its data with a base variety. The JSON of the dia
 | :--- | :--- | :--- |
 | `BASE_MERGE` | The own values overlay the values of the base key by key | `graphemes`, `allophones`, `positional_graphemes`, `word_exceptions`, `grammatical_endings` |
 | `OVERLAY_BY_ID` | The rules of the base come first, in order. An own rule with the same `id` replaces one, and an own rule with a new `id` goes at the end | `sandhi_rules`, `allophone_rules` |
-| `BASE_SCALAR` | The value follows the `graphemes_base` edge unless the spec states it | `constrain_onsets`, `word_internal_apostrophe` |
+| `BASE_SCALAR` | The value follows the `graphemes_base` edge unless the spec states it | `constrain_onsets`, `word_internal_apostrophe`, `apostrophe_elision` |
 | `BASE_BLOCK` | A spec that states the block keeps it whole. A spec that does not takes the block of its `graphemes_base`, else of a `parent` that is the same language (same or no `iso639_3`). `false` takes no block | `stress` |
 | `NOT_INHERITED` | Each file states its own value on purpose | `grapheme_weights`, `allophone_passes` |
 | `OWN_ONLY` | The field never takes part in inheritance | Identity, classification, bibliography and script fields, such as `code`, `name`, `sources`, `timespan`, `vowel_graphemes` |

@@ -69,8 +69,8 @@ from orthography2ipa.phonetok import (
 from orthography2ipa.phonetok import _VIRAMA_COMBINING_CLASS
 from orthography2ipa.phonetok import _PUNCT_RE as _WORD_PUNCT_RE
 from orthography2ipa.pipeline import Pipeline, _check_mark, _cut_marked
-from orthography2ipa.vowels import is_ipa_vowel
-from orthography2ipa.allophony import compile_allophone_rescorer
+from orthography2ipa.vowels import is_ipa_vowel, is_orthographic_vowel
+from orthography2ipa.allophony import compile_allophone_rescorer, segment_ipa
 from orthography2ipa.positional import (match_grammatical_ending,
                                         merge_nucleusless_final_syllable,
                                         resolve_branches)
@@ -91,8 +91,8 @@ from orthography2ipa.sentence import (
     span_position,
 )
 from orthography2ipa.stress import (
-    SECONDARY_MARK, _syllables_for, apply_iambic_length, apply_stress_mark,
-    cliticless_keys, detect_stress, detect_stress_by_weight,
+    SECONDARY_MARK, _AFFRICATES, _syllables_for, apply_iambic_length,
+    apply_stress_mark, cliticless_keys, detect_stress, detect_stress_by_weight,
     secondary_stress_positions, syllabify, syllabify_for_mark, syllabify_ipa,
 )
 from orthography2ipa.tone import assign_computed_tones, dock_tone_marks
@@ -482,9 +482,10 @@ class G2P:
 
         - ``"warn"`` (default): the uncovered characters contribute
           nothing to ``ipa``, and each uncovered letter or combining mark
-          (Unicode category ``L*`` or ``M*``) emits
+          (Unicode category ``L*`` or ``M*``) and each uncovered digit
+          (``N*``) emits
           :class:`~orthography2ipa.exceptions.UnmappedGraphemeWarning`
-          once per engine and character. Punctuation, digits, symbols and
+          once per engine and character. Punctuation, symbols and
           spaces do not warn, and a stub spec warns
           :class:`~orthography2ipa.exceptions.StubSpecWarning` once
           instead.
@@ -1356,7 +1357,43 @@ class G2P:
         override pathway an inline exception uses (stress-mark insertion,
         cross-word sandhi and ``confidence == 1.0`` all apply unchanged). A
         language with no sidecar gets an empty map here and takes the rules.
+
+        A word that spells an elided clitic before its host (French
+        ``l'hiver``, Portuguese ``d'Os``) and has no entry of its own takes
+        the host's entry, with the clitic's reading in front (see
+        :meth:`_elided_hosts`).
         """
+        override = self._whole_word_override(word)
+        if override is not None:
+            return override
+        for apostrophe, host in self._elided_hosts(word):
+            host_ipa = self._whole_word_override(host)
+            if host_ipa is not None:
+                return self._join_clitic(
+                    self._clitic_ipa(word, apostrophe), host_ipa)
+        return None
+
+    def _join_clitic(self, clitic: str, host_ipa: str) -> str:
+        """*clitic* in front of *host_ipa*, inside a stress mark that opens it.
+
+        The clitic's last segment is the onset of the host's first syllable
+        (l'uomo [ˈlwɔmo], dell'uomo [deˈlːwɔmo]), so a mark that opens the
+        host's reading moves in front of that segment. A clitic with no vowel
+        is all onset.
+        """
+        marks = {SECONDARY_MARK,
+                 self.spec.stress.stress_mark if self.spec.stress else "ˈ"}
+        if host_ipa[:1] not in marks:
+            return clitic + host_ipa
+        if not any(is_ipa_vowel(c) for c in clitic):
+            return host_ipa[0] + clitic + host_ipa[1:]
+        segments = segment_ipa(clitic, _AFFRICATES)
+        if is_ipa_vowel(segments[-1][0]):
+            return clitic + host_ipa
+        return "".join(segments[:-1]) + host_ipa[0] + segments[-1] + host_ipa[1:]
+
+    def _whole_word_override(self, word: str) -> Optional[str]:
+        """The ``word_exceptions`` or lexicon entry keyed on all of *word*."""
         key = lower_str(self._unmarked(word), self.spec.code)
         exceptions = self.spec.word_exceptions
         lex = self.pipeline.lexicon
@@ -1389,6 +1426,55 @@ class G2P:
                     return hit
         return None
 
+    def _elided_hosts(self, word: str) -> List[Tuple[int, str]]:
+        """Each split of *word* into an elided clitic and its host.
+
+        Elision deletes the final vowel of a clitic before a vowel-initial
+        word, and the orthography writes an apostrophe in its place (Tranel
+        1995: 1, 4; Romito 2010; the 1990 Acordo, Base XVIII). A split is an
+        apostrophe inside the word, with a consonant grapheme before it and a
+        vowel letter or ⟨h⟩ after it: ``l'hiver``, ``qu'il``, ``Sant'Ana``,
+        but not ``doesn't`` or ``o'clock``. The result is the apostrophe's
+        index and the host, longest host first, so ``jusqu'aujourd'hui``
+        tries ``aujourd'hui`` before ``hui``. Only a spec with
+        ``apostrophe_elision`` and ``word_internal_apostrophe`` has a split.
+        """
+        if (not (self.spec.apostrophe_elision
+                 and self.spec.word_internal_apostrophe)
+                or not _APOSTROPHES.intersection(word)):
+            return []
+        tokens = self._tokenizer.grapheme_tokens(word)
+        splits = []
+        for i, mark in enumerate(word):
+            if mark not in _APOSTROPHES or not 0 < i < len(word) - 1:
+                continue
+            host = word[i + 1:]
+            before = [t.grapheme for t in tokens if t.position < i]
+            if (word[i - 1].isalpha() and before
+                    and not is_orthographic_vowel(before[-1][0])
+                    and (is_orthographic_vowel(host[0]) or host[0] in "hH")):
+                splits.append((i, host))
+        return splits
+
+    def _clitic_ipa(self, word: str, apostrophe: int) -> str:
+        """The reading of the clitic that ends at *apostrophe* in *word*.
+
+        The rules read the whole word, so the clitic's letters see the host
+        after them: ⟨qu⟩ before ⟨i⟩ is [k] and ⟨c⟩ before ⟨é⟩ is [s]. The
+        segments that the letters before the apostrophe produce are the
+        clitic's reading.
+        """
+        if self._needs_context_beam:
+            paths = self._positional_beam(word, 1)
+        else:
+            paths = self._tokenizer.ipa_beam(
+                word, beam_width=1, expand_allophones=self.expand_allophones)
+        if not paths:
+            return ""
+        count = sum(1 for t in self._tokenizer.grapheme_tokens(word)
+                    if t.position < apostrophe)
+        return "".join(paths[0].segments[:count])
+
     def _syllables_cached(self, word: str) -> List[str]:
         """Syllabify *word* once per engine.
 
@@ -1407,12 +1493,13 @@ class G2P:
             self._syll_cache[word] = sylls
         return list(sylls)
 
-    def _is_cliticless(self, word: str) -> bool:
+    def _is_cliticless(self, word: str, elided: bool = True) -> bool:
         """Whether *word* is a declared prosodic clitic that takes no stress.
 
         Delegates to :func:`orthography2ipa.stress.is_cliticless` so the engine
         and every downstream assembler make the identical decision from one place
-        (the keys are cached per engine on first use).
+        (the keys are cached per engine on first use). With *elided* false,
+        only the whole word is looked up, never its elided host.
         """
         if self._cliticless_cache is None:
             self._cliticless_cache = cliticless_keys(self.spec)
@@ -1436,7 +1523,12 @@ class G2P:
         # stays a clitic with a comma after it (``the,`` takes no more stress
         # than ``the``). The exact key is tried first, as there.
         stripped = _EDGE_PUNCT_RE.sub("", key)
-        return bool(stripped) and stripped != key and stripped in self._cliticless_cache
+        if stripped and stripped != key and stripped in self._cliticless_cache:
+            return True
+        # An elided clitic adds no stress of its own, so the word is a clitic
+        # when its host is one: ``d'Os`` reads as the contraction ``dos``.
+        return elided and any(self._is_cliticless(host, elided=False)
+                              for _, host in self._elided_hosts(word))
 
     def _transcribe_word(self, word: str, width: int,
                          forced_ipa: Optional[str] = None) -> WordTranscription:

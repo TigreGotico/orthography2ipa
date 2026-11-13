@@ -352,6 +352,7 @@ Stubs (7): Kabyle-Atlas Berber `ber-x-kabyle-atlas`, Proto-Bantu (family node) `
 | [Ebrié](https://tigregotico.github.io/orthography2ipa/#ebr) | `ebr` | skeleton | Atlantic-Congo |
 | [Eastern Maninkakan](https://tigregotico.github.io/orthography2ipa/#emk) | `emk` | skeleton | Mande |
 | [Maasina Fulfulde](https://tigregotico.github.io/orthography2ipa/#ffm) | `ffm` | skeleton | Atlantic-Congo |
+| [Ivorian French](https://tigregotico.github.io/orthography2ipa/#fr-CI) | `fr-CI` | skeleton | Indo-European > Italic > Romance > Gallo-Romance |
 | [Godié](https://tigregotico.github.io/orthography2ipa/#god) | `god` | skeleton | Kru |
 | [Yocoboué Dida](https://tigregotico.github.io/orthography2ipa/#gud) | `gud` | skeleton | Kru |
 | [Mbato](https://tigregotico.github.io/orthography2ipa/#gwa) | `gwa` | skeleton | Atlantic-Congo |
@@ -1376,6 +1377,7 @@ Stubs (4): Carpathian Romani `rmc`, Baltic Romani `rml`, Balkan Romani `rmn`, Si
 
 | Spec | Code | Tier | Family |
 |:--|:--|:--|:--|
+| [Belgian French](https://tigregotico.github.io/orthography2ipa/#fr-BE) | `fr-BE` | skeleton | Indo-European > Italic > Romance > Gallo-Romance |
 | [Luxembourgish](lb.md) (page) | `lb` | research | Indo-European > Germanic > Northwest Germanic > West Germanic |
 | [Limburgish](li.md) (page) | `li` | research | Indo-European > Germanic |
 | [Limburgish (Rheinische Dokumenta notation)](li-x-rheindok.md) (page) | `li-x-rheindok` | research | Indo-European > Germanic |
@@ -2830,6 +2832,7 @@ Stubs (9): Tornedalen Finnish `fit`, Elfdalian `ovd`, Kalo Finnish Romani `rmf`,
 | Spec | Code | Tier | Family |
 |:--|:--|:--|:--|
 | [Swiss Standard German (Hochdeutsch)](de-CH.md) (page) | `de-CH` | research | Indo-European > Germanic > Northwest Germanic > West Germanic |
+| [Swiss French (Romandy)](https://tigregotico.github.io/orthography2ipa/#fr-CH) | `fr-CH` | skeleton | Indo-European > Italic > Romance > Gallo-Romance |
 | [Franco-Provençal (Arpitan)](frp.md) (page) | `frp` | research | Indo-European > Italic > Romance > Gallo-Romance |
 | [Lombard](lmo.md) (page) | `lmo` | research | Indo-European > Italic > Romance > Italo-Romance |
 | [Lombard (classical Milanese orthography)](lmo-x-milanese.md) (page) | `lmo-x-milanese` | research | Indo-European > Italic > Romance > Italo-Romance |
@@ -3133,6 +3136,7 @@ Stubs (1): Virgin Islands Creole English `vic`.
 | [Cayuga](cay.md) (page) | `cay` | research | Iroquoian |
 | [Dakota](dak.md) (page) | `dak` | research | Siouan |
 | [Canadian English](https://tigregotico.github.io/orthography2ipa/#en-CA) | `en-CA` | skeleton | Indo-European > Germanic > Northwest Germanic > West Germanic |
+| [Canadian French (Laurentian)](https://tigregotico.github.io/orthography2ipa/#fr-CA) | `fr-CA` | skeleton | Indo-European > Italic > Romance > Gallo-Romance |
 | [Iñupiaq](ik.md) (page) | `ik` | research | Eskimo-Aleut |
 | [Inuktitut, Eastern Canadian (Latin script)](https://tigregotico.github.io/orthography2ipa/#iu-Latn) | `iu-Latn` | skeleton | Eskimo-Aleut |
 | [Lakota](lkt.md) (page) | `lkt` | research | Siouan |

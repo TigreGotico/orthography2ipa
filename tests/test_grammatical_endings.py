@@ -61,8 +61,8 @@ def test_fr_mute_endings(fr, word, expected):
     # stay degeminated — the two regressions the digraph attempt caused.
     ("personne", "pɛʁsɔn"),
     ("version", "vɛʁsjɔ̃"),
-    ("terre", "təʁ"),
-    ("pierre", "pjəʁ"),
+    ("terre", "tɛʁ"),
+    ("pierre", "pjɛʁ"),
     # ⟨er⟩ here matches grammatical_endings just like it does in
     # ``boulangers``; ``vers`` keeps /vɛʁ/ because its word_exceptions
     # entry outranks the ending, not because the matcher declines to match

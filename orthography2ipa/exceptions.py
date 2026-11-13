@@ -66,8 +66,8 @@ class UnmappedGraphemeWarning(UserWarning):
     The engine warns once per (spec, character) with the code point and the
     spec code, and the transcription string does not change.
 
-    Only Unicode letters (category ``L*``) and marks (``M*``) warn.
-    Punctuation, digits, symbols and spaces never do. A stub spec warns
+    Only Unicode letters (category ``L*``), marks (``M*``) and digits
+    (``N*``) warn. Punctuation, symbols and spaces never do. A stub spec warns
     :class:`StubSpecWarning` once instead of once per letter.
     ``G2P(..., on_unmapped="ignore")`` turns the warning off and
     ``on_unmapped="raise"`` turns it into :class:`UnmappedScriptError`.

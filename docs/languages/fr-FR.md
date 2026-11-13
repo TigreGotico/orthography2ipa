@@ -1,7 +1,7 @@
 # French (`fr-FR`)
 
 <!-- atlas:summary begin -->
-French is a Gallo-Romance language, written in the Latin script. Its code names France. The `fr-FR` spec is at the research tier. It cites 7 sources and has 3 scored datasets.
+French is a Gallo-Romance language, written in the Latin script. Its code names France. The `fr-FR` spec is at the research tier. It cites 9 sources and has 3 scored datasets.
 <!-- atlas:summary end -->
 
 <!-- atlas:header begin -->
@@ -19,7 +19,7 @@ French is a Gallo-Romance language, written in the Latin script. Its code names 
 | Tier | [research](../specs/quality_tiers.md#research) |
 | Attested | from 1300, living |
 | Parent | [Gallo-Romance](https://tigregotico.github.io/orthography2ipa/#x-clade-gallorom) `x-clade-gallorom` |
-| Child lects | 1, see [Related lects](#related-lects) |
+| Child lects | 5, see [Related lects](#related-lects) |
 | Explorer | [`fr-FR` in the data explorer](https://tigregotico.github.io/orthography2ipa/#fr-FR) |
 | Spec file | [`fr-FR.json`](../../orthography2ipa/data/fr-FR.json) |
 <!-- atlas:header end -->
@@ -154,9 +154,9 @@ Liaison is a cross-word process. A final consonant that is silent elsewhere is p
 
 Tranel (1995) treats liaison and elision in Optimality Theory, with both driven by ONSET: a syllable prefers an onset consonant. A linking consonant and an eliding vowel are floating segments that surface only when the next syllable gains an onset from them. Aspirate-h words, such as ⟨hibou⟩, start with a vowel but block both liaison and elision. They require the word boundary and the syllable boundary to align at the left edge (ALIGN-LEFT outranks ONSET).
 
-Elision needs no rule. Standard spelling already writes the elided form with an apostrophe, as in ⟨l'homme⟩, so the input carries it.
+Elision needs no rule of its own, but it needs the right unit. Standard spelling writes the elided form with an apostrophe and no space, as in ⟨l'homme⟩. The clitic and its host are one word, so the spec sets `word_internal_apostrophe`. Then ⟨l'homme⟩ gives `lɔm`, ⟨d'accord⟩ gives `dakɔʁ` and ⟨j'ai⟩ gives `ʒe`. The silent-final-letter rules do not apply to the clitic. The tokenizer also reads ⟨qu⟩ before an apostrophe and a vowel as `k`, so ⟨qu'il⟩ gives `kil`. Both ⟨'⟩ and ⟨’⟩ work. A hyphen still separates two words, as in ⟨est-ce⟩ and ⟨rendez-vous⟩. The spec also sets `apostrophe_elision`, so a host that has a `word_exceptions` entry or a lexicon entry keeps it after the clitic: ⟨l'autobus⟩ reads the entry ⟨autobus⟩ `otobys` and gives `lotobys`. The entries ⟨l'est⟩ `lɛst` and ⟨d'est⟩ `dɛst` hold the noun ⟨Est⟩, because the host entry ⟨est⟩ is the verb.
 
-The spec declares liaison in `sandhi_rules` as `FR_LIAISON_Z`, `FR_LIAISON_T`, `FR_LIAISON_N`, `FR_LIAISON_R`, `FR_LIAISON_P` and `FR_ENCHAÎNEMENT`. These rules match the final IPA of the left word, and the spec has already silenced that consonant. So the liaison rules do not fire, and `transcribe("les amis", "fr-FR")` gives `l ami`.
+The spec declares sandhi in `sandhi_rules` as the liaison rules `FR_LIAISON_Z`, `FR_LIAISON_T`, `FR_LIAISON_N`, `FR_LIAISON_R`, `FR_LIAISON_P` and the rule `FR_ENCHAÎNEMENT`. These rules match the final IPA of the left word, and the spec has already silenced that consonant. So the liaison rules for `z t n ʁ p` do not fire, and `transcribe("les amis", "fr-FR")` gives `le ami`. `FR_ENCHAÎNEMENT` does fire: it matches a final voiced `b d ɡ v z ʒ` that the spec still pronounces and adds the link mark after it, as in ⟨rouge orange⟩ `ʁuʒ‿ ɔʁɑ̃ʒ`.
 
 ## Digraphs
 
@@ -171,13 +171,23 @@ The spec declares liaison in `sandhi_rules` as `FR_LIAISON_Z`, `FR_LIAISON_T`, `
 | eu | ø or œ | ⟨feu⟩ `fø`, ⟨peur⟩ `pœʁ` |
 | bb, dd, ff, gg, ll, mm, nn, pp, rr, tt | one consonant | ⟨Allier⟩ `alje` |
 
+## Regional variants
+
+Four regional specs inherit this spec and state only what a source states: `fr-CA` (Laurentian French: affrication of /t d/ before /i y j ɥ/ and laxing of /i y u/ in a closed final syllable), `fr-BE` (⟨â⟩ as [aː]), `fr-CH` (⟨â⟩ as [aː] and ⟨ê⟩ as [ɛː]) and `fr-CI` (⟨â⟩ as [a]). The PFC survey reports that in Tournai and Neuchâtel the contrast of ⟨patte⟩ and ⟨pâte⟩ is one of length, not of quality. Each spec lists its sources and what it leaves out. Every other French tag with a region, such as `fr-LU`, `fr-SN`, `fr-US` or `fr-150`, reads `fr-FR`, because the cited sources state no difference for it. All of them read an elided clitic and its host as one word.
+
+## Stress marks
+
+`fr-FR` and the regional French tags write no stress mark. Fougeron and Smith (1993: 75) state that the word-final stress of French is pre-empted in connected speech by the accent on the final syllable of a group of words, and their transcription of the passage carries no stress marks. A mark per word therefore depends on the phrase, not on the word.
+
 ## Known limitations
 
 | Limitation | Spec output | Cause |
 |:---|:---|:---|
-| Liaison does not surface | ⟨les amis⟩ `l ami` | The sandhi rules match a final consonant that the spec has already silenced |
-| `FR_ENCHAÎNEMENT` deletes the consonant it should link | ⟨des amis⟩ `‿ ami`, ⟨j'aime⟩ `‿ ɛm` | Its `transform` replaces the final voiced consonant with the link mark |
-| Plural determiners lose their vowel | ⟨les⟩ `l`, ⟨des⟩ `d`, ⟨mes⟩ `m` | Only the singular function words are in `word_exceptions` |
+| Liaison does not surface | ⟨les amis⟩ `le ami` | The sandhi rules match a final consonant that the spec has already silenced |
+| No stress marks | ⟨chose⟩ `ʃoz` | Analyses differ on whether French has lexical stress (see [Stress marks](#stress-marks)), so this spec has no `stress` block |
+| The numerals six, huit, neuf and dix take one reading | ⟨dix minutes⟩ `di minyt` | Their final consonant depends on the next word, as for liaison |
+| A digit is dropped | ⟨3 minutes⟩ `minyt` | Numbers are not text for this library. The engine drops a character that it cannot map and raises an `UnmappedGraphemeWarning`. Pass `on_unmapped="raise"` to stop instead. Spell the number out first |
+| ⟨ss⟩ after ⟨e⟩ is not read as open | ⟨dessus⟩ `dəsy` is right, ⟨messe⟩ `məs` is not | The prefixes ⟨de-⟩ and ⟨re-⟩ end before ⟨ss⟩ with a schwa, so a rule on ⟨ess⟩ would be right for only about half of the running words |
 | Aspirate-h does not block liaison or elision | ⟨le héros⟩ `lə eʁo` | ⟨h⟩ maps to nothing for both mute and aspirate h, and the spec has no aspirate-h word list |
 | ⟨e⟩ before a doubled nasal letter reads as schwa | ⟨femme⟩ `fəm`, ⟨ennemi⟩ `ənəmi` | The `FR_NASAL_BLOCK_GEMINATE_*` rules cover only ⟨ain aim ein ien oin⟩ |
 
@@ -188,21 +198,27 @@ Foreign names, such as ⟨Amsterdam⟩, and acronyms that are read letter by let
 
 These specs name `fr-FR` as their parent. They are sorted by country, and a lect with no recorded country comes last.
 
+- [Belgian French](https://tigregotico.github.io/orthography2ipa/#fr-BE) `fr-BE`: Belgium, skeleton tier
+- [Canadian French (Laurentian)](https://tigregotico.github.io/orthography2ipa/#fr-CA) `fr-CA`: Canada, skeleton tier
+- [Ivorian French](https://tigregotico.github.io/orthography2ipa/#fr-CI) `fr-CI`: Côte d’Ivoire, skeleton tier
 - [Seychellois Creole](crs.md) `crs`: Seychelles, research tier
+- [Swiss French (Romandy)](https://tigregotico.github.io/orthography2ipa/#fr-CH) `fr-CH`: Switzerland, skeleton tier
 <!-- atlas:lects end -->
 
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 7 works. 2 of them have a DOI or a URL. The spec file holds a note on what 4 of them support.
+The spec cites 9 works. 4 of them have a DOI or a URL. The spec file holds a note on what 6 of them support.
 
 1. <a id="src-fouche1959"></a>Fouché, P. (1959). *Traité de prononciation française*. Klincksieck.
 2. <a id="src-divay_vitale1997"></a>Divay, M. & Vitale, A.J. (1997). *Algorithms for grapheme-phoneme translation for English and French: applications for database searches and speech synthesis*. Computational Linguistics 23(4), 495-523. Cited: 495-523.
 3. <a id="src-tranel1987"></a>Tranel, B. (1987). *The Sounds of French*. Cambridge University Press.
 4. <a id="src-ladefoged_maddieson1996"></a>Ladefoged, P. & Maddieson, I. (1996). *The Sounds of the World's Languages*. Blackwell.
 5. <a id="src-fougeron_smith1993"></a>Fougeron, C. & Smith, C.L. (1993). *Illustrations of the IPA: French*. Journal of the International Phonetic Association, 23(2). Cited: 73-76. [cambridge.org](https://www.cambridge.org/core/journals/journal-of-the-international-phonetic-association/article/french/E2BC8B1DD975FE4B272B088B8345B933)
-6. <a id="src-tranel1995"></a>Tranel, B. (1995). *French liaison and elision revisited: A unified account within Optimality Theory*. Rutgers Optimality Archive (ROA-15). [roa.rutgers.edu](https://roa.rutgers.edu/files/15-0594/15-0594-TRANEL-0-0.PDF)
+6. <a id="src-tranel1995"></a>Tranel, B. (1995). *French liaison and elision revisited: A unified account within Optimality Theory*. Rutgers Optimality Archive (ROA-15). Cited: 1, 4. [roa.rutgers.edu](https://roa.rutgers.edu/files/15-0594/15-0594-TRANEL-0-0.PDF)
 7. <a id="src-walker2001"></a>Walker, D.C. (2001). *French Sound Structure*. University of Calgary Press.
+8. <a id="src-new2004"></a>New, B., Pallier, C., Brysbaert, M. & Ferrand, L. (2004). *Lexique 2: A new French lexical database*. Behavior Research Methods, Instruments, & Computers 36(3), 516-524. [lexique.org](http://www.lexique.org)
+9. <a id="src-fery2001"></a>Féry, C. (2001). *Markedness, Faithfulness, Vowel Quality and Syllable Structure in French*. Linguistics in Potsdam 15, Rutgers Optimality Archive ROA-474. Cited: 7-8. [roa.rutgers.edu](https://roa.rutgers.edu/files/474-1101/474-1101-FERY-0-0.PDF)
 <!-- atlas:sources end -->
 
 ### Notes on the sources
@@ -216,9 +232,9 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 
 | Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
 |:--|:--|:--|:--|:--|--:|--:|:--|
-| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `fr` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 85500 | 0.0667 | yes |
-| `ipadict` ([open-dict-data/ipa-dict](https://github.com/open-dict-data/ipa-dict)) | `fr-FR` | generated | machine-generated | MIT, each file its own | 245718 | 0.0763 | yes |
-| `ipa_childes` ([fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split)) | `fr-FR` | generated | espeak-derived | CC BY 4.0 | 9446 | 0.0917 | no |
+| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `fr` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 85500 | 0.0648 | yes |
+| `ipadict` ([open-dict-data/ipa-dict](https://github.com/open-dict-data/ipa-dict)) | `fr-FR` | generated | machine-generated | MIT, each file its own | 245718 | 0.0753 | yes |
+| `ipa_childes` ([fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split)) | `fr-FR` | generated | espeak-derived | CC BY 4.0 | 9446 | 0.0848 | no |
 <!-- atlas:datasets end -->
 
 <!-- atlas:inventory begin -->
@@ -355,7 +371,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 
 The spec declares no stress rule.
 
-Whole-word exceptions (121): ⟨affenpinscher⟩ [afənpinʃəʁ], ⟨afrikander⟩ [afʁikɑ̃dɛʁ], ⟨afrikaner⟩ [afʁikanɛʁ], ⟨amer⟩ [amɛʁ], ⟨amers⟩ [amɛʁ], ⟨angledozer⟩ [ɑ̃ɡlədozœʁ], ⟨aster⟩ [astɛʁ], ⟨atlas⟩ [atlas], ⟨autobus⟩ [otobys], ⟨blazer⟩ [blazœʁ], ⟨bloomer⟩ [blumœʁ], ⟨boomer⟩ [bumœʁ], ⟨bus⟩ [bys], ⟨bécher⟩ [beʃɛʁ], ⟨cactus⟩ [kaktys], ⟨campus⟩ [kɑ̃pys], ⟨cancer⟩ [kɑ̃sɛʁ], ⟨cancers⟩ [kɑ̃sɛʁ], ⟨casher⟩ [kaʃɛʁ], ⟨cathéter⟩ [katetɛʁ], ⟨ce⟩ [sə], ⟨charter⟩ [ʃaʁtɛʁ], ⟨cher⟩ [ʃɛʁ], ⟨chers⟩ [ʃɛʁ], ⟨container⟩ [kɔ̃tɛnɛʁ], ⟨containers⟩ [kɔ̃tɛnɛʁ], ⟨cover⟩ [kɔvœʁ], ⟨cracker⟩ [kʁakœʁ], ⟨crackers⟩ [kʁakœʁ], ⟨cuiller⟩ [kɥijɛʁ], and 91 more in the spec file.
+Whole-word exceptions (135): ⟨affenpinscher⟩ [afənpinʃəʁ], ⟨afrikander⟩ [afʁikɑ̃dɛʁ], ⟨afrikaner⟩ [afʁikanɛʁ], ⟨amer⟩ [amɛʁ], ⟨amers⟩ [amɛʁ], ⟨angledozer⟩ [ɑ̃ɡlədozœʁ], ⟨aster⟩ [astɛʁ], ⟨atlas⟩ [atlas], ⟨autobus⟩ [otobys], ⟨blazer⟩ [blazœʁ], ⟨bloomer⟩ [blumœʁ], ⟨boomer⟩ [bumœʁ], ⟨bus⟩ [bys], ⟨bécher⟩ [beʃɛʁ], ⟨cactus⟩ [kaktys], ⟨campus⟩ [kɑ̃pys], ⟨cancer⟩ [kɑ̃sɛʁ], ⟨cancers⟩ [kɑ̃sɛʁ], ⟨casher⟩ [kaʃɛʁ], ⟨cathéter⟩ [katetɛʁ], ⟨ce⟩ [sə], ⟨ces⟩ [se], ⟨cet⟩ [sɛt], ⟨charter⟩ [ʃaʁtɛʁ], ⟨cher⟩ [ʃɛʁ], ⟨chers⟩ [ʃɛʁ], ⟨container⟩ [kɔ̃tɛnɛʁ], ⟨containers⟩ [kɔ̃tɛnɛʁ], ⟨cover⟩ [kɔvœʁ], ⟨cracker⟩ [kʁakœʁ], and 105 more in the spec file.
 
 Grammatical endings: ⟨-ent⟩ ∅ ∅, ⟨-er⟩ [e], ⟨-ez⟩ [e], ⟨-stion⟩ [stjɔ̃], ⟨-tial⟩ [sjal], ⟨-tiel⟩ [sjɛl], ⟨-tience⟩ [sjɑ̃s], ⟨-tion⟩ [sjɔ̃].
 <!-- atlas:spelling end -->
@@ -363,7 +379,7 @@ Grammatical endings: ⟨-ent⟩ ∅ ∅, ⟨-er⟩ [e], ⟨-ez⟩ [e], ⟨-stion
 <!-- atlas:rules begin -->
 ## Rules
 
-The spec applies 25 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
+The spec applies 26 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
 
 | Rule | Change | Example | Cited |
 |:--|:--|:--|:--|
@@ -392,6 +408,7 @@ The spec applies 25 allophone rules after the letters are read. The change colum
 | `FR_EU_BEFORE_Z` | /œ/ → [ø], before [z], spelled ⟨eu⟩ | ⟨Deleuze⟩ [dəløz] | [Fouché 1959](#src-fouche1959), [Tranel 1987](#src-tranel1987), [Walker 2001](#src-walker2001) |
 | `FR_C_HARD_BEFORE_OEU` | /s/ → [k], spelled ⟨c⟩, before ⟨œu⟩ | ⟨cœur⟩ [kœʁ] | - |
 | `FR_AI_FINAL_CLOSE_MID` | /ɛ/ → [e], before a word boundary, spelled ⟨ai⟩ | ⟨j'ai⟩ [ʒe] | [Fouché 1959](#src-fouche1959), [Walker 2001](#src-walker2001) |
+| `FR_E_BEFORE_DOUBLED_CONSONANT` | /ə/ → [ɛ], spelled ⟨e⟩, before ⟨ll⟩ ⟨tt⟩ ⟨rr⟩, with more context in the spec | ⟨elle⟩ [ɛl] | [Féry 2001](#src-fery2001), New et al. 2004 |
 
 The spec applies 6 rules across a word boundary. The contexts are regular expressions on the IPA of the two words.
 
@@ -402,7 +419,7 @@ The spec applies 6 rules across a word boundary. The contexts are regular expres
 | `FR_LIAISON_N` | `n$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [n‿] | - | - |
 | `FR_LIAISON_R` | `ʁ$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [ʁ‿] | - | - |
 | `FR_LIAISON_P` | `p$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [p‿] | - | - |
-| `FR_ENCHAÎNEMENT` | `[bdgvzʒ]$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [‿] | - | - |
+| `FR_ENCHAÎNEMENT` | `([bdɡvzʒ])$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [‿] | - | - |
 <!-- atlas:rules end -->
 
 <!-- atlas:examples begin words="Abel|Algérie|amateur|bon|botte|boulanger|brun|chienne|Deleuze|dinosaure|été|parlent|ennemi|cœur" -->
