@@ -11,7 +11,7 @@ import pytest
 import orthography2ipa as o2i
 from orthography2ipa.json_loader import load_json_spec
 
-ENTRIES = {"doesn't": "dˈʌzənt", "i'm": "ˈaɪm", "that's": "ðˈæts"}
+ENTRIES = {"doesn't": "dˈʌzənt", "we'll": "ˈwiːl", "that's": "ðˈæts"}
 ENGLISH = {"en-AU", "en-CA", "en-GB", "en-GB-x-scotland", "en-IE", "en-US", "en-ZA"}
 #: The other families that declare it, each from a source its spec cites:
 #: French and Italian write an elided clitic with its host
@@ -35,7 +35,7 @@ def lexicon(tmp_path):
     ("doesn't", "dˈʌzənt"),
     ("doesn’t", "dˈʌzənt"),
     ("Doesn't", "dˈʌzənt"),
-    ("I'm", "ˈaɪm"),
+    ("We'll", "ˈwiːl"),
     ("that's", "ðˈæts"),
 ])
 def test_a_registered_contraction_is_looked_up_whole(lexicon, text, expected):
@@ -43,10 +43,10 @@ def test_a_registered_contraction_is_looked_up_whole(lexicon, text, expected):
 
 
 def test_a_lexicon_entry_inside_a_sentence(lexicon):
-    assert o2i.transcribe("that's I'm", "en-GB") == "ðˈæts ˈaɪm"
+    assert o2i.transcribe("that's we'll", "en-GB") == "ðˈæts ˈwiːl"
 
 
-@pytest.mark.parametrize("word", ["doesn't", "quilter's", "I'm", "that's"])
+@pytest.mark.parametrize("word", ["doesn't", "quilter's", "they'd", "that's"])
 def test_an_unlisted_contraction_is_one_word_spoken_like_its_letters(word):
     # The apostrophe is silent, so the word reads like its letters without it.
     spoken = o2i.transcribe(word, "en-GB")

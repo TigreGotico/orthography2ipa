@@ -164,8 +164,8 @@ class TestWordExceptionStressRouting:
         a declared clitic, which by definition carries no word stress."""
         engine = G2P("en-GB")
         assert engine.spec.stress is not None
-        marked = {"be": "ˈbiː", "he": "ˈhiː", "me": "ˈmiː",
-                  "we": "ˈwiː", "she": "ˈʃiː"}
+        marked = {"is": "ˈɪz", "was": "ˈwɒz", "you": "ˈjuː",
+                  "are": "ˈɑː", "eye": "ˈaɪ"}
         for word, ipa in marked.items():
             assert engine.transcribe_word(word) == ipa
         # weak-form articles are declared cliticless_words: no stress mark

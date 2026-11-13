@@ -334,7 +334,7 @@ stress/sandhi. Empty by default → no-op: the rules alone decide the output. Se
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `id` | string | yes | Unique rule identifier (id-keyed inheritance overlay, like `sandhi_rules`) |
-| `phonemes` | string \| array | yes | Target underlying phoneme(s); a bare string is accepted |
+| `phonemes` | string \| array | yes | Target underlying phoneme(s); a bare string is accepted. `""` targets a slot that the tables read as silent, so a rule can give a silent letter a sound in one context: English word-final ⟨e⟩ is `""`, and `EN_GB_FINAL_E_SOLE_VOWEL` reads it /iː/ when it is the only vowel of the word |
 | `surface` | string | yes, unless `append` | Surface realisation the matched phoneme is rewritten to |
 | `append` | string | no | IPA inserted AFTER the matched phoneme, which is otherwise left alone, so one rule states an insertion for a whole class of targets: what epenthesis needs, since a fixed `surface` can only name one target's output. Mutually exclusive with `surface`. See [allophony](../../docs/engine/allophony.md#inserting-instead-of-rewriting-append) and the Egyptian (`egy`) reading convention |
 | `word_initial` | bool | no | Require (or, if `false`, forbid) word-initial position |
