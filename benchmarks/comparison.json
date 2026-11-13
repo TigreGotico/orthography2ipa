@@ -3977,7 +3977,7 @@
     "lang": "pt-PT",
     "dataset": "ep_dialects",
     "n": 30,
-    "o2i_per": 0.0669,
+    "o2i_per": 0.114,
     "o2i_n": 30,
     "o2i_same_source": false,
     "o2i_lex_per": null,
@@ -4005,8 +4005,6 @@
     "ahotts_same_source": false,
     "africa_g2p_per": null,
     "africa_g2p_n": 0,
-    "ghana_g2p_per": null,
-    "ghana_g2p_n": 0,
     "arbtok_per": null,
     "arbtok_n": 0,
     "arbtok_same_source": false,
@@ -4014,10 +4012,10 @@
     "arbtok_stock_n": 0,
     "arbtok_stock_same_source": false,
     "arbtok_version": null,
-    "tugaphone_per": 0.0646,
+    "tugaphone_per": 0.1185,
     "tugaphone_n": 30,
     "tugaphone_same_source": false,
-    "tugaphone_version": "1.7.1a6",
+    "tugaphone_version": "1.2.1a1",
     "barranquenho_per": null,
     "barranquenho_n": 0,
     "barranquenho_same_source": false,
@@ -4026,26 +4024,22 @@
     "mwl_phonemizer_n": 0,
     "mwl_phonemizer_same_source": false,
     "mwl_phonemizer_version": null,
-    "udarnik_per": null,
-    "udarnik_n": 0,
-    "udarnik_same_source": false,
-    "udarnik_version": null,
     "lexicon_tier": {
       "engines": [
         "espeak",
         "tugaphone"
       ],
       "n": 30,
-      "filtered_n": 7,
+      "filtered_n": 0,
       "insufficient_residual_gold": true,
       "min_gold": 50,
       "lexicon_hits": {
         "espeak": 23,
-        "tugaphone": 2
+        "tugaphone": 30
       },
       "lexicon_sizes": {
         "espeak": 1692,
-        "tugaphone": 2870
+        "tugaphone": 53150
       },
       "provenance": {
         "espeak": {
@@ -4056,10 +4050,10 @@
           "normalization": "NFC + lowercase"
         },
         "tugaphone": {
-          "engine": "tugaphone (packaged lexicon)",
-          "source": "orthography2ipa.lexicon.packaged_lexicon_sources()['pt-PT'] + packaged_lexicon_sources(patches=True)['pt-PT']",
-          "version": "0.7.16a3",
-          "count": 2870,
+          "engine": "tugaphone (tugalex)",
+          "source": "tugalex.TugaLexicon().get_ipa_map(region='lbx')",
+          "version": "2.0.1a1",
+          "count": 53150,
           "normalization": "o2i lexicon key (NFC + language-aware lower)"
         }
       },
@@ -4075,7 +4069,7 @@
     "lang": "pt-PT",
     "dataset": "ipa_childes",
     "n": 3000,
-    "o2i_per": 0.2291,
+    "o2i_per": 0.2478,
     "o2i_n": 3000,
     "o2i_same_source": false,
     "o2i_lex_per": null,
@@ -4103,8 +4097,6 @@
     "ahotts_same_source": false,
     "africa_g2p_per": null,
     "africa_g2p_n": 0,
-    "ghana_g2p_per": null,
-    "ghana_g2p_n": 0,
     "arbtok_per": null,
     "arbtok_n": 0,
     "arbtok_same_source": false,
@@ -4112,10 +4104,10 @@
     "arbtok_stock_n": 0,
     "arbtok_stock_same_source": false,
     "arbtok_version": null,
-    "tugaphone_per": 0.227,
+    "tugaphone_per": 0.2496,
     "tugaphone_n": 3000,
     "tugaphone_same_source": false,
-    "tugaphone_version": "1.7.1a6",
+    "tugaphone_version": "1.2.1a1",
     "barranquenho_per": null,
     "barranquenho_n": 0,
     "barranquenho_same_source": false,
@@ -4124,10 +4116,6 @@
     "mwl_phonemizer_n": 0,
     "mwl_phonemizer_same_source": false,
     "mwl_phonemizer_version": null,
-    "udarnik_per": null,
-    "udarnik_n": 0,
-    "udarnik_same_source": false,
-    "udarnik_version": null,
     "lexicon_tier": null,
     "provenance_tier": "espeak-derived",
     "harness_version": "1.0",
@@ -4138,19 +4126,19 @@
     "lang": "pt-PT",
     "dataset": "portuguese_tts",
     "n": 20,
-    "o2i_per": 0.0284,
+    "o2i_per": 0.071,
     "o2i_n": 20,
     "o2i_same_source": true,
     "o2i_lex_per": null,
     "o2i_lex_n": 0,
-    "espeak_per": 0.3146,
+    "espeak_per": 0.3336,
     "espeak_n": 20,
     "espeak_voice": "pt",
     "espeak_same_source": false,
-    "espeak_rules_per": 0.3319,
+    "espeak_rules_per": 0.3331,
     "espeak_rules_n": 20,
     "espeak_rules_same_source": false,
-    "epitran_per": 0.4236,
+    "epitran_per": 0.4042,
     "epitran_n": 20,
     "epitran_same_source": false,
     "gruut_per": null,
@@ -4166,8 +4154,6 @@
     "ahotts_same_source": false,
     "africa_g2p_per": null,
     "africa_g2p_n": 0,
-    "ghana_g2p_per": null,
-    "ghana_g2p_n": 0,
     "arbtok_per": null,
     "arbtok_n": 0,
     "arbtok_same_source": true,
@@ -4187,10 +4173,6 @@
     "mwl_phonemizer_n": 0,
     "mwl_phonemizer_same_source": true,
     "mwl_phonemizer_version": null,
-    "udarnik_per": null,
-    "udarnik_n": 0,
-    "udarnik_same_source": true,
-    "udarnik_version": null,
     "lexicon_tier": null,
     "provenance_tier": "llm-corrected",
     "harness_version": "1.0",
@@ -4201,7 +4183,7 @@
     "lang": "pt-PT",
     "dataset": "portuguese_unified",
     "n": 3000,
-    "o2i_per": 0.1877,
+    "o2i_per": 0.2139,
     "o2i_n": 3000,
     "o2i_same_source": false,
     "o2i_lex_per": null,
@@ -4229,8 +4211,6 @@
     "ahotts_same_source": false,
     "africa_g2p_per": null,
     "africa_g2p_n": 0,
-    "ghana_g2p_per": null,
-    "ghana_g2p_n": 0,
     "arbtok_per": null,
     "arbtok_n": 0,
     "arbtok_same_source": false,
@@ -4238,10 +4218,10 @@
     "arbtok_stock_n": 0,
     "arbtok_stock_same_source": false,
     "arbtok_version": null,
-    "tugaphone_per": 0.1834,
+    "tugaphone_per": 0.1887,
     "tugaphone_n": 3000,
     "tugaphone_same_source": false,
-    "tugaphone_version": "1.7.1a6",
+    "tugaphone_version": "1.2.1a1",
     "barranquenho_per": null,
     "barranquenho_n": 0,
     "barranquenho_same_source": false,
@@ -4250,26 +4230,22 @@
     "mwl_phonemizer_n": 0,
     "mwl_phonemizer_same_source": false,
     "mwl_phonemizer_version": null,
-    "udarnik_per": null,
-    "udarnik_n": 0,
-    "udarnik_same_source": false,
-    "udarnik_version": null,
     "lexicon_tier": {
       "engines": [
         "espeak",
         "tugaphone"
       ],
       "n": 3000,
-      "filtered_n": 2908,
+      "filtered_n": 1952,
       "insufficient_residual_gold": false,
       "min_gold": 50,
       "lexicon_hits": {
         "espeak": 15,
-        "tugaphone": 78
+        "tugaphone": 1044
       },
       "lexicon_sizes": {
         "espeak": 1692,
-        "tugaphone": 2870
+        "tugaphone": 53150
       },
       "provenance": {
         "espeak": {
@@ -4280,124 +4256,20 @@
           "normalization": "NFC + lowercase"
         },
         "tugaphone": {
-          "engine": "tugaphone (packaged lexicon)",
-          "source": "orthography2ipa.lexicon.packaged_lexicon_sources()['pt-PT'] + packaged_lexicon_sources(patches=True)['pt-PT']",
-          "version": "0.7.16a3",
-          "count": 2870,
+          "engine": "tugaphone (tugalex)",
+          "source": "tugalex.TugaLexicon().get_ipa_map(region='lbx')",
+          "version": "2.0.1a1",
+          "count": 53150,
           "normalization": "o2i lexicon key (NFC + language-aware lower)"
         }
       },
       "per": {
-        "espeak": 0.3675,
-        "tugaphone": 0.1849
+        "espeak": 0.3685,
+        "tugaphone": 0.2202
       },
       "per_n": {
-        "espeak": 2908,
-        "tugaphone": 2908
-      }
-    },
-    "provenance_tier": "lexicon-derived",
-    "harness_version": "1.0",
-    "limit": "full",
-    "sampled": true
-  },
-  {
-    "lang": "pt-PT",
-    "dataset": "portuguese_unified_corrected",
-    "n": 3000,
-    "o2i_per": 0.1877,
-    "o2i_n": 3000,
-    "o2i_same_source": false,
-    "o2i_lex_per": null,
-    "o2i_lex_n": 0,
-    "espeak_per": 0.3669,
-    "espeak_n": 3000,
-    "espeak_voice": "pt",
-    "espeak_same_source": false,
-    "espeak_rules_per": 0.3631,
-    "espeak_rules_n": 3000,
-    "espeak_rules_same_source": false,
-    "epitran_per": 0.4146,
-    "epitran_n": 3000,
-    "epitran_same_source": false,
-    "gruut_per": null,
-    "gruut_n": 0,
-    "gruut_same_source": false,
-    "gruut_rules_per": null,
-    "gruut_rules_n": 0,
-    "pycotovia_per": null,
-    "pycotovia_n": 0,
-    "ahotts_per": null,
-    "ahotts_n": 0,
-    "ahotts_version": null,
-    "ahotts_same_source": false,
-    "africa_g2p_per": null,
-    "africa_g2p_n": 0,
-    "ghana_g2p_per": null,
-    "ghana_g2p_n": 0,
-    "arbtok_per": null,
-    "arbtok_n": 0,
-    "arbtok_same_source": false,
-    "arbtok_stock_per": null,
-    "arbtok_stock_n": 0,
-    "arbtok_stock_same_source": false,
-    "arbtok_version": null,
-    "tugaphone_per": 0.1834,
-    "tugaphone_n": 3000,
-    "tugaphone_same_source": false,
-    "tugaphone_version": "1.7.1a6",
-    "barranquenho_per": null,
-    "barranquenho_n": 0,
-    "barranquenho_same_source": false,
-    "barranquenho_version": null,
-    "mwl_phonemizer_per": null,
-    "mwl_phonemizer_n": 0,
-    "mwl_phonemizer_same_source": false,
-    "mwl_phonemizer_version": null,
-    "udarnik_per": null,
-    "udarnik_n": 0,
-    "udarnik_same_source": false,
-    "udarnik_version": null,
-    "lexicon_tier": {
-      "engines": [
-        "espeak",
-        "tugaphone"
-      ],
-      "n": 3000,
-      "filtered_n": 2908,
-      "insufficient_residual_gold": false,
-      "min_gold": 50,
-      "lexicon_hits": {
-        "espeak": 15,
-        "tugaphone": 78
-      },
-      "lexicon_sizes": {
-        "espeak": 1692,
-        "tugaphone": 2870
-      },
-      "provenance": {
-        "espeak": {
-          "engine": "espeak-ng",
-          "source": "espeak-ng dictsource pt_(list|listx|extra)",
-          "version": "1.52.0",
-          "count": 1692,
-          "normalization": "NFC + lowercase"
-        },
-        "tugaphone": {
-          "engine": "tugaphone (packaged lexicon)",
-          "source": "orthography2ipa.lexicon.packaged_lexicon_sources()['pt-PT'] + packaged_lexicon_sources(patches=True)['pt-PT']",
-          "version": "0.7.16a3",
-          "count": 2870,
-          "normalization": "o2i lexicon key (NFC + language-aware lower)"
-        }
-      },
-      "per": {
-        "espeak": 0.3675,
-        "tugaphone": 0.1849
-      },
-      "per_n": {
-        "espeak": 2908,
-        "tugaphone": 2908
+        "espeak": 1952,
+        "tugaphone": 1952
       }
     },
     "provenance_tier": "lexicon-derived",
@@ -4409,7 +4281,7 @@
     "lang": "pt-PT",
     "dataset": "wikipron",
     "n": 2272,
-    "o2i_per": 0.1045,
+    "o2i_per": 0.1306,
     "o2i_n": 2271,
     "o2i_same_source": false,
     "o2i_lex_per": null,
@@ -4437,8 +4309,6 @@
     "ahotts_same_source": false,
     "africa_g2p_per": null,
     "africa_g2p_n": 0,
-    "ghana_g2p_per": null,
-    "ghana_g2p_n": 0,
     "arbtok_per": null,
     "arbtok_n": 0,
     "arbtok_same_source": false,
@@ -4446,10 +4316,10 @@
     "arbtok_stock_n": 0,
     "arbtok_stock_same_source": false,
     "arbtok_version": null,
-    "tugaphone_per": 0.1035,
+    "tugaphone_per": 0.1341,
     "tugaphone_n": 2271,
     "tugaphone_same_source": false,
-    "tugaphone_version": "1.7.1a6",
+    "tugaphone_version": "1.2.1a1",
     "barranquenho_per": null,
     "barranquenho_n": 0,
     "barranquenho_same_source": false,
@@ -4458,26 +4328,22 @@
     "mwl_phonemizer_n": 0,
     "mwl_phonemizer_same_source": false,
     "mwl_phonemizer_version": null,
-    "udarnik_per": null,
-    "udarnik_n": 0,
-    "udarnik_same_source": false,
-    "udarnik_version": null,
     "lexicon_tier": {
       "engines": [
         "espeak",
         "tugaphone"
       ],
       "n": 2272,
-      "filtered_n": 2198,
+      "filtered_n": 1788,
       "insufficient_residual_gold": false,
       "min_gold": 50,
       "lexicon_hits": {
         "espeak": 57,
-        "tugaphone": 18
+        "tugaphone": 434
       },
       "lexicon_sizes": {
         "espeak": 1692,
-        "tugaphone": 2870
+        "tugaphone": 53150
       },
       "provenance": {
         "espeak": {
@@ -4488,20 +4354,20 @@
           "normalization": "NFC + lowercase"
         },
         "tugaphone": {
-          "engine": "tugaphone (packaged lexicon)",
-          "source": "orthography2ipa.lexicon.packaged_lexicon_sources()['pt-PT'] + packaged_lexicon_sources(patches=True)['pt-PT']",
-          "version": "0.7.16a3",
-          "count": 2870,
+          "engine": "tugaphone (tugalex)",
+          "source": "tugalex.TugaLexicon().get_ipa_map(region='lbx')",
+          "version": "2.0.1a1",
+          "count": 53150,
           "normalization": "o2i lexicon key (NFC + language-aware lower)"
         }
       },
       "per": {
-        "espeak": 0.2342,
-        "tugaphone": 0.0994
+        "espeak": 0.2352,
+        "tugaphone": 0.14
       },
       "per_n": {
-        "espeak": 2198,
-        "tugaphone": 2197
+        "espeak": 1788,
+        "tugaphone": 1787
       }
     },
     "provenance_tier": "crowd-scraped",

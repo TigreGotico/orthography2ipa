@@ -1,6 +1,6 @@
 """A pt-PT ⟨r⟩ after a coda consonant or a nasal vowel is the strong rhotic.
 
-Pereira (2020: 10), citing Mateus e Andrade (2000: 15) and Mateus, Falé &
+Pereira (2020: 11), citing Mateus e Andrade (2000: 15) and Mateus, Falé &
 Freitas (2016: 135-136), lists the strong rhotic [ʀ] in a simple onset after a
 coda consonant (melro [ˈmɛɫʀu], Israel [iʒʀɐˈɛɫ]) and after a nasal vowel
 (genro [ˈʒẽʀu]), and the tap in a branching onset (prato [ˈpɾatu]). The other
