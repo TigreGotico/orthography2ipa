@@ -58,7 +58,7 @@ No dataset on the board scores this spec. See the [dataset catalogue](../evaluat
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 63 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 64 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar | Uvular | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -79,7 +79,7 @@ The spec can emit 63 segments. They come from the letter table, the positional r
 | Near-open | æ |  |  |
 | Open | a ã |  | ɑː ɒ |
 
-Sequences that the spec writes as one unit: [ai] [au] [aɪə] [aʊə] [jʊə] [k͡p] [w] [æɹ] [ɒɹ] [ɔi] [əʊɪ] [ɛə] [ɛɹ] [ɡ͡b] [ɪə] [ɪɹ] [ʊə] [ʌɹ].
+Sequences that the spec writes as one unit: [ai] [au] [aɪ] [aɪə] [aʊə] [jʊə] [k͡p] [w] [æɹ] [ɒɹ] [ɔi] [əʊɪ] [ɛə] [ɛɹ] [ɡ͡b] [ɪə] [ɪɹ] [ʊə] [ʌɹ].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->
@@ -132,7 +132,7 @@ The spec declares no stress rule.
 <!-- atlas:rules begin -->
 ## Rules
 
-The spec applies 48 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
+The spec applies 49 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
 
 | Rule | Change | Example | Cited |
 |:--|:--|:--|:--|
@@ -176,6 +176,7 @@ The spec applies 48 allophone rules after the letters are read. The change colum
 | `EN_GB_ES_EPENTHESIS` | /ɛ ə iː/ → [ɪ], after [s] [z] [ʃ] [ʒ] [tʃ] [dʒ] [ɡ], spelled ⟨e⟩, before ⟨s⟩, with more context in the spec | - | Cruttenden 2014, Wells 2008 |
 | `EN_GB_ES_SYNCOPE` | /ɛ ə iː/ → ∅, after a consonant, spelled ⟨e⟩, before ⟨s⟩, with more context in the spec | - | Cruttenden 2014, Wells 2008 |
 | `EN_GB_FINAL_E_SOLE_VOWEL` | ∅ → [iː], word-finally, spelled ⟨e⟩, with more context in the spec | ⟨be⟩ [biː] | - |
+| `EN_GB_FINAL_Y_MONOSYLLABLE` | /i/ → [aɪ], word-finally, spelled ⟨y⟩, with more context in the spec | ⟨my⟩ [maɪ] | - |
 | `KRI_NASAL_a` | /a/ → [ã], before a coda nasal | - | - |
 | `KRI_NASAL_e` | /e/ → [ẽ], before a coda nasal | - | - |
 | `KRI_NASAL_ɛ` | /ɛ/ → [ɛ̃], before a coda nasal | - | - |

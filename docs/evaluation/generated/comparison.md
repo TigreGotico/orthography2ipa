@@ -173,15 +173,15 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 
 | Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | gruut (lexicon) | gruut rules-only | Winner |
 |---|---|---|---|---|---|---|---|---|
-| wikipron | 80995 | 0.2647 | 0.2081 | 0.2136 | 0.8333 | 0.1776 | 0.2149 | espeak rules-only |
+| wikipron | 80995 | 0.2645 | 0.2081 | 0.2136 | 0.8333 | 0.1776 | 0.2149 | espeak rules-only |
 
 ### en-GB (British English (RP))
 
 | Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | gruut (lexicon) | gruut rules-only | Winner |
 |---|---|---|---|---|---|---|---|---|
-| ipa_childes | 11447 | 0.2972 | same-source | same-source | n/a | 0.2876 | 0.3313 | o2i |
-| ipadict | 65119 | 0.2217 | same-source | same-source | n/a | same-source | 0.2325 | o2i |
-| wikipron | 81545 | 0.2316 | 0.1472 | 0.1540 | 0.8333 | 0.2233 | 0.2528 | espeak rules-only |
+| ipa_childes | 11447 | 0.2966 | same-source | same-source | n/a | 0.2876 | 0.3313 | o2i |
+| ipadict | 65119 | 0.2216 | same-source | same-source | n/a | same-source | 0.2325 | o2i |
+| wikipron | 81545 | 0.2314 | 0.1472 | 0.1540 | 0.8333 | 0.2233 | 0.2528 | espeak rules-only |
 
 ### en-US (American English (General American))
 
@@ -516,8 +516,8 @@ The table above conflates espeak-ng's letter-to-sound RULES with its hand-curate
 | de | wikipron | 53011 | 0.2103 | n/a | 0.2126 | 0.2132 |
 | el | vox_communis | 5994 | 0.2672 | n/a | 0.3347 | 0.3247 |
 | el | wikipron | 19108 | 0.0330 | n/a | 0.0785 | 0.0765 |
-| en | wikipron | 80995 | 0.2647 | 0.2594 | 0.2081 | 0.2136 |
-| en-GB | wikipron | 81545 | 0.2316 | n/a | 0.1472 | 0.1540 |
+| en | wikipron | 80995 | 0.2645 | 0.2594 | 0.2081 | 0.2136 |
+| en-GB | wikipron | 81545 | 0.2314 | n/a | 0.1472 | 0.1540 |
 | en-US | cmudict | 126052 | 0.3376 | 0.3408 | 0.3048 | 0.3104 |
 | en-US | ipa_babylm | 20344 | 0.3520 | 0.3577 | same-source | same-source |
 | en-US | ipa_childes | 18055 | 0.2655 | 0.2596 | same-source | same-source |
