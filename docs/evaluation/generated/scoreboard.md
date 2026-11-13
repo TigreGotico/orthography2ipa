@@ -345,8 +345,8 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | fi | wikipron | 168808 | 0.0184 | - | - | 0.0184 | 0.0184 | 0.8173 | 0.8173 | [0.0182, 0.0186] | 0.8171 | production | crowd-scraped |
 | fo | wikipron | 2957 | 0.1674 | - | - | 0.1504 | 0.1474 | 0.4156 | 0.4231 | [0.1616, 0.1737] | 0.3842 | production | crowd-scraped |
 | fpe | wikipron | 261 | 0.0301 | - | - | 0.0301 | 0.0301 | 0.8544 | 0.8544 | [0.0208, 0.0397] | 0.8544 | research | crowd-scraped |
-| fr | wikipron | 85500 | 0.0647 | - | - | 0.0506 | 0.0462 | 0.7427 | 0.7512 | [0.0639, 0.0656] | 0.7035 | research | crowd-scraped |
-| fr-FR | ipa_childes | 9446 | 0.0849‡ | - | - | 0.0592 | 0.0552 | 0.7901 | 0.8038 | [0.0816, 0.0884] | 0.7119 | research | espeak-derived |
+| fr | wikipron | 85500 | 0.0648 | - | - | 0.0506 | 0.0462 | 0.7426 | 0.7512 | [0.0639, 0.0656] | 0.7035 | research | crowd-scraped |
+| fr-FR | ipa_childes | 9446 | 0.0848‡ | - | - | 0.0590 | 0.0551 | 0.7901 | 0.8038 | [0.0814, 0.0883] | 0.7119 | research | espeak-derived |
 | fr-FR | ipadict | 245718 | 0.0753 | - | - | 0.0614 | 0.0548 | 0.6734 | 0.6804 | [0.0748, 0.0758] | 0.6477 | research | machine-generated |
 | fro | wikipron | 663 | 0.2363 | - | - | 0.2352 | 0.2352 | 0.2564 | 0.2564 | [0.2200, 0.2527] | 0.2534 | research | crowd-scraped |
 | fy | vox_communis | 10681 | 0.3243‡ | - | - | 0.3036 | 0.3018 | 0.1352 | 0.1369 | [0.3203, 0.3281] | 0.1212 | research | epitran-derived |
