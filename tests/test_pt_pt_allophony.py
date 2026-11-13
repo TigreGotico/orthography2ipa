@@ -49,6 +49,7 @@ def test_pt_pt_declares_the_coda_rules():
         "PT_NASAL_O_UNRED", "PT_NASAL_E_UNRED", "PT_INITIAL_ES_RAISE",
         "PT_CODA_L_DARK", "PT_CODA_S_BEFORE_ZH_INTERNAL",
         "PT_CODA_S_VOICING_INTERNAL", "PT_CODA_S_HUSH", "PT_CODA_Z_HUSH",
+        "PT_STRONG_R_AFTER_CODA",
         "PT_LEX_OPEN_ER", "PT_ER_CLOSE",
         "PT_LEX_CLOSE_O", "PT_LEX_CLOSE_E", "PT_LEX_REDUCED_O",
         "PT_LEX_NASAL_UI", "PT_LEX_NASAL_UI_GLIDE",

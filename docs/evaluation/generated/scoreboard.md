@@ -568,7 +568,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | ppl | wikipron | 185 | 0.1322 | - | - | 0.1322 | 0.1322 | 0.4486 | 0.4486 | [0.1104, 0.1534] | 0.4486 | research | crowd-scraped |
 | pqm | wikipron | 151 | 0.1759 | - | - | 0.1759 | 0.1759 | 0.1589 | 0.1589 | [0.1596, 0.1937] | 0.1589 | research | crowd-scraped |
 | ps | wikipron | 1075 | 0.2453 | - | - | 0.1938 | 0.1840 | 0.3265 | 0.3433 | [0.2341, 0.2554] | 0.2558 | research | crowd-scraped |
-| pt-AO | portal_lupo | 53144 | 0.2491‡ | 0.9957 | - | 0.1863 | 0.1697 | 0.1762 | 0.2154 | [0.2479, 0.2502] | 0.0867 | research | lupo-derived |
+| pt-AO | portal_lupo | 53144 | 0.2491‡ | 0.9957 | - | 0.1862 | 0.1697 | 0.1762 | 0.2154 | [0.2479, 0.2502] | 0.0867 | research | lupo-derived |
 | pt-AO | portuguese_tts | 20 | 0.1910‡ | - | - | - | - | - | - | [0.1621, 0.2250] | 0.0000 | research | llm-corrected |
 | pt-BR | ipa_childes | 2116 | 0.2098‡ | - | - | 0.1825 | 0.1705 | 0.2798 | 0.3162 | [0.2024, 0.2169] | 0.2396 | production | espeak-derived |
 | pt-BR | ipadict | 95933 | 0.2320 | 0.9905 | - | 0.2282 | 0.2215 | 0.0498 | 0.0514 | [0.2310, 0.2330] | 0.0475 | production | machine-generated |
@@ -600,11 +600,11 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | pt-MZ | portal_lupo | 53143 | 0.1673‡ | 0.9981 | - | 0.1431 | 0.1267 | 0.3273 | 0.3841 | [0.1661, 0.1685] | 0.2607 | research | lupo-derived |
 | pt-MZ | portuguese_tts | 20 | 0.2095‡ | - | - | - | - | - | - | [0.1891, 0.2302] | 0.0000 | research | llm-corrected |
 | pt-PT | ep_dialects | 30 | 0.0669 | - | - | - | - | - | - | [0.0476, 0.0880] | 0.3000 | research | expert-human |
-| pt-PT | ipa_childes | 3846 | 0.2290‡ | - | - | 0.1762 | 0.1655 | 0.3762 | 0.3994 | [0.2221, 0.2358] | 0.2785 | research | espeak-derived |
+| pt-PT | ipa_childes | 3846 | 0.2288‡ | - | - | 0.1760 | 0.1654 | 0.3762 | 0.3994 | [0.2218, 0.2356] | 0.2785 | research | espeak-derived |
 | pt-PT | portuguese_tts | 20 | 0.0284‡ | - | - | - | - | - | - | [0.0132, 0.0439] | 0.5500 | research | llm-corrected |
 | pt-PT | portuguese_unified | 105553 | 0.1877 | 0.9906 | - | 0.1784 | 0.1757 | 0.2151 | 0.2188 | [0.1868, 0.1887] | 0.1982 | research | lexicon-derived |
 | pt-PT | portuguese_unified_corrected | 105534 | 0.1876‡ | 0.9912 | - | 0.1783 | 0.1756 | 0.2151 | 0.2189 | [0.1868, 0.1885] | 0.1982 | research | lexicon-derived |
-| pt-PT | wikipron | 56978 | 0.0590 | - | - | 0.0495 | 0.0465 | 0.6881 | 0.7011 | [0.0582, 0.0598] | 0.6493 | research | crowd-scraped |
+| pt-PT | wikipron | 56978 | 0.0587 | - | - | 0.0492 | 0.0463 | 0.6894 | 0.7022 | [0.0579, 0.0595] | 0.6506 | research | crowd-scraped |
 | pt-PT-x-acores | clup_dialect | 2† | 0.3071‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
 | pt-PT-x-acores | ep_dialects | 29 | 0.0974 | - | - | - | - | - | - | [0.0720, 0.1254] | 0.1724 | research | expert-human |
 | pt-PT-x-acores | portuguese_tts | 20 | 0.1057‡ | - | - | - | - | - | - | [0.0802, 0.1322] | 0.0000 | research | llm-corrected |
