@@ -356,7 +356,8 @@ KNOWN_DEAD_RULES = {
 #: Krio inherits en-GB's rules through its lexifier link but declares its own
 #: graphemes, and the creole's vowel system has none of RP's rhotic nuclei
 #: (ɑːɹ, ɜːɹ, ɔːɹ, əɹ …) the coda-/r/ and prevocalic-/r/ rules target, so the
-#: whole English rhoticity family is unreachable here.
+#: whole English rhoticity family is unreachable here. Its tables also have no
+#: silent final ⟨e⟩, the target of the English sole-vowel ⟨e⟩ rule.
 #: Andh and Deccan are registry stubs under Marathi, declared as pure genealogy
 #: ("graphemes": {}, "allophones": {}, script Zyyy, no script_type and no
 #: inherent vowel) so the ancestry graph covers every living ISO 639-3 code.
@@ -371,7 +372,8 @@ KNOWN_DEAD_RULES = {
 #: each *DH pair (``PA_DH_INITIAL_*_1``) is live and still checked.
 KNOWN_DEAD_PREFIXES = {"ta": ("TA_GEM",), "ml": ("TA_GEM",),
                        "pnb-PK": ("PA_SCHWA_FINAL",),
-                       "kri": ("EN_GB_NONRHOTIC", "EN_GB_PREVOCALIC_R"),
+                       "kri": ("EN_GB_NONRHOTIC", "EN_GB_PREVOCALIC_R",
+                               "EN_GB_FINAL_E_SOLE_VOWEL"),
                        "anr": ("MR_",), "dcc": ("MR_",),
                        # crs inherits the fr-FR rule set but has no schwa
                        # slot to match (its parent's open-e rule for ⟨ell⟩,

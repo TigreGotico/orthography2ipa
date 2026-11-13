@@ -332,6 +332,12 @@ def dead_allophone_rules(spec: LanguageSpec) -> Tuple[str, ...]:
     reading + inherent vowel to the producible set for an abugida.
     """
     producible = set(phoneme_inventory(spec) | emission_inventory(spec))
+    # A silent reading is no symbol, so both inventories leave it out, but a
+    # rule can target it: a slot the tables leave empty gets a vowel back
+    # (English word-final ⟨e⟩ when it is the word's only vowel).
+    if any("" in (readings or ()) for readings in spec.graphemes.values()) \
+            or "" in _positional_readings(spec):
+        producible.add("")
     if spec.script_type == "abugida" and spec.inherent_vowel:
         producible.update(p + spec.inherent_vowel for p in tuple(producible))
     dead: List[str] = []

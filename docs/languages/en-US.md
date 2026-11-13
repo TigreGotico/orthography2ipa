@@ -60,10 +60,10 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 
 | Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
 |:--|:--|:--|:--|:--|--:|--:|:--|
-| `cmudict` ([cmusphinx/cmudict](https://github.com/cmusphinx/cmudict)) | `en-US` | gold | lexicon-derived | BSD-style (CMU) | 126048 | 0.3383 | yes |
-| `ipadict` ([open-dict-data/ipa-dict](https://github.com/open-dict-data/ipa-dict)) | `en-US` | gold | lexicon-derived | MIT, each file its own | 125923 | 0.2915 | yes |
-| `ipa_babylm` ([phonemetransformers/IPA-BabyLM](https://huggingface.co/datasets/phonemetransformers/IPA-BabyLM)) | `en-US` | generated | espeak-derived | Not stated upstream | 20103 | 0.3540 | no |
-| `ipa_childes` ([fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split)) | `en-US` | generated | espeak-derived | CC BY 4.0 | 18053 | 0.2674 | no |
+| `cmudict` ([cmusphinx/cmudict](https://github.com/cmusphinx/cmudict)) | `en-US` | gold | lexicon-derived | BSD-style (CMU) | 126050 | 0.3376 | yes |
+| `ipadict` ([open-dict-data/ipa-dict](https://github.com/open-dict-data/ipa-dict)) | `en-US` | gold | lexicon-derived | MIT, each file its own | 125925 | 0.2908 | yes |
+| `ipa_babylm` ([phonemetransformers/IPA-BabyLM](https://huggingface.co/datasets/phonemetransformers/IPA-BabyLM)) | `en-US` | generated | espeak-derived | Not stated upstream | 20107 | 0.3520 | no |
+| `ipa_childes` ([fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split)) | `en-US` | generated | espeak-derived | CC BY 4.0 | 18054 | 0.2655 | no |
 <!-- atlas:datasets end -->
 
 <!-- atlas:inventory begin -->
@@ -172,7 +172,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨t⟩ | [t] |  |
 | ⟨tch⟩ | [tʃ] |  |
 | ⟨th⟩ | [θ] [ð] | default [θ] · intervocalic [ð] · word initial [θ] [ð] |
-| ⟨u⟩ | [ʌ] [juː] [uː] [ʊ] | before mute e [juː] [uː] · default [ʌ] [juː] [uː] [ʊ] · nucleus unstressed [ə] |
+| ⟨u⟩ | [ʌ] [juː] [uː] [ʊ] | before mute e [juː] [uː] · default [ʌ] [juː] [uː] [ʊ] · nucleus unstressed [ə] · word final [uː] [juː] |
 | ⟨ue⟩ | [juː] [uː] |  |
 | ⟨ui⟩ | [uː] [ɪ] |  |
 | ⟨ur⟩ | [ɜːɹ] |  |
@@ -182,12 +182,12 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨wh⟩ | [w] [ʍ] |  |
 | ⟨wr⟩ | [ɹ] |  |
 | ⟨x⟩ | [ks] [ɡz] | default [ks] · word initial [z] |
-| ⟨y⟩ | [j] [iː] [aɪ] [ɪ] | before mute e [aɪ] · before vowel [j] · default [ɪ] [aɪ] [i] · word final [i] [aɪ] · word initial [j] |
+| ⟨y⟩ | [j] [iː] [aɪ] [ɪ] | before final vowel [aɪ] · before mute e [aɪ] · before vowel [j] · default [ɪ] [aɪ] [i] · word final [i] [aɪ] · word initial [j] |
 | ⟨z⟩ | [z] |  |
 
 Stress falls on the first syllable by default. These endings take the penult: ⟨-ic⟩ ⟨-ics⟩ ⟨-ion⟩ ⟨-ions⟩.
 
-Whole-word exceptions (47): ⟨a⟩ [ə], ⟨above⟩ [əˈbʌv], ⟨an⟩ [ən], ⟨as⟩ [æz], ⟨be⟩ [bi], ⟨come⟩ [kʌm], ⟨do⟩ [du], ⟨does⟩ [dʌz], ⟨doing⟩ [ˈduɪŋ], ⟨done⟩ [dʌn], ⟨dove⟩ [dʌv], ⟨give⟩ [ɡɪv], ⟨glove⟩ [ɡlʌv], ⟨gone⟩ [ɡɒn], ⟨has⟩ [hæz], ⟨have⟩ [hæv], ⟨he⟩ [hi], ⟨his⟩ [hɪz], ⟨i⟩ [aɪ], ⟨i'd⟩ [aɪd], ⟨i'll⟩ [aɪl], ⟨i'm⟩ [aɪm], ⟨i've⟩ [aɪv], ⟨is⟩ [ɪz], ⟨i’d⟩ [aɪd], ⟨i’ll⟩ [aɪl], ⟨i’m⟩ [aɪm], ⟨i’ve⟩ [aɪv], ⟨live⟩ [lɪv], ⟨lose⟩ [luːz], and 17 more in the spec file.
+Whole-word exceptions (45): ⟨'re⟩ [ɹ], ⟨'ve⟩ [v], ⟨a⟩ [ə], ⟨above⟩ [əˈbʌv], ⟨an⟩ [ən], ⟨are⟩ [ɑɹ], ⟨as⟩ [æz], ⟨come⟩ [kʌm], ⟨do⟩ [du], ⟨does⟩ [dʌz], ⟨doing⟩ [ˈduɪŋ], ⟨done⟩ [dʌn], ⟨dove⟩ [dʌv], ⟨eye⟩ [aɪ], ⟨give⟩ [ɡɪv], ⟨glove⟩ [ɡlʌv], ⟨gone⟩ [ɡɒn], ⟨has⟩ [hæz], ⟨have⟩ [hæv], ⟨his⟩ [hɪz], ⟨i⟩ [aɪ], ⟨i'd⟩ [aɪd], ⟨i'll⟩ [aɪl], ⟨i'm⟩ [aɪm], ⟨is⟩ [ɪz], ⟨live⟩ [lɪv], ⟨lose⟩ [luːz], ⟨love⟩ [lʌv], ⟨move⟩ [muːv], ⟨none⟩ [nʌn], and 15 more in the spec file.
 
 Grammatical endings: ⟨-cial⟩ [ʃəl], ⟨-cian⟩ [ʃən], ⟨-cion⟩ [ʃən], ⟨-cious⟩ [ʃəs], ⟨-ous⟩ [əs], ⟨-ssion⟩ [ʃən], ⟨-ssure⟩ [ʃɚ], ⟨-stial⟩ [stʃəl], ⟨-stion⟩ [stʃən], ⟨-stious⟩ [stʃəs], ⟨-sure⟩ [ʒɚ], ⟨-tial⟩ [ʃəl], ⟨-tion⟩ [ʃən], ⟨-tious⟩ [ʃəs], ⟨-ture⟩ [tʃɚ].
 <!-- atlas:spelling end -->
@@ -195,7 +195,7 @@ Grammatical endings: ⟨-cial⟩ [ʃəl], ⟨-cian⟩ [ʃən], ⟨-cion⟩ [ʃə
 <!-- atlas:rules begin -->
 ## Rules
 
-The spec applies 33 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
+The spec applies 34 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
 
 | Rule | Change | Example | Cited |
 |:--|:--|:--|:--|
@@ -219,6 +219,7 @@ The spec applies 33 allophone rules after the letters are read. The change colum
 | `EN_GB_ES_VOICING_AFTER_MUTE_E` | /s/ → [z], word-finally, spelled ⟨s⟩, after ⟨e⟩, with more context in the spec | - | [Wells 2008](#src-wells2008), Cruttenden 2014 |
 | `EN_GB_ES_VOICING_AFTER_EPENTHESIS` | /s/ → [z], word-finally, spelled ⟨s⟩, after ⟨e⟩, with more context in the spec | - | [Wells 2008](#src-wells2008), Cruttenden 2014 |
 | `EN_GB_OING_HIATUS` | /ɔɪ/ → [oʊɪ], spelled ⟨oi⟩, before ⟨ng⟩, with more context in the spec | - | - |
+| `EN_GB_FINAL_E_SOLE_VOWEL` | ∅ → [i], word-finally, spelled ⟨e⟩, with more context in the spec | ⟨be⟩ [bi] | [Kenyon 1953](#src-kenyon1953) |
 | `EN_US_FINAL_S_VOICING_AFTER_TENSE_VOWEL` | /s/ → [z], word-finally, before a word boundary, after [i] [u] [eɪ] [oʊ] [aɪ] [aʊ] [ɔɪ] [ɑ] and 16 more, spelled ⟨s⟩ | ⟨days⟩ [deɪz] | [Wells 1982](#src-wells1982_vol3), [Kenyon 1953](#src-kenyon1953) |
 | `EN_US_FINAL_Y_MONOSYLLABLE` | /i/ → [aɪ], word-finally, spelled ⟨y⟩, with more context in the spec | ⟨y⟩ [aɪ] | [Wells 1982](#src-wells1982_vol3), [Kenyon 1953](#src-kenyon1953) |
 | `EN_US_LOT_PALM_MERGER` | /ɒ/ → [ɑ] | - | [Wells 1982](#src-wells1982_vol3) |

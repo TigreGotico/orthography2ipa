@@ -826,7 +826,8 @@ def _letters(values: Sequence[str], limit: int = 8) -> str:
 
 
 def _change(rule) -> str:
-    target = "/" + " ".join(rule.phonemes) + "/"
+    # A rule on the silent reading "" has no segment to name.
+    target = "/" + " ".join(rule.phonemes) + "/" if any(rule.phonemes) else "∅"
     if rule.append:
         head = f"insert [{rule.append}] after {target}"
     else:

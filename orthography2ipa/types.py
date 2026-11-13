@@ -2196,7 +2196,10 @@ class LanguageSpec:
     not word-final. Off by default: in an orthography where the mark is a
     boundary that the spec does not model as part of one word (German
     ``geht's``, Dutch ``zo'n``) it separates two words. An apostrophe at
-    either edge of a token is unaffected.
+    the end of a token is unaffected. An apostrophe at the start of a token
+    stays on the word only when ``word_exceptions`` or the lexicon lists the
+    word with it (the detached English clitics ``'re`` and ``'ve``), so a
+    word in single quotes is read as the bare word.
 
     It is inherited along the ``graphemes_base`` edge
     (:attr:`InheritanceMode.BASE_SCALAR`), like :attr:`constrain_onsets`.
