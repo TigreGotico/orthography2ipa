@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.123.3a1](https://github.com/TigreGotico/orthography2ipa/tree/7.123.3a1) (2026-11-13)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.123.2a1...7.123.3a1)
+
+**Merged pull requests:**
+
+- fix\(fr\): keep host entries after elision, resolve unlisted regions to fr-FR [\#2309](https://github.com/TigreGotico/orthography2ipa/pull/2309) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [7.123.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.123.2a1) (2026-11-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.123.1a2...7.123.2a1)
