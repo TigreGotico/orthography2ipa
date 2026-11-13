@@ -607,7 +607,7 @@
       "publisher": "Behavior Research Methods, Instruments, & Computers 36(3), 516-524",
       "url": "http://www.lexique.org",
       "pages": null,
-      "notes": "READ: Lexique 3.83 (Lexique383.tsv, column phon, CC BY-SA), the university-published French lexical database. Used for the reading of the closed function-word set in word_exceptions, for the noun est [ɛst] in l'est and d'est, and to measure the ⟨e⟩ before a doubled consonant letter. It is a published dataset, not a bundled lexicon: only the values of the closed set below are copied, as the other word_exceptions are. For the verb form est the sources differ: Lexique 3.83 gives [e], and Larousse (s.v. être, Homonymes) lists est with ai, ais, haie and hais, which are [ɛ]. The spec lists no entry for the verb, and the rules read it."
+      "notes": "READ: Lexique 3.83 (Lexique383.tsv, column phon, CC BY-SA), the university-published French lexical database. Used for the reading of the closed function-word set in word_exceptions, for the noun est [ɛst] in l'est and d'est, and to measure the ⟨e⟩ before a doubled consonant letter. It is a published dataset, not a bundled lexicon: only the values of the closed set below are copied, as the other word_exceptions are. For the verb form est the sources differ: Lexique 3.83 gives [e], and Larousse (s.v. être, Homonymes) lists est with ai, ais, haie and hais. The spec lists no entry for the verb, and the rules read it."
     },
     {
       "id": "fery2001",

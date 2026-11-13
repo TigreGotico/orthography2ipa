@@ -185,8 +185,9 @@ def test_case_and_typographic_apostrophe_keep_the_host_exception(
 
 
 @pytest.mark.parametrize("text, expected", [
-    # Elision drops the vowel of que, puisque and lorsque before a mute ⟨h⟩
-    # (Tranel 1995: 1). Lexique 3.83: hier jER, hiver ivER, puisque p8isk°,
+    # The ⟨h⟩ of hier is mute, so que elides before it: Larousse, s.v.
+    # hier, "Le h étant muet", with the example "qu'hier". Elision itself is
+    # Tranel (1995: 1). Lexique 3.83: hier jER, hiver ivER, puisque p8isk°,
     # lorsque lORsk°.
     ("qu'hier", "kjɛʁ"), ("qu'hiver", "kivɛʁ"), ("QU'HIER", "kjɛʁ"),
     ("qu’hier", "kjɛʁ"), ("puisqu'hier", "pɥiskjɛʁ"),

@@ -127,3 +127,15 @@ def test_many_elisions_in_one_word_take_linear_time(lang):
     start = time.perf_counter()
     o2i.transcribe("l'a" * 40, lang)
     assert time.perf_counter() - start < 20
+
+
+@pytest.mark.timeout(60)
+@pytest.mark.parametrize("lang", ["pt-PT", "pt-BR", "ext-PT-x-barranco"])
+def test_many_elisions_before_a_non_clitic_host_take_linear_time(lang):
+    # ou is no clitic, so the clitic check reaches every elided host. A
+    # recursive check visited 2^n host chains: 18 elisions took 12 s in pt-PT.
+    word = "d'ou" * 40
+    start = time.perf_counter()
+    o2i.transcribe(word, lang)
+    G2P(lang).transcribe_word(word)
+    assert time.perf_counter() - start < 20

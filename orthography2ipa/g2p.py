@@ -1493,12 +1493,13 @@ class G2P:
             self._syll_cache[word] = sylls
         return list(sylls)
 
-    def _is_cliticless(self, word: str) -> bool:
+    def _is_cliticless(self, word: str, elided: bool = True) -> bool:
         """Whether *word* is a declared prosodic clitic that takes no stress.
 
         Delegates to :func:`orthography2ipa.stress.is_cliticless` so the engine
         and every downstream assembler make the identical decision from one place
-        (the keys are cached per engine on first use).
+        (the keys are cached per engine on first use). With *elided* false,
+        only the whole word is looked up, never its elided host.
         """
         if self._cliticless_cache is None:
             self._cliticless_cache = cliticless_keys(self.spec)
@@ -1526,8 +1527,8 @@ class G2P:
             return True
         # An elided clitic adds no stress of its own, so the word is a clitic
         # when its host is one: ``d'Os`` reads as the contraction ``dos``.
-        return any(self._is_cliticless(host)
-                   for _, host in self._elided_hosts(word))
+        return elided and any(self._is_cliticless(host, elided=False)
+                              for _, host in self._elided_hosts(word))
 
     def _transcribe_word(self, word: str, width: int,
                          forced_ipa: Optional[str] = None) -> WordTranscription:
