@@ -199,9 +199,22 @@ def test_qu_before_a_mute_h_keeps_the_host_exception(text, expected):
 @pytest.mark.parametrize("text, expected", [
     # Lexique 3.83: est, NOM, phon Est
     ("l'est", "lɛst"), ("d'est", "dɛst"), ("à l'est", "a lɛst"),
+    ("l'avant-d'est", "lavɑ̃ dɛst"),
 ])
 def test_l_est_is_the_noun(text, expected):
     assert o2i.transcribe(text, "fr-FR") == expected
+
+
+@pytest.mark.parametrize("text, parts", [
+    ("l'avant-d'est", ["l'avant", "d'est"]),
+    ("vent-d'est", ["vent", "d'est"]),
+    ("vent-d'est-ouest", ["vent", "d'est", "ouest"]),
+])
+def test_a_clitic_inside_a_hyphen_compound_joins_only_its_own_element(
+        text, parts):
+    # Each element reads as it does alone; d'est does not fuse with ouest.
+    spoken = o2i.transcribe(text, "fr-FR").replace("‿", "").split()
+    assert spoken == [o2i.transcribe(p, "fr-FR") for p in parts]
 
 
 def test_an_elided_clitic_keeps_the_host_lexicon_entry():
