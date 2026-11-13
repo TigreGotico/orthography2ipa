@@ -128,6 +128,23 @@ def test_inline_word_exceptions_beat_lexicon():
     assert orthography2ipa.G2P("en-GB", pipeline=pipeline).transcribe_word("the") == "ðə"
 
 
+def test_a_sentence_reads_a_listed_hyphen_compound_from_its_entry():
+    """An entry for the whole hyphen spelling wins in a sentence as it does
+    in transcribe_word; an unlisted compound keeps its element readings."""
+    pipeline = orthography2ipa.Pipeline(lexicon={
+        "well-known": "ˌwɛlˈnəʊn", "to-do": "təˈduː",
+        "well-to-do": "ˌwɛltəˈduː"})
+    eng = orthography2ipa.G2P("en-GB", pipeline=pipeline)
+    rules = orthography2ipa.G2P(
+        "en-GB", pipeline=orthography2ipa.Pipeline(lexicon={}))
+    assert eng.transcribe_word("well-known") == "ˌwɛlˈnəʊn"
+    assert eng.transcribe("a well-known man").split()[1] == "ˌwɛlˈnəʊn"
+    # the longest listed run wins over a shorter listed one inside it
+    assert eng.transcribe("well-to-do").split() == ["ˌwɛltəˈduː"]
+    # an unlisted compound is read element by element, as before
+    assert eng.transcribe("well-made") == rules.transcribe("well-made")
+
+
 def test_no_override_falls_to_rules():
     """A word in neither inline nor lexicon transcribes via the beam."""
     eng = orthography2ipa.G2P("en-GB")

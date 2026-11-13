@@ -1173,7 +1173,37 @@ class G2P:
                                    forced_ipa=self._check_forced(chunk.forced_ipa)))
             else:
                 self._group_words(self._normalize(chunk.text), words)
-        return self._flag(words)
+        return self._flag(self._join_listed_compounds(words))
+
+    def _join_listed_compounds(self, words: List[_Word]) -> List[_Word]:
+        """*words* with each hyphen-joined run that has an override for its
+        whole spelling (French ``est-ce``, ``sud-est``) made one word.
+
+        :meth:`transcribe_word` reads such a spelling from its own entry, and
+        a sentence must read it the same way: an element's standalone entry
+        (``est`` [e]) is not its reading inside the compound (``sud-est``
+        [sydɛst]). The longest listed run wins.
+        """
+        joined: List[_Word] = []
+        i = 0
+        while i < len(words):
+            end = i + 1
+            while (end < len(words) and words[end].hyphen_joined
+                   and words[end].forced_ipa is None):
+                end += 1
+            for stop in range(end, i + 1, -1):
+                run = words[i:stop]
+                spelling = "-".join(w.surface for w in run)
+                if (run[0].forced_ipa is None
+                        and self._override_for(spelling) is not None):
+                    joined.append(replace(run[0], surface=spelling,
+                                          pausal=run[-1].pausal))
+                    i = stop
+                    break
+            else:
+                joined.append(words[i])
+                i += 1
+        return joined
 
     def _compound_elements(self, word: str) -> Optional[List[_Word]]:
         """The elements of *word* when the spec stresses it as one

@@ -31,7 +31,8 @@ FR_EXCEPTIONS = json.loads(
 VOWEL_OR_H = set("aàâeéèêëiîïoôuùûüyh")
 #: Every fr-FR entry that can follow an elided clitic.
 VOWEL_INITIAL_EXCEPTIONS = {word: ipa for word, ipa in FR_EXCEPTIONS.items()
-                            if word[0] in VOWEL_OR_H and "'" not in word}
+                            if word[0] in VOWEL_OR_H and "'" not in word
+                            and "-" not in word}
 #: Verb forms that cannot follow l' or d'. After those clitics, est is the
 #: noun 'east' (see test_l_est_is_the_noun).
 VERB_FORMS = {"est", "et", "es"}
@@ -127,11 +128,12 @@ def test_les_keeps_its_vowel():
     assert o2i.transcribe("les amis", "fr-FR").split(" ")[0] == "le"
 
 
-@pytest.mark.parametrize("text", ["est-ce", "peut-être", "rendez-vous",
-                                  "dix-sept"])
+@pytest.mark.parametrize("text", ["peut-être", "rendez-vous", "dix-sept"])
 def test_a_hyphenated_compound_stays_two_words_and_loses_neither(text):
     # A hyphen is a word boundary here (liaison is not modelled): both parts
-    # are spoken, and each reads as it does alone.
+    # are spoken, and each reads as it does alone. A compound with an entry
+    # of its own (est-ce) reads that entry instead, see
+    # test_french_function_words.py.
     parts = text.split("-")
     assert o2i.transcribe(text, "fr-FR").split(" ") == [
         o2i.transcribe(p, "fr-FR") for p in parts]
@@ -185,8 +187,9 @@ def test_case_and_typographic_apostrophe_keep_the_host_exception(
 
 
 @pytest.mark.parametrize("text, expected", [
-    # Elision drops the vowel of que, puisque and lorsque before a mute ⟨h⟩
-    # (Tranel 1995: 1). Lexique 3.83: hier jER, hiver ivER, puisque p8isk°,
+    # The ⟨h⟩ of hier is mute, so que elides before it: Larousse, s.v.
+    # hier, "Le h étant muet", with the example "qu'hier". Elision itself is
+    # Tranel (1995: 1). Lexique 3.83: hier jER, hiver ivER, puisque p8isk°,
     # lorsque lORsk°.
     ("qu'hier", "kjɛʁ"), ("qu'hiver", "kivɛʁ"), ("QU'HIER", "kjɛʁ"),
     ("qu’hier", "kjɛʁ"), ("puisqu'hier", "pɥiskjɛʁ"),

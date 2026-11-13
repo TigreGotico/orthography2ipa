@@ -81,3 +81,25 @@ def test_a_sentence_reads_est_as_the_verb():
     assert o2i.transcribe("Il est midi et elle est là", "fr-FR") == (
         "il e midi e ɛl e la")
     assert o2i.transcribe("c'est la belle terre", "fr-FR") == "se la bɛl tɛʁ"
+
+
+# A hyphen compound reads from its own Lexique 3.83 entry, not from the
+# standalone verb est [e]: est-ce Es°, est-ce que Es°k°, c'est-à-dire
+# sEtadiR, sud-est sydEst, nord-est nOREst. qu'est-ce que is qu' [k] in
+# front of est-ce que.
+@pytest.mark.parametrize("tag", TAGS)
+@pytest.mark.parametrize("text, expected", [
+    ("est-ce que", "ɛsə kə"), ("Est-ce que", "ɛsə kə"),
+    ("qu'est-ce que", "kɛsə kə"), ("Qu’est-ce que", "kɛsə kə"),
+    ("c'est-à-dire", "sɛtadiʁ"),
+    ("sud-est", "sydɛst"), ("nord-est", "nɔʁɛst"),
+])
+def test_a_hyphen_compound_has_its_lexique_reading(tag, text, expected):
+    assert o2i.transcribe(text, tag) == expected
+
+
+def test_a_sentence_reads_a_compound_from_its_entry_and_est_as_the_verb():
+    assert o2i.transcribe("Est-ce que le vent du sud-est souffle ?",
+                          "fr-FR") == "ɛsə kə lə vɑ̃ dy sydɛst sufl"
+    assert o2i.transcribe("Il est midi", "fr-FR") == "il e midi"
+    assert o2i.transcribe("Qu'est-ce que c'est ?", "fr-FR") == "kɛsə kə se"
