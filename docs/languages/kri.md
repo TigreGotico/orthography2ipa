@@ -58,7 +58,7 @@ No dataset on the board scores this spec. See the [dataset catalogue](../evaluat
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 64 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 63 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar | Uvular | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -71,7 +71,7 @@ The spec can emit 64 segments. They come from the letter table, the positional r
 
 | Vowels | Front | Central | Back |
 |:--|:-:|:-:|:-:|
-| Close | i iː ĩ |  | u uː ũ |
+| Close | i iː ĩ |  | u ũ |
 | Near-close | ɪ |  |  |
 | Close-mid | e ẽ |  | o õ |
 | Mid |  | ə |  |
@@ -132,7 +132,7 @@ The spec declares no stress rule.
 <!-- atlas:rules begin -->
 ## Rules
 
-The spec applies 50 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
+The spec applies 48 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
 
 | Rule | Change | Example | Cited |
 |:--|:--|:--|:--|
@@ -175,9 +175,7 @@ The spec applies 50 allophone rules after the letters are read. The change colum
 | `EN_GB_FINAL_S_VOICING` | /s/ → [z], word-finally, before a word boundary, after [b] [d] [ɡ] [v] [ð] [m] [n] [ŋ] and 2 more, spelled ⟨s⟩ | - | Cruttenden 2014, Wells 2008 |
 | `EN_GB_ES_EPENTHESIS` | /ɛ ə iː/ → [ɪ], after [s] [z] [ʃ] [ʒ] [tʃ] [dʒ] [ɡ], spelled ⟨e⟩, before ⟨s⟩, with more context in the spec | - | Cruttenden 2014, Wells 2008 |
 | `EN_GB_ES_SYNCOPE` | /ɛ ə iː/ → ∅, after a consonant, spelled ⟨e⟩, before ⟨s⟩, with more context in the spec | - | Cruttenden 2014, Wells 2008 |
-| `EN_GB_FINAL_E_SOLE_VOWEL` | // → [iː], word-finally, spelled ⟨e⟩, with more context in the spec | - | - |
-| `EN_GB_FINAL_U_YOD_DROP` | /juː/ → [uː], word-finally, after [ɹ] [ɑːɹ] [ɜːɹ] [ɔːɹ] [əɹ] [ʃ] [ʒ] [j] and 2 more, spelled ⟨u⟩ | ⟨UK⟩ [ˈɡʊɹuː] | - |
-| `EN_GB_FINAL_U_YOD_DROP_CL` | /juː/ → [uː], word-finally, after [l], spelled ⟨u⟩, with more context in the spec | ⟨UK⟩ [fluː] | - |
+| `EN_GB_FINAL_E_SOLE_VOWEL` | ∅ → [iː], word-finally, spelled ⟨e⟩, with more context in the spec | ⟨be⟩ [biː] | - |
 | `KRI_NASAL_a` | /a/ → [ã], before a coda nasal | - | - |
 | `KRI_NASAL_e` | /e/ → [ẽ], before a coda nasal | - | - |
 | `KRI_NASAL_ɛ` | /ɛ/ → [ɛ̃], before a coda nasal | - | - |

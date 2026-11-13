@@ -738,7 +738,7 @@ def test_en_us_letter_is_r_coloured_schwa(word, expected):
 
 @pytest.mark.parametrize("word", ["car", "park", "see", "food", "feel",
                                   "more", "lot", "coffee", "bird",
-                                  # the yod-plus-GOOSE compound, the rules
+                                  # the yod-plus-GOOSE compound, the rule
                                   # with a literal surface and the frozen
                                   # function words: each reaches the output by
                                   # a route the plain per-vowel rules cannot

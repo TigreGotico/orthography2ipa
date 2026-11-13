@@ -109,6 +109,8 @@ _EDGE_PUNCT_RE = re.compile(rf"^{_EDGE_PUNCT_CHAR}+|{_EDGE_PUNCT_CHAR}+$")
 #: Apostrophe-family marks ``word_internal_apostrophe`` governs: U+0027 and
 #: U+2019, the two codepoints ``_EDGE_PUNCT_CHAR`` already treats as a letter-like mark.
 _APOSTROPHES = frozenset("'\u2019")
+#: The run of letters that follows a word-initial apostrophe.
+_LETTERS_RE = re.compile(r"[^\W\d_]+")
 #: Hyphens that join the words of a compound (ASCII, U+2010, U+2011).
 _HYPHENS = frozenset("-\u2010\u2011")
 
@@ -1287,6 +1289,11 @@ class G2P:
             elif (token.kind == TokenKind.PUNCTUATION
                   and self._is_word_internal_apostrophe(text, token)):
                 current.append(token.grapheme)
+            elif (token.kind == TokenKind.PUNCTUATION
+                  and self._opens_listed_word(text, token)):
+                flush()
+                joined, after_hyphen = after_hyphen, False
+                current.append(token.grapheme)
             elif token.kind == TokenKind.PUNCTUATION:
                 # A hyphen right after a word joins it to the word right after
                 after_hyphen = bool(current) and token.grapheme in _HYPHENS
@@ -1325,6 +1332,29 @@ class G2P:
                 and token.grapheme in _APOSTROPHES
                 and 0 < start and end < len(text)
                 and text[start - 1].isalpha() and text[end].isalpha())
+
+    def _opens_listed_word(self, text: str, token: Token) -> bool:
+        """True for a word-initial apostrophe whose word the spec lists whole
+        with the mark, such as the detached clitic ``'re`` of ``they 're``.
+
+        Any other word-initial apostrophe stays punctuation, so a word in
+        single quotes ('we') is read as the bare word.
+        """
+        start = token.position
+        end = start + token.length
+        if not (self.spec.word_internal_apostrophe
+                and token.grapheme in _APOSTROPHES
+                and (start == 0 or text[start - 1].isspace())):
+            return False
+        letters = _LETTERS_RE.match(text, end)
+        if letters is None:
+            return False
+        key = lower_str("'" + letters.group(), self.spec.code)
+        lex = self.pipeline.lexicon
+        if lex is None:
+            lex = _process_lexicon(self.lang)
+        return (key in (self.spec.word_exceptions or {})
+                or unicodedata.normalize("NFC", key) in (lex or {}))
 
     def _unmarked(self, word: str) -> str:
         """*word* without the silent stress marks the spec declares.
