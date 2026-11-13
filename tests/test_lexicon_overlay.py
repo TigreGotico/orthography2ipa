@@ -13,6 +13,7 @@ Covers the four contract gates:
 """
 import subprocess
 import sys
+import time
 import unicodedata
 
 import pytest
@@ -132,17 +133,45 @@ def test_a_sentence_reads_a_listed_hyphen_compound_from_its_entry():
     """An entry for the whole hyphen spelling wins in a sentence as it does
     in transcribe_word; an unlisted compound keeps its element readings."""
     pipeline = orthography2ipa.Pipeline(lexicon={
-        "well-known": "ˌwɛlˈnəʊn", "to-do": "təˈduː",
+        "well-known": "ˌwɛlˈnəʊn", "to-do": "təˈduː", "well-to": "ˈwɛltə",
         "well-to-do": "ˌwɛltəˈduː"})
     eng = orthography2ipa.G2P("en-GB", pipeline=pipeline)
     rules = orthography2ipa.G2P(
         "en-GB", pipeline=orthography2ipa.Pipeline(lexicon={}))
     assert eng.transcribe_word("well-known") == "ˌwɛlˈnəʊn"
     assert eng.transcribe("a well-known man").split()[1] == "ˌwɛlˈnəʊn"
-    # the longest listed run wins over a shorter listed one inside it
+    # the longest listed run wins over a listed prefix (well-to) and a
+    # listed tail (to-do)
     assert eng.transcribe("well-to-do").split() == ["ˌwɛltəˈduː"]
     # an unlisted compound is read element by element, as before
     assert eng.transcribe("well-made") == rules.transcribe("well-made")
+
+
+@pytest.mark.parametrize("lang, text, lexicon", [
+    ("pt-PT", "caixa-d'água", {"água": "ˈaɡwɐ"}),
+    ("it-IT", "capo-d'anno", {"anno": "ˈanno"}),
+])
+def test_a_clitic_inside_a_later_word_does_not_join_the_run(
+        lang, text, lexicon):
+    """The host after d' is listed, but the clitic is in the second word,
+    so the run stays two words and the second reads as it does alone."""
+    eng = orthography2ipa.G2P(
+        lang, pipeline=orthography2ipa.Pipeline(lexicon=lexicon))
+    words = eng.transcribe(text).split(" ")
+    assert len(words) == 2
+    assert words[1] == eng.transcribe(text.split("-")[1])
+
+
+def test_a_long_hyphen_chain_takes_linear_time():
+    """A spec with no hyphenated key never tries to join a run, and a run
+    is never longer than the longest key, so 1600 parts take well under a
+    second each way. Unbounded, the join took minutes."""
+    chain = "-".join(["ab"] * 1600)
+    for lang in ("en-GB", "fr-FR"):
+        eng = orthography2ipa.G2P(lang)
+        start = time.perf_counter()
+        eng.transcribe(chain)
+        assert time.perf_counter() - start < 20
 
 
 def test_no_override_falls_to_rules():

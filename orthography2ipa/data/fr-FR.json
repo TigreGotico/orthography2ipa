@@ -607,7 +607,7 @@
       "publisher": "Behavior Research Methods, Instruments, & Computers 36(3), 516-524",
       "url": "http://www.lexique.org",
       "pages": null,
-      "notes": "READ: Lexique 3.83 (Lexique383.tsv, column phon, CC BY-SA), the university-published French lexical database. Used for the reading of the closed function-word set in word_exceptions, for the noun est [ɛst] in l'est and d'est, for the hyphen compounds whose est element is not the standalone verb (est-ce Es°, c'est-à-dire sEtadiR, est-ouest EstwEst, sud-est sydEst, nord-est nOREst, sud-sud-est sydsydEst, nord-nord-est nORnOREst), and to measure the ⟨e⟩ before a doubled consonant letter. It is a published dataset, not a bundled lexicon: only the values of the closed set below are copied, as the other word_exceptions are."
+      "notes": "READ: Lexique 3.83 (Lexique383.tsv, column phon, CC BY-SA), the university-published French lexical database. Used for the reading of the closed function-word set in word_exceptions, for the noun est [ɛst] in l'est and d'est, for the hyphen compounds whose est element is not the standalone verb (est-ce Es°, c'est-à-dire sEtadiR, est-ouest EstwEst, sud-est sydEst, nord-est nOREst, sud-sud-est sydsydEst, nord-nord-est nORnOREst, est-africain EstafRik5, est-allemand Estal°m@, est-allemande Estal°m@d, est-allemands Estal°m@), and to measure the ⟨e⟩ before a doubled consonant letter. It is a published dataset, not a bundled lexicon: only the values of the closed set below are copied, as the other word_exceptions are."
     },
     {
       "id": "fery2001",
@@ -1024,7 +1024,11 @@
     "sud-est": "sydɛst",
     "nord-est": "nɔʁɛst",
     "sud-sud-est": "sydsydɛst",
-    "nord-nord-est": "nɔʁnɔʁɛst"
+    "nord-nord-est": "nɔʁnɔʁɛst",
+    "est-africain": "ɛstafʁikɛ̃",
+    "est-allemand": "ɛstaləmɑ̃",
+    "est-allemande": "ɛstaləmɑ̃d",
+    "est-allemands": "ɛstaləmɑ̃"
   },
   "timespan": {
     "start_year": 1300,

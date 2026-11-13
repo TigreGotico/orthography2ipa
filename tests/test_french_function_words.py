@@ -85,17 +85,42 @@ def test_a_sentence_reads_est_as_the_verb():
 
 # A hyphen compound reads from its own Lexique 3.83 entry, not from the
 # standalone verb est [e]: est-ce Es°, est-ce que Es°k°, c'est-à-dire
-# sEtadiR, sud-est sydEst, nord-est nOREst. qu'est-ce que is qu' [k] in
-# front of est-ce que.
+# sEtadiR, sud-est sydEst, nord-est nOREst, est-africain EstafRik5,
+# est-allemand Estal°m@, est-allemande Estal°m@d. qu'est-ce que is qu' [k]
+# in front of est-ce que.
 @pytest.mark.parametrize("tag", TAGS)
 @pytest.mark.parametrize("text, expected", [
     ("est-ce que", "ɛsə kə"), ("Est-ce que", "ɛsə kə"),
     ("qu'est-ce que", "kɛsə kə"), ("Qu’est-ce que", "kɛsə kə"),
-    ("c'est-à-dire", "sɛtadiʁ"),
     ("sud-est", "sydɛst"), ("nord-est", "nɔʁɛst"),
+    ("est-africain", "ɛstafʁikɛ̃"), ("est-allemand", "ɛstaləmɑ̃"),
+    ("est-allemande", "ɛstaləmɑ̃d"),
 ])
 def test_a_hyphen_compound_has_its_lexique_reading(tag, text, expected):
     assert o2i.transcribe(text, tag) == expected
+
+
+@pytest.mark.parametrize("tag", [t for t in TAGS if t != "fr-CA"])
+def test_c_est_a_dire_has_its_lexique_reading(tag):
+    assert o2i.transcribe("c'est-à-dire", tag) == "sɛtadiʁ"
+
+
+@pytest.mark.xfail(strict=True, reason="an inherited fr-FR entry bypasses "
+                   "the fr-CA affrication rule")
+def test_c_est_a_dire_affricates_in_fr_ca():
+    # /d/ before /i/ is [d͡z], obligatory within words (Dow 2019: 1-2)
+    assert o2i.transcribe("c'est-à-dire", "fr-CA") == "sɛtad͡ziʁ"
+
+
+@pytest.mark.parametrize("text, second", [
+    # The clitic is in the second word, so the run stays two words: d'est
+    # and l'est are the noun (Lexique est NOM Est).
+    ("vent-d'est", "dɛst"), ("sud-l'est", "lɛst"),
+])
+def test_a_clitic_inside_a_later_word_does_not_join_the_run(text, second):
+    first = text.split("-")[0]
+    assert o2i.transcribe(text, "fr-FR").split(" ") == [
+        o2i.transcribe(first, "fr-FR"), second]
 
 
 def test_a_sentence_reads_a_compound_from_its_entry_and_est_as_the_verb():

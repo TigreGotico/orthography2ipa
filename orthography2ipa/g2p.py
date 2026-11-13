@@ -1175,6 +1175,21 @@ class G2P:
                 self._group_words(self._normalize(chunk.text), words)
         return self._flag(self._join_listed_compounds(words))
 
+    @cached_property
+    def _compound_parts(self) -> int:
+        """The most parts in a hyphenated override key of this engine.
+
+        The keys are the spec's ``word_exceptions`` and the lexicon the engine
+        reads. ``0`` means no key has a hyphen, so no run can be joined.
+        """
+        lex = self.pipeline.lexicon
+        if lex is None:
+            lex = _process_lexicon(self.lang)
+        keys = list(self.spec.word_exceptions or ()) + list(lex)
+        return max((sum(key.count(h) for h in _HYPHENS) + 1
+                    for key in keys if _HYPHENS.intersection(key)),
+                   default=0)
+
     def _join_listed_compounds(self, words: List[_Word]) -> List[_Word]:
         """*words* with each hyphen-joined run that has an override for its
         whole spelling (French ``est-ce``, ``sud-est``) made one word.
@@ -1182,28 +1197,48 @@ class G2P:
         :meth:`transcribe_word` reads such a spelling from its own entry, and
         a sentence must read it the same way: an element's standalone entry
         (``est`` [e]) is not its reading inside the compound (``sud-est``
-        [sydɛst]). The longest listed run wins.
+        [sydɛst]). The longest listed run wins. A run is never longer than
+        the longest hyphenated key, so an engine with none joins nothing.
         """
+        cap = self._compound_parts
+        if cap < 2:
+            return words
         joined: List[_Word] = []
         i = 0
         while i < len(words):
             end = i + 1
-            while (end < len(words) and words[end].hyphen_joined
+            while (end < len(words) and end - i < cap
+                   and words[end].hyphen_joined
                    and words[end].forced_ipa is None):
                 end += 1
             for stop in range(end, i + 1, -1):
                 run = words[i:stop]
-                spelling = "-".join(w.surface for w in run)
                 if (run[0].forced_ipa is None
-                        and self._override_for(spelling) is not None):
-                    joined.append(replace(run[0], surface=spelling,
-                                          pausal=run[-1].pausal))
+                        and self._is_listed_compound(run)):
+                    joined.append(replace(
+                        run[0], surface="-".join(w.surface for w in run),
+                        pausal=run[-1].pausal))
                     i = stop
                     break
             else:
                 joined.append(words[i])
                 i += 1
         return joined
+
+    def _is_listed_compound(self, run: List[_Word]) -> bool:
+        """True when the spelling of *run* has an entry of its own, or is an
+        elided clitic in its first word before a listed host (``qu'est-ce``).
+
+        A clitic inside a later word does not make the run one word:
+        ``vent-d'est`` is ``vent`` and ``d'est``, not a clitic ``vent-d'``.
+        """
+        spelling = "-".join(w.surface for w in run)
+        if self._whole_word_override(spelling) is not None:
+            return True
+        first = len(run[0].surface)
+        return any((apostrophe < first or _HYPHENS.intersection(host))
+                   and self._override_for(host) is not None
+                   for apostrophe, host in self._elided_hosts(spelling))
 
     def _compound_elements(self, word: str) -> Optional[List[_Word]]:
         """The elements of *word* when the spec stresses it as one
