@@ -13,12 +13,13 @@ Every expected value comes from a source, never from the engine:
   (95589259) /waɪ̯/; cry (93687487) RP, GA /kɹaɪ/; sky (93742195) /skaɪ/; try
   (95603390) /tɹaɪ/; dry (94602073) RP, GA, CA /ˈdɹaɪ̯/; shy (93722341)
   /ʃaɪ/; spy (95587957) /spaɪ/; sly (93604654) /slaɪ/; toy (94176516)
-  /tɔɪ/; boy (95530370) RP, GA /bɔɪ/; day (95491099) RP, GA /deɪ̯/; key
+  /tɔɪ/; gypsy (94557431) /ˈd͡ʒɪp.si/; pygmy (95503956) /ˈpɪɡmi/; dryly
+  (95506373) /ˈdɹaɪ.li/; boy (95530370) RP, GA /bɔɪ/; day (95491099) RP, GA /deɪ̯/; key
   (95608628) RP /kiː/, GA /ki/; menu (95547329) RP /ˈmɛn.juː/, GA and CA
   /ˈmɛn.ju/.
 
-The non-syllabic mark of /aɪ̯/ and the syllable dot of /ˈmɛn.juː/ are
-notation, so the spec writes them aɪ and ˈmɛnjuː. en-US writes no length
+The non-syllabic mark of /aɪ̯/, the tie bar of /d͡ʒ/ and the syllable dots
+are notation, so the spec writes them aɪ, dʒ and ˈmɛnjuː. en-US writes no length
 marks, so a GA value is the source's value in that notation. The children of
 en-GB write the PRICE vowel with the symbol of en-GB, aɪ.
 """
@@ -71,6 +72,24 @@ def test_final_y_after_another_syllable_is_i(code, word):
     final vowel is compared: the vowels before it are a separate fact."""
     ipa = _t(code, word)
     assert ipa.endswith("i") and not ipa.endswith("aɪ")
+
+
+@pytest.mark.parametrize("word, expected", [
+    ("gypsy", "dʒɪpsi"),
+    ("pygmy", "pɪɡmi"),
+])
+@pytest.mark.parametrize("code", ["en-GB", "en-US", *_EN_GB_CHILDREN])
+def test_final_y_after_an_earlier_vowel_y_is_i(code, word, expected):
+    """The earlier ⟨y⟩ is a nucleus, so the word is not a monosyllable and
+    its final ⟨y⟩ is unstressed (WP row "unstressed", "word-final")."""
+    assert _t(code, word) == expected
+
+
+@pytest.mark.parametrize("code", ["en-GB", "en-US", *_EN_GB_CHILDREN])
+def test_dryly_ends_in_unstressed_i(code):
+    """Wiktionary /ˈdɹaɪ.li/. Only the final syllable is compared: the spec
+    reads the first ⟨y⟩ as [ɪ], a separate fact."""
+    assert _t(code, "dryly").endswith("li")
 
 
 # ─── ⟨y⟩ in a vowel digraph ───────────────────────────────────────────────

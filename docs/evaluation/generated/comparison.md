@@ -180,7 +180,7 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 | Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | gruut (lexicon) | gruut rules-only | Winner |
 |---|---|---|---|---|---|---|---|---|
 | ipa_childes | 11447 | 0.2966 | same-source | same-source | n/a | 0.2876 | 0.3313 | o2i |
-| ipadict | 65119 | 0.2216 | same-source | same-source | n/a | same-source | 0.2325 | o2i |
+| ipadict | 65119 | 0.2215 | same-source | same-source | n/a | same-source | 0.2325 | o2i |
 | wikipron | 81545 | 0.2314 | 0.1472 | 0.1540 | 0.8333 | 0.2233 | 0.2528 | espeak rules-only |
 
 ### en-US (American English (General American))
@@ -189,7 +189,7 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 |---|---|---|---|---|---|---|---|---|
 | cmudict | 126052 | 0.3376 | 0.3048 | 0.3104 | n/a | same-source | 0.2714 | gruut rules-only |
 | ipa_babylm | 20344 | 0.3520 | same-source | same-source | 1.0656 | 0.2788 | 0.3558 | o2i |
-| ipa_childes | 18055 | 0.2655 | same-source | same-source | n/a | 0.1727 | 0.2317 | gruut rules-only |
+| ipa_childes | 18055 | 0.2654 | same-source | same-source | n/a | 0.1727 | 0.2317 | gruut rules-only |
 | ipadict | 125927 | 0.2908 | 0.2954 | 0.3020 | n/a | same-source | 0.2475 | gruut rules-only |
 
 ### es (Spanish)
@@ -520,7 +520,7 @@ The table above conflates espeak-ng's letter-to-sound RULES with its hand-curate
 | en-GB | wikipron | 81545 | 0.2314 | n/a | 0.1472 | 0.1540 |
 | en-US | cmudict | 126052 | 0.3376 | 0.3408 | 0.3048 | 0.3104 |
 | en-US | ipa_babylm | 20344 | 0.3520 | 0.3577 | same-source | same-source |
-| en-US | ipa_childes | 18055 | 0.2655 | 0.2596 | same-source | same-source |
+| en-US | ipa_childes | 18055 | 0.2654 | 0.2596 | same-source | same-source |
 | en-US | ipadict | 125927 | 0.2908 | 0.2948 | 0.2954 | 0.3020 |
 | es | vox_communis | 48068 | 0.0758 | n/a | 0.0755 | 0.0737 |
 | es | wikipron | 132190 | 0.0797 | n/a | 0.1071 | 0.1066 |

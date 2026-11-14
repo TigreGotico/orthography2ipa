@@ -1545,6 +1545,7 @@
         "y"
       ],
       "word_final": true,
+      "requires_other_nucleus": false,
       "word_contains_grapheme_not": [
         "a",
         "e",
@@ -1552,7 +1553,7 @@
         "o",
         "u"
       ],
-      "notes": "Word-final ⟨y⟩ is /aɪ/ when it is the word's only vowel letter, as in my → [maɪ] and sky → [skaɪ] (also by, why, try, cry, fly, dry, shy, sly, spy, thy). English orthography (2026, Wikipedia revision 1383244083), Spelling-to-sound correspondences: the vowel table takes a vowel to be stressed where it gives no other information, and its row ⟨y⟩, condition 'word-final', gives the major value /aɪ/ with the examples 'awry, by, deny, sky, supply'. Its row 'unstressed', condition 'word-final', gives /i/ ('any, city, happy, only'), the `word_final` entry of ⟨y⟩ in `positional_graphemes`. A word with no other vowel letter is a monosyllable, so its final ⟨y⟩ is stressed. A word with another vowel letter keeps /i/ (happy, city) or its digraph (day, key, boy). The condition does not see an earlier ⟨y⟩, so the final ⟨y⟩ of gypsy and pygmy is /aɪ/ as well."
+      "notes": "Word-final ⟨y⟩ is /aɪ/ when it is the word's only vowel letter, as in my → [maɪ] and sky → [skaɪ] (also by, why, try, cry, fly, dry, shy, sly, spy, thy). English orthography (2026, Wikipedia revision 1383244083), Spelling-to-sound correspondences: the vowel table takes a vowel to be stressed where it gives no other information, and its row ⟨y⟩, condition 'word-final', gives the major value /aɪ/ with the examples 'awry, by, deny, sky, supply'. Its row 'unstressed', condition 'word-final', gives /i/ ('any, city, happy, only'), the `word_final` entry of ⟨y⟩ in `positional_graphemes`. The rule fires only when no other slot of the word carries a nucleus, so the word is a monosyllable and its final ⟨y⟩ is stressed. A word with another vowel letter keeps /i/ (happy, city) or its digraph (day, key, boy), and so does a word with an earlier vowel ⟨y⟩ (gypsy, pygmy, dryly). The compound flyby (/ˈflaɪˌbaɪ/) keeps the /i/ reading too; it belongs to a lexicon."
     }
   ],
   "vowel_graphemes": [
