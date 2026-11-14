@@ -1,0 +1,257 @@
+"""An English contraction or possessive is one word, so a whole-word entry is used.
+
+The tokenizer cuts a token at every punctuation mark, and an apostrophe is
+punctuation, so ``doesn't`` reached the lexicon as ``doesn`` and ``t``. A spec
+declares ``word_internal_apostrophe`` when its orthography writes the mark
+inside the word. The expected IPA below is the lexicon entry written in the
+test itself, never read back from the engine.
+"""
+import pytest
+
+import orthography2ipa as o2i
+from orthography2ipa.json_loader import load_json_spec
+
+ENTRIES = {"doesn't": "dˈʌzənt", "we'll": "ˈwiːl", "that's": "ðˈæts"}
+ENGLISH = {"en-AU", "en-CA", "en-GB", "en-GB-x-scotland", "en-IE", "en-US", "en-ZA"}
+#: The other families that declare it, each from a source its spec cites:
+#: French and Italian write an elided clitic with its host
+#: (tests/test_french_elision.py, tests/test_elision_romance.py), and the
+#: Portuguese orthographic agreement writes contractions and elisions that way.
+DECLARING_PREFIXES = ("en-", "fr-", "it-IT", "pt-", "ext-PT-x-barranco")
+
+
+@pytest.fixture
+def lexicon(tmp_path):
+    path = tmp_path / "en-GB.tsv"
+    path.write_text("".join(f"{w}\t{ipa}\n" for w, ipa in ENTRIES.items()),
+                    encoding="utf-8")
+    o2i.clear_lexicons()
+    o2i.register_lexicon("en-GB", str(path))
+    yield
+    o2i.clear_lexicons()
+
+
+@pytest.mark.parametrize("text, expected", [
+    ("doesn't", "dˈʌzənt"),
+    ("doesn’t", "dˈʌzənt"),
+    ("Doesn't", "dˈʌzənt"),
+    ("We'll", "ˈwiːl"),
+    ("that's", "ðˈæts"),
+])
+def test_a_registered_contraction_is_looked_up_whole(lexicon, text, expected):
+    assert o2i.transcribe(text, "en-GB") == expected
+
+
+def test_a_lexicon_entry_inside_a_sentence(lexicon):
+    assert o2i.transcribe("that's we'll", "en-GB") == "ðˈæts ˈwiːl"
+
+
+@pytest.mark.parametrize("word", ["doesn't", "quilter's", "they'd", "that's"])
+def test_an_unlisted_contraction_is_one_word_spoken_like_its_letters(word):
+    # The apostrophe is silent, so the word reads like its letters without it.
+    spoken = o2i.transcribe(word, "en-GB")
+    assert " " not in spoken
+    assert spoken == o2i.transcribe(word.replace("'", ""), "en-GB")
+
+
+def test_the_typographic_apostrophe_reads_like_the_ascii_one():
+    assert o2i.transcribe("doesn’t", "en-GB") == o2i.transcribe("doesn't", "en-GB")
+
+
+@pytest.mark.parametrize("code", sorted(ENGLISH))
+def test_every_english_spec_declares_or_inherits_it(code):
+    assert load_json_spec(code).word_internal_apostrophe is True
+
+
+def test_no_other_spec_opts_in():
+    declared = {code for code in o2i.available_codes()
+                if load_json_spec(code).word_internal_apostrophe}
+    assert ENGLISH <= declared
+    assert {c for c in declared if not c.startswith(DECLARING_PREFIXES)} == set()
+    assert {"fr-FR", "it-IT", "pt-PT", "pt-BR"} <= declared
+
+
+@pytest.mark.parametrize("lang, text, expected", [
+    ("ca", "l'home", "ˈlɔmə"),
+    ("es-ES", "l'a", "ˈl a"),
+    ("af", "'n man", "ˈə ˈman"),
+    ("de-DE", "geht's", "ˈɡeːt ˈz"),
+    ("nl-NL", "zo'n", "ˈzou ˈn"),
+])
+def test_an_elision_or_boundary_apostrophe_still_separates(lang, text, expected):
+    # Values measured on the tree before the field existed.
+    assert o2i.transcribe(text, lang) == expected
+
+
+@pytest.mark.parametrize("text, expected", [
+    ("rock 'n' roll", "ˈɹɒk ˈn ˈɹɒl"),
+    ("'tis", "ˈtɪs"),
+    ("goin'", "ˈɡɔɪn"),
+    ("''quoted''", "ˈkwəʊtɪd"),
+])
+def test_an_apostrophe_at_a_token_edge_is_not_word_internal(text, expected):
+    assert o2i.transcribe(text, "en-GB") == expected
+
+
+def test_a_closing_quote_after_a_contraction_still_ends_the_word():
+    assert o2i.transcribe("it's, 'ok'", "en-GB").split(" ")[0] == o2i.transcribe(
+        "its", "en-GB")
+
+
+def test_the_reported_script_verbatim():
+    import os
+    import tempfile
+    import orthography2ipa as o2i
+
+    o2i.clear_lexicons()
+    try:
+        lex = os.path.join(tempfile.mkdtemp(), "en.tsv")
+        with open(lex, "w", encoding="utf-8") as f:
+            f.write("doesn't\tdˈʌzənt\ni'm\tˈaɪm\nthat's\tðˈæts\nhello\thɛlˈəʊ\n")
+        o2i.register_lexicon("en", lex)
+        got = {w: o2i.transcribe(w, "en")
+               for w in ["doesn't", "doesn’t", "I'm", "that's", "hello",
+                         "Hello", "quilter's"]}
+    finally:
+        o2i.clear_lexicons()
+    assert got["doesn't"] == "dˈʌzənt"
+    assert got["doesn’t"] == "dˈʌzənt"
+    assert got["I'm"] == "ˈaɪm"
+    assert got["that's"] == "ðˈæts"
+    assert got["hello"] == got["Hello"] == "hɛlˈəʊ"
+    assert " " not in got["quilter's"]
+
+
+def _tsv(tmp_path, name, word, ipa):
+    path = tmp_path / name
+    path.write_text(f"{word}\t{ipa}\n", encoding="utf-8")
+    return str(path)
+
+
+@pytest.mark.parametrize("tag", ["en", "en-GB", "en-gb"])
+def test_a_lexicon_registered_under_any_tag_reaches_the_resolved_spec(tmp_path, tag):
+    o2i.clear_lexicons()
+    try:
+        o2i.register_lexicon(tag, _tsv(tmp_path, "a.tsv", "hello", "hɛlˈəʊ"))
+        for used in ("en", "en-GB"):
+            assert o2i.transcribe("hello", used) == "hɛlˈəʊ"
+    finally:
+        o2i.clear_lexicons()
+
+
+def test_two_tags_of_one_spec_share_a_slot_and_the_later_wins(tmp_path):
+    o2i.clear_lexicons()
+    try:
+        o2i.register_lexicon("en-GB", _tsv(tmp_path, "a.tsv", "hello", "fˈɜːst"))
+        o2i.register_lexicon("en", _tsv(tmp_path, "b.tsv", "hello", "sˈɛkənd"))
+        assert o2i.transcribe("hello", "en-GB") == "sˈɛkənd"
+        assert o2i.available_lexicon_codes() == ["en-GB"]
+    finally:
+        o2i.clear_lexicons()
+
+
+def test_a_lexicon_dir_file_named_for_the_tag_serves_the_resolved_spec(tmp_path):
+    _tsv(tmp_path, "en.tsv", "hello", "bˈaɪ")
+    o2i.clear_lexicons()
+    try:
+        o2i.set_lexicon_dir(tmp_path)
+        assert o2i.transcribe("hello", "en-GB") == "bˈaɪ"
+        _tsv(tmp_path, "en-GB.tsv", "hello", "ɪɡzˈakt")
+        o2i.set_lexicon_dir(tmp_path)
+        assert o2i.transcribe("hello", "en") == "ɪɡzˈakt"
+    finally:
+        o2i.clear_lexicons()
+
+
+def _unmapped(record):
+    from orthography2ipa.exceptions import UnmappedGraphemeWarning
+    return [w for w in record if issubclass(w.category, UnmappedGraphemeWarning)]
+
+
+@pytest.mark.parametrize("lang, text", [
+    ("en-GB", "doesn't"),
+    ("en-GB", "doesn’t"),
+    ("en-GB", "I'm"),
+    ("en-GB", "rock'n'roll"),
+    ("fr-FR", "l'homme"),
+    ("fr-FR", "d’accord"),
+])
+def test_an_apostrophe_is_punctuation_and_never_an_unmapped_letter(lang, text):
+    import warnings
+    from orthography2ipa import G2P
+    with warnings.catch_warnings(record=True) as record:
+        warnings.simplefilter("always")
+        G2P(lang).transcribe(text)
+    assert _unmapped(record) == []
+
+
+def test_a_genuinely_unmapped_letter_still_warns_once_in_a_contraction_spec():
+    import warnings
+    from orthography2ipa import G2P
+    engine = G2P("en-GB")
+    with warnings.catch_warnings(record=True) as record:
+        warnings.simplefilter("always")
+        engine.transcribe("doesn't ب ب")
+    hits = _unmapped(record)
+    assert len(hits) == 1
+    assert "U+0628" in str(hits[0].message)
+
+
+def _doc_texts():
+    from pathlib import Path
+    import orthography2ipa.types as types_module
+    root = Path(types_module.__file__).parent
+    return {"types.py": Path(types_module.__file__).read_text(encoding="utf-8"),
+            "SCHEMA.md": (root / "data" / "SCHEMA.md").read_text(encoding="utf-8")}
+
+
+@pytest.mark.parametrize("name", ["types.py", "SCHEMA.md"])
+def test_the_field_docs_name_no_boundary_example_that_is_one_word(name):
+    # it-IT opts in and Catalan reads l'home as one word, so neither is a
+    # case where the apostrophe separates two words.
+    assert load_json_spec("it-IT").word_internal_apostrophe is True
+    text = _doc_texts()[name]
+    window = text
+    assert "l'amico" not in window and "``l'home``" not in window
+    assert "`l'home`" not in window
+    for word, lang in (("geht's", "de-DE"), ("zo'n", "nl-NL")):
+        assert word in window
+        assert " " in o2i.transcribe(word, lang)
+
+
+def test_the_french_sandhi_paragraph_says_the_enchainement_rule_fires():
+    from pathlib import Path
+    page = (Path(__file__).parent.parent / "docs" / "languages" / "fr-FR.md"
+            ).read_text(encoding="utf-8")
+    assert "rules for `z t n ʁ p` do not fire" in page
+    assert "none of them fire" not in page
+    assert "`FR_ENCHAÎNEMENT` does fire" in page
+    assert o2i.transcribe("rouge orange", "fr-FR") == "ʁuʒ‿ ɔʁɑ̃ʒ"
+    assert o2i.transcribe("les amis", "fr-FR") == "le ami"
+
+
+@pytest.mark.parametrize("text", ["ma'am", "o'er", "o'clock", "doesn't",
+                                  "that's", "Chang'an", "Lord'has"])
+def test_an_english_apostrophe_ends_no_elided_clitic(text):
+    # English keeps the apostrophe for contractions, possessives and
+    # syllable breaks, not for elision, so an entry for the part after the
+    # mark leaves the word alone.
+    plain = o2i.G2P("en-GB")
+    with_parts = o2i.G2P("en-GB", pipeline=o2i.Pipeline(lexicon={
+        "am": "æm", "er": "ɜː", "clock": "klɒk", "t": "tiː", "s": "ɛs",
+        "an": "æn", "has": "hæz"}))
+    assert with_parts.transcribe(text) == plain.transcribe(text)
+
+
+@pytest.mark.parametrize("text", ["Chang'an", "s'a"])
+def test_an_english_word_ending_in_a_clitic_keeps_its_stress(text):
+    # an and a take no stress alone; Chang'an is one stressed word.
+    assert "ˈ" in o2i.transcribe(text, "en-GB")
+
+
+@pytest.mark.parametrize("code, elides", [
+    ("fr-FR", True), ("fr-CA", True), ("it-IT", True), ("pt-PT", True),
+    ("pt-BR", True), ("en-GB", False), ("en-US", False), ("ca", False),
+])
+def test_only_the_elision_orthographies_split_a_clitic_off(code, elides):
+    assert o2i.get(code).apostrophe_elision is elides

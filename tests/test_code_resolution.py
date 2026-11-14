@@ -44,7 +44,7 @@ class TestBareDefaults:
                 failures.append(f"{primary}: {exc.__class__.__name__}")
         assert not failures, (
             "bare primary subtags without a resolution "
-            f"(extend _BARE_DEFAULTS or add a spec): {failures}"
+            f"(add a spec or an alias): {failures}"
         )
 
 
@@ -64,7 +64,7 @@ class TestNearestMatch:
         assert isinstance(get(requested), LanguageSpec)
 
     def test_existing_codes_resolve_to_themselves(self):
-        for code in ("pt-PT", "ast-PT-x-rionor", "eu-x-bizkaiera", "ar"):
+        for code in ("pt-PT", "ast-PT-x-rionor", "eu-biscayan", "ar"):
             assert resolve(code) == code
 
     def test_iso639_3_aliases_still_resolve(self):
@@ -75,6 +75,40 @@ class TestNearestMatch:
     def test_underscore_and_case_normalisation(self):
         assert resolve("pt_BR") == "pt-BR"
         assert resolve("EN-gb") == "en-GB"
+
+
+class TestRegionAndDialectDefaults:
+    """Region and dialect Arabic tags resolve to the intended spec.
+
+    ``ar-SA`` — the natural code for Saudi Arabic — has no exact spec (the
+    Saudi varieties are keyed by their own ISO 639-3 codes), so nearest-match would
+    otherwise pick whichever sibling sorts first. A curated region default and
+    private-use dialect aliases steer it to the intended variety instead. The
+    Saudi default (Najdi) is an editorial convention, not a claim in the data.
+    """
+
+    @pytest.mark.parametrize("requested,expected", [
+        ("ar-SA", "ars-SA"),              # region default: most widely spoken
+        ("ar-x-najdi", "ars-SA"),         # dialect named in a private-use subtag
+        ("ar-x-hejazi", "acw-SA"),
+        ("ar-x-hijazi", "acw-SA"),
+    ])
+    def test_region_and_dialect_defaults(self, requested, expected):
+        assert resolve(requested) == expected
+        assert isinstance(get(requested), LanguageSpec)
+        assert get(requested) is get(expected)
+
+    @pytest.mark.parametrize("requested,expected", [
+        ("ar", "ar"),                     # MSA leaf, unchanged
+        ("ar-EG", "arz-EG"),              # former key of Egyptian Arabic
+        ("arz-EG", "arz-EG"),             # exact dialect spec, unchanged
+        ("ar-SA-x-najd", "ars-SA"),       # former key of Najdi Arabic
+    ])
+    def test_existing_arabic_mappings_are_unregressed(self, requested, expected):
+        assert resolve(requested) == expected
+
+    def test_unknown_arabic_region_falls_back_to_msa(self):
+        assert resolve("ar-ZZ") == "ar"
 
 
 class TestUnknownLanguage:

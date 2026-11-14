@@ -96,14 +96,14 @@ def _assert_allophone_null(spec, phoneme: str) -> None:
 
 @pytest.mark.iberian
 class TestSpanishWesternAndalusian:
-    """Western Andalusian Spanish — es-ES-x-andalusia-w.
+    """Western Andalusian Spanish — es-ES-x-andalusi-w.
 
     Most phonologically innovative Castilian variety: seseo/ceceo variation,
     extreme coda-/s/ aspiration and deletion, /x/→[h], universal yeísmo,
     consonant lenition with deletion, liquid neutralisation.
     """
 
-    LANGUAGE_CODE = "es-ES-x-andalusia-w"
+    LANGUAGE_CODE = "es-ES-x-andalusi-w"
 
     @pytest.fixture(autouse=True, scope="class")
     def spec(self, request):
@@ -766,13 +766,13 @@ class TestCatalanNord:
 
 @pytest.mark.iberian
 class TestCatalanOccidental:
-    """Western/Occidental Catalan — ca-x-occidental.
+    """Western/Occidental Catalan — ca-x-occident.
 
     Spoken in Lleida and Valencia hinterland. Full vowels preserved in
     unstressed position (no central vowel reduction): ə → [a, e].
     """
 
-    LANGUAGE_CODE = "ca-x-occidental"
+    LANGUAGE_CODE = "ca-x-occident"
 
     @pytest.fixture(autouse=True, scope="class")
     def spec(self, request):
@@ -788,11 +788,11 @@ class TestCatalanOccidental:
         """
         import orthography2ipa
         for word in ["casa", "dona", "tenir", "porta", "comú"]:
-            out = orthography2ipa.transcribe(word, "ca-x-occidental")
+            out = orthography2ipa.transcribe(word, "ca-x-occident")
             assert "ə" not in out, f"occidental {word!r}: {out!r} has schwa"
         # a word-final unstressed ⟨-a⟩ opens to the lleidatà [ɛ] — NOT the
         # Central [ə] and not the Valencian [a] (Veny 1982 ch. 3).
-        assert orthography2ipa.transcribe("casa", "ca-x-occidental") == "ˈkazɛ"
+        assert orthography2ipa.transcribe("casa", "ca-x-occident") == "ˈkazɛ"
         assert orthography2ipa.transcribe("casa", "ca-x-valencia") == "ˈkaza"
 
     def test_parent_is_old_catalan(self):
@@ -811,7 +811,7 @@ class TestGalicianStandard:
     """Standard Galician (RAG norms) — gl-ES.
 
     Distinción variety (unlike Portuguese seseo): c → [k, θ], z → [θ],
-    ç → s, unique sibilant system with apical/laminal contrast.
+    apical [s̺] for ⟨s⟩.
     """
 
     LANGUAGE_CODE = "gl-ES"
@@ -843,19 +843,24 @@ class TestGalicianStandard:
 
     def test_g_velar_only(self):
         """gl-ES ⟨g⟩ → /ɡ/ only; there is no [ʃ] realisation (that was an error).
-        Gheada gives [h~x~χ] and only in western dialect (gl-x-occidental), never [ʃ]."""
+        Gheada gives [h~x~χ] and only in western dialect (gl-ES-x-occident), never [ʃ]."""
         vals = _grapheme(self.spec, "g")
         assert vals == ["ɡ"], f"gl-ES g: expected [ɡ] only, got {vals}"
 
-    def test_j_sibilant(self):
-        """j → ʃ (Galician, not velar like Castilian)."""
-        _assert_first(_grapheme(self.spec, "j"), "ʃ", label="j")
+    def test_j_is_a_loan_letter(self):
+        """RAG/ILG Normas §1 (p. 16) keep ⟨j⟩ for loans and medieval texts only,
+        so the standard maps no ⟨j⟩; native [ʃ] is written ⟨x⟩ (§1.9, p. 22)."""
+        assert self.spec.graphemes.get("j") is None
+        _assert_first(_grapheme(self.spec, "x"), "ʃ", label="x")
 
     def test_s_no_intervocalic_voicing(self):
-        """Standard Galician has no voiced sibilants — intervocalic ⟨s⟩ stays [s],
-        it does NOT voice to [z] (that voicing was a Portuguese contamination error)."""
+        """Standard Galician has no voiced sibilants: RAG/ILG Normas §1 (p. 16)
+        give ⟨s⟩ the one value [s̺], so intervocalic ⟨s⟩ does NOT voice to [z]
+        as in Portuguese."""
+        assert _grapheme(self.spec, "s") == ["s"]
+        assert _allophone(self.spec, "s") == ["s̺"]
         iv = _positional(self.spec, "s", GraphemePosition.INTERVOCALIC)
-        assert iv == ["s"], f"gl-ES s/INTERVOCALIC: expected [s], got {iv}"
+        assert iv is None or "z" not in iv, f"gl-ES s/INTERVOCALIC: got {iv}"
 
     def test_r_word_initial_trill(self):
         """Word-initial r → r (trill)."""
@@ -878,8 +883,8 @@ class TestGalicianStandard:
         _assert_contains(_allophone(self.spec, "d"), "ð", label="d allophone")
 
     def test_v_betacism(self):
-        """v allophone → β (merger with b, betacism)."""
-        _assert_contains(_allophone(self.spec, "v"), "β", label="v allophone")
+        """RAG/ILG Normas §1 (p. 16) give ⟨v⟩ the value [b]: betacism."""
+        assert _grapheme(self.spec, "v") == ["b"]
 
     def test_positional_v_intervocalic(self):
         """v intervocalic → β."""
@@ -890,13 +895,13 @@ class TestGalicianStandard:
 
 @pytest.mark.iberian
 class TestGalicianOriental:
-    """Oriental Galician — gl-x-oriental.
+    """Oriental Galician — gl-ES-x-oriental.
 
     Eastern dialect: Leonese diphthongs ie→[je], ue→[we],
     conservative ʎ (no yeísmo), preserved tʃ affricate.
     """
 
-    LANGUAGE_CODE = "gl-x-oriental"
+    LANGUAGE_CODE = "gl-ES-x-oriental"
 
     @pytest.fixture(autouse=True, scope="class")
     def spec(self, request):
@@ -919,7 +924,7 @@ class TestGalicianOriental:
         _assert_first(_allophone(self.spec, "tʃ"), "tʃ", label="tʃ allophone")
 
     def test_parent_is_gl(self):
-        assert self.spec.parent == "gl"
+        assert self.spec.parent == "gl-ES"
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -929,7 +934,7 @@ class TestGalicianOriental:
 
 @pytest.mark.iberian
 class TestBasqueBizkaiera:
-    """Bizkaian Basque — eu-x-bizkaiera.
+    """Bizkaian Basque — eu-biscayan.
 
     Western dialect: sibilants include [ʃ], h aspirate lost (→ ∅).
     The Biscayan raising of the article /-a/ → [-e] after a high vowel is
@@ -938,7 +943,7 @@ class TestBasqueBizkaiera:
     allophone (Bedialauneta & Hualde 2023: 1107-1108).
     """
 
-    LANGUAGE_CODE = "eu-x-bizkaiera"
+    LANGUAGE_CODE = "eu-biscayan"
 
     @pytest.fixture(autouse=True, scope="class")
     def spec(self, request):
@@ -983,13 +988,13 @@ class TestBasqueBizkaiera:
 
 @pytest.mark.iberian
 class TestBasqueGipuzkera:
-    """Gipuzkoan Basque — eu-x-gipuzkera.
+    """Gipuzkoan Basque — eu-x-gipuzkoa.
 
     Central dialect: h is optional [h, ∅] (intermediate between Basque
     h-preserving varieties and Bizkaian h-loss).
     """
 
-    LANGUAGE_CODE = "eu-x-gipuzkera"
+    LANGUAGE_CODE = "eu-x-gipuzkoa"
 
     @pytest.fixture(autouse=True, scope="class")
     def spec(self, request):
@@ -1013,13 +1018,13 @@ class TestBasqueGipuzkera:
 
 @pytest.mark.iberian
 class TestAsturianOccidental:
-    """Western Asturian — ast-x-occidental.
+    """Western Asturian — ast-x-occident.
 
     Phonemic /h/ (unique in Iberian Romance), ḷḷ/l.l → [tʃ] (che vaqueira),
     F-initial aspiration (Leonese substrate).
     """
 
-    LANGUAGE_CODE = "ast-x-occidental"
+    LANGUAGE_CODE = "ast-x-occident"
 
     @pytest.fixture(autouse=True, scope="class")
     def spec(self, request):
@@ -1029,7 +1034,7 @@ class TestAsturianOccidental:
         """h → silent (inherited from base ast; Western Asturian preserves /f/, not aspirates it)."""
         g = _grapheme(self.spec, "h")
         # h is silent in base ast (inherited); no local h override in occidental
-        assert g is None or g == [""], f"ast-x-occidental h should be silent, got {g}"
+        assert g is None or g == [""], f"ast-x-occident h should be silent, got {g}"
 
     def test_h_allophone_inherited(self):
         """h allophone is inherited from base ast (not locally overridden)."""
@@ -1055,7 +1060,7 @@ class TestAsturianOccidental:
         """f word-initial → [f] (Western Asturian preserves Latin F-, does not aspirate)."""
         wi = _positional(self.spec, "f", GraphemePosition.WORD_INITIAL)
         # No positional override in occidental — inherited default [f] from base ast
-        assert wi is None or "f" in wi, f"ast-x-occidental f/WORD_INITIAL should be [f] or absent, got {wi}"
+        assert wi is None or "f" in wi, f"ast-x-occident f/WORD_INITIAL should be [f] or absent, got {wi}"
 
     def test_parent_is_ast(self):
         assert self.spec.parent == "ast"
@@ -1087,13 +1092,13 @@ class TestAsturianOriental:
 
 @pytest.mark.iberian
 class TestAsturianCantabrian:
-    """Cantabrian Asturian — ast-x-cantabrian.
+    """Cantabrian Asturian — ast-x-cantabri.
 
     Transitional variety: ll → [j, ʝ, ʎ] (variable), s → [s, s̺, h] (aspiration),
     Castilian-contact features (g before e/i → x).
     """
 
-    LANGUAGE_CODE = "ast-x-cantabrian"
+    LANGUAGE_CODE = "ast-x-cantabri"
 
     @pytest.fixture(autouse=True, scope="class")
     def spec(self, request):
@@ -1303,7 +1308,7 @@ class TestMiraneseIfanes:
 
     Ifanês tracks Central Mirandese: the published descriptions record no
     segmental orthography→phoneme divergence for the Northern/Raiano group
-    (both keep the Leonese diphthongs [je]/[wo] and /ʎ/; only Sendinês
+    (both keep the Leonese diphthongs [jɪ]/[ʊ] and /ʎ/; only Sendinês
     monophthongises). The spec therefore inherits Central unchanged.
     """
 
@@ -1314,10 +1319,10 @@ class TestMiraneseIfanes:
         request.cls.spec = _load(self.LANGUAGE_CODE)
 
     def test_ie_tilde_tracks_central(self):
-        """iê keeps the Central diphthong [je] (Raiano does not monophthongise,
-        unlike Sendinese which reduces it to [i]). Central quality is the single
-        mid /e/ (Vasconcelos v1 §§2,4,10), so the diphthong is close [je]."""
-        _assert_first(_grapheme(self.spec, "iê"), "je", label="iê")
+        """iê keeps the Central diphthong [jɪ] (Raiano does not monophthongise,
+        unlike Sendinese which reduces it to [i]). The nucleus is Leite de
+        Vasconcellos's ẹ̌ (v1 §2, p. 173)."""
+        _assert_first(_grapheme(self.spec, "iê"), "jɪ", label="iê")
 
     def test_parent_is_mwl(self):
         assert self.spec.parent == "mwl"
@@ -1330,13 +1335,13 @@ class TestMiraneseIfanes:
 
 @pytest.mark.iberian
 class TestAragonesOccidental:
-    """Western Aragonese — an-x-occidental (stub).
+    """Western Aragonese — an-x-occident (stub).
 
     No additional grapheme/allophone data — inherits all from Aragonese (an).
     Smoke test: spec loads and is not empty.
     """
 
-    LANGUAGE_CODE = "an-x-occidental"
+    LANGUAGE_CODE = "an-x-occident"
 
     @pytest.fixture(autouse=True, scope="class")
     def spec(self, request):

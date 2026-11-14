@@ -13,48 +13,62 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
 from benchmark import (  # noqa: E402
     BOOTSTRAP_REPS,
     BOOTSTRAP_SEED,
+    THIN_ROW_N,
     bootstrap_per_ci,
     evaluate,
     evaluate_words,
 )
 
 
-def test_bootstrap_ci_matches_hand_precomputed_fixture():
-    # Hand-precomputed once via bootstrap_per_ci([0.0, 0.5, 1.0, 0.25])
-    # with BOOTSTRAP_SEED/BOOTSTRAP_REPS at their current values.
-    pers = [0.0, 0.5, 1.0, 0.25]
+def _percentile_interval(pers):
+    """The 2.5th/97.5th percentile of the resampled means, written out
+    independently of the function under test."""
+    import random
+
+    rng = random.Random(BOOTSTRAP_SEED)
+    n = len(pers)
+    means = sorted(
+        sum(pers[rng.randrange(n)] for _ in range(n)) / n
+        for _ in range(BOOTSTRAP_REPS))
+    top = len(means) - 1
+
+    def at(p):
+        i = int(p * top)
+        j = min(i + 1, top)
+        return means[i] + (means[j] - means[i]) * (p * top - i)
+
+    return at(0.025), at(0.975)
+
+
+def test_bootstrap_ci_matches_an_independent_resampling():
+    pers = [0.0, 0.5, 1.0, 0.25] * (THIN_ROW_N // 4)
     low, high = bootstrap_per_ci(pers)
-    assert round(low, 6) == round(0.125, 6)
-    assert round(high, 6) == round(0.7515624999999986, 6)
+    expected_low, expected_high = _percentile_interval(pers)
+    assert low == expected_low
+    assert high == expected_high
 
 
 def test_bootstrap_ci_deterministic_across_calls():
-    pers = [0.1, 0.2, 0.3, 0.4, 0.5, 0.0, 1.0]
+    pers = [i / 10 % 1 for i in range(THIN_ROW_N + 3)]
     first = bootstrap_per_ci(pers)
     second = bootstrap_per_ci(pers)
     assert first == second
 
 
-def test_bootstrap_ci_uses_fixed_module_seed_and_rep_count():
-    pers = [0.0, 1.0]
-    import random
+def test_bootstrap_ci_is_null_below_the_minimum_sample():
+    """A sample too small to resample has no interval; reporting its point
+    as [x, x] claims perfect certainty."""
+    assert bootstrap_per_ci([]) == (None, None)
+    assert bootstrap_per_ci([0.7143]) == (None, None)
+    assert bootstrap_per_ci([0.5, 0.0]) == (None, None)
+    assert bootstrap_per_ci([0.5] * (THIN_ROW_N - 1)) == (None, None)
 
-    rng = random.Random(BOOTSTRAP_SEED)
-    n = len(pers)
-    means = []
-    for _ in range(BOOTSTRAP_REPS):
-        sample = [pers[rng.randrange(n)] for _ in range(n)]
-        means.append(sum(sample) / n)
-    means.sort()
-    expected_low = means[0]
-    expected_high = means[-1]
+
+def test_bootstrap_ci_has_positive_width_at_the_minimum_sample():
+    pers = [i / THIN_ROW_N for i in range(THIN_ROW_N)]
     low, high = bootstrap_per_ci(pers)
-    assert low == expected_low
-    assert high == expected_high
-
-
-def test_bootstrap_ci_empty_input_is_zero():
-    assert bootstrap_per_ci([]) == (0.0, 0.0)
+    mean = sum(pers) / len(pers)
+    assert low < mean < high
 
 
 def test_evaluate_words_mean_equals_sum_over_len_of_per_word_list():

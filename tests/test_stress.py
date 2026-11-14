@@ -27,7 +27,7 @@ class TestSchema:
             assert rules.stress_mark == "ˈ"
 
     def test_specs_without_stress_are_none(self):
-        assert get("en-GB").stress is None
+        assert get("fr-FR").stress is None
         # `ar` now declares a quantity-sensitive block, so it is no longer an
         # example of a spec without stress.
         assert get("arc").stress is None
@@ -75,7 +75,7 @@ class TestSyllabify:
 
 
 class TestDetectStress:
-    @pytest.fixture(scope="class")
+    @pytest.fixture
     def rules(self):
         return get("pt-PT").stress
 
@@ -107,13 +107,80 @@ class TestDetectStress:
         assert detect_stress("santos", rules) == 0
         assert detect_stress("santo", rules) == 1
 
+    def test_antepenult_endings(self):
+        """``antepenult_stress_endings`` places stress three syllables from
+        the end — the end-anchored twin of ``penult_stress_endings``, for the
+        two-syllable pre-stressed suffixes (Fudge 1984, ch. 3)."""
+        rules = StressRules(default_position=1,
+                            antepenult_stress_endings=("ity",))
+        # a-bi-li-ty -> "bi"
+        assert detect_stress("ability", rules) == 1
+        # ci-ty: clamped into the word, no negative index escapes
+        assert detect_stress("city", rules) == 0
+        # unmatched word keeps the default
+        assert detect_stress("abilities", rules) == 0
+
+    def test_antepenult_ranks_below_penult(self):
+        """Precedence is final -> penult -> antepenult: a word matching both
+        a penult and an antepenult ending takes the penult reading."""
+        rules = StressRules(default_position=1,
+                            penult_stress_endings=("ity",),
+                            antepenult_stress_endings=("ability",))
+        assert detect_stress("ability", rules) == 2
+
+    def test_a_default_inside_an_unstressed_prefix_moves_past_it(self):
+        """``unstressed_prefixes``: the default penult of ge-broek falls on a
+        syllable wholly inside ⟨ge⟩, so the stress moves to the stem."""
+        rules = StressRules(default_position=-2, unstressed_prefixes=("ge", "ver"))
+        assert detect_stress("gebroek", rules, syllables=["ge", "broek"]) == 1
+        assert detect_stress("verstand", rules, syllables=["ver", "stand"]) == 1
+        # ⟨ve⟩ lies wholly inside ⟨ver⟩ although the split leaves ⟨r⟩ outside
+        assert detect_stress("verstand", rules, syllables=["ve", "rstand"]) == 1
+
+    def test_unstressed_prefixes_default_empty_changes_nothing(self):
+        rules = StressRules(default_position=-2)
+        assert rules.unstressed_prefixes == ()
+        assert detect_stress("gebroek", rules, syllables=["ge", "broek"]) == 0
+
+    def test_a_default_outside_the_prefix_is_kept(self):
+        rules = StressRules(default_position=-2, unstressed_prefixes=("ge",))
+        # ge-beu-re: the penult ⟨beu⟩ is not in the prefix
+        assert detect_stress("gebeure", rules, syllables=["ge", "beu", "re"]) == 1
+
+    def test_a_syllable_that_crosses_the_prefix_is_not_inside_it(self):
+        rules = StressRules(default_position=-2, unstressed_prefixes=("ge",))
+        assert detect_stress("gennep", rules, syllables=["gen", "nep"]) == 0
+
+    def test_the_stress_never_moves_onto_a_final_open_syllable(self):
+        rules = StressRules(default_position=-2, unstressed_prefixes=("ge", "be"))
+        assert detect_stress("geve", rules, syllables=["ge", "ve"]) == 0
+        assert detect_stress("beste", rules, syllables=["be", "ste"]) == 0
+
+    def test_written_accents_and_endings_outrank_the_prefix(self):
+        accent = StressRules(default_position=-2, unstressed_prefixes=("ge",),
+                             marked_vowels=("é",))
+        assert detect_stress("gébroek", accent, syllables=["gé", "broek"]) == 0
+        ending = StressRules(default_position=-1, unstressed_prefixes=("be",),
+                             penult_stress_endings=("ek",))
+        assert detect_stress("besek", ending, syllables=["be", "sek"]) == 0
+
+    def test_the_longest_matching_prefix_decides(self):
+        rules = StressRules(default_position=1, unstressed_prefixes=("ge", "gebe"))
+        # ⟨gebe⟩ holds two syllables, so the stress moves past both
+        assert detect_stress("gebetaal", rules,
+                             syllables=["ge", "be", "taal"]) == 2
+
+    def test_the_loader_reads_unstressed_prefixes(self):
+        assert get("li").stress.unstressed_prefixes == ("ge", "be", "ver")
+        assert get("li-x-rheindok").stress.unstressed_prefixes == ("ge\u0329", "be\u0329", "ve\u0329r")
+
     def test_default_clamped_on_short_words(self):
         rules = StressRules(default_position=-3)
         assert detect_stress("casa", rules) == 0
 
 
 class TestApplyStressMark:
-    @pytest.fixture(scope="class")
+    @pytest.fixture
     def rules(self):
         return get("pt-PT").stress
 
@@ -135,7 +202,7 @@ class TestApplyStressMark:
 
 
 class TestSyllabifierPlugins:
-    """Per-language syllabifier plugins supersede the naive splitter."""
+    """A syllabifier the caller passes supersedes the naive splitter."""
 
     class _FakeSyllabifier:
         def syllabify(self, word, lang=None):
@@ -152,41 +219,30 @@ class TestSyllabifierPlugins:
         def priority(self):
             return 50
 
-    def _install(self, monkeypatch):
-        from orthography2ipa import registry
-        monkeypatch.setattr(
-            registry, "_syllabifiers", {"pt-PT": self._FakeSyllabifier()})
-
-    def test_plugin_used_for_lang(self, monkeypatch):
+    def test_plugin_used_for_lang(self):
         from orthography2ipa import get
-        self._install(monkeypatch)
         rules = get("pt-PT").stress
         # viagem is paroxytone over three syllables (vi-A-gem)
+        assert detect_stress("viagem", rules, lang="pt-PT",
+                             syllabifier=self._FakeSyllabifier()) == 1
+
+    def test_no_plugin_falls_back_to_naive(self):
+        """Because pt-PT declares its diphthongs, the naive splitter separates
+        the hiatus and agrees with the plugin here (vi-A-gem)."""
+        from orthography2ipa import get
+        rules = get("pt-PT").stress
         assert detect_stress("viagem", rules, lang="pt-PT") == 1
 
-    def test_no_plugin_falls_back_to_naive(self, monkeypatch):
-        """The plugin is registered for pt-PT only, so en-GB uses the naive
-        splitter — which, because pt-PT declares its diphthongs, separates the
-        hiatus and agrees with the plugin here (vi-A-gem)."""
+    def test_explicit_syllables_beat_plugin(self):
         from orthography2ipa import get
-        self._install(monkeypatch)
-        rules = get("pt-PT").stress
-        assert detect_stress("viagem", rules, lang="en-GB") == 1
-
-    def test_explicit_syllables_beat_plugin(self, monkeypatch):
-        from orthography2ipa import get
-        self._install(monkeypatch)
         rules = get("pt-PT").stress
         assert detect_stress(
-            "viagem", rules, syllables=["via", "gem"], lang="pt-PT") == 0
+            "viagem", rules, syllables=["via", "gem"], lang="pt-PT",
+            syllabifier=self._FakeSyllabifier()) == 0
 
-    def test_get_syllabifier_unknown_lang(self):
-        from orthography2ipa import get_syllabifier
-        assert get_syllabifier("zz-ZZ") is None
-
-    def test_broken_plugin_output_rejected(self, monkeypatch):
+    def test_broken_plugin_output_rejected(self):
         """A plugin whose syllables don't rebuild the word is ignored."""
-        from orthography2ipa import get, registry
+        from orthography2ipa import get
 
         class Broken:
             def syllabify(self, word, lang=None):
@@ -200,15 +256,14 @@ class TestSyllabifierPlugins:
             def priority(self):
                 return 50
 
-        monkeypatch.setattr(registry, "_syllabifiers", {"pt-PT": Broken()})
         rules = get("pt-PT").stress
         # falls back to the naive splitter instead of trusting garbage
-        assert detect_stress("casa", rules, lang="pt-PT") == 0
+        assert detect_stress("casa", rules, lang="pt-PT", syllabifier=Broken()) == 0
 
-    def test_raising_plugin_falls_back_and_logs(self, monkeypatch, caplog):
+    def test_raising_plugin_falls_back_and_logs(self, caplog):
         """A plugin that raises is logged and the naive splitter is used."""
         import logging
-        from orthography2ipa import get, registry
+        from orthography2ipa import get
 
         class Raising:
             def syllabify(self, word, lang=None):
@@ -222,11 +277,10 @@ class TestSyllabifierPlugins:
             def priority(self):
                 return 50
 
-        monkeypatch.setattr(registry, "_syllabifiers", {"pt-PT": Raising()})
         rules = get("pt-PT").stress
         with caplog.at_level(logging.WARNING):
             # falls back to the naive splitter and still returns a valid result
-            assert detect_stress("casa", rules, lang="pt-PT") == 0
+            assert detect_stress("casa", rules, lang="pt-PT", syllabifier=Raising()) == 0
         assert len(caplog.records) == 1
         message = caplog.records[0].getMessage()
         assert caplog.records[0].levelno == logging.WARNING
@@ -238,9 +292,9 @@ class TestSyllabifierPlugins:
 class TestGalicianStress:
     """Gold stress placements for Galician (gl) — Cotovia/GTM rules."""
 
-    @pytest.fixture(scope="class")
+    @pytest.fixture
     def rules(self):
-        return get("gl").stress
+        return get("gl-ES").stress
 
     def test_gl_carries_stress_block(self, rules):
         assert rules is not None
@@ -276,7 +330,7 @@ class TestMirandeseStress:
     (rapaç, lhuç) where Portuguese writes -z.
     """
 
-    @pytest.fixture(scope="class")
+    @pytest.fixture
     def rules(self):
         return get("mwl").stress
 
@@ -329,11 +383,11 @@ class TestMirandeseStress:
 
 
 class TestBarranquenhoStress:
-    """Gold stress placements for Barranquenho (ext-PT-x-barrancos)."""
+    """Gold stress placements for Barranquenho (ext-PT-x-barranco)."""
 
-    @pytest.fixture(scope="class")
+    @pytest.fixture
     def rules(self):
-        return get("ext-PT-x-barrancos").stress
+        return get("ext-PT-x-barranco").stress
 
     def test_barrancos_carries_stress_block(self, rules):
         assert rules is not None
@@ -423,7 +477,7 @@ class TestFromStartAnchoring:
 # ─────────────────────────────────────────────────────────────────────────────
 
 class TestCzechStress:
-    @pytest.fixture(scope="class")
+    @pytest.fixture
     def rules(self):
         return get("cs").stress
 
@@ -445,7 +499,7 @@ class TestCzechStress:
 
 
 class TestSlovakStress:
-    @pytest.fixture(scope="class")
+    @pytest.fixture
     def rules(self):
         return get("sk").stress
 
@@ -466,7 +520,7 @@ class TestSlovakStress:
 
 
 class TestFinnishStress:
-    @pytest.fixture(scope="class")
+    @pytest.fixture
     def rules(self):
         return get("fi").stress
 
@@ -487,7 +541,7 @@ class TestFinnishStress:
 
 
 class TestEstonianStress:
-    @pytest.fixture(scope="class")
+    @pytest.fixture
     def rules(self):
         return get("et").stress
 
@@ -508,7 +562,7 @@ class TestEstonianStress:
 
 
 class TestHungarianStress:
-    @pytest.fixture(scope="class")
+    @pytest.fixture
     def rules(self):
         return get("hu").stress
 
@@ -529,7 +583,7 @@ class TestHungarianStress:
 
 
 class TestLatvianStress:
-    @pytest.fixture(scope="class")
+    @pytest.fixture
     def rules(self):
         return get("lv").stress
 
@@ -550,7 +604,7 @@ class TestLatvianStress:
 
 
 class TestIcelandicStress:
-    @pytest.fixture(scope="class")
+    @pytest.fixture
     def rules(self):
         return get("is").stress
 
@@ -571,7 +625,7 @@ class TestIcelandicStress:
 
 
 class TestUpperSorbianStress:
-    @pytest.fixture(scope="class")
+    @pytest.fixture
     def rules(self):
         return get("hsb").stress
 
@@ -592,7 +646,7 @@ class TestUpperSorbianStress:
 
 
 class TestLowerSorbianStress:
-    @pytest.fixture(scope="class")
+    @pytest.fixture
     def rules(self):
         return get("dsb").stress
 
@@ -617,7 +671,7 @@ class TestLowerSorbianStress:
 # ─────────────────────────────────────────────────────────────────────────────
 
 class TestEsperantoStress:
-    @pytest.fixture(scope="class")
+    @pytest.fixture
     def rules(self):
         return get("eo").stress
 
@@ -639,7 +693,7 @@ class TestEsperantoStress:
 
 
 class TestPolishStress:
-    @pytest.fixture(scope="class")
+    @pytest.fixture
     def rules(self):
         return get("pl").stress
 
@@ -661,7 +715,7 @@ class TestPolishStress:
 
 
 class TestSwahiliStress:
-    @pytest.fixture(scope="class")
+    @pytest.fixture
     def rules(self):
         return get("sw").stress
 
@@ -686,7 +740,7 @@ class TestSwahiliStress:
 # ─────────────────────────────────────────────────────────────────────────────
 
 class TestGreekStress:
-    @pytest.fixture(scope="class")
+    @pytest.fixture
     def rules(self):
         return get("el").stress
 
@@ -764,7 +818,7 @@ class TestEpentheticSchwaAnchoring:
     end-anchoring already lands correctly.
     """
 
-    @pytest.fixture(scope="class")
+    @pytest.fixture
     def rules(self):
         return get("pt-PT").stress  # only supplies the mark character
 

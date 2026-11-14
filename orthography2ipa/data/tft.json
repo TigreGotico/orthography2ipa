@@ -3,7 +3,7 @@
   "name": "Ternate",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "ng": ["ŋ"],
     "a": ["a"],

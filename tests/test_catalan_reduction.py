@@ -73,7 +73,7 @@ def test_central_monosyllable_is_stressed():
 
 # ── Bug 2: Western varieties do NOT apply Central reduction ──
 
-@pytest.mark.parametrize("code", ["ca-x-occidental", "ca-x-valencia"])
+@pytest.mark.parametrize("code", ["ca-x-occident", "ca-x-valencia"])
 @pytest.mark.parametrize("word", ["casa", "dona", "tenir", "porta", "gos"])
 def test_western_varieties_do_not_reduce(code, word):
     out = transcribe(word, code)
@@ -86,8 +86,8 @@ def test_occidental_full_vowels():
     The lleidatà final ⟨-a⟩ is [ɛ] (⟨una porta⟩ [ˈunɛ ˈpɔɾtɛ]) — neither the
     Central [ə] nor the Valencian [a] (Veny 1982 ch. 3; Recasens 1996).
     """
-    assert transcribe("casa", "ca-x-occidental") == "ˈkazɛ"
-    assert transcribe("tenir", "ca-x-occidental") == "teˈni"
+    assert transcribe("casa", "ca-x-occident") == "ˈkazɛ"
+    assert transcribe("tenir", "ca-x-occident") == "teˈni"
 
 
 def test_valencia_full_vowels():
@@ -135,7 +135,7 @@ def test_spirantization_after_a_non_vowel_continuant():
     assert "β" in transcribe("arbre", "ca")
 
 
-@pytest.mark.parametrize("code", ["ca", "ca-x-occidental", "ca-x-valencia",
+@pytest.mark.parametrize("code", ["ca", "ca-x-occident", "ca-x-valencia",
                                   "ca-x-balear"])
 def test_spirantization_all_varieties(code):
     """Spirantization is on the shared base, so every variety inherits it."""

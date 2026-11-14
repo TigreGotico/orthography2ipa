@@ -28,7 +28,7 @@ from orthography2ipa import G2P, get, phonological_distance
 VALLEYS = [
     "an-x-ansotano",
     "an-x-cheso",
-    "an-x-chistabin",
+    "an-x-chistau",
     "an-x-belsetan",
     "an-x-tensino",
 ]
@@ -109,19 +109,19 @@ class TestAnsotano:
 # ─── belsetán / chistabín: preserved geminates ──────────────────────────────
 
 
-@pytest.mark.parametrize("code", ["an-x-belsetan", "an-x-chistabin"])
+@pytest.mark.parametrize("code", ["an-x-belsetan", "an-x-chistau"])
 def test_geminate_lateral(code):
     assert bare(G2P(code).transcribe_word("bel·la")) == "belːa"
 
 
-@pytest.mark.parametrize("code", ["an-x-belsetan", "an-x-chistabin"])
+@pytest.mark.parametrize("code", ["an-x-belsetan", "an-x-chistau"])
 def test_geminate_nasal(code):
     assert bare(G2P(code).transcribe_word("pen·na")) == "penːa"
 
 
 class TestChistabin:
     def test_final_r_deleted(self):
-        assert not bare(G2P("an-x-chistabin").transcribe_word("comer")).endswith("ɾ")
+        assert not bare(G2P("an-x-chistau").transcribe_word("comer")).endswith("ɾ")
 
     def test_belsetan_keeps_final_r(self):
         # belsetán models geminates but NOT final-r deletion

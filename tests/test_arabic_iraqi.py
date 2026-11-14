@@ -21,7 +21,7 @@ import pytest
 import orthography2ipa
 from orthography2ipa.g2p import G2P
 
-GILIT = "ar-IQ"
+GILIT = "acm-IQ"
 QELTU = "ar-IQ-x-qeltu"
 
 
@@ -121,3 +121,27 @@ def test_both_varieties_research_tier():
     from orthography2ipa.types import QualityTier
     assert _spec(GILIT).quality is QualityTier.RESEARCH
     assert _spec(QELTU).quality is QualityTier.RESEARCH
+
+
+# ── ISO 639-3 ``acm`` resolves to the Iraqi gilit spec ──────────────────────
+#
+# ISO 639-3 ``acm`` "Mesopotamian Arabic" names the variety ``acm-IQ`` already
+# describes: ``acm-IQ`` declares Glottolog ``meso1252`` (Gilit Mesopotamian
+# Arabic) and ``iso639_3`` ``acm``. It used to resolve to a separate skeleton
+# spec whose grapheme keys were a strict subset of ``acm-IQ``'s, missing the
+# Persian-derived letters that write core gilit phonemes — above all ⟨چ⟩ for
+# /tʃ/, the reflex of the gilit kaf affrication (Blanc 1964, §3.25 p.25, cited
+# in ``acm-IQ.json``). A missing grapheme is dropped silently, so those letters
+# were deleted from the transcription without an error.
+
+def test_acm_resolves_to_the_iraqi_gilit_spec():
+    assert _spec("acm").code == GILIT
+
+
+def test_acm_writes_the_persian_derived_gilit_letters():
+    # ⟨چ⟩ /tʃ/ (gilit kaf affrication), ⟨گ⟩ /ɡ/, ⟨پ⟩ /p/ — all three occur in
+    # the shipped Iraqi WikiPron gold and all three are Persian-adstrate
+    # letters ``acm-IQ`` declares.
+    assert "tʃ" in _ipa("acm", "حچى")    # ħitʃa 'to speak'
+    assert "ɡ" in _ipa("acm", "صدگ")     # sˤidiɡ 'truth'
+    assert "p" in _ipa("acm", "سپلت")    # sɪplɪt 'split' (loan)

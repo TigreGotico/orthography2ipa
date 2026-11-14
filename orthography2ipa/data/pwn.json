@@ -193,6 +193,17 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Paiwan_language",
       "pages": null,
       "notes": "Orthography / phonology reference."
+    },
+    {
+      "id": "early_whitehorn2003",
+      "author": "Early, Robert; Whitehorn, John",
+      "year": 2003,
+      "title": "One Hundred Paiwan Texts (Pacific Linguistics 542)",
+      "publisher": "Pacific Linguistics, Australian National University (open access, CC BY-SA 4.0, ANU Open Research)",
+      "url": "https://openresearch-repository.anu.edu.au/items/f5456a54-1139-4eb2-9299-1e7de36fceda",
+      "wikipedia_url": null,
+      "pages": "14-15",
+      "notes": "§1.5 Paiwan orthography (pp. 14-15), read on the page image (the scan has no text layer). Four vowels a e i u with ⟨e⟩ = ə, and 23 consonants in Ferrell's (1982) spelling: p t k q, b d g, m n ng, ts tj dj, s h, v z, l r ł ḍ, w y; ⟨q⟩ is a glottal stop in some dialects and a backed k in others, ⟨ng⟩ = ŋ, ⟨ł⟩ a lateral affricate, ⟨r⟩ a trilled approximant, ⟨ḍ⟩ a retroflex alveolar plosive, and the apostrophe marks a non-phonemic glottal stop in loans only. The comparison table on p. 15 shows the Bible orthography writing ⟨c⟩ for ts and ⟨r l⟩ where Ferrell has ⟨ḍ ł⟩, and Egli using ⟨tj⟩ for both tj and dj. Against this map, which follows the 2005 official spelling: the ⟨lj⟩ and ⟨dr⟩ digraphs correspond to Ferrell's ⟨ł ḍ⟩, and the map's ⟨c⟩ = ts/tʃ key is the Bible spelling, not Ferrell's; the map's ⟨lj⟩ = ʎ is a palatal lateral where the source calls ⟨ł⟩ a lateral affricate. Recorded here, not changed."
     }
   ],
   "parent": "x-clade-aust1307",

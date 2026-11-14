@@ -19,7 +19,7 @@
       "ɪ"
     ],
     "í": [
-      "iː"
+      "i"
     ],
     "o": [
       "ɔ"
@@ -31,13 +31,13 @@
       "ʏ"
     ],
     "ú": [
-      "uː"
+      "u"
     ],
     "y": [
       "ɪ"
     ],
     "ý": [
-      "iː"
+      "i"
     ],
     "ö": [
       "œ"
@@ -154,6 +154,21 @@
     "hv": [
       "kv",
       "xv"
+    ],
+    "bb": [
+      "pː"
+    ],
+    "dd": [
+      "tː"
+    ],
+    "gg": [
+      "kː"
+    ],
+    "mm": [
+      "mː"
+    ],
+    "rr": [
+      "rː"
     ]
   },
   "allophones": {
@@ -293,7 +308,7 @@
       "notes": "Old West Norse descent — most conservative"
     }
   ],
-  "notes": "Icelandic (íslenska). Most conservative modern North Germanic language. PRESERVED: 4-case system; 3 grammatical genders; subjunctive; thorn þ [θ] and eth ð [ð]; full umlaut (y, ø, œ). UNIQUE: Voiceless sonorants — hl [l̥], hn [n̥], hr [r̥]. PREASPIRATION: ⟨pp tt kk⟩ = [ʰp ʰt ʰk] (retroflex in medial). ⟨u⟩ = [ʏ] (front rounded!); ⟨á⟩ = [au]; ⟨au⟩ = [øɪ]. No stød, no tonal accent. Source: Árnason (2011).",
+  "notes": "Icelandic (íslenska). Most conservative modern North Germanic language. PRESERVED: 4-case system; 3 grammatical genders; subjunctive; thorn þ [θ] and eth ð [ð]; full umlaut (y, ø, œ). UNIQUE: Voiceless sonorants — hl [l̥], hn [n̥], hr [r̥]. QUANTITY: the stressed vowel is long in an open syllable and before a single short consonant, short before anything heavier — a geminate, a preaspirated stop, or a cluster (Flego & Berkson 2019, Table 3: mala [ˈmaːla] vs manna [ˈmanːa], skata [ˈskaːta] vs skatta [ˈskahta]; they state that preaspirated stops behave like geminates for the contrast). Length is therefore positional, not lexical: ⟨í ý ú⟩ are the qualities [i i u] and take their length from nucleus_stressed like every other vowel letter. GEMINATES: Icelandic keeps consonant length, unlike Danish — doubled ⟨bb dd gg ff mm nn rr ss⟩ are the long consonants [pː tː kː fː mː nː rː sː] (Flego & Berkson 2019, Table 3). PREASPIRATION: ⟨pp tt kk⟩ = [ʰp ʰt ʰk] — preaspirated, NOT long, so these are the one doubled series that is not a geminate. ⟨u⟩ = [ʏ] (front rounded!); ⟨á⟩ = [au]; ⟨au⟩ = [øɪ]. No stød, no tonal accent. Source: Árnason (2011).",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -316,6 +331,16 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "flego2019",
+      "author": "Flego, S. & Berkson, K. H.",
+      "year": 2019,
+      "title": "A Phonetic Illustration of the Sound System of Icelandic",
+      "publisher": "Indiana University Linguistics Club Working Papers",
+      "url": "https://scholarworks.iu.edu/journals/index.php/iulcwp/article/view/30216",
+      "pages": null,
+      "notes": "Table 3 gives the word-internal quantity and manner contrasts read here: the ˈVːC vs ˈVCː contrast, the long consonants [pː tː kː fː mː nː rː sː] (krabba, skadda, sagga, kaffi, klemmu, manna, marra, massa), and the preaspirated [ʰp ʰt ʰk] (krappa, skatta, sakka) which pattern with geminates in shortening the vowel but are not themselves long."
     }
   ],
   "wikipedia": [
@@ -345,5 +370,271 @@
     "longitude": -19.0212,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Icelandic."
-  }
+  },
+  "positional_graphemes": {
+    "a": {
+      "nucleus_stressed": [
+        "aː"
+      ],
+      "default": [
+        "a"
+      ]
+    },
+    "á": {
+      "nucleus_stressed": [
+        "auː"
+      ],
+      "default": [
+        "au"
+      ]
+    },
+    "e": {
+      "nucleus_stressed": [
+        "ɛː"
+      ],
+      "default": [
+        "ɛ"
+      ]
+    },
+    "é": {
+      "nucleus_stressed": [
+        "jɛː"
+      ],
+      "default": [
+        "jɛ"
+      ]
+    },
+    "i": {
+      "nucleus_stressed": [
+        "ɪː"
+      ],
+      "default": [
+        "ɪ"
+      ]
+    },
+    "í": {
+      "nucleus_stressed": [
+        "iː"
+      ],
+      "default": [
+        "i"
+      ]
+    },
+    "o": {
+      "nucleus_stressed": [
+        "ɔː"
+      ],
+      "default": [
+        "ɔ"
+      ]
+    },
+    "ó": {
+      "nucleus_stressed": [
+        "ouː"
+      ],
+      "default": [
+        "ou"
+      ]
+    },
+    "u": {
+      "nucleus_stressed": [
+        "ʏː"
+      ],
+      "default": [
+        "ʏ"
+      ]
+    },
+    "ú": {
+      "nucleus_stressed": [
+        "uː"
+      ],
+      "default": [
+        "u"
+      ]
+    },
+    "y": {
+      "nucleus_stressed": [
+        "ɪː"
+      ],
+      "default": [
+        "ɪ"
+      ]
+    },
+    "ý": {
+      "nucleus_stressed": [
+        "iː"
+      ],
+      "default": [
+        "i"
+      ]
+    },
+    "ö": {
+      "nucleus_stressed": [
+        "œː"
+      ],
+      "default": [
+        "œ"
+      ]
+    },
+    "ei": {
+      "nucleus_stressed": [
+        "eɪː"
+      ],
+      "default": [
+        "eɪ"
+      ]
+    },
+    "ey": {
+      "nucleus_stressed": [
+        "eɪː"
+      ],
+      "default": [
+        "eɪ"
+      ]
+    },
+    "au": {
+      "nucleus_stressed": [
+        "øɪː"
+      ],
+      "default": [
+        "øɪ"
+      ]
+    },
+    "æ": {
+      "nucleus_stressed": [
+        "aiː"
+      ],
+      "default": [
+        "ai"
+      ]
+    }
+  },
+  "allophone_rules": [
+    {
+      "id": "IS_SHORTEN_a",
+      "phonemes": [
+        "aː"
+      ],
+      "surface": "a",
+      "followed_by": "consonant_cluster",
+      "notes": "short vowel before a geminate, a preaspirated stop or a cluster (Icelandic quantity rule)"
+    },
+    {
+      "id": "IS_SHORTEN_au",
+      "phonemes": [
+        "auː"
+      ],
+      "surface": "au",
+      "followed_by": "consonant_cluster",
+      "notes": "short vowel before a geminate, a preaspirated stop or a cluster (Icelandic quantity rule)"
+    },
+    {
+      "id": "IS_SHORTEN_ɛ",
+      "phonemes": [
+        "ɛː"
+      ],
+      "surface": "ɛ",
+      "followed_by": "consonant_cluster",
+      "notes": "short vowel before a geminate, a preaspirated stop or a cluster (Icelandic quantity rule)"
+    },
+    {
+      "id": "IS_SHORTEN_ɪ",
+      "phonemes": [
+        "ɪː"
+      ],
+      "surface": "ɪ",
+      "followed_by": "consonant_cluster",
+      "notes": "short vowel before a geminate, a preaspirated stop or a cluster (Icelandic quantity rule)"
+    },
+    {
+      "id": "IS_SHORTEN_i",
+      "phonemes": [
+        "iː"
+      ],
+      "surface": "i",
+      "followed_by": "consonant_cluster",
+      "notes": "short vowel before a geminate, a preaspirated stop or a cluster (Icelandic quantity rule)"
+    },
+    {
+      "id": "IS_SHORTEN_ɔ",
+      "phonemes": [
+        "ɔː"
+      ],
+      "surface": "ɔ",
+      "followed_by": "consonant_cluster",
+      "notes": "short vowel before a geminate, a preaspirated stop or a cluster (Icelandic quantity rule)"
+    },
+    {
+      "id": "IS_SHORTEN_ou",
+      "phonemes": [
+        "ouː"
+      ],
+      "surface": "ou",
+      "followed_by": "consonant_cluster",
+      "notes": "short vowel before a geminate, a preaspirated stop or a cluster (Icelandic quantity rule)"
+    },
+    {
+      "id": "IS_SHORTEN_ʏ",
+      "phonemes": [
+        "ʏː"
+      ],
+      "surface": "ʏ",
+      "followed_by": "consonant_cluster",
+      "notes": "short vowel before a geminate, a preaspirated stop or a cluster (Icelandic quantity rule)"
+    },
+    {
+      "id": "IS_SHORTEN_u",
+      "phonemes": [
+        "uː"
+      ],
+      "surface": "u",
+      "followed_by": "consonant_cluster",
+      "notes": "short vowel before a geminate, a preaspirated stop or a cluster (Icelandic quantity rule)"
+    },
+    {
+      "id": "IS_SHORTEN_œ",
+      "phonemes": [
+        "œː"
+      ],
+      "surface": "œ",
+      "followed_by": "consonant_cluster",
+      "notes": "short vowel before a geminate, a preaspirated stop or a cluster (Icelandic quantity rule)"
+    },
+    {
+      "id": "IS_SHORTEN_eɪ",
+      "phonemes": [
+        "eɪː"
+      ],
+      "surface": "eɪ",
+      "followed_by": "consonant_cluster",
+      "notes": "short vowel before a geminate, a preaspirated stop or a cluster (Icelandic quantity rule)"
+    },
+    {
+      "id": "IS_SHORTEN_øɪ",
+      "phonemes": [
+        "øɪː"
+      ],
+      "surface": "øɪ",
+      "followed_by": "consonant_cluster",
+      "notes": "short vowel before a geminate, a preaspirated stop or a cluster (Icelandic quantity rule)"
+    },
+    {
+      "id": "IS_SHORTEN_ai",
+      "phonemes": [
+        "aiː"
+      ],
+      "surface": "ai",
+      "followed_by": "consonant_cluster",
+      "notes": "short vowel before a geminate, a preaspirated stop or a cluster (Icelandic quantity rule)"
+    },
+    {
+      "id": "IS_SHORTEN_jɛ",
+      "phonemes": [
+        "jɛː"
+      ],
+      "surface": "jɛ",
+      "followed_by": "consonant_cluster",
+      "notes": "short vowel before a geminate, a preaspirated stop or a cluster (Icelandic quantity rule)"
+    }
+  ]
 }

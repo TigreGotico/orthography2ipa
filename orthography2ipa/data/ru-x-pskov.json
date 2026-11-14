@@ -9,9 +9,39 @@
       "tɕ"
     ]
   },
+  "positional_graphemes_base": "ru",
+  "positional_graphemes": {
+    "я": {
+      "first_pretonic": [
+        "ja"
+      ],
+      "pretonic": [
+        "jɪ"
+      ],
+      "posttonic": [
+        "jə"
+      ]
+    },
+    "е": {
+      "first_pretonic": [
+        "ja",
+        "a"
+      ],
+      "pretonic": [
+        "jɪ",
+        "ɪ"
+      ],
+      "posttonic": [
+        "jɪ",
+        "ɪ"
+      ]
+    }
+  },
+  "word_exceptions_base": "ru",
+  "grammatical_endings_base": "ru",
   "allophones_base": "ru",
   "parent": "ru",
-  "notes": "Pskov-Novgorod transitional dialect. Mixed North-Central features; partial цоканье; Baltic substrate influence (Pskov region).",
+  "notes": "Pskov group. This is a WESTERN MIDDLE RUSSIAN АКАЮЩИЙ dialect — 'западных среднерусских акающих говоров' — not the 'mixed North-Central' variety the previous note described without committing to a vowel system. It akajet, so the standard's reduction table applies after hard consonants and is inherited from `ru` unchanged. СИЛЬНОЕ ЯКАНЬЕ is the group's diagnostic and is what this spec adds: 'произношение звука [а] в первом предударном слоге после мягких согласных на месте гласных неверхнего подъёма независимо от гласного, находящегося под ударением'. Independent of the stressed vowel is the whole point — unlike the dissimilative Southern types this one needs no rightward lookahead and encodes exactly, as ⟨я⟩ = [ja] and ⟨е⟩ = [ja]/[a] in the first pretonic syllable only. Later pretonic and posttonic syllables keep the standard readings. ЦОКАНЬЕ: /ч/ and /ц/ merge in [ц], the hard type, and the merger is partial across the group — hence ⟨ч⟩ ranked [ts] over [tɕ] rather than either value alone. Г = plosive: the Pskov group is Middle Russian and sits north of the [ɣ] isogloss. The genitive is therefore the ordinary [v] desinence with standard akanje vowels, opted into from `ru`. Дзеканье (/tʲ/ /dʲ/ with a strong sibilant offglide) and the lisping /sʲ/ /zʲ/ are attested Pskov features that are NOT encoded: they are sub-phonemic qualities the sources consulted describe impressionistically. NEEDS SOURCING.",
   "quality": "skeleton",
   "script_type": "alphabet",
   "sources": [

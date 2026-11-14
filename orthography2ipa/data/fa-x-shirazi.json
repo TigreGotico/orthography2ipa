@@ -27,7 +27,7 @@
       "notes": "New Persian descent"
     }
   ],
-  "notes": "Shirazi Persian (Šīrāzī). Shiraz — Fars province; homeland of Hafez and Saadi. KEY ISOGLOSS: /æ/ → [a] (short a lower and less fronted than Tehran). ā → [ɔː] (slightly higher/rounder than Tehran's [ɒː]). Historically regarded as the 'purest' Persian dialect. Some imāla (vowel raising) in Classical vocabulary.",
+  "notes": "Shirazi Persian (Šīrāzī). Shiraz — Fars province; homeland of Hafez and Saadi. KEY ISOGLOSS: /æ/ → [a] (short a lower and less fronted than Tehran). ā → [ɔː] (slightly higher/rounder than Tehran's [ɒː]). Historically regarded as the 'purest' Persian dialect. Some imāla (vowel raising) in Classical vocabulary. Already-encoded allophones confirmed against the cited sources: long ā prefers [ɔː] (higher/rounder than Tehran's [ɒː]); short-a prefers [a] (not fronted to Tehran's [æ]) (Windfuhr 2009; Rezai & al.).",
   "quality": "skeleton",
   "script_type": "abjad",
   "sources": [
@@ -60,6 +60,26 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "windfuhr2009",
+      "author": "Windfuhr, G. (ed.)",
+      "year": 2009,
+      "title": "The Iranian Languages",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": "Regional-dialect chapter(s) on New Persian varieties (Tehran, Isfahan, Fars/Shiraz, Kerman, Khorasan/Mashhad, Yazd)."
+    },
+    {
+      "id": "rezai_dialectology",
+      "author": "Rezai, V. & al.",
+      "year": 2010,
+      "title": "Studies in Iranian regional Persian dialectology (Isfahan, Fars, Kerman, Khorasan)",
+      "publisher": "Iranian dialectology literature (regional descriptive studies)",
+      "url": null,
+      "pages": null,
+      "notes": "Secondary descriptive source for regional vowel-quality differences (majhul retention, ā/æ realisation) cross-checked against Windfuhr 2009 and Mahootian 1997."
     }
   ],
   "wikipedia": [

@@ -19,27 +19,28 @@ from orthography2ipa.stress import detect_stress
 from orthography2ipa.stress_plugin import StressPlugin
 
 
-class _AlwaysFirst(StressPlugin):
-    """Stresses the first syllable, always. Deliberately WRONG for Portuguese, so
-    a test can see whether it was consulted at all."""
+# StressPlugin is deprecated, and a subclass still works.
+with pytest.deprecated_call():
+    class _AlwaysFirst(StressPlugin):
+        """Stresses the first syllable, always. Deliberately WRONG for Portuguese, so
+        a test can see whether it was consulted at all."""
 
-    def stressed_index(self, word, syllables, lang):
-        return 0
+        def stressed_index(self, word, syllables, lang):
+            return 0
 
-    @property
-    def language_codes(self):
-        return ["pt-PT"]
+        @property
+        def language_codes(self):
+            return ["pt-PT"]
 
+    class _Abstains(StressPlugin):
+        """Never sure. The declarative rules should take over."""
 
-class _Abstains(StressPlugin):
-    """Never sure. The declarative rules should take over."""
+        def stressed_index(self, word, syllables, lang):
+            return None
 
-    def stressed_index(self, word, syllables, lang):
-        return None
-
-    @property
-    def language_codes(self):
-        return ["pt-PT"]
+        @property
+        def language_codes(self):
+            return ["pt-PT"]
 
 
 @pytest.fixture

@@ -137,6 +137,17 @@
       "year": 2024,
       "title": "Latvian phonology",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Latvian_phonology"
+    },
+    {
+      "id": "kalnaca_lokmane2021",
+      "author": "Kalnača, Andra; Lokmane, Ilze",
+      "year": 2021,
+      "title": "Latvian Grammar",
+      "publisher": "University of Latvia Press (open access)",
+      "url": "https://dspace.lu.lv/dspace/handle/7/54312",
+      "wikipedia_url": null,
+      "pages": "20-21",
+      "notes": "The letter-sound correspondence tables (pp. 20-21, prepared by Ilze Auziņa), read in full. They give every letter with an IPA value and an example: the palatals ⟨ģ ķ ļ ņ⟩ = ɟ c ʎ ɲ, ⟨c dz č dž⟩ = ts dz tʃ dʒ, ⟨š ž⟩ = ʃ ʒ, the macron as length, and the diphthongs ⟨ie⟩ = i͜e, ⟨ai au ei ui iu eu ou oi⟩. Three values there that this map should be checked against: ⟨o⟩ is ɔ, ɔː or the diphthong u͜o depending on the word (omārs, opera, ola), ⟨e ē⟩ are e/æ and eː/æː by the same word-level rule (ezis vs ezers), ⟨h⟩ is x and ⟨j⟩ is written ʝ. A reference grammar of morphology and syntax; the phonology is this table and a short section, not a phonological analysis."
     }
   ],
   "wikipedia": [

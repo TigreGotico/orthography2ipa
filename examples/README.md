@@ -4,7 +4,7 @@ Runnable scripts, ordered from first transcription to building on the engine.
 Each is self-contained and prints what it demonstrates:
 
 ```bash
-pip install orthography2ipa
+uv pip install --prerelease=allow orthography2ipa
 python examples/01_basic_usage.py
 ```
 
@@ -19,6 +19,6 @@ python examples/01_basic_usage.py
 | [`07_lattice_and_rescorer.py`](07_lattice_and_rescorer.py) | The ranked lattice, per-word confidence, and refining it with a `LatticeRescorer` |
 | [`08_lexicon_overlay.py`](08_lexicon_overlay.py) | Overlaying an external `word→ipa` lexicon by path / URL / `hf://` id |
 
-New to the library? Read [`docs/getting_started.md`](../docs/getting_started.md)
+New to the library? Read [`docs/guide/getting_started.md`](../docs/guide/getting_started.md)
 first, then work down this list. Building a specialised phonemizer on top of the
-engine? Start at `07` and see [`docs/lattice.md`](../docs/lattice.md).
+engine? Start at `07` and see [`docs/engine/lattice.md`](../docs/engine/lattice.md).

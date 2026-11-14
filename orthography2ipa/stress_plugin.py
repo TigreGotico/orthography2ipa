@@ -1,11 +1,11 @@
 """Stress plugins — and the rule that makes any output-changing plugin safe.
 
-A stress plugin breaks the tidy story. A syllabifier must not change the
-transcription; a rescorer exists to change it. Where does stress go? It *changes*
+A stress plugin breaks the tidy story. A caller picks a syllabifier; a rescorer
+exists to change the transcription. Where does stress go? It *changes*
 the transcription — it adds a mark, and it moves the vowel reduction that stress
 conditions — so by that split it looks like a rescorer. But letting an installed
-package decide where the stress falls is **exactly** the bug this library just
-had: `coelho` was ˈkuɐʎu with a plugin installed and ˈkoɐʎu without.
+package decide where the stress falls gives one word two answers: `coelho` reads
+ˈkuɐʎu with one stress and ˈkoɐʎu with the other.
 
 So "does it change the output?" is the wrong axis. The right one is:
 
@@ -14,9 +14,8 @@ So "does it change the output?" is the wrong axis. The right one is:
 
 That single rule subsumes both cases and settles this one:
 
-* A plugin that **does not** change the transcription may be installed freely.
-  It is a pure refinement — better syllable boundaries, same answer. (Nothing
-  needs to declare it, because nothing downstream can tell.)
+* A plugin that the caller passes to an engine is part of the input to that
+  call, so the call site declares it. A syllabifier works this way.
 * A plugin that **does** change the transcription must be **named by the spec**.
   Then the output is still determined by the spec plus the input, and *installing
   something* is no longer a silent switch.
@@ -52,14 +51,23 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from typing import List, Optional, Sequence
 
+from orthography2ipa.lexicon import _warn_deprecated
+
 __all__ = ["StressPlugin"]
 
 
 class StressPlugin(ABC):
-    """Decides which syllable carries primary stress, for the languages it claims.
+    """Deprecated: decides which syllable carries primary stress, for the languages it claims.
 
     Only consulted when the spec asks for it (``StressRules.source == "plugin"``).
+    A subclass warns when it is defined. The stress rules of the spec place the
+    stress.
     """
+
+    def __init_subclass__(cls, **kwargs) -> None:
+        super().__init_subclass__(**kwargs)
+        # The frames are this method, ABCMeta.__new__ and the class statement.
+        _warn_deprecated("StressPlugin", "the stress rules of the spec", stacklevel=4)
 
     @abstractmethod
     def stressed_index(

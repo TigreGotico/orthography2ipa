@@ -219,6 +219,17 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Erzya_language",
       "pages": null,
       "notes": "Orthography / phonology reference."
+    },
+    {
+      "id": "hamari_ajanki2022",
+      "author": "Hamari, Arja; Ajanki, Rigina",
+      "year": 2022,
+      "title": "Mordvin (Erzya and Moksha). In Bakró-Nagy, Laakso & Skribnik (eds.), The Oxford Guide to the Uralic Languages, 392-431",
+      "publisher": "Oxford University Press; accepted manuscript in the University of Turku repository (UTUPub)",
+      "url": "https://www.utupub.fi/handle/10024/191945",
+      "wikipedia_url": null,
+      "pages": "393-394",
+      "notes": "§23.2.1-23.2.2, read in full. Table 23.1 (p. 393) gives the five Erzya vowels with their Cyrillic letters, the second letter of each pair used after a palatalised consonant (и/ы, е/э, ю/у, ё/о, я/а); Table 23.3 (p. 394) the 28 consonants with palatalisation contrastive only for the dental-alveolars and marked by the following vowel letter or ⟨ь⟩, ⟨ф х⟩ bracketed as loan phonemes, and ⟨е ю я ё⟩ standing for j plus vowel when no consonant precedes. Two disagreements with this map: ⟨ч⟩ is the alveolo-palatal affricate t͡ɕ, not t͡ʃ; and ⟨ы⟩ and ⟨э⟩ write the velar allophones of /i/ and /e/ after a non-palatalised alveolar, not a separate ɨ. ⟨щ⟩ is absent from the Erzya table. Recorded here, not changed."
     }
   ],
   "parent": "x-clade-ural1272",

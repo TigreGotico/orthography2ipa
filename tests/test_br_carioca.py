@@ -2,7 +2,7 @@
 
 Three Brazilian dialects modelled as deltas on the merged ``pt-BR`` base:
 
-* ``pt-BR-x-rj`` (Carioca) and ``pt-BR-x-fluminense`` carry the defining
+* ``pt-BR-x-rj`` (Carioca) and ``pt-BR-x-fluminen`` carry the defining
   *chiado carioca* as post-lexical ``allophone_rules`` — coda /S/ → [ʃ]/[ʒ]
   (Callou 2010:135) — plus posterior coda /R/ (velar [x] pre-consonantally,
   aspiration [h] word-finally; Callou 2010:138). These override the alveolar
@@ -33,7 +33,7 @@ def bare(s: str) -> str:
 # ─── base inheritance ───────────────────────────────────────────────────────
 
 @pytest.mark.parametrize("code", [
-    "pt-BR-x-rj", "pt-BR-x-fluminense", "pt-BR-x-mg",
+    "pt-BR-x-rj", "pt-BR-x-fluminen", "pt-BR-x-mg",
 ])
 def test_inherits_base_vowel_rules(code):
     """Every dialect inherits the pt-BR final-vowel-raising rules by id."""
@@ -43,7 +43,7 @@ def test_inherits_base_vowel_rules(code):
 
 
 @pytest.mark.parametrize("code", [
-    "pt-BR-x-rj", "pt-BR-x-fluminense", "pt-BR-x-mg",
+    "pt-BR-x-rj", "pt-BR-x-fluminen", "pt-BR-x-mg",
 ])
 def test_inherits_base_l_vocalisation(code):
     """Coda /l/ → [w] is inherited from the pt-BR base (sol → …w)."""
@@ -51,7 +51,7 @@ def test_inherits_base_l_vocalisation(code):
 
 
 @pytest.mark.parametrize("code", [
-    "pt-BR-x-rj", "pt-BR-x-fluminense", "pt-BR-x-mg",
+    "pt-BR-x-rj", "pt-BR-x-fluminen", "pt-BR-x-mg",
 ])
 def test_final_vowel_raising_still_fires(code):
     """Inherited final-vowel raising: gato → …u, leite → …i."""
@@ -68,8 +68,13 @@ class TestCariocaChiado:
         assert "RJ_CHIADO_CODA_Z" in ids
 
     def test_coda_s_hushes_preconsonantal(self):
-        # mesmo → [ˈmeʃmu]: coda /S/ before a consonant palatalises.
-        assert "ʃ" in bare(_t("pt-BR-x-rj", "mesmo"))
+        # festa → [ˈfeʃtɐ]: coda /S/ before a voiceless consonant is [ʃ].
+        assert bare(_t("pt-BR-x-rj", "festa")) == "feʃtɐ"
+
+    def test_coda_s_hushes_and_voices_before_voiced(self):
+        # mesmo → [ˈmeʒmu]: before a voiced consonant the palatal is [ʒ]
+        # (Brito 2016: 142).
+        assert bare(_t("pt-BR-x-rj", "mesmo")) == "meʒmu"
 
     def test_coda_s_hushes_word_final(self):
         # paz → [ˈpaʃ], dois → [ˈdojʃ]: word-final coda /S/ palatalises.
@@ -100,24 +105,22 @@ class TestCariocaChiado:
         assert "d͡ʒ" in _t("pt-BR-x-rj", "dia")
 
 
-# ─── Fluminense: Carioca-like chiado (coastal prestige default) ─────────────
+# ─── Fluminense: Rio de Janeiro state interior, alveolar coda /S/ ──────────
 
 class TestFluminense:
-    def test_declares_chiado_rules(self):
-        ids = [r.id for r in get("pt-BR-x-fluminense").allophone_rules]
-        assert "FLU_CHIADO_CODA_S" in ids
-        assert "FLU_CHIADO_CODA_Z" in ids
+    def test_declares_no_chiado_rules(self):
+        ids = [r.id for r in get("pt-BR-x-fluminen").allophone_rules]
+        assert not any("CHIADO" in i for i in ids)
 
-    def test_coda_s_hushes(self):
-        assert "ʃ" in bare(_t("pt-BR-x-fluminense", "mesmo"))
-        assert bare(_t("pt-BR-x-fluminense", "paz")).endswith("ʃ")
+    def test_coda_s_alveolar(self):
+        # Hora 1999: 34-35: alveolar in the North-Northwest of the state.
+        assert "ʃ" not in bare(_t("pt-BR-x-fluminen", "mesmo"))
+        assert bare(_t("pt-BR-x-fluminen", "paz")).endswith("s")
 
-    def test_chiado_coda_only(self):
-        assert "ʃ" not in bare(_t("pt-BR-x-fluminense", "sala"))
-
-    def test_coda_r_posterior(self):
-        assert "x" in bare(_t("pt-BR-x-fluminense", "porta"))
-        assert bare(_t("pt-BR-x-fluminense", "mar")).endswith("h")
+    def test_coda_r_glottal(self):
+        # Silva 2023: 68: Rio de Janeiro state coda /R/ is 80 % glottal.
+        assert "h" in bare(_t("pt-BR-x-fluminen", "porta"))
+        assert bare(_t("pt-BR-x-fluminen", "mar")).endswith("h")
 
 
 # ─── Mineiro (mg): NOT chiado; pretonic raising instead ─────────────────────
@@ -134,17 +137,13 @@ class TestMineiro:
             assert "ʃ" not in r and "ʒ" not in r, (w, r)
 
     def test_pretonic_raising_e(self):
-        # menino → [miˈninu]: pretonic /e/ → [i] (Lemos & Viegas 2016).
+        # menino → [miˈninu]: /e/ before a stressed high vowel (Viegas & Veado 1982: 58).
         assert bare(_t("pt-BR-x-mg", "menino")).startswith("mi")
 
-    def test_pretonic_raising_o(self):
-        # coruja → [kuˈɾuʒɐ]: pretonic /o/ → [u].
-        assert bare(_t("pt-BR-x-mg", "coruja")).startswith("ku")
-
-    def test_coda_r_stays_tap(self):
-        # BH tap-rhotic: porta keeps [ɾ], no velar/aspirated coda /R/.
+    def test_coda_r_glottal(self):
+        # Silva 2023: 68: Minas Gerais coda /R/ is 77 % glottal, 1 % tap.
         r = bare(_t("pt-BR-x-mg", "porta"))
-        assert "ɾ" in r and "x" not in r and "h" not in r
+        assert "h" in r and "ɾ" not in r
 
     def test_palatalisation_present(self):
         assert "t͡ʃ" in _t("pt-BR-x-mg", "tia")

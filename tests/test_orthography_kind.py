@@ -33,7 +33,7 @@ def test_the_native_han_spec_is_honest_about_being_unreadable():
 def test_buckwalter_is_a_transliteration_not_an_orthography():
     """Buckwalter re-encodes Arabic letters in ASCII. Nobody reads it as a
     language, and it has no standards body — that absence is the tell."""
-    bw = o2i.get("ar-Latn-buckwalter")
+    bw = o2i.get("ar-Latn-x-buckwalt")
     assert bw.orthography_kind is OrthographyKind.TRANSLITERATION
     assert bw.orthography_standard is None
 
@@ -46,14 +46,14 @@ def test_buckwalter_is_lossless_against_the_script_it_re_encodes():
              'َ':'a','ُ':'u','ِ':'i','ْ':'o','ّ':'~'}
     for word in ("كَتَبَ", "كِتَاب", "مَدْرَسَة", "بَيْت", "مُسْلِم", "قُرْآن"):
         buckwalter = "".join(table[ch] for ch in word)
-        assert G2P("ar").transcribe(word) == G2P("ar-Latn-buckwalter").transcribe(buckwalter)
+        assert G2P("ar").transcribe(word) == G2P("ar-Latn-x-buckwalt").transcribe(buckwalter)
 
 
 def test_buckwalter_inherits_the_abjad_limit_it_cannot_escape():
     """Re-encoding a script cannot recover information the script never wrote.
     Unvocalized Buckwalter is exactly as unreadable as unvocalized Arabic — the
     short vowels are simply absent from both."""
-    vocalized = G2P("ar-Latn-buckwalter").transcribe("kataba")
-    bare = G2P("ar-Latn-buckwalter").transcribe("ktb")
+    vocalized = G2P("ar-Latn-x-buckwalt").transcribe("kataba")
+    bare = G2P("ar-Latn-x-buckwalt").transcribe("ktb")
     assert vocalized != bare
     assert "a" not in bare          # nothing invented the vowels back

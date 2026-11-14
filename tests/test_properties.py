@@ -24,6 +24,9 @@ _ALL_CODES = orthography2ipa.available_codes()
 
 
 @pytest.mark.slow
+# Arbitrary unicode is unmapped by design here; the warning is tested elsewhere.
+@pytest.mark.filterwarnings(
+    "ignore::orthography2ipa.exceptions.UnmappedGraphemeWarning")
 @settings(deadline=None, max_examples=200,
           suppress_health_check=[HealthCheck.too_slow])
 @given(text=st.text(max_size=50), lang=st.sampled_from(_ALL_CODES))

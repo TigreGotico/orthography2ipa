@@ -7,6 +7,7 @@ fail closed instead of reporting "no regressions detected" on an
 empty comparison. Also covers the harness_version/limit compatibility
 guard added alongside it.
 """
+import json
 import os
 import sys
 
@@ -14,7 +15,9 @@ import pytest
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
 
-from benchmark import HARNESS_VERSION  # noqa: E402
+from benchmark import (  # noqa: E402
+    CI_SAMPLE_JSON, CI_SAMPLE_LIMIT, HARNESS_VERSION, SCOREBOARD_JSON,
+)
 import check_benchmark_regression as cbr  # noqa: E402
 
 
@@ -89,6 +92,54 @@ class TestRegressionDetection:
         assert regressed_rows == []
 
 
+class TestStressRegression:
+    """A stress_acc drop beyond the same epsilon fails like a PER rise."""
+
+    def _rows(self, base_stress, new_stress, per=0.10):
+        base = _row(per=per)
+        base["stress_acc"] = base_stress
+        cur = _row(per=per)
+        cur["stress_acc"] = new_stress
+        return {("pt-PT", "wikipron"): base}, [cur]
+
+    def test_stress_drop_beyond_epsilon_regresses(self):
+        baseline, current = self._rows(0.90, 0.88)
+        _diff, regressed = cbr.compare(baseline, current, epsilon=0.005)
+        assert len(regressed) == 1
+        assert regressed[0]["stress_delta"] == -0.02
+
+    def test_stress_drop_within_epsilon_is_ok(self):
+        baseline, current = self._rows(0.90, 0.897)
+        _diff, regressed = cbr.compare(baseline, current, epsilon=0.005)
+        assert regressed == []
+
+    def test_stress_gain_is_ok(self):
+        baseline, current = self._rows(0.80, 0.95)
+        _diff, regressed = cbr.compare(baseline, current, epsilon=0.005)
+        assert regressed == []
+
+    @pytest.mark.parametrize("base, new", [(None, 0.5), (0.9, None)])
+    def test_null_stress_on_either_side_is_not_compared(self, base, new):
+        baseline, current = self._rows(base, new)
+        diff, regressed = cbr.compare(baseline, current, epsilon=0.005)
+        assert regressed == []
+        assert diff[0]["stress_delta"] is None
+
+    def test_baseline_without_the_field_is_not_compared(self):
+        baseline = {("pt-PT", "wikipron"): _row()}
+        cur = _row()
+        cur["stress_acc"] = 0.1
+        _diff, regressed = cbr.compare(baseline, [cur], epsilon=0.005)
+        assert regressed == []
+
+    def test_competitor_gold_stress_drop_is_drift(self):
+        baseline, current = self._rows(0.90, 0.50)
+        current[0]["provenance"] = "espeak-derived"
+        diff, regressed = cbr.compare(baseline, current, epsilon=0.005)
+        assert regressed == []
+        assert diff[0]["status"] == "drifted"
+
+
 class TestCompetitorDerivedGoldNeverGates:
     """A worse score against espeak-/epitran-derived or LLM gold measures
     increased DISAGREEMENT with a competitor, and diverging from a
@@ -118,3 +169,55 @@ class TestCompetitorDerivedGoldNeverGates:
         cur.pop("provenance", None)
         diff_rows, regressed_rows = cbr.compare(baseline, [cur], epsilon=0.005)
         assert len(regressed_rows) == 1
+
+
+class TestCiSampleMatchesFullBelowCap:
+    """This gate is one-sided by design (see the module docstring): it
+    only fails on a PER *increase*, so an IMPROVEMENT that only lands in
+    ``results.json`` never trips it, and the committed
+    ``results_ci_sample.json`` baseline goes stale silently. A PR shipped
+    with the two files disagreeing while this job stayed green.
+
+    The uniform ``CI_SAMPLE_LIMIT`` gives one case that is mechanically
+    checkable without re-running any loader: when a row's covered-word
+    count (``n``) agrees between the full board and the CI sample, both
+    runs necessarily scored the identical, un-truncated word set (the CI
+    run never hit its cap), so the two files must report the identical
+    PER by construction. A mismatch there is not sampling variance, it is
+    a stale baseline.
+
+    Rows where ``n`` disagrees between the two files are excluded on
+    purpose: that mismatch means the CI run's raw extraction WAS capped
+    at ``CI_SAMPLE_LIMIT`` even though the covered count that survived
+    scoring happens to be below it (some gold entries get filtered out
+    after extraction), so the sample is a genuine, expected subset of a
+    larger dataset rather than an identical rescoring of it.
+    """
+
+    def test_full_and_ci_sample_agree_when_n_matches(self):
+        with open(SCOREBOARD_JSON, encoding="utf-8") as fh:
+            full_rows = json.load(fh)
+        with open(CI_SAMPLE_JSON, encoding="utf-8") as fh:
+            ci_rows = json.load(fh)
+        full = {(r["lang"], r["dataset"]): r for r in full_rows}
+
+        violations = []
+        for crow in ci_rows:
+            key = (crow["lang"], crow["dataset"])
+            frow = full.get(key)
+            if frow is None:
+                continue
+            if crow["n"] >= CI_SAMPLE_LIMIT or crow["n"] != frow["n"]:
+                continue
+            for field in ("per", "stress_acc", "n_stress"):
+                if field in crow and field in frow \
+                        and crow[field] != frow[field]:
+                    violations.append(
+                        (key, field, frow["n"], frow[field], crow[field]))
+
+        assert violations == [], (
+            "results_ci_sample.json disagrees with results.json on a row "
+            "whose sample was never truncated (same n, below "
+            f"CI_SAMPLE_LIMIT={CI_SAMPLE_LIMIT}), so the sample IS the "
+            "full set and must match exactly: "
+            f"{violations}")

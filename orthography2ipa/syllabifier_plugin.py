@@ -1,19 +1,18 @@
 """syllabifier_plugin — Abstract interface for per-language syllabifiers.
 
 The bundled :func:`orthography2ipa.stress.syllabify` is a naive
-vowel-group splitter. Languages with a real syllabifier ship it as a
-plugin — ``silabificador`` for Portuguese, ``pycotovia`` for Galician —
-and stress detection (and the G2P engine) picks it up automatically.
-
-Plugins are discovered via ``importlib.metadata`` entry points in the
-``orthography2ipa.syllabify`` group; when several claim the same
-language code the highest :attr:`SyllabifierPlugin.priority` wins.
+vowel-group splitter. A language with a real syllabifier ships it as a
+class that implements this interface — ``silabificador`` for Portuguese,
+``pycotovia`` for Galician — and a caller passes an instance to one
+engine. Nothing discovers a syllabifier, so installing a package changes
+no transcription.
 
 Usage
 ─────
-    # In a plugin's pyproject.toml:
-    [project.entry-points."orthography2ipa.syllabify"]
-    portuguese = "silabificador.plugin:PortugueseSyllabifier"
+    from orthography2ipa import G2P, Pipeline
+    from orthography2ipa.syllabifiers import SilabificadorSyllabifier
+
+    engine = G2P("pt-PT", pipeline=Pipeline(syllabifier=SilabificadorSyllabifier()))
 """
 from __future__ import annotations
 
@@ -38,14 +37,11 @@ class SyllabifierPlugin(ABC):
         """
 
     @property
-    @abstractmethod
     def language_codes(self) -> List[str]:
-        """BCP-47 codes this syllabifier handles."""
+        """BCP-47 codes this syllabifier handles. The engine does not read them."""
+        return []
 
     @property
     def priority(self) -> int:
-        """Dispatch precedence among plugins claiming the same code.
-
-        Higher wins; ``50`` is the neutral default.
-        """
+        """Nothing reads this value: a caller names one syllabifier."""
         return 50

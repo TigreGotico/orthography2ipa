@@ -181,6 +181,17 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Pangasinan_language",
       "pages": null,
       "notes": "Orthography / phonology reference."
+    },
+    {
+      "id": "benton1971",
+      "author": "Benton, Richard A.",
+      "year": 1971,
+      "title": "Pangasinan Reference Grammar (PALI Language Texts: Philippines)",
+      "publisher": "University of Hawaii Press (open access edition, CC BY-NC-SA, ScholarSpace)",
+      "url": "https://scholarspace.manoa.hawaii.edu/bitstreams/e912e166-fdcc-47af-a8c2-165dbabf89d8/download",
+      "wikipedia_url": null,
+      "pages": "3, 14-15, 35-37",
+      "notes": "Phonology chapter, read in the vowel, consonant-chart and orthography sections. p. 3: four vowel phonemes /a e i o/ for all speakers, a fifth /E/ for many (both /e/ and /E/ written ⟨e⟩), and ⟨o u⟩ standing for one phoneme /o/ for most speakers. pp. 14-15: thirteen consonant phonemes /b d g p t k m n ŋ r s h l/ plus /y w/, with /ch/ (also /ts/) the one marginal phoneme worth noting. pp. 35-37: /E/ written ⟨e⟩, /o/ written ⟨o⟩ or ⟨u⟩ at random, /h/ spelled ⟨h⟩ or ⟨j⟩ (and ⟨g⟩ before e/i in Spanish words), ⟨ll⟩ = /ly/, ⟨ñ⟩ = /ny/, ⟨ng⟩ or ⟨ñg⟩ = /ŋ/, ⟨f v⟩ read as /p b/, ⟨c z⟩ as /s/. Against this map: ⟨j⟩ is /h/ in Benton's account, not dʒ; there is no /ʃ/ phoneme and no glottal-stop phoneme in his inventory, so the ⟨sh⟩ and ⟨'⟩ keys have no support there; and ⟨o u⟩ are one phoneme, not the o/ɔ versus u the map emits. Recorded here; the grapheme data is not changed in this citation."
     }
   ],
   "parent": "x-clade-mala1545",

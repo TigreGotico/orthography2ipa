@@ -6,7 +6,7 @@ west→east continuum of sound changes. Every feature asserted here is
 grounded in a source that was read directly:
 
 - Bedialauneta Txurruka & Hualde (2023), "Markina Basque", JIPA 53(3):
-  1095-1122 (Biscayan sibilant/affricate/palatal mergers, p.1098).
+  1095-1121 (Biscayan sibilant/affricate/palatal mergers, p.1098).
 - Hualde, Lujanbio & Zubiri (2010), "Goizueta Basque", JIPA 40(1):
   113-127 (Upper Navarrese sibilant retention p.119, /h/ loss, yeísmo).
 - Hualde (2018), "Aspiration in Basque", PiHPH 3: 1-27 (east/west
@@ -30,13 +30,13 @@ from orthography2ipa.g2p import G2P
 from orthography2ipa.distance import ancestry_similarity, phonological_distance
 
 DIALECTS = [
-    "eu-x-bizkaiera",
-    "eu-x-gipuzkera",
+    "eu-biscayan",
+    "eu-x-gipuzkoa",
     "eu-x-nafarra-garaia",
     "eu-x-nafarra-beherea",
-    "eu-x-lapurtera",
+    "eu-x-lapurdi",
     "eu-x-zuberera",
-    "eu-x-erronkariera",
+    "eu-x-roncal",
 ]
 
 
@@ -99,7 +99,7 @@ class TestBaseInventory:
 # Biscayan — Western mergers (Bedialauneta & Hualde 2023: 1098)
 # ───────────────────────────────────────────────────────────────────────
 class TestBiscayan:
-    CODE = "eu-x-bizkaiera"
+    CODE = "eu-biscayan"
 
     def test_sibilant_merger_to_apical(self):
         g = _spec(self.CODE).graphemes
@@ -129,7 +129,7 @@ class TestBiscayan:
 # Gipuzkoan — Central; base sibilants retained, no /h/
 # ───────────────────────────────────────────────────────────────────────
 class TestGipuzkoan:
-    CODE = "eu-x-gipuzkera"
+    CODE = "eu-x-gipuzkoa"
 
     def test_base_sibilants_retained(self):
         g = _spec(self.CODE).graphemes
@@ -185,7 +185,7 @@ class TestLowerNavarrese:
 # Lapurdian — aspiration receding (Hualde 2018)
 # ───────────────────────────────────────────────────────────────────────
 class TestLapurdian:
-    CODE = "eu-x-lapurtera"
+    CODE = "eu-x-lapurdi"
 
     def test_h_variable(self):
         assert _spec(self.CODE).allophones.get("h") == ["h", ""]
@@ -220,7 +220,7 @@ class TestSouletin:
 # Roncalese (new) — Eastern Navarrese, extinct
 # ───────────────────────────────────────────────────────────────────────
 class TestRoncalese:
-    CODE = "eu-x-erronkariera"
+    CODE = "eu-x-roncal"
 
     def test_registered_with_parent_eu(self):
         assert _spec(self.CODE).parent == "eu"
@@ -254,15 +254,55 @@ class TestDistance:
         assert ancestry_similarity(_spec("eu"), _spec(code)) == pytest.approx(0.9)
 
     def test_siblings_share_grandparent(self):
-        sim = ancestry_similarity(_spec("eu-x-bizkaiera"), _spec("eu-x-zuberera"))
+        sim = ancestry_similarity(_spec("eu-biscayan"), _spec("eu-x-zuberera"))
         assert sim == pytest.approx(0.81)
 
     def test_phonological_distance_nonzero_for_diverging_dialects(self):
         # Both diverge from the base; Biscayan via grapheme mergers, Souletin
         # via the added /y/ grapheme and aspiration allophones.
-        d_biz = phonological_distance(_spec("eu"), _spec("eu-x-bizkaiera"))
+        d_biz = phonological_distance(_spec("eu"), _spec("eu-biscayan"))
         d_zub = phonological_distance(_spec("eu"), _spec("eu-x-zuberera"))
         assert d_biz.combined > 0.0
         assert d_zub.combined > 0.0
         # the Biscayan sibilant/affricate mergers show up as grapheme divergence
         assert d_biz.grapheme.mean_ipa_distance > 0.0
+
+
+class TestBasqueBeatEspeakWave:
+    """Hualde & Ortiz de Urbina 2003-cited allophony (beat-espeak wave).
+
+    These allophones are obligatory in standard Basque; the phonemic-
+    convention golds (wikipron, vox_communis) transcribe without them and
+    their rows dip accordingly — documented trade-off, hitz (expert) and
+    childes improve.
+    """
+
+    def _t(self, word):
+        from orthography2ipa import G2P
+        return G2P("eu", apply_stress=False).transcribe(word)
+
+    def test_spirantization_after_vowel(self):
+        assert self._t("egin") == "eɣin"
+        assert self._t("abere") == "aβeɾe"
+        assert self._t("adar") == "aðar"
+        assert self._t("bide") == "biðe"
+
+    def test_stops_kept_initially(self):
+        assert self._t("bide").startswith("b")
+        assert self._t("gorri").startswith("ɡ")
+
+    def test_offglides(self):
+        assert self._t("gau") == "ɡau̯" or self._t("gau") == "ɡaw"
+        assert "i̯" in self._t("sei") or "j" in self._t("sei")
+
+    def test_palatalization_not_automatic(self):
+        # Lexically conditioned in Batua, deliberately NOT an allophone rule:
+        # Latinate loans keep plain n/l (adversarial review counterexamples).
+        assert self._t("familia") == "familia"
+        assert self._t("kilometro") == "kilometɾo"
+        assert self._t("kilo") == "kilo"
+        assert self._t("mina") == "mina"
+
+    def test_coda_trill(self):
+        assert self._t("adar").endswith("r")
+        assert self._t("hartu") == "artu"

@@ -2,11 +2,11 @@
 
 - ``load_mirandese`` (TigreGotico/mirandese_g2p, human gold, row
   ``mirandese_g2p``) — dialect-column split incl. Raiano → ``mwl-x-ifanes``;
-- ``load_portuguese_unified``
-  (TigreGotico/portuguese-unified-pronunciation-lexicon) — the single
-  merged Portuguese gold (Infopedia + Portal lexicon + Wiktionary):
-  per-region split, ipa_narrow scoring, variant preservation, fixed-seed
-  sampling, untagged-"pt" exclusion.
+- ``load_portuguese_unified`` and ``load_portal_lupo``
+  (TigreGotico/portuguese-unified-pronunciation-lexicon): the human rows
+  (Infopédia + pt.wiktionary) and the Portal LUPo rows of one merged file —
+  source split, per-region split, ipa_narrow scoring, variant preservation,
+  fixed-seed sampling, untagged-"pt" exclusion.
 
 Network access is mocked via benchmark._fetch so these run offline and
 deterministically, mirroring tests/test_hitz_basque_loader.py.
@@ -69,13 +69,17 @@ def _jsonl(rows):
     return "\n".join(json.dumps(r, ensure_ascii=False) for r in rows)
 
 
+_INFOPEDIA = {"infopedia_url": "https://www.infopedia.pt/x"}
+_PORTAL = {"phones": "ˈɔ|vʊ"}
+
 _UNIFIED_ROWS = [
-    {"word": "casa", "region": "pt-PT", "ipa_narrow": "ˈkazɐ", "ipa_broad": "ˈkaza"},
+    {"word": "casa", "region": "pt-PT", "ipa_narrow": "ˈkazɐ", "ipa_broad": "ˈkaza",
+     **_INFOPEDIA},
     {"word": "casa", "region": "pt-PT", "ipa_narrow": "ˈkazɐ"},          # duplicate variant
     {"word": "voltear", "region": "pt-PT", "ipa_narrow": "vɔɫtjˈaɾ"},
     {"word": "voltear", "region": "pt-PT", "ipa_narrow": "voɫtjˈaɾ"},    # real variant
-    {"word": "ovo", "region": "pt-TL-x-dili", "ipa_narrow": "ˈɔvʊ"},
-    {"word": "maputo", "region": "pt-MZ-x-maputo", "ipa_narrow": "mɐˈputu"},
+    {"word": "ovo", "region": "pt-TL-x-dili", "ipa_narrow": "ˈɔvʊ", **_PORTAL},
+    {"word": "maputo", "region": "pt-MZ-x-maputo", "ipa_narrow": "mɐˈputu", **_PORTAL},
     {"word": "geral", "region": "pt", "ipa_narrow": "ʒɨˈɾaɫ"},           # untagged: excluded
     {"word": "vazio", "region": "pt-PT", "ipa_narrow": ""},              # empty: skipped
 ]
@@ -87,8 +91,76 @@ def test_load_unified_splits_by_region(monkeypatch):
     pt = benchmark.load_portuguese_unified("pt-PT", 10)
     words = {w for w, _ in pt}
     assert words == {"casa", "voltear"}
-    assert benchmark.load_portuguese_unified("pt-TL", 10) == [("ovo", "ˈɔvʊ")]
-    assert benchmark.load_portuguese_unified("pt-MZ", 10) == [("maputo", "mɐˈputu")]
+    assert benchmark.load_portal_lupo("pt-TL", 10) == [("ovo", "ˈɔvʊ")]
+    assert benchmark.load_portal_lupo("pt-MZ", 10) == [("maputo", "mɐˈputu")]
+
+
+#: One human row and one Portal row in every region the dataset holds, each
+#: with a reading that names its source, so a returned pair shows which row it
+#: came from.
+_SOURCE_REGIONS = ("pt-PT", "pt-BR", "pt-BR-x-carioca", "pt-BR-x-caipira",
+                   "pt-PT-x-lisboa", "pt-BR-x-saopaulo", "pt-BR-x-riodejaneiro",
+                   "pt-AO", "pt-MZ-x-maputo", "pt-TL-x-dili")
+_SOURCE_ROWS = [
+    row for region in _SOURCE_REGIONS for row in (
+        {"word": "falar", "region": region, "ipa_narrow": f"human-{region}",
+         "wiktionary_url": "https://pt.wiktionary.org/wiki/falar"},
+        {"word": "falar", "region": region, "ipa_narrow": f"portal-{region}",
+         "phones": "fɐ|ˈlaɾ"},
+    )
+]
+
+
+def test_unified_loaders_never_return_a_portal_row(monkeypatch):
+    """The Portal rows are LUPo generator output, not human transcriptions:
+    no language of ``portuguese_unified`` or its overlay reads one."""
+    monkeypatch.setattr(benchmark, "_fetch",
+                        lambda url, name: _jsonl(_SOURCE_ROWS))
+    portal = {r["ipa_narrow"] for r in _SOURCE_ROWS if r.get("phones")}
+    read = []
+    for dataset in ("portuguese_unified", "portuguese_unified_corrected"):
+        loader, langs = benchmark.DATASETS[dataset]
+        for lang in langs:
+            pairs = loader(lang, 100)
+            assert pairs, (dataset, lang)
+            read += [(dataset, lang, ipa) for _, ipa in pairs]
+    assert [r for r in read if r[2] in portal] == []
+    assert len(read) == len(benchmark.DATASETS["portuguese_unified"][1]) + len(
+        benchmark.DATASETS["portuguese_unified_corrected"][1])
+
+
+def test_portal_lupo_returns_only_portal_rows(monkeypatch):
+    monkeypatch.setattr(benchmark, "_fetch",
+                        lambda url, name: _jsonl(_SOURCE_ROWS))
+    loader, langs = benchmark.DATASETS["portal_lupo"]
+    assert loader is benchmark.load_portal_lupo
+    assert langs == sorted(benchmark._PORTAL_LUPO_REGIONS)
+    for lang in langs:
+        region = benchmark._PORTAL_LUPO_REGIONS[lang]
+        assert loader(lang, 100) == [("falar", f"portal-{region}")]
+
+
+def test_michaelis_rows_are_human_pt_br_rows(monkeypatch):
+    """A Michaelis row carries no ``phones`` and no Infopédia or Wiktionary
+    URL. It is a dictionary transcription: the pt-BR human loader reads it and
+    the Portal loader does not."""
+    rows = [
+        {"word": "calva", "region": "pt-BR", "ipa_narrow": "ˈkawvɐ",
+         "michaelis_url": "https://michaelis.uol.com.br/x/calva/"},
+        {"word": "calva", "region": "pt-BR-x-saopaulo", "ipa_narrow": "ˈkaw.və",
+         "phones": "ˈkaw|və"},
+    ]
+    monkeypatch.setattr(benchmark, "_fetch", lambda url, name: _jsonl(rows))
+    assert benchmark.pt_unified_source(rows[0]) == "michaelis"
+    assert benchmark.load_portuguese_unified("pt-BR", 10) == [("calva", "ˈkawvɐ")]
+    assert benchmark.load_portal_lupo("pt-BR-x-sp", 10) == [("calva", "ˈkaw.və")]
+
+
+def test_unified_and_portal_regions_do_not_overlap():
+    """A language reads one source kind: human rows or the generator."""
+    assert not set(benchmark._PT_UNIFIED_REGIONS) & set(benchmark._PORTAL_LUPO_REGIONS)
+    assert not (set(benchmark._PT_UNIFIED_REGIONS.values())
+                & set(benchmark._PORTAL_LUPO_REGIONS.values()))
 
 
 def test_load_unified_excludes_untagged_pt_rows(monkeypatch):
@@ -123,7 +195,12 @@ def test_unified_registration_and_provenance():
     loader, langs = benchmark.DATASETS["portuguese_unified"]
     assert loader is benchmark.load_portuguese_unified
     assert langs == sorted(benchmark._PT_UNIFIED_REGIONS)
-    assert benchmark.PROVENANCE["portuguese_unified"] == "lexicon-derived"
+    for lang in ("pt-PT", "pt-BR"):
+        assert benchmark.provenance_for("portuguese_unified", lang) == "lexicon-derived"
+    for lang in ("pt-BR-x-carioca", "pt-BR-x-caipira"):
+        assert benchmark.provenance_for("portuguese_unified", lang) == "crowd-scraped"
+    for lang in benchmark._PORTAL_LUPO_REGIONS:
+        assert benchmark.provenance_for("portal_lupo", lang) == "lupo-derived"
     # the three superseded datasets are gone (merged, not duplicated)
     for old in ("infopedia_pt", "portuguese_phonetic_lexicon",
                 "wiktionary_pt", "styletts2_phonemes"):

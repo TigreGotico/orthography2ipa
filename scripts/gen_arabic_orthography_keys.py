@@ -67,14 +67,14 @@ DATA = REPO_ROOT / "orthography2ipa" / "data"
 
 LECTS = [
     "arb", "ar",
-    "ar-EG", "ar-IQ", "ar-IQ-x-qeltu", "ar-SD", "ar-TD", "ar-NG",
-    "ar-SY", "ar-LB", "ar-JO", "ar-PS",
-    "ar-AE", "ar-BH", "ar-KW", "ar-QA", "ar-OM",
-    "ar-SA-x-najd", "ar-SA-x-hejaz", "ar-YE",
-    "ar-SA-x-qassim", "ar-SA-x-rijal-alma", "ar-SA-x-sharqiyya",
-    "ar-MA", "ar-TN", "ar-DZ", "ar-LY", "ar-MR",
+    "arz-EG", "acm-IQ", "ar-IQ-x-qeltu", "apd-SD", "shu-TD", "shu-NG",
+    "apc-SY", "apc-LB", "apc-JO", "apc-PS",
+    "afb-AE", "afb-BH", "afb-KW", "afb-QA", "acx-OM",
+    "ars-SA", "acw-SA", "ayn-YE",
+    "ars-SA-x-qassim", "ar-SA-x-rijal-alma", "afb-SA-x-sharqiya",
+    "ary-MA", "aeb-TN", "arq-DZ", "ar-LY", "mey-MR",
     # abstract ancestors: keys placed here benefit every descendant
-    "ar-x-mashriqi", "ar-x-maghrebi", "ar-x-peninsular", "ar-x-levantine", "ar-x-gulf",
+    "ar-x-mashriqi", "ar-x-maghrebi", "ar-x-peninsul", "apc", "afb",
 ]
 
 SUN = "تثدذرزسشصضطظلن"
@@ -252,7 +252,7 @@ VOWELS = {"\u064e": "a", "\u064f": "u", "\u0650": "i"}
 # guttural, does not). Only concrete leaves are listed so the pan-group
 # grouping nodes are untouched.
 ARTICLE_VOWEL = {
-    "ar-LB": "i",
+    "apc-LB": "i",
 }
 # Lects that also raise the vowel of the SUN-assimilated article (اِسّوق /issuːʔ/,
 # اِدّكّان /iddukkaːn/). Beiruti and Emirati keep /a/ before a sun letter even
@@ -309,6 +309,56 @@ def sun_keys(letter_ipa, article_vowel=None):
     return out
 
 
+def merge_rules_by_id(existing, owned):
+    """Merge the rules this script owns into the rules a spec already holds.
+
+    The script owns some rules by ``id`` and writes them on every run. It does
+    NOT own the rest of the list: a rule added to the spec by hand, with its
+    own citation, is data this script has never seen. Replacing the whole list
+    deletes those rules in silence — which is what happened to ``arb``'s twelve
+    ``AR_EMPHASIS_SPREAD_*`` rules and their Watson 2002 / Davis 1995
+    citations. Merge by ``id`` instead: an owned rule replaces the rule of the
+    same id in place, keeping list order; a rule the script does not own stays;
+    an owned rule the spec lacks is appended.
+    """
+    owned_by_id = {r["id"]: r for r in owned}
+    out = []
+    for rule in existing or ():
+        out.append(owned_by_id.get(rule.get("id"), rule))
+    seen = {r.get("id") for r in out}
+    for rule in owned:
+        if rule["id"] not in seen:
+            out.append(rule)
+    return out
+
+
+def base_keys(letter_ipa, article_vowel=None):
+    """The whole derived key set, computed from one lect's own letter values.
+
+    ``ARB_FIXES`` and ``ARB_ADDITIONS`` are script-level spelling conventions —
+    hamza seats, the dagger alif, waṣl, tāʾ marbūṭa liaison, tanwīn, the
+    glide-preserving digraphs. They read the same in every Arabic lect.
+    ``sun_keys`` is the part that is lect-specific, so it is derived from the
+    caller's own letter mapping: a lect that reads ض as [dˤ] gets [dˤdˤ] in its
+    assimilated-article keys, not Classical [ɮˤɮˤ].
+
+    Used for ``arb`` and for any lect that sets no ``graphemes_base`` and so
+    inherits no keys to take a difference against.
+
+    SCOPE, measured and not assumed. This is the whole set the script *derives*
+    — 166 of the 182 ḥaraka-bearing keys ``arb`` carries. The other 16 are the
+    primitive vowel-sign layer, written into ``arb.json`` by hand and not
+    derived here: the bare marks ``َ ُ ِ ً ٌ ٍ ّ ْ`` and the matres digraphs
+    ``ُو ِي َا َى َو َي ْو ْي``. A lect with no ``graphemes_base`` still needs
+    those 16 from somewhere; this function does not supply them.
+    """
+    out = {}
+    out.update(ARB_FIXES)
+    out.update(ARB_ADDITIONS)
+    out.update(sun_keys(letter_ipa, article_vowel=article_vowel))
+    return out
+
+
 def main():
     import orthography2ipa
 
@@ -341,21 +391,31 @@ def main():
         before = json.dumps(graphemes, sort_keys=True, ensure_ascii=False)
 
         if code == "arb":
-            graphemes.update(ARB_FIXES)
-            graphemes.update(ARB_ADDITIONS)
-            graphemes.update(sun_keys(effective["arb"]))
-            spec["sandhi_rules"] = SANDHI
-            spec["allophone_rules"] = ALLOPHONE_RULES
+            graphemes.update(base_keys(effective["arb"]))
+            spec["sandhi_rules"] = merge_rules_by_id(
+                spec.get("sandhi_rules"), SANDHI)
+            spec["allophone_rules"] = merge_rules_by_id(
+                spec.get("allophone_rules"), ALLOPHONE_RULES)
             spec["word_exceptions"] = {**(spec.get("word_exceptions") or {}),
                                        **WORD_EXCEPTIONS}
         else:
-            # letters whose effective value differs from the nearest ancestor
-            # in LECTS (falling back to arb) need their own derived keys
-            anc = next((a for a in ancestors_of(code) if a in effective), "arb")
-            diff = {s: v for s, v in effective[code].items()
-                    if v != effective.get(anc, {}).get(s)}
-            if diff:
-                graphemes.update(sun_keys(diff))
+            if not spec.get("graphemes_base"):
+                # A lect with no graphemes_base inherits no keys, so there is
+                # nothing to take a difference against: the
+                # difference-from-ancestor path would leave it with almost
+                # none. Give it the whole derived set, computed from its own
+                # letter values.
+                graphemes.update(base_keys(effective[code]))
+            else:
+                # letters whose effective value differs from the nearest
+                # ancestor in LECTS (falling back to arb) need their own
+                # derived keys
+                anc = next((a for a in ancestors_of(code) if a in effective),
+                           "arb")
+                diff = {s: v for s, v in effective[code].items()
+                        if v != effective.get(anc, {}).get(s)}
+                if diff:
+                    graphemes.update(sun_keys(diff))
             if code in ARTICLE_VOWEL:
                 graphemes.update(article_keys(ARTICLE_VOWEL[code]))
             if code in ARTICLE_SUN_VOWEL:

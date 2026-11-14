@@ -8,32 +8,25 @@ Everything hard about the plugin system follows from one sentence:
 
     **A plugin refines an answer. It must not redefine the question.**
 
-That sounds obvious. It was not enforced, and the consequence was live in this
-library:
-
-    coelho, with a syllabifier plugin installed:  ˈkuɐʎu
-            without one:                          ˈkoɐʎu
-
-The same word, the same spec, two transcriptions — decided by whether an optional
-package happened to be in the environment. The plugin returned a *better*
-syllabification, which changed the syllable **count**, which moved the **stress**,
-which changed the **vowel reduction** that stress conditions.
-
-Every one of those steps was working as designed. The bug was that nothing said a
-plugin may not do that.
+A caller names a syllabifier in
+:attr:`Pipeline.syllabifier <orthography2ipa.pipeline.Pipeline.syllabifier>`, so
+the engine never applies one that nobody asked for. This kit answers a narrower
+question for the author of a syllabifier: does it draw better boundaries and
+leave the transcription alone? A better syllabification can change the syllable
+**count**, which moves the **stress**, which changes the **vowel reduction** that
+stress conditions.
 
 ## The contract
 
 1. **Round-trip.** A syllabifier splits a word; it does not rewrite it.
    ``"".join(syllabify(word)) == word``, always.
 2. **Language claim.** A plugin speaks only for the codes it claims.
-3. **Downstream neutrality.** *Installing a plugin must not change any stage the
-   plugin does not own.* Transcribe a corpus with the plugin and without it: the
-   output must be identical.
+3. **Downstream neutrality.** *A plugin must not change any stage it does not
+   own.* Transcribe a corpus with the plugin and without it: the output must be
+   identical.
 
-Rule 3 is the one that was missing, and it is the one that matters. Note what it
-implies, because it is not a restriction on plugins so much as a demand on the
-library:
+Rule 3 is the one that matters. Note what it implies, because it is not a
+restriction on plugins so much as a demand on the library:
 
     **If a better syllabification moves the stress, the syllable count is
     load-bearing for stress — and that is a bug in the BUILT-IN answer, not a
@@ -41,9 +34,8 @@ library:
 
 A plugin that cannot pass rule 3 is not a bad plugin. It is a plugin telling you
 that the built-in answer is wrong. Fix the built-in answer; the plugin should then
-pass unchanged. (That is exactly how the ``coelho`` case was resolved: ``pt-PT``
-now declares its diphthongs, the bundled syllabifier separates the hiatus itself,
-and the plugin — still better at drawing boundaries — no longer moves anything.)
+pass unchanged. ``pt-PT`` shows how: it declares its diphthongs, so the bundled
+syllabifier separates the hiatus of ``coelho`` itself.
 
 ## Using it
 
@@ -55,14 +47,20 @@ A plugin author runs this in their own CI, against their own plugin::
         assert_syllabifier_conforms(MySyllabifier())
 
 It will tell them, in words, which rule they broke and what it means.
+
+Both checks are deprecated, and go in the next major release. Each one raises a
+``DeprecationWarning`` that names that release. A caller passes a syllabifier or a
+rescorer to one engine in a :class:`~orthography2ipa.pipeline.Pipeline`, so the
+caller sees the effect in its own output.
 """
 
 from __future__ import annotations
 
 from typing import List, Optional, Sequence
 
-from orthography2ipa import registry
 from orthography2ipa.g2p import G2P
+from orthography2ipa.lexicon import _warn_deprecated
+from orthography2ipa.pipeline import Pipeline
 from orthography2ipa.syllabifier_plugin import SyllabifierPlugin
 
 __all__ = [
@@ -102,8 +100,8 @@ def _check_language_claim(plugin: SyllabifierPlugin) -> None:
     codes = list(plugin.language_codes)
     if not codes:
         raise ConformanceError(
-            "language claim: the plugin claims no language codes, so discovery can "
-            "never route anything to it. It would be installed and never called."
+            "language claim: the plugin claims no language codes, so a caller "
+            "cannot tell which languages it serves."
         )
 
 
@@ -112,21 +110,11 @@ def _check_downstream_neutrality(
     words: Sequence[str],
     lang: str,
 ) -> None:
-    """The rule that matters: installing the plugin must not move the answer."""
-    saved = registry._syllabifiers
-
-    try:
-        # Register under the claimed codes AND the code under test: a plugin that
-        # claims `pt-PT` is meant to serve `pt-PT-x-lisbon` too, and the check is
-        # about the plugin's effect, not about code resolution.
-        codes = {*plugin.language_codes, lang}
-        registry._syllabifiers = {code: plugin for code in codes}
-        with_plugin = {w: G2P(lang).transcribe_word(w) for w in words}
-
-        registry._syllabifiers = {}
-        without_plugin = {w: G2P(lang).transcribe_word(w) for w in words}
-    finally:
-        registry._syllabifiers = saved
+    """The rule that matters: the plugin must not move the answer."""
+    with_engine = G2P(lang, pipeline=Pipeline(syllabifier=plugin))
+    with_plugin = {w: with_engine.transcribe_word(w) for w in words}
+    without_engine = G2P(lang)
+    without_plugin = {w: without_engine.transcribe_word(w) for w in words}
 
     moved = {
         w: (without_plugin[w], with_plugin[w])
@@ -141,7 +129,7 @@ def _check_downstream_neutrality(
         for w, (before, after) in sorted(moved.items())
     )
     raise ConformanceError(
-        f"downstream neutrality: installing this plugin CHANGES THE TRANSCRIPTION "
+        f"downstream neutrality: this plugin CHANGES THE TRANSCRIPTION "
         f"for {lang}:\n\n{detail}\n\n"
         f"A plugin may answer a question better. It may not change what the question "
         f"was. If a better syllabification moves the stress, then the syllable count "
@@ -159,7 +147,10 @@ def assert_syllabifier_conforms(
     words: Optional[Sequence[str]] = None,
     lang: Optional[str] = None,
 ) -> None:
-    """Assert *plugin* keeps the syllabifier contract, or explain what it broke.
+    """Deprecated: assert *plugin* keeps the syllabifier contract, or explain what it broke.
+
+    It goes in the next major release. A caller passes a syllabifier to one
+    engine, so the caller decides whether a moved transcription is wanted.
 
     Args:
         plugin: the syllabifier to check.
@@ -168,6 +159,8 @@ def assert_syllabifier_conforms(
             diphthongs, written accents.
         lang: the code to transcribe under. Defaults to the plugin's first claim.
     """
+    _warn_deprecated("assert_syllabifier_conforms",
+                     "a test of your own that compares G2P(lang) with G2P(lang, pipeline=Pipeline(syllabifier=...))")
     words = list(words or DEFAULT_PROBE_WORDS)
     lang = lang or next(iter(plugin.language_codes), None)
     if lang is None:
@@ -198,11 +191,14 @@ def assert_rescorer_conforms(
     words: Optional[Sequence[str]] = None,
     lang: Optional[str] = None,
 ) -> None:
-    """Assert a rescorer plugin keeps its contract.
+    """Deprecated: assert a rescorer plugin keeps its contract.
 
     It MAY change the transcription — that is what it is for. It may not invent a
-    symbol, wander into another language, or answer differently twice.
+    symbol, wander into another language, or answer differently twice. It goes in
+    the next major release, together with ``RescorerPlugin``.
     """
+    _warn_deprecated("assert_rescorer_conforms",
+                     "a test of your own over G2P(lang, pipeline=Pipeline(rescore=...)) and phoneme_inventory(spec)")
     from orthography2ipa import get
     from orthography2ipa.inventory import phoneme_inventory, tokenize
 
@@ -214,23 +210,14 @@ def assert_rescorer_conforms(
     spec = get(lang)
     declared = phoneme_inventory(spec)
 
-    # Declared, not discovered. A rescorer changes the transcription, so it only
-    # ever runs because something NAMED it — here, the caller, which is exactly how
-    # a downstream engine composes its own pipeline.
-    saved = registry._declared.get("rescore")
-    try:
-        registry._declared["rescore"] = {"__conformance__": plugin}
-        engine = G2P(lang, plugins={"rescore": "__conformance__"})
-        first = {w: engine.transcribe_word(w) for w in words}
-        second = {
-            w: G2P(lang, plugins={"rescore": "__conformance__"}).transcribe_word(w)
-            for w in words
-        }
-    finally:
-        if saved is None:
-            registry._declared.pop("rescore", None)
-        else:
-            registry._declared["rescore"] = saved
+    # Passed, not discovered. A rescorer changes the transcription, so it only
+    # ever runs because the caller put it in the pipeline of one engine.
+    def engine() -> G2P:
+        return G2P(lang, pipeline=Pipeline(rescore=tuple(plugin.rescorers(lang))))
+
+    first_engine = engine()
+    first = {w: first_engine.transcribe_word(w) for w in words}
+    second = {w: engine().transcribe_word(w) for w in words}
 
     unstable = {w: (first[w], second[w]) for w in words if first[w] != second[w]}
     if unstable:
