@@ -63,7 +63,7 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 | `cmudict` ([cmusphinx/cmudict](https://github.com/cmusphinx/cmudict)) | `en-US` | gold | lexicon-derived | BSD-style (CMU) | 126050 | 0.3376 | yes |
 | `ipadict` ([open-dict-data/ipa-dict](https://github.com/open-dict-data/ipa-dict)) | `en-US` | gold | lexicon-derived | MIT, each file its own | 125925 | 0.2908 | yes |
 | `ipa_babylm` ([phonemetransformers/IPA-BabyLM](https://huggingface.co/datasets/phonemetransformers/IPA-BabyLM)) | `en-US` | generated | espeak-derived | Not stated upstream | 20107 | 0.3520 | no |
-| `ipa_childes` ([fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split)) | `en-US` | generated | espeak-derived | CC BY 4.0 | 18054 | 0.2655 | no |
+| `ipa_childes` ([fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split)) | `en-US` | generated | espeak-derived | CC BY 4.0 | 18054 | 0.2654 | no |
 <!-- atlas:datasets end -->
 
 <!-- atlas:inventory begin -->
@@ -187,7 +187,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 
 Stress falls on the first syllable by default. These endings take the penult: ⟨-ic⟩ ⟨-ics⟩ ⟨-ion⟩ ⟨-ions⟩.
 
-Whole-word exceptions (45): ⟨'re⟩ [ɹ], ⟨'ve⟩ [v], ⟨a⟩ [ə], ⟨above⟩ [əˈbʌv], ⟨an⟩ [ən], ⟨are⟩ [ɑɹ], ⟨as⟩ [æz], ⟨come⟩ [kʌm], ⟨do⟩ [du], ⟨does⟩ [dʌz], ⟨doing⟩ [ˈduɪŋ], ⟨done⟩ [dʌn], ⟨dove⟩ [dʌv], ⟨eye⟩ [aɪ], ⟨give⟩ [ɡɪv], ⟨glove⟩ [ɡlʌv], ⟨gone⟩ [ɡɒn], ⟨has⟩ [hæz], ⟨have⟩ [hæv], ⟨his⟩ [hɪz], ⟨i⟩ [aɪ], ⟨i'd⟩ [aɪd], ⟨i'll⟩ [aɪl], ⟨i'm⟩ [aɪm], ⟨is⟩ [ɪz], ⟨live⟩ [lɪv], ⟨lose⟩ [luːz], ⟨love⟩ [lʌv], ⟨move⟩ [muːv], ⟨none⟩ [nʌn], and 15 more in the spec file.
+Whole-word exceptions (46): ⟨'re⟩ [ɹ], ⟨'ve⟩ [v], ⟨a⟩ [ə], ⟨above⟩ [əˈbʌv], ⟨an⟩ [ən], ⟨are⟩ [ɑɹ], ⟨as⟩ [æz], ⟨come⟩ [kʌm], ⟨do⟩ [du], ⟨does⟩ [dʌz], ⟨doing⟩ [ˈduɪŋ], ⟨done⟩ [dʌn], ⟨dove⟩ [dʌv], ⟨eye⟩ [aɪ], ⟨give⟩ [ɡɪv], ⟨glove⟩ [ɡlʌv], ⟨gone⟩ [ɡɒn], ⟨has⟩ [hæz], ⟨have⟩ [hæv], ⟨his⟩ [hɪz], ⟨i⟩ [aɪ], ⟨i'd⟩ [aɪd], ⟨i'll⟩ [aɪl], ⟨i'm⟩ [aɪm], ⟨is⟩ [ɪz], ⟨live⟩ [lɪv], ⟨lose⟩ [luːz], ⟨love⟩ [lʌv], ⟨menu⟩ [ˈmɛnju], ⟨move⟩ [muːv], and 16 more in the spec file.
 
 Grammatical endings: ⟨-cial⟩ [ʃəl], ⟨-cian⟩ [ʃən], ⟨-cion⟩ [ʃən], ⟨-cious⟩ [ʃəs], ⟨-ous⟩ [əs], ⟨-ssion⟩ [ʃən], ⟨-ssure⟩ [ʃɚ], ⟨-stial⟩ [stʃəl], ⟨-stion⟩ [stʃən], ⟨-stious⟩ [stʃəs], ⟨-sure⟩ [ʒɚ], ⟨-tial⟩ [ʃəl], ⟨-tion⟩ [ʃən], ⟨-tious⟩ [ʃəs], ⟨-ture⟩ [tʃɚ].
 <!-- atlas:spelling end -->
@@ -220,8 +220,8 @@ The spec applies 34 allophone rules after the letters are read. The change colum
 | `EN_GB_ES_VOICING_AFTER_EPENTHESIS` | /s/ → [z], word-finally, spelled ⟨s⟩, after ⟨e⟩, with more context in the spec | - | [Wells 2008](#src-wells2008), Cruttenden 2014 |
 | `EN_GB_OING_HIATUS` | /ɔɪ/ → [oʊɪ], spelled ⟨oi⟩, before ⟨ng⟩, with more context in the spec | - | - |
 | `EN_GB_FINAL_E_SOLE_VOWEL` | ∅ → [i], word-finally, spelled ⟨e⟩, with more context in the spec | ⟨be⟩ [bi] | [Kenyon 1953](#src-kenyon1953) |
+| `EN_GB_FINAL_Y_MONOSYLLABLE` | /i/ → [aɪ], word-finally, spelled ⟨y⟩, with more context in the spec | ⟨my⟩ [maɪ] | - |
 | `EN_US_FINAL_S_VOICING_AFTER_TENSE_VOWEL` | /s/ → [z], word-finally, before a word boundary, after [i] [u] [eɪ] [oʊ] [aɪ] [aʊ] [ɔɪ] [ɑ] and 16 more, spelled ⟨s⟩ | ⟨days⟩ [deɪz] | [Wells 1982](#src-wells1982_vol3), [Kenyon 1953](#src-kenyon1953) |
-| `EN_US_FINAL_Y_MONOSYLLABLE` | /i/ → [aɪ], word-finally, spelled ⟨y⟩, with more context in the spec | ⟨y⟩ [aɪ] | [Wells 1982](#src-wells1982_vol3), [Kenyon 1953](#src-kenyon1953) |
 | `EN_US_LOT_PALM_MERGER` | /ɒ/ → [ɑ] | - | [Wells 1982](#src-wells1982_vol3) |
 | `EN_US_NURSE_RCOLOURED` | /ɜːɹ/ → [ɝ] | - | [Wells 1982](#src-wells1982_vol3), [Ladefoged 2011](#src-ladefoged2011), [Kenyon 1953](#src-kenyon1953) |
 | `EN_US_LETTER_RCOLOURED` | /əɹ/ → [ɚ] | - | [Wells 1982](#src-wells1982_vol3), [Ladefoged 2011](#src-ladefoged2011), [Kenyon 1953](#src-kenyon1953) |

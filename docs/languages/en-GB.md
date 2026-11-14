@@ -124,7 +124,7 @@ Three limits keep the pattern exact. First, two consonant graphemes between the 
 
 The word-final ⟨-oing⟩ is the opposite case. It is the ⟨-ing⟩ suffix on a stem that ends in ⟨o⟩, so the two vowel letters belong to different morphemes and stay in hiatus. The rule `EN_GB_OING_HIATUS` restores the hiatus, so ⟨going⟩ gives `ˈɡəʊɪŋ` and ⟨echoing⟩ gives `ˈɛtʃəʊɪŋ`. The rule does not choose the stem vowel, which is lexical. The ⟨do⟩ family has the GOOSE vowel, not GOAT, so ⟨do⟩, ⟨does⟩ and ⟨doing⟩ are whole-word exceptions. The prefixed forms are outside that list and stay wrong: ⟨undoing⟩ gives `ˈʌndəʊɪŋ`.
 
-A word-final ⟨e⟩ that is the only vowel of the word is not silent. The rule `EN_GB_FINAL_E_SOLE_VOWEL` reads it /iː/ when no other slot of the word has a nucleus, so the letter name ⟨e⟩ gives `ˈiː` and ⟨she⟩ gives `ˈʃiː`. The letter ⟨y⟩ before a silent final ⟨e⟩ is /aɪ/, so ⟨bye⟩ gives `ˈbaɪ`. Word-final ⟨u⟩ after a consonant letter is /uː/, as in ⟨flu⟩ `ˈfluː` and ⟨tofu⟩ `ˈtɒfuː`. The source of these three readings is the spelling-to-sound tables of the Wikipedia article English orthography (revision 1383244083). Its word-final ⟨u⟩ cell gives three words with /juː/ and three with /uː/, so the default follows WikiPron, where most of these words have /uː/. The few /juː/ words, such as ⟨menu⟩ and ⟨emu⟩, belong to a lexicon.
+A word-final ⟨e⟩ that is the only vowel of the word is not silent. The rule `EN_GB_FINAL_E_SOLE_VOWEL` reads it /iː/ when no other slot of the word has a nucleus, so the letter name ⟨e⟩ gives `ˈiː` and ⟨she⟩ gives `ˈʃiː`. The letter ⟨y⟩ before a silent final ⟨e⟩ is /aɪ/, so ⟨bye⟩ gives `ˈbaɪ`. The rule `EN_GB_FINAL_Y_MONOSYLLABLE` reads a word-final ⟨y⟩ /aɪ/ when the word has no other vowel, so ⟨my⟩ gives `ˈmaɪ`. After another syllable, word-final ⟨y⟩ is the unstressed /i/, as in ⟨happy⟩ `ˈhæpi` and ⟨gypsy⟩ `ˈdʒɪpsi`. Word-final ⟨u⟩ after a consonant letter is /uː/, as in ⟨flu⟩ `ˈfluː` and ⟨tofu⟩ `ˈtɒfuː`. The source of these readings is the spelling-to-sound tables of the Wikipedia article English orthography (revision 1383244083). Its word-final ⟨u⟩ cell gives three words with /juː/ and three with /uː/, so the default follows WikiPron, where most of these words have /uː/. The few /juː/ words are a closed set. ⟨menu⟩ is a whole-word exception, so it gives `ˈmɛnjuː`. The others, such as ⟨emu⟩, belong to a lexicon.
 
 The `word_exceptions` table holds frequent words that no spelling rule reads. The first class is function words: ⟨the a an⟩ in their weak forms, ⟨I I'm I'll I'd is as was has his you your are ye⟩ in their strong forms, ⟨eye⟩, the letter name ⟨u⟩, and the detached clitics ⟨'re 've⟩. The second class is the frequent words with a mute ⟨e⟩ and no free vowel, such as ⟨have give live love come some one done none gone⟩. English words never end in ⟨v⟩, so every ⟨-ve⟩ spelling has a mute ⟨e⟩ that says nothing about length.
 
@@ -153,13 +153,13 @@ The `word_exceptions` table holds frequent words that no spelling rule reads. Th
 
 RP is non-rhotic: /ɹ/ occurs only before a vowel. The `EN_GB_NONRHOTIC_*` rules delete the /ɹ/ of an r-coloured vowel before a consonant and at the end of a word. So ⟨car⟩ gives `ˈkɑː`, ⟨hard⟩ gives `ˈhɑːd` and ⟨girl⟩ gives `ˈɡɜːl`. Before a vowel, the `EN_GB_PREVOCALIC_R_*` rules keep the /ɹ/ and shorten the vowel, as in ⟨arrive⟩ `ˈæɹaɪv`. The LOT vowel is rounded [ɒ], as in ⟨hop⟩ `ˈhɒp`.
 
-The spec does not model the TRAP-BATH split. BATH words take the TRAP vowel, so ⟨dance⟩ gives `ˈdæns` and ⟨grass⟩ gives `ˈɡɹæs`. The PALM spelling ⟨alm⟩ is not handled either, so ⟨palm⟩ gives `ˈpælm`. A word-final ⟨y⟩ in a monosyllable is [i] in `en-GB`, so ⟨my⟩ gives `ˈmi`.
+The spec does not model the TRAP-BATH split. BATH words take the TRAP vowel, so ⟨dance⟩ gives `ˈdæns` and ⟨grass⟩ gives `ˈɡɹæs`. The PALM spelling ⟨alm⟩ is not handled either, so ⟨palm⟩ gives `ˈpælm`.
 
 ## American English (en-US): differences from RP
 
 The `en-US` spec is rhotic. It overrides each `EN_GB_NONRHOTIC_*` rule with a rule that matches nothing, so /ɹ/ stays in every position. The rules `EN_US_NURSE_RCOLOURED` and `EN_US_LETTER_RCOLOURED` write the r-coloured vowels [ɝ] and [ɚ]. So ⟨bird⟩ gives `ˈbɝd` and ⟨butter⟩ gives `ˈbʌtɝ`. The `EN_US_*_NO_LENGTH` rules remove the length mark from the long vowels, so ⟨see⟩-type vowels are [i], as in ⟨feel⟩ `ˈfil`.
 
-The rule `EN_US_LOT_PALM_MERGER` maps /ɒ/ to [ɑ], so ⟨lot⟩ gives `ˈlɑt`. GOAT is [oʊ] through the `en-US` entries for ⟨o⟩, ⟨oa⟩ and ⟨ow⟩, as in ⟨hope⟩ `ˈhoʊp`. The rule `EN_US_FINAL_Y_MONOSYLLABLE` makes a final ⟨y⟩ in a word with no other vowel letter [aɪ], so ⟨my⟩ gives `ˈmaɪ`. General American has no TRAP-BATH split, so ⟨dance⟩ with [æ] is correct for `en-US`.
+The rule `EN_US_LOT_PALM_MERGER` maps /ɒ/ to [ɑ], so ⟨lot⟩ gives `ˈlɑt`. GOAT is [oʊ] through the `en-US` entries for ⟨o⟩, ⟨oa⟩ and ⟨ow⟩, as in ⟨hope⟩ `ˈhoʊp`. General American has no TRAP-BATH split, so ⟨dance⟩ with [æ] is correct for `en-US`.
 
 Two General American features are not modelled. The first is the COT-CAUGHT merger, which most accents have: ⟨caught⟩ keeps [ɔ]. The second is flapping. General American flaps /t/ and /d/ to [ɾ] between vowels when the next vowel is unstressed:
 
@@ -233,10 +233,10 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 
 | Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
 |:--|:--|:--|:--|:--|--:|--:|:--|
-| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `en` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 80987 | 0.2647 | yes |
-| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `en-GB` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 81537 | 0.2316 | yes |
-| `ipa_childes` ([fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split)) | `en-GB` | generated | espeak-derived | CC BY 4.0 | 11446 | 0.2972 | no |
-| `ipadict` ([open-dict-data/ipa-dict](https://github.com/open-dict-data/ipa-dict)) | `en-GB` | generated | espeak-derived | MIT, each file its own | 65118 | 0.2217 | no |
+| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `en` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 80987 | 0.2645 | yes |
+| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `en-GB` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 81537 | 0.2314 | yes |
+| `ipa_childes` ([fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split)) | `en-GB` | generated | espeak-derived | CC BY 4.0 | 11446 | 0.2966 | no |
+| `ipadict` ([open-dict-data/ipa-dict](https://github.com/open-dict-data/ipa-dict)) | `en-GB` | generated | espeak-derived | MIT, each file its own | 65118 | 0.2215 | no |
 <!-- atlas:datasets end -->
 
 <!-- atlas:inventory begin -->
@@ -359,7 +359,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 
 Stress falls on the first syllable by default. These endings take the penult: ⟨-ic⟩ ⟨-ics⟩ ⟨-ion⟩ ⟨-ions⟩.
 
-Whole-word exceptions (45): ⟨'re⟩ [ɹ], ⟨'ve⟩ [v], ⟨a⟩ [ə], ⟨above⟩ [əˈbʌv], ⟨an⟩ [ən], ⟨are⟩ [ɑː], ⟨as⟩ [æz], ⟨come⟩ [kʌm], ⟨do⟩ [duː], ⟨does⟩ [dʌz], ⟨doing⟩ [ˈduːɪŋ], ⟨done⟩ [dʌn], ⟨dove⟩ [dʌv], ⟨eye⟩ [aɪ], ⟨give⟩ [ɡɪv], ⟨glove⟩ [ɡlʌv], ⟨gone⟩ [ɡɒn], ⟨has⟩ [hæz], ⟨have⟩ [hæv], ⟨his⟩ [hɪz], ⟨i⟩ [aɪ], ⟨i'd⟩ [aɪd], ⟨i'll⟩ [aɪl], ⟨i'm⟩ [aɪm], ⟨is⟩ [ɪz], ⟨live⟩ [lɪv], ⟨lose⟩ [luːz], ⟨love⟩ [lʌv], ⟨move⟩ [muːv], ⟨none⟩ [nʌn], and 15 more in the spec file.
+Whole-word exceptions (46): ⟨'re⟩ [ɹ], ⟨'ve⟩ [v], ⟨a⟩ [ə], ⟨above⟩ [əˈbʌv], ⟨an⟩ [ən], ⟨are⟩ [ɑː], ⟨as⟩ [æz], ⟨come⟩ [kʌm], ⟨do⟩ [duː], ⟨does⟩ [dʌz], ⟨doing⟩ [ˈduːɪŋ], ⟨done⟩ [dʌn], ⟨dove⟩ [dʌv], ⟨eye⟩ [aɪ], ⟨give⟩ [ɡɪv], ⟨glove⟩ [ɡlʌv], ⟨gone⟩ [ɡɒn], ⟨has⟩ [hæz], ⟨have⟩ [hæv], ⟨his⟩ [hɪz], ⟨i⟩ [aɪ], ⟨i'd⟩ [aɪd], ⟨i'll⟩ [aɪl], ⟨i'm⟩ [aɪm], ⟨is⟩ [ɪz], ⟨live⟩ [lɪv], ⟨lose⟩ [luːz], ⟨love⟩ [lʌv], ⟨menu⟩ [ˈmɛnjuː], ⟨move⟩ [muːv], and 16 more in the spec file.
 
 Grammatical endings: ⟨-cial⟩ [ʃəl], ⟨-cian⟩ [ʃən], ⟨-cion⟩ [ʃən], ⟨-cious⟩ [ʃəs], ⟨-ous⟩ [əs], ⟨-ssion⟩ [ʃən], ⟨-ssure⟩ [ʃə], ⟨-stial⟩ [stʃəl], ⟨-stion⟩ [stʃən], ⟨-stious⟩ [stʃəs], ⟨-sure⟩ [ʒə], ⟨-tial⟩ [ʃəl], ⟨-tion⟩ [ʃən], ⟨-tious⟩ [ʃəs], ⟨-ture⟩ [tʃə].
 <!-- atlas:spelling end -->
@@ -367,7 +367,7 @@ Grammatical endings: ⟨-cial⟩ [ʃəl], ⟨-cian⟩ [ʃən], ⟨-cion⟩ [ʃə
 <!-- atlas:rules begin -->
 ## Rules
 
-The spec applies 43 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
+The spec applies 44 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
 
 | Rule | Change | Example | Cited |
 |:--|:--|:--|:--|
@@ -414,6 +414,7 @@ The spec applies 43 allophone rules after the letters are read. The change colum
 | `EN_GB_ES_VOICING_AFTER_EPENTHESIS` | /s/ → [z], word-finally, spelled ⟨s⟩, after ⟨e⟩, with more context in the spec | - | [Cruttenden 2014](#src-gimson2014), [Wells 2008](#src-wells2008) |
 | `EN_GB_OING_HIATUS` | /ɔɪ/ → [əʊɪ], spelled ⟨oi⟩, before ⟨ng⟩, with more context in the spec | - | [Carney 1994](#src-carney1994) |
 | `EN_GB_FINAL_E_SOLE_VOWEL` | ∅ → [iː], word-finally, spelled ⟨e⟩, with more context in the spec | ⟨be⟩ [biː] | [English orthography 2026](#src-wp_english_orthography) |
+| `EN_GB_FINAL_Y_MONOSYLLABLE` | /i/ → [aɪ], word-finally, spelled ⟨y⟩, with more context in the spec | ⟨my⟩ [maɪ] | [English orthography 2026](#src-wp_english_orthography) |
 <!-- atlas:rules end -->
 
 <!-- atlas:examples begin words="pin|tap|button|butter|leaf|feel|ambitious|arrive|bathe|bird|city|dance|delicious|digestion" -->
