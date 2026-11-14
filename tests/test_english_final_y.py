@@ -1,4 +1,4 @@
-"""A word-final ⟨y⟩ that is the word's only vowel letter, and the word menu.
+"""A word-final ⟨y⟩ in a word with no other nucleus, and the word menu.
 
 Every expected value comes from a source, never from the engine:
 
