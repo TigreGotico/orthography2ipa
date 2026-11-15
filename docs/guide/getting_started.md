@@ -22,7 +22,7 @@ The [README](../../README.md#install) gives the install command. The runtime dep
 | `portuguese` | [`silabificador`](https://github.com/TigreGotico/silabificador) | A real Portuguese syllabifier that a caller can pass in place of the bundled vowel-group splitter |
 | `test` | `pytest` and the tools that the gold-set loaders need | The test suite of a clone ([CONTRIBUTING.md](../../CONTRIBUTING.md#tests)) |
 
-Two more extras serve the scripts of a clone and are never runtime dependencies. The `compare` extra installs the other G2P systems that `scripts/compare_systems.py` scores. The `silver-correction` extra installs the Anthropic SDK for `scripts/correct_silver_ipa.py` ([silver_correction.md](../contributing/silver_correction.md)).
+Two more extras serve the scripts of a clone and are never runtime dependencies. The `compare` extra installs four of the G2P systems that `scripts/compare_systems.py` scores: epitran, gruut, pycotovia and ahotts-g2p. The `silver-correction` extra installs the Anthropic SDK for `scripts/correct_silver_ipa.py` ([silver_correction.md](../contributing/silver_correction.md)).
 
 ## Your first transcription
 
