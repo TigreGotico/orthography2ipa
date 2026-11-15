@@ -462,17 +462,20 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
     # standardization above folds ``als-AL`` into ``sq``; the standardized
     # one serves a tag whose own language has no spec, such as ``sh``
     # (``sr-Latn``). A one-letter subtag (``x-``, ``i-``) is a singleton.
+    # The own-language specs are measured from the tag that names their
+    # language: langcodes folds ``fat-GH`` into ``ak-GH``, and CLDR 49 makes
+    # Fanti a language apart from Akan, so ``ak-GH`` is not near ``fat``.
     # With no own-language spec near enough, the search is as wide as
     # before, so no tag that resolved stops resolving.
-    own: List[str] = []
-    for language in dict.fromkeys(
-            tag.split("-")[0].lower() for tag in (requested, code)):
+    match = None
+    for tag in (requested, code):
+        language = tag.split("-")[0].lower()
         own = [c for c in candidates
                if len(language) > 1 and c.split("-")[0].lower() == language]
         if own:
+            match = closest_lang(tag, own, lects="standard")
             break
-    match = ((own and closest_lang(code, own, lects="standard"))
-             or closest_lang(code, candidates, lects="standard"))
+    match = match or closest_lang(code, candidates, lects="standard")
     if match:
         match = _RENAMED.get(match, match)
         _LOG.debug("resolved language code %r to nearest registered %r",

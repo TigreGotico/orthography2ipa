@@ -1,5 +1,9 @@
 # Changelog
 
+## [7.123.8a2](https://github.com/TigreGotico/orthography2ipa/tree/7.123.8a2) (2026-11-15)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.123.8a1...7.123.8a2)
+
 ## [7.123.8a1](https://github.com/TigreGotico/orthography2ipa/tree/7.123.8a1) (2026-11-14)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.123.7a2...7.123.8a1)
@@ -378,10 +382,6 @@
 ## [7.122.13a1](https://github.com/TigreGotico/orthography2ipa/tree/7.122.13a1) (2026-11-09)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.122.12a2...7.122.13a1)
-
-**Merged pull requests:**
-
-- fix: count the packaged lexicon patch keys for tugaphone [\#2228](https://github.com/TigreGotico/orthography2ipa/pull/2228) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.122.12a2](https://github.com/TigreGotico/orthography2ipa/tree/7.122.12a2) (2026-11-09)
 
@@ -2201,15 +2201,15 @@
 
 ## [7.80.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.80.1a1) (2026-08-24)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.16a1...7.80.1a1)
-
-## [7.79.16a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.16a1) (2026-08-24)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.80.0a1...7.79.16a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.80.0a1...7.80.1a1)
 
 ## [7.80.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.80.0a1) (2026-08-24)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.15a1...7.80.0a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.16a1...7.80.0a1)
+
+## [7.79.16a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.16a1) (2026-08-24)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.79.15a1...7.79.16a1)
 
 ## [7.79.15a1](https://github.com/TigreGotico/orthography2ipa/tree/7.79.15a1) (2026-08-24)
 
@@ -3181,11 +3181,7 @@
 
 ## [7.24.0a6](https://github.com/TigreGotico/orthography2ipa/tree/7.24.0a6) (2026-07-16)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.24.0a3...7.24.0a6)
-
-## [7.24.0a3](https://github.com/TigreGotico/orthography2ipa/tree/7.24.0a3) (2026-07-16)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.24.0a4...7.24.0a3)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.24.0a4...7.24.0a6)
 
 ## [7.24.0a4](https://github.com/TigreGotico/orthography2ipa/tree/7.24.0a4) (2026-07-16)
 
@@ -3193,7 +3189,11 @@
 
 ## [7.24.0a5](https://github.com/TigreGotico/orthography2ipa/tree/7.24.0a5) (2026-07-16)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.23.0a4...7.24.0a5)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.24.0a3...7.24.0a5)
+
+## [7.24.0a3](https://github.com/TigreGotico/orthography2ipa/tree/7.24.0a3) (2026-07-16)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.23.0a4...7.24.0a3)
 
 ## [7.23.0a4](https://github.com/TigreGotico/orthography2ipa/tree/7.23.0a4) (2026-07-16)
 
