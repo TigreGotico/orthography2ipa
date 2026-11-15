@@ -43,7 +43,7 @@ The text of the element is the spelling, and it is not decoration. Cross-word ru
 
 ### Markup comes before normalization
 
-The engine reads the markup before the normalize step. A normalize plugin, such as a diacritizer or a number expander, never sees a tag. It gets the plain runs of text between the tags, which is the only text it must rewrite.
+The engine reads the markup before it prepares the text. The `expand` step of a `Pipeline`, such as a number expander, never sees a tag. It gets the plain runs of text between the tags, which is the only text it must rewrite. A deprecated normalize plugin gets the same plain runs. The `mark` step sees a forced word as spelled, and the forced word keeps its written surface ([getting_started.md](getting_started.md#preparing-text-before-the-lattice)).
 
 ### The inventory check
 

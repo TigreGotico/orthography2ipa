@@ -162,7 +162,7 @@ A rescorer sees the fully resolved lattice, with the candidates of every neighbo
 
 ### The API
 
-Subclass `LatticeRescorer` and implement `rescore(slot, context)`. Pass the rescorer with the `rescorer=` argument of `ipa_beam`, `ipa_best` or `ipa_lattice` on the tokenizer, or of the `G2P(...)` constructor. The argument takes one rescorer or a list. With the default `None`, the lattice and the beam do not change.
+Subclass `LatticeRescorer` and implement `rescore(slot, context)`. Pass the rescorer with the `rescorer=` argument of `ipa_beam`, `ipa_best` or `ipa_lattice` on the tokenizer. The argument takes one rescorer or a list. With the default `None`, the lattice and the beam do not change. An engine takes its rescorers in `Pipeline(rescore=...)`, as the worked example below shows. The `rescorer=` argument of `G2P` is deprecated.
 
 `rescore` returns the slot's candidate list. The engine sorts the returned candidates by `(cost, ipa)` before the beam reads them, so a rescorer promotes a candidate by lowering its cost. Returning `slot.candidates` unchanged is a no-op. An empty list deletes the slot: the slot gives no segment to any path, and `ipa_lattice` leaves it out. A silent-letter rule uses this.
 

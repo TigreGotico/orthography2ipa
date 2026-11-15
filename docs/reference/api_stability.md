@@ -21,15 +21,14 @@ A name imported from a submodule and also re-exported at the top level is one na
 | Name | Module | Used by |
 | :--- | :--- | :--- |
 | `G2P` | `g2p` | arbtok, euskaphone, tugaphone |
-| `WordContext` | `sentence` | arbtok, euskaphone, tugaphone |
+| `WordContext` | `sentence` | arbtok, euskaphone |
 | `Pipeline` | `pipeline` | arbtok, euskaphone, tugaphone |
 | `get` | `registry` | arbtok, tugaphone |
 | `resolve` | `registry` | arbtok, euskaphone, tugaphone |
 | `resolves_exactly` | `registry` | arbtok, tugaphone |
 | `available_codes` | `registry` | arbtok, euskaphone, tugaphone |
-| `register_lexicon`, `clear_lexicons` | `lexicon` | arbtok, euskaphone, tugaphone |
+| `load_lexicon` | `lexicon` | arbtok, euskaphone |
 | `validate_lexicon_text` | `lexicon` | arbtok, euskaphone |
-| `get_lexicon`, `available_lexicon_codes` | `lexicon` | euskaphone |
 | `packaged_lexicon` | `lexicon` | tugaphone |
 | `PhonetokTokenizer`, `TokenKind` | `phonetok` | arbtok, tugaphone |
 | `Candidate`, `SegmentSlot` | `phonetok` | arbtok |
@@ -43,10 +42,10 @@ A name imported from a submodule and also re-exported at the top level is one na
 | `apply_stress_mark` | `stress` | arbtok |
 | `syllabify_ipa` | `stress` | arbtok |
 | `syllabify` | `stress` | euskaphone |
-| `SyllabifierPlugin` | `syllabifier_plugin` | tugaphone |
+| `SyllabifierPlugin` | `syllabifier_plugin` | None: `Pipeline(syllabifier=...)` takes it |
 | `LanguageSpec` | `types` | tugaphone |
 
-`WordContext` is the shared cross-word vocabulary of the downstream engines. A downstream phonological rule cascade (sun-letter assimilation, silent ⟨e⟩, reduction) belongs in a `LatticeRescorer` over the shared lattice, not in a forked tokenizer ([lattice.md](../engine/lattice.md#rescoring-the-lattice)). `SyllabifierPlugin` is the matching contract for a syllabifier, and tugaphone implements one. `Pipeline` is how each of these engines passes its own steps to `G2P`.
+`WordContext` is the shared cross-word vocabulary of the downstream engines. A downstream phonological rule cascade (sun-letter assimilation, silent ⟨e⟩, reduction) belongs in a `LatticeRescorer` over the shared lattice, not in a forked tokenizer ([lattice.md](../engine/lattice.md#rescoring-the-lattice)). `SyllabifierPlugin` is the contract of a syllabifier that a caller passes in `Pipeline(syllabifier=...)`. `Pipeline` is how each of these engines passes its own steps to `G2P`.
 
 ### Names outside `__all__`
 
@@ -57,8 +56,9 @@ Downstream code also imports these public names straight from their submodules. 
 | `detect_stress_by_weight`, `is_cliticless` | `stress` | arbtok |
 | `is_ipa_vowel` | `vowels` | arbtok |
 | `is_front_vowel`, `is_orthographic_vowel` | `vowels` | tugaphone |
-| `lexicon_path` | `lexicon` | arbtok |
+| `lexicon_path` | `lexicon` | arbtok, euskaphone |
 | `parse_lexicon_text` | `lexicon` | euskaphone, tugaphone |
+| `parse_markup`, `MarkupError` | `markup` | tugaphone |
 
 One downstream import reaches a private name: `phonetok._expand_arabic_gemination` in arbtok. A private name has no guarantee, and it can change in any release.
 
@@ -71,8 +71,8 @@ These names are public and importable, but no downstream repository uses them. T
 | Module | Names |
 | :--- | :--- |
 | `g2p` | `transcribe`, `TranscriptionResult`, `WordTranscription`, `ConfidenceBreakdown` |
-| `registry` | `ancestry_chain`, `available_families`, `get_syllabifier`, `MissingPlugin`, `UnknownVariantWarning` |
-| `lexicon` | `load_lexicon`, `set_lexicon_dir`, `resolve_lexicon_source`, `use_packaged_lexicons`, `packaged_lexicon_sources`, `is_ipa_string` |
+| `registry` | `ancestry_chain`, `available_families`, `MissingPlugin`, `UnknownVariantWarning` |
+| `lexicon` | `available_lexicon_codes`, `resolve_lexicon_source`, `packaged_lexicon_sources`, `is_ipa_string` |
 | `types` | `Grapheme2IPA`, `AllophoneMap`, `PositionalGrapheme2IPA`, `Ancestor`, `AncestorRole`, `QualityTier`, `ScriptType`, `OrthographyKind`, `OrthographyStandard`, `Location`, `SandhiRule`, `AllophoneRule`, `StressRules` |
 | `phonetok` | `Token`, `IPAPath`, `GraphemeContext`, `TokenSequence` |
 | `allophony`, `sandhi` | `AllophoneRescorer`, `SandhiEngine` |
@@ -107,11 +107,12 @@ The spec-format version goes up when a spec field starts to mean something else.
 
 ## Deprecated names
 
-These names served plugin discovery by entry point. A caller passes each step to one engine in a `Pipeline` field, so they go in the next major release. Until then they keep working, and the commitment covers them. Each one raises a `DeprecationWarning` that names the release that removes it and the name to use. A function warns when a caller calls it, and a constant warns when a caller reads it. A class warns when a caller reads it from `orthography2ipa`, and when a subclass of it is defined.
+These names served plugin discovery by entry point, or a lexicon for the whole process. A caller passes each step and each lexicon to one engine in a `Pipeline` field, so they go in the next major release. Until then they keep working, and the commitment covers them. Each one raises a `DeprecationWarning` that names the release that removes it and the name to use. A function warns when a caller calls it, and a constant warns when a caller reads it. A class warns when a caller reads it from `orthography2ipa`, and when a subclass of it is defined.
 
 | Name | Module | Use in its place | Used by |
 | :--- | :--- | :--- | :--- |
 | `who_answers` | `registry` | `G2P.pipeline` | arbtok (tests) |
+| `get_syllabifier` | `registry` | `Pipeline(syllabifier=...)` | None |
 | `get_rescorers` | `registry` | `Pipeline(rescore=...)` | None |
 | `get_stress_plugin` | `registry` | The stress rules of the spec | None |
 | `get_declared_plugins` | `registry` | The `Pipeline` field of each stage | None |
@@ -119,6 +120,15 @@ These names served plugin discovery by entry point. A caller passes each step to
 | `RescorerPlugin` | `rescorer_plugin` | `Pipeline(rescore=...)` | arbtok (tests) |
 | `StressPlugin` | `stress_plugin` | The stress rules of the spec | None |
 | `STAGES`, `OUTPUT_CHANGING_STAGES`, `ENTRY_POINT_GROUPS` | `plugins` | The fields of `Pipeline` | None |
+| `register_lexicon`, `clear_lexicons` | `lexicon` | `Pipeline(lexicon=load_lexicon(source))` | arbtok (tests), euskaphone (tests), tugaphone (tests) |
+| `set_lexicon_dir`, `$ORTHOGRAPHY2IPA_LEXICON_DIR` | `lexicon` | `Pipeline(lexicon=load_lexicon(path))` | None |
+| `use_packaged_lexicons` | `lexicon` | `Pipeline(lexicon=packaged_lexicon(code))` | None |
+| `get_lexicon` | `lexicon` | `Pipeline.lexicon` | None |
+| The `lexicon` argument of `phoneme_atoms` and `tokenize` | `inventory` | No argument: the atoms come from the spec alone | None |
+| `G2P(normalizer=...)` | `g2p` | `Pipeline(expand=...)` or `Pipeline(mark=...)` | None |
+| `G2P(rescorer=...)` | `g2p` | `Pipeline(rescore=...)` | None |
+| `G2P(sentence_rescorer=...)` | `g2p` | `Pipeline(sandhi=...)` | None |
+| `G2P(plugins=...)` | `g2p` | The `Pipeline` field of each stage | arbtok (tests) |
 
 `SyllabifierPlugin` and `SandhiPlugin` stay, because `Pipeline.syllabifier` and `Pipeline.sandhi` take them. Their `language_codes` property defaults to an empty list, and the engine does not read it.
 

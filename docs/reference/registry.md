@@ -1,6 +1,6 @@
 # Language Registry
 
-The registry (`registry.py`) turns a language code into a registered spec code, and it loads the `LanguageSpec` for that code from `orthography2ipa/data/` on demand. Import of the package indexes the file names in that directory and parses no JSON. `get()` parses the file of a spec the first time a caller asks for it, and the registry caches the spec from then on. The registry also finds the plugins that installed packages register. [getting_started.md](../guide/getting_started.md#finding-a-language-code) shows the tasks that use it: look up a language, and install or write a plugin.
+The registry (`registry.py`) turns a language code into a registered spec code, and it loads the `LanguageSpec` for that code from `orthography2ipa/data/` on demand. Import of the package indexes the file names in that directory and parses no JSON. `get()` parses the file of a spec the first time a caller asks for it, and the registry caches the spec from then on. The registry also holds the deprecated discovery of the plugins that installed packages register. [getting_started.md](../guide/getting_started.md#finding-a-language-code) shows the tasks that use it: look up a language, and install or write a plugin.
 
 ## API
 

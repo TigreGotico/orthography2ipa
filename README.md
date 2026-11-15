@@ -32,6 +32,12 @@ The project installs with [uv](https://docs.astral.sh/uv/).
 [CONTRIBUTING.md](CONTRIBUTING.md#tests) sets up a clone of the repository
 for development.
 
+The optional extras are `hf`, `lexicons`, `validation` and `portuguese`, for
+example `'orthography2ipa[lexicons]'`. An extra adds a feature, and its
+install changes no transcription.
+[docs/guide/getting_started.md](docs/guide/getting_started.md#install) lists
+what each extra adds.
+
 ## Quick start
 
 ```python

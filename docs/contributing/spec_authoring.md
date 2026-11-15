@@ -274,7 +274,7 @@ A list-valued `grammatical_endings` entry puts a reading into the beam that the 
 
 The package ships descriptions: grapheme maps, rules, inventories and ancestry. It ships no word lists, lexicons, gold sets or weights. A lexicon is a corpus. A bundled lexicon makes the wheel larger and freezes a corpus into a release.
 
-Deep orthographies such as English and Danish cannot reach production accuracy from rules alone. The answer is a lexicon that the caller registers at run time, or a separate package that supplies one through the `orthography2ipa.lexicons` entry points and that the caller enables in code. The API, the file format and the precedence are in [lexicon](../guide/lexicon.md#supplying-a-lexicon).
+Deep orthographies such as English and Danish cannot reach production accuracy from rules alone. The answer is a lexicon that the caller passes to an engine in `Pipeline(lexicon=...)`. The caller reads it from a file, or from a separate package that supplies one through the `orthography2ipa.lexicons` entry points. The API, the file format and the precedence are in [lexicon](../guide/lexicon.md#supplying-a-lexicon).
 
 Do not buy accuracy back inside a spec with suffix pseudo-graphemes or a growing `word_exceptions`. Text normalisation, diacritic restoration, script conversion and morphology belong downstream, in a consumer of the lattice. Examples of such consumers are [arbtok](https://github.com/TigreGotico/arbtok), [tugaphone](https://github.com/TigreGotico/tugaphone) and [scriptconv](https://github.com/TigreGotico/scriptconv). [o2i-lexicons](https://github.com/TigreGotico/o2i-lexicons) is the package that ships residual lexicons through the entry points.
 
