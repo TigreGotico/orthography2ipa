@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.123.8a1](https://github.com/TigreGotico/orthography2ipa/tree/7.123.8a1) (2026-11-14)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.123.7a2...7.123.8a1)
+
+**Merged pull requests:**
+
+- fix\(en-GB\): drop dead vowel-letter condition from final-y rule [\#2330](https://github.com/TigreGotico/orthography2ipa/pull/2330) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.123.7a2](https://github.com/TigreGotico/orthography2ipa/tree/7.123.7a2) (2026-11-14)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.123.7a1...7.123.7a2)
