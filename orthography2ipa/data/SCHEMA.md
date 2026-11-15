@@ -82,7 +82,7 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
 | `trailing_vowel_axis_digraphs` | array | no    | Multi-letter vowel graphemes (matched case-insensitively) for which the AFTER_FRONT_VOWEL/AFTER_BACK_VOWEL axis for a FOLLOWING grapheme is read off the digraph's trailing letter rather than its opening one, e.g. `["ía", "úa"]` for Old Irish, where quality under *caol le caol* is set by the digraph's closing letter. Empty (default) keeps the opening-letter (`grapheme[0]`) reading every other spec uses. |
 | `prevocalic_glide_backoff` | array | no | Multigraphs (matched case-insensitively) whose last letter is a glide that opens the next syllable when a vowel letter follows, e.g. `["ew"]` for Limburgish, where ⟨geweun⟩ is ⟨g·e·w·eu·n⟩. Before a vowel letter the tokenizer backs off to the multigraph without its last letter, when that shorter key and the last letter are both graphemes of the spec. Before a consonant or at the end of a word the multigraph is kept (⟨kew⟩). Empty (default) cuts no multigraph. |
 | `consonant_nuclei`          | object | no       | Consonant letters that spell a syllable's nucleus, mapped to that nucleus (`{"ว": "uːa"}` for Thai ⟨กรวด⟩ /kruːat̚/). A listed letter is read as the nucleus only when the syllable has no nucleus yet, the next letter is a consonant, and nothing after that consonant supplies a vowel; elsewhere it keeps its ordinary reading. The consonant before it then takes no inherent vowel, and a cluster key ending in the letter backs off to its head. Unset (default) changes nothing |
-| `word_internal_apostrophe`  | bool   | no       | An apostrophe (`'` or `’`) between two letters is part of the written word, as in English `doesn't` and `that's`. The whole token is then the unit looked up in `word_exceptions` and a registered lexicon, and the unit transcribed. The same holds for an elided clitic, as in French `l'homme` [lɔm]: clitic and host are one unit, and the clitic's consonant is not word-final. Default `false`: the mark is a boundary and splits two words (German `geht's`, Dutch `zo'n`). An apostrophe at the end of a token is unaffected. An apostrophe at the start of a token stays part of the word only when `word_exceptions` or the lexicon lists the word with it, as English `'re` and `'ve` (the detached clitics of `they 're`, `we 've`). A word in single quotes (`'we'`) is read as the bare word. Inherited along `graphemes_base`; a spec states `false` to opt out. |
+| `word_internal_apostrophe`  | bool   | no       | An apostrophe (`'` or `’`) between two letters is part of the written word, as in English `doesn't` and `that's`. The whole token is then the unit looked up in `word_exceptions` and the lexicon of the engine, and the unit transcribed. The same holds for an elided clitic, as in French `l'homme` [lɔm]: clitic and host are one unit, and the clitic's consonant is not word-final. Default `false`: the mark is a boundary and splits two words (German `geht's`, Dutch `zo'n`). An apostrophe at the end of a token is unaffected. An apostrophe at the start of a token stays part of the word only when `word_exceptions` or the lexicon lists the word with it, as English `'re` and `'ve` (the detached clitics of `they 're`, `we 've`). A word in single quotes (`'we'`) is read as the bare word. Inherited along `graphemes_base`; a spec states `false` to opt out. |
 | `apostrophe_elision`        | bool   | no       | An apostrophe inside a word ends an elided clitic: the clitic lost its final vowel before a vowel-initial host (French `l'hiver`, Italian `dell'uomo`, Portuguese `d'Os`). A word with no whole-word entry of its own then takes the host's `word_exceptions` or lexicon entry with the clitic's reading in front (`l'hiver` [livɛʁ]), and it is a prosodic clitic when its host is one (`d'Os` reads as `dos`). The apostrophe counts only with a consonant grapheme before it and a vowel letter or `h` after it. The tokenizer's vowel gate for a consonant-plus-`u`/`i` grapheme then reads the letter after the apostrophe as the letter that follows it (French `qu'il`: `qu` before `i`), unless the spec spells a sound with that apostrophe (a glottal stop). Needs `word_internal_apostrophe`. Default `false`: English keeps the apostrophe for contractions, and `Chang'an` holds no clitic. Inherited along `graphemes_base`. |
 | `codas`                     | array  | no       | IPA segments a syllable of the language may close on (Lao `["p̚", "t̚", "k̚", "ʔ", "m", "n", "ŋ", "w", "j"]`). Where a spec declares them, a preposed vowel before a silent-head digraph is not read as putting the head in the onset and the tail in the coda when the tail's segment is not in the list; the head stays a tone-class marker. Empty (default) means the inventory is not stated and nothing is refused, so a spec without the field reads as before |
 | `optional_marks`            | array  | no       | The diacritics this orthography often omits, such as the Arabic ḥarakāt or the Hebrew niqqud. They change no transcription. `orthography2ipa.underspecification` reads them to report where a reading is a guess. |
@@ -98,7 +98,7 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
 | `iso639_3`                  | string | no       | ISO 639-3 three-letter code for cross-referencing |
 | `sandhi_rules`              | array  | no       | Cross-word-boundary phonological rules       |
 | `stress`                    | object or `false` | no | Declarative stress placement (see [Stress Schema](#stress-schema)); `false` opts out of an inherited block |
-| `word_exceptions`           | object | no       | Whole-word overrides for a closed irregular set (`{"one": "wʌn"}`); beats a caller-registered lexicon, an enabled packaged lexicon and the rules ([lexicon.md](../../docs/guide/lexicon.md)) |
+| `word_exceptions`           | object | no       | Whole-word overrides for a closed irregular set (`{"one": "wʌn"}`); beats the lexicon of the engine (`Pipeline(lexicon=...)`) and the rules ([lexicon.md](../../docs/guide/lexicon.md)) |
 | `grammatical_endings`       | object | no       | Suffix morphology: orthographic ending → IPA at the effective word end (`{"tion": "ʃən"}`), or an ordered candidate list for an ending that is genuinely ambiguous (`{"ent": [null, ""]}`); see [Grammatical endings](#grammatical-endings) |
 | `allophone_rules`          | array  | no       | Post-lexical `phoneme → surface` rewrites (see [Allophone Rule Schema](#allophone-rule-schema) and [allophony](../../docs/engine/allophony.md)) |
 | `tone_rules`                | object | no       | Tone the orthography spells with the SHAPE of the syllable rather than with a tone letter (see [Tone Rules Schema](#tone-rules-schema)) |
@@ -566,24 +566,35 @@ entries is treated as unsourced by `tests/test_sources.py`.
 ## Positional Grapheme Keys
 
 Position keys in `positional_graphemes` use lowercase string values
-matching the `GraphemePosition` enum:
+matching the `GraphemePosition` enum. The loader accepts each value in this
+table. [positional_graphemes.md](../../docs/engine/positional_graphemes.md#the-graphemeposition-values)
+gives the meaning of each position and the order in which they resolve.
 
 | JSON key                    | Enum value                                 |
 |-----------------------------|--------------------------------------------|
 | `"default"`                 | `GraphemePosition.DEFAULT`                 |
 | `"nucleus"`                 | `GraphemePosition.NUCLEUS`                 |
+| `"first_pretonic"`          | `GraphemePosition.FIRST_PRETONIC`          |
 | `"pretonic"`                | `GraphemePosition.PRETONIC`                |
 | `"posttonic"`               | `GraphemePosition.POSTTONIC`               |
 | `"onset"`                   | `GraphemePosition.ONSET`                   |
 | `"nucleus_stressed"`        | `GraphemePosition.NUCLEUS_STRESSED`        |
 | `"nucleus_unstressed"`      | `GraphemePosition.NUCLEUS_UNSTRESSED`      |
 | `"nucleus_secondary"`       | `GraphemePosition.NUCLEUS_SECONDARY`       |
+| `"nucleus_stressed_open"`   | `GraphemePosition.NUCLEUS_STRESSED_OPEN`   |
+| `"nucleus_stressed_closed"` | `GraphemePosition.NUCLEUS_STRESSED_CLOSED` |
+| `"nucleus_unstressed_open"` | `GraphemePosition.NUCLEUS_UNSTRESSED_OPEN` |
+| `"nucleus_unstressed_closed"` | `GraphemePosition.NUCLEUS_UNSTRESSED_CLOSED` |
+| `"open_syllable"`           | `GraphemePosition.OPEN_SYLLABLE`           |
+| `"closed_syllable"`         | `GraphemePosition.CLOSED_SYLLABLE`         |
 | `"coda"`                    | `GraphemePosition.CODA`                    |
 | `"word_initial"`            | `GraphemePosition.WORD_INITIAL`            |
 | `"word_final"`              | `GraphemePosition.WORD_FINAL`              |
 | `"intervocalic"`            | `GraphemePosition.INTERVOCALIC`            |
 | `"intervocalic_cross_word"` | `GraphemePosition.INTERVOCALIC_CROSS_WORD` |
 | `"before_vowel"`            | `GraphemePosition.BEFORE_VOWEL`            |
+| `"before_final_vowel"`      | `GraphemePosition.BEFORE_FINAL_VOWEL`      |
+| `"before_mute_e"`           | `GraphemePosition.BEFORE_MUTE_E`           |
 | `"after_vowel"`             | `GraphemePosition.AFTER_VOWEL`             |
 | `"before_consonant"`        | `GraphemePosition.BEFORE_CONSONANT`        |
 | `"after_consonant"`         | `GraphemePosition.AFTER_CONSONANT`         |
@@ -592,12 +603,18 @@ matching the `GraphemePosition` enum:
 | `"before_i"`                | `GraphemePosition.BEFORE_I`                |
 | `"before_o"`                | `GraphemePosition.BEFORE_O`                |
 | `"before_u"`                | `GraphemePosition.BEFORE_U`                |
+| `"before_y"`                | `GraphemePosition.BEFORE_Y`                |
 | `"before_front_vowel"`      | `GraphemePosition.BEFORE_FRONT_VOWEL`      |
 | `"before_back_vowel"`       | `GraphemePosition.BEFORE_BACK_VOWEL`       |
 | `"after_front_vowel"`       | `GraphemePosition.AFTER_FRONT_VOWEL`       |
 | `"after_back_vowel"`        | `GraphemePosition.AFTER_BACK_VOWEL`        |
 | `"before_palatal"`          | `GraphemePosition.BEFORE_PALATAL`          |
 | `"after_palatal"`           | `GraphemePosition.AFTER_PALATAL`           |
+| `"after_a"`                 | `GraphemePosition.AFTER_A`                 |
+| `"after_e"`                 | `GraphemePosition.AFTER_E`                 |
+| `"after_i"`                 | `GraphemePosition.AFTER_I`                 |
+| `"after_o"`                 | `GraphemePosition.AFTER_O`                 |
+| `"after_u"`                 | `GraphemePosition.AFTER_U`                 |
 | `"consonantal"`             | `GraphemePosition.CONSONANTAL`             |
 | `"vocalic"`                 | `GraphemePosition.VOCALIC`                 |
 

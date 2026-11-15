@@ -51,11 +51,13 @@ loader reads a key that `SCHEMA.md` does not name.
 
 ## Plugins are steps, not engines
 
-A package can replace one of the five
-[pluggable steps](../engine/architecture.md#pluggable-steps) of the
-pipeline: `normalize`, `syllabify`, `stress`, `rescore` and `sandhi`. A
-caller passes the step to one engine in a `Pipeline` field. The architecture
-page gives the contract of each step. A downstream engine
+A package can supply a step of the pipeline. A caller passes the step to
+one engine in a `Pipeline` field: `expand` and `mark` prepare the text,
+`syllabifier` splits a word into syllables, `rescore` re-costs the lattice
+and `sandhi` acts between words. The stress step takes no plugin, because
+the stress rules of the spec place the stress. The
+[pluggable steps](../engine/architecture.md#pluggable-steps) give the
+contract of each step. A downstream engine
 such as [arbtok](https://github.com/TigreGotico/arbtok) or
 [tugaphone](https://github.com/TigreGotico/tugaphone) is built on this
 library, not plugged into it

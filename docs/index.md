@@ -35,8 +35,10 @@ Downstream engines build on this library for one language each:
 [tugaphone](https://github.com/TigreGotico/tugaphone) for Portuguese,
 [arbtok](https://github.com/TigreGotico/arbtok) for Arabic
 and [euskaphone](https://github.com/TigreGotico/euskaphone) for Basque.
-arbtok and tugaphone refine the shared lattice with a `LatticeRescorer` or
-replace one pipeline step with a plugin, and keep no tokenizer of their own. The [README](../README.md#ecosystem) lists the rest of the
+arbtok and tugaphone each pass their
+steps to the shared engine in a `Pipeline`. arbtok passes `expand`, `mark`,
+`rescore` and `sandhi` steps, and tugaphone passes a lexicon and the `expand`
+and `mark` steps. The [README](../README.md#ecosystem) lists the rest of the
 ecosystem: lexicons, a syllabifier, script conversion, a TTS engine and the
 C++ ports.
 
