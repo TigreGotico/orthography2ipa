@@ -13,7 +13,7 @@ jobs:
   dispatch:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: dev
       - name: Dispatch the release workflow if dev holds an unpublished version
