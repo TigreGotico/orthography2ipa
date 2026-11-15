@@ -79,20 +79,37 @@ def test_an_arabic_variety_in_arabic_script_names_its_own_spec(tag, code):
 
 
 @pytest.mark.parametrize("tag,code", [
-    ("cdo-Hans", "zh"), ("bs-Cyrl", "sr"), ("hr-Cyrl", "sr"),
-    ("hr-Cyrl-HR", "sr"),
+    ("bs-Cyrl", "sr"), ("hr-Cyrl", "sr"), ("hr-Cyrl-HR", "sr"),
 ])
 def test_with_no_own_spec_near_enough_the_old_target_stays(tag, code):
-    # langcodes guesses Latn for cdo, and the bs and hr specs read Latin,
-    # so no own-language spec is near enough; the wide search runs.
+    # The bs and hr specs read Latin, so no own-language spec is near
+    # enough; the wide search runs.
     assert resolve(tag) == code
     assert not resolves_exactly(tag)
 
 
-def test_an_unresolved_tag_stays_unresolved():
-    assert resolve("zh-HK") == "zh-HK"
+@pytest.mark.parametrize("tag", ["zh-HK", "cdo-Hans", "cdo-Hans-CN"])
+def test_an_unresolved_tag_stays_unresolved(tag):
+    # Min Dong (cdo) is a member of the zh macrolanguage, but it is not
+    # Mandarin, and the zh spec reads Mandarin pinyin. langcodes guesses
+    # Latn for cdo, so the cdo specs are not near cdo-Hans either.
+    assert resolve(tag) == tag
     with pytest.raises(KeyError):
-        get("zh-HK")
+        get(tag)
+
+
+# langcodes 3.5.1 still folds these individual languages into a
+# macrolanguage, from CLDR aliases that CLDR 49 no longer has:
+#   <languageAlias type="fat" replacement="ak" reason="macrolanguage"/>
+#   <languageAlias type="mnk" replacement="man" reason="macrolanguage"/>
+# Each tag names a language that has a spec of its own.
+@pytest.mark.parametrize("tag,code", [
+    ("fat-GH", "fat"), ("fat-Latn-GH", "fat"), ("FAT-gh", "fat"),
+    ("mnk-GM", "mnk"), ("mnk-SN", "mnk"), ("mnk-Latn-GM", "mnk"),
+])
+def test_a_folded_tag_is_measured_as_requested(tag, code):
+    assert langcodes.standardize_tag(tag, macro=True).split("-")[0] != code
+    assert resolve(tag) == code
 
 
 @pytest.mark.parametrize("tag", [
