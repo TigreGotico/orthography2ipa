@@ -15,9 +15,9 @@ The top level of `orthography2ipa` exports each of these functions.
 | `available_families()` | A dict from each family path to the list of its language codes. |
 | `ancestry_chain(code)` | The list of `parent` codes above the spec, nearest first, with the clade nodes that the chain passes through. |
 | `get_syllabifier(code)` | Deprecated. `None` for every code, because discovery finds no syllabifier. A caller passes one in `Pipeline(syllabifier=...)`. |
-| `get_rescorers(code)` | The list of `LatticeRescorer` objects that the installed rescorer plugins contribute for the code. |
-| `get_stress_plugin(code)` | The `StressPlugin` registered for the code, or `None`. |
-| `who_answers(code)` | A dict with the resolved `code`, `syllabify` (always `built-in`) and the `rescore` list. |
+| `get_rescorers(code)` | Deprecated. The list of `LatticeRescorer` objects that the installed rescorer plugins contribute for the code. `G2P` does not run them. A caller passes rescorers in `Pipeline(rescore=...)`. |
+| `get_stress_plugin(code)` | Deprecated. The `StressPlugin` registered for the code, or `None`. |
+| `who_answers(code)` | Deprecated. A dict with the resolved `code`, `syllabify` (always `built-in`) and the `rescore` list of the installed plugins. `G2P.pipeline` holds the steps of one engine. |
 
 ```python
 import orthography2ipa
@@ -45,7 +45,7 @@ A clade node is for classification only. It carries no phoneme data, no spec inh
 4. For a bare language tag, the spec of its default region (`linguatag.with_default_region`), when that spec is registered. For a region that has only sub-regional specs, a curated default variant.
 5. The nearest registered code by language distance (`linguatag.closest_lang`), so `en-NZ` gives `en-GB`. A private-use subtag counts for nothing in the distance, so an unknown variant ties with the sibling lects of its language. The call passes `lects="standard"`, which breaks the tie toward the standard variety: `ar-x-zzz` gives `ar`, not one of the regional Arabic lects such as `ar-x-mashriqi`. With no usable match, the code stays as it is, and `get()` raises `KeyError`.
 
-   The search looks first among the codes of the tag's own language, because the primary language subtag names the language. So `sr-Latn-RS` gives `sr`, although `langcodes` expands `cnr` to `sr-Latn-ME`, which is nearer. The own language is the primary subtag of the tag as given. When that language has no spec, it is the language of the standardized tag, so `sh` (standardized to `sr-Latn`) gives `sr`. When no own-language spec is near enough, the search takes every registered code, so `aao-Arab` still gives `ar`.
+   The search looks first among the codes of the tag's own language, because the primary language subtag names the language. So `sr-Latn-RS` gives `sr`, although `langcodes` expands `cnr` to `sr-Latn-ME`, which is nearer. The own language is the primary subtag of the tag as given. When that language has no spec, it is the language of the standardized tag, so `sh` (standardized to `sr-Latn`) gives `sr`. Arabic is the likely script of Algerian Saharan Arabic, so `aao-Arab` gives `aao`. When no own-language spec is near enough, the search takes every registered code, so `hr-Cyrl` gives `sr`, because the Croatian spec reads Latin script.
 
 The default region of a bare tag is its motherland, the region where the language first appeared and is still spoken. `linguatag` takes it from the [CLDR likely subtags](https://github.com/unicode-org/cldr/blob/main/common/supplemental/likelySubtags.xml) and overrides CLDR where the most-populous region differs, so `pt` goes to `pt-PT` and not to `pt-BR`.
 
@@ -120,6 +120,8 @@ An old key that is the ISO 639-3 code of another language is not kept as an alia
 
 ## Plugin discovery
 
+Plugin discovery is deprecated. It goes in the next major release, together with the deprecated `G2P(plugins=...)`. A caller passes each step to one engine in a `Pipeline`, and no step needs an entry point. `get_rescorers`, `get_stress_plugin`, `who_answers`, `get_declared_plugins`, the base classes `NormalizePlugin`, `RescorerPlugin` and `StressPlugin`, and the constants `STAGES`, `OUTPUT_CHANGING_STAGES` and `ENTRY_POINT_GROUPS` raise a `DeprecationWarning` that names the release that removes them.
+
 The registry finds plugins through `importlib.metadata` entry points, with one group for each pluggable stage except `syllabify`. Discovery runs once per stage, on the first call that needs it, and the result stays cached at module scope. A plugin that fails to load logs a `WARNING` and is skipped.
 
 | Group | Lookup | When several plugins claim one code |
@@ -128,14 +130,15 @@ The registry finds plugins through `importlib.metadata` entry points, with one g
 | `orthography2ipa.stress` | `get_stress_plugin(code)` | The highest `priority` wins |
 | `orthography2ipa.normalize`, `orthography2ipa.sandhi` | by entry-point name | The spec or the caller names one, so no contest arises |
 
-`RescorerPlugin`, `StressPlugin` and `SyllabifierPlugin` each have a `priority` property that defaults to `50`. `NormalizePlugin` and `SandhiPlugin` have none, because a caller names them. Nothing reads the priority of a syllabifier, for the same reason.
+`RescorerPlugin`, `StressPlugin` and `SyllabifierPlugin` each have a `priority` property that defaults to `50`. `NormalizePlugin` and `SandhiPlugin` have none, because a caller names them. Nothing reads the priority of a syllabifier, for the same reason. `SyllabifierPlugin` and `SandhiPlugin` have a `language_codes` property that defaults to an empty list, and the engine does not read it.
 
 Discovery alone selects nothing. A caller passes a syllabifier in `Pipeline(syllabifier=...)`. The engine runs a normalize, stress, rescore or sandhi plugin only when the spec or the caller names it by entry-point name ([architecture.md](../engine/architecture.md#pluggable-steps)). `get_rescorers(code)` lists what the installed rescorer plugins contribute, but `G2P` runs only the declared ones. A stress plugin runs only when the spec sets `stress.source` to `"plugin"`. If none is installed, the engine raises `MissingStressPlugin`, which `orthography2ipa.registry` defines. A named plugin that is not installed raises `MissingPlugin`.
 
-`who_answers(code)` reports which rescorers answer for a code:
+`who_answers(code)` reports which installed rescorer plugins claim a code:
 
 ```python
 orthography2ipa.who_answers("pt-PT")
+# DeprecationWarning: who_answers is deprecated ...
 # {'code': 'pt-PT',
 #  'syllabify': 'built-in',
 #  'rescore': ['built-in (spec allophone_rules only)']}

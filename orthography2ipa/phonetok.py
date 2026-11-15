@@ -1046,6 +1046,12 @@ PAUSE_PUNCTUATION: Dict[str, str] = {
 _PAUSE_CLASS = "".join(re.escape(c) for c in sorted(PAUSE_PUNCTUATION))
 
 # Broad punctuation set covering Latin, CJK, and typographic marks.
+#: The apostrophe marks (U+0027, U+2019) that spell an elision or a
+#: contraction inside a written word. In a spec with
+#: ``apostrophe_elision`` they are not segments, so a lookahead that asks
+#: which letter follows a grapheme steps over one.
+_ELISION_APOSTROPHES = frozenset("'\u2019")
+
 _PUNCT_RE = re.compile(
     r"["
     + _PAUSE_CLASS +
@@ -1333,6 +1339,13 @@ class PhonetokTokenizer:
         self._hiatus_by_word: Dict[str, FrozenSet[int]] = {}
         self._prevocalic_glide_backoff: FrozenSet[str] = frozenset(
             g.lower() for g in spec.prevocalic_glide_backoff)
+        # The apostrophes the vowel gate steps over: only in a spec whose
+        # apostrophe ends an elided clitic, and never one that the spec
+        # spells a sound with (a glottal stop, an ejective).
+        self._elision_apostrophes: FrozenSet[str] = frozenset(
+            mark for mark in _ELISION_APOSTROPHES
+            if spec.apostrophe_elision and spec.word_internal_apostrophe
+            and not any(mark in key for key in self._grapheme_ipa))
 
     def _hiatus_prefix(self, text: str, pos: int, gkey: str) -> str:
         """*gkey*, cut before a letter that opens a nucleus of its own.
@@ -2053,6 +2066,19 @@ class PhonetokTokenizer:
                 ):
                     after = pos + len(gkey)
                     next_ch = text[after] if after < n else ""
+                    # An apostrophe between two letters is no segment: the
+                    # letter after it is the one that follows the digraph
+                    # (⟨qu'il⟩ is ⟨qu⟩ before ⟨i⟩, not before a boundary).
+                    # A letter the spec reads as nothing after the apostrophe
+                    # is no segment either (⟨qu'hier⟩ is ⟨qu⟩ before ⟨i⟩).
+                    if (next_ch in self._elision_apostrophes and after + 1 < n
+                            and text[after + 1].isalpha()):
+                        after += 1
+                        silent = self._grapheme_ipa.get(
+                            _lower(text[after], self.spec.code)) == ("",)
+                        if silent and after + 1 < n and text[after + 1].isalpha():
+                            after += 1
+                        next_ch = text[after]
                     nlow = _lower(next_ch, self.spec.code) if next_ch else ""
                     if not (next_ch and is_orthographic_vowel(next_ch)):
                         # (1) Before a consonant or word-end the ⟨u⟩/⟨i⟩ may be a

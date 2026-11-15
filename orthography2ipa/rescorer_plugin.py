@@ -51,13 +51,23 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from typing import List, Sequence
 
+from orthography2ipa.lexicon import _warn_deprecated
 from orthography2ipa.rescorer import LatticeRescorer
 
 __all__ = ["RescorerPlugin"]
 
 
 class RescorerPlugin(ABC):
-    """Contributes lattice rescorers — phonology — for one or more languages."""
+    """Deprecated: contributes lattice rescorers — phonology — for one or more languages.
+
+    A subclass warns when it is defined. Pass the rescorers in
+    ``Pipeline(rescore=...)``.
+    """
+
+    def __init_subclass__(cls, **kwargs) -> None:
+        super().__init_subclass__(**kwargs)
+        # The frames are this method, ABCMeta.__new__ and the class statement.
+        _warn_deprecated("RescorerPlugin", "Pipeline(rescore=...)", stacklevel=4)
 
     @abstractmethod
     def rescorers(self, lang: str) -> Sequence[LatticeRescorer]:

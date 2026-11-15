@@ -125,7 +125,7 @@ The spec declares no stress rule.
 <!-- atlas:rules begin -->
 ## Rules
 
-The spec applies 27 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
+The spec applies 28 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
 
 | Rule | Change | Example | Cited |
 |:--|:--|:--|:--|
@@ -152,6 +152,7 @@ The spec applies 27 allophone rules after the letters are read. The change colum
 | `FR_EU_BEFORE_Z` | /œ/ → [ø], before [z], spelled ⟨eu⟩ | ⟨Deleuze⟩ [dəløz] | Fouché 1959, Tranel 1987, Walker 2001 |
 | `FR_C_HARD_BEFORE_OEU` | /s/ → [k], spelled ⟨c⟩, before ⟨œu⟩ | ⟨cœur⟩ [kœʁ] | - |
 | `FR_AI_FINAL_CLOSE_MID` | /ɛ/ → [e], before a word boundary, spelled ⟨ai⟩ | ⟨j'ai⟩ [ʒe] | Walker 2001, Fouché 1959 |
+| `FR_E_BEFORE_DOUBLED_CONSONANT` | /ə/ → [ɛ], spelled ⟨e⟩, before ⟨ll⟩ ⟨tt⟩ ⟨rr⟩, with more context in the spec | ⟨elle⟩ [ɛl] | Féry 2001, New et al. 2004 |
 | `CRS_NASAL_a` | /a/ → [ã], before a coda nasal | - | - |
 | `CRS_NASAL_e` | /e/ → [ɛ̃], before a coda nasal | - | - |
 | `CRS_NASAL_o` | /o/ → [ɔ̃], before a coda nasal | - | - |
@@ -166,7 +167,7 @@ The spec applies 6 rules across a word boundary. The contexts are regular expres
 | `FR_LIAISON_N` | `n$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [n‿] | - | - |
 | `FR_LIAISON_R` | `ʁ$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [ʁ‿] | - | - |
 | `FR_LIAISON_P` | `p$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [p‿] | - | - |
-| `FR_ENCHAÎNEMENT` | `[bdgvzʒ]$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [‿] | - | - |
+| `FR_ENCHAÎNEMENT` | `([bdɡvzʒ])$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [‿] | - | - |
 
 The spec switches off 2 inherited rules: `FR_E_CLOSED_CLUSTER`, `FR_E_CLOSED_FINAL`.
 <!-- atlas:rules end -->

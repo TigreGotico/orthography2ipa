@@ -174,12 +174,12 @@ _IPA_MODIFIERS = frozenset(
 )
 
 
-def _warn_deprecated(name: str, replacement: str) -> None:
+def _warn_deprecated(name: str, replacement: str, stacklevel: int = 3) -> None:
     warnings.warn(
         f"{name} is deprecated and will be removed in {_REMOVAL_VERSION}; "
         f"use {replacement}.",
         DeprecationWarning,
-        stacklevel=3,
+        stacklevel=stacklevel,
     )
 
 

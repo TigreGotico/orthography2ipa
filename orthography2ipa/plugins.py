@@ -1,98 +1,35 @@
-"""The pluggable steps, and the one declaration that makes them safe.
+"""The sandhi contract, and the stage names that discovery used.
 
-The pipeline has clearly-defined steps, and each is a place a language expert
-could plausibly beat the built-in answer:
+The transcription is a function of the spec, the input and the caller's explicit
+configuration. It is never a function of what is installed. So a caller passes
+each step to one engine as an object, in a :class:`~orthography2ipa.pipeline.Pipeline`::
 
-===============  ===================================================  ===========
-stage            the question it answers                              contract
-===============  ===================================================  ===========
-``normalize``    what IS the input, canonically?                      declared
-``syllabify``    where are the syllable boundaries?                   **caller**
-``stress``       which syllable carries it?                           declared
-``rescore``      which allophone surfaces here?                       declared
-``sandhi``       what happens between words?                          declared
-===============  ===================================================  ===========
+    G2P("ar", pipeline=Pipeline(mark=diacritize, sandhi=MySandhi()))
 
-All five can change the transcription. One rule governs them:
+Another engine in the process does not see these steps.
 
-    **The transcription is a function of the SPEC, the INPUT and the caller's
-    explicit configuration. Never of the environment.**
+:class:`SandhiPlugin` is the contract for ``Pipeline(sandhi=...)``. It gets the IPA,
+the spelling and the pause flag of each word, which a cross-word rule needs, and it
+returns one IPA string per word.
 
-So:
+The other names here served discovery by entry point. The spec field ``plugins``
+and the deprecated ``G2P(plugins=...)`` name a plugin by its entry-point name, and
+the engine finds it in the group of its stage. A named plugin that is not installed
+raises :class:`~orthography2ipa.registry.MissingPlugin`, and the engine never falls
+back to the built-in answer.
 
-* **``syllabify`` is declared by the caller.** Nothing discovers a syllabifier and
-  no spec names one. The bundled splitter answers until a caller passes a
-  syllabifier in a :class:`~orthography2ipa.pipeline.Pipeline`. The syllable count
-  reaches the stress step, so that syllabifier can move the output, and the caller
-  has chosen that. :func:`~orthography2ipa.conformance.assert_syllabifier_conforms`
-  tells the author of a syllabifier whether it does.
-
-* **The other four are declared.** They change what the engine says, so the spec
-  must *name* the plugin it wants. Then the output still depends only on the spec
-  and the input, and installing a package is no longer a silent switch::
-
-      "plugins": {
-        "normalize": "text2tashkeel",
-        "sandhi": "arbtok-sandhi"
-      }
-
-* **A declared plugin that is missing is an ERROR.** Never a quiet fallback to
-  some other answer. A quiet fallback is how you get two transcriptions for one
-  word and no way to know which one you got.
-
-## Who selects a plugin — the spec, or the caller?
-
-Both, and the difference matters.
-
-The danger was never *"a plugin changed the output"*. It was ***"pip install*
-changed the output"** — a transcription that silently depends on what happened to
-be in the environment. An **explicit** choice by the caller is not that. It is a
-declaration, made in code, that anyone reading the call site can see.
-
-So there are exactly two ways an output-changing plugin gets selected, and
-discovery alone is never one of them:
-
-1. **The spec names it** — for a plugin that is intrinsic to how the language is
-   defined, shipped with the data, the default for everyone::
-
-       "plugins": {"sandhi": "arbtok"}
-
-2. **The caller passes it** in a :class:`~orthography2ipa.pipeline.Pipeline`,
-   which overrides the spec::
-
-       G2P("ar", pipeline=Pipeline(mark=diacritize))
-
-The second is how a downstream engine works, and it is the normal case. **arbtok**
-is not editing orthography2ipa's shipped ``ar.json`` to announce that it wants a
-diacritizer; it passes one, at construction, because *it* is the thing that
-decided. Likewise a lexicon, a POS tagger, a diacritizer — a rich engine composes
-the steps it wants and says so in code.
-
-And note what that means for orthography2ipa's own contract: the ``ar`` spec must
-**not** name a diacritizer, because this library's input contract *is* diacritized
-text and it ships no weights. The spec describes the language; the engine decides
-the pipeline. A spec should only name a plugin when the language is not
-transcribable without it.
-
-A lexicon and a syllabifier travel in a :class:`~orthography2ipa.pipeline.Pipeline`,
-which the caller builds and hands to one engine as an object, with no entry-point
-name::
-
-    G2P("pt-PT", pipeline=Pipeline(lexicon=lexicon, syllabifier=syllabifier))
-
-Another engine in the process does not see them. A syllabifier has no entry-point
-group, so this object is the only way one reaches an engine.
-
-A plugin is identified by its **entry-point name**, which is what the spec or the
-caller names. That makes the declaration readable and greppable, and it means two
-packages cannot fight over a language — something already said which one it
-wanted.
+:class:`NormalizePlugin`, ``STAGES``, ``OUTPUT_CHANGING_STAGES`` and
+``ENTRY_POINT_GROUPS`` are deprecated, and go in the next major release together
+with that discovery. Each one warns when a caller reads it, and a subclass of
+``NormalizePlugin`` warns when it is defined.
 """
 
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from typing import Dict, List, Optional, Sequence
+
+from orthography2ipa.lexicon import _warn_deprecated
 
 __all__ = [
     "NormalizePlugin",
@@ -102,22 +39,35 @@ __all__ = [
     "ENTRY_POINT_GROUPS",
 ]
 
-#: Every pluggable stage.
-STAGES = ("normalize", "syllabify", "stress", "rescore", "sandhi")
-
-#: The stages that change the transcription, so the spec or the caller must name
-#: them.
-OUTPUT_CHANGING_STAGES = STAGES
+_STAGES = ("normalize", "syllabify", "stress", "rescore", "sandhi")
 
 #: entry-point group per stage. ``syllabify`` has none: the caller passes a
 #: syllabifier as an object.
-ENTRY_POINT_GROUPS: Dict[str, str] = {
-    stage: f"orthography2ipa.{stage}" for stage in STAGES if stage != "syllabify"
+_ENTRY_POINT_GROUPS: Dict[str, str] = {
+    stage: f"orthography2ipa.{stage}" for stage in _STAGES if stage != "syllabify"
+}
+
+#: Deprecated module constants, each with what replaces it.
+_DEPRECATED_CONSTANTS = {
+    "STAGES": (_STAGES, "the fields of Pipeline"),
+    "OUTPUT_CHANGING_STAGES": (_STAGES, "the fields of Pipeline"),
+    "ENTRY_POINT_GROUPS": (_ENTRY_POINT_GROUPS, "the fields of Pipeline"),
 }
 
 
+def __getattr__(name: str):
+    if name in _DEPRECATED_CONSTANTS:
+        value, replacement = _DEPRECATED_CONSTANTS[name]
+        _warn_deprecated(name, replacement)
+        return value
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
+
+
 class NormalizePlugin(ABC):
-    """Decides what the input *is*, canonically, before anything reads it.
+    """Deprecated: decides what the input *is*, canonically, before anything reads it.
+
+    A subclass warns when it is defined. Pass the step in
+    ``Pipeline(expand=...)`` or ``Pipeline(mark=...)``.
 
     The step that runs before the engine sees a single grapheme, and the one with
     the most leverage: diacritic restoration for an abjad, number and date
@@ -129,6 +79,12 @@ class NormalizePlugin(ABC):
     must name it. A library that quietly diacritized your text differently
     depending on what you had installed would be unusable.
     """
+
+    def __init_subclass__(cls, **kwargs) -> None:
+        super().__init_subclass__(**kwargs)
+        # The frames are this method, ABCMeta.__new__ and the class statement.
+        _warn_deprecated("NormalizePlugin", "Pipeline(expand=...) or Pipeline(mark=...)",
+                         stacklevel=4)
 
     @abstractmethod
     def normalize(self, text: str, lang: str) -> str:
@@ -187,6 +143,6 @@ class SandhiPlugin(ABC):
         """
 
     @property
-    @abstractmethod
     def language_codes(self) -> List[str]:
-        """BCP-47 codes this plugin speaks for, and only these."""
+        """BCP-47 codes this plugin speaks for. The engine does not read them."""
+        return []

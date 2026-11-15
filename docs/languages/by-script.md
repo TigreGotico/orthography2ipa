@@ -40,7 +40,7 @@ A stub has a name, a code and a place in the family tree, but no phonology yet. 
 | [Kayah Li](#kayah-li) | 1 |
 | [Khmer](#khmer) | 1 |
 | [Lao](#lao) | 1 |
-| [Latin](#latin) | 946 |
+| [Latin](#latin) | 950 |
 | [Latn](#latn) | 1 |
 | [Limbu](#limbu) | 1 |
 | [Linear B](#linear-b) | 1 |
@@ -713,6 +713,10 @@ Stubs (1): Western Kayah `kyu`.
 | [Foodo](https://tigregotico.github.io/orthography2ipa/#fod) | `fod` | skeleton | Atlantic-Congo |
 | [Fon](fon.md) (page) | `fon` | research | Atlantic-Congo |
 | [Fernando Po Creole English](fpe.md) (page) | `fpe` | research | Indo-European > Germanic > Northwest Germanic > West Germanic |
+| [Belgian French](https://tigregotico.github.io/orthography2ipa/#fr-BE) | `fr-BE` | skeleton | Indo-European > Italic > Romance > Gallo-Romance |
+| [Canadian French (Laurentian)](https://tigregotico.github.io/orthography2ipa/#fr-CA) | `fr-CA` | skeleton | Indo-European > Italic > Romance > Gallo-Romance |
+| [Swiss French (Romandy)](https://tigregotico.github.io/orthography2ipa/#fr-CH) | `fr-CH` | skeleton | Indo-European > Italic > Romance > Gallo-Romance |
+| [Ivorian French](https://tigregotico.github.io/orthography2ipa/#fr-CI) | `fr-CI` | skeleton | Indo-European > Italic > Romance > Gallo-Romance |
 | [French](fr-FR.md) (page) | `fr-FR` | research | Indo-European > Italic > Romance > Gallo-Romance |
 | [Old French](https://tigregotico.github.io/orthography2ipa/#fro) | `fro` | research | Indo-European > Italic > Romance |
 | [Franco-Provençal (Arpitan)](frp.md) (page) | `frp` | research | Indo-European > Italic > Romance > Gallo-Romance |

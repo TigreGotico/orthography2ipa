@@ -19,10 +19,7 @@ _ALLOPHONE_FIELDS = (
     "preceded_by_surface_phoneme_2",
 )
 
-#: FR_ENCHAÎNEMENT replaces the matched consonant with ‿, which deletes it.
-#: A ɡ in its class would be deleted the same way, so the class and the
-#: transform must change together.
-_KNOWN = {("fr-FR", "FR_ENCHAÎNEMENT", "left_context")}
+_KNOWN: set = set()
 
 
 def _strings(value):

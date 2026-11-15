@@ -26,6 +26,7 @@ languages. It ships no trained weights and no word lists.
 | `orthography2ipa/allophony.py`, `stress.py`, `sandhi.py`, `sentence.py` | Allophone rules, stress, cross-word rules and the sentence lattice |
 | `orthography2ipa/distance.py`, `feats.py`, `script_distance.py` | The distance metrics |
 | `orthography2ipa/plugins.py` and `*_plugin.py` | The pipeline steps a package can replace |
+| `orthography2ipa/revision.py` | `spec_revision` and `lexicon_revision`. `ENGINE_MODULES` lists the modules on the transcription path |
 | `orthography2ipa/cli.py` | The `orthography2ipa` command |
 | `docs/` | The documentation. `docs/index.md` sets the reading order |
 | `scripts/` | Benchmark harness, board guards, generators ([scripts/README.md](scripts/README.md)) |

@@ -34,7 +34,7 @@ CREOLES = ["aoa", "cri", "kea", "mzs", "pap", "pov", "pre"]
 #: Word, and the consonant after the coda sibilant. Infopédia writes [ʒ] there.
 VOICED = [("esbelto", "b"), ("desdém", "d"), ("musgo", "ɡ"), ("desligar", "l"),
           ("mesmo", "m"), ("abismo", "m"), ("lesma", "m"), ("desmaio", "m"),
-          ("desregrado", "ɾ"), ("asno", "n"), ("cisne", "n"), ("desnível", "n"),
+          ("desregrado", "ʁ"), ("asno", "n"), ("cisne", "n"), ("desnível", "n"),
           ("esnobe", "n"), ("desnudar", "n")]
 #: Word, and the Infopédia reading of the syllable around the deleted coda.
 BEFORE_ZH = [("desgelo", "dɨˈʒ"), ("desjejum", "dɨʒɨˈʒ"), ("disjunto", "diˈʒ"),

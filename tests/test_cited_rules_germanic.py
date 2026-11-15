@@ -127,12 +127,12 @@ def test_en_gb_silent_final_e():
 
 
 def test_en_gb_final_e_function_word_exceptions():
-    """The pronounced-final-⟨e⟩ function words are carved out of the silent-e rule.
+    """A word-final ⟨e⟩ that is the word's only vowel is pronounced.
 
-    en-GB notes: "A small closed class of function words spelled with a
-    genuinely pronounced final <e> (the, be, he, me, we, she) is carved out via
-    `word_exceptions`, since the blanket positional rule cannot distinguish these
-    monosyllables from the regular silent-e pattern."
+    en-GB notes: "A word-final <e> that is the word's only vowel is pronounced
+    /iː/ (be, he, me, we, she, and the letter name e)". Wikipedia, English
+    orthography, revision 1383244083: ⟨e⟩ "final, only vowel in word", /iː/,
+    "be, she".
 
     The complementary environment for the silent-e rule above.
     """
@@ -738,12 +738,15 @@ def test_en_us_letter_is_r_coloured_schwa(word, expected):
 
 @pytest.mark.parametrize("word", ["car", "park", "see", "food", "feel",
                                   "more", "lot", "coffee", "bird",
-                                  # the yod-plus-GOOSE compound and the frozen
-                                  # function words: both reach the output by a
-                                  # route the plain per-vowel rules cannot see,
-                                  # so the invariant only has teeth with them
+                                  # the yod-plus-GOOSE compound, the rule
+                                  # with a literal surface and the frozen
+                                  # function words: each reaches the output by
+                                  # a route the plain per-vowel rules cannot
+                                  # see, so the invariant only has teeth with
+                                  # them
                                   "cue", "value", "accrue", "beauty",
-                                  "be", "he", "me", "we", "she"])
+                                  "be", "he", "me", "we", "she", "e", "flu",
+                                  "u", "you", "ye"])
 def test_en_us_carries_no_length_marks(word):
     """GA is transcribed WITHOUT length marks; its RP parent keeps them.
 

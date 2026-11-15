@@ -335,6 +335,15 @@ def test_rule_change_caps_a_long_letter_list():
     assert f"⟨{shown[-1]}⟩ and {len(rule.preceded_by_grapheme) - 8} more" in change
 
 
+def test_a_rule_on_the_silent_reading_names_no_segment():
+    rule = next(r for r in orthography2ipa.get("en-GB").allophone_rules
+                if r.id == "EN_GB_FINAL_E_SOLE_VOWEL")
+    assert atlas_gen._change(rule).startswith("∅ → [iː], word-finally")
+    assert atlas_gen._example(rule.notes, rule.surface) == "⟨be⟩ [biː]"
+    assert atlas_gen._citations(orthography2ipa.get("en-GB"), rule.notes) == (
+        "[English orthography 2026](#src-wp_english_orthography)")
+
+
 def test_sources_block_claims_notes_only_where_the_spec_has_them(atlas):
     # es-ES notes some of its sources, ka all of them, abv-BH none.
     for code in ("es-ES", "ka", "abv-BH"):

@@ -4144,11 +4144,12 @@ class TestGurIsRegistered:
 
 
 class TestFamilySectionLinksOnlyPublicRepos:
-    """The family section links a repo only when GitHub serves it publicly.
+    """The family section links an engine only to a page a reader can open.
 
     Visibility read with ``gh repo view TigreGotico/<repo> --json visibility``:
-    arbtok, tugaphone, g2p_barranquenho and mwl_phonemizer are public;
-    udarnik is private, so a link to it is a 404 for every reader.
+    arbtok and tugaphone are public on GitHub. The board scores the PyPI
+    releases of g2p_barranquenho and mwl_phonemizer, so they link to PyPI.
+    udarnik is private and unpublished, so a link to it is a 404.
     """
 
     def test_private_repo_is_named_without_a_link(self):
@@ -4156,8 +4157,16 @@ class TestFamilySectionLinksOnlyPublicRepos:
         assert "github.com/TigreGotico/udarnik" not in text
         assert "- **udarnik** — adds " in text
 
-    @pytest.mark.parametrize("repo", ["arbtok", "tugaphone",
-                                      "g2p_barranquenho", "mwl_phonemizer"])
+    @pytest.mark.parametrize("repo", ["arbtok", "tugaphone"])
     def test_public_repo_keeps_its_link(self, repo):
         text = "\n".join(cs._o2i_family_section([]))
         assert f"- **[{repo}](https://github.com/TigreGotico/{repo})** — adds " in text
+
+    @pytest.mark.parametrize("repo, project", [
+        ("g2p_barranquenho", "g2p-barranquenho"),
+        ("mwl_phonemizer", "mwl-phonemizer"),
+    ])
+    def test_pypi_only_engine_links_to_pypi(self, repo, project):
+        text = "\n".join(cs._o2i_family_section([]))
+        assert f"- **[{repo}](https://pypi.org/project/{project}/)** — adds " in text
+        assert f"github.com/TigreGotico/{repo}" not in text

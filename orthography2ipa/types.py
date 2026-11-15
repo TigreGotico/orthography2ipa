@@ -806,6 +806,10 @@ class StressRules:
         and the input — never of what happens to be installed. If a spec asks for
         a plugin and none is registered, that is an error, not a quiet fallback to
         a different answer.
+
+        ``"plugin"`` is deprecated. ``G2P`` raises a ``DeprecationWarning`` when
+        it builds an engine on a spec that sets it, once per engine. No shipped
+        spec sets it.
     notes : str
         Free-form provenance / convention notes.
     """
@@ -1909,6 +1913,7 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "doubled_letters_geminate": InheritanceMode.OWN_ONLY,
     "constrain_onsets": InheritanceMode.BASE_SCALAR,
     "word_internal_apostrophe": InheritanceMode.BASE_SCALAR,
+    "apostrophe_elision": InheritanceMode.BASE_SCALAR,
     "phonemes": InheritanceMode.OWN_ONLY,
     "orthography_kind": InheritanceMode.OWN_ONLY,
     "iso639_3": InheritanceMode.OWN_ONLY,
@@ -2126,7 +2131,11 @@ class LanguageSpec:
     virama anywhere else keeps deleting the vowel to form its conjunct."""
 
     plugins: Dict[str, Tuple[str, ...]] = field(default_factory=dict)
-    """Which plugin this language wants, per stage — keyed by entry-point name.
+    """Deprecated: which plugin this language wants, per stage — keyed by entry-point name.
+
+    ``G2P`` raises a ``DeprecationWarning`` when it builds an engine on a spec
+    that sets this field, once per engine. No shipped spec sets it. A caller
+    passes each step to one engine in a :class:`~orthography2ipa.pipeline.Pipeline`.
 
     A plugin that CHANGES THE TRANSCRIPTION must be named here. That is what keeps
     the output a function of the spec and the input rather than of whatever
@@ -2182,10 +2191,37 @@ class LanguageSpec:
     the written word. The orthography spells contractions and possessives with
     it inside one word (``doesn't``, ``that's``), so the whole token is the
     unit a ``word_exceptions`` entry or a registered lexicon is keyed on, and
-    the unit that is transcribed. Off by default: in an orthography where the
-    mark is an elision or a boundary (French ``l'homme``, Italian ``l'amico``)
-    it separates two words. An apostrophe at either edge of a token is
-    unaffected.
+    the unit that is transcribed. An elided clitic is the same case: French
+    ``l'homme`` is [lɔm], one phonological word, and the clitic's consonant is
+    not word-final. Off by default: in an orthography where the mark is a
+    boundary that the spec does not model as part of one word (German
+    ``geht's``, Dutch ``zo'n``) it separates two words. An apostrophe at
+    the end of a token is unaffected. An apostrophe at the start of a token
+    stays on the word only when ``word_exceptions`` or the lexicon lists the
+    word with it (the detached English clitics ``'re`` and ``'ve``), so a
+    word in single quotes is read as the bare word.
+
+    It is inherited along the ``graphemes_base`` edge
+    (:attr:`InheritanceMode.BASE_SCALAR`), like :attr:`constrain_onsets`.
+    """
+
+    apostrophe_elision: bool = False
+    """Whether an apostrophe inside a word ends an elided clitic.
+
+    Elision deletes the final vowel of a clitic before a vowel-initial word,
+    and the orthography writes an apostrophe in its place: French ``l'hiver``,
+    Italian ``dell'uomo``, Portuguese ``d'Os``. When it is on, a word with no
+    whole-word entry of its own takes its host's ``word_exceptions`` or
+    lexicon entry with the clitic's reading in front, and it is a prosodic
+    clitic when its host is one (``d'Os`` reads as ``dos``). An apostrophe
+    counts only with a consonant grapheme before it and a vowel letter or
+    ⟨h⟩ after it. Off by default: English keeps the apostrophe inside a word
+    for contractions and possessives, and ``Chang'an`` or ``Lord's`` holds no
+    elided clitic. It needs :attr:`word_internal_apostrophe`, which keeps the
+    clitic and its host in one word. When it is on, a grapheme that the vowel
+    gate reads (a consonant plus ⟨u⟩ or ⟨i⟩) sees the letter after the
+    apostrophe as the one that follows it (``qu'il`` is ⟨qu⟩ before ⟨i⟩),
+    unless the spec spells a sound with that apostrophe.
 
     It is inherited along the ``graphemes_base`` edge
     (:attr:`InheritanceMode.BASE_SCALAR`), like :attr:`constrain_onsets`.

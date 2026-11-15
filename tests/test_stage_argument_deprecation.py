@@ -37,11 +37,13 @@ class KeepWords(SandhiPlugin):
         return list(words)
 
 
-class KeepSlots(RescorerPlugin):
-    language_codes = ["pt-PT"]
+# RescorerPlugin is deprecated, and a subclass still works.
+with pytest.deprecated_call():
+    class KeepSlots(RescorerPlugin):
+        language_codes = ["pt-PT"]
 
-    def rescorers(self, lang):
-        return [KeepSlot()]
+        def rescorers(self, lang):
+            return [KeepSlot()]
 
 
 def removal_version() -> str:
@@ -91,4 +93,6 @@ def test_no_warning_when_the_old_arguments_are_unset():
 def test_the_rescorer_conformance_check_uses_no_old_argument():
     with warnings.catch_warnings():
         warnings.simplefilter("error", DeprecationWarning)
+        warnings.filterwarnings(
+            "ignore", "assert_rescorer_conforms is deprecated", DeprecationWarning)
         assert_rescorer_conforms(KeepSlots(), words=["casa"], lang="pt-PT")

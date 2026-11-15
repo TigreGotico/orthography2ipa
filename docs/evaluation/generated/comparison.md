@@ -67,8 +67,8 @@ orthography2ipa is a shared lattice — a grapheme table plus allophone/sandhi r
 
 - **[arbtok](https://github.com/TigreGotico/arbtok)** — adds Arabic diacritization, dialect lexicons, nativized loanwords, and code-switch handling on top of the shared `ar`/`arb` lattice (the RANKED `arbtok` column below runs with both bundled lexicons off for a fair lexicon-free comparison — see `arbtok (lexicon)` for the full-featured stock number).
 - **[tugaphone](https://github.com/TigreGotico/tugaphone)** — adds the curated `tugalex` pronunciation lexicon, sense-based homograph marking, and cross-dialect contact-language handling on top of the Portuguese-family lattice.
-- **[g2p_barranquenho](https://github.com/TigreGotico/g2p_barranquenho)** — adds the Barranquenho (Spanish/Portuguese contact variety) rule layer on top of the `ext-PT-x-barranco` lattice.
-- **[mwl_phonemizer](https://github.com/TigreGotico/mwl_phonemizer)** — adds Mirandese dialect selection, an optional native-speaker lexicon overlay, and CRF correction on top of the `mwl` lattice.
+- **[g2p_barranquenho](https://pypi.org/project/g2p-barranquenho/)** — adds the Barranquenho (Spanish/Portuguese contact variety) rule layer on top of the `ext-PT-x-barranco` lattice.
+- **[mwl_phonemizer](https://pypi.org/project/mwl-phonemizer/)** — adds Mirandese dialect selection, an optional native-speaker lexicon overlay, and CRF correction on top of the `mwl` lattice.
 - **udarnik** — adds a stressonnx-placed lexical accent on top of the `ru` lattice — Russian stress is free and unwritten, and the spec's own notes name its positional guess as the main source of its error, so supplying the real stress is what conditions akanje and ikanje correctly (no word->IPA lexicon: udarnik defaults to none. Its stressonnx `ruaccent` backend does consult a 110,826-entry accent dictionary and a 19,740-entry omograph dictionary before its models — 11.21% and 4.89% of unique `alphacep_ru_book` words respectively — but those hold STRESS POSITIONS, not pronunciations, so the column is ranked as effectively lexicon-free with the exception documented, the same treatment ahotts-g2p gets).
 
 **Reading a family row: headroom, not a loss.** Where a family system's PER beats bare o2i's on a row that is NOT `same-source` (see below — same-source rows are refused as a comparison point, exactly like every other system on this board), that gap is a concrete demonstration of what the shared `orthography2ipa` specs could still absorb into the base lattice — a diacritizer pass, a closed-class lexicon, a dialect rule — not evidence o2i "lost" to a competitor. Where a family row instead ties o2i exactly, that is equally informative: it means the family member's extra stages are not (yet, or not on this gold) adding anything the base lattice does not already do on its own.
@@ -173,24 +173,24 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 
 | Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | gruut (lexicon) | gruut rules-only | Winner |
 |---|---|---|---|---|---|---|---|---|
-| wikipron | 80995 | 0.2656 | 0.2081 | 0.2136 | 0.8333 | 0.1776 | 0.2149 | espeak rules-only |
+| wikipron | 80995 | 0.2645 | 0.2081 | 0.2136 | 0.8333 | 0.1776 | 0.2149 | espeak rules-only |
 
 ### en-GB (British English (RP))
 
 | Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | gruut (lexicon) | gruut rules-only | Winner |
 |---|---|---|---|---|---|---|---|---|
-| ipa_childes | 11447 | 0.3000 | same-source | same-source | n/a | 0.2876 | 0.3313 | o2i |
-| ipadict | 65119 | 0.2221 | same-source | same-source | n/a | same-source | 0.2325 | o2i |
-| wikipron | 81545 | 0.2327 | 0.1472 | 0.1540 | 0.8333 | 0.2233 | 0.2528 | espeak rules-only |
+| ipa_childes | 11447 | 0.2966 | same-source | same-source | n/a | 0.2876 | 0.3313 | o2i |
+| ipadict | 65119 | 0.2215 | same-source | same-source | n/a | same-source | 0.2325 | o2i |
+| wikipron | 81545 | 0.2314 | 0.1472 | 0.1540 | 0.8333 | 0.2233 | 0.2528 | espeak rules-only |
 
 ### en-US (American English (General American))
 
 | Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | gruut (lexicon) | gruut rules-only | Winner |
 |---|---|---|---|---|---|---|---|---|
-| cmudict | 126052 | 0.3436 | 0.3048 | 0.3104 | n/a | same-source | 0.2714 | gruut rules-only |
-| ipa_babylm | 20344 | 0.3666 | same-source | same-source | 1.0656 | 0.2788 | 0.3558 | gruut rules-only |
-| ipa_childes | 18055 | 0.2756 | same-source | same-source | n/a | 0.1727 | 0.2317 | gruut rules-only |
-| ipadict | 125927 | 0.2973 | 0.2954 | 0.3020 | n/a | same-source | 0.2475 | gruut rules-only |
+| cmudict | 126052 | 0.3376 | 0.3048 | 0.3104 | n/a | same-source | 0.2714 | gruut rules-only |
+| ipa_babylm | 20344 | 0.3520 | same-source | same-source | 1.0656 | 0.2788 | 0.3558 | o2i |
+| ipa_childes | 18055 | 0.2654 | same-source | same-source | n/a | 0.1727 | 0.2317 | gruut rules-only |
+| ipadict | 125927 | 0.2908 | 0.2954 | 0.3020 | n/a | same-source | 0.2475 | gruut rules-only |
 
 ### es (Spanish)
 
@@ -237,7 +237,7 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 
 | Dataset | N | o2i | espeak (lexicon) | espeak rules-only | epitran | Winner |
 |---|---|---|---|---|---|---|
-| wikipron | 85516 | 0.0673 | 0.0740 | 0.0749 | 0.2280 | o2i |
+| wikipron | 85516 | 0.0647 | 0.0740 | 0.0749 | 0.2280 | o2i |
 
 ### ga (Irish)
 
@@ -442,9 +442,9 @@ A system winning on one gold and losing on another for the SAME language is real
 - **`el`** (wins on all golds):
   - `vox_communis` (n=5994, tier=epitran-derived): o2i 0.2672 vs espeak 0.3347 — o2i wins
   - `wikipron` (n=19108, tier=crowd-scraped): o2i 0.0330 vs espeak 0.0785 — o2i wins
-- **`en-US`** (loses on all golds):
-  - `cmudict` (n=126052, tier=lexicon-derived): o2i 0.3436 vs espeak 0.3048 — o2i loses
-  - `ipadict` (n=125927, tier=lexicon-derived): o2i 0.2973 vs espeak 0.2954 — o2i loses
+- **`en-US`** (MIXED — wins on some golds, loses on others):
+  - `cmudict` (n=126052, tier=lexicon-derived): o2i 0.3376 vs espeak 0.3048 — o2i loses
+  - `ipadict` (n=125927, tier=lexicon-derived): o2i 0.2908 vs espeak 0.2954 — o2i wins
 - **`es`** (MIXED — wins on some golds, loses on others):
   - `vox_communis` (n=48068, tier=epitran-derived): o2i 0.0758 vs espeak 0.0755 — o2i loses
   - `wikipron` (n=132190, tier=crowd-scraped): o2i 0.0797 vs espeak 0.1071 — o2i wins
@@ -516,12 +516,12 @@ The table above conflates espeak-ng's letter-to-sound RULES with its hand-curate
 | de | wikipron | 53011 | 0.2103 | n/a | 0.2126 | 0.2132 |
 | el | vox_communis | 5994 | 0.2672 | n/a | 0.3347 | 0.3247 |
 | el | wikipron | 19108 | 0.0330 | n/a | 0.0785 | 0.0765 |
-| en | wikipron | 80995 | 0.2656 | 0.2594 | 0.2081 | 0.2136 |
-| en-GB | wikipron | 81545 | 0.2327 | n/a | 0.1472 | 0.1540 |
-| en-US | cmudict | 126052 | 0.3436 | 0.3408 | 0.3048 | 0.3104 |
-| en-US | ipa_babylm | 20344 | 0.3666 | 0.3577 | same-source | same-source |
-| en-US | ipa_childes | 18055 | 0.2756 | 0.2596 | same-source | same-source |
-| en-US | ipadict | 125927 | 0.2973 | 0.2948 | 0.2954 | 0.3020 |
+| en | wikipron | 80995 | 0.2645 | 0.2594 | 0.2081 | 0.2136 |
+| en-GB | wikipron | 81545 | 0.2314 | n/a | 0.1472 | 0.1540 |
+| en-US | cmudict | 126052 | 0.3376 | 0.3408 | 0.3048 | 0.3104 |
+| en-US | ipa_babylm | 20344 | 0.3520 | 0.3577 | same-source | same-source |
+| en-US | ipa_childes | 18055 | 0.2654 | 0.2596 | same-source | same-source |
+| en-US | ipadict | 125927 | 0.2908 | 0.2948 | 0.2954 | 0.3020 |
 | es | vox_communis | 48068 | 0.0758 | n/a | 0.0755 | 0.0737 |
 | es | wikipron | 132190 | 0.0797 | n/a | 0.1071 | 0.1066 |
 | eu | hitz_basque_ipa | 3113 | 0.0984 | n/a | 0.1204 | 0.1204 |
@@ -533,7 +533,7 @@ The table above conflates espeak-ng's letter-to-sound RULES with its hand-curate
 | fi | ipadict | 92836 | 0.0609 | n/a | 0.1995 | 0.1991 |
 | fi | vox_communis | 13324 | 0.0037 | n/a | 0.1843 | 0.1838 |
 | fi | wikipron | 168814 | 0.0184 | n/a | 0.2062 | 0.2059 |
-| fr | wikipron | 85516 | 0.0673 | n/a | 0.0740 | 0.0749 |
+| fr | wikipron | 85516 | 0.0647 | n/a | 0.0740 | 0.0749 |
 | ga | wikipron | 9621 | 0.1834 | n/a | 0.5223 | 0.5100 |
 | hi | vox_communis | 12478 | 0.2765 | n/a | 0.3877 | 0.3880 |
 | hi | wikipron | 30379 | 0.1277 | n/a | 0.2815 | 0.2819 |

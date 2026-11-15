@@ -109,7 +109,7 @@ These are the names `import orthography2ipa` exports, from `orthography2ipa.__al
 
 | Name | Kind | Summary |
 | --- | --- | --- |
-| `NormalizePlugin` | class | Decides what the input *is*, canonically, before anything reads it. |
+| `NormalizePlugin` | class | Deprecated: decides what the input *is*, canonically, before anything reads it. |
 | `SandhiPlugin` | class | What happens between words. |
 
 ## `orthography2ipa.registry`
@@ -122,12 +122,12 @@ These are the names `import orthography2ipa` exports, from `orthography2ipa.__al
 | `available_codes` | function | Return all registered language codes. |
 | `available_families` | function | Return `{family: [codes]}` for every loaded language. |
 | `get` | function | Return the `LanguageSpec` for *code*, loading lazily. |
-| `get_rescorers` | function | The rescorers every registered plugin contributes for *code*, in order. |
-| `get_stress_plugin` | function | The stress plugin registered for *code*, if any. |
+| `get_rescorers` | function | Deprecated: the rescorers every registered plugin contributes for *code*, in order. |
+| `get_stress_plugin` | function | Deprecated: the stress plugin registered for *code*, if any. |
 | `get_syllabifier` | function | Deprecated: return `None`, because no syllabifier is discovered. |
 | `resolve` | function | Return the registered spec code that *code* resolves to. |
 | `resolves_exactly` | function | True when *code* names a spec without nearest-language guessing. |
-| `who_answers` | function | Who is answering for *code*, and from where. |
+| `who_answers` | function | Deprecated: who is answering for *code*, and from where. |
 
 ## `orthography2ipa.rescorer`
 
@@ -140,7 +140,14 @@ These are the names `import orthography2ipa` exports, from `orthography2ipa.__al
 
 | Name | Kind | Summary |
 | --- | --- | --- |
-| `RescorerPlugin` | class | Contributes lattice rescorers (phonology) for one or more languages. |
+| `RescorerPlugin` | class | Deprecated: contributes lattice rescorers (phonology) for one or more languages. |
+
+## `orthography2ipa.revision`
+
+| Name | Kind | Summary |
+| --- | --- | --- |
+| `lexicon_revision` | function | sha256 over the packaged lexicon files that `packaged_lexicon(code, patches)` reads. |
+| `spec_revision` | function | sha256 over the canonical spec JSON, its parent chain and engine rule version. |
 
 ## `orthography2ipa.sandhi`
 
@@ -180,7 +187,7 @@ These are the names `import orthography2ipa` exports, from `orthography2ipa.__al
 
 | Name | Kind | Summary |
 | --- | --- | --- |
-| `StressPlugin` | class | Decides which syllable carries primary stress, for the languages it claims. |
+| `StressPlugin` | class | Deprecated: decides which syllable carries primary stress, for the languages it claims. |
 
 ## `orthography2ipa.syllabifier_plugin`
 

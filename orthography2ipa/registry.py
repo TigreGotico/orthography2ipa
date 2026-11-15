@@ -334,6 +334,27 @@ _REGION_DEFAULTS: Dict[str, str] = {
     "ar-SA": "ars-SA",
 }
 
+# Languages whose regional specs each state a sourced difference from the
+# motherland variety. A region of one of these with no spec of its own has no
+# sourced difference either, so it is read as the motherland variety. The
+# nearest match would pick a sibling instead, and assert for ``fr-SN``,
+# ``fr-US`` or ``fr-001`` a Belgian feature that no source states.
+_MOTHERLAND_FALLBACK = frozenset({"fr"})
+
+
+def _region_subtag(code: str) -> Optional[str]:
+    """The region subtag of *code* in upper case, or None (RFC 5646 §2.2.4).
+
+    A region is two letters or three digits after the language and script.
+    A singleton starts the extensions, so nothing after it is a region.
+    """
+    for subtag in code.split("-")[1:]:
+        if len(subtag) == 1:
+            return None
+        if (len(subtag) == 2 and subtag.isalpha()) or (len(subtag) == 3 and subtag.isdigit()):
+            return subtag.upper()
+    return None
+
 try:
     import langcodes as _langcodes
     _HAS_LANGCODES = True
@@ -369,7 +390,11 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
     4. The default region of a bare primary-language tag, when that
        spec is registered (``pt`` → ``pt-PT``), or the curated default
        variant of a region tag with only sub-regional specs
-       (``ar-SA`` → ``ars-SA``).
+       (``ar-SA`` → ``ars-SA``), or the default region of a language in
+       ``_MOTHERLAND_FALLBACK``: a tag whose region subtag has a spec reads
+       that spec whatever its variant or extension subtags
+       (``fr-CA-u-mu-celsius`` → ``fr-CA``), and any other tag reads the
+       default region (``fr-SN`` → ``fr-FR``).
     5. Nearest registered code by language distance
        (``en-NZ`` → ``en-GB``), among the codes of the tag's own language
        first (``sr-Latn-RS`` → ``sr``, not ``cnr``); no usable match leaves
@@ -419,6 +444,12 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
         return default
     if code in _REGION_DEFAULTS:
         return _REGION_DEFAULTS[code]
+    language = code.split("-")[0].lower()
+    if language in _MOTHERLAND_FALLBACK and not _PRIVATE_USE.search(code):
+        if (region := _region_subtag(code)) and f"{language}-{region}" in available:
+            return f"{language}-{region}"
+        if (default := with_default_region(language)) in available:
+            return default
     if not allow_nearest:
         return code
     # An unknown variant falls back to the standard variety, not to whichever
@@ -431,17 +462,20 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
     # standardization above folds ``als-AL`` into ``sq``; the standardized
     # one serves a tag whose own language has no spec, such as ``sh``
     # (``sr-Latn``). A one-letter subtag (``x-``, ``i-``) is a singleton.
+    # The own-language specs are measured from the tag that names their
+    # language: langcodes folds ``fat-GH`` into ``ak-GH``, and CLDR 49 makes
+    # Fanti a language apart from Akan, so ``ak-GH`` is not near ``fat``.
     # With no own-language spec near enough, the search is as wide as
     # before, so no tag that resolved stops resolving.
-    own: List[str] = []
-    for language in dict.fromkeys(
-            tag.split("-")[0].lower() for tag in (requested, code)):
+    match = None
+    for tag in (requested, code):
+        language = tag.split("-")[0].lower()
         own = [c for c in candidates
                if len(language) > 1 and c.split("-")[0].lower() == language]
         if own:
+            match = closest_lang(tag, own, lects="standard")
             break
-    match = ((own and closest_lang(code, own, lects="standard"))
-             or closest_lang(code, candidates, lects="standard"))
+    match = match or closest_lang(code, candidates, lects="standard")
     if match:
         match = _RENAMED.get(match, match)
         _LOG.debug("resolved language code %r to nearest registered %r",
@@ -617,7 +651,13 @@ def _discover_rescorer_plugins() -> Dict[str, List["RescorerPlugin"]]:
 
 
 def get_rescorers(code: str) -> List["LatticeRescorer"]:
-    """The rescorers every registered plugin contributes for *code*, in order."""
+    """Deprecated: the rescorers every registered plugin contributes for *code*, in order.
+
+    ``G2P`` does not run them. Pass rescorers in ``Pipeline(rescore=...)``.
+    """
+    from orthography2ipa.lexicon import _warn_deprecated
+
+    _warn_deprecated("get_rescorers", "Pipeline(rescore=...)")
     global _rescorer_plugins
     if _rescorer_plugins is None:
         _rescorer_plugins = _discover_rescorer_plugins()
@@ -629,14 +669,17 @@ def get_rescorers(code: str) -> List["LatticeRescorer"]:
 
 
 def who_answers(code: str) -> Dict[str, object]:
-    """Who is answering for *code*, and from where.
+    """Deprecated: who is answering for *code*, and from where.
 
-    The first question anyone debugging a plugin asks, given an API. A
-    transcription that depends on what is installed should at least be able to say
-    what is installed. ``syllabify`` is always ``"built-in"``: discovery finds no
-    syllabifier, and one that a caller passes lives in that engine's
-    :class:`~orthography2ipa.pipeline.Pipeline`.
+    It reports the installed rescorer plugins, which ``G2P`` does not run.
+    ``syllabify`` is always ``"built-in"``: discovery finds no syllabifier, and
+    one that a caller passes lives in that engine's
+    :class:`~orthography2ipa.pipeline.Pipeline`. Read ``G2P.pipeline`` for the
+    steps of one engine.
     """
+    from orthography2ipa.lexicon import _warn_deprecated
+
+    _warn_deprecated("who_answers", "G2P.pipeline")
     resolved = _resolve_code(code)
     global _rescorer_plugins
     if _rescorer_plugins is None:
@@ -675,7 +718,14 @@ def _discover_stress_plugins() -> Dict[str, "StressPlugin"]:
 
 
 def get_stress_plugin(code: str) -> Optional["StressPlugin"]:
-    """The stress plugin registered for *code*, if any."""
+    """Deprecated: the stress plugin registered for *code*, if any."""
+    from orthography2ipa.lexicon import _warn_deprecated
+
+    _warn_deprecated("get_stress_plugin", "the stress rules of the spec")
+    return _get_stress_plugin(code)
+
+
+def _get_stress_plugin(code: str) -> Optional["StressPlugin"]:
     global _stress_plugins
     if _stress_plugins is None:
         _stress_plugins = _discover_stress_plugins()
@@ -718,10 +768,10 @@ def _discover_stage(stage: str) -> Dict[str, object]:
     declaration readable and greppable — and it means two packages cannot fight
     over a language, because the spec already said which one it wanted.
     """
-    from orthography2ipa.plugins import ENTRY_POINT_GROUPS
+    from orthography2ipa.plugins import _ENTRY_POINT_GROUPS
 
     found: Dict[str, object] = {}
-    for ep in entry_points(group=ENTRY_POINT_GROUPS[stage]):
+    for ep in entry_points(group=_ENTRY_POINT_GROUPS[stage]):
         try:
             found[ep.name] = ep.load()()
         except Exception as exc:
@@ -731,11 +781,18 @@ def _discover_stage(stage: str) -> Dict[str, object]:
 
 
 def get_declared_plugins(stage: str, spec) -> List[object]:
-    """The plugins *spec* names for *stage*, in the order it names them.
+    """Deprecated: the plugins *spec* names for *stage*, in the order it names them.
 
     Raises :class:`MissingPlugin` for a name the spec asks for and nothing
     provides.
     """
+    from orthography2ipa.lexicon import _warn_deprecated
+
+    _warn_deprecated("get_declared_plugins", "the Pipeline field of each stage")
+    return _get_declared_plugins(stage, spec)
+
+
+def _get_declared_plugins(stage: str, spec) -> List[object]:
     names = (spec.plugins or {}).get(stage, ())
     if not names:
         return []

@@ -4654,6 +4654,11 @@ def build_scoreboard(limit: Optional[int], oracle: bool = False,
 OPTIONAL_SCORER_PACKAGES = (
     "huggingface_hub", "rarfile", "scriptconv", "text2tashkeel")
 
+#: The entry-point groups of the deprecated plugin stages. A plugin registered
+#: in one of them runs only when a spec or ``G2P(plugins=...)`` names it.
+PLUGIN_ENTRY_POINT_GROUPS = ("orthography2ipa.normalize", "orthography2ipa.stress",
+                             "orthography2ipa.rescore", "orthography2ipa.sandhi")
+
 #: Datasets whose scorer package no CI job installs, mapped to that package.
 #: Their rows are reproducible only on a box that carries it.
 NOT_CI_REPRODUCIBLE = {"wikipron_ar_diacritized": "text2tashkeel"}
@@ -4665,10 +4670,8 @@ def board_environment() -> dict:
     A scorer that is not installed reads ``None``: a board scored without it
     has no row for it, and the record says why.
     """
-    from orthography2ipa.plugins import ENTRY_POINT_GROUPS
-
     plugins: Dict[str, dict] = {}
-    for group in ENTRY_POINT_GROUPS.values():
+    for group in PLUGIN_ENTRY_POINT_GROUPS:
         plugins[group] = {
             ep.name: {
                 "target": ep.value,

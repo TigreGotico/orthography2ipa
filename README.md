@@ -101,8 +101,11 @@ the context that spelling alone cannot give.
 | [tugaphone](https://github.com/TigreGotico/tugaphone) | Portuguese: a curated lexicon, a rule fallback and output for each Lusophone dialect |
 | [arbtok](https://github.com/TigreGotico/arbtok) | Arabic: short-vowel restoration (tashkeel), stress and dialect output |
 | [euskaphone](https://github.com/TigreGotico/euskaphone) | Basque: dialect output for a TTS front end |
-| [g2p_barranquenho](https://github.com/TigreGotico/g2p_barranquenho) | Barranquenho, the contact variety of Barrancos |
-| [mwl_phonemizer](https://github.com/TigreGotico/mwl_phonemizer) | Mirandese |
+
+For Barranquenho, the contact variety of Barrancos, use
+`G2P("ext-PT-x-barranco")`. For Mirandese, use `G2P("mwl")`, or
+`G2P("mwl-x-sendim")` and `G2P("mwl-x-ifanes")` for the Sendinês and Ifanês
+varieties.
 
 Other packages supply data or steps that o2i does not hold.
 [o2i-lexicons](https://github.com/TigreGotico/o2i-lexicons) ships residual

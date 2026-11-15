@@ -738,6 +738,12 @@
       "phonemes": [],
       "surface": "ɐ",
       "notes": "DISABLED for Barranquenho. No source read covers a stressed /a/ before an onset nasal in this variety. The reading is the spec default and makes no claim about this context. The `a` row keeps the `word_initial` values for the same reason."
+    },
+    {
+      "id": "PT_STRONG_R_AFTER_CODA",
+      "phonemes": [],
+      "surface": "ʁ",
+      "notes": "DISABLED for Barranquenho. PT_STRONG_R_AFTER_CODA gives an ⟨r⟩ after a coda consonant or a nasal vowel the pt-PT strong rhotic [ʁ]. This spec writes its strong rhotic as [r] (carro [ˈkaru]), not [ʁ]. No source for this context in this language was read, so its output stays what it was."
     }
   ],
  "ancestors": [

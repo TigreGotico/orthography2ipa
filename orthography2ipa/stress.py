@@ -1192,9 +1192,9 @@ def _spec_for(lang: str) -> Optional[LanguageSpec]:
 
 def _plugin_stress(word, syllables, lang):
     """Ask the registered stress plugin, or fail loudly if the spec expects one."""
-    from orthography2ipa.registry import MissingStressPlugin, get_stress_plugin
+    from orthography2ipa.registry import MissingStressPlugin, _get_stress_plugin
 
-    plugin = get_stress_plugin(lang) if lang else None
+    plugin = _get_stress_plugin(lang) if lang else None
     if plugin is None:
         raise MissingStressPlugin(
             f"the {lang!r} spec sets stress.source = 'plugin', but no stress plugin "

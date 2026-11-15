@@ -53,9 +53,9 @@ loader reads a key that `SCHEMA.md` does not name.
 
 A package can replace one of the five
 [pluggable steps](../engine/architecture.md#pluggable-steps) of the
-pipeline: `normalize`, `syllabify`, `stress`, `rescore` and `sandhi`
-(`STAGES` in `plugins.py`). The architecture page gives the contract of each
-step. A downstream engine
+pipeline: `normalize`, `syllabify`, `stress`, `rescore` and `sandhi`. A
+caller passes the step to one engine in a `Pipeline` field. The architecture
+page gives the contract of each step. A downstream engine
 such as [arbtok](https://github.com/TigreGotico/arbtok) or
 [tugaphone](https://github.com/TigreGotico/tugaphone) is built on this
 library, not plugged into it

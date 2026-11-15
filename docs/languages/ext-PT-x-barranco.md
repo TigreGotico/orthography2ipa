@@ -80,9 +80,9 @@ The examples use the Convenção spelling, which the spec expects.
 - The positional layer has no position for the syllable count. So the spec cannot state the monosyllable condition on the final liquid as a rule, and it uses a closed `word_exceptions` set (*mal*, *tal*, *cual*, *pur*).
 - Input in Portuguese spelling can have a written final ⟨-r⟩ or ⟨-l⟩. The spec drops the consonant, and the word then takes the default stress on the penult: `cantar` [ˈkɐ̃tɐ], `Brasil` [ˈbɾazi]. The Convenção spelling gives the right stress.
 
-## Relation to g2p_barranquenho
+## Input contract
 
-A dedicated downstream engine, `g2p_barranquenho`, uses this spec as its data layer. The spec supplies the pre-lexical grapheme and positional maps and the post-lexical contact overrides, and the engine builds on them. The spec and this page keep the input contract stable. Input is Barranquenho in the 2025 Convenção spelling. A final ⟨-o⟩ is written ⟨u⟩ and a final ⟨-e⟩ is written ⟨i⟩. A deleted final ⟨-r -l -s⟩ is not written. The engine relies on that shape.
+To transcribe Barranquenho, use `G2P("ext-PT-x-barranco")`. Input is Barranquenho in the 2025 Convenção spelling. A final ⟨-o⟩ is written ⟨u⟩ and a final ⟨-e⟩ is written ⟨i⟩. A deleted final ⟨-r -l -s⟩ is not written.
 
 ## Sources
 
