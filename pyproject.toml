@@ -37,7 +37,7 @@ validation = ["pydantic>=2.14.3"]
 # A real Portuguese syllabifier. Optional: the bundled splitter is correct on its
 # own (pt-PT declares its diphthongs). Installing this extra changes no output:
 # the caller passes SilabificadorSyllabifier() in a Pipeline.
-portuguese = ["silabificador>=2.1.0a1"]
+portuguese = ["silabificador>=2.1.13a1"]
 # The tests that pass SilabificadorSyllabifier to an engine need silabificador.
 # rarfile reads the CoRuSS dictionaries, which the corpus publishes only as a
 # RAR archive. It needs an extraction backend on PATH, and in practice that
@@ -48,7 +48,7 @@ portuguese = ["silabificador>=2.1.0a1"]
 # workflows install unar so the ru rows and the en-US/cmudict row are gated
 # there and not only on a developer's box.
 test = ["pytest", "pytest-timeout", "pytest-cov", "pydantic>=2.14.3", "hypothesis",
-        "silabificador>=2.1.0a1", "huggingface_hub", "rarfile", "scriptconv",
+        "silabificador>=2.1.13a1", "huggingface_hub", "rarfile", "scriptconv",
         "anthropic>=2.8.0"]
 # dev-only extra for scripts/compare_systems.py; never a runtime dependency.
 # africa-g2p is published on PyPI but is not listed here. Install it into the
