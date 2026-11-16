@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 from typing import List, Optional
 
@@ -299,6 +300,21 @@ def _cmd_validate(args: argparse.Namespace) -> None:
 
 def main(argv: Optional[List[str]] = None) -> None:
     """CLI entry point."""
+    try:
+        try:
+            _run(argv)
+        finally:
+            sys.stdout.flush()
+    except BrokenPipeError:
+        # The reader closed the pipe early (``orthography2ipa list | head``).
+        # Point stdout at devnull so the flush at interpreter exit cannot raise
+        # again, and exit like any command whose output was cut off.
+        os.dup2(os.open(os.devnull, os.O_WRONLY), sys.stdout.fileno())
+        sys.exit(1)
+
+
+def _run(argv: Optional[List[str]]) -> None:
+    """Parse *argv* and run the subcommand it names."""
     parser = _build_parser()
     args = parser.parse_args(argv)
 

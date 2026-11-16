@@ -1,3 +1,8 @@
+import os
+import subprocess
+import sys
+
+import pytest
 
 
 def test_family_filter_matches_any_step_of_the_classification_path(capsys):
@@ -24,3 +29,30 @@ def test_family_filter_matches_any_step_of_the_classification_path(capsys):
     with pytest.raises(SystemExit) as exc:
         main(["list", "--family", "Klingon"])
     assert exc.value.code == 1
+
+
+@pytest.mark.parametrize("argv", [
+    ["list"],
+    ["list", "--families"],
+    ["info", "pt-PT", "--json"],
+    ["--version"],
+    ["--help"],
+], ids=" ".join)
+def test_a_closed_pipe_ends_the_command_quietly(argv):
+    """`orthography2ipa list | head` closes the pipe before the command is done.
+
+    The read end is closed before the command starts, so every write fails, the
+    same as the last write after `head` exits. The command must exit with
+    status 1 and write nothing to stderr: no traceback, no "Exception ignored"
+    from the flush at interpreter exit.
+    """
+    read_end, write_end = os.pipe()
+    os.close(read_end)
+    try:
+        proc = subprocess.run(
+            [sys.executable, "-m", "orthography2ipa.cli", *argv],
+            stdout=write_end, stderr=subprocess.PIPE, timeout=120)
+    finally:
+        os.close(write_end)
+    assert proc.stderr.decode() == ""
+    assert proc.returncode == 1
