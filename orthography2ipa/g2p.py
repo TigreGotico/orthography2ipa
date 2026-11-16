@@ -444,24 +444,27 @@ class G2P:
         resolved, and still names the language the result is reported under.
     expand_allophones : bool
         Enumerate surface variants: branch the beam over every allophone of
-        each phoneme from ``spec.allophones`` (flat ``+0.5`` cost each). This
+        each phoneme from ``spec.allophones``, at ``+0.5`` cost per rank after
+        the first. This
         *inflates* the search space with every variant; it does not pick the
         contextually-correct one. Use it to see all surface possibilities.
         Independent of :paramref:`apply_allophony` (the realisation path).
     apply_allophony : bool
         Apply the spec's declarative ``allophone_rules`` — the post-lexical
-        ``phoneme → surface`` realisation pass (Workstream B8) — as a
-        rescorer after phoneme selection and before stress/sandhi. Default
-        ``True``, but a **no-op for every spec that declares no**
-        ``allophone_rules`` (i.e. all shipped specs bar the pilots), so the
-        default engine path stays byte-identical. Set ``False`` to force
+        ``phoneme → surface`` realisation pass — as a rescorer after phoneme
+        selection and the caller's rescorers, and before stress marks and
+        sandhi. Default ``True``. A spec that declares no ``allophone_rules``
+        gives the same output either way. Set ``False`` to force
         broad/phonemic output even for a spec that declares rules. See
         :mod:`orthography2ipa.allophony`.
     dialect_profile : Optional[str]
-        ``DIALECT_PROFILES`` key applied to the final IPA
-        (see :func:`orthography2ipa.apply_transform`).
+        ``DIALECT_PROFILES`` key applied to the sentence IPA that
+        :meth:`transcribe` and :meth:`transcribe_detailed` return
+        (see :func:`orthography2ipa.apply_transform`). The word methods do
+        not apply it.
     apply_sandhi : bool
-        Apply the spec's cross-word sandhi rules (default).
+        Apply the spec's cross-word ``sandhi_rules`` (default). ``False``
+        does not turn off ``Pipeline(sandhi=...)``.
     apply_stress : bool
         Insert stress marks when the spec declares stress rules
         (default).
@@ -472,9 +475,11 @@ class G2P:
     rescorer, sentence_rescorer, plugins
         Deprecated: use ``Pipeline(rescore=...)``, ``Pipeline(sandhi=...)``
         and the ``Pipeline`` field of each stage. Each old argument that is
-        not ``None`` raises :class:`DeprecationWarning`.
+        not ``None`` warns :class:`DeprecationWarning`. An old argument for a
+        stage whose ``Pipeline`` field is also set raises :class:`ValueError`.
     pipeline : Optional[Pipeline]
-        The lexicon and the syllabifier for this engine alone (see
+        The steps for this engine alone: ``lexicon``, ``syllabifier``,
+        ``expand``, ``mark``, ``rescore`` and ``sandhi`` (see
         :class:`~orthography2ipa.pipeline.Pipeline`). Another engine in the
         same process does not see them.
     on_unmapped : str
@@ -488,9 +493,8 @@ class G2P:
           (``N*``) emits
           :class:`~orthography2ipa.exceptions.UnmappedGraphemeWarning`
           once per engine and character. Punctuation, symbols and
-          spaces do not warn, and a stub spec warns
-          :class:`~orthography2ipa.exceptions.StubSpecWarning` once
-          instead.
+          spaces do not warn, and a stub spec does not warn per
+          character.
         - ``"ignore"``: the same output with no signal. Inspect
           :attr:`WordTranscription.unmapped` /
           :attr:`WordTranscription.coverage` via
@@ -500,6 +504,19 @@ class G2P:
         - ``"raise"``: raises
           :class:`~orthography2ipa.exceptions.UnmappedScriptError`
           instead of returning a result for that word.
+
+        In every mode, an engine on a stub spec warns
+        :class:`~orthography2ipa.exceptions.StubSpecWarning` once, when
+        it is built.
+    allow_undeclared_phonemes : bool
+        Accept forced ``<phoneme ph="...">`` IPA that holds a segment
+        outside the spec's declared inventory. Default ``False``: such a
+        forced reading raises :class:`~orthography2ipa.markup.MarkupError`.
+    expose_ambiguous_endings : bool
+        Let a list-valued ``grammatical_endings`` entry add its lower-ranked
+        readings to the beam (default). The 1-best output is the same either
+        way. The benchmark scoreboard sets it ``False``, so that its oracle
+        columns measure ranking error only.
     """
 
     def __init__(
