@@ -56,3 +56,35 @@ def test_a_closed_pipe_ends_the_command_quietly(argv):
         os.close(write_end)
     assert proc.stderr.decode() == ""
     assert proc.returncode == 1
+
+
+def test_a_closed_stdout_at_start_still_runs_quietly():
+    """`orthography2ipa --version >&-` starts with fd 1 closed, so sys.stdout is None."""
+    proc = subprocess.run(
+        [sys.executable, "-c",
+         "import os, sys; os.close(1); sys.stdout = None; "
+         "sys.argv = ['orthography2ipa', '--version']; "
+         "from orthography2ipa.cli import main; main()"],
+        stderr=subprocess.PIPE, timeout=120)
+    assert proc.stderr.decode() == ""
+    assert proc.returncode == 0
+
+
+def test_an_error_after_the_reader_closed_still_reports():
+    """A real error keeps its traceback when buffered output meets a closed pipe."""
+    read_end, write_end = os.pipe()
+    os.close(read_end)
+    try:
+        proc = subprocess.run(
+            [sys.executable, "-c",
+             "from orthography2ipa import cli\n"
+             "def _run(argv):\n"
+             "    print('partial output')\n"
+             "    raise RuntimeError('boom')\n"
+             "cli._run = _run\n"
+             "cli.main([])\n"],
+            stdout=write_end, stderr=subprocess.PIPE, timeout=120)
+    finally:
+        os.close(write_end)
+    assert "RuntimeError: boom" in proc.stderr.decode()
+    assert proc.returncode != 0
