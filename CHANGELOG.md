@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.123.10a2](https://github.com/TigreGotico/orthography2ipa/tree/7.123.10a2) (2026-11-16)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.123.10a1...7.123.10a2)
+
+**Merged pull requests:**
+
+- docs: document every G2P parameter as the engine behaves [\#2344](https://github.com/TigreGotico/orthography2ipa/pull/2344) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.123.10a1](https://github.com/TigreGotico/orthography2ipa/tree/7.123.10a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.123.9...7.123.10a1)
