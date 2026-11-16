@@ -4,10 +4,11 @@ Each test takes ONE cited claim and proves the shared engine / base-spec now
 honours it, isolating the change to a single segment and, where the phonology
 allows, using a minimal pair (same word under a sibling or parent lect). The
 leads these cover were surfaced while authoring the ``portuguese_tts`` gold
-sets; the fixes live in the base ``roa-x-galaicopt`` / ``pt-PT-x-medieval``
+sets; the fixes live in the base ``roa-x-galaico-pt`` / ``pt-PT-x-medieval``
 specs, the per-lect override tables, and the shared positional engine — never
 in per-word patches.
 """
+import re
 import unicodedata
 
 import pytest
@@ -42,7 +43,7 @@ def test_soft_g_before_e_i_is_zh(code):
 def test_soft_g_deaffrication_medieval_vs_galaicopt():
     # minimal pair on the same word: the affricate survives in the older lect,
     # deaffricates in Old Portuguese and its descendants.
-    assert "d͡ʒ" in _bare("roa-x-galaicopt", "gente")
+    assert "d͡ʒ" in _bare("roa-x-galaico-pt", "gente")
     assert "ʒ" in _bare("pt-PT-x-medieval", "gente")
     assert "d͡ʒ" not in _bare("pt-PT-x-medieval", "gente")
 
@@ -77,7 +78,7 @@ def test_voce_northern_betacism_not_velar():
 # attracts stress rather than being dropped (an accented grapheme must map to
 # its plain quality — deletion is always wrong).
 # ===========================================================================
-@pytest.mark.parametrize("code", ["pt-PT-x-medieval", "roa-x-galaicopt"])
+@pytest.mark.parametrize("code", ["pt-PT-x-medieval", "roa-x-galaico-pt"])
 @pytest.mark.parametrize("word,vowel", [("está", "a"), ("café", "ɛ"), ("avô", "o")])
 def test_accented_vowels_not_deleted(code, word, vowel):
     out = _t(code, word)
@@ -88,8 +89,8 @@ def test_accented_vowels_not_deleted(code, word, vowel):
 def test_galaicopt_emits_stress():
     # Galaico-Portuguese was paroxytone-by-default with oxytone consonant
     # endings, like its descendants; the transcriber must mark stress.
-    assert "ˈ" in _t("roa-x-galaicopt", "amigo")
-    assert "ˈ" in _t("roa-x-galaicopt", "cantar")
+    assert "ˈ" in _t("roa-x-galaico-pt", "amigo")
+    assert "ˈ" in _t("roa-x-galaico-pt", "cantar")
 
 
 # ===========================================================================
@@ -117,7 +118,7 @@ def test_medieval_coda_nasalisation_and_stress():
 def test_gu_qu_digraph_only_before_front_vowels(code):
     assert "u" in _t(code, "agudo")          # a.gu.do — u is the stressed vowel
     assert "w" in _t(code, "água")           # á.gua — [ˈaɡwɐ]
-    assert "u" in _t(code, "legumes")        # le.gu.mes — pretonic u survives
+    assert re.search("[uũ]", _t(code, "legumes"))  # le.gu.mes — the u survives
     assert "w" in _t(code, "quatro")         # qua → [kwa]
     assert _bare(code, "aquele").count("k") == 1  # que → [k], silent u
 
@@ -159,3 +160,59 @@ def test_palop_no_pretonic_reduction(code):
     assert "ɨ" not in _t(code, "menino")     # EP would give mɨˈninu
     assert "ɨ" not in _t(code, "cebola")
     assert _bare(code, "moderno").startswith("mo")  # pretonic o stays [o]
+
+
+# ===========================================================================
+# Accented vowel digraphs — the ditongos abertos and their closed twins.
+# The acute writes the OPEN diphthong and the circumflex the closed one:
+# "as palavras oxítonas com os ditongos abertos grafados -éi, éu ou ói"
+# (Acordo Ortográfico da Língua Portuguesa 1990, Base VIII — anéis, batéis,
+# fiéis, papéis; céu, chapéu; herói, sóis). ⟨éu êu⟩ were already mapped at
+# pt-PT-x-medieval; ⟨ái áu éi êi ói ôi⟩ join them there, so the whole family
+# inherits one statement of the pattern.
+# ===========================================================================
+@pytest.mark.parametrize("code", ["pt-PT", "pt-BR", "pt-AO", "pt-TL",
+                                  "pt-PT-x-lisbon"])
+@pytest.mark.parametrize("word,nucleus", [
+    ("herói", "ɔj"),
+    ("sóis", "ɔj"),
+    ("anéis", "ɛj"),
+    ("papéis", "ɛj"),
+    ("fiéis", "ɛj"),
+    ("áureo", "aw"),
+    ("Plêiades", "ej"),
+])
+def test_accented_digraph_is_one_nucleus(code, word, nucleus):
+    # The accented digraph is a vowel plus a GLIDE, never two vowels: the
+    # letter-by-letter reading gave herói → …ɔˈi and anéis → …ɛˈiʃ.
+    assert nucleus in _t(code, word)
+    assert nucleus[0] + "ˈ" not in _t(code, word)
+
+
+@pytest.mark.parametrize("code", ["pt-PT", "pt-BR"])
+def test_iu_is_a_falling_diphthong(code):
+    # ⟨iu⟩ patterns with the other falling diphthongs (Base VIII's list is
+    # about accentuation, not about which sequences are diphthongs; Cunha &
+    # Cintra, §Ditongos, give ⟨iu⟩ as [iw] — partiu, viu).
+    assert _t(code, "viu").endswith("iw")
+    assert _t(code, "partiu").endswith("iw")
+
+
+def test_ui_with_an_acute_is_a_hiatus_not_a_diphthong():
+    # Base X §1 accents a stressed ⟨i u⟩ after a vowel precisely "quando
+    # antecedidas de uma vogal com que não formam ditongo" (juízes, ruína,
+    # influíste), so ⟨uí⟩ is the orthography SAYING the vowels are separate
+    # nuclei. It must not sit in the spec's diphthong list, or the bundled
+    # syllabifier merges ru-í-do into ruí-do. Exercised on the bundled
+    # splitter, which is the path taken wherever the optional
+    # ``orthography2ipa[portuguese]`` syllabifier is not installed.
+    from orthography2ipa.registry import get
+    from orthography2ipa.stress import syllabify
+
+    diph = get("pt-PT").stress.diphthongs
+    assert "uí" not in diph
+    assert syllabify("ruído", diphthongs=diph) == ["ru", "í", "do"]
+    assert syllabify("juízes", diphthongs=diph) == ["ju", "í", "zes"]
+    # the unaccented ⟨ui⟩ IS a diphthong and stays one nucleus
+    assert "ui" in diph
+    assert syllabify("muito", diphthongs=diph) == ["mui", "to"]

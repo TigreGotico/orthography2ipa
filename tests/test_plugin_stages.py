@@ -11,21 +11,28 @@ import pytest
 
 from orthography2ipa import get, registry
 from orthography2ipa.g2p import G2P
-from orthography2ipa.plugins import (
-    NormalizePlugin, OUTPUT_CHANGING_STAGES, STAGES, SandhiPlugin,
-)
+from orthography2ipa.plugins import SandhiPlugin
 from orthography2ipa.registry import MissingPlugin
 
+# This module tests a deprecated G2P argument, which still works.
+pytestmark = pytest.mark.filterwarnings(
+    r"ignore:G2P\(\w+=\.\.\.\) is deprecated:DeprecationWarning")
 
-class _Diacritizer(NormalizePlugin):
-    """Stands in for text2tashkeel: puts the vowels back before anything reads."""
+# The stage constants and NormalizePlugin are deprecated, and still work.
+with pytest.deprecated_call():
+    from orthography2ipa.plugins import (
+        ENTRY_POINT_GROUPS, NormalizePlugin, OUTPUT_CHANGING_STAGES, STAGES,
+    )
 
-    def normalize(self, text, lang):
-        return {"كتب": "كَتَبَ"}.get(text, text)
+    class _Diacritizer(NormalizePlugin):
+        """Stands in for text2tashkeel: puts the vowels back before anything reads."""
 
-    @property
-    def language_codes(self):
-        return ["ar"]
+        def normalize(self, text, lang):
+            return {"كتب": "كَتَبَ"}.get(text, text)
+
+        @property
+        def language_codes(self):
+            return ["ar"]
 
 
 class _NunAssimilation(SandhiPlugin):
@@ -92,9 +99,13 @@ def test_the_error_says_what_it_wanted_and_what_it_found(registered):
 
 # ─── the taxonomy itself ────────────────────────────────────────────────
 
-def test_syllabify_is_the_only_undeclared_stage():
-    """Because it is the only one that must not change the transcription."""
-    assert set(STAGES) - set(OUTPUT_CHANGING_STAGES) == {"syllabify"}
+def test_every_stage_must_be_named():
+    assert set(OUTPUT_CHANGING_STAGES) == set(STAGES)
+
+
+def test_syllabify_is_the_only_stage_with_no_entry_point_group():
+    """A caller passes a syllabifier as an object, so nothing can discover one."""
+    assert set(STAGES) - set(ENTRY_POINT_GROUPS) == {"syllabify"}
 
 
 def test_no_shipped_spec_names_a_plugin():

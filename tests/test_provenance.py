@@ -5,7 +5,7 @@ Reliable G2P "gold" barely exists: most benchmark datasets are
 semi-automated, dictionary-extracted, community-scraped, or a
 phonemizer's own output reused as a reference. Every registered dataset
 must therefore carry an explicit reliability tier so the caveat travels
-with the numbers (docs/scoreboard.md column + benchmarks/results.json
+with the numbers (docs/evaluation/generated/scoreboard.md column + benchmarks/results.json
 field). These tests are a forcing function: a new dataset cannot be
 registered without classifying it, and the scoreboard must keep emitting
 the provenance column/field.
@@ -49,7 +49,9 @@ def test_every_tier_is_in_use():
     """The taxonomy is not aspirational: each tier classifies at least one
     real registered dataset (so the docs table is grounded)."""
     used = set(PROVENANCE.values())
-    assert used == set(RELIABILITY_TIERS)
+    # llm-generated names the source rows of the silver sets, which the
+    # board reads only through their llm-corrected files.
+    assert used | {"llm-generated"} == set(RELIABILITY_TIERS)
 
 
 def test_write_scoreboard_emits_provenance_column_and_field(tmp_path, monkeypatch):

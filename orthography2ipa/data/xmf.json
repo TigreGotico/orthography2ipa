@@ -163,6 +163,17 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Mingrelian_language",
       "pages": null,
       "notes": "Vowel system /i ɛ a ɔ u/ (+ /ə/ in Zugdidi-Samurzaqano) and the three extra letters ჲ /j/, ჷ /ə/, ჸ /ʔ/."
+    },
+    {
+      "id": "harris_mingrelian_sketch",
+      "author": "Harris, Alice C.",
+      "year": 1991,
+      "title": "Mingrelian (grammatical sketch; the author's manuscript of the chapter in The Indigenous Languages of the Caucasus, vol. 1: The Kartvelian Languages)",
+      "publisher": "University of Massachusetts Amherst, author's language-documentation site",
+      "url": "https://people.umass.edu/acharris/language-documentation/mingrelian-grammatical-sketch/Mingrelian%20sketch%20complete.pdf",
+      "wikipedia_url": null,
+      "pages": "2-3",
+      "notes": "§1.1 Phonemic System, read in full on pp. 2-3 of the manuscript's own numbering. Vowel chart i ɛ a ɔ u plus /ə/ in the Zugdid-Samurzaqan dialect; obstruents in three phonation types (voiced, voiceless aspirated, ejective) across labial, dental, alveolar, postalveolar and velar series, with a lone uvular ejective q' and glottal ʔ and h; /v/ has allophones [v] and [w]. Given in transliteration, not in Mkhedruli, so the letter-to-phoneme pairing is corroborated through the standard Georgian letter values rather than stated by Harris. One point of wording: Harris describes o as 'high-mid, back, rounded' while this spec writes ⟨ო⟩ as ɔ; her chart still places it in the mid row, so the disagreement is one of transcription convention, recorded here rather than resolved."
     }
   ],
   "wikipedia": [

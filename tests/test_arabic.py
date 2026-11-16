@@ -7,7 +7,7 @@ Covers:
 - Moroccan Arabic (ar-MA)
 - Gulf Arabic (ar-x-gulf)
 - Iraqi Arabic (ar-IQ)
-- Peninsular Arabic (ar-x-peninsular)
+- Peninsular Arabic (ar-x-peninsul)
 
 Key cross-dialect variables:
 - ق (qaf): q / ʔ / ɡ

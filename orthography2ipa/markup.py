@@ -42,11 +42,12 @@ a hole in it: a TTS frontend builds its embedding table from the declared invent
 *before* training, so a symbol that appears only at inference has no vector, and
 every word carrying it is mispronounced permanently and silently.
 
-This is precisely the case that matters for a loanword. English *meeting* is not
-[ˈmiːtɪŋ] in Saudi Arabic — it is nativised, and /ɪ/ and /ŋ/ are not Arabic
-phonemes. Forcing the donor's phonology would emit two symbols the ``ar`` spec
-never declares. The check turns that from a silent, permanent mispronunciation
-into an error at the call site, which names the offending symbols.
+The inventory is :func:`~orthography2ipa.inventory.phoneme_inventory`: every
+segment the spec's tables can emit, allophones included. A loanword is the case
+that matters. The ``ar`` spec emits no [ɡ], so English *meeting* forced as
+[ˈmiːtinɡ] carries a symbol outside the inventory. The check turns that
+from a silent, permanent mispronunciation into an error at the call site, which
+names the offending symbols.
 
 A caller who genuinely means to emit a phoneme outside the inventory is making a
 claim about the phonology, and a claim about the phonology belongs in the spec —

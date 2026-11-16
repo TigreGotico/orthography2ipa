@@ -50,9 +50,9 @@ def _all_codes(exclude_proto=False):
         # TODO - add script+graphemes where available
         codes = [c for c in codes if c not in [
             "ine", "ine-x-italic",
-            "cel", "cel-x-gallaecia", "xce", "xaq", "txr", "xlg", "xib",
+            "cel", "cel-x-gallaeci", "xce", "xaq", "txr", "xlg", "xib",
             "gem", "got", "xpa", "gem-x-suebi", "xcg", "xtg",
-            "pa-PK",
+            "pnb-PK",
             "sem", "sem-x-central", "sem-x-west",
             "la", "la-x-archaic", "la-x-late", "la-x-hispania", "la-x-gallia", "mxi",
             "oc"
@@ -474,7 +474,7 @@ class TestFamilyConsistency:
 
     def test_germanic_languages_share_protogermanic(self):
         """Germanic languages should trace to Proto-Germanic (gem)."""
-        germanic_codes = ["de-DE", "nl"]
+        germanic_codes = ["de-DE", "nl-NL"]
         for code in germanic_codes:
             try:
                 spec = get(code)

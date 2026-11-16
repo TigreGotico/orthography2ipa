@@ -11,6 +11,7 @@ import pytest
 
 from orthography2ipa import get
 from orthography2ipa.g2p import G2P
+from orthography2ipa.inventory import phoneme_atoms
 from orthography2ipa.stress import (
     HEAVY, LIGHT, SUPERHEAVY, detect_stress_by_weight, syllabify_ipa,
     syllable_weight,
@@ -108,7 +109,7 @@ def test_arabic_is_stressed_end_to_end(word, expected, why):
     assert G2P("ar").transcribe(word) == expected, why
 
 
-@pytest.mark.parametrize("lang", ["ar-SA-x-najd", "ar-SA-x-hejaz", "ar-EG"])
+@pytest.mark.parametrize("lang", ["ars-SA", "acw-SA", "arz-EG"])
 def test_the_varieties_are_stressed_too(lang):
     assert G2P(lang).transcribe("كِتَاب").endswith("ˈtaːb")
 
@@ -121,23 +122,58 @@ def test_end_anchored_languages_are_untouched():
 
 def test_the_arabic_specs_opt_in():
     """Arabic is the system this was built for, and it now declares the block."""
+    import json as _json
+    import os as _os
+
+    import orthography2ipa as _o2i
     from orthography2ipa import available_codes
+
     opted_in = {
         code for code in available_codes()
         if (get(code).stress and get(code).stress.quantity_sensitive)
     }
-    assert {"ar", "arb", "ar-SA-x-najd", "ar-SA-x-hejaz", "ar-EG"} <= opted_in
-    # Outside Arabic, only languages whose stress is cited as quantity-
-    # sensitive may opt in: idb (Sri Lanka Portuguese — stress on the
-    # long-vowel syllable, else initial; Cardoso, APiCS 41), and the
-    # Arabic-lineage varieties that inherit the block through their Arabic
-    # ``graphemes_base``: xaa (Andalusi Arabic, base ``arb``). Varieties that
-    # keep only a genetic ``parent`` while authoring their own orthography
-    # (mt Maltese, acy Cypriot Arabic) do NOT inherit — stress rides the
-    # graphemes edge, not the classification parent.
-    _non_arabic_ok = {"idb", "xaa"}
-    assert all(c.startswith("ar") or c in _non_arabic_ok
-               for c in opted_in), sorted(opted_in)
+    assert {"ar", "arb", "ars-SA", "acw-SA", "arz-EG"} <= opted_in
+
+    # Stress rides the graphemes edge, so the set entitled to inherit the block is
+    # computed from that edge rather than listed: every spec whose ``graphemes_base``
+    # chain ends at ``arb``. A variety that keeps only a genetic ``parent`` while
+    # authoring its own orthography — mt Maltese, acy Cypriot Arabic — falls outside
+    # it, correctly. A test on the code name would be wrong in both directions: this
+    # repo ships arc Aramaic, arn Mapudungun, arp Arapaho, arr Karo, arv Arbore and
+    # arw Arawak, none of them Arabic, while ar-TD-x-babalia Babalia Creole and sqr Siculo are
+    # Arabic and look like neither.
+    _data = _os.path.join(_os.path.dirname(_o2i.__file__), "data")
+
+    def _graphemes_root(code):
+        seen = set()
+        while code not in seen:
+            seen.add(code)
+            path = _os.path.join(_data, code + ".json")
+            if not _os.path.exists(path):
+                return code
+            with open(path, encoding="utf-8") as fh:
+                base = _json.load(fh).get("graphemes_base")
+            if not base:
+                return code
+            code = base
+        return code
+
+    inherits_from_arabic = {c for c in available_codes() if _graphemes_root(c) == "arb"}
+    assert {"ar-TD-x-babalia", "sqr", "xaa"} <= inherits_from_arabic
+    assert not {"mt", "acy"} & inherits_from_arabic, (
+        "a genetic parent is not a graphemes base")
+
+    # What remains is editorial, and only three specs need deciding by hand:
+    # languages outside the Arabic grapheme lineage whose stress is cited as
+    # quantity-sensitive in its own right. idb Sri Lanka Portuguese takes stress on
+    # the long-vowel syllable and otherwise initially (Cardoso, APiCS 41); cic
+    # Chickasaw puts the primary accent on the rightmost heavy CVV/CVC syllable
+    # (Munro & Willmond 1994, *Chickasaw: An Analytical Dictionary*); and
+    # ar-Latn-x-buckwalt is Arabic transliterated into Latin, so it declares the
+    # block without sharing an Arabic grapheme table to inherit it from.
+    _cited_outside_the_lineage = {"idb", "cic", "ar-Latn-x-buckwalt"}
+    assert opted_in <= inherits_from_arabic | _cited_outside_the_lineage, sorted(
+        opted_in - inherits_from_arabic - _cited_outside_the_lineage)
 
 
 # ─── weight is counted in SEGMENTS, not characters ──────────────────────
@@ -171,6 +207,87 @@ def test_detect_stress_by_weight_counts_segments(ipa, index, why):
 def test_an_affricate_is_never_split_across_a_syllable_boundary():
     assert syllabify_ipa("katsib", max_onset=1) == ["ka", "tsib"]
     assert syllabify_ipa("matˤɑr", max_onset=1) == ["ma", "tˤɑr"]
+
+
+# A spec's phoneme list is in inventory order, not longest-first: es-ES lists
+# /t/ before /tʃ/, and zh lists /t/ before /tɕ/ before /tɕʰ/. Passed as atoms,
+# the longest phoneme must still win, or the affricate splits across the
+# syllable boundary and its syllable counts a two-consonant coda.
+@pytest.mark.parametrize("lang,affricate,prefixes,ipa,syllables", [
+    ("es-ES", "tʃ", ("t",), "atʃa", ["a", "tʃa"]),
+    ("zh", "tɕʰ", ("t", "tɕ"), "atɕʰa", ["a", "tɕʰa"]),
+])
+def test_spec_phonemes_as_atoms_keep_the_affricate_whole(
+        lang, affricate, prefixes, ipa, syllables):
+    atoms = list(get(lang).phonemes)
+    assert all(atoms.index(p) < atoms.index(affricate) for p in prefixes), (
+        "the case only bites while a prefix of the affricate is listed first")
+    assert syllabify_ipa(ipa, max_onset=1, atoms=atoms) == syllables
+    assert syllable_weight("a" + affricate, atoms) == HEAVY, "CVC, one coda consonant"
+
+
+# A spec may declare a diphthong as one phoneme. Passed as an atom it becomes
+# one segment, but it is still a branching nucleus, so the syllable is heavy.
+@pytest.mark.parametrize("lang,diphthong,syllable", [
+    ("nb", "æʉ", "æʉ"),
+    ("diq", "ai", "ai"),
+    ("diq", "au", "au"),
+    ("shk", "aɪ", "aɪ"),
+    ("sah", "ɯa", "ɯa"),
+    ("inh", "oa", "joa"),
+])
+def test_a_diphthong_declared_as_one_phoneme_is_heavy(lang, diphthong, syllable):
+    atoms = list(get(lang).phonemes)
+    assert diphthong in atoms, "the case only bites while the spec declares the diphthong"
+    assert syllable_weight(syllable, atoms) == HEAVY
+    assert syllable_weight(syllable + "n", atoms) == SUPERHEAVY, "branching nucleus + coda"
+    assert syllable_weight(syllable[:-1], atoms) == LIGHT, "one vowel alone stays light"
+
+
+@pytest.mark.parametrize("syllable,weight,why", [
+    ("aɪ̯", HEAVY, "a falling diphthong with a non-syllabic mark is two vocoids"),
+    ("ɐ̃", LIGHT, "the nasal tilde is a mark on one vowel, not a second vowel"),
+    ("ɛ̯", LIGHT, "the non-syllabic mark alone is not a second vowel"),
+    ("amo", LIGHT, "two vowels with a consonant between them are no diphthong"),
+])
+def test_one_atom_nucleus_branches_only_on_adjacent_vowels(syllable, weight, why):
+    assert syllable_weight(syllable, [syllable]) == weight, why
+
+
+@pytest.mark.parametrize("lang,diphthong,syllable", [
+    ("nn", "œʏ", "œʏ"), ("wym", "ɔʏ", "ɔʏ"), ("sxu", "ɞʏ̯", "ɞʏ̯"),
+])
+def test_a_declared_diphthong_ending_in_y_is_heavy(lang, diphthong, syllable):
+    # ʏ is not in the IPA vowel table; the feature table holds it as a vowel.
+    atoms = list(get(lang).phonemes)
+    assert diphthong in atoms, "the case only bites while the spec declares the diphthong"
+    assert syllable_weight(syllable, atoms) == HEAVY
+    assert syllable_weight(syllable + "n", atoms) == SUPERHEAVY, "branching nucleus + coda"
+
+
+@pytest.mark.parametrize("lang,diphthong,syllable", [
+    ("es-ES", "aj", "paj"), ("es-ES", "aw", "kaw"), ("ar", "aj", "bajt"),
+    ("pt-PT", "ɐ̃w̃", "mɐ̃w̃"), ("de-DE", "ɔʏ", "nɔʏ"), ("nl-NL", "œʏ", "œʏ"),
+])
+def test_a_diphthong_atom_weighs_as_its_letters_do_without_the_atom(lang, diphthong, syllable):
+    # Without the atom the glide or ʏ is a second segment and the syllable is
+    # heavy; the atom must not make the same syllable lighter.
+    atoms = phoneme_atoms(get(lang))
+    assert diphthong in atoms, "the case only bites while the spec emits the diphthong"
+    assert syllable_weight(syllable, atoms) == syllable_weight(syllable)
+    assert syllable_weight(syllable, atoms) in (HEAVY, SUPERHEAVY)
+
+
+@pytest.mark.parametrize("syllable,weight,why", [
+    ("aj", HEAVY, "a vowel and a glide letter are a falling diphthong"),
+    ("aw", HEAVY, "a vowel and a glide letter are a falling diphthong"),
+    ("ɐ̃w̃", HEAVY, "the nasal tilde on the glide does not hide it"),
+    ("aja", LIGHT, "a glide before a vowel opens that vowel, it does not close the first"),
+    ("ja", LIGHT, "a glide before the only vowel is an onset"),
+    ("aʲ", LIGHT, "a palatalisation mark is not a glide letter"),
+])
+def test_a_glide_letter_branches_the_nucleus_only_after_a_vowel(syllable, weight, why):
+    assert syllable_weight(syllable, [syllable]) == weight, why
 
 
 def test_the_stress_mark_never_lands_inside_a_long_vowel():

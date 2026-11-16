@@ -50,7 +50,7 @@ def de():
 @pytest.fixture
 def nl():
     try:
-        return get("nl")
+        return get("nl-NL")
     except Exception:
         pytest.skip("nl not available in registry")
 

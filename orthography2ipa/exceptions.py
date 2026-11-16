@@ -7,7 +7,12 @@ from __future__ import annotations
 
 from typing import Tuple
 
-__all__ = ["UnmappedScriptError"]
+__all__ = [
+    "EngineSourceUnavailable",
+    "StubSpecWarning",
+    "UnmappedGraphemeWarning",
+    "UnmappedScriptError",
+]
 
 
 class UnmappedScriptError(ValueError):
@@ -33,3 +38,47 @@ class UnmappedScriptError(ValueError):
             f"{lang}: word {word!r} has unmapped characters "
             f"{''.join(unmapped)!r} not covered by the grapheme table"
         )
+
+
+class StubSpecWarning(UserWarning):
+    """Emitted once when a :class:`~orthography2ipa.g2p.G2P` engine is built
+    on a spec that has no grapheme table at all (``quality: stub`` with
+    neither ``graphemes`` nor ``positional_graphemes``, and no base to
+    inherit them from).
+
+    Every transcription from such an engine is the empty string, and
+    :meth:`~orthography2ipa.g2p.G2P.word_confidence` is ``0.0``. Before this
+    warning existed that was the only signal, and a caller who did not ask
+    for it got ``""`` back with nothing said (``azb``, ``lah``). The engine
+    still builds, because 6219 of the 7670 registered codes are such stubs
+    and the catalog, the distance metrics and the tests enumerate them;
+    ``G2P(..., on_unmapped="raise")`` turns the per-word case into
+    :class:`UnmappedScriptError`.
+    """
+
+
+class UnmappedGraphemeWarning(UserWarning):
+    """Emitted when a letter or combining mark has no grapheme mapping.
+
+    The tokenizer turns a character that no ``graphemes`` key covers into an
+    ``UNKNOWN`` token, and the transcription carries nothing for it: ``ar``
+    reads ⟨بڨب⟩ as ``ˈbb``, the same string a word without the ⟨ڨ⟩ gives.
+    The engine warns once per (spec, character) with the code point and the
+    spec code, and the transcription string does not change.
+
+    Only Unicode letters (category ``L*``), marks (``M*``) and digits
+    (``N*``) warn. Punctuation, symbols and spaces never do. A stub spec warns
+    :class:`StubSpecWarning` once instead of once per letter.
+    ``G2P(..., on_unmapped="ignore")`` turns the warning off and
+    ``on_unmapped="raise"`` turns it into :class:`UnmappedScriptError`.
+    """
+
+
+class EngineSourceUnavailable(RuntimeError):
+    """Raised by :func:`~orthography2ipa.revision.spec_revision` when the
+    source of an engine module cannot be read.
+
+    The engine fingerprint hashes the ``.py`` files of the modules on the
+    transcription path. An install that ships only byte code still
+    transcribes, but it has no source to hash, so it has no spec revision.
+    """

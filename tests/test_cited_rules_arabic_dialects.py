@@ -35,7 +35,7 @@ def _bare(code, word):
 
 
 # ---------------------------------------------------------------------------
-# ar-x-peninsular — the shared Peninsular emphasis-spreading rules
+# ar-x-peninsul — the shared Peninsular emphasis-spreading rules
 # ---------------------------------------------------------------------------
 
 
@@ -50,7 +50,7 @@ def test_pen_emph_back_a_after():
     صَبَاح: the /a/ right after ص backs; the /aː/ two slots away, after plain ب,
     does not — the rule is strictly adjacency-scoped.
     """
-    assert _bare("ar-x-peninsular", "صَبَاح") == "sˤɑbaːħ"
+    assert _bare("ar-x-peninsul", "صَبَاح") == "sˤɑbaːħ"
 
 
 def test_pen_emph_back_a_before():
@@ -63,7 +63,7 @@ def test_pen_emph_back_a_before():
     سَطْح /satˤħ/ — the /a/ precedes ط and nothing follows it; only the leftward
     rule can back it.
     """
-    assert _bare("ar-x-peninsular", "سَطْح") == "sɑtˤħ"
+    assert _bare("ar-x-peninsul", "سَطْح") == "sɑtˤħ"
 
 
 def test_pen_emph_back_aa_after():
@@ -72,7 +72,7 @@ def test_pen_emph_back_aa_after():
     Rule notes: "Emphasis spreading: long /aː/ backs to [ɑː] after an adjacent
     emphatic. Watson 2002 ... pp. 267-286."
     """
-    assert _bare("ar-x-peninsular", "طَالِب") == "tˤɑːlib"
+    assert _bare("ar-x-peninsul", "طَالِب") == "tˤɑːlib"
 
 
 def test_pen_emph_back_aa_before():
@@ -81,17 +81,19 @@ def test_pen_emph_back_aa_before():
     Rule notes: "Emphasis spreading (leftward): long /aː/ backs to [ɑː] before an
     adjacent emphatic. Watson 2002 ... pp. 267-286."
 
-    بَاطِل /baːtˤil/ — the ⟨ا⟩ precedes ط; the /i/ after it is not a low vowel and
-    is untouched, so exactly one segment moves.
+    بَاطِل /baːtˤil/ — the ⟨ا⟩ precedes ط. The /i/ after ط is not a low vowel,
+    but emphasis spread is not limited to low vowels: it also backs /i/ to
+    [ɪ] after an emphatic (AR_EMPHASIS_SPREAD_I_AFTER, Watson 2002; Davis
+    1995), so two segments move here.
     """
-    assert _bare("ar-x-peninsular", "بَاطِل") == "bɑːtˤil"
+    assert _bare("ar-x-peninsul", "بَاطِل") == "bɑːtˤɪl"
 
 
 # --- the quantity-sensitive stress cascade, on the nodes whose ONLY cited claim
 # --- it is (each restates the same Ryding 2005 §2.3 / Watson 2002 ch.3 rule).
 
 _STRESS_ONLY_NODES = [
-    "ar-x-peninsular", "ar-x-mashriqi", "ar-x-maghrebi",
+    "ar-x-peninsul", "ar-x-mashriqi", "ar-x-maghrebi",
     "ar-BH", "ar-DZ", "ar-MR", "ar-TD",
 ]
 
@@ -260,9 +262,12 @@ def test_lev_emph_back_aa_before():
     بَاطِل also pins the ordering claim of AR_LEV_EMPH_BACK_AA_AFTER — "Ordered
     before the Lebanese imāla rule so an emphatic /aː/ correctly stays back rather
     than raising": in Beiruti the same /aː/ must stay [ɑː], not raise to [eː].
+
+    The /i/ after ط also backs to [ɪ] (AR_EMPHASIS_SPREAD_I_AFTER, Watson
+    2002; Davis 1995): emphasis spread is not limited to low vowels.
     """
-    assert _bare("ar-x-levantine", "بَاطِل") == "bɑːtˤil"
-    assert _bare("ar-LB", "بَاطِل") == "bɑːtˤil"
+    assert _bare("ar-x-levantine", "بَاطِل") == "bɑːtˤɪl"
+    assert _bare("ar-LB", "بَاطِل") == "bɑːtˤɪl"
 
 
 # ---------------------------------------------------------------------------
@@ -295,8 +300,11 @@ def test_eg_emph_back_aa_before():
 
     Rule notes: "Emphasis spreading (leftward): long /aː/ backs to [ɑː] before an
     adjacent emphatic. Watson 2002 (Cairene as primary case) ch. Emphasis."
+
+    The /i/ after ط also backs to [ɪ] (AR_EMPHASIS_SPREAD_I_AFTER, Watson
+    2002; Davis 1995): emphasis spread is not limited to low vowels.
     """
-    assert _bare("ar-EG", "بَاطِل") == "bɑːtˤil"
+    assert _bare("ar-EG", "بَاطِل") == "bɑːtˤɪl"
 
 
 def test_eg_stress_is_weight_sensitive():

@@ -1,194 +1,186 @@
-# Finding a language's phonology documentation
+# Language pages
 
-`orthography2ipa` registers 350+ language and dialect codes, but only a
-handful have a hand-written prose page here — the rest are documented
-entirely by their JSON spec (graphemes, allophones, sources, `notes`).
-Both are legitimate ways to answer "how does this library handle
-language X":
+The language pages form an atlas of the specs. Four indexes list every
+registered spec, and each one links the page of a spec where a page exists,
+or its entry in the [data explorer](https://tigregotico.github.io/orthography2ipa/)
+where it does not.
 
-1. **A hand-written page exists** for a language when someone has
-   written up the phonological reasoning in prose — useful when a
-   language has enough irregularity or contested analysis that a
-   grapheme table alone doesn't explain the *why*. These pages are
-   listed by family below.
-2. **No hand-written page exists** for most languages. That's normal,
-   not a gap to apologize for — the JSON spec itself is the source of
-   truth, and it's fully self-describing:
+| Index | Lists |
+| :--- | :--- |
+| [by-family.md](by-family.md) | Every spec by family path, from the top family down to the branch |
+| [by-region.md](by-region.md) | Every spec by Glottolog macroarea and country |
+| [by-script.md](by-script.md) | Every spec by the script it reads |
+| [a-z.md](a-z.md) | Every spec by name, with the atlas pages first |
 
-   ```python
-   import orthography2ipa
+An atlas page has a fixed shape. A generated summary and a table of names,
+codes and links come first. An overview follows. Where nobody has written
+one, the generator builds it from the spec: the opening of its notes, its
+tier, its sources and where its letter table comes from. Hand-written
+sections follow, with the story of the language and the weak points of its
+spec. Generated sections close the page: the child lects, the sources, the
+scored datasets, the segment inventory, the spelling table, the rules, engine
+examples and related repositories. `scripts/gen_language_atlas.py` writes
+every generated section, and CI fails when one is stale.
 
-   spec = orthography2ipa.get("fi-FI")
-   spec.name, spec.family, spec.script, spec.quality
-   spec.notes            # free-form linguistic notes, including known caveats
-   spec.sources          # cited phonological references
-   spec.graphemes         # the full grapheme → IPA map
-   ```
+Every living spec at the research or production tier has an atlas page,
+except the specs that `NO_PAGE` in `scripts/gen_language_atlas.py` names, each
+with its reason. A test fails when a spec has neither. The Portuguese specs,
+the creoles that take rules from `pt-PT` and Barranquenho are in that list,
+because the Portuguese pages are written by hand. The
+[A to Z index](a-z.md#pages) lists the pages. Skeleton, stub and historical specs have no page, and the indexes
+link their entries in the data explorer.
 
-   or from the shell:
+Most registered specs have no page of their own. The JSON spec is the source
+of truth for every language, and it describes itself: its graphemes,
+allophones, rules, sources and `notes`. Read it from Python or from the shell:
 
-   ```bash
-   orthography2ipa info fi-FI --graphemes
-   ```
+```python
+import orthography2ipa
 
-If you're checking whether a language is trustworthy enough to depend
-on, the `quality` field and the language's row (if any) in
-[../scoreboard.md](../scoreboard.md) matter more than whether a prose
-page exists — see [../quality_tiers.md](../quality_tiers.md) for what
-each tier actually certifies.
+spec = orthography2ipa.get("fi")
+spec.name, spec.family, spec.script, spec.quality
+spec.notes     # linguistic notes, with the known caveats
+spec.sources   # the cited references
+```
 
-## Hand-written pages, by family
+```bash
+orthography2ipa info fi --graphemes
+```
+
+A page exists where a language needs prose to explain why its tables look the
+way they do: an irregular orthography, a contested analysis, or a family of
+dialects that share one base. To decide whether a language is fit for your
+use, read its `quality` tier ([../specs/quality_tiers.md](../specs/quality_tiers.md)) and
+its rows on the [scoreboard](../evaluation/generated/scoreboard.md). Whether a page exists says
+nothing about either.
+
+## Pages by family
 
 ### Germanic
 
-| Doc | Languages covered |
-|:---|:---|
-| [germanic.md](germanic.md) | de-DE, nl, sv, nb, da, af, en-GB, en-US (comparative) |
-| [en-GB.md](en-GB.md) | en-GB (RP) and en-US in detail |
-| [de-DE.md](de-DE.md) | German standard (Hochdeutsch) in detail |
+| Page | Covers |
+| :--- | :--- |
+| [comparative.md](comparative.md) | Comparative tables for the Germanic, Romance and Slavic families |
+| [en-GB.md](en-GB.md) | British RP (`en-GB`) and General American (`en-US`) |
+| [de-DE.md](de-DE.md) | Standard German |
+| [nl-NL-regional.md](nl-NL-regional.md) | The regional and social Standard Dutch specs of the Netherlands: Dutch Limburg, Groningen and Polder Dutch |
+| [nl-BE-regional.md](nl-BE-regional.md) | The regional Standard Dutch specs of Belgium: Antwerp |
+| [fo.md](fo.md) | Faroese: Hammershaimb's etymological orthography and the positional rules it needs |
 
 ### Romance
 
-| Doc | Languages covered |
-|:---|:---|
-| [romance.md](romance.md) | es-ES, fr-FR, it-IT, pt-PT, pt-BR, ca, ro-RO (comparative) |
-| [es-ES.md](es-ES.md) | Castilian Spanish in detail — **production tier** (shallow, ≤0.15) |
-| [ro-RO.md](ro-RO.md) | Romanian in detail — **production tier** (shallow, ≤0.15; documented stress exemption) |
-| [fr-FR.md](fr-FR.md) | French in detail |
-| [it-IT.md](it-IT.md) | Italian in detail |
-| [pt-BR.md](pt-BR.md) | Brazilian Portuguese in detail (positional maps + post-lexical allophony) |
-| [pt-BR-x-caipira.md](pt-BR-x-caipira.md) | Caipira (SP interior) — the retroflex "r caipira" [ɻ]; Amaral (1920) |
-| [pt-BR-x-sp.md](pt-BR-x-sp.md) | Paulistano (São Paulo capital) — plain tap coda /r/, non-chiado coda /s/ |
-| [pt-BR-x-pr.md](pt-BR-x-pr.md) | Paranaense / Curitibano — conservative Sulista (no palatalisation, final /e/ retained) |
-| [pt-PT.md](pt-PT.md) | European Portuguese in detail (coda allophony, vowel reduction) |
-| [pt-BR-x-rj.md](pt-BR-x-rj.md) | Carioca (Rio de Janeiro city) — the *chiado carioca* coda /S/→[ʃ,ʒ] + posterior coda /R/ (post-lexical `allophone_rules`) |
-| [pt-BR-x-fluminense.md](pt-BR-x-fluminense.md) | Fluminense (RJ state) — Carioca-like chiado as the coastal prestige default; capital-vs-interior gradient documented |
-| [pt-BR-x-mg.md](pt-BR-x-mg.md) | Mineiro (Minas Gerais) — pretonic mid-vowel raising /e o/→[i u]; NOT chiado (alveolar coda /S/) |
-| [pt-BR-x-sul.md](pt-BR-x-sul.md) | Sulista / Gaúcho (RS/SC/PR) — alveolar trill/tap /r/ (not [h~x]); conservative non-palatalisation; Nascentes (1953) |
-| [pt-BR-x-norte.md](pt-BR-x-norte.md) | Nortista / Amazônico (Belém, Manaus) — Belém coda-/S/ *chiado* [ʃ,ʒ]; palatalisation retained; Silva (2014, ALFAL) |
-| [pt-BR-x-brasilia.md](pt-BR-x-brasilia.md) | Brasiliense / Candango (Brasília) — koiné levelling to the SE standard; honestly a skeleton delta (no historical subfalar) |
-| [pt-UY.md](pt-UY.md) | Uruguayan Portuguese / Riverense / DPU (border-contact variety: ⟨lh⟩→[j], dental /t d/ before /i/) |
-| [pt-TL.md](pt-TL.md) | East Timorese Portuguese (`pt-TL`) — L2/official variety; no vowel reduction (Tetum substrate), alveolar rhotic; NOT the Bidau creole |
-| [pt-MO.md](pt-MO.md) | Macau Portuguese (`pt-MO`) — EP-following; thin literature (skeleton); NOT the Patuá/maquista creole |
-| [pt-AO.md](pt-AO.md) | Angolan Portuguese — emerging L2 norm, spelling-closer vocalism (no EP reduction), alveolar coda /s/ (Undolo 2014, Chavagne 2005) |
-| [pt-CV.md](pt-CV.md) | Cape Verdean *Portuguese* — distinct from Kabuverdianu (kea) creole; reduced reduction, plosive b/d/g (honesty-flagged, skeleton) |
-| [pt-MZ.md](pt-MZ.md) | Mozambican Portuguese — Maputo emerging norm, alveolar trill [R], aspirated /ʎ/, weaker reduction (Nhatuve 2019, Gonçalves 2010) |
-| [lij.md](lij.md) | Ligurian / Genoese (Gallo-Italic; grafia ofiçiâ, ⟨x⟩=/ʒ/, ⟨o⟩=/u/, ⟨u⟩=/y/) |
-| [an-valleys.md](an-valleys.md) | Pyrenean-valley Aragonese: Cheso (`an-x-cheso`), Ansotano (`an-x-ansotano`), Belsetán (`an-x-belsetan`), Chistabín (`an-x-chistabin`), Tensino (`an-x-tensino`) — geminates ⟨l·l⟩/⟨n·n⟩, final-r deletion, no-epenthesis ⟨ix⟩, ro/ra tap article |
+| Page | Covers |
+| :--- | :--- |
+| [es-ES.md](es-ES.md) | Castilian Spanish |
+| [ro-RO.md](ro-RO.md) | Romanian |
+| [fr-FR.md](fr-FR.md) | French |
+| [it-IT.md](it-IT.md) | Italian |
+| [lij.md](lij.md) | Ligurian (Genoese): ⟨x⟩ as /ʒ/, ⟨o⟩ as /u/, ⟨u⟩ as /y/ |
+| [an-valleys.md](an-valleys.md) | The Pyrenean-valley Aragonese varieties: Cheso, Ansotano, Belsetán, Chistabín, Tensino |
 
-#### Latin American Spanish — regional scaffolding (stub tier, no prose page yet)
+### Portuguese
 
-Every Latin American national variety plus the major regional dialect
-zones of Lipski's (1994) classification (as summarised in Lipski's own
-["Geographical and Social Varieties of Spanish: An Overview"](https://johnlipski.github.io/geo.pdf))
-have at least a **stub** spec, so the ancestry / phonological-distance
-metrics resolve for the whole family. Stubs model only the pan-LatAm
-baseline (seseo, yeísmo) and carry a weighted ancestry chain
-`es-ES-x-medieval → es-ES → es-419 → country → region` plus the relevant
-indigenous adstrate; dialect-specific phonology is deliberately deferred.
+`pt-PT` and `pt-BR` are the two base specs. Each regional spec is a set of
+differences over one of them.
 
-| Country | Regional stubs (`es-XX-x-…`) | Indigenous adstrate(s) |
-|:---|:---|:---|
-| Argentina (`es-AR`) | `cordoba`, `cuyo`, `norte`, `patagonia`, `litoral` | Quechua (`qu`), Mapudungun (`arn`), Guaraní (`gn`) |
-| Mexico (`es-MX`) | `norte`, `yucatan` (+ existing `costa`) | Nahuatl (`nah`), Yucatec Maya (`yua`) |
-| Colombia (`es-CO`) | `santander`, `valluno`, `llanero`, `pacifico` (+ existing `costa`, `paisa`) | — |
-| Peru (`es-PE`) | `andino`, `amazonico` (+ existing `lima`) | Quechua (`qu`), Aymara (`ay`) |
-| Chile (`es-CL`) | `andino`, `chilote` | Aymara (`ay`), Mapudungun (`arn`) |
-| Venezuela (`es-VE`) | `maracucho`, `andino`, `llanero` | — |
-| Bolivia (`es-BO`) | `andino`, `camba` | Quechua (`qu`), Aymara (`ay`), Guaraní (`gn`) |
-| Ecuador (`es-EC`) | `andino`, `costa` | Quechua (`qu`) |
-
-New national stubs: Honduras (`es-HN`), El Salvador (`es-SV`, Nawat/Pipil
-adstrate). Indigenous contact languages are themselves structural adstrate
-stubs (`gn`, `qu`, `ay`, `nah`, `arn`, `yua`, `quc`) — metadata only, no
-phonology claimed (the `afa.json` pattern).
+| Page | Covers |
+| :--- | :--- |
+| [pt-PT.md](pt-PT.md) | European Portuguese: vowel reduction, coda allophony |
+| [pt-PT-dialects.md](pt-PT-dialects.md) | The European regional specs, from Alto-Minho to the Azores |
+| [pt-BR.md](pt-BR.md) | Brazilian Portuguese: positional maps and post-lexical allophony |
+| [pt-BR-dialects.md](pt-BR-dialects.md) | The Brazilian regional specs: Carioca, Paulistano, Caipira, Mineiro, the South, the North and the Northeast |
+| [pt-BR-x-floripa.md](pt-BR-x-floripa.md) | Florianópolis Portuguese, the native *manezinho* speech of the island |
+| [pt-BR-x-cuiaba.md](pt-BR-x-cuiaba.md) | Cuiabano Portuguese of the Cuiabá river valley |
+| [pt-AO.md](pt-AO.md) | Angolan Portuguese |
+| [pt-CV.md](pt-CV.md) | Cape Verdean Portuguese, which is not the Kabuverdianu creole (`kea`) |
+| [pt-MZ.md](pt-MZ.md) | Mozambican Portuguese |
+| [pt-MO.md](pt-MO.md) | Macau Portuguese, which is not the Patuá creole |
+| [pt-TL.md](pt-TL.md) | East Timorese Portuguese, which is not the Bidau creole |
+| [pt-UY.md](pt-UY.md) | Uruguayan Portuguese of the Brazilian border |
+| [ext-PT-x-barranco.md](ext-PT-x-barranco.md) | Barranquenho, the Portuguese and Spanish contact variety of Barrancos |
 
 ### Asturleonese
 
-| Doc | Languages covered |
-|:---|:---|
-| [mwl.md](mwl.md) | Mirandese (`mwl`) + Sendinês (`mwl-x-sendim`) and Ifanês (`mwl-x-ifanes`) — the four-way sibilant system, Leonese diphthongs and initial-l palatalisation, sub-dialect deltas |
+| Page | Covers |
+| :--- | :--- |
+| [mwl.md](mwl.md) | Mirandese and its Sendinês and Ifanês sub-dialects |
 
 ### Slavic
 
-| Doc | Languages covered |
-|:---|:---|
-| [slavic.md](slavic.md) | pl, cs, ru, uk, sr/hr (comparative) |
-| [ru.md](ru.md) | Russian in detail |
+| Page | Covers |
+| :--- | :--- |
+| [ru.md](ru.md) | Russian |
 
 ### Semitic
 
-| Doc | Languages covered |
-|:---|:---|
-| [ar.md](ar.md) | Modern Standard Arabic (+ Egyptian Cairene, Saudi Najdi/Hejazi, and Gulf/Khaleeji Emirati·Bahraini·Kuwaiti·Qatari·Omani sections) — abjad script, tashkeel-dependent input contract, emphatic-spreading and Gulf velar-affrication allophone layers |
-| [ar-x-levantine.md](ar-x-levantine.md) | Levantine Arabic — Damascene (`ar-SY`), Beiruti (`ar-LB`), Ammani (`ar-JO`), Palestinian (`ar-PS`): shared qaf/jim/interdental reflexes, /aj aw/→[eː oː] monophthongization, Lebanese imāla |
-| [ar-IQ.md](ar-IQ.md) | Iraqi Arabic — the gilit/qəltu communal-dialect split: Baghdad Muslim gilit (`ar-IQ`, qaf→[ɡ], kaf affrication) vs Northern qəltu (`ar-IQ-x-qeltu`, qaf→[q] retained), the defining Mesopotamian isogloss; shared interdental retention and emphatic backing |
-| [ar-maghrebi-yemeni-sudanese.md](ar-maghrebi-yemeni-sudanese.md) | Peripheral Arabic — the sedentary Maghreb (`ar-x-maghrebi` → `ar-MA`·`ar-DZ`·`ar-TN`·`ar-LY`, + Hassaniya `ar-MR`): jim→[ʒ], schwa reduction/heavy clusters, Berber substrate; Ṣanʿānī Yemeni (`ar-YE`, qaf→[ɡ], jim→[dʒ], interdental retention, ḍād/ẓāʾ merger); Sudanese (`ar-SD`, jim→[ɟ], qaf→[ɡ]) |
+| Page | Covers |
+| :--- | :--- |
+| [ar.md](ar.md) | Modern Standard Arabic: the abjad, the input contract that depends on tashkeel, emphasis spread |
+| [ar-dialects.md](ar-dialects.md) | The Arabic dialect specs: Egyptian, the Arabian Peninsula, the Levant, Iraq, the Maghreb and Sudan |
 
-### Berber (Amazigh)
+### Other families
 
-| Doc | Languages covered |
-|:---|:---|
-| [kab.md](kab.md) | Kabyle / Taqbaylit (Northern Berber; Berber Latin alphabet, gemination-conditioned spirantization, emphatics) |
+| Page | Covers |
+| :--- | :--- |
+| [kab.md](kab.md) | Kabyle (Berber): the Berber Latin alphabet, spirantization, emphatics |
+| [egy.md](egy.md) | Ancient Egyptian: Egyptological transliteration in, the Egyptological reading out |
+| [ha.md](ha.md) | Hausa (Chadic): the hooked letters, ⟨ts⟩ as /sʼ/, and the contrasts the spelling hides |
+| [hi.md](hi.md) | Hindi (Indo-Aryan): Devanagari, schwa deletion |
+| [as.md](as.md) | Assamese (Indo-Aryan): the Assamese script read on Assamese phonology |
+| [mn.md](mn.md) | Mongolian (Khalkha) in Cyrillic |
+| [eu.md](eu.md) | Basque and its dialects: the sibilant systems, aspiration, Souletin /y/ and nasal vowels |
+| [fi.md](fi.md) | Finnish (Uralic) |
+| [vi.md](vi.md) | Vietnamese (Hanoi): rime-level mapping and tone from the orthography |
+| [th.md](th.md) | Standard Thai: tone computed from the consonant class, syllable shape, vowel length and tone mark |
+| [yo.md](yo.md) | Yoruba: three level tones and the nasal vowels |
+| [eo.md](eo.md) | Esperanto |
 
-### Indo-Aryan
+### Latin American Spanish
 
-| Doc | Languages covered |
-|:---|:---|
-| [hi.md](hi.md) | Hindi (Devanagari script, schwa deletion, 4-way contrast) |
+Every Latin American national variety has a spec, and so do the main regional
+zones of Lipski's classification
+([Lipski, "Geographical and Social Varieties of Spanish: An Overview"](https://johnlipski.github.io/geo.pdf)).
+The ancestry and distance metrics therefore resolve for the whole family.
+These specs have no page. List them with
+`orthography2ipa list --family Ibero-Romance`.
 
-### Isolate
+| Country | Regional specs (`es-XX-x-...`) |
+| :--- | :--- |
+| Argentina (`es-AR`) | `cordoba`, `cuyo`, `litoral`, `norte`, `patagonia` |
+| Mexico (`es-MX`) | `costa`, `norte`, `yucatan` |
+| Colombia (`es-CO`) | `costa`, `llanero`, `pacifico`, `paisa`, `santander`, `valluno` |
+| Peru (`es-PE`) | `amazonico`, `andino`, `lima` |
+| Chile (`es-CL`) | `andino`, `chilote` |
+| Venezuela (`es-VE`) | `andino`, `llanero`, `maracucho` |
+| Bolivia (`es-BO`) | `andino`, `camba` |
+| Ecuador (`es-EC`) | `andino`, `costa` |
 
-| Doc | Languages covered |
-|:---|:---|
-| [eu.md](eu.md) | Basque (Euskara Batua) and its dialects: Biscayan, Gipuzkoan, Upper & Lower Navarrese, Lapurdian, Souletin, and the extinct Roncalese — sibilant systems, aspiration, Souletin /y/ and nasal vowels — **production tier** (shallow, ≤0.15) |
+## Phenomena
 
-### Uralic
+Use this table to find how the library handles one phonological process
+across languages.
 
-| Doc | Languages covered |
-|:---|:---|
-| [fi.md](fi.md) | Finnish in detail — **production tier** (shallow, ≤0.15) |
+| Phenomenon | Where to read |
+| :--- | :--- |
+| Final devoicing | [comparative.md](comparative.md#germanic-languages), [de-DE.md](de-DE.md) |
+| Softening of ⟨c⟩ and ⟨g⟩ before front vowels | [comparative.md](comparative.md#romance-languages), [../engine/positional_graphemes.md](../engine/positional_graphemes.md) |
+| Unstressed vowel reduction | [pt-PT.md](pt-PT.md), [ru.md](ru.md) |
+| Weak or absent reduction in African Portuguese | [pt-AO.md](pt-AO.md), [pt-MZ.md](pt-MZ.md), [pt-CV.md](pt-CV.md) |
+| Coda allophony: dark /l/, coda sibilants | [pt-PT.md](pt-PT.md), [../engine/allophony.md](../engine/allophony.md) |
+| Nasal vowels | [fr-FR.md](fr-FR.md), [comparative.md](comparative.md#slavic-languages), [eu.md](eu.md) |
+| Apical and laminal sibilants | [eu.md](eu.md), [pt-PT-dialects.md](pt-PT-dialects.md#northern-sibilant-systems), [mwl.md](mwl.md) |
+| Retroflex consonants | [hi.md](hi.md), [pt-BR-dialects.md](pt-BR-dialects.md#caipira-pt-br-x-caipira) |
+| Schwa deletion and the inherent vowel | [hi.md](hi.md), [as.md](as.md) |
+| Geminates | [it-IT.md](it-IT.md), [kab.md](kab.md) |
+| Spirantization | [kab.md](kab.md) |
+| Tone from the orthography | [vi.md](vi.md), [th.md](th.md), [yo.md](yo.md), [ha.md](ha.md) |
+| Liaison and other cross-word rules | [fr-FR.md](fr-FR.md), [../engine/lattice.md](../engine/lattice.md#the-sentence-context-seam) |
+| Input that depends on tashkeel | [ar.md](ar.md), [ar-dialects.md](ar-dialects.md#what-the-dialect-specs-share) |
+| Arabic dialect reflexes of qāf, jīm and kāf | [ar-dialects.md](ar-dialects.md#defining-features-by-lect) |
 
-### Constructed
+A language with no page above is described by its spec alone. To write a
+page, follow [../contributing/spec_authoring.md](../contributing/spec_authoring.md) and add the
+page to a table here.
 
-| Doc | Languages covered |
-|:---|:---|
-| [eo.md](eo.md) | Esperanto in detail — **production tier** (shallow, ≤0.15) |
-
-If the language you need isn't in any table above, it doesn't have a
-prose page yet — go straight to its JSON spec via `orthography2ipa.get(code)`
-as shown earlier, and consider contributing a page alongside a spec
-improvement (see [../adding_a_language.md](../adding_a_language.md)).
-
-## Key phenomena cross-reference
-
-Looking for how the library handles a specific phonological phenomenon
-rather than a specific language, start here:
-
-| Phenomenon | Languages | Doc |
-|:---|:---|:---|
-| Final devoicing | de, nl, sv, pl, cs, ru, hu, tr | family docs |
-| C/G softening before e/i | fr, it, es, pt, ca, ro, en, sv, nl | [romance.md](romance.md) |
-| Vowel reduction (unstressed) | ru, pt-PT, fr (schwa) | [ru.md](ru.md), [pt-PT.md](pt-PT.md) |
-| Reduced/absent reduction (Lusophone-African) | pt-AO, pt-CV, pt-MZ | [pt-AO.md](pt-AO.md), [pt-MZ.md](pt-MZ.md) |
-| Coda allophony (dark l, coda sibilant) | pt-PT, ca | [pt-PT.md](pt-PT.md), [../allophony.md](../allophony.md) |
-| Nasal vowels | fr, pt, pl, eu-x-zuberera, eu-x-erronkariera | [fr-FR.md](fr-FR.md), [slavic.md](slavic.md), [eu.md](eu.md) |
-| Apical/laminal sibilant contrast (s̺/s̻) | eu (retained east), eu-x-bizkaiera (merged) | [eu.md](eu.md) |
-| Aspiration (/h/, aspirated stops) | eu-x-zuberera, eu-x-nafarra-beherea, eu-x-lapurtera | [eu.md](eu.md) |
-| Retroflex consonants | sv (from r+C), hi, sa, pt-BR-x-caipira (coda /r/→[ɻ]) | [hi.md](hi.md), [pt-BR-x-caipira.md](pt-BR-x-caipira.md) |
-| Schwa deletion | hi, bn, mr, pa | [hi.md](hi.md) |
-| Abugida (inherent vowel) | hi, sa, mr, bn, te, kn, ml | [hi.md](hi.md) |
-| Vowel harmony | fi, hu, tr, ko | family docs |
-| Geminate consonants | it, fi, hu, ja, kab | [it-IT.md](it-IT.md), [kab.md](kab.md) |
-| Spirantization (lax stop → fricative) | kab | [kab.md](kab.md) |
-| Tone / pitch accent | sv, zh, ja, ko, vi | — |
-| Liaison / sandhi | fr, pt, sa | [fr-FR.md](fr-FR.md) |
-| Tashkeel-dependent input | ar, ar-SY, ar-LB, ar-JO, ar-PS, ar-IQ, ar-IQ-x-qeltu, ar-MA, ar-DZ, ar-TN, ar-LY, ar-MR, ar-YE, ar-SD | [ar.md](ar.md), [ar-x-levantine.md](ar-x-levantine.md), [ar-IQ.md](ar-IQ.md), [ar-maghrebi-yemeni-sudanese.md](ar-maghrebi-yemeni-sudanese.md) |
-| gilit/qəltu qaf split ([ɡ] vs [q]) | ar-IQ, ar-IQ-x-qeltu | [ar-IQ.md](ar-IQ.md) |
-| Velar affrication (kaf→[tʃ], gaf→[dʒ]) | ar-IQ, ar-SA-x-najd | [ar-IQ.md](ar-IQ.md) |
-| Maghrebi jim ج→[ʒ] (vs [dʒ]) | ar-x-maghrebi, ar-MA, ar-DZ, ar-TN, ar-LY, ar-MR | [ar-maghrebi-yemeni-sudanese.md](ar-maghrebi-yemeni-sudanese.md) |
-| Sudanese jim ج→[ɟ] (voiced palatal) | ar-SD | [ar-maghrebi-yemeni-sudanese.md](ar-maghrebi-yemeni-sudanese.md) |
-| Ṣanʿānī qaf→[ɡ] + ḍād/ẓāʾ merger →[ðˤ] | ar-YE | [ar-maghrebi-yemeni-sudanese.md](ar-maghrebi-yemeni-sudanese.md) |
-| Maghrebi short-vowel reduction (→schwa/Ø, clusters) | ar-x-maghrebi, ar-MA, ar-DZ, ar-TN, ar-LY | [ar-maghrebi-yemeni-sudanese.md](ar-maghrebi-yemeni-sudanese.md) |
-| Imāla (/aː/→[eː]) | ar-LB | [ar-x-levantine.md](ar-x-levantine.md) |
-| Diphthong monophthongization | ar-x-levantine, ar-SA-x-hejaz | [ar-x-levantine.md](ar-x-levantine.md) |
+---
+[← Spec diagnostics](../evaluation/generated/spec_diagnostics.md) · [Home](../index.md) · [Languages by family →](by-family.md)

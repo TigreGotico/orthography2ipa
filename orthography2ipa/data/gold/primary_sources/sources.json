@@ -26,9 +26,9 @@
     "year": 2016,
     "title": "Language Variation in Western Amman",
     "venue": "MA thesis, Canada Institute of Linguistics",
-    "url": "https://www.canil.ca/wordpress/wp-content/uploads/2019/11/Fadda-Language-Variation-in-Western-Amman.pdf",
+    "url": "https://web.archive.org/web/20250210163657/https://www.canil.ca/wordpress/wp-content/uploads/2019/11/Fadda-Language-Variation-in-Western-Amman.pdf",
     "access": "open",
-    "pagination": "Printed folio is in the page header and coincides with the PDF page index (verified on pages 15, 29, 30, 33).",
+    "pagination": "Printed folio is in the page header and coincides with the PDF page index (verified on pages 15, 29, 30, 33). The page numbers follow this 96-page copy. The Trinity Western University repository copy (https://twu.arcabc.ca/_flysystem/repo-bin/2019-11/twu_578.pdf, 102 pages) prints the same text up to three pages later.",
     "notation": "ipa",
     "describes": "Ammani Arabic (Jordanian/urban-Palestinian koine)"
   },
@@ -224,9 +224,10 @@
     "year": 2002,
     "title": "The Phonology and Morphology of Arabic",
     "venue": "Oxford University Press (The Phonology of the World's Languages)",
-    "url": "https://coehuman.uodiyala.edu.iq/uploads/Coehuman%20library%20pdf/English%20library%D9%83%D8%AA%D8%A8%20%D8%A7%D9%84%D8%A7%D9%86%D9%83%D9%84%D9%8A%D8%B2%D9%8A/The%20Phonology%20and%20Morphology%20of%20Arabic%20(The%20Phonology%20of%20the.pdf",
-    "access": "open",
-    "pagination": "Printed folio in the running head; printed page = PDF page index − 15 (verified on printed pages 9, 12, 16-17, 273-274, 279-280). The PDF text layer is font-mangled, so every row was read from a render of the printed page, never from extracted text.",
+    "doi": "10.1093/oso/9780199257591.001.0001",
+    "isbn": "9780199257591",
+    "access": "closed",
+    "pagination": "Printed page of the Oxford University Press edition (ISBN 978-0-19-925759-1), from the running head. Each row was read from an image of the printed page, never from a text layer.",
     "notation": "arabicist-transliteration",
     "describes": "Cairene (Egyptian) and Ṣanʿānī (Yemeni) Arabic, in a comparative frame that also cites Moroccan (Lmnabha) forms"
   },
@@ -305,7 +306,7 @@
     "access": "open",
     "pagination": "Open-access scan on Docta Complutense (handle hdl.handle.net/20.500.14352/46845). The printed folio sits in the page running foot and coincides with the PDF page index (verified: PDF page 49 = folio 49, 50 = folio 50, 52 = folio 52, 53 = folio 53). The book uses a Spanish (RFE-influenced) phonetic notation: primary stress is an apostrophe placed BEFORE the stressed syllable (normalized to IPA ˈ), and [∫]=ʃ, [γ]=ɣ, [δ]=ð, [β]=β, with final unstressed <a> written [α]/[a] and read [ɐ]; the `ipa` field carries the IPA normalization and `source_notation` keeps the book's glyphs verbatim.",
     "notation": "ipa",
-    "describes": "Barranquenho (ext-PT-x-barrancos) — the Portuguese-Spanish contact variety of Barrancos (Baixo Alentejo, on the Extremadura/Andalusia border); Alentejo-Portuguese phonetic base with southern-peninsular Spanish overlay (coda /s/ aspiration, betacism, final-vowel apocope). Already cited by the ext-PT-x-barrancos spec."
+    "describes": "Barranquenho (ext-PT-x-barranco) — the Portuguese-Spanish contact variety of Barrancos (Baixo Alentejo, on the Extremadura/Andalusia border); Alentejo-Portuguese phonetic base with southern-peninsular Spanish overlay (coda /s/ aspiration, betacism, final-vowel apocope). Already cited by the ext-PT-x-barranco spec."
   },
   "algethami2023": {
     "authors": "Algethami, G.",
@@ -382,7 +383,7 @@
     "access": "open",
     "pagination": "Printed folios 7-24 map to PDF pages 1-18 (offset +6: printed p.9 = PDF p.3). `page` records the printed folio.",
     "notation": "ipa",
-    "describes": "BEDOUIN Hijazi (Bani Sulaim, Wadi Starah north of Jeddah). Iambic stress and interdental retention — the CONTRAST case for the urban ar-SA-x-hejaz node; rows carry lang=null (no o2i Bedouin-Hijazi node)."
+    "describes": "BEDOUIN Hijazi (Bani Sulaim, Wadi Starah north of Jeddah). Iambic stress and interdental retention — the CONTRAST case for the urban acw-SA node; rows carry lang=null (no o2i Bedouin-Hijazi node)."
   },
   "alrohili2019": {
     "authors": "Al-Rohili, Mohammad Awad",
@@ -449,5 +450,28 @@
     "pagination": "`page` is the printed OBP folio (chapter runs 137-171). The pdftotext page index is the printed page minus 134 (printed 138 = PDF page 4); verified on the running heads.",
     "notation": "arabicist-transliteration",
     "describes": "Several Saudi varieties; §3 a Southwestern Saudi (Northern Tihāmah) variety after Alahmari (2018) — voiced qāf, retained long uː, imāla eː<*ay"
+  },
+  "wvk2002": {
+    "authors": "Williams-van Klinken, C., Hajek, J. & Nordlinger, R.",
+    "year": 2002,
+    "title": "Tetun Dili: A grammar of an East Timorese language",
+    "venue": "Pacific Linguistics 528, The Australian National University",
+    "url": "https://doi.org/10.15144/PL-528",
+    "access": "open",
+    "pagination": "Printed folio is in the running head, alternating with the chapter title. In the PDF the DOI resolves to, the printed page runs 14 behind the PDF page index — PDF page 23 is printed page 9 — verified on the headers for printed pages 9, 10, 11, 12 and 13.",
+    "notation": "ipa",
+    "describes": "Tetun Dili (Tetun Prasa), the Portuguese-influenced urban variety that is the basis of Official Tetun",
+    "notes": "The PDF's extracted text layer mangles the IPA (⟨ʒ⟩ arrives as ⟨3⟩, ⟨ʃ⟩ as ⟨S⟩, and the trill/tap distinction is lost), so every row here was transcribed from a 170-dpi RENDER of the printed page rather than decoded from those bytes. That is what settles the rhotics the text layer flattens: the grammar does distinguish /r/ from /ɾ/ in transcription even though its orthography does not (§2.1.4, printed p. 10)."
+  },
+  "angsongna2020": {
+    "authors": "Angsongna, Alexander & Akinbo, Samuel",
+    "year": 2022,
+    "title": "Dàgáárè (Central)",
+    "venue": "Journal of the International Phonetic Association 52(2), 341-367 (Illustrations of the IPA; first published online 14 December 2020)",
+    "url": "https://doi.org/10.1017/S0025100320000225",
+    "access": "open",
+    "pagination": "The printed folio is the PDF page index plus 341 (PDF index 2 is printed page 343). The article runs 341-367.",
+    "notation": "ipa",
+    "describes": "Central Dàgáárè, the variety spoken in and around Sombo in the Nadowli-Kaleo district, Upper West Region, Ghana. Glottolog sout2789 'Central Dagaare' carries ISO 639-3 dga."
   }
 }

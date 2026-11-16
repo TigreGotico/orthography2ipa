@@ -98,8 +98,8 @@ def test_ta_novoice_k_after_liquid():
 
 def test_ta_novoice_p_after_liquid():
     """TA_NOVOICE_p: a labial stop after a liquid stays voiceless — சார்பு
-    [tɕaːrpu], against intervocalic கபம் [kabam] (Keane 2004: 111-116)."""
-    assert G2P("ta").transcribe_word("சார்பு") == "tɕaːrpu"
+    [tɕaːɾpu], against intervocalic கபம் [kabam] (Keane 2004: 111-116)."""
+    assert G2P("ta").transcribe_word("சார்பு") == "tɕaːɾpu"
     assert "b" in G2P("ta").transcribe_word("கபம்")
 
 
@@ -194,7 +194,7 @@ def test_ta_geminate_glide_v_is_long():
 
 
 # ═══════════════════════════════════════════════════════════════════════════
-# Proto-Dravidian (ta-x-proto-dravidian)
+# Proto-Dravidian (ta-x-proto-dravidia)
 #   "5 vowel qualities × short/long; two stop series (initial: unaspirated;
 #    medial: voiced allophones); no aspiration contrast in native vocabulary;
 #    retroflex series (ʈ ɖ ɳ ɭ ɻ)" — Krishnamurti (2003)
@@ -203,7 +203,7 @@ def test_ta_geminate_glide_v_is_long():
 def test_proto_dravidian_retroflex_series_is_mapped():
     """"retroflex series (ʈ ɖ ɳ ɭ ɻ) — may be the source of IA retroflexes"
     (Krishnamurti 2003)."""
-    g = G2P("ta-x-proto-dravidian")
+    g = G2P("ta-x-proto-dravidia")
     for seg in ("ʈ", "ɖ", "ɳ", "ɭ", "ɻ"):
         assert g.transcribe_word("a" + seg + "u") == "a" + seg + "u"
 
@@ -211,7 +211,7 @@ def test_proto_dravidian_retroflex_series_is_mapped():
 def test_proto_dravidian_vowel_length_contrast():
     """"5 vowel qualities × short/long" (Krishnamurti 2003): *paal keeps the long
     vowel distinct from *pal."""
-    g = G2P("ta-x-proto-dravidian")
+    g = G2P("ta-x-proto-dravidia")
     assert g.transcribe_word("pal") == "pal"
     assert g.transcribe_word("paːl") == "paːl"
 
@@ -222,7 +222,7 @@ def test_proto_dravidian_vowel_length_contrast():
 def test_proto_dravidian_medial_stops_are_voiced_allophones():
     """"two stop series (initial: unaspirated; medial: voiced allophones)"
     (Krishnamurti 2003) — medial *t should surface voiced."""
-    assert G2P("ta-x-proto-dravidian").transcribe_word("katu") == "kadu"
+    assert G2P("ta-x-proto-dravidia").transcribe_word("katu") == "kadu"
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -627,21 +627,149 @@ def test_ie_z_is_dz_and_ch_is_esh():
     assert g.transcribe_word("yun").lstrip("ˈ").startswith("j")
 
 
-@pytest.mark.xfail(strict=True, reason="ie notes claim -bil is ignored for stress; "
-                                       "engine stresses the i of -bil: possibil → "
-                                       "poˈssibil, not ˈpossibil")
-def test_ie_ending_bil_is_ignored_for_stress():
-    """"Stress falls on the vowel before the final consonant; the endings -bil, -ic,
-    -im, -ul, -um are ignored for stress" (ie notes)."""
-    assert G2P("ie").transcribe_word("possibil") == "ˈpossibil"
+# Janotta 1929, Cosmoglotta 64, pp. 152-154, B. Pronunciation. The page transcribes
+# IPA [y] as [ü], IPA [ø] as [ö] and IPA [j] as [y]; the expected values below are
+# its transcriptions in IPA.
+
+@pytest.mark.parametrize("word, expected", [
+    ("cylindre", "tsyˈlindre"),
+    ("hymne", "ˈhymne"),
+    ("styr", "ˈstyr"),
+    ("yttrium", "ˈyttrjum"),
+])
+def test_ie_vocalic_y_is_close_front_rounded(word, expected):
+    """p. 152: "y vocalic es pronunciat quam german ü o frances u; transcrition [ü],
+    por exemple: cylindre [tsülíndre], hymne [hü'mne] styr [stür] ... yttrium
+    [ü'ttryum]"."""
+    assert G2P("ie").transcribe_word(word) == expected
 
 
-@pytest.mark.xfail(strict=True, reason="ie notes claim -ic is ignored for stress; "
-                                       "engine gives akaˈdemik, not aˈkademik")
-def test_ie_ending_ic_is_ignored_for_stress():
-    """Same claim as -bil: "the endings -bil, -ic, -im, -ul, -um are ignored for
-    stress" (ie notes) — academic → [aˈkademik]."""
-    assert G2P("ie").transcribe_word("academic") == "aˈkademik"
+@pytest.mark.parametrize("word, expected", [
+    ("europa", "øˈropa"),
+    ("meuble", "ˈmøble"),
+    ("neutral", "nøˈtral"),
+])
+def test_ie_eu_is_close_mid_front_rounded(word, expected):
+    """p. 152: "eu es egal al frances eu e al german ö; transcrition [ö], por exemple:
+    Europa [örópa], meuble [mö'ble], neutral [nötrál]"."""
+    assert G2P("ie").transcribe_word(word) == expected
+
+
+@pytest.mark.parametrize("word, expected", [
+    ("photograph", "fotoˈɡraf"),
+    ("rheumatic", "røˈmatik"),
+    ("lithograph", "litoˈɡraf"),
+])
+def test_ie_greek_digraphs_ph_rh_th(word, expected):
+    """p. 154: "ph = f in paroles de grec orígine, p. ex. fotograf = photograph
+    [fotográf]"; "rh = r ... reumatic = rheumatic [römátik]"; "th = t ... litograf =
+    lithograph [litográf]"."""
+    assert G2P("ie").transcribe_word(word) == expected
+
+
+@pytest.mark.parametrize("word, expected", [
+    ("ciel", "ˈtsjel"),
+    ("lingue", "ˈlinɡwe"),
+    ("piano", "ˈpjano"),
+    ("statue", "ˈstatwe"),
+])
+def test_ie_i_and_u_before_a_vowel_are_glides(word, expected):
+    """p. 152: "i e u ante vocales in plursyllabic paroles ... es pronunciat tre curt,
+    presc consonantic e ne posse formar propri syllabes; transcrition [y] e [w]. p.
+    ex.: ciel [tsyél], lingue [língwe], aqua [ákwa], piano [pyáno]"; p. 153: statue
+    [sstátwe]."""
+    assert G2P("ie").transcribe_word(word) == expected
+
+
+def test_ie_stressed_i_before_a_vowel_stays_a_vowel():
+    """The glide of p. 152 is unstressed. Cosmoglotta 65, p. 166, art. 4: "Paroles ne
+    havent vocales ante li ultim consonant es accentuat sur li unesim vocale: die ...
+    via; plurale: dies", so the ⟨i⟩ of die, via, dies carries the stress and is a
+    vowel, while the ⟨i⟩ of ciel [tsyél] is the glide."""
+    g = G2P("ie")
+    assert g.transcribe_word("ciel") == "ˈtsjel"
+    assert [g.transcribe_word(w) for w in ("die", "via", "dies")] == [
+        "ˈdie", "ˈvia", "ˈdies"]
+
+
+# Janotta 1929, "Complet grammatica de Occidental", Cosmoglotta 65, p. 165, C.
+# Accentuation. The ie stress block quotes the articles; the stressed vowel of each
+# word below is the bold letter of that page.
+
+@pytest.mark.parametrize("word, expected", [
+    ("crater", "kraˈter"),
+    ("doctor", "dokˈtor"),
+    ("general", "ʒeneˈral"),
+    ("natural", "natuˈral"),
+    ("hotel", "hoˈtel"),
+    ("rapid", "raˈpid"),
+])
+def test_ie_consonant_final_word_stresses_the_vowel_before_it(word, expected):
+    """Art. 1: "Li accentu tonic es situat ordinarmen sur li vocal ante li ultim
+    consonant": cratér, doctór, generál. rapíd is in art. 3."""
+    assert G2P("ie").transcribe_word(word) == expected
+
+
+@pytest.mark.parametrize("word, expected", [
+    ("linea", "ˈlinea"),
+    ("familie", "faˈmilje"),
+    ("honore", "hoˈnore"),
+])
+def test_ie_vowel_final_word_stresses_the_vowel_before_the_last_consonant(word, expected):
+    """Art. 1: línea, famílie, honóre. Cosmoglotta 64, p. 154 transcribes famílie
+    as [famílye]."""
+    assert G2P("ie").transcribe_word(word) == expected
+
+
+@pytest.mark.parametrize("word, expected", [
+    ("possibil", "posˈsibil"),
+    ("academic", "akaˈdemik"),
+    ("regul", "ˈreɡul"),
+    ("heroic", "heˈroik"),
+    ("lexico", "ˈleksiko"),
+    ("radica", "ˈradika"),
+    ("calcula", "ˈkalkula"),
+])
+def test_ie_atonic_finales_put_the_stress_on_the_syllable_before(word, expected):
+    """Art. 2: "Li finales -bil, -ic, (si it es pronunciat [ik]), -im, -ul es
+    ínaccentuat e attrae li accentu al precendent syllabe": possíbil, heróic,
+    léxico, rádica, cálcula, régul."""
+    assert G2P("ie").transcribe_word(word) == expected
+
+
+@pytest.mark.parametrize("word, expected", [
+    ("doctores", "dokˈtores"),
+    ("vocabules", "voˈkabules"),
+    ("album", "ˈalbum"),
+    ("maximum", "ˈmaksimum"),
+    ("sobrimen", "ˈsobrimen"),
+])
+def test_ie_enclitic_finales_keep_the_stress_of_the_rest_of_the_word(word, expected):
+    """Art. 3: "Li finale -s del plurale e li finales -men e -um es ínaccentuat e ne
+    have influentie al accentu del céteri parol-parte": doctóres, vocábules, álbum,
+    máximum, sóbrimen."""
+    assert G2P("ie").transcribe_word(word) == expected
+
+
+@pytest.mark.parametrize("word, expected", [
+    ("aer", "aˈer"),
+    ("país", "paˈis"),
+    ("leer", "leˈer"),
+    ("leibil", "leˈibil"),
+    ("egoism", "eɡoˈism"),
+])
+def test_ie_two_vowels_in_contact_are_two_syllables(word, expected):
+    """Cosmoglotta 64, p. 152: "du vocales intersecuent in general es pronunciat
+    separat: aer ... [aér], país ... [país], leer ... [le-ér], leibil ... [leíbil]";
+    p. 153: egoism [egoíssm]. The mark stands before the stressed vowel, not before
+    the whole vowel run."""
+    assert G2P("ie").transcribe_word(word) == expected
+
+
+def test_ie_y_after_a_vowel_closes_the_syllable():
+    """Cosmoglotta 64, p. 152: "Pos un vocal ... y es consonant", so art. 1 puts the
+    stress on the vowel before it; p. 153: antey [antéy]."""
+    assert G2P("ie").transcribe_word("antey") == "anˈtej"
 
 
 # ── Interlingua (ia) ──
@@ -787,3 +915,39 @@ def test_vo_u_umlaut_is_front_rounded():
 def test_vo_stress_is_on_the_final_vowel():
     """"Stress is always on the final vowel of a polysyllabic word" (vo notes)."""
     assert "ˈ" in G2P("vo").transcribe_word("volapük")
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Tamil (ta) — the two rhotic letters are distinct segments
+#   ⟨ர⟩ is the alveolar TAP, ⟨ற⟩ the trill; only ⟨ற⟩ geminates
+#   (Keane 2004: 113, "Liquids"; Schiffman 1999: 7, §1.2.1.6 "Rhotics")
+# ═══════════════════════════════════════════════════════════════════════════
+
+def test_ta_rhotic_ra_is_a_tap():
+    """⟨ர⟩ is a tap [ɾ]: Keane 2004: 113 lists it under "Tap" in the consonant
+    chart and glosses ⟨கரி⟩ as [kaɾi] 'charcoal'; Schiffman 1999: 7 calls it
+    "a phonetically flapped or tapped r, more or less alveolar"."""
+    assert G2P("ta").transcribe_word("கரி") == "kaɾi"
+    assert G2P("ta").transcribe_word("அரசு").startswith("aɾa")
+
+
+def test_ta_rhotic_rra_is_a_trill_not_a_tap():
+    """⟨ற⟩ is the other rhotic, realized as a trill [r]: Keane 2004: 113 reports
+    "[ɾ] and [r] are both possible realizations of ⟨ற⟩" while ⟨ர⟩ "always
+    corresponds phonetically to a tap" — so the two letters are not the same
+    segment, and swapping the letter in an otherwise identical word swaps the
+    output segment."""
+    assert "r" in G2P("ta").transcribe_word("அறம்")
+    assert "ɾ" not in G2P("ta").transcribe_word("அறம்")
+    assert G2P("ta").transcribe_word("அரம்") == "aɾam"
+    assert "r" not in G2P("ta").transcribe_word("அரம்")
+
+
+def test_ta_tap_never_geminates_but_the_trill_letter_does():
+    """"Rhotic liquids ... are the only category of sounds in Tamil that do not
+    undergo gemination" (Keane 2004: 113); the long rhotic of ⟨வெற்றி⟩ is spelt
+    with ⟨ற⟩, not ⟨ர⟩ (Schiffman 1999: 7: ⟨ர⟩ "does not undergo gemination")."""
+    assert G2P("ta").transcribe_word("வெற்றி") == "ʋerːi"
+    assert G2P("ta").transcribe_word("பரி") == "paɾi"
+    assert "ɾː" not in G2P("ta").transcribe_word("பரி")
+    assert "r" not in G2P("ta").transcribe_word("பரி")

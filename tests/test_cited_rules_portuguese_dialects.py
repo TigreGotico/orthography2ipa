@@ -52,9 +52,9 @@ def test_gl_distincion():
     Minimal pair on ⟨c⟩: cinco (before ⟨i⟩ → [θ]) vs casa (before ⟨a⟩ → [k]).
     Portuguese, which has no interdental at all, is the cross-language contrast.
     """
-    assert _bare("gl", "cinco").startswith("θ")
-    assert _bare("gl", "zapato").startswith("θ")
-    assert _bare("gl", "casa").startswith("k")
+    assert _bare("gl-ES", "cinco").startswith("θ")
+    assert _bare("gl-ES", "zapato").startswith("θ")
+    assert _bare("gl-ES", "casa").startswith("k")
     assert "θ" not in _bare("pt-PT", "cinco")
 
 
@@ -62,7 +62,7 @@ def test_gl_distincion():
     strict=True,
     reason="gl notes claim an apico-alveolar /s/ [s̺]; engine produces a plain "
     "unmarked [s] in casa — the apical diacritic the spec's own prose asserts is "
-    "never emitted (contrast mwl/pt-PT-x-trasosmontes, which do mark it)",
+    "never emitted (contrast mwl/pt-PT-x-tras-os-montes, which do mark it)",
 )
 def test_gl_apico_alveolar_s():
     """Galician /s/ is the apico-alveolar [s̺], not the Portuguese predorsal [s̻].
@@ -71,7 +71,7 @@ def test_gl_apico_alveolar_s():
     Portuguese predorsal [s̻])." Sources: Freixeiro Mato (2006), Regueira (1996),
     Ferreiro (1997).
     """
-    assert "s̺" in _bare("gl", "casa")
+    assert "s̺" in _bare("gl-ES", "casa")
 
 
 def test_gl_betacism():
@@ -82,7 +82,7 @@ def test_gl_betacism():
 
     Minimal pair on the same word against pt-PT, which keeps /v/.
     """
-    assert _bare("gl", "vaca").startswith("b")
+    assert _bare("gl-ES", "vaca").startswith("b")
     assert _bare("pt-PT", "vaca").startswith("v")
 
 
@@ -92,8 +92,8 @@ def test_gl_ll_and_enye_are_castilian_spellings_of_the_palatals():
     gl notes: "(4) ⟨ll⟩ = /ʎ/, ⟨ñ⟩ = /ɲ/ (Castilian orthographic conventions, not
     Portuguese ⟨lh⟩/⟨nh⟩)." Freixeiro Mato (2006).
     """
-    assert _bare("gl", "pollo") == "poʎo"
-    assert _bare("gl", "teño") == "teɲo"
+    assert _bare("gl-ES", "pollo") == "poʎo"
+    assert _bare("gl-ES", "teño") == "teɲo"
 
 
 def test_gl_ch_is_the_affricate():
@@ -102,7 +102,7 @@ def test_gl_ch_is_the_affricate():
     gl notes: "(5) ⟨ch⟩ = /tʃ/ (standard pronunciation; urban registers
     increasingly /ʃ/ under Portuguese/Spanish influence)." Regueira (1996).
     """
-    assert _bare("gl", "chave").startswith("tʃ")
+    assert _bare("gl-ES", "chave").startswith("tʃ")
 
 
 def test_gl_x_is_the_postalveolar_fricative():
@@ -113,7 +113,7 @@ def test_gl_x_is_the_postalveolar_fricative():
 
     Minimal pair against es-ES, whose ⟨j⟩/soft ⟨g⟩ is the velar [x].
     """
-    assert _t("gl", "xeneral") == "ʃeneˈɾal"
+    assert _t("gl-ES", "xeneral") == "ʃeneˈɾal"
     assert _bare("es-ES", "general").startswith("x")
 
 
@@ -126,7 +126,7 @@ def test_gl_no_unstressed_vowel_reduction():
     Minimal pair on the same word: pt-PT reduces the final ⟨a⟩ to [ɐ] (and voices
     the intervocalic ⟨s⟩); Galician does neither.
     """
-    assert _bare("gl", "casa") == "kasa"
+    assert _bare("gl-ES", "casa") == "kasa"
     assert _bare("pt-PT", "casa") == "kazɐ"
 
 
@@ -142,8 +142,8 @@ def test_gl_word_final_nasal_vowels():
     gl notes: "(9) NASAL VOWELS word-finally (irmán [ɐ̃], corazón [õ])."
     Freixeiro Mato (2006), Regueira (1996).
     """
-    assert "ɐ̃" in _bare("gl", "irmán")
-    assert "õ" in _bare("gl", "corazón")
+    assert "ɐ̃" in _bare("gl-ES", "irmán")
+    assert "õ" in _bare("gl-ES", "corazón")
 
 
 def test_gl_preserves_the_diphthongs_ou_and_ei():
@@ -155,40 +155,32 @@ def test_gl_preserves_the_diphthongs_ou_and_ei():
     The contrast is central-southern EP, which monophthongises ⟨ou⟩ to [o] and
     lowers ⟨ei⟩ to [ɐj] (pt-PT-x-lisbon).
     """
-    assert "ow" in _bare("gl", "cousa")
-    assert "ej" in _bare("gl", "leite")
+    assert "ow" in _bare("gl-ES", "cousa")
+    assert "ej" in _bare("gl-ES", "leite")
     assert "ow" not in _bare("pt-PT-x-lisbon", "ouro")
 
 
 # ===========================================================================
-# gl-ES — Standard Galician, RAG norms (the country-coded standard node)
+# gl-ES — Standard Galician, RAG norms
 # ===========================================================================
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="gl-ES notes claim distinción (interdental /θ/); engine produces "
-    "[kinko] for cinco and [kiðaðe] for cidade — the ⟨c⟩ grapheme has no "
-    "before-front-vowel branch in this spec, so soft ⟨c⟩ surfaces as [k]. The "
-    "parent gl gets it right, so this is a gl-ES DATA gap, not an engine limit",
-)
 def test_gl_es_distincion_on_soft_c():
     """gl-ES has the interdental /θ/ for ⟨c⟩ before a front vowel.
 
-    gl-ES notes: "Standard Galician has interdental /θ/ (distinción); seseo is
-    western-dialectal (see gl-x-occidental), not standard." Regueira (1996: 119).
-
-    Minimal pair inside the spec: ⟨z⟩ does yield [θ] (zapato), so only the soft-⟨c⟩
-    branch of the same cited claim fails.
+    gl-ES notes: "standard Galician HAS the phoneme /θ/ — ⟨c⟩ before e/i and
+    ⟨z⟩ = /θ/ [...] SESEO [...] is a WESTERN/coastal DIALECTAL feature, NOT
+    part of the RAG standard". Regueira (1996: 119).
     """
     assert _bare("gl-ES", "cinco").startswith("θ")
+    assert _bare("gl-ES", "cidade").startswith("θ")
 
 
 def test_gl_es_z_is_interdental():
-    """⟨z⟩ = /θ/ — the half of gl-ES's distinción claim the engine does honour.
+    """⟨z⟩ = /θ/, the other half of the distinción claim.
 
-    gl-ES notes: "Standard Galician has interdental /θ/ (distinción); seseo is
-    western-dialectal ..., not standard." Regueira (1996: 119).
+    The RAG/ILG Normas §1 (p. 16) give ⟨z⟩ the value [θ] ("ou [s]" for the
+    seseo areas).
     """
     assert _bare("gl-ES", "zapato").startswith("θ")
 
@@ -196,7 +188,9 @@ def test_gl_es_z_is_interdental():
 def test_gl_es_has_no_voiced_sibilants():
     """No intervocalic /s/ → [z] voicing, unlike Portuguese.
 
-    gl-ES notes: "no voiced sibilants (no intervocalic /s/→[z] voicing)".
+    The RAG/ILG Normas §1 (p. 16) give ⟨s⟩ the one value [s̺], and §1.9
+    (p. 22) states that Galician lost the voiced prepalatal fricative at the
+    end of the Middle Ages.
 
     Minimal pair on the same words against pt-PT, which voices them.
     """
@@ -208,7 +202,8 @@ def test_gl_es_has_no_voiced_sibilants():
 def test_gl_es_nh_is_the_velar_nasal():
     """⟨nh⟩ is the velar nasal /ŋ/ (unha), not the Portuguese palatal /ɲ/.
 
-    gl-ES notes: "⟨nh⟩ is the velar nasal /ŋ/ (e.g. unha), not palatal /ɲ/."
+    RAG/ILG Normas §1.7 (p. 21): "O dígrafo nh representa a consoante nasal
+    velar en posición interior antevocálica: unha, algunha, ningunha."
     """
     assert "ŋ" in _bare("gl-ES", "unha")
     assert "ɲ" not in _bare("gl-ES", "unha")
@@ -217,106 +212,106 @@ def test_gl_es_nh_is_the_velar_nasal():
 def test_gl_es_keeps_unstressed_a_open():
     """No unstressed vowel reduction: /a/ stays [a].
 
-    gl-ES notes: "no unstressed vowel reduction, /a/ stays [a] (Regueira
-    1996:119)".
+    gl-ES notes: "NO VOWEL REDUCTION: unstressed /a/ stays [a] (not /ɐ/ as in
+    Portuguese)."
     """
     assert _bare("gl-ES", "casa").endswith("a")
 
 
 # ===========================================================================
-# gl-x-occidental — Western Galician
+# gl-ES-x-occident — Western Galician
 # ===========================================================================
 
 
 def test_gl_occidental_gheada_word_initial():
     """GHEADA: word-initial /ɡ/ is replaced by the voiceless fricative [h].
 
-    gl-x-occidental notes: "KEY FEATURE — GHEADA: the defining hallmark of
+    gl-ES-x-occident notes: "KEY FEATURE — GHEADA: the defining hallmark of
     western Galician, a substitution of /ɡ/ by a voiceless fricative [h] ...
     'galego' → [haˈlɛho], 'gato' → [ˈhato]. The gheada affects: word-initial /ɡ/,
     intervocalic /ɡ/." Sources: Fernández Rei (1990), Dubert García (2006).
 
-    Minimal pair against the sister dialect gl-x-oriental, whose notes state
+    Minimal pair against the sister dialect gl-ES-x-oriental, whose notes state
     "(5) No gheada (characteristic of the western coast, absent in the east)".
     """
-    assert _bare("gl-x-occidental", "gato").startswith("h")
-    assert _bare("gl-x-oriental", "gato").startswith("ɡ")
+    assert _bare("gl-ES-x-occident", "gato").startswith("h")
+    assert _bare("gl-ES-x-oriental", "gato").startswith("ɡ")
 
 
 def test_gl_occidental_gheada_intervocalic():
     """GHEADA also affects intervocalic /ɡ/.
 
-    gl-x-occidental notes: "The gheada affects: word-initial /ɡ/, intervocalic
+    gl-ES-x-occident notes: "The gheada affects: word-initial /ɡ/, intervocalic
     /ɡ/." Fernández Rei (1990).
     """
-    assert _bare("gl-x-occidental", "amigo") == "amiho"
-    assert _bare("gl-x-oriental", "amigo").endswith("ɣo")
+    assert _bare("gl-ES-x-occident", "amigo") == "amiho"
+    assert _bare("gl-ES-x-oriental", "amigo").endswith("ɣo")
 
 
 def test_gl_occidental_gu_digraph_keeps_the_stop():
     """The ⟨gu⟩ digraph before e/i is exempt from the gheada.
 
-    gl-x-occidental notes: "the ⟨gu⟩ digraph before e/i typically retains /ɡ/."
+    gl-ES-x-occident notes: "the ⟨gu⟩ digraph before e/i typically retains /ɡ/."
     Fernández Rei (1990).
 
     This is the environment that isolates the gheada: guerra keeps [ɡ] where the
     bare ⟨g⟩ of gato becomes [h].
     """
-    assert _bare("gl-x-occidental", "guerra").startswith("ɡ")
-    assert _bare("gl-x-occidental", "gato").startswith("h")
+    assert _bare("gl-ES-x-occident", "guerra").startswith("ɡ")
+    assert _bare("gl-ES-x-occident", "gato").startswith("h")
 
 
 @pytest.mark.xfail(
     strict=True,
-    reason="gl-x-occidental cites galego → [haˈlɛho]; engine produces [haleho] — "
+    reason="gl-ES-x-occident cites galego → [haˈlɛho]; engine produces [haleho] — "
     "the gheada itself fires, but the spec carries no stress block (no stress "
     "mark is emitted at all, unlike its parent gl) and the tonic ⟨e⟩ is the "
     "close [e], not the cited open [ɛ]",
 )
 def test_gl_occidental_cited_galego_transcription():
-    """gl-x-occidental cites galego as [haˈlɛho].
+    """gl-ES-x-occident cites galego as [haˈlɛho].
 
-    gl-x-occidental notes: "a substitution of /ɡ/ by a voiceless fricative [h]
+    gl-ES-x-occident notes: "a substitution of /ɡ/ by a voiceless fricative [h]
     ...: 'galego' → [haˈlɛho], 'gato' → [ˈhato]." Fernández Rei (1990).
     """
-    assert _t("gl-x-occidental", "galego") == "haˈlɛho"
+    assert _t("gl-ES-x-occident", "galego") == "haˈlɛho"
 
 
 # ===========================================================================
-# gl-x-oriental — Eastern Galician
+# gl-ES-x-oriental — Eastern Galician
 # ===========================================================================
 
 
 def test_gl_oriental_ch_retained_as_affricate():
     """⟨ch⟩ = /tʃ/ is retained, where /ʃ/ spreads in the west and the cities.
 
-    gl-x-oriental notes: "(3) ⟨ch⟩ = /tʃ/ RETAINED more consistently (vs. western
+    gl-ES-x-oriental notes: "(3) ⟨ch⟩ = /tʃ/ RETAINED more consistently (vs. western
     and urban Galician where /ʃ/ is spreading)." Fernández Rei (1990).
     """
-    assert _bare("gl-x-oriental", "chave").startswith("tʃ")
+    assert _bare("gl-ES-x-oriental", "chave").startswith("tʃ")
 
 
 def test_gl_oriental_no_yeismo():
     """/ʎ/ for ⟨ll⟩ is robustly preserved — no yeísmo.
 
-    gl-x-oriental notes: "(4) /ʎ/ for ⟨ll⟩ robustly preserved (no yeísmo,
+    gl-ES-x-oriental notes: "(4) /ʎ/ for ⟨ll⟩ robustly preserved (no yeísmo,
     influenced by Asturian conservatism)." Fernández Rei (1990), Beswick (2007).
 
     Contrast es-ES, which merges ⟨ll⟩ into /ʝ/.
     """
-    assert "ʎ" in _bare("gl-x-oriental", "calle")
+    assert "ʎ" in _bare("gl-ES-x-oriental", "calle")
     assert "ʎ" not in _bare("es-ES", "calle")
 
 
 # ===========================================================================
-# roa-x-galaicopt — Galaico-Portuguese (~9th–14th c.)
+# roa-x-galaico-pt — Galaico-Portuguese (~9th–14th c.)
 # ===========================================================================
 
 
 def test_galaicopt_medieval_four_way_sibilant_contrast():
     """The medieval 4-way sibilant contrast: /ts/ ⟨ç⟩, /dz/ ⟨z⟩, /s/ ⟨ss⟩, /z/ ⟨-s-⟩.
 
-    roa-x-galaicopt notes: "(1) Medieval 4-way sibilant contrast: /ts/ ⟨ç⟩ vs
+    roa-x-galaico-pt notes: "(1) Medieval 4-way sibilant contrast: /ts/ ⟨ç⟩ vs
     /d͡z/ ⟨z⟩ vs /s/ ⟨ss⟩ vs /z/ ⟨-s-⟩." Sources: Maia (1986), Castro (2006),
     Teyssier (1982).
 
@@ -324,10 +319,10 @@ def test_galaicopt_medieval_four_way_sibilant_contrast():
     for ⟨ç/c⟩ and ⟨z⟩, and the plain fricative pair for ⟨ss⟩ and intervocalic
     ⟨-s-⟩ (which the spec writes with the apical diacritic).
     """
-    ceo = _bare("roa-x-galaicopt", "ceo")          # ⟨c⟩ before e = ⟨ç⟩ series
-    fazer = _bare("roa-x-galaicopt", "fazer")      # ⟨z⟩
-    passo = _bare("roa-x-galaicopt", "passo")      # ⟨ss⟩
-    casa = _bare("roa-x-galaicopt", "casa")        # intervocalic ⟨-s-⟩
+    ceo = _bare("roa-x-galaico-pt", "ceo")          # ⟨c⟩ before e = ⟨ç⟩ series
+    fazer = _bare("roa-x-galaico-pt", "fazer")      # ⟨z⟩
+    passo = _bare("roa-x-galaico-pt", "passo")      # ⟨ss⟩
+    casa = _bare("roa-x-galaico-pt", "casa")        # intervocalic ⟨-s-⟩
     assert ceo.startswith("t͡s")
     assert "d͡z" in fazer
     assert "s̺" in passo and "t͡s" not in passo
@@ -337,46 +332,46 @@ def test_galaicopt_medieval_four_way_sibilant_contrast():
 def test_galaicopt_preserves_b_v_distinction():
     """/b/ ≠ /v/ is preserved — no betacism.
 
-    roa-x-galaicopt notes: "(3) /b/ ≠ /v/ preserved." Maia (1986).
+    roa-x-galaico-pt notes: "(3) /b/ ≠ /v/ preserved." Maia (1986).
 
     Minimal pair on the same word against its Galician descendant, whose notes
     claim "(3) BETACISM: ⟨b⟩ = ⟨v⟩ = /b/".
     """
-    assert _bare("roa-x-galaicopt", "vaca").startswith("v")
-    assert _bare("gl", "vaca").startswith("b")
+    assert _bare("roa-x-galaico-pt", "vaca").startswith("v")
+    assert _bare("gl-ES", "vaca").startswith("b")
 
 
 def test_galaicopt_lh_and_nh_digraphs():
     """⟨lh⟩ = /ʎ/ and ⟨nh⟩ = /ɲ/ — the Occitan digraph convention.
 
-    roa-x-galaicopt notes: "(2) /ʎ/ ⟨lh⟩, /ɲ/ ⟨nh⟩ digraph convention from
+    roa-x-galaico-pt notes: "(2) /ʎ/ ⟨lh⟩, /ɲ/ ⟨nh⟩ digraph convention from
     Occitan." Castro (2006), Teyssier (1982).
     """
-    assert _bare("roa-x-galaicopt", "filho") == "fiʎo"
-    assert _bare("roa-x-galaicopt", "vinho") == "viɲo"
+    assert _bare("roa-x-galaico-pt", "filho") == "fiʎo"
+    assert _bare("roa-x-galaico-pt", "vinho") == "viɲo"
 
 
 def test_galaicopt_initial_f_preserved():
     """Initial F- is preserved: filho, not the Castilian hijo.
 
-    roa-x-galaicopt notes: "(4) F- preserved (filho, not hijo)." Maia (1986).
+    roa-x-galaico-pt notes: "(4) F- preserved (filho, not hijo)." Maia (1986).
 
     Minimal pair against es-ES, whose own notes cite the F→H→∅ change
     ("FILIU→hijo") and which transcribes hijo with no labial at all.
     """
-    assert _bare("roa-x-galaicopt", "filho").startswith("f")
+    assert _bare("roa-x-galaico-pt", "filho").startswith("f")
     assert not _bare("es-ES", "hijo").startswith("f")
 
 
 def test_galaicopt_ou_is_still_a_true_diphthong():
     """⟨ou⟩ is still a true diphthong [ow], not yet monophthongised.
 
-    roa-x-galaicopt notes: "(5) /ou/ still a true diphthong." Teyssier (1982).
+    roa-x-galaico-pt notes: "(5) /ou/ still a true diphthong." Teyssier (1982).
 
     Minimal pair against pt-PT-x-lisbon, where the central-southern standard has
     completed the monophthongisation to [o].
     """
-    assert "ow" in _bare("roa-x-galaicopt", "cousa")
+    assert "ow" in _bare("roa-x-galaico-pt", "cousa")
     assert "ow" not in _bare("pt-PT-x-lisbon", "ouro")
 
 
@@ -392,13 +387,13 @@ def test_medieval_sibilant_deaffrication():
     4-way contrast collapses to 2 (~14th–15th c.)." Sources: Williams (1962),
     Mattos e Silva (2006), Castro (2006).
 
-    Minimal pair against the ancestor roa-x-galaicopt on the same words, which
+    Minimal pair against the ancestor roa-x-galaico-pt on the same words, which
     still has the affricates: this isolates exactly the change being claimed.
     """
     assert "t͡s" not in _bare("pt-PT-x-medieval", "ceo")
     assert "d͡z" not in _bare("pt-PT-x-medieval", "fazer")
-    assert "t͡s" in _bare("roa-x-galaicopt", "ceo")
-    assert "d͡z" in _bare("roa-x-galaicopt", "fazer")
+    assert "t͡s" in _bare("roa-x-galaico-pt", "ceo")
+    assert "d͡z" in _bare("roa-x-galaico-pt", "fazer")
 
 
 def test_medieval_four_sibilants_collapse_to_two():
@@ -412,7 +407,7 @@ def test_medieval_four_sibilants_collapse_to_two():
     """
     assert _t("pt-PT-x-medieval", "passo") == _t("pt-PT-x-medieval", "paço")
     assert _t("pt-PT-x-medieval", "coser") == _t("pt-PT-x-medieval", "cozer")
-    assert _t("roa-x-galaicopt", "passo") != _t("roa-x-galaicopt", "paço")
+    assert _t("roa-x-galaico-pt", "passo") != _t("roa-x-galaico-pt", "paço")
 
 
 def test_medieval_dj_simplifies_to_zh():
@@ -421,10 +416,10 @@ def test_medieval_dj_simplifies_to_zh():
     pt-PT-x-medieval notes: "(4) /dʒ/→/ʒ/ simplification." Williams (1962),
     Mattos e Silva (2006).
 
-    Minimal pair against roa-x-galaicopt, which still has the affricate [d͡ʒ].
+    Minimal pair against roa-x-galaico-pt, which still has the affricate [d͡ʒ].
     """
     assert _bare("pt-PT-x-medieval", "jogar").startswith("ʒ")
-    assert _bare("roa-x-galaicopt", "jogar").startswith("d͡ʒ")
+    assert _bare("roa-x-galaico-pt", "jogar").startswith("d͡ʒ")
 
 
 def test_medieval_soft_g_simplifies_to_zh():
@@ -459,13 +454,6 @@ def test_medieval_nasal_vowels_are_phonemicised():
 # ===========================================================================
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="pt-BR-x-sp cites então → [ĩˈtɐ̃w̃]; engine produces [ẽtɐ̃ˈw̃] — the "
-    "word-initial pretonic /eN/ → [ĩ] raising is asserted in the notes but no "
-    "rule or map entry implements it, and the output is identical to the pt-BR "
-    "base. DATA gap",
-)
 def test_sp_word_initial_pretonic_en_raises_to_i():
     """Word-initial pretonic /eN/ raises to [ĩ]: então → [ĩˈtɐ̃w̃].
 
@@ -511,19 +499,19 @@ def test_rj_coda_r_final_aspiration():
 
 
 # ===========================================================================
-# pt-BR-x-fluminense — Fluminense
+# pt-BR-x-fluminen — Fluminense
 # ===========================================================================
 
 
-def test_fluminense_coda_r_velar():
-    """FLU_CODA_R_VELAR: a non-final coda /R/ is the velar fricative [x].
+def test_fluminense_coda_r_glottal():
+    """FLU_CODA_R_GLOTTAL: a non-final coda /R/ is the glottal fricative [h].
 
-    Rule notes: "Non-final coda /R/ -> velar fricative [x] in the coastal
-    prestige norm (Callou 2010:138)."
+    Rule notes: Silva (2023: 68, ALiB): 'no Rio de Janeiro, registramos 793
+    róticos, sendo 80% de glotal'.
 
     Minimal pair against the pt-BR base, whose coda /R/ is the tap [ɾ].
     """
-    assert _bare("pt-BR-x-fluminense", "porta") == "poxtɐ"
+    assert _bare("pt-BR-x-fluminen", "porta") == "pohtɐ"
     assert _bare("pt-BR", "porta") == "poɾtɐ"
 
 
@@ -533,7 +521,7 @@ def test_fluminense_coda_r_final_aspiration():
     Rule notes: "Word-final coda /R/ -> aspiration [h]/deletion, as in the Carioca
     norm (Callou 2010:138)."
     """
-    assert _bare("pt-BR-x-fluminense", "mar") == "mah"
+    assert _bare("pt-BR-x-fluminen", "mar") == "mah"
     assert _bare("pt-BR", "mar") == "maɾ"
 
 
@@ -542,13 +530,6 @@ def test_fluminense_coda_r_final_aspiration():
 # ===========================================================================
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="pt-BR-x-caipira cites Amaral (1920) §25 'Vocaliza-se em i ... muié' "
-    "and §6e 'lh não existe no dialeto'; engine produces [muˈʎeɻ] for mulher and "
-    "[ˈoʎu] for olho — the palatal lateral survives intact. DATA gap: no rule or "
-    "map entry vocalises /ʎ/ (contrast pt-UY, which does model exactly this)",
-)
 def test_caipira_palatal_lateral_vocalises_to_glide():
     """/ʎ/ vocalises to [j]: mulher → muié, olho → oio.
 

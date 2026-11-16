@@ -3,7 +3,7 @@
   "name": "Khalaj",
   "script": "Latin",
   "script_type": "alphabet",
-  "quality": "skeleton",
+  "quality": "research",
   "graphemes": {
     "ç": [
       "tʃ"
@@ -114,7 +114,7 @@
       "notes": "Descent per Glottolog classification of Khalaj Turkic (turk1303)."
     }
   ],
-  "notes": "Skeleton. Khalaj is a divergent Turkic language of central Iran, here written in a Latin orthography of the Azerbaijani/Turkish type. Consonant and vowel letters are given their conventional Turkic-Latin values, including c (dʒ), ç (tʃ), ş (ʃ), j (ʒ), x (x), ğ (ɣ), q (uvular/back stop), the front-rounded ö and ü, back unrounded ı, and ə. Khalaj is notable for preserving Proto-Turkic word-initial *h and for a phonemic long/short vowel contrast; vowel length is not marked in this map and is left unencoded, and the exact digraph conventions of the source orthography may vary, so a moderate PER floor is expected.",
+  "notes": "Research. Khalaj is a divergent Turkic language of central Iran, here written in a Latin orthography of the Azerbaijani/Turkish type. Consonant and vowel letters are given their conventional Turkic-Latin values, including c (dʒ), ç (tʃ), ş (ʃ), j (ʒ), x (x), ğ (ɣ), q (uvular/back stop), the front-rounded ö and ü, back unrounded ı, and ə. Khalaj is notable for preserving Proto-Turkic word-initial *h and for a phonemic long/short vowel contrast; vowel length is not marked in this map and is left unencoded, and the exact digraph conventions of the source orthography may vary, so a moderate PER floor is expected. Grapheme table checked against Doerfer (1988) / Doerfer (Encyclopaedia Iranica): no discrepancy found.",
   "iso639_3": "klj",
   "glottolog_code": null,
   "sources": [
@@ -127,6 +127,28 @@
       "url": "https://glottolog.org/resource/languoid/id/turk1303",
       "pages": null,
       "notes": "Classification reference for a skeleton-tier entry.",
+      "wikipedia_url": null
+    },
+    {
+      "id": "doerfer1988",
+      "author": "Doerfer, Gerhard",
+      "year": 1988,
+      "title": "Grammatik des Chaladsch (Khalaj Grammar)",
+      "publisher": "Turcologica 4. Harrassowitz, Wiesbaden",
+      "url": null,
+      "pages": null,
+      "notes": "Reference grammar used to verify the Turkic-Latin grapheme values and to source the word-final default stress placement encoded in this spec's `stress` block.",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Khalaj_language"
+    },
+    {
+      "id": "doerfer_iranica",
+      "author": "Doerfer, Gerhard",
+      "year": 2011,
+      "title": "ḴALAJ ii. Ḵalaji Language",
+      "publisher": "Encyclopaedia Iranica",
+      "url": "https://www.iranicaonline.org/articles/khalaj-ii-language/",
+      "pages": null,
+      "notes": "Encyclopedia summary of Khalaj phonology consistent with Doerfer 1988; cross-checked while verifying the grapheme table.",
       "wikipedia_url": null
     },
     {
@@ -143,5 +165,12 @@
   ],
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Khalaj_language"
-  ]
+  ],
+  "stress": {
+    "default_position": -1,
+    "quantity_sensitive": false,
+    "stress_mark": "ˈ",
+    "source": "rules",
+    "notes": "Like the great majority of Turkic languages, Khalaj places default word stress on the final syllable (Doerfer 1988, Grammatik des Chaladsch); this is the standard pan-Turkic pattern this project already uses for its other Turkic specs. Exceptions conditioned by specific suffixes are not separately encoded here for lack of a Khalaj-specific suffix inventory in the sources consulted."
+  }
 }

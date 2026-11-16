@@ -43,7 +43,8 @@ import unicodedata
 from typing import Dict, List, Optional, Tuple
 
 sys.path.insert(0, os.path.dirname(__file__))
-import benchmark  # noqa: E402  — shared dataset loaders and metric helpers
+import benchmark  # noqa: E402
+from docs_nav import footer  # noqa: E402  — shared dataset loaders and metric helpers
 
 # language tag → (wordlist loader, loader lang, espeak voice)
 #
@@ -59,13 +60,13 @@ SOURCES: Dict[str, Tuple] = {
     "en": (benchmark.load_wikipron, "en", "en-gb"),
     "en-GB": (benchmark.load_wikipron, "en-GB", "en-gb"),
     "es": (benchmark.load_wikipron, "es", "es"),
-    "gl": (benchmark.load_wikipron, "gl", None),  # espeak has no Galician
+    "gl-ES": (benchmark.load_wikipron, "gl-ES", None),  # espeak has no Galician
     "pt": (benchmark.load_wikipron, "pt", "pt"),
     "pt-PT": (benchmark.load_portuguese_unified, "pt-PT", "pt"),
     "pt-BR": (benchmark.load_portuguese_unified, "pt-BR", "pt-br"),
-    "pt-AO": (benchmark.load_portuguese_unified, "pt-AO", "pt"),
-    "pt-MZ": (benchmark.load_portuguese_unified, "pt-MZ", "pt"),
-    "pt-TL": (benchmark.load_portuguese_unified, "pt-TL", "pt"),
+    "pt-AO": (benchmark.load_portal_lupo, "pt-AO", "pt"),
+    "pt-MZ": (benchmark.load_portal_lupo, "pt-MZ", "pt"),
+    "pt-TL": (benchmark.load_portal_lupo, "pt-TL", "pt"),
     "mwl": (benchmark.load_mirandese, "mwl", None),  # espeak has no Mirandese
     "mwl-x-sendim": (benchmark.load_mirandese, "mwl-x-sendim", None),
     # --- wikipron-sourced, espeak-ng voice available ---
@@ -75,7 +76,7 @@ SOURCES: Dict[str, Tuple] = {
     "ast": (benchmark.load_wikipron, "ast", None),  # espeak has no Asturian
     "oc": (benchmark.load_wikipron, "oc", None),  # espeak has no Occitan
     "de": (benchmark.load_wikipron, "de", "de"),
-    "nl": (benchmark.load_wikipron, "nl", "nl"),
+    "nl-NL": (benchmark.load_wikipron, "nl-NL", "nl"),
     "sv": (benchmark.load_wikipron, "sv", "sv"),
     "da": (benchmark.load_wikipron, "da", "da"),
     "nb": (benchmark.load_wikipron, "nb", "nb"),
@@ -101,7 +102,7 @@ SOURCES: Dict[str, Tuple] = {
     # --- 4catac-sourced (Catalan regional accents) ---
     "ca": (benchmark.load_4catac, "ca", "ca"),
     "ca-x-balear": (benchmark.load_4catac, "ca-x-balear", "ca-ba"),
-    "ca-x-occidental": (benchmark.load_4catac, "ca-x-occidental", "ca-nw"),
+    "ca-x-occident": (benchmark.load_4catac, "ca-x-occident", "ca-nw"),
     "ca-x-valencia": (benchmark.load_4catac, "ca-x-valencia", "ca-va"),
     # --- ep_dialects-sourced (European Portuguese regional accents);
     # espeak-ng has no per-region EP voice, so all compare against its
@@ -193,7 +194,7 @@ def agreement(lang: str, limit: int) -> Optional[dict]:
 
 
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-AGREEMENT_MD = os.path.join(REPO_ROOT, "docs", "espeak_agreement.md")
+AGREEMENT_MD = os.path.join(REPO_ROOT, "docs", "evaluation", "generated", "espeak_agreement.md")
 AGREEMENT_JSON = os.path.join(REPO_ROOT, "benchmarks", "espeak_agreement.json")
 
 
@@ -228,7 +229,7 @@ def write_agreement_scoreboard(rows: List[dict]) -> None:
         "Committed symbol-level agreement between orthography2ipa and "
         "espeak-ng, for every language where this repo has both a gold-"
         "dataset wordlist and espeak-ng has a voice. This is NOT an "
-        "accuracy benchmark — see `docs/benchmarks.md` for what it means "
+        "accuracy benchmark: see `docs/evaluation/benchmarks.md` for what it means "
         "and does not mean. Regenerate with:",
         "",
         "```bash",
@@ -236,7 +237,7 @@ def write_agreement_scoreboard(rows: List[dict]) -> None:
         "```",
         "",
         "Machine-readable form: [`benchmarks/espeak_agreement.json`]"
-        "(../benchmarks/espeak_agreement.json).",
+        "(../../../benchmarks/espeak_agreement.json).",
         "",
         "| Lang | espeak voice | N | Exact | Exact (no stress) | "
         "Segmental | OOV rate |",
@@ -251,7 +252,7 @@ def write_agreement_scoreboard(rows: List[dict]) -> None:
     lines.append("")
     os.makedirs(os.path.dirname(AGREEMENT_MD), exist_ok=True)
     with open(AGREEMENT_MD, "w", encoding="utf-8") as fh:
-        fh.write("\n".join(lines))
+        fh.write("\n".join(lines).rstrip() + footer("evaluation/generated/espeak_agreement.md"))
 
 
 def main() -> None:
@@ -262,7 +263,7 @@ def main() -> None:
                     help="List languages and their espeak voices")
     ap.add_argument("--scoreboard", action="store_true",
                     help="Run every SOURCES language with an espeak-ng "
-                         "voice and write docs/espeak_agreement.md + "
+                         "voice and write docs/evaluation/generated/espeak_agreement.md + "
                          "benchmarks/espeak_agreement.json")
     args = ap.parse_args()
 

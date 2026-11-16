@@ -11,6 +11,8 @@ Validates:
 - Full distance: combined phonological + ancestry
 - Pairwise distance matrices
 """
+import math
+
 import pytest
 
 import orthography2ipa
@@ -477,6 +479,27 @@ class TestAncestrySimilarity:
         """Romance (Occitan) vs Semitic (Arabic) → zero shared ancestry."""
         sim = ancestry_similarity(en, ja)
         assert sim < 0.1
+
+    # The weights below are the ``ancestors`` entries of it-IT.json,
+    # la-x-italia.json, fr-FR.json and la-x-gallia.json, and the years are
+    # their ``timespan`` entries and gem.json's.
+    #   it-IT -> la-x-italia 0.85 -> la 0.82;  it-IT -> gem 0.05
+    #   fr-FR -> la-x-gallia 0.72 -> la 0.80;  fr-FR -> gem 0.18
+    # Traced in full, the best shared ancestor is la, two steps up each side.
+    # With max_depth=0 only the direct ancestors are traced, so la is out of
+    # reach and gem (the best shared direct ancestor) is the connection.
+
+    def test_full_depth_connects_through_la(self, it, fr):
+        assert ancestry_similarity(it, fr) == pytest.approx(0.85 * 0.82 * 0.72 * 0.80)
+
+    def test_max_depth_zero_stops_at_direct_ancestors(self, it, fr):
+        assert ancestry_similarity(it, fr, max_depth=0) == pytest.approx(0.05 * 0.18)
+
+    def test_max_depth_zero_with_temporal_decay(self, it, fr):
+        """gem ends in 200; it-IT and fr-FR start in 1300; the half-life is 1000."""
+        decay = math.exp(-(1300 - 200) / 1000)
+        sim = ancestry_similarity(it, fr, max_depth=0, temporal_decay=True)
+        assert sim == pytest.approx(0.05 * decay * 0.18 * decay)
 
 
 # ═══════════════════════════════════════════════════════════════════════════

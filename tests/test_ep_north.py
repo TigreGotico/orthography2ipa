@@ -1,4 +1,4 @@
-"""Archaic Northern European Portuguese — Transmontano (pt-PT-x-trasosmontes)
+"""Archaic Northern European Portuguese — Transmontano (pt-PT-x-tras-os-montes)
 and Alto-Minhoto (pt-PT-x-viana).
 
 Cintra's (1971, Boletim de Filologia 22:81-116) conservative
@@ -27,7 +27,7 @@ def _bare(s: str) -> str:
     return s.replace("ˈ", "").replace("ˌ", "")
 
 
-NORTH = ["pt-PT-x-trasosmontes", "pt-PT-x-viana"]
+NORTH = ["pt-PT-x-tras-os-montes", "pt-PT-x-viana"]
 
 
 @pytest.fixture(params=NORTH)
@@ -57,10 +57,10 @@ class TestFourSibilants:
         assert "z̺" not in eng.transcribe_word("cozer")
         assert eng.transcribe_word("coser") != eng.transcribe_word("cozer")
 
-    def test_laminal_c_cinco(self, eng):
         # ⟨c⟩ before i -> laminal [s], never apico; the coda ⟨n⟩ nasalises
-        # the preceding vowel (i + U+0303), leaving the laminal [s] intact.
-        assert eng.transcribe_word("cinco") == "ˈsĩku"
+        # the preceding vowel into precomposed "ĩ" (engine output is NFC;
+        # see G2P._transcribe_word), leaving the laminal [s] intact.
+        assert eng.transcribe_word("cinco") == "ˈsĩku"
 
     def test_apico_word_initial_sal(self, eng):
         assert eng.transcribe_word("sal") == "ˈs̺aɫ"

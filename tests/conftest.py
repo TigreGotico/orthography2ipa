@@ -2,6 +2,8 @@
 import pytest
 
 import orthography2ipa
+from orthography2ipa import G2P, Pipeline
+from orthography2ipa.syllabifiers import SilabificadorSyllabifier
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -18,6 +20,13 @@ def all_codes():
 def all_families():
     """All language families (session-scoped)."""
     return orthography2ipa.available_families()
+
+
+@pytest.fixture(scope="session")
+def plugin_engine():
+    """Build an engine whose caller passed the Portuguese syllabifier."""
+    pipeline = Pipeline(syllabifier=SilabificadorSyllabifier())
+    return lambda lang: G2P(lang, pipeline=pipeline)
 
 
 # Core language fixtures (session-scoped to avoid repeated loading)
@@ -98,20 +107,20 @@ _IBERIAN_CLASS_TO_CODE: dict[str, str] = {
     "TestSpanishES": "es-ES",
     "TestPortuguesePT": "pt-PT",
     "TestCatalan": "ca",
-    "TestGalician": "gl",
+    "TestGalician": "gl-ES",
     "TestBasqueEU": "eu",
     "TestAsturian": "ast",
     "TestMirandese": "mwl",
     "TestAragonese": "an",
-    "TestSpanishAndalusianEast": "es-ES-x-andalusia-e",
+    "TestSpanishAndalusianEast": "es-ES-x-andalusi-e",
     "TestSpanishRioplatense": "es-AR",
     "TestCatalanValencian": "ca-x-valencia",
     "TestCatalanBalearic": "ca-x-balear",
     "TestPortugueseBrazilian": "pt-BR",
-    "TestGalicianWestern": "gl-x-occidental",
+    "TestGalicianWestern": "gl-ES-x-occident",
     "TestIberianIsoglosses": "(cross-language)",
     # Extended dialects (test_iberian_extended.py)
-    "TestSpanishWesternAndalusian": "es-ES-x-andalusia-w",
+    "TestSpanishWesternAndalusian": "es-ES-x-andalusi-w",
     "TestSpanishCanarian": "es-ES-x-canarias",
     "TestSpanishMurcian": "es-ES-x-murcia",
     "TestSpanishMexican": "es-MX",
@@ -124,19 +133,19 @@ _IBERIAN_CLASS_TO_CODE: dict[str, str] = {
     "TestPortugueseAngolan": "pt-AO",
     "TestPortugueseRioDeJaneiro": "pt-BR-x-rj",
     "TestCatalanNord": "ca-x-nord",
-    "TestCatalanOccidental": "ca-x-occidental",
+    "TestCatalanOccidental": "ca-x-occident",
     "TestGalicianStandard": "gl-ES",
-    "TestGalicianOriental": "gl-x-oriental",
-    "TestBasqueBizkaiera": "eu-x-bizkaiera",
-    "TestBasqueGipuzkera": "eu-x-gipuzkera",
-    "TestAsturianOccidental": "ast-x-occidental",
+    "TestGalicianOriental": "gl-ES-x-oriental",
+    "TestBasqueBizkaiera": "eu-biscayan",
+    "TestBasqueGipuzkera": "eu-x-gipuzkoa",
+    "TestAsturianOccidental": "ast-x-occident",
     "TestAsturianOriental": "ast-x-oriental",
-    "TestAsturianCantabrian": "ast-x-cantabrian",
+    "TestAsturianCantabrian": "ast-x-cantabri",
     "TestLeonese": "ast-x-leon",
     "TestAsturianPortugueseMedieval": "ast-PT-x-medieval",
     "TestMirandeseSendim": "mwl-x-sendim",
     "TestMiraneseIfanes": "mwl-x-ifanes",
-    "TestAragonesOccidental": "an-x-occidental",
+    "TestAragonesOccidental": "an-x-occident",
     "TestAragonesOriental": "an-x-oriental",
     "TestFrench": "fr-FR",
     "TestItalian": "it-IT",

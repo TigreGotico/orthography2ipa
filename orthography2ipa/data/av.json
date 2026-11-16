@@ -364,6 +364,16 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Avar_language",
       "pages": null,
       "notes": "Orthography / phonology reference."
+    },
+    {
+      "id": "charachidze1981",
+      "author": "Charachidzé, Georges",
+      "year": 1981,
+      "title": "Grammaire de la langue avar",
+      "publisher": "Éditions Jean-Favard",
+      "url": "https://archive.org/details/rosettaproject_ava_phon-1",
+      "pages": null,
+      "notes": "Only chapter 1, 'Remarques sur le système des sons', was consulted, through the two-page Rosetta Project scan, whose pages carry no printed numbers. It gives the five-vowel system with no phonemic length, the glottal onset before an initial vowel, and the consonant table with the lenis/fortis and glottalised series."
     }
   ],
   "parent": "x-clade-nakh1245",

@@ -172,6 +172,41 @@ def test_analyze_grapheme_blame_respects_min_occurrences(monkeypatch):
     assert 0.0 <= blamed["a"]["mean_per"] <= 1.0
 
 
+def test_analyze_uses_sentence_transcription_for_multiword_gold(monkeypatch):
+    # Regression test for the harness defect: analyze() must call the
+    # SAME entry point benchmark.py's evaluate_words() calls for a given
+    # entry's granularity -- engine.transcribe() for whitespace-separated
+    # multiword entries (sentence gold like 4catac/vox_communis), NOT
+    # transcribe_word(), which treats the whole sentence as one word and
+    # collapses word boundaries (garbage alignment).
+    pairs = [("a cat", "ə kæt")]
+    monkeypatch.setitem(
+        error_analysis.DATASETS, "fixture_sentence",
+        (lambda lang, limit: pairs[:limit], ["en"]))
+
+    from orthography2ipa import G2P
+
+    calls = {"transcribe": 0, "transcribe_word": 0}
+    orig_transcribe = G2P.transcribe
+    orig_transcribe_word = G2P.transcribe_word
+
+    def spy_transcribe(self, text, *a, **kw):
+        calls["transcribe"] += 1
+        return orig_transcribe(self, text, *a, **kw)
+
+    def spy_transcribe_word(self, word, *a, **kw):
+        calls["transcribe_word"] += 1
+        return orig_transcribe_word(self, word, *a, **kw)
+
+    monkeypatch.setattr(G2P, "transcribe", spy_transcribe)
+    monkeypatch.setattr(G2P, "transcribe_word", spy_transcribe_word)
+
+    error_analysis.analyze("en", "fixture_sentence", limit=10)
+
+    assert calls["transcribe"] == 1
+    assert calls["transcribe_word"] == 0
+
+
 def test_analyze_never_raises_on_untranscribable_word(monkeypatch):
     # a loader yielding an empty-string word must not crash analyze();
     # the engine either raises or returns empty and the row is skipped

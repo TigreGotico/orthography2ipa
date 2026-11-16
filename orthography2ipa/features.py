@@ -13,7 +13,7 @@ and then plugs back in as a
 The public entry point is :meth:`orthography2ipa.g2p.G2P.features`; this module
 holds the record types it returns. Everything here is a **pure read** — it
 never affects :meth:`~orthography2ipa.g2p.G2P.transcribe`. See
-``docs/features.md`` for the CRF-as-rescorer pattern and a worked example.
+``docs/engine/lattice.md#feature-export-for-a-learned-model`` for the CRF-as-rescorer pattern and a worked example.
 """
 from __future__ import annotations
 
@@ -106,9 +106,9 @@ class GraphemeFeatures:
     """Number of ranked candidates for this slot."""
 
     confidence: float
-    """Per-**word** confidence in ``[0, 1]`` (Workstream B5), denormalised
-    onto every grapheme of the word so each CRF item carries it. This is the
-    signal that says *where* a learned model should spend capacity: low
+    """Per-**word** confidence in ``[0, 1]``, denormalised onto every
+    grapheme of the word so each CRF item carries it. This is the signal
+    that says *where* a learned model should spend capacity: low
     confidence ⇒ the base engine is unsure at this word."""
 
     script: str
@@ -165,7 +165,7 @@ class WordFeatures:
     """The language's primary script."""
 
     confidence: float
-    """The word's per-word confidence in ``[0, 1]`` (Workstream B5)."""
+    """The word's per-word confidence in ``[0, 1]``."""
 
     graphemes: Tuple[GraphemeFeatures, ...]
     """Per-grapheme feature records, in surface order."""

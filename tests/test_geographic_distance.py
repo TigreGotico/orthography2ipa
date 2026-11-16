@@ -17,12 +17,12 @@ def test_geography_recapitulates_the_iberian_continuum():
         return geographic_distance(o2i.get(a), o2i.get(b), normalize=False)
 
     assert km("mwl", "ast") < km("mwl", "es-ES")
-    assert km("gl", "ast") < km("gl", "es-ES")
-    assert km("pt-PT", "gl") < km("pt-PT", "es-ES")
+    assert km("gl-ES", "ast") < km("gl-ES", "es-ES")
+    assert km("pt-PT", "gl-ES") < km("pt-PT", "es-ES")
 
 
 def test_distance_is_symmetric_and_self_zero():
-    pt, gl = o2i.get("pt-PT"), o2i.get("gl")
+    pt, gl = o2i.get("pt-PT"), o2i.get("gl-ES")
     assert geographic_distance(pt, pt, normalize=False) == 0.0
     a = geographic_distance(pt, gl, normalize=False)
     b = geographic_distance(gl, pt, normalize=False)

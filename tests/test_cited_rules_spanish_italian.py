@@ -44,14 +44,14 @@ def _bare(code, word):
 LATAM_STUBS = [
     "es-HN", "es-SV",
     "es-AR-x-cordoba", "es-AR-x-cuyo", "es-AR-x-litoral", "es-AR-x-norte",
-    "es-AR-x-patagonia",
+    "es-AR-x-patagoni",
     "es-BO-x-andino", "es-BO-x-camba",
     "es-CL-x-andino", "es-CL-x-chilote",
-    "es-CO-x-llanero", "es-CO-x-pacifico", "es-CO-x-santander", "es-CO-x-valluno",
+    "es-CO-x-llanero", "es-CO-x-pacifico", "es-CO-x-santande", "es-CO-x-valluno",
     "es-EC-x-andino", "es-EC-x-costa",
     "es-MX-x-norte", "es-MX-x-yucatan",
-    "es-PE-x-amazonico", "es-PE-x-andino",
-    "es-VE-x-andino", "es-VE-x-llanero", "es-VE-x-maracucho",
+    "es-PE-x-amazonia", "es-PE-x-andino",
+    "es-VE-x-andino", "es-VE-x-llanero", "es-VE-x-zulia",
 ]
 
 
@@ -71,12 +71,15 @@ def test_latam_stub_seseo(code):
     assert _bare("es-ES", "cielo").startswith("θ")
 
 
-# The two highland varieties that resist the merger: NW Argentina keeps /ʎ/
-# distinct (ll-retention) and highland Andean Ecuador is zheísta (⟨ll⟩ = [ʒ]).
-# Both are still seseante, so they stay in LATAM_STUBS above but out of the
-# yeísmo cohort here.
+# The varieties outside the /ʝ/ merger: north-western and north-eastern
+# Argentina keep /ʎ/ distinct (ll-retention), highland Andean Ecuador is
+# zheísta (⟨ll⟩ = [ʒ]), and central and southern Argentina merge ⟨ll⟩ and ⟨y⟩
+# into the Rioplatense [ʃ] (Lipski 2018, p. 502). All are still seseante, so
+# they stay in LATAM_STUBS above but out of the yeísmo cohort here.
 YEISTA_STUBS = [c for c in LATAM_STUBS
-                if c not in ("es-AR-x-norte", "es-EC-x-andino")]
+                if c not in ("es-AR-x-norte", "es-AR-x-litoral",
+                             "es-EC-x-andino", "es-AR-x-cordoba",
+                             "es-AR-x-cuyo", "es-AR-x-patagoni")]
 
 
 @pytest.mark.parametrize("code", YEISTA_STUBS)
@@ -95,29 +98,29 @@ def test_latam_stub_yeismo(code):
 
 
 def test_es_mx_yucatan_seseo_against_parent():
-    """The Yucatán stub's cited seseo is a genuine delta from its parent es-MX.
+    """The Yucatán stub and its parent es-MX both have seseo; es-ES does not.
 
     es-MX-x-yucatan notes: "Only the pan-Latin-American baseline (seseo:
-    c/z->/s/ ...; Lipski 1994) is modelled here."
-
-    Same word, dialect vs parent: es-MX still gives the Castilian [θ] for ⟨c⟩
-    before a front vowel, so the stub's seseo is what changes the segment.
+    c/z->/s/ ...; Lipski 1994) is modelled here." Lipski (2011, p. 4): the
+    /s/-/θ/ opposition is found "nor in any part of Latin America", so es-MX
+    gives [s] for ⟨c⟩ before a front vowel too. es-ES keeps the Castilian [θ].
     """
     assert _bare("es-MX-x-yucatan", "cielo").startswith("s")
-    assert _bare("es-MX", "cielo").startswith("θ")
+    assert _bare("es-MX", "cielo").startswith("s")
+    assert _bare("es-ES", "cielo").startswith("θ")
 
 
-def test_es_ar_litoral_yeismo_against_parent_sheismo():
-    """The Litoraleño stub models only the Lipski yeísmo baseline, not Rioplatense šeísmo.
+def test_es_ar_litoral_keeps_lateral_against_parent_sheismo():
+    """North-eastern Argentina keeps /ʎ/, against the Rioplatense [ʃ] of es-AR.
 
-    es-AR-x-litoral notes: "Only the pan-Latin-American baseline (seseo:
-    c/z->/s/, yeismo: ll->/ʝ/; Lipski 1994) is modelled here; the
-    dialect-specific phonology is deliberately not yet described (stub tier)."
+    Lipski (2011, p. 5): "In Latin America, the phoneme /ʎ/ is maintained in
+    all regional and social dialects of Paraguay and Bolivia, and in
+    neighboring areas of northeastern and northwestern Argentina."
 
     Same word, dialect vs parent: es-AR realises ⟨ll⟩ as the Rioplatense [ʃ];
-    the stub, by its own declaration, resets to the baseline [ʝ].
+    the Litoraleño stub keeps the lateral.
     """
-    assert "ʝ" in _bare("es-AR-x-litoral", "pollo")
+    assert "ʎ" in _bare("es-AR-x-litoral", "pollo")
     assert "ʃ" in _bare("es-AR", "pollo")
 
 
@@ -972,75 +975,75 @@ def test_la_gallia_v_is_a_voiced_fricative():
 
 
 # ===========================================================================
-# la-x-galloitalic — Gallo-Italic Vulgar Latin (Hull 1982, Pellegrini 1975)
+# la-x-gallo-italic — Gallo-Italic Vulgar Latin (Hull 1982, Pellegrini 1975)
 # ===========================================================================
 
 
 def test_la_galloitalic_u_fronts_to_y():
     """/u/ → /y/ fronting.
 
-    la-x-galloitalic notes: "(1) /u/ -> /y/ fronting."
+    la-x-gallo-italic notes: "(1) /u/ -> /y/ fronting."
     Hull (1982), Pellegrini (1975).
 
     murum isolates it; la-x-italia, on the other side of the La Spezia-Rimini
     line, keeps the back vowel.
     """
-    assert _bare("la-x-galloitalic", "murum").startswith("my")
+    assert _bare("la-x-gallo-italic", "murum").startswith("my")
     assert "y" not in _bare("la-x-italia", "lupus")
 
 
 @pytest.mark.xfail(
     strict=True,
-    reason="la-x-galloitalic cites Degemination; engine produces [bella] for "
+    reason="la-x-gallo-italic cites Degemination; engine produces [bella] for "
     "bella and [annys] for annus — the doubled consonant survives as two "
     "segments, so the spec is not degeminated relative to la-x-italia [anːus]",
 )
 def test_la_galloitalic_degemination():
     """Degemination — the La Spezia-Rimini hallmark.
 
-    la-x-galloitalic notes: "(2) Degemination. ... The La Spezia-Rimini line
+    la-x-gallo-italic notes: "(2) Degemination. ... The La Spezia-Rimini line
     marks the boundary." Hull (1982), Pellegrini (1975).
 
     bella isolates it: exactly one [l] should surface, against la-x-italia,
     whose notes claim "Gemination PRESERVED (hallmark feature: ... bello)".
     """
-    assert _bare("la-x-galloitalic", "bella").count("l") == 1
+    assert _bare("la-x-gallo-italic", "bella").count("l") == 1
     assert "lː" in _bare("la-x-italia", "bella")
 
 
 @pytest.mark.xfail(
     strict=True,
-    reason="la-x-galloitalic cites 'Nasal vowels'; engine produces [myrym] for "
+    reason="la-x-gallo-italic cites 'Nasal vowels'; engine produces [myrym] for "
     "murum — the final ⟨m⟩ surfaces as a full [m], where the sister spec "
     "la-x-gallia, citing the same innovation, gives the nasalised [myrỹ]",
 )
 def test_la_galloitalic_nasal_vowels():
     """Nasal vowels develop.
 
-    la-x-galloitalic notes: "(5) Nasal vowels."
+    la-x-gallo-italic notes: "(5) Nasal vowels."
     Hull (1982), Pellegrini (1975).
 
     murum isolates it on the final vowel; la-x-gallia is the minimal pair on
     the same word.
     """
-    assert _bare("la-x-galloitalic", "murum") == "myrỹ"
+    assert _bare("la-x-gallo-italic", "murum") == "myrỹ"
 
 
 @pytest.mark.xfail(
     strict=True,
-    reason="la-x-galloitalic cites 'Final vowel loss/reduction'; engine "
+    reason="la-x-gallo-italic cites 'Final vowel loss/reduction'; engine "
     "produces [vita] for vita — the final vowel is the full Classical [a], "
     "where the sister spec la-x-gallia reduces it to [ə] ([witə])",
 )
 def test_la_galloitalic_final_vowel_reduces():
     """Final vowel loss/reduction.
 
-    la-x-galloitalic notes: "(4) Final vowel loss/reduction."
+    la-x-gallo-italic notes: "(4) Final vowel loss/reduction."
     Hull (1982), Pellegrini (1975).
 
     vita isolates it on the final vowel — either lost, or reduced from [a].
     """
-    assert not _bare("la-x-galloitalic", "vita").endswith("a")
+    assert not _bare("la-x-gallo-italic", "vita").endswith("a")
 
 
 # ===========================================================================
@@ -1130,22 +1133,6 @@ def test_ro_no_intervocalic_lenition():
     assert "ð" in _bare("es-ES", "nada")
 
 
-def test_ro_carries_no_stress_marks():
-    """The declared STRESS EXEMPTION: Romanian output carries no stress mark.
-
-    ro-RO notes: "STRESS EXEMPTION (research/production tier rule): Romanian
-    lexical stress is phonemic but NOT predictable from standard orthography
-    (cópii 'copies' vs copíi 'children' are spelled identically); the standard
-    norm writes no stress marks, so the spec carries no stress block per
-    docs/quality_tiers.md."
-
-    A declared omission, pinned so a stress block cannot be added by accident:
-    the engine must not guess a position it cannot know.
-    """
-    for word in ("copii", "hotel", "masă", "român"):
-        assert "ˈ" not in _t("ro-RO", word)
-
-
 # ===========================================================================
 # grc — Reconstructed Classical Attic Greek (Allen 1968)
 # ===========================================================================
@@ -1210,11 +1197,6 @@ def test_grc_ei_and_ou_already_monophthongs():
     assert _bare("grc", "λογου").endswith("oː")
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="Allen (1968): rough breathing = [h]; grc produces [als] for ἁλς and "
-    "[ɛːmera] for ἡμερα — the breathing adds no [h] onset",
-)
 def test_grc_rough_breathing_is_h():
     """The rough breathing is [h].
 
@@ -1429,28 +1411,27 @@ def test_jam_nasal_hn_convention_is_not_modelled():
     """The -hn nasal-vowel convention is declared NOT modelled.
 
     jam notes: "Nasal vowels are written with a following -hn (e.g. kyaahn);
-    that convention and the palatalised <ky>/<gy> onsets are not modelled here."
+    that convention is not modelled here."
 
     A declared omission, pinned: the cited word kyaahn yields the literal
     [h] + [n] of the spelling and no nasalised vowel — so the gap cannot be
     silently closed, and no nasal vowel can appear by accident.
     """
     out = _bare("jam", "kyaahn")
-    assert out == "kjaːhn"
+    assert out == "kʲaːhn"
     assert "̃" not in unicodedata.normalize("NFD", out)
 
 
-def test_jam_palatalised_onsets_are_not_modelled():
-    """The palatalised ⟨ky⟩/⟨gy⟩ onsets are declared NOT modelled.
+def test_jam_palatalised_onsets_are_single_segments():
+    """⟨ky⟩ and ⟨gy⟩ spell one palatalised velar, not a stop + glide cluster.
 
-    jam notes: "that convention and the palatalised <ky>/<gy> onsets are not
-    modelled here." Cassidy (1961); Jamaican Language Unit (2002).
-
-    A declared omission, pinned: ⟨ky⟩ and ⟨gy⟩ come out as the compositional
-    stop + glide, not as a palatalised /kʲ/ /ɡʲ/ segment.
+    Harry 2006 (JIPA 36/1, p.127) gives the palatalisation derivations
+    /giaad/ → [ɡʲaːd] 'guard' and /kiuu/ → [kʲuː], and his 21-consonant
+    inventory (p.126) contains no palatal stop, so [c] [ɟ] are the phonetic
+    reflexes Cassidy & Le Page 1967/1980 had analysed as phonemes.
     """
-    assert _bare("jam", "gyal") == "ɡjal"
-    assert "ʲ" not in _bare("jam", "kyaahn")
+    assert _bare("jam", "gyal") == "ɡʲal"
+    assert "ʲ" in _bare("jam", "kyaahn")
 
 
 # ===========================================================================

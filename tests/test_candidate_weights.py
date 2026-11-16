@@ -13,7 +13,7 @@ import warnings
 import pytest
 
 from orthography2ipa.registry import get
-from orthography2ipa.phonetok import PhonetokTokenizer, Token, TokenKind
+from orthography2ipa.phonetok import PhonetokTokenizer
 from orthography2ipa.types import (
     FIELD_INHERITANCE,
     InheritanceMode,
@@ -25,11 +25,6 @@ from orthography2ipa.weights import (
     normalize_grapheme_value,
     split_weighted_graphemes,
 )
-
-
-def _graph_token(grapheme: str, ipa) -> Token:
-    return Token(kind=TokenKind.GRAPHEME, grapheme=grapheme,
-                 ipa=tuple(ipa), position=0, length=len(grapheme))
 
 
 # ── candidate_base_costs ───────────────────────────────────────────────
@@ -117,17 +112,6 @@ class TestNormalisation:
 # ── byte-identical plain behaviour in the phonetok beam ────────────────
 
 class TestPlainBranchesUnchanged:
-    def test_ipa_branches_plain_costs_are_rank(self):
-        tok = _graph_token("c", ["k", "s"])
-        branches = PhonetokTokenizer._ipa_branches(tok, None, None)
-        # (ipa, cost): first candidate cost 0.0, alternative cost 1.0.
-        assert dict(branches) == {"k": 0.0, "s": 1.0}
-
-    def test_ipa_branches_weighted_costs_are_neg_log(self):
-        tok = _graph_token("c", ["k", "s"])
-        branches = PhonetokTokenizer._ipa_branches(tok, None, [0.1, 0.9])
-        assert dict(branches) == {"k": -math.log(0.1), "s": -math.log(0.9)}
-
     def test_weighted_beam_order_follows_weights(self):
         # Synthetic single-grapheme spec: 'z' → [x, y] with y favoured.
         spec = LanguageSpec(

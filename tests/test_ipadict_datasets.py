@@ -9,7 +9,7 @@ therefore be a lie, so the harness classifies this dataset PER LANGUAGE
 forcing function for that: no ipa-dict language can be registered without
 its own evidence-based tier, and the espeak-derived row must stay marked as
 such (an espeak gold can neither qualify nor block a language —
-docs/quality_tiers.md).
+docs/specs/quality_tiers.md).
 """
 import os
 import sys

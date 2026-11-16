@@ -1,0 +1,75 @@
+# orthography2ipa
+
+> Cited, per-language JSON specs that map spelling to IPA, a language-agnostic engine that turns them into transcriptions and ranked pronunciation lattices, and distance metrics that compare languages on separate axes. No trained weights.
+
+Start with AGENTS.md before you change anything. Every spec is a file in orthography2ipa/data/, and its fields are in orthography2ipa/data/SCHEMA.md.
+
+## Entry points
+
+- [README](README.md): what the library does, install, quick start
+- [AGENTS.md](AGENTS.md): repository map, setup, hard rules, checklist before a push
+- [Spec schema](orthography2ipa/data/SCHEMA.md): every JSON key the loader reads
+- [Python API](docs/reference/api.md): every exported name
+- [Command line](docs/reference/cli.md): every subcommand
+- [Scripts](scripts/README.md), [benchmarks](benchmarks/README.md), [tests](tests/README.md): what each directory holds
+
+## Documentation, in reading order
+
+- [Getting Started](docs/guide/getting_started.md)
+- [Lexicons and forced pronunciations](docs/guide/lexicon.md)
+- [Distance Metrics](docs/guide/distance.md)
+- [Known limitations](docs/guide/known_limitations.md)
+- [Python API](docs/reference/api.md)
+- [Command line](docs/reference/cli.md)
+- [Language Registry](docs/reference/registry.md)
+- [Public API stability](docs/reference/api_stability.md)
+- [Architecture](docs/engine/architecture.md)
+- [Tokenizer](docs/engine/tokenizer.md)
+- [The pronunciation lattice](docs/engine/lattice.md)
+- [Lattice PER](docs/engine/lattice_per.md)
+- [Allophony](docs/engine/allophony.md)
+- [Positional Graphemes](docs/engine/positional_graphemes.md)
+- [Data Model](docs/specs/data_model.md)
+- [Quality tiers](docs/specs/quality_tiers.md)
+- [Ancestry System](docs/specs/ancestry.md)
+- [IPA Reference](docs/specs/ipa_reference.md)
+- [Bibliography](docs/specs/bibliography.md)
+- [Writing a language spec](docs/contributing/spec_authoring.md)
+- [Citation honesty](docs/contributing/citations.md)
+- [Board regeneration](docs/contributing/board.md)
+- [Engine changes](docs/contributing/engine.md)
+- [Silver IPA correction](docs/contributing/silver_correction.md)
+- [Benchmarks](docs/evaluation/benchmarks.md)
+- [Benchmark gold datasets](docs/evaluation/datasets.md)
+- [The pinned WikiPron mirror](docs/evaluation/wikipron_mirror.md)
+- [TTS silver sets](docs/evaluation/silver_sets.md)
+- [Gold defects](docs/evaluation/gold_defects.md)
+- [Scoreboard](docs/evaluation/generated/scoreboard.md)
+- [Comparison to other G2P systems](docs/evaluation/generated/comparison.md)
+- [espeak-ng agreement](docs/evaluation/generated/espeak_agreement.md)
+- [Lexicon-overlay scoreboard](docs/evaluation/generated/lexicon_scoreboard.md)
+- [Spec diagnostics](docs/evaluation/generated/spec_diagnostics.md)
+- [Language pages](docs/languages/index.md)
+
+## Language atlas
+
+- [Languages by family](docs/languages/by-family.md): every spec by family path
+- [Languages by region](docs/languages/by-region.md): every spec by Glottolog macroarea and country
+- [Languages by script](docs/languages/by-script.md): every spec by script
+- [Languages from A to Z](docs/languages/a-z.md): every spec by name
+- [Every language page](llms-full.txt): this map with all 581 atlas pages, each with its summary
+
+## Production language pages
+
+- [Assamese](docs/languages/as.md): Assamese is an Indo-Aryan language, written in the Bengali script. Glottolog places it in Bangladesh, Bhutan and India. The `as` spec is at the production tier. It cites 4 sources and has 2 scored datasets.
+- [Esperanto](docs/languages/eo.md): Esperanto is a Constructed language, written in the Latin script. Glottolog places it in Poland. The `eo` spec is at the production tier. It cites 2 sources and has 2 scored datasets.
+- [Castilian Spanish](docs/languages/es-ES.md): Castilian Spanish is an Ibero-Romance language, written in the Latin script. Its code names Spain. The `es-ES` spec is at the production tier. It cites 12 sources and has 6 scored datasets.
+- [Basque](docs/languages/eu.md): Basque (Euskara) is a Vasconic language, written in the Latin script. Glottolog places it in France and Spain. The `eu` spec is at the production tier. It cites 10 sources and has 5 scored datasets.
+- [Finnish](docs/languages/fi.md): Finnish is a Finnic language, written in the Latin script. Glottolog places it in 5 countries. The `fi` spec is at the production tier. It cites 3 sources and has 3 scored datasets.
+- [Faroese](docs/languages/fo.md): Faroese is a North Germanic language, written in the Latin script. Glottolog places it in Denmark and Faroe Islands. The `fo` spec is at the production tier. It cites 3 sources and has 1 scored dataset.
+- [Romanian](docs/languages/ro-RO.md): Romanian is an Eastern Romance language, written in the Latin script. Its code names Romania. The `ro-RO` spec is at the production tier. It cites 9 sources and has 4 scored datasets.
+
+## Optional
+
+- [Per-language pages](docs/languages/index.md): phonology notes for single languages and families
+- [Changelog](CHANGELOG.md)

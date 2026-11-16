@@ -125,6 +125,11 @@ class RescoreContext:
     """Index of the stressed syllable of the word, or ``None`` when
     unavailable (standalone tokenizer)."""
 
+    syll_indices: Optional[Sequence[int]] = None
+    """Syllable index of every slot of the word, aligned with ``slots``, or
+    ``None`` when the entry path has no stress context (the standalone
+    tokenizer)."""
+
     # ─── neighbour convenience (word-local, honouring word boundaries) ──
 
     @property
@@ -313,6 +318,8 @@ def apply_rescorers(
         rescored: List["SegmentSlot"] = list(current)
         for run_start, run_end in runs:
             local = current[run_start:run_end]
+            run_sylls = (syll_for_token[run_start:run_end]
+                         if syll_for_token is not None else None)
             for local_idx, slot in enumerate(local):
                 gi = run_start + local_idx
                 ctx = RescoreContext(
@@ -323,6 +330,7 @@ def apply_rescorers(
                     syll_idx=(syll_for_token[gi]
                               if syll_for_token is not None else None),
                     stressed_syll_idx=stressed_syll_idx,
+                    syll_indices=run_sylls,
                 )
                 new_cands = rescorer.rescore(slot, ctx)
                 if new_cands is slot.candidates:

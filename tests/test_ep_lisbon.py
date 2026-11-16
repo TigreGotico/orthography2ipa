@@ -135,15 +135,16 @@ class TestStressedEPrePalatal:
         lisbon = G2P(LISBON).transcribe_word("coelho")
         base = G2P(BASE).transcribe_word("coelho")
         assert "ɐʎ" in lisbon          # Lisbon: [ˈkoɐʎu]
-        assert "ɐʎ" not in base        # base keeps [ɛ]: [ˈkɔɛʎu]
-        assert "ɛʎ" in base
+        assert "ɐʎ" not in base        # base keeps the close vowel: [kuˈeʎu]
+        assert "eʎ" in base
         assert lisbon != base
 
     def test_unstressed_pre_palatal_e_not_centralised(self):
         """The rule is stress-gated: unstressed pretonic /e/ before a palatal
         has already reduced to [ɨ] and must NOT be centralised to [ɐ]."""
-        # me-LHOR: pretonic <e> before <lh> stays reduced [ɨ]
-        assert G2P(LISBON).transcribe_word("melhor") == "mɨˈʎoɾ"
+        # me-LHOR: pretonic <e> before <lh> stays reduced [ɨ]; the open
+        # stressed [ɔ] is the Infopédia reading məˈʎɔr
+        assert G2P(LISBON).transcribe_word("melhor") == "mɨˈʎɔɾ"
         # fe-CHAR: pretonic <e> before <ch> stays reduced [ɨ]
         assert G2P(LISBON).transcribe_word("fechar") == "fɨˈʃaɾ"
         assert "ɐʃ" not in G2P(LISBON).transcribe_word("fechar")
@@ -159,6 +160,7 @@ class TestStressedEPrePalatal:
 
     def test_base_pt_pt_untouched(self):
         """The delta lives on Lisbon only; the pt-PT base must not gain the
-        pre-palatal centralisation."""
-        assert G2P(BASE).transcribe_word("fecho") == "ˈfɛʃu"
-        assert G2P(BASE).transcribe_word("venho") == "ˈvɛɲu"
+        pre-palatal centralisation. It gives the close [e] of Cunha & Cintra
+        (7th ed., p. 431)."""
+        assert G2P(BASE).transcribe_word("fecho") == "ˈfeʃu"
+        assert G2P(BASE).transcribe_word("venho") == "ˈveɲu"

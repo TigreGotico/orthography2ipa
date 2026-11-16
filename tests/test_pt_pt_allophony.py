@@ -15,6 +15,8 @@ that the rules fix become passing assertions.
 """
 import unicodedata
 
+import pytest
+
 from orthography2ipa import get
 from orthography2ipa.g2p import G2P
 
@@ -41,11 +43,49 @@ def test_pt_pt_declares_the_coda_rules():
     ids = [r.id for r in get("pt-PT").allophone_rules]
     assert ids == [
         "PT_FINAL_EM_NUCLEUS", "PT_FINAL_EM_GLIDE", "PT_FINAL_AM_GLIDE",
-        "PT_NASAL_A_RAISE", "PT_NASAL_E_RAISE", "PT_NASAL_O_RAISE",
-        "PT_NASAL_O_UNRED",
-        "PT_CODA_L_DARK", "PT_CODA_S_HUSH", "PT_CODA_Z_HUSH",
-        "PT_LEX_CLOSE_O", "PT_LEX_CLOSE_E", "PT_LEX_OPEN_O", "PT_LEX_OPEN_E",
-        "PT_LEX_X_S",
+        "PT_FINAL_ENS_NUCLEUS", "PT_FINAL_ENS_GLIDE",
+        "PT_FINAL_EN_NUCLEUS", "PT_FINAL_EN_CODA",
+        "PT_NASAL_A_RAISE", "PT_STRESSED_A_BEFORE_NASAL", "PT_NASAL_E_RAISE", "PT_NASAL_O_RAISE",
+        "PT_NASAL_O_UNRED", "PT_NASAL_E_UNRED", "PT_INITIAL_ES_RAISE",
+        "PT_CODA_L_DARK", "PT_CODA_S_BEFORE_ZH_INTERNAL",
+        "PT_CODA_S_VOICING_INTERNAL", "PT_CODA_S_HUSH", "PT_CODA_Z_HUSH",
+        "PT_STRONG_R_AFTER_CODA",
+        "PT_LEX_OPEN_ER", "PT_ER_CLOSE",
+        "PT_LEX_CLOSE_O", "PT_LEX_CLOSE_E", "PT_LEX_REDUCED_O",
+        "PT_LEX_NASAL_UI", "PT_LEX_NASAL_UI_GLIDE",
+        "PT_LEX_OPEN_O", "PT_LEX_OPEN_E",
+        "PT_LEX_REDUCED_A", "PT_LEX_PARA_CANDIDATE_VERB",
+        "PT_LEX_FUNCTION_CLOSE_E", "PT_LEX_FUNCTION_OPEN_E",
+        "PT_LEX_FUNCTION_CLOSE_O", "PT_LEX_FUNCTION_OPEN_O",
+        "PT_LEX_TODO_CLOSE", "PT_LEX_TODO_CANDIDATE_OPEN",
+        "PT_LEX_VOCE_OPEN_O", "PT_LEX_SOB_CLOSE_O",
+        "PT_LEX_OPEN_E_SUFFIX", "PT_LEX_OPEN_O_SUFFIX",
+        "PT_SUFFIX_EZ_CLOSE", "PT_SUFFIX_EZA_ESA_CLOSE", "PT_SUFFIX_EMA_CLOSE",
+        "PT_SUFFIX_ESCO_CLOSE", "PT_SUFFIX_OR_CLOSE", "PT_SUFFIX_OSO_CLOSE",
+        "PT_SUFFIX_ONHO_CLOSE", "PT_SUFFIX_DORA_CLOSE", "PT_SUFFIX_DORA_CANDIDATE_OPEN",
+        "PT_LEX_OIDAR_CLOSE", "PT_SUFFIX_OIDE_OPEN",
+        "PT_LEX_OIA_CLOSE", "PT_SUFFIX_OIA_OPEN", "PT_SUFFIX_OICO_OPEN",
+        "PT_DERIV_OICAMENTE_OPEN", "PT_DERIV_OICIDADE_OPEN",
+        "PT_LEX_X_S", "PT_LEX_CLITIC_O", "PT_LEX_AO_A", "PT_LEX_AO_GLIDE",
+        "PT_INITIAL_O_KEEP_BEFORE_CODA_NASAL", "PT_INITIAL_O_OPEN",
+        "PT_INITIAL_O_CANDIDATE_U", "PT_INITIAL_O_CANDIDATE_O",
+        "PT_INITIAL_HO_KEEP_BEFORE_CODA_NASAL", "PT_INITIAL_HO_OPEN",
+        "PT_INITIAL_HO_CANDIDATE_U", "PT_INITIAL_HO_CANDIDATE_O",
+        "PT_INITIAL_E_OPEN", "PT_INITIAL_E_OPEN_CANDIDATE_E",
+        "PT_INITIAL_E_OPEN_CANDIDATE_OPEN", "PT_INITIAL_E_OPEN_CANDIDATE_REDUCED",
+        "PT_INITIAL_E_LIQUID_CODA", "PT_INITIAL_E_LIQUID_CODA_CANDIDATE_E",
+        "PT_INITIAL_E_LIQUID_CODA_CANDIDATE_I", "PT_INITIAL_E_LIQUID_CODA_CANDIDATE_REDUCED",
+        "PT_CODA_STOP_INITIAL_E_OPEN", "PT_CODA_STOP_INITIAL_E_CANDIDATE_E",
+        "PT_CODA_STOP_INITIAL_E_CANDIDATE_I", "PT_CODA_STOP_INITIAL_E_CANDIDATE_REDUCED",
+        "PT_CODA_STOP_E_OPEN", "PT_CODA_STOP_E_CANDIDATE_REDUCED", "PT_CODA_STOP_E_CANDIDATE_CLOSE",
+        "PT_CODA_STOP_O_OPEN", "PT_CODA_STOP_O_CANDIDATE_REDUCED", "PT_CODA_STOP_O_CANDIDATE_CLOSE",
+        "PT_INITIAL_E_CODA_CANDIDATE_OPEN", "PT_INITIAL_E_CODA_CANDIDATE_I",
+        "PT_INITIAL_E_CODA_CANDIDATE_REDUCED",
+        "PT_CODA_L_A_OPEN", "PT_CODA_L_A_CANDIDATE_REDUCED",
+        "PT_CODA_L_E_OPEN", "PT_CODA_L_E_CANDIDATE_REDUCED",
+        "PT_CODA_L_O_CLOSE", "PT_CODA_L_O_CANDIDATE_OPEN", "PT_CODA_L_O_CANDIDATE_REDUCED",
+        "PT_STRESSED_E_PREPALATAL_CLOSE", "PT_STRESSED_E_PREPALATAL_CANDIDATE_LISBON",
+        "PT_STRESSED_E_PREPALATAL_CANDIDATE_OPEN",
     ]
 
 
@@ -80,7 +120,8 @@ def test_onset_l_stays_clear():
 def test_coda_s_hushes():
     # word-final and pre-voiceless-consonant coda /s/ → [ʃ]
     assert "ʃ" in _t("pt-PT", "pasta")
-    assert "ʃ" in _t("pt-PT", "mesmo")  # → [ʒ] after voicing sandhi, still hushed
+    # The hushed coda is voiced to [ʒ] before /m/ (PT_CODA_S_VOICING_INTERNAL).
+    assert "ʒ" in _t("pt-PT", "mesmo")
 
 
 def test_onset_and_intervocalic_s_not_hushed():
@@ -172,7 +213,7 @@ def test_reduced_o_before_nasal_lowers_to_o():
     # ch.2). Regression guard for contar → [kũˈtaɾ] (wrong) vs [kõˈtaɾ].
     assert _t("pt-PT", "contar") == _n("kõˈtaɾ")
     assert _t("pt-PT", "comprar") == _n("kõˈpɾaɾ")
-    assert _t("pt-PT", "montanha") == _n("mõˈtaɲɐ")
+    assert _t("pt-PT", "montanha") == _n("mõˈtɐɲɐ")
     assert _t("pt-PT", "bondade") == _n("bõˈdadɨ")
     assert _t("pt-PT", "pombal") == _n("põˈbaɫ")
     assert _t("pt-PT", "bombom") == _n("bõˈbõ")
@@ -217,8 +258,48 @@ class TestNasalDiphthongIsOneNucleus:
 
     def test_stress_lands_past_a_nasalised_vowel(self):
         assert _t("pt-PT", "coração") == "kuɾɐˈsɐ̃w̃"
-        assert _t("pt-PT", "irmão") == "iˈɾmɐ̃w̃"
+        assert _t("pt-PT", "irmão") == "iɾˈmɐ̃w̃"
 
     def test_the_mark_never_splits_a_vowel_from_its_tilde(self):
         assert _t("pt-PT", "cantar") == "kɐ̃ˈtaɾ"
         assert _t("pt-PT", "contar") == "kõˈtaɾ"
+
+
+# ─── Sibilants: the standard is plain alveolar, the apical is northern ──
+#
+# Cruz-Ferreira's IPA illustration of the Lisbon standard (Handbook of the
+# IPA 1999: 126-127) puts plain s z in the Alveolar column: caço [ˈkasu],
+# caso [ˈkazu]. ⟨ss⟩ spells that /s/ between vowels, so isso is [ˈisu] and
+# passo [ˈpasu]. Cintra 1971 (CVC reprint: 11-13) puts the apico-alveolar
+# s/ss north of a line from the Ria de Aveiro to the Mondego above Coimbra;
+# the northern specs declare their own apical ⟨ss⟩ and keep it.
+
+@pytest.mark.parametrize("lang", [
+    "pt-PT",
+    "pt-PT-x-lisbon",
+    "pt-PT-x-coimbra",
+    "pt-PT-x-alentejo",
+    "pt-PT-x-acores",
+    "pt-AO",
+    "ext-PT-x-barranco",
+])
+def test_ss_is_the_plain_alveolar_outside_the_apical_zone(lang):
+    assert "s̺" not in _t(lang, "isso")
+    assert _t("pt-PT", "isso") == "ˈisu"
+    assert _t("pt-PT", "passo") == "ˈpasu"
+
+
+@pytest.mark.parametrize("lang", [
+    "pt-PT-x-porto",
+    "pt-PT-x-braga",
+    "pt-PT-x-viana",
+    "pt-PT-x-tras-os-montes",
+    "pt-PT-x-minho",
+    "pt-PT-x-beira",
+    "pt-PT-x-aveiro",
+    "pt-PT-x-alfena",
+    "pt-PT-x-medieval",
+])
+def test_ss_stays_apical_where_the_lect_declares_it(lang):
+    assert get(lang).graphemes["ss"] == ["s̺"]
+    assert "s̺" in _t(lang, "isso")

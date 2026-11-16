@@ -31,7 +31,7 @@
       "notes": "New Persian descent"
     }
   ],
-  "notes": "Kermani Persian (Kermānī). Southern Iranian; Kerman province. /æ/ → [a] (more open/back than Tehran; similar to Shirazi). /q/ somewhat more maintained than Tehran. Contact with Balochi (southeastern Iran): minor phonological effects. Zoroastrian community in Kerman shares some features with Yazdi.",
+  "notes": "Kermani Persian (Kermānī). Southern Iranian; Kerman province. /æ/ → [a] (more open/back than Tehran; similar to Shirazi). /q/ somewhat more maintained than Tehran. Contact with Balochi (southeastern Iran): minor phonological effects. Zoroastrian community in Kerman shares some features with Yazdi. Already-encoded allophones confirmed against the cited sources: short-a prefers open/back [a] over Tehran's fronted [æ]; ق prefers the retained uvular stop [q] over the Tehran merger (Windfuhr 2009; Rezai & al.).",
   "quality": "skeleton",
   "script_type": "abjad",
   "sources": [
@@ -64,6 +64,26 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "windfuhr2009",
+      "author": "Windfuhr, G. (ed.)",
+      "year": 2009,
+      "title": "The Iranian Languages",
+      "publisher": "Routledge",
+      "url": null,
+      "pages": null,
+      "notes": "Regional-dialect chapter(s) on New Persian varieties (Tehran, Isfahan, Fars/Shiraz, Kerman, Khorasan/Mashhad, Yazd)."
+    },
+    {
+      "id": "rezai_dialectology",
+      "author": "Rezai, V. & al.",
+      "year": 2010,
+      "title": "Studies in Iranian regional Persian dialectology (Isfahan, Fars, Kerman, Khorasan)",
+      "publisher": "Iranian dialectology literature (regional descriptive studies)",
+      "url": null,
+      "pages": null,
+      "notes": "Secondary descriptive source for regional vowel-quality differences (majhul retention, ā/æ realisation) cross-checked against Windfuhr 2009 and Mahootian 1997."
     }
   ],
   "wikipedia": [

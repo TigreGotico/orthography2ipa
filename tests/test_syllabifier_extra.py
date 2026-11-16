@@ -1,25 +1,17 @@
 """The bundled Portuguese syllabifier plugin.
 
-A plugin supplies **syllables**. It must not change the transcription — because
-if it did, installing an optional package would change the answer, and the same
-word would have two of them depending on what happened to be in the environment.
-That is the bug this library just had, and the syllable count was how it got in.
+A plugin supplies **syllables**. A caller passes it to one engine, and installing
+the package changes no transcription.
 """
+
 import pytest
 
-from orthography2ipa import get_syllabifier
+from orthography2ipa import Pipeline
 from orthography2ipa.g2p import G2P
-from orthography2ipa import registry
 
 silabificador = pytest.importorskip("silabificador")
 
 from orthography2ipa.syllabifiers import SilabificadorSyllabifier  # noqa: E402
-
-
-def test_it_is_discovered():
-    plugin = get_syllabifier("pt-PT")
-    assert plugin is not None
-    assert hasattr(plugin, "syllabify")
 
 
 @pytest.mark.parametrize("word,expected", [
@@ -39,13 +31,19 @@ def test_joining_the_syllables_reproduces_the_word():
 
 
 @pytest.mark.parametrize("word", ["coelho", "viagem", "moeda", "poeta", "espelho"])
-def test_installing_it_does_not_change_the_transcription(word, monkeypatch):
-    """The whole point. The bundled splitter is right on its own — pt-PT declares
-    its diphthongs — so a better splitter draws better boundaries without moving
-    the answer."""
-    with_plugin = G2P("pt-PT-x-lisbon").transcribe_word(word)
-
-    monkeypatch.setattr(registry, "_syllabifiers", {})
+def test_it_does_not_change_the_transcription(word):
+    """The bundled splitter is right on its own — pt-PT declares its diphthongs —
+    so a better splitter draws better boundaries without moving the answer."""
+    pipeline = Pipeline(syllabifier=SilabificadorSyllabifier())
+    with_plugin = G2P("pt-PT-x-lisbon", pipeline=pipeline).transcribe_word(word)
     without_plugin = G2P("pt-PT-x-lisbon").transcribe_word(word)
 
     assert with_plugin == without_plugin
+
+
+@pytest.mark.parametrize("lang", ["pt-PT", "pt-BR"])
+def test_installing_it_leaves_the_stress_of_a_plain_engine(lang):
+    """⟨asteríida⟩ carries its stress on the written ⟨í⟩. The package is installed
+    in this test environment, and the plugin puts the stress on the ⟨i⟩ after it,
+    so a plain engine that reads it fails here."""
+    assert "ˈɾi" in G2P(lang).transcribe_word("asteríida")

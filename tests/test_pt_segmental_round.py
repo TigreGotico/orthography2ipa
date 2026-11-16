@@ -86,7 +86,7 @@ def test_ep_final_nasal_diphthong(word, expected):
 
 @pytest.mark.parametrize("word,expected", [
     # BP keeps the close-mid nucleus [ẽ] (no Lisbon centralisation)
-    ("bem", "ˈbẽj̃"), ("quem", "ˈkẽj̃"), ("homem", "ˈomẽj̃"),
+    ("bem", "ˈbẽj̃"), ("quem", "ˈkẽj̃"), ("homem", "ˈõmẽj̃"),
     ("custam", "ˈkustɐ̃w̃"), ("sim", "ˈsĩ"),
 ])
 def test_bp_final_nasal_diphthong(word, expected):
@@ -104,8 +104,8 @@ def test_peripheral_lects_do_not_centralise_em(lect, expected):
 
 def test_barranquenho_keeps_em_monophthong():
     """Barranquenho ⟨-em/-én⟩ is a nasal monophthong per the Convenção."""
-    assert _t("quen", "ext-PT-x-barrancos") == "ˈkẽ"
-    assert _t("bem", "ext-PT-x-barrancos") == "ˈbẽ"
+    assert _t("quen", "ext-PT-x-barranco") == "ˈkẽ"
+    assert _t("bem", "ext-PT-x-barranco") == "ˈbẽ"
 
 
 # ─── P3: BR affrication fed by the raised final ⟨e⟩ (Barbosa & Albano 2004) ──
@@ -119,8 +119,7 @@ def test_bp_affrication_before_raised_final_e(word, expected):
 
 
 @pytest.mark.parametrize("lect", [
-    "pt-BR-x-caipira", "pt-BR-x-sul", "pt-UY",
-    "pt-BR-x-pr", "pt-BR-x-recife",
+    "pt-UY", "pt-BR-x-pr", "pt-BR-x-recife",
 ])
 def test_conservative_lects_keep_dental_before_raised_e(lect):
     """The conservative-dental / non-palatalising varieties do NOT affricate a

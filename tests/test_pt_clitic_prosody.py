@@ -16,7 +16,7 @@ P2  The coordinating conjunction ``e`` is raised to [i] in modern Portuguese
     (EP and BP alike; and verbatim [i] in Barrancos per Navas), but keeps its
     unraised [e] in the medieval / Galician-Portuguese stages. Data:
     ``word_exceptions {"e": "i"}`` on pt-PT and pt-BR (inherited by their
-    modern children), absent from pt-PT-x-medieval and roa-x-galaicopt.
+    modern children), absent from pt-PT-x-medieval and roa-x-galaico-pt.
 
 P3  North-western tonic-mid diphthongisation ([e]→[je], [o]→[wo]; Brissos 2018,
     Cintra 1971) must fire only on lexically stressed ORAL mids, never on an
@@ -57,7 +57,7 @@ CLITICS = ["o", "a", "os", "as", "de", "em", "por", "da", "na", "ao", "às",
 P1_LECTS = ["pt-PT", "pt-BR", "pt-PT-x-lisbon", "pt-PT-x-porto",
             "pt-PT-x-braga", "pt-PT-x-alentejo", "pt-PT-x-acores",
             "pt-BR-x-sp", "pt-AO", "pt-MZ", "pt-PT-x-medieval",
-            "roa-x-galaicopt", "ext-PT-x-barrancos"]
+            "roa-x-galaico-pt", "ext-PT-x-barranco"]
 
 
 @pytest.mark.parametrize("lect", P1_LECTS)
@@ -86,12 +86,12 @@ def test_indefinite_article_um_keeps_stress():
 
 @pytest.mark.parametrize("lect", ["pt-PT", "pt-BR", "pt-PT-x-lisbon",
                                   "pt-PT-x-braga", "pt-BR-x-sp", "pt-AO",
-                                  "pt-UY", "ext-PT-x-barrancos"])
+                                  "pt-UY", "ext-PT-x-barranco"])
 def test_conjunction_e_raises_to_i_modern(lect):
     assert transcribe("e", lect) == "i", lect
 
 
-@pytest.mark.parametrize("lect", ["pt-PT-x-medieval", "roa-x-galaicopt"])
+@pytest.mark.parametrize("lect", ["pt-PT-x-medieval", "roa-x-galaico-pt"])
 def test_conjunction_e_stays_e_historical(lect):
     # Pre-raising stage: ⟨e⟩ keeps [e] (no /e/ > /i/ raising yet).
     assert transcribe("e", lect) == "e", lect
@@ -116,14 +116,14 @@ def test_stressed_oral_mid_still_diphthongises(lect):
 def test_proclitic_mid_does_not_diphthongise(lect):
     # Unstressed clitics must escape the rule (no [ˈwo]/[ˈje]/[ˈjẽ]).
     eng = G2P(lect)
-    assert eng.transcribe("o") == "o"     # article, not [ˈwo]
-    assert eng.transcribe("os") == "oʃ"   # not [ˈwoʃ]
+    assert eng.transcribe("o") == "u"     # article, not [ˈwo]
+    assert eng.transcribe("os") == "uʃ"   # not [ˈwoʃ]
     assert eng.transcribe("e") == "i"     # conjunction (raised), not [ˈje]
-    # ⟨em⟩ is word-final, so the P2 rule realises it as the FALLING nasal
-    # diphthong [ɐ̃j̃] (offglide AFTER the nucleus); what this test guards is
-    # that the NW metaphony did not fire a RISING [ˈjẽ] (onglide before it).
+    # ⟨em⟩ is word-final, so it is the FALLING nasal diphthong, with the
+    # northern close-mid nucleus [ẽj̃] (offglide AFTER the nucleus); what this
+    # test guards is that the NW metaphony did not fire a RISING [ˈjẽ].
     em = _n(eng.transcribe("em"))
-    assert em == _n("ɐ̃j̃"), (lect, em)
+    assert em == _n("ẽj̃"), (lect, em)
     assert not em.startswith(("j", "ˈj", "w", "ˈw"))  # no rising metaphony onglide
 
 
@@ -137,7 +137,7 @@ def test_stressed_nasal_mid_does_not_diphthongise(lect):
         assert "j" not in eng.transcribe(w), (lect, w)
         assert "w" not in eng.transcribe(w), (lect, w)
     # Word-final ⟨-em/-ém⟩ (bem, contém) DO carry the P2 falling nasal offglide
-    # [ɐ̃j̃] — that is a nasal DIPHTHONG, not the NW metaphony. What must not
+    # [ẽj̃] — that is a nasal DIPHTHONG, not the NW metaphony. What must not
     # happen is the RISING metaphony onglide [ˈjẽ]/[ˈbjẽ]; check for that only.
     for w in ("bem", "contém"):
         got = _n(eng.transcribe(w))

@@ -69,6 +69,9 @@ class TestSegmentIpa:
     def test_atoms_match_longest_first(self):
         assert segment_ipa("tɕʰi", atoms=("tɕʰ", "tɕ")) == ["tɕʰ", "i"]
 
+    def test_atom_order_does_not_matter(self):
+        assert segment_ipa("tɕʰi", atoms=("t", "tɕ", "tɕʰ")) == ["tɕʰ", "i"]
+
     def test_atom_must_not_steal_a_modified_base(self):
         # 'k' as an atom must not split 'k͈' (tense k, base+combining).
         assert segment_ipa("k͈a", atoms=("k",)) == ["k͈", "a"]

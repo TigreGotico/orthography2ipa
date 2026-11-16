@@ -51,8 +51,10 @@ def test_mcm_homorganic_nasal_clusters():
     """Nasal+consonant clusters are homorganic (Baxter 1988, p. 22):
     kanggrezu [kaŋgrezu] 'crab', kambrang [kambraŋ] 'prawn'."""
     g = G2P("mcm")
-    assert "ŋɡ" in g.transcribe_word("kanggrezu")
-    assert "mb" in g.transcribe_word("kambrang")
+    # the cluster is homorganic across the syllable boundary the stress mark
+    # is written at, so the mark is stripped before looking for it
+    assert "ŋɡ" in g.transcribe_word("kanggrezu").replace("ˈ", "")
+    assert "mb" in g.transcribe_word("kambrang").replace("ˈ", "")
 
 
 def test_mcm_coda_s_and_l_stay_plain_no_inherited_chiado():

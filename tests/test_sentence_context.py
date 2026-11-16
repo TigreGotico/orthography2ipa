@@ -29,6 +29,10 @@ from orthography2ipa.sentence import (
     span_position,
 )
 
+# This module tests a deprecated G2P argument, which still works.
+pytestmark = pytest.mark.filterwarnings(
+    r"ignore:G2P\(\w+=\.\.\.\) is deprecated:DeprecationWarning")
+
 
 _VOWELS = set("aeiouɑɐɛɔøœyəɪʊæ")
 

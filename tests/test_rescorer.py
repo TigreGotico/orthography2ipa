@@ -20,6 +20,7 @@ import pytest
 
 from orthography2ipa import get
 from orthography2ipa.g2p import G2P
+from orthography2ipa.pipeline import Pipeline
 from orthography2ipa.phonetok import Candidate, PhonetokTokenizer
 from orthography2ipa.rescorer import (
     LatticeRescorer,
@@ -223,7 +224,7 @@ def test_delete_every_slot_yields_empty_not_crash():
 
 def test_engine_path_supplies_stress_context():
     r = RecordStress()
-    G2P("pt", rescorer=r).transcribe("casa")
+    G2P("pt", pipeline=Pipeline(rescore=(r,))).transcribe("casa")
     # At least one slot is in the stressed syllable and one is not.
     stressed_flags = [is_s for _, is_s in r.seen]
     assert True in stressed_flags

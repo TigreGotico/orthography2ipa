@@ -55,7 +55,7 @@ def _build_parser() -> argparse.ArgumentParser:
 
     # --- info ---
     p_info = sub.add_parser("info", help="Show details for a language code.")
-    p_info.add_argument("code", help="BCP-47 or ISO-639-3 language code.")
+    p_info.add_argument("code", help="A BCP-47 or ISO-639-3 language code.")
     p_info.add_argument(
         "--json", action="store_true", dest="as_json",
         help="Output full spec as JSON.",
@@ -73,8 +73,8 @@ def _build_parser() -> argparse.ArgumentParser:
     p_trans = sub.add_parser(
         "transcribe", help="Transcribe text to IPA.",
     )
-    p_trans.add_argument("code", help="Language code.")
-    p_trans.add_argument("text", help="Word or phrase to transcribe.")
+    p_trans.add_argument("code", help="A BCP-47 or ISO-639-3 language code.")
+    p_trans.add_argument("text", help="The word or phrase to transcribe.")
     p_trans.add_argument(
         "--search", choices=("greedy", "beam"), default="greedy",
         help="Candidate search: best path per word (greedy, default) "
@@ -97,8 +97,8 @@ def _build_parser() -> argparse.ArgumentParser:
     p_dist = sub.add_parser(
         "distance", help="Compute phonological distance between two languages.",
     )
-    p_dist.add_argument("code1", help="First language code.")
-    p_dist.add_argument("code2", help="Second language code.")
+    p_dist.add_argument("code1", help="The first language code.")
+    p_dist.add_argument("code2", help="The second language code.")
     p_dist.add_argument(
         "--json", action="store_true", dest="as_json",
         help="Output as JSON.",

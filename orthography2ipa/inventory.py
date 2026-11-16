@@ -34,10 +34,11 @@ it, and a TTS consumer downstream is what would otherwise pay.
 from __future__ import annotations
 
 import re
-from typing import Dict, FrozenSet, List, Sequence, Set, Tuple
+from typing import Dict, FrozenSet, List, Mapping, Optional, Sequence, Set, Tuple
 
 from orthography2ipa.allophony import segment_ipa
-from orthography2ipa.lexicon import get_lexicon
+from orthography2ipa.lexicon import _process_lexicon, _warn_deprecated
+from orthography2ipa.positional import normalize_ending_value
 from orthography2ipa.types import LanguageSpec
 
 __all__ = [
@@ -82,8 +83,9 @@ def _transform_literals(transform: str) -> str:
     return _BACKREF.sub("", transform).replace("\\", "")
 
 
-def _base_emissions(spec: LanguageSpec) -> Set[str]:
-    """Every IPA string the *within-word* tables can place on a slot."""
+def _slot_emissions(spec: LanguageSpec) -> Set[str]:
+    """Every IPA string the grapheme, positional and allophone tables can place
+    on one slot. These are the only emissions that can be a segment."""
     emissions: Set[str] = set()
 
     for readings in spec.graphemes.values():
@@ -97,11 +99,10 @@ def _base_emissions(spec: LanguageSpec) -> Set[str]:
     for rule in (spec.allophone_rules or ()):
         if rule.surface:
             emissions.add(rule.surface)
-
-    # Word-level overrides hand the engine whole transcriptions, so their IPA
-    # never passes through the grapheme table at all.
-    emissions.update((spec.word_exceptions or {}).values())
-    emissions.update(get_lexicon(spec.code).values())
+        if rule.append:
+            # An inserting rule emits the inserted segment; the phoneme it
+            # attaches to is already an emission of the grapheme table.
+            emissions.add(rule.append)
 
     if spec.stress:
         emissions.update(STRESS_MARKS)
@@ -110,26 +111,50 @@ def _base_emissions(spec: LanguageSpec) -> Set[str]:
     return emissions
 
 
-def _sandhi_emissions(spec: LanguageSpec, base: Set[str]) -> Set[str]:
+def _word_emissions(
+    spec: LanguageSpec,
+    lexicon: Optional[Mapping[str, str]] = None,
+) -> Set[str]:
+    """Every whole transcription, or whole word tail, that bypasses the tables.
+
+    These are emissions, but never segments: a word is cut into the segments
+    the slot tables declare, as :func:`tokenize` cuts any transcription."""
+    # Word-level overrides hand the engine whole transcriptions, so their IPA
+    # never passes through the grapheme table at all.
+    emissions: Set[str] = set((spec.word_exceptions or {}).values())
+    # Suffix morphology replaces the word's tail wholesale, so its IPA also
+    # bypasses the grapheme table (see LanguageSpec.grammatical_endings).
+    # An ambiguous ending declares an ordered candidate LIST, and every
+    # element of it can surface — the lower-ranked ones through
+    # ``word_candidates``/a rescorer rather than through 1-best — so the
+    # whole list is an emission source. A deferring rank 1 (``None``)
+    # emits nothing of its own: rank 1 comes from the grapheme table,
+    # which is already counted.
+    for value in (spec.grammatical_endings or {}).values():
+        rank1, alternatives = normalize_ending_value(value)
+        if rank1 is not None:
+            emissions.add(rank1)
+        emissions.update(alternatives)
+    emissions.update(
+        (_process_lexicon(spec.code) if lexicon is None else lexicon).values())
+    emissions.discard("")
+    return emissions
+
+
+def _sandhi_emissions(spec: LanguageSpec, atoms: Sequence[str]) -> Set[str]:
     """The segments cross-word ``sandhi_rules`` can insert into the stream.
 
     Sandhi fires *after* the word tables, between words, so anything its
     ``transform``/``right_transform`` adds is a symbol source the base tables
     never saw — and French enchaînement inserts a linking tie ``‿`` that lives in
     no grapheme, positional or allophone table. The literal inserted text is cut
-    with :func:`~allophony.segment_ipa` against the base atoms (so a re-emitted
+    with :func:`~allophony.segment_ipa` against the slot *atoms* (so a re-emitted
     affricate stays whole and the tie stands as its own segment), exactly as
     :func:`tokenize` will cut a real transcription.
     """
     rules = spec.sandhi_rules or ()
     if not rules:
         return set()
-    atoms = sorted(
-        {p for p in (spec.phonemes or ()) if p}
-        | {e for e in base if len(e) > 1 and e not in STRESS_MARKS},
-        key=len,
-        reverse=True,
-    )
     out: Set[str] = set()
     for rule in rules:
         for transform in (rule.transform, rule.right_transform):
@@ -141,7 +166,10 @@ def _sandhi_emissions(spec: LanguageSpec, base: Set[str]) -> Set[str]:
     return out
 
 
-def emission_inventory(spec: LanguageSpec) -> FrozenSet[str]:
+def emission_inventory(
+    spec: LanguageSpec,
+    lexicon: Optional[Mapping[str, str]] = None,
+) -> FrozenSet[str]:
     """Every IPA string *spec* can place on a slot.
 
     The union of **every** source the engine can take IPA from:
@@ -154,18 +182,24 @@ def emission_inventory(spec: LanguageSpec) -> FrozenSet[str]:
       after the tables, so a linking tie or an assimilated segment it inserts is
       a source the within-word tables never carried;
     * the word-level overrides — inline ``word_exceptions`` and the sidecar
-      lexicon (caller-registered, never bundled) — which carry arbitrary IPA per
-      word and bypass the tables completely;
+      lexicon (never bundled) — which carry arbitrary IPA per word and bypass
+      the tables completely. The sidecar is *lexicon*, the mapping an engine
+      holds in :attr:`~orthography2ipa.pipeline.Pipeline.lexicon`, and the
+      process-wide lexicon when *lexicon* is ``None``;
     * the stress marks, when the spec declares stress rules.
 
     The empty string is excluded: a deleted slot emits nothing, which is the
     absence of a symbol rather than a symbol.
     """
-    base = _base_emissions(spec)
-    return frozenset(base | _sandhi_emissions(spec, base))
+    slots = _slot_emissions(spec)
+    sandhi = _sandhi_emissions(spec, _atoms_of(spec, slots))
+    return frozenset(slots | sandhi | _word_emissions(spec, lexicon))
 
 
-def phoneme_inventory(spec: LanguageSpec) -> FrozenSet[str]:
+def phoneme_inventory(
+    spec: LanguageSpec,
+    lexicon: Optional[Mapping[str, str]] = None,
+) -> FrozenSet[str]:
     """The **token set**: :func:`emission_inventory`, cut into segments.
 
     An emission is what one slot carries, and it is not always one phoneme —
@@ -173,33 +207,47 @@ def phoneme_inventory(spec: LanguageSpec) -> FrozenSet[str]:
     wants the segments, so each emission is cut with :func:`~allophony.segment_ipa`.
 
     Multi-character segments are held together when the spec declares them:
-    the declared ``phonemes`` inventory (and any multi-character emission, such
-    as an affricate surface like Najdi ``ts``) is passed as the atom list, so
-    ``ts`` stays one token rather than becoming ``t`` + ``s``. This is the
-    narrow-vs-broad choice, and it is made by the *data*: a spec that declares an
-    affricate gets it as a token, and one that does not, does not.
+    the declared ``phonemes`` inventory (and any multi-character emission of a
+    slot table, such as an affricate surface like Najdi ``ts``) is passed as the
+    atom list, so ``ts`` stays one token rather than becoming ``t`` + ``s``. This
+    is the narrow-vs-broad choice, and it is made by the *data*: a spec that
+    declares an affricate gets it as a token, and one that does not, does not.
+    A whole-word reading (a word exception, an ending, a lexicon entry) is an
+    emission but never a segment: it is cut like any other transcription.
     """
+    atoms = _atoms(spec)
     tokens: set = set()
-    for emission in emission_inventory(spec):
-        tokens.update(tokenize(emission, spec))
+    for emission in emission_inventory(spec, lexicon):
+        tokens.update(_tokenize(emission, atoms))
     return frozenset(tokens)
 
 
-def phoneme_atoms(spec: LanguageSpec) -> List[str]:
+def phoneme_atoms(
+    spec: LanguageSpec,
+    lexicon: Optional[Mapping[str, str]] = None,
+) -> List[str]:
     """The multi-character segments *this spec declares*, longest first.
 
     Public because segmentation is not only a tokenizer concern: syllable
     weight has to know that a spec's ``ts`` is one consonant, or it counts the
     coda of ``lidz`` as two and calls the syllable superheavy. The list is
     derived from the spec's own tables, so what counts as a segment is decided
-    by the *data*, exactly as in :func:`phoneme_inventory`.
+    by the *data*, exactly as in :func:`phoneme_inventory`. A lexicon holds
+    words, not segments, so *lexicon* has no effect and is deprecated.
     """
+    if lexicon is not None:
+        _warn_deprecated("the lexicon argument of phoneme_atoms()", "phoneme_atoms(spec)")
     return _atoms(spec)
 
 
 def _atoms(spec: LanguageSpec) -> List[str]:
     """The segments that must never be split, longest first."""
-    emissions = emission_inventory(spec)
+    slots = _slot_emissions(spec)
+    return _atoms_of(spec, slots | _sandhi_emissions(spec, _atoms_of(spec, slots)))
+
+
+def _atoms_of(spec: LanguageSpec, emissions: Set[str]) -> List[str]:
+    """The declared phonemes and the multi-character *emissions*, longest first."""
     return sorted(
         {p for p in (spec.phonemes or ()) if p}
         | {e for e in emissions if len(e) > 1 and e not in STRESS_MARKS},
@@ -208,7 +256,11 @@ def _atoms(spec: LanguageSpec) -> List[str]:
     )
 
 
-def tokenize(ipa: str, spec: LanguageSpec) -> List[str]:
+def tokenize(
+    ipa: str,
+    spec: LanguageSpec,
+    lexicon: Optional[Mapping[str, str]] = None,
+) -> List[str]:
     """Cut a transcription into the tokens a TTS model consumes.
 
     The counterpart to :func:`phoneme_inventory`: that function says what the
@@ -221,9 +273,16 @@ def tokenize(ipa: str, spec: LanguageSpec) -> List[str]:
     generic IPA segmenter — which treats a spacing modifier as belonging to the
     character before it — would otherwise hand back ``ɐˈ``, a "phoneme" that is
     in no inventory and that a model would have to learn separately from ``ɐ``.
-    Whitespace is dropped; a word boundary is the caller's concern.
+    Whitespace is dropped; a word boundary is the caller's concern. The segments
+    come from the spec alone, so *lexicon* has no effect and is deprecated.
     """
-    atoms = _atoms(spec)
+    if lexicon is not None:
+        _warn_deprecated("the lexicon argument of tokenize()", "tokenize(ipa, spec)")
+    return _tokenize(ipa, _atoms(spec))
+
+
+def _tokenize(ipa: str, atoms: Sequence[str]) -> List[str]:
+    """:func:`tokenize` with the spec's atoms already computed."""
     tokens: List[str] = []
     for chunk in _split_on_stress(ipa):
         if chunk in STRESS_MARKS:
@@ -264,8 +323,23 @@ def dead_allophone_rules(spec: LanguageSpec) -> Tuple[str, ...]:
     *and*, for segmental rules, against the segments within it. So a rule on
     ``a`` is live in a spec whose only source of ``a`` is the emission ``ja``,
     and a rule on ``dʒa`` is live only if some slot emits exactly that.
+
+    An abugida adds one more source the tables do not show. A consonant letter
+    carries its inherent vowel unless a matra or a virama cancels it, so a slot
+    can hold ``kə`` in a spec whose grapheme table only ever writes ``k`` — and
+    the inherent vowel is exactly what the schwa-deletion rules of every
+    Devanagari language target. Those rules are reachable, so the check adds
+    reading + inherent vowel to the producible set for an abugida.
     """
-    producible = phoneme_inventory(spec) | emission_inventory(spec)
+    producible = set(phoneme_inventory(spec) | emission_inventory(spec))
+    # A silent reading is no symbol, so both inventories leave it out, but a
+    # rule can target it: a slot the tables leave empty gets a vowel back
+    # (English word-final ⟨e⟩ when it is the word's only vowel).
+    if any("" in (readings or ()) for readings in spec.graphemes.values()) \
+            or "" in _positional_readings(spec):
+        producible.add("")
+    if spec.script_type == "abugida" and spec.inherent_vowel:
+        producible.update(p + spec.inherent_vowel for p in tuple(producible))
     dead: List[str] = []
     for rule in (spec.allophone_rules or ()):
         targets: Sequence[str] = rule.phonemes or ()

@@ -170,7 +170,7 @@ def feature_vector(segment: str) -> FeatureVector:
 
 
 def feature_names() -> Tuple[str, ...]:
-    """Return the tuple of feature names (21 features)."""
+    """Return the tuple of feature names, one per phone feature."""
     return _FEATURE_NAMES
 
 
@@ -216,10 +216,11 @@ def segment_distance(seg_a: str, seg_b: str, strict: bool = False) -> float:
         # Normalise to [0, 1].
         return min(d, 1.0)
     except (ValueError, KeyError):
-        # Fallback to feature-vector Hamming distance
-        va = feature_vector(seg_a)
-        vb = feature_vector(seg_b)
-        diff = sum(abs(a - b) for a, b in zip(va, vb))
+        # Fallback: normalised Hamming distance over the raw feature vectors
+        # (mean absolute difference per feature, each in [0, 1]).
+        vec_a = feature_vector(seg_a)
+        vec_b = feature_vector(seg_b)
+        diff = sum(abs(a - b) for a, b in zip(vec_a, vec_b))
         return diff / NUM_FEATURES
 
 
@@ -617,20 +618,17 @@ def _build_ancestor_graph(
 
 
 @functools.lru_cache(maxsize=256)
-def _get_ancestry_weights_by_code(code: str) -> Dict[str, float]:
-    """Return the ancestry weight map for *code*, cached by language code.
-
-    Delegates to ``_trace_ancestry_weights`` with a default max_depth of 10.
-    """
-    return _trace_ancestry_weights(code)
+def _get_ancestry_weights_by_code(code: str, max_depth: int = 10) -> Dict[str, float]:
+    """Return the ancestry weight map for *code*, cached by code and depth."""
+    return _trace_ancestry_weights(code, max_depth=max_depth)
 
 
-def _get_ancestry_weights(spec: LanguageSpec) -> Dict[str, float]:
+def _get_ancestry_weights(spec: LanguageSpec, max_depth: int = 10) -> Dict[str, float]:
     """Return the ancestry weight map for *spec*.
 
     Thin wrapper over the cached ``_get_ancestry_weights_by_code``.
     """
-    return _get_ancestry_weights_by_code(spec.code)
+    return _get_ancestry_weights_by_code(spec.code, max_depth)
 
 
 def _temporal_decay(
@@ -658,7 +656,6 @@ def _temporal_decay(
     float
         Multiplier in (0.0, 1.0].
     """
-    import math
     if ancestor_spec.timespan is None or descendant_spec.timespan is None:
         return 1.0
     anc_end = ancestor_spec.timespan.end_year if ancestor_spec.timespan.end_year is not None \
@@ -687,7 +684,9 @@ def ancestry_similarity(
     spec_a, spec_b : LanguageSpec
         Languages to compare.
     max_depth : int
-        Maximum recursion depth for ancestry tracing.
+        Maximum recursion depth for ancestry tracing. ``0`` traces only the
+        direct ancestors of each language, ``1`` adds their ancestors, and
+        so on.
     temporal_decay : bool
         If ``True`` and ``timespan`` data is available, multiply each ancestor
         weight by an exponential decay factor based on the temporal gap between
@@ -710,11 +709,13 @@ def ancestry_similarity(
 
     # Build weighted paths from each language to all reachable ancestors.
     if temporal_decay:
-        paths_a = _trace_ancestry_weights_temporal(spec_a, decay_halflife=decay_halflife)
-        paths_b = _trace_ancestry_weights_temporal(spec_b, decay_halflife=decay_halflife)
+        paths_a = _trace_ancestry_weights_temporal(
+            spec_a, max_depth=max_depth, decay_halflife=decay_halflife)
+        paths_b = _trace_ancestry_weights_temporal(
+            spec_b, max_depth=max_depth, decay_halflife=decay_halflife)
     else:
-        paths_a = _get_ancestry_weights(spec_a)
-        paths_b = _get_ancestry_weights(spec_b)
+        paths_a = _get_ancestry_weights(spec_a, max_depth)
+        paths_b = _get_ancestry_weights(spec_b, max_depth)
 
     # Check if A is a DIRECT parent of B or vice versa
     # (only applies when the path weight is high — not transitive traces)
@@ -1259,9 +1260,12 @@ def geographic_distance(
         math.radians,
         (loc_a.latitude, loc_a.longitude, loc_b.latitude, loc_b.longitude))
     dlat, dlon = lat2 - lat1, lon2 - lon1
-    h = (math.sin(dlat / 2) ** 2
-         + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2)
-    km = 2 * _EARTH_RADIUS_KM * math.asin(math.sqrt(h))
+    # Haversine formula: great-circle distance on a sphere from two points'
+    # latitude/longitude, robust to the small-angle error that a plain
+    # law-of-cosines formula suffers near-antipodal or nearby points.
+    haversine = (math.sin(dlat / 2) ** 2
+                 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2)
+    km = 2 * _EARTH_RADIUS_KM * math.asin(math.sqrt(haversine))
     if not normalize:
         return km
     return km / (math.pi * _EARTH_RADIUS_KM)

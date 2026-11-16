@@ -126,32 +126,31 @@ class TestSibilants:
 # ── § Ditongos crescentes: rising diphthongs ────────────────────────────────
 
 class TestDiphthongs:
-    """CON-DIP: ⟨iê/ie⟩ = rising diphthong /jɛ/; ⟨uô⟩ = /wɔ/; ⟨uo⟩ = /wo/.
-    Convention § Ditongos crescentes orais: iê/ie and uô/uo represent the
-    characteristic Mirandese diphthongisation of Latin /ɛ/ and /ɔ/."""
+    """CON-DIP: ⟨iê/ie⟩ and ⟨uô/uo⟩ are the characteristic Mirandese
+    diphthongisation of Latin /ɛ/ and /ɔ/ (Convenção § Ditongos crescentes
+    orais). The spec reads them as LdV's lax vowels [jɪ] and [ʊ] (pp. 173,
+    177), with [je] and [wo] as the second candidates."""
 
     def test_ie_diphthong(self, mwl):
-        """CON-DIP: ⟨ie⟩ → /je/ (bielho, amarielho). Mirandese mid /e/ is a
-        single intermediate quality (Vasconcelos v1 §§2,4,10, pp.178-183);
-        the close default matches the human gold (rabielho→rɐˈβjeʎu)."""
+        """CON-DIP: ⟨ie⟩ → [jɪ] (bielho); [je] is the second candidate."""
         result = strip_marks(mwl.transcribe("bielho"))
-        assert "je" in result, f"Expected je in {result!r}"
+        assert "jɪ" in result, f"Expected jɪ in {result!r}"
+        assert any("je" in strip_marks(c) for c in mwl.word_candidates("bielho", k=6))
 
     def test_ie_accent_diphthong(self, mwl):
-        """CON-DIP: ⟨iê⟩ → /je/ (tiêrra)."""
+        """CON-DIP: ⟨iê⟩ → [jɪ] (tiêrra)."""
         result = strip_marks(mwl.transcribe("tiêrra"))
-        assert "je" in result, f"Expected je in {result!r}"
+        assert "jɪ" in result, f"Expected jɪ in {result!r}"
 
     def test_uo_accent_diphthong(self, mwl):
-        """CON-DIP: ⟨uô⟩ → /wo/ (fuôrte, puôrta) — single mid /o/ quality,
-        Vasconcelos v1 §10 p.183. Open [wɔ] is an allophonic variant."""
+        """CON-DIP: ⟨uô⟩ → [ʊ] (fuôrte, puôrta); [wo] is the second candidate."""
         result = strip_marks(mwl.transcribe("fuôrte"))
-        assert "wo" in result, f"Expected wo in {result!r}"
+        assert "ʊ" in result, f"Expected ʊ in {result!r}"
 
     def test_uo_plain_diphthong(self, mwl):
-        """CON-DIP: ⟨uo⟩ → /wo/ (buono, nuobo) — unaccented keeps mid vowel."""
+        """CON-DIP: ⟨uo⟩ → [ʊ] (buono, nuobo)."""
         result = strip_marks(mwl.transcribe("buono"))
-        assert "wo" in result, f"Expected wo in {result!r}"
+        assert "ʊ" in result, f"Expected ʊ in {result!r}"
 
     def test_nh_palatal(self, mwl):
         """CON-DIP: ⟨nh⟩ = palatal nasal /ɲ/. Test with word-initial nh
@@ -173,14 +172,15 @@ class TestNasalDigraphs:
         assert "ɐ̃" in result or "ã" in result, f"Expected nasal vowel in {result!r}"
 
     def test_on_word_final_nasal(self, mwl):
-        """CON-NAS: word-final ⟨on⟩ → /õ/ (son, naçon)."""
+        """CON-NAS: word-final ⟨on⟩ → [ɵ̃w̃] (son, naçon): LdV §110 p. 257,
+        "-öũ"; the Convenção's nasal vowel [õ] is the second candidate."""
         result = strip_marks(mwl.transcribe("son"))
-        assert "õ" in result, f"Expected õ in {result!r}"
+        assert "ɵ̃w̃" in result, f"Expected ɵ̃w̃ in {result!r}"
 
     def test_on_final_naçon(self, mwl):
-        """CON-NAS: ⟨naçon⟩ → oxytone with final /õ/ (§ Acento -on class)."""
+        """CON-NAS: ⟨naçon⟩ → oxytone with final [ɵ̃w̃] (§ Acento -on class)."""
         result = mwl.transcribe("naçon")
-        assert "õ" in result
+        assert "ɵ̃w̃" in result
 
     def test_en_before_vowel_stays_literal(self, mwl):
         """CON-NAS: ⟨en⟩ before vowel is not the nasal digraph (arena → -ena-)."""
@@ -215,10 +215,11 @@ class TestLenition:
         result = strip_marks(mwl.transcribe("mandil"))
         assert "nd" in result or "d" in result
 
-    def test_b_after_r_is_stop(self, mwl):
-        """CON-BD: ⟨b⟩ after consonant = /b/ stop (orbelha: r+b)."""
+    def test_b_after_r_is_a_spirant(self, mwl):
+        """CON-BD: ⟨b⟩ after a consonant other than a nasal is the spirant
+        [β] (orbelha: r+b): Convenção letter B and LdV §13 p. 187."""
         result = strip_marks(mwl.transcribe("orbelha"))
-        assert "b" in result
+        assert "ɾβ" in result
 
 
 # ── § Acento: stress rules ───────────────────────────────────────────────────
@@ -238,7 +239,7 @@ class TestStress:
         result = mwl.transcribe("naçon")
         # Last syllable should carry stress
         idx = result.rfind("ˈ")
-        assert idx >= 0 and idx > len(result) - 6, f"Expected final stress in {result!r}"
+        assert idx >= 0 and idx > len(result) - 7, f"Expected final stress in {result!r}"
 
     def test_oxytone_in_ending(self, mwl):
         """CON-STR: -in ending (camin) gets final stress."""

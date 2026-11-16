@@ -72,5 +72,9 @@
     "source": "wikidata",
     "notes": "South Africa's representative point. A national variety: weak. [Wikidata Q258 P625]"
   },
-  "collapse_geminates": true
+  "collapse_geminates": true,
+  "vowel_graphemes": [
+    "y"
+  ],
+  "word_exceptions_base": "en-GB"
 }
