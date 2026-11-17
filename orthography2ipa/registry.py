@@ -10,6 +10,7 @@ from typing import Dict, List, Optional
 
 from linguatag import closest_lang, with_default_region
 
+import orthography2ipa.json_loader as json_loader
 from orthography2ipa.json_loader import available_json_codes, load_json_spec
 from orthography2ipa.types import LanguageSpec
 from orthography2ipa.version import VERSION_MAJOR
@@ -33,7 +34,7 @@ class UnknownVariantWarning(UserWarning):
 
 def _warn_unknown_variant(code: str, resolved: str, stacklevel: int) -> None:
     parts = _PRIVATE_USE.split(code, maxsplit=1)
-    if (len(parts) == 1 or resolved not in available_json_codes()
+    if (len(parts) == 1 or resolved not in json_loader._index
             or resolves_exactly(code)):
         return
     discarded = parts[1]
@@ -402,7 +403,8 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
     """
     if code in _ALIASES:
         return _ALIASES[code]
-    available = available_json_codes()
+    # Membership reads the index dict; available_json_codes() sorts every code.
+    available = json_loader._index
     # A registered code names its own spec. ``macro=True`` below folds an
     # individual language into its macrolanguage (``tl`` → ``fil``,
     # ``bcl`` → ``bik``), which would miss the spec.
@@ -492,7 +494,7 @@ def resolves_exactly(code: str) -> bool:
     separates the two, so a caller can tell "this code is registered" from
     "something vaguely like it is".
     """
-    return _resolve_code(code, allow_nearest=False) in available_json_codes()
+    return _resolve_code(code, allow_nearest=False) in json_loader._index
 
 
 def resolve(code: str) -> str:
