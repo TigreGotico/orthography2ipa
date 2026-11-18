@@ -378,7 +378,11 @@ KNOWN_DEAD_PREFIXES = {"ta": ("TA_GEM",), "ml": ("TA_GEM",),
                        # crs inherits the fr-FR rule set but has no schwa
                        # slot to match (its parent's open-e rule for ⟨ell⟩,
                        # ⟨ett⟩, ⟨err⟩ has nothing to rewrite there).
-                       "crs": ("FR_E_BEFORE_DOUBLED_CONSONANT",)}
+                       "crs": ("FR_E_BEFORE_DOUBLED_CONSONANT",),
+                       # fax inherits gl-ES's raising of /ɔ/ before a coda
+                       # nasal, but A Fala has no /ɔ/ (Costas González 1992:
+                       # 86), so the rule has nothing to rewrite there.
+                       "fax": ("GL_RAISE_O_BEFORE_NASAL",)}
 
 
 @pytest.mark.parametrize("code", ALL_CODES)

@@ -1,7 +1,7 @@
 # A Fala (Xalimego) (`fax`)
 
 <!-- atlas:summary begin -->
-A Fala (Xalimego) is an Ibero-Romance language, written in the Latin script. Glottolog places it in Portugal and Spain. The `fax` spec is at the research tier. It cites 5 sources and has 2 scored datasets.
+A Fala (Xalimego) is an Ibero-Romance language, written in the Latin script. Glottolog places it in Portugal and Spain. The `fax` spec is at the research tier. It cites 7 sources and has 2 scored datasets.
 <!-- atlas:summary end -->
 
 <!-- atlas:header begin -->
@@ -29,7 +29,7 @@ The notes of the spec file open with these words:
 
 > A Fala (Xalimego/Fala de Xálima). Galician-Portuguese linguistic island in Cáceres, Extremadura. Three local varieties: Valverdeiru (Valverde del Fresno), Lagarteiro (Eljas), Mañegu (San Martín de Trevejo). ~5,000, 10,000 speakers.
 
-The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 5 works, from 1994 to 2023. [Sources](#sources) lists them. The spec file writes all 58 spellings of its letter table itself.
+The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 7 works, from 1992 to 2024. [Sources](#sources) lists them. The spec file writes all 58 spellings of its letter table itself.
 
 The [spec file](../../orthography2ipa/data/fax.json) holds the full notes, with the caveats of the spec.
 <!-- atlas:overview end -->
@@ -43,13 +43,15 @@ No spec names `fax` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 5 works. 2 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
+The spec cites 7 works. 4 of them have a DOI or a URL. The spec file holds a note on what 4 of them support.
 
 1. <a id="src-grupo_xalima_tesoro"></a>Grupo de Estudo d'A Fala (Grupo Xálima) (2019). *A Fala de Xálima: valverdeiru, lagarteiru, manhegu. Un tesoro luso-extremeño*. Diputación de Cáceres. Cited: 37-56. [archivo.dip-caceres.es](https://archivo.dip-caceres.es/wp-content/uploads/2024/01/05-087-02.pdf)
 2. <a id="src-carrasco_fala2023"></a>Carrasco González, J.M. (2023). *A Fala (do Val de Xálima)*. eHumanista/IVITRA 24. [dehesa.unex.es](https://dehesa.unex.es/)
 3. <a id="src-penny2002"></a>Penny, R. (2002). *A History of the Spanish Language*. Cambridge University Press.
 4. <a id="src-mateus_dandrade2000"></a>Mateus, M.H.M. & d'Andrade, E. (2000). *The Phonology of Portuguese*. Oxford University Press.
 5. <a id="src-alarcos_llorach1994"></a>Alarcos Llorach, E. (1994). *Gramática de la Lengua Española*. Espasa.
+6. <a id="src-costas_gonzalez1992"></a>Costas González, X. H. (1992). *Breve caracterización das falas (fundamentalmente galegas) do val do río das Ellas*. Cadernos de Lingua 6, Real Academia Galega. Cited: 86-87. [publicacionsperiodicas.academia.gal](https://publicacionsperiodicas.academia.gal/index.php/CadernosLingua)
+7. <a id="src-carrasco_gonzalez2024"></a>Carrasco González, J. M. (2024). *Propuesta ortográfica de la Universidad de Extremadura para la fala*. Limite 18, 99-105. Cited: 100, 104. [doi.org](https://doi.org/10.17398/1888-4067.18.99)
 <!-- atlas:sources end -->
 
 <!-- atlas:datasets begin -->
@@ -59,14 +61,14 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 
 | Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
 |:--|:--|:--|:--|:--|--:|--:|:--|
-| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `fax` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 655 | 0.0977 | yes |
-| `spain_romance_tts` | `fax` | silver | llm-corrected | Apache-2.0 (this repository) | 20 | 0.0519 | no |
+| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `fax` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 655 | 0.0932 | yes |
+| `spain_romance_tts` | `fax` | silver | llm-corrected | Apache-2.0 (this repository) | 20 | 0.0358 | no |
 <!-- atlas:datasets end -->
 
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 53 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 51 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Dental | Alveolar | Postalveolar | Palatal | Velar | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -83,7 +85,6 @@ The spec can emit 53 segments. They come from the letter table, the positional r
 |:--|:-:|:-:|:-:|
 | Close | i |  | u |
 | Close-mid | e |  | o õ |
-| Open-mid | ɛ |  | ɔ |
 | Near-open |  | ɐ ɐ̃ |  |
 | Open | a |  |  |
 
@@ -104,7 +105,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨c⟩ | [k] [θ] | before e [θ] · before i [θ] |
 | ⟨ch⟩ | [tʃ] |  |
 | ⟨d⟩ | [d] | default [d] · intervocalic [ð] |
-| ⟨e⟩ | [e] [ɛ] |  |
+| ⟨e⟩ | [e] |  |
 | ⟨ei⟩ | [ej] |  |
 | ⟨eu⟩ | [ew] |  |
 | ⟨f⟩ | [f] | default [f] · word initial [f] [h] |
@@ -124,7 +125,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨m⟩ | [m] |  |
 | ⟨n⟩ | [n] |  |
 | ⟨nh⟩ | [ɲ] |  |
-| ⟨o⟩ | [o] [ɔ] |  |
+| ⟨o⟩ | [o] |  |
 | ⟨oi⟩ | [oj] |  |
 | ⟨ou⟩ | [ow] |  |
 | ⟨p⟩ | [p] |  |
@@ -147,11 +148,11 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨ã⟩ | [ɐ̃] |  |
 | ⟨ão⟩ | [ɐ̃w̃] |  |
 | ⟨ç⟩ | [s] |  |
-| ⟨é⟩ | [ɛ] |  |
+| ⟨é⟩ | [e] |  |
 | ⟨ê⟩ | [e] |  |
 | ⟨í⟩ | [i] |  |
 | ⟨ñ⟩ | [ɲ] |  |
-| ⟨ó⟩ | [ɔ] |  |
+| ⟨ó⟩ | [o] |  |
 | ⟨ô⟩ | [o] |  |
 | ⟨õ⟩ | [õ] |  |
 | ⟨ú⟩ | [u] |  |
@@ -166,7 +167,7 @@ The spec applies 12 allophone rules after the letters are read. The change colum
 
 | Rule | Change | Example | Cited |
 |:--|:--|:--|:--|
-| `GL_OPEN_O` | /o/ → [ɔ], stressed, in 4 listed words | ⟨corre⟩ [ˈkɔre] | Regueira 1996, Freixeiro Mato 1998 |
+| `GL_OPEN_O` | /o/ → [o], stressed, in 4 listed words | - | [Costas 1992](#src-costas_gonzalez1992) |
 | `GL_STOP_AFTER_NASAL` | /β/ → [b], after a coda nasal | ⟨ambos⟩ [ˈambos] | Regueira 2010, Freixeiro Mato 1998, Xove 2002 |
 | `GL_STOP_AFTER_NASAL_D` | /ð/ → [d], after a coda nasal | - | Regueira 2010 |
 | `GL_STOP_AFTER_NASAL_G` | /ɣ/ → [ɡ], after a coda nasal | ⟨tango⟩ [ˈtaŋɡo] | Regueira 2010, Freixeiro Mato 1998 |
