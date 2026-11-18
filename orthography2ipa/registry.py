@@ -190,6 +190,9 @@ _ALIASES: Dict[str, str] = {
     # region and lose the lect.
     "pt-BR-x-sao-paulo": "pt-BR-x-sp",
     "pt-BR-x-rio-janeiro": "pt-BR-x-rj",
+    # The state code of Paraíba. The spec key spells the state out, because
+    # "PB" also abbreviates "português brasileiro" in Brazilian linguistics.
+    "pt-BR-x-pb": "pt-BR-x-paraiba",
     # Brasília speech shows no feature that separates it from the pt-BR base
     # in the opened sources (alveolar coda /S/, 97 %: Hora 1999: 35), so the
     # code reads the base.

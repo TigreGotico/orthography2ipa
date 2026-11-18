@@ -347,7 +347,7 @@ BR_CHILDREN = _br_children()
 
 
 def test_br_children_are_found():
-    assert len(BR_CHILDREN) == 13
+    assert len(BR_CHILDREN) == 14
 
 
 @pytest.mark.parametrize("lang", BR_CHILDREN)

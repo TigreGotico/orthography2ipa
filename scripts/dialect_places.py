@@ -461,6 +461,9 @@ PLACES: dict[str, dict] = {
     "pt-BR-x-cuiaba": dict(
         qid="Q170762", label="Cuiabá", country="Brazil",
         note="Cuiabá — the centre of the Baixada Cuiabana, the river valley this spec models."),
+    "pt-BR-x-paraiba": dict(
+        qid="Q167436", label="João Pessoa", country="Brazil",
+        note="João Pessoa — the city of the VALPB studies."),
 
     # ── Portuguese beyond Europe and Brazil ───────────────────────────────────
     "pt-AO": dict(

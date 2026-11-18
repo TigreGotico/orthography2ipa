@@ -3891,6 +3891,7 @@ Stubs (44): Araona `aro`, Aymara `ay`, Southern Aymara `ayc`, Ayoreo `ayo`, Baur
 | [Fluminense Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-fluminen) | `pt-BR-x-fluminen` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Mineiro Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-mg) | `pt-BR-x-mg` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Nortista/Amazônico Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-norte) | `pt-BR-x-norte` | research | Indo-European > Italic > Romance > Ibero-Romance |
+| [Paraibano Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-paraiba) | `pt-BR-x-paraiba` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Curitibano/Paranaense Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-pr) | `pt-BR-x-pr` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Pernambucano Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-recife) | `pt-BR-x-recife` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Carioca Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-rj) | `pt-BR-x-rj` | research | Indo-European > Italic > Romance > Ibero-Romance |

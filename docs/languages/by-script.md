@@ -40,7 +40,7 @@ A stub has a name, a code and a place in the family tree, but no phonology yet. 
 | [Kayah Li](#kayah-li) | 1 |
 | [Khmer](#khmer) | 1 |
 | [Lao](#lao) | 1 |
-| [Latin](#latin) | 950 |
+| [Latin](#latin) | 951 |
 | [Latn](#latn) | 1 |
 | [Limbu](#limbu) | 1 |
 | [Linear B](#linear-b) | 1 |
@@ -1085,6 +1085,7 @@ Stubs (1): Western Kayah `kyu`.
 | [Fluminense Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-fluminen) | `pt-BR-x-fluminen` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Mineiro Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-mg) | `pt-BR-x-mg` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Nortista/Amazônico Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-norte) | `pt-BR-x-norte` | research | Indo-European > Italic > Romance > Ibero-Romance |
+| [Paraibano Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-paraiba) | `pt-BR-x-paraiba` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Curitibano/Paranaense Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-pr) | `pt-BR-x-pr` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Pernambucano Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-recife) | `pt-BR-x-recife` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Carioca Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-rj) | `pt-BR-x-rj` | research | Indo-European > Italic > Romance > Ibero-Romance |
