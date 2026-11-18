@@ -118,7 +118,7 @@ def test_basque_mark_does_not_split_s_stop():
     # syllable boundary and the mark go before the whole affricate
     # (Hualde 1994: 1559, proposal (12-I): bertsolariarekin, second syllable).
     ("bertsolari", "berˈts̺olaɾi"),
-    ("beltzari", "belˈts̻aɾi"),
+    ("atzo", "aˈts̻o"),
 ])
 def test_basque_mark_does_not_split_an_affricate(word, ipa):
     assert orthography2ipa.transcribe(word, "eu") == ipa

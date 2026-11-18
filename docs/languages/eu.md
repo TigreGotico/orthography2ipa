@@ -177,14 +177,14 @@ The engine output below comes from `orthography2ipa.transcribe` on the worked ex
 |:---|:---|:---|:---|
 | *lurra* | *lúrra* (Hualde 1994: 1559) | [luˈra] | The accent is on the second syllable. The root has one syllable. |
 | *lurrari* | *lúrrari* (Elordieta et al. 1998: 402) | [luˈraɾi] | Same cause. |
-| *beltzari* | *béltzari* (1998: 402) | [beltˈs̻aɾi] | The accent is on the wrong syllable, and the mark splits the affricate. |
+| *beltzari* | *béltzari* (1998: 402) | [belˈts̻aɾi] | The accent is on the wrong syllable. |
 | *lekuan* | *lékuan* (Hualde 1994: 1559) | [leˈkuan] | The spec has no list of marked words. |
 | *aurrera* | *áurrera* (1994: 1559) | [au̯ˈreɾa] | Same cause. |
 | *ango* | [aŋgo] (Bedialauneta Txurruka & Hualde 2023: 1103) | [anˈɡo] | No velar assimilation. Only the labial rule exists. |
 | *talde* | [talðe] (2023: 1104) | [talˈde] | No spirant after a consonant. |
 | *ilargi* | spirant after a consonant (Hualde et al. 2010: 116) | [iˈlarɡi] | Same cause. |
 
-The engine puts the stress mark inside the affricates [ts̻] and [ts̺]. Examples are *atzo* [atˈs̻o], *eutsi* [eu̯tˈs̺i] and *bertsolariarekin* [bertˈs̺olaɾiaɾekin]. The IPA segmenter does not read an affricate with a diacritic below its second symbol as one segment. [tʃ] has no such diacritic, and *etxe* gives [eˈtʃe].
+The stress mark goes before the whole affricate: *atzo* [aˈts̻o], *eutsi* [eu̯ˈts̺i]. [tʃ] gives the same result, as in *etxe* [eˈtʃe].
 
 The spec keeps [+2] in *ate* [aˈte] and *mendi* [menˈdi], where young Donostia speakers have [+1] (Elordieta et al. 1998: 402). This is a choice that the spec notes state. *mina* gives [miˈna], where Markina has /miɲe/ (2023: 1103). This is also a choice, because the spec notes treat the palatalisation as lexical in Batua.
 
