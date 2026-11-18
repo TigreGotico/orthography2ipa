@@ -1506,6 +1506,7 @@ Stubs (6): 'Are'are `alu`, 'Auhelawa `kud`, ǀGwi `gwj`, ǁAni `hnh`, ǁGana `gn
 | [Pannonian Rusyn](rsk.md) (page) | `rsk` | research | Indo-European > Balto-Slavic > Slavic |
 | [Papiamentu (Papiamento)](https://tigregotico.github.io/orthography2ipa/#pap) | `pap` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Paraguayan Spanish](https://tigregotico.github.io/orthography2ipa/#es-PY) | `es-PY` | skeleton | Indo-European > Italic > Romance > Ibero-Romance |
+| [Paraibano Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-paraiba) | `pt-BR-x-paraiba` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Parkwa](https://tigregotico.github.io/orthography2ipa/#pbi) | `pbi` | skeleton | Afro-Asiatic |
 | [Pashto (Standard Afghan)](ps.md) (page) | `ps` | research | Indo-European > Indo-Iranian > Iranian |
 | [Pasiegu (Pasiego, Montes de Pas)](https://tigregotico.github.io/orthography2ipa/#ast-x-pasiego) | `ast-x-pasiego` | skeleton | Indo-European > Italic > Romance > Ibero-Romance > Asturleonese |

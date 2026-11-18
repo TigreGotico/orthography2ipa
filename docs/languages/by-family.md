@@ -88,7 +88,7 @@ A stub has a name, a code and a place in the family tree, but no phonology yet. 
 | [Huavean](#huavean) | 4 |
 | [Huitotoan](#huitotoan) | 5 |
 | [Ijoid](#ijoid) | 10 |
-| [Indo-European](#indo-european) | 744 |
+| [Indo-European](#indo-european) | 745 |
 | [Iroquoian](#iroquoian) | 9 |
 | [Isolate](#isolate) | 113 |
 | [Iwaidjan Proper](#iwaidjan-proper) | 3 |
@@ -1659,6 +1659,7 @@ Stubs (1): Istro-Romanian `ruo`.
 | [Fluminense Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-fluminen) | `pt-BR-x-fluminen` | research | Latin |
 | [Mineiro Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-mg) | `pt-BR-x-mg` | research | Latin |
 | [Nortista/Amazônico Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-norte) | `pt-BR-x-norte` | research | Latin |
+| [Paraibano Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-paraiba) | `pt-BR-x-paraiba` | research | Latin |
 | [Curitibano/Paranaense Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-pr) | `pt-BR-x-pr` | research | Latin |
 | [Pernambucano Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-recife) | `pt-BR-x-recife` | research | Latin |
 | [Carioca Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-rj) | `pt-BR-x-rj` | research | Latin |
