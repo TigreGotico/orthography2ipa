@@ -12,6 +12,8 @@ doubling score identically.
 import os
 import sys
 
+import pytest
+
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
 
 from benchmark import _expand_consonant_length, normalize  # noqa: E402
@@ -39,6 +41,17 @@ class TestItalianPhonology:
 
     def test_gli_intervocalic_geminates(self):
         assert self._t("aglio") == "aʎʎo"
+
+    # Bertinetto & Loporcaro (2005: 134): /ʎ/ has geminate-like duration in
+    # intervocalic position; only the article gli may degeminate.
+    @pytest.mark.parametrize("lang", ["it-IT", "it-IT-x-toscana", "it-IT-x-roma"])
+    @pytest.mark.parametrize("word, expected", [
+        ("figli", "ˈfiʎʎi"), ("tagli", "ˈtaʎʎi"), ("consigli", "konˈsiʎʎi"),
+        ("gli", "ˈʎi"),
+    ])
+    def test_word_final_gli_geminates(self, lang, word, expected):
+        from orthography2ipa import G2P
+        assert G2P(lang).transcribe_word(word) == expected
 
     def test_gn_intervocalic_geminates(self):
         assert self._t("bagno") == "baɲɲo"
