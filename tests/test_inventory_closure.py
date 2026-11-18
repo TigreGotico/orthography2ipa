@@ -27,6 +27,7 @@ import pytest
 
 from orthography2ipa import available_codes, get
 from orthography2ipa.inventory import (
+    _split_leading_marks,
     _transform_literals,
     phoneme_inventory,
     tokenize,
@@ -38,8 +39,17 @@ ALL_CODES = sorted(available_codes(include_clades=True))
 
 
 def _outside(surface: str, spec, inventory) -> list:
-    """Tokens of *surface* that fall outside *inventory*, engine-segmented."""
-    return [t for t in tokenize(surface, spec) if t not in inventory]
+    """Tokens of *surface* that fall outside *inventory*, engine-segmented.
+
+    A surface that starts with a combining mark (the coda tilde of Portuguese)
+    writes it on the segment before it, so the mark must reach the inventory on
+    some token rather than alone.
+    """
+    mark, rest = _split_leading_marks(surface)
+    outside = [t for t in tokenize(rest, spec) if t not in inventory]
+    if mark and not any(mark in t[1:] for t in inventory):
+        outside.append(mark)
+    return outside
 
 
 def _grapheme_surfaces(spec):

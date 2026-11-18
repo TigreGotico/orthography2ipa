@@ -271,9 +271,9 @@ def test_a_declared_diphthong_ending_in_y_is_heavy(lang, diphthong, syllable):
 ])
 def test_a_diphthong_atom_weighs_as_its_letters_do_without_the_atom(lang, diphthong, syllable):
     # Without the atom the glide or ʏ is a second segment and the syllable is
-    # heavy; the atom must not make the same syllable lighter.
-    atoms = phoneme_atoms(get(lang))
-    assert diphthong in atoms, "the case only bites while the spec emits the diphthong"
+    # heavy; the atom must not make the same syllable lighter. A spec that
+    # declares the diphthong in ``phonemes`` hands it to the weight as an atom.
+    atoms = [*phoneme_atoms(get(lang)), diphthong]
     assert syllable_weight(syllable, atoms) == syllable_weight(syllable)
     assert syllable_weight(syllable, atoms) in (HEAVY, SUPERHEAVY)
 

@@ -74,6 +74,7 @@ The spec can emit 67 segments. They come from the letter table, the positional r
 | Nasal | m |  | n |  |  |  |  |  |  |
 | Trill |  |  | r |  |  |  |  |  |  |
 | Fricative |  | f v | s z | ʃ ʃʷ ʒ ʒʷ | ʂ ʐ | ɕ |  | ʁ ʁʲ ʁʷ χ χʲ χʷ | ħ ħʷ |
+| Approximant |  |  |  |  |  | j |  |  |  |
 | Lateral approximant |  |  | l |  |  |  |  |  |  |
 
 | Vowels | Front | Central | Back |
@@ -83,7 +84,7 @@ The spec can emit 67 segments. They come from the letter table, the positional r
 | Mid |  | ə |  |
 | Open | a |  |  |
 
-Sequences that the spec writes as one unit: [ji] [w] [ɥ].
+Sequences that the spec writes as one unit: [w] [ɥ].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

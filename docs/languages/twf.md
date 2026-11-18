@@ -62,18 +62,18 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 123 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 63 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
-| Consonants | Bilabial | Alveolar | Postalveolar | Palatal | Velar | Glottal |
-|:--|:-:|:-:|:-:|:-:|:-:|:-:|
-| Plosive | b p | d t |  |  | k ɡ | ʔ |
-| Affricate |  |  | tʃ |  |  |  |
-| Nasal | m | n |  |  |  |  |
-| Tap |  | ɾ |  |  |  |  |
-| Fricative |  | s |  |  | x | h |
-| Lateral fricative |  | ɬ |  |  |  |  |
-| Approximant |  |  |  | j |  |  |
-| Lateral approximant |  | l |  |  |  |  |
+| Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar | Glottal |
+|:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| Plosive | b p |  | d t |  |  | k ɡ | ʔ |
+| Affricate |  |  |  | tʃ |  |  |  |
+| Nasal | m |  | n |  |  |  |  |
+| Tap |  |  | ɾ |  |  |  |  |
+| Fricative |  | f | s |  |  | x | h |
+| Lateral fricative |  |  | ɬ |  |  |  |  |
+| Approximant |  |  |  |  | j |  |  |
+| Lateral approximant |  |  | l |  |  |  |  |
 
 | Vowels | Front | Back |
 |:--|:-:|:-:|
@@ -82,7 +82,7 @@ The spec can emit 123 segments. They come from the letter table, the positional 
 | Near-open | æ æ̀ æ̃ æ̃̀ æ̃́ æ̃̄ ǣ ǽ |  |
 | Open |  | ɑ ɑ̀ ɑ́ ɑ̃ ɑ̃̀ ɑ̃́ ɑ̃̄ ɑ̄ |
 
-Sequences that the spec writes as one unit: [fɾ] [kʔ] [ph] [pʔ] [th] [tʃʔ] [tʔ] [w] [ĩ̄ẽ̄] [īē] [īǣ] [ūɑ̄] [ɤ̄ɑ̄] [ʔe] [ʔi] [ʔu] [ʔæ] [ʔæ̀] [ʔæ̃] [ʔæ̃̀] [ʔæ̃́] [ʔæ̃̄] [ʔè] [ʔé] [ʔì] [ʔí] [ʔù] [ʔú] [ʔē] [ʔĩ] [ʔĩ̀] [ʔĩ́] [ʔĩ̄] [ʔĩ̄ẽ̄] [ʔī] [ʔīē] [ʔīǣ] [ʔũ] [ʔũ̀] [ʔũ̄], and 22 more.
+Sequences that the spec writes as one unit: [w].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

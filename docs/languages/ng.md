@@ -60,7 +60,7 @@ No dataset on the board scores this spec. See the [dataset catalogue](../evaluat
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 40 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 39 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Dental | Alveolar | Postalveolar | Palatal | Velar | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -68,7 +68,7 @@ The spec can emit 40 segments. They come from the letter table, the positional r
 | Affricate |  |  |  | ts | dʒ |  |  |  |
 | Nasal | m |  |  | n |  | ɲ | ŋ |  |
 | Trill |  |  |  | r |  |  |  |  |
-| Fricative |  | f v | ð θ | s z | ʃ |  | x ɣ | h |
+| Fricative |  | f v | ð θ | s z | ʃ ʒ |  | x ɣ | h |
 | Approximant |  |  |  |  |  | j |  |  |
 | Lateral approximant |  |  |  | l |  |  |  |  |
 
@@ -78,7 +78,7 @@ The spec can emit 40 segments. They come from the letter table, the positional r
 | Close-mid | e eː | o oː |
 | Open | a aː |  |
 
-Sequences that the spec writes as one unit: [kw] [mb] [nd] [ndʒ] [w] [ŋɡ].
+Sequences that the spec writes as one unit: [mb] [nd] [w] [ŋɡ].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

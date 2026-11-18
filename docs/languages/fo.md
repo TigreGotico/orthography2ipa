@@ -159,26 +159,26 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 71 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 40 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| Plosive | p pʰ |  | t tʰ |  |  | k kʰ |  |
+| Plosive | p pʰ ʰp |  | t tʰ ʰt |  |  | k kʰ ʰk |  |
 | Affricate |  |  |  | tʃ tʃʰ |  |  |  |
 | Nasal | m |  | n |  | ɲ | ŋ |  |
 | Fricative |  | f v | s | ʃ |  |  | h |
 | Approximant |  |  | ɹ |  | j |  |  |
 | Lateral approximant |  |  | l |  |  |  |  |
 
-| Vowels | Front | Back |
-|:--|:-:|:-:|
-| Close | iː | uː |
-| Near-close | ɪ ʏ | ʊ |
-| Close-mid | eː øː | oː |
-| Open-mid | œ ɛ | ɔ |
-| Open | a aː |  |
+| Vowels | Front | Central | Back |
+|:--|:-:|:-:|:-:|
+| Close | i iː | ʉ | u uː |
+| Near-close | ɪ ʏ |  | ʊ |
+| Close-mid | eː øː |  | oː |
+| Open-mid | œ ɛ |  | ɔ |
+| Open | a aː |  |  |
 
-Sequences that the spec writes as one unit: [ai] [aiː] [au] [av] [kaiː] [kɔiː] [kʊiː] [kʰaiː] [kʰɔiː] [kʰʊiː] [ll] [nj] [nn] [sk] [skaiː] [skɔiː] [skʊiː] [tl] [tn] [w] [ŋk] [ɔaː] [ɔi] [ɔiː] [ɔuː] [ɛaː] [ɛi] [ɛiː] [ɛkv] [ɛu] [ɛuː] [ɪkv] [ʉuː] [ʊiː] [ʊj] [ʰkk] [ʰpp] [ʰtt].
+Sequences that the spec writes as one unit: [w].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

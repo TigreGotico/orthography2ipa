@@ -62,7 +62,7 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 46 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 40 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Palatal | Velar | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -74,14 +74,15 @@ The spec can emit 46 segments. They come from the letter table, the positional r
 | Approximant |  | ʋ |  | j |  |  |
 | Lateral approximant |  |  | l |  |  |  |
 
-| Vowels | Front | Back |
-|:--|:-:|:-:|
-| Close | i iː | u uː ɯ ɯː |
-| Close-mid | eː | o oː |
-| Open-mid | ɛː | ɔː |
-| Open | a aː |  |
+| Vowels | Front | Central | Back |
+|:--|:-:|:-:|:-:|
+| Close | i iː |  | u uː ɯ ɯː |
+| Close-mid | eː |  | o oː |
+| Mid |  | ə |  |
+| Open-mid | ɛː |  | ɔ ɔː |
+| Open | a aː |  |  |
 
-Sequences that the spec writes as one unit: [aj] [am] [aw] [aʔ] [iːə] [uːə] [w] [ɔʔ] [ɯːə].
+Sequences that the spec writes as one unit: [w].
 
 Tones: [low_class_no_mark] mid, [low_class_mai_ek] falling, [low_class_mai_tho] high, [mid_class_no_mark] low, [mid_class_mai_ek] low, [mid_class_mai_tho] mid, [high_class_no_mark] rising, [high_class_mai_ek] mid, [high_class_mai_tho] high.
 <!-- atlas:inventory end -->

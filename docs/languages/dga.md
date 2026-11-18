@@ -65,6 +65,7 @@ The spec can emit 108 segments. They come from the letter table, the positional 
 | Plosive | b p pʰ |  | d t tʰ |  |  | k kʰ ɡ |  |
 | Affricate |  |  |  | d͡ʒ t͡ʃ |  |  |  |
 | Nasal | m |  | n |  | ɲ | ŋ |  |
+| Tap |  |  | ɾ |  |  |  |  |
 | Fricative |  | f v | s z |  |  |  | h |
 | Approximant |  |  | ɹ |  | j |  |  |
 | Lateral approximant |  |  | l |  |  |  |  |
@@ -78,7 +79,7 @@ The spec can emit 108 segments. They come from the letter table, the positional 
 | Open-mid | ɛ ɛː ɛ̀ ɛ̀ː ɛ́ ɛ́ː ɛ̂ ɛ̂ː |  | ɔ ɔː ɔ̀ ɔ̀ː ɔ́ ɔ́ː ɔ̂ ɔ̂ː |
 | Open | a aː à àː á áː â âː |  |  |
 
-Sequences that the spec writes as one unit: [k͡p] [w] [ŋ͡m] [ɡɾ] [ɡ͡b].
+Sequences that the spec writes as one unit: [k͡p] [w] [ŋ͡m] [ɡ͡b].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->
