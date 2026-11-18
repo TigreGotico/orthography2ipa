@@ -200,6 +200,10 @@ _ALIASES: Dict[str, str] = {
     # these tags keep resolving under ``strict=True``.
     "cnr-Cyrl": "cnr", "cnr-Cyrl-BA": "cnr", "cnr-Cyrl-HR": "cnr",
     "cnr-Cyrl-ME": "cnr", "cnr-Cyrl-RS": "cnr", "cnr-Cyrl-XK": "cnr",
+    # The bs spec reads both Bosnian alphabets. The tag distance reads no
+    # spec data, so it puts ``bs-Cyrl`` nearer to ``sr`` than to ``bs``.
+    # These are the two Bosnian Cyrillic locales of CLDR.
+    "bs-Cyrl": "bs", "bs-Cyrl-BA": "bs",
     # Galician has one standard spec, ``gl-ES``, and its varieties carry the
     # region. These are the retired codes of the same varieties.
     "gl-x-central": "gl-ES-x-central",
