@@ -63,11 +63,11 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 58 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 52 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Dental | Alveolar | Postalveolar | Palatal | Velar |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| Plosive | b p |  |  | d t |  |  | k ɡ |
+| Plosive | b p |  |  | d t |  | c ɟ | k ɡ |
 | Affricate |  |  |  | dz ts | dʒ tʃ |  |  |
 | Nasal | m |  |  | n |  | ɲ | ŋ |
 | Trill |  |  |  | r |  |  |  |
@@ -82,7 +82,7 @@ The spec can emit 58 segments. They come from the letter table, the positional r
 | Near-open |  | ɐ ɐː |  |
 | Open | a aː |  | ɑ ɑː |
 
-Sequences that the spec writes as one unit: [ccç] [cç] [ddz] [ddʒ] [tts] [ttʃ] [ɟɟʝ] [ɟʝ] [ɲɲ] [ʎʎ] [ʲ].
+Sequences that the spec writes as one unit: [cç] [ɟʝ] [ʲ].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

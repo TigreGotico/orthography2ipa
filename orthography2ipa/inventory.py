@@ -34,12 +34,17 @@ it, and a TTS consumer downstream is what would otherwise pay.
 from __future__ import annotations
 
 import re
+import unicodedata
 from typing import Dict, FrozenSet, List, Mapping, Optional, Sequence, Set, Tuple
 
-from orthography2ipa.allophony import segment_ipa
+from orthography2ipa.allophony import _is_modifier, segment_ipa
 from orthography2ipa.lexicon import _process_lexicon, _warn_deprecated
+from orthography2ipa.phonetok import _NASAL_CARRIERS, _carrier_split_index, _carrier_tail
 from orthography2ipa.positional import normalize_ending_value
 from orthography2ipa.types import LanguageSpec
+from orthography2ipa.vowels import (
+    SONORITY_NASAL, SONORITY_STOP, is_affricate, place_class, sonority_class,
+)
 
 __all__ = [
     "emission_inventory",
@@ -207,19 +212,52 @@ def phoneme_inventory(
     wants the segments, so each emission is cut with :func:`~allophony.segment_ipa`.
 
     Multi-character segments are held together when the spec declares them:
-    the declared ``phonemes`` inventory (and any multi-character emission of a
-    slot table, such as an affricate surface like Najdi ``ts``) is passed as the
-    atom list, so ``ts`` stays one token rather than becoming ``t`` + ``s``. This
-    is the narrow-vs-broad choice, and it is made by the *data*: a spec that
-    declares an affricate gets it as a token, and one that does not, does not.
-    A whole-word reading (a word exception, an ending, a lexicon entry) is an
-    emission but never a segment: it is cut like any other transcription.
+    the declared ``phonemes`` inventory, and every segment of a slot emission
+    that is written with more than one base letter (an affricate surface like
+    Najdi ``ts``, a tie-bar ``k͡p``, a prenasalised ``ᵐb``), is passed as the
+    atom list, so ``ts`` stays one token rather than becoming ``t`` + ``s``. A
+    cluster, a diphthong or a syllable a slot emits (``ks``, ``aj``, ``me``) is
+    cut into its segments. This is the narrow-vs-broad choice, and it is made by
+    the *data*: a spec that declares a diphthong gets it as a token, and one
+    that does not, does not. A whole-word reading (a word exception, an ending,
+    a lexicon entry) is an emission but never a segment: it is cut like any
+    other transcription. A combining mark that a slot emits before any base
+    letter (the coda tilde of Portuguese) lands on the segment before it, so it
+    joins each vowel and glide that can carry it and is never a token alone.
     """
     atoms = _atoms(spec)
     tokens: set = set()
+    marks: Set[str] = set()
     for emission in emission_inventory(spec, lexicon):
-        tokens.update(_tokenize(emission, atoms))
+        mark, rest = _split_leading_marks(emission)
+        if mark:
+            marks.add(mark)
+        tokens.update(_tokenize(rest, atoms))
+    for mark in marks:
+        tokens.update(_carry(token, mark) for token in tuple(tokens)
+                      if _carrier_tail(token) in _NASAL_CARRIERS)
     return frozenset(tokens)
+
+
+def _split_leading_marks(emission: str) -> Tuple[str, str]:
+    """Split *emission* into its leading combining marks and the rest.
+
+    A slot can emit a combining mark with no base: the coda ⟨m n⟩ of
+    Portuguese emits the tilde alone, and PT_FINAL_EM_GLIDE emits ``̃j̃``. The
+    mark lands on the segment the slot before it wrote, so it is never a token
+    of its own.
+    """
+    i = 0
+    while i < len(emission) and unicodedata.combining(emission[i]):
+        i += 1
+    return emission[:i], emission[i:]
+
+
+def _carry(token: str, mark: str) -> str:
+    """*token* with *mark* after its base letter, where the engine splices the
+    nasal tilde (``aː`` takes it as ``ãː``)."""
+    j = _carrier_split_index(token)
+    return token[:j] + mark + token[j:]
 
 
 def phoneme_atoms(
@@ -247,13 +285,57 @@ def _atoms(spec: LanguageSpec) -> List[str]:
 
 
 def _atoms_of(spec: LanguageSpec, emissions: Set[str]) -> List[str]:
-    """The declared phonemes and the multi-character *emissions*, longest first."""
+    """The declared phonemes and the multi-character segments of *emissions*,
+    longest first."""
     return sorted(
         {p for p in (spec.phonemes or ()) if p}
-        | {e for e in emissions if len(e) > 1 and e not in STRESS_MARKS},
+        | {seg for e in emissions if e not in STRESS_MARKS
+           for seg in _segments(_split_leading_marks(e)[1]) if len(seg) > 1},
         key=len,
         reverse=True,
     )
+
+
+#: The tie bars. A tie joins the symbols on either side into one segment.
+_TIES = "\u0361\u035c"
+
+
+def _segments(emission: str) -> List[str]:
+    """Cut one slot emission into its segments.
+
+    A base letter takes its trailing marks, as in :func:`~allophony.segment_ipa`.
+    Three spellings write one segment with two base letters: a tie bar
+    (``t͡s``, ``k͡p``), a modifier letter before its base (prenasalised ``ᵐb``,
+    preaspirated ``ʰt``), and two plain letters that make an affricate
+    (``ts``, ``tʃ``, ``d̠ʒ``) or a labial-velar stop (``kp``, ``ɡb``, ``ŋm``).
+    Everything else is more than one segment: a cluster (``ks``, ``kw``), a
+    diphthong (``aj``) or a syllable (``me``).
+    """
+    segments: List[str] = []
+    pairable = False
+    for seg in segment_ipa(emission):
+        if segments and (segments[-1][-1] in _TIES
+                         or all(_is_modifier(ch) for ch in segments[-1])):
+            segments[-1] += seg
+        elif segments and pairable and _one_segment_pair(segments[-1], seg):
+            segments[-1] += seg
+            pairable = False
+        else:
+            segments.append(seg)
+            pairable = True
+    return segments
+
+
+def _one_segment_pair(first: str, second: str) -> bool:
+    """Whether the segments *first* and *second* write one affricate or one
+    labial-velar stop."""
+    a, b = ("".join(ch for ch in seg if not _is_modifier(ch)) for seg in (first, second))
+    if len(a) != 1 or len(b) != 1:
+        return False
+    if is_affricate(a + b):
+        return True
+    return (sonority_class(a) == sonority_class(b) in (SONORITY_STOP, SONORITY_NASAL)
+            and place_class(a) == "dorsal" and place_class(b) == "labial")
 
 
 def tokenize(

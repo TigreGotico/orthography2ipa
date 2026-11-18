@@ -60,7 +60,7 @@ No dataset on the board scores this spec. See the [dataset catalogue](../evaluat
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 68 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 75 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Retroflex | Palatal | Velar | Uvular | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -70,19 +70,19 @@ The spec can emit 68 segments. They come from the letter table, the positional r
 | Trill |  |  | r |  |  |  |  |  |  |
 | Tap |  |  | ɾ |  | ɽ |  |  |  |  |
 | Fricative |  | f | s z | ʃ ʒ |  |  | x ɣ |  | h ɦ |
-| Approximant |  | ʋ |  |  |  | j |  |  |  |
+| Approximant |  | ʋ |  |  |  | j j̃ |  |  |  |
 | Lateral approximant |  |  | l |  | ɭ |  |  |  |  |
 
 | Vowels | Front | Central | Back |
 |:--|:-:|:-:|:-:|
-| Close | i iː |  | u uː |
-| Near-close | ɪ |  | ʊ |
-| Close-mid | eː |  | oː |
-| Mid |  | ə |  |
-| Open-mid | ɛː |  | ɔː |
-| Open | aː |  |  |
+| Close | i iː ĩ ĩː |  | u uː ũ ũː |
+| Near-close | ɪ ɪ̃ |  | ʊ ʊ̃ |
+| Close-mid | eː ẽː |  | oː õː |
+| Mid |  | ə ə̃ |  |
+| Open-mid | ɛː ɛ̃ː |  | ɔː ɔ̃ː |
+| Open | aː ãː |  |  |
 
-Sequences that the spec writes as one unit: [b˩] [dʒ˩] [d̪˩] [k˩] [k˩ə] [p˩] [p˩ə] [tʃ˩] [tʃ˩ə] [t̪˩] [t̪˩ə] [w] [ɖ˩] [ən] [ɡ˩] [ʈ˩] [ʈ˩ə] [̃].
+Sequences that the spec writes as one unit: [b˩] [dʒ˩] [d̪˩] [k˩] [p˩] [tʃ˩] [t̪˩] [w] [w̃] [ɖ˩] [ɡ˩] [ʈ˩].
 
 Tones: [H] high-rising tone (historically from voiceless aspirate onset), [L] low-falling tone (historically from voiced aspirate onset), [M] level/mid tone (default; no special onset).
 <!-- atlas:inventory end -->

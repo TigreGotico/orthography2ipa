@@ -71,20 +71,20 @@ The spec can emit 87 segments. They come from the letter table, the positional r
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 | Plosive | b p pʰ pː |  | d̪ tː t̪ t̪ʰ t̪ː |  | ɖ ʈ ʈʰ ʈː |  | k kʰ kː ɡ |  |
 | Affricate |  |  |  | dʒː |  | dʑ tɕ tɕʰ tɕː |  |  |
-| Nasal | m mː ̃m |  | n nː |  | ɳ ɳː | ɲ ɲː | ŋ ŋː |  |
+| Nasal | m mː |  | n nː |  | ɳ ɳː | ɲ ɲː | ŋ ŋː |  |
 | Trill |  |  | r r̩ r̩ː |  |  |  |  |  |
 | Tap |  |  | ɾ |  |  |  |  |  |
 | Fricative |  |  | s sː | ʃ ʃː | ʂ ʂː |  | xː | h hː |
-| Approximant |  | ʋ ʋː |  |  | ɻ ɻː | j jː |  |  |
+| Approximant |  | ʋ ʋː |  |  | ɻ ɻː | j jː j̃ j̃ː |  |  |
 | Lateral approximant |  |  | l lː l̩ |  | ɭ ɭː |  |  |  |
 
 | Vowels | Front | Back |
 |:--|:-:|:-:|
-| Close | i iː | u uː |
-| Close-mid | e eː | o oː |
-| Open | a aː |  |
+| Close | i iː iːː ĩ ĩː ĩːː | u uː ũ ũː |
+| Close-mid | e eː ẽ ẽː | o oː õ õː |
+| Open | a aː ã ãː |  |
 
-Sequences that the spec writes as one unit: [ai] [au] [ba] [bʱ] [dʑa] [dʑʱ] [d̪a] [d̪ʱ] [ka] [kʂː] [pa] [tɕa] [t̪a] [w] [ɖa] [ɖʱ] [ɡa] [ɡʱ] [ʃriːː] [ʈa].
+Sequences that the spec writes as one unit: [bʱ] [dʑʱ] [d̪ʱ] [w] [w̃] [ɖʱ] [ɡʱ].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->
