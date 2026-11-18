@@ -27,6 +27,17 @@ float noise between runs), or when its new ``stress_acc`` falls below the
 baseline's by more than the same epsilon. A row whose baseline or new
 ``stress_acc`` is null (a thin or unmarked gold) has no stress comparison.
 
+In a pull request the baseline is the BASE branch's committed sample
+(``--base-ref origin/dev``), read with ``git show``. A pull request that
+regenerates the board commits its own ``results_ci_sample.json``, and a
+comparison with that file compares the change with itself. A row the pull
+request means to make worse is named on a ``Board-Rows:`` line of its body
+(the same line ``check_board_not_reverting.py`` reads); that row reports as
+``declared`` and does not fail the gate. ``Board-Rows: all`` declares no
+row here. When the base sample was scored with another harness version or
+sample limit, no row can be compared with it, and the gate falls back to
+the checkout's own sample and says so.
+
 Datasets that need packages not installable in a plain CI runner
 (``cmudict`` needs ``scriptconv``, TigreGotico-internal) fail to load and are
 skipped by ``build_scoreboard`` itself (catch-and-skip, matching PR
@@ -41,21 +52,24 @@ Usage::
 
     python scripts/check_benchmark_regression.py
     python scripts/check_benchmark_regression.py --epsilon 0.01 --limit 500
+    python scripts/check_benchmark_regression.py --base-ref origin/dev --body-file pr.md
 """
 from __future__ import annotations
 
 import argparse
 import json
 import os
+import subprocess
 import sys
-from typing import Dict, List, Tuple
+from typing import Dict, List, Optional, Set, Tuple
 
 sys.path.insert(0, os.path.dirname(__file__))
 
 from benchmark import (  # noqa: E402
     build_scoreboard, can_gate_promotion, CI_SAMPLE_JSON, CI_SAMPLE_LIMIT,
-    CORRECTED_DATASETS, HARNESS_VERSION, THIN_ROW_N,
+    CORRECTED_DATASETS, HARNESS_VERSION, REPO_ROOT, THIN_ROW_N,
 )
+from check_board_not_reverting import parse_declaration  # noqa: E402
 
 
 def _gate_eligible(tier, n=None, dataset=None) -> bool:
@@ -102,17 +116,31 @@ def load_baseline(path: str) -> Dict[Tuple[str, str], dict]:
     return {_row_key(r): r for r in rows}
 
 
+def load_baseline_at(ref: str, path: str = CI_SAMPLE_JSON,
+                     repo: str = REPO_ROOT) -> Dict[Tuple[str, str], dict]:
+    """The baseline as committed at *ref*, not as it is in the checkout."""
+    rel = os.path.relpath(path, repo).replace(os.sep, "/")
+    proc = subprocess.run(("git", "show", f"{ref}:{rel}"), cwd=repo,
+                          capture_output=True, text=True)
+    if proc.returncode:
+        sys.exit(f"cannot read {rel} at {ref}: {proc.stderr.strip()} — "
+                 f"fetch the base branch first (git fetch origin dev).")
+    return {_row_key(r): r for r in json.loads(proc.stdout)}
+
+
 def compare(
     baseline: Dict[Tuple[str, str], dict],
     current: List[dict],
     epsilon: float,
+    declared: Set[Tuple[str, str]] = frozenset(),
 ) -> Tuple[List[dict], List[dict]]:
     """Return (diff_rows, regressed_rows).
 
     ``diff_rows`` covers every key present in either baseline or
     current, each annotated with a ``status`` of ``ok``, ``regressed``,
-    ``new`` (no baseline row) or ``missing`` (baseline row not
-    reproduced this run, e.g. its dataset failed to load this time).
+    ``declared`` (a regression of a row in *declared*), ``new`` (no
+    baseline row) or ``missing`` (baseline row not reproduced this run,
+    e.g. its dataset failed to load this time).
     """
     diff_rows: List[dict] = []
     regressed_rows: List[dict] = []
@@ -161,7 +189,12 @@ def compare(
             # reported as `drifted` — visible, never blocking.
             gates = _gate_eligible(cur_row.get("provenance"), cur_row.get("n"),
                                    dataset)
-            status = "regressed" if gates else "drifted"
+            if not gates:
+                status = "drifted"
+            elif key in declared:
+                status = "declared"
+            else:
+                status = "regressed"
         else:
             status = "ok"
         row = {
@@ -204,6 +237,8 @@ def print_report(diff_rows: List[dict], epsilon: float) -> None:
         )
         if row["status"] == "regressed":
             line += "  <-- REGRESSION"
+        elif row["status"] == "declared":
+            line += "  (declared on a Board-Rows line: intended, never gates)"
         elif row["status"] == "drifted":
             line += "  (competitor-derived gold: drift noted, never gates)"
         print(line)
@@ -232,13 +267,13 @@ def check_scored_row_floor(current: List[dict]) -> None:
         )
 
 
-def check_harness_and_limit(
+def baseline_mismatch(
     baseline: Dict[Tuple[str, str], dict],
-    current: List[dict],
-    limit: int,
-) -> None:
-    """Fail loudly on a harness/limit mismatch between baseline and
-    current run, since either makes PER deltas incomparable:
+    limit: Optional[int],
+) -> Optional[str]:
+    """Why *baseline* cannot be compared with a run of this checkout at
+    *limit*, or None when it can. Either mismatch makes PER deltas
+    incomparable:
 
     - a different ``harness_version`` means the scoring method itself
       changed, not just the code under test.
@@ -251,7 +286,7 @@ def check_harness_and_limit(
         r.get("harness_version") for r in baseline.values()
     }
     if baseline_versions - {HARNESS_VERSION}:
-        sys.exit(
+        return (
             f"baseline was generated with harness_version(s) "
             f"{sorted(v for v in baseline_versions if v)} but this "
             f"checkout's harness_version is {HARNESS_VERSION!r} — "
@@ -267,13 +302,25 @@ def check_harness_and_limit(
         shown = sorted(
             ("full" if v is None else v) for v in baseline_limits
         ) if None in baseline_limits else sorted(baseline_limits)
-        sys.exit(
+        return (
             f"baseline was generated with limit(s) {shown} "
             f"but this run used --limit {'full' if limit is None else limit} — "
             f"a different slice size per dataset produces spurious PER deltas "
             f"unrelated to real regressions. Re-run with --limit matching the "
             f"baseline (or regenerate the baseline at the new limit)."
         )
+    return None
+
+
+def check_harness_and_limit(
+    baseline: Dict[Tuple[str, str], dict],
+    current: List[dict],
+    limit: Optional[int],
+) -> None:
+    """Fail loudly when *baseline* cannot be compared with this run."""
+    reason = baseline_mismatch(baseline, limit)
+    if reason:
+        sys.exit(reason)
 
 
 def main() -> None:
@@ -292,15 +339,41 @@ def main() -> None:
                           "(default benchmarks/results_ci_sample.json). This "
                           "is the UNIFORM-sample baseline, NOT the full "
                           "published benchmarks/results.json.")
+    ap.add_argument("--base-ref", default=None,
+                     help="Read the baseline as committed at this ref "
+                          "(e.g. origin/dev) instead of from --baseline. "
+                          "A pull request job passes its base branch.")
+    ap.add_argument("--body-file", default=None,
+                     help="File holding the pull request body, read for "
+                          "Board-Rows lines that declare an intended "
+                          "regression (the PR_BODY environment variable is "
+                          "read too).")
     args = ap.parse_args()
 
+    body = os.environ.get("PR_BODY", "")
+    if args.body_file:
+        with open(args.body_file, encoding="utf-8") as fh:
+            body += "\n" + fh.read()
+    declared, _, _ = parse_declaration(body)
+
     baseline = load_baseline(args.baseline)
+    if args.base_ref:
+        base_baseline = load_baseline_at(args.base_ref)
+        reason = baseline_mismatch(base_baseline, args.limit)
+        if reason is None:
+            baseline = base_baseline
+            print(f"baseline: the CI sample committed at {args.base_ref}")
+        else:
+            print(f"the CI sample committed at {args.base_ref} cannot be "
+                  f"compared with this run ({reason}); the baseline is the "
+                  f"checkout's own {args.baseline}")
     current = build_scoreboard(args.limit)
 
     check_scored_row_floor(current)
     check_harness_and_limit(baseline, current, args.limit)
 
-    diff_rows, regressed_rows = compare(baseline, current, args.epsilon)
+    diff_rows, regressed_rows = compare(baseline, current, args.epsilon,
+                                        declared)
     print_report(diff_rows, args.epsilon)
 
     new_rows = [r for r in diff_rows if r["status"] == "new"]
@@ -313,6 +386,11 @@ def main() -> None:
               f"this run (dataset failed to load, e.g. needs a "
               f"TigreGotico-internal package or network access not "
               f"available here) — skipped gracefully, not scored.")
+
+    declared_rows = [r for r in diff_rows if r["status"] == "declared"]
+    if declared_rows:
+        print(f"{len(declared_rows)} row(s) got worse and are declared on a "
+              f"Board-Rows line — reported, not gated.")
 
     if regressed_rows:
         print(f"\n{len(regressed_rows)} row(s) regressed beyond "
