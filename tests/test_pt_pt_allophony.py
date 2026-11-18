@@ -314,8 +314,7 @@ _PT_LECTS = sorted(code for code in available_codes() if code.startswith("pt-"))
 @pytest.mark.parametrize("lang", _PT_LECTS)
 def test_no_portuguese_lect_ties_a_vowel_sequence(lang):
     # The tie bar joins two symbols into one consonant, an affricate or a
-    # double articulation. A broken vowel is two vowels, written [eɐ] as in
-    # every other Portuguese lect.
+    # double articulation. A broken vowel is two vowels, written [eɐ].
     spec = get(lang)
     surfaces = [s for readings in spec.allophones.values() for s in readings or ()]
     tied = [s for s in surfaces
