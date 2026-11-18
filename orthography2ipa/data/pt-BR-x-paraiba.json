@@ -13,36 +13,6 @@
   "notes": "Paraibano, as described for João Pessoa by the VALPB studies and for the whole state by the Atlas Linguístico da Paraíba. /t d/ stay stops before [i]: about 7 % palatalisation in the VALPB corpus (Hora, Henrique & Amorim 2018: 280, 288), and the ALiB rates João Pessoa 'baixa' (Battisti & Dornelles Filho 2015: 226). Pretonic /e o/ open before an open, nasal or low stressed vowel (Mota & Lopes 2018: 212, 215); the state atlas finds open pretonics predominant everywhere (Aragão 2020: 172). Coda /S/ is alveolar, and palatal only before /t d/ (Hora, Henrique & Amorim 2018: 282-284). Coda /R/ is the aspirate [h] and is deleted word-finally (Callou, Serra & Cunha 2015: 197, 207-208). The /t d/ and coda /S/ sources cover João Pessoa only; the interior is unstudied for both.",
   "sources": [
     {
-      "id": "mateus_dandrade2000",
-      "author": "Mateus, M.H.M. & d'Andrade, E.",
-      "year": 2000,
-      "title": "The Phonology of Portuguese",
-      "publisher": "Oxford University Press",
-      "url": null,
-      "pages": null,
-      "notes": null
-    },
-    {
-      "id": "callou_leite2001",
-      "author": "Callou, D. & Leite, Y.",
-      "year": 2001,
-      "title": "Iniciação à fonética e à fonologia (8th ed.)",
-      "publisher": "Zahar",
-      "url": null,
-      "pages": null,
-      "notes": null
-    },
-    {
-      "id": "silva2002",
-      "author": "Silva, T.C.",
-      "year": 2002,
-      "title": "Fonética e fonologia do português",
-      "publisher": "Contexto",
-      "url": null,
-      "pages": null,
-      "notes": null
-    },
-    {
       "id": "cardoso_etal2014",
       "author": "Cardoso, S.A.M. et al.",
       "year": 2014,
@@ -70,16 +40,6 @@
       "publisher": "Estudos de Lingüística Galega, volume especial I: 209-218",
       "url": "https://doi.org/10.15304/elg.ve1.3480",
       "pages": "212, 215",
-      "notes": null
-    },
-    {
-      "id": "marins_margotti2012",
-      "author": "Marins, F.S. & Margotti, F.W.",
-      "year": 2012,
-      "title": "Comportamento fonético-fonológico do /S/ pós-vocálico em Manaus",
-      "publisher": "Investigações 25(2): 249-274",
-      "url": "https://periodicos.ufpe.br/revistas/INV/article/download/348/293/804",
-      "pages": "254-265",
       "notes": null
     },
     {
@@ -182,7 +142,7 @@
         "e"
       ],
       "surface": "ɛ",
-      "stress": "unstressed",
+      "stress": "pretonic",
       "followed_by_phoneme_2": [
         "a",
         "ɐ",
@@ -192,7 +152,7 @@
         "ẽ",
         "õ"
       ],
-      "notes": "Mota & Lopes (2018: 215, ALiB, North and Northeast capitals): pretonic mid vowels 'têm uma maior probabilidade de se tornarem médias abertas no contexto de tônica também de timbre aberto (médias-baixas), médias nasais e diante da vogal baixa [a]'. João Pessoa keeps closed [e] in 48 % of tokens, 183/379 (ibid., p. 212, Table 1). The Atlas Linguístico da Paraíba finds 'uma predominância das vogais médias abertas' over its 25 points (Aragão 2020: 172)."
+      "notes": "Mota & Lopes (2018: 215, ALiB, North and Northeast capitals): pretonic mid vowels 'têm uma maior probabilidade de se tornarem médias abertas no contexto de tônica também de timbre aberto (médias-baixas), médias nasais e diante da vogal baixa [a]'. João Pessoa keeps closed [e] in 48 % of tokens, 183/379 (ibid., p. 212, Table 1). The Atlas Linguístico da Paraíba finds 'uma predominância das vogais médias abertas' over its 25 points, and adds that 'as nasais na sílaba subsequente favorecem a elevação' (Aragão 2020: 172). The rule still opens before a nasal stressed vowel, which Mota & Lopes (2018: 215) list as an opening context. Posttonic vowels are outside every source, so the rule is pretonic only."
     },
     {
       "id": "NE_PRETONIC_OPEN_O",
@@ -200,7 +160,7 @@
         "o"
       ],
       "surface": "ɔ",
-      "stress": "unstressed",
+      "stress": "pretonic",
       "followed_by_phoneme_2": [
         "a",
         "ɐ",
@@ -210,7 +170,7 @@
         "ẽ",
         "õ"
       ],
-      "notes": "As NE_PRETONIC_OPEN_E. João Pessoa keeps closed [o] in 44 % of tokens, 108/244 (Mota & Lopes 2018: 212, Table 1). In the Atlas Linguístico da Paraíba, pretonic /O/ lowers in 82.7 % of tokens, 81/98 (Silva, Araújo & Viana 2018: 277, Table 1)."
+      "notes": "As NE_PRETONIC_OPEN_E. João Pessoa keeps closed [o] in 44 % of tokens, 108/244 (Mota & Lopes 2018: 212, Table 1). In the Atlas Linguístico da Paraíba, pretonic /O/ lowers in 81 of the 98 tokens that keep or lower it (82.7 %); the raised tokens are outside that count (Silva, Araújo & Viana 2018: 277, Table 1)."
     },
     {
       "id": "NE_FINAL_R_DELETION",

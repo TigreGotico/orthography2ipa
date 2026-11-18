@@ -66,10 +66,23 @@ def test_coda_r_aspirate_and_final_r_deleted(word, expected):
 
 
 # Pretonic /o/ opens before a nasal stressed vowel (Mota & Lopes 2018: 215);
-# pretonic /O/ lowers in 82.7 % of the Atlas Linguístico da Paraíba tokens
-# (Silva, Araújo & Viana 2018: 277).
+# in the Atlas Linguístico da Paraíba, pretonic /O/ lowers in 81 of the 98
+# tokens that keep or lower it (Silva, Araújo & Viana 2018: 277).
 def test_pretonic_o_opens_before_nasal_stressed_vowel():
     assert transcribe("fogão", PARAIBA) == "fɔˈɡɐ̃w̃"
+
+
+# Pretonic /e/ opens before the low vowel [a] (Mota & Lopes 2018: 215:
+# "diante da vogal baixa [a]").
+def test_pretonic_e_opens_before_low_stressed_vowel():
+    assert transcribe("pedaço", PARAIBA) == "pɛˈdasu"
+
+
+# Every source studies pretonic vowels only, so a posttonic mid vowel keeps
+# the pt-BR reading.
+@pytest.mark.parametrize("word", ["pérola", "época", "abóbora", "cócegas"])
+def test_posttonic_vowels_keep_the_pt_br_reading(word):
+    assert transcribe(word, PARAIBA) == transcribe(word, "pt-BR")
 
 
 @pytest.mark.parametrize("tag", [
