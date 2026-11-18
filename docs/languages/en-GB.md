@@ -235,8 +235,8 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 |:--|:--|:--|:--|:--|--:|--:|:--|
 | `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `en` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 80987 | 0.2645 | yes |
 | `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `en-GB` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 81537 | 0.2314 | yes |
-| `ipa_childes` ([fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split)) | `en-GB` | generated | espeak-derived | CC BY 4.0 | 11446 | 0.2966 | no |
-| `ipadict` ([open-dict-data/ipa-dict](https://github.com/open-dict-data/ipa-dict)) | `en-GB` | generated | espeak-derived | MIT, each file its own | 65118 | 0.2215 | no |
+| `ipa_childes` ([fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split)) | `en-GB` | generated | espeak-derived | CC BY 4.0 | 11446 | 0.2960 | no |
+| `ipadict` ([open-dict-data/ipa-dict](https://github.com/open-dict-data/ipa-dict)) | `en-GB` | generated | espeak-derived | MIT, each file its own | 65118 | 0.2211 | no |
 <!-- atlas:datasets end -->
 
 <!-- atlas:inventory begin -->
@@ -330,13 +330,14 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨ou⟩ | [aʊ] [ʌ] [uː] |  |
 | ⟨ough⟩ | [ɔː] [əʊ] [ʌf] [ɒf] [aʊ] [uː] |  |
 | ⟨our⟩ | [aʊəɹ] [ɔːɹ] |  |
-| ⟨ow⟩ | [aʊ] [əʊ] |  |
+| ⟨ow⟩ | [aʊ] [əʊ] | nucleus unstressed [əʊ] |
 | ⟨oy⟩ | [ɔɪ] |  |
 | ⟨p⟩ | [p] |  |
 | ⟨ph⟩ | [f] |  |
 | ⟨q⟩ | [k] |  |
 | ⟨qu⟩ | [kw] |  |
 | ⟨r⟩ | [ɹ] |  |
+| ⟨rh⟩ | [ɹ] |  |
 | ⟨s⟩ | [s] [z] | default [s] · intervocalic [z] · word final [s] [z] · word initial [s] |
 | ⟨sc⟩ | [s] | before e [s] · before i [s] · before y [s] · default [sk] |
 | ⟨sch⟩ | [sk] |  |

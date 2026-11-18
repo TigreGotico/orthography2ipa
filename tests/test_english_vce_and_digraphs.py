@@ -269,3 +269,30 @@ def test_en_gb_i_in_hiatus_is_tense():
     (audio, medium, Sochi) — the happY/hiatus value."""
     assert _t("en-GB", "audio") == "ɔːdiəʊ"
     assert _t("en-GB", "Sochi").endswith("i")
+
+
+# The spelling-to-sound table of the Wikipedia article English orthography
+# (revision 1383244083) gives unstressed ⟨ow⟩ /oʊ/ (yellow) and stressed ⟨ow⟩
+# /aʊ/ (owl, allow). Every expected form below matches its WikiPron row.
+@pytest.mark.parametrize("word,expected", [
+    ("yellow", "jɛləʊ"), ("window", "wɪndəʊ"), ("pillow", "pɪləʊ"),
+    ("hollow", "hɒləʊ"), ("narrow", "næɹəʊ"), ("arrow", "æɹəʊ"),
+    ("how", "haʊ"), ("cow", "kaʊ"),
+])
+def test_en_gb_unstressed_ow_is_goat_and_stressed_ow_is_mouth(word, expected):
+    assert _t("en-GB", word) == expected
+
+
+@pytest.mark.parametrize("word,expected", [
+    ("yellow", "jɛloʊ"), ("pillow", "pɪloʊ"), ("narrow", "næɹoʊ"),
+])
+def test_en_us_unstressed_ow_takes_the_american_goat_vowel(word, expected):
+    assert _t("en-US", word) == expected
+
+
+# The same table lists ⟨rh⟩ beside ⟨r⟩ as a spelling of /r/ (rhyme).
+@pytest.mark.parametrize("word,expected", [
+    ("rhyme", "ɹaɪm"), ("rhapsody", "ɹæpsədi"), ("rhombus", "ɹɒmbəs"),
+])
+def test_en_gb_rh_spells_r(word, expected):
+    assert _t("en-GB", word) == expected

@@ -1,7 +1,7 @@
 # American English (General American) (`en-US`)
 
 <!-- atlas:summary begin -->
-American English (General American) is a West Germanic language, written in the Latin script. Its code names United States. The `en-US` spec is at the research tier. It cites 7 sources and has 4 scored datasets.
+American English (General American) is a West Germanic language, written in the Latin script. Its code names United States. The `en-US` spec is at the research tier. It cites 8 sources and has 4 scored datasets.
 <!-- atlas:summary end -->
 
 <!-- atlas:header begin -->
@@ -28,7 +28,7 @@ The notes of the spec file open with these words:
 
 > General American (GA), reference accent for US media/education. RHOTIC: /r/ preserved in all positions. No TRAP-BATH split (bath words = /æ/). LOT-PALM merger: /ɑ/ for both (written without the length mark, see BROAD BY DECLARATION and the no-length-marks paragraph below).
 
-The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 7 works, from 1953 to 2011. [Sources](#sources) lists them. The spec file writes 7 of the 84 spellings of its letter table and takes the other 77 from [British English (RP)](en-GB.md) `en-GB`.
+The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 8 works, from 1953 to 2026. 1 of them is a Wikipedia article. [Sources](#sources) lists them. The spec file writes 7 of the 85 spellings of its letter table and takes the other 78 from [British English (RP)](en-GB.md) `en-GB`.
 
 The [spec file](../../orthography2ipa/data/en-US.json) holds the full notes, with the caveats of the spec.
 <!-- atlas:overview end -->
@@ -42,7 +42,7 @@ No spec names `en-US` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 7 works. 0 of them have a DOI or a URL. The spec file holds a note on what 6 of them support.
+The spec cites 8 works. 1 of them have a DOI or a URL. The spec file holds a note on what 7 of them support.
 
 1. <a id="src-wells1982_vol3"></a>Wells, J.C. (1982). *Accents of English, Vol. 3: Beyond the British Isles*. Cambridge University Press.
 2. <a id="src-ladefoged1999_ame"></a>Ladefoged, P. (1999). *American English*. Cambridge University Press.
@@ -51,6 +51,7 @@ The spec cites 7 works. 0 of them have a DOI or a URL. The spec file holds a not
 5. <a id="src-kenyon1953"></a>Kenyon, J.S. & Knott, T.A. (1953). *A Pronouncing Dictionary of American English*. G. & C. Merriam.
 6. <a id="src-labov2006_anae"></a>Labov, W., Ash, S. & Boberg, C. (2006). *The Atlas of North American English: Phonetics, Phonology and Sound Change*. Mouton de Gruyter.
 7. <a id="src-kretzschmar2004"></a>Kretzschmar, W.A. (2004). *Standard American English pronunciation*. Mouton de Gruyter.
+8. <a id="src-wp_english_orthography"></a>Wikipedia contributors (2026). *English orthography*. Wikipedia. Cited: Spelling-to-sound correspondences. [en.wikipedia.org](https://en.wikipedia.org/w/index.php?title=English_orthography&oldid=1383244083)
 <!-- atlas:sources end -->
 
 <!-- atlas:datasets begin -->
@@ -61,9 +62,9 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 | Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
 |:--|:--|:--|:--|:--|--:|--:|:--|
 | `cmudict` ([cmusphinx/cmudict](https://github.com/cmusphinx/cmudict)) | `en-US` | gold | lexicon-derived | BSD-style (CMU) | 126050 | 0.3376 | yes |
-| `ipadict` ([open-dict-data/ipa-dict](https://github.com/open-dict-data/ipa-dict)) | `en-US` | gold | lexicon-derived | MIT, each file its own | 125925 | 0.2908 | yes |
-| `ipa_babylm` ([phonemetransformers/IPA-BabyLM](https://huggingface.co/datasets/phonemetransformers/IPA-BabyLM)) | `en-US` | generated | espeak-derived | Not stated upstream | 20107 | 0.3520 | no |
-| `ipa_childes` ([fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split)) | `en-US` | generated | espeak-derived | CC BY 4.0 | 18054 | 0.2654 | no |
+| `ipadict` ([open-dict-data/ipa-dict](https://github.com/open-dict-data/ipa-dict)) | `en-US` | gold | lexicon-derived | MIT, each file its own | 125925 | 0.2903 | yes |
+| `ipa_babylm` ([phonemetransformers/IPA-BabyLM](https://huggingface.co/datasets/phonemetransformers/IPA-BabyLM)) | `en-US` | generated | espeak-derived | Not stated upstream | 20107 | 0.3516 | no |
+| `ipa_childes` ([fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split)) | `en-US` | generated | espeak-derived | CC BY 4.0 | 18054 | 0.2650 | no |
 <!-- atlas:datasets end -->
 
 <!-- atlas:inventory begin -->
@@ -158,13 +159,14 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨ou⟩ | [aʊ] [ʌ] [uː] |  |
 | ⟨ough⟩ | [ɔː] [oʊ] [ʌf] [ɒf] [aʊ] [uː] |  |
 | ⟨our⟩ | [aʊəɹ] [ɔːɹ] |  |
-| ⟨ow⟩ | [aʊ] [oʊ] |  |
+| ⟨ow⟩ | [aʊ] [oʊ] | nucleus unstressed [oʊ] |
 | ⟨oy⟩ | [ɔɪ] |  |
 | ⟨p⟩ | [p] |  |
 | ⟨ph⟩ | [f] |  |
 | ⟨q⟩ | [k] |  |
 | ⟨qu⟩ | [kw] |  |
 | ⟨r⟩ | [ɹ] |  |
+| ⟨rh⟩ | [ɹ] |  |
 | ⟨s⟩ | [s] [z] | default [s] · intervocalic [z] · word final [s] [z] · word initial [s] |
 | ⟨sc⟩ | [s] | before e [s] · before i [s] · before y [s] · default [sk] |
 | ⟨sch⟩ | [sk] |  |
@@ -221,7 +223,7 @@ The spec applies 34 allophone rules after the letters are read. The change colum
 | `EN_GB_ES_VOICING_AFTER_EPENTHESIS` | /s/ → [z], word-finally, spelled ⟨s⟩, after ⟨e⟩, with more context in the spec | - | [Wells 2008](#src-wells2008), Cruttenden 2014 |
 | `EN_GB_OING_HIATUS` | /ɔɪ/ → [oʊɪ], spelled ⟨oi⟩, before ⟨ng⟩, with more context in the spec | - | - |
 | `EN_GB_FINAL_E_SOLE_VOWEL` | ∅ → [i], word-finally, spelled ⟨e⟩, with more context in the spec | ⟨be⟩ [bi] | [Kenyon 1953](#src-kenyon1953) |
-| `EN_GB_FINAL_Y_MONOSYLLABLE` | /i/ → [aɪ], word-finally, spelled ⟨y⟩, with more context in the spec | ⟨my⟩ [maɪ] | - |
+| `EN_GB_FINAL_Y_MONOSYLLABLE` | /i/ → [aɪ], word-finally, spelled ⟨y⟩, with more context in the spec | ⟨my⟩ [maɪ] | [English orthography 2026](#src-wp_english_orthography) |
 | `EN_US_FINAL_S_VOICING_AFTER_TENSE_VOWEL` | /s/ → [z], word-finally, before a word boundary, after [i] [u] [eɪ] [oʊ] [aɪ] [aʊ] [ɔɪ] [ɑ] and 16 more, spelled ⟨s⟩ | ⟨days⟩ [deɪz] | [Wells 1982](#src-wells1982_vol3), [Kenyon 1953](#src-kenyon1953) |
 | `EN_US_LOT_PALM_MERGER` | /ɒ/ → [ɑ] | - | [Wells 1982](#src-wells1982_vol3) |
 | `EN_US_NURSE_RCOLOURED` | /ɜːɹ/ → [ɝ] | - | [Wells 1982](#src-wells1982_vol3), [Ladefoged 2011](#src-ladefoged2011), [Kenyon 1953](#src-kenyon1953) |
