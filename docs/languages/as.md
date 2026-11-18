@@ -116,11 +116,11 @@ The spec can emit 51 segments. They come from the letter table, the positional r
 
 | Vowels | Front | Back |
 |:--|:-:|:-:|
-| Close | i ĩ | u ũ |
+| Close | i ĩ | u ũ |
 | Near-close |  | ʊ ʊ̃ |
-| Close-mid | e ẽ | o õ |
+| Close-mid | e ẽ | o õ |
 | Open-mid | ɛ ɛ̃ | ɔ ɔ̃ |
-| Open | a ã | ɑ ɑ̃ |
+| Open | a ã | ɑ ɑ̃ |
 
 Sequences that the spec writes as one unit: [bʱ] [dʱ] [w] [w̃] [zʱ] [ɡʱ] [ɹʱ].
 <!-- atlas:inventory end -->

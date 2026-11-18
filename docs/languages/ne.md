@@ -81,8 +81,8 @@ The spec can emit 52 segments. They come from the letter table, the positional r
 
 | Vowels | Front | Back |
 |:--|:-:|:-:|
-| Close | i ĩ | u ũ |
-| Close-mid | e ẽ | o õ |
+| Close | i ĩ | u ũ |
+| Close-mid | e ẽ | o õ |
 | Open-mid |  | ʌ ʌ̃ |
 | Open | ä |  |
 

@@ -75,12 +75,12 @@ The spec can emit 75 segments. They come from the letter table, the positional r
 
 | Vowels | Front | Central | Back |
 |:--|:-:|:-:|:-:|
-| Close | i iː ĩ ĩː |  | u uː ũ ũː |
+| Close | i iː ĩ ĩː |  | u uː ũ ũː |
 | Near-close | ɪ ɪ̃ |  | ʊ ʊ̃ |
-| Close-mid | eː ẽː |  | oː õː |
+| Close-mid | eː ẽː |  | oː õː |
 | Mid |  | ə ə̃ |  |
 | Open-mid | ɛː ɛ̃ː |  | ɔː ɔ̃ː |
-| Open | aː ãː |  |  |
+| Open | aː ãː |  |  |
 
 Sequences that the spec writes as one unit: [b˩] [dʒ˩] [d̪˩] [k˩] [p˩] [tʃ˩] [t̪˩] [w] [w̃] [ɖ˩] [ɡ˩] [ʈ˩].
 

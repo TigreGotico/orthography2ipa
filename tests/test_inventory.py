@@ -408,13 +408,30 @@ def test_no_token_starts_with_a_combining_mark(code):
     assert not [t for t in phoneme_inventory(get(code)) if unicodedata.combining(t[0])]
 
 
+@pytest.mark.parametrize("code", ALL_CODES)
+def test_every_token_is_nfc(code):
+    """The engine writes NFC, so a carried mark joins its base as one code
+    point where Unicode has one (e + U+0303 is ẽ), and a token never has a
+    decomposed twin."""
+    assert not [t for t in phoneme_inventory(get(code)) if unicodedata.normalize("NFC", t) != t]
+
+
+@pytest.mark.parametrize("code", ["pt-PT-x-algarve", "pt-PT-x-alentejo"])
+def test_a_precomposed_nasal_vowel_the_engine_writes_is_a_token(code):
+    """nenhum ends in [ỹ] (U+1EF9) in the lects that front /u/; the carried
+    tilde must give that code point, not y + U+0303."""
+    spec = get(code)
+    ipa = G2P(code).transcribe("nenhum")
+    assert "\u1ef9" in ipa
+    assert set(tokenize(ipa, spec)) - {"ˈ", "ˌ"} <= phoneme_inventory(spec)
+
+
 def test_the_coda_tilde_joins_the_vowels_and_glides():
     """pt-PT: the coda ⟨m n⟩ emits a bare tilde, and PT_FINAL_EM_GLIDE emits
     ``̃j̃``. The tilde joins the oral vowels and glides the engine lets carry
     it, and the offglide [j̃] stands alone."""
     inventory = phoneme_inventory(get("pt-PT"))
-    nasal = {unicodedata.normalize("NFC", t) for t in inventory}
-    assert {unicodedata.normalize("NFC", t) for t in ("ɐ̃", "ẽ", "ĩ", "õ", "ũ", "j̃", "w̃")} <= nasal
+    assert {unicodedata.normalize("NFC", t) for t in ("ɐ̃", "ẽ", "ĩ", "õ", "ũ", "j̃", "w̃")} <= inventory
     assert not {"\u0303", "\u0303j\u0303", "\u0303w\u0303", "ɐ̃j̃", "ɐ̃w̃"} & inventory
     assert tokenize("ˈɔmɐ̃j̃", get("pt-PT")) == ["ˈ", "ɔ", "m", "ɐ̃", "j̃"]
 

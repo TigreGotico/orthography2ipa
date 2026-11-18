@@ -255,9 +255,12 @@ def _split_leading_marks(emission: str) -> Tuple[str, str]:
 
 def _carry(token: str, mark: str) -> str:
     """*token* with *mark* after its base letter, where the engine splices the
-    nasal tilde (``aː`` takes it as ``ãː``)."""
+    nasal tilde (``aː`` takes it as ``ãː``), in NFC as the engine writes it.
+    A token that already carries *mark* is returned as it is."""
+    if mark in token:
+        return token
     j = _carrier_split_index(token)
-    return token[:j] + mark + token[j:]
+    return unicodedata.normalize("NFC", token[:j] + mark + token[j:])
 
 
 def phoneme_atoms(
