@@ -57,11 +57,11 @@ No dataset on the board scores this spec. See the [dataset catalogue](../evaluat
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 77 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 39 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Palatal | Velar | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|
-| Plosive | p pʰ |  | t tʰ |  | k kʰ kʷ kʷʰ |  |
+| Plosive | p pʰ p̚ |  | t tʰ t̚ |  | k kʰ kʷ kʷʰ k̚ |  |
 | Affricate |  |  | ts tsʰ |  |  |  |
 | Nasal | m |  | n |  | ŋ ŋ̍ |  |
 | Fricative |  | f | s |  |  | h |
@@ -70,12 +70,14 @@ The spec can emit 77 segments. They come from the letter table, the positional r
 
 | Vowels | Front | Central | Back |
 |:--|:-:|:-:|:-:|
-| Close | iː yː |  | uː |
+| Close | iː i̯ yː y̯ |  | uː u̯ |
+| Near-close | ɪ |  | ʊ |
+| Close-mid | e | ɵ | o |
 | Open-mid | œː ɛː |  | ɔː |
 | Near-open |  | ɐ |  |
 | Open | aː |  |  |
 
-Sequences that the spec writes as one unit: [aːi̯] [aːk̚] [aːm] [aːn] [aːp̚] [aːt̚] [aːu̯] [aːŋ] [ei̯] [iːm] [iːn] [iːp̚] [iːt̚] [iːu̯] [ou̯] [uːn] [uːt̚] [uːy̯] [w] [yːn] [yːt̚] [œːk̚] [œːt̚] [œːŋ] [ɐi̯] [ɐk̚] [ɐm] [ɐn] [ɐp̚] [ɐt̚] [ɐu̯] [ɐŋ] [ɔːk̚] [ɔːn] [ɔːt̚] [ɔːy̯] [ɔːŋ] [ɛːk̚] [ɛːm] [ɛːp̚], and 10 more.
+Sequences that the spec writes as one unit: [w].
 
 Tones: [1] high level / high falling, 55/53, [2] mid rising, 35, [3] mid level, 33, [4] low falling, 21, [5] low rising, 13, [6] low level, 22, [1(7)] entering high level, 5 (obstruent coda only), [3(8)] entering mid level, 3 (obstruent coda only), [6(9)] entering low level, 2 (obstruent coda only).
 <!-- atlas:inventory end -->

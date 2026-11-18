@@ -61,7 +61,7 @@ No dataset on the board scores this spec. See the [dataset catalogue](../evaluat
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 49 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 42 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Alveolar | Palatal | Velar | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|
@@ -75,12 +75,11 @@ The spec can emit 49 segments. They come from the letter table, the positional r
 | Vowels | Front | Central | Back |
 |:--|:-:|:-:|:-:|
 | Close | i ĩ |  | u ũ |
-| Close-mid | e ẽ |  |  |
+| Near-close | ɪ |  | ʊ |
+| Close-mid | e ẽ |  | o |
 | Mid |  | ə |  |
 | Open-mid |  |  | ɔ ɔ̃ |
 | Open | a ã |  |  |
-
-Sequences that the spec writes as one unit: [aɪ] [aʊ] [iu] [ua] [uai] [ue] [ui] [ɪa] [ɪaʊ] [ɪo].
 
 Tones: [◌́] tone 2, im-siōng (dark rising), [◌̀] tone 3, im-khì (dark departing), [◌̂] tone 5, iông-pîng (light level), [◌̄] tone 7, iông-khì (light departing), [◌̍] tone 8, iông-ji̍p (light entering, checked syllables only).
 <!-- atlas:inventory end -->

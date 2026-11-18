@@ -57,7 +57,7 @@ No dataset on the board scores this spec. See the [dataset catalogue](../evaluat
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 56 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 41 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Palatal | Velar | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -74,7 +74,7 @@ The spec can emit 56 segments. They come from the letter table, the positional r
 | Open-mid | ɛ | ɔ |
 | Open | a ã | ɑ̃ |
 
-Sequences that the spec writes as one unit: [ia] [ie] [io] [iã] [iɑ̃] [iɔ] [iɤ] [oŋ] [ua] [ue] [uã] [uø] [uɑ̃] [uɛ] [yø] [ȵ] [ɿ] [ʮ].
+Sequences that the spec writes as one unit: [ȵ] [ɿ] [ʮ].
 
 Tones: [1] yin ping / high-register level, 53, [2] yin register rising/checked, 334, [3] yin qu / departing, 51, [4] yang ping / low-register level, 113, [5] yang qu-ru / low-register departing-checked, merges by register.
 <!-- atlas:inventory end -->

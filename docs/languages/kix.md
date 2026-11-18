@@ -60,7 +60,7 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 55 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 36 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -81,7 +81,7 @@ The spec can emit 55 segments. They come from the letter table, the positional r
 | Open-mid | ɛ |  | ɔ |
 | Open | a |  |  |
 
-Sequences that the spec writes as one unit: [a³³] [a³¹] [a⁵²] [a⁵⁵] [i³³] [i³¹] [i⁵²] [i⁵⁵] [o³³] [o³¹] [o⁵²] [o⁵⁵] [u³³] [u³¹] [u⁵²] [u⁵⁵] [w] [ə³³] [ə³¹] [ə⁵⁵] [ɛ³³] [ɛ³¹] [ɛ⁵²] [ɛ⁵⁵].
+Sequences that the spec writes as one unit: [w] [²] [³] [¹] [⁵].
 
 Tones: [⁵⁵] high level, [³³] mid level, [³¹] low; written 31 in the Patsho transcriptions, described as low level for Thang, [⁵²] falling.
 <!-- atlas:inventory end -->

@@ -65,7 +65,7 @@ The spec can emit 47 segments. They come from the letter table, the positional r
 
 | Consonants | Bilabial | Labiodental | Dental | Alveolar | Postalveolar | Palatal | Velar | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| Plosive | b p |  |  | d dˤ t tˤ |  |  | k ɡ |  |
+| Plosive | b p |  |  | d dˤ t tˤ |  |  | k ɡ | ʔ |
 | Affricate |  |  |  |  | dʒ tʃ |  |  |  |
 | Nasal | m |  |  | n |  |  | ŋ |  |
 | Trill |  |  |  | r |  |  |  |  |
@@ -82,7 +82,7 @@ The spec can emit 47 segments. They come from the letter table, the positional r
 | Open-mid | ɛː |  |
 | Open | a aː | ɑ ɑː |
 
-Sequences that the spec writes as one unit: [w] [ʔi].
+Sequences that the spec writes as one unit: [w].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->
