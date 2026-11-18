@@ -3283,7 +3283,7 @@
     "per": 0.3254,
     "per_ci_low": 0.3104,
     "per_ci_high": 0.3397,
-    "stress_acc": 0.361,
+    "stress_acc": 0.3621,
     "n_stress": 881,
     "exact_match": 0.1373,
     "quality_tier": "research",

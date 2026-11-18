@@ -256,3 +256,12 @@ class TestLectCodeAndAlias:
     def test_spec_claims_no_crossref_of_another_language(self, barrancos):
         assert barrancos.iso639_3 is None
         assert barrancos.glottolog_code is None
+
+
+def test_a_hyphen_does_not_move_the_mark_of_a_compound(g2p):
+    # Dicionário de Barranquenho (Valério 2025), headword ⟨rebenta-e-treh⟩
+    # "jogo de rapazes": [rɨˈbẽtɐ i ˈtɾɛh], primary stress on ⟨treh⟩. The
+    # hyphen adds no segment, but it is no silent letter inside a word, so
+    # the mark stays on the last part.
+    out = g2p.transcribe_word("rebenta-e-treh")
+    assert out.count("ˈ") == 1 and "ˈtɾ" in out

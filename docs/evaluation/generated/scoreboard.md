@@ -244,7 +244,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | en-US | cmudict | 126050 | 0.3376 | - | - | 0.2844 | 0.2632 | 0.1845 | 0.2029 | [0.3363, 0.3387] | 0.1387 | research | lexicon-derived |
 | en-US | ipa_babylm | 20107 | 0.3520‡ | - | - | 0.2991 | 0.2807 | 0.3456 | 0.3705 | [0.3451, 0.3590] | 0.2823 | research | espeak-derived |
 | en-US | ipa_childes | 18054 | 0.2654‡ | - | - | 0.2072 | 0.1877 | 0.3549 | 0.3848 | [0.2621, 0.2686] | 0.2832 | research | espeak-derived |
-| en-US | ipadict | 125925 | 0.2908 | 0.6164 | - | 0.2290 | 0.2054 | 0.2548 | 0.2850 | [0.2896, 0.2921] | 0.1871 | research | lexicon-derived |
+| en-US | ipadict | 125925 | 0.2908 | 0.6174 | - | 0.2290 | 0.2054 | 0.2548 | 0.2850 | [0.2896, 0.2921] | 0.1871 | research | lexicon-derived |
 | enf | northeuralex | 838 | 0.0892 | - | - | 0.0888 | 0.0888 | 0.5346 | 0.5346 | [0.0819, 0.0963] | 0.5346 | research | lexicon-derived |
 | enm | wikipron | 6466 | 0.2620 | - | 0.2163† (vowel length mark ː) | 0.2270 | 0.1924 | 0.1681 | 0.2505 | [0.2580, 0.2660] | 0.1174 | research | crowd-scraped |
 | eo | ipadict | 23245 | 0.0120 | - | - | 0.0120 | 0.0120 | 0.9039 | 0.9039 | [0.0115, 0.0125] | 0.9039 | production | machine-generated |
@@ -529,7 +529,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | niv | northeuralex | 833 | 0.0695 | - | - | 0.0695 | 0.0695 | 0.7215 | 0.7215 | [0.0604, 0.0786] | 0.7215 | research | lexicon-derived |
 | niv | wikipron | 624 | 0.2246 | - | - | 0.2246 | 0.2246 | 0.3413 | 0.3413 | [0.2085, 0.2405] | 0.3413 | research | crowd-scraped |
 | nl-NL | ipa_childes | 8108 | 0.2673‡ | - | - | 0.2284 | 0.2187 | 0.2747 | 0.2810 | [0.2630, 0.2720] | 0.2316 | research | espeak-derived |
-| nl-NL | ipadict | 117869 | 0.2649 | 0.6848 | - | 0.2394 | 0.2261 | 0.0822 | 0.0925 | [0.2641, 0.2657] | 0.0621 | research | machine-generated |
+| nl-NL | ipadict | 117869 | 0.2649 | 0.6849 | - | 0.2394 | 0.2261 | 0.0822 | 0.0925 | [0.2641, 0.2657] | 0.0621 | research | machine-generated |
 | nl-NL | vox_communis | 25904 | 0.3804‡ | - | - | 0.3276 | 0.3091 | 0.0547 | 0.0605 | [0.3785, 0.3822] | 0.0332 | research | epitran-derived |
 | nl-NL | wikipron | 45872 | 0.1824 | - | - | 0.1542 | 0.1441 | 0.2783 | 0.2939 | [0.1811, 0.1838] | 0.2209 | research | crowd-scraped |
 | nmy | wikipron | 354 | 0.1091 | - | - | 0.1088 | 0.1088 | 0.5989 | 0.5989 | [0.0921, 0.1291] | 0.5989 | research | crowd-scraped |
