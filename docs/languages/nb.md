@@ -48,7 +48,7 @@ The spec cites 4 works. 2 of them have a DOI or a URL. The spec file holds a not
 1. <a id="src-haugen1976"></a>Haugen, E. (1976). *The Scandinavian Languages: An Introduction to their History*. Faber and Faber.
 2. <a id="src-kristoffersen2000"></a>Kristoffersen, G. (2000). *The Phonology of Norwegian*. Oxford University Press.
 3. <a id="src-phoible"></a>Moran, Steven & McCloy, Daniel (eds.) (2019). *PHOIBLE 2.0*. Max Planck Institute for the Science of Human History. [phoible.org](https://phoible.org/)
-4. <a id="src-kristoffersen2015"></a>Kristoffersen, G. (2015). *Innføring i norsk fonologi*. University of Bergen (Bergen Open Research Archive), 4th ed. Cited: 3, 6, 24, 29. [bora.uib.no](https://bora.uib.no/handle/1956/15694)
+4. <a id="src-kristoffersen2015"></a>Kristoffersen, G. (2015). *Innføring i norsk fonologi*. University of Bergen (Bergen Open Research Archive), 4th ed. Cited: 3, 6, 24, 27, 28, 29, 31. [bora.uib.no](https://bora.uib.no/handle/1956/15694)
 <!-- atlas:sources end -->
 
 <!-- atlas:datasets begin -->
@@ -58,9 +58,9 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 
 | Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
 |:--|:--|:--|:--|:--|--:|--:|:--|
-| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `nb` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 2725 | 0.3580 | yes |
-| `ipadict` ([open-dict-data/ipa-dict](https://github.com/open-dict-data/ipa-dict)) | `nb` | generated | machine-generated | MIT, each file its own | 10169 | 0.2942 | yes |
-| `ipa_childes` ([fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split)) | `nb` | generated | espeak-derived | CC BY 4.0 | 3176 | 0.3501 | no |
+| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `nb` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 2725 | 0.3569 | yes |
+| `ipadict` ([open-dict-data/ipa-dict](https://github.com/open-dict-data/ipa-dict)) | `nb` | generated | machine-generated | MIT, each file its own | 10169 | 0.2911 | yes |
+| `ipa_childes` ([fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split)) | `nb` | generated | espeak-derived | CC BY 4.0 | 3176 | 0.3455 | no |
 <!-- atlas:datasets end -->
 
 <!-- atlas:inventory begin -->
@@ -186,7 +186,7 @@ Stress falls on the first syllable by default.
 <!-- atlas:rules begin -->
 ## Rules
 
-The spec applies 13 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
+The spec applies 22 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
 
 | Rule | Change | Example | Cited |
 |:--|:--|:--|:--|
@@ -201,6 +201,15 @@ The spec applies 13 allophone rules after the letters are read. The change colum
 | `NB_SHORTEN_Æ` | /æː/ → [æ], before a consonant cluster | - | - |
 | `NB_SHORTEN_Ø` | /øː/ → [œ], before a consonant cluster | - | - |
 | `NB_SHORTEN_Å` | /oː/ → [ɔ], before a consonant cluster | - | - |
+| `NB_SHORTEN_A_BEFORE_NG` | /ɑː/ → [ɑ], before ⟨ng⟩ | - | [Kristoffersen 2015](#src-kristoffersen2015) |
+| `NB_SHORTEN_E_BEFORE_NG` | /eː/ → [ɛ], before ⟨ng⟩ | - | [Kristoffersen 2015](#src-kristoffersen2015) |
+| `NB_SHORTEN_I_BEFORE_NG` | /iː/ → [ɪ], before ⟨ng⟩ | - | [Kristoffersen 2015](#src-kristoffersen2015) |
+| `NB_SHORTEN_O_BEFORE_NG` | /uː/ → [ɔ], before ⟨ng⟩ | - | [Kristoffersen 2015](#src-kristoffersen2015) |
+| `NB_SHORTEN_U_BEFORE_NG` | /ʉː/ → [ʉ], before ⟨ng⟩ | - | [Kristoffersen 2015](#src-kristoffersen2015) |
+| `NB_SHORTEN_Y_BEFORE_NG` | /yː/ → [ʏ], before ⟨ng⟩ | - | [Kristoffersen 2015](#src-kristoffersen2015) |
+| `NB_SHORTEN_Æ_BEFORE_NG` | /æː/ → [æ], before ⟨ng⟩ | - | [Kristoffersen 2015](#src-kristoffersen2015) |
+| `NB_SHORTEN_Ø_BEFORE_NG` | /øː/ → [œ], before ⟨ng⟩ | - | [Kristoffersen 2015](#src-kristoffersen2015) |
+| `NB_SHORTEN_Å_BEFORE_NG` | /oː/ → [ɔ], before ⟨ng⟩ | - | [Kristoffersen 2015](#src-kristoffersen2015) |
 | `NB_SILENT_D` | /d/ → ∅, word-finally, after [n] [l] | - | - |
 | `NB_SILENT_D_BEFORE_T` | /d/ → ∅, after [n] [l], before [t] | - | - |
 <!-- atlas:rules end -->
