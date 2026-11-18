@@ -620,7 +620,9 @@ def test_ie_intervocalic_s_is_voiced():
 
 
 def test_ie_z_is_dz_and_ch_is_esh():
-    """"⟨ch⟩ = [ʃ], ⟨j⟩ = [ʒ], ⟨z⟩ = [dz], ⟨y⟩ = [j] as a consonant" (ie notes)."""
+    """⟨z⟩ = [dz]; ⟨ch⟩ before a vowel keeps its one reading [ʃ]; ⟨y⟩ at the start
+    of a word before a vowel = [j] (ie notes; Janotta 1929, Cosmoglotta 64,
+    pp. 152-154)."""
     g = G2P("ie")
     assert g.transcribe_word("zon").lstrip("ˈ").startswith("dz")
     assert g.transcribe_word("chef").lstrip("ˈ").startswith("ʃ")
@@ -770,6 +772,79 @@ def test_ie_y_after_a_vowel_closes_the_syllable():
     """Cosmoglotta 64, p. 152: "Pos un vocal ... y es consonant", so art. 1 puts the
     stress on the vowel before it; p. 153: antey [antéy]."""
     assert G2P("ie").transcribe_word("antey") == "anˈtej"
+
+
+@pytest.mark.parametrize("word, expected", [
+    ("januar", "dʒaˈnwar"),
+    ("conjugation", "kondʒuɡaˈtsjon"),
+])
+def test_ie_j_is_the_affricate(word, expected):
+    """Cosmoglotta 64, p. 153: "j es egal a j in A jazz, a dg in D Budget e F
+    budget, transcrition [dž]: januar [džanwár], conjugation [kondžugatsyón]"."""
+    assert G2P("ie").transcribe_word(word) == expected
+
+
+@pytest.mark.parametrize("word, expected", [
+    ("nation", "naˈtsjon"),
+    ("scientie", "ˈstsjentsje"),
+    ("position", "poziˈtsjon"),
+    ("misalliantie", "mizalˈljantsje"),
+])
+def test_ie_t_is_ts_in_the_endings_tia_tie_tion(word, expected):
+    """Cosmoglotta 64, p. 153: "t deveni un sibilant in li finales -tia, -tie,
+    -tion; transcrition [ts]: scientie [sstsyéntsye]; nation [natsyón]"; the
+    same page: position [positsyón], misalliantie [missallyántsye]. The page's
+    single s is voiced, so position and misalliantie have [z]."""
+    assert G2P("ie").transcribe_word(word) == expected
+
+
+@pytest.mark.parametrize("word, expected", [
+    ("physica", "ˈfyzika"),
+    ("analyse", "anaˈlyze"),
+])
+def test_ie_s_after_vocalic_y_is_intervocalic(word, expected):
+    """Cosmoglotta 64, p. 152: physica [fü'sika], analyse [analü'se]; p. 153: s
+    "es sonor ... transcrition [s] inter du vocales", the voiceless one being
+    [ss]. A vocalic ⟨y⟩ is one of the two vowels."""
+    assert G2P("ie").transcribe_word(word) == expected
+
+
+@pytest.mark.parametrize("word, expected", [
+    ("email", "eˈmajl"),
+    ("rauc", "ˈrawk"),
+    ("applause", "apˈplawze"),
+    ("caul", "ˈkawl"),
+])
+def test_ie_ai_au_are_diphthongs(word, expected):
+    """Cosmoglotta 64, p. 152: "ai e au es diphtongs e es pronunciat [ay],
+    respectivmen [aw]: email [emáyl], rauc [rawk], applause [appláwse]; caul
+    [kawl]"."""
+    assert G2P("ie").transcribe_word(word) == expected
+
+
+@pytest.mark.parametrize("word, expected", [
+    ("yacht", "ˈjaxt"),          # before a consonant
+    ("chromometre", "xromoˈmetre"),
+    ("psycholog", "psyxoˈloɡ"),  # joined with y
+    ("architect", "arxiˈtekt"),  # in the syllable arch
+    ("monarchist", "monarˈxist"),
+    ("schisma", "ˈsxisma"),      # after s
+])
+def test_ie_ch_is_the_velar_fricative_in_its_spelled_contexts(word, expected):
+    """Cosmoglotta 64, p. 154: "Ante consonantes o juntet con y, o in li syllabe
+    arch e pos s, ch es pronunciat quam ch in D machen o quam j in S Méjico ...
+    transcrition [kh], p. ex. yacht [yakht], chromometre [khronometre], psycholog
+    [psükhológ], architect [arkhitékt], monarchist [monarkhíst], schisma
+    [sskhíssma]". The page's single s is voiced; in schisma it is voiceless [ss]
+    before ⟨ch⟩, which the spec writes [s]."""
+    assert G2P("ie").transcribe_word(word) == expected
+
+
+def test_ie_vocalic_y_before_a_vowel_is_its_own_syllable():
+    """Cosmoglotta 64, p. 152: cyan [tsüán], two syllables with the stress on the
+    second; art. 1 (Cosmoglotta 65, p. 165) puts it on the vowel before the last
+    consonant."""
+    assert G2P("ie").transcribe_word("cyan") == "tsyˈan"
 
 
 # ── Interlingua (ia) ──

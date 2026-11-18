@@ -27,7 +27,7 @@ The notes of the spec file open with these words:
 
 > Interlingue (originally Occidental), constructed international auxiliary language published by Edgar de Wahl in 1922, renamed Interlingue in 1949. Published, fully regular phonemic orthography over the 26-letter Latin alphabet.
 
-The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. No board row scores it yet, so the measured gold of that tier is still missing. It cites 3 works, from 1922 to 2026. 1 of them is a Wikipedia article. [Sources](#sources) lists them. The spec file writes all 36 spellings of its letter table itself.
+The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. No board row scores it yet, so the measured gold of that tier is still missing. It cites 3 works, from 1922 to 2026. 1 of them is a Wikipedia article. [Sources](#sources) lists them. The spec file writes all 38 spellings of its letter table itself.
 
 The [spec file](../../orthography2ipa/data/ie.json) holds the full notes, with the caveats of the spec.
 <!-- atlas:overview end -->
@@ -57,15 +57,15 @@ No dataset on the board scores this spec. See the [dataset catalogue](../evaluat
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 30 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 32 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 | Plosive | b p |  | d t |  |  | k ɡ |  |
-| Affricate |  |  | dz ts |  |  |  |  |
+| Affricate |  |  | dz ts | dʒ |  |  |  |
 | Nasal | m |  | n |  |  |  |  |
 | Trill |  |  | r |  |  |  |  |
-| Fricative |  | f v | s z | ʃ ʒ |  |  | h |
+| Fricative |  | f v | s z | ʃ ʒ |  | x | h |
 | Approximant |  |  |  |  | j |  |  |
 | Lateral approximant |  |  | l |  |  |  |  |
 
@@ -87,9 +87,11 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | Spelling | Readings | By position |
 |:--|:--|:--|
 | ⟨a⟩ | [a] |  |
+| ⟨ai⟩ | [aj] |  |
+| ⟨au⟩ | [aw] |  |
 | ⟨b⟩ | [b] |  |
 | ⟨c⟩ | [k] | before front vowel [ts] |
-| ⟨ch⟩ | [ʃ] |  |
+| ⟨ch⟩ | [ʃ] | before consonant [x] |
 | ⟨d⟩ | [d] |  |
 | ⟨e⟩ | [e] |  |
 | ⟨eu⟩ | [ø] |  |
@@ -97,7 +99,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨g⟩ | [ɡ] | before front vowel [ʒ] |
 | ⟨h⟩ | [h] |  |
 | ⟨i⟩ | [i] | before vowel [j] |
-| ⟨j⟩ | [ʒ] |  |
+| ⟨j⟩ | [dʒ] |  |
 | ⟨k⟩ | [k] |  |
 | ⟨l⟩ | [l] |  |
 | ⟨m⟩ | [m] |  |
@@ -129,7 +131,7 @@ Stress falls on the penult by default. A written ⟨á⟩ ⟨é⟩ ⟨í⟩ ⟨�
 <!-- atlas:rules begin -->
 ## Rules
 
-The spec applies 4 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
+The spec applies 10 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
 
 | Rule | Change | Example | Cited |
 |:--|:--|:--|:--|
@@ -137,6 +139,12 @@ The spec applies 4 allophone rules after the letters are read. The change column
 | `IE_ART4_STRESSED_I_PLURAL` | /j/ → [i], stressed, before a vowel, spelled ⟨i⟩, with more context in the spec | - | [Janotta 1929](#src-janotta1929) |
 | `IE_ART4_STRESSED_U` | /w/ → [u], stressed, before a vowel, spelled ⟨u⟩, with more context in the spec | - | [Janotta 1929](#src-janotta1929) |
 | `IE_ART4_STRESSED_U_PLURAL` | /w/ → [u], stressed, before a vowel, spelled ⟨u⟩, with more context in the spec | - | [Janotta 1929](#src-janotta1929) |
+| `IE_T_TIA_TIE` | /t/ → [ts], spelled ⟨t⟩, before ⟨i⟩, with more context in the spec | ⟨scientie⟩ [sstsyéntsye] | [Janotta 1929](#src-janotta1929) |
+| `IE_T_TION` | /t/ → [ts], spelled ⟨t⟩, before ⟨i⟩, with more context in the spec | ⟨scientie⟩ [sstsyéntsye] | [Janotta 1929](#src-janotta1929) |
+| `IE_CH_AFTER_S` | /ʃ/ → [x], spelled ⟨ch⟩, after ⟨s⟩ | - | [Janotta 1929](#src-janotta1929) |
+| `IE_CH_AFTER_Y` | /ʃ/ → [x], spelled ⟨ch⟩, after ⟨y⟩ | - | [Janotta 1929](#src-janotta1929) |
+| `IE_CH_BEFORE_Y` | /ʃ/ → [x], spelled ⟨ch⟩, before ⟨y⟩ | - | [Janotta 1929](#src-janotta1929) |
+| `IE_CH_ARCH` | /ʃ/ → [x], spelled ⟨ch⟩, after ⟨r⟩, with more context in the spec | - | [Janotta 1929](#src-janotta1929) |
 <!-- atlas:rules end -->
 
 <!-- atlas:examples begin -->
