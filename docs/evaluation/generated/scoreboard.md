@@ -132,11 +132,11 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | arq-DZ | arabic_tts | 20 | 0.1815‡ | - | - | - | - | - | - | [0.1545, 0.2091] | 0.0000 | research | llm-corrected |
 | arq-DZ | gold20_arabic | 20 | 0.1800‡ | - | - | - | - | - | - | [0.1542, 0.2059] | 0.0000 | research | llm-corrected |
 | arq-DZ | primary_sources | 1† | 0.7143‡ | - | - | 0.7143 | 0.7143 | 0.0000 | 0.0000 | n too small | 0.0000 | research | expert-human |
-| ars-SA | arabic_tts | 20 | 0.0726‡ | - | - | - | - | - | - | [0.0539, 0.0912] | 0.1500 | research | llm-corrected |
-| ars-SA | gold20_arabic | 20 | 0.0671‡ | - | - | - | - | - | - | [0.0501, 0.0831] | 0.1500 | research | llm-corrected |
-| ars-SA | primary_sources | 25 | 0.1491 | - | - | 0.1434 | 0.1434 | 0.6000 | 0.6000 | [0.0712, 0.2343] | 0.5600 | research | expert-human |
-| ars-SA-x-qassim | arabic_tts | 20 | 0.0906‡ | - | - | - | - | - | - | [0.0647, 0.1184] | 0.1000 | research | llm-corrected |
-| ars-SA-x-qassim | gold20_arabic | 20 | 0.0882‡ | - | - | - | - | - | - | [0.0633, 0.1156] | 0.1000 | research | llm-corrected |
+| ars-SA | arabic_tts | 20 | 0.0405‡ | - | - | - | - | - | - | [0.0207, 0.0623] | 0.4000 | research | llm-corrected |
+| ars-SA | gold20_arabic | 20 | 0.0351‡ | - | - | - | - | - | - | [0.0183, 0.0528] | 0.4000 | research | llm-corrected |
+| ars-SA | primary_sources | 25 | 0.0891 | - | - | 0.0834 | 0.0834 | 0.6800 | 0.6800 | [0.0374, 0.1461] | 0.6400 | research | expert-human |
+| ars-SA-x-qassim | arabic_tts | 20 | 0.0958‡ | - | - | - | - | - | - | [0.0725, 0.1207] | 0.1000 | research | llm-corrected |
+| ars-SA-x-qassim | gold20_arabic | 20 | 0.0933‡ | - | - | - | - | - | - | [0.0699, 0.1187] | 0.1000 | research | llm-corrected |
 | ars-SA-x-qassim | primary_sources | 12† | 0.1327‡ | - | - | 0.1327 | 0.1327 | 0.5000 | 0.5000 | n too small | 0.5000 | research | expert-human |
 | ary-MA | arabic_tts | 20 | 0.1488‡ | - | - | - | - | - | - | [0.1170, 0.1802] | 0.0000 | research | llm-corrected |
 | ary-MA | gold20_arabic | 20 | 0.1498‡ | - | - | - | - | - | - | [0.1185, 0.1817] | 0.0000 | research | llm-corrected |

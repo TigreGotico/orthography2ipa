@@ -27,7 +27,7 @@ The notes of the spec file open with these words:
 
 > Northern Najdi (Shamali) of Ha\u02beil, the variety of Alshammari (2026), spoken across the northern Najd. IT DIFFERS FROM ITS PARENT IN EXACTLY ONE RULE and the spec carries only that rule, everything else -- qaf as /\u0261/, the interdentals, gahawa, emphasis spreading, stress -- is inherited from ars-SA unchanged.
 
-The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. No board row scores it yet, so the measured gold of that tier is still missing. It cites 2 works, from 1994 to 2026. [Sources](#sources) lists them. The spec file writes no spelling of its own. It takes all 249 from [Najdi Arabic](ars-SA.md) `ars-SA`.
+The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. No board row scores it yet, so the measured gold of that tier is still missing. It cites 2 works, from 1994 to 2026. [Sources](#sources) lists them. The spec file writes no spelling of its own. It takes all 261 from [Najdi Arabic](ars-SA.md) `ars-SA`.
 
 The [spec file](../../orthography2ipa/data/ars-SA-x-shamali.json) holds the full notes, with the caveats of the spec.
 <!-- atlas:overview end -->
@@ -56,7 +56,7 @@ No dataset on the board scores this spec. See the [dataset catalogue](../evaluat
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 48 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 49 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Dental | Alveolar | Postalveolar | Palatal | Velar | Uvular | Pharyngeal | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -72,7 +72,7 @@ The spec can emit 48 segments. They come from the letter table, the positional r
 |:--|:-:|:-:|
 | Close | i iː | u uː |
 | Near-close | ɪ ɪː | ʊ ʊː |
-| Close-mid |  | o oː |
+| Close-mid | eː | o oː |
 | Open | a aː | ɑ ɑː |
 
 Sequences that the spec writes as one unit: [w] [ː].
@@ -261,6 +261,10 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨وَالظظ⟩ | [waðˤðˤ] [wadˤdˤ] |  |
 | ⟨وَاللل⟩ | [wall] |  |
 | ⟨وَالنن⟩ | [wann] |  |
+| ⟨وَو⟩ | [waw] | before consonant [woː] · default [waw] · word final [woː] |
+| ⟨وَوْ⟩ | [woː] |  |
+| ⟨وَي⟩ | [waj] | before consonant [weː] · default [waj] · word final [weː] |
+| ⟨وَيْ⟩ | [weː] |  |
 | ⟨وَٱ⟩ | [wa] |  |
 | ⟨وُ⟩ | [wu] |  |
 | ⟨وِال⟩ | [wil] |  |
@@ -284,6 +288,10 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨يي⟩ | [jj] |  |
 | ⟨يَ⟩ | [ja] |  |
 | ⟨يَا⟩ | [jaː] |  |
+| ⟨يَو⟩ | [jaw] | before consonant [joː] · default [jaw] · word final [joː] |
+| ⟨يَوْ⟩ | [joː] |  |
+| ⟨يَي⟩ | [jaj] | before consonant [jeː] · default [jaj] · word final [jeː] |
+| ⟨يَيْ⟩ | [jeː] |  |
 | ⟨يِ⟩ | [ji] |  |
 | ⟨ً⟩ | [an] |  |
 | ⟨ًا⟩ | [an] |  |
@@ -294,19 +302,23 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨َا⟩ | [aː] |  |
 | ⟨َاي⟩ | [aːj] |  |
 | ⟨َة⟩ | [a] | before vowel [at] · default [a] |
-| ⟨َو⟩ | [aw] |  |
+| ⟨َو⟩ | [aw] | before consonant [oː] · default [aw] · word final [oː] |
+| ⟨َوا⟩ | [awaː] |  |
 | ⟨َوو⟩ | [aww] |  |
 | ⟨َوَ⟩ | [awa] |  |
 | ⟨َوَا⟩ | [awaː] |  |
 | ⟨َوُ⟩ | [awu] |  |
 | ⟨َوِ⟩ | [awi] |  |
+| ⟨َوْ⟩ | [oː] |  |
 | ⟨َى⟩ | [aː] |  |
-| ⟨َي⟩ | [aj] |  |
+| ⟨َي⟩ | [aj] | before consonant [eː] · default [aj] · word final [eː] |
+| ⟨َيا⟩ | [ajaː] |  |
 | ⟨َيي⟩ | [ajj] |  |
 | ⟨َيَ⟩ | [aja] |  |
 | ⟨َيَا⟩ | [ajaː] |  |
 | ⟨َيُ⟩ | [aju] |  |
 | ⟨َيِ⟩ | [aji] |  |
+| ⟨َيْ⟩ | [eː] |  |
 | ⟨َٰ⟩ | [aː] |  |
 | ⟨ُ⟩ | [u] |  |
 | ⟨ُو⟩ | [uː] |  |
