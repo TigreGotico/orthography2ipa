@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.123.12a1](https://github.com/TigreGotico/orthography2ipa/tree/7.123.12a1) (2026-11-18)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.123.11a2...7.123.12a1)
+
+**Merged pull requests:**
+
+- perf: resolve codes without sorting the index on each call [\#2349](https://github.com/TigreGotico/orthography2ipa/pull/2349) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.123.11a2](https://github.com/TigreGotico/orthography2ipa/tree/7.123.11a2) (2026-11-17)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.123.11a1...7.123.11a2)
