@@ -365,10 +365,10 @@ The engine wrote every transcription in this section with `orthography2ipa.trans
 | autobusa | [au̯ˈtoβus̺a] |
 | txistularia | [tʃis̺ˈtulaɾia] |
 | lurra | [luˈra] |
-| beltzari | [beltˈs̻aɾi] |
+| beltzari | [belˈts̻aɾi] |
 | lekuan | [leˈkuan] |
 | aurrera | [au̯ˈreɾa] |
-| atzo | [atˈs̻o] |
+| atzo | [aˈts̻o] |
 | ango | [anˈɡo] |
 | talde | [talˈde] |
 | kanpo | [kamˈpo] |
