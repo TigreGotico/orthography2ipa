@@ -36,10 +36,12 @@ def test_no_syllable_loses_its_nucleus_wholesale(lang, words):
     list rather than one spot-check, so a future widening of the search
     cannot pass by getting the two words above right."""
     from orthography2ipa.allophony import segment_ipa
+    from orthography2ipa.inventory import _slot_emissions
 
     g = o2i.G2P(lang)
-    atoms = tuple(sorted(o2i.phoneme_inventory(o2i.get(lang)),
-                         key=len, reverse=True))
+    # The atoms are what one slot emits, so an onset cluster (Thai ⟨กร⟩ /kr/)
+    # counts once, as the slot that wrote it.
+    atoms = tuple(sorted(_slot_emissions(o2i.get(lang)), key=len, reverse=True))
     vowels = set("aeiouɛɔəɨʉɯøœyɐɤʌæɑɒ")
     for word in words:
         ipa = g.transcribe_word(word)

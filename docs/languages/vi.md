@@ -129,7 +129,7 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 818 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 141 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Palatal | Velar | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -140,14 +140,15 @@ The spec can emit 818 segments. They come from the letter table, the positional 
 | Approximant |  |  |  | j |  |  |
 | Lateral approximant |  |  | l |  |  |  |
 
-| Vowels | Front | Back |
-|:--|:-:|:-:|
-| Close | i | u ɯ |
-| Close-mid | e | o ɤ ɤ̆ |
-| Open-mid | ɛ ɛː | ɔ ɔː |
-| Open | a ă |  |
+| Vowels | Front | Central | Back |
+|:--|:-:|:-:|:-:|
+| Close | i |  | u ɯ |
+| Close-mid | e |  | o ɤ ɤ̆ |
+| Mid |  | ə |  |
+| Open-mid | ɛ ɛː |  | ɔ ɔː |
+| Open | a ă |  |  |
 
-Sequences that the spec writes as one unit: [aj˧ˀ˥] [aj˧˧] [aj˧˨] [aj˧˩˨] [aj˨ˀ˩] [aj˨˦] [ak˦˥] [ak˨ˀ˩] [am˧ˀ˥] [am˧˧] [am˧˨] [am˧˩˨] [am˨ˀ˩] [am˨˦] [an˧ˀ˥] [an˧˧] [an˧˨] [an˧˩˨] [an˨ˀ˩] [an˨˦] [ap˦˥] [ap˨ˀ˩] [at˦˥] [at˨ˀ˩] [aw˧ˀ˥] [aw˧˧] [aw˧˨] [aw˧˩˨] [aw˨ˀ˩] [aw˨˦] [aŋ˧ˀ˥] [aŋ˧˧] [aŋ˧˨] [aŋ˧˩˨] [aŋ˨ˀ˩] [aŋ˨˦] [a˧ˀ˥] [a˧˧] [a˧˨] [a˧˩˨], and 747 more.
+Sequences that the spec writes as one unit: [a˧ˀ˥] [a˧˧] [a˧˨] [a˧˩˨] [a˨ˀ˩] [a˨˦] [e˧ˀ˥] [e˧˧] [e˧˨] [e˧˩˨] [e˨ˀ˩] [e˨˦] [i˧ˀ˥] [i˧˧] [i˧˨] [i˧˩˨] [i˨ˀ˩] [i˨˦] [j˧ˀ˥] [j˧˧] [j˧˨] [j˧˩˨] [j˨ˀ˩] [j˨˦] [k˦˥] [k˨ˀ˩] [k͡p] [k͡p˦˥] [k͡p˨ˀ˩] [m˧ˀ˥] [m˧˧] [m˧˨] [m˧˩˨] [m˨ˀ˩] [m˨˦] [n˧ˀ˥] [n˧˧] [n˧˨] [n˧˩˨] [n˨ˀ˩], and 69 more.
 
 Tones: [◌̄] ngang (A1, level) — ˧˧; unmarked in the orthography, [◌̀] huyền (A2, mid falling) — ˧˨, [◌́] sắc (B1, rising) — ˨˦; ˦˥ on a syllable closed by an oral stop (D1), [◌̉] hỏi (C1, low falling) — ˧˩˨, [◌̃] ngã (C2, broken) — ˧ˀ˥, [◌̣] nặng (B2, low glottalized) — ˨ˀ˩; D2 on a syllable closed by an oral stop.
 <!-- atlas:inventory end -->
