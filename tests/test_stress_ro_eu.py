@@ -113,6 +113,17 @@ def test_basque_mark_does_not_split_s_stop():
     assert orthography2ipa.transcribe("txistularia", "eu") == "tʃis̺ˈtulaɾia"
 
 
+@pytest.mark.parametrize("word,ipa", [
+    # The affricates ⟨ts⟩ /ts̺/ and ⟨tz⟩ /ts̻/ are one consonant, so the
+    # syllable boundary and the mark go before the whole affricate
+    # (Hualde 1994: 1559, proposal (12-I): bertsolariarekin, second syllable).
+    ("bertsolari", "berˈts̺olaɾi"),
+    ("atzo", "aˈts̻o"),
+])
+def test_basque_mark_does_not_split_an_affricate(word, ipa):
+    assert orthography2ipa.transcribe(word, "eu") == ipa
+
+
 @pytest.mark.parametrize("code", ["eu-x-zuberera", "eu-x-lapurdi",
                                   "eu-x-nafarra-beherea",
                                   "eu-x-roncal"])
