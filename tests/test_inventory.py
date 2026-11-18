@@ -416,6 +416,14 @@ def test_every_token_is_nfc(code):
     assert not [t for t in phoneme_inventory(get(code)) if unicodedata.normalize("NFC", t) != t]
 
 
+@pytest.mark.parametrize("code", ALL_CODES)
+def test_no_token_carries_a_mark_twice(code):
+    """A carried mark joins a token only once: bch e̯ and lsi a̰ already hold
+    theirs, and the engine never writes e̯̯ or a̰̰."""
+    assert not [t for t in phoneme_inventory(get(code))
+                if any(a == b and unicodedata.combining(a) for a, b in zip(t, t[1:]))]
+
+
 @pytest.mark.parametrize("code", ["pt-PT-x-algarve", "pt-PT-x-alentejo"])
 def test_a_precomposed_nasal_vowel_the_engine_writes_is_a_token(code):
     """nenhum ends in [ỹ] (U+1EF9) in the lects that front /u/; the carried
