@@ -316,6 +316,15 @@ class TestRecife:
         closed vowel is the majority."""
         assert bare(_g("pt-BR-x-recife").transcribe_word("menino")).startswith("me")
 
+    @pytest.mark.parametrize("word, expected", [
+        ("pérola", "ˈpɛɾolɐ"), ("época", "ˈɛpokɐ"), ("abóbora", "aˈbɔboɾɐ"),
+        ("cócegas", "ˈkɔseɡɐʃ"),
+    ])
+    def test_posttonic_mid_vowel_stays_closed(self, word, expected):
+        """Mota & Lopes (2018) study the pretonic vowels only, so the
+        open-vowel rule leaves a posttonic mid vowel at its pt-BR value."""
+        assert _g("pt-BR-x-recife").transcribe_word(word) == expected
+
     def test_plural_raised(self):
         """The palatal plural raises like the base one: dentes."""
         assert bare(_g("pt-BR-x-recife").transcribe_word("dentes")) == "dẽtiʃ"
@@ -378,6 +387,15 @@ class TestBahia:
         """Mota & Lopes 2018: 215, 217: Bahia patterns with the Northeast."""
         assert bare(_g("pt-BR-x-bahia").transcribe_word("pedaço")).startswith("pɛ")
 
+    @pytest.mark.parametrize("word, expected", [
+        ("pérola", "ˈpɛɾolɐ"), ("época", "ˈɛpokɐ"), ("abóbora", "aˈbɔboɾɐ"),
+        ("cócegas", "ˈkɔseɡɐs"),
+    ])
+    def test_posttonic_mid_vowel_stays_closed(self, word, expected):
+        """Mota & Lopes (2018) study the pretonic vowels only, so the
+        open-vowel rule leaves a posttonic mid vowel at its pt-BR value."""
+        assert _g("pt-BR-x-bahia").transcribe_word(word) == expected
+
     def test_final_em_diphthong(self):
         """Barbosa & Albano 2004: 230: final -em is the nasal diphthong."""
         assert bare(_g("pt-BR-x-bahia").transcribe_word("quem")) == "kẽj̃"
@@ -407,6 +425,15 @@ class TestCE:
 
     def test_open_pretonic_before_low_vowel(self):
         assert bare(_g("pt-BR-x-ce").transcribe_word("pedaço")).startswith("pɛ")
+
+    @pytest.mark.parametrize("word, expected", [
+        ("pérola", "ˈpɛɾolɐ"), ("época", "ˈɛpokɐ"), ("abóbora", "aˈbɔboɾɐ"),
+        ("cócegas", "ˈkɔseɡɐs"),
+    ])
+    def test_posttonic_mid_vowel_stays_closed(self, word, expected):
+        """Mota & Lopes (2018) study the pretonic vowels only, so the
+        open-vowel rule leaves a posttonic mid vowel at its pt-BR value."""
+        assert _g("pt-BR-x-ce").transcribe_word(word) == expected
 
     def test_coda_s_alveolar_before_voiceless(self):
         """Marins & Margotti 2012: 257: Fortaleza keeps the alveolar."""
