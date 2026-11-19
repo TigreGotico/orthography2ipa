@@ -130,9 +130,9 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 
 | Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
 |:--|:--|:--|:--|:--|--:|--:|:--|
-| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `it` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 82276 | 0.0441 | yes |
+| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `it` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 82276 | 0.0437 | yes |
 | `ipa_childes` ([fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split)) | `it-IT` | generated | espeak-derived | CC BY 4.0 | 4583 | 0.2353 | no |
-| `vox_communis` ([fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p)) | `it` | generated | epitran-derived | CC0 1.0 | 48570 | 0.1031 | no |
+| `vox_communis` ([fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p)) | `it` | generated | epitran-derived | CC0 1.0 | 48570 | 0.1029 | no |
 <!-- atlas:datasets end -->
 
 <!-- atlas:inventory begin -->
