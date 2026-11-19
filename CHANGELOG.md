@@ -1,5 +1,18 @@
 # Changelog
 
+## [7.123.13a1](https://github.com/TigreGotico/orthography2ipa/tree/7.123.13a1) (2026-11-18)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.123.12a2...7.123.13a1)
+
+**Merged pull requests:**
+
+- feat: add pt-BR-x-paraiba, Paraibano Portuguese [\#2353](https://github.com/TigreGotico/orthography2ipa/pull/2353) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- fix: keep an affricate with a diacritic below whole under the stress mark [\#2352](https://github.com/TigreGotico/orthography2ipa/pull/2352) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [7.123.12a2](https://github.com/TigreGotico/orthography2ipa/tree/7.123.12a2) (2026-11-18)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.123.12a1...7.123.12a2)
+
 ## [7.123.12a1](https://github.com/TigreGotico/orthography2ipa/tree/7.123.12a1) (2026-11-18)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.123.11a2...7.123.12a1)
