@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.124.22a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.22a1) (2026-11-19)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.21a2...7.124.22a1)
+
+**Merged pull requests:**
+
+- fix: keep the syllable of a dropped vowel letter for the stress mark [\#2372](https://github.com/TigreGotico/orthography2ipa/pull/2372) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.124.21a2](https://github.com/TigreGotico/orthography2ipa/tree/7.124.21a2) (2026-11-19)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.21a1...7.124.21a2)
@@ -356,10 +364,6 @@
 ## [7.123.0a7](https://github.com/TigreGotico/orthography2ipa/tree/7.123.0a7) (2026-11-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.123.0a6...7.123.0a7)
-
-**Merged pull requests:**
-
-- docs: describe plugin steps as Pipeline objects in getting started [\#2305](https://github.com/TigreGotico/orthography2ipa/pull/2305) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.123.0a6](https://github.com/TigreGotico/orthography2ipa/tree/7.123.0a6) (2026-11-12)
 
