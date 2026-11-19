@@ -39,7 +39,7 @@ A clade node is for classification only. It carries no phoneme data, no spec inh
 
 `get()` and `resolve()` normalise a code through these steps, in order. The first step that names a registered spec wins. The steps use [`langcodes`](https://github.com/rspeer/langcodes) for [BCP 47](https://www.rfc-editor.org/rfc/rfc5646) parsing and [`linguatag`](https://github.com/TigreGotico/linguatag) for the default regions and the language distance.
 
-1. The alias table `_ALIASES`, which holds ISO 639-3 codes and private-use tags that `langcodes` does not round-trip.
+1. The alias table `_ALIASES`. It holds ISO 639-3 codes and private-use tags that `langcodes` does not round-trip. It also holds script and region tags that the later steps send to another spec, or to no spec.
 2. An exact match against the alias keys and the registered spec codes, without regard to case, because BCP 47 tags are case-insensitive ([RFC 5646, section 2.1.1](https://www.rfc-editor.org/rfc/rfc5646#section-2.1.1)). So `MNK` finds `mnk`, and `ars-sa-x-qassim` finds `ars-SA-x-qassim`. Then `langcodes.standardize_tag(code, macro=True)`, for a code with no private-use subtag. The result goes through the alias table again.
 3. An exact match against the registered spec codes. A private-use tag also matches with a script subtag dropped when that script is the language's Suppress-Script in the [IANA Language Subtag Registry](https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry), so `pt-Latn-BR-x-sp` finds `pt-BR-x-sp`. The Suppress-Script "adds no distinguishing information to a language tag" ([RFC 5646, section 3.1.9](https://www.rfc-editor.org/rfc/rfc5646#section-3.1.9)). Only the part before `-x-` goes to `langcodes`, because `langcodes` rejects a private-use subtag longer than 8 characters, such as the alias `ar-x-levantine`.
 4. For a bare language tag, the spec of its default region (`linguatag.with_default_region`), when that spec is registered. For a region that has only sub-regional specs, a curated default variant.
@@ -47,7 +47,7 @@ A clade node is for classification only. It carries no phoneme data, no spec inh
 
    The search looks first among the codes of the tag's own language, because the primary language subtag names the language. So `sr-Latn-RS` gives `sr`, although `langcodes` expands `cnr` to `sr-Latn-ME`, which is nearer. The own language is the primary subtag of the tag as given. When that language has no spec, it is the language of the standardized tag, so `sh` (standardized to `sr-Latn`) gives `sr`. Arabic is the likely script of Algerian Saharan Arabic, so `aao-Arab` gives `aao`. When no own-language spec is near enough, the search takes every registered code. So `hr-Cyrl` gives `sr`: the distance compares tags and reads no spec data, and it puts a Croatian tag in Cyrillic script nearer to `sr` than to `hr`.
 
-   For a spec that reads both alphabets of its language, the alias table names its Cyrillic tags, so `bs-Cyrl` and `bs-Cyrl-BA` give `bs`, and `cnr-Cyrl-ME` gives `cnr`. A Cyrillic Bosnian tag that the table does not name, such as `bs-Cyrl-RS`, still gives `sr`.
+   For a spec that reads both alphabets of its language, the alias table names its Cyrillic tags. The tags `bs-Cyrl` and `bs-Cyrl-BA` give `bs`, where the distance alone gives `sr`. The tag `cnr-Cyrl-ME` gives `cnr` through the own-language search too, but only as a nearest match. The alias makes it an exact match, so it also resolves under `strict=True`. A Cyrillic Bosnian tag that the table does not name, such as `bs-Cyrl-RS`, still gives `sr`.
 
 The default region of a bare tag is its motherland, the region where the language first appeared and is still spoken. `linguatag` takes it from the [CLDR likely subtags](https://github.com/unicode-org/cldr/blob/main/common/supplemental/likelySubtags.xml) and overrides CLDR where the most-populous region differs, so `pt` goes to `pt-PT` and not to `pt-BR`.
 
@@ -104,7 +104,7 @@ The alias table maps these ISO 639-3 codes of major languages to a spec:
 | `ron` | `ro-RO` | `mwl` | `mwl` | `arg` | `an` |
 | `lat` | `la` | `tgk` | `tg` | `prs` | `fa-AF` |
 
-The table holds six other kinds of entry:
+The table holds seven other kinds of entry:
 
 | Kind | Examples |
 | :--- | :--- |
@@ -113,7 +113,8 @@ The table holds six other kinds of entry:
 | An individual-language code that `macro=True` standardisation would collapse into its macrolanguage, mapped to itself | `quz`, which would otherwise become `qu`, and `diq`, which would become `zza` |
 | An ISO 639-3 code whose variety has its spec under another key | `twi` to `tw` |
 | A private-use tag, mapped to the spec that holds the variety | `pt-PT-x-barrancos` to `ext-PT-x-barranco`, `pt-BR-x-sao-paulo` to `pt-BR-x-sp`, `ar-x-hijazi` to `acw-SA` |
-| A script tag of a spec that reads both alphabets of its language, which the language distance sends to another spec | `bs-Cyrl` to `bs`, `cnr-Cyrl-ME` to `cnr` |
+| A script tag of a spec that reads both alphabets of its language, so that the tag resolves exactly to that spec | `bs-Cyrl` to `bs`, and `cnr-Cyrl-ME` to `cnr` |
+| A region or script tag too far from the bare tag of its spec to match | `yue-HK`, `yue-MO` and `yue-Hant` to `yue` |
 
 Galician has one standard spec, `gl-ES`, and the bare tag `gl` resolves to it. The variety codes `gl-x-central`, `gl-x-occidental`, `gl-x-oriental`, `gl-x-eonavia` and `gl-x-reintegrado` resolve to the `gl-ES-x-*` spec of the same variety. `_ALIASES` in `registry.py` holds the full table.
 
