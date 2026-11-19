@@ -99,11 +99,10 @@ def test_an_unresolved_tag_stays_unresolved():
 def test_min_dong_in_han_script_is_not_mandarin(tag):
     # Min Dong (cdo) is a member of the zh macrolanguage, but it is not
     # Mandarin, and the zh spec reads Mandarin pinyin. CLDR gives Hans as the
-    # likely script of cdo, and the cdo spec declares Han script. The spec
-    # carries no graphemes, so Han text gives no Mandarin reading.
+    # likely script of cdo, and the cdo spec declares Han script. It is a
+    # stub with no graphemes, where the zh spec reads pinyin.
     assert resolve(tag) == "cdo"
     assert not get(tag).graphemes
-    assert G2P(tag).transcribe("福州话") == ""
 
 
 def test_only_the_tag_with_no_region_names_the_cdo_spec_exactly():

@@ -103,6 +103,7 @@ def test_every_regional_spec_is_named_with_its_likely_script():
     ("kas-Arab", "kas"), ("pnb-Arab", "pnb-PK"), ("fat-Latn", "fat"), ("mhr-Cyrl", "mhr"),
 ])
 def test_a_likely_script_keeps_the_language_the_tag_gives(tag, spec):
-    """Standardization folds these codes into their macrolanguage (``kas`` to
-    ``ks``), whose spec exists. The script step must not reach that spec."""
+    """Standardization changes the language subtag of these codes (``kas`` to
+    ``ks``, ``pnb`` to ``lah``), and that language has a spec. The script step
+    must not reach that spec."""
     assert resolve(tag) == spec
