@@ -2,8 +2,8 @@
 removes them, and still return what ``lm`` returns.
 
 The API stability page fixes the removal version at deprecation time: it is
-``VERSION_MAJOR + 1`` of the release that deprecated the name. These names were
-deprecated while ``version.py`` had ``VERSION_MAJOR = 7``, so they go in 8.0.0.
+``VERSION_MAJOR + 1`` of the release that names it. The warning first named a
+removal release while ``version.py`` had ``VERSION_MAJOR = 7``, so they go in 8.0.0.
 A major release that keeps them makes the warning name a later release, and
 this test fails.
 """
