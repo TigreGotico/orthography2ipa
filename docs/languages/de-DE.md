@@ -60,7 +60,7 @@ The spec states the rule as a `word_final` entry on ⟨b d g v⟩ in `positional
 
 The rule covers only the absolute end of the word. The engine has a `coda` position, but the spec does not use it for these letters. So a coda inside a word keeps its voiced value. The spec gives `ˈabʃiːt` for `Abschied` and `ˈjaɡt` for `Jagd`, where the grammars have [p] and [k].
 
-The vowel of a word that ends in one consonant letter stays short in the spec. The `DE_OPEN_SYLLABLE_*` rules lengthen a vowel only in an open syllable, and these words have a closed one. So the spec gives `ˈɡʁap` for `Grab`, `ˈtak` for `Tag` and `ˈbʁaf` for `brav`, where the table above has [aː].
+A single vowel letter before one final consonant letter stays short in the spec. The `DE_OPEN_SYLLABLE_*` rules lengthen a vowel only in an open syllable, and these words have a closed one. So the spec gives `ˈɡʁap` for `Grab`, `ˈtak` for `Tag` and `ˈbʁaf` for `brav`, where the table above has [aː].
 
 The spec gives ⟨s⟩ the value [z] at the start of a word and between vowels, as in `sagen` [zaːɡən] and `lesen`. The `word_initial` entry does not check the next letter, so it also voices ⟨s⟩ before a consonant. The spec gives `ˈzkat` for `Skat`.
 
@@ -102,7 +102,7 @@ At the start of a word, ⟨sp⟩ is [ʃp] and ⟨st⟩ is [ʃt]. In other positi
 | Word-initial | [ʃp] | [ʃt] | `spielen` [ʃpiːlən], `stark` [ʃtaʁk] |
 | Not initial | [sp] | [st] | `Wespe` [vɛspə], `Fenster` [fɛnstɐ] |
 
-The spec gives `ˈveːspə` for `Wespe`, with a long vowel, where the table has [ɛ]. The digraph ⟨sp⟩ is one grapheme, so the `DE_OPEN_SYLLABLE_*` rules see one consonant before a vowel and lengthen the ⟨e⟩.
+The spec gives `ˈveːspə` for `Wespe`, with a long vowel, where the table has [ɛ]. The digraph ⟨sp⟩ is one grapheme, so the `DE_OPEN_SYLLABLE_*` rules see one consonant before a vowel and lengthen the ⟨e⟩. The digraph ⟨st⟩ has the same effect: the spec gives `ˈkaːstən` for `Kasten` and `ˈliːstə` for `Liste`, where the vowel is short.
 
 ### Final -ig
 

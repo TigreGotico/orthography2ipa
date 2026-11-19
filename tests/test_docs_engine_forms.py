@@ -2,9 +2,9 @@
 
 A page that says "the spec gives `ˈɡʁap` for `Grab`" makes a claim about the
 engine. Each row below names the page, the code, the word and the form, and the
-test checks both halves: the page carries the sentence, and the engine gives the
-form. A spec change that moves one of these forms then fails here until the page
-follows.
+test checks both halves: the page writes the form next to its word, and the
+engine gives the form. A spec change that moves one of these forms then fails
+here until the page follows.
 """
 from pathlib import Path
 
@@ -23,16 +23,23 @@ WORD_FORMS = [
     ("de-DE.md", "de-DE", "Wespe", "ˈveːspə"),
     ("de-DE.md", "de-DE", "voll", "ˈvɔl"),
     ("de-DE.md", "de-DE", "Mädchen", "ˈmɛdçən"),
+    ("de-DE.md", "de-DE", "Kasten", "ˈkaːstən"),
+    ("de-DE.md", "de-DE", "Liste", "ˈliːstə"),
     ("pt-UY.md", "pt-UY", "mesmo", "ˈmesmu"),
-    ("pt-UY.md", "pt-BR", "mesmo", "ˈmezmu"),
 ]
 
 
 @pytest.mark.parametrize("page, code, word, form", WORD_FORMS)
 def test_page_quotes_the_form_the_engine_gives(page, code, word, form):
     text = (DOCS / page).read_text(encoding="utf-8")
-    assert f"`{form}`" in text and f"`{word}`" in text
+    assert f"`{form}` for `{word}`" in text
     assert G2P(code).transcribe_word(word) == form
+
+
+def test_pt_uy_quotes_the_voiced_coda_of_pt_br():
+    text = (DOCS / "pt-UY.md").read_text(encoding="utf-8")
+    assert "`pt-BR` gives `ˈmezmu`" in text
+    assert G2P("pt-BR").transcribe_word("mesmo") == "ˈmezmu"
 
 
 def test_an_valleys_quotes_both_entry_points_on_the_middle_dot():
