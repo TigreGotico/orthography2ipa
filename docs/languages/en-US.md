@@ -62,8 +62,8 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 | Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
 |:--|:--|:--|:--|:--|--:|--:|:--|
 | `cmudict` ([cmusphinx/cmudict](https://github.com/cmusphinx/cmudict)) | `en-US` | gold | lexicon-derived | BSD-style (CMU) | 126050 | 0.3376 | yes |
-| `ipadict` ([open-dict-data/ipa-dict](https://github.com/open-dict-data/ipa-dict)) | `en-US` | gold | lexicon-derived | MIT, each file its own | 125925 | 0.2903 | yes |
-| `ipa_babylm` ([phonemetransformers/IPA-BabyLM](https://huggingface.co/datasets/phonemetransformers/IPA-BabyLM)) | `en-US` | generated | espeak-derived | Not stated upstream | 20107 | 0.3516 | no |
+| `ipadict` ([open-dict-data/ipa-dict](https://github.com/open-dict-data/ipa-dict)) | `en-US` | gold | lexicon-derived | MIT, each file its own | 125925 | 0.2902 | yes |
+| `ipa_babylm` ([phonemetransformers/IPA-BabyLM](https://huggingface.co/datasets/phonemetransformers/IPA-BabyLM)) | `en-US` | generated | espeak-derived | Not stated upstream | 20107 | 0.3515 | no |
 | `ipa_childes` ([fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split)) | `en-US` | generated | espeak-derived | CC BY 4.0 | 18054 | 0.2650 | no |
 <!-- atlas:datasets end -->
 
@@ -159,7 +159,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨ou⟩ | [aʊ] [ʌ] [uː] |  |
 | ⟨ough⟩ | [ɔː] [oʊ] [ʌf] [ɒf] [aʊ] [uː] |  |
 | ⟨our⟩ | [aʊəɹ] [ɔːɹ] |  |
-| ⟨ow⟩ | [aʊ] [oʊ] | nucleus unstressed [oʊ] |
+| ⟨ow⟩ | [aʊ] [oʊ] |  |
 | ⟨oy⟩ | [ɔɪ] |  |
 | ⟨p⟩ | [p] |  |
 | ⟨ph⟩ | [f] |  |
@@ -198,7 +198,7 @@ Grammatical endings: ⟨-cial⟩ [ʃəl], ⟨-cian⟩ [ʃən], ⟨-cion⟩ [ʃə
 <!-- atlas:rules begin -->
 ## Rules
 
-The spec applies 34 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
+The spec applies 38 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
 
 | Rule | Change | Example | Cited |
 |:--|:--|:--|:--|
@@ -224,6 +224,10 @@ The spec applies 34 allophone rules after the letters are read. The change colum
 | `EN_GB_OING_HIATUS` | /ɔɪ/ → [oʊɪ], spelled ⟨oi⟩, before ⟨ng⟩, with more context in the spec | - | - |
 | `EN_GB_FINAL_E_SOLE_VOWEL` | ∅ → [i], word-finally, spelled ⟨e⟩, with more context in the spec | ⟨be⟩ [bi] | [Kenyon 1953](#src-kenyon1953) |
 | `EN_GB_FINAL_Y_MONOSYLLABLE` | /i/ → [aɪ], word-finally, spelled ⟨y⟩, with more context in the spec | ⟨my⟩ [maɪ] | [English orthography 2026](#src-wp_english_orthography) |
+| `EN_GB_UNSTRESSED_FINAL_OW` | /aʊ/ → [oʊ], word-finally, unstressed, spelled ⟨ow⟩ | - | [Wells 1982](#src-wells1982_vol3) |
+| `EN_GB_UNSTRESSED_OW_BEFORE_S` | /aʊ/ → [oʊ], unstressed, spelled ⟨ow⟩, before ⟨s⟩, with more context in the spec | - | [Wells 1982](#src-wells1982_vol3) |
+| `EN_GB_UNSTRESSED_OW_BEFORE_ED` | /aʊ/ → [oʊ], unstressed, spelled ⟨ow⟩, before ⟨e⟩, with more context in the spec | - | [Wells 1982](#src-wells1982_vol3) |
+| `EN_GB_UNSTRESSED_OW_BEFORE_ING` | /aʊ/ → [oʊ], unstressed, spelled ⟨ow⟩, before ⟨i⟩, with more context in the spec | - | [Wells 1982](#src-wells1982_vol3) |
 | `EN_US_FINAL_S_VOICING_AFTER_TENSE_VOWEL` | /s/ → [z], word-finally, before a word boundary, after [i] [u] [eɪ] [oʊ] [aɪ] [aʊ] [ɔɪ] [ɑ] and 16 more, spelled ⟨s⟩ | ⟨days⟩ [deɪz] | [Wells 1982](#src-wells1982_vol3), [Kenyon 1953](#src-kenyon1953) |
 | `EN_US_LOT_PALM_MERGER` | /ɒ/ → [ɑ] | - | [Wells 1982](#src-wells1982_vol3) |
 | `EN_US_NURSE_RCOLOURED` | /ɜːɹ/ → [ɝ] | - | [Wells 1982](#src-wells1982_vol3), [Ladefoged 2011](#src-ladefoged2011), [Kenyon 1953](#src-kenyon1953) |

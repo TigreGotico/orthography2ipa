@@ -235,7 +235,7 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 |:--|:--|:--|:--|:--|--:|--:|:--|
 | `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `en` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 80987 | 0.2645 | yes |
 | `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `en-GB` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 81537 | 0.2314 | yes |
-| `ipa_childes` ([fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split)) | `en-GB` | generated | espeak-derived | CC BY 4.0 | 11446 | 0.2960 | no |
+| `ipa_childes` ([fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split)) | `en-GB` | generated | espeak-derived | CC BY 4.0 | 11446 | 0.2959 | no |
 | `ipadict` ([open-dict-data/ipa-dict](https://github.com/open-dict-data/ipa-dict)) | `en-GB` | generated | espeak-derived | MIT, each file its own | 65118 | 0.2211 | no |
 <!-- atlas:datasets end -->
 
@@ -330,7 +330,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨ou⟩ | [aʊ] [ʌ] [uː] |  |
 | ⟨ough⟩ | [ɔː] [əʊ] [ʌf] [ɒf] [aʊ] [uː] |  |
 | ⟨our⟩ | [aʊəɹ] [ɔːɹ] |  |
-| ⟨ow⟩ | [aʊ] [əʊ] | nucleus unstressed [əʊ] |
+| ⟨ow⟩ | [aʊ] [əʊ] |  |
 | ⟨oy⟩ | [ɔɪ] |  |
 | ⟨p⟩ | [p] |  |
 | ⟨ph⟩ | [f] |  |
@@ -369,7 +369,7 @@ Grammatical endings: ⟨-cial⟩ [ʃəl], ⟨-cian⟩ [ʃən], ⟨-cion⟩ [ʃə
 <!-- atlas:rules begin -->
 ## Rules
 
-The spec applies 44 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
+The spec applies 48 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
 
 | Rule | Change | Example | Cited |
 |:--|:--|:--|:--|
@@ -417,6 +417,10 @@ The spec applies 44 allophone rules after the letters are read. The change colum
 | `EN_GB_OING_HIATUS` | /ɔɪ/ → [əʊɪ], spelled ⟨oi⟩, before ⟨ng⟩, with more context in the spec | - | [Carney 1994](#src-carney1994) |
 | `EN_GB_FINAL_E_SOLE_VOWEL` | ∅ → [iː], word-finally, spelled ⟨e⟩, with more context in the spec | ⟨be⟩ [biː] | [English orthography 2026](#src-wp_english_orthography) |
 | `EN_GB_FINAL_Y_MONOSYLLABLE` | /i/ → [aɪ], word-finally, spelled ⟨y⟩, with more context in the spec | ⟨my⟩ [maɪ] | [English orthography 2026](#src-wp_english_orthography) |
+| `EN_GB_UNSTRESSED_FINAL_OW` | /aʊ/ → [əʊ], word-finally, unstressed, spelled ⟨ow⟩ | - | - |
+| `EN_GB_UNSTRESSED_OW_BEFORE_S` | /aʊ/ → [əʊ], unstressed, spelled ⟨ow⟩, before ⟨s⟩, with more context in the spec | - | - |
+| `EN_GB_UNSTRESSED_OW_BEFORE_ED` | /aʊ/ → [əʊ], unstressed, spelled ⟨ow⟩, before ⟨e⟩, with more context in the spec | - | - |
+| `EN_GB_UNSTRESSED_OW_BEFORE_ING` | /aʊ/ → [əʊ], unstressed, spelled ⟨ow⟩, before ⟨i⟩, with more context in the spec | - | - |
 <!-- atlas:rules end -->
 
 <!-- atlas:examples begin words="pin|tap|button|butter|leaf|feel|ambitious|arrive|bathe|bird|city|dance|delicious|digestion" -->
