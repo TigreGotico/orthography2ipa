@@ -50,7 +50,7 @@ The spec cites 7 works. 4 of them have a DOI or a URL. The spec file holds a not
 3. <a id="src-penny2002"></a>Penny, R. (2002). *A History of the Spanish Language*. Cambridge University Press.
 4. <a id="src-mateus_dandrade2000"></a>Mateus, M.H.M. & d'Andrade, E. (2000). *The Phonology of Portuguese*. Oxford University Press.
 5. <a id="src-alarcos_llorach1994"></a>Alarcos Llorach, E. (1994). *Gramática de la Lengua Española*. Espasa.
-6. <a id="src-costas_gonzalez1992"></a>Costas González, X. H. (1992). *Breve caracterización das falas (fundamentalmente galegas) do val do río das Ellas*. Cadernos de Lingua 6, Real Academia Galega. Cited: 86-87. [publicacionsperiodicas.academia.gal](https://publicacionsperiodicas.academia.gal/index.php/CadernosLingua)
+6. <a id="src-costas_gonzalez1992"></a>Costas González, X. H. (1992). *Breve caracterización das falas (fundamentalmente galegas) do val do río das Ellas*. Cadernos de Lingua 6, Real Academia Galega. Cited: 86-87. [doi.org](https://doi.org/10.32766/cdl.6.585)
 7. <a id="src-carrasco_gonzalez2024"></a>Carrasco González, J. M. (2024). *Propuesta ortográfica de la Universidad de Extremadura para la fala*. Limite 18, 99-105. Cited: 100, 104. [doi.org](https://doi.org/10.17398/1888-4067.18.99)
 <!-- atlas:sources end -->
 
@@ -163,22 +163,22 @@ The spec declares no stress rule.
 <!-- atlas:rules begin -->
 ## Rules
 
-The spec applies 12 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
+The spec applies 10 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
 
 | Rule | Change | Example | Cited |
 |:--|:--|:--|:--|
-| `GL_OPEN_O` | /o/ → [o], stressed, in 4 listed words | - | [Costas 1992](#src-costas_gonzalez1992) |
 | `GL_STOP_AFTER_NASAL` | /β/ → [b], after a coda nasal | ⟨ambos⟩ [ˈambos] | Regueira 2010, Freixeiro Mato 1998, Xove 2002 |
 | `GL_STOP_AFTER_NASAL_D` | /ð/ → [d], after a coda nasal | - | Regueira 2010 |
 | `GL_STOP_AFTER_NASAL_G` | /ɣ/ → [ɡ], after a coda nasal | ⟨tango⟩ [ˈtaŋɡo] | Regueira 2010, Freixeiro Mato 1998 |
 | `GL_NASAL_VELAR` | /n/ → [ŋ], before [k] [ɡ] [ɣ] [x] | ⟨Angumil⟩ [aŋɡuˈmil] | Regueira 2010, Freixeiro Mato 1998, Xove 2002 |
 | `GL_NASAL_LABIAL` | /n/ → [m], before [p] [b] [β] [m] | ⟨benvida⟩ [bemˈbiða] | Regueira 2010, Freixeiro Mato 1998 |
 | `GL_NASAL_FINAL_NS` | /n/ → [ŋ], before [s], with more context in the spec | ⟨Bertamiráns⟩ [beɾtamiˈɾaŋs] | Regueira 2010, Freixeiro Mato 1998 |
-| `GL_RAISE_O_BEFORE_NASAL` | /ɔ/ → [o], before a coda nasal, before [n] [m] [ŋ] [ɲ] | ⟨Antón⟩ [anˈtoŋ] | Regueira 2010, Freixeiro Mato 1998 |
 | `GL_TRILL_AFTER_L_N_S` | /ɾ/ → [r], after [l] [n] [s] [ŋ] | ⟨alroto⟩ [alˈroto] | Freixeiro Mato 1998, Xove 2002 |
 | `GL_STOP_BEFORE_IDENTICAL_B` | /β/ → [b], before [β] | - | Regueira 2010, Freixeiro Mato 1998 |
 | `GL_STOP_BEFORE_IDENTICAL_D` | /ð/ → [d], before [ð] | - | Regueira 2010, Freixeiro Mato 1998 |
 | `GL_STOP_BEFORE_IDENTICAL_G` | /ɣ/ → [ɡ], before [ɣ] | - | Regueira 2010, Freixeiro Mato 1998 |
+
+The spec switches off 2 inherited rules: `GL_OPEN_O`, `GL_RAISE_O_BEFORE_NASAL`.
 <!-- atlas:rules end -->
 
 <!-- atlas:examples begin -->
