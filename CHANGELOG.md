@@ -1,5 +1,18 @@
 # Changelog
 
+## [7.124.12a2](https://github.com/TigreGotico/orthography2ipa/tree/7.124.12a2) (2026-11-19)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.12a1...7.124.12a2)
+
+## [7.124.12a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.12a1) (2026-11-19)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.11a1...7.124.12a1)
+
+**Merged pull requests:**
+
+- docs\(languages\): name the engine forms that differ from the quoted examples [\#2384](https://github.com/TigreGotico/orthography2ipa/pull/2384) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- fix\(ci\): compare the regression gate with the base branch's sample [\#2376](https://github.com/TigreGotico/orthography2ipa/pull/2376) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.124.11a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.11a1) (2026-11-19)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.10a1...7.124.11a1)
