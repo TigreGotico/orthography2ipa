@@ -739,5 +739,6 @@
       "measured": "The 53,147-word portal_lupo set for pt-TL-x-dili (LUPo generator output), diffed against pt-PT-x-lisboa, is a near-total 1:1 character substitution of the Lisbon entries: it still carries Lisbon-style unstressed-vowel reduction (60% of rows keep a reduced [ə], 31% a reduced final [ʊ]) and coda /s/->[ʃ], the opposite of what Albuquerque (2010:275 fn.7, 277) documents for East Timorese Portuguese.",
       "reference": "spec notes"
     }
-  }
+  },
+  "collapse_geminates": true
 }

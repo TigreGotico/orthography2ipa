@@ -237,7 +237,7 @@ The set follows the conventions for vocalized text that `scripts/gen_arabic_orth
 | `ars-SA` | the epenthesis of the gahawa syndrome (gahawa, aḥamar) | Ingham 1994 |
 | `acw-SA` | urban stop interdentals, and a register close to Cairene | Omar 1975, Abdoh 2010 |
 | `ayn-YE` | the verb aští, diphthongs and interdentals kept | Watson 2002 |
-| `ars-SA-x-qassim` | the Najdi velar affricates [ts] and [dz], and /aj aw/ to [eː oː] (loːnak, joːm, bureːda), which central Najdi does not have | Alhoody 2019:42, Al-Rojaie 2013 |
+| `ars-SA-x-qassim` | the Najdi velar affricates [ts] and [dz], and /aj aw/ to [eː oː] (loːnak, joːm, bureːda), the second shared with central Najdi `ars-SA` | Alhoody 2019:42, Al-Rojaie 2013 |
 | `ar-SA-x-rijal-alma` | the old lateral emphatics, ض as voiced [ɮˤ] and ظ as voiceless [ɬˤ], kept apart, and [q] for qāf | Watson and Al-Azraqi 2011, Asiri 2009, Al-Azraqi 2010 |
 | `afb-SA-x-sharqiya` | Baḥārna ج to [j], affricated kāf [tʃ], qāf [ɡ] | Johnstone 1967, Holes 2004, Al-Taisan 2022 |
 | `ary-MA` | heavy initial clusters, ma-...-š negation, n- first person singular, and the words ma-ṭīša, zwīn and bzzāf | Harrell 1962, Heath 2020 |

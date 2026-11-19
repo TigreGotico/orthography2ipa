@@ -532,5 +532,6 @@
       ],
       "notes": "Toledo & Cantoni (2021: 27) report Roncarati & Uchôa (2014), Fortaleza DSC corpus: 16.1 % aspiration overall, and 52 % before /d/ and 61 % before /n/, the two contexts where it is the majority. ALiB gives Fortaleza only 2 % aspiration (ibid.), and Fortaleza keeps the alveolar 'em qualquer contexto' (Marins & Margotti 2012: 257, quoting Jesus & Mota 2007); the rule models the popular speech of the DSC corpus. [d͡ʒ] is listed because a /d/ before [i] affricates first (desde)."
     }
-  ]
+  ],
+  "collapse_geminates": true
 }
