@@ -31,7 +31,7 @@ The notes of the spec file open with these words:
 
 > Najdi Arabic (نجدي), central Arabia incl. Riyadh, the prestige variety within Saudi Arabia. Primary reference Ingham (1994) Najdi Arabic: Central Arabian.
 
-The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 11 works, from 1994 to 2026. [Sources](#sources) lists them. The spec file writes 24 of the 249 spellings of its letter table and takes the other 225 from [Proto-Peninsular Arabic](ar-x-peninsul.md) `ar-x-peninsul`.
+The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 11 works, from 1994 to 2026. [Sources](#sources) lists them. The spec file writes 38 of the 261 spellings of its letter table and takes the other 223 from [Proto-Peninsular Arabic](ar-x-peninsul.md) `ar-x-peninsul`.
 
 The [spec file](../../orthography2ipa/data/ars-SA.json) holds the full notes, with the caveats of the spec.
 <!-- atlas:overview end -->
@@ -70,15 +70,15 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 
 | Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
 |:--|:--|:--|:--|:--|--:|--:|:--|
-| `primary_sources` | `ars-SA` | gold | expert-human | Apache-2.0 (this repository). Each row quotes and cites a published example. | 25 | 0.1491 | yes |
-| `arabic_tts` | `ars-SA` | silver | llm-corrected | Apache-2.0 (this repository) | 20 | 0.0726 | no |
-| `gold20_arabic` ([TigreGotico/arabic-dialects-gold20](https://huggingface.co/datasets/TigreGotico/arabic-dialects-gold20)) | `ars-SA` | silver | llm-corrected | CC BY 4.0 | 20 | 0.0671 | no |
+| `primary_sources` | `ars-SA` | gold | expert-human | Apache-2.0 (this repository). Each row quotes and cites a published example. | 25 | 0.0891 | yes |
+| `arabic_tts` | `ars-SA` | silver | llm-corrected | Apache-2.0 (this repository) | 20 | 0.0326 | no |
+| `gold20_arabic` ([TigreGotico/arabic-dialects-gold20](https://huggingface.co/datasets/TigreGotico/arabic-dialects-gold20)) | `ars-SA` | silver | llm-corrected | CC BY 4.0 | 20 | 0.0272 | no |
 <!-- atlas:datasets end -->
 
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 48 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 49 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Dental | Alveolar | Postalveolar | Palatal | Velar | Uvular | Pharyngeal | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -94,7 +94,7 @@ The spec can emit 48 segments. They come from the letter table, the positional r
 |:--|:-:|:-:|
 | Close | i iː | u uː |
 | Near-close | ɪ ɪː | ʊ ʊː |
-| Close-mid |  | o oː |
+| Close-mid | eː | o oː |
 | Open | a aː | ɑ ɑː |
 
 Sequences that the spec writes as one unit: [w] [ː].
@@ -283,6 +283,10 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨وَالظظ⟩ | [waðˤðˤ] [wadˤdˤ] |  |
 | ⟨وَاللل⟩ | [wall] |  |
 | ⟨وَالنن⟩ | [wann] |  |
+| ⟨وَو⟩ | [waw] | before consonant [woː] · default [waw] · word final [woː] |
+| ⟨وَوْ⟩ | [woː] |  |
+| ⟨وَي⟩ | [waj] | before consonant [weː] · default [waj] · word final [weː] |
+| ⟨وَيْ⟩ | [weː] |  |
 | ⟨وَٱ⟩ | [wa] |  |
 | ⟨وُ⟩ | [wu] |  |
 | ⟨وِال⟩ | [wil] |  |
@@ -306,6 +310,10 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨يي⟩ | [jj] |  |
 | ⟨يَ⟩ | [ja] |  |
 | ⟨يَا⟩ | [jaː] |  |
+| ⟨يَو⟩ | [jaw] | before consonant [joː] · default [jaw] · word final [joː] |
+| ⟨يَوْ⟩ | [joː] |  |
+| ⟨يَي⟩ | [jaj] | before consonant [jeː] · default [jaj] · word final [jeː] |
+| ⟨يَيْ⟩ | [jeː] |  |
 | ⟨يِ⟩ | [ji] |  |
 | ⟨ً⟩ | [an] |  |
 | ⟨ًا⟩ | [an] |  |
@@ -316,19 +324,23 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨َا⟩ | [aː] |  |
 | ⟨َاي⟩ | [aːj] |  |
 | ⟨َة⟩ | [a] | before vowel [at] · default [a] |
-| ⟨َو⟩ | [aw] |  |
+| ⟨َو⟩ | [aw] | before consonant [oː] · default [aw] · word final [oː] |
+| ⟨َوا⟩ | [awaː] |  |
 | ⟨َوو⟩ | [aww] |  |
 | ⟨َوَ⟩ | [awa] |  |
 | ⟨َوَا⟩ | [awaː] |  |
 | ⟨َوُ⟩ | [awu] |  |
 | ⟨َوِ⟩ | [awi] |  |
+| ⟨َوْ⟩ | [oː] |  |
 | ⟨َى⟩ | [aː] |  |
-| ⟨َي⟩ | [aj] |  |
+| ⟨َي⟩ | [aj] | before consonant [eː] · default [aj] · word final [eː] |
+| ⟨َيا⟩ | [ajaː] |  |
 | ⟨َيي⟩ | [ajj] |  |
 | ⟨َيَ⟩ | [aja] |  |
 | ⟨َيَا⟩ | [ajaː] |  |
 | ⟨َيُ⟩ | [aju] |  |
 | ⟨َيِ⟩ | [aji] |  |
+| ⟨َيْ⟩ | [eː] |  |
 | ⟨َٰ⟩ | [aː] |  |
 | ⟨ُ⟩ | [u] |  |
 | ⟨ُو⟩ | [uː] |  |
@@ -395,7 +407,7 @@ The spec applies 34 allophone rules after the letters are read. The change colum
 | `AR_PEN_EMPH_BACK_AA_AFTER` | /aː/ → [ɑː], after [tˤ] [dˤ] [sˤ] [ðˤ] [zˤ] | - | [Watson 2002](#src-watson2002) |
 | `AR_PEN_EMPH_BACK_AA_BEFORE` | /aː/ → [ɑː], before [tˤ] [dˤ] [sˤ] [ðˤ] [zˤ] | - | [Watson 2002](#src-watson2002) |
 | `NAJD_AFFRIC_K_BEFORE` | /k/ → [ts], before [i] [iː] [j] [e] [eː] | ⟨'dog'⟩ [tsɛlb] | [Ingham 1994](#src-ingham1994), Al Mahmoud 2020 |
-| `NAJD_AFFRIC_K_AFTER` | /k/ → [ts], after [i] [iː] [j] [e] [eː] | - | [Ingham 1994](#src-ingham1994), Al Mahmoud 2020 |
+| `NAJD_AFFRIC_K_AFTER` | /k/ → [ts], in the coda, after [i] [iː] [j] [e] [eː] | ⟨never⟩ [lɪts] | [Ingham 1994](#src-ingham1994), [Alshammari 2026](#src-alshammari2026), Al Mahmoud 2020 |
 | `NAJD_AFFRIC_G_BEFORE` | /ɡ/ → [dz], before [i] [iː] | - | [Ingham 1994](#src-ingham1994), [Alshammari 2026](#src-alshammari2026), [Mahzari 2023](#src-mahzari2023) |
 | `NAJD_AFFRIC_G_AFTER` | /ɡ/ → [dz], after [i] [iː] | - | [Ingham 1994](#src-ingham1994), [Alshammari 2026](#src-alshammari2026), [Mahzari 2023](#src-mahzari2023) |
 | `NAJD_GAHAWA_h` | /h/ → [ha], in the coda, before a consonant, after [a] [ɑ] | - | [Ingham 1994](#src-ingham1994) |
@@ -420,18 +432,18 @@ The next table sets the engine output against worked examples printed in a cited
 
 | Spelling | Printed in the source | Engine output | Source, page | Same |
 |:--|:--|:--|:--|:--|
-| بَيْت | /beːt/ | [ˈbajt] | Algethami 2023, p. 3385 | no |
+| بَيْت | /beːt/ | [ˈbeːt] | Algethami 2023, p. 3385 | no |
 | بَات | /baːt/ | [ˈbaːt] | Algethami 2023, p. 3385 | no |
 | مَكَان | [mitsaːn] | [maˈkaːn] | Mahzari 2023, p. 800 | no |
 | قَبْر | [ɡabr] | [ˈɡabr] | Mahzari 2023, p. 804 | no |
 | كِبِير | [tsibiːr] | [tsiˈbiːr] | Alshammari 2026, p. 1335 | no |
 | قِدْر | [dzi.dir] | [ˈdzidr] | Alshammari 2026, p. 1337 | no |
 | رِيق | [ri:dz] | [ˈriːdz] | Alshammari 2026, p. 1337 | no |
-| شَوْك | [ʃo:k] | [ˈʃawk] | Alshammari 2026, p. 1336 | no |
+| شَوْك | [ʃo:k] | [ˈʃoːk] | Alshammari 2026, p. 1336 | no |
 | قِبْلَة | [dziblah] | [ˈdzibla] | Mahzari 2023, p. 803 | no |
 | قَلَم | [ɡalam] | [ˈɡalam] | Mahzari 2023, p. 804 | no |
 | كَبِير | [tsibi:r] | [kaˈbiːr] | Mahzari 2023, p. 800 | no |
-| بَيْت | [be:t] | [ˈbajt] | Algethami 2023, p. 3385 | no |
+| بَيْت | [be:t] | [ˈbeːt] | Algethami 2023, p. 3385 | no |
 
 Source: Algethami, G. (2023). *Acoustic characterization of Najdi Arabic Vowel System*. Proc. 20th ICPhS (Prague), paper 868, 3384-3386. [internationalphoneticassociation.org](https://www.internationalphoneticassociation.org/icphs-proceedings/ICPhS2023/full_papers/868.pdf)
 Source: Mahzari, M. (2023). *The Historical Changes of /k/ and /q/ in Najdi Arabic: A Phonological Analysis*. Theory and Practice in Language Studies 13(3), 796-807. [doi.org](https://doi.org/10.17507/tpls.1303.30)
