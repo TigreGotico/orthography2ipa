@@ -1,5 +1,14 @@
 # Changelog
 
+## [7.124.9a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.9a1) (2026-11-19)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.8a1...7.124.9a1)
+
+**Merged pull requests:**
+
+- fix\(es-ES\): voice /s/ before a voiced consonant [\#2369](https://github.com/TigreGotico/orthography2ipa/pull/2369) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- fix\(fax\): read ⟨é ó⟩ as the close-mid \[e o\] [\#2363](https://github.com/TigreGotico/orthography2ipa/pull/2363) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.124.8a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.8a1) (2026-11-19)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.7a1...7.124.8a1)
