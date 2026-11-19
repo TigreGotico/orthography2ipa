@@ -1,25 +1,22 @@
 """The language-model functions left in ``feats`` warn, name the release that
 removes them, and still return what ``lm`` returns.
 
-The removal version comes from ``version.py``, read as text, so the expected
-message does not depend on the code that writes the warning.
+The API stability page fixes the removal version at deprecation time: it is
+``VERSION_MAJOR + 1`` of the release that names it. The warning first named a
+removal release while ``version.py`` had ``VERSION_MAJOR = 7``, so they go in 8.0.0.
+A major release that keeps them makes the warning name a later release, and
+this test fails.
 """
-import re
 import warnings
-from pathlib import Path
 
 import pytest
 
 import orthography2ipa
 from orthography2ipa import feats, lm
 
-VERSION = Path(orthography2ipa.__file__).parent / "version.py"
+DEPRECATED_AT_MAJOR = 7
+REMOVAL_VERSION = f"{DEPRECATED_AT_MAJOR + 1}.0.0"
 WORDS = ["mar", "sol", "casa"]
-
-
-def removal_version() -> str:
-    major = re.search(r"^VERSION_MAJOR = (\d+)$", VERSION.read_text(encoding="utf-8"), re.M)
-    return f"{int(major.group(1)) + 1}.0.0"
 
 
 @pytest.fixture(scope="module")
@@ -42,8 +39,9 @@ def test_a_moved_function_warns_once_at_the_caller_with_its_removal_version(name
     deprecations = [w for w in caught if issubclass(w.category, DeprecationWarning)]
     assert [str(w.message) for w in deprecations] == [
         f"orthography2ipa.feats.{name} is deprecated and will be removed in "
-        f"{removal_version()}; use orthography2ipa.lm.{name}."]
-    assert deprecations[0].filename == __file__
+        f"{REMOVAL_VERSION}; use orthography2ipa.lm.{name}."]
+    assert (deprecations[0].filename, deprecations[0].lineno) == (
+        __file__, call.__code__.co_firstlineno)
 
 
 @pytest.mark.parametrize("name, call", CALLS, ids=[c[0] for c in CALLS])

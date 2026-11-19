@@ -79,11 +79,12 @@ def test_an_arabic_variety_in_arabic_script_names_its_own_spec(tag, code):
 
 
 @pytest.mark.parametrize("tag,code", [
-    ("bs-Cyrl", "sr"), ("hr-Cyrl", "sr"), ("hr-Cyrl-HR", "sr"),
+    ("bs-Cyrl-RS", "sr"), ("hr-Cyrl", "sr"), ("hr-Cyrl-HR", "sr"),
 ])
 def test_with_no_own_spec_near_enough_the_old_target_stays(tag, code):
-    # The bs and hr specs read Latin, so no own-language spec is near
-    # enough; the wide search runs.
+    # The tag distance reads no spec data, so no own-language spec is near
+    # enough for a Cyrillic bs or hr tag that no alias names; the wide
+    # search runs.
     assert resolve(tag) == code
     assert not resolves_exactly(tag)
 
