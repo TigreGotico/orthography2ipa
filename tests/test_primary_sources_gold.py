@@ -200,3 +200,12 @@ def test_registered_langs_are_exactly_the_langs_present_in_the_rows():
     assert set(langs) == {r["lang"] for r in ROWS if r.get("lang")}
     for lang in langs:
         assert load_primary_sources(lang, 100), f"{lang} registered but yields no pairs"
+
+
+def test_ganho_has_the_low_central_nasal_vowel_barbosa_albano_print():
+    # Barbosa & Albano (2004: 228), consonant exemplar list: ganho [ɡɐ̃ɲʊ].
+    # p. 229 gives the same [ɐ̃] before /ɲ/ in ganhar.
+    row = next(r for r in ROWS if r["id"] == "barbosa2004-019")
+    assert row["orthography"] == "ganho"
+    assert row["ipa"] == "ɡɐ̃ɲʊ"
+    assert row["source_notation"] == "ɡɐ̃ɲʊ"

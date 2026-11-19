@@ -211,7 +211,7 @@ The `pt-PT-x-porto` spec does not model the RD2 subtype or the /i/ diphthong. Th
 
 ### Brazilian Portuguese
 
-Barbosa & Albano (2004: 228) give ganho as `[ɡẽɲʊ]`, with a nasal vowel before the palatal nasal. o2i gives `ˈɡaɲu`, with no nasal vowel.
+Barbosa & Albano (2004: 228) give ganho as `[ɡɐ̃ɲʊ]`, with the low central nasal vowel before the palatal nasal. o2i gives `ˈɡɐ̃ɲu`, which differs only in the final vowel described below.
 
 The Illustration writes final unstressed /o/ as `[ʊ]` (galo `[ɡalʊ]`, caro `[kaɾʊ]`). o2i raises it to `[u]`. The Illustration writes carro as `[kaɣʊ]`, with a velar fricative for /R/, where o2i gives a uvular `[ʁ]`. The source says that /R/ varies across Brazil, so this is a variety choice, not an error.
 
