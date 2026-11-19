@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.124.24a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.24a1) (2026-11-19)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.23a1...7.124.24a1)
+
+**Merged pull requests:**
+
+- fix\(pt-BR-x-paraiba\): read /t d/ before \[i\] as an affricate after a coda \[ʃ ʒ\] [\#2410](https://github.com/TigreGotico/orthography2ipa/pull/2410) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.124.23a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.23a1) (2026-11-19)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.22a1...7.124.23a1)
@@ -345,17 +353,9 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.123.2a1...7.123.3a1)
 
-**Merged pull requests:**
-
-- fix\(fr\): keep host entries after elision, resolve unlisted regions to fr-FR [\#2309](https://github.com/TigreGotico/orthography2ipa/pull/2309) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [7.123.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.123.2a1) (2026-11-12)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.123.1a2...7.123.2a1)
-
-**Merged pull requests:**
-
-- fix: hash the Unicode database version into the engine fingerprint [\#2308](https://github.com/TigreGotico/orthography2ipa/pull/2308) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.123.1a2](https://github.com/TigreGotico/orthography2ipa/tree/7.123.1a2) (2026-11-12)
 
