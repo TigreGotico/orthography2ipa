@@ -9,6 +9,8 @@ vol. 1 for the RP lexical-set values) is the productive one, so it is pinned
 in all three of its inflected shapes — bare, plural, past — because the
 suffix attaches outside the stem and must not reach back into its nucleus.
 """
+import re
+
 import pytest
 
 from orthography2ipa.g2p import G2P
@@ -288,6 +290,45 @@ def test_en_gb_unstressed_ow_is_goat_and_stressed_ow_is_mouth(word, expected):
 ])
 def test_en_us_unstressed_ow_takes_the_american_goat_vowel(word, expected):
     assert _t("en-US", word) == expected
+
+
+def _ow_vowels(ipa):
+    return re.findall("aʊ|əʊ|oʊ", ipa)
+
+
+# The GOAT rules reach a final ⟨ow⟩ through the inflections -s, -ed and -ing.
+# Readings from Wiktionary, RP and GA (revision in brackets).
+@pytest.mark.parametrize("word,rp,ga", [
+    ("windows", "ˈwɪndəʊz", "ˈwɪndoʊz"),       # 90497898
+    ("followed", "ˈfɒl.əʊd", "ˈfɑ.loʊd"),      # 89356723
+    ("following", "ˈfɒləʊɪŋ", "ˈfɑloʊɪŋ"),     # 95586498
+])
+def test_en_unstressed_ow_is_goat_before_an_inflection(word, rp, ga):
+    assert _ow_vowels(_t("en-GB", word)) == _ow_vowels(rp)
+    assert _ow_vowels(_t("en-US", word)) == _ow_vowels(ga)
+
+
+# Each ⟨ow⟩ below is MOUTH /aʊ/: a stressed syllable, or the stressed head of
+# a compound. Readings from Wiktionary (revision in brackets); en-GB and en-US
+# agree on the vowel. The test compares the ⟨ow⟩ vowels only, so a wrong
+# reading elsewhere in the word does not hide this rule.
+_STRESS_LIMIT = pytest.mark.xfail(
+    strict=True,
+    reason="stress limit: the spec stresses the first syllable, so the final "
+           "⟨ow⟩ of a final-stress word or a compound is called unstressed")
+
+
+@pytest.mark.parametrize("code", ["en-GB", "en-US"])
+@pytest.mark.parametrize("word,reading", [
+    ("downtown", "ˈdaʊnˌtaʊn"),   # 94553473
+    ("breakdown", "ˈbɹeɪkdaʊn"),  # 95636882
+    ("sunflower", "ˈsʌn.flaʊ.ə"),  # 93739281
+    pytest.param("allow", "əˈlaʊ", marks=_STRESS_LIMIT),       # 95604228
+    pytest.param("somehow", "ˈsʌmhaʊ", marks=_STRESS_LIMIT),   # 95108754
+    pytest.param("eyebrow", "ˈaɪˌbɹaʊ", marks=_STRESS_LIMIT),  # 93693268
+])
+def test_en_stressed_ow_keeps_mouth(code, word, reading):
+    assert _ow_vowels(_t(code, word)) == _ow_vowels(reading)
 
 
 # The same table lists ⟨rh⟩ beside ⟨r⟩ as a spelling of /r/ (rhyme).
