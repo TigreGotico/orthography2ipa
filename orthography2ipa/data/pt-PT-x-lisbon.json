@@ -26,6 +26,25 @@
   },
   "allophone_rules": [
     {
+      "id": "PT_EX_CONSONANT_GLIDE",
+      "phonemes": [
+        "e",
+        "ɛ",
+        "ɨ",
+        "i"
+      ],
+      "surface": "ɐj",
+      "grapheme": [
+        "e"
+      ],
+      "word_initial": true,
+      "followed_by_grapheme": [
+        "x"
+      ],
+      "followed_by_2": "consonant",
+      "notes": "Lisbon keeps the glide only in word-initial ⟨ex⟩ before a consonant: explicar [ɐjʃpliˈkaɾ], excelente [ɐjʃsɨˈlẽtɨ], exterior [ɐjʃtɨɾiˈoɾ]. Medial ⟨ex⟩ stays glide-less, as before: texto [ˈtɐʃtu], contexto [kõˈtɐʃtu], pretexto [pɾɨˈtɐʃtu], sexta [ˈsɐʃtɐ]. The Lisbon dictionary of the Portal da Língua Portuguesa (tugalex lbx data) gives texto tˈɐʃ·tu, contexto kõ·tˈɐʃ·tu, pretexto pɾɨ·tˈɐʃ·tu and sexta sˈɐʃ·tɐ, and gives explicar ɐjʃ·pli·kˈaɾ, excelente ɐjʃ·sɨ·lˈẽt and exterior ɐjʃ·tɨ·ɾjˈoɾ. Of the 287 ⟨ex⟩ + consonant headwords in the Infopédia list that the lbx data also holds, 236 of the 237 word-initial ones carry the glide, and 49 of the 50 medial ones do not (the odd medial one, sexta-feira, has its glide in the next syllable). The one word-initial exception is extra, lbx ˈiʃ·tɾɐ, where this spec gives [ˈɐjʃtɾɐ] like Infopédia. The medial reading is the existing stressed-⟨e⟩ rule LX_STRESSED_E_PREPALATAL, which centralises [e ɛ] before [ʃ]. Only the glide of pt-PT PT_EX_CONSONANT_GLIDE is restricted here, by word_initial."
+    },
+    {
       "id": "PT_STRESSED_E_PREPALATAL_CLOSE",
       "phonemes": [],
       "surface": "e",

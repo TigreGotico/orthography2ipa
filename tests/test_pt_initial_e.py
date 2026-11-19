@@ -10,8 +10,9 @@ The spec ranks the slot [i], [e], [ɛ] in an open first syllable and [ɛ], [e],
 [i] before a coda ⟨l⟩ or ⟨r⟩, where Infopédia decides the order. Before
 another coda consonant, which no source read names, it keeps [e] and ranks
 [ɛ] second. A stop before another consonant takes the coda-stop rules
-(tests/test_pt_coda_stop.py). Initial ⟨ex⟩, ⟨e⟩ before a vowel, ⟨e⟩ before a coda nasal and
-initial ⟨es⟩ before a consonant keep their own readings.
+(tests/test_pt_coda_stop.py). Initial ⟨ex⟩ before a vowel, ⟨e⟩ before a vowel, ⟨e⟩ before a coda
+nasal and initial ⟨es⟩ before a consonant keep their own readings. Initial ⟨ex⟩ before a
+consonant takes the glide of PT_EX_CONSONANT_GLIDE (tests/test_pt_ex_consonant_glide.py).
 
 Readings without a page come from Infopédia rows.
 """
@@ -88,7 +89,7 @@ def test_stressed_initial_e_keeps_the_row(word, ipa):
 @pytest.mark.parametrize("word, ipa, slot", [
     ("estar", "iʃˈtaɾ", ["i", "i", "ɨ", "ɛ"]),
     ("exemplo", "eˈʃẽplu", ROW),
-    ("explicar", "eʃpliˈkaɾ", ROW),
+    ("explicar", "ɐjʃpliˈkaɾ", ["ɐj"] * 4),
     ("eólico", "eˈɔliku", ROW),
     ("entrar", "ẽˈtɾaɾ", ["e", "i", "e", "e"]),
     ("enfim", "ẽˈfĩ", ["e", "i", "e", "e"]),
