@@ -1,5 +1,25 @@
 # Changelog
 
+## [7.124.15a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.15a1) (2026-11-19)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.14a2...7.124.15a1)
+
+**Merged pull requests:**
+
+- fix: read a likely script subtag as the regional spec it names [\#2386](https://github.com/TigreGotico/orthography2ipa/pull/2386) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [7.124.14a2](https://github.com/TigreGotico/orthography2ipa/tree/7.124.14a2) (2026-11-19)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.14a1...7.124.14a2)
+
+## [7.124.14a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.14a1) (2026-11-19)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.13a1...7.124.14a1)
+
+## [7.124.13a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.13a1) (2026-11-19)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.12a2...7.124.13a1)
+
 ## [7.124.12a2](https://github.com/TigreGotico/orthography2ipa/tree/7.124.12a2) (2026-11-19)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.12a1...7.124.12a2)
