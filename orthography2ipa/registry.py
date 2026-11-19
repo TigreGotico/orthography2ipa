@@ -8,7 +8,7 @@ from functools import lru_cache
 from importlib.metadata import entry_points
 from typing import Dict, List, Optional
 
-from linguatag import closest_lang, with_default_region
+from linguatag import closest_lang, likely_script, with_default_region
 
 import orthography2ipa.json_loader as json_loader
 from orthography2ipa.json_loader import available_json_codes, load_json_spec
@@ -432,6 +432,14 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
             return _ALIASES[code]
     if code in available:
         return code
+    # A script subtag that CLDR gives as the likely script of the rest of the
+    # tag adds nothing to it, so ``apc-Arab-SY`` names ``apc-SY``. Left in, it
+    # ties ``apc-SY`` with bare ``apc``, which maximizes to ``apc-Arab-SY``.
+    language, *rest = code.split("-")
+    if rest and len(rest[0]) == 4 and rest[0].isalpha():
+        unscripted = "-".join([language, *rest[1:]])
+        if unscripted in available and likely_script(unscripted) == rest[0]:
+            return unscripted
     if _HAS_LANGCODES and _PRIVATE_USE.search(code):
         # A script subtag that is the language's IANA Suppress-Script adds
         # no information (RFC 5646 §3.1.9), so ``pt-Latn-BR-x-sp`` names
