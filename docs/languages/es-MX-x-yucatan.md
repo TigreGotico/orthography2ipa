@@ -180,7 +180,7 @@ The spec applies 6 rules across a word boundary. The contexts are regular expres
 | `ES_EXT_FINAL_N_CORONAL` | `[nŋ]$` | `^[ˈˌ]?[tdðθszlɾrnɲʎʝʃʒf]` | left [n] | - | [Lipski 2011](#src-lipski_overview), Navarro Tomás 1918, Lipski 1986 |
 | `ES_EXT_FINAL_N_VELAR` | `[nŋ]$` | `^[ˈˌ]?[kɡɣxw]` | left [ŋ] | ⟨en casa⟩ [eŋ kása] | [Lipski 2011](#src-lipski_overview), Navarro Tomás 1918, Lipski 1986 |
 
-The spec switches off 3 inherited rules: `ES_SPIRANT_B`, `ES_SPIRANT_D`, `ES_SPIRANT_G`.
+The spec switches off 4 inherited rules: `ES_S_VOICING`, `ES_SPIRANT_B`, `ES_SPIRANT_D`, `ES_SPIRANT_G`.
 <!-- atlas:rules end -->
 
 <!-- atlas:examples begin -->

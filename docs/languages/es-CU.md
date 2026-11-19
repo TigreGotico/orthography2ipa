@@ -184,6 +184,8 @@ The spec applies 6 rules across a word boundary. The contexts are regular expres
 | `ES_EXT_FINAL_N_LABIAL` | `[nŋ]$` | `^[ˈˌ]?[pbβm]` | left [m] | ⟨un buen baile⟩ [um bwem baile] | [Lipski 2011](#src-lipski_overview), [Lipski 1986](#src-lipski1986), Navarro Tomás 1918 |
 | `ES_EXT_FINAL_N_CORONAL` | `[nŋ]$` | `^[ˈˌ]?[tdðθszlɾrnɲʎʝʃʒf]` | left [n] | - | [Lipski 2011](#src-lipski_overview), [Lipski 1986](#src-lipski1986), Navarro Tomás 1918 |
 | `ES_EXT_FINAL_N_VELAR` | `[nŋ]$` | `^[ˈˌ]?[kɡɣxw]` | left [ŋ] | ⟨en casa⟩ [eŋ kása] | [Lipski 2011](#src-lipski_overview), [Lipski 1986](#src-lipski1986), Navarro Tomás 1918 |
+
+The spec switches off 1 inherited rules: `ES_S_VOICING`.
 <!-- atlas:rules end -->
 
 <!-- atlas:examples begin -->

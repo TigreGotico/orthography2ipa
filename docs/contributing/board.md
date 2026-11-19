@@ -117,7 +117,7 @@ in between.
 
 | Guard | What it fails on | Local command |
 |---|---|---|
-| Benchmark regression | A CI-sample row that gets worse ([the CI regression sample](../evaluation/benchmarks.md#the-ci-regression-sample)) | `PYTHONPATH=$PWD python scripts/check_benchmark_regression.py --epsilon 0.005` |
+| Benchmark regression | A CI-sample row that gets worse ([the CI regression sample](../evaluation/benchmarks.md#the-ci-regression-sample)) | `PYTHONPATH=$PWD python scripts/check_benchmark_regression.py --epsilon 0.005 --base-ref origin/dev --body-file pr-body.md` |
 | Row counts | A stale row ([stale board rows](../evaluation/benchmarks.md#stale-board-rows)). Run it after every regeneration. | `PYTHONPATH=$PWD python scripts/check_board_row_counts.py` |
 | Board freshness | A row that a touched spec owns, whose fresh score differs from the committed value in either board file | `PYTHONPATH=$PWD python scripts/check_board_freshness.py --base origin/dev` |
 | Board not reverting | A merge result that puts back a row value `dev` already moved past, or that grows a burn-down list | `PYTHONPATH=$PWD python scripts/check_board_not_reverting.py --base origin/dev --body-file pr-body.md` |
