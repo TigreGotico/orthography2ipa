@@ -28,6 +28,9 @@ on:
 jobs:
   benchmark-regression:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
     # A passing run takes about 18 minutes. The limit is about 2.5 times
     # that, so a hang fails the job instead of holding the runner for the
     # 360-minute platform default.
@@ -66,6 +69,13 @@ jobs:
         # Refresh that sample file (scripts/benchmark.py --ci-sample)
         # whenever the full scoreboard is regenerated.
         #
+        # In a pull request the baseline is the BASE branch's committed
+        # sample, not the checkout's. A pull request that regenerates the
+        # board commits its own sample, and a comparison with that copy
+        # compares the change with itself. A row the pull request means to
+        # make worse is named on a `Board-Rows:` line of its body, read live
+        # so a re-run sees an edited body.
+        #
         # This job only reliably gates the self-contained gold datasets:
         # wikipron, mirandese and ipadict fetch their TSVs directly over
         # plain HTTP (stdlib urllib, no credentials), and ep_dialects is
@@ -81,8 +91,19 @@ jobs:
         # epsilon=0.005 (absolute PER worsening) is the default: tight
         # enough to catch a real grapheme/allophone regression, loose
         # enough to absorb harness-level float noise between runs.
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BASE_REF: ${{ github.base_ref }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
-          PYTHONPATH=$PWD .venv/bin/python scripts/check_benchmark_regression.py --epsilon 0.005
+          BASE_ARGS=()
+          if [ -n "$BASE_REF" ]; then
+            git fetch --no-tags --depth=1 origin "$BASE_REF"
+            PR_BODY="$(gh pr view "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --json body -q .body)"
+            export PR_BODY
+            BASE_ARGS=(--base-ref "origin/$BASE_REF")
+          fi
+          PYTHONPATH=$PWD .venv/bin/python scripts/check_benchmark_regression.py --epsilon 0.005 "${BASE_ARGS[@]}"
 
       - name: Check board row counts (stale-row guard)
         # Fails the build on a row scoring more words than its loader
