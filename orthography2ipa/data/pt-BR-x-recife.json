@@ -627,5 +627,6 @@
       ],
       "notes": "The palatal coda /S/ takes the voicing of a following voiced consonant: mesmo [ˈmeʒmu], desde [ˈdeʒdi]. Hora, Henrique & Amorim (2018: 284) cite the palatal variants 'ca[ʃ]ca', 'me[ʒ]mo' e 'doi[ʃ]' as 'estereótipos de falares de outras comunidades linguísticas, como Rio de Janeiro e Recife'. The positional map writes the coda as [ʃ]; this rule voices it in the second pass."
     }
-  ]
+  ],
+  "collapse_geminates": true
 }
