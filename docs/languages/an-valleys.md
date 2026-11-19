@@ -47,7 +47,7 @@ G2P("an-x-chistau").transcribe_word("bel·lota")  # beˈlːota
 G2P("an-x-tensino").transcribe_word("ro")       # ˈɾo
 ```
 
-For comparison, the base spec `an` gives `faˈblaɾ` for *fablar* and `ˈbella` for *bel·la*.
+For comparison, the base spec `an` gives `faˈblaɾ` for *fablar*, and `G2P("an").transcribe_word` gives `ˈbella` for *bel·la*. The function `orthography2ipa.transcribe` reads a whole text, and under `an` it splits a word at ⟨·⟩, because the `an` spec has no grapheme that contains the point. So `transcribe("bel·la", "an")` gives the two words `ˈbel la`, and `transcribe("col·legi", "an")` gives `ˈkol ˈlexi`.
 
 ## Not modelled
 

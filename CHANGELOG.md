@@ -1,5 +1,30 @@
 # Changelog
 
+## [7.124.8a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.8a1) (2026-11-19)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.7a1...7.124.8a1)
+
+## [7.124.7a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.7a1) (2026-11-19)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.6a1...7.124.7a1)
+
+**Merged pull requests:**
+
+- fix: read the unstressed Dutch suffix -lijk as \[lək\] [\#2359](https://github.com/TigreGotico/orthography2ipa/pull/2359) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [7.124.6a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.6a1) (2026-11-19)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.5a1...7.124.6a1)
+
+## [7.124.5a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.5a1) (2026-11-19)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.4a1...7.124.5a1)
+
+**Merged pull requests:**
+
+- fix: count the inherent vowels when an abugida places its stress [\#2358](https://github.com/TigreGotico/orthography2ipa/pull/2358) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- fix\(pt-BR\): keep the Northeastern open-vowel rules pretonic [\#2354](https://github.com/TigreGotico/orthography2ipa/pull/2354) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.124.4a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.4a1) (2026-11-19)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.3a1...7.124.4a1)
