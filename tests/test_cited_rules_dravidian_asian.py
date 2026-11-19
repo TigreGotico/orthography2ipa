@@ -788,14 +788,21 @@ def test_ie_j_is_the_affricate(word, expected):
     ("nation", "naˈtsjon"),
     ("scientie", "ˈstsjentsje"),
     ("position", "poziˈtsjon"),
-    ("misalliantie", "mizalˈljantsje"),
 ])
 def test_ie_t_is_ts_in_the_endings_tia_tie_tion(word, expected):
     """Cosmoglotta 64, p. 153: "t deveni un sibilant in li finales -tia, -tie,
     -tion; transcrition [ts]: scientie [sstsyéntsye]; nation [natsyón]"; the
-    same page: position [positsyón], misalliantie [missallyántsye]. The page's
-    single s is voiced, so position and misalliantie have [z]."""
+    same page: position [positsyón]. The page's single s is voiced, so position
+    has [z]."""
     assert G2P("ie").transcribe_word(word) == expected
+
+
+def test_ie_misalliantie_has_ts_but_not_the_prefix_s():
+    """Cosmoglotta 64, p. 153 prints misalliantie [missallyántsye] under rule (b),
+    where the prefixes des-, dis-, mis- keep a voiceless [ss]. The spec has no
+    prefix rule, so it reads the s as intervocalic [z]; only the [ts] of the
+    ending -tie is asserted."""
+    assert G2P("ie").transcribe_word("misalliantie").endswith("ˈljantsje")
 
 
 @pytest.mark.parametrize("word, expected", [
@@ -835,8 +842,9 @@ def test_ie_ch_is_the_velar_fricative_in_its_spelled_contexts(word, expected):
     arch e pos s, ch es pronunciat quam ch in D machen o quam j in S Méjico ...
     transcrition [kh], p. ex. yacht [yakht], chromometre [khronometre], psycholog
     [psükhológ], architect [arkhitékt], monarchist [monarkhíst], schisma
-    [sskhíssma]". The page's single s is voiced; in schisma it is voiceless [ss]
-    before ⟨ch⟩, which the spec writes [s]."""
+    [skhíssma]"; p. 153 writes the same word [ss-khíssma]. The page's single s is
+    voiced; in schisma it is voiceless [ss] before ⟨ch⟩, which the spec writes
+    [s]."""
     assert G2P("ie").transcribe_word(word) == expected
 
 
@@ -845,6 +853,22 @@ def test_ie_vocalic_y_before_a_vowel_is_its_own_syllable():
     second; art. 1 (Cosmoglotta 65, p. 165) puts it on the vowel before the last
     consonant."""
     assert G2P("ie").transcribe_word("cyan") == "tsyˈan"
+
+
+@pytest.mark.parametrize("word, expected", [
+    ("canya", "ˈkanya"),
+    ("Catalunya", "kataˈlunya"),
+    ("Libya", "ˈlibya"),
+    ("embryo", "ˈembryo"),
+    ("senyor", "seˈnyor"),
+])
+def test_ie_stress_is_on_the_vowel_before_the_last_consonant_beside_y(word, expected):
+    """Cosmoglotta 65, p. 165, art. 1: "Li accentu tonic es situat ordinarmen sur
+    li vocal ante li ultim consonant". In a word ending in consonant + ⟨y⟩ +
+    vowel that vowel is the one before the consonant: the ⟨a⟩ of canya, the ⟨u⟩
+    of Catalunya, the ⟨i⟩ of Libya, the ⟨e⟩ of embryo. In senyor the last
+    consonant is ⟨r⟩ and the stressed syllable is the one with the ⟨o⟩."""
+    assert G2P("ie").transcribe_word(word) == expected
 
 
 # ── Interlingua (ia) ──
