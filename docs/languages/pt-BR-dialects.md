@@ -50,8 +50,8 @@ The Carioca rhotic is posterior. Callou, Moraes & Leite (1998: 62-63) describe t
 | `RJ_CHIADO_CODA_S` | /s/ gives [ʃ] in the coda | `festa` [ˈfeʃtɐ], `paz` [ˈpaʃ] |
 | `RJ_CHIADO_CODA_Z` | /z/ gives [ʒ] in the coda | no word reaches it, see the gaps |
 | `BR_CODA_SH_VOICED` | a coda [ʃ] gives [ʒ] before a voiced consonant | `mesmo` [ˈmeʒmu], `desde` [ˈdeʒd͡ʒi], `Lisboa` [liʒˈboɐ] |
-| `BR_CODA_X` | switched off, so ⟨x⟩ keeps the [ʃ] of the coda (also in `pt-BR-x-norte` and `pt-BR-x-recife`) | `texto` [ˈteʃtu] |
-| `BR_XC_ONE_S`, `BR_SC_ONE_S` | kept, because ⟨xc⟩ and ⟨sc⟩ are one /s/ and no coda | `excesso` [eˈsesu], `nascer` [naˈseh] |
+| `BR_CODA_X` | switched off, so ⟨x⟩ keeps the [ʃ] of the coda (also in `pt-BR-x-norte`, `pt-BR-x-recife`, `pt-BR-x-floripa` and `pt-BR-x-cuiaba`) | `texto` [ˈteʃtu] |
+| `BR_XC_ONE_S`, `BR_SC_ONE_S` | kept, because ⟨xc⟩ and ⟨sc⟩ are one /s/ and no coda | `exceção` [eseˈsɐ̃w̃], `nascer` [naˈseh] |
 | `RJ_CODA_R_VELAR` | a coda /R/ before a consonant gives [x] | `porta` [ˈpoxtɐ] |
 | `RJ_CODA_R_FINAL` | a word-final /R/ gives [h] | `mar` [ˈmah] |
 
