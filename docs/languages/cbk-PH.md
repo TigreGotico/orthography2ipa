@@ -150,7 +150,7 @@ The spec applies 6 rules across a word boundary. The contexts are regular expres
 | `ES_EXT_FINAL_N_CORONAL` | `([nŋ])$` | `^[ˈˌ]?[tdðθszlɾrnɲʎʝʃʒf]` | left ∅ | - | Navarro Tomás 1918 |
 | `ES_EXT_FINAL_N_VELAR` | `([nŋ])$` | `^[ˈˌ]?[kɡɣxw]` | left ∅ | - | Navarro Tomás 1918 |
 
-The spec switches off 6 inherited rules: `ES_TRILL_AFTER_CORONAL`, `ES_NASAL_LABIAL`, `ES_NASAL_VELAR`, `ES_SPIRANT_B`, `ES_SPIRANT_D`, `ES_SPIRANT_G`.
+The spec switches off 7 inherited rules: `ES_TRILL_AFTER_CORONAL`, `ES_NASAL_LABIAL`, `ES_NASAL_VELAR`, `ES_S_VOICING`, `ES_SPIRANT_B`, `ES_SPIRANT_D`, `ES_SPIRANT_G`.
 <!-- atlas:rules end -->
 
 <!-- atlas:examples begin -->

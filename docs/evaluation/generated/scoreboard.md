@@ -249,8 +249,8 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | enm | wikipron | 6466 | 0.2620 | - | 0.2163† (vowel length mark ː) | 0.2270 | 0.1924 | 0.1681 | 0.2505 | [0.2580, 0.2660] | 0.1174 | research | crowd-scraped |
 | eo | ipadict | 23245 | 0.0120 | - | - | 0.0120 | 0.0120 | 0.9039 | 0.9039 | [0.0115, 0.0125] | 0.9039 | production | machine-generated |
 | eo | wikipron | 41245 | 0.0328 | - | - | 0.0328 | 0.0328 | 0.7491 | 0.7491 | [0.0322, 0.0334] | 0.7491 | production | crowd-scraped |
-| es | vox_communis | 48067 | 0.0594‡ | - | - | 0.0578 | 0.0578 | 0.6687 | 0.6689 | [0.0584, 0.0603] | 0.6601 | production | epitran-derived |
-| es | wikipron | 132189 | 0.0774 | - | - | 0.0773 | 0.0772 | 0.4636 | 0.4637 | [0.0770, 0.0779] | 0.4634 | production | crowd-scraped |
+| es | vox_communis | 48067 | 0.0612‡ | - | - | 0.0596 | 0.0596 | 0.6576 | 0.6578 | [0.0602, 0.0621] | 0.6492 | production | epitran-derived |
+| es | wikipron | 132189 | 0.0802 | - | - | 0.0800 | 0.0800 | 0.4513 | 0.4514 | [0.0797, 0.0807] | 0.4511 | production | crowd-scraped |
 | es-419 | spain_romance_tts | 20 | 0.0013‡ | - | - | - | - | - | - | [0.0000, 0.0038] | 0.9500 | skeleton | llm-corrected |
 | es-419 | wikipron | 132188 | 0.0778 | - | - | 0.0777 | 0.0776 | 0.4622 | 0.4623 | [0.0773, 0.0783] | 0.4620 | skeleton | crowd-scraped |
 | es-AR | primary_sources | 29 | 0.0069 | 0.9655 | - | 0.0069 | 0.0069 | 0.9655 | 0.9655 | [0.0000, 0.0207] | 0.9655 | research | expert-human |
@@ -279,8 +279,8 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | es-EC | spain_romance_tts | 20 | 0.0438‡ | - | - | - | - | - | - | [0.0310, 0.0577] | 0.2000 | skeleton | llm-corrected |
 | es-EC-x-andino | spain_romance_tts | 20 | 0.0343‡ | - | - | - | - | - | - | [0.0226, 0.0484] | 0.2500 | stub | llm-corrected |
 | es-EC-x-costa | spain_romance_tts | 20 | 0.0201‡ | - | - | - | - | - | - | [0.0106, 0.0303] | 0.5000 | stub | llm-corrected |
-| es-ES | ipa_childes | 13155 | 0.0863‡ | - | - | 0.0807 | 0.0785 | 0.5875 | 0.5958 | [0.0841, 0.0882] | 0.5686 | production | epitran-derived |
-| es-ES | ipadict | 595896 | 0.0127 | 0.9969 | - | 0.0116 | 0.0116 | 0.8826 | 0.8826 | [0.0126, 0.0128] | 0.8710 | production | machine-generated |
+| es-ES | ipa_childes | 13155 | 0.0871‡ | - | - | 0.0814 | 0.0793 | 0.5844 | 0.5926 | [0.0849, 0.0890] | 0.5660 | production | epitran-derived |
+| es-ES | ipadict | 595896 | 0.0092 | 0.9969 | - | 0.0081 | 0.0081 | 0.9211 | 0.9211 | [0.0091, 0.0093] | 0.9085 | production | machine-generated |
 | es-ES | primary_sources | 41 | 0.0232 | 1.0000 | - | 0.0232 | 0.0232 | 0.9024 | 0.9024 | [0.0041, 0.0476] | 0.9024 | production | expert-human |
 | es-ES | spain_romance_tts | 20 | 0.0029‡ | - | - | - | - | - | - | [0.0000, 0.0073] | 0.9000 | production | llm-corrected |
 | es-ES-x-andalusi-e | spain_romance_tts | 20 | 0.0991‡ | - | - | - | - | - | - | [0.0661, 0.1311] | 0.1500 | research | llm-corrected |
@@ -338,8 +338,8 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | fa | ipadict | 7695 | 0.2540 | - | - | 0.2309 | 0.2253 | 0.1193 | 0.1220 | [0.2507, 0.2574] | 0.1077 | research | machine-generated |
 | fa | wikipron | 9279 | 0.3943 | - | - | 0.3742 | 0.3702 | 0.0177 | 0.0178 | [0.3911, 0.3971] | 0.0170 | research | crowd-scraped |
 | fa-x-enp | wikipron | 9279 | 0.2381 | - | - | 0.2121 | 0.2064 | 0.1230 | 0.1258 | [0.2352, 0.2410] | 0.1024 | research | crowd-scraped |
-| fax | spain_romance_tts | 20 | 0.0519‡ | - | - | - | - | - | - | [0.0303, 0.0752] | 0.3500 | research | llm-corrected |
-| fax | wikipron | 655 | 0.0977 | - | - | 0.0618 | 0.0616 | 0.6840 | 0.6855 | [0.0883, 0.1075] | 0.5282 | research | crowd-scraped |
+| fax | spain_romance_tts | 20 | 0.0358‡ | - | - | - | - | - | - | [0.0174, 0.0563] | 0.5000 | research | llm-corrected |
+| fax | wikipron | 655 | 0.0932 | - | - | 0.0573 | 0.0565 | 0.7023 | 0.7053 | [0.0837, 0.1019] | 0.5435 | research | crowd-scraped |
 | fi | ipadict | 92836 | 0.0609 | 1.0000 | - | 0.0609 | 0.0609 | 0.5012 | 0.5012 | [0.0604, 0.0613] | 0.5012 | production | machine-generated |
 | fi | vox_communis | 13324 | 0.0037‡ | - | - | 0.0037 | 0.0037 | 0.9678 | 0.9678 | [0.0033, 0.0041] | 0.9678 | production | epitran-derived |
 | fi | wikipron | 168808 | 0.0184 | - | - | 0.0184 | 0.0184 | 0.8173 | 0.8173 | [0.0182, 0.0186] | 0.8171 | production | crowd-scraped |
