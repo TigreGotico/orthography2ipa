@@ -213,5 +213,6 @@
     "longitude": -34.88,
     "source": "wikidata",
     "notes": "João Pessoa — the city of the VALPB studies. [Wikidata Q167436 P625]"
-  }
+  },
+  "collapse_geminates": true
 }

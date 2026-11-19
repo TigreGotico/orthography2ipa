@@ -246,5 +246,6 @@
     "longitude": -56.096944,
     "source": "wikidata",
     "notes": "Cuiabá — the centre of the Baixada Cuiabana, the river valley this spec models. [Wikidata Q170762 P625]"
-  }
+  },
+  "collapse_geminates": true
 }

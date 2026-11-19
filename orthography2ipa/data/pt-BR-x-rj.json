@@ -622,5 +622,6 @@
     "longitude": -43.205556,
     "source": "wikidata",
     "notes": "Rio de Janeiro city — the Carioca variety. [Wikidata Q8678 P625]"
-  }
+  },
+  "collapse_geminates": true
 }
