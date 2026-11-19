@@ -38,6 +38,7 @@ import unicodedata
 import warnings
 from dataclasses import dataclass, replace
 from functools import cached_property
+from itertools import accumulate
 from typing import Callable, Dict, FrozenSet, List, Optional, Set, Tuple
 
 from orthography2ipa.exceptions import (StubSpecWarning,
@@ -1715,7 +1716,7 @@ class G2P:
                         mark = rules.accent2_mark
                 ipa = apply_stress_mark(
                     ipa, self.spec.stress, idx, syllables=sylls, mark=mark,
-                    ipa_syllables=self._cut_written_hiatus(
+                    ipa_syllables=self._cut_written_syllables(
                         word, ipa, path, sylls,
                         self._fold_inserted_nuclei(word, ipa, path)),
                     secondary_indices=sorted(secondary_stress_positions(
@@ -1777,12 +1778,12 @@ class G2P:
             offset += len(syllable)
         return folded if len(folded) < len(syllables) else None
 
-    def _cut_written_hiatus(
+    def _cut_written_syllables(
         self, word: str, ipa: str, path: Optional[IPAPath],
         syllables: List[str], division: Optional[List[str]],
     ) -> Optional[List[str]]:
-        """*division* with a syllable cut where one vowel run holds the
-        nuclei of two written syllables, or *division* unchanged.
+        """*division* with a syllable cut where the transcription lost a
+        written syllable, or *division* unchanged.
 
         The stress index counts written syllables. A consonant letter that
         adds no segment leaves the vowels on either side of it in one vowel
@@ -1804,6 +1805,15 @@ class G2P:
         letters that are one of the spec's ``diphthongs`` are not cut either,
         because across a silent letter they can be one nucleus, and the
         transcription decides.
+
+        A vowel letter the spec has no grapheme for adds no segment either.
+        When it is the only vowel of its written syllable, the consonants of
+        that syllable join a neighbouring IPA syllable: ``tr`` drops the ⟨â⟩
+        of ⟨derhâl⟩, and [deɾhl] is one syllable. The transcription is
+        divided as if a vowel stood where the letter was, deɾ|həl, and that
+        syllable keeps its consonants without the vowel: deɾ|hl. The mark
+        then stands at the onset of the stressed written syllable, and a
+        coda of the syllable before stays outside it.
 
         *division* is the IPA division the caller has so far, ``None`` for
         the plain one.
@@ -1848,16 +1858,38 @@ class G2P:
                         and (before[-1:] + first).lower() not in diphthongs):
                     cuts.add(o)
             last = o
-        cut: List[str] = []
-        offset = 0
-        for syllable in sylls:
-            start = 0
-            for i in range(1, len(syllable)):
-                if offset + i in cuts:
-                    cut.append(syllable[start:i])
-                    start = i
-            cut.append(syllable[start:])
-            offset += len(syllable)
+        read = {i for token in tokens
+                for i in range(token.position, token.position + token.length)}
+        # Where a stand-in vowel goes: after the segments of the letters
+        # before the dropped vowel letter of each such syllable.
+        drops: List[int] = []
+        for k, syllable in enumerate(syllables):
+            segments = [o for o, w in enumerate(owner) if w == k]
+            dropped = [i for i, c in enumerate(syllable, start=starts[k])
+                       if is_orthographic_vowel(c) and i not in read]
+            if (segments and dropped
+                    and not any(is_ipa_vowel(ipa[o]) for o in segments)):
+                drops.append(next((o for o in segments
+                                   if source[o] > dropped[0]),
+                                  segments[-1] + 1))
+        if drops:
+            # Divide with the stand-ins in place, so that each such syllable
+            # opens with an onset the spec licenses: derhâl deɾ|hl, not
+            # de|ɾhl.
+            probe = "ə".join(ipa[a:b] for a, b in
+                             zip([0, *drops], [*drops, len(ipa)]))
+            stand_ins = [at + i for i, at in enumerate(drops)]
+            ends = [0, *accumulate(map(len, syllabify_for_mark(
+                probe, self.spec.stress)))]
+            for p in stand_ins:
+                start = max(e for e in ends if e <= p)
+                end = min(e for e in ends if e > p)
+                start -= sum(q < start for q in stand_ins)
+                end -= sum(q < end for q in stand_ins)
+                cuts |= {start, end}
+        bounds = set(accumulate(map(len, sylls[:-1]))) | cuts
+        edges = [0, *sorted(b for b in bounds if 0 < b < len(ipa)), len(ipa)]
+        cut = [ipa[a:b] for a, b in zip(edges, edges[1:])]
         return cut if len(cut) > len(sylls) else division
 
     def word_candidates(self, word: str, *, k: int = 5,
