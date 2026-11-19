@@ -186,7 +186,7 @@ The spec applies 49 allophone rules after the letters are read. The change colum
 | `KRI_NASAL_u` | /u/ → [ũ], before a coda nasal | - | - |
 | `KRI_NASAL_ABSORB` | /n m ŋ/ → ∅, in the coda, after a vowel | - | - |
 
-The spec switches off 3 inherited rules: `EN_GB_ES_VOICING_AFTER_MUTE_E`, `EN_GB_ES_VOICING_AFTER_EPENTHESIS`, `EN_GB_OING_HIATUS`.
+The spec switches off 7 inherited rules: `EN_GB_ES_VOICING_AFTER_MUTE_E`, `EN_GB_ES_VOICING_AFTER_EPENTHESIS`, `EN_GB_OING_HIATUS`, `EN_GB_UNSTRESSED_FINAL_OW`, `EN_GB_UNSTRESSED_OW_BEFORE_S`, `EN_GB_UNSTRESSED_OW_BEFORE_ED`, `EN_GB_UNSTRESSED_OW_BEFORE_ING`.
 <!-- atlas:rules end -->
 
 <!-- atlas:examples begin -->

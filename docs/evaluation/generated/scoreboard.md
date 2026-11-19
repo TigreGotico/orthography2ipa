@@ -237,14 +237,14 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | egy | wikipron | 2185 | 0.0183 | - | - | 0.0178 | 0.0178 | 0.8993 | 0.8993 | [0.0155, 0.0210] | 0.8989 | research | crowd-scraped |
 | el | vox_communis | 5983 | 0.2653‡ | - | - | 0.2394 | 0.2375 | 0.1339 | 0.1342 | [0.2613, 0.2690] | 0.1190 | research | epitran-derived |
 | el | wikipron | 19108 | 0.0327 | - | - | 0.0174 | 0.0160 | 0.8972 | 0.9104 | [0.0316, 0.0337] | 0.7909 | research | crowd-scraped |
-| en | wikipron | 80987 | 0.2645 | - | - | 0.2210 | 0.2010 | 0.2580 | 0.2851 | [0.2630, 0.2659] | 0.2091 | research | crowd-scraped |
-| en-GB | ipa_childes | 11446 | 0.2966‡ | - | - | 0.2465 | 0.2276 | 0.2030 | 0.2236 | [0.2929, 0.3003] | 0.1580 | research | espeak-derived |
-| en-GB | ipadict | 65118 | 0.2215‡ | 0.6264 | - | 0.1703 | 0.1488 | 0.3558 | 0.3924 | [0.2201, 0.2231] | 0.2651 | research | espeak-derived |
-| en-GB | wikipron | 81537 | 0.2314 | - | - | 0.1790 | 0.1560 | 0.3561 | 0.3986 | [0.2301, 0.2328] | 0.2754 | research | crowd-scraped |
-| en-US | cmudict | 126050 | 0.3376 | - | - | 0.2844 | 0.2632 | 0.1845 | 0.2029 | [0.3363, 0.3387] | 0.1387 | research | lexicon-derived |
-| en-US | ipa_babylm | 20107 | 0.3520‡ | - | - | 0.2991 | 0.2807 | 0.3456 | 0.3705 | [0.3451, 0.3590] | 0.2823 | research | espeak-derived |
-| en-US | ipa_childes | 18054 | 0.2654‡ | - | - | 0.2072 | 0.1877 | 0.3549 | 0.3848 | [0.2621, 0.2686] | 0.2832 | research | espeak-derived |
-| en-US | ipadict | 125925 | 0.2908 | 0.6174 | - | 0.2290 | 0.2054 | 0.2548 | 0.2850 | [0.2896, 0.2921] | 0.1871 | research | lexicon-derived |
+| en | wikipron | 80987 | 0.2643 | - | - | 0.2208 | 0.2008 | 0.2585 | 0.2856 | [0.2628, 0.2657] | 0.2097 | research | crowd-scraped |
+| en-GB | ipa_childes | 11446 | 0.2959‡ | - | - | 0.2463 | 0.2275 | 0.2041 | 0.2244 | [0.2922, 0.2997] | 0.1598 | research | espeak-derived |
+| en-GB | ipadict | 65118 | 0.2211‡ | 0.6264 | - | 0.1700 | 0.1487 | 0.3570 | 0.3930 | [0.2196, 0.2226] | 0.2665 | research | espeak-derived |
+| en-GB | wikipron | 81537 | 0.2309 | - | - | 0.1787 | 0.1557 | 0.3570 | 0.3994 | [0.2296, 0.2323] | 0.2769 | research | crowd-scraped |
+| en-US | cmudict | 126050 | 0.3370 | - | - | 0.2842 | 0.2630 | 0.1846 | 0.2029 | [0.3357, 0.3382] | 0.1395 | research | lexicon-derived |
+| en-US | ipa_babylm | 20107 | 0.3515‡ | - | - | 0.2990 | 0.2808 | 0.3460 | 0.3709 | [0.3445, 0.3584] | 0.2847 | research | espeak-derived |
+| en-US | ipa_childes | 18054 | 0.2650‡ | - | - | 0.2072 | 0.1877 | 0.3555 | 0.3852 | [0.2617, 0.2682] | 0.2854 | research | espeak-derived |
+| en-US | ipadict | 125925 | 0.2902 | 0.6174 | - | 0.2287 | 0.2052 | 0.2553 | 0.2853 | [0.2890, 0.2915] | 0.1879 | research | lexicon-derived |
 | enf | northeuralex | 838 | 0.0892 | - | - | 0.0888 | 0.0888 | 0.5346 | 0.5346 | [0.0819, 0.0963] | 0.5346 | research | lexicon-derived |
 | enm | wikipron | 6466 | 0.2620 | - | 0.2163† (vowel length mark ː) | 0.2270 | 0.1924 | 0.1681 | 0.2505 | [0.2580, 0.2660] | 0.1174 | research | crowd-scraped |
 | eo | ipadict | 23245 | 0.0120 | - | - | 0.0120 | 0.0120 | 0.9039 | 0.9039 | [0.0115, 0.0125] | 0.9039 | production | machine-generated |
@@ -586,9 +586,9 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | pt-BR-x-ce | portuguese_tts | 20 | 0.1199‡ | - | - | - | - | - | - | [0.0994, 0.1416] | 0.0000 | research | llm-corrected |
 | pt-BR-x-fluminen | portuguese_tts | 20 | 0.0699‡ | - | - | - | - | - | - | [0.0494, 0.0937] | 0.1500 | research | llm-corrected |
 | pt-BR-x-mg | portuguese_tts | 20 | 0.1200‡ | - | - | - | - | - | - | [0.0976, 0.1414] | 0.0000 | research | llm-corrected |
-| pt-BR-x-norte | portuguese_tts | 20 | 0.1548‡ | - | - | - | - | - | - | [0.1205, 0.1897] | 0.0500 | research | llm-corrected |
+| pt-BR-x-norte | portuguese_tts | 20 | 0.1447‡ | - | - | - | - | - | - | [0.1088, 0.1816] | 0.0500 | research | llm-corrected |
 | pt-BR-x-pr | portuguese_tts | 20 | 0.0940‡ | - | - | - | - | - | - | [0.0703, 0.1220] | 0.0000 | research | llm-corrected |
-| pt-BR-x-recife | portuguese_tts | 20 | 0.1744‡ | - | - | - | - | - | - | [0.1462, 0.2024] | 0.0000 | research | llm-corrected |
+| pt-BR-x-recife | portuguese_tts | 20 | 0.1641‡ | - | - | - | - | - | - | [0.1393, 0.1895] | 0.0000 | research | llm-corrected |
 | pt-BR-x-rj | portal_lupo | 53143 | 0.1708‡ | 0.9983 | - | 0.1503 | 0.1414 | 0.2098 | 0.2391 | [0.1699, 0.1718] | 0.1363 | research | lupo-derived |
 | pt-BR-x-rj | portuguese_tts | 20 | 0.0395‡ | - | - | - | - | - | - | [0.0274, 0.0514] | 0.2000 | research | llm-corrected |
 | pt-BR-x-sp | portal_lupo | 53143 | 0.1596‡ | 0.9973 | - | 0.1562 | 0.1509 | 0.1912 | 0.1985 | [0.1586, 0.1607] | 0.1880 | research | lupo-derived |
