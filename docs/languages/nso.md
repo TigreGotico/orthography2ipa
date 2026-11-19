@@ -59,7 +59,7 @@ No dataset on the board scores this spec. See the [dataset catalogue](../evaluat
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 41 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 39 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -79,7 +79,7 @@ The spec can emit 41 segments. They come from the letter table, the positional r
 | Open-mid | ɛ | ɔ |
 | Open | a |  |
 
-Sequences that the spec writes as one unit: [pʃ] [tl] [w] [ɺ].
+Sequences that the spec writes as one unit: [w] [ɺ].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

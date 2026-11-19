@@ -270,7 +270,7 @@ Known gaps and features not modelled:
 
 The spec has the apical-only sibilants and the grapheme betacism of the [Minhoto](#minhoto-pt-pt-x-minho) table: `sol` [ˈs̺ɔɫ], `cedo` [ˈs̺edu], `zebra` [ˈz̺ɛbɾɐ], `vaca` [ˈbakɐ], `uva` [ˈuβɐ]. Word-final ⟨-em⟩ is [ẽj̃] (`bem` [ˈbẽj̃]). The rule note cites Leite de Vasconcellos (1901, §44n) and Viana & Rocha (2006) for the northern close-mid nucleus. A pretonic ⟨en⟩ is [ẽ] as in `pt-PT` (`pensar` [pẽˈsaɾ]).
 
-The local vowel breaking (*Brechung*) of stressed mid vowels comes from regional dialect literature, not from Cintra or Álvarez Pérez. The spec lists it only as allophone variants ([e͜ɐ], [ɛ͜ɐ], [o͜ɐ], [ɔ͜ɐ]), not as default output. It also lists [χ] as a variant of /ʁ/. Porto's diphthongisation is not applied, and the spec has no retroflex sibilants (see the [Minhoto](#minhoto-pt-pt-x-minho) section).
+The local vowel breaking (*Brechung*) of stressed mid vowels comes from regional dialect literature, not from Cintra or Álvarez Pérez. The spec lists it only as allophone variants ([eɐ], [ɛɐ], [oɐ], [ɔɐ]), not as default output. It also lists [χ] as a variant of /ʁ/. Porto's diphthongisation is not applied, and the spec has no retroflex sibilants (see the [Minhoto](#minhoto-pt-pt-x-minho) section).
 
 ## Beira Litoral (pt-PT-x-aveiro)
 
@@ -395,7 +395,7 @@ The primary source for the deletion is Brissos (2014), an acoustic study of cent
 | dark coda /l/ | inherited `allophone_rules` | `sol` [ˈsɔɫ] |
 | coda /s/ to [ʃ] | inherited `allophone_rules` | `gosto` [ˈɡɔʃt] |
 
-The examples `leite` and `outro` also show the final-vowel deletion. The spec lists [ɛ͡ɐ] as a variant of /ɛ/.
+The examples `leite` and `outro` also show the final-vowel deletion. The spec lists [ɛɐ] as a variant of /ɛ/.
 
 The `ep_dialects` gold for this spec is a light, near-standard reading. It writes final vowels in full and does not show the /u/ fronting or the final-vowel deletion. So both rules lower the agreement with that small, unvalidated set, while they are the cited realisations. The same holds for the inherited dark /l/ and the deleted /d/, where the gold writes a clear [l] and a kept [d]. The rules stay, because the difference is a limit of the gold.
 

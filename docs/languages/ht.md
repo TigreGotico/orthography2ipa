@@ -80,7 +80,7 @@ The spec can emit 33 segments. They come from the letter table, the positional r
 | Open-mid | ɛ ɛ̃ | ɔ ɔ̃ |
 | Open | a ã |  |
 
-Sequences that the spec writes as one unit: [w] [ɥi].
+Sequences that the spec writes as one unit: [w] [ɥ].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

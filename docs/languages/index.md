@@ -91,6 +91,7 @@ differences over one of them.
 | [pt-BR-dialects.md](pt-BR-dialects.md) | The Brazilian regional specs: Carioca, Paulistano, Caipira, Mineiro, the South, the North and the Northeast |
 | [pt-BR-x-floripa.md](pt-BR-x-floripa.md) | Florianópolis Portuguese, the native *manezinho* speech of the island |
 | [pt-BR-x-cuiaba.md](pt-BR-x-cuiaba.md) | Cuiabano Portuguese of the Cuiabá river valley |
+| [pt-BR-x-paraiba.md](pt-BR-x-paraiba.md) | Paraibano Portuguese of the state of Paraíba |
 | [pt-AO.md](pt-AO.md) | Angolan Portuguese |
 | [pt-CV.md](pt-CV.md) | Cape Verdean Portuguese, which is not the Kabuverdianu creole (`kea`) |
 | [pt-MZ.md](pt-MZ.md) | Mozambican Portuguese |
