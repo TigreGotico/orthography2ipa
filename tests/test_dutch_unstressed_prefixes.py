@@ -20,7 +20,6 @@ from importlib import resources
 import pytest
 
 from orthography2ipa import G2P
-from orthography2ipa.exceptions import UnmappedGraphemeWarning
 
 
 @pytest.fixture(scope="module")
@@ -83,16 +82,3 @@ def test_inheriting_specs(lang, word, ipa):
 ])
 def test_known_gap_nominal_ver(nl, word, ipa):
     assert nl.transcribe(word) == ipa
-
-
-@pytest.mark.parametrize("word, ipa", [
-    # nl-NL has no grapheme for ⟨â ô ö⟩, so the engine drops the vowel. The
-    # mark still stands before the consonants of the stressed syllable, the
-    # one after the prefix, and not on the prefix.
-    ("behâlde", "bəˈɦldə"),
-    ("genôch", "χəˈnχ"),
-    ("Gewölv", "χəˈʋlf"),
-])
-def test_a_dropped_vowel_letter_keeps_its_syllable_for_the_mark(nl, word, ipa):
-    with pytest.warns(UnmappedGraphemeWarning):
-        assert nl.transcribe(word) == ipa

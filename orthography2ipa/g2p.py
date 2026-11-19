@@ -38,6 +38,7 @@ import unicodedata
 import warnings
 from dataclasses import dataclass, replace
 from functools import cached_property
+from itertools import accumulate
 from typing import Callable, Dict, FrozenSet, List, Optional, Set, Tuple
 
 from orthography2ipa.exceptions import (StubSpecWarning,
@@ -1807,10 +1808,12 @@ class G2P:
 
         A vowel letter the spec has no grapheme for adds no segment either.
         When it is the only vowel of its written syllable, the consonants of
-        that syllable join a neighbouring IPA syllable: ``nl-NL`` drops the
-        ⟨â⟩ of ⟨behâlde⟩, and [bəɦldə] divides bəɦl|də. The cut goes before
-        the first segment of such a syllable, bə|ɦl|də, so that the mark
-        stands before the consonants of the stressed written syllable.
+        that syllable join a neighbouring IPA syllable: ``tr`` drops the ⟨â⟩
+        of ⟨derhâl⟩, and [deɾhl] is one syllable. The transcription is
+        divided as if a vowel stood where the letter was, deɾ|həl, and that
+        syllable keeps its consonants without the vowel: deɾ|hl. The mark
+        then stands at the onset of the stressed written syllable, and a
+        coda of the syllable before stays outside it.
 
         *division* is the IPA division the caller has so far, ``None`` for
         the plain one.
@@ -1857,23 +1860,36 @@ class G2P:
             last = o
         read = {i for token in tokens
                 for i in range(token.position, token.position + token.length)}
-        for k in range(1, len(syllables)):
+        # Where a stand-in vowel goes: after the segments of the letters
+        # before the dropped vowel letter of each such syllable.
+        drops: List[int] = []
+        for k, syllable in enumerate(syllables):
             segments = [o for o, w in enumerate(owner) if w == k]
-            letters = enumerate(syllables[k], start=starts[k])
-            if (segments and not any(is_ipa_vowel(ipa[o]) for o in segments)
-                    and any(is_orthographic_vowel(c) and i not in read
-                            for i, c in letters)):
-                cuts.add(segments[0])
-        cut: List[str] = []
-        offset = 0
-        for syllable in sylls:
-            start = 0
-            for i in range(1, len(syllable)):
-                if offset + i in cuts:
-                    cut.append(syllable[start:i])
-                    start = i
-            cut.append(syllable[start:])
-            offset += len(syllable)
+            dropped = [i for i, c in enumerate(syllable, start=starts[k])
+                       if is_orthographic_vowel(c) and i not in read]
+            if (segments and dropped
+                    and not any(is_ipa_vowel(ipa[o]) for o in segments)):
+                drops.append(next((o for o in segments
+                                   if source[o] > dropped[0]),
+                                  segments[-1] + 1))
+        if drops:
+            # Divide with the stand-ins in place, so that each such syllable
+            # opens with an onset the spec licenses: derhâl deɾ|hl, not
+            # de|ɾhl.
+            probe = "ə".join(ipa[a:b] for a, b in
+                             zip([0, *drops], [*drops, len(ipa)]))
+            stand_ins = [at + i for i, at in enumerate(drops)]
+            ends = [0, *accumulate(map(len, syllabify_for_mark(
+                probe, self.spec.stress)))]
+            for p in stand_ins:
+                start = max(e for e in ends if e <= p)
+                end = min(e for e in ends if e > p)
+                start -= sum(q < start for q in stand_ins)
+                end -= sum(q < end for q in stand_ins)
+                cuts |= {start, end}
+        bounds = set(accumulate(map(len, sylls[:-1]))) | cuts
+        edges = [0, *sorted(b for b in bounds if 0 < b < len(ipa)), len(ipa)]
+        cut = [ipa[a:b] for a, b in zip(edges, edges[1:])]
         return cut if len(cut) > len(sylls) else division
 
     def word_candidates(self, word: str, *, k: int = 5,
