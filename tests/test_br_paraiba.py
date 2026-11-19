@@ -29,6 +29,31 @@ def test_t_d_stay_stops_before_i(word, expected):
     assert transcribe(word, PARAIBA) == expected
 
 
+# After a coda [ʃ ʒ] the affricate is the more frequent form: "dentre os
+# contextos precedentes, a fricativa palatal foi a que mais condicionou a taxa
+# de produção das oclusivas dentais (56.4%)" (Hora, Henrique & Amorim 2018:
+# 292). Gráfico 6 gives 3.7 % after a glide, 1.8 % after a pause and 3.1 % after
+# a vowel, a liquid or a nasal, so those contexts keep the stop. mestre has
+# ⟨tr⟩, not /t/ before [i], and keeps its cluster. A coda ⟨x⟩ is the same
+# palatal as ⟨s⟩ (extinto, têxtil), and a nasal [ĩ] counts as /i/ (destino).
+@pytest.mark.parametrize("word, expected", [
+    ("desde", "ˈdeʒd͡ʒi"),
+    ("desdizer", "deʒd͡ʒiˈze"),
+    ("festival", "feʃt͡ʃiˈvaw"),
+    ("extinto", "eʃˈt͡ʃĩtu"),
+    ("têxtil", "ˈteʃt͡ʃiw"),
+    ("destino", "deʃˈt͡ʃĩnu"),
+    ("tarde", "ˈtahdi"),
+    ("noite", "ˈnojti"),
+    ("tia", "ˈtiɐ"),
+    ("dia", "ˈdiɐ"),
+    ("verdade", "vehˈdadi"),
+    ("mestre", "ˈmeʃtɾi"),
+])
+def test_t_d_before_i_are_affricates_only_after_a_palatal_coda(word, expected):
+    assert transcribe(word, PARAIBA) == expected
+
+
 # Coda /S/ is alveolar before other consonants and word-finally. Hora, Henrique
 # & Amorim (2018: 284) give "ca[ʃ]ca", "me[ʒ]mo" and "doi[ʃ]" as stereotypes of
 # Rio de Janeiro and Recife, and pessoenses produce the coda "como alveolar
@@ -49,7 +74,7 @@ def test_coda_s_alveolar_elsewhere(word, expected):
 @pytest.mark.parametrize("word, expected", [
     ("posto", "ˈpoʃtu"),
     ("texto", "ˈteʃtu"),
-    ("desde", "ˈdeʒdi"),
+    ("desde", "ˈdeʒd͡ʒi"),  # /d/ is the affricate after the palatal coda
 ])
 def test_coda_s_palatal_before_t_d(word, expected):
     assert transcribe(word, PARAIBA) == expected

@@ -37,7 +37,7 @@ The table gives the features that set each lect apart from `pt-BR`. The lects ru
 | [`pt-BR-x-bahia`](#baiano-pt-br-x-bahia) | Salvador | open pretonic [ɛ ɔ] before an open, nasal or low vowel<br>coda /r/ [h], final /r/ deleted | `pedaço` [pɛˈdasu], `bolacha` [bɔˈlaʃɐ], `falar` [faˈla] |
 | [`pt-BR-x-ce`](#cearense-pt-br-x-ce) | Fortaleza | the Baiano pretonics and rhotics<br>coda /s/ [h] before /d n/ | `pedaço` [pɛˈdasu], `desde` [ˈdehd͡ʒi] |
 | [`pt-BR-x-recife`](#pernambucano-pt-br-x-recife) | Recife | /t d/ stops before /i/<br>coda /s/ [ʃ], [ʒ] before a voiced consonant<br>the Northeastern pretonics and rhotics | `tia` [ˈtiɐ], `festa` [ˈfeʃtɐ], `pedaço` [pɛˈdasu] |
-| [`pt-BR-x-paraiba`](pt-BR-x-paraiba.md) | João Pessoa | /t d/ stops before /i/<br>coda /s/ [ʃ ʒ] before /t d/ only<br>the Northeastern pretonics and rhotics | `tia` [ˈtiɐ], `posto` [ˈpoʃtu], `casca` [ˈkaskɐ], `fogão` [fɔˈɡɐ̃w̃] |
+| [`pt-BR-x-paraiba`](pt-BR-x-paraiba.md) | João Pessoa | /t d/ stops before /i/, except after a coda [ʃ ʒ]<br>coda /s/ [ʃ ʒ] before /t d/ only<br>the Northeastern pretonics and rhotics | `tia` [ˈtiɐ], `posto` [ˈpoʃtu], `casca` [ˈkaskɐ], `fogão` [fɔˈɡɐ̃w̃] |
 
 ## Carioca (pt-BR-x-rj)
 
