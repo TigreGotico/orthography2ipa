@@ -338,8 +338,8 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | fa | ipadict | 7695 | 0.2540 | - | - | 0.2309 | 0.2253 | 0.1193 | 0.1220 | [0.2507, 0.2574] | 0.1077 | research | machine-generated |
 | fa | wikipron | 9279 | 0.3943 | - | - | 0.3742 | 0.3702 | 0.0177 | 0.0178 | [0.3911, 0.3971] | 0.0170 | research | crowd-scraped |
 | fa-x-enp | wikipron | 9279 | 0.2381 | - | - | 0.2121 | 0.2064 | 0.1230 | 0.1258 | [0.2352, 0.2410] | 0.1024 | research | crowd-scraped |
-| fax | spain_romance_tts | 20 | 0.0519‡ | - | - | - | - | - | - | [0.0303, 0.0752] | 0.3500 | research | llm-corrected |
-| fax | wikipron | 655 | 0.0977 | - | - | 0.0618 | 0.0616 | 0.6840 | 0.6855 | [0.0883, 0.1075] | 0.5282 | research | crowd-scraped |
+| fax | spain_romance_tts | 20 | 0.0358‡ | - | - | - | - | - | - | [0.0174, 0.0563] | 0.5000 | research | llm-corrected |
+| fax | wikipron | 655 | 0.0932 | - | - | 0.0573 | 0.0565 | 0.7023 | 0.7053 | [0.0837, 0.1019] | 0.5435 | research | crowd-scraped |
 | fi | ipadict | 92836 | 0.0609 | 1.0000 | - | 0.0609 | 0.0609 | 0.5012 | 0.5012 | [0.0604, 0.0613] | 0.5012 | production | machine-generated |
 | fi | vox_communis | 13324 | 0.0037‡ | - | - | 0.0037 | 0.0037 | 0.9678 | 0.9678 | [0.0033, 0.0041] | 0.9678 | production | epitran-derived |
 | fi | wikipron | 168808 | 0.0184 | - | - | 0.0184 | 0.0184 | 0.8173 | 0.8173 | [0.0182, 0.0186] | 0.8171 | production | crowd-scraped |
