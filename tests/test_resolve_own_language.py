@@ -89,14 +89,25 @@ def test_with_no_own_spec_near_enough_the_old_target_stays(tag, code):
     assert not resolves_exactly(tag)
 
 
-@pytest.mark.parametrize("tag", ["zh-HK", "cdo-Hans", "cdo-Hans-CN"])
-def test_an_unresolved_tag_stays_unresolved(tag):
-    # Min Dong (cdo) is a member of the zh macrolanguage, but it is not
-    # Mandarin, and the zh spec reads Mandarin pinyin. langcodes guesses
-    # Latn for cdo, so the cdo specs are not near cdo-Hans either.
-    assert resolve(tag) == tag
+def test_an_unresolved_tag_stays_unresolved():
+    assert resolve("zh-HK") == "zh-HK"
     with pytest.raises(KeyError):
-        get(tag)
+        get("zh-HK")
+
+
+@pytest.mark.parametrize("tag", ["cdo-Hans", "cdo-Hans-CN"])
+def test_min_dong_in_han_script_is_not_mandarin(tag):
+    # Min Dong (cdo) is a member of the zh macrolanguage, but it is not
+    # Mandarin, and the zh spec reads Mandarin pinyin. CLDR gives Hans as the
+    # likely script of cdo, and the cdo spec declares Han script. It is a
+    # stub with no graphemes, where the zh spec reads pinyin.
+    assert resolve(tag) == "cdo"
+    assert not get(tag).graphemes
+
+
+def test_only_the_tag_with_no_region_names_the_cdo_spec_exactly():
+    assert resolves_exactly("cdo-Hans")
+    assert not resolves_exactly("cdo-Hans-CN")
 
 
 # langcodes 3.5.1 still folds these individual languages into a
