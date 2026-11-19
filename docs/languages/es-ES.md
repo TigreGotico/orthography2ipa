@@ -124,17 +124,17 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 | Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
 |:--|:--|:--|:--|:--|--:|--:|:--|
 | `primary_sources` | `es-ES` | gold | expert-human | Apache-2.0 (this repository). Each row quotes and cites a published example. | 41 | 0.0232 | yes |
-| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `es` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 132189 | 0.0774 | yes |
-| `ipadict` ([open-dict-data/ipa-dict](https://github.com/open-dict-data/ipa-dict)) | `es-ES` | generated | machine-generated | MIT, each file its own | 595896 | 0.0127 | yes |
-| `ipa_childes` ([fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split)) | `es-ES` | generated | epitran-derived | CC BY 4.0 | 13155 | 0.0863 | no |
-| `vox_communis` ([fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p)) | `es` | generated | epitran-derived | CC0 1.0 | 48067 | 0.0594 | no |
+| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `es` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 132189 | 0.0802 | yes |
+| `ipadict` ([open-dict-data/ipa-dict](https://github.com/open-dict-data/ipa-dict)) | `es-ES` | generated | machine-generated | MIT, each file its own | 595896 | 0.0092 | yes |
+| `ipa_childes` ([fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split)) | `es-ES` | generated | epitran-derived | CC BY 4.0 | 13155 | 0.0871 | no |
+| `vox_communis` ([fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p)) | `es` | generated | epitran-derived | CC0 1.0 | 48067 | 0.0612 | no |
 | `spain_romance_tts` | `es-ES` | silver | llm-corrected | Apache-2.0 (this repository) | 20 | 0.0029 | no |
 <!-- atlas:datasets end -->
 
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 36 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 37 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Dental | Alveolar | Postalveolar | Palatal | Velar | Uvular |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -143,7 +143,7 @@ The spec can emit 36 segments. They come from the letter table, the positional r
 | Nasal | m |  |  | n |  | ɲ | ŋ |  |
 | Trill |  |  |  | r |  |  |  |  |
 | Tap |  |  |  | ɾ |  |  |  |  |
-| Fricative | β | f | ð θ | s s̺ |  | ʝ | x ɣ | χ |
+| Fricative | β | f | ð θ | s s̺ z |  | ʝ | x ɣ | χ |
 | Approximant |  |  |  |  |  | j |  |  |
 | Lateral approximant |  |  |  | l |  |  |  |  |
 
@@ -234,13 +234,14 @@ Whole-word exceptions (6): ⟨guión⟩ [ɡiˈon], ⟨muón⟩ [muˈon], ⟨pió
 <!-- atlas:rules begin -->
 ## Rules
 
-The spec applies 6 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
+The spec applies 7 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
 
 | Rule | Change | Example | Cited |
 |:--|:--|:--|:--|
 | `ES_TRILL_AFTER_CORONAL` | /ɾ/ → [r], after [n] [l] [s] | ⟨alrededor⟩ [alreðeˈðoɾ] | [Hualde 2005](#src-hualde2005), [Navarro 1977](#src-navarro1977), [Quilis 1993](#src-quilis1993) |
 | `ES_NASAL_LABIAL` | /n/ → [m], before [b] [β] [p] [m] | ⟨inmaculada⟩ [immakuˈlaða] | [Hualde 2005](#src-hualde2005), [Navarro 1977](#src-navarro1977), [Quilis 1993](#src-quilis1993) |
 | `ES_NASAL_VELAR` | /n/ → [ŋ], in the coda, before [k] [ɡ] [ɣ] [x] [w] | ⟨cinco⟩ [θíŋko] | [Navarro 1918](#src-navarro1918) |
+| `ES_S_VOICING` | /s/ → [z], before [b] [β] [d] [ð] [ɡ] [ɣ] [m] [n] and 7 more | ⟨feature’⟩ [ˈrazɣo] | Fernández-Planas & Carrera-Sabaté 2003 |
 | `ES_SPIRANT_B` | /b/ → [β], after [a] [e] [i] [o] [u] [ɛ] [ɔ] [æ] and 28 more | - | [Navarro 1918](#src-navarro1918) |
 | `ES_SPIRANT_D` | /d/ → [ð], after [a] [e] [i] [o] [u] [ɛ] [ɔ] [æ] and 26 more | - | [Navarro 1918](#src-navarro1918) |
 | `ES_SPIRANT_G` | /ɡ/ → [ɣ], after [a] [e] [i] [o] [u] [ɛ] [ɔ] [æ] and 28 more | - | [Navarro 1918](#src-navarro1918) |
@@ -276,7 +277,7 @@ The engine wrote every transcription in this section with `orthography2ipa.trans
 | nación | [naˈθjon] |
 | aire | [ˈai̯ɾe] |
 | estoy | [esˈtoi] |
-| mismo | [ˈmismo] |
+| mismo | [ˈmizmo] |
 | México | [ˈmeksiko] |
 
 The next table sets the engine output against worked examples printed in a cited source, from the [primary-source gold](../evaluation/datasets.md#primary-source-gold-primary_sources). The rows are spread evenly over that set. The last column says whether the two transcriptions are the same string.
