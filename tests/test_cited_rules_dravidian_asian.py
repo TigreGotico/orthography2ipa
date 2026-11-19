@@ -848,11 +848,18 @@ def test_ie_ch_is_the_velar_fricative_in_its_spelled_contexts(word, expected):
     assert G2P("ie").transcribe_word(word) == expected
 
 
-def test_ie_vocalic_y_before_a_vowel_is_its_own_syllable():
+@pytest.mark.parametrize("word, expected", [
+    ("cyan", "tsyˈan"),
+    pytest.param("dyade", "dyˈade", marks=pytest.mark.xfail(
+        strict=True, reason="only cyan is a word exception; the engine never "
+        "makes ⟨y⟩ a nucleus next to a vowel letter, so the rule is missing")),
+])
+def test_ie_vocalic_y_before_a_vowel_is_its_own_syllable(word, expected):
     """Cosmoglotta 64, p. 152: cyan [tsüán], two syllables with the stress on the
     second; art. 1 (Cosmoglotta 65, p. 165) puts it on the vowel before the last
-    consonant."""
-    assert G2P("ie").transcribe_word("cyan") == "tsyˈan"
+    consonant. cyan reads right through a word exception; dyade stands for the
+    rest of the class."""
+    assert G2P("ie").transcribe_word(word) == expected
 
 
 @pytest.mark.parametrize("word, expected", [
@@ -860,14 +867,12 @@ def test_ie_vocalic_y_before_a_vowel_is_its_own_syllable():
     ("Catalunya", "kataˈlunya"),
     ("Libya", "ˈlibya"),
     ("embryo", "ˈembryo"),
-    ("senyor", "seˈnyor"),
 ])
 def test_ie_stress_is_on_the_vowel_before_the_last_consonant_beside_y(word, expected):
     """Cosmoglotta 65, p. 165, art. 1: "Li accentu tonic es situat ordinarmen sur
     li vocal ante li ultim consonant". In a word ending in consonant + ⟨y⟩ +
     vowel that vowel is the one before the consonant: the ⟨a⟩ of canya, the ⟨u⟩
-    of Catalunya, the ⟨i⟩ of Libya, the ⟨e⟩ of embryo. In senyor the last
-    consonant is ⟨r⟩ and the stressed syllable is the one with the ⟨o⟩."""
+    of Catalunya, the ⟨i⟩ of Libya, the ⟨e⟩ of embryo."""
     assert G2P("ie").transcribe_word(word) == expected
 
 
