@@ -168,7 +168,7 @@ Whole-word exceptions (1): ⟨'n⟩ [ə].
 <!-- atlas:rules begin -->
 ## Rules
 
-The spec applies 7 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
+The spec applies 8 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
 
 | Rule | Change | Example | Cited |
 |:--|:--|:--|:--|
@@ -179,6 +179,7 @@ The spec applies 7 allophone rules after the letters are read. The change column
 | `NL_CODA_DEVOICE_V` | /v/ → [f], in the coda, before [t] [k] [s] [f] [p] [x] [χ], spelled ⟨v⟩ | - | Booij 1995 |
 | `NL_CODA_DEVOICE_Z` | /z/ → [s], in the coda, before [t] [k] [s] [f] [p] [x] [χ], spelled ⟨z⟩ | ⟨raad-sel⟩ [raːtsəl] | Booij 1995 |
 | `NL_QU_FRENCH_K` | /ʋ w/ → ∅, after [k], spelled ⟨qu⟩, in 29 listed words | ⟨pubquiz⟩ [ˈpʏpkʋɪs] | Paardekooper 1987 |
+| `NL_LIJK_SCHWA` | /ɛi aːi/ → [ə], unstressed, spelled ⟨ij⟩, after ⟨l⟩, before ⟨k⟩ | - | Trommelen & Zonneveld 1992 |
 
 The spec switches off 16 inherited rules: `NL_UNSTRESSED_TENSE_I_FINAL`, `NL_UNSTRESSED_TENSE_I_HIATUS`, `NL_HIGH_TENSE_LENGTHENING_BEFORE_R_I`, `NL_HIGH_TENSE_LENGTHENING_BEFORE_R_Y`, `NL_MID_TENSE_CENTRING_BEFORE_R_E`, `NL_MID_TENSE_CENTRING_BEFORE_R_OE`, `NL_MID_TENSE_CENTRING_BEFORE_R_O`, `NL_MID_TENSE_CLOSING_DIPHTHONG_E`, `NL_MID_TENSE_CLOSING_DIPHTHONG_OE`, `NL_MID_TENSE_CLOSING_DIPHTHONG_O`, `NL_CODA_R_APPROXIMANT`, `NL_OPEN_SYLLABLE_A`, `NL_OPEN_SYLLABLE_E`, `NL_OPEN_SYLLABLE_I`, `NL_OPEN_SYLLABLE_O`, `NL_OPEN_SYLLABLE_U`.
 <!-- atlas:rules end -->
