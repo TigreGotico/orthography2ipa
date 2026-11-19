@@ -189,6 +189,20 @@ class TestNorwegianScandinavian:
     def test_v_is_approximant(self):
         assert _ipa("nb", "vann") == "ʋɑnː"
 
+    def test_vowel_is_short_before_ng(self):
+        # Kristoffersen 2015 pp. 27, 28 and 31 writes a short vowel before
+        # /ŋ/ in every form: [sɑŋ] sang, [klɑŋ] klang, [sprɑŋ] sprang,
+        # [lɑŋ] lang, [lɛŋt] lengt, and /tiŋ/ ting beside the long vowel of
+        # /rɑːr/ rar.
+        assert _ipa("nb", "sang") == "sɑŋ"
+        assert _ipa("nb", "klang") == "klɑŋ"
+        assert _ipa("nb", "sprang") == "sprɑŋ"
+        assert _ipa("nb", "lang") == "lɑŋ"
+        assert _ipa("nb", "lengt") == "lɛŋt"
+        # The spec writes short /i/ as [ɪ], as its other shortening rules do.
+        assert _ipa("nb", "ting") == "tɪŋ"
+        assert _ipa("nb", "rar") == "ɾɑːɾ"
+
     def test_tonemes_are_not_transcribed(self):
         out = G2P("nb").transcribe_word("bønder")
         assert "²" not in out and "¹" not in out

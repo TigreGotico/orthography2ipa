@@ -98,7 +98,7 @@ from orthography2ipa.stress import (
 )
 from orthography2ipa.tone import assign_computed_tones, dock_tone_marks
 from orthography2ipa.transforms import apply_transform
-from orthography2ipa.types import GraphemePosition, LanguageSpec
+from orthography2ipa.types import GraphemePosition, LanguageSpec, ScriptType
 
 #: Punctuation clinging to either end of a raw word (see ``_override_for``).
 #: An apostrophe is not clinging punctuation: it spells an elision (Catalan
@@ -1696,7 +1696,15 @@ class G2P:
                         ipa, self.spec.stress.max_onset),
                 )
             else:
-                sylls = self._syllables_cached(word)
+                # An abugida writes no letter for the inherent vowel, so its
+                # written division has fewer syllables than the word: Assamese
+                # ⟨চকু⟩ [sɔku] is one written syllable, and a count over it
+                # puts every stress on the last syllable. The transcription's
+                # own division counts the inherent vowels, so the stress rules
+                # count its syllables.
+                sylls = (syllabify_for_mark(ipa, self.spec.stress)
+                         if self.spec.script_type == ScriptType.ABUGIDA
+                         else self._syllables_cached(word))
                 idx = detect_stress(word, self.spec.stress, syllables=sylls)
                 mark = None
                 rules = self.spec.stress
@@ -1735,9 +1743,11 @@ class G2P:
         syllable whose only vowels are inserted joins the syllable before it,
         so the count sees the written syllables again: ``pa|ki|tu`` is counted
         as ``paki|tu``. A word where nothing folds returns ``None`` and keeps
-        the plain count.
+        the plain count. An abugida's stress counts the syllables of the
+        transcription itself, so nothing folds there.
         """
-        if path is None or not path.graphemes or path.ipa != ipa:
+        if (path is None or not path.graphemes or path.ipa != ipa
+                or self.spec.script_type == ScriptType.ABUGIDA):
             return None
         tokens = self._tokenizer.grapheme_tokens(word)
         inserted: Set[int] = set()

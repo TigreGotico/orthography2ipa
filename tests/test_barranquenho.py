@@ -259,9 +259,12 @@ class TestLectCodeAndAlias:
 
 
 def test_a_hyphen_does_not_move_the_mark_of_a_compound(g2p):
-    # Dicionário de Barranquenho (Valério 2025), headword ⟨rebenta-e-treh⟩
-    # "jogo de rapazes": [rɨˈbẽtɐ i ˈtɾɛh], primary stress on ⟨treh⟩. The
-    # hyphen adds no segment, but it is no silent letter inside a word, so
-    # the mark stays on the last part.
+    # Checks the guard of the written-hiatus cut, not the stress of the
+    # word: the cut needs a letter before the second vowel, and in
+    # ⟨rebenta-e-treh⟩ only a hyphen stands between ⟨a⟩ and ⟨e⟩. Without
+    # the guard the mark moved onto ⟨e⟩. No source attests the stress: the
+    # entry in Gonçalves, Navas & Ferreira (2025), p. 82, gives the headword
+    # and the gloss "jogo de rapazes" and no pronunciation, and the synthetic
+    # barranquenho_dict row [rɨˈbẽtɐ i ˈtɾɛh] shows agreement only.
     out = g2p.transcribe_word("rebenta-e-treh")
     assert out.count("ˈ") == 1 and "ˈtɾ" in out
