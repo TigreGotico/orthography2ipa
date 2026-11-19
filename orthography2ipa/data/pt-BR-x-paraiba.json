@@ -178,7 +178,8 @@
       "surface": "ʃ",
       "syllable_position": "coda",
       "followed_by_phoneme": [
-        "t"
+        "t",
+        "t͡ʃ"
       ],
       "notes": "Coda /S/ is alveolar except before the dental stops. Hora, Henrique & Amorim (2018: 283), summarising Hora (2003) on the VALPB corpus: 'é quase categórico o uso [ʃ, ʒ] antes das consoantes oclusivas dentais [t] e [d], enquanto antes das outras consoantes, a pronúncia alveolar é a predominante'. The palatal reaches 97 % before a coronal, n = 6.265 (Henrique, Amorim & Hora 2022, Redalyc PDF p. 5): posto [ˈpoʃtu], casca [ˈkaskɐ]."
     },
@@ -191,7 +192,8 @@
       "surface": "ʒ",
       "syllable_position": "coda",
       "followed_by_phoneme": [
-        "d"
+        "d",
+        "d͡ʒ"
       ],
       "notes": "Voiced counterpart of PB_CODA_S_BEFORE_T: de[z]de becomes de[ʒ]de (Hora, Henrique & Amorim 2018: 280). BR_CODA_S_VOICED writes the coda as [z] before [d] in the first pass; this rule makes it [ʒ]: desde [ˈdeʒd͡ʒi], mesmo [ˈmezmu]."
     },
@@ -203,13 +205,14 @@
       "surface": "t͡ʃ",
       "followed_by_phoneme": [
         "i",
-        "ɪ"
+        "ɪ",
+        "ĩ"
       ],
       "preceded_by_phoneme": [
         "ʃ",
         "ʒ"
       ],
-      "notes": "/t/ is the affricate before [i] only after a coda palatal fricative; elsewhere it stays a stop. Hora, Henrique & Amorim (2018: 280): palatalisation occurs 'em torno de 7% nas oclusivas antes de [i]' in the VALPB corpus of João Pessoa; 7 % in Hora (1997) and 5,45 % in Henrique & Hora (2012) (ibid., p. 288). Hora, Henrique & Amorim (2018: 292): 'dentre os contextos precedentes, a fricativa palatal foi a que mais condicionou a taxa de produção das oclusivas dentais (56.4%)'. Gráfico 6 (the next page, from Henrique & Hora 2012: 6) puts the affricate at 56.4 % after a palatal fricative, against 3.7 % after a glide, 1.8 % after a pause and 3.1 % after a vowel, a liquid or a nasal (the split was read from the chart by a model, not by a person). So the affricate is the more frequent form after [ʃ ʒ] only: desde [ˈdeʒd͡ʒi], festival [feʃt͡ʃiˈvaw], and tarde [ˈtahdi], noite [ˈnojti], mestre [ˈmeʃtɾi] keep the stop. The coda [ʃ ʒ] come from PB_CODA_S_BEFORE_T and PB_CODA_Z_BEFORE_D."
+      "notes": "/t/ is the affricate before [i] only after a coda palatal fricative; elsewhere it stays a stop. Hora, Henrique & Amorim (2018: 280): palatalisation occurs 'em torno de 7% nas oclusivas antes de [i]' in the VALPB corpus of João Pessoa; 7 % in Hora (1997) and 5,45 % in Henrique & Hora (2012) (ibid., p. 288). Hora, Henrique & Amorim (2018: 292): 'dentre os contextos precedentes, a fricativa palatal foi a que mais condicionou a taxa de produção das oclusivas dentais (56.4%). Portanto, no nível de produção, a fricativa palatal como contexto precedente tende a aumentar a taxa de produção da palatalização das oclusivas dentais'. Gráfico 6 (p. 293, from Henrique & Hora 2012: 6) puts the affricate at 56.4 % after a palatal fricative, against 3.7 % after a glide, 1.8 % after a pause and 3.1 % after a vowel, a liquid or a nasal (the split was read from the chart by a model, not by a person). So the affricate is the more frequent form after [ʃ ʒ] only: desde [ˈdeʒd͡ʒi], festival [feʃt͡ʃiˈvaw], and tarde [ˈtahdi], noite [ˈnojti], mestre [ˈmeʃtɾi] keep the stop. The coda [ʃ ʒ] come from PB_CODA_S_BEFORE_T and PB_CODA_Z_BEFORE_D."
     },
     {
       "id": "BR_AFFRIC_D_RAISED",
@@ -219,7 +222,8 @@
       "surface": "d͡ʒ",
       "followed_by_phoneme": [
         "i",
-        "ɪ"
+        "ɪ",
+        "ĩ"
       ],
       "preceded_by_phoneme": [
         "ʃ",

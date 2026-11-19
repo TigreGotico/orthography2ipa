@@ -34,11 +34,15 @@ def test_t_d_stay_stops_before_i(word, expected):
 # de produção das oclusivas dentais (56.4%)" (Hora, Henrique & Amorim 2018:
 # 292). Gráfico 6 gives 3.7 % after a glide, 1.8 % after a pause and 3.1 % after
 # a vowel, a liquid or a nasal, so those contexts keep the stop. mestre has
-# ⟨tr⟩, not /t/ before [i], and keeps its cluster.
+# ⟨tr⟩, not /t/ before [i], and keeps its cluster. A coda ⟨x⟩ is the same
+# palatal as ⟨s⟩ (extinto, têxtil), and a nasal [ĩ] counts as /i/ (destino).
 @pytest.mark.parametrize("word, expected", [
     ("desde", "ˈdeʒd͡ʒi"),
     ("desdizer", "deʒd͡ʒiˈze"),
     ("festival", "feʃt͡ʃiˈvaw"),
+    ("extinto", "eʃˈt͡ʃĩtu"),
+    ("têxtil", "ˈteʃt͡ʃiw"),
+    ("destino", "deʃˈt͡ʃĩnu"),
     ("tarde", "ˈtahdi"),
     ("noite", "ˈnojti"),
     ("tia", "ˈtiɐ"),
