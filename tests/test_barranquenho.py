@@ -256,3 +256,15 @@ class TestLectCodeAndAlias:
     def test_spec_claims_no_crossref_of_another_language(self, barrancos):
         assert barrancos.iso639_3 is None
         assert barrancos.glottolog_code is None
+
+
+def test_a_hyphen_does_not_move_the_mark_of_a_compound(g2p):
+    # Checks the guard of the written-hiatus cut, not the stress of the
+    # word: the cut needs a letter before the second vowel, and in
+    # ⟨rebenta-e-treh⟩ only a hyphen stands between ⟨a⟩ and ⟨e⟩. Without
+    # the guard the mark moved onto ⟨e⟩. No source attests the stress: the
+    # entry in Gonçalves, Navas & Ferreira (2025), p. 82, gives the headword
+    # and the gloss "jogo de rapazes" and no pronunciation, and the synthetic
+    # barranquenho_dict row [rɨˈbẽtɐ i ˈtɾɛh] shows agreement only.
+    out = g2p.transcribe_word("rebenta-e-treh")
+    assert out.count("ˈ") == 1 and "ˈtɾ" in out

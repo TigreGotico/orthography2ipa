@@ -91,8 +91,9 @@ from orthography2ipa.sentence import (
     span_position,
 )
 from orthography2ipa.stress import (
-    SECONDARY_MARK, _AFFRICATES, _syllables_for, apply_iambic_length,
-    apply_stress_mark, cliticless_keys, detect_stress, detect_stress_by_weight,
+    SECONDARY_MARK, _AFFRICATES, _LENGTH_MARKS, _NON_SYLLABIC,
+    _syllables_for, apply_iambic_length, apply_stress_mark,
+    cliticless_keys, detect_stress, detect_stress_by_weight,
     secondary_stress_positions, syllabify, syllabify_for_mark, syllabify_ipa,
 )
 from orthography2ipa.tone import assign_computed_tones, dock_tone_marks
@@ -1714,7 +1715,9 @@ class G2P:
                         mark = rules.accent2_mark
                 ipa = apply_stress_mark(
                     ipa, self.spec.stress, idx, syllables=sylls, mark=mark,
-                    ipa_syllables=self._fold_inserted_nuclei(word, ipa, path),
+                    ipa_syllables=self._cut_written_hiatus(
+                        word, ipa, path, sylls,
+                        self._fold_inserted_nuclei(word, ipa, path)),
                     secondary_indices=sorted(secondary_stress_positions(
                         len(sylls), idx, self.spec.stress)),
                     spec=self.spec)
@@ -1773,6 +1776,89 @@ class G2P:
                 folded.append(syllable)
             offset += len(syllable)
         return folded if len(folded) < len(syllables) else None
+
+    def _cut_written_hiatus(
+        self, word: str, ipa: str, path: Optional[IPAPath],
+        syllables: List[str], division: Optional[List[str]],
+    ) -> Optional[List[str]]:
+        """*division* with a syllable cut where one vowel run holds the
+        nuclei of two written syllables, or *division* unchanged.
+
+        The stress index counts written syllables. A consonant letter that
+        adds no segment leaves the vowels on either side of it in one vowel
+        run, and the IPA division takes a run as one nucleus unless the spec's
+        diphthongs split it. The transcription then has a syllable fewer than
+        the spelling, and the end-anchored count lands the mark one syllable
+        early: Dutch ⟨getrouwe⟩ divides ge-trou-we, ⟨ouw⟩ reads [ɑu] and its
+        ⟨w⟩ adds nothing, and the mark of [χətrɑuə] went on the prefix. The
+        path records the grapheme of each segment, so the run is cut where
+        the written syllable of its vowels changes: χə|trɑu|ə.
+
+        A cut needs a syllabic vowel on each side, from two neighbouring
+        written syllables, and a letter before the vowel of the second one:
+        two vowel letters in contact are the business of
+        :func:`~orthography2ipa.stress._written_vowel_contacts`. A hyphen is
+        no such letter. It joins the parts of a compound, and the stress
+        rules place the mark of a compound: Barranquenho
+        ⟨rebenta-e-treh⟩ keeps its mark on ⟨treh⟩. Two vowel
+        letters that are one of the spec's ``diphthongs`` are not cut either,
+        because across a silent letter they can be one nucleus, and the
+        transcription decides.
+
+        *division* is the IPA division the caller has so far, ``None`` for
+        the plain one.
+        """
+        if path is None or not path.graphemes or path.ipa != ipa:
+            return division
+        sylls = division or syllabify_for_mark(ipa, self.spec.stress)
+        if len(sylls) >= len(syllables) or "".join(syllables) != word:
+            return division
+        tokens = self._tokenizer.grapheme_tokens(word)
+        token_syllable = self._map_tokens_to_syllables(tokens, syllables)
+        owner: List[int] = []
+        source: List[int] = []
+        t = 0
+        for grapheme, segment in zip(path.graphemes, path.segments):
+            while t < len(tokens) and tokens[t].grapheme != grapheme:
+                t += 1
+            if t == len(tokens):
+                return division
+            owner += [token_syllable[t]] * len(segment)
+            source += [tokens[t].position] * len(segment)
+            t += 1
+        if len(owner) != len(ipa):
+            return division
+        starts = [sum(map(len, syllables[:k])) for k in range(len(syllables))]
+        diphthongs = {d.lower() for d in self.spec.stress.diphthongs}
+        cuts: Set[int] = set()
+        last: Optional[int] = None
+        for o, ch in enumerate(ipa):
+            if not is_ipa_vowel(ch):
+                if not (unicodedata.combining(ch) or ch in _LENGTH_MARKS):
+                    last = None
+                continue
+            following = ipa[o + 1:o + 2]
+            if (last is not None and owner[o] == owner[last] + 1
+                    and not (following and following in _NON_SYLLABIC)):
+                before, after = syllables[owner[last]], syllables[owner[o]]
+                first = next(
+                    (c for c in after if is_orthographic_vowel(c)), "")
+                lead = after[:source[o] - starts[owner[o]]]
+                if (any(c.isalpha() for c in lead)
+                        and (before[-1:] + first).lower() not in diphthongs):
+                    cuts.add(o)
+            last = o
+        cut: List[str] = []
+        offset = 0
+        for syllable in sylls:
+            start = 0
+            for i in range(1, len(syllable)):
+                if offset + i in cuts:
+                    cut.append(syllable[start:i])
+                    start = i
+            cut.append(syllable[start:])
+            offset += len(syllable)
+        return cut if len(cut) > len(sylls) else division
 
     def word_candidates(self, word: str, *, k: int = 5,
                         beam_width: Optional[int] = None) -> List[str]:
