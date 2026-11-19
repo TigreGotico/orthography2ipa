@@ -35,12 +35,6 @@
   "parent": "pt-PT",
   "allophone_rules": [
     {
-      "id": "PT_EX_CONSONANT_GLIDE",
-      "phonemes": [],
-      "surface": "ɐj",
-      "notes": "DISABLED for Alfena Portuguese. No source for the vowel of ⟨ex⟩ before a consonant in this variety was read, so its output stays what it was. The pt-PT rule rests on Infopédia readings of standard European Portuguese."
-    },
-    {
       "id": "PT_FINAL_EM_NUCLEUS",
       "phonemes": [
         "e",

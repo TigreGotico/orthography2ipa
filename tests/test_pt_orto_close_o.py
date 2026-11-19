@@ -88,7 +88,7 @@ UNCHANGED = {
     "suporto": "suˈpɔɾtu",
     "transporto": "tɾɐ̃ʃˈpɔɾtu",
     "importo": "ĩˈpɔɾtu",
-    "exporto": "ɐjʃˈpɔɾtu",
+    "exporto": "ejʃˈpɔɾtu",
     "comporto": "kõˈpɔɾtu",
     "mortos": "ˈmɔɾtuʃ",
     "morta": "ˈmɔɾtɐ",

@@ -230,18 +230,38 @@
       "phonemes": [
         "e",
         "ɛ",
-        "ɨ",
-        "i"
+        "ɨ"
       ],
-      "surface": "ɐj",
+      "surface": "ej",
       "grapheme": [
         "e"
       ],
       "followed_by_grapheme": [
         "x"
       ],
-      "followed_by_2": "consonant",
-      "notes": "⟨e⟩ before ⟨x⟩ and a consonant takes the palatal glide: [ɐjʃ] (texto [ˈtɐjʃtu], contexto [kõˈtɐjʃtu], pretexto [pɾɨˈtɐjʃtu], sexta [ˈsɐjʃtɐ], extra [ˈɐjʃtɾɐ], explicar [ɐjʃpliˈkaɾ], excelente [ɐjʃsɨˈlẽtɨ], exterior [ɐjʃtɨɾiˈoɾ]). No phonology or grammar text was consulted for this rule. Its evidence is the Infopédia (Porto Editora) pt-PT transcriptions: texto [ˈtɐjʃtu], contexto [kõˈtɐjʃtu], pretexto [prəˈtɐjʃtu], sexta [ˈsɐjʃtɐ], extra [ˈɐjʃtrɐ], explicar [ɐjʃpliˈkar], excelente [ɐjʃsəˈlẽt(ə)], exterior [ɐjʃtəˈrjor]. Of the 549 Infopédia headwords with ⟨ex⟩ before a consonant other than ⟨x⟩ and ⟨h⟩, 542 have the glide before the sibilant in at least one of their readings, and 2 more (extrema-esquerda, extrema-direita) have it with no sibilant. The 5 without a glide are excentricidade, excêntrico, bidextro, exfoliativo and exfluxo. The rule needs a consonant after ⟨x⟩: ⟨x⟩ before a vowel (exame, exato) and word-final ⟨x⟩ keep their reading. The vowel is [ɐ] in every Infopédia row, stressed (texto) or not (explicar), so the rule sets it and replaces the open [ɛ] or [e] that the grapheme map gave. Dialect specs that carry their own stressed ⟨e⟩ vocalism (Porto, Braga), and every variety without a source (the regional dialects other than Lisbon and Coimbra, Barrancos, the African and Asian varieties, the creoles), disable this rule. Lisbon restricts it to word-initial ⟨ex⟩."
+      "followed_by_phoneme_2": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ",
+        "l",
+        "ʎ",
+        "ɾ",
+        "ʁ",
+        "w"
+      ],
+      "notes": "A spec's ⟨e⟩ before ⟨x⟩ and a consonant takes the same diphthong as that spec's ⟨ei⟩. In pt-PT ⟨ei⟩ is [ej] (deixar [dejˈʃaɾ], peixe [ˈpejʃɨ]). So ⟨ex⟩ before a consonant is [ejʃ]: texto [ˈtejʃtu], sexta [ˈsejʃtɐ], explicar [ejʃpliˈkaɾ], extra [ˈejʃtɾɐ]. The ⟨ei⟩ value follows the standing ruling. [ɐj] is the Lisbon value and [ej] is the standard pt-PT value. A dictionary reading such as Infopédia's does not settle the pt-PT norm, because it carries the Lisbon assumption. Infopédia (Porto Editora) writes [ɐj] for ⟨ei⟩ and for ⟨ex⟩ before a consonant alike: texto [ˈtɐjʃtu], explicar [ɐjʃpliˈkar]. It carries the glide in 542 of its 549 headwords with ⟨ex⟩ before a consonant, so it supports the glide and not its vowel. pt-PT-x-lisbon restates the rule with [ɐj], as it does for ⟨ei⟩. The rule needs a pronounced consonant after ⟨x⟩. ⟨x⟩ before a vowel (exame, exato), word-final ⟨x⟩ (duplex), ⟨exh⟩ and ⟨exy⟩ (exhalar, sexy) keep their reading. ⟨êx⟩ (têxtil) and the hyphenated prefix ex- (ex-marido) are not matched. The rule rewrites the [e ɛ ɨ] candidates of the ⟨e⟩ slot and leaves the reduced [i] candidate. It cannot see which candidate the ⟨x⟩ slot takes, so the [ks] alternatives of ⟨x⟩ carry the glide too. These specs disable the rule. Porto and Braga keep a diphthongised stressed ⟨e⟩, and no source on their unstressed initial ⟨ex⟩ was read. Algarve, Alentejo and São Miguel have a monophthong ⟨ei⟩. Barrancos has its own vowel system. The African and Asian varieties, the creoles and the Açores, Aveiro, Beira, Madeira and Terceira dialects have no source read. Alfena, Minho, Trás-os-Montes, Viana and Coimbra inherit the rule because their notes keep ⟨ei⟩ at [ej]."
     },
     {
       "id": "PT_FINAL_EM_NUCLEUS",

@@ -53,7 +53,7 @@
       "id": "PT_EX_CONSONANT_GLIDE",
       "phonemes": [],
       "surface": "ɐj",
-      "notes": "DISABLED for Porto Portuguese. The stressed ⟨e⟩ keeps its Baixo-Minho rising diphthong from the diphthongisation rule of this spec, which the pt-PT rule would replace."
+      "notes": "DISABLED for Porto Portuguese. The stressed ⟨e⟩ keeps its Baixo-Minho rising diphthong from the diphthongisation rule of this spec (texto [ˈtjɛʃtu]), which the pt-PT rule would replace. No source for the unstressed initial ⟨ex⟩ of this variety (explicar [eʃpliˈkaɾ]) was read, so that reading stays what it was."
     },
     {
       "id": "PT_LEX_OPEN_E_SUFFIX",
