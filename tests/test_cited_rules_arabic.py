@@ -405,6 +405,50 @@ def test_najd_affric_k_after_front_vowel():
     assert _bare("ar-SA-x-najd", "دِيك") == "diːts"
 
 
+@pytest.mark.parametrize("code", ["ar-SA-x-najd", "ars-SA-x-qassim", "ars-SA-x-shamali"])
+@pytest.mark.parametrize("word,expected", [
+    # Al Mahmoud 2020 p.65: no affrication with a back or central vowel in the
+    # same syllable (exx. 14 [kʊm], 16 [kʊl]); Alshammari 2026 p.1336:
+    # affrication is "categorically blocked in the proximity of back vowels".
+    ("عَلَيْكُم", "ʕaleːkum"),
+    # Al Mahmoud 2020 p.73 exx. 37, 39: masculine /lɪk/ is never [lɪts].
+    ("عَلَيْكَ", "ʕaleːka"),
+    ("فِيكُم", "fiːkum"),
+])
+def test_najd_affric_k_after_blocked_in_onset(code, word, expected):
+    """NAJD_AFFRIC_K_AFTER is coda-only: a /k/ that starts a syllable with a
+    back or central vowel stays [k] after a front vowel."""
+    assert _bare(code, word) == expected
+
+
+@pytest.mark.parametrize("code", ["ar-SA-x-najd", "ars-SA-x-qassim", "ars-SA-x-shamali"])
+@pytest.mark.parametrize("word,expected", [
+    # Al Mahmoud 2020 p.63 ex. 4: /keɪf/ 'how' -> [tsef]; the onset /k/ is
+    # affricated by NAJD_AFFRIC_K_BEFORE, before the front vowel.
+    ("كَيْف", "tseːf"),
+    # Al Mahmoud 2020 ex. 2: /dik/ -> [dits] 'rooster'; coda /k/ after /iː/.
+    ("دِيك", "diːts"),
+    # Coda /k/ after /i/ (fish): the front vowel is in the same syllable.
+    ("سِمِك", "simits"),
+])
+def test_najd_affric_k_kept_before_front_vowel_and_in_coda(code, word, expected):
+    assert _bare(code, word) == expected
+
+
+def test_shamali_affric_k_after_central_a_word_final():
+    """SHAMALI_AFFRIC_K_AFTER_CENTRAL_A: word-final /k/ after /a/ affricates
+    (Alshammari 2026 p.1336); the coda condition on the inherited rule does
+    not reach it."""
+    assert _bare("ars-SA-x-shamali", "سَمَك") == "samats"
+    assert _bare("ar-SA-x-najd", "سَمَك") == "samak"
+
+
+@pytest.mark.parametrize("code", ["ar-SA-x-najd", "ars-SA-x-qassim", "ars-SA-x-shamali"])
+def test_najd_glide_before_alif_after_fatha_is_not_a_monophthong(code):
+    """The ⟨َوا⟩ key keeps [awaː]: دَوام is [dawaːm], not *[doːaːm]."""
+    assert _bare(code, "دَوام") == "dawaːm"
+
+
 def test_najd_affrication_excludes_fatha_environment():
     """Najdi affrication is deliberately NOT triggered by /a/.
 

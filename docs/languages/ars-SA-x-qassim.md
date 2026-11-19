@@ -65,8 +65,8 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 | Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
 |:--|:--|:--|:--|:--|--:|--:|:--|
 | `primary_sources` | `ars-SA-x-qassim` | gold | expert-human | Apache-2.0 (this repository). Each row quotes and cites a published example. | 12 | 0.1327 | no |
-| `arabic_tts` | `ars-SA-x-qassim` | silver | llm-corrected | Apache-2.0 (this repository) | 20 | 0.0958 | no |
-| `gold20_arabic` ([TigreGotico/arabic-dialects-gold20](https://huggingface.co/datasets/TigreGotico/arabic-dialects-gold20)) | `ars-SA-x-qassim` | silver | llm-corrected | CC BY 4.0 | 20 | 0.0933 | no |
+| `arabic_tts` | `ars-SA-x-qassim` | silver | llm-corrected | Apache-2.0 (this repository) | 20 | 0.0925 | no |
+| `gold20_arabic` ([TigreGotico/arabic-dialects-gold20](https://huggingface.co/datasets/TigreGotico/arabic-dialects-gold20)) | `ars-SA-x-qassim` | silver | llm-corrected | CC BY 4.0 | 20 | 0.0900 | no |
 <!-- atlas:datasets end -->
 
 <!-- atlas:inventory begin -->
@@ -401,7 +401,7 @@ The spec applies 34 allophone rules after the letters are read. The change colum
 | `AR_PEN_EMPH_BACK_AA_AFTER` | /aː/ → [ɑː], after [tˤ] [dˤ] [sˤ] [ðˤ] [zˤ] | - | [Watson 2002](#src-watson2002) |
 | `AR_PEN_EMPH_BACK_AA_BEFORE` | /aː/ → [ɑː], before [tˤ] [dˤ] [sˤ] [ðˤ] [zˤ] | - | [Watson 2002](#src-watson2002) |
 | `NAJD_AFFRIC_K_BEFORE` | /k/ → [ts], before [i] [iː] [j] [e] [eː] | ⟨'dog'⟩ [tsɛlb] | [Ingham 1994](#src-ingham1994), Al Mahmoud 2020 |
-| `NAJD_AFFRIC_K_AFTER` | /k/ → [ts], after [i] [iː] [j] [e] [eː] | - | [Ingham 1994](#src-ingham1994), Al Mahmoud 2020 |
+| `NAJD_AFFRIC_K_AFTER` | /k/ → [ts], in the coda, after [i] [iː] [j] [e] [eː] | ⟨never⟩ [lɪts] | [Ingham 1994](#src-ingham1994), [Alshammari 2026](#src-alshammari2026), Al Mahmoud 2020 |
 | `NAJD_AFFRIC_G_BEFORE` | /ɡ/ → [dz], before [i] [iː] | - | [Ingham 1994](#src-ingham1994), [Alshammari 2026](#src-alshammari2026), [Mahzari 2023](#src-mahzari2023) |
 | `NAJD_AFFRIC_G_AFTER` | /ɡ/ → [dz], after [i] [iː] | - | [Ingham 1994](#src-ingham1994), [Alshammari 2026](#src-alshammari2026), [Mahzari 2023](#src-mahzari2023) |
 | `NAJD_GAHAWA_h` | /h/ → [ha], in the coda, before a consonant, after [a] [ɑ] | - | [Ingham 1994](#src-ingham1994) |

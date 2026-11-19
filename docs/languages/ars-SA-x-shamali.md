@@ -383,7 +383,7 @@ The spec applies 37 allophone rules after the letters are read. The change colum
 | `AR_PEN_EMPH_BACK_AA_AFTER` | /aː/ → [ɑː], after [tˤ] [dˤ] [sˤ] [ðˤ] [zˤ] | - | Watson 2002 |
 | `AR_PEN_EMPH_BACK_AA_BEFORE` | /aː/ → [ɑː], before [tˤ] [dˤ] [sˤ] [ðˤ] [zˤ] | - | Watson 2002 |
 | `NAJD_AFFRIC_K_BEFORE` | /k/ → [ts], before [i] [iː] [j] [e] [eː] | ⟨'dog'⟩ [tsɛlb] | [Ingham 1994](#src-ingham1994), Al Mahmoud 2020 |
-| `NAJD_AFFRIC_K_AFTER` | /k/ → [ts], after [i] [iː] [j] [e] [eː] | - | [Ingham 1994](#src-ingham1994), Al Mahmoud 2020 |
+| `NAJD_AFFRIC_K_AFTER` | /k/ → [ts], in the coda, after [i] [iː] [j] [e] [eː] | ⟨never⟩ [lɪts] | [Alshammari 2026](#src-alshammari2026), [Ingham 1994](#src-ingham1994), Al Mahmoud 2020 |
 | `NAJD_AFFRIC_G_BEFORE` | /ɡ/ → [dz], before [i] [iː] | - | [Alshammari 2026](#src-alshammari2026), [Ingham 1994](#src-ingham1994), Al Mahmoud 2020 |
 | `NAJD_AFFRIC_G_AFTER` | /ɡ/ → [dz], after [i] [iː] | - | [Alshammari 2026](#src-alshammari2026), [Ingham 1994](#src-ingham1994), Al Mahmoud 2020 |
 | `NAJD_GAHAWA_h` | /h/ → [ha], in the coda, before a consonant, after [a] [ɑ] | - | [Ingham 1994](#src-ingham1994) |
