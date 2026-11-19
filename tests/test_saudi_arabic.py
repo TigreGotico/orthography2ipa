@@ -74,8 +74,8 @@ def test_najdi_affrication_fires_on_front_vowels(word, expected, why):
 
 @pytest.mark.parametrize("word,expected,why", [
     ("قُرُود", "ɡuˈruːd", "ex. 22: back vowel blocks affrication"),
-    ("فَوْق", "ˈfawɡ", "ex. 19: /foq/ → [foɡ], *[fodz]"),
-    ("شَوْك", "ˈʃawk", "ex. 15: /ʃok/ → [ʃok], *[ʃots]"),
+    ("فَوْق", "ˈfoːɡ", "ex. 19: /foq/ → [foɡ], *[fodz]"),
+    ("شَوْك", "ˈʃoːk", "ex. 15: /ʃok/ → [ʃok], *[ʃots]"),
     ("كُل", "ˈkul", "ex. 16: /kʊl/ → [kʊl], *[tsʊl]"),
     # The fatha is the honest gap, not an oversight: Al Mahmoud §3.1 shows it
     # splits lexically — dog is front [tsɛlb] but heart is central [ɡʌlb] — and
@@ -116,9 +116,11 @@ def test_najdi_interdentals_and_dad_dha_merger():
     assert NAJD.transcribe_word("ظَهْر") == "ˈðˤɑhar"     # ظ → [ðˤ] (+ gahawa)
 
 
-def test_najdi_keeps_diphthongs_unlike_hejazi():
-    """Najdi does not monophthongize: bayt stays [bajt] where Hejazi has [beːt]."""
-    assert NAJD.transcribe_word("بَيْت") == "ˈbajt"
+def test_najdi_monophthongizes_like_hejazi():
+    """Algethami 2023:3384: in Najdi "the classical Arabic diphthongs /ay/ and
+    /aw/ ... were realized as long monophthongs, /e:/ and /o:/"; Table 1 has
+    /be:t/ 'home'. Hejazi has [beːt] as well."""
+    assert NAJD.transcribe_word("بَيْت") == "ˈbeːt"
     assert HEJAZ.transcribe_word("بَيْت") == "ˈbeːt"
 
 

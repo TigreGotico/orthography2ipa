@@ -162,5 +162,6 @@
     "longitude": -48.553047,
     "source": "wikidata",
     "notes": "Florianópolis — the island city whose native 'manezinho' speech this spec models. [Wikidata Q132997 P625]"
-  }
+  },
+  "collapse_geminates": true
 }

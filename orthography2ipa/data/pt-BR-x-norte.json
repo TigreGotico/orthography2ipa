@@ -610,5 +610,6 @@
       ],
       "notes": "The palatal coda /S/ takes the voicing of a following voiced consonant: mesmo [ˈmeʒmu], desde [ˈdeʒd͡ʒi]. Marins & Margotti (2012: 255) report six coda /S/ realisations in the Pará atlas data, among them 'pós-alveolar (surda e sonora)', and for Belém that 'é a variante pós-alveolar que é utilizada com mais frequência'. The positional map writes the coda as [ʃ]; this rule voices it in the second pass."
     }
-  ]
+  ],
+  "collapse_geminates": true
 }

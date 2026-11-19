@@ -233,8 +233,8 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 
 | Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
 |:--|:--|:--|:--|:--|--:|--:|:--|
-| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `en` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 80987 | 0.2645 | yes |
-| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `en-GB` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 81537 | 0.2314 | yes |
+| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `en` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 80987 | 0.2643 | yes |
+| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `en-GB` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 81537 | 0.2309 | yes |
 | `ipa_childes` ([fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split)) | `en-GB` | generated | espeak-derived | CC BY 4.0 | 11446 | 0.2959 | no |
 | `ipadict` ([open-dict-data/ipa-dict](https://github.com/open-dict-data/ipa-dict)) | `en-GB` | generated | espeak-derived | MIT, each file its own | 65118 | 0.2211 | no |
 <!-- atlas:datasets end -->

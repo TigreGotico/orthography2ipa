@@ -61,7 +61,7 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 
 | Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
 |:--|:--|:--|:--|:--|--:|--:|:--|
-| `cmudict` ([cmusphinx/cmudict](https://github.com/cmusphinx/cmudict)) | `en-US` | gold | lexicon-derived | BSD-style (CMU) | 126050 | 0.3376 | yes |
+| `cmudict` ([cmusphinx/cmudict](https://github.com/cmusphinx/cmudict)) | `en-US` | gold | lexicon-derived | BSD-style (CMU) | 126050 | 0.3370 | yes |
 | `ipadict` ([open-dict-data/ipa-dict](https://github.com/open-dict-data/ipa-dict)) | `en-US` | gold | lexicon-derived | MIT, each file its own | 125925 | 0.2902 | yes |
 | `ipa_babylm` ([phonemetransformers/IPA-BabyLM](https://huggingface.co/datasets/phonemetransformers/IPA-BabyLM)) | `en-US` | generated | espeak-derived | Not stated upstream | 20107 | 0.3515 | no |
 | `ipa_childes` ([fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split)) | `en-US` | generated | espeak-derived | CC BY 4.0 | 18054 | 0.2650 | no |

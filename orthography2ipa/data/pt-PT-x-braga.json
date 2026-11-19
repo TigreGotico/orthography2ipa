@@ -466,5 +466,6 @@
     "source": "wikidata",
     "notes": "Braga — the city the Bracarense variety is named for. [Wikidata Q83247 P625]"
   },
-  "word_exceptions_base": "pt-PT"
+  "word_exceptions_base": "pt-PT",
+  "collapse_geminates": true
 }

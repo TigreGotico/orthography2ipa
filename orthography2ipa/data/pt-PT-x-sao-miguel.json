@@ -242,5 +242,6 @@
     "source": "wikidata",
     "notes": "São Miguel — the eastern Azorean island the micro-variety is named for. [Wikidata Q209036 P625]"
   },
-  "word_exceptions_base": "pt-PT"
+  "word_exceptions_base": "pt-PT",
+  "collapse_geminates": true
 }

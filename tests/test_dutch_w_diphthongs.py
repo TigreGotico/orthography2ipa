@@ -24,6 +24,13 @@ before a vowel nieuw-e ni-wə, leeuw-en le-wə (pp. 276-277).
 
 The vowel letters keep the values the spec states elsewhere: ⟨ou⟩ [ɑu],
 ⟨ee⟩ [eː], ⟨ie⟩ [i].
+
+H. Schultink, "Nederlandse affixen en hun boundaries", *Spektator* 6
+(1976), p. 475, puts be-, ge- and ver- among the prefixes that "altijd
+accentloos zijn": be'zien, ver'vuilen. After such a prefix the stress falls
+on the syllable of ⟨ouw⟩, and the vowel after ⟨ouw⟩ is a syllable of its
+own (p. XVIII above), so the mark stands before that syllable and not on
+the prefix.
 """
 import pytest
 
@@ -75,4 +82,15 @@ def test_ieuw_eeuw_uw_end_in_a_u_offglide_in_their_syllable(nl, word, ipa):
     ("duwen", "ˈdyʋən"),
 ])
 def test_ieuw_eeuw_uw_give_a_consonant_onset_before_a_vowel(nl, word, ipa):
+    assert nl.transcribe(word) == ipa
+
+
+@pytest.mark.parametrize("word, ipa", [
+    # ge- and be- take no stress (Schultink 1976, p. 475); the ə after ⟨ouw⟩
+    # is a syllable of its own, as in nauwe, blauwe (Paardekooper p. XVIII).
+    ("getrouwe", "χəˈtrɑuə"),
+    ("beschermvrouwe", "bəˈsχɛɹmvrɑuə"),
+    ("bewindsvrouwe", "bəˈʋɪntsvrɑuə"),
+])
+def test_the_mark_after_a_prefix_counts_the_vowel_after_ouw(nl, word, ipa):
     assert nl.transcribe(word) == ipa
