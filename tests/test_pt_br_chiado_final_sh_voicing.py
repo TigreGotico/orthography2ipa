@@ -2,12 +2,15 @@
 
 Barbosa & Albano (2004: 229): "The archiphoneme /S/ surfaces either as a
 voiced or as a voiceless alveolar fricative. As in most varieties, it tends
-to assimilate the voicing of the following sound." Brescancini (2015: 76, 82)
+to assimilate the voicing of the following sound." Brescancini (2015: 76)
 for Florianópolis: "[s] ou [S] antes de consoante surda ou pausa e [z] ou [Z]
 antes de consoante sonora". The place stays palatal because these specs write
-the coda as [ʃ]. Before a vowel the output is unchanged: no source gives the
-place of articulation across a word boundary for these specs. The rule is
-BR_FINAL_SH_VOICING in each spec.
+the coda as [ʃ]. The rule is BR_FINAL_SH_VOICING in each spec.
+
+Before a vowel the specs still write [ʃ], which no source supports. Brescancini
+(2015: 76): "em fronteira de palavra diante de vogais é prevista a ocorrência
+apenas de [z] (mai[z] atrasada)", with the voiced palato-alveolar also found in
+Florianópolis. That case is a strict xfail that names issue #2052.
 
 The tests read only the final sibilant of each word.
 """
@@ -25,7 +28,7 @@ def _final_sibilants(phrase, lang):
 
 @pytest.mark.parametrize("lang", CHIADO)
 @pytest.mark.parametrize("phrase", [
-    "meus netos", "os dois", "as mesas", "os barcos", "mas não", "três vezes",
+    "meus netos", "os dois", "as mesas", "os barcos", "mas não", "três vezes", "os rios",
 ])
 def test_final_sh_is_voiced_before_a_voiced_consonant(phrase, lang):
     assert _final_sibilants(phrase, lang)[0] == "ʒ"
@@ -37,10 +40,12 @@ def test_final_sh_stays_voiceless_before_a_voiceless_consonant(phrase, lang):
     assert _final_sibilants(phrase, lang)[0] == "ʃ"
 
 
+@pytest.mark.xfail(strict=True, reason="a final sibilant before a vowel is voiced (Brescancini 2015: 76); "
+                   "https://github.com/TigreGotico/orthography2ipa/issues/2052")
 @pytest.mark.parametrize("lang", CHIADO)
 @pytest.mark.parametrize("phrase", ["mas era", "dez anos", "os amigos", "dois homens"])
-def test_final_sh_is_unchanged_before_a_vowel(phrase, lang):
-    assert _final_sibilants(phrase, lang)[0] == "ʃ"
+def test_final_sh_is_voiced_before_a_vowel(phrase, lang):
+    assert _final_sibilants(phrase, lang)[0] in {"z", "ʒ"}
 
 
 @pytest.mark.parametrize("lang", CHIADO)
