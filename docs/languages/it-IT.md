@@ -130,9 +130,9 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 
 | Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
 |:--|:--|:--|:--|:--|--:|--:|:--|
-| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `it` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 82276 | 0.0441 | yes |
-| `ipa_childes` ([fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split)) | `it-IT` | generated | espeak-derived | CC BY 4.0 | 4583 | 0.2341 | no |
-| `vox_communis` ([fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p)) | `it` | generated | epitran-derived | CC0 1.0 | 48570 | 0.1031 | no |
+| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `it` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 82276 | 0.0437 | yes |
+| `ipa_childes` ([fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split)) | `it-IT` | generated | espeak-derived | CC BY 4.0 | 4583 | 0.2353 | no |
+| `vox_communis` ([fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p)) | `it` | generated | epitran-derived | CC0 1.0 | 48570 | 0.1029 | no |
 <!-- atlas:datasets end -->
 
 <!-- atlas:inventory begin -->
@@ -246,12 +246,13 @@ Stress falls on the penult by default. A written ⟨à⟩ ⟨è⟩ ⟨é⟩ ⟨�
 <!-- atlas:rules begin -->
 ## Rules
 
-The spec applies 6 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
+The spec applies 7 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
 
 | Rule | Change | Example | Cited |
 |:--|:--|:--|:--|
 | `IT_INHERENT_GEMINATE_GN` | /ɲ/ → [ɲɲ], after a vowel, before a vowel | ⟨bagno⟩ [baɲɲo] | [Krämer 2009](#src-kramer2009) |
 | `IT_INHERENT_GEMINATE_GLI` | /ʎ/ → [ʎʎ], after a vowel, before a vowel | ⟨aglio⟩ [aʎʎo] | [Krämer 2009](#src-kramer2009) |
+| `IT_INHERENT_GEMINATE_GLI_FINAL` | /ʎ/ → [ʎʎ], after [a] [e] [ɛ] [i] [o] [ɔ] [u], before [i] | ⟨figli⟩ [ˈfiʎʎi] | [Bertinetto 2005](#src-bertinetto_loporcaro2005) |
 | `IT_INHERENT_GEMINATE_SC` | /ʃ/ → [ʃʃ], after a vowel, before a vowel | ⟨pesce⟩ [peʃʃe] | [Krämer 2009](#src-kramer2009) |
 | `IT_INHERENT_GEMINATE_TS` | /ts/ → [tts], after a vowel, before a vowel | ⟨vizio⟩ [vittsjo] | [Krämer 2009](#src-kramer2009) |
 | `IT_INHERENT_GEMINATE_DZ` | /dz/ → [ddz], after a vowel, before a vowel | - | [Krämer 2009](#src-kramer2009) |

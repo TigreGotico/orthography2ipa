@@ -167,12 +167,13 @@ Stress falls on the penult by default. A written ⟨à⟩ ⟨è⟩ ⟨é⟩ ⟨�
 <!-- atlas:rules begin -->
 ## Rules
 
-The spec applies 6 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
+The spec applies 7 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
 
 | Rule | Change | Example | Cited |
 |:--|:--|:--|:--|
 | `IT_INHERENT_GEMINATE_GN` | /ɲ/ → [ɲɲ], after a vowel, before a vowel | ⟨bagno⟩ [baɲɲo] | Krämer 2009 |
 | `IT_INHERENT_GEMINATE_GLI` | /ʎ/ → [ʎʎ], after a vowel, before a vowel | ⟨aglio⟩ [aʎʎo] | Krämer 2009 |
+| `IT_INHERENT_GEMINATE_GLI_FINAL` | /ʎ/ → [ʎʎ], after [a] [e] [ɛ] [i] [o] [ɔ] [u], before [i] | ⟨figli⟩ [ˈfiʎʎi] | [Bertinetto 2005](#src-bertinetto_loporcaro2005) |
 | `IT_INHERENT_GEMINATE_SC` | /ʃ/ → [ʃʃ], after a vowel, before a vowel | ⟨pesce⟩ [peʃʃe] | Krämer 2009 |
 | `IT_INHERENT_GEMINATE_TS` | /ts/ → [tts], after a vowel, before a vowel | ⟨vizio⟩ [vittsjo] | Krämer 2009 |
 | `IT_INHERENT_GEMINATE_DZ` | /dz/ → [ddz], after a vowel, before a vowel | - | Krämer 2009 |
