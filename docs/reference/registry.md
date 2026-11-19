@@ -45,7 +45,9 @@ A clade node is for classification only. It carries no phoneme data, no spec inh
 4. For a bare language tag, the spec of its default region (`linguatag.with_default_region`), when that spec is registered. For a region that has only sub-regional specs, a curated default variant.
 5. The nearest registered code by language distance (`linguatag.closest_lang`), so `en-NZ` gives `en-GB`. A private-use subtag counts for nothing in the distance, so an unknown variant ties with the sibling lects of its language. The call passes `lects="standard"`, which breaks the tie toward the standard variety: `ar-x-zzz` gives `ar`, not one of the regional Arabic lects such as `ar-x-mashriqi`. With no usable match, the code stays as it is, and `get()` raises `KeyError`.
 
-   The search looks first among the codes of the tag's own language, because the primary language subtag names the language. So `sr-Latn-RS` gives `sr`, although `langcodes` expands `cnr` to `sr-Latn-ME`, which is nearer. The own language is the primary subtag of the tag as given. When that language has no spec, it is the language of the standardized tag, so `sh` (standardized to `sr-Latn`) gives `sr`. Arabic is the likely script of Algerian Saharan Arabic, so `aao-Arab` gives `aao`. When no own-language spec is near enough, the search takes every registered code, so `hr-Cyrl` gives `sr`, because the Croatian spec reads Latin script.
+   The search looks first among the codes of the tag's own language, because the primary language subtag names the language. So `sr-Latn-RS` gives `sr`, although `langcodes` expands `cnr` to `sr-Latn-ME`, which is nearer. The own language is the primary subtag of the tag as given. When that language has no spec, it is the language of the standardized tag, so `sh` (standardized to `sr-Latn`) gives `sr`. Arabic is the likely script of Algerian Saharan Arabic, so `aao-Arab` gives `aao`. When no own-language spec is near enough, the search takes every registered code. So `hr-Cyrl` gives `sr`: the distance compares tags and reads no spec data, and it puts a Croatian tag in Cyrillic script nearer to `sr` than to `hr`.
+
+   For a spec that reads both alphabets of its language, the alias table names its Cyrillic tags, so `bs-Cyrl` and `bs-Cyrl-BA` give `bs`, and `cnr-Cyrl-ME` gives `cnr`. A Cyrillic Bosnian tag that the table does not name, such as `bs-Cyrl-RS`, still gives `sr`.
 
 The default region of a bare tag is its motherland, the region where the language first appeared and is still spoken. `linguatag` takes it from the [CLDR likely subtags](https://github.com/unicode-org/cldr/blob/main/common/supplemental/likelySubtags.xml) and overrides CLDR where the most-populous region differs, so `pt` goes to `pt-PT` and not to `pt-BR`.
 
@@ -102,7 +104,7 @@ The alias table maps these ISO 639-3 codes of major languages to a spec:
 | `ron` | `ro-RO` | `mwl` | `mwl` | `arg` | `an` |
 | `lat` | `la` | `tgk` | `tg` | `prs` | `fa-AF` |
 
-The table holds five other kinds of entry:
+The table holds six other kinds of entry:
 
 | Kind | Examples |
 | :--- | :--- |
@@ -111,6 +113,7 @@ The table holds five other kinds of entry:
 | An individual-language code that `macro=True` standardisation would collapse into its macrolanguage, mapped to itself | `quz`, which would otherwise become `qu`, and `diq`, which would become `zza` |
 | An ISO 639-3 code whose variety has its spec under another key | `twi` to `tw` |
 | A private-use tag, mapped to the spec that holds the variety | `pt-PT-x-barrancos` to `ext-PT-x-barranco`, `pt-BR-x-sao-paulo` to `pt-BR-x-sp`, `ar-x-hijazi` to `acw-SA` |
+| A script tag of a spec that reads both alphabets of its language, which the language distance sends to another spec | `bs-Cyrl` to `bs`, `cnr-Cyrl-ME` to `cnr` |
 
 Galician has one standard spec, `gl-ES`, and the bare tag `gl` resolves to it. The variety codes `gl-x-central`, `gl-x-occidental`, `gl-x-oriental`, `gl-x-eonavia` and `gl-x-reintegrado` resolve to the `gl-ES-x-*` spec of the same variety. `_ALIASES` in `registry.py` holds the full table.
 
