@@ -392,9 +392,11 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
        regard to case (``MNK`` → ``mnk``), then
        ``langcodes.standardize_tag()`` when the library is available and the
        code is not a private-use subtag (``x-`` extension).
-    3. Exact match of the standardized code. A private-use tag also matches
-       with a Suppress-Script subtag dropped (``pt-Latn-BR-x-sp`` →
-       ``pt-BR-x-sp``).
+    3. Exact match of the standardized code, also with a script subtag
+       dropped when it is the likely script of the rest of the tag and the
+       language subtag is unchanged (``apc-Arab-SY`` → ``apc-SY``). A
+       private-use tag also matches with a Suppress-Script subtag dropped
+       (``pt-Latn-BR-x-sp`` → ``pt-BR-x-sp``).
     4. The default region of a bare primary-language tag, when that
        spec is registered (``pt`` → ``pt-PT``), or the curated default
        variant of a region tag with only sub-regional specs
@@ -432,12 +434,15 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
             return _ALIASES[code]
     if code in available:
         return code
-    # A script subtag that CLDR gives as the likely script of the rest of the
-    # tag adds nothing to it, so ``apc-Arab-SY`` names ``apc-SY``. Left in, it
-    # ties ``apc-SY`` with bare ``apc``, which maximizes to ``apc-Arab-SY``.
-    language, *rest = code.split("-")
-    if rest and len(rest[0]) == 4 and rest[0].isalpha():
-        unscripted = "-".join([language, *rest[1:]])
+    # A script subtag that linguatag gives as the likely script of the rest of
+    # the tag adds nothing to it, so ``apc-Arab-SY`` names ``apc-SY``. Left in,
+    # it ties ``apc-SY`` with bare ``apc``, which maximizes to ``apc-Arab-SY``.
+    # The language must be the one the tag gives: ``kas-Arab`` standardizes to
+    # ``ks-Arab``, and the own-language search below keeps it on ``kas``.
+    primary, *rest = code.split("-")
+    if (rest and len(rest[0]) == 4 and rest[0].isalpha()
+            and primary == requested.split("-")[0].lower()):
+        unscripted = "-".join([primary, *rest[1:]])
         if unscripted in available and likely_script(unscripted) == rest[0]:
             return unscripted
     if _HAS_LANGCODES and _PRIVATE_USE.search(code):
