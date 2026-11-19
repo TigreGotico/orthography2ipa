@@ -163,5 +163,16 @@
     "source": "wikidata",
     "notes": "Florianópolis — the island city whose native 'manezinho' speech this spec models. [Wikidata Q132997 P625]"
   },
+  "sandhi_rules": [
+    {
+    "id": "BR_FINAL_SH_VOICING",
+    "name": "final-sh-voicing-before-voiced-consonant",
+    "left_context": "ʃ$",
+    "right_context": "^[ˈˌ]?[bdɡvzʒmnɲlʎɾʁ]",
+    "transform": "ʒ",
+    "obligatory": true,
+    "notes": "A word-final chiado [ʃ] takes the voicing of a voiced consonant at the start of the next word: os dois [uʒ ˈdojʃ], as mesas [aʒ ˈmezɐʃ]. Barbosa & Albano (2004: 229): 'The archiphoneme /S/ surfaces either as a voiced or as a voiceless alveolar fricative. As in most varieties, it tends to assimilate the voicing of the following sound.' Brescancini (2015: 76, 82): '[s] ou [S] antes de consoante surda ou pausa e [z] ou [Z] antes de consoante sonora'. The place stays palatal because the spec writes the coda as [ʃ]. The rule is BR_FINAL_S_VOICING for that coda and uses the same right context. Before a vowel (dez anos) the sibilant keeps its output [ʃ]: no source opened gives the place of articulation across a word boundary for this spec, and the alveolar [z] that Nanini (2022) reports for Rio does not carry over."
+  }
+  ],
   "collapse_geminates": true
 }
