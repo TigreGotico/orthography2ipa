@@ -1,5 +1,26 @@
 # Changelog
 
+## [7.124.2a2](https://github.com/TigreGotico/orthography2ipa/tree/7.124.2a2) (2026-11-19)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.2a1...7.124.2a2)
+
+## [7.124.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.2a1) (2026-11-19)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.1a1...7.124.2a1)
+
+## [7.124.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.1a1) (2026-11-19)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.0a1...7.124.1a1)
+
+## [7.124.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.0a1) (2026-11-18)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.123.13a1...7.124.0a1)
+
+**Merged pull requests:**
+
+- fix\(pt\): write the alfena and alentejo broken vowels without a tie [\#2361](https://github.com/TigreGotico/orthography2ipa/pull/2361) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- fix\(inventory\): cut clusters and syllables into segments; a leading tilde joins its carrier [\#2360](https://github.com/TigreGotico/orthography2ipa/pull/2360) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.123.13a1](https://github.com/TigreGotico/orthography2ipa/tree/7.123.13a1) (2026-11-18)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.123.12a2...7.123.13a1)
