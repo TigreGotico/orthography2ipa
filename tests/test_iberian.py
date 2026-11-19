@@ -746,6 +746,23 @@ class TestPortuguesePT:
         ("norte e", "ˈnɔɾt i"),
         ("de amanhã", "dɨ ɐmɐˈɲɐ̃"),
         ("de ouro", "dɨ ˈoɾu"),
+        # Cruz-Ferreira (1999: 130) deletes the [ɨ] of a stressed host:
+        # imediatamente o [-ˈmẽt u], conseguisse obrigar [kõsˈgis ɔbɾiˈgaɾ].
+        ("imediatamente o", "imɨdiɐtɐˈmẽt u"),
+        ("conseguisse obrigar", "kõsɨˈɡis ɔbɾiˈɡaɾ"),
+        # A clitic has no lexical stress (Vigário 2003, reported by Paulino
+        # 2016: 9), and final-vowel fall applies only at a prosodic word edge
+        # (Vigário 2010, same page). Cruz-Ferreira (1999: 130) keeps the vowel
+        # of que o [↑kiu].
+        ("que o", "kɨ u"),
+        ("se o", "sɨ u"),
+        ("me ouviu", "mɨ oˈviw"),
+        ("lhe ofereceu", "ʎɨ ɔfɨɾɨˈsew"),
+        # A compound holds more than one prosodic word inside a prosodic word
+        # group (Vigário 2010, reported by Paulino 2016: 9), so its first
+        # element loses the vowel although it carries only a secondary mark.
+        ("verde-escuro", "ˌvɛɾd iʃˈkuɾu"),
+        ("mestre-escola", "ˌmɛʃtɾ iʃˈkɔlɐ"),
     ])
     def test_sandhi_schwa_elision_reach(self, text, ipa):
         assert orthography2ipa.G2P("pt-PT").transcribe(text) == ipa
