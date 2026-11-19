@@ -407,11 +407,11 @@ def test_najd_affric_k_after_front_vowel():
 
 @pytest.mark.parametrize("code", ["ar-SA-x-najd", "ars-SA-x-qassim", "ars-SA-x-shamali"])
 @pytest.mark.parametrize("word,expected", [
-    # Al Mahmoud 2020 p.65: no affrication with a back or central vowel in the
+    # Al Mahmoud 2020 pp.65-66: no affrication with a back or central vowel in the
     # same syllable (exx. 14 [kʊm], 16 [kʊl]); Alshammari 2026 p.1336:
     # affrication is "categorically blocked in the proximity of back vowels".
     ("عَلَيْكُم", "ʕaleːkum"),
-    # Al Mahmoud 2020 p.73 exx. 37, 39: masculine /lɪk/ is never [lɪts].
+    # Al Mahmoud 2020 pp.73-74, exx. 37, 39: masculine /lɪk/ is never [lɪts].
     ("عَلَيْكَ", "ʕaleːka"),
     ("فِيكُم", "fiːkum"),
 ])
