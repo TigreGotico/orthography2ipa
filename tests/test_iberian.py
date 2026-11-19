@@ -746,6 +746,23 @@ class TestPortuguesePT:
         ("norte e", "ˈnɔɾt i"),
         ("de amanhã", "dɨ ɐmɐˈɲɐ̃"),
         ("de ouro", "dɨ ˈoɾu"),
+        # Cruz-Ferreira (1999: 130) deletes the [ɨ] of a stressed host:
+        # imediatamente o [-ˈmẽt u], conseguisse obrigar [kõsˈgis ɔbɾiˈgaɾ].
+        ("imediatamente o", "imɨdiɐtɐˈmẽt u"),
+        ("conseguisse obrigar", "kõsɨˈɡis ɔbɾiˈɡaɾ"),
+        # A clitic has no lexical stress (Vigário 2003, reported by Paulino
+        # 2016: 9), and final-vowel fall applies only at a prosodic word edge
+        # (Vigário 2010, same page). Cruz-Ferreira (1999: 130) keeps the vowel
+        # of que o [↑kiu].
+        ("que o", "kɨ u"),
+        ("se o", "sɨ u"),
+        ("me ouviu", "mɨ oˈviw"),
+        ("lhe ofereceu", "ʎɨ ɔfɨɾɨˈsew"),
+        # A compound holds more than one prosodic word inside a prosodic word
+        # group (Vigário 2010, reported by Paulino 2016: 9), so its first
+        # element loses the vowel although it carries only a secondary mark.
+        ("verde-escuro", "ˌvɛɾd iʃˈkuɾu"),
+        ("mestre-escola", "ˌmɛʃtɾ iʃˈkɔlɐ"),
     ])
     def test_sandhi_schwa_elision_reach(self, text, ipa):
         assert orthography2ipa.G2P("pt-PT").transcribe(text) == ipa
@@ -2326,8 +2343,9 @@ class TestSpanishPhonologicalRules:
     @pytest.mark.parametrize("word,expected", [
         ("enrique", "en\u02c8rike"),
         ("honra", "\u02c8onra"),
-        # Is-ra-el, two open vowels in hiatus, an aguda in -l.
-        ("israel", "isra\u02c8el"),
+        # Is-ra-el, two open vowels in hiatus, an aguda in -l. ES_S_VOICING
+        # voices the /s/ before the voiced [r].
+        ("israel", "izra\u02c8el"),
         ("alrededor", "alre\u00f0e\u02c8\u00f0o\u027e"),
     ])
     def test_trill_after_coronal(self, word, expected):
