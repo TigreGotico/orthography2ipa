@@ -1,5 +1,40 @@
 # Changelog
 
+## [7.124.12a2](https://github.com/TigreGotico/orthography2ipa/tree/7.124.12a2) (2026-11-19)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.12a1...7.124.12a2)
+
+## [7.124.12a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.12a1) (2026-11-19)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.11a1...7.124.12a1)
+
+**Merged pull requests:**
+
+- docs\(languages\): name the engine forms that differ from the quoted examples [\#2384](https://github.com/TigreGotico/orthography2ipa/pull/2384) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- fix\(ci\): compare the regression gate with the base branch's sample [\#2376](https://github.com/TigreGotico/orthography2ipa/pull/2376) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [7.124.11a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.11a1) (2026-11-19)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.10a1...7.124.11a1)
+
+## [7.124.10a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.10a1) (2026-11-19)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.9a1...7.124.10a1)
+
+**Merged pull requests:**
+
+- docs: sync README and docs with dev [\#2381](https://github.com/TigreGotico/orthography2ipa/pull/2381) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- fix\(pt-PT\): keep the final \[ɨ\] of a clitic before a vowel [\#2365](https://github.com/TigreGotico/orthography2ipa/pull/2365) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [7.124.9a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.9a1) (2026-11-19)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.8a1...7.124.9a1)
+
+**Merged pull requests:**
+
+- fix\(es-ES\): voice /s/ before a voiced consonant [\#2369](https://github.com/TigreGotico/orthography2ipa/pull/2369) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- fix\(fax\): read ⟨é ó⟩ as the close-mid \[e o\] [\#2363](https://github.com/TigreGotico/orthography2ipa/pull/2363) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.124.8a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.8a1) (2026-11-19)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.7a1...7.124.8a1)

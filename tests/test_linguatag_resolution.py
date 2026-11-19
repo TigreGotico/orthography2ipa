@@ -8,9 +8,9 @@ import subprocess
 import sys
 
 import pytest
-from linguatag import lang_distance
+from linguatag import lang_distance, likely_script
 
-from orthography2ipa import get, resolve
+from orthography2ipa import available_codes, get, resolve
 from orthography2ipa.registry import UnknownVariantWarning, resolves_exactly
 
 REFERENCE_VARIETIES = {
@@ -75,3 +75,35 @@ def test_unknown_variant_between_tied_sibling_lects_takes_the_first():
 def test_traditional_cantonese_tags_resolve_to_the_cantonese_spec(tag):
     assert resolve(tag) == "yue"
     assert resolves_exactly(tag)
+
+
+@pytest.mark.parametrize("tag,spec", [("apc-Arab-SY", "apc-SY"), ("afb-Arab-KW", "afb-KW")])
+def test_the_likely_script_does_not_tie_a_region_with_the_bare_language(tag, spec):
+    """CLDR maximizes bare ``apc`` to ``apc-Arab-SY`` and bare ``afb`` to
+    ``afb-Arab-KW``, so the script-tagged form is as near the bare spec as
+    the regional one."""
+    assert resolve(tag) == spec
+    assert resolves_exactly(tag)
+
+
+def test_every_regional_spec_is_named_with_its_likely_script():
+    regional = [code for code in available_codes()
+                if len(code.split("-")) == 2 and len(code.split("-")[1]) == 2]
+    tags = {}
+    for code in regional:
+        language, region = code.split("-")
+        if script := likely_script(code):
+            tags[f"{language}-{script}-{region}"] = code
+    assert len(tags) > 50
+    assert {tag: resolve(tag) for tag in tags} == tags
+
+
+
+@pytest.mark.parametrize("tag,spec", [
+    ("kas-Arab", "kas"), ("pnb-Arab", "pnb-PK"), ("fat-Latn", "fat"), ("mhr-Cyrl", "mhr"),
+])
+def test_a_likely_script_keeps_the_language_the_tag_gives(tag, spec):
+    """Standardization changes the language subtag of these codes (``kas`` to
+    ``ks``, ``pnb`` to ``lah``), and that language has a spec. The script step
+    must not reach that spec."""
+    assert resolve(tag) == spec
