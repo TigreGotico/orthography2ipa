@@ -30,6 +30,8 @@ The spec switches off `BR_CODA_X` and `BR_XC_ONE_S`, so ⟨x⟩ keeps the [ʃ] o
 
 A coda /S/ is palato-alveolar, *"principalmente quando se encontra em final de vocábulo"* (p. 153). The rules `CUIABA_CODA_S` and `CUIABA_CODA_Z` give [ʃ ʒ] in the coda. A coda [ʃ] is not an onset, so it does not become an affricate: `mas` [ˈmaʃ], `três` [ˈtɾeʃ], `dez` [ˈdɛʃ]. *"O recuo do ponto de articulação também ocorre com a sonora [z] > [Z]"* (p. 154), as in *rasga* and *várzea*. The rule `BR_CODA_SH_VOICED` gives [ʒ] before a voiced consonant: `rasga` [ˈraʒɡɐ], `mesmo` [ˈmeʒmu].
 
+A word-final [ʃ] takes the voicing of a voiced consonant at the start of the next word. The coda /S/ *"tends to assimilate the voicing of the following sound"* (Barbosa & Albano 2004: 229). The sandhi rule `BR_FINAL_SH_VOICING` gives `os dois` [uʒ ˈdojʃ]. Its voiced class holds the trill of this spec: `os rios` [uʒ ˈriuʃ].
+
 A coda /l/ is retroflex: *"Travando sílaba ou em final de vocábulo, a tendência é pela realização da retroflexa"* (p. 157). The positional map gives [ɻ] first and [w] second: `mal` [ˈmaɻ], `igual` [iˈɡwaɻ].
 
 A coda /R/ is also retroflex, *"como se pode observar no chamado dialeto caipira brasileiro"* (p. 159): `porto` [ˈpoɻtu], `curva` [ˈkuɻvɐ]. A word-final /R/ tends to drop (p. 159), and the rule `CUIABA_FINAL_R_DELETION` deletes it: `fazer` [faˈze], `casar` [kaˈza]. The rule reads the grapheme ⟨r⟩, so a final retroflex /l/ stays.
@@ -43,6 +45,7 @@ A word-initial ⟨r⟩ and ⟨rr⟩ are the trill [r], with the velar [x] as the
 | `hoje` | ˈod͡ʒi | ⟨j⟩ gives [d͡ʒ] |
 | `mas` | ˈmaʃ | word-final /S/ gives [ʃ] |
 | `rasga` | ˈraʒɡɐ | coda /S/ gives [ʒ] before a voiced consonant |
+| `os rios` | uʒ ˈriuʃ | word-final /S/ gives [ʒ] before a voiced consonant in the next word |
 | `mal` | ˈmaɻ | coda /l/ gives [ɻ] |
 | `porto` | ˈpoɻtu | coda /R/ gives [ɻ] |
 | `rapaz` | raˈpaʃ | strong /R/ is the trill [r] |
@@ -68,6 +71,7 @@ No board gold exists for this variety. So the correctness of the spec rests on o
 ## Sources
 
 - Almeida, Manoel Mourivaldo Santiago (2004). "As consoantes do português falado no Vale do Cuiabá". *Signum: Estudos da Linguagem* (UEL) 7(1), 149-163. <https://ojs.uel.br/revistas/uel/index.php/signum/article/download/3880/3119/13043>
+- Barbosa, Plínio A. & Albano, Eleonora C. (2004). "Brazilian Portuguese". *Journal of the International Phonetic Association* 34(2), 227-232. <https://doi.org/10.1017/S0025100304001756>
 - Battisti, Elisa & Dornelles Filho, Adalberto Ayjara (2015). "Análise em tempo real da palatalização de /t/ e /d/ no português falado em uma comunidade ítalo-brasileira". *Revista da ABRALIN* 14(1), 221-246. <https://revista.abralin.org/index.php/abralin/article/download/1239/1162/549>
 - Cristófaro Silva, Thaïs (2025). "A Representação Fonológica dos Róticos no Português Brasileiro". *Caligrama* 30(3), 238-254. <https://doi.org/10.35699/2238-3824.2025.61138>
 

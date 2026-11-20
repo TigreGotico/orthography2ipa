@@ -249,7 +249,7 @@ A word-final coda /s/ is [ʃ] alone and before a voiceless consonant. Across a w
 | Rule id | Context | Value | Example |
 |:---|:---|:---|:---|
 | `PT_FINAL_S_PREVOCALIC_VOICE` | `…s#` + `#V…` | [z] | `estás a ver` [iʃˈtaz ɐ ˈveɾ], `os amigos` [oz ɐˈmiɡuʃ] |
-| `PT_CODA_S_VOICING` | `…s#` + `#[voiced C]…` | [ʒ] | `estás bem` [iʃˈtaʒ ˈbɐ̃j̃], `as bocas` [ɐʒ ˈbɔkɐʃ], `os dois` [oʒ ˈdojʃ] |
+| `PT_CODA_S_VOICING` | `…s#` + `#[voiced C]…` | [ʒ] | `estás bem` [iʃˈtaʒ ˈbɐ̃j̃], `as bocas` [ɐʒ ˈbɔkɐʃ], `os dois` [uʒ ˈdojʃ] |
 | `PT_CODA_S_BEFORE_ZH` | `…Vs#` + `#ʒ…` | deleted | `mais giro` [ˈmaj ˈʒiɾu], `as janelas` [ɐ ʒɐˈnɛlɐʃ] |
 
 Before a vowel, the final sibilant joins the next syllable and is voiced to the alveolar [z]. Before a voiced consonant, it takes the voicing of that consonant and is the post-alveolar [ʒ] (Mateus & d'Andrade 2000, ch. 2). Before a voiceless consonant it stays [ʃ]: `estás feliz` [iʃˈtaʃ fɨˈliʃ]. A single word does not change: `estás` [iʃˈtaʃ].
@@ -275,6 +275,8 @@ WikiPron writes the EP coda /l/ as a plain [l]. So `PT_CODA_L_DARK` disagrees wi
 ## Other notes
 
 Portuguese keeps the /v/ and /b/ distinction, which Castilian lost: `vinho` [ˈviɲu], `bebe` [ˈbɛbɨ]. The nasal vowels and nasal diphthongs (⟨ão ãe õe⟩) are diagnostic, and they drive the placement of final stress.
+
+A doubled consonant letter in a loan reads as one consonant, because the spec sets `collapse_geminates`. So `lobby` is [ˈlɔbi] and `hobby` is [ˈɔbi], as Priberam gives them (|lóbi|, |óbi|). The pass merges only two identical consonants. In ⟨sc⟩ the coda [ʃ] differs from the [s] after it, so `nascer` [nɐʃˈseɾ] keeps both.
 
 ---
 [← Pyrenean-valley Aragonese subdialects](an-valleys.md) · [Home](../index.md) · [European Portuguese dialects →](pt-PT-dialects.md)
