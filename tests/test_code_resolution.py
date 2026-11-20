@@ -107,8 +107,9 @@ class TestRegionAndDialectDefaults:
     def test_existing_arabic_mappings_are_unregressed(self, requested, expected):
         assert resolve(requested) == expected
 
-    def test_unknown_arabic_region_falls_back_to_msa(self):
-        assert resolve("ar-ZZ") == "ar"
+    @pytest.mark.parametrize("requested", ["ar-ZZ", "ar-FR", "ar-US", "ar-DE"])
+    def test_unknown_arabic_region_falls_back_to_msa(self, requested):
+        assert resolve(requested) == "ar"
 
 
 class TestUnknownLanguage:

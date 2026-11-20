@@ -78,15 +78,16 @@ def test_an_arabic_variety_in_arabic_script_names_its_own_spec(tag, code):
     assert resolve(tag) == code == resolve(language)
 
 
-@pytest.mark.parametrize("tag,code", [
-    ("bs-Cyrl-RS", "sr"), ("hr-Cyrl", "sr"), ("hr-Cyrl-HR", "sr"),
-])
-def test_with_no_own_spec_near_enough_the_old_target_stays(tag, code):
-    # The tag distance reads no spec data, so no own-language spec is near
-    # enough for a Cyrillic bs or hr tag that no alias names; the wide
-    # search runs.
-    assert resolve(tag) == code
+@pytest.mark.parametrize("tag", ["bs-Cyrl-RS", "hr-Cyrl", "hr-Cyrl-HR"])
+def test_with_no_own_spec_near_enough_the_tag_stays_unresolved(tag):
+    # CLDR 49 languageMatching (UTS #35 section 4.4) has the rules hr => bs 4,
+    # sh => bs 4, sh => hr 4 and sh => sr 4, and none from bs or hr to sr, so
+    # ``* => * 80`` keeps Bosnian and Croatian a language apart from Serbian.
+    # The bs and hr specs are Latin, which is 50 away from Cyrillic.
+    assert resolve(tag) == tag
     assert not resolves_exactly(tag)
+    with pytest.raises(KeyError):
+        get(tag)
 
 
 def test_an_unresolved_tag_stays_unresolved():

@@ -477,6 +477,15 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
     # An unknown variant falls back to the standard variety, not to whichever
     # sibling lect ties with it: private use counts for nothing in the distance.
     candidates = sorted({*available, *_RENAMED})
+    # Likely subtags make bare ``ar`` Egyptian, so the distance puts a region
+    # no Arabic spec names beside whichever dialect spec sorts first
+    # (``ar-ZZ`` → ``arz-EG``, ``ar-FR`` → ``afb-AE``). No source states a
+    # difference from Modern Standard Arabic for such a region.
+    if (code.split("-")[0].lower() == "ar" and len(code.split("-")) == 2
+            and (region := _region_subtag(code))
+            and region not in {_region_subtag(c) for c in candidates
+                               if c.split("-")[0] == "ar"}):
+        return "ar"
     # The primary language subtag names the language. When that language has
     # a spec, the match stays inside it: ``sr-Latn-RS`` is Serbian, and
     # langcodes would otherwise pick ``cnr``, whose likely subtags are
@@ -495,6 +504,11 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
         own = [c for c in candidates
                if len(language) > 1 and c.split("-")[0].lower() == language]
         if own:
+            # CLDR lists no likely script for a language it does not name
+            # (``fat``), so a script subtag has nothing to be measured against
+            # and would put every own-language spec out of reach.
+            if not likely_script(language):
+                tag = re.sub(r"^([^-]+)-[A-Za-z]{4}(?=-|$)", r"\1", tag)
             match = closest_lang(tag, own, lects="standard")
             break
     match = match or closest_lang(code, candidates, lects="standard")
