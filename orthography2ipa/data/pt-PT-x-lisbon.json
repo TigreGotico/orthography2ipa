@@ -26,6 +26,44 @@
   },
   "allophone_rules": [
     {
+      "id": "PT_EX_CONSONANT_GLIDE",
+      "phonemes": [
+        "e",
+        "ɛ",
+        "ɨ"
+      ],
+      "surface": "ɐj",
+      "grapheme": [
+        "e"
+      ],
+      "followed_by_grapheme": [
+        "x"
+      ],
+      "followed_by_phoneme_2": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ",
+        "l",
+        "ʎ",
+        "ɾ",
+        "ʁ",
+        "w"
+      ],
+      "notes": "A spec's ⟨e⟩ before ⟨x⟩ and a consonant takes the same diphthong as that spec's ⟨ei⟩. Lisbon ⟨ei⟩ is [ɐj] (deixar [dɐjˈʃaɾ], peixe [ˈpɐjʃɨ]), so ⟨ex⟩ before a consonant is [ɐjʃ] in every position, word-initial and medial: texto [ˈtɐjʃtu], contexto [kõˈtɐjʃtu], sexta [ˈsɐjʃtɐ], explicar [ɐjʃpliˈkaɾ], excelente [ɐjʃsɨˈlẽtɨ], exterior [ɐjʃtɨɾiˈoɾ]. The Lisbon rows of the Portal da Língua Portuguesa (tugalex lbx data) are the output of the LUPo rule-based generator (Ashby, Barbosa, Brandão, Ferreira, Janssen, Silva and Viaro 2012, Interspeech), provenance lupo-derived, and not a dictionary. They give word-initial ⟨ex⟩ the glide (explicar ɐjʃ·pli·kˈaɾ) and medial ⟨ex⟩ none (texto tˈɐʃ·tu, contexto kõ·tˈɐʃ·tu, sexta sˈɐʃ·tɐ), a split this spec does not copy. The human Lisbon gold, the clup_dialect interviews, has a bare [ʃ] for some word-initial tokens (experimentar, experiência, explosão). That is a reduction of the initial syllable, and the spec does not model it. Cruz-Ferreira (1999, Handbook of the IPA, p. 128) writes that the Lisbon diphthong /ɐi/ loses its offglide in some words: \"In some words the offglide has been altogether lost, as in the pronunciation of the word /pɐiʃɯ/ peixe 'fish (n)' as [pɐʃ]\". She does not describe a rule that keeps the glide in initial ⟨ex⟩ and drops it in medial ⟨ex⟩. The rule needs a pronounced consonant after ⟨x⟩, so ⟨x⟩ before a vowel, word-final ⟨x⟩, ⟨exh⟩ and ⟨exy⟩ keep their reading. ⟨êx⟩ and the hyphenated prefix ex- are not matched."
+    },
+    {
       "id": "PT_STRESSED_E_PREPALATAL_CLOSE",
       "phonemes": [],
       "surface": "e",

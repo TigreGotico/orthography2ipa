@@ -11,6 +11,8 @@ The expected languages below are the primary subtags of the tags, or for a
 language with no spec of its own, the language that langcodes standardizes
 the tag to.
 """
+import warnings
+
 import langcodes
 import pytest
 
@@ -78,15 +80,38 @@ def test_an_arabic_variety_in_arabic_script_names_its_own_spec(tag, code):
     assert resolve(tag) == code == resolve(language)
 
 
-@pytest.mark.parametrize("tag,code", [
-    ("bs-Cyrl-RS", "sr"), ("hr-Cyrl", "sr"), ("hr-Cyrl-HR", "sr"),
+@pytest.mark.parametrize("tag", [
+    "bs-Cyrl-RS", "bs-Cyrl-ME", "bs-Cyrl-HR", "bs-Cyrl-XK", "bs-Cyrl-x-a",
+    "BS-Cyrl-x-a",
 ])
-def test_with_no_own_spec_near_enough_the_old_target_stays(tag, code):
-    # The tag distance reads no spec data, so no own-language spec is near
-    # enough for a Cyrillic bs or hr tag that no alias names; the wide
-    # search runs.
-    assert resolve(tag) == code
+def test_a_bosnian_cyrillic_tag_of_any_region_gives_bs(tag):
+    # The bs spec reads both Bosnian alphabets, and CLDR 49 puts no rule from
+    # bs to sr, so the tag stays Bosnian whatever its region.
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        assert resolve(tag) == "bs"
     assert not resolves_exactly(tag)
+    with pytest.raises(KeyError):
+        get(tag, strict=True)
+
+
+@pytest.mark.parametrize("tag", ["hr-Cyrl", "hr-Cyrl-HR"])
+def test_a_croatian_cyrillic_tag_stays_unresolved(tag):
+    # CLDR 49 languageMatching (UTS #35 section 4.4) has the rules hr => bs 4,
+    # sh => bs 4, sh => hr 4 and sh => sr 4, and none from hr to sr, so
+    # ``* => * 80`` keeps Croatian a language apart from Serbian. The hr spec
+    # is Latin, which is 50 away from Cyrillic.
+    assert resolve(tag) == tag
+    assert not resolves_exactly(tag)
+    with pytest.raises(KeyError):
+        get(tag)
+
+
+@pytest.mark.parametrize("tag", ["afa-Cyrl", "fat-Arab", "fat-Cyrl"])
+def test_a_script_other_than_latin_is_not_dropped_to_fit_a_spec(tag):
+    assert not resolves_exactly(tag)
+    with pytest.raises(KeyError):
+        get(tag)
 
 
 def test_an_unresolved_tag_stays_unresolved():
