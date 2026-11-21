@@ -2530,6 +2530,147 @@
       "notes": "A stressed word-final ⟨ol⟩ has the open [ɔ]. Battisti & Moras (2016: 100, Quadro 1): 'Vogal média baixa posterior: futebol, lençol', against 'Vogal média-alta posterior: voltar, moldura'. Bagno (2012: 148) transcribes [sɔli] for sol. Base VIII, 1.º d) of the Acordo Ortográfico 1990 writes the plural with the open diphthong: 'os ditongos abertos grafados -éi, éu ou ói [...] herói(s) [...] sóis'. The rule stands after PT_LEX_CLOSE_O, which lists gol: Bagno (2012: 148) transcribes gol [goʊ]. The rule reads the stress, so unstressed álcool keeps its close [o]. The same reasoning as BR_FINAL_EL_OPEN explains the close default. This rule rests on word classes: the sources list the words above and give no general statement for final ⟨ol⟩, as Bagno (2012: 191) does for final ⟨el⟩."
     },
     {
+      "id": "BR_LEX_CLOSE_E_SUFFIX",
+      "phonemes": [
+        "e",
+        "ɛ"
+      ],
+      "surface": "e",
+      "stress": "stressed",
+      "word": [
+        "estrela",
+        "estrelas",
+        "antiestrela",
+        "antiestrelas",
+        "protoestrela",
+        "protoestrelas",
+        "barrela",
+        "barrelas",
+        "camela",
+        "camelas",
+        "seca",
+        "secas",
+        "enxaqueca",
+        "enxaquecas",
+        "anurese"
+      ],
+      "notes": "Words that end in ⟨-ela⟩, ⟨-elas⟩, ⟨-eca⟩, ⟨-ecas⟩ or ⟨-ese⟩ and keep the close [e], listed before the open suffix rules (BR_SUFFIX_ELA_OPEN, BR_SUFFIX_ELAS_OPEN, BR_SUFFIX_ECA_OPEN, BR_SUFFIX_ECAS_OPEN, BR_SUFFIX_ESE_OPEN). Every WikiPron pt-BR reading of antiestrela, protoestrela, barrela, camela, estrelas, enxaqueca and anurese has the close vowel. Each singular is listed with its plural, because the plural rules would otherwise open the plural. estrela and seca are homographs, and WikiPron lists both vowels for each. estrela is the noun [isˈtɾelɐ] and the verb estrelar [isˈtɾɛlɐ]; the Michaelis rows of the unified lexicon and the pt-PT rows read the noun with the close vowel. seca is the adjective 'dry' [ˈsekɐ] and a form of secar [ˈsɛkɐ]. The Michaelis row reads the noun seca (drought) as [ˈsɛkɐ]. The list keeps the close vowel, the reading of the adjective, which is the common reading of the homograph; the noun reading differs. A dictionary transcription is the evidence for each entry. barrela rests on one close WikiPron reading, and Infopédia (pt-PT) reads it open. pela, the contraction of por and a, is an unstressed clitic that the stressed suffix rules never reach, so it has no entry. pt-UY disables this rule with the suffix rules."
+    },
+    {
+      "id": "BR_SUFFIX_ELA_OPEN",
+      "phonemes": [
+        "e"
+      ],
+      "surface": "ɛ",
+      "stress": "stressed",
+      "grapheme": [
+        "e"
+      ],
+      "followed_by_grapheme": [
+        "l"
+      ],
+      "followed_by_phoneme_2": [
+        "a",
+        "ɐ"
+      ],
+      "followed_by_3": "word_boundary",
+      "notes": "The stressed ⟨e⟩ of word-final ⟨-ela⟩ is open [ɛ]: janela [ʒaˈnɛlɐ], tela, vela, ela, dela, aquela, mortadela. Cunha & Cintra (Nova Gramática do Português Contemporâneo, 7.ª ed., Lexikon; archive.org OCR, p. 105) list '-ela' among the diminutive suffixes with the examples 'ruela, viela'; the page says nothing about the vowel. Stressed mid-vowel height is lexical in Portuguese. Barbosa & Albano (2004: 229, JIPA 34(2)): 'Portuguese phonemically contrasts seven oral vowels in stressed position: /i e E a O o u/', with the pair seco [sekU] 'dry' against seco [sEkU] '(I) dry' (their ASCII notation). No spelling rule gives the height, so a dictionary transcription is the only evidence for a suffix: it is evidence of what a speaker says, not a statement of a phonological rule. Measured on three lists. WikiPron pt-BR (por_latn_bz_broad, the Wiktionary readings; its transcriptions carry no stress mark, so the vowel is read at the suffix): 152 forms end in ⟨-ela⟩ with a readable vowel; 146 have only the open vowel, 4 only the close vowel (antiestrela, barrela, camela, protoestrela) and 2 list both (estrela, and pela, an unstressed clitic that the rule never reaches); BR_LEX_CLOSE_E_SUFFIX lists the five that it can reach. The pt-BR rows of the unified pronunciation lexicon, counted by source: Michaelis 75 of 78 open, with the close vowel in cancela, estrela and pela; Wiktionary 9 of 9 open. WikiPron and Infopédia (pt-PT) read cancela open, and the rule follows them. The pt-PT rows of the same lexicon (Infopédia and Wiktionary), as a cross-check from another dictionary: 458 of 463 open. The ipadict pt-BR list is not used: it writes the close vowel for words that all three lists above write open (cela, mortadela, boneca), so its [e] is not a reading of the vowel. The rule reads the spelling, so it also matches every word with this ending. Exceptions are listed in BR_LEX_CLOSE_E_SUFFIX. pt-UY disables this rule."
+    },
+    {
+      "id": "BR_SUFFIX_ELAS_OPEN",
+      "phonemes": [
+        "e"
+      ],
+      "surface": "ɛ",
+      "stress": "stressed",
+      "grapheme": [
+        "e"
+      ],
+      "followed_by_grapheme": [
+        "l"
+      ],
+      "followed_by_phoneme_2": [
+        "a",
+        "ɐ"
+      ],
+      "notes": "The plural ⟨-elas⟩ takes the vowel of the singular (BR_SUFFIX_ELA_OPEN): janelas [ʒaˈnɛlɐs]. The rule puts no condition on what follows ⟨-ela⟩, because the engine cannot see the word edge after the ⟨s⟩. It also matches the third person plural ⟨-elam⟩ of the verbs in ⟨-elar⟩ (cancelam, revelam, apelam). Cunha & Cintra (Nova Gramática do Português Contemporâneo, 7.ª ed., Lexikon; archive.org OCR, p. 429, 'Verbos com alternância vocálica'): 'Muitos verbos da língua portuguesa apresentam diferenças de timbre na vogal do radical conforme nele recaia ou não o acento tônico', and for Brazil 'levamos e levais [...] contrapõem-se a levo, levas, leva e levam, com e semiaberto'. The general statement is on p. 431, Observações 1: 'Seguem o modelo de levar os verbos da 1.ª conjugação que têm e gráfico no radical, a menos que' the ⟨e⟩ is in ⟨ei⟩, before a nasal or before a palatal; chegar keeps the close [e] in every rhizotonic form (Observações 2). A stem ⟨e⟩ before ⟨l⟩ falls under none of these exceptions. WikiPron pt-BR (read at the suffix): 26 plural forms in ⟨-elas⟩; 24 have only the open vowel, 1 only the close vowel (estrelas) and 1 lists both (pelas, the contraction of por and as, an unstressed clitic that the rule never reaches). pt-BR rows of the unified lexicon, by source: Michaelis none; Wiktionary 2 of 2 open. pt-PT rows: 8 of 8 open. WikiPron and the unified lexicon hold no form in ⟨-elam⟩. The ipadict pt-BR list, which is not used elsewhere because it is unreliable, is mixed on them: open for celam and selam, close for apelam, cancelam, congelam, estrelam, modelam, rebelam, revelam, tutelam. For these verb forms the rule follows the grammar and no dictionary confirms it. pt-UY disables this rule."
+    },
+    {
+      "id": "BR_SUFFIX_ECA_OPEN",
+      "phonemes": [
+        "e"
+      ],
+      "surface": "ɛ",
+      "stress": "stressed",
+      "grapheme": [
+        "e"
+      ],
+      "followed_by_grapheme": [
+        "c"
+      ],
+      "followed_by_phoneme_2": [
+        "a",
+        "ɐ"
+      ],
+      "followed_by_3": "word_boundary",
+      "notes": "The stressed ⟨e⟩ of word-final ⟨-eca⟩ is open [ɛ]: boneca [boˈnɛkɐ], careca, peteca, perereca, biblioteca. Cunha & Cintra (Nova Gramática do Português Contemporâneo, 7.ª ed., Lexikon; archive.org OCR, p. 105) list '-eco, -a' among the diminutive suffixes with the examples 'livreco, soneca'; the page says nothing about the vowel. Stressed mid-vowel height is lexical in Portuguese. Barbosa & Albano (2004: 229, JIPA 34(2)): 'Portuguese phonemically contrasts seven oral vowels in stressed position: /i e E a O o u/', with the pair seco [sekU] 'dry' against seco [sEkU] '(I) dry' (their ASCII notation). No spelling rule gives the height, so a dictionary transcription is the only evidence for a suffix: it is evidence of what a speaker says, not a statement of a phonological rule. Measured on three lists. WikiPron pt-BR (por_latn_bz_broad, the Wiktionary readings; its transcriptions carry no stress mark, so the vowel is read at the suffix): 66 forms end in ⟨-eca⟩ with a readable vowel; 64 have only the open vowel, 1 only the close vowel (enxaqueca) and 1 lists both (seca). The pt-BR rows of the unified pronunciation lexicon, counted by source: Michaelis 19 of 23 open (0.83, below the 0.95 bar), with the close vowel in beca, jeca, munheca and enxaqueca; Wiktionary 1 of 1 open. The rule keeps the ending open, and this is an evidence judgement, not a statement of any source: WikiPron pt-BR reads beca, jeca and munheca open, and so do the Infopédia rows (pt-PT). enxaqueca is close in WikiPron and in Michaelis, and the close list holds it. The Michaelis row of seca (a noun) is open; see BR_LEX_CLOSE_E_SUFFIX. The pt-PT rows of the same lexicon (Infopédia and Wiktionary), as a cross-check from another dictionary: 108 of 108 open. The ipadict pt-BR list is not used: it writes the close vowel for words that all three lists above write open (cela, mortadela, boneca), so its [e] is not a reading of the vowel. Exceptions are listed in BR_LEX_CLOSE_E_SUFFIX. The suffix ⟨-eco⟩ is not covered: pt-PT rows give 65 open of 75, too low for a rule. pt-UY disables this rule."
+    },
+    {
+      "id": "BR_SUFFIX_ECAS_OPEN",
+      "phonemes": [
+        "e"
+      ],
+      "surface": "ɛ",
+      "stress": "stressed",
+      "grapheme": [
+        "e"
+      ],
+      "followed_by_grapheme": [
+        "c"
+      ],
+      "followed_by_phoneme_2": [
+        "a",
+        "ɐ"
+      ],
+      "notes": "The plural ⟨-ecas⟩ takes the vowel of the singular (BR_SUFFIX_ECA_OPEN): bonecas [boˈnɛkɐs]. The rule puts no condition on what follows ⟨-eca⟩, because the engine cannot see the word edge after the ⟨s⟩, and it also matches the third person plural ⟨-ecam⟩ of the verbs in ⟨-ecar⟩ (secam, pecam, defecam). Cunha & Cintra (Nova Gramática do Português Contemporâneo, 7.ª ed., Lexikon; archive.org OCR, p. 429) give the verb forms of this kind the open vowel in Brazil: 'levo, levas, leva e levam, com e semiaberto'. The general statement is on p. 431, Observações 1: 'Seguem o modelo de levar os verbos da 1.ª conjugação que têm e gráfico no radical, a menos que' the ⟨e⟩ is in ⟨ei⟩, before a nasal or before a palatal; chegar keeps the close [e] in every rhizotonic form (Observações 2). A stem ⟨e⟩ before ⟨c⟩ falls under none of these exceptions. WikiPron pt-BR (read at the suffix): 4 of 4 plural forms in ⟨-ecas⟩ open. pt-BR rows of the unified lexicon, by source: Michaelis 1 of 1 open; Wiktionary 1 of 1 open. pt-PT rows: 5 of 5 open. WikiPron and the unified lexicon hold no form in ⟨-ecam⟩; the ipadict pt-BR list writes the open vowel for secam, pecam and defecam, and the rule follows the grammar for these verb forms. pt-UY disables this rule."
+    },
+    {
+      "id": "BR_SUFFIX_ESE_OPEN",
+      "phonemes": [
+        "e"
+      ],
+      "surface": "ɛ",
+      "stress": "stressed",
+      "grapheme": [
+        "e"
+      ],
+      "followed_by_grapheme": [
+        "s"
+      ],
+      "followed_by_phoneme_2": [
+        "e",
+        "ɪ",
+        "i"
+      ],
+      "followed_by_3": "word_boundary",
+      "notes": "The stressed ⟨e⟩ of word-final ⟨-ese⟩ is open [ɛ]: tese [ˈtɛzi], diocese, maionese. No grammar that was read names ⟨-ese⟩ as a suffix, so this rule rests on dictionary transcriptions alone. Stressed mid-vowel height is lexical in Portuguese. Barbosa & Albano (2004: 229, JIPA 34(2)): 'Portuguese phonemically contrasts seven oral vowels in stressed position: /i e E a O o u/', with the pair seco [sekU] 'dry' against seco [sEkU] '(I) dry' (their ASCII notation). No spelling rule gives the height, so a dictionary transcription is the only evidence for a suffix: it is evidence of what a speaker says, not a statement of a phonological rule. Measured on three lists. WikiPron pt-BR (por_latn_bz_broad, the Wiktionary readings; its transcriptions carry no stress mark, so the vowel is read at the suffix): 27 forms end in ⟨-ese⟩ with a readable vowel; 26 have only the open vowel and 1 only the close vowel (anurese). The pt-BR rows of the unified pronunciation lexicon, counted by source: Michaelis 5 of 5 open; Wiktionary 4 of 4 open. The pt-PT rows of the same lexicon (Infopédia and Wiktionary), as a cross-check from another dictionary: 64 of 64 open. The ipadict pt-BR list is not used: it writes the close vowel for words that all three lists above write open (cela, mortadela, boneca), so its [e] is not a reading of the vowel. The plural ⟨-eses⟩ is not covered: its WikiPron forms are the gentilic plurals (franceses, ingleses, portugueses), which are close. The exception is listed in BR_LEX_CLOSE_E_SUFFIX. pt-UY disables this rule."
+    },
+    {
+      "id": "BR_LEX_OPEN_E",
+      "phonemes": [
+        "e",
+        "ɛ"
+      ],
+      "surface": "ɛ",
+      "stress": "stressed",
+      "word": [
+        "sete",
+        "pele",
+        "segue"
+      ],
+      "notes": "Words whose stressed ⟨e⟩ is open [ɛ] and that no rule reaches: sete [ˈsɛt͡ʃi], pele [ˈpɛli], segue [ˈsɛɡi]. Stressed mid-vowel height is lexical in Portuguese (Barbosa & Albano 2004: 229: 'Portuguese phonemically contrasts seven oral vowels in stressed position: /i e E a O o u/'). Each word has the open vowel in every WikiPron pt-BR reading (sete s ɛ t͡ʃ i, pele p ɛ l i, segue s ɛ ɡ i), and the pt-BR rows of the unified lexicon (Wiktionary) read sete [ˈsɛtʃi] and pele [ˈpɛli]. These are dictionary transcriptions, not a phonological statement. segue is a form of seguir. The infinitive seguir has the close vowel in WikiPron (s e ɡ i ɾ), and the rule does not touch it, because the word list matches the whole word. The list is the three words of the reported failure; the long tail of lexical open ⟨e⟩ is not listed. pt-UY disables this rule."
+    },
+    {
       "id": "PT_LEX_X_S",
       "phonemes": [
         "ʃ"
@@ -2682,8 +2823,8 @@
       "title": "Nova Gramática do Português Contemporâneo",
       "publisher": "Sá da Costa",
       "url": null,
-      "pages": null,
-      "notes": null
+      "pages": "105, 429, 431",
+      "notes": "Page locators are those of the 7th edition (Lexikon, 2017), read from the archive.org OCR. p. 105: the diminutive suffixes '-eco, -a' (livreco, soneca) and '-ela' (ruela, viela). p. 429: the verb forms with a vowel alternation in the stem, which are open in Brazil (levo, levas, leva, levam). p. 431, Observações 1: the first-conjugation verbs with a stem ⟨e⟩ follow levar, except before ⟨ei⟩, a nasal or a palatal. Observações 2: chegar keeps the close [e] in every rhizotonic form. The OCR drops the IPA symbols, so the open vowel is read from the words 'e semiaberto'."
     },
     {
       "id": "vigario2003",
