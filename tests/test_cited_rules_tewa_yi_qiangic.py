@@ -165,14 +165,14 @@ def test_ycl_x_marks_the_tight_throat_register():
 
 
 def test_ycl_xl_before_a_vowel_is_not_the_tense_high_digraph():
-    """COUNTER-CASE.  <vixlux> is [vi\u0320\u2074\u2074\u026a\u0264\u0320\u2074\u2074]: the <l> is the
+    """COUNTER-CASE.  <vixlux> is [vi\u0320\u02e6\u02e6\u026a\u0264\u0320\u02e6\u02e6]: the <l> is the
     next syllable's onset and only the <x> is the register letter."""
     assert ipa("ycl", "vixlux") == (
         "vi̠˦˦ɮɤ̠˦˦")
 
 
 def test_ycl_high_vowel_apicalises_after_a_sibilant():
-    """<si> is [sz\u0329\u00b3\u00b3] while <mi> keeps its /i/ -- the apical rule is
+    """<si> is [sz\u0329\u02e7\u02e7] while <mi> keeps its /i/ -- the apical rule is
     conditioned, not global."""
     assert ipa("ycl", "si") == "sz̩˧˧"
     assert ipa("ycl", "mi") == "mi˧˧"

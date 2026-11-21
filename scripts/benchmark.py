@@ -3775,7 +3775,8 @@ def _prosody_marks(lang: str) -> str:
     A spec that declares ``stress.accent2_mark`` (Scandinavian pitch accent)
     makes ¹/² prosody for that language, unscored on both sides — exactly
     like the universal stress marks. For every other language the digits are
-    left alone (they are lexical tone in e.g. Yi gold).
+    lexical tone (as in Yi gold): ``normalize`` folds them into Chao tone
+    letters and scores them.
     """
     try:
         from orthography2ipa import get

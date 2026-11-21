@@ -317,4 +317,4 @@ class TestProsodyMarkScoringBoundary:
         assert bm._prosody_marks("de") == ""
         assert bm.normalize("²vɛkːa", True, True,
                             extra_strip="¹²") == "vɛkka"
-        assert bm.normalize("a³³pʰi²¹", True, True) == "a³³pʰi²¹"
+        assert bm.normalize("a³³pʰi²¹", True, True) == "a˧˧pʰi˨˩"
