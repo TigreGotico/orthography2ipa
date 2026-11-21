@@ -50,8 +50,16 @@ def test_a_chiado_x_voices_as_its_own_coda_does(code):
 
 
 @pytest.mark.parametrize("code", CHIADO)
-def test_a_chiado_spec_keeps_its_xc_until_a_source_covers_it(code):
-    assert "ʃˈs" in transcribe("excesso", code)
+@pytest.mark.parametrize("word, plain", [
+    ("excesso", "ecesso"),
+    ("exceto", "eceto"),
+    ("exceção", "eceção"),
+    ("excelente", "ecelente"),
+])
+def test_a_chiado_xc_is_one_s_like_a_plain_c(code, word, plain):
+    """Table 1 writes ⟨xc⟩ as the phoneme /s/, not the coda |S|, so no palatal appears."""
+    assert transcribe(word, code) == transcribe(plain, code)
+    assert "ʃ" not in transcribe(word, code).replace("t͡ʃ", "")
 
 
 def test_a_coda_x_voices_as_a_coda_s_does():

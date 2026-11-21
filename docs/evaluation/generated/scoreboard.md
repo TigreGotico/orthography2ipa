@@ -586,10 +586,10 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | pt-BR-x-ce | portuguese_tts | 20 | 0.1199‡ | - | - | - | - | - | - | [0.0994, 0.1416] | 0.0000 | research | llm-corrected |
 | pt-BR-x-fluminen | portuguese_tts | 20 | 0.0699‡ | - | - | - | - | - | - | [0.0494, 0.0937] | 0.1500 | research | llm-corrected |
 | pt-BR-x-mg | portuguese_tts | 20 | 0.1200‡ | - | - | - | - | - | - | [0.0976, 0.1414] | 0.0000 | research | llm-corrected |
-| pt-BR-x-norte | portuguese_tts | 20 | 0.1447‡ | - | - | - | - | - | - | [0.1088, 0.1816] | 0.0500 | research | llm-corrected |
+| pt-BR-x-norte | portuguese_tts | 20 | 0.1433‡ | - | - | - | - | - | - | [0.1074, 0.1799] | 0.0500 | research | llm-corrected |
 | pt-BR-x-pr | portuguese_tts | 20 | 0.0940‡ | - | - | - | - | - | - | [0.0703, 0.1220] | 0.0000 | research | llm-corrected |
-| pt-BR-x-recife | portuguese_tts | 20 | 0.1641‡ | - | - | - | - | - | - | [0.1393, 0.1895] | 0.0000 | research | llm-corrected |
-| pt-BR-x-rj | portal_lupo | 53143 | 0.1708‡ | 0.9983 | - | 0.1503 | 0.1414 | 0.2098 | 0.2391 | [0.1699, 0.1718] | 0.1363 | research | lupo-derived |
+| pt-BR-x-recife | portuguese_tts | 20 | 0.1628‡ | - | - | - | - | - | - | [0.1386, 0.1878] | 0.0000 | research | llm-corrected |
+| pt-BR-x-rj | portal_lupo | 53143 | 0.1701‡ | 0.9983 | - | 0.1496 | 0.1407 | 0.2105 | 0.2402 | [0.1692, 0.1711] | 0.1369 | research | lupo-derived |
 | pt-BR-x-rj | portuguese_tts | 20 | 0.0395‡ | - | - | - | - | - | - | [0.0274, 0.0514] | 0.2000 | research | llm-corrected |
 | pt-BR-x-sp | portal_lupo | 53143 | 0.1596‡ | 0.9973 | - | 0.1562 | 0.1509 | 0.1912 | 0.1985 | [0.1586, 0.1607] | 0.1880 | research | lupo-derived |
 | pt-BR-x-sp | portuguese_tts | 20 | 0.1246‡ | - | - | - | - | - | - | [0.0952, 0.1553] | 0.0500 | research | llm-corrected |
