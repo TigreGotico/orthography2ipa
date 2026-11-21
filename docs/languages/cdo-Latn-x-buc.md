@@ -76,7 +76,7 @@ The spec can emit 24 segments. They come from the letter table, the positional r
 | Open-mid | ɛ | ɔ |
 | Open | a |  |
 
-Tones: [◌̆] shàngpíng (上平), 55, [◌̄] shǎngshēng (上聲), 33, [◌́-qu] shàngqù (上去), 213, [◌́-ru] shàngrù (上入, checked syllable only), 24, [◌̀] xiàpíng (下平), 53, [◌̂] xiàqù (下去), 242, [◌̆-ru] xiàrù (下入, checked syllable only, same breve mark as shàngpíng), 5.
+Tones: [˥˥] shàngpíng (上平), 55, [˧˧] shǎngshēng (上聲), 33, [˨˩˧] shàngqù (上去), 213, [˨˦] shàngrù (上入, checked syllable only), 24, [˥˧] xiàpíng (下平), 53, [˨˦˨] xiàqù (下去), 242, [˥] xiàrù (下入, checked syllable only, same breve mark as shàngpíng), 5.
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

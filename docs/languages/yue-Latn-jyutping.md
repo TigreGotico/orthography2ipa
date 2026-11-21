@@ -79,7 +79,7 @@ The spec can emit 39 segments. They come from the letter table, the positional r
 
 Sequences that the spec writes as one unit: [w].
 
-Tones: [1] high level / high falling, 55/53, [2] mid rising, 35, [3] mid level, 33, [4] low falling, 21, [5] low rising, 13, [6] low level, 22, [1(7)] entering high level, 5 (obstruent coda only), [3(8)] entering mid level, 3 (obstruent coda only), [6(9)] entering low level, 2 (obstruent coda only).
+Tones: [˥˥] high level / high falling, 55/53, [˧˥] mid rising, 35, [˧˧] mid level, 33, [˨˩] low falling, 21, [˩˧] low rising, 13, [˨˨] low level, 22, [˥] entering high level, 5 (obstruent coda only), [˧] entering mid level, 3 (obstruent coda only), [˨] entering low level, 2 (obstruent coda only).
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

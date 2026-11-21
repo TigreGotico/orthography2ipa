@@ -113,12 +113,14 @@ def test_tew_lenition_is_recorded_but_not_applied():
 #: contradicts Table 5 (⟨b⟩ = /p/, ⟨bb⟩ = /b/) and the ⟨bei⟩ = [pe³³] row
 #: of the very same table.  Table 5 is the explicit statement, so the
 #: internally inconsistent row is not used as a test oracle.
+#: The table prints tones as superscript digits; the rows below write them
+#: as IPA tone letters (5 ˥, 4 ˦, 3 ˧, 2 ˨, 1 ˩).
 MERRIFIELD_TABLE_3 = [
-    ("bei", "pe³³"),          # 'run'
-    ("almeir", "ʔa⁵⁵me²¹"),   # 'rice'
-    ("ddei", "de³³"),         # 'possessive'
-    ("ngo", "ŋo³³"),          # 'I, me'
-    ("altor", "ʔa⁵⁵tʰo²¹"),   # 'knife, sword'
+    ("bei", "pe˧˧"),          # 'run'
+    ("almeir", "ʔa˥˥me˨˩"),   # 'rice'
+    ("ddei", "de˧˧"),         # 'possessive'
+    ("ngo", "ŋo˧˧"),          # 'I, me'
+    ("altor", "ʔa˥˥tʰo˨˩"),   # 'knife, sword'
 ]
 
 
@@ -133,47 +135,47 @@ def test_ycl_merrifield_table_3_syllable_structure(word, expected):
 def test_ycl_doubled_letters_are_the_voiced_series():
     """Merrifield (2010) Table 5: voiced stops and affricates are written
     double, voiceless unaspirated single, voiceless aspirated single."""
-    assert ipa("ycl", "bbi") == "bi³³"
-    assert ipa("ycl", "bi") == "pi³³"
-    assert ipa("ycl", "pi") == "pʰi³³"
+    assert ipa("ycl", "bbi") == "bi˧˧"
+    assert ipa("ycl", "bi") == "pi˧˧"
+    assert ipa("ycl", "pi") == "pʰi˧˧"
 
 
 def test_ycl_tone_letters_l_and_r():
     """Merrifield (2010) 2.1.1: syllable-final <l> is high 55, <r> is low
     21, an unmarked syllable is mid 33."""
-    assert ipa("ycl", "bol") == "po⁵⁵"
-    assert ipa("ycl", "hor") == "xo²¹"
-    assert ipa("ycl", "lo") == "ɮo³³"
+    assert ipa("ycl", "bol") == "po˥˥"
+    assert ipa("ycl", "hor") == "xo˨˩"
+    assert ipa("ycl", "lo") == "ɮo˧˧"
 
 
 def test_ycl_l_before_a_vowel_is_an_onset_not_a_tone_letter():
     """COUNTER-CASE for the tone-letter reading of <l>.  In <ddoleixr> the
     <l> is the second syllable's onset, so the first syllable keeps its
     unmarked mid tone 33."""
-    assert ipa("ycl", "ddoleixr") == "do³³ɮe̠ʔ²¹"
+    assert ipa("ycl", "ddoleixr") == "do˧˧ɮe̠ʔ˨˩"
 
 
 def test_ycl_x_marks_the_tight_throat_register():
     """Merrifield (2010) 2.1.3: tense (tight-throat) vowels are written
     with <x>, which raises mid 33 to 44 and high 55 to 66 and adds a
     final glottal stop to low 21."""
-    assert ipa("ycl", "hax") == "xa̠⁴⁴"
-    assert ipa("ycl", "doxl") == "to̠⁶⁶"
-    assert ipa("ycl", "baxr") == "pa̠ʔ²¹"
+    assert ipa("ycl", "hax") == "xa̠˦˦"
+    assert ipa("ycl", "doxl") == "to̠˥˥"
+    assert ipa("ycl", "baxr") == "pa̠ʔ˨˩"
 
 
 def test_ycl_xl_before_a_vowel_is_not_the_tense_high_digraph():
-    """COUNTER-CASE.  <vixlux> is [vi\u0320\u2074\u2074\u026a\u0264\u0320\u2074\u2074]: the <l> is the
+    """COUNTER-CASE.  <vixlux> is [vi\u0320\u02e6\u02e6\u026a\u0264\u0320\u02e6\u02e6]: the <l> is the
     next syllable's onset and only the <x> is the register letter."""
     assert ipa("ycl", "vixlux") == (
-        "vi̠⁴⁴ɮɤ̠⁴⁴")
+        "vi̠˦˦ɮɤ̠˦˦")
 
 
 def test_ycl_high_vowel_apicalises_after_a_sibilant():
-    """<si> is [sz\u0329\u00b3\u00b3] while <mi> keeps its /i/ -- the apical rule is
+    """<si> is [sz\u0329\u02e7\u02e7] while <mi> keeps its /i/ -- the apical rule is
     conditioned, not global."""
-    assert ipa("ycl", "si") == "sz̩³³"
-    assert ipa("ycl", "mi") == "mi³³"
+    assert ipa("ycl", "si") == "sz̩˧˧"
+    assert ipa("ycl", "mi") == "mi˧˧"
 
 
 # ---------------------------------------------------------------------------

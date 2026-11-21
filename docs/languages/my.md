@@ -86,7 +86,7 @@ The spec can emit 71 segments. They come from the letter table, the positional r
 
 Sequences that the spec writes as one unit: [w] [ʍ].
 
-Tones: [creaky] high, slightly falling, creaky/tense phonation — written ⟨့⟩, or by the vowel sign ⟨ိ ု⟩, [low] low, slightly rising, modal phonation — written by the bare rhyme, or ⟨ာ ီ ူ ေ⟩, [high] high falling, breathy phonation — written ⟨း⟩, or by the vowel sign ⟨ဲ ော⟩, [checked] short, closed by [ʔ]; no tone contrast — written with a final stop letter + asat ⟨်⟩.
+Tones: [˥˦] high, slightly falling, creaky/tense phonation — written ⟨့⟩, or by the vowel sign ⟨ိ ု⟩, [˨˧] low, slightly rising, modal phonation — written by the bare rhyme, or ⟨ာ ီ ူ ေ⟩, [˥˩] high falling, breathy phonation — written ⟨း⟩, or by the vowel sign ⟨ဲ ော⟩.
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

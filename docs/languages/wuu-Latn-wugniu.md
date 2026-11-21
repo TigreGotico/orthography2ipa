@@ -63,8 +63,9 @@ The spec can emit 41 segments. They come from the letter table, the positional r
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|
 | Plosive | b p pʰ |  | d t tʰ |  | k kʰ ɡ |  |
 | Affricate |  |  | ts tsʰ | dʑ tɕ tɕʰ |  |  |
-| Nasal | m |  | n |  | ŋ |  |
+| Nasal | m |  | n | ɲ̟ | ŋ |  |
 | Fricative |  | f v | s z | ɕ ʑ |  | h ɦ |
+| Approximant |  |  | ɹ̩ ɹ̩ʷ |  |  |  |
 | Lateral approximant |  |  | l |  |  |  |
 
 | Vowels | Front | Back |
@@ -74,9 +75,7 @@ The spec can emit 41 segments. They come from the letter table, the positional r
 | Open-mid | ɛ | ɔ |
 | Open | a ã | ɑ̃ |
 
-Sequences that the spec writes as one unit: [ȵ] [ɿ] [ʮ].
-
-Tones: [1] yin ping / high-register level, 53, [2] yin register rising/checked, 334, [3] yin qu / departing, 51, [4] yang ping / low-register level, 113, [5] yang qu-ru / low-register departing-checked, merges by register.
+Tones: [˥˧] yin ping / high-register level, 53, [˧˧˦] yin register rising/checked, 334, [˥˩] yin qu / departing, 51, [˩˩˧] yang ping / low-register level, 113.
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->
@@ -100,7 +99,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨f⟩ | [f] |  |
 | ⟨g⟩ | [ɡ] |  |
 | ⟨gh⟩ | [ɦ] |  |
-| ⟨gn⟩ | [ȵ] |  |
+| ⟨gn⟩ | [ɲ̟] |  |
 | ⟨h⟩ | [h] |  |
 | ⟨i⟩ | [i] |  |
 | ⟨ia⟩ | [ia] |  |
@@ -138,8 +137,8 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨ue⟩ | [ue] |  |
 | ⟨uoe⟩ | [uø] |  |
 | ⟨v⟩ | [v] |  |
-| ⟨y⟩ | [ɿ] |  |
-| ⟨yu⟩ | [ʮ] |  |
+| ⟨y⟩ | [ɹ̩] |  |
+| ⟨yu⟩ | [ɹ̩ʷ] |  |
 | ⟨z⟩ | [z] |  |
 | ⟨zh⟩ | [ʑ] |  |
 

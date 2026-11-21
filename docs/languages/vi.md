@@ -150,7 +150,7 @@ The spec can emit 141 segments. They come from the letter table, the positional 
 
 Sequences that the spec writes as one unit: [a˧ˀ˥] [a˧˧] [a˧˨] [a˧˩˨] [a˨ˀ˩] [a˨˦] [e˧ˀ˥] [e˧˧] [e˧˨] [e˧˩˨] [e˨ˀ˩] [e˨˦] [i˧ˀ˥] [i˧˧] [i˧˨] [i˧˩˨] [i˨ˀ˩] [i˨˦] [j˧ˀ˥] [j˧˧] [j˧˨] [j˧˩˨] [j˨ˀ˩] [j˨˦] [k˦˥] [k˨ˀ˩] [k͡p] [k͡p˦˥] [k͡p˨ˀ˩] [m˧ˀ˥] [m˧˧] [m˧˨] [m˧˩˨] [m˨ˀ˩] [m˨˦] [n˧ˀ˥] [n˧˧] [n˧˨] [n˧˩˨] [n˨ˀ˩], and 69 more.
 
-Tones: [◌̄] ngang (A1, level) — ˧˧; unmarked in the orthography, [◌̀] huyền (A2, mid falling) — ˧˨, [◌́] sắc (B1, rising) — ˨˦; ˦˥ on a syllable closed by an oral stop (D1), [◌̉] hỏi (C1, low falling) — ˧˩˨, [◌̃] ngã (C2, broken) — ˧ˀ˥, [◌̣] nặng (B2, low glottalized) — ˨ˀ˩; D2 on a syllable closed by an oral stop.
+Tones: [˧˧] ngang (A1, level) — ˧˧; unmarked in the orthography, [˧˨] huyền (A2, mid falling) — ˧˨, [˨˦] sắc (B1, rising) — ˨˦; ˦˥ on a syllable closed by an oral stop (D1), [˧˩˨] hỏi (C1, low falling) — ˧˩˨, [˧ˀ˥] ngã (C2, broken) — ˧ˀ˥, [˨ˀ˩] nặng (B2, low glottalized) — ˨ˀ˩; D2 on a syllable closed by an oral stop.
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

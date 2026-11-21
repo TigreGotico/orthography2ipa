@@ -70,7 +70,7 @@ The spec can emit 20 segments. They come from the letter table, the positional r
 | Close-mid | e e̥ é | o o̥ ó |
 | Open | a á ḁ |  |
 
-Tones: [á] high, [é] high, [ó] high.
+Tones: [˦] high (written á, é, ó).
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

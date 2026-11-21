@@ -60,7 +60,7 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 36 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 55 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -81,9 +81,9 @@ The spec can emit 36 segments. They come from the letter table, the positional r
 | Open-mid | ɛ |  | ɔ |
 | Open | a |  |  |
 
-Sequences that the spec writes as one unit: [w] [²] [³] [¹] [⁵].
+Sequences that the spec writes as one unit: [a˥˥] [a˥˨] [a˧˧] [a˧˩] [i˥˥] [i˥˨] [i˧˧] [i˧˩] [o˥˥] [o˥˨] [o˧˧] [o˧˩] [u˥˥] [u˥˨] [u˧˧] [u˧˩] [w] [ə˥˥] [ə˧˧] [ə˧˩] [ɛ˥˥] [ɛ˥˨] [ɛ˧˧] [ɛ˧˩].
 
-Tones: [⁵⁵] high level, [³³] mid level, [³¹] low; written 31 in the Patsho transcriptions, described as low level for Thang, [⁵²] falling.
+Tones: [˥˥] high level, [˧˧] mid level, [˧˩] low; written 31 in the Patsho transcriptions, described as low level for Thang, [˥˨] falling.
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->
@@ -123,36 +123,36 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨v⟩ | [v] |  |
 | ⟨w⟩ | [w] |  |
 | ⟨y⟩ | [j] |  |
-| ⟨à⟩ | [a³¹] |  |
-| ⟨á⟩ | [a⁵⁵] |  |
-| ⟨â⟩ | [a⁵²] |  |
-| ⟨è⟩ | [ɛ³¹] |  |
-| ⟨é⟩ | [ɛ⁵⁵] |  |
-| ⟨ê⟩ | [ɛ⁵²] |  |
-| ⟨ì⟩ | [i³¹] |  |
-| ⟨í⟩ | [i⁵⁵] |  |
-| ⟨î⟩ | [i⁵²] |  |
-| ⟨ò⟩ | [o³¹] |  |
-| ⟨ó⟩ | [o⁵⁵] |  |
-| ⟨ô⟩ | [o⁵²] |  |
-| ⟨ù⟩ | [u³¹] |  |
-| ⟨ú⟩ | [u⁵⁵] |  |
-| ⟨û⟩ | [u⁵²] |  |
+| ⟨à⟩ | [a˧˩] |  |
+| ⟨á⟩ | [a˥˥] |  |
+| ⟨â⟩ | [a˥˨] |  |
+| ⟨è⟩ | [ɛ˧˩] |  |
+| ⟨é⟩ | [ɛ˥˥] |  |
+| ⟨ê⟩ | [ɛ˥˨] |  |
+| ⟨ì⟩ | [i˧˩] |  |
+| ⟨í⟩ | [i˥˥] |  |
+| ⟨î⟩ | [i˥˨] |  |
+| ⟨ò⟩ | [o˧˩] |  |
+| ⟨ó⟩ | [o˥˥] |  |
+| ⟨ô⟩ | [o˥˨] |  |
+| ⟨ù⟩ | [u˧˩] |  |
+| ⟨ú⟩ | [u˥˥] |  |
+| ⟨û⟩ | [u˥˨] |  |
 | ⟨ü⟩ | [ə] |  |
-| ⟨ā⟩ | [a³³] |  |
-| ⟨ē⟩ | [ɛ³³] |  |
+| ⟨ā⟩ | [a˧˧] |  |
+| ⟨ē⟩ | [ɛ˧˧] |  |
 | ⟨ě⟩ | [ɛ] |  |
-| ⟨ī⟩ | [i³³] |  |
-| ⟨ō⟩ | [o³³] |  |
-| ⟨ū⟩ | [u³³] |  |
+| ⟨ī⟩ | [i˧˧] |  |
+| ⟨ō⟩ | [o˧˧] |  |
+| ⟨ū⟩ | [u˧˧] |  |
 | ⟨ǎ⟩ | [a] |  |
 | ⟨ǐ⟩ | [i] |  |
 | ⟨ǒ⟩ | [o] |  |
 | ⟨ǔ⟩ | [u] |  |
-| ⟨ǖ⟩ | [ə³³] |  |
-| ⟨ǘ⟩ | [ə⁵⁵] |  |
+| ⟨ǖ⟩ | [ə˧˧] |  |
+| ⟨ǘ⟩ | [ə˥˥] |  |
 | ⟨ǚ⟩ | [ə] |  |
-| ⟨ǜ⟩ | [ə³¹] |  |
+| ⟨ǜ⟩ | [ə˧˩] |  |
 
 The spec declares no stress rule.
 <!-- atlas:spelling end -->

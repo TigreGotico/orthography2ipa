@@ -84,7 +84,7 @@ The spec can emit 40 segments. They come from the letter table, the positional r
 
 Sequences that the spec writes as one unit: [w].
 
-Tones: [low_class_no_mark] mid, [low_class_mai_ek] falling, [low_class_mai_tho] high, [mid_class_no_mark] low, [mid_class_mai_ek] low, [mid_class_mai_tho] mid, [high_class_no_mark] rising, [high_class_mai_ek] mid, [high_class_mai_tho] high.
+Tones: [˧] low class no mark; mid class mai tho; high class mai ek, [˥˩] low class mai ek, [˦] low class mai tho; high class mai tho, [˨] mid class no mark; mid class mai ek, [˩˥] high class no mark.
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

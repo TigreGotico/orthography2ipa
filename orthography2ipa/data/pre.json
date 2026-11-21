@@ -308,8 +308,8 @@
   },
   "iso639_3": "pre",
   "tone_inventory": {
-    "H": "high",
-    "L": "low"
+    "˦": "high",
+    "˨": "low"
   },
   "wikidata_qid": "Q36520",
   "phoible_id": "prin1242",
