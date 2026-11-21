@@ -40,6 +40,7 @@ The *chiado* (coda /s/ to [ʃ]) belongs to Rio de Janeiro and some other regions
 | `BR_NASAL_STRESSED_A`, `_E`, `_O`, `_I`, `_U` | a stressed vowel before an onset nasal is nasal | `cama` [ˈkɐ̃mɐ], `cima` [ˈsĩmɐ], `fome` [ˈfõmi] |
 | `BR_NASAL_PRETONIC_A_NH` and the other vowels | a pretonic vowel before /ɲ/ is nasal | `ganhar` [ɡɐ̃ˈɲa], `senhor` [sẽˈɲoɾ] |
 | `BR_XC_ONE_S` | ⟨xc⟩ before a front vowel is one [s] | `exceção` [eseˈsɐ̃w̃], `excesso` [eˈsesu] |
+| `BR_SC_ONE_S` | ⟨sc⟩ before a front vowel and ⟨sç⟩ are one [s] | `nascer` [naˈse], `crescer` [kɾeˈse] |
 | `BR_CODA_X` | ⟨x⟩ before a consonant is the coda [s] | `texto` [ˈtestu], `explicar` [espliˈka] |
 | `BR_CODA_S_VOICED`, `BR_CODA_SH_VOICED` | a coda sibilant is voiced before a voiced consonant | `mesmo` [ˈmezmu], `desde` [ˈdezd͡ʒi] |
 | `BR_STRONG_R_AFTER_CODA` | /r/ after a coda nasal or sibilant is the strong rhotic | `honra` [ˈõʁɐ], `Israel` [izʁaˈɛw] |
@@ -111,7 +112,7 @@ A coda /r/ as [h] or [x] is very variable across Brazil. The base keeps the tap 
 
 ## Coda sibilant voicing, strong /r/ and epenthesis
 
-A ⟨x⟩ before a consonant is the coda sibilant. Vasilévski (2012: 55, Table 1) gives "x |S| expor" beside "s |S| mosca, lesma", and p. 56 writes /ˈteS.tu/. `BR_CODA_X` takes the [s] of the base (`texto` [ˈtestu]). Table 1 also gives "xc /s/ exceção", and `BR_XC_ONE_S` writes one [s] (`excesso` [eˈsesu]). The table is the rule set of a decoder that targets the phonological level, not a study of speech. The specs with a palatal coda switch both rules off: ⟨x⟩ keeps the [ʃ] of their coda ⟨s⟩, and ⟨xc⟩ keeps [ʃs] because no opened source gives its value there.
+A ⟨x⟩ before a consonant is the coda sibilant. Vasilévski (2012: 55, Table 1) gives "x |S| expor" beside "s |S| mosca, lesma", and p. 56 writes /ˈteS.tu/. `BR_CODA_X` takes the [s] of the base (`texto` [ˈtestu]). Table 1 also gives "xc /s/ exceção", and `BR_XC_ONE_S` writes one [s] (`excesso` [eˈsesu]). The table is the rule set of a decoder that targets the phonological level, not a study of speech. Table 1 gives "sc /s/ fascinante" and "sç /s/ cresça" the same way, and `BR_SC_ONE_S` writes one [s] (`nascer` [naˈse]). The specs with a palatal coda switch `BR_CODA_X` off, so ⟨x⟩ keeps the [ʃ] of their coda ⟨s⟩ (`texto` [ˈteʃtu]). They keep `BR_XC_ONE_S` and `BR_SC_ONE_S`, because a digraph /s/ is no coda |S|: `excesso` [eˈsesu] and `nascer` [naˈseh] in `pt-BR-x-rj`.
 
 A coda /S/ "tends to assimilate the voicing of the following sound" (Barbosa & Albano 2004: 229). `BR_CODA_S_VOICED` gives [z] before a voiced consonant (`mesmo` [ˈmezmu], `rasgar` [ʁazˈɡa]), and the sibilant stays [s] before a voiceless one (`festa` [ˈfestɐ]). `BR_CODA_SH_VOICED` does the same for a palatal [ʃ] in the regional specs.
 
