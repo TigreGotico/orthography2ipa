@@ -1,5 +1,13 @@
 # Galician (`gl-ES`)
 
+<!-- agent-hint
+covers: what the `gl-ES` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/gl-ES.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Galician is an Ibero-Romance language, written in the Latin script. Its code names Spain. The `gl-ES` spec is at the research tier. It cites 9 sources and has 3 scored datasets.
 <!-- atlas:summary end -->

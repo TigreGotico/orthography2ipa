@@ -1,5 +1,13 @@
 # Regional Standard Dutch of Belgium (nl-BE-x-*)
 
+<!-- agent-hint
+covers: the regional Belgian Dutch specs and how each one differs from `nl-BE`
+source: `orthography2ipa/data/nl-BE.json`, `orthography2ipa/data/nl-BE-x-antwerp.json`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_nl_be_regional.py`
+see: `docs/languages/nl-NL-regional.md`, `docs/languages/index.md`
+-->
+
 The `nl-BE-x-*` specs model the regional accents of Standard Dutch in Belgium. A regional spec describes the standard language as educated speakers from one place speak it. The specs do not describe the traditional dialects. Each spec is a delta spec over `nl-BE`: it inherits the whole Belgian standard and declares only what its region changes.
 
 Every transcription on this page is real output of `orthography2ipa.transcribe(text, code)`.

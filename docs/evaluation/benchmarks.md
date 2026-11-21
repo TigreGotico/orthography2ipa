@@ -1,5 +1,13 @@
 # Benchmarks
 
+<!-- agent-hint
+covers: how far a PER from this project can be trusted, how the harness computes it and how to reproduce it
+source: `scripts/benchmark.py`, `benchmarks/results.json`
+generated: no
+verify: `PYTHONPATH=$PWD python scripts/benchmark.py --list`
+see: `docs/evaluation/datasets.md`, `docs/evaluation/generated/scoreboard.md`
+-->
+
 A benchmark number from this project is the phoneme error rate (PER) of the engine against one gold dataset for one language. This page says how far such a number can be trusted, how the harness computes it, and how to reproduce and diagnose it. A provenance tier says where a gold transcription came from. It does not say whether the transcription is right about the language, and this page is where that difference is defined.
 
 [Benchmark gold datasets](datasets.md) catalogues every gold dataset with its source, licence, tier and caveats, and lists the candidates this project examined and refused. The measured numbers are on the [scoreboard](generated/scoreboard.md) and in [`benchmarks/results.json`](../../benchmarks/results.json). The cross-system view is [comparison.md](generated/comparison.md). [Gold defects](gold_defects.md) records individual gold rows with a measured defect.

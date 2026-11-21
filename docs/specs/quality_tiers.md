@@ -1,5 +1,13 @@
 # Quality tiers
 
+<!-- agent-hint
+covers: what each `quality` tier of a spec means and which test enforces it
+source: `orthography2ipa/types.py:QualityTier`, `tests/test_data_quality.py`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_data_quality.py`
+see: `docs/evaluation/benchmarks.md`, `docs/contributing/citations.md`
+-->
+
 Every spec states how mature its data is, in the `quality` field, as one of the four values of `orthography2ipa.types.QualityTier`. [`tests/test_data_quality.py`](../../tests/test_data_quality.py) fails a spec that leaves the field out. This page defines what a spec must meet for each tier, so that a reader can check a tier claim against the repository before depending on it.
 
 | Tier | What it means | What a test enforces |

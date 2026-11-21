@@ -1,5 +1,13 @@
 # Engine changes
 
+<!-- agent-hint
+covers: the rules for a change to the engine code and the review gate that each such change passes
+source: `orthography2ipa/*.py`, `orthography2ipa/revision.py:ENGINE_MODULES`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py`
+see: `docs/engine/architecture.md`, `docs/reference/api_stability.md`
+-->
+
 This page gives the rules for a change to the engine, the Python code in
 `orthography2ipa/`, and the review gate that every such change passes.
 [architecture.md](../engine/architecture.md) describes how the engine works

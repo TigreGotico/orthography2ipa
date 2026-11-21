@@ -44,7 +44,7 @@ from typing import Dict, List, Optional, Tuple
 
 sys.path.insert(0, os.path.dirname(__file__))
 import benchmark  # noqa: E402
-from docs_nav import footer  # noqa: E402  — shared dataset loaders and metric helpers
+from docs_nav import agent_hint, footer  # noqa: E402  — shared dataset loaders and metric helpers
 
 # language tag → (wordlist loader, loader lang, espeak voice)
 #
@@ -225,6 +225,17 @@ def write_agreement_scoreboard(rows: List[dict]) -> None:
 
     lines = [
         "# espeak-ng agreement",
+        "",
+        agent_hint(
+            covers="how often o2i and espeak-ng give the same IPA for the "
+                   "words of a gold set, per language",
+            source="`benchmarks/espeak_agreement.json`, "
+                   "`scripts/espeak_agreement.py`",
+            generated="yes, by `scripts/espeak_agreement.py --scoreboard`. "
+                      "Edit the generator, not the page",
+            verify="`PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py`",
+            see="`docs/evaluation/benchmarks.md`, "
+                "`docs/evaluation/generated/comparison.md`"),
         "",
         "Committed symbol-level agreement between orthography2ipa and "
         "espeak-ng, for every language where this repo has both a gold-"

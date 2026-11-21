@@ -25,10 +25,14 @@ in ``scripts/compare_systems.py``, ``scripts/spec_diagnostics.py``,
 ``scripts/benchmark.py``, ``scripts/build_en_lexicon.py`` and
 ``scripts/espeak_agreement.py``. Fixing one of these means editing the
 generator and regenerating the page.
+
+The ``agent-hint`` comment after the H1 of a page is not linted. A rendered
+page does not show it, and its lines are key and value pairs, not sentences.
 """
 import glob
 import importlib.util
 import os
+import re
 
 import pytest
 
@@ -71,9 +75,12 @@ def _docs_pages():
                   for p in glob.glob(pattern, recursive=True))
 
 
+_AGENT_HINT = re.compile(r"<!-- agent-hint\n.*?-->\n", re.S)
+
+
 def _report(page):
     with open(os.path.join(_ROOT, page), encoding="utf-8") as fh:
-        return ste_lint.lint(fh.read(), "flavored")
+        return ste_lint.lint(_AGENT_HINT.sub("", fh.read()), "flavored")
 
 
 _PAGES = _docs_pages()

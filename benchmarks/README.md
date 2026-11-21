@@ -1,5 +1,13 @@
 # Benchmarks
 
+<!-- agent-hint
+covers: what each committed board file in `benchmarks/` holds and which script writes it
+source: `scripts/benchmark.py`, `scripts/compare_systems.py`, `scripts/espeak_agreement.py`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_thin_row_marker.py`
+see: `docs/contributing/board.md`, `docs/evaluation/benchmarks.md`
+-->
+
 This directory holds the committed board files. Scripts write every file
 here, so never edit one by hand. The procedure is in
 [docs/contributing/board.md](../docs/contributing/board.md).

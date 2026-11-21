@@ -1,5 +1,13 @@
 # Comparison to other G2P systems
 
+<!-- agent-hint
+covers: the PER of o2i and of other G2P systems on the same gold words, language by language
+source: `benchmarks/comparison.json`, `scripts/compare_systems.py`
+generated: yes, by `scripts/compare_systems.py --scoreboard`. Edit the generator, not the page
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_compare_systems.py`
+see: `docs/evaluation/generated/scoreboard.md`, `docs/evaluation/benchmarks.md`, `docs/contributing/board.md`
+-->
+
 This table shows how well orthography2ipa (o2i) predicts IPA pronunciation compared to twelve other G2P systems (including the five o2i-downstream family engines — arbtok, tugaphone, g2p_barranquenho, mwl_phonemizer, udarnik), on the same gold word lists, language by language.
 
 Every number is a **PER (Phoneme Error Rate)**: lower is better, `0.0000` is a perfect match, and it CAN exceed `1.0` when a system's output is much longer or shorter than the gold (more edits than the gold has phonemes).

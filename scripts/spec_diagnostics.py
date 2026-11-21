@@ -44,7 +44,7 @@ sys.path.insert(0, os.path.join(ROOT, "scripts"))
 DOCS_DIR = os.path.join(ROOT, "docs")
 
 import orthography2ipa as o2i  # noqa: E402
-from docs_nav import footer  # noqa: E402
+from docs_nav import agent_hint, footer  # noqa: E402
 from orthography2ipa.inventory import emission_inventory  # noqa: E402
 from orthography2ipa.json_loader import _DATA_DIR as DATA_DIR  # noqa: E402
 
@@ -408,6 +408,18 @@ def render(entries: List[dict], top: int = 20) -> str:
     scored = [e for e in entries if "error" not in e]
     lines = []
     lines.append("# Spec diagnostics")
+    lines.append("")
+    lines.append(agent_hint(
+        covers="the gold characters each spec cannot map, the inheritance "
+               "that crosses a family line, and the specs whose tables "
+               "match another language",
+        source="`scripts/spec_diagnostics.py`, the specs in "
+               "`orthography2ipa/data/`, the gold cache in `.benchmark_cache/`",
+        generated="yes, by `scripts/spec_diagnostics.py`. Edit the generator, "
+                  "not the page",
+        verify="`PYTHONPATH=$PWD python -m pytest tests/test_spec_diagnostics.py`",
+        see="`docs/guide/known_limitations.md`, "
+            "`docs/evaluation/gold_defects.md`"))
     lines.append("")
     lines.append(
         "Regenerate with `PYTHONPATH=$PWD python3 scripts/spec_diagnostics.py`. "

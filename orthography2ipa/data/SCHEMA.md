@@ -1,5 +1,13 @@
 # Language JSON Schema
 
+<!-- agent-hint
+covers: every JSON key that the loader reads from a spec, with its type, default and meaning
+source: `orthography2ipa/types.py`, `orthography2ipa/json_loader.py`, `orthography2ipa/schema.py`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_schema_documents_loader_keys.py`
+see: `docs/specs/data_model.md`, `docs/contributing/spec_authoring.md`
+-->
+
 Each `.json` file in this directory defines one or more `LanguageSpec` entries.
 Files are named `{code}.json` where `code` is the primary BCP-47 language code.
 

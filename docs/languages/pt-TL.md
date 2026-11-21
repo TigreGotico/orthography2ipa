@@ -1,5 +1,13 @@
 # East Timorese Portuguese (pt-TL)
 
+<!-- agent-hint
+covers: how the East Timorese Portuguese spec differs from `pt-PT`
+source: `orthography2ipa/data/pt-TL.json`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_lusophone_asian.py`
+see: `docs/languages/pt-PT.md`, `docs/languages/pt-MO.md`
+-->
+
 | Field | Value |
 |:---|:---|
 | Code | `pt-TL` |

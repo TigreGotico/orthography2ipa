@@ -1,5 +1,13 @@
 # Lapurdian Basque (Lapurtera) (`eu-x-lapurdi`)
 
+<!-- agent-hint
+covers: what the `eu-x-lapurdi` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/eu-x-lapurdi.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/eu.md`, `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Lapurdian Basque (Lapurtera) is a Vasconic variety, written in the Latin script. Glottolog places it in the Eurasia macroarea. The `eu-x-lapurdi` spec is at the research tier. It cites 5 sources and has 1 scored dataset.
 <!-- atlas:summary end -->

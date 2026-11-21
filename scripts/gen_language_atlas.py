@@ -10,6 +10,7 @@ between two markers and is rewritten from the data on every run::
     ...
     <!-- atlas:header end -->
 
+The generator also writes the ``agent-hint`` comment right after the H1.
 Every other line of the page is hand-written and is never touched. The blocks
 come in a fixed order, so that a reader learns the page once:
 
@@ -60,6 +61,7 @@ from __future__ import annotations
 import argparse
 import csv
 import dataclasses
+import functools
 import glob
 import importlib.util
 import io
@@ -105,6 +107,8 @@ _BLOCK = re.compile(
     r"<!-- atlas:(?P<name>\w+) begin(?P<attrs>[^>]*?)-->\n.*?<!-- atlas:(?P=name) end -->",
     re.S)
 _ATTR = re.compile(r'(\w+)="([^"]*)"')
+_HINT = re.compile(r"\A(# .*\n)\n<!-- agent-hint\n.*?-->\n", re.S)
+ATLAS_CHECK = "`PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`"
 _REGION = re.compile(r"^[a-z]{2,3}(?:-[A-Z][a-z]{3})?-(?P<region>[A-Z]{2}|\d{3})(?:-|$)")
 
 #: The coarse class of each reliability tier, in the order of
@@ -199,6 +203,7 @@ def no_page_reason(code: str) -> Optional[str]:
 # Inputs
 
 
+@functools.lru_cache(maxsize=None)
 def _docs_nav():
     path = os.path.join(REPO_ROOT, "scripts", "docs_nav.py")
     spec = importlib.util.spec_from_file_location("docs_nav", path)
@@ -1176,7 +1181,32 @@ def render_page(atlas: Atlas, code: str, text: str) -> str:
         return f"<!-- atlas:{name} begin{attrs}-->\n{body}\n<!-- atlas:{name} end -->"
 
     text = re.sub(r"\A# .*", f"# {spec.name} (`{code}`)", text)
+    text = _HINT.sub(r"\1", text)
+    text = re.sub(r"\A(# .*\n)",
+                  lambda m: m.group(1) + "\n" + page_hint(atlas, code) + "\n",
+                  text)
     return _BLOCK.sub(fill, text)
+
+
+def page_hint(atlas: Atlas, code: str) -> str:
+    """The ``agent-hint`` comment of the page of *code*."""
+    see = ["`docs/languages/a-z.md`", "`docs/specs/quality_tiers.md`",
+           "`orthography2ipa/data/SCHEMA.md`"]
+    parent = atlas.raw[code].get("parent")
+    if parent in atlas.pages:
+        see.insert(0, f"`docs/languages/{parent}.md`")
+    return _docs_nav().agent_hint(
+        covers=f"what the `{code}` spec holds: its place in the family tree, "
+               "its sources and scores, its sounds, its spelling rules and "
+               "transcribed examples",
+        source=f"`orthography2ipa/data/{code}.json`, `benchmarks/results.json`, "
+               "`scripts/atlas_snapshot.json`",
+        generated="partly. `scripts/gen_language_atlas.py` writes this hint and "
+                  "the blocks between the `atlas:` markers. Edit the "
+                  "generator for those, and the page for the prose between "
+                  "them",
+        verify=ATLAS_CHECK,
+        see=", ".join(see))
 
 
 def scaffold(atlas: Atlas, code: str) -> str:
@@ -1201,7 +1231,17 @@ def _entry(atlas: Atlas, code: str) -> str:
 
 
 def _index_head(title: str, intro: str) -> List[str]:
-    return [f"# {title}", "", intro, "",
+    others = [f"`docs/languages/{name}`" for name, other in INDEXES.items()
+              if other != title]
+    hint = _docs_nav().agent_hint(
+        covers=f"{intro[0].lower()}{intro.split('. ')[0][1:].rstrip('.')}, each linked to its page or "
+               "to its entry in the data explorer",
+        source="`orthography2ipa/data/*.json`, `scripts/atlas_snapshot.json`",
+        generated="yes, by `scripts/gen_language_atlas.py`. Edit the "
+                  "generator, not the page",
+        verify=ATLAS_CHECK,
+        see=", ".join(["`docs/languages/index.md`"] + others))
+    return [f"# {title}", "", hint, "", intro, "",
             "A stub has a name, a code and a place in the family tree, but no "
             "phonology yet. The tables list every spec above the stub tier. "
             "The stubs follow each table by name and code. To open a stub, "

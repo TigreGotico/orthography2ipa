@@ -1,5 +1,13 @@
 # The pronunciation lattice
 
+<!-- agent-hint
+covers: how the engine ranks the readings of a word, how a rescorer changes the ranking and how to export the lattice as features
+source: `orthography2ipa/phonetok.py`, `orthography2ipa/g2p.py`, `orthography2ipa/sentence.py`
+generated: no
+verify: `PYTHONPATH=$PWD python examples/07_lattice_and_rescorer.py`
+see: `docs/engine/lattice_per.md`, `docs/engine/allophony.md`
+-->
+
 Most words have one sensible pronunciation, and the hard cases are the words that have several. `orthography2ipa` does not hide that ambiguity behind a single answer. It exposes a lattice: for each grapheme of a word, the ranked [IPA](https://www.internationalphoneticassociation.org/content/full-ipa-chart) options that the grapheme can realise, each with a cost. The rest of the library, and the phonemizers built on it, consume this object.
 
 This page follows the order in which a phonemizer author meets the lattice. It covers how candidates get their costs, the lattice and its rescorers, the per-word confidence, the cross-word sentence seam and the feature export. The [tokenizer](tokenizer.md) page covers how text becomes graphemes and how the beam search (`ipa_beam`) turns the same search space into whole-word readings.

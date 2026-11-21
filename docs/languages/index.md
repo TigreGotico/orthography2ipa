@@ -1,5 +1,13 @@
 # Language pages
 
+<!-- agent-hint
+covers: how the language pages are organised and which pages cover a family or a group of lects
+source: `docs/languages/`, `scripts/gen_language_atlas.py`
+generated: no
+verify: `python scripts/docs_nav.py --check`
+see: `docs/languages/a-z.md`, `docs/languages/by-family.md`
+-->
+
 The language pages form an atlas of the specs. Four indexes list every
 registered spec, and each one links the page of a spec where a page exists,
 or its entry in the [data explorer](https://tigregotico.github.io/orthography2ipa/)

@@ -1,5 +1,13 @@
 # Architecture
 
+<!-- agent-hint
+covers: the stages of the engine from text to IPA, the module of each stage and the design choices behind them
+source: `orthography2ipa/g2p.py`, `orthography2ipa/phonetok.py`, `orthography2ipa/stress.py`, `orthography2ipa/sandhi.py`, `orthography2ipa/sentence.py`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_g2p_engine.py`
+see: `docs/engine/tokenizer.md`, `docs/engine/lattice.md`, `docs/contributing/engine.md`
+-->
+
 `orthography2ipa` has two parts: the per-language JSON specs under `orthography2ipa/data/`, and one engine that reads any spec. This page describes the stages of the engine, the modules that hold them and the design choices behind them. The repository map in [`AGENTS.md`](../../AGENTS.md) gives the short view of the files.
 
 The engine has no language-specific code. A behaviour that one language needs becomes a generic capability that any spec can switch on, and the spec holds only data. [orthography2ipa.cpp](https://github.com/loom-ai-org/orthography2ipa.cpp) is a C++17 port of the same data-driven core, and it reads the same JSON specs.

@@ -1,5 +1,13 @@
 # Known limitations
 
+<!-- agent-hint
+covers: which spec notes about a gap are real defects and which are deliberate limits
+source: the `notes` fields of `orthography2ipa/data/*.json`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py`
+see: `docs/evaluation/gold_defects.md`, `docs/specs/quality_tiers.md`
+-->
+
 Language specs carry notes about what they do not do. The wording is uniform: "not modelled", "left unencoded", "known miss", "DECLARED GAP". The wording hides four different situations, and only one of them is a defect worth fixing. This page separates them, shows how to tell them apart, and records the limits of the ranker that measurement has confirmed.
 
 A note that says "not modelled" because the language has a second script that nobody gives the engine costs nothing. A note that says "left unencoded" about a contrast the spelling plainly marks is a bug with a measurable price.

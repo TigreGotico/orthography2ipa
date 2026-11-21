@@ -118,7 +118,7 @@ GoldPair = Tuple[str, str]
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from docs_nav import footer  # noqa: E402
+from docs_nav import agent_hint, footer  # noqa: E402
 from orthography2ipa.vowels import is_ipa_vowel  # noqa: E402
 
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -4790,6 +4790,18 @@ def write_scoreboard(rows: List[dict]) -> None:
     lines = [
         "# Scoreboard",
         "",
+        agent_hint(
+            covers="the committed PER, exact-match rate and provenance of every "
+                   "gold dataset and language row the harness scores",
+            source="`benchmarks/results.json`, `scripts/benchmark.py` "
+                   "(`DATASETS`, `write_scoreboard`)",
+            generated="yes, by `scripts/benchmark.py --scoreboard`. Edit the "
+                      "generator, not the page",
+            verify="`PYTHONPATH=$PWD python -m pytest "
+                   "tests/test_thin_row_marker.py`",
+            see="`docs/evaluation/benchmarks.md`, "
+                "`docs/evaluation/datasets.md`, `docs/contributing/board.md`"),
+        "",
         "**Grain of salt — read this first.** Reliable G2P \"gold\" barely "
         "exists. Most datasets below are semi-automated, dictionary-extracted, "
         "community-scraped, or a phonemizer's OWN output reused as a reference. "
@@ -5086,6 +5098,17 @@ def write_lexicon_report(rows: List[dict]) -> None:
 
     lines = [
         "# Lexicon-overlay scoreboard",
+        "",
+        agent_hint(
+            covers="the PER of each gold set with and without a "
+                   "caller-supplied lexicon",
+            source="`scripts/benchmark.py` (`--lexicon-report`), "
+                   "`orthography2ipa/lexicon.py`",
+            generated="yes, by `scripts/benchmark.py --lexicon-report`. Edit "
+                      "the generator, not the page",
+            verify="`PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py`",
+            see="`docs/guide/lexicon.md`, "
+                "`docs/evaluation/generated/scoreboard.md`"),
         "",
         "Rules-only against with-lexicon PER for each language with a "
         "caller-supplied lexicon. The package bundles no lexicon: see "

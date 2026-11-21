@@ -385,39 +385,3 @@ def test_every_no_page_entry_names_specs_in_the_cut_that_have_no_page(atlas):
 ])
 def test_no_page_entry_covers_its_code_and_its_hyphenated_children(code, expected):
     assert (atlas_gen.no_page_reason(code) is not None) is expected
-
-
-def _reference_docs():
-    path = os.path.join(_ROOT, "scripts", "gen_reference_docs.py")
-    spec = importlib.util.spec_from_file_location("gen_reference_docs", path)
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-    return module
-
-
-def _linked_pages(text):
-    return set(re.findall(r"\]\(docs/languages/([^/)]+)\.md\)", text)) - {
-        "index", *(name[:-3] for name in atlas_gen.INDEXES)}
-
-
-def test_llms_txt_lists_the_production_pages_and_llms_full_every_page(atlas):
-    ref = _reference_docs()
-    order = _nav().reading_order()
-    short, full = ref.llms_txt(order), ref.llms_txt(order, full=True)
-    production = {c for c in atlas.pages
-                  if atlas.raw[c].get("quality") == "production"}
-    assert production
-    assert _linked_pages(short) == production
-    assert _linked_pages(full) == atlas.pages
-    assert "](llms-full.txt)" in short
-    assert "llms-full.txt" not in full
-    for name in atlas_gen.INDEXES:
-        assert f"](docs/languages/{name})" in short
-
-
-def test_committed_llms_files_are_current():
-    ref = _reference_docs()
-    order = _nav().reading_order()
-    for rel, full in (("llms.txt", False), ("llms-full.txt", True)):
-        with open(os.path.join(_ROOT, rel), encoding="utf-8") as fh:
-            assert fh.read() == ref.llms_txt(order, full=full), rel

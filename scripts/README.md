@@ -1,5 +1,13 @@
 # Scripts
 
+<!-- agent-hint
+covers: what each script in `scripts/` does: the benchmark harness, the board guards and the doc generators
+source: `scripts/*.py`
+generated: no
+verify: `python scripts/docs_nav.py --check`
+see: `docs/contributing/board.md`, `docs/evaluation/benchmarks.md`
+-->
+
 Every script runs from the repository root with `PYTHONPATH=$PWD`, so that
 it measures the checkout and not an installed package. Each script has a
 module docstring with its usage, and most take `--help`.
@@ -42,7 +50,7 @@ The procedure and the guards are in
 | Script | Does |
 |---|---|
 | `docs_nav.py` | Checks (`--check`) or rewrites (`--write`) the navigation footers from the order in `docs/index.md` |
-| `gen_reference_docs.py` | Writes `docs/reference/api.md`, `docs/reference/cli.md`, `llms.txt` and `llms-full.txt` from the code (`--write`, `--check`) |
+| `gen_reference_docs.py` | Writes `docs/reference/api.md` and `docs/reference/cli.md` from the code (`--write`, `--check`) |
 | `gen_explorer.py` | Writes the self-contained language explorer page |
 | `gen_language_atlas.py` | Writes the generated blocks of the atlas pages in `docs/languages/` and the four atlas indexes (`--write`, `--check`, `--scaffold CODE...`, and `--scaffold-cut` for every living research or production spec with no page and no `NO_PAGE` entry). `--refresh-snapshot` rebuilds `atlas_snapshot.json` from Glottolog, SIL and CLDR |
 | `ste_lint.py` | The prose linter that `tests/test_docs_prose.py` runs |

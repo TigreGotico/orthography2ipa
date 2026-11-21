@@ -1,5 +1,13 @@
 # Positional Graphemes
 
+<!-- agent-hint
+covers: how `positional_graphemes` give a letter different IPA candidates by its position or its neighbours
+source: `orthography2ipa/phonetok.py`, `orthography2ipa/types.py:GraphemePosition`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_positional_beam.py`
+see: `docs/engine/allophony.md`, `docs/contributing/spec_authoring.md`
+-->
+
 The `positional_graphemes` field refines the flat `graphemes` table by context. Many letters change their sound with their position in the word or with their neighbours. A positional entry states which IPA candidates apply in one environment. The engine builds an ordered list of the positions a grapheme stands in, and it uses the first position that the spec declares.
 
 The field serves transcription. A positional entry does not change the phoneme inventory.

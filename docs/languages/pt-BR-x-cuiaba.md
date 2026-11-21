@@ -1,5 +1,13 @@
 # Cuiabano Portuguese (pt-BR-x-cuiaba)
 
+<!-- agent-hint
+covers: how the Cuiabano Portuguese spec differs from `pt-BR`
+source: `orthography2ipa/data/pt-BR-x-cuiaba.json`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_br_floripa_cuiaba.py`
+see: `docs/languages/pt-BR.md`, `docs/languages/pt-BR-dialects.md`
+-->
+
 | Field | Value |
 |:---|:---|
 | Code | `pt-BR-x-cuiaba` |

@@ -1,5 +1,13 @@
 # Najdi Arabic (`ars-SA`)
 
+<!-- agent-hint
+covers: what the `ars-SA` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/ars-SA.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/ar-x-peninsul.md`, `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Najdi Arabic is a Central Semitic language, written in the Arabic script. Its code names Saudi Arabia. The `ars-SA` spec is at the research tier. It cites 11 sources and has 3 scored datasets.
 <!-- atlas:summary end -->

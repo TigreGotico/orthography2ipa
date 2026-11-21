@@ -1,5 +1,13 @@
 # Regional Standard Dutch of the Netherlands (nl-NL-x-*)
 
+<!-- agent-hint
+covers: the regional and social Dutch specs of the Netherlands and how each one differs from `nl-NL`
+source: `orthography2ipa/data/nl-NL.json`, `orthography2ipa/data/nl-NL-x-*.json`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_dutch_r.py`
+see: `docs/languages/nl-NL.md`, `docs/languages/nl-BE-regional.md`
+-->
+
 The `nl-NL-x-*` specs model the regional and social accents of Standard Dutch in the Netherlands. A regional spec describes the standard language as educated speakers from one region speak it. Polder Dutch (`nl-NL-x-polder`) is a sociolect, not a region: it describes the standard language of a social group. The specs do not describe the traditional dialects, which have specs of their own, such as `li` for Limburgish and `gos` for Gronings. Each spec is a delta spec over `nl-NL`: it inherits the whole standard and declares only what its region or group changes. This page first explains how the inheritance works. One table then compares the defining features of every regional spec. Each spec then has its own section, with its sources, its rules and their conditions, and its known gaps.
 
 Every transcription on this page is real output of `orthography2ipa.transcribe(text, code)`.

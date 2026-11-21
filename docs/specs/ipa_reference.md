@@ -1,5 +1,13 @@
 # IPA Reference
 
+<!-- agent-hint
+covers: the IPA symbols that the specs use, their code points and the encoding errors to avoid
+source: `orthography2ipa/data/*.json`, `tests/test_spec_ipa_code_points.py`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_spec_ipa_code_points.py`
+see: `docs/contributing/spec_authoring.md`, `docs/specs/bibliography.md`
+-->
+
 This page lists the IPA symbols that the specs use, with their code points and the errors to avoid. It ends with notes on how the specs of some major languages encode their phonology. The engine writes its output in Unicode NFC, so the code points below are the NFC forms.
 
 The authority for every symbol is the International Phonetic Association. Its [IPA chart](https://www.internationalphoneticassociation.org/content/full-ipa-chart) is free to download, and the [*Handbook of the International Phonetic Association*](https://doi.org/10.1017/9780511807954) (Cambridge University Press, 1999) defines each symbol and illustrates it with short descriptions of single languages. Later illustrations appear in the [*Journal of the International Phonetic Association*](https://www.cambridge.org/core/journals/journal-of-the-international-phonetic-association), and the specs cite many of them. The code points come from the Unicode blocks [IPA Extensions](https://www.unicode.org/charts/PDF/U0250.pdf), [Spacing Modifier Letters](https://www.unicode.org/charts/PDF/U02B0.pdf) and [Combining Diacritical Marks](https://www.unicode.org/charts/PDF/U0300.pdf).

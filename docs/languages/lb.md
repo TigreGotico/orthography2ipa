@@ -1,5 +1,13 @@
 # Luxembourgish (`lb`)
 
+<!-- agent-hint
+covers: what the `lb` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/lb.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Luxembourgish is a West Germanic language, written in the Latin script. Glottolog places it in Belgium, France, Germany and Luxembourg. The `lb` spec is at the research tier. It cites 1 source and has 1 scored dataset.
 <!-- atlas:summary end -->

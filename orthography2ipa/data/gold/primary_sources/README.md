@@ -1,5 +1,13 @@
 # Primary-source gold
 
+<!-- agent-hint
+covers: the gold rows quoted from primary sources: their files, fields and use in the atlas
+source: `orthography2ipa/data/gold/primary_sources/rows.jsonl`, `orthography2ipa/data/gold/primary_sources/sources.json`
+generated: no
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/contributing/citations.md`, `docs/evaluation/datasets.md`
+-->
+
 This gold holds worked examples from the primary sources that the language specs cite. The sources are the grammars, phonology monographs and theses in the `sources` array of each spec. Each row is one transcription that the linguist who described the variety printed, with the printed page it is on.
 
 Each row in this set can be checked against a named page of a named document. No other gold in the harness gives that. The set is small on purpose. It is a diagnostic: it asks if the engine reproduces what the cited source says. It cannot certify a language alone.

@@ -1,5 +1,13 @@
 # Writing a language spec
 
+<!-- agent-hint
+covers: how to write a language spec: the procedure, a minimal spec and the rules a spec keeps
+source: `orthography2ipa/data/SCHEMA.md`, `orthography2ipa/schema.py`, `tests/test_grammatical_endings.py`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_grammatical_endings.py`
+see: `docs/contributing/citations.md`, `docs/specs/data_model.md`
+-->
+
 A language is one JSON file under `orthography2ipa/data/`, named by its code. The engine is language-agnostic, so you add a language by writing cited data, never code. This page gives the procedure first. Then it gives the rules that keep a spec a linguistic description and not a lookup table. A violation of a rule degrades every consumer of the data, even when a score goes up. The field reference is [`SCHEMA.md`](../../orthography2ipa/data/SCHEMA.md), and the Python view of a loaded spec is in [data model](../specs/data_model.md).
 
 ## What a spec declares

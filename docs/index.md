@@ -1,5 +1,13 @@
 # orthography2ipa
 
+<!-- agent-hint
+covers: what the library does, where its accuracy stops and the reading order of every documentation page
+source: `docs/`, `scripts/docs_nav.py:reading_order`, `benchmarks/results.json`
+generated: no
+verify: `python scripts/docs_nav.py --check`
+see: `docs/guide/getting_started.md`, `AGENTS.md`
+-->
+
 `orthography2ipa` converts the spelling of a language into the
 [International Phonetic Alphabet](https://www.internationalphoneticassociation.org/content/full-ipa-chart)
 (IPA), and it measures how languages relate to each other. Each language is a cited JSON

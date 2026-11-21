@@ -1,5 +1,13 @@
 # Tibetan (`bo`)
 
+<!-- agent-hint
+covers: what the `bo` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/bo.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Tibetan is a Sino-Tibetan language, written in the Tibetan script. Glottolog places it in Bhutan, China, India and Nepal. The `bo` spec is at the research tier. It cites 9 sources and has 1 scored dataset.
 <!-- atlas:summary end -->

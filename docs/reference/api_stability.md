@@ -1,5 +1,13 @@
 # Public API stability
 
+<!-- agent-hint
+covers: which names downstream code imports, the deprecation rule that protects them and the deprecated names
+source: `orthography2ipa/__init__.py`, `orthography2ipa/pipeline.py`, `orthography2ipa/g2p.py`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_feats_lm_deprecation.py tests/test_unmapped_digits.py`
+see: `docs/reference/api.md`, `docs/contributing/engine.md`
+-->
+
 This page lists the names that downstream code imports from `orthography2ipa`, and the deprecation rule that protects them. It also describes the surfaces that a caller can add to the engine without a change to the default output.
 
 ## The stability commitment

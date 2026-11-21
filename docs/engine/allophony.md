@@ -1,5 +1,13 @@
 # Allophony: the second map
 
+<!-- agent-hint
+covers: how `allophone_rules` map a phoneme to its surface form in context, and how that differs from the flat `allophones` table
+source: `orthography2ipa/allophony.py`, `orthography2ipa/types.py:AllophoneRule`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_allophone_rules.py`
+see: `docs/engine/positional_graphemes.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 The library models pronunciation as two maps. The pre-lexical map takes orthography to phonemes. `positional_graphemes`, the vowel-class positions and the candidate weights condition it. The post-lexical map takes a phoneme to its surface allophone. `allophone_rules` make this second map conditional on context.
 
 A spec declares an ordered list of `allophone_rules`. Each rule is a declarative `phoneme → surface` rewrite with context conditions. The list compiles into a [lattice rescorer](lattice.md), `orthography2ipa.allophony.AllophoneRescorer`. The rescorer replaces a chosen phoneme with its one context-correct surface form at the same beam cost. It realises the phoneme and does not add beam branches.

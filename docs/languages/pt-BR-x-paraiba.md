@@ -1,5 +1,13 @@
 # Paraibano Portuguese (pt-BR-x-paraiba)
 
+<!-- agent-hint
+covers: how the Paraibano Portuguese spec differs from `pt-BR`
+source: `orthography2ipa/data/pt-BR-x-paraiba.json`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_br_paraiba.py`
+see: `docs/languages/pt-BR.md`, `docs/languages/pt-BR-dialects.md`
+-->
+
 | Field | Value |
 |:---|:---|
 | Code | `pt-BR-x-paraiba` |
