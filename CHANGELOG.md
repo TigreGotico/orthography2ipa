@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.124.31a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.31a1) (2026-11-21)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.30a3...7.124.31a1)
+
+**Merged pull requests:**
+
+- fix: drop the uncited ł and ɭ laterals from pt-PT-x-beira and pt-PT-x-aveiro [\#2431](https://github.com/TigreGotico/orthography2ipa/pull/2431) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.124.30a3](https://github.com/TigreGotico/orthography2ipa/tree/7.124.30a3) (2026-11-21)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.30a2...7.124.30a3)
@@ -352,10 +360,6 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.123.8a2...7.123.8a3)
 
-**Merged pull requests:**
-
-- build\(deps-dev\): Update o2i-lexicons requirement from \>=0.7.0a1 to \>=0.7.16a3 [\#2329](https://github.com/TigreGotico/orthography2ipa/pull/2329) ([dependabot[bot]](https://github.com/apps/dependabot))
-
 ## [7.123.8a2](https://github.com/TigreGotico/orthography2ipa/tree/7.123.8a2) (2026-11-15)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.123.8a1...7.123.8a2)
@@ -363,10 +367,6 @@
 ## [7.123.8a1](https://github.com/TigreGotico/orthography2ipa/tree/7.123.8a1) (2026-11-14)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.123.7a2...7.123.8a1)
-
-**Merged pull requests:**
-
-- fix\(en-GB\): drop dead vowel-letter condition from final-y rule [\#2330](https://github.com/TigreGotico/orthography2ipa/pull/2330) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.123.7a2](https://github.com/TigreGotico/orthography2ipa/tree/7.123.7a2) (2026-11-14)
 
