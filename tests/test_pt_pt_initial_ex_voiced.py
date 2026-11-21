@@ -50,3 +50,13 @@ def test_the_rule_does_not_fire_outside_initial_ex_vowel(lang, word):
     ("pt-PT", "ˌeʃ"), ("pt-PT-x-lisbon", "ˌɐʃ"), ("pt-PT-x-coimbra", "ˌeʃ")])
 def test_the_hyphenated_prefix_is_not_matched(lang, start):
     assert transcribe("ex-presidente", lang).startswith(start)
+
+
+# ⟨ex⟩ + vowel that is not word-initial keeps [ʃ]. Portal rows: vexame [vɛ.ʃˈɐ.mɨ] (id 31263) and
+# vexatoriamente [vɨ.ʃɐ.tɔ.ɾja.mˈẽ.tɨ] (id 64768).
+@pytest.mark.parametrize("lang", LANGS)
+@pytest.mark.parametrize("word", ["vexame", "vexatoriamente"])
+def test_ex_vowel_after_another_letter_keeps_sh(lang, word):
+    ipa = transcribe(word, lang)
+    assert "ʃ" in ipa
+    assert "z" not in ipa
