@@ -234,6 +234,11 @@ _CLICK_ACCOMPANIMENT_SUPERSCRIPTS = {"ᵏ": "k", "ᵑ": "ŋ"}
 #: rows write the SAME segment tie-barred as c͜ʎ̥˔ (see the "hts" registry
 #: comment below) -- so the fold target is ʎ̥˔, not ǁ.
 _NOTATIONAL_LETTER_ALIASES = {"𝼆": "ʎ̥˔"}
+# Chao pitch numerals and Chao tone letters write the same pitch levels, and
+# gold sets use either. Folding the numerals keeps a spec that writes IPA tone
+# letters from scoring against a gold that writes numerals. Six is a level some
+# Yi and Tai descriptions add above five; IPA tone letters stop at ˥.
+_CHAO_NUMERALS = str.maketrans("¹²³⁴⁵⁶", "˩˨˧˦˥˥")
 
 #: ASCII "g" (U+0067, keyboard Latin) vs the official IPA voiced velar
 #: plosive ɡ (U+0261, LATIN SMALL LETTER SCRIPT G) — a Unicode confusable,
@@ -3801,6 +3806,7 @@ def normalize(ipa: str, strip_stress: bool, broad: bool,
         s = s.replace(ch, "")
     for alt, canon in _NOTATIONAL_LETTER_ALIASES.items():
         s = s.replace(alt, canon)
+    s = s.translate(_CHAO_NUMERALS)
     s = _expand_consonant_length(s)
     if broad:
         decomposed = unicodedata.normalize("NFD", s)

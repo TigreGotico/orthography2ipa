@@ -76,7 +76,7 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 60 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 62 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar | Uvular | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -98,7 +98,9 @@ The spec can emit 60 segments. They come from the letter table, the positional r
 | Near-open | æ æː |  |  |
 | Open | a aː |  | ɑ ɒː |
 
-Sequences that the spec writes as one unit: [w].
+Sequences that the spec writes as one unit: [w] [²] [¹].
+
+Tones: [¹] Accent 1 (stoottoon), written ⟨\⟩ in Spelling 2003, [²] Accent 2 (sleeptoon), written ⟨~⟩ in Spelling 2003.
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->
@@ -108,7 +110,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 
 | Spelling | Readings | By position |
 |:--|:--|:--|
-| ⟨\⟩ | ∅ |  |
+| ⟨\⟩ | [¹] |  |
 | ⟨a⟩ | [ɑ] [aː] |  |
 | ⟨aa⟩ | [aː] |  |
 | ⟨aaj⟩ | [aːj] |  |
@@ -206,7 +208,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨x⟩ | [ks] |  |
 | ⟨z⟩ | [z] |  |
 | ⟨zj⟩ | [ʒ] |  |
-| ⟨~⟩ | ∅ |  |
+| ⟨~⟩ | [²] |  |
 | ⟨àè⟩ | [ɛː] |  |
 | ⟨àèw⟩ | [ɛːw] |  |
 | ⟨àèë⟩ | [ɛːə] |  |

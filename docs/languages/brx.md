@@ -80,7 +80,7 @@ The spec can emit 39 segments. They come from the letter table, the positional r
 
 Sequences that the spec writes as one unit: [bʱ] [dʱ] [w] [ɡʱ].
 
-Tones: [level] level tone, [falling] falling tone.
+Tones: [˧] level tone, [˥˩] falling tone.
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

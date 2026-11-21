@@ -84,7 +84,7 @@ The spec can emit 75 segments. They come from the letter table, the positional r
 
 Sequences that the spec writes as one unit: [b˩] [dʒ˩] [d̪˩] [k˩] [p˩] [tʃ˩] [t̪˩] [w] [w̃] [ɖ˩] [ɡ˩] [ʈ˩].
 
-Tones: [˦] high-rising tone (historically from voiceless aspirate onset), [˨] low-falling tone (historically from voiced aspirate onset), [˧] level/mid tone (default; no special onset).
+Tones: [˦˥] high-rising tone (historically from voiceless aspirate onset), [˨˩] low-falling tone (historically from voiced aspirate onset), [˧] level/mid tone (default; no special onset).
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

@@ -91,7 +91,7 @@
   "tone_inventory": {
     "˦": "high",
     "˨": "low",
-    "˧": "downstepped high",
+    "ꜜ˦": "downstepped high",
     "˩˥": "rising (low-high)",
     "˥˩": "falling (high-low)"
   },

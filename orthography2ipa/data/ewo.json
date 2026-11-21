@@ -83,10 +83,10 @@
     "z": ["z"]
   },
   "tone_inventory": {
-    "˦": "high",
-    "˨": "mid-high",
+    "˥": "high",
+    "˦": "mid-high",
     "˧": "mid",
-    "unmarked": "low/mid-low",
+    "˨": "low/mid-low",
     "˩˥": "rising",
     "˥˩": "falling"
   },
