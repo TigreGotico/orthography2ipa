@@ -7,10 +7,16 @@ for Florianópolis: "[s] ou [S] antes de consoante surda ou pausa e [z] ou [Z]
 antes de consoante sonora". The place stays palatal because these specs write
 the coda as [ʃ]. The rule is BR_FINAL_SH_VOICING in each spec.
 
-Before a vowel the specs still write [ʃ], which no source supports. Brescancini
-(2015: 76): "em fronteira de palavra diante de vogais é prevista a ocorrência
-apenas de [z] (mai[z] atrasada)", with the voiced palato-alveolar also found in
-Florianópolis. That case is a strict xfail that names issue #2052.
+Before a vowel in the next word, Brescancini (2015: 76) writes: "em fronteira
+de palavra diante de vogais é prevista a ocorrência apenas de [z] (mai[z]
+atrasada), muito embora a variante palato-alveolar vozeada também seja
+registrada em variedades do português (como em mai[Z] atrasada, conforme
+aponta Brescancini (2002) para a variedade florianopolitana)". Only
+pt-BR-x-floripa has a source for that case: its rule is
+BR_FINAL_SH_PREVOCALIC_VOICE. For norte, recife and cuiaba no opened source
+states the prevocalic value of the chiado coda, so they keep [ʃ] as a strict
+xfail that names issue #2052. The pause case is Brescancini (2015: 76): "[s] ou
+[S] antes de consoante surda ou pausa".
 
 The tests read only the final sibilant of each word.
 """
@@ -40,12 +46,33 @@ def test_final_sh_stays_voiceless_before_a_voiceless_consonant(phrase, lang):
     assert _final_sibilants(phrase, lang)[0] == "ʃ"
 
 
-@pytest.mark.xfail(strict=True, reason="a final sibilant before a vowel is voiced (Brescancini 2015: 76); "
+VOWEL_PHRASES = ["mas era", "dez anos", "os amigos", "dois homens"]
+UNSOURCED = ["pt-BR-x-norte", "pt-BR-x-recife", "pt-BR-x-cuiaba"]
+
+
+@pytest.mark.parametrize("phrase", VOWEL_PHRASES)
+def test_floripa_final_sh_is_voiced_before_a_vowel(phrase):
+    assert _final_sibilants(phrase, "pt-BR-x-floripa")[0] == "ʒ"
+
+
+@pytest.mark.parametrize("lang, phrase, expected", [
+    ("pt-BR-x-floripa", "dez anos", "ˈdɛʒ ˈɐ̃nuʃ"),
+    ("pt-BR-x-floripa", "os amigos", "uʒ aˈmiɡuʃ"),
+])
+def test_floripa_prevocalic_phrases(lang, phrase, expected):
+    assert transcribe(phrase, lang) == expected
+
+
+@pytest.mark.xfail(strict=True, reason="no opened source gives the prevocalic value of this chiado coda; "
                    "https://github.com/TigreGotico/orthography2ipa/issues/2052")
-@pytest.mark.parametrize("lang", CHIADO)
-@pytest.mark.parametrize("phrase", ["mas era", "dez anos", "os amigos", "dois homens"])
+@pytest.mark.parametrize("lang", UNSOURCED)
+@pytest.mark.parametrize("phrase", VOWEL_PHRASES)
 def test_final_sh_is_voiced_before_a_vowel(phrase, lang):
     assert _final_sibilants(phrase, lang)[0] in {"z", "ʒ"}
+
+
+def test_floripa_a_pause_before_a_vowel_keeps_final_sh():
+    assert _final_sibilants("dez. Anos", "pt-BR-x-floripa")[0] == "ʃ"
 
 
 @pytest.mark.parametrize("lang", CHIADO)

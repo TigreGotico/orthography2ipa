@@ -31,7 +31,7 @@ The table gives the features that set each lect apart from `pt-BR`. The lects ru
 | [`pt-BR-x-mg`](#mineiro-pt-br-x-mg) | Belo Horizonte | pretonic /e/ [i] before a high vowel and word-initially<br>coda /r/ [h] | `pedido` [piˈd͡ʒidu], `escola` [isˈkolɐ], `porta` [ˈpohtɐ] |
 | [`pt-BR-x-pr`](#paranaense-pt-br-x-pr) | Curitiba | /t d/ stops before /i/<br>final /e/ [e] | `tia` [ˈtiɐ], `verde` [ˈveɾde] |
 | [`pt-BR-x-sul`](#sulista-pt-br-x-sul) | Porto Alegre | strong /r/ [x] | `rato` [ˈxatu], `carro` [ˈkaxu] |
-| [`pt-BR-x-floripa`](pt-BR-x-floripa.md) | Florianópolis | coda /s/ [ʃ], [ʒ] before a voiced consonant<br>/t d/ stops before /i/ | `festa` [ˈfeʃtɐ], `mesmo` [ˈmeʒmu], `tipo` [ˈtipu] |
+| [`pt-BR-x-floripa`](pt-BR-x-floripa.md) | Florianópolis | coda /s/ [ʃ], [ʒ] before a voiced consonant or a vowel in the next word<br>/t d/ stops before /i/ | `festa` [ˈfeʃtɐ], `mesmo` [ˈmeʒmu], `dez anos` [ˈdɛʒ ˈɐ̃nuʃ], `tipo` [ˈtipu] |
 | [`pt-BR-x-cuiaba`](pt-BR-x-cuiaba.md) | Cuiabá river valley | /t d/ stops before /i/<br>⟨ch x j⟩ and soft ⟨g⟩ [t͡ʃ d͡ʒ] in the onset<br>coda /s/ [ʃ]<br>coda /l/ and coda /r/ [ɻ], final /r/ deleted<br>strong /r/ [r] | `chegar` [t͡ʃeˈɡa], `hoje` [ˈod͡ʒi], `mal` [ˈmaɻ], `porto` [ˈpoɻtu], `rapaz` [raˈpaʃ] |
 | [`pt-BR-x-norte`](#nortista-pt-br-x-norte) | Belém | coda /s/ [ʃ], [ʒ] before a voiced consonant<br>coda /r/ [h] | `festa` [ˈfeʃtɐ], `mesmo` [ˈmeʒmu], `dentes` [ˈdẽt͡ʃiʃ], `porta` [ˈpohtɐ] |
 | [`pt-BR-x-bahia`](#baiano-pt-br-x-bahia) | Salvador | open pretonic [ɛ ɔ] before an open, nasal or low vowel<br>coda /r/ [h], final /r/ deleted | `pedaço` [pɛˈdasu], `bolacha` [bɔˈlaʃɐ], `falar` [faˈla] |
