@@ -32,7 +32,7 @@ Use uv, never pip. `which_tests.py` lists the test files that name a spec. With 
 
 ## Hard rules
 
-1. The engine is language-agnostic. No language drives a branch in `orthography2ipa/*.py`, and a spec carries no logic ([engine.md](docs/contributing/engine.md#the-engine-is-language-agnostic)).
+1. The engine is language-agnostic. No language drives a branch in the transcription code, and a spec carries no logic. Tag resolution in `registry.py` is the one exception: it holds named fallbacks for `fr`, `bs` and `ar` ([engine.md](docs/contributing/engine.md#the-engine-is-language-agnostic)).
 2. A `graphemes` key is an orthographic unit, never an n-gram or a suffix chunk ([spec_authoring.md](docs/contributing/spec_authoring.md#a-grapheme-key-is-an-orthographic-unit)).
 3. Context goes in the rule layer, never in an enumeration of keys ([spec_authoring.md](docs/contributing/spec_authoring.md#express-a-context)).
 4. Linguistic accuracy outranks the score. A hack that lowers PER is removed ([engine.md](docs/contributing/engine.md#accuracy-outranks-the-score)).
@@ -63,6 +63,6 @@ PYTHONPATH=$PWD .venv/bin/python scripts/gen_language_atlas.py --check
 3. A page you add goes in a table of `docs/index.md` and gets an `agent-hint` comment after its H1. Then `scripts/docs_nav.py --write` writes its footer.
 4. If you changed a spec, run the board guards ([board.md](docs/contributing/board.md#the-guards)).
 5. If you changed engine code, answer the review gate ([engine.md](docs/contributing/engine.md#the-review-gate-for-engine-code)).
-6. Squash to one [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) commit. Open a draft pull request against `dev` with `.github/pull_request_template.md`.
+6. Open a draft pull request against `dev` with `.github/pull_request_template.md`.
 
-`dev` is the work branch and `master` is the stable branch. Documentation states what is true, in [ASD-STE100](https://www.asd-ste100.org) flavoured mode, with no dates and no history.
+`dev` is the work branch and `master` is the stable branch.

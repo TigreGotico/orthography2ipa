@@ -22,6 +22,11 @@ such as a context class or a rule field. Then use it from the data.
 Never special-case the language in code, and never fake the capability by
 enumerating data.
 
+Tag resolution in `registry.py` is the one exception. It maps a tag to a
+spec before any transcription runs, and holds named fallbacks: `fr` regions
+without a spec read as the motherland variety, a Bosnian Cyrillic tag reads
+as `bs`, and an Arabic region that no Arabic spec names reads as `ar`.
+
 A closed set in engine code is allowed only when it is a cross-linguistic
 class with a citation at the constant. The transparent-suffix graphemes in
 `positional.py` are an example: the set holds ⟨s⟩ and ⟨x⟩, the French plural
