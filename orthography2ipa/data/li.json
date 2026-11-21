@@ -402,10 +402,10 @@
       "z"
     ],
     "~": [
-      "²"
+      ""
     ],
     "\\": [
-      "¹"
+      ""
     ]
   },
   "allophones": {
@@ -750,10 +750,6 @@
     }
   },
   "tone_marks_syllable_final": true,
-  "tone_inventory": {
-    "¹": "Accent 1 (stoottoon), written ⟨\\⟩ in Spelling 2003",
-    "²": "Accent 2 (sleeptoon), written ⟨~⟩ in Spelling 2003"
-  },
   "stress": {
     "default_position": -2,
     "stress_mark": "ˈ",

@@ -81,7 +81,7 @@ The spec can emit 42 segments. They come from the letter table, the positional r
 | Open-mid |  |  | ɔ ɔ̃ |
 | Open | a ã |  |  |
 
-Tones: [◌́] tone 2, im-siōng (dark rising), [◌̀] tone 3, im-khì (dark departing), [◌̂] tone 5, iông-pîng (light level), [◌̄] tone 7, iông-khì (light departing), [◌̍] tone 8, iông-ji̍p (light entering, checked syllables only).
+Tones: [˥˧] tone 2, im-siōng (dark rising) (Taiwanese Hokkien value), [˨˩] tone 3, im-khì (dark departing) (Taiwanese Hokkien value), [˨˦] tone 5, iông-pîng (light level) (Taiwanese Hokkien value), [˧˧] tone 7, iông-khì (light departing) (Taiwanese Hokkien value), [˦] tone 8, iông-ji̍p (light entering, checked syllables only) (Taiwanese Hokkien value).
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

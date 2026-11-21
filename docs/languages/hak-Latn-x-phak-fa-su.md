@@ -76,7 +76,7 @@ The spec can emit 28 segments. They come from the letter table, the positional r
 | Close-mid | e |  | o ɤ |
 | Open | a |  |  |
 
-Tones: [◌́] yīnpíng (陰平), Sixian 24 / Hailu 53, [◌] yángpíng (陽平, grave accent), Sixian 11 / Hailu 55, [◌̀] shǎng (上聲, acute accent — same mark as yīnpíng in this table; Sixian merges yīnshǎng/yángshǎng), Sixian 31 / Hailu 24, [unmarked] yīnqù (陰去, no mark), Sixian 55 / Hailu 11, [◌̊] yángqù (陽去, ring — Hailu only, Sixian merges with yīnqù), Hailu 33, [unmarked-checked] yīnrù (陰入, no mark, checked syllables only), Sixian 2 / Hailu 5, [◌̍] yángrù (陽入, vertical line, checked syllables only), Sixian 5 / Hailu 2.
+Tones: [˨˦] yīnpíng (陰平), Sixian 24 / Hailu 53, [˩˩] yángpíng (陽平, grave accent), Sixian 11 / Hailu 55, [˧˩] shǎng (上聲, acute accent — same mark as yīnpíng in this table; Sixian merges yīnshǎng/yángshǎng), Sixian 31 / Hailu 24, [˥˥] yīnqù (陰去, no mark), Sixian 55 / Hailu 11, [˧˧] yángqù (陽去, ring — Hailu only, Sixian merges with yīnqù), Hailu 33, [˨] yīnrù (陰入, no mark, checked syllables only), Sixian 2 / Hailu 5, [˥] yángrù (陽入, vertical line, checked syllables only), Sixian 5 / Hailu 2.
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

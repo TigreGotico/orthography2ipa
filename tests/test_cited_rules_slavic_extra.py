@@ -1294,7 +1294,7 @@ def test_ab_velar_aspirate_values_are_declared_phonemes():
 
     Scoped to the velar aspirate series only: the ``phonemes`` list uses a
     different IPA notation from the grapheme table for roughly two dozen
-    other segments (e.g. ``ä``/``ʓ``/``t̠ʆ`` vs. the table's ``a``/``d͡ʑ``/
+    other segments (e.g. ``ä``/``ʒʲ``/``t̠ʃʲ`` vs. the table's ``a``/``d͡ʑ``/
     ``t͡ɕ``), a known inventory-notation split that is follow-up work, not
     something this test can enforce generically.
     """
