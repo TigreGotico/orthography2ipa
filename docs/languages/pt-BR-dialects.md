@@ -149,6 +149,7 @@ Nortista here is the speech of Belém. The coda sibilant is palatal (Borges & Me
 | `BR_RAISE_FINAL_ES` | the plural -es raises before [ʃ] as before [s] | `dentes` [ˈdẽt͡ʃiʃ] |
 | `BR_RAISE_FINAL_OS` | the plural -os raises before [ʃ] as before [s] | `ovos` [ˈovuʃ] |
 | `BR_CODA_SH_VOICED` | a coda [ʃ] gives [ʒ] before a voiced consonant | `mesmo` [ˈmeʒmu], `desde` [ˈdeʒd͡ʒi] |
+| `BR_FINAL_SH_VOICING` | a word-final [ʃ] gives [ʒ] before a voiced consonant in the next word (Barbosa & Albano 2004: 229) | `os dois` [uʒ ˈdojʃ], `as mesas` [aʒ ˈmezɐʃ] |
 
 The positional map gives a coda ⟨s⟩ as [ʃ] (`festa` [ˈfeʃtɐ]) and a coda ⟨r⟩ as [h] (`porta` [ˈpohtɐ]). Data from the Pará atlas give the coda /S/ as "pós-alveolar (surda e sonora), alveolar (surda e sonora)", aspirated or deleted (Marins & Margotti 2012: 255).
 
@@ -193,7 +194,9 @@ Toledo & Cantoni (2021: 27) report the Fortaleza DSC corpus (Roncarati & Uchôa 
 
 Pernambucano here is the speech of Recife. /t d/ stay stops before /i/: ALiB palatalisation "é baixa em Aracaju, Maceió, Recife, João Pessoa" (Battisti & Dornelles Filho 2015: 226). The positional map keeps ⟨ti di⟩ as stops, and the spec switches off the base rules for a raised final ⟨e⟩ (`tia` [ˈtiɐ], `dentes` [ˈdẽtiʃ]).
 
-The coda sibilant is palatal: "Comporta-se Recife de forma semelhante ao Rio de Janeiro com o predomínio da pós-alveolar (69,5%)" in NURC (Marins & Margotti 2012: 254). ALiB gives an even split (p. 256). Before a voiced consonant the palatal is voiced: listeners in João Pessoa hear "me[ʒ]mo" as typical of "Rio de Janeiro e Recife" (Hora, Henrique & Amorim 2018: 284). The spec carries the same plural rules and the same voicing rule `BR_CODA_SH_VOICED` as `pt-BR-x-norte` (`mesmo` [ˈmeʒmu], `desde` [ˈdeʒdi]).
+The coda sibilant is palatal: "Comporta-se Recife de forma semelhante ao Rio de Janeiro com o predomínio da pós-alveolar (69,5%)" in NURC (Marins & Margotti 2012: 254). ALiB gives an even split (p. 256). Before a voiced consonant the palatal is voiced: listeners in João Pessoa hear "me[ʒ]mo" as typical of "Rio de Janeiro e Recife" (Hora, Henrique & Amorim 2018: 284).
+
+The spec carries the same plural rules and the same voicing rules `BR_CODA_SH_VOICED` and `BR_FINAL_SH_VOICING` as `pt-BR-x-norte` (`mesmo` [ˈmeʒmu], `desde` [ˈdeʒdi], `os dois` [uʒ ˈdojʃ]).
 
 ## Sources
 

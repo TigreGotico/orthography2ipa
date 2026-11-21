@@ -74,6 +74,10 @@ The IPA shapes fit Germanic, Slavic and Romance. A language outside that range s
 
 The second way is `stress.constrain_mark_onsets` set to `false`, which turns the judgement off for a language whose onsets the shapes get wrong. Greek sets it, for the same reason it leaves `constrain_onsets` off. Khmer sets it too, because its subscript consonants make onsets that no sonority scale predicts. The mark then falls where the vowel groups put it.
 
+The stress index counts written syllables, so `G2P` checks the IPA division against the spelling. In two cases the transcription holds fewer syllables than the spelling, and the engine cuts the division where the written syllable changes.
+
+First, a vowel letter that the spec maps to no segment would take its syllable with it. The division keeps that syllable without a vowel, so the mark stands at the onset of the stressed written syllable. Second, a consonant letter that adds no segment leaves the vowels on either side of it in one vowel run. The cut splits that run, so Dutch *getrouwe* gives `χəˈtrɑuə` and not `ˈχətrɑuə`. A hyphen causes no cut, and two vowel letters that `stress.diphthongs` lists cause none.
+
 A caller that is sensitive to quantity has already divided the transcription, because it read its weights off that division. It passes the syllables to `apply_stress_mark` as `ipa_syllables`, and the function uses them as given.
 
 ### Sandhi and the sentence
