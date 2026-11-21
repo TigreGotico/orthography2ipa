@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.124.33a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.33a1) (2026-11-21)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.32a1...7.124.33a1)
+
+**Merged pull requests:**
+
+- fix: keep the gold sets out of the wheel [\#2438](https://github.com/TigreGotico/orthography2ipa/pull/2438) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.124.32a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.32a1) (2026-11-21)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.31a1...7.124.32a1)
@@ -344,17 +352,9 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.123.9a1...7.123.9a2)
 
-**Merged pull requests:**
-
-- docs: sync README and docs with dev [\#2333](https://github.com/TigreGotico/orthography2ipa/pull/2333) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [7.123.9a1](https://github.com/TigreGotico/orthography2ipa/tree/7.123.9a1) (2026-11-15)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.123.8a5...7.123.9a1)
-
-**Merged pull requests:**
-
-- fix: measure own-language specs from the tag that names their language [\#2334](https://github.com/TigreGotico/orthography2ipa/pull/2334) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.123.8a5](https://github.com/TigreGotico/orthography2ipa/tree/7.123.8a5) (2026-11-15)
 
