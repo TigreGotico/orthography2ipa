@@ -31,7 +31,7 @@ def test_strict_refuses_where_the_default_guesses():
     """The case this exists for: the default answers with a plausible neighbour."""
     with pytest.warns(UnknownVariantWarning):
         loose = get("ar-XX-x-invented")      # a guess, and it succeeds
-    assert loose.code != "ar-XX-x-invented"
+    assert loose.code == "ar"
     with pytest.raises(KeyError):
         get("ar-XX-x-invented", strict=True)
 
@@ -42,4 +42,4 @@ def test_the_default_is_unchanged():
     with pytest.warns(UnknownVariantWarning):
         assert get("ar-XX-x-invented").graphemes
     with pytest.warns(UnknownVariantWarning):
-        assert resolve("ar-XX-x-invented") != "ar-XX-x-invented"
+        assert resolve("ar-XX-x-invented") == "ar"

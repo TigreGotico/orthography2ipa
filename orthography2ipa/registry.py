@@ -477,6 +477,20 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
     # An unknown variant falls back to the standard variety, not to whichever
     # sibling lect ties with it: private use counts for nothing in the distance.
     candidates = sorted({*available, *_RENAMED})
+    # The bs spec reads Cyrillic too, so a Bosnian Cyrillic tag of any region
+    # or private use is Bosnian. Left to the distance it finds no near spec.
+    if primary == "bs" and rest and rest[0].lower() == "cyrl":
+        return "bs"
+    # Likely subtags make bare ``ar`` Egyptian, so the distance puts a region
+    # no Arabic spec names beside whichever dialect spec sorts first
+    # (``ar-ZZ`` → ``arz-EG``, ``ar-FR`` → ``afb-AE``). No source states a
+    # difference from Modern Standard Arabic for such a region.
+    script = rest[0] if rest and len(rest[0]) == 4 and rest[0].isalpha() else None
+    if (primary == "ar" and (script is None or script.lower() == "arab")
+            and (region := _region_subtag(code))
+            and region not in {_region_subtag(c) for c in candidates
+                               if c.split("-")[0] == "ar"}):
+        return "ar"
     # The primary language subtag names the language. When that language has
     # a spec, the match stays inside it: ``sr-Latn-RS`` is Serbian, and
     # langcodes would otherwise pick ``cnr``, whose likely subtags are
@@ -488,13 +502,21 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
     # language: langcodes folds ``fat-GH`` into ``ak-GH``, and CLDR 49 makes
     # Fanti a language apart from Akan, so ``ak-GH`` is not near ``fat``.
     # With no own-language spec near enough, the search is as wide as
-    # before, so no tag that resolved stops resolving.
+    # before. Only the tags that stood near ``sr`` through the old ``sh``
+    # rules stop resolving: ``hr-Cyrl``, since CLDR 49 puts Croatian and
+    # Serbian 80 apart.
     match = None
     for tag in (requested, code):
         language = tag.split("-")[0].lower()
         own = [c for c in candidates
                if len(language) > 1 and c.split("-")[0].lower() == language]
         if own:
+            # CLDR lists no likely script for a language it does not name
+            # (``fat``), so ``Latn`` has nothing to be measured against and
+            # would put every own-language spec out of reach. Another script
+            # stays, so it does not fall to a spec of a different script.
+            if not likely_script(language):
+                tag = re.sub(r"^([^-]+)-latn(?=-|$)", r"\1", tag, flags=re.I)
             match = closest_lang(tag, own, lects="standard")
             break
     match = match or closest_lang(code, candidates, lects="standard")

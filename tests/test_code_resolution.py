@@ -11,7 +11,7 @@ Validates:
 import pytest
 
 import orthography2ipa
-from orthography2ipa import available_codes, get, resolve
+from orthography2ipa import UnknownVariantWarning, available_codes, get, resolve
 from orthography2ipa.types import LanguageSpec
 
 
@@ -107,8 +107,19 @@ class TestRegionAndDialectDefaults:
     def test_existing_arabic_mappings_are_unregressed(self, requested, expected):
         assert resolve(requested) == expected
 
-    def test_unknown_arabic_region_falls_back_to_msa(self):
-        assert resolve("ar-ZZ") == "ar"
+    @pytest.mark.parametrize("requested", [
+        "ar-ZZ", "ar-FR", "ar-US", "ar-DE", "ar-FR-u-nu-latn",
+        "ar-FR-fonipa", "ar-DE-1996", "ar-FR-t-en",
+    ])
+    def test_unknown_arabic_region_falls_back_to_msa(self, requested):
+        assert resolve(requested) == "ar"
+
+    @pytest.mark.parametrize("requested", [
+        "ar-FR-x-foo", "ar-US-x-a", "ar-Arab-FR-x-a", "ar-ZZ-x-foo",
+    ])
+    def test_unknown_arabic_region_with_private_use_falls_back_to_msa(self, requested):
+        with pytest.warns(UnknownVariantWarning):
+            assert resolve(requested) == "ar"
 
 
 class TestUnknownLanguage:
