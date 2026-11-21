@@ -81,7 +81,9 @@ The rule stays off for double ⟨ss⟩, for a stressed ⟨e⟩, and for ⟨es⟩
 
 ## Word-initial ⟨ex⟩ before a vowel
 
-A word-initial ⟨ex⟩ before a vowel writes [z] for the ⟨x⟩. `PT_INITIAL_EX_VOICED` gives `exame` [eˈzɐmɨ], `existir` [eziʃˈtiɾ], `êxito` [ˈezitu] and `exótico` [eˈzɔtiku]. The Portal da Língua Portuguesa Dicionário fonético (ILTEC and CLUL) writes the same consonant: `exame` [iˈzɐmɨ], `existir` [iziʃˈtiɾ], `exótico` [iˈzɔtiku]. The rule needs the ⟨e⟩ at the word start, so a medial ⟨ex⟩ (`inexato`, `coexistir`), ⟨hex⟩ (`hexágono`), ⟨exh⟩ (`exhalar`) and the hyphenated prefix (`ex-presidente`) keep [ʃ]. A lexical [ks] such as `sexo` is not this rule. ⟨ex⟩ before a consonant is [ejʃ] and is not matched (`texto` [ˈtejʃtu]).
+A word-initial ⟨ex⟩ before a vowel writes [z] for the ⟨x⟩. `PT_INITIAL_EX_VOICED` gives `exame` [eˈzɐmɨ], `existir` [eziʃˈtiɾ], `êxito` [ˈezitu] and `exótico` [eˈzɔtiku]. The Portal da Língua Portuguesa Dicionário fonético (ILTEC and CLUL, Lisbon variety) writes the same consonant: `exame` [i.zˈɐ.mɨ], `exato` [i.zˈa.tu], `existir` [i.ziʃ.tˈiɾ], `exótico` [i.zˈɔ.ti.ku]. The rule needs the ⟨e⟩ at the word start. ⟨ex⟩ before a consonant is [ejʃ] and is not matched (`texto` [ˈtejʃtu]). ⟨exh⟩ and ⟨hex⟩ are not matched either.
+
+The prefix ⟨ex⟩ inside a word (`inexato`, `coexistir`, `ex-presidente`) and the [ks] of `sexo` need a morphological rule that this rule does not cover. The Portal gives `inexato` [i.ni.zˈa.tu], `coexistir` [kwi.ziʃ.tˈiɾ] and `sexo` [sˈɛk.su].
 
 The Portal writes the initial vowel as [i], and the spec writes [e] (Lisbon [ɐ]). No rule here covers that vowel, so it stays as it was.
 
