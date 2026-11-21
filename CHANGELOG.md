@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.124.28a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.28a1) (2026-11-21)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.27a2...7.124.28a1)
+
+**Merged pull requests:**
+
+- fix: pt-PT glide in ex + consonant [\#2411](https://github.com/TigreGotico/orthography2ipa/pull/2411) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.124.27a2](https://github.com/TigreGotico/orthography2ipa/tree/7.124.27a2) (2026-11-21)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.27a1...7.124.27a2)
@@ -360,10 +368,6 @@
 ## [7.123.5a1](https://github.com/TigreGotico/orthography2ipa/tree/7.123.5a1) (2026-11-13)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.123.4a2...7.123.5a1)
-
-**Merged pull requests:**
-
-- fix\(pt-PT\): keep the tap after ⟨ch⟩ in the strong-rhotic rule [\#2318](https://github.com/TigreGotico/orthography2ipa/pull/2318) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [7.123.4a2](https://github.com/TigreGotico/orthography2ipa/tree/7.123.4a2) (2026-11-13)
 
@@ -1599,15 +1603,15 @@
 
 ## [7.93.16a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.16a1) (2026-09-17)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.14a1...7.93.16a1)
-
-## [7.93.14a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.14a1) (2026-09-17)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.15a1...7.93.14a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.15a1...7.93.16a1)
 
 ## [7.93.15a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.15a1) (2026-09-17)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.13a1...7.93.15a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.14a1...7.93.15a1)
+
+## [7.93.14a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.14a1) (2026-09-17)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.13a1...7.93.14a1)
 
 ## [7.93.13a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.13a1) (2026-09-17)
 
