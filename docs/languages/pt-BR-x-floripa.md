@@ -16,13 +16,13 @@ Every transcription on this page is real output of `orthography2ipa.transcribe(t
 
 ## Parent and ancestry
 
-The spec sets `parent` to `pt-BR` and inherits Brazilian Portuguese through `graphemes_base`, `allophones_base` and `positional_graphemes_base`. It declares two differences. Everything else, the vowels, the rhotics, the coda /l/ and the final vowel raising, comes from `pt-BR`.
+The spec sets `parent` to `pt-BR` and inherits Brazilian Portuguese through `graphemes_base`, `allophones_base` and `positional_graphemes_base`. It declares the differences below. Everything else, the vowels, the rhotics, the coda /l/ and the final vowel raising, comes from `pt-BR`.
 
 ## Modelled features
 
 The spec switches off `BR_CODA_X` and `BR_XC_ONE_S`, so ⟨x⟩ keeps the [ʃ] of the coda (`texto` [ˈteʃtu]).
 
-A coda /S/ is palato-alveolar. Brescancini (2015: 82) finds *"a variante palato-alveolar como predominante na amostra [...] em 83% das ocorrências"*, in three districts of the city. She illustrates the variants with *fe[ʃ]ta* and *me[ʒ]mo* (p. 76). The rules `FLORIPA_CODA_S` and `FLORIPA_CODA_Z` give [ʃ] and [ʒ] in the coda: `festa` [ˈfeʃtɐ], `mas` [ˈmaʃ], `paz` [ˈpaʃ]. The voicing comes from the next consonant, with *"[s] ou [S] antes de consoante surda ou pausa e [z] ou [Z] antes de consoante sonora"* (p. 76). The rule `BR_CODA_SH_VOICED` gives [ʒ] before a voiced consonant: `mesmo` [ˈmeʒmu], `desde` [ˈdeʒdi].
+A coda /S/ is palato-alveolar. Brescancini (2015: 82) finds *"a variante palato-alveolar como predominante na amostra [...] em 83% das ocorrências"*, in three districts of the city. She illustrates the variants with *fe[ʃ]ta* and *me[ʒ]mo* (p. 76). The rules `FLORIPA_CODA_S` and `FLORIPA_CODA_Z` give [ʃ] and [ʒ] in the coda: `festa` [ˈfeʃtɐ], `mas` [ˈmaʃ], `paz` [ˈpaʃ]. The voicing comes from the next consonant, with *"[s] ou [S] antes de consoante surda ou pausa e [z] ou [Z] antes de consoante sonora"* (p. 76). The rule `BR_CODA_SH_VOICED` gives [ʒ] before a voiced consonant: `mesmo` [ˈmeʒmu], `desde` [ˈdeʒdi]. The sandhi rule `BR_FINAL_SH_VOICING` does the same for a word-final [ʃ] before a voiced consonant in the next word: `os dois` [uʒ ˈdojʃ], `as mesas` [aʒ ˈmezɐʃ].
 
 The stops /t d/ stay stops before /i/. Dias (2010: 2) writes: *"Uma das características mais evidentes no falar 'manezinho' é ausência da africação de /t,d/"*, so *tipo* is [tipu]. The positional map gives the plain stop before ⟨i⟩, and the spec switches off `BR_AFFRIC_T_RAISED` and `BR_AFFRIC_D_RAISED`: `tipo` [ˈtipu], `dia` [ˈdiɐ], `leite` [ˈlejti], `dentes` [ˈdẽtiʃ].
 
@@ -33,6 +33,7 @@ The spec switches off `BR_EPENTHESIS_POSTTONIC`, `BR_EPENTHESIS_POSTTONIC_T_NASA
 | `festa` | ˈfeʃtɐ | coda /S/ gives [ʃ] |
 | `mas` | ˈmaʃ | word-final /S/ gives [ʃ] |
 | `mesmo` | ˈmeʒmu | coda /S/ gives [ʒ] before a voiced consonant |
+| `os dois` | uʒ ˈdojʃ | word-final /S/ gives [ʒ] before a voiced consonant in the next word |
 | `tipo` | ˈtipu | /t/ stays a stop before /i/ |
 | `dia` | ˈdiɐ | /d/ stays a stop before /i/ |
 | `dentes` | ˈdẽtiʃ | final ⟨-es⟩ raises, no affrication, palatal /S/ |
@@ -40,6 +41,8 @@ The spec switches off `BR_EPENTHESIS_POSTTONIC`, `BR_EPENTHESIS_POSTTONIC_T_NASA
 ## What the spec does not model
 
 The city has many speakers who were born elsewhere, and Dias (2010: 2) connects the variation in the city to that migration. The ALiB rates /t d/ palatalisation in the capital as *"moderada"* (Battisti & Dornelles Filho 2015: 226). The spec models the native pole and does not give the affricates of the migrant speakers.
+
+Before a vowel in the next word, Brescancini (2015: 76) gives a voiced sibilant: *"em fronteira de palavra diante de vogais é prevista a ocorrência apenas de [z] (mai[z] atrasada)"*. The spec keeps [ʃ] there (`dez anos` [ˈdɛʃ ˈɐ̃nuʃ]), and issue #2052 holds the case.
 
 Dias (2010) also studies an aspirated release of /t d/ before a pause. The spec does not model it.
 

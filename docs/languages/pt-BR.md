@@ -40,6 +40,7 @@ The *chiado* (coda /s/ to [ʃ]) belongs to Rio de Janeiro and some other regions
 | `BR_NASAL_STRESSED_A`, `_E`, `_O`, `_I`, `_U` | a stressed vowel before an onset nasal is nasal | `cama` [ˈkɐ̃mɐ], `cima` [ˈsĩmɐ], `fome` [ˈfõmi] |
 | `BR_NASAL_PRETONIC_A_NH` and the other vowels | a pretonic vowel before /ɲ/ is nasal | `ganhar` [ɡɐ̃ˈɲa], `senhor` [sẽˈɲoɾ] |
 | `BR_XC_ONE_S` | ⟨xc⟩ before a front vowel is one [s] | `exceção` [eseˈsɐ̃w̃], `excesso` [eˈsesu] |
+| `BR_SC_ONE_S` | ⟨sc⟩ before a front vowel and ⟨sç⟩ are one [s] | `nascer` [naˈse], `crescer` [kɾeˈse] |
 | `BR_CODA_X` | ⟨x⟩ before a consonant is the coda [s] | `texto` [ˈtestu], `explicar` [espliˈka] |
 | `BR_CODA_S_VOICED`, `BR_CODA_SH_VOICED` | a coda sibilant is voiced before a voiced consonant | `mesmo` [ˈmezmu], `desde` [ˈdezd͡ʒi] |
 | `BR_STRONG_R_AFTER_CODA` | /r/ after a coda nasal or sibilant is the strong rhotic | `honra` [ˈõʁɐ], `Israel` [izʁaˈɛw] |
@@ -111,11 +112,11 @@ A coda /r/ as [h] or [x] is very variable across Brazil. The base keeps the tap 
 
 ## Coda sibilant voicing, strong /r/ and epenthesis
 
-A ⟨x⟩ before a consonant is the coda sibilant. Vasilévski (2012: 55, Table 1) gives "x |S| expor" beside "s |S| mosca, lesma", and p. 56 writes /ˈteS.tu/. `BR_CODA_X` takes the [s] of the base (`texto` [ˈtestu]). Table 1 also gives "xc /s/ exceção", and `BR_XC_ONE_S` writes one [s] (`excesso` [eˈsesu]). The table is the rule set of a decoder that targets the phonological level, not a study of speech. The specs with a palatal coda switch both rules off: ⟨x⟩ keeps the [ʃ] of their coda ⟨s⟩, and ⟨xc⟩ keeps [ʃs] because no opened source gives its value there.
+A ⟨x⟩ before a consonant is the coda sibilant. Vasilévski (2012: 55, Table 1) gives "x |S| expor" beside "s |S| mosca, lesma", and p. 56 writes /ˈteS.tu/. `BR_CODA_X` takes the [s] of the base (`texto` [ˈtestu]). Table 1 also gives "xc /s/ exceção", and `BR_XC_ONE_S` writes one [s] (`excesso` [eˈsesu]). The table is the rule set of a decoder that targets the phonological level, not a study of speech. Table 1 gives "sc /s/ fascinante" and "sç /s/ cresça" the same way, and `BR_SC_ONE_S` writes one [s] (`nascer` [naˈse]). The specs with a palatal coda switch `BR_CODA_X` off, so ⟨x⟩ keeps the [ʃ] of their coda ⟨s⟩ (`texto` [ˈteʃtu]). They keep `BR_XC_ONE_S` and `BR_SC_ONE_S`, because a digraph /s/ is no coda |S|: `excesso` [eˈsesu] and `nascer` [naˈseh] in `pt-BR-x-rj`.
 
 A coda /S/ "tends to assimilate the voicing of the following sound" (Barbosa & Albano 2004: 229). `BR_CODA_S_VOICED` gives [z] before a voiced consonant (`mesmo` [ˈmezmu], `rasgar` [ʁazˈɡa]), and the sibilant stays [s] before a voiceless one (`festa` [ˈfestɐ]). `BR_CODA_SH_VOICED` does the same for a palatal [ʃ] in the regional specs.
 
-The same assimilation applies across a word boundary. The transcribed passage writes `duz doɪ̯z ɛɾɐ` for *dos dois era* and `maɪ̯z u` for *mais o*, but `maɪ̯s fɔɾtʃɪ` for *mais forte* (Barbosa & Albano 2004: 231). `BR_FINAL_S_VOICING` gives a word-final [s] as [z] before a voiced consonant in the next word (`os dois` [uz ˈdojs], `as mesas` [az ˈmezɐs]). `BR_FINAL_S_PREVOCALIC_VOICE` does the same before a vowel (`dez anos` [ˈdɛz ˈɐ̃nus]). Before a voiceless consonant the sibilant stays [s] (`mais forte` [ˈmajs ˈfɔɾt͡ʃi]), and a pause stops both rules. The voiced class is the class of `BR_CODA_S_VOICED`. A regional spec that writes the strong rhotic voiceless keeps [s] before it (`pt-BR-x-sp` `os ratos` [us ˈxatus]). The rules match the alveolar [s] only, so a spec that writes the coda as [ʃ] keeps its output.
+The same assimilation applies across a word boundary. The transcribed passage writes `duz doɪ̯z ɛɾɐ` for *dos dois era* and `maɪ̯z u` for *mais o*, but `maɪ̯s fɔɾtʃɪ` for *mais forte* (Barbosa & Albano 2004: 231). `BR_FINAL_S_VOICING` gives a word-final [s] as [z] before a voiced consonant in the next word (`os dois` [uz ˈdojs], `as mesas` [az ˈmezɐs]). `BR_FINAL_S_PREVOCALIC_VOICE` does the same before a vowel (`dez anos` [ˈdɛz ˈɐ̃nus]). Before a voiceless consonant the sibilant stays [s] (`mais forte` [ˈmajs ˈfɔɾt͡ʃi]), and a pause stops both rules. The voiced class is the class of `BR_CODA_S_VOICED`. A regional spec that writes the strong rhotic voiceless keeps [s] before it (`pt-BR-x-sp` `os ratos` [us ˈxatus]). The rules match the alveolar [s] only. A regional spec that writes the coda as [ʃ] carries its own rule with the same right context: `RJ_FINAL_SH_VOICING` in `pt-BR-x-rj`, and `BR_FINAL_SH_VOICING` in `pt-BR-x-floripa`, `pt-BR-x-norte`, `pt-BR-x-recife` and `pt-BR-x-cuiaba`, which adds its trill [r] to the context (`os dois` [uʒ ˈdojʃ]).
 
 After a coda consonant, /r/ is the strong rhotic, not the tap (Cristófaro Silva 2025: 240, 243: honra, Israel, desrespeito). `BR_STRONG_R_AFTER_CODA` gives `honra` [ˈõʁɐ] and `genro` [ˈʒẽʁu]. A tap in an onset cluster stays a tap (`três` [ˈtɾes]).
 
@@ -127,9 +128,9 @@ Brazilian Portuguese has one sibilant pair, the plain alveolar /s z/ (Barbosa & 
 
 The base `pt-PT-x-medieval` maps ⟨ce ci⟩ to [s̺], and `roa-x-galaico-pt` maps ⟨ss⟩ to [s̺]. So `pt-BR` declares the ⟨ss⟩ digraph and a positional ⟨c⟩ before ⟨e i⟩ with the plain [s]: `isso` [ˈisu], `cidade` [siˈdad͡ʒi].
 
-⟨ss⟩ and ⟨rr⟩ are digraphs, not geminates. Portuguese has no contrastive consonant length. The digraph ⟨ss⟩ spells /s/ between vowels, where a single ⟨s⟩ is /z/. The digraph ⟨rr⟩ spells the strong rhotic, which contrasts with the tap (`carro` [ˈkaʁu] against `caro` [ˈkaɾu], Barbosa & Albano 2004: 228). Neither gives a doubled segment, so `collapse_geminates` stays unset.
+⟨ss⟩ and ⟨rr⟩ are digraphs, not geminates. Portuguese has no contrastive consonant length. The digraph ⟨ss⟩ spells /s/ between vowels, where a single ⟨s⟩ is /z/. The digraph ⟨rr⟩ spells the strong rhotic, which contrasts with the tap (`carro` [ˈkaʁu] against `caro` [ˈkaɾu], Barbosa & Albano 2004: 228). Neither gives a doubled segment.
 
-The only doubled segments come from loans and names that keep their spelling (`watts` [ˈwatts], `reddit` [ˈʁedd͡ʒit]), and the gold sets double them too.
+Loans and names that keep their spelling write doubled consonant letters. Brazilian Portuguese has no geminate consonants, because *"dois segmentos idênticos com a propriedade [consonantal] não são permitidos"* (Carvalho 2015: 44). The spec sets `collapse_geminates`, which reads two identical adjacent consonants as one (`watts` [ˈwats], `reddit` [ˈʁed͡ʒit]).
 
 The letter ⟨w⟩ is rare but not silent. It is [w] in English loans and [v] in Germanic names, as in `pt-PT`: `web` [ˈweb], `show` [ˈsow].
 
