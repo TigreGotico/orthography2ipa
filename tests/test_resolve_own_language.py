@@ -82,6 +82,7 @@ def test_an_arabic_variety_in_arabic_script_names_its_own_spec(tag, code):
 
 @pytest.mark.parametrize("tag", [
     "bs-Cyrl-RS", "bs-Cyrl-ME", "bs-Cyrl-HR", "bs-Cyrl-XK", "bs-Cyrl-x-a",
+    "BS-Cyrl-x-a",
 ])
 def test_a_bosnian_cyrillic_tag_of_any_region_gives_bs(tag):
     # The bs spec reads both Bosnian alphabets, and CLDR 49 puts no rule from

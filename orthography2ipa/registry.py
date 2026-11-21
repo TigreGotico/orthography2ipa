@@ -440,6 +440,7 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
     # The language must be the one the tag gives: ``kas-Arab`` standardizes to
     # ``ks-Arab``, and the own-language search below keeps it on ``kas``.
     primary, *rest = code.split("-")
+    primary = primary.lower()
     if (rest and len(rest[0]) == 4 and rest[0].isalpha()
             and primary == requested.split("-")[0].lower()):
         unscripted = "-".join([primary, *rest[1:]])
@@ -501,10 +502,9 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
     # The own-language specs are measured from the tag that names their
     # language: langcodes folds ``fat-GH`` into ``ak-GH``, and CLDR 49 makes
     # Fanti a language apart from Akan, so ``ak-GH`` is not near ``fat``.
-    # With no own-language spec near enough, the search is as wide as
-    # before. Only the tags that stood near ``sr`` through the old ``sh``
-    # rules stop resolving: ``hr-Cyrl``, since CLDR 49 puts Croatian and
-    # Serbian 80 apart.
+    # With no own-language spec near enough, the search covers every spec.
+    # ``hr-Cyrl`` finds none, since CLDR 49 puts Croatian and Serbian 80
+    # apart.
     match = None
     for tag in (requested, code):
         language = tag.split("-")[0].lower()
