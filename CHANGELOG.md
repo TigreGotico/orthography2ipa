@@ -1,5 +1,9 @@
 # Changelog
 
+## [7.124.30a2](https://github.com/TigreGotico/orthography2ipa/tree/7.124.30a2) (2026-11-21)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.30a1...7.124.30a2)
+
 ## [7.124.30a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.30a1) (2026-11-21)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.29a1...7.124.30a1)
