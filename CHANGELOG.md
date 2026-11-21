@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.124.27a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.27a1) (2026-11-21)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.26a1...7.124.27a1)
+
+**Merged pull requests:**
+
+- fix\(pt-BR\): read xc and sc before a front vowel as one /s/ in the chiado specs [\#2415](https://github.com/TigreGotico/orthography2ipa/pull/2415) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.124.26a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.26a1) (2026-11-21)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.25a2...7.124.26a1)
@@ -360,10 +368,6 @@
 ## [7.123.4a1](https://github.com/TigreGotico/orthography2ipa/tree/7.123.4a1) (2026-11-13)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.123.3a2...7.123.4a1)
-
-**Merged pull requests:**
-
-- fix\(pt-PT\): read the strong rhotic after a coda consonant or a nasal vowel [\#2315](https://github.com/TigreGotico/orthography2ipa/pull/2315) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.123.3a2](https://github.com/TigreGotico/orthography2ipa/tree/7.123.3a2) (2026-11-13)
 
