@@ -34,6 +34,8 @@ The spec switches off `BR_EPENTHESIS_POSTTONIC`, `BR_EPENTHESIS_POSTTONIC_T_NASA
 | `mas` | ˈmaʃ | word-final /S/ gives [ʃ] |
 | `mesmo` | ˈmeʒmu | coda /S/ gives [ʒ] before a voiced consonant |
 | `os dois` | uʒ ˈdojʃ | word-final /S/ gives [ʒ] before a voiced consonant in the next word |
+| `dez anos` | ˈdɛʒ ˈɐ̃nuʃ | word-final /S/ gives [ʒ] before a vowel in the next word |
+| `os amigos` | uʒ aˈmiɡuʃ | same |
 | `tipo` | ˈtipu | /t/ stays a stop before /i/ |
 | `dia` | ˈdiɐ | /d/ stays a stop before /i/ |
 | `dentes` | ˈdẽtiʃ | final ⟨-es⟩ raises, no affrication, palatal /S/ |
@@ -42,7 +44,7 @@ The spec switches off `BR_EPENTHESIS_POSTTONIC`, `BR_EPENTHESIS_POSTTONIC_T_NASA
 
 The city has many speakers who were born elsewhere, and Dias (2010: 2) connects the variation in the city to that migration. The ALiB rates /t d/ palatalisation in the capital as *"moderada"* (Battisti & Dornelles Filho 2015: 226). The spec models the native pole and does not give the affricates of the migrant speakers.
 
-Before a vowel in the next word, Brescancini (2015: 76) gives a voiced sibilant: *"em fronteira de palavra diante de vogais é prevista a ocorrência apenas de [z] (mai[z] atrasada)"*. The spec keeps [ʃ] there (`dez anos` [ˈdɛʃ ˈɐ̃nuʃ]), and issue #2052 holds the case.
+Across a word boundary before a vowel, Brescancini (2015: 76) writes that *"a variante palato-alveolar vozeada também seja registrada em variedades do português (como em mai[Z] atrasada, conforme aponta Brescancini (2002) para a variedade florianopolitana)"*. The rule `BR_FINAL_SH_PREVOCALIC_VOICE` writes that [ʒ]. Before a pause the sibilant stays [ʃ].
 
 Dias (2010) also studies an aspirated release of /t d/ before a pause. The spec does not model it.
 

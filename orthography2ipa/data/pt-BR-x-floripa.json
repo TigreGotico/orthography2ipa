@@ -165,7 +165,16 @@
     "right_context": "^[ˈˌ]?[bdɡvzʒmnɲlʎɾʁ]",
     "transform": "ʒ",
     "obligatory": true,
-    "notes": "A word-final chiado [ʃ] takes the voicing of a voiced consonant at the start of the next word: os dois [uʒ ˈdojʃ], as mesas [aʒ ˈmezɐʃ]. Barbosa & Albano (2004: 229): 'The archiphoneme /S/ surfaces either as a voiced or as a voiceless alveolar fricative. As in most varieties, it tends to assimilate the voicing of the following sound.' Brescancini (2015: 76): '[s] ou [S] antes de consoante surda ou pausa e [z] ou [Z] antes de consoante sonora'. The place stays palatal because the spec writes the coda as [ʃ]. The rule is BR_FINAL_S_VOICING for that coda and uses the same right context. Before a vowel (dez anos) this rule does not apply, and the output keeps [ʃ]. No source supports that [ʃ]: Brescancini (2015: 76) gives a voiced sibilant there, 'em fronteira de palavra diante de vogais é prevista a ocorrência apenas de [z] (mai[z] atrasada)', and the voiced palato-alveolar for Florianópolis. Issue #2052 holds that case."
+    "notes": "A word-final chiado [ʃ] takes the voicing of a voiced consonant at the start of the next word: os dois [uʒ ˈdojʃ], as mesas [aʒ ˈmezɐʃ]. Barbosa & Albano (2004: 229): 'The archiphoneme /S/ surfaces either as a voiced or as a voiceless alveolar fricative. As in most varieties, it tends to assimilate the voicing of the following sound.' Brescancini (2015: 76): '[s] ou [S] antes de consoante surda ou pausa e [z] ou [Z] antes de consoante sonora'. The place stays palatal because the spec writes the coda as [ʃ]. The rule is BR_FINAL_S_VOICING for that coda and uses the same right context. Before a vowel the rule BR_FINAL_SH_PREVOCALIC_VOICE applies."
+  },
+    {
+    "id": "BR_FINAL_SH_PREVOCALIC_VOICE",
+    "name": "final-sh-before-vowel",
+    "left_context": "ʃ$",
+    "right_context": "^[ˈˌ]?[aeiouɛɔɐɪʊãẽĩõũ]",
+    "transform": "ʒ",
+    "obligatory": true,
+    "notes": "A word-final /S/ before a word that starts with a vowel is the voiced palato-alveolar [ʒ]: dez anos [ˈdɛʒ ˈɐ̃nuʃ], os amigos [uʒ aˈmiɡuʃ]. Brescancini (2015: 76) states that across a word boundary before a vowel the voiced sibilant occurs: 'em fronteira de palavra diante de vogais é prevista a ocorrência apenas de [z] (mai[z] atrasada), muito embora a variante palato-alveolar vozeada também seja registrada em variedades do português (como em mai[Z] atrasada, conforme aponta Brescancini (2002) para a variedade florianopolitana)'. The spec writes [ʒ] because the coda is palato-alveolar in this variety and the cited text records [ʒ] for Florianópolis. The rule is BR_FINAL_S_PREVOCALIC_VOICE for that coda. Before a pause or at the end of an utterance the sibilant stays [ʃ]: Brescancini (2015: 76) '[s] ou [S] antes de consoante surda ou pausa'."
   }
   ],
   "collapse_geminates": true
