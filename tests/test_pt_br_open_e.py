@@ -8,13 +8,16 @@ sources, and none of them is the engine:
 * WikiPron pt-BR (por_latn_bz_broad.tsv, the Wiktionary readings): sete
   [s ɛ t͡ʃ i], pele [p ɛ l i], segue [s ɛ ɡ i], janela [ʒ a n ɛ l a], aquela,
   tela, vela, panela, mortadela, boneca, careca, peteca, biblioteca, tese,
-  diocese and maionese have only the open vowel. antiestrela, barrela, camela
-  and enxaqueca have only the close vowel.
+  diocese and maionese have only the open vowel. antiestrela, protoestrela,
+  barrela, camela and enxaqueca have only the close vowel. estrela and seca
+  list both vowels: the noun estrela and the adjective seca are close. The
+  plurals of the close words follow their singular.
 * Wiktionary pt-BR rows of the unified pronunciation lexicon: sete [ˈsɛtʃi]
   and pele [ˈpɛli].
-* Cunha & Cintra (Nova Gramática do Português Contemporâneo, 7.ª ed., p. 429):
-  the rhizotonic verb forms of the stem vowel ⟨e⟩ have 'e semiaberto' in
-  Brazil. cancelam and revelam are such forms.
+* Cunha & Cintra (Nova Gramática do Português Contemporâneo, 7.ª ed., p. 429
+  and p. 431, Obs. 1): the rhizotonic verb forms of the stem vowel ⟨e⟩ have
+  'e semiaberto' in Brazil, unless the ⟨e⟩ is in ⟨ei⟩, before a nasal or
+  before a palatal. cancelam and revelam are such forms.
 * Barbosa & Albano (2004: 229) list /e/ and /ɛ/ as contrasting stressed
   vowels, so no rule gives the height of a word outside the lists.
 
@@ -48,7 +51,9 @@ OPEN_WORDS = [
     "cancelam", "revelam",
 ]
 CLOSE_WORDS = [
-    "antiestrela", "barrela", "camela", "enxaqueca", "anurese", "estrelas",
+    "estrela", "estrelas", "antiestrela", "antiestrelas", "protoestrela",
+    "protoestrelas", "barrela", "barrelas", "camela", "camelas", "enxaqueca",
+    "enxaquecas", "anurese", "seca", "secas",
     "mesa", "mesas", "cedo", "teve",
 ]
 
