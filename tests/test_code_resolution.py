@@ -116,10 +116,14 @@ class TestRegionAndDialectDefaults:
 
     @pytest.mark.parametrize("requested", [
         "ar-FR-x-foo", "ar-US-x-a", "ar-Arab-FR-x-a", "ar-ZZ-x-foo",
+        "AR-FR-x-foo", "Ar-Fr-x-foo",
     ])
     def test_unknown_arabic_region_with_private_use_falls_back_to_msa(self, requested):
         with pytest.warns(UnknownVariantWarning):
             assert resolve(requested) == "ar"
+
+    def test_a_non_arab_script_skips_the_msa_fallback(self):
+        assert resolve("ar-Latn-FR") == "ar-Latn-x-buckwalt"
 
 
 class TestUnknownLanguage:
