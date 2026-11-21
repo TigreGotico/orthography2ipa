@@ -54,7 +54,7 @@ Source: Mateus & d'Andrade 2000, ch. 2, which gives [r] as the traditional varia
 
 ### lateral
 
-Onset /l/ is [l]: lado [ˈladu]. Coda /l/ (word-final or before a consonant) is velarized [ɫ]: sal [ˈs̺aɫ], alto [ˈaɫtu]. Coda [ɫ] is kept before a following vowel. The retroflex [ɭ] reported locally is not written.
+Onset /l/ is [l]: lado [ˈladu]. Coda /l/ (word-final or before a consonant) is velarized [ɫ]: sal [ˈs̺aɫ], alto [ˈaɫtu]. Coda [ɫ] is kept before a following vowel.
 
 Source: Mateus & d'Andrade 2000, ch. 2 (velarized coda lateral); the retroflex variant is set aside per the spec note (not in Cintra 1971 or Álvarez Pérez 2014).
 
