@@ -1,5 +1,13 @@
 # Galician (reintegrationist orthography) (`gl-ES-x-reintegr`)
 
+<!-- agent-hint
+covers: what the `gl-ES-x-reintegr` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/gl-ES-x-reintegr.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/gl-ES.md`, `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Galician (reintegrationist orthography) is an Ibero-Romance variety, written in the Latin script. Its code names Spain. The `gl-ES-x-reintegr` spec is at the research tier. It cites 2 sources and has 1 scored dataset.
 <!-- atlas:summary end -->

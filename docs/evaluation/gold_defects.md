@@ -1,5 +1,13 @@
 # Gold defects
 
+<!-- agent-hint
+covers: the measured defects in individual gold rows and what they mean for a score
+source: `scripts/benchmark.py`, `tests/test_gold_composition.py`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_gold_composition.py`
+see: `docs/evaluation/benchmarks.md`, `docs/evaluation/datasets.md`
+-->
+
 A [provenance tier](benchmarks.md#reliability-tiers) says where a gold transcription came from, not whether it is right about the language. This page is the registry of measured defects in individual gold rows. In each case the gold merges a contrast, marks something impossible, describes another lect, mixes conventions, or comes from the system it scores.
 
 The figures were measured against the cached gold in `.benchmark_cache/`, with the loaders that the scoreboard uses, so each one can be reproduced. They count words and symbols in the gold files that the harness reads. Where a figure is a count of raw file lines, the text says so, because the board's `N` counts distinct words.

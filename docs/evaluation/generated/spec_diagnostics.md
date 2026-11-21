@@ -1,5 +1,13 @@
 # Spec diagnostics
 
+<!-- agent-hint
+covers: the gold characters each spec cannot map, the inheritance that crosses a family line, and the specs whose tables match another language
+source: `scripts/spec_diagnostics.py`, the specs in `orthography2ipa/data/`, the gold cache in `.benchmark_cache/`
+generated: yes, by `scripts/spec_diagnostics.py`. Edit the generator, not the page
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_spec_diagnostics.py`
+see: `docs/guide/known_limitations.md`, `docs/evaluation/gold_defects.md`
+-->
+
 Regenerate with `PYTHONPATH=$PWD python3 scripts/spec_diagnostics.py`. Three mechanical signals separate a spec that is wrong from a spec that is merely imprecise: gold characters its grapheme table cannot consume, which the engine deletes before a rule can see them; inheritance that crosses a language-family boundary; and a table that matches another language almost pair for pair. None is proof on its own. Each points at a spec worth reading before any rule in it is refined.
 
 Of 7659 specs, 414 have a cached gold to measure against, and 299 of those leave at least one gold character unmapped.

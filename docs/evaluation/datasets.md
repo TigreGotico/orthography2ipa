@@ -1,5 +1,13 @@
 # Benchmark gold datasets
 
+<!-- agent-hint
+covers: every gold dataset that the harness scores, with its source, licence, tier and caveats
+source: `scripts/benchmark.py:DATASETS`
+generated: no
+verify: `PYTHONPATH=$PWD python scripts/benchmark.py --list`
+see: `docs/evaluation/benchmarks.md`, `docs/evaluation/gold_defects.md`
+-->
+
 This page lists every gold pronunciation dataset that the harness can score against. For each one it says where the data came from and what its numbers can and cannot support. Read [benchmarks.md](benchmarks.md) first for the provenance tiers that this page uses.
 
 The registry is `DATASETS` in [`scripts/benchmark.py`](../../scripts/benchmark.py). `python scripts/benchmark.py --list` prints every registry key with the language tags it covers. Row sizes and scores are on the [scoreboard](generated/scoreboard.md) and in [`benchmarks/results.json`](../../benchmarks/results.json), never on this page. Each section below links the upstream page of its dataset, and the summary table gives the licence of each one.

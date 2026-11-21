@@ -1,5 +1,13 @@
 # Silver IPA correction
 
+<!-- agent-hint
+covers: how `scripts/correct_silver_ipa.py` corrects the IPA of the LLM-generated silver sets
+source: `scripts/correct_silver_ipa.py`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_correct_silver_ipa.py tests/test_llm_corrected_sets.py`
+see: `docs/evaluation/silver_sets.md`, `docs/contributing/citations.md`
+-->
+
 `scripts/correct_silver_ipa.py` writes a corrected IPA for each row of the
 LLM-generated gold sets. It asks Claude for each sentence through the
 [Anthropic Python SDK](https://github.com/anthropics/anthropic-sdk-python),

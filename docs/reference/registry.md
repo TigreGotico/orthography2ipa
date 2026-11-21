@@ -1,5 +1,13 @@
 # Language Registry
 
+<!-- agent-hint
+covers: how `get()` and `resolve()` turn a language code into a registered spec, and the alias table
+source: `orthography2ipa/registry.py`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_registry.py tests/test_resolve_own_language.py tests/test_code_resolution.py`
+see: `docs/specs/ancestry.md`, `docs/reference/api.md`
+-->
+
 The registry (`registry.py`) turns a language code into a registered spec code, and it loads the `LanguageSpec` for that code from `orthography2ipa/data/` on demand. Import of the package indexes the file names in that directory and parses no JSON. `get()` parses the file of a spec the first time a caller asks for it, and the registry caches the spec from then on. The registry also holds the deprecated discovery of the plugins that installed packages register. [getting_started.md](../guide/getting_started.md#finding-a-language-code) shows the tasks that use it: look up a language, and install or write a plugin.
 
 ## API
@@ -48,6 +56,8 @@ A clade node is for classification only. It carries no phoneme data, no spec inh
    The search looks first among the codes of the tag's own language, because the primary language subtag names the language. So `sr-Latn-RS` gives `sr`, although `langcodes` expands `cnr` to `sr-Latn-ME`, which is nearer. The own language is the primary subtag of the tag as given. When that language has no spec, it is the language of the standardized tag, so `sh` (standardized to `sr-Latn`) gives `sr`. Arabic is the likely script of Algerian Saharan Arabic, so `aao-Arab` gives `aao`. When no own-language spec is near enough, the search takes every registered code. The own-language specs are measured without a `Latn` script subtag when the language has no likely script (`fat-Latn` gives `fat`). Another script subtag stays. A Croatian tag in Cyrillic script, such as `hr-Cyrl`, is unresolved and `get()` raises `KeyError`: the `hr` spec is Latin, and the CLDR 49 language matching data puts Croatian and Serbian 80 apart.
 
    For a spec that reads both alphabets of its language, the alias table names its Cyrillic tags. The tags `bs-Cyrl` and `bs-Cyrl-BA` give `bs`, where the distance alone gives `sr`. The tag `cnr-Cyrl-ME` gives `cnr` through the own-language search too, but only as a nearest match. The alias makes it an exact match, so it also resolves under `strict=True`. A Cyrillic Bosnian tag that the table does not name, such as `bs-Cyrl-RS` or `bs-Cyrl-x-a`, gives `bs` as a nearest match, so it raises `KeyError` under `strict=True`.
+
+   An Arabic tag with a region that no Arabic spec names, such as `ar-FR` or `ar-ZZ`, gives `ar`. The likely subtags make bare `ar` Egyptian, so the distance alone puts such a region beside a dialect spec, and no source states a difference from Modern Standard Arabic for that region. The step applies to a tag with no script subtag or with `Arab`, so `ar-Latn-FR` gives `ar-Latn-x-buckwalt` through the distance. The result is a nearest match, so `get("ar-FR", strict=True)` raises `KeyError`.
 
 The default region of a bare tag is its motherland, the region where the language first appeared and is still spoken. `linguatag` takes it from the [CLDR likely subtags](https://github.com/unicode-org/cldr/blob/main/common/supplemental/likelySubtags.xml) and overrides CLDR where the most-populous region differs, so `pt` goes to `pt-PT` and not to `pt-BR`.
 

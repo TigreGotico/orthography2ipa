@@ -1,5 +1,13 @@
 # Kyrgyz (`ky`)
 
+<!-- agent-hint
+covers: what the `ky` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/ky.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Kyrgyz is a Turkic language, written in the Cyrillic script. Glottolog places it in 6 countries. The `ky` spec is at the research tier. It cites 1 source and has 2 scored datasets.
 <!-- atlas:summary end -->

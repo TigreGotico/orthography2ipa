@@ -1,5 +1,13 @@
 # Comparative phonology: Germanic, Romance and Slavic
 
+<!-- agent-hint
+covers: how the Germanic, Romance and Slavic specs compare, feature by feature
+source: the specs that each section names in `orthography2ipa/data/`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py`
+see: `docs/languages/index.md`, `docs/guide/distance.md`
+-->
+
 This page compares the phonology of three European language families, one section per family. Each section names the specs it covers and sets the features that separate the languages side by side.
 
 IPA in square brackets, such as [ɡʁaːp], comes from the reference grammars that each section cites. It is not engine output. A value in backticks, such as `ˈtak`, is the real output of `orthography2ipa.transcribe(word, code)`. Where the two differ, the spec makes a simpler or different choice than the grammar, and the text says so.

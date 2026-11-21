@@ -1,12 +1,21 @@
 # orthography2ipa
 
+<!-- agent-hint
+covers: what orthography2ipa does, how to install it, a first transcription and where each topic is documented
+source: `pyproject.toml`, `orthography2ipa/__init__.py`, `orthography2ipa/g2p.py:transcribe`
+generated: no
+verify: `PYTHONPATH=$PWD python -c "import orthography2ipa; print(orthography2ipa.transcribe('olá mundo', 'pt'))"`
+see: `docs/index.md`, `docs/guide/getting_started.md`, `AGENTS.md`
+-->
+
 `orthography2ipa` (o2i) turns the spelling of a language into the
 [International Phonetic Alphabet](https://www.internationalphoneticassociation.org/content/full-ipa-chart)
 (IPA), and it measures how languages relate to each other. Each language is a
-cited JSON spec in `orthography2ipa/data/`. A shared engine with no
-language-specific code turns the specs into transcriptions and into ranked
-pronunciation lattices. The library ships no trained weights and no word
-lists.
+cited JSON spec, and one engine with no language-specific code turns the specs
+into transcriptions and ranked pronunciation lattices.
+
+The specs are the files in `orthography2ipa/data/`. The library ships no
+trained weights and no word lists.
 
 The registry holds thousands of language codes: major standard languages,
 regional dialects, creoles and reconstructed proto-languages. Run
@@ -72,7 +81,6 @@ common task.
 | Write a spec, a citation, a board change or an engine change | [docs/contributing/](docs/contributing/spec_authoring.md) |
 | Learn the repository map, the setup and the hard rules | [AGENTS.md](AGENTS.md) |
 | Follow the branch model and the commit messages | [CONTRIBUTING.md](CONTRIBUTING.md) |
-| Give a language model a map of the repository | [llms.txt](llms.txt), or [llms-full.txt](llms-full.txt) with every language page |
 
 ## How it compares
 

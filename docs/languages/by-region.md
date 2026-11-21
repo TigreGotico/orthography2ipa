@@ -1,5 +1,13 @@
 # Languages by region
 
+<!-- agent-hint
+covers: every spec, grouped by its Glottolog macroarea and then by country, each linked to its page or to its entry in the data explorer
+source: `orthography2ipa/data/*.json`, `scripts/atlas_snapshot.json`
+generated: yes, by `scripts/gen_language_atlas.py`. Edit the generator, not the page
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/index.md`, `docs/languages/by-family.md`, `docs/languages/by-script.md`, `docs/languages/a-z.md`
+-->
+
 Every spec, grouped by its Glottolog macroarea and then by country. A region subtag in the code names the country. Otherwise the countries are those Glottolog gives for the spec's own languoid. A spec spoken in several countries appears under each of them. A dialect with no languoid and no region subtag sits under its macroarea, with no country.
 
 A stub has a name, a code and a place in the family tree, but no phonology yet. The tables list every spec above the stub tier. The stubs follow each table by name and code. To open a stub, put its code after the `#` of an [explorer](https://tigregotico.github.io/orthography2ipa/) link, as in the [entry for `mwl`](https://tigregotico.github.io/orthography2ipa/#mwl).

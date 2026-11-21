@@ -1,5 +1,13 @@
 # Uruguayan Portuguese (pt-UY)
 
+<!-- agent-hint
+covers: how the Uruguayan Portuguese spec differs from `pt-BR`
+source: `orthography2ipa/data/pt-UY.json`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_uruguayan_portuguese.py tests/test_docs_engine_forms.py`
+see: `docs/languages/pt-BR.md`
+-->
+
 | Field | Value |
 |:---|:---|
 | Code | `pt-UY` |

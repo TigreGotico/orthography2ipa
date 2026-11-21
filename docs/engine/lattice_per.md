@@ -1,5 +1,13 @@
 # Lattice PER: pronunciation-fair phone error rate
 
+<!-- agent-hint
+covers: how `lattice_per` scores a phone sequence against every pronunciation that a lect admits
+source: `orthography2ipa/lattice_per.py`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_lattice_per.py`
+see: `docs/engine/lattice.md`, `docs/evaluation/benchmarks.md`
+-->
+
 `orthography2ipa.lattice_per` scores a phone sequence against every pronunciation that a lect admits for a reference text. The phone sequence is usually ASR phone output, or the phonemized form of an ASR word hypothesis. A plain phone error rate compares against one reference transcription, and that one choice of reading is arbitrary.
 
 ## Why single-reference PER is unfair

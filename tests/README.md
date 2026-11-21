@@ -1,5 +1,13 @@
 # Tests
 
+<!-- agent-hint
+covers: how the test suite is laid out, how to pick the tests for a spec and which lists may only shrink
+source: `tests/conftest.py`, `scripts/which_tests.py`, `tests/test_sources.py`, `tests/test_docs_prose.py`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_which_tests.py`
+see: `AGENTS.md`, `docs/contributing/board.md`
+-->
+
 The suite runs with pytest from the repository root. The
 `[tool.pytest.ini_options]` table in `pyproject.toml` sets the markers (`slow`,
 `linguistic`) and turns an unknown variant subtag warning into an error.

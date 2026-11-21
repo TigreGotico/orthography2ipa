@@ -1,5 +1,13 @@
 # Scoreboard
 
+<!-- agent-hint
+covers: the committed PER, exact-match rate and provenance of every gold dataset and language row the harness scores
+source: `benchmarks/results.json`, `scripts/benchmark.py` (`DATASETS`, `write_scoreboard`)
+generated: yes, by `scripts/benchmark.py --scoreboard`. Edit the generator, not the page
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_thin_row_marker.py`
+see: `docs/evaluation/benchmarks.md`, `docs/evaluation/datasets.md`, `docs/contributing/board.md`
+-->
+
 **Grain of salt — read this first.** Reliable G2P "gold" barely exists. Most datasets below are semi-automated, dictionary-extracted, community-scraped, or a phonemizer's OWN output reused as a reference. A low PER against a `machine-generated` gold means "agrees with that tool", NOT "correct". Absolute PER is noisy — read every number as **directional/relative**, and cross-reference the `95% CI` (a wide or degenerate interval, common on small-`N` rows, means the row cannot support a conclusion). Full per-dataset classification and the honest caveats: [`docs/evaluation/benchmarks.md`](../benchmarks.md) ("Provenance and reliability").
 
 `Provenance` legend (most → least trustworthy, all still subject to notation conventions and small-`N` noise): **expert-human** (phonetician / native-speaker / expert-annotator) > **lexicon-derived** (dictionary, human lexicographers) > **crowd-scraped** (Wiktionary) > **machine-generated** (some other tool's output; agreement-with-tool, not correctness) > **espeak-derived** / **epitran-derived** / **lupo-derived** (a COMPETITOR's output: measures agreement with another G2P system, so it can neither qualify a language for `production` nor block one) > **llm-generated** (an LLM's output: no lexicon, no rules, therefore no error model — a disagreement is not even diagnostic; never gate on it).

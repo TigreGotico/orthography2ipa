@@ -1,5 +1,13 @@
 # Python API
 
+<!-- agent-hint
+covers: every name that `orthography2ipa.__all__` exports, by module, with the first paragraph of its docstring
+source: `orthography2ipa/__init__.py` (`__all__`) and the docstring of each exported name
+generated: yes, by `scripts/gen_reference_docs.py`. Edit the docstring or the generator, not the page
+verify: `PYTHONPATH=$PWD python scripts/gen_reference_docs.py --check`
+see: `docs/reference/api_stability.md`, `docs/guide/getting_started.md`
+-->
+
 These are the names `import orthography2ipa` exports, from `orthography2ipa.__all__`. Each summary is the first paragraph of the docstring. Read the docstring itself for the parameters.
 
 `scripts/gen_reference_docs.py` writes this page. Do not edit it by hand.

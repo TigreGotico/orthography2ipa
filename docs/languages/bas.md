@@ -1,5 +1,13 @@
 # Basaa (`bas`)
 
+<!-- agent-hint
+covers: what the `bas` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/bas.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Basaa is a Bantu language, written in the Latin script. Glottolog places it in Cameroon. The `bas` spec is at the research tier. It cites 3 sources and has 0 scored datasets.
 <!-- atlas:summary end -->

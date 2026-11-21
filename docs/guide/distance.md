@@ -1,5 +1,13 @@
 # Distance Metrics
 
+<!-- agent-hint
+covers: how to measure how two languages differ in sound, spelling, script, ancestry, time and place
+source: `orthography2ipa/distance.py`, `orthography2ipa/feats.py`, `orthography2ipa/script_distance.py`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_distance.py tests/test_script_distance.py`
+see: `docs/specs/ancestry.md`, `docs/reference/api.md`
+-->
+
 Languages relate along several independent axes, and a pair can be close on one axis and far apart on another. The `orthography2ipa.distance` module measures each axis on its own instead of folding them into one number. Unless a section says otherwise, a distance runs from 0.0 (identical) to 1.0 (maximally different).
 
 | Axis | Question | Functions |

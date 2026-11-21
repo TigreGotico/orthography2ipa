@@ -1,5 +1,13 @@
 # Lexicons and forced pronunciations
 
+<!-- agent-hint
+covers: how to force the pronunciation of a word with a caller lexicon, a packaged lexicon or inline markup
+source: `orthography2ipa/lexicon.py`, `orthography2ipa/markup.py`, `orthography2ipa/pipeline.py`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_lexicon.py tests/test_lexicon_overlay.py`
+see: `docs/engine/lattice.md`, `docs/reference/api_stability.md`
+-->
+
 Some words cannot be transcribed from their spelling, and no rule can change that. Brand names, proper nouns, acronyms and loanwords are the usual cases. For these words the caller already knows the answer and needs a way to give it. The engine has three tiers that override the rules: inline markup, the exceptions of the spec, and a lexicon that the caller supplies. This page describes each one.
 
 ## The precedence ladder

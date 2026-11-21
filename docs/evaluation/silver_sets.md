@@ -1,5 +1,13 @@
 # TTS silver sets
 
+<!-- agent-hint
+covers: what the TTS silver sets hold, how to use them to check a voice and what the tests check
+source: `orthography2ipa/data/gold/`, `tests/test_portuguese_tts_gold.py`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_portuguese_tts_gold.py`
+see: `docs/contributing/silver_correction.md`, `docs/contributing/citations.md`
+-->
+
 The TTS silver sets are full sentences with a broad IPA transcription, one TSV file per lect. A large language model wrote the sentences. Each IPA cell starts as a draft from this engine and is then audited against the sources of the lect. The sets are therefore [silver labels, never gold](../contributing/citations.md#silver-labels-are-never-gold).
 
 The main use is to check a TTS voice for a lect, such as a [phoonnx](https://github.com/TigreGotico/phoonnx) voice. Synthesize each sentence, listen to it or run ASR on it, and compare the result with the stored IPA. The sets also give each lect a fixed list of sentences that exercises its phonetic axes, with a citation for every row.

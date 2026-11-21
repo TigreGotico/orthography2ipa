@@ -1,5 +1,13 @@
 # Data Model
 
+<!-- agent-hint
+covers: the Python objects that the loader builds from a spec and how a field resolves through inheritance
+source: `orthography2ipa/types.py`, `orthography2ipa/json_loader.py`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_schema_documents_loader_keys.py tests/test_data_nfc.py`
+see: `orthography2ipa/data/SCHEMA.md`, `docs/specs/quality_tiers.md`
+-->
+
 The package rests on a small set of types in `orthography2ipa/types.py`. Each type is a frozen dataclass or an enum. The loader also freezes every dict that a `LanguageSpec` field holds, at any depth. So `registry.get()` hands out one shared, cached object. An attempt to add, replace or delete a key of a spec's mapping raises `TypeError`. The lists inside a mapping stay plain lists, so treat them as read-only: a change to one changes the cached spec for every caller.
 
 Every authored string in a spec is NFC-normalised. That covers graphemes, allophones, `word_exceptions`, notes and source titles, and `tests/test_data_nfc.py` checks each data file. The engine also normalises its own output to NFC.

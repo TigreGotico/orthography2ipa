@@ -253,7 +253,7 @@ from typing import Any, Dict, List, NamedTuple, Optional, Sequence, Tuple
 
 sys.path.insert(0, os.path.dirname(__file__))
 import benchmark  # noqa: E402  — shared dataset loaders, normalize(), levenshtein()
-from docs_nav import footer  # noqa: E402
+from docs_nav import agent_hint, footer  # noqa: E402
 
 # epitran logs a WARNING (e.g. "lex_lookup (from flite) is not installed")
 # on every per-word transliterate() call for some backends — harmless (it
@@ -4194,6 +4194,17 @@ def write_comparison(
 
     lines = [
         "# Comparison to other G2P systems",
+        "",
+        agent_hint(
+            covers="the PER of o2i and of other G2P systems on the same gold "
+                   "words, language by language",
+            source="`benchmarks/comparison.json`, `scripts/compare_systems.py`",
+            generated="yes, by `scripts/compare_systems.py --scoreboard`. Edit "
+                      "the generator, not the page",
+            verify="`PYTHONPATH=$PWD python -m pytest "
+                   "tests/test_compare_systems.py`",
+            see="`docs/evaluation/generated/scoreboard.md`, "
+                "`docs/evaluation/benchmarks.md`, `docs/contributing/board.md`"),
         "",
         "This table shows how well orthography2ipa (o2i) predicts IPA "
         "pronunciation compared to twelve other G2P systems (including the "

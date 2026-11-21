@@ -1,5 +1,13 @@
 # Urdu (`ur`)
 
+<!-- agent-hint
+covers: what the `ur` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/ur.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/hi.md`, `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Urdu is an Indo-Aryan language, written in the Arabic script. Glottolog places it in Afghanistan, Bangladesh, India and Pakistan. The `ur` spec is at the research tier. It cites 5 sources and has 1 scored dataset.
 <!-- atlas:summary end -->

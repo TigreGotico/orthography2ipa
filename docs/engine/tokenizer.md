@@ -1,5 +1,13 @@
 # Tokenizer
 
+<!-- agent-hint
+covers: how `PhonetokTokenizer` splits text into graphemes and expands each one into its IPA candidates
+source: `orthography2ipa/phonetok.py`
+generated: no
+verify: `PYTHONPATH=$PWD python examples/03_tokenizer.py`
+see: `docs/engine/lattice.md`, `docs/engine/positional_graphemes.md`
+-->
+
 `PhonetokTokenizer`, in `orthography2ipa.phonetok`, splits text into the graphemes of one language spec and expands each grapheme into its IPA candidates. The same class works for every spec in the registry, because all language knowledge comes from the spec. This page covers tokenization, maximal munch, the beam search (`ipa_beam`), allophone expansion and special characters. The [pronunciation lattice](lattice.md) page covers the per-grapheme lattice, its costs, rescoring and the confidence signal.
 
 ## Core concepts

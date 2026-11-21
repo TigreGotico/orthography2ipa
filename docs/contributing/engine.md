@@ -1,5 +1,13 @@
 # Engine changes
 
+<!-- agent-hint
+covers: the rules for a change to the engine code and the review gate that each such change passes
+source: `orthography2ipa/*.py`, `orthography2ipa/revision.py:ENGINE_MODULES`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py`
+see: `docs/engine/architecture.md`, `docs/reference/api_stability.md`
+-->
+
 This page gives the rules for a change to the engine, the Python code in
 `orthography2ipa/`, and the review gate that every such change passes.
 [architecture.md](../engine/architecture.md) describes how the engine works
@@ -13,6 +21,11 @@ needs a behaviour that the engine cannot express, add a generic capability,
 such as a context class or a rule field. Then use it from the data.
 Never special-case the language in code, and never fake the capability by
 enumerating data.
+
+Tag resolution in `registry.py` is the one exception. It maps a tag to a
+spec before any transcription runs, and holds named fallbacks: `fr` regions
+without a spec read as the motherland variety, a Bosnian Cyrillic tag reads
+as `bs`, and an Arabic region that no Arabic spec names reads as `ar`.
 
 A closed set in engine code is allowed only when it is a cross-linguistic
 class with a citation at the constant. The transparent-suffix graphemes in

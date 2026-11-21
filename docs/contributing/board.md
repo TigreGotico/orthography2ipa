@@ -1,5 +1,13 @@
 # Board regeneration
 
+<!-- agent-hint
+covers: how to regenerate the five board files together and pass the board guards
+source: `scripts/benchmark.py`, `scripts/compare_systems.py`, `scripts/check_board_not_reverting.py`, `scripts/check_board_freshness.py`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_check_board_not_reverting.py`
+see: `docs/evaluation/benchmarks.md`, `docs/evaluation/generated/scoreboard.md`
+-->
+
 The benchmark board is five files that must move together:
 
 | File | Written by |
@@ -74,13 +82,11 @@ file, which you read first when a row moves with no spec change.
 
 The [language atlas](../languages/index.md) prints the board scores of each
 spec in the "Datasets" block of its page, so a board change makes those pages
-stale. After the board files, rewrite the atlas, then the navigation footers
-and `llms.txt` and `llms-full.txt`, which read the atlas:
+stale. After the board files, rewrite the atlas, then the navigation footers:
 
 ```bash
 PYTHONPATH=$PWD python scripts/gen_language_atlas.py --write
 python scripts/docs_nav.py --write
-PYTHONPATH=$PWD python scripts/gen_reference_docs.py --write
 ```
 
 After the run, diff the CI sample against the merge base and count the rows

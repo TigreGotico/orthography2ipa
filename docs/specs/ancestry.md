@@ -1,5 +1,13 @@
 # Ancestry System
 
+<!-- agent-hint
+covers: how the specs record descent and contact between languages, and how the distance metrics use those edges
+source: `orthography2ipa/types.py`, `orthography2ipa/distance.py`, `orthography2ipa/registry.py:ancestry_chain`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_kabyle_ancestry.py tests/test_ancestry_slavic_turkic.py`
+see: `docs/guide/distance.md`, `docs/contributing/spec_authoring.md`
+-->
+
 The ancestry system records how languages relate in history. It holds parent descent and also the contact edges: substrate, superstrate, adstrate and the creole roles. The distance metrics weight these edges, and the classification path of each language comes from them.
 
 ## Why model ancestry

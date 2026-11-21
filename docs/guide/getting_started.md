@@ -1,5 +1,13 @@
 # Getting Started
 
+<!-- agent-hint
+covers: how to transcribe text, read a spec, pick a language code, use the command line and prepare text before the lattice
+source: `orthography2ipa/g2p.py`, `orthography2ipa/registry.py`, `orthography2ipa/pipeline.py`, `orthography2ipa/cli.py`, `pyproject.toml`
+generated: no
+verify: `PYTHONPATH=$PWD python examples/01_basic_usage.py`
+see: `docs/guide/lexicon.md`, `docs/reference/api.md`, `docs/reference/cli.md`
+-->
+
 This page starts from one call, `transcribe()`, and works out to the rest of the API. It covers the specs and their two maps, beam search, language lookup, the command line, plugins and the data explorer. Every output on this page is IPA, the alphabet of the [International Phonetic Association](https://www.internationalphoneticassociation.org/content/full-ipa-chart); [ipa_reference.md](../specs/ipa_reference.md) lists the symbols that the specs use.
 
 ## Why the library has no model weights

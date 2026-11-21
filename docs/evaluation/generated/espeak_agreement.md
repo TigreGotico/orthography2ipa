@@ -1,5 +1,13 @@
 # espeak-ng agreement
 
+<!-- agent-hint
+covers: how often o2i and espeak-ng give the same IPA for the words of a gold set, per language
+source: `benchmarks/espeak_agreement.json`, `scripts/espeak_agreement.py`
+generated: yes, by `scripts/espeak_agreement.py --scoreboard`. Edit the generator, not the page
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py`
+see: `docs/evaluation/benchmarks.md`, `docs/evaluation/generated/comparison.md`
+-->
+
 Committed symbol-level agreement between orthography2ipa and espeak-ng, for every language where this repo has both a gold-dataset wordlist and espeak-ng has a voice. This is NOT an accuracy benchmark: see `docs/evaluation/benchmarks.md` for what it means and does not mean. Regenerate with:
 
 ```bash

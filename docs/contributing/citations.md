@@ -1,5 +1,13 @@
 # Citation honesty
 
+<!-- agent-hint
+covers: what counts as a source for a mapping, how to record it and which reference data counts as evidence
+source: `tests/test_sources.py`, the `sources` arrays of `orthography2ipa/data/*.json`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_sources.py`
+see: `docs/specs/bibliography.md`, `docs/evaluation/benchmarks.md`
+-->
+
 Every mapping in a spec is a claim about a language, and every claim needs a source that a reader can open and check. This page says what counts as a source, where to find one, how to record it, and which reference data counts as evidence. The `sources` fields are in [`SCHEMA.md`](../../orthography2ipa/data/SCHEMA.md#sources-schema), and the reference works by language family are in [bibliography](../specs/bibliography.md).
 
 ## Principles
