@@ -1919,13 +1919,16 @@ _AFFRICATES: Sequence[str] = tuple(
 #: (Georgian ⟨წ⟩ /tsʼ/, ⟨ც⟩ /tsʰ/, Russian ⟨ць⟩ /tsʲ/). Each writes its mark
 #: inside the two-symbol sequence. The
 #: two remaining post-alveolar shapes are listed for the same reason: Polish
-#: ⟨dż⟩ is one affricate whether a spec writes it /ɖʐ/ or /dʐ/.
+#: ⟨dż⟩ is one affricate whether a spec writes it /ɖʐ/ or /dʐ/. A diacritic
+#: below the fricative part marks the place of articulation, as in the Basque
+#: apical and laminal affricates /ts̺/ and /ts̻/, and it stays inside the segment.
 _MARK_ATOMS: Sequence[str] = tuple(sorted(
-    {stop + length + tie + base[1:] + release
+    {stop + length + tie + base[1:] + place + release
      for base in tuple(_BARE_AFFRICATES) + ("dʐ", "tʂ")
      for stop in (base[0],)
      for length in ("", "ː")
      for tie in ("", _TIE)
+     for place in ("", "\u033a", "\u033b")
      for release in ("", "ʼ", "ʰ", "ʲ", "ʷ")},
     key=len, reverse=True))
 

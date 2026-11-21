@@ -30,7 +30,7 @@ The notes of the spec file open with these words:
 
 > Qassimi Arabic (قصيمي), the Najdi variety of the Qaṣīm region of central Saudi Arabia (Buraydah, ʿUnayzah, ar-Rass).
 
-The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 9 works, from 1994 to 2026. [Sources](#sources) lists them. The spec file writes 5 of the 253 spellings of its letter table and takes the other 248 from [Najdi Arabic](ars-SA.md) `ars-SA`.
+The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 9 works, from 1994 to 2026. [Sources](#sources) lists them. The spec file writes 3 of the 263 spellings of its letter table and takes the other 260 from [Najdi Arabic](ars-SA.md) `ars-SA`.
 
 The [spec file](../../orthography2ipa/data/ars-SA-x-qassim.json) holds the full notes, with the caveats of the spec.
 <!-- atlas:overview end -->
@@ -65,14 +65,14 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 | Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
 |:--|:--|:--|:--|:--|--:|--:|:--|
 | `primary_sources` | `ars-SA-x-qassim` | gold | expert-human | Apache-2.0 (this repository). Each row quotes and cites a published example. | 12 | 0.1327 | no |
-| `arabic_tts` | `ars-SA-x-qassim` | silver | llm-corrected | Apache-2.0 (this repository) | 20 | 0.0906 | no |
-| `gold20_arabic` ([TigreGotico/arabic-dialects-gold20](https://huggingface.co/datasets/TigreGotico/arabic-dialects-gold20)) | `ars-SA-x-qassim` | silver | llm-corrected | CC BY 4.0 | 20 | 0.0882 | no |
+| `arabic_tts` | `ars-SA-x-qassim` | silver | llm-corrected | Apache-2.0 (this repository) | 20 | 0.0925 | no |
+| `gold20_arabic` ([TigreGotico/arabic-dialects-gold20](https://huggingface.co/datasets/TigreGotico/arabic-dialects-gold20)) | `ars-SA-x-qassim` | silver | llm-corrected | CC BY 4.0 | 20 | 0.0900 | no |
 <!-- atlas:datasets end -->
 
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 227 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 49 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Dental | Alveolar | Postalveolar | Palatal | Velar | Uvular | Pharyngeal | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -91,7 +91,7 @@ The spec can emit 227 segments. They come from the letter table, the positional 
 | Close-mid | eː | o oː |
 | Open | a aː | ɑ ɑː |
 
-Sequences that the spec writes as one unit: [add] [adˤdˤ] [aj] [aja] [ajaː] [aji] [ajj] [aju] [al] [all] [allaːh] [an] [ann] [arr] [ass] [asˤsˤ] [at] [att] [atˤtˤ] [aw] [awa] [awaː] [awi] [awu] [aww] [azz] [aðð] [aðˤðˤ] [aʃʃ] [aːj] [aθθ] [bi] [bidd] [bidˤdˤ] [bil] [bill] [binn] [birr] [biss] [bisˤsˤ], and 140 more.
+Sequences that the spec writes as one unit: [w] [ː].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->
@@ -277,6 +277,9 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨وَالظظ⟩ | [waðˤðˤ] [wadˤdˤ] |  |
 | ⟨وَاللل⟩ | [wall] |  |
 | ⟨وَالنن⟩ | [wann] |  |
+| ⟨وَو⟩ | [waw] | before consonant [woː] · default [waw] · word final [woː] |
+| ⟨وَوْ⟩ | [woː] |  |
+| ⟨وَي⟩ | [waj] | before consonant [weː] · default [waj] · word final [weː] |
 | ⟨وَيْ⟩ | [weː] |  |
 | ⟨وَٱ⟩ | [wa] |  |
 | ⟨وُ⟩ | [wu] |  |
@@ -301,7 +304,10 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨يي⟩ | [jj] |  |
 | ⟨يَ⟩ | [ja] |  |
 | ⟨يَا⟩ | [jaː] |  |
+| ⟨يَو⟩ | [jaw] | before consonant [joː] · default [jaw] · word final [joː] |
 | ⟨يَوْ⟩ | [joː] |  |
+| ⟨يَي⟩ | [jaj] | before consonant [jeː] · default [jaj] · word final [jeː] |
+| ⟨يَيْ⟩ | [jeː] |  |
 | ⟨يِ⟩ | [ji] |  |
 | ⟨ً⟩ | [an] |  |
 | ⟨ًا⟩ | [an] |  |
@@ -312,19 +318,23 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨َا⟩ | [aː] |  |
 | ⟨َاي⟩ | [aːj] |  |
 | ⟨َة⟩ | [a] | before vowel [at] · default [a] |
-| ⟨َو⟩ | [aw] |  |
+| ⟨َو⟩ | [aw] | before consonant [oː] · default [aw] · word final [oː] |
+| ⟨َوا⟩ | [awaː] |  |
 | ⟨َوو⟩ | [aww] |  |
 | ⟨َوَ⟩ | [awa] |  |
 | ⟨َوَا⟩ | [awaː] |  |
 | ⟨َوُ⟩ | [awu] |  |
 | ⟨َوِ⟩ | [awi] |  |
+| ⟨َوْ⟩ | [oː] |  |
 | ⟨َى⟩ | [aː] |  |
-| ⟨َي⟩ | [aj] |  |
+| ⟨َي⟩ | [aj] | before consonant [eː] · default [aj] · word final [eː] |
+| ⟨َيا⟩ | [ajaː] |  |
 | ⟨َيي⟩ | [ajj] |  |
 | ⟨َيَ⟩ | [aja] |  |
 | ⟨َيَا⟩ | [ajaː] |  |
 | ⟨َيُ⟩ | [aju] |  |
 | ⟨َيِ⟩ | [aji] |  |
+| ⟨َيْ⟩ | [eː] |  |
 | ⟨َٰ⟩ | [aː] |  |
 | ⟨ُ⟩ | [u] |  |
 | ⟨ُو⟩ | [uː] |  |
@@ -361,7 +371,7 @@ Stress falls on the antepenult by default. Stress is sensitive to syllable weigh
 <!-- atlas:rules begin -->
 ## Rules
 
-The spec applies 36 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
+The spec applies 34 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
 
 | Rule | Change | Example | Cited |
 |:--|:--|:--|:--|
@@ -391,7 +401,7 @@ The spec applies 36 allophone rules after the letters are read. The change colum
 | `AR_PEN_EMPH_BACK_AA_AFTER` | /aː/ → [ɑː], after [tˤ] [dˤ] [sˤ] [ðˤ] [zˤ] | - | [Watson 2002](#src-watson2002) |
 | `AR_PEN_EMPH_BACK_AA_BEFORE` | /aː/ → [ɑː], before [tˤ] [dˤ] [sˤ] [ðˤ] [zˤ] | - | [Watson 2002](#src-watson2002) |
 | `NAJD_AFFRIC_K_BEFORE` | /k/ → [ts], before [i] [iː] [j] [e] [eː] | ⟨'dog'⟩ [tsɛlb] | [Ingham 1994](#src-ingham1994), Al Mahmoud 2020 |
-| `NAJD_AFFRIC_K_AFTER` | /k/ → [ts], after [i] [iː] [j] [e] [eː] | - | [Ingham 1994](#src-ingham1994), Al Mahmoud 2020 |
+| `NAJD_AFFRIC_K_AFTER` | /k/ → [ts], in the coda, after [i] [iː] [j] [e] [eː] | ⟨never⟩ [lɪts] | [Ingham 1994](#src-ingham1994), [Alshammari 2026](#src-alshammari2026), Al Mahmoud 2020 |
 | `NAJD_AFFRIC_G_BEFORE` | /ɡ/ → [dz], before [i] [iː] | - | [Ingham 1994](#src-ingham1994), [Alshammari 2026](#src-alshammari2026), [Mahzari 2023](#src-mahzari2023) |
 | `NAJD_AFFRIC_G_AFTER` | /ɡ/ → [dz], after [i] [iː] | - | [Ingham 1994](#src-ingham1994), [Alshammari 2026](#src-alshammari2026), [Mahzari 2023](#src-mahzari2023) |
 | `NAJD_GAHAWA_h` | /h/ → [ha], in the coda, before a consonant, after [a] [ɑ] | - | [Ingham 1994](#src-ingham1994) |
@@ -399,8 +409,6 @@ The spec applies 36 allophone rules after the letters are read. The change colum
 | `NAJD_GAHAWA_0263` | /ɣ/ → [ɣa], in the coda, before a consonant, after [a] [ɑ] | - | [Ingham 1994](#src-ingham1994) |
 | `NAJD_GAHAWA_0127` | /ħ/ → [ħa], in the coda, before a consonant, after [a] [ɑ] | ⟨لَحْم⟩ [laħam] | [Ingham 1994](#src-ingham1994) |
 | `NAJD_GAHAWA_0295` | /ʕ/ → [ʕa], in the coda, before a consonant, after [a] [ɑ] | - | [Ingham 1994](#src-ingham1994) |
-| `QAS_MONO_AY` | /aj/ → [eː] | - | [Alhoody 2019](#src-alhoody2019) |
-| `QAS_MONO_AW` | /aw/ → [oː] | - | [Alhoody 2019](#src-alhoody2019) |
 
 The spec applies 1 rules across a word boundary. The contexts are regular expressions on the IPA of the two words.
 

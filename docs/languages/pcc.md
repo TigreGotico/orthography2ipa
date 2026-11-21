@@ -62,25 +62,28 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 224 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 56 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
-| Consonants | Bilabial | Labiodental | Alveolar | Palatal | Velar |
-|:--|:-:|:-:|:-:|:-:|:-:|
-| Plosive | p pʰ pʲ |  | t tʰ |  | k kʰ kʷ |
-| Affricate |  |  | ts tsʰ | tɕ tɕʰ |  |
-| Nasal | m mʲ |  | n | ɲ | ŋ ŋʷ |
-| Fricative |  | f v | s z | ɕ | x ɣ |
-| Lateral fricative |  |  | ɬ |  |  |
-| Approximant |  |  |  | j |  |
-| Lateral approximant |  |  | l |  |  |
+| Consonants | Bilabial | Labiodental | Alveolar | Palatal | Velar | Glottal |
+|:--|:-:|:-:|:-:|:-:|:-:|:-:|
+| Plosive | p pʰ pʲ p̚ |  | t tʰ t̚ |  | k kʰ kʷ k̚ | ʔ |
+| Affricate |  |  | ts tsʰ | tɕ tɕʰ |  |  |
+| Nasal | m mʲ |  | n | ɲ | ŋ ŋʷ |  |
+| Fricative |  | f v | s z | ɕ | x ɣ |  |
+| Lateral fricative |  |  | ɬ |  |  |  |
+| Approximant |  |  |  | j |  |  |
+| Lateral approximant |  |  | l |  |  |  |
 
-| Vowels | Front | Back |
-|:--|:-:|:-:|
-| Close | i | u ɯ |
-| Close-mid | e | o |
-| Open | a aː |  |
+| Vowels | Front | Central | Back |
+|:--|:-:|:-:|:-:|
+| Close | i |  | u ɯ |
+| Close-mid | e eː |  | o oː |
+| Mid |  | ə |  |
+| Open-mid |  |  | ɔ |
+| Near-open |  | ɐ |  |
+| Open | a aː |  |  |
 
-Sequences that the spec writes as one unit: [aːi] [aːm] [aːn] [aːp̚] [aːp̚˧] [aːt̚] [aːt̚˧] [aːu] [aːŋ] [eːk̚] [eːk̚˧] [eːm] [eːn] [eːp̚] [eːp̚˧] [eːt̚] [eːt̚˧] [eːu] [eːŋ] [ik̚] [ik̚˧] [im] [in] [ip̚] [ip̚˧] [it̚] [it̚˧] [iu] [iŋ] [iə] [iəm] [iən] [iəp̚] [iəp̚˧] [iət̚] [iət̚˧] [iəŋ] [oːi] [oːm] [oːn], and 149 more.
+Sequences that the spec writes as one unit: [k̚˧] [p̚˧] [t̚˧] [w] [ɓ] [ɗ] [˥˧] [˧] [˧˥] [˧˩] [˨˦] [˩].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

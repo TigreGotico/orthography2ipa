@@ -59,7 +59,7 @@ No dataset on the board scores this spec. See the [dataset catalogue](../evaluat
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 105 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 67 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Retroflex | Palatal | Velar | Uvular | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -69,18 +69,20 @@ The spec can emit 105 segments. They come from the letter table, the positional 
 | Trill |  |  | r |  |  |  |  |  |  |
 | Tap |  |  | ɾ |  | ɽ |  |  |  |  |
 | Fricative |  | f | s z | ʃ | ʂ |  | x ɣ |  | h ɦ |
-| Approximant |  | ʋ |  |  |  | j |  |  |  |
+| Approximant |  | ʋ |  |  |  | j j̃ |  |  |  |
 | Lateral approximant |  |  | l |  |  |  |  |  |  |
 
-| Vowels | Front | Back |
-|:--|:-:|:-:|
-| Close | i iː | u uː |
-| Close-mid | eː | oː |
-| Open-mid |  | ɔː |
-| Near-open | æː |  |
-| Open | a aː |  |
+| Vowels | Front | Central | Back |
+|:--|:-:|:-:|:-:|
+| Close | i iː ĩ ĩː |  | u uː ũ ũː |
+| Near-close | ɪ ɪ̃ |  |  |
+| Close-mid | eː ẽː |  | oː õː |
+| Mid |  | ə ə̃ |  |
+| Open-mid |  |  | ɔː ɔ̃ː |
+| Near-open | æː æ̃ː |  |  |
+| Open | a aː ã ãː |  |  |
 
-Sequences that the spec writes as one unit: [bə] [bʱ] [bʱə] [dʒə] [dʒɲ] [dʒɲə] [dʒʱ] [dʒʱə] [d̪ə] [d̪ʱ] [d̪ʱə] [fə] [jə] [kə] [kʃ] [kʃə] [kʰə] [lə] [mə] [nə] [pə] [pʰə] [qə] [sə] [tʃə] [tʃʰə] [t̪ə] [t̪ɾ] [t̪ɾə] [t̪ʰə] [xə] [zə] [ŋə] [ɖə] [ɖʱ] [ɖʱə] [ɡj] [ɡjə] [ɡə] [ɡʱ], and 19 more.
+Sequences that the spec writes as one unit: [bʱ] [dʒʱ] [d̪ʱ] [ɖʱ] [ɡʱ] [ɽʱ].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

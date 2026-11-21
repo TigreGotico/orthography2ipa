@@ -17,8 +17,9 @@ import unicodedata
 
 import pytest
 
-from orthography2ipa import get
+from orthography2ipa import available_codes, get
 from orthography2ipa.g2p import G2P
+from orthography2ipa.vowels import IPA_VOWEL_SYMBOLS as _VOWELS
 
 
 def _t(code, word):
@@ -42,7 +43,7 @@ def _nfd(code, word):
 def test_pt_pt_declares_the_coda_rules():
     ids = [r.id for r in get("pt-PT").allophone_rules]
     assert ids == [
-        "PT_FINAL_EM_NUCLEUS", "PT_FINAL_EM_GLIDE", "PT_FINAL_AM_GLIDE",
+        "PT_EX_CONSONANT_GLIDE", "PT_FINAL_EM_NUCLEUS", "PT_FINAL_EM_GLIDE", "PT_FINAL_AM_GLIDE",
         "PT_FINAL_ENS_NUCLEUS", "PT_FINAL_ENS_GLIDE",
         "PT_FINAL_EN_NUCLEUS", "PT_FINAL_EN_CODA",
         "PT_NASAL_A_RAISE", "PT_STRESSED_A_BEFORE_NASAL", "PT_NASAL_E_RAISE", "PT_NASAL_O_RAISE",
@@ -303,3 +304,27 @@ def test_ss_is_the_plain_alveolar_outside_the_apical_zone(lang):
 def test_ss_stays_apical_where_the_lect_declares_it(lang):
     assert get(lang).graphemes["ss"] == ["s̺"]
     assert "s̺" in _t(lang, "isso")
+
+
+# ─── a broken vowel is two segments ────────────────────────────────────
+
+_PT_LECTS = sorted(code for code in available_codes() if code.startswith("pt-"))
+
+
+@pytest.mark.parametrize("lang", _PT_LECTS)
+def test_no_portuguese_lect_ties_a_vowel_sequence(lang):
+    # The tie bar joins two symbols into one consonant, an affricate or a
+    # double articulation. A broken vowel is two vowels, written [eɐ].
+    spec = get(lang)
+    surfaces = [s for readings in spec.allophones.values() for s in readings or ()]
+    tied = [s for s in surfaces
+            if any(a in _VOWELS and t in "͜͡" and b in _VOWELS
+                   for a, t, b in zip(s, s[1:], s[2:]))]
+    assert tied == []
+
+
+def test_alfena_and_alentejo_write_the_broken_vowel_untied():
+    alfena = get("pt-PT-x-alfena").allophones
+    assert [alfena[v] for v in ("e", "ɛ", "o", "ɔ")] == [
+        ["e", "eɐ"], ["ɛ", "ɛɐ"], ["o", "oɐ"], ["ɔ", "ɔɐ"]]
+    assert get("pt-PT-x-alentejo").allophones["ɛ"] == ["ɛ", "ɛɐ"]

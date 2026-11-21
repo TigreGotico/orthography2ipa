@@ -60,6 +60,8 @@ The spec states the rule as a `word_final` entry on ⟨b d g v⟩ in `positional
 
 The rule covers only the absolute end of the word. The engine has a `coda` position, but the spec does not use it for these letters. So a coda inside a word keeps its voiced value. The spec gives `ˈabʃiːt` for `Abschied` and `ˈjaɡt` for `Jagd`, where the grammars have [p] and [k].
 
+A single vowel letter before one final consonant letter stays short in the spec. The `DE_OPEN_SYLLABLE_*` rules lengthen a vowel only in an open syllable, and these words have a closed one. So the spec gives `ˈɡʁap` for `Grab`, `ˈtak` for `Tag` and `ˈbʁaf` for `brav`, where the table above has [aː].
+
 The spec gives ⟨s⟩ the value [z] at the start of a word and between vowels, as in `sagen` [zaːɡən] and `lesen`. The `word_initial` entry does not check the next letter, so it also voices ⟨s⟩ before a consonant. The spec gives `ˈzkat` for `Skat`.
 
 ### Ach-Laut and ich-Laut
@@ -89,6 +91,8 @@ The spec states this in `positional_graphemes`:
 
 The `after_a` to `after_u` positions exist only for the five plain vowel letters. After ⟨ä ö ü⟩, ⟨ch⟩ takes the generic `after_vowel` entry, which ranks [ç] first. That is correct, because the umlaut vowels are front vowels (`Bücher`, `Löcher`). A diphthong grapheme counts by its first letter. So ⟨au⟩ selects `after_a` and gives [x] in `Bauch`, and ⟨eu⟩ selects `after_e` and gives [ç] in `euch`.
 
+The table gives two forms that the spec does not produce. The spec gives `ˈbʊx` for `Buch`, with a short vowel, where the table has [buːx]. It gives `ˈkɔʁ` for `Chor`. The `word_initial` entry gives the [k], but the vowel is short and the final ⟨r⟩ is [ʁ], where the table has [koːɐ̯].
+
 ### Initial sp and st
 
 At the start of a word, ⟨sp⟩ is [ʃp] and ⟨st⟩ is [ʃt]. In other positions they are [sp] and [st]. The spec has a `word_initial` entry for each digraph.
@@ -97,6 +101,8 @@ At the start of a word, ⟨sp⟩ is [ʃp] and ⟨st⟩ is [ʃt]. In other positi
 |:---|:---:|:---:|:---|
 | Word-initial | [ʃp] | [ʃt] | `spielen` [ʃpiːlən], `stark` [ʃtaʁk] |
 | Not initial | [sp] | [st] | `Wespe` [vɛspə], `Fenster` [fɛnstɐ] |
+
+The spec gives `ˈveːspə` for `Wespe`, with a long vowel, where the table has [ɛ]. The digraph ⟨sp⟩ is one grapheme, so the `DE_OPEN_SYLLABLE_*` rules see one consonant before a vowel and lengthen the ⟨e⟩. The digraph ⟨st⟩ has the same effect: the spec gives `ˈkaːstən` for `Kasten` and `ˈliːstə` for `Liste`, where the vowel is short.
 
 ### Final -ig
 
@@ -116,6 +122,8 @@ Each German vowel letter has a short and a long value, and ⟨e⟩ also has schw
 | ä | [ɛ] / [ɛː] | short/long | `Männer` [mɛnɐ] / `Mädchen` [mɛːtçən] |
 | ö | [œ] / [øː] | short/long | `können` [kœnən] / `hören` [høːʁən] |
 | ü | [ʏ] / [yː] | short/long | `dünn` [dʏn] / `kühn` [kyːn] |
+
+The table gives two forms that the spec does not produce. The spec reads ⟨v⟩ as [v] and gives `ˈvɔl` for `voll`, where the table has [fɔl]. It gives `ˈmɛdçən` for `Mädchen`, with a short vowel before the letters ⟨dch⟩ and a voiced [d], where the table has [mɛːtçən].
 
 The spec lists the short value first. The `DE_OPEN_SYLLABLE_*` allophone rules give the long value to a vowel in an open syllable, before one consonant and a vowel. The `DE_UNSTRESSED_TENSE_*` rules give the tense short value [i o u y] to an unstressed vowel before the stress and at the end of a word (Wiese 1996, ch. 2).
 
@@ -195,7 +203,7 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 70 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 51 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar | Uvular | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -209,15 +217,13 @@ The spec can emit 70 segments. They come from the letter table, the positional r
 
 | Vowels | Front | Central | Back |
 |:--|:-:|:-:|:-:|
-| Close | i iː y yː |  | u uː |
+| Close | i iː i̯ y yː |  | u uː |
 | Near-close | ɪ ʏ |  | ʊ |
 | Close-mid | eː øː |  | o oː |
 | Mid |  | ə |  |
 | Open-mid | œ ɛ ɛː |  | ɔ |
 | Near-open |  | ɐ ɐ̯ |  |
 | Open | a aː |  |  |
-
-Sequences that the spec writes as one unit: [aɪ] [aʊ] [aːh] [eːh] [iːh] [ks] [kv] [oːh] [sp] [st] [tsi̯oːn] [uːh] [yːh] [øːh] [ŋk] [ɔʏ] [ɛʁ] [ɛːh] [ʃp] [ʃt].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

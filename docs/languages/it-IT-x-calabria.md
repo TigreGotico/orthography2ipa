@@ -58,11 +58,11 @@ No dataset on the board scores this spec. See the [dataset catalogue](../evaluat
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 59 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 58 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Dental | Alveolar | Postalveolar | Retroflex | Palatal | Velar |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| Plosive | b bː p pː |  |  | d dː t tː |  | ɖ ɖː |  | k kː ɡ ɡː |
+| Plosive | b bː p pː |  |  | d dː t tː |  | ɖ ɖː ʈ |  | k kː ɡ ɡː |
 | Affricate |  |  |  | dz dːz ts tːs | dʒ dːʒ tʃ tːʃ |  |  |  |
 | Nasal | m mː | ɱ |  | n nː |  |  | ɲ | ŋ |
 | Trill |  |  |  | r rː |  |  |  |  |
@@ -79,7 +79,7 @@ The spec can emit 59 segments. They come from the letter table, the positional r
 | Open-mid | ɛ |  | ɔ |
 | Open | a |  |  |
 
-Sequences that the spec writes as one unit: [kw] [w] [ʈɽ].
+Sequences that the spec writes as one unit: [w].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

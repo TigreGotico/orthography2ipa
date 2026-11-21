@@ -20,7 +20,7 @@ The fields `allophone_passes` and `stress` are not inherited. Every spec on this
 
 ## Defining features
 
-The table gives the features that set each lect apart from `pt-BR`. The lects run from the Southeast to the South and the Centre-West, then the North and the Northeast. `pt-BR-x-floripa` and `pt-BR-x-cuiaba` have their own pages.
+The table gives the features that set each lect apart from `pt-BR`. The lects run from the Southeast to the South and the Centre-West, then the North and the Northeast. `pt-BR-x-floripa`, `pt-BR-x-cuiaba` and `pt-BR-x-paraiba` have their own pages.
 
 | Lect | Region | Features that set it apart | Example |
 |:---|:---|:---|:---|
@@ -37,6 +37,7 @@ The table gives the features that set each lect apart from `pt-BR`. The lects ru
 | [`pt-BR-x-bahia`](#baiano-pt-br-x-bahia) | Salvador | open pretonic [ɛ ɔ] before an open, nasal or low vowel<br>coda /r/ [h], final /r/ deleted | `pedaço` [pɛˈdasu], `bolacha` [bɔˈlaʃɐ], `falar` [faˈla] |
 | [`pt-BR-x-ce`](#cearense-pt-br-x-ce) | Fortaleza | the Baiano pretonics and rhotics<br>coda /s/ [h] before /d n/ | `pedaço` [pɛˈdasu], `desde` [ˈdehd͡ʒi] |
 | [`pt-BR-x-recife`](#pernambucano-pt-br-x-recife) | Recife | /t d/ stops before /i/<br>coda /s/ [ʃ], [ʒ] before a voiced consonant<br>the Northeastern pretonics and rhotics | `tia` [ˈtiɐ], `festa` [ˈfeʃtɐ], `pedaço` [pɛˈdasu] |
+| [`pt-BR-x-paraiba`](pt-BR-x-paraiba.md) | João Pessoa | /t d/ stops before /i/, except after a coda [ʃ ʒ]<br>coda /s/ [ʃ ʒ] before /t d/ only<br>the Northeastern pretonics and rhotics | `tia` [ˈtiɐ], `posto` [ˈpoʃtu], `casca` [ˈkaskɐ], `fogão` [fɔˈɡɐ̃w̃] |
 
 ## Carioca (pt-BR-x-rj)
 
@@ -49,7 +50,8 @@ The Carioca rhotic is posterior. Callou, Moraes & Leite (1998: 62-63) describe t
 | `RJ_CHIADO_CODA_S` | /s/ gives [ʃ] in the coda | `festa` [ˈfeʃtɐ], `paz` [ˈpaʃ] |
 | `RJ_CHIADO_CODA_Z` | /z/ gives [ʒ] in the coda | no word reaches it, see the gaps |
 | `BR_CODA_SH_VOICED` | a coda [ʃ] gives [ʒ] before a voiced consonant | `mesmo` [ˈmeʒmu], `desde` [ˈdeʒd͡ʒi], `Lisboa` [liʒˈboɐ] |
-| `BR_CODA_X`, `BR_XC_ONE_S` | switched off, so ⟨x⟩ keeps the [ʃ] of the coda (also in `pt-BR-x-norte` and `pt-BR-x-recife`) | `texto` [ˈteʃtu], `excesso` [eʃˈsesu] |
+| `BR_CODA_X` | switched off, so ⟨x⟩ keeps the [ʃ] of the coda (also in `pt-BR-x-norte`, `pt-BR-x-recife`, `pt-BR-x-floripa` and `pt-BR-x-cuiaba`) | `texto` [ˈteʃtu] |
+| `BR_XC_ONE_S`, `BR_SC_ONE_S` | kept, because ⟨xc⟩ and ⟨sc⟩ are one /s/ and no coda | `exceção` [eseˈsɐ̃w̃], `nascer` [naˈseh] |
 | `RJ_CODA_R_VELAR` | a coda /R/ before a consonant gives [x] | `porta` [ˈpoxtɐ] |
 | `RJ_CODA_R_FINAL` | a word-final /R/ gives [h] | `mar` [ˈmah] |
 

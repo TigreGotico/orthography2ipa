@@ -439,5 +439,6 @@
       "surface": "ɔ",
       "notes": "DISABLED for this spec. The sources of the pt-BR rule describe Brazil, and none of the sources of this spec gives the vowel before a final lateral."
     }
-  ]
+  ],
+  "collapse_geminates": true
 }

@@ -72,4 +72,4 @@ No board gold exists for this variety. So the correctness of the spec rests on o
 - Cristófaro Silva, Thaïs (2025). "A Representação Fonológica dos Róticos no Português Brasileiro". *Caligrama* 30(3), 238-254. <https://doi.org/10.35699/2238-3824.2025.61138>
 
 ---
-[← Florianópolis Portuguese](pt-BR-x-floripa.md) · [Home](../index.md) · [Angolan Portuguese →](pt-AO.md)
+[← Florianópolis Portuguese](pt-BR-x-floripa.md) · [Home](../index.md) · [Paraibano Portuguese →](pt-BR-x-paraiba.md)

@@ -71,7 +71,7 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 329 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 104 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Retroflex | Palatal | Velar |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -85,12 +85,13 @@ The spec can emit 329 segments. They come from the letter table, the positional 
 | Vowels | Front | Central | Back |
 |:--|:-:|:-:|:-:|
 | Close | i y | ɨ | u |
-| Close-mid |  |  | o ɤ |
+| Near-close |  |  | ʊ |
+| Close-mid | e |  | o ɤ |
 | Mid |  | ə |  |
 | Open-mid | ɛ |  | ɔ |
 | Open | a |  | ɑ |
 
-Sequences that the spec writes as one unit: [ai] [ai˥] [ai˥˩] [ai˧˥] [ai˨˩˦] [an] [an˥] [an˥˩] [an˧˥] [an˨˩˦] [au] [au˥] [au˥˩] [au˧˥] [au˨˩˦] [a˥] [a˥˩] [a˧˥] [a˨˩˦] [ei] [ei˥] [ei˥˩] [ei˧˥] [ei˨˩˦] [fou] [fou˥] [fou˥˩] [fou˧˥] [fou˨˩˦] [fwo] [fwo˥] [fwo˥˩] [fwo˧˥] [fwo˨˩˦] [in] [in˥] [in˥˩] [in˧˥] [in˨˩˦] [iŋ], and 252 more.
+Sequences that the spec writes as one unit: [a˥] [a˥˩] [a˧˥] [a˨˩˦] [e˥] [e˥˩] [e˧˥] [e˨˩˦] [i˥] [i˥˩] [i˧˥] [i˨˩˦] [m˥˩] [m˧˥] [n˥] [n˥˩] [n˧˥] [n˨˩˦] [o˥] [o˥˩] [o˧˥] [o˨˩˦] [u˥] [u˥˩] [u˧˥] [u˨˩˦] [w] [y˥] [y˥˩] [y˧˥] [y˨˩˦] [ŋ˥] [ŋ˥˩] [ŋ˧˥] [ŋ˨˩˦] [ɚ] [ɚ˥] [ɚ˥˩] [ɚ˧˥] [ɚ˨˩˦], and 25 more.
 
 Tones: [˥] high level (1st), [˧˥] rising (2nd), [˨˩˦] dipping (3rd), [˥˩] falling (4th), [] neutral (5th).
 <!-- atlas:inventory end -->

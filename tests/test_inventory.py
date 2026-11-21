@@ -6,6 +6,8 @@ embedding, and the word carrying it is mispronounced permanently and silently.
 So "what can this spec emit?" must have an exact answer, and transcription must
 never step outside it.
 """
+import unicodedata
+
 import pytest
 
 from orthography2ipa import available_codes, get
@@ -324,7 +326,7 @@ KNOWN_DEAD_RULES = {
     # NL_UNSTRESSED_TENSE_I_FINAL / NL_UNSTRESSED_TENSE_I_HIATUS's /ɪ/
     # target can't either. The same gap leaves no /eː øː oː/ slot for the six
     # NL_MID_TENSE_* rules, no /r/ slot for NL_CODA_R_APPROXIMANT, and no
-    # ⟨veld⟩ slot for NL_CODA_DEVOICE_VELD.
+    # ⟨veld⟩ slot for NL_CODA_DEVOICE_VELD, and no ⟨ij⟩ slot for NL_LIJK_SCHWA.
     "vls": {"NL_CODA_DEVOICE_B", "NL_CODA_DEVOICE_D", "NL_CODA_DEVOICE_G",
             "NL_CODA_DEVOICE_V", "NL_CODA_DEVOICE_Z",
             "NL_UNSTRESSED_TENSE_I_FINAL", "NL_UNSTRESSED_TENSE_I_HIATUS",
@@ -333,13 +335,17 @@ KNOWN_DEAD_RULES = {
             "NL_MID_TENSE_CENTRING_BEFORE_R_E", "NL_MID_TENSE_CENTRING_BEFORE_R_OE",
             "NL_MID_TENSE_CENTRING_BEFORE_R_O", "NL_MID_TENSE_CLOSING_DIPHTHONG_E",
             "NL_MID_TENSE_CLOSING_DIPHTHONG_OE", "NL_MID_TENSE_CLOSING_DIPHTHONG_O",
-            "NL_CODA_R_APPROXIMANT", "NL_CODA_DEVOICE_VELD", "NL_QU_FRENCH_K"},
+            "NL_CODA_R_APPROXIMANT", "NL_CODA_DEVOICE_VELD", "NL_QU_FRENCH_K",
+            "NL_LIJK_SCHWA"},
     # Afrikaans has no /z/ (Donaldson, *A Grammar of Afrikaans*, Mouton de
     # Gruyter 1993, ch. 1: ⟨z⟩ is not part of the inventory, and ⟨s⟩ is
     # voiceless everywhere), so the /z/ member of nl-NL's coda-devoicing series
     # has no target here. The other members are live. af has no ⟨veld⟩ or ⟨qu⟩
     # key, so NL_CODA_DEVOICE_VELD and NL_QU_FRENCH_K have no slot to match.
-    "af": {"NL_CODA_DEVOICE_Z", "NL_CODA_DEVOICE_VELD", "NL_QU_FRENCH_K"},
+    # af reads ⟨ij⟩ as /əi/, so NL_LIJK_SCHWA, which targets /ɛi aːi/, has no
+    # target either.
+    "af": {"NL_CODA_DEVOICE_Z", "NL_CODA_DEVOICE_VELD", "NL_QU_FRENCH_K",
+           "NL_LIJK_SCHWA"},
     # pnb-PK (Shahmukhi abjad, no inherent vowel): the inherent-vowel half
     # of each word-initial *DH rule pair has no ``Cə`` slot to match.
     "pnb-PK": {"PA_DH_INITIAL_ɡ˩_0", "PA_DH_INITIAL_dʒ˩_0", "PA_DH_INITIAL_ɖ˩_0", "PA_DH_INITIAL_d̪˩_0", "PA_DH_INITIAL_b˩_0"},
@@ -395,3 +401,98 @@ def test_no_new_dead_allophone_rules(code):
         f"{code}: new dead allophone rules {sorted(unexplained)} — the target "
         f"phoneme is not in this spec's inventory, so the rule can never fire"
     )
+
+
+# ─── every token is one segment ─────────────────────────────────────────
+
+@pytest.mark.parametrize("code", ALL_CODES)
+def test_no_token_starts_with_a_combining_mark(code):
+    """A mark a slot emits alone lands on the segment before it. The coda
+    tilde of Portuguese is never a token of its own."""
+    assert not [t for t in phoneme_inventory(get(code)) if unicodedata.combining(t[0])]
+
+
+@pytest.mark.parametrize("code", ALL_CODES)
+def test_every_token_is_nfc(code):
+    """The engine writes NFC, so a carried mark joins its base as one code
+    point where Unicode has one (e + U+0303 is ẽ), and a token never has a
+    decomposed twin."""
+    assert not [t for t in phoneme_inventory(get(code)) if unicodedata.normalize("NFC", t) != t]
+
+
+@pytest.mark.parametrize("code", ALL_CODES)
+def test_no_token_carries_a_mark_twice(code):
+    """A carried mark joins a token only once: bch e̯ and lsi a̰ already hold
+    theirs, and the engine never writes e̯̯ or a̰̰."""
+    assert not [t for t in phoneme_inventory(get(code))
+                if any(a == b and unicodedata.combining(a) for a, b in zip(t, t[1:]))]
+
+
+@pytest.mark.parametrize("code", ["pt-PT-x-algarve", "pt-PT-x-alentejo"])
+def test_a_precomposed_nasal_vowel_the_engine_writes_is_a_token(code):
+    """nenhum ends in [ỹ] (U+1EF9) in the lects that front /u/; the carried
+    tilde must give that code point, not y + U+0303."""
+    spec = get(code)
+    ipa = G2P(code).transcribe("nenhum")
+    assert "\u1ef9" in ipa
+    assert set(tokenize(ipa, spec)) - {"ˈ", "ˌ"} <= phoneme_inventory(spec)
+
+
+def test_the_coda_tilde_joins_the_vowels_and_glides():
+    """pt-PT: the coda ⟨m n⟩ emits a bare tilde, and PT_FINAL_EM_GLIDE emits
+    ``̃j̃``. The tilde joins the oral vowels and glides the engine lets carry
+    it, and the offglide [j̃] stands alone."""
+    inventory = phoneme_inventory(get("pt-PT"))
+    assert {unicodedata.normalize("NFC", t) for t in ("ɐ̃", "ẽ", "ĩ", "õ", "ũ", "j̃", "w̃")} <= inventory
+    assert not {"\u0303", "\u0303j\u0303", "\u0303w\u0303", "ɐ̃j̃", "ɐ̃w̃"} & inventory
+    assert tokenize("ˈɔmɐ̃j̃", get("pt-PT")) == ["ˈ", "ɔ", "m", "ɐ̃", "j̃"]
+
+
+@pytest.mark.parametrize("code,emission,segments", [
+    ("pt-PT", "ks", ["k", "s"]),          # ⟨x⟩ of táxi
+    ("pt-PT", "ɡz", ["ɡ", "z"]),          # ⟨x⟩ of exame
+    ("pt-PT", "kw", ["k", "w"]),          # ⟨qu⟩ of quatro
+    ("pt-PT", "ɡw", ["ɡ", "w"]),          # ⟨gu⟩ of água
+    ("pt-PT", "ku", ["k", "u"]),          # ⟨qu⟩ read as a syllable
+    ("pt-PT-x-alentejo", "me", ["m", "e"]),            # ⟨meu⟩
+    ("pt-PT-x-madeira", "õns", ["õ", "n", "s"]),       # ⟨-ões⟩
+    ("pt-PT-x-madeira", "ɐ̃ns", ["ɐ̃", "n", "s"]),       # ⟨-ães⟩
+])
+def test_a_cluster_or_syllable_is_cut_into_its_segments(code, emission, segments):
+    spec = get(code)
+    assert emission in emission_inventory(spec)
+    inventory = phoneme_inventory(spec)
+    assert emission not in inventory
+    assert set(segments) <= inventory
+    assert tokenize(emission, spec) == segments
+
+
+@pytest.mark.parametrize("code,segment", [
+    ("ar-SA-x-najd", "ts"),   # an affricate without the tie, not declared
+    ("ar-SA-x-najd", "dz"),
+    ("en-GB", "tʃ"),
+    ("en-GB", "dʒ"),
+])
+def test_an_affricate_stays_one_token_without_the_tie(code, segment):
+    spec = get(code)
+    assert not spec.phonemes or segment not in spec.phonemes
+    assert segment in phoneme_inventory(spec)
+    assert tokenize(segment + "a", spec) == [segment, "a"]
+
+
+def test_one_segment_spellings_stay_whole_and_clusters_do_not():
+    from orthography2ipa.inventory import _segments
+    assert _segments("t͡s") == ["t͡s"]
+    assert _segments("k͡p") == ["k͡p"]
+    assert _segments("kp") == ["kp"]
+    assert _segments("ŋm") == ["ŋm"]
+    assert _segments("ᵐb") == ["ᵐb"]
+    assert _segments("ⁿd͡z") == ["ⁿd͡z"]
+    assert _segments("d̠ʒ") == ["d̠ʒ"]
+    assert _segments("tʃʰ") == ["tʃʰ"]
+    assert _segments("n̠d̠ʒ") == ["n̠", "d̠ʒ"]
+    assert _segments("t͡sa") == ["t͡s", "a"]
+    assert _segments("ks") == ["k", "s"]
+    assert _segments("aj") == ["a", "j"]
+    assert _segments("mb") == ["m", "b"]
+    assert _segments("ʔaː") == ["ʔ", "aː"]

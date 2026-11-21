@@ -58,7 +58,7 @@ No dataset on the board scores this spec. See the [dataset catalogue](../evaluat
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 78 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 49 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -78,7 +78,7 @@ The spec can emit 78 segments. They come from the letter table, the positional r
 | Open-mid | ɛ | ɔ |
 | Open | a |  |
 
-Sequences that the spec writes as one unit: [aj] [aw] [ddz] [dʒi] [dːʒi] [ej] [ew] [ja] [je] [jo] [ju] [ks] [kw] [oj] [sk] [tts] [tʃi] [tːʃi] [uj] [w] [wa] [we] [wo] [ɡl] [ɡw] [ɲɲ] [ʃi] [ʃʃ] [ʎi] [ʎʎ].
+Sequences that the spec writes as one unit: [w].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->
@@ -166,12 +166,13 @@ Stress falls on the penult by default. A written ⟨à⟩ ⟨è⟩ ⟨é⟩ ⟨�
 <!-- atlas:rules begin -->
 ## Rules
 
-The spec applies 6 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
+The spec applies 7 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
 
 | Rule | Change | Example | Cited |
 |:--|:--|:--|:--|
 | `IT_INHERENT_GEMINATE_GN` | /ɲ/ → [ɲɲ], after a vowel, before a vowel | ⟨bagno⟩ [baɲɲo] | Krämer 2009 |
 | `IT_INHERENT_GEMINATE_GLI` | /ʎ/ → [ʎʎ], after a vowel, before a vowel | ⟨aglio⟩ [aʎʎo] | Krämer 2009 |
+| `IT_INHERENT_GEMINATE_GLI_FINAL` | /ʎ/ → [ʎʎ], after [a] [e] [ɛ] [i] [o] [ɔ] [u], before [i] | ⟨figli⟩ [ˈfiʎʎi] | [Bertinetto 2005](#src-bertinetto_loporcaro2005) |
 | `IT_INHERENT_GEMINATE_SC` | /ʃ/ → [ʃʃ], after a vowel, before a vowel | ⟨pesce⟩ [peʃʃe] | Krämer 2009 |
 | `IT_INHERENT_GEMINATE_TS` | /ts/ → [tts], after a vowel, before a vowel | ⟨vizio⟩ [vittsjo] | Krämer 2009 |
 | `IT_INHERENT_GEMINATE_DZ` | /dz/ → [ddz], after a vowel, before a vowel | - | Krämer 2009 |

@@ -76,7 +76,7 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 126 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 62 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar | Uvular | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -98,7 +98,7 @@ The spec can emit 126 segments. They come from the letter table, the positional 
 | Near-open | æ æː |  |  |
 | Open | a aː |  | ɑ ɒː |
 
-Sequences that the spec writes as one unit: [aj] [au] [aə] [aːj] [aːw] [aːə] [eːj] [eːw] [eːə] [iɛ] [iːj] [iːw] [iːə] [iːɛ] [ks] [oj] [ow] [oɑ] [oə] [oːj] [oːw] [oːə] [uːj] [uːw] [uːɑ] [uːə] [uːɛ] [w] [yɛ] [yːj] [yːw] [yːə] [yːɛ] [²] [¹] [æj] [æw] [æə] [æːj] [æːw], and 27 more.
+Sequences that the spec writes as one unit: [w] [²] [¹].
 
 Tones: [¹] Accent 1 (stoottoon), written ⟨\⟩ in Spelling 2003, [²] Accent 2 (sleeptoon), written ⟨~⟩ in Spelling 2003.
 <!-- atlas:inventory end -->

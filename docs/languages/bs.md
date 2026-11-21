@@ -1,13 +1,14 @@
 # Bosnian (`bs`)
 
 <!-- atlas:summary begin -->
-Bosnian is a Slavic language, written in the Latin script. Glottolog places it in Bosnia & Herzegovina, Croatia, Montenegro and Serbia. The `bs` spec is at the research tier. It cites 3 sources and has 0 scored datasets.
+Bosnian is a Slavic language, written in the Latin script. Glottolog places it in Bosnia & Herzegovina, Croatia, Montenegro and Serbia. The `bs` spec is at the research tier. It cites 5 sources and has 0 scored datasets.
 <!-- atlas:summary end -->
 
 <!-- atlas:header begin -->
 | Field | Value |
 |:--|:--|
 | Code | `bs` |
+| Aliases | `bs-Cyrl`, `bs-Cyrl-BA` |
 | ISO 639-3 | [bos](https://iso639-3.sil.org/code/bos), Bosnian |
 | Glottolog | [bosn1245](https://glottolog.org/resource/languoid/id/bosn1245), Bosnian Standard |
 | Wikidata | [Q9303](https://www.wikidata.org/wiki/Q9303) |
@@ -29,7 +30,7 @@ The notes of the spec file open with these words:
 
 > Bosnian (bosanski), Shtokavian standard of the Serbo-Croatian pluricentric language, written in Gaj's Latin alphabet (30 letters, including the digraphs dž, lj, nj which are single letters). Highly phonemic: one letter = one phoneme. ⟨r⟩ may be syllabic between consonants.
 
-The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. No board row scores it yet, so the measured gold of that tier is still missing. It cites 3 works, from 1996 to 2025. 2 of them are Wikipedia articles. [Sources](#sources) lists them. The spec file writes all 30 spellings of its letter table itself.
+The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. No board row scores it yet, so the measured gold of that tier is still missing. It cites 5 works, from 1996 to 2026. 2 of them are Wikipedia articles. [Sources](#sources) lists them. The spec file writes all 60 spellings of its letter table itself.
 
 The [spec file](../../orthography2ipa/data/bs.json) holds the full notes, with the caveats of the spec.
 <!-- atlas:overview end -->
@@ -43,11 +44,13 @@ No spec names `bs` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 2 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
+The spec cites 5 works. 4 of them have a DOI or a URL. The spec file holds a note on what 3 of them support.
 
 1. <a id="src-halilovic1996"></a>Halilović, Senahid (1996). *Pravopis bosanskoga jezika*. Preporod, Sarajevo.
 2. <a id="src-scr_phon_wiki"></a>Wikipedia contributors (2025). *Serbo-Croatian phonology*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Serbo-Croatian_phonology)
 3. <a id="src-bosnian_wiki"></a>Wikipedia contributors (2025). *Bosnian language*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Bosnian_language)
+4. <a id="src-icann_lgr_bs_cyrl2026"></a>ICANN (2026). *Reference LGR for language: Bosnian (bs-Cyrl), Version 3*. ICANN. [icann.org](https://www.icann.org/sites/default/files/packages/lgr/lgr-second-level-bosnian-cyrillic-language-13aug26-en.html)
+5. <a id="src-cldr_bs_cyrl"></a>Unicode Consortium (2026). *Common Locale Data Repository, locale bs_Cyrl, exemplarCharacters*. Unicode CLDR. [github.com](https://github.com/unicode-org/cldr/blob/main/common/main/bs_Cyrl.xml)
 <!-- atlas:sources end -->
 
 <!-- atlas:datasets begin -->
@@ -115,6 +118,36 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨đ⟩ | [dʑ] |  |
 | ⟨š⟩ | [ʃ] |  |
 | ⟨ž⟩ | [ʒ] |  |
+| ⟨а⟩ | [a] |  |
+| ⟨б⟩ | [b] |  |
+| ⟨в⟩ | [ʋ] |  |
+| ⟨г⟩ | [ɡ] |  |
+| ⟨д⟩ | [d] |  |
+| ⟨е⟩ | [e] |  |
+| ⟨ж⟩ | [ʒ] |  |
+| ⟨з⟩ | [z] |  |
+| ⟨и⟩ | [i] |  |
+| ⟨к⟩ | [k] |  |
+| ⟨л⟩ | [l] |  |
+| ⟨м⟩ | [m] |  |
+| ⟨н⟩ | [n] |  |
+| ⟨о⟩ | [o] |  |
+| ⟨п⟩ | [p] |  |
+| ⟨р⟩ | [r] |  |
+| ⟨с⟩ | [s] |  |
+| ⟨т⟩ | [t] |  |
+| ⟨у⟩ | [u] |  |
+| ⟨ф⟩ | [f] |  |
+| ⟨х⟩ | [x] |  |
+| ⟨ц⟩ | [ts] |  |
+| ⟨ч⟩ | [tʃ] |  |
+| ⟨ш⟩ | [ʃ] |  |
+| ⟨ђ⟩ | [dʑ] |  |
+| ⟨ј⟩ | [j] |  |
+| ⟨љ⟩ | [ʎ] |  |
+| ⟨њ⟩ | [ɲ] |  |
+| ⟨ћ⟩ | [tɕ] |  |
+| ⟨џ⟩ | [dʒ] |  |
 
 The spec declares no stress rule.
 <!-- atlas:spelling end -->

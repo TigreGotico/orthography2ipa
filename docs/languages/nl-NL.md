@@ -1,7 +1,7 @@
 # Dutch (`nl-NL`)
 
 <!-- atlas:summary begin -->
-Dutch is a West Germanic language, written in the Latin script. Its code names Netherlands. The `nl-NL` spec is at the research tier. It cites 9 sources and has 4 scored datasets.
+Dutch is a West Germanic language, written in the Latin script. Its code names Netherlands. The `nl-NL` spec is at the research tier. It cites 10 sources and has 4 scored datasets.
 <!-- atlas:summary end -->
 
 <!-- atlas:header begin -->
@@ -31,7 +31,7 @@ The notes of the spec file open with these words:
 
 > Standard Dutch (ABN / Algemeen Nederlands). ⟨g⟩ and ⟨ch⟩ are the voiceless uvular [χ].
 
-The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 9 works, from 1980 to 2007. [Sources](#sources) lists them. The spec file writes all 66 spellings of its letter table itself.
+The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 10 works, from 1980 to 2007. [Sources](#sources) lists them. The spec file writes all 66 spellings of its letter table itself.
 
 The [spec file](../../orthography2ipa/data/nl-NL.json) holds the full notes, with the caveats of the spec.
 <!-- atlas:overview end -->
@@ -52,7 +52,7 @@ These specs name `nl-NL` as their parent. They are sorted by country, and a lect
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 9 works. 6 of them have a DOI or a URL. The spec file holds a note on what 8 of them support.
+The spec cites 10 works. 7 of them have a DOI or a URL. The spec file holds a note on what 9 of them support.
 
 1. <a id="src-gussenhoven1999"></a>Gussenhoven, C. (1999). *Dutch*. Cambridge University Press.
 2. <a id="src-vdHulst_ritter1999"></a>van der Hulst, H. & Ritter, N.A. (eds.) (1999). *The Syllable: Views and Facts*. Mouton de Gruyter.
@@ -63,6 +63,7 @@ The spec cites 9 works. 6 of them have a DOI or a URL. The spec file holds a not
 7. <a id="src-verhoeven_hageman2007"></a>Verhoeven, J. & Hageman, G. (2007). *De verstemlozing van fricatieven in Vlaanderen*. Nederlandse Taalkunde. Cited: 138-151.
 8. <a id="src-trommelen_zonneveld1989"></a>Trommelen, M. & Zonneveld, W. (1989). *Klemtoon en metrische fonologie*. Dick Coutinho, Muiderberg. Cited: 131-138. [dbnl.org](https://www.dbnl.org/tekst/trom001klem01_01/)
 9. <a id="src-dewulf2003"></a>De Wulf, C. (2003). *Procope van de h-*. Taal en Tongval. Cited: 216-231. [journal-archive.aup.nl](https://www.journal-archive.aup.nl/taal-en-tongval/jrg_2003_vol_55_-_procope_van_de_h-.pdf)
+10. <a id="src-trommelen_zonneveld1992"></a>Trommelen, M. & Zonneveld, W. (1992). *Schappelijke woorden*. De Nieuwe Taalgids 85. Cited: 115. [dbnl.org](https://www.dbnl.org/tekst/_taa008199201_01/_taa008199201_01_0013.php)
 <!-- atlas:sources end -->
 
 <!-- atlas:datasets begin -->
@@ -72,16 +73,16 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 
 | Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
 |:--|:--|:--|:--|:--|--:|--:|:--|
-| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `nl-NL` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 45872 | 0.1824 | yes |
-| `ipadict` ([open-dict-data/ipa-dict](https://github.com/open-dict-data/ipa-dict)) | `nl-NL` | generated | machine-generated | MIT, each file its own | 117869 | 0.2649 | yes |
-| `ipa_childes` ([fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split)) | `nl-NL` | generated | espeak-derived | CC BY 4.0 | 8108 | 0.2673 | no |
-| `vox_communis` ([fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p)) | `nl-NL` | generated | epitran-derived | CC0 1.0 | 25904 | 0.3804 | no |
+| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `nl-NL` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 45872 | 0.1803 | yes |
+| `ipadict` ([open-dict-data/ipa-dict](https://github.com/open-dict-data/ipa-dict)) | `nl-NL` | generated | machine-generated | MIT, each file its own | 117869 | 0.2627 | yes |
+| `ipa_childes` ([fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split)) | `nl-NL` | generated | espeak-derived | CC BY 4.0 | 8108 | 0.2657 | no |
+| `vox_communis` ([fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p)) | `nl-NL` | generated | epitran-derived | CC0 1.0 | 25904 | 0.3817 | no |
 <!-- atlas:datasets end -->
 
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 77 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 54 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar | Uvular | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -95,14 +96,14 @@ The spec can emit 77 segments. They come from the letter table, the positional r
 
 | Vowels | Front | Central | Back |
 |:--|:-:|:-:|:-:|
-| Close | i iː y yː |  | u uː |
+| Close | i iː i̞ y yː |  | u uː |
 | Near-close | ɪ ʏ |  |  |
-| Close-mid | eː øː |  | oː |
+| Close-mid | e eː ø øː |  | o oː |
 | Mid |  | ə |  |
-| Open-mid | ɛ |  | ɔ |
+| Open-mid | œ ɛ |  | ɔ ʌ |
 | Open | aː |  | ɑ |
 
-Sequences that the spec writes as one unit: [aːi] [brɛχt] [bɛɹχ] [ei] [ei̞] [eːu] [eːʋ] [eᵊ] [is] [iu] [iʋ] [jøː] [ks] [kɛɹk] [kʋ] [ou] [oᵊ] [sχ] [vɛld] [vɛlt] [w] [yu] [yʋ] [øy] [øᵊ] [ŋk] [œy] [œʏ] [ɑu] [ɔi] [ɛi] [ɛɪ] [ʌu].
+Sequences that the spec writes as one unit: [eᵊ] [oᵊ] [w] [øᵊ].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->
@@ -187,7 +188,7 @@ Whole-word exceptions (18): ⟨bevel⟩ [bəˈvɛl], ⟨gestel⟩ [χəˈstɛl],
 <!-- atlas:rules begin -->
 ## Rules
 
-The spec applies 18 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
+The spec applies 19 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
 
 | Rule | Change | Example | Cited |
 |:--|:--|:--|:--|
@@ -209,6 +210,7 @@ The spec applies 18 allophone rules after the letters are read. The change colum
 | `NL_CODA_DEVOICE_Z` | /z/ → [s], in the coda, before [t] [k] [s] [f] [p] [x] [χ], spelled ⟨z⟩ | ⟨raad-sel⟩ [raːtsəl] | Booij 1995 |
 | `NL_CODA_R_APPROXIMANT` | /r/ → [ɹ], not word-initially, in the coda, with more context in the spec | ⟨door⟩ [doᵊɹ] | [Gussenhoven 1992](#src-gussenhoven1992) |
 | `NL_QU_FRENCH_K` | /ʋ w/ → ∅, after [k], spelled ⟨qu⟩, in 29 listed words | ⟨pubquiz⟩ [ˈpʏpkʋɪs] | [Paardekooper 1987](#src-paardekooper1987) |
+| `NL_LIJK_SCHWA` | /ɛi aːi/ → [ə], unstressed, spelled ⟨ij⟩, after ⟨l⟩, before ⟨k⟩ | - | [Trommelen 1992](#src-trommelen_zonneveld1992) |
 <!-- atlas:rules end -->
 
 <!-- atlas:examples begin -->

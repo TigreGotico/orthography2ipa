@@ -65,7 +65,7 @@ No dataset on the board scores this spec. See the [dataset catalogue](../evaluat
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 30 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 29 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Dental | Alveolar | Postalveolar | Palatal | Velar | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -84,7 +84,7 @@ The spec can emit 30 segments. They come from the letter table, the positional r
 | Close-mid | e | o |
 | Open | a |  |
 
-Sequences that the spec writes as one unit: [ks] [w].
+Sequences that the spec writes as one unit: [w].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->
@@ -150,7 +150,7 @@ The spec applies 6 rules across a word boundary. The contexts are regular expres
 | `ES_EXT_FINAL_N_CORONAL` | `([nŋ])$` | `^[ˈˌ]?[tdðθszlɾrnɲʎʝʃʒf]` | left ∅ | - | Navarro Tomás 1918 |
 | `ES_EXT_FINAL_N_VELAR` | `([nŋ])$` | `^[ˈˌ]?[kɡɣxw]` | left ∅ | - | Navarro Tomás 1918 |
 
-The spec switches off 6 inherited rules: `ES_TRILL_AFTER_CORONAL`, `ES_NASAL_LABIAL`, `ES_NASAL_VELAR`, `ES_SPIRANT_B`, `ES_SPIRANT_D`, `ES_SPIRANT_G`.
+The spec switches off 7 inherited rules: `ES_TRILL_AFTER_CORONAL`, `ES_NASAL_LABIAL`, `ES_NASAL_VELAR`, `ES_S_VOICING`, `ES_SPIRANT_B`, `ES_SPIRANT_D`, `ES_SPIRANT_G`.
 <!-- atlas:rules end -->
 
 <!-- atlas:examples begin -->

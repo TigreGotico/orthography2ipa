@@ -38,6 +38,7 @@ import unicodedata
 import warnings
 from dataclasses import dataclass, replace
 from functools import cached_property
+from itertools import accumulate
 from typing import Callable, Dict, FrozenSet, List, Optional, Set, Tuple
 
 from orthography2ipa.exceptions import (StubSpecWarning,
@@ -91,13 +92,14 @@ from orthography2ipa.sentence import (
     span_position,
 )
 from orthography2ipa.stress import (
-    SECONDARY_MARK, _AFFRICATES, _syllables_for, apply_iambic_length,
-    apply_stress_mark, cliticless_keys, detect_stress, detect_stress_by_weight,
+    SECONDARY_MARK, _AFFRICATES, _LENGTH_MARKS, _NON_SYLLABIC,
+    _syllables_for, apply_iambic_length, apply_stress_mark,
+    cliticless_keys, detect_stress, detect_stress_by_weight,
     secondary_stress_positions, syllabify, syllabify_for_mark, syllabify_ipa,
 )
 from orthography2ipa.tone import assign_computed_tones, dock_tone_marks
 from orthography2ipa.transforms import apply_transform
-from orthography2ipa.types import GraphemePosition, LanguageSpec
+from orthography2ipa.types import GraphemePosition, LanguageSpec, ScriptType
 
 #: Punctuation clinging to either end of a raw word (see ``_override_for``).
 #: An apostrophe is not clinging punctuation: it spells an elision (Catalan
@@ -444,24 +446,27 @@ class G2P:
         resolved, and still names the language the result is reported under.
     expand_allophones : bool
         Enumerate surface variants: branch the beam over every allophone of
-        each phoneme from ``spec.allophones`` (flat ``+0.5`` cost each). This
+        each phoneme from ``spec.allophones``, at ``+0.5`` cost per rank after
+        the first. This
         *inflates* the search space with every variant; it does not pick the
         contextually-correct one. Use it to see all surface possibilities.
         Independent of :paramref:`apply_allophony` (the realisation path).
     apply_allophony : bool
         Apply the spec's declarative ``allophone_rules`` — the post-lexical
-        ``phoneme → surface`` realisation pass (Workstream B8) — as a
-        rescorer after phoneme selection and before stress/sandhi. Default
-        ``True``, but a **no-op for every spec that declares no**
-        ``allophone_rules`` (i.e. all shipped specs bar the pilots), so the
-        default engine path stays byte-identical. Set ``False`` to force
+        ``phoneme → surface`` realisation pass — as a rescorer after phoneme
+        selection and the caller's rescorers, and before stress marks and
+        sandhi. Default ``True``. A spec that declares no ``allophone_rules``
+        gives the same output either way. Set ``False`` to force
         broad/phonemic output even for a spec that declares rules. See
         :mod:`orthography2ipa.allophony`.
     dialect_profile : Optional[str]
-        ``DIALECT_PROFILES`` key applied to the final IPA
-        (see :func:`orthography2ipa.apply_transform`).
+        ``DIALECT_PROFILES`` key applied to the sentence IPA that
+        :meth:`transcribe` and :meth:`transcribe_detailed` return
+        (see :func:`orthography2ipa.apply_transform`). The word methods do
+        not apply it.
     apply_sandhi : bool
-        Apply the spec's cross-word sandhi rules (default).
+        Apply the spec's cross-word ``sandhi_rules`` (default). ``False``
+        does not turn off ``Pipeline(sandhi=...)``.
     apply_stress : bool
         Insert stress marks when the spec declares stress rules
         (default).
@@ -472,9 +477,11 @@ class G2P:
     rescorer, sentence_rescorer, plugins
         Deprecated: use ``Pipeline(rescore=...)``, ``Pipeline(sandhi=...)``
         and the ``Pipeline`` field of each stage. Each old argument that is
-        not ``None`` raises :class:`DeprecationWarning`.
+        not ``None`` warns :class:`DeprecationWarning`. An old argument for a
+        stage whose ``Pipeline`` field is also set raises :class:`ValueError`.
     pipeline : Optional[Pipeline]
-        The lexicon and the syllabifier for this engine alone (see
+        The steps for this engine alone: ``lexicon``, ``syllabifier``,
+        ``expand``, ``mark``, ``rescore`` and ``sandhi`` (see
         :class:`~orthography2ipa.pipeline.Pipeline`). Another engine in the
         same process does not see them.
     on_unmapped : str
@@ -488,9 +495,8 @@ class G2P:
           (``N*``) emits
           :class:`~orthography2ipa.exceptions.UnmappedGraphemeWarning`
           once per engine and character. Punctuation, symbols and
-          spaces do not warn, and a stub spec warns
-          :class:`~orthography2ipa.exceptions.StubSpecWarning` once
-          instead.
+          spaces do not warn, and a stub spec does not warn per
+          character.
         - ``"ignore"``: the same output with no signal. Inspect
           :attr:`WordTranscription.unmapped` /
           :attr:`WordTranscription.coverage` via
@@ -500,6 +506,19 @@ class G2P:
         - ``"raise"``: raises
           :class:`~orthography2ipa.exceptions.UnmappedScriptError`
           instead of returning a result for that word.
+
+        In every mode, an engine on a stub spec warns
+        :class:`~orthography2ipa.exceptions.StubSpecWarning` once, when
+        it is built.
+    allow_undeclared_phonemes : bool
+        Accept forced ``<phoneme ph="...">`` IPA that holds a segment
+        outside the spec's declared inventory. Default ``False``: such a
+        forced reading raises :class:`~orthography2ipa.markup.MarkupError`.
+    expose_ambiguous_endings : bool
+        Let a list-valued ``grammatical_endings`` entry add its lower-ranked
+        readings to the beam (default). The 1-best output is the same either
+        way. The benchmark scoreboard sets it ``False``, so that its oracle
+        columns measure ranking error only.
     """
 
     def __init__(
@@ -1678,7 +1697,15 @@ class G2P:
                         ipa, self.spec.stress.max_onset),
                 )
             else:
-                sylls = self._syllables_cached(word)
+                # An abugida writes no letter for the inherent vowel, so its
+                # written division has fewer syllables than the word: Assamese
+                # ⟨চকু⟩ [sɔku] is one written syllable, and a count over it
+                # puts every stress on the last syllable. The transcription's
+                # own division counts the inherent vowels, so the stress rules
+                # count its syllables.
+                sylls = (syllabify_for_mark(ipa, self.spec.stress)
+                         if self.spec.script_type == ScriptType.ABUGIDA
+                         else self._syllables_cached(word))
                 idx = detect_stress(word, self.spec.stress, syllables=sylls)
                 mark = None
                 rules = self.spec.stress
@@ -1689,7 +1716,9 @@ class G2P:
                         mark = rules.accent2_mark
                 ipa = apply_stress_mark(
                     ipa, self.spec.stress, idx, syllables=sylls, mark=mark,
-                    ipa_syllables=self._fold_inserted_nuclei(word, ipa, path),
+                    ipa_syllables=self._cut_written_syllables(
+                        word, ipa, path, sylls,
+                        self._fold_inserted_nuclei(word, ipa, path)),
                     secondary_indices=sorted(secondary_stress_positions(
                         len(sylls), idx, self.spec.stress)),
                     spec=self.spec)
@@ -1715,9 +1744,11 @@ class G2P:
         syllable whose only vowels are inserted joins the syllable before it,
         so the count sees the written syllables again: ``pa|ki|tu`` is counted
         as ``paki|tu``. A word where nothing folds returns ``None`` and keeps
-        the plain count.
+        the plain count. An abugida's stress counts the syllables of the
+        transcription itself, so nothing folds there.
         """
-        if path is None or not path.graphemes or path.ipa != ipa:
+        if (path is None or not path.graphemes or path.ipa != ipa
+                or self.spec.script_type == ScriptType.ABUGIDA):
             return None
         tokens = self._tokenizer.grapheme_tokens(word)
         inserted: Set[int] = set()
@@ -1746,6 +1777,120 @@ class G2P:
                 folded.append(syllable)
             offset += len(syllable)
         return folded if len(folded) < len(syllables) else None
+
+    def _cut_written_syllables(
+        self, word: str, ipa: str, path: Optional[IPAPath],
+        syllables: List[str], division: Optional[List[str]],
+    ) -> Optional[List[str]]:
+        """*division* with a syllable cut where the transcription lost a
+        written syllable, or *division* unchanged.
+
+        The stress index counts written syllables. A consonant letter that
+        adds no segment leaves the vowels on either side of it in one vowel
+        run, and the IPA division takes a run as one nucleus unless the spec's
+        diphthongs split it. The transcription then has a syllable fewer than
+        the spelling, and the end-anchored count lands the mark one syllable
+        early: Dutch ⟨getrouwe⟩ divides ge-trou-we, ⟨ouw⟩ reads [ɑu] and its
+        ⟨w⟩ adds nothing, and the mark of [χətrɑuə] went on the prefix. The
+        path records the grapheme of each segment, so the run is cut where
+        the written syllable of its vowels changes: χə|trɑu|ə.
+
+        A cut needs a syllabic vowel on each side, from two neighbouring
+        written syllables, and a letter before the vowel of the second one:
+        two vowel letters in contact are the business of
+        :func:`~orthography2ipa.stress._written_vowel_contacts`. A hyphen is
+        no such letter. It joins the parts of a compound, and the stress
+        rules place the mark of a compound: Barranquenho
+        ⟨rebenta-e-treh⟩ keeps its mark on ⟨treh⟩. Two vowel
+        letters that are one of the spec's ``diphthongs`` are not cut either,
+        because across a silent letter they can be one nucleus, and the
+        transcription decides.
+
+        A vowel letter the spec has no grapheme for adds no segment either.
+        When it is the only vowel of its written syllable, the consonants of
+        that syllable join a neighbouring IPA syllable: ``tr`` drops the ⟨â⟩
+        of ⟨derhâl⟩, and [deɾhl] is one syllable. The transcription is
+        divided as if a vowel stood where the letter was, deɾ|həl, and that
+        syllable keeps its consonants without the vowel: deɾ|hl. The mark
+        then stands at the onset of the stressed written syllable, and a
+        coda of the syllable before stays outside it.
+
+        *division* is the IPA division the caller has so far, ``None`` for
+        the plain one.
+        """
+        if path is None or not path.graphemes or path.ipa != ipa:
+            return division
+        sylls = division or syllabify_for_mark(ipa, self.spec.stress)
+        if len(sylls) >= len(syllables) or "".join(syllables) != word:
+            return division
+        tokens = self._tokenizer.grapheme_tokens(word)
+        token_syllable = self._map_tokens_to_syllables(tokens, syllables)
+        owner: List[int] = []
+        source: List[int] = []
+        t = 0
+        for grapheme, segment in zip(path.graphemes, path.segments):
+            while t < len(tokens) and tokens[t].grapheme != grapheme:
+                t += 1
+            if t == len(tokens):
+                return division
+            owner += [token_syllable[t]] * len(segment)
+            source += [tokens[t].position] * len(segment)
+            t += 1
+        if len(owner) != len(ipa):
+            return division
+        starts = [sum(map(len, syllables[:k])) for k in range(len(syllables))]
+        diphthongs = {d.lower() for d in self.spec.stress.diphthongs}
+        cuts: Set[int] = set()
+        last: Optional[int] = None
+        for o, ch in enumerate(ipa):
+            if not is_ipa_vowel(ch):
+                if not (unicodedata.combining(ch) or ch in _LENGTH_MARKS):
+                    last = None
+                continue
+            following = ipa[o + 1:o + 2]
+            if (last is not None and owner[o] == owner[last] + 1
+                    and not (following and following in _NON_SYLLABIC)):
+                before, after = syllables[owner[last]], syllables[owner[o]]
+                first = next(
+                    (c for c in after if is_orthographic_vowel(c)), "")
+                lead = after[:source[o] - starts[owner[o]]]
+                if (any(c.isalpha() for c in lead)
+                        and (before[-1:] + first).lower() not in diphthongs):
+                    cuts.add(o)
+            last = o
+        read = {i for token in tokens
+                for i in range(token.position, token.position + token.length)}
+        # Where a stand-in vowel goes: after the segments of the letters
+        # before the dropped vowel letter of each such syllable.
+        drops: List[int] = []
+        for k, syllable in enumerate(syllables):
+            segments = [o for o, w in enumerate(owner) if w == k]
+            dropped = [i for i, c in enumerate(syllable, start=starts[k])
+                       if is_orthographic_vowel(c) and i not in read]
+            if (segments and dropped
+                    and not any(is_ipa_vowel(ipa[o]) for o in segments)):
+                drops.append(next((o for o in segments
+                                   if source[o] > dropped[0]),
+                                  segments[-1] + 1))
+        if drops:
+            # Divide with the stand-ins in place, so that each such syllable
+            # opens with an onset the spec licenses: derhâl deɾ|hl, not
+            # de|ɾhl.
+            probe = "ə".join(ipa[a:b] for a, b in
+                             zip([0, *drops], [*drops, len(ipa)]))
+            stand_ins = [at + i for i, at in enumerate(drops)]
+            ends = [0, *accumulate(map(len, syllabify_for_mark(
+                probe, self.spec.stress)))]
+            for p in stand_ins:
+                start = max(e for e in ends if e <= p)
+                end = min(e for e in ends if e > p)
+                start -= sum(q < start for q in stand_ins)
+                end -= sum(q < end for q in stand_ins)
+                cuts |= {start, end}
+        bounds = set(accumulate(map(len, sylls[:-1]))) | cuts
+        edges = [0, *sorted(b for b in bounds if 0 < b < len(ipa)), len(ipa)]
+        cut = [ipa[a:b] for a, b in zip(edges, edges[1:])]
+        return cut if len(cut) > len(sylls) else division
 
     def word_candidates(self, word: str, *, k: int = 5,
                         beam_width: Optional[int] = None) -> List[str]:

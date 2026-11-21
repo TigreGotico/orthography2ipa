@@ -8,8 +8,9 @@ from functools import lru_cache
 from importlib.metadata import entry_points
 from typing import Dict, List, Optional
 
-from linguatag import closest_lang, with_default_region
+from linguatag import closest_lang, likely_script, with_default_region
 
+import orthography2ipa.json_loader as json_loader
 from orthography2ipa.json_loader import available_json_codes, load_json_spec
 from orthography2ipa.types import LanguageSpec
 from orthography2ipa.version import VERSION_MAJOR
@@ -33,7 +34,7 @@ class UnknownVariantWarning(UserWarning):
 
 def _warn_unknown_variant(code: str, resolved: str, stacklevel: int) -> None:
     parts = _PRIVATE_USE.split(code, maxsplit=1)
-    if (len(parts) == 1 or resolved not in available_json_codes()
+    if (len(parts) == 1 or resolved not in json_loader._index
             or resolves_exactly(code)):
         return
     discarded = parts[1]
@@ -189,6 +190,9 @@ _ALIASES: Dict[str, str] = {
     # region and lose the lect.
     "pt-BR-x-sao-paulo": "pt-BR-x-sp",
     "pt-BR-x-rio-janeiro": "pt-BR-x-rj",
+    # The state code of Paraíba. The spec key spells the state out, because
+    # "PB" also abbreviates "português brasileiro" in Brazilian linguistics.
+    "pt-BR-x-pb": "pt-BR-x-paraiba",
     # Brasília speech shows no feature that separates it from the pt-BR base
     # in the opened sources (alveolar coda /S/, 97 %: Hora 1999: 35), so the
     # code reads the base.
@@ -199,6 +203,10 @@ _ALIASES: Dict[str, str] = {
     # these tags keep resolving under ``strict=True``.
     "cnr-Cyrl": "cnr", "cnr-Cyrl-BA": "cnr", "cnr-Cyrl-HR": "cnr",
     "cnr-Cyrl-ME": "cnr", "cnr-Cyrl-RS": "cnr", "cnr-Cyrl-XK": "cnr",
+    # The bs spec reads both Bosnian alphabets. The tag distance reads no
+    # spec data, so it puts ``bs-Cyrl`` nearer to ``sr`` than to ``bs``.
+    # These are the two Bosnian Cyrillic locales of CLDR.
+    "bs-Cyrl": "bs", "bs-Cyrl-BA": "bs",
     # Galician has one standard spec, ``gl-ES``, and its varieties carry the
     # region. These are the retired codes of the same varieties.
     "gl-x-central": "gl-ES-x-central",
@@ -384,9 +392,11 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
        regard to case (``MNK`` → ``mnk``), then
        ``langcodes.standardize_tag()`` when the library is available and the
        code is not a private-use subtag (``x-`` extension).
-    3. Exact match of the standardized code. A private-use tag also matches
-       with a Suppress-Script subtag dropped (``pt-Latn-BR-x-sp`` →
-       ``pt-BR-x-sp``).
+    3. Exact match of the standardized code, also with a script subtag
+       dropped when it is the likely script of the rest of the tag and the
+       language subtag is unchanged (``apc-Arab-SY`` → ``apc-SY``). A
+       private-use tag also matches with a Suppress-Script subtag dropped
+       (``pt-Latn-BR-x-sp`` → ``pt-BR-x-sp``).
     4. The default region of a bare primary-language tag, when that
        spec is registered (``pt`` → ``pt-PT``), or the curated default
        variant of a region tag with only sub-regional specs
@@ -402,7 +412,8 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
     """
     if code in _ALIASES:
         return _ALIASES[code]
-    available = available_json_codes()
+    # Membership reads the index dict; available_json_codes() sorts every code.
+    available = json_loader._index
     # A registered code names its own spec. ``macro=True`` below folds an
     # individual language into its macrolanguage (``tl`` → ``fil``,
     # ``bcl`` → ``bik``), which would miss the spec.
@@ -423,6 +434,17 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
             return _ALIASES[code]
     if code in available:
         return code
+    # A script subtag that linguatag gives as the likely script of the rest of
+    # the tag adds nothing to it, so ``apc-Arab-SY`` names ``apc-SY``. Left in,
+    # it ties ``apc-SY`` with bare ``apc``, which maximizes to ``apc-Arab-SY``.
+    # The language must be the one the tag gives: ``kas-Arab`` standardizes to
+    # ``ks-Arab``, and the own-language search below keeps it on ``kas``.
+    primary, *rest = code.split("-")
+    if (rest and len(rest[0]) == 4 and rest[0].isalpha()
+            and primary == requested.split("-")[0].lower()):
+        unscripted = "-".join([primary, *rest[1:]])
+        if unscripted in available and likely_script(unscripted) == rest[0]:
+            return unscripted
     if _HAS_LANGCODES and _PRIVATE_USE.search(code):
         # A script subtag that is the language's IANA Suppress-Script adds
         # no information (RFC 5646 §3.1.9), so ``pt-Latn-BR-x-sp`` names
@@ -455,6 +477,20 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
     # An unknown variant falls back to the standard variety, not to whichever
     # sibling lect ties with it: private use counts for nothing in the distance.
     candidates = sorted({*available, *_RENAMED})
+    # The bs spec reads Cyrillic too, so a Bosnian Cyrillic tag of any region
+    # or private use is Bosnian. Left to the distance it finds no near spec.
+    if primary == "bs" and rest and rest[0].lower() == "cyrl":
+        return "bs"
+    # Likely subtags make bare ``ar`` Egyptian, so the distance puts a region
+    # no Arabic spec names beside whichever dialect spec sorts first
+    # (``ar-ZZ`` → ``arz-EG``, ``ar-FR`` → ``afb-AE``). No source states a
+    # difference from Modern Standard Arabic for such a region.
+    script = rest[0] if rest and len(rest[0]) == 4 and rest[0].isalpha() else None
+    if (primary == "ar" and (script is None or script.lower() == "arab")
+            and (region := _region_subtag(code))
+            and region not in {_region_subtag(c) for c in candidates
+                               if c.split("-")[0] == "ar"}):
+        return "ar"
     # The primary language subtag names the language. When that language has
     # a spec, the match stays inside it: ``sr-Latn-RS`` is Serbian, and
     # langcodes would otherwise pick ``cnr``, whose likely subtags are
@@ -466,13 +502,21 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
     # language: langcodes folds ``fat-GH`` into ``ak-GH``, and CLDR 49 makes
     # Fanti a language apart from Akan, so ``ak-GH`` is not near ``fat``.
     # With no own-language spec near enough, the search is as wide as
-    # before, so no tag that resolved stops resolving.
+    # before. Only the tags that stood near ``sr`` through the old ``sh``
+    # rules stop resolving: ``hr-Cyrl``, since CLDR 49 puts Croatian and
+    # Serbian 80 apart.
     match = None
     for tag in (requested, code):
         language = tag.split("-")[0].lower()
         own = [c for c in candidates
                if len(language) > 1 and c.split("-")[0].lower() == language]
         if own:
+            # CLDR lists no likely script for a language it does not name
+            # (``fat``), so ``Latn`` has nothing to be measured against and
+            # would put every own-language spec out of reach. Another script
+            # stays, so it does not fall to a spec of a different script.
+            if not likely_script(language):
+                tag = re.sub(r"^([^-]+)-latn(?=-|$)", r"\1", tag, flags=re.I)
             match = closest_lang(tag, own, lects="standard")
             break
     match = match or closest_lang(code, candidates, lects="standard")
@@ -492,7 +536,7 @@ def resolves_exactly(code: str) -> bool:
     separates the two, so a caller can tell "this code is registered" from
     "something vaguely like it is".
     """
-    return _resolve_code(code, allow_nearest=False) in available_json_codes()
+    return _resolve_code(code, allow_nearest=False) in json_loader._index
 
 
 def resolve(code: str) -> str:

@@ -35,7 +35,6 @@ Feature index layout (0–20):
 The feature system aligns with features used in generative phonology
 and acoustic modeling, but values are hand-curated for each IPA symbol.
 """
-import warnings
 from typing import Any, Dict, List, Optional, Union
 
 import numpy as np
@@ -605,35 +604,29 @@ def phonetic_distance(phone_a: str, phone_b: str) -> float:
 
 def phoneme_embeddings(spec: "LanguageSpec") -> "dict[str, Any]":
     """Deprecated: moved to orthography2ipa.lm.phoneme_embeddings."""
-    warnings.warn(
-        "orthography2ipa.feats.phoneme_embeddings is deprecated; "
-        "use orthography2ipa.lm.phoneme_embeddings instead.",
-        DeprecationWarning,
-        stacklevel=2,
-    )
+    from orthography2ipa.lexicon import _warn_deprecated
     from orthography2ipa.lm import phoneme_embeddings as _impl
+
+    _warn_deprecated("orthography2ipa.feats.phoneme_embeddings",
+                     "orthography2ipa.lm.phoneme_embeddings")
     return _impl(spec)
 
 
 def build_ngram_lm(words: "list[str]", spec: "LanguageSpec", n: int = 3) -> dict:
     """Deprecated: moved to orthography2ipa.lm.build_ngram_lm."""
-    warnings.warn(
-        "orthography2ipa.feats.build_ngram_lm is deprecated; "
-        "use orthography2ipa.lm.build_ngram_lm instead.",
-        DeprecationWarning,
-        stacklevel=2,
-    )
+    from orthography2ipa.lexicon import _warn_deprecated
     from orthography2ipa.lm import build_ngram_lm as _impl
+
+    _warn_deprecated("orthography2ipa.feats.build_ngram_lm",
+                     "orthography2ipa.lm.build_ngram_lm")
     return _impl(words, spec, n)
 
 
 def perplexity(lm: dict, test_words: "list[str]", spec: "LanguageSpec", n: int = 3) -> float:
     """Deprecated: moved to orthography2ipa.lm.perplexity."""
-    warnings.warn(
-        "orthography2ipa.feats.perplexity is deprecated; "
-        "use orthography2ipa.lm.perplexity instead.",
-        DeprecationWarning,
-        stacklevel=2,
-    )
+    from orthography2ipa.lexicon import _warn_deprecated
     from orthography2ipa.lm import perplexity as _impl
+
+    _warn_deprecated("orthography2ipa.feats.perplexity",
+                     "orthography2ipa.lm.perplexity")
     return _impl(lm, test_words, spec, n)

@@ -347,7 +347,7 @@ BR_CHILDREN = _br_children()
 
 
 def test_br_children_are_found():
-    assert len(BR_CHILDREN) == 13
+    assert len(BR_CHILDREN) == 14
 
 
 @pytest.mark.parametrize("lang", BR_CHILDREN)
@@ -376,13 +376,15 @@ def _assert_epenthesis_words(g2p):
     assert re.fullmatch(r"[oɔu]piˈsɐ̃w̃", g2p.transcribe_word("opção"))
     assert re.match(r"ad(͡ʒ)?iˈv", g2p.transcribe_word("adverso"))
     # Epenthesis does not apply to geminates (Curioletti & Sandri 2019,
-    # citing Monaretto 1997: 188), so a doubled letter stays unbroken.
+    # citing Monaretto 1997: 188), and Brazilian Portuguese has no geminate
+    # consonant (Carvalho 2015: 44), so a doubled letter reads one [f].
     for word in FF_LOANS:
-        assert re.search(r"f[ˈˌ]?f", g2p.transcribe_word(word)), word
+        out = g2p.transcribe_word(word)
+        assert out.count("f") == 1, (word, out)
     # The final /R/ of a noun is the lect's own, so buffer ends as mulher does.
     mulher = g2p.transcribe_word("mulher")
     assert re.fullmatch(r"muˈ[ʎj]e.?", mulher), mulher
-    assert g2p.transcribe_word("buffer") == "bufˈfe" + mulher[mulher.rindex("e") + 1:]
+    assert g2p.transcribe_word("buffer") == "buˈfe" + mulher[mulher.rindex("e") + 1:]
 
 
 @pytest.mark.parametrize("lang", BR_CHILDREN)

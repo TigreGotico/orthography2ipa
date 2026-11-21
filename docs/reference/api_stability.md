@@ -107,7 +107,7 @@ The spec-format version goes up when a spec field starts to mean something else.
 
 ## Deprecated names
 
-These names served plugin discovery by entry point, or a lexicon for the whole process. A caller passes each step and each lexicon to one engine in a `Pipeline` field, so they go in the next major release. Until then they keep working, and the commitment covers them. Each one raises a `DeprecationWarning` that names the release that removes it and the name to use. A function warns when a caller calls it, and a constant warns when a caller reads it. A class warns when a caller reads it from `orthography2ipa`, and when a subclass of it is defined.
+These names served plugin discovery by entry point, or a lexicon for the whole process. A caller passes each step and each lexicon to one engine in a `Pipeline` field, so they go in the next major release. The three language-model functions of `feats` moved to `lm`, and their old names go in the same release. Until then they keep working, and the commitment covers them. Each one raises a `DeprecationWarning` that names the release that removes it and the name to use. A function warns when a caller calls it, and a constant warns when a caller reads it. A class warns when a caller reads it from `orthography2ipa`, and when a subclass of it is defined.
 
 | Name | Module | Use in its place | Used by |
 | :--- | :--- | :--- | :--- |
@@ -129,6 +129,7 @@ These names served plugin discovery by entry point, or a lexicon for the whole p
 | `G2P(rescorer=...)` | `g2p` | `Pipeline(rescore=...)` | None |
 | `G2P(sentence_rescorer=...)` | `g2p` | `Pipeline(sandhi=...)` | None |
 | `G2P(plugins=...)` | `g2p` | The `Pipeline` field of each stage | arbtok (tests) |
+| `phoneme_embeddings`, `build_ngram_lm`, `perplexity` | `feats` | The same name in `orthography2ipa.lm` | None |
 
 `SyllabifierPlugin` and `SandhiPlugin` stay, because `Pipeline.syllabifier` and `Pipeline.sandhi` take them. Their `language_codes` property defaults to an empty list, and the engine does not read it.
 

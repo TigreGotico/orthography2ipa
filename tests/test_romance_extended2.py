@@ -1346,7 +1346,7 @@ class TestAlentejoPortuguese:
     """Alentejo Portuguese — pt-PT-x-alentejo.
 
     Alentejo is a southern Portuguese dialect with distinctive vowel features:
-    - /ɛ/ may diphthongise to [ɛ͡ɐ] — unique to Alentejo.
+    - /ɛ/ may diphthongise to [ɛɐ] — unique to Alentejo.
     - /ʁ/ realised as uvular [ʁ].
     """
 
@@ -1362,10 +1362,10 @@ class TestAlentejoPortuguese:
         assert self.spec.parent == "pt-PT"
 
     def test_open_e_has_diphthong_allophone(self) -> None:
-        """Allophone of /ɛ/ includes [ɛ͡ɐ] — diphthongisation unique to Alentejo."""
+        """Allophone of /ɛ/ includes [ɛɐ] — diphthongisation unique to Alentejo."""
         _assert_contains(
-            _allophone(self.spec, "ɛ"), "ɛ͡ɐ",
-            label="Alentejo ɛ→ɛ͡ɐ diphthongisation",
+            _allophone(self.spec, "ɛ"), "ɛɐ",
+            label="Alentejo ɛ→ɛɐ diphthongisation",
         )
 
     def test_open_e_retains_primary(self) -> None:
