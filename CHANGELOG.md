@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.124.29a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.29a1) (2026-11-21)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.28a2...7.124.29a1)
+
+**Merged pull requests:**
+
+- fix: resolve mixed-case private-use Arabic and Bosnian Cyrillic tags [\#2422](https://github.com/TigreGotico/orthography2ipa/pull/2422) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.124.28a2](https://github.com/TigreGotico/orthography2ipa/tree/7.124.28a2) (2026-11-21)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.28a1...7.124.28a2)
