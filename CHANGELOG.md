@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.124.46a2](https://github.com/TigreGotico/orthography2ipa/tree/7.124.46a2) (2026-11-22)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.46a1...7.124.46a2)
+
+**Merged pull requests:**
+
+- refactor: simplify the engine core \(phonetok, g2p, inventory\) [\#2488](https://github.com/TigreGotico/orthography2ipa/pull/2488) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.124.46a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.46a1) (2026-11-22)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.45a2...7.124.46a1)
