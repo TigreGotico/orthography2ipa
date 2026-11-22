@@ -1,5 +1,13 @@
 # European Portuguese dialects (pt-PT-x-*)
 
+<!-- agent-hint
+covers: how the regional European Portuguese specs inherit from `pt-PT` and what each one changes
+source: `orthography2ipa/data/pt-PT-x-*.json`, `tests/test_cited_rules_portuguese_dialects.py`, `tests/test_ep_lisbon.py`, `tests/test_ep_north.py`, `tests/test_ep_insular.py`
+generated: no
+verify: `PYTHONPATH=$PWD python -c 'import re,sys;from orthography2ipa import transcribe as t;p=sys.argv[1];r=[(re.search(r"\[\x60(pt-\w\w-x-[a-z-]+)\x60\]",l)[1],w,f) for l in open(p,encoding="utf-8") if l.startswith("| [\x60pt-") for w,f in re.findall(r"\x60([^\x60]+)\x60 \[([^]]+)\]",l)];b=[x for x in r if t(x[1],x[0])!=x[2]];print(len(r),b);sys.exit(bool(b) or not r)' docs/languages/pt-PT-dialects.md`
+see: `docs/languages/pt-PT.md`, `docs/languages/pt-BR-dialects.md`, `docs/evaluation/generated/scoreboard.md`
+-->
+
 The `pt-PT-x-*` specs model the regional speech of mainland Portugal, Madeira and the Azores. Each one is a delta spec over [pt-PT](pt-PT.md): it inherits the whole standard and declares only what its region changes. This page first explains how the inheritance works. One table then compares the defining features of every lect. Each lect then has its own section, with its sources, its rules and their conditions, and its known gaps.
 
 Every transcription on this page is real output of `orthography2ipa.transcribe(text, code)`. For the scores of each spec, see [../evaluation/generated/scoreboard.md](../evaluation/generated/scoreboard.md).
@@ -47,7 +55,7 @@ The table gives the features that set each lect apart from `pt-PT`. The lects ru
 | [`pt-PT-x-coimbra`](#conimbricense-pt-pt-x-coimbra) | Coimbra | the standard values, plus [ʒ] for a final /s/ before a vowel | `os olhos` [uʒ ˈɔʎuʃ] |
 | [`pt-PT-x-lisbon`](#lisbon-pt-pt-x-lisbon) | Lisbon, Estremadura | stressed ⟨e⟩ to [ɐ] before a palatal<br>⟨ei⟩ [ɐj]<br>⟨ou⟩ [o] | `espelho` [iʃˈpɐʎu], `leite` [ˈlɐjtɨ] |
 | [`pt-PT-x-alentejo`](#alentejano-pt-pt-x-alentejo) | Alto Alentejo | stressed /u/ to [y]<br>final unstressed high vowels deleted<br>⟨-d-⟩ deleted<br>⟨ei ou⟩ monophthongs | `sul` [ˈsyɫ], `gosto` [ˈɡɔʃt], `nada` [ˈnaɐ] |
-| [`pt-PT-x-algarve`](#algarvio-pt-pt-x-algarve) | Algarve | stressed /u/ to [y]<br>word-final /s/ [ʒ]<br>⟨ei ou⟩ monophthongs | `tudo` [ˈtydu], `mas` [ˈmaʒ], `leite` [ˈletɨ] |
+| [`pt-PT-x-algarve`](#algarvio-pt-pt-x-algarve) | Algarve | stressed /u/ to [y]<br>word-final /s/ [ʒ]<br>⟨ei ou⟩ monophthongs | `tudo` [ˈtydu], `mas` [ˈmɐʒ], `leite` [ˈletɨ] |
 | [`pt-PT-x-madeira`](#madeiran-pt-pt-x-madeira) | Madeira | /l/ to [ʎ] after /i/<br>⟨-ões -ães -ãos⟩ as a nasal vowel plus [n] | `quilo` [ˈkiʎu], `cães` [ˈkɐ̃ns] |
 | [`pt-PT-x-acores`](#azorean-pt-pt-x-acores) | Azores, general node | stressed /u/ to [y] before an onset consonant only<br>⟨ou⟩ [ow]<br>[ʒ] for a final /s/ before a vowel | `número` [ˈnymɨɾu], `azul` [ɐˈzuɫ] |
 | [`pt-PT-x-sao-miguel`](#micaelense-pt-pt-x-sao-miguel) | São Miguel | every stressed /u/ to [y]<br>⟨oi ou⟩ [ø]<br>⟨ei⟩ [e]<br>/l/ to [ʎ] after /i/<br>[ʒ] for a final /s/ before a vowel | `azul` [ɐˈzyɫ], `pouco` [ˈpøku], `leite` [ˈletɨ], `quilo` [ˈkiʎu] |
@@ -424,7 +432,7 @@ So `no mar` gives [nu ˈmaɾ].
 |:---|:---|:---|
 | ⟨ei⟩ to [e] | `graphemes` | `leite` [ˈletɨ] |
 | ⟨ou⟩ to [o] | `graphemes` | `outro` [ˈotɾu] |
-| word-final ⟨s⟩ to [ʒ] | `positional_graphemes` | `mas` [ˈmaʒ], `estás` [iʃˈtaʒ], `muitos amigos` [ˈmũj̃tuʒ ɐˈmiɡuʒ] |
+| word-final ⟨s⟩ to [ʒ] | `positional_graphemes` | `mas` [ˈmɐʒ], `estás` [iʃˈtaʒ], `muitos amigos` [ˈmũj̃tuʒ ɐˈmiɡuʒ] |
 | unstressed ⟨e o⟩ to [ɨ u] | inherited `positional_graphemes` | `pedir` [pɨˈdiɾ], `telefone` [tɨlɨˈfɔnɨ], `comida` [kuˈmidɐ] |
 | word-final ⟨-em⟩ to [ẽj̃] | `PT_FINAL_EM_*` switched off | `bem` [ˈbẽj̃], `homens` [ˈɔmẽʒ] |
 | dark coda /l/ | inherited `allophone_rules` | `sol` [ˈsɔɫ] |

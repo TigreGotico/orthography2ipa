@@ -1,5 +1,13 @@
 # Florianópolis Portuguese (pt-BR-x-floripa)
 
+<!-- agent-hint
+covers: how the Florianópolis Portuguese spec differs from `pt-BR`
+source: `orthography2ipa/data/pt-BR-x-floripa.json`
+generated: no
+verify: `PYTHONPATH=$PWD python -c 'import re,sys;from orthography2ipa import transcribe as t;c,p=sys.argv[1:];r=[(w,f) for l in open(p,encoding="utf-8") if 1 for w,f in re.findall(r"\x60([^\x60]+)\x60 \[([^]]+)\]",l)];b=[x for x in r if t(x[0],c)!=x[1]];print(len(r),b);sys.exit(bool(b) or not r)' pt-BR-x-floripa docs/languages/pt-BR-x-floripa.md`
+see: `docs/languages/pt-BR.md`, `docs/languages/pt-BR-dialects.md`
+-->
+
 | Field | Value |
 |:---|:---|
 | Code | `pt-BR-x-floripa` |
