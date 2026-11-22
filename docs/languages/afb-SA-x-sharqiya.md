@@ -77,17 +77,17 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 53 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 88 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Dental | Alveolar | Postalveolar | Palatal | Velar | Uvular | Pharyngeal | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| Plosive | b p |  |  | d dˤ t tˤ |  |  | k ɡ | q |  | ʔ |
-| Affricate |  |  |  |  | dʒ tʃ |  |  |  |  |  |
-| Nasal | m |  |  | n |  |  | ŋ |  |  |  |
-| Trill |  |  |  | r |  |  |  |  |  |  |
-| Fricative |  | f v | ð ðˤ θ | s sˤ z | ʃ |  | x ɣ | ʁ χ | ħ ʕ | h |
-| Approximant |  |  |  |  |  | j |  |  |  |  |
-| Lateral approximant |  |  |  | l ɫ |  |  |  |  |  |  |
+| Plosive | b bː p pː |  |  | d dː dˤ dˤː t tː tˤ tˤː |  |  | k kː ɡ ɡː | q qː |  | ʔ ʔː |
+| Affricate |  |  |  |  | dʒ dʒː tʃ tʃː |  |  |  |  |  |
+| Nasal | m mː |  |  | n nː |  |  | ŋ ŋː |  |  |  |
+| Trill |  |  |  | r rː |  |  |  |  |  |  |
+| Fricative |  | f fː v vː | ð ðː ðˤ ðˤː θ θː | s sː sˤ sˤː z zː | ʃ ʃː |  | x xː ɣ ɣː | ʁ ʁː χ χː | ħ ħː ʕ ʕː | h hː |
+| Approximant |  |  |  |  |  | j jː |  |  |  |  |
+| Lateral approximant |  |  |  | l lː ɫ ɫː |  |  |  |  |  |  |
 
 | Vowels | Front | Back |
 |:--|:-:|:-:|
@@ -97,7 +97,7 @@ The spec can emit 53 segments. They come from the letter table, the positional r
 | Near-open | æ æː |  |
 | Open | a aː | ɑ ɑː |
 
-Sequences that the spec writes as one unit: [w] [ː].
+Sequences that the spec writes as one unit: [w] [wː].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

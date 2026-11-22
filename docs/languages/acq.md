@@ -66,27 +66,27 @@ No dataset on the board scores this spec. See the [dataset catalogue](../evaluat
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 46 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 77 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Dental | Alveolar | Postalveolar | Palatal | Velar | Uvular | Pharyngeal | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| Plosive | b |  |  | d dˤ t tˤ |  |  | k ɡ | q |  | ʔ |
-| Affricate |  |  |  |  | dʒ |  |  |  |  |  |
-| Nasal | m |  |  | n |  |  | ŋ |  |  |  |
-| Trill |  |  |  | r |  |  |  |  |  |  |
-| Fricative |  | f | ð ðˤ θ | s sˤ z | ʃ |  | x ɣ |  | ħ ʕ | h |
-| Approximant |  |  |  |  |  | j |  |  |  |  |
-| Lateral approximant |  |  |  | l ɫ |  |  |  |  |  |  |
+| Plosive | b bː |  |  | d dː dˤ dˤː t tː tˤ tˤː |  |  | k kː ɡ ɡː | q qː |  | ʔ ʔː |
+| Affricate |  |  |  |  | dʒ dʒː |  |  |  |  |  |
+| Nasal | m mː |  |  | n nː |  |  | ŋ ŋː |  |  |  |
+| Trill |  |  |  | r rː |  |  |  |  |  |  |
+| Fricative |  | f fː | ð ðː ðˤ ðˤː θ θː | s sː sˤ sˤː z zː | ʃ ʃː |  | x xː ɣ ɣː |  | ħ ħː ʕ ʕː | h hː |
+| Approximant |  |  |  |  |  | j jː |  |  |  |  |
+| Lateral approximant |  |  |  | l lː ɫ ɫː |  |  |  |  |  |  |
 
 | Vowels | Front | Back |
 |:--|:-:|:-:|
 | Close | i iː | u uː |
 | Near-close | ɪ ɪː | ʊ ʊː |
 | Close-mid | eː |  |
-| Near-open | æ |  |
+| Near-open | æ æː |  |
 | Open | a aː | ɑ ɑː |
 
-Sequences that the spec writes as one unit: [w] [ː].
+Sequences that the spec writes as one unit: [w] [wː].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

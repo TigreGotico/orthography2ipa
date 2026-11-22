@@ -78,27 +78,27 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 51 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 86 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Dental | Alveolar | Postalveolar | Palatal | Velar | Uvular | Pharyngeal | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| Plosive | b p |  |  | d dˤ t tˤ |  |  | k ɡ | q |  | ʔ |
-| Affricate |  |  |  |  | dʒ |  |  |  |  |  |
-| Nasal | m |  |  | n |  |  | ŋ |  |  |  |
-| Trill |  |  |  | r |  |  |  |  |  |  |
-| Fricative |  | f v | ð ðˤ θ | s sˤ z | ʃ ʒ |  | x ɣ | ʁ | ħ ʕ | h |
-| Approximant |  |  |  |  |  | j |  |  |  |  |
-| Lateral approximant |  |  |  | l ɫ |  |  |  |  |  |  |
+| Plosive | b bː p pː |  |  | d dː dˤ dˤː t tː tˤ tˤː |  |  | k kː ɡ ɡː | q qː |  | ʔ ʔː |
+| Affricate |  |  |  |  | dʒ dʒː |  |  |  |  |  |
+| Nasal | m mː |  |  | n nː |  |  | ŋ ŋː |  |  |  |
+| Trill |  |  |  | r rː |  |  |  |  |  |  |
+| Fricative |  | f fː v vː | ð ðː ðˤ ðˤː θ θː | s sː sˤ sˤː z zː | ʃ ʃː ʒ ʒː |  | x xː ɣ ɣː | ʁ ʁː | ħ ħː ʕ ʕː | h hː |
+| Approximant |  |  |  |  |  | j jː |  |  |  |  |
+| Lateral approximant |  |  |  | l lː ɫ ɫː |  |  |  |  |  |  |
 
 | Vowels | Front | Central | Back |
 |:--|:-:|:-:|:-:|
 | Close | i iː |  | u uː |
 | Near-close | ɪ ɪː |  | ʊ ʊː |
-| Mid |  | ə |  |
+| Mid |  | ə əː |  |
 | Near-open | æ æː |  |  |
 | Open | a aː |  | ɑ ɑː |
 
-Sequences that the spec writes as one unit: [w] [ː].
+Sequences that the spec writes as one unit: [w] [wː].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

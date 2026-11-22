@@ -79,29 +79,29 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 70 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 124 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Retroflex | Palatal | Velar | Uvular | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| Plosive | b p pʰ |  | d̪ t̪ t̪ʰ |  | ɖ ʈ ʈʰ |  | k kʰ ɡ | q |  |
-| Affricate |  |  |  | dʒ tʃ tʃʰ |  |  |  |  |  |
-| Nasal | m |  | n |  | ɳ | ɲ | ŋ |  |  |
-| Trill |  |  | r |  |  |  |  |  |  |
-| Tap |  |  | ɾ |  | ɽ |  |  |  |  |
-| Fricative |  | f | s z | ʃ |  |  | x ɣ |  | h ɦ |
-| Approximant |  | ʋ |  |  |  | j j̃ |  |  |  |
-| Lateral approximant |  |  | l |  | ɭ |  |  |  |  |
+| Plosive | b bː p pʰ pʰː pː |  | d̪ d̪ː t̪ t̪ʰ t̪ʰː t̪ː |  | ɖ ɖː ʈ ʈʰ ʈʰː ʈː |  | k kʰ kʰː kː ɡ ɡː | q qː |  |
+| Affricate |  |  |  | dʒ dʒː tʃ tʃʰ tʃʰː tʃː |  |  |  |  |  |
+| Nasal | m mː |  | n nː |  | ɳ ɳː | ɲ ɲː | ŋ ŋː |  |  |
+| Trill |  |  | r rː |  |  |  |  |  |  |
+| Tap |  |  | ɾ ɾː |  | ɽ ɽː |  |  |  |  |
+| Fricative |  | f fː | s sː z zː | ʃ ʃː |  |  | x xː ɣ ɣː |  | h hː ɦ ɦː |
+| Approximant |  | ʋ ʋː |  |  |  | j jː j̃ j̃ː |  |  |  |
+| Lateral approximant |  |  | l lː |  | ɭ ɭː |  |  |  |  |
 
 | Vowels | Front | Central | Back |
 |:--|:-:|:-:|:-:|
 | Close | iː ĩː |  | uː ũː |
-| Near-close | ɪ ɪ̃ |  | ʊ ʊ̃ |
+| Near-close | ɪ ɪː ɪ̃ ɪ̃ː |  | ʊ ʊː ʊ̃ ʊ̃ː |
 | Close-mid | eː ẽː |  | oː õː |
-| Mid |  | ə ə̃ |  |
+| Mid |  | ə əː ə̃ ə̃ː |  |
 | Open-mid | ɛː ɛ̃ː |  | ɔː ɔ̃ː |
 | Open | aː ãː |  |  |
 
-Sequences that the spec writes as one unit: [b˩] [dʒ˩] [d̪˩] [k˩] [p˩] [tʃ˩] [t̪˩] [w] [w̃] [ɖ˩] [ɡ˩] [ʈ˩] [ː].
+Sequences that the spec writes as one unit: [b˩] [b˩ː] [dʒ˩] [dʒ˩ː] [d̪˩] [d̪˩ː] [k˩] [k˩ː] [p˩] [p˩ː] [tʃ˩] [tʃ˩ː] [t̪˩] [t̪˩ː] [w] [wː] [w̃] [w̃ː] [ɖ˩] [ɖ˩ː] [ɡ˩] [ɡ˩ː] [ʈ˩] [ʈ˩ː].
 
 Tones: [˥] high, [˧] mid (neutral), [˩] low.
 <!-- atlas:inventory end -->

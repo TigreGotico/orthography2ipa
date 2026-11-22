@@ -496,3 +496,36 @@ def test_one_segment_spellings_stay_whole_and_clusters_do_not():
     assert _segments("aj") == ["a", "j"]
     assert _segments("mb") == ["m", "b"]
     assert _segments("ʔaː") == ["ʔ", "aː"]
+
+
+# ─── a bare modifier letter joins the segment before it ─────────────────
+
+@pytest.mark.parametrize("code", ALL_CODES)
+def test_no_token_is_a_bare_length_or_palatalization_mark(code):
+    """A slot that emits ``ː`` or ``ʲ`` alone (the Arabic shadda, the Cyrillic
+    soft sign) modifies the segment before it, so neither is a token."""
+    assert not {"ː", "ʲ"} & phoneme_inventory(get(code))
+
+
+def test_the_soft_sign_palatalizes_the_consonants_before_it():
+    """be: ⟨д⟩ → d, ⟨т⟩ → t, ⟨ж⟩ → ʐ and ⟨ь⟩ → ʲ, so ⟨дь⟩ is [dʲ] and ⟨ть⟩ is
+    [tʲ]. No grapheme writes dʲ or tʲ on its own. A vowel cannot take ʲ."""
+    inventory = phoneme_inventory(get("be"))
+    assert {"dʲ", "tʲ", "ʐʲ"} <= inventory
+    assert not {"ʲ", "aʲ", "iʲ"} & inventory
+
+
+def test_the_shadda_lengthens_the_segments_before_it():
+    """acq: ⟨ب⟩ → b, ⟨ت⟩ → t and the shadda ⟨ّ⟩ → ː, so ⟨بّ⟩ is [bː] and ⟨تّ⟩ is
+    [tː]. A segment that is long already does not take a second mark."""
+    inventory = phoneme_inventory(get("acq"))
+    assert {"bː", "tː", "aː"} <= inventory
+    assert not {"ː", "aːː", "ːː"} & inventory
+
+
+def test_a_palatalized_long_consonant_keeps_its_length_mark_last():
+    """be writes the long consonants sː zː lː nː and the soft sign adds ʲ to
+    them, so the token is [sʲː], never [sːʲ]."""
+    inventory = phoneme_inventory(get("be"))
+    assert {"sʲː", "zʲː", "lʲː", "nʲː"} <= inventory
+    assert not [t for t in inventory if "ːʲ" in t]

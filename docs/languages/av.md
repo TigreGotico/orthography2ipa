@@ -69,18 +69,18 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 52 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 94 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar | Uvular | Pharyngeal | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| Plosive | b p |  | d t tʼ |  |  | k kʼ kː ɡ |  |  | ʔ |
-| Affricate |  |  | t͡s t͡sʼ t͡sʼː t͡sː t͡ɬʼː t͡ɬː | t͡ʃ t͡ʃʼ t͡ʃʼː t͡ʃː |  |  |  |  |  |
-| Nasal | m |  | n |  |  |  |  |  |  |
-| Trill |  |  | r |  |  |  |  |  |  |
-| Fricative |  | f | s sː z | ʃ ʃː ʒ |  | x xː | ʁ χ χː | ħ ʕ | h |
-| Lateral fricative |  |  | ɬ ɬː |  |  |  |  |  |  |
+| Plosive | b bʲ p pʲ |  | d dʲ t tʲ tʼ tʼʲ |  |  | k kʲ kʲː kʼ kʼʲ kː ɡ ɡʲ |  |  | ʔ ʔʲ |
+| Affricate |  |  | t͡s t͡sʲ t͡sʲː t͡sʼ t͡sʼʲ t͡sʼʲː t͡sʼː t͡sː t͡ɬʲː t͡ɬʼʲː t͡ɬʼː t͡ɬː | t͡ʃ t͡ʃʲ t͡ʃʲː t͡ʃʼ t͡ʃʼʲ t͡ʃʼʲː t͡ʃʼː t͡ʃː |  |  |  |  |  |
+| Nasal | m mʲ |  | n nʲ |  |  |  |  |  |  |
+| Trill |  |  | r rʲ |  |  |  |  |  |  |
+| Fricative |  | f fʲ | s sʲ sʲː sː z zʲ | ʃ ʃʲ ʃʲː ʃː ʒ ʒʲ |  | x xʲ xʲː xː | ʁ ʁʲ χ χʲ χʲː χː | ħ ħʲ ʕ ʕʲ | h hʲ |
+| Lateral fricative |  |  | ɬ ɬʲ ɬʲː ɬː |  |  |  |  |  |  |
 | Approximant |  |  |  |  | j |  |  |  |  |
-| Lateral approximant |  |  | l |  |  |  |  |  |  |
+| Lateral approximant |  |  | l lʲ |  |  |  |  |  |  |
 
 | Vowels | Front | Central | Back |
 |:--|:-:|:-:|:-:|
@@ -88,7 +88,7 @@ The spec can emit 52 segments. They come from the letter table, the positional r
 | Close-mid | e |  | o |
 | Open | a |  |  |
 
-Sequences that the spec writes as one unit: [q͡χʼː] [q͡χː] [w] [ʲ].
+Sequences that the spec writes as one unit: [q͡χʲː] [q͡χʼʲː] [q͡χʼː] [q͡χː] [w].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

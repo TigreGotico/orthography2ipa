@@ -71,16 +71,16 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 52 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 82 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Dental | Alveolar | Postalveolar | Palatal | Velar |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| Plosive | b p |  |  | d t |  | c ɟ | k ɡ |
-| Affricate |  |  |  | dz ts | dʒ tʃ |  |  |
-| Nasal | m |  |  | n |  | ɲ | ŋ |
-| Trill |  |  |  | r |  |  |  |
-| Fricative |  | f v | ð | s z | ʃ ʒ | ʝ | x ɣ |
-| Lateral approximant |  |  |  | l |  | ʎ |  |
+| Plosive | b bʲ p pʲ |  |  | d dʲ t tʲ |  | c cʲ ɟ ɟʲ | k kʲ ɡ ɡʲ |
+| Affricate |  |  |  | dz dzʲ ts tsʲ | dʒ dʒʲ tʃ tʃʲ |  |  |
+| Nasal | m mʲ |  |  | n nʲ |  | ɲ ɲʲ | ŋ ŋʲ |
+| Trill |  |  |  | r rʲ |  |  |  |
+| Fricative |  | f fʲ v vʲ | ð ðʲ | s sʲ z zʲ | ʃ ʃʲ ʒ ʒʲ | ʝ ʝʲ | x xʲ ɣ ɣʲ |
+| Lateral approximant |  |  |  | l lʲ |  | ʎ ʎʲ |  |
 
 | Vowels | Front | Central | Back |
 |:--|:-:|:-:|:-:|
@@ -90,7 +90,7 @@ The spec can emit 52 segments. They come from the letter table, the positional r
 | Near-open |  | ɐ ɐː |  |
 | Open | a aː |  | ɑ ɑː |
 
-Sequences that the spec writes as one unit: [cç] [ɟʝ] [ʲ].
+Sequences that the spec writes as one unit: [cç] [cçʲ] [ɟʝ] [ɟʝʲ].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

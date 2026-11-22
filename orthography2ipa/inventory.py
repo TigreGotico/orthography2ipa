@@ -43,7 +43,8 @@ from orthography2ipa.phonetok import _NASAL_CARRIERS, _carrier_split_index, _car
 from orthography2ipa.positional import normalize_ending_value
 from orthography2ipa.types import LanguageSpec
 from orthography2ipa.vowels import (
-    SONORITY_NASAL, SONORITY_STOP, is_affricate, place_class, sonority_class,
+    SONORITY_LIQUID, SONORITY_NASAL, SONORITY_STOP, SONORITY_UNKNOWN,
+    is_affricate, place_class, sonority_class,
 )
 
 __all__ = [
@@ -223,20 +224,46 @@ def phoneme_inventory(
     a lexicon entry) is an emission but never a segment: it is cut like any
     other transcription. A combining mark that a slot emits before any base
     letter (the coda tilde of Portuguese) lands on the segment before it, so it
-    joins each vowel and glide that can carry it and is never a token alone.
+    joins each vowel and glide that can carry it and is never a token alone. So
+    does a bare palatalization mark ``ʲ`` (the Cyrillic soft sign), which joins
+    each consonant from stop to liquid, and a bare length mark ``ː`` (the Arabic
+    shadda), which joins each segment that is not a mark or a tie.
     """
     atoms = _atoms(spec)
     tokens: set = set()
     marks: Set[str] = set()
+    bare: Set[str] = set()
     for emission in emission_inventory(spec, lexicon):
         mark, rest = _split_leading_marks(emission)
         if mark:
             marks.add(mark)
-        tokens.update(_tokenize(rest, atoms))
+        if rest in _BARE_MODIFIERS:
+            bare.add(rest)
+        else:
+            tokens.update(_tokenize(rest, atoms))
+    if _PALATALIZATION in bare:
+        tokens.update(_palatalize(token) for token in tuple(tokens)
+                      if SONORITY_STOP <= sonority_class(token) <= SONORITY_LIQUID)
+    if _LENGTH in bare:
+        tokens.update(token + _LENGTH for token in tuple(tokens)
+                      if _LENGTH not in token and sonority_class(token) != SONORITY_UNKNOWN)
     for mark in marks:
         tokens.update(_carry(token, mark) for token in tuple(tokens)
                       if _carrier_tail(token) in _NASAL_CARRIERS)
     return frozenset(tokens)
+
+
+_PALATALIZATION = "ʲ"
+_LENGTH = "ː"
+_BARE_MODIFIERS = frozenset({_PALATALIZATION, _LENGTH})
+
+
+def _palatalize(token: str) -> str:
+    """*token* with the palatalization mark before its trailing length mark."""
+    base = token.rstrip("ːˑ")
+    if _PALATALIZATION in base:
+        return token
+    return base + _PALATALIZATION + token[len(base):]
 
 
 def _split_leading_marks(emission: str) -> Tuple[str, str]:

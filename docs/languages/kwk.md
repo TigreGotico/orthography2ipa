@@ -159,7 +159,9 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨y̓⟩ | [jˀ] |  |
 | ⟨ł⟩ | [ɬ] |  |
 | ⟨ƛ⟩ | [t͡ɬ] |  |
+| ⟨Ƛ⟩ | [t͡ɬ] |  |
 | ⟨ƛ̓⟩ | [t͡ɬʼ] |  |
+| ⟨Ƛ̓⟩ | [t͡ɬʼ] |  |
 | ⟨ǧ⟩ | [ɢ] |  |
 | ⟨ǧʷ⟩ | [ɢʷ] |  |
 | ⟨ə⟩ | [ə] |  |
@@ -176,8 +178,6 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨ḵ̓w⟩ | [qʷʼ] |  |
 | ⟨Ꟛ⟩ | [d͡ɮ] |  |
 | ⟨ꟛ⟩ | [d͡ɮ] |  |
-| ⟨Ƛ⟩ | [t͡ɬ] |  |
-| ⟨Ƛ̓⟩ | [t͡ɬʼ] |  |
 
 The spec declares no stress rule.
 <!-- atlas:spelling end -->
