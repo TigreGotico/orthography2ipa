@@ -264,7 +264,7 @@ A word-final coda /s/ is [ʃ] alone and before a voiceless consonant. Across a w
 
 | Rule id | Context | Value | Example |
 |:---|:---|:---|:---|
-| `PT_FINAL_S_PREVOCALIC_VOICE` | `…s#` + `#V…` | [z] | `estás a ver` [iʃˈtaz ɐ ˈveɾ], `os amigos` [oz ɐˈmiɡuʃ] |
+| `PT_FINAL_S_PREVOCALIC_VOICE` | `…s#` + `#V…` | [z] | `estás a ver` [iʃˈtaz ɐ ˈveɾ], `os amigos` [uz ɐˈmiɡuʃ] |
 | `PT_CODA_S_VOICING` | `…s#` + `#[voiced C]…` | [ʒ] | `estás bem` [iʃˈtaʒ ˈbɐ̃j̃], `as bocas` [ɐʒ ˈbɔkɐʃ], `os dois` [uʒ ˈdojʃ] |
 | `PT_CODA_S_BEFORE_ZH` | `…Vs#` + `#ʒ…` | deleted | `mais giro` [ˈmaj ˈʒiɾu], `as janelas` [ɐ ʒɐˈnɛlɐʃ] |
 
