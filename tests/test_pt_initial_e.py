@@ -88,7 +88,7 @@ def test_stressed_initial_e_keeps_the_row(word, ipa):
 
 @pytest.mark.parametrize("word, ipa, slot", [
     ("estar", "iʃˈtaɾ", ["i", "i", "ɨ", "ɛ"]),
-    ("exemplo", "eˈʃẽplu", ROW),
+    ("exemplo", "eˈzẽplu", ROW),
     ("explicar", "ejʃpliˈkaɾ", ["ej", "i", "ej", "ej"]),
     ("eólico", "eˈɔliku", ROW),
     ("entrar", "ẽˈtɾaɾ", ["e", "i", "e", "e"]),

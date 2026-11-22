@@ -264,6 +264,23 @@
       "notes": "A spec's ⟨e⟩ before ⟨x⟩ and a consonant takes the same diphthong as that spec's ⟨ei⟩. In pt-PT ⟨ei⟩ is [ej] (deixar [dejˈʃaɾ], peixe [ˈpejʃɨ]). So ⟨ex⟩ before a consonant is [ejʃ]: texto [ˈtejʃtu], sexta [ˈsejʃtɐ], explicar [ejʃpliˈkaɾ], extra [ˈejʃtɾɐ]. The ⟨ei⟩ value follows the standing ruling. [ɐj] is the Lisbon value and [ej] is the standard pt-PT value. A dictionary reading such as Infopédia's does not settle the pt-PT norm, because it carries the Lisbon assumption. Infopédia (Porto Editora) writes [ɐj] for ⟨ei⟩ and for ⟨ex⟩ before a consonant alike: texto [ˈtɐjʃtu], explicar [ɐjʃpliˈkar]. It carries the glide in 542 of its 549 headwords with ⟨ex⟩ before a consonant, so it supports the glide and not its vowel. pt-PT-x-lisbon restates the rule with [ɐj], as it does for ⟨ei⟩. The rule needs a pronounced consonant after ⟨x⟩. ⟨x⟩ before a vowel (exame, exato), word-final ⟨x⟩ (duplex), ⟨exh⟩ and ⟨exy⟩ (exhalar, sexy) keep their reading. ⟨êx⟩ (têxtil) and the hyphenated prefix ex- (ex-marido) are not matched. The rule rewrites the [e ɛ ɨ] candidates of the ⟨e⟩ slot and leaves the reduced [i] candidate. It cannot see which candidate the ⟨x⟩ slot takes, so the [ks] alternatives of ⟨x⟩ carry the glide too. These specs disable the rule. Porto and Braga keep a diphthongised stressed ⟨e⟩, and no source on their unstressed initial ⟨ex⟩ was read. Algarve, Alentejo and São Miguel have a monophthong ⟨ei⟩. Barrancos has its own vowel system. The African and Asian varieties, the creoles and the Açores, Aveiro, Beira, Madeira and Terceira dialects have no source read. Alfena, Minho, Trás-os-Montes, Viana and Coimbra inherit the rule because their notes keep ⟨ei⟩ at [ej]."
     },
     {
+      "id": "PT_INITIAL_EX_VOICED",
+      "phonemes": [
+        "ʃ"
+      ],
+      "surface": "z",
+      "grapheme": [
+        "x"
+      ],
+      "preceded_by_grapheme": [
+        "e",
+        "ê"
+      ],
+      "preceded_by_2": "word_boundary",
+      "followed_by": "vowel",
+      "notes": "Word-initial ⟨ex-⟩ before a vowel writes the ⟨x⟩ as [z]: exame [eˈzɐmɨ], existir [eziʃˈtiɾ], êxito [ˈezitu], exótico [eˈzɔtiku], exausto [eˈzawʃtu]. The Portal da Língua Portuguesa Dicionário fonético (ILTEC and CLUL, Lisbon variety, European Portuguese) writes this consonant as [z] in exame [i.zˈɐ.mɨ], exato [i.zˈa.tu], existir [i.ziʃ.tˈiɾ], exausto [i.zˈawʃ.tu], exótico [i.zˈɔ.ti.ku], êxito [ˈe.zi.tu] and exemplo [i.zˈẽ.plu]. The Portal writes the initial vowel [i], and the spec writes [e] (Lisbon [ɐ]); no opened source gives a rule for that vowel, so it is not changed here. The rule matches the ⟨x⟩ slot after a word-initial ⟨e⟩ or ⟨ê⟩ when a vowel follows. ⟨ex⟩ before a consonant (texto, extra, explicar) is not matched; PT_EX_CONSONANT_GLIDE reads it [ejʃ]. ⟨exh⟩ and ⟨hex⟩ are not matched. The ⟨ex⟩ prefix inside a word (inexato, coexistir, ex-presidente) and the [ks] of sexo need a morphological rule that this rule does not cover; the Portal gives inexato [i.ni.zˈa.tu], coexistir [kwi.ziʃ.tˈiɾ] and sexo [sˈɛk.su]. The same value is written for pt-BR by PT_INITIAL_EX_VOICED in pt-BR.json, with its own sources. The varieties outside Europe and the creoles disable the rule, because no source for them was read."
+    },
+    {
       "id": "PT_FINAL_EM_NUCLEUS",
       "phonemes": [
         "e",

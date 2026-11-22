@@ -79,6 +79,14 @@ The vowel can drop. Vázquez writes "pode desaparecer, p. ex. [iʃˈtaɾ / ʃˈt
 
 The rule stays off for double ⟨ss⟩, for a stressed ⟨e⟩, and for ⟨es⟩ before a vowel. A stressed ⟨e⟩ keeps its reading: `este` [ˈeʃtɨ]. Before ⟨ss⟩ or ⟨s⟩ and a vowel the first syllable is open, so the rules of the next section apply: `essência` [iˈsẽsiɐ], `esotérico` [izuˈtɛɾiku]. Initial ⟨ex⟩ has a separate reading.
 
+## Word-initial ⟨ex⟩ before a vowel
+
+A word-initial ⟨ex⟩ before a vowel writes [z] for the ⟨x⟩. `PT_INITIAL_EX_VOICED` gives `exame` [eˈzɐmɨ], `existir` [eziʃˈtiɾ], `êxito` [ˈezitu] and `exótico` [eˈzɔtiku]. The Portal da Língua Portuguesa Dicionário fonético (ILTEC and CLUL, Lisbon variety) writes the same consonant: `exame` [i.zˈɐ.mɨ], `exato` [i.zˈa.tu], `existir` [i.ziʃ.tˈiɾ], `exótico` [i.zˈɔ.ti.ku]. The rule needs the ⟨e⟩ at the word start. ⟨ex⟩ before a consonant is [ejʃ] and is not matched (`texto` [ˈtejʃtu]). ⟨exh⟩ and ⟨hex⟩ are not matched either.
+
+The prefix ⟨ex⟩ inside a word (`inexato`, `coexistir`, `ex-presidente`) and the [ks] of `sexo` need a morphological rule that this rule does not cover. The Portal gives `inexato` [i.ni.zˈa.tu], `coexistir` [kwi.ziʃ.tˈiɾ] and `sexo` [sˈɛk.su].
+
+The Portal writes the initial vowel as [i], and the spec writes [e] (Lisbon [ɐ]). No rule here covers that vowel, so it stays as it was.
+
 ## Word-initial ⟨e⟩
 
 The value of an unstressed word-initial ⟨e⟩ depends on its first syllable. Mateus & d'Andrade (1998, D.E.L.T.A. 14(1), p. 26) give the contexts: "Underlying /e/ and /ɛ/ occur as: a) ɛ] when the coda is /L/ (see Elvira); b) as [i] when the rhyme has no coda (see elefante); c) there is some variation between [i], [e] and [E] when the coda is an /R/ (see ermida)". Cunha & Cintra (7th ed., p. 53) write "o [e] inicial absoluto de *enorme*, *erguer*, que se pronuncia geralmente [i]". The spec has five contexts:
