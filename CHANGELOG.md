@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.124.34a2](https://github.com/TigreGotico/orthography2ipa/tree/7.124.34a2) (2026-11-21)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.34a1...7.124.34a2)
+
+**Merged pull requests:**
+
+- docs: README, docs index, navigation and agent hints [\#2434](https://github.com/TigreGotico/orthography2ipa/pull/2434) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.124.34a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.34a1) (2026-11-21)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.33a1...7.124.34a1)
