@@ -60,3 +60,9 @@ def test_ex_vowel_after_another_letter_keeps_sh(lang, word):
     ipa = transcribe(word, lang)
     assert "ʃ" in ipa
     assert "z" not in ipa
+
+
+# Infopédia row of the unified pronunciation lexicon (pt-PT): exu [ˈeʃu].
+@pytest.mark.parametrize("lang", LANGS)
+def test_exu_loanword_keeps_sh(lang):
+    assert transcribe("exu", lang) == "ˈeʃu"

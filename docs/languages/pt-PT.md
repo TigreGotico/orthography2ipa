@@ -95,6 +95,8 @@ The prefix ⟨ex⟩ inside a word (`inexato`, `coexistir`, `ex-presidente`) and 
 
 The Portal writes the initial vowel as [i], and the spec writes [e] (Lisbon [ɐ]). No rule here covers that vowel, so it stays as it was.
 
+The Yoruba loan `exu` keeps [ʃ] and takes its stress on the first syllable: the Infopédia entry gives [ˈeʃu], and a word exception holds it. pt-AO, pt-MZ and pt-TL apply the same rule as pt-PT. The Portal pages for Luanda, Maputo and Díli write [z] in `exame`, `existir`, `exato`, `êxito`, `exótico` and `exemplo`.
+
 ## Word-initial ⟨e⟩
 
 The value of an unstressed word-initial ⟨e⟩ depends on its first syllable. Mateus & d'Andrade (1998, D.E.L.T.A. 14(1), p. 26) give the contexts: "Underlying /e/ and /ɛ/ occur as: a) ɛ] when the coda is /L/ (see Elvira); b) as [i] when the rhyme has no coda (see elefante); c) there is some variation between [i], [e] and [E] when the coda is an /R/ (see ermida)". Cunha & Cintra (7th ed., p. 53) write "o [e] inicial absoluto de *enorme*, *erguer*, que se pronuncia geralmente [i]". The spec has five contexts:
