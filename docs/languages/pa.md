@@ -9,7 +9,7 @@ see: `docs/languages/sa.md`, `docs/languages/a-z.md`, `docs/specs/quality_tiers.
 -->
 
 <!-- atlas:summary begin -->
-Punjabi is an Indo-Aryan language, written in the Gurmukhi script. Glottolog places it in Bangladesh, India and Pakistan. The `pa` spec is at the research tier. It cites 7 sources and has 2 scored datasets.
+Punjabi is an Indo-Aryan language, written in the Gurmukhi script. Glottolog places it in Bangladesh, India and Pakistan. The `pa` spec is at the research tier. It cites 8 sources and has 2 scored datasets.
 <!-- atlas:summary end -->
 
 <!-- atlas:header begin -->
@@ -38,7 +38,7 @@ The notes of the spec file open with these words:
 
 > Eastern Punjabi (Gurmukhi script, India). Typologically remarkable: lexical tone developed from the loss of the Old Indo-Aryan voiced-aspirate (murmured) series.
 
-The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 7 works, from 1972 to 2019. [Sources](#sources) lists them. The spec file writes all 61 spellings of its letter table itself.
+The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 8 works, from 1972 to 2026. [Sources](#sources) lists them. The spec file writes all 60 spellings of its letter table itself.
 
 The [spec file](../../orthography2ipa/data/pa.json) holds the full notes, with the caveats of the spec.
 <!-- atlas:overview end -->
@@ -54,7 +54,7 @@ These specs name `pa` as their parent. They are sorted by country, and a lect wi
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 7 works. 4 of them have a DOI or a URL. The spec file holds a note on what 4 of them support.
+The spec cites 8 works. 5 of them have a DOI or a URL. The spec file holds a note on what 5 of them support.
 
 1. <a id="src-masica1991"></a>Masica, C. (1991). *The Indo-Aryan Languages*. Cambridge University Press.
 2. <a id="src-cardona_jain2003"></a>Cardona, G. & Jain, D. (eds.) (2003). *The Indo-Aryan Languages*. Routledge.
@@ -63,6 +63,7 @@ The spec cites 7 works. 4 of them have a DOI or a URL. The spec file holds a not
 5. <a id="src-kanwal_ritchart2015"></a>Kanwal, J. & Ritchart, A. (2015). *An experimental investigation of tonogenesis in Punjabi*. Proceedings of the 18th International Congress of Phonetic Sciences. [internationalphoneticassociation.org](https://www.internationalphoneticassociation.org/icphs-proceedings/ICPhS2015/Papers/ICPHS0929.pdf)
 6. <a id="src-evans2018"></a>Evans, J., Yeh, W.-C. & Kulkarni, R. (2018). *Acoustics of tone in Indian Punjabi*. Transactions of the Philological Society 116(3): 509-528. [doi.org](https://doi.org/10.1111/1467-968X.12135)
 7. <a id="src-singh_lehal_schwa"></a>Singh, P. & Lehal, G. S. (2010). *A Rule Based Schwa Deletion Algorithm for Punjabi TTS System*. [learnpunjabi.org](https://www.learnpunjabi.org/pdf/_paper_id_60__a_rule_based_schwa_deletion_algorithm_for_punjabi_tts_system__final_.pdf)
+8. <a id="src-unicode_gurmukhi"></a>The Unicode Consortium (2026). *The Unicode Standard, Version 18.0, Chapter 12, South and Central Asia-I, Gurmukhi*. The Unicode Consortium. [unicode.org](https://www.unicode.org/versions/latest/core-spec/chapter-12/)
 <!-- atlas:sources end -->
 
 <!-- atlas:datasets begin -->
@@ -72,36 +73,36 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 
 | Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
 |:--|:--|:--|:--|:--|--:|--:|:--|
-| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `pa` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 1360 | 0.2541 | yes |
-| `vox_communis` ([fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p)) | `pa` | generated | epitran-derived | CC0 1.0 | 4003 | 0.4432 | no |
+| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `pa` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 1360 | 0.2391 | yes |
+| `vox_communis` ([fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p)) | `pa` | generated | epitran-derived | CC0 1.0 | 4003 | 0.4321 | no |
 <!-- atlas:datasets end -->
 
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 125 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 69 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Retroflex | Palatal | Velar | Uvular | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| Plosive | b bː p pʰ pʰː pː |  | d d̪ d̪ː t t̪ t̪ʰ t̪ʰː t̪ː |  | ɖ ɖː ʈ ʈʰ ʈʰː ʈː |  | k kʰ kʰː kː ɡ ɡː | q qː |  |
+| Plosive | b p pʰ |  | d̪ t̪ t̪ʰ |  | ɖ ʈ ʈʰ |  | k kʰ ɡ | q |  |
 | Affricate |  |  |  | dʒ tʃ tʃʰ |  |  |  |  |  |
-| Nasal | m mː |  | n nː |  | ɳ ɳː | ɲ ɲː | ŋ ŋː |  |  |
-| Trill |  |  | r rː |  |  |  |  |  |  |
-| Tap |  |  | ɾ ɾː |  | ɽ ɽː |  |  |  |  |
-| Fricative |  | f fː | s sː z zː | ʃ ʃʰː ʃː ʒː |  |  | x xː ɣ ɣː |  | h hː ɦ ɦː |
-| Approximant |  | ʋ ʋː |  |  |  | j jː j̃ j̃ː |  |  |  |
-| Lateral approximant |  |  | l lː |  | ɭ ɭː |  |  |  |  |
+| Nasal | m |  | n |  | ɳ | ɲ | ŋ |  |  |
+| Trill |  |  | r |  |  |  |  |  |  |
+| Tap |  |  | ɾ |  | ɽ |  |  |  |  |
+| Fricative |  | f | s z | ʃ |  |  | x ɣ |  | h ɦ |
+| Approximant |  | ʋ |  |  |  | j j̃ |  |  |  |
+| Lateral approximant |  |  | l |  | ɭ |  |  |  |  |
 
 | Vowels | Front | Central | Back |
 |:--|:-:|:-:|:-:|
 | Close | iː ĩː |  | uː ũː |
-| Near-close | ɪ ɪː ɪ̃ ɪ̃ː |  | ʊ ʊː ʊ̃ ʊ̃ː |
+| Near-close | ɪ ɪ̃ |  | ʊ ʊ̃ |
 | Close-mid | eː ẽː |  | oː õː |
-| Mid |  | ə əː ə̃ ə̃ː |  |
+| Mid |  | ə ə̃ |  |
 | Open-mid | ɛː ɛ̃ː |  | ɔː ɔ̃ː |
 | Open | aː ãː |  |  |
 
-Sequences that the spec writes as one unit: [b˩] [b˩ː] [dʒ˩] [d̪˩] [d̪˩ː] [k˩] [k˩ː] [p˩] [p˩ː] [tʃ˩] [t̪˩] [t̪˩ː] [w] [wː] [w̃] [w̃ː] [ɖ˩] [ɖ˩ː] [ɡ˩] [ɡ˩ː] [ʃ˩ː] [ʈ˩] [ʈ˩ː] [ʒ˩ː].
+Sequences that the spec writes as one unit: [b˩] [dʒ˩] [d̪˩] [k˩] [p˩] [tʃ˩] [t̪˩] [w] [w̃] [ɖ˩] [ɡ˩] [ʈ˩].
 
 Tones: [˥] high, [˧] mid (neutral), [˩] low.
 <!-- atlas:inventory end -->
@@ -173,7 +174,6 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨ੌ⟩ | [ɔː] |  |
 | ⟨ੜ⟩ | [ɽ] |  |
 | ⟨ੰ⟩ | [̃] |  |
-| ⟨ੱ⟩ | [ː] |  |
 
 The spec declares no stress rule.
 <!-- atlas:spelling end -->

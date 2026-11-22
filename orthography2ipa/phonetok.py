@@ -272,6 +272,24 @@ def _expand_arabic_gemination(text: str) -> str:
     return text
 
 
+# Gurmukhi gemination. The addak ੱ (U+0A71) is written after the vowel of the
+# syllable before a geminate, but it doubles the consonant letter AFTER it
+# (Unicode Standard, South and Central Asia-I, Gurmukhi: "U+0A71 GURMUKHI ADDAK
+# is a special sign to indicate that the following consonant is geminate"; the
+# ISCII-1991 spelling of ਪੱਗ pagg is <pa, ga, virama, ga>). Like the Arabic
+# shadda, it is modelled as a text-level transform that writes the ISCII
+# cluster: the following consonant letter (with its nukta), a virama, and the
+# letter again. The tokenizer then reads two consonant slots, as it does for a
+# virama cluster in the other Indic scripts.
+_GURMUKHI_ADDAK = re.compile("\u0A71+([\u0A15-\u0A39]\u0A3C?)")
+_GURMUKHI_VIRAMA = "\u0A4D"
+
+
+def _expand_gurmukhi_gemination(text: str) -> str:
+    """Replace each addak and the consonant letter after it by letter, virama, letter."""
+    return _GURMUKHI_ADDAK.sub(lambda m: m[1] + _GURMUKHI_VIRAMA + m[1], text)
+
+
 # ═══════════════════════════════════════════════════════════════════════════
 # Locale-aware casing
 # ═══════════════════════════════════════════════════════════════════════════
@@ -1785,18 +1803,12 @@ class PhonetokTokenizer:
 
     # ─── Core tokenization ─────────────────────────────────────────────
 
-    def tokenize(self, text: str) -> List[Token]:
-        """Tokenize *text* into a list of :class:`Token` objects.
+    def prepare(self, text: str) -> str:
+        """The string :meth:`tokenize` scans, and that token positions index into.
 
-        Algorithm:
-        1. Scan left-to-right.
-        2. At each position, try (in order):
-           a. Whitespace match.
-           b. Punctuation match.
-           c. Digit match.
-           d. Longest grapheme match via trie.
-           e. Single unknown character.
-        3. Optionally wrap with BOS/EOS.
+        It is *text* in NFC, with the spec's segment-less diacritics folded away
+        and the script's pre-tokenization rewrites applied. Preparing a prepared
+        string changes nothing.
         """
         text = self._normalise(text)
 
@@ -1811,6 +1823,24 @@ class PhonetokTokenizer:
             # byte-identical.
             if declares_shadda:
                 text = _expand_arabic_gemination(text)
+        elif self.spec.script == "Gurmukhi":
+            text = _expand_gurmukhi_gemination(text)
+        return text
+
+    def tokenize(self, text: str) -> List[Token]:
+        """Tokenize *text* into a list of :class:`Token` objects.
+
+        Algorithm:
+        1. Scan left-to-right.
+        2. At each position, try (in order):
+           a. Whitespace match.
+           b. Punctuation match.
+           c. Digit match.
+           d. Longest grapheme match via trie.
+           e. Single unknown character.
+        3. Optionally wrap with BOS/EOS.
+        """
+        text = self.prepare(text)
 
         tokens: List[Token] = []
         n = len(text)

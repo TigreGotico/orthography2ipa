@@ -1288,6 +1288,7 @@ class G2P:
         in isolation would drop that pause, and a pause is exactly what strips a
         case ending.
         """
+        text = self._tokenizer.prepare(text)
         tokens = self._tokenizer.tokenize(text)
         current: List[str] = []
         # hyphen_joined of the word in ``current``, and of the next one
