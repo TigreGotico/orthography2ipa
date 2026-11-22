@@ -267,7 +267,7 @@ _BARE_MODIFIERS = frozenset({_PALATALIZATION, _LENGTH})
 def _expands_shadda(spec: LanguageSpec) -> bool:
     """Whether the engine doubles the letter before a shadda, so that no ``ː``
     from the shadda reading ever follows a letter."""
-    return spec.script == "Arabic" and _AR_SHADDA in spec.graphemes
+    return _AR_SHADDA in spec.graphemes
 
 
 def _palatalize(token: str) -> str:

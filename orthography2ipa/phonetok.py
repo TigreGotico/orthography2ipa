@@ -168,7 +168,7 @@ __all__ = [
 # Arabic-script pre-tokenization normalization
 # ═══════════════════════════════════════════════════════════════════════════
 #
-# Two script-scoped normalizations run *before* grapheme tokenization for
+# Two normalizations run *before* grapheme tokenization for
 # Arabic-script specs. Both are opt-in by script/spec so no other script is
 # ever touched (Latin, Devanagari, … are byte-identical).
 #
@@ -1800,15 +1800,16 @@ class PhonetokTokenizer:
         """
         text = self._normalise(text)
 
-        # Arabic-script pre-tokenization normalization (script-scoped; no
-        # other script is touched). See the module block comment for detail.
-        if self.spec.script == "Arabic":
+        # Arabic-script pre-tokenization normalization (no other script is
+        # touched). See the module block comment for detail. A spec that
+        # declares the shadda writes Arabic letters whatever its ``script``
+        # label says (acq is "Zyyy", the Judeo-Arabic specs "Hebrew").
+        declares_shadda = _AR_SHADDA in self._grapheme_ipa
+        if self.spec.script == "Arabic" or declares_shadda:
             text = _decompose_arabic_presentation_forms(text)
-            # Gemination is only expanded for specs that actually model
-            # shadda (arb and its descendants declare ّ in their grapheme
-            # table); this leaves Arabic-script specs that do not — e.g.
-            # Persian — byte-identical.
-            if _AR_SHADDA in self._grapheme_ipa:
+            # Arabic-script specs that do not declare shadda (Persian) stay
+            # byte-identical.
+            if declares_shadda:
                 text = _expand_arabic_gemination(text)
 
         tokens: List[Token] = []
