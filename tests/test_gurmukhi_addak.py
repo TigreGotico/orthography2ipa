@@ -21,8 +21,11 @@ from orthography2ipa.g2p import G2P
 ADDAK = "ੱ"
 VIRAMA = "੍"
 NUKTA = "਼"
+# The reading of an addak before an aspirate is not settled by a source, so the
+# cluster test leaves the ten aspirate letters out (issue on the o2i tracker).
+ASPIRATES = "ਖਛਠਥਫਘਝਢਧਭ"
 CONSONANTS = [chr(cp) for cp in range(0x0A15, 0x0A3A)
-              if chr(cp) not in "਩਱਴਷"]
+              if chr(cp) not in "਩਱਴਷" + ASPIRATES]
 
 
 @pytest.fixture(scope="module")
@@ -63,8 +66,26 @@ def test_addak_geminates_a_nukta_consonant(pa):
 
 
 def test_addak_after_a_vowel_sign(pa):
-    """ਕਿੱਥੇ: the addak follows the vowel sign of the syllable before the geminate."""
-    assert pa.transcribe("ਕਿੱਥੇ") == "kɪt̪ʰt̪ʰeː"
+    """ਕਿੱਤਾ: the addak follows the vowel sign of the syllable before the geminate."""
+    assert pa.transcribe("ਕਿੱਤਾ") == "kɪt̪t̪aː"
+
+
+def test_a_doubled_addak_doubles_the_letter_once(pa):
+    """A repeated addak is one gemination, and preparing twice changes nothing."""
+    g2p = G2P("pa")
+    once = g2p._tokenizer.prepare("ਕੱੱਕ")
+    assert g2p._tokenizer.prepare(once) == once
+    assert pa.transcribe("ਕੱੱਕ") == pa.transcribe("ਕੱਕ") == "kəkk"
+
+
+@pytest.mark.parametrize("code, precomposed, decomposed", [
+    ("hi", "\u095Bिन्दगी", "\u091C\u093Cिन्दगी"),
+    ("mr", "\u095Bिन्दगी", "\u091C\u093Cिन्दगी"),
+])
+def test_precomposed_nukta_letter_reads_as_its_decomposed_form(code, precomposed, decomposed):
+    """A precomposed nukta letter (ज़ U+095B) is canonically equal to ज plus nukta."""
+    g2p = G2P(code)
+    assert g2p.transcribe(precomposed) == g2p.transcribe(decomposed)
 
 
 def test_inventory_has_no_long_consonant_token_from_the_addak():

@@ -281,7 +281,7 @@ def _expand_arabic_gemination(text: str) -> str:
 # cluster: the following consonant letter (with its nukta), a virama, and the
 # letter again. The tokenizer then reads two consonant slots, as it does for a
 # virama cluster in the other Indic scripts.
-_GURMUKHI_ADDAK = re.compile("\u0A71([\u0A15-\u0A39]\u0A3C?)")
+_GURMUKHI_ADDAK = re.compile("\u0A71+([\u0A15-\u0A39]\u0A3C?)")
 _GURMUKHI_VIRAMA = "\u0A4D"
 
 
