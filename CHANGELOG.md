@@ -1,5 +1,9 @@
 # Changelog
 
+## [7.124.40a2](https://github.com/TigreGotico/orthography2ipa/tree/7.124.40a2) (2026-11-22)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.40a1...7.124.40a2)
+
 ## [7.124.40a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.40a1) (2026-11-22)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.39a3...7.124.40a1)
@@ -326,10 +330,6 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.6a1...7.124.7a1)
 
-**Merged pull requests:**
-
-- fix: read the unstressed Dutch suffix -lijk as \[lək\] [\#2359](https://github.com/TigreGotico/orthography2ipa/pull/2359) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [7.124.6a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.6a1) (2026-11-19)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.5a1...7.124.6a1)
@@ -370,7 +370,6 @@
 **Merged pull requests:**
 
 - fix\(pt\): write the alfena and alentejo broken vowels without a tie [\#2361](https://github.com/TigreGotico/orthography2ipa/pull/2361) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-- fix\(inventory\): cut clusters and syllables into segments; a leading tilde joins its carrier [\#2360](https://github.com/TigreGotico/orthography2ipa/pull/2360) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.123.13a1](https://github.com/TigreGotico/orthography2ipa/tree/7.123.13a1) (2026-11-18)
 
