@@ -533,6 +533,7 @@ def test_a_palatalized_long_consonant_keeps_its_length_mark_last():
 
 
 @pytest.mark.parametrize("code,word", [
+    ("abh", "حَجّ"),      # shadda after ج: the doubled affricate dʒdʒ
     ("dar", "цьа"),       # soft sign after an aspirated affricate
     ("bo", "ཚཱི"),        # long vowel mark after an aspirated affricate
     ("bo", "ིཚཱི"),
