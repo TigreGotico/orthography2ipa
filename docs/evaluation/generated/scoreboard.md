@@ -577,7 +577,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | pqm | wikipron | 151 | 0.1759 | - | - | 0.1759 | 0.1759 | 0.1589 | 0.1589 | [0.1596, 0.1937] | 0.1589 | research | crowd-scraped |
 | ps | wikipron | 1075 | 0.2453 | - | - | 0.1938 | 0.1840 | 0.3265 | 0.3433 | [0.2341, 0.2554] | 0.2558 | research | crowd-scraped |
 | pt-AO | portal_lupo | 53144 | 0.2309‡ | 0.9957 | - | 0.1680 | 0.1516 | 0.2127 | 0.2603 | [0.2297, 0.2320] | 0.1048 | research | lupo-derived |
-| pt-AO | portuguese_tts | 20 | 0.2148‡ | - | - | - | - | - | - | [0.1808, 0.2540] | 0.0000 | research | llm-corrected |
+| pt-AO | portuguese_tts | 20 | 0.1800‡ | - | - | - | - | - | - | [0.1505, 0.2158] | 0.0000 | research | llm-corrected |
 | pt-BR | ipa_childes | 2116 | 0.2068‡ | - | - | 0.1797 | 0.1689 | 0.2888 | 0.3209 | [0.1994, 0.2143] | 0.2476 | production | espeak-derived |
 | pt-BR | ipadict | 95933 | 0.2311 | 0.9905 | - | 0.2274 | 0.2211 | 0.0500 | 0.0516 | [0.2302, 0.2321] | 0.0477 | production | machine-generated |
 | pt-BR | ipadict_corrected | 95933 | 0.2311‡ | 0.9973 | - | 0.2274 | 0.2211 | 0.0500 | 0.0516 | [0.2302, 0.2321] | 0.0477 | production | machine-generated |
