@@ -67,9 +67,9 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 
 | Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
 |:--|:--|:--|:--|:--|--:|--:|:--|
-| `primary_sources` | `uk` | gold | expert-human | Apache-2.0 (this repository). Each row quotes and cites a published example. | 45 | 0.0759 | yes |
-| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `uk` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 51646 | 0.0992 | yes |
-| `vox_communis` ([fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p)) | `uk` | generated | epitran-derived | CC0 1.0 | 51621 | 0.2672 | no |
+| `primary_sources` | `uk` | gold | expert-human | Apache-2.0 (this repository). Each row quotes and cites a published example. | 45 | 0.0714 | yes |
+| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `uk` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 51646 | 0.0980 | yes |
+| `vox_communis` ([fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p)) | `uk` | generated | epitran-derived | CC0 1.0 | 51621 | 0.2665 | no |
 <!-- atlas:datasets end -->
 
 <!-- atlas:inventory begin -->
@@ -198,7 +198,7 @@ The spec applies 43 allophone rules after the letters are read. The change colum
 | `UK_DEIOTA_jɛ` | /jɛ/ → [ɛ], after [b] [d] [dː] [f] [j] [k] [m] [n] and 19 more | - | - |
 | `UK_DEIOTA_ja` | /ja/ → [a], after [b] [d] [dː] [f] [j] [k] [m] [n] and 19 more | ⟨дядько⟩ [ˈdʲadʲko] | - |
 | `UK_DEIOTA_ji` | /ji/ → [i], after [b] [d] [dː] [f] [j] [k] [m] [n] and 19 more | - | - |
-| `UK_SOFT_SIGN_SILENT` | /ʲ/ → ∅, after [b] [d] [f] [j] [k] [m] [n] [p] and 11 more | - | - |
+| `UK_SOFT_SIGN_SILENT` | /ʲ/ → ∅, after [b] [d] [f] [j] [k] [m] [n] [p] and 12 more | - | - |
 | `UK_DEIOTA_ju` | /ju/ → [u], after [b] [d] [dː] [f] [j] [k] [m] [n] and 19 more | - | - |
 | `UK_REGR_PALAT_s` | /s/ → [sʲ], before [tʲ] [dʲ] [nʲ] [sʲ] [zʲ] [lʲ] [tsʲ] [bʲ] and 5 more | ⟨кістка⟩ [kʲisʲtʲkɐ] | [Pompino-Marschall 2017](#src-pompino2017), Pashchenko & Mołczanow 2017 |
 | `UK_REGR_PALAT_z` | /z/ → [zʲ], before [tʲ] [dʲ] [nʲ] [sʲ] [zʲ] [lʲ] [tsʲ] [bʲ] and 5 more | ⟨звер⟩ [zʲvʲer] | [Pompino-Marschall 2017](#src-pompino2017), Pashchenko & Mołczanow 2017 |
