@@ -95,7 +95,7 @@ from orthography2ipa.stress import (
     SECONDARY_MARK, _AFFRICATES, _LENGTH_MARKS, _NON_SYLLABIC,
     _syllables_for, apply_iambic_length, apply_stress_mark,
     cliticless_keys, detect_stress, detect_stress_by_weight,
-    secondary_stress_positions, syllabify, syllabify_for_mark, syllabify_ipa,
+    secondary_stress_positions, syllabify_for_mark, syllabify_ipa,
 )
 from orthography2ipa.tone import assign_computed_tones, dock_tone_marks
 from orthography2ipa.transforms import apply_transform
@@ -552,24 +552,12 @@ class G2P:
         named = _as_names(plugins or {})
         field_stages = _field_stages(
             self.pipeline, named, normalizer, rescorer, sentence_rescorer)
-        #: Whether a list-valued ``grammatical_endings`` entry contributes
-        #: its lower-ranked readings to the beam (see
-        #: :attr:`~orthography2ipa.types.LanguageSpec.grammatical_endings`).
-        #: ON by default, because exposing the reading this engine cannot
-        #: choose is the whole point of declaring the ending ambiguous.
-        #:
-        #: The one caller that turns it OFF is the benchmark harness's
-        #: scoreboard run. The board defines ``PER - Oracle@k`` as RANKING
-        #: error — "the engine produced a better reading and mis-ranked it"
-        #: — and a deliberately injected alternative moves that gap by
-        #: construction, since adding candidates can only lower an oracle.
-        #: Left on, any spec could inflate its own headroom by declaring
-        #: more alternatives. So the published oracle columns are measured
-        #: on the beam the engine RANKS, and the movement caused by an
-        #: injected alternative is reported separately as reachability
-        #: (docs/evaluation/benchmarks.md, "Injected alternatives do not count as
-        #: ranking error"). 1-best is unaffected either way: an
-        #: alternative can never reach rank 1.
+        #: Whether a list-valued ``grammatical_endings`` entry adds its
+        #: lower-ranked readings to the beam. The scoreboard turns it off: the
+        #: board defines ``PER - Oracle@k`` as ranking error, and an injected
+        #: alternative lowers an oracle by construction (see
+        #: docs/evaluation/benchmarks.md, "Injected alternatives do not count
+        #: as ranking error"). 1-best is unaffected.
         self.expose_ambiguous_endings = expose_ambiguous_endings
         if on_unmapped not in ("warn", "ignore", "log", "raise"):
             raise ValueError(
@@ -589,11 +577,8 @@ class G2P:
                 f"0.0. Pass on_unmapped='raise' to get UnmappedScriptError "
                 f"per word instead.",
                 StubSpecWarning, stacklevel=2)
-        # User rescorer(s) first, then — as the post-lexical stage — the
-        # allophone rescorer compiled from the spec's ``allophone_rules``.
-        # A spec with no rules (every shipped spec bar the pilots) compiles
-        # to ``None``, so the chain is exactly the user's rescorer(s) and the
-        # default path is byte-identical.
+        # User rescorer(s) run first, then the allophone rescorer compiled from
+        # the spec's ``allophone_rules`` (``None`` for a spec with no rules).
         self.apply_allophony = apply_allophony
         user_rescorers: Tuple[LatticeRescorer, ...] = normalize_rescorers(
             self.pipeline.rescore or rescorer)
@@ -609,24 +594,17 @@ class G2P:
             if apply_allophony else None
         )
         self._allophone_rescorer = allophone_rescorer
-        # The allophone pass may run more than once (bounded), so a rule that
-        # only fires on another rule's output can feed off it: each repeat
-        # rebuilds the segment context from the previous pass. `allophone_passes`
-        # is 1 for every spec that has not opted in, so the tuple holds exactly
-        # one copy and behaviour is byte-identical.
+        # A spec may opt in to repeated allophone passes (``allophone_passes``)
+        # so a rule can feed off another rule's output.
         n_passes = max(1, self.spec.allophone_passes)
         self._allophone_chain: Tuple[LatticeRescorer, ...] = (
             (allophone_rescorer,) * n_passes
             if allophone_rescorer is not None else ()
         )
 
-        # Rescorers come from DECLARED plugins only — named by the spec or by the
-        # caller. Discovery alone never contributes phonology: a rescorer changes
-        # the transcription, and `pip install` must not.
-        #
-        # The spec's own allophone rules run last and keep the last word: they are
-        # declared data a language owner wrote, and a plugin refines that phonology
-        # rather than overruling it.
+        # Rescorers come from declared plugins only: a rescorer changes the
+        # transcription, and ``pip install`` must not. The spec's allophone
+        # rules run last and keep the last word.
         self._rescorers: Tuple[LatticeRescorer, ...] = (
             user_rescorers + self._allophone_chain
         )
@@ -636,13 +614,9 @@ class G2P:
         self.apply_stress = apply_stress
         self.normalizer = normalizer
 
-        # Which plugin this engine runs, per stage. The SPEC names the ones that
-        # are intrinsic to the language; the CALLER overrides, which is how a
-        # downstream engine composes its own pipeline — arbtok does not edit this
-        # library's shipped ar.json to say it wants a diacritizer, it passes one.
-        #
-        # Either way it is a DECLARATION. What is never allowed is for discovery
-        # alone to decide: `pip install` must not change a transcription.
+        # The spec names the plugins intrinsic to the language and the caller
+        # overrides them, so a downstream engine composes its own pipeline.
+        # Discovery alone never decides.
         self.plugins = {**(self.spec.plugins or {}), **named}
         for stage in field_stages:
             self.plugins.pop(stage, None)
@@ -667,70 +641,42 @@ class G2P:
             SandhiEngine(self.spec.sandhi_rules)
             if self.spec.sandhi_rules else None
         )
-        # Sentence-scope (cross-word) rescorers are opt-in and caller-supplied
-        # only (no spec field): an empty tuple means the sentence seam never
-        # runs and transcribe() is byte-identical to before this seam existed.
+        # Sentence-scope (cross-word) rescorers are caller-supplied only; an
+        # empty tuple means the sentence seam never runs.
         self._sentence_rescorers: Tuple[SentenceRescorer, ...] = (
             normalize_sentence_rescorers(sentence_rescorer))
-        # Per-engine memo of two pure, spec-only computations that the profiler
-        # showed dominate the front-end path: syllabification (a caller's plugin
-        # is not cheap) and the rules-only pronunciation lattice the
-        # confidence read rebuilds. Both are deterministic functions of the word
-        # and this engine's immutable spec — they never consult the runtime-
-        # mutable lexicon — so a fresh engine gets fresh caches and the results
-        # are byte-identical to computing them each time. Real speech repeats
-        # function words heavily, so the hit rate is high.
+        # Per-engine memo of syllabification and the rules-only pronunciation
+        # lattice. Both depend only on the word and the immutable spec, never
+        # on the runtime-mutable lexicon.
         self._syll_cache: Dict[str, List[str]] = {}
         self._lattice_cache: Dict[Tuple[str, int], List[SegmentSlot]] = {}
         self._vowel_readings_cache: Dict[str, Tuple[frozenset, frozenset]] = {}
-        #: Does any grapheme in this spec key on syllable APERTURE? If not,
-        #: the aperture question is never asked: a stress-less spec skips
-        #: syllabification altogether (the most expensive step of the front
-        #: end), and a stress-declaring spec still skips the per-nucleus
-        #: open/closed computation. The feature costs a spec that does not
-        #: declare it nothing, which is what keeps it addable to the
-        #: engine without a cross-language latency bill.
+        #: Whether any grapheme keys on syllable aperture. If not, a stress-less
+        #: spec skips syllabification and a stress-declaring one skips the
+        #: per-nucleus open/closed computation.
         self._uses_aperture: bool = any(
             not _APERTURE_POSITIONS.isdisjoint(entry)
             for entry in (self.spec.positional_graphemes or {}).values()
             if entry)
-        #: Which beam the word path takes. The plain tokenizer beam carries no
-        #: stress context, so a ``RescoreContext`` built on it has
-        #: ``is_stressed is None`` and every ``stress`` allophone rule
-        #: declines to fire. A spec that declares such a rule therefore needs
-        #: the context-carrying beam just as a spec with positional overrides
-        #: does — otherwise the rule is loaded, validated, documented, and
-        #: silently dead. ``syllable_position`` rules read grapheme context,
-        #: which is present on both beams, so they do not force the switch.
+        #: Whether the word path takes the context-carrying beam. The plain
+        #: tokenizer beam has no stress context, so every ``stress`` allophone
+        #: rule would decline to fire. Positional overrides need it too.
+        #: ``syllable_position`` rules read grapheme context, present on both.
         self._needs_context_beam: bool = (
             self.spec.has_positional_data()
             or any(r.stress for r in self.spec.allophone_rules))
         #: Declared prosodic-clitic keys (see :meth:`_is_cliticless`), computed
         #: once per engine on first use; ``None`` until then.
         self._cliticless_cache: Optional[frozenset] = None
-        #: Graphemes this spec declares as stress marks that emit nothing —
-        #: a written accent whose only job is to say WHERE the stress is
-        #: (the Russian combining acute). Stress detection reads them; every
-        #: whole-word key is spelled without them (see :meth:`_unmarked`).
+        #: Stress-mark graphemes that emit nothing (the Russian combining
+        #: acute). Stress detection reads them; whole-word keys are spelled
+        #: without them (see :meth:`_unmarked`).
         self._silent_stress_marks: str = "".join(
             ch for ch in (self.spec.stress.marked_vowels if self.spec.stress
                           else ())
             if ch in self.spec.graphemes and not any(self.spec.graphemes[ch]))
 
     # ─── public API ──────────────────────────────────────────────────
-
-    def _normalize(self, text: str) -> str:
-        """What the input IS, canonically, before anything reads it.
-
-        The declared `normalize` plugin runs first — diacritic restoration for an
-        abjad, number expansion — and then the caller's own normalizer, which is
-        the last word because the caller is closest to the text.
-        """
-        for plugin in self._stage_plugins.get("normalize"):
-            text = plugin.normalize(text, self.lang)
-        if self.normalizer is not None:
-            text = self.normalizer(text)
-        return text
 
     def transcribe(
         self,
@@ -772,35 +718,29 @@ class G2P:
         if (self.spec.stress is not None
                 and self.spec.stress.compound_stress == "last"):
             ipa_words = self._mark_compounds(words, ipa_words)
-        # Sentence-scope (cross-word) rescorers run first — they see the whole
-        # utterance's word lattices, adjacency and phrase/utterance position —
-        # then the spec's declarative sandhi pass runs exactly as before. When
-        # no sentence rescorer is configured (the default) this branch is
-        # skipped entirely, so the pipeline below is byte-identical.
+        # Sentence-scope rescorers run first and see the whole utterance's word
+        # lattices, adjacency and phrase/utterance position.
         if self._sentence_rescorers:
             lattice = self._build_sentence_lattice(words, transcribed, width)
             ipa_words = apply_sentence_rescorers(
                 lattice, self._sentence_rescorers)
         if self.apply_sandhi and self._sandhi is not None:
-            # The pause flags go WITH the words: a sandhi rule applies inside
-            # its prosodic domain, and the punctuation the tokenizer already
-            # read is where the intonational phrase ends (Nespor & Vogel 1986,
-            # *Prosodic Phonology*). Without them every rule crosses a comma.
+            # A sandhi rule applies inside its prosodic domain, and the
+            # punctuation read by the tokenizer ends the intonational phrase
+            # (Nespor & Vogel 1986, *Prosodic Phonology*).
             ipa_words = self._sandhi.apply(
                 ipa_words, pausal=[w.pausal for w in words])
 
-        # Cross-word phonology that needs code rather than a declarative rule: a
-        # final /n/ that assimilates to the next onset, a case ending a pause
-        # removes. The plugin sees each word's SPELLING as well as its IPA — whether
-        # a word ends in a case ending is a fact about the page, and guessing it
-        # from the last characters of the IPA confuses an ending with a stem.
+        # Cross-word phonology that needs code rather than a declarative rule:
+        # a final /n/ that assimilates to the next onset, a case ending a pause
+        # removes. The plugin sees each word's spelling as well as its IPA,
+        # because a case ending is a fact about the page, not the IPA.
         sandhi = self.pipeline.sandhi
         for plugin in ([sandhi] if sandhi is not None
                        else self._stage_plugins.get("sandhi")):
             surfaces = [w.surface for w in words]
-            # The pause has to be HANDED to the plugin: punctuation is stripped
-            # during word splitting, so by now it is gone from the input — and a
-            # pause is exactly what removes a case ending.
+            # Punctuation is stripped during word splitting, so the pause is
+            # passed explicitly: it is what removes a case ending.
             pausal = [w.pausal for w in words]
             rewritten = plugin.apply(
                 list(ipa_words), surfaces, pausal, self.lang)
@@ -814,15 +754,12 @@ class G2P:
 
         ipa = " ".join(w for w in ipa_words if w)
         if self.dialect_profile:
-            # The spelling the transform reads is the words', normalized — which is
-            # also the only spelling there is: a forced word contributes the text it
-            # wrapped, and the markup itself is not part of the utterance.
+            # The transform reads the normalized spelling of the words; a forced
+            # word contributes the text it wrapped, not the markup.
             ipa = apply_transform(ipa, self.dialect_profile,
                                   ortho=" ".join(w.surface for w in words))
-        # Cross-word stages (sandhi, dialect transforms) can splice
-        # combining marks across a word boundary, so re-assert the NFC
-        # output contract on the assembled sentence too — see the same
-        # normalization in ``_transcribe_word``.
+        # Sandhi and dialect transforms can splice combining marks across a
+        # word boundary, so the sentence is NFC-normalized too.
         if ipa:
             ipa = unicodedata.normalize("NFC", ipa)
 
@@ -924,7 +861,7 @@ class G2P:
         word it is given comes back empty. See
         :class:`~orthography2ipa.exceptions.StubSpecWarning`.
         """
-        if getattr(self.spec, "clade", None):
+        if self.spec.clade:
             return False
         return not self.spec.graphemes and not self.spec.positional_graphemes
 
@@ -950,8 +887,7 @@ class G2P:
             ipa = "".join(self._mark_compounds(elements, [
                 self._transcribe_word(w.surface, width).ipa
                 for w in elements]))
-        # Output contract: NFC (see the note in _transcribe_word on why the
-        # composition happens here, at the boundary, rather than inline).
+        # NFC at the boundary, as in _transcribe_word.
         return unicodedata.normalize("NFC", ipa) if ipa else ipa
 
     def candidates(self, word: str, *, beam_width: int = 8) -> List[IPAPath]:
@@ -996,13 +932,9 @@ class G2P:
 
         stressed_syll_idx: Optional[int] = None
         secondary_syll_idxs: frozenset = frozenset()
-        # Syllabification is needed for TWO independent things: the stress
-        # positions (which need the spec's stress rules) and the aperture
-        # positions (which need only the syllable's own shape). It is
-        # therefore computed unconditionally; a spec with no stress rules
-        # still gets open/closed syllables, and still gets no
-        # nucleus_stressed/unstressed because those stay gated on
-        # ``stressed_syll_idx`` below.
+        # Syllabification serves stress positions and aperture positions, so
+        # a spec with no stress rules still gets open/closed syllables but no
+        # nucleus_stressed/unstressed.
         sylls: List[str] = (
             self._syllables_cached(word)
             if self.spec.stress is not None or self._uses_aperture else [])
@@ -1014,10 +946,9 @@ class G2P:
                 stressed_syll_idx = 0
             if self._is_cliticless(word):
                 stressed_syll_idx = _CLITIC_NO_STRESS
-            # Prominence LEVEL 2. Empty unless the spec declares
-            # ``stress.secondary_stress``; a clitic has no main stress, so
-            # nothing below it either (the sentinel is negative and
-            # ``secondary_stress_positions`` returns the empty set).
+            # Secondary stress: empty unless the spec declares
+            # ``stress.secondary_stress`` or the word is a clitic (negative
+            # sentinel).
             secondary_syll_idxs = secondary_stress_positions(
                 len(sylls), stressed_syll_idx, self.spec.stress)
         syll_for_token = self._map_tokens_to_syllables(g_tokens, sylls)
@@ -1062,11 +993,9 @@ class G2P:
             SegmentSlot(grapheme=s.grapheme, span=s.span,
                         candidates=s.candidates[:keep])
             for s in slots
-            # The lattice contract reserves empty candidates for deletion:
-            # a silenced marker grapheme (preposed dependent vowel folded
-            # into its consonant) is omitted here exactly as on the
-            # rescorer path, keeping `slot.top` total and confidence
-            # computed over sounding slots only.
+            # Empty candidates mean deletion (a silenced marker grapheme), so
+            # the slot is omitted as on the rescorer path and ``slot.top``
+            # and confidence cover sounding slots only.
             if s.candidates
         ]
         self._lattice_cache[cache_key] = result
@@ -1193,7 +1122,14 @@ class G2P:
                 words.append(_Word(surface=chunk.text.strip(),
                                    forced_ipa=self._check_forced(chunk.forced_ipa)))
             else:
-                self._group_words(self._normalize(chunk.text), words)
+                # The declared ``normalize`` plugin runs first, then the
+                # caller's normalizer, which has the last word.
+                text = chunk.text
+                for plugin in self._stage_plugins.get("normalize"):
+                    text = plugin.normalize(text, self.lang)
+                if self.normalizer is not None:
+                    text = self.normalizer(text)
+                self._group_words(text, words)
         return self._flag(words)
 
     def _compound_elements(self, word: str) -> Optional[List[_Word]]:
@@ -1270,8 +1206,6 @@ class G2P:
 
     def _flag(self, words: List[_Word]) -> List[_Word]:
         """Mark the edges of the utterance. The last word stands before a pause."""
-        if not words:
-            return []
         return [
             replace(w, pausal=w.pausal or i == len(words) - 1,
                     sentence_initial=i == 0,
@@ -1282,11 +1216,9 @@ class G2P:
     def _group_words(self, text: str, words: List[_Word]) -> None:
         """Group a plain run's token stream into words, appending to *words*.
 
-        It appends rather than returns because a pause is not confined to the run
-        it is written in: punctuation opening a plain run falls *after* whatever
-        preceded it, and what preceded it may be a forced word. Grouping each run
-        in isolation would drop that pause, and a pause is exactly what strips a
-        case ending.
+        It appends because a pause is not confined to its run: punctuation
+        opening a plain run falls after whatever preceded it, which may be a
+        forced word, and a pause is what strips a case ending.
         """
         text = self._tokenizer.prepare(text)
         tokens = self._tokenizer.tokenize(text)
@@ -1320,22 +1252,13 @@ class G2P:
                 flush()
                 if words and any(c in _PAUSE_PUNCTUATION
                                  for c in token.grapheme):
-                    # ``replace``, not a fresh ``_Word``: rebuilding it from
-                    # the surface alone DROPPED ``forced_ipa``, so a
-                    # ``<phoneme>`` forcing standing before punctuation was
-                    # silently discarded and the word was re-derived by the
-                    # beam.
+                    # ``replace`` keeps ``forced_ipa`` of a ``<phoneme>`` word.
                     words[-1] = replace(words[-1], pausal=True)
             else:
-                # Reconstruct the *surface* span, not just the grapheme key.
-                # A token may consume more characters than its grapheme names:
-                # an abugida consonant followed by a virama has a 1-character
-                # grapheme but a 2-character span. Joining grapheme keys alone
-                # would drop the virama from the rebuilt word, and the word is
-                # re-tokenised downstream — so the suppressed inherent vowel
-                # would silently come back. For every token whose span equals
-                # its grapheme (i.e. every non-abugida token) the tail is empty
-                # and the rebuilt word is unchanged.
+                # Rebuild the surface span, not just the grapheme key: an
+                # abugida consonant plus virama has a 1-character grapheme and
+                # a 2-character span, and the word is re-tokenised downstream,
+                # so a dropped virama would bring the inherent vowel back.
                 tail = token.text_span(text)[len(token.grapheme):]
                 if not current:
                     joined, after_hyphen = after_hyphen, False
@@ -1379,18 +1302,14 @@ class G2P:
     def _unmarked(self, word: str) -> str:
         """*word* without the silent stress marks the spec declares.
 
-        Whole-word data that supplies SEGMENTS — ``word_exceptions``, the
-        sidecar lexicon, ``grammatical_endings`` — is keyed on bare
-        orthography, because that is how the language is written. A caller
-        who marks the stress is answering a different question (WHERE the
-        accent falls), and must not thereby miss the lookup: его́ is его.
-        Stress detection has already read the mark by the time any of these
-        run, so removing it here loses nothing.
+        Whole-word data (``word_exceptions``, the sidecar lexicon,
+        ``grammatical_endings``) is keyed on bare orthography, so a caller who
+        marks the stress must not miss the lookup: его́ is его. Stress
+        detection has read the mark by then.
 
-        ``cliticless_words`` is deliberately NOT keyed this way: it answers
-        the where-is-the-accent question itself, by suppressing the stress
-        entirely, so a stripped mark there would discard the caller's answer
-        rather than preserve it (see :meth:`_is_cliticless`).
+        ``cliticless_words`` is not keyed this way: it suppresses stress
+        entirely, and a stripped mark would discard the caller's answer (see
+        :meth:`_is_cliticless`).
         """
         if not self._silent_stress_marks:
             return word
@@ -1399,14 +1318,11 @@ class G2P:
     def _override_for(self, word: str) -> Optional[str]:
         """Whole-word IPA override for *word*, or ``None`` to fall to rules.
 
-        Precedence — inline ``spec.word_exceptions`` > sidecar lexicon >
-        ``None``. The sidecar is ``pipeline.lexicon`` when the caller set it,
-        and the process-wide lexicon otherwise (see
-        :mod:`orthography2ipa.lexicon`). Both are matched on the same
-        language-aware lowercased key, so a lexicon hit rejoins the *identical*
-        override pathway an inline exception uses (stress-mark insertion,
-        cross-word sandhi and ``confidence == 1.0`` all apply unchanged). A
-        language with no sidecar gets an empty map here and takes the rules.
+        Precedence: inline ``spec.word_exceptions``, then the sidecar lexicon
+        (``pipeline.lexicon`` when set, else the process-wide lexicon, see
+        :mod:`orthography2ipa.lexicon`). Both match on the same language-aware
+        lowercased key and rejoin the override pathway (stress-mark insertion,
+        sandhi, ``confidence == 1.0``).
 
         A word that spells an elided clitic before its host (French
         ``l'hiver``, Portuguese ``d'Os``) and has no entry of its own takes
@@ -1449,13 +1365,9 @@ class G2P:
         lex = self.pipeline.lexicon
         if lex is None:
             lex = _process_lexicon(self.lang)
-        # Two keys, tried in order: the word as given, then the word with
-        # the punctuation that clings to it in raw text stripped from both
-        # ends (``I,`` ``is.`` ``"I``). The grapheme layer never sees that
-        # punctuation, so a rule reads past it, but an exception looked up
-        # on the raw key missed it and the word fell through to the rules
-        # (``I,`` → [i] while ``I`` → [aɪ]). The exact key stays first so an
-        # entry that is spelled with a mark (Afrikaans ``'n``) still hits.
+        # The word as given first, so an entry spelled with a mark (Afrikaans
+        # ``'n``) hits; then with clinging punctuation stripped from both ends
+        # (``I,`` ``is.``), which the grapheme layer never sees.
         keys = [key]
         stripped = _EDGE_PUNCT_RE.sub("", key)
         if stripped and stripped != key:
@@ -1585,7 +1497,8 @@ class G2P:
         override = forced_ipa if forced_ipa is not None else self._override_for(word)
         paths: List[IPAPath] = []
         if override is not None:
-            ipa = override
+            ipa = self._finalize_word_ipa(word, override, forced_ipa=forced_ipa,
+                                          collapse_geminates=False)
         else:
             if self._needs_context_beam:
                 paths = self._positional_beam(word, width)
@@ -1595,28 +1508,19 @@ class G2P:
                     expand_allophones=self.expand_allophones,
                     rescorer=self._rescorers or None)
             paths = self._apply_grammatical_ending(word, paths)
-            ipa = paths[0].ipa if paths else word
+            best = paths[0] if paths else None
             ipa = self._finalize_word_ipa(
-                word, ipa, forced_ipa=forced_ipa,
-                path=paths[0] if paths else None)
-        if override is not None:
-            ipa = self._finalize_word_ipa(word, ipa, forced_ipa=forced_ipa,
-                                          collapse_geminates=False)
-        # NOTE: *not* NFC-composed here. Cross-word sandhi rules (see
-        # transcribe_detailed) still need to run on this per-word IPA, and
-        # at least one declared rule (pt-PT's PT_SCHWA_ELISION) matches a
-        # nasal vowel by its DECOMPOSED shape (base vowel + combining
-        # tilde U+0303) in its right_context regex — composing here first
-        # would make that vowel invisible to the rule and silently disable
-        # it. The NFC output contract is enforced once, at the true
-        # emission boundary, after every cross-word stage has run (see
-        # transcribe_detailed and transcribe_word).
+                word, word if best is None else best.ipa, forced_ipa=forced_ipa,
+                path=best)
+        # Not NFC-composed here: pt-PT's PT_SCHWA_ELISION matches a nasal vowel
+        # by its decomposed shape (base vowel + U+0303), so composing before
+        # the cross-word stages would disable it. NFC is enforced at the
+        # emission boundary (transcribe_detailed, transcribe_word).
         unmapped, coverage = self._unmapped_chars(word)
         if unmapped:
             self._handle_unmapped(word, unmapped)
-        # Per-word confidence (B5): a lexicon override is a certain answer
-        # (lattice_conf = 1.0); otherwise read the lattice's weakest-link
-        # slot confidence. Coverage folds the OOV signal in either case.
+        # A lexicon override is certain; otherwise the lattice's weakest-link
+        # slot confidence. Coverage folds in the OOV signal either way.
         lattice_conf = (
             1.0 if override is not None
             else lattice_confidence(self.ipa_lattice(word))
@@ -1636,20 +1540,14 @@ class G2P:
                            collapse_geminates: bool = True) -> str:
         """Apply the per-path word-final stages to one beam path's *ipa*.
 
-        These are the stages that turn a raw beam path into the string
-        :meth:`transcribe_word` emits: geminate collapse and stress
-        marking. They are factored out of :meth:`_transcribe_word` so
-        that a caller wanting the top-*k* readings (see
-        :meth:`word_candidates`) runs the SAME pipeline on every path
-        instead of re-implementing it — a second implementation would
-        make candidate 1 disagree with :meth:`transcribe_word`.
-
-        Cross-word stages (sandhi, dialect transform) are NOT applied
-        here: they act on the whole utterance, not on a word.
+        These stages (geminate collapse, stress marking) turn a raw beam path
+        into the string :meth:`transcribe_word` emits. Every path of
+        :meth:`word_candidates` runs through them too, so candidate 1 agrees
+        with :meth:`transcribe_word`. Cross-word stages (sandhi, dialect
+        transform) are not applied here.
         """
-        # Computed tone runs first, on the path's own slots: it is the
-        # only stage that needs to see which grapheme produced which
-        # segment, and every stage after it works on the string.
+        # Computed tone runs first: it alone needs to see which grapheme
+        # produced which segment.
         if (self.spec.tone_rules is not None and path is not None
                 and path.graphemes and ipa == path.ipa):
             ipa = assign_computed_tones(path.graphemes, path.segments,
@@ -1657,28 +1555,23 @@ class G2P:
                                         self.spec.phonemes or ())
         if collapse_geminates and self.spec.collapse_geminates and ipa:
             ipa = _collapse_geminates(ipa)
-        # Word-final virama: run AFTER geminate collapse so a doubled
-        # letter that closes with a virama (Malayalam ⟨റ്റ⟩ + ് =
-        # /tː/ + samvrutokaram) gets the vowel attached to the already-
-        # collapsed geminate, not fused into one half of the pair where
-        # the gemination allophone rule could no longer see a bare
-        # consonant to match. See ``virama_final_vowel`` on LanguageSpec.
+        # Word-final virama runs after geminate collapse, so the vowel of
+        # Malayalam ⟨റ്റ്⟩ (/tː/ + samvrutokaram) attaches to the collapsed
+        # geminate and the gemination allophone rule still sees a bare
+        # consonant. See ``virama_final_vowel`` on LanguageSpec.
         if (self.spec.virama_final_vowel is not None and word and ipa
                 and unicodedata.combining(word[-1]) == _VIRAMA_COMBINING_CLASS
                 and not is_ipa_vowel(ipa[-1])):
             ipa = ipa + self.spec.virama_final_vowel
         if self.spec.tone_marks_syllable_final and ipa:
             ipa = dock_tone_marks(ipa, self.spec.phonemes or ())
-        # A forced reading is not re-stressed: `ph` is the pronunciation, mark and
-        # all. A caller who wrote a mark has placed the stress, and one who wrote
-        # none has said this word carries none — re-deriving it from the spelling
-        # would overrule the very thing being forced.
+        # A forced reading is not re-stressed: ``ph`` is the pronunciation,
+        # mark or no mark.
         if (forced_ipa is None and self.spec.stress is not None and ipa
                 and self.spec.stress.iambic_length
                 and not self._is_cliticless(word)):
-            # Runs BEFORE the stress mark: it lengthens a nucleus by weight,
-            # never moves the mark, and a forced reading has already stated
-            # its own vowel length (see ``apply_iambic_length``).
+            # Before the stress mark: it lengthens a nucleus by weight and
+            # never moves the mark (see ``apply_iambic_length``).
             ipa = apply_iambic_length(ipa, self.spec.stress)
         if (forced_ipa is None
                 and self.apply_stress and self.spec.stress is not None and ipa
@@ -2238,13 +2131,9 @@ class G2P:
         # Determine stressed syllable index once (reuse for all vowels)
         stressed_syll_idx: Optional[int] = None
         secondary_syll_idxs: frozenset = frozenset()
-        # Syllabification is needed for TWO independent things: the stress
-        # positions (which need the spec's stress rules) and the aperture
-        # positions (which need only the syllable's own shape). It is
-        # therefore computed unconditionally; a spec with no stress rules
-        # still gets open/closed syllables, and still gets no
-        # nucleus_stressed/unstressed because those stay gated on
-        # ``stressed_syll_idx`` below.
+        # Syllabification serves stress positions and aperture positions, so
+        # a spec with no stress rules still gets open/closed syllables but no
+        # nucleus_stressed/unstressed.
         sylls: List[str] = (
             self._syllables_cached(word)
             if self.spec.stress is not None or self._uses_aperture else [])
@@ -2256,10 +2145,9 @@ class G2P:
                 stressed_syll_idx = 0  # monosyllable → always stressed
             if self._is_cliticless(word):
                 stressed_syll_idx = _CLITIC_NO_STRESS
-            # Prominence LEVEL 2. Empty unless the spec declares
-            # ``stress.secondary_stress``; a clitic has no main stress, so
-            # nothing below it either (the sentinel is negative and
-            # ``secondary_stress_positions`` returns the empty set).
+            # Secondary stress: empty unless the spec declares
+            # ``stress.secondary_stress`` or the word is a clitic (negative
+            # sentinel).
             secondary_syll_idxs = secondary_stress_positions(
                 len(sylls), stressed_syll_idx, self.spec.stress)
 
