@@ -70,18 +70,18 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 50 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 89 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar | Uvular | Pharyngeal | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| Plosive | b p pʰ |  | d t tʰ tʼ |  |  | k kʼ kː ɡ | q qʼ qː |  | ʔ |
+| Plosive | b bʲ p pʰ pʰʲ pʲ |  | d dʲ t tʰ tʰʲ tʲ tʼ tʼʲ t͡ |  |  | k kʲ kʲː kʼ kʼʲ kː ɡ ɡʲ | q qʲ qʲː qʼ qʼʲ qː q͡ |  | ʔ ʔʲ |
 | Affricate |  |  | t͡s t͡sʰ t͡sʼ t͡ɬʼ | t͡ʃ t͡ʃʰ t͡ʃʼ |  |  |  |  |  |
-| Nasal | m |  | n |  |  |  |  |  |  |
-| Trill |  |  | r |  |  |  |  |  |  |
-| Fricative |  | f | s z | ʃ ʃː ʒ |  | x | ʁ χ χː | ħ ʕ | h |
-| Lateral fricative |  |  | ɬ |  |  |  |  |  |  |
+| Nasal | m mʲ |  | n nʲ |  |  |  |  |  |  |
+| Trill |  |  | r rʲ |  |  |  |  |  |  |
+| Fricative |  | f fʲ | s sʰʲ sʲ sʼʲ z zʲ | ʃ ʃʰʲ ʃʲ ʃʲː ʃʼʲ ʃː ʒ ʒʲ |  | x xʲ | ʁ ʁʲ χ χʲ χʲː χː | ħ ħʲ ʕ ʕʲ | h hʲ |
+| Lateral fricative |  |  | ɬ ɬʲ ɬʼʲ |  |  |  |  |  |  |
 | Approximant |  |  |  |  | j |  |  |  |  |
-| Lateral approximant |  |  | l |  |  |  |  |  |  |
+| Lateral approximant |  |  | l lʲ |  |  |  |  |  |  |
 
 | Vowels | Front | Central | Back |
 |:--|:-:|:-:|:-:|
@@ -89,7 +89,7 @@ The spec can emit 50 segments. They come from the letter table, the positional r
 | Close-mid | e |  | o |
 | Open | a |  |  |
 
-Sequences that the spec writes as one unit: [q͡χ] [w] [ʲ].
+Sequences that the spec writes as one unit: [q͡χ] [w].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->
