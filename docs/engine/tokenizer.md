@@ -143,7 +143,7 @@ Each key takes the form that `tokenize` gives the text: lower case, NFC, and wit
 
 ### `tokenize(text)`
 
-`tokenize` returns every token, including whitespace and punctuation, so the structure of the text survives. Before the scan, it normalises the text to NFC and removes the diacritics the spec lists in `fold_diacritics`. For an Arabic-script spec, it also decomposes presentation forms and, if the spec models shadda, expands gemination.
+`tokenize` returns every token, including whitespace and punctuation, so the structure of the text survives. Before the scan, it normalises the text to NFC and removes the diacritics the spec lists in `fold_diacritics`. For an Arabic-script spec, it also decomposes presentation forms and, if the spec models shadda, expands gemination. For a Gurmukhi spec, it rewrites each addak and the consonant letter after it to the letter, a virama and the letter again, which reads as two consonant slots. `prepare(text)` returns that rewritten string, and the `position` of a token indexes into it.
 
 The scan then goes left to right. At each position it tries whitespace, punctuation, digits, the longest grapheme, and finally a single unknown character, in that order. A grapheme wins over punctuation when the spec claims the punctuation characters, as Tetum does with the apostrophe.
 

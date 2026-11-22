@@ -2,7 +2,7 @@
 """Attribute the Punjabi ``vox_communis`` PER to gold notation, and measure
 what is left.
 
-The ``pa`` / ``vox_communis`` row scores PER 0.4454 over 4003 words. The gold
+The ``pa`` / ``vox_communis`` row scores PER 0.4321 over 4003 words. The gold
 is ``epitran-derived`` (a scored competitor's output: directional signal only,
 never a gate), and it writes Punjabi in epitran's conventions:
 
