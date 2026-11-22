@@ -1,5 +1,9 @@
 # Changelog
 
+## [7.124.45a2](https://github.com/TigreGotico/orthography2ipa/tree/7.124.45a2) (2026-11-22)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.45a1...7.124.45a2)
+
 ## [7.124.45a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.45a1) (2026-11-22)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.44a1...7.124.45a1)
@@ -249,10 +253,6 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.22a1...7.124.23a1)
 
-**Merged pull requests:**
-
-- fix: read unstressed ow as GOAT and rh as r in English [\#2370](https://github.com/TigreGotico/orthography2ipa/pull/2370) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [7.124.22a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.22a1) (2026-11-19)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.21a2...7.124.22a1)
@@ -294,10 +294,6 @@
 ## [7.124.16a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.16a1) (2026-11-19)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.15a2...7.124.16a1)
-
-**Merged pull requests:**
-
-- fix: cut the IPA division where a silent letter joins two written nuclei [\#2371](https://github.com/TigreGotico/orthography2ipa/pull/2371) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.124.15a2](https://github.com/TigreGotico/orthography2ipa/tree/7.124.15a2) (2026-11-19)
 
