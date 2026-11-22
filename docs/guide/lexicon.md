@@ -55,7 +55,7 @@ The engine reads the markup before it prepares the text. The `expand` step of a 
 
 ### The inventory check
 
-The engine checks `ph` against the phoneme inventory of the spec. That inventory is `phoneme_inventory(spec, lexicon)`: each segment the spec and the lexicon of the engine can emit. A symbol outside it raises `MarkupError`. The check makes the feature safe. A TTS frontend builds its embedding table from the inventory before it trains. A symbol that appears only at inference has no vector, so each word that carries it is mispronounced, permanently and without a sign.
+The engine checks `ph` against the phoneme inventory of the spec. That inventory is `phoneme_inventory(spec, lexicon)`: each segment that the spec and the lexicon of the engine can emit. A bare length mark ː or palatalization mark ʲ that a slot emits joins each segment it can follow, so the inventory holds `pʲ` and `aː` and never a lone `ʲ` or `ː`. A symbol outside it raises `MarkupError`. The check makes the feature safe. A TTS frontend builds its embedding table from the inventory before it trains. A symbol that appears only at inference has no vector, so each word that carries it is mispronounced, permanently and without a sign.
 
 A loanword is the case that matters. In Arabic, English *meeting* is nativised and does not keep its English sounds. Modern Standard Arabic has /q/ and /dʒ/ and no /ɡ/. The `ar` spec takes that inventory from Watson (2002), *The Phonology and Morphology of Arabic*, and checks it against the JIPA illustration of Arabic by Thelwall and Sa'Adeddin (1990, [doi:10.1017/S0025100300004266](https://doi.org/10.1017/S0025100300004266)). So the `ar` spec refuses a reading with [ɡ]:
 
