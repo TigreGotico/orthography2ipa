@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.124.41a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.41a1) (2026-11-22)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.40a2...7.124.41a1)
+
+**Merged pull requests:**
+
+- fix\(uk\): one palatalization mark on a consonant before ь [\#2467](https://github.com/TigreGotico/orthography2ipa/pull/2467) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.124.40a2](https://github.com/TigreGotico/orthography2ipa/tree/7.124.40a2) (2026-11-22)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.40a1...7.124.40a2)
@@ -320,7 +328,6 @@
 **Merged pull requests:**
 
 - fix\(es-ES\): voice /s/ before a voiced consonant [\#2369](https://github.com/TigreGotico/orthography2ipa/pull/2369) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-- fix\(fax\): read ⟨é ó⟩ as the close-mid \[e o\] [\#2363](https://github.com/TigreGotico/orthography2ipa/pull/2363) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.124.8a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.8a1) (2026-11-19)
 
@@ -349,7 +356,6 @@
 **Merged pull requests:**
 
 - test\(feats\): pin the lm deprecation removal release and the caller line [\#2364](https://github.com/TigreGotico/orthography2ipa/pull/2364) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-- fix\(gold\): give the ganho row the \[ɐ̃\] that Barbosa & Albano print [\#2362](https://github.com/TigreGotico/orthography2ipa/pull/2362) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.124.2a2](https://github.com/TigreGotico/orthography2ipa/tree/7.124.2a2) (2026-11-19)
 
@@ -366,10 +372,6 @@
 ## [7.124.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.0a1) (2026-11-18)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.123.13a1...7.124.0a1)
-
-**Merged pull requests:**
-
-- fix\(pt\): write the alfena and alentejo broken vowels without a tie [\#2361](https://github.com/TigreGotico/orthography2ipa/pull/2361) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.123.13a1](https://github.com/TigreGotico/orthography2ipa/tree/7.123.13a1) (2026-11-18)
 
@@ -2237,15 +2239,15 @@
 
 ## [7.82.24a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.24a1) (2026-08-26)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.22a1...7.82.24a1)
-
-## [7.82.22a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.22a1) (2026-08-26)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.23a1...7.82.22a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.23a1...7.82.24a1)
 
 ## [7.82.23a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.23a1) (2026-08-26)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.21a2...7.82.23a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.22a1...7.82.23a1)
+
+## [7.82.22a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.22a1) (2026-08-26)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.21a2...7.82.22a1)
 
 ## [7.82.21a2](https://github.com/TigreGotico/orthography2ipa/tree/7.82.21a2) (2026-08-26)
 
