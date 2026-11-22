@@ -11861,7 +11861,7 @@
   "gating": false,
   "harness_version": "1.1",
   "limit": null,
-  "oracle_per_top3": 0.1681,
+  "oracle_per_top3": 0.168,
   "oracle_exact_top3": 0.2127,
   "oracle_per_top5": 0.1516,
   "oracle_exact_top5": 0.2603,

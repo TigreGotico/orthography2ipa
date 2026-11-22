@@ -92,3 +92,20 @@ def test_pt_ao_glide_stays_inside_the_word(phrase, first):
     out = transcribe(phrase, "pt-AO")
     assert out.split(" ")[0] == first, out
     assert "j" not in out, out
+
+
+@pytest.mark.parametrize("word, part", [("excelente", "ejseˈlẽtɨ"),
+                                        ("exceto", "ejˈsɛtʊ"),
+                                        ("excesso", "ejˈsɛsʊ"),
+                                        ("exceção", "ejseˈsɐ̃w̃"),
+                                        ("exsudar", "ejsuˈdaɾ")])
+def test_pt_ao_writes_the_glide_for_x_before_s(word, part):
+    # Undolo states the rule over sounds: a palatal fricative before [s].
+    assert transcribe(word, "pt-AO") == part
+
+
+@pytest.mark.parametrize("word", ["texto", "peixe", "êxtase", "existir"])
+def test_pt_ao_keeps_x_outside_the_glide_context(word):
+    out = transcribe(word, "pt-AO")
+    assert "ʃ" in out or "z" in out, out
+    assert "jˈs" not in out and "js" not in out, out

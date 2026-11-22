@@ -541,7 +541,8 @@
     {
       "id": "PT_CODA_S_HUSH",
       "phonemes": [
-        "s"
+        "s",
+        "ʃ"
       ],
       "surface": "j",
       "syllable_position": "coda",
@@ -552,7 +553,7 @@
       "followed_by_phoneme": [
         "s"
       ],
-      "notes": "Inside a word, a coda sibilant before a following [s] is the glide [j]: crescer [kʁejˈsɛɾ], decrescer [dekʁejˈsɛɾ], nascer, piscina, consciência. Undolo (2014 thesis, undolo2014_tese, printed pp.216-217) prints two PA variants for this context and says the two coexist ('coabita'): the glide 'geralmente', in 'certos vocábulos', and the [ʃ] variant 'quando não'. This rule is the glide, PA [krej'sɛr] and [dekrej'sɛr], and the one that keeps [ʃ] and drops the [s], PA [kreʃ'ɛr]. The spec applies the glide in every such word. The glide needs a vowel (or ⟨n⟩, ⟨m⟩) before it, because Undolo says the preceding vowel forms a falling diphthong with it. The pt-PT reading is [krɨʃ'ser]. The rule stands in the slot of the pt-PT PT_CODA_S_HUSH, because the first rule that matches a segment applies and so this rule has to come before the plain coda rule PT_CODA_S_PALATAL."
+      "notes": "Inside a word, a coda sibilant before a following [s] is the glide [j], whether the sibilant is spelled ⟨s⟩ or ⟨x⟩: crescer [kʁejˈsɛɾ], decrescer [dekʁejˈsɛɾ], nascer, piscina, consciência, excelente [ejseˈlẽtɨ]. Undolo states the rule over sounds, 'quando a fricativa palatal é precedida da fricativa linguodental' (printed p.216). Undolo (2014 thesis, undolo2014_tese, printed pp.216-217) prints two PA variants for this context and says the two coexist ('coabita'): the glide 'geralmente', in 'certos vocábulos', and the [ʃ] variant 'quando não'. This rule is the glide, PA [krej'sɛr] and [dekrej'sɛr], and the one that keeps [ʃ] and drops the [s], PA [kreʃ'ɛr]. The spec applies the glide in every such word. The glide needs a vowel (or ⟨n⟩, ⟨m⟩) before it, because Undolo says the preceding vowel forms a falling diphthong with it. The pt-PT reading is [krɨʃ'ser]. The rule stands in the slot of the pt-PT PT_CODA_S_HUSH, because the first rule that matches a segment applies and so this rule has to come before the plain coda rule PT_CODA_S_PALATAL."
     },
     {
       "id": "PT_CODA_S_BEFORE_S_AFTER_CONSONANT",
