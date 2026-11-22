@@ -84,9 +84,9 @@ def test_angolan_final_e_keeps_barred_i():
     assert out.endswith("ɨ"), out
 
 
-# --- Coda /s/ stays alveolar (no Lisbon chiado) across all three -----------
+# --- Coda /s/ stays alveolar (no Lisbon chiado) in pt-CV and pt-MZ ---------
 
-@pytest.mark.parametrize("code", AFRICAN)
+@pytest.mark.parametrize("code", ["pt-CV", "pt-MZ"])
 def test_coda_s_stays_alveolar(code):
     """The inherited EP chiado coda-sibilant rule is overridden by id."""
     spec = get(code)

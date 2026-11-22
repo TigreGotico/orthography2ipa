@@ -45,7 +45,7 @@ CLOSE = ["estoicismo", "boicote", "boicotar", "moicano", "boicotamente"]
 PINNED = {
     "pt-PT-x-terceira": {"heroicamente": "ɨɾojkɐˈmẽtɨ", "estoicamente": "iʃtojkɐˈmẽtɨ"},
     "pt-PT-x-sao-miguel": {"heroicamente": "ɨɾøkɐˈmẽtɨ", "estoicamente": "iʃtøkɐˈmẽtɨ"},
-    "pt-AO": {"heroicamente": "eɾojkaˈmẽtɨ", "estoicamente": "estojkaˈmẽtɨ"},
+    "pt-AO": {"heroicamente": "eɾojkaˈmẽtɨ", "estoicamente": "eʃtojkaˈmẽtɨ"},
     "pt-CV": {"heroicamente": "erojkɐˈmẽte", "estoicamente": "estojkɐˈmẽte"},
     "pt-GW": {"heroicamente": "erojkɐˈmẽte", "estoicamente": "estojkɐˈmẽte"},
     "pt-MO": {"heroicamente": "ɨɾojkɐˈmẽtɨ", "estoicamente": "eʃtojkɐˈmẽtɨ"},

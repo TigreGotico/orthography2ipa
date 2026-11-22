@@ -21,7 +21,7 @@
   },
   "positional_graphemes_base": "pt-PT",
   "parent": "pt-PT",
-  "notes": "Angolan Portuguese (Português de Angola, PA): the emerging L2/second-norm variety of educated Angolan speakers, NOT a creole. Portuguese has been the sole official language since 1975 and is the mother tongue of a growing urban minority and the second language of most Angolans, in contact with dozens of Bantu languages (Umbundu, Kimbundu, Kikongo, etc.). KEY MODELLED FEATURES, grounded in the vowel study of Undolo (2014) and the phonetics of Angolan Portuguese in Chavagne (2005): (1) NO EP-STYLE UNSTRESSED VOWEL REDUCTION. Unlike European Portuguese, final unstressed /a/ is NOT centralised to [ɐ] but stays open [a] (Undolo 2014:183, ['kaza]); pretonic /e/ does NOT centralise to [ɨ] but stays [e] (Undolo 2014:183, [atrope'ɫar], [prezi'dẽtɨ]); pretonic /o/ is NOT raised to [u] but stays [o] (Undolo 2014:184, [mo'rar], [namo'rar]). Undolo (2014:184) summarises: the PA vowel system 'não sofre elevação e centralização em posição átona'. Chavagne (2005:64) independently: 'les voyelles atones gardent le timbre des voyelles toniques'. (2) [ɨ] survives ONLY in final unstressed position ([ˈdisɨ]), not pretonically (Undolo 2014:183). (3) A general tendency to OPEN stressed mid vowels ([ɛ], [ɔ] favoured over [e], [o]) is documented (Undolo 2014:183-184) but is variable/lexical and modelled only as candidate ordering, not categorically. (4) Coda /s/ stays alveolar [s] (no Lisbon chiado). This spelling-closer vocalism is attributed to the simple, open-nucleus syllable structure of the Bantu substrate (Undolo 2014:186). LIMITS: the extra nasal [ã] vs EP [ɐ̃] (Undolo 2014:184) and the [ɐ]-loss are modelled via positional vowels; fine allophonic rhotic variation is left to downstream engines.",
+  "notes": "Angolan Portuguese (Português de Angola, PA): the emerging L2/second-norm variety of educated Angolan speakers, NOT a creole. Portuguese has been the sole official language since 1975 and is the mother tongue of a growing urban minority and the second language of most Angolans, in contact with dozens of Bantu languages (Umbundu, Kimbundu, Kikongo, etc.). KEY MODELLED FEATURES, grounded in the vowel study of Undolo (2014) and the phonetics of Angolan Portuguese in Chavagne (2005): (1) NO EP-STYLE UNSTRESSED VOWEL REDUCTION. Unlike European Portuguese, final unstressed /a/ is NOT centralised to [ɐ] but stays open [a] (Undolo 2014:183, ['kaza]); pretonic /e/ does NOT centralise to [ɨ] but stays [e] (Undolo 2014:183, [atrope'ɫar], [prezi'dẽtɨ]); pretonic /o/ is NOT raised to [u] but stays [o] (Undolo 2014:184, [mo'rar], [namo'rar]). Undolo (2014:184) summarises: the PA vowel system 'não sofre elevação e centralização em posição átona'. Chavagne (2005:64) independently: 'les voyelles atones gardent le timbre des voyelles toniques'. (2) [ɨ] survives ONLY in final unstressed position ([ˈdisɨ]), not pretonically (Undolo 2014:183). (3) A general tendency to OPEN stressed mid vowels ([ɛ], [ɔ] favoured over [e], [o]) is documented (Undolo 2014:183-184) but is variable/lexical and modelled only as candidate ordering, not categorically. (4) Coda /s/ is [ʃ] before a voiceless consonant and word-finally, and [ʒ] before a voiced one, as in pt-PT (the rules are inherited). Undolo (2014, printed p.212) prints the Angolan reading [deʒ'gɔʃtu] for desgosto (European [dɨʒ'goʃtu]), and the glossary (printed p.253) gives infeliz [ĩfe'liʃ]; both are examples for other points, and the thesis states no rule for the coda sibilant. This spelling-closer vocalism is attributed to the simple, open-nucleus syllable structure of the Bantu substrate (Undolo 2014:186). LIMITS: the extra nasal [ã] vs EP [ɐ̃] (Undolo 2014:184) and the [ɐ]-loss are modelled via positional vowels; fine allophonic rhotic variation is left to downstream engines.",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -165,12 +165,13 @@
       ],
 
       "word_final": [
-        "s"
+        "ʃ"
       ]
     },
     "z": {
 
       "word_final": [
+        "ʃ",
         "z"
       ]
     },
@@ -304,36 +305,6 @@
       "phonemes": [],
       "surface": "ɔ",
       "notes": "DISABLED for Angolan Portuguese. No source for the vowel of this derivative in this variety was read, so its output stays what it was; the pt-PT rule rests on Infopédia readings of standard European Portuguese."
-    },
-    {
-      "id": "PT_CODA_S_BEFORE_ZH_INTERNAL",
-      "phonemes": [],
-      "surface": "",
-      "notes": "DISABLED for Angolan Portuguese. PT_CODA_S_BEFORE_ZH_INTERNAL deletes the pt-PT coda [ʃ] before /ʒ/ inside a word. In this spec PT_CODA_S_HUSH gives a coda /s/ [s], not [ʃ], so the deletion does not apply, and the coda keeps the reading of this spec. The word-internal coda sibilant before /ʒ/ in this variety has no variety-specific source."
-    },
-    {
-      "id": "PT_CODA_S_VOICING_INTERNAL",
-      "phonemes": [],
-      "surface": "ʒ",
-      "notes": "DISABLED for Angolan Portuguese. PT_CODA_S_VOICING_INTERNAL voices the pt-PT coda [ʃ] to [ʒ] before a voiced consonant inside a word. In this spec PT_CODA_S_HUSH gives a coda /s/ [s], not [ʃ], so the voiced [ʒ] does not apply, and the coda keeps the reading of this spec. The voicing of a word-internal coda sibilant in this variety has no variety-specific source."
-    },
-    {
-      "id": "PT_CODA_S_HUSH",
-      "phonemes": [
-        "s"
-      ],
-      "surface": "s",
-      "syllable_position": "coda",
-      "notes": "Angolan Portuguese keeps an alveolar coda /s/ (no Lisbon 'chiado'); this overrides the inherited pt-PT PT_CODA_S_HUSH rule by id, matching the alveolar coda already declared in this spec's positional_graphemes."
-    },
-    {
-      "id": "PT_CODA_Z_HUSH",
-      "phonemes": [
-        "z"
-      ],
-      "surface": "z",
-      "syllable_position": "coda",
-      "notes": "Angolan Portuguese keeps an alveolar coda /z/; overrides the inherited pt-PT PT_CODA_Z_HUSH rule by id."
     },
     {
       "id": "PT_FINAL_EM_NUCLEUS",
