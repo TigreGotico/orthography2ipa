@@ -25,16 +25,12 @@ jobs:
       fail-fast: false
       matrix:
         # udarnik, markovphone and pycotovia-ng consume the engine too but are
-        # not in the matrix yet. arbtok's suite runs about 30 minutes in one
-        # piece, so its files are split into three cells; tests names the
-        # selection, and the last cell takes everything the other two do not.
-        include:
-          - {package: arbtok, cell: arbtok (ipa fuzzy), tests: tests/test_ipa_fuzzy.py}
-          - {package: arbtok, cell: arbtok (gold code-switched), tests: tests/test_gold_code_switched.py}
-          - {package: arbtok, cell: arbtok (rest), tests: "tests --ignore=tests/test_ipa_fuzzy.py --ignore=tests/test_gold_code_switched.py"}
-          - {package: tugaphone, cell: tugaphone, tests: tests}
-          - {package: euskaphone, cell: euskaphone, tests: tests}
-    name: ${{ matrix.cell }}
+        # not in the matrix yet.
+        package:
+          - arbtok
+          - tugaphone
+          - euskaphone
+    name: ${{ matrix.package }}
     steps:
       - uses: actions/checkout@v7
 
@@ -43,6 +39,10 @@ jobs:
         with:
           repository: TigreGotico/${{ matrix.package }}
           path: consumer
+
+      - name: Install espeak-ng
+        # arbtok's suite compares its output with espeak-ng's.
+        run: sudo apt-get install -y --no-install-recommends espeak-ng
 
       - name: Install uv
         uses: astral-sh/setup-uv@v10.4.0
@@ -66,4 +66,4 @@ jobs:
         working-directory: consumer
         run: |
           ../.venv/bin/python -I -c "import orthography2ipa; print(orthography2ipa.__file__)"
-          ../.venv/bin/python -m pytest ${{ matrix.tests }}
+          ../.venv/bin/python -m pytest tests
