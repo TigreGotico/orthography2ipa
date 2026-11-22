@@ -95,7 +95,7 @@ The field does not scale to thousands of entries. Deep orthographies such as Eng
 
 ## Supplying a lexicon
 
-The package ships no lexicon. A lexicon is a word list, not a description of a language, so it is not part of the payload. The wheel holds only `data/*.json` and `data/SCHEMA.md` as data files. The caller reads a lexicon into a mapping and gives it to one engine through a `Pipeline`:
+The package ships no lexicon. A lexicon is a word list, not a description of a language, so it is not part of the payload. The wheel holds `data/*.json`, `data/SCHEMA.md` and the gold sets under `data/gold/` as data files. The caller reads a lexicon into a mapping and gives it to one engine through a `Pipeline`:
 
 ```python
 from orthography2ipa import G2P, Pipeline, load_lexicon

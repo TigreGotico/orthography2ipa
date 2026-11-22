@@ -280,7 +280,7 @@ A list-valued `grammatical_endings` entry puts a reading into the beam that the 
 
 ### Supply a lexicon, never bundle one
 
-The package ships descriptions: grapheme maps, rules, inventories and ancestry. It ships no word lists, lexicons, gold sets or weights. A lexicon is a corpus. A bundled lexicon makes the wheel larger and freezes a corpus into a release.
+The package ships descriptions: grapheme maps, rules, inventories and ancestry. It ships no word lists, lexicons or weights. It ships the gold sets under `data/gold/`, which downstream benchmarks read. A lexicon is a corpus. A bundled lexicon makes the wheel larger and freezes a corpus into a release.
 
 Deep orthographies such as English and Danish cannot reach production accuracy from rules alone. The answer is a lexicon that the caller passes to an engine in `Pipeline(lexicon=...)`. The caller reads it from a file, or from a separate package that supplies one through the `orthography2ipa.lexicons` entry points. The API, the file format and the precedence are in [lexicon](../guide/lexicon.md#supplying-a-lexicon).
 

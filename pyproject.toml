@@ -67,14 +67,8 @@ Issues = "https://github.com/TigreGotico/orthography2ipa/issues"
 [project.scripts]
 orthography2ipa = "orthography2ipa.cli:main"
 
-[tool.setuptools]
-# Only the package-data globs below ship. The gold sets under data/gold/
-# serve the tests and the board, and stay out of the wheel.
-include-package-data = false
-
 [tool.setuptools.packages.find]
 include = ["orthography2ipa*"]
-exclude = ["orthography2ipa.data*"]
 
 [tool.setuptools.package-data]
 "orthography2ipa" = ["data/*.json", "data/SCHEMA.md"]
