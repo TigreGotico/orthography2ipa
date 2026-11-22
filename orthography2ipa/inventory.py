@@ -35,7 +35,7 @@ from __future__ import annotations
 
 import re
 import unicodedata
-from typing import Dict, FrozenSet, List, Mapping, Optional, Sequence, Set, Tuple
+from typing import FrozenSet, List, Mapping, Optional, Sequence, Set, Tuple
 
 from orthography2ipa.allophony import _is_modifier, segment_ipa
 from orthography2ipa.lexicon import _process_lexicon, _warn_deprecated
@@ -70,6 +70,7 @@ def _positional_readings(spec: LanguageSpec) -> List[str]:
 
 #: Primary and secondary stress, inserted by ``stress.apply_stress_mark``.
 STRESS_MARKS = ("ˈ", "ˌ")
+_STRESS_SPLIT = re.compile("([ˈˌ])")
 
 #: A regex-substitution backreference — ``\1`` or ``\g<name>`` — inside a sandhi
 #: ``transform``. It re-emits text the input already carried, so it introduces no
@@ -127,17 +128,12 @@ def _word_emissions(
 
     These are emissions, but never segments: a word is cut into the segments
     the slot tables declare, as :func:`tokenize` cuts any transcription."""
-    # Word-level overrides hand the engine whole transcriptions, so their IPA
-    # never passes through the grapheme table at all.
+    # Word overrides and suffix morphology (LanguageSpec.grammatical_endings)
+    # hand the engine whole transcriptions that bypass the grapheme table. An
+    # ambiguous ending lists several candidates and each can surface, so all
+    # are emissions; a deferring rank 1 (``None``) comes from the grapheme
+    # table, which is already counted.
     emissions: Set[str] = set((spec.word_exceptions or {}).values())
-    # Suffix morphology replaces the word's tail wholesale, so its IPA also
-    # bypasses the grapheme table (see LanguageSpec.grammatical_endings).
-    # An ambiguous ending declares an ordered candidate LIST, and every
-    # element of it can surface — the lower-ranked ones through
-    # ``word_candidates``/a rescorer rather than through 1-best — so the
-    # whole list is an emission source. A deferring rank 1 (``None``)
-    # emits nothing of its own: rank 1 comes from the grapheme table,
-    # which is already counted.
     for value in (spec.grammatical_endings or {}).values():
         rank1, alternatives = normalize_ending_value(value)
         if rank1 is not None:
@@ -160,17 +156,13 @@ def _sandhi_emissions(spec: LanguageSpec, atoms: Sequence[str]) -> Set[str]:
     affricate stays whole and the tie stands as its own segment), exactly as
     :func:`tokenize` will cut a real transcription.
     """
-    rules = spec.sandhi_rules or ()
-    if not rules:
-        return set()
     out: Set[str] = set()
-    for rule in rules:
+    for rule in spec.sandhi_rules or ():
         for transform in (rule.transform, rule.right_transform):
             literal = _transform_literals(transform)
             for seg in segment_ipa(literal, atoms):
                 if seg and not seg.isspace():
                     out.add(seg)
-    out.discard("")
     return out
 
 
@@ -408,29 +400,12 @@ def tokenize(
 def _tokenize(ipa: str, atoms: Sequence[str]) -> List[str]:
     """:func:`tokenize` with the spec's atoms already computed."""
     tokens: List[str] = []
-    for chunk in _split_on_stress(ipa):
+    for chunk in _STRESS_SPLIT.split(ipa):
         if chunk in STRESS_MARKS:
             tokens.append(chunk)
             continue
         tokens.extend(seg for seg in segment_ipa(chunk, atoms) if seg and not seg.isspace())
     return tokens
-
-
-def _split_on_stress(ipa: str) -> List[str]:
-    """Split *ipa* so each stress mark stands alone."""
-    out: List[str] = []
-    buf: List[str] = []
-    for ch in ipa:
-        if ch in STRESS_MARKS:
-            if buf:
-                out.append("".join(buf))
-                buf = []
-            out.append(ch)
-        else:
-            buf.append(ch)
-    if buf:
-        out.append("".join(buf))
-    return out
 
 
 def dead_allophone_rules(spec: LanguageSpec) -> Tuple[str, ...]:
