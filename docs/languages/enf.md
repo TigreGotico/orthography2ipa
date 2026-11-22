@@ -69,17 +69,17 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 36 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 52 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| Plosive | b p |  | d dʲ t tʲ |  |  | k ɡ |  |
+| Plosive | b bʲ p pʲ |  | d dʲ t tʲ |  |  | k kʲ ɡ ɡʲ |  |
 | Affricate |  |  | ts |  | tɕ |  |  |
-| Nasal | m |  | n |  | ɲ | ŋ |  |
-| Trill |  |  | r |  |  |  |  |
-| Fricative |  | f | s sʲ z | ʃ ʒ | ɕ |  | h |
+| Nasal | m mʲ |  | n nʲ |  | ɲ ɲʲ | ŋ ŋʲ |  |
+| Trill |  |  | r rʲ |  |  |  |  |
+| Fricative |  | f fʲ | s sʲ z zʲ | ʃ ʃʲ ʒ ʒʲ | ɕ ɕʲ |  | h hʲ |
 | Approximant |  |  |  |  | j |  |  |
-| Lateral approximant |  |  | l |  | ʎ |  |  |
+| Lateral approximant |  |  | l lʲ |  | ʎ ʎʲ |  |  |
 
 | Vowels | Front | Central | Back |
 |:--|:-:|:-:|:-:|
@@ -89,7 +89,7 @@ The spec can emit 36 segments. They come from the letter table, the positional r
 | Near-open | æ |  |  |
 | Open | a |  |  |
 
-Sequences that the spec writes as one unit: [w] [ʲ].
+Sequences that the spec writes as one unit: [w].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->
