@@ -1,9 +1,13 @@
 """Angolan Portuguese writes a coda sibilant as [ʃ], or [ʒ] before a voiced
 consonant, and a glide [j] before a following [s].
 
-Undolo (2014, thesis, §4.1.2.2, printed pp.216-217) treats the PA coda as the
-palatal [ʃ]. It prints PA [krej'sɛr] and [dekrej'sɛr] (PE [krɨʃ'ser]) for a
-coda before [s], and a second variant, PA [kreʃ'ɛr], without a preference.
+Undolo (2014, thesis, §4.1.2.2, printed pp.216-217) describes the palatal [ʃ]
+in syllable-final position. It prints PA [krej'sɛr] and [dekrej'sɛr] (PE
+[krɨʃ'ser]) for a coda before [s], and says the two variants coexist
+('coabita'): the glide 'geralmente', in 'certos vocábulos', and [ʃ] 'quando
+não' (PA [kreʃ'ɛr]). The spec applies the glide in every such word. The glide
+forms a diphthong with a preceding vowel, so it needs a vowel (or ⟨n⟩, ⟨m⟩)
+before it.
 The article (Undolo 2014, Revista de Filología Románica, p.184) prints desgosto
 PA [deʒ'gɔʃtu]. The Portal da Língua Portuguesa Dicionário fonético, Luanda
 (region lda), writes existir e.ziʃ.tˈiɾ. The Portal is the output of a
@@ -69,3 +73,22 @@ def test_pt_ao_takes_the_pt_pt_voicing_and_deletion_rules():
     for rule_id in ("PT_CODA_Z_HUSH", "PT_CODA_S_VOICING_INTERNAL",
                     "PT_CODA_S_BEFORE_ZH_INTERNAL"):
         assert ao[rule_id].surface == pt[rule_id].surface, rule_id
+
+
+@pytest.mark.parametrize("word", ["obsceno", "obscenidade", "abscesso"])
+def test_pt_ao_writes_no_glide_after_a_consonant(word):
+    out = transcribe(word, "pt-AO")
+    assert "j" not in out and "ʃ" not in out, out
+    assert out.startswith(("obˈsɛn", "obseni", "abˈsɛs")), out
+
+
+def test_pt_ao_keeps_the_glide_after_n():
+    assert transcribe("consciência", "pt-AO").startswith("kõjsi")
+
+
+@pytest.mark.parametrize("phrase, first", [("os sapatos", "oʃ"),
+                                           ("mês seguinte", "ˈmeʃ")])
+def test_pt_ao_glide_stays_inside_the_word(phrase, first):
+    out = transcribe(phrase, "pt-AO")
+    assert out.split(" ")[0] == first, out
+    assert "j" not in out, out
