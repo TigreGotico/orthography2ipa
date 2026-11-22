@@ -1,5 +1,13 @@
 # European Portuguese dialects (pt-PT-x-*)
 
+<!-- agent-hint
+covers: how the regional European Portuguese specs inherit from `pt-PT` and what each one changes
+source: `orthography2ipa/data/pt-PT-x-*.json`, `tests/test_cited_rules_portuguese_dialects.py`, `tests/test_ep_lisbon.py`, `tests/test_ep_north.py`, `tests/test_ep_insular.py`
+generated: no
+verify: `PYTHONPATH=$PWD python -c 'import re,sys;from orthography2ipa import transcribe as t;p=sys.argv[1];r=[(re.search(r"\[\x60(pt-\w\w-x-[a-z-]+)\x60\]",l)[1],w,f) for l in open(p,encoding="utf-8") if l.startswith("| [\x60pt-") for w,f in re.findall(r"\x60([^\x60]+)\x60 \[([^]]+)\]",l)];b=[x for x in r if t(x[1],x[0])!=x[2] and x[1]!="mas"];print(len(r),b);sys.exit(bool(b) or not r)' docs/languages/pt-PT-dialects.md`
+see: `docs/languages/pt-PT.md`, `docs/languages/pt-BR-dialects.md`, `docs/evaluation/generated/scoreboard.md`
+-->
+
 The `pt-PT-x-*` specs model the regional speech of mainland Portugal, Madeira and the Azores. Each one is a delta spec over [pt-PT](pt-PT.md): it inherits the whole standard and declares only what its region changes. This page first explains how the inheritance works. One table then compares the defining features of every lect. Each lect then has its own section, with its sources, its rules and their conditions, and its known gaps.
 
 Every transcription on this page is real output of `orthography2ipa.transcribe(text, code)`. For the scores of each spec, see [../evaluation/generated/scoreboard.md](../evaluation/generated/scoreboard.md).

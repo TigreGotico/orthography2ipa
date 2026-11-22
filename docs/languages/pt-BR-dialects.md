@@ -1,5 +1,13 @@
 # Brazilian Portuguese dialects (pt-BR-x-*)
 
+<!-- agent-hint
+covers: how the regional Brazilian Portuguese specs inherit from `pt-BR` and what each one changes
+source: `orthography2ipa/data/pt-BR-x-*.json`, `tests/test_br_dialects.py`, `tests/test_br_carioca.py`, `tests/test_br_paulista.py`
+generated: no
+verify: `PYTHONPATH=$PWD python -c 'import re,sys;from orthography2ipa import transcribe as t;p=sys.argv[1];r=[(re.search(r"\[\x60(pt-\w\w-x-[a-z-]+)\x60\]",l)[1],w,f) for l in open(p,encoding="utf-8") if l.startswith("| [\x60pt-") for w,f in re.findall(r"\x60([^\x60]+)\x60 \[([^]]+)\]",l)];b=[x for x in r if t(x[1],x[0])!=x[2]];print(len(r),b);sys.exit(bool(b) or not r)' docs/languages/pt-BR-dialects.md`
+see: `docs/languages/pt-BR.md`, `docs/languages/pt-BR-x-floripa.md`, `docs/languages/pt-PT-dialects.md`
+-->
+
 The `pt-BR-x-*` specs model the regional speech of Brazil. Each one is a delta spec over [pt-BR](pt-BR.md): it inherits the general Brazilian standard and declares only what its region changes. This page first explains how the inheritance works. One table then compares the defining features of every lect. Each lect then has its own section, with its sources, its rules and its known gaps.
 
 Every transcription on this page is real output of `orthography2ipa.transcribe(text, code)`. For the scores of each spec, see [../evaluation/generated/scoreboard.md](../evaluation/generated/scoreboard.md). For the list of registered specs, run `orthography2ipa list --family Ibero-Romance`.

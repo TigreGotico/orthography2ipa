@@ -1,5 +1,13 @@
 # European Portuguese (pt-PT)
 
+<!-- agent-hint
+covers: what the European Portuguese spec models, which field holds each process and the transcription of each example
+source: `orthography2ipa/data/pt-PT.json`, `orthography2ipa/data/pt-PT-x-medieval.json`, `tests/test_pt_pt_allophony.py`, `tests/test_pt_coda_l.py`
+generated: no
+verify: `PYTHONPATH=$PWD python -c 'import re,sys;from orthography2ipa import transcribe as t;c,p=sys.argv[1:];r=[(w,f) for l in open(p,encoding="utf-8") if l[:1]=="|" for w,f in re.findall(r"\x60([^\x60]+)\x60 \[([^]]+)\]",l) if " " not in w];b=[x for x in r if t(x[0],c)!=x[1]];print(len(r),b);sys.exit(bool(b) or not r)' pt-PT docs/languages/pt-PT.md`
+see: `docs/languages/pt-PT-dialects.md`, `docs/engine/allophony.md`, `docs/languages/pt-BR.md`
+-->
+
 | Field | Value |
 |:---|:---|
 | Code | `pt-PT` |
