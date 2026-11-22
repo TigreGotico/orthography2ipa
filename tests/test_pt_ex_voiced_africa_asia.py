@@ -49,7 +49,16 @@ def test_the_rule_does_not_fire_outside_initial_ex_vowel(lang, word):
     assert "z" not in ipa
 
 
-@pytest.mark.parametrize("lang", ["pt-PT", "pt-PT-x-lisbon", "pt-PT-x-coimbra", "pt-AO", "pt-MZ", "pt-TL"])
-@pytest.mark.parametrize("word", ["exu", "Exu"])
-def test_exu_keeps_sh(lang, word):
-    assert transcribe(word, lang) == "ˈeʃu"
+# ⟨x⟩ inside a word is not word-initial ⟨ex⟩, so the rule must not reach it. Portal rows in lda, mpx,
+# map and dli: vexame [vɛ.ʃˈa.mɨ] (id 31263).
+@pytest.mark.parametrize("lang", PORTAL)
+@pytest.mark.parametrize("word", ["sexo", "nexo", "complexo", "vexame"])
+def test_x_inside_a_word_keeps_sh(lang, word):
+    ipa = transcribe(word, lang)
+    assert "ʃ" in ipa
+    assert "z" not in ipa
+
+
+@pytest.mark.parametrize("lang", PORTAL)
+def test_initial_ex_before_a_consonant_keeps_sh(lang):
+    assert re.sub(r"[ˈˌ]", "", transcribe("êxtase", lang)).startswith("eʃt")

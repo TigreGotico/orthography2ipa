@@ -195,7 +195,7 @@
       "preceded_by_grapheme": ["e", "ê"],
       "preceded_by_2": "word_boundary",
       "followed_by": "vowel",
-      "notes": "Word-initial ⟨ex-⟩ before a vowel writes the ⟨x⟩ as [z]: exame [eˈzamɨ]. The Portal da Língua Portuguesa Dicionário fonético (ILTEC and CLUL), Luanda variety (region lda), writes this consonant as [z] in exame [e.zˈa.mɨ], existir [e.ziʃ.tˈiɾ], exato [e.zˈa.tʊ], êxito [ˈe.zi.tʊ], exótico [e.zˈɔ.ti.kʊ] and exemplo [e.zˈẽjm.plʊ]. The rule matches the ⟨x⟩ slot after a word-initial ⟨e⟩ or ⟨ê⟩ when a vowel follows, as in pt-PT. ⟨ex⟩ before a consonant, ⟨exh⟩ and ⟨hex⟩ are not matched."
+      "notes": "Word-initial ⟨ex-⟩ before a vowel writes the ⟨x⟩ as [z]: exame [eˈzamɨ]. The Portal da Língua Portuguesa Dicionário fonético (ILTEC), Luanda variety (region lda), writes this consonant as [z] in exame [e.zˈa.mɨ], existir [e.ziʃ.tˈiɾ], exato [e.zˈa.tʊ], êxito [ˈe.zi.tʊ], exótico [e.zˈɔ.ti.kʊ] and exemplo [e.zˈẽjm.plʊ]. The rule matches the ⟨x⟩ slot after a word-initial ⟨e⟩ or ⟨ê⟩ when a vowel follows, as in pt-PT. ⟨ex⟩ before a consonant, ⟨exh⟩ and ⟨hex⟩ are not matched."
     },
     {
       "id": "PT_LEX_REDUCED_O",

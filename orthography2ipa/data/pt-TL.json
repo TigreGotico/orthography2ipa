@@ -246,7 +246,7 @@
       "preceded_by_grapheme": ["e", "ê"],
       "preceded_by_2": "word_boundary",
       "followed_by": "vowel",
-      "notes": "Word-initial ⟨ex-⟩ before a vowel writes the ⟨x⟩ as [z]: exame [eˈzame]. The Portal da Língua Portuguesa Dicionário fonético (ILTEC and CLUL), Díli variety (region dli), writes this consonant as [z] in exame [zˈa.mɨ], existir [ziʃ.tˈiɾ], exato [zˈak.tʊ], êxito [ˈe.zi.tʊ], exótico [zˈɔ.ti.kʊ] and exemplo [zˈẽm.plʊ]. The Portal leaves out the unstressed initial vowel in five of the six words; the spec keeps its vowel, and the tests compare from the [z] on. The rule matches the ⟨x⟩ slot after a word-initial ⟨e⟩ or ⟨ê⟩ when a vowel follows, as in pt-PT. ⟨ex⟩ before a consonant, ⟨exh⟩ and ⟨hex⟩ are not matched."
+      "notes": "Word-initial ⟨ex-⟩ before a vowel writes the ⟨x⟩ as [z]: exame [eˈzame]. The Portal da Língua Portuguesa Dicionário fonético (ILTEC), Díli variety (region dli), writes this consonant as [z] in exame [zˈa.mɨ], existir [ziʃ.tˈiɾ], exato [zˈak.tʊ], êxito [ˈe.zi.tʊ], exótico [zˈɔ.ti.kʊ] and exemplo [zˈẽm.plʊ]. The Portal leaves out the unstressed initial vowel in five of the six words; the spec keeps its vowel, and the tests compare from the [z] on. The rule matches the ⟨x⟩ slot after a word-initial ⟨e⟩ or ⟨ê⟩ when a vowel follows, as in pt-PT. ⟨ex⟩ before a consonant, ⟨exh⟩ and ⟨hex⟩ are not matched."
     },
     {
       "id": "PT_LEX_REDUCED_O",
