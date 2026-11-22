@@ -42,11 +42,20 @@ def test_initial_ex_vowel_has_the_portal_consonant(lang, word, portal):
 
 
 @pytest.mark.parametrize("lang", PORTAL)
-@pytest.mark.parametrize("word", ["texto", "extra", "explicar", "excelente"])
+@pytest.mark.parametrize("word", ["texto", "extra", "explicar"])
 def test_the_rule_does_not_fire_outside_initial_ex_vowel(lang, word):
     ipa = transcribe(word, lang)
     assert "ʃ" in ipa
     assert "z" not in ipa
+
+
+# Before [s] the coda is [ʃ] in every variety but pt-AO, where it is the glide [j].
+@pytest.mark.parametrize("lang", PORTAL)
+def test_ex_before_s_is_not_voiced(lang):
+    ipa = transcribe("excelente", lang)
+    assert "z" not in ipa
+    assert ("ʃ" in ipa) == (lang != "pt-AO")
+    assert ("j" in ipa) == (lang == "pt-AO")
 
 
 # ⟨x⟩ inside a word is not word-initial ⟨ex⟩, so the rule must not reach it. Portal rows in lda, mpx,
