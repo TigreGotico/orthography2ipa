@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.124.37a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.37a1) (2026-11-22)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.36a2...7.124.37a1)
+
+**Merged pull requests:**
+
+- fix\(pt\): word-initial ex+vowel voices to \[z\] in pt-AO, pt-MZ and pt-TL [\#2450](https://github.com/TigreGotico/orthography2ipa/pull/2450) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.124.36a2](https://github.com/TigreGotico/orthography2ipa/tree/7.124.36a2) (2026-11-22)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.36a1...7.124.36a2)
