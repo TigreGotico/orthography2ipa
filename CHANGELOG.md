@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.124.39a3](https://github.com/TigreGotico/orthography2ipa/tree/7.124.39a3) (2026-11-22)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.39a2...7.124.39a3)
+
+**Merged pull requests:**
+
+- docs\(pt-CV\): cite Undolo only for the vowel reduction it supports [\#2461](https://github.com/TigreGotico/orthography2ipa/pull/2461) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.124.39a2](https://github.com/TigreGotico/orthography2ipa/tree/7.124.39a2) (2026-11-22)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.39a1...7.124.39a2)
@@ -229,7 +237,6 @@
 - fix\(ie\): read j, -tion, ai au, ch and vocalic y as Janotta 1929 gives them [\#2382](https://github.com/TigreGotico/orthography2ipa/pull/2382) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 - fix\(ars-SA\): read the Najdi diphthongs /aj aw/ as \[eː oː\] [\#2378](https://github.com/TigreGotico/orthography2ipa/pull/2378) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 - fix\(gold\): write the eu stress mark before the affricate [\#2377](https://github.com/TigreGotico/orthography2ipa/pull/2377) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-- fix\(it-IT\): geminate the ⟨gli⟩ at the end of a word [\#2356](https://github.com/TigreGotico/orthography2ipa/pull/2356) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.124.17a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.17a1) (2026-11-19)
 
@@ -330,10 +337,6 @@
 ## [7.124.4a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.4a1) (2026-11-19)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.3a1...7.124.4a1)
-
-**Merged pull requests:**
-
-- fix: read a vowel before ng as short in Norwegian Bokmål [\#2357](https://github.com/TigreGotico/orthography2ipa/pull/2357) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.124.3a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.3a1) (2026-11-19)
 
