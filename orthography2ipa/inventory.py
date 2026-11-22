@@ -39,7 +39,9 @@ from typing import Dict, FrozenSet, List, Mapping, Optional, Sequence, Set, Tupl
 
 from orthography2ipa.allophony import _is_modifier, segment_ipa
 from orthography2ipa.lexicon import _process_lexicon, _warn_deprecated
-from orthography2ipa.phonetok import _NASAL_CARRIERS, _carrier_split_index, _carrier_tail
+from orthography2ipa.phonetok import (
+    _AR_SHADDA, _NASAL_CARRIERS, _carrier_split_index, _carrier_tail,
+)
 from orthography2ipa.positional import normalize_ending_value
 from orthography2ipa.types import LanguageSpec
 from orthography2ipa.vowels import (
@@ -226,8 +228,10 @@ def phoneme_inventory(
     letter (the coda tilde of Portuguese) lands on the segment before it, so it
     joins each vowel and glide that can carry it and is never a token alone. So
     does a bare palatalization mark ``ʲ`` (the Cyrillic soft sign), which joins
-    each consonant from stop to liquid, and a bare length mark ``ː`` (the Arabic
-    shadda), which joins each segment that is not a mark or a tie.
+    each consonant from stop to liquid, and a bare length mark ``ː``, which joins
+    each segment that is not a mark or a tie. Each joined token is cut like any
+    transcription, so the inventory holds only tokens :func:`tokenize` returns.
+    A spec whose engine doubles the letter before a shadda gets no ``ː`` joins.
     """
     atoms = _atoms(spec)
     tokens: set = set()
@@ -242,11 +246,13 @@ def phoneme_inventory(
         else:
             tokens.update(_tokenize(rest, atoms))
     if _PALATALIZATION in bare:
-        tokens.update(_palatalize(token) for token in tuple(tokens)
-                      if SONORITY_STOP <= sonority_class(token) <= SONORITY_LIQUID)
-    if _LENGTH in bare:
-        tokens.update(token + _LENGTH for token in tuple(tokens)
-                      if _LENGTH not in token and sonority_class(token) != SONORITY_UNKNOWN)
+        for token in tuple(tokens):
+            if SONORITY_STOP <= sonority_class(token) <= SONORITY_LIQUID:
+                tokens.update(_tokenize(_palatalize(token), atoms))
+    if _LENGTH in bare and not _expands_shadda(spec):
+        for token in tuple(tokens):
+            if _LENGTH not in token and sonority_class(token) != SONORITY_UNKNOWN:
+                tokens.update(_tokenize(token + _LENGTH, atoms))
     for mark in marks:
         tokens.update(_carry(token, mark) for token in tuple(tokens)
                       if _carrier_tail(token) in _NASAL_CARRIERS)
@@ -256,6 +262,12 @@ def phoneme_inventory(
 _PALATALIZATION = "ʲ"
 _LENGTH = "ː"
 _BARE_MODIFIERS = frozenset({_PALATALIZATION, _LENGTH})
+
+
+def _expands_shadda(spec: LanguageSpec) -> bool:
+    """Whether the engine doubles the letter before a shadda, so that no ``ː``
+    from the shadda reading ever follows a letter."""
+    return spec.script == "Arabic" and _AR_SHADDA in spec.graphemes
 
 
 def _palatalize(token: str) -> str:

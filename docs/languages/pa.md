@@ -79,16 +79,16 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 124 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 125 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Retroflex | Palatal | Velar | Uvular | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| Plosive | b bː p pʰ pʰː pː |  | d̪ d̪ː t̪ t̪ʰ t̪ʰː t̪ː |  | ɖ ɖː ʈ ʈʰ ʈʰː ʈː |  | k kʰ kʰː kː ɡ ɡː | q qː |  |
-| Affricate |  |  |  | dʒ dʒː tʃ tʃʰ tʃʰː tʃː |  |  |  |  |  |
+| Plosive | b bː p pʰ pʰː pː |  | d d̪ d̪ː t t̪ t̪ʰ t̪ʰː t̪ː |  | ɖ ɖː ʈ ʈʰ ʈʰː ʈː |  | k kʰ kʰː kː ɡ ɡː | q qː |  |
+| Affricate |  |  |  | dʒ tʃ tʃʰ |  |  |  |  |  |
 | Nasal | m mː |  | n nː |  | ɳ ɳː | ɲ ɲː | ŋ ŋː |  |  |
 | Trill |  |  | r rː |  |  |  |  |  |  |
 | Tap |  |  | ɾ ɾː |  | ɽ ɽː |  |  |  |  |
-| Fricative |  | f fː | s sː z zː | ʃ ʃː |  |  | x xː ɣ ɣː |  | h hː ɦ ɦː |
+| Fricative |  | f fː | s sː z zː | ʃ ʃʰː ʃː ʒː |  |  | x xː ɣ ɣː |  | h hː ɦ ɦː |
 | Approximant |  | ʋ ʋː |  |  |  | j jː j̃ j̃ː |  |  |  |
 | Lateral approximant |  |  | l lː |  | ɭ ɭː |  |  |  |  |
 
@@ -101,7 +101,7 @@ The spec can emit 124 segments. They come from the letter table, the positional 
 | Open-mid | ɛː ɛ̃ː |  | ɔː ɔ̃ː |
 | Open | aː ãː |  |  |
 
-Sequences that the spec writes as one unit: [b˩] [b˩ː] [dʒ˩] [dʒ˩ː] [d̪˩] [d̪˩ː] [k˩] [k˩ː] [p˩] [p˩ː] [tʃ˩] [tʃ˩ː] [t̪˩] [t̪˩ː] [w] [wː] [w̃] [w̃ː] [ɖ˩] [ɖ˩ː] [ɡ˩] [ɡ˩ː] [ʈ˩] [ʈ˩ː].
+Sequences that the spec writes as one unit: [b˩] [b˩ː] [dʒ˩] [d̪˩] [d̪˩ː] [k˩] [k˩ː] [p˩] [p˩ː] [tʃ˩] [t̪˩] [t̪˩ː] [w] [wː] [w̃] [w̃ː] [ɖ˩] [ɖ˩ː] [ɡ˩] [ɡ˩ː] [ʃ˩ː] [ʈ˩] [ʈ˩ː] [ʒ˩ː].
 
 Tones: [˥] high, [˧] mid (neutral), [˩] low.
 <!-- atlas:inventory end -->

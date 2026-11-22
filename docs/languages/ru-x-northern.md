@@ -74,10 +74,10 @@ The spec can emit 54 segments. They come from the letter table, the positional r
 | Consonants | Bilabial | Labiodental | Alveolar | Retroflex | Palatal | Velar |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|
 | Plosive | b bʲ p pʲ |  | d dʲ t tʲ |  |  | k kʲ ɡ ɡʲ |
-| Affricate |  |  | tsʲ |  | tɕ tɕʲ |  |
+| Affricate |  |  | tsʲ |  | tɕ |  |
 | Nasal | m mʲ |  | n nʲ |  |  | ŋ ŋʲ |
 | Trill |  |  | r rʲ |  |  |  |
-| Fricative |  | f fʲ v vʲ | s sʲ z zʲ | ʂ ʂʲ ʐ ʐʲ | ɕʲː ɕː | x xʲ |
+| Fricative |  | f fʲ v vʲ | s sʲ z zʲ | ʂ ʂʲ ʐ ʐʲ | ɕʲ ɕʲː ɕː | x xʲ |
 | Approximant |  |  |  |  | j |  |
 | Lateral approximant |  |  | lʲ ɫ ɫʲ |  |  |  |
 

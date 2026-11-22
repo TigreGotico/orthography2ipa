@@ -508,10 +508,10 @@ def test_no_token_is_a_bare_length_or_palatalization_mark(code):
 
 
 def test_the_soft_sign_palatalizes_the_consonants_before_it():
-    """be: ⟨д⟩ → d, ⟨т⟩ → t, ⟨ж⟩ → ʐ and ⟨ь⟩ → ʲ, so ⟨дь⟩ is [dʲ] and ⟨ть⟩ is
-    [tʲ]. No grapheme writes dʲ or tʲ on its own. A vowel cannot take ʲ."""
+    """be: ⟨д⟩ → d, ⟨т⟩ → t and ⟨ь⟩ → ʲ, so ⟨дь⟩ is [dʲ] and ⟨ть⟩ is [tʲ]. No
+    grapheme writes dʲ or tʲ on its own. A vowel cannot take ʲ."""
     inventory = phoneme_inventory(get("be"))
-    assert {"dʲ", "tʲ", "ʐʲ"} <= inventory
+    assert {"dʲ", "tʲ"} <= inventory
     assert not {"ʲ", "aʲ", "iʲ"} & inventory
 
 
@@ -529,3 +529,35 @@ def test_a_palatalized_long_consonant_keeps_its_length_mark_last():
     inventory = phoneme_inventory(get("be"))
     assert {"sʲː", "zʲː", "lʲː", "nʲː"} <= inventory
     assert not [t for t in inventory if "ːʲ" in t]
+
+
+@pytest.mark.parametrize("code,word", [
+    ("abh", "حَجّ"),      # shadda after ج: ʒ + ː
+    ("dar", "цьа"),       # soft sign after an aspirated affricate
+    ("bo", "ཚཱི"),        # long vowel mark after an aspirated affricate
+    ("bo", "ིཚཱི"),
+    ("be", "конь"),       # soft sign after a nasal
+])
+def test_every_token_of_a_real_word_is_in_the_inventory(code, word):
+    """An attached mark must give the tokens :func:`tokenize` returns: ``dʒː``
+    is cut into ``d`` and ``ʒː``, and ``t͡s`` plus a mark is cut after ``t͡``."""
+    spec = get(code)
+    tokens = set(tokenize(G2P(code).transcribe(word), spec)) - {"ˈ", "ˌ"}
+    assert tokens <= phoneme_inventory(spec), tokens - phoneme_inventory(spec)
+
+
+@pytest.mark.parametrize("code", ALL_CODES)
+def test_an_attached_token_is_one_that_tokenize_returns(code):
+    """The tokens a bare mark adds are the pieces :func:`tokenize` cuts out of
+    the longer segment, so none of them is a dead embedding."""
+    spec = get(code)
+    inventory = phoneme_inventory(spec)
+    assert not [t for t in inventory
+                if ("ʲ" in t or "ː" in t) and t[0] not in "ʲʷːˑ" and tokenize(t, spec) != [t]]
+
+
+def test_a_shadda_that_doubles_the_letter_adds_no_length_mark():
+    """ar writes ⟨بّ⟩ as the doubled letter [bb], so a ː never follows ⟨ب⟩ there.
+    acq keeps the shadda as ː, so [bː] is a token."""
+    assert "bː" not in phoneme_inventory(get("ar"))
+    assert "bː" in phoneme_inventory(get("acq"))

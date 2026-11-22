@@ -70,16 +70,16 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 90 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 89 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar | Uvular | Pharyngeal | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| Plosive | b bʲ p pʰ pʰʲ pʲ |  | d dʲ t tʰ tʰʲ tʲ tʼ tʼʲ |  |  | k kʲ kʲː kʼ kʼʲ kː ɡ ɡʲ | q qʲ qʲː qʼ qʼʲ qː |  | ʔ ʔʲ |
-| Affricate |  |  | t͡s t͡sʰ t͡sʰʲ t͡sʲ t͡sʼ t͡sʼʲ t͡ɬʼ t͡ɬʼʲ | t͡ʃ t͡ʃʰ t͡ʃʰʲ t͡ʃʲ t͡ʃʼ t͡ʃʼʲ |  |  |  |  |  |
+| Plosive | b bʲ p pʰ pʰʲ pʲ |  | d dʲ t tʰ tʰʲ tʲ tʼ tʼʲ t͡ |  |  | k kʲ kʲː kʼ kʼʲ kː ɡ ɡʲ | q qʲ qʲː qʼ qʼʲ qː q͡ |  | ʔ ʔʲ |
+| Affricate |  |  | t͡s t͡sʰ t͡sʼ t͡ɬʼ | t͡ʃ t͡ʃʰ t͡ʃʼ |  |  |  |  |  |
 | Nasal | m mʲ |  | n nʲ |  |  |  |  |  |  |
 | Trill |  |  | r rʲ |  |  |  |  |  |  |
-| Fricative |  | f fʲ | s sʲ z zʲ | ʃ ʃʲ ʃʲː ʃː ʒ ʒʲ |  | x xʲ | ʁ ʁʲ χ χʲ χʲː χː | ħ ħʲ ʕ ʕʲ | h hʲ |
-| Lateral fricative |  |  | ɬ ɬʲ |  |  |  |  |  |  |
+| Fricative |  | f fʲ | s sʰʲ sʲ sʼʲ z zʲ | ʃ ʃʰʲ ʃʲ ʃʲː ʃʼʲ ʃː ʒ ʒʲ |  | x xʲ | ʁ ʁʲ χ χʲ χʲː χː | ħ ħʲ ʕ ʕʲ | h hʲ |
+| Lateral fricative |  |  | ɬ ɬʲ ɬʼʲ |  |  |  |  |  |  |
 | Approximant |  |  |  |  | j |  |  |  |  |
 | Lateral approximant |  |  | l lʲ |  |  |  |  |  |  |
 
@@ -89,7 +89,7 @@ The spec can emit 90 segments. They come from the letter table, the positional r
 | Close-mid | e |  | o |
 | Open | a |  |  |
 
-Sequences that the spec writes as one unit: [q͡χ] [q͡χʲ] [w].
+Sequences that the spec writes as one unit: [q͡χ] [w].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

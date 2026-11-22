@@ -71,10 +71,10 @@ The spec can emit 77 segments. They come from the letter table, the positional r
 | Consonants | Bilabial | Labiodental | Dental | Alveolar | Postalveolar | Palatal | Velar | Uvular | Pharyngeal | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 | Plosive | b bː |  |  | d dː dˤ dˤː t tː tˤ tˤː |  |  | k kː ɡ ɡː | q qː |  | ʔ ʔː |
-| Affricate |  |  |  |  | dʒ dʒː |  |  |  |  |  |
+| Affricate |  |  |  |  | dʒ |  |  |  |  |  |
 | Nasal | m mː |  |  | n nː |  |  | ŋ ŋː |  |  |  |
 | Trill |  |  |  | r rː |  |  |  |  |  |  |
-| Fricative |  | f fː | ð ðː ðˤ ðˤː θ θː | s sː sˤ sˤː z zː | ʃ ʃː |  | x xː ɣ ɣː |  | ħ ħː ʕ ʕː | h hː |
+| Fricative |  | f fː | ð ðː ðˤ ðˤː θ θː | s sː sˤ sˤː z zː | ʃ ʃː ʒː |  | x xː ɣ ɣː |  | ħ ħː ʕ ʕː | h hː |
 | Approximant |  |  |  |  |  | j jː |  |  |  |  |
 | Lateral approximant |  |  |  | l lː ɫ ɫː |  |  |  |  |  |  |
 

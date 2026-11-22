@@ -69,15 +69,15 @@ No dataset on the board scores this spec. See the [dataset catalogue](../evaluat
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 58 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 57 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Retroflex | Palatal | Velar |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|
 | Plosive | b bʲ p pʲ |  | d dʲ t tʲ |  |  | k kʲ ɡ ɡʲ |
-| Affricate |  |  | ts tsʲ |  | tɕ tɕʲ |  |
+| Affricate |  |  | ts |  | tɕ |  |
 | Nasal | m mʲ |  | n nʲ |  |  | ŋ ŋʲ |
 | Trill |  |  | r rʲ |  |  |  |
-| Fricative |  | f fʲ v vʲ | s sʲ z zʲ | ʂ ʂʲ ʐ ʐʲ | ɕʲː ɕː | x xʲ ɣ ɣʲ |
+| Fricative |  | f fʲ v vʲ | s sʲ z zʲ | ʂ ʂʲ ʐ ʐʲ | ɕʲ ɕʲː ɕː | x xʲ ɣ ɣʲ |
 | Approximant |  |  |  |  | j |  |
 | Lateral approximant |  |  | lʲ ɫ ɫʲ |  |  |  |
 

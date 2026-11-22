@@ -21,7 +21,7 @@ KEHEH3 = "ݣ"      # ARABIC LETTER KEHEH WITH THREE DOTS ABOVE, its look-alike
 READS = ["ar-MA", "ar-DZ", "ar-TN"]        # the varieties the count covers
 NOT_COUNTED = ["ar-MR", "ar-LY"]           # Maghrebi, but no occurrences counted
 KEEPS_NG = [("ota", "ŋ"), ("ug", "ŋ")]     # where it is a letter in its own right
-SIZES = {"ar-MA": 231, "ar-DZ": 240, "ar-TN": 263}
+SIZES = {"ar-MA": 197, "ar-DZ": 205, "ar-TN": 225}
 
 
 def _inventory(code):
