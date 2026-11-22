@@ -515,12 +515,13 @@ def test_the_soft_sign_palatalizes_the_consonants_before_it():
     assert not {"ʲ", "aʲ", "iʲ"} & inventory
 
 
-def test_the_shadda_lengthens_the_segments_before_it():
-    """acq: ⟨ب⟩ → b, ⟨ت⟩ → t and the shadda ⟨ّ⟩ → ː, so ⟨بّ⟩ is [bː] and ⟨تّ⟩ is
-    [tː]. A segment that is long already does not take a second mark."""
+def test_a_spec_that_declares_the_shadda_adds_no_length_mark_for_it():
+    """acq: the shadda doubles the letter whatever the ``script`` label says, so
+    ⟨بّ⟩ is [bb] and no ``bː`` or ``tː`` comes from it. The long vowel [aː] is
+    still a token."""
     inventory = phoneme_inventory(get("acq"))
-    assert {"bː", "tː", "aː"} <= inventory
-    assert not {"ː", "aːː", "ːː"} & inventory
+    assert "aː" in inventory
+    assert not {"bː", "tː", "ː", "aːː", "ːː"} & inventory
 
 
 def test_a_palatalized_long_consonant_keeps_its_length_mark_last():
@@ -532,7 +533,6 @@ def test_a_palatalized_long_consonant_keeps_its_length_mark_last():
 
 
 @pytest.mark.parametrize("code,word", [
-    ("abh", "حَجّ"),      # shadda after ج: ʒ + ː
     ("dar", "цьа"),       # soft sign after an aspirated affricate
     ("bo", "ཚཱི"),        # long vowel mark after an aspirated affricate
     ("bo", "ིཚཱི"),
@@ -556,8 +556,7 @@ def test_an_attached_token_is_one_that_tokenize_returns(code):
                 if ("ʲ" in t or "ː" in t) and t[0] not in "ʲʷːˑ" and tokenize(t, spec) != [t]]
 
 
-def test_a_shadda_that_doubles_the_letter_adds_no_length_mark():
-    """ar writes ⟨بّ⟩ as the doubled letter [bb], so a ː never follows ⟨ب⟩ there.
-    acq keeps the shadda as ː, so [bː] is a token."""
-    assert "bː" not in phoneme_inventory(get("ar"))
-    assert "bː" in phoneme_inventory(get("acq"))
+@pytest.mark.parametrize("code", ["ar", "acq"])
+def test_a_shadda_that_doubles_the_letter_adds_no_length_mark(code):
+    """ar and acq write ⟨بّ⟩ as the doubled letter [bb], so a ː never follows ⟨ب⟩."""
+    assert "bː" not in phoneme_inventory(get(code))
