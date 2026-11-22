@@ -15,7 +15,7 @@ see: `docs/languages/pt-PT.md`, `docs/languages/pt-MZ.md`
 | Script | Latin (alphabet) |
 | Quality tier | research |
 | Parent | `pt-PT` |
-| Sources | Undolo (2014, *Revista de Filología Románica* 31(2):181-187), Chavagne (2005, PhD, Lyon 2), Inverno (2011, PhD, Coimbra), Mateus & d'Andrade (2000), Cunha & Cintra (1984) |
+| Sources | Undolo (2014, *Revista de Filología Románica* 31(2):181-187), Undolo (2014, PhD thesis, Universidade de Évora), Chavagne (2005, PhD, Lyon 2), Inverno (2011, PhD, Coimbra), Mateus & d'Andrade (2000), Cunha & Cintra (1984) |
 
 Angolan Portuguese (Português de Angola, PA) is the emerging second norm of educated Angolan speakers. It is not a creole. Portuguese has been the sole official language of Angola since 1975. It is the mother tongue of a growing urban minority and the second language of most Angolans. It is in contact with many Bantu languages, such as Umbundu, Kimbundu and Kikongo. The spec inherits the `pt-PT` maps and removes several European reduction processes from them.
 
@@ -36,7 +36,7 @@ Undolo (2014:184) sums up the system as one that *"não sofre elevação e centr
 
 Undolo (2014:183-184) also reports a tendency to open the stressed mid vowels, with [ɛ ɔ] favoured over [e o] (for example [beˈlɛza]). The tendency is variable and lexical. The spec lists [ɛ] before [e] and [ɔ] before [o] for a stressed vowel. So the top output is open, and the close vowel is the second candidate: `beleza` [beˈlɛza], `mesa` [ˈmɛza].
 
-The coda sibilants follow `pt-PT`: ⟨s⟩ is [ʃ] before a voiceless consonant and word-finally, and [ʒ] before a voiced one (`costas` [ˈkɔʃtaʃ]). The spec switches off `PT_FINAL_EM_NUCLEUS` and `PT_FINAL_ENS_NUCLEUS`, because Angolan Portuguese does not centralise unstressed vowels (Undolo 2014:183-184). So ⟨-em⟩ keeps the close-mid nucleus: `bem` [ˈbẽj̃]. The `pt-PT` suffix and word-list rules for stressed vowel height (`PT_SUFFIX_*`, `PT_LEX_*_SUFFIX`, `PT_ER_CLOSE`, `PT_LEX_OPEN_ER`, `PT_FINAL_EN_*`) are switched off too. Their notes say that no source for these endings in Angola was read.
+The coda sibilants follow `pt-PT`: ⟨s⟩ is [ʃ] before a voiceless consonant and word-finally, and [ʒ] before a voiced one (`costas` [ˈkɔʃtaʃ]). Before a following [s] the coda is the glide [j]: `crescer` [kʁejˈsɛɾ] (Undolo's thesis, printed pp.216-217). The spec switches off `PT_FINAL_EM_NUCLEUS` and `PT_FINAL_ENS_NUCLEUS`, because Angolan Portuguese does not centralise unstressed vowels (Undolo 2014:183-184). So ⟨-em⟩ keeps the close-mid nucleus: `bem` [ˈbẽj̃]. The `pt-PT` suffix and word-list rules for stressed vowel height (`PT_SUFFIX_*`, `PT_LEX_*_SUFFIX`, `PT_ER_CLOSE`, `PT_LEX_OPEN_ER`, `PT_FINAL_EN_*`) are switched off too. Their notes say that no source for these endings in Angola was read.
 
 ## Known gaps
 
