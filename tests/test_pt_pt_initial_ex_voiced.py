@@ -1,7 +1,6 @@
 """Word-initial ⟨ex-⟩ before a vowel voices its ⟨x⟩ to [z] in pt-PT (``PT_INITIAL_EX_VOICED``).
 
-The European values come from the Portal da Língua Portuguesa Dicionário fonético (ILTEC /
-CLUL, Lisbon variety), which writes the unstressed initial vowel [i] and the ⟨x⟩ as [z]: exame
+The European values come from the Portal da Língua Portuguesa Dicionário fonético (ILTEC, Lisbon variety), which writes the unstressed initial vowel [i] and the ⟨x⟩ as [z]: exame
 [i.zˈɐ.mɨ], exausto [i.zˈawʃ.tu], existir [i.ziʃ.tˈiɾ], exótico [i.zˈɔ.ti.ku], exato [i.zˈa.tu].
 The Portal vowel is not asserted: the engine's initial vowel is [e] in pt-PT and [ɐ] in Lisbon, a separate question. Each test
 compares the output after that vowel with the Portal string after its vowel.
