@@ -42,7 +42,7 @@ CLOSE = ["estoicismo", "boicote", "moicano"]
 PINNED = {
     "pt-PT-x-terceira": {"estoicidade": "iʃtojsiˈdadɨ", "heroicidade": "ɨɾojsiˈdadɨ"},
     "pt-PT-x-sao-miguel": {"estoicidade": "iʃtøsiˈdadɨ", "heroicidade": "ɨɾøsiˈdadɨ"},
-    "pt-AO": {"estoicidade": "estojsiˈdadɨ", "heroicidade": "eɾojsiˈdadɨ"},
+    "pt-AO": {"estoicidade": "eʃtojsiˈdadɨ", "heroicidade": "eɾojsiˈdadɨ"},
     "pt-CV": {"estoicidade": "estojsiˈdade", "heroicidade": "erojsiˈdade"},
     "pt-GW": {"estoicidade": "estojsiˈdade", "heroicidade": "erojsiˈdade"},
     "pt-MO": {"estoicidade": "eʃtojsiˈdadɨ", "heroicidade": "ɨɾojsiˈdadɨ"},

@@ -287,7 +287,7 @@ pt.transcribe("casa")       # 'ˈkazɐ'
 pt.transcribe("os gatos")   # 'uʒ ˈɡatuʃ'
 ```
 
-The `pt-PT-x-*` dialect specs inherit these rules by id. The varieties that keep an alveolar coda /s/ (`pt-AO`, `pt-CV`, `pt-GW`, `pt-MZ`, `pt-ST`, `pt-TL`) override `PT_CODA_S_HUSH` and `PT_CODA_Z_HUSH` by id with [s] and [z].
+The `pt-PT-x-*` dialect specs inherit these rules by id. The varieties that keep an alveolar coda /s/ (`pt-CV`, `pt-GW`, `pt-MZ`, `pt-ST`, `pt-TL`) override `PT_CODA_S_HUSH` and `PT_CODA_Z_HUSH` by id with [s] and [z].
 
 ### Processes outside the rule list
 

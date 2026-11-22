@@ -23,9 +23,9 @@ HUSHED = ["pt-PT", "pt-PT-x-acores", "pt-PT-x-alentejo", "pt-PT-x-alfena",
           "pt-PT-x-coimbra", "pt-PT-x-lisbon", "pt-PT-x-madeira",
           "pt-PT-x-minho", "pt-PT-x-porto", "pt-PT-x-sao-miguel",
           "pt-PT-x-terceira", "pt-PT-x-tras-os-montes", "pt-PT-x-viana",
-          "pt-MO"]
+          "pt-MO", "pt-AO"]
 #: Specs whose coda /s/ is [s] or [h] and that disable the rule.
-DISABLED = ["pt-AO", "pt-CV", "pt-GW", "pt-MZ", "pt-ST", "pt-TL",
+DISABLED = ["pt-CV", "pt-GW", "pt-MZ", "pt-ST", "pt-TL",
             "ext-PT-x-barranco", "idb", "mcm", "vkp"]
 #: Creoles whose coda /s/ is [ʃ]. The rules have no source for them, so they
 #: disable both rules and keep their own reading.

@@ -54,7 +54,7 @@ NEIGHBOURS = ["dezoito", "oito", "noite", "coice", "foice",
 PINNED = {
     "pt-PT-x-terceira": {"asteroide": "ɐʃtɨˈɾojdɨ", "alcaloide": "aɫkɐˈlojdɨ", "androides": "ɐ̃ˈdɾojdɨʃ", "humanoide": "umɐˈnojdɨ", "ovoide": "ɔˈvwojdɨ", "foi": "ˈfwoj", "depois": "dɨˈpwojʃ"},
     "pt-PT-x-sao-miguel": {"asteroide": "ɐʃtɨˈɾødɨ", "androides": "ɐ̃ˈdɾødɨʃ", "endoide": "ẽˈdødɨ", "boia": "ˈbøɐ"},
-    "pt-AO": {"asteroide": "asteˈɾojdɨ", "alcaloide": "aɫkaˈlojdɨ", "androides": "ɐ̃ˈdʁojdes", "humanoide": "umaˈnojdɨ"},
+    "pt-AO": {"asteroide": "aʃteˈɾojdɨ", "alcaloide": "aɫkaˈlojdɨ", "androides": "ɐ̃ˈdʁojdeʃ", "humanoide": "umaˈnojdɨ"},
     "pt-CV": {"asteroide": "ɐsteˈrojde", "alcaloide": "ɐɫkɐˈlojde", "androides": "ɐ̃ˈdrojdes", "humanoide": "umɐˈnojde"},
     "pt-GW": {"asteroide": "ɐsteˈrojde", "alcaloide": "ɐɫkɐˈlojde", "androides": "ɐ̃ˈdrojdes", "humanoide": "umɐˈnojde"},
     "pt-MO": {"asteroide": "ɐʃtɨˈɾojdɨ", "alcaloide": "ɐɫkɐˈlojdɨ", "androides": "ɐ̃ˈdʁojdɨʃ", "humanoide": "umɐˈnojdɨ"},

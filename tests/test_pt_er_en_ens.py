@@ -199,7 +199,7 @@ def test_pt_br_other_nasal_endings_do_not_move(engines, word, expected):
 
 UNCHANGED = {
     "pt-AO": {"comer": "koˈmɛɾ", "mulher": "muˈʎɛɾ", "hífen": "ˈifẽ",
-              "pólen": "ˈpɔlẽ", "homens": "ˈɔmẽj̃s", "bens": "ˈbẽj̃s"},
+              "pólen": "ˈpɔlẽ", "homens": "ˈɔmẽj̃ʃ", "bens": "ˈbẽj̃ʃ"},
     "pt-CV": {"comer": "kuˈmer", "mulher": "muˈʎer", "hífen": "ˈifẽ",
               "pólen": "ˈpɔlẽ", "homens": "ˈɔmẽj̃s", "bens": "ˈbẽj̃s"},
     "pt-GW": {"comer": "koˈmɛr", "mulher": "muˈʎɛr", "hífen": "ˈifẽ",
