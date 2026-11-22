@@ -398,7 +398,7 @@ def _lower(ch: str, lang: str) -> str:
     Falls back to plain :meth:`str.lower` for every language except
     Turkish, where dotted/dotless I is handled via explicit mapping.
     """
-    if _is_turkish(lang):
+    if lang and _is_turkish(lang):
         return _TR_LOWER_MAP.get(ch) or ch.lower()
     return ch.lower()
 
@@ -2456,11 +2456,13 @@ class PhonetokTokenizer:
         # silenced marker grapheme (a preposed vowel folded into its
         # consonant) resolved to nothing. The slot is omitted, so
         # ``slot.top`` stays total and confidence covers sounding slots only.
+        # Without a rescorer, width 0 empties every slot, so no slot is kept
+        # (orthography2ipa.cpp matches this).
         return [
             SegmentSlot(grapheme=s.grapheme, span=s.span,
                         candidates=s.candidates[:keep])
             for s in slots
-            if s.candidates
+            if s.candidates and (keep or rescorers)
         ]
 
     # ─── Vocabulary / special tokens ────────────────────────────────────

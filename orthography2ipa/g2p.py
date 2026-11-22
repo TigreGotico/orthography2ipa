@@ -946,9 +946,8 @@ class G2P:
                 stressed_syll_idx = 0
             if self._is_cliticless(word):
                 stressed_syll_idx = _CLITIC_NO_STRESS
-            # Secondary stress: empty unless the spec declares
-            # ``stress.secondary_stress`` or the word is a clitic (negative
-            # sentinel).
+            # Secondary stress: empty for a clitic (negative sentinel) and
+            # for a spec that declares no ``stress.secondary_stress``.
             secondary_syll_idxs = secondary_stress_positions(
                 len(sylls), stressed_syll_idx, self.spec.stress)
         syll_for_token = self._map_tokens_to_syllables(g_tokens, sylls)
@@ -2145,9 +2144,8 @@ class G2P:
                 stressed_syll_idx = 0  # monosyllable → always stressed
             if self._is_cliticless(word):
                 stressed_syll_idx = _CLITIC_NO_STRESS
-            # Secondary stress: empty unless the spec declares
-            # ``stress.secondary_stress`` or the word is a clitic (negative
-            # sentinel).
+            # Secondary stress: empty for a clitic (negative sentinel) and
+            # for a spec that declares no ``stress.secondary_stress``.
             secondary_syll_idxs = secondary_stress_positions(
                 len(sylls), stressed_syll_idx, self.spec.stress)
 
