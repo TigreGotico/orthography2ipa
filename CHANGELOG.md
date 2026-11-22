@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.124.39a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.39a1) (2026-11-22)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.38a1...7.124.39a1)
+
+**Merged pull requests:**
+
+- fix\(pt-AO\): coda sibilant as \[ʃ\] and \[ʒ\], as in pt-PT [\#2457](https://github.com/TigreGotico/orthography2ipa/pull/2457) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.124.38a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.38a1) (2026-11-22)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.37a1...7.124.38a1)
@@ -358,7 +366,6 @@
 **Merged pull requests:**
 
 - feat: add pt-BR-x-paraiba, Paraibano Portuguese [\#2353](https://github.com/TigreGotico/orthography2ipa/pull/2353) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-- fix: keep an affricate with a diacritic below whole under the stress mark [\#2352](https://github.com/TigreGotico/orthography2ipa/pull/2352) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.123.12a2](https://github.com/TigreGotico/orthography2ipa/tree/7.123.12a2) (2026-11-18)
 
