@@ -76,7 +76,7 @@ A lattice is a list of slots, one per grapheme, in surface order. Each slot is a
 | Member | Meaning |
 | --- | --- |
 | `grapheme` | The source grapheme, lower-cased as the tokenizer produced it |
-| `span` | The `(start, end)` character offsets, with the same contract as `GraphemeContext.span`: `unicodedata.normalize("NFC", text)[start:end].lower() == grapheme` |
+| `span` | The `(start, end)` character offsets into the string `prepare(text)` returns, with the same contract as `GraphemeContext.span` in [the tokenizer page](tokenizer.md#span) |
 | `candidates` | A tuple of `Candidate(ipa, cost)`, best (lowest cost) first |
 | `top` | The first candidate, which is the canonical choice |
 

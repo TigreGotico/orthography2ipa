@@ -333,13 +333,13 @@ Neighbours are word-local. They never cross a whitespace, punctuation, digit or 
 
 ### Span
 
-`span` gives the `(start, end)` character offsets of the grapheme. The offsets index the NFC-normalised input that `tokenize()` reads, and `grapheme` is lower-cased. The exact contract is:
+`span` gives the `(start, end)` character offsets of the grapheme. The offsets index the string that `PhonetokTokenizer.prepare(text)` returns, and `grapheme` is lower-cased. The slice can also hold a virama that the grapheme consumed (hi ⟨भक्त⟩ gives the slice `क्` for the grapheme `क`). The contract is:
 
 ```python
-unicodedata.normalize("NFC", text)[start:end].lower() == grapheme
+tokenizer.prepare(text)[start:end].lower().startswith(grapheme)
 ```
 
-A raw `text[start:end]` against the caller's string matches only when that string is already lower-case NFC. It fails for upper-case input and for NFD input.
+A raw `text[start:end]` against the caller's string matches only when `prepare` leaves that string unchanged. It fails for upper-case input, for NFD input, and for text that `prepare` rewrites, such as a Gurmukhi addak (⟨ਪੱਗ⟩ gives the span `(3, 4)` for the last ⟨ਗ⟩, past the end of the 3-character input).
 
 ### Class predicates
 
