@@ -91,10 +91,10 @@ A `Token` is a frozen dataclass with these fields.
 | `kind` | `TokenKind` | The kind of token |
 | `grapheme` | `str` | The table key it matched, lower-cased for `GRAPHEME` tokens and in its original case for the others |
 | `ipa` | `tuple[str, ...]` | The flat-table IPA candidates, empty for every kind except `GRAPHEME` |
-| `position` | `int` | Character offset into the normalised input |
+| `position` | `int` | Character offset into the prepared text, the string that `prepare(text)` returns |
 | `length` | `int` | Number of characters the token consumed |
 
-The `grapheme` key is not always the full input span. An abugida consonant followed by a virama matches the bare consonant key and consumes the virama too. Use `length`, or `token.text_span(text)` on the normalised text, to recover the characters that the token consumed.
+The `grapheme` key is not always the full input span. An abugida consonant followed by a virama matches the bare consonant key and consumes the virama too. Use `length`, or `token.text_span(prepared)` on the string that `prepare` returns, to recover the characters that the token consumed.
 
 ```python
 tok = PhonetokTokenizer(orthography2ipa.get("es"))
@@ -143,7 +143,9 @@ Each key takes the form that `tokenize` gives the text: lower case, NFC, and wit
 
 ### `tokenize(text)`
 
-`tokenize` returns every token, including whitespace and punctuation, so the structure of the text survives. Before the scan, it normalises the text to NFC and removes the diacritics the spec lists in `fold_diacritics`. For an Arabic-script spec, it also decomposes presentation forms and, if the spec models shadda, expands gemination. For a Gurmukhi spec, it rewrites each addak and the consonant letter after it to the letter, a virama and the letter again, which reads as two consonant slots. `prepare(text)` returns that rewritten string, and the `position` of a token indexes into it.
+`tokenize` returns every token, including whitespace and punctuation, so the structure of the text survives. Before the scan, it normalises the text to NFC and removes the diacritics the spec lists in `fold_diacritics`.
+
+For an Arabic-script spec, it also decomposes presentation forms. A spec that declares the shadda ⟨ّ⟩ gets the same step, whatever its `script` label says. For such a spec, the tokenizer also expands gemination. `acq` and `ssh` are examples: their label is `Zyyy`, and they read Arabic letters. Persian declares no shadda, so its text keeps the shadda mark. For a Gurmukhi spec, it rewrites each addak and the consonant letter after it to the letter, a virama and the letter again, which reads as two consonant slots. [`prepare(text)`](#preparetext) returns the string after these steps.
 
 The scan then goes left to right. At each position it tries whitespace, punctuation, digits, the longest grapheme, and finally a single unknown character, in that order. A grapheme wins over punctuation when the spec claims the punctuation characters, as Tetum does with the apostrophe.
 
@@ -168,6 +170,20 @@ PUNCTUATION   '.'       ()
 ```
 
 The `ipa` on a token is the flat-table list. It does not apply positional overrides. Two helpers wrap `tokenize`: `graphemes(text)` returns the `grapheme` string of every token, and `grapheme_tokens(text)` returns the `GRAPHEME` tokens only.
+
+### `prepare(text)`
+
+`prepare` returns the string that `tokenize` scans: the text after the normalisation and the script rewrites above. The `position` and `length` of each token index into this string, not into the raw input. The two strings differ when a step changes the text. A Gurmukhi addak is one example: ⟨ਪੱਗ⟩ has three characters, and its prepared form has four. A prepared string does not change when you prepare it again.
+
+```python
+tok_pa = PhonetokTokenizer(orthography2ipa.get("pa"))
+prepared = tok_pa.prepare("ਪੱਗ")
+print(len(prepared), [t.text_span(prepared) for t in tok_pa.tokenize(prepared)])
+```
+
+```text
+4 ['ਪ', 'ਗ੍', 'ਗ']
+```
 
 ### `ipa_beam(text, ...)`
 

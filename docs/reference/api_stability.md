@@ -24,6 +24,8 @@ The inventory comes from the Python imports on the `dev` branch of each downstre
 
 A name imported from a submodule and also re-exported at the top level is one name, and both import paths are covered.
 
+The `Downstream Smoke` workflow (`.github/workflows/downstream-smoke.yml`) tests the three consumers on each pull request to `dev` and on each push to `dev`. It checks out arbtok, tugaphone and euskaphone at their default branch. It installs the checkout under test over each one. Then `scripts/smoke_downstream.py` imports the consumer and transcribes one word with it, and the job runs the test suite of that consumer. A change that breaks a consumer therefore fails CI in this repository.
+
 ### Names in `__all__`
 
 | Name | Module | Used by |
