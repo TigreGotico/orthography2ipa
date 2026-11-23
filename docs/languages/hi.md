@@ -128,8 +128,6 @@ Many speakers, mostly in colloquial speech, use the native equivalents (q to k, 
 
 ## Known limitations
 
-A word-initial nukta letter with no vowel sign loses its inherent vowel. ख़त gives `xt̪`, ज़मीन gives `zmiːn`, and फ़र्क gives `fɾk`, each with no /ə/ after the first consonant. The same letter keeps its vowel inside a word: मज़ा gives `məzaː`. The precomposed and the decomposed nukta spellings give the same output.
-
 Anusvara before a consonant is nasalisation of the vowel in the output, not a homorganic nasal.
 
 ## Gold rows
@@ -172,8 +170,8 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 
 | Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
 |:--|:--|:--|:--|:--|--:|--:|:--|
-| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `hi` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 30375 | 0.1277 | yes |
-| `vox_communis` ([fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p)) | `hi` | generated | epitran-derived | CC0 1.0 | 12478 | 0.2765 | no |
+| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `hi` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 30375 | 0.1251 | yes |
+| `vox_communis` ([fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p)) | `hi` | generated | epitran-derived | CC0 1.0 | 12478 | 0.2759 | no |
 <!-- atlas:datasets end -->
 
 <!-- atlas:inventory begin -->
@@ -445,12 +443,12 @@ The engine wrote every transcription in this section with `orthography2ipa.trans
 | शब्द | [ʃəbd̪] |
 | करना | [kəɾnaː] |
 | अपना | [əpnaː] |
-| ज़मीन | [zmiːn] |
+| ज़मीन | [zəmiːn] |
 | दीवार | [d̪iːʋaːɾ] |
 | पड़ना | [pəɽnaː] |
 | बढ़ना | [bəɽʱnaː] |
 | क़िस्मत | [qɪsmət̪] |
-| फ़र्क | [fɾk] |
+| फ़र्क | [fəɾk] |
 | हाँ | [ɦãː] |
 <!-- atlas:examples end -->
 

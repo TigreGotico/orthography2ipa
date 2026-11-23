@@ -49,6 +49,9 @@
     "https://en.wikipedia.org/wiki/Magahi_language"
   ],
   "inherent_vowel": "ə",
+  "consonant_marks": [
+    "़"
+  ],
   "phonemes": [
     "a",
     "ã",

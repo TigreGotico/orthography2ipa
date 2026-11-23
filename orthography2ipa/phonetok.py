@@ -1302,6 +1302,7 @@ class PhonetokTokenizer:
         }
         self._codas: FrozenSet[str] = frozenset(spec.codas)
         self._inherent_vowel_final: Optional[str] = spec.inherent_vowel_final
+        self._consonant_marks: FrozenSet[str] = frozenset(spec.consonant_marks)
         self._hiatus: bool = spec.stress is not None and bool(
             spec.stress.closed_hiatus or spec.stress.final_diphthongs)
         self._hiatus_by_word: Dict[str, FrozenSet[int]] = {}
@@ -2044,14 +2045,16 @@ class PhonetokTokenizer:
                 #
                 # A conjunct stack, a letter plus subjoined letters (Tibetan
                 # ⟨ཀྲ⟩ = ཀ + U+0FB2, an Mn), is a consonant letter and takes the
-                # vowel. The test asks for a subjoined LETTER, not merely a
-                # longer key: a letter plus nukta (⟨क़⟩ = क + U+093C) keeps its
-                # existing behaviour (docs/evaluation/benchmarks.md).
+                # vowel. So is a letter followed only by marks that the spec
+                # lists in ``consonant_marks``, such as the nukta (⟨क़⟩ = क +
+                # U+093C). Any other letter-plus-mark key reads as its mark.
                 if self.spec.inherent_vowel and ipa_vals:
                     first_ipa = ipa_vals[0]
                     is_mark = (
                         unicodedata.category(gkey[-1]) in ("Mn", "Mc")
                         and not _is_subjoined_letter_cluster(gkey)
+                        and not (len(gkey) > 1
+                                 and set(gkey[1:]) <= self._consonant_marks)
                     )
                     if first_ipa and not is_mark and not _is_nucleus(first_ipa):
                         next_pos = pos + consumed

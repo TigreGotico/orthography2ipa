@@ -65,8 +65,8 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 
 | Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
 |:--|:--|:--|:--|:--|--:|--:|:--|
-| `ipadict` ([open-dict-data/ipa-dict](https://github.com/open-dict-data/ipa-dict)) | `or` | generated | machine-generated | MIT, each file its own | 6216 | 0.1115 | yes |
-| `vox_communis` ([fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p)) | `or` | generated | epitran-derived | CC0 1.0 | 7918 | 0.2689 | no |
+| `ipadict` ([open-dict-data/ipa-dict](https://github.com/open-dict-data/ipa-dict)) | `or` | generated | machine-generated | MIT, each file its own | 6216 | 0.1102 | yes |
+| `vox_communis` ([fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p)) | `or` | generated | epitran-derived | CC0 1.0 | 7918 | 0.2694 | no |
 <!-- atlas:datasets end -->
 
 <!-- atlas:inventory begin -->

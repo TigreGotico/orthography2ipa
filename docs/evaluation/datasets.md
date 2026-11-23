@@ -659,15 +659,5 @@ These datasets were investigated and excluded, because a tool generated the IPA,
 
 The `ja` `vox_communis` file stays registered. Its kana rows transcribe, and only the kanji minority give empty output, so the row still carries signal.
 
-## Known finding: the nukta digraphs and the inherent vowel
-
-This is an engine issue, not a dataset issue. It is recorded here because these golds measure it, and it needs its own change.
-
-The tokenizer decides from the last character of a grapheme key whether the key is a bare combining mark. That decides whether the key takes the inherent vowel of an abugida. That is right for a key that is a mark, such as anusvara `ং`, and wrong for a key that only ends in one. Two key shapes end in a mark. A conjunct stack is a letter plus subjoined letters, which Unicode encodes as combining marks (Tibetan `ཀྲ` is `ཀ` plus U+0FB2). A subjoined letter is a letter, so the key takes the inherent vowel, and the engine handles this case. `dz` depends on it.
-
-A nukta digraph is a letter plus a modifier sign (`क़` is `क` plus U+093C DEVANAGARI SIGN NUKTA), in `hi bn as gu awa bho mr ne or pa kok mai km`. These keys get no inherent vowel, so `क़लम` gives `qləm`, where the schwa-deletion rules should have received a schwa to decide about (`qələm`).
-
-The nukta case looks like the same bug but needs another fix. Giving those keys the inherent vowel moves rows in both directions. On a differential in one session against one cache, the net over the rows is negative: `hi` `wikipron` gains, while `bn` `vox_communis` and `as` lose more. Whether the added vowel is right depends on the schwa-deletion coverage of each Brahmic spec, which is a data question per spec, not a tokenizer question. The change needs per-spec schwa rules in the same change as the engine fix. Run any such differential as [board regeneration](../contributing/board.md#before-you-regenerate) describes, with both sides in one session against one cache.
-
 ---
 [← Benchmarks](benchmarks.md) · [Home](../index.md) · [The pinned WikiPron mirror →](wikipron_mirror.md)

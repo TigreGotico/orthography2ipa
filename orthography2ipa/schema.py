@@ -458,6 +458,7 @@ class LanguageSpecModel(_Strict):
     codas: Optional[List[str]] = None
     inherent_vowel_final: Optional[str] = None
     virama_final_vowel: Optional[str] = None
+    consonant_marks: Optional[List[str]] = None
     collapse_geminates: Optional[bool] = None
     doubled_letters_geminate: Optional[bool] = None
     constrain_onsets: Optional[bool] = None

@@ -92,17 +92,26 @@ def test_the_silencing_rule_does_not_reach_a_word_final_letter():
     assert _ipa(spec, "ག") == "kɑ"
 
 
-def test_a_nukta_digraph_is_left_alone():
-    """The conjunct exception is narrow ON PURPOSE. A letter plus a NUKTA
-    (⟨क़⟩ = क + U+093C DEVANAGARI SIGN NUKTA) has the same shape as a stack
-    but the nukta MODIFIES its base letter instead of adding a consonant to
-    it, and whether such a key should take the inherent vowel is a question
-    about the Brahmic specs' own schwa handling — with its own fleet-wide
-    cost — not about conjuncts. It keeps the historical behaviour so this
-    change has exactly one blast radius.
+def test_a_nukta_digraph_reads_as_its_mark_by_default():
+    """A letter plus a NUKTA (⟨क़⟩ = क + U+093C DEVANAGARI SIGN NUKTA) has the
+    shape of a stack, but the engine does not read Unicode names for it: a
+    spec that lists no ``consonant_marks`` reads the key as its last mark.
     """
     spec = _spec(graphemes={"क़": ["q"]})
     assert _ipa(spec, "क़") == "q"
+
+
+def test_a_listed_consonant_mark_keeps_the_inherent_vowel():
+    """With the nukta in ``consonant_marks`` the key is a consonant letter and
+    carries the inherent vowel, as the plain letter does."""
+    spec = _spec(graphemes={"क़": ["q"]}, consonant_marks=("\u093c",))
+    assert _ipa(spec, "क़") == "qɑ"
+
+
+def test_an_unlisted_mark_after_a_listed_one_is_still_a_mark():
+    """Only a tail made entirely of listed marks qualifies."""
+    spec = _spec(graphemes={"क़ं": ["q"]}, consonant_marks=("\u093c",))
+    assert _ipa(spec, "क़ं") == "q"
 
 
 def test_a_partly_subjoined_key_is_not_a_stack():

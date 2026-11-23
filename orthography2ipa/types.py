@@ -1909,6 +1909,7 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "codas": InheritanceMode.OWN_ONLY,
     "inherent_vowel_final": InheritanceMode.OWN_ONLY,
     "virama_final_vowel": InheritanceMode.OWN_ONLY,
+    "consonant_marks": InheritanceMode.OWN_ONLY,
     "collapse_geminates": InheritanceMode.OWN_ONLY,
     "doubled_letters_geminate": InheritanceMode.OWN_ONLY,
     "constrain_onsets": InheritanceMode.BASE_SCALAR,
@@ -2129,6 +2130,18 @@ class LanguageSpec:
     behaviour every other abugida spec already has. Declaring a vowel here
     substitutes it ONLY when the virama is the word's last character; a
     virama anywhere else keeps deleting the vowel to form its conjunct."""
+
+    consonant_marks: Tuple[str, ...] = ()
+    """Combining marks that stay part of the consonant letter before them.
+
+    In an abugida, a grapheme key that ends in a combining mark ordinarily
+    reads as that mark and takes no inherent vowel, which is right for an
+    anusvara or a visarga. A mark listed here instead modifies the letter it
+    follows: the nukta turns ⟨क⟩ /k/ into ⟨क़⟩ /q/ and supplies no vowel. A
+    key made of a letter followed only by listed marks is a consonant letter,
+    and it takes the inherent vowel exactly as the plain letter does: ⟨क़लम⟩
+    is /qələm/, as ⟨कलम⟩ is /kələm/. Each entry is one codepoint. Empty (the
+    default) lists no mark."""
 
     plugins: Dict[str, Tuple[str, ...]] = field(default_factory=dict)
     """Deprecated: which plugin this language wants, per stage — keyed by entry-point name.
