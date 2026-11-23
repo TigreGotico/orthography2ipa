@@ -11,8 +11,8 @@ rules then decide for it as they decide for the plain letter. A spec states
 this in data: it lists the nukta in ``consonant_marks``.
 
 Singh and Lehal, "A Rule Based Schwa Deletion Algorithm for Punjabi TTS
-System" (§2.2, Rule II), give a nukta letter that keeps its schwa:
-ਆਕਰਸ਼ਨ [ākərəshən], "schwa is inserted only after the consonant 'ਸ਼'".
+System" (§2.2, Rule II), give a nukta letter that keeps its schwa: for
+ਆਕਰਸ਼ਨ, "schwa is inserted only after the consonant 'ਸ਼'".
 For Hindi, no source opened for this module states the rule for a nukta
 letter in words. The Hindi rows rest on the Unicode text above and on the
 spec's schwa-deletion rules (Ohala 1983, ch. 5; Narasimhan et al. 2004),
@@ -81,8 +81,12 @@ def test_issue_rows(engines, lang, word, expected):
 
 
 def test_singh_lehal_example_keeps_the_schwa_of_sha(engines):
-    """Singh and Lehal §2.2 Rule II: ਆਕਰਸ਼ਨ [ākərəshən]."""
-    check(engines, "pa", "ਆਕਰਸ਼ਨ", "aːkəɾəʃən")
+    """Singh and Lehal §2.2 Rule II, on ਆਕਰਸ਼ਨ: "schwa is inserted only after
+    the consonant 'ਸ਼'". The same sentence then says that no schwa follows ਕ
+    and ਰ, but its bracket form [ākərəshən] writes one after each, so the
+    source contradicts itself there. This test pins only the schwa after ਸ਼.
+    """
+    assert engines["pa"].transcribe("ਆਕਰਸ਼ਨ").endswith("ʃən")
 
 
 @pytest.mark.parametrize("lang,letter", [

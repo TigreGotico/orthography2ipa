@@ -24,6 +24,7 @@ Notes on intentional permissiveness:
 from __future__ import annotations
 
 import json
+import unicodedata
 from pathlib import Path
 from typing import Dict, List, Literal, Optional, Tuple, Union
 
@@ -525,6 +526,17 @@ class LanguageSpecModel(_Strict):
             for key in v:
                 if not key:
                     raise ValueError("grapheme/allophone keys must be non-empty")
+        return v
+
+    @field_validator("consonant_marks")
+    @classmethod
+    def _one_combining_mark_each(cls, v):
+        """Each entry is one combining codepoint: the engine compares the
+        characters of a grapheme key with the entries one by one."""
+        for mark in v or ():
+            if len(mark) != 1 or unicodedata.category(mark) not in ("Mn", "Mc"):
+                raise ValueError(
+                    f"consonant_marks entries must be one combining mark, got {mark!r}")
         return v
 
 

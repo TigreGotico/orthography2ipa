@@ -186,7 +186,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | bg | vox_communis | 18447 | 0.1980‡ | - | - | 0.1980 | 0.1980 | 0.1935 | 0.1935 | [0.1959, 0.1998] | 0.1935 | research | epitran-derived |
 | bjb | wikipron | 136 | 0.1021 | - | - | 0.1021 | 0.1021 | 0.5956 | 0.5956 | [0.0773, 0.1261] | 0.5956 | research | crowd-scraped |
 | bn | vox_communis | 30261 | 0.1587‡ | - | - | 0.1533 | 0.1532 | 0.2928 | 0.2928 | [0.1569, 0.1603] | 0.2928 | research | epitran-derived |
-| bn | wikipron | 6424 | 0.2390 | - | 0.2274† (inherent_vowel_word_final_quality) | 0.2031 | 0.2008 | 0.2811 | 0.2839 | [0.2337, 0.2444] | 0.2419 | research | crowd-scraped |
+| bn | wikipron | 6527 | 0.2398 | - | 0.2274† (inherent_vowel_word_final_quality) | 0.2039 | 0.2015 | 0.2791 | 0.2821 | [0.2349, 0.2448] | 0.2398 | research | crowd-scraped |
 | bo | wikipron | 1564 | 0.3871 | - | - | 0.3806 | 0.3803 | 0.2174 | 0.2174 | [0.3683, 0.4061] | 0.2174 | research | crowd-scraped |
 | br | wikipron | 803 | 0.3073 | - | 0.1726† (the /r/~/ʁ/ realisation difference, contingent vowel nasalisation, and the close/open ⟨e⟩ contrast) | 0.2237 | 0.2083 | 0.2354 | 0.2615 | [0.2936, 0.3207] | 0.1233 | research | crowd-scraped |
 | bua | northeuralex | 1174 | 0.0398 | - | - | 0.0398 | 0.0398 | 0.7726 | 0.7726 | [0.0351, 0.0448] | 0.7726 | research | lexicon-derived |

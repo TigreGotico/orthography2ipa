@@ -3176,13 +3176,13 @@
  {
   "lang": "bn",
   "dataset": "wikipron",
-  "n": 6424,
-  "per": 0.239,
-  "per_ci_low": 0.2337,
-  "per_ci_high": 0.2444,
+  "n": 6527,
+  "per": 0.2398,
+  "per_ci_low": 0.2349,
+  "per_ci_high": 0.2448,
   "stress_acc": null,
   "n_stress": 0,
-  "exact_match": 0.2419,
+  "exact_match": 0.2398,
   "quality_tier": "research",
   "provenance": "crowd-scraped",
   "gating": true,
@@ -3193,12 +3193,12 @@
    "folded": "inherent_vowel_word_final_quality",
    "citation": "Scored as-is (this spec's fixed inherent_vowel_final=\"\") the row is 0.2395 PER. Stripping the final vowel character from BOTH hypothesis and gold whenever the orthographic word ends in a bare consonant letter (neutralising the remaining deletion/raising choice on both sides) measures 0.2274 -- this isolates what is left of the inherent-vowel phenomenon from the conjunct/যা-phala and other residual errors; see the notes field for the underlying counts."
   },
-  "oracle_per_top3": 0.2031,
-  "oracle_exact_top3": 0.2811,
-  "oracle_per_top5": 0.2008,
-  "oracle_exact_top5": 0.2839,
+  "oracle_per_top3": 0.2039,
+  "oracle_exact_top3": 0.2791,
+  "oracle_per_top5": 0.2015,
+  "oracle_exact_top5": 0.2821,
   "oracle_fallback_words": 0,
-  "oracle_scored_words": 6424
+  "oracle_scored_words": 6527
  },
  {
   "lang": "bo",

@@ -70,7 +70,7 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 
 | Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
 |:--|:--|:--|:--|:--|--:|--:|:--|
-| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `bn` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 6424 | 0.2390 | yes |
+| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `bn` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 6527 | 0.2398 | yes |
 | `vox_communis` ([fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p)) | `bn` | generated | epitran-derived | CC0 1.0 | 30261 | 0.1587 | no |
 <!-- atlas:datasets end -->
 
