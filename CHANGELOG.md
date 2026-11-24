@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.124.49a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.49a1) (2026-11-24)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.48a1...7.124.49a1)
+
+**Merged pull requests:**
+
+- fix: list only single segments in phoneme\_inventory [\#2501](https://github.com/TigreGotico/orthography2ipa/pull/2501) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.124.48a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.48a1) (2026-11-24)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.47a1...7.124.48a1)
