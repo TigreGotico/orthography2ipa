@@ -34,3 +34,11 @@ def test_no_spec_writes_pharyngealization_with_u02c1():
 def test_gho_reads_its_emphatic_stop_with_the_ipa_mark():
     from orthography2ipa import get
     assert "dˤ" in get("gho").graphemes["ḍ"]
+
+
+def test_gud_open_e_is_pharyngealized_like_its_sister_vowels():
+    # The Omniglot Yocoboué Dida chart prints ɛ as [ɛˤ], with the mark it prints on ɔ.
+    from orthography2ipa import get
+    graphemes = get("gud").graphemes
+    assert graphemes["ɛ"] == ["ɛˤ"]
+    assert graphemes["ɔ"] == ["ɔˤ"]
