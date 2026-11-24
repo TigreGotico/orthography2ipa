@@ -9,7 +9,7 @@ see: `docs/languages/sa.md`, `docs/languages/a-z.md`, `docs/specs/quality_tiers.
 -->
 
 <!-- atlas:summary begin -->
-Marathi is an Indo-Aryan language, written in the Devanagari script. Glottolog places it in India. The `mr` spec is at the research tier. It cites 3 sources and has 2 scored datasets.
+Marathi is an Indo-Aryan language, written in the Devanagari script. Glottolog places it in India. The `mr` spec is at the research tier. It cites 6 sources and has 2 scored datasets.
 <!-- atlas:summary end -->
 
 <!-- atlas:header begin -->
@@ -38,7 +38,7 @@ The notes of the spec file open with these words:
 
 > Standard Marathi (Maharashtra). No phonemic vowel length -- the script writes the Sanskrit length distinction but the language has lost it, so ⟨आ ई ऊ ए ओ⟩ are transcribed without a length mark and ⟨अ⟩ vs ⟨आ⟩ is a quality contrast [ə] vs [a]. ⟨ळ⟩ is the retroflex lateral flap [ɭ̆], a Marathi hallmark. ⟨र⟩ is a tap.
 
-The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 3 works, from 1991 to 2009. [Sources](#sources) lists them. The spec file writes all 73 spellings of its letter table itself.
+The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 6 works, from 1991 to 2024. 1 of them is a Wikipedia article. [Sources](#sources) lists them. The spec file writes all 77 spellings of its letter table itself.
 
 The [spec file](../../orthography2ipa/data/mr.json) holds the full notes, with the caveats of the spec.
 <!-- atlas:overview end -->
@@ -55,11 +55,14 @@ These specs name `mr` as their parent. They are sorted by country, and a lect wi
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 0 of them have a DOI or a URL.
+The spec cites 6 works. 3 of them have a DOI or a URL. The spec file holds a note on what 3 of them support.
 
 1. <a id="src-masica1991"></a>Masica, C. (1991). *The Indo-Aryan Languages*. Cambridge University Press.
 2. <a id="src-cardona_jain2003"></a>Cardona, G. & Jain, D. (eds.) (2003). *The Indo-Aryan Languages*. Routledge.
 3. <a id="src-dhongde_wali2009"></a>Dhongde, R.V. & Wali, K. (2009). *Marathi*. John Benjamins.
+4. <a id="src-unicode16_ch12"></a>The Unicode Consortium (2024). *The Unicode Standard, Version 16.0, Chapter 12: South and Central Asia-I (Devanagari)*. The Unicode Consortium. [unicode.org](https://www.unicode.org/versions/Unicode16.0.0/core-spec/chapter-12/)
+5. <a id="src-unicode16_nameslist"></a>The Unicode Consortium (2024). *Unicode 16.0.0 NamesList.txt*. The Unicode Consortium. [unicode.org](https://www.unicode.org/Public/16.0.0/ucd/NamesList.txt)
+6. <a id="src-wikipedia_marathi_phonology"></a>Wikipedia contributors (2024). *Marathi phonology*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Marathi_phonology)
 <!-- atlas:sources end -->
 
 <!-- atlas:datasets begin -->
@@ -148,6 +151,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨ध⟩ | [d̪ʱ] |  |
 | ⟨न⟩ | [n] |  |
 | ⟨न्ह⟩ | [nʱ] |  |
+| ⟨ऩ⟩ | [n] |  |
 | ⟨प⟩ | [p] |  |
 | ⟨फ⟩ | [pʰ] |  |
 | ⟨ब⟩ | [b] |  |
@@ -157,10 +161,13 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨य⟩ | [j] |  |
 | ⟨र⟩ | [ɾ] |  |
 | ⟨र्ह⟩ | [ɾʱ] |  |
+| ⟨ऱ⟩ | [ɾ] |  |
+| ⟨ऱ्ह⟩ | [ɾʱ] |  |
 | ⟨ल⟩ | [l] |  |
 | ⟨ल्ह⟩ | [lʱ] |  |
 | ⟨ळ⟩ | [ɭ̆] |  |
 | ⟨ळ्ह⟩ | [ɭ̆ʱ] |  |
+| ⟨ऴ⟩ | [ɭ̆] |  |
 | ⟨व⟩ | [ʋ] |  |
 | ⟨व्ह⟩ | [ʋʱ] |  |
 | ⟨श⟩ | [ɕ] |  |

@@ -138,6 +138,9 @@
     "न": [
       "n"
     ],
+    "ऩ": [
+      "n"
+    ],
     "प": [
       "p"
     ],
@@ -159,7 +162,13 @@
     "र": [
       "r"
     ],
+    "ऱ": [
+      "r"
+    ],
     "ल": [
+      "l"
+    ],
+    "ऴ": [
       "l"
     ],
     "व": [
@@ -332,7 +341,7 @@
       "notes": "Descent via Shauraseni through Khas language"
     }
   ],
-  "notes": "Standard (eastern) Nepali, the variety of the national media. Consonants: a four-way laryngeal contrast on the stops, a dental versus retroflex contrast, and AFFRICATES THAT ARE ALVEOLAR /ts tsʰ dz dzʱ/, not palato-alveolar — palatography puts the contact in the alveolar region, though the sounds strike English and French ears as palato-alveolar (Khatiwada 2009: 375, reporting Pokharel 1989 and Clements & Khatiwada 2007). ONE SIBILANT: Nepali has exactly two contrastive fricatives, /s/ and /ɦ/ (Khatiwada 2009: 376), so written श, ष and स all read /s/ — आकाश [äkäs], भाषा [bʱäsä]. NASALS: only /m n ŋ/ are phonologically pertinent; /ŋ/ is otherwise word-final only, and written ण also has a retroflex nasal flap realisation [ɽ̃] (Khatiwada 2009: 377). VOWELS: six oral qualities /i e u o ʌ ä/ with distinctive nasalisation on all but /o/, and NO LENGTH CONTRAST — the script's long/short ⟨इ ई⟩ and ⟨उ ऊ⟩ pairs are an orthographic inheritance with no counterpart in the spoken language (Khatiwada 2009: 378). The inherent vowel is /ʌ/, not the schwa [ə] of the older descriptions: it is acoustically lower and more back than a schwa (Khatiwada 2009: 377, replacing the [ə] of Bandhu et al. 1971 and Dahal 1974). The low vowel is central, written here [ä] for the same reason the dental stops are written [t̪]. SCHWA DELETION is conjunct-blocked; see NE_SCHWA_KEEP_b and NE_SCHWA_FINAL_b. व reads /w/: Nepali has no /v/ or /ʋ/ phoneme, and [w] is the nonsyllabic variant of /u/ (Khatiwada 2009: 373); in combination with /e i o ʌi̯ r w j/ it is instead the bilabial stop [b] (Wikipedia, 'Va (Indic)'), which is why [b] is listed as its allophone. The aspirated labials and velars also have homorganic fricative realisations in spontaneous speech — /sʌpʰa/ [sʌɸa], /sʌbʱa/ [sʌβa], /sakʰa/ [saxa], /ʌɡʱaɖi/ [ʌɣaɽi] (Khatiwada 2009: 376) — which is why [ɸ β x ɣ] are listed as allophones. Stress and pitch are non-distinctive (Khatiwada 2009: 378). Not modelled: intervocalic /ɦ/ deletion with compensatory lengthening, a spontaneous-speech process (Khatiwada 2009: 378); the ⟨्य⟩ conjunct's gemination-plus-[e] outcome; and gemination, which is contrastive but not predictable from the spelling of a conjunct. Only the first of Wikipedia's four final-schwa retention rules is modelled. Rules 2 and 3 — every verb form retains the schwa unless a halanta cancels it, and adverbs, onomatopoeia and postpositions usually retain it — need a part of speech the engine does not have, and rule 4 is a short list of lexical exceptions (दुःख, सुख). Rule 1 itself over-retains on the nasal conjuncts ⟨ञ्च ञ्ज⟩, whose nasal-plus-affricate coda is legal word-finally: मञ्च comes out [mʌntsʌ] where the schwa should go. The visarga ⟨ः⟩ is read silently and its own outcome is unmodelled: it neither geminates a following consonant (दुःख [d̪ukʰ], not [d̪ukkʰʌ]) nor lengthens a preceding vowel, which in पुनः and अतः also costs the final schwa the gold writes ([pun] for [punʌː]) — 6 of the 15 visarga words in the gold end in a length mark, only 2 of them outside a nasalised rhyme, so no single reading fits and none is guessed. Word-initial ⟨क्ष⟩ is likewise left at its cluster reading [ktsʰ] rather than the simplified [tsʰ] heard initially.",
+  "notes": "Standard (eastern) Nepali, the variety of the national media. Consonants: a four-way laryngeal contrast on the stops, a dental versus retroflex contrast, and AFFRICATES THAT ARE ALVEOLAR /ts tsʰ dz dzʱ/, not palato-alveolar — palatography puts the contact in the alveolar region, though the sounds strike English and French ears as palato-alveolar (Khatiwada 2009: 375, reporting Pokharel 1989 and Clements & Khatiwada 2007). ONE SIBILANT: Nepali has exactly two contrastive fricatives, /s/ and /ɦ/ (Khatiwada 2009: 376), so written श, ष and स all read /s/ — आकाश [äkäs], भाषा [bʱäsä]. NASALS: only /m n ŋ/ are phonologically pertinent; /ŋ/ is otherwise word-final only, and written ण also has a retroflex nasal flap realisation [ɽ̃] (Khatiwada 2009: 377). VOWELS: six oral qualities /i e u o ʌ ä/ with distinctive nasalisation on all but /o/, and NO LENGTH CONTRAST — the script's long/short ⟨इ ई⟩ and ⟨उ ऊ⟩ pairs are an orthographic inheritance with no counterpart in the spoken language (Khatiwada 2009: 378). The inherent vowel is /ʌ/, not the schwa [ə] of the older descriptions: it is acoustically lower and more back than a schwa (Khatiwada 2009: 377, replacing the [ə] of Bandhu et al. 1971 and Dahal 1974). The low vowel is central, written here [ä] for the same reason the dental stops are written [t̪]. SCHWA DELETION is conjunct-blocked; see NE_SCHWA_KEEP_b and NE_SCHWA_FINAL_b. व reads /w/: Nepali has no /v/ or /ʋ/ phoneme, and [w] is the nonsyllabic variant of /u/ (Khatiwada 2009: 373); in combination with /e i o ʌi̯ r w j/ it is instead the bilabial stop [b] (Wikipedia, 'Va (Indic)'), which is why [b] is listed as its allophone. The aspirated labials and velars also have homorganic fricative realisations in spontaneous speech — /sʌpʰa/ [sʌɸa], /sʌbʱa/ [sʌβa], /sakʰa/ [saxa], /ʌɡʱaɖi/ [ʌɣaɽi] (Khatiwada 2009: 376) — which is why [ɸ β x ɣ] are listed as allophones. Stress and pitch are non-distinctive (Khatiwada 2009: 378). Not modelled: intervocalic /ɦ/ deletion with compensatory lengthening, a spontaneous-speech process (Khatiwada 2009: 378); the ⟨्य⟩ conjunct's gemination-plus-[e] outcome; and gemination, which is contrastive but not predictable from the spelling of a conjunct. Only the first of Wikipedia's four final-schwa retention rules is modelled. Rules 2 and 3 — every verb form retains the schwa unless a halanta cancels it, and adverbs, onomatopoeia and postpositions usually retain it — need a part of speech the engine does not have, and rule 4 is a short list of lexical exceptions (दुःख, सुख). Rule 1 itself over-retains on the nasal conjuncts ⟨ञ्च ञ्ज⟩, whose nasal-plus-affricate coda is legal word-finally: मञ्च comes out [mʌntsʌ] where the schwa should go. The visarga ⟨ः⟩ is read silently and its own outcome is unmodelled: it neither geminates a following consonant (दुःख [d̪ukʰ], not [d̪ukkʰʌ]) nor lengthens a preceding vowel, which in पुनः and अतः also costs the final schwa the gold writes ([pun] for [punʌː]) — 6 of the 15 visarga words in the gold end in a length mark, only 2 of them outside a nasalised rhyme, so no single reading fits and none is guessed. Word-initial ⟨क्ष⟩ is likewise left at its cluster reading [ktsʰ] rather than the simplified [tsʰ] heard initially. ⟨ऩ ऱ ऴ⟩ (U+0929, U+0931, U+0934) read as their base letters ⟨न र ल⟩: [n] [r] [l]. Unicode glosses them as the letters that transcribe Dravidian alveolar n, alveolar r and l. This spec has no ⟨ळ⟩, so ⟨ऴ⟩ takes the value of ⟨ल⟩.",
   "quality": "research",
   "script_type": "abugida",
   "inherent_vowel": "ʌ",
@@ -400,6 +409,37 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "unicode16_ch12",
+      "author": "The Unicode Consortium",
+      "year": 2024,
+      "title": "The Unicode Standard, Version 16.0, Chapter 12: South and Central Asia-I (Devanagari)",
+      "publisher": "The Unicode Consortium",
+      "url": "https://www.unicode.org/versions/Unicode16.0.0/core-spec/chapter-12/",
+      "pages": null,
+      "notes": "Rule R5: \"In conformance with the ISCII standard, the half-consonant form RRA h is represented as eyelash-RA. This form of RA is commonly used in writing Marathi and Newari.\" Table 12-8 note: \"Marathi also makes use of the eyelash form of the letter RA, as discussed in rule R5.\" Used here for the three letters with no attested use in this language: each reads as its base letter."
+    },
+    {
+      "id": "unicode16_nameslist",
+      "author": "The Unicode Consortium",
+      "year": 2024,
+      "title": "Unicode 16.0.0 NamesList.txt",
+      "publisher": "The Unicode Consortium",
+      "url": "https://www.unicode.org/Public/16.0.0/ucd/NamesList.txt",
+      "pages": null,
+      "notes": "U+0929 DEVANAGARI LETTER NNNA: \"for transcribing Dravidian alveolar n\"; U+0931 DEVANAGARI LETTER RRA: \"for transcribing Dravidian alveolar r\", \"half form is represented as \\\"Eyelash RA\\\"\"; U+0934 DEVANAGARI LETTER LLLA: \"for transcribing Dravidian l\". Each letter is canonically equivalent to its base letter plus U+093C (0928, 0930, 0933), and is not a composition exclusion."
+    },
+    {
+      "id": "wikipedia_devanagari",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Devanagari",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Devanagari",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Devanagari",
+      "pages": null,
+      "notes": "\"In Marathi and Nepali, र ra as a first member of a conjunct also takes on an eyelash form when in front of glides and semivowels.\""
     }
   ],
   "wikipedia": [

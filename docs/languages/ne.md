@@ -9,7 +9,7 @@ see: `docs/languages/sa.md`, `docs/languages/a-z.md`, `docs/specs/quality_tiers.
 -->
 
 <!-- atlas:summary begin -->
-Nepali is an Indo-Aryan language, written in the Devanagari script. Glottolog places it in Nepal. The `ne` spec is at the research tier. It cites 6 sources and has 1 scored dataset.
+Nepali is an Indo-Aryan language, written in the Devanagari script. Glottolog places it in Nepal. The `ne` spec is at the research tier. It cites 9 sources and has 1 scored dataset.
 <!-- atlas:summary end -->
 
 <!-- atlas:header begin -->
@@ -37,7 +37,7 @@ The notes of the spec file open with these words:
 
 > Standard (eastern) Nepali, the variety of the national media.
 
-The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 6 works, from 1971 to 2009. [Sources](#sources) lists them. The spec file writes all 62 spellings of its letter table itself.
+The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 9 works, from 1971 to 2024. 1 of them is a Wikipedia article. [Sources](#sources) lists them. The spec file writes all 65 spellings of its letter table itself.
 
 The [spec file](../../orthography2ipa/data/ne.json) holds the full notes, with the caveats of the spec.
 <!-- atlas:overview end -->
@@ -51,7 +51,7 @@ No spec names `ne` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 6 works. 1 of them have a DOI or a URL. The spec file holds a note on what 3 of them support.
+The spec cites 9 works. 4 of them have a DOI or a URL. The spec file holds a note on what 6 of them support.
 
 1. <a id="src-khatiwada2009"></a>Khatiwada, R. (2009). *Nepali (Illustrations of the IPA)*. Journal of the International Phonetic Association 39(3). Cited: 373-380. [doi.org](https://doi.org/10.1017/S0025100309990181)
 2. <a id="src-bandhu1971"></a>Bandhu, C., Dahal, B. M., Holzhausen, A. & Hale, A. (1971). *Nepali segmental phonology*. Summer Institute of Linguistics / Tribhuvan University.
@@ -59,6 +59,9 @@ The spec cites 6 works. 1 of them have a DOI or a URL. The spec file holds a not
 4. <a id="src-masica1991"></a>Masica, C. (1991). *The Indo-Aryan Languages*. Cambridge University Press.
 5. <a id="src-cardona_jain2003"></a>Cardona, G. & Jain, D. (eds.) (2003). *The Indo-Aryan Languages*. Routledge.
 6. <a id="src-matthews1984"></a>Matthews, D.J. (1984). *A Course in Nepali*. SOAS.
+7. <a id="src-unicode16_ch12"></a>The Unicode Consortium (2024). *The Unicode Standard, Version 16.0, Chapter 12: South and Central Asia-I (Devanagari)*. The Unicode Consortium. [unicode.org](https://www.unicode.org/versions/Unicode16.0.0/core-spec/chapter-12/)
+8. <a id="src-unicode16_nameslist"></a>The Unicode Consortium (2024). *Unicode 16.0.0 NamesList.txt*. The Unicode Consortium. [unicode.org](https://www.unicode.org/Public/16.0.0/ucd/NamesList.txt)
+9. <a id="src-wikipedia_devanagari"></a>Wikipedia contributors (2024). *Devanagari*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Devanagari)
 <!-- atlas:sources end -->
 
 <!-- atlas:datasets begin -->
@@ -142,6 +145,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨द⟩ | [d̪] |  |
 | ⟨ध⟩ | [d̪ʱ] |  |
 | ⟨न⟩ | [n] |  |
+| ⟨ऩ⟩ | [n] |  |
 | ⟨प⟩ | [p] |  |
 | ⟨फ⟩ | [pʰ] |  |
 | ⟨ब⟩ | [b] |  |
@@ -149,7 +153,9 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨म⟩ | [m] |  |
 | ⟨य⟩ | [j] |  |
 | ⟨र⟩ | [r] |  |
+| ⟨ऱ⟩ | [r] |  |
 | ⟨ल⟩ | [l] |  |
+| ⟨ऴ⟩ | [l] |  |
 | ⟨व⟩ | [w] |  |
 | ⟨श⟩ | [s] |  |
 | ⟨ष⟩ | [s] |  |

@@ -9,7 +9,7 @@ see: `docs/languages/sa.md`, `docs/languages/a-z.md`, `docs/specs/quality_tiers.
 -->
 
 <!-- atlas:summary begin -->
-Konkani is an Indo-Aryan language, written in the Devanagari script. Glottolog places it in India. The `kok` spec is at the research tier. It cites 6 sources and has 1 scored dataset.
+Konkani is an Indo-Aryan language, written in the Devanagari script. Glottolog places it in India. The `kok` spec is at the research tier. It cites 8 sources and has 1 scored dataset.
 <!-- atlas:summary end -->
 
 <!-- atlas:header begin -->
@@ -37,7 +37,7 @@ The notes of the spec file open with these words:
 
 > Konkani, 22nd scheduled language of India (1992). Spoken in Goa (official), Karnataka, and Kerala. Multiple scripts: Devanagari (official Goa), Kannada, Roman, this spec reads the Devanagari orthography. Strong Dravidian substrate features: retroflex ⟨ळ⟩ = [ɭ].
 
-The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 6 works, from 1983 to 2021. [Sources](#sources) lists them. The spec file writes all 70 spellings of its letter table itself.
+The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 8 works, from 1983 to 2024. [Sources](#sources) lists them. The spec file writes all 74 spellings of its letter table itself.
 
 The [spec file](../../orthography2ipa/data/kok.json) holds the full notes, with the caveats of the spec.
 <!-- atlas:overview end -->
@@ -51,7 +51,7 @@ No spec names `kok` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 6 works. 1 of them have a DOI or a URL. The spec file holds a note on what 3 of them support.
+The spec cites 8 works. 3 of them have a DOI or a URL. The spec file holds a note on what 5 of them support.
 
 1. <a id="src-masica1991"></a>Masica, C. (1991). *The Indo-Aryan Languages*. Cambridge University Press.
 2. <a id="src-cardona_jain2003"></a>Cardona, G. & Jain, D. (eds.) (2003). *The Indo-Aryan Languages*. Routledge.
@@ -59,6 +59,8 @@ The spec cites 6 works. 1 of them have a DOI or a URL. The spec file holds a not
 4. <a id="src-ohala1983"></a>Ohala, M. (1983). *Aspects of Hindi Phonology*. Motilal Banarsidass, Delhi.
 5. <a id="src-narasimhan2004"></a>Narasimhan, B., Sproat, R. & Kiraz, G. (2004). *Schwa-Deletion in Hindi Text-to-Speech Synthesis*. International Journal of Speech Technology 7(4). Cited: 319-333.
 6. <a id="src-ashok_dutta2021"></a>Ashok, A. & Dutta, I. (2021). *Syllable Structure and Word Stress in Central Kerala Konkani Variety: An OT Approach*. Journal of Universal Language 22(1). [doi.org](https://doi.org/10.22425/jul.2021.22.1.1)
+7. <a id="src-unicode16_ch12"></a>The Unicode Consortium (2024). *The Unicode Standard, Version 16.0, Chapter 12: South and Central Asia-I (Devanagari)*. The Unicode Consortium. [unicode.org](https://www.unicode.org/versions/Unicode16.0.0/core-spec/chapter-12/)
+8. <a id="src-unicode16_nameslist"></a>The Unicode Consortium (2024). *Unicode 16.0.0 NamesList.txt*. The Unicode Consortium. [unicode.org](https://www.unicode.org/Public/16.0.0/ucd/NamesList.txt)
 <!-- atlas:sources end -->
 
 <!-- atlas:datasets begin -->
@@ -144,6 +146,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨ध⟩ | [d̪ʱ] |  |
 | ⟨न⟩ | [n] |  |
 | ⟨न्ह⟩ | [nʱ] |  |
+| ⟨ऩ⟩ | [n] |  |
 | ⟨प⟩ | [p] |  |
 | ⟨फ⟩ | [pʰ] [f] |  |
 | ⟨ब⟩ | [b] |  |
@@ -153,10 +156,13 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨य⟩ | [j] |  |
 | ⟨र⟩ | [ɾ] |  |
 | ⟨र्ह⟩ | [ɾʱ] |  |
+| ⟨ऱ⟩ | [ɾ] |  |
+| ⟨ऱ्ह⟩ | [ɾʱ] |  |
 | ⟨ल⟩ | [l] |  |
 | ⟨ल्ह⟩ | [lʱ] |  |
 | ⟨ळ⟩ | [ɭ] |  |
 | ⟨ळ्ह⟩ | [ɭʱ] |  |
+| ⟨ऴ⟩ | [ɭ] |  |
 | ⟨व⟩ | [ʋ] |  |
 | ⟨व्ह⟩ | [ʋʱ] |  |
 | ⟨श⟩ | [ʃ] |  |
