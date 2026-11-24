@@ -2,9 +2,10 @@
 
 Moksha writes palatalisation the Russian way, so each of the four letters has
 two values: after a consonant letter it is the vowel and palatalises that
-consonant, and elsewhere it is /j/ plus the vowel. The spec cites the
-description of the modern Mordvin alphabet for both values. Every test word is
-in the WikiPron Moksha gold, and the expected glide is the one the gold writes.
+consonant, and elsewhere it is /j/ plus the vowel. The spec cites Hamari and
+Ajanki (2022) and the description of the Mordvin alphabet. Every test word is
+in the WikiPron Moksha gold, and the expected glide is the one the gold writes,
+except for the spelling probes a test marks as such.
 """
 
 from orthography2ipa.g2p import G2P
@@ -38,7 +39,23 @@ def test_an_iotated_letter_after_a_consonant_palatalises_it():
     assert mdf("шяярь").startswith("ʃʲaj")
 
 
+def test_yo_and_yu_after_a_consonant_palatalise_it():
+    """Gold ⟨сюк⟩ [sʲ u k] and ⟨сёксе⟩ [sʲ o k sʲ ə]: no glide after the
+    consonant."""
+    assert mdf("сюк") == "sʲuk"
+    assert mdf("сёксе").startswith("sʲo")
+
+
 def test_an_iotated_letter_after_the_soft_sign_is_j_plus_vowel():
     """⟨ь⟩ palatalises the consonant before it, so the iotated letter after
     it has no consonant to palatalise: gold ⟨кундья⟩ [k u nʲ dʲ j ɑ]."""
     assert mdf("кундья").endswith("dʲja")
+
+
+def test_each_iotated_letter_after_the_soft_sign_writes_one_palatalisation():
+    """The gold has no word with ⟨ье ьё ью⟩, so the inputs are spelling
+    probes, not gold words. Each one keeps a single ʲ on the consonant and
+    writes the glide: ⟨сьеро⟩ is not [sʲʲero]."""
+    assert mdf("сьеро") == "sʲjero"
+    assert mdf("сьёмка") == "sʲjomka"
+    assert mdf("вьюга") == "vʲjuɡa"
