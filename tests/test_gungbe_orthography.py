@@ -5,7 +5,8 @@ claim is about.  Two orthographies are in use for the same language — the Beni
 national alphabet (⟨ɛ ɔ ɖ x⟩) and a Yoruba-based Nigerian one (⟨ẹ ọ ṣ⟩) — and
 the spec describes both, so the tests come in pairs wherever the WikiPron gold
 attests a word in both spellings.  Words are given in the gold's own
-capitalisation; a form the gold does not carry is not used as a test word.
+capitalisation; a form the gold does not carry is not used as a test word,
+except for the spelling probes a test marks as such.
 """
 
 from orthography2ipa.g2p import G2P
@@ -217,6 +218,16 @@ def test_u_not_before_a_vowel_is_an_ordinary_vowel():
     """The labialisation reading is conditioned on a following vowel: ⟨u⟩
     elsewhere is the vowel /u/."""
     assert guw("adu") == "adu"
+
+
+def test_u_before_a_vowel_with_no_consonant_before_it_is_a_vowel():
+    """The labialisation belongs to the consonant before ⟨u⟩, because the
+    labialised consonants are units (capo1991). At the start of a word or
+    after a vowel no consonant is there to carry it, so ⟨u⟩ is /u/. The gold
+    has no such word, so the inputs are spelling probes, not words."""
+    assert guw("ua") == "ua"
+    assert guw("uɛ") == "uɛ"
+    assert guw("aua") == "aua"
 
 
 def test_w_after_a_coda_nasal_stays_a_glide():

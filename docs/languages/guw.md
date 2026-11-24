@@ -127,7 +127,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨r⟩ | [ɾ] [l] |  |
 | ⟨s⟩ | [s] |  |
 | ⟨t⟩ | [t] |  |
-| ⟨u⟩ | [u] | before vowel [ʷ] [u] · default [u] |
+| ⟨u⟩ | [u] | after vowel [u] · before vowel [ʷ] [u] · default [u] · word initial [u] |
 | ⟨v⟩ | [v] |  |
 | ⟨w⟩ | [w] |  |
 | ⟨wh⟩ | [ɣʷ] [xʷ] |  |

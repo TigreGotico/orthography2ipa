@@ -30,11 +30,9 @@
       "d"
     ],
     "е": [
-      "ʲe",
       "je"
     ],
     "ё": [
-      "ʲo",
       "jo"
     ],
     "ж": [
@@ -107,12 +105,22 @@
       "e"
     ],
     "ю": [
-      "ʲu",
       "ju"
     ],
     "я": [
-      "ʲa",
       "ja"
+    ],
+    "ье": [
+      "ʲje"
+    ],
+    "ьё": [
+      "ʲjo"
+    ],
+    "ью": [
+      "ʲju"
+    ],
+    "ья": [
+      "ʲja"
     ]
   },
   "allophones": {
@@ -248,7 +256,7 @@
       "notes": "Mordvinic branch of Uralic; Republic of Mordovia, Russia."
     }
   ],
-  "notes": "Moksha (мокшень кяль), Mordvinic (Uralic), Russia. Written in a Cyrillic alphabet identical in inventory to Russian. Palatalisation is phonemic and is written the Russian way (soft sign <ь>, iotated vowel letters <е ё ю я>), which is why those letters map to a palatalising sequence. Moksha additionally has voiceless sonorants, spelled <лх>, <рх>, <йх>. The reduced vowel /ə/ is not given its own letter — it is spelled <о>/<е>/<а> depending on context — so it appears here only as an allophone. Stress is largely on the first syllable but is not written.",
+  "notes": "Moksha (мокшень кяль), Mordvinic (Uralic), Russia. Written in a Cyrillic alphabet identical in inventory to Russian. Palatalisation is phonemic and is written the Russian way, with the soft sign <ь> or an iotated vowel letter <е ё ю я> after the consonant. So <е ё ю я> read ʲV after a consonant letter and jV elsewhere: at the start of a word (<ялга> [jalɡa]), after a vowel (<лия> [lʲijæ]) and after <ь> (<кундья> [kunʲdʲja]). The alphabet description (mordvinic_alphabets_wiki) gives each of the four letters both values: \"sound [a] after palatal consonants, as well as combination with the preceding й\", and \"Palatalization is indicated by the letter ь after the consonant or by the letters е, ё, и, ю, я after the consonant.\" Moksha additionally has voiceless sonorants, spelled <лх>, <рх>, <йх>. The reduced vowel /ə/ is not given its own letter — it is spelled <о>/<е>/<а> depending on context — so it appears here only as an allophone. Stress is largely on the first syllable but is not written.",
   "iso639_3": "mdf",
   "glottolog_code": "moks1248",
   "wikidata_qid": "Q13343",
@@ -277,6 +285,17 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Moksha_language",
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "mordvinic_alphabets_wiki",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Mordvinic alphabets",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Mordvinic_alphabets",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Mordvinic_alphabets",
+      "pages": null,
+      "notes": "Modern Mordvin alphabet: е ё ю я are the vowel \"after palatal consonants, as well as combination with the preceding й\" (Я я: \"sound [a] after palatal consonants, as well as combination with the preceding й\"), and \"Palatalization is indicated by the letter ь after the consonant or by the letters е, ё, и, ю, я after the consonant.\" The Russian article it translates (Мордовская письменность) says the same: \"Я я — звук [a] после мягких согласных, а также сочетание с предшествующим й.\""
     }
   ],
   "location": {
@@ -284,5 +303,39 @@
     "longitude": 42.6728,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Moksha."
+  },
+  "positional_graphemes": {
+    "е": {
+      "after_consonant": [
+        "ʲe"
+      ],
+      "default": [
+        "je"
+      ]
+    },
+    "ё": {
+      "after_consonant": [
+        "ʲo"
+      ],
+      "default": [
+        "jo"
+      ]
+    },
+    "ю": {
+      "after_consonant": [
+        "ʲu"
+      ],
+      "default": [
+        "ju"
+      ]
+    },
+    "я": {
+      "after_consonant": [
+        "ʲa"
+      ],
+      "default": [
+        "ja"
+      ]
+    }
   }
 }

@@ -482,7 +482,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | mak | wikipron | 832 | 0.0194 | - | - | 0.0194 | 0.0194 | 0.8918 | 0.8918 | [0.0155, 0.0240] | 0.8918 | research | crowd-scraped |
 | mch | wikipron | 1746 | 0.1200 | - | - | 0.1200 | 0.1200 | 0.3585 | 0.3585 | [0.1148, 0.1252] | 0.3585 | research | crowd-scraped |
 | mcm | primary_sources | 33 | 0.1146 | 0.9565 | - | 0.0500 | 0.0500 | 0.8182 | 0.8182 | [0.0707, 0.1642] | 0.5758 | research | expert-human |
-| mdf | wikipron | 330 | 0.2212 | - | - | 0.2119 | 0.2112 | 0.2697 | 0.2697 | [0.2024, 0.2383] | 0.2485 | research | crowd-scraped |
+| mdf | wikipron | 330 | 0.2112 | - | - | 0.2112 | 0.2112 | 0.2697 | 0.2697 | [0.1930, 0.2281] | 0.2697 | research | crowd-scraped |
 | mdh | wikipron | 205 | 0.0793 | - | - | 0.0793 | 0.0793 | 0.6146 | 0.6146 | [0.0643, 0.0948] | 0.6146 | research | crowd-scraped |
 | mey-MR | arabic_tts | 20 | 0.1633‡ | - | - | - | - | - | - | [0.1349, 0.1912] | 0.0000 | research | llm-corrected |
 | mey-MR | gold20_arabic | 20 | 0.1673‡ | - | - | - | - | - | - | [0.1410, 0.1938] | 0.0000 | research | llm-corrected |
