@@ -28,10 +28,11 @@ import pytest
 from orthography2ipa import available_codes, get
 from orthography2ipa.inventory import (
     _split_leading_marks,
+    _tokenize,
     _transform_literals,
     emission_inventory,
+    phoneme_atoms,
     phoneme_inventory,
-    tokenize,
 )
 from orthography2ipa.vowels import SONORITY_LIQUID, SONORITY_STOP, sonority_class
 
@@ -40,24 +41,25 @@ from orthography2ipa.vowels import SONORITY_LIQUID, SONORITY_STOP, sonority_clas
 ALL_CODES = sorted(available_codes(include_clades=True))
 
 
-def _segments_written(spec) -> set:
+def _segments_written(spec, atoms) -> set:
     """The segments the tables of *spec* write, before any mark joins them."""
     return {token for emission in emission_inventory(spec)
             if not _split_leading_marks(emission)[0]
-            for token in tokenize(emission, spec)}
+            for token in _tokenize(emission, atoms)}
 
 
-def _hosts(spec, inventory) -> list:
+def _hosts(spec, atoms, inventory) -> list:
     """The segments a bare ``ʲ`` or ``ʷ`` can land on: each stop, fricative,
     nasal and liquid a table writes that carries no secondary mark and no
     length mark, and that is not the cut-off half of a tied segment."""
-    return [t for t in _segments_written(spec) & inventory
+    return [t for t in _segments_written(spec, atoms) & inventory
             if SONORITY_STOP <= sonority_class(t) <= SONORITY_LIQUID
             and not any(m in t for m in "ʲʷː") and t[-1] not in "\u0361\u035c"]
 
 
-def _outside(surface: str, spec, inventory, hosts) -> list:
-    """Tokens of *surface* that fall outside *inventory*, engine-segmented.
+def _outside(surface: str, atoms, inventory, hosts) -> list:
+    """Tokens of *surface* that fall outside *inventory*, cut as
+    :func:`tokenize` cuts it with the spec's *atoms*.
 
     A surface that starts with a mark (the coda tilde of Portuguese, ``ʲ``,
     ``ʷ``) or that is a bare ``ː`` writes the mark on the segment before it, so
@@ -67,10 +69,10 @@ def _outside(surface: str, spec, inventory, hosts) -> list:
     """
     mark, _ = _split_leading_marks(surface)
     if not mark and surface != "ː":
-        return [t for t in tokenize(surface, spec) if t not in inventory]
+        return [t for t in _tokenize(surface, atoms) if t not in inventory]
 
     def escaped(host):
-        return [t for t in tokenize(host + surface, spec) if t not in inventory]
+        return [t for t in _tokenize(host + surface, atoms) if t not in inventory]
 
     if mark[:1] in ("ʲ", "ʷ"):
         return sorted({t for host in hosts for t in escaped(host)})
@@ -142,12 +144,14 @@ def test_no_table_emits_outside_the_inventory(code):
     """
     spec = get(code)
     inventory = phoneme_inventory(spec)
-    hosts = _hosts(spec, inventory)
+    # tokenize() derives the atoms on every call; derive them once per spec.
+    atoms = phoneme_atoms(spec)
+    hosts = _hosts(spec, atoms, inventory)
 
     violations = []
     for source_name, surfaces in _SOURCES:
         for where, surface in surfaces(spec):
-            escaped = _outside(surface, spec, inventory, hosts)
+            escaped = _outside(surface, atoms, inventory, hosts)
             if escaped:
                 violations.append(
                     f"  {source_name} {where} -> {surface!r} emits {escaped!r}"
@@ -165,5 +169,6 @@ def test_a_mark_led_surface_needs_its_joined_token():
     itself. An inventory with ``sʲ`` and ``nʲ`` but no ``tʲ`` does not close
     over the Russian soft sign, because ⟨ть⟩ writes [tʲ]."""
     spec = get("ru")
+    atoms = phoneme_atoms(spec)
     inventory = phoneme_inventory(spec) - {"tʲ"}
-    assert _outside("ʲ", spec, inventory, _hosts(spec, inventory)) == ["tʲ"]
+    assert _outside("ʲ", atoms, inventory, _hosts(spec, atoms, inventory)) == ["tʲ"]
