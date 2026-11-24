@@ -35,7 +35,7 @@ Bhojpuri is an Indo-Aryan language, written in the Devanagari script. Glottolog 
 
 The notes of the spec file open with these words:
 
-> Bhojpuri (Eastern UP and Bihar). Largest Indic diaspora language. Inherent vowel is /a/ (not /ə/ like Standard Hindi). No schwa deletion rule. Four-way laryngeal contrast. Retroflex series phonemic. ⟨ऩ ऱ ऴ⟩ (U+0929, U+0931, U+0934) read as their base letters ⟨न र ल⟩: [n] [r] [l].
+> Bhojpuri (Eastern UP and Bihar). Largest Indic diaspora language. Inherent vowel is /a/ (not /ə/ like Standard Hindi). No schwa deletion rule. Four-way laryngeal contrast. Retroflex series phonemic.
 
 The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. No board row scores it yet, so the measured gold of that tier is still missing. It cites 5 works, from 1981 to 2024. [Sources](#sources) lists them. The spec file writes all 61 spellings of its letter table itself.
 

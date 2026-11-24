@@ -390,7 +390,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | he | primary_sources | 33 | 0.1929 | - | - | 0.0222 | 0.0222 | 0.9091 | 0.9091 | [0.1363, 0.2500] | 0.3636 | research | expert-human |
 | he | wikipron | 2872 | 0.3554 | - | - | 0.3105 | 0.2942 | 0.0665 | 0.0763 | [0.3498, 0.3607] | 0.0380 | research | crowd-scraped |
 | hi | vox_communis | 12478 | 0.2759‡ | - | - | 0.2756 | 0.2756 | 0.1314 | 0.1314 | [0.2727, 0.2792] | 0.1313 | research | epitran-derived |
-| hi | wikipron | 30375 | 0.1251 | - | - | 0.1251 | 0.1251 | 0.2864 | 0.2864 | [0.1240, 0.1263] | 0.2864 | research | crowd-scraped |
+| hi | wikipron | 30376 | 0.1252 | - | - | 0.1252 | 0.1252 | 0.2864 | 0.2864 | [0.1240, 0.1263] | 0.2864 | research | crowd-scraped |
 | hil | wikipron | 466 | 0.0966 | - | - | 0.0966 | 0.0966 | 0.5343 | 0.5343 | [0.0857, 0.1078] | 0.5343 | research | crowd-scraped |
 | hr | ipa_childes | 4769 | 0.2066‡ | - | - | 0.2066 | 0.2066 | 0.2772 | 0.2772 | [0.2016, 0.2117] | 0.2772 | research | epitran-derived |
 | hr | wikipron | 26469 | 0.3000 | - | 0.1733† (four-way pitch-accent diacritics (rising/falling x long/short) + vowel-length mark) | 0.2979 | 0.2979 | 0.0055 | 0.0055 | [0.2985, 0.3016] | 0.0050 | research | crowd-scraped |
@@ -501,8 +501,8 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | mnc | northeuralex | 1205 | 0.1411 | - | - | 0.1411 | 0.1411 | 0.3560 | 0.3560 | [0.1334, 0.1492] | 0.3560 | research | lexicon-derived |
 | mns | northeuralex | 992 | 0.1024 | - | - | 0.0732 | 0.0725 | 0.4698 | 0.4698 | [0.0958, 0.1091] | 0.4597 | research | lexicon-derived |
 | mqs | wikipron | 790 | 0.0495 | - | - | 0.0495 | 0.0495 | 0.7823 | 0.7823 | [0.0424, 0.0561] | 0.7823 | research | crowd-scraped |
-| mr | vox_communis | 16938 | 0.3063‡ | - | - | 0.3057 | 0.3057 | 0.0436 | 0.0436 | [0.3041, 0.3084] | 0.0436 | research | epitran-derived |
-| mr | wikipron | 4267 | 0.0535 | - | - | 0.0456 | 0.0455 | 0.7157 | 0.7160 | [0.0508, 0.0561] | 0.6904 | research | crowd-scraped |
+| mr | vox_communis | 16938 | 0.3064‡ | - | - | 0.3058 | 0.3058 | 0.0436 | 0.0436 | [0.3042, 0.3084] | 0.0436 | research | epitran-derived |
+| mr | wikipron | 4267 | 0.0532 | - | - | 0.0453 | 0.0453 | 0.7164 | 0.7167 | [0.0506, 0.0559] | 0.6911 | research | crowd-scraped |
 | mrj | northeuralex | 1018 | 0.0075 | - | - | 0.0075 | 0.0075 | 0.9548 | 0.9548 | [0.0054, 0.0100] | 0.9548 | research | lexicon-derived |
 | ms | ipadict | 28215 | 0.1305 | - | - | 0.0558 | 0.0441 | 0.6437 | 0.7225 | [0.1292, 0.1317] | 0.2999 | research | machine-generated |
 | ms | wikipron | 4887 | 0.0967 | - | - | 0.0378 | 0.0303 | 0.8207 | 0.8709 | [0.0934, 0.1005] | 0.5267 | research | crowd-scraped |
