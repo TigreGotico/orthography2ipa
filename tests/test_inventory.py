@@ -532,12 +532,90 @@ def test_a_palatalized_long_consonant_keeps_its_length_mark_last():
     assert not [t for t in inventory if "ːʲ" in t]
 
 
+# ─── every token is one segment ─────────────────────────────────────────
+
+@pytest.mark.parametrize("code,expected", [
+    # Allophone surfaces c tɕ cʰ tɕʰ, and ⟨ia⟩, which the spec also lists in
+    # ``phonemes``: the diphthong is the vowel [i] and the vowel [a].
+    ("kxm", {"a", "c", "cʰ", "i", "tɕ", "tɕʰ"}),
+    # Allophone surfaces b p d ɺ kʰ k tʰ t a ã, and ⟨ou⟩, which the spec also
+    # lists in ``phonemes`` beside ai au ei.
+    ("mpt", {"a", "b", "d", "k", "kʰ", "o", "p", "t", "tʰ", "u", "ã", "ɺ"}),
+])
+def test_a_declared_diphthong_is_two_tokens(code, expected):
+    assert phoneme_inventory(get(code)) == expected
+
+
+@pytest.mark.parametrize("code,segment", [
+    ("sad", "kǀ"),   # a click with its rear closure
+    ("kj", "mb"),    # a prenasalised stop, ⟨mb⟩ → mb
+    ("kj", "ndʲ"),
+])
+def test_a_declared_prenasalised_stop_or_click_stays_one_token(code, segment):
+    """A phoneme the spec lists that is one segment stays one token, though a
+    slot that emits the same letters (pt-PT ⟨x⟩ → ks) is cut."""
+    spec = get(code)
+    assert segment in spec.phonemes
+    assert segment in phoneme_inventory(spec)
+    assert tokenize(segment + "a", spec) == [segment, "a"]
+
+
+def test_a_palatalization_mark_before_the_vowel_lands_on_the_consonant():
+    """mn: ⟨я⟩ after a consonant emits ``ʲa``. The ʲ belongs to the consonant
+    the slot before wrote: ⟨мянга⟩ is [mʲaŋɡa]. So [mʲ] and [a] are tokens and
+    no token starts with ʲ."""
+    inventory = phoneme_inventory(get("mn"))
+    assert {"mʲ", "tʲ", "a", "aː", "u", "uː"} <= inventory
+    assert not {"ʲa", "ʲaː", "ʲe", "ʲeː", "ʲu", "ʲuː", "ʲɔ", "ʲɔː", "ʲɵ", "ʲʊ", "ʲʊː"} & inventory
+
+
+def test_a_labialization_mark_joins_the_consonant_before_it():
+    """xh: XH_LABIALIZED reads ⟨w⟩ after a consonant as a bare ``ʷ`` on that
+    consonant, so ⟨incwadi⟩ is [iŋǀʷaːdi] and ⟨ukulwa⟩, with a liquid host, is
+    [ukuːlʷa]. Every token of the transcription is in the inventory, and ``ʷ``
+    alone is not. The words are benchmark words."""
+    spec = get("xh")
+    inventory = phoneme_inventory(spec)
+    g2p = G2P("xh")
+    expected = {
+        "incwadi": ["i", "ŋ", "ǀʷ", "aː", "d", "i"],
+        "umnqweno": ["u", "m̩", "ŋ", "ǃʷ", "eː", "n", "o"],
+        "ukulwa": ["u", "k", "uː", "lʷ", "a"],
+    }
+    offenders = {}
+    for word, tokens in expected.items():
+        got = tokenize(g2p.transcribe(word), spec)
+        if got != tokens or not set(got) <= inventory:
+            offenders[word] = (got, [t for t in got if t not in inventory])
+    assert not offenders, offenders
+    assert "ʷ" not in inventory
+
+
+def test_every_secondary_articulation_mark_follows_its_segment():
+    """The IPA writes ʲ and ʷ after their base, so a token that starts with one
+    is a mark cut away from its segment. A join adds a mark to a plain
+    consonant only, so a token with both ʲ and ʷ comes from the data, and the
+    inventory never holds it in both orders (hig writes dʷʲ; a join must not
+    add dʲʷ). One pass over every spec, with the offenders of each code."""
+    offenders = {}
+    for code in ALL_CODES:
+        inventory = phoneme_inventory(get(code))
+        leading = sorted(t for t in inventory if t[0] in "ʲʷ")
+        both_orders = sorted(t for t in inventory
+                             if "ʷʲ" in t and t.replace("ʷʲ", "ʲʷ") in inventory)
+        if leading or both_orders:
+            offenders[code] = {"leading mark": leading, "both orders": both_orders}
+    assert not offenders, offenders
+
+
 @pytest.mark.parametrize("code,word", [
     ("abh", "حَجّ"),      # shadda after ج: the doubled affricate dʒdʒ
     ("dar", "цьа"),       # soft sign after an aspirated affricate
     ("bo", "ཚཱི"),        # long vowel mark after an aspirated affricate
     ("bo", "ིཚཱི"),
     ("be", "конь"),       # soft sign after a nasal
+    ("mdf", "ялга"),      # iotated letter at the start of a word: [jalɡa]
+    ("mdf", "кундья"),    # iotated letter after the soft sign: [kundʲja]
 ])
 def test_every_token_of_a_real_word_is_in_the_inventory(code, word):
     """An attached mark must give the tokens :func:`tokenize` returns: ``dʒː``
