@@ -336,6 +336,9 @@
   "quality": "research",
   "script_type": "abugida",
   "inherent_vowel": "ʌ",
+  "consonant_marks": [
+    "़"
+  ],
   "sources": [
     {
       "id": "khatiwada2009",

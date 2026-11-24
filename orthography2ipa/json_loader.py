@@ -648,6 +648,7 @@ def load_json_spec(code: str) -> LanguageSpec:
         codas=tuple(raw.get("codas") or ()),
         inherent_vowel_final=raw.get("inherent_vowel_final"),
         virama_final_vowel=raw.get("virama_final_vowel"),
+        consonant_marks=tuple(raw.get("consonant_marks", ()) or ()),
         collapse_geminates=bool(raw.get("collapse_geminates", False)),
         doubled_letters_geminate=bool(
             raw.get("doubled_letters_geminate", True)),

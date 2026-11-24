@@ -24,6 +24,7 @@ Notes on intentional permissiveness:
 from __future__ import annotations
 
 import json
+import unicodedata
 from pathlib import Path
 from typing import Dict, List, Literal, Optional, Tuple, Union
 
@@ -458,6 +459,7 @@ class LanguageSpecModel(_Strict):
     codas: Optional[List[str]] = None
     inherent_vowel_final: Optional[str] = None
     virama_final_vowel: Optional[str] = None
+    consonant_marks: Optional[List[str]] = None
     collapse_geminates: Optional[bool] = None
     doubled_letters_geminate: Optional[bool] = None
     constrain_onsets: Optional[bool] = None
@@ -524,6 +526,17 @@ class LanguageSpecModel(_Strict):
             for key in v:
                 if not key:
                     raise ValueError("grapheme/allophone keys must be non-empty")
+        return v
+
+    @field_validator("consonant_marks")
+    @classmethod
+    def _one_combining_mark_each(cls, v):
+        """Each entry is one combining codepoint: the engine compares the
+        characters of a grapheme key with the entries one by one."""
+        for mark in v or ():
+            if len(mark) != 1 or unicodedata.category(mark) not in ("Mn", "Mc"):
+                raise ValueError(
+                    f"consonant_marks entries must be one combining mark, got {mark!r}")
         return v
 
 

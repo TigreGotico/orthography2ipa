@@ -332,6 +332,9 @@
  "quality": "production",
  "script_type": "abugida",
  "inherent_vowel": "ɔ",
+ "consonant_marks": [
+  "়"
+ ],
  "inherent_vowel_final": "",
  "sources": [
   {
