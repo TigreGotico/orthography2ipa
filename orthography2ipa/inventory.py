@@ -329,8 +329,9 @@ def _atoms(spec: LanguageSpec) -> List[str]:
 def _atoms_of(spec: LanguageSpec, emissions: Set[str]) -> List[str]:
     """The declared phonemes and the multi-character segments of *emissions*,
     longest first. A declared phoneme of vowels and glides only (``ai``,
-    ``ia``) is a diphthong, which is two segments, so it is cut like an
-    emission."""
+    ``ia``) is cut like an emission, into one token per vowel or glide. That
+    cut is a choice of this module, not phonology: PHOIBLE lists some such
+    diphthongs as one segment (Norwegian ``æi``, Sakha ``ie``)."""
     declared: Set[str] = set()
     for phoneme in spec.phonemes or ():
         segments = _segments(phoneme)
