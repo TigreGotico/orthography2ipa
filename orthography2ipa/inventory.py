@@ -45,7 +45,7 @@ from orthography2ipa.phonetok import (
 from orthography2ipa.positional import normalize_ending_value
 from orthography2ipa.types import LanguageSpec
 from orthography2ipa.vowels import (
-    SONORITY_LIQUID, SONORITY_NASAL, SONORITY_STOP, SONORITY_UNKNOWN,
+    SONORITY_GLIDE, SONORITY_LIQUID, SONORITY_NASAL, SONORITY_STOP, SONORITY_UNKNOWN,
     is_affricate, place_class, sonority_class,
 )
 
@@ -206,24 +206,23 @@ def phoneme_inventory(
     ``ja`` is a glide plus a vowel, ``ʔa`` a stop plus a vowel. A TTS vocabulary
     wants the segments, so each emission is cut with :func:`~allophony.segment_ipa`.
 
-    Multi-character segments are held together when the spec declares them:
-    the declared ``phonemes`` inventory, and every segment of a slot emission
-    that is written with more than one base letter (an affricate surface like
-    Najdi ``ts``, a tie-bar ``k͡p``, a prenasalised ``ᵐb``), is passed as the
-    atom list, so ``ts`` stays one token rather than becoming ``t`` + ``s``. A
-    cluster, a diphthong or a syllable a slot emits (``ks``, ``aj``, ``me``) is
-    cut into its segments. This is the narrow-vs-broad choice, and it is made by
-    the *data*: a spec that declares a diphthong gets it as a token, and one
-    that does not, does not. A whole-word reading (a word exception, an ending,
-    a lexicon entry) is an emission but never a segment: it is cut like any
-    other transcription. A combining mark that a slot emits before any base
+    Every token is one segment. A segment written with more than one base letter
+    (an affricate surface like Najdi ``ts``, a tie-bar ``k͡p``, a prenasalised
+    ``ᵐb``) is passed as the atom list, so ``ts`` stays one token rather than
+    becoming ``t`` + ``s``, and so is each phoneme the spec lists in
+    ``phonemes``. A cluster, a diphthong or a syllable a slot emits (``ks``,
+    ``aj``, ``me``) is cut into its segments, and so is a diphthong the spec
+    lists in ``phonemes`` (``ai``). A whole-word reading (a word exception, an
+    ending, a lexicon entry) is an emission but never a segment: it is cut like
+    any other transcription. A combining mark that a slot emits before any base
     letter (the coda tilde of Portuguese) lands on the segment before it, so it
     joins each vowel and glide that can carry it and is never a token alone. So
-    does a bare palatalization mark ``ʲ`` (the Cyrillic soft sign), which joins
-    each consonant from stop to liquid, and a bare length mark ``ː``, which joins
-    each segment that is not a mark or a tie. Each joined token is cut like any
-    transcription, so the inventory holds only tokens :func:`tokenize` returns.
-    A spec whose engine doubles the letter before a shadda gets no ``ː`` joins.
+    does a palatalization mark ``ʲ`` (the Cyrillic soft sign) or a labialization
+    mark ``ʷ`` before any base letter, which joins each consonant from stop to
+    liquid, and a bare length mark ``ː``, which joins each segment that is not a
+    mark or a tie. Each joined token is cut like any transcription, so the
+    inventory holds only tokens :func:`tokenize` returns. A spec whose engine
+    doubles the letter before a shadda gets no ``ː`` joins.
     """
     atoms = _atoms(spec)
     tokens: set = set()
@@ -231,16 +230,19 @@ def phoneme_inventory(
     bare: Set[str] = set()
     for emission in emission_inventory(spec, lexicon):
         mark, rest = _split_leading_marks(emission)
-        if mark:
-            marks.add(mark)
-        if rest in _BARE_MODIFIERS:
+        combining = "".join(ch for ch in mark if unicodedata.combining(ch))
+        if combining:
+            marks.add(combining)
+        bare.update(ch for ch in mark if ch in _SECONDARY_ARTICULATIONS)
+        if rest == _LENGTH:
             bare.add(rest)
         else:
             tokens.update(_tokenize(rest, atoms))
-    if _PALATALIZATION in bare:
-        for token in tuple(tokens):
-            if SONORITY_STOP <= sonority_class(token) <= SONORITY_LIQUID:
-                tokens.update(_tokenize(_palatalize(token), atoms))
+    consonants = [t for t in tokens if SONORITY_STOP <= sonority_class(t) <= SONORITY_LIQUID]
+    for modifier in _SECONDARY_ARTICULATIONS:
+        if modifier in bare:
+            for token in consonants:
+                tokens.update(_tokenize(_add_secondary(token, modifier), atoms))
     if _LENGTH in bare and not _expands_shadda(spec):
         for token in tuple(tokens):
             if _LENGTH not in token and sonority_class(token) != SONORITY_UNKNOWN:
@@ -251,9 +253,12 @@ def phoneme_inventory(
     return frozenset(tokens)
 
 
-_PALATALIZATION = "ʲ"
 _LENGTH = "ː"
-_BARE_MODIFIERS = frozenset({_PALATALIZATION, _LENGTH})
+#: Labialization and palatalization. The IPA writes them after their base, so
+#: one that a slot emits before any base letter lands on the segment the slot
+#: before it wrote.
+_SECONDARY_ARTICULATIONS = ("ʷ", "ʲ")
+_BARE_MODIFIERS = frozenset((*_SECONDARY_ARTICULATIONS, _LENGTH))
 
 
 def _expands_shadda(spec: LanguageSpec) -> bool:
@@ -262,24 +267,27 @@ def _expands_shadda(spec: LanguageSpec) -> bool:
     return _AR_SHADDA in spec.graphemes
 
 
-def _palatalize(token: str) -> str:
-    """*token* with the palatalization mark before its trailing length mark."""
+def _add_secondary(token: str, modifier: str) -> str:
+    """*token* with the secondary articulation *modifier* before its trailing
+    length mark."""
     base = token.rstrip("ːˑ")
-    if _PALATALIZATION in base:
+    if modifier in base:
         return token
-    return base + _PALATALIZATION + token[len(base):]
+    return base + modifier + token[len(base):]
 
 
 def _split_leading_marks(emission: str) -> Tuple[str, str]:
-    """Split *emission* into its leading combining marks and the rest.
+    """Split *emission* into the marks before its first base letter and the rest.
 
     A slot can emit a combining mark with no base: the coda ⟨m n⟩ of
-    Portuguese emits the tilde alone, and PT_FINAL_EM_GLIDE emits ``̃j̃``. The
-    mark lands on the segment the slot before it wrote, so it is never a token
-    of its own.
+    Portuguese emits the tilde alone, and PT_FINAL_EM_GLIDE emits ``̃j̃``. A
+    slot can also emit ``ʲ`` or ``ʷ`` before its base letter, as the Mongolian
+    ⟨я⟩ after a consonant emits ``ʲa``. The mark lands on the segment the slot
+    before it wrote, so it is never a token of its own.
     """
     i = 0
-    while i < len(emission) and unicodedata.combining(emission[i]):
+    while i < len(emission) and (unicodedata.combining(emission[i])
+                                 or emission[i] in _SECONDARY_ARTICULATIONS):
         i += 1
     return emission[:i], emission[i:]
 
@@ -320,9 +328,19 @@ def _atoms(spec: LanguageSpec) -> List[str]:
 
 def _atoms_of(spec: LanguageSpec, emissions: Set[str]) -> List[str]:
     """The declared phonemes and the multi-character segments of *emissions*,
-    longest first."""
+    longest first. A declared phoneme of vowels and glides only (``ai``,
+    ``ia``) is a diphthong, which is two segments, so it is cut like an
+    emission."""
+    declared: Set[str] = set()
+    for phoneme in spec.phonemes or ():
+        segments = _segments(phoneme)
+        if len(segments) > 1 and all(sonority_class(seg) >= SONORITY_GLIDE
+                                     for seg in segments):
+            declared.update(seg for seg in segments if len(seg) > 1)
+        elif phoneme:
+            declared.add(phoneme)
     return sorted(
-        {p for p in (spec.phonemes or ()) if p}
+        declared
         | {seg for e in emissions if e not in STRESS_MARKS
            for seg in _segments(_split_leading_marks(e)[1]) if len(seg) > 1},
         key=len,

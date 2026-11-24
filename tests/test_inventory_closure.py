@@ -42,12 +42,15 @@ ALL_CODES = sorted(available_codes(include_clades=True))
 def _outside(surface: str, spec, inventory) -> list:
     """Tokens of *surface* that fall outside *inventory*, engine-segmented.
 
-    A surface that starts with a combining mark (the coda tilde of Portuguese),
-    or that is a bare ``ː`` or ``ʲ``, writes it on the segment before it, so the
-    mark must reach the inventory on some token rather than alone.
+    A surface that starts with a combining mark (the coda tilde of Portuguese)
+    or with ``ʲ`` or ``ʷ``, or that is a bare ``ː``, writes it on the segment
+    before it, so the mark must reach the inventory on some token rather than
+    alone.
     """
     mark, rest = _split_leading_marks(surface)
-    marks = [mark] if mark else []
+    combining = "".join(ch for ch in mark if ch not in _BARE_MODIFIERS)
+    marks = [combining] if combining else []
+    marks.extend(ch for ch in mark if ch in _BARE_MODIFIERS)
     if rest in _BARE_MODIFIERS:
         marks.append(rest)
         rest = ""

@@ -532,6 +532,66 @@ def test_a_palatalized_long_consonant_keeps_its_length_mark_last():
     assert not [t for t in inventory if "ːʲ" in t]
 
 
+# ─── every token is one segment ─────────────────────────────────────────
+
+@pytest.mark.parametrize("code,expected", [
+    # Allophone surfaces c tɕ cʰ tɕʰ, and ⟨ia⟩, which the spec also lists in
+    # ``phonemes``: the diphthong is the vowel [i] and the vowel [a].
+    ("kxm", {"a", "c", "cʰ", "i", "tɕ", "tɕʰ"}),
+    # Allophone surfaces b p d ɺ kʰ k tʰ t a ã, and ⟨ou⟩, which the spec also
+    # lists in ``phonemes`` beside ai au ei.
+    ("mpt", {"a", "b", "d", "k", "kʰ", "o", "p", "t", "tʰ", "u", "ã", "ɺ"}),
+])
+def test_a_declared_diphthong_is_two_tokens(code, expected):
+    assert phoneme_inventory(get(code)) == expected
+
+
+@pytest.mark.parametrize("code,segment", [
+    ("sad", "kǀ"),   # a click with its rear closure
+    ("kj", "mb"),    # a prenasalised stop, ⟨mb⟩ → mb
+    ("kj", "ndʲ"),
+])
+def test_a_declared_prenasalised_stop_or_click_stays_one_token(code, segment):
+    """A phoneme the spec lists that is one segment stays one token, though a
+    slot that emits the same letters (pt-PT ⟨x⟩ → ks) is cut."""
+    spec = get(code)
+    assert segment in spec.phonemes
+    assert segment in phoneme_inventory(spec)
+    assert tokenize(segment + "a", spec) == [segment, "a"]
+
+
+def test_a_palatalization_mark_before_the_vowel_lands_on_the_consonant():
+    """mn: ⟨я⟩ after a consonant emits ``ʲa``. The ʲ belongs to the consonant
+    the slot before wrote: ⟨мянга⟩ is [mʲaŋɡa]. So [mʲ] and [a] are tokens and
+    no token starts with ʲ."""
+    inventory = phoneme_inventory(get("mn"))
+    assert {"mʲ", "tʲ", "a", "aː", "u", "uː"} <= inventory
+    assert not {"ʲa", "ʲaː", "ʲe", "ʲeː", "ʲu", "ʲuː", "ʲɔ", "ʲɔː", "ʲɵ", "ʲʊ", "ʲʊː"} & inventory
+
+
+@pytest.mark.parametrize("word,tokens", [
+    ("incwadi", ["i", "ŋ", "ǀʷ", "aː", "d", "i"]),
+    ("umnqweno", ["u", "m̩", "ŋ", "ǃʷ", "eː", "n", "o"]),
+    ("bwisa", ["ɓʷ", "iː", "s", "a"]),
+])
+def test_a_labialization_mark_joins_the_consonant_before_it(word, tokens):
+    """xh: XH_LABIALIZED reads ⟨w⟩ after a consonant as a bare ``ʷ`` on that
+    consonant, so ⟨incwadi⟩ is [iŋǀʷaːdi]. Every token of the transcription is
+    in the inventory, and ``ʷ`` alone is not."""
+    spec = get("xh")
+    inventory = phoneme_inventory(spec)
+    assert tokenize(G2P("xh").transcribe(word), spec) == tokens
+    assert set(tokens) <= inventory
+    assert "ʷ" not in inventory
+
+
+@pytest.mark.parametrize("code", ALL_CODES)
+def test_no_token_starts_with_a_secondary_articulation_mark(code):
+    """The IPA writes ʲ and ʷ after their base, so a token that starts with one
+    is a mark cut away from its segment."""
+    assert not [t for t in phoneme_inventory(get(code)) if t[0] in "ʲʷ"]
+
+
 @pytest.mark.parametrize("code,word", [
     ("abh", "حَجّ"),      # shadda after ج: the doubled affricate dʒdʒ
     ("dar", "цьа"),       # soft sign after an aspirated affricate
