@@ -72,3 +72,17 @@ def test_declared_inventory_wins_over_the_grapheme_map():
     # invented precisely to smuggle the inventory in. That is the hack this field
     # retires.)
     assert set(ine.phonemes) == from_graphemes
+
+
+def test_a_labialised_allophone_writes_the_mark_after_its_base():
+    """IPA writes a secondary articulation after the segment it modifies. Kamwe
+    (``hig``) follows PHOIBLE 1368, which writes some labialised allophones with
+    the mark first; the spec gives each one as its phoneme plus ʷ."""
+    hig = o2i.get("hig")
+    labialised = {
+        phoneme: [s for s in surfaces if "ʷ" in s and "ʲ" not in s]
+        for phoneme, surfaces in hig.allophones.items()
+    }
+    assert len([p for p, s in labialised.items() if s]) == 24
+    for phoneme, surfaces in labialised.items():
+        assert surfaces in ([], [phoneme + "ʷ"]), (phoneme, surfaces)

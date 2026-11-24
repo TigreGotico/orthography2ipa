@@ -9,7 +9,7 @@ see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/da
 -->
 
 <!-- atlas:summary begin -->
-Moksha is an Uralic language, written in the Cyrillic script. Glottolog places it in Russia. The `mdf` spec is at the research tier. It cites 2 sources and has 1 scored dataset.
+Moksha is an Uralic language, written in the Cyrillic script. Glottolog places it in Russia. The `mdf` spec is at the research tier. It cites 4 sources and has 1 scored dataset.
 <!-- atlas:summary end -->
 
 <!-- atlas:header begin -->
@@ -34,9 +34,9 @@ Moksha is an Uralic language, written in the Cyrillic script. Glottolog places i
 
 The notes of the spec file open with these words:
 
-> Moksha (мокшень кяль), Mordvinic (Uralic), Russia. Written in a Cyrillic alphabet identical in inventory to Russian. Palatalisation is phonemic and is written the Russian way (soft sign <ь>, iotated vowel letters <е ё ю я>), which is why those letters map to a palatalising sequence.
+> Moksha (мокшень кяль), Mordvinic (Uralic), Russia. Written in a Cyrillic alphabet identical in inventory to Russian. Palatalisation is phonemic and is written the Russian way, with the soft sign <ь> or an iotated vowel letter <е ё ю я> after the consonant.
 
-The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 2 works, from 1999 to 2024. 1 of them is a Wikipedia article. [Sources](#sources) lists them. The spec file writes all 35 spellings of its letter table itself.
+The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 4 works, from 1999 to 2024. 2 of them are Wikipedia articles. [Sources](#sources) lists them. The spec file writes all 39 spellings of its letter table itself.
 
 The [spec file](../../orthography2ipa/data/mdf.json) holds the full notes, with the caveats of the spec.
 <!-- atlas:overview end -->
@@ -50,10 +50,12 @@ No spec names `mdf` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 2 works. 1 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
+The spec cites 4 works. 3 of them have a DOI or a URL. The spec file holds a note on what 3 of them support.
 
 1. <a id="src-bartens1999"></a>Bartens, Raija (1999). *Mordvalaiskielten rakenne ja kehitys*. Suomalais-Ugrilainen Seura, Helsinki.
 2. <a id="src-moksha_wiki"></a>Wikipedia contributors (2024). *Moksha language*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Moksha_language)
+3. <a id="src-hamari_ajanki2022"></a>Hamari, Arja, Ajanki, Rigina (2022). *Mordvin (Erzya and Moksha)*. In: Bakró-Nagy, Marianne, Laakso, Johanna, Skribnik, Elena (eds.), The Oxford Guide to the Uralic Languages, Oxford University Press. Cited: 392-431. [doi.org](https://doi.org/10.1093/oso/9780198767664.003.0023)
+4. <a id="src-mordvinic_alphabets_wiki"></a>Wikipedia contributors (2024). *Mordvinic alphabets*. Wikipedia. [en.wikipedia.org](https://en.wikipedia.org/wiki/Mordvinic_alphabets)
 <!-- atlas:sources end -->
 
 <!-- atlas:datasets begin -->
@@ -63,13 +65,13 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 
 | Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
 |:--|:--|:--|:--|:--|--:|--:|:--|
-| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `mdf` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 330 | 0.2212 | yes |
+| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `mdf` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 330 | 0.2112 | yes |
 <!-- atlas:datasets end -->
 
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 58 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 59 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -78,7 +80,7 @@ The spec can emit 58 segments. They come from the letter table, the positional r
 | Nasal | m mʲ |  | n nʲ |  |  |  |
 | Trill |  |  | r rʲ r̥ r̥ʲ |  |  |  |
 | Fricative |  | f fʲ v vʲ | s sʲ z zʲ | ʃ ʃʲ ʒ ʒʲ | ɕ ɕʲ | x xʲ |
-| Approximant |  |  |  |  | j j̥ |  |
+| Approximant |  |  |  |  | j j̥ ʲj |  |
 | Lateral approximant |  |  | l lʲ l̥ l̥ʲ |  |  |  |
 
 | Vowels | Front | Central | Back |
@@ -103,7 +105,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨в⟩ | [v] |  |
 | ⟨г⟩ | [ɡ] |  |
 | ⟨д⟩ | [d] |  |
-| ⟨е⟩ | [ʲe] [je] |  |
+| ⟨е⟩ | [je] | after consonant [ʲe] · default [je] |
 | ⟨ж⟩ | [ʒ] |  |
 | ⟨з⟩ | [z] |  |
 | ⟨и⟩ | [i] |  |
@@ -129,10 +131,14 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨щ⟩ | [ɕ] |  |
 | ⟨ы⟩ | [ɨ] |  |
 | ⟨ь⟩ | [ʲ] |  |
+| ⟨ье⟩ | [ʲje] |  |
+| ⟨ью⟩ | [ʲju] |  |
+| ⟨ья⟩ | [ʲja] |  |
+| ⟨ьё⟩ | [ʲjo] |  |
 | ⟨э⟩ | [e] |  |
-| ⟨ю⟩ | [ʲu] [ju] |  |
-| ⟨я⟩ | [ʲa] [ja] |  |
-| ⟨ё⟩ | [ʲo] [jo] |  |
+| ⟨ю⟩ | [ju] | after consonant [ʲu] · default [ju] |
+| ⟨я⟩ | [ja] | after consonant [ʲa] · default [ja] |
+| ⟨ё⟩ | [jo] | after consonant [ʲo] · default [jo] |
 
 The spec declares no stress rule.
 <!-- atlas:spelling end -->
