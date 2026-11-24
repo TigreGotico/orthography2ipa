@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.124.51a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.51a1) (2026-11-24)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.50a1...7.124.51a1)
+
+**Merged pull requests:**
+
+- fix: write Yocoboué Dida ɛ as ɛˤ, as its source chart prints [\#2521](https://github.com/TigreGotico/orthography2ipa/pull/2521) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.124.50a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.50a1) (2026-11-24)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.49a3...7.124.50a1)
@@ -1772,15 +1780,15 @@
 
 ## [7.93.16a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.16a1) (2026-09-17)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.14a1...7.93.16a1)
-
-## [7.93.14a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.14a1) (2026-09-17)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.15a1...7.93.14a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.15a1...7.93.16a1)
 
 ## [7.93.15a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.15a1) (2026-09-17)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.13a1...7.93.15a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.14a1...7.93.15a1)
+
+## [7.93.14a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.14a1) (2026-09-17)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.13a1...7.93.14a1)
 
 ## [7.93.13a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.13a1) (2026-09-17)
 
