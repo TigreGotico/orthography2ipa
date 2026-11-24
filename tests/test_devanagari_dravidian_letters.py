@@ -98,6 +98,18 @@ def test_eyelash_ra_before_ha_is_the_murmured_tap_where_the_spec_has_the_cluster
         assert engine.transcribe_word("ऱ्हास") == engine.transcribe_word("र्हास")
 
 
+@pytest.mark.parametrize("letter", sorted(ROWS))
+@pytest.mark.parametrize("lang", LANGS)
+def test_letter_before_ha_reads_as_its_base_letter_before_ha(engines, lang, letter):
+    # Where the spec has the murmured cluster of the base letter, the nukta letter
+    # before ्ह is the same cluster.
+    engine = engines[lang]
+    base, _, _ = base_word(engine, letter)
+    if base + "्ह" not in engine.spec.graphemes:
+        pytest.skip(f"{lang} has no {base}्ह cluster")
+    assert engine.transcribe_word(letter + "्हा") == engine.transcribe_word(base + "्हा")
+
+
 def test_hindi_nnna_row():
     hi = G2P("hi")
     assert hi.transcribe_word("ऩम") == "nəm"

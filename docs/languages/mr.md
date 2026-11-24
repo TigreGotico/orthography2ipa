@@ -38,7 +38,7 @@ The notes of the spec file open with these words:
 
 > Standard Marathi (Maharashtra). No phonemic vowel length -- the script writes the Sanskrit length distinction but the language has lost it, so ⟨आ ई ऊ ए ओ⟩ are transcribed without a length mark and ⟨अ⟩ vs ⟨आ⟩ is a quality contrast [ə] vs [a]. ⟨ळ⟩ is the retroflex lateral flap [ɭ̆], a Marathi hallmark. ⟨र⟩ is a tap.
 
-The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 6 works, from 1991 to 2024. 1 of them is a Wikipedia article. [Sources](#sources) lists them. The spec file writes all 77 spellings of its letter table itself.
+The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 6 works, from 1991 to 2024. 1 of them is a Wikipedia article. [Sources](#sources) lists them. The spec file writes all 79 spellings of its letter table itself.
 
 The [spec file](../../orthography2ipa/data/mr.json) holds the full notes, with the caveats of the spec.
 <!-- atlas:overview end -->
@@ -152,6 +152,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨न⟩ | [n] |  |
 | ⟨न्ह⟩ | [nʱ] |  |
 | ⟨ऩ⟩ | [n] |  |
+| ⟨ऩ्ह⟩ | [nʱ] |  |
 | ⟨प⟩ | [p] |  |
 | ⟨फ⟩ | [pʰ] |  |
 | ⟨ब⟩ | [b] |  |
@@ -168,6 +169,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨ळ⟩ | [ɭ̆] |  |
 | ⟨ळ्ह⟩ | [ɭ̆ʱ] |  |
 | ⟨ऴ⟩ | [ɭ̆] |  |
+| ⟨ऴ्ह⟩ | [ɭ̆ʱ] |  |
 | ⟨व⟩ | [ʋ] |  |
 | ⟨व्ह⟩ | [ʋʱ] |  |
 | ⟨श⟩ | [ɕ] |  |
