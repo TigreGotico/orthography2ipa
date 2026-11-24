@@ -37,7 +37,7 @@ The notes of the spec file open with these words:
 
 > Konkani, 22nd scheduled language of India (1992). Spoken in Goa (official), Karnataka, and Kerala. Multiple scripts: Devanagari (official Goa), Kannada, Roman, this spec reads the Devanagari orthography. Strong Dravidian substrate features: retroflex ⟨ळ⟩ = [ɭ].
 
-The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 8 works, from 1983 to 2024. [Sources](#sources) lists them. The spec file writes all 74 spellings of its letter table itself.
+The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 8 works, from 1983 to 2024. [Sources](#sources) lists them. The spec file writes all 76 spellings of its letter table itself.
 
 The [spec file](../../orthography2ipa/data/kok.json) holds the full notes, with the caveats of the spec.
 <!-- atlas:overview end -->
@@ -147,6 +147,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨न⟩ | [n] |  |
 | ⟨न्ह⟩ | [nʱ] |  |
 | ⟨ऩ⟩ | [n] |  |
+| ⟨ऩ्ह⟩ | [nʱ] |  |
 | ⟨प⟩ | [p] |  |
 | ⟨फ⟩ | [pʰ] [f] |  |
 | ⟨ब⟩ | [b] |  |
@@ -163,6 +164,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨ळ⟩ | [ɭ] |  |
 | ⟨ळ्ह⟩ | [ɭʱ] |  |
 | ⟨ऴ⟩ | [ɭ] |  |
+| ⟨ऴ्ह⟩ | [ɭʱ] |  |
 | ⟨व⟩ | [ʋ] |  |
 | ⟨व्ह⟩ | [ʋʱ] |  |
 | ⟨श⟩ | [ʃ] |  |

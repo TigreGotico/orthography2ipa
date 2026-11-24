@@ -36,7 +36,7 @@ The notes of the spec file open with these words:
 
 > Newar (Nepal Bhasa) of the Kathmandu Valley, a Sino-Tibetan language written today in Devanagari and historically in the Newar, Ranjana and other Nepalese scripts.
 
-The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 6 works, from 2003 to 2024. 1 of them is a Wikipedia article. [Sources](#sources) lists them. The spec file writes 42 of the 83 spellings of its letter table and takes the other 41 from [Hindi](hi.md) `hi`.
+The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 6 works, from 2003 to 2024. 1 of them is a Wikipedia article. [Sources](#sources) lists them. The spec file writes 45 of the 86 spellings of its letter table and takes the other 41 from [Hindi](hi.md) `hi`.
 
 The [spec file](../../orthography2ipa/data/new.json) holds the full notes, with the caveats of the spec.
 <!-- atlas:overview end -->
@@ -153,6 +153,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨न⟩ | [n] |  |
 | ⟨न्ह⟩ | [nʱ] |  |
 | ⟨ऩ⟩ | [n] |  |
+| ⟨ऩ्ह⟩ | [nʱ] |  |
 | ⟨प⟩ | [p] |  |
 | ⟨फ⟩ | [pʰ] |  |
 | ⟨फ़⟩ | [f] |  |
@@ -165,9 +166,11 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨र⟩ | [ɾ] |  |
 | ⟨र्ह⟩ | [ɾʱ] |  |
 | ⟨ऱ⟩ | [ɾ] |  |
+| ⟨ऱ्ह⟩ | [ɾʱ] |  |
 | ⟨ल⟩ | [l] |  |
 | ⟨ल्ह⟩ | [lʱ] |  |
 | ⟨ऴ⟩ | [l] |  |
+| ⟨ऴ्ह⟩ | [lʱ] |  |
 | ⟨व⟩ | [w] |  |
 | ⟨श⟩ | [s] |  |
 | ⟨श्र⟩ | [ʃɾ] |  |
