@@ -224,7 +224,7 @@ def _signature(table: Optional[dict]) -> frozenset:
             readings = readings.get("ipa") or readings.get("candidates") or []
         if isinstance(readings, str):
             readings = [readings]
-        out.append((key.lower(), readings[0] if readings else ""))
+        out.append((key, readings[0] if readings else ""))
     return frozenset(out)
 
 
