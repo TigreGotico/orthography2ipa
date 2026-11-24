@@ -573,11 +573,13 @@ def test_a_palatalization_mark_before_the_vowel_lands_on_the_consonant():
     ("incwadi", ["i", "ŋ", "ǀʷ", "aː", "d", "i"]),
     ("umnqweno", ["u", "m̩", "ŋ", "ǃʷ", "eː", "n", "o"]),
     ("bwisa", ["ɓʷ", "iː", "s", "a"]),
+    ("ilwandle", ["i", "lʷ", "aː", "n", "dɮ", "e"]),
 ])
 def test_a_labialization_mark_joins_the_consonant_before_it(word, tokens):
     """xh: XH_LABIALIZED reads ⟨w⟩ after a consonant as a bare ``ʷ`` on that
-    consonant, so ⟨incwadi⟩ is [iŋǀʷaːdi]. Every token of the transcription is
-    in the inventory, and ``ʷ`` alone is not."""
+    consonant, so ⟨incwadi⟩ is [iŋǀʷaːdi] and ⟨ilwandle⟩, with a liquid host,
+    is [ilʷaːndɮe]. Every token of the transcription is in the inventory, and
+    ``ʷ`` alone is not."""
     spec = get("xh")
     inventory = phoneme_inventory(spec)
     assert tokenize(G2P("xh").transcribe(word), spec) == tokens
@@ -592,12 +594,24 @@ def test_no_token_starts_with_a_secondary_articulation_mark(code):
     assert not [t for t in phoneme_inventory(get(code)) if t[0] in "ʲʷ"]
 
 
+@pytest.mark.parametrize("code", ALL_CODES)
+def test_a_segment_with_both_marks_has_one_spelling(code):
+    """A join adds a mark to a plain consonant only, so a token with both ʲ
+    and ʷ comes from the data, and the inventory never holds it in both orders
+    (hig writes dʷʲ; a join must not add dʲʷ)."""
+    inventory = phoneme_inventory(get(code))
+    assert not [t for t in inventory if "ʷʲ" in t and t.replace("ʷʲ", "ʲʷ") in inventory]
+
+
 @pytest.mark.parametrize("code,word", [
     ("abh", "حَجّ"),      # shadda after ج: the doubled affricate dʒdʒ
     ("dar", "цьа"),       # soft sign after an aspirated affricate
     ("bo", "ཚཱི"),        # long vowel mark after an aspirated affricate
     ("bo", "ིཚཱི"),
     ("be", "конь"),       # soft sign after a nasal
+    ("mdf", "ялга"),      # iotated letter at the start of a word: [jalɡa]
+    ("mdf", "кундья"),    # iotated letter after the soft sign: [kundʲja]
+    ("guw", "ua"),        # ⟨u⟩ before a vowel with no consonant to labialise
 ])
 def test_every_token_of_a_real_word_is_in_the_inventory(code, word):
     """An attached mark must give the tokens :func:`tokenize` returns: ``dʒː``

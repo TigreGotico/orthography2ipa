@@ -27,36 +27,56 @@ import pytest
 
 from orthography2ipa import available_codes, get
 from orthography2ipa.inventory import (
-    _BARE_MODIFIERS,
     _split_leading_marks,
     _transform_literals,
+    emission_inventory,
     phoneme_inventory,
     tokenize,
 )
+from orthography2ipa.vowels import SONORITY_LIQUID, SONORITY_STOP, sonority_class
 
 #: Every spec, clade nodes included — a clade carries no phonology and so emits
 #: nothing, but sweeping it costs nothing and proves the property is total.
 ALL_CODES = sorted(available_codes(include_clades=True))
 
 
-def _outside(surface: str, spec, inventory) -> list:
+def _segments_written(spec) -> set:
+    """The segments the tables of *spec* write, before any mark joins them."""
+    return {token for emission in emission_inventory(spec)
+            if not _split_leading_marks(emission)[0]
+            for token in tokenize(emission, spec)}
+
+
+def _hosts(spec, inventory) -> list:
+    """The segments a bare ``ʲ`` or ``ʷ`` can land on: each stop, fricative,
+    nasal and liquid a table writes that carries no secondary mark and no
+    length mark, and that is not the cut-off half of a tied segment."""
+    return [t for t in _segments_written(spec) & inventory
+            if SONORITY_STOP <= sonority_class(t) <= SONORITY_LIQUID
+            and not any(m in t for m in "ʲʷː") and t[-1] not in "\u0361\u035c"]
+
+
+def _outside(surface: str, spec, inventory, hosts) -> list:
     """Tokens of *surface* that fall outside *inventory*, engine-segmented.
 
-    A surface that starts with a combining mark (the coda tilde of Portuguese)
-    or with ``ʲ`` or ``ʷ``, or that is a bare ``ː``, writes it on the segment
-    before it, so the mark must reach the inventory on some token rather than
-    alone.
+    A surface that starts with a mark (the coda tilde of Portuguese, ``ʲ``,
+    ``ʷ``) or that is a bare ``ː`` writes the mark on the segment before it, so
+    the surface is checked joined to that segment, as whole tokens. ``ʲ`` and
+    ``ʷ`` must give inventory tokens after every host in *hosts*. The other
+    marks must give inventory tokens after at least one segment.
     """
-    mark, rest = _split_leading_marks(surface)
-    combining = "".join(ch for ch in mark if ch not in _BARE_MODIFIERS)
-    marks = [combining] if combining else []
-    marks.extend(ch for ch in mark if ch in _BARE_MODIFIERS)
-    if rest in _BARE_MODIFIERS:
-        marks.append(rest)
-        rest = ""
-    outside = [t for t in tokenize(rest, spec) if t not in inventory]
-    outside.extend(m for m in marks if not any(m in t[1:] for t in inventory))
-    return outside
+    mark, _ = _split_leading_marks(surface)
+    if not mark and surface != "ː":
+        return [t for t in tokenize(surface, spec) if t not in inventory]
+
+    def escaped(host):
+        return [t for t in tokenize(host + surface, spec) if t not in inventory]
+
+    if mark[:1] in ("ʲ", "ʷ"):
+        return sorted({t for host in hosts for t in escaped(host)})
+    if any(not escaped(host) for host in inventory):
+        return []
+    return [surface]
 
 
 def _grapheme_surfaces(spec):
@@ -101,7 +121,18 @@ _SOURCES = (
 )
 
 
-@pytest.mark.parametrize("code", ALL_CODES)
+#: ycl writes a mark below plus tone letters with no base (⟨x⟩ is ``̠˦˦``), and
+#: the engine joins both to the vowel before: ⟨sax⟩ is [sa̠˦˦]. The inventory
+#: carries the mark but lists the tone letters as a token of their own, so
+#: ``a̠˦˦`` is outside it.
+_KNOWN_GAPS = {"ycl": "#2503: a mark below plus tone letters joins the vowel before as one token"}
+
+
+@pytest.mark.parametrize("code", [
+    pytest.param(code, marks=pytest.mark.xfail(strict=True, reason=_KNOWN_GAPS[code]))
+    if code in _KNOWN_GAPS else code
+    for code in ALL_CODES
+])
 def test_no_table_emits_outside_the_inventory(code):
     """Every symbol every table can emit is in the declared phoneme inventory.
 
@@ -111,11 +142,12 @@ def test_no_table_emits_outside_the_inventory(code):
     """
     spec = get(code)
     inventory = phoneme_inventory(spec)
+    hosts = _hosts(spec, inventory)
 
     violations = []
     for source_name, surfaces in _SOURCES:
         for where, surface in surfaces(spec):
-            escaped = _outside(surface, spec, inventory)
+            escaped = _outside(surface, spec, inventory, hosts)
             if escaped:
                 violations.append(
                     f"  {source_name} {where} -> {surface!r} emits {escaped!r}"
@@ -126,3 +158,12 @@ def test_no_table_emits_outside_the_inventory(code):
         f"TTS frontend built from the inventory has no embedding for them:\n"
         + "\n".join(violations)
     )
+
+
+def test_a_mark_led_surface_needs_its_joined_token():
+    """The check joins a bare ``ʲ`` to each host and asks for the joined token
+    itself. An inventory with ``sʲ`` and ``nʲ`` but no ``tʲ`` does not close
+    over the Russian soft sign, because ⟨ть⟩ writes [tʲ]."""
+    spec = get("ru")
+    inventory = phoneme_inventory(spec) - {"tʲ"}
+    assert _outside("ʲ", spec, inventory, _hosts(spec, inventory)) == ["tʲ"]

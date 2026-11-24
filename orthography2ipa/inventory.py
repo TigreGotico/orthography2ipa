@@ -219,7 +219,7 @@ def phoneme_inventory(
     joins each vowel and glide that can carry it and is never a token alone. So
     does a palatalization mark ``ʲ`` (the Cyrillic soft sign) or a labialization
     mark ``ʷ`` before any base letter, which joins each consonant from stop to
-    liquid, and a bare length mark ``ː``, which joins each segment that is not a
+    liquid that carries neither mark yet, and a bare length mark ``ː``, which joins each segment that is not a
     mark or a tie. Each joined token is cut like any transcription, so the
     inventory holds only tokens :func:`tokenize` returns. A spec whose engine
     doubles the letter before a shadda gets no ``ː`` joins.
@@ -238,7 +238,8 @@ def phoneme_inventory(
             bare.add(rest)
         else:
             tokens.update(_tokenize(rest, atoms))
-    consonants = [t for t in tokens if SONORITY_STOP <= sonority_class(t) <= SONORITY_LIQUID]
+    consonants = [t for t in tokens if SONORITY_STOP <= sonority_class(t) <= SONORITY_LIQUID
+                  and not any(m in t for m in _SECONDARY_ARTICULATIONS)]
     for modifier in _SECONDARY_ARTICULATIONS:
         if modifier in bare:
             for token in consonants:
@@ -256,7 +257,8 @@ def phoneme_inventory(
 _LENGTH = "ː"
 #: Labialization and palatalization. The IPA writes them after their base, so
 #: one that a slot emits before any base letter lands on the segment the slot
-#: before it wrote.
+#: before it wrote. A join adds one mark to a plain consonant only: a token with
+#: both marks comes from the spec data, in the order the data writes them.
 _SECONDARY_ARTICULATIONS = ("ʷ", "ʲ")
 _BARE_MODIFIERS = frozenset((*_SECONDARY_ARTICULATIONS, _LENGTH))
 
@@ -271,8 +273,6 @@ def _add_secondary(token: str, modifier: str) -> str:
     """*token* with the secondary articulation *modifier* before its trailing
     length mark."""
     base = token.rstrip("ːˑ")
-    if modifier in base:
-        return token
     return base + modifier + token[len(base):]
 
 
