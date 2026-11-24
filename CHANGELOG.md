@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.125.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.125.0a2) (2026-11-24)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.125.0a1...7.125.0a2)
+
+**Merged pull requests:**
+
+- test\(uk\): hold the penult of a two-syllable word with ї after a vowel [\#2539](https://github.com/TigreGotico/orthography2ipa/pull/2539) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.125.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.125.0a1) (2026-11-24)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.54a1...7.125.0a1)
