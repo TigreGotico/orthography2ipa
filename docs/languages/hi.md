@@ -9,7 +9,7 @@ see: `docs/languages/sa.md`, `docs/languages/a-z.md`, `docs/specs/quality_tiers.
 -->
 
 <!-- atlas:summary begin -->
-Hindi is an Indo-Aryan language, written in the Devanagari script. Glottolog places it in Bangladesh, Bhutan, India and Nepal. The `hi` spec is at the research tier. It cites 6 sources and has 2 scored datasets.
+Hindi is an Indo-Aryan language, written in the Devanagari script. Glottolog places it in Bangladesh, Bhutan, India and Nepal. The `hi` spec is at the research tier. It cites 8 sources and has 2 scored datasets.
 <!-- atlas:summary end -->
 
 <!-- atlas:header begin -->
@@ -146,7 +146,7 @@ These specs name `hi` as their parent. They are sorted by country, and a lect wi
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 6 works. 0 of them have a DOI or a URL. The spec file holds a note on what 3 of them support.
+The spec cites 8 works. 2 of them have a DOI or a URL. The spec file holds a note on what 5 of them support.
 
 1. <a id="src-shapiro1989"></a>Shapiro, M. (1989). *Hindi*. in B. Comrie (ed.), The World's Major Languages.
 2. <a id="src-masica1991"></a>Masica, C. (1991). *The Indo-Aryan Languages*. Cambridge University Press.
@@ -154,6 +154,8 @@ The spec cites 6 works. 0 of them have a DOI or a URL. The spec file holds a not
 4. <a id="src-ohala1983"></a>Ohala, M. (1983). *Aspects of Hindi Phonology*. Motilal Banarsidass, Delhi.
 5. <a id="src-ohala1999"></a>Ohala, M. (1999). *Hindi*. in Handbook of the International Phonetic Association, Cambridge University Press. Cited: 100-103.
 6. <a id="src-narasimhan2004"></a>Narasimhan, B., Sproat, R. & Kiraz, G. (2004). *Schwa-Deletion in Hindi Text-to-Speech Synthesis*. International Journal of Speech Technology 7(4). Cited: 319-333.
+7. <a id="src-unicode16_ch12"></a>The Unicode Consortium (2024). *The Unicode Standard, Version 16.0, Chapter 12: South and Central Asia-I (Devanagari)*. The Unicode Consortium. [unicode.org](https://www.unicode.org/versions/Unicode16.0.0/core-spec/chapter-12/)
+8. <a id="src-unicode16_nameslist"></a>The Unicode Consortium (2024). *Unicode 16.0.0 NamesList.txt*. The Unicode Consortium. [unicode.org](https://www.unicode.org/Public/16.0.0/ucd/NamesList.txt)
 <!-- atlas:sources end -->
 
 ### Notes on the sources
@@ -170,7 +172,7 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 
 | Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
 |:--|:--|:--|:--|:--|--:|--:|:--|
-| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `hi` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 30375 | 0.1251 | yes |
+| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `hi` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 30376 | 0.1252 | yes |
 | `vox_communis` ([fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p)) | `hi` | generated | epitran-derived | CC0 1.0 | 12478 | 0.2759 | no |
 <!-- atlas:datasets end -->
 
@@ -252,6 +254,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨द⟩ | [d̪] |  |
 | ⟨ध⟩ | [d̪ʱ] |  |
 | ⟨न⟩ | [n] |  |
+| ⟨ऩ⟩ | [n] |  |
 | ⟨प⟩ | [p] |  |
 | ⟨फ⟩ | [pʰ] |  |
 | ⟨फ़⟩ | [f] |  |
@@ -260,7 +263,9 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨म⟩ | [m] |  |
 | ⟨य⟩ | [j] |  |
 | ⟨र⟩ | [ɾ] |  |
+| ⟨ऱ⟩ | [ɾ] |  |
 | ⟨ल⟩ | [l] |  |
+| ⟨ऴ⟩ | [l] |  |
 | ⟨व⟩ | [ʋ] |  |
 | ⟨श⟩ | [ʃ] |  |
 | ⟨श्र⟩ | [ʃɾ] |  |

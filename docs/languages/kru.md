@@ -9,7 +9,7 @@ see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/da
 -->
 
 <!-- atlas:summary begin -->
-Kurukh is a Dravidian language, written in the Devanagari script. Glottolog places it in the Eurasia macroarea. The `kru` spec is at the research tier. It cites 3 sources and has 1 scored dataset.
+Kurukh is a Dravidian language, written in the Devanagari script. Glottolog places it in the Eurasia macroarea. The `kru` spec is at the research tier. It cites 5 sources and has 1 scored dataset.
 <!-- atlas:summary end -->
 
 <!-- atlas:header begin -->
@@ -34,7 +34,7 @@ The notes of the spec file open with these words:
 
 > Research. Kurukh (Oraon), a North Dravidian language of eastern India written in Devanagari. Consonant letters and vowel signs (matras) are mapped to standard Devanagari IPA values, including the retroflex and breathy-voiced series and nuqta letters ड़ ढ़ ख़.
 
-The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 3 works, from 1928 to 2024. [Sources](#sources) lists them. The spec file writes all 59 spellings of its letter table itself.
+The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 5 works, from 1928 to 2024. [Sources](#sources) lists them. The spec file writes all 62 spellings of its letter table itself.
 
 The [spec file](../../orthography2ipa/data/kru.json) holds the full notes, with the caveats of the spec.
 <!-- atlas:overview end -->
@@ -48,11 +48,13 @@ No spec names `kru` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 1 of them have a DOI or a URL. The spec file holds a note on what each work supports.
+The spec cites 5 works. 3 of them have a DOI or a URL. The spec file holds a note on what each work supports.
 
 1. <a id="src-kru_glottolog"></a>Hammarström, H. et al. (Glottolog 5.0) (2024). *Glottolog: Kurukh (kuru1301)*. Max Planck Institute for Evolutionary Anthropology. [glottolog.org](https://glottolog.org/resource/languoid/id/kuru1301)
 2. <a id="src-winfield1928"></a>Winfield, W. W. (1928). *A Grammar of the Kurux Language*. Asiatic Society of Bengal, Calcutta.
 3. <a id="src-kru_wikipedia"></a>Wikipedia contributors (2024). *Kurukh language*. Wikipedia.
+4. <a id="src-unicode16_ch12"></a>The Unicode Consortium (2024). *The Unicode Standard, Version 16.0, Chapter 12: South and Central Asia-I (Devanagari)*. The Unicode Consortium. [unicode.org](https://www.unicode.org/versions/Unicode16.0.0/core-spec/chapter-12/)
+5. <a id="src-unicode16_nameslist"></a>The Unicode Consortium (2024). *Unicode 16.0.0 NamesList.txt*. The Unicode Consortium. [unicode.org](https://www.unicode.org/Public/16.0.0/ucd/NamesList.txt)
 <!-- atlas:sources end -->
 
 <!-- atlas:datasets begin -->
@@ -134,6 +136,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨द⟩ | [d̪] |  |
 | ⟨ध⟩ | [d̪ʱ] |  |
 | ⟨न⟩ | [n] |  |
+| ⟨ऩ⟩ | [n] |  |
 | ⟨प⟩ | [p] |  |
 | ⟨फ⟩ | [pʰ] |  |
 | ⟨ब⟩ | [b] |  |
@@ -141,7 +144,9 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨म⟩ | [m] |  |
 | ⟨य⟩ | [j] |  |
 | ⟨र⟩ | [r] |  |
+| ⟨ऱ⟩ | [r] |  |
 | ⟨ल⟩ | [l] |  |
+| ⟨ऴ⟩ | [l] |  |
 | ⟨व⟩ | [ʋ] |  |
 | ⟨श⟩ | [ʃ] |  |
 | ⟨ष⟩ | [ʃ] |  |

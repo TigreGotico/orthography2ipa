@@ -9,7 +9,7 @@ see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/da
 -->
 
 <!-- atlas:summary begin -->
-Sanskrit is an Indo-Aryan language, written in the Devanagari script. Glottolog places it in India. The `sa` spec is at the research tier. It cites 4 sources and has 1 scored dataset.
+Sanskrit is an Indo-Aryan language, written in the Devanagari script. Glottolog places it in India. The `sa` spec is at the research tier. It cites 6 sources and has 1 scored dataset.
 <!-- atlas:summary end -->
 
 <!-- atlas:header begin -->
@@ -38,7 +38,7 @@ The notes of the spec file open with these words:
 
 > Classical Sanskrit (Pāṇinian standard, c. 4th c. BCE onward). Five-point place-of-articulation system: velar, palatal, retroflex, dental, labial. Four-way laryngeal contrast (plain/aspirated × voiced/voiceless). No short /e/ or /o/ (only long). ⟨व⟩ = [ʋ] labiodental approximant.
 
-The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 4 works, from 1889 to 2003. [Sources](#sources) lists them. The spec file writes all 65 spellings of its letter table itself.
+The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 6 works, from 1889 to 2024. [Sources](#sources) lists them. The spec file writes all 68 spellings of its letter table itself.
 
 The [spec file](../../orthography2ipa/data/sa.json) holds the full notes, with the caveats of the spec.
 <!-- atlas:overview end -->
@@ -71,12 +71,14 @@ These specs name `sa` as their parent. They are sorted by country, and a lect wi
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 4 works. 1 of them have a DOI or a URL. The spec file holds a note on what 1 of them support.
+The spec cites 6 works. 3 of them have a DOI or a URL. The spec file holds a note on what 3 of them support.
 
 1. <a id="src-coulson1992"></a>Coulson, M. (1992). *Sanskrit: An Introduction to the Classical Language*. Hodder & Stoughton.
 2. <a id="src-masica1991"></a>Masica, C. (1991). *The Indo-Aryan Languages*. Cambridge University Press.
 3. <a id="src-cardona_jain2003"></a>Cardona, G. & Jain, D. (eds.) (2003). *The Indo-Aryan Languages*. Routledge.
 4. <a id="src-whitney1889"></a>Whitney, W. D. (1889). *Sanskrit Grammar*. Breitkopf and Härtel / Ginn & Co. Cited: §§19, 21, 52. [en.wikisource.org](https://en.wikisource.org/wiki/Sanskrit_Grammar_(Whitney)/Chapter_II)
+5. <a id="src-unicode16_ch12"></a>The Unicode Consortium (2024). *The Unicode Standard, Version 16.0, Chapter 12: South and Central Asia-I (Devanagari)*. The Unicode Consortium. [unicode.org](https://www.unicode.org/versions/Unicode16.0.0/core-spec/chapter-12/)
+6. <a id="src-unicode16_nameslist"></a>The Unicode Consortium (2024). *Unicode 16.0.0 NamesList.txt*. The Unicode Consortium. [unicode.org](https://www.unicode.org/Public/16.0.0/ucd/NamesList.txt)
 <!-- atlas:sources end -->
 
 <!-- atlas:datasets begin -->
@@ -161,6 +163,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨द⟩ | [d̪] |  |
 | ⟨ध⟩ | [d̪ʱ] |  |
 | ⟨न⟩ | [n̪] |  |
+| ⟨ऩ⟩ | [n̪] |  |
 | ⟨प⟩ | [p] |  |
 | ⟨फ⟩ | [pʰ] |  |
 | ⟨ब⟩ | [b] |  |
@@ -168,7 +171,9 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨म⟩ | [m] |  |
 | ⟨य⟩ | [j] |  |
 | ⟨र⟩ | [ɾ] |  |
+| ⟨ऱ⟩ | [ɾ] |  |
 | ⟨ल⟩ | [l] |  |
+| ⟨ऴ⟩ | [l] |  |
 | ⟨व⟩ | [ʋ] |  |
 | ⟨श⟩ | [ɕ] |  |
 | ⟨ष⟩ | [ʂ] |  |

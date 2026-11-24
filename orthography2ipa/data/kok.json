@@ -160,6 +160,9 @@
     "न": [
       "n"
     ],
+    "ऩ": [
+      "n"
+    ],
     "प": [
       "p"
     ],
@@ -182,6 +185,9 @@
     "र": [
       "ɾ"
     ],
+    "ऱ": [
+      "ɾ"
+    ],
     "ल": [
       "l"
     ],
@@ -189,6 +195,9 @@
       "ʋ"
     ],
     "ळ": [
+      "ɭ"
+    ],
+    "ऴ": [
       "ɭ"
     ],
     "ड़": [
@@ -225,6 +234,9 @@
       "ʋʱ"
     ],
     "र्ह": [
+      "ɾʱ"
+    ],
+    "ऱ्ह": [
       "ɾʱ"
     ]
   },
@@ -419,7 +431,7 @@
       "notes": "Dravidian substrate from pre-IA population of Goa"
     }
   ],
-  "notes": "Konkani, 22nd scheduled language of India (1992). Spoken in Goa (official), Karnataka, and Kerala. Multiple scripts: Devanagari (official Goa), Kannada, Roman; this spec reads the Devanagari orthography. Strong Dravidian substrate features: retroflex ⟨ळ⟩ = [ɭ]. Close to Marathi but considered a separate language by speakers.\n\nThe inherent vowel of a consonant letter is deleted word-finally and in the VC_CV environment, as in the other modern Indo-Aryan languages and unlike Sanskrit, the parent spec; the rules are in allophone_rules.\n\nThe mid vowels are /e ɛ o ɔ/ and Devanagari marks no length on ⟨े⟩/⟨ो⟩, so those matras read short, with the open-mid quality as a second candidate. The affricate series /ts dz/ and /tʃ dʒ/ are both written ⟨च⟩/⟨ज⟩ and are not recoverable from the spelling, so both are in the lattice. The rhotic is an alveolar tap and ⟨ह⟩ is a glottal fricative; a sonorant in conjunct with ⟨ह⟩ is one murmured segment (म्हस [mʱəs]).\n\n⟨ऋ⟩/⟨ृ⟩ (vocalic r) were missing from the grapheme table, which silently dropped the segment rather than reading it as the tap-plus-vowel reflex Indo-Aryan languages give the old Sanskrit syllabic r̩ (Masica 1991, ch. 4). The kaikki gold has two occurrences, both after ⟨क⟩: कृपेन [kɾupɛːn] and संस्कृताय [sə̃skɾitɑːj], one with /u/ and one with /i/; /ɾɪ/ is kept as the first candidate and /ɾu/ as the second. ⟨ऑ⟩/⟨ॉ⟩ (candra o) and ⟨ॅ⟩ (candra e) were likewise missing; they mark English-loan vowels Devanagari has no native letter for. The kaikki gold has one occurrence of each — ऑगस्ट [æɡəsʈ], मॅरी [mæɾiː] — both /æ/, so /æ/ is the first candidate for all three graphemes; /ɔ/ and /ɛ/ are kept as second candidates, the values the broader candra-vowel convention documents and Marathi's spec (an adstrate ancestor here) carries.",
+  "notes": "Konkani, 22nd scheduled language of India (1992). Spoken in Goa (official), Karnataka, and Kerala. Multiple scripts: Devanagari (official Goa), Kannada, Roman; this spec reads the Devanagari orthography. Strong Dravidian substrate features: retroflex ⟨ळ⟩ = [ɭ]. Close to Marathi but considered a separate language by speakers.\n\nThe inherent vowel of a consonant letter is deleted word-finally and in the VC_CV environment, as in the other modern Indo-Aryan languages and unlike Sanskrit, the parent spec; the rules are in allophone_rules.\n\nThe mid vowels are /e ɛ o ɔ/ and Devanagari marks no length on ⟨े⟩/⟨ो⟩, so those matras read short, with the open-mid quality as a second candidate. The affricate series /ts dz/ and /tʃ dʒ/ are both written ⟨च⟩/⟨ज⟩ and are not recoverable from the spelling, so both are in the lattice. The rhotic is an alveolar tap and ⟨ह⟩ is a glottal fricative; a sonorant in conjunct with ⟨ह⟩ is one murmured segment (म्हस [mʱəs]).\n\n⟨ऋ⟩/⟨ृ⟩ (vocalic r) were missing from the grapheme table, which silently dropped the segment rather than reading it as the tap-plus-vowel reflex Indo-Aryan languages give the old Sanskrit syllabic r̩ (Masica 1991, ch. 4). The kaikki gold has two occurrences, both after ⟨क⟩: कृपेन [kɾupɛːn] and संस्कृताय [sə̃skɾitɑːj], one with /u/ and one with /i/; /ɾɪ/ is kept as the first candidate and /ɾu/ as the second. ⟨ऑ⟩/⟨ॉ⟩ (candra o) and ⟨ॅ⟩ (candra e) were likewise missing; they mark English-loan vowels Devanagari has no native letter for. The kaikki gold has one occurrence of each — ऑगस्ट [æɡəsʈ], मॅरी [mæɾiː] — both /æ/, so /æ/ is the first candidate for all three graphemes; /ɔ/ and /ɛ/ are kept as second candidates, the values the broader candra-vowel convention documents and Marathi's spec (an adstrate ancestor here) carries. This spec reads ⟨ऩ⟩, ⟨ऱ⟩ and ⟨ऴ⟩ as their base letters ⟨न⟩ [n], ⟨र⟩ [ɾ] and ⟨ळ⟩ [ɭ], because the inventory has no separate phoneme for them.",
   "quality": "research",
   "script_type": "abugida",
   "inherent_vowel": "ə",
@@ -490,6 +502,26 @@
       "pages": null,
       "notes": "Source for the CKK vowel table, the alveolar flap /ɾ/, and the glottal fricative /h/.",
       "wikipedia_url": null
+    },
+    {
+      "id": "unicode16_ch12",
+      "author": "The Unicode Consortium",
+      "year": 2024,
+      "title": "The Unicode Standard, Version 16.0, Chapter 12: South and Central Asia-I (Devanagari)",
+      "publisher": "The Unicode Consortium",
+      "url": "https://www.unicode.org/versions/Unicode16.0.0/core-spec/chapter-12/",
+      "pages": null,
+      "notes": "Rule R5: \"In conformance with the ISCII standard, the half-consonant form RRA h is represented as eyelash-RA. This form of RA is commonly used in writing Marathi and Newari.\" The paragraph before Table 12-8: \"Marathi also makes use of the “eyelash” form of the letter RA, as discussed in rule R5.\""
+    },
+    {
+      "id": "unicode16_nameslist",
+      "author": "The Unicode Consortium",
+      "year": 2024,
+      "title": "Unicode 16.0.0 NamesList.txt",
+      "publisher": "The Unicode Consortium",
+      "url": "https://www.unicode.org/Public/16.0.0/ucd/NamesList.txt",
+      "pages": null,
+      "notes": "U+0929 DEVANAGARI LETTER NNNA: \"for transcribing Dravidian alveolar n\"; U+0931 DEVANAGARI LETTER RRA: \"for transcribing Dravidian alveolar r\", \"half form is represented as \\\"Eyelash RA\\\"\"; U+0934 DEVANAGARI LETTER LLLA: \"for transcribing Dravidian l\". Each letter is canonically equivalent to its base letter plus U+093C (0928, 0930, 0933), and is not a composition exclusion."
     }
   ],
   "wikipedia": [

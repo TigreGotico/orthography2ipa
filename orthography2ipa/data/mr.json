@@ -153,6 +153,9 @@
     "न": [
       "n"
     ],
+    "ऩ": [
+      "n"
+    ],
     "प": [
       "p"
     ],
@@ -174,7 +177,13 @@
     "र": [
       "ɾ"
     ],
+    "ऱ": [
+      "ɾ"
+    ],
     "ळ": [
+      "ɭ̆"
+    ],
+    "ऴ": [
       "ɭ̆"
     ],
     "ल": [
@@ -220,6 +229,9 @@
       "ʋʱ"
     ],
     "र्ह": [
+      "ɾʱ"
+    ],
+    "ऱ्ह": [
       "ɾʱ"
     ],
     "ज्ञ": [
@@ -418,7 +430,7 @@
       "notes": "Contact with Hindi"
     }
   ],
-  "notes": "Standard Marathi (Maharashtra). No phonemic vowel length -- the script writes the Sanskrit length distinction but the language has lost it, so ⟨आ ई ऊ ए ओ⟩ are transcribed without a length mark and ⟨अ⟩ vs ⟨आ⟩ is a quality contrast [ə] vs [a]. ⟨ळ⟩ is the retroflex lateral flap [ɭ̆], a Marathi hallmark. ⟨र⟩ is a tap. ⟨ऋ⟩ is read [ɾu], not the Sanskrit syllabic [r̩] nor the Hindi [ɾɪ]. ⟨च ज झ⟩ carry both an alveolar and a palato-alveolar affricate series. Final schwa deletion is near-categorical but is blocked after a consonant cluster. Anusvara before a stop is a homorganic nasal consonant. Medial schwa deletion is deliberately not encoded: Marathi retains the medial schwa far more freely than Hindi does (Wikipedia, 'Schwa deletion in Indo-Aryan languages': 'comprehension of Marathi is not impeded if all schwas are retained'; 'propensity to pronounce it far more regularly than Hindi'), and a fully-retained pronunciation is well formed -- Hindi's categorical VC_CV rule would fire on अंकगणित, where the gold keeps both vowels. The gold retains 81% of the medial schwas this spec emits; the remainder is the trade-off's cost, taken deliberately rather than by oversight.",
+  "notes": "Standard Marathi (Maharashtra). No phonemic vowel length -- the script writes the Sanskrit length distinction but the language has lost it, so ⟨आ ई ऊ ए ओ⟩ are transcribed without a length mark and ⟨अ⟩ vs ⟨आ⟩ is a quality contrast [ə] vs [a]. ⟨ळ⟩ is the retroflex lateral flap [ɭ̆], a Marathi hallmark. ⟨र⟩ is a tap. ⟨ऋ⟩ is read [ɾu], not the Sanskrit syllabic [r̩] nor the Hindi [ɾɪ]. ⟨च ज झ⟩ carry both an alveolar and a palato-alveolar affricate series. Final schwa deletion is near-categorical but is blocked after a consonant cluster. Anusvara before a stop is a homorganic nasal consonant. Medial schwa deletion is deliberately not encoded: Marathi retains the medial schwa far more freely than Hindi does (Wikipedia, 'Schwa deletion in Indo-Aryan languages': 'comprehension of Marathi is not impeded if all schwas are retained'; 'propensity to pronounce it far more regularly than Hindi'), and a fully-retained pronunciation is well formed -- Hindi's categorical VC_CV rule would fire on अंकगणित, where the gold keeps both vowels. The gold retains 81% of the medial schwas this spec emits; the remainder is the trade-off's cost, taken deliberately rather than by oversight. ⟨ऱ⟩ is the eyelash form of ⟨र⟩ (Unicode Standard ch. 12, rule R5) and reads [ɾ]. This spec reads ⟨ऩ⟩ and ⟨ऴ⟩ as their base letters ⟨न⟩ [n] and ⟨ळ⟩ [ɭ̆], because the inventory has no separate phoneme for them.",
   "quality": "research",
   "script_type": "abugida",
   "inherent_vowel": "ə",
@@ -456,6 +468,37 @@
       "url": null,
       "pages": null,
       "notes": null
+    },
+    {
+      "id": "unicode16_ch12",
+      "author": "The Unicode Consortium",
+      "year": 2024,
+      "title": "The Unicode Standard, Version 16.0, Chapter 12: South and Central Asia-I (Devanagari)",
+      "publisher": "The Unicode Consortium",
+      "url": "https://www.unicode.org/versions/Unicode16.0.0/core-spec/chapter-12/",
+      "pages": null,
+      "notes": "Rule R5: \"In conformance with the ISCII standard, the half-consonant form RRA h is represented as eyelash-RA. This form of RA is commonly used in writing Marathi and Newari.\" The paragraph before Table 12-8: \"Marathi also makes use of the “eyelash” form of the letter RA, as discussed in rule R5.\""
+    },
+    {
+      "id": "unicode16_nameslist",
+      "author": "The Unicode Consortium",
+      "year": 2024,
+      "title": "Unicode 16.0.0 NamesList.txt",
+      "publisher": "The Unicode Consortium",
+      "url": "https://www.unicode.org/Public/16.0.0/ucd/NamesList.txt",
+      "pages": null,
+      "notes": "U+0929 DEVANAGARI LETTER NNNA: \"for transcribing Dravidian alveolar n\"; U+0931 DEVANAGARI LETTER RRA: \"for transcribing Dravidian alveolar r\", \"half form is represented as \\\"Eyelash RA\\\"\"; U+0934 DEVANAGARI LETTER LLLA: \"for transcribing Dravidian l\". Each letter is canonically equivalent to its base letter plus U+093C (0928, 0930, 0933), and is not a composition exclusion."
+    },
+    {
+      "id": "wikipedia_marathi_phonology",
+      "author": "Wikipedia contributors",
+      "year": 2024,
+      "title": "Marathi phonology",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Marathi_phonology",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Marathi_phonology",
+      "pages": null,
+      "notes": "\"palatalization is only denoted for र (r) in writing through the usage of the eyelash reph/raphar\"; the page lists दर्या [d̪əɾ.jaː] against दऱ्या [d̪əɾʲaː]. The spec writes the phoneme /ɾ/ for ऱ and does not write the palatalised release."
     }
   ],
   "wikipedia": [

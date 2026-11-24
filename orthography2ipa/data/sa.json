@@ -150,6 +150,9 @@
     "न": [
       "n̪"
     ],
+    "ऩ": [
+      "n̪"
+    ],
     "प": [
       "p"
     ],
@@ -171,7 +174,13 @@
     "र": [
       "ɾ"
     ],
+    "ऱ": [
+      "ɾ"
+    ],
     "ल": [
+      "l"
+    ],
+    "ऴ": [
       "l"
     ],
     "व": [
@@ -356,7 +365,7 @@
       "notes": "Direct descendant of Proto-Indo-European"
     }
   ],
-  "notes": "Classical Sanskrit (Pāṇinian standard, c. 4th c. BCE onward). Five-point place-of-articulation system: velar, palatal, retroflex, dental, labial. Four-way laryngeal contrast (plain/aspirated × voiced/voiceless). No short /e/ or /o/ (only long). ⟨व⟩ = [ʋ] labiodental approximant. Sandhi rules are extensive but modeled at the allophone level here. Short ⟨अ⟩ (inherent vowel) is [ɐ], not a genuine mid-central schwa [ə]: Whitney's Sanskrit Grammar (1889) §21 describes it as the \"neutral vowel\", equating it to \"English so-called short u, of but, son, blood\" — a near-open central/back vowel, not the higher, laxer schwa of unstressed English syllables. Long ⟨आ⟩ is correspondingly [ɑː]: Whitney §19 places it \"in the 'Continental' or 'Italian' manner — as in far or farther\", i.e. a fully back open vowel, distinct in quality from short a, not merely longer. ⟨र⟩ is not a trill: Whitney §52 states it \"resembles the English smooth r, and, like this, seems to have been untrilled\", and §52a that \"no authority hints at a vibration as belonging to it\" — this only rules out the trill [r] this spec previously shipped, since Whitney's nineteenth-century articulatory terms do not distinguish a tap from an approximant. The specific value [ɾ] (alveolar tap) rests instead on a measured argument, not this citation: in san_deva_broad.tsv, words containing ⟨र⟩ realise it as ɾ 6404 times, plain r 133 times, ɽ twice and never as an approximant. The conjunct ⟨त्र⟩ carries the same tap. The syllabic ⟨ऋ ॠ ऌ⟩ series is left as r̩/r̩ː/l̩ — the gold uses that same convention (r̩ 80, ɾ 3 in words containing ⟨ऋ⟩), which is the standard IPA notation for a syllabic rhotic and does not itself assert a trill vs. tap articulation the way the plain consonant symbol does.",
+  "notes": "Classical Sanskrit (Pāṇinian standard, c. 4th c. BCE onward). Five-point place-of-articulation system: velar, palatal, retroflex, dental, labial. Four-way laryngeal contrast (plain/aspirated × voiced/voiceless). No short /e/ or /o/ (only long). ⟨व⟩ = [ʋ] labiodental approximant. Sandhi rules are extensive but modeled at the allophone level here. Short ⟨अ⟩ (inherent vowel) is [ɐ], not a genuine mid-central schwa [ə]: Whitney's Sanskrit Grammar (1889) §21 describes it as the \"neutral vowel\", equating it to \"English so-called short u, of but, son, blood\" — a near-open central/back vowel, not the higher, laxer schwa of unstressed English syllables. Long ⟨आ⟩ is correspondingly [ɑː]: Whitney §19 places it \"in the 'Continental' or 'Italian' manner — as in far or farther\", i.e. a fully back open vowel, distinct in quality from short a, not merely longer. ⟨र⟩ is not a trill: Whitney §52 states it \"resembles the English smooth r, and, like this, seems to have been untrilled\", and §52a that \"no authority hints at a vibration as belonging to it\" — this only rules out the trill [r] this spec previously shipped, since Whitney's nineteenth-century articulatory terms do not distinguish a tap from an approximant. The specific value [ɾ] (alveolar tap) rests instead on a measured argument, not this citation: in san_deva_broad.tsv, words containing ⟨र⟩ realise it as ɾ 6404 times, plain r 133 times, ɽ twice and never as an approximant. The conjunct ⟨त्र⟩ carries the same tap. The syllabic ⟨ऋ ॠ ऌ⟩ series is left as r̩/r̩ː/l̩ — the gold uses that same convention (r̩ 80, ɾ 3 in words containing ⟨ऋ⟩), which is the standard IPA notation for a syllabic rhotic and does not itself assert a trill vs. tap articulation the way the plain consonant symbol does. This spec reads ⟨ऩ⟩, ⟨ऱ⟩ and ⟨ऴ⟩ as their base letters ⟨न⟩ [n̪], ⟨र⟩ [ɾ] and ⟨ल⟩ [l], because the inventory has no separate phoneme for them. This spec has no ⟨ळ⟩, so ⟨ऴ⟩ takes the value of ⟨ल⟩.",
   "quality": "research",
   "script_type": "abugida",
   "inherent_vowel": "ɐ",
@@ -401,6 +410,26 @@
       "url": "https://en.wikisource.org/wiki/Sanskrit_Grammar_(Whitney)/Chapter_II",
       "pages": "§§19, 21, 52",
       "notes": "2nd ed.; consulted via the Wikisource transcription for the vowel-quality claims (short a as \"neutral vowel\"/short u, long ā as \"far/farther\") and for ruling OUT a trilled r. It does not specify tap vs. approximant for r; that choice is measured from the gold, not sourced to this citation (see notes)."
+    },
+    {
+      "id": "unicode16_ch12",
+      "author": "The Unicode Consortium",
+      "year": 2024,
+      "title": "The Unicode Standard, Version 16.0, Chapter 12: South and Central Asia-I (Devanagari)",
+      "publisher": "The Unicode Consortium",
+      "url": "https://www.unicode.org/versions/Unicode16.0.0/core-spec/chapter-12/",
+      "pages": null,
+      "notes": "Rule R5: \"In conformance with the ISCII standard, the half-consonant form RRA h is represented as eyelash-RA. This form of RA is commonly used in writing Marathi and Newari.\" The paragraph before Table 12-8: \"Marathi also makes use of the “eyelash” form of the letter RA, as discussed in rule R5.\""
+    },
+    {
+      "id": "unicode16_nameslist",
+      "author": "The Unicode Consortium",
+      "year": 2024,
+      "title": "Unicode 16.0.0 NamesList.txt",
+      "publisher": "The Unicode Consortium",
+      "url": "https://www.unicode.org/Public/16.0.0/ucd/NamesList.txt",
+      "pages": null,
+      "notes": "U+0929 DEVANAGARI LETTER NNNA: \"for transcribing Dravidian alveolar n\"; U+0931 DEVANAGARI LETTER RRA: \"for transcribing Dravidian alveolar r\", \"half form is represented as \\\"Eyelash RA\\\"\"; U+0934 DEVANAGARI LETTER LLLA: \"for transcribing Dravidian l\". Each letter is canonically equivalent to its base letter plus U+093C (0928, 0930, 0933), and is not a composition exclusion."
     }
   ],
   "wikipedia": [

@@ -52,6 +52,7 @@
     "द": ["d̪"],
     "ध": ["d̪ʱ"],
     "न": ["n"],
+    "ऩ": ["n"],
     "प": ["p"],
     "फ": ["pʰ"],
     "ब": ["b"],
@@ -59,7 +60,9 @@
     "म": ["m"],
     "य": ["j"],
     "र": ["r"],
+    "ऱ": ["r"],
     "ल": ["l"],
+    "ऴ": ["l"],
     "व": ["w"],
     "ड़": ["ɽ"],
     "ढ़": ["ɽʱ"],
@@ -128,7 +131,7 @@
       "notes": "Eastern Hindi sibling: Awadhi and Bhojpuri share the same Devanagari letter-to-breathy-voice mapping and the retention of the inherent vowel /a/ rather than Standard Hindi's /ə/ (Saksena 1971; Masica 1991)."
     }
   ],
-  "notes": "Awadhi (अवधी), an Eastern Hindi / Indo-Aryan language of the Awadh region of Uttar Pradesh, India (the language of Tulsidas's Ramcharitmanas). SKELETON: grapheme inventory now specified (letter-to-phoneme table for the Devanagari abugida), modelled on the sibling Eastern Hindi language Bhojpuri (`bho`), which the literature groups with Awadhi under the same Eastern Hindi umbrella sharing an /a/ (not schwa) inherent vowel and a four-way laryngeal (voice/breathy-voice) stop series (Saksena 1971, 'Evolution of Awadhi'; Masica 1991). Unlike Standard Hindi, no schwa-deletion rule is asserted: the inherent vowel of a Devanagari consonant letter in Awadhi is /a/, not /ə/, so there is no schwa to delete (contrast `hi`, whose HI_SCHWA_FINAL_* rules exist precisely because Standard Hindi's inherent vowel IS /ə/). Nukta letters ड़/ढ़ (flap series) are included; the learned nukta letters क़/ख़/ग़/ज़/फ़ (Perso-Arabic loans) are not attested as phonemically distinct in rural Awadhi speech per Saksena and are therefore left unmapped rather than asserted. श/ष/स are merged to /s/: unlike Standard Hindi's spelling-pronunciation, the sibilant contrast of Sanskrit tatsama spelling is not maintained in Awadhi speech (Masica 1991: 97, sibilant merger is general in Eastern Hindi). STRESS EXEMPTION: word stress in Awadhi, as in the wider Hindi belt, is not lexically contrastive and is predictable from syllable weight rather than from spelling; no `stress` block is declared (cf. `hi`, which documents the same exemption). PHONEME INVENTORY: PHOIBLE (glottocode awad1243) records the same four-way stop series and retroflex flap using combining-tilde-under breathy notation (b̤, d̪̤, ɖ̤, ɟ̤ʝ, ɡʱ, l̤, m̤, r̤, ɽ̤) and a palatal affricate as cç/cçʰ; this spec uses the postaspirate ʱ convention (bʱ, d̪ʱ, ɖʱ, dʒʱ, ɡʱ) and tʃ/dʒ already standard across this dataset's Indic specs (`hi`, `bho`) — the same phonemes, a different diacritic convention. Awadhi is also historically written in the Kaithi and Perso-Arabic scripts; input is assumed to be Devanagari.",
+  "notes": "Awadhi (अवधी), an Eastern Hindi / Indo-Aryan language of the Awadh region of Uttar Pradesh, India (the language of Tulsidas's Ramcharitmanas). SKELETON: grapheme inventory now specified (letter-to-phoneme table for the Devanagari abugida), modelled on the sibling Eastern Hindi language Bhojpuri (`bho`), which the literature groups with Awadhi under the same Eastern Hindi umbrella sharing an /a/ (not schwa) inherent vowel and a four-way laryngeal (voice/breathy-voice) stop series (Saksena 1971, 'Evolution of Awadhi'; Masica 1991). Unlike Standard Hindi, no schwa-deletion rule is asserted: the inherent vowel of a Devanagari consonant letter in Awadhi is /a/, not /ə/, so there is no schwa to delete (contrast `hi`, whose HI_SCHWA_FINAL_* rules exist precisely because Standard Hindi's inherent vowel IS /ə/). Nukta letters ड़/ढ़ (flap series) are included; the learned nukta letters क़/ख़/ग़/ज़/फ़ (Perso-Arabic loans) are not attested as phonemically distinct in rural Awadhi speech per Saksena and are therefore left unmapped rather than asserted. श/ष/स are merged to /s/: unlike Standard Hindi's spelling-pronunciation, the sibilant contrast of Sanskrit tatsama spelling is not maintained in Awadhi speech (Masica 1991: 97, sibilant merger is general in Eastern Hindi). STRESS EXEMPTION: word stress in Awadhi, as in the wider Hindi belt, is not lexically contrastive and is predictable from syllable weight rather than from spelling; no `stress` block is declared (cf. `hi`, which documents the same exemption). PHONEME INVENTORY: PHOIBLE (glottocode awad1243) records the same four-way stop series and retroflex flap using combining-tilde-under breathy notation (b̤, d̪̤, ɖ̤, ɟ̤ʝ, ɡʱ, l̤, m̤, r̤, ɽ̤) and a palatal affricate as cç/cçʰ; this spec uses the postaspirate ʱ convention (bʱ, d̪ʱ, ɖʱ, dʒʱ, ɡʱ) and tʃ/dʒ already standard across this dataset's Indic specs (`hi`, `bho`) — the same phonemes, a different diacritic convention. Awadhi is also historically written in the Kaithi and Perso-Arabic scripts; input is assumed to be Devanagari. This spec reads ⟨ऩ⟩, ⟨ऱ⟩ and ⟨ऴ⟩ as their base letters ⟨न⟩ [n], ⟨र⟩ [r] and ⟨ल⟩ [l], because the inventory has no separate phoneme for them. This spec has no ⟨ळ⟩, so ⟨ऴ⟩ takes the value of ⟨ल⟩.",
   "iso639_3": "awa",
   "glottolog_code": "awad1243",
   "wikidata_qid": "Q29579",
@@ -177,6 +180,26 @@
       "url": "https://phoible.org/",
       "pages": null,
       "notes": "Attested phoneme inventory for glottocode awad1243."
+    },
+    {
+      "id": "unicode16_ch12",
+      "author": "The Unicode Consortium",
+      "year": 2024,
+      "title": "The Unicode Standard, Version 16.0, Chapter 12: South and Central Asia-I (Devanagari)",
+      "publisher": "The Unicode Consortium",
+      "url": "https://www.unicode.org/versions/Unicode16.0.0/core-spec/chapter-12/",
+      "pages": null,
+      "notes": "Rule R5: \"In conformance with the ISCII standard, the half-consonant form RRA h is represented as eyelash-RA. This form of RA is commonly used in writing Marathi and Newari.\" The paragraph before Table 12-8: \"Marathi also makes use of the “eyelash” form of the letter RA, as discussed in rule R5.\""
+    },
+    {
+      "id": "unicode16_nameslist",
+      "author": "The Unicode Consortium",
+      "year": 2024,
+      "title": "Unicode 16.0.0 NamesList.txt",
+      "publisher": "The Unicode Consortium",
+      "url": "https://www.unicode.org/Public/16.0.0/ucd/NamesList.txt",
+      "pages": null,
+      "notes": "U+0929 DEVANAGARI LETTER NNNA: \"for transcribing Dravidian alveolar n\"; U+0931 DEVANAGARI LETTER RRA: \"for transcribing Dravidian alveolar r\", \"half form is represented as \\\"Eyelash RA\\\"\"; U+0934 DEVANAGARI LETTER LLLA: \"for transcribing Dravidian l\". Each letter is canonically equivalent to its base letter plus U+093C (0928, 0930, 0933), and is not a composition exclusion."
     }
   ],
   "timespan": {

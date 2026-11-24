@@ -9,7 +9,7 @@ see: `docs/languages/hi.md`, `docs/languages/a-z.md`, `docs/specs/quality_tiers.
 -->
 
 <!-- atlas:summary begin -->
-Bhojpuri is an Indo-Aryan language, written in the Devanagari script. Glottolog places it in India and Nepal. The `bho` spec is at the research tier. It cites 3 sources and has 0 scored datasets.
+Bhojpuri is an Indo-Aryan language, written in the Devanagari script. Glottolog places it in India and Nepal. The `bho` spec is at the research tier. It cites 5 sources and has 0 scored datasets.
 <!-- atlas:summary end -->
 
 <!-- atlas:header begin -->
@@ -37,7 +37,7 @@ The notes of the spec file open with these words:
 
 > Bhojpuri (Eastern UP and Bihar). Largest Indic diaspora language. Inherent vowel is /a/ (not /ə/ like Standard Hindi). No schwa deletion rule. Four-way laryngeal contrast. Retroflex series phonemic.
 
-The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. No board row scores it yet, so the measured gold of that tier is still missing. It cites 3 works, from 1981 to 2003. [Sources](#sources) lists them. The spec file writes all 58 spellings of its letter table itself.
+The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. No board row scores it yet, so the measured gold of that tier is still missing. It cites 5 works, from 1981 to 2024. [Sources](#sources) lists them. The spec file writes all 61 spellings of its letter table itself.
 
 The [spec file](../../orthography2ipa/data/bho.json) holds the full notes, with the caveats of the spec.
 <!-- atlas:overview end -->
@@ -51,11 +51,13 @@ No spec names `bho` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 0 of them have a DOI or a URL.
+The spec cites 5 works. 2 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
 
 1. <a id="src-masica1991"></a>Masica, C. (1991). *The Indo-Aryan Languages*. Cambridge University Press.
 2. <a id="src-cardona_jain2003"></a>Cardona, G. & Jain, D. (eds.) (2003). *The Indo-Aryan Languages*. Routledge.
 3. <a id="src-shukla1981"></a>Shukla, S. (1981). *Bhojpuri Grammar*. Central Institute of Indian Languages.
+4. <a id="src-unicode16_ch12"></a>The Unicode Consortium (2024). *The Unicode Standard, Version 16.0, Chapter 12: South and Central Asia-I (Devanagari)*. The Unicode Consortium. [unicode.org](https://www.unicode.org/versions/Unicode16.0.0/core-spec/chapter-12/)
+5. <a id="src-unicode16_nameslist"></a>The Unicode Consortium (2024). *Unicode 16.0.0 NamesList.txt*. The Unicode Consortium. [unicode.org](https://www.unicode.org/Public/16.0.0/ucd/NamesList.txt)
 <!-- atlas:sources end -->
 
 <!-- atlas:datasets begin -->
@@ -135,6 +137,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨द⟩ | [d̪] |  |
 | ⟨ध⟩ | [d̪ʱ] |  |
 | ⟨न⟩ | [n] |  |
+| ⟨ऩ⟩ | [n] |  |
 | ⟨प⟩ | [p] |  |
 | ⟨फ⟩ | [pʰ] |  |
 | ⟨ब⟩ | [b] |  |
@@ -142,7 +145,9 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨म⟩ | [m] |  |
 | ⟨य⟩ | [j] |  |
 | ⟨र⟩ | [r] |  |
+| ⟨ऱ⟩ | [r] |  |
 | ⟨ल⟩ | [l] |  |
+| ⟨ऴ⟩ | [l] |  |
 | ⟨व⟩ | [ʋ] |  |
 | ⟨श⟩ | [ʃ] |  |
 | ⟨ष⟩ | [ʂ] |  |
