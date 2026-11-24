@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.124.54a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.54a1) (2026-11-24)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.53a1...7.124.54a1)
+
+**Merged pull requests:**
+
+- fix\(atlas\): sort the spelling rows by code point [\#2534](https://github.com/TigreGotico/orthography2ipa/pull/2534) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.124.53a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.53a1) (2026-11-24)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.52a1...7.124.53a1)
