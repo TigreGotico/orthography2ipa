@@ -39,3 +39,9 @@ def test_checker_passes_well_formed_tokens():
 def test_inventory_writes_marks_in_ipa_order(code):
     bad = {t: misordered(t) for t in phoneme_inventory(get(code)) if misordered(t)}
     assert bad == {}
+
+
+@pytest.mark.xfail(strict=True, reason=ISSUE)
+@pytest.mark.parametrize("letter", ["ਘ", "ਝ", "ਢ", "ਧ", "ਭ"])
+def test_punjabi_tone_is_not_written_on_the_onset_consonant(letter):
+    assert not any(t in e for e in get("pa").graphemes[letter] for t in TONE_LETTERS)
