@@ -363,4 +363,4 @@ matrix = pairwise_distances(langs, metric="combined")
 The `combined` metric has a narrow range. It gives 0.051 for `pt-BR` against `pt-PT` and 0.407 for `es` against `zh`, rounded. Use the `"ancestry"` metric or `weighted_full_distance` when relatedness matters.
 
 ---
-[← Lexicons and forced pronunciations](lexicon.md) · [Home](../index.md) · [Known limitations →](known_limitations.md)
+[← Revisions and pinning](revisions.md) · [Home](../index.md) · [Known limitations →](known_limitations.md)

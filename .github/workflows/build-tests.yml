@@ -16,5 +16,6 @@ jobs:
     with:
       python_versions: '["3.11", "3.12", "3.13"]'
       install_extras: 'test'
+      system_deps: 'luajit'
       test_path: 'tests'
       pytest_args: '--durations=25'

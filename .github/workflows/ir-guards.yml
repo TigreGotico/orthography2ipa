@@ -1,0 +1,91 @@
+name: IR Guards
+
+# Plain repo-specific CI (not a gh-automations reusable workflow). These
+# checks keep the IR one language-agnostic engine plus data: the
+# interpreters hold no language knowledge, a version bump changes the spec,
+# and the IR gives the same output as the legacy engine and as the Lua port.
+
+on:
+  pull_request:
+    branches: [dev]
+    paths:
+      - "orthography2ipa/**"
+      - "docs/ir/**"
+      - "scripts/check_engine_agnostic.py"
+      - "scripts/check_ir_version_doc.py"
+      - "scripts/ir_parity.py"
+      - "scripts/ir_parity_ci.py"
+      - "scripts/ir_lua_parity.py"
+      - ".github/workflows/ir-guards.yml"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  engine-agnostic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.4.0
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          uv venv .venv
+          uv pip install --python .venv/bin/python --prerelease=allow -e ".[test]"
+
+      - name: Refuse language knowledge in the interpreters
+        run: .venv/bin/python -I scripts/check_engine_agnostic.py
+
+  ir-version-doc:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: An IR version change changes docs/ir/o2i-ir-v1.md
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: python3 -I scripts/check_ir_version_doc.py --base "origin/$BASE_REF"
+
+  ir-parity:
+    runs-on: ubuntu-latest
+    # A passing run takes about 2 minutes on a laptop; the English IR
+    # compile is the slowest step.
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.4.0
+        with:
+          python-version: "3.11"
+
+      - name: Install LuaJIT for the Lua interpreter
+        if: hashFiles('orthography2ipa/ir/interpreter.lua') != ''
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends luajit
+
+      - name: Install dependencies
+        run: |
+          uv venv .venv
+          uv pip install --python .venv/bin/python --prerelease=allow -e ".[test]"
+
+      - name: Compare legacy, Python IR and Lua IR on a fixed sample
+        run: .venv/bin/python -I scripts/ir_parity_ci.py --out ir-parity-reports
+
+      - name: Upload the parity reports
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: ir-parity-reports
+          path: ir-parity-reports/

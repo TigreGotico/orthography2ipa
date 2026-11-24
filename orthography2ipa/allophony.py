@@ -38,6 +38,7 @@ from __future__ import annotations
 
 import unicodedata
 from dataclasses import dataclass, replace
+from functools import lru_cache
 from typing import AbstractSet, List, Optional, Sequence, Tuple
 
 from orthography2ipa.phonetok import Candidate, GraphemeContext, SegmentSlot, _is_a_mark
@@ -94,16 +95,28 @@ def _match_atom(ipa: str, start: int, atoms: Sequence[str]) -> Optional[str]:
     modifier — ``k`` must not steal the base of ``k͈`` (tense) or ``kʰ``
     (aspirated), which are different phonemes.
     """
+    node = _atom_trie(tuple(atoms))
     longest = None
-    for atom in atoms:
-        end = start + len(atom)
-        if not ipa.startswith(atom, start):
-            continue
-        if end < len(ipa) and _is_modifier(ipa[end]):
-            continue
-        if longest is None or len(atom) > len(longest):
-            longest = atom
+    n = len(ipa)
+    for end in range(start, n):
+        node = node.get(ipa[end])
+        if node is None:
+            break
+        if "" in node and not (end + 1 < n and _is_modifier(ipa[end + 1])):
+            longest = node[""]
     return longest
+
+
+@lru_cache(maxsize=256)
+def _atom_trie(atoms: Tuple[str, ...]) -> dict:
+    root: dict = {}
+    for atom in atoms:
+        if atom:
+            node = root
+            for c in atom:
+                node = node.setdefault(c, {})
+            node[""] = atom
+    return root
 
 
 @dataclass(frozen=True)

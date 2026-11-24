@@ -293,3 +293,18 @@ def lexicon_revision(code: str, patches: bool = False) -> str:
         data = path.read_bytes()
         digest.update(f"{kind}:{len(data)}\n".encode() + data)
     return "sha256:" + digest.hexdigest()
+
+
+def transcription_revision(code: str, patches: bool = False) -> str:
+    """sha256 over the revisions of the default path: the spec and the packaged lexicon.
+
+    The hash input is :func:`spec_revision`, a newline, and
+    :func:`lexicon_revision` with *patches*, or ``"none"`` when no installed
+    package supplies the files. Returns ``"sha256:"`` and the hex digest.
+    """
+    try:
+        lexicon = lexicon_revision(code, patches=patches)
+    except LookupError:
+        lexicon = "none"
+    text = spec_revision(code) + "\n" + lexicon
+    return "sha256:" + hashlib.sha256(text.encode()).hexdigest()

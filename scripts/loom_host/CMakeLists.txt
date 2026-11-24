@@ -1,0 +1,13 @@
+# Build: cmake -S scripts/loom_host -B build/loom_host -DLOOM_DIR=/path/to/loom.cpp && cmake --build build/loom_host
+cmake_minimum_required(VERSION 3.20)
+project(o2i_loom CXX)
+set(CMAKE_CXX_STANDARD 20)
+set(LOOM_DIR "" CACHE PATH "loom.cpp source checkout")
+if(NOT EXISTS "${LOOM_DIR}/CMakeLists.txt")
+  message(FATAL_ERROR "Set -DLOOM_DIR to a loom.cpp source checkout")
+endif()
+set(LOOM_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+set(LOOM_BUILD_TOOLS OFF CACHE BOOL "" FORCE)
+add_subdirectory(${LOOM_DIR} loom)
+add_executable(o2i_loom o2i_loom.cpp)
+target_link_libraries(o2i_loom PRIVATE loom::engine)

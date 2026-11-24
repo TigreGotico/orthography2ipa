@@ -21,6 +21,7 @@ MANIFEST
 coverage.xml
 htmlcov/
 .benchmark_cache/
+ir-parity-reports/
 
 # scripts/compare_systems.py fair-comparison 2x2: GPL-derived espeak-ng data
 # (rules-only compiled dicts, and o2i_lex's word->IPA cache) — comparison

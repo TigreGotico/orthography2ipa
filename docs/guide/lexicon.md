@@ -273,4 +273,4 @@ The report has two sets of columns. The full columns score every gold word, so e
 [spec_authoring.md](../contributing/spec_authoring.md#supply-a-lexicon-never-bundle-one) gives the rule for contributors: supply a lexicon, never bundle one.
 
 ---
-[← Getting Started](getting_started.md) · [Home](../index.md) · [Distance Metrics →](distance.md)
+[← Getting Started](getting_started.md) · [Home](../index.md) · [Export a phonemizer to loom →](loom_export.md)
