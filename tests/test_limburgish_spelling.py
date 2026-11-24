@@ -222,11 +222,11 @@ def test_word_final_e_is_schwa(word):
     ("eweg", ["e", "w", "e", "g"]),
 ])
 def test_ew_before_a_vowel_gives_its_glide_to_the_next_syllable(word, tokens):
-    assert LI._tokenizer.graphemes(word) == tokens
+    assert [t.grapheme for t in LI._interpreter.grapheme_tokens(word)] == tokens
 
 
 def test_ew_alone_stays_one_sign():
-    assert LI._tokenizer.graphemes("ew") == ["ew"]
+    assert [t.grapheme for t in LI._interpreter.grapheme_tokens("ew")] == ["ew"]
 
 
 @pytest.mark.parametrize("word", ["geweu\\n", "bewaar"])
@@ -248,7 +248,7 @@ def test_the_prefix_before_a_glide_is_schwa(word):
     ("zàèw", ["z", "àèw"]),
 ])
 def test_ae_grave_is_one_sign(word, tokens):
-    assert LI._tokenizer.graphemes(word) == tokens
+    assert [t.grapheme for t in LI._interpreter.grapheme_tokens(word)] == tokens
 
 
 @pytest.mark.parametrize("word, segments", [

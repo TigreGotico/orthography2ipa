@@ -73,10 +73,7 @@ def test_coronal_stop_alone_is_not_palatal():
 
 def _engine_with_spec(spec) -> G2P:
     """Build a G2P whose spec (and tokenizer) is the synthetic *spec*."""
-    engine = G2P(spec.code)
-    engine.spec = spec
-    engine._tokenizer = PhonetokTokenizer(spec)
-    return engine
+    return G2P(spec.code, spec=spec)
 
 
 def _palatal_spec(positional, *, extra_graphemes=None):

@@ -13,7 +13,7 @@ from dataclasses import replace
 import pytest
 
 from orthography2ipa import G2P, get
-from orthography2ipa.phonetok import flat_contexts
+from orthography2ipa.phonetok import PhonetokTokenizer, Token, TokenKind, flat_contexts
 from orthography2ipa.positional import (_is_open_syllable,
                                         grapheme_positions,
                                         match_grammatical_ending,
@@ -36,10 +36,12 @@ def test_is_open_syllable(syllable, expected):
 
 def _positions(lang, word, tok_index, *, stressed=None):
     engine = G2P(lang)
-    tokens = engine._tokenizer.grapheme_tokens(word)
-    contexts = flat_contexts(tokens, engine.spec.vowel_graphemes)
-    sylls = engine._syllables_cached(word)
-    syll_for_token = engine._map_tokens_to_syllables(tokens, sylls)
+    it = engine._interpreter
+    tokens = it.grapheme_tokens(word)
+    contexts = flat_contexts([Token(TokenKind.GRAPHEME, t.grapheme, t.readings, t.position, t.length)
+                              for t in tokens], engine.spec.vowel_graphemes)
+    sylls = it.syllables(word)
+    syll_for_token = it._map_tokens_to_syllables(tokens, sylls)
     idx = syll_for_token[tok_index]
     return grapheme_positions(
         contexts[tok_index], spec=engine.spec, syll_idx=idx,
@@ -80,7 +82,7 @@ def test_aperture_needs_no_stress_rules():
 
 def test_no_syllable_means_no_aperture_position():
     positions = grapheme_positions(
-        flat_contexts(G2P("fr")._tokenizer.grapheme_tokens("eu"),
+        flat_contexts(PhonetokTokenizer(get("fr-FR")).grapheme_tokens("eu"),
                       get("fr-FR").vowel_graphemes)[0],
         spec=get("fr-FR"), syllable=None)
     assert GP.OPEN_SYLLABLE not in positions

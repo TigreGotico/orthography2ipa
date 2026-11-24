@@ -59,3 +59,10 @@ def test_a_moved_ref_reads_the_new_commit(tmp_path, monkeypatch):
         subprocess.run(git + ["tag", "-f", "ref", "HEAD"], check=True, capture_output=True)
         monkeypatch.setattr(compiler, "_checkout", lambda: tmp_path)
         assert compiler._data_files("ref")["xx"].read_text(encoding="utf-8") == content
+
+
+def test_a_checkout_with_no_commit_compiles(tmp_path, monkeypatch):
+    subprocess.run(["git", "init", "-q", str(tmp_path)], check=True)
+    monkeypatch.setattr(compiler, "_checkout", lambda: tmp_path)
+    assert compiler._git_head() == ""
+    assert build_ir("kab")["source"]["compiler_commit"] == ""

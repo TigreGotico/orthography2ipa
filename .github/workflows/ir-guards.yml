@@ -16,6 +16,7 @@ on:
       - "scripts/ir_parity.py"
       - "scripts/ir_parity_ci.py"
       - "scripts/ir_lua_parity.py"
+      - "tests/data/ir_golden_ci.json"
       - ".github/workflows/ir-guards.yml"
   workflow_dispatch: {}
 

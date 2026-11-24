@@ -59,7 +59,7 @@ class TestFourSibilants:
 
         # ⟨c⟩ before i -> laminal [s], never apico; the coda ⟨n⟩ nasalises
         # the preceding vowel into precomposed "ĩ" (engine output is NFC;
-        # see G2P._transcribe_word), leaving the laminal [s] intact.
+        # see Interpreter.transcribe_word), leaving the laminal [s] intact.
         assert eng.transcribe_word("cinco") == "ˈsĩku"
 
     def test_apico_word_initial_sal(self, eng):

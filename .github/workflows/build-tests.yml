@@ -18,4 +18,4 @@ jobs:
       install_extras: 'test'
       system_deps: 'luajit'
       test_path: 'tests'
-      pytest_args: '--durations=25'
+      pytest_args: '-n auto --durations=25'

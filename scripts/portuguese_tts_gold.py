@@ -169,7 +169,7 @@ FEATURES = {
     # close-mid [e]/[o], whether bare or riding under a nasal tilde as a
     # precomposed letter (ẽ õ …) or a base + combining tilde (NFD) — decompose
     # first so a precomposed nasal vowel's base letter is visible to the regex
-    # (the engine's own output is NFC, see g2p.py's G2P._transcribe_word, but
+    # (the engine's own output is NFC, but
     # this predicate must not care which form it's handed).
     "close_mid":        ("ipa",  lambda s, ipa: re.search(
         r"[eo]", unicodedata.normalize("NFD", ipa)) is not None),

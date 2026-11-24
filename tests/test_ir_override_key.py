@@ -33,3 +33,13 @@ def test_python_finds_the_entry_of_the_unmarked_word(ru_doc):
 
 def test_lua_finds_the_entry_of_the_unmarked_word(ru_doc, tmp_path):
     assert _lua(ru_doc, "его́", tmp_path) == _lua(ru_doc, "его", tmp_path) == "jɪˈvo"
+
+
+def test_both_interpreters_find_a_hangul_exception_with_a_final_consonant(tmp_path):
+    import dataclasses
+    from orthography2ipa import get
+    from orthography2ipa.ir.compiler import build_ir as build
+
+    doc = layout.encode(build("ko", spec=dataclasses.replace(get("ko"), word_exceptions={"한국어": "WX"})))
+    assert Interpreter(doc).transcribe("한국어") == "WX"
+    assert _lua(doc, "한국어", tmp_path) == "WX"

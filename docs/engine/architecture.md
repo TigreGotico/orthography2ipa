@@ -14,16 +14,16 @@ The engine has no language-specific code. A behaviour that one language needs be
 
 ## The pipeline
 
-`G2P` in `g2p.py` is the full engine, and `transcribe()` wraps it. Each call runs the stages below in order. Each stage reads only the spec and the input. A stage with nothing to do (no rules, no plugin, no rescorer) leaves the output as it is.
+`G2P` in `g2p.py` is the full engine, and `transcribe()` wraps it. `G2P` compiles the spec to an IR document (`orthography2ipa/ir/compiler.py`) and runs it on the interpreter (`orthography2ipa/ir/interpreter.py`). The steps a caller passes at runtime run through the host hooks of the interpreter ([plugins.md](plugins.md)). Each call runs the stages below in order. Each stage reads only the spec and the input. A stage with nothing to do (no rules, no plugin, no rescorer) leaves the output as it is.
 
-`transcribe` runs the stages below on the rules path of `g2p.py` and `phonetok.py`. The compiler in `orthography2ipa/ir/compiler.py` lowers the same stages into the IR, and [section 3.1 of the IR spec](../ir/o2i-ir-v1.md#31-stage-order-and-host-hooks) maps each stage to it. The IR interpreters give the same output as the rules path, apart from the ruled changes of [section 9 of the IR spec](../ir/o2i-ir-v1.md#9-semantic-changes-from-the-legacy-engine). The markup, the text preparation and the lexicon are host steps and are not in the IR ([plugins.md](plugins.md)).
+The compiler in `orthography2ipa/ir/compiler.py` lowers the stages below into the IR, and `transcribe` runs that IR on the interpreter. [Section 3.1 of the IR spec](../ir/o2i-ir-v1.md#31-stage-order-and-host-hooks) maps each stage to it. The markup, the text preparation and the lexicon are host steps and are not in the IR ([plugins.md](plugins.md)).
 
 | Step | Stage | What happens |
 | :--- | :--- | :--- |
 | 1 | Markup | `markup.parse_markup` splits out each `<phoneme ph="…">` element. A forced word keeps its IPA through the word stages and gets no stress mark ([lexicon.md](../guide/lexicon.md)). |
 | 2 | Prepare the text | `Pipeline.expand` runs on each plain run, and then `Pipeline.mark` runs once on the sentence. With neither field set, the normalize plugin that the spec or the deprecated `plugins=` argument names runs, and then the deprecated `normalizer` callable. With none of them, the text passes through unchanged, because the library does not normalise text. |
 | 3 | Word override | Each word looks up the spec's `word_exceptions`, and then the lexicon of the engine. A hit replaces the rules for that word. |
-| 4 | Tokenize | `PhonetokTokenizer` cuts the word into grapheme tokens by maximal munch over a trie of the grapheme keys. |
+| 4 | Tokenize | The interpreter cuts the word into grapheme tokens by maximal munch over a trie of the grapheme keys, as `PhonetokTokenizer` does. |
 | 5 | Select | Each grapheme slot gets its candidates and their costs from the positional overrides and the weights. A grammatical ending can rewrite the end of the word. |
 | 6 | Rescore | The rescorers re-cost each slot in the context of its neighbours. The rescorers of `Pipeline.rescore` run first, then the rescorers of declared plugins, then the allophone rules of the spec. |
 | 7 | Beam select | Greedy search keeps one path, and beam search keeps `beam_width` paths. The best path wins. |
@@ -129,7 +129,7 @@ The spec names a plugin in its `plugins` field by entry-point name, such as `{"s
 | `sandhi.py`, `sentence.py` | Cross-word rules and the sentence lattice | `SandhiEngine`, `SentenceLattice`, `SentenceRescorer`, `WordContext` |
 | `pipeline.py` | The configuration that a caller gives to one engine | `Pipeline` |
 | `lexicon.py`, `markup.py` | The lexicon overlay and the `<phoneme>` markup | `load_lexicon`, `packaged_lexicon`, `MarkupError` |
-| `revision.py` | Content hashes of a spec with its chains, the engine source and the Unicode version, and of a packaged lexicon ([api_stability.md](../reference/api_stability.md#spec-revisions)) | `spec_revision`, `lexicon_revision`, `ENGINE_MODULES`, `SPEC_FORMAT_VERSION` |
+| `revision.py` | Content hashes of the IR of a spec and of a packaged lexicon ([api_stability.md](../reference/api_stability.md#spec-revisions)) | `spec_revision`, `lexicon_revision`, `ENGINE_MODULES`, `SPEC_FORMAT_VERSION` |
 | `features.py` | Feature export for ML and CRF G2P ([feature export](lattice.md#feature-export-for-a-learned-model)) | `WordFeatures`, `GraphemeFeatures` |
 | `inventory.py`, `underspecification.py` | Emission and phoneme inventories, TTS tokens, and the places where the spelling leaves a reading open | `phoneme_inventory`, `emission_inventory`, `is_underdetermined` |
 | `distance.py` | The relational distance metrics ([distance.md](../guide/distance.md)) | See below |

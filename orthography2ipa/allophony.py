@@ -532,7 +532,7 @@ class AllophoneRescorer(LatticeRescorer):
     def _holds_vowel(self, gctx: GraphemeContext) -> bool:
         """Whether a reading of *gctx* holds a vowel: a value of its grapheme
         table entry, or a positional value. The test is the one the stress
-        mark uses to find an inserted nucleus (``G2P._fold_inserted_nuclei``).
+        mark uses to find an inserted nucleus (``Interpreter._fold_inserted_nuclei``).
         """
         return any(is_ipa_vowel(c) for reading in gctx.ipa for c in reading) \
             or gctx.grapheme in self._positional_vowel_graphemes

@@ -4,6 +4,10 @@ It reads one IR document and one text and writes one IPA string. It knows
 the primitives of section 2.3 and nothing about any language, script or
 phoneme class: every fact it tests is a table, an attribute bit or a
 predicate that the compiler wrote. It imports no engine module.
+
+A host may run its own steps around the interpreter through :class:`Hooks`.
+A hook is a host callback, never part of the IR: an IR document holds the
+same program with hooks or without them.
 """
 from __future__ import annotations
 
@@ -13,7 +17,7 @@ from typing import Callable, Dict, FrozenSet, List, Mapping, Optional, Sequence,
 
 from orthography2ipa.ir import layout, pattern
 
-__all__ = ["Interpreter", "IRVersionError", "WordResult", "Result"]
+__all__ = ["Interpreter", "IRVersionError", "WordResult", "Result", "Hooks"]
 
 SUPPORTED_IR_VERSIONS = (1,)
 
@@ -48,7 +52,7 @@ class IRVersionError(ValueError):
     pass
 
 
-@dataclass
+@dataclass(frozen=True)
 class Token:
     kind: str
     grapheme: str
@@ -65,6 +69,7 @@ class WordResult:
     ipa: str
     dropped: Tuple[str, ...] = ()
     paths: Tuple[Tuple[Tuple[str, ...], int], ...] = ()
+    forced: bool = False
 
 
 @dataclass
@@ -78,6 +83,35 @@ class _Word:
     surface: str
     hyphen_joined: bool = False
     pausal: bool = False
+    forced: Optional[str] = None
+
+
+#: One slot of the word beam: ``[(ipa, cost)]``, best first. A cost is an
+#: integer in micro-units, as the IR writes it.
+Slot = List[Tuple[str, int]]
+
+
+@dataclass(frozen=True)
+class Hooks:
+    """The host callbacks the interpreter runs. Every field is optional.
+
+    ``text(run)`` rewrites one plain run of the input before the interpreter
+    prepares it. ``rescore(word, tokens, slots, syllables, stressed)`` gets
+    the grapheme tokens of a word and its beam slots, and returns the new
+    slots; it runs before the allophony pass. ``syllables`` holds the
+    syllable index of each token, or ``None`` when the word takes no
+    syllable context, and ``stressed`` the index of the stressed syllable.
+    A returned slot with no candidates deletes its grapheme.
+    ``syllables(word)`` returns the written syllables of *word*, or ``None``
+    to let the IR split it. ``sandhi(words, surfaces, pausal)`` gets the IPA
+    of each word after the IR sandhi and returns one IPA string per word;
+    the dialect program and NFC run after it.
+    """
+    text: Optional[Callable[[str], str]] = None
+    rescore: Optional[Callable[[str, Sequence["Token"], List[Slot], Optional[List[Optional[int]]],
+                                Optional[int]], List[Slot]]] = None
+    syllables: Optional[Callable[[str], Optional[List[str]]]] = None
+    sandhi: Optional[Callable[[List[str], List[str], List[bool]], List[str]]] = None
 
 
 @dataclass
@@ -150,6 +184,8 @@ class Interpreter:
         self._bits = [e["bits"] for e in self.entries]
         self.word = ir["word"]
         self._exceptions = dict(self.word["exceptions"])
+        self._tokens: Dict[str, Tuple[Token, ...]] = {}
+        self._segments: Dict[Tuple[str, int], Tuple[Sequence[str], Tuple[str, ...]]] = {}
         self.stress = ir.get("stress")
         self.syll = ir.get("syllable") or {}
         self._allo = ir.get("allophony")
@@ -159,6 +195,7 @@ class Interpreter:
         self._tilde = ir["beam"]["tilde"]
         self._hiatus_cache: Dict[str, FrozenSet[int]] = {}
         self._syll_cache: Dict[str, List[str]] = {}
+        self.hooks = Hooks()
         if self.stress:
             self._cliticless = frozenset(self.stress["cliticless"])
             onsets = self.stress.get("mark_onsets")
@@ -170,6 +207,15 @@ class Interpreter:
         if self._onsets:
             self._onset_table = {tuple(t) for t in self._onsets["table"]}
             self._onset_velar = frozenset(self._onsets["velar"])
+
+    def with_hooks(self, hooks: Hooks) -> "Interpreter":
+        """A copy of this interpreter that runs *hooks*. It shares the
+        loaded tables and keeps its own syllable cache."""
+        it = object.__new__(Interpreter)
+        it.__dict__.update(self.__dict__)
+        it.hooks = hooks
+        it._syll_cache = {}
+        return it
 
     # ─── characters ──────────────────────────────────────────────────
     def _c(self, ch: str, name: str) -> bool:
@@ -253,6 +299,17 @@ class Interpreter:
 
     # ─── segmentation (primitive 11) ─────────────────────────────────
     def segment(self, ipa: str, atoms: Sequence[str] = ()) -> List[str]:
+        key = (ipa, id(atoms))
+        hit = self._segments.get(key)
+        if hit is not None and hit[0] is atoms:
+            return list(hit[1])
+        segments = self._segment(ipa, atoms)
+        if len(self._segments) >= 65536:
+            self._segments.clear()
+        self._segments[key] = (atoms, tuple(segments))
+        return segments
+
+    def _segment(self, ipa: str, atoms: Sequence[str]) -> List[str]:
         segments: List[str] = []
         i, n = 0, len(ipa)
         while i < n:
@@ -290,6 +347,14 @@ class Interpreter:
         return end
 
     def tokenize(self, text: str) -> List[Token]:
+        hit = self._tokens.get(text)
+        if hit is None:
+            if len(self._tokens) >= 65536:
+                self._tokens.clear()
+            hit = self._tokens[text] = tuple(self._tokenize(text))
+        return list(hit)
+
+    def _tokenize(self, text: str) -> List[Token]:
         tokens: List[Token] = []
         n = len(text)
         pos = 0
@@ -841,14 +906,17 @@ class Interpreter:
             if not 0 <= j < len(ctx.entries) or not ctx.cands[j]:
                 continue
             ipa = ctx.cands[j][0][0]
-            marker = ctx
-            if ctx.syll_idx is not None:
-                syll_idx = list(ctx.syll_idx)
-                syll_idx[j] = ctx.syll_idx[i]
-                marker = replace(ctx, syll_idx=syll_idx)
+            marker = None
             for rule in self._allo["rules"]:
-                if (rule.get("mutate_at") == step and ipa in rule["phonemes"]
-                        and self._eval(rule["when"], marker, j)):
+                if rule.get("mutate_at") != step or ipa not in rule["phonemes"]:
+                    continue
+                if marker is None:
+                    marker = ctx
+                    if ctx.syll_idx is not None:
+                        syll_idx = list(ctx.syll_idx)
+                        syll_idx[j] = ctx.syll_idx[i]
+                        marker = replace(ctx, syll_idx=syll_idx)
+                if self._eval(rule["when"], marker, j):
                     return rule["mutate"]
         return None
 
@@ -1039,8 +1107,10 @@ class Interpreter:
         new.sort(key=lambda x: x[1])
         return new[:width]
 
-    def _word_paths(self, word: str, width: int):
-        """Beam paths of *word*: [(segments, cost, graphemes)], best first."""
+    def _slots(self, word: str, context: bool, allophony: bool = True):
+        """The grapheme tokens of *word* and each one's S6 candidates, after
+        S7 when *allophony* holds. *context* gives the slots the word's stress
+        and syllable context; without it the slots read their runs alone."""
         tokens = self.tokenize(word)
         g_tokens = [t for t in tokens if t.kind == WORD]
         entries = [t.entry for t in g_tokens]
@@ -1048,7 +1118,7 @@ class Interpreter:
         stressed: Optional[int] = None
         secondary: FrozenSet[int] = frozenset()
         aperture = None
-        if self.word["context_beam"] and g_tokens:
+        if context and g_tokens:
             runs = [(0, len(g_tokens))]
             sylls: List[str] = []
             if self.stress is not None or "silent_tail" in self.syll:
@@ -1080,9 +1150,26 @@ class Interpreter:
                        aperture[start:end] if aperture is not None else None)
             for local in range(end - start):
                 cands[start + local] = self._branches(ctx, local, g_tokens[start + local])
-        if self._allo:
+        if self.hooks.rescore is not None and g_tokens:
+            cands = [sorted(slot, key=lambda c: (c[1], c[0]))
+                     for slot in self.hooks.rescore(word, g_tokens, cands, syll_idx, stressed)]
+        if self._allo and allophony:
             for _ in range(self._allo["passes"]):
                 cands = self._rescore_pass(runs, g_tokens, entries, cands, syll_idx, stressed, secondary)
+        return g_tokens, cands
+
+    def lattice(self, word: str) -> List[Tuple[Token, List[Tuple[str, int]]]]:
+        """Each grapheme slot of *word* that sounds, with its ranked candidates,
+        in the word's stress and syllable context."""
+        g_tokens, cands = self._slots(word, context=True)
+        return [(t, c) for t, c in zip(g_tokens, cands) if c]
+
+    def _word_paths(self, word: str, width: int, context: Optional[bool] = None,
+                    allophony: bool = True):
+        """Beam paths of *word*: [(segments, cost, graphemes)], best first."""
+        if context is None:
+            context = bool(self.word["context_beam"])
+        g_tokens, cands = self._slots(word, context, allophony)
         self._constrain_nasal_carriers(cands)
         beam = [([], 0)]
         spelled = []
@@ -1163,8 +1250,11 @@ class Interpreter:
     def syllables(self, word: str) -> List[str]:
         sylls = self._syll_cache.get(word)
         if sylls is None:
-            written = self._known_only(word)
-            sylls = self._bundled(written, self.hiatus_positions(written))
+            if self.hooks.syllables is not None:
+                sylls = self.hooks.syllables(word)
+            if not sylls:
+                written = self._known_only(word)
+                sylls = self._bundled(written, self.hiatus_positions(written))
             self._syll_cache[word] = sylls
         return list(sylls)
 
@@ -1930,7 +2020,7 @@ class Interpreter:
             out.append(ch)
         return "".join(out)
 
-    def _finalize(self, word: str, ipa: str, path, collapse: bool) -> str:
+    def _finalize(self, word: str, ipa: str, path, collapse: bool, forced: bool = False) -> str:
         if self._tone and path is not None and path[2] and ipa == "".join(path[0]):
             ipa = self._computed_tones(path[2], path[0])
         if collapse and self.word["collapse_geminates"] and ipa:
@@ -1941,6 +2031,8 @@ class Interpreter:
             ipa += virama_final
         if "tone_dock" in self.word and ipa:
             ipa = self.dock_tone_marks(ipa)
+        if forced:
+            return ipa
         if self.stress is not None and self.stress.get("iambic") and ipa and not self._is_cliticless(word):
             ipa = self.apply_iambic_length(ipa)
         if self.stress is not None and self.stress["apply"] and ipa and not self._is_cliticless(word):
@@ -2135,16 +2227,19 @@ class Interpreter:
         out.append(ipa[last:])
         return "".join(out)
 
-    def transcribe_word(self, word: str, width: int, lexicon=None) -> WordResult:
-        override = self._override_for(word, lexicon)
+    def transcribe_word(self, word: str, width: int, lexicon=None, forced: Optional[str] = None) -> WordResult:
+        """*word* to IPA. A *forced* reading takes the place of a lexicon hit
+        and is not stressed."""
+        override = forced if forced is not None else self._override_for(word, lexicon)
         paths = []
         if override is not None:
-            ipa = self._finalize(word, override, None, collapse=False)
+            ipa = self._finalize(word, override, None, collapse=False, forced=forced is not None)
         else:
             paths = self._apply_ending(word, self._word_paths(word, width))
             best = paths[0] if paths else None
             ipa = self._finalize(word, word if best is None else "".join(best[0]), best, collapse=True)
-        return WordResult(word, ipa, self._dropped(word), tuple((p[0], p[1]) for p in paths))
+        return WordResult(word, ipa, self._dropped(word), tuple((p[0], p[1]) for p in paths),
+                          forced is not None)
 
     # ─── S10 to S14: the sentence ────────────────────────────────────
     def _mark_compounds(self, words: List[_Word], ipa_words: List[str]) -> List[str]:
@@ -2197,25 +2292,49 @@ class Interpreter:
         return "".join(map(chr, pattern.sub(node, tpl, s, strings)))
 
     def transcribe_detailed(self, text: str, *, width: int = 1, lexicon=None) -> Result:
-        prepared = self.prepare(text)
+        return self.transcribe_runs([(text, None)], width=width, lexicon=lexicon)
+
+    def words(self, runs: Sequence[Tuple[str, Optional[str]]], lexicon=None) -> List[_Word]:
+        """The words of *runs*, as :meth:`transcribe_runs` reads them, the
+        last one pausal."""
         words: List[_Word] = []
-        self._group_words(prepared, words, lexicon)
+        for text, forced in runs:
+            if forced is not None:
+                words.append(_Word(text.strip(), forced=forced))
+                continue
+            if self.hooks.text is not None:
+                text = self.hooks.text(text)
+            self._group_words(self.prepare(text), words, lexicon)
+        if words:
+            words[-1].pausal = True
+        return words
+
+    def transcribe_runs(self, runs: Sequence[Tuple[str, Optional[str]]], *, width: int = 1,
+                        lexicon=None) -> Result:
+        """Transcribe a text given as runs. A run ``(text, None)`` is plain
+        text; a run ``(surface, ipa)`` is one word with a forced reading."""
+        words = self.words(runs, lexicon)
         if not words:
             return Result("")
-        words[-1].pausal = True
-        results = [self.transcribe_word(w.surface, width, lexicon) for w in words]
+        results = [self.transcribe_word(w.surface, width, lexicon, w.forced) for w in words]
         ipa_words = [r.ipa for r in results]
         if self.stress is not None and self.stress["compound_last"]:
             ipa_words = self._mark_compounds(words, ipa_words)
         if self.ir.get("sandhi"):
             ipa_words = self._sandhi(ipa_words, [w.pausal for w in words])
+        if self.hooks.sandhi is not None:
+            rewritten = self.hooks.sandhi(list(ipa_words), [w.surface for w in words],
+                                          [w.pausal for w in words])
+            if len(rewritten) != len(ipa_words):
+                raise ValueError(f"the sandhi hook returned {len(rewritten)} words for {len(ipa_words)}")
+            ipa_words = list(rewritten)
         ipa = " ".join(w for w in ipa_words if w)
         if self.ir.get("dialect"):
             from orthography2ipa.ir.dialect import run_program
             ipa = run_program(self, self.ir["dialect"], ipa, " ".join(w.surface for w in words))
         if ipa:
             ipa = self.nfc(ipa)
-        return Result(ipa, tuple(WordResult(r.word, self.nfc(iw) if iw else iw, r.dropped, r.paths)
+        return Result(ipa, tuple(WordResult(r.word, self.nfc(iw) if iw else iw, r.dropped, r.paths, r.forced)
                                  for r, iw in zip(results, ipa_words)))
 
     def transcribe(self, text: str, *, width: int = 1, lexicon=None) -> str:

@@ -156,7 +156,7 @@ class TestCodaNasalization:
 
     NASAL = "\u0303"  # combining tilde marking the nasalised vowel
 
-    # Engine output is always NFC (see G2P._transcribe_word): the coda slot
+    # Engine output is always NFC (see Interpreter.transcribe_word): the coda slot
     # emits a bare combining tilde (U+0303) which composes onto the
     # preceding vowel when Unicode has a precomposed form for it (plain
     # Latin a/e/i/o/u), and stays a separate combining mark otherwise —

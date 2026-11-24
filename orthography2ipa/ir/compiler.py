@@ -1,6 +1,6 @@
 """The o2i IR compiler: a resolved ``LanguageSpec`` in, an IR document out.
 
-Every phonetic and Unicode question the legacy engine asks at runtime is
+Every phonetic and Unicode question the rules engine asked at runtime is
 asked here, once, and the answer is written into the IR as a table, an
 attribute bit or a predicate (docs/ir/o2i-ir-v1.md, sections 2 to 7). The
 engine's own knowledge functions are the source of every answer, so the
@@ -25,7 +25,8 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Callable, Dict, FrozenSet, Iterable, List, Optional, Sequence, Set, Tuple
 
-from orthography2ipa import json_loader, registry
+import orthography2ipa.json_loader as json_loader
+import orthography2ipa.registry as registry
 from orthography2ipa.allophony import _applied, _is_modifier, _rule_atoms, segment_ipa
 from orthography2ipa.g2p import _APOSTROPHES, _EDGE_PUNCT_CHAR, _HYPHENS, _VOWEL_IPA
 from orthography2ipa.phonetok import (
@@ -39,7 +40,7 @@ from orthography2ipa.positional import (_AFTER_EXACT, _BEFORE_EXACT, _MUTE_E_CON
                                         _MUTE_E_INFLECTIONS, _TRANSPARENT_SUFFIX_GRAPHEMES,
                                         normalize_ending_value)
 from orthography2ipa.stress import (
-    _AFFRICATES, _GLIDES, _LIQUIDS, _MARK_ATOMS, _NON_SYLLABIC, _OFFGLIDES, SECONDARY_MARK, _ipa_judge,
+    _AFFRICATES, _GLIDES, _LIQUIDS, _MARK_ATOMS, _NON_SYLLABIC, _OFFGLIDES, SECONDARY_MARK, _IpaOnsetJudge, _ipa_judge,
     _judge_for, _semivowel_roles, cliticless_keys)
 from orthography2ipa.transforms import (DIALECT_PROFILES, IPAChainShift, IPALexicalRule, IPARule,
                                         PALATAL_SET, VOWEL_SET)
@@ -49,7 +50,8 @@ from orthography2ipa.version import VERSION_STR
 from orthography2ipa.vowels import (
     base_vowel_letter, grapheme_is_vowel, grapheme_vowel_axis, is_back_vowel,
     is_basic_vowel_letter, is_front_vowel, is_ipa_vowel, is_orthographic_vowel,
-    IPA_VOWEL_SYMBOLS, SYLLABIC_MARKS, is_palatal_consonant, is_pharyngealized_consonant, sonority_class)
+    IPA_VOWEL_SYMBOLS, SONORITY_GLIDE, SYLLABIC_MARKS, is_palatal_consonant, is_pharyngealized_consonant,
+    sonority_class)
 from orthography2ipa.weights import candidate_base_costs
 
 from orthography2ipa.feats import is_vowel_phone
@@ -168,8 +170,9 @@ def _git_head() -> str:
     repo = _checkout()
     if repo is None:
         return ""
-    return subprocess.run(["git", "-C", str(repo), "rev-parse", "--short=9", "HEAD"],
-                          check=True, capture_output=True, text=True).stdout.strip()
+    head = subprocess.run(["git", "-C", str(repo), "rev-parse", "--short=9", "HEAD"],
+                          capture_output=True, text=True)
+    return head.stdout.strip() if head.returncode == 0 else ""
 
 
 # ─── characters ──────────────────────────────────────────────────────────
@@ -218,7 +221,7 @@ def _char_bits(c: str, spec: LanguageSpec, elision: bool) -> int:
 @lru_cache(maxsize=None)
 def _script_chars(script: str) -> FrozenSet[str]:
     return frozenset(chr(cp) for cp in range(0x110000)
-                     if unicodedata.category(chr(cp))[0] in "LMN"
+                     if unicodedata.category(chr(cp))[0] in "LMNP"
                      and unicodedata.name(chr(cp), "").startswith(script + " "))
 
 
@@ -235,6 +238,7 @@ def _known_chars(spec: LanguageSpec, extra: Iterable[str]) -> Set[str]:
         chars |= _script_chars(script)
     for lo, hi in _FIXED_RANGES:
         chars.update(chr(cp) for cp in range(lo, hi + 1))
+    chars.update(PAUSE_PUNCTUATION)
     return chars
 
 
@@ -535,19 +539,66 @@ def _onset_table(judge, units: Sequence[str], declared: Sequence[str]) -> List[L
     core, or is a declared cluster (stress.py:481-510, 668-703). So longer
     runs are searched only from those, and the judge decides each.
     """
+    atoms = judge._atoms if isinstance(judge, _IpaOnsetJudge) else None
+    reach = max(map(len, atoms), default=1) if atoms is not None else 0
+    splits: Dict[Tuple[str, ...], bool] = {}
+
+    def splits_into(c: Tuple[str, ...]) -> bool:
+        """True if *c* joined segments back to *c*. A greedy longest-match
+        split of a prefix that splits into itself changes only within the
+        last *reach* characters, so for the IPA judge only that tail is
+        re-split."""
+        if atoms is None or len(c) < 2:
+            return judge.graphemes_of("".join(c)) == list(c)
+        hit = splits.get(c)
+        if hit is None:
+            start, width = len(c) - 1, 0
+            while start > 0 and width < reach:
+                start -= 1
+                width += len(c[start])
+            hit = splits[c] = splits_into(c[:-1]) and segment_ipa("".join(c[start:]), atoms) == list(c[start:])
+        return hit
+
+    known: Dict[str, Tuple[str, ...]] = {}
+    split = judge.graphemes_of
+
+    def graphemes_of(run: str) -> List[str]:
+        hit = known.get(run)
+        return list(hit) if hit is not None else split(run)
+
     def keys(candidates: Iterable[Tuple[str, ...]]) -> Set[Tuple[str, ...]]:
-        return {c for c in candidates
-                if judge.graphemes_of("".join(c)) == list(c) and judge._licit("".join(c))}
+        out = set()
+        for c in candidates:
+            if splits_into(c):
+                run = "".join(c)
+                known[run] = c
+                if judge._licit(run):
+                    out.add(c)
+        return out
+
+    if atoms is not None:
+        judge.graphemes_of = graphemes_of
 
     licit = keys(itertools.product(units, repeat=2))
     layer = set(licit)
     unit_set = set(units)
-    for depth in range(3, 6):
+    # The judge refuses a run longer than its cap, and without declared
+    # clusters it refuses one of more than MAX_MEMBERS units.
+    deepest = 5 if judge._onsets else judge.MAX_MEMBERS
+    if judge.max_onset is not None:
+        deepest = min(deepest, judge.max_onset)
+    # The IPA judge with declared clusters licenses a longer run only when it
+    # is declared, or when it ends in a glide on a licit run.
+    glides_only = atoms is not None and bool(judge._onsets)
+    tails = [u for u in units if (s := judge._segment(u)) is not None and sonority_class(s) == SONORITY_GLIDE] \
+        if glides_only else units
+    for depth in range(3, deepest + 1):
         candidates: Set[Tuple[str, ...]] = set()
         for seq in layer:
-            for u in units:
+            for u in tails:
                 candidates.add(seq + (u,))
-                if depth == 3:
+            if depth == 3 and not glides_only:
+                for u in units:
                     candidates.add((u,) + seq)
         for cluster in declared:
             parts = tuple(judge.graphemes_of(cluster))
@@ -555,6 +606,8 @@ def _onset_table(judge, units: Sequence[str], declared: Sequence[str]) -> List[L
                 candidates.add(parts)
         layer = keys(candidates)
         licit |= layer
+    if atoms is not None:
+        judge.graphemes_of = split
     return sorted(list(t) for t in licit)
 
 
@@ -711,14 +764,22 @@ def _readings_of(spec: LanguageSpec, entries: Dict[str, Tuple[str, ...]]) -> Set
 def build_ir(code: str, data_ref: Optional[str] = None, *, dialect_profile: Optional[str] = None,
              dialect_spirants: bool = False, apply_stress: bool = True,
              apply_allophony: bool = True, apply_sandhi: bool = True,
-             expand_allophones: bool = False) -> dict:
+             expand_allophones: bool = False, expose_ambiguous_endings: bool = True,
+             spec: Optional[LanguageSpec] = None) -> dict:
     """The IR of *code* with plain strings (the readable form).
 
     The IR without a dialect program is compiled once per process; a
-    dialect program is added to a copy.
+    dialect program is added to a copy. A caller *spec* is compiled in
+    place of the registry spec of *code*, and its IR is not kept.
+    ``expose_ambiguous_endings=False`` drops the lower-ranked readings of a
+    list-valued ``grammatical_endings`` entry, so they never reach the beam.
     """
-    base, spec, elision = _base_ir(code, data_ref, apply_stress, apply_allophony, apply_sandhi,
-                                   expand_allophones)
+    if spec is None:
+        base, spec, elision = _base_ir(code, data_ref, apply_stress, apply_allophony, apply_sandhi,
+                                       expand_allophones)
+    else:
+        base, elision = _build(spec, data_ref, apply_stress, apply_allophony, apply_sandhi,
+                               expand_allophones)
     ir = dict(base)
     if dialect_profile:
         ir["dialect"] = _dialect_program(dialect_profile, dialect_spirants)
@@ -729,6 +790,10 @@ def build_ir(code: str, data_ref: Optional[str] = None, *, dialect_profile: Opti
             chars[ord(c)] = _char_bits(c, spec, elision) & ~(1 << CB["known"])
         ir["chars"] = chars
         ir["char_maps"] = _char_maps(spec, {chr(cp) for cp in chars})
+    if not expose_ambiguous_endings and "endings" in ir:
+        endings = dict(ir["endings"])
+        endings["table"] = [{**e, "alts": [], "costs": e["costs"][:1]} for e in endings["table"]]
+        ir["endings"] = endings
     return ir
 
 
@@ -1145,6 +1210,13 @@ def _compositions() -> Tuple[Tuple[str, str, str], ...]:
             parts = [chr(int(x, 16)) for x in raw.split()]
             if len(parts) == 2 and unicodedata.normalize("NFC", c) == c:
                 out.append((parts[0], parts[1], c))
+    # Hangul syllables compose by arithmetic, not by the decomposition table.
+    for s in range(11172):
+        lv, t = divmod(s, 28)
+        if t:
+            out.append((chr(0xAC00 + lv * 28), chr(0x11A7 + t), chr(0xAC00 + s)))
+        else:
+            out.append((chr(0x1100 + lv // 21), chr(0x1161 + lv % 21), chr(0xAC00 + s)))
     return tuple(out)
 
 

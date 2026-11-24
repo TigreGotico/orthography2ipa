@@ -66,7 +66,7 @@ def test_plugin_and_bundled_paths_agree(lang, word, plugin_engine):
 @pytest.mark.parametrize("word", FINAL_IU + FINAL_UI)
 def test_bundled_syllabifier_keeps_the_final_diphthong_whole(lang, word):
     # dis-tra-iu, pa-uis: the last syllable starts at the diphthong.
-    sylls = G2P(lang)._syllables_cached(word)
+    sylls = G2P(lang)._interpreter.syllables(word)
     tail = "uis" if word.endswith("uis") else "iu"
     assert sylls[-1] == tail, sylls
 

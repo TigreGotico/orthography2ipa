@@ -12,7 +12,7 @@ from pathlib import Path
 
 import pytest
 
-from orthography2ipa import G2P
+from tests.frozen_rules import FrozenRules
 from orthography2ipa.ir import layout, pattern
 from orthography2ipa.ir.compile_patterns import compile_pattern, compile_template
 from orthography2ipa.ir.compiler import build_ir
@@ -216,7 +216,7 @@ def _dialect_rows():
 def test_dialect_profile_byte_parity(profile):
     texts = _dialect_rows()
     assert len(texts) == 235
-    legacy = G2P("pt-PT", dialect_profile=profile)
+    legacy = FrozenRules("pt-PT", dialect_profile=profile)
     it = Interpreter(build_ir("pt-PT", dialect_profile=profile))
     diffs = [(t, legacy.transcribe(t), it.transcribe(t)) for t in texts
              if legacy.transcribe(t) != it.transcribe(t)]
@@ -387,6 +387,10 @@ class TestOnsetTable:
         from orthography2ipa.ir.compiler import _onset_table
 
         class Judge:
+            MAX_MEMBERS = 3
+            max_onset = None
+            _onsets = frozenset({"stra"})
+
             def graphemes_of(self, run):
                 return list(run)
 
@@ -424,13 +428,22 @@ class TestOutputNFC:
         assert [ord(c) for c in out] == [0x62, 0xE3, 0x2D0]
 
 
+class TestScriptPause:
+    def test_the_arabic_comma_blocks_sandhi_like_the_ascii_one(self):
+        """The Arabic comma is a pause, so the article keeps its hamzat wasl."""
+        interp = Interpreter(build_ir("arb"))
+        assert interp.transcribe("\u0641\u0650\u064a \u0627\u0644\u0628\u064e\u064a\u0652\u062a\u0650") == "fi\u02d0 l\u02c8bajti"
+        assert interp.transcribe("\u0641\u0650\u064a\u060c \u0627\u0644\u0628\u064e\u064a\u0652\u062a\u0650") == "fi\u02d0 al\u02c8bajti"
+        assert interp.transcribe("\u0641\u0650\u064a, \u0627\u0644\u0628\u064e\u064a\u0652\u062a\u0650") == "fi\u02d0 al\u02c8bajti"
+
+
 class TestGrammaticalEndings:
     @pytest.mark.parametrize("code,words", [
         ("ru", ["большого", "самого", "красного", "моего"]),
         ("ru-x-pskov", ["ничего", "чего", "большого"]),
     ])
     def test_ending_words_like_legacy(self, code, words):
-        interp, g = Interpreter(build_ir(code)), G2P(code)
+        interp, g = Interpreter(build_ir(code)), FrozenRules(code)
         assert [interp.transcribe(w) for w in words] == [g.transcribe(w) for w in words]
 
 
@@ -442,7 +455,7 @@ class TestInherentVowel:
         ("pa", ["ਪੱਗ", "ਸੱਚ"]),
     ])
     def test_abugida_words_like_legacy(self, code, words):
-        interp, g = Interpreter(build_ir(code)), G2P(code)
+        interp, g = Interpreter(build_ir(code)), FrozenRules(code)
         assert [interp.transcribe(w) for w in words] == [g.transcribe(w) for w in words]
 
 
@@ -477,7 +490,7 @@ class TestComputedTone:
     # Thai tone follows the initial's class, the rime's shape and the mark (Slayden 2009 § 6).
     def test_thai_words_like_legacy(self):
         words = ["เป็นต้อง", "ก่อน", "ขวด", "ไหม", "นก"]
-        interp, g = Interpreter(build_ir("th")), G2P("th")
+        interp, g = Interpreter(build_ir("th")), FrozenRules("th")
         assert [interp.transcribe(w) for w in words] == [g.transcribe(w) for w in words]
         assert interp.transcribe("นก") == "nok̚˦˥"
 
@@ -486,7 +499,7 @@ class TestConsonantNuclei:
     # Lao ⟨ວ⟩ between an onset and a coda is the nucleus /uːə/: ⟨ພວກ⟩ is /pʰuːək̚/ (Enfield 2007).
     def test_lao_words_like_legacy(self):
         words = ["ໜ່ວຍ", "ຊວງ", "ພວກ", "ດວງຈິດ", "ຂອງພວກເຮົາ"]
-        interp, g = Interpreter(build_ir("lo")), G2P("lo")
+        interp, g = Interpreter(build_ir("lo")), FrozenRules("lo")
         assert [interp.transcribe(w) for w in words] == [g.transcribe(w) for w in words]
 
     def test_thai_cluster_backs_off(self, monkeypatch):
@@ -509,7 +522,7 @@ class TestDependentVowels:
         ("new", ["नेपाय्", "कँय्", "तँय्", "गंल्वय्"]),
     ])
     def test_words_like_legacy(self, code, words):
-        interp, g = Interpreter(build_ir(code)), G2P(code)
+        interp, g = Interpreter(build_ir(code)), FrozenRules(code)
         assert [interp.transcribe(w) for w in words] == [g.transcribe(w) for w in words]
 
 
@@ -517,7 +530,7 @@ class TestViramaFinalVowel:
     # Malayalam samvrutokaram: a word-final virama reads /ɨ/ (Asher & Kumari 1997 § 3.1.1.2).
     def test_malayalam_words_like_legacy(self):
         words = ["അവന്", "കണ്ണ്", "ആറ്റ്", "പാല്", "മലയാളം"]
-        interp, g = Interpreter(build_ir("ml")), G2P("ml")
+        interp, g = Interpreter(build_ir("ml")), FrozenRules("ml")
         assert [interp.transcribe(w) for w in words] == [g.transcribe(w) for w in words]
         assert interp.transcribe("പാല്") == "paːlɨ"
 
@@ -536,7 +549,7 @@ class TestWeightStress:
         ("ary-MA", ["مدرسة", "كتاب"]),
     ])
     def test_weight_words_like_legacy(self, code, words):
-        interp, g = Interpreter(build_ir(code)), G2P(code)
+        interp, g = Interpreter(build_ir(code)), FrozenRules(code)
         assert [interp.transcribe(w) for w in words] == [g.transcribe(w) for w in words]
 
 
@@ -550,7 +563,7 @@ class TestWrittenOnsets:
         ("de-x-alemanni", ["Fenster", "Abstand", "Kinder"]),
     ])
     def test_syllables_like_legacy(self, code, words):
-        interp, g = Interpreter(build_ir(code)), G2P(code)
+        interp, g = Interpreter(build_ir(code)), FrozenRules(code)
         assert [interp.syllables(w) for w in words] == [g._syllables_cached(w) for w in words]
         assert [interp.transcribe(w) for w in words] == [g.transcribe(w) for w in words]
 
@@ -565,7 +578,7 @@ class TestVowelLetters:
 
     @pytest.mark.parametrize("code,words", [("ast", ["fíu", "muyer", "güeyu"]), ("zu", ["umuntu", "inkomo"])])
     def test_words_like_legacy(self, code, words):
-        interp, g = Interpreter(build_ir(code)), G2P(code)
+        interp, g = Interpreter(build_ir(code)), FrozenRules(code)
         assert [interp.transcribe(w) for w in words] == [g.transcribe(w) for w in words]
 
 
@@ -593,7 +606,7 @@ class TestNucleusConditions:
         ("pt-BR", ["cidade", "leite", "também", "cantam"]), ("fr-FR", ["le", "je", "premier"]),
     ])
     def test_words_like_legacy(self, code, words):
-        interp, g = Interpreter(build_ir(code)), G2P(code)
+        interp, g = Interpreter(build_ir(code)), FrozenRules(code)
         assert [interp.transcribe(w) for w in words] == [g.transcribe(w) for w in words]
 
 
@@ -661,7 +674,7 @@ class TestPortGaps:
     def test_abugida_stress_counts_transcribed_syllables(self):
         # Khmer stress falls on the last syllable (Huffman 1970); the inherent vowels count.
         words = ["កករ", "កកិត", "កងយោធពល"]
-        interp, g = Interpreter(build_ir("km")), G2P("km")
+        interp, g = Interpreter(build_ir("km")), FrozenRules("km")
         assert interp.ir["stress"]["ipa_count"] == 1
         assert [interp.transcribe(w) for w in words] == [g.transcribe(w) for w in words]
 
@@ -692,7 +705,7 @@ class TestNeighbourMutation:
 
     def test_manx_like_legacy(self):
         words = ["ben", "keeill", "thie", "ushtey"]
-        assert [Interpreter(build_ir("gv")).transcribe(w) for w in words] == [G2P("gv").transcribe(w) for w in words]
+        assert [Interpreter(build_ir("gv")).transcribe(w) for w in words] == [FrozenRules("gv").transcribe(w) for w in words]
 
 
 class TestAccent2:

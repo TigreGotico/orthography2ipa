@@ -25,7 +25,9 @@ from orthography2ipa import (
     resolve,
     spec_revision,
 )
-from orthography2ipa import json_loader, revision
+from orthography2ipa import json_loader, registry, revision
+from orthography2ipa.ir import cache as ir_cache
+from orthography2ipa.ir import compiler as ir_compiler
 from orthography2ipa import lexicon as lexmod
 
 GROUP = "orthography2ipa.lexicons"
@@ -47,7 +49,9 @@ NOT_ENGINE = {
 # The only module outside revision.ENGINE_MODULES that an engine module may
 # import. lexicon.py and registry.py read VERSION_MAJOR only to write a removal
 # version into a deprecation message, and an alpha bumps it every day.
-ENGINE_MAY_IMPORT = {"version"}
+# ir/cache.py reads the revision only to name its cached IR files, which
+# changes no output.
+ENGINE_MAY_IMPORT = {"version", "revision"}
 
 # One spec per script family that reaches different engine code.
 TRANSCRIPTIONS = [
@@ -61,16 +65,27 @@ TRANSCRIPTIONS = [
 ]
 
 
+def fresh():
+    """Forget every spec, source and IR read so far."""
+    revision._canonical_spec.cache_clear()
+    revision.engine_fingerprint.cache_clear()
+    ir_cache._engine_bytes.cache_clear()
+    ir_cache._revisions.clear()
+    ir_cache._interpreters.clear()
+    ir_compiler._base_ir.cache_clear()
+    registry._cache.clear()
+    json_loader._specs.clear()
+
+
 @pytest.fixture(autouse=True)
-def fresh_caches():
-    """Each test reads the spec files and module sources it sets up."""
-    def clear():
-        revision._canonical_spec.cache_clear()
-        revision._spec_revision.cache_clear()
-        revision.engine_fingerprint.cache_clear()
-    clear()
+def fresh_caches(monkeypatch):
+    """Each test reads the spec files and module sources it sets up, and
+    compiles in memory only."""
+    monkeypatch.setenv("O2I_IR_CACHE", "off")
+    monkeypatch.setattr(ir_cache, "PRECOMPILED", Path("/nonexistent"))
+    fresh()
     yield
-    clear()
+    fresh()
 
 
 def edit_spec(monkeypatch, tmp_path, code, edit):
@@ -80,8 +95,7 @@ def edit_spec(monkeypatch, tmp_path, code, edit):
     copy = tmp_path / f"{code}.json"
     copy.write_text(json.dumps(raw, ensure_ascii=False, indent=2), encoding="utf-8")
     monkeypatch.setitem(json_loader._index, code, copy)
-    revision._canonical_spec.cache_clear()
-    revision._spec_revision.cache_clear()
+    fresh()
 
 
 def add_grapheme(raw):
@@ -99,8 +113,7 @@ def test_format():
 
 def test_equal_across_calls():
     first = spec_revision("pt-PT")
-    revision._spec_revision.cache_clear()
-    revision._canonical_spec.cache_clear()
+    fresh()
     assert spec_revision("pt-PT") == first
 
 
@@ -129,9 +142,10 @@ def test_child_and_parent_differ():
     assert spec_revision("pt-BR") != spec_revision(parent)
 
 
-def test_every_registered_code_has_its_own_revision(all_codes):
-    revisions = {spec_revision(code) for code in all_codes}
-    assert len(revisions) == len(all_codes)
+def test_every_sampled_code_has_its_own_revision():
+    """Each revision compiles its IR, so the test samples one code per script family."""
+    codes = [code for code, _ in TRANSCRIPTIONS] + ["pt-BR", "en-GB"]
+    assert len({spec_revision(code) for code in codes}) == len(codes)
 
 
 # ── spec_revision: what changes it ────────────────────────────────────────
@@ -142,17 +156,21 @@ def test_changes_with_its_own_spec(monkeypatch, tmp_path):
     assert spec_revision("pt-BR") != before
 
 
-def test_changes_with_every_spec_on_its_parent_chain(monkeypatch, tmp_path):
-    chain = ancestry_chain("en-US")
-    assert len(chain) > 3
-    before = spec_revision("en-US")
+def test_changes_with_every_parent_edit_that_reaches_the_spec(monkeypatch, tmp_path):
+    """A parent edit that changes the loaded child changes its IR, so its revision."""
+    chain = ancestry_chain("pt-BR")
+    assert len(chain) > 2
+    before, before_spec = spec_revision("pt-BR"), registry.get("pt-BR")
+    reached = 0
     for parent in chain:
         with monkeypatch.context() as m:
-            edit_spec(m, tmp_path, parent, lambda raw: raw.update(notes="edited"))
-            assert spec_revision("en-US") != before, parent
-        revision._canonical_spec.cache_clear()
-        revision._spec_revision.cache_clear()
-    assert spec_revision("en-US") == before
+            edit_spec(m, tmp_path, parent, add_grapheme)
+            if registry.get("pt-BR") != before_spec:
+                reached += 1
+                assert spec_revision("pt-BR") != before, parent
+        fresh()
+    assert reached
+    assert spec_revision("pt-BR") == before
 
 
 def test_changes_with_a_graphemes_base_off_the_parent_chain(monkeypatch, tmp_path):
@@ -181,44 +199,43 @@ def test_unchanged_by_reformatting(monkeypatch, tmp_path):
                            encoding="utf-8")
     assert reformatted.read_bytes() != json_loader._index["pt-BR"].read_bytes()
     monkeypatch.setitem(json_loader._index, "pt-BR", reformatted)
-    revision._canonical_spec.cache_clear()
-    revision._spec_revision.cache_clear()
+    fresh()
     assert spec_revision("pt-BR") == before
 
 
-def test_changes_with_the_engine_source(monkeypatch):
-    before = spec_revision("pt-PT")
-    real = revision._module_source
-
-    def edited(name):
-        source = real(name)
-        return source.replace(b"def ", b"def x_", 1) if name == "g2p" else source
-
-    monkeypatch.setattr(revision, "_module_source", edited)
-    revision._spec_revision.cache_clear()
-    revision.engine_fingerprint.cache_clear()
-    assert spec_revision("pt-PT") != before
+def test_unchanged_by_a_note_on_the_parent_chain(monkeypatch, tmp_path):
+    """The revision hashes the IR, and a note compiles to nothing."""
+    before = spec_revision("en-US")
+    edit_spec(monkeypatch, tmp_path, ancestry_chain("en-US")[0], lambda raw: raw.update(notes="edited"))
+    assert spec_revision("en-US") == before
 
 
-def test_changes_with_the_spec_format_version(monkeypatch):
-    before = spec_revision("pt-PT")
-    monkeypatch.setattr(revision, "SPEC_FORMAT_VERSION", revision.SPEC_FORMAT_VERSION + 1)
-    revision._spec_revision.cache_clear()
-    assert spec_revision("pt-PT") != before
+def test_is_the_hash_of_the_compiled_ir():
+    from orthography2ipa.ir import layout
+    ir = ir_compiler.build_ir("pt-PT", **ir_cache.DEFAULT_OPTIONS)
+    assert spec_revision("pt-PT") == layout.spec_revision(ir)
 
 
-def test_changes_with_the_unicode_database_version(monkeypatch):
-    """The engine normalises and classifies text with unicodedata, so its version is an input."""
-    def fresh():
-        revision._spec_revision.cache_clear()
-        revision.engine_fingerprint.cache_clear()
-        return spec_revision("pt-PT")
+def test_reads_a_precompiled_document_without_compiling(monkeypatch, tmp_path):
+    """A cold revision of a slow spec costs no compile when the wheel holds its IR."""
+    doc = ir_compiler.compile_spec("fr-FR", **ir_cache.DEFAULT_OPTIONS)
+    want = spec_revision("fr-FR")
+    ir_cache.write(tmp_path, f"fr-FR-{ir_cache.cache_key('fr-FR', ir_cache.DEFAULT_OPTIONS)}.json.xz", doc)
+    fresh()
+    monkeypatch.setattr(ir_cache, "PRECOMPILED", tmp_path)
 
-    before = spec_revision("pt-PT")
-    monkeypatch.setattr(unicodedata, "unidata_version", "0.0.0")
-    assert fresh() != before
-    monkeypatch.undo()
-    assert fresh() == before
+    def refuse(*a, **kw):
+        raise AssertionError("compiled")
+
+    monkeypatch.setattr(ir_cache, "compile_spec", refuse)
+    assert spec_revision("fr-FR") == want
+
+
+def test_transcription_revision_follows_the_ir(monkeypatch):
+    from orthography2ipa import transcription_revision
+    monkeypatch.setattr(revision, "lexicon_revision", lambda code, patches=False: "sha256:lex")
+    want = "sha256:" + hashlib.sha256((spec_revision("pt-PT") + "\nsha256:lex").encode()).hexdigest()
+    assert transcription_revision("pt-PT") == want
 
 
 # ── engine fingerprint ────────────────────────────────────────────────────
@@ -287,7 +304,7 @@ def test_engine_modules_name_real_files():
     package = Path(revision.__file__).parent
     assert len(set(revision.ENGINE_MODULES)) == len(revision.ENGINE_MODULES)
     for name in revision.ENGINE_MODULES:
-        assert (package / f"{name}.py").is_file(), name
+        assert (package / f"{name}.py").is_file() or (package / name / "__init__.py").is_file(), name
     assert not set(revision.ENGINE_MODULES) & set(NOT_ENGINE)
 
 
@@ -298,7 +315,7 @@ def test_every_module_a_transcription_loads_is_listed():
         from orthography2ipa import G2P
         for code, text in {TRANSCRIPTIONS!r}:
             assert G2P(code).transcribe(text), code
-        print(json.dumps(sorted(m.split(".", 1)[1] for m in sys.modules
+        print(json.dumps(sorted(m.split(".")[1] for m in sys.modules
                                 if m.startswith("orthography2ipa."))))
     """)
     out = subprocess.run([sys.executable, "-c", script], capture_output=True,
@@ -340,7 +357,7 @@ def test_a_missing_source_file_raises_engine_source_unavailable(monkeypatch, tmp
     monkeypatch.setattr(revision, "files", lambda package: tmp_path)
     with pytest.raises(EngineSourceUnavailable):
         revision.engine_fingerprint()
-    revision._spec_revision.cache_clear()
+    fresh()
     with pytest.raises(EngineSourceUnavailable):
         spec_revision("pt-PT")
 
@@ -448,15 +465,17 @@ def test_an_import_in_a_module_the_engine_may_import_is_unlisted():
     assert not unlisted_engine_imports(lambda name: revision._module_source(name).decode())
 
 
-def test_a_clade_with_no_parent_follows_its_parent_role_ancestor(monkeypatch, tmp_path):
-    """The spec gives ``parent`` from its first parent-role ancestor, and the loader walks through a clade by it."""
+def test_an_ancestor_edit_that_the_child_never_loads_leaves_it_equal(monkeypatch, tmp_path):
+    """The revision hashes the IR. mni-Mtei declares its whole table, so an
+    edit to the parent-role ancestor of its clade does not reach it. The next
+    test shows an edit that does reach the child through such a clade."""
     raw = json.loads(json_loader._index["mni"].read_text(encoding="utf-8"))
-    assert "parent" not in raw or raw["parent"] is None
     ancestor = next(a["code"] for a in raw["ancestors"] if a["role"] == "parent")
     edit_spec(monkeypatch, tmp_path, "mni", lambda r: r.update(clade=True))
-    before = spec_revision("mni-Mtei")
+    before, before_spec = spec_revision("mni-Mtei"), registry.get("mni-Mtei")
     edit_spec(monkeypatch, tmp_path, ancestor, add_grapheme)
-    assert spec_revision("mni-Mtei") != before
+    assert registry.get("mni-Mtei") == before_spec
+    assert spec_revision("mni-Mtei") == before
 
 
 def test_a_clade_whose_parent_has_no_file_follows_its_parent_role_ancestor(
@@ -479,8 +498,7 @@ def test_a_clade_whose_parent_has_no_file_follows_its_parent_role_ancestor(
             path.write_text(json.dumps(raw), encoding="utf-8")
             monkeypatch.setitem(json_loader._index, code, path)
         monkeypatch.setattr(json_loader, "_specs", {})
-        revision._canonical_spec.cache_clear()
-        revision._spec_revision.cache_clear()
+        fresh()
 
     register()
     assert "qqz" not in json_loader._index
@@ -581,3 +599,29 @@ def test_lexicon_revision_without_a_patch_file_raises(installed, monkeypatch):
         lexicon_revision("pt-PT", patches=True)
     with pytest.raises(LookupError):
         packaged_lexicon("pt-PT", patches=True)
+
+
+# ── the contract scriptconv reads ─────────────────────────────────────────
+
+def test_spec_revision_is_a_string():
+    """scriptconv stores the value and never parses it."""
+    assert isinstance(spec_revision("pt-PT"), str)
+
+
+def test_lexicon_revision_keeps_its_signature():
+    import inspect
+    params = inspect.signature(lexicon_revision).parameters
+    assert list(params) == ["code", "patches"]
+    assert params["patches"].default is False
+    assert params["patches"].kind is inspect.Parameter.POSITIONAL_OR_KEYWORD
+
+
+def test_unreadable_engine_source_raises(monkeypatch, tmp_path):
+    """The IR cache keys its documents on the engine source. A process that
+    cannot read the source cannot tell a current document from a stale one, so
+    spec_revision raises EngineSourceUnavailable, and scriptconv records no
+    revision."""
+    from orthography2ipa.exceptions import EngineSourceUnavailable
+    monkeypatch.setattr(revision, "files", lambda package: tmp_path)
+    with pytest.raises(EngineSourceUnavailable):
+        spec_revision("es-ES")

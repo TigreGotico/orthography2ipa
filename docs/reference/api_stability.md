@@ -97,23 +97,17 @@ The exception types `UnmappedScriptError`, `UnmappedGraphemeWarning`, `StubSpecW
 
 ## Spec revisions
 
-`spec_revision(code)` names the rules that an engine for `code` reads. A consumer records the value when it trains, and compares it with the value of the engine that it runs later.
+`spec_revision(code)` names the IR that `G2P(code)` runs. A consumer records the value when it trains, and compares it with the value of the engine that it runs later.
 
-The value is `"sha256:"` followed by a hex digest. It is a function of three inputs, in this order:
+The value is `"sha256:"` followed by a hex digest of the canonical IR document and the versions of the interpreter primitives that the IR uses. Section 8.1 of [o2i-ir-v1.md](../ir/o2i-ir-v1.md#81-versions-and-the-revision) gives the exact input. The IR holds the spec data with its parent and `<field>_base` chains, and the default compile options. So an edit that leaves the IR equal leaves the revision equal: a note in a spec, a comment in the engine, or a spec that is not on the chains of `code`.
 
-1. The spec-format version, `orthography2ipa.revision.SPEC_FORMAT_VERSION`. The version is `1`.
-2. The spec files that the loader merges into the spec. These are the file of the resolved code, then every file on its `parent` chain and on each `<field>_base` chain, sorted by code. A clade with no `parent`, or with a `parent` that names a code with no spec file, continues the chain through its first `parent`-role ancestor, because `LanguageSpec` takes its `parent` from there. Each file counts as its parsed JSON with sorted keys and no whitespace, tagged with its code. The other `ancestors` codes do not count, because the loader merges none of their data.
-3. The engine fingerprint. This is a sha256 over the version of the Unicode database of the running Python, `unicodedata.unidata_version`, and the tokens of the modules in `orthography2ipa.revision.ENGINE_MODULES`, the modules on the transcription path. The engine normalises and classifies text with `unicodedata`, so a Python with another Unicode version can give other output from the same spec. Comments, blank lines and the width of an indent do not count. Statement ends, block edges and docstrings count, so a line that moves into or out of a block changes the value. The package version does not count, because a daily alpha changes it with no change to the engine.
+The function reads the IR from the precompiled documents of the package, then from the user cache (`$O2I_IR_CACHE`, else `~/.cache/orthography2ipa/ir`). It compiles the spec only when neither holds the document. The cache key hashes the spec chain, the engine source, the `ir` package and the Unicode version, so a changed engine never reads a stale document.
 
-`ENGINE_MODULES` lists the modules of the rules path, not the modules of `orthography2ipa/ir/`. A loom export records the IR revision instead, which hashes the compiled IR and its primitive versions ([revisions.md](../guide/revisions.md)).
+The revision covers the spec, the compiler and the interpreter. It does not cover a step that a caller passes in a `Pipeline`, or a plugin that a spec names through the deprecated `plugins` field. `G2P` raises a `DeprecationWarning` for that field, and no shipped spec sets it. An installed plugin that no spec names never runs.
 
-The revision covers the spec and the engine. It does not cover a step that a caller passes in a `Pipeline`. It also does not cover a third-party plugin that a spec names through the deprecated `plugins` field or `stress.source = "plugin"`. `G2P` raises a `DeprecationWarning` for both, and no shipped spec sets either. An installed plugin that no spec names never runs: `G2P` does not call `get_rescorers`, and the stress plugin runs only for `stress.source = "plugin"`.
+The code resolves as `G2P` resolves it, so an alias and its canonical code give one revision. The cache key needs the `.py` source of each engine module. An install that ships only byte code still transcribes, but `spec_revision` raises `orthography2ipa.exceptions.EngineSourceUnavailable`, a `RuntimeError`.
 
-The code resolves as `G2P` resolves it, so an alias and its canonical code give one revision. The value is computed at the first call for a code in a process, and the process keeps it. The engine files are read at that first call. If the package files change on disk before it, the value describes the files on disk and not the code that the process runs. A whitespace-only edit of a spec leaves the revision equal. An edit to a spec that is not on the chains of `code` leaves it equal too.
-
-The engine fingerprint needs the `.py` source of each engine module. An install that ships only byte code still transcribes, but `spec_revision` raises `orthography2ipa.exceptions.EngineSourceUnavailable`, a `RuntimeError`.
-
-The spec-format version goes up when a spec field starts to mean something else. An example is an engine that reads an existing key in a new way. Every spec revision then changes, although no spec file changed. A new optional field does not need a new version, because only the specs that use it change.
+`transcription_revision(code, patches=False)` names the default path: the hash of `spec_revision(code)` and `lexicon_revision(code, patches)`. Record it for output that `transcribe(text, code)` or `G2P(code)` gives with the packaged lexicon.
 
 `lexicon_revision(code, patches=False)` names the packaged lexicon that `packaged_lexicon(code, patches)` reads. It is a sha256 over the `patches` flag, the bytes of the exceptions file and, with `patches=True`, the bytes of the patch file. The two values of the flag never give one revision. The function raises `LookupError` in the cases where `packaged_lexicon` raises it. A lexicon sits outside the spec, so a consumer that passes one to the engine records both revisions.
 

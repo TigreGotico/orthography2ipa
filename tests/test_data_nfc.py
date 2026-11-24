@@ -9,7 +9,7 @@ instead of the precomposed ``ã``) is invisible to the naked eye but silently
 produces decomposed IPA output — the exact bug this test locks down.
 
 The engine also NFC-normalizes at its own emission boundary
-(``G2P._transcribe_word``, ``G2P.transcribe_detailed``), so decomposed data
+(``Interpreter.transcribe_word``, ``G2P.transcribe_detailed``), so decomposed data
 no longer reaches a caller either way — but the data itself should still be
 authored consistently, both so a human reading the raw JSON sees what the
 engine sees, and so nothing downstream (a lexicon TSV export, a lattice

@@ -259,6 +259,6 @@ class TestPauseIsNotLatinOnly:
     def test_the_arabic_comma_is_not_glued_to_the_word(self):
         """It was tokenized as UNKNOWN, so it ended up inside the surface."""
         from orthography2ipa.g2p import G2P
-        words = G2P("arb")._split_words("\u0641\u0650\u064a\u060c \u0627\u0644\u0628\u064e\u064a\u0652\u062a\u0650")
+        words = G2P("arb").sentence_lattice("\u0641\u0650\u064a\u060c \u0627\u0644\u0628\u064e\u064a\u0652\u062a\u0650").words
         assert "\u060c" not in words[0].surface
         assert words[0].pausal is True

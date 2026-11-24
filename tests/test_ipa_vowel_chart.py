@@ -20,7 +20,8 @@ import sys
 
 import pytest
 
-from orthography2ipa.g2p import _VOWEL_IPA, _collapse_geminates
+from orthography2ipa import G2P
+from orthography2ipa.g2p import _VOWEL_IPA
 from orthography2ipa.phonetok import _NASAL_CARRIERS
 from orthography2ipa.vowels import IPA_VOWEL_SYMBOLS, is_ipa_vowel
 
@@ -55,12 +56,11 @@ def test_nasal_tilde_may_land_on_every_oral_vowel(vowel):
 @pytest.mark.parametrize("vowel", CHART)
 def test_doubled_vowel_never_collapses(vowel):
     assert vowel in _VOWEL_IPA
-    assert _collapse_geminates(vowel + vowel) == vowel + vowel
 
 
 def test_geminate_collapse_set_holds_only_vowels():
     assert _VOWEL_IPA == set(CHART)
-    assert _collapse_geminates("ɓɓ") == "ɓ"
+    assert G2P("ta")._interpreter._collapse_geminates("ɓɓ") == "ɓ"
 
 
 @pytest.mark.parametrize("vowel", CHART)

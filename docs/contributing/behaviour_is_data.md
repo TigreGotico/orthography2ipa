@@ -53,7 +53,7 @@ Most behaviour needs only data. Work in this order:
 1. Express the behaviour with the spec fields that exist. [spec_authoring.md](spec_authoring.md) and `SCHEMA.md` list them: positional readings, allophone rules with their contexts, stress lists, onset clusters, sandhi rules and word exceptions.
 2. If no field expresses it, add a field. The field lands in `types.py`, `schema.py`, `json_loader.py` and `SCHEMA.md` together ([engine.md](engine.md#add-a-capability)).
 3. Lower the field in `orthography2ipa/ir/compiler.py` to the primitives that exist: attribute bits, predicate nodes at any slot offset, the `count` quantifier, pattern rewrites, codepoint maps and tables. The compiler may hold tables of language facts. The interpreters may not.
-4. Run the parity check. The Python interpreter, the Lua interpreter and the rules path must agree.
+4. Run the parity check. The Python interpreter, the Lua interpreter and the recorded golden output must agree.
 
 Section 7.2 of [o2i-ir-v1.md](../ir/o2i-ir-v1.md#72-test-every-field-added-since-tag-7300) shows the lowering of each field that the spec format added over many releases. Nearly all of them needed a compiler change and no interpreter change.
 
@@ -114,7 +114,7 @@ python3 -I scripts/check_ir_version_doc.py --base origin/dev
 
 ### Parity
 
-`ir_parity_ci.py` takes a fixed sample of languages, plus `pt-PT` and `kab`. It compares the rules path with the Python interpreter, and the Python interpreter with the Lua interpreter. The Lua step needs `luajit` on `PATH`. A run takes about two minutes:
+`ir_parity_ci.py` compares the Python interpreter with the golden output in `tests/data/ir_golden_ci.json`, a fixed sample of languages plus `pt-PT`. It then compares the Python interpreter with the Lua interpreter on the same languages plus `kab`. The Lua step needs `luajit` on `PATH`. A run takes about two minutes:
 
 ```bash
 .venv/bin/python -I scripts/ir_parity_ci.py
@@ -128,7 +128,7 @@ kab: N in 20, N out 20, N identical 20, mismatches 0 (errors py 0 lua 0; python 
 lua parity: 21 codes in, 21 results out
 ```
 
-A difference between the rules path and the Python interpreter passes only when the tool classifies it as a ruled change of section 9 of the IR spec. Any difference between Python and Lua fails, because both read the same IR. The reports go to `ir-parity-reports/`.
+Any difference from the golden output fails. An intended output change records the golden file again with `scripts/ir_parity.py --write-golden`. Any difference between Python and Lua fails, because both read the same IR. The reports go to `ir-parity-reports/`.
 
 ---
 [← Engine changes](engine.md) · [Home](../index.md) · [Silver IPA correction →](silver_correction.md)

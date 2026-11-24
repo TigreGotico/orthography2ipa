@@ -140,7 +140,7 @@ def test_sentence_lattice_ipa_matches_default_when_no_crossword(lang, text):
     default transcription for specs with no sandhi rules."""
     g = G2P(lang)
     sl = g.sentence_lattice(text)
-    if g._sandhi is None:  # sandhi would legitimately diverge the join
+    if not g.spec.sandhi_rules:  # sandhi would legitimately diverge the join
         assert sl.ipa == g.transcribe(text)
 
 

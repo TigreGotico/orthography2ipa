@@ -1033,6 +1033,21 @@ def _syllabify_with_diphthongs(
     return syllables
 
 
+def plugin_syllables(word: str, lang: Optional[str],
+                     syllabifier: SyllabifierPlugin) -> Optional[List[str]]:
+    """The division of *word* by *syllabifier*, or ``None`` when the plugin
+    fails or returns syllables that do not spell *word*."""
+    try:
+        sylls = syllabifier.syllabify(word, lang)
+        if sylls and "".join(sylls) == word:
+            return list(sylls)
+    except Exception as exc:
+        logging.getLogger(__name__).warning(
+            "syllabifier plugin %r failed on word %r: %s",
+            type(syllabifier).__name__, word, exc)
+    return None
+
+
 def _syllables_for(
     word: str,
     lang: Optional[str],
@@ -1053,14 +1068,9 @@ def _syllables_for(
     unconstrained (the historical behaviour).
     """
     if syllabifier is not None:
-        try:
-            sylls = syllabifier.syllabify(word, lang)
-            if sylls and "".join(sylls) == word:
-                return list(sylls)
-        except Exception as exc:
-            logging.getLogger(__name__).warning(
-                "syllabifier plugin %r failed on word %r: %s",
-                type(syllabifier).__name__, word, exc)
+        sylls = plugin_syllables(word, lang, syllabifier)
+        if sylls is not None:
+            return sylls
     if spec is None and lang:
         spec = _spec_for(lang)
     hiatus = (hiatus_positions(word, spec) if spec is not None

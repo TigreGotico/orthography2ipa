@@ -17,7 +17,42 @@ jobs:
       MATRIX_TOKEN: ${{ secrets.MATRIX_TOKEN }}
     with:
       version_file: 'orthography2ipa/version.py'
-      publish_pypi: true
+      publish_pypi: false
       publish_release: true
       sync_dev: true
       notify_matrix: true
+
+  publish_pypi:
+    # The shared workflow builds the wheel with no step before it. This job
+    # builds it here, after the compiled IR of the slow specs is in
+    # orthography2ipa/ir/precompiled/ (scripts/build_ir_cache.py).
+    needs: publish_stable
+    if: ${{ needs.publish_stable.result == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      # The shared workflow creates its release with
+      # tag: ${{ needs.bump_version.outputs.version }} and exposes the same
+      # value as its output version, so this ref is the tag it created.
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ needs.publish_stable.outputs.version }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.14"
+      - name: Install uv
+        run: pip install uv
+      - name: Compile the IR of the slow specs
+        run: |
+          uv venv .venv
+          uv pip install --python .venv/bin/python --prerelease=allow -e .
+          .venv/bin/python -I scripts/build_ir_cache.py --jobs 4 --min-seconds 1
+      - name: Build Distribution Packages
+        run: |
+          uv build
+          ls -l dist/
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          password: ${{ secrets.PYPI_TOKEN }}

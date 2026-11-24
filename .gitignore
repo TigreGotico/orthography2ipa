@@ -50,3 +50,7 @@ docs/explorer.html
 
 # No lockfiles: dependencies are floor pins resolved at install time.
 uv.lock
+
+# Compiled IR documents: built at release by scripts/build_ir_cache.py.
+orthography2ipa/ir/precompiled/
+.ircache-test/

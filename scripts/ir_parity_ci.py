@@ -1,20 +1,18 @@
 """Run the IR parity tools on a fixed sample of languages and fail on a defect.
 
-The sample is every Nth code, in sorted order, of the codes that have a
-WikiPron gold set, plus pt-PT and kab. The same commit always gives the same
-sample. The tool downloads the WikiPron files into the benchmark cache. A
-code with no WikiPron set, such as kab, reads the sentences of its shipped
-gold TSV. Then the tool:
+The tool:
 
-1. runs scripts/ir_parity.py (legacy engine against compile + interpret).
-   A mismatch that the tool classifies as a defect, or an interpreter
-   error, fails the run. A mismatch it classifies as a ruled change of
-   section 9 of docs/ir/o2i-ir-v1.md passes.
+1. runs scripts/ir_parity.py --golden on tests/data/ir_golden_ci.json, the
+   recorded rules-engine output of every 15th WikiPron code and pt-PT.
+   Any mismatch or interpreter error fails the run.
 2. when orthography2ipa/ir/interpreter.lua and scripts/ir_lua_parity.py
-   exist, runs the Lua parity tool (Python IR against Lua IR). Any
-   difference or error fails the run, because both sides read the same IR.
+   exist, runs the Lua parity tool (Python IR against Lua IR) on the
+   codes of the golden file and kab. It downloads the WikiPron files into
+   the benchmark cache; kab reads the sentences of its shipped gold TSV.
+   Any difference or error fails the run, because both sides read the
+   same IR.
 
-    python -I scripts/ir_parity_ci.py [--every 15] [--limit 300] [--out DIR]
+    python -I scripts/ir_parity_ci.py [--limit 300] [--out DIR]
 """
 import argparse
 import csv
@@ -25,22 +23,14 @@ from pathlib import Path
 from typing import List
 
 REPO = Path(__file__).resolve().parent.parent
-ALWAYS = ("pt-PT", "kab")
-
-
-def sample(every: int) -> List[str]:
-    sys.path.insert(0, str(REPO))
-    sys.path.insert(0, str(REPO / "scripts"))
-    import benchmark
-    from orthography2ipa import registry
-    gold = sorted(c for c in registry.available_codes() if c in benchmark._WIKIPRON_FILES)
-    return sorted(set(gold[::every]) | set(ALWAYS))
+GOLDEN = REPO / "tests" / "data" / "ir_golden_ci.json"
 
 
 def inputs(codes: List[str], args) -> List[List[str]]:
     """The tool arguments for each group of codes. A code with a WikiPron
     gold set reads it from the cache; any other code reads the sentences of
     its shipped gold TSV (orthography2ipa/data/gold/*/CODE.tsv)."""
+    sys.path.insert(0, str(REPO / "scripts"))
     import benchmark
     benchmark.CACHE_DIR = str(args.cache)
     wikipron = [code for code in codes if code in benchmark._WIKIPRON_FILES]
@@ -72,8 +62,9 @@ def run_tool(script: str, groups: List[List[str]], out: Path) -> list:
 
 
 def python_failures(results: list) -> List[str]:
-    return [f"{r['label']}: {r['kinds'].get('defect', 0)} defects, {sum(r['errors'].values())} errors"
-            for r in results if "refused" not in r and (r["kinds"].get("defect") or r["errors"])]
+    return [f"{r['code']}: refused {r['refused']}" if "refused" in r else
+            f"{r['label']}: N in {r['n']}, N identical {r['same']}, errors {sum(r['errors'].values())}"
+            for r in results if "refused" in r or r["same"] != r["n"] or r["errors"]]
 
 
 def lua_failures(results: list) -> List[str]:
@@ -85,27 +76,25 @@ def lua_failures(results: list) -> List[str]:
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    ap.add_argument("--every", type=int, default=15)
     ap.add_argument("--limit", type=int, default=300)
     ap.add_argument("--cache", type=Path, default=REPO / ".benchmark_cache")
     ap.add_argument("--out", type=Path, default=REPO / "ir-parity-reports")
     args = ap.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
-    codes = sample(args.every)
-    print(f"sample: {len(codes)} codes: {' '.join(codes)}", flush=True)
-    groups = inputs(codes, args)
+    golden = sorted(json.loads(GOLDEN.read_text(encoding="utf-8")))
+    print(f"golden: {len(golden)} codes: {' '.join(golden)}", flush=True)
 
     failures: List[str] = []
-    results = run_tool("ir_parity.py", groups, args.out)
-    refused = [r["code"] for r in results if "refused" in r]
-    print(f"python parity: {len(codes)} codes in, {len(results)} results out, refused {refused}")
-    if len(results) != len(codes):
-        failures.append(f"python parity: {len(codes)} codes in, {len(results)} results out")
+    results = run_tool("ir_parity.py", [["--golden", str(GOLDEN)]], args.out)
+    print(f"python parity: {len(golden)} codes in, {len(results)} results out")
+    if len(results) != len(golden):
+        failures.append(f"python parity: {len(golden)} codes in, {len(results)} results out")
     failures += python_failures(results)
 
     if (REPO / "orthography2ipa" / "ir" / "interpreter.lua").exists() \
             and (REPO / "scripts" / "ir_lua_parity.py").exists():
-        results = run_tool("ir_lua_parity.py", groups, args.out)
+        codes = golden + ["kab"]
+        results = run_tool("ir_lua_parity.py", inputs(codes, args), args.out)
         print(f"lua parity: {len(codes)} codes in, {len(results)} results out")
         if len(results) != len(codes):
             failures.append(f"lua parity: {len(codes)} codes in, {len(results)} results out")

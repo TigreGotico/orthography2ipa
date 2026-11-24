@@ -67,7 +67,6 @@ def test_rescore_equals_rescorer_on_the_plain_beam():
     field = G2P("es-ES", spec=spec, pipeline=Pipeline(rescore=(rescorer,)))
     old = G2P("es-ES", spec=spec, rescorer=rescorer)
 
-    assert not field._needs_context_beam
     assert field.transcribe_word("ac") == old.transcribe_word("ac")
     assert field.transcribe_word("ac") != G2P("es-ES", spec=spec).transcribe_word("ac")
 
@@ -79,7 +78,6 @@ def test_rescore_equals_rescorer_on_the_positional_beam():
     old = G2P("es-ES", rescorer=rescorer)
     sentence = "las casas"
 
-    assert field._needs_context_beam
     assert field.transcribe(sentence) == old.transcribe(sentence)
     assert field.transcribe(sentence) != G2P("es-ES").transcribe(sentence)
     assert field.word_candidates("casa") == old.word_candidates("casa")
