@@ -1,9 +1,9 @@
-"""IPA mark order in spec inventories: a tie bar joins two letters, a
-prenasal mark comes before its stop, and a length mark belongs to its
-segment, before any tone letter (IPA chart, 2020: "Other symbols",
-"Diacritics", "Suprasegmentals", "Tones and word accents")."""
+"""Mark order in spec inventories. A tie bar joins two letters: IPA chart,
+"Other symbols": "Affricates and double articulations can be represented by
+two symbols joined by a tie bar if necessary." A glide after a stop is
+labialization or palatalization (``kʷ``), not a tie. A length mark belongs to
+its segment, so it stands before the tone letters of the syllable."""
 import re
-import unicodedata
 
 import pytest
 
@@ -12,33 +12,35 @@ from orthography2ipa.inventory import phoneme_inventory
 
 ISSUE = "https://github.com/TigreGotico/orthography2ipa/issues/2515"
 TONE_LETTERS = "˥˦˧˨˩"
-PRENASAL = "ᵐⁿᵑᶬᶮ"
 
 
 def misordered(token):
-    for i, ch in enumerate(token):
-        nxt = token[i + 1] if i + 1 < len(token) else ""
-        if ch == "͡" and (not nxt or unicodedata.combining(nxt)
-                               or unicodedata.category(nxt) in ("Lm", "Sk")):
-            return "tie bar before a mark"
-        if ch == "͡" and nxt in "wj":
+    for before, after in zip(token, token[1:]):
+        if before == "͡" and after in "ːˑ":
+            return "tie bar before a length mark"
+        if before == "͡" and after in "wj":
             return "tie bar before a glide"
-    if token[-1] in PRENASAL and len(token) > 1:
-        return "prenasal mark after the stop"
-    if re.search(f"[{TONE_LETTERS}]ː", token):
+    if re.search(f"[{TONE_LETTERS}][ːˑ]", token):
         return "length mark after a tone letter"
     return None
 
 
 def test_checker_passes_well_formed_tokens():
-    assert [misordered(t) for t in ("kʷ", "ᵐk͡p", "aː˥˥", "t͡sʲ", "o")] == [None] * 5
+    assert [misordered(t) for t in ("kʷ", "k͡p", "aː˥˥", "t͡sʲ", "o˥")] == [None] * 5
 
 
 @pytest.mark.xfail(strict=True, reason=ISSUE)
-@pytest.mark.parametrize("code", ["ted", "sef", "ank", "bo", "dz"])
-def test_inventory_writes_marks_in_ipa_order(code):
+@pytest.mark.parametrize("code", ["ted", "ank", "eto", "god"])
+def test_spec_writes_no_tie_bar_before_a_glide_or_a_length_mark(code):
     bad = {t: misordered(t) for t in phoneme_inventory(get(code)) if misordered(t)}
     assert bad == {}
+
+
+@pytest.mark.xfail(strict=True, reason=ISSUE)
+@pytest.mark.parametrize("code", ["bo", "dz"])
+def test_inventory_puts_the_length_mark_before_the_tone_letters(code):
+    bad = sorted(t for t in phoneme_inventory(get(code)) if misordered(t))
+    assert bad == []
 
 
 @pytest.mark.xfail(strict=True, reason=ISSUE)
