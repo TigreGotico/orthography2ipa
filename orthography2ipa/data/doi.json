@@ -31,6 +31,9 @@
   "quality": "skeleton",
   "script_type": "abugida",
   "inherent_vowel": "ə",
+  "consonant_marks": [
+    "़"
+  ],
   "iso639_3": "dgo",
   "tone_inventory": {
     "˥˧": "high-falling (word-initial historical breathy obstruent)",

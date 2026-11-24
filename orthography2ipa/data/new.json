@@ -6059,6 +6059,9 @@
     }
   ],
   "inherent_vowel": "ə",
+  "consonant_marks": [
+    "़"
+  ],
   "dependent_vowels": [
     "य्",
     "ाय्",

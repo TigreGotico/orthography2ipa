@@ -5,6 +5,9 @@
   "script_type": "abugida",
   "quality": "skeleton",
   "inherent_vowel": "ə",
+  "consonant_marks": [
+    "़"
+  ],
   "graphemes_base": "hi",
   "graphemes": {},
   "allophones_base": "hi",

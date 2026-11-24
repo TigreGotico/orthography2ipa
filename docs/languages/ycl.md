@@ -70,11 +70,11 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 127 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 125 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| Plosive | b bʲ bʷ p pʰ pʰʲ pʰʷ pʲ pʷ |  | d dʲ dʷ t tʰ tʰʲ tʰʷ tʲ tʷ |  |  | k kʰ kʰʲ kʰʷ kʲ kʷ ɡ ɡʲ ɡʷ | ʔ ʔʲ ʔʲʷ ʔʷ ʔʷʲ |
+| Plosive | b bʲ bʷ p pʰ pʰʲ pʰʷ pʲ pʷ |  | d dʲ dʷ t tʰ tʰʲ tʰʷ tʲ tʷ |  |  | k kʰ kʰʲ kʰʷ kʲ kʷ ɡ ɡʲ ɡʷ | ʔ ʔʲ ʔʷ |
 | Affricate |  |  | dz ts tsʰ | dʒ tʃ tʃʰ |  |  |  |
 | Nasal | m mʲ mʷ |  | n nʲ nʷ |  |  | ŋ ŋʲ ŋʷ |  |
 | Fricative |  | f fʲ fʷ v vʲ vʷ | s sʰʲ sʰʷ sʲ sʷ z zʲ zʷ z̩ z̩ʷ | ʃ ʃʰʲ ʃʰʷ ʃʲ ʃʷ ʒʲ ʒʷ | ʝ ʝʲ ʝʷ | x xʲ xʷ ɣ ɣʲ ɣʷ | h hʲ hʷ |
