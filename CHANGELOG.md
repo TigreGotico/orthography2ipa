@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.124.52a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.52a1) (2026-11-24)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.51a2...7.124.52a1)
+
+**Merged pull requests:**
+
+- fix: map the Devanagari letters ऩ ऱ ऴ in the specs that map र and न [\#2527](https://github.com/TigreGotico/orthography2ipa/pull/2527) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.124.51a2](https://github.com/TigreGotico/orthography2ipa/tree/7.124.51a2) (2026-11-24)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.51a1...7.124.51a2)
