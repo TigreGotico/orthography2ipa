@@ -15,6 +15,8 @@ The documentation starts at [docs/index.md](docs/index.md).
 | `orthography2ipa/g2p.py`, `phonetok.py` | `G2P`, `transcribe`, the tokenizer, the lattice and beam search |
 | `orthography2ipa/allophony.py`, `stress.py`, `sandhi.py` | Allophone rules, stress and cross-word rules |
 | `orthography2ipa/distance.py`, `feats.py`, `script_distance.py` | The distance metrics |
+| `orthography2ipa/ir/` | The compiler, the IR schema and the Python and Lua interpreters ([ir.md](docs/engine/ir.md)) |
+| `orthography2ipa/export_to_loom.py` | One loom GGUF of the Lua interpreter and the IRs ([loom_export.md](docs/guide/loom_export.md)) |
 | `orthography2ipa/cli.py` | The `orthography2ipa` command |
 | `docs/`, `scripts/`, `benchmarks/`, `tests/`, `examples/` | Documentation, generators and harness ([scripts/README.md](scripts/README.md)), board files, tests, usage scripts |
 
@@ -47,6 +49,9 @@ Use uv, never pip. `which_tests.py` lists the test files that name a spec. With 
 13. Never edit a generated file by hand: the board files, `docs/reference/api.md`, `docs/reference/cli.md`, the navigation footers, the atlas blocks, the agent hints of generated pages and the atlas indexes. Fix the generator and run it.
 14. `tests/test_grammatical_endings.py` caps the list-valued endings per spec ([spec_authoring.md](docs/contributing/spec_authoring.md#ambiguous-grammatical-endings)).
 15. Never edit `orthography2ipa/version.py` or `CHANGELOG.md`. The release workflow writes them.
+16. The IR interpreters hold no language knowledge: no branch on a language, script or family, no Unicode name lookup, no codepoint range test. Only the compiler may hold language tables. Never grow `IR_OPAQUE_WORDS` to pass the check ([behaviour_is_data.md](docs/contributing/behaviour_is_data.md#run-the-guards)).
+17. A change to an IR version or a primitive semantics version in `layout.py` changes `docs/ir/o2i-ir-v1.md` in the same pull request ([behaviour_is_data.md](docs/contributing/behaviour_is_data.md#change-a-version-change-the-spec)).
+18. The Python and Lua interpreters give the same output, and the IR matches the rules path apart from the ruled changes of section 9 of the IR spec.
 
 ## Before you push
 
@@ -61,8 +66,16 @@ PYTHONPATH=$PWD .venv/bin/python scripts/gen_language_atlas.py --check
 ```
 
 3. A page you add goes in a table of `docs/index.md` and gets an `agent-hint` comment after its H1. Then `scripts/docs_nav.py --write` writes its footer.
-4. If you changed a spec, run the board guards ([board.md](docs/contributing/board.md#the-guards)).
-5. If you changed engine code, answer the review gate ([engine.md](docs/contributing/engine.md#the-review-gate-for-engine-code)).
-6. Open a draft pull request against `dev` with `.github/pull_request_template.md`.
+4. If you changed `orthography2ipa/`, run the IR guards (`luajit` on `PATH`):
+
+```bash
+.venv/bin/python -I scripts/check_engine_agnostic.py
+python3 -I scripts/check_ir_version_doc.py --base origin/dev
+.venv/bin/python -I scripts/ir_parity_ci.py
+```
+
+5. If you changed a spec, run the board guards ([board.md](docs/contributing/board.md#the-guards)).
+6. If you changed engine code, answer the review gate ([engine.md](docs/contributing/engine.md#the-review-gate-for-engine-code)).
+7. Open a draft pull request against `dev` with `.github/pull_request_template.md`.
 
 `dev` is the work branch and `master` is the stable branch.

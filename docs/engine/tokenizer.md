@@ -384,4 +384,4 @@ Some stages exist only in the engine. The engine adds syllable and stress contex
 The trie is built once, at construction, and every later call reuses it. The cost of `tokenize()` is O(n·k), where n is the text length and k is the longest grapheme key. The cost of `ipa_beam()` is O(n · beam_width · candidates per grapheme), which suits words and short phrases. The context view of `tokenize_with_context()` adds one O(n) pass. Its neighbour lookups `prev`, `next` and `at` are O(1). For a long document, tokenize one sentence at a time.
 
 ---
-[← Architecture](architecture.md) · [Home](../index.md) · [The pronunciation lattice →](lattice.md)
+[← Host-side plugins](plugins.md) · [Home](../index.md) · [The pronunciation lattice →](lattice.md)

@@ -41,8 +41,9 @@ The project installs with [uv](https://docs.astral.sh/uv/).
 [CONTRIBUTING.md](CONTRIBUTING.md#tests) sets up a clone of the repository
 for development.
 
-The runtime extras are `hf`, `lexicons`, `validation` and `portuguese`, for
-example `'orthography2ipa[lexicons]'`. An extra adds a feature, and its
+The runtime extras are `hf`, `lexicons`, `validation`, `portuguese` and `loom`, for
+example `'orthography2ipa[lexicons]'`. The `loom` extra installs `gguf` for
+the loom exporter. An extra adds a feature, and its
 install changes no transcription.
 [docs/guide/getting_started.md](docs/guide/getting_started.md#install) lists
 what each extra adds.
@@ -69,6 +70,8 @@ common task.
 
 | You want to | Read |
 | :--- | :--- |
+| Learn how a compiler, an IR and small interpreters run every spec | [docs/engine/ir.md](docs/engine/ir.md) |
+| Ship the phonemizer of a voice to loom, pinned to the spec data of its training run | [docs/guide/loom_export.md](docs/guide/loom_export.md), [docs/guide/revisions.md](docs/guide/revisions.md) |
 | Rank the readings of an ambiguous spelling, or rescore them | [docs/engine/lattice.md](docs/engine/lattice.md) |
 | Export the lattice as features for a CRF or another ML model | [docs/engine/lattice.md](docs/engine/lattice.md#feature-export-for-a-learned-model) |
 | Measure how two languages differ in sound, spelling, script, ancestry, time or place | [docs/guide/distance.md](docs/guide/distance.md) |

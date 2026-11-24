@@ -1,20 +1,22 @@
 # Architecture
 
 <!-- agent-hint
-covers: the stages of the engine from text to IPA, the module of each stage and the design choices behind them
-source: `orthography2ipa/g2p.py`, `orthography2ipa/phonetok.py`, `orthography2ipa/stress.py`, `orthography2ipa/sandhi.py`, `orthography2ipa/sentence.py`
+covers: the stages from text to IPA, the module of each stage and the design choices behind them
+source: orthography2ipa/g2p.py, orthography2ipa/phonetok.py, orthography2ipa/stress.py, orthography2ipa/sandhi.py, orthography2ipa/sentence.py, orthography2ipa/ir/compiler.py, orthography2ipa/ir/interpreter.py
 generated: no
-verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_g2p_engine.py`
-see: `docs/engine/tokenizer.md`, `docs/engine/lattice.md`, `docs/contributing/engine.md`
+verify: PYTHONPATH=$PWD .venv/bin/python -m pytest tests/test_docs_prose.py tests/test_g2p_engine.py
+see: docs/engine/ir.md, docs/engine/plugins.md, docs/engine/tokenizer.md, docs/engine/lattice.md, docs/contributing/engine.md
 -->
 
 `orthography2ipa` has two parts: the per-language JSON specs under `orthography2ipa/data/`, and one engine that reads any spec. This page describes the stages of the engine, the modules that hold them and the design choices behind them. The repository map in [`AGENTS.md`](../../AGENTS.md) gives the short view of the files.
 
-The engine has no language-specific code. A behaviour that one language needs becomes a generic capability that any spec can switch on, and the spec holds only data. [orthography2ipa.cpp](https://github.com/loom-ai-org/orthography2ipa.cpp) is a C++17 port of the same data-driven core, and it reads the same JSON specs.
+The engine has no language-specific code. A behaviour that one language needs becomes a generic capability that any spec can switch on, and the spec holds only data. A compiler can also turn the spec into a versioned IR, which a small interpreter runs. [ir.md](ir.md) explains that design and follows one word through it. [orthography2ipa.cpp](https://github.com/loom-ai-org/orthography2ipa.cpp) is a C++17 port of the same data-driven core, and it reads the same JSON specs.
 
 ## The pipeline
 
 `G2P` in `g2p.py` is the full engine, and `transcribe()` wraps it. Each call runs the stages below in order. Each stage reads only the spec and the input. A stage with nothing to do (no rules, no plugin, no rescorer) leaves the output as it is.
+
+`transcribe` runs the stages below on the rules path of `g2p.py` and `phonetok.py`. The compiler in `orthography2ipa/ir/compiler.py` lowers the same stages into the IR, and [section 3.1 of the IR spec](../ir/o2i-ir-v1.md#31-stage-order-and-host-hooks) maps each stage to it. The IR interpreters give the same output as the rules path, apart from the ruled changes of [section 9 of the IR spec](../ir/o2i-ir-v1.md#9-semantic-changes-from-the-legacy-engine). The markup, the text preparation and the lexicon are host steps and are not in the IR ([plugins.md](plugins.md)).
 
 | Step | Stage | What happens |
 | :--- | :--- | :--- |
@@ -138,6 +140,9 @@ The spec names a plugin in its `plugins` field by entry-point name, such as `{"s
 | `lm.py` | Phoneme n-gram language model utilities | `phoneme_embeddings`, `build_ngram_lm`, `perplexity` |
 | `plugins.py`, `*_plugin.py`, `syllabifiers.py`, `conformance.py` | The pluggable steps, the bundled `silabificador` plugin and the contract checks | `SandhiPlugin`, `SyllabifierPlugin` |
 | `exceptions.py` | Exception and warning types | `UnmappedScriptError`, `UnmappedGraphemeWarning`, `StubSpecWarning` |
+| `ir/compiler.py`, `ir/layout.py` | Spec to IR, the IR schema, the primitive versions and the IR revision ([ir.md](ir.md)) | `compile_spec`, `build_ir`, `SEMANTICS`, `spec_revision` |
+| `ir/interpreter.py`, `ir/interpreter.lua`, `ir/cache.py` | The reference interpreter, the Lua interpreter and the cache of compiled IRs | `Interpreter` |
+| `export_to_loom.py` | One loom GGUF with the Lua interpreter and the IRs ([loom_export.md](../guide/loom_export.md)) | `export_to_loom` |
 | `cli.py` | The `orthography2ipa` command ([reference/cli.md](../reference/cli.md)) | `main` |
 | `version.py` | The version, which the release workflow sets | `VERSION_STR` |
 
@@ -199,4 +204,4 @@ What a package can replace is one step of the pipeline, through the stages above
 [../contributing/spec_authoring.md](../contributing/spec_authoring.md) covers a new language, and [contributing/engine.md](../contributing/engine.md) covers a change to the engine.
 
 ---
-[← Public API stability](../reference/api_stability.md) · [Home](../index.md) · [Tokenizer →](tokenizer.md)
+[← o2i IR v1](../ir/o2i-ir-v1.md) · [Home](../index.md) · [Compiler, IR and interpreters →](ir.md)
