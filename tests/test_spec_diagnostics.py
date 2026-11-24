@@ -80,6 +80,13 @@ def test_scan_gold_apostrophe_is_not_treated_as_punctuation():
 # _twin
 # --------------------------------------------------------------------------
 
+def test_signature_keeps_the_case_of_a_key():
+    # str.lower follows the Unicode tables of the running Python: U+A7DC (kwk)
+    # lowercases only from Unicode 16, so a folded signature differs on 3.14.
+    sig = sd._signature({"A": ["a"], "a": ["a"], "\ua7dc": ["t͡ɬ"], "ƛ": ["t͡ɬ"]})
+    assert sig == {("A", "a"), ("a", "a"), ("\ua7dc", "t͡ɬ"), ("ƛ", "t͡ɬ")}
+
+
 def test_twin_finds_the_closest_undeclared_match():
     raw = {
         "aa": {"code": "aa", "script": "Latin"},
