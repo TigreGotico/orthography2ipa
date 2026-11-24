@@ -256,8 +256,10 @@ def _twin(code: str, raw: Dict[str, dict], field: str,
             continue
         ratio = len(mine & sig) / max(len(mine), len(sig))
         if best is None or ratio > best[1]:
-            best = (other, round(ratio, 3))
-    return best
+            best = (other, ratio)
+    if best is None:
+        return None
+    return best[0], round(best[1], 3)
 
 
 def _phoneme_agreement(spec) -> Tuple[List[str], List[str]]:

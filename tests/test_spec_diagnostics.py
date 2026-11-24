@@ -107,6 +107,16 @@ def test_twin_finds_the_closest_undeclared_match():
     assert twin[1] == 1.0
 
 
+def test_a_tied_twin_is_the_first_candidate():
+    # 1/3 rounds down to 0.333, so comparing against the rounded best let the
+    # second of two tied candidates win.
+    raw = {c: {"code": c, "script": "Latin"} for c in ("aa", "bb", "cc")}
+    mine = {k: [k] for k in "abcdefghi"}
+    tied = dict(list(mine.items())[:3], **{k: ["x"] for k in "jklmno"})
+    sigs = {"aa": sd._signature(mine), "bb": sd._signature(tied), "cc": sd._signature(tied)}
+    assert sd._twin("aa", raw, "graphemes", sigs) == ("bb", 0.333)
+
+
 def test_twin_excludes_a_declared_base():
     """A table that matches its OWN declared base is descent, not a borrowed
     table asserted from an unrelated language, and must not be reported."""
