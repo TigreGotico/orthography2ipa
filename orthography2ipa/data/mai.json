@@ -321,7 +321,7 @@
       "notes": "Descent via Magadhi/Ardha-Māgadhī"
     }
   ],
-  "notes": "Standard Maithili (Bihar / Nepal Terai). One of 22 scheduled languages of India (added 2003). Traditional Tirhuta script; Devanagari used officially. Phonologically close to Bengali and Nepali. ⟨ऩ ऱ ऴ⟩ (U+0929, U+0931, U+0934) read as their base letters ⟨न र ल⟩: [n] [r] [l]. Unicode glosses them as the letters that transcribe Dravidian alveolar n, alveolar r and l. This spec has no ⟨ळ⟩, so ⟨ऴ⟩ takes the value of ⟨ल⟩.",
+  "notes": "Standard Maithili (Bihar / Nepal Terai). One of 22 scheduled languages of India (added 2003). Traditional Tirhuta script; Devanagari used officially. Phonologically close to Bengali and Nepali. This spec reads ⟨ऩ⟩, ⟨ऱ⟩ and ⟨ऴ⟩ as their base letters ⟨न⟩ [n], ⟨र⟩ [r] and ⟨ल⟩ [l], because the inventory has no separate phoneme for them. This spec has no ⟨ळ⟩, so ⟨ऴ⟩ takes the value of ⟨ल⟩.",
   "quality": "research",
   "script_type": "abugida",
   "inherent_vowel": "ə",
@@ -369,7 +369,7 @@
       "publisher": "The Unicode Consortium",
       "url": "https://www.unicode.org/versions/Unicode16.0.0/core-spec/chapter-12/",
       "pages": null,
-      "notes": "Rule R5: \"In conformance with the ISCII standard, the half-consonant form RRA h is represented as eyelash-RA. This form of RA is commonly used in writing Marathi and Newari.\" Table 12-8 note: \"Marathi also makes use of the eyelash form of the letter RA, as discussed in rule R5.\" Used here for the three letters with no attested use in this language: each reads as its base letter."
+      "notes": "Rule R5: \"In conformance with the ISCII standard, the half-consonant form RRA h is represented as eyelash-RA. This form of RA is commonly used in writing Marathi and Newari.\" The paragraph before Table 12-8: \"Marathi also makes use of the “eyelash” form of the letter RA, as discussed in rule R5.\""
     },
     {
       "id": "unicode16_nameslist",

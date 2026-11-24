@@ -1,20 +1,20 @@
 """Devanagari ऩ ऱ ऴ read as their base letters.
 
-The Unicode Standard (ch. 12, Devanagari) and NamesList.txt give three
-precomposed letters that NFC keeps as one code point, because none is a
-composition exclusion:
+NamesList.txt (Unicode 16.0.0) names three precomposed letters that NFC keeps
+as one code point, because none is a composition exclusion:
 
 - U+0929 NNNA, "for transcribing Dravidian alveolar n", equivalent to
   U+0928 + U+093C.
 - U+0931 RRA, "for transcribing Dravidian alveolar r", whose half form is
-  "Eyelash RA", equivalent to U+0930 + U+093C. Rule R5 says "This form of RA
-  is commonly used in writing Marathi and Newari."
+  described as "Eyelash RA", equivalent to U+0930 + U+093C.
 - U+0934 LLLA, "for transcribing Dravidian l", equivalent to U+0933 + U+093C.
 
-A spec with no attested use of a letter reads it as the base letter. Marathi
-writes ऱ for the same /ɾ/ as ऱ's base ⟨र⟩ (Wikipedia, "Marathi phonology":
-दर्या [d̪əɾ.jaː] against दऱ्या [d̪əɾʲaː], a palatalised release the spec does
-not write).
+The Unicode Standard (ch. 12, rule R5) says of the eyelash RA: "This form of RA
+is commonly used in writing Marathi and Newari." No source states a reading for
+ऩ or ऴ in these languages. The specs read each of the three letters as its base
+letter, which is a choice of the specs. Wikipedia, "Marathi phonology", gives
+दर्या [d̪əɾ.jaː] against दऱ्या [d̪əɾʲaː]; the spec does not write the palatalised
+release.
 
 The expected reading of each word is the reading of the same word written with
 the base letter. That word passes through no new key, so it does not depend on

@@ -409,7 +409,7 @@
     ]
   },
   "parent": "sa",
-  "notes": "Standard Hindi (Khaṛī Bolī). 4-way laryngeal contrast: voiceless, aspirated, voiced, breathy-voiced. Nukta letters for Perso-Arabic loans may not be distinguished by all speakers. SCHWA DELETION: inherent schwa deleted word-finally and in medial CVC patterns (Pandey 2014). ड/ढ FLAPPING: retroflex stops [ɖ/ɖʱ] become flaps [ɽ/ɽʱ] intervocalically. 4-WAY LARYNGEAL: voiceless unaspirated, voiceless aspirated, voiced, breathy-voiced stops. DENTALS vs RETROFLEXES: dental series (त/थ/द/ध) vs. retroflex (ट/ठ/ड/ढ) fully contrastive. Sources: Ohala (1983), Pandey (2014), Masica (1991), Shapiro (2003). ⟨ऩ ऱ ऴ⟩ (U+0929, U+0931, U+0934) read as their base letters ⟨न र ल⟩: [n] [ɾ] [l]. Unicode glosses them as the letters that transcribe Dravidian alveolar n, alveolar r and l. This spec has no ⟨ळ⟩, so ⟨ऴ⟩ takes the value of ⟨ल⟩.",
+  "notes": "Standard Hindi (Khaṛī Bolī). 4-way laryngeal contrast: voiceless, aspirated, voiced, breathy-voiced. Nukta letters for Perso-Arabic loans may not be distinguished by all speakers. SCHWA DELETION: inherent schwa deleted word-finally and in medial CVC patterns (Pandey 2014). ड/ढ FLAPPING: retroflex stops [ɖ/ɖʱ] become flaps [ɽ/ɽʱ] intervocalically. 4-WAY LARYNGEAL: voiceless unaspirated, voiceless aspirated, voiced, breathy-voiced stops. DENTALS vs RETROFLEXES: dental series (त/थ/द/ध) vs. retroflex (ट/ठ/ड/ढ) fully contrastive. Sources: Ohala (1983), Pandey (2014), Masica (1991), Shapiro (2003). This spec reads ⟨ऩ⟩, ⟨ऱ⟩ and ⟨ऴ⟩ as their base letters ⟨न⟩ [n], ⟨र⟩ [ɾ] and ⟨ल⟩ [l], because the inventory has no separate phoneme for them. This spec has no ⟨ळ⟩, so ⟨ऴ⟩ takes the value of ⟨ल⟩.",
   "quality": "research",
   "script_type": "abugida",
   "inherent_vowel": "ə",
@@ -487,7 +487,7 @@
       "publisher": "The Unicode Consortium",
       "url": "https://www.unicode.org/versions/Unicode16.0.0/core-spec/chapter-12/",
       "pages": null,
-      "notes": "Rule R5: \"In conformance with the ISCII standard, the half-consonant form RRA h is represented as eyelash-RA. This form of RA is commonly used in writing Marathi and Newari.\" Table 12-8 note: \"Marathi also makes use of the eyelash form of the letter RA, as discussed in rule R5.\" Used here for the three letters with no attested use in this language: each reads as its base letter."
+      "notes": "Rule R5: \"In conformance with the ISCII standard, the half-consonant form RRA h is represented as eyelash-RA. This form of RA is commonly used in writing Marathi and Newari.\" The paragraph before Table 12-8: \"Marathi also makes use of the “eyelash” form of the letter RA, as discussed in rule R5.\""
     },
     {
       "id": "unicode16_nameslist",

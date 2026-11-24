@@ -377,7 +377,7 @@
       "notes": "Archaic direct descendant of PIE"
     }
   ],
-  "notes": "Vedic Sanskrit (c. 1500–600 BCE), earlier than Classical Sanskrit. Retains pitch accent system (udātta/anudātta/svarita). Includes retroflex lateral ⟨ळ⟩ /ɭ/ lost in Classical Sanskrit. Source: Macdonell (1910), *Vedic Grammar*. ⟨ऩ ऱ ऴ⟩ (U+0929, U+0931, U+0934) read as their base letters ⟨न र ळ⟩: [n̪] [r] [ɭ]. Unicode glosses them as the letters that transcribe Dravidian alveolar n, alveolar r and l.",
+  "notes": "Vedic Sanskrit (c. 1500–600 BCE), earlier than Classical Sanskrit. Retains pitch accent system (udātta/anudātta/svarita). Includes retroflex lateral ⟨ळ⟩ /ɭ/ lost in Classical Sanskrit. Source: Macdonell (1910), *Vedic Grammar*. This spec reads ⟨ऩ⟩, ⟨ऱ⟩ and ⟨ऴ⟩ as their base letters ⟨न⟩ [n̪], ⟨र⟩ [r] and ⟨ळ⟩ [ɭ], because the inventory has no separate phoneme for them.",
   "quality": "research",
   "script_type": "abugida",
   "inherent_vowel": "ə",
@@ -422,7 +422,7 @@
       "publisher": "The Unicode Consortium",
       "url": "https://www.unicode.org/versions/Unicode16.0.0/core-spec/chapter-12/",
       "pages": null,
-      "notes": "Rule R5: \"In conformance with the ISCII standard, the half-consonant form RRA h is represented as eyelash-RA. This form of RA is commonly used in writing Marathi and Newari.\" Table 12-8 note: \"Marathi also makes use of the eyelash form of the letter RA, as discussed in rule R5.\" Used here for the three letters with no attested use in this language: each reads as its base letter."
+      "notes": "Rule R5: \"In conformance with the ISCII standard, the half-consonant form RRA h is represented as eyelash-RA. This form of RA is commonly used in writing Marathi and Newari.\" The paragraph before Table 12-8: \"Marathi also makes use of the “eyelash” form of the letter RA, as discussed in rule R5.\""
     },
     {
       "id": "unicode16_nameslist",
