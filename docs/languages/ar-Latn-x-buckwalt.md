@@ -99,30 +99,34 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨<⟩ | [ʔi] | before vowel [ʔ] · default [ʔi] |
 | ⟨>⟩ | [ʔa] | before vowel [ʔ] · default [ʔa] |
 | ⟨A⟩ | [ʔ] [aː] | default [aː] [ʔ] · word initial [ʔ] [aː] |
-| ⟨a⟩ | [a] |  |
 | ⟨Aa⟩ | [aː] |  |
-| ⟨aA⟩ | [aː] |  |
 | ⟨Al⟩ | [al] [a] |  |
-| ⟨aw⟩ | [aw] |  |
-| ⟨aY⟩ | [aː] |  |
-| ⟨ay⟩ | [aj] |  |
-| ⟨b⟩ | [b] |  |
 | ⟨D⟩ | [dˤ] |  |
-| ⟨d⟩ | [d] |  |
 | ⟨E⟩ | [ʕ] |  |
 | ⟨F⟩ | [an] |  |
+| ⟨H⟩ | [ħ] |  |
+| ⟨K⟩ | [in] |  |
+| ⟨N⟩ | [un] |  |
+| ⟨S⟩ | [sˤ] |  |
+| ⟨T⟩ | [tˤ] |  |
+| ⟨Y⟩ | [aː] |  |
+| ⟨Z⟩ | [ðˤ] |  |
+| ⟨a⟩ | [a] |  |
+| ⟨aA⟩ | [aː] |  |
+| ⟨aY⟩ | [aː] |  |
+| ⟨aw⟩ | [aw] |  |
+| ⟨ay⟩ | [aj] |  |
+| ⟨b⟩ | [b] |  |
+| ⟨d⟩ | [d] |  |
 | ⟨f⟩ | [f] |  |
 | ⟨g⟩ | [ɣ] |  |
-| ⟨H⟩ | [ħ] |  |
 | ⟨h⟩ | [h] |  |
 | ⟨i⟩ | [i] |  |
 | ⟨iy⟩ | [iː] |  |
 | ⟨j⟩ | [dʒ] |  |
-| ⟨K⟩ | [in] |  |
 | ⟨k⟩ | [k] |  |
 | ⟨l⟩ | [l] |  |
 | ⟨m⟩ | [m] |  |
-| ⟨N⟩ | [un] |  |
 | ⟨n⟩ | [n] |  |
 | ⟨o⟩ | ∅ |  |
 | ⟨ow⟩ | [w] |  |
@@ -130,9 +134,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨p⟩ | [a] [at] | after vowel ∅ · default [a] [at] |
 | ⟨q⟩ | [q] |  |
 | ⟨r⟩ | [r] |  |
-| ⟨S⟩ | [sˤ] |  |
 | ⟨s⟩ | [s] |  |
-| ⟨T⟩ | [tˤ] |  |
 | ⟨t⟩ | [t] |  |
 | ⟨u⟩ | [u] |  |
 | ⟨uw⟩ | [uː] |  |
@@ -142,12 +144,10 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨waA⟩ | [waː] |  |
 | ⟨wu⟩ | [wu] |  |
 | ⟨x⟩ | [x] |  |
-| ⟨Y⟩ | [aː] |  |
 | ⟨y⟩ | [j] [iː] | default [j] [iː] · word final [iː] [j] |
 | ⟨ya⟩ | [ja] |  |
 | ⟨yaA⟩ | [jaː] |  |
 | ⟨yi⟩ | [ji] |  |
-| ⟨Z⟩ | [ðˤ] |  |
 | ⟨z⟩ | [z] |  |
 | ⟨|⟩ | [ʔaː] |  |
 | ⟨}⟩ | [ʔ] |  |

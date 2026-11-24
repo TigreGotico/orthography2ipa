@@ -786,7 +786,7 @@ def block_spelling(atlas: Atlas, spec) -> str:
              "as lower-ranked candidates. The last column gives the readings "
              "that depend on the position in the word.", "",
              "| Spelling | Readings | By position |", "|:--|:--|:--|"]
-    for grapheme in sorted(spec.graphemes, key=lambda g: (g.lower(), g)):
+    for grapheme in sorted(spec.graphemes):
         readings = _readings(spec.graphemes[grapheme])
         if not readings and grapheme not in positional:
             continue
