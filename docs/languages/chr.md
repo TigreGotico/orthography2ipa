@@ -95,12 +95,6 @@ Each letter or letter group of the spec with its readings. The first reading is 
 
 | Spelling | Readings | By position |
 |:--|:--|:--|
-| ⟨Ᏸ⟩ | [je] |  |
-| ⟨Ᏹ⟩ | [ji] |  |
-| ⟨Ᏺ⟩ | [jo] |  |
-| ⟨Ᏻ⟩ | [ju] |  |
-| ⟨Ᏼ⟩ | [jə̃] |  |
-| ⟨Ᏽ⟩ | [mə̃] |  |
 | ⟨Ꭰ⟩ | [a] |  |
 | ⟨Ꭱ⟩ | [e] |  |
 | ⟨Ꭲ⟩ | [i] |  |
@@ -181,6 +175,12 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨Ꮽ⟩ | [wu] |  |
 | ⟨Ꮾ⟩ | [wə̃] |  |
 | ⟨Ꮿ⟩ | [ja] |  |
+| ⟨Ᏸ⟩ | [je] |  |
+| ⟨Ᏹ⟩ | [ji] |  |
+| ⟨Ᏺ⟩ | [jo] |  |
+| ⟨Ᏻ⟩ | [ju] |  |
+| ⟨Ᏼ⟩ | [jə̃] |  |
+| ⟨Ᏽ⟩ | [mə̃] |  |
 
 The spec declares no stress rule.
 <!-- atlas:spelling end -->

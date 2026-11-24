@@ -208,6 +208,16 @@ def test_region_subtag_names_the_country(atlas):
     assert atlas.geography("es-ES")[1] == ["ES"]
 
 
+@pytest.mark.parametrize("code", ["ar-Latn-x-buckwalt", "chr", "kwk"])
+def test_spelling_rows_follow_code_point_order(atlas, code):
+    # A case-folded order follows the Unicode tables of the running Python:
+    # U+A7DC lowercases only from Unicode 16, so kwk.md differed on 3.14.
+    block = atlas_gen.block_spelling(atlas, orthography2ipa.get(code))
+    rows = re.findall(r"^\| ⟨(.+?)⟩ \|", block, re.MULTILINE)
+    assert len(rows) > 10
+    assert rows == sorted(rows)
+
+
 def test_primary_row_without_a_spelling_is_skipped(atlas):
     rows = atlas.primary_rows["shu-NG"]
     assert any(not (r.get("orthography") or r.get("orthography_vocalized"))
