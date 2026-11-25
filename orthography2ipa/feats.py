@@ -553,6 +553,15 @@ def _is_vowel_phone(phone: str) -> bool:
         return False
 
 
+
+def is_vowel_phone(phone: str) -> bool:
+    """Deprecated: use phonematcher.is_vowel_phone."""
+    from orthography2ipa.lexicon import _warn_deprecated
+
+    _warn_deprecated("orthography2ipa.feats.is_vowel_phone",
+                     "phonematcher.is_vowel_phone")
+    return _is_vowel_phone(phone)
+
 def phonetic_distance(phone_a: str, phone_b: str) -> float:
     """
     Weighted-feature distance between two IPA phones: a weighted Hamming
