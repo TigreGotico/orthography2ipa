@@ -110,7 +110,7 @@ The docstrings in `orthography2ipa/types.py` carry the citations for each positi
 
 `orthography2ipa.positional.positional_candidates` walks this list and returns the candidates of the first position the spec declares. If the grapheme has a positional entry, the winning candidates rank first and the flat candidates follow them. The beam keeps the full search space this way. If no position matches, the flat table and its weights apply.
 
-The next diagram shows how `resolve_branches` uses the list to pick the candidates of one grapheme.
+The diagram below shows how `resolve_branches` uses the list to pick the candidates of one grapheme.
 
 ```mermaid
 flowchart TD
