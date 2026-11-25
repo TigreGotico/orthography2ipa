@@ -167,7 +167,7 @@ def o2i_vs_espeak(comparison: list, c: Dict[str, str]) -> str:
     lower = sum(1 for o, e in pairs if o < e)
     top = 0.1 * (int(max(max(o, e) for o, e in pairs) / 0.1) + 1)
     size, left, bottom = 440, 68, 56
-    x0, y0 = left, 70
+    x0, y0 = left, 80
     width, height = left + size + 30, y0 + size + bottom
 
     def px(v: float) -> float:
@@ -177,8 +177,9 @@ def o2i_vs_espeak(comparison: list, c: Dict[str, str]) -> str:
         return y0 + size - size * v / top
 
     body = [text(20, 26, f"o2i lower on {lower} of {len(pairs)} rows", c, 16, weight="bold"),
-            text(20, 46, "PER of the lexicon-free o2i engine against rules-only espeak-ng, "
-                         "one dot per row.", c, 12, muted=True)]
+            text(20, 46, f"PER on the {len(pairs)} board rows where both engines have a "
+                         "lexicon-free score", c, 12, muted=True),
+            text(20, 62, "on an independent source; one dot per row.", c, 12, muted=True)]
     ticks = [i / 10 for i in range(0, int(round(top * 10)) + 1, 2)]
     for v in ticks:
         body.append(line(px(0), py(v), px(top), py(v), c["grid"]))
