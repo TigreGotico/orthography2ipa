@@ -25,6 +25,7 @@ import json
 import lzma
 import os
 import tempfile
+from contextlib import suppress
 from pathlib import Path
 from typing import Dict, Optional, Tuple
 
@@ -123,16 +124,14 @@ def document(code: str, **options) -> dict:
         return compile_spec(code, **options)
     user = _user_dir()
     for directory in (PRECOMPILED, user):
-        if directory is not None and (directory / name).is_file():
+        if directory is not None:
             doc = _read(directory / name)
             if doc is not None:
                 return doc
     doc = compile_spec(code, **options)
     if user is not None:
-        try:
+        with suppress(OSError):
             write(user, name, doc)
-        except OSError:
-            pass
     return doc
 
 
@@ -156,12 +155,8 @@ def document_revision(doc: dict) -> str:
     return "sha256:" + hashlib.sha256(payload).hexdigest()
 
 
-_revisions: Dict[str, str] = {}
-
-
+@lru_cache(maxsize=None)
 def revision(code: str) -> str:
     """The ``spec_revision`` of the IR that ``G2P(code)`` runs."""
-    if code not in _revisions:
-        cache_key(code, DEFAULT_OPTIONS)  # raises EngineSourceUnavailable without the engine source
-        _revisions[code] = document_revision(document(code, **DEFAULT_OPTIONS))
-    return _revisions[code]
+    cache_key(code, DEFAULT_OPTIONS)  # raises EngineSourceUnavailable without the engine source
+    return document_revision(document(code, **DEFAULT_OPTIONS))

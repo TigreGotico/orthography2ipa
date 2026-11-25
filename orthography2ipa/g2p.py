@@ -468,7 +468,6 @@ class G2P:
         the compiler refuses."""
         from orthography2ipa.ir.cache import interpreter
         from orthography2ipa.ir.compiler import build_ir
-        from orthography2ipa.ir.interpreter import Hooks, Interpreter
         options = dict(dialect_profile=self.dialect_profile, apply_stress=self.apply_stress,
                        apply_allophony=self.apply_allophony, apply_sandhi=self.apply_sandhi,
                        expand_allophones=self.expand_allophones)
@@ -479,7 +478,7 @@ class G2P:
         if self._caller_spec or self.spec.plugins:
             # The host runs the declared plugins, so the IR is compiled
             # without them. A caller spec is compiled for this engine alone.
-            it = Interpreter(build_ir(self.lang, spec=replace(self.spec, plugins=None), **options))
+            it = ir_kinds.Interpreter(build_ir(self.lang, spec=replace(self.spec, plugins=None), **options))
         else:
             it = interpreter(self.lang, **options)
         normalizers = [functools.partial(plugin.normalize, lang=self.lang)
@@ -488,13 +487,14 @@ class G2P:
             normalizers.append(self.normalizer)
         sandhi = self.pipeline.sandhi
         self._sandhi_plugins = [sandhi] if sandhi is not None else self._stage_plugins.get("sandhi")
-        hooks = Hooks(
+        hooks = ir_kinds.Hooks(
             text=(lambda run: functools.reduce(lambda t, f: f(t), normalizers, run))
             if normalizers else None,
             rescore=self._ir_rescore if self._host_rescorers else None,
-            syllables=self._ir_syllables if self.pipeline.syllabifier is not None else None,
+            syllables=(lambda word: plugin_syllables(word, self.lang, self.pipeline.syllabifier))
+            if self.pipeline.syllabifier is not None else None,
             sandhi=self._ir_sandhi if self._sandhi_plugins or self._sentence_rescorers else None)
-        return it if hooks == Hooks() else it.with_hooks(hooks)
+        return it if hooks == ir_kinds.Hooks() else it.with_hooks(hooks)
 
     def _ir_rescore(self, word: str, tokens, slots, syllables, stressed):
         """Run the caller's rescorers on the beam slots of *word*. A cost
@@ -522,9 +522,6 @@ class G2P:
         rescored = apply_rescorers(seg_slots, contexts, self._host_rescorers,
                                    syll_for_token=syllables, stressed_syll_idx=stressed)
         return [[(c.ipa, round(c.cost * 1_000_000)) for c in s.candidates] for s in rescored]
-
-    def _ir_syllables(self, word: str) -> Optional[List[str]]:
-        return plugin_syllables(word, self.lang, self.pipeline.syllabifier)
 
     def _ir_sandhi(self, ipa_words: List[str], surfaces: List[str],
                    pausal: List[bool]) -> List[str]:

@@ -177,7 +177,7 @@ def _git_head() -> str:
 
 
 # ─── characters ──────────────────────────────────────────────────────────
-def _char_bits(c: str, spec: LanguageSpec, elision: bool) -> int:
+def _char_bits(c: str, elision: bool) -> int:
     cat = unidata.category(c)
     tests = {
         "known": True,
@@ -352,8 +352,14 @@ def _or(*ps: list) -> list:
     return ["or", *ps]
 
 
-_EX = lambda k: ["exists", k]  # noqa: E731
-_V = lambda k: _eb(k, "vowel")  # noqa: E731
+def _EX(k):
+    return ["exists", k]
+
+
+def _V(k):
+    return _eb(k, "vowel")
+
+
 _N0 = _or(_V(0), _eb(0, "carries_nucleus"))
 
 
@@ -694,7 +700,9 @@ def _dialect_program(name: str, spirants: bool) -> List[dict]:
             "[aeiouáéíóúâêôãõ]s[aeiouáéíóúâêôãõ]")]],
         "no_ortho_available": ["spell", ["spell_empty"]],
     }
-    lit = lambda find, rep, gate=("true",): {"gate": list(gate), "kind": "replace", "find": find, "rep": rep}  # noqa: E731
+    def lit(find, rep, gate=("true",)):
+        return {"gate": list(gate), "kind": "replace", "find": find, "rep": rep}
+
     steps: List[dict] = []
     if profile.requires_debiasing:
         ei = ["spell_search", compile_pattern("ei")]
@@ -736,19 +744,12 @@ def _dialect_program(name: str, spirants: bool) -> List[dict]:
 
 
 # ─── the compiler ────────────────────────────────────────────────────────
-_REFUSED_FIELDS = (
-    ("plugins", "declared plugins"),
-)
-
-
 def _check_supported(spec: LanguageSpec) -> None:
-    for field, label in _REFUSED_FIELDS:
-        if getattr(spec, field, None):
-            raise IRUnsupportedFeature(spec.code, label)
+    if spec.plugins:
+        raise IRUnsupportedFeature(spec.code, "declared plugins")
     st = spec.stress
-    if st is not None:
-        if st.source == "plugin":
-            raise IRUnsupportedFeature(spec.code, 'stress.source = "plugin"')
+    if st is not None and st.source == "plugin":
+        raise IRUnsupportedFeature(spec.code, 'stress.source = "plugin"')
 
 
 def _readings_of(spec: LanguageSpec, entries: Dict[str, Tuple[str, ...]]) -> Set[str]:
@@ -794,7 +795,7 @@ def build_ir(code: str, data_ref: Optional[str] = None, *, dialect_profile: Opti
         _collect_dialect_chars(ir["dialect"], extra)
         chars = dict(base["chars"])
         for c in extra - {chr(cp) for cp in chars}:
-            chars[ord(c)] = _char_bits(c, spec, elision) & ~(1 << CB["known"])
+            chars[ord(c)] = _char_bits(c, elision) & ~(1 << CB["known"])
         ir["chars"] = chars
         ir["char_maps"] = _char_maps(spec, {chr(cp) for cp in chars})
     if not expose_ambiguous_endings and "endings" in ir:
@@ -941,7 +942,7 @@ def _build(spec: LanguageSpec, data_ref, apply_stress, apply_allophony, apply_sa
     readings.update(r for rs in fallback.values() for r in rs)
 
     entries: List[dict] = []
-    for key in sorted(set(table) | {c for c in fallback}, key=lambda s: [ord(c) for c in s]):
+    for key in sorted(set(table) | set(fallback), key=lambda s: [ord(c) for c in s]):
         is_fallback = key not in table
         rs = fallback[key] if is_fallback else table[key]
         w = None if is_fallback else weights.get(key)
@@ -1135,7 +1136,7 @@ def _build(spec: LanguageSpec, data_ref, apply_stress, apply_allophony, apply_sa
     ir["rewrites"] = rewrites
     for _, out in presentation:
         all_chars.update(out)
-    ir["chars"] = {ord(c): _char_bits(c, spec, elision) | _abugida_char_bits(c, table, spec.dependent_vowels)
+    ir["chars"] = {ord(c): _char_bits(c, elision) | _abugida_char_bits(c, table, spec.dependent_vowels)
                    for c in sorted(all_chars)}
     for c in all_chars - known:
         ir["chars"][ord(c)] &= ~(1 << CB["known"])
@@ -1334,7 +1335,6 @@ def _compositions() -> Tuple[Tuple[str, str, str], ...]:
 
 def _char_maps(spec: LanguageSpec, chars: Set[str]) -> dict:
     casefold, lower, nfd, ccc = {}, {}, {}, {}
-    compose = []
     for c in sorted(chars):
         cp = ord(c)
         if _lower(c, spec.code) != c:

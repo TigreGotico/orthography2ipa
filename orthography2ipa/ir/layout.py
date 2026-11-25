@@ -65,7 +65,8 @@ LAYOUT = O(
               vowels=L(O(key=S, reduced=SSET, readings=SSET)),
               sources=L(O(surface=S, vowels=SSET))),
 )
-RUNTIME_FIELDS = tuple(LAYOUT[1]) + ("chars",)
+_FIELDS = LAYOUT[1]
+RUNTIME_FIELDS = tuple(_FIELDS) + ("chars",)
 
 # The semantics version of every primitive and predicate node (section 8.1).
 SEMANTICS = {
@@ -187,7 +188,7 @@ def _ranges(chars: Dict[int, int]) -> List[List[int]]:
 
 def encode(ir: dict) -> dict:
     """The canonical JSON-ready form of a readable IR."""
-    runtime = {k: v for k, v in ir.items() if k in LAYOUT[1]}
+    runtime = {k: v for k, v in ir.items() if k in _FIELDS}
     runtime = _normalise_preds(LAYOUT, runtime)
     seen = {""}
     _walk(LAYOUT, runtime, lambda s: seen.add(s), lambda e: None, False)
@@ -199,8 +200,7 @@ def encode(ir: dict) -> dict:
            "strings": [_cps(s) for s in strings],
            "chars": {"ranges": _ranges(ir["chars"])}}
     doc.update(body)
-    doc["primitives"] = dict(item.split("=") for item in manifest(ir).split(";"))
-    doc["primitives"] = {k: int(v) for k, v in doc["primitives"].items()}
+    doc["primitives"] = {k: int(v) for k, v in (item.split("=") for item in manifest(ir).split(";"))}
     doc["bits"] = ir.get("bits", {})
     doc["debug"] = ir.get("debug", {})
     return doc
@@ -210,7 +210,7 @@ def decode(doc: dict) -> dict:
     """The readable form of a canonical IR document."""
     strings = ["".join(map(chr, s)) for s in doc["strings"]]
     keys = [strings[e["key"]] for e in doc.get("entries", ())]
-    body = {k: v for k, v in doc.items() if k in LAYOUT[1]}
+    body = {k: v for k, v in doc.items() if k in _FIELDS}
     ir = _walk(LAYOUT, body, strings.__getitem__, keys.__getitem__, False)
     chars = {}
     for lo, hi, bits in doc["chars"]["ranges"]:
@@ -350,7 +350,7 @@ def manifest(ir: dict) -> str:
         if value:
             used.add(name)
     nodes: set = set()
-    runtime = {k: v for k, v in ir.items() if k in LAYOUT[1]}
+    runtime = {k: v for k, v in ir.items() if k in _FIELDS}
     _ops(LAYOUT, runtime, nodes)
     if "node.word_has" in nodes:
         used.add("word_has")
