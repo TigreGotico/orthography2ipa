@@ -57,7 +57,7 @@ def test_a_later_fragment_wins_on_a_duplicate_key():
 
 @pytest.mark.parametrize("bad, name", [
     ({"ir_version": 1, "marks": {}}, "marks"),
-    ({"ir_version": 1, "words": {}, "unsupported": []}, "unsupported"),
+    ({"ir_version": 1, "words": {}, "rescore": []}, "rescore"),
     ({"ir_version": 2, "words": {}}, "2"),
     ({"words": {}}, "None"),
     ({"ir_version": 1, "words": {"Casa": "x"}}, "Casa"),

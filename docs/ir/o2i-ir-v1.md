@@ -181,6 +181,9 @@ sandhi[].right: pat
 sandhi[].obligatory: i
 sandhi[].left_out: tpl
 sandhi[].right_out: tpl
+sandhi[].left_spelling: pat
+sandhi[].right_spelling: pat
+sandhi[].pause: i
 dialect: list of object
 dialect[].gate: gate
 dialect[].kind: opaque
@@ -428,7 +431,7 @@ interpret(ir, text, hooks):
   S14 NFC by table                                                     3.12
 ```
 
-The steps S9e and S9f do not run for a forced word, for a cliticless word, or when `apply_stress` is false. S7 does not run when `apply_allophony` is false. S11 does not run when `apply_sandhi` is false. These three G2P options and `expand_allophones` are compile options: they change the IR, and so the revision. `on_unmapped` is host behaviour: the reference interpreter reports dropped characters (9.3), and the Python wrapper warns, logs or raises as `g2p.py` does.
+The steps S9e and S9f do not run for a forced word, for a cliticless word, or when `apply_stress` is false. S7 does not run when `apply_allophony` is false. S11 does not run the spec's rules when `apply_sandhi` is false, and it still runs the rules of a plugin fragment. These three G2P options and `expand_allophones` are compile options: they change the IR, and so the revision. `on_unmapped` is host behaviour: the reference interpreter reports dropped characters (9.3), and the Python wrapper warns, logs or raises as `g2p.py` does.
 
 ### 3.2 Preparation (S1)
 
@@ -628,7 +631,7 @@ So a host lexicon hit on the raw key beats an exception on the stripped key. The
 
 `word.words` is the optional word table of plugin fragments, a list of `[key, ipa]` pairs sorted by key, with the semantics version `words`. A key is lowercase NFC. For each key `k` the order is `word.exceptions`, then the host lexicon, then `word.words`, looked up with `NFC(k)` as the lexicon is. The compiler writes the table only when it is not empty, so an IR with no fragment has no `words` field and the same revision as before. The test for a leading apostrophe that opens a listed word counts a key of `word.words` as listed.
 
-A fragment is a JSON object `{"ir_version": 1, "words": {key: ipa}}`. `compile_spec(code, fragments=[...])` merges the `words` of all fragments, and a later fragment wins on a duplicate key. The compiler raises `ValueError` that names the offender for a part other than `words`, an `ir_version` that differs from the document's, a key that is not lowercase NFC, and a key or value that is not a string. The revision covers the merged table, so it covers the fragment bytes. `Pipeline(fragments=...)` passes fragments to the compiler, and `export_to_loom --fragment PATH` does the same for an export and records the sha256 of each fragment in the GGUF field `o2i.fragments`. The table is additive: a new optional table keeps `ir_version` (8.1). Edge punctuation is the char bit `edge_punct` (`_EDGE_PUNCT_RE`).
+A fragment is a JSON object with an `ir_version` and any of three parts. `words` is the table `{key: ipa}`. `sandhi` is a list of rules, each with the pattern and template texts of a spec `SandhiRule` under the keys `left`, `right`, `left_out`, `right_out`, and optionally `left_spelling`, `right_spelling` and `"pause": true` (3.10.1). The compiler compiles the texts as it compiles the spec's rules and appends the rules to `sandhi` after the spec's own; `apply_sandhi=False` removes the spec's rules and keeps these. `unsupported` is a list of names of the rules a plugin keeps as a host hook because no fragment part can express them; the IR does not hold it. `compile_spec(code, fragments=[...])` merges the parts of all fragments, and a later fragment wins on a duplicate word. The compiler raises `ValueError` that names the offender for any other part, an `ir_version` that differs from the document's, a word key that is not lowercase NFC, a key or value that is not a string, a sandhi rule with a key its kind does not allow, with no output, or with a text the IR cannot compile, and an `unsupported` entry that is not a string. The revision covers the merged table and the rules, so it covers the fragment bytes. `Pipeline(fragments=...)` passes fragments to the compiler, and `export_to_loom --fragment PATH` does the same for an export, records the sha256 of each fragment in the GGUF field `o2i.fragments` and the sorted names of the `unsupported` lists in `o2i.unsupported`. The table is additive: a new optional table keeps `ir_version` (8.1). Edge punctuation is the char bit `edge_punct` (`_EDGE_PUNCT_RE`).
 
 The elided-clitic path transcribes the clitic with a width-1 beam and joins it to the host's override. The join segments the clitic's IPA with primitive 11 and reads the `ipa_vowel` bit of each segment.
 
@@ -1121,20 +1124,31 @@ dock(ipa):
 `SandhiEngine.apply`, kept:
 
 ```
-sandhi(words, pausal):
-  for i in 0 .. len(words)-2:
-    if pausal[i]: continue
+sandhi(words, surfaces, pausal):
+  for i in 0 .. len(words)-1:
+    if pausal[i]:                                            # a word at a pause
+      for rule in sandhi where rule.pause:
+        if search(rule.left, words[i]) and spelling(rule.left_spelling, surfaces[i]):
+          words[i] = sub(rule.left, words[i], rule.left_out); break
+      continue
     L, R = words[i], words[i+1]
     left_done = right_done = false
-    for rule in sandhi:
+    for rule in sandhi where not rule.pause:
       if left_done and right_done: break
-      mL = search(rule.left, L); mR = search(rule.right, R)
+      mL = search(rule.left, L) and spelling(rule.left_spelling, surfaces[i])
+      mR = search(rule.right, R) and spelling(rule.right_spelling, surfaces[i+1])
       if not (mL and mR): continue
       if rule.left_out and not left_done:  words[i]   = sub(rule.left, L, rule.left_out);   left_done = true
       if rule.right_out and not right_done: words[i+1] = sub(rule.right, R, rule.right_out); right_done = true
+
+spelling(p, surface) = p is absent or search(p, surface)
 ```
 
-Each search reads the two words as they stood before this pair was rewritten. The compiler writes `obligatory`, and the v1 interpreter does not read it: `G2P` never passes `obligatory_only`, so every rule applies. `sub` is Python `re.sub` with count 0: it replaces every non-overlapping match from left to right. `left_out` and `right_out` are templates `[["lit", s], ["group", n], ...]`. An unmatched group is empty. 43 rules (46 fields) use a group in a template.
+Each search reads the two words as they stood before this pair was rewritten. The last word of a text is always at a pause, so `words[i+1]` exists whenever `pausal[i]` is false. The compiler writes `obligatory`, and the v1 interpreter does not read it: `G2P` never passes `obligatory_only`, so every rule applies. `sub` is Python `re.sub` with count 0: it replaces every non-overlapping match from left to right. `left_out` and `right_out` are templates `[["lit", s], ["group", n], ...]`. An unmatched group is empty. 43 rules (46 fields) use a group in a template.
+
+`left_spelling` and `right_spelling` are optional patterns that must also find a match in the surface of the word: the written text of the word as the word splitter returns it, casefolded, with a shadda written out as a doubled letter, with its other marks, and without the punctuation around it. So `^C` never matches, and a pattern names lowercase letters. They have the semantics version `sandhi_spelling`. A rule with `pause` set to 1 is a pause rule. It has no `right`, `right_out` or `right_spelling`, only the first matching pause rule of a word applies, and it changes the word at a pause only; the pair rules never see that word as the left of a pair. It has the semantics version `sandhi_pause`. Both fields are additive, and an IR with neither has the manifest and the revision it had.
+
+The spec's own rules come first in the list. A plugin fragment adds rules after them (3.5). A word whose IPA is empty is a word: a rule reads it as the empty string, and a pair rule does not look past it.
 
 #### 3.10.2 Dialect profiles
 
@@ -1574,6 +1588,8 @@ An optional field that changes output has its own version too. The manifest list
 | `word.silent_stress_marks` | `silent_stress_marks` |
 | `word.exceptions` | `overrides` |
 | `word.words` | `words` |
+| `sandhi[].left_spelling`, `sandhi[].right_spelling` | `sandhi_spelling` |
+| `sandhi[].pause` | `sandhi_pause` |
 | `allophone_map` | `allophone_map` |
 | `syllable.closed_hiatus`, `syllable.final_diphthongs` | `hiatus` |
 | `syllable.semivowels` | `semivowels` |

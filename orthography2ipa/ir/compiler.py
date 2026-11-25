@@ -801,9 +801,11 @@ def build_ir(code: str, data_ref: Optional[str] = None, *, dialect_profile: Opti
         endings = dict(ir["endings"])
         endings["table"] = [{**e, "alts": [], "costs": e["costs"][:1]} for e in endings["table"]]
         ir["endings"] = endings
-    words = merge_fragments(fragments, ir["ir_version"])
+    words, sandhi = merge_fragments(fragments, ir["ir_version"])
     if words:
         ir["word"] = {**ir["word"], "words": sorted(words.items())}
+    if sandhi:
+        ir["sandhi"] = [*ir.get("sandhi", ()), *sandhi]
     return ir
 
 
@@ -813,19 +815,29 @@ def fragment_digest(fragment: dict) -> str:
                                      ensure_ascii=False).encode()).hexdigest()
 
 
-def merge_fragments(fragments: Sequence[dict], ir_version: int) -> Dict[str, str]:
-    """The ``words`` of *fragments* as one table. A later fragment wins on a duplicate key.
+_FRAGMENT_PARTS = {"ir_version", "words", "sandhi", "unsupported"}
+_SANDHI_PAIR_KEYS = {"left", "right", "left_out", "right_out", "left_spelling", "right_spelling"}
+_SANDHI_PAUSE_KEYS = {"left", "left_out", "left_spelling", "pause"}
+
+
+def merge_fragments(fragments: Sequence[dict], ir_version: int) -> Tuple[Dict[str, str], List[dict]]:
+    """The ``words`` of *fragments* as one table, and their ``sandhi`` rules as
+    IR rules in fragment order. A later fragment wins on a duplicate word.
 
     Raises:
-        ValueError: a fragment has a key other than ``ir_version`` and ``words``, an
-            ``ir_version`` other than *ir_version*, a ``words`` key that is not lowercase
-            NFC, or a ``words`` entry that is not a pair of strings.
+        ValueError: a fragment has a key other than ``ir_version``, ``words``, ``sandhi`` and
+            ``unsupported``, an ``ir_version`` other than *ir_version*, a ``words`` key that is
+            not lowercase NFC, a ``words`` entry that is not a pair of strings, an
+            ``unsupported`` entry that is not a string, or a ``sandhi`` rule that
+            :func:`_sandhi_rule` refuses.
     """
-    merged: Dict[str, str] = {}
+    words: Dict[str, str] = {}
+    sandhi: List[dict] = []
     for fragment in fragments:
-        unknown = sorted(set(fragment) - {"ir_version", "words"})
+        unknown = sorted(set(fragment) - _FRAGMENT_PARTS)
         if unknown:
-            raise ValueError(f"fragment part {unknown[0]!r} is not supported; only 'words' is")
+            raise ValueError(f"fragment part {unknown[0]!r} is not supported; "
+                             f"only 'words', 'sandhi' and 'unsupported' are")
         if fragment.get("ir_version") != ir_version:
             raise ValueError(f"fragment ir_version {fragment.get('ir_version')!r} is not {ir_version}")
         for key, ipa in fragment.get("words", {}).items():
@@ -833,8 +845,61 @@ def merge_fragments(fragments: Sequence[dict], ir_version: int) -> Dict[str, str
                 raise ValueError(f"fragment word {key!r}: the key and the value must be strings")
             if key != unicodedata.normalize("NFC", key).lower():
                 raise ValueError(f"fragment word {key!r}: a key must be lowercase NFC")
-            merged[key] = ipa
-    return merged
+            words[key] = ipa
+        for name in fragment.get("unsupported", ()):
+            if not isinstance(name, str):
+                raise ValueError(f"fragment unsupported entry {name!r}: a name must be a string")
+        sandhi += [_sandhi_rule(rule) for rule in fragment.get("sandhi", ())]
+    return words, sandhi
+
+
+def fragment_unsupported(fragments: Sequence[dict]) -> List[str]:
+    """The sorted names the *fragments* list as rules they cannot express."""
+    return sorted({name for fragment in fragments for name in fragment.get("unsupported", ())})
+
+
+def _sandhi_rule(rule: dict) -> dict:
+    """The IR sandhi rule of a fragment rule: the pattern and template texts of a spec
+    ``SandhiRule`` under the IR keys, with optional spelling conditions and ``pause``.
+
+    A pair rule has ``left`` and ``right`` patterns (an absent one matches every word) and
+    at least one of ``left_out`` and ``right_out``. A pause rule has ``"pause": true``, a
+    ``left`` pattern and ``left_out``; it rewrites a word at a pause, and has no right word.
+
+    Raises:
+        ValueError: a key outside those of the rule kind, a text that is not a string, a
+            pattern or template that the IR cannot compile, or a rule with no output.
+    """
+    from orthography2ipa.ir.compile_patterns import compile_pattern, compile_template
+    pause = rule.get("pause", False)
+    if pause is not False and pause is not True:
+        raise ValueError(f"fragment sandhi rule {rule!r}: pause must be true or false")
+    allowed = _SANDHI_PAUSE_KEYS if pause else _SANDHI_PAIR_KEYS
+    unknown = sorted(set(rule) - allowed - {"pause"})
+    if unknown:
+        raise ValueError(f"fragment sandhi key {unknown[0]!r} is not allowed in {rule!r}")
+    for key, text in rule.items():
+        if key != "pause" and not isinstance(text, str):
+            raise ValueError(f"fragment sandhi key {key!r} in {rule!r}: the value must be a string")
+    if "left_out" not in rule and "right_out" not in rule:
+        raise ValueError(f"fragment sandhi rule {rule!r} has no left_out or right_out")
+    if pause and not rule.get("left"):
+        raise ValueError(f"fragment sandhi rule {rule!r}: a pause rule needs a left pattern")
+    try:
+        item: dict = {"left": compile_pattern(rule.get("left", ""))}
+        if not pause:
+            item["right"] = compile_pattern(rule.get("right", ""))
+        item["obligatory"] = 1
+        for side in ("left", "right"):
+            if side + "_out" in rule:
+                item[side + "_out"] = compile_template(rule[side + "_out"])
+            if side + "_spelling" in rule:
+                item[side + "_spelling"] = compile_pattern(rule[side + "_spelling"])
+    except (re.error, ValueError) as err:
+        raise ValueError(f"fragment sandhi rule {rule!r}: {err}") from err
+    if pause:
+        item["pause"] = 1
+    return item
 
 
 @lru_cache(maxsize=32)

@@ -65,6 +65,8 @@ Record `o2i.spec_revisions` with the voice. [revisions.md](revisions.md) says wh
 
 A plugin that ships a word table gives it to the export with `--fragment PATH`. Repeat the flag for more than one file. A fragment is a JSON file `{"ir_version": 1, "words": {"word": "ipa"}}`. The export merges the word tables into every language, and a later file wins on a duplicate word. The key `o2i.fragments` lists the sha256 of each fragment, and the revision of each language covers the words.
 
+A fragment may also carry `sandhi`, a list of rules between words, and `unsupported`, a list of the names of the plugin's rules that a fragment cannot express. A sandhi rule has the keys `left`, `right`, `left_out` and `right_out` of a spec sandhi rule, and may add `left_spelling` and `right_spelling`, patterns on the written word, or `"pause": true` for a rule on a word at a pause. The export adds the rules after the rules of each spec. The key `o2i.unsupported` lists the names from `unsupported`: the loom file does not run those rules, so the plugin keeps them as a host hook.
+
 ## Step 3: pin the spec data of the training run
 
 A voice learns the phonemes of the spec data it was trained with. A later change to a spec changes the phonemes, and the voice then hears input it never saw. `--rev` compiles the spec data of a git tag or commit with the current compiler, so the file keeps the rules of the training run.

@@ -63,14 +63,23 @@ class Pipeline:
             ``sandhi_rules``, and it returns one IPA string per word.
             ``apply_sandhi=False`` turns off the spec's rules, not this field.
         fragments: plugin fragments for this engine: JSON objects with the
-            ``ir_version`` of the IR and a ``words`` table, ``{word: ipa}``,
-            with lowercase NFC keys. The compiler merges them into the IR of
+            ``ir_version`` of the IR and any of ``words``, ``sandhi`` and
+            ``unsupported``. ``words`` is a table ``{word: ipa}`` with
+            lowercase NFC keys. The compiler merges the tables into the IR of
             the engine, and a later fragment wins on a duplicate key. The
             precedence is ``spec.word_exceptions``, then ``lexicon``, then
-            the fragment words, then the rules. Any other part, another
-            ``ir_version`` or a bad key raises :class:`ValueError` when the
-            engine builds its IR. A loom export carries the fragments; a
-            ``lexicon`` it cannot.
+            the fragment words, then the rules. ``sandhi`` is a list of rules
+            that the IR runs after the spec's ``sandhi_rules`` and before the
+            ``sandhi`` hook, and ``apply_sandhi=False`` does not turn them off.
+            A rule has the pattern and template texts of a spec ``SandhiRule``
+            under the keys ``left``, ``right``, ``left_out`` and ``right_out``,
+            and may add ``left_spelling`` and ``right_spelling``, patterns on
+            the written word, or ``"pause": true`` for a rule on a word at a
+            pause (docs/ir/o2i-ir-v1.md, 3.10.1). ``unsupported`` names the
+            rules the plugin keeps as a hook. Any other part, another
+            ``ir_version``, a bad key or a bad rule raises :class:`ValueError`
+            when the engine builds its IR. A loom export carries the
+            fragments; a ``lexicon`` or a hook it cannot.
 
     A pipeline makes no promise to be hashable: a dict lexicon is not, and a
     callable compares by identity. Key a cache on what builds the pipeline.
